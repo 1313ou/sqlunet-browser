@@ -6,6 +6,7 @@ import org.sqlunet.predicatematrix.R;
 import org.sqlunet.predicatematrix.settings.Settings;
 import org.sqlunet.provider.SqlUNetContract;
 
+import android.annotation.SuppressLint;
 import android.app.ActionBar;
 import android.app.Activity;
 import android.app.Fragment;
@@ -72,7 +73,7 @@ public class PredicateMatrixActivity extends Activity
 		actionBar.setDisplayHomeAsUpEnabled(true);
 
 		// set up the action bar to show a custom layout
-		final View actionBarView = getLayoutInflater().inflate(R.layout.actionbar_custom, null);
+		@SuppressLint("InflateParams") final View actionBarView = getLayoutInflater().inflate(R.layout.actionbar_custom, null);
 		actionBar.setCustomView(actionBarView);
 		actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM | ActionBar.DISPLAY_SHOW_HOME);
 		actionBar.setDisplayShowTitleEnabled(false);

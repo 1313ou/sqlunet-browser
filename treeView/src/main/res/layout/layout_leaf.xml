@@ -45,6 +45,8 @@
         android:layout_centerVertical="true"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
-        android:contentDescription="@string/hint_more" />
+        android:contentDescription="@string/hint_more"
+        android:layout_toEndOf="@+id/node_value"
+        android:layout_toRightOf="@+id/node_value" />
 
 </RelativeLayout>

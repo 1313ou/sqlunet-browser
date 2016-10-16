@@ -31,6 +31,24 @@ public class Pointer implements Parcelable
 	}
 
 	/**
+	 * Creator
+	 */
+	public static final Creator<Pointer> CREATOR = new Creator<Pointer>()
+	{
+		@Override
+		public Pointer createFromParcel(Parcel in)
+		{
+			return new Pointer(in);
+		}
+
+		@Override
+		public Pointer[] newArray(int size)
+		{
+			return new Pointer[size];
+		}
+	};
+
+	/**
 	 * Get id
 	 * 
 	 * @return id

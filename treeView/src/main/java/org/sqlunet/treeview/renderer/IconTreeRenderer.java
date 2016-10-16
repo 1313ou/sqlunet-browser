@@ -3,6 +3,7 @@ package org.sqlunet.treeview.renderer;
 import org.sqlunet.treeview.R;
 import org.sqlunet.treeview.model.TreeNode;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -29,7 +30,7 @@ public class IconTreeRenderer extends TreeNode.Renderer<IconTreeItem>
 	public View createNodeView(final TreeNode node, final IconTreeItem value)
 	{
 		final LayoutInflater inflater = LayoutInflater.from(this.context);
-		final View view = inflater.inflate(R.layout.layout_tree, null, false);
+		@SuppressLint("InflateParams") final View view = inflater.inflate(R.layout.layout_tree, null, false);
 
 		// arrow
 		this.junctionView = (ImageView) view.findViewById(R.id.junction_icon);

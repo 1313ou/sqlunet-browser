@@ -15,23 +15,23 @@ import android.database.sqlite.SQLiteDatabase;
 class PbExampleQueryCommand extends DBQueryCommand
 {
 	/**
-	 * <code>theQuery</code> is the SQL statement
+	 * <code>QUERY</code> is the SQL statement
 	 */
-	private static final String theQuery = SqLiteDialect.PropBankExamplesQuery;
+	private static final String QUERY = SqLiteDialect.PropBankExamplesQuery;
 
 	/**
 	 * Constructor
 	 *
 	 * @param connection
 	 *            is the database connection
-	 * @param relationSetId
-	 *            relationsetid to build query from
+	 * @param roleSetId
+	 *            roleset id to build query from
 	 */
 	@SuppressWarnings("boxing")
-	public PbExampleQueryCommand(final SQLiteDatabase connection, final long relationSetId)
+	public PbExampleQueryCommand(final SQLiteDatabase connection, final long roleSetId)
 	{
-		super(connection, PbExampleQueryCommand.theQuery);
-		setParams(relationSetId);
+		super(connection, PbExampleQueryCommand.QUERY);
+		setParams(roleSetId);
 	}
 
 	/**
@@ -59,10 +59,9 @@ class PbExampleQueryCommand extends DBQueryCommand
 	 *
 	 * @return rel
 	 */
-	public PbRel getRel()
+	public String getRel()
 	{
-		final String thisSubText = this.cursor.getString(2);
-		return new PbRel(null, thisSubText);
+		return this.cursor.getString(2);
 	}
 
 	/**

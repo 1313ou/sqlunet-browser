@@ -8,21 +8,21 @@ import android.util.Pair;
 
 class PbRoleSet
 {
-	public final String theRoleSetName;
+	public final String roleSetName;
 
-	public final String theRoleSetHead;
+	public final String roleSetHead;
 
-	public final String theRoleSetDescr;
+	public final String roleSetDescr;
 
-	public final long theRoleSetId;
+	public final long roleSetId;
 
 	private PbRoleSet(final String thisRoleSetName, final String thisRoleSetHead, final String thisRoleSetDescr, final long thisRoleSetId)
 	{
 		super();
-		this.theRoleSetName = thisRoleSetName;
-		this.theRoleSetHead = thisRoleSetHead;
-		this.theRoleSetDescr = thisRoleSetDescr;
-		this.theRoleSetId = thisRoleSetId;
+		this.roleSetName = thisRoleSetName;
+		this.roleSetHead = thisRoleSetHead;
+		this.roleSetDescr = thisRoleSetDescr;
+		this.roleSetId = thisRoleSetId;
 	}
 
 	/**

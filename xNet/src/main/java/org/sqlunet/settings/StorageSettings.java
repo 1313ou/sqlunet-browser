@@ -100,7 +100,7 @@ public class StorageSettings
 		value = context.getResources().getString(R.string.pref_default_download_site);
 
 		// store value in preferences
-		sharedPref.edit().putString(StorageSettings.PREF_DOWNLOAD_SITE, value).commit();
+		sharedPref.edit().putString(StorageSettings.PREF_DOWNLOAD_SITE, value).apply();
 
 		return value;
 	}
@@ -126,7 +126,7 @@ public class StorageSettings
 		value = context.getResources().getString(R.string.pref_default_download_dbfile);
 
 		// store value in preferences
-		sharedPref.edit().putString(StorageSettings.PREF_DOWNLOAD_DBFILE, value).commit();
+		sharedPref.edit().putString(StorageSettings.PREF_DOWNLOAD_DBFILE, value).apply();
 
 		return value;
 	}
@@ -176,7 +176,7 @@ public class StorageSettings
 		value = context.getResources().getString(R.string.pref_default_download_sqlfile);
 
 		// store value in preferences
-		sharedPref.edit().putString(StorageSettings.PREF_DOWNLOAD_SQLFILE, value).commit();
+		sharedPref.edit().putString(StorageSettings.PREF_DOWNLOAD_SQLFILE, value).apply();
 
 		return value;
 	}
@@ -237,7 +237,7 @@ public class StorageSettings
 		value = context.getResources().getString(R.string.pref_default_entry_import);
 
 		// store value in preferences
-		sharedPref.edit().putString(StorageSettings.PREF_ENTRY_IMPORT, value).commit();
+		sharedPref.edit().putString(StorageSettings.PREF_ENTRY_IMPORT, value).apply();
 
 		return value;
 	}
@@ -261,7 +261,7 @@ public class StorageSettings
 		value = context.getResources().getString(R.string.pref_default_entry_pm);
 
 		// store value in preferences
-		sharedPref.edit().putString(StorageSettings.PREF_ENTRY_PM, value).commit();
+		sharedPref.edit().putString(StorageSettings.PREF_ENTRY_PM, value).apply();
 
 		return value;
 	}
@@ -285,7 +285,7 @@ public class StorageSettings
 		value = context.getResources().getString(R.string.pref_default_entry_index);
 
 		// store value in preferences
-		sharedPref.edit().putString(StorageSettings.PREF_ENTRY_INDEX, value).commit();
+		sharedPref.edit().putString(StorageSettings.PREF_ENTRY_INDEX, value).apply();
 
 		return value;
 	}

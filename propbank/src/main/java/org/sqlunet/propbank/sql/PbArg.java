@@ -4,23 +4,23 @@ import java.util.Locale;
 
 class PbArg
 {
-	public final String theNArg;
+	public final String nArg;
 
-	public final String theF;
+	public final String f;
 
-	public final String theVnTheta;
+	public final String vnTheta;
 
-	public final String theDescription;
+	public final String description;
 
-	public final String theSubText;
+	public final String subText;
 
 	private PbArg(final String thisNArg, final String thisF, final String thisDescription, final String thisVnTheta, final String thisSubText)
 	{
-		this.theNArg = thisNArg;
-		this.theF = thisF;
-		this.theVnTheta = thisVnTheta;
-		this.theDescription = thisDescription;
-		this.theSubText = thisSubText;
+		this.nArg = thisNArg;
+		this.f = thisF;
+		this.vnTheta = thisVnTheta;
+		this.description = thisDescription;
+		this.subText = thisSubText;
 	}
 
 	public PbArg(final String... theseArgFields)

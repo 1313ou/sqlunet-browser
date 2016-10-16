@@ -1,5 +1,6 @@
 package org.sqlunet.settings;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -198,6 +199,7 @@ public class Settings
 		return sharedPref.getString(Settings.PREF_SEARCH_MODE, null);
 	}
 
+	@SuppressLint("CommitPrefEdits")
 	static public void initialize(final Context context)
 	{
 		final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
@@ -214,7 +216,7 @@ public class Settings
 		final String detailMode_string = sharedPref.getString(Settings.PREF_DETAIL_MODE, null);
 		if (detailMode_string == null)
 			editor.putString(Settings.PREF_DETAIL_MODE, Settings.DetailMode.VIEW.name());
-		
+
 		editor.commit();
 	}
 

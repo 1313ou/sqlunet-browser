@@ -288,13 +288,13 @@ public class PropBankImplementation implements PropBankInterface
 			final Node thisRoleSetNode = PbNodeFactory.makePbRoleSetNode(thisDoc, thisParent, thisRoleSet, i++);
 
 			// roles
-			final List<PbRole> theseRoles = PbRole.make(thisConnection, thisRoleSet.theRoleSetId);
+			final List<PbRole> theseRoles = PbRole.make(thisConnection, thisRoleSet.roleSetId);
 			for (final PbRole thisRole : theseRoles)
 			{
 				PbNodeFactory.makePbRoleNode(thisDoc, thisRoleSetNode, thisRole);
 			}
 			// examples
-			final List<PbExample> theseExamples = PbExample.make(thisConnection, thisRoleSet.theRoleSetId);
+			final List<PbExample> theseExamples = PbExample.make(thisConnection, thisRoleSet.roleSetId);
 			for (final PbExample thisExample : theseExamples)
 			{
 				PbNodeFactory.makePbExampleNode(thisDoc, thisRoleSetNode, thisExample);

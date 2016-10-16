@@ -51,6 +51,6 @@ public class LinkHolder extends IconLeafRenderer
 			this.id = id0;
 		}
 
-		abstract public void process(final TreeNode node);
+		abstract public void process(@SuppressWarnings("UnusedParameters") final TreeNode node);
 	}
 }

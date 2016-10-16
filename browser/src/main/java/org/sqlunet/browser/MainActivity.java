@@ -36,6 +36,7 @@ import org.sqlunet.wordnet.provider.WordNetContract.LexDomains;
 import org.sqlunet.wordnet.provider.WordNetContract.LinkTypes;
 import org.sqlunet.wordnet.provider.WordNetContract.PosTypes;
 
+import android.annotation.SuppressLint;
 import android.app.ActionBar;
 import android.app.Activity;
 import android.app.SearchManager;
@@ -122,6 +123,7 @@ public class MainActivity extends Activity
 		actionBar.setDisplayHomeAsUpEnabled(true);
 
 		// set up the action bar to show a custom layout
+		@SuppressLint("InflateParams")
 		final View actionBarView = getLayoutInflater().inflate(R.layout.actionbar_custom, null);
 		actionBar.setCustomView(actionBarView);
 		actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM | ActionBar.DISPLAY_SHOW_HOME);

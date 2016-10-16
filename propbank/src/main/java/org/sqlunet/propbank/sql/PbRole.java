@@ -13,27 +13,27 @@ class PbRole
 	/**
 	 * Role id
 	 */
-	public final long theRoleId;
+	public final long roleId;
 
 	/**
 	 * Role description
 	 */
-	public final String theRoleDescr;
+	public final String roleDescr;
 
 	/**
 	 * Role N arg
 	 */
-	public final String theNArg;
+	public final String nArg;
 
 	/**
 	 * Role F
 	 */
-	public final String theRoleFunc;
+	public final String roleFunc;
 
 	/**
 	 * Role theta
 	 */
-	public final String theRoleTheta;
+	public final String roleTheta;
 
 	/**
 	 * Constructor
@@ -52,11 +52,11 @@ class PbRole
 	private PbRole(final long thisRoleId, final String thisRoleDescr, final String thisNArg, final String thisRoleFunc, final String thisRoleTheta)
 	{
 		super();
-		this.theRoleId = thisRoleId;
-		this.theRoleDescr = thisRoleDescr;
-		this.theNArg = thisNArg;
-		this.theRoleFunc = thisRoleFunc;
-		this.theRoleTheta = thisRoleTheta;
+		this.roleId = thisRoleId;
+		this.roleDescr = thisRoleDescr;
+		this.nArg = thisNArg;
+		this.roleFunc = thisRoleFunc;
+		this.roleTheta = thisRoleTheta;
 	}
 
 	/**

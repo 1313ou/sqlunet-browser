@@ -15,115 +15,113 @@ class PbExample
 	/**
 	 * Example id
 	 */
-	public final long theExampleId;
+	public final long exampleId;
 
 	/**
 	 * Text
 	 */
-	public final String theText;
+	public final String text;
 
 	/**
 	 * Relation
 	 */
-	public final PbRel theRel;
+	public final String rel;
 
 	/**
 	 * Arguments
 	 */
-	public final List<PbArg> theArgs;
+	public final List<PbArg> args;
 
 	/**
 	 * Aspect
 	 */
-	public final String theAspect;
+	public final String aspect;
 
 	/**
 	 * Form
 	 */
-	public final String theForm;
+	public final String form;
 
 	/**
 	 * Tense
 	 */
-	public final String theTense;
+	public final String tense;
 
 	/**
 	 * Voice
 	 */
-	public final String theVoice;
+	public final String voice;
 
 	/**
 	 * Person
 	 */
-	public final String thePerson;
+	public final String person;
 
 	/**
 	 * Constructor
 	 *
-	 * @param thisExampleId
+	 * @param exampleId
 	 *            is the example id
-	 * @param thisText
+	 * @param text
 	 *            is the text of the example
-	 * @param thisRel
+	 * @param rel
 	 *            is the relation
-	 * @param theseArguments
+	 * @param args
 	 *            is the list of arguments
 	 */
-	private PbExample(final long thisExampleId, final String thisText, final PbRel thisRel, final List<PbArg> theseArguments, final String thisAspect, final String thisForm, final String thisTense, final String thisVoice, final String thisPerson)
+	private PbExample(final long exampleId, final String text, final String rel, final List<PbArg> args, final String aspect, final String form, final String tense, final String voice, final String person)
 	{
-		this.theExampleId = thisExampleId;
-		this.theText = thisText;
-		this.theRel = thisRel;
-		this.theArgs = theseArguments;
-		this.theAspect = thisAspect;
-		this.theForm = thisForm;
-		this.theTense = thisTense;
-		this.theVoice = thisVoice;
-		this.thePerson = thisPerson;
+		this.exampleId = exampleId;
+		this.text = text;
+		this.rel = rel;
+		this.args = args;
+		this.aspect = aspect;
+		this.form = form;
+		this.tense = tense;
+		this.voice = voice;
+		this.person = person;
 	}
 
 	/**
 	 * Make a list of examples from query built from relationsetid
 	 *
-	 * @param thisConnection
+	 * @param connection
 	 *            is the database connection
 	 * @return list of PropBank examples
 	 */
-	static public List<PbExample> make(final SQLiteDatabase thisConnection, final long thisRelationSetId)
+	static public List<PbExample> make(final SQLiteDatabase connection, final long roleSetId)
 	{
-		final List<PbExample> thisResult = new ArrayList<>();
-		PbExampleQueryCommand thisQuery = null;
+		final List<PbExample> result = new ArrayList<>();
+		PbExampleQueryCommand query = null;
 
 		try
 		{
-			thisQuery = new PbExampleQueryCommand(thisConnection, thisRelationSetId);
-			thisQuery.execute();
+			query = new PbExampleQueryCommand(connection, roleSetId);
+			query.execute();
 
-			while (thisQuery.next())
+			while (query.next())
 			{
 				// data from resultset
+				final long exampleId = query.getExampleId();
+				final String text = query.getText();
+				final String rel = query.getRel();
+				final List<PbArg> args = query.getArgs();
+				final String aspect = query.getAspect();
+				final String form = query.getForm();
+				final String tense = query.getTense();
+				final String voice = query.getVoice();
+				final String person = query.getPerson();
 
-				// example
-				final long thisExampleId = thisQuery.getExampleId();
-				final String thisText = thisQuery.getText();
-				final PbRel thisRel = thisQuery.getRel();
-				final List<PbArg> theseArguments = thisQuery.getArgs();
-				final String thisAspect = thisQuery.getAspect();
-				final String thisForm = thisQuery.getForm();
-				final String thisTense = thisQuery.getTense();
-				final String thisVoice = thisQuery.getVoice();
-				final String thisPerson = thisQuery.getPerson();
-
-				thisResult.add(new PbExample(thisExampleId, thisText, thisRel, theseArguments, thisAspect, thisForm, thisTense, thisVoice, thisPerson));
+				result.add(new PbExample(exampleId, text, rel, args, aspect, form, tense, voice, person));
 			}
 		}
 		finally
 		{
-			if (thisQuery != null)
+			if (query != null)
 			{
-				thisQuery.release();
+				query.release();
 			}
 		}
-		return thisResult;
+		return result;
 	}
 }

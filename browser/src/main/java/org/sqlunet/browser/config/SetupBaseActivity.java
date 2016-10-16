@@ -64,8 +64,7 @@ public class SetupBaseActivity extends Activity implements Downloader.Listener, 
 		final float df = dataStats[StorageUtils.STORAGE_FREE];
 		final float dc = dataStats[StorageUtils.STORAGE_CAPACITY];
 		final float dp = dataStats[StorageUtils.STORAGE_OCCUPANCY];
-		final String storageData = getResources().getString(R.string.title_storage_data);
-		data_storage.setText(String.format(storageData, dataDir, StorageUtils.mbToString(df), StorageUtils.mbToString(dc), dp));
+		data_storage.setText(getString(R.string.format_storage_data, dataDir, StorageUtils.mbToString(df), StorageUtils.mbToString(dc), dp));
 	}
 
 	// M E N U

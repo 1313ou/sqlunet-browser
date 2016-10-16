@@ -8,6 +8,7 @@ import org.sqlunet.wordnet.provider.WordNetContract.Lookup_Definitions;
 import org.sqlunet.wordnet.provider.WordNetContract.Lookup_Samples;
 import org.sqlunet.wordnet.provider.WordNetContract.Lookup_Words;
 
+import android.annotation.SuppressLint;
 import android.app.ActionBar;
 import android.app.Activity;
 import android.app.Fragment;
@@ -83,6 +84,7 @@ public class TextSearchActivity extends Activity
 		actionBar.setDisplayHomeAsUpEnabled(true);
 		
 		// set up the action bar to show a custom layout
+		@SuppressLint("InflateParams")
 		final View actionBarView = getLayoutInflater().inflate(R.layout.actionbar_custom, null);
 		actionBar.setCustomView(actionBarView);
 		actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM | ActionBar.DISPLAY_SHOW_HOME);

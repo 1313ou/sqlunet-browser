@@ -7,7 +7,6 @@
     <string name="title_cache_storage">Cache storage</string>
     <string name="title_storage">Storage</string>
     <string name="title_storage_devices">Storage devices</string>
-    <string name="title_storage_data" formatted="false">%s\nfree: %s capacity: %s (%.1f%%)</string>
     <string name="title_download_db">Download DB source</string>
     <string name="title_download_sqlsource">Download SQL source</string>
     <string name="title_download_sqltarget">Download SQL target</string>
@@ -18,5 +17,7 @@
     <string name="title_sql_index">SQL index statements</string>
     <string name="title_sqlupdate_complete">SQL update completed</string>
     <string name="title_sqlupdate_failed">SQL update failed</string>
+
+    <string name="format_storage_data" formatted="false">%1$s\nfree: %2$s capacity: %3$s (%4$.1f percent)</string>
 
 </resources>

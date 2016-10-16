@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="org.sqlunet.treeview" >
+          xmlns:tools="http://schemas.android.com/tools"
+          package="org.sqlunet.treeview" >
 
     <uses-sdk
         android:minSdkVersion="11"
-        android:targetSdkVersion="23" />
+        android:targetSdkVersion="24"
+        tools:ignore="GradleOverrides"/>
 
     <application android:allowBackup="true" />
 

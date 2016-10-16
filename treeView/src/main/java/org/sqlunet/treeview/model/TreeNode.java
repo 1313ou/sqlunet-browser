@@ -317,7 +317,7 @@ public class TreeNode
 		}
 
 		// node view
-		public abstract View createNodeView(TreeNode node, E value);
+		public abstract View createNodeView(@SuppressWarnings("UnusedParameters") TreeNode node, E value);
 
 		@SuppressWarnings("unchecked")
 		public View getNodeView()

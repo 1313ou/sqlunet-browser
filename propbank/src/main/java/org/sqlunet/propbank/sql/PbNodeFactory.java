@@ -21,128 +21,128 @@ class PbNodeFactory extends NodeFactory
 	/**
 	 * Make PropBank root node
 	 *
-	 * @param thisDoc
+	 * @param doc
 	 *            is the DOM Document being built
-	 * @param thisWordId
+	 * @param wordId
 	 *            is the target word id
 	 * @return newly created node
 	 */
-	static public Node makePbRootNode(final Document thisDoc, final long thisWordId)
+	static public Node makePbRootNode(final Document doc, final long wordId)
 	{
-		final Element thisRootNode = NodeFactory.makeNode(thisDoc, thisDoc, "propbank", null); //$NON-NLS-1$
-		org.sqlunet.sql.NodeFactory.makeTargetNode(thisDoc, thisRootNode, "word-id", Long.toString(thisWordId)); //$NON-NLS-1$
-		return thisRootNode;
+		final Element rootNode = NodeFactory.makeNode(doc, doc, "propbank", null); //$NON-NLS-1$
+		org.sqlunet.sql.NodeFactory.makeTargetNode(doc, rootNode, "word-id", Long.toString(wordId)); //$NON-NLS-1$
+		return rootNode;
 	}
 
 	/**
 	 * Make PropBank root node
 	 *
-	 * @param thisDoc
+	 * @param doc
 	 *            is the DOM Document being built
-	 * @param thisRoleSetId
+	 * @param roleSetId
 	 *            is the target roleset id
 	 * @return newly created node
 	 */
-	public static Node makePbRootRoleSetNode(Document thisDoc, long thisRoleSetId)
+	public static Node makePbRootRoleSetNode(final Document doc, long roleSetId)
 	{
-		final Element thisRootNode = NodeFactory.makeNode(thisDoc, thisDoc, "propbank", null); //$NON-NLS-1$
-		org.sqlunet.sql.NodeFactory.makeTargetNode(thisDoc, thisRootNode, "roleset-id", Long.toString(thisRoleSetId)); //$NON-NLS-1$
-		return thisRootNode;
+		final Element rootNode = NodeFactory.makeNode(doc, doc, "propbank", null); //$NON-NLS-1$
+		org.sqlunet.sql.NodeFactory.makeTargetNode(doc, rootNode, "roleset-id", Long.toString(roleSetId)); //$NON-NLS-1$
+		return rootNode;
 	}
 
 	/**
 	 * Make the roleset node
 	 *
-	 * @param thisDoc
+	 * @param doc
 	 *            is the DOM Document being built
-	 * @param thisParent
+	 * @param parent
 	 *            is the parent node to attach this node to
-	 * @param thisRoleSet
+	 * @param roleSet
 	 *            is the roleset information
 	 * @param i
 	 *            the ith roleset
 	 */
-	public static Node makePbRoleSetNode(final Document thisDoc, final Node thisParent, final PbRoleSet thisRoleSet, final int i)
+	public static Node makePbRoleSetNode(final Document doc, final Node parent, final PbRoleSet roleSet, final int i)
 	{
-		final Element thisElement = NodeFactory.makeNode(thisDoc, thisParent, "roleset", null); //$NON-NLS-1$
-		NodeFactory.makeAttribute(thisElement, "num", Integer.toString(i)); //$NON-NLS-1$
-		NodeFactory.makeAttribute(thisElement, "name", thisRoleSet.theRoleSetName); //$NON-NLS-1$
-		NodeFactory.makeAttribute(thisElement, "rolesetid", Long.toString(thisRoleSet.theRoleSetId)); //$NON-NLS-1$
-		NodeFactory.makeAttribute(thisElement, "head", thisRoleSet.theRoleSetHead); //$NON-NLS-1$
-		NodeFactory.makeText(thisDoc, thisElement, thisRoleSet.theRoleSetDescr);
-		return thisElement;
+		final Element element = NodeFactory.makeNode(doc, parent, "roleset", null); //$NON-NLS-1$
+		NodeFactory.makeAttribute(element, "num", Integer.toString(i)); //$NON-NLS-1$
+		NodeFactory.makeAttribute(element, "name", roleSet.roleSetName); //$NON-NLS-1$
+		NodeFactory.makeAttribute(element, "rolesetid", Long.toString(roleSet.roleSetId)); //$NON-NLS-1$
+		NodeFactory.makeAttribute(element, "head", roleSet.roleSetHead); //$NON-NLS-1$
+		NodeFactory.makeText(doc, element, roleSet.roleSetDescr);
+		return element;
 	}
 
 	/**
 	 * Make the roleset node
-	 *  @param thisDoc
+	 *  @param doc
 	 *            is the DOM Document being built
-	 * @param thisParent
+	 * @param parent
 	 *            is the parent node to attach this node to
-	 * @param thisRole
+	 * @param role
  *            is the role information
 	 */
 	@SuppressWarnings("UnusedReturnValue")
-	public static Node makePbRoleNode(final Document thisDoc, final Node thisParent, final PbRole thisRole)
+	public static Node makePbRoleNode(final Document doc, final Node parent, final PbRole role)
 	{
-		final Element thisElement = NodeFactory.makeNode(thisDoc, thisParent, "role", null); //$NON-NLS-1$
-		NodeFactory.makeAttribute(thisElement, "roleid", Long.toString(thisRole.theRoleId)); //$NON-NLS-1$
-		NodeFactory.makeAttribute(thisElement, "narg", thisRole.theNArg); //$NON-NLS-1$
-		NodeFactory.makeAttribute(thisElement, "theta", thisRole.theRoleTheta); //$NON-NLS-1$
-		NodeFactory.makeAttribute(thisElement, "func", thisRole.theRoleFunc); //$NON-NLS-1$
-		NodeFactory.makeText(thisDoc, thisElement, thisRole.theRoleDescr);
-		return thisElement;
+		final Element element = NodeFactory.makeNode(doc, parent, "role", null); //$NON-NLS-1$
+		NodeFactory.makeAttribute(element, "roleid", Long.toString(role.roleId)); //$NON-NLS-1$
+		NodeFactory.makeAttribute(element, "narg", role.nArg); //$NON-NLS-1$
+		NodeFactory.makeAttribute(element, "theta", role.roleTheta); //$NON-NLS-1$
+		NodeFactory.makeAttribute(element, "func", role.roleFunc); //$NON-NLS-1$
+		NodeFactory.makeText(doc, element, role.roleDescr);
+		return element;
 	}
 
 	@SuppressWarnings("UnusedReturnValue")
-	public static Node makePbExampleNode(final Document thisDoc, final Node thisParent, final PbExample thisExample)
+	public static Node makePbExampleNode(final Document doc, final Node parent, final PbExample example)
 	{
-		final Element thisElement = NodeFactory.makeNode(thisDoc, thisParent, "example", null); //$NON-NLS-1$
-		NodeFactory.makeAttribute(thisElement, "exampleid", Long.toString(thisExample.theExampleId)); //$NON-NLS-1$
-		if (thisExample.theAspect != null)
+		final Element element = NodeFactory.makeNode(doc, parent, "example", null); //$NON-NLS-1$
+		NodeFactory.makeAttribute(element, "exampleid", Long.toString(example.exampleId)); //$NON-NLS-1$
+		if (example.aspect != null)
 		{
-			NodeFactory.makeAttribute(thisElement, "aspect", thisExample.theAspect); //$NON-NLS-1$
+			NodeFactory.makeAttribute(element, "aspect", example.aspect); //$NON-NLS-1$
 		}
-		if (thisExample.theForm != null)
+		if (example.form != null)
 		{
-			NodeFactory.makeAttribute(thisElement, "form", thisExample.theForm); //$NON-NLS-1$
+			NodeFactory.makeAttribute(element, "form", example.form); //$NON-NLS-1$
 		}
-		if (thisExample.theTense != null)
+		if (example.tense != null)
 		{
-			NodeFactory.makeAttribute(thisElement, "tense", thisExample.theTense); //$NON-NLS-1$
+			NodeFactory.makeAttribute(element, "tense", example.tense); //$NON-NLS-1$
 		}
-		if (thisExample.theVoice != null)
+		if (example.voice != null)
 		{
-			NodeFactory.makeAttribute(thisElement, "voice", thisExample.theVoice); //$NON-NLS-1$
+			NodeFactory.makeAttribute(element, "voice", example.voice); //$NON-NLS-1$
 		}
-		if (thisExample.thePerson != null)
+		if (example.person != null)
 		{
-			NodeFactory.makeAttribute(thisElement, "person", thisExample.thePerson); //$NON-NLS-1$
+			NodeFactory.makeAttribute(element, "person", example.person); //$NON-NLS-1$
 		}
 
-		NodeFactory.makeText(thisDoc, thisElement, thisExample.theText);
-		NodeFactory.makeNode(thisDoc, thisElement, "rel", thisExample.theRel.subText); //$NON-NLS-1$
-		if (thisExample.theArgs != null)
+		NodeFactory.makeText(doc, element, example.text);
+		NodeFactory.makeNode(doc, element, "rel", example.rel); //$NON-NLS-1$
+		if (example.args != null)
 		{
-			for (final PbArg thisArg : thisExample.theArgs)
+			for (final PbArg arg : example.args)
 			{
-				final Element thisElement3 = NodeFactory.makeNode(thisDoc, thisElement, "arg", null); //$NON-NLS-1$
-				NodeFactory.makeAttribute(thisElement3, "narg", thisArg.theNArg); //$NON-NLS-1$
-				if (thisArg.theF != null)
+				final Element element3 = NodeFactory.makeNode(doc, element, "arg", null); //$NON-NLS-1$
+				NodeFactory.makeAttribute(element3, "narg", arg.nArg); //$NON-NLS-1$
+				if (arg.f != null)
 				{
-					NodeFactory.makeAttribute(thisElement3, "f", thisArg.theF); //$NON-NLS-1$
+					NodeFactory.makeAttribute(element3, "f", arg.f); //$NON-NLS-1$
 				}
-				if (thisArg.theDescription != null)
+				if (arg.description != null)
 				{
-					NodeFactory.makeAttribute(thisElement3, "descr", thisArg.theDescription); //$NON-NLS-1$
+					NodeFactory.makeAttribute(element3, "descr", arg.description); //$NON-NLS-1$
 				}
-				if (thisArg.theVnTheta != null)
+				if (arg.vnTheta != null)
 				{
-					NodeFactory.makeAttribute(thisElement3, "theta", thisArg.theVnTheta); //$NON-NLS-1$
+					NodeFactory.makeAttribute(element3, "theta", arg.vnTheta); //$NON-NLS-1$
 				}
-				NodeFactory.makeText(thisDoc, thisElement3, thisArg.theSubText);
+				NodeFactory.makeText(doc, element3, arg.subText);
 			}
 		}
-		return thisElement;
+		return element;
 	}
 }

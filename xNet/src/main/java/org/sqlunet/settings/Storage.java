@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.sqlunet.settings.StorageUtils.CandidateStorage;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Build;
@@ -44,6 +45,7 @@ public class Storage
 	 *        context
 	 * @return database storage directory
 	 */
+	@SuppressLint("CommitPrefEdits")
 	static public File getSqlUNetStorage(final Context context)
 	{
 		// test if set in preference

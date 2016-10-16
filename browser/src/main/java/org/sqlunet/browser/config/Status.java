@@ -100,19 +100,20 @@ public class Status
 				null, //
 				order);
 		assert cursor != null;
+		List<String> result = null;
 		if (cursor.moveToFirst())
 		{
 			final int nameId = cursor.getColumnIndex(TablesAndIndices.NAME);
-			final List<String> result = new ArrayList<>();
+			result = new ArrayList<>();
 			do
 			{
 				final String name = cursor.getString(nameId);
 				result.add(name);
 			}
 			while (cursor.moveToNext());
-			return result;
 		}
-		return null;
+		cursor.close();
+		return result;
 	}
 
 	static private boolean contains(final List<String> tablesAndIndexes, final String... targets)

@@ -77,8 +77,7 @@ public class SetupSqlActivity extends SetupBaseActivity
 		final float ca = cacheStats[0];
 		final float cc = cacheStats[1];
 		final float cp = cacheStats[2];
-		final String storageData = getResources().getString(R.string.title_storage_data);
-		cache_storage.setText(String.format(storageData, cacheDir, ca, cc, cp));
+		cache_storage.setText(getString(R.string.format_storage_data, cacheDir, StorageUtils.mbToString(ca), StorageUtils.mbToString(cc), cp));
 
 		// buttons
 		this.downloadSqlButton = (Button) findViewById(R.id.downloadSql);

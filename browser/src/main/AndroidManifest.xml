@@ -8,7 +8,8 @@
 
     <uses-sdk
         android:minSdkVersion="14"
-        android:targetSdkVersion="25" />
+        android:targetSdkVersion="25"
+        tools:ignore="GradleOverrides"/>
 
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
@@ -19,6 +20,7 @@
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
+        android:supportsRtl = "true"
         android:theme="@style/AppTheme" >
         <activity
             android:name="org.sqlunet.browser.MainActivity"
@@ -268,49 +270,57 @@
             android:name="org.sqlunet.provider.ManagerProvider"
             android:authorities="org.sqlunet.provider.manager"
             android:enabled="true"
-            android:exported="true" >
+            android:exported="true"
+            tools:ignore="ExportedContentProvider">
         </provider>
         <provider
             android:name="org.sqlunet.provider.XSqlUNetProvider"
             android:authorities="org.sqlunet.cross.provider"
             android:enabled="true"
-            android:exported="true" >
+            android:exported="true"
+            tools:ignore="ExportedContentProvider">
         </provider>
         <provider
             android:name="org.sqlunet.wordnet.provider.WordNetProvider"
             android:authorities="org.sqlunet.wordnet.provider"
             android:enabled="true"
-            android:exported="true" >
+            android:exported="true"
+            tools:ignore="ExportedContentProvider">
         </provider>
         <provider
             android:name="org.sqlunet.framenet.provider.FrameNetProvider"
             android:authorities="org.sqlunet.framenet.provider"
             android:enabled="true"
-            android:exported="true" >
+            android:exported="true"
+            tools:ignore="ExportedContentProvider">
         </provider>
         <provider
             android:name="org.sqlunet.propbank.provider.PropbankProvider"
             android:authorities="org.sqlunet.propbank.provider"
             android:enabled="true"
-            android:exported="true" >
+            android:exported="true"
+            tools:ignore="ExportedContentProvider">
         </provider>
         <provider
             android:name="org.sqlunet.verbnet.provider.VerbNetProvider"
             android:authorities="org.sqlunet.verbnet.provider"
             android:enabled="true"
-            android:exported="true" >
+            android:exported="true"
+            tools:ignore="ExportedContentProvider">
         </provider>
         <provider
             android:name="org.sqlunet.bnc.provider.BNCProvider"
             android:authorities="org.sqlunet.bnc.provider"
             android:enabled="true"
-            android:exported="true" >
+            android:exported="true"
+            tools:ignore="ExportedContentProvider">
         </provider>
         <provider
             android:name="org.sqlunet.predicatematrix.provider.PredicateMatrixProvider"
             android:authorities="org.sqlunet.predicatematrix.provider"
             android:enabled="true"
-            android:exported="true" >
+            android:exported="true"
+            tools:ignore="ExportedContentProvider">
         </provider>
     </application>
 
