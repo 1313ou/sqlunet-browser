@@ -58,7 +58,9 @@
     <string name="pref_header_download">Download</string>
     <string name="pref_title_download_site">Download site</string>
     <string name="pref_description_download_site">Download site for data</string>
+
     <!-- Download -->
+<!--
     <string-array name="pref_download_sites_titles">
         <item>SourceForge</item>
         <item>Local</item>
@@ -67,6 +69,7 @@
         <item>http://sqlunet.sourceforge.net/sqlunet</item>
         <item>http://localhost:1313</item>
     </string-array>
+-->
 
     <string name="pref_title_download_dbfile">Download DB file</string>
     <string name="pref_description_download_dbfile">Data download DB file</string>

@@ -129,7 +129,7 @@ public class StatusActivity extends Activity
 		final int status = Status.status(getBaseContext());
 		if (status != 0)
 		{
-			db.setImageResource(R.drawable.ic_green);
+			db.setImageResource(R.drawable.ic_ok);
 			b_db.setVisibility(View.GONE);
 
 			final boolean existsIdx = (status & Status.EXISTS_IDX) != 0;
@@ -141,10 +141,10 @@ public class StatusActivity extends Activity
 			final ImageView pm = (ImageView) findViewById(R.id.status_predicatematrix);
 			final ImageView ts = (ImageView) findViewById(R.id.status_textsearch);
 			final ImageView tsfn = (ImageView) findViewById(R.id.status_textsearchfn);
-			idx.setImageResource(existsIdx ? R.drawable.ic_green : R.drawable.ic_red);
-			pm.setImageResource(existsPm ? R.drawable.ic_green : R.drawable.ic_red);
-			ts.setImageResource(existsTs ? R.drawable.ic_green : R.drawable.ic_red);
-			tsfn.setImageResource(existsTsFn ? R.drawable.ic_green : R.drawable.ic_red);
+			idx.setImageResource(existsIdx ? R.drawable.ic_ok : R.drawable.ic_fail);
+			pm.setImageResource(existsPm ? R.drawable.ic_ok : R.drawable.ic_fail);
+			ts.setImageResource(existsTs ? R.drawable.ic_ok : R.drawable.ic_fail);
+			tsfn.setImageResource(existsTsFn ? R.drawable.ic_ok : R.drawable.ic_fail);
 
 			b_idx.setVisibility(existsIdx ? View.GONE : View.VISIBLE);
 			b_pm.setVisibility(existsPm ? View.GONE : View.VISIBLE);
@@ -153,7 +153,7 @@ public class StatusActivity extends Activity
 		}
 		else
 		{
-			db.setImageResource(R.drawable.ic_red);
+			db.setImageResource(R.drawable.ic_fail);
 			b_db.setVisibility(View.VISIBLE);
 		}
 	}

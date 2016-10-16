@@ -23,7 +23,6 @@ import android.widget.TextView;
 @SuppressWarnings("unused")
 public class ExpandableListFragment extends Fragment implements OnCreateContextMenuListener, ExpandableListView.OnChildClickListener, ExpandableListView.OnGroupCollapseListener, ExpandableListView.OnGroupExpandListener
 {
-
 	private static final int INTERNAL_EMPTY_ID = 0x00ff0001;
 	private static final int INTERNAL_PROGRESS_CONTAINER_ID = 0x00ff0002;
 	private static final int INTERNAL_LIST_CONTAINER_ID = 0x00ff0003;
@@ -474,7 +473,7 @@ public class ExpandableListFragment extends Fragment implements OnCreateContextM
 
 	/**
 	 * Get the activity's expandable list view widget. This can be used to get the selection, set the selection, and many other useful functions.
-	 * 
+	 *
 	 * @see ExpandableListView
 	 */
 	protected ExpandableListView getExpandableListView()
@@ -493,7 +492,7 @@ public class ExpandableListFragment extends Fragment implements OnCreateContextM
 
 	/**
 	 * Gets the ID of the currently selected group or child.
-	 * 
+	 *
 	 * @return The ID of the currently selected group or child.
 	 */
 	public long getSelectedId()
@@ -504,7 +503,7 @@ public class ExpandableListFragment extends Fragment implements OnCreateContextM
 	/**
 	 * Gets the position (in packed position representation) of the currently selected group or child. Use {@link ExpandableListView#getPackedPositionType},
 	 * {@link ExpandableListView#getPackedPositionGroup}, and {@link ExpandableListView#getPackedPositionChild} to unpack the returned packed position.
-	 * 
+	 *
 	 * @return A packed position representation containing the currently selected group or child's position and type.
 	 */
 	public long getSelectedPosition()
@@ -515,7 +514,7 @@ public class ExpandableListFragment extends Fragment implements OnCreateContextM
 	/**
 	 * Sets the selection to the specified child. If the child is in a collapsed group, the group will only be expanded and child subsequently selected if
 	 * shouldExpandGroup is set to true, otherwise the method will return false.
-	 * 
+	 *
 	 * @param groupPosition
 	 *            The position of the group that contains the child.
 	 * @param childPosition
@@ -531,7 +530,7 @@ public class ExpandableListFragment extends Fragment implements OnCreateContextM
 
 	/**
 	 * Sets the selection to the specified group.
-	 * 
+	 *
 	 * @param groupPosition
 	 *            The position of the group that should be selected.
 	 */

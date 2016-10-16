@@ -18,6 +18,6 @@
     <string name="title_sqlupdate_complete">SQL update completed</string>
     <string name="title_sqlupdate_failed">SQL update failed</string>
 
-    <string name="format_storage_data" formatted="false">%1$s\nfree: %2$s capacity: %3$s (%4$.1f percent)</string>
+    <string name="format_storage_data" formatted="true">%1$s\nfree: %2$s capacity: %3$s (%4$.1f percent)</string>
 
 </resources>

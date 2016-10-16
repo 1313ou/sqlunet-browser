@@ -179,4 +179,8 @@
         <item name="android:descendantFocusability">blocksDescendants</item>
     </style>
 
+    <style name="NoBackground" parent="AppTheme">
+        <item name="android:windowBackground">@null</item>
+    </style>
+
 </resources>

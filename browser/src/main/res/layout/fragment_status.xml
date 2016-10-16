@@ -44,7 +44,7 @@
             android:paddingEnd="20dp"
             android:paddingStart="20dp"
             android:paddingTop="20dp"
-            android:src="@drawable/ic_gray"
+            android:src="@drawable/ic_unknown"
             tools:targetApi="lollipop" />
 
         <ImageButton
@@ -83,7 +83,7 @@
             android:paddingEnd="20dp"
             android:paddingStart="20dp"
             android:paddingTop="20dp"
-            android:src="@drawable/ic_gray"
+            android:src="@drawable/ic_unknown"
             tools:targetApi="lollipop" />
 
         <ImageButton
@@ -122,7 +122,7 @@
             android:paddingEnd="20dp"
             android:paddingStart="20dp"
             android:paddingTop="20dp"
-            android:src="@drawable/ic_gray"
+            android:src="@drawable/ic_unknown"
             tools:targetApi="lollipop" />
 
         <ImageButton
@@ -161,7 +161,7 @@
             android:paddingEnd="20dp"
             android:paddingStart="20dp"
             android:paddingTop="20dp"
-            android:src="@drawable/ic_gray"
+            android:src="@drawable/ic_unknown"
             tools:targetApi="lollipop" />
 
         <ImageButton
@@ -200,7 +200,7 @@
             android:paddingEnd="20dp"
             android:paddingStart="20dp"
             android:paddingTop="20dp"
-            android:src="@drawable/ic_gray"
+            android:src="@drawable/ic_unknown"
             tools:targetApi="lollipop" />
 
         <ImageButton
