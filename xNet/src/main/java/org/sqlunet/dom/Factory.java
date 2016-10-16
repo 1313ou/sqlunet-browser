@@ -34,7 +34,8 @@ public class Factory
 			final DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
 			final DocumentBuilder db = dbf.newDocumentBuilder();
 			return db.newDocument();
-		} catch (final ParserConfigurationException e)
+		}
+		catch (final ParserConfigurationException e)
 		{
 			throw new RuntimeException(e);
 		}
@@ -65,7 +66,8 @@ public class Factory
 			transformer.setOutputProperty(javax.xml.transform.OutputKeys.DOCTYPE_SYSTEM, dtd);
 			transformer.transform(source, result);
 			return os.toString();
-		} catch (final TransformerException e)
+		}
+		catch (final TransformerException e)
 		{
 			throw new RuntimeException(e);
 		}

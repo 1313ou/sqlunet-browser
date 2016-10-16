@@ -63,7 +63,8 @@ public class DBQueryCommand
 				this.cursor.close();
 			}
 			this.statement.close();
-		} catch (final SQLException e)
+		}
+		catch (final SQLException e)
 		{
 			// nothing
 		}
@@ -88,13 +89,16 @@ public class DBQueryCommand
 			if (param instanceof String)
 			{
 				this.statement.setString(i, (String) param);
-			} else if (param instanceof Long)
+			}
+			else if (param instanceof Long)
 			{
 				this.statement.setLong(i, (Long) param);
-			} else if (param instanceof Integer)
+			}
+			else if (param instanceof Integer)
 			{
 				this.statement.setInt(i, (Integer) param);
-			} else if (param instanceof Character)
+			}
+			else if (param instanceof Character)
 			{
 				this.statement.setString(i, param.toString());
 			}
