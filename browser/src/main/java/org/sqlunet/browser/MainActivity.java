@@ -132,10 +132,7 @@ public class MainActivity extends Activity
 		// adapter range
 		final CharSequence[] modes = getResources().getTextArray(R.array.selectors);
 
-		// adapter
-		/*
-	  Selector mode adapter
-	 */
+		// selector mode adapter
 		SpinnerAdapter adapter = new ArrayAdapter<CharSequence>(this, R.layout.actionbar_item_selectors, modes) {
 			@Override
 			public View getView(int position, View convertView, ViewGroup parent) {

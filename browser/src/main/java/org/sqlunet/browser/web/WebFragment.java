@@ -1,18 +1,22 @@
 package org.sqlunet.browser.web;
 
 import android.annotation.SuppressLint;
+import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.Fragment;
 import android.app.LoaderManager.LoaderCallbacks;
 import android.content.Intent;
 import android.content.Loader;
 import android.database.sqlite.SQLiteDatabase;
+import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebResourceRequest;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
@@ -42,7 +46,6 @@ import org.sqlunet.wordnet.SynsetPointer;
 import org.sqlunet.wordnet.sql.WordNetImplementation;
 import org.w3c.dom.Document;
 
-import java.net.URL;
 import java.net.URLDecoder;
 
 /**
@@ -258,21 +261,31 @@ public class WebFragment extends Fragment
 		webSettings.setBuiltInZoomControls(true);
 
 		// client
+		@SuppressWarnings("UnusedParameters")
 		final WebViewClient webClient = new WebViewClient()
 		{
-			/*
-			 * (non-Javadoc)
-			 *
-			 * @see android.webkit.WebViewClient#shouldOverrideUrlLoading(android.webkit.WebView, java.lang.String)
-			 */
+			@SuppressWarnings("deprecation")
 			@Override
 			public boolean shouldOverrideUrlLoading(final WebView view, final String urlString)
 			{
-				Log.d(WebFragment.TAG, "URL " + urlString); //$NON-NLS-1$
+				final Uri uri = Uri.parse(urlString);
+				return handleUrl(uri);
+			}
+
+			@TargetApi(Build.VERSION_CODES.N)
+			@Override
+			public boolean shouldOverrideUrlLoading(final WebView view, final WebResourceRequest request)
+			{
+				final Uri uri = request.getUrl();
+				return handleUrl(uri);
+			}
+
+			private boolean handleUrl(final Uri uri)
+			{
+				Log.d(WebFragment.TAG, "Uri " + uri); //$NON-NLS-1$
 				try
 				{
-					final URL url = new URL(urlString);
-					final String query = URLDecoder.decode(url.getQuery(), "UTF-8"); //$NON-NLS-1$
+					final String query = URLDecoder.decode(uri.getQuery(), "UTF-8"); //$NON-NLS-1$
 					final String[] target = query.split("="); //$NON-NLS-1$
 					final String type = target[0]; // $NON-NLS-1$
 					final String data = target[1]; // $NON-NLS-1$
@@ -329,11 +342,13 @@ public class WebFragment extends Fragment
 						searchIntent.putExtra(SqlUNetContract.ARG_QUERYPOINTER, pointer);
 					}
 					startActivity(searchIntent);
-				} catch (final Exception e)
+					return true;
+				}
+				catch (final Exception e)
 				{
 					Log.e(WebFragment.TAG, "URL loading ", e); //$NON-NLS-1$
 				}
-				return true;
+				return false;
 			}
 		};
 		this.webview.setWebViewClient(webClient);

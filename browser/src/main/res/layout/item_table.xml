@@ -1,15 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/row"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_marginTop="6dp"
-    android:background="@drawable/rounded_corners_white"
-    android:descendantFocusability="blocksDescendants"
-    android:orientation="horizontal"
-    android:paddingBottom="8dp"
-    android:paddingLeft="0dp"
-    android:paddingRight="0dp">
+              xmlns:tools="http://schemas.android.com/tools"
+              android:id="@+id/row"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:layout_marginTop="6dp"
+              android:background="@drawable/rounded_corners_white"
+              android:descendantFocusability="blocksDescendants"
+              android:orientation="horizontal"
+              android:paddingBottom="8dp"
+              android:paddingLeft="0dp"
+              android:paddingRight="0dp"
+              tools:keep="@layout/item_table">
 
     <TextView
         android:id="@+id/item0"

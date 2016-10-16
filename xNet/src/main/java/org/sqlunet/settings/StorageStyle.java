@@ -177,7 +177,12 @@ public class StorageStyle
 	 */
 	static private Object makeImageSpan(final Context context, int resId)
 	{
-		final Drawable drawable = context.getResources().getDrawable(resId);
+		Drawable drawable;
+		if(Build.VERSION.SDK_INT < Build.VERSION_CODES.N)
+			//noinspection deprecation
+			drawable = context.getResources().getDrawable(resId);
+		else
+			drawable = context.getResources().getDrawable(resId, null);
 		drawable.setBounds(0, 0, drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight());
 		return new ImageSpan(drawable, DynamicDrawableSpan.ALIGN_BOTTOM);
 	}
