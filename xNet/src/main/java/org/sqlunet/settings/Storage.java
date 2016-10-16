@@ -1,0 +1,135 @@
+package org.sqlunet.settings;
+
+import java.io.File;
+import java.util.List;
+
+import org.sqlunet.settings.StorageUtils.CandidateStorage;
+
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.os.Build;
+import android.preference.PreferenceManager;
+import android.util.Log;
+
+/**
+ * Storage
+ * 
+ * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
+ */
+public class Storage
+{
+	private static final String TAG = "Storage"; //$NON-NLS-1$
+
+	/**
+	 * DB filename
+	 */
+	public static final String DBFILE = "sqlunet.db"; //$NON-NLS-1$
+
+	/**
+	 * SqlUnet sub directory when public
+	 */
+	static final String SQLUNETDIR = "sqlunet" + '/'; //$NON-NLS-1$
+
+	/**
+	 * SqlUnet storage preference name
+	 */
+	public static final String PREF_SQLUNET_STORAGE = "pref_storage"; //$NON-NLS-1$
+
+	// D A T A B A S E
+
+	/**
+	 * Get database storage
+	 * 
+	 * @param context
+	 *        context
+	 * @return database storage directory
+	 */
+	static public File getSqlUNetStorage(final Context context)
+	{
+		// test if set in preference
+		final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
+		final String pref = sharedPref.getString(Storage.PREF_SQLUNET_STORAGE, null);
+		if (pref != null && !pref.isEmpty() && !"auto".equals(pref)) //$NON-NLS-1$
+		{
+			final File prefStorage = new File(pref);
+			if (Storage.build(prefStorage))
+			{
+				Log.d(TAG, "Saved " + prefStorage.getAbsolutePath()); //$NON-NLS-1$
+				return prefStorage;
+			}
+		}
+
+		// auto
+		if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M || "auto".equals(pref)) //$NON-NLS-1$
+		{
+			final File autoStorage = context.getFilesDir();
+			Log.d(TAG, "Auto " + autoStorage.getAbsolutePath()); //$NON-NLS-1$
+			return autoStorage; // context.getDatabasePath(DBFILE).getParentFile();
+		}
+
+		// discover if (pref==null ||pref.isEmpty())
+		final File discoveredStorage = Storage.discover(context);
+
+		// record as discovered
+		sharedPref.edit().putString(Storage.PREF_SQLUNET_STORAGE, discoveredStorage.getAbsolutePath()).commit();
+		Log.d(TAG, "Saving " + discoveredStorage.getAbsolutePath()); //$NON-NLS-1$
+
+		return discoveredStorage;
+	}
+
+	/**
+	 * Discover SqlUNet storage
+	 *
+	 * @param context
+	 *        context
+	 * @return SqlUNet storage
+	 */
+	static private File discover(final Context context)
+	{
+		final List<CandidateStorage> candidates = StorageUtils.getSortedCandidateStorages(context);
+		for (CandidateStorage candidate : candidates)
+		{
+			if (candidate.status == 0)
+			{
+				Log.d(TAG, "Select " + candidate.toString()); //$NON-NLS-1$
+				return candidate.dir.file;
+			}
+		}
+		Log.e(TAG, "Error while looking for candidate storage. External storage is " + StorageUtils.reportExternalStorage()); //$NON-NLS-1$
+		throw new RuntimeException("Cannot find suitable storage " + StorageStyle.reportStyledCandidateStorage(context) + ' ' + StorageUtils.reportExternalStorage()); //$NON-NLS-1$
+	}
+
+	/**
+	 * Build the dir and tests if it qualifies as sqlunet storage
+	 *
+	 * @param dir
+	 *        candidate dir
+	 * @return true if it qualifies
+	 */
+	static private boolean build(final File dir)
+	{
+		if (dir == null)
+			return false;
+
+		// make sure that path can be created and it is a directory
+		return dir.mkdirs() || dir.isDirectory();
+	}
+
+	// C A C H E (cache is used to download SQL zip file)
+
+	/**
+	 * Get data cache
+	 *
+	 * @param context
+	 *        context
+	 * @return data cache
+	 */
+	static public String getCacheDir(final Context context)
+	{
+		final File cache = Build.VERSION.SDK_INT < Build.VERSION_CODES.M ? //
+				context.getExternalCacheDir() : //
+				context.getCacheDir();
+		assert cache != null;
+		return cache.getAbsolutePath();
+	}
+}

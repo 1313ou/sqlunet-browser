@@ -1,0 +1,41 @@
+package org.sqlunet.predicatematrix.settings;
+
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
+
+public class Settings
+{
+	private static final String PREF_PM_MODE = "pref_pm_mode"; //$NON-NLS-1$
+
+	/**
+	 * Modes
+	 */
+	public enum PMMode
+	{
+		ROLES, ROWS_GROUPED_BY_ROLE, ROWS_GROUPED_BY_SYNSET, ROWS;
+
+		public void setPref(final Context context)
+		{
+			final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
+			sharedPref.edit().putString(Settings.PREF_PM_MODE, this.name()).apply();
+		}
+
+		public static PMMode getPref(final Context context)
+		{
+			final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
+			final String mode_string = sharedPref.getString(Settings.PREF_PM_MODE, Settings.PMMode.ROLES.name());
+			Settings.PMMode mode;
+			try
+			{
+				mode = Settings.PMMode.valueOf(mode_string);
+			}
+			catch (final Exception e)
+			{
+				mode = Settings.PMMode.ROLES;
+				sharedPref.edit().putString(Settings.PREF_PM_MODE, mode.name()).apply();
+			}
+			return mode;
+		}
+	}	
+}

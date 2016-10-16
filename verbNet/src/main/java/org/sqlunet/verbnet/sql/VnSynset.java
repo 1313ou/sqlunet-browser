@@ -1,0 +1,28 @@
+package org.sqlunet.verbnet.sql;
+
+import org.sqlunet.wordnet.sql.BasicSynset;
+
+/**
+ * Synset extended to hold VerbNet specific data
+ *
+ * @author Bernard Bou
+ */
+class VnSynset extends BasicSynset
+{
+	/**
+	 * <code>flag</code> is a selection flag used by some queries
+	 */
+	public final boolean flag;
+
+	/**
+	 * Constructor from query for synsets
+	 *
+	 * @param query
+	 *            is a query for synsets
+	 */
+	VnSynset(final VnQueryCommand query)
+	{
+		super(query.getSynsetId(), query.getDefinition(), query.getLexDomainId(), null);
+		this.flag = query.getSynsetSpecific();
+	}
+}

@@ -1,0 +1,96 @@
+@CHARSET "UTF-8";
+
+/* SqlUNet Application */
+* {
+	color: black;
+	font-family: sans-serif;
+}
+
+body {
+	background-color: #F3F1E2;
+	font-size: medium;
+	margin: 0px;
+	padding: 0px;
+}
+
+/******* hyperlink and anchor tag styles *******/
+a:link, a:visited {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+/********* class-based styles *********/
+.alabel {
+	padding-left: 2px;
+	padding-right: 2px;
+}
+
+.adefinition {
+	color: blue;
+}
+
+.domain {
+	background-color: darkgray;
+	color: white;
+	font-weight: bold;
+	font-size: 125%;
+	padding-left: 2px;
+	padding-right: 2px;
+	margin-top: 10px;
+	margin-bottom: 2px;
+}
+
+.definition {
+	color: gray;
+	font-weight: normal;
+	padding-left: 5px;
+	padding-right: 2px;
+}
+
+.pointer {
+	color: gray;
+	font-weight: normal;
+	font-size: small;
+	padding-left: 1px;
+	padding-right: 1px;
+}
+
+.dataimg {
+	padding-left: 2px;
+	padding-right: 2px;
+	vertical-align: middle;
+}
+
+.titlesection {
+	background-color: whitesmoke;
+	width: 100%;
+}
+
+.titleimg {
+	margin-right: auto;
+    margin-left: auto;
+    display: block;
+}
+
+.block1 {
+	background-color: ##FFFFFF;
+	}
+
+.block2 {
+	background-color: ##FFFFD2;
+	}
+
+.block3 {
+	background-color: ##FFF2C2;
+	padding-bottom: 2px;
+	border-bottom: 1px solid #999;
+/*	border-top: 1px solid #999; */
+}
+
+.error {
+	margin-left: 5px;
+	color: red;
+}

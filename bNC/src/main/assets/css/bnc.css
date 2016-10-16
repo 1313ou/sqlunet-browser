@@ -1,0 +1,66 @@
+@CHARSET "UTF-8";
+
+/* BNC */
+
+.bncdata {
+	padding-top: 2px;
+	color: gray;
+}
+
+.bncid {
+	padding: 2px;
+	color: grey;
+}
+
+.bncpos {
+	padding: 2px;
+	font-weight: bold;
+	color: black;
+}
+
+.bncgen {
+	margin: 2px;
+}
+
+.bncspwr {
+}
+
+.bncconvtask {
+}
+
+.bncimaginf {
+}
+
+.bncsection {
+	font-weight: bold;
+	text-align: left;
+}
+
+.bncfreq {
+	background-color: white;
+	color: magenta;
+}
+
+.bncrange {
+	background-color: white;
+	color: gray;
+}
+
+.bncdisp {
+	background-color: white;
+	color: gray;
+}
+
+.bncunit {
+	font-weight: small;
+	color: gray;
+}
+
+.bnctable {
+	width: 100%;
+	border-collapse: separate;
+}
+
+.bnctablecell {
+	width: 50%;
+}

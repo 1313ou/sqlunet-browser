@@ -1,0 +1,201 @@
+package org.sqlunet.browser.xselector;
+
+import org.sqlunet.bnc.browser.BNCFragment;
+import org.sqlunet.browser.DetailActivity;
+import org.sqlunet.browser.DetailFragment;
+import org.sqlunet.browser.R;
+import org.sqlunet.browser.selector.SelectorFragment;
+import org.sqlunet.browser.web.WebFragment;
+import org.sqlunet.framenet.browser.FrameNetFragment;
+import org.sqlunet.propbank.browser.PropbankFragment;
+import org.sqlunet.provider.SqlUNetContract;
+import org.sqlunet.settings.Settings;
+import org.sqlunet.verbnet.browser.VerbNetFragment;
+import org.sqlunet.wordnet.browser.SenseFragment;
+
+import android.app.ActionBar;
+import android.app.Activity;
+import android.app.Fragment;
+import android.app.FragmentTransaction;
+import android.content.Intent;
+import android.os.Bundle;
+import android.widget.TextView;
+
+/**
+ * An activity representing a list of synsets. This activity has different presentations for handset and tablet-size devices. On handsets, the activity presents
+ * a list of items, which when touched, lead to a {@link DetailActivity} representing item details. On tablets, the activity presents the list of items and item
+ * details side-by-side using two vertical panes.
+ * <p>
+ * The activity makes heavy use of fragments. The list of items is a {@link SelectorFragment} and the item details (if present) is a {@link SenseFragment}.
+ * <p>
+ * This activity also implements the required {@link SelectorFragment.Listener} interface to listen for item selections.
+ *
+ * @author Bernard Bou
+ */
+public class XSelectorActivity extends Activity implements XSelectorFragment.Listener
+{
+	/**
+	 * Whether or not the activity is in two-pane mode, i.e. running on a tablet device.
+	 */
+	private boolean isTwoPane = false;
+
+	// C R E A T I O N
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see android.app.Activity#onCreate(android.os.Bundle)
+	 */
+	@Override
+	protected void onCreate(final Bundle savedInstanceState)
+	{
+		super.onCreate(savedInstanceState);
+
+		// layout
+		setContentView(R.layout.activity_xselector);
+
+		// show the Up button in the action bar.
+		final ActionBar actionBar = getActionBar();
+		assert actionBar != null;
+		actionBar.setDisplayHomeAsUpEnabled(true);
+
+		// query
+		final Intent intent = getIntent();
+		final String data = intent.getStringExtra(SqlUNetContract.ARG_QUERYSTRING);
+
+		// copy to query view
+		final TextView queryView = (TextView) findViewById(R.id.queryView);
+		queryView.setText(data);
+
+		// two-pane specific set up
+		if (findViewById(R.id.container_main) != null)
+		{
+			// the detail container view will be present only in the large-screen layouts (res/values-large and res/values-sw600dp).
+			// if this view is present, then the activity should be in two-pane mode.
+			this.isTwoPane = true;
+
+			// detail fragment
+			final Fragment detailFragment = new DetailFragment();
+			getFragmentManager() //
+					.beginTransaction() //
+					.replace(R.id.container_main, detailFragment) //
+					.commit();
+
+			// in two-pane mode, list items should be given the 'activated' state when touched.
+			final XSelectorFragment xFragment = (XSelectorFragment) getFragmentManager().findFragmentById(R.id.xselector);
+			xFragment.setActivateOnItemClick(true);
+		}
+	}
+
+	// I T E M S E L E C T I O N H A N D L I N G
+
+	private Fragment verbnetFragment;
+
+	private Fragment propbankFragment;
+
+	private Fragment framenetFragment;
+
+	/**
+	 * Callback method from {@link XSelectorFragment.Listener} indicating that the item with the given ID was selected.
+	 */
+	@Override
+	public void onItemSelected(final XPointer pointer)
+	{
+		if (this.isTwoPane)
+		{
+			// in two-pane mode, show the detail view in this activity by adding or replacing the detail fragment using a fragment transaction.
+			final Bundle arguments = new Bundle();
+			arguments.putParcelable(SqlUNetContract.ARG_QUERYPOINTER, pointer);
+			final Settings.DetailMode mode = Settings.getDetailModePref(this);
+
+			// transaction
+			final FragmentTransaction transaction = getFragmentManager().beginTransaction();
+
+			// detail fragment
+			switch (mode)
+			{
+			case VIEW:
+				if (Settings.getWordNetPref(this))
+				{
+					// final View labelView = findViewById(R.id.label_wordnet);
+					// labelView.setVisibility(View.VISIBLE);
+					final Fragment senseFragment = new SenseFragment();
+					senseFragment.setArguments(arguments);
+					transaction.replace(R.id.container_wordnet, senseFragment);
+				}
+
+				if (Settings.getVerbNetPref(this) && pointer.getXsources().contains("vn")) //$NON-NLS-1$
+				{
+					// final View labelView = findViewById(R.id.label_verbnet);
+					// labelView.setVisibility(View.VISIBLE);
+					verbnetFragment = new VerbNetFragment();
+					verbnetFragment.setArguments(arguments);
+					transaction.replace(R.id.container_verbnet, verbnetFragment);
+				}
+				else if (verbnetFragment != null)
+				{
+					transaction.remove(verbnetFragment);
+					verbnetFragment = null;
+				}
+
+				if (Settings.getPropBankPref(this) && pointer.getXsources().contains("pb")) //$NON-NLS-1$
+				{
+					// final View labelView = findViewById(R.id.label_propbank);
+					// labelView.setVisibility(View.VISIBLE);
+					propbankFragment = new PropbankFragment();
+					propbankFragment.setArguments(arguments);
+					transaction.replace(R.id.container_propbank, propbankFragment);
+				}
+				else if (propbankFragment != null)
+				{
+					transaction.remove(propbankFragment);
+					propbankFragment = null;
+				}
+
+				if (Settings.getFrameNetPref(this) && pointer.getXsources().contains("fn")) //$NON-NLS-1$
+				{
+					// final View labelView = findViewById(R.id.label_framenet);
+					// labelView.setVisibility(View.VISIBLE);
+					framenetFragment = new FrameNetFragment();
+					framenetFragment.setArguments(arguments);
+					transaction.replace(R.id.container_framenet, framenetFragment);
+				}
+				else if (framenetFragment != null)
+				{
+					transaction.remove(framenetFragment);
+					framenetFragment = null;
+				}
+
+				if (Settings.getBncPref(this))
+				{
+					// final View labelView = findViewById(R.id.label_bnc);
+					// labelView.setVisibility(View.VISIBLE);
+					final Fragment bncFragment = new BNCFragment();
+					bncFragment.setArguments(arguments);
+					transaction.replace(R.id.container_bnc, bncFragment);
+				}
+				break;
+
+			case WEB:
+				final Fragment fragment = new WebFragment();
+
+				// arguments
+				fragment.setArguments(arguments);
+
+				// detail fragment replace
+				transaction.replace(R.id.container_main, fragment);
+				break;
+			default:
+				return;
+			}
+			transaction.commit();
+		}
+		else
+		{
+			// in single-pane mode, simply start the detail activity for the selected item ID.
+			final Intent intent = new Intent(this, DetailActivity.class);
+			intent.putExtra(SqlUNetContract.ARG_QUERYPOINTER, pointer);
+			startActivity(intent);
+		}
+	}
+}

@@ -1,0 +1,151 @@
+@CHARSET "UTF-8";
+
+/* FrameNet */
+
+.fnlexunit {
+}
+
+.fnlexunitlabel {
+	color: gray;
+}
+
+.fnlexunitname {
+	background-color: red;
+	color: white;
+	font-weight: bold;
+	font-size: large;
+	padding-left: 2px;
+	padding-right: 2px;
+}
+
+.fnlexunitdefinition {
+	color: darkgray;
+	margin-left: 5px;
+	padding-left: 2px;
+	padding-right: 2px;
+}
+
+.fnlexunittext {
+	color: pink;
+}
+
+.fnframe {
+}
+
+.fnframelabel {
+}
+
+.fnframename {
+	background-color: darkred;
+	color: white;
+	font-weight: bold;
+	padding-left: 2px;
+	padding-right: 2px;
+}
+
+.fnframetext {
+	color: blue;
+}
+
+.fnframedefinition {
+	color: magenta;
+}
+
+.fnrelated {
+}
+
+.fnrelatedrelation {
+	color: gray;
+	font-style: italic;
+	margin-right: 5px;
+}
+
+.fnrelatedname {
+	background-color: darkmagenta;
+	color: white;
+	font-weight: bold;
+	padding-left: 2px;
+	padding-right: 2px;
+}
+
+.fnfe {
+}
+
+.fnfelabel {
+	color: gray;
+}
+
+.fnfename {
+	background-color: magenta;
+	color: white;
+	font-weight: bold;
+	padding-left: 2px;
+	padding-right: 2px;
+}
+
+.fnfesemtype {
+	color: black;
+}
+
+.fnfetext {
+}
+
+.fnfedefinition {
+	color: magenta;
+}
+
+.fnsentence {
+	background-color: white;
+}
+
+.fnsentencelabel {
+	color: gray;
+}
+
+.fnex {
+	background-color: lemonchiffon;
+	color: gray;
+}
+
+.fntarget {
+	background-color: black;
+	color: white;
+	padding-left: 2px;
+	padding-right: 2px;
+}
+
+.fnfetext {
+	color: magenta;
+}}
+
+.fnfen {
+	color: magenta;
+}
+
+.fnfex {
+	color: magenta;
+}
+
+.fnment {
+	color: black;
+}
+
+.fnm {
+	font-weight: italic;
+}
+
+.fngov {
+	font-weight: italic;
+	color: black;
+}
+
+.fnx {
+	font-weight: italic;
+	color: black;
+}
+
+.fnsentencetext {
+	background-color: lemonchiffon;
+	color: gray;
+	font-style: italic;
+}

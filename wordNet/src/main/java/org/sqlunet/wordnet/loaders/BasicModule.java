@@ -1,0 +1,1292 @@
+package org.sqlunet.wordnet.loaders;
+
+import android.app.Fragment;
+import android.app.LoaderManager.LoaderCallbacks;
+import android.content.Context;
+import android.content.CursorLoader;
+import android.content.Loader;
+import android.database.Cursor;
+import android.graphics.drawable.Drawable;
+import android.net.Uri;
+import android.os.Bundle;
+import android.text.SpannableStringBuilder;
+
+import org.sqlunet.browser.Module;
+import org.sqlunet.style.Spanner;
+import org.sqlunet.treeview.model.TreeNode;
+import org.sqlunet.treeview.renderer.QueryHolder;
+import org.sqlunet.treeview.view.TreeView;
+import org.sqlunet.view.TreeFactory;
+import org.sqlunet.wordnet.R;
+import org.sqlunet.wordnet.provider.WordNetContract.AdjPositions_AdjPositionTypes;
+import org.sqlunet.wordnet.provider.WordNetContract.LexDomains;
+import org.sqlunet.wordnet.provider.WordNetContract.LexLinks_Senses_Words_X;
+import org.sqlunet.wordnet.provider.WordNetContract.LexLinks_Senses_X;
+import org.sqlunet.wordnet.provider.WordNetContract.LinkTypes;
+import org.sqlunet.wordnet.provider.WordNetContract.MorphMaps_Morphs;
+import org.sqlunet.wordnet.provider.WordNetContract.PosTypes;
+import org.sqlunet.wordnet.provider.WordNetContract.Samples;
+import org.sqlunet.wordnet.provider.WordNetContract.SemLinks_Synsets_Words_X;
+import org.sqlunet.wordnet.provider.WordNetContract.SemLinks_Synsets_X;
+import org.sqlunet.wordnet.provider.WordNetContract.Senses_Words;
+import org.sqlunet.wordnet.provider.WordNetContract.Synsets;
+import org.sqlunet.wordnet.provider.WordNetContract.Synsets_PosTypes_LexDomains;
+import org.sqlunet.wordnet.provider.WordNetContract.VerbFrameMaps_VerbFrames;
+import org.sqlunet.wordnet.provider.WordNetContract.VerbFrameSentenceMaps_VerbFrameSentences;
+import org.sqlunet.wordnet.provider.WordNetContract.Words;
+import org.sqlunet.wordnet.style.WordNetFactories;
+
+import java.util.Locale;
+
+abstract public class BasicModule extends Module
+{
+	// Drawables;
+
+	private final Drawable memberDrawable;
+
+	private final Drawable synsetDrawable;
+
+	private final Drawable definitionDrawable;
+
+	private final Drawable sampleDrawable;
+
+	private final Drawable posDrawable;
+
+	private final Drawable domainDrawable;
+
+	private final Drawable flagDrawable;
+
+	/**
+	 * Whether members are grouped
+	 */
+	private boolean membersGrouped = false;
+
+	/**
+	 * Constructor
+	 *
+	 * @param fragment0 fragment
+	 */
+	BasicModule(final Fragment fragment0)
+	{
+		super(fragment0);
+
+		// drawables
+		final Context context = getContext();
+		this.memberDrawable = Spanner.getDrawable(context, R.drawable.member);
+		this.synsetDrawable = Spanner.getDrawable(context, R.drawable.synset);
+		this.definitionDrawable = Spanner.getDrawable(context, R.drawable.definition);
+		this.sampleDrawable = Spanner.getDrawable(context, R.drawable.sample);
+		this.posDrawable = Spanner.getDrawable(context, R.drawable.pos);
+		this.domainDrawable = Spanner.getDrawable(context, R.drawable.lexdomain);
+		this.flagDrawable = Spanner.getDrawable(context, R.drawable.flag);
+	}
+
+	/**
+	 * Set member grouping
+	 *
+	 * @param membersGrouped member grouping flag
+	 */
+	@SuppressWarnings("unused")
+	public void setMembersGrouped(final boolean membersGrouped)
+	{
+		this.membersGrouped = membersGrouped;
+	}
+
+	// L O A D E R S
+
+	// synset
+
+	@SuppressWarnings("unused")
+	public void synset_full(final long synsetid0, final long wordid0, final TreeNode parent)
+	{
+		getLoaderManager().restartLoader(++Module.loaderId, null, new LoaderCallbacks<Cursor>()
+		{
+			@Override
+			public Loader<Cursor> onCreateLoader(final int loaderId0, final Bundle args)
+			{
+				final Uri uri = Uri.parse(Synsets_PosTypes_LexDomains.CONTENT_URI);
+				final String[] projection = new String[]{ //
+						Synsets.DEFINITION, //
+						PosTypes.POSNAME, //
+						LexDomains.LEXDOMAIN, //
+				};
+				final String selection = Synsets_PosTypes_LexDomains.SYNSETID + " = ?"; //$NON-NLS-1$
+				final String[] selectionArgs = new String[]{Long.toString(synsetid0)};
+				final String sortOrder = null;
+				return new CursorLoader(getContext(), uri, projection, selection, selectionArgs, sortOrder);
+			}
+
+			@SuppressWarnings("synthetic-access")
+			@Override
+			public void onLoadFinished(final Loader<Cursor> loader, final Cursor cursor)
+			{
+				if (cursor.getCount() > 1)
+					throw new RuntimeException("Unexpected number of rows"); //$NON-NLS-1$
+				if (cursor.moveToFirst())
+				{
+					final SpannableStringBuilder sb = new SpannableStringBuilder();
+					final SpannableStringBuilder sbdef = new SpannableStringBuilder();
+					final int idDefinition = cursor.getColumnIndex(Synsets.DEFINITION);
+					final int idPosName = cursor.getColumnIndex(PosTypes.POSNAME);
+					final int idLexDomain = cursor.getColumnIndex(LexDomains.LEXDOMAIN);
+					final String definition = cursor.getString(idDefinition);
+					final String posName = cursor.getString(idPosName);
+					final String lexDomain = cursor.getString(idLexDomain);
+
+					sb.append('\n');
+					Spanner.appendImage(sb, BasicModule.this.synsetDrawable);
+					sb.append('\n');
+					sb.append('\t');
+					Spanner.appendImage(sb, BasicModule.this.posDrawable);
+					sb.append(' ');
+					sb.append(posName);
+					sb.append('\n');
+					sb.append('\t');
+					Spanner.appendImage(sb, BasicModule.this.domainDrawable);
+					sb.append(' ');
+					sb.append(lexDomain);
+					sb.append(' ');
+
+					Spanner.appendImage(sbdef, BasicModule.this.definitionDrawable);
+					sbdef.append(' ');
+					sbdef.append(definition);
+
+					// subnodes
+					final TreeNode linksNode = TreeFactory.newQueryNode(new LinksQuery(synsetid0, wordid0, R.drawable.ic_other, "Links"), BasicModule.this.getContext()); //$NON-NLS-1$
+					final TreeNode samplesNode = TreeFactory.newQueryNode(new SamplesQuery(synsetid0, R.drawable.sample, "Samples"), BasicModule.this.getContext()); //$NON-NLS-1$
+
+					// attach result
+					TreeFactory.addTextNode(parent, sb, BasicModule.this.getContext());
+					TreeFactory.addTextNode(parent, sbdef, BasicModule.this.getContext(), linksNode, samplesNode);
+
+					// expand
+					TreeView.expand(parent, false);
+				} else
+				{
+					parent.disable();
+				}
+
+				cursor.close();
+			}
+
+			@Override
+			public void onLoaderReset(final Loader<Cursor> arg0)
+			{
+				//
+			}
+		});
+	}
+
+	// synset
+
+	void synset(final long synsetid0, final TreeNode parent, final boolean add)
+	{
+		getLoaderManager().restartLoader(++Module.loaderId, null, new LoaderCallbacks<Cursor>()
+		{
+			@Override
+			public Loader<Cursor> onCreateLoader(final int loaderId0, final Bundle args)
+			{
+				final Uri uri = Uri.parse(Synsets_PosTypes_LexDomains.CONTENT_URI);
+				final String[] projection = new String[]{ //
+						Synsets.DEFINITION, //
+						PosTypes.POSNAME, //
+						LexDomains.LEXDOMAIN, //
+				};
+				final String selection = Synsets_PosTypes_LexDomains.SYNSETID + " = ?"; //$NON-NLS-1$
+				final String[] selectionArgs = new String[]{Long.toString(synsetid0)};
+				final String sortOrder = null;
+				return new CursorLoader(getContext(), uri, projection, selection, selectionArgs, sortOrder);
+			}
+
+			@SuppressWarnings("synthetic-access")
+			@Override
+			public void onLoadFinished(final Loader<Cursor> loader, final Cursor cursor)
+			{
+				if (cursor.getCount() > 1)
+					throw new RuntimeException("Unexpected number of rows"); //$NON-NLS-1$
+				if (cursor.moveToFirst())
+				{
+					final SpannableStringBuilder sb = new SpannableStringBuilder();
+					final int idDefinition = cursor.getColumnIndex(Synsets.DEFINITION);
+					final int idPosName = cursor.getColumnIndex(PosTypes.POSNAME);
+					final int idLexDomain = cursor.getColumnIndex(LexDomains.LEXDOMAIN);
+					final String definition = cursor.getString(idDefinition);
+					final String posName = cursor.getString(idPosName);
+					final String lexDomain = cursor.getString(idLexDomain);
+
+					Spanner.appendImage(sb, BasicModule.this.synsetDrawable);
+					sb.append(' ');
+					sb.append(Long.toString(synsetid0));
+					sb.append(' ');
+					Spanner.appendImage(sb, BasicModule.this.posDrawable);
+					sb.append(' ');
+					sb.append(posName);
+					sb.append(' ');
+					Spanner.appendImage(sb, BasicModule.this.domainDrawable);
+					sb.append(' ');
+					sb.append(lexDomain);
+					sb.append('\n');
+
+					Spanner.appendImage(sb, BasicModule.this.definitionDrawable);
+					sb.append(' ');
+					Spanner.append(sb, definition, 0, WordNetFactories.definitionFactory);
+
+					// attach result
+					if (add)
+					{
+						TreeFactory.addTextNode(parent, sb, BasicModule.this.getContext());
+
+						// expand
+						TreeView.expand(parent, false);
+					} else
+					{
+						TreeFactory.setNodeValue(parent, sb);
+					}
+				} else
+				{
+					parent.disable();
+				}
+
+				cursor.close();
+			}
+
+			@Override
+			public void onLoaderReset(final Loader<Cursor> arg0)
+			{
+				//
+			}
+		});
+	}
+
+	void members(final long synsetid0, final TreeNode parent, final boolean add)
+	{
+		getLoaderManager().restartLoader(++Module.loaderId, null, new LoaderCallbacks<Cursor>()
+		{
+
+			@Override
+			public Loader<Cursor> onCreateLoader(final int loaderId0, final Bundle args)
+			{
+				final Uri uri = Uri.parse(BasicModule.this.membersGrouped ?
+						Senses_Words.CONTENT_URI_BY_SYNSET :
+						Senses_Words.CONTENT_URI);
+				final String[] projection = BasicModule.this.membersGrouped ? //
+						new String[]{Senses_Words.MEMBERS} : new String[]{Words.LEMMA};
+				final String selection = Senses_Words.SYNSETID + " = ?"; //$NON-NLS-1$
+				final String[] selectionArgs = new String[]{Long.toString(synsetid0)};
+				final String sortOrder = Words.LEMMA;
+				return new CursorLoader(getContext(), uri, projection, selection, selectionArgs, sortOrder);
+			}
+
+			@SuppressWarnings("synthetic-access")
+			@Override
+			public void onLoadFinished(final Loader<Cursor> loader0, final Cursor cursor)
+			{
+				if (BasicModule.this.membersGrouped)
+				{
+					if (cursor.getCount() > 1)
+						throw new RuntimeException("Unexpected number of rows"); //$NON-NLS-1$
+				}
+
+				if (cursor.moveToFirst())
+				{
+					final SpannableStringBuilder sb = new SpannableStringBuilder();
+					if (BasicModule.this.membersGrouped)
+					{
+						final int idMembers = cursor.getColumnIndex(Senses_Words.MEMBERS);
+						sb.append(cursor.getString(idMembers));
+					} else
+					{
+						final int lemmaId = cursor.getColumnIndex(Words.LEMMA);
+						// int i = 1;
+						do
+						{
+							final String lemma = cursor.getString(lemmaId);
+							if (sb.length() != 0)
+							{
+								sb.append('\n');
+							}
+							// final String record = String.format(Locale.ENGLISH, "[%d] %s", i++, lemma);
+							// sb.append(record);
+							Spanner.appendImage(sb, BasicModule.this.memberDrawable);
+							sb.append(' ');
+							// sb.append(Integer.toString(i++));
+							// sb.append('-');
+							// sb.append(lemma);
+							Spanner.append(sb, lemma, 0, WordNetFactories.membersFactory);
+						} while (cursor.moveToNext());
+					}
+
+					// attach result
+					// TODO
+					if (add)
+					{
+						TreeFactory.addTextNode(parent, sb, BasicModule.this.getContext());
+
+						// expand
+						TreeView.expand(parent, false);
+					} else
+					{
+						TreeFactory.setNodeValue(parent, sb);
+					}
+				} else
+				{
+					parent.disable();
+				}
+
+				cursor.close();
+			}
+
+			@Override
+			public void onLoaderReset(final Loader<Cursor> loader)
+			{
+				//
+			}
+		});
+	}
+
+	void samples(final long synsetid0, final TreeNode parent)
+	{
+		getLoaderManager().restartLoader(++Module.loaderId, null, new LoaderCallbacks<Cursor>()
+		{
+
+			@Override
+			public Loader<Cursor> onCreateLoader(final int loaderId0, final Bundle args)
+			{
+				final Uri uri = Uri.parse(Samples.CONTENT_URI);
+				final String[] projection = new String[]{ //
+						Samples.SAMPLEID, //
+						Samples.SAMPLE, //
+				};
+				final String selection = Samples.SYNSETID + " = ?"; //$NON-NLS-1$
+				final String[] selectionArgs = new String[]{Long.toString(synsetid0)};
+				final String sortOrder = Samples.SAMPLEID;
+				return new CursorLoader(getContext(), uri, projection, selection, selectionArgs, sortOrder);
+			}
+
+			@SuppressWarnings("synthetic-access")
+			@Override
+			public void onLoadFinished(final Loader<Cursor> loader, final Cursor cursor)
+			{
+				if (cursor.moveToFirst())
+				{
+					final int idSample = cursor.getColumnIndex(Samples.SAMPLE);
+
+					final SpannableStringBuilder sb = new SpannableStringBuilder();
+					do
+					{
+						final String sample = cursor.getString(idSample);
+						// final int sampleId = cursor.getInt(idSampleId);
+						if (sb.length() != 0)
+						{
+							sb.append('\n');
+						}
+						Spanner.appendImage(sb, BasicModule.this.sampleDrawable);
+						sb.append(' ');
+						// sb.append(Integer.toString(sampleId));
+						// sb.append(' ');
+						Spanner.append(sb, sample, 0, WordNetFactories.sampleFactory);
+						// final String record = String.format(Locale.ENGLISH, "[%d] %s", sampleId, sample);
+						// sb.append(record);
+					} while (cursor.moveToNext());
+
+					// attach result
+					TreeFactory.addTextNode(parent, sb, BasicModule.this.getContext());
+
+					// expand
+					TreeView.expand(parent, false);
+				} else
+				{
+					parent.disable();
+				}
+
+				cursor.close();
+			}
+
+			@Override
+			public void onLoaderReset(final Loader<Cursor> arg0)
+			{
+				//
+			}
+		});
+	}
+
+	void semlinks(final long synsetid0, final TreeNode parent)
+	{
+		getLoaderManager().restartLoader(++Module.loaderId, null, new LoaderCallbacks<Cursor>()
+		{
+
+			@Override
+			public Loader<Cursor> onCreateLoader(final int loaderId0, final Bundle args)
+			{
+				final Uri uri = Uri.parse(SemLinks_Synsets_Words_X.CONTENT_URI);
+				final String[] projection = new String[]{ //
+						"d." + Synsets.SYNSETID + " AS " + SemLinks_Synsets_X.SYNSETID, // //$NON-NLS-1$ //$NON-NLS-2$
+						"d." + Synsets.DEFINITION + " AS " + SemLinks_Synsets_X.DEFINITION, // //$NON-NLS-1$ //$NON-NLS-2$
+						LinkTypes.LINK, //
+						LinkTypes.LINKID, //
+						LinkTypes.RECURSES, //
+				};
+				final String selection = "l." + SemLinks_Synsets_Words_X.SYNSET1ID + " = ?";  //$NON-NLS-1$//$NON-NLS-2$
+				final String[] selectionArgs = new String[]{Long.toString(synsetid0)};
+				final String sortOrder = LinkTypes.LINKID;
+				return new CursorLoader(getContext(), uri, projection, selection, selectionArgs, sortOrder);
+			}
+
+			@Override
+			public void onLoadFinished(final Loader<Cursor> loader, final Cursor cursor)
+			{
+				//noinspection StatementWithEmptyBody,StatementWithEmptyBody,StatementWithEmptyBody,StatementWithEmptyBody,StatementWithEmptyBody,StatementWithEmptyBody,StatementWithEmptyBody
+				if (cursor.moveToFirst())
+				{
+					final int idSynsetId = cursor.getColumnIndex(SemLinks_Synsets_X.SYNSETID);
+					final int idDefinition = cursor.getColumnIndex(SemLinks_Synsets_X.DEFINITION);
+					final int idLinkId = cursor.getColumnIndex(LinkTypes.LINKID);
+					final int idMembers = cursor.getColumnIndex(SemLinks_Synsets_Words_X.MEMBERS);
+					final int idRecurses = cursor.getColumnIndex(SemLinks_Synsets_Words_X.RECURSES);
+					// final int idLink = cursor.getColumnIndex(SemLinks_Synsets_X.LINK);
+
+					do
+					{
+						final SpannableStringBuilder sb = new SpannableStringBuilder();
+
+						final long synsetid = cursor.getLong(idSynsetId);
+						final int linkid = cursor.getInt(idLinkId);
+						final String definition = cursor.getString(idDefinition);
+						final String members = cursor.getString(idMembers);
+						final int recurses = cursor.getInt(idRecurses);
+						// final String link = cursor.getString(idLink);
+
+						Spanner.append(sb, members, 0, WordNetFactories.membersFactory);
+						sb.append(' ');
+						Spanner.append(sb, definition, 0, WordNetFactories.definitionFactory);
+
+						final Context context = BasicModule.this.getContext();
+						TreeNode linkNode = recurses == 0 ?
+								TreeFactory.newLeafNode(sb, getLinkRes(linkid), context) :
+								TreeFactory.newQueryNode(new SubLinksQuery(synsetid, linkid, getLinkRes(linkid), sb), BasicModule.this.getContext());
+						parent.addChild(linkNode);
+					} while (cursor.moveToNext());
+
+					// expand
+					TreeView.expand(parent, false);
+				} else
+				{
+					// parent.disable();
+				}
+
+				cursor.close();
+			}
+
+			@Override
+			public void onLoaderReset(final Loader<Cursor> arg0)
+			{
+				//
+			}
+		});
+	}
+
+	private void semlinks(final long synsetid0, final int linkid0, final TreeNode parent)
+	{
+		getLoaderManager().restartLoader(++Module.loaderId, null, new LoaderCallbacks<Cursor>()
+		{
+
+			@Override
+			public Loader<Cursor> onCreateLoader(final int loaderId0, final Bundle args)
+			{
+				final Uri uri = Uri.parse(SemLinks_Synsets_Words_X.CONTENT_URI);
+				final String[] projection = new String[]{ //
+						"d." + Synsets.SYNSETID + " AS " + SemLinks_Synsets_X.SYNSETID, // //$NON-NLS-1$ //$NON-NLS-2$
+						"d." + Synsets.DEFINITION + " AS " + SemLinks_Synsets_X.DEFINITION, // //$NON-NLS-1$ //$NON-NLS-2$
+						LinkTypes.LINK, //
+						LinkTypes.LINKID, //
+						LinkTypes.RECURSES, //
+				};
+				final String selection = "l." + SemLinks_Synsets_Words_X.SYNSET1ID + " = ? AND " + LinkTypes.LINKID + " = ?"; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				final String[] selectionArgs = new String[]{Long.toString(synsetid0), Integer.toString(linkid0)};
+				final String sortOrder = null;
+				return new CursorLoader(getContext(), uri, projection, selection, selectionArgs, sortOrder);
+			}
+
+			@Override
+			public void onLoadFinished(final Loader<Cursor> loader, final Cursor cursor)
+			{
+				if (cursor.moveToFirst())
+				{
+					final int idSynsetId = cursor.getColumnIndex(SemLinks_Synsets_X.SYNSETID);
+					final int idDefinition = cursor.getColumnIndex(SemLinks_Synsets_X.DEFINITION);
+					final int idLinkId = cursor.getColumnIndex(LinkTypes.LINKID);
+					final int idMembers = cursor.getColumnIndex(SemLinks_Synsets_Words_X.MEMBERS);
+					final int idRecurses = cursor.getColumnIndex(SemLinks_Synsets_Words_X.RECURSES);
+					// final int idLink = cursor.getColumnIndex(LinkTypes.LINK);
+
+					do
+					{
+						final SpannableStringBuilder sb = new SpannableStringBuilder();
+
+						final int linkid = cursor.getInt(idLinkId);
+						final String definition = cursor.getString(idDefinition);
+						final String members = cursor.getString(idMembers);
+						final long synsetid = cursor.getLong(idSynsetId);
+						final int recurses = cursor.getInt(idRecurses);
+						// final String link = cursor.getString(idLink);
+
+						Spanner.append(sb, members, 0, WordNetFactories.membersFactory);
+						sb.append(' ');
+						Spanner.append(sb, definition, 0, WordNetFactories.definitionFactory);
+
+						final Context context = BasicModule.this.getContext();
+						TreeNode linkNode = recurses == 0 ?
+								TreeFactory.newLeafNode(sb, getLinkRes(linkid), context) :
+								TreeFactory.newQueryNode(new SubLinksQuery(synsetid, linkid, getLinkRes(linkid), sb), context);
+						parent.addChild(linkNode);
+					} while (cursor.moveToNext());
+
+					// expand
+					TreeView.expand(parent, false);
+				} else
+				{
+					parent.disable();
+				}
+
+				cursor.close();
+			}
+
+			@Override
+			public void onLoaderReset(final Loader<Cursor> arg0)
+			{
+				//
+			}
+		});
+	}
+
+	void lexlinks(final long synsetid0, final TreeNode parent)
+	{
+		getLoaderManager().restartLoader(++Module.loaderId, null, new LoaderCallbacks<Cursor>()
+		{
+
+			@Override
+			public Loader<Cursor> onCreateLoader(final int loaderId0, final Bundle args)
+			{
+				final Uri uri = Uri.parse(LexLinks_Senses_Words_X.CONTENT_URI);
+				final String[] projection = new String[]{ //
+						"d." + Synsets.SYNSETID + " AS " + LexLinks_Senses_X.SYNSETID, // //$NON-NLS-1$ //$NON-NLS-2$
+						"d." + Synsets.DEFINITION + " AS " + LexLinks_Senses_X.DEFINITION, // //$NON-NLS-1$ //$NON-NLS-2$
+						"w." + Words.LEMMA + " AS " + LexLinks_Senses_X.TARGET_LEMMA, // //$NON-NLS-1$ //$NON-NLS-2$
+						"w." + Words.WORDID + " AS " + LexLinks_Senses_X.TARGET_WORDID, // //$NON-NLS-1$ //$NON-NLS-2$
+						LinkTypes.LINKID, //
+						LinkTypes.LINK};
+				final String selection = "l." + LexLinks_Senses_Words_X.SYNSET1ID + " = ?";  //$NON-NLS-1$//$NON-NLS-2$
+				final String[] selectionArgs = new String[]{Long.toString(synsetid0)};
+				final String sortOrder = null;
+				return new CursorLoader(getContext(), uri, projection, selection, selectionArgs, sortOrder);
+			}
+
+			@Override
+			public void onLoadFinished(final Loader<Cursor> loader, final Cursor cursor)
+			{
+				//noinspection StatementWithEmptyBody,StatementWithEmptyBody,StatementWithEmptyBody,StatementWithEmptyBody
+				if (cursor.moveToFirst())
+				{
+					final int idLinkId = cursor.getColumnIndex(LinkTypes.LINKID);
+					final int idDefinition = cursor.getColumnIndex(LexLinks_Senses_X.DEFINITION);
+					final int idTargetLemma = cursor.getColumnIndex(LexLinks_Senses_X.TARGET_LEMMA);
+					final int idTargetMembers = cursor.getColumnIndex(LexLinks_Senses_Words_X.MEMBERS);
+					// final int idLink = cursor.getColumnIndex(LinkTypes.LINK);
+					// final int idTargetWordId = cursor.getColumnIndex(LexLinks_Synsets_Words_LinkTypes.TARGET_WORDID);
+					// final int idSynsetId = cursor.getColumnIndex(LexLinks_Synsets_Words_LinkTypes.SYNSETID);
+
+					final SpannableStringBuilder sb = new SpannableStringBuilder();
+					do
+					{
+						final int linkid = cursor.getInt(idLinkId);
+						final String definition = cursor.getString(idDefinition);
+						final String targetLemma = cursor.getString(idTargetLemma);
+						final String targetMembers = cursor.getString(idTargetMembers);
+						// final String link = cursor.getString(idLink);
+						// final String targetWordId = cursor.getString(idTargetWordId);
+						// final String synsetId = cursor.getString(idSynsetId);
+						// final String record = String.format(Locale.ENGLISH, "[%s] %s (%s)\n\t%s (synset %s) {%s}", link, targetLemma, targetWordId,
+						// definition, synsetId, targetMembers);
+
+						if (sb.length() != 0)
+						{
+							sb.append('\n');
+						}
+						Spanner.appendImage(sb, getLinkDrawable(linkid));
+						// sb.append(record);
+						sb.append(' ');
+						Spanner.append(sb, targetLemma, 0, WordNetFactories.lemmaFactory);
+						sb.append(" in "); //$NON-NLS-1$
+						sb.append(' ');
+						sb.append('{');
+						Spanner.append(sb, targetMembers, 0, WordNetFactories.membersFactory);
+						sb.append('}');
+						sb.append(' ');
+						Spanner.append(sb, definition, 0, WordNetFactories.definitionFactory);
+
+						// attach result
+						TreeFactory.newLeafNode(sb, getLinkRes(linkid), BasicModule.this.getContext());
+					} while (cursor.moveToNext());
+
+					// attach result
+					// TreeFactory.addTextNode(parent, sb, BasicModule.this.getContext());
+
+					// expand
+					TreeView.expand(parent, false);
+				} else
+				{
+					// parent.disable();
+				}
+
+				cursor.close();
+			}
+
+			@Override
+			public void onLoaderReset(final Loader<Cursor> arg0)
+			{
+				//
+			}
+		});
+	}
+
+	private void lexlinks(final long synsetid0, final long wordid0, final TreeNode parent)
+	{
+		getLoaderManager().restartLoader(++Module.loaderId, null, new LoaderCallbacks<Cursor>()
+		{
+			@Override
+			public Loader<Cursor> onCreateLoader(final int loaderId0, final Bundle args)
+			{
+				final Uri uri = Uri.parse(LexLinks_Senses_Words_X.CONTENT_URI);
+				final String[] projection = new String[]{ //
+						"d." + Synsets.SYNSETID + " AS " + LexLinks_Senses_X.SYNSETID, // //$NON-NLS-1$ //$NON-NLS-2$
+						"d." + Synsets.DEFINITION + " AS " + LexLinks_Senses_X.DEFINITION, // //$NON-NLS-1$ //$NON-NLS-2$
+						"w." + Words.LEMMA + " AS " + LexLinks_Senses_X.TARGET_LEMMA, // //$NON-NLS-1$ //$NON-NLS-2$
+						"w." + Words.WORDID + " AS " + LexLinks_Senses_X.TARGET_WORDID, // //$NON-NLS-1$ //$NON-NLS-2$
+						LinkTypes.LINK, LinkTypes.LINKID,};
+				final String selection = "l.synset1id = ? AND l.word1id = ?"; //$NON-NLS-1$
+				final String[] selectionArgs = new String[]{Long.toString(synsetid0), Long.toString(wordid0)};
+				final String sortOrder = LinkTypes.LINKID;
+				return new CursorLoader(getContext(), uri, projection, selection, selectionArgs, sortOrder);
+			}
+
+			@Override
+			public void onLoadFinished(final Loader<Cursor> loader, final Cursor cursor)
+			{
+				//noinspection StatementWithEmptyBody
+				if (cursor.moveToFirst())
+				{
+					final int idLinkId = cursor.getColumnIndex(LinkTypes.LINKID);
+					final int idDefinition = cursor.getColumnIndex(LexLinks_Senses_X.DEFINITION);
+					final int idTargetLemma = cursor.getColumnIndex(LexLinks_Senses_X.TARGET_LEMMA);
+					// final int idTargetMembers = cursor.getColumnIndex(LexLinks_Synsets_Words_LinkTypes.TARGET_MEMBERS);
+					// final int idLink = cursor.getColumnIndex(LinkTypes.LINK);
+					// final int idSynsetId = cursor.getColumnIndex(LexLinks_Synsets_Words_LinkTypes.SYNSETID);
+					// final int idTargetWordId = cursor.getColumnIndex(LexLinks_Synsets_Words_LinkTypes.TARGET_WORDID);
+
+					final SpannableStringBuilder sb = new SpannableStringBuilder();
+					do
+					{
+						final int linkid = cursor.getInt(idLinkId);
+						final String definition = cursor.getString(idDefinition);
+						final String lemma = cursor.getString(idTargetLemma);
+						// final String members = cursor.getString(idTargetMembers);
+						// final String synsetId = cursor.getString(idSynsetId);
+						// final String targetWordId = cursor.getString(idTargetWordId);
+						// final String link = cursor.getString(idLink);
+						// final String record = String.format(Locale.ENGLISH, "[%s] %s (%s)\n\t%s (synset %s) {%s}", link, targetLemma, targetWordId,
+						// definition, synsetId, targetMembers);
+
+						if (sb.length() != 0)
+						{
+							sb.append('\n');
+						}
+						Spanner.appendImage(sb, getLinkDrawable(linkid));
+						// sb.append(record);
+						sb.append(' ');
+						Spanner.append(sb, lemma, 0, WordNetFactories.lemmaFactory);
+						// sb.append(" in ");
+						// sb.append(' ');
+						// sb.append('{');
+						// Spanner.append(sb, members, 0, WordNetFactories.membersFactory);
+						// sb.append('}');
+						sb.append(' ');
+						Spanner.append(sb, definition, 0, WordNetFactories.definitionFactory);
+
+						// attach result
+						TreeFactory.newLeafNode(sb, getLinkRes(linkid), BasicModule.this.getContext());
+					} while (cursor.moveToNext());
+
+					// attach result
+					// TreeFactory.addTextNode(parent, sb, BasicModule.this.getContext());
+
+					// expand
+					TreeView.expand(parent, false);
+				} else
+				{
+					// parent.disable();
+				}
+
+				cursor.close();
+			}
+
+			@Override
+			public void onLoaderReset(final Loader<Cursor> arg0)
+			{
+				//
+			}
+		});
+	}
+
+	void vframes(final long synsetid0, final TreeNode parent)
+	{
+		getLoaderManager().restartLoader(++Module.loaderId, null, new LoaderCallbacks<Cursor>()
+		{
+
+			@Override
+			public Loader<Cursor> onCreateLoader(final int loaderId0, final Bundle args)
+			{
+				final Uri uri = Uri.parse(VerbFrameMaps_VerbFrames.CONTENT_URI);
+				final String[] projection = new String[]{VerbFrameMaps_VerbFrames.FRAME};
+				final String selection = VerbFrameMaps_VerbFrames.SYNSETID + " = ?"; //$NON-NLS-1$
+				final String[] selectionArgs = new String[]{Long.toString(synsetid0)};
+				final String sortOrder = null;
+				return new CursorLoader(getContext(), uri, projection, selection, selectionArgs, sortOrder);
+			}
+
+			@SuppressWarnings("synthetic-access")
+			@Override
+			public void onLoadFinished(final Loader<Cursor> loader, final Cursor cursor)
+			{
+				//noinspection StatementWithEmptyBody
+				if (cursor.moveToFirst())
+				{
+					final int vframeId = cursor.getColumnIndex(VerbFrameMaps_VerbFrames.FRAME);
+
+					final SpannableStringBuilder sb = new SpannableStringBuilder();
+					do
+					{
+						final String vframe = cursor.getString(vframeId);
+						final String record = String.format(Locale.ENGLISH, "%s", vframe); //$NON-NLS-1$
+						if (sb.length() != 0)
+						{
+							sb.append('\n');
+						}
+						Spanner.appendImage(sb, BasicModule.this.flagDrawable);
+						sb.append(' ');
+						sb.append(record);
+					} while (cursor.moveToNext());
+
+					// attach result
+					TreeFactory.addTextNode(parent, sb, BasicModule.this.getContext());
+
+					// expand
+					TreeView.expand(parent, false);
+				} else
+				{
+					// parent.disable();
+				}
+
+				cursor.close();
+			}
+
+			@Override
+			public void onLoaderReset(final Loader<Cursor> arg0)
+			{
+				//
+			}
+		});
+	}
+
+	void vframes(final long synsetid0, final long wordid0, final TreeNode parent)
+	{
+		getLoaderManager().restartLoader(++Module.loaderId, null, new LoaderCallbacks<Cursor>()
+		{
+
+			@Override
+			public Loader<Cursor> onCreateLoader(final int loaderId0, final Bundle args)
+			{
+				final Uri uri = Uri.parse(VerbFrameMaps_VerbFrames.CONTENT_URI);
+				final String[] projection = new String[]{VerbFrameMaps_VerbFrames.FRAME};
+				final String selection = VerbFrameMaps_VerbFrames.SYNSETID + " = ? AND " + VerbFrameMaps_VerbFrames.WORDID + " = ?"; //$NON-NLS-1$ //$NON-NLS-2$
+				final String[] selectionArgs = new String[]{Long.toString(synsetid0), Long.toString(wordid0)};
+				final String sortOrder = null;
+				return new CursorLoader(getContext(), uri, projection, selection, selectionArgs, sortOrder);
+			}
+
+			@SuppressWarnings("synthetic-access")
+			@Override
+			public void onLoadFinished(final Loader<Cursor> loader, final Cursor cursor)
+			{
+				//noinspection StatementWithEmptyBody
+				if (cursor.moveToFirst())
+				{
+					final int vframeId = cursor.getColumnIndex(VerbFrameMaps_VerbFrames.FRAME);
+
+					final SpannableStringBuilder sb = new SpannableStringBuilder();
+					do
+					{
+						final String vframe = cursor.getString(vframeId);
+						final String record = String.format(Locale.ENGLISH, "%s", vframe); //$NON-NLS-1$
+						if (sb.length() != 0)
+						{
+							sb.append('\n');
+						}
+						Spanner.appendImage(sb, BasicModule.this.flagDrawable);
+						sb.append(' ');
+						sb.append(record);
+					} while (cursor.moveToNext());
+
+					// attach result
+					TreeFactory.addTextNode(parent, sb, BasicModule.this.getContext());
+
+					// expand
+					TreeView.expand(parent, false);
+				} else
+				{
+					// parent.disable();
+				}
+
+				cursor.close();
+			}
+
+			@Override
+			public void onLoaderReset(final Loader<Cursor> arg0)
+			{
+				//
+			}
+		});
+	}
+
+	void vframesentences(final long synsetid0, final TreeNode parent)
+	{
+		getLoaderManager().restartLoader(++Module.loaderId, null, new LoaderCallbacks<Cursor>()
+		{
+
+			@Override
+			public Loader<Cursor> onCreateLoader(final int loaderId0, final Bundle args)
+			{
+				final Uri uri = Uri.parse(VerbFrameSentenceMaps_VerbFrameSentences.CONTENT_URI);
+				final String[] projection = new String[]{VerbFrameSentenceMaps_VerbFrameSentences.SENTENCE};
+				final String selection = VerbFrameSentenceMaps_VerbFrameSentences.SYNSETID + " = ?"; //$NON-NLS-1$
+				final String[] selectionArgs = new String[]{Long.toString(synsetid0)};
+				final String sortOrder = null;
+				return new CursorLoader(BasicModule.this.getContext(), uri, projection, selection, selectionArgs, sortOrder);
+			}
+
+			@SuppressWarnings("synthetic-access")
+			@Override
+			public void onLoadFinished(final Loader<Cursor> loader, final Cursor cursor)
+			{
+				//noinspection StatementWithEmptyBody
+				if (cursor.moveToFirst())
+				{
+					final int vframeId = cursor.getColumnIndex(VerbFrameSentenceMaps_VerbFrameSentences.SENTENCE);
+
+					final SpannableStringBuilder sb = new SpannableStringBuilder();
+					do
+					{
+						final String vframesentence = cursor.getString(vframeId);
+						final String record = String.format(Locale.ENGLISH, vframesentence, "[-]"); //$NON-NLS-1$
+						if (sb.length() != 0)
+						{
+							sb.append('\n');
+						}
+						Spanner.appendImage(sb, BasicModule.this.flagDrawable);
+						sb.append(' ');
+						sb.append(record);
+					} while (cursor.moveToNext());
+
+					// attach result
+					TreeFactory.addTextNode(parent, sb, BasicModule.this.getContext());
+
+					// expand
+					TreeView.expand(parent, false);
+				} else
+				{
+					// parent.disable();
+				}
+
+				cursor.close();
+			}
+
+			@Override
+			public void onLoaderReset(final Loader<Cursor> arg0)
+			{
+				//
+			}
+		});
+	}
+
+	void vframesentences(final long synsetid0, final long wordid0, final TreeNode parent)
+	{
+		final String lemma = "---"; //$NON-NLS-1$
+		getLoaderManager().restartLoader(++Module.loaderId, null, new LoaderCallbacks<Cursor>()
+		{
+
+			@Override
+			public Loader<Cursor> onCreateLoader(final int loaderId0, final Bundle args)
+			{
+				final Uri uri = Uri.parse(VerbFrameSentenceMaps_VerbFrameSentences.CONTENT_URI);
+				final String[] projection = new String[]{VerbFrameSentenceMaps_VerbFrameSentences.SENTENCE};
+				final String selection = VerbFrameSentenceMaps_VerbFrameSentences.SYNSETID + " = ? AND " + VerbFrameSentenceMaps_VerbFrameSentences.WORDID + " = ?"; //$NON-NLS-1$ //$NON-NLS-2$
+				final String[] selectionArgs = new String[]{Long.toString(synsetid0), Long.toString(wordid0)};
+				final String sortOrder = null;
+				return new CursorLoader(getContext(), uri, projection, selection, selectionArgs, sortOrder);
+			}
+
+			@SuppressWarnings({"synthetic-access", "StatementWithEmptyBody"})
+			@Override
+			public void onLoadFinished(final Loader<Cursor> loader0, final Cursor cursor)
+			{
+				//noinspection StatementWithEmptyBody,StatementWithEmptyBody,StatementWithEmptyBody
+				if (cursor.moveToFirst())
+				{
+					final int vframeId = cursor.getColumnIndex(VerbFrameSentenceMaps_VerbFrameSentences.SENTENCE);
+
+					final SpannableStringBuilder sb = new SpannableStringBuilder();
+					do
+					{
+						final String vframesentence = cursor.getString(vframeId);
+						final String record = String.format(Locale.ENGLISH, vframesentence, '[' + lemma + ']');
+						if (sb.length() != 0)
+						{
+							sb.append('\n');
+						}
+						Spanner.appendImage(sb, BasicModule.this.flagDrawable);
+						sb.append(' ');
+						sb.append(record);
+					} while (cursor.moveToNext());
+
+					// attach result
+					TreeFactory.addTextNode(parent, sb, BasicModule.this.getContext());
+
+					// expand
+					TreeView.expand(parent, false);
+				} else
+				{
+					// parent.disable();
+				}
+
+				cursor.close();
+			}
+
+			@Override
+			public void onLoaderReset(final Loader<Cursor> arg0)
+			{
+				//
+			}
+		});
+	}
+
+	void adjposition(final long synsetid0, final TreeNode parent)
+	{
+		getLoaderManager().restartLoader(++Module.loaderId, null, new LoaderCallbacks<Cursor>()
+		{
+
+			@Override
+			public Loader<Cursor> onCreateLoader(final int loaderId0, final Bundle args)
+			{
+				final Uri uri = Uri.parse(AdjPositions_AdjPositionTypes.CONTENT_URI);
+				final String[] projection = new String[]{AdjPositions_AdjPositionTypes.POSITIONNAME};
+				final String selection = AdjPositions_AdjPositionTypes.SYNSETID + " = ?"; //$NON-NLS-1$
+				final String[] selectionArgs = new String[]{Long.toString(synsetid0)};
+				final String sortOrder = null;
+				return new CursorLoader(BasicModule.this.getContext(), uri, projection, selection, selectionArgs, sortOrder);
+			}
+
+			@SuppressWarnings("synthetic-access")
+			@Override
+			public void onLoadFinished(final Loader<Cursor> loader, final Cursor cursor)
+			{
+				//noinspection StatementWithEmptyBody
+				if (cursor.moveToFirst())
+				{
+					final int positionId = cursor.getColumnIndex(AdjPositions_AdjPositionTypes.POSITIONNAME);
+
+					final SpannableStringBuilder sb = new SpannableStringBuilder();
+					do
+					{
+						final String position = cursor.getString(positionId);
+						final String record = String.format(Locale.ENGLISH, "%s", position); //$NON-NLS-1$
+						if (sb.length() != 0)
+						{
+							sb.append('\n');
+						}
+						Spanner.appendImage(sb, BasicModule.this.flagDrawable);
+						sb.append(' ');
+						sb.append(record);
+					} while (cursor.moveToNext());
+
+					// attach result
+					TreeFactory.addTextNode(parent, sb, BasicModule.this.getContext());
+
+					// expand
+					TreeView.expand(parent, false);
+				} else
+				{
+					// parent.disable();
+				}
+
+				cursor.close();
+			}
+
+			@Override
+			public void onLoaderReset(final Loader<Cursor> arg0)
+			{
+				//
+			}
+		});
+	}
+
+	void adjposition(final long synsetid0, final long wordid0, final TreeNode parent)
+	{
+		getLoaderManager().restartLoader(++Module.loaderId, null, new LoaderCallbacks<Cursor>()
+		{
+
+			@Override
+			public Loader<Cursor> onCreateLoader(final int loaderId0, final Bundle args)
+			{
+				final Uri uri = Uri.parse(AdjPositions_AdjPositionTypes.CONTENT_URI);
+				final String[] projection = new String[]{AdjPositions_AdjPositionTypes.POSITIONNAME};
+				final String selection = AdjPositions_AdjPositionTypes.SYNSETID + " = ? AND " + AdjPositions_AdjPositionTypes.WORDID + " = ?"; //$NON-NLS-1$ //$NON-NLS-2$
+				final String[] selectionArgs = new String[]{Long.toString(synsetid0), Long.toString(wordid0)};
+				final String sortOrder = null;
+				return new CursorLoader(getContext(), uri, projection, selection, selectionArgs, sortOrder);
+			}
+
+			@SuppressWarnings("synthetic-access")
+			@Override
+			public void onLoadFinished(final Loader<Cursor> loader, final Cursor cursor)
+			{
+				//noinspection StatementWithEmptyBody
+				if (cursor.moveToFirst())
+				{
+					final int positionId = cursor.getColumnIndex(AdjPositions_AdjPositionTypes.POSITIONNAME);
+
+					final SpannableStringBuilder sb = new SpannableStringBuilder();
+					do
+					{
+						final String position = cursor.getString(positionId);
+						final String record = String.format(Locale.ENGLISH, "%s", position); //$NON-NLS-1$
+						if (sb.length() != 0)
+						{
+							sb.append('\n');
+						}
+						Spanner.appendImage(sb, BasicModule.this.flagDrawable);
+						sb.append(' ');
+						sb.append(record);
+					} while (cursor.moveToNext());
+
+					// attach result
+					TreeFactory.addTextNode(parent, sb, BasicModule.this.getContext());
+
+					// expand
+					TreeView.expand(parent, false);
+				} else
+				{
+					// parent.disable();
+				}
+
+				cursor.close();
+			}
+
+			@Override
+			public void onLoaderReset(final Loader<Cursor> arg0)
+			{
+				//
+			}
+		});
+	}
+
+	void morphs(final long wordid0, final TreeNode parent)
+	{
+		getLoaderManager().restartLoader(++Module.loaderId, null, new LoaderCallbacks<Cursor>()
+		{
+			@Override
+			public Loader<Cursor> onCreateLoader(final int loaderId0, final Bundle args)
+			{
+				final Uri uri = Uri.parse(MorphMaps_Morphs.CONTENT_URI);
+				final String[] projection = new String[]{MorphMaps_Morphs.POS, MorphMaps_Morphs.MORPH};
+				final String selection = MorphMaps_Morphs.WORDID + " = ?"; //$NON-NLS-1$
+				final String[] selectionArgs = new String[]{Long.toString(wordid0)};
+				final String sortOrder = null;
+				return new CursorLoader(BasicModule.this.getContext(), uri, projection, selection, selectionArgs, sortOrder);
+			}
+
+			@SuppressWarnings("synthetic-access")
+			@Override
+			public void onLoadFinished(final Loader<Cursor> loader, final Cursor cursor)
+			{
+				//noinspection StatementWithEmptyBody
+				if (cursor.moveToFirst())
+				{
+					final int morphId = cursor.getColumnIndex(MorphMaps_Morphs.MORPH);
+					final int posId = cursor.getColumnIndex(MorphMaps_Morphs.POS);
+
+					final SpannableStringBuilder sb = new SpannableStringBuilder();
+					do
+					{
+						final String morph1 = cursor.getString(morphId);
+						final String pos1 = cursor.getString(posId);
+						final String record = String.format(Locale.ENGLISH, "(%s) %s", pos1, morph1); //$NON-NLS-1$
+						if (sb.length() != 0)
+						{
+							sb.append('\n');
+						}
+						Spanner.appendImage(sb, BasicModule.this.flagDrawable);
+						sb.append(' ');
+						sb.append(record);
+					} while (cursor.moveToNext());
+
+					// attach result
+					TreeFactory.addTextNode(parent, sb, BasicModule.this.getContext());
+
+					// expand
+					TreeView.expand(parent, false);
+				} else
+				{
+					// parent.disable();
+				}
+
+				cursor.close();
+			}
+
+			@Override
+			public void onLoaderReset(final Loader<Cursor> arg0)
+			{
+				//
+			}
+		});
+	}
+
+	private int getLinkRes(final int linkId)
+	{
+		switch (linkId)
+		{
+			case 1:
+				return R.drawable.ic_hypernym;
+			case 2:
+				return R.drawable.ic_hyponym;
+			case 3:
+				return R.drawable.ic_instance_hypernym;
+			case 4:
+				return R.drawable.ic_instance_hyponym;
+			case 11:
+				return R.drawable.ic_part_holonym;
+			case 12:
+				return R.drawable.ic_part_meronym;
+			case 13:
+				return R.drawable.ic_member_holonym;
+			case 14:
+				return R.drawable.ic_member_meronym;
+			case 15:
+				return R.drawable.ic_substance_holonym;
+			case 16:
+				return R.drawable.ic_substance_meronym;
+			case 21:
+				return R.drawable.ic_entail;
+			case 23:
+				return R.drawable.ic_cause;
+			case 30:
+				return R.drawable.ic_antonym;
+			case 40:
+				return R.drawable.ic_similar;
+			case 50:
+				return R.drawable.ic_also;
+			case 60:
+				return R.drawable.ic_attribute;
+			case 70:
+				return R.drawable.ic_verb_group;
+			case 71:
+				return R.drawable.ic_participle;
+			case 80:
+				return R.drawable.ic_pertainym;
+			case 81:
+				return R.drawable.ic_derivation;
+			case 91:
+				return R.drawable.ic_domain_category;
+			case 92:
+				return R.drawable.ic_domain_member_category;
+			case 93:
+				return R.drawable.ic_domain_region;
+			case 94:
+				return R.drawable.ic_domain_member_region;
+			case 95:
+				return R.drawable.ic_domain_usage;
+			case 96:
+				return R.drawable.ic_domain_member_usage;
+			case 97:
+				return R.drawable.ic_domain;
+			case 98:
+				return R.drawable.ic_domain_member;
+			default:
+				return R.drawable.error;
+		}
+	}
+
+	private Drawable getLinkDrawable(final int linkId)
+	{
+		final Context context = getContext();
+		return getLinkDrawable(context, linkId);
+	}
+
+	private Drawable getLinkDrawable(final Context context, final int linkId)
+	{
+		int resId = getLinkRes(linkId);
+		return Spanner.getDrawable(context, resId);
+	}
+
+	public class LinksQuery extends QueryHolder.Query
+	{
+		final long id2;
+
+		public LinksQuery(final long synsetid0, final long wordid0, final int icon, @SuppressWarnings("SameParameterValue") final CharSequence text)
+		{
+			super(synsetid0, icon, text);
+			this.id2 = wordid0;
+		}
+
+		@Override
+		public void process(final TreeNode node0)
+		{
+			// semlinks
+			semlinks(this.id, node0);
+
+			// lexlinks
+			lexlinks(this.id, this.id2, node0);
+		}
+	}
+
+	public class SubLinksQuery extends QueryHolder.Query
+	{
+		final int id2;
+
+		public SubLinksQuery(final long synsetid0, final int linkid0, final int icon, final CharSequence text)
+		{
+			super(synsetid0, icon, text);
+			this.id2 = linkid0;
+		}
+
+		@Override
+		public void process(final TreeNode node0)
+		{
+			// semlinks
+			semlinks(this.id, this.id2, node0);
+		}
+	}
+
+	public class SamplesQuery extends QueryHolder.Query
+	{
+		public SamplesQuery(final long synsetid0, final int icon, @SuppressWarnings("SameParameterValue") final CharSequence text)
+		{
+			super(synsetid0, icon, text);
+		}
+
+		@Override
+		public void process(final TreeNode node0)
+		{
+			// samples
+			samples(this.id, node0);
+		}
+	}
+}

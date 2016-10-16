@@ -1,0 +1,24 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <item
+        android:id="@+id/action_settings"
+        android:showAsAction="never"
+        android:title="@string/action_settings"/>
+    <item
+        android:id="@+id/action_status"
+        android:showAsAction="never"
+        android:title="@string/action_status"/>
+    <item
+        android:id="@+id/action_storage"
+        android:showAsAction="never"
+        android:title="@string/action_storage"/>
+    <item
+        android:id="@+id/action_management"
+        android:showAsAction="never"
+        android:title="@string/action_management"/>
+    <item
+        android:id="@+id/action_appsettings"
+        android:showAsAction="never"
+        android:title="@string/action_appsettings"/>
+
+</menu>

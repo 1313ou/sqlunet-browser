@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="title_activity_senses">Senses</string>
+    <string name="title_activity_sense">Sense</string>
+    <string name="title_activity_synset">Synset</string>
+    <string name="label_members">Members</string>
+    <string name="label_definition">Definition</string>
+    <string name="label_samples">Samples</string>
+    <string name="label_semlinks">Semantic Links</string>
+    <string name="label_lexlinks">Lexical Links</string>
+    <string name="label_vframes">Verb Frames</string>
+    <string name="label_vframesentences">Verb Frame Sentences</string>
+    <string name="label_adjposition">Adjective Position</string>
+    <string name="label_morphology">Morphology</string>
+
+</resources>

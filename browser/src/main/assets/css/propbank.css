@@ -1,0 +1,93 @@
+@CHARSET "UTF-8";
+
+/* Propbank */
+
+.pbroleset {
+}
+
+.pbrolesetlabel {
+	color: gray;
+}
+
+.pbrolesetname {
+	background-color: red;
+	color: white;
+	font-weight: bold;
+	font-size: large;
+	padding-left: 2px;
+	padding-right: 2px;
+}
+
+.pbrolesettext {
+	color: blue;
+}
+
+.pbrole {
+}
+
+.pbrolelabel {
+	color: gray;
+}
+
+.pbrolename {
+	background-color: magenta;
+	color: white;
+	padding-left: 2px;
+	padding-right: 2px;
+}
+
+.pbthetaname {
+	background-color: blue;
+	color: white;
+	padding-left: 2px;
+	padding-right: 2px;
+}
+
+.pbexamplelabel {
+	color: gray;
+}
+
+.pbexampletext {
+	background-color: lemonchiffon;
+	color: gray;
+	font-style: italic;
+}
+
+.pbrel {
+}
+
+.pbrellabel {
+	color: gray;
+}
+
+.pbrelname {
+	background-color: black;
+	color: white;
+	padding-left: 2px;
+	padding-right: 2px;
+}
+
+.pbarg {
+}
+
+.pbarglabel {
+	color: gray;
+}
+
+.pbargname {
+	background-color: magenta;
+	color: white;
+	padding-left: 2px;
+	padding-right: 2px;
+}
+
+.pbargtheta {
+	background-color: blue;
+	color: white;
+	padding-left: 2px;
+	padding-right: 2px;
+}
+
+.pbargtext {
+	color: magenta;
+}

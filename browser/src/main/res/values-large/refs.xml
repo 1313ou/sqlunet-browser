@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--
+    Layout alias to replace the single-pane version of the layout with a two-pane version on Large screens.
+
+    For more on layout aliases, see:
+    http://developer.android.com/training/multiscreen/screensizes.html#TaskUseAliasFilters
+    -->
+    <item name="activity_selector" type="layout">@layout/activity_selector_detail</item>
+	<item name="activity_xselector" type="layout">@layout/activity_xselector_detail</item>
+		
+</resources>

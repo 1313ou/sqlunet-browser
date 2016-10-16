@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/row"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="6dp"
+    android:background="@drawable/rounded_corners_white"
+    android:descendantFocusability="blocksDescendants"
+    android:orientation="horizontal"
+    android:paddingBottom="8dp"
+    android:paddingLeft="0dp"
+    android:paddingRight="0dp">
+
+    <TextView
+        android:id="@+id/item0"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight=".10"
+        android:background="#C0C0C0"
+        android:paddingLeft="4dp"
+        android:paddingRight="4dp"
+        android:textColor="#ff707070"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/item1"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight=".25"
+        android:background="#E0E0E0"
+        android:paddingLeft="4dp"
+        android:paddingRight="4dp"
+        android:textColor="#ff707070"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/item2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight=".65"
+        android:background="#C0C0C0"
+        android:ellipsize="end"
+        android:paddingLeft="4dp"
+        android:paddingRight="4dp"
+        android:textColor="#ff707070"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/item3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="#E0E0E0"
+        android:paddingLeft="4dp"
+        android:paddingRight="4dp"
+        android:textColor="#ff707070"
+        android:textSize="22sp" />
+
+    <TextView
+        android:id="@+id/item4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="#C0C0C0"
+        android:paddingLeft="4dp"
+        android:paddingRight="4dp"
+        android:textColor="#ff707070"
+        android:textSize="22sp" />
+
+    <TextView
+        android:id="@+id/item5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="#E0E0E0"
+        android:paddingLeft="4dp"
+        android:paddingRight="4dp"
+        android:textColor="#ff707070"
+        android:textSize="22sp" />
+
+</LinearLayout>

@@ -1,0 +1,165 @@
+<!-- DTD for WordNet v 1.6 20090420 -->
+
+<!ELEMENT wordnet (#PCDATA | word | pos)*>
+<!ATTLIST wordnet
+	target CDATA #IMPLIED
+>
+
+<!ELEMENT word (#PCDATA)>
+<!ATTLIST wordnet
+	word-id CDATA #IMPLIED
+>
+
+<!ELEMENT pos (lexdomain*)>
+<!ATTLIST pos
+	name (noun|verb|adj|adv) #REQUIRED
+>
+
+<!ELEMENT lexdomain (sense*)>
+<!ATTLIST lexdomain
+	name CDATA #REQUIRED
+>
+
+<!ELEMENT sense (synset,links)>
+<!ATTLIST sense
+	number CDATA #IMPLIED
+>
+
+<!ELEMENT synset (word*,definition,sample?)>
+<!ATTLIST synset
+	size CDATA #IMPLIED
+	synset-id CDATA #IMPLIED
+>
+
+<!ELEMENT definition (#PCDATA)>
+<!ATTLIST definition
+>
+
+<!ELEMENT sample (#PCDATA)>
+<!ATTLIST sense
+>
+
+<!-- R E C U R S I V E -->
+
+<!ELEMENT hypernym (synset+,hypernym*)>
+<!ATTLIST hypernym
+	level CDATA #IMPLIED
+>
+
+<!ELEMENT hyponym (synset+,hyponym*)>
+<!ATTLIST hyponym
+	level CDATA #IMPLIED
+	more (true|false) #IMPLIED
+>
+
+<!ELEMENT member.holonym (synset+,member.holonym*)>
+<!ATTLIST member.holonym
+	level CDATA #IMPLIED
+>
+
+<!ELEMENT substance.holonym (synset+,substance.holonym*)>
+<!ATTLIST substance-holonym
+	level CDATA #IMPLIED
+>
+
+<!ELEMENT part.holonym (synset+,part.holonym*)>
+<!ATTLIST part.holonym
+	level CDATA #IMPLIED
+>
+
+<!ELEMENT holonym (synset+,holonym*)>
+<!ATTLIST holonym
+	level CDATA #IMPLIED
+>
+
+<!ELEMENT member.meronym (synset+,member.meronym*)>
+<!ATTLIST member.meronym
+	level CDATA #IMPLIED
+>
+
+<!ELEMENT substance.meronym (synset+,substance.meronym*)>
+<!ATTLIST substance-meronym
+	level CDATA #IMPLIED
+>
+
+<!ELEMENT part.meronym (synset+,part.meronym*)>
+<!ATTLIST part.meronym
+	level CDATA #IMPLIED
+>
+
+<!ELEMENT meronym (synset+,meronym*)>
+<!ATTLIST meronym
+	level CDATA #IMPLIED
+>
+
+<!ELEMENT cause (synset+,cause*)>
+<!ATTLIST cause
+	level CDATA #IMPLIED
+>
+
+<!ELEMENT entail (synset+,entail*)>
+<!ATTLIST entail
+	level CDATA #IMPLIED
+>
+
+<!-- N O N   R E C U R S I V E -->
+
+<!ELEMENT antonym (synset+)>
+<!ATTLIST antonym
+	level CDATA #IMPLIED
+>
+
+<!ELEMENT similar (synset+)>
+<!ATTLIST similar
+>
+
+<!ELEMENT also (synset+)>
+<!ATTLIST also
+>
+
+<!ELEMENT attribute (synset+)>
+<!ATTLIST attribute
+>
+
+<!ELEMENT verb.group (synset+)>
+<!ATTLIST verb.group
+>
+
+<!ELEMENT participle (synset+)>
+<!ATTLIST participle
+>
+
+<!ELEMENT pertainym (synset+)>
+<!ATTLIST pertainym
+>
+
+<!ELEMENT derivation (synset+)>
+<!ATTLIST derivation
+>
+
+<!ELEMENT domain.category (synset+)>
+<!ATTLIST domain.category
+>
+
+<!ELEMENT domain.member.category (synset+)>
+<!ATTLIST domain.member.category
+>
+
+<!ELEMENT domain.region (synset+)>
+<!ATTLIST domain.region
+>
+
+<!ELEMENT domain.member.region (synset+)>
+<!ATTLIST domain.member.region
+>
+<!ELEMENT domain.usage (synset+)>
+<!ATTLIST domain.usage
+>
+
+<!ELEMENT domain.member.usage (synset+)>
+<!ATTLIST domain.member.usage
+>
+
+<!ELEMENT links (hypernym?,hyponym?,part.holonym?,part.meronym?,member.holonym?,member.meronym?,substance.holonym?,substance.meronym?,entail?,cause?,antonym?,similar?,also?,attribute?,verb.group?,participle?,pertainym?,derivation?,domain.category?,domain.member.category?,domain.region?,domain.member.region?,domain.usage?,domain.member.usage?)>
+<!ATTLIST links
+>

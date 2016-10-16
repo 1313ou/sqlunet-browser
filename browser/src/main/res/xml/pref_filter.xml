@@ -1,0 +1,34 @@
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <CheckBoxPreference
+        android:defaultValue="true"
+        android:key="pref_enable_links"
+        android:summary="@string/pref_description_enable_links"
+        android:title="@string/pref_title_enable_links" />
+    <CheckBoxPreference
+        android:defaultValue="true"
+        android:key="pref_enable_wordnet"
+        android:summary="@string/pref_description_enable_wordnet"
+        android:title="@string/pref_title_enable_wordnet" />
+    <CheckBoxPreference
+        android:defaultValue="true"
+        android:key="pref_enable_verbnet"
+        android:summary="@string/pref_description_enable_verbnet"
+        android:title="@string/pref_title_enable_verbnet" />
+    <CheckBoxPreference
+        android:defaultValue="true"
+        android:key="pref_enable_propbank"
+        android:summary="@string/pref_description_enable_propbank"
+        android:title="@string/pref_title_enable_propbank" />
+    <CheckBoxPreference
+        android:defaultValue="true"
+        android:key="pref_enable_framenet"
+        android:summary="@string/pref_description_enable_framenet"
+        android:title="@string/pref_title_enable_framenet" />
+    <CheckBoxPreference
+        android:defaultValue="true"
+        android:key="pref_enable_bnc"
+        android:summary="@string/pref_description_enable_bnc"
+        android:title="@string/pref_title_enable_bnc" />
+
+</PreferenceScreen>

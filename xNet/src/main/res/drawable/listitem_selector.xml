@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- Focused -->
+    <item android:drawable="@android:color/holo_orange_light" android:state_focused="true"/>
+    <!-- <item android:state_focused="true"><shape android:shape="rectangle"> -->
+    <!-- <solid android:color="#40FFFF00" /> -->
+    <!-- </shape></item> -->
+
+
+    <!-- Pressed -->
+    <!-- <item android:state_pressed="true"><shape android:shape="rectangle"> -->
+    <!-- <solid android:color="#80FFFF00" /> -->
+    <!-- </shape></item> -->
+
+
+    <!-- Selected -->
+    <!-- <item android:state_selected="true"><shape android:shape="rectangle"> -->
+    <!-- <solid android:color="#FFFF0000" /> -->
+    <!-- </shape></item> -->
+
+
+    <!-- Checked -->
+    <!-- <item android:state_checked="true"><shape android:shape="rectangle"> -->
+    <!-- <solid android:color="#FF00FF00" /> -->
+    <!-- </shape></item> -->
+
+
+    <!-- Default -->
+    <item android:drawable="@android:color/transparent"/>
+
+</selector>

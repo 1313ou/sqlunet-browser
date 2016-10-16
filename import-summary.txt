@@ -1,0 +1,458 @@
+ECLIPSE ANDROID PROJECT IMPORT SUMMARY
+======================================
+
+Manifest Merging:
+-----------------
+Your project uses libraries that provide manifests, and your Eclipse
+project did not explicitly turn on manifest merging. In Android Gradle
+projects, manifests are always merged (meaning that contents from your
+libraries' manifests will be merged into the app manifest. If you had
+manually copied contents from library manifests into your app manifest
+you may need to remove these for the app to build correctly.
+
+Ignored Files:
+--------------
+The following files were *not* copied into the new Gradle project; you
+should evaluate whether these are still needed in your project and if
+so manually move them:
+
+From BNC:
+* .gitignore
+* BNC.iml
+* artwork/
+* artwork/bnc.svg
+* artwork/domain.svg
+* artwork/make-images.sh
+* artwork/pos.svg
+* build.xml
+* proguard-project.txt
+From Browser:
+* .classpath0
+* .gitignore
+* .idea/
+* .idea/compiler.xml
+* .idea/copyright/
+* .idea/copyright/profiles_settings.xml
+* .idea/encodings.xml
+* .idea/gradle.xml
+* .idea/misc.xml
+* .idea/modules.xml
+* .idea/modules/
+* .idea/modules/1391386284/
+* .idea/modules/1391386284/Browser.iml
+* .idea/runConfigurations.xml
+* .idea/workspace.xml
+* artwork/
+* artwork/bn_download.svg
+* artwork/bn_setup.svg
+* artwork/framenet.svg
+* artwork/ic_action_done.svg
+* artwork/ic_action_error.svg
+* artwork/ic_download.svg
+* artwork/ic_download_dest.svg
+* artwork/ic_download_source.svg
+* artwork/ic_gray.svg
+* artwork/ic_green.svg
+* artwork/ic_item.svg
+* artwork/ic_launcher.svg
+* artwork/ic_red.svg
+* artwork/ic_role.svg
+* artwork/ic_roles.svg
+* artwork/ic_roles_byrole.svg
+* artwork/ic_roles_bysynset.svg
+* artwork/ic_roles_grouped.svg
+* artwork/ic_roles_ungrouped.svg
+* artwork/ic_run.svg
+* artwork/ic_selector.svg
+* artwork/ic_setup.svg
+* artwork/ic_splash.svg
+* artwork/ic_star.svg
+* artwork/ic_synset.svg
+* artwork/ic_xselector.svg
+* artwork/make-images.sh
+* artwork/pointer.svg
+* artwork/predicatematrix.svg
+* artwork/propbank.svg
+* artwork/verbnet.svg
+* artwork/wordnet.svg
+* artwork2/
+* artwork2/closed.svg
+* artwork2/error.svg
+* artwork2/focus.svg
+* artwork2/item.svg
+* artwork2/logo.svg
+* artwork2/make-images.sh
+* artwork2/open.svg
+* artwork3/
+* artwork3/adjderived.svg
+* artwork3/also.svg
+* artwork3/antonym.svg
+* artwork3/attribute.svg
+* artwork3/category.svg
+* artwork3/cause.svg
+* artwork3/derivation.svg
+* artwork3/domain.category.svg
+* artwork3/domain.member.category.svg
+* artwork3/domain.member.region.svg
+* artwork3/domain.member.svg
+* artwork3/domain.member.term.svg
+* artwork3/domain.member.usage.svg
+* artwork3/domain.region.svg
+* artwork3/domain.svg
+* artwork3/domain.term.svg
+* artwork3/domain.usage.svg
+* artwork3/entail.svg
+* artwork3/focus.svg
+* artwork3/holonym.svg
+* artwork3/hypernym.svg
+* artwork3/hyponym.svg
+* artwork3/instance.hypernym.svg
+* artwork3/instance.hyponym.svg
+* artwork3/item.svg
+* artwork3/lexical.svg
+* artwork3/links.svg
+* artwork3/make-images.sh
+* artwork3/member.holonym.svg
+* artwork3/member.meronym.svg
+* artwork3/members.svg
+* artwork3/meronym.svg
+* artwork3/other.svg
+* artwork3/part.holonym.svg
+* artwork3/part.meronym.svg
+* artwork3/participle.svg
+* artwork3/pertainym.svg
+* artwork3/pos.a.svg
+* artwork3/pos.n.svg
+* artwork3/pos.r.svg
+* artwork3/pos.s.svg
+* artwork3/pos.svg
+* artwork3/pos.v.svg
+* artwork3/reflexive.svg
+* artwork3/semantic.svg
+* artwork3/sense.svg
+* artwork3/similar.svg
+* artwork3/substance.holonym.svg
+* artwork3/substance.meronym.svg
+* artwork3/synonym.svg
+* artwork3/synset.svg
+* artwork3/verb.group.svg
+* build.xml
+* ic_launcher-web.png
+* logs/
+* logs/log.txt
+* logs/log1.txt
+* logs/log2.txt
+* proguard-project.txt
+From FrameNet:
+* .gitignore
+* FrameNet.iml
+* artwork/
+* artwork/annoset.svg
+* artwork/corerole.svg
+* artwork/coreset.svg
+* artwork/definition.svg
+* artwork/fnframe.svg
+* artwork/framenet.svg
+* artwork/governor.svg
+* artwork/grouprealization.svg
+* artwork/label1.svg
+* artwork/label2.svg
+* artwork/layer.svg
+* artwork/lexunit.svg
+* artwork/make-images.sh
+* artwork/metadefinition.svg
+* artwork/realization.svg
+* artwork/relation.svg
+* artwork/role.svg
+* artwork/role1.svg
+* artwork/role2.svg
+* artwork/roles.svg
+* artwork/sample.svg
+* artwork/semtype.svg
+* artwork/sentence.svg
+* build.xml
+* proguard-project.txt
+From PredicateMatrix:
+* .gitignore
+* PredicateMatrix.iml
+* artwork/
+* artwork/definition.svg
+* artwork/framenet.svg
+* artwork/ic_role.svg
+* artwork/ic_roles.svg
+* artwork/ic_roles_grouped.svg
+* artwork/ic_rows_byrole.svg
+* artwork/ic_rows_bysynset.svg
+* artwork/ic_rows_ungrouped.svg
+* artwork/make-images.sh
+* artwork/predicatematrix.svg
+* artwork/propbank.svg
+* artwork/role.svg
+* artwork/roles.svg
+* artwork/synset.svg
+* artwork/verbnet.svg
+* build.xml
+* proguard-project.txt
+From Propbank:
+* .gitignore
+* Propbank.iml
+* artwork/
+* artwork/definition.svg
+* artwork/make-images.sh
+* artwork/propbank.svg
+* artwork/relation.svg
+* artwork/role.svg
+* artwork/role2.svg
+* artwork/roles.svg
+* artwork/roleset.svg
+* artwork/sample.svg
+* artwork/theta.svg
+* artwork/trace.svg
+* build.xml
+* proguard-project.txt
+From TreeView:
+* .gitignore
+* TreeView.iml
+* artwork/
+* artwork/ic_collapsed.svg
+* artwork/ic_expanded.svg
+* artwork/ic_leaf.svg
+* artwork/ic_link.svg
+* artwork/make-images.sh
+* build.xml
+* library.iml
+* proguard-project.txt
+* proguard-rules.pro
+From VerbNet:
+* .gitignore
+* VerbNet.iml
+* artwork/
+* artwork/definition.svg
+* artwork/groupitem.svg
+* artwork/make-images.sh
+* artwork/relation.svg
+* artwork/restr.svg
+* artwork/role.svg
+* artwork/role1.svg
+* artwork/role2.svg
+* artwork/roles.svg
+* artwork/sample.svg
+* artwork/semantics.svg
+* artwork/syntax.svg
+* artwork/verbnet.svg
+* artwork/vnclass.svg
+* artwork/vnframe.svg
+* build.xml
+* proguard-project.txt
+From WordNet:
+* .gitignore
+* WordNet.iml
+* artwork/
+* artwork/definition.svg
+* artwork/error.svg
+* artwork/flag.svg
+* artwork/info.svg
+* artwork/lexdomain.svg
+* artwork/make-images.sh
+* artwork/member.svg
+* artwork/pos.svg
+* artwork/sample.svg
+* artwork/sentence.svg
+* artwork/synset.svg
+* artwork/wordnet.svg
+* artwork2/
+* artwork2/.gitignore
+* artwork2/base.svg
+* artwork2/base_dom.svg
+* artwork2/base_pos.svg
+* artwork2/ic_adjderived.svg
+* artwork2/ic_also.svg
+* artwork2/ic_antonym.svg
+* artwork2/ic_attribute.svg
+* artwork2/ic_cause.svg
+* artwork2/ic_derivation.svg
+* artwork2/ic_domain.svg
+* artwork2/ic_domain_category.svg
+* artwork2/ic_domain_member.svg
+* artwork2/ic_domain_member_category.svg
+* artwork2/ic_domain_member_region.svg
+* artwork2/ic_domain_member_term.svg
+* artwork2/ic_domain_member_usage.svg
+* artwork2/ic_domain_region.svg
+* artwork2/ic_domain_term.svg
+* artwork2/ic_domain_usage.svg
+* artwork2/ic_entail.svg
+* artwork2/ic_holonym.svg
+* artwork2/ic_hypernym.svg
+* artwork2/ic_hyponym.svg
+* artwork2/ic_instance_hypernym.svg
+* artwork2/ic_instance_hyponym.svg
+* artwork2/ic_member_holonym.svg
+* artwork2/ic_member_meronym.svg
+* artwork2/ic_meronym.svg
+* artwork2/ic_other.svg
+* artwork2/ic_part_holonym.svg
+* artwork2/ic_part_meronym.svg
+* artwork2/ic_participle.svg
+* artwork2/ic_pertainym.svg
+* artwork2/ic_pos.svg
+* artwork2/ic_pos_a.svg
+* artwork2/ic_pos_n.svg
+* artwork2/ic_pos_r.svg
+* artwork2/ic_pos_s.svg
+* artwork2/ic_pos_v.svg
+* artwork2/ic_similar.svg
+* artwork2/ic_substance_holonym.svg
+* artwork2/ic_substance_meronym.svg
+* artwork2/ic_synonym.svg
+* artwork2/ic_verb_group.svg
+* artwork2/make-images.sh
+* artwork2/temp/
+* artwork2/temp/_base.png
+* artwork2/temp/_base_dom.png
+* artwork2/temp/_base_pos.png
+* artwork2/temp/_ic_adjderived.png
+* artwork2/temp/_ic_also.png
+* artwork2/temp/_ic_antonym.png
+* artwork2/temp/_ic_attribute.png
+* artwork2/temp/_ic_cause.png
+* artwork2/temp/_ic_derivation.png
+* artwork2/temp/_ic_domain.png
+* artwork2/temp/_ic_domain_category.png
+* artwork2/temp/_ic_domain_member.png
+* artwork2/temp/_ic_domain_member_category.png
+* artwork2/temp/_ic_domain_member_region.png
+* artwork2/temp/_ic_domain_member_term.png
+* artwork2/temp/_ic_domain_member_usage.png
+* artwork2/temp/_ic_domain_region.png
+* artwork2/temp/_ic_domain_term.png
+* artwork2/temp/_ic_domain_usage.png
+* artwork2/temp/_ic_entail.png
+* artwork2/temp/_ic_holonym.png
+* artwork2/temp/_ic_hypernym.png
+* artwork2/temp/_ic_hyponym.png
+* artwork2/temp/_ic_instance_hypernym.png
+* artwork2/temp/_ic_instance_hyponym.png
+* artwork2/temp/_ic_member_holonym.png
+* artwork2/temp/_ic_member_meronym.png
+* artwork2/temp/_ic_meronym.png
+* artwork2/temp/_ic_other.png
+* artwork2/temp/_ic_part_holonym.png
+* artwork2/temp/_ic_part_meronym.png
+* artwork2/temp/_ic_participle.png
+* artwork2/temp/_ic_pertainym.png
+* artwork2/temp/_ic_pos.png
+* artwork2/temp/_ic_pos_a.png
+* artwork2/temp/_ic_pos_n.png
+* artwork2/temp/_ic_pos_r.png
+* artwork2/temp/_ic_pos_s.png
+* artwork2/temp/_ic_pos_v.png
+* artwork2/temp/_ic_similar.png
+* artwork2/temp/_ic_substance_holonym.png
+* artwork2/temp/_ic_substance_meronym.png
+* artwork2/temp/_ic_synonym.png
+* artwork2/temp/_ic_verb_group.png
+* build.xml
+* proguard-project.txt
+From XNet:
+* .gitignore
+* XNet.iml
+* artwork/
+* artwork/ic_collapsed.svg
+* artwork/ic_expanded.svg
+* artwork/ic_leaf.svg
+* artwork/ic_storage_auto.svg
+* artwork/ic_storage_extern_primary.svg
+* artwork/ic_storage_extern_public.svg
+* artwork/ic_storage_extern_secondary.svg
+* artwork/ic_storage_intern.svg
+* artwork/make-images.sh
+* build.xml
+* proguard-project.txt
+
+Moved Files:
+------------
+Android Gradle projects use a different directory structure than ADT
+Eclipse projects. Here's how the projects were restructured:
+
+In TreeView:
+* AndroidManifest.xml => treeView/src/main/AndroidManifest.xml
+* assets/ => treeView/src/main/assets
+* res/ => treeView/src/main/res/
+* src/ => treeView/src/main/java/
+In XNet:
+* AndroidManifest.xml => xNet/src/main/AndroidManifest.xml
+* assets/ => xNet/src/main/assets
+* lint.xml => xNet/lint.xml
+* res/ => xNet/src/main/res/
+* src/ => xNet/src/main/java/
+In BNC:
+* AndroidManifest.xml => bNC/src/main/AndroidManifest.xml
+* assets/ => bNC/src/main/assets/
+* lint.xml => bNC/lint.xml
+* res/ => bNC/src/main/res/
+* src/ => bNC/src/main/java/
+* src/org/sqlunet/bnc/dom/BNC.dtd => bNC/src/main/resources/org/sqlunet/bnc/dom/BNC.dtd
+* src/org/sqlunet/bnc/dom/xsl/bnc2html.xsl => bNC/src/main/resources/org/sqlunet/bnc/dom/xsl/bnc2html.xsl
+* src/org/sqlunet/bnc/dom/xsl/select_bnc2html.xsl => bNC/src/main/resources/org/sqlunet/bnc/dom/xsl/select_bnc2html.xsl
+In FrameNet:
+* AndroidManifest.xml => frameNet/src/main/AndroidManifest.xml
+* assets/ => frameNet/src/main/assets/
+* lint.xml => frameNet/lint.xml
+* res/ => frameNet/src/main/res/
+* src/ => frameNet/src/main/java/
+* src/org/sqlunet/framenet/dom/FrameNet.dtd => frameNet/src/main/resources/org/sqlunet/framenet/dom/FrameNet.dtd
+* src/org/sqlunet/framenet/dom/xsl/framenet2html.xsl => frameNet/src/main/resources/org/sqlunet/framenet/dom/xsl/framenet2html.xsl
+* src/org/sqlunet/framenet/dom/xsl/select_framenet2html.xsl => frameNet/src/main/resources/org/sqlunet/framenet/dom/xsl/select_framenet2html.xsl
+In Propbank:
+* AndroidManifest.xml => propbank/src/main/AndroidManifest.xml
+* assets/ => propbank/src/main/assets/
+* lint.xml => propbank/lint.xml
+* res/ => propbank/src/main/res/
+* src/ => propbank/src/main/java/
+* src/org/sqlunet/propbank/dom/PropBank.dtd => propbank/src/main/resources/org/sqlunet/propbank/dom/PropBank.dtd
+* src/org/sqlunet/propbank/dom/xsl/propbank2html.xsl => propbank/src/main/resources/org/sqlunet/propbank/dom/xsl/propbank2html.xsl
+* src/org/sqlunet/propbank/dom/xsl/select_propbank2html.xsl => propbank/src/main/resources/org/sqlunet/propbank/dom/xsl/select_propbank2html.xsl
+In VerbNet:
+* AndroidManifest.xml => verbNet/src/main/AndroidManifest.xml
+* assets/ => verbNet/src/main/assets/
+* lint.xml => verbNet/lint.xml
+* res/ => verbNet/src/main/res/
+* src/ => verbNet/src/main/java/
+* src/org/sqlunet/verbnet/dom/VerbNet.dtd => verbNet/src/main/resources/org/sqlunet/verbnet/dom/VerbNet.dtd
+* src/org/sqlunet/verbnet/dom/xsl/select_verbnet2html.xsl => verbNet/src/main/resources/org/sqlunet/verbnet/dom/xsl/select_verbnet2html.xsl
+* src/org/sqlunet/verbnet/dom/xsl/verbnet2html.xsl => verbNet/src/main/resources/org/sqlunet/verbnet/dom/xsl/verbnet2html.xsl
+In WordNet:
+* AndroidManifest.xml => wordNet/src/main/AndroidManifest.xml
+* assets/ => wordNet/src/main/assets/
+* lint.xml => wordNet/lint.xml
+* res/ => wordNet/src/main/res/
+* src/ => wordNet/src/main/java/
+* src/org/sqlunet/wordnet/dom/WordNet.dtd => wordNet/src/main/resources/org/sqlunet/wordnet/dom/WordNet.dtd
+* src/org/sqlunet/wordnet/dom/xsl/select_wordnet2html.xsl => wordNet/src/main/resources/org/sqlunet/wordnet/dom/xsl/select_wordnet2html.xsl
+* src/org/sqlunet/wordnet/dom/xsl/wordnet2html.xsl => wordNet/src/main/resources/org/sqlunet/wordnet/dom/xsl/wordnet2html.xsl
+In PredicateMatrix:
+* AndroidManifest.xml => predicateMatrix/src/main/AndroidManifest.xml
+* assets/ => predicateMatrix/src/main/assets
+* res/ => predicateMatrix/src/main/res/
+* src/ => predicateMatrix/src/main/java/
+In Browser:
+* AndroidManifest.xml => browser/src/main/AndroidManifest.xml
+* assets/ => browser/src/main/assets/
+* res/ => browser/src/main/res/
+* src/ => browser/src/main/java/
+
+Next Steps:
+-----------
+You can now build the project. The Gradle project needs network
+connectivity to download dependencies.
+
+Bugs:
+-----
+If for some reason your project does not build, and you determine that
+it is due to a bug or limitation of the Eclipse to Gradle importer,
+please file a bug at http://b.android.com with category
+Component-Tools.
+
+(This import summary is for your information only, and can be deleted
+after import once you are satisfied with the results.)
