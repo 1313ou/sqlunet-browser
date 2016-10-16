@@ -1,13 +1,13 @@
 package org.sqlunet.browser.config;
 
-import org.sqlunet.browser.R;
-import org.sqlunet.download.Downloader;
-import org.sqlunet.settings.StorageSettings;
-
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+
+import org.sqlunet.browser.R;
+import org.sqlunet.download.Downloader;
+import org.sqlunet.settings.StorageSettings;
 
 public class SetupActivity extends SetupBaseActivity
 {

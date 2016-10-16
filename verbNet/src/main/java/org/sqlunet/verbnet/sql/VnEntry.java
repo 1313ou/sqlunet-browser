@@ -1,11 +1,11 @@
 package org.sqlunet.verbnet.sql;
 
-import java.util.ArrayList;
-import java.util.List;
+import android.database.sqlite.SQLiteDatabase;
 
 import org.sqlunet.wordnet.sql.BasicWord;
 
-import android.database.sqlite.SQLiteDatabase;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * VerbNet entry
@@ -27,10 +27,8 @@ public class VnEntry
 	/**
 	 * FnEntry
 	 *
-	 * @param thisWord
-	 *            is the word string
-	 * @param theseSynsets
-	 *            is the list of synsets attached to this entry
+	 * @param thisWord     is the word string
+	 * @param theseSynsets is the list of synsets attached to this entry
 	 */
 	private VnEntry(final BasicWord thisWord, final List<VnSynset> theseSynsets)
 	{
@@ -41,10 +39,8 @@ public class VnEntry
 	/**
 	 * Make word
 	 *
-	 * @param connection
-	 *            is the database connection
-	 * @param lemma
-	 *            is the target string
+	 * @param connection is the database connection
+	 * @param lemma      is the target string
 	 * @return Word or null
 	 */
 	static public VnEntry make(final SQLiteDatabase connection, final String lemma)
@@ -57,7 +53,7 @@ public class VnEntry
 			query.execute();
 
 			long wordId = -1;
-			
+
 			// synsets
 			List<VnSynset> synsets = null;
 			while (query.next())
@@ -74,8 +70,7 @@ public class VnEntry
 			{
 				entry = new VnEntry(new BasicWord(lemma, wordId), synsets);
 			}
-		}
-		finally
+		} finally
 		{
 			if (query != null)
 			{

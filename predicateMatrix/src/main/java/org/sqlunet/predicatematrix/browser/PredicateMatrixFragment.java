@@ -1,5 +1,13 @@
 package org.sqlunet.predicatematrix.browser;
 
+import android.app.Fragment;
+import android.os.Bundle;
+import android.os.Parcelable;
+import android.text.SpannableStringBuilder;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+
 import org.sqlunet.browser.Module;
 import org.sqlunet.predicatematrix.PmRolePointer;
 import org.sqlunet.predicatematrix.R;
@@ -9,18 +17,10 @@ import org.sqlunet.predicatematrix.settings.Settings;
 import org.sqlunet.predicatematrix.style.PredicateMatrixFactories;
 import org.sqlunet.provider.SqlUNetContract;
 import org.sqlunet.style.Spanner;
-import org.sqlunet.treeview.renderer.IconTreeRenderer;
 import org.sqlunet.treeview.model.TreeNode;
+import org.sqlunet.treeview.renderer.IconTreeRenderer;
 import org.sqlunet.treeview.view.TreeView;
 import org.sqlunet.view.TreeFactory;
-
-import android.app.Fragment;
-import android.os.Bundle;
-import android.os.Parcelable;
-import android.text.SpannableStringBuilder;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 
 /**
  * A fragment representing a predicate matrix.

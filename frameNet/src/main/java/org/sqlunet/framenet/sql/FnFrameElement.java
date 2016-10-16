@@ -1,9 +1,9 @@
 package org.sqlunet.framenet.sql;
 
+import android.database.sqlite.SQLiteDatabase;
+
 import java.util.ArrayList;
 import java.util.List;
-
-import android.database.sqlite.SQLiteDatabase;
 
 /**
  * FE
@@ -64,24 +64,15 @@ class FnFrameElement
 	/**
 	 * Constructor
 	 *
-	 * @param feId
-	 *            FE id
-	 * @param feTypeId
-	 *            FE type id
-	 * @param feType
-	 *            FE type
-	 * @param feDefinition
-	 *            FE definition
-	 * @param feAbbrev
-	 *            FE abbrev
-	 * @param coreType
-	 *            FE core type
-	 * @param semTypes
-	 *            FE sem types
-	 * @param isCore
-	 *            whether FE is core
-	 * @param coreSet
-	 *            core set number
+	 * @param feId         FE id
+	 * @param feTypeId     FE type id
+	 * @param feType       FE type
+	 * @param feDefinition FE definition
+	 * @param feAbbrev     FE abbrev
+	 * @param coreType     FE core type
+	 * @param semTypes     FE sem types
+	 * @param isCore       whether FE is core
+	 * @param coreSet      core set number
 	 */
 	private FnFrameElement(final long feId, final long feTypeId, final String feType, final String feDefinition, final String feAbbrev, final String coreType, final String semTypes, final boolean isCore, final int coreSet)
 	{
@@ -99,10 +90,8 @@ class FnFrameElement
 	/**
 	 * Make sets of FEs from query built from annosetid
 	 *
-	 * @param thisConnection
-	 *            is the database connection
-	 * @param thisFrameId
-	 *            is the word id to build query from
+	 * @param thisConnection is the database connection
+	 * @param thisFrameId    is the word id to build query from
 	 * @return list of FEs
 	 */
 	public static List<FnFrameElement> make(final SQLiteDatabase thisConnection, final long thisFrameId)
@@ -128,8 +117,7 @@ class FnFrameElement
 
 				thisResult.add(new FnFrameElement(thisFEId, thisFETypeId, thisFEType, thisFEDefinition, thisFEAbbrev, thisFECoreType, theseSemTypes, isCore, thisCoreSet));
 			}
-		}
-		finally
+		} finally
 		{
 			if (thisQuery != null)
 			{

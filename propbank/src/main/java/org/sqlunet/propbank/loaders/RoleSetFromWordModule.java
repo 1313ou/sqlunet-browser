@@ -1,10 +1,10 @@
 package org.sqlunet.propbank.loaders;
 
-import org.sqlunet.HasWordId;
-import org.sqlunet.treeview.model.TreeNode;
-
 import android.app.Fragment;
 import android.os.Parcelable;
+
+import org.sqlunet.HasWordId;
+import org.sqlunet.treeview.model.TreeNode;
 
 /**
  * Module for rolesets
@@ -51,8 +51,7 @@ public class RoleSetFromWordModule extends BasicModule
 		{
 			// data
 			rolesets(this.wordid, node);
-		}
-		else
+		} else
 		{
 			node.disable();
 		}

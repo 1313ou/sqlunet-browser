@@ -9,7 +9,7 @@ public class FrameNetProcessor extends Preprocessor
 	// processor
 
 	private static final String[] replacers = { //
-		"<ex>", "\n<ex>", // //$NON-NLS-1$ //$NON-NLS-2$
+			"<ex>", "\n<ex>", // //$NON-NLS-1$ //$NON-NLS-2$
 	};
 
 	/**
@@ -19,7 +19,7 @@ public class FrameNetProcessor extends Preprocessor
 	{
 		super(FrameNetProcessor.replacers);
 	}
-	
+
 	public CharSequence[] split(final CharSequence text0)
 	{
 		CharSequence text = process(text0);

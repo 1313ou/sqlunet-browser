@@ -4,18 +4,18 @@ import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
 
+import org.sqlunet.treeview.R;
+import org.sqlunet.treeview.view.TreeNodeWrapperView;
+import org.sqlunet.treeview.view.TreeView;
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
-import org.sqlunet.treeview.R;
-import org.sqlunet.treeview.view.TreeView;
-import org.sqlunet.treeview.view.TreeNodeWrapperView;
-
 /**
  * Tree node
- *
+ * <p>
  * Created by Bogdan Melnychuk on 2/10/15.
  */
 public class TreeNode
@@ -229,7 +229,8 @@ public class TreeNode
 		this.mSelected = selected;
 	}
 
-	public boolean isSelected() {
+	public boolean isSelected()
+	{
 		return this.mSelectable && this.mSelected;
 	}
 
@@ -396,7 +397,7 @@ public class TreeNode
 		{
 			// empty
 		}
-		
+
 		public void disable()
 		{
 			// empty

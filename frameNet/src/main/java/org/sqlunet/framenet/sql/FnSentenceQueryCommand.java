@@ -1,8 +1,8 @@
 package org.sqlunet.framenet.sql;
 
-import org.sqlunet.sql.DBQueryCommand;
-
 import android.database.sqlite.SQLiteDatabase;
+
+import org.sqlunet.sql.DBQueryCommand;
 
 class FnSentenceQueryCommand extends DBQueryCommand
 {
@@ -14,10 +14,8 @@ class FnSentenceQueryCommand extends DBQueryCommand
 	/**
 	 * Constructor
 	 *
-	 * @param thisConnection
-	 *            is the database connection
-	 * @param thisSentenceId
-	 *            is the target sentence id
+	 * @param thisConnection is the database connection
+	 * @param thisSentenceId is the target sentence id
 	 */
 	@SuppressWarnings("boxing")
 	public FnSentenceQueryCommand(final SQLiteDatabase thisConnection, final long thisSentenceId)

@@ -15,8 +15,7 @@ public class XmlNormalizeProcessor extends XmlProcessor
 		try
 		{
 			return XmlNormalizeProcessor.elementToString(e);
-		}
-		catch (final Exception ex)
+		} catch (final Exception ex)
 		{
 			System.err.println(xml);
 			ex.printStackTrace();

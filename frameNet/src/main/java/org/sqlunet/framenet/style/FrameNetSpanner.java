@@ -1,12 +1,12 @@
 package org.sqlunet.framenet.style;
 
-import java.util.regex.Pattern;
-
-import org.sqlunet.style.MarkupSpanner;
-
 import android.content.Context;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
+
+import org.sqlunet.style.MarkupSpanner;
+
+import java.util.regex.Pattern;
 
 public class FrameNetSpanner
 {
@@ -23,8 +23,7 @@ public class FrameNetSpanner
 	/**
 	 * Constructor
 	 *
-	 * @param context
-	 *            context
+	 * @param context context
 	 */
 	public FrameNetSpanner(final Context context)
 	{
@@ -50,8 +49,7 @@ public class FrameNetSpanner
 				{
 					builder.setSpan(span, start, end, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
 				}
-			}
-			else
+			} else
 			{
 				builder.setSpan(spans, start, end, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
 			}

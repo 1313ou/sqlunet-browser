@@ -1,10 +1,10 @@
 package org.sqlunet.framenet.loaders;
 
-import org.sqlunet.framenet.FnPatternPointer;
-import org.sqlunet.treeview.model.TreeNode;
-
 import android.app.Fragment;
 import android.os.Parcelable;
+
+import org.sqlunet.framenet.FnPatternPointer;
+import org.sqlunet.treeview.model.TreeNode;
 
 public class AnnoSetFromPatternModule extends BasicModule
 {
@@ -20,8 +20,7 @@ public class AnnoSetFromPatternModule extends BasicModule
 	/**
 	 * Constructor
 	 *
-	 * @param fragment0
-	 *            fragment
+	 * @param fragment0 fragment
 	 */
 	public AnnoSetFromPatternModule(final Fragment fragment0)
 	{

@@ -1,12 +1,5 @@
 package org.sqlunet.framenet.style;
 
-import org.sqlunet.framenet.R;
-import org.sqlunet.style.Colors;
-import org.sqlunet.style.MarkupSpanner;
-import org.sqlunet.style.MarkupSpanner.SpanPosition;
-import org.sqlunet.style.Spanner;
-import org.sqlunet.style.Spanner.HiddenSpan;
-
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
@@ -16,9 +9,16 @@ import android.text.style.ForegroundColorSpan;
 import android.text.style.ImageSpan;
 import android.text.style.StyleSpan;
 
+import org.sqlunet.framenet.R;
+import org.sqlunet.style.Colors;
+import org.sqlunet.style.MarkupSpanner;
+import org.sqlunet.style.MarkupSpanner.SpanPosition;
+import org.sqlunet.style.Spanner;
+import org.sqlunet.style.Spanner.HiddenSpan;
+
 /**
  * FrameNet markup factory
- * 
+ *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
 public class FrameNetMarkupFactory implements MarkupSpanner.SpanFactory
@@ -33,7 +33,7 @@ public class FrameNetMarkupFactory implements MarkupSpanner.SpanFactory
 	private final Drawable roleDrawable;
 
 	/**
-	 * 
+	 *
 	 */
 	private final Drawable role1Drawable;
 
@@ -49,9 +49,8 @@ public class FrameNetMarkupFactory implements MarkupSpanner.SpanFactory
 
 	/**
 	 * Constructor
-	 * 
-	 * @param context
-	 *        context
+	 *
+	 * @param context context
 	 */
 	FrameNetMarkupFactory(final Context context)
 	{
@@ -75,9 +74,13 @@ public class FrameNetMarkupFactory implements MarkupSpanner.SpanFactory
 			if (selector.equals("t")) //$NON-NLS-1$
 				return new BackgroundColorSpan(Color.BLACK);
 			if (selector.equals("fen")) //$NON-NLS-1$
-				return new BackgroundColorSpan((flags & FrameNetMarkupFactory.FEDEF) == 0 ? Color.MAGENTA : Color.LTGRAY);
+				return new BackgroundColorSpan((flags & FrameNetMarkupFactory.FEDEF) == 0 ?
+						Color.MAGENTA :
+						Color.LTGRAY);
 			if (selector.matches("fex.*")) //$NON-NLS-1$
-				return new BackgroundColorSpan((flags & FrameNetMarkupFactory.FEDEF) == 0 ? Colors.pink : Colors.ltmagenta);
+				return new BackgroundColorSpan((flags & FrameNetMarkupFactory.FEDEF) == 0 ?
+						Colors.pink :
+						Colors.ltmagenta);
 			if (selector.matches("xfen")) //$NON-NLS-1$
 				return new BackgroundColorSpan(Colors.ltyellow);
 			if (selector.equals("ex")) //$NON-NLS-1$
@@ -117,58 +120,58 @@ public class FrameNetMarkupFactory implements MarkupSpanner.SpanFactory
 		final SpanPosition position = SpanPosition.valueOf(flags);
 		switch (position)
 		{
-		case TAG1:
-			if (selector.equals("t")) //$NON-NLS-1$
-				return new ImageSpan(this.relationDrawable, DynamicDrawableSpan.ALIGN_BASELINE);
-			if (selector.equals("fe")) //$NON-NLS-1$
-				return new ImageSpan(this.roleDrawable, DynamicDrawableSpan.ALIGN_BASELINE);
-			if (selector.equals("fen")) //$NON-NLS-1$
-				return new ImageSpan(this.role1Drawable, DynamicDrawableSpan.ALIGN_BASELINE);
-			if (selector.matches("fex.*")) //$NON-NLS-1$
-				return new ImageSpan(this.roleDrawable, DynamicDrawableSpan.ALIGN_BASELINE);
-			if (selector.matches("xfen")) //$NON-NLS-1$
-				return new HiddenSpan();
-			if (selector.matches("ex")) //$NON-NLS-1$
-				return new ImageSpan(this.sampleDrawable, DynamicDrawableSpan.ALIGN_BASELINE);
-			return new BackgroundColorSpan(Color.GREEN);
+			case TAG1:
+				if (selector.equals("t")) //$NON-NLS-1$
+					return new ImageSpan(this.relationDrawable, DynamicDrawableSpan.ALIGN_BASELINE);
+				if (selector.equals("fe")) //$NON-NLS-1$
+					return new ImageSpan(this.roleDrawable, DynamicDrawableSpan.ALIGN_BASELINE);
+				if (selector.equals("fen")) //$NON-NLS-1$
+					return new ImageSpan(this.role1Drawable, DynamicDrawableSpan.ALIGN_BASELINE);
+				if (selector.matches("fex.*")) //$NON-NLS-1$
+					return new ImageSpan(this.roleDrawable, DynamicDrawableSpan.ALIGN_BASELINE);
+				if (selector.matches("xfen")) //$NON-NLS-1$
+					return new HiddenSpan();
+				if (selector.matches("ex")) //$NON-NLS-1$
+					return new ImageSpan(this.sampleDrawable, DynamicDrawableSpan.ALIGN_BASELINE);
+				return new BackgroundColorSpan(Color.GREEN);
 
-		case TAG2:
-			switch (selector)
-			{
-				case "t":
-					//$NON-NLS-1$
-					return new HiddenSpan();
-				case "fe":
-					//$NON-NLS-1$
-					return new HiddenSpan();
-				case "fen":
-					//$NON-NLS-1$
-					return new HiddenSpan();
-				case "xfen":
-					//$NON-NLS-1$
-					return new HiddenSpan();
-				case "fex":
-					//$NON-NLS-1$
-					return new HiddenSpan();
-				case "ex":
-					//$NON-NLS-1$
-					return new HiddenSpan();
-			}
-			return new BackgroundColorSpan(Color.GREEN);
+			case TAG2:
+				switch (selector)
+				{
+					case "t":
+						//$NON-NLS-1$
+						return new HiddenSpan();
+					case "fe":
+						//$NON-NLS-1$
+						return new HiddenSpan();
+					case "fen":
+						//$NON-NLS-1$
+						return new HiddenSpan();
+					case "xfen":
+						//$NON-NLS-1$
+						return new HiddenSpan();
+					case "fex":
+						//$NON-NLS-1$
+						return new HiddenSpan();
+					case "ex":
+						//$NON-NLS-1$
+						return new HiddenSpan();
+				}
+				return new BackgroundColorSpan(Color.GREEN);
 
-		case TEXT:
-			final Object backgroundSpan = FrameNetMarkupFactory.backgroundFactory.makeSpans(selector, flags);
-			final Object foregroundSpan = FrameNetMarkupFactory.foregroundFactory.makeSpans(selector, flags);
-			if (backgroundSpan != null && foregroundSpan != null)
-				return new Object[] { backgroundSpan, foregroundSpan };
-			if (backgroundSpan != null)
-				return backgroundSpan;
-			if (foregroundSpan != null)
-				return foregroundSpan;
-			return new BackgroundColorSpan(Color.GREEN);
+			case TEXT:
+				final Object backgroundSpan = FrameNetMarkupFactory.backgroundFactory.makeSpans(selector, flags);
+				final Object foregroundSpan = FrameNetMarkupFactory.foregroundFactory.makeSpans(selector, flags);
+				if (backgroundSpan != null && foregroundSpan != null)
+					return new Object[]{backgroundSpan, foregroundSpan};
+				if (backgroundSpan != null)
+					return backgroundSpan;
+				if (foregroundSpan != null)
+					return foregroundSpan;
+				return new BackgroundColorSpan(Color.GREEN);
 
-		default:
-			break;
+			default:
+				break;
 		}
 		return null;
 	}

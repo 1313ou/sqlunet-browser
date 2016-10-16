@@ -1,7 +1,18 @@
 package org.sqlunet.framenet.loaders;
 
-import java.util.List;
-import java.util.Locale;
+import android.app.Fragment;
+import android.app.LoaderManager.LoaderCallbacks;
+import android.content.CursorLoader;
+import android.content.Loader;
+import android.database.Cursor;
+import android.graphics.drawable.Drawable;
+import android.net.Uri;
+import android.os.Bundle;
+import android.os.Parcelable;
+import android.text.SpannableStringBuilder;
+import android.text.Spanned;
+import android.text.style.BackgroundColorSpan;
+import android.text.style.ForegroundColorSpan;
 
 import org.sqlunet.browser.Module;
 import org.sqlunet.framenet.R;
@@ -29,24 +40,13 @@ import org.sqlunet.framenet.style.FrameNetMarkupFactory;
 import org.sqlunet.framenet.style.FrameNetProcessor;
 import org.sqlunet.framenet.style.FrameNetSpanner;
 import org.sqlunet.style.Spanner;
-import org.sqlunet.treeview.renderer.QueryHolder;
 import org.sqlunet.treeview.model.TreeNode;
+import org.sqlunet.treeview.renderer.QueryHolder;
 import org.sqlunet.treeview.view.TreeView;
 import org.sqlunet.view.TreeFactory;
 
-import android.app.Fragment;
-import android.app.LoaderManager.LoaderCallbacks;
-import android.content.CursorLoader;
-import android.content.Loader;
-import android.database.Cursor;
-import android.graphics.drawable.Drawable;
-import android.net.Uri;
-import android.os.Bundle;
-import android.os.Parcelable;
-import android.text.SpannableStringBuilder;
-import android.text.Spanned;
-import android.text.style.BackgroundColorSpan;
-import android.text.style.ForegroundColorSpan;
+import java.util.List;
+import java.util.Locale;
 
 /**
  * A module to retrieve frame
@@ -204,7 +204,7 @@ abstract public class BasicModule extends Module
 			public Loader<Cursor> onCreateLoader(final int loaderId0, final Bundle args)
 			{
 				final Uri uri = Uri.parse(Frames_X.CONTENT_URI);
-				final String[] projection = new String[] { //
+				final String[] projection = new String[]{ //
 						Frames_X.FRAMEID, //
 						Frames_X.FRAME, //
 						Frames_X.FRAMEDEFINITION, //
@@ -213,7 +213,7 @@ abstract public class BasicModule extends Module
 						Frames_X.SEMTYPEDEFINITION, //
 				};
 				final String selection = Frames_X.FRAMEID + " = ?"; //$NON-NLS-1$
-				final String[] selectionArgs = new String[] { Long.toString(frameid0) };
+				final String[] selectionArgs = new String[]{Long.toString(frameid0)};
 				final String sortOrder = Frames_X.FRAME;
 				return new CursorLoader(BasicModule.this.getContext(), uri, projection, selection, selectionArgs, sortOrder);
 			}
@@ -268,8 +268,7 @@ abstract public class BasicModule extends Module
 
 					// expand
 					TreeView.expand(parent, false);
-				}
-				else
+				} else
 				{
 					parent.disable();
 				}
@@ -295,7 +294,7 @@ abstract public class BasicModule extends Module
 			public Loader<Cursor> onCreateLoader(final int loaderId0, final Bundle args)
 			{
 				final Uri uri = Uri.parse(Frames_Related.CONTENT_URI);
-				final String[] projection = new String[] { //
+				final String[] projection = new String[]{ //
 						Frames_Related.FRAMEID + " AS " + "i1", // //$NON-NLS-1$ //$NON-NLS-2$
 						Frames_Related.FRAME + " AS " + "f1", // //$NON-NLS-1$ //$NON-NLS-2$
 						Frames_Related.FRAME2ID + " AS " + "i2", // //$NON-NLS-1$ //$NON-NLS-2$
@@ -304,7 +303,7 @@ abstract public class BasicModule extends Module
 						Frames_Related.RELATION, //
 				};
 				final String selection = Frames_Related.FRAMEID + " = ?" + " OR " + Frames_Related.FRAME2ID + " = ?"; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				final String[] selectionArgs = new String[] { Long.toString(frameid0), Long.toString(frameid0) };
+				final String[] selectionArgs = new String[]{Long.toString(frameid0), Long.toString(frameid0)};
 				final String sortOrder = Frames_Related.FRAME;
 				return new CursorLoader(BasicModule.this.getContext(), uri, projection, selection, selectionArgs, sortOrder);
 			}
@@ -389,16 +388,14 @@ abstract public class BasicModule extends Module
 								sb.append(Integer.toString(frame2id));
 							}
 						}
-					}
-					while (cursor.moveToNext());
+					} while (cursor.moveToNext());
 
 					// attach result
 					TreeFactory.addTextNode(parent, sb, BasicModule.this.getContext());
 
 					// expand
 					TreeView.expand(parent, false);
-				}
-				else
+				} else
 				{
 					parent.disable();
 				}
@@ -424,7 +421,7 @@ abstract public class BasicModule extends Module
 			public Loader<Cursor> onCreateLoader(final int loaderId0, final Bundle args)
 			{
 				final Uri uri = Uri.parse(Frames_FEs.CONTENT_URI_BY_FE);
-				final String[] projection = new String[] { //
+				final String[] projection = new String[]{ //
 						Frames_FEs.FETYPEID, //
 						Frames_FEs.FETYPE, //
 						Frames_FEs.FEABBREV, //
@@ -435,7 +432,7 @@ abstract public class BasicModule extends Module
 						Frames_FEs.CORESET, //
 				};
 				final String selection = Frames_FEs.FRAMEID + " = ? "; //$NON-NLS-1$
-				final String[] selectionArgs = new String[] { Integer.toString(frameid0) };
+				final String[] selectionArgs = new String[]{Integer.toString(frameid0)};
 				final String sortOrder = Frames_FEs.CORETYPEID + ',' + Frames_FEs.FETYPE;
 				return new CursorLoader(BasicModule.this.getContext(), uri, projection, selection, selectionArgs, sortOrder);
 			}
@@ -468,7 +465,9 @@ abstract public class BasicModule extends Module
 						final String coreType = cursor.getString(idCoreType);
 
 						// fe
-						Spanner.appendImage(sb, coreTypeId == 1 ? BasicModule.this.corefeDrawable : BasicModule.this.feDrawable);
+						Spanner.appendImage(sb, coreTypeId == 1 ?
+								BasicModule.this.corefeDrawable :
+								BasicModule.this.feDrawable);
 						sb.append(' ');
 						Spanner.append(sb, feType, 0, FrameNetFactories.feFactory);
 						sb.append(' ');
@@ -528,8 +527,7 @@ abstract public class BasicModule extends Module
 
 					// expand
 					TreeView.expand(parent, false);
-				}
-				else
+				} else
 				{
 					parent.disable();
 				}
@@ -555,7 +553,7 @@ abstract public class BasicModule extends Module
 			public Loader<Cursor> onCreateLoader(final int loaderId0, final Bundle args)
 			{
 				final Uri uri = Uri.parse(LexUnits_X.CONTENT_URI);
-				final String[] projection = new String[] { //
+				final String[] projection = new String[]{ //
 						LexUnits_X.LUID, //
 						LexUnits_X.LEXUNIT, //
 						"lu." + LexUnits_X.FRAMEID, // //$NON-NLS-1$
@@ -566,7 +564,7 @@ abstract public class BasicModule extends Module
 						LexUnits_X.INCORPORATEDFEDEFINITION, //
 				};
 				final String selection = LexUnits_X.LUID + " = ?"; //$NON-NLS-1$
-				final String[] selectionArgs = new String[] { Long.toString(luid0) };
+				final String[] selectionArgs = new String[]{Long.toString(luid0)};
 				final String sortOrder = null;
 				return new CursorLoader(BasicModule.this.getContext(), uri, projection, selection, selectionArgs, sortOrder);
 			}
@@ -656,20 +654,17 @@ abstract public class BasicModule extends Module
 						{
 							final TreeNode fesNode = TreeFactory.newQueryNode(new FEsQuery(frameid1, R.drawable.roles, "Frame Elements"), BasicModule.this.getContext()); //$NON-NLS-1$
 							TreeFactory.addTextNode(parent, sb, BasicModule.this.getContext(), frameNode, fesNode, governorsNode, realizationsNode, groupRealizationsNode, sentencesNode);
-						}
-						else
+						} else
 							TreeFactory.addTextNode(parent, sb, BasicModule.this.getContext(), frameNode, governorsNode, realizationsNode, groupRealizationsNode, sentencesNode);
 
-					}
-					else
+					} else
 					{
 						TreeFactory.addTextNode(parent, sb, BasicModule.this.getContext(), governorsNode, realizationsNode, groupRealizationsNode, sentencesNode);
 					}
 
 					// expand
 					TreeView.expand(parent, false);
-				}
-				else
+				} else
 				{
 					parent.disable();
 				}
@@ -693,7 +688,7 @@ abstract public class BasicModule extends Module
 			public Loader<Cursor> onCreateLoader(final int loaderId0, final Bundle args)
 			{
 				final Uri uri = Uri.parse(LexUnits_X.CONTENT_URI);
-				final String[] projection = new String[] { //
+				final String[] projection = new String[]{ //
 						LexUnits_X.LUID, //
 						LexUnits_X.LEXUNIT, //
 						"lu." + LexUnits_X.FRAMEID, // //$NON-NLS-1$
@@ -704,7 +699,7 @@ abstract public class BasicModule extends Module
 						LexUnits_X.INCORPORATEDFEDEFINITION, //
 				};
 				final String selection = "f." + LexUnits_X.FRAMEID + " = ?"; //$NON-NLS-1$ //$NON-NLS-2$
-				final String[] selectionArgs = new String[] { Long.toString(frameid0) };
+				final String[] selectionArgs = new String[]{Long.toString(frameid0)};
 				final String sortOrder = LexUnits_X.LEXUNIT;
 				return new CursorLoader(BasicModule.this.getContext(), uri, projection, selection, selectionArgs, sortOrder);
 			}
@@ -785,18 +780,15 @@ abstract public class BasicModule extends Module
 							final TreeNode frameNode = TreeFactory.newQueryNode(new FrameQuery(frameid1, R.drawable.fnframe, "Frame"), BasicModule.this.getContext()); //$NON-NLS-1$
 							final TreeNode fesNode = TreeFactory.newQueryNode(new FEsQuery(frameid1, R.drawable.roles, "Frame Elements"), BasicModule.this.getContext()); //$NON-NLS-1$
 							TreeFactory.addTextNode(parent, sb, BasicModule.this.getContext(), frameNode, fesNode, governorsNode, realizationsNode, groupRealizationsNode, sentencesNode);
-						}
-						else
+						} else
 						{
 							TreeFactory.addTextNode(parent, sb, BasicModule.this.getContext(), governorsNode, realizationsNode, groupRealizationsNode, sentencesNode);
 						}
-					}
-					while (cursor.moveToNext());
+					} while (cursor.moveToNext());
 
 					// expand
 					TreeView.expand(parent, false);
-				}
-				else
+				} else
 				{
 					parent.disable();
 				}
@@ -820,7 +812,7 @@ abstract public class BasicModule extends Module
 			public Loader<Cursor> onCreateLoader(final int loaderId0, final Bundle args)
 			{
 				final Uri uri = Uri.parse(Words_LexUnits_Frames.CONTENT_URI);
-				final String[] projection = new String[] { //
+				final String[] projection = new String[]{ //
 						Words_LexUnits_Frames.LUID, //
 						Words_LexUnits_Frames.LEXUNIT, //
 						"lu." + Words_LexUnits_Frames.FRAMEID, // //$NON-NLS-1$
@@ -830,8 +822,12 @@ abstract public class BasicModule extends Module
 						Words_LexUnits_Frames.INCORPORATEDFETYPE, //
 						Words_LexUnits_Frames.INCORPORATEDFEDEFINITION, //
 				};
-				final String selection = pos0 == null ? Words_LexUnits_Frames.WORDID + " = ?" : Words_LexUnits_Frames.WORDID + " = ? AND " + "lu." + Words_LexUnits_Frames.POSID + " = ?"; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
-				final String[] selectionArgs = pos0 == null ? new String[] { Long.toString(wordid0) } : new String[] { Long.toString(wordid0), Integer.toString(Utils.posToPosId(pos0)) };
+				final String selection = pos0 == null ?
+						Words_LexUnits_Frames.WORDID + " = ?" :
+						Words_LexUnits_Frames.WORDID + " = ? AND " + "lu." + Words_LexUnits_Frames.POSID + " = ?"; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
+				final String[] selectionArgs = pos0 == null ?
+						new String[]{Long.toString(wordid0)} :
+						new String[]{Long.toString(wordid0), Integer.toString(Utils.posToPosId(pos0))};
 				final String sortOrder = Words_LexUnits_Frames.FRAME + ',' + Words_LexUnits_Frames.LUID;
 				return new CursorLoader(BasicModule.this.getContext(), uri, projection, selection, selectionArgs, sortOrder);
 			}
@@ -911,13 +907,11 @@ abstract public class BasicModule extends Module
 
 						// attach result
 						TreeFactory.addTextNode(parent, sb, BasicModule.this.getContext(), frameNode, fesNode, governorsNode, realizationsNode, groupRealizationsNode, sentencesNode);
-					}
-					while (cursor.moveToNext());
+					} while (cursor.moveToNext());
 
 					// expand
 					TreeView.expand(parent, false);
-				}
-				else
+				} else
 				{
 					parent.disable();
 				}
@@ -943,7 +937,7 @@ abstract public class BasicModule extends Module
 			public Loader<Cursor> onCreateLoader(final int loaderId0, final Bundle args)
 			{
 				final Uri uri = Uri.parse(LexUnits_Governors.CONTENT_URI);
-				final String[] projection = new String[] { //
+				final String[] projection = new String[]{ //
 						LexUnits_Governors.LUID, //
 						LexUnits_Governors.GOVERNORID, //
 						LexUnits_Governors.GOVERNORTYPE, //
@@ -951,7 +945,7 @@ abstract public class BasicModule extends Module
 						LexUnits_Governors.FNWORD, //
 				};
 				final String selection = LexUnits_Governors.LUID + " = ?"; //$NON-NLS-1$
-				final String[] selectionArgs = new String[] { Long.toString(luid0) };
+				final String[] selectionArgs = new String[]{Long.toString(luid0)};
 				final String sortOrder = LexUnits_Governors.GOVERNORID;
 				return new CursorLoader(BasicModule.this.getContext(), uri, projection, selection, selectionArgs, sortOrder);
 			}
@@ -993,13 +987,11 @@ abstract public class BasicModule extends Module
 						// governor
 						final TreeNode governorNode = TreeFactory.newQueryNode(new GovernorsAnnoSetsQuery(governorid, R.drawable.governor, sb), BasicModule.this.getContext());
 						parent.addChild(governorNode);
-					}
-					while (cursor.moveToNext());
+					} while (cursor.moveToNext());
 
 					// expand
 					TreeView.expand(parent, false);
-				}
-				else
+				} else
 				{
 					parent.disable();
 				}
@@ -1023,14 +1015,14 @@ abstract public class BasicModule extends Module
 			public Loader<Cursor> onCreateLoader(final int loaderId0, final Bundle args)
 			{
 				final Uri uri = Uri.parse(Governors_AnnoSets_Sentences.CONTENT_URI);
-				final String[] projection = new String[] { //
+				final String[] projection = new String[]{ //
 						Governors_AnnoSets_Sentences.GOVERNORID, //
 						Governors_AnnoSets_Sentences.ANNOSETID, //
 						Governors_AnnoSets_Sentences.SENTENCEID, //
 						Governors_AnnoSets_Sentences.TEXT, //
 				};
 				final String selection = Governors_AnnoSets_Sentences.GOVERNORID + " = ?"; //$NON-NLS-1$
-				final String[] selectionArgs = new String[] { Long.toString(governorid0) };
+				final String[] selectionArgs = new String[]{Long.toString(governorid0)};
 				final String sortOrder = null;
 				return new CursorLoader(BasicModule.this.getContext(), uri, projection, selection, selectionArgs, sortOrder);
 			}
@@ -1070,13 +1062,11 @@ abstract public class BasicModule extends Module
 						// attach sentence node
 						final TreeNode sentenceNode = TreeFactory.newQueryNode(new AnnoSetQuery(annosetid, R.drawable.annoset, sb, false), BasicModule.this.getContext());
 						parent.addChild(sentenceNode);
-					}
-					while (cursor.moveToNext());
+					} while (cursor.moveToNext());
 
 					// expand
 					TreeView.expand(parent, false);
-				}
-				else
+				} else
 				{
 					parent.disable();
 				}
@@ -1102,7 +1092,7 @@ abstract public class BasicModule extends Module
 			public Loader<Cursor> onCreateLoader(final int loaderId0, final Bundle args)
 			{
 				final Uri uri = Uri.parse(LexUnits_FERealizations_ValenceUnits.CONTENT_URI_BY_REALIZATION);
-				final String[] projection = new String[] { //
+				final String[] projection = new String[]{ //
 						LexUnits_FERealizations_ValenceUnits.LUID, //
 						LexUnits_FERealizations_ValenceUnits.FERID, //
 						LexUnits_FERealizations_ValenceUnits.FETYPE, //
@@ -1111,7 +1101,7 @@ abstract public class BasicModule extends Module
 						LexUnits_FERealizations_ValenceUnits.TOTAL, //
 				};
 				final String selection = LexUnits_FERealizations_ValenceUnits.LUID + " = ?"; //$NON-NLS-1$
-				final String[] selectionArgs = new String[] { Long.toString(luid0) };
+				final String[] selectionArgs = new String[]{Long.toString(luid0)};
 				final String sortOrder = LexUnits_FERealizations_ValenceUnits.FERID;
 				return new CursorLoader(BasicModule.this.getContext(), uri, projection, selection, selectionArgs, sortOrder);
 			}
@@ -1185,13 +1175,11 @@ abstract public class BasicModule extends Module
 							final TreeNode ferNode = TreeFactory.newQueryNode(new ValenceUnitQuery(vuid, R.drawable.realization, sb1), BasicModule.this.getContext());
 							feNode.addChild(ferNode);
 						}
-					}
-					while (cursor.moveToNext());
+					} while (cursor.moveToNext());
 
 					// expand
 					TreeView.expand(parent, false);
-				}
-				else
+				} else
 				{
 					parent.disable();
 				}
@@ -1215,14 +1203,14 @@ abstract public class BasicModule extends Module
 			public Loader<Cursor> onCreateLoader(final int loaderId0, final Bundle args)
 			{
 				final Uri uri = Uri.parse(LexUnits_FEGroupRealizations_Patterns_ValenceUnits.CONTENT_URI_BY_PATTERN);
-				final String[] projection = new String[] { //
+				final String[] projection = new String[]{ //
 						LexUnits_FEGroupRealizations_Patterns_ValenceUnits.LUID, //
 						LexUnits_FEGroupRealizations_Patterns_ValenceUnits.FEGRID, //
 						LexUnits_FEGroupRealizations_Patterns_ValenceUnits.PATTERNID, //
 						"GROUP_CONCAT(" + LexUnits_FEGroupRealizations_Patterns_ValenceUnits.FETYPE + " || '.' || " + LexUnits_FEGroupRealizations_Patterns_ValenceUnits.PT + " || '.'|| IFNULL(" + LexUnits_FEGroupRealizations_Patterns_ValenceUnits.GF //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-								+ ", '--')) AS " + LexUnits_FEGroupRealizations_Patterns_ValenceUnits.GROUPREALIZATIONS, }; //$NON-NLS-1$
+								+ ", '--')) AS " + LexUnits_FEGroupRealizations_Patterns_ValenceUnits.GROUPREALIZATIONS,}; //$NON-NLS-1$
 				final String selection = LexUnits_FEGroupRealizations_Patterns_ValenceUnits.LUID + " = ?"; //$NON-NLS-1$
-				final String[] selectionArgs = new String[] { Long.toString(luid0) };
+				final String[] selectionArgs = new String[]{Long.toString(luid0)};
 				final String sortOrder = null; // LexUnits_FEGroupRealizations_Patterns_ValenceUnits.FEGRID;
 				return new CursorLoader(BasicModule.this.getContext(), uri, projection, selection, selectionArgs, sortOrder);
 			}
@@ -1279,13 +1267,11 @@ abstract public class BasicModule extends Module
 						final TreeNode patternNode = TreeFactory.newQueryNode(new PatternQuery(patternid, R.drawable.grouprealization, sb), BasicModule.this.getContext());
 						assert groupNode != null;
 						groupNode.addChild(patternNode);
-					}
-					while (cursor.moveToNext());
+					} while (cursor.moveToNext());
 
 					// expand
 					TreeView.expand(parent, 2);
-				}
-				else
+				} else
 				{
 					parent.disable();
 				}
@@ -1348,25 +1334,24 @@ abstract public class BasicModule extends Module
 			public Loader<Cursor> onCreateLoader(final int loaderId0, final Bundle args)
 			{
 				final Uri uri = Uri.parse(LexUnits_Sentences_Annosets_Layers_Labels.CONTENT_URI_BY_SENTENCE);
-				final String[] projection = new String[] { //
+				final String[] projection = new String[]{ //
 						LexUnits_Sentences_Annosets_Layers_Labels.SENTENCEID, //
 						LexUnits_Sentences_Annosets_Layers_Labels.TEXT, //
 						LexUnits_Sentences_Annosets_Layers_Labels.LAYERTYPE, //
 						LexUnits_Sentences_Annosets_Layers_Labels.RANK, //
 						"GROUP_CONCAT(" + // //$NON-NLS-1$
-						LexUnits_Sentences_Annosets_Layers_Labels.START + "||':'||" + // //$NON-NLS-1$
-						LexUnits_Sentences_Annosets_Layers_Labels.END + "||':'||" + // //$NON-NLS-1$
-						LexUnits_Sentences_Annosets_Layers_Labels.LABELTYPE + "||':'||" + // //$NON-NLS-1$
-						"CASE WHEN " + LexUnits_Sentences_Annosets_Layers_Labels.LABELITYPE + " IS NULL THEN '' ELSE " + LexUnits_Sentences_Annosets_Layers_Labels.LABELITYPE + " END||':'||" + // //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-						"CASE WHEN " + LexUnits_Sentences_Annosets_Layers_Labels.BGCOLOR + " IS NULL THEN '' ELSE " + LexUnits_Sentences_Annosets_Layers_Labels.BGCOLOR + " END||':'||" + // //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-						"CASE WHEN " + LexUnits_Sentences_Annosets_Layers_Labels.FGCOLOR + " IS NULL THEN '' ELSE " + LexUnits_Sentences_Annosets_Layers_Labels.FGCOLOR + " END" + // //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-						",'|')" + // //$NON-NLS-1$
-						" AS " + LexUnits_Sentences_Annosets_Layers_Labels.LAYERANNOTATION, // //$NON-NLS-1$
+								LexUnits_Sentences_Annosets_Layers_Labels.START + "||':'||" + // //$NON-NLS-1$
+								LexUnits_Sentences_Annosets_Layers_Labels.END + "||':'||" + // //$NON-NLS-1$
+								LexUnits_Sentences_Annosets_Layers_Labels.LABELTYPE + "||':'||" + // //$NON-NLS-1$
+								"CASE WHEN " + LexUnits_Sentences_Annosets_Layers_Labels.LABELITYPE + " IS NULL THEN '' ELSE " + LexUnits_Sentences_Annosets_Layers_Labels.LABELITYPE + " END||':'||" + // //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+								"CASE WHEN " + LexUnits_Sentences_Annosets_Layers_Labels.BGCOLOR + " IS NULL THEN '' ELSE " + LexUnits_Sentences_Annosets_Layers_Labels.BGCOLOR + " END||':'||" + // //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+								"CASE WHEN " + LexUnits_Sentences_Annosets_Layers_Labels.FGCOLOR + " IS NULL THEN '' ELSE " + LexUnits_Sentences_Annosets_Layers_Labels.FGCOLOR + " END" + // //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+								",'|')" + // //$NON-NLS-1$
+								" AS " + LexUnits_Sentences_Annosets_Layers_Labels.LAYERANNOTATION, // //$NON-NLS-1$
 				};
 				final String selection = "u." + LexUnits_Sentences_Annosets_Layers_Labels.LUID + " = ? AND " + LexUnits_Sentences_Annosets_Layers_Labels.LAYERTYPE + " = ?"; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				final String[] selectionArgs = new String[] { Long.toString(luid0), BasicModule.FOCUSLAYER };
-				final String sortOrder = LexUnits_Sentences_Annosets_Layers_Labels.CORPUSID + ',' + LexUnits_Sentences_Annosets_Layers_Labels.DOCUMENTID + ',' + LexUnits_Sentences_Annosets_Layers_Labels.PARAGNO + ','
-						+ LexUnits_Sentences_Annosets_Layers_Labels.SENTNO;
+				final String[] selectionArgs = new String[]{Long.toString(luid0), BasicModule.FOCUSLAYER};
+				final String sortOrder = LexUnits_Sentences_Annosets_Layers_Labels.CORPUSID + ',' + LexUnits_Sentences_Annosets_Layers_Labels.DOCUMENTID + ',' + LexUnits_Sentences_Annosets_Layers_Labels.PARAGNO + ',' + LexUnits_Sentences_Annosets_Layers_Labels.SENTNO;
 				return new CursorLoader(BasicModule.this.getContext(), uri, projection, selection, selectionArgs, sortOrder);
 			}
 
@@ -1414,11 +1399,16 @@ abstract public class BasicModule extends Module
 								final int to = Integer.parseInt(label.to) + 1;
 
 								// span text
-								Spanner.setSpan(sb, sentenceStart + from, sentenceStart + to, 0, "Target".equals(layerType) ? FrameNetFactories.targetFactory : FrameNetFactories.highlightTextFactory); //$NON-NLS-1$
+								Spanner.setSpan(sb, sentenceStart + from, sentenceStart + to, 0,
+										"Target".equals(layerType) ?
+												FrameNetFactories.targetFactory :
+												FrameNetFactories.highlightTextFactory); //$NON-NLS-1$
 
 								// label
 								sb.append('\t');
-								Spanner.append(sb, label.label, 0, "FE".equals(layerType) ? FrameNetFactories.feFactory : FrameNetFactories.labelFactory); //$NON-NLS-1$
+								Spanner.append(sb, label.label, 0, "FE".equals(layerType) ?
+										FrameNetFactories.feFactory :
+										FrameNetFactories.labelFactory); //$NON-NLS-1$
 								sb.append(' ');
 
 								// value (subtext)
@@ -1439,16 +1429,14 @@ abstract public class BasicModule extends Module
 								sb.append('\n');
 							}
 						}
-					}
-					while (cursor.moveToNext());
+					} while (cursor.moveToNext());
 
 					// attach result
 					TreeFactory.addTextNode(parent, sb, BasicModule.this.getContext());
 
 					// expand
 					TreeView.expand(parent, false);
-				}
-				else
+				} else
 				{
 					parent.disable();
 				}
@@ -1472,13 +1460,13 @@ abstract public class BasicModule extends Module
 			public Loader<Cursor> onCreateLoader(final int loaderId0, final Bundle args)
 			{
 				final Uri uri = Uri.parse(Patterns_Sentences.CONTENT_URI);
-				final String[] projection = new String[] { //
+				final String[] projection = new String[]{ //
 						Patterns_Sentences.ANNOSETID, //
 						Patterns_Sentences.SENTENCEID, //
 						Patterns_Sentences.TEXT, //
 				};
 				final String selection = Patterns_Sentences.PATTERNID + " = ?"; //$NON-NLS-1$
-				final String[] selectionArgs = new String[] { Long.toString(patternid0) };
+				final String[] selectionArgs = new String[]{Long.toString(patternid0)};
 				final String sortOrder = Patterns_Sentences.SENTENCEID;
 				return new CursorLoader(BasicModule.this.getContext(), uri, projection, selection, selectionArgs, sortOrder);
 			}
@@ -1515,13 +1503,11 @@ abstract public class BasicModule extends Module
 						// attach sentence
 						final TreeNode sentenceNode = TreeFactory.newQueryNode(new AnnoSetQuery(annotationid, R.drawable.sentence, sb, false), BasicModule.this.getContext());
 						parent.addChild(sentenceNode);
-					}
-					while (cursor.moveToNext());
+					} while (cursor.moveToNext());
 
 					// expand
 					TreeView.expand(parent, false);
-				}
-				else
+				} else
 				{
 					parent.disable();
 				}
@@ -1545,13 +1531,13 @@ abstract public class BasicModule extends Module
 			public Loader<Cursor> onCreateLoader(final int loaderId0, final Bundle args)
 			{
 				final Uri uri = Uri.parse(ValenceUnits_Sentences.CONTENT_URI);
-				final String[] projection = new String[] { //
+				final String[] projection = new String[]{ //
 						Patterns_Sentences.ANNOSETID, //
 						Patterns_Sentences.SENTENCEID, //
 						Patterns_Sentences.TEXT, //
 				};
 				final String selection = ValenceUnits_Sentences.VUID + " = ?"; //$NON-NLS-1$
-				final String[] selectionArgs = new String[] { Long.toString(vuid0) };
+				final String[] selectionArgs = new String[]{Long.toString(vuid0)};
 				final String sortOrder = ValenceUnits_Sentences.SENTENCEID;
 				return new CursorLoader(BasicModule.this.getContext(), uri, projection, selection, selectionArgs, sortOrder);
 			}
@@ -1588,13 +1574,11 @@ abstract public class BasicModule extends Module
 						// pattern
 						final TreeNode sentenceNode = TreeFactory.newQueryNode(new AnnoSetQuery(annotationid, R.drawable.sentence, sb, false), BasicModule.this.getContext());
 						parent.addChild(sentenceNode);
-					}
-					while (cursor.moveToNext());
+					} while (cursor.moveToNext());
 
 					// expand
 					TreeView.expand(parent, false);
-				}
-				else
+				} else
 				{
 					parent.disable();
 				}
@@ -1620,7 +1604,7 @@ abstract public class BasicModule extends Module
 			public Loader<Cursor> onCreateLoader(final int loaderId0, final Bundle args)
 			{
 				final Uri uri = Uri.parse(AnnoSets_Layers_X.CONTENT_URI);
-				final String[] projection = new String[] { //
+				final String[] projection = new String[]{ //
 						AnnoSets_Layers_X.SENTENCEID, //
 						AnnoSets_Layers_X.SENTENCETEXT, //
 						AnnoSets_Layers_X.LAYERID, //
@@ -1629,7 +1613,7 @@ abstract public class BasicModule extends Module
 						AnnoSets_Layers_X.LAYERANNOTATIONS, //
 				};
 				final String selection = null; // embedded selection
-				final String[] selectionArgs = new String[] { Long.toString(annosetid0) };
+				final String[] selectionArgs = new String[]{Long.toString(annosetid0)};
 				final String sortOrder = null;
 				return new CursorLoader(BasicModule.this.getContext(), uri, projection, selection, selectionArgs, sortOrder);
 			}
@@ -1696,7 +1680,9 @@ abstract public class BasicModule extends Module
 								sb.append('\t');
 
 								// label
-								Spanner.append(sb, label.label, 0, "FE".equals(layerType) ? FrameNetFactories.feFactory : FrameNetFactories.labelFactory); //$NON-NLS-1$
+								Spanner.append(sb, label.label, 0, "FE".equals(layerType) ?
+										FrameNetFactories.feFactory :
+										FrameNetFactories.labelFactory); //$NON-NLS-1$
 								sb.append(' ');
 
 								// subtext value
@@ -1728,8 +1714,7 @@ abstract public class BasicModule extends Module
 
 					// expand
 					TreeView.expand(parent, false);
-				}
-				else
+				} else
 				{
 					parent.disable();
 				}
@@ -1753,7 +1738,7 @@ abstract public class BasicModule extends Module
 			public Loader<Cursor> onCreateLoader(final int loaderId0, final Bundle args)
 			{
 				final Uri uri = Uri.parse(Patterns_Layers_X.CONTENT_URI);
-				final String[] projection = new String[] { //
+				final String[] projection = new String[]{ //
 						Patterns_Layers_X.SENTENCEID, //
 						Patterns_Layers_X.SENTENCETEXT, //
 						Patterns_Layers_X.LAYERID, //
@@ -1762,7 +1747,7 @@ abstract public class BasicModule extends Module
 						Patterns_Layers_X.LAYERANNOTATIONS, //
 				};
 				final String selection = null; // embedded selection
-				final String[] selectionArgs = new String[] { Long.toString(patternid0) };
+				final String[] selectionArgs = new String[]{Long.toString(patternid0)};
 				final String sortOrder = null;
 				return new CursorLoader(BasicModule.this.getContext(), uri, projection, selection, selectionArgs, sortOrder);
 			}
@@ -1827,7 +1812,9 @@ abstract public class BasicModule extends Module
 									sb.append('\t');
 									sb.append('\t');
 
-									Spanner.append(sb, label.label, 0, "FE".equals(layerType) ? FrameNetFactories.feFactory : FrameNetFactories.labelFactory); //$NON-NLS-1$
+									Spanner.append(sb, label.label, 0, "FE".equals(layerType) ?
+											FrameNetFactories.feFactory :
+											FrameNetFactories.labelFactory); //$NON-NLS-1$
 									sb.append(' ');
 
 									final int from = Integer.parseInt(label.from);
@@ -1849,16 +1836,14 @@ abstract public class BasicModule extends Module
 							}
 						}
 						sb.append('\n');
-					}
-					while (cursor.moveToNext());
+					} while (cursor.moveToNext());
 
 					// attach result
 					TreeFactory.addTextNode(parent, sb, BasicModule.this.getContext());
 
 					// expand
 					TreeView.expand(parent, false);
-				}
-				else
+				} else
 				{
 					parent.disable();
 				}
@@ -1882,7 +1867,7 @@ abstract public class BasicModule extends Module
 			public Loader<Cursor> onCreateLoader(final int loaderId0, final Bundle args)
 			{
 				final Uri uri = Uri.parse(ValenceUnits_Layers_X.CONTENT_URI);
-				final String[] projection = new String[] { //
+				final String[] projection = new String[]{ //
 						ValenceUnits_Layers_X.SENTENCEID, //
 						ValenceUnits_Layers_X.SENTENCETEXT, //
 						ValenceUnits_Layers_X.LAYERID, //
@@ -1891,7 +1876,7 @@ abstract public class BasicModule extends Module
 						ValenceUnits_Layers_X.LAYERANNOTATIONS, //
 				};
 				final String selection = null; // embedded selection
-				final String[] selectionArgs = new String[] { Long.toString(vuid0) };
+				final String[] selectionArgs = new String[]{Long.toString(vuid0)};
 				final String sortOrder = null;
 				return new CursorLoader(BasicModule.this.getContext(), uri, projection, selection, selectionArgs, sortOrder);
 			}
@@ -1956,7 +1941,9 @@ abstract public class BasicModule extends Module
 									sb.append('\t');
 
 									// label
-									Spanner.append(sb, label.label, 0, "FE".equals(layerType) ? FrameNetFactories.feFactory : FrameNetFactories.labelFactory); //$NON-NLS-1$
+									Spanner.append(sb, label.label, 0, "FE".equals(layerType) ?
+											FrameNetFactories.feFactory :
+											FrameNetFactories.labelFactory); //$NON-NLS-1$
 									sb.append(' ');
 
 									// subtext
@@ -1979,16 +1966,14 @@ abstract public class BasicModule extends Module
 							}
 						}
 						sb.append('\n');
-					}
-					while (cursor.moveToNext());
+					} while (cursor.moveToNext());
 
 					// attach result
 					TreeFactory.addTextNode(parent, sb, BasicModule.this.getContext());
 
 					// expand
 					TreeView.expand(parent, false);
-				}
-				else
+				} else
 				{
 					parent.disable();
 				}
@@ -2014,14 +1999,14 @@ abstract public class BasicModule extends Module
 			public Loader<Cursor> onCreateLoader(final int loaderId0, final Bundle args)
 			{
 				final Uri uri = Uri.parse(Sentences_Layers_X.CONTENT_URI);
-				final String[] projection = new String[] { //
+				final String[] projection = new String[]{ //
 						Sentences_Layers_X.LAYERID, //
 						Sentences_Layers_X.LAYERTYPE, //
 						Sentences_Layers_X.RANK, //
 						Sentences_Layers_X.LAYERANNOTATIONS, //
 				};
 				final String selection = null; // embedded selection
-				final String[] selectionArgs = new String[] { Long.toString(sentenceid0) };
+				final String[] selectionArgs = new String[]{Long.toString(sentenceid0)};
 				final String sortOrder = null;
 				return new CursorLoader(BasicModule.this.getContext(), uri, projection, selection, selectionArgs, sortOrder);
 			}
@@ -2069,7 +2054,9 @@ abstract public class BasicModule extends Module
 								sb.append('\t');
 
 								// label
-								Spanner.append(sb, label.label, 0, "FE".equals(layerType) ? FrameNetFactories.feFactory : FrameNetFactories.labelFactory); //$NON-NLS-1$
+								Spanner.append(sb, label.label, 0, "FE".equals(layerType) ?
+										FrameNetFactories.feFactory :
+										FrameNetFactories.labelFactory); //$NON-NLS-1$
 								sb.append(' ');
 
 								// subtext value
@@ -2101,8 +2088,7 @@ abstract public class BasicModule extends Module
 
 					// expand
 					TreeView.expand(parent, false);
-				}
-				else
+				} else
 				{
 					parent.disable();
 				}
@@ -2125,7 +2111,9 @@ abstract public class BasicModule extends Module
 
 		for (int i = 0; i < texts.length; i++)
 		{
-			CharSequence field = (flags & FrameNetMarkupFactory.FEDEF) == 0 ? this.frameProcessor.process(texts[i]) : texts[i];
+			CharSequence field = (flags & FrameNetMarkupFactory.FEDEF) == 0 ?
+					this.frameProcessor.process(texts[i]) :
+					texts[i];
 			fields[i] = this.spanner.process(field, flags);
 		}
 		return fields;

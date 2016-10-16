@@ -9,8 +9,8 @@ public class VerbNetSemanticsProcessor extends Preprocessor
 	// processor
 
 	private static final String[] replacers = { //
-	// "([^\\(\n]*)\\((.*)\\)","<pred>$1</pred> ($2)",
-	// "(event:E|(?:start|end|result)\\(E\\))","<event>$1</event>"
+			// "([^\\(\n]*)\\((.*)\\)","<pred>$1</pred> ($2)",
+			// "(event:E|(?:start|end|result)\\(E\\))","<event>$1</event>"
 	};
 
 	/**

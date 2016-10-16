@@ -1,18 +1,18 @@
 package org.sqlunet.browser.config;
 
-import java.io.File;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import android.content.Context;
+import android.database.Cursor;
+import android.net.Uri;
+import android.util.Log;
 
 import org.sqlunet.provider.ManagerContract;
 import org.sqlunet.provider.ManagerContract.TablesAndIndices;
 import org.sqlunet.settings.StorageSettings;
 
-import android.content.Context;
-import android.database.Cursor;
-import android.net.Uri;
-import android.util.Log;
+import java.io.File;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * Database status
@@ -43,8 +43,7 @@ public class Status
 			try
 			{
 				existingTablesAndIndexes = tablesAndIndexes(context);
-			}
-			catch (Exception e)
+			} catch (Exception e)
 			{
 				Log.e(TAG, "While getting status", e); //$NON-NLS-1$
 				return status;
@@ -95,7 +94,7 @@ public class Status
 
 		final Cursor cursor = context.getContentResolver().query( //
 				Uri.parse(TablesAndIndices.CONTENT_URI), //
-				new String[] { TablesAndIndices.TYPE, TablesAndIndices.NAME }, // projection
+				new String[]{TablesAndIndices.TYPE, TablesAndIndices.NAME}, // projection
 				"name NOT LIKE 'sqlite_%' AND name NOT LIKE 'android_%'", // selection criteria //$NON-NLS-1$
 				null, //
 				order);
@@ -109,8 +108,7 @@ public class Status
 			{
 				final String name = cursor.getString(nameId);
 				result.add(name);
-			}
-			while (cursor.moveToNext());
+			} while (cursor.moveToNext());
 		}
 		cursor.close();
 		return result;

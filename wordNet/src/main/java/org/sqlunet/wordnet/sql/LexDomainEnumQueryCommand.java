@@ -6,9 +6,9 @@
  */
 package org.sqlunet.wordnet.sql;
 
-import org.sqlunet.sql.DBQueryCommand;
-
 import android.database.sqlite.SQLiteDatabase;
+
+import org.sqlunet.sql.DBQueryCommand;
 
 /**
  * Query for lexdomain enumeration
@@ -25,8 +25,7 @@ class LexDomainEnumQueryCommand extends DBQueryCommand
 	/**
 	 * Constructor
 	 *
-	 * @param thisConnection
-	 *            is the database connection
+	 * @param thisConnection is the database connection
 	 */
 	public LexDomainEnumQueryCommand(final SQLiteDatabase thisConnection)
 	{

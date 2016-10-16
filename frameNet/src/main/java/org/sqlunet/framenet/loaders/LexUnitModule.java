@@ -1,16 +1,17 @@
 package org.sqlunet.framenet.loaders;
 
-import org.sqlunet.framenet.FnLexUnitPointer;
-import org.sqlunet.treeview.model.TreeNode;
-
 import android.app.Fragment;
 import android.os.Parcelable;
+
+import org.sqlunet.framenet.FnLexUnitPointer;
+import org.sqlunet.treeview.model.TreeNode;
 
 /**
  * A fragment representing a lexunit.
  *
  * @author Bernard Bou
  */
+
 /**
  * @author bbou
  */

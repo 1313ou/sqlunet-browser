@@ -8,6 +8,6 @@
     http://developer.android.com/training/multiscreen/screensizes.html#TaskUseAliasFilters
     -->
     <item name="activity_selector" type="layout">@layout/activity_selector_detail</item>
-	<item name="activity_xselector" type="layout">@layout/activity_xselector_detail</item>
-	
+    <item name="activity_xselector" type="layout">@layout/activity_xselector_detail</item>
+
 </resources>

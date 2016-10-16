@@ -1,14 +1,5 @@
 package org.sqlunet.framenet.loaders;
 
-import org.sqlunet.browser.Module;
-import org.sqlunet.framenet.FnSentencePointer;
-import org.sqlunet.framenet.provider.FrameNetContract.Sentences;
-import org.sqlunet.framenet.style.FrameNetFactories;
-import org.sqlunet.style.Spanner;
-import org.sqlunet.treeview.model.TreeNode;
-import org.sqlunet.treeview.view.TreeView;
-import org.sqlunet.view.TreeFactory;
-
 import android.app.Fragment;
 import android.app.LoaderManager.LoaderCallbacks;
 import android.content.CursorLoader;
@@ -19,11 +10,21 @@ import android.os.Bundle;
 import android.os.Parcelable;
 import android.text.SpannableStringBuilder;
 
+import org.sqlunet.browser.Module;
+import org.sqlunet.framenet.FnSentencePointer;
+import org.sqlunet.framenet.provider.FrameNetContract.Sentences;
+import org.sqlunet.framenet.style.FrameNetFactories;
+import org.sqlunet.style.Spanner;
+import org.sqlunet.treeview.model.TreeNode;
+import org.sqlunet.treeview.view.TreeView;
+import org.sqlunet.view.TreeFactory;
+
 /**
  * A fragment representing a lexunit.
  *
  * @author Bernard Bou
  */
+
 /**
  * @author bbou
  */
@@ -93,12 +94,12 @@ public class SentenceModule extends BasicModule
 			public Loader<Cursor> onCreateLoader(final int loaderId0, final Bundle args)
 			{
 				final Uri uri = Uri.parse(Sentences.CONTENT_URI);
-				final String[] projection = new String[] { //
+				final String[] projection = new String[]{ //
 						Sentences.SENTENCEID, //
 						Sentences.TEXT, //
 				};
 				final String selection = Sentences.SENTENCEID + " = ?"; //$NON-NLS-1$
-				final String[] selectionArgs = new String[] { Long.toString(sentenceid0) };
+				final String[] selectionArgs = new String[]{Long.toString(sentenceid0)};
 				final String sortOrder = null;
 				return new CursorLoader(SentenceModule.this.getContext(), uri, projection, selection, selectionArgs, sortOrder);
 			}
@@ -130,8 +131,7 @@ public class SentenceModule extends BasicModule
 
 					// expand
 					TreeView.expand(parent, false);
-				}
-				else
+				} else
 				{
 					parent.disable();
 				}

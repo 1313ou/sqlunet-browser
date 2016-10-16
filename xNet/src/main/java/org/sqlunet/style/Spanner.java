@@ -1,7 +1,5 @@
 package org.sqlunet.style;
 
-import org.sqlunet.xnet.R;
-
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
@@ -17,9 +15,11 @@ import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
+import org.sqlunet.xnet.R;
+
 /**
  * Spanner
- * 
+ *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
 public class Spanner
@@ -50,7 +50,7 @@ public class Spanner
 
 	/**
 	 * Span factory
-	 * 
+	 *
 	 * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
 	 */
 	public interface SpanFactory
@@ -60,7 +60,7 @@ public class Spanner
 
 	/**
 	 * Click image interface
-	 * 
+	 *
 	 * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
 	 */
 	@SuppressWarnings("unused")
@@ -73,7 +73,7 @@ public class Spanner
 
 	/**
 	 * Hidden span
-	 * 
+	 *
 	 * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
 	 */
 	static public class HiddenSpan extends ReplacementSpan
@@ -108,7 +108,7 @@ public class Spanner
 
 	/**
 	 * Hidden span factory
-	 * 
+	 *
 	 * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
 	 */
 	@SuppressWarnings("unused")
@@ -117,7 +117,7 @@ public class Spanner
 		@Override
 		public Object makeSpans(final long flags)
 		{
-			return new Object[] { new HiddenSpan() };
+			return new Object[]{new HiddenSpan()};
 		}
 	}
 
@@ -125,15 +125,11 @@ public class Spanner
 
 	/**
 	 * Apply spans
-	 * 
-	 * @param sb
-	 *        spannable string builder
-	 * @param from
-	 *        start
-	 * @param to
-	 *        finish
-	 * @param spans
-	 *        spans to apply
+	 *
+	 * @param sb    spannable string builder
+	 * @param from  start
+	 * @param to    finish
+	 * @param spans spans to apply
 	 */
 	static void setSpan(final SpannableStringBuilder sb, final int from, final int to, final Object spans)
 	{
@@ -148,8 +144,7 @@ public class Spanner
 						sb.setSpan(span, from, to, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
 					}
 				}
-			}
-			else
+			} else
 			{
 				sb.setSpan(spans, from, to, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
 			}
@@ -158,15 +153,11 @@ public class Spanner
 
 	/**
 	 * Apply spans
-	 * 
-	 * @param sb
-	 *        spannable string builder
-	 * @param from
-	 *        start
-	 * @param to
-	 *        finish
-	 * @param factories
-	 * 		  span factories to call to get spans
+	 *
+	 * @param sb        spannable string builder
+	 * @param from      start
+	 * @param to        finish
+	 * @param factories span factories to call to get spans
 	 */
 	static public void setSpan(final SpannableStringBuilder sb, final int from, final int to, @SuppressWarnings("SameParameterValue") final int flags, final SpanFactory... factories)
 	{
@@ -181,11 +172,9 @@ public class Spanner
 
 	/**
 	 * Append spans
-	 * 
-	 * @param sb
-	 *        spannable string builder
-	 * @param spans
-	 *        image span with possible image style span
+	 *
+	 * @param sb    spannable string builder
+	 * @param spans image span with possible image style span
 	 */
 	static private void appendImageSpans(final SpannableStringBuilder sb, final Object... spans)
 	{
@@ -198,9 +187,8 @@ public class Spanner
 
 	/**
 	 * Append image
-	 * 
-	 * @param sb
-	 *        spannable string builder
+	 *
+	 * @param sb       spannable string builder
 	 * @param drawable drawable to use
 	 */
 	static public void appendImage(final SpannableStringBuilder sb, final Drawable drawable)
@@ -213,15 +201,11 @@ public class Spanner
 
 	/**
 	 * Append clickable image
-	 * 
-	 * @param sb
-	 *        spannable string builder
-	 * @param caption
-	 *        caption
-	 * @param listener
-	 *        click listener
-	 * @param context
-	 *        context
+	 *
+	 * @param sb       spannable string builder
+	 * @param caption  caption
+	 * @param listener click listener
+	 * @param context  context
 	 */
 	@SuppressWarnings("unused")
 	static public void appendClickableImage(final SpannableStringBuilder sb, final String caption, final OnClickImage listener, final Context context)
@@ -233,17 +217,12 @@ public class Spanner
 
 	/**
 	 * Append clickable image
-	 * 
-	 * @param sb
-	 *        spannable string builder
-	 * @param collapsedDrawable
-	 *        collapse drawable
-	 * @param expandedDrawable
-	 *        expand drawable
-	 * @param caption
-	 *        caption
-	 * @param listener
-	 *        click listener
+	 *
+	 * @param sb                spannable string builder
+	 * @param collapsedDrawable collapse drawable
+	 * @param expandedDrawable  expand drawable
+	 * @param caption           caption
+	 * @param listener          click listener
 	 */
 	private static void appendClickableImage(final SpannableStringBuilder sb, final Drawable collapsedDrawable, final Drawable expandedDrawable, final String caption, final OnClickImage listener)
 	{
@@ -293,13 +272,10 @@ public class Spanner
 
 	/**
 	 * Insert tag
-	 * 
-	 * @param sb
-	 *        spannable string builder
-	 * @param position
-	 *        insert position
-	 * @param tag
-	 *        tag
+	 *
+	 * @param sb       spannable string builder
+	 * @param position insert position
+	 * @param tag      tag
 	 */
 	@SuppressWarnings("unused")
 	static public void insertTag(final SpannableStringBuilder sb, final int position, final CharSequence tag)
@@ -312,11 +288,9 @@ public class Spanner
 
 	/**
 	 * Collapse
-	 * 
-	 * @param sb
-	 *        spannable string builder
-	 * @param position
-	 *        position to start from (to end-of-expanded string)
+	 *
+	 * @param sb       spannable string builder
+	 * @param position position to start from (to end-of-expanded string)
 	 */
 	@SuppressWarnings("unused")
 	static public void collapse(final SpannableStringBuilder sb, final int position)
@@ -328,15 +302,11 @@ public class Spanner
 
 	/**
 	 * Append text
-	 * 
-	 * @param sb
-	 *        spannable string builder
-	 * @param text
-	 *        text
-	 * @param flags
-	 *        flags
-	 * @param factories
-	 *        span factories
+	 *
+	 * @param sb        spannable string builder
+	 * @param text      text
+	 * @param flags     flags
+	 * @param factories span factories
 	 */
 	static public void append(final SpannableStringBuilder sb, final CharSequence text, @SuppressWarnings("SameParameterValue") final long flags, final SpanFactory... factories)
 	{
@@ -357,8 +327,7 @@ public class Spanner
 					{
 						sb.setSpan(span, from, to, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
 					}
-				}
-				else
+				} else
 				{
 					sb.setSpan(spans, from, to, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
 				}
@@ -370,13 +339,10 @@ public class Spanner
 
 	/**
 	 * Find delimiter
-	 * 
-	 * @param sb
-	 *        spannable string builder
-	 * @param start
-	 *        search start
-	 * @param delimiter
-	 *        delimiter
+	 *
+	 * @param sb        spannable string builder
+	 * @param start     search start
+	 * @param delimiter delimiter
 	 * @return delimiter position or -1 if not found
 	 */
 	private static int find(final SpannableStringBuilder sb, final int start, @SuppressWarnings("SameParameterValue") final char delimiter)
@@ -393,17 +359,14 @@ public class Spanner
 
 	/**
 	 * Get drawable from resource id
-	 * 
-	 * @param context
-	 *        context
-	 * @param resId
-	 *        resource id
+	 *
+	 * @param context context
+	 * @param resId   resource id
 	 * @return drawable
 	 */
 	static public Drawable getDrawable(final Context context, final int resId)
 	{
-		@SuppressWarnings("deprecation")
-		final Drawable drawable = context.getResources().getDrawable(resId);
+		@SuppressWarnings("deprecation") final Drawable drawable = context.getResources().getDrawable(resId);
 		drawable.setBounds(0, 0, drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight());
 		return drawable;
 	}

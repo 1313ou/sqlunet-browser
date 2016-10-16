@@ -1,9 +1,9 @@
 package org.sqlunet.framenet.sql;
 
+import android.database.sqlite.SQLiteDatabase;
+
 import java.util.ArrayList;
 import java.util.List;
-
-import android.database.sqlite.SQLiteDatabase;
 
 /**
  * FE
@@ -30,12 +30,9 @@ class FnGovernor
 	/**
 	 * Constructor
 	 *
-	 * @param thisGovernorId
-	 *            governor id
-	 * @param thisWordId
-	 *            word id
-	 * @param thisGovernor
-	 *            governor
+	 * @param thisGovernorId governor id
+	 * @param thisWordId     word id
+	 * @param thisGovernor   governor
 	 */
 	private FnGovernor(final long thisGovernorId, final long thisWordId, final String thisGovernor)
 	{
@@ -47,10 +44,8 @@ class FnGovernor
 	/**
 	 * Make set of governors from query built from frameid
 	 *
-	 * @param thisConnection
-	 *            is the database connection
-	 * @param theLuId
-	 *            is the frameid to build query from
+	 * @param thisConnection is the database connection
+	 * @param theLuId        is the frameid to build query from
 	 * @return list of governors
 	 */
 	public static List<FnGovernor> make(final SQLiteDatabase thisConnection, final long theLuId)
@@ -70,8 +65,7 @@ class FnGovernor
 
 				thisResult.add(new FnGovernor(thisGovernorId, thisWordId, thisGovernor));
 			}
-		}
-		finally
+		} finally
 		{
 			if (thisQuery != null)
 			{

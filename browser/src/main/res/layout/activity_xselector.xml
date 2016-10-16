@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="org.sqlunet.browser.xselector.XSelectorActivity" >
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                tools:context="org.sqlunet.browser.xselector.XSelectorActivity">
 
     <TextView
         android:id="@+id/queryView"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        style="@style/Query" />
+        style="@style/Query"/>
 
     <fragment
         android:id="@+id/xselector"
         android:name="org.sqlunet.browser.xselector.XSelectorFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-    	android:layout_below="@+id/queryView"
-        tools:layout="@layout/fragment_xselector" />
+        android:layout_below="@+id/queryView"
+        tools:layout="@layout/fragment_xselector"/>
 
 </RelativeLayout>

@@ -1,9 +1,9 @@
 package org.sqlunet.propbank.sql;
 
+import android.database.sqlite.SQLiteDatabase;
+
 import java.util.ArrayList;
 import java.util.List;
-
-import android.database.sqlite.SQLiteDatabase;
 
 /**
  * @author bbou
@@ -38,16 +38,11 @@ class PbRole
 	/**
 	 * Constructor
 	 *
-	 * @param thisRoleId
-	 *            is the role id
-	 * @param thisRoleDescr
-	 *            is the role description
-	 * @param thisNArg
-	 *            is the role N
-	 * @param thisRoleFunc
-	 *            is the role F
-	 * @param thisRoleTheta
-	 *            is the role theta
+	 * @param thisRoleId    is the role id
+	 * @param thisRoleDescr is the role description
+	 * @param thisNArg      is the role N
+	 * @param thisRoleFunc  is the role F
+	 * @param thisRoleTheta is the role theta
 	 */
 	private PbRole(final long thisRoleId, final String thisRoleDescr, final String thisNArg, final String thisRoleFunc, final String thisRoleTheta)
 	{
@@ -62,10 +57,8 @@ class PbRole
 	/**
 	 * Make sets of PropBank roles from query built from rolesetid
 	 *
-	 * @param thisConnection
-	 *            is the database connection
-	 * @param thisRoleSetId
-	 *            is the roleset id to build query from
+	 * @param thisConnection is the database connection
+	 * @param thisRoleSetId  is the roleset id to build query from
 	 * @return list of PropBank roles
 	 */
 	public static List<PbRole> make(final SQLiteDatabase thisConnection, final long thisRoleSetId)
@@ -86,8 +79,7 @@ class PbRole
 				final String thisRoleTheta = thisQuery.getRoleTheta();
 				thisResult.add(new PbRole(thisRoleId, thisRoleDescr, thisNArg, thisRoleFunc, thisRoleTheta));
 			}
-		}
-		finally
+		} finally
 		{
 			if (thisQuery != null)
 			{

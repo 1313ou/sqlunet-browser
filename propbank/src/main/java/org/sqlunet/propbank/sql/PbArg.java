@@ -25,6 +25,10 @@ class PbArg
 
 	public PbArg(final String... theseArgFields)
 	{
-		this(theseArgFields[0], theseArgFields[1].equals("*") ? null : theseArgFields[1], theseArgFields[2].toLowerCase(Locale.ENGLISH), theseArgFields[3].equals("*") ? null : theseArgFields[3], theseArgFields[4]); //$NON-NLS-1$ //$NON-NLS-2$
+		this(theseArgFields[0], theseArgFields[1].equals("*") ?
+				null :
+				theseArgFields[1], theseArgFields[2].toLowerCase(Locale.ENGLISH), theseArgFields[3].equals("*") ?
+				null :
+				theseArgFields[3], theseArgFields[4]); //$NON-NLS-1$ //$NON-NLS-2$
 	}
 }

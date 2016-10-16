@@ -1,8 +1,8 @@
 package org.sqlunet.verbnet.sql;
 
-import org.sqlunet.sql.DBQueryCommand;
-
 import android.database.sqlite.SQLiteDatabase;
+
+import org.sqlunet.sql.DBQueryCommand;
 
 /**
  * VerbNet Class Membership query command
@@ -19,12 +19,9 @@ class VnClassMembershipQueryCommand extends DBQueryCommand
 	/**
 	 * Constructor
 	 *
-	 * @param thisConnection
-	 *            is the database connection
-	 * @param thisWordId
-	 *            is the target wordid
-	 * @param thisSynsetId
-	 *            is the target synsetid (null corresponds to no value)
+	 * @param thisConnection is the database connection
+	 * @param thisWordId     is the target wordid
+	 * @param thisSynsetId   is the target synsetid (null corresponds to no value)
 	 */
 	@SuppressWarnings("boxing")
 	public VnClassMembershipQueryCommand(final SQLiteDatabase thisConnection, final long thisWordId, final Long thisSynsetId)

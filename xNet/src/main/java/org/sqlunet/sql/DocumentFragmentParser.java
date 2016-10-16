@@ -1,13 +1,5 @@
 package org.sqlunet.sql;
 
-import java.io.IOException;
-import java.io.Reader;
-import java.io.StringReader;
-
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
-
 import org.w3c.dom.Document;
 import org.w3c.dom.DocumentFragment;
 import org.w3c.dom.Element;
@@ -15,6 +7,14 @@ import org.w3c.dom.NodeList;
 import org.xml.sax.EntityResolver;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
+
+import java.io.IOException;
+import java.io.Reader;
+import java.io.StringReader;
+
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
 
 /**
  * <tt>DOMFragmentParser</tt> build a document fragment from an XML fragment source that has not necessary a unique root element, or that may have text content
@@ -54,8 +54,7 @@ public class DocumentFragmentParser
 			factory.setIgnoringElementContentWhitespace(true);
 			factory.setValidating(false);
 			return factory.newDocumentBuilder();
-		}
-		catch (final ParserConfigurationException e)
+		} catch (final ParserConfigurationException e)
 		{
 			// do nothing
 		}
@@ -65,8 +64,7 @@ public class DocumentFragmentParser
 	/**
 	 * Parse an input source.
 	 *
-	 * @param text
-	 *            the input to parse.
+	 * @param text the input to parse.
 	 * @return document fragment
 	 * @throws SAXException
 	 * @throws IOException
@@ -108,8 +106,7 @@ public class DocumentFragmentParser
 	/**
 	 * Parse an input source.
 	 *
-	 * @param text
-	 *            the input to parse.
+	 * @param text the input to parse.
 	 * @return document fragment
 	 * @throws SAXException
 	 * @throws IOException
@@ -172,12 +169,9 @@ public class DocumentFragmentParser
 	/**
 	 * Mount xml
 	 *
-	 * @param document
-	 *            is the DOM Document being built
-	 * @param element
-	 *            is the DOM element to attach to
-	 * @param xml
-	 *            definition
+	 * @param document is the DOM Document being built
+	 * @param element  is the DOM element to attach to
+	 * @param xml      definition
 	 */
 	static public void mount(final Document document, final Element element, final String xml, final String tag)
 	{
@@ -186,12 +180,10 @@ public class DocumentFragmentParser
 		{
 			final DocumentFragment fragment = parser.parse('<' + tag + '>' + xml + "</" + tag + '>'); //$NON-NLS-1$
 			element.appendChild(document.importNode(fragment, true));
-		}
-		catch (final SAXException e)
+		} catch (final SAXException e)
 		{
 			element.appendChild(document.createTextNode("XML:" + xml + ":" + e.getMessage())); //$NON-NLS-1$ //$NON-NLS-2$
-		}
-		catch (final IOException e)
+		} catch (final IOException e)
 		{
 			// do nothing
 		}

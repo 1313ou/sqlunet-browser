@@ -1,12 +1,12 @@
 package org.sqlunet.browser.config;
 
-import org.sqlunet.browser.R;
-import org.sqlunet.settings.Storage;
-import org.sqlunet.settings.StorageStyle;
-
 import android.app.Activity;
 import android.os.Bundle;
 import android.widget.TextView;
+
+import org.sqlunet.browser.R;
+import org.sqlunet.settings.Storage;
+import org.sqlunet.settings.StorageStyle;
 
 public class StorageActivity extends Activity
 {

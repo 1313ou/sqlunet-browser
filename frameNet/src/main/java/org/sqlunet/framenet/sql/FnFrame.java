@@ -1,13 +1,13 @@
 package org.sqlunet.framenet.sql;
 
-import java.util.List;
-
 import android.database.sqlite.SQLiteDatabase;
+
+import java.util.List;
 
 /**
  * @author bbou
- *
  */
+
 /**
  * FrameQuery
  *
@@ -28,16 +28,11 @@ public class FnFrame
 	/**
 	 * Constructor
 	 *
-	 * @param thisFrameId
-	 *            is the frame id
-	 * @param thisFrameName
-	 *            is the frame
-	 * @param thisFrameDefinition
-	 *            is the frame definition
-	 * @param theseSemTypes
-	 *            are the semtypes
-	 * @param theseRelatedFrames
-	 *            are the related frames
+	 * @param thisFrameId         is the frame id
+	 * @param thisFrameName       is the frame
+	 * @param thisFrameDefinition is the frame definition
+	 * @param theseSemTypes       are the semtypes
+	 * @param theseRelatedFrames  are the related frames
 	 */
 	FnFrame(final long thisFrameId, final String thisFrameName, final String thisFrameDefinition, final List<FnSemType> theseSemTypes, final List<FnRelatedFrame> theseRelatedFrames)
 	{
@@ -66,8 +61,7 @@ public class FnFrame
 				final List<FnRelatedFrame> theseRelatedFrames = FnRelatedFrame.make(thisQuery.getRelatedFrames());
 				thisResult = new FnFrame(thisFrameId, thisFrameName, thisFrameDescription, theseSemTypes, theseRelatedFrames);
 			}
-		}
-		finally
+		} finally
 		{
 			if (thisQuery != null)
 			{

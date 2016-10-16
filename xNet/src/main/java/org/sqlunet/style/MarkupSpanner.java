@@ -1,20 +1,20 @@
 package org.sqlunet.style;
 
+import android.text.SpannableStringBuilder;
+
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import android.text.SpannableStringBuilder;
-
 /**
  * Spanner as per mark-up tags
- * 
+ *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
 public class MarkupSpanner extends Spanner
 {
 	/**
 	 * Span factory
-	 * 
+	 *
 	 * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
 	 */
 	public interface SpanFactory
@@ -24,7 +24,7 @@ public class MarkupSpanner extends Spanner
 
 	/**
 	 * Span position
-	 * 
+	 *
 	 * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
 	 */
 	public enum SpanPosition
@@ -33,44 +33,43 @@ public class MarkupSpanner extends Spanner
 
 		/**
 		 * Make flags
-		 * 
+		 *
 		 * @return flags
 		 */
 		public int flags()
 		{
 			switch (this)
 			{
-			case TAG1:
-				return 1;
-			case TAG2:
-				return 2;
-			case TEXT:
-				return 3;
-			default:
-				break;
+				case TAG1:
+					return 1;
+				case TAG2:
+					return 2;
+				case TEXT:
+					return 3;
+				default:
+					break;
 			}
 			return 0;
 		}
 
 		/**
 		 * Make position from flags
-		 * 
-		 * @param flags
-		 *        flags
+		 *
+		 * @param flags flags
 		 * @return position
 		 */
 		static public SpanPosition valueOf(final long flags)
 		{
 			switch ((int) (flags & 3))
 			{
-			case 1:
-				return TAG1;
-			case 2:
-				return TAG2;
-			case 3:
-				return TEXT;
-			default:
-				break;
+				case 1:
+					return TAG1;
+				case 2:
+					return TAG2;
+				case 3:
+					return TEXT;
+				default:
+					break;
 			}
 			return null;
 		}
@@ -78,19 +77,13 @@ public class MarkupSpanner extends Spanner
 
 	/**
 	 * Apply spans
-	 * 
-	 * @param text
-	 *        input text
-	 * @param sb
-	 *        spannable string builder
-	 * @param spanFactory
-	 *        span factory
-	 * @param flags
-	 *        flags
-	 * @param pattern
-	 *        pattern
-	 * @param extraPatterns
-	 *        more patterns
+	 *
+	 * @param text          input text
+	 * @param sb            spannable string builder
+	 * @param spanFactory   span factory
+	 * @param flags         flags
+	 * @param pattern       pattern
+	 * @param extraPatterns more patterns
 	 * @return spannable string builder
 	 */
 	@SuppressWarnings("UnusedReturnValue")
@@ -164,19 +157,13 @@ public class MarkupSpanner extends Spanner
 
 	/**
 	 * Apply spans
-	 * 
-	 * @param selector
-	 *        factory selector
-	 * @param sb
-	 *        spannable string builder
-	 * @param i
-	 *        from
-	 * @param j
-	 *        to
-	 * @param flags
-	 *        flags
-	 * @param factories
-	 *        span factories
+	 *
+	 * @param selector  factory selector
+	 * @param sb        spannable string builder
+	 * @param i         from
+	 * @param j         to
+	 * @param flags     flags
+	 * @param factories span factories
 	 */
 	@SuppressWarnings("unused")
 	static private void setSpan(final String selector, final SpannableStringBuilder sb, final int i, final int j, final long flags, final SpanFactory... factories)

@@ -1,9 +1,9 @@
 package org.sqlunet.framenet;
 
+import org.sqlunet.framenet.sql.FnLabel;
+
 import java.util.ArrayList;
 import java.util.List;
-
-import org.sqlunet.framenet.sql.FnLabel;
 
 public class Utils
 {
@@ -13,36 +13,35 @@ public class Utils
 			return -1;
 		switch (c)
 		{
-		case 'n':
-			return 1;
-		case 'v':
-			return 2;
-		case 'a':
-			return 3; // adj
-		case 'r':
-			return 4; // adv
-		case 'p':
-			return 6; // prep
-		case '1':
-			return 7; // num
-		case 'c':
-			return 8; // coor
-		case '!':
-			return 9; // intj
-		case '~':
-			return 10; // art
-		case '&':
-			return 9; // scon
+			case 'n':
+				return 1;
+			case 'v':
+				return 2;
+			case 'a':
+				return 3; // adj
+			case 'r':
+				return 4; // adv
+			case 'p':
+				return 6; // prep
+			case '1':
+				return 7; // num
+			case 'c':
+				return 8; // coor
+			case '!':
+				return 9; // intj
+			case '~':
+				return 10; // art
+			case '&':
+				return 9; // scon
 		}
 		return -1;
 	}
-	
+
 
 	/**
 	 * Parse labels from the result set
 	 *
-	 * @param labelsString
-	 *            label string
+	 * @param labelsString label string
 	 * @return the labels from the result set
 	 */
 	public static List<FnLabel> parseLabels(final String labelsString)

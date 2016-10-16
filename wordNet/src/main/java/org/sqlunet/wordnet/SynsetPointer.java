@@ -1,10 +1,10 @@
 package org.sqlunet.wordnet;
 
-import org.sqlunet.HasPos;
-import org.sqlunet.HasSynsetId;
-
 import android.os.Parcel;
 import android.os.Parcelable;
+
+import org.sqlunet.HasPos;
+import org.sqlunet.HasSynsetId;
 
 /**
  * Parcelable synset

@@ -1,8 +1,8 @@
 package org.sqlunet.propbank.sql;
 
-import org.sqlunet.sql.DBQueryCommand;
-
 import android.database.sqlite.SQLiteDatabase;
+
+import org.sqlunet.sql.DBQueryCommand;
 
 /**
  * PropBank RoleSets query command
@@ -19,10 +19,8 @@ class PbRoleSetQueryFromWordCommand extends DBQueryCommand
 	/**
 	 * Constructor
 	 *
-	 * @param thisConnection
-	 *            is the database connection
-	 * @param thisWordId
-	 *            is the target wordid
+	 * @param thisConnection is the database connection
+	 * @param thisWordId     is the target wordid
 	 */
 	@SuppressWarnings("boxing")
 	public PbRoleSetQueryFromWordCommand(final SQLiteDatabase thisConnection, final String thisWordId)

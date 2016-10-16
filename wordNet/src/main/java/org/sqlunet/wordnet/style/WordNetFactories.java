@@ -1,13 +1,13 @@
 package org.sqlunet.wordnet.style;
 
-import org.sqlunet.style.Colors;
-import org.sqlunet.style.Spanner.SpanFactory;
-
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.text.style.BackgroundColorSpan;
 import android.text.style.ForegroundColorSpan;
 import android.text.style.StyleSpan;
+
+import org.sqlunet.style.Colors;
+import org.sqlunet.style.Spanner.SpanFactory;
 
 public class WordNetFactories
 {
@@ -16,7 +16,7 @@ public class WordNetFactories
 		@Override
 		public Object makeSpans(final long flags)
 		{
-			return new Object[] { new ForegroundColorSpan(Color.DKGRAY), new StyleSpan(Typeface.BOLD) };
+			return new Object[]{new ForegroundColorSpan(Color.DKGRAY), new StyleSpan(Typeface.BOLD)};
 		}
 	};
 
@@ -25,7 +25,7 @@ public class WordNetFactories
 		@Override
 		public Object makeSpans(final long flags)
 		{
-			return new Object[] { new ForegroundColorSpan(Color.BLACK), new StyleSpan(Typeface.BOLD) };
+			return new Object[]{new ForegroundColorSpan(Color.BLACK), new StyleSpan(Typeface.BOLD)};
 		}
 	};
 
@@ -34,7 +34,7 @@ public class WordNetFactories
 		@Override
 		public Object makeSpans(final long flags)
 		{
-			return new Object[] { new ForegroundColorSpan(Color.BLUE), new StyleSpan(Typeface.ITALIC) };
+			return new Object[]{new ForegroundColorSpan(Color.BLUE), new StyleSpan(Typeface.ITALIC)};
 		}
 	};
 

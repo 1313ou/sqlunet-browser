@@ -4,7 +4,7 @@ import android.database.sqlite.SQLiteDatabase;
 
 /**
  * Data source
- * 
+ *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
 public class DataSource

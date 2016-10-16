@@ -6,9 +6,9 @@
  */
 package org.sqlunet.wordnet.sql;
 
-import org.sqlunet.sql.DBQueryCommand;
-
 import android.database.sqlite.SQLiteDatabase;
+
+import org.sqlunet.sql.DBQueryCommand;
 
 /**
  * Query command for synsets linked through a given relation type
@@ -25,8 +25,7 @@ class TypedLinksQueryCommand extends DBQueryCommand
 	/**
 	 * Constructor
 	 *
-	 * @param thisConnection
-	 *            is the database connection
+	 * @param thisConnection is the database connection
 	 */
 	public TypedLinksQueryCommand(final SQLiteDatabase thisConnection)
 	{
@@ -36,8 +35,7 @@ class TypedLinksQueryCommand extends DBQueryCommand
 	/**
 	 * Set source synset parameter in prepared statement
 	 *
-	 * @param thisSynset
-	 *            is the source synset id
+	 * @param thisSynset is the source synset id
 	 */
 	public void setFromSynset(final long thisSynset)
 	{
@@ -48,8 +46,7 @@ class TypedLinksQueryCommand extends DBQueryCommand
 	/**
 	 * Set source word parameter in prepared statement
 	 *
-	 * @param thisWordId
-	 *            is the source word id (for lexical links) or -1 if word is any in which case the query returns all lexical links whatever the word
+	 * @param thisWordId is the source word id (for lexical links) or -1 if word is any in which case the query returns all lexical links whatever the word
 	 */
 	public void setFromWord(final long thisWordId)
 	{
@@ -60,8 +57,7 @@ class TypedLinksQueryCommand extends DBQueryCommand
 	/**
 	 * Set source type parameter in prepared statement
 	 *
-	 * @param thisType
-	 *            is the target synset type
+	 * @param thisType is the target synset type
 	 */
 	public void setLinkType(final int thisType)
 	{

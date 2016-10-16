@@ -42,7 +42,7 @@ public class FnLexUnitPointer implements Parcelable
 	 * Static field used to regenerate object, individually or as arrays
 	 */
 	public static final Parcelable.Creator<FnLexUnitPointer> CREATOR = new Parcelable.Creator<FnLexUnitPointer>()
-			{
+	{
 		@Override
 		public FnLexUnitPointer createFromParcel(final Parcel pc)
 		{
@@ -54,27 +54,27 @@ public class FnLexUnitPointer implements Parcelable
 		{
 			return new FnLexUnitPointer[size];
 		}
-			};
+	};
 
-			/*
-			 * (non-Javadoc)
-			 *
-			 * @see android.os.Parcelable#writeToParcel(android.os.Parcel, int)
-			 */
-			@Override
-			public void writeToParcel(final Parcel pc, final int flags)
-			{
-				pc.writeLong(this.luid);
-			}
+	/*
+	 * (non-Javadoc)
+	 *
+	 * @see android.os.Parcelable#writeToParcel(android.os.Parcel, int)
+	 */
+	@Override
+	public void writeToParcel(final Parcel pc, final int flags)
+	{
+		pc.writeLong(this.luid);
+	}
 
-			/*
-			 * (non-Javadoc)
-			 *
-			 * @see android.os.Parcelable#describeContents()
-			 */
-			@Override
-			public int describeContents()
-			{
-				return 0;
-			}
+	/*
+	 * (non-Javadoc)
+	 *
+	 * @see android.os.Parcelable#describeContents()
+	 */
+	@Override
+	public int describeContents()
+	{
+		return 0;
+	}
 }

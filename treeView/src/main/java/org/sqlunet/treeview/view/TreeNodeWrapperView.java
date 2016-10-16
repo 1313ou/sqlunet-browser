@@ -1,7 +1,5 @@
 package org.sqlunet.treeview.view;
 
-import org.sqlunet.treeview.R;
-
 import android.annotation.TargetApi;
 import android.content.Context;
 import android.os.Build;
@@ -12,9 +10,11 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
+import org.sqlunet.treeview.R;
+
 /**
  * Tree node wrapper view
- *
+ * <p>
  * Created by Bogdan Melnychuk on 2/10/15.
  */
 @SuppressWarnings("unused")

@@ -1,8 +1,8 @@
 package org.sqlunet.treeview.renderer;
 
-import org.sqlunet.treeview.model.TreeNode;
-
 import android.content.Context;
+
+import org.sqlunet.treeview.model.TreeNode;
 
 /**
  * @author Bernard Bou
@@ -44,7 +44,7 @@ public class QueryHolder extends IconTreeRenderer
 			super(icon, text);
 			this.id = id0;
 		}
-		
+
 		abstract public void process(final TreeNode node);
 	}
 }

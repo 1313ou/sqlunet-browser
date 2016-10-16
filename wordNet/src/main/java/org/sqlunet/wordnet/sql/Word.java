@@ -6,15 +6,15 @@
  */
 package org.sqlunet.wordnet.sql;
 
+import android.database.SQLException;
+import android.database.sqlite.SQLiteDatabase;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.TreeMap;
 import java.util.TreeSet;
-
-import android.database.SQLException;
-import android.database.sqlite.SQLiteDatabase;
 
 /**
  * Word
@@ -26,10 +26,8 @@ public class Word extends BasicWord
 	/**
 	 * Word
 	 *
-	 * @param lemma
-	 *        is the word string
-	 * @param id
-	 *        is the database id
+	 * @param lemma is the word string
+	 * @param id    is the database id
 	 */
 	public Word(final String lemma, final long id)
 	{
@@ -39,8 +37,7 @@ public class Word extends BasicWord
 	/**
 	 * Constructor
 	 *
-	 * @param query
-	 *        is the database query
+	 * @param query is the database query
 	 */
 	private Word(final WordQueryCommand query)
 	{
@@ -50,10 +47,8 @@ public class Word extends BasicWord
 	/**
 	 * Make word
 	 *
-	 * @param connection
-	 *        is the database connection
-	 * @param lemma
-	 *        is the target string
+	 * @param connection is the database connection
+	 * @param lemma      is the target string
 	 * @return Word or null
 	 */
 	static public Word make(final SQLiteDatabase connection, final String lemma)
@@ -69,13 +64,11 @@ public class Word extends BasicWord
 			{
 				word = new Word(query);
 			}
-		}
-		catch (final SQLException e)
+		} catch (final SQLException e)
 		{
 			e.printStackTrace();
 			// word can only be null here
-		}
-		finally
+		} finally
 		{
 			if (query != null)
 			{
@@ -88,8 +81,7 @@ public class Word extends BasicWord
 	/**
 	 * Get synsets containing a given word
 	 *
-	 * @param connection
-	 *        is the database connection
+	 * @param connection is the database connection
 	 * @return list of synsets containing a given word
 	 */
 	public List<Synset> getSynsets(final SQLiteDatabase connection)
@@ -106,13 +98,11 @@ public class Word extends BasicWord
 				final Synset synset = new Synset(query);
 				synsets.add(synset);
 			}
-		}
-		catch (final SQLException e)
+		} catch (final SQLException e)
 		{
 			e.printStackTrace();
 			synsets = null;
-		}
-		finally
+		} finally
 		{
 			if (query != null)
 			{
@@ -125,12 +115,9 @@ public class Word extends BasicWord
 	/**
 	 * Get synsets containing a given word and of a given part-of-speech or lexdomain id
 	 *
-	 * @param connection
-	 *        is the database connection
-	 * @param targetType
-	 *        is the target type to restrict search to
-	 * @param lexDomainBased
-	 *        is whether the query is lexdomain based
+	 * @param connection     is the database connection
+	 * @param targetType     is the target type to restrict search to
+	 * @param lexDomainBased is whether the query is lexdomain based
 	 * @return list of synsets for a given word
 	 */
 	public List<Synset> getTypedSynsets(final SQLiteDatabase connection, final int targetType, final boolean lexDomainBased)
@@ -144,8 +131,7 @@ public class Word extends BasicWord
 			if (lexDomainBased)
 			{
 				query.setLexDomainType(targetType);
-			}
-			else
+			} else
 			{
 				query.setPosType(targetType);
 			}
@@ -156,13 +142,11 @@ public class Word extends BasicWord
 				final Synset thisSynset = new Synset(query);
 				synsets.add(thisSynset);
 			}
-		}
-		catch (final SQLException e)
+		} catch (final SQLException e)
 		{
 			e.printStackTrace();
 			synsets = null;
-		}
-		finally
+		} finally
 		{
 			if (query != null)
 			{
@@ -175,10 +159,8 @@ public class Word extends BasicWord
 	/**
 	 * Get lexdomain-link type map for a given word
 	 *
-	 * @param connection
-	 *        is the database connection
-	 * @param word
-	 *        is the target word
+	 * @param connection is the database connection
+	 * @param word       is the target word
 	 * @return lexdomain-link type map for a given word
 	 */
 	@SuppressWarnings("unused")
@@ -205,21 +187,18 @@ public class Word extends BasicWord
 				if (map.containsKey(key))
 				{
 					values = map.get(key);
-				}
-				else
+				} else
 				{
 					values = new TreeSet<>();
 					map.put(key, values);
 				}
 				values.add(linkType);
 			}
-		}
-		catch (final SQLException e)
+		} catch (final SQLException e)
 		{
 			e.printStackTrace();
 			map = null;
-		}
-		finally
+		} finally
 		{
 			if (query != null)
 			{

@@ -1,9 +1,9 @@
 package android.support.local.app;
 
+import android.app.Fragment;
 import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
-import android.app.Fragment;
 import android.view.ContextMenu;
 import android.view.ContextMenu.ContextMenuInfo;
 import android.view.Gravity;
@@ -137,14 +137,10 @@ public class ExpandableListFragment extends Fragment implements OnCreateContextM
 	 * This method will be called when an item in the list is selected. Subclasses should override. Subclasses can call
 	 * getListView().getItemAtPosition(position) if they need to access the data associated with the selected item.
 	 *
-	 * @param l
-	 *            The ListView where the click happened
-	 * @param v
-	 *            The view that was clicked within the ListView
-	 * @param position
-	 *            The position of the view in the list
-	 * @param id
-	 *            The row id of the item that was clicked
+	 * @param l        The ListView where the click happened
+	 * @param v        The view that was clicked within the ListView
+	 * @param position The position of the view in the list
+	 * @param id       The row id of the item that was clicked
 	 */
 	@SuppressWarnings("EmptyMethod")
 	protected void onListItemClick(ExpandableListView l, View v, int position, long id)
@@ -217,8 +213,7 @@ public class ExpandableListFragment extends Fragment implements OnCreateContextM
 	 * once an adapter is given with setListAdapter(ListAdapter). If the list at that point had not been shown, when it does get shown it will be do
 	 * without the user ever seeing the hidden state.
 	 *
-	 * @param shown
-	 *            If true, the list view is shown; if false, the progress indicator. The initial value is true.
+	 * @param shown If true, the list view is shown; if false, the progress indicator. The initial value is true.
 	 */
 	public void setListShown(boolean shown)
 	{
@@ -237,10 +232,8 @@ public class ExpandableListFragment extends Fragment implements OnCreateContextM
 	 * Control whether the list is being displayed. You can make it not displayed if you are waiting for the initial data to show in it. During this time an
 	 * indeterminant progress indicator will be shown instead.
 	 *
-	 * @param shown
-	 *            If true, the list view is shown; if false, the progress indicator. The initial value is true.
-	 * @param animate
-	 *            If true, an animation will be used to transition to the new state.
+	 * @param shown   If true, the list view is shown; if false, the progress indicator. The initial value is true.
+	 * @param animate If true, an animation will be used to transition to the new state.
 	 */
 	private void setListShown(boolean shown, boolean animate)
 	{
@@ -260,23 +253,20 @@ public class ExpandableListFragment extends Fragment implements OnCreateContextM
 			{
 				this.mProgressContainer.startAnimation(AnimationUtils.loadAnimation(getActivity(), android.R.anim.fade_out));
 				this.mExpandableListContainer.startAnimation(AnimationUtils.loadAnimation(getActivity(), android.R.anim.fade_in));
-			}
-			else
+			} else
 			{
 				this.mProgressContainer.clearAnimation();
 				this.mExpandableListContainer.clearAnimation();
 			}
 			this.mProgressContainer.setVisibility(View.GONE);
 			this.mExpandableListContainer.setVisibility(View.VISIBLE);
-		}
-		else
+		} else
 		{
 			if (animate)
 			{
 				this.mProgressContainer.startAnimation(AnimationUtils.loadAnimation(getActivity(), android.R.anim.fade_in));
 				this.mExpandableListContainer.startAnimation(AnimationUtils.loadAnimation(getActivity(), android.R.anim.fade_out));
-			}
-			else
+			} else
 			{
 				this.mProgressContainer.clearAnimation();
 				this.mExpandableListContainer.clearAnimation();
@@ -329,15 +319,13 @@ public class ExpandableListFragment extends Fragment implements OnCreateContextM
 		if (root instanceof ExpandableListView)
 		{
 			this.mExpandableList = (ExpandableListView) root;
-		}
-		else
+		} else
 		{
 			this.mStandardEmptyView = (TextView) root.findViewById(INTERNAL_EMPTY_ID);
 			if (this.mStandardEmptyView == null)
 			{
 				this.mEmptyView = root.findViewById(android.R.id.empty);
-			}
-			else
+			} else
 			{
 				this.mStandardEmptyView.setVisibility(View.GONE);
 			}
@@ -356,8 +344,7 @@ public class ExpandableListFragment extends Fragment implements OnCreateContextM
 			if (this.mEmptyView != null)
 			{
 				this.mExpandableList.setEmptyView(this.mEmptyView);
-			}
-			else if (this.mEmptyText != null)
+			} else if (this.mEmptyText != null)
 			{
 				this.mStandardEmptyView.setText(this.mEmptyText);
 				this.mExpandableList.setEmptyView(this.mStandardEmptyView);
@@ -377,8 +364,7 @@ public class ExpandableListFragment extends Fragment implements OnCreateContextM
 			ExpandableListAdapter adapter = this.mAdapter;
 			this.mAdapter = null;
 			setListAdapter(adapter);
-		}
-		else
+		} else
 		{
 			// We are starting without an adapter, so assume we won't
 			// have our data right away and start with the progress indicator.
@@ -515,12 +501,9 @@ public class ExpandableListFragment extends Fragment implements OnCreateContextM
 	 * Sets the selection to the specified child. If the child is in a collapsed group, the group will only be expanded and child subsequently selected if
 	 * shouldExpandGroup is set to true, otherwise the method will return false.
 	 *
-	 * @param groupPosition
-	 *            The position of the group that contains the child.
-	 * @param childPosition
-	 *            The position of the child within the group.
-	 * @param shouldExpandGroup
-	 *            Whether the child's group should be expanded if it is collapsed.
+	 * @param groupPosition     The position of the group that contains the child.
+	 * @param childPosition     The position of the child within the group.
+	 * @param shouldExpandGroup Whether the child's group should be expanded if it is collapsed.
 	 * @return Whether the selection was successfully set on the child.
 	 */
 	public boolean setSelectedChild(int groupPosition, int childPosition, boolean shouldExpandGroup)
@@ -531,8 +514,7 @@ public class ExpandableListFragment extends Fragment implements OnCreateContextM
 	/**
 	 * Sets the selection to the specified group.
 	 *
-	 * @param groupPosition
-	 *            The position of the group that should be selected.
+	 * @param groupPosition The position of the group that should be selected.
 	 */
 	public void setSelectedGroup(int groupPosition)
 	{

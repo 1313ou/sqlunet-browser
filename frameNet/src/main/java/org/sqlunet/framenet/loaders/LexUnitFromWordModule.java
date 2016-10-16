@@ -1,11 +1,11 @@
 package org.sqlunet.framenet.loaders;
 
+import android.app.Fragment;
+import android.os.Parcelable;
+
 import org.sqlunet.HasPos;
 import org.sqlunet.HasWordId;
 import org.sqlunet.treeview.model.TreeNode;
-
-import android.app.Fragment;
-import android.os.Parcelable;
 
 /**
  * A fragment representing a lexunit.
@@ -67,8 +67,7 @@ public class LexUnitFromWordModule extends LexUnitModule
 		{
 			// data
 			lexunits_for_word_pos(this.wordid, this.pos, node);
-		}
-		else
+		} else
 		{
 			node.disable();
 		}

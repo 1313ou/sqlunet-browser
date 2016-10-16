@@ -1,88 +1,88 @@
 <!-- DTD for VerbNet v 1.0 20070328 -->
 
-<!ELEMENT FRAMENET (TARGET,FRAME*)>
+    <!ELEMENT FRAMENET (TARGET,FRAME*)>
 
-<!-- R E F E R E N C E -->
+    <!-- R E F E R E N C E -->
 
-<!ELEMENT TARGET (#PCDATA)>
-<!ATTLIST TARGET 
-	wordid CDATA #IMPLIED
-	pos CDATA #IMPLIED >
+    <!ELEMENT TARGET (#PCDATA)>
+    <!ATTLIST TARGET
+        wordid CDATA #IMPLIED
+        pos CDATA #IMPLIED >
 
-<!-- L E X U N I T -->
+    <!-- L E X U N I T -->
 
-<!ELEMENT LEXUNIT (FRAME,SENTENCES)>
-<!ATTLIST LEXUNIT 
-	name CDATA #REQUIRED
-	luid CDATA #REQUIRED> 
+    <!ELEMENT LEXUNIT (FRAME,SENTENCES)>
+    <!ATTLIST LEXUNIT
+        name CDATA #REQUIRED
+        luid CDATA #REQUIRED>
 
-<!-- F R A M E -->
+    <!-- F R A M E -->
 
-<!ELEMENT FRAME (FRAMEDEFINITION,FE*)>
-<!ATTLIST FRAME 
-	name CDATA #REQUIRED
-	frameid CDATA #IMPLIED> 
-	
-<!-- F E -->
+    <!ELEMENT FRAME (FRAMEDEFINITION,FE*)>
+    <!ATTLIST FRAME
+        name CDATA #REQUIRED
+        frameid CDATA #IMPLIED>
 
-<!ELEMENT FE (#PCDATA,FEDEFINITION,FE*)>
-<!ATTLIST FE 
-	name CDATA #REQUIRED
-	feid CDATA #IMPLIED 
-	type CDATA #IMPLIED
-	semtype CDATA #IMPLIED 
-	coreset CDATA #IMPLIED>
-	
-<!-- S E N T E N C E S -->
+    <!-- F E -->
 
-<!ELEMENT SENTENCES (SENTENCE*)>
-<!ATTLIST SENTENCES> 
+    <!ELEMENT FE (#PCDATA,FEDEFINITION,FE*)>
+    <!ATTLIST FE
+        name CDATA #REQUIRED
+        feid CDATA #IMPLIED
+        type CDATA #IMPLIED
+        semtype CDATA #IMPLIED
+        coreset CDATA #IMPLIED>
 
-<!-- S E N T E N C E -->
+    <!-- S E N T E N C E S -->
 
-<!ELEMENT SENTENCE (#PCDATA, LAYER*)>
-<!ATTLIST SENTENCE 
-	num CDATA #REQUIRED
-	sentenceid CDATA #REQUIRED> 
-	
-<!-- D E F I N I T I O N -->
+    <!ELEMENT SENTENCES (SENTENCE*)>
+    <!ATTLIST SENTENCES>
 
-<!ELEMENT FRAMEDEFINITION (#PCDATA, EX*)>
-<!ATTLIST FRAMEDEFINITION 
-	> 
-<!ELEMENT FEDEFINITION (#PCDATA, EX*)>
-<!ATTLIST FEDEFINITION 
-	>
+    <!-- S E N T E N C E -->
 
-<!ELEMENT EX (#PCDATA)>
-<!ATTLIST EX
-	>
+    <!ELEMENT SENTENCE (#PCDATA, LAYER*)>
+    <!ATTLIST SENTENCE
+        num CDATA #REQUIRED
+        sentenceid CDATA #REQUIRED>
 
-	<!-- E X A M P L E -->
+    <!-- D E F I N I T I O N -->
 
-<!ELEMENT EXAMPLE (#PCDATA)>
-<!ATTLIST EXAMPLE 
-	> 
-	
-<!-- A N N O S E T -->
+    <!ELEMENT FRAMEDEFINITION (#PCDATA, EX*)>
+    <!ATTLIST FRAMEDEFINITION
+        >
+    <!ELEMENT FEDEFINITION (#PCDATA, EX*)>
+    <!ATTLIST FEDEFINITION
+        >
 
-<!ELEMENT ANNOSET (SENTENCE)>
-<!ATTLIST ANNOSET 
-	annosetid CDATA #IMPLIED> 
+    <!ELEMENT EX (#PCDATA)>
+    <!ATTLIST EX
+        >
 
-<!-- L A Y E R -->
+    <!-- E X A M P L E -->
 
-<!ELEMENT LAYER (LABEL*)>
-<!ATTLIST LAYER 
-	layerid CDATA #IMPLIED
-	type CDATA #IMPLIED
-	rank CDATA #IMPLIED>
-	 
-<!-- L A B E L -->
+    <!ELEMENT EXAMPLE (#PCDATA)>
+    <!ATTLIST EXAMPLE
+        >
 
-<!ELEMENT LABEL ()>
-<!ATTLIST LABEL 
-	labelid CDATA #IMPLIED
-	from CDATA #IMPLIED
-	to CDATA #IMPLIED
-	label CDATA #IMPLIED> 
+    <!-- A N N O S E T -->
+
+    <!ELEMENT ANNOSET (SENTENCE)>
+    <!ATTLIST ANNOSET
+        annosetid CDATA #IMPLIED>
+
+    <!-- L A Y E R -->
+
+    <!ELEMENT LAYER (LABEL*)>
+    <!ATTLIST LAYER
+        layerid CDATA #IMPLIED
+        type CDATA #IMPLIED
+        rank CDATA #IMPLIED>
+
+    <!-- L A B E L -->
+
+    <!ELEMENT LABEL ()>
+    <!ATTLIST LABEL
+        labelid CDATA #IMPLIED
+        from CDATA #IMPLIED
+        to CDATA #IMPLIED
+        label CDATA #IMPLIED>

@@ -1,13 +1,5 @@
 package org.sqlunet.settings;
 
-import java.io.File;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.EnumMap;
-import java.util.List;
-import java.util.Locale;
-import java.util.Map;
-
 import android.annotation.TargetApi;
 import android.content.Context;
 import android.os.Build;
@@ -16,9 +8,17 @@ import android.os.StatFs;
 import android.util.Log;
 import android.util.Pair;
 
+import java.io.File;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.EnumMap;
+import java.util.List;
+import java.util.Locale;
+import java.util.Map;
+
 /**
  * Storage utilities
- * 
+ *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
 public class StorageUtils
@@ -40,7 +40,7 @@ public class StorageUtils
 
 	/**
 	 * Directory type
-	 * 
+	 *
 	 * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
 	 */
 	public enum DirType
@@ -49,11 +49,9 @@ public class StorageUtils
 
 		/**
 		 * Compare (sort by preference)
-		 * 
-		 * @param type1
-		 *        type 1
-		 * @param type2
-		 *        type 2
+		 *
+		 * @param type1 type 1
+		 * @param type2 type 2
 		 * @return order
 		 */
 		public static int compare(DirType type1, DirType type2)
@@ -71,18 +69,18 @@ public class StorageUtils
 		{
 			switch (this)
 			{
-			case APP_INTERNAL_POSSIBLY_ADOPTED:
-				return "auto"; //$NON-NLS-1$
-			case APP_EXTERNAL_SECONDARY:
-				return "secondary"; //$NON-NLS-1$
-			case APP_EXTERNAL_PRIMARY:
-				return "primary"; //$NON-NLS-1$
-			case PUBLIC_EXTERNAL_PRIMARY:
-				return "public primary"; //$NON-NLS-1$
-			case PUBLIC_EXTERNAL_SECONDARY:
-				return "public secondary"; //$NON-NLS-1$
-			case APP_INTERNAL:
-				return "internal"; //$NON-NLS-1$
+				case APP_INTERNAL_POSSIBLY_ADOPTED:
+					return "auto"; //$NON-NLS-1$
+				case APP_EXTERNAL_SECONDARY:
+					return "secondary"; //$NON-NLS-1$
+				case APP_EXTERNAL_PRIMARY:
+					return "primary"; //$NON-NLS-1$
+				case PUBLIC_EXTERNAL_PRIMARY:
+					return "public primary"; //$NON-NLS-1$
+				case PUBLIC_EXTERNAL_SECONDARY:
+					return "public secondary"; //$NON-NLS-1$
+				case APP_INTERNAL:
+					return "internal"; //$NON-NLS-1$
 			}
 			return null;
 		}
@@ -90,7 +88,7 @@ public class StorageUtils
 
 	/**
 	 * Directory with type
-	 * 
+	 *
 	 * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
 	 */
 	static public class Directory
@@ -108,7 +106,7 @@ public class StorageUtils
 
 	/**
 	 * Candidate storage
-	 * 
+	 *
 	 * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
 	 */
 	static public class CandidateStorage implements Comparable<CandidateStorage>
@@ -160,15 +158,11 @@ public class StorageUtils
 
 		/**
 		 * Constructor
-		 * 
-		 * @param dir
-		 *        directory
-		 * @param free
-		 *        free megabytes
-		 * @param occupancy
-		 *        occupancy percentage
-		 * @param status
-		 *        status
+		 *
+		 * @param dir       directory
+		 * @param free      free megabytes
+		 * @param occupancy occupancy percentage
+		 * @param status    status
 		 */
 		public CandidateStorage(final Directory dir, final float free, final float occupancy, final int status)
 		{
@@ -180,7 +174,7 @@ public class StorageUtils
 
 		/**
 		 * Short string
-		 * 
+		 *
 		 * @return short string
 		 */
 		public String toShortString()
@@ -190,7 +184,7 @@ public class StorageUtils
 
 		/**
 		 * Long string
-		 * 
+		 *
 		 * @return long string
 		 */
 		public String toLongString()
@@ -230,7 +224,7 @@ public class StorageUtils
 
 		/**
 		 * Storage status
-		 * 
+		 *
 		 * @return status string
 		 */
 		public CharSequence status()
@@ -276,10 +270,11 @@ public class StorageUtils
 
 		/**
 		 * Capacity test
-		 * 
+		 *
 		 * @return true if database fits in storage
 		 */
-		public boolean fitsIn() {
+		public boolean fitsIn()
+		{
 			return !Float.isNaN(this.free) && this.free >= DATABASEMB;
 		}
 	}
@@ -287,8 +282,7 @@ public class StorageUtils
 	/**
 	 * Whether the dir qualifies as sqlunet storage
 	 *
-	 * @param dir
-	 *        candidate dir
+	 * @param dir candidate dir
 	 * @return true if it qualifies
 	 */
 	@TargetApi(Build.VERSION_CODES.LOLLIPOP)
@@ -297,7 +291,8 @@ public class StorageUtils
 		int status = 0;
 
 		// dir
-		if (dir == null) {
+		if (dir == null)
+		{
 			status |= CandidateStorage.NULL_DIR;
 			return status;
 		}
@@ -305,27 +300,26 @@ public class StorageUtils
 		// state
 		switch (type)
 		{
-		case APP_EXTERNAL_SECONDARY:
-		case APP_EXTERNAL_PRIMARY:
-		case PUBLIC_EXTERNAL_PRIMARY:
-		case PUBLIC_EXTERNAL_SECONDARY:
-			try
-			{
-				final String state = Environment.getExternalStorageState(dir);
-				if (!Environment.MEDIA_MOUNTED.equals(state))
+			case APP_EXTERNAL_SECONDARY:
+			case APP_EXTERNAL_PRIMARY:
+			case PUBLIC_EXTERNAL_PRIMARY:
+			case PUBLIC_EXTERNAL_SECONDARY:
+				try
 				{
-					Log.d(StorageUtils.TAG, "storage state of " + dir + ": " + state); //$NON-NLS-1$ //$NON-NLS-2$
-					status |= CandidateStorage.NOT_MOUNTED;
+					final String state = Environment.getExternalStorageState(dir);
+					if (!Environment.MEDIA_MOUNTED.equals(state))
+					{
+						Log.d(StorageUtils.TAG, "storage state of " + dir + ": " + state); //$NON-NLS-1$ //$NON-NLS-2$
+						status |= CandidateStorage.NOT_MOUNTED;
+					}
+				} catch (final Throwable e)
+				{
+					//
 				}
-			}
-			catch (final Throwable e)
-			{
-				//
-			}
-			break;
-		case APP_INTERNAL:
-		case APP_INTERNAL_POSSIBLY_ADOPTED:
-			break;
+				break;
+			case APP_INTERNAL:
+			case APP_INTERNAL_POSSIBLY_ADOPTED:
+				break;
 		}
 
 		// exists
@@ -347,9 +341,8 @@ public class StorageUtils
 
 	/**
 	 * Make list of candidate storages
-	 * 
-	 * @param dirs
-	 *        list of directories
+	 *
+	 * @param dirs list of directories
 	 * @return list of candidate storages
 	 */
 	private static List<CandidateStorage> makeCandidateStorages(final List<Directory> dirs)
@@ -366,9 +359,8 @@ public class StorageUtils
 
 	/**
 	 * Get list of candidate storages
-	 * 
-	 * @param context
-	 *        context
+	 *
+	 * @param context context
 	 * @return list of candidate storages
 	 */
 	private static List<CandidateStorage> getCandidateStorages(final Context context)
@@ -379,9 +371,8 @@ public class StorageUtils
 
 	/**
 	 * Get sorted list of directories
-	 * 
-	 * @param context
-	 *        context
+	 *
+	 * @param context context
 	 * @return list of storage directories (desc-) sorted by size and type
 	 */
 	public static List<CandidateStorage> getSortedCandidateStorages(final Context context)
@@ -393,9 +384,8 @@ public class StorageUtils
 
 	/**
 	 * Get list of directories
-	 * 
-	 * @param context
-	 *        context
+	 *
+	 * @param context context
 	 * @return list of storage directories
 	 */
 	@TargetApi(Build.VERSION_CODES.KITKAT)
@@ -427,23 +417,20 @@ public class StorageUtils
 				// primary storage
 				storages.add(new Directory(dirs[0], DirType.APP_EXTERNAL_PRIMARY));
 			}
-		}
-		catch (final Throwable e)
+		} catch (final Throwable e)
 		{
 			// application-specific primary external storage
 			try
 			{
 				dir = context.getExternalFilesDir(null);
 				storages.add(new Directory(dir, DirType.APP_EXTERNAL_PRIMARY));
-			}
-			catch (Exception e2)
+			} catch (Exception e2)
 			{
 				try
 				{
 					dir = context.getExternalFilesDir(Storage.SQLUNETDIR);
 					storages.add(new Directory(dir, DirType.APP_EXTERNAL_PRIMARY));
-				}
-				catch (final NoSuchFieldError e3)
+				} catch (final NoSuchFieldError e3)
 				{
 					//
 				}
@@ -457,8 +444,7 @@ public class StorageUtils
 		{
 			dir = Environment.getExternalStoragePublicDirectory(Storage.SQLUNETDIR);
 			storages.add(new Directory(dir, DirType.PUBLIC_EXTERNAL_PRIMARY));
-		}
-		catch (final Throwable e)
+		} catch (final Throwable e)
 		{
 			// top-level public in external
 			try
@@ -469,8 +455,7 @@ public class StorageUtils
 					dir = new File(storage, Storage.SQLUNETDIR);
 					storages.add(new Directory(dir, DirType.PUBLIC_EXTERNAL_PRIMARY));
 				}
-			}
-			catch (final Throwable e2)
+			} catch (final Throwable e2)
 			{
 				//
 			}
@@ -516,12 +501,12 @@ public class StorageUtils
 		// primary emulated
 		final File primaryEmulated = discoverPrimaryEmulatedExternalStorage();
 		if (primaryEmulated != null)
-			dirs.put(StorageType.PRIMARY_EMULATED, new File[] { primaryEmulated });
+			dirs.put(StorageType.PRIMARY_EMULATED, new File[]{primaryEmulated});
 
 		// primary emulated
 		final File physicalEmulated = discoverPrimaryPhysicalExternalStorage();
 		if (physicalEmulated != null)
-			dirs.put(StorageType.PRIMARY_PHYSICAL, new File[] { physicalEmulated });
+			dirs.put(StorageType.PRIMARY_PHYSICAL, new File[]{physicalEmulated});
 
 		// S E C O N D A R Y
 
@@ -580,8 +565,7 @@ public class StorageUtils
 			if (userId == null || userId.isEmpty())
 			{
 				return new File(emulatedStorageTarget);
-			}
-			else
+			} else
 			{
 				return new File(emulatedStorageTarget + File.separatorChar + userId);
 			}
@@ -640,7 +624,7 @@ public class StorageUtils
 
 	/**
 	 * User id
-	 * 
+	 *
 	 * @return user id
 	 */
 	private static String getUserId()
@@ -659,8 +643,7 @@ public class StorageUtils
 			//noinspection ResultOfMethodCallIgnored
 			Integer.valueOf(lastFolder);
 			isDigit = true;
-		}
-		catch (final NumberFormatException ignored)
+		} catch (final NumberFormatException ignored)
 		{
 			//
 		}
@@ -686,9 +669,8 @@ public class StorageUtils
 
 	/**
 	 * Storage data at path
-	 * 
-	 * @param path
-	 *        path
+	 *
+	 * @param path path
 	 * @return data
 	 */
 	static public float[] storageStats(final String path)
@@ -696,15 +678,16 @@ public class StorageUtils
 		float[] stats = new float[3];
 		stats[STORAGE_FREE] = storageFree(path);
 		stats[STORAGE_CAPACITY] = storageCapacity(path);
-		stats[STORAGE_OCCUPANCY] = stats[STORAGE_CAPACITY] == 0F ? 0F : 100F * ((stats[STORAGE_CAPACITY] - stats[STORAGE_FREE]) / stats[STORAGE_CAPACITY]);
+		stats[STORAGE_OCCUPANCY] = stats[STORAGE_CAPACITY] == 0F ?
+				0F :
+				100F * ((stats[STORAGE_CAPACITY] - stats[STORAGE_FREE]) / stats[STORAGE_CAPACITY]);
 		return stats;
 	}
 
 	/**
 	 * Free storage at path
-	 * 
-	 * @param path
-	 *        path
+	 *
+	 * @param path path
 	 * @return free storage in megabytes
 	 */
 	@TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR2)
@@ -715,8 +698,7 @@ public class StorageUtils
 			final StatFs stat = new StatFs(path);
 			final float bytes = stat.getAvailableBlocksLong() * stat.getBlockSizeLong();
 			return bytes / (1024.f * 1024.f);
-		}
-		catch (Throwable e)
+		} catch (Throwable e)
 		{
 			return Float.NaN;
 		}
@@ -724,9 +706,8 @@ public class StorageUtils
 
 	/**
 	 * Storage capacity at path
-	 * 
-	 * @param path
-	 *        path
+	 *
+	 * @param path path
 	 * @return storage capacity in megabytes
 	 */
 	@TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR2)
@@ -737,8 +718,7 @@ public class StorageUtils
 			final StatFs stat = new StatFs(path);
 			final float bytes = stat.getBlockCountLong() * stat.getBlockSizeLong();
 			return bytes / (1024.f * 1024.f);
-		}
-		catch (Throwable e)
+		} catch (Throwable e)
 		{
 			return Float.NaN;
 		}
@@ -746,9 +726,8 @@ public class StorageUtils
 
 	/**
 	 * Megabytes to string
-	 * 
-	 * @param mb
-	 *        megabytes
+	 *
+	 * @param mb megabytes
 	 * @return string
 	 */
 	static public String mbToString(final float mb)
@@ -763,9 +742,8 @@ public class StorageUtils
 
 	/**
 	 * Get candidate names and values
-	 * 
-	 * @param context
-	 *        context
+	 *
+	 * @param context context
 	 * @return pair of names and values
 	 */
 	@SuppressWarnings("unused")
@@ -814,7 +792,7 @@ public class StorageUtils
 
 	/**
 	 * Report on external storage
-	 * 
+	 *
 	 * @return report
 	 */
 	@TargetApi(Build.VERSION_CODES.LOLLIPOP)
@@ -838,9 +816,10 @@ public class StorageUtils
 				sb.append(' ');
 				try
 				{
-					sb.append(Environment.isExternalStorageEmulated(f) ? "emulated" : "not-emulated"); //$NON-NLS-1$ //$NON-NLS-2$
-				}
-				catch (Throwable e)
+					sb.append(Environment.isExternalStorageEmulated(f) ?
+							"emulated" :
+							"not-emulated"); //$NON-NLS-1$ //$NON-NLS-2$
+				} catch (Throwable e)
 				{ //
 				}
 				sb.append('\n');
@@ -858,9 +837,10 @@ public class StorageUtils
 				sb.append(' ');
 				try
 				{
-					sb.append(Environment.isExternalStorageEmulated(f) ? "emulated" : "not-emulated"); //$NON-NLS-1$ //$NON-NLS-2$
-				}
-				catch (Throwable e)
+					sb.append(Environment.isExternalStorageEmulated(f) ?
+							"emulated" :
+							"not-emulated"); //$NON-NLS-1$ //$NON-NLS-2$
+				} catch (Throwable e)
 				{ //
 				}
 				sb.append('\n');
@@ -878,9 +858,10 @@ public class StorageUtils
 				sb.append(' ');
 				try
 				{
-					sb.append(Environment.isExternalStorageEmulated(f) ? "emulated" : "not-emulated"); //$NON-NLS-1$ //$NON-NLS-2$
-				}
-				catch (Throwable e)
+					sb.append(Environment.isExternalStorageEmulated(f) ?
+							"emulated" :
+							"not-emulated"); //$NON-NLS-1$ //$NON-NLS-2$
+				} catch (Throwable e)
 				{ //
 				}
 				sb.append('\n');

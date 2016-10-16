@@ -1,9 +1,9 @@
 package org.sqlunet.treeview.renderer;
 
+import android.content.Context;
+
 import org.sqlunet.treeview.R;
 import org.sqlunet.treeview.model.TreeNode;
-
-import android.content.Context;
 
 /**
  * @author Bernard Bou

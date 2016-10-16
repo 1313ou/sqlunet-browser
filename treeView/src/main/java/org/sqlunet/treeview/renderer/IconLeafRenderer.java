@@ -1,17 +1,17 @@
 package org.sqlunet.treeview.renderer;
 
-import org.sqlunet.treeview.R;
-import org.sqlunet.treeview.model.TreeNode;
-
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import org.sqlunet.treeview.R;
+import org.sqlunet.treeview.model.TreeNode;
+
 /**
  * Leaf renderer with icon
- *
+ * <p>
  * Created by Bogdan Melnychuk on 2/12/15.
  */
 public class IconLeafRenderer extends TreeNode.Renderer<IconTreeItem>
@@ -19,7 +19,7 @@ public class IconLeafRenderer extends TreeNode.Renderer<IconTreeItem>
 	/// private static final String TAG = "IconLeafRenderer";
 
 	int layoutRes = R.layout.layout_leaf;
-	
+
 	public IconLeafRenderer(Context context)
 	{
 		super(context);

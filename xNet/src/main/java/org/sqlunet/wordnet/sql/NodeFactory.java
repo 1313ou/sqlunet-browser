@@ -14,12 +14,9 @@ public class NodeFactory extends org.sqlunet.sql.NodeFactory
 	/**
 	 * Make part-of-speech node
 	 *
-	 * @param thisDoc
-	 *        is the DOM Document being built
-	 * @param thisParent
-	 *        is the parent node to attach this node to
-	 * @param thisValue
-	 *        is the part-of-speech
+	 * @param thisDoc    is the DOM Document being built
+	 * @param thisParent is the parent node to attach this node to
+	 * @param thisValue  is the part-of-speech
 	 * @return newly created node
 	 */
 	static public Node makePosNode(final Document thisDoc, final Node thisParent, final String thisValue)
@@ -32,11 +29,9 @@ public class NodeFactory extends org.sqlunet.sql.NodeFactory
 	/**
 	 * Make lexdomain node
 	 *
-	 * @param thisDoc
-	 *        is the DOM Document being built
-	 * @param thisParent
-	 *        is the parent node to attach this node to
-	 * @param thisValue lexdomain
+	 * @param thisDoc    is the DOM Document being built
+	 * @param thisParent is the parent node to attach this node to
+	 * @param thisValue  lexdomain
 	 * @return newly created node
 	 */
 	static public Node makeLexDomainNode(final Document thisDoc, final Node thisParent, final String thisValue)
@@ -49,12 +44,9 @@ public class NodeFactory extends org.sqlunet.sql.NodeFactory
 	/**
 	 * Make sense node
 	 *
-	 * @param thisDoc
-	 *        is the DOM Document being built
-	 * @param thisParent
-	 *        is the parent node to attach this node to
-	 * @param thisSenseIdx
-	 *        is the sense index
+	 * @param thisDoc      is the DOM Document being built
+	 * @param thisParent   is the parent node to attach this node to
+	 * @param thisSenseIdx is the sense index
 	 * @return newly created node
 	 */
 	static public Node makeSenseNode(final Document thisDoc, final Node thisParent, final int thisSenseIdx)
@@ -67,14 +59,10 @@ public class NodeFactory extends org.sqlunet.sql.NodeFactory
 	/**
 	 * Make sense node
 	 *
-	 * @param thisDoc
-	 *        is the DOM Document being built
-	 * @param thisParent
-	 *        is the parent node to attach this node to
-	 * @param thisWordId
-	 *        is the wordid
-	 * @param thisSynsetId
-	 *        is the synsetid
+	 * @param thisDoc      is the DOM Document being built
+	 * @param thisParent   is the parent node to attach this node to
+	 * @param thisWordId   is the wordid
+	 * @param thisSynsetId is the synsetid
 	 * @return newly created node
 	 */
 	static public Node makeSenseNode(final Document thisDoc, final Node thisParent, final long thisWordId, final long thisSynsetId)
@@ -88,14 +76,10 @@ public class NodeFactory extends org.sqlunet.sql.NodeFactory
 	/**
 	 * Make synset node
 	 *
-	 * @param thisDoc
-	 *        is the DOM Document being built
-	 * @param thisParent
-	 *        is the parent node to attach this node to
-	 * @param thisSize
-	 *        is the synset's size (the number of words in the synset)
-	 * @param thisId
-	 *        is the synset's id in the database
+	 * @param thisDoc    is the DOM Document being built
+	 * @param thisParent is the parent node to attach this node to
+	 * @param thisSize   is the synset's size (the number of words in the synset)
+	 * @param thisId     is the synset's id in the database
 	 * @return newly created element
 	 */
 	static public Element makeSynsetNode(final Document thisDoc, final Node thisParent, final int thisSize, final long thisId)
@@ -109,14 +93,10 @@ public class NodeFactory extends org.sqlunet.sql.NodeFactory
 	/**
 	 * Make word (synset item) node
 	 *
-	 * @param thisDoc
-	 *        is the DOM Document being built
-	 * @param thisParent
-	 *        is the parent node to attach this node to
-	 * @param thisWord
-	 *        is the target word
-	 * @param thisId
-	 *        is the word id
+	 * @param thisDoc    is the DOM Document being built
+	 * @param thisParent is the parent node to attach this node to
+	 * @param thisWord   is the target word
+	 * @param thisId     is the word id
 	 * @return newly created node
 	 */
 	@SuppressWarnings("UnusedReturnValue")
@@ -130,14 +110,10 @@ public class NodeFactory extends org.sqlunet.sql.NodeFactory
 	/**
 	 * Make link node
 	 *
-	 * @param thisDoc
-	 *        is the DOM Document being built
-	 * @param thisParent
-	 *        is the parent node to attach this node to
-	 * @param thisLinkType
-	 *        is the link type
-	 * @param thisLevel
-	 *        is the recursion level
+	 * @param thisDoc      is the DOM Document being built
+	 * @param thisParent   is the parent node to attach this node to
+	 * @param thisLinkType is the link type
+	 * @param thisLevel    is the recursion level
 	 * @return newly created node
 	 */
 	static public Node makeLinkNode(final Document thisDoc, final Node thisParent, final String thisLinkType, final int thisLevel)
@@ -153,14 +129,10 @@ public class NodeFactory extends org.sqlunet.sql.NodeFactory
 	/**
 	 * Make 'more' link node (when recursiveness is broken and result is truncated)
 	 *
-	 * @param thisDoc
-	 *        is the DOM Document being built
-	 * @param thisParent
-	 *        is the parent node to attach this node to
-	 * @param thisLinkType
-	 *        is the link type
-	 * @param thisLevel
-	 *        is the recursion level
+	 * @param thisDoc      is the DOM Document being built
+	 * @param thisParent   is the parent node to attach this node to
+	 * @param thisLinkType is the link type
+	 * @param thisLevel    is the recursion level
 	 * @return newly created node
 	 */
 	@SuppressWarnings("UnusedReturnValue")

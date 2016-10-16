@@ -9,7 +9,7 @@ public class FrameNetFrameProcessor extends Preprocessor
 	// processor
 
 	private static final String[] replacers = { //
-		"<fex name=[\"\']([^\"\']+)[\"\']>([^<]*)</fex>", "<fex>$2</fex> <xfen>[$1]</xfen>", }; //$NON-NLS-1$ //$NON-NLS-2$
+			"<fex name=[\"\']([^\"\']+)[\"\']>([^<]*)</fex>", "<fex>$2</fex> <xfen>[$1]</xfen>",}; //$NON-NLS-1$ //$NON-NLS-2$
 
 	/**
 	 * Constructor

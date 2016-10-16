@@ -107,15 +107,15 @@
     <string name="item">item</string>
 
     <!-- databases -->
-<!--
-    <string name="sqlunet">SqlUNet</string>
-    <string name="wordnet">WordNet</string>
-    <string name="framenet">FrameNet</string>
-    <string name="propbank">PropBank</string>
-    <string name="verbnet">VerbNet</string>
-    <string name="bnc">BNC</string>
-    <string name="xnet">XNet</string>
--->
+    <!--
+        <string name="sqlunet">SqlUNet</string>
+        <string name="wordnet">WordNet</string>
+        <string name="framenet">FrameNet</string>
+        <string name="propbank">PropBank</string>
+        <string name="verbnet">VerbNet</string>
+        <string name="bnc">BNC</string>
+        <string name="xnet">XNet</string>
+    -->
 
     <!-- arrays -->
     <string-array name="text_search_titles">

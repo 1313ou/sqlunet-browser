@@ -1,8 +1,5 @@
 package org.sqlunet.treeview.renderer;
 
-import org.sqlunet.treeview.R;
-import org.sqlunet.treeview.model.TreeNode;
-
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -10,9 +7,12 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import org.sqlunet.treeview.R;
+import org.sqlunet.treeview.model.TreeNode;
+
 /**
  * Tree renderer with icon
- *
+ * <p>
  * Created by Bogdan Melnychuk on 2/12/15.
  */
 public class IconTreeRenderer extends TreeNode.Renderer<IconTreeItem>
@@ -59,9 +59,11 @@ public class IconTreeRenderer extends TreeNode.Renderer<IconTreeItem>
 	@Override
 	public void toggle(boolean active)
 	{
-		this.junctionView.setImageResource(active ? R.drawable.ic_expanded : R.drawable.ic_collapsed);
+		this.junctionView.setImageResource(active ?
+				R.drawable.ic_expanded :
+				R.drawable.ic_collapsed);
 	}
-	
+
 	@Override
 	public void disable()
 	{

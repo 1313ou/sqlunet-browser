@@ -1,9 +1,9 @@
 package org.sqlunet.wordnet;
 
-import org.sqlunet.HasWordId;
-
 import android.os.Parcel;
 import android.os.Parcelable;
+
+import org.sqlunet.HasWordId;
 
 /**
  * Parcelable sense

@@ -1,11 +1,11 @@
 package org.sqlunet.predicatematrix.loaders;
 
+import android.app.Fragment;
+import android.os.Parcelable;
+
 import org.sqlunet.Word;
 import org.sqlunet.predicatematrix.settings.Settings.PMMode;
 import org.sqlunet.treeview.model.TreeNode;
-
-import android.app.Fragment;
-import android.os.Parcelable;
 
 /**
  * Module for predicate roles obtained from word
@@ -26,7 +26,7 @@ public class PredicateRoleFromWordModule extends BasicModule
 
 	/**
 	 * Constructor
-	 * 
+	 *
 	 * @param mode predicatematrix mode
 	 */
 	public PredicateRoleFromWordModule(final Fragment fragment0, final PMMode mode)
@@ -60,21 +60,21 @@ public class PredicateRoleFromWordModule extends BasicModule
 		{
 			switch (this.mode)
 			{
-			case ROLES:
-				fromWordGrouped(this.word, node);
-				break;
+				case ROLES:
+					fromWordGrouped(this.word, node);
+					break;
 
-			case ROWS_GROUPED_BY_ROLE:
-				fromWord(this.word, node, new DisplayerByPmRole());
-				break;
+				case ROWS_GROUPED_BY_ROLE:
+					fromWord(this.word, node, new DisplayerByPmRole());
+					break;
 
-			case ROWS_GROUPED_BY_SYNSET:
-				fromWord(this.word, node, new DisplayerBySynset());
-				break;
-				
-			case ROWS:
-				fromWord(this.word, node, new DisplayerUngrouped());
-				break;
+				case ROWS_GROUPED_BY_SYNSET:
+					fromWord(this.word, node, new DisplayerBySynset());
+					break;
+
+				case ROWS:
+					fromWord(this.word, node, new DisplayerUngrouped());
+					break;
 			}
 		}
 	}

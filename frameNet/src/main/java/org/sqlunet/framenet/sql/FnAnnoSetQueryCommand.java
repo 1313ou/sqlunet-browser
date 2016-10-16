@@ -1,8 +1,8 @@
 package org.sqlunet.framenet.sql;
 
-import org.sqlunet.sql.DBQueryCommand;
-
 import android.database.sqlite.SQLiteDatabase;
+
+import org.sqlunet.sql.DBQueryCommand;
 
 class FnAnnoSetQueryCommand extends DBQueryCommand
 {
@@ -14,10 +14,8 @@ class FnAnnoSetQueryCommand extends DBQueryCommand
 	/**
 	 * Constructor
 	 *
-	 * @param thisConnection
-	 *            is the database connection
-	 * @param thisTargetAnnoSetId
-	 *            is the target annosetid
+	 * @param thisConnection      is the database connection
+	 * @param thisTargetAnnoSetId is the target annosetid
 	 */
 	@SuppressWarnings("boxing")
 	public FnAnnoSetQueryCommand(final SQLiteDatabase thisConnection, final long thisTargetAnnoSetId)

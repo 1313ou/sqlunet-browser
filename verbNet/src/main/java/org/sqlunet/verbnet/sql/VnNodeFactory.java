@@ -6,13 +6,13 @@
  */
 package org.sqlunet.verbnet.sql;
 
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
 import org.sqlunet.wordnet.sql.NodeFactory;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
+
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * DOM node factory
@@ -24,12 +24,9 @@ class VnNodeFactory extends NodeFactory
 	/**
 	 * Make VerbNet root node
 	 *
-	 * @param thisDoc
-	 *            is the DOM Document being built
-	 * @param thisWordId
-	 *            is the target word id
-	 * @param thisSynsetId
-	 *            is the target synset id (0 for all)
+	 * @param thisDoc      is the DOM Document being built
+	 * @param thisWordId   is the target word id
+	 * @param thisSynsetId is the target synset id (0 for all)
 	 * @return newly created node
 	 */
 	static public Node makeVnRootNode(final Document thisDoc, final long thisWordId, final long thisSynsetId)
@@ -38,8 +35,7 @@ class VnNodeFactory extends NodeFactory
 		if (thisSynsetId == 0)
 		{
 			org.sqlunet.sql.NodeFactory.makeTargetNode(thisDoc, thisRootNode, "word-id", Long.toString(thisWordId)); //$NON-NLS-1$
-		}
-		else
+		} else
 		{
 			org.sqlunet.sql.NodeFactory.makeTargetNode(thisDoc, thisRootNode, "word-id", Long.toString(thisWordId), "synset-id", Long.toString(thisSynsetId)); //$NON-NLS-1$ //$NON-NLS-2$
 		}
@@ -49,10 +45,8 @@ class VnNodeFactory extends NodeFactory
 	/**
 	 * Make VerbNet root node
 	 *
-	 * @param thisDoc
-	 *            is the DOM Document being built
-	 * @param thisClassId
-	 *            is the target class id
+	 * @param thisDoc     is the DOM Document being built
+	 * @param thisClassId is the target class id
 	 * @return newly created node
 	 */
 	public static Node makeVnRootClassNode(final Document thisDoc, final long thisClassId)
@@ -64,12 +58,10 @@ class VnNodeFactory extends NodeFactory
 
 	/**
 	 * Make the class membership node
-	 *  @param thisDoc
-	 *            is the DOM Document being built
-	 * @param thisParent
-	 *            is the parent node to attach this node to
-	 * @param thisClassMembership
- *            is the class membership information
+	 *
+	 * @param thisDoc             is the DOM Document being built
+	 * @param thisParent          is the parent node to attach this node to
+	 * @param thisClassMembership is the class membership information
 	 */
 	public static Node makeVnClassMembershipNode(final Document thisDoc, final Node thisParent, final VnClassMembership thisClassMembership)
 	{
@@ -87,12 +79,9 @@ class VnNodeFactory extends NodeFactory
 	/**
 	 * Make VerbNet class node
 	 *
-	 * @param thisDoc
-	 *            is the DOM Document being built
-	 * @param thisParent
-	 *            is the parent node to attach this node to
-	 * @param thisClassName
-	 *            is the class
+	 * @param thisDoc       is the DOM Document being built
+	 * @param thisParent    is the parent node to attach this node to
+	 * @param thisClassName is the class
 	 * @return newly created node
 	 */
 	private static Node makeVnClassNode(final Document thisDoc, final Node thisParent, final String thisClassName)
@@ -105,12 +94,9 @@ class VnNodeFactory extends NodeFactory
 	/**
 	 * Make VerbNet class node
 	 *
-	 * @param thisDoc
-	 *            is the DOM Document being built
-	 * @param thisParent
-	 *            is the parent node to attach this node to
-	 * @param thisClass
-	 *            is the class
+	 * @param thisDoc    is the DOM Document being built
+	 * @param thisParent is the parent node to attach this node to
+	 * @param thisClass  is the class
 	 * @return newly created node
 	 */
 	public static Node makeVnClassNode(final Document thisDoc, final Node thisParent, final VnClass thisClass)
@@ -121,10 +107,8 @@ class VnNodeFactory extends NodeFactory
 	/**
 	 * Make FnRole roles node
 	 *
-	 * @param thisDoc
-	 *            is the DOM Document being built
-	 * @param thisParent
-	 *            is the parent node to attach this node to
+	 * @param thisDoc    is the DOM Document being built
+	 * @param thisParent is the parent node to attach this node to
 	 * @return newly created node
 	 */
 	static public Node makeVnRolesNode(final Document thisDoc, final Node thisParent)
@@ -135,14 +119,10 @@ class VnNodeFactory extends NodeFactory
 	/**
 	 * Make FnRole role node
 	 *
-	 * @param thisDoc
-	 *            is the DOM Document being built
-	 * @param thisParent
-	 *            is the parent node to attach this node to
-	 * @param thisRole
-	 *            is the role
-	 * @param i
-	 *            is the index
+	 * @param thisDoc    is the DOM Document being built
+	 * @param thisParent is the parent node to attach this node to
+	 * @param thisRole   is the role
+	 * @param i          is the index
 	 * @return newly created node
 	 */
 	@SuppressWarnings("UnusedReturnValue")
@@ -164,10 +144,8 @@ class VnNodeFactory extends NodeFactory
 	/**
 	 * Make FnRole frames node
 	 *
-	 * @param thisDoc
-	 *            is the DOM Document being built
-	 * @param thisParent
-	 *            is the parent node to attach this node to
+	 * @param thisDoc    is the DOM Document being built
+	 * @param thisParent is the parent node to attach this node to
 	 * @return newly created node
 	 */
 	static public Node makeVnFramesNode(final Document thisDoc, final Node thisParent)
@@ -178,14 +156,10 @@ class VnNodeFactory extends NodeFactory
 	/**
 	 * Make FnFrameElement frame node
 	 *
-	 * @param thisDoc
-	 *            is the DOM Document being built
-	 * @param thisParent
-	 *            is the parent node to attach this node to
-	 * @param thisFrame
-	 *            is the frame
-	 * @param i
-	 *            is the rank
+	 * @param thisDoc    is the DOM Document being built
+	 * @param thisParent is the parent node to attach this node to
+	 * @param thisFrame  is the frame
+	 * @param i          is the rank
 	 * @return newly created node
 	 */
 	@SuppressWarnings("UnusedReturnValue")
@@ -319,16 +293,11 @@ class VnNodeFactory extends NodeFactory
 	/**
 	 * Make synset node with a flag
 	 *
-	 * @param thisDoc
-	 *            is the DOM Document being built
-	 * @param thisParent
-	 *            is the parent node to attach this node to
-	 * @param thisSize
-	 *            is the synset's size (the number of words in the synset)
-	 * @param thisId
-	 *            is the synset's id in the database
-	 * @param thisFlag
-	 *            is the synset's flag
+	 * @param thisDoc    is the DOM Document being built
+	 * @param thisParent is the parent node to attach this node to
+	 * @param thisSize   is the synset's size (the number of words in the synset)
+	 * @param thisId     is the synset's id in the database
+	 * @param thisFlag   is the synset's flag
 	 * @return newly created node
 	 */
 	@SuppressWarnings("unused")

@@ -1,13 +1,13 @@
 package org.sqlunet.provider;
 
-import org.sqlunet.settings.StorageSettings;
-
 import android.content.ContentProvider;
 import android.content.ContentValues;
 import android.database.sqlite.SQLiteCantOpenDatabaseException;
 import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.util.Log;
+
+import org.sqlunet.settings.StorageSettings;
 
 public abstract class SqlUNetProvider extends ContentProvider
 {
@@ -57,8 +57,7 @@ public abstract class SqlUNetProvider extends ContentProvider
 		{
 			this.db = open(path, SQLiteDatabase.OPEN_READONLY);
 			Log.d(SqlUNetProvider.TAG, "Opened by " + this.getClass() + " content provider: " + this.db.getPath()); //$NON-NLS-1$ //$NON-NLS-2$
-		}
-		catch (final SQLiteCantOpenDatabaseException e)
+		} catch (final SQLiteCantOpenDatabaseException e)
 		{
 			Log.e(SqlUNetProvider.TAG, "Open failed by " + this.getClass() + " content provider: " + this.db.getPath(), e); //$NON-NLS-1$ //$NON-NLS-2$
 		}
@@ -67,10 +66,8 @@ public abstract class SqlUNetProvider extends ContentProvider
 	/**
 	 * Open database
 	 *
-	 * @param path
-	 *            database path
-	 * @param flags
-	 *            database name
+	 * @param path  database path
+	 * @param flags database name
 	 * @return opened database
 	 */
 	private SQLiteDatabase open(final String path, @SuppressWarnings("SameParameterValue") final int flags)
@@ -150,10 +147,8 @@ public abstract class SqlUNetProvider extends ContentProvider
 	/**
 	 * Append items to projection
 	 *
-	 * @param projection
-	 *            original projection
-	 * @param items
-	 *            items to add to projection
+	 * @param projection original projection
+	 * @param items      items to add to projection
 	 * @return augmented projection
 	 */
 	protected static String[] appendProjection(final String[] projection, final String... items)
@@ -164,8 +159,7 @@ public abstract class SqlUNetProvider extends ContentProvider
 		{
 			projection2 = new String[1 + items.length];
 			projection2[i++] = "*"; //$NON-NLS-1$
-		}
-		else
+		} else
 		{
 			projection2 = new String[projection.length + items.length];
 			for (final String item : projection)
@@ -184,10 +178,8 @@ public abstract class SqlUNetProvider extends ContentProvider
 	/**
 	 * Add items to projection
 	 *
-	 * @param projection
-	 *            original projection
-	 * @param items
-	 *            items to add to projection
+	 * @param projection original projection
+	 * @param items      items to add to projection
 	 * @return augmented projection
 	 */
 	static String[] prependProjection(final String[] projection, @SuppressWarnings("SameParameterValue") final String... items)
@@ -197,8 +189,7 @@ public abstract class SqlUNetProvider extends ContentProvider
 		if (projection == null)
 		{
 			projection2 = new String[1 + items.length];
-		}
-		else
+		} else
 		{
 			projection2 = new String[projection.length + items.length];
 		}
@@ -209,8 +200,7 @@ public abstract class SqlUNetProvider extends ContentProvider
 		if (projection == null)
 		{
 			projection2[i] = "*"; //$NON-NLS-1$
-		}
-		else
+		} else
 		{
 			for (final String item : projection)
 			{

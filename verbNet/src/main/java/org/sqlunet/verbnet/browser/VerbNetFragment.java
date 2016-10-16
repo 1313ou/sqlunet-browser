@@ -1,22 +1,22 @@
 package org.sqlunet.verbnet.browser;
 
-import org.sqlunet.HasXId;
-import org.sqlunet.browser.Module;
-import org.sqlunet.provider.SqlUNetContract;
-import org.sqlunet.treeview.renderer.IconTreeRenderer;
-import org.sqlunet.treeview.model.TreeNode;
-import org.sqlunet.treeview.view.TreeView;
-import org.sqlunet.verbnet.R;
-import org.sqlunet.verbnet.loaders.ClassFromWordModule;
-import org.sqlunet.verbnet.loaders.ClassModule;
-import org.sqlunet.view.TreeFactory;
-
 import android.app.Fragment;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import org.sqlunet.HasXId;
+import org.sqlunet.browser.Module;
+import org.sqlunet.provider.SqlUNetContract;
+import org.sqlunet.treeview.model.TreeNode;
+import org.sqlunet.treeview.renderer.IconTreeRenderer;
+import org.sqlunet.treeview.view.TreeView;
+import org.sqlunet.verbnet.R;
+import org.sqlunet.verbnet.loaders.ClassFromWordModule;
+import org.sqlunet.verbnet.loaders.ClassModule;
+import org.sqlunet.view.TreeFactory;
 
 /**
  * A fragment representing a verbnet search

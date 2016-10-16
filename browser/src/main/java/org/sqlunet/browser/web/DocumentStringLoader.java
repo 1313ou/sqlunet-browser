@@ -30,8 +30,7 @@ abstract class DocumentStringLoader extends AsyncTaskLoader<String>
 		try
 		{
 			return getDoc();
-		}
-		finally
+		} finally
 		{
 			synchronized (this)
 			{

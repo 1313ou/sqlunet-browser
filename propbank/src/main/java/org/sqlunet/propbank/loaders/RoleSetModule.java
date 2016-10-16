@@ -1,11 +1,11 @@
 package org.sqlunet.propbank.loaders;
 
+import android.app.Fragment;
+import android.os.Parcelable;
+
 import org.sqlunet.HasXId;
 import org.sqlunet.propbank.PbRoleSetPointer;
 import org.sqlunet.treeview.model.TreeNode;
-
-import android.app.Fragment;
-import android.os.Parcelable;
 
 /**
  * Module for rolesets
@@ -65,8 +65,7 @@ public class RoleSetModule extends BasicModule
 		{
 			// data
 			roleset(RoleSetModule.this.rolesetid, node);
-		}
-		else
+		} else
 		{
 			node.disable();
 		}

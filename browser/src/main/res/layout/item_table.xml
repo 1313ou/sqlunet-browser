@@ -22,7 +22,7 @@
         android:paddingLeft="4dp"
         android:paddingRight="4dp"
         android:textColor="#ff707070"
-        android:textSize="20sp" />
+        android:textSize="20sp"/>
 
     <TextView
         android:id="@+id/item1"
@@ -33,7 +33,7 @@
         android:paddingLeft="4dp"
         android:paddingRight="4dp"
         android:textColor="#ff707070"
-        android:textSize="20sp" />
+        android:textSize="20sp"/>
 
     <TextView
         android:id="@+id/item2"
@@ -45,7 +45,7 @@
         android:paddingLeft="4dp"
         android:paddingRight="4dp"
         android:textColor="#ff707070"
-        android:textSize="20sp" />
+        android:textSize="20sp"/>
 
     <TextView
         android:id="@+id/item3"
@@ -55,7 +55,7 @@
         android:paddingLeft="4dp"
         android:paddingRight="4dp"
         android:textColor="#ff707070"
-        android:textSize="22sp" />
+        android:textSize="22sp"/>
 
     <TextView
         android:id="@+id/item4"
@@ -65,7 +65,7 @@
         android:paddingLeft="4dp"
         android:paddingRight="4dp"
         android:textColor="#ff707070"
-        android:textSize="22sp" />
+        android:textSize="22sp"/>
 
     <TextView
         android:id="@+id/item5"
@@ -75,6 +75,6 @@
         android:paddingLeft="4dp"
         android:paddingRight="4dp"
         android:textColor="#ff707070"
-        android:textSize="22sp" />
+        android:textSize="22sp"/>
 
 </LinearLayout>

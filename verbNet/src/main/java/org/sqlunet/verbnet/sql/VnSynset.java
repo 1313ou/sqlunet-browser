@@ -17,8 +17,7 @@ class VnSynset extends BasicSynset
 	/**
 	 * Constructor from query for synsets
 	 *
-	 * @param query
-	 *            is a query for synsets
+	 * @param query is a query for synsets
 	 */
 	VnSynset(final VnQueryCommand query)
 	{

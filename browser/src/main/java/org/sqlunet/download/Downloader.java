@@ -1,5 +1,8 @@
 package org.sqlunet.download;
 
+import android.os.AsyncTask;
+import android.util.Log;
+
 import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileOutputStream;
@@ -8,9 +11,6 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.URL;
 import java.net.URLConnection;
-
-import android.os.AsyncTask;
-import android.util.Log;
 
 public class Downloader extends AsyncTask<Void, Integer, Boolean>
 {
@@ -43,14 +43,10 @@ public class Downloader extends AsyncTask<Void, Integer, Boolean>
 	 *            listener
 	 */
 	/**
-	 * @param from
-	 *            from-url
-	 * @param to
-	 *            to-file
-	 * @param code
-	 *            code
-	 * @param listener
-	 *            listener
+	 * @param from     from-url
+	 * @param to       to-file
+	 * @param code     code
+	 * @param listener listener
 	 */
 	public Downloader(final String from, final String to, int code, final Listener listener)
 	{
@@ -163,24 +159,20 @@ public class Downloader extends AsyncTask<Void, Integer, Boolean>
 			}
 			output.flush();
 			return true;
-		}
-		catch (final InterruptedException e)
+		} catch (final InterruptedException e)
 		{
 			Log.d(TAG, "Interrupted downloading"); //$NON-NLS-1$
-		}
-		catch (final Exception e)
+		} catch (final Exception e)
 		{
 			Log.e(TAG, "While downloading", e); //$NON-NLS-1$
-		}
-		finally
+		} finally
 		{
 			if (output != null)
 			{
 				try
 				{
 					output.close();
-				}
-				catch (final IOException e)
+				} catch (final IOException e)
 				{
 					e.printStackTrace();
 				}
@@ -190,8 +182,7 @@ public class Downloader extends AsyncTask<Void, Integer, Boolean>
 				try
 				{
 					input.close();
-				}
-				catch (final IOException e)
+				} catch (final IOException e)
 				{
 					e.printStackTrace();
 				}

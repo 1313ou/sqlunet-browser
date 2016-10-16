@@ -7,7 +7,7 @@ import android.util.SparseArray;
 
 /**
  * Prepared statement
- * 
+ *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
 public class PreparedStatement
@@ -34,11 +34,9 @@ public class PreparedStatement
 
 	/**
 	 * Constructor
-	 * 
-	 * @param connection
-	 *        connection
-	 * @param sql
-	 *        sql
+	 *
+	 * @param connection connection
+	 * @param sql        sql
 	 */
 	public PreparedStatement(final SQLiteDatabase connection, final String sql)
 	{
@@ -48,11 +46,9 @@ public class PreparedStatement
 
 	/**
 	 * Set string argument
-	 * 
-	 * @param i
-	 *        ith argument
-	 * @param string
-	 *        string
+	 *
+	 * @param i      ith argument
+	 * @param string string
 	 */
 	public void setString(final int i, final String string)
 	{
@@ -61,11 +57,9 @@ public class PreparedStatement
 
 	/**
 	 * Set long argument
-	 * 
-	 * @param i
-	 *        ith argument
-	 * @param l
-	 *        long
+	 *
+	 * @param i ith argument
+	 * @param l long
 	 */
 	public void setLong(final int i, final long l)
 	{
@@ -74,11 +68,9 @@ public class PreparedStatement
 
 	/**
 	 * Set int argument
-	 * 
-	 * @param i
-	 *        ith argument
-	 * @param n
-	 *        int
+	 *
+	 * @param i ith argument
+	 * @param n int
 	 */
 	public void setInt(final int i, final int n)
 	{
@@ -87,11 +79,9 @@ public class PreparedStatement
 
 	/**
 	 * Set null parameter
-	 * 
-	 * @param i
-	 *        ith parameter
-	 * @param type
-	 *        type
+	 *
+	 * @param i    ith parameter
+	 * @param type type
 	 */
 	public void setNull(@SuppressWarnings("SameParameterValue") final int i, @SuppressWarnings({"UnusedParameters", "SameParameterValue"}) final int type)
 	{
@@ -100,7 +90,7 @@ public class PreparedStatement
 
 	/**
 	 * Execute statement
-	 * 
+	 *
 	 * @return cursor
 	 */
 	public Cursor executeQuery()
@@ -113,8 +103,7 @@ public class PreparedStatement
 				Log.d(PreparedStatement.TAG + "SQL", Utils.replaceArgs(this.sql, args)); //$NON-NLS-1$
 			}
 			return this.db.rawQuery(this.sql, args);
-		}
-		catch (final Exception e)
+		} catch (final Exception e)
 		{
 			Log.e(PreparedStatement.TAG, this.sql + " " + Utils.argsToString(args), e); //$NON-NLS-1$
 			return null;
@@ -133,7 +122,7 @@ public class PreparedStatement
 
 	/**
 	 * Arguments to string array
-	 * 
+	 *
 	 * @return selection arguments as string array
 	 */
 	private String[] toSelectionArgs()

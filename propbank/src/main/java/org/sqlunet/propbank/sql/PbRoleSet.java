@@ -1,10 +1,10 @@
 package org.sqlunet.propbank.sql;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Pair;
+
+import java.util.ArrayList;
+import java.util.List;
 
 class PbRoleSet
 {
@@ -28,10 +28,8 @@ class PbRoleSet
 	/**
 	 * Make sets of PropBank rolesets from query built from wordid
 	 *
-	 * @param thisConnection
-	 *        is the database connection
-	 * @param thisWord
-	 *        is the word to build query from
+	 * @param thisConnection is the database connection
+	 * @param thisWord       is the word to build query from
 	 * @return list of PropBank rolesets
 	 */
 	static public Pair<Long, List<PbRoleSet>> makeFromWord(final SQLiteDatabase thisConnection, final String thisWord)
@@ -54,8 +52,7 @@ class PbRoleSet
 				thisResult.add(new PbRoleSet(thisRoleSetName, thisRoleSetHead, thisRoleSetDescr, thisRoleSetId));
 			}
 			return new Pair<>(thisWordId, thisResult);
-		}
-		finally
+		} finally
 		{
 			if (thisQuery != null)
 			{
@@ -67,10 +64,8 @@ class PbRoleSet
 	/**
 	 * Make sets of PropBank rolesets from query built from wordid
 	 *
-	 * @param thisConnection
-	 *        is the database connection
-	 * @param thisWordId
-	 *        is the word id to build query from
+	 * @param thisConnection is the database connection
+	 * @param thisWordId     is the word id to build query from
 	 * @return list of PropBank rolesets
 	 */
 	static public List<PbRoleSet> makeFromWordId(final SQLiteDatabase thisConnection, final long thisWordId)
@@ -90,8 +85,7 @@ class PbRoleSet
 				final long thisRoleSetId = thisQuery.getRoleSetId();
 				thisResult.add(new PbRoleSet(thisRoleSetName, thisRoleSetHead, thisRoleSetDescr, thisRoleSetId));
 			}
-		}
-		finally
+		} finally
 		{
 			if (thisQuery != null)
 			{
@@ -104,10 +98,8 @@ class PbRoleSet
 	/**
 	 * Make sets of PropBank rolesets from query built from wordid
 	 *
-	 * @param thisConnection
-	 *        is the database connection
-	 * @param thisRoleSetId
-	 *        is the roleset id to build query from
+	 * @param thisConnection is the database connection
+	 * @param thisRoleSetId  is the roleset id to build query from
 	 * @return list of PropBank rolesets
 	 */
 	static public List<PbRoleSet> make(final SQLiteDatabase thisConnection, final long thisRoleSetId)
@@ -126,8 +118,7 @@ class PbRoleSet
 				final String thisRoleSetDescr = thisQuery.getRoleSetDescr();
 				thisResult.add(new PbRoleSet(thisRoleSetName, thisRoleSetHead, thisRoleSetDescr, thisRoleSetId));
 			}
-		}
-		finally
+		} finally
 		{
 			if (thisQuery != null)
 			{

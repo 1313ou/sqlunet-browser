@@ -1,10 +1,10 @@
 package org.sqlunet.verbnet.sql;
 
-import java.sql.Types;
+import android.database.sqlite.SQLiteDatabase;
 
 import org.sqlunet.sql.DBQueryCommand;
 
-import android.database.sqlite.SQLiteDatabase;
+import java.sql.Types;
 
 /**
  * Query command for VerbNet roles
@@ -21,14 +21,10 @@ class VnRoleQueryFromSenseCommand extends DBQueryCommand
 	/**
 	 * Constructor
 	 *
-	 * @param thisConnection
-	 *            is the database connection
-	 * @param thisClassId
-	 *            is the target classid
-	 * @param thisWordId
-	 *            is the target wordid
-	 * @param thisSynsetId
-	 *            is the target synsetid
+	 * @param thisConnection is the database connection
+	 * @param thisClassId    is the target classid
+	 * @param thisWordId     is the target wordid
+	 * @param thisSynsetId   is the target synsetid
 	 */
 	@SuppressWarnings("boxing")
 	public VnRoleQueryFromSenseCommand(final SQLiteDatabase thisConnection, final long thisClassId, final long thisWordId, final Long thisSynsetId)
@@ -38,8 +34,7 @@ class VnRoleQueryFromSenseCommand extends DBQueryCommand
 		if (thisSynsetId != null)
 		{
 			this.statement.setLong(2, thisSynsetId);
-		}
-		else
+		} else
 		{
 			this.statement.setNull(2, Types.DECIMAL);
 		}

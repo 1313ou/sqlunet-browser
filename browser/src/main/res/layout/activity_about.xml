@@ -1,8 +1,8 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="org.sqlunet.browser.AboutActivity" >
+            xmlns:tools="http://schemas.android.com/tools"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:context="org.sqlunet.browser.AboutActivity">
 
     <LinearLayout
         android:id="@+id/sqlunet"
@@ -12,7 +12,7 @@
         android:paddingBottom="16dp"
         android:paddingLeft="16dp"
         android:paddingRight="16dp"
-        android:paddingTop="16dp" >
+        android:paddingTop="16dp">
 
         <ImageView
             android:id="@+id/sqlunetImage"
@@ -20,7 +20,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:contentDescription="@string/about_sqlunet_label"
-            android:src="@drawable/ic_launcher" />
+            android:src="@drawable/ic_launcher"/>
 
         <TextView
             android:id="@+id/sqlunetLabel"
@@ -29,7 +29,7 @@
             android:layout_gravity="center_horizontal"
             android:text="@string/about_sqlunet_label"
             android:textSize="20sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"/>
 
         <TextView
             android:id="@+id/sqlunetText"
@@ -37,7 +37,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:gravity="center"
-            android:text="@string/about_sqlunet_text" />
+            android:text="@string/about_sqlunet_text"/>
 
         <TextView
             android:id="@+id/sqlunetAuthor"
@@ -45,14 +45,14 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:text="@string/about_sqlunet_author"
-            android:textStyle="italic" />
+            android:textStyle="italic"/>
 
         <TextView
             android:id="@+id/sqlunetCopyright"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:text="@string/about_sqlunet_copyright" />
+            android:text="@string/about_sqlunet_copyright"/>
     </LinearLayout>
 
 </ScrollView>

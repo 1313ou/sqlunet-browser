@@ -19,12 +19,9 @@ class FnSemType
 	/**
 	 * Constructor
 	 *
-	 * @param thisSemTypeId
-	 *            is the semtype id
-	 * @param thisSemTypeName
-	 *            is the semtype name
-	 * @param thisSemTypeDefinition
-	 *            is the semtype definition
+	 * @param thisSemTypeId         is the semtype id
+	 * @param thisSemTypeName       is the semtype name
+	 * @param thisSemTypeDefinition is the semtype definition
 	 */
 	private FnSemType(final long thisSemTypeId, final String thisSemTypeName, final String thisSemTypeDefinition)
 	{
@@ -36,8 +33,7 @@ class FnSemType
 	/**
 	 * Make semtypes from string
 	 *
-	 * @param theseSemTypesString
-	 *            (id:def|id:def...)
+	 * @param theseSemTypesString (id:def|id:def...)
 	 * @return list of semtypes
 	 */
 	public static List<FnSemType> make(final String theseSemTypesString)

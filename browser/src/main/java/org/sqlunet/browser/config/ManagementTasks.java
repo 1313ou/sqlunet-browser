@@ -1,14 +1,14 @@
 package org.sqlunet.browser.config;
 
-import java.util.List;
-
-import org.sqlunet.browser.R;
-
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.AsyncTask;
 import android.util.Log;
 import android.widget.Toast;
+
+import org.sqlunet.browser.R;
+
+import java.util.List;
 
 class ManagementTasks
 {
@@ -20,13 +20,12 @@ class ManagementTasks
 		{
 			final SQLiteDatabase db = context.openOrCreateDatabase(databasePath, Context.MODE_PRIVATE, null);
 			db.close();
-		}
-		catch (Exception e)
+		} catch (Exception e)
 		{
 			Log.e(TAG, "While creating database", e); //$NON-NLS-1$
 		}
 	}
-	
+
 	static public void deleteDatabase(final Context context, final String databasePath)
 	{
 		// make sure you close all database connections before deleting
@@ -73,7 +72,7 @@ class ManagementTasks
 	}
 
 	static public void flushAll(final Context context, final String databasePath, final List<String> tables)
-	{		
+	{
 		if (tables != null && !tables.isEmpty())
 		{
 			final SQLiteDatabase db = context.openOrCreateDatabase(databasePath, Context.MODE_PRIVATE, null);

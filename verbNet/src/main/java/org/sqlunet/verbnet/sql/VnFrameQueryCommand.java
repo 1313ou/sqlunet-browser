@@ -1,8 +1,8 @@
 package org.sqlunet.verbnet.sql;
 
-import org.sqlunet.sql.DBQueryCommand;
-
 import android.database.sqlite.SQLiteDatabase;
+
+import org.sqlunet.sql.DBQueryCommand;
 
 /**
  * VerbNet FrameQuery query command
@@ -19,10 +19,8 @@ class VnFrameQueryCommand extends DBQueryCommand
 	/**
 	 * Constructor
 	 *
-	 * @param thisConnection
-	 *            is the database connection
-	 * @param thisClassId
-	 *            is the target classid
+	 * @param thisConnection is the database connection
+	 * @param thisClassId    is the target classid
 	 */
 	@SuppressWarnings("boxing")
 	public VnFrameQueryCommand(final SQLiteDatabase thisConnection, final long thisClassId)

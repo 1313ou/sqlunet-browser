@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical" >
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
 
     <ImageView
         android:id="@+id/launcher"
@@ -13,13 +13,13 @@
         android:layout_marginBottom="20dp"
         android:layout_marginTop="20dp"
         android:contentDescription="@string/app_name"
-        android:src="@drawable/ic_launcher" />
+        android:src="@drawable/ic_launcher"/>
 
     <GridLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:columnCount="3"
-        android:orientation="horizontal" >
+        android:orientation="horizontal">
 
         <!-- database -->
 
@@ -30,7 +30,7 @@
             android:layout_columnWeight="5"
             android:maxLines="1"
             android:text="@string/status_database"
-            tools:targetApi="lollipop" />
+            tools:targetApi="lollipop"/>
 
         <ImageView
             android:id="@+id/status_database"
@@ -45,7 +45,7 @@
             android:paddingStart="20dp"
             android:paddingTop="20dp"
             android:src="@drawable/ic_unknown"
-            tools:targetApi="lollipop" />
+            tools:targetApi="lollipop"/>
 
         <ImageButton
             android:id="@+id/databaseButton"
@@ -58,7 +58,7 @@
             android:contentDescription="@string/status_database"
             android:src="@drawable/bn_download"
             android:visibility="gone"
-            tools:targetApi="lollipop" />
+            tools:targetApi="lollipop"/>
 
         <!-- predicatematrix -->
 
@@ -69,7 +69,7 @@
             android:layout_columnWeight="5"
             android:text="@string/status_predicatematrix"
             tools:targetApi="lollipop"
-            android:maxLines="1" />
+            android:maxLines="1"/>
 
         <ImageView
             android:id="@+id/status_predicatematrix"
@@ -84,7 +84,7 @@
             android:paddingStart="20dp"
             android:paddingTop="20dp"
             android:src="@drawable/ic_unknown"
-            tools:targetApi="lollipop" />
+            tools:targetApi="lollipop"/>
 
         <ImageButton
             android:id="@+id/predicatematrixButton"
@@ -97,7 +97,7 @@
             android:contentDescription="@string/status_predicatematrix"
             android:src="@drawable/bn_setup"
             android:visibility="gone"
-            tools:targetApi="lollipop" />
+            tools:targetApi="lollipop"/>
 
         <!-- indexes -->
 
@@ -108,7 +108,7 @@
             android:layout_columnWeight="5"
             android:text="@string/status_indexes"
             tools:targetApi="lollipop"
-            android:maxLines="1" />
+            android:maxLines="1"/>
 
         <ImageView
             android:id="@+id/status_indexes"
@@ -123,7 +123,7 @@
             android:paddingStart="20dp"
             android:paddingTop="20dp"
             android:src="@drawable/ic_unknown"
-            tools:targetApi="lollipop" />
+            tools:targetApi="lollipop"/>
 
         <ImageButton
             android:id="@+id/indexesButton"
@@ -136,7 +136,7 @@
             android:contentDescription="@string/status_indexes"
             android:src="@drawable/bn_setup"
             android:visibility="gone"
-            tools:targetApi="lollipop" />
+            tools:targetApi="lollipop"/>
 
         <!-- textsearch -->
 
@@ -147,7 +147,7 @@
             android:layout_columnWeight="5"
             android:text="@string/status_textsearch"
             tools:targetApi="lollipop"
-            android:maxLines="1" />
+            android:maxLines="1"/>
 
         <ImageView
             android:id="@+id/status_textsearch"
@@ -162,7 +162,7 @@
             android:paddingStart="20dp"
             android:paddingTop="20dp"
             android:src="@drawable/ic_unknown"
-            tools:targetApi="lollipop" />
+            tools:targetApi="lollipop"/>
 
         <ImageButton
             android:id="@+id/textsearchButton"
@@ -175,7 +175,7 @@
             android:contentDescription="@string/status_textsearch"
             android:src="@drawable/bn_setup"
             android:visibility="gone"
-            tools:targetApi="lollipop" />
+            tools:targetApi="lollipop"/>
 
         <!-- textsearch framenet -->
 
@@ -186,7 +186,7 @@
             android:layout_columnWeight="5"
             android:text="@string/status_textsearchfn"
             tools:targetApi="lollipop"
-            android:maxLines="1" />
+            android:maxLines="1"/>
 
         <ImageView
             android:id="@+id/status_textsearchfn"
@@ -201,7 +201,7 @@
             android:paddingStart="20dp"
             android:paddingTop="20dp"
             android:src="@drawable/ic_unknown"
-            tools:targetApi="lollipop" />
+            tools:targetApi="lollipop"/>
 
         <ImageButton
             android:id="@+id/textsearchfnButton"
@@ -214,7 +214,7 @@
             android:contentDescription="@string/status_textsearchfn"
             android:src="@drawable/bn_setup"
             android:visibility="gone"
-            tools:targetApi="lollipop" />
+            tools:targetApi="lollipop"/>
     </GridLayout>
 
 </LinearLayout>

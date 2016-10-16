@@ -1,9 +1,9 @@
 package org.sqlunet.framenet;
 
-import org.sqlunet.Pointer;
-
 import android.os.Parcel;
 import android.os.Parcelable;
+
+import org.sqlunet.Pointer;
 
 /**
  * Parcelable annoset

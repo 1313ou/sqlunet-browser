@@ -14,14 +14,10 @@ public class NodeFactory
 	/**
 	 * Make versatile node
 	 *
-	 * @param document
-	 *        is the DOM Document being built
-	 * @param parent
-	 *        is the parent node to attach this node to
-	 * @param name
-	 *        is the node's tag name
-	 * @param text
-	 *        is the node's text content
+	 * @param document is the DOM Document being built
+	 * @param parent   is the parent node to attach this node to
+	 * @param name     is the node's tag name
+	 * @param text     is the node's text content
 	 * @return newly created node
 	 */
 	static public Element makeNode(final Document document, final Node parent, final String name, final String text)
@@ -43,12 +39,9 @@ public class NodeFactory
 	/**
 	 * Build node attribute
 	 *
-	 * @param element
-	 *        is the element node to set attribute for
-	 * @param name
-	 *        is the attribute's name
-	 * @param value
-	 *        is the attribute's value
+	 * @param element is the element node to set attribute for
+	 * @param name    is the attribute's name
+	 * @param value   is the attribute's value
 	 */
 	protected static void makeAttribute(final Element element, final String name, final String value)
 	{
@@ -61,12 +54,9 @@ public class NodeFactory
 	/**
 	 * Make target node
 	 *
-	 * @param document
-	 *        is the DOM Document being built
-	 * @param parent
-	 *        is the parent node to attach this node to
-	 * @param args
-	 *        name-value pairs
+	 * @param document is the DOM Document being built
+	 * @param parent   is the parent node to attach this node to
+	 * @param args     name-value pairs
 	 * @return newly created node
 	 */
 	@SuppressWarnings("UnusedReturnValue")
@@ -92,11 +82,9 @@ public class NodeFactory
 	/**
 	 * Make text node
 	 *
-	 * @param document
-	 *        is the DOM Document being built
-	 * @param parent
-	 *        is the parent node to attach this text to
-	 * @param text text
+	 * @param document is the DOM Document being built
+	 * @param parent   is the parent node to attach this text to
+	 * @param text     text
 	 * @return parent
 	 */
 	@SuppressWarnings("UnusedReturnValue")

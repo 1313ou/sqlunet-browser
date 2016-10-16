@@ -1,11 +1,11 @@
 package org.sqlunet.verbnet.loaders;
 
+import android.app.Fragment;
+import android.os.Parcelable;
+
 import org.sqlunet.HasXId;
 import org.sqlunet.treeview.model.TreeNode;
 import org.sqlunet.verbnet.VnClassPointer;
-
-import android.app.Fragment;
-import android.os.Parcelable;
 
 public class ClassModule extends BasicModule
 {
@@ -17,8 +17,7 @@ public class ClassModule extends BasicModule
 	/**
 	 * Constructor
 	 *
-	 * @param fragment0
-	 *            host fragment
+	 * @param fragment0 host fragment
 	 */
 	public ClassModule(final Fragment fragment0)
 	{
@@ -63,8 +62,7 @@ public class ClassModule extends BasicModule
 		{
 			// data
 			vnclasses(this.classid, node);
-		}
-		else
+		} else
 		{
 			node.disable();
 		}

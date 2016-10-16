@@ -1,11 +1,11 @@
 package org.sqlunet.browser.web;
 
-import org.w3c.dom.Document;
-
 import android.annotation.SuppressLint;
 import android.content.AsyncTaskLoader;
 import android.content.Context;
 import android.os.CancellationSignal;
+
+import org.w3c.dom.Document;
 
 //TODO
 abstract public class DocumentLoader extends AsyncTaskLoader<Document>
@@ -31,8 +31,7 @@ abstract public class DocumentLoader extends AsyncTaskLoader<Document>
 		try
 		{
 			return getDoc(this.cancellationSignal);
-		}
-		finally
+		} finally
 		{
 			synchronized (this)
 			{

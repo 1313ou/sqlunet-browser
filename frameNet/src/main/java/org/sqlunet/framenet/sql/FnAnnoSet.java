@@ -30,8 +30,7 @@ public class FnAnnoSet
 				final FnSentence thisSentence = new FnSentence(thisSentenceId, thisText);
 				thisResult = new FnAnnoSet(thisAnnoSetId, thisSentence);
 			}
-		}
-		finally
+		} finally
 		{
 			if (thisQuery != null)
 			{

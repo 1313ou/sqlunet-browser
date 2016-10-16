@@ -29,13 +29,12 @@ public class Settings
 			try
 			{
 				mode = Settings.PMMode.valueOf(mode_string);
-			}
-			catch (final Exception e)
+			} catch (final Exception e)
 			{
 				mode = Settings.PMMode.ROLES;
 				sharedPref.edit().putString(Settings.PREF_PM_MODE, mode.name()).apply();
 			}
 			return mode;
 		}
-	}	
+	}
 }

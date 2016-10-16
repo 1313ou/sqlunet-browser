@@ -1,25 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="Label.Members" />
+    <style name="Label.Members"/>
 
-    <style name="Label.Definition" />
+    <style name="Label.Definition"/>
 
-    <style name="Label.Samples" />
+    <style name="Label.Samples"/>
 
-    <style name="Label.SemLinks" />
+    <style name="Label.SemLinks"/>
 
-    <style name="Label.LexLinks" />
+    <style name="Label.LexLinks"/>
 
-    <style name="Label.VerbFrames" />
+    <style name="Label.VerbFrames"/>
 
-    <style name="Label.VerbSentenceFrames" />
+    <style name="Label.VerbSentenceFrames"/>
 
-    <style name="Label.Morphology" />
+    <style name="Label.Morphology"/>
 
-    <style name="Label.AdjPosition" />
+    <style name="Label.AdjPosition"/>
 
-    <style name="Label.Source" />
+    <style name="Label.Source"/>
 
     <style name="Label.Group">
         <item name="android:padding">8dp</item>
@@ -88,21 +88,21 @@
         <item name="android:textColor">#0000FF</item>
     </style>
 
-    <style name="Data.Definition" />
+    <style name="Data.Definition"/>
 
-    <style name="Data.Samples" />
+    <style name="Data.Samples"/>
 
-    <style name="Data.SemLinks" />
+    <style name="Data.SemLinks"/>
 
-    <style name="Data.LexLinks" />
+    <style name="Data.LexLinks"/>
 
-    <style name="Data.VerbFrames" />
+    <style name="Data.VerbFrames"/>
 
-    <style name="Data.VerbSentenceFrames" />
+    <style name="Data.VerbSentenceFrames"/>
 
-    <style name="Data.Morphology" />
+    <style name="Data.Morphology"/>
 
-    <style name="Data.AdjPosition" />
+    <style name="Data.AdjPosition"/>
 
     <style name="Data.XSources">
         <item name="android:textColor">#FF202020</item>
@@ -110,7 +110,7 @@
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_gravity">end</item>
         <item name="android:gravity">end</item>
-        </style>
+    </style>
 
     <style name="Data.XIcon">
     </style>
@@ -119,13 +119,13 @@
         <item name="android:textColor">#FF000000</item>
         <item name="android:textSize">20sp</item>
         <item name="android:textStyle">bold</item>
-        </style>
+    </style>
 
     <style name="Data.XHeader">
         <item name="android:textColor">#FF808080</item>
         <item name="android:textSize">15sp</item>
         <item name="android:textStyle">bold</item>
-        </style>
+    </style>
 
     <style name="Data.XInfo">
         <item name="android:textColor">#FF404040</item>

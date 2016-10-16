@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical"
-    android:background="@drawable/listitem_background"
-    tools:context="org.sqlunet.browser.xselector.XSelectorActivity" >
-    
-    <View style="@style/Separator" />
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:orientation="vertical"
+              android:background="@drawable/listitem_background"
+              tools:context="org.sqlunet.browser.xselector.XSelectorActivity">
+
+    <View style="@style/Separator"/>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal" >
+        android:orientation="horizontal">
 
         <ImageView
             android:id="@+id/xicon"
@@ -22,81 +22,81 @@
             android:layout_marginEnd="5dp"
             android:layout_marginRight="5dp"
             android:contentDescription="@string/item"
-            android:src="@drawable/ic_item" />
+            android:src="@drawable/ic_item"/>
 
         <View
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_weight="1" />
+            android:layout_weight="1"/>
 
         <TextView
             android:id="@+id/xsourcestext"
             style="@style/Data.XSources"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:contentDescription="@string/download_source" />
+            android:contentDescription="@string/download_source"/>
 
         <ImageView
             android:id="@+id/xsources"
             style="@style/Data.XSources"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:contentDescription="@string/download_source" />
+            android:contentDescription="@string/download_source"/>
 
         <ImageView
             android:id="@+id/pm"
             style="@style/Data.XSources"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:contentDescription="@string/download_source" />
+            android:contentDescription="@string/download_source"/>
     </LinearLayout>
 
     <TextView
         android:id="@+id/xname"
         style="@style/Data.XName"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"/>
 
     <TextView
         android:id="@+id/xheader"
         style="@style/Data.XHeader"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"/>
 
     <TextView
         android:id="@+id/xinfo"
         style="@style/Data.XInfo"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"/>
 
     <TextView
         android:id="@+id/xdefinition"
         style="@style/Data.XDefinition"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"/>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal" >
+        android:orientation="horizontal">
 
         <TextView
             android:id="@+id/wordid"
             style="@style/Data.XWordId"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"/>
 
         <TextView
             android:id="@+id/synsetid"
             style="@style/Data.XSynsetId"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"/>
 
         <TextView
             android:id="@+id/xid"
             style="@style/Data.XId"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"/>
     </LinearLayout>
 
 </LinearLayout>

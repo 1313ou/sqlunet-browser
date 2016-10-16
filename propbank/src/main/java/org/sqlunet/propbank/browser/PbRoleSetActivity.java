@@ -1,10 +1,10 @@
 package org.sqlunet.propbank.browser;
 
-import org.sqlunet.propbank.R;
-
 import android.app.ActionBar;
 import android.app.Activity;
 import android.os.Bundle;
+
+import org.sqlunet.propbank.R;
 
 /**
  * LexUnitQuery activity

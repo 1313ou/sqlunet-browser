@@ -1,15 +1,15 @@
 package org.sqlunet.browser;
 
-import org.sqlunet.treeview.model.TreeNode;
-
 import android.app.Fragment;
 import android.app.LoaderManager;
 import android.content.Context;
 import android.os.Parcelable;
 
+import org.sqlunet.treeview.model.TreeNode;
+
 /**
  * Abstract module to perform queries
- * 
+ *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
 public abstract class Module
@@ -26,9 +26,8 @@ public abstract class Module
 
 	/**
 	 * Constructor
-	 * 
-	 * @param fragment0
-	 *        fragment
+	 *
+	 * @param fragment0 fragment
 	 */
 	protected Module(final Fragment fragment0)
 	{
@@ -37,7 +36,7 @@ public abstract class Module
 
 	/**
 	 * Get context
-	 * 
+	 *
 	 * @return context
 	 */
 	protected Context getContext()
@@ -47,7 +46,7 @@ public abstract class Module
 
 	/**
 	 * Get loader manager
-	 * 
+	 *
 	 * @return loader manager
 	 */
 	protected LoaderManager getLoaderManager()
@@ -57,9 +56,8 @@ public abstract class Module
 
 	/**
 	 * Init
-	 * 
-	 * @param arguments
-	 *        parceled arguments
+	 *
+	 * @param arguments parceled arguments
 	 */
 	public void init(final Parcelable arguments)
 	{
@@ -68,9 +66,8 @@ public abstract class Module
 
 	/**
 	 * Load and process data
-	 * 
-	 * @param node
-	 *        tree node to attach results to
+	 *
+	 * @param node tree node to attach results to
 	 */
 	public abstract void process(final TreeNode node);
 }

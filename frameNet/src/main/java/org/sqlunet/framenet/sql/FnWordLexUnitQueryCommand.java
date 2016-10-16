@@ -1,8 +1,8 @@
 package org.sqlunet.framenet.sql;
 
-import org.sqlunet.sql.DBQueryCommand;
-
 import android.database.sqlite.SQLiteDatabase;
+
+import org.sqlunet.sql.DBQueryCommand;
 
 /**
  * VerbNet Class Membership query command
@@ -24,17 +24,16 @@ class FnWordLexUnitQueryCommand extends DBQueryCommand
 	/**
 	 * Constructor
 	 *
-	 * @param thisConnection
-	 *            is the database connection
-	 * @param thisTargetWordId
-	 *            target wordid
-	 * @param thisTargetPos
-	 *            target pos or null
+	 * @param thisConnection   is the database connection
+	 * @param thisTargetWordId target wordid
+	 * @param thisTargetPos    target pos or null
 	 */
 	@SuppressWarnings("boxing")
 	public FnWordLexUnitQueryCommand(final SQLiteDatabase thisConnection, final long thisTargetWordId, final Character thisTargetPos)
 	{
-		super(thisConnection, thisTargetPos != null ? FnWordLexUnitQueryCommand.theQuery2 : FnWordLexUnitQueryCommand.theQuery);
+		super(thisConnection, thisTargetPos != null ?
+				FnWordLexUnitQueryCommand.theQuery2 :
+				FnWordLexUnitQueryCommand.theQuery);
 		setParams(thisTargetWordId, FnWordLexUnitQueryCommand.mapPos(thisTargetPos));
 	}
 
@@ -131,8 +130,7 @@ class FnWordLexUnitQueryCommand extends DBQueryCommand
 	/**
 	 * Map character to pos
 	 *
-	 * @param thatTargetPos
-	 *            character
+	 * @param thatTargetPos character
 	 * @return pos code
 	 */
 	@SuppressWarnings("boxing")
@@ -142,14 +140,14 @@ class FnWordLexUnitQueryCommand extends DBQueryCommand
 			return null;
 		switch (thatTargetPos)
 		{
-		case 'n':
-			return 1;
-		case 'v':
-			return 2;
-		case 'a':
-			return 3;
-		case 'r':
-			return 4;
+			case 'n':
+				return 1;
+			case 'v':
+				return 2;
+			case 'a':
+				return 3;
+			case 'r':
+				return 4;
 		}
 		return null;
 	}

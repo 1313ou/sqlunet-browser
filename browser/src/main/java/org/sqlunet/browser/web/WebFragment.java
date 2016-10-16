@@ -74,6 +74,7 @@ public class WebFragment extends Fragment
 	 * WebView
 	 */
 	private WebView webview;
+
 	/**
 	 * Mandatory empty constructor for the fragment manager to instantiate the fragment (e.g. upon screen orientation changes).
 	 */
@@ -261,8 +262,7 @@ public class WebFragment extends Fragment
 		webSettings.setBuiltInZoomControls(true);
 
 		// client
-		@SuppressWarnings("UnusedParameters")
-		final WebViewClient webClient = new WebViewClient()
+		@SuppressWarnings("UnusedParameters") final WebViewClient webClient = new WebViewClient()
 		{
 			@SuppressWarnings("deprecation")
 			@Override
@@ -343,8 +343,7 @@ public class WebFragment extends Fragment
 					}
 					startActivity(searchIntent);
 					return true;
-				}
-				catch (final Exception e)
+				} catch (final Exception e)
 				{
 					Log.e(WebFragment.TAG, "URL loading ", e); //$NON-NLS-1$
 				}

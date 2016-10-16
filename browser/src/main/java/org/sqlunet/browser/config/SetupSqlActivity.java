@@ -1,6 +1,10 @@
 package org.sqlunet.browser.config;
 
-import java.io.File;
+import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
 
 import org.sqlunet.browser.R;
 import org.sqlunet.download.Downloader;
@@ -8,11 +12,7 @@ import org.sqlunet.provider.ExecuteManager;
 import org.sqlunet.settings.StorageSettings;
 import org.sqlunet.settings.StorageUtils;
 
-import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
-import android.widget.Button;
-import android.widget.TextView;
+import java.io.File;
 
 public class SetupSqlActivity extends SetupBaseActivity
 {
@@ -113,10 +113,8 @@ public class SetupSqlActivity extends SetupBaseActivity
 				// starting create task
 				try
 				{
-					SetupSqlActivity.this.task = new ExecuteManager(StorageSettings.getDatabasePath(getBaseContext()), SetupSqlActivity.this, 1000).executeFromArchive(StorageSettings.getSqlSource(getBaseContext()),
-							StorageSettings.getImportEntry(getBaseContext()));
-				}
-				catch (final Exception e)
+					SetupSqlActivity.this.task = new ExecuteManager(StorageSettings.getDatabasePath(getBaseContext()), SetupSqlActivity.this, 1000).executeFromArchive(StorageSettings.getSqlSource(getBaseContext()), StorageSettings.getImportEntry(getBaseContext()));
+				} catch (final Exception e)
 				{
 					Log.e(TAG, "While importing", e); //$NON-NLS-1$
 				}
@@ -133,10 +131,8 @@ public class SetupSqlActivity extends SetupBaseActivity
 				// starting indexing task
 				try
 				{
-					SetupSqlActivity.this.task = new ExecuteManager(StorageSettings.getDatabasePath(getBaseContext()), SetupSqlActivity.this, 1).executeFromArchive(StorageSettings.getSqlSource(getBaseContext()),
-							StorageSettings.getIndexEntry(getBaseContext()));
-				}
-				catch (final Exception e)
+					SetupSqlActivity.this.task = new ExecuteManager(StorageSettings.getDatabasePath(getBaseContext()), SetupSqlActivity.this, 1).executeFromArchive(StorageSettings.getSqlSource(getBaseContext()), StorageSettings.getIndexEntry(getBaseContext()));
+				} catch (final Exception e)
 				{
 					Log.e(TAG, "While indexing", e); //$NON-NLS-1$
 				}
@@ -153,10 +149,8 @@ public class SetupSqlActivity extends SetupBaseActivity
 				// starting pm task
 				try
 				{
-					SetupSqlActivity.this.task = new ExecuteManager(StorageSettings.getDatabasePath(getBaseContext()), SetupSqlActivity.this, 1).executeFromArchive(StorageSettings.getSqlSource(getBaseContext()),
-							StorageSettings.getPmEntry(getBaseContext()));
-				}
-				catch (final Exception e)
+					SetupSqlActivity.this.task = new ExecuteManager(StorageSettings.getDatabasePath(getBaseContext()), SetupSqlActivity.this, 1).executeFromArchive(StorageSettings.getSqlSource(getBaseContext()), StorageSettings.getPmEntry(getBaseContext()));
+				} catch (final Exception e)
 				{
 					Log.e(TAG, "While preparing predicatematrix", e); //$NON-NLS-1$
 				}

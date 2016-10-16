@@ -51,7 +51,7 @@ public class Word implements Parcelable
 
 	/**
 	 * Get word
-	 * 
+	 *
 	 * @return word
 	 */
 	public String getWord()

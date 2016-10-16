@@ -19,12 +19,9 @@ class FnRelatedFrame
 	/**
 	 * Constructor
 	 *
-	 * @param thisFrameId
-	 *            is the related frame id
-	 * @param thisFrameName
-	 *            is the related frame name
-	 * @param thisRelation
-	 *            is the relation
+	 * @param thisFrameId   is the related frame id
+	 * @param thisFrameName is the related frame name
+	 * @param thisRelation  is the relation
 	 */
 	private FnRelatedFrame(final long thisFrameId, final String thisFrameName, final String thisRelation)
 	{
@@ -36,8 +33,7 @@ class FnRelatedFrame
 	/**
 	 * Make related frames from string
 	 *
-	 * @param theseRelatedFramesString
-	 *            (id:rel|id:rel...)
+	 * @param theseRelatedFramesString (id:rel|id:rel...)
 	 * @return list of related frames
 	 */
 	public static List<FnRelatedFrame> make(final String theseRelatedFramesString)

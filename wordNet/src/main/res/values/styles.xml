@@ -91,21 +91,21 @@
         <item name="android:textColor">#FF0000FF</item>
     </style>
 
-    <style name="Data.WnDefinition" />
+    <style name="Data.WnDefinition"/>
 
-    <style name="Data.WnSamples" />
+    <style name="Data.WnSamples"/>
 
-    <style name="Data.WnSemLinks" />
+    <style name="Data.WnSemLinks"/>
 
-    <style name="Data.WnLexLinks" />
+    <style name="Data.WnLexLinks"/>
 
-    <style name="Data.WnVerbFrames" />
+    <style name="Data.WnVerbFrames"/>
 
-    <style name="Data.WnVerbSentenceFrames" />
+    <style name="Data.WnVerbSentenceFrames"/>
 
-    <style name="Data.WnMorphology" />
+    <style name="Data.WnMorphology"/>
 
-    <style name="Data.WnAdjPosition" />
+    <style name="Data.WnAdjPosition"/>
 
     <style name="Senses">
         <item name="android:layout_width">fill_parent</item>

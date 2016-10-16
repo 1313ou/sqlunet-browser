@@ -1,12 +1,12 @@
 package org.sqlunet.settings;
 
-import java.io.File;
-
-import org.sqlunet.xnet.R;
-
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
+
+import org.sqlunet.xnet.R;
+
+import java.io.File;
 
 public class StorageSettings
 {
@@ -38,8 +38,7 @@ public class StorageSettings
 	/**
 	 * Get database directory
 	 *
-	 * @param context
-	 *        context
+	 * @param context context
 	 * @return database directory
 	 */
 	static public String getDataDir(final Context context)
@@ -56,8 +55,7 @@ public class StorageSettings
 	/**
 	 * Get database path
 	 *
-	 * @param context
-	 *        context
+	 * @param context context
 	 * @return database path
 	 */
 	static public String getDatabasePath(final Context context)
@@ -70,8 +68,7 @@ public class StorageSettings
 	/**
 	 * Get data cache
 	 *
-	 * @param context
-	 *        context
+	 * @param context context
 	 * @return data cache
 	 */
 	static public String getCacheDir(final Context context)
@@ -84,8 +81,7 @@ public class StorageSettings
 	/**
 	 * Get download site
 	 *
-	 * @param context
-	 *        context
+	 * @param context context
 	 * @return download site
 	 */
 	private static String getDownloadSite(final Context context)
@@ -110,8 +106,7 @@ public class StorageSettings
 	/**
 	 * Get download db file
 	 *
-	 * @param context
-	 *        context
+	 * @param context context
 	 * @return download db file
 	 */
 	private static String getDbDownloadFile(final Context context)
@@ -134,8 +129,7 @@ public class StorageSettings
 	/**
 	 * Get download db source
 	 *
-	 * @param context
-	 *        context
+	 * @param context context
 	 * @return download db source
 	 */
 	static public String getDbDownloadSource(final Context context)
@@ -146,8 +140,7 @@ public class StorageSettings
 	/**
 	 * Get download db target
 	 *
-	 * @param context
-	 *        context
+	 * @param context context
 	 * @return download db target
 	 */
 	static public String getDbDownloadTarget(final Context context)
@@ -160,8 +153,7 @@ public class StorageSettings
 	/**
 	 * Get download sql file
 	 *
-	 * @param context
-	 *        context
+	 * @param context context
 	 * @return download sql file
 	 */
 	private static String getSqlDownloadFile(final Context context)
@@ -184,8 +176,7 @@ public class StorageSettings
 	/**
 	 * Get download sql source
 	 *
-	 * @param context
-	 *        context
+	 * @param context context
 	 * @return download sql source
 	 */
 	static public String getSqlDownloadSource(final Context context)
@@ -197,8 +188,7 @@ public class StorageSettings
 	/**
 	 * Get download sql target
 	 *
-	 * @param context
-	 *        context
+	 * @param context context
 	 * @return download sql target
 	 */
 	static public String getSqlDownloadTarget(final Context context)
@@ -208,9 +198,8 @@ public class StorageSettings
 
 	/**
 	 * Get SQL source for execution
-	 * 
-	 * @param context
-	 *        context
+	 *
+	 * @param context context
 	 * @return SQL source
 	 */
 	static public String getSqlSource(final Context context)
@@ -221,8 +210,7 @@ public class StorageSettings
 	/**
 	 * Get import archive entry
 	 *
-	 * @param context
-	 *        context
+	 * @param context context
 	 * @return import archive entry
 	 */
 	public static String getImportEntry(final Context context)
@@ -245,8 +233,7 @@ public class StorageSettings
 	/**
 	 * Get pm archive entry
 	 *
-	 * @param context
-	 *        context
+	 * @param context context
 	 * @return pm archive entry
 	 */
 	public static String getPmEntry(final Context context)
@@ -269,8 +256,7 @@ public class StorageSettings
 	/**
 	 * Get index archive entry
 	 *
-	 * @param context
-	 *        context
+	 * @param context context
 	 * @return index archive entry
 	 */
 	public static String getIndexEntry(final Context context)

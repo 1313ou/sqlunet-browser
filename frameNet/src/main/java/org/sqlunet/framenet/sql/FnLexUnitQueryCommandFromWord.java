@@ -1,8 +1,8 @@
 package org.sqlunet.framenet.sql;
 
-import org.sqlunet.sql.DBQueryCommand;
-
 import android.database.sqlite.SQLiteDatabase;
+
+import org.sqlunet.sql.DBQueryCommand;
 
 /**
  * Query command for FrameNet lex unit
@@ -19,10 +19,8 @@ class FnLexUnitQueryCommandFromWord extends DBQueryCommand
 	/**
 	 * Constructor
 	 *
-	 * @param thisConnection
-	 *        is the database connection
-	 * @param thisLemma
-	 *        is the target word
+	 * @param thisConnection is the database connection
+	 * @param thisLemma      is the target word
 	 */
 	public FnLexUnitQueryCommandFromWord(final SQLiteDatabase thisConnection, final String thisLemma)
 	{
@@ -112,7 +110,7 @@ class FnLexUnitQueryCommandFromWord extends DBQueryCommand
 
 	/**
 	 * Get the frame
-	 * 
+	 *
 	 * @return the frame
 	 */
 	public String getFrame()

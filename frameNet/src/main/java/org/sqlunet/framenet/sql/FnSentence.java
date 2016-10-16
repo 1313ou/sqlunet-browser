@@ -1,9 +1,9 @@
 package org.sqlunet.framenet.sql;
 
+import android.database.sqlite.SQLiteDatabase;
+
 import java.util.ArrayList;
 import java.util.List;
-
-import android.database.sqlite.SQLiteDatabase;
 
 public class FnSentence
 {
@@ -20,10 +20,8 @@ public class FnSentence
 	/**
 	 * Make sets of sentences from query built from frameid
 	 *
-	 * @param thisConnection
-	 *            is the database connection
-	 * @param thisSentenceId0
-	 *            is the sentence id to build query from
+	 * @param thisConnection  is the database connection
+	 * @param thisSentenceId0 is the sentence id to build query from
 	 * @return sentence
 	 */
 	public static FnSentence make(final SQLiteDatabase thisConnection, final long thisSentenceId0)
@@ -42,8 +40,7 @@ public class FnSentence
 
 				thisResult = new FnSentence(thisSentenceId, thisText);
 			}
-		}
-		finally
+		} finally
 		{
 			if (thisQuery != null)
 			{
@@ -56,10 +53,8 @@ public class FnSentence
 	/**
 	 * Make sets of sentences from query built from frameid
 	 *
-	 * @param thisConnection
-	 *            is the database connection
-	 * @param theLuId
-	 *            is the frameid to build query from
+	 * @param thisConnection is the database connection
+	 * @param theLuId        is the frameid to build query from
 	 * @return list of sentences
 	 */
 	public static List<FnSentence> makeFromLexicalUnit(final SQLiteDatabase thisConnection, final long theLuId)
@@ -78,8 +73,7 @@ public class FnSentence
 
 				thisResult.add(new FnSentence(thisSentenceId, thisText));
 			}
-		}
-		finally
+		} finally
 		{
 			if (thisQuery != null)
 			{

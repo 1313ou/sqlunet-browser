@@ -1,10 +1,5 @@
 package org.sqlunet.settings;
 
-import java.io.File;
-import java.util.List;
-
-import org.sqlunet.settings.StorageUtils.CandidateStorage;
-
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -12,9 +7,14 @@ import android.os.Build;
 import android.preference.PreferenceManager;
 import android.util.Log;
 
+import org.sqlunet.settings.StorageUtils.CandidateStorage;
+
+import java.io.File;
+import java.util.List;
+
 /**
  * Storage
- * 
+ *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
 public class Storage
@@ -40,9 +40,8 @@ public class Storage
 
 	/**
 	 * Get database storage
-	 * 
-	 * @param context
-	 *        context
+	 *
+	 * @param context context
 	 * @return database storage directory
 	 */
 	@SuppressLint("CommitPrefEdits")
@@ -82,8 +81,7 @@ public class Storage
 	/**
 	 * Discover SqlUNet storage
 	 *
-	 * @param context
-	 *        context
+	 * @param context context
 	 * @return SqlUNet storage
 	 */
 	static private File discover(final Context context)
@@ -104,8 +102,7 @@ public class Storage
 	/**
 	 * Build the dir and tests if it qualifies as sqlunet storage
 	 *
-	 * @param dir
-	 *        candidate dir
+	 * @param dir candidate dir
 	 * @return true if it qualifies
 	 */
 	static private boolean build(final File dir)
@@ -122,8 +119,7 @@ public class Storage
 	/**
 	 * Get data cache
 	 *
-	 * @param context
-	 *        context
+	 * @param context context
 	 * @return data cache
 	 */
 	static public String getCacheDir(final Context context)

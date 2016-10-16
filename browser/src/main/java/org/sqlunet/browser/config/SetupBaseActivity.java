@@ -1,15 +1,5 @@
 package org.sqlunet.browser.config;
 
-import java.io.File;
-
-import org.sqlunet.browser.R;
-import org.sqlunet.browser.StatusActivity;
-import org.sqlunet.download.Downloader;
-import org.sqlunet.provider.ExecuteManager;
-import org.sqlunet.settings.Settings;
-import org.sqlunet.settings.StorageSettings;
-import org.sqlunet.settings.StorageUtils;
-
 import android.annotation.SuppressLint;
 import android.app.ActionBar;
 import android.app.Activity;
@@ -23,6 +13,16 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import org.sqlunet.browser.R;
+import org.sqlunet.browser.StatusActivity;
+import org.sqlunet.download.Downloader;
+import org.sqlunet.provider.ExecuteManager;
+import org.sqlunet.settings.Settings;
+import org.sqlunet.settings.StorageSettings;
+import org.sqlunet.settings.StorageUtils;
+
+import java.io.File;
 
 @SuppressLint("Registered")
 public class SetupBaseActivity extends Activity implements Downloader.Listener, ExecuteManager.Listener
@@ -95,24 +95,24 @@ public class SetupBaseActivity extends Activity implements Downloader.Listener, 
 		// handle item selection
 		switch (item.getItemId())
 		{
-		case R.id.action_settings:
-			intent = new Intent(this, SettingsActivity.class);
-			break;
-		case R.id.action_status:
-			intent = new Intent(this, StatusActivity.class);
-			break;
-		case R.id.action_storage:
-			intent = new Intent(this, StorageActivity.class);
-			break;
-		case R.id.action_management:
-			intent = new Intent(this, ManagementActivity.class);
-			break;
-		case R.id.action_appsettings:
-			Settings.applicationSettings(this, "org.sqlunet.browser"); //$NON-NLS-1$
-			return true;
+			case R.id.action_settings:
+				intent = new Intent(this, SettingsActivity.class);
+				break;
+			case R.id.action_status:
+				intent = new Intent(this, StatusActivity.class);
+				break;
+			case R.id.action_storage:
+				intent = new Intent(this, StorageActivity.class);
+				break;
+			case R.id.action_management:
+				intent = new Intent(this, ManagementActivity.class);
+				break;
+			case R.id.action_appsettings:
+				Settings.applicationSettings(this, "org.sqlunet.browser"); //$NON-NLS-1$
+				return true;
 
-		default:
-			return super.onOptionsItemSelected(item);
+			default:
+				return super.onOptionsItemSelected(item);
 		}
 		startActivity(intent);
 		return true;
@@ -180,8 +180,12 @@ public class SetupBaseActivity extends Activity implements Downloader.Listener, 
 	public void downloadFinish(final int code, final boolean result)
 	{
 		this.progressDialog.dismiss();
-		Log.d(TAG, "Download " + (result ? "succeeded" : "failed")); //$NON-NLS-1$ //$NON-NLS-2$//$NON-NLS-3$
-		Toast.makeText(this, result ? R.string.title_download_complete : R.string.title_download_failed, Toast.LENGTH_SHORT).show();
+		Log.d(TAG, "Download " + (result ?
+				"succeeded" :
+				"failed")); //$NON-NLS-1$ //$NON-NLS-2$//$NON-NLS-3$
+		Toast.makeText(this, result ?
+				R.string.title_download_complete :
+				R.string.title_download_failed, Toast.LENGTH_SHORT).show();
 
 		// delete file if failed
 		if (!result)
@@ -214,8 +218,12 @@ public class SetupBaseActivity extends Activity implements Downloader.Listener, 
 	public void managerFinish(final boolean result)
 	{
 		this.progressDialog.dismiss();
-		Log.d(TAG, "SQL update " + (result ? "succeeded" : "failed")); //$NON-NLS-1$//$NON-NLS-2$ //$NON-NLS-3$
-		Toast.makeText(this, result ? R.string.title_sqlupdate_complete : R.string.title_sqlupdate_failed, Toast.LENGTH_SHORT).show();
+		Log.d(TAG, "SQL update " + (result ?
+				"succeeded" :
+				"failed")); //$NON-NLS-1$//$NON-NLS-2$ //$NON-NLS-3$
+		Toast.makeText(this, result ?
+				R.string.title_sqlupdate_complete :
+				R.string.title_sqlupdate_failed, Toast.LENGTH_SHORT).show();
 	}
 
 	@Override

@@ -50,7 +50,7 @@ public class Pointer implements Parcelable
 
 	/**
 	 * Get id
-	 * 
+	 *
 	 * @return id
 	 */
 	@SuppressWarnings("boxing")

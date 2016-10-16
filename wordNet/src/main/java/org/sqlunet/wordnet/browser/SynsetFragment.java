@@ -1,22 +1,22 @@
 package org.sqlunet.wordnet.browser;
 
-import org.sqlunet.HasWordId;
-import org.sqlunet.browser.Module;
-import org.sqlunet.provider.SqlUNetContract;
-import org.sqlunet.treeview.renderer.IconTreeRenderer;
-import org.sqlunet.treeview.model.TreeNode;
-import org.sqlunet.treeview.view.TreeView;
-import org.sqlunet.view.TreeFactory;
-import org.sqlunet.wordnet.R;
-import org.sqlunet.wordnet.loaders.SenseModule;
-import org.sqlunet.wordnet.loaders.SynsetModule;
-
 import android.app.Fragment;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import org.sqlunet.HasWordId;
+import org.sqlunet.browser.Module;
+import org.sqlunet.provider.SqlUNetContract;
+import org.sqlunet.treeview.model.TreeNode;
+import org.sqlunet.treeview.renderer.IconTreeRenderer;
+import org.sqlunet.treeview.view.TreeView;
+import org.sqlunet.view.TreeFactory;
+import org.sqlunet.wordnet.R;
+import org.sqlunet.wordnet.loaders.SenseModule;
+import org.sqlunet.wordnet.loaders.SynsetModule;
 
 /**
  * A fragment representing a synset.
@@ -64,7 +64,7 @@ public class SynsetFragment extends Fragment
 		if (savedInstanceState != null)
 		{
 			final String state = savedInstanceState.getString("treeViewState"); //$NON-NLS-1$
-			if (state!= null && !state.isEmpty())
+			if (state != null && !state.isEmpty())
 			{
 				treeView.restoreState(state);
 				return rootView;

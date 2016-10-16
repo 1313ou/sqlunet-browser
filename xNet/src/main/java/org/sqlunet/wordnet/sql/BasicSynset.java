@@ -31,14 +31,10 @@ public class BasicSynset
 	 * Constructor from data
 	 */
 	/**
-	 * @param thisSynsetId
-	 *            is the synset id
-	 * @param thisDefinition
-	 *            is the definition
-	 * @param thisLexDomainId
-	 *            is the lexdomainid
-	 * @param thisSample
-	 *            is the sample
+	 * @param thisSynsetId    is the synset id
+	 * @param thisDefinition  is the definition
+	 * @param thisLexDomainId is the lexdomainid
+	 * @param thisSample      is the sample
 	 */
 	protected BasicSynset(final long thisSynsetId, final String thisDefinition, final int thisLexDomainId, final String thisSample)
 	{

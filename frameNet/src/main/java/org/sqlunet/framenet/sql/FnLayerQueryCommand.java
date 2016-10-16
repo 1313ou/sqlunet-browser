@@ -1,21 +1,19 @@
 package org.sqlunet.framenet.sql;
 
-import java.util.List;
+import android.database.sqlite.SQLiteDatabase;
 
 import org.sqlunet.framenet.Utils;
 import org.sqlunet.sql.DBQueryCommand;
 
-import android.database.sqlite.SQLiteDatabase;
+import java.util.List;
 
 class FnLayerQueryCommand extends DBQueryCommand
 {
 	/**
 	 * Constructor
 	 *
-	 * @param thisConnection
-	 *            is the database connection
-	 * @param thisTargetId
-	 *            is the target id
+	 * @param thisConnection is the database connection
+	 * @param thisTargetId   is the target id
 	 */
 	@SuppressWarnings("boxing")
 	FnLayerQueryCommand(final SQLiteDatabase thisConnection, final long thisTargetId, final String thisQuery)

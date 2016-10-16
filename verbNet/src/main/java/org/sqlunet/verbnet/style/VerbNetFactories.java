@@ -1,13 +1,13 @@
 package org.sqlunet.verbnet.style;
 
-import org.sqlunet.style.Colors;
-import org.sqlunet.style.Spanner.SpanFactory;
-
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.text.style.BackgroundColorSpan;
 import android.text.style.ForegroundColorSpan;
 import android.text.style.StyleSpan;
+
+import org.sqlunet.style.Colors;
+import org.sqlunet.style.Spanner.SpanFactory;
 
 public class VerbNetFactories
 {
@@ -20,7 +20,7 @@ public class VerbNetFactories
 		@Override
 		public Object makeSpans(final long flags)
 		{
-			return new Object[] { new BackgroundColorSpan(Colors.dkred), new ForegroundColorSpan(Color.WHITE), new StyleSpan(Typeface.BOLD) };
+			return new Object[]{new BackgroundColorSpan(Colors.dkred), new ForegroundColorSpan(Color.WHITE), new StyleSpan(Typeface.BOLD)};
 		}
 	};
 
@@ -31,7 +31,7 @@ public class VerbNetFactories
 		@Override
 		public Object makeSpans(final long flags)
 		{
-			return new Object[] { new BackgroundColorSpan(Color.RED), new ForegroundColorSpan(Color.WHITE), new StyleSpan(Typeface.BOLD) };
+			return new Object[]{new BackgroundColorSpan(Color.RED), new ForegroundColorSpan(Color.WHITE), new StyleSpan(Typeface.BOLD)};
 		}
 	};
 
@@ -42,7 +42,7 @@ public class VerbNetFactories
 		@Override
 		public Object makeSpans(final long flags)
 		{
-			return new Object[] { new BackgroundColorSpan(Color.MAGENTA), new ForegroundColorSpan(Color.WHITE) };
+			return new Object[]{new BackgroundColorSpan(Color.MAGENTA), new ForegroundColorSpan(Color.WHITE)};
 		}
 	};
 
@@ -63,7 +63,7 @@ public class VerbNetFactories
 		@Override
 		public Object makeSpans(final long flags)
 		{
-			return new Object[] { new BackgroundColorSpan(Colors.brown), new ForegroundColorSpan(Color.WHITE), new StyleSpan(Typeface.BOLD) };
+			return new Object[]{new BackgroundColorSpan(Colors.brown), new ForegroundColorSpan(Color.WHITE), new StyleSpan(Typeface.BOLD)};
 		}
 	};
 
@@ -72,7 +72,7 @@ public class VerbNetFactories
 		@Override
 		public Object makeSpans(final long flags)
 		{
-			return new Object[] { new BackgroundColorSpan(Color.LTGRAY), new ForegroundColorSpan(Color.WHITE) };
+			return new Object[]{new BackgroundColorSpan(Color.LTGRAY), new ForegroundColorSpan(Color.WHITE)};
 		}
 	};
 
@@ -81,7 +81,7 @@ public class VerbNetFactories
 		@Override
 		public Object makeSpans(final long flags)
 		{
-			return new Object[] { new BackgroundColorSpan(Colors.ltbrown), new ForegroundColorSpan(Color.DKGRAY) };
+			return new Object[]{new BackgroundColorSpan(Colors.ltbrown), new ForegroundColorSpan(Color.DKGRAY)};
 		}
 	};
 
@@ -91,7 +91,7 @@ public class VerbNetFactories
 		@Override
 		public Object makeSpans(final long flags)
 		{
-			return new Object[] { new BackgroundColorSpan(Colors.ltmagenta) };
+			return new Object[]{new BackgroundColorSpan(Colors.ltmagenta)};
 		}
 	};
 
@@ -102,7 +102,7 @@ public class VerbNetFactories
 		@Override
 		public Object makeSpans(final long flags)
 		{
-			return new Object[] { new BackgroundColorSpan(Colors.orange), new ForegroundColorSpan(Color.WHITE) };
+			return new Object[]{new BackgroundColorSpan(Colors.orange), new ForegroundColorSpan(Color.WHITE)};
 		}
 	};
 
@@ -120,7 +120,7 @@ public class VerbNetFactories
 		@Override
 		public Object makeSpans(final long flags)
 		{
-			return new Object[] { new BackgroundColorSpan(Color.LTGRAY) };
+			return new Object[]{new BackgroundColorSpan(Color.LTGRAY)};
 		}
 	};
 
@@ -129,7 +129,7 @@ public class VerbNetFactories
 		@Override
 		public Object makeSpans(final long flags)
 		{
-			return new Object[] { new BackgroundColorSpan(Color.BLUE), new ForegroundColorSpan(Color.WHITE) };
+			return new Object[]{new BackgroundColorSpan(Color.BLUE), new ForegroundColorSpan(Color.WHITE)};
 		}
 	};
 

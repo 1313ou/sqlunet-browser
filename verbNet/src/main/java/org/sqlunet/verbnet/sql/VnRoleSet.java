@@ -1,9 +1,9 @@
 package org.sqlunet.verbnet.sql;
 
+import android.database.sqlite.SQLiteDatabase;
+
 import java.util.ArrayList;
 import java.util.List;
-
-import android.database.sqlite.SQLiteDatabase;
 
 /**
  * Roles attached to a VerbNet Class
@@ -20,8 +20,7 @@ public class VnRoleSet
 	/**
 	 * Constructor
 	 *
-	 * @param roles
-	 *            is the list of roles
+	 * @param roles is the list of roles
 	 */
 	private VnRoleSet(final List<VnRole> roles)
 	{
@@ -31,10 +30,8 @@ public class VnRoleSet
 	/**
 	 * Make VerbNet role sets from query built from classid, wordid and synsetid
 	 *
-	 * @param connection
-	 *            is the database connection
-	 * @param classId
-	 *            is the class id to build query from
+	 * @param connection is the database connection
+	 * @param classId    is the class id to build query from
 	 * @return list of VerbNet role sets
 	 */
 	static public VnRoleSet make(final SQLiteDatabase connection, final long classId)
@@ -65,8 +62,7 @@ public class VnRoleSet
 				// add role to role set
 				roleSet.roles.add(role);
 			}
-		}
-		finally
+		} finally
 		{
 			if (query != null)
 			{
@@ -79,14 +75,10 @@ public class VnRoleSet
 	/**
 	 * Make VerbNet role sets from query built from classid, wordid and synsetid
 	 *
-	 * @param connection
-	 *            is the database connection
-	 * @param classId
-	 *            is the class id to build query from
-	 * @param wordId
-	 *            is the word id to build query from
-	 * @param synsetId
-	 *            is the synset id to build query from (-1 for any)
+	 * @param connection is the database connection
+	 * @param classId    is the class id to build query from
+	 * @param wordId     is the word id to build query from
+	 * @param synsetId   is the synset id to build query from (-1 for any)
 	 * @return list of VerbNet role sets
 	 */
 	static public VnRoleSet make(final SQLiteDatabase connection, final long classId, final long wordId, final Long synsetId)
@@ -117,8 +109,7 @@ public class VnRoleSet
 				// add role to role set
 				roleSet.roles.add(role);
 			}
-		}
-		finally
+		} finally
 		{
 			if (query != null)
 			{

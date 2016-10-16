@@ -1,10 +1,10 @@
 package org.sqlunet.framenet.sql;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Pair;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class FnLexUnit
 {
@@ -34,16 +34,16 @@ public class FnLexUnit
 		this.definition = definition;
 		this.dictionary = dictionary;
 		this.incorporatedFe = incorporatedFe;
-		this.frame = frameId == -1 ? null : new FnFrame(frameId, frame, frameDefinition, null, null);
+		this.frame = frameId == -1 ?
+				null :
+				new FnFrame(frameId, frame, frameDefinition, null, null);
 	}
 
 	/**
 	 * Make sets of lexunits from query built from word
 	 *
-	 * @param thisConnection
-	 *        is the database connection
-	 * @param thisTargetWord
-	 *        is the word to build query from
+	 * @param thisConnection is the database connection
+	 * @param thisTargetWord is the word to build query from
 	 * @return wordid + list of lexunits
 	 */
 	static public Pair<Long, List<FnLexUnit>> makeFromWord(final SQLiteDatabase thisConnection, final String thisTargetWord)
@@ -73,8 +73,7 @@ public class FnLexUnit
 				thisResult.add(new FnLexUnit(thisLuId, thisLexUnit, thisPos, thisDefinition, thisDictionary, thisIncorporatedFe, thisFrameId, thisFrame, thisFrameDefinition));
 			}
 			return new Pair<>(thisWordId, thisResult);
-		}
-		finally
+		} finally
 		{
 			if (thisQuery != null)
 			{
@@ -86,12 +85,9 @@ public class FnLexUnit
 	/**
 	 * Make sets of lexunits from query built from wordid
 	 *
-	 * @param thisConnection
-	 *        is the database connection
-	 * @param thisTargetWordId
-	 *        is the word id to build query from
-	 * @param thisTargetPos
-	 *        is the pos to build query from, null if any
+	 * @param thisConnection   is the database connection
+	 * @param thisTargetWordId is the word id to build query from
+	 * @param thisTargetPos    is the pos to build query from, null if any
 	 * @return list of lexunits
 	 */
 	static public List<FnLexUnit> makeFromWordId(final SQLiteDatabase thisConnection, final long thisTargetWordId, final Character thisTargetPos)
@@ -117,8 +113,7 @@ public class FnLexUnit
 
 				thisResult.add(new FnLexUnit(thisLuId, thisLexUnit, thisPos, thisDefinition, thisDictionary, thisIncorporatedFe, thisFrameId, thisFrame, thisFrameDescription));
 			}
-		}
-		finally
+		} finally
 		{
 			if (thisQuery != null)
 			{
@@ -147,8 +142,7 @@ public class FnLexUnit
 				final String thisIncorporatedFe = thisQuery.getIncorporatedFe();
 				thisResult.add(new FnLexUnit(thisLuId, thisLexUnit, thisPos, thisDefinition, thisDictionary, thisIncorporatedFe, -1, null, null));
 			}
-		}
-		finally
+		} finally
 		{
 			if (thisQuery != null)
 			{
@@ -180,8 +174,7 @@ public class FnLexUnit
 				final String thisFrameDefinition = thisQuery.getFrameDescription();
 				thisResult = new FnLexUnit(thisLuId, thisLexUnit, thisPos, thisDefinition, thisDictionary, thisIncorporatedFe, thisFrameId, thisFrame, thisFrameDefinition);
 			}
-		}
-		finally
+		} finally
 		{
 			if (thisQuery != null)
 			{

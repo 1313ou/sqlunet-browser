@@ -1,11 +1,11 @@
 package org.sqlunet.propbank.sql;
 
-import java.util.ArrayList;
-import java.util.List;
+import android.database.sqlite.SQLiteDatabase;
 
 import org.sqlunet.sql.DBQueryCommand;
 
-import android.database.sqlite.SQLiteDatabase;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * VerbNet FrameQuery query command
@@ -22,10 +22,8 @@ class PbExampleQueryCommand extends DBQueryCommand
 	/**
 	 * Constructor
 	 *
-	 * @param connection
-	 *            is the database connection
-	 * @param roleSetId
-	 *            roleset id to build query from
+	 * @param connection is the database connection
+	 * @param roleSetId  roleset id to build query from
 	 */
 	@SuppressWarnings("boxing")
 	public PbExampleQueryCommand(final SQLiteDatabase connection, final long roleSetId)

@@ -1,13 +1,13 @@
 package org.sqlunet.browser.config;
 
-import org.sqlunet.browser.R;
-import org.sqlunet.provider.SqlUNetContract;
-
 import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.TextView;
+
+import org.sqlunet.browser.R;
+import org.sqlunet.provider.SqlUNetContract;
 
 /**
  * An activity representing table.

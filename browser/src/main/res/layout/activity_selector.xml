@@ -1,23 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="org.sqlunet.browser.selector.SelectorActivity" >
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                tools:context="org.sqlunet.browser.selector.SelectorActivity">
 
     <TextView
         android:id="@+id/queryView"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        style="@style/Query" />
+        style="@style/Query"/>
 
     <fragment
         android:id="@+id/selector"
         android:name="org.sqlunet.browser.selector.SelectorFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-    	android:layout_below="@+id/queryView"
+        android:layout_below="@+id/queryView"
         tools:context=".SelectorActivity"
-        tools:layout="@layout/fragment_selector" />
+        tools:layout="@layout/fragment_selector"/>
 
 </RelativeLayout>

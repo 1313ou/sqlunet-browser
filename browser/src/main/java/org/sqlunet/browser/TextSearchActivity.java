@@ -1,13 +1,5 @@
 package org.sqlunet.browser;
 
-import org.sqlunet.browser.config.TableFragment;
-import org.sqlunet.framenet.provider.FrameNetContract.Lookup_FnSentences;
-import org.sqlunet.provider.SqlUNetContract;
-import org.sqlunet.settings.Settings;
-import org.sqlunet.wordnet.provider.WordNetContract.Lookup_Definitions;
-import org.sqlunet.wordnet.provider.WordNetContract.Lookup_Samples;
-import org.sqlunet.wordnet.provider.WordNetContract.Lookup_Words;
-
 import android.annotation.SuppressLint;
 import android.app.ActionBar;
 import android.app.Activity;
@@ -25,6 +17,14 @@ import android.widget.SearchView;
 import android.widget.Spinner;
 import android.widget.SpinnerAdapter;
 import android.widget.TextView;
+
+import org.sqlunet.browser.config.TableFragment;
+import org.sqlunet.framenet.provider.FrameNetContract.Lookup_FnSentences;
+import org.sqlunet.provider.SqlUNetContract;
+import org.sqlunet.settings.Settings;
+import org.sqlunet.wordnet.provider.WordNetContract.Lookup_Definitions;
+import org.sqlunet.wordnet.provider.WordNetContract.Lookup_Samples;
+import org.sqlunet.wordnet.provider.WordNetContract.Lookup_Words;
 
 /**
  * Text Search activity
@@ -82,10 +82,9 @@ public class TextSearchActivity extends Activity
 		final ActionBar actionBar = getActionBar();
 		assert actionBar != null;
 		actionBar.setDisplayHomeAsUpEnabled(true);
-		
+
 		// set up the action bar to show a custom layout
-		@SuppressLint("InflateParams")
-		final View actionBarView = getLayoutInflater().inflate(R.layout.actionbar_custom, null);
+		@SuppressLint("InflateParams") final View actionBarView = getLayoutInflater().inflate(R.layout.actionbar_custom, null);
 		actionBar.setCustomView(actionBarView);
 		actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM | ActionBar.DISPLAY_SHOW_HOME);
 		actionBar.setDisplayShowTitleEnabled(false);
@@ -142,8 +141,7 @@ public class TextSearchActivity extends Activity
 	/**
 	 * Associate the searchable configuration with the searchView (associate the searchable configuration with the searchView)
 	 *
-	 * @param searchView
-	 *            searchView
+	 * @param searchView searchView
 	 */
 	private void setupSearchView(final SearchView searchView)
 	{
@@ -186,8 +184,7 @@ public class TextSearchActivity extends Activity
 	/**
 	 * Handle intent (either onCreate or if activity is single top)
 	 *
-	 * @param intent
-	 *            intent
+	 * @param intent intent
 	 */
 	private void handleIntent(final Intent intent)
 	{
@@ -198,8 +195,7 @@ public class TextSearchActivity extends Activity
 			// arguments
 			final String query = intent.getStringExtra(SearchManager.QUERY);
 			handleSearch(query);
-		}
-		else if (Intent.ACTION_VIEW.equals(action))
+		} else if (Intent.ACTION_VIEW.equals(action))
 		{
 			final String query = intent.getStringExtra(SearchManager.QUERY);
 
@@ -212,8 +208,7 @@ public class TextSearchActivity extends Activity
 	/**
 	 * Handle query
 	 *
-	 * @param query
-	 *            query
+	 * @param query query
 	 */
 	private void handleSearch(final String query)
 	{
@@ -232,39 +227,39 @@ public class TextSearchActivity extends Activity
 		Intent intent = null;
 		switch (rangeIndex)
 		{
-		case 0:
-			searchUri = Lookup_Words.CONTENT_URI;
-			id = Lookup_Words.WORDID;
-			target = Lookup_Words.LEMMA;
-			columns = new String[] { Lookup_Words.LEMMA };
-			xcolumns = new String[] { Lookup_Words.WORDID };
-			break;
-		case 1:
-			searchUri = Lookup_Definitions.CONTENT_URI;
-			id = Lookup_Definitions.SYNSETID;
-			target = Lookup_Definitions.DEFINITION;
-			columns = new String[] { Lookup_Definitions.DEFINITION };
-			xcolumns = new String[] { Lookup_Definitions.SYNSETID };
-			intent = new Intent(this, org.sqlunet.wordnet.browser.SynsetActivity.class);
-			break;
-		case 2:
-			searchUri = Lookup_Samples.CONTENT_URI;
-			id = Lookup_Samples.SYNSETID;
-			target = Lookup_Samples.SAMPLE;
-			columns = new String[] { Lookup_Samples.SAMPLE };
-			xcolumns = new String[] { Lookup_Samples.SYNSETID };
-			intent = new Intent(this, org.sqlunet.wordnet.browser.SynsetActivity.class);
-			break;
-		case 3:
-			searchUri = Lookup_FnSentences.CONTENT_URI;
-			id = Lookup_FnSentences.SENTENCEID;
-			target = Lookup_FnSentences.TEXT;
-			columns = new String[] { Lookup_FnSentences.TEXT };
-			xcolumns = new String[] { Lookup_FnSentences.SENTENCEID };
-			intent = new Intent(this, org.sqlunet.framenet.browser.FnSentenceActivity.class);
-			break;
-		default:
-			return;
+			case 0:
+				searchUri = Lookup_Words.CONTENT_URI;
+				id = Lookup_Words.WORDID;
+				target = Lookup_Words.LEMMA;
+				columns = new String[]{Lookup_Words.LEMMA};
+				xcolumns = new String[]{Lookup_Words.WORDID};
+				break;
+			case 1:
+				searchUri = Lookup_Definitions.CONTENT_URI;
+				id = Lookup_Definitions.SYNSETID;
+				target = Lookup_Definitions.DEFINITION;
+				columns = new String[]{Lookup_Definitions.DEFINITION};
+				xcolumns = new String[]{Lookup_Definitions.SYNSETID};
+				intent = new Intent(this, org.sqlunet.wordnet.browser.SynsetActivity.class);
+				break;
+			case 2:
+				searchUri = Lookup_Samples.CONTENT_URI;
+				id = Lookup_Samples.SYNSETID;
+				target = Lookup_Samples.SAMPLE;
+				columns = new String[]{Lookup_Samples.SAMPLE};
+				xcolumns = new String[]{Lookup_Samples.SYNSETID};
+				intent = new Intent(this, org.sqlunet.wordnet.browser.SynsetActivity.class);
+				break;
+			case 3:
+				searchUri = Lookup_FnSentences.CONTENT_URI;
+				id = Lookup_FnSentences.SENTENCEID;
+				target = Lookup_FnSentences.TEXT;
+				columns = new String[]{Lookup_FnSentences.TEXT};
+				xcolumns = new String[]{Lookup_FnSentences.SENTENCEID};
+				intent = new Intent(this, org.sqlunet.framenet.browser.FnSentenceActivity.class);
+				break;
+			default:
+				return;
 		}
 
 		// parameters

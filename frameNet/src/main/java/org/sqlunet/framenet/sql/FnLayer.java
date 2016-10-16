@@ -1,9 +1,9 @@
 package org.sqlunet.framenet.sql;
 
+import android.database.sqlite.SQLiteDatabase;
+
 import java.util.ArrayList;
 import java.util.List;
-
-import android.database.sqlite.SQLiteDatabase;
 
 class FnLayer
 {
@@ -45,8 +45,7 @@ class FnLayer
 				}
 				thisResult.add(new FnLayer(thisLayerId, thisLayerType, thisRank, theseLabels));
 			}
-		}
-		finally
+		} finally
 		{
 			if (thisQuery != null)
 			{
@@ -55,7 +54,7 @@ class FnLayer
 		}
 		return thisResult;
 	}
-	
+
 	public static List<FnLayer> makeFromSentence(final SQLiteDatabase thisConnection, final long thisSentenceId)
 	{
 		List<FnLayer> thisResult = null;
@@ -77,8 +76,7 @@ class FnLayer
 				}
 				thisResult.add(new FnLayer(thisLayerId, thisLayerType, thisRank, theseLabels));
 			}
-		}
-		finally
+		} finally
 		{
 			if (thisQuery != null)
 			{

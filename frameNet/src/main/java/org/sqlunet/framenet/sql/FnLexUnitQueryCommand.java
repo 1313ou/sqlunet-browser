@@ -1,8 +1,8 @@
 package org.sqlunet.framenet.sql;
 
-import org.sqlunet.sql.DBQueryCommand;
-
 import android.database.sqlite.SQLiteDatabase;
+
+import org.sqlunet.sql.DBQueryCommand;
 
 /**
  * VerbNet Class Membership query command
@@ -19,10 +19,8 @@ class FnLexUnitQueryCommand extends DBQueryCommand
 	/**
 	 * Constructor
 	 *
-	 * @param thisConnection
-	 *            is the database connection
-	 * @param thisTargetLuId
-	 *            target luid
+	 * @param thisConnection is the database connection
+	 * @param thisTargetLuId target luid
 	 */
 	@SuppressWarnings("boxing")
 	public FnLexUnitQueryCommand(final SQLiteDatabase thisConnection, final long thisTargetLuId)

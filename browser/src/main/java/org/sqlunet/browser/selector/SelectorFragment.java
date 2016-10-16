@@ -1,13 +1,5 @@
 package org.sqlunet.browser.selector;
 
-import org.sqlunet.browser.Module;
-import org.sqlunet.browser.R;
-import org.sqlunet.provider.SqlUNetContract;
-import org.sqlunet.provider.XSqlUNetContract.Words_FnWords_PbWords_VnWords;
-import org.sqlunet.wordnet.SensePointer;
-import org.sqlunet.wordnet.WordPointer;
-import org.sqlunet.wordnet.browser.SenseFragment;
-
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.ListFragment;
@@ -29,6 +21,14 @@ import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 import android.widget.SimpleCursorAdapter.ViewBinder;
 import android.widget.TextView;
+
+import org.sqlunet.browser.Module;
+import org.sqlunet.browser.R;
+import org.sqlunet.provider.SqlUNetContract;
+import org.sqlunet.provider.XSqlUNetContract.Words_FnWords_PbWords_VnWords;
+import org.sqlunet.wordnet.SensePointer;
+import org.sqlunet.wordnet.WordPointer;
+import org.sqlunet.wordnet.browser.SenseFragment;
 
 /**
  * A list fragment representing a list of synsets. This fragment also supports tablet devices by allowing list items to be given an 'activated' state upon
@@ -106,7 +106,7 @@ public class SelectorFragment extends ListFragment
 
 		// list adapter, with no data
 		final SimpleCursorAdapter adapter = new SimpleCursorAdapter(getActivity(), R.layout.item_selector, null, //
-				new String[] { //
+				new String[]{ //
 						Words_FnWords_PbWords_VnWords.POS, //
 						Words_FnWords_PbWords_VnWords.SENSENUM, //
 						Words_FnWords_PbWords_VnWords.LEXDOMAIN, //
@@ -122,7 +122,7 @@ public class SelectorFragment extends ListFragment
 						Words_FnWords_PbWords_VnWords.VNWORDID, //
 						Words_FnWords_PbWords_VnWords.PBWORDID, //
 				}, //
-				new int[] { //
+				new int[]{ //
 						R.id.pos, //
 						R.id.sensenum, //
 						R.id.lexdomain, //
@@ -153,19 +153,16 @@ public class SelectorFragment extends ListFragment
 				if (view instanceof TextView)
 				{
 					((TextView) view).setText(text);
-				}
-				else if (view instanceof ImageView)
+				} else if (view instanceof ImageView)
 				{
 					try
 					{
 						((ImageView) view).setImageResource(Integer.parseInt(text));
-					}
-					catch (final NumberFormatException nfe)
+					} catch (final NumberFormatException nfe)
 					{
 						((ImageView) view).setImageURI(Uri.parse(text));
 					}
-				}
-				else
+				} else
 					throw new IllegalStateException(view.getClass().getName() + " is not a view that can be bound by this SimpleCursorAdapter"); //$NON-NLS-1$
 				return false;
 			}
@@ -180,7 +177,7 @@ public class SelectorFragment extends ListFragment
 			public Loader<Cursor> onCreateLoader(final int loader0, final Bundle args0)
 			{
 				final Uri uri = Uri.parse(Words_FnWords_PbWords_VnWords.CONTENT_URI);
-				final String[] projection = new String[] { //
+				final String[] projection = new String[]{ //
 						Words_FnWords_PbWords_VnWords.SYNSETID + " AS _id", // //$NON-NLS-1$
 						Words_FnWords_PbWords_VnWords.WORDID, //
 						Words_FnWords_PbWords_VnWords.SENSEID, //
@@ -199,7 +196,7 @@ public class SelectorFragment extends ListFragment
 						Words_FnWords_PbWords_VnWords.PBWORDID, //
 				};
 				final String selection = "w." + Words_FnWords_PbWords_VnWords.LEMMA + " = ?"; //$NON-NLS-1$//$NON-NLS-2$
-				final String[] selectionArgs = new String[] { SelectorFragment.this.queryWord };
+				final String[] selectionArgs = new String[]{SelectorFragment.this.queryWord};
 				final String sortOrder = "y." + Words_FnWords_PbWords_VnWords.POS + ',' + Words_FnWords_PbWords_VnWords.SENSENUM; //$NON-NLS-1$
 				return new CursorLoader(getActivity(), uri, projection, selection, selectionArgs, sortOrder);
 			}
@@ -262,8 +259,7 @@ public class SelectorFragment extends ListFragment
 			if (position == AdapterView.INVALID_POSITION)
 			{
 				getListView().setItemChecked(this.activatedPosition, false);
-			}
-			else
+			} else
 			{
 				getListView().setItemChecked(position, true);
 			}
@@ -294,7 +290,9 @@ public class SelectorFragment extends ListFragment
 	public void setActivateOnItemClick(@SuppressWarnings("SameParameterValue") final boolean activateOnItemClick)
 	{
 		// when setting CHOICE_MODE_SINGLE, ListView will automatically give items the 'activated' state when touched.
-		getListView().setChoiceMode(activateOnItemClick ? AbsListView.CHOICE_MODE_SINGLE : AbsListView.CHOICE_MODE_NONE);
+		getListView().setChoiceMode(activateOnItemClick ?
+				AbsListView.CHOICE_MODE_SINGLE :
+				AbsListView.CHOICE_MODE_NONE);
 	}
 
 	// C L I C K E V E N T L I S T E N
@@ -368,7 +366,9 @@ public class SelectorFragment extends ListFragment
 
 			// sense pointer
 			final Pointer pointer = new Pointer();
-			pointer.setSynset(cursor.isNull(idSynsetId) ? null : cursor.getLong(idSynsetId), cursor.getString(idPos));
+			pointer.setSynset(cursor.isNull(idSynsetId) ?
+					null :
+					cursor.getLong(idSynsetId), cursor.getString(idPos));
 			pointer.setWord(this.word.wordid, this.word.lemma, cursor.getString(idCased));
 
 			// notify the active listener (the activity, if the fragment is attached to one) that an item has been selected

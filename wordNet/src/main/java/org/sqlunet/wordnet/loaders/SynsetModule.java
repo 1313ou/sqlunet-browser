@@ -1,11 +1,11 @@
 package org.sqlunet.wordnet.loaders;
 
+import android.app.Fragment;
+import android.os.Parcelable;
+
 import org.sqlunet.HasPos;
 import org.sqlunet.HasSynsetId;
 import org.sqlunet.treeview.model.TreeNode;
-
-import android.app.Fragment;
-import android.os.Parcelable;
 
 public class SynsetModule extends BasicModule
 {
@@ -75,14 +75,14 @@ public class SynsetModule extends BasicModule
 			{
 				switch (this.pos)
 				{
-				case 'v':
-					this.vframes(this.synsetid, node);
-					this.vframesentences(this.synsetid, node);
-					break;
+					case 'v':
+						this.vframes(this.synsetid, node);
+						this.vframesentences(this.synsetid, node);
+						break;
 
-				case 'a':
-					this.adjposition(this.synsetid, node);
-					break;
+					case 'a':
+						this.adjposition(this.synsetid, node);
+						break;
 				}
 			}
 		}

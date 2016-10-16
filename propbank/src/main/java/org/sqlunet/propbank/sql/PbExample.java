@@ -1,9 +1,9 @@
 package org.sqlunet.propbank.sql;
 
+import android.database.sqlite.SQLiteDatabase;
+
 import java.util.ArrayList;
 import java.util.List;
-
-import android.database.sqlite.SQLiteDatabase;
 
 /**
  * Example attached to a PropBank roleset
@@ -60,14 +60,10 @@ class PbExample
 	/**
 	 * Constructor
 	 *
-	 * @param exampleId
-	 *            is the example id
-	 * @param text
-	 *            is the text of the example
-	 * @param rel
-	 *            is the relation
-	 * @param args
-	 *            is the list of arguments
+	 * @param exampleId is the example id
+	 * @param text      is the text of the example
+	 * @param rel       is the relation
+	 * @param args      is the list of arguments
 	 */
 	private PbExample(final long exampleId, final String text, final String rel, final List<PbArg> args, final String aspect, final String form, final String tense, final String voice, final String person)
 	{
@@ -85,8 +81,7 @@ class PbExample
 	/**
 	 * Make a list of examples from query built from relationsetid
 	 *
-	 * @param connection
-	 *            is the database connection
+	 * @param connection is the database connection
 	 * @return list of PropBank examples
 	 */
 	static public List<PbExample> make(final SQLiteDatabase connection, final long roleSetId)
@@ -114,8 +109,7 @@ class PbExample
 
 				result.add(new PbExample(exampleId, text, rel, args, aspect, form, tense, voice, person));
 			}
-		}
-		finally
+		} finally
 		{
 			if (query != null)
 			{

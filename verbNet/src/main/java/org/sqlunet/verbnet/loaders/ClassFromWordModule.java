@@ -1,5 +1,15 @@
 package org.sqlunet.verbnet.loaders;
 
+import android.app.Fragment;
+import android.app.LoaderManager.LoaderCallbacks;
+import android.content.CursorLoader;
+import android.content.Loader;
+import android.database.Cursor;
+import android.net.Uri;
+import android.os.Bundle;
+import android.os.Parcelable;
+import android.text.SpannableStringBuilder;
+
 import org.sqlunet.HasSynsetId;
 import org.sqlunet.HasWordId;
 import org.sqlunet.browser.Module;
@@ -10,16 +20,6 @@ import org.sqlunet.verbnet.R;
 import org.sqlunet.verbnet.provider.VerbNetContract.Words_VnClasses_VnGroupings;
 import org.sqlunet.verbnet.style.VerbNetFactories;
 import org.sqlunet.view.TreeFactory;
-
-import android.app.Fragment;
-import android.app.LoaderManager.LoaderCallbacks;
-import android.content.CursorLoader;
-import android.content.Loader;
-import android.database.Cursor;
-import android.net.Uri;
-import android.os.Bundle;
-import android.os.Parcelable;
-import android.text.SpannableStringBuilder;
 
 public class ClassFromWordModule extends BasicModule
 {
@@ -33,8 +33,7 @@ public class ClassFromWordModule extends BasicModule
 	/**
 	 * Constructor
 	 *
-	 * @param fragment0
-	 *        host fragment
+	 * @param fragment0 host fragment
 	 */
 	public ClassFromWordModule(final Fragment fragment0)
 	{
@@ -71,8 +70,7 @@ public class ClassFromWordModule extends BasicModule
 		if (this.wordid != null)
 		{
 			vnclasses(this.wordid, this.synsetid, node);
-		}
-		else
+		} else
 		{
 			node.disable();
 		}
@@ -90,7 +88,7 @@ public class ClassFromWordModule extends BasicModule
 			public Loader<Cursor> onCreateLoader(final int loaderId0, final Bundle args)
 			{
 				final Uri uri = Uri.parse(Words_VnClasses_VnGroupings.CONTENT_URI);
-				final String[] projection = new String[] { //
+				final String[] projection = new String[]{ //
 						Words_VnClasses_VnGroupings.CLASSID, //
 						Words_VnClasses_VnGroupings.CLASS, //
 						Words_VnClasses_VnGroupings.CLASSTAG, //
@@ -105,14 +103,13 @@ public class ClassFromWordModule extends BasicModule
 				if (synsetid0 != 0)
 				{
 					selection += " AND (" + Words_VnClasses_VnGroupings.SYNSETID + " = ? OR " + Words_VnClasses_VnGroupings.SYNSETID + " IS NULL)"; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-					selectionArgs = new String[] { //
+					selectionArgs = new String[]{ //
 							Long.toString(wordid0), //
-							Long.toString(synsetid0) };
-				}
-				else
+							Long.toString(synsetid0)};
+				} else
 				{
-					selectionArgs = new String[] { //
-							Long.toString(wordid0) };
+					selectionArgs = new String[]{ //
+							Long.toString(wordid0)};
 				}
 				final String sortOrder = null;
 				return new CursorLoader(ClassFromWordModule.this.getContext(), uri, projection, selection, selectionArgs, sortOrder);
@@ -157,13 +154,11 @@ public class ClassFromWordModule extends BasicModule
 
 						// attach result
 						TreeFactory.addTextNode(parent, sb, ClassFromWordModule.this.getContext(), itemsNode, rolesNode, framesNode);
-					}
-					while (cursor.moveToNext());
+					} while (cursor.moveToNext());
 
 					// expand
 					TreeView.expand(parent, false);
-				}
-				else
+				} else
 				{
 					parent.disable();
 				}

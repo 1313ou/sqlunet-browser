@@ -13,7 +13,7 @@ public class PredicateMatrixContract
 		public static final String PMPREDICATE = "predicate"; //$NON-NLS-1$
 		public static final String PMROLE = "role"; //$NON-NLS-1$
 		public static final String PMPOS = "pos"; //$NON-NLS-1$
-		
+
 		public static final String WORD = "lemma"; //$NON-NLS-1$
 		public static final String WORDID = "wordid"; //$NON-NLS-1$
 		public static final String SYNSETID = "synsetid"; //$NON-NLS-1$

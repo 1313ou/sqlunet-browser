@@ -1,8 +1,8 @@
 package org.sqlunet.verbnet.sql;
 
-import org.sqlunet.sql.DBQueryCommand;
-
 import android.database.sqlite.SQLiteDatabase;
+
+import org.sqlunet.sql.DBQueryCommand;
 
 /**
  * Query command for VerbNet roles
@@ -19,10 +19,8 @@ class VnRoleQueryCommand extends DBQueryCommand
 	/**
 	 * Constructor
 	 *
-	 * @param thisConnection
-	 *            is the database connection
-	 * @param thisClassId
-	 *            is the target classid
+	 * @param thisConnection is the database connection
+	 * @param thisClassId    is the target classid
 	 */
 	@SuppressWarnings("boxing")
 	public VnRoleQueryCommand(final SQLiteDatabase thisConnection, final long thisClassId)

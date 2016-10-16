@@ -1,9 +1,10 @@
-<?xml version="1.0" encoding="utf-8"?><RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context="org.sqlunet.browser.config.ManagementFragment" >
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                tools:context="org.sqlunet.browser.config.ManagementFragment">
 
     <Spinner
         android:id="@+id/management_actions"
@@ -12,7 +13,7 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
-        android:layout_margin="10dp" />
+        android:layout_margin="10dp"/>
 
     <ImageButton
         android:id="@+id/management_run"
@@ -25,13 +26,13 @@
         android:background="@drawable/bg_button"
         android:contentDescription="@string/action_download"
         android:src="@drawable/ic_run"
-        android:text="@string/action_run" />
+        android:text="@string/action_run"/>
 
     <TextView
         android:id="@+id/management_status"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/management_run"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"/>
 
 </RelativeLayout>

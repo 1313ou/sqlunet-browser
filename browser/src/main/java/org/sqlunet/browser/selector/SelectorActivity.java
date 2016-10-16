@@ -1,18 +1,18 @@
 package org.sqlunet.browser.selector;
 
-import org.sqlunet.browser.DetailActivity;
-import org.sqlunet.browser.DetailFragment;
-import org.sqlunet.browser.R;
-import org.sqlunet.provider.SqlUNetContract;
-import org.sqlunet.wordnet.SensePointer;
-import org.sqlunet.wordnet.browser.SenseFragment;
-
 import android.app.ActionBar;
 import android.app.Activity;
 import android.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.TextView;
+
+import org.sqlunet.browser.DetailActivity;
+import org.sqlunet.browser.DetailFragment;
+import org.sqlunet.browser.R;
+import org.sqlunet.provider.SqlUNetContract;
+import org.sqlunet.wordnet.SensePointer;
+import org.sqlunet.wordnet.browser.SenseFragment;
 
 /**
  * An activity representing a list of synsets. This activity has different presentations for handset and tablet-size devices. On handsets, the activity presents
@@ -93,8 +93,7 @@ public class SelectorActivity extends Activity implements SelectorFragment.Liste
 			// in two-pane mode, show the detail view in this activity by adding or replacing the detail fragment using a fragment transaction.
 			DetailFragment fragment = (DetailFragment) getFragmentManager().findFragmentById(R.id.container_main);
 			fragment.search(pointer);
-		}
-		else
+		} else
 		{
 			// in single-pane mode, simply start the detail activity for the selected item ID.
 			final Bundle arguments = new Bundle();

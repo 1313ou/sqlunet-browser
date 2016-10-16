@@ -1,5 +1,13 @@
 package org.sqlunet.wordnet.provider;
 
+import android.app.SearchManager;
+import android.content.UriMatcher;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteException;
+import android.database.sqlite.SQLiteQueryBuilder;
+import android.net.Uri;
+import android.util.Log;
+
 import org.sqlunet.provider.SqlUNetContract;
 import org.sqlunet.provider.SqlUNetProvider;
 import org.sqlunet.wordnet.provider.WordNetContract.AdjPositionTypes;
@@ -8,8 +16,8 @@ import org.sqlunet.wordnet.provider.WordNetContract.Dict;
 import org.sqlunet.wordnet.provider.WordNetContract.LexDomains;
 import org.sqlunet.wordnet.provider.WordNetContract.LexLinks;
 import org.sqlunet.wordnet.provider.WordNetContract.LexLinks_Senses;
-import org.sqlunet.wordnet.provider.WordNetContract.LexLinks_Senses_X;
 import org.sqlunet.wordnet.provider.WordNetContract.LexLinks_Senses_Words_X;
+import org.sqlunet.wordnet.provider.WordNetContract.LexLinks_Senses_X;
 import org.sqlunet.wordnet.provider.WordNetContract.LinkTypes;
 import org.sqlunet.wordnet.provider.WordNetContract.Lookup_Definitions;
 import org.sqlunet.wordnet.provider.WordNetContract.Lookup_Samples;
@@ -22,8 +30,8 @@ import org.sqlunet.wordnet.provider.WordNetContract.Search_Samples;
 import org.sqlunet.wordnet.provider.WordNetContract.Search_Words;
 import org.sqlunet.wordnet.provider.WordNetContract.SemLinks;
 import org.sqlunet.wordnet.provider.WordNetContract.SemLinks_Synsets;
-import org.sqlunet.wordnet.provider.WordNetContract.SemLinks_Synsets_X;
 import org.sqlunet.wordnet.provider.WordNetContract.SemLinks_Synsets_Words_X;
+import org.sqlunet.wordnet.provider.WordNetContract.SemLinks_Synsets_X;
 import org.sqlunet.wordnet.provider.WordNetContract.Senses;
 import org.sqlunet.wordnet.provider.WordNetContract.Senses_Synsets_PosTypes_LexDomains;
 import org.sqlunet.wordnet.provider.WordNetContract.Senses_Words;
@@ -35,14 +43,6 @@ import org.sqlunet.wordnet.provider.WordNetContract.Words;
 import org.sqlunet.wordnet.provider.WordNetContract.Words_Senses_CasedWords_Synsets;
 import org.sqlunet.wordnet.provider.WordNetContract.Words_Senses_CasedWords_Synsets_PosTypes_LexDomains;
 import org.sqlunet.wordnet.provider.WordNetContract.Words_Senses_Synsets;
-
-import android.app.SearchManager;
-import android.content.UriMatcher;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteException;
-import android.database.sqlite.SQLiteQueryBuilder;
-import android.net.Uri;
-import android.util.Log;
 
 /**
  * WordNet provider
@@ -184,103 +184,103 @@ public class WordNetProvider extends SqlUNetProvider
 	{
 		switch (WordNetProvider.uriMatcher.match(uri))
 		{
-		// T A B L E S
+			// T A B L E S
 
-		case WORDS:
-			return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + WordNetContract.AUTHORITY + '.' + Words.TABLE; //$NON-NLS-1$
-		case WORD:
-			return SqlUNetContract.VENDOR + ".android.cursor.item/" + SqlUNetContract.VENDOR + '.' + WordNetContract.AUTHORITY + '.' + Words.TABLE; //$NON-NLS-1$
-		case WORD_BY_LEMMA:
-			return SqlUNetContract.VENDOR + ".android.cursor.item/" + SqlUNetContract.VENDOR + '.' + WordNetContract.AUTHORITY + '.' + Words.TABLE; //$NON-NLS-1$
-		case SENSES:
-			return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + WordNetContract.AUTHORITY + '.' + Senses.TABLE; //$NON-NLS-1$
-		case SENSE:
-			return SqlUNetContract.VENDOR + ".android.cursor.item/" + SqlUNetContract.VENDOR + '.' + WordNetContract.AUTHORITY + '.' + Senses.TABLE; //$NON-NLS-1$
-		case SYNSETS:
-			return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + WordNetContract.AUTHORITY + '.' + Synsets.TABLE; //$NON-NLS-1$
-		case SYNSET:
-			return SqlUNetContract.VENDOR + ".android.cursor.item/" + SqlUNetContract.VENDOR + '.' + WordNetContract.AUTHORITY + '.' + Synsets.TABLE; //$NON-NLS-1$
-		case SEMLINKS:
-			return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + WordNetContract.AUTHORITY + '.' + SemLinks.TABLE; //$NON-NLS-1$
-		case LEXLINKS:
-			return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + WordNetContract.AUTHORITY + '.' + LexLinks.TABLE; //$NON-NLS-1$
-		case LINKTYPES:
-			return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + WordNetContract.AUTHORITY + '.' + LinkTypes.TABLE; //$NON-NLS-1$
-		case POSTYPES:
-			return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + WordNetContract.AUTHORITY + '.' + PosTypes.TABLE; //$NON-NLS-1$
-		case ADJPOSITIONTYPES:
-			return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + WordNetContract.AUTHORITY + '.' + AdjPositionTypes.TABLE; //$NON-NLS-1$
-		case LEXDOMAINS:
-			return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + WordNetContract.AUTHORITY + '.' + LexDomains.TABLE; //$NON-NLS-1$
-		case SAMPLES:
-			return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + WordNetContract.AUTHORITY + '.' + Samples.TABLE; //$NON-NLS-1$
+			case WORDS:
+				return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + WordNetContract.AUTHORITY + '.' + Words.TABLE; //$NON-NLS-1$
+			case WORD:
+				return SqlUNetContract.VENDOR + ".android.cursor.item/" + SqlUNetContract.VENDOR + '.' + WordNetContract.AUTHORITY + '.' + Words.TABLE; //$NON-NLS-1$
+			case WORD_BY_LEMMA:
+				return SqlUNetContract.VENDOR + ".android.cursor.item/" + SqlUNetContract.VENDOR + '.' + WordNetContract.AUTHORITY + '.' + Words.TABLE; //$NON-NLS-1$
+			case SENSES:
+				return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + WordNetContract.AUTHORITY + '.' + Senses.TABLE; //$NON-NLS-1$
+			case SENSE:
+				return SqlUNetContract.VENDOR + ".android.cursor.item/" + SqlUNetContract.VENDOR + '.' + WordNetContract.AUTHORITY + '.' + Senses.TABLE; //$NON-NLS-1$
+			case SYNSETS:
+				return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + WordNetContract.AUTHORITY + '.' + Synsets.TABLE; //$NON-NLS-1$
+			case SYNSET:
+				return SqlUNetContract.VENDOR + ".android.cursor.item/" + SqlUNetContract.VENDOR + '.' + WordNetContract.AUTHORITY + '.' + Synsets.TABLE; //$NON-NLS-1$
+			case SEMLINKS:
+				return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + WordNetContract.AUTHORITY + '.' + SemLinks.TABLE; //$NON-NLS-1$
+			case LEXLINKS:
+				return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + WordNetContract.AUTHORITY + '.' + LexLinks.TABLE; //$NON-NLS-1$
+			case LINKTYPES:
+				return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + WordNetContract.AUTHORITY + '.' + LinkTypes.TABLE; //$NON-NLS-1$
+			case POSTYPES:
+				return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + WordNetContract.AUTHORITY + '.' + PosTypes.TABLE; //$NON-NLS-1$
+			case ADJPOSITIONTYPES:
+				return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + WordNetContract.AUTHORITY + '.' + AdjPositionTypes.TABLE; //$NON-NLS-1$
+			case LEXDOMAINS:
+				return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + WordNetContract.AUTHORITY + '.' + LexDomains.TABLE; //$NON-NLS-1$
+			case SAMPLES:
+				return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + WordNetContract.AUTHORITY + '.' + Samples.TABLE; //$NON-NLS-1$
 
 			// V I E W S
 
-		case DICT:
-			return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + WordNetContract.AUTHORITY + '.' + Dict.TABLE; //$NON-NLS-1$
+			case DICT:
+				return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + WordNetContract.AUTHORITY + '.' + Dict.TABLE; //$NON-NLS-1$
 
-		case WORDS_SENSES_SYNSETS:
-			return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + WordNetContract.AUTHORITY + '.' + Words_Senses_Synsets.TABLE; //$NON-NLS-1$
-		case WORDS_SENSES_CASEDWORDS_SYNSETS:
-			return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + WordNetContract.AUTHORITY + '.' + Words_Senses_CasedWords_Synsets.TABLE; //$NON-NLS-1$
-		case WORDS_SENSES_CASEDWORDS_SYNSETS_POSTYPES_LEXDOMAINS:
-			return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + WordNetContract.AUTHORITY + '.' + Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.TABLE; //$NON-NLS-1$
+			case WORDS_SENSES_SYNSETS:
+				return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + WordNetContract.AUTHORITY + '.' + Words_Senses_Synsets.TABLE; //$NON-NLS-1$
+			case WORDS_SENSES_CASEDWORDS_SYNSETS:
+				return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + WordNetContract.AUTHORITY + '.' + Words_Senses_CasedWords_Synsets.TABLE; //$NON-NLS-1$
+			case WORDS_SENSES_CASEDWORDS_SYNSETS_POSTYPES_LEXDOMAINS:
+				return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + WordNetContract.AUTHORITY + '.' + Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.TABLE; //$NON-NLS-1$
 
 			// J O I N S
 
-		case SENSES_WORDS:
-			return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + WordNetContract.AUTHORITY + '.' + Senses_Words.TABLE; //$NON-NLS-1$
-		case SENSES_WORDS_BY_SYNSET:
-			return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + WordNetContract.AUTHORITY + '.' + Senses_Words.TABLE_BY_SYNSET; //$NON-NLS-1$
-		case SENSES_SYNSETS_POSTYPES_LEXDOMAINS:
-			return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + WordNetContract.AUTHORITY + '.' + Senses_Synsets_PosTypes_LexDomains.TABLE; //$NON-NLS-1$
-		case SYNSETS_POSTYPES_LEXDOMAINS:
-			return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + WordNetContract.AUTHORITY + '.' + Synsets_PosTypes_LexDomains.TABLE; //$NON-NLS-1$
+			case SENSES_WORDS:
+				return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + WordNetContract.AUTHORITY + '.' + Senses_Words.TABLE; //$NON-NLS-1$
+			case SENSES_WORDS_BY_SYNSET:
+				return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + WordNetContract.AUTHORITY + '.' + Senses_Words.TABLE_BY_SYNSET; //$NON-NLS-1$
+			case SENSES_SYNSETS_POSTYPES_LEXDOMAINS:
+				return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + WordNetContract.AUTHORITY + '.' + Senses_Synsets_PosTypes_LexDomains.TABLE; //$NON-NLS-1$
+			case SYNSETS_POSTYPES_LEXDOMAINS:
+				return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + WordNetContract.AUTHORITY + '.' + Synsets_PosTypes_LexDomains.TABLE; //$NON-NLS-1$
 
-		case SEMLINKS_SYNSETS:
-			return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + WordNetContract.AUTHORITY + '.' + SemLinks_Synsets.TABLE; //$NON-NLS-1$
-		case SEMLINKS_SYNSETS_X:
-			return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + WordNetContract.AUTHORITY + '.' + SemLinks_Synsets_X.TABLE; //$NON-NLS-1$
-		case SEMLINKS_SYNSETS_WORDS_X_BY_SYNSET:
-			return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + WordNetContract.AUTHORITY + '.' + SemLinks_Synsets_Words_X.TABLE_BY_SYNSET; //$NON-NLS-1$
-		case LEXLINKS_SENSES:
-			return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + WordNetContract.AUTHORITY + '.' + LexLinks_Senses.TABLE; //$NON-NLS-1$
-		case LEXLINKS_SENSES_X:
-			return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + WordNetContract.AUTHORITY + '.' + LexLinks_Senses_X.TABLE; //$NON-NLS-1$
-		case LEXLINKS_SENSES_WORDS_X_BY_SYNSET:
-			return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + WordNetContract.AUTHORITY + '.' + LexLinks_Senses_Words_X.TABLE_BY_SYNSET; //$NON-NLS-1$
+			case SEMLINKS_SYNSETS:
+				return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + WordNetContract.AUTHORITY + '.' + SemLinks_Synsets.TABLE; //$NON-NLS-1$
+			case SEMLINKS_SYNSETS_X:
+				return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + WordNetContract.AUTHORITY + '.' + SemLinks_Synsets_X.TABLE; //$NON-NLS-1$
+			case SEMLINKS_SYNSETS_WORDS_X_BY_SYNSET:
+				return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + WordNetContract.AUTHORITY + '.' + SemLinks_Synsets_Words_X.TABLE_BY_SYNSET; //$NON-NLS-1$
+			case LEXLINKS_SENSES:
+				return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + WordNetContract.AUTHORITY + '.' + LexLinks_Senses.TABLE; //$NON-NLS-1$
+			case LEXLINKS_SENSES_X:
+				return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + WordNetContract.AUTHORITY + '.' + LexLinks_Senses_X.TABLE; //$NON-NLS-1$
+			case LEXLINKS_SENSES_WORDS_X_BY_SYNSET:
+				return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + WordNetContract.AUTHORITY + '.' + LexLinks_Senses_Words_X.TABLE_BY_SYNSET; //$NON-NLS-1$
 
-		case VFRAMEMAPS_VFRAMES:
-			return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + WordNetContract.AUTHORITY + '.' + VerbFrameMaps_VerbFrames.TABLE; //$NON-NLS-1$
-		case VFRAMESENTENCEMAPS_VFRAMESENTENCES:
-			return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + WordNetContract.AUTHORITY + '.' + VerbFrameSentenceMaps_VerbFrameSentences.TABLE; //$NON-NLS-1$
-		case ADJPOSITIONS_ADJPOSITIONTYPES:
-			return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + WordNetContract.AUTHORITY + '.' + AdjPositions_AdjPositionTypes.TABLE; //$NON-NLS-1$
+			case VFRAMEMAPS_VFRAMES:
+				return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + WordNetContract.AUTHORITY + '.' + VerbFrameMaps_VerbFrames.TABLE; //$NON-NLS-1$
+			case VFRAMESENTENCEMAPS_VFRAMESENTENCES:
+				return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + WordNetContract.AUTHORITY + '.' + VerbFrameSentenceMaps_VerbFrameSentences.TABLE; //$NON-NLS-1$
+			case ADJPOSITIONS_ADJPOSITIONTYPES:
+				return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + WordNetContract.AUTHORITY + '.' + AdjPositions_AdjPositionTypes.TABLE; //$NON-NLS-1$
 
-		case MORPHMAPS_MORPHS:
-			return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + WordNetContract.AUTHORITY + '.' + MorphMaps_Morphs.TABLE; //$NON-NLS-1$
+			case MORPHMAPS_MORPHS:
+				return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + WordNetContract.AUTHORITY + '.' + MorphMaps_Morphs.TABLE; //$NON-NLS-1$
 
 			// TEXT LOOKUPS
 
-		case LOOKUP_FTS_WORDS:
-			return SqlUNetContract.VENDOR + ".android.cursor.item/" + SqlUNetContract.VENDOR + '.' + WordNetContract.AUTHORITY + '.' + Words.TABLE; //$NON-NLS-1$
-		case LOOKUP_FTS_DEFINITIONS:
-			return SqlUNetContract.VENDOR + ".android.cursor.item/" + SqlUNetContract.VENDOR + '.' + WordNetContract.AUTHORITY + '.' + Synsets.TABLE; //$NON-NLS-1$
-		case LOOKUP_FTS_SAMPLES:
-			return SqlUNetContract.VENDOR + ".android.cursor.item/" + SqlUNetContract.VENDOR + '.' + WordNetContract.AUTHORITY + '.' + Samples.TABLE; //$NON-NLS-1$
+			case LOOKUP_FTS_WORDS:
+				return SqlUNetContract.VENDOR + ".android.cursor.item/" + SqlUNetContract.VENDOR + '.' + WordNetContract.AUTHORITY + '.' + Words.TABLE; //$NON-NLS-1$
+			case LOOKUP_FTS_DEFINITIONS:
+				return SqlUNetContract.VENDOR + ".android.cursor.item/" + SqlUNetContract.VENDOR + '.' + WordNetContract.AUTHORITY + '.' + Synsets.TABLE; //$NON-NLS-1$
+			case LOOKUP_FTS_SAMPLES:
+				return SqlUNetContract.VENDOR + ".android.cursor.item/" + SqlUNetContract.VENDOR + '.' + WordNetContract.AUTHORITY + '.' + Samples.TABLE; //$NON-NLS-1$
 
 			// S E A R C H
 
-		case LOOKUP_WORDS:
-			return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + WordNetContract.AUTHORITY + '.' + Words.TABLE; //$NON-NLS-1$
-		case LOOKUP_DEFINITIONS:
-			return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + WordNetContract.AUTHORITY + '.' + Synsets.TABLE; //$NON-NLS-1$
-		case LOOKUP_SAMPLES:
-			return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + WordNetContract.AUTHORITY + '.' + Samples.TABLE; //$NON-NLS-1$
+			case LOOKUP_WORDS:
+				return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + WordNetContract.AUTHORITY + '.' + Words.TABLE; //$NON-NLS-1$
+			case LOOKUP_DEFINITIONS:
+				return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + WordNetContract.AUTHORITY + '.' + Synsets.TABLE; //$NON-NLS-1$
+			case LOOKUP_SAMPLES:
+				return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + WordNetContract.AUTHORITY + '.' + Samples.TABLE; //$NON-NLS-1$
 
-		default:
-			throw new UnsupportedOperationException("Illegal MIME type"); //$NON-NLS-1$
+			default:
+				throw new UnsupportedOperationException("Illegal MIME type"); //$NON-NLS-1$
 		}
 	}
 
@@ -310,230 +310,227 @@ public class WordNetProvider extends SqlUNetProvider
 		switch (code)
 		{
 
-		// T A B L E
-		// table uri : last element is table
+			// T A B L E
+			// table uri : last element is table
 
-		case WORDS:
-		case SENSES:
-		case SYNSETS:
-		case SEMLINKS:
-		case LEXLINKS:
-		case LINKTYPES:
-		case POSTYPES:
-		case LEXDOMAINS:
-		case ADJPOSITIONTYPES:
-		case SAMPLES:
-			table = uri.getLastPathSegment();
-			break;
+			case WORDS:
+			case SENSES:
+			case SYNSETS:
+			case SEMLINKS:
+			case LEXLINKS:
+			case LINKTYPES:
+			case POSTYPES:
+			case LEXDOMAINS:
+			case ADJPOSITIONTYPES:
+			case SAMPLES:
+				table = uri.getLastPathSegment();
+				break;
 
-		// I T E M
-		// the incoming URI was for a single item because this URI was for a single row, the _ID value part is present.
-		// get the last path segment from the URI: this is the _ID value. then, append the value to the WHERE clause for the query
+			// I T E M
+			// the incoming URI was for a single item because this URI was for a single row, the _ID value part is present.
+			// get the last path segment from the URI: this is the _ID value. then, append the value to the WHERE clause for the query
 
-		case WORD:
-			table = Words.TABLE;
-			if (selection != null)
+			case WORD:
+				table = Words.TABLE;
+				if (selection != null)
+				{
+					selection += " AND "; //$NON-NLS-1$
+				} else
+				{
+					selection = ""; //$NON-NLS-1$
+				}
+				selection += Words.WORDID + " = " + uri.getLastPathSegment(); //$NON-NLS-1$
+				break;
+
+			case SENSE:
+				table = Senses.TABLE;
+				if (selection != null)
+				{
+					selection += " AND "; //$NON-NLS-1$
+				} else
+				{
+					selection = ""; //$NON-NLS-1$
+				}
+				selection += Senses.SENSEID + " = " + uri.getLastPathSegment(); //$NON-NLS-1$
+				break;
+
+			case SYNSET:
+				table = uri.getLastPathSegment();
+				if (selection != null)
+				{
+					selection += " AND "; //$NON-NLS-1$
+				} else
+				{
+					selection = ""; //$NON-NLS-1$
+				}
+				selection += Synsets.SYNSETID + " = " + uri.getLastPathSegment(); //$NON-NLS-1$
+				break;
+
+			// V I E W S
+
+			case DICT:
+				table = uri.getLastPathSegment();
+				break;
+
+			// J O I N S
+
+			case WORDS_SENSES_SYNSETS:
+				table = "words " + // //$NON-NLS-1$
+						"LEFT JOIN senses USING (wordid) " + // //$NON-NLS-1$
+						"LEFT JOIN synsets USING (synsetid)"; //$NON-NLS-1$
+				break;
+
+			case WORDS_SENSES_CASEDWORDS_SYNSETS:
+				table = "words " + // //$NON-NLS-1$
+						"LEFT JOIN senses USING (wordid) " + // //$NON-NLS-1$
+						"LEFT JOIN casedwords USING (wordid,casedwordid) " + // //$NON-NLS-1$
+						"LEFT JOIN synsets USING (synsetid)"; //$NON-NLS-1$
+				break;
+
+			case WORDS_SENSES_CASEDWORDS_SYNSETS_POSTYPES_LEXDOMAINS:
+				table = "words " + // //$NON-NLS-1$
+						"LEFT JOIN senses USING (wordid) " + // //$NON-NLS-1$
+						"LEFT JOIN casedwords USING (wordid,casedwordid) " + // //$NON-NLS-1$
+						"LEFT JOIN synsets USING (synsetid) " + // //$NON-NLS-1$
+						"LEFT JOIN postypes USING (pos) " + // //$NON-NLS-1$
+						"LEFT JOIN lexdomains USING (lexdomainid)"; //$NON-NLS-1$
+				break;
+
+			case SENSES_WORDS:
+				table = "senses " + // //$NON-NLS-1$
+						"LEFT JOIN words USING(wordid)"; //$NON-NLS-1$
+				break;
+
+			case SENSES_WORDS_BY_SYNSET:
+				groupBy = "synsetid"; //$NON-NLS-1$
+				table = "senses " + // //$NON-NLS-1$
+						"LEFT JOIN words USING(wordid)"; //$NON-NLS-1$
+				projection = SqlUNetProvider.appendProjection(projection, "GROUP_CONCAT(words.lemma, ', ' ) AS members"); //$NON-NLS-1$
+				break;
+
+			case SENSES_SYNSETS_POSTYPES_LEXDOMAINS:
+				table = "senses " + // //$NON-NLS-1$
+						"INNER JOIN synsets USING (synsetid) " + // //$NON-NLS-1$
+						"LEFT JOIN postypes USING(pos) " + // //$NON-NLS-1$
+						"LEFT JOIN lexdomains USING(lexdomainid)"; //$NON-NLS-1$
+				break;
+
+			case SYNSETS_POSTYPES_LEXDOMAINS:
+				table = "synsets " + // //$NON-NLS-1$
+						"LEFT JOIN postypes USING(pos) " + // //$NON-NLS-1$
+						"LEFT JOIN lexdomains USING(lexdomainid)"; //$NON-NLS-1$
+				break;
+
+			case SEMLINKS_SYNSETS:
+				table = "semlinks AS l " + // //$NON-NLS-1$
+						"INNER JOIN synsets AS d ON l.synset2id = d.synsetid"; //$NON-NLS-1$
+				break;
+
+			case SEMLINKS_SYNSETS_X:
+				table = "semlinks AS l " + // //$NON-NLS-1$
+						"INNER JOIN synsets AS d ON l.synset2id = d.synsetid " + // //$NON-NLS-1$
+						"LEFT JOIN linktypes USING (linkid)"; //$NON-NLS-1$
+				break;
+
+			case SEMLINKS_SYNSETS_WORDS_X_BY_SYNSET:
+				groupBy = "d.synsetid"; //$NON-NLS-1$
+				table = "semlinks AS l " + // //$NON-NLS-1$
+						"INNER JOIN synsets AS d ON l.synset2id = d.synsetid " + // //$NON-NLS-1$
+						"LEFT JOIN linktypes USING (linkid) " + // //$NON-NLS-1$
+						"LEFT JOIN senses ON d.synsetid = senses.synsetid " + // //$NON-NLS-1$
+						"LEFT JOIN words USING (wordid)"; //$NON-NLS-1$
+				projection = SqlUNetProvider.appendProjection(projection, "GROUP_CONCAT(words.lemma, ', ' ) AS members"); //$NON-NLS-1$
+				break;
+
+			case LEXLINKS_SENSES:
+				table = "lexlinks AS l " + // //$NON-NLS-1$
+						"INNER JOIN synsets AS d ON l.synset2id = d.synsetid " + // //$NON-NLS-1$
+						"INNER JOIN words AS w ON l.word2id = w.wordid"; //$NON-NLS-1$
+				break;
+
+			case LEXLINKS_SENSES_X:
+				table = "lexlinks AS l " + // //$NON-NLS-1$
+						"INNER JOIN synsets AS d ON l.synset2id = d.synsetid " + // //$NON-NLS-1$
+						"INNER JOIN words AS w ON l.word2id = w.wordid " + // //$NON-NLS-1$
+						"LEFT JOIN linktypes USING (linkid)"; //$NON-NLS-1$
+				break;
+
+			case LEXLINKS_SENSES_WORDS_X_BY_SYNSET:
+				groupBy = "d.synsetid"; //$NON-NLS-1$
+				projection = SqlUNetProvider.appendProjection(projection, "GROUP_CONCAT(DISTINCT t.lemma) AS members"); //$NON-NLS-1$
+				table = "lexlinks AS l " + // //$NON-NLS-1$
+						"INNER JOIN synsets AS d ON l.synset2id = d.synsetid " + // //$NON-NLS-1$
+						"INNER JOIN words AS w ON l.word2id = w.wordid " + // //$NON-NLS-1$
+						"LEFT JOIN linktypes USING (linkid) " + // //$NON-NLS-1$
+						"LEFT JOIN senses AS s ON d.synsetid = s.synsetid " + // //$NON-NLS-1$
+						"LEFT JOIN words AS t USING (wordid)"; //$NON-NLS-1$
+				break;
+
+			case VFRAMEMAPS_VFRAMES:
+				table = "vframemaps " + // //$NON-NLS-1$
+						"LEFT JOIN vframes USING (frameid)"; //$NON-NLS-1$
+				break;
+
+			case VFRAMESENTENCEMAPS_VFRAMESENTENCES:
+				table = "vframesentencemaps " + // //$NON-NLS-1$
+						"LEFT JOIN vframesentences USING (sentenceid)"; //$NON-NLS-1$
+				break;
+
+			case ADJPOSITIONS_ADJPOSITIONTYPES:
+				table = "adjpositions " + // //$NON-NLS-1$
+						"LEFT JOIN adjpositiontypes USING (position)"; //$NON-NLS-1$
+				break;
+
+			case MORPHMAPS_MORPHS:
+				table = "morphmaps " + // //$NON-NLS-1$
+						"LEFT JOIN morphs USING (morphid)"; //$NON-NLS-1$
+				break;
+
+			// T E X T S E A R C H
+
+			case LOOKUP_FTS_WORDS:
+				table = "words_lemma_fts4"; //$NON-NLS-1$
+				break;
+
+			case LOOKUP_FTS_DEFINITIONS:
+				table = "synsets_definition_fts4"; //$NON-NLS-1$
+				break;
+
+			case LOOKUP_FTS_SAMPLES:
+				table = "samples_sample_fts4"; //$NON-NLS-1$
+				break;
+
+			// S U G G E S T
+
+			case LOOKUP_WORDS:
 			{
-				selection += " AND "; //$NON-NLS-1$
+				final String last = uri.getLastPathSegment();
+				if (SearchManager.SUGGEST_URI_PATH_QUERY.equals(last))
+					return null;
+				table = "words_lemma_fts4"; //$NON-NLS-1$
+				return this.db.query(table, new String[]{"wordid AS _id", "lemma AS " + SearchManager.SUGGEST_COLUMN_TEXT_1, "lemma AS " + SearchManager.SUGGEST_COLUMN_QUERY}, "lemma MATCH ?", new String[]{last}, null, null, null);
 			}
-			else
+
+			case LOOKUP_DEFINITIONS:
 			{
-				selection = ""; //$NON-NLS-1$
+				final String last = uri.getLastPathSegment();
+				table = "synsets_definition_fts4"; //$NON-NLS-1$
+				return this.db.query(table, new String[]{"synsetid AS _id", "definition AS " + SearchManager.SUGGEST_COLUMN_TEXT_1, "definition AS " + SearchManager.SUGGEST_COLUMN_QUERY}, "definition MATCH ?", new String[]{last}, null, //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
+						null, null);
 			}
-			selection += Words.WORDID + " = " + uri.getLastPathSegment(); //$NON-NLS-1$
-			break;
 
-		case SENSE:
-			table = Senses.TABLE;
-			if (selection != null)
+			case LOOKUP_SAMPLES:
 			{
-				selection += " AND "; //$NON-NLS-1$
+				final String last = uri.getLastPathSegment();
+				if (SearchManager.SUGGEST_URI_PATH_QUERY.equals(last))
+					return null;
+				table = "samples_sample_fts4"; //$NON-NLS-1$
+				return this.db.query(table, new String[]{"sampleid AS _id", "sample AS " + SearchManager.SUGGEST_COLUMN_TEXT_1, "sample AS " + SearchManager.SUGGEST_COLUMN_QUERY}, "sample MATCH ?", new String[]{last}, null, null, null);
 			}
-			else
-			{
-				selection = ""; //$NON-NLS-1$
-			}
-			selection += Senses.SENSEID + " = " + uri.getLastPathSegment(); //$NON-NLS-1$
-			break;
 
-		case SYNSET:
-			table = uri.getLastPathSegment();
-			if (selection != null)
-			{
-				selection += " AND "; //$NON-NLS-1$
-			}
-			else
-			{
-				selection = ""; //$NON-NLS-1$
-			}
-			selection += Synsets.SYNSETID + " = " + uri.getLastPathSegment(); //$NON-NLS-1$
-			break;
-
-		// V I E W S
-
-		case DICT:
-			table = uri.getLastPathSegment();
-			break;
-
-		// J O I N S
-
-		case WORDS_SENSES_SYNSETS:
-			table = "words " + // //$NON-NLS-1$
-					"LEFT JOIN senses USING (wordid) " + // //$NON-NLS-1$
-					"LEFT JOIN synsets USING (synsetid)"; //$NON-NLS-1$
-			break;
-
-		case WORDS_SENSES_CASEDWORDS_SYNSETS:
-			table = "words " + // //$NON-NLS-1$
-					"LEFT JOIN senses USING (wordid) " + // //$NON-NLS-1$
-					"LEFT JOIN casedwords USING (wordid,casedwordid) " + // //$NON-NLS-1$
-					"LEFT JOIN synsets USING (synsetid)"; //$NON-NLS-1$
-			break;
-
-		case WORDS_SENSES_CASEDWORDS_SYNSETS_POSTYPES_LEXDOMAINS:
-			table = "words " + // //$NON-NLS-1$
-					"LEFT JOIN senses USING (wordid) " + // //$NON-NLS-1$
-					"LEFT JOIN casedwords USING (wordid,casedwordid) " + // //$NON-NLS-1$
-					"LEFT JOIN synsets USING (synsetid) " + // //$NON-NLS-1$
-					"LEFT JOIN postypes USING (pos) " + // //$NON-NLS-1$
-					"LEFT JOIN lexdomains USING (lexdomainid)"; //$NON-NLS-1$
-			break;
-
-		case SENSES_WORDS:
-			table = "senses " + // //$NON-NLS-1$
-					"LEFT JOIN words USING(wordid)"; //$NON-NLS-1$
-			break;
-
-		case SENSES_WORDS_BY_SYNSET:
-			groupBy = "synsetid"; //$NON-NLS-1$
-			table = "senses " + // //$NON-NLS-1$
-					"LEFT JOIN words USING(wordid)"; //$NON-NLS-1$
-			projection = SqlUNetProvider.appendProjection(projection, "GROUP_CONCAT(words.lemma, ', ' ) AS members"); //$NON-NLS-1$
-			break;
-
-		case SENSES_SYNSETS_POSTYPES_LEXDOMAINS:
-			table = "senses " + // //$NON-NLS-1$
-					"INNER JOIN synsets USING (synsetid) " + // //$NON-NLS-1$
-					"LEFT JOIN postypes USING(pos) " + // //$NON-NLS-1$
-					"LEFT JOIN lexdomains USING(lexdomainid)"; //$NON-NLS-1$
-			break;
-
-		case SYNSETS_POSTYPES_LEXDOMAINS:
-			table = "synsets " + // //$NON-NLS-1$
-					"LEFT JOIN postypes USING(pos) " + // //$NON-NLS-1$
-					"LEFT JOIN lexdomains USING(lexdomainid)"; //$NON-NLS-1$
-			break;
-
-		case SEMLINKS_SYNSETS:
-			table = "semlinks AS l " + // //$NON-NLS-1$
-					"INNER JOIN synsets AS d ON l.synset2id = d.synsetid"; //$NON-NLS-1$
-			break;
-
-		case SEMLINKS_SYNSETS_X:
-			table = "semlinks AS l " + // //$NON-NLS-1$
-					"INNER JOIN synsets AS d ON l.synset2id = d.synsetid " + // //$NON-NLS-1$
-					"LEFT JOIN linktypes USING (linkid)"; //$NON-NLS-1$
-			break;
-
-		case SEMLINKS_SYNSETS_WORDS_X_BY_SYNSET:
-			groupBy = "d.synsetid"; //$NON-NLS-1$
-			table = "semlinks AS l " + // //$NON-NLS-1$
-					"INNER JOIN synsets AS d ON l.synset2id = d.synsetid " + // //$NON-NLS-1$
-					"LEFT JOIN linktypes USING (linkid) " + // //$NON-NLS-1$
-					"LEFT JOIN senses ON d.synsetid = senses.synsetid " + // //$NON-NLS-1$
-					"LEFT JOIN words USING (wordid)"; //$NON-NLS-1$
-			projection = SqlUNetProvider.appendProjection(projection, "GROUP_CONCAT(words.lemma, ', ' ) AS members"); //$NON-NLS-1$
-			break;
-
-		case LEXLINKS_SENSES:
-			table = "lexlinks AS l " + // //$NON-NLS-1$
-					"INNER JOIN synsets AS d ON l.synset2id = d.synsetid " + // //$NON-NLS-1$
-					"INNER JOIN words AS w ON l.word2id = w.wordid"; //$NON-NLS-1$
-			break;
-
-		case LEXLINKS_SENSES_X:
-			table = "lexlinks AS l " + // //$NON-NLS-1$
-					"INNER JOIN synsets AS d ON l.synset2id = d.synsetid " + // //$NON-NLS-1$
-					"INNER JOIN words AS w ON l.word2id = w.wordid " + // //$NON-NLS-1$
-					"LEFT JOIN linktypes USING (linkid)"; //$NON-NLS-1$
-			break;
-
-		case LEXLINKS_SENSES_WORDS_X_BY_SYNSET:
-			groupBy = "d.synsetid"; //$NON-NLS-1$
-			projection = SqlUNetProvider.appendProjection(projection, "GROUP_CONCAT(DISTINCT t.lemma) AS members"); //$NON-NLS-1$
-			table = "lexlinks AS l " + // //$NON-NLS-1$
-					"INNER JOIN synsets AS d ON l.synset2id = d.synsetid " + // //$NON-NLS-1$
-					"INNER JOIN words AS w ON l.word2id = w.wordid " + // //$NON-NLS-1$
-					"LEFT JOIN linktypes USING (linkid) " + // //$NON-NLS-1$
-					"LEFT JOIN senses AS s ON d.synsetid = s.synsetid " + // //$NON-NLS-1$
-					"LEFT JOIN words AS t USING (wordid)"; //$NON-NLS-1$
-			break;
-
-		case VFRAMEMAPS_VFRAMES:
-			table = "vframemaps " + // //$NON-NLS-1$
-					"LEFT JOIN vframes USING (frameid)"; //$NON-NLS-1$
-			break;
-
-		case VFRAMESENTENCEMAPS_VFRAMESENTENCES:
-			table = "vframesentencemaps " + // //$NON-NLS-1$
-					"LEFT JOIN vframesentences USING (sentenceid)"; //$NON-NLS-1$
-			break;
-
-		case ADJPOSITIONS_ADJPOSITIONTYPES:
-			table = "adjpositions " + // //$NON-NLS-1$
-					"LEFT JOIN adjpositiontypes USING (position)"; //$NON-NLS-1$
-			break;
-
-		case MORPHMAPS_MORPHS:
-			table = "morphmaps " + // //$NON-NLS-1$
-					"LEFT JOIN morphs USING (morphid)"; //$NON-NLS-1$
-			break;
-
-		// T E X T S E A R C H
-
-		case LOOKUP_FTS_WORDS:
-			table = "words_lemma_fts4"; //$NON-NLS-1$
-			break;
-
-		case LOOKUP_FTS_DEFINITIONS:
-			table = "synsets_definition_fts4"; //$NON-NLS-1$
-			break;
-
-		case LOOKUP_FTS_SAMPLES:
-			table = "samples_sample_fts4"; //$NON-NLS-1$
-			break;
-
-		// S U G G E S T
-
-		case LOOKUP_WORDS:
-		{
-			final String last = uri.getLastPathSegment();
-			if (SearchManager.SUGGEST_URI_PATH_QUERY.equals(last))
-				return null;
-			table = "words_lemma_fts4"; //$NON-NLS-1$
-			return this.db.query(table, new String[] { "wordid AS _id", "lemma AS " + SearchManager.SUGGEST_COLUMN_TEXT_1, "lemma AS " + SearchManager.SUGGEST_COLUMN_QUERY }, "lemma MATCH ?", new String[] { last }, null, null, null);
-		}
-
-		case LOOKUP_DEFINITIONS:
-		{
-			final String last = uri.getLastPathSegment();
-			table = "synsets_definition_fts4"; //$NON-NLS-1$
-			return this.db.query(table, new String[] { "synsetid AS _id", "definition AS " + SearchManager.SUGGEST_COLUMN_TEXT_1, "definition AS " + SearchManager.SUGGEST_COLUMN_QUERY }, "definition MATCH ?", new String[] { last }, null, //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
-					null, null);
-		}
-
-		case LOOKUP_SAMPLES:
-		{
-			final String last = uri.getLastPathSegment();
-			if (SearchManager.SUGGEST_URI_PATH_QUERY.equals(last))
-				return null;
-			table = "samples_sample_fts4"; //$NON-NLS-1$
-			return this.db.query(table, new String[] { "sampleid AS _id", "sample AS " + SearchManager.SUGGEST_COLUMN_TEXT_1, "sample AS " + SearchManager.SUGGEST_COLUMN_QUERY }, "sample MATCH ?", new String[] { last }, null, null, null);
-		}
-
-		case UriMatcher.NO_MATCH:
-		default:
-			throw new RuntimeException("Malformed URI " + uri); //$NON-NLS-1$
+			case UriMatcher.NO_MATCH:
+			default:
+				throw new RuntimeException("Malformed URI " + uri); //$NON-NLS-1$
 		}
 
 		if (SqlUNetProvider.debugSql)
@@ -547,8 +544,7 @@ public class WordNetProvider extends SqlUNetProvider
 		try
 		{
 			return this.db.query(table, projection, selection, selectionArgs, groupBy, null, sortOrder);
-		}
-		catch (final SQLiteException e)
+		} catch (final SQLiteException e)
 		{
 			Log.e(WordNetProvider.TAG, "WordNet provider query failed", e); //$NON-NLS-1$
 			return null;

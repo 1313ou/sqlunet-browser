@@ -6,9 +6,9 @@
  */
 package org.sqlunet.wordnet.sql;
 
-import org.sqlunet.sql.DBQueryCommand;
-
 import android.database.sqlite.SQLiteDatabase;
+
+import org.sqlunet.sql.DBQueryCommand;
 
 /**
  * Query command for synsets of a given part-of-speech or lexdomain type and containing a given word
@@ -40,21 +40,20 @@ class TypedSynsetsQueryCommand extends DBQueryCommand
 	/**
 	 * Constructor
 	 *
-	 * @param thisConnection
-	 *            is the database connection
-	 * @param lexDomainBased
-	 *            is whether the query is lexdomain based
+	 * @param thisConnection is the database connection
+	 * @param lexDomainBased is whether the query is lexdomain based
 	 */
 	public TypedSynsetsQueryCommand(final SQLiteDatabase thisConnection, final boolean lexDomainBased)
 	{
-		super(thisConnection, lexDomainBased ? TypedSynsetsQueryCommand.theLexDomainQuery : TypedSynsetsQueryCommand.thePosQuery);
+		super(thisConnection, lexDomainBased ?
+				TypedSynsetsQueryCommand.theLexDomainQuery :
+				TypedSynsetsQueryCommand.thePosQuery);
 	}
 
 	/**
 	 * Set word parameter in prepared SQL statement
 	 *
-	 * @param thisWordId
-	 *            is the target word
+	 * @param thisWordId is the target word
 	 */
 	public void setWordId(final long thisWordId)
 	{
@@ -64,8 +63,7 @@ class TypedSynsetsQueryCommand extends DBQueryCommand
 	/**
 	 * Set part-of-speech type parameter in prepared SQL statement
 	 *
-	 * @param thisType
-	 *            is the target part-of-speech type
+	 * @param thisType is the target part-of-speech type
 	 */
 	public void setPosType(final int thisType)
 	{
@@ -76,8 +74,7 @@ class TypedSynsetsQueryCommand extends DBQueryCommand
 	/**
 	 * Set lexdomain type parameter in prepared SQL statement
 	 *
-	 * @param thisType
-	 *            is the target lexdomain type
+	 * @param thisType is the target lexdomain type
 	 */
 	public void setLexDomainType(final int thisType)
 	{

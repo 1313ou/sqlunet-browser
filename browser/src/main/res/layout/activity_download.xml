@@ -1,8 +1,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="org.sqlunet.browser.config.DownloadActivity" >
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                tools:context="org.sqlunet.browser.config.DownloadActivity">
 
     <ProgressBar
         android:id="@+id/progressBar"
@@ -14,7 +14,7 @@
         android:indeterminate="false"
         android:max="100"
         android:progress="0"
-        android:visibility="invisible" />
+        android:visibility="invisible"/>
 
     <ImageButton
         android:id="@+id/downloadButton"
@@ -26,7 +26,7 @@
         android:background="@drawable/bg_button"
         android:contentDescription="@string/action_download"
         android:src="@drawable/bn_download"
-        android:text="@string/action_download" />
+        android:text="@string/action_download"/>
 
     <TextView
         android:id="@+id/src"
@@ -39,7 +39,7 @@
         android:layout_marginRight="10dp"
         android:drawablePadding="5dp"
         android:drawableTop="@drawable/ic_download_source"
-        android:text="@string/download_source" />
+        android:text="@string/download_source"/>
     <!-- android:singleLine="true" -->
     <!-- android:ellipsize="marquee" -->
 
@@ -54,7 +54,7 @@
         android:layout_marginTop="10dp"
         android:drawableBottom="@drawable/ic_download_dest"
         android:drawablePadding="5dp"
-        android:text="@string/download_dest" />
+        android:text="@string/download_dest"/>
     <!-- android:singleLine="true" -->
     <!-- android:ellipsize="marquee" -->
 
@@ -66,6 +66,6 @@
         android:layout_centerHorizontal="true"
         android:text="@string/action_download"
         android:textAppearance="?android:attr/textAppearanceSmall"
-        android:visibility="invisible" />
+        android:visibility="invisible"/>
 
 </RelativeLayout>

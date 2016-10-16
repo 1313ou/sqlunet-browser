@@ -1,16 +1,16 @@
 package org.sqlunet.provider;
 
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteException;
+import android.os.AsyncTask;
+import android.util.Log;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
-
-import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteException;
-import android.os.AsyncTask;
-import android.util.Log;
 
 public class ExecuteManager
 {
@@ -37,12 +37,9 @@ public class ExecuteManager
 	/**
 	 * Constructor
 	 *
-	 * @param databasePath0
-	 *            database file path
-	 * @param listener0
-	 *            listener
-	 * @param publishRate0
-	 *            publish rate
+	 * @param databasePath0 database file path
+	 * @param listener0     listener
+	 * @param publishRate0  publish rate
 	 */
 	public ExecuteManager(final String databasePath0, final Listener listener0, final int publishRate0)
 	{
@@ -54,8 +51,7 @@ public class ExecuteManager
 	/**
 	 * Execute sql statements
 	 *
-	 * @param sqls
-	 *            sql statements
+	 * @param sqls sql statements
 	 */
 	@SuppressWarnings("UnusedReturnValue")
 	public AsyncTask<String, Integer, Boolean> executeFromSql(final String... sqls)
@@ -96,12 +92,10 @@ public class ExecuteManager
 						}
 					}
 					return true;
-				}
-				catch (final Exception e)
+				} catch (final Exception e)
 				{
 					e.printStackTrace();
-				}
-				finally
+				} finally
 				{
 					if (db != null)
 					{
@@ -129,7 +123,7 @@ public class ExecuteManager
 			 * 
 			 * @see android.os.AsyncTask#onProgressUpdate(Progress[])
 			 */
-			@SuppressWarnings({ "synthetic-access", "boxing" })
+			@SuppressWarnings({"synthetic-access", "boxing"})
 			@Override
 			protected void onProgressUpdate(final Integer... progress)
 			{
@@ -142,7 +136,7 @@ public class ExecuteManager
 			 * 
 			 * @see android.os.AsyncTask#onPostExecute(java.lang.Object)
 			 */
-			@SuppressWarnings({ "synthetic-access", "boxing" })
+			@SuppressWarnings({"synthetic-access", "boxing"})
 			@Override
 			protected void onPostExecute(final Boolean result)
 			{
@@ -157,10 +151,8 @@ public class ExecuteManager
 	/**
 	 * Execute sql statements from zipfile
 	 *
-	 * @param archive0
-	 *            zip file path with sql statements
-	 * @param entry0
-	 *            entry
+	 * @param archive0 zip file path with sql statements
+	 * @param entry0   entry
 	 */
 	public AsyncTask<String, Integer, Boolean> executeFromArchive(final String archive0, final String entry0)
 	{
@@ -221,8 +213,7 @@ public class ExecuteManager
 						{
 							// exec one sql
 							db.execSQL(sql);
-						}
-						catch (final SQLiteException e)
+						} catch (final SQLiteException e)
 						{
 							Log.e(TAG, "SQL update failed: " + e.getMessage()); //$NON-NLS-1$
 						}
@@ -244,12 +235,10 @@ public class ExecuteManager
 					}
 					publishProgress(count);
 					return true;
-				}
-				catch (IOException e1)
+				} catch (IOException e1)
 				{
 					e1.printStackTrace();
-				}
-				finally
+				} finally
 				{
 					if (db != null)
 					{
@@ -260,8 +249,7 @@ public class ExecuteManager
 						try
 						{
 							zipFile.close();
-						}
-						catch (IOException e)
+						} catch (IOException e)
 						{
 							e.printStackTrace();
 						}
@@ -271,8 +259,7 @@ public class ExecuteManager
 						try
 						{
 							reader.close();
-						}
-						catch (IOException e)
+						} catch (IOException e)
 						{
 							//
 						}
@@ -282,8 +269,7 @@ public class ExecuteManager
 						try
 						{
 							is.close();
-						}
-						catch (IOException e)
+						} catch (IOException e)
 						{
 							//
 						}
@@ -309,7 +295,7 @@ public class ExecuteManager
 			 * 
 			 * @see android.os.AsyncTask#onProgressUpdate(Progress[])
 			 */
-			@SuppressWarnings({ "synthetic-access", "boxing" })
+			@SuppressWarnings({"synthetic-access", "boxing"})
 			@Override
 			protected void onProgressUpdate(final Integer... progress)
 			{
@@ -321,7 +307,7 @@ public class ExecuteManager
 			 * 
 			 * @see android.os.AsyncTask#onPostExecute(java.lang.Object)
 			 */
-			@SuppressWarnings({ "synthetic-access", "boxing" })
+			@SuppressWarnings({"synthetic-access", "boxing"})
 			@Override
 			protected void onPostExecute(final Boolean result)
 			{

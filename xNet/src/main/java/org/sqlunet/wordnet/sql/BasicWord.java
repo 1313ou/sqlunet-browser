@@ -20,10 +20,8 @@ public class BasicWord
 	/**
 	 * BasicWord
 	 *
-	 * @param thisLemma
-	 *            is the word string
-	 * @param thisId
-	 *            is the id
+	 * @param thisLemma is the word string
+	 * @param thisId    is the id
 	 */
 	public BasicWord(final String thisLemma, final long thisId)
 	{

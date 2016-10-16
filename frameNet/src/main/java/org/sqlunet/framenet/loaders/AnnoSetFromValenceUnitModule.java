@@ -1,10 +1,10 @@
 package org.sqlunet.framenet.loaders;
 
-import org.sqlunet.framenet.FnValenceUnitPointer;
-import org.sqlunet.treeview.model.TreeNode;
-
 import android.app.Fragment;
 import android.os.Parcelable;
+
+import org.sqlunet.framenet.FnValenceUnitPointer;
+import org.sqlunet.treeview.model.TreeNode;
 
 public class AnnoSetFromValenceUnitModule extends BasicModule
 {
@@ -18,8 +18,7 @@ public class AnnoSetFromValenceUnitModule extends BasicModule
 	/**
 	 * Constructor
 	 *
-	 * @param fragment0
-	 *            fragment
+	 * @param fragment0 fragment
 	 */
 	public AnnoSetFromValenceUnitModule(final Fragment fragment0)
 	{

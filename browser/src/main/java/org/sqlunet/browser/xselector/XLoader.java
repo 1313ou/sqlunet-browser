@@ -1,13 +1,5 @@
 package org.sqlunet.browser.xselector;
 
-import org.sqlunet.browser.Module;
-import org.sqlunet.provider.XSqlUNetContract.PredicateMatrix_Propbank;
-import org.sqlunet.provider.XSqlUNetContract.Words_FnWords_FnFrames_U;
-import org.sqlunet.provider.XSqlUNetContract.Words_PbWords_PbRolesets_U;
-import org.sqlunet.provider.XSqlUNetContract.Words_VnWords_VnClasses_U;
-import org.sqlunet.provider.XSqlUNetContract.Words_XNet_U;
-import org.sqlunet.wordnet.provider.WordNetContract.Words_Senses_CasedWords_Synsets_PosTypes_LexDomains;
-
 import android.app.Activity;
 import android.app.LoaderManager.LoaderCallbacks;
 import android.content.Context;
@@ -19,6 +11,14 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.util.SparseArray;
+
+import org.sqlunet.browser.Module;
+import org.sqlunet.provider.XSqlUNetContract.PredicateMatrix_Propbank;
+import org.sqlunet.provider.XSqlUNetContract.Words_FnWords_FnFrames_U;
+import org.sqlunet.provider.XSqlUNetContract.Words_PbWords_PbRolesets_U;
+import org.sqlunet.provider.XSqlUNetContract.Words_VnWords_VnClasses_U;
+import org.sqlunet.provider.XSqlUNetContract.Words_XNet_U;
+import org.sqlunet.wordnet.provider.WordNetContract.Words_Senses_CasedWords_Synsets_PosTypes_LexDomains;
 
 class XLoader
 {
@@ -45,8 +45,8 @@ class XLoader
 		public Loader<Cursor> onCreateLoader(final int id, final Bundle args)
 		{
 			final Uri uri = Uri.parse(Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.CONTENT_URI);
-			final String[] projection = new String[] { //
-			"'wn' AS " + Words_XNet_U.SOURCES, // //$NON-NLS-1$
+			final String[] projection = new String[]{ //
+					"'wn' AS " + Words_XNet_U.SOURCES, // //$NON-NLS-1$
 					Words_VnWords_VnClasses_U.WORDID, //
 					Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.SYNSETID, //
 					Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.SYNSETID + " AS " + Words_XNet_U.XID, // //$NON-NLS-1$
@@ -56,9 +56,9 @@ class XLoader
 					Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.LEXDOMAIN + " AS " + Words_XNet_U.XHEADER, // //$NON-NLS-1$
 					Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.SENSEKEY + " AS " + Words_XNet_U.XINFO, // //$NON-NLS-1$
 					Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.DEFINITION + " AS " + Words_XNet_U.XDEFINITION, // //$NON-NLS-1$
-					Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.SYNSETID + " AS _id" }; //$NON-NLS-1$
+					Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.SYNSETID + " AS _id"}; //$NON-NLS-1$
 			final String selection = Words_VnWords_VnClasses_U.WORDID + " = ?"; //$NON-NLS-1$
-			final String[] selectionArgs = new String[] { Long.toString(this.wordid) };
+			final String[] selectionArgs = new String[]{Long.toString(this.wordid)};
 			final String sortOrder = null;
 			return new CursorLoader(this.context, uri, projection, selection, selectionArgs, sortOrder);
 		}
@@ -75,19 +75,19 @@ class XLoader
 		public Loader<Cursor> onCreateLoader(final int id, final Bundle args)
 		{
 			final Uri uri = Uri.parse(Words_VnWords_VnClasses_U.CONTENT_URI);
-			final String[] projection = new String[] { //
-			Words_VnWords_VnClasses_U.WORDID, //
+			final String[] projection = new String[]{ //
+					Words_VnWords_VnClasses_U.WORDID, //
 					Words_VnWords_VnClasses_U.SYNSETID, //
-					Words_VnWords_VnClasses_U.CLASSID+ " AS " + Words_XNet_U.XID, // //$NON-NLS-1$
-					Words_VnWords_VnClasses_U.CLASSID+ " AS " + Words_XNet_U.XCLASSID, // //$NON-NLS-1$
-					Words_VnWords_VnClasses_U.WORDID+ " AS " + Words_XNet_U.XINSTANCEID, // //$NON-NLS-1$
+					Words_VnWords_VnClasses_U.CLASSID + " AS " + Words_XNet_U.XID, // //$NON-NLS-1$
+					Words_VnWords_VnClasses_U.CLASSID + " AS " + Words_XNet_U.XCLASSID, // //$NON-NLS-1$
+					Words_VnWords_VnClasses_U.WORDID + " AS " + Words_XNet_U.XINSTANCEID, // //$NON-NLS-1$
 					"TRIM(" + Words_VnWords_VnClasses_U.CLASS + ",'-.0123456789')" + " AS " + Words_XNet_U.XNAME, // //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 					Words_VnWords_VnClasses_U.CLASS + " AS " + Words_XNet_U.XHEADER, // //$NON-NLS-1$
 					Words_VnWords_VnClasses_U.CLASSTAG + " AS " + Words_XNet_U.XINFO, // //$NON-NLS-1$
 					Words_VnWords_VnClasses_U.DEFINITION + " AS " + Words_XNet_U.XDEFINITION, // //$NON-NLS-1$
-					"rowid AS _id", }; //$NON-NLS-1$
+					"rowid AS _id",}; //$NON-NLS-1$
 			final String selection = Words_VnWords_VnClasses_U.WORDID + " = ?"; //$NON-NLS-1$
-			final String[] selectionArgs = new String[] { Long.toString(this.wordid) };
+			final String[] selectionArgs = new String[]{Long.toString(this.wordid)};
 			final String sortOrder = null;
 			return new CursorLoader(this.context, uri, projection, selection, selectionArgs, sortOrder);
 		}
@@ -104,8 +104,8 @@ class XLoader
 		public Loader<Cursor> onCreateLoader(final int id, final Bundle args)
 		{
 			final Uri uri = Uri.parse(Words_PbWords_PbRolesets_U.CONTENT_URI);
-			final String[] projection = new String[] { //
-			Words_PbWords_PbRolesets_U.WORDID, //
+			final String[] projection = new String[]{ //
+					Words_PbWords_PbRolesets_U.WORDID, //
 					Words_PbWords_PbRolesets_U.SYNSETID, //
 					Words_PbWords_PbRolesets_U.ROLESETID + " AS " + Words_XNet_U.XID, // //$NON-NLS-1$
 					"NULL AS " + Words_XNet_U.XCLASSID, // //$NON-NLS-1$
@@ -115,9 +115,9 @@ class XLoader
 					//Words_PbWords_PbRolesets_U.ROLESETHEAD + " AS " + Words_XNet_U.XHEADER, //
 					Words_PbWords_PbRolesets_U.ROLESETDESCR + " AS " + Words_XNet_U.XINFO, // //$NON-NLS-1$
 					Words_PbWords_PbRolesets_U.DEFINITION + " AS " + Words_XNet_U.XDEFINITION, // //$NON-NLS-1$
-					"rowid AS _id", }; //$NON-NLS-1$
+					"rowid AS _id",}; //$NON-NLS-1$
 			final String selection = PredicateMatrix_Propbank.WORDID + " = ?"; //$NON-NLS-1$
-			final String[] selectionArgs = new String[] { Long.toString(this.wordid) };
+			final String[] selectionArgs = new String[]{Long.toString(this.wordid)};
 			final String sortOrder = null;
 			return new CursorLoader(this.context, uri, projection, selection, selectionArgs, sortOrder);
 		}
@@ -134,8 +134,8 @@ class XLoader
 		public Loader<Cursor> onCreateLoader(final int id, final Bundle args)
 		{
 			final Uri uri = Uri.parse(Words_FnWords_FnFrames_U.CONTENT_URI);
-			final String[] projection = new String[] { //
-			Words_FnWords_FnFrames_U.WORDID, //
+			final String[] projection = new String[]{ //
+					Words_FnWords_FnFrames_U.WORDID, //
 					Words_FnWords_FnFrames_U.SYNSETID, //
 					Words_FnWords_FnFrames_U.FRAMEID + " AS " + Words_XNet_U.XID, // //$NON-NLS-1$
 					Words_FnWords_FnFrames_U.FRAMEID + " AS " + Words_XNet_U.XCLASSID, // //$NON-NLS-1$
@@ -144,9 +144,9 @@ class XLoader
 					Words_FnWords_FnFrames_U.FRAME + " AS " + Words_XNet_U.XHEADER, // //$NON-NLS-1$
 					"GROUP_CONCAT(" + Words_FnWords_FnFrames_U.LUDEFINITION + ",'\n') AS " + Words_XNet_U.XINFO, // //$NON-NLS-1$ //$NON-NLS-2$
 					Words_FnWords_FnFrames_U.DEFINITION + " AS " + Words_XNet_U.XDEFINITION, // //$NON-NLS-1$
-					"rowid AS _id", }; //$NON-NLS-1$
+					"rowid AS _id",}; //$NON-NLS-1$
 			final String selection = Words_FnWords_FnFrames_U.WORDID + " = ?"; //$NON-NLS-1$
-			final String[] selectionArgs = new String[] { Long.toString(this.wordid) };
+			final String[] selectionArgs = new String[]{Long.toString(this.wordid)};
 			final String sortOrder = null;
 			return new CursorLoader(this.context, uri, projection, selection, selectionArgs, sortOrder);
 		}
@@ -264,10 +264,11 @@ class XLoader
 				String xheader = cursor.isNull(idXHeader) ? null : cursor.getString(idXHeader);
 				String xinfo = cursor.isNull(idXInfo) ? null : cursor.getString(idXInfo);
 				String definition = cursor.isNull(idXInfo) ? null : cursor.getString(idDefinition);
-				String sources = cursor.isNull(idSources) ? "" : cursor.getString(idSources); //$NON-NLS-1$
+				String sources = cursor.isNull(idSources) ?
+						"" :
+						cursor.getString(idSources); //$NON-NLS-1$
 				Log.i("DUMP", "sources=" + sources + " wordid=" + wordid + " synsetid=" + synsetid + " xid=" + xid + " name=" + xname + " header=" + xheader + " info=" + xinfo + " definition=" + definition); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$ //$NON-NLS-6$ //$NON-NLS-7$ //$NON-NLS-8$ //$NON-NLS-9$
-			}
-			while (cursor.moveToNext());
+			} while (cursor.moveToNext());
 			cursor.moveToFirst();
 		}
 	}

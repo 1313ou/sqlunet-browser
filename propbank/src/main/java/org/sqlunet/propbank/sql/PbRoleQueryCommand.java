@@ -1,10 +1,10 @@
 package org.sqlunet.propbank.sql;
 
-import java.util.Locale;
+import android.database.sqlite.SQLiteDatabase;
 
 import org.sqlunet.sql.DBQueryCommand;
 
-import android.database.sqlite.SQLiteDatabase;
+import java.util.Locale;
 
 /**
  * Query command for VerbNet roles
@@ -21,8 +21,7 @@ class PbRoleQueryCommand extends DBQueryCommand
 	/**
 	 * Constructor
 	 *
-	 * @param thisConnection
-	 *            is the database connection
+	 * @param thisConnection is the database connection
 	 */
 	@SuppressWarnings("boxing")
 	public PbRoleQueryCommand(final SQLiteDatabase thisConnection, final long thisRoleSetId)
@@ -34,8 +33,7 @@ class PbRoleQueryCommand extends DBQueryCommand
 	/**
 	 * Set id parameters in prepared SQL statement
 	 *
-	 * @param thisRoleSetId
-	 *            is the target roleset id
+	 * @param thisRoleSetId is the target roleset id
 	 */
 	@SuppressWarnings("unused")
 	public void setId(final long thisRoleSetId)

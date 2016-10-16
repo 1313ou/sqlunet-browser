@@ -1,20 +1,5 @@
 package org.sqlunet.verbnet.loaders;
 
-import org.sqlunet.browser.Module;
-import org.sqlunet.style.Spanner;
-import org.sqlunet.treeview.renderer.QueryHolder;
-import org.sqlunet.treeview.model.TreeNode;
-import org.sqlunet.view.TreeFactory;
-import org.sqlunet.treeview.view.TreeView;
-import org.sqlunet.verbnet.R;
-import org.sqlunet.verbnet.provider.VerbNetContract.VnClasses_VnFrames_X;
-import org.sqlunet.verbnet.provider.VerbNetContract.VnClasses_VnRoles_X;
-import org.sqlunet.verbnet.provider.VerbNetContract.VnClasses_X;
-import org.sqlunet.verbnet.style.VerbNetFactories;
-import org.sqlunet.verbnet.style.VerbNetSemanticsProcessor;
-import org.sqlunet.verbnet.style.VerbNetSemanticsSpanner;
-import org.sqlunet.verbnet.style.VerbNetSyntaxSpanner;
-
 import android.app.Fragment;
 import android.app.LoaderManager.LoaderCallbacks;
 import android.content.Context;
@@ -26,6 +11,21 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.text.SpannableStringBuilder;
+
+import org.sqlunet.browser.Module;
+import org.sqlunet.style.Spanner;
+import org.sqlunet.treeview.model.TreeNode;
+import org.sqlunet.treeview.renderer.QueryHolder;
+import org.sqlunet.treeview.view.TreeView;
+import org.sqlunet.verbnet.R;
+import org.sqlunet.verbnet.provider.VerbNetContract.VnClasses_VnFrames_X;
+import org.sqlunet.verbnet.provider.VerbNetContract.VnClasses_VnRoles_X;
+import org.sqlunet.verbnet.provider.VerbNetContract.VnClasses_X;
+import org.sqlunet.verbnet.style.VerbNetFactories;
+import org.sqlunet.verbnet.style.VerbNetSemanticsProcessor;
+import org.sqlunet.verbnet.style.VerbNetSemanticsSpanner;
+import org.sqlunet.verbnet.style.VerbNetSyntaxSpanner;
+import org.sqlunet.view.TreeFactory;
 
 abstract class BasicModule extends Module
 {
@@ -91,8 +91,7 @@ abstract class BasicModule extends Module
 	/**
 	 * Constructor
 	 *
-	 * @param fragment0
-	 *            host fragment
+	 * @param fragment0 host fragment
 	 */
 	BasicModule(final Fragment fragment0)
 	{
@@ -102,8 +101,7 @@ abstract class BasicModule extends Module
 	/**
 	 * Unmarshal data from parcelable
 	 *
-	 * @param arguments
-	 *            parcelable
+	 * @param arguments parcelable
 	 */
 	abstract void unmarshall(final Parcelable arguments);
 
@@ -149,15 +147,15 @@ abstract class BasicModule extends Module
 			public Loader<Cursor> onCreateLoader(final int loaderId0, final Bundle args)
 			{
 				final Uri uri = Uri.parse(VnClasses_X.CONTENT_URI);
-				final String[] projection = new String[] { //
+				final String[] projection = new String[]{ //
 						VnClasses_X.CLASSID, //
 						VnClasses_X.CLASS, //
 						VnClasses_X.CLASSTAG, //
 						"GROUP_CONCAT(" + VnClasses_X.GROUPING + ", '|') AS " + VnClasses_X.GROUPINGS, // //$NON-NLS-1$ //$NON-NLS-2$
 				};
 				final String selection = VnClasses_X.CLASSID + " = ?"; //$NON-NLS-1$
-				final String[] selectionArgs = new String[] { //
-						Long.toString(classid0) };
+				final String[] selectionArgs = new String[]{ //
+						Long.toString(classid0)};
 				final String sortOrder = null;
 				return new CursorLoader(BasicModule.this.getContext(), uri, projection, selection, selectionArgs, sortOrder);
 			}
@@ -206,12 +204,11 @@ abstract class BasicModule extends Module
 
 					// expand
 					TreeView.expand(parent, false);
-				}
-				else
+				} else
 				{
 					parent.disable();
 				}
-				
+
 				cursor.close();
 			}
 
@@ -233,14 +230,14 @@ abstract class BasicModule extends Module
 			public Loader<Cursor> onCreateLoader(final int loaderId0, final Bundle args)
 			{
 				final Uri uri = Uri.parse(VnClasses_VnRoles_X.CONTENT_URI);
-				final String[] projection = new String[] { //
+				final String[] projection = new String[]{ //
 						VnClasses_VnRoles_X.ROLEID, //
 						VnClasses_VnRoles_X.ROLETYPE, //
 						VnClasses_VnRoles_X.RESTRS, //
 						VnClasses_VnRoles_X.CLASSID, //
 				};
 				final String selection = VnClasses_VnRoles_X.CLASSID + " = ?"; //$NON-NLS-1$
-				final String[] selectionArgs = new String[] { Long.toString(classid) };
+				final String[] selectionArgs = new String[]{Long.toString(classid)};
 				final String sortOrder = null;
 				return new CursorLoader(BasicModule.this.getContext(), uri, projection, selection, selectionArgs, sortOrder);
 			}
@@ -290,8 +287,7 @@ abstract class BasicModule extends Module
 
 					// expand
 					TreeView.expand(parent, false);
-				}
-				else
+				} else
 				{
 					parent.disable();
 				}
@@ -316,7 +312,7 @@ abstract class BasicModule extends Module
 			public Loader<Cursor> onCreateLoader(final int loaderId0, final Bundle args)
 			{
 				final Uri uri = Uri.parse(VnClasses_VnFrames_X.CONTENT_URI);
-				final String[] projection = new String[] { //
+				final String[] projection = new String[]{ //
 						VnClasses_VnFrames_X.FRAMEID, //
 						VnClasses_VnFrames_X.NUMBER, //
 						VnClasses_VnFrames_X.XTAG, //
@@ -328,7 +324,7 @@ abstract class BasicModule extends Module
 						VnClasses_VnFrames_X.CLASSID, //
 				};
 				final String selection = VnClasses_VnFrames_X.CLASSID + " = ?"; //$NON-NLS-1$
-				final String[] selectionArgs = new String[] { Long.toString(classid) };
+				final String[] selectionArgs = new String[]{Long.toString(classid)};
 				final String sortOrder = null;
 				return new CursorLoader(BasicModule.this.getContext(), uri, projection, selection, selectionArgs, sortOrder);
 			}
@@ -405,8 +401,7 @@ abstract class BasicModule extends Module
 
 					// expand
 					TreeView.expand(parent, false);
-				}
-				else
+				} else
 				{
 					parent.disable();
 				}
@@ -432,8 +427,7 @@ abstract class BasicModule extends Module
 			{
 				Spanner.appendImage(sb, BasicModule.this.drawableItem);
 				Spanner.append(sb, items[0], 0, VerbNetFactories.itemFactory);
-			}
-			else if (items.length > 1)
+			} else if (items.length > 1)
 			{
 				final TreeNode groupingsNode = TreeFactory.newTreeNode("Groupings", R.drawable.groupitem, this.getContext()); //$NON-NLS-1$
 				boolean first = true;

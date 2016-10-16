@@ -1,11 +1,11 @@
 package org.sqlunet.framenet.loaders;
 
+import android.app.Fragment;
+import android.os.Parcelable;
+
 import org.sqlunet.HasXId;
 import org.sqlunet.framenet.FnFramePointer;
 import org.sqlunet.treeview.model.TreeNode;
-
-import android.app.Fragment;
-import android.os.Parcelable;
 
 /**
  * A module to retrieve frame
@@ -77,13 +77,11 @@ public class FrameModule extends BasicModule
 		{
 			// data
 			lexunit(this.luid, node, true, false);
-		}
-		else if (this.frameid != null)
+		} else if (this.frameid != null)
 		{
 			// data
 			frame(this.frameid, node);
-		}
-		else
+		} else
 		{
 			node.disable();
 		}

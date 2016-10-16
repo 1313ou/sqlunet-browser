@@ -1,13 +1,13 @@
 package org.sqlunet.wordnet.loaders;
 
+import android.app.Fragment;
+import android.os.Parcelable;
+
 import org.sqlunet.HasWordId;
 import org.sqlunet.treeview.model.TreeNode;
 import org.sqlunet.treeview.view.TreeView;
 import org.sqlunet.view.TreeFactory;
 import org.sqlunet.wordnet.R;
-
-import android.app.Fragment;
-import android.os.Parcelable;
 
 public class SenseModule extends SynsetModule
 {
@@ -71,17 +71,16 @@ public class SenseModule extends SynsetModule
 		{
 			switch (this.pos)
 			{
-			case 'v':
-				vframes(this.synsetid, this.wordid, node);
-				vframesentences(this.synsetid, this.wordid, node);
-				break;
+				case 'v':
+					vframes(this.synsetid, this.wordid, node);
+					vframesentences(this.synsetid, this.wordid, node);
+					break;
 
-			case 'a':
-				adjposition(this.synsetid, this.wordid, node);
-				break;
+				case 'a':
+					adjposition(this.synsetid, this.wordid, node);
+					break;
 			}
-		}
-		else
+		} else
 		{
 			vframes(this.synsetid, this.wordid, node);
 			vframesentences(this.synsetid, this.wordid, node);

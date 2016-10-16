@@ -5,9 +5,9 @@
  */
 package org.sqlunet.wordnet.sql;
 
-import org.sqlunet.sql.DBQueryCommand;
-
 import android.database.sqlite.SQLiteDatabase;
+
+import org.sqlunet.sql.DBQueryCommand;
 
 /**
  * Word query command
@@ -24,10 +24,8 @@ class WordQueryCommand extends DBQueryCommand
 	/**
 	 * Constructor
 	 *
-	 * @param thisConnection
-	 *            is the database connection
-	 * @param thisLemma
-	 *            is the word lemma
+	 * @param thisConnection is the database connection
+	 * @param thisLemma      is the word lemma
 	 */
 	public WordQueryCommand(final SQLiteDatabase thisConnection, final String thisLemma)
 	{

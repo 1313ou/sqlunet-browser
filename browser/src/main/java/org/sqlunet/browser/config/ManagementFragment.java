@@ -1,10 +1,5 @@
 package org.sqlunet.browser.config;
 
-import org.sqlunet.browser.R;
-import org.sqlunet.provider.ExecuteManager;
-import org.sqlunet.provider.ExecuteManager.Listener;
-import org.sqlunet.settings.StorageSettings;
-
 import android.app.Fragment;
 import android.os.Bundle;
 import android.util.Log;
@@ -19,6 +14,11 @@ import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import org.sqlunet.browser.R;
+import org.sqlunet.provider.ExecuteManager;
+import org.sqlunet.provider.ExecuteManager.Listener;
+import org.sqlunet.settings.StorageSettings;
 
 /**
  * A simple {@link android.app.Fragment} subclass. Activities that contain this fragment must implement the ManagementFragment.ManagementListener
@@ -83,14 +83,14 @@ public class ManagementFragment extends Fragment implements Listener
 			final int arg = args.getInt(ARG);
 			switch (arg)
 			{
-			case 0:
-				break;
-			case 1: // index
-			case 2: // pm
-			case 3: // ts
-			case 4: // tsfn
-				this.spinner.setSelection(arg);
-				break;
+				case 0:
+					break;
+				case 1: // index
+				case 2: // pm
+				case 3: // ts
+				case 4: // tsfn
+					this.spinner.setSelection(arg);
+					break;
 			}
 		}
 
@@ -136,9 +136,15 @@ public class ManagementFragment extends Fragment implements Listener
 	@Override
 	public void managerFinish(final boolean result)
 	{
-		Log.d(TAG, "Update " + (result ? "succeeded" : "failed")); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-		Toast.makeText(getActivity(), result ? R.string.status_update_success : R.string.status_update_failure, Toast.LENGTH_SHORT).show();
-		ManagementFragment.this.status.setText(result ? R.string.status_op_done : R.string.status_op_failed);
+		Log.d(TAG, "Update " + (result ?
+				"succeeded" :
+				"failed")); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+		Toast.makeText(getActivity(), result ?
+				R.string.status_update_success :
+				R.string.status_update_failure, Toast.LENGTH_SHORT).show();
+		ManagementFragment.this.status.setText(result ?
+				R.string.status_op_done :
+				R.string.status_op_failed);
 	}
 
 	/*

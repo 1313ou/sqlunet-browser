@@ -1,5 +1,9 @@
 package org.sqlunet.settings;
 
+import android.content.Context;
+import android.content.res.AssetManager;
+import android.net.Uri;
+
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -7,10 +11,6 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
-
-import android.content.Context;
-import android.content.res.AssetManager;
-import android.net.Uri;
 
 @SuppressWarnings("unused")
 class FileUtils
@@ -22,10 +22,8 @@ class FileUtils
 	/**
 	 * Copy asset file
 	 *
-	 * @param context
-	 *            context
-	 * @param fileName
-	 *            file in assets
+	 * @param context  context
+	 * @param fileName file in assets
 	 * @return uri of copied file
 	 */
 	public static Uri copyAssetFile(final Context context, final String fileName)
@@ -41,8 +39,7 @@ class FileUtils
 			if (FileUtils.copyAsset(assetManager, fileName, file.getAbsolutePath()))
 				return Uri.fromFile(file);
 			return null;
-		}
-		finally
+		} finally
 		{
 			assert assetManager != null;
 			assetManager.close();
@@ -52,12 +49,9 @@ class FileUtils
 	/**
 	 * Copy asset file to path
 	 *
-	 * @param assetManager
-	 *            asset manager
-	 * @param assetPath
-	 *            asset path
-	 * @param toPath
-	 *            destination path
+	 * @param assetManager asset manager
+	 * @param assetPath    asset path
+	 * @param toPath       destination path
 	 * @return destination path
 	 */
 	private static boolean copyAsset(final AssetManager assetManager, final String assetPath, final String toPath)
@@ -73,20 +67,17 @@ class FileUtils
 			out = new FileOutputStream(f);
 			FileUtils.copyFile(in, out);
 			return true;
-		}
-		catch (final Exception e)
+		} catch (final Exception e)
 		{
 			return false;
-		}
-		finally
+		} finally
 		{
 			if (out != null)
 			{
 				try
 				{
 					out.close();
-				}
-				catch (final IOException e)
+				} catch (final IOException e)
 				{
 					//
 				}
@@ -96,8 +87,7 @@ class FileUtils
 				try
 				{
 					in.close();
-				}
-				catch (final IOException e)
+				} catch (final IOException e)
 				{
 					//
 				}
@@ -108,10 +98,8 @@ class FileUtils
 	/**
 	 * Copy instream to outstream
 	 *
-	 * @param in
-	 *            instream
-	 * @param out
-	 *            outstream
+	 * @param in  instream
+	 * @param out outstream
 	 * @throws IOException
 	 */
 	private static void copyFile(final InputStream in, final OutputStream out) throws IOException
@@ -129,10 +117,8 @@ class FileUtils
 	/**
 	 * Expand asset file
 	 *
-	 * @param context
-	 *            context
-	 * @param fileName
-	 *            zip file in assets
+	 * @param context  context
+	 * @param fileName zip file in assets
 	 * @return uri of dest dir
 	 */
 	public static Uri expandZipAssetFile(final Context context, final String fileName)
@@ -148,10 +134,9 @@ class FileUtils
 			if (FileUtils.expandZipAsset(assetManager, fileName, dir.getAbsolutePath()))
 				return Uri.fromFile(dir);
 			return null;
-		}
-		finally
+		} finally
 		{
-			if(assetManager != null)
+			if (assetManager != null)
 				assetManager.close();
 		}
 	}
@@ -159,12 +144,9 @@ class FileUtils
 	/**
 	 * Expand asset file to path
 	 *
-	 * @param assetManager
-	 *            asset manager
-	 * @param assetPath
-	 *            asset path
-	 * @param toPath
-	 *            destination path
+	 * @param assetManager asset manager
+	 * @param assetPath    asset path
+	 * @param toPath       destination path
 	 * @return true if successful
 	 */
 	private static boolean expandZipAsset(final AssetManager assetManager, final String assetPath, final String toPath)
@@ -175,20 +157,17 @@ class FileUtils
 			in = assetManager.open(assetPath);
 			FileUtils.expandZip(in, null, new File(toPath));
 			return true;
-		}
-		catch (final Exception e)
+		} catch (final Exception e)
 		{
 			return false;
-		}
-		finally
+		} finally
 		{
 			if (in != null)
 			{
 				try
 				{
 					in.close();
-				}
-				catch (final IOException e)
+				} catch (final IOException e)
 				{
 					//
 				}
@@ -199,12 +178,9 @@ class FileUtils
 	/**
 	 * Expand zip stream to dir
 	 *
-	 * @param in
-	 *            zip file input stream
-	 * @param pathPrefixFilter0
-	 *            path prefix filter on entries
-	 * @param destDir
-	 *            destination dir
+	 * @param in                zip file input stream
+	 * @param pathPrefixFilter0 path prefix filter on entries
+	 * @param destDir           destination dir
 	 * @return dest dir
 	 */
 	@SuppressWarnings("UnusedReturnValue")
@@ -259,10 +235,14 @@ class FileUtils
 								{
 									os.write(buffer, 0, len);
 								}
-							}
-							finally
+							} finally
 							{
-								try { os.close(); } catch(IOException ignored){}
+								try
+								{
+									os.close();
+								} catch (IOException ignored)
+								{
+								}
 							}
 						}
 					}
@@ -270,11 +250,20 @@ class FileUtils
 				zis.closeEntry();
 				entry = zis.getNextEntry();
 			}
-		}
-		finally
+		} finally
 		{
-			try { zis.close(); } catch(IOException ignored){}
-			try { in.close(); } catch(IOException ignored){}
+			try
+			{
+				zis.close();
+			} catch (IOException ignored)
+			{
+			}
+			try
+			{
+				in.close();
+			} catch (IOException ignored)
+			{
+			}
 		}
 
 		return destDir;

@@ -1,8 +1,8 @@
 package org.sqlunet.browser.selector;
 
-import org.sqlunet.wordnet.SensePointer;
-
 import android.os.Parcel;
+
+import org.sqlunet.wordnet.SensePointer;
 
 public class Pointer extends SensePointer
 {
@@ -10,7 +10,7 @@ public class Pointer extends SensePointer
 	{
 		super();
 	}
-	
+
 	protected Pointer(Parcel parcel)
 	{
 		super(parcel);

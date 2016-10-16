@@ -1,14 +1,14 @@
 package org.sqlunet.verbnet.sql;
 
+import android.database.sqlite.SQLiteDatabase;
+
 import java.util.ArrayList;
 import java.util.List;
 
-import android.database.sqlite.SQLiteDatabase;
-
 /**
  * @author bbou
- *
  */
+
 /**
  * Frames attached to a VerbNet class
  *
@@ -82,8 +82,7 @@ public class VnFrameSet
 				// if same class, add role to frame set
 				thisFrameSet.frames.add(frame);
 			}
-		}
-		finally
+		} finally
 		{
 			if (query != null)
 			{
@@ -130,8 +129,7 @@ public class VnFrameSet
 				// if same class, add role to frame set
 				thisFrameSet.frames.add(thisFrame);
 			}
-		}
-		finally
+		} finally
 		{
 			if (thisQuery != null)
 			{

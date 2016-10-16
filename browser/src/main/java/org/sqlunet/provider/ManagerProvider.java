@@ -1,10 +1,5 @@
 package org.sqlunet.provider;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import org.sqlunet.provider.ManagerContract.TablesAndIndices;
-
 import android.content.Context;
 import android.content.UriMatcher;
 import android.database.Cursor;
@@ -12,6 +7,11 @@ import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteQueryBuilder;
 import android.net.Uri;
 import android.util.Log;
+
+import org.sqlunet.provider.ManagerContract.TablesAndIndices;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * WordNet provider
@@ -57,11 +57,11 @@ public class ManagerProvider extends SqlUNetProvider
 	{
 		switch (ManagerProvider.uriMatcher.match(uri))
 		{
-		case TABLES_AND_INDICES:
-			return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + ManagerContract.AUTHORITY + '.' + TablesAndIndices.TABLE; //$NON-NLS-1$
+			case TABLES_AND_INDICES:
+				return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + ManagerContract.AUTHORITY + '.' + TablesAndIndices.TABLE; //$NON-NLS-1$
 
-		default:
-			throw new UnsupportedOperationException("Illegal MIME type"); //$NON-NLS-1$
+			default:
+				throw new UnsupportedOperationException("Illegal MIME type"); //$NON-NLS-1$
 		}
 	}
 
@@ -87,13 +87,13 @@ public class ManagerProvider extends SqlUNetProvider
 
 		switch (code)
 		{
-		case TABLES_AND_INDICES:
-			table = uri.getLastPathSegment();
-			break;
+			case TABLES_AND_INDICES:
+				table = uri.getLastPathSegment();
+				break;
 
-		default:
-		case UriMatcher.NO_MATCH:
-			throw new RuntimeException("Malformed URI " + uri); //$NON-NLS-1$
+			default:
+			case UriMatcher.NO_MATCH:
+				throw new RuntimeException("Malformed URI " + uri); //$NON-NLS-1$
 		}
 
 		if (SqlUNetProvider.debugSql)
@@ -107,8 +107,7 @@ public class ManagerProvider extends SqlUNetProvider
 		try
 		{
 			return this.db.query(table, projection, selection, selectionArgs, groupBy, null, sortOrder);
-		}
-		catch (SQLiteException e)
+		} catch (SQLiteException e)
 		{
 			Log.e(TAG, "Manager provider query failed", e); //$NON-NLS-1$
 			return null;
@@ -119,9 +118,9 @@ public class ManagerProvider extends SqlUNetProvider
 	{
 		final List<String> tables = new ArrayList<>();
 		final Uri uri = Uri.parse(TablesAndIndices.CONTENT_URI);
-		final String[] projection = new String[] { TablesAndIndices.TYPE, TablesAndIndices.NAME };
+		final String[] projection = new String[]{TablesAndIndices.TYPE, TablesAndIndices.NAME};
 		final String selection = TablesAndIndices.TYPE + " = 'table' AND name NOT IN ('sqlite_sequence', 'android_metadata' )"; //$NON-NLS-1$
-		final String[] selectionArgs = new String[] {};
+		final String[] selectionArgs = new String[]{};
 		final String sortOrder = null;
 		final Cursor cursor = context.getContentResolver().query(uri, projection, selection, selectionArgs, sortOrder);
 		if (cursor != null)

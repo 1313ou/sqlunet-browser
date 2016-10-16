@@ -1,27 +1,27 @@
 package org.sqlunet.browser.xselector;
 
-import org.sqlunet.HasXId;
-import org.sqlunet.browser.selector.Pointer;
-
 import android.os.Parcel;
 import android.os.Parcelable;
+
+import org.sqlunet.HasXId;
+import org.sqlunet.browser.selector.Pointer;
 
 public class XPointer extends Pointer implements HasXId
 {
 	private static final int WORDNETSOURCE = 0x00001;
-	
+
 	private static final int VERBNETSOURCE = 0x00002;
-	
+
 	private static final int PROPBANKSOURCE = 0x00004;
-	
+
 	private static final int FRAMENETSOURCE = 0x00008;
-	
+
 	private static final int PMVERBNETSOURCE = 0x00020;
-	
+
 	private static final int PMPROPBANKSOURCE = 0x00040;
-	
+
 	private static final int PMFRAMENETSOURCE = 0x00080;
-	
+
 	/**
 	 * xwordid : optional/nullable
 	 */
@@ -69,7 +69,7 @@ public class XPointer extends Pointer implements HasXId
 	private XPointer(Parcel parcel)
 	{
 		super(parcel);
-		
+
 		long xid0 = parcel.readLong();
 		if (xid0 != -1)
 			this.xid = xid0;
@@ -185,21 +185,21 @@ public class XPointer extends Pointer implements HasXId
 	{
 		this.xsources = xsources;
 		this.xmask = 0L;
-		if(xsources.contains("wn")) //$NON-NLS-1$
+		if (xsources.contains("wn")) //$NON-NLS-1$
 			this.xmask |= WORDNETSOURCE;
-		
-		if(xsources.contains("vn")) //$NON-NLS-1$
+
+		if (xsources.contains("vn")) //$NON-NLS-1$
 			this.xmask |= VERBNETSOURCE;
-		if(xsources.contains("pb")) //$NON-NLS-1$
+		if (xsources.contains("pb")) //$NON-NLS-1$
 			this.xmask |= PROPBANKSOURCE;
-		if(xsources.contains("fn")) //$NON-NLS-1$
+		if (xsources.contains("fn")) //$NON-NLS-1$
 			this.xmask |= FRAMENETSOURCE;
-		
-		if(xsources.contains("pmvn")) //$NON-NLS-1$
+
+		if (xsources.contains("pmvn")) //$NON-NLS-1$
 			this.xmask |= PMVERBNETSOURCE;
-		if(xsources.contains("pmpb")) //$NON-NLS-1$
+		if (xsources.contains("pmpb")) //$NON-NLS-1$
 			this.xmask |= PMPROPBANKSOURCE;
-		if(xsources.contains("pmfn")) //$NON-NLS-1$
+		if (xsources.contains("pmfn")) //$NON-NLS-1$
 			this.xmask |= PMFRAMENETSOURCE;
 	}
 

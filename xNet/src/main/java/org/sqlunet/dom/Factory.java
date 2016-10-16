@@ -1,5 +1,7 @@
 package org.sqlunet.dom;
 
+import org.w3c.dom.Document;
+
 import java.io.StringWriter;
 
 import javax.xml.parsers.DocumentBuilder;
@@ -10,8 +12,6 @@ import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
-
-import org.w3c.dom.Document;
 
 /**
  * Document factory
@@ -34,8 +34,7 @@ public class Factory
 			final DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
 			final DocumentBuilder db = dbf.newDocumentBuilder();
 			return db.newDocument();
-		}
-		catch (final ParserConfigurationException e)
+		} catch (final ParserConfigurationException e)
 		{
 			throw new RuntimeException(e);
 		}
@@ -46,10 +45,8 @@ public class Factory
 	/**
 	 * Transform Document to XML form
 	 *
-	 * @param document
-	 *        the org.w3.dom.Document to convert to XML form
-	 * @param dtd
-	 *        the name of the DTD
+	 * @param document the org.w3.dom.Document to convert to XML form
+	 * @param dtd      the name of the DTD
 	 * @return XML string for Document
 	 */
 	static public String docToString(final Document document, final String dtd)
@@ -68,8 +65,7 @@ public class Factory
 			transformer.setOutputProperty(javax.xml.transform.OutputKeys.DOCTYPE_SYSTEM, dtd);
 			transformer.transform(source, result);
 			return os.toString();
-		}
-		catch (final TransformerException e)
+		} catch (final TransformerException e)
 		{
 			throw new RuntimeException(e);
 		}

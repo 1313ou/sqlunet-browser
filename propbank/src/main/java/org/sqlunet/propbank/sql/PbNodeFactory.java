@@ -21,10 +21,8 @@ class PbNodeFactory extends NodeFactory
 	/**
 	 * Make PropBank root node
 	 *
-	 * @param doc
-	 *            is the DOM Document being built
-	 * @param wordId
-	 *            is the target word id
+	 * @param doc    is the DOM Document being built
+	 * @param wordId is the target word id
 	 * @return newly created node
 	 */
 	static public Node makePbRootNode(final Document doc, final long wordId)
@@ -37,10 +35,8 @@ class PbNodeFactory extends NodeFactory
 	/**
 	 * Make PropBank root node
 	 *
-	 * @param doc
-	 *            is the DOM Document being built
-	 * @param roleSetId
-	 *            is the target roleset id
+	 * @param doc       is the DOM Document being built
+	 * @param roleSetId is the target roleset id
 	 * @return newly created node
 	 */
 	public static Node makePbRootRoleSetNode(final Document doc, long roleSetId)
@@ -53,14 +49,10 @@ class PbNodeFactory extends NodeFactory
 	/**
 	 * Make the roleset node
 	 *
-	 * @param doc
-	 *            is the DOM Document being built
-	 * @param parent
-	 *            is the parent node to attach this node to
-	 * @param roleSet
-	 *            is the roleset information
-	 * @param i
-	 *            the ith roleset
+	 * @param doc     is the DOM Document being built
+	 * @param parent  is the parent node to attach this node to
+	 * @param roleSet is the roleset information
+	 * @param i       the ith roleset
 	 */
 	public static Node makePbRoleSetNode(final Document doc, final Node parent, final PbRoleSet roleSet, final int i)
 	{
@@ -75,12 +67,10 @@ class PbNodeFactory extends NodeFactory
 
 	/**
 	 * Make the roleset node
-	 *  @param doc
-	 *            is the DOM Document being built
-	 * @param parent
-	 *            is the parent node to attach this node to
-	 * @param role
- *            is the role information
+	 *
+	 * @param doc    is the DOM Document being built
+	 * @param parent is the parent node to attach this node to
+	 * @param role   is the role information
 	 */
 	@SuppressWarnings("UnusedReturnValue")
 	public static Node makePbRoleNode(final Document doc, final Node parent, final PbRole role)

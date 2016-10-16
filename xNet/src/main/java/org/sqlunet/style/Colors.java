@@ -2,7 +2,7 @@ package org.sqlunet.style;
 
 /**
  * Color values
- * 
+ *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
 public class Colors

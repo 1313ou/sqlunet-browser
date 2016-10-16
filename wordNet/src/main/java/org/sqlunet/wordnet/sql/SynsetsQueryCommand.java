@@ -6,9 +6,9 @@
  */
 package org.sqlunet.wordnet.sql;
 
-import org.sqlunet.sql.DBQueryCommand;
-
 import android.database.sqlite.SQLiteDatabase;
+
+import org.sqlunet.sql.DBQueryCommand;
 
 /**
  * Query command for synsets containing a given word
@@ -25,10 +25,8 @@ class SynsetsQueryCommand extends DBQueryCommand
 	/**
 	 * Constructor
 	 *
-	 * @param thisConnection
-	 *            is the database connection
-	 * @param thisWordId
-	 *            is the target word id
+	 * @param thisConnection is the database connection
+	 * @param thisWordId     is the target word id
 	 */
 	@SuppressWarnings("boxing")
 	public SynsetsQueryCommand(final SQLiteDatabase thisConnection, final long thisWordId)

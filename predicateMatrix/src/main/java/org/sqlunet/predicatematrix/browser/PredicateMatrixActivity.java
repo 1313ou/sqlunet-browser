@@ -1,11 +1,5 @@
 package org.sqlunet.predicatematrix.browser;
 
-import org.sqlunet.Word;
-import org.sqlunet.predicatematrix.PmRolePointer;
-import org.sqlunet.predicatematrix.R;
-import org.sqlunet.predicatematrix.settings.Settings;
-import org.sqlunet.provider.SqlUNetContract;
-
 import android.annotation.SuppressLint;
 import android.app.ActionBar;
 import android.app.Activity;
@@ -31,6 +25,12 @@ import android.widget.SearchView;
 import android.widget.Spinner;
 import android.widget.SpinnerAdapter;
 import android.widget.TextView;
+
+import org.sqlunet.Word;
+import org.sqlunet.predicatematrix.PmRolePointer;
+import org.sqlunet.predicatematrix.R;
+import org.sqlunet.predicatematrix.settings.Settings;
+import org.sqlunet.provider.SqlUNetContract;
 
 /**
  * @author bbou
@@ -85,23 +85,28 @@ public class PredicateMatrixActivity extends Activity
 		/*
 	  PredicateMatrix mode adapter
 	 */
-		SpinnerAdapter adapter = new ArrayAdapter<CharSequence>(this, R.layout.actionbar_item_pmmodes, modes) {
+		SpinnerAdapter adapter = new ArrayAdapter<CharSequence>(this, R.layout.actionbar_item_pmmodes, modes)
+		{
 			@Override
-			public View getView(int position, View convertView, ViewGroup parent) {
+			public View getView(int position, View convertView, ViewGroup parent)
+			{
 				return getCustomView(position, convertView, parent, R.layout.actionbar_item_pmmodes);
 			}
 
 			@Override
-			public View getDropDownView(int position, View convertView, ViewGroup parent) {
+			public View getDropDownView(int position, View convertView, ViewGroup parent)
+			{
 				return getCustomView(position, convertView, parent, R.layout.actionbar_item_pmmodes_dropdown);
 			}
 
-			private View getCustomView(int position, @SuppressWarnings("UnusedParameters") View convertView, ViewGroup parent, int layoutId) {
+			private View getCustomView(int position, @SuppressWarnings("UnusedParameters") View convertView, ViewGroup parent, int layoutId)
+			{
 				final LayoutInflater inflater = getLayoutInflater();
 				final View row = inflater.inflate(layoutId, parent, false);
 				final ImageView icon = (ImageView) row.findViewById(R.id.icon);
 				int resId = 0;
-				switch (position) {
+				switch (position)
+				{
 					case 0: // ROLES
 						resId = R.drawable.ic_roles_grouped;
 						break;
@@ -118,7 +123,8 @@ public class PredicateMatrixActivity extends Activity
 				icon.setImageResource(resId);
 
 				final TextView label = (TextView) row.findViewById(R.id.pmmode);
-				if (label != null) {
+				if (label != null)
+				{
 					label.setText(modes[position]);
 				}
 				return row;
@@ -221,8 +227,7 @@ public class PredicateMatrixActivity extends Activity
 	/**
 	 * Associate the searchable configuration with the searchView (associate the searchable configuration with the searchView)
 	 *
-	 * @param searchMenuItem
-	 *        search menu item
+	 * @param searchMenuItem search menu item
 	 */
 	private void setupSearch(final MenuItem searchMenuItem)
 	{
@@ -303,8 +308,7 @@ public class PredicateMatrixActivity extends Activity
 	/**
 	 * Handle intent (either onCreate or if activity is single top)
 	 *
-	 * @param intent
-	 *        intent
+	 * @param intent intent
 	 */
 	private void handleIntent(final Intent intent)
 	{
@@ -315,8 +319,7 @@ public class PredicateMatrixActivity extends Activity
 			// arguments
 			final String query = intent.getStringExtra(SearchManager.QUERY);
 			handleSearch(query);
-		}
-		else
+		} else
 		{
 			final Bundle bundle = intent.getExtras();
 			final int actionCode = bundle.getInt(SqlUNetContract.ARG_QUERYACTION);
@@ -335,8 +338,7 @@ public class PredicateMatrixActivity extends Activity
 	/**
 	 * Handle search
 	 *
-	 * @param pointer
-	 *        pointer
+	 * @param pointer pointer
 	 */
 	private void handleSearch(final PmRolePointer pointer)
 	{
@@ -360,9 +362,8 @@ public class PredicateMatrixActivity extends Activity
 
 	/**
 	 * Handle search
-	 * 
-	 * @param query
-	 *        string
+	 *
+	 * @param query string
 	 */
 	private void handleSearch(final String query)
 	{
@@ -381,8 +382,7 @@ public class PredicateMatrixActivity extends Activity
 			final PmRolePointer pointer1 = new PmRolePointer();
 			pointer1.roleid = Long.parseLong(query.substring(3));
 			pointer = pointer1;
-		}
-		else
+		} else
 		{
 			final Word pointer1 = new Word();
 			pointer1.word = query;

@@ -1,10 +1,10 @@
 package org.sqlunet.framenet.browser;
 
-import org.sqlunet.framenet.R;
-
 import android.app.ActionBar;
 import android.app.Activity;
 import android.os.Bundle;
+
+import org.sqlunet.framenet.R;
 
 /**
  * FrameQuery activity

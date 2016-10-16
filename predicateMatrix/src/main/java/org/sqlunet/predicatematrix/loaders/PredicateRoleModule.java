@@ -1,11 +1,11 @@
 package org.sqlunet.predicatematrix.loaders;
 
+import android.app.Fragment;
+import android.os.Parcelable;
+
 import org.sqlunet.predicatematrix.PmRolePointer;
 import org.sqlunet.predicatematrix.settings.Settings.PMMode;
 import org.sqlunet.treeview.model.TreeNode;
-
-import android.app.Fragment;
-import android.os.Parcelable;
 
 /**
  * Module for predicate roles obtained from id
@@ -61,17 +61,17 @@ public class PredicateRoleModule extends BasicModule
 			Displayer displayer;
 			switch (this.mode)
 			{
-			default:
-			case ROWS:
-				displayer = new DisplayerUngrouped();
-				break;
-			case ROWS_GROUPED_BY_SYNSET:
-				displayer = new DisplayerBySynset();
-				break;
-			case ROLES:
-			case ROWS_GROUPED_BY_ROLE:
-				displayer = new DisplayerByPmRole();
-				break;
+				default:
+				case ROWS:
+					displayer = new DisplayerUngrouped();
+					break;
+				case ROWS_GROUPED_BY_SYNSET:
+					displayer = new DisplayerBySynset();
+					break;
+				case ROLES:
+				case ROWS_GROUPED_BY_ROLE:
+					displayer = new DisplayerByPmRole();
+					break;
 			}
 			fromRoleId(PredicateRoleModule.this.pmroleid, node, displayer);
 		}

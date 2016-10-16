@@ -2,7 +2,7 @@ package org.sqlunet.sql;
 
 /**
  * Prepared statement
- * 
+ *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
 public class Utils
@@ -25,8 +25,7 @@ public class Utils
 			if (first)
 			{
 				first = false;
-			}
-			else
+			} else
 			{
 				sb.append(',');
 			}
@@ -52,8 +51,7 @@ public class Utils
 			if (first)
 			{
 				first = false;
-			}
-			else
+			} else
 			{
 				sb.append(',');
 			}
@@ -61,12 +59,11 @@ public class Utils
 		}
 		return sb.toString();
 	}
-	
+
 	/**
 	 * Arguments to single string
-	 * 
-	 * @param args
-	 *        arguments
+	 *
+	 * @param args arguments
 	 * @return arguments as string
 	 */
 	static public String argsToString(final String[] args)
@@ -88,11 +85,9 @@ public class Utils
 
 	/**
 	 * Replace argument placeholders with argument values
-	 * 
-	 * @param sql0
-	 *        sql
-	 * @param args
-	 *        arguments
+	 *
+	 * @param sql0 sql
+	 * @param args arguments
 	 * @return expanded sql
 	 */
 	static public String replaceArgs(final String sql0, final String[] args)

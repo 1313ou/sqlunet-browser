@@ -5,14 +5,14 @@ import java.util.regex.Pattern;
 
 /**
  * Preprocessor
- * 
+ *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
 public class Preprocessor
 {
 	/**
 	 * Replacer
-	 * 
+	 *
 	 * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
 	 */
 	static class Replacer
@@ -29,11 +29,9 @@ public class Preprocessor
 
 		/**
 		 * Constructor
-		 * 
-		 * @param regexpr
-		 *        regexpr
-		 * @param replacement
-		 *        replacement
+		 *
+		 * @param regexpr     regexpr
+		 * @param replacement replacement
 		 */
 		Replacer(final String regexpr, final String replacement)
 		{
@@ -43,9 +41,8 @@ public class Preprocessor
 
 		/**
 		 * Replace
-		 * 
-		 * @param input
-		 *        input
+		 *
+		 * @param input input
 		 * @return output
 		 */
 		public String replace(final String input)
@@ -72,9 +69,8 @@ public class Preprocessor
 
 	/**
 	 * Constructor
-	 * 
-	 * @param data
-	 *        regexpr-replacement pairs
+	 *
+	 * @param data regexpr-replacement pairs
 	 */
 	protected Preprocessor(final String... data)
 	{
@@ -90,9 +86,8 @@ public class Preprocessor
 
 	/**
 	 * Process
-	 * 
-	 * @param input
-	 *        input
+	 *
+	 * @param input input
 	 * @return output
 	 */
 	public CharSequence process(final CharSequence input)

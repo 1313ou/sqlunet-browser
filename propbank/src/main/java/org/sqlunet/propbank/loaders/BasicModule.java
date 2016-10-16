@@ -1,6 +1,15 @@
 package org.sqlunet.propbank.loaders;
 
-import java.util.Arrays;
+import android.app.Fragment;
+import android.app.LoaderManager.LoaderCallbacks;
+import android.content.CursorLoader;
+import android.content.Loader;
+import android.database.Cursor;
+import android.graphics.drawable.Drawable;
+import android.net.Uri;
+import android.os.Bundle;
+import android.os.Parcelable;
+import android.text.SpannableStringBuilder;
 
 import org.sqlunet.browser.Module;
 import org.sqlunet.propbank.R;
@@ -12,21 +21,12 @@ import org.sqlunet.propbank.provider.PropbankContract.Words_PbRolesets;
 import org.sqlunet.propbank.style.PropbankFactories;
 import org.sqlunet.propbank.style.PropbankSpanner;
 import org.sqlunet.style.Spanner;
-import org.sqlunet.treeview.renderer.QueryHolder;
 import org.sqlunet.treeview.model.TreeNode;
-import org.sqlunet.view.TreeFactory;
+import org.sqlunet.treeview.renderer.QueryHolder;
 import org.sqlunet.treeview.view.TreeView;
+import org.sqlunet.view.TreeFactory;
 
-import android.app.Fragment;
-import android.app.LoaderManager.LoaderCallbacks;
-import android.content.CursorLoader;
-import android.content.Loader;
-import android.database.Cursor;
-import android.graphics.drawable.Drawable;
-import android.net.Uri;
-import android.os.Bundle;
-import android.os.Parcelable;
-import android.text.SpannableStringBuilder;
+import java.util.Arrays;
 
 /**
  * Module for rolesets
@@ -89,9 +89,8 @@ abstract class BasicModule extends Module
 
 	/**
 	 * Unmarshall query arguments
-	 * 
-	 * @param query
-	 *        parceled query
+	 *
+	 * @param query parceled query
 	 */
 	abstract void unmarshall(final Parcelable query);
 
@@ -130,14 +129,14 @@ abstract class BasicModule extends Module
 			public Loader<Cursor> onCreateLoader(final int loaderId0, final Bundle args)
 			{
 				final Uri uri = Uri.parse(PbRolesets.CONTENT_URI);
-				final String[] projection = new String[] { //
+				final String[] projection = new String[]{ //
 						PbRolesets.ROLESETID, //
 						PbRolesets.ROLESETNAME, //
 						PbRolesets.ROLESETHEAD, //
 						PbRolesets.ROLESETDESC, //
 				};
 				final String selection = PbRolesets.ROLESETID + " = ?"; //$NON-NLS-1$
-				final String[] selectionArgs = new String[] { Long.toString(rolesetid0) };
+				final String[] selectionArgs = new String[]{Long.toString(rolesetid0)};
 				final String sortOrder = null;
 				return new CursorLoader(getContext(), uri, projection, selection, selectionArgs, sortOrder);
 			}
@@ -183,8 +182,7 @@ abstract class BasicModule extends Module
 
 					// expand
 					TreeView.expand(parent, false);
-				}
-				else
+				} else
 				{
 					parent.disable();
 				}
@@ -208,14 +206,14 @@ abstract class BasicModule extends Module
 			public Loader<Cursor> onCreateLoader(final int loaderId0, final Bundle args)
 			{
 				final Uri uri = Uri.parse(PropbankContract.Words_PbRolesets.CONTENT_URI);
-				final String[] projection = new String[] { //
+				final String[] projection = new String[]{ //
 						Words_PbRolesets.ROLESETID, //
 						Words_PbRolesets.ROLESETNAME, //
 						Words_PbRolesets.ROLESETHEAD, //
 						Words_PbRolesets.ROLESETDESC, //
 				};
 				final String selection = Words_PbRolesets.WORDID + " = ?"; //$NON-NLS-1$
-				final String[] selectionArgs = new String[] { Long.toString(wordid0) };
+				final String[] selectionArgs = new String[]{Long.toString(wordid0)};
 				final String sortOrder = null;
 				return new CursorLoader(BasicModule.this.getContext(), uri, projection, selection, selectionArgs, sortOrder);
 			}
@@ -258,13 +256,11 @@ abstract class BasicModule extends Module
 
 						// attach result
 						TreeFactory.addTextNode(parent, sb, getContext(), rolesNode, examplesNode);
-					}
-					while (cursor.moveToNext());
+					} while (cursor.moveToNext());
 
 					// expand
 					TreeView.expand(parent, false);
-				}
-				else
+				} else
 				{
 					parent.disable();
 				}
@@ -290,7 +286,7 @@ abstract class BasicModule extends Module
 			public Loader<Cursor> onCreateLoader(final int loaderId0, final Bundle args)
 			{
 				final Uri uri = Uri.parse(PbRolesets_PbRoles.CONTENT_URI);
-				final String[] projection = new String[] { //
+				final String[] projection = new String[]{ //
 						PbRolesets_PbRoles.ROLEID, //
 						PbRolesets_PbRoles.ROLEDESCR, //
 						PbRolesets_PbRoles.NARG, //
@@ -298,7 +294,7 @@ abstract class BasicModule extends Module
 						PbRolesets_PbRoles.THETANAME, //
 				};
 				final String selection = PbRolesets_PbRoles.ROLESETID + "= ?"; //$NON-NLS-1$
-				final String[] selectionArgs = new String[] { Long.toString(rolesetid) };
+				final String[] selectionArgs = new String[]{Long.toString(rolesetid)};
 				final String sortOrder = null;
 				return new CursorLoader(getContext(), uri, projection, selection, selectionArgs, sortOrder);
 			}
@@ -365,8 +361,7 @@ abstract class BasicModule extends Module
 
 					// expand
 					TreeView.expand(parent, false);
-				}
-				else
+				} else
 				{
 					parent.disable();
 				}
@@ -392,19 +387,19 @@ abstract class BasicModule extends Module
 			public Loader<Cursor> onCreateLoader(final int loaderId0, final Bundle args)
 			{
 				final Uri uri = Uri.parse(PbRolesets_PbExamples.CONTENT_URI);
-				final String[] projection = new String[] { //
+				final String[] projection = new String[]{ //
 						PbRolesets_PbExamples.TEXT, //
 						PbRolesets_PbExamples.REL, //
 						"GROUP_CONCAT(" + // //$NON-NLS-1$
-						PbRolesets_PbExamples.NARG + //
-						"||'~'" + // //$NON-NLS-1$
-						"||(CASE WHEN " + PbRolesets_PbExamples.FUNCNAME + " IS NULL THEN '*' ELSE " + PbRolesets_PbExamples.FUNCNAME + " END)" + // //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-						"||'~'" + // //$NON-NLS-1$
-						"||" + PbRolesets_PbExamples.ROLEDESCR + // //$NON-NLS-1$
-						"||'~'" + // //$NON-NLS-1$
-						"||(CASE WHEN " + PbRolesets_PbExamples.THETANAME + " IS NULL THEN '*' ELSE " + PbRolesets_PbExamples.THETANAME + " END)" + // //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-						"||'~'" + // //$NON-NLS-1$
-						"||" + PbRolesets_PbExamples.ARG + ",'|') AS " + PbRolesets_PbExamples.ARGS, // //$NON-NLS-1$ //$NON-NLS-2$
+								PbRolesets_PbExamples.NARG + //
+								"||'~'" + // //$NON-NLS-1$
+								"||(CASE WHEN " + PbRolesets_PbExamples.FUNCNAME + " IS NULL THEN '*' ELSE " + PbRolesets_PbExamples.FUNCNAME + " END)" + // //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+								"||'~'" + // //$NON-NLS-1$
+								"||" + PbRolesets_PbExamples.ROLEDESCR + // //$NON-NLS-1$
+								"||'~'" + // //$NON-NLS-1$
+								"||(CASE WHEN " + PbRolesets_PbExamples.THETANAME + " IS NULL THEN '*' ELSE " + PbRolesets_PbExamples.THETANAME + " END)" + // //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+								"||'~'" + // //$NON-NLS-1$
+								"||" + PbRolesets_PbExamples.ARG + ",'|') AS " + PbRolesets_PbExamples.ARGS, // //$NON-NLS-1$ //$NON-NLS-2$
 						PbRolesets_PbExamples.ASPECTNAME, //
 						PbRolesets_PbExamples.FORMNAME, //
 						PbRolesets_PbExamples.TENSENAME, //
@@ -412,7 +407,7 @@ abstract class BasicModule extends Module
 						PbRolesets_PbExamples.PERSONNAME, //
 				};
 				final String selection = PbRolesets_PbExamples.ROLESETID + "= ?"; //$NON-NLS-1$
-				final String[] selectionArgs = new String[] { Long.toString(rolesetid) };
+				final String[] selectionArgs = new String[]{Long.toString(rolesetid)};
 				final String sortOrder = PbRolesets_PbExamples.EXAMPLEID + ',' + PbRolesets_PbExamples.NARG;
 				return new CursorLoader(getContext(), uri, projection, selection, selectionArgs, sortOrder);
 			}
@@ -493,8 +488,7 @@ abstract class BasicModule extends Module
 								Spanner.append(sb, fields[4], 0, PropbankFactories.textFactory);
 							}
 						}
-					}
-					while (cursor.moveToNext());
+					} while (cursor.moveToNext());
 
 					// extra format
 					BasicModule.this.spanner.setSpan(sb, 0, 0);
@@ -504,8 +498,7 @@ abstract class BasicModule extends Module
 
 					// expand
 					TreeView.expand(parent, false);
-				}
-				else
+				} else
 				{
 					parent.disable();
 				}

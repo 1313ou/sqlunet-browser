@@ -1,22 +1,22 @@
 package org.sqlunet.framenet.browser;
 
-import org.sqlunet.browser.Module;
-import org.sqlunet.framenet.R;
-import org.sqlunet.framenet.loaders.AnnoSetFromPatternModule;
-import org.sqlunet.framenet.loaders.AnnoSetFromValenceUnitModule;
-import org.sqlunet.framenet.loaders.AnnoSetModule;
-import org.sqlunet.provider.SqlUNetContract;
-import org.sqlunet.treeview.renderer.IconTreeRenderer;
-import org.sqlunet.treeview.model.TreeNode;
-import org.sqlunet.treeview.view.TreeView;
-import org.sqlunet.view.TreeFactory;
-
 import android.app.Fragment;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import org.sqlunet.browser.Module;
+import org.sqlunet.framenet.R;
+import org.sqlunet.framenet.loaders.AnnoSetFromPatternModule;
+import org.sqlunet.framenet.loaders.AnnoSetFromValenceUnitModule;
+import org.sqlunet.framenet.loaders.AnnoSetModule;
+import org.sqlunet.provider.SqlUNetContract;
+import org.sqlunet.treeview.model.TreeNode;
+import org.sqlunet.treeview.renderer.IconTreeRenderer;
+import org.sqlunet.treeview.view.TreeView;
+import org.sqlunet.view.TreeFactory;
 
 /**
  * A fragment representing an annoset.
@@ -54,13 +54,13 @@ public class FnAnnoSetFragment extends Fragment
 		String header = "AnnoSet"; //$NON-NLS-1$
 		switch (action)
 		{
-		case SqlUNetContract.ARG_QUERYACTION_FNPATTERN:
-			header = "AnnoSets for Pattern"; //$NON-NLS-1$
-			break;
-		case SqlUNetContract.ARG_QUERYACTION_FNVALENCEUNIT:
-			header = "AnnoSets for Valence Unit"; //$NON-NLS-1$
-			break;
-		default:
+			case SqlUNetContract.ARG_QUERYACTION_FNPATTERN:
+				header = "AnnoSets for Pattern"; //$NON-NLS-1$
+				break;
+			case SqlUNetContract.ARG_QUERYACTION_FNVALENCEUNIT:
+				header = "AnnoSets for Valence Unit"; //$NON-NLS-1$
+				break;
+			default:
 		}
 
 		// views
@@ -96,17 +96,17 @@ public class FnAnnoSetFragment extends Fragment
 		Module module;
 		switch (action)
 		{
-		case SqlUNetContract.ARG_QUERYACTION_FNANNOSET:
-			module = new AnnoSetModule(this);
-			break;
-		case SqlUNetContract.ARG_QUERYACTION_FNPATTERN:
-			module = new AnnoSetFromPatternModule(this);
-			break;
-		case SqlUNetContract.ARG_QUERYACTION_FNVALENCEUNIT:
-			module = new AnnoSetFromValenceUnitModule(this);
-			break;
-		default:
-			return rootView;
+			case SqlUNetContract.ARG_QUERYACTION_FNANNOSET:
+				module = new AnnoSetModule(this);
+				break;
+			case SqlUNetContract.ARG_QUERYACTION_FNPATTERN:
+				module = new AnnoSetFromPatternModule(this);
+				break;
+			case SqlUNetContract.ARG_QUERYACTION_FNVALENCEUNIT:
+				module = new AnnoSetFromValenceUnitModule(this);
+				break;
+			default:
+				return rootView;
 		}
 		module.init(pointer);
 		module.process(queryNode);

@@ -1,9 +1,9 @@
 package org.sqlunet.verbnet.sql;
 
+import android.database.sqlite.SQLiteDatabase;
+
 import java.util.ArrayList;
 import java.util.List;
-
-import android.database.sqlite.SQLiteDatabase;
 
 class VnClassMembership
 {
@@ -40,12 +40,9 @@ class VnClassMembership
 	/**
 	 * Make sets of VerbNet memberships from query built from wordid and synsetid
 	 *
-	 * @param connection
-	 *            is the database connection
-	 * @param wordId
-	 *            is the word id to build query from
-	 * @param synsetId
-	 *            is the synset id to build the query from (-1 if any)
+	 * @param connection is the database connection
+	 * @param wordId     is the word id to build query from
+	 * @param synsetId   is the synset id to build the query from (-1 if any)
 	 * @return list of VerbNet memberships
 	 */
 	@SuppressWarnings("boxing")
@@ -68,10 +65,11 @@ class VnClassMembership
 				final int quality = query.getQuality();
 				final String theseGroupings = query.getGroupings();
 
-				result.add(new VnClassMembership(className, classId, wordId, synsetSpecificFlag ? synsetId : -1, sensenum, sensekey, quality, theseGroupings));
+				result.add(new VnClassMembership(className, classId, wordId, synsetSpecificFlag ?
+						synsetId :
+						-1, sensenum, sensekey, quality, theseGroupings));
 			}
-		}
-		finally
+		} finally
 		{
 			if (query != null)
 			{

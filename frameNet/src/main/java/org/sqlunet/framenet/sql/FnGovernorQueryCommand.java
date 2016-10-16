@@ -1,8 +1,8 @@
 package org.sqlunet.framenet.sql;
 
-import org.sqlunet.sql.DBQueryCommand;
-
 import android.database.sqlite.SQLiteDatabase;
+
+import org.sqlunet.sql.DBQueryCommand;
 
 /**
  * VerbNet FrameQuery query command
@@ -19,10 +19,8 @@ class FnGovernorQueryCommand extends DBQueryCommand
 	/**
 	 * Constructor
 	 *
-	 * @param thisConnection
-	 *            is the database connection
-	 * @param thisLuId
-	 *            is the target frameid
+	 * @param thisConnection is the database connection
+	 * @param thisLuId       is the target frameid
 	 */
 	@SuppressWarnings("boxing")
 	public FnGovernorQueryCommand(final SQLiteDatabase thisConnection, final long thisLuId)

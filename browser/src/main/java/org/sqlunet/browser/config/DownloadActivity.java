@@ -1,10 +1,5 @@
 package org.sqlunet.browser.config;
 
-import java.io.File;
-
-import org.sqlunet.browser.R;
-import org.sqlunet.settings.StorageSettings;
-
 import android.app.Activity;
 import android.app.DownloadManager;
 import android.app.DownloadManager.Query;
@@ -22,6 +17,11 @@ import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import org.sqlunet.browser.R;
+import org.sqlunet.settings.StorageSettings;
+
+import java.io.File;
 
 /**
  * Download activity
@@ -142,10 +142,14 @@ public class DownloadActivity extends Activity implements View.OnClickListener
 
 						// progress
 						DownloadActivity.this.progressBar.setVisibility(View.GONE);
-						DownloadActivity.this.progressStatus.setText(success ? R.string.status_download_successful : R.string.status_download_fail);
+						DownloadActivity.this.progressStatus.setText(success ?
+								R.string.status_download_successful :
+								R.string.status_download_fail);
 
 						// toast
-						Toast.makeText(DownloadActivity.this, success ? R.string.status_data_ok : R.string.status_data_fail, Toast.LENGTH_SHORT).show();
+						Toast.makeText(DownloadActivity.this, success ?
+								R.string.status_data_ok :
+								R.string.status_data_fail, Toast.LENGTH_SHORT).show();
 
 						// return result
 						final Intent resultIntent = new Intent();
@@ -170,7 +174,9 @@ public class DownloadActivity extends Activity implements View.OnClickListener
 		super.onPostCreate(savedInstanceState);
 
 		this.src.setText(this.downloadUrl);
-		this.target.setText(this.destDir != null ? this.destDir.getAbsolutePath() : ""); //$NON-NLS-1$
+		this.target.setText(this.destDir != null ?
+				this.destDir.getAbsolutePath() :
+				""); //$NON-NLS-1$
 
 		// TODO
 		// this.src.setSingleLine(true);
@@ -282,8 +288,7 @@ public class DownloadActivity extends Activity implements View.OnClickListener
 
 			// start progress
 			startProgress();
-		}
-		catch (Exception e)
+		} catch (Exception e)
 		{
 			Toast.makeText(this, e.getLocalizedMessage(), Toast.LENGTH_LONG).show();
 		}
@@ -319,10 +324,9 @@ public class DownloadActivity extends Activity implements View.OnClickListener
 				}
 			}
 			return false;
-		}
-		finally
+		} finally
 		{
-			if(cursor != null)
+			if (cursor != null)
 				cursor.close();
 		}
 	}
@@ -357,8 +361,7 @@ public class DownloadActivity extends Activity implements View.OnClickListener
 				}
 			}
 			return false;
-		}
-		finally
+		} finally
 		{
 			cursor.close();
 		}
@@ -395,12 +398,12 @@ public class DownloadActivity extends Activity implements View.OnClickListener
 						final int status = cursor.getInt(cursor.getColumnIndex(DownloadManager.COLUMN_STATUS));
 						switch (status)
 						{
-						case DownloadManager.STATUS_FAILED:
-						case DownloadManager.STATUS_SUCCESSFUL:
-							downloading = false;
-							break;
-						default:
-							break;
+							case DownloadManager.STATUS_FAILED:
+							case DownloadManager.STATUS_SUCCESSFUL:
+								downloading = false;
+								break;
+							default:
+								break;
 						}
 
 						// update UI
@@ -422,8 +425,7 @@ public class DownloadActivity extends Activity implements View.OnClickListener
 					try
 					{
 						Thread.sleep(2000);
-					}
-					catch (final InterruptedException e)
+					} catch (final InterruptedException e)
 					{
 						//
 					}
@@ -435,26 +437,25 @@ public class DownloadActivity extends Activity implements View.OnClickListener
 	/**
 	 * Get status message as per status returned by cursor
 	 *
-	 * @param status
-	 *            status
+	 * @param status status
 	 * @return string resource id
 	 */
 	private static int status2ResourceId(final int status)
 	{
 		switch (status)
 		{
-		case DownloadManager.STATUS_FAILED:
-			return R.string.status_download_fail;
-		case DownloadManager.STATUS_PAUSED:
-			return R.string.status_download_paused;
-		case DownloadManager.STATUS_PENDING:
-			return R.string.status_download_pending;
-		case DownloadManager.STATUS_RUNNING:
-			return R.string.status_download_running;
-		case DownloadManager.STATUS_SUCCESSFUL:
-			return R.string.status_download_successful;
-		default:
-			return -1;
+			case DownloadManager.STATUS_FAILED:
+				return R.string.status_download_fail;
+			case DownloadManager.STATUS_PAUSED:
+				return R.string.status_download_paused;
+			case DownloadManager.STATUS_PENDING:
+				return R.string.status_download_pending;
+			case DownloadManager.STATUS_RUNNING:
+				return R.string.status_download_running;
+			case DownloadManager.STATUS_SUCCESSFUL:
+				return R.string.status_download_successful;
+			default:
+				return -1;
 		}
 	}
 

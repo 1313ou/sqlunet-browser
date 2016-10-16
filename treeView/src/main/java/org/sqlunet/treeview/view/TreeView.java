@@ -11,19 +11,19 @@ import android.view.animation.Transformation;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 
+import org.sqlunet.treeview.R;
+import org.sqlunet.treeview.model.TreeNode;
+import org.sqlunet.treeview.renderer.SimpleRenderer;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import org.sqlunet.treeview.R;
-import org.sqlunet.treeview.model.TreeNode;
-import org.sqlunet.treeview.renderer.SimpleRenderer;
-
 /**
  * Tree view
- *
+ * <p>
  * Created by Bogdan Melnychuk on 2/10/15.
  */
 public class TreeView
@@ -57,10 +57,11 @@ public class TreeView
 		{
 			ContextThemeWrapper newContext = new ContextThemeWrapper(this.mContext, style);
 			view = this.use2dScroll ? new TwoDScrollView(newContext) : new ScrollView(newContext);
-		}
-		else
+		} else
 		{
-			view = this.use2dScroll ? new TwoDScrollView(this.mContext) : new ScrollView(this.mContext);
+			view = this.use2dScroll ?
+					new TwoDScrollView(this.mContext) :
+					new ScrollView(this.mContext);
 		}
 
 		Context containerContext = this.mContext;
@@ -105,13 +106,13 @@ public class TreeView
 		final TreeNode.Renderer<?> viewHolder = getViewHolderForNode(node);
 		final View nodeView = viewHolder.getView();
 		container.addView(nodeView);
-		
+
 		// selection
 		if (this.mSelectionModeEnabled)
 		{
 			viewHolder.toggleSelectionMode();
 		}
-		
+
 		// listener
 		nodeView.setOnClickListener(new View.OnClickListener()
 		{
@@ -120,14 +121,13 @@ public class TreeView
 			public void onClick(View v)
 			{
 				// click disable
-				if(!node.isEnabled())
+				if (!node.isEnabled())
 					return;
-				
+
 				if (node.getClickListener() != null)
 				{
 					node.getClickListener().onClick(node, node.getValue());
-				}
-				else if (TreeView.this.nodeClickListener != null)
+				} else if (TreeView.this.nodeClickListener != null)
 				{
 					TreeView.this.nodeClickListener.onClick(node, node.getValue());
 				}
@@ -141,7 +141,7 @@ public class TreeView
 	{
 		// tree
 		parent.addChild(nodeToAdd);
-		
+
 		// view
 		if (parent.isExpanded())
 		{
@@ -158,7 +158,7 @@ public class TreeView
 			// tree
 			TreeNode parent = node.getParent();
 			int index = parent.deleteChild(node);
-			
+
 			// view
 			if (parent.isExpanded() && index >= 0)
 			{
@@ -249,10 +249,10 @@ public class TreeView
 	private void expandRelativeLevel(TreeNode node, int levels)
 	{
 		if (levels <= 0)
-				return;
-		
+			return;
+
 		expandNode(node, false);
-		
+
 		for (TreeNode n : node.getChildren())
 		{
 			expandRelativeLevel(n, levels - 1);
@@ -275,8 +275,7 @@ public class TreeView
 		if (node.isExpanded())
 		{
 			collapseNode(node, false);
-		}
-		else
+		} else
 		{
 			expandNode(node, false);
 		}
@@ -290,8 +289,7 @@ public class TreeView
 		if (this.mUseDefaultAnimation)
 		{
 			collapse(nodeViewHolder.getNodeItemsView());
-		}
-		else
+		} else
 		{
 			nodeViewHolder.getNodeItemsView().setVisibility(View.GONE);
 		}
@@ -325,8 +323,7 @@ public class TreeView
 		if (this.mUseDefaultAnimation)
 		{
 			expand(parentViewHolder.getNodeItemsView());
-		}
-		else
+		} else
 		{
 			parentViewHolder.getNodeItemsView().setVisibility(View.VISIBLE);
 		}
@@ -344,7 +341,9 @@ public class TreeView
 			@Override
 			protected void applyTransformation(float interpolatedTime, Transformation t)
 			{
-				v.getLayoutParams().height = interpolatedTime == 1 ? LayoutParams.WRAP_CONTENT : (int) (targetHeight * interpolatedTime);
+				v.getLayoutParams().height = interpolatedTime == 1 ?
+						LayoutParams.WRAP_CONTENT :
+						(int) (targetHeight * interpolatedTime);
 				v.requestLayout();
 			}
 
@@ -372,8 +371,7 @@ public class TreeView
 				if (interpolatedTime == 1)
 				{
 					v.setVisibility(View.GONE);
-				}
-				else
+				} else
 				{
 					v.getLayoutParams().height = initialHeight - (int) (initialHeight * interpolatedTime);
 					v.requestLayout();
@@ -395,18 +393,18 @@ public class TreeView
 	static public void expand(final TreeNode node, @SuppressWarnings("SameParameterValue") boolean includeSubnodes)
 	{
 		node.getRenderer().getTreeView().expandNode(node, includeSubnodes);
-	}		
+	}
 
 	static public void expand(final TreeNode node, int levels)
 	{
 		node.getRenderer().getTreeView().expandRelativeLevel(node, levels);
-	}		
+	}
 
 	@SuppressWarnings("unused")
 	static public void collapse(final TreeNode node, boolean includeSubnodes)
 	{
 		node.getRenderer().getTreeView().collapseNode(node, includeSubnodes);
-	}		
+	}
 
 	// S T A T E
 
@@ -515,8 +513,7 @@ public class TreeView
 		if (this.mSelectionModeEnabled)
 		{
 			return getSelected(this.mRoot);
-		}
-		else
+		} else
 		{
 			return new ArrayList<>();
 		}
@@ -604,8 +601,7 @@ public class TreeView
 				final Object object = this.defaultViewHolderClass.getConstructor(Context.class).newInstance(this.mContext);
 				viewHolder = (TreeNode.Renderer<?>) object;
 				node.setRenderer(viewHolder);
-			}
-			catch (Exception e)
+			} catch (Exception e)
 			{
 				throw new RuntimeException("Could not instantiate class " + this.defaultViewHolderClass); //$NON-NLS-1$
 			}

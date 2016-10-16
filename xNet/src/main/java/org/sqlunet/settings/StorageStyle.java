@@ -1,15 +1,5 @@
 package org.sqlunet.settings;
 
-import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-
-import org.sqlunet.settings.StorageUtils.CandidateStorage;
-import org.sqlunet.settings.StorageUtils.DirType;
-import org.sqlunet.settings.StorageUtils.StorageType;
-import org.sqlunet.xnet.R;
-
 import android.annotation.TargetApi;
 import android.content.Context;
 import android.graphics.Color;
@@ -27,9 +17,19 @@ import android.text.style.RelativeSizeSpan;
 import android.text.style.StyleSpan;
 import android.util.Pair;
 
+import org.sqlunet.settings.StorageUtils.CandidateStorage;
+import org.sqlunet.settings.StorageUtils.DirType;
+import org.sqlunet.settings.StorageUtils.StorageType;
+import org.sqlunet.xnet.R;
+
+import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
 /**
  * Storage styling utilities
- * 
+ *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
 public class StorageStyle
@@ -44,9 +44,8 @@ public class StorageStyle
 
 	/**
 	 * Styled string
-	 * 
-	 * @param candidate
-	 *        candidate storage
+	 *
+	 * @param candidate candidate storage
 	 * @return styled string
 	 */
 	private static CharSequence toStyledString(final Context context, final CandidateStorage candidate)
@@ -58,31 +57,33 @@ public class StorageStyle
 		sb.append('\n');
 		append(sb, candidate.dir.file.getAbsolutePath(), new StyleSpan(Typeface.ITALIC), new ForegroundColorSpan(Color.GRAY));
 		sb.append('\n');
-		append(sb, StorageUtils.mbToString(candidate.free), new ForegroundColorSpan(candidate.status == 0 && candidate.fitsIn() ? dkgreen : dkred));
+		append(sb, StorageUtils.mbToString(candidate.free), new ForegroundColorSpan(candidate.status == 0 && candidate.fitsIn() ?
+				dkgreen :
+				dkred));
 
 		return sb;
 	}
 
 	/**
 	 * Styled fits-in string
-	 * 
-	 * @param candidate
-	 *        candidate storage
+	 *
+	 * @param candidate candidate storage
 	 * @return styled string
 	 */
 	private static CharSequence styledFitsIn(final CandidateStorage candidate)
 	{
 		final SpannableStringBuilder sb = new SpannableStringBuilder();
 		final boolean fitsIn = candidate.fitsIn();
-		append(sb, fitsIn ? "Fits in" : "Does not fit in", new ForegroundColorSpan(fitsIn ? dkgreen : dkred)); //$NON-NLS-1$ //$NON-NLS-2$
+		append(sb, fitsIn ? "Fits in" : "Does not fit in", new ForegroundColorSpan(fitsIn ?
+				dkgreen :
+				dkred)); //$NON-NLS-1$ //$NON-NLS-2$
 		return sb;
 	}
 
 	/**
 	 * Styled fits-in string
-	 * 
-	 * @param candidate
-	 *        candidate storage
+	 *
+	 * @param candidate candidate storage
 	 * @return styled string
 	 */
 	private static CharSequence styledStatus(final CandidateStorage candidate)
@@ -96,9 +97,8 @@ public class StorageStyle
 
 	/**
 	 * Dir type to res id
-	 * 
-	 * @param type
-	 *        dir type
+	 *
+	 * @param type dir type
 	 * @return res id
 	 */
 	static private int toResId(final DirType type)
@@ -106,35 +106,32 @@ public class StorageStyle
 		int resId = 0;
 		switch (type)
 		{
-		case APP_INTERNAL_POSSIBLY_ADOPTED:
-			resId = R.drawable.ic_storage_auto;
-			break;
-		case APP_INTERNAL:
-			resId = R.drawable.ic_storage_intern;
-			break;
-		case APP_EXTERNAL_PRIMARY:
-			resId = R.drawable.ic_storage_extern_primary;
-			break;
-		case APP_EXTERNAL_SECONDARY:
-			resId = R.drawable.ic_storage_extern_secondary;
-			break;
-		case PUBLIC_EXTERNAL_PRIMARY:
-		case PUBLIC_EXTERNAL_SECONDARY:
-			resId = R.drawable.ic_storage_extern_public;
-			break;
+			case APP_INTERNAL_POSSIBLY_ADOPTED:
+				resId = R.drawable.ic_storage_auto;
+				break;
+			case APP_INTERNAL:
+				resId = R.drawable.ic_storage_intern;
+				break;
+			case APP_EXTERNAL_PRIMARY:
+				resId = R.drawable.ic_storage_extern_primary;
+				break;
+			case APP_EXTERNAL_SECONDARY:
+				resId = R.drawable.ic_storage_extern_secondary;
+				break;
+			case PUBLIC_EXTERNAL_PRIMARY:
+			case PUBLIC_EXTERNAL_SECONDARY:
+				resId = R.drawable.ic_storage_extern_public;
+				break;
 		}
 		return resId;
 	}
 
 	/**
 	 * Append text
-	 * 
-	 * @param sb
-	 *        spannable string builder
-	 * @param text
-	 *        text
-	 * @param spans
-	 *        spans to apply
+	 *
+	 * @param sb    spannable string builder
+	 * @param text  text
+	 * @param spans spans to apply
 	 */
 	static private void append(final SpannableStringBuilder sb, final CharSequence text, final Object... spans)
 	{
@@ -153,13 +150,10 @@ public class StorageStyle
 
 	/**
 	 * Append Image
-	 * 
-	 * @param context
-	 *        context
-	 * @param sb
-	 *        spannable string builder
-	 * @param resId
-	 *        resource id
+	 *
+	 * @param context context
+	 * @param sb      spannable string builder
+	 * @param resId   resource id
 	 */
 	static private void appendImage(final Context context, final SpannableStringBuilder sb, final int resId)
 	{
@@ -168,17 +162,15 @@ public class StorageStyle
 
 	/**
 	 * Make image span
-	 * 
-	 * @param context
-	 *        context
-	 * @param resId
-	 *        res id
+	 *
+	 * @param context context
+	 * @param resId   res id
 	 * @return image span
 	 */
 	static private Object makeImageSpan(final Context context, int resId)
 	{
 		Drawable drawable;
-		if(Build.VERSION.SDK_INT < Build.VERSION_CODES.N)
+		if (Build.VERSION.SDK_INT < Build.VERSION_CODES.N)
 			//noinspection deprecation
 			drawable = context.getResources().getDrawable(resId);
 		else
@@ -189,9 +181,8 @@ public class StorageStyle
 
 	/**
 	 * Get candidate names and values
-	 * 
-	 * @param context
-	 *        context
+	 *
+	 * @param context context
 	 * @return pair of names and values
 	 */
 	static public Pair<CharSequence[], CharSequence[]> getCandidateNamesValues(final Context context)
@@ -216,9 +207,8 @@ public class StorageStyle
 
 	/**
 	 * Report on candidate storage
-	 * 
-	 * @param context
-	 *        context
+	 *
+	 * @param context context
 	 * @return report
 	 */
 	static public CharSequence reportStyledCandidateStorage(final Context context)
@@ -241,9 +231,8 @@ public class StorageStyle
 
 	/**
 	 * Report on external storage
-	 * 
-	 * @param context
-	 *        context
+	 *
+	 * @param context context
 	 * @return report
 	 */
 	@TargetApi(Build.VERSION_CODES.LOLLIPOP)
@@ -270,9 +259,10 @@ public class StorageStyle
 				sb.append(' ');
 				try
 				{
-					sb.append(Environment.isExternalStorageEmulated(f) ? "emulated" : "not-emulated"); //$NON-NLS-1$ //$NON-NLS-2$
-				}
-				catch (Throwable e)
+					sb.append(Environment.isExternalStorageEmulated(f) ?
+							"emulated" :
+							"not-emulated"); //$NON-NLS-1$ //$NON-NLS-2$
+				} catch (Throwable e)
 				{ //
 				}
 				sb.append('\n');
@@ -293,9 +283,10 @@ public class StorageStyle
 				sb.append(' ');
 				try
 				{
-					sb.append(Environment.isExternalStorageEmulated(f) ? "emulated" : "not-emulated"); //$NON-NLS-1$ //$NON-NLS-2$
-				}
-				catch (Throwable e)
+					sb.append(Environment.isExternalStorageEmulated(f) ?
+							"emulated" :
+							"not-emulated"); //$NON-NLS-1$ //$NON-NLS-2$
+				} catch (Throwable e)
 				{ //
 				}
 				sb.append('\n');
@@ -317,9 +308,10 @@ public class StorageStyle
 				sb.append(' ');
 				try
 				{
-					sb.append(Environment.isExternalStorageEmulated(f) ? "emulated" : "not-emulated"); //$NON-NLS-1$ //$NON-NLS-2$
-				}
-				catch (Throwable e)
+					sb.append(Environment.isExternalStorageEmulated(f) ?
+							"emulated" :
+							"not-emulated"); //$NON-NLS-1$ //$NON-NLS-2$
+				} catch (Throwable e)
 				{ //
 				}
 				sb.append('\n');

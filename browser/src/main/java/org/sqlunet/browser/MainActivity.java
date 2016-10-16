@@ -1,5 +1,28 @@
 package org.sqlunet.browser;
 
+import android.annotation.SuppressLint;
+import android.app.ActionBar;
+import android.app.Activity;
+import android.app.SearchManager;
+import android.app.SearchableInfo;
+import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemSelectedListener;
+import android.widget.ArrayAdapter;
+import android.widget.ImageView;
+import android.widget.SearchView;
+import android.widget.Spinner;
+import android.widget.SpinnerAdapter;
+import android.widget.TextView;
+
 import org.sqlunet.browser.config.ManagementActivity;
 import org.sqlunet.browser.config.SettingsActivity;
 import org.sqlunet.browser.config.SetupActivity;
@@ -35,29 +58,6 @@ import org.sqlunet.wordnet.provider.WordNetContract.AdjPositionTypes;
 import org.sqlunet.wordnet.provider.WordNetContract.LexDomains;
 import org.sqlunet.wordnet.provider.WordNetContract.LinkTypes;
 import org.sqlunet.wordnet.provider.WordNetContract.PosTypes;
-
-import android.annotation.SuppressLint;
-import android.app.ActionBar;
-import android.app.Activity;
-import android.app.SearchManager;
-import android.app.SearchableInfo;
-import android.content.Context;
-import android.content.Intent;
-import android.os.Bundle;
-import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemSelectedListener;
-import android.widget.ArrayAdapter;
-import android.widget.ImageView;
-import android.widget.SearchView;
-import android.widget.Spinner;
-import android.widget.SpinnerAdapter;
-import android.widget.TextView;
 
 /**
  * Main activity
@@ -123,8 +123,7 @@ public class MainActivity extends Activity
 		actionBar.setDisplayHomeAsUpEnabled(true);
 
 		// set up the action bar to show a custom layout
-		@SuppressLint("InflateParams")
-		final View actionBarView = getLayoutInflater().inflate(R.layout.actionbar_custom, null);
+		@SuppressLint("InflateParams") final View actionBarView = getLayoutInflater().inflate(R.layout.actionbar_custom, null);
 		actionBar.setCustomView(actionBarView);
 		actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM | ActionBar.DISPLAY_SHOW_HOME);
 		actionBar.setDisplayShowTitleEnabled(false);
@@ -133,25 +132,32 @@ public class MainActivity extends Activity
 		final CharSequence[] modes = getResources().getTextArray(R.array.selectors);
 
 		// selector mode adapter
-		SpinnerAdapter adapter = new ArrayAdapter<CharSequence>(this, R.layout.actionbar_item_selectors, modes) {
+		SpinnerAdapter adapter = new ArrayAdapter<CharSequence>(this, R.layout.actionbar_item_selectors, modes)
+		{
 			@Override
-			public View getView(int position, View convertView, ViewGroup parent) {
+			public View getView(int position, View convertView, ViewGroup parent)
+			{
 				return getCustomView(position, convertView, parent, R.layout.actionbar_item_selectors);
 			}
 
 			@Override
-			public View getDropDownView(int position, View convertView, ViewGroup parent) {
+			public View getDropDownView(int position, View convertView, ViewGroup parent)
+			{
 				return getCustomView(position, convertView, parent, R.layout.actionbar_item_selectors_dropdown);
 			}
 
-			private View getCustomView(int position, @SuppressWarnings("UnusedParameters") View convertView, ViewGroup parent, int layoutId) {
+			private View getCustomView(int position, @SuppressWarnings("UnusedParameters") View convertView, ViewGroup parent, int layoutId)
+			{
 				final LayoutInflater inflater = getLayoutInflater();
 				final View row = inflater.inflate(layoutId, parent, false);
 				final ImageView icon = (ImageView) row.findViewById(R.id.icon);
-				icon.setImageResource(position == 0 ? R.drawable.ic_selector : R.drawable.ic_xselector);
+				icon.setImageResource(position == 0 ?
+						R.drawable.ic_selector :
+						R.drawable.ic_xselector);
 
 				final TextView label = (TextView) row.findViewById(R.id.selector);
-				if (label != null) {
+				if (label != null)
+				{
 					label.setText(modes[position]);
 				}
 				return row;
@@ -266,8 +272,7 @@ public class MainActivity extends Activity
 	/**
 	 * Handle intent
 	 *
-	 * @param intent
-	 *            intent
+	 * @param intent intent
 	 */
 	private void handleIntent(final Intent intent)
 	{
@@ -305,30 +310,30 @@ public class MainActivity extends Activity
 		final Settings.Selector type = Settings.getXnModePref(this);
 		switch (type)
 		{
-		case SELECTOR:
-			intentClass = SelectorActivity.class;
-			break;
-		case XSELECTOR:
-			intentClass = XSelectorActivity.class;
-			break;
-		default:
-			break;
+			case SELECTOR:
+				intentClass = SelectorActivity.class;
+				break;
+			case XSELECTOR:
+				intentClass = XSelectorActivity.class;
+				break;
+			default:
+				break;
 		}
 
 		// mode
 		final Settings.SelectorMode mode = Settings.getSelectorModePref(this);
 		switch (mode)
 		{
-		case VIEW:
-			intent = new Intent(this, intentClass);
-			break;
+			case VIEW:
+				intent = new Intent(this, intentClass);
+				break;
 
-		case WEB:
-			intent = new Intent(this, WebActivity.class);
-			break;
+			case WEB:
+				intent = new Intent(this, WebActivity.class);
+				break;
 
-		default:
-			break;
+			default:
+				break;
 		}
 		return intent;
 	}
@@ -336,8 +341,7 @@ public class MainActivity extends Activity
 	/**
 	 * Make detail intent as per settings
 	 *
-	 * @param intentClass
-	 *            if WebActivity is not to be used
+	 * @param intentClass if WebActivity is not to be used
 	 * @return intent
 	 */
 	private Intent makeDetailIntent(final Class<?> intentClass)
@@ -348,16 +352,16 @@ public class MainActivity extends Activity
 		final Settings.DetailMode mode = Settings.getDetailModePref(this);
 		switch (mode)
 		{
-		case VIEW:
-			intent = new Intent(this, intentClass);
-			break;
+			case VIEW:
+				intent = new Intent(this, intentClass);
+				break;
 
-		case WEB:
-			intent = new Intent(this, WebActivity.class);
-			break;
+			case WEB:
+				intent = new Intent(this, WebActivity.class);
+				break;
 
-		default:
-			break;
+			default:
+				break;
 		}
 		return intent;
 	}
@@ -407,107 +411,107 @@ public class MainActivity extends Activity
 		switch (item.getItemId())
 		{
 
-		// settings
+			// settings
 
-		case R.id.action_settings:
-			intent = new Intent(this, SettingsActivity.class);
-			break;
+			case R.id.action_settings:
+				intent = new Intent(this, SettingsActivity.class);
+				break;
 
-		// tables
+			// tables
 
-		case R.id.action_table_lexdomains:
-			intent = new Intent(this, TableActivity.class);
-			intent.putExtra(SqlUNetContract.ARG_QUERYURI, LexDomains.CONTENT_URI);
-			intent.putExtra(SqlUNetContract.ARG_QUERYID, LexDomains.LEXDOMAINID);
-			intent.putExtra(SqlUNetContract.ARG_QUERYITEMS, new String[] { LexDomains.LEXDOMAINID, LexDomains.LEXDOMAIN });
-			intent.putExtra(SqlUNetContract.ARG_QUERYXITEMS, new String[] { LexDomains.POS });
-			intent.putExtra(SqlUNetContract.ARG_QUERYLAYOUT, R.layout.item_table2);
-			break;
+			case R.id.action_table_lexdomains:
+				intent = new Intent(this, TableActivity.class);
+				intent.putExtra(SqlUNetContract.ARG_QUERYURI, LexDomains.CONTENT_URI);
+				intent.putExtra(SqlUNetContract.ARG_QUERYID, LexDomains.LEXDOMAINID);
+				intent.putExtra(SqlUNetContract.ARG_QUERYITEMS, new String[]{LexDomains.LEXDOMAINID, LexDomains.LEXDOMAIN});
+				intent.putExtra(SqlUNetContract.ARG_QUERYXITEMS, new String[]{LexDomains.POS});
+				intent.putExtra(SqlUNetContract.ARG_QUERYLAYOUT, R.layout.item_table2);
+				break;
 
-		case R.id.action_table_postypes:
-			intent = new Intent(this, TableActivity.class);
-			intent.putExtra(SqlUNetContract.ARG_QUERYURI, PosTypes.CONTENT_URI);
-			intent.putExtra(SqlUNetContract.ARG_QUERYID, PosTypes.POS);
-			intent.putExtra(SqlUNetContract.ARG_QUERYITEMS, new String[] { PosTypes.POS, PosTypes.POSNAME });
-			intent.putExtra(SqlUNetContract.ARG_QUERYLAYOUT, R.layout.item_table2);
-			break;
+			case R.id.action_table_postypes:
+				intent = new Intent(this, TableActivity.class);
+				intent.putExtra(SqlUNetContract.ARG_QUERYURI, PosTypes.CONTENT_URI);
+				intent.putExtra(SqlUNetContract.ARG_QUERYID, PosTypes.POS);
+				intent.putExtra(SqlUNetContract.ARG_QUERYITEMS, new String[]{PosTypes.POS, PosTypes.POSNAME});
+				intent.putExtra(SqlUNetContract.ARG_QUERYLAYOUT, R.layout.item_table2);
+				break;
 
-		case R.id.action_table_adjpositiontypes:
-			intent = new Intent(this, TableActivity.class);
-			intent.putExtra(SqlUNetContract.ARG_QUERYURI, AdjPositionTypes.CONTENT_URI);
-			intent.putExtra(SqlUNetContract.ARG_QUERYID, AdjPositionTypes.POSITION);
-			intent.putExtra(SqlUNetContract.ARG_QUERYITEMS, new String[] { AdjPositionTypes.POSITION, AdjPositionTypes.POSITIONNAME });
-			intent.putExtra(SqlUNetContract.ARG_QUERYLAYOUT, R.layout.item_table2);
-			break;
+			case R.id.action_table_adjpositiontypes:
+				intent = new Intent(this, TableActivity.class);
+				intent.putExtra(SqlUNetContract.ARG_QUERYURI, AdjPositionTypes.CONTENT_URI);
+				intent.putExtra(SqlUNetContract.ARG_QUERYID, AdjPositionTypes.POSITION);
+				intent.putExtra(SqlUNetContract.ARG_QUERYITEMS, new String[]{AdjPositionTypes.POSITION, AdjPositionTypes.POSITIONNAME});
+				intent.putExtra(SqlUNetContract.ARG_QUERYLAYOUT, R.layout.item_table2);
+				break;
 
-		case R.id.action_table_linktypes:
-			intent = new Intent(this, TableActivity.class);
-			intent.putExtra(SqlUNetContract.ARG_QUERYURI, LinkTypes.CONTENT_URI);
-			intent.putExtra(SqlUNetContract.ARG_QUERYID, LinkTypes.LINKID);
-			intent.putExtra(SqlUNetContract.ARG_QUERYITEMS, new String[] { LinkTypes.LINKID, LinkTypes.LINK, LinkTypes.RECURSESSELECT });
-			intent.putExtra(SqlUNetContract.ARG_QUERYSORT, LinkTypes.LINKID + " ASC"); //$NON-NLS-1$
-			intent.putExtra(SqlUNetContract.ARG_QUERYLAYOUT, R.layout.item_table3);
-			break;
+			case R.id.action_table_linktypes:
+				intent = new Intent(this, TableActivity.class);
+				intent.putExtra(SqlUNetContract.ARG_QUERYURI, LinkTypes.CONTENT_URI);
+				intent.putExtra(SqlUNetContract.ARG_QUERYID, LinkTypes.LINKID);
+				intent.putExtra(SqlUNetContract.ARG_QUERYITEMS, new String[]{LinkTypes.LINKID, LinkTypes.LINK, LinkTypes.RECURSESSELECT});
+				intent.putExtra(SqlUNetContract.ARG_QUERYSORT, LinkTypes.LINKID + " ASC"); //$NON-NLS-1$
+				intent.putExtra(SqlUNetContract.ARG_QUERYLAYOUT, R.layout.item_table3);
+				break;
 
-		// search
+			// search
 
-		case R.id.action_text_search:
-			intent = new Intent(this, TextSearchActivity.class);
-			break;
+			case R.id.action_text_search:
+				intent = new Intent(this, TextSearchActivity.class);
+				break;
 
-		case R.id.action_pm_search:
-			intent = new Intent(this, PredicateMatrixActivity.class);
-			break;
+			case R.id.action_pm_search:
+				intent = new Intent(this, PredicateMatrixActivity.class);
+				break;
 
-		// database
+			// database
 
-		case R.id.action_storage:
-			intent = new Intent(this, StorageActivity.class);
-			break;
+			case R.id.action_storage:
+				intent = new Intent(this, StorageActivity.class);
+				break;
 
-		case R.id.action_setup:
-			intent = new Intent(this, SetupActivity.class);
-			break;
+			case R.id.action_setup:
+				intent = new Intent(this, SetupActivity.class);
+				break;
 
-		case R.id.action_setup_sql:
-			intent = new Intent(this, SetupSqlActivity.class);
-			break;
+			case R.id.action_setup_sql:
+				intent = new Intent(this, SetupSqlActivity.class);
+				break;
 
-		case R.id.action_status:
-			intent = new Intent(this, StatusActivity.class);
-			break;
+			case R.id.action_status:
+				intent = new Intent(this, StatusActivity.class);
+				break;
 
-		case R.id.action_management:
-			intent = new Intent(this, ManagementActivity.class);
-			break;
+			case R.id.action_management:
+				intent = new Intent(this, ManagementActivity.class);
+				break;
 
-		// guide
+			// guide
 
-		case R.id.action_help:
-			intent = new Intent(this, HelpActivity.class);
-			break;
+			case R.id.action_help:
+				intent = new Intent(this, HelpActivity.class);
+				break;
 
-		case R.id.action_about:
-			intent = new Intent(this, AboutActivity.class);
-			break;
+			case R.id.action_about:
+				intent = new Intent(this, AboutActivity.class);
+				break;
 
-		// lifecycle
+			// lifecycle
 
-		case R.id.action_restart:
-			finish();
-			intent = makeRestartIntent();
-			break;
+			case R.id.action_restart:
+				finish();
+				intent = makeRestartIntent();
+				break;
 
-		case R.id.action_quit:
-			quit();
-			return true;
+			case R.id.action_quit:
+				quit();
+				return true;
 
-		case R.id.action_appsettings:
-			Settings.applicationSettings(this, "org.sqlunet.browser"); //$NON-NLS-1$
-			return true;
+			case R.id.action_appsettings:
+				Settings.applicationSettings(this, "org.sqlunet.browser"); //$NON-NLS-1$
+				return true;
 
-		default:
-			return super.onOptionsItemSelected(item);
+			default:
+				return super.onOptionsItemSelected(item);
 		}
 
 		// start activity
@@ -520,8 +524,7 @@ public class MainActivity extends Activity
 	/**
 	 * Associate the searchable configuration with the searchView (associate the searchable configuration with the searchView)
 	 *
-	 * @param searchView
-	 *            searchView
+	 * @param searchView searchView
 	 */
 	private void setupSearchView(final SearchView searchView)
 	{
@@ -552,8 +555,7 @@ public class MainActivity extends Activity
 	/**
 	 * Handle search
 	 *
-	 * @param query
-	 *            query
+	 * @param query query
 	 */
 	@SuppressWarnings("boxing")
 	private void handleSearch(final String query)
@@ -608,8 +610,7 @@ public class MainActivity extends Activity
 				searchIntent = makeDetailIntent(FnFrameActivity.class);
 				searchIntent.putExtra(SqlUNetContract.ARG_QUERYACTION, SqlUNetContract.ARG_QUERYACTION_FNFRAME);
 				searchIntent.putExtra(SqlUNetContract.ARG_QUERYPOINTER, framePointer);
-			}
-			else if (query.startsWith("#fl")) //$NON-NLS-1$
+			} else if (query.startsWith("#fl")) //$NON-NLS-1$
 			{
 				final long luid = Long.valueOf(query.substring(3));
 				final FnLexUnitPointer lexunitPointer = new FnLexUnitPointer();
@@ -617,16 +618,14 @@ public class MainActivity extends Activity
 				searchIntent = makeDetailIntent(FnLexUnitActivity.class);
 				searchIntent.putExtra(SqlUNetContract.ARG_QUERYACTION, SqlUNetContract.ARG_QUERYACTION_FNLEXUNIT);
 				searchIntent.putExtra(SqlUNetContract.ARG_QUERYPOINTER, lexunitPointer);
-			}
-			else if (query.startsWith("#fs")) //$NON-NLS-1$
+			} else if (query.startsWith("#fs")) //$NON-NLS-1$
 			{
 				final long sentenceid = Long.valueOf(query.substring(3));
 				final FnSentencePointer sentencePointer = new FnSentencePointer(sentenceid);
 				searchIntent = makeDetailIntent(FnSentenceActivity.class);
 				searchIntent.putExtra(SqlUNetContract.ARG_QUERYACTION, SqlUNetContract.ARG_QUERYACTION_FNSENTENCE);
 				searchIntent.putExtra(SqlUNetContract.ARG_QUERYPOINTER, sentencePointer);
-			}
-			else if (query.startsWith("#fa")) //$NON-NLS-1$
+			} else if (query.startsWith("#fa")) //$NON-NLS-1$
 			{
 				final long annosetid = Long.valueOf(query.substring(3));
 				final FnAnnoSetPointer annosetPointer = new FnAnnoSetPointer();
@@ -634,8 +633,7 @@ public class MainActivity extends Activity
 				searchIntent = makeDetailIntent(FnAnnoSetActivity.class);
 				searchIntent.putExtra(SqlUNetContract.ARG_QUERYACTION, SqlUNetContract.ARG_QUERYACTION_FNANNOSET);
 				searchIntent.putExtra(SqlUNetContract.ARG_QUERYPOINTER, annosetPointer);
-			}
-			else if (query.startsWith("#fp")) //$NON-NLS-1$
+			} else if (query.startsWith("#fp")) //$NON-NLS-1$
 			{
 				final long patternid = Long.valueOf(query.substring(3));
 				final FnPatternPointer patternPointer = new FnPatternPointer();
@@ -643,8 +641,7 @@ public class MainActivity extends Activity
 				searchIntent = makeDetailIntent(FnAnnoSetActivity.class);
 				searchIntent.putExtra(SqlUNetContract.ARG_QUERYACTION, SqlUNetContract.ARG_QUERYACTION_FNPATTERN);
 				searchIntent.putExtra(SqlUNetContract.ARG_QUERYPOINTER, patternPointer);
-			}
-			else if (query.startsWith("#fv")) //$NON-NLS-1$
+			} else if (query.startsWith("#fv")) //$NON-NLS-1$
 			{
 				final long valenceunitid = Long.valueOf(query.substring(3));
 				final FnValenceUnitPointer valenceunitPointer = new FnValenceUnitPointer();
@@ -663,11 +660,9 @@ public class MainActivity extends Activity
 				searchIntent = makeDetailIntent(PredicateMatrixActivity.class);
 				searchIntent.putExtra(SqlUNetContract.ARG_QUERYACTION, SqlUNetContract.ARG_QUERYACTION_PMROLE);
 				searchIntent.putExtra(SqlUNetContract.ARG_QUERYPOINTER, rolePointer);
-			}
-			else
+			} else
 				return;
-		}
-		else
+		} else
 		{
 			// search for string
 			searchIntent = makeSelectorIntent();

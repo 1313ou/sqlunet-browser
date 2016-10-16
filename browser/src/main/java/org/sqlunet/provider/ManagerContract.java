@@ -1,9 +1,9 @@
 package org.sqlunet.provider;
 
-import org.sqlunet.browser.config.TableActivity;
-
 import android.content.Context;
 import android.content.Intent;
+
+import org.sqlunet.browser.config.TableActivity;
 
 public class ManagerContract
 {
@@ -28,7 +28,7 @@ public class ManagerContract
 		final Intent intent = new Intent(context, TableActivity.class);
 		intent.putExtra(SqlUNetContract.ARG_QUERYURI, TablesAndIndices.CONTENT_URI);
 		intent.putExtra(SqlUNetContract.ARG_QUERYID, "rowid"); //$NON-NLS-1$
-		intent.putExtra(SqlUNetContract.ARG_QUERYITEMS, new String[] { "rowid", TablesAndIndices.TYPE, TablesAndIndices.NAME }); //$NON-NLS-1$
+		intent.putExtra(SqlUNetContract.ARG_QUERYITEMS, new String[]{"rowid", TablesAndIndices.TYPE, TablesAndIndices.NAME}); //$NON-NLS-1$
 		intent.putExtra(SqlUNetContract.ARG_QUERYSORT, order);
 		intent.putExtra(SqlUNetContract.ARG_QUERYFILTER, "name NOT LIKE 'sqlite_%' AND name NOT LIKE 'android_%'"); //$NON-NLS-1$
 		return intent;

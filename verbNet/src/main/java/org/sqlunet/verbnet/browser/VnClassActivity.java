@@ -1,11 +1,11 @@
 package org.sqlunet.verbnet.browser;
 
 
-import org.sqlunet.verbnet.R;
-
 import android.app.ActionBar;
 import android.app.Activity;
 import android.os.Bundle;
+
+import org.sqlunet.verbnet.R;
 
 /**
  * LexUnitQuery activity

@@ -1,14 +1,14 @@
 package org.sqlunet.framenet.sql;
 
-import java.util.List;
+import android.database.sqlite.SQLiteDatabase;
+import android.util.Pair;
 
 import org.sqlunet.dom.Factory;
 import org.sqlunet.wordnet.sql.NodeFactory;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 
-import android.database.sqlite.SQLiteDatabase;
-import android.util.Pair;
+import java.util.List;
 
 /**
  * Encapsulates FrameNet query implementation
@@ -22,12 +22,9 @@ public class FrameNetImplementation implements FrameNetInterface
 	/**
 	 * Business method that returns FrameNet selector data as DOM document
 	 *
-	 * @param connection
-	 *        database connection
-	 * @param word
-	 *        the target word
-	 * @param pos
-	 *        the pos to build query from
+	 * @param connection database connection
+	 * @param word       the target word
+	 * @param pos        the pos to build query from
 	 * @return FrameNet selector data as DOM document
 	 */
 	@Override
@@ -42,12 +39,9 @@ public class FrameNetImplementation implements FrameNetInterface
 	/**
 	 * Business method that returns FrameNet selector data as XML
 	 *
-	 * @param connection
-	 *        database connection
-	 * @param word
-	 *        the target word
-	 * @param pos
-	 *        the pos to build query from
+	 * @param connection database connection
+	 * @param word       the target word
+	 * @param pos        the pos to build query from
 	 * @return FrameNet selector data as XML
 	 */
 	@Override
@@ -62,12 +56,9 @@ public class FrameNetImplementation implements FrameNetInterface
 	/**
 	 * Business method the returns FrameNet data as DOM document
 	 *
-	 * @param connection
-	 *        database connection
-	 * @param word
-	 *        the target word
-	 * @param pos
-	 *        the pos to build query from
+	 * @param connection database connection
+	 * @param word       the target word
+	 * @param pos        the pos to build query from
 	 * @return FrameNet data as DOM document
 	 */
 	@Override
@@ -82,12 +73,9 @@ public class FrameNetImplementation implements FrameNetInterface
 	/**
 	 * Business method that returns FrameNet data as XML
 	 *
-	 * @param connection
-	 *        database connection
-	 * @param word
-	 *        the target word
-	 * @param pos
-	 *        the pos to build query from
+	 * @param connection database connection
+	 * @param word       the target word
+	 * @param pos        the pos to build query from
 	 * @return FrameNet data as XML
 	 */
 	@Override
@@ -104,12 +92,9 @@ public class FrameNetImplementation implements FrameNetInterface
 	/**
 	 * Business method that returns FrameNet data as DOM document
 	 *
-	 * @param connection
-	 *        database connection
-	 * @param wordId
-	 *        the word id to build query from
-	 * @param pos
-	 *        the pos to build query from
+	 * @param connection database connection
+	 * @param wordId     the word id to build query from
+	 * @param pos        the pos to build query from
 	 * @return FrameNet data as DOM document
 	 */
 	@Override
@@ -124,12 +109,9 @@ public class FrameNetImplementation implements FrameNetInterface
 	/**
 	 * Business method that returns FrameNet data as XML
 	 *
-	 * @param connection
-	 *        database connection
-	 * @param wordId
-	 *        the target word id
-	 * @param pos
-	 *        the pos to build query from
+	 * @param connection database connection
+	 * @param wordId     the target word id
+	 * @param pos        the pos to build query from
 	 * @return FrameNet data as XML
 	 */
 	@Override
@@ -144,12 +126,9 @@ public class FrameNetImplementation implements FrameNetInterface
 	/**
 	 * Business method the returns frame data as DOM document
 	 *
-	 * @param connection
-	 *        database connection
-	 * @param frameId
-	 *        the frame to build query from
-	 * @param pos
-	 *            the pos to build query from
+	 * @param connection database connection
+	 * @param frameId    the frame to build query from
+	 * @param pos        the pos to build query from
 	 * @return FrameNet frame data as DOM document
 	 */
 	@Override
@@ -164,12 +143,9 @@ public class FrameNetImplementation implements FrameNetInterface
 	/**
 	 * Business method that returns frame data as XML
 	 *
-	 * @param connection
-	 *        database connection
-	 * @param frameId
-	 *        the frame to build query from
-	 * @param pos
-	 *            the pos to build query from
+	 * @param connection database connection
+	 * @param frameId    the frame to build query from
+	 * @param pos        the pos to build query from
 	 * @return FrameNet frame data as XML
 	 */
 	@Override
@@ -184,10 +160,8 @@ public class FrameNetImplementation implements FrameNetInterface
 	/**
 	 * Business method that returns lexunit data as DOM document
 	 *
-	 * @param connection
-	 *        database connection
-	 * @param luId
-	 *        the luid to build query from
+	 * @param connection database connection
+	 * @param luId       the luid to build query from
 	 * @return FrameNet lexunit data as DOM document
 	 */
 	public Document queryLexUnitDoc(final SQLiteDatabase connection, final long luId)
@@ -201,10 +175,8 @@ public class FrameNetImplementation implements FrameNetInterface
 	/**
 	 * Business method that returns lexunit data as XML
 	 *
-	 * @param connection
-	 *        database connection
-	 * @param luId
-	 *        the luid to build query from
+	 * @param connection database connection
+	 * @param luId       the luid to build query from
 	 * @return FrameNet lexunit data as XML
 	 */
 	public String queryLexUnitXML(final SQLiteDatabase connection, final long luId)
@@ -218,10 +190,8 @@ public class FrameNetImplementation implements FrameNetInterface
 	/**
 	 * Business method that returns sentence data as DOM document
 	 *
-	 * @param connection
-	 *        database connection
-	 * @param sentenceId
-	 *        the sentenceid to build query from
+	 * @param connection database connection
+	 * @param sentenceId the sentenceid to build query from
 	 * @return FrameNet sentence data as DOM document
 	 */
 	public Document querySentenceDoc(final SQLiteDatabase connection, final long sentenceId)
@@ -235,10 +205,8 @@ public class FrameNetImplementation implements FrameNetInterface
 	/**
 	 * Business method that returns sentence data as XML
 	 *
-	 * @param connection
-	 *        database connection
-	 * @param sentenceId
-	 *        the sentenceid to build query from
+	 * @param connection database connection
+	 * @param sentenceId the sentenceid to build query from
 	 * @return FrameNet sentence data as XML
 	 */
 	@SuppressWarnings("unused")
@@ -253,10 +221,8 @@ public class FrameNetImplementation implements FrameNetInterface
 	/**
 	 * Business method that returns annoset data as DOM document
 	 *
-	 * @param connection
-	 *        database connection
-	 * @param annoSetId
-	 *        the annosetid to build query from
+	 * @param connection database connection
+	 * @param annoSetId  the annosetid to build query from
 	 * @return FrameNet annoset data as DOM document
 	 */
 	public Document queryAnnoSetDoc(final SQLiteDatabase connection, final long annoSetId)
@@ -270,10 +236,8 @@ public class FrameNetImplementation implements FrameNetInterface
 	/**
 	 * Business method that returns annoset data as XML
 	 *
-	 * @param connection
-	 *        database connection
-	 * @param annoSetId
-	 *        the annosetid to build query from
+	 * @param connection database connection
+	 * @param annoSetId  the annosetid to build query from
 	 * @return FrameNet annoset data as XML
 	 */
 	@SuppressWarnings("unused")
@@ -288,14 +252,10 @@ public class FrameNetImplementation implements FrameNetInterface
 	/**
 	 * Perform queries for FrameNet selection data
 	 *
-	 * @param connection
-	 *        connection
-	 * @param doc
-	 *        the org.w3c.dom.Document being built
-	 * @param parent
-	 *        the org.w3c.dom.Node the walk will attach results to
-	 * @param targetWord
-	 *        the target word
+	 * @param connection connection
+	 * @param doc        the org.w3c.dom.Document being built
+	 * @param parent     the org.w3c.dom.Node the walk will attach results to
+	 * @param targetWord the target word
 	 */
 	static private void walkSelector(final SQLiteDatabase connection, final Document doc, final Node parent, final String targetWord)
 	{
@@ -315,14 +275,10 @@ public class FrameNetImplementation implements FrameNetInterface
 	/**
 	 * Perform queries for FrameNet data from word
 	 *
-	 * @param connection
-	 *        connection
-	 * @param doc
-	 *        the org.w3c.dom.Document being built
-	 * @param parent
-	 *        the org.w3c.dom.Node the walk will attach results to
-	 * @param targetWord
-	 *        the target word
+	 * @param connection connection
+	 * @param doc        the org.w3c.dom.Document being built
+	 * @param parent     the org.w3c.dom.Node the walk will attach results to
+	 * @param targetWord the target word
 	 */
 	static private void walk(final SQLiteDatabase connection, final Document doc, final Node parent, final String targetWord)
 	{
@@ -350,16 +306,11 @@ public class FrameNetImplementation implements FrameNetInterface
 	/**
 	 * Perform queries for FrameNet data from word id
 	 *
-	 * @param connection
-	 *        data source
-	 * @param doc
-	 *        the org.w3c.dom.Document being built
-	 * @param parent
-	 *        the org.w3c.dom.Node the walk will attach results to
-	 * @param targetWordId
-	 *        the target word id
-	 * @param pos
-	 *        the target pos
+	 * @param connection   data source
+	 * @param doc          the org.w3c.dom.Document being built
+	 * @param parent       the org.w3c.dom.Node the walk will attach results to
+	 * @param targetWordId the target word id
+	 * @param pos          the target pos
 	 */
 	static private void walkWord(final SQLiteDatabase connection, final Document doc, final Node parent, final long targetWordId, final Character pos)
 	{
@@ -415,14 +366,10 @@ public class FrameNetImplementation implements FrameNetInterface
 	/**
 	 * Perform queries for FrameNet data from frame id
 	 *
-	 * @param connection
-	 *        data source
-	 * @param doc
-	 *        the org.w3c.dom.Document being built
-	 * @param parent
-	 *        the org.w3c.dom.Node the walk will attach results to
-	 * @param targetFrameId
-	 *        the target frame id
+	 * @param connection    data source
+	 * @param doc           the org.w3c.dom.Document being built
+	 * @param parent        the org.w3c.dom.Node the walk will attach results to
+	 * @param targetFrameId the target frame id
 	 */
 	static private void walkFrame(final SQLiteDatabase connection, final Document doc, final Node parent, final long targetFrameId)
 	{
@@ -457,14 +404,10 @@ public class FrameNetImplementation implements FrameNetInterface
 	/**
 	 * Perform queries for FrameNet data from lexunit id
 	 *
-	 * @param connection
-	 *        data source
-	 * @param doc
-	 *        the org.w3c.dom.Document being built
-	 * @param parent
-	 *        the org.w3c.dom.Node the walk will attach results to
-	 * @param luId
-	 *        the target lexunit id
+	 * @param connection data source
+	 * @param doc        the org.w3c.dom.Document being built
+	 * @param parent     the org.w3c.dom.Node the walk will attach results to
+	 * @param luId       the target lexunit id
 	 */
 	private static void walkLexUnit(final SQLiteDatabase connection, final Document doc, final Node parent, final long luId)
 	{
@@ -491,14 +434,10 @@ public class FrameNetImplementation implements FrameNetInterface
 	/**
 	 * Perform queries for FrameNet data from sentence id
 	 *
-	 * @param connection
-	 *        data source
-	 * @param doc
-	 *        the org.w3c.dom.Document being built
-	 * @param parent
-	 *        the org.w3c.dom.Node the walk will attach results to
-	 * @param sentenceId
-	 *        the target sentence id
+	 * @param connection data source
+	 * @param doc        the org.w3c.dom.Document being built
+	 * @param parent     the org.w3c.dom.Node the walk will attach results to
+	 * @param sentenceId the target sentence id
 	 */
 	private static void walkSentence(final SQLiteDatabase connection, final Document doc, final Node parent, final long sentenceId)
 	{
@@ -513,14 +452,10 @@ public class FrameNetImplementation implements FrameNetInterface
 	/**
 	 * Perform queries for FrameNet data from annoset id
 	 *
-	 * @param connection
-	 *        data source
-	 * @param doc
-	 *        the org.w3c.dom.Document being built
-	 * @param parent
-	 *        the org.w3c.dom.Node the walk will attach results to
-	 * @param annoSetId
-	 *        the target annoset id
+	 * @param connection data source
+	 * @param doc        the org.w3c.dom.Document being built
+	 * @param parent     the org.w3c.dom.Node the walk will attach results to
+	 * @param annoSetId  the target annoset id
 	 */
 	private static void walkAnnoSet(final SQLiteDatabase connection, final Document doc, final Node parent, final long annoSetId)
 	{
@@ -535,14 +470,10 @@ public class FrameNetImplementation implements FrameNetInterface
 	/**
 	 * Perform queries for FrameNet layers data from annoset id
 	 *
-	 * @param connection
-	 *        data source
-	 * @param doc
-	 *        the org.w3c.dom.Document being built
-	 * @param parent
-	 *        the org.w3c.dom.Node the walk will attach results to
-	 * @param annoSetId
-	 *        the target annoset id
+	 * @param connection data source
+	 * @param doc        the org.w3c.dom.Document being built
+	 * @param parent     the org.w3c.dom.Node the walk will attach results to
+	 * @param annoSetId  the target annoset id
 	 */
 	private static void walkLayersFromAnnoSet(final SQLiteDatabase connection, final Document doc, final Node parent, final long annoSetId)
 	{
@@ -558,14 +489,10 @@ public class FrameNetImplementation implements FrameNetInterface
 	/**
 	 * Perform queries for FrameNet layers data from sentence id
 	 *
-	 * @param connection
-	 *        data source
-	 * @param doc
-	 *        the org.w3c.dom.Document being built
-	 * @param parent
-	 *        the org.w3c.dom.Node the walk will attach results to
-	 * @param sentenceId
-	 *        the target sentence id
+	 * @param connection data source
+	 * @param doc        the org.w3c.dom.Document being built
+	 * @param parent     the org.w3c.dom.Node the walk will attach results to
+	 * @param sentenceId the target sentence id
 	 */
 	private static void walkLayersFromSentence(final SQLiteDatabase connection, final Document doc, final Node parent, final long sentenceId)
 	{
@@ -582,15 +509,11 @@ public class FrameNetImplementation implements FrameNetInterface
 
 	/**
 	 * Make selector
-	 * 
-	 * @param doc
-	 *        the org.w3c.dom.Document being built
-	 * @param parent
-	 *        the org.w3c.dom.Document being built
-	 * @param lexUnits
-	 *        lexunits
-	 * @param doFrame
-	 *        whether to include frame data
+	 *
+	 * @param doc      the org.w3c.dom.Document being built
+	 * @param parent   the org.w3c.dom.Document being built
+	 * @param lexUnits lexunits
+	 * @param doFrame  whether to include frame data
 	 */
 	private static void makeSelector(final Document doc, final Node parent, final List<FnLexUnit> lexUnits, @SuppressWarnings("SameParameterValue") final boolean doFrame)
 	{

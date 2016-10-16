@@ -1,17 +1,5 @@
 package org.sqlunet.browser.xselector;
 
-import org.sqlunet.browser.Module;
-import org.sqlunet.browser.R;
-import org.sqlunet.browser.xselector.XLoader.FnLoaderCallbacks;
-import org.sqlunet.browser.xselector.XLoader.PbLoaderCallbacks;
-import org.sqlunet.browser.xselector.XLoader.VnLoaderCallbacks;
-import org.sqlunet.browser.xselector.XLoader.WnLoaderCallbacks;
-import org.sqlunet.provider.SqlUNetContract;
-import org.sqlunet.provider.XSqlUNetContract.Words_FnWords_PbWords_VnWords;
-import org.sqlunet.provider.XSqlUNetContract.Words_XNet_U;
-import org.sqlunet.wordnet.WordPointer;
-import org.sqlunet.wordnet.browser.SenseFragment;
-
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.LoaderManager.LoaderCallbacks;
@@ -35,6 +23,18 @@ import android.widget.ExpandableListView;
 import android.widget.ImageView;
 import android.widget.SimpleCursorTreeAdapter;
 
+import org.sqlunet.browser.Module;
+import org.sqlunet.browser.R;
+import org.sqlunet.browser.xselector.XLoader.FnLoaderCallbacks;
+import org.sqlunet.browser.xselector.XLoader.PbLoaderCallbacks;
+import org.sqlunet.browser.xselector.XLoader.VnLoaderCallbacks;
+import org.sqlunet.browser.xselector.XLoader.WnLoaderCallbacks;
+import org.sqlunet.provider.SqlUNetContract;
+import org.sqlunet.provider.XSqlUNetContract.Words_FnWords_PbWords_VnWords;
+import org.sqlunet.provider.XSqlUNetContract.Words_XNet_U;
+import org.sqlunet.wordnet.WordPointer;
+import org.sqlunet.wordnet.browser.SenseFragment;
+
 /**
  * A list fragment representing a list of synsets. This fragment also supports tablet devices by allowing list items to be given an 'activated' state upon
  * selection. This helps indicate which item is currently being viewed in a {@link SenseFragment}.
@@ -47,12 +47,12 @@ public class XSelectorFragment extends ExpandableListFragment
 {
 	private static final String TAG = "XSelectorFragment"; //$NON-NLS-1$
 
-	private static final int[] groupTo = new int[] { //
+	private static final int[] groupTo = new int[]{ //
 			R.id.xn, //
 	};
-	private static final String[] groupFrom = new String[] { "xn", }; //$NON-NLS-1$
+	private static final String[] groupFrom = new String[]{"xn",}; //$NON-NLS-1$
 
-	private static final int[] childTo = new int[] { //
+	private static final int[] childTo = new int[]{ //
 			R.id.wordid, //
 			R.id.synsetid, //
 			R.id.xid, //
@@ -64,7 +64,7 @@ public class XSelectorFragment extends ExpandableListFragment
 			R.id.xsources, //
 			R.id.pm, //
 	};
-	private static final String[] childFrom = new String[] { Words_XNet_U.WORDID, //
+	private static final String[] childFrom = new String[]{Words_XNet_U.WORDID, //
 			Words_XNet_U.SYNSETID, //
 			Words_XNet_U.XID, //
 			Words_XNet_U.XNAME, //
@@ -73,7 +73,7 @@ public class XSelectorFragment extends ExpandableListFragment
 			Words_XNet_U.XDEFINITION, //
 			Words_XNet_U.SOURCES, //
 			Words_XNet_U.SOURCES, //
-			Words_XNet_U.SOURCES, };
+			Words_XNet_U.SOURCES,};
 
 	/**
 	 * The serialization (saved instance state) Bundle key representing the activated item position. Only used on tablets.
@@ -122,11 +122,11 @@ public class XSelectorFragment extends ExpandableListFragment
 	@SuppressWarnings("boxing")
 	public XSelectorFragment()
 	{
-		this.xnCursor = new MatrixCursor(new String[] { "_id", "xn", "loader" }); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-		this.xnCursor.addRow(new Object[] { 0, "wordnet", 1111 }); //$NON-NLS-1$
-		this.xnCursor.addRow(new Object[] { 1, "verbnet", 2222 }); //$NON-NLS-1$
-		this.xnCursor.addRow(new Object[] { 2, "propbank", 3333 }); //$NON-NLS-1$
-		this.xnCursor.addRow(new Object[] { 3, "framenet", 4444 }); //$NON-NLS-1$
+		this.xnCursor = new MatrixCursor(new String[]{"_id", "xn", "loader"}); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+		this.xnCursor.addRow(new Object[]{0, "wordnet", 1111}); //$NON-NLS-1$
+		this.xnCursor.addRow(new Object[]{1, "verbnet", 2222}); //$NON-NLS-1$
+		this.xnCursor.addRow(new Object[]{2, "propbank", 3333}); //$NON-NLS-1$
+		this.xnCursor.addRow(new Object[]{3, "framenet", 4444}); //$NON-NLS-1$
 	}
 
 	private LoaderCallbacks<Cursor> getWnCallbacks(final long wordid, final int groupPosition)
@@ -142,8 +142,7 @@ public class XSelectorFragment extends ExpandableListFragment
 
 					// pass on to list adapter
 					((SimpleCursorTreeAdapter) getListAdapter()).setChildrenCursor(groupPosition, cursor);
-				}
-				else
+				} else
 				{
 					Log.i(TAG, "WN none"); //$NON-NLS-1$
 				}
@@ -170,8 +169,7 @@ public class XSelectorFragment extends ExpandableListFragment
 
 					// pass on to list adapter
 					((SimpleCursorTreeAdapter) getListAdapter()).setChildrenCursor(groupPosition, cursor);
-				}
-				else
+				} else
 				{
 					Log.i(TAG, "VN none"); //$NON-NLS-1$
 				}
@@ -198,8 +196,7 @@ public class XSelectorFragment extends ExpandableListFragment
 
 					// pass on to list adapter
 					((SimpleCursorTreeAdapter) getListAdapter()).setChildrenCursor(groupPosition, cursor);
-				}
-				else
+				} else
 				{
 					Log.i(TAG, "PB none"); //$NON-NLS-1$
 				}
@@ -225,8 +222,7 @@ public class XSelectorFragment extends ExpandableListFragment
 
 					// pass on to list adapter
 					((SimpleCursorTreeAdapter) getListAdapter()).setChildrenCursor(groupPosition, cursor);
-				}
-				else
+				} else
 				{
 					Log.i(TAG, "FN none"); //$NON-NLS-1$
 				}
@@ -287,7 +283,7 @@ public class XSelectorFragment extends ExpandableListFragment
 			public Loader<Cursor> onCreateLoader(final int id, final Bundle args)
 			{
 				final Uri uri = Uri.parse(Words_FnWords_PbWords_VnWords.CONTENT_URI);
-				final String[] projection = new String[] { //
+				final String[] projection = new String[]{ //
 						Words_FnWords_PbWords_VnWords.SYNSETID + " AS _id", // //$NON-NLS-1$
 						Words_FnWords_PbWords_VnWords.WORDID, //
 						Words_FnWords_PbWords_VnWords.FNWORDID, //
@@ -295,7 +291,7 @@ public class XSelectorFragment extends ExpandableListFragment
 						Words_FnWords_PbWords_VnWords.PBWORDID, //
 				};
 				final String selection = "w." + Words_FnWords_PbWords_VnWords.LEMMA + " = ?"; //$NON-NLS-1$ //$NON-NLS-2$
-				final String[] selectionArgs = new String[] { XSelectorFragment.this.queryWord };
+				final String[] selectionArgs = new String[]{XSelectorFragment.this.queryWord};
 				final String sortOrder = "y." + Words_FnWords_PbWords_VnWords.POS + ',' + Words_FnWords_PbWords_VnWords.SENSENUM; //$NON-NLS-1$
 				return new CursorLoader(getActivity(), uri, projection, selection, selectionArgs, sortOrder);
 			}
@@ -329,13 +325,17 @@ public class XSelectorFragment extends ExpandableListFragment
 		/*
 	  Adapter
 	 */
-		ExpandableListAdapter adapter = new SimpleCursorTreeAdapter(getActivity(), this.xnCursor, R.layout.item_group_xselector, groupFrom, groupTo, R.layout.item_xselector, childFrom, childTo) {
+		ExpandableListAdapter adapter = new SimpleCursorTreeAdapter(getActivity(), this.xnCursor, R.layout.item_group_xselector, groupFrom, groupTo, R.layout.item_xselector, childFrom, childTo)
+		{
 			@Override
-			protected void setViewImage(ImageView v, String value) {
-				switch (v.getId()) {
+			protected void setViewImage(ImageView v, String value)
+			{
+				switch (v.getId())
+				{
 					case R.id.xsources:
 						final String[] fields = value.split(","); //$NON-NLS-1$
-						for (String field : fields) {
+						for (String field : fields)
+						{
 							switch (field)
 							{
 								case "wn": //$NON-NLS-1$
@@ -358,7 +358,8 @@ public class XSelectorFragment extends ExpandableListFragment
 
 					case R.id.pm:
 						final String[] fields2 = value.split(","); //$NON-NLS-1$
-						for (String field2 : fields2) {
+						for (String field2 : fields2)
+						{
 							if (field2.startsWith("pm")) //$NON-NLS-1$
 							{
 								v.setImageResource(R.drawable.predicatematrix);
@@ -374,7 +375,8 @@ public class XSelectorFragment extends ExpandableListFragment
 
 			@SuppressWarnings("synthetic-access")
 			@Override
-			protected Cursor getChildrenCursor(Cursor groupCursor) {
+			protected Cursor getChildrenCursor(Cursor groupCursor)
+			{
 				Activity activity = getActivity();
 				if (activity == null)
 					return null;
@@ -386,7 +388,8 @@ public class XSelectorFragment extends ExpandableListFragment
 				Log.d(TAG, "group " + groupPos + ' ' + groupName + " loader=" + loaderid); //$NON-NLS-1$ //$NON-NLS-2$
 
 				LoaderCallbacks<Cursor> callbacks = null;
-				switch (groupPos) {
+				switch (groupPos)
+				{
 					case 0:
 						callbacks = getWnCallbacks(wordid, groupPos);
 						break;
@@ -402,9 +405,11 @@ public class XSelectorFragment extends ExpandableListFragment
 				}
 
 				Loader<Cursor> loader1 = activity.getLoaderManager().getLoader(loaderid);
-				if (loader1 != null && !loader1.isReset()) {
+				if (loader1 != null && !loader1.isReset())
+				{
 					activity.getLoaderManager().restartLoader(loaderid, null, callbacks);
-				} else {
+				} else
+				{
 					activity.getLoaderManager().initLoader(loaderid, null, callbacks);
 				}
 
@@ -412,7 +417,8 @@ public class XSelectorFragment extends ExpandableListFragment
 			}
 
 			@Override
-			public boolean isChildSelectable(int groupPosition, int childPosition) {
+			public boolean isChildSelectable(int groupPosition, int childPosition)
+			{
 				return true;
 			}
 		};
@@ -455,8 +461,7 @@ public class XSelectorFragment extends ExpandableListFragment
 			if (position == AdapterView.INVALID_POSITION)
 			{
 				getListView().setItemChecked(this.activatedPosition, false);
-			}
-			else
+			} else
 			{
 				getListView().setItemChecked(position, true);
 			}
@@ -537,7 +542,9 @@ public class XSelectorFragment extends ExpandableListFragment
 	public void setActivateOnItemClick(@SuppressWarnings("SameParameterValue") final boolean activateOnItemClick)
 	{
 		// when setting CHOICE_MODE_SINGLE, ListView will automatically give items the 'activated' state when touched.
-		getListView().setChoiceMode(activateOnItemClick ? AbsListView.CHOICE_MODE_SINGLE : AbsListView.CHOICE_MODE_NONE);
+		getListView().setChoiceMode(activateOnItemClick ?
+				AbsListView.CHOICE_MODE_SINGLE :
+				AbsListView.CHOICE_MODE_NONE);
 	}
 
 	@SuppressWarnings("boxing")
@@ -549,7 +556,7 @@ public class XSelectorFragment extends ExpandableListFragment
 		int index = listView.getFlatListPosition(ExpandableListView.getPackedPositionForChild(groupPosition, childPosition));
 		listView.setItemChecked(index, true);
 		view.setSelected(true);
-		
+
 		final SimpleCursorTreeAdapter adapter1 = (SimpleCursorTreeAdapter) getListAdapter();
 		final Cursor cursor = adapter1.getChild(groupPosition, childPosition);
 		if (!cursor.isAfterLast())
@@ -570,7 +577,9 @@ public class XSelectorFragment extends ExpandableListFragment
 			final String pos = synsetidToPos(synsetid);
 			final Long xid = cursor.isNull(idXId) ? null : cursor.getLong(idXId);
 			final Long xclassid = cursor.isNull(idXClassId) ? null : cursor.getLong(idXClassId);
-			final Long xinstanceid = cursor.isNull(idXInstanceId) ? null : cursor.getLong(idXInstanceId);
+			final Long xinstanceid = cursor.isNull(idXInstanceId) ?
+					null :
+					cursor.getLong(idXInstanceId);
 			final String sources = cursor.getString(idXSources);
 
 			// pointer
@@ -601,16 +610,16 @@ public class XSelectorFragment extends ExpandableListFragment
 		int p = (int) Math.floor(synsetid / 100000000F);
 		switch (p)
 		{
-		case 1:
-			return "n"; //$NON-NLS-1$
-		case 2:
-			return "v"; //$NON-NLS-1$
-		case 3:
-			return "a"; //$NON-NLS-1$
-		case 4:
-			return "r"; //$NON-NLS-1$
-		default:
-			return null;
+			case 1:
+				return "n"; //$NON-NLS-1$
+			case 2:
+				return "v"; //$NON-NLS-1$
+			case 3:
+				return "a"; //$NON-NLS-1$
+			case 4:
+				return "r"; //$NON-NLS-1$
+			default:
+				return null;
 		}
 	}
 }

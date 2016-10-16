@@ -6,7 +6,7 @@ import android.database.sqlite.SQLiteDatabase;
 
 /**
  * Database query command
- * 
+ *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
 
@@ -25,10 +25,8 @@ public class DBQueryCommand
 	/**
 	 * Constructor
 	 *
-	 * @param connection
-	 *        is the database connection
-	 * @param statement
-	 *        is the SQL statement
+	 * @param connection is the database connection
+	 * @param statement  is the SQL statement
 	 */
 	protected DBQueryCommand(final SQLiteDatabase connection, final String statement)
 	{
@@ -48,7 +46,8 @@ public class DBQueryCommand
 	 *
 	 * @return true if more data is available
 	 */
-	public boolean next() {
+	public boolean next()
+	{
 		return this.cursor != null && this.cursor.moveToNext();
 	}
 
@@ -64,8 +63,7 @@ public class DBQueryCommand
 				this.cursor.close();
 			}
 			this.statement.close();
-		}
-		catch (final SQLException e)
+		} catch (final SQLException e)
 		{
 			// nothing
 		}
@@ -74,8 +72,7 @@ public class DBQueryCommand
 	/**
 	 * Set parameters in prepared SQL statement
 	 *
-	 * @param params
-	 *        the parameters
+	 * @param params the parameters
 	 */
 	@SuppressWarnings("boxing")
 	protected void setParams(final Object... params)
@@ -91,16 +88,13 @@ public class DBQueryCommand
 			if (param instanceof String)
 			{
 				this.statement.setString(i, (String) param);
-			}
-			else if (param instanceof Long)
+			} else if (param instanceof Long)
 			{
 				this.statement.setLong(i, (Long) param);
-			}
-			else if (param instanceof Integer)
+			} else if (param instanceof Integer)
 			{
 				this.statement.setInt(i, (Integer) param);
-			}
-			else if (param instanceof Character)
+			} else if (param instanceof Character)
 			{
 				this.statement.setString(i, param.toString());
 			}
@@ -111,8 +105,7 @@ public class DBQueryCommand
 	/**
 	 * Convert to ids
 	 *
-	 * @param string
-	 *        ,-separated string of ids
+	 * @param string ,-separated string of ids
 	 * @return ids
 	 */
 	static protected long[] toIds(final String string)

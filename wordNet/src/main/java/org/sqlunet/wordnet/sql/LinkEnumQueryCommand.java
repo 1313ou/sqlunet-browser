@@ -6,9 +6,9 @@
  */
 package org.sqlunet.wordnet.sql;
 
-import org.sqlunet.sql.DBQueryCommand;
-
 import android.database.sqlite.SQLiteDatabase;
+
+import org.sqlunet.sql.DBQueryCommand;
 
 /**
  * Query for a link enumeration
@@ -25,8 +25,7 @@ class LinkEnumQueryCommand extends DBQueryCommand
 	/**
 	 * Constructor
 	 *
-	 * @param thisConnection
-	 *            is the database connection
+	 * @param thisConnection is the database connection
 	 */
 	public LinkEnumQueryCommand(final SQLiteDatabase thisConnection)
 	{

@@ -42,7 +42,7 @@ public class FnAnnoSetPointer implements Parcelable
 	 * Static field used to regenerate object, individually or as arrays
 	 */
 	public static final Parcelable.Creator<FnAnnoSetPointer> CREATOR = new Parcelable.Creator<FnAnnoSetPointer>()
-			{
+	{
 		@Override
 		public FnAnnoSetPointer createFromParcel(final Parcel pc)
 		{
@@ -54,27 +54,27 @@ public class FnAnnoSetPointer implements Parcelable
 		{
 			return new FnAnnoSetPointer[size];
 		}
-			};
+	};
 
-			/*
-			 * (non-Javadoc)
-			 *
-			 * @see android.os.Parcelable#writeToParcel(android.os.Parcel, int)
-			 */
-			@Override
-			public void writeToParcel(final Parcel pc, final int flags)
-			{
-				pc.writeLong(this.annosetid);
-			}
+	/*
+	 * (non-Javadoc)
+	 *
+	 * @see android.os.Parcelable#writeToParcel(android.os.Parcel, int)
+	 */
+	@Override
+	public void writeToParcel(final Parcel pc, final int flags)
+	{
+		pc.writeLong(this.annosetid);
+	}
 
-			/*
-			 * (non-Javadoc)
-			 *
-			 * @see android.os.Parcelable#describeContents()
-			 */
-			@Override
-			public int describeContents()
-			{
-				return 0;
-			}
+	/*
+	 * (non-Javadoc)
+	 *
+	 * @see android.os.Parcelable#describeContents()
+	 */
+	@Override
+	public int describeContents()
+	{
+		return 0;
+	}
 }

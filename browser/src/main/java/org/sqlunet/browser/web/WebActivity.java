@@ -1,10 +1,10 @@
 package org.sqlunet.browser.web;
 
-import org.sqlunet.browser.R;
-
 import android.app.ActionBar;
 import android.app.Activity;
 import android.os.Bundle;
+
+import org.sqlunet.browser.R;
 
 /**
  * An activity representing a web view.

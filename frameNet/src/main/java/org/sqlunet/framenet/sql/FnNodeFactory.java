@@ -24,12 +24,9 @@ class FnNodeFactory extends NodeFactory
 	/**
 	 * Make root node
 	 *
-	 * @param doc
-	 *        is the DOM Document being built
-	 * @param wordId
-	 *        is the target word id
-	 * @param pos
-	 *        is the target pos
+	 * @param doc    is the DOM Document being built
+	 * @param wordId is the target word id
+	 * @param pos    is the target pos
 	 * @return newly created node
 	 */
 	@SuppressWarnings("boxing")
@@ -39,8 +36,7 @@ class FnNodeFactory extends NodeFactory
 		if (pos == null)
 		{
 			NodeFactory.makeTargetNode(doc, rootNode, "wordid", Long.toString(wordId)); //$NON-NLS-1$
-		}
-		else
+		} else
 		{
 			NodeFactory.makeTargetNode(doc, rootNode, "wordid", Long.toString(wordId), "pos", Character.toString(pos)); //$NON-NLS-1$ //$NON-NLS-2$
 		}
@@ -50,12 +46,9 @@ class FnNodeFactory extends NodeFactory
 	/**
 	 * Make root node
 	 *
-	 * @param doc
-	 *        is the DOM Document being built
-	 * @param word
-	 *        is the target word
-	 * @param pos
-	 *        is the target pos
+	 * @param doc  is the DOM Document being built
+	 * @param word is the target word
+	 * @param pos  is the target pos
 	 * @return newly created node
 	 */
 	@SuppressWarnings("boxing")
@@ -65,8 +58,7 @@ class FnNodeFactory extends NodeFactory
 		if (pos == null)
 		{
 			NodeFactory.makeTargetNode(doc, rootNode, "word", word); //$NON-NLS-1$
-		}
-		else
+		} else
 		{
 			NodeFactory.makeTargetNode(doc, rootNode, "word", word, "pos", Character.toString(pos)); //$NON-NLS-1$ //$NON-NLS-2$
 		}
@@ -75,12 +67,10 @@ class FnNodeFactory extends NodeFactory
 
 	/**
 	 * Make frame node
-	 *  @param doc
-	 *        is the DOM Document being built
-	 * @param parent
-	 *        is the parent node to attach this node to
-	 * @param lexUnit
- *        is the frame information
+	 *
+	 * @param doc     is the DOM Document being built
+	 * @param parent  is the parent node to attach this node to
+	 * @param lexUnit is the frame information
 	 */
 	public static Node makeFnLexunitNode(final Document doc, final Node parent, final FnLexUnit lexUnit)
 	{
@@ -94,14 +84,10 @@ class FnNodeFactory extends NodeFactory
 	/**
 	 * Make frame node
 	 *
-	 * @param doc
-	 *        is the DOM Document being built
-	 * @param parent
-	 *        is the parent node to attach this node to
-	 * @param frame
-	 *        is the frame
-	 * @param removeEx
-	 *        whether to remove <ex> element
+	 * @param doc      is the DOM Document being built
+	 * @param parent   is the parent node to attach this node to
+	 * @param frame    is the frame
+	 * @param removeEx whether to remove <ex> element
 	 * @return newly created node
 	 */
 	public static Node makeFnFrameNode(final Document doc, final Node parent, final FnFrame frame, final boolean removeEx)
@@ -150,12 +136,9 @@ class FnNodeFactory extends NodeFactory
 	/**
 	 * Make FE node
 	 *
-	 * @param doc
-	 *        is the DOM Document being built
-	 * @param parent
-	 *        is the parent node to attach this node to
-	 * @param fe
-	 *        is the FE
+	 * @param doc    is the DOM Document being built
+	 * @param parent is the parent node to attach this node to
+	 * @param fe     is the FE
 	 * @return newly created node
 	 */
 	@SuppressWarnings("UnusedReturnValue")
@@ -174,12 +157,9 @@ class FnNodeFactory extends NodeFactory
 	/**
 	 * Make governor node
 	 *
-	 * @param doc
-	 *        is the DOM Document being built
-	 * @param parent
-	 *        is the parent node to attach this node to
-	 * @param governor
-	 *        is the governor
+	 * @param doc      is the DOM Document being built
+	 * @param parent   is the parent node to attach this node to
+	 * @param governor is the governor
 	 * @return newly created node
 	 */
 	@SuppressWarnings("UnusedReturnValue")
@@ -195,10 +175,8 @@ class FnNodeFactory extends NodeFactory
 	/**
 	 * Make sentences node
 	 *
-	 * @param doc
-	 *        is the DOM Document being built
-	 * @param parent
-	 *        is the parent node to attach this node to
+	 * @param doc    is the DOM Document being built
+	 * @param parent is the parent node to attach this node to
 	 * @return newly created node
 	 */
 	public static Node makeFnSentencesNode(final Document doc, final Node parent)
@@ -209,12 +187,9 @@ class FnNodeFactory extends NodeFactory
 	/**
 	 * Make sentence node
 	 *
-	 * @param doc
-	 *        is the DOM Document being built
-	 * @param parent
-	 *        is the parent node to attach this node to
-	 * @param i
-	 *        the ith
+	 * @param doc    is the DOM Document being built
+	 * @param parent is the parent node to attach this node to
+	 * @param i      the ith
 	 */
 	public static Node makeFnSentenceNode(final Document doc, final Node parent, final FnSentence sentence, final int i)
 	{
@@ -231,10 +206,8 @@ class FnNodeFactory extends NodeFactory
 	/**
 	 * Make annoset node
 	 *
-	 * @param doc
-	 *        is the DOM Document being built
-	 * @param parent
-	 *        is the parent node to attach this node to
+	 * @param doc     is the DOM Document being built
+	 * @param parent  is the parent node to attach this node to
 	 * @param annoSet annoset
 	 * @return annoset node
 	 */
@@ -249,10 +222,8 @@ class FnNodeFactory extends NodeFactory
 	/**
 	 * Make layer node
 	 *
-	 * @param doc
-	 *        is the DOM Document being built
-	 * @param layer
-	 *        is the target layer
+	 * @param doc   is the DOM Document being built
+	 * @param layer is the target layer
 	 * @return layer node
 	 */
 	@SuppressWarnings("UnusedReturnValue")
@@ -285,10 +256,8 @@ class FnNodeFactory extends NodeFactory
 	/**
 	 * Make root frame node
 	 *
-	 * @param doc
-	 *        is the DOM Document being built
-	 * @param frameId
-	 *        is the target frame id
+	 * @param doc     is the DOM Document being built
+	 * @param frameId is the target frame id
 	 * @return root frame node
 	 */
 	public static Node makeFnRootFrameNode(final Document doc, final long frameId)
@@ -301,10 +270,8 @@ class FnNodeFactory extends NodeFactory
 	/**
 	 * Make root lexunit node
 	 *
-	 * @param doc
-	 *        is the DOM Document being built
-	 * @param luId
-	 *        is the target luid
+	 * @param doc  is the DOM Document being built
+	 * @param luId is the target luid
 	 * @return root lexunit node
 	 */
 	public static Node makeFnRootLexUnitNode(final Document doc, final long luId)
@@ -317,10 +284,8 @@ class FnNodeFactory extends NodeFactory
 	/**
 	 * Make root sentence node
 	 *
-	 * @param doc
-	 *        is the DOM Document being built
-	 * @param sentenceId
-	 *        is the target sentenceid
+	 * @param doc        is the DOM Document being built
+	 * @param sentenceId is the target sentenceid
 	 * @return root sentence node
 	 */
 	public static Node makeFnRootSentenceNode(final Document doc, final long sentenceId)
@@ -333,10 +298,8 @@ class FnNodeFactory extends NodeFactory
 	/**
 	 * Make root annoset node
 	 *
-	 * @param doc
-	 *        is the DOM Document being built
-	 * @param annoSetId
-	 *        is the target annosetid
+	 * @param doc       is the DOM Document being built
+	 * @param annoSetId is the target annosetid
 	 * @return root annoset node
 	 */
 	public static Node makeFnRootAnnosetNode(final Document doc, final long annoSetId)

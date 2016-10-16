@@ -18,10 +18,8 @@ class VnRole
 	/**
 	 * Constructor
 	 *
-	 * @param thisRoleType
-	 *            is the role type
-	 * @param theseSelectionRestrictions
-	 *            is the selectional restriction (XML)
+	 * @param thisRoleType               is the role type
+	 * @param theseSelectionRestrictions is the selectional restriction (XML)
 	 */
 	VnRole(final String thisRoleType, final String theseSelectionRestrictions)
 	{

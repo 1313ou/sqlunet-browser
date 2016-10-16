@@ -6,17 +6,17 @@
  */
 package org.sqlunet.wordnet.sql;
 
+import android.annotation.SuppressLint;
+import android.database.SQLException;
+import android.database.sqlite.SQLiteDatabase;
+import android.util.SparseArray;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
-
-import android.annotation.SuppressLint;
-import android.database.SQLException;
-import android.database.sqlite.SQLiteDatabase;
-import android.util.SparseArray;
 
 /**
  * LexDomainDef, utility class to encapsulate lexdomain data
@@ -49,12 +49,9 @@ class LexDomainDef
 	/**
 	 * Constructor
 	 *
-	 * @param id
-	 *            is the lexdomain id
-	 * @param pos
-	 *            is the part-of-speech-id
-	 * @param name
-	 *            is the lexdomain name
+	 * @param id   is the lexdomain id
+	 * @param pos  is the part-of-speech-id
+	 * @param name is the lexdomain name
 	 */
 	public LexDomainDef(final int id, final int pos, final String name)
 	{
@@ -68,8 +65,7 @@ class LexDomainDef
 	/**
 	 * Get part-of-speech name
 	 *
-	 * @param string
-	 *            is the full lexdomain name
+	 * @param string is the full lexdomain name
 	 * @return the part-of-speech name
 	 */
 	private String getPosName(final String string)
@@ -81,8 +77,7 @@ class LexDomainDef
 	/**
 	 * Get lexdomain name
 	 *
-	 * @param string
-	 *            is the full lexdomain name
+	 * @param string is the full lexdomain name
 	 * @return the lexdomain name
 	 */
 	private String getLexDomainName(final String string)
@@ -124,12 +119,9 @@ class LinkDef
 	/**
 	 * Constructor
 	 *
-	 * @param id
-	 *            is the link id
-	 * @param name
-	 *            is the link name
-	 * @param recurses
-	 *            is whether the link recurses
+	 * @param id       is the link id
+	 * @param name     is the link name
+	 * @param recurses is whether the link recurses
 	 */
 	public LinkDef(final int id, final String name, final boolean recurses)
 	{
@@ -196,8 +188,7 @@ class Mapping
 	/**
 	 * Read lexdomain mappings from database
 	 *
-	 * @param thisConnection
-	 *            is the database connection
+	 * @param thisConnection is the database connection
 	 */
 	static public void initLexDomains(final SQLiteDatabase thisConnection)
 	{
@@ -219,13 +210,11 @@ class Mapping
 				Mapping.theLexDomains.add(thisLexDomain);
 				Mapping.theLexDomainsByName.put(thisName, thisLexDomain);
 			}
-		}
-		catch (final SQLException e)
+		} catch (final SQLException e)
 		{
 			e.printStackTrace();
 			throw new RuntimeException(e);
-		}
-		finally
+		} finally
 		{
 			if (thisLexDomainQuery != null)
 			{
@@ -237,8 +226,7 @@ class Mapping
 	/**
 	 * Read link mappings from database
 	 *
-	 * @param thisConnection
-	 *            is the database connection
+	 * @param thisConnection is the database connection
 	 */
 	@SuppressWarnings("boxing")
 	@SuppressLint("DefaultLocale")
@@ -261,13 +249,11 @@ class Mapping
 				Mapping.theLinksById.put(thisId, thisLinkDef);
 				Mapping.theLinksByName.put(thisName, thisLinkDef);
 			}
-		}
-		catch (final SQLException e)
+		} catch (final SQLException e)
 		{
 			e.printStackTrace();
 			throw new RuntimeException(e);
-		}
-		finally
+		} finally
 		{
 			if (thisLinksQuery != null)
 			{
@@ -285,7 +271,7 @@ class Mapping
 	 */
 	static public String[] getPosNames()
 	{
-		return new String[] { "noun", "verb", "adj", "adv" }; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
+		return new String[]{"noun", "verb", "adj", "adv"}; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
 	}
 
 	/**
@@ -315,8 +301,7 @@ class Mapping
 	/**
 	 * Find part-of-speech name from lexdomain id
 	 *
-	 * @param thisLexDomainId
-	 *            is the lexdomain id
+	 * @param thisLexDomainId is the lexdomain id
 	 * @return part-of-speech name
 	 */
 	static public String getPosName(final int thisLexDomainId)
@@ -325,8 +310,7 @@ class Mapping
 		{
 			final LexDomainDef thisLexDomain = Mapping.theLexDomains.get(thisLexDomainId);
 			return thisLexDomain.posName;
-		}
-		catch (final IndexOutOfBoundsException e)
+		} catch (final IndexOutOfBoundsException e)
 		{
 			return "lexdomainid." + Integer.toString(thisLexDomainId); //$NON-NLS-1$
 		}
@@ -335,8 +319,7 @@ class Mapping
 	/**
 	 * Find lexdomain name from lexdomain id
 	 *
-	 * @param thisLexDomainId
-	 *            is the lexdomain id
+	 * @param thisLexDomainId is the lexdomain id
 	 * @return lexdomain name or "lexdomainid.xxx" if not found
 	 */
 	static public String getLexDomainName(final int thisLexDomainId)
@@ -345,8 +328,7 @@ class Mapping
 		{
 			final LexDomainDef thisLexDomain = Mapping.theLexDomains.get(thisLexDomainId);
 			return thisLexDomain.lexDomainName;
-		}
-		catch (final IndexOutOfBoundsException e)
+		} catch (final IndexOutOfBoundsException e)
 		{
 			return "lexdomainid." + Integer.toString(thisLexDomainId); //$NON-NLS-1$
 		}
@@ -355,10 +337,8 @@ class Mapping
 	/**
 	 * Find lexdomain id from part-of-speech name and lexdomain name
 	 *
-	 * @param thisPosName
-	 *            is the target part-of-speech name
-	 * @param thisLexDomainName
-	 *            is the target lexdomain name
+	 * @param thisPosName       is the target part-of-speech name
+	 * @param thisLexDomainName is the target lexdomain name
 	 * @return lexdomain id or -1 if not found
 	 */
 	static public int getLexDomainId(final String thisPosName, final String thisLexDomainName)
@@ -370,8 +350,7 @@ class Mapping
 		{
 			final LexDomainDef thisLexDomain = Mapping.theLexDomainsByName.get(thisString);
 			return thisLexDomain.id;
-		}
-		catch (final NullPointerException e)
+		} catch (final NullPointerException e)
 		{
 			return Mapping.ANYTYPE;
 		}
@@ -380,8 +359,7 @@ class Mapping
 	/**
 	 * Find part-of-speech id (n,v,a,r) from part-of-speech name
 	 *
-	 * @param thisPosName
-	 *            is the target part-of-speech name
+	 * @param thisPosName is the target part-of-speech name
 	 * @return part-of-speech id or ANYTYPE if not found
 	 */
 	static public int getPosId(final String thisPosName)
@@ -412,8 +390,7 @@ class Mapping
 	/**
 	 * Find link name from link id
 	 *
-	 * @param thisLinkType
-	 *            is the target link id
+	 * @param thisLinkType is the target link id
 	 * @return link name or "linktype.xxx" if not found
 	 */
 	@SuppressWarnings("boxing")
@@ -423,8 +400,7 @@ class Mapping
 		{
 			final LinkDef thisLinkDef = Mapping.theLinksById.get(thisLinkType);
 			return thisLinkDef.name;
-		}
-		catch (final NullPointerException e)
+		} catch (final NullPointerException e)
 		{
 			return "linktype." + Integer.toString(thisLinkType); //$NON-NLS-1$
 		}
@@ -433,8 +409,7 @@ class Mapping
 	/**
 	 * Find link id from link name
 	 *
-	 * @param thisLinkName
-	 *            is the target link name
+	 * @param thisLinkName is the target link name
 	 * @return link id or ANYTYPE if it is not found
 	 */
 	static public int getLinkType(final String thisLinkName)
@@ -446,8 +421,7 @@ class Mapping
 		{
 			final LinkDef thisLinkDef = Mapping.theLinksByName.get(thisLinkName);
 			return thisLinkDef.id;
-		}
-		catch (final NullPointerException e)
+		} catch (final NullPointerException e)
 		{
 			return Mapping.ANYTYPE;
 		}
@@ -456,8 +430,7 @@ class Mapping
 	/**
 	 * Determine if this link can recurse
 	 *
-	 * @param thisLinkType
-	 *            is the target link id
+	 * @param thisLinkType is the target link id
 	 * @return whether this link type can recurse
 	 */
 	@SuppressWarnings("boxing")
@@ -467,12 +440,10 @@ class Mapping
 		{
 			final LinkDef thisLinkDef = Mapping.theLinksById.get(thisLinkType);
 			return thisLinkDef.recurses;
-		}
-		catch (final IndexOutOfBoundsException e)
+		} catch (final IndexOutOfBoundsException e)
 		{
 			return false;
-		}
-		catch (final NullPointerException e)
+		} catch (final NullPointerException e)
 		{
 			return false;
 		}

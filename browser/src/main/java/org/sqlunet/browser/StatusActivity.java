@@ -1,17 +1,5 @@
 package org.sqlunet.browser;
 
-import org.sqlunet.browser.config.DownloadActivity;
-import org.sqlunet.browser.config.ManagementActivity;
-import org.sqlunet.browser.config.ManagementFragment;
-import org.sqlunet.browser.config.SettingsActivity;
-import org.sqlunet.browser.config.SetupActivity;
-import org.sqlunet.browser.config.SetupSqlActivity;
-import org.sqlunet.browser.config.Status;
-import org.sqlunet.browser.config.StorageActivity;
-import org.sqlunet.browser.selector.SelectorActivity;
-import org.sqlunet.settings.Settings;
-import org.sqlunet.wordnet.browser.SenseFragment;
-
 import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
@@ -23,6 +11,18 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+
+import org.sqlunet.browser.config.DownloadActivity;
+import org.sqlunet.browser.config.ManagementActivity;
+import org.sqlunet.browser.config.ManagementFragment;
+import org.sqlunet.browser.config.SettingsActivity;
+import org.sqlunet.browser.config.SetupActivity;
+import org.sqlunet.browser.config.SetupSqlActivity;
+import org.sqlunet.browser.config.Status;
+import org.sqlunet.browser.config.StorageActivity;
+import org.sqlunet.browser.selector.SelectorActivity;
+import org.sqlunet.settings.Settings;
+import org.sqlunet.wordnet.browser.SenseFragment;
 
 /**
  * An activity representing a sense detail screen. This activity is only used on handset devices. On tablet-size devices, sense details are presented
@@ -150,8 +150,7 @@ public class StatusActivity extends Activity
 			b_pm.setVisibility(existsPm ? View.GONE : View.VISIBLE);
 			b_ts.setVisibility(existsTs ? View.GONE : View.VISIBLE);
 			b_tsfn.setVisibility(existsTsFn ? View.GONE : View.VISIBLE);
-		}
-		else
+		} else
 		{
 			db.setImageResource(R.drawable.ic_fail);
 			b_db.setVisibility(View.VISIBLE);
@@ -188,29 +187,29 @@ public class StatusActivity extends Activity
 		// handle item selection
 		switch (item.getItemId())
 		{
-		case R.id.action_settings:
-			intent = new Intent(this, SettingsActivity.class);
-			break;
-		case R.id.action_status:
-			intent = new Intent(this, StatusActivity.class);
-			break;
-		case R.id.action_setup:
-			intent = new Intent(this, SetupActivity.class);
-			break;
-		case R.id.action_setup_sql:
-			intent = new Intent(this, SetupSqlActivity.class);
-			break;
-		case R.id.action_storage:
-			intent = new Intent(this, StorageActivity.class);
-			break;
-		case R.id.action_management:
-			intent = new Intent(this, ManagementActivity.class);
-			break;
-		case R.id.action_appsettings:
-			Settings.applicationSettings(this, "org.sqlunet.browser"); //$NON-NLS-1$
-			return true;
-		default:
-			return super.onOptionsItemSelected(item);
+			case R.id.action_settings:
+				intent = new Intent(this, SettingsActivity.class);
+				break;
+			case R.id.action_status:
+				intent = new Intent(this, StatusActivity.class);
+				break;
+			case R.id.action_setup:
+				intent = new Intent(this, SetupActivity.class);
+				break;
+			case R.id.action_setup_sql:
+				intent = new Intent(this, SetupSqlActivity.class);
+				break;
+			case R.id.action_storage:
+				intent = new Intent(this, StorageActivity.class);
+				break;
+			case R.id.action_management:
+				intent = new Intent(this, ManagementActivity.class);
+				break;
+			case R.id.action_appsettings:
+				Settings.applicationSettings(this, "org.sqlunet.browser"); //$NON-NLS-1$
+				return true;
+			default:
+				return super.onOptionsItemSelected(item);
 		}
 
 		// start activity
@@ -231,11 +230,11 @@ public class StatusActivity extends Activity
 		// handle selection of input by other activity which returns selected input
 		switch (requestCode)
 		{
-		case REQUEST_DOWNLOAD_CODE:
-			Log.d(TAG, "result=" + resultCode); //$NON-NLS-1$
-			break;
-		default:
-			break;
+			case REQUEST_DOWNLOAD_CODE:
+				Log.d(TAG, "result=" + resultCode); //$NON-NLS-1$
+				break;
+			default:
+				break;
 		}
 		super.onActivityResult(requestCode, resultCode, returnIntent);
 	}

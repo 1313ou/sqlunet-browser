@@ -1,13 +1,13 @@
 package org.sqlunet.propbank.style;
 
-import org.sqlunet.style.Colors;
-import org.sqlunet.style.Spanner.SpanFactory;
-
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.text.style.BackgroundColorSpan;
 import android.text.style.ForegroundColorSpan;
 import android.text.style.StyleSpan;
+
+import org.sqlunet.style.Colors;
+import org.sqlunet.style.Spanner.SpanFactory;
 
 public class PropbankFactories
 {
@@ -16,7 +16,7 @@ public class PropbankFactories
 		@Override
 		public Object makeSpans(final long flags)
 		{
-			return new Object[] { new BackgroundColorSpan(Color.RED), new ForegroundColorSpan(Color.WHITE), new StyleSpan(Typeface.BOLD) };
+			return new Object[]{new BackgroundColorSpan(Color.RED), new ForegroundColorSpan(Color.WHITE), new StyleSpan(Typeface.BOLD)};
 		}
 	};
 
@@ -25,7 +25,7 @@ public class PropbankFactories
 		@Override
 		public Object makeSpans(final long flags)
 		{
-			return new Object[] { new BackgroundColorSpan(Color.MAGENTA), new ForegroundColorSpan(Color.WHITE), new StyleSpan(Typeface.BOLD) };
+			return new Object[]{new BackgroundColorSpan(Color.MAGENTA), new ForegroundColorSpan(Color.WHITE), new StyleSpan(Typeface.BOLD)};
 		}
 	};
 
@@ -34,7 +34,7 @@ public class PropbankFactories
 		@Override
 		public Object makeSpans(final long flags)
 		{
-			return new Object[] { new BackgroundColorSpan(Color.BLUE), new ForegroundColorSpan(Color.WHITE), new StyleSpan(Typeface.BOLD) };
+			return new Object[]{new BackgroundColorSpan(Color.BLUE), new ForegroundColorSpan(Color.WHITE), new StyleSpan(Typeface.BOLD)};
 		}
 	};
 
@@ -43,7 +43,7 @@ public class PropbankFactories
 		@Override
 		public Object makeSpans(final long flags)
 		{
-			return new Object[] { new ForegroundColorSpan(Color.BLUE), new StyleSpan(Typeface.ITALIC) };
+			return new Object[]{new ForegroundColorSpan(Color.BLUE), new StyleSpan(Typeface.ITALIC)};
 		}
 	};
 
@@ -52,7 +52,7 @@ public class PropbankFactories
 		@Override
 		public Object makeSpans(final long flags)
 		{
-			return new Object[] { new BackgroundColorSpan(Colors.ltyellow), new StyleSpan(Typeface.ITALIC) };
+			return new Object[]{new BackgroundColorSpan(Colors.ltyellow), new StyleSpan(Typeface.ITALIC)};
 		}
 	};
 
@@ -61,7 +61,7 @@ public class PropbankFactories
 		@Override
 		public Object makeSpans(final long flags)
 		{
-			return new Object[] { new BackgroundColorSpan(Colors.ltyellow), new StyleSpan(Typeface.ITALIC) };
+			return new Object[]{new BackgroundColorSpan(Colors.ltyellow), new StyleSpan(Typeface.ITALIC)};
 		}
 	};
 
@@ -70,18 +70,18 @@ public class PropbankFactories
 		@Override
 		public Object makeSpans(final long flags)
 		{
-			return new Object[] { new BackgroundColorSpan(Color.GRAY), new ForegroundColorSpan(Color.WHITE), new StyleSpan(Typeface.BOLD) };
+			return new Object[]{new BackgroundColorSpan(Color.GRAY), new ForegroundColorSpan(Color.WHITE), new StyleSpan(Typeface.BOLD)};
 		}
 	};
 
-// --Commented out by Inspection START (10/15/16 8:10 PM):
-//	static public SpanFactory traceFactory = new SpanFactory()
-//	{
-//		@Override
-//		public Object makeSpans(final long flags)
-//		{
-//			return new Object[] { new BackgroundColorSpan(Color.GRAY), new ForegroundColorSpan(Color.WHITE), new StyleSpan(Typeface.BOLD) };
-//		}
-//	};
-// --Commented out by Inspection STOP (10/15/16 8:10 PM)
+	// --Commented out by Inspection START (10/15/16 8:10 PM):
+	//	static public SpanFactory traceFactory = new SpanFactory()
+	//	{
+	//		@Override
+	//		public Object makeSpans(final long flags)
+	//		{
+	//			return new Object[] { new BackgroundColorSpan(Color.GRAY), new ForegroundColorSpan(Color.WHITE), new StyleSpan(Typeface.BOLD) };
+	//		}
+	//	};
+	// --Commented out by Inspection STOP (10/15/16 8:10 PM)
 }

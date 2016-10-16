@@ -13,12 +13,10 @@ public class VnClass
 
 	/**
 	 * Constructor
-	 * @param className
-	 *            class name
-	 * @param classId
-	 *            class id
-	 * @param groupings
-	 *            groupings
+	 *
+	 * @param className class name
+	 * @param classId   class id
+	 * @param groupings groupings
 	 */
 	private VnClass(final String className, final long classId, final String groupings)
 	{
@@ -31,10 +29,8 @@ public class VnClass
 	/**
 	 * Make sets of VerbNet memberships from query built from classid
 	 *
-	 * @param connection
-	 *            is the database connection
-	 * @param classId
-	 *            is the class id to build the query from
+	 * @param connection is the database connection
+	 * @param classId    is the class id to build the query from
 	 * @return list of VerbNet classes
 	 */
 	static public VnClass make(final SQLiteDatabase connection, final long classId)
@@ -52,8 +48,7 @@ public class VnClass
 
 				return new VnClass(className, classId, groupings);
 			}
-		}
-		finally
+		} finally
 		{
 			if (query != null)
 			{

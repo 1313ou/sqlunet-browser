@@ -1,5 +1,13 @@
 package org.sqlunet.browser.xselector;
 
+import android.app.ActionBar;
+import android.app.Activity;
+import android.app.Fragment;
+import android.app.FragmentTransaction;
+import android.content.Intent;
+import android.os.Bundle;
+import android.widget.TextView;
+
 import org.sqlunet.bnc.browser.BNCFragment;
 import org.sqlunet.browser.DetailActivity;
 import org.sqlunet.browser.DetailFragment;
@@ -12,14 +20,6 @@ import org.sqlunet.provider.SqlUNetContract;
 import org.sqlunet.settings.Settings;
 import org.sqlunet.verbnet.browser.VerbNetFragment;
 import org.sqlunet.wordnet.browser.SenseFragment;
-
-import android.app.ActionBar;
-import android.app.Activity;
-import android.app.Fragment;
-import android.app.FragmentTransaction;
-import android.content.Intent;
-import android.os.Bundle;
-import android.widget.TextView;
 
 /**
  * An activity representing a list of synsets. This activity has different presentations for handset and tablet-size devices. On handsets, the activity presents
@@ -114,83 +114,79 @@ public class XSelectorActivity extends Activity implements XSelectorFragment.Lis
 			// detail fragment
 			switch (mode)
 			{
-			case VIEW:
-				if (Settings.getWordNetPref(this))
-				{
-					// final View labelView = findViewById(R.id.label_wordnet);
-					// labelView.setVisibility(View.VISIBLE);
-					final Fragment senseFragment = new SenseFragment();
-					senseFragment.setArguments(arguments);
-					transaction.replace(R.id.container_wordnet, senseFragment);
-				}
+				case VIEW:
+					if (Settings.getWordNetPref(this))
+					{
+						// final View labelView = findViewById(R.id.label_wordnet);
+						// labelView.setVisibility(View.VISIBLE);
+						final Fragment senseFragment = new SenseFragment();
+						senseFragment.setArguments(arguments);
+						transaction.replace(R.id.container_wordnet, senseFragment);
+					}
 
-				if (Settings.getVerbNetPref(this) && pointer.getXsources().contains("vn")) //$NON-NLS-1$
-				{
-					// final View labelView = findViewById(R.id.label_verbnet);
-					// labelView.setVisibility(View.VISIBLE);
-					verbnetFragment = new VerbNetFragment();
-					verbnetFragment.setArguments(arguments);
-					transaction.replace(R.id.container_verbnet, verbnetFragment);
-				}
-				else if (verbnetFragment != null)
-				{
-					transaction.remove(verbnetFragment);
-					verbnetFragment = null;
-				}
+					if (Settings.getVerbNetPref(this) && pointer.getXsources().contains("vn")) //$NON-NLS-1$
+					{
+						// final View labelView = findViewById(R.id.label_verbnet);
+						// labelView.setVisibility(View.VISIBLE);
+						verbnetFragment = new VerbNetFragment();
+						verbnetFragment.setArguments(arguments);
+						transaction.replace(R.id.container_verbnet, verbnetFragment);
+					} else if (verbnetFragment != null)
+					{
+						transaction.remove(verbnetFragment);
+						verbnetFragment = null;
+					}
 
-				if (Settings.getPropBankPref(this) && pointer.getXsources().contains("pb")) //$NON-NLS-1$
-				{
-					// final View labelView = findViewById(R.id.label_propbank);
-					// labelView.setVisibility(View.VISIBLE);
-					propbankFragment = new PropbankFragment();
-					propbankFragment.setArguments(arguments);
-					transaction.replace(R.id.container_propbank, propbankFragment);
-				}
-				else if (propbankFragment != null)
-				{
-					transaction.remove(propbankFragment);
-					propbankFragment = null;
-				}
+					if (Settings.getPropBankPref(this) && pointer.getXsources().contains("pb")) //$NON-NLS-1$
+					{
+						// final View labelView = findViewById(R.id.label_propbank);
+						// labelView.setVisibility(View.VISIBLE);
+						propbankFragment = new PropbankFragment();
+						propbankFragment.setArguments(arguments);
+						transaction.replace(R.id.container_propbank, propbankFragment);
+					} else if (propbankFragment != null)
+					{
+						transaction.remove(propbankFragment);
+						propbankFragment = null;
+					}
 
-				if (Settings.getFrameNetPref(this) && pointer.getXsources().contains("fn")) //$NON-NLS-1$
-				{
-					// final View labelView = findViewById(R.id.label_framenet);
-					// labelView.setVisibility(View.VISIBLE);
-					framenetFragment = new FrameNetFragment();
-					framenetFragment.setArguments(arguments);
-					transaction.replace(R.id.container_framenet, framenetFragment);
-				}
-				else if (framenetFragment != null)
-				{
-					transaction.remove(framenetFragment);
-					framenetFragment = null;
-				}
+					if (Settings.getFrameNetPref(this) && pointer.getXsources().contains("fn")) //$NON-NLS-1$
+					{
+						// final View labelView = findViewById(R.id.label_framenet);
+						// labelView.setVisibility(View.VISIBLE);
+						framenetFragment = new FrameNetFragment();
+						framenetFragment.setArguments(arguments);
+						transaction.replace(R.id.container_framenet, framenetFragment);
+					} else if (framenetFragment != null)
+					{
+						transaction.remove(framenetFragment);
+						framenetFragment = null;
+					}
 
-				if (Settings.getBncPref(this))
-				{
-					// final View labelView = findViewById(R.id.label_bnc);
-					// labelView.setVisibility(View.VISIBLE);
-					final Fragment bncFragment = new BNCFragment();
-					bncFragment.setArguments(arguments);
-					transaction.replace(R.id.container_bnc, bncFragment);
-				}
-				break;
+					if (Settings.getBncPref(this))
+					{
+						// final View labelView = findViewById(R.id.label_bnc);
+						// labelView.setVisibility(View.VISIBLE);
+						final Fragment bncFragment = new BNCFragment();
+						bncFragment.setArguments(arguments);
+						transaction.replace(R.id.container_bnc, bncFragment);
+					}
+					break;
 
-			case WEB:
-				final Fragment fragment = new WebFragment();
+				case WEB:
+					final Fragment fragment = new WebFragment();
 
-				// arguments
-				fragment.setArguments(arguments);
+					// arguments
+					fragment.setArguments(arguments);
 
-				// detail fragment replace
-				transaction.replace(R.id.container_main, fragment);
-				break;
-			default:
-				return;
+					// detail fragment replace
+					transaction.replace(R.id.container_main, fragment);
+					break;
+				default:
+					return;
 			}
 			transaction.commit();
-		}
-		else
+		} else
 		{
 			// in single-pane mode, simply start the detail activity for the selected item ID.
 			final Intent intent = new Intent(this, DetailActivity.class);

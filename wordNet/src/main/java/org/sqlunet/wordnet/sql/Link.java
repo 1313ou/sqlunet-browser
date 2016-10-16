@@ -6,11 +6,11 @@
  */
 package org.sqlunet.wordnet.sql;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Link, a linked synset
@@ -33,8 +33,7 @@ class Link extends Synset
 	/**
 	 * Constructor from query for synsets linked to a given synset
 	 *
-	 * @param query
-	 *            is a query for synsets linked to a given synset
+	 * @param query is a query for synsets linked to a given synset
 	 */
 	public Link(final LinksQueryCommand query)
 	{
@@ -49,8 +48,7 @@ class Link extends Synset
 	/**
 	 * Constructor from query for synsets linked to a given synset through a given relation type
 	 *
-	 * @param query
-	 *            is a query for synsets linked to a given synset through a given relation type
+	 * @param query is a query for synsets linked to a given synset through a given relation type
 	 */
 	Link(final TypedLinksQueryCommand query)
 	{
@@ -105,13 +103,11 @@ class Link extends Synset
 				final Link link = new Link(query);
 				links.add(link);
 			}
-		}
-		catch (final SQLException e)
+		} catch (final SQLException e)
 		{
 			e.printStackTrace();
 			links = null;
-		}
-		finally
+		} finally
 		{
 			if (query != null)
 			{

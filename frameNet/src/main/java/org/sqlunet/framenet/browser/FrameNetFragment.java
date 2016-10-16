@@ -1,22 +1,22 @@
 package org.sqlunet.framenet.browser;
 
-import org.sqlunet.HasXId;
-import org.sqlunet.browser.Module;
-import org.sqlunet.framenet.R;
-import org.sqlunet.framenet.loaders.FrameModule;
-import org.sqlunet.framenet.loaders.LexUnitFromWordModule;
-import org.sqlunet.provider.SqlUNetContract;
-import org.sqlunet.treeview.renderer.IconTreeRenderer;
-import org.sqlunet.treeview.model.TreeNode;
-import org.sqlunet.treeview.view.TreeView;
-import org.sqlunet.view.TreeFactory;
-
 import android.app.Fragment;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import org.sqlunet.HasXId;
+import org.sqlunet.browser.Module;
+import org.sqlunet.framenet.R;
+import org.sqlunet.framenet.loaders.FrameModule;
+import org.sqlunet.framenet.loaders.LexUnitFromWordModule;
+import org.sqlunet.provider.SqlUNetContract;
+import org.sqlunet.treeview.model.TreeNode;
+import org.sqlunet.treeview.renderer.IconTreeRenderer;
+import org.sqlunet.treeview.view.TreeView;
+import org.sqlunet.view.TreeFactory;
 
 /**
  * A fragment representing a framenet search from a (word, pos)

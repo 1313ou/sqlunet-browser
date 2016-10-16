@@ -6,9 +6,9 @@
  */
 package org.sqlunet.wordnet.sql;
 
-import org.sqlunet.sql.DBQueryCommand;
-
 import android.database.sqlite.SQLiteDatabase;
+
+import org.sqlunet.sql.DBQueryCommand;
 
 /**
  * Query for link types
@@ -25,8 +25,7 @@ class LinkTypesQueryCommand extends DBQueryCommand
 	/**
 	 * Constructor
 	 *
-	 * @param thisConnection
-	 *            is the database connection
+	 * @param thisConnection is the database connection
 	 */
 	public LinkTypesQueryCommand(final SQLiteDatabase thisConnection)
 	{
@@ -36,8 +35,7 @@ class LinkTypesQueryCommand extends DBQueryCommand
 	/**
 	 * Set word parameter in prepared SQL statement
 	 *
-	 * @param thisWord
-	 *            is the target word
+	 * @param thisWord is the target word
 	 */
 	public void setWord(final String thisWord)
 	{
