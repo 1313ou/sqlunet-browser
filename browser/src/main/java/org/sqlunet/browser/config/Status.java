@@ -43,7 +43,8 @@ public class Status
 			try
 			{
 				existingTablesAndIndexes = tablesAndIndexes(context);
-			} catch (Exception e)
+			}
+			catch (Exception e)
 			{
 				Log.e(TAG, "While getting status", e); //$NON-NLS-1$
 				return status;
@@ -58,13 +59,21 @@ public class Status
 			boolean existsTsFn = contains(existingTablesAndIndexes, "fnsentences_text_fts4"); //$NON-NLS-1$
 
 			if (existsIdx)
+			{
 				status |= EXISTS_IDX;
+			}
 			if (existsPm)
+			{
 				status |= EXISTS_PM;
+			}
 			if (existsTs)
+			{
 				status |= EXISTS_TS;
+			}
 			if (existsTsFn)
+			{
 				status |= EXISTS_TSFN;
+			}
 			return status;
 		}
 		return 0;
@@ -108,7 +117,8 @@ public class Status
 			{
 				final String name = cursor.getString(nameId);
 				result.add(name);
-			} while (cursor.moveToNext());
+			}
+			while (cursor.moveToNext());
 		}
 		cursor.close();
 		return result;

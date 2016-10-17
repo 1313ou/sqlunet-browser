@@ -49,7 +49,6 @@ public class SynsetModule extends BasicModule
 	 * 
 	 * @see org.sqlunet.Module#data()
 	 */
-	@SuppressWarnings("boxing")
 	@Override
 	public void process(final TreeNode node)
 	{

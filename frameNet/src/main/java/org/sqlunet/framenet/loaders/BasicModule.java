@@ -222,7 +222,9 @@ abstract public class BasicModule extends Module
 			public void onLoadFinished(final Loader<Cursor> loader, final Cursor cursor)
 			{
 				if (cursor.getCount() > 1)
+				{
 					throw new RuntimeException("Unexpected number of rows"); //$NON-NLS-1$
+				}
 				if (cursor.moveToFirst())
 				{
 					final SpannableStringBuilder sb = new SpannableStringBuilder();
@@ -268,7 +270,8 @@ abstract public class BasicModule extends Module
 
 					// expand
 					TreeView.expand(parent, false);
-				} else
+				}
+				else
 				{
 					parent.disable();
 				}
@@ -331,9 +334,13 @@ abstract public class BasicModule extends Module
 					do
 					{
 						if (!first)
+						{
 							sb.append('\n');
+						}
 						else
+						{
 							first = false;
+						}
 
 						// data
 						final int frame1id = cursor.getInt(idFrameId);
@@ -349,7 +356,9 @@ abstract public class BasicModule extends Module
 
 						// 1
 						if (frame1id == frameid0)
+						{
 							sb.append("it"); //$NON-NLS-1$
+						}
 						else
 						{
 							Spanner.append(sb, frame1, 0, FrameNetFactories.frameFactory);
@@ -363,11 +372,17 @@ abstract public class BasicModule extends Module
 						// relation
 						sb.append(' ');
 						if ("see also".equals(relation)) //$NON-NLS-1$
+						{
 							relation = "has see-also relation to"; //$NON-NLS-1$
+						}
 						if ("perspective on".equals(relation)) //$NON-NLS-1$
+						{
 							relation = "perpectivizes"; //$NON-NLS-1$
+						}
 						if ("subframe of".equals(relation)) //$NON-NLS-1$
+						{
 							relation = "is subframe of"; //$NON-NLS-1$
+						}
 						sb.append(relation);
 						if (VERBOSE)
 						{
@@ -378,7 +393,9 @@ abstract public class BasicModule extends Module
 
 						// 2
 						if (frame2id == frameid0)
+						{
 							sb.append("it"); //$NON-NLS-1$
+						}
 						else
 						{
 							Spanner.append(sb, frame2, 0, FrameNetFactories.frameFactory);
@@ -388,14 +405,16 @@ abstract public class BasicModule extends Module
 								sb.append(Integer.toString(frame2id));
 							}
 						}
-					} while (cursor.moveToNext());
+					}
+					while (cursor.moveToNext());
 
 					// attach result
 					TreeFactory.addTextNode(parent, sb, BasicModule.this.getContext());
 
 					// expand
 					TreeView.expand(parent, false);
-				} else
+				}
+				else
 				{
 					parent.disable();
 				}
@@ -516,8 +535,10 @@ abstract public class BasicModule extends Module
 						}
 
 						if (!cursor.moveToNext())
-							//noinspection BreakStatement
+						//noinspection BreakStatement
+						{
 							break;
+						}
 
 						sb.append('\n');
 					}
@@ -527,7 +548,8 @@ abstract public class BasicModule extends Module
 
 					// expand
 					TreeView.expand(parent, false);
-				} else
+				}
+				else
 				{
 					parent.disable();
 				}
@@ -573,7 +595,9 @@ abstract public class BasicModule extends Module
 			public void onLoadFinished(final Loader<Cursor> loader, final Cursor cursor)
 			{
 				if (cursor.getCount() > 1)
+				{
 					throw new RuntimeException("Unexpected number of rows"); //$NON-NLS-1$
+				}
 				if (cursor.moveToFirst())
 				{
 					final SpannableStringBuilder sb = new SpannableStringBuilder();
@@ -654,17 +678,22 @@ abstract public class BasicModule extends Module
 						{
 							final TreeNode fesNode = TreeFactory.newQueryNode(new FEsQuery(frameid1, R.drawable.roles, "Frame Elements"), BasicModule.this.getContext()); //$NON-NLS-1$
 							TreeFactory.addTextNode(parent, sb, BasicModule.this.getContext(), frameNode, fesNode, governorsNode, realizationsNode, groupRealizationsNode, sentencesNode);
-						} else
+						}
+						else
+						{
 							TreeFactory.addTextNode(parent, sb, BasicModule.this.getContext(), frameNode, governorsNode, realizationsNode, groupRealizationsNode, sentencesNode);
+						}
 
-					} else
+					}
+					else
 					{
 						TreeFactory.addTextNode(parent, sb, BasicModule.this.getContext(), governorsNode, realizationsNode, groupRealizationsNode, sentencesNode);
 					}
 
 					// expand
 					TreeView.expand(parent, false);
-				} else
+				}
+				else
 				{
 					parent.disable();
 				}
@@ -780,15 +809,18 @@ abstract public class BasicModule extends Module
 							final TreeNode frameNode = TreeFactory.newQueryNode(new FrameQuery(frameid1, R.drawable.fnframe, "Frame"), BasicModule.this.getContext()); //$NON-NLS-1$
 							final TreeNode fesNode = TreeFactory.newQueryNode(new FEsQuery(frameid1, R.drawable.roles, "Frame Elements"), BasicModule.this.getContext()); //$NON-NLS-1$
 							TreeFactory.addTextNode(parent, sb, BasicModule.this.getContext(), frameNode, fesNode, governorsNode, realizationsNode, groupRealizationsNode, sentencesNode);
-						} else
+						}
+						else
 						{
 							TreeFactory.addTextNode(parent, sb, BasicModule.this.getContext(), governorsNode, realizationsNode, groupRealizationsNode, sentencesNode);
 						}
-					} while (cursor.moveToNext());
+					}
+					while (cursor.moveToNext());
 
 					// expand
 					TreeView.expand(parent, false);
-				} else
+				}
+				else
 				{
 					parent.disable();
 				}
@@ -907,11 +939,13 @@ abstract public class BasicModule extends Module
 
 						// attach result
 						TreeFactory.addTextNode(parent, sb, BasicModule.this.getContext(), frameNode, fesNode, governorsNode, realizationsNode, groupRealizationsNode, sentencesNode);
-					} while (cursor.moveToNext());
+					}
+					while (cursor.moveToNext());
 
 					// expand
 					TreeView.expand(parent, false);
-				} else
+				}
+				else
 				{
 					parent.disable();
 				}
@@ -987,11 +1021,13 @@ abstract public class BasicModule extends Module
 						// governor
 						final TreeNode governorNode = TreeFactory.newQueryNode(new GovernorsAnnoSetsQuery(governorid, R.drawable.governor, sb), BasicModule.this.getContext());
 						parent.addChild(governorNode);
-					} while (cursor.moveToNext());
+					}
+					while (cursor.moveToNext());
 
 					// expand
 					TreeView.expand(parent, false);
-				} else
+				}
+				else
 				{
 					parent.disable();
 				}
@@ -1062,11 +1098,13 @@ abstract public class BasicModule extends Module
 						// attach sentence node
 						final TreeNode sentenceNode = TreeFactory.newQueryNode(new AnnoSetQuery(annosetid, R.drawable.annoset, sb, false), BasicModule.this.getContext());
 						parent.addChild(sentenceNode);
-					} while (cursor.moveToNext());
+					}
+					while (cursor.moveToNext());
 
 					// expand
 					TreeView.expand(parent, false);
-				} else
+				}
+				else
 				{
 					parent.disable();
 				}
@@ -1096,8 +1134,14 @@ abstract public class BasicModule extends Module
 						LexUnits_FERealizations_ValenceUnits.LUID, //
 						LexUnits_FERealizations_ValenceUnits.FERID, //
 						LexUnits_FERealizations_ValenceUnits.FETYPE, //
-						"GROUP_CONCAT(IFNULL(" + LexUnits_FERealizations_ValenceUnits.PT + ",'') || ':' || IFNULL(" + LexUnits_FERealizations_ValenceUnits.GF + ",'') || ':' || " + LexUnits_FERealizations_ValenceUnits.VUID + ") AS " //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
-								+ LexUnits_FERealizations_ValenceUnits.FERS, //
+						"GROUP_CONCAT(IFNULL(" +  //$NON-NLS-1$
+								LexUnits_FERealizations_ValenceUnits.PT +
+								",'') || ':' || IFNULL(" + //$NON-NLS-1$
+								LexUnits_FERealizations_ValenceUnits.GF +
+								",'') || ':' || " +  //$NON-NLS-1$
+								LexUnits_FERealizations_ValenceUnits.VUID +
+								") AS " +  //$NON-NLS-1$
+								LexUnits_FERealizations_ValenceUnits.FERS, //
 						LexUnits_FERealizations_ValenceUnits.TOTAL, //
 				};
 				final String selection = LexUnits_FERealizations_ValenceUnits.LUID + " = ?"; //$NON-NLS-1$
@@ -1175,11 +1219,13 @@ abstract public class BasicModule extends Module
 							final TreeNode ferNode = TreeFactory.newQueryNode(new ValenceUnitQuery(vuid, R.drawable.realization, sb1), BasicModule.this.getContext());
 							feNode.addChild(ferNode);
 						}
-					} while (cursor.moveToNext());
+					}
+					while (cursor.moveToNext());
 
 					// expand
 					TreeView.expand(parent, false);
-				} else
+				}
+				else
 				{
 					parent.disable();
 				}
@@ -1207,15 +1253,20 @@ abstract public class BasicModule extends Module
 						LexUnits_FEGroupRealizations_Patterns_ValenceUnits.LUID, //
 						LexUnits_FEGroupRealizations_Patterns_ValenceUnits.FEGRID, //
 						LexUnits_FEGroupRealizations_Patterns_ValenceUnits.PATTERNID, //
-						"GROUP_CONCAT(" + LexUnits_FEGroupRealizations_Patterns_ValenceUnits.FETYPE + " || '.' || " + LexUnits_FEGroupRealizations_Patterns_ValenceUnits.PT + " || '.'|| IFNULL(" + LexUnits_FEGroupRealizations_Patterns_ValenceUnits.GF //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-								+ ", '--')) AS " + LexUnits_FEGroupRealizations_Patterns_ValenceUnits.GROUPREALIZATIONS,}; //$NON-NLS-1$
+						"GROUP_CONCAT(" + //$NON-NLS-1$
+								LexUnits_FEGroupRealizations_Patterns_ValenceUnits.FETYPE +
+								" || '.' || " + //$NON-NLS-1$
+								LexUnits_FEGroupRealizations_Patterns_ValenceUnits.PT +
+								" || '.'|| IFNULL(" + //$NON-NLS-1$
+								LexUnits_FEGroupRealizations_Patterns_ValenceUnits.GF
+								+ ", '--')) AS " + //$NON-NLS-1$
+								LexUnits_FEGroupRealizations_Patterns_ValenceUnits.GROUPREALIZATIONS,}; //$NON-NLS-1$
 				final String selection = LexUnits_FEGroupRealizations_Patterns_ValenceUnits.LUID + " = ?"; //$NON-NLS-1$
 				final String[] selectionArgs = new String[]{Long.toString(luid0)};
 				final String sortOrder = null; // LexUnits_FEGroupRealizations_Patterns_ValenceUnits.FEGRID;
 				return new CursorLoader(BasicModule.this.getContext(), uri, projection, selection, selectionArgs, sortOrder);
 			}
 
-			@SuppressWarnings("synthetic-access")
 			@Override
 			public void onLoadFinished(final Loader<Cursor> loader, final Cursor cursor)
 			{
@@ -1240,7 +1291,9 @@ abstract public class BasicModule extends Module
 						final int patternid = cursor.getInt(idPatternId);
 						// System.out.println("GROUP REALIZATIONS " + fegrid + ' ' + groupRealizations + ' ' + patternid); //$NON-NLS-1$
 						if (groupRealizations == null)
+						{
 							continue;
+						}
 
 						// group
 						if (groupid != fegrid)
@@ -1267,11 +1320,13 @@ abstract public class BasicModule extends Module
 						final TreeNode patternNode = TreeFactory.newQueryNode(new PatternQuery(patternid, R.drawable.grouprealization, sb), BasicModule.this.getContext());
 						assert groupNode != null;
 						groupNode.addChild(patternNode);
-					} while (cursor.moveToNext());
+					}
+					while (cursor.moveToNext());
 
 					// expand
 					TreeView.expand(parent, 2);
-				} else
+				}
+				else
 				{
 					parent.disable();
 				}
@@ -1296,9 +1351,13 @@ abstract public class BasicModule extends Module
 		for (final String groupRealization : groupRealizations)
 		{
 			if (first)
+			{
 				first = false;
+			}
 			else
+			{
 				sb.append('\n');
+			}
 
 			Spanner.appendImage(sb, BasicModule.this.realizationDrawable);
 
@@ -1351,7 +1410,10 @@ abstract public class BasicModule extends Module
 				};
 				final String selection = "u." + LexUnits_Sentences_Annosets_Layers_Labels.LUID + " = ? AND " + LexUnits_Sentences_Annosets_Layers_Labels.LAYERTYPE + " = ?"; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 				final String[] selectionArgs = new String[]{Long.toString(luid0), BasicModule.FOCUSLAYER};
-				final String sortOrder = LexUnits_Sentences_Annosets_Layers_Labels.CORPUSID + ',' + LexUnits_Sentences_Annosets_Layers_Labels.DOCUMENTID + ',' + LexUnits_Sentences_Annosets_Layers_Labels.PARAGNO + ',' + LexUnits_Sentences_Annosets_Layers_Labels.SENTNO;
+				final String sortOrder = LexUnits_Sentences_Annosets_Layers_Labels.CORPUSID + ',' + //
+						LexUnits_Sentences_Annosets_Layers_Labels.DOCUMENTID + ',' + //
+						LexUnits_Sentences_Annosets_Layers_Labels.PARAGNO + ',' + //
+						LexUnits_Sentences_Annosets_Layers_Labels.SENTNO; //
 				return new CursorLoader(BasicModule.this.getContext(), uri, projection, selection, selectionArgs, sortOrder);
 			}
 
@@ -1429,14 +1491,16 @@ abstract public class BasicModule extends Module
 								sb.append('\n');
 							}
 						}
-					} while (cursor.moveToNext());
+					}
+					while (cursor.moveToNext());
 
 					// attach result
 					TreeFactory.addTextNode(parent, sb, BasicModule.this.getContext());
 
 					// expand
 					TreeView.expand(parent, false);
-				} else
+				}
+				else
 				{
 					parent.disable();
 				}
@@ -1503,11 +1567,13 @@ abstract public class BasicModule extends Module
 						// attach sentence
 						final TreeNode sentenceNode = TreeFactory.newQueryNode(new AnnoSetQuery(annotationid, R.drawable.sentence, sb, false), BasicModule.this.getContext());
 						parent.addChild(sentenceNode);
-					} while (cursor.moveToNext());
+					}
+					while (cursor.moveToNext());
 
 					// expand
 					TreeView.expand(parent, false);
-				} else
+				}
+				else
 				{
 					parent.disable();
 				}
@@ -1574,11 +1640,13 @@ abstract public class BasicModule extends Module
 						// pattern
 						final TreeNode sentenceNode = TreeFactory.newQueryNode(new AnnoSetQuery(annotationid, R.drawable.sentence, sb, false), BasicModule.this.getContext());
 						parent.addChild(sentenceNode);
-					} while (cursor.moveToNext());
+					}
+					while (cursor.moveToNext());
 
 					// expand
 					TreeView.expand(parent, false);
-				} else
+				}
+				else
 				{
 					parent.disable();
 				}
@@ -1704,8 +1772,10 @@ abstract public class BasicModule extends Module
 							}
 						}
 						if (!cursor.moveToNext())
-							//noinspection BreakStatement
+						//noinspection BreakStatement
+						{
 							break;
+						}
 						sb.append('\n');
 					}
 
@@ -1714,7 +1784,8 @@ abstract public class BasicModule extends Module
 
 					// expand
 					TreeView.expand(parent, false);
-				} else
+				}
+				else
 				{
 					parent.disable();
 				}
@@ -1836,14 +1907,16 @@ abstract public class BasicModule extends Module
 							}
 						}
 						sb.append('\n');
-					} while (cursor.moveToNext());
+					}
+					while (cursor.moveToNext());
 
 					// attach result
 					TreeFactory.addTextNode(parent, sb, BasicModule.this.getContext());
 
 					// expand
 					TreeView.expand(parent, false);
-				} else
+				}
+				else
 				{
 					parent.disable();
 				}
@@ -1966,14 +2039,16 @@ abstract public class BasicModule extends Module
 							}
 						}
 						sb.append('\n');
-					} while (cursor.moveToNext());
+					}
+					while (cursor.moveToNext());
 
 					// attach result
 					TreeFactory.addTextNode(parent, sb, BasicModule.this.getContext());
 
 					// expand
 					TreeView.expand(parent, false);
-				} else
+				}
+				else
 				{
 					parent.disable();
 				}
@@ -2078,8 +2153,10 @@ abstract public class BasicModule extends Module
 							}
 						}
 						if (!cursor.moveToNext())
-							//noinspection BreakStatement
+						//noinspection BreakStatement
+						{
 							break;
+						}
 						sb.append('\n');
 					}
 
@@ -2088,7 +2165,8 @@ abstract public class BasicModule extends Module
 
 					// expand
 					TreeView.expand(parent, false);
-				} else
+				}
+				else
 				{
 					parent.disable();
 				}
@@ -2122,22 +2200,34 @@ abstract public class BasicModule extends Module
 	private CharSequence processLayer(final CharSequence name)
 	{
 		if (name.equals("FE")) //$NON-NLS-1$
+		{
 			return "Frame element"; //$NON-NLS-1$
+		}
 		if (name.equals("PT")) //$NON-NLS-1$
+		{
 			return "Phrase type"; //$NON-NLS-1$
+		}
 		if (name.equals("GF")) //$NON-NLS-1$
+		{
 			return "Grammatical function"; //$NON-NLS-1$
+		}
 		return name;
 	}
 
 	private CharSequence processPT(final CharSequence name)
 	{
 		if (name.equals("CNI")) //$NON-NLS-1$
+		{
 			return "constructional ∅"; //$NON-NLS-1$
+		}
 		if (name.equals("DNI")) //$NON-NLS-1$
+		{
 			return "definite ∅"; //$NON-NLS-1$
+		}
 		if (name.equals("INI")) //$NON-NLS-1$
+		{
 			return "indefinite ∅"; //$NON-NLS-1$
+		}
 		return name;
 	}
 

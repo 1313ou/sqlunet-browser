@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * SemType
+ * Related frame
  *
  * @author Bernard Bou
  */
@@ -19,41 +19,43 @@ class FnRelatedFrame
 	/**
 	 * Constructor
 	 *
-	 * @param thisFrameId   is the related frame id
-	 * @param thisFrameName is the related frame name
-	 * @param thisRelation  is the relation
+	 * @param frameId   is the related frame id
+	 * @param frameName is the related frame name
+	 * @param relation  is the relation
 	 */
-	private FnRelatedFrame(final long thisFrameId, final String thisFrameName, final String thisRelation)
+	private FnRelatedFrame(final long frameId, final String frameName, final String relation)
 	{
-		this.frameId = thisFrameId;
-		this.frameName = thisFrameName;
-		this.relation = thisRelation;
+		this.frameId = frameId;
+		this.frameName = frameName;
+		this.relation = relation;
 	}
 
 	/**
 	 * Make related frames from string
 	 *
-	 * @param theseRelatedFramesString (id:rel|id:rel...)
+	 * @param relatedFramesString (id:rel|id:rel...)
 	 * @return list of related frames
 	 */
-	public static List<FnRelatedFrame> make(final String theseRelatedFramesString)
+	public static List<FnRelatedFrame> make(final String relatedFramesString)
 	{
-		if (theseRelatedFramesString == null)
-			return null;
-		List<FnRelatedFrame> thisResult = null;
-		final String[] theseRelatedFrames = theseRelatedFramesString.split("\\|"); //$NON-NLS-1$
-		for (final String thisRelatedFrame : theseRelatedFrames)
+		if (relatedFramesString == null)
 		{
-			if (thisResult == null)
-			{
-				thisResult = new ArrayList<>();
-			}
-			final String[] theseFields = thisRelatedFrame.split(":"); //$NON-NLS-1$
-			final long thisFrameId = Long.parseLong(theseFields[0]);
-			final String thisFrameName = theseFields[1];
-			final String thisRelation = theseFields[2];
-			thisResult.add(new FnRelatedFrame(thisFrameId, thisFrameName, thisRelation));
+			return null;
 		}
-		return thisResult;
+		List<FnRelatedFrame> result = null;
+		final String[] relatedFrames = relatedFramesString.split("\\|"); //$NON-NLS-1$
+		for (final String relatedFrame : relatedFrames)
+		{
+			if (result == null)
+			{
+				result = new ArrayList<>();
+			}
+			final String[] fields = relatedFrame.split(":"); //$NON-NLS-1$
+			final long frameId = Long.parseLong(fields[0]);
+			final String frameName = fields[1];
+			final String relation = fields[2];
+			result.add(new FnRelatedFrame(frameId, frameName, relation));
+		}
+		return result;
 	}
 }

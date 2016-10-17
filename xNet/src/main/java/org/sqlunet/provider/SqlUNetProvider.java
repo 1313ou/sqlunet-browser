@@ -57,7 +57,8 @@ public abstract class SqlUNetProvider extends ContentProvider
 		{
 			this.db = open(path, SQLiteDatabase.OPEN_READONLY);
 			Log.d(SqlUNetProvider.TAG, "Opened by " + this.getClass() + " content provider: " + this.db.getPath()); //$NON-NLS-1$ //$NON-NLS-2$
-		} catch (final SQLiteCantOpenDatabaseException e)
+		}
+		catch (final SQLiteCantOpenDatabaseException e)
 		{
 			Log.e(SqlUNetProvider.TAG, "Open failed by " + this.getClass() + " content provider: " + this.db.getPath(), e); //$NON-NLS-1$ //$NON-NLS-2$
 		}
@@ -159,7 +160,8 @@ public abstract class SqlUNetProvider extends ContentProvider
 		{
 			projection2 = new String[1 + items.length];
 			projection2[i++] = "*"; //$NON-NLS-1$
-		} else
+		}
+		else
 		{
 			projection2 = new String[projection.length + items.length];
 			for (final String item : projection)
@@ -189,7 +191,8 @@ public abstract class SqlUNetProvider extends ContentProvider
 		if (projection == null)
 		{
 			projection2 = new String[1 + items.length];
-		} else
+		}
+		else
 		{
 			projection2 = new String[projection.length + items.length];
 		}
@@ -200,7 +203,8 @@ public abstract class SqlUNetProvider extends ContentProvider
 		if (projection == null)
 		{
 			projection2[i] = "*"; //$NON-NLS-1$
-		} else
+		}
+		else
 		{
 			for (final String item : projection)
 			{

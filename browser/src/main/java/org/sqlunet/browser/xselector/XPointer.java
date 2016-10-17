@@ -72,19 +72,27 @@ public class XPointer extends Pointer implements HasXId
 
 		long xid0 = parcel.readLong();
 		if (xid0 != -1)
+		{
 			this.xid = xid0;
+		}
 
 		long xclassid0 = parcel.readLong();
 		if (xclassid0 != -1)
+		{
 			this.xclassid = xclassid0;
+		}
 
 		long xinstanceid0 = parcel.readLong();
 		if (xinstanceid0 != -1)
+		{
 			this.xinstanceid = xinstanceid0;
+		}
 
 		long xwordid0 = parcel.readLong();
 		if (xwordid0 != -1)
+		{
 			this.xwordid = xwordid0;
+		}
 
 		this.xsources = parcel.readString();
 		this.xmask = parcel.readLong();
@@ -150,7 +158,6 @@ public class XPointer extends Pointer implements HasXId
 	 * 
 	 * @see org.sqlunet.wordnet.Synset#writeToParcel(android.os.Parcel, int)
 	 */
-	@SuppressWarnings("boxing")
 	@Override
 	public void writeToParcel(final Parcel parcel, final int flags)
 	{
@@ -186,21 +193,35 @@ public class XPointer extends Pointer implements HasXId
 		this.xsources = xsources;
 		this.xmask = 0L;
 		if (xsources.contains("wn")) //$NON-NLS-1$
+		{
 			this.xmask |= WORDNETSOURCE;
+		}
 
 		if (xsources.contains("vn")) //$NON-NLS-1$
+		{
 			this.xmask |= VERBNETSOURCE;
+		}
 		if (xsources.contains("pb")) //$NON-NLS-1$
+		{
 			this.xmask |= PROPBANKSOURCE;
+		}
 		if (xsources.contains("fn")) //$NON-NLS-1$
+		{
 			this.xmask |= FRAMENETSOURCE;
+		}
 
 		if (xsources.contains("pmvn")) //$NON-NLS-1$
+		{
 			this.xmask |= PMVERBNETSOURCE;
+		}
 		if (xsources.contains("pmpb")) //$NON-NLS-1$
+		{
 			this.xmask |= PMPROPBANKSOURCE;
+		}
 		if (xsources.contains("pmfn")) //$NON-NLS-1$
+		{
 			this.xmask |= PMFRAMENETSOURCE;
+		}
 	}
 
 	@SuppressWarnings("unused")

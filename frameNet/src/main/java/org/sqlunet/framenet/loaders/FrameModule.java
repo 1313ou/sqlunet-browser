@@ -69,7 +69,6 @@ public class FrameModule extends BasicModule
 	 *
 	 * @see org.sqlunet.Module#process()
 	 */
-	@SuppressWarnings("boxing")
 	@Override
 	public void process(final TreeNode node)
 	{
@@ -77,11 +76,13 @@ public class FrameModule extends BasicModule
 		{
 			// data
 			lexunit(this.luid, node, true, false);
-		} else if (this.frameid != null)
+		}
+		else if (this.frameid != null)
 		{
 			// data
 			frame(this.frameid, node);
-		} else
+		}
+		else
 		{
 			node.disable();
 		}

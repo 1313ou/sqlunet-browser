@@ -103,7 +103,8 @@ public class PreparedStatement
 				Log.d(PreparedStatement.TAG + "SQL", Utils.replaceArgs(this.sql, args)); //$NON-NLS-1$
 			}
 			return this.db.rawQuery(this.sql, args);
-		} catch (final Exception e)
+		}
+		catch (final Exception e)
 		{
 			Log.e(PreparedStatement.TAG, this.sql + " " + Utils.argsToString(args), e); //$NON-NLS-1$
 			return null;

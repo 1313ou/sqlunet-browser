@@ -131,7 +131,8 @@ public class XSelectorActivity extends Activity implements XSelectorFragment.Lis
 						verbnetFragment = new VerbNetFragment();
 						verbnetFragment.setArguments(arguments);
 						transaction.replace(R.id.container_verbnet, verbnetFragment);
-					} else if (verbnetFragment != null)
+					}
+					else if (verbnetFragment != null)
 					{
 						transaction.remove(verbnetFragment);
 						verbnetFragment = null;
@@ -144,7 +145,8 @@ public class XSelectorActivity extends Activity implements XSelectorFragment.Lis
 						propbankFragment = new PropbankFragment();
 						propbankFragment.setArguments(arguments);
 						transaction.replace(R.id.container_propbank, propbankFragment);
-					} else if (propbankFragment != null)
+					}
+					else if (propbankFragment != null)
 					{
 						transaction.remove(propbankFragment);
 						propbankFragment = null;
@@ -157,7 +159,8 @@ public class XSelectorActivity extends Activity implements XSelectorFragment.Lis
 						framenetFragment = new FrameNetFragment();
 						framenetFragment.setArguments(arguments);
 						transaction.replace(R.id.container_framenet, framenetFragment);
-					} else if (framenetFragment != null)
+					}
+					else if (framenetFragment != null)
 					{
 						transaction.remove(framenetFragment);
 						framenetFragment = null;
@@ -186,7 +189,8 @@ public class XSelectorActivity extends Activity implements XSelectorFragment.Lis
 					return;
 			}
 			transaction.commit();
-		} else
+		}
+		else
 		{
 			// in single-pane mode, simply start the detail activity for the selected item ID.
 			final Intent intent = new Intent(this, DetailActivity.class);

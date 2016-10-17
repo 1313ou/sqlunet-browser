@@ -54,7 +54,8 @@ public class DocumentFragmentParser
 			factory.setIgnoringElementContentWhitespace(true);
 			factory.setValidating(false);
 			return factory.newDocumentBuilder();
-		} catch (final ParserConfigurationException e)
+		}
+		catch (final ParserConfigurationException e)
 		{
 			// do nothing
 		}
@@ -180,10 +181,12 @@ public class DocumentFragmentParser
 		{
 			final DocumentFragment fragment = parser.parse('<' + tag + '>' + xml + "</" + tag + '>'); //$NON-NLS-1$
 			element.appendChild(document.importNode(fragment, true));
-		} catch (final SAXException e)
+		}
+		catch (final SAXException e)
 		{
 			element.appendChild(document.createTextNode("XML:" + xml + ":" + e.getMessage())); //$NON-NLS-1$ //$NON-NLS-2$
-		} catch (final IOException e)
+		}
+		catch (final IOException e)
 		{
 			// do nothing
 		}

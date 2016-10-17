@@ -31,16 +31,16 @@ public class BasicSynset
 	 * Constructor from data
 	 */
 	/**
-	 * @param thisSynsetId    is the synset id
-	 * @param thisDefinition  is the definition
-	 * @param thisLexDomainId is the lexdomainid
-	 * @param thisSample      is the sample
+	 * @param synsetId    is the synset id
+	 * @param definition  is the definition
+	 * @param lexDomainId is the lexdomainid
+	 * @param sample      is the sample
 	 */
-	protected BasicSynset(final long thisSynsetId, final String thisDefinition, final int thisLexDomainId, final String thisSample)
+	protected BasicSynset(final long synsetId, final String definition, final int lexDomainId, final String sample)
 	{
-		this.synsetId = thisSynsetId;
-		this.definition = thisDefinition;
-		this.lexDomainId = thisLexDomainId;
-		this.sample = thisSample;
+		this.synsetId = synsetId;
+		this.definition = definition;
+		this.lexDomainId = lexDomainId;
+		this.sample = sample;
 	}
 }

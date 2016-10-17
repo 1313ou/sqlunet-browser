@@ -166,7 +166,9 @@ public class VerbNetImplementation implements VerbNetInterface
 		// entry
 		final VnEntry entry = VnEntry.make(connection, targetWord);
 		if (entry == null)
+		{
 			return;
+		}
 
 		// word
 		NodeFactory.makeWordNode(doc, parent, entry.word.lemma, entry.word.id);
@@ -174,7 +176,9 @@ public class VerbNetImplementation implements VerbNetInterface
 		// iterate synsets
 		final List<VnSynset> synsets = entry.synsets;
 		if (synsets == null)
+		{
 			return;
+		}
 
 		int i = 1;
 		long currentId = -1;
@@ -218,7 +222,9 @@ public class VerbNetImplementation implements VerbNetInterface
 		// entry
 		final VnEntry entry = VnEntry.make(connection, targetWord);
 		if (entry == null)
+		{
 			return;
+		}
 
 		// word
 		NodeFactory.makeWordNode(doc, parent, entry.word.lemma, entry.word.id);
@@ -226,7 +232,9 @@ public class VerbNetImplementation implements VerbNetInterface
 		// iterate synsets
 		final List<VnSynset> synsets = entry.synsets;
 		if (synsets == null)
+		{
 			return;
+		}
 
 		int i = 1;
 		long currentId = -1;

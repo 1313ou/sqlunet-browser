@@ -12,7 +12,6 @@ import java.util.List;
  */
 class FnFrameElement
 {
-
 	/**
 	 * FEType
 	 */
@@ -90,40 +89,41 @@ class FnFrameElement
 	/**
 	 * Make sets of FEs from query built from annosetid
 	 *
-	 * @param thisConnection is the database connection
-	 * @param thisFrameId    is the word id to build query from
+	 * @param connection  is the database connection
+	 * @param frameId is the word id to build query from
 	 * @return list of FEs
 	 */
-	public static List<FnFrameElement> make(final SQLiteDatabase thisConnection, final long thisFrameId)
+	public static List<FnFrameElement> make(final SQLiteDatabase connection, final long frameId)
 	{
-		final List<FnFrameElement> thisResult = new ArrayList<>();
-		FnFrameElementQueryCommand thisQuery = null;
+		final List<FnFrameElement> result = new ArrayList<>();
+		FnFrameElementQueryCommand query = null;
 		try
 		{
-			thisQuery = new FnFrameElementQueryCommand(thisConnection, thisFrameId);
-			thisQuery.execute();
+			query = new FnFrameElementQueryCommand(connection, frameId);
+			query.execute();
 
-			while (thisQuery.next())
+			while (query.next())
 			{
-				final long thisFETypeId = thisQuery.getFETypeId();
-				final String thisFEType = thisQuery.getFEType();
-				final long thisFEId = thisQuery.getFEId();
-				final String thisFEDefinition = thisQuery.getFEDefinition();
-				final String thisFEAbbrev = thisQuery.getFEAbbrev();
-				final String thisFECoreType = thisQuery.getFECoreType();
-				final String theseSemTypes = thisQuery.getSemTypes();
-				final boolean isCore = thisQuery.getIsCore();
-				final int thisCoreSet = thisQuery.getCoreSet();
+				final long feTypeId = query.getFETypeId();
+				final String feType = query.getFEType();
+				final long feId = query.getFEId();
+				final String feDefinition = query.getFEDefinition();
+				final String feAbbrev = query.getFEAbbrev();
+				final String feCoreType = query.getFECoreType();
+				final String semTypes = query.getSemTypes();
+				final boolean isCore = query.getIsCore();
+				final int coreSet = query.getCoreSet();
 
-				thisResult.add(new FnFrameElement(thisFEId, thisFETypeId, thisFEType, thisFEDefinition, thisFEAbbrev, thisFECoreType, theseSemTypes, isCore, thisCoreSet));
-			}
-		} finally
-		{
-			if (thisQuery != null)
-			{
-				thisQuery.release();
+				result.add(new FnFrameElement(feId, feTypeId, feType, feDefinition, feAbbrev, feCoreType, semTypes, isCore, coreSet));
 			}
 		}
-		return thisResult;
+		finally
+		{
+			if (query != null)
+			{
+				query.release();
+			}
+		}
+		return result;
 	}
 }

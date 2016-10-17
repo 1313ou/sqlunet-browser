@@ -18,18 +18,18 @@ import org.sqlunet.sql.DBQueryCommand;
 class LinkEnumQueryCommand extends DBQueryCommand
 {
 	/**
-	 * <code>theQuery</code> is the SQL statement
+	 * <code>QUERY</code> is the SQL statement
 	 */
-	private static final String theQuery = SqLiteDialect.LinkEnumQuery;
+	private static final String QUERY = SqLiteDialect.LinkEnumQuery;
 
 	/**
 	 * Constructor
 	 *
-	 * @param thisConnection is the database connection
+	 * @param connection is the database connection
 	 */
-	public LinkEnumQueryCommand(final SQLiteDatabase thisConnection)
+	public LinkEnumQueryCommand(final SQLiteDatabase connection)
 	{
-		super(thisConnection, LinkEnumQueryCommand.theQuery);
+		super(connection, LinkEnumQueryCommand.QUERY);
 	}
 
 	/**

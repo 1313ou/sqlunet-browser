@@ -136,7 +136,9 @@ public class StorageStyle
 	static private void append(final SpannableStringBuilder sb, final CharSequence text, final Object... spans)
 	{
 		if (text == null || text.length() == 0)
+		{
 			return;
+		}
 
 		final int from = sb.length();
 		sb.append(text);
@@ -171,10 +173,14 @@ public class StorageStyle
 	{
 		Drawable drawable;
 		if (Build.VERSION.SDK_INT < Build.VERSION_CODES.N)
-			//noinspection deprecation
+		//noinspection deprecation
+		{
 			drawable = context.getResources().getDrawable(resId);
+		}
 		else
+		{
 			drawable = context.getResources().getDrawable(resId, null);
+		}
 		drawable.setBounds(0, 0, drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight());
 		return new ImageSpan(drawable, DynamicDrawableSpan.ALIGN_BOTTOM);
 	}
@@ -193,12 +199,18 @@ public class StorageStyle
 		for (CandidateStorage candidate : candidates)
 		{
 			if (candidate.status != 0)
+			{
 				continue;
+			}
 			names.add(toStyledString(context, candidate));
 			if (candidate.dir.type == DirType.APP_INTERNAL_POSSIBLY_ADOPTED)
+			{
 				values.add("auto"); //$NON-NLS-1$
+			}
 			else
+			{
 				values.add(candidate.dir.file.getAbsolutePath());
+			}
 		}
 		return new Pair<>(names.toArray(new CharSequence[0]), values.toArray(new CharSequence[0]));
 	}
@@ -262,7 +274,8 @@ public class StorageStyle
 					sb.append(Environment.isExternalStorageEmulated(f) ?
 							"emulated" :
 							"not-emulated"); //$NON-NLS-1$ //$NON-NLS-2$
-				} catch (Throwable e)
+				}
+				catch (Throwable e)
 				{ //
 				}
 				sb.append('\n');
@@ -286,7 +299,8 @@ public class StorageStyle
 					sb.append(Environment.isExternalStorageEmulated(f) ?
 							"emulated" :
 							"not-emulated"); //$NON-NLS-1$ //$NON-NLS-2$
-				} catch (Throwable e)
+				}
+				catch (Throwable e)
 				{ //
 				}
 				sb.append('\n');
@@ -311,7 +325,8 @@ public class StorageStyle
 					sb.append(Environment.isExternalStorageEmulated(f) ?
 							"emulated" :
 							"not-emulated"); //$NON-NLS-1$ //$NON-NLS-2$
-				} catch (Throwable e)
+				}
+				catch (Throwable e)
 				{ //
 				}
 				sb.append('\n');

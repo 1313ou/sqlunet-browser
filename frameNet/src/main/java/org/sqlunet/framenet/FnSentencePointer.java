@@ -35,7 +35,9 @@ public class FnSentencePointer implements Parcelable
 	public Long getSentenceId()
 	{
 		if (this.sentenceid != 0)
+		{
 			return this.sentenceid;
+		}
 		return null;
 	}
 

@@ -150,7 +150,8 @@ public class StatusActivity extends Activity
 			b_pm.setVisibility(existsPm ? View.GONE : View.VISIBLE);
 			b_ts.setVisibility(existsTs ? View.GONE : View.VISIBLE);
 			b_tsfn.setVisibility(existsTsFn ? View.GONE : View.VISIBLE);
-		} else
+		}
+		else
 		{
 			db.setImageResource(R.drawable.ic_fail);
 			b_db.setVisibility(View.VISIBLE);

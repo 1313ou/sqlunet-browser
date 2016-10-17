@@ -265,10 +265,19 @@ class XLoader
 				String xinfo = cursor.isNull(idXInfo) ? null : cursor.getString(idXInfo);
 				String definition = cursor.isNull(idXInfo) ? null : cursor.getString(idDefinition);
 				String sources = cursor.isNull(idSources) ?
-						"" :
-						cursor.getString(idSources); //$NON-NLS-1$
-				Log.i("DUMP", "sources=" + sources + " wordid=" + wordid + " synsetid=" + synsetid + " xid=" + xid + " name=" + xname + " header=" + xheader + " info=" + xinfo + " definition=" + definition); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$ //$NON-NLS-6$ //$NON-NLS-7$ //$NON-NLS-8$ //$NON-NLS-9$
-			} while (cursor.moveToNext());
+						"" : //$NON-NLS-1$
+						cursor.getString(idSources);
+				Log.i("DUMP",
+						"sources=" + sources +  //$NON-NLS-1$
+						" wordid=" + wordid +  //$NON-NLS-1$
+						" synsetid=" + synsetid +  //$NON-NLS-1$
+						" xid=" + xid +  //$NON-NLS-1$
+						" name=" + xname +  //$NON-NLS-1$
+						" header=" + xheader +  //$NON-NLS-1$
+						" info=" + xinfo +  //$NON-NLS-1$
+						" definition=" + definition); //$NON-NLS-1$
+			}
+			while (cursor.moveToNext());
 			cursor.moveToFirst();
 		}
 	}

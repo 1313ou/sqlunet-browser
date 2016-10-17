@@ -51,7 +51,8 @@ public class SettingsActivity extends PreferenceActivity
 				preference.setSummary(index >= 0 ?
 						listPreference.getEntries()[index].toString().trim() :
 						null);
-			} else
+			}
+			else
 			{
 				// For all other preferences, set the summary to the value's simple string representation.
 				final String stringValue = value != null ?
@@ -164,8 +165,11 @@ public class SettingsActivity extends PreferenceActivity
 			entries = new CharSequence[]{"auto"}; //$NON-NLS-1$
 			entryValues = new CharSequence[]{"auto"}; //$NON-NLS-1$
 			defaultValue = "auto"; //$NON-NLS-1$
-		} else
+		}
+		else
+		{
 			defaultValue = entryValues[0];
+		}
 
 		listPref.setEntries(entries);
 		listPref.setDefaultValue(defaultValue);
@@ -291,7 +295,6 @@ public class SettingsActivity extends PreferenceActivity
 	@TargetApi(Build.VERSION_CODES.HONEYCOMB)
 	public static class GeneralPreferenceFragment extends PreferenceFragment
 	{
-		@SuppressWarnings("synthetic-access")
 		@Override
 		public void onCreate(final Bundle savedInstanceState)
 		{
@@ -312,7 +315,6 @@ public class SettingsActivity extends PreferenceActivity
 	@TargetApi(Build.VERSION_CODES.HONEYCOMB)
 	public static class FilterPreferenceFragment extends PreferenceFragment
 	{
-		@SuppressWarnings("synthetic-access")
 		@Override
 		public void onCreate(final Bundle savedInstanceState)
 		{
@@ -329,7 +331,6 @@ public class SettingsActivity extends PreferenceActivity
 	@TargetApi(Build.VERSION_CODES.HONEYCOMB)
 	public static class DatabasePreferenceFragment extends PreferenceFragment
 	{
-		@SuppressWarnings("synthetic-access")
 		@Override
 		public void onCreate(final Bundle savedInstanceState)
 		{
@@ -339,7 +340,8 @@ public class SettingsActivity extends PreferenceActivity
 			try
 			{
 				addPreferencesFromResource(R.xml.pref_database);
-			} catch (Exception ignored)
+			}
+			catch (Exception ignored)
 			{
 			}
 
@@ -358,7 +360,6 @@ public class SettingsActivity extends PreferenceActivity
 	@TargetApi(Build.VERSION_CODES.HONEYCOMB)
 	public static class DownloadPreferenceFragment extends PreferenceFragment
 	{
-		@SuppressWarnings("synthetic-access")
 		@Override
 		public void onCreate(final Bundle savedInstanceState)
 		{

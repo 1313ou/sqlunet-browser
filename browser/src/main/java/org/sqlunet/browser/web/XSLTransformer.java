@@ -24,16 +24,17 @@ class XSLTransformer
 	/**
 	 * Transform Document to HTML
 	 *
-	 * @param thisDoc    doc
+	 * @param doc    doc
 	 * @param isSelector is selector source
 	 * @return html
 	 */
-	static public String docToHtml(final Document thisDoc, final Settings.Source source, final boolean isSelector)
+	static public String docToHtml(final Document doc, final Settings.Source source, final boolean isSelector)
 	{
 		try
 		{
-			return XSLTransformer.docToString(thisDoc, XSLTransformer.getXSLStream(source, isSelector), "html"); //$NON-NLS-1$
-		} catch (final Exception e)
+			return XSLTransformer.docToString(doc, XSLTransformer.getXSLStream(source, isSelector), "html"); //$NON-NLS-1$
+		}
+		catch (final Exception e)
 		{
 			e.printStackTrace();
 			return "error " + e; //$NON-NLS-1$
@@ -43,15 +44,16 @@ class XSLTransformer
 	/**
 	 * Transform Document to XML
 	 *
-	 * @param thisDoc doc
+	 * @param doc doc
 	 * @return xml
 	 */
-	static public String docToXml(final Document thisDoc)
+	static public String docToXml(final Document doc)
 	{
 		try
 		{
-			return XSLTransformer.docToString(thisDoc, null, "xml"); //$NON-NLS-1$
-		} catch (final Exception e)
+			return XSLTransformer.docToString(doc, null, "xml"); //$NON-NLS-1$
+		}
+		catch (final Exception e)
 		{
 			e.printStackTrace();
 			return "error " + e; //$NON-NLS-1$
@@ -104,36 +106,36 @@ class XSLTransformer
 	/**
 	 * Transform Document to XML
 	 *
-	 * @param thisDoc       is the DOM Document to be output as XML
-	 * @param thisXSLStream is the XSL stream
+	 * @param doc       is the DOM Document to be output as XML
+	 * @param xslStream is the XSL stream
 	 * @return XML String that represents DOM document
 	 * @throws TransformerConfigurationException
 	 * @throws TransformerException
 	 */
-	static private String docToString(final Document thisDoc, final InputStream thisXSLStream, final String method) throws TransformerException
+	static private String docToString(final Document doc, final InputStream xslStream, final String method) throws TransformerException
 	{
-		final DOMSource thisSource = new DOMSource(thisDoc);
+		final DOMSource source = new DOMSource(doc);
 
 		// output stream
-		final StringWriter thisOutStream = new StringWriter();
-		final StreamResult thisResultStream = new StreamResult(thisOutStream);
+		final StringWriter outStream = new StringWriter();
+		final StreamResult resultStream = new StreamResult(outStream);
 
 		// style
-		StreamSource thisStyleSource = null;
-		if (thisXSLStream != null)
+		StreamSource styleSource = null;
+		if (xslStream != null)
 		{
-			thisXSLStream.mark(10000);
-			thisStyleSource = new StreamSource(thisXSLStream);
+			xslStream.mark(10000);
+			styleSource = new StreamSource(xslStream);
 		}
 
 		// transform
-		final TransformerFactory thisTransformerFactory = TransformerFactory.newInstance();
-		final Transformer thisTransformer = thisStyleSource == null ?
-				thisTransformerFactory.newTransformer() :
-				thisTransformerFactory.newTransformer(thisStyleSource);
-		thisTransformer.setOutputProperty(javax.xml.transform.OutputKeys.METHOD, method);
-		thisTransformer.transform(thisSource, thisResultStream);
+		final TransformerFactory transformerFactory = TransformerFactory.newInstance();
+		final Transformer transformer = styleSource == null ?
+				transformerFactory.newTransformer() :
+				transformerFactory.newTransformer(styleSource);
+		transformer.setOutputProperty(javax.xml.transform.OutputKeys.METHOD, method);
+		transformer.transform(source, resultStream);
 
-		return thisOutStream.toString();
+		return outStream.toString();
 	}
 }

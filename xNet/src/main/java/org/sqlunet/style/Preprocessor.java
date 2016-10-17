@@ -93,7 +93,9 @@ public class Preprocessor
 	public CharSequence process(final CharSequence input)
 	{
 		if (input == null)
+		{
 			return null;
+		}
 		String string = input.toString();
 		for (final Replacer replacer : this.replacers)
 		{

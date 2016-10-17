@@ -18,29 +18,29 @@ import org.sqlunet.sql.DBQueryCommand;
 class LinkTypesQueryCommand extends DBQueryCommand
 {
 	/**
-	 * <code>theQuery</code> is the SQL statement
+	 * <code>QUERY</code> is the SQL statement
 	 */
-	private static final String theQuery = SqLiteDialect.LinkTypesQuery; // ;
+	private static final String QUERY = SqLiteDialect.LinkTypesQuery; // ;
 
 	/**
 	 * Constructor
 	 *
-	 * @param thisConnection is the database connection
+	 * @param connection is the database connection
 	 */
-	public LinkTypesQueryCommand(final SQLiteDatabase thisConnection)
+	public LinkTypesQueryCommand(final SQLiteDatabase connection)
 	{
-		super(thisConnection, LinkTypesQueryCommand.theQuery);
+		super(connection, LinkTypesQueryCommand.QUERY);
 	}
 
 	/**
 	 * Set word parameter in prepared SQL statement
 	 *
-	 * @param thisWord is the target word
+	 * @param word is the target word
 	 */
-	public void setWord(final String thisWord)
+	public void setWord(final String word)
 	{
-		this.statement.setString(0, thisWord);
-		this.statement.setString(1, thisWord);
+		this.statement.setString(0, word);
+		this.statement.setString(1, word);
 	}
 
 	/**

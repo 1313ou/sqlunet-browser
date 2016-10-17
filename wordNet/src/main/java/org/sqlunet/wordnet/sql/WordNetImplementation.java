@@ -37,7 +37,9 @@ public class WordNetImplementation implements WordNetInterface
 		// word
 		final Word word = Word.make(connection, targetWord);
 		if (word == null)
+		{
 			return;
+		}
 		NodeFactory.makeWordNode(doc, parent, word.lemma, word.id);
 
 		// iterate synsets
@@ -48,7 +50,9 @@ public class WordNetImplementation implements WordNetInterface
 
 		final List<Synset> synsets = word.getSynsets(connection);
 		if (synsets == null)
+		{
 			return;
+		}
 		for (int i = 0; i < synsets.size(); i++)
 		{
 			final Synset synset = synsets.get(i);
@@ -96,7 +100,9 @@ public class WordNetImplementation implements WordNetInterface
 		// word
 		final Word word = Word.make(connection, targetWord);
 		if (word == null)
+		{
 			return;
+		}
 		NodeFactory.makeWordNode(doc, parent, word.lemma, word.id);
 
 		// iterate synsets
@@ -110,7 +116,9 @@ public class WordNetImplementation implements WordNetInterface
 						targetPosType :
 						targetLexDomainType, targetLexDomainType != Mapping.ANYTYPE);
 		if (synsets == null)
+		{
 			return;
+		}
 		for (int i = 0; i < synsets.size(); i++)
 		{
 			final Synset synset = synsets.get(i);
@@ -157,8 +165,14 @@ public class WordNetImplementation implements WordNetInterface
 	 * @param recurse        determines if queries are to follow links recursively
 	 * @param targetLinkType target link type
 	 */
-	@SuppressWarnings("boxing")
-	private static void walkSense(final SQLiteDatabase connection, final long wordId, final Long synsetId, final Document doc, final Node parent, final boolean withLinks, final boolean recurse, @SuppressWarnings("SameParameterValue") final int targetLinkType)
+	private static void walkSense(final SQLiteDatabase connection, //
+			final long wordId,  //
+			final Long synsetId,  //
+			final Document doc, //
+			final Node parent, //
+			final boolean withLinks,//
+			final boolean recurse, //
+			@SuppressWarnings("SameParameterValue") final int targetLinkType)
 	{
 		if (synsetId == null)
 		{
@@ -289,7 +303,9 @@ public class WordNetImplementation implements WordNetInterface
 					synset.getLinks(connection, wordId) :
 					synset.getTypedLinks(connection, wordId, targetLinkType);
 			if (links == null)
+			{
 				return;
+			}
 
 			// iterate links
 			Node linkTypeNode = null;
@@ -341,14 +357,17 @@ public class WordNetImplementation implements WordNetInterface
 			if ((targetLinkType == Mapping.hyponymId || targetLinkType == Mapping.instanceHyponymId) && recurseLevel >= WordNetImplementation.MAX_RECURSE_LEVEL)
 			{
 				NodeFactory.makeMoreLinkNode(doc, parent, link.getLinkName(), recurseLevel);
-			} else
+			}
+			else
 			{
 				// links
 				final List<Link> subLinks = targetLinkType == Mapping.ANYTYPE ?
 						link.getLinks(connection, wordId) :
 						link.getTypedLinks(connection, wordId, targetLinkType);
 				if (subLinks == null)
+				{
 					return;
+				}
 
 				// iterate sublinks
 				Node subLinkTypeNode = null;
@@ -442,7 +461,6 @@ public class WordNetImplementation implements WordNetInterface
 	 * @param recurse    determines if queries are to follow links recursively
 	 * @return WordNet data as a DOM Document <!-- end-user-doc -->
 	 */
-	@SuppressWarnings("boxing")
 	@Override
 	public Document queryDoc(final SQLiteDatabase connection, final long wordId, final Long synsetId, final boolean withLinks, final boolean recurse)
 	{
@@ -496,7 +514,13 @@ public class WordNetImplementation implements WordNetInterface
 
 		// fill document
 		final Node rootNode = org.sqlunet.sql.NodeFactory.makeNode(doc, doc, "wordnet", null); //$NON-NLS-1$
-		org.sqlunet.sql.NodeFactory.makeTargetNode(doc, rootNode, "word", word, "pos", posName, "lexdomain", lexDomainName, "link", linkName, "withlinks", Boolean.toString(withLinks), "recurse", Boolean.toString(recurse)); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$ //$NON-NLS-6$
+		org.sqlunet.sql.NodeFactory.makeTargetNode(doc, rootNode, //
+				"word", word,  //$NON-NLS-1$
+				"pos", posName,  //$NON-NLS-1$
+				"lexdomain", lexDomainName, //$NON-NLS-1$
+				"link", linkName, //$NON-NLS-1$
+				"withlinks", Boolean.toString(withLinks), //$NON-NLS-1$
+				"recurse", Boolean.toString(recurse)); //$NON-NLS-1$
 		WordNetImplementation.walk(connection, word, doc, rootNode, withLinks, recurse, posType, lexDomainType, linkType);
 
 		return doc;

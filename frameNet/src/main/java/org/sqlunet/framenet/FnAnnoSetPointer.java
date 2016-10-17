@@ -34,7 +34,9 @@ public class FnAnnoSetPointer implements Parcelable
 	public Long getAnnoSetId()
 	{
 		if (this.annosetid != 0)
+		{
 			return this.annosetid;
+		}
 		return null;
 	}
 

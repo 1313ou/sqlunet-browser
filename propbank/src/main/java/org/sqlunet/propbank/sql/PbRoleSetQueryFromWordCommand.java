@@ -5,28 +5,27 @@ import android.database.sqlite.SQLiteDatabase;
 import org.sqlunet.sql.DBQueryCommand;
 
 /**
- * PropBank RoleSets query command
+ * PropBank role sets query command from word
  *
  * @author Bernard Bou
  */
 class PbRoleSetQueryFromWordCommand extends DBQueryCommand
 {
 	/**
-	 * <code>theQuery</code> is the SQL statement
+	 * <code>QUERY</code> is the SQL statement
 	 */
-	private static final String theQuery = SqLiteDialect.PropBankRolesetFromWord;
+	private static final String QUERY = SqLiteDialect.PropBankRolesetFromWord;
 
 	/**
 	 * Constructor
 	 *
-	 * @param thisConnection is the database connection
-	 * @param thisWordId     is the target wordid
+	 * @param connection is the database connection
+	 * @param wordId     is the target wordid
 	 */
-	@SuppressWarnings("boxing")
-	public PbRoleSetQueryFromWordCommand(final SQLiteDatabase thisConnection, final String thisWordId)
+	public PbRoleSetQueryFromWordCommand(final SQLiteDatabase connection, final String wordId)
 	{
-		super(thisConnection, PbRoleSetQueryFromWordCommand.theQuery);
-		setParams(thisWordId);
+		super(connection, PbRoleSetQueryFromWordCommand.QUERY);
+		setParams(wordId);
 	}
 
 	/**

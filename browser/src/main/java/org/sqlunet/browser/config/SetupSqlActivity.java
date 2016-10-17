@@ -88,7 +88,6 @@ public class SetupSqlActivity extends SetupBaseActivity
 		// download sql button
 		this.downloadSqlButton.setOnClickListener(new View.OnClickListener()
 		{
-			@SuppressWarnings("synthetic-access")
 			@Override
 			public void onClick(final View v)
 			{
@@ -106,7 +105,6 @@ public class SetupSqlActivity extends SetupBaseActivity
 		// import button
 		this.importButton.setOnClickListener(new View.OnClickListener()
 		{
-			@SuppressWarnings("synthetic-access")
 			@Override
 			public void onClick(final View v)
 			{
@@ -114,7 +112,8 @@ public class SetupSqlActivity extends SetupBaseActivity
 				try
 				{
 					SetupSqlActivity.this.task = new ExecuteManager(StorageSettings.getDatabasePath(getBaseContext()), SetupSqlActivity.this, 1000).executeFromArchive(StorageSettings.getSqlSource(getBaseContext()), StorageSettings.getImportEntry(getBaseContext()));
-				} catch (final Exception e)
+				}
+				catch (final Exception e)
 				{
 					Log.e(TAG, "While importing", e); //$NON-NLS-1$
 				}
@@ -124,7 +123,6 @@ public class SetupSqlActivity extends SetupBaseActivity
 		// index button
 		this.indexButton.setOnClickListener(new View.OnClickListener()
 		{
-			@SuppressWarnings("synthetic-access")
 			@Override
 			public void onClick(final View v)
 			{
@@ -132,7 +130,8 @@ public class SetupSqlActivity extends SetupBaseActivity
 				try
 				{
 					SetupSqlActivity.this.task = new ExecuteManager(StorageSettings.getDatabasePath(getBaseContext()), SetupSqlActivity.this, 1).executeFromArchive(StorageSettings.getSqlSource(getBaseContext()), StorageSettings.getIndexEntry(getBaseContext()));
-				} catch (final Exception e)
+				}
+				catch (final Exception e)
 				{
 					Log.e(TAG, "While indexing", e); //$NON-NLS-1$
 				}
@@ -142,7 +141,6 @@ public class SetupSqlActivity extends SetupBaseActivity
 		// pm button
 		this.pmButton.setOnClickListener(new View.OnClickListener()
 		{
-			@SuppressWarnings("synthetic-access")
 			@Override
 			public void onClick(final View v)
 			{
@@ -150,7 +148,8 @@ public class SetupSqlActivity extends SetupBaseActivity
 				try
 				{
 					SetupSqlActivity.this.task = new ExecuteManager(StorageSettings.getDatabasePath(getBaseContext()), SetupSqlActivity.this, 1).executeFromArchive(StorageSettings.getSqlSource(getBaseContext()), StorageSettings.getPmEntry(getBaseContext()));
-				} catch (final Exception e)
+				}
+				catch (final Exception e)
 				{
 					Log.e(TAG, "While preparing predicatematrix", e); //$NON-NLS-1$
 				}

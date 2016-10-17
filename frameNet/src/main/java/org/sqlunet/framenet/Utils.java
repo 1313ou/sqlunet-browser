@@ -10,7 +10,9 @@ public class Utils
 	static public int posToPosId(final Character c)
 	{
 		if (c == null)
+		{
 			return -1;
+		}
 		switch (c)
 		{
 			case 'n':
@@ -47,7 +49,9 @@ public class Utils
 	public static List<FnLabel> parseLabels(final String labelsString)
 	{
 		if (labelsString == null)
+		{
 			return null;
+		}
 		List<FnLabel> result = null;
 		final String[] labels = labelsString.split("\\|"); //$NON-NLS-1$
 		for (final String label : labels)

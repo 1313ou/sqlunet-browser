@@ -119,7 +119,9 @@ public class ManagementActivity extends Activity
 		}
 
 		if (intent != null)
+		{
 			startActivity(intent);
+		}
 		return true;
 	}
 }

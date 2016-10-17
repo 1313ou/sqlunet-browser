@@ -56,7 +56,6 @@ public class LexUnitModule extends FrameModule
 	 *
 	 * @see org.sqlunet.framenet.browser.FrameModule#process()
 	 */
-	@SuppressWarnings("boxing")
 	@Override
 	public void process(final TreeNode node)
 	{

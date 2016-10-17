@@ -1,20 +1,20 @@
 package org.sqlunet.bnc.browser;
 
-import org.sqlunet.bnc.R;
-import org.sqlunet.bnc.loaders.BasicModule;
-import org.sqlunet.browser.Module;
-import org.sqlunet.provider.SqlUNetContract;
-import org.sqlunet.treeview.renderer.IconTreeRenderer;
-import org.sqlunet.treeview.model.TreeNode;
-import org.sqlunet.treeview.view.TreeView;
-import org.sqlunet.view.TreeFactory;
-
 import android.app.Fragment;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import org.sqlunet.bnc.R;
+import org.sqlunet.bnc.loaders.BasicModule;
+import org.sqlunet.browser.Module;
+import org.sqlunet.provider.SqlUNetContract;
+import org.sqlunet.treeview.model.TreeNode;
+import org.sqlunet.treeview.renderer.IconTreeRenderer;
+import org.sqlunet.treeview.view.TreeView;
+import org.sqlunet.view.TreeFactory;
 
 /**
  * A fragment representing a lexunit.

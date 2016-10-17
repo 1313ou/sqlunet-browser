@@ -54,7 +54,6 @@ public class ClassModule extends BasicModule
 	 * 
 	 * @see org.sqlunet.Module#process()
 	 */
-	@SuppressWarnings("boxing")
 	@Override
 	public void process(final TreeNode node)
 	{
@@ -62,7 +61,8 @@ public class ClassModule extends BasicModule
 		{
 			// data
 			vnclasses(this.classid, node);
-		} else
+		}
+		else
 		{
 			node.disable();
 		}

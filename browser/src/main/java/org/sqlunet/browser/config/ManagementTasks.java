@@ -20,7 +20,8 @@ class ManagementTasks
 		{
 			final SQLiteDatabase db = context.openOrCreateDatabase(databasePath, Context.MODE_PRIVATE, null);
 			db.close();
-		} catch (Exception e)
+		}
+		catch (Exception e)
 		{
 			Log.e(TAG, "While creating database", e); //$NON-NLS-1$
 		}

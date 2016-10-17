@@ -77,7 +77,9 @@ public class ManagerProvider extends SqlUNetProvider
 	public Cursor query(final Uri uri, final String[] projection, final String selection, final String[] selectionArgs, final String sortOrder)
 	{
 		if (this.db == null)
+		{
 			open();
+		}
 
 		// choose the table to query and a sort order based on the code returned for the incoming URI
 		String table;
@@ -107,7 +109,8 @@ public class ManagerProvider extends SqlUNetProvider
 		try
 		{
 			return this.db.query(table, projection, selection, selectionArgs, groupBy, null, sortOrder);
-		} catch (SQLiteException e)
+		}
+		catch (SQLiteException e)
 		{
 			Log.e(TAG, "Manager provider query failed", e); //$NON-NLS-1$
 			return null;
@@ -132,7 +135,8 @@ public class ManagerProvider extends SqlUNetProvider
 				{
 					final String table = cursor.getString(idName);
 					tables.add(table);
-				} while (cursor.moveToNext());
+				}
+				while (cursor.moveToNext());
 			}
 			cursor.close();
 		}

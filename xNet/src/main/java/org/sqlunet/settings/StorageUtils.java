@@ -213,11 +213,17 @@ public class StorageUtils
 		public int compareTo(CandidateStorage another)
 		{
 			if (this.status != another.status)
+			{
 				return this.status == 0 ? -1 : 1;
+			}
 			if (this.free != another.free)
+			{
 				return -Float.compare(this.free, another.free);
+			}
 			if (this.dir.type != another.dir.type)
+			{
 				return DirType.compare(this.dir.type, another.dir.type);
+			}
 
 			return 0;
 		}
@@ -230,7 +236,9 @@ public class StorageUtils
 		public CharSequence status()
 		{
 			if (this.status == 0)
+			{
 				return "Ok"; //$NON-NLS-1$
+			}
 			StringBuilder status = new StringBuilder();
 			boolean first = true;
 			if ((this.status & NULL_DIR) != 0)
@@ -241,28 +249,36 @@ public class StorageUtils
 			if ((this.status & NOT_MOUNTED) != 0)
 			{
 				if (!first)
+				{
 					status.append(" | "); //$NON-NLS-1$
+				}
 				status.append("Is not mounted"); //$NON-NLS-1$
 				first = false;
 			}
 			if ((this.status & NOT_EXISTS) != 0)
 			{
 				if (!first)
+				{
 					status.append(" | "); //$NON-NLS-1$
+				}
 				status.append("Does not exist"); //$NON-NLS-1$
 				first = false;
 			}
 			if ((this.status & NOT_DIR) != 0)
 			{
 				if (!first)
+				{
 					status.append(" | "); //$NON-NLS-1$
+				}
 				status.append("Is not a dir"); //$NON-NLS-1$
 				first = false;
 			}
 			if ((this.status & NOT_WRITABLE) != 0)
 			{
 				if (!first)
+				{
 					status.append(" | "); //$NON-NLS-1$
+				}
 				status.append("Is not writable"); //$NON-NLS-1$
 			}
 			return status;
@@ -312,7 +328,8 @@ public class StorageUtils
 						Log.d(StorageUtils.TAG, "storage state of " + dir + ": " + state); //$NON-NLS-1$ //$NON-NLS-2$
 						status |= CandidateStorage.NOT_MOUNTED;
 					}
-				} catch (final Throwable e)
+				}
+				catch (final Throwable e)
 				{
 					//
 				}
@@ -326,15 +343,21 @@ public class StorageUtils
 		//noinspection ResultOfMethodCallIgnored
 		dir.mkdirs();
 		if (!dir.exists())
+		{
 			status |= CandidateStorage.NOT_EXISTS;
+		}
 
 		// make sure it is a directory
 		if (!dir.isDirectory())
+		{
 			status |= CandidateStorage.NOT_DIR;
+		}
 
 		// make sure it is a directory
 		if (!dir.canWrite())
+		{
 			status |= CandidateStorage.NOT_WRITABLE;
+		}
 
 		return status;
 	}
@@ -397,7 +420,9 @@ public class StorageUtils
 		// A P P - S P E C I F I C - P O S S I B L Y A D O P T E D
 
 		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) //
+		{
 			storages.add(new Directory(context.getFilesDir(), DirType.APP_INTERNAL_POSSIBLY_ADOPTED));
+		}
 
 		// A P P - S P E C I F I C
 
@@ -417,20 +442,23 @@ public class StorageUtils
 				// primary storage
 				storages.add(new Directory(dirs[0], DirType.APP_EXTERNAL_PRIMARY));
 			}
-		} catch (final Throwable e)
+		}
+		catch (final Throwable e)
 		{
 			// application-specific primary external storage
 			try
 			{
 				dir = context.getExternalFilesDir(null);
 				storages.add(new Directory(dir, DirType.APP_EXTERNAL_PRIMARY));
-			} catch (Exception e2)
+			}
+			catch (Exception e2)
 			{
 				try
 				{
 					dir = context.getExternalFilesDir(Storage.SQLUNETDIR);
 					storages.add(new Directory(dir, DirType.APP_EXTERNAL_PRIMARY));
-				} catch (final NoSuchFieldError e3)
+				}
+				catch (final NoSuchFieldError e3)
 				{
 					//
 				}
@@ -444,7 +472,8 @@ public class StorageUtils
 		{
 			dir = Environment.getExternalStoragePublicDirectory(Storage.SQLUNETDIR);
 			storages.add(new Directory(dir, DirType.PUBLIC_EXTERNAL_PRIMARY));
-		} catch (final Throwable e)
+		}
+		catch (final Throwable e)
 		{
 			// top-level public in external
 			try
@@ -455,7 +484,8 @@ public class StorageUtils
 					dir = new File(storage, Storage.SQLUNETDIR);
 					storages.add(new Directory(dir, DirType.PUBLIC_EXTERNAL_PRIMARY));
 				}
-			} catch (final Throwable e2)
+			}
+			catch (final Throwable e2)
 			{
 				//
 			}
@@ -481,7 +511,9 @@ public class StorageUtils
 
 		// internal private storage
 		if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) //
+		{
 			storages.add(new Directory(context.getFilesDir(), DirType.APP_INTERNAL));
+		}
 
 		return storages;
 	}
@@ -501,18 +533,24 @@ public class StorageUtils
 		// primary emulated
 		final File primaryEmulated = discoverPrimaryEmulatedExternalStorage();
 		if (primaryEmulated != null)
+		{
 			dirs.put(StorageType.PRIMARY_EMULATED, new File[]{primaryEmulated});
+		}
 
 		// primary emulated
 		final File physicalEmulated = discoverPrimaryPhysicalExternalStorage();
 		if (physicalEmulated != null)
+		{
 			dirs.put(StorageType.PRIMARY_PHYSICAL, new File[]{physicalEmulated});
+		}
 
 		// S E C O N D A R Y
 
 		final File[] secondaryStorages = discoverSecondaryExternalStorage();
 		if (secondaryStorages != null && secondaryStorages.length > 0)
+		{
 			dirs.put(StorageType.SECONDARY, secondaryStorages);
+		}
 
 		return dirs;
 	}
@@ -530,18 +568,24 @@ public class StorageUtils
 		// all secondary sdcards split into array
 		final File[] secondaries = discoverSecondaryExternalStorage();
 		if (secondaries != null && secondaries.length > 0)
+		{
 			return secondaries[0].getAbsolutePath();
+		}
 
 		// P R I M A R Y
 
 		// primary emulated sdcard
 		final File primaryEmulated = discoverPrimaryEmulatedExternalStorage();
 		if (primaryEmulated != null)
+		{
 			return primaryEmulated.getAbsolutePath();
+		}
 
 		final File primaryPhysical = discoverPrimaryPhysicalExternalStorage();
 		if (primaryPhysical != null)
+		{
 			return primaryPhysical.getAbsolutePath();
+		}
 
 		return null;
 	}
@@ -565,7 +609,8 @@ public class StorageUtils
 			if (userId == null || userId.isEmpty())
 			{
 				return new File(emulatedStorageTarget);
-			} else
+			}
+			else
 			{
 				return new File(emulatedStorageTarget + File.separatorChar + userId);
 			}
@@ -584,7 +629,9 @@ public class StorageUtils
 
 		// device has physical external extStorage; use plain paths.
 		if (externalStorage != null && !externalStorage.isEmpty())
+		{
 			return new File(externalStorage);
+		}
 
 		return null;
 	}
@@ -613,7 +660,9 @@ public class StorageUtils
 			{
 				final File dir = new File(path);
 				if (dir.exists())
+				{
 					dirs.add(dir);
+				}
 			}
 			return dirs.toArray(new File[0]);
 		}
@@ -643,7 +692,8 @@ public class StorageUtils
 			//noinspection ResultOfMethodCallIgnored
 			Integer.valueOf(lastFolder);
 			isDigit = true;
-		} catch (final NumberFormatException ignored)
+		}
+		catch (final NumberFormatException ignored)
 		{
 			//
 		}
@@ -698,7 +748,8 @@ public class StorageUtils
 			final StatFs stat = new StatFs(path);
 			final float bytes = stat.getAvailableBlocksLong() * stat.getBlockSizeLong();
 			return bytes / (1024.f * 1024.f);
-		} catch (Throwable e)
+		}
+		catch (Throwable e)
 		{
 			return Float.NaN;
 		}
@@ -718,7 +769,8 @@ public class StorageUtils
 			final StatFs stat = new StatFs(path);
 			final float bytes = stat.getBlockCountLong() * stat.getBlockSizeLong();
 			return bytes / (1024.f * 1024.f);
-		} catch (Throwable e)
+		}
+		catch (Throwable e)
 		{
 			return Float.NaN;
 		}
@@ -733,11 +785,17 @@ public class StorageUtils
 	static public String mbToString(final float mb)
 	{
 		if (Float.isNaN(mb))
+		{
 			return "[N/A size]"; //$NON-NLS-1$
+		}
 		if (mb > 1000F)
+		{
 			return String.format(Locale.ENGLISH, "%.1f GB", mb / 1024F); //$NON-NLS-1$
+		}
 		else
+		{
 			return String.format(Locale.ENGLISH, "%.1f MB", mb); //$NON-NLS-1$
+		}
 	}
 
 	/**
@@ -755,12 +813,18 @@ public class StorageUtils
 		for (CandidateStorage candidate : candidates)
 		{
 			if (candidate.status != 0)
+			{
 				continue;
+			}
 			names.add(candidate.toShortString());
 			if (candidate.dir.type == DirType.APP_INTERNAL_POSSIBLY_ADOPTED)
+			{
 				values.add("auto"); //$NON-NLS-1$
+			}
 			else
+			{
 				values.add(candidate.dir.file.getAbsolutePath());
+			}
 		}
 		return new Pair<>(names.toArray(new CharSequence[0]), values.toArray(new CharSequence[0]));
 	}
@@ -819,7 +883,8 @@ public class StorageUtils
 					sb.append(Environment.isExternalStorageEmulated(f) ?
 							"emulated" :
 							"not-emulated"); //$NON-NLS-1$ //$NON-NLS-2$
-				} catch (Throwable e)
+				}
+				catch (Throwable e)
 				{ //
 				}
 				sb.append('\n');
@@ -840,7 +905,8 @@ public class StorageUtils
 					sb.append(Environment.isExternalStorageEmulated(f) ?
 							"emulated" :
 							"not-emulated"); //$NON-NLS-1$ //$NON-NLS-2$
-				} catch (Throwable e)
+				}
+				catch (Throwable e)
 				{ //
 				}
 				sb.append('\n');
@@ -861,7 +927,8 @@ public class StorageUtils
 					sb.append(Environment.isExternalStorageEmulated(f) ?
 							"emulated" :
 							"not-emulated"); //$NON-NLS-1$ //$NON-NLS-2$
-				} catch (Throwable e)
+				}
+				catch (Throwable e)
 				{ //
 				}
 				sb.append('\n');

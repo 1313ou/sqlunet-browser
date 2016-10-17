@@ -43,7 +43,6 @@ public class RoleSetFromWordModule extends BasicModule
 	 * 
 	 * @see org.sqlunet.Module#process()
 	 */
-	@SuppressWarnings("boxing")
 	@Override
 	public void process(final TreeNode node)
 	{
@@ -51,7 +50,8 @@ public class RoleSetFromWordModule extends BasicModule
 		{
 			// data
 			rolesets(this.wordid, node);
-		} else
+		}
+		else
 		{
 			node.disable();
 		}

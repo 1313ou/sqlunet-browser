@@ -150,7 +150,6 @@ public class TextSearchActivity extends Activity
 		searchView.setSearchableInfo(searchableInfo);
 		searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener()
 		{
-			@SuppressWarnings("synthetic-access")
 			@Override
 			public boolean onQueryTextSubmit(final String query)
 			{
@@ -195,7 +194,8 @@ public class TextSearchActivity extends Activity
 			// arguments
 			final String query = intent.getStringExtra(SearchManager.QUERY);
 			handleSearch(query);
-		} else if (Intent.ACTION_VIEW.equals(action))
+		}
+		else if (Intent.ACTION_VIEW.equals(action))
 		{
 			final String query = intent.getStringExtra(SearchManager.QUERY);
 
@@ -272,7 +272,9 @@ public class TextSearchActivity extends Activity
 		args.putString(SqlUNetContract.ARG_QUERYARG, query);
 		args.putInt(SqlUNetContract.ARG_QUERYLAYOUT, R.layout.item_table1);
 		if (intent != null)
+		{
 			args.putParcelable(SqlUNetContract.ARG_QUERYINTENT, intent);
+		}
 
 		// for fragment to handle
 		final Fragment fragment = new TableFragment();

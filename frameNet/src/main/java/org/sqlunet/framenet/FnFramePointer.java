@@ -35,7 +35,9 @@ public class FnFramePointer implements Parcelable
 		this();
 		long frameid0 = pc.readLong();
 		if (frameid0 != -1)
+		{
 			this.frameid = frameid0;
+		}
 		this.pos = pc.readString();
 	}
 
@@ -43,15 +45,19 @@ public class FnFramePointer implements Parcelable
 	public Character getPos()
 	{
 		if (this.pos != null && !this.pos.isEmpty())
+		{
 			return this.pos.charAt(0);
+		}
 		return null;
 	}
 
-	@SuppressWarnings({"boxing", "unused"})
+	@SuppressWarnings({"unused"})
 	public Long getFrameId()
 	{
 		if (this.frameid != 0)
+		{
 			return this.frameid;
+		}
 		return null;
 	}
 
@@ -78,7 +84,6 @@ public class FnFramePointer implements Parcelable
 	 * 
 	 * @see android.os.Parcelable#writeToParcel(android.os.Parcel, int)
 	 */
-	@SuppressWarnings("boxing")
 	@Override
 	public void writeToParcel(final Parcel pc, final int flags)
 	{

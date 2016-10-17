@@ -27,13 +27,13 @@ public class VnEntry
 	/**
 	 * FnEntry
 	 *
-	 * @param thisWord     is the word string
-	 * @param theseSynsets is the list of synsets attached to this entry
+	 * @param word     is the word string
+	 * @param synsets is the list of synsets attached to this entry
 	 */
-	private VnEntry(final BasicWord thisWord, final List<VnSynset> theseSynsets)
+	private VnEntry(final BasicWord word, final List<VnSynset> synsets)
 	{
-		this.word = thisWord;
-		this.synsets = theseSynsets;
+		this.word = word;
+		this.synsets = synsets;
 	}
 
 	/**
@@ -70,7 +70,8 @@ public class VnEntry
 			{
 				entry = new VnEntry(new BasicWord(lemma, wordId), synsets);
 			}
-		} finally
+		}
+		finally
 		{
 			if (query != null)
 			{

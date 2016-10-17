@@ -81,7 +81,9 @@ public class PredicateMatrixProvider extends SqlUNetProvider
 	public Cursor query(final Uri uri, final String[] projection, final String selection0, final String[] selectionArgs, final String sortOrder0)
 	{
 		if (this.db == null)
+		{
 			open();
+		}
 
 		// choose the table to query and a sort order based on the code returned for the incoming URI
 		String table;
@@ -133,7 +135,8 @@ public class PredicateMatrixProvider extends SqlUNetProvider
 		try
 		{
 			return this.db.query(table, projection, selection0, selectionArgs, null, null, sortOrder0);
-		} catch (SQLiteException e)
+		}
+		catch (SQLiteException e)
 		{
 			Log.e(TAG, "Propbank provider query failed", e); //$NON-NLS-1$
 			return null;

@@ -219,9 +219,9 @@
         <DIV>
             <IMG class="dataimg" src="images/verbnet/item.png"/>
             <xsl:apply-templates select="cat"/>
-            <xsl:text></xsl:text>
+            <xsl:text/>
             <xsl:apply-templates select="value"/>
-            <xsl:text></xsl:text>
+            <xsl:text/>
             <xsl:apply-templates select="restrs"/>
         </DIV>
     </xsl:template>
@@ -249,7 +249,7 @@
     <xsl:template match="semitem">
         <DIV>
             <IMG class="dataimg" src="images/verbnet/item.png"/>
-            <xsl:text></xsl:text>
+            <xsl:text/>
             <xsl:apply-templates select="rel"/>
             <xsl:text>(</xsl:text>
             <xsl:apply-templates select="arg"/>

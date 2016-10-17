@@ -90,7 +90,9 @@ public class StorageSettings
 		final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
 		String value = sharedPref.getString(StorageSettings.PREF_DOWNLOAD_SITE, null);
 		if (value != null)
+		{
 			return value;
+		}
 
 		// set to default value
 		value = context.getResources().getString(R.string.pref_default_download_site);
@@ -115,7 +117,9 @@ public class StorageSettings
 		final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
 		String value = sharedPref.getString(StorageSettings.PREF_DOWNLOAD_DBFILE, null);
 		if (value != null)
+		{
 			return value;
+		}
 
 		// set to default value
 		value = context.getResources().getString(R.string.pref_default_download_dbfile);
@@ -162,7 +166,9 @@ public class StorageSettings
 		final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
 		String value = sharedPref.getString(StorageSettings.PREF_DOWNLOAD_SQLFILE, null);
 		if (value != null)
+		{
 			return value;
+		}
 
 		// set to default value
 		value = context.getResources().getString(R.string.pref_default_download_sqlfile);
@@ -219,7 +225,9 @@ public class StorageSettings
 		final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
 		String value = sharedPref.getString(StorageSettings.PREF_ENTRY_IMPORT, null);
 		if (value != null)
+		{
 			return value;
+		}
 
 		// set to default value
 		value = context.getResources().getString(R.string.pref_default_entry_import);
@@ -242,7 +250,9 @@ public class StorageSettings
 		final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
 		String value = sharedPref.getString(StorageSettings.PREF_ENTRY_PM, null);
 		if (value != null)
+		{
 			return value;
+		}
 
 		// set to default value
 		value = context.getResources().getString(R.string.pref_default_entry_pm);
@@ -265,7 +275,9 @@ public class StorageSettings
 		final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
 		String value = sharedPref.getString(StorageSettings.PREF_ENTRY_INDEX, null);
 		if (value != null)
+		{
 			return value;
+		}
 
 		// set to default value
 		value = context.getResources().getString(R.string.pref_default_entry_index);

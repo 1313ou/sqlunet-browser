@@ -253,20 +253,23 @@ public class ExpandableListFragment extends Fragment implements OnCreateContextM
 			{
 				this.mProgressContainer.startAnimation(AnimationUtils.loadAnimation(getActivity(), android.R.anim.fade_out));
 				this.mExpandableListContainer.startAnimation(AnimationUtils.loadAnimation(getActivity(), android.R.anim.fade_in));
-			} else
+			}
+			else
 			{
 				this.mProgressContainer.clearAnimation();
 				this.mExpandableListContainer.clearAnimation();
 			}
 			this.mProgressContainer.setVisibility(View.GONE);
 			this.mExpandableListContainer.setVisibility(View.VISIBLE);
-		} else
+		}
+		else
 		{
 			if (animate)
 			{
 				this.mProgressContainer.startAnimation(AnimationUtils.loadAnimation(getActivity(), android.R.anim.fade_in));
 				this.mExpandableListContainer.startAnimation(AnimationUtils.loadAnimation(getActivity(), android.R.anim.fade_out));
-			} else
+			}
+			else
 			{
 				this.mProgressContainer.clearAnimation();
 				this.mExpandableListContainer.clearAnimation();
@@ -319,13 +322,15 @@ public class ExpandableListFragment extends Fragment implements OnCreateContextM
 		if (root instanceof ExpandableListView)
 		{
 			this.mExpandableList = (ExpandableListView) root;
-		} else
+		}
+		else
 		{
 			this.mStandardEmptyView = (TextView) root.findViewById(INTERNAL_EMPTY_ID);
 			if (this.mStandardEmptyView == null)
 			{
 				this.mEmptyView = root.findViewById(android.R.id.empty);
-			} else
+			}
+			else
 			{
 				this.mStandardEmptyView.setVisibility(View.GONE);
 			}
@@ -344,7 +349,8 @@ public class ExpandableListFragment extends Fragment implements OnCreateContextM
 			if (this.mEmptyView != null)
 			{
 				this.mExpandableList.setEmptyView(this.mEmptyView);
-			} else if (this.mEmptyText != null)
+			}
+			else if (this.mEmptyText != null)
 			{
 				this.mStandardEmptyView.setText(this.mEmptyText);
 				this.mExpandableList.setEmptyView(this.mStandardEmptyView);
@@ -364,7 +370,8 @@ public class ExpandableListFragment extends Fragment implements OnCreateContextM
 			ExpandableListAdapter adapter = this.mAdapter;
 			this.mAdapter = null;
 			setListAdapter(adapter);
-		} else
+		}
+		else
 		{
 			// We are starting without an adapter, so assume we won't
 			// have our data right away and start with the progress indicator.

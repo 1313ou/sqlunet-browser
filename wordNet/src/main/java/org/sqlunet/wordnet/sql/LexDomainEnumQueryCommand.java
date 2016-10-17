@@ -18,18 +18,18 @@ import org.sqlunet.sql.DBQueryCommand;
 class LexDomainEnumQueryCommand extends DBQueryCommand
 {
 	/**
-	 * <code>theQuery</code> is the SQL statement
+	 * <code>QUERY</code> is the SQL statement
 	 */
-	private static final String theQuery = SqLiteDialect.LexDomainEnumQuery; // ;
+	private static final String QUERY = SqLiteDialect.LexDomainEnumQuery; // ;
 
 	/**
 	 * Constructor
 	 *
-	 * @param thisConnection is the database connection
+	 * @param connection is the database connection
 	 */
-	public LexDomainEnumQueryCommand(final SQLiteDatabase thisConnection)
+	public LexDomainEnumQueryCommand(final SQLiteDatabase connection)
 	{
-		super(thisConnection, LexDomainEnumQueryCommand.theQuery);
+		super(connection, LexDomainEnumQueryCommand.QUERY);
 	}
 
 	/**

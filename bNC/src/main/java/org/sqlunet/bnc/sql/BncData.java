@@ -1,90 +1,90 @@
 package org.sqlunet.bnc.sql;
 
+import android.database.sqlite.SQLiteDatabase;
+
 import java.util.ArrayList;
 import java.util.List;
 
-import android.database.sqlite.SQLiteDatabase;
-
 public class BncData
 {
-	public String thePos;
+	public String pos;
 
-	public Integer theFreq;
-	public Integer theRange;
-	public Float theDisp;
+	public Integer freq;
+	public Integer range;
+	public Float disp;
 
-	public Integer theConvFreq;
-	public Integer theConvRange;
-	public Float theConvDisp;
+	public Integer convFreq;
+	public Integer convRange;
+	public Float convDisp;
 
-	public Integer theTaskFreq;
-	public Integer theTaskRange;
-	public Float theTaskDisp;
+	public Integer taskFreq;
+	public Integer taskRange;
+	public Float taskDisp;
 
-	public Integer theImagFreq;
-	public Integer theImagRange;
-	public Float theImagDisp;
+	public Integer imagFreq;
+	public Integer imagRange;
+	public Float imagDisp;
 
-	public Integer theInfFreq;
-	public Integer theInfRange;
-	public Float theInfDisp;
+	public Integer infFreq;
+	public Integer infRange;
+	public Float infDisp;
 
-	public Integer theSpokenFreq;
-	public Integer theSpokenRange;
-	public Float theSpokenDisp;
+	public Integer spokenFreq;
+	public Integer spokenRange;
+	public Float spokenDisp;
 
-	public Integer theWrittenFreq;
-	public Integer theWrittenRange;
-	public Float theWrittenDisp;
+	public Integer writtenFreq;
+	public Integer writtenRange;
+	public Float writtenDisp;
 
-	public static List<BncData> makeData(final SQLiteDatabase thisConnection, final String thisTargetWord)
+	public static List<BncData> makeData(final SQLiteDatabase connection, final String targetWord)
 	{
-		final List<BncData> thisResult = new ArrayList<>();
-		BncQueryCommand thisQuery = null;
+		final List<BncData> result = new ArrayList<>();
+		BncQueryCommand query = null;
 		try
 		{
-			thisQuery = new BncQueryCommand(thisConnection, thisTargetWord);
-			thisQuery.execute();
+			query = new BncQueryCommand(connection, targetWord);
+			query.execute();
 
-			while (thisQuery.next())
+			while (query.next())
 			{
-				final BncData thisData = thisQuery.getData();
-				thisResult.add(thisData);
+				final BncData data = query.getData();
+				result.add(data);
 			}
 		}
 		finally
 		{
-			if (thisQuery != null)
+			if (query != null)
 			{
-				thisQuery.release();
+				query.release();
 			}
 		}
-		return thisResult;
+		return result;
 	}
 
 	@SuppressWarnings("boxing")
-	public static List<BncData> makeData(final SQLiteDatabase thisConnection, final long thisTargetWordId, final Character thisTargetPos)
+	public static List<BncData> makeData(final SQLiteDatabase connection, final long targetWordId, final Character targetPos)
 	{
-		final List<BncData> thisResult = new ArrayList<>();
-		BncQueryCommand thisQuery = null;
+		final List<BncData> result = new ArrayList<>();
+		BncQueryCommand query = null;
 		try
 		{
-			thisQuery = new BncQueryCommand(thisConnection, thisTargetWordId, thisTargetPos);
-			thisQuery.execute();
+			query = new BncQueryCommand(connection, targetWordId, targetPos);
+			query.execute();
 
-			while (thisQuery.next())
+			while (query.next())
 			{
-				final BncData thisData = thisQuery.getData();
-				thisResult.add(thisData);
+				final BncData data = query.getData();
+				result.add(data);
 			}
 		}
 		finally
 		{
-			if (thisQuery != null)
+			if (query != null)
 			{
-				thisQuery.release();
+				query.release();
 			}
 		}
-		return thisResult;
+		return result;
 	}
 }

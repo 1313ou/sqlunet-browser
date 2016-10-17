@@ -4,24 +4,29 @@ import android.database.sqlite.SQLiteDatabase;
 
 import org.sqlunet.sql.DBQueryCommand;
 
+/**
+ * FrameNet sentence query command
+ *
+ * @author Bernard Bou
+ */
 class FnSentenceQueryCommand extends DBQueryCommand
 {
 	/**
-	 * <code>theQuery</code> is the SQL statement
+	 * <code>QUERY</code> is the SQL statement
 	 */
-	private static final String theQuery = SqLiteDialect.FrameNetSentenceQuery;
+	private static final String QUERY = SqLiteDialect.FrameNetSentenceQuery;
 
 	/**
 	 * Constructor
 	 *
-	 * @param thisConnection is the database connection
-	 * @param thisSentenceId is the target sentence id
+	 * @param connection is the database connection
+	 * @param sentenceId is the target sentence id
 	 */
 	@SuppressWarnings("boxing")
-	public FnSentenceQueryCommand(final SQLiteDatabase thisConnection, final long thisSentenceId)
+	public FnSentenceQueryCommand(final SQLiteDatabase connection, final long sentenceId)
 	{
-		super(thisConnection, FnSentenceQueryCommand.theQuery);
-		setParams(thisSentenceId);
+		super(connection, FnSentenceQueryCommand.QUERY);
+		setParams(sentenceId);
 	}
 
 	/**

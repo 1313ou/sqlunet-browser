@@ -1,14 +1,14 @@
 package org.sqlunet.bnc.provider;
 
-import org.sqlunet.provider.SqlUNetContract;
-import org.sqlunet.provider.SqlUNetProvider;
-
 import android.content.UriMatcher;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteQueryBuilder;
 import android.net.Uri;
 import android.util.Log;
+
+import org.sqlunet.provider.SqlUNetContract;
+import org.sqlunet.provider.SqlUNetProvider;
 
 /**
  * WordNet provider
@@ -59,18 +59,18 @@ public class BNCProvider extends SqlUNetProvider
 		switch (BNCProvider.uriMatcher.match(uri))
 		{
 
-		// TABLES
+			// TABLES
 
-		case BNC:
-			return SqlUNetContract.VENDOR + ".android.cursor.item/" + SqlUNetContract.VENDOR + '.' + BNCContract.AUTHORITY + '.' + BNCContract.BNCs.TABLE; //$NON-NLS-1$
+			case BNC:
+				return SqlUNetContract.VENDOR + ".android.cursor.item/" + SqlUNetContract.VENDOR + '.' + BNCContract.AUTHORITY + '.' + BNCContract.BNCs.TABLE; //$NON-NLS-1$
 
 			// JOINS
 
-		case WORDS_BNC:
-			return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + BNCContract.AUTHORITY + '.' + BNCContract.Words_BNCs.TABLE; //$NON-NLS-1$
+			case WORDS_BNC:
+				return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + BNCContract.AUTHORITY + '.' + BNCContract.Words_BNCs.TABLE; //$NON-NLS-1$
 
-		default:
-			throw new UnsupportedOperationException("Illegal MIME type"); //$NON-NLS-1$
+			default:
+				throw new UnsupportedOperationException("Illegal MIME type"); //$NON-NLS-1$
 		}
 	}
 
@@ -86,7 +86,9 @@ public class BNCProvider extends SqlUNetProvider
 	public Cursor query(final Uri uri, final String[] projection, final String selection0, final String[] selectionArgs, final String sortOrder)
 	{
 		if (this.db == null)
+		{
 			open();
+		}
 
 		String selection = selection0;
 		// choose the table to query and a sort order based on the code returned for the incoming URI
@@ -98,35 +100,35 @@ public class BNCProvider extends SqlUNetProvider
 		switch (code)
 		{
 
-		// I T E M
-		// the incoming URI was for a single item because this URI was for a single row, the _ID value part is present.
-		// get the last path segment from the URI: this is the _ID value. then, append the value to the WHERE clause for the query
+			// I T E M
+			// the incoming URI was for a single item because this URI was for a single row, the _ID value part is present.
+			// get the last path segment from the URI: this is the _ID value. then, append the value to the WHERE clause for the query
 
-		case BNC:
-			table = BNCContract.BNCs.TABLE;
-			if (selection != null)
-			{
-				selection += " AND "; //$NON-NLS-1$
-			}
-			else
-			{
-				selection = ""; //$NON-NLS-1$
-			}
-			selection += BNCContract.BNCs.POS + " = ?"; //$NON-NLS-1$
-			break;
+			case BNC:
+				table = BNCContract.BNCs.TABLE;
+				if (selection != null)
+				{
+					selection += " AND "; //$NON-NLS-1$
+				}
+				else
+				{
+					selection = ""; //$NON-NLS-1$
+				}
+				selection += BNCContract.BNCs.POS + " = ?"; //$NON-NLS-1$
+				break;
 
-		// J O I N S
+			// J O I N S
 
-		case WORDS_BNC:
-			table = "bncs " + // //$NON-NLS-1$
-					"LEFT JOIN bncspwrs USING (wordid, pos) " + // //$NON-NLS-1$
-					"LEFT JOIN bncconvtasks USING (wordid, pos) " + // //$NON-NLS-1$
-					"LEFT JOIN bncimaginfs USING (wordid, pos) "; //$NON-NLS-1$
-			break;
+			case WORDS_BNC:
+				table = "bncs " + // //$NON-NLS-1$
+						"LEFT JOIN bncspwrs USING (wordid, pos) " + // //$NON-NLS-1$
+						"LEFT JOIN bncconvtasks USING (wordid, pos) " + // //$NON-NLS-1$
+						"LEFT JOIN bncimaginfs USING (wordid, pos) "; //$NON-NLS-1$
+				break;
 
-		default:
-		case UriMatcher.NO_MATCH:
-			throw new RuntimeException("Malformed URI " + uri); //$NON-NLS-1$
+			default:
+			case UriMatcher.NO_MATCH:
+				throw new RuntimeException("Malformed URI " + uri); //$NON-NLS-1$
 		}
 
 		if (SqlUNetProvider.debugSql)

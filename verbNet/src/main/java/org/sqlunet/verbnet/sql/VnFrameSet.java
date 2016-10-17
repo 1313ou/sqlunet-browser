@@ -24,8 +24,7 @@ public class VnFrameSet
 	/**
 	 * Constructor
 	 *
-	 * @param frames
-	 *            is the list of frames
+	 * @param frames is the list of frames
 	 */
 	private VnFrameSet(final List<VnFrame> frames)
 	{
@@ -35,20 +34,16 @@ public class VnFrameSet
 	/**
 	 * Make a verbnet frame set from query built from classid, wordid and synsetid
 	 *
-	 * @param connection
-	 *            is the database connection
-	 * @param classId
-	 *            is the class id to build query from
-	 * @param wordId
-	 *            is the word id to build query from
-	 * @param synsetId
-	 *            is the synset id to build query from (null for any)
+	 * @param connection is the database connection
+	 * @param classId    is the class id to build query from
+	 * @param wordId     is the word id to build query from
+	 * @param synsetId   is the synset id to build query from (null for any)
 	 * @return list of VerbNet frame sets
 	 */
 	static public VnFrameSet make(final SQLiteDatabase connection, final long classId, final long wordId, final Long synsetId)
 	{
 		VnFrameQueryFromSenseCommand query = null;
-		VnFrameSet thisFrameSet = null;
+		VnFrameSet frameSet = null;
 
 		try
 		{
@@ -74,68 +69,68 @@ public class VnFrameSet
 				final VnFrame frame = new VnFrame(number, xTag, description1, description2, syntax, semantics, examples);
 
 				// allocate
-				if (thisFrameSet == null)
+				if (frameSet == null)
 				{
-					thisFrameSet = new VnFrameSet(new ArrayList<VnFrame>());
+					frameSet = new VnFrameSet(new ArrayList<VnFrame>());
 				}
 
 				// if same class, add role to frame set
-				thisFrameSet.frames.add(frame);
+				frameSet.frames.add(frame);
 			}
-		} finally
+		}
+		finally
 		{
 			if (query != null)
 			{
 				query.release();
 			}
 		}
-		return thisFrameSet;
+		return frameSet;
 	}
 
 	public static VnFrameSet make(final SQLiteDatabase connection, final long classId)
 	{
-		VnFrameQueryCommand thisQuery = null;
-		VnFrameSet thisFrameSet = null;
+		VnFrameQueryCommand query = null;
+		VnFrameSet frameSet = null;
 
 		try
 		{
-			thisQuery = new VnFrameQueryCommand(connection, classId);
-			thisQuery.execute();
+			query = new VnFrameQueryCommand(connection, classId);
+			query.execute();
 
-			while (thisQuery.next())
+			while (query.next())
 			{
 				// data from resultset
-				// final long thisFrameId = thisQuery.getFrameId();
-				final String thisNumber = thisQuery.getNumber();
-				final String thisXTag = thisQuery.getXTag();
-				final String thisDescription1 = thisQuery.getDescription1();
-				final String thisDescription2 = thisQuery.getDescription2();
-				final String thisSyntax = thisQuery.getSyntax();
-
-				final String thisSemantics = thisQuery.getSemantics();
-
-				final String thisExampleConcat = thisQuery.getExamples();
-				final String[] theseExamples = thisExampleConcat.split("\\|"); //$NON-NLS-1$
+				// final long frameId = query.getFrameId();
+				final String number = query.getNumber();
+				final String xTag = query.getXTag();
+				final String description1 = query.getDescription1();
+				final String description2 = query.getDescription2();
+				final String syntax = query.getSyntax();
+				final String semantics = query.getSemantics();
+				final String exampleConcat = query.getExamples();
+				final String[] examples = exampleConcat.split("\\|"); //$NON-NLS-1$
 
 				// frame
-				final VnFrame thisFrame = new VnFrame(thisNumber, thisXTag, thisDescription1, thisDescription2, thisSyntax, thisSemantics, theseExamples);
+				final VnFrame frame = new VnFrame(number, xTag, description1, description2, syntax, semantics, examples);
 
 				// allocate
-				if (thisFrameSet == null)
+				if (frameSet == null)
 				{
-					thisFrameSet = new VnFrameSet(new ArrayList<VnFrame>());
+					frameSet = new VnFrameSet(new ArrayList<VnFrame>());
 				}
 
 				// if same class, add role to frame set
-				thisFrameSet.frames.add(thisFrame);
-			}
-		} finally
-		{
-			if (thisQuery != null)
-			{
-				thisQuery.release();
+				frameSet.frames.add(frame);
 			}
 		}
-		return thisFrameSet;
+		finally
+		{
+			if (query != null)
+			{
+				query.release();
+			}
+		}
+		return frameSet;
 	}
 }

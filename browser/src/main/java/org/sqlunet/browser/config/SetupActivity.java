@@ -17,7 +17,6 @@ public class SetupActivity extends SetupBaseActivity
 	// download db button
 	private Button downloadDbButton;
 
-	@SuppressWarnings("boxing")
 	@Override
 	protected void onCreate(final Bundle savedInstanceState)
 	{
@@ -40,7 +39,6 @@ public class SetupActivity extends SetupBaseActivity
 		this.downloadDbButton = (Button) findViewById(R.id.downloadDb);
 		this.downloadDbButton.setOnClickListener(new View.OnClickListener()
 		{
-			@SuppressWarnings("synthetic-access")
 			@Override
 			public void onClick(final View v)
 			{

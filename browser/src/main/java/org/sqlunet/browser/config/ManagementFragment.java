@@ -101,7 +101,6 @@ public class ManagementFragment extends Fragment implements Listener
 		ImageButton run = (ImageButton) rootView.findViewById(R.id.management_run);
 		run.setOnClickListener(new OnClickListener()
 		{
-			@SuppressWarnings("synthetic-access")
 			@Override
 			public void onClick(final View v)
 			{

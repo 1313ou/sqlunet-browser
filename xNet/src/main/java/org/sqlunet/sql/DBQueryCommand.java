@@ -75,7 +75,6 @@ public class DBQueryCommand
 	 *
 	 * @param params the parameters
 	 */
-	@SuppressWarnings("boxing")
 	protected void setParams(final Object... params)
 	{
 		int i = 0;

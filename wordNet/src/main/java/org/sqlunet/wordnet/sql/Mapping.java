@@ -82,8 +82,8 @@ class LexDomainDef
 	 */
 	private String getLexDomainName(final String string)
 	{
-		final int thisIndex = string.indexOf('.');
-		return thisIndex == -1 ? string : string.substring(thisIndex + 1);
+		final int index = string.indexOf('.');
+		return index == -1 ? string : string.substring(index + 1);
 	}
 }
 
@@ -141,24 +141,24 @@ class LinkDef
 class Mapping
 {
 	/**
-	 * <code>theLexDomains</code> is an array of lexdomains
+	 * <code>lexDomains</code> is an array of lexdomains
 	 */
-	static private List<LexDomainDef> theLexDomains = null;
+	static private List<LexDomainDef> lexDomains = null;
 
 	/**
-	 * <code>theLexDomains</code> is map of lexdomains by name
+	 * <code>lexDomains</code> is map of lexdomains by name
 	 */
-	static private Map<String, LexDomainDef> theLexDomainsByName = null;
+	static private Map<String, LexDomainDef> lexDomainsByName = null;
 
 	/**
-	 * <code>theLinks</code> is links mapped by id
+	 * <code>linksById</code> is links mapped by id
 	 */
-	static private SparseArray<LinkDef> theLinksById = null;
+	static private SparseArray<LinkDef> linksById = null;
 
 	/**
-	 * <code>theLinksByName</code> is links mapped by name
+	 * <code>linksByName</code> is links mapped by name
 	 */
-	static private Map<String, LinkDef> theLinksByName = null;
+	static private Map<String, LinkDef> linksByName = null;
 
 	/**
 	 * <code>topsId</code> is a constant for Tops lexdomain id
@@ -188,37 +188,39 @@ class Mapping
 	/**
 	 * Read lexdomain mappings from database
 	 *
-	 * @param thisConnection is the database connection
+	 * @param connection is the database connection
 	 */
-	static public void initLexDomains(final SQLiteDatabase thisConnection)
+	static public void initLexDomains(final SQLiteDatabase connection)
 	{
 		// lexdomain
-		LexDomainEnumQueryCommand thisLexDomainQuery = null;
-		Mapping.theLexDomains = new ArrayList<>();
-		Mapping.theLexDomainsByName = new HashMap<>();
+		LexDomainEnumQueryCommand query = null;
+		Mapping.lexDomains = new ArrayList<>();
+		Mapping.lexDomainsByName = new HashMap<>();
 		try
 		{
-			thisLexDomainQuery = new LexDomainEnumQueryCommand(thisConnection);
-			thisLexDomainQuery.execute();
+			query = new LexDomainEnumQueryCommand(connection);
+			query.execute();
 
-			while (thisLexDomainQuery.next())
+			while (query.next())
 			{
-				final int thisId = thisLexDomainQuery.getId();
-				final int thisPos = thisLexDomainQuery.getPos();
-				final String thisName = thisLexDomainQuery.getPosLexDomainName().replace(' ', '.');
-				final LexDomainDef thisLexDomain = new LexDomainDef(thisId, thisPos, thisName);
-				Mapping.theLexDomains.add(thisLexDomain);
-				Mapping.theLexDomainsByName.put(thisName, thisLexDomain);
+				final int id = query.getId();
+				final int pos = query.getPos();
+				final String name = query.getPosLexDomainName().replace(' ', '.');
+				final LexDomainDef lexDomain = new LexDomainDef(id, pos, name);
+				Mapping.lexDomains.add(lexDomain);
+				Mapping.lexDomainsByName.put(name, lexDomain);
 			}
-		} catch (final SQLException e)
+		}
+		catch (final SQLException e)
 		{
 			e.printStackTrace();
 			throw new RuntimeException(e);
-		} finally
+		}
+		finally
 		{
-			if (thisLexDomainQuery != null)
+			if (query != null)
 			{
-				thisLexDomainQuery.release();
+				query.release();
 			}
 		}
 	}
@@ -226,38 +228,39 @@ class Mapping
 	/**
 	 * Read link mappings from database
 	 *
-	 * @param thisConnection is the database connection
+	 * @param connection is the database connection
 	 */
-	@SuppressWarnings("boxing")
 	@SuppressLint("DefaultLocale")
-	static public void initLinks(final SQLiteDatabase thisConnection)
+	static public void initLinks(final SQLiteDatabase connection)
 	{
-		LinkEnumQueryCommand thisLinksQuery = null;
-		Mapping.theLinksById = new SparseArray<>();
-		Mapping.theLinksByName = new HashMap<>();
+		LinkEnumQueryCommand query = null;
+		Mapping.linksById = new SparseArray<>();
+		Mapping.linksByName = new HashMap<>();
 		try
 		{
-			thisLinksQuery = new LinkEnumQueryCommand(thisConnection);
-			thisLinksQuery.execute();
+			query = new LinkEnumQueryCommand(connection);
+			query.execute();
 
-			while (thisLinksQuery.next())
+			while (query.next())
 			{
-				final int thisId = thisLinksQuery.getId();
-				final String thisName = thisLinksQuery.getName().replace(' ', '_').toLowerCase(Locale.US);
-				final boolean recurses = thisLinksQuery.getRecurse();
-				final LinkDef thisLinkDef = new LinkDef(thisId, thisName, recurses);
-				Mapping.theLinksById.put(thisId, thisLinkDef);
-				Mapping.theLinksByName.put(thisName, thisLinkDef);
+				final int id = query.getId();
+				final String name = query.getName().replace(' ', '_').toLowerCase(Locale.US);
+				final boolean recurses = query.getRecurse();
+				final LinkDef linkDef = new LinkDef(id, name, recurses);
+				Mapping.linksById.put(id, linkDef);
+				Mapping.linksByName.put(name, linkDef);
 			}
-		} catch (final SQLException e)
+		}
+		catch (final SQLException e)
 		{
 			e.printStackTrace();
 			throw new RuntimeException(e);
-		} finally
+		}
+		finally
 		{
-			if (thisLinksQuery != null)
+			if (query != null)
 			{
-				thisLinksQuery.release();
+				query.release();
 			}
 		}
 	}
@@ -281,8 +284,8 @@ class Mapping
 	 */
 	static public String[] getLexDomainNames()
 	{
-		final Set<String> thisNameSet = Mapping.theLexDomainsByName.keySet();
-		return thisNameSet.toArray(new String[thisNameSet.size()]);
+		final Set<String> nameSet = Mapping.lexDomainsByName.keySet();
+		return nameSet.toArray(new String[nameSet.size()]);
 	}
 
 	/**
@@ -292,8 +295,8 @@ class Mapping
 	 */
 	static public String[] getLinkNames()
 	{
-		final Set<String> thisNameSet = Mapping.theLinksByName.keySet();
-		return thisNameSet.toArray(new String[thisNameSet.size()]);
+		final Set<String> nameSet = Mapping.linksByName.keySet();
+		return nameSet.toArray(new String[nameSet.size()]);
 	}
 
 	// pos and lexdomain
@@ -301,56 +304,61 @@ class Mapping
 	/**
 	 * Find part-of-speech name from lexdomain id
 	 *
-	 * @param thisLexDomainId is the lexdomain id
+	 * @param lexDomainId is the lexdomain id
 	 * @return part-of-speech name
 	 */
-	static public String getPosName(final int thisLexDomainId)
+	static public String getPosName(final int lexDomainId)
 	{
 		try
 		{
-			final LexDomainDef thisLexDomain = Mapping.theLexDomains.get(thisLexDomainId);
-			return thisLexDomain.posName;
-		} catch (final IndexOutOfBoundsException e)
+			final LexDomainDef lexDomain = Mapping.lexDomains.get(lexDomainId);
+			return lexDomain.posName;
+		}
+		catch (final IndexOutOfBoundsException e)
 		{
-			return "lexdomainid." + Integer.toString(thisLexDomainId); //$NON-NLS-1$
+			return "lexdomainid." + Integer.toString(lexDomainId); //$NON-NLS-1$
 		}
 	}
 
 	/**
 	 * Find lexdomain name from lexdomain id
 	 *
-	 * @param thisLexDomainId is the lexdomain id
+	 * @param lexDomainId is the lexdomain id
 	 * @return lexdomain name or "lexdomainid.xxx" if not found
 	 */
-	static public String getLexDomainName(final int thisLexDomainId)
+	static public String getLexDomainName(final int lexDomainId)
 	{
 		try
 		{
-			final LexDomainDef thisLexDomain = Mapping.theLexDomains.get(thisLexDomainId);
-			return thisLexDomain.lexDomainName;
-		} catch (final IndexOutOfBoundsException e)
+			final LexDomainDef lexDomain = Mapping.lexDomains.get(lexDomainId);
+			return lexDomain.lexDomainName;
+		}
+		catch (final IndexOutOfBoundsException e)
 		{
-			return "lexdomainid." + Integer.toString(thisLexDomainId); //$NON-NLS-1$
+			return "lexdomainid." + Integer.toString(lexDomainId); //$NON-NLS-1$
 		}
 	}
 
 	/**
 	 * Find lexdomain id from part-of-speech name and lexdomain name
 	 *
-	 * @param thisPosName       is the target part-of-speech name
-	 * @param thisLexDomainName is the target lexdomain name
+	 * @param posName       is the target part-of-speech name
+	 * @param lexDomainName is the target lexdomain name
 	 * @return lexdomain id or -1 if not found
 	 */
-	static public int getLexDomainId(final String thisPosName, final String thisLexDomainName)
+	static public int getLexDomainId(final String posName, final String lexDomainName)
 	{
-		if (thisPosName == null || thisLexDomainName == null)
+		if (posName == null || lexDomainName == null)
+		{
 			return Mapping.ANYTYPE;
-		final String thisString = thisPosName + '.' + thisLexDomainName;
+		}
+		final String fullName = posName + '.' + lexDomainName;
 		try
 		{
-			final LexDomainDef thisLexDomain = Mapping.theLexDomainsByName.get(thisString);
-			return thisLexDomain.id;
-		} catch (final NullPointerException e)
+			final LexDomainDef lexDomain = Mapping.lexDomainsByName.get(fullName);
+			return lexDomain.id;
+		}
+		catch (final NullPointerException e)
 		{
 			return Mapping.ANYTYPE;
 		}
@@ -359,15 +367,17 @@ class Mapping
 	/**
 	 * Find part-of-speech id (n,v,a,r) from part-of-speech name
 	 *
-	 * @param thisPosName is the target part-of-speech name
+	 * @param posName is the target part-of-speech name
 	 * @return part-of-speech id or ANYTYPE if not found
 	 */
-	static public int getPosId(final String thisPosName)
+	static public int getPosId(final String posName)
 	{
-		if (thisPosName == null)
+		if (posName == null)
+		{
 			return Mapping.ANYTYPE;
+		}
 
-		switch (thisPosName)
+		switch (posName)
 		{
 			case "noun":
 				//$NON-NLS-1$
@@ -390,38 +400,41 @@ class Mapping
 	/**
 	 * Find link name from link id
 	 *
-	 * @param thisLinkType is the target link id
+	 * @param linkType is the target link id
 	 * @return link name or "linktype.xxx" if not found
 	 */
-	@SuppressWarnings("boxing")
-	static public String getLinkName(final int thisLinkType)
+	static public String getLinkName(final int linkType)
 	{
 		try
 		{
-			final LinkDef thisLinkDef = Mapping.theLinksById.get(thisLinkType);
-			return thisLinkDef.name;
-		} catch (final NullPointerException e)
+			final LinkDef linkDef = Mapping.linksById.get(linkType);
+			return linkDef.name;
+		}
+		catch (final NullPointerException e)
 		{
-			return "linktype." + Integer.toString(thisLinkType); //$NON-NLS-1$
+			return "linktype." + Integer.toString(linkType); //$NON-NLS-1$
 		}
 	}
 
 	/**
 	 * Find link id from link name
 	 *
-	 * @param thisLinkName is the target link name
+	 * @param linkName is the target link name
 	 * @return link id or ANYTYPE if it is not found
 	 */
-	static public int getLinkType(final String thisLinkName)
+	static public int getLinkType(final String linkName)
 	{
-		if (thisLinkName == null)
+		if (linkName == null)
+		{
 			return Mapping.ANYTYPE;
+		}
 
 		try
 		{
-			final LinkDef thisLinkDef = Mapping.theLinksByName.get(thisLinkName);
-			return thisLinkDef.id;
-		} catch (final NullPointerException e)
+			final LinkDef linkDef = Mapping.linksByName.get(linkName);
+			return linkDef.id;
+		}
+		catch (final NullPointerException e)
 		{
 			return Mapping.ANYTYPE;
 		}
@@ -430,20 +443,21 @@ class Mapping
 	/**
 	 * Determine if this link can recurse
 	 *
-	 * @param thisLinkType is the target link id
+	 * @param linkType is the target link id
 	 * @return whether this link type can recurse
 	 */
-	@SuppressWarnings("boxing")
-	static public boolean canRecurse(final int thisLinkType)
+	static public boolean canRecurse(final int linkType)
 	{
 		try
 		{
-			final LinkDef thisLinkDef = Mapping.theLinksById.get(thisLinkType);
-			return thisLinkDef.recurses;
-		} catch (final IndexOutOfBoundsException e)
+			final LinkDef linkDef = Mapping.linksById.get(linkType);
+			return linkDef.recurses;
+		}
+		catch (final IndexOutOfBoundsException e)
 		{
 			return false;
-		} catch (final NullPointerException e)
+		}
+		catch (final NullPointerException e)
 		{
 			return false;
 		}

@@ -5,6 +5,11 @@ import android.database.sqlite.SQLiteDatabase;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Layer
+ *
+ * @author Bernard Bou
+ */
 class FnLayer
 {
 	public final long layerId;
@@ -15,74 +20,76 @@ class FnLayer
 
 	public final List<FnLabel> labels;
 
-	private FnLayer(final long thisLayerId, final String thisLayerType, final int thisRank, final List<FnLabel> theseLabels)
+	private FnLayer(final long layerId, final String layerType, final int rank, final List<FnLabel> labels)
 	{
 		super();
-		this.layerId = thisLayerId;
-		this.layerType = thisLayerType;
-		this.rank = thisRank;
-		this.labels = theseLabels;
+		this.layerId = layerId;
+		this.layerType = layerType;
+		this.rank = rank;
+		this.labels = labels;
 	}
 
-	public static List<FnLayer> makeFromAnnoSet(final SQLiteDatabase thisConnection, final long thisAnnoSetId)
+	public static List<FnLayer> makeFromAnnoSet(final SQLiteDatabase connection, final long annoSetId)
 	{
-		List<FnLayer> thisResult = null;
-		FnLayerQueryFromAnnoSetCommand thisQuery = null;
+		List<FnLayer> result = null;
+		FnLayerQueryFromAnnoSetCommand query = null;
 		try
 		{
-			thisQuery = new FnLayerQueryFromAnnoSetCommand(thisConnection, thisAnnoSetId);
-			thisQuery.execute();
+			query = new FnLayerQueryFromAnnoSetCommand(connection, annoSetId);
+			query.execute();
 
-			while (thisQuery.next())
+			while (query.next())
 			{
-				final long thisLayerId = thisQuery.getLayerId();
-				final String thisLayerType = thisQuery.getLayerType();
-				final int thisRank = thisQuery.getRank();
-				final List<FnLabel> theseLabels = thisQuery.getLabels();
-				if (thisResult == null)
+				final long layerId = query.getLayerId();
+				final String layerType = query.getLayerType();
+				final int rank = query.getRank();
+				final List<FnLabel> labels = query.getLabels();
+				if (result == null)
 				{
-					thisResult = new ArrayList<>();
+					result = new ArrayList<>();
 				}
-				thisResult.add(new FnLayer(thisLayerId, thisLayerType, thisRank, theseLabels));
-			}
-		} finally
-		{
-			if (thisQuery != null)
-			{
-				thisQuery.release();
+				result.add(new FnLayer(layerId, layerType, rank, labels));
 			}
 		}
-		return thisResult;
+		finally
+		{
+			if (query != null)
+			{
+				query.release();
+			}
+		}
+		return result;
 	}
 
-	public static List<FnLayer> makeFromSentence(final SQLiteDatabase thisConnection, final long thisSentenceId)
+	public static List<FnLayer> makeFromSentence(final SQLiteDatabase connection, final long sentenceId)
 	{
-		List<FnLayer> thisResult = null;
-		FnLayerQueryFromSentenceCommand thisQuery = null;
+		List<FnLayer> result = null;
+		FnLayerQueryFromSentenceCommand query = null;
 		try
 		{
-			thisQuery = new FnLayerQueryFromSentenceCommand(thisConnection, thisSentenceId);
-			thisQuery.execute();
+			query = new FnLayerQueryFromSentenceCommand(connection, sentenceId);
+			query.execute();
 
-			while (thisQuery.next())
+			while (query.next())
 			{
-				final long thisLayerId = thisQuery.getLayerId();
-				final String thisLayerType = thisQuery.getLayerType();
-				final int thisRank = thisQuery.getRank();
-				final List<FnLabel> theseLabels = thisQuery.getLabels();
-				if (thisResult == null)
+				final long layerId = query.getLayerId();
+				final String layerType = query.getLayerType();
+				final int rank = query.getRank();
+				final List<FnLabel> labels = query.getLabels();
+				if (result == null)
 				{
-					thisResult = new ArrayList<>();
+					result = new ArrayList<>();
 				}
-				thisResult.add(new FnLayer(thisLayerId, thisLayerType, thisRank, theseLabels));
-			}
-		} finally
-		{
-			if (thisQuery != null)
-			{
-				thisQuery.release();
+				result.add(new FnLayer(layerId, layerType, rank, labels));
 			}
 		}
-		return thisResult;
+		finally
+		{
+			if (query != null)
+			{
+				query.release();
+			}
+		}
+		return result;
 	}
 }

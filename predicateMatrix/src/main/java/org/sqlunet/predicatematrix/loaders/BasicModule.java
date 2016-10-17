@@ -180,11 +180,17 @@ abstract class BasicModule extends Module
 		public int compareTo(final PmRole another)
 		{
 			if (pmpos.charAt(0) != another.pmpos.charAt(0))
+			{
 				return pmpos.charAt(0) > another.pmpos.charAt(0) ? 1 : -1;
+			}
 			if (pmpredid != another.pmpredid)
+			{
 				return pmpredid > another.pmpredid ? 1 : -1;
+			}
 			if (pmroleid != another.pmroleid)
+			{
 				return pmroleid > another.pmroleid ? 1 : -1;
+			}
 			return 0;
 		}
 
@@ -192,7 +198,9 @@ abstract class BasicModule extends Module
 		public boolean equals(Object another)
 		{
 			if (!(another instanceof PmRole))
+			{
 				return false;
+			}
 			final PmRole pmdata2 = (PmRole) another;
 			return this.pmpos.charAt(0) == pmdata2.pmpos.charAt(0) && this.pmroleid == pmdata2.pmroleid && this.pmpredid == pmdata2.pmpredid;
 		}
@@ -270,7 +278,9 @@ abstract class BasicModule extends Module
 		public int compareTo(final WnData another)
 		{
 			if (synsetid != another.synsetid)
+			{
 				return synsetid > another.synsetid ? 1 : -1;
+			}
 			return 0;
 		}
 
@@ -278,7 +288,9 @@ abstract class BasicModule extends Module
 		public boolean equals(Object another)
 		{
 			if (!(another instanceof WnData))
+			{
 				return false;
+			}
 			final WnData wndata2 = (WnData) another;
 			return this.synsetid == wndata2.synsetid;
 		}
@@ -320,9 +332,13 @@ abstract class BasicModule extends Module
 		public int compareTo(final VnData another)
 		{
 			if (vnclassid != another.vnclassid)
+			{
 				return vnclassid > another.vnclassid ? 1 : -1;
+			}
 			if (vnroleid != another.vnroleid)
+			{
 				return vnroleid > another.vnroleid ? 1 : -1;
+			}
 			return 0;
 		}
 
@@ -330,7 +346,9 @@ abstract class BasicModule extends Module
 		public boolean equals(Object another)
 		{
 			if (!(another instanceof VnData))
+			{
 				return false;
+			}
 			final VnData vndata2 = (VnData) another;
 			return this.vnclassid == vndata2.vnclassid && this.vnroleid == vndata2.vnroleid;
 		}
@@ -381,9 +399,13 @@ abstract class BasicModule extends Module
 		public int compareTo(final PbData another)
 		{
 			if (pbrolesetid != another.pbrolesetid)
+			{
 				return pbrolesetid > another.pbrolesetid ? 1 : -1;
+			}
 			if (pbroleid != another.pbroleid)
+			{
 				return pbroleid > another.pbroleid ? 1 : -1;
+			}
 			return 0;
 		}
 
@@ -391,7 +413,9 @@ abstract class BasicModule extends Module
 		public boolean equals(Object another)
 		{
 			if (!(another instanceof PbData))
+			{
 				return false;
+			}
 			final PbData pbdata2 = (PbData) another;
 			return this.pbrolesetid == pbdata2.pbrolesetid && this.pbroleid == pbdata2.pbroleid;
 		}
@@ -437,9 +461,13 @@ abstract class BasicModule extends Module
 		public int compareTo(final FnData another)
 		{
 			if (fnframeid != another.fnframeid)
+			{
 				return fnframeid > another.fnframeid ? 1 : -1;
+			}
 			if (fnfeid != another.fnfeid)
+			{
 				return fnfeid > another.fnfeid ? 1 : -1;
+			}
 			return 0;
 		}
 
@@ -447,7 +475,9 @@ abstract class BasicModule extends Module
 		public boolean equals(Object another)
 		{
 			if (!(another instanceof FnData))
+			{
 				return false;
+			}
 			final FnData fndata2 = (FnData) another;
 			return this.fnframeid == fndata2.fnframeid && this.fnfeid == fndata2.fnfeid;
 		}
@@ -616,7 +646,8 @@ abstract class BasicModule extends Module
 
 					// process
 					process(this.parent, wnData, pmRole, vnData, pbData, fnData);
-				} while (cursor.moveToNext());
+				}
+				while (cursor.moveToNext());
 
 				endProcess(this.parent);
 
@@ -743,26 +774,32 @@ abstract class BasicModule extends Module
 				final Set<FnData> fnDatas = fnMap.get(pmroleid);
 				final TreeNode pmroleNode = displayer.displayPmRole(this.parent, pmRole);
 				if (vnDatas != null)
+				{
 					for (VnData vnData : vnDatas)
 					{
 						final Set<WnData> wnData = wnMap.get(vnData);
 						final TreeNode vnNode = displayer.makeVnNode(vnData, wnData.toArray(new WnData[0]));
 						pmroleNode.addChild(vnNode);
 					}
+				}
 				if (pbDatas != null)
+				{
 					for (PbData pbData : pbDatas)
 					{
 						final Set<WnData> wnData = wnMap.get(pbData);
 						final TreeNode pbNode = displayer.makePbNode(pbData, wnData.toArray(new WnData[0]));
 						pmroleNode.addChild(pbNode);
 					}
+				}
 				if (fnDatas != null)
+				{
 					for (FnData fnData : fnDatas)
 					{
 						final Set<WnData> wnData = wnMap.get(fnData);
 						final TreeNode fnNode = displayer.makeFnNode(fnData, wnData.toArray(new WnData[0]));
 						pmroleNode.addChild(fnNode);
 					}
+				}
 			}
 		}
 	}
@@ -858,8 +895,11 @@ abstract class BasicModule extends Module
 			if (vnData.vnrole != null && !vnData.vnrole.isEmpty())
 			{
 				Spanner.append(vnsb, vnData.vnrole, 0, PredicateMatrixFactories.roleFactory);
-			} else
+			}
+			else
+			{
 				vnsb.append('∅');
+			}
 
 			vnsb.append(' ');
 			Spanner.append(vnsb, vnData.toData(), 0, PredicateMatrixFactories.dataFactory);
@@ -869,7 +909,9 @@ abstract class BasicModule extends Module
 			for (WnData wnData : wnDatas)
 			{
 				if (first)
+				{
 					first = false;
+				}
 				else
 				{
 					vnsb.append(' ');
@@ -907,8 +949,11 @@ abstract class BasicModule extends Module
 					pbsb.append(' ');
 					Spanner.append(pbsb, capitalize1(pbData.pbroledescr), 0, PredicateMatrixFactories.roleFactory);
 				}
-			} else
+			}
+			else
+			{
 				pbsb.append('∅');
+			}
 
 			pbsb.append(' ');
 			Spanner.append(pbsb, pbData.toData(), 0, PredicateMatrixFactories.dataFactory);
@@ -924,7 +969,9 @@ abstract class BasicModule extends Module
 			for (WnData wnData : wnDatas)
 			{
 				if (first)
+				{
 					first = false;
+				}
 				else
 				{
 					pbsb.append(' ');
@@ -955,8 +1002,11 @@ abstract class BasicModule extends Module
 			if (fnData.fnfe != null && !fnData.fnfe.isEmpty())
 			{
 				Spanner.append(fnsb, fnData.fnfe, 0, PredicateMatrixFactories.roleFactory);
-			} else
+			}
+			else
+			{
 				fnsb.append('∅');
+			}
 
 			fnsb.append(' ');
 			Spanner.append(fnsb, fnData.toData(), 0, PredicateMatrixFactories.dataFactory);
@@ -966,7 +1016,9 @@ abstract class BasicModule extends Module
 			for (WnData wnData : wnDatas)
 			{
 				if (first)
+				{
 					first = false;
+				}
 				else
 				{
 					fnsb.append(' ');
@@ -1052,8 +1104,11 @@ abstract class BasicModule extends Module
 					Spanner.append(synsetsb, wnData.definition, 0, PredicateMatrixFactories.definitionFactory);
 					synsetsb.append(' ');
 					Spanner.append(synsetsb, Long.toString(synsetid), 0, PredicateMatrixFactories.dataFactory);
-				} else
+				}
+				else
+				{
 					synsetsb.append('∅');
+				}
 
 				// attach synset
 				this.synsetNode = TreeFactory.addTreeItemNode(parentNode, synsetsb, R.drawable.synset, BasicModule.this.getContext());

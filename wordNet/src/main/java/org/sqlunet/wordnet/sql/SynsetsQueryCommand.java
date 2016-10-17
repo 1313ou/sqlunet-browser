@@ -18,21 +18,21 @@ import org.sqlunet.sql.DBQueryCommand;
 class SynsetsQueryCommand extends DBQueryCommand
 {
 	/**
-	 * <code>theQuery</code> is the SQL statement
+	 * <code>QUERY</code> is the SQL statement
 	 */
-	private static final String theQuery = SqLiteDialect.SynsetsQuery; // ;
+	private static final String QUERY = SqLiteDialect.SynsetsQuery; // ;
 
 	/**
 	 * Constructor
 	 *
-	 * @param thisConnection is the database connection
-	 * @param thisWordId     is the target word id
+	 * @param connection is the database connection
+	 * @param wordId     is the target word id
 	 */
 	@SuppressWarnings("boxing")
-	public SynsetsQueryCommand(final SQLiteDatabase thisConnection, final long thisWordId)
+	public SynsetsQueryCommand(final SQLiteDatabase connection, final long wordId)
 	{
-		super(thisConnection, SynsetsQueryCommand.theQuery);
-		setParams(thisWordId);
+		super(connection, SynsetsQueryCommand.QUERY);
+		setParams(wordId);
 	}
 
 	/**

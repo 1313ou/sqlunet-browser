@@ -146,17 +146,22 @@ public class SensesFragment extends ListFragment
 				if (view instanceof TextView)
 				{
 					((TextView) view).setText(text);
-				} else if (view instanceof ImageView)
+				}
+				else if (view instanceof ImageView)
 				{
 					try
 					{
 						((ImageView) view).setImageResource(Integer.parseInt(text));
-					} catch (final NumberFormatException nfe)
+					}
+					catch (final NumberFormatException nfe)
 					{
 						((ImageView) view).setImageURI(Uri.parse(text));
 					}
-				} else
+				}
+				else
+				{
 					throw new IllegalStateException(view.getClass().getName() + " is not a view that can be bound by this SimpleCursorAdapter"); //$NON-NLS-1$
+				}
 				return false;
 			}
 		});
@@ -165,7 +170,6 @@ public class SensesFragment extends ListFragment
 		// load the contents
 		getLoaderManager().restartLoader(++Module.loaderId, null, new LoaderCallbacks<Cursor>()
 		{
-			@SuppressWarnings("synthetic-access")
 			@Override
 			public Loader<Cursor> onCreateLoader(final int loaderId0, final Bundle args0)
 			{
@@ -189,7 +193,6 @@ public class SensesFragment extends ListFragment
 				return new CursorLoader(getActivity(), uri, projection, selection, selectionArgs, sortOrder);
 			}
 
-			@SuppressWarnings("synthetic-access")
 			@Override
 			public void onLoadFinished(final Loader<Cursor> loader0, final Cursor c)
 			{
@@ -247,7 +250,8 @@ public class SensesFragment extends ListFragment
 			if (position == AdapterView.INVALID_POSITION)
 			{
 				getListView().setItemChecked(this.activatedPosition, false);
-			} else
+			}
+			else
 			{
 				getListView().setItemChecked(position, true);
 			}
@@ -314,7 +318,9 @@ public class SensesFragment extends ListFragment
 	{
 		// activities containing this fragment must implement its listener
 		if (!(context instanceof Listener))
+		{
 			throw new IllegalStateException("Activity must implement fragment's listener."); //$NON-NLS-1$
+		}
 		this.listener = (Listener) context;
 	}
 

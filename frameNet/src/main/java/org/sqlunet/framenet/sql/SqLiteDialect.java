@@ -1,5 +1,10 @@
 package org.sqlunet.framenet.sql;
 
+/**
+ * FrameNet SQL dialect
+ *
+ * @author Bernard Bou
+ */
 @SuppressWarnings("unused")
 class SqLiteDialect
 {

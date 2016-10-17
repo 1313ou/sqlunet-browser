@@ -108,7 +108,9 @@ public class Storage
 	static private boolean build(final File dir)
 	{
 		if (dir == null)
+		{
 			return false;
+		}
 
 		// make sure that path can be created and it is a directory
 		return dir.mkdirs() || dir.isDirectory();

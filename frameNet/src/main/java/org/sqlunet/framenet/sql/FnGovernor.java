@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * FE
+ * Governor
  *
  * @author Bernard Bou
  */
@@ -15,63 +15,64 @@ class FnGovernor
 	/**
 	 * Governor id
 	 */
-	public final long theGovernorId;
+	public final long governorId;
 
 	/**
 	 * Word id
 	 */
-	public final long theWordId;
+	public final long wordId;
 
 	/**
 	 * Governor
 	 */
-	public final String theGovernor;
+	public final String governor;
 
 	/**
 	 * Constructor
 	 *
-	 * @param thisGovernorId governor id
-	 * @param thisWordId     word id
-	 * @param thisGovernor   governor
+	 * @param governorId governor id
+	 * @param wordId     word id
+	 * @param governor   governor
 	 */
-	private FnGovernor(final long thisGovernorId, final long thisWordId, final String thisGovernor)
+	private FnGovernor(final long governorId, final long wordId, final String governor)
 	{
-		this.theGovernorId = thisGovernorId;
-		this.theWordId = thisWordId;
-		this.theGovernor = thisGovernor;
+		this.governorId = governorId;
+		this.wordId = wordId;
+		this.governor = governor;
 	}
 
 	/**
 	 * Make set of governors from query built from frameid
 	 *
-	 * @param thisConnection is the database connection
-	 * @param theLuId        is the frameid to build query from
+	 * @param connection is the database connection
+	 * @param luId       is the frameid to build query from
 	 * @return list of governors
 	 */
-	public static List<FnGovernor> make(final SQLiteDatabase thisConnection, final long theLuId)
+	public static List<FnGovernor> make(final SQLiteDatabase connection, final long luId)
 	{
-		final List<FnGovernor> thisResult = new ArrayList<>();
-		FnGovernorQueryCommand thisQuery = null;
+		final List<FnGovernor> result = new ArrayList<>();
+		FnGovernorQueryCommand query = null;
 		try
 		{
-			thisQuery = new FnGovernorQueryCommand(thisConnection, theLuId);
-			thisQuery.execute();
+			query = new FnGovernorQueryCommand(connection, luId);
+			query.execute();
 
-			while (thisQuery.next())
+			while (query.next())
 			{
-				final long thisGovernorId = thisQuery.getGovernorId();
-				final long thisWordId = thisQuery.getWordId();
-				final String thisGovernor = thisQuery.getGovernor();
+				final long governorId = query.getGovernorId();
+				final long wordId = query.getWordId();
+				final String governor = query.getGovernor();
 
-				thisResult.add(new FnGovernor(thisGovernorId, thisWordId, thisGovernor));
-			}
-		} finally
-		{
-			if (thisQuery != null)
-			{
-				thisQuery.release();
+				result.add(new FnGovernor(governorId, wordId, governor));
 			}
 		}
-		return thisResult;
+		finally
+		{
+			if (query != null)
+			{
+				query.release();
+			}
+		}
+		return result;
 	}
 }

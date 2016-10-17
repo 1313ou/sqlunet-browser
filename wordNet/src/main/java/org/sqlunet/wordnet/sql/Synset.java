@@ -104,11 +104,13 @@ class Synset extends BasicSynset
 				final long id = query.getId();
 				words.add(new Word(lemma, id));
 			}
-		} catch (final SQLException e)
+		}
+		catch (final SQLException e)
 		{
 			e.printStackTrace();
 			words = null;
-		} finally
+		}
+		finally
 		{
 			if (query != null)
 			{
@@ -189,11 +191,13 @@ class Synset extends BasicSynset
 				final Link link = new Link(query);
 				links.add(link);
 			}
-		} catch (final SQLException e)
+		}
+		catch (final SQLException e)
 		{
 			e.printStackTrace();
 			links = null;
-		} finally
+		}
+		finally
 		{
 			if (query != null)
 			{
@@ -228,11 +232,13 @@ class Synset extends BasicSynset
 				final Link link = new Link(query);
 				links.add(link);
 			}
-		} catch (final SQLException e)
+		}
+		catch (final SQLException e)
 		{
 			e.printStackTrace();
 			links = null;
-		} finally
+		}
+		finally
 		{
 			if (query != null)
 			{

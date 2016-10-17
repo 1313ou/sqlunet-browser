@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * Role
+ *
  * @author bbou
  */
 class PbRole
@@ -38,54 +40,55 @@ class PbRole
 	/**
 	 * Constructor
 	 *
-	 * @param thisRoleId    is the role id
-	 * @param thisRoleDescr is the role description
-	 * @param thisNArg      is the role N
-	 * @param thisRoleFunc  is the role F
-	 * @param thisRoleTheta is the role theta
+	 * @param roleId    is the role id
+	 * @param roleDescr is the role description
+	 * @param nArg      is the role N
+	 * @param roleFunc  is the role F
+	 * @param roleTheta is the role theta
 	 */
-	private PbRole(final long thisRoleId, final String thisRoleDescr, final String thisNArg, final String thisRoleFunc, final String thisRoleTheta)
+	private PbRole(final long roleId, final String roleDescr, final String nArg, final String roleFunc, final String roleTheta)
 	{
 		super();
-		this.roleId = thisRoleId;
-		this.roleDescr = thisRoleDescr;
-		this.nArg = thisNArg;
-		this.roleFunc = thisRoleFunc;
-		this.roleTheta = thisRoleTheta;
+		this.roleId = roleId;
+		this.roleDescr = roleDescr;
+		this.nArg = nArg;
+		this.roleFunc = roleFunc;
+		this.roleTheta = roleTheta;
 	}
 
 	/**
 	 * Make sets of PropBank roles from query built from rolesetid
 	 *
-	 * @param thisConnection is the database connection
-	 * @param thisRoleSetId  is the roleset id to build query from
+	 * @param connection is the database connection
+	 * @param roleSetId  is the roleset id to build query from
 	 * @return list of PropBank roles
 	 */
-	public static List<PbRole> make(final SQLiteDatabase thisConnection, final long thisRoleSetId)
+	public static List<PbRole> make(final SQLiteDatabase connection, final long roleSetId)
 	{
-		final List<PbRole> thisResult = new ArrayList<>();
-		PbRoleQueryCommand thisQuery = null;
+		final List<PbRole> result = new ArrayList<>();
+		PbRoleQueryCommand query = null;
 		try
 		{
-			thisQuery = new PbRoleQueryCommand(thisConnection, thisRoleSetId);
-			thisQuery.execute();
+			query = new PbRoleQueryCommand(connection, roleSetId);
+			query.execute();
 
-			while (thisQuery.next())
+			while (query.next())
 			{
-				final long thisRoleId = thisQuery.getRoleId();
-				final String thisRoleDescr = thisQuery.getRoleDescr();
-				final String thisNArg = thisQuery.getNArg();
-				final String thisRoleFunc = thisQuery.getRoleFunc();
-				final String thisRoleTheta = thisQuery.getRoleTheta();
-				thisResult.add(new PbRole(thisRoleId, thisRoleDescr, thisNArg, thisRoleFunc, thisRoleTheta));
-			}
-		} finally
-		{
-			if (thisQuery != null)
-			{
-				thisQuery.release();
+				final long roleId = query.getRoleId();
+				final String roleDescr = query.getRoleDescr();
+				final String nArg = query.getNArg();
+				final String roleFunc = query.getRoleFunc();
+				final String roleTheta = query.getRoleTheta();
+				result.add(new PbRole(roleId, roleDescr, nArg, roleFunc, roleTheta));
 			}
 		}
-		return thisResult;
+		finally
+		{
+			if (query != null)
+			{
+				query.release();
+			}
+		}
+		return result;
 	}
 }

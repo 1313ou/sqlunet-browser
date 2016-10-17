@@ -93,7 +93,8 @@ public class SelectorActivity extends Activity implements SelectorFragment.Liste
 			// in two-pane mode, show the detail view in this activity by adding or replacing the detail fragment using a fragment transaction.
 			DetailFragment fragment = (DetailFragment) getFragmentManager().findFragmentById(R.id.container_main);
 			fragment.search(pointer);
-		} else
+		}
+		else
 		{
 			// in single-pane mode, simply start the detail activity for the selected item ID.
 			final Bundle arguments = new Bundle();

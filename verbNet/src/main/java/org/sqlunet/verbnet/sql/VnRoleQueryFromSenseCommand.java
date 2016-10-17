@@ -14,27 +14,28 @@ import java.sql.Types;
 class VnRoleQueryFromSenseCommand extends DBQueryCommand
 {
 	/**
-	 * <code>theQuery</code> is the SQL statement
+	 * <code>QUERY</code> is the SQL statement
 	 */
-	private static final String theQuery = SqLiteDialect.VerbNetThematicRolesFromClassAndSenseQuery;
+	private static final String QUERY = SqLiteDialect.VerbNetThematicRolesFromClassAndSenseQuery;
 
 	/**
 	 * Constructor
 	 *
-	 * @param thisConnection is the database connection
-	 * @param thisClassId    is the target classid
-	 * @param thisWordId     is the target wordid
-	 * @param thisSynsetId   is the target synsetid
+	 * @param connection is the database connection
+	 * @param classId    is the target classid
+	 * @param wordId     is the target wordid
+	 * @param synsetId   is the target synsetid
 	 */
 	@SuppressWarnings("boxing")
-	public VnRoleQueryFromSenseCommand(final SQLiteDatabase thisConnection, final long thisClassId, final long thisWordId, final Long thisSynsetId)
+	public VnRoleQueryFromSenseCommand(final SQLiteDatabase connection, final long classId, final long wordId, final Long synsetId)
 	{
-		super(thisConnection, VnRoleQueryFromSenseCommand.theQuery);
-		setParams(thisClassId, thisWordId);
-		if (thisSynsetId != null)
+		super(connection, VnRoleQueryFromSenseCommand.QUERY);
+		setParams(classId, wordId);
+		if (synsetId != null)
 		{
-			this.statement.setLong(2, thisSynsetId);
-		} else
+			this.statement.setLong(2, synsetId);
+		}
+		else
 		{
 			this.statement.setNull(2, Types.DECIMAL);
 		}
@@ -101,7 +102,7 @@ class VnRoleQueryFromSenseCommand extends DBQueryCommand
 	@SuppressWarnings("unused")
 	public boolean getSynsetSpecific()
 	{
-		final int thisResult = this.cursor.getInt(5);
-		return thisResult == 0;
+		final int result = this.cursor.getInt(5);
+		return result == 0;
 	}
 }

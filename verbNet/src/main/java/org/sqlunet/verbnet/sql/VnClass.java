@@ -48,7 +48,8 @@ public class VnClass
 
 				return new VnClass(className, classId, groupings);
 			}
-		} finally
+		}
+		finally
 		{
 			if (query != null)
 			{

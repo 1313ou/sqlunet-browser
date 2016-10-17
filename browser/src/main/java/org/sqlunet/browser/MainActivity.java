@@ -170,7 +170,6 @@ public class MainActivity extends Activity
 		// spinner listener
 		this.spinner.setOnItemSelectedListener(new OnItemSelectedListener()
 		{
-			@SuppressWarnings("synthetic-access")
 			@Override
 			public void onItemSelected(final AdapterView<?> parentView, final View selectedItemView, final int position, final long id)
 			{
@@ -207,7 +206,9 @@ public class MainActivity extends Activity
 	public void onSaveInstanceState(final Bundle savedInstanceState)
 	{
 		if (this.spinner == null)
+		{
 			return;
+		}
 
 		// serialize the current dropdown position
 		final int position = this.spinner.getSelectedItemPosition();
@@ -226,7 +227,9 @@ public class MainActivity extends Activity
 	public void onRestoreInstanceState(final Bundle savedInstanceState)
 	{
 		if (this.spinner == null)
+		{
 			return;
+		}
 
 		// always call the superclass so it can restore the view hierarchy
 		super.onRestoreInstanceState(savedInstanceState);
@@ -610,7 +613,8 @@ public class MainActivity extends Activity
 				searchIntent = makeDetailIntent(FnFrameActivity.class);
 				searchIntent.putExtra(SqlUNetContract.ARG_QUERYACTION, SqlUNetContract.ARG_QUERYACTION_FNFRAME);
 				searchIntent.putExtra(SqlUNetContract.ARG_QUERYPOINTER, framePointer);
-			} else if (query.startsWith("#fl")) //$NON-NLS-1$
+			}
+			else if (query.startsWith("#fl")) //$NON-NLS-1$
 			{
 				final long luid = Long.valueOf(query.substring(3));
 				final FnLexUnitPointer lexunitPointer = new FnLexUnitPointer();
@@ -618,14 +622,16 @@ public class MainActivity extends Activity
 				searchIntent = makeDetailIntent(FnLexUnitActivity.class);
 				searchIntent.putExtra(SqlUNetContract.ARG_QUERYACTION, SqlUNetContract.ARG_QUERYACTION_FNLEXUNIT);
 				searchIntent.putExtra(SqlUNetContract.ARG_QUERYPOINTER, lexunitPointer);
-			} else if (query.startsWith("#fs")) //$NON-NLS-1$
+			}
+			else if (query.startsWith("#fs")) //$NON-NLS-1$
 			{
 				final long sentenceid = Long.valueOf(query.substring(3));
 				final FnSentencePointer sentencePointer = new FnSentencePointer(sentenceid);
 				searchIntent = makeDetailIntent(FnSentenceActivity.class);
 				searchIntent.putExtra(SqlUNetContract.ARG_QUERYACTION, SqlUNetContract.ARG_QUERYACTION_FNSENTENCE);
 				searchIntent.putExtra(SqlUNetContract.ARG_QUERYPOINTER, sentencePointer);
-			} else if (query.startsWith("#fa")) //$NON-NLS-1$
+			}
+			else if (query.startsWith("#fa")) //$NON-NLS-1$
 			{
 				final long annosetid = Long.valueOf(query.substring(3));
 				final FnAnnoSetPointer annosetPointer = new FnAnnoSetPointer();
@@ -633,7 +639,8 @@ public class MainActivity extends Activity
 				searchIntent = makeDetailIntent(FnAnnoSetActivity.class);
 				searchIntent.putExtra(SqlUNetContract.ARG_QUERYACTION, SqlUNetContract.ARG_QUERYACTION_FNANNOSET);
 				searchIntent.putExtra(SqlUNetContract.ARG_QUERYPOINTER, annosetPointer);
-			} else if (query.startsWith("#fp")) //$NON-NLS-1$
+			}
+			else if (query.startsWith("#fp")) //$NON-NLS-1$
 			{
 				final long patternid = Long.valueOf(query.substring(3));
 				final FnPatternPointer patternPointer = new FnPatternPointer();
@@ -641,7 +648,8 @@ public class MainActivity extends Activity
 				searchIntent = makeDetailIntent(FnAnnoSetActivity.class);
 				searchIntent.putExtra(SqlUNetContract.ARG_QUERYACTION, SqlUNetContract.ARG_QUERYACTION_FNPATTERN);
 				searchIntent.putExtra(SqlUNetContract.ARG_QUERYPOINTER, patternPointer);
-			} else if (query.startsWith("#fv")) //$NON-NLS-1$
+			}
+			else if (query.startsWith("#fv")) //$NON-NLS-1$
 			{
 				final long valenceunitid = Long.valueOf(query.substring(3));
 				final FnValenceUnitPointer valenceunitPointer = new FnValenceUnitPointer();
@@ -660,9 +668,13 @@ public class MainActivity extends Activity
 				searchIntent = makeDetailIntent(PredicateMatrixActivity.class);
 				searchIntent.putExtra(SqlUNetContract.ARG_QUERYACTION, SqlUNetContract.ARG_QUERYACTION_PMROLE);
 				searchIntent.putExtra(SqlUNetContract.ARG_QUERYPOINTER, rolePointer);
-			} else
+			}
+			else
+			{
 				return;
-		} else
+			}
+		}
+		else
 		{
 			// search for string
 			searchIntent = makeSelectorIntent();

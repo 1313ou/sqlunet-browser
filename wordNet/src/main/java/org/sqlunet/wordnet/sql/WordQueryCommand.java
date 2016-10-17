@@ -17,20 +17,20 @@ import org.sqlunet.sql.DBQueryCommand;
 class WordQueryCommand extends DBQueryCommand
 {
 	/**
-	 * <code>theQuery</code> is the SQL statement
+	 * <code>QUERY</code> is the SQL statement
 	 */
-	private static final String theQuery = SqLiteDialect.WordQuery;
+	private static final String QUERY = SqLiteDialect.WordQuery;
 
 	/**
 	 * Constructor
 	 *
-	 * @param thisConnection is the database connection
-	 * @param thisLemma      is the word lemma
+	 * @param connection is the database connection
+	 * @param lemma      is the word lemma
 	 */
-	public WordQueryCommand(final SQLiteDatabase thisConnection, final String thisLemma)
+	public WordQueryCommand(final SQLiteDatabase connection, final String lemma)
 	{
-		super(thisConnection, WordQueryCommand.theQuery);
-		setParams(thisLemma);
+		super(connection, WordQueryCommand.QUERY);
+		setParams(lemma);
 	}
 
 	/**

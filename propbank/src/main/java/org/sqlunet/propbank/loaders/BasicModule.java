@@ -145,7 +145,9 @@ abstract class BasicModule extends Module
 			public void onLoadFinished(final Loader<Cursor> loader0, final Cursor cursor)
 			{
 				if (cursor.getCount() > 1)
+				{
 					throw new RuntimeException("Unexpected number of rows"); //$NON-NLS-1$
+				}
 				if (cursor.moveToFirst())
 				{
 					// column indices
@@ -182,7 +184,8 @@ abstract class BasicModule extends Module
 
 					// expand
 					TreeView.expand(parent, false);
-				} else
+				}
+				else
 				{
 					parent.disable();
 				}
@@ -256,11 +259,13 @@ abstract class BasicModule extends Module
 
 						// attach result
 						TreeFactory.addTextNode(parent, sb, getContext(), rolesNode, examplesNode);
-					} while (cursor.moveToNext());
+					}
+					while (cursor.moveToNext());
 
 					// expand
 					TreeView.expand(parent, false);
-				} else
+				}
+				else
 				{
 					parent.disable();
 				}
@@ -350,8 +355,10 @@ abstract class BasicModule extends Module
 						// sb.append(' ');
 
 						if (!cursor.moveToNext())
-							//noinspection BreakStatement
+						//noinspection BreakStatement
+						{
 							break;
+						}
 
 						sb.append('\n');
 					}
@@ -361,7 +368,8 @@ abstract class BasicModule extends Module
 
 					// expand
 					TreeView.expand(parent, false);
-				} else
+				}
+				else
 				{
 					parent.disable();
 				}
@@ -488,7 +496,8 @@ abstract class BasicModule extends Module
 								Spanner.append(sb, fields[4], 0, PropbankFactories.textFactory);
 							}
 						}
-					} while (cursor.moveToNext());
+					}
+					while (cursor.moveToNext());
 
 					// extra format
 					BasicModule.this.spanner.setSpan(sb, 0, 0);
@@ -498,7 +507,8 @@ abstract class BasicModule extends Module
 
 					// expand
 					TreeView.expand(parent, false);
-				} else
+				}
+				else
 				{
 					parent.disable();
 				}

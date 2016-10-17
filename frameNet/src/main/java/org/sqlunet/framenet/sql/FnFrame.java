@@ -5,11 +5,7 @@ import android.database.sqlite.SQLiteDatabase;
 import java.util.List;
 
 /**
- * @author bbou
- */
-
-/**
- * FrameQuery
+ * Frame
  *
  * @author Bernard Bou
  */
@@ -28,46 +24,47 @@ public class FnFrame
 	/**
 	 * Constructor
 	 *
-	 * @param thisFrameId         is the frame id
-	 * @param thisFrameName       is the frame
-	 * @param thisFrameDefinition is the frame definition
-	 * @param theseSemTypes       are the semtypes
-	 * @param theseRelatedFrames  are the related frames
+	 * @param frameId         is the frame id
+	 * @param frameName       is the frame
+	 * @param frameDefinition is the frame definition
+	 * @param semTypes        are the semtypes
+	 * @param relatedFrames   are the related frames
 	 */
-	FnFrame(final long thisFrameId, final String thisFrameName, final String thisFrameDefinition, final List<FnSemType> theseSemTypes, final List<FnRelatedFrame> theseRelatedFrames)
+	FnFrame(final long frameId, final String frameName, final String frameDefinition, final List<FnSemType> semTypes, final List<FnRelatedFrame> relatedFrames)
 	{
-		this.frameId = thisFrameId;
-		this.frameName = thisFrameName;
-		this.frameDefinition = thisFrameDefinition;
-		this.semTypes = theseSemTypes;
-		this.relatedFrames = theseRelatedFrames;
+		this.frameId = frameId;
+		this.frameName = frameName;
+		this.frameDefinition = frameDefinition;
+		this.semTypes = semTypes;
+		this.relatedFrames = relatedFrames;
 	}
 
-	public static FnFrame make(final SQLiteDatabase thisConnection, final long thisTargetFrameId)
+	public static FnFrame make(final SQLiteDatabase connection, final long targetFrameId)
 	{
-		FnFrame thisResult = null;
-		FnFrameQueryCommand thisQuery = null;
+		FnFrame result = null;
+		FnFrameQueryCommand query = null;
 		try
 		{
-			thisQuery = new FnFrameQueryCommand(thisConnection, thisTargetFrameId);
-			thisQuery.execute();
+			query = new FnFrameQueryCommand(connection, targetFrameId);
+			query.execute();
 
-			if (thisQuery.next())
+			if (query.next())
 			{
-				final String thisFrameName = thisQuery.getFrame();
-				final String thisFrameDescription = thisQuery.getFrameDescription();
-				final long thisFrameId = thisQuery.getFrameId();
-				final List<FnSemType> theseSemTypes = FnSemType.make(thisQuery.getSemTypes());
-				final List<FnRelatedFrame> theseRelatedFrames = FnRelatedFrame.make(thisQuery.getRelatedFrames());
-				thisResult = new FnFrame(thisFrameId, thisFrameName, thisFrameDescription, theseSemTypes, theseRelatedFrames);
-			}
-		} finally
-		{
-			if (thisQuery != null)
-			{
-				thisQuery.release();
+				final String frameName = query.getFrame();
+				final String frameDescription = query.getFrameDescription();
+				final long frameId = query.getFrameId();
+				final List<FnSemType> semTypes = FnSemType.make(query.getSemTypes());
+				final List<FnRelatedFrame> relatedFrames = FnRelatedFrame.make(query.getRelatedFrames());
+				result = new FnFrame(frameId, frameName, frameDescription, semTypes, relatedFrames);
 			}
 		}
-		return thisResult;
+		finally
+		{
+			if (query != null)
+			{
+				query.release();
+			}
+		}
+		return result;
 	}
 }

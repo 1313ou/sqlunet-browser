@@ -214,7 +214,8 @@ public class XSqlUNetProvider extends SqlUNetProvider
 		try
 		{
 			return this.db.query(table, projection0, selection, selectionArgs, groupBy, null, sortOrder);
-		} catch (final SQLiteException e)
+		}
+		catch (final SQLiteException e)
 		{
 			Log.e(XSqlUNetProvider.TAG, "XSqlUNet provider query failed", e); //$NON-NLS-1$
 			return null;
@@ -294,7 +295,8 @@ public class XSqlUNetProvider extends SqlUNetProvider
 		try
 		{
 			return this.db.rawQuery(sql, selectionArgs2);
-		} catch (final SQLiteException e)
+		}
+		catch (final SQLiteException e)
 		{
 			Log.e(XSqlUNetProvider.TAG, "XSqlUNet provider query failed", e); //$NON-NLS-1$
 			return null;

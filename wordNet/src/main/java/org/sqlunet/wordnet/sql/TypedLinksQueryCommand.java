@@ -18,51 +18,51 @@ import org.sqlunet.sql.DBQueryCommand;
 class TypedLinksQueryCommand extends DBQueryCommand
 {
 	/**
-	 * <code>theQuery</code> is the SQL statement
+	 * <code>QUERY</code> is the SQL statement
 	 */
-	private static final String theQuery = SqLiteDialect.TypedLinksQuery;
+	private static final String QUERY = SqLiteDialect.TypedLinksQuery;
 
 	/**
 	 * Constructor
 	 *
-	 * @param thisConnection is the database connection
+	 * @param connection is the database connection
 	 */
-	public TypedLinksQueryCommand(final SQLiteDatabase thisConnection)
+	public TypedLinksQueryCommand(final SQLiteDatabase connection)
 	{
-		super(thisConnection, TypedLinksQueryCommand.theQuery);
+		super(connection, TypedLinksQueryCommand.QUERY);
 	}
 
 	/**
 	 * Set source synset parameter in prepared statement
 	 *
-	 * @param thisSynset is the source synset id
+	 * @param synsetId is the source synset id
 	 */
-	public void setFromSynset(final long thisSynset)
+	public void setFromSynset(final long synsetId)
 	{
-		this.statement.setLong(0, thisSynset);
-		this.statement.setLong(2, thisSynset);
+		this.statement.setLong(0, synsetId);
+		this.statement.setLong(2, synsetId);
 	}
 
 	/**
 	 * Set source word parameter in prepared statement
 	 *
-	 * @param thisWordId is the source word id (for lexical links) or -1 if word is any in which case the query returns all lexical links whatever the word
+	 * @param wordId is the source word id (for lexical links) or -1 if word is any in which case the query returns all lexical links whatever the word
 	 */
-	public void setFromWord(final long thisWordId)
+	public void setFromWord(final long wordId)
 	{
-		this.statement.setLong(4, thisWordId);
-		this.statement.setLong(5, thisWordId);
+		this.statement.setLong(4, wordId);
+		this.statement.setLong(5, wordId);
 	}
 
 	/**
 	 * Set source type parameter in prepared statement
 	 *
-	 * @param thisType is the target synset type
+	 * @param type is the target synset type
 	 */
-	public void setLinkType(final int thisType)
+	public void setLinkType(final int type)
 	{
-		this.statement.setInt(1, thisType);
-		this.statement.setInt(3, thisType);
+		this.statement.setInt(1, type);
+		this.statement.setInt(3, type);
 	}
 
 	/**

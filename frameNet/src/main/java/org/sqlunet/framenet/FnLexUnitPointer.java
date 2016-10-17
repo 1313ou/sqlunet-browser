@@ -34,7 +34,9 @@ public class FnLexUnitPointer implements Parcelable
 	public Long getLuId()
 	{
 		if (this.luid != 0)
+		{
 			return this.luid;
+		}
 		return null;
 	}
 

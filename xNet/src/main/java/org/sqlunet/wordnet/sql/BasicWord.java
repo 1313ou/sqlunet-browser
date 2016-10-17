@@ -20,12 +20,12 @@ public class BasicWord
 	/**
 	 * BasicWord
 	 *
-	 * @param thisLemma is the word string
-	 * @param thisId    is the id
+	 * @param lemma is the lemma
+	 * @param id    is the id
 	 */
-	public BasicWord(final String thisLemma, final long thisId)
+	public BasicWord(final String lemma, final long id)
 	{
-		this.lemma = thisLemma;
-		this.id = thisId;
+		this.lemma = lemma;
+		this.id = id;
 	}
 }

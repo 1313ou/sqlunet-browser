@@ -128,7 +128,6 @@ public class DownloadActivity extends Activity implements View.OnClickListener
 			 * 
 			 * @see android.content.BroadcastReceiver#onReceive(android.content.Context, android.content.Intent)
 			 */
-			@SuppressWarnings("synthetic-access")
 			@Override
 			public void onReceive(final Context context, final Intent intent)
 			{
@@ -288,7 +287,8 @@ public class DownloadActivity extends Activity implements View.OnClickListener
 
 			// start progress
 			startProgress();
-		} catch (Exception e)
+		}
+		catch (Exception e)
 		{
 			Toast.makeText(this, e.getLocalizedMessage(), Toast.LENGTH_LONG).show();
 		}
@@ -324,10 +324,13 @@ public class DownloadActivity extends Activity implements View.OnClickListener
 				}
 			}
 			return false;
-		} finally
+		}
+		finally
 		{
 			if (cursor != null)
+			{
 				cursor.close();
+			}
 		}
 	}
 
@@ -361,7 +364,8 @@ public class DownloadActivity extends Activity implements View.OnClickListener
 				}
 			}
 			return false;
-		} finally
+		}
+		finally
 		{
 			cursor.close();
 		}
@@ -374,7 +378,6 @@ public class DownloadActivity extends Activity implements View.OnClickListener
 	{
 		new Thread(new Runnable()
 		{
-			@SuppressWarnings("synthetic-access")
 			@Override
 			public void run()
 			{
@@ -425,7 +428,8 @@ public class DownloadActivity extends Activity implements View.OnClickListener
 					try
 					{
 						Thread.sleep(2000);
-					} catch (final InterruptedException e)
+					}
+					catch (final InterruptedException e)
 					{
 						//
 					}

@@ -164,7 +164,9 @@ abstract class BasicModule extends Module
 			public void onLoadFinished(final Loader<Cursor> loader, final Cursor cursor)
 			{
 				if (cursor.getCount() > 1)
+				{
 					throw new RuntimeException("Unexpected number of rows"); //$NON-NLS-1$
+				}
 				if (cursor.moveToFirst())
 				{
 					final SpannableStringBuilder sb = new SpannableStringBuilder();
@@ -204,7 +206,8 @@ abstract class BasicModule extends Module
 
 					// expand
 					TreeView.expand(parent, false);
-				} else
+				}
+				else
 				{
 					parent.disable();
 				}
@@ -276,8 +279,10 @@ abstract class BasicModule extends Module
 						// sb.append(Integer.toString(roleid));
 
 						if (!cursor.moveToNext())
-							//noinspection BreakStatement
+						//noinspection BreakStatement
+						{
 							break;
+						}
 
 						sb.append('\n');
 					}
@@ -287,7 +292,8 @@ abstract class BasicModule extends Module
 
 					// expand
 					TreeView.expand(parent, false);
-				} else
+				}
+				else
 				{
 					parent.disable();
 				}
@@ -391,8 +397,10 @@ abstract class BasicModule extends Module
 						}
 
 						if (!cursor.moveToNext())
-							//noinspection BreakStatement
+						//noinspection BreakStatement
+						{
 							break;
+						}
 						sb.append('\n');
 					}
 
@@ -401,7 +409,8 @@ abstract class BasicModule extends Module
 
 					// expand
 					TreeView.expand(parent, false);
-				} else
+				}
+				else
 				{
 					parent.disable();
 				}
@@ -427,16 +436,21 @@ abstract class BasicModule extends Module
 			{
 				Spanner.appendImage(sb, BasicModule.this.drawableItem);
 				Spanner.append(sb, items[0], 0, VerbNetFactories.itemFactory);
-			} else if (items.length > 1)
+			}
+			else if (items.length > 1)
 			{
 				final TreeNode groupingsNode = TreeFactory.newTreeNode("Groupings", R.drawable.groupitem, this.getContext()); //$NON-NLS-1$
 				boolean first = true;
 				for (final String item : items)
 				{
 					if (first)
+					{
 						first = false;
+					}
 					else
+					{
 						sb.append('\n');
+					}
 					Spanner.appendImage(sb, BasicModule.this.drawableItem);
 					Spanner.append(sb, item, 0, VerbNetFactories.itemFactory);
 				}

@@ -31,7 +31,8 @@ abstract public class DocumentLoader extends AsyncTaskLoader<Document>
 		try
 		{
 			return getDoc(this.cancellationSignal);
-		} finally
+		}
+		finally
 		{
 			synchronized (this)
 			{
@@ -61,8 +62,10 @@ abstract public class DocumentLoader extends AsyncTaskLoader<Document>
 	public void deliverResult(final Document document0)
 	{
 		if (isReset())
-			// An async query came in while the loader is stopped
+		// An async query came in while the loader is stopped
+		{
 			return;
+		}
 
 		this.document = document0;
 

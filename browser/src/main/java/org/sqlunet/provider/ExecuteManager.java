@@ -53,7 +53,6 @@ public class ExecuteManager
 	 *
 	 * @param sqls sql statements
 	 */
-	@SuppressWarnings("UnusedReturnValue")
 	public AsyncTask<String, Integer, Boolean> executeFromSql(final String... sqls)
 	{
 		final AsyncTask<String, Integer, Boolean> task = new AsyncTask<String, Integer, Boolean>()
@@ -92,10 +91,12 @@ public class ExecuteManager
 						}
 					}
 					return true;
-				} catch (final Exception e)
+				}
+				catch (final Exception e)
 				{
 					e.printStackTrace();
-				} finally
+				}
+				finally
 				{
 					if (db != null)
 					{
@@ -110,7 +111,6 @@ public class ExecuteManager
 			 * 
 			 * @see android.os.AsyncTask#onPreExecute()
 			 */
-			@SuppressWarnings("synthetic-access")
 			@Override
 			protected void onPreExecute()
 			{
@@ -123,7 +123,7 @@ public class ExecuteManager
 			 * 
 			 * @see android.os.AsyncTask#onProgressUpdate(Progress[])
 			 */
-			@SuppressWarnings({"synthetic-access", "boxing"})
+			@SuppressWarnings({"boxing"})
 			@Override
 			protected void onProgressUpdate(final Integer... progress)
 			{
@@ -136,7 +136,7 @@ public class ExecuteManager
 			 * 
 			 * @see android.os.AsyncTask#onPostExecute(java.lang.Object)
 			 */
-			@SuppressWarnings({"synthetic-access", "boxing"})
+			@SuppressWarnings({"boxing"})
 			@Override
 			protected void onPostExecute(final Boolean result)
 			{
@@ -181,7 +181,9 @@ public class ExecuteManager
 					zipFile = new ZipFile(archive);
 					final ZipEntry zipEntry = zipFile.getEntry(entry);
 					if (zipEntry == null)
+					{
 						throw new IOException("zip entry not found " + entry); //$NON-NLS-1$
+					}
 
 					is = zipFile.getInputStream(zipEntry);
 
@@ -199,9 +201,13 @@ public class ExecuteManager
 					{
 						// accumulator
 						if (sql == null)
+						{
 							sql = line;
+						}
 						else
+						{
 							sql += '\n' + line;
+						}
 
 						// dispatch to execution
 						if (!line.endsWith(";")) //$NON-NLS-1$
@@ -213,7 +219,8 @@ public class ExecuteManager
 						{
 							// exec one sql
 							db.execSQL(sql);
-						} catch (final SQLiteException e)
+						}
+						catch (final SQLiteException e)
 						{
 							Log.e(TAG, "SQL update failed: " + e.getMessage()); //$NON-NLS-1$
 						}
@@ -235,10 +242,12 @@ public class ExecuteManager
 					}
 					publishProgress(count);
 					return true;
-				} catch (IOException e1)
+				}
+				catch (IOException e1)
 				{
 					e1.printStackTrace();
-				} finally
+				}
+				finally
 				{
 					if (db != null)
 					{
@@ -249,7 +258,8 @@ public class ExecuteManager
 						try
 						{
 							zipFile.close();
-						} catch (IOException e)
+						}
+						catch (IOException e)
 						{
 							e.printStackTrace();
 						}
@@ -259,7 +269,8 @@ public class ExecuteManager
 						try
 						{
 							reader.close();
-						} catch (IOException e)
+						}
+						catch (IOException e)
 						{
 							//
 						}
@@ -269,7 +280,8 @@ public class ExecuteManager
 						try
 						{
 							is.close();
-						} catch (IOException e)
+						}
+						catch (IOException e)
 						{
 							//
 						}
@@ -283,7 +295,6 @@ public class ExecuteManager
 			 * 
 			 * @see android.os.AsyncTask#onPreExecute()
 			 */
-			@SuppressWarnings("synthetic-access")
 			@Override
 			protected void onPreExecute()
 			{
@@ -295,7 +306,7 @@ public class ExecuteManager
 			 * 
 			 * @see android.os.AsyncTask#onProgressUpdate(Progress[])
 			 */
-			@SuppressWarnings({"synthetic-access", "boxing"})
+			@SuppressWarnings({"boxing"})
 			@Override
 			protected void onProgressUpdate(final Integer... progress)
 			{
@@ -307,7 +318,7 @@ public class ExecuteManager
 			 * 
 			 * @see android.os.AsyncTask#onPostExecute(java.lang.Object)
 			 */
-			@SuppressWarnings({"synthetic-access", "boxing"})
+			@SuppressWarnings({"boxing"})
 			@Override
 			protected void onPostExecute(final Boolean result)
 			{

@@ -32,14 +32,17 @@ public class PmRolePointer implements Parcelable
 		this();
 		long roleid0 = pc.readLong();
 		if (roleid0 != -1)
+		{
 			this.roleid = roleid0;
+		}
 	}
 
-	@SuppressWarnings("boxing")
 	public Long getRoleId()
 	{
 		if (this.roleid != 0)
+		{
 			return this.roleid;
+		}
 		return null;
 	}
 
@@ -65,7 +68,6 @@ public class PmRolePointer implements Parcelable
 	 * (non-Javadoc)
 	 * @see android.os.Parcelable#writeToParcel(android.os.Parcel, int)
 	 */
-	@SuppressWarnings("boxing")
 	@Override
 	public void writeToParcel(final Parcel pc, final int flags)
 	{

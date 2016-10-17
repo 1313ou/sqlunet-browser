@@ -5,81 +5,88 @@ import android.database.sqlite.SQLiteDatabase;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Sentence
+ *
+ * @author Bernard Bou
+ */
 public class FnSentence
 {
 	public final String text;
 
 	public final long sentenceId;
 
-	FnSentence(final long thisSentenceId, final String thisText)
+	FnSentence(final long sentenceId, final String text)
 	{
-		this.text = thisText;
-		this.sentenceId = thisSentenceId;
+		this.text = text;
+		this.sentenceId = sentenceId;
 	}
 
 	/**
 	 * Make sets of sentences from query built from frameid
 	 *
-	 * @param thisConnection  is the database connection
-	 * @param thisSentenceId0 is the sentence id to build query from
+	 * @param connection  is the database connection
+	 * @param sentenceId0 is the sentence id to build query from
 	 * @return sentence
 	 */
-	public static FnSentence make(final SQLiteDatabase thisConnection, final long thisSentenceId0)
+	public static FnSentence make(final SQLiteDatabase connection, final long sentenceId0)
 	{
-		FnSentence thisResult = null;
-		FnSentenceQueryCommand thisQuery = null;
+		FnSentence result = null;
+		FnSentenceQueryCommand query = null;
 		try
 		{
-			thisQuery = new FnSentenceQueryCommand(thisConnection, thisSentenceId0);
-			thisQuery.execute();
+			query = new FnSentenceQueryCommand(connection, sentenceId0);
+			query.execute();
 
-			if (thisQuery.next())
+			if (query.next())
 			{
-				final long thisSentenceId = thisQuery.getSentenceId();
-				final String thisText = thisQuery.getText();
+				final long sentenceId = query.getSentenceId();
+				final String text = query.getText();
 
-				thisResult = new FnSentence(thisSentenceId, thisText);
-			}
-		} finally
-		{
-			if (thisQuery != null)
-			{
-				thisQuery.release();
+				result = new FnSentence(sentenceId, text);
 			}
 		}
-		return thisResult;
+		finally
+		{
+			if (query != null)
+			{
+				query.release();
+			}
+		}
+		return result;
 	}
 
 	/**
 	 * Make sets of sentences from query built from frameid
 	 *
-	 * @param thisConnection is the database connection
-	 * @param theLuId        is the frameid to build query from
+	 * @param connection is the database connection
+	 * @param luId       is the luid to build query from
 	 * @return list of sentences
 	 */
-	public static List<FnSentence> makeFromLexicalUnit(final SQLiteDatabase thisConnection, final long theLuId)
+	public static List<FnSentence> makeFromLexicalUnit(final SQLiteDatabase connection, final long luId)
 	{
-		final List<FnSentence> thisResult = new ArrayList<>();
-		FnSentenceQueryFromLexicalUnitCommand thisQuery = null;
+		final List<FnSentence> result = new ArrayList<>();
+		FnSentenceQueryFromLexicalUnitCommand query = null;
 		try
 		{
-			thisQuery = new FnSentenceQueryFromLexicalUnitCommand(thisConnection, theLuId);
-			thisQuery.execute();
+			query = new FnSentenceQueryFromLexicalUnitCommand(connection, luId);
+			query.execute();
 
-			while (thisQuery.next())
+			while (query.next())
 			{
-				final long thisSentenceId = thisQuery.getSentenceId();
-				final String thisText = thisQuery.getText();
+				final long sentenceId = query.getSentenceId();
+				final String text = query.getText();
 
-				thisResult.add(new FnSentence(thisSentenceId, thisText));
-			}
-		} finally
-		{
-			if (thisQuery != null)
-			{
-				thisQuery.release();
+				result.add(new FnSentence(sentenceId, text));
 			}
 		}
-		return thisResult;
+		finally
+		{
+			if (query != null)
+			{
+				query.release();
+			}
+		}
+		return result;
 	}
 }

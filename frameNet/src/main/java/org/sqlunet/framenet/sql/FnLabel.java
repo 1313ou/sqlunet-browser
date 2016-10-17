@@ -1,5 +1,10 @@
 package org.sqlunet.framenet.sql;
 
+/**
+ * Label
+ *
+ * @author Bernard Bou
+ */
 public class FnLabel
 {
 	public final String from;

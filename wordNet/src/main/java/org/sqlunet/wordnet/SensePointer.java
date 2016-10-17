@@ -57,12 +57,13 @@ public class SensePointer extends SynsetPointer implements Parcelable, HasWordId
 		this.cased = cased;
 	}
 
-	@SuppressWarnings("boxing")
 	@Override
 	public Long getWordId()
 	{
 		if (this.wordid != -1)
+		{
 			return this.wordid;
+		}
 		return null;
 	}
 

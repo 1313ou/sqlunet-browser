@@ -156,7 +156,7 @@
                         <xsl:value-of select="./@theta"/>
                     </SPAN>
                 </xsl:if>
-                <xsl:text></xsl:text>
+                <xsl:text/>
             </SPAN>
             <SPAN class="pbargtext">
                 <xsl:value-of select="./text()"/>

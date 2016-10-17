@@ -137,7 +137,6 @@ public class PredicateMatrixActivity extends Activity
 		// spinner listener
 		this.spinner.setOnItemSelectedListener(new OnItemSelectedListener()
 		{
-			@SuppressWarnings("synthetic-access")
 			@Override
 			public void onItemSelected(final AdapterView<?> parentView, final View selectedItemView, final int position, final long id)
 			{
@@ -148,9 +147,13 @@ public class PredicateMatrixActivity extends Activity
 
 				// restart
 				if (PredicateMatrixActivity.this.pointer != null)
+				{
 					handleSearch(PredicateMatrixActivity.this.pointer);
+				}
 				else
+				{
 					handleSearch(PredicateMatrixActivity.this.query);
+				}
 			}
 
 			@Override
@@ -179,7 +182,9 @@ public class PredicateMatrixActivity extends Activity
 	public void onSaveInstanceState(final Bundle savedInstanceState)
 	{
 		if (this.spinner == null)
+		{
 			return;
+		}
 
 		// serialize the current dropdown position
 		final int position = this.spinner.getSelectedItemPosition();
@@ -197,7 +202,9 @@ public class PredicateMatrixActivity extends Activity
 	public void onRestoreInstanceState(final Bundle savedInstanceState)
 	{
 		if (this.spinner == null)
+		{
 			return;
+		}
 
 		// always call the superclass so it can restore the view hierarchy
 		super.onRestoreInstanceState(savedInstanceState);
@@ -239,7 +246,6 @@ public class PredicateMatrixActivity extends Activity
 		searchView.setIconifiedByDefault(true);
 		searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener()
 		{
-			@SuppressWarnings("synthetic-access")
 			@Override
 			public boolean onQueryTextSubmit(final String query)
 			{
@@ -319,7 +325,8 @@ public class PredicateMatrixActivity extends Activity
 			// arguments
 			final String query = intent.getStringExtra(SearchManager.QUERY);
 			handleSearch(query);
-		} else
+		}
+		else
 		{
 			final Bundle bundle = intent.getExtras();
 			final int actionCode = bundle.getInt(SqlUNetContract.ARG_QUERYACTION);
@@ -343,7 +350,9 @@ public class PredicateMatrixActivity extends Activity
 	private void handleSearch(final PmRolePointer pointer)
 	{
 		if (pointer == null)
+		{
 			return;
+		}
 
 		// status
 		Log.d(PredicateMatrixActivity.TAG, "PredicateMatrix search " + pointer); //$NON-NLS-1$
@@ -368,7 +377,9 @@ public class PredicateMatrixActivity extends Activity
 	private void handleSearch(final String query)
 	{
 		if (query == null || query.isEmpty())
+		{
 			return;
+		}
 
 		// status
 		Log.d(PredicateMatrixActivity.TAG, "PredicateMatrix search " + query); //$NON-NLS-1$
@@ -382,7 +393,8 @@ public class PredicateMatrixActivity extends Activity
 			final PmRolePointer pointer1 = new PmRolePointer();
 			pointer1.roleid = Long.parseLong(query.substring(3));
 			pointer = pointer1;
-		} else
+		}
+		else
 		{
 			final Word pointer1 = new Word();
 			pointer1.word = query;

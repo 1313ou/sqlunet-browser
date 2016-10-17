@@ -263,7 +263,9 @@ public class FrameNetImplementation implements FrameNetInterface
 		final Long wordId = result.first;
 		final List<FnLexUnit> lexUnits = result.second;
 		if (lexUnits == null)
+		{
 			return;
+		}
 
 		// word
 		NodeFactory.makeWordNode(doc, parent, targetWord, wordId);
@@ -286,7 +288,9 @@ public class FrameNetImplementation implements FrameNetInterface
 		final Long wordId = result.first;
 		final List<FnLexUnit> lexUnits = result.second;
 		if (lexUnits == null)
+		{
 			return;
+		}
 
 		// word
 		NodeFactory.makeWordNode(doc, parent, targetWord, wordId);
@@ -376,7 +380,9 @@ public class FrameNetImplementation implements FrameNetInterface
 		// frame
 		final FnFrame frame = FnFrame.make(connection, targetFrameId);
 		if (frame == null)
+		{
 			return;
+		}
 
 		final Node frameNode = FnNodeFactory.makeFnFrameNode(doc, parent, frame, false);
 

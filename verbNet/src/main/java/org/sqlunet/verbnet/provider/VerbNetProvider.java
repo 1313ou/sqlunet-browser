@@ -131,7 +131,8 @@ public class VerbNetProvider extends SqlUNetProvider
 				if (selection != null)
 				{
 					selection += " AND "; //$NON-NLS-1$
-				} else
+				}
+				else
 				{
 					selection = ""; //$NON-NLS-1$
 				}
@@ -204,7 +205,8 @@ public class VerbNetProvider extends SqlUNetProvider
 		try
 		{
 			return this.db.query(table, projection, selection, selectionArgs, groupBy, null, sortOrder);
-		} catch (final SQLiteException e)
+		}
+		catch (final SQLiteException e)
 		{
 			Log.e(VerbNetProvider.TAG, "VerbNet provider query failed", e); //$NON-NLS-1$
 			return null;

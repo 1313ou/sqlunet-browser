@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * VerbNet FrameQuery query command
+ * PropBank example query command
  *
  * @author Bernard Bou
  */
@@ -69,16 +69,18 @@ class PbExampleQueryCommand extends DBQueryCommand
 	 */
 	public List<PbArg> getArgs()
 	{
-		final String thisConcatArg = this.cursor.getString(3);
-		if (thisConcatArg == null)
-			return null;
-		final List<PbArg> theseArgs = new ArrayList<>();
-		for (final String thisArg : thisConcatArg.split("\\|")) //$NON-NLS-1$
+		final String concatArg = this.cursor.getString(3);
+		if (concatArg == null)
 		{
-			final String[] theseArgFields = thisArg.split("~"); //$NON-NLS-1$
-			theseArgs.add(new PbArg(theseArgFields));
+			return null;
 		}
-		return theseArgs;
+		final List<PbArg> args = new ArrayList<>();
+		for (final String arg : concatArg.split("\\|")) //$NON-NLS-1$
+		{
+			final String[] argFields = arg.split("~"); //$NON-NLS-1$
+			args.add(new PbArg(argFields));
+		}
+		return args;
 	}
 
 	/**

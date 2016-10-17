@@ -41,7 +41,6 @@ public class SynsetPointer implements Parcelable, HasSynsetId, HasPos
 		this.pos = pc.readString();
 	}
 
-	@SuppressWarnings("boxing")
 	public void setSynset(final Long synsetid, final String pos)
 	{
 		this.synsetid = synsetid == null ? -1 : synsetid;
@@ -53,7 +52,9 @@ public class SynsetPointer implements Parcelable, HasSynsetId, HasPos
 	public Character getPos()
 	{
 		if (this.pos != null && !this.pos.isEmpty())
+		{
 			return this.pos.charAt(0);
+		}
 		return null;
 	}
 
@@ -62,7 +63,9 @@ public class SynsetPointer implements Parcelable, HasSynsetId, HasPos
 	public Long getSynsetId()
 	{
 		if (this.synsetid != -1)
+		{
 			return this.synsetid;
+		}
 		return null;
 	}
 

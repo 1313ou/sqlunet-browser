@@ -57,7 +57,9 @@ public class Pointer implements Parcelable
 	public Long getId()
 	{
 		if (this.id != 0)
+		{
 			return this.id;
+		}
 		return null;
 	}
 

@@ -59,7 +59,6 @@ public class LexUnitFromWordModule extends LexUnitModule
 	 *
 	 * @see org.sqlunet.framenet.browser.LexUnitModule#process()
 	 */
-	@SuppressWarnings("boxing")
 	@Override
 	public void process(final TreeNode node)
 	{
@@ -67,7 +66,8 @@ public class LexUnitFromWordModule extends LexUnitModule
 		{
 			// data
 			lexunits_for_word_pos(this.wordid, this.pos, node);
-		} else
+		}
+		else
 		{
 			node.disable();
 		}

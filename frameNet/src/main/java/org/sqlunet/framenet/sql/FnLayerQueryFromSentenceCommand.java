@@ -2,21 +2,26 @@ package org.sqlunet.framenet.sql;
 
 import android.database.sqlite.SQLiteDatabase;
 
+/**
+ * FrameNet layer command from sentence
+ *
+ * @author Bernard Bou
+ */
 class FnLayerQueryFromSentenceCommand extends FnLayerQueryCommand
 {
 	/**
-	 * <code>theQuery</code> is the SQL statement
+	 * <code>QUERY</code> is the SQL statement
 	 */
-	private static final String theQuery = SqLiteDialect.FrameNetLayerQueryFromSentence;
+	private static final String QUERY = SqLiteDialect.FrameNetLayerQueryFromSentence;
 
 	/**
 	 * Constructor
 	 *
-	 * @param thisConnection       is the database connection
-	 * @param thisTargetSentenceId is the target sentenceid
+	 * @param connection       is the database connection
+	 * @param targetSentenceId is the target sentenceid
 	 */
-	public FnLayerQueryFromSentenceCommand(final SQLiteDatabase thisConnection, final long thisTargetSentenceId)
+	public FnLayerQueryFromSentenceCommand(final SQLiteDatabase connection, final long targetSentenceId)
 	{
-		super(thisConnection, thisTargetSentenceId, FnLayerQueryFromSentenceCommand.theQuery);
+		super(connection, targetSentenceId, FnLayerQueryFromSentenceCommand.QUERY);
 	}
 }

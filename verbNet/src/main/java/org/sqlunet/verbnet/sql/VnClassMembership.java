@@ -45,7 +45,6 @@ class VnClassMembership
 	 * @param synsetId   is the synset id to build the query from (-1 if any)
 	 * @return list of VerbNet memberships
 	 */
-	@SuppressWarnings("boxing")
 	static public List<VnClassMembership> make(final SQLiteDatabase connection, final long wordId, final Long synsetId)
 	{
 		final List<VnClassMembership> result = new ArrayList<>();
@@ -63,13 +62,14 @@ class VnClassMembership
 				final String sensekey = query.getSenseKey();
 				final int sensenum = query.getSenseNum();
 				final int quality = query.getQuality();
-				final String theseGroupings = query.getGroupings();
+				final String groupings = query.getGroupings();
 
 				result.add(new VnClassMembership(className, classId, wordId, synsetSpecificFlag ?
 						synsetId :
-						-1, sensenum, sensekey, quality, theseGroupings));
+						-1, sensenum, sensekey, quality, groupings));
 			}
-		} finally
+		}
+		finally
 		{
 			if (query != null)
 			{

@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * SemType
+ * Sem type
  *
  * @author Bernard Bou
  */
@@ -19,41 +19,43 @@ class FnSemType
 	/**
 	 * Constructor
 	 *
-	 * @param thisSemTypeId         is the semtype id
-	 * @param thisSemTypeName       is the semtype name
-	 * @param thisSemTypeDefinition is the semtype definition
+	 * @param semTypeId         is the semtype id
+	 * @param semTypeName       is the semtype name
+	 * @param semTypeDefinition is the semtype definition
 	 */
-	private FnSemType(final long thisSemTypeId, final String thisSemTypeName, final String thisSemTypeDefinition)
+	private FnSemType(final long semTypeId, final String semTypeName, final String semTypeDefinition)
 	{
-		this.semTypeId = thisSemTypeId;
-		this.semTypeName = thisSemTypeName;
-		this.semTypeDefinition = thisSemTypeDefinition;
+		this.semTypeId = semTypeId;
+		this.semTypeName = semTypeName;
+		this.semTypeDefinition = semTypeDefinition;
 	}
 
 	/**
 	 * Make semtypes from string
 	 *
-	 * @param theseSemTypesString (id:def|id:def...)
+	 * @param semTypesString (id:def|id:def...)
 	 * @return list of semtypes
 	 */
-	public static List<FnSemType> make(final String theseSemTypesString)
+	public static List<FnSemType> make(final String semTypesString)
 	{
-		if (theseSemTypesString == null)
-			return null;
-		List<FnSemType> thisResult = null;
-		final String[] theseSemTypes = theseSemTypesString.split("\\|"); //$NON-NLS-1$
-		for (final String thisSemType : theseSemTypes)
+		if (semTypesString == null)
 		{
-			if (thisResult == null)
-			{
-				thisResult = new ArrayList<>();
-			}
-			final String[] theseFields = thisSemType.split(":"); //$NON-NLS-1$
-			final long thisSemTypeId = Long.parseLong(theseFields[0]);
-			final String thisSemTypeName = theseFields[1];
-			final String thisSemTypeDefinition = theseFields[2];
-			thisResult.add(new FnSemType(thisSemTypeId, thisSemTypeName, thisSemTypeDefinition));
+			return null;
 		}
-		return thisResult;
+		List<FnSemType> result = null;
+		final String[] semTypes = semTypesString.split("\\|"); //$NON-NLS-1$
+		for (final String semType : semTypes)
+		{
+			if (result == null)
+			{
+				result = new ArrayList<>();
+			}
+			final String[] fields = semType.split(":"); //$NON-NLS-1$
+			final long semTypeId = Long.parseLong(fields[0]);
+			final String semTypeName = fields[1];
+			final String semTypeDefinition = fields[2];
+			result.add(new FnSemType(semTypeId, semTypeName, semTypeDefinition));
+		}
+		return result;
 	}
 }

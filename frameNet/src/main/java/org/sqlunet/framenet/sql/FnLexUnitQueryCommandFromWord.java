@@ -5,27 +5,27 @@ import android.database.sqlite.SQLiteDatabase;
 import org.sqlunet.sql.DBQueryCommand;
 
 /**
- * Query command for FrameNet lex unit
+ * FrameNet lex unit query command from word
  *
  * @author Bernard Bou
  */
 class FnLexUnitQueryCommandFromWord extends DBQueryCommand
 {
 	/**
-	 * <code>theQuery</code> is the SQL statement
+	 * <code>QUERY</code> is the SQL statement
 	 */
-	private static final String theQuery = SqLiteDialect.FrameNetLexUnitQueryFromWord;
+	private static final String QUERY = SqLiteDialect.FrameNetLexUnitQueryFromWord;
 
 	/**
 	 * Constructor
 	 *
-	 * @param thisConnection is the database connection
-	 * @param thisLemma      is the target word
+	 * @param connection is the database connection
+	 * @param lemma      is the target word
 	 */
-	public FnLexUnitQueryCommandFromWord(final SQLiteDatabase thisConnection, final String thisLemma)
+	public FnLexUnitQueryCommandFromWord(final SQLiteDatabase connection, final String lemma)
 	{
-		super(thisConnection, FnLexUnitQueryCommandFromWord.theQuery);
-		setParams(thisLemma);
+		super(connection, FnLexUnitQueryCommandFromWord.QUERY);
+		setParams(lemma);
 	}
 
 	/**

@@ -86,8 +86,11 @@ public class MarkupSpanner extends Spanner
 	 * @param extraPatterns more patterns
 	 * @return spannable string builder
 	 */
-	@SuppressWarnings("UnusedReturnValue")
-	static public CharSequence setSpan(final CharSequence text, final SpannableStringBuilder sb, final SpanFactory spanFactory, final long flags, @SuppressWarnings("SameParameterValue") final Pattern pattern, @SuppressWarnings("SameParameterValue") final Pattern... extraPatterns)
+	static public CharSequence setSpan(final CharSequence text, //
+			final SpannableStringBuilder sb, final SpanFactory spanFactory, //
+			final long flags, //
+			@SuppressWarnings("SameParameterValue") final Pattern pattern, //
+			@SuppressWarnings("SameParameterValue") final Pattern... extraPatterns)
 	{
 		// specific patterns
 		for (final Pattern xpattern : extraPatterns)

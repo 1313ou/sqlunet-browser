@@ -69,13 +69,14 @@ public class TreeNode
 		return this;
 	}
 
-	@SuppressWarnings("UnusedReturnValue")
 	public TreeNode addChildren(TreeNode... nodes)
 	{
 		for (TreeNode n : nodes)
 		{
 			if (n != null)
+			{
 				addChild(n);
+			}
 		}
 		return this;
 	}
@@ -86,7 +87,9 @@ public class TreeNode
 		for (TreeNode n : nodes)
 		{
 			if (n != null)
+			{
 				addChild(n);
+			}
 		}
 		return this;
 	}
@@ -163,7 +166,6 @@ public class TreeNode
 		return size() == 0;
 	}
 
-	@SuppressWarnings("BooleanMethodIsAlwaysInverted")
 	private boolean isRoot()
 	{
 		return this.mParent == null;
@@ -217,7 +219,6 @@ public class TreeNode
 		return this.mExpanded;
 	}
 
-	@SuppressWarnings("UnusedReturnValue")
 	public TreeNode setExpanded(boolean expanded)
 	{
 		this.mExpanded = expanded;
@@ -290,7 +291,6 @@ public class TreeNode
 		this.mEnabled = false;
 	}
 
-	@SuppressWarnings("BooleanMethodIsAlwaysInverted")
 	public boolean isEnabled()
 	{
 		return mEnabled;

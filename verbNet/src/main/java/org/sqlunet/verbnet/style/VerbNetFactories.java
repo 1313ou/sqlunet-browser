@@ -48,7 +48,6 @@ public class VerbNetFactories
 
 	static final SpanFactory themroleFactory = new SpanFactory()
 	{
-		@SuppressWarnings("synthetic-access")
 		@Override
 		public Object makeSpans(final long flags)
 		{
@@ -87,7 +86,6 @@ public class VerbNetFactories
 
 	static final SpanFactory catValueFactory = new SpanFactory()
 	{
-		@SuppressWarnings("synthetic-access")
 		@Override
 		public Object makeSpans(final long flags)
 		{
@@ -137,7 +135,6 @@ public class VerbNetFactories
 
 	public static final SpanFactory restrsFactory = new SpanFactory()
 	{
-		@SuppressWarnings("synthetic-access")
 		@Override
 		public Object makeSpans(final long flags)
 		{
@@ -149,7 +146,6 @@ public class VerbNetFactories
 
 	public static final SpanFactory exampleFactory = new SpanFactory()
 	{
-		@SuppressWarnings("synthetic-access")
 		@Override
 		public Object makeSpans(final long flags)
 		{

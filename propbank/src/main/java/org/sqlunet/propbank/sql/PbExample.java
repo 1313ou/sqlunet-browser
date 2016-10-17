@@ -109,7 +109,8 @@ class PbExample
 
 				result.add(new PbExample(exampleId, text, rel, args, aspect, form, tense, voice, person));
 			}
-		} finally
+		}
+		finally
 		{
 			if (query != null)
 			{

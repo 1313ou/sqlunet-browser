@@ -94,7 +94,9 @@ public class HelpActivity extends Activity
 		final String lang = getString(R.string.lang_tag);
 		String url = "file:///android_asset/help/"; //$NON-NLS-1$
 		if (!lang.isEmpty())
+		{
 			url += lang + '-';
+		}
 		url += "index.html"; //$NON-NLS-1$
 		webview.loadUrl(url);
 	}

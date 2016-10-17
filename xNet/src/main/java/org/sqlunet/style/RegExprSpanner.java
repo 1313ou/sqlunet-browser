@@ -104,7 +104,9 @@ public class RegExprSpanner extends Spanner
 		public void setSpan(final CharSequence input, final SpannableStringBuilder sb, final int from, final long flags)
 		{
 			if (input.length() == 0)
+			{
 				return;
+			}
 
 			final Matcher matcher = this.pattern.matcher(input);
 			while (matcher.find())
@@ -114,7 +116,9 @@ public class RegExprSpanner extends Spanner
 				for (int i = 0; i < n; i++)
 				{
 					if (matcher.group(i + 1) == null)
+					{
 						return;
+					}
 
 					// Log.d(SpanReplacer.TAG, '"' + matcher.group(i + 1) + '"');
 					final int start = from + matcher.start(i + 1);
@@ -137,7 +141,9 @@ public class RegExprSpanner extends Spanner
 			final StringBuilder sb = new StringBuilder();
 			sb.append(this.pattern).append(" ->"); //$NON-NLS-1$
 			for (SpanFactory factory : this.spanFactories)
+			{
 				sb.append(' ').append(factory);
+			}
 			return sb.toString();
 		}
 	}

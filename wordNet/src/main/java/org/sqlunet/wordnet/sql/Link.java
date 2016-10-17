@@ -103,11 +103,13 @@ class Link extends Synset
 				final Link link = new Link(query);
 				links.add(link);
 			}
-		} catch (final SQLException e)
+		}
+		catch (final SQLException e)
 		{
 			e.printStackTrace();
 			links = null;
-		} finally
+		}
+		finally
 		{
 			if (query != null)
 			{

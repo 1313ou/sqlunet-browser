@@ -96,7 +96,14 @@ public class WebFragment extends Fragment
 	 * @param bncDomDoc  bnc document
 	 * @return string
 	 */
-	static private String docsToString(@SuppressWarnings("UnusedParameters") final String word, final boolean xml, final boolean isSelector, final Document wnDomDoc, final Document vnDomDoc, final Document pbDomDoc, final Document fnDomDoc, final Document bncDomDoc)
+	static private String docsToString(@SuppressWarnings("UnusedParameters") final String word,  //
+			final boolean xml,  //
+			final boolean isSelector,  //
+			final Document wnDomDoc,  //
+			final Document vnDomDoc,  //
+			final Document pbDomDoc,  //
+			final Document fnDomDoc,  //
+			final Document bncDomDoc)
 	{
 		String data;
 		if (xml)
@@ -126,7 +133,8 @@ public class WebFragment extends Fragment
 
 			data = XSLTransformer.docToXml(rootDomDoc);
 			// Log.d(TAG, "xml=" + data);
-		} else
+		}
+		else
 		{
 			final StringBuilder sb = new StringBuilder();
 
@@ -293,7 +301,9 @@ public class WebFragment extends Fragment
 
 					final Intent searchIntent = new Intent(getActivity(), WebActivity.class);
 					if ("word".equals(type)) //$NON-NLS-1$
+					{
 						searchIntent.putExtra(SqlUNetContract.ARG_QUERYSTRING, data);
+					}
 					else
 					{
 						final long id = Long.valueOf(data);
@@ -318,19 +328,22 @@ public class WebFragment extends Fragment
 							final SynsetPointer xpointer = new SynsetPointer();
 							xpointer.setSynset(id, null);
 							pointer = xpointer;
-						} else if ("vnclassid".equals(type)) //$NON-NLS-1$
+						}
+						else if ("vnclassid".equals(type)) //$NON-NLS-1$
 						{
 							action = SqlUNetContract.ARG_QUERYACTION_VNCLASS;
 							final VnClassPointer xpointer = new VnClassPointer();
 							xpointer.classid = id;
 							pointer = xpointer;
-						} else if ("fnframeid".equals(type)) //$NON-NLS-1$
+						}
+						else if ("fnframeid".equals(type)) //$NON-NLS-1$
 						{
 							action = SqlUNetContract.ARG_QUERYACTION_PBROLESET;
 							final PbRoleSetPointer xpointer = new PbRoleSetPointer();
 							xpointer.rolesetid = id;
 							pointer = xpointer;
-						} else if ("fnluid".equals(type)) //$NON-NLS-1$
+						}
+						else if ("fnluid".equals(type)) //$NON-NLS-1$
 						{
 							action = SqlUNetContract.ARG_QUERYACTION_FNLEXUNIT;
 							final FnLexUnitPointer xpointer = new FnLexUnitPointer();
@@ -343,7 +356,8 @@ public class WebFragment extends Fragment
 					}
 					startActivity(searchIntent);
 					return true;
-				} catch (final Exception e)
+				}
+				catch (final Exception e)
 				{
 					Log.e(WebFragment.TAG, "URL loading ", e); //$NON-NLS-1$
 				}
@@ -415,7 +429,7 @@ public class WebFragment extends Fragment
 					 *
 					 * @see org.sqlunet.DocumentLoader#getDoc(android.os.CancellationSignal)
 					 */
-					@SuppressWarnings({"synthetic-access", "boxing"})
+					@SuppressWarnings({"boxing"})
 					@Override
 					protected String getDoc()
 					{
@@ -460,7 +474,8 @@ public class WebFragment extends Fragment
 								{
 									fnDomDoc = new FrameNetImplementation().querySelectorDoc(db, data, null);
 								}
-							} else
+							}
+							else
 							{
 								// this is a detail query
 								switch (action)
@@ -493,7 +508,8 @@ public class WebFragment extends Fragment
 												{
 													fnDomDoc = new FrameNetImplementation().queryFrameDoc(db, xclassId, pos);
 												}
-											} else
+											}
+											else
 											{
 												final SensePointer sensePointer = (SensePointer) pointer;
 												final Long wordId = sensePointer.getWordId();
@@ -591,13 +607,17 @@ public class WebFragment extends Fragment
 
 							// stringify
 							return WebFragment.docsToString(data, xml, isSelector, wnDomDoc, vnDomDoc, pbDomDoc, fnDomDoc, bncDomDoc);
-						} catch (final Exception e)
+						}
+						catch (final Exception e)
 						{
 							Log.e(WebFragment.TAG, "getDoc", e); //$NON-NLS-1$
-						} finally
+						}
+						finally
 						{
 							if (dataSource != null)
+							{
 								dataSource.close();
+							}
 						}
 						return null;
 					}
@@ -605,7 +625,6 @@ public class WebFragment extends Fragment
 				};
 			}
 
-			@SuppressWarnings("synthetic-access")
 			@Override
 			public void onLoadFinished(final Loader<String> loader, final String doc)
 			{
@@ -616,7 +635,6 @@ public class WebFragment extends Fragment
 				WebFragment.this.webview.loadDataWithBaseURL(baseUrl, doc, mimeType, "utf-8", historyUrl); //$NON-NLS-1$
 			}
 
-			@SuppressWarnings("synthetic-access")
 			@Override
 			public void onLoaderReset(final Loader<String> arg0)
 			{

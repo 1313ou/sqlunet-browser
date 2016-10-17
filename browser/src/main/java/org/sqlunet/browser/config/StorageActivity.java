@@ -10,7 +10,6 @@ import org.sqlunet.settings.StorageStyle;
 
 public class StorageActivity extends Activity
 {
-	@SuppressWarnings("boxing")
 	protected void onCreate(final Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);

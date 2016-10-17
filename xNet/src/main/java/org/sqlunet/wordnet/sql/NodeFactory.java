@@ -14,133 +14,131 @@ public class NodeFactory extends org.sqlunet.sql.NodeFactory
 	/**
 	 * Make part-of-speech node
 	 *
-	 * @param thisDoc    is the DOM Document being built
-	 * @param thisParent is the parent node to attach this node to
-	 * @param thisValue  is the part-of-speech
+	 * @param doc    is the DOM Document being built
+	 * @param parent is the parent node to attach this node to
+	 * @param value  is the part-of-speech
 	 * @return newly created node
 	 */
-	static public Node makePosNode(final Document thisDoc, final Node thisParent, final String thisValue)
+	static public Node makePosNode(final Document doc, final Node parent, final String value)
 	{
-		final Element thisElement = org.sqlunet.sql.NodeFactory.makeNode(thisDoc, thisParent, "pos", null); //$NON-NLS-1$
-		org.sqlunet.sql.NodeFactory.makeAttribute(thisElement, "name", thisValue); //$NON-NLS-1$
-		return thisElement;
+		final Element element = org.sqlunet.sql.NodeFactory.makeNode(doc, parent, "pos", null); //$NON-NLS-1$
+		org.sqlunet.sql.NodeFactory.makeAttribute(element, "name", value); //$NON-NLS-1$
+		return element;
 	}
 
 	/**
 	 * Make lexdomain node
 	 *
-	 * @param thisDoc    is the DOM Document being built
-	 * @param thisParent is the parent node to attach this node to
-	 * @param thisValue  lexdomain
+	 * @param doc    is the DOM Document being built
+	 * @param parent is the parent node to attach this node to
+	 * @param value  lexdomain
 	 * @return newly created node
 	 */
-	static public Node makeLexDomainNode(final Document thisDoc, final Node thisParent, final String thisValue)
+	static public Node makeLexDomainNode(final Document doc, final Node parent, final String value)
 	{
-		final Element thisElement = org.sqlunet.sql.NodeFactory.makeNode(thisDoc, thisParent, "lexdomain", null); //$NON-NLS-1$
-		org.sqlunet.sql.NodeFactory.makeAttribute(thisElement, "name", thisValue); //$NON-NLS-1$
-		return thisElement;
+		final Element element = org.sqlunet.sql.NodeFactory.makeNode(doc, parent, "lexdomain", null); //$NON-NLS-1$
+		org.sqlunet.sql.NodeFactory.makeAttribute(element, "name", value); //$NON-NLS-1$
+		return element;
 	}
 
 	/**
 	 * Make sense node
 	 *
-	 * @param thisDoc      is the DOM Document being built
-	 * @param thisParent   is the parent node to attach this node to
-	 * @param thisSenseIdx is the sense index
+	 * @param doc      is the DOM Document being built
+	 * @param parent   is the parent node to attach this node to
+	 * @param senseIdx is the sense index
 	 * @return newly created node
 	 */
-	static public Node makeSenseNode(final Document thisDoc, final Node thisParent, final int thisSenseIdx)
+	static public Node makeSenseNode(final Document doc, final Node parent, final int senseIdx)
 	{
-		final Element thisElement = org.sqlunet.sql.NodeFactory.makeNode(thisDoc, thisParent, "sense", null); //$NON-NLS-1$
-		org.sqlunet.sql.NodeFactory.makeAttribute(thisElement, "number", Integer.toString(thisSenseIdx)); //$NON-NLS-1$
-		return thisElement;
+		final Element element = org.sqlunet.sql.NodeFactory.makeNode(doc, parent, "sense", null); //$NON-NLS-1$
+		org.sqlunet.sql.NodeFactory.makeAttribute(element, "number", Integer.toString(senseIdx)); //$NON-NLS-1$
+		return element;
 	}
 
 	/**
 	 * Make sense node
 	 *
-	 * @param thisDoc      is the DOM Document being built
-	 * @param thisParent   is the parent node to attach this node to
-	 * @param thisWordId   is the wordid
-	 * @param thisSynsetId is the synsetid
+	 * @param doc      is the DOM Document being built
+	 * @param parent   is the parent node to attach this node to
+	 * @param wordId   is the wordid
+	 * @param synsetId is the synsetid
 	 * @return newly created node
 	 */
-	static public Node makeSenseNode(final Document thisDoc, final Node thisParent, final long thisWordId, final long thisSynsetId)
+	static public Node makeSenseNode(final Document doc, final Node parent, final long wordId, final long synsetId)
 	{
-		final Element thisElement = org.sqlunet.sql.NodeFactory.makeNode(thisDoc, thisParent, "sense", null); //$NON-NLS-1$
-		org.sqlunet.sql.NodeFactory.makeAttribute(thisElement, "word-id", Long.toString(thisWordId)); //$NON-NLS-1$
-		org.sqlunet.sql.NodeFactory.makeAttribute(thisElement, "synset-id", Long.toString(thisSynsetId)); //$NON-NLS-1$
-		return thisElement;
+		final Element element = org.sqlunet.sql.NodeFactory.makeNode(doc, parent, "sense", null); //$NON-NLS-1$
+		org.sqlunet.sql.NodeFactory.makeAttribute(element, "word-id", Long.toString(wordId)); //$NON-NLS-1$
+		org.sqlunet.sql.NodeFactory.makeAttribute(element, "synset-id", Long.toString(synsetId)); //$NON-NLS-1$
+		return element;
 	}
 
 	/**
 	 * Make synset node
 	 *
-	 * @param thisDoc    is the DOM Document being built
-	 * @param thisParent is the parent node to attach this node to
-	 * @param thisSize   is the synset's size (the number of words in the synset)
-	 * @param thisId     is the synset's id in the database
+	 * @param doc    is the DOM Document being built
+	 * @param parent is the parent node to attach this node to
+	 * @param size   is the synset's size (the number of words in the synset)
+	 * @param synsetId     is the synset's id in the database
 	 * @return newly created element
 	 */
-	static public Element makeSynsetNode(final Document thisDoc, final Node thisParent, final int thisSize, final long thisId)
+	static public Element makeSynsetNode(final Document doc, final Node parent, final int size, final long synsetId)
 	{
-		final Element thisElement = org.sqlunet.sql.NodeFactory.makeNode(thisDoc, thisParent, "synset", null); //$NON-NLS-1$
-		org.sqlunet.sql.NodeFactory.makeAttribute(thisElement, "size", Integer.toString(thisSize)); //$NON-NLS-1$
-		org.sqlunet.sql.NodeFactory.makeAttribute(thisElement, "synset-id", Long.toString(thisId)); //$NON-NLS-1$
-		return thisElement;
+		final Element element = org.sqlunet.sql.NodeFactory.makeNode(doc, parent, "synset", null); //$NON-NLS-1$
+		org.sqlunet.sql.NodeFactory.makeAttribute(element, "size", Integer.toString(size)); //$NON-NLS-1$
+		org.sqlunet.sql.NodeFactory.makeAttribute(element, "synset-id", Long.toString(synsetId)); //$NON-NLS-1$
+		return element;
 	}
 
 	/**
 	 * Make word (synset item) node
 	 *
-	 * @param thisDoc    is the DOM Document being built
-	 * @param thisParent is the parent node to attach this node to
-	 * @param thisWord   is the target word
-	 * @param thisId     is the word id
+	 * @param doc    is the DOM Document being built
+	 * @param parent is the parent node to attach this node to
+	 * @param word   is the target word
+	 * @param id     is the word id
 	 * @return newly created node
 	 */
-	@SuppressWarnings("UnusedReturnValue")
-	static public Node makeWordNode(final Document thisDoc, final Node thisParent, final String thisWord, final long thisId)
+	static public Node makeWordNode(final Document doc, final Node parent, final String word, final long id)
 	{
-		final Element thisElement = org.sqlunet.sql.NodeFactory.makeNode(thisDoc, thisParent, "word", thisWord); //$NON-NLS-1$
-		org.sqlunet.sql.NodeFactory.makeAttribute(thisElement, "word-id", Long.toString(thisId)); //$NON-NLS-1$
-		return thisElement;
+		final Element element = org.sqlunet.sql.NodeFactory.makeNode(doc, parent, "word", word); //$NON-NLS-1$
+		org.sqlunet.sql.NodeFactory.makeAttribute(element, "word-id", Long.toString(id)); //$NON-NLS-1$
+		return element;
 	}
 
 	/**
 	 * Make link node
 	 *
-	 * @param thisDoc      is the DOM Document being built
-	 * @param thisParent   is the parent node to attach this node to
-	 * @param thisLinkType is the link type
-	 * @param thisLevel    is the recursion level
+	 * @param doc      is the DOM Document being built
+	 * @param parent   is the parent node to attach this node to
+	 * @param linkType is the link type
+	 * @param level    is the recursion level
 	 * @return newly created node
 	 */
-	static public Node makeLinkNode(final Document thisDoc, final Node thisParent, final String thisLinkType, final int thisLevel)
+	static public Node makeLinkNode(final Document doc, final Node parent, final String linkType, final int level)
 	{
-		final Element thisElement = org.sqlunet.sql.NodeFactory.makeNode(thisDoc, thisParent, thisLinkType, null);
-		if (thisLevel > 0)
+		final Element element = org.sqlunet.sql.NodeFactory.makeNode(doc, parent, linkType, null);
+		if (level > 0)
 		{
-			org.sqlunet.sql.NodeFactory.makeAttribute(thisElement, "level", Integer.toString(thisLevel)); //$NON-NLS-1$
+			org.sqlunet.sql.NodeFactory.makeAttribute(element, "level", Integer.toString(level)); //$NON-NLS-1$
 		}
-		return thisElement;
+		return element;
 	}
 
 	/**
 	 * Make 'more' link node (when recursiveness is broken and result is truncated)
 	 *
-	 * @param thisDoc      is the DOM Document being built
-	 * @param thisParent   is the parent node to attach this node to
-	 * @param thisLinkType is the link type
-	 * @param thisLevel    is the recursion level
+	 * @param doc      is the DOM Document being built
+	 * @param parent   is the parent node to attach this node to
+	 * @param linkType is the link type
+	 * @param level    is the recursion level
 	 * @return newly created node
 	 */
-	@SuppressWarnings("UnusedReturnValue")
-	static public Node makeMoreLinkNode(final Document thisDoc, final Node thisParent, final String thisLinkType, final int thisLevel)
+	static public Node makeMoreLinkNode(final Document doc, final Node parent, final String linkType, final int level)
 	{
-		final Element thisElement = org.sqlunet.sql.NodeFactory.makeNode(thisDoc, thisParent, thisLinkType, null);
-		org.sqlunet.sql.NodeFactory.makeAttribute(thisElement, "level", Integer.toString(thisLevel)); //$NON-NLS-1$
-		org.sqlunet.sql.NodeFactory.makeAttribute(thisElement, "more", "true"); //$NON-NLS-1$ //$NON-NLS-2$
-		return thisElement;
+		final Element element = org.sqlunet.sql.NodeFactory.makeNode(doc, parent, linkType, null);
+		org.sqlunet.sql.NodeFactory.makeAttribute(element, "level", Integer.toString(level)); //$NON-NLS-1$
+		org.sqlunet.sql.NodeFactory.makeAttribute(element, "more", "true"); //$NON-NLS-1$ //$NON-NLS-2$
+		return element;
 	}
 }

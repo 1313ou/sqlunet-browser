@@ -1,8 +1,8 @@
 package org.sqlunet.bnc.sql;
 
-import org.sqlunet.sql.DBQueryCommand;
-
 import android.database.sqlite.SQLiteDatabase;
+
+import org.sqlunet.sql.DBQueryCommand;
 
 /**
  * BNC query command
@@ -12,27 +12,27 @@ import android.database.sqlite.SQLiteDatabase;
 class BncQueryCommand extends DBQueryCommand
 {
 	/**
-	 * <code>theQuery</code> is the SQL statement
+	 * <code>QUERY</code> is the SQL statement
 	 */
-	private static final String theQuery = SqLiteDialect.BNCQuery;
+	private static final String QUERY = SqLiteDialect.BNCQuery;
 
 	/**
-	 * <code>theQuery2</code> is the SQL statement
+	 * <code>QUERY_2</code> is the SQL statement
 	 */
-	private static final String theQuery2 = SqLiteDialect.BNCPosQuery;
+	private static final String QUERY_2 = SqLiteDialect.BNCPosQuery;
 
 	/**
 	 * Constructor
 	 *
-	 * @param thisConnection
-	 *            is the database connection
-	 * @param theseParams
-	 *            parameters
+	 * @param connection is the database connection
+	 * @param params    parameters
 	 */
-	public BncQueryCommand(final SQLiteDatabase thisConnection, final Object... theseParams)
+	public BncQueryCommand(final SQLiteDatabase connection, final Object... params)
 	{
-		super(thisConnection, theseParams.length > 1 ? BncQueryCommand.theQuery2 : BncQueryCommand.theQuery);
-		setParams(theseParams);
+		super(connection, params.length > 1 ?
+				BncQueryCommand.QUERY_2 :
+				BncQueryCommand.QUERY);
+		setParams(params);
 	}
 
 	/**
@@ -54,7 +54,9 @@ class BncQueryCommand extends DBQueryCommand
 	private Integer getFreq()
 	{
 		if (this.cursor.isNull(1))
+		{
 			return null;
+		}
 		return this.cursor.getInt(1);
 	}
 
@@ -67,7 +69,9 @@ class BncQueryCommand extends DBQueryCommand
 	private Integer getRange()
 	{
 		if (this.cursor.isNull(2))
+		{
 			return null;
+		}
 		return this.cursor.getInt(2);
 	}
 
@@ -80,7 +84,9 @@ class BncQueryCommand extends DBQueryCommand
 	private Float getDisp()
 	{
 		if (this.cursor.isNull(3))
+		{
 			return null;
+		}
 		return this.cursor.getFloat(3);
 	}
 
@@ -95,7 +101,9 @@ class BncQueryCommand extends DBQueryCommand
 	private Integer getConvFreq()
 	{
 		if (this.cursor.isNull(4))
+		{
 			return null;
+		}
 		return this.cursor.getInt(4);
 	}
 
@@ -108,7 +116,9 @@ class BncQueryCommand extends DBQueryCommand
 	private Integer getConvRange()
 	{
 		if (this.cursor.isNull(5))
+		{
 			return null;
+		}
 		return this.cursor.getInt(5);
 	}
 
@@ -121,7 +131,9 @@ class BncQueryCommand extends DBQueryCommand
 	private Float getConvDisp()
 	{
 		if (this.cursor.isNull(6))
+		{
 			return null;
+		}
 		return this.cursor.getFloat(6);
 	}
 
@@ -134,7 +146,9 @@ class BncQueryCommand extends DBQueryCommand
 	private Integer getTaskFreq()
 	{
 		if (this.cursor.isNull(7))
+		{
 			return null;
+		}
 		return this.cursor.getInt(7);
 	}
 
@@ -147,7 +161,9 @@ class BncQueryCommand extends DBQueryCommand
 	private Integer getTaskRange()
 	{
 		if (this.cursor.isNull(8))
+		{
 			return null;
+		}
 		return this.cursor.getInt(8);
 	}
 
@@ -160,7 +176,9 @@ class BncQueryCommand extends DBQueryCommand
 	private Float getTaskDisp()
 	{
 		if (this.cursor.isNull(9))
+		{
 			return null;
+		}
 		return this.cursor.getFloat(9);
 	}
 
@@ -175,7 +193,9 @@ class BncQueryCommand extends DBQueryCommand
 	private Integer getImagFreq()
 	{
 		if (this.cursor.isNull(10))
+		{
 			return null;
+		}
 		return this.cursor.getInt(10);
 	}
 
@@ -188,7 +208,9 @@ class BncQueryCommand extends DBQueryCommand
 	private Integer getImagRange()
 	{
 		if (this.cursor.isNull(11))
+		{
 			return null;
+		}
 		return this.cursor.getInt(11);
 	}
 
@@ -201,7 +223,9 @@ class BncQueryCommand extends DBQueryCommand
 	private Float getImagDisp()
 	{
 		if (this.cursor.isNull(12))
+		{
 			return null;
+		}
 		return this.cursor.getFloat(12);
 	}
 
@@ -214,7 +238,9 @@ class BncQueryCommand extends DBQueryCommand
 	private Integer getInfFreq()
 	{
 		if (this.cursor.isNull(13))
+		{
 			return null;
+		}
 		return this.cursor.getInt(13);
 	}
 
@@ -227,7 +253,9 @@ class BncQueryCommand extends DBQueryCommand
 	private Integer getInfRange()
 	{
 		if (this.cursor.isNull(14))
+		{
 			return null;
+		}
 		return this.cursor.getInt(14);
 	}
 
@@ -240,7 +268,9 @@ class BncQueryCommand extends DBQueryCommand
 	private Float getInfDisp()
 	{
 		if (this.cursor.isNull(15))
+		{
 			return null;
+		}
 		return this.cursor.getFloat(15);
 	}
 
@@ -255,7 +285,9 @@ class BncQueryCommand extends DBQueryCommand
 	private Integer getSpokenFreq()
 	{
 		if (this.cursor.isNull(16))
+		{
 			return null;
+		}
 		return this.cursor.getInt(16);
 	}
 
@@ -268,7 +300,9 @@ class BncQueryCommand extends DBQueryCommand
 	private Integer getSpokenRange()
 	{
 		if (this.cursor.isNull(17))
+		{
 			return null;
+		}
 		return this.cursor.getInt(17);
 	}
 
@@ -281,7 +315,9 @@ class BncQueryCommand extends DBQueryCommand
 	private Float getSpokenDisp()
 	{
 		if (this.cursor.isNull(18))
+		{
 			return null;
+		}
 		return this.cursor.getFloat(18);
 	}
 
@@ -294,7 +330,9 @@ class BncQueryCommand extends DBQueryCommand
 	private Integer getWrittenFreq()
 	{
 		if (this.cursor.isNull(19))
+		{
 			return null;
+		}
 		return this.cursor.getInt(19);
 	}
 
@@ -307,7 +345,9 @@ class BncQueryCommand extends DBQueryCommand
 	private Integer getWrittenRange()
 	{
 		if (this.cursor.isNull(20))
+		{
 			return null;
+		}
 		return this.cursor.getInt(20);
 	}
 
@@ -320,7 +360,9 @@ class BncQueryCommand extends DBQueryCommand
 	private Float getWrittenDisp()
 	{
 		if (this.cursor.isNull(21))
+		{
 			return null;
+		}
 		return this.cursor.getFloat(21);
 	}
 
@@ -331,29 +373,29 @@ class BncQueryCommand extends DBQueryCommand
 	 */
 	public BncData getData()
 	{
-		final BncData thisData = new BncData();
-		thisData.thePos = getPos();
-		thisData.theFreq = getFreq();
-		thisData.theRange = getRange();
-		thisData.theDisp = getDisp();
-		thisData.theConvFreq = getConvFreq();
-		thisData.theConvRange = getConvRange();
-		thisData.theConvDisp = getConvDisp();
-		thisData.theTaskFreq = getTaskFreq();
-		thisData.theTaskRange = getTaskRange();
-		thisData.theTaskDisp = getTaskDisp();
-		thisData.theImagFreq = getImagFreq();
-		thisData.theImagRange = getImagRange();
-		thisData.theImagDisp = getImagDisp();
-		thisData.theInfFreq = getInfFreq();
-		thisData.theInfRange = getInfRange();
-		thisData.theInfDisp = getInfDisp();
-		thisData.theSpokenFreq = getSpokenFreq();
-		thisData.theSpokenRange = getSpokenRange();
-		thisData.theSpokenDisp = getSpokenDisp();
-		thisData.theWrittenFreq = getWrittenFreq();
-		thisData.theWrittenRange = getWrittenRange();
-		thisData.theWrittenDisp = getWrittenDisp();
-		return thisData;
+		final BncData data = new BncData();
+		data.pos = getPos();
+		data.freq = getFreq();
+		data.range = getRange();
+		data.disp = getDisp();
+		data.convFreq = getConvFreq();
+		data.convRange = getConvRange();
+		data.convDisp = getConvDisp();
+		data.taskFreq = getTaskFreq();
+		data.taskRange = getTaskRange();
+		data.taskDisp = getTaskDisp();
+		data.imagFreq = getImagFreq();
+		data.imagRange = getImagRange();
+		data.imagDisp = getImagDisp();
+		data.infFreq = getInfFreq();
+		data.infRange = getInfRange();
+		data.infDisp = getInfDisp();
+		data.spokenFreq = getSpokenFreq();
+		data.spokenRange = getSpokenRange();
+		data.spokenDisp = getSpokenDisp();
+		data.writtenFreq = getWrittenFreq();
+		data.writtenRange = getWrittenRange();
+		data.writtenDisp = getWrittenDisp();
+		return data;
 	}
 }

@@ -52,7 +52,6 @@ public class PredicateRoleModule extends BasicModule
 	 * (non-Javadoc)
 	 * @see org.sqlunet.Module#process()
 	 */
-	@SuppressWarnings("boxing")
 	@Override
 	public void process(final TreeNode node)
 	{

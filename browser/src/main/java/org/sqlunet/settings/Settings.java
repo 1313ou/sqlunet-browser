@@ -74,7 +74,8 @@ public class Settings
 			try
 			{
 				mode = Settings.SelectorMode.valueOf(mode_string);
-			} catch (final Exception e)
+			}
+			catch (final Exception e)
 			{
 				mode = Settings.SelectorMode.VIEW;
 				sharedPref.edit().putString(Settings.PREF_SELECTOR_MODE, mode.name()).apply();
@@ -95,7 +96,8 @@ public class Settings
 			try
 			{
 				mode = Settings.DetailMode.valueOf(mode_string);
-			} catch (final Exception e)
+			}
+			catch (final Exception e)
 			{
 				mode = Settings.DetailMode.VIEW;
 				sharedPref.edit().putString(Settings.PREF_DETAIL_MODE, mode.name()).apply();
@@ -122,7 +124,8 @@ public class Settings
 			try
 			{
 				mode = Settings.Selector.valueOf(name);
-			} catch (final Exception e)
+			}
+			catch (final Exception e)
 			{
 				mode = Settings.Selector.XSELECTOR;
 				sharedPref.edit().putString(Settings.PREF_SELECTOR, mode.name()).apply();
@@ -204,15 +207,21 @@ public class Settings
 
 		final String selector_string = sharedPref.getString(Settings.PREF_SELECTOR, null);
 		if (selector_string == null)
+		{
 			editor.putString(Settings.PREF_SELECTOR, Settings.Selector.XSELECTOR.name());
+		}
 
 		final String viewwebMode_string = sharedPref.getString(Settings.PREF_SELECTOR_MODE, null);
 		if (viewwebMode_string == null)
+		{
 			editor.putString(Settings.PREF_SELECTOR_MODE, Settings.SelectorMode.VIEW.name());
+		}
 
 		final String detailMode_string = sharedPref.getString(Settings.PREF_DETAIL_MODE, null);
 		if (detailMode_string == null)
+		{
 			editor.putString(Settings.PREF_DETAIL_MODE, Settings.DetailMode.VIEW.name());
+		}
 
 		editor.commit();
 	}
@@ -232,7 +241,8 @@ public class Settings
 		{
 			intent.setAction(android.provider.Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
 			intent.setData(Uri.parse("package:" + pkgName)); //$NON-NLS-1$
-		} else
+		}
+		else
 		{
 			final String appPkgName = apiLevel == 8 ?
 					"pkg" :

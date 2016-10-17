@@ -15,82 +15,75 @@ class BncNodeFactory extends NodeFactory
 	/**
 	 * Make BNC root node
 	 *
-	 * @param thisDoc
-	 *            is the DOM Document being built
-	 * @param thisWordId
-	 *            is the target word id
-	 * @param thisPos
-	 *            is the target pos
+	 * @param doc    is the DOM Document being built
+	 * @param wordId is the target word id
+	 * @param pos    is the target pos
 	 * @return newly created node
 	 */
-	@SuppressWarnings("boxing")
-	static public Node makeBncRootNode(final Document thisDoc, final long thisWordId, final Character thisPos)
+	static public Node makeBncRootNode(final Document doc, final long wordId, final Character pos)
 	{
-		final Element thisRootNode = NodeFactory.makeNode(thisDoc, thisDoc, "bnc", null); //$NON-NLS-1$
-		if (thisPos == null)
+		final Element rootNode = NodeFactory.makeNode(doc, doc, "bnc", null); //$NON-NLS-1$
+		if (pos == null)
 		{
-			org.sqlunet.sql.NodeFactory.makeTargetNode(thisDoc, thisRootNode, "word-id", Long.toString(thisWordId)); //$NON-NLS-1$
+			org.sqlunet.sql.NodeFactory.makeTargetNode(doc, rootNode, "word-id", Long.toString(wordId)); //$NON-NLS-1$
 		}
 		else
 		{
-			org.sqlunet.sql.NodeFactory.makeTargetNode(thisDoc, thisRootNode, "word-id", Long.toString(thisWordId), "pos", Character.toString(thisPos)); //$NON-NLS-1$ //$NON-NLS-2$
+			org.sqlunet.sql.NodeFactory.makeTargetNode(doc, rootNode, "word-id", Long.toString(wordId), "pos", Character.toString(pos)); //$NON-NLS-1$ //$NON-NLS-2$
 		}
-		return thisRootNode;
+		return rootNode;
 	}
 
 	/**
 	 * Make the BNC data node
 	 *
-	 * @param thisDoc
-	 *            is the DOM Document being built
-	 * @param thisParent
-	 *            is the parent node to attach this node to
-	 * @param thisData
-	 *            is the BNC data
-	 * @param i
-	 *            the ith BNC data
+	 * @param doc    is the DOM Document being built
+	 * @param parent is the parent node to attach this node to
+	 * @param data   is the BNC data
+	 * @param i      the ith BNC data
 	 */
-	@SuppressWarnings("UnusedReturnValue")
-	public static Node makeBncNode(final Document thisDoc, final Node thisParent, final BncData thisData, final int i)
+	public static Node makeBncNode(final Document doc, final Node parent, final BncData data, final int i)
 	{
-		final Element thisElement = NodeFactory.makeNode(thisDoc, thisParent, "bncdata", null); //$NON-NLS-1$
-		NodeFactory.makeAttribute(thisElement, "id", Integer.toString(i)); //$NON-NLS-1$
-		NodeFactory.makeAttribute(thisElement, "pos", thisData.thePos); //$NON-NLS-1$
+		final Element element = NodeFactory.makeNode(doc, parent, "bncdata", null); //$NON-NLS-1$
+		NodeFactory.makeAttribute(element, "id", Integer.toString(i)); //$NON-NLS-1$
+		NodeFactory.makeAttribute(element, "pos", data.pos); //$NON-NLS-1$
 
-		BncNodeFactory.makeDataNode(thisDoc, thisElement, "freq", thisData.theFreq); //$NON-NLS-1$
-		BncNodeFactory.makeDataNode(thisDoc, thisElement, "range", thisData.theRange); //$NON-NLS-1$
-		BncNodeFactory.makeDataNode(thisDoc, thisElement, "disp", thisData.theDisp); //$NON-NLS-1$
+		BncNodeFactory.makeDataNode(doc, element, "freq", data.freq); //$NON-NLS-1$
+		BncNodeFactory.makeDataNode(doc, element, "range", data.range); //$NON-NLS-1$
+		BncNodeFactory.makeDataNode(doc, element, "disp", data.disp); //$NON-NLS-1$
 
-		BncNodeFactory.makeDataNode(thisDoc, thisElement, "convfreq", thisData.theConvFreq); //$NON-NLS-1$
-		BncNodeFactory.makeDataNode(thisDoc, thisElement, "convrange", thisData.theConvRange); //$NON-NLS-1$
-		BncNodeFactory.makeDataNode(thisDoc, thisElement, "convdisp", thisData.theConvDisp); //$NON-NLS-1$
+		BncNodeFactory.makeDataNode(doc, element, "convfreq", data.convFreq); //$NON-NLS-1$
+		BncNodeFactory.makeDataNode(doc, element, "convrange", data.convRange); //$NON-NLS-1$
+		BncNodeFactory.makeDataNode(doc, element, "convdisp", data.convDisp); //$NON-NLS-1$
 
-		BncNodeFactory.makeDataNode(thisDoc, thisElement, "taskfreq", thisData.theTaskFreq); //$NON-NLS-1$
-		BncNodeFactory.makeDataNode(thisDoc, thisElement, "taskrange", thisData.theTaskRange); //$NON-NLS-1$
-		BncNodeFactory.makeDataNode(thisDoc, thisElement, "taskdisp", thisData.theTaskDisp); //$NON-NLS-1$
+		BncNodeFactory.makeDataNode(doc, element, "taskfreq", data.taskFreq); //$NON-NLS-1$
+		BncNodeFactory.makeDataNode(doc, element, "taskrange", data.taskRange); //$NON-NLS-1$
+		BncNodeFactory.makeDataNode(doc, element, "taskdisp", data.taskDisp); //$NON-NLS-1$
 
-		BncNodeFactory.makeDataNode(thisDoc, thisElement, "imagfreq", thisData.theImagFreq); //$NON-NLS-1$
-		BncNodeFactory.makeDataNode(thisDoc, thisElement, "imagrange", thisData.theImagRange); //$NON-NLS-1$
-		BncNodeFactory.makeDataNode(thisDoc, thisElement, "imagdisp", thisData.theImagDisp); //$NON-NLS-1$
+		BncNodeFactory.makeDataNode(doc, element, "imagfreq", data.imagFreq); //$NON-NLS-1$
+		BncNodeFactory.makeDataNode(doc, element, "imagrange", data.imagRange); //$NON-NLS-1$
+		BncNodeFactory.makeDataNode(doc, element, "imagdisp", data.imagDisp); //$NON-NLS-1$
 
-		BncNodeFactory.makeDataNode(thisDoc, thisElement, "inffreq", thisData.theInfFreq); //$NON-NLS-1$
-		BncNodeFactory.makeDataNode(thisDoc, thisElement, "infrange", thisData.theInfRange); //$NON-NLS-1$
-		BncNodeFactory.makeDataNode(thisDoc, thisElement, "infdisp", thisData.theInfDisp); //$NON-NLS-1$
+		BncNodeFactory.makeDataNode(doc, element, "inffreq", data.infFreq); //$NON-NLS-1$
+		BncNodeFactory.makeDataNode(doc, element, "infrange", data.infRange); //$NON-NLS-1$
+		BncNodeFactory.makeDataNode(doc, element, "infdisp", data.infDisp); //$NON-NLS-1$
 
-		BncNodeFactory.makeDataNode(thisDoc, thisElement, "spokenfreq", thisData.theSpokenFreq); //$NON-NLS-1$
-		BncNodeFactory.makeDataNode(thisDoc, thisElement, "spokenrange", thisData.theSpokenRange); //$NON-NLS-1$
-		BncNodeFactory.makeDataNode(thisDoc, thisElement, "spokendisp", thisData.theSpokenDisp); //$NON-NLS-1$
+		BncNodeFactory.makeDataNode(doc, element, "spokenfreq", data.spokenFreq); //$NON-NLS-1$
+		BncNodeFactory.makeDataNode(doc, element, "spokenrange", data.spokenRange); //$NON-NLS-1$
+		BncNodeFactory.makeDataNode(doc, element, "spokendisp", data.spokenDisp); //$NON-NLS-1$
 
-		BncNodeFactory.makeDataNode(thisDoc, thisElement, "writtenfreq", thisData.theWrittenFreq); //$NON-NLS-1$
-		BncNodeFactory.makeDataNode(thisDoc, thisElement, "writtenrange", thisData.theWrittenRange); //$NON-NLS-1$
-		BncNodeFactory.makeDataNode(thisDoc, thisElement, "writtendisp", thisData.theWrittenDisp); //$NON-NLS-1$
-		return thisElement;
+		BncNodeFactory.makeDataNode(doc, element, "writtenfreq", data.writtenFreq); //$NON-NLS-1$
+		BncNodeFactory.makeDataNode(doc, element, "writtenrange", data.writtenRange); //$NON-NLS-1$
+		BncNodeFactory.makeDataNode(doc, element, "writtendisp", data.writtenDisp); //$NON-NLS-1$
+		return element;
 	}
 
-	static private void makeDataNode(final Document thisDoc, final Element thisParent, final String thisName, final Object thisObject)
+	static private void makeDataNode(final Document doc, final Element parent, final String name, final Object object)
 	{
-		if (thisObject == null)
+		if (object == null)
+		{
 			return;
-		NodeFactory.makeNode(thisDoc, thisParent, thisName, thisObject.toString());
+		}
+		NodeFactory.makeNode(doc, parent, name, object.toString());
 	}
 }

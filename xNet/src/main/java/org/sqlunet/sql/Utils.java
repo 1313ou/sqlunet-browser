@@ -17,7 +17,9 @@ public class Utils
 	static public String join(final long[] ids)
 	{
 		if (ids == null)
+		{
 			return null;
+		}
 		final StringBuilder sb = new StringBuilder();
 		boolean first = true;
 		for (final long id : ids)
@@ -25,7 +27,8 @@ public class Utils
 			if (first)
 			{
 				first = false;
-			} else
+			}
+			else
 			{
 				sb.append(',');
 			}
@@ -43,7 +46,9 @@ public class Utils
 	static public String join(final String[] strings)
 	{
 		if (strings == null)
+		{
 			return null;
+		}
 		final StringBuilder sb = new StringBuilder();
 		boolean first = true;
 		for (final String string : strings)
@@ -51,7 +56,8 @@ public class Utils
 			if (first)
 			{
 				first = false;
-			} else
+			}
+			else
 			{
 				sb.append(',');
 			}

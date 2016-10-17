@@ -4,24 +4,29 @@ import android.database.sqlite.SQLiteDatabase;
 
 import org.sqlunet.sql.DBQueryCommand;
 
+/**
+ * FrameNet annoset query command
+ *
+ * @author Bernard Bou
+ */
 class FnAnnoSetQueryCommand extends DBQueryCommand
 {
 	/**
-	 * <code>theQuery</code> is the SQL statement
+	 * <code>QUERY</code> is the SQL statement
 	 */
-	private static final String theQuery = SqLiteDialect.FrameNetAnnoSetQuery;
+	private static final String QUERY = SqLiteDialect.FrameNetAnnoSetQuery;
 
 	/**
 	 * Constructor
 	 *
-	 * @param thisConnection      is the database connection
-	 * @param thisTargetAnnoSetId is the target annosetid
+	 * @param connection      is the database connection
+	 * @param targetAnnoSetId is the target annosetid
 	 */
 	@SuppressWarnings("boxing")
-	public FnAnnoSetQueryCommand(final SQLiteDatabase thisConnection, final long thisTargetAnnoSetId)
+	public FnAnnoSetQueryCommand(final SQLiteDatabase connection, final long targetAnnoSetId)
 	{
-		super(thisConnection, FnAnnoSetQueryCommand.theQuery);
-		setParams(thisTargetAnnoSetId);
+		super(connection, FnAnnoSetQueryCommand.QUERY);
+		setParams(targetAnnoSetId);
 	}
 
 	/**

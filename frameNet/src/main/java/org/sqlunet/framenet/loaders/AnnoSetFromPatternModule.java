@@ -45,7 +45,6 @@ public class AnnoSetFromPatternModule extends BasicModule
 		}
 	}
 
-	@SuppressWarnings("boxing")
 	@Override
 	public void process(final TreeNode node)
 	{

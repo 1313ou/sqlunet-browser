@@ -335,7 +335,8 @@ public class WordNetProvider extends SqlUNetProvider
 				if (selection != null)
 				{
 					selection += " AND "; //$NON-NLS-1$
-				} else
+				}
+				else
 				{
 					selection = ""; //$NON-NLS-1$
 				}
@@ -347,7 +348,8 @@ public class WordNetProvider extends SqlUNetProvider
 				if (selection != null)
 				{
 					selection += " AND "; //$NON-NLS-1$
-				} else
+				}
+				else
 				{
 					selection = ""; //$NON-NLS-1$
 				}
@@ -359,7 +361,8 @@ public class WordNetProvider extends SqlUNetProvider
 				if (selection != null)
 				{
 					selection += " AND "; //$NON-NLS-1$
-				} else
+				}
+				else
 				{
 					selection = ""; //$NON-NLS-1$
 				}
@@ -506,7 +509,9 @@ public class WordNetProvider extends SqlUNetProvider
 			{
 				final String last = uri.getLastPathSegment();
 				if (SearchManager.SUGGEST_URI_PATH_QUERY.equals(last))
+				{
 					return null;
+				}
 				table = "words_lemma_fts4"; //$NON-NLS-1$
 				return this.db.query(table, new String[]{"wordid AS _id", "lemma AS " + SearchManager.SUGGEST_COLUMN_TEXT_1, "lemma AS " + SearchManager.SUGGEST_COLUMN_QUERY}, "lemma MATCH ?", new String[]{last}, null, null, null);
 			}
@@ -523,7 +528,9 @@ public class WordNetProvider extends SqlUNetProvider
 			{
 				final String last = uri.getLastPathSegment();
 				if (SearchManager.SUGGEST_URI_PATH_QUERY.equals(last))
+				{
 					return null;
+				}
 				table = "samples_sample_fts4"; //$NON-NLS-1$
 				return this.db.query(table, new String[]{"sampleid AS _id", "sample AS " + SearchManager.SUGGEST_COLUMN_TEXT_1, "sample AS " + SearchManager.SUGGEST_COLUMN_QUERY}, "sample MATCH ?", new String[]{last}, null, null, null);
 			}
@@ -544,7 +551,8 @@ public class WordNetProvider extends SqlUNetProvider
 		try
 		{
 			return this.db.query(table, projection, selection, selectionArgs, groupBy, null, sortOrder);
-		} catch (final SQLiteException e)
+		}
+		catch (final SQLiteException e)
 		{
 			Log.e(WordNetProvider.TAG, "WordNet provider query failed", e); //$NON-NLS-1$
 			return null;

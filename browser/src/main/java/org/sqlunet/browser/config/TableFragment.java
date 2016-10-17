@@ -94,17 +94,22 @@ public class TableFragment extends ListFragment
 				if (view instanceof TextView)
 				{
 					((TextView) view).setText(text);
-				} else if (view instanceof ImageView)
+				}
+				else if (view instanceof ImageView)
 				{
 					try
 					{
 						((ImageView) view).setImageResource(Integer.parseInt(text));
-					} catch (final NumberFormatException nfe)
+					}
+					catch (final NumberFormatException nfe)
 					{
 						((ImageView) view).setImageURI(Uri.parse(text));
 					}
-				} else
+				}
+				else
+				{
 					throw new IllegalStateException(view.getClass().getName() + " is not a view that can be bound by this SimpleCursorAdapter"); //$NON-NLS-1$
+				}
 				return false;
 			}
 		};
@@ -113,6 +118,7 @@ public class TableFragment extends ListFragment
 		// from (database fields)
 		final List<String> from0 = new ArrayList<>();
 		if (items != null)
+		{
 			for (final String item2 : items)
 			{
 				String field = item2;
@@ -125,16 +131,19 @@ public class TableFragment extends ListFragment
 				}
 				from0.add(field);
 			}
+		}
 		final String[] from = from0.toArray(new String[0]);
 		// Log.d(TableFragment.TAG + "From", TableFragment.toString(from));
 
 		// to (view ids)
 		final List<Integer> to0 = new ArrayList<>();
 		if (items != null)
+		{
 			for (int i = 0; i < items.length; i++)
 			{
 				to0.add(R.id.item0 + i);
 			}
+		}
 		final int[] to = new int[to0.size()];
 		int i = 0;
 		for (final Integer n : to0)
@@ -164,15 +173,21 @@ public class TableFragment extends ListFragment
 
 				// add items
 				if (items != null)
+				{
 					Collections.addAll(fields0, items);
+				}
 
 				// add xitems
 				if (xitems != null)
+				{
 					Collections.addAll(fields0, xitems);
+				}
 
 				final String[] projection = fields0.toArray(new String[0]);
 				for (String p : projection)
+				{
 					System.out.println(p);
+				}
 				final String[] selectionArgs = queryArg == null ? null : new String[]{queryArg};
 				return new CursorLoader(getActivity(), uri, projection, selection, selectionArgs, sort);
 			}
@@ -242,7 +257,8 @@ public class TableFragment extends ListFragment
 
 				// start
 				startActivity(this.targetIntent);
-			} else if ("org.sqlunet.wordnet.browser.SynsetActivity".equals(className)) //$NON-NLS-1$
+			}
+			else if ("org.sqlunet.wordnet.browser.SynsetActivity".equals(className)) //$NON-NLS-1$
 			{
 				// build pointer
 				final SynsetPointer synsetPointer = new SynsetPointer();

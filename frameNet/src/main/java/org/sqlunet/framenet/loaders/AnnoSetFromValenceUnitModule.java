@@ -43,7 +43,6 @@ public class AnnoSetFromValenceUnitModule extends BasicModule
 		}
 	}
 
-	@SuppressWarnings("boxing")
 	@Override
 	public void process(final TreeNode node)
 	{

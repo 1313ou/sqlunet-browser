@@ -63,14 +63,14 @@ public class ClassFromWordModule extends BasicModule
 	 * (non-Javadoc)
 	 * @see org.sqlunet.Module#data()
 	 */
-	@SuppressWarnings("boxing")
 	@Override
 	public void process(final TreeNode node)
 	{
 		if (this.wordid != null)
 		{
 			vnclasses(this.wordid, this.synsetid, node);
-		} else
+		}
+		else
 		{
 			node.disable();
 		}
@@ -106,7 +106,8 @@ public class ClassFromWordModule extends BasicModule
 					selectionArgs = new String[]{ //
 							Long.toString(wordid0), //
 							Long.toString(synsetid0)};
-				} else
+				}
+				else
 				{
 					selectionArgs = new String[]{ //
 							Long.toString(wordid0)};
@@ -154,11 +155,13 @@ public class ClassFromWordModule extends BasicModule
 
 						// attach result
 						TreeFactory.addTextNode(parent, sb, ClassFromWordModule.this.getContext(), itemsNode, rolesNode, framesNode);
-					} while (cursor.moveToNext());
+					}
+					while (cursor.moveToNext());
 
 					// expand
 					TreeView.expand(parent, false);
-				} else
+				}
+				else
 				{
 					parent.disable();
 				}

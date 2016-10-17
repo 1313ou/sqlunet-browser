@@ -144,7 +144,8 @@ public class Spanner
 						sb.setSpan(span, from, to, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
 					}
 				}
-			} else
+			}
+			else
 			{
 				sb.setSpan(spans, from, to, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
 			}
@@ -182,7 +183,9 @@ public class Spanner
 		sb.append(COLLAPSEDCHAR);
 		final int to = sb.length();
 		for (Object span : spans)
+		{
 			sb.setSpan(span, from, to, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+		}
 	}
 
 	/**
@@ -229,7 +232,6 @@ public class Spanner
 		final ImageSpan span = new ImageSpan(collapsedDrawable, DynamicDrawableSpan.ALIGN_BASELINE);
 		final ClickableSpan span2 = new ClickableSpan()
 		{
-			@SuppressWarnings("synthetic-access")
 			@Override
 			synchronized public void onClick(View view0)
 			{
@@ -311,7 +313,9 @@ public class Spanner
 	static public void append(final SpannableStringBuilder sb, final CharSequence text, @SuppressWarnings("SameParameterValue") final long flags, final SpanFactory... factories)
 	{
 		if (text == null || text.length() == 0)
+		{
 			return;
+		}
 
 		final int from = sb.length();
 		sb.append(text);
@@ -327,7 +331,8 @@ public class Spanner
 					{
 						sb.setSpan(span, from, to, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
 					}
-				} else
+				}
+				else
 				{
 					sb.setSpan(spans, from, to, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
 				}
@@ -351,7 +356,9 @@ public class Spanner
 		while (i < sb.length())
 		{
 			if (sb.charAt(i) == delimiter)
+			{
 				return i + 1;
+			}
 			i++;
 		}
 		return -1;

@@ -41,12 +41,13 @@ public class SenseModule extends SynsetModule
 
 	// L O A D E R S
 
-	@SuppressWarnings("boxing")
 	@Override
 	public void process(final TreeNode node)
 	{
 		if (this.wordid == null || this.synsetid == null)
+		{
 			return;
+		}
 
 		// sub nodes
 		final TreeNode dataNode = TreeFactory.newTextNode("data", SenseModule.this.getContext()); //$NON-NLS-1$
@@ -80,7 +81,8 @@ public class SenseModule extends SynsetModule
 					adjposition(this.synsetid, this.wordid, node);
 					break;
 			}
-		} else
+		}
+		else
 		{
 			vframes(this.synsetid, this.wordid, node);
 			vframesentences(this.synsetid, this.wordid, node);

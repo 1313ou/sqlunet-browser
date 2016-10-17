@@ -7,19 +7,24 @@ import org.sqlunet.sql.DBQueryCommand;
 
 import java.util.List;
 
+/**
+ * FrameNet layer query command
+ *
+ * @author Bernard Bou
+ */
 class FnLayerQueryCommand extends DBQueryCommand
 {
 	/**
 	 * Constructor
 	 *
-	 * @param thisConnection is the database connection
-	 * @param thisTargetId   is the target id
+	 * @param connection is the database connection
+	 * @param targetId   is the target id
 	 */
 	@SuppressWarnings("boxing")
-	FnLayerQueryCommand(final SQLiteDatabase thisConnection, final long thisTargetId, final String thisQuery)
+	FnLayerQueryCommand(final SQLiteDatabase connection, final long targetId, final String query)
 	{
-		super(thisConnection, thisQuery);
-		setParams(thisTargetId);
+		super(connection, query);
+		setParams(targetId);
 	}
 
 	/**

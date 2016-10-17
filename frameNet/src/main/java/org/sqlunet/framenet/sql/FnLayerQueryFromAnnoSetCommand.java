@@ -2,21 +2,26 @@ package org.sqlunet.framenet.sql;
 
 import android.database.sqlite.SQLiteDatabase;
 
+/**
+ * FrameNet layer command from annoset
+ *
+ * @author Bernard Bou
+ */
 class FnLayerQueryFromAnnoSetCommand extends FnLayerQueryCommand
 {
 	/**
-	 * <code>theQuery</code> is the SQL statement
+	 * <code>QUERY</code> is the SQL statement
 	 */
-	private static final String theQuery = SqLiteDialect.FrameNetLayerQueryFromAnnoSet;
+	private static final String QUERY = SqLiteDialect.FrameNetLayerQueryFromAnnoSet;
 
 	/**
 	 * Constructor
 	 *
-	 * @param thisConnection      is the database connection
-	 * @param thisTargetAnnoSetId is the target annosetid
+	 * @param connection      is the database connection
+	 * @param targetAnnoSetId is the target annosetid
 	 */
-	public FnLayerQueryFromAnnoSetCommand(final SQLiteDatabase thisConnection, final long thisTargetAnnoSetId)
+	public FnLayerQueryFromAnnoSetCommand(final SQLiteDatabase connection, final long targetAnnoSetId)
 	{
-		super(thisConnection, thisTargetAnnoSetId, FnLayerQueryFromAnnoSetCommand.theQuery);
+		super(connection, targetAnnoSetId, FnLayerQueryFromAnnoSetCommand.QUERY);
 	}
 }

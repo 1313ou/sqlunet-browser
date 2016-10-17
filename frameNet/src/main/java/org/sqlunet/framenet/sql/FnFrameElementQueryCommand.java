@@ -5,28 +5,28 @@ import android.database.sqlite.SQLiteDatabase;
 import org.sqlunet.sql.DBQueryCommand;
 
 /**
- * VerbNet FrameQuery query command
+ * FrameNet frame element query command
  *
  * @author Bernard Bou
  */
 class FnFrameElementQueryCommand extends DBQueryCommand
 {
 	/**
-	 * <code>theQuery</code> is the SQL statement
+	 * <code>QUERY</code> is the SQL statement
 	 */
-	private static final String theQuery = SqLiteDialect.FrameNetFrameFEQuery;
+	private static final String QUERY = SqLiteDialect.FrameNetFrameFEQuery;
 
 	/**
 	 * Constructor
 	 *
-	 * @param thisConnection    is the database connection
-	 * @param thisTargetFrameId is the target frameid
+	 * @param connection    is the database connection
+	 * @param targetFrameId is the target frameid
 	 */
 	@SuppressWarnings("boxing")
-	public FnFrameElementQueryCommand(final SQLiteDatabase thisConnection, final long thisTargetFrameId)
+	public FnFrameElementQueryCommand(final SQLiteDatabase connection, final long targetFrameId)
 	{
-		super(thisConnection, FnFrameElementQueryCommand.theQuery);
-		setParams(thisTargetFrameId);
+		super(connection, FnFrameElementQueryCommand.QUERY);
+		setParams(targetFrameId);
 	}
 
 	/**

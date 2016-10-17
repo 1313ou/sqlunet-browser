@@ -30,7 +30,8 @@ abstract class DocumentStringLoader extends AsyncTaskLoader<String>
 		try
 		{
 			return getDoc();
-		} finally
+		}
+		finally
 		{
 			synchronized (this)
 			{
@@ -60,8 +61,10 @@ abstract class DocumentStringLoader extends AsyncTaskLoader<String>
 	public void deliverResult(final String document0)
 	{
 		if (isReset())
-			// An async query came in while the loader is stopped
+		// An async query came in while the loader is stopped
+		{
 			return;
+		}
 
 		this.document = document0;
 

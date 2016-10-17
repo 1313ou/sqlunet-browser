@@ -32,14 +32,17 @@ public class PbRoleSetPointer implements Parcelable
 		this();
 		long frameid0 = pc.readLong();
 		if (frameid0 != -1)
+		{
 			this.rolesetid = frameid0;
+		}
 	}
 
-	@SuppressWarnings("boxing")
 	public Long getRoleSetId()
 	{
 		if (this.rolesetid != 0)
+		{
 			return this.rolesetid;
+		}
 		return null;
 	}
 
@@ -66,7 +69,6 @@ public class PbRoleSetPointer implements Parcelable
 	 * 
 	 * @see android.os.Parcelable#writeToParcel(android.os.Parcel, int)
 	 */
-	@SuppressWarnings("boxing")
 	@Override
 	public void writeToParcel(final Parcel pc, final int flags)
 	{

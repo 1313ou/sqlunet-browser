@@ -90,7 +90,6 @@ public class TreeFactory
 	 * @param context  context
 	 * @param siblings sibling nodes to add
 	 */
-	@SuppressWarnings("UnusedReturnValue")
 	static public TreeNode addTextNode(final TreeNode parent, final CharSequence value, final Context context, final TreeNode... siblings)
 	{
 		final TreeNode result = TreeFactory.newTextNode(value, context);
@@ -149,6 +148,8 @@ public class TreeFactory
 		final TextRenderer renderer = (TextRenderer) node.getRenderer();
 		final TextView textView = (TextView) renderer.getNodeView();
 		if (textView != null)
+		{
 			textView.setText(value);
+		}
 	}
 }

@@ -2,41 +2,47 @@ package org.sqlunet.framenet.sql;
 
 import android.database.sqlite.SQLiteDatabase;
 
+/**
+ * AnnoSet
+ *
+ * @author Bernard Bou
+ */
 public class FnAnnoSet
 {
 	public final long annoSetId;
 
 	public final FnSentence sentence;
 
-	private FnAnnoSet(final long thisAnnoSetId, final FnSentence thisSentence)
+	private FnAnnoSet(final long annoSetId, final FnSentence sentence)
 	{
-		this.annoSetId = thisAnnoSetId;
-		this.sentence = thisSentence;
+		this.annoSetId = annoSetId;
+		this.sentence = sentence;
 	}
 
-	public static FnAnnoSet make(final SQLiteDatabase thisConnection, final long thisAnnoSetId)
+	public static FnAnnoSet make(final SQLiteDatabase connection, final long annoSetId)
 	{
-		FnAnnoSet thisResult = null;
-		FnAnnoSetQueryCommand thisQuery = null;
+		FnAnnoSet result = null;
+		FnAnnoSetQueryCommand query = null;
 		try
 		{
-			thisQuery = new FnAnnoSetQueryCommand(thisConnection, thisAnnoSetId);
-			thisQuery.execute();
+			query = new FnAnnoSetQueryCommand(connection, annoSetId);
+			query.execute();
 
-			if (thisQuery.next())
+			if (query.next())
 			{
-				final long thisSentenceId = thisQuery.getSentenceId();
-				final String thisText = thisQuery.getSentenceText();
-				final FnSentence thisSentence = new FnSentence(thisSentenceId, thisText);
-				thisResult = new FnAnnoSet(thisAnnoSetId, thisSentence);
-			}
-		} finally
-		{
-			if (thisQuery != null)
-			{
-				thisQuery.release();
+				final long sentenceId = query.getSentenceId();
+				final String text = query.getSentenceText();
+				final FnSentence sentence = new FnSentence(sentenceId, text);
+				result = new FnAnnoSet(annoSetId, sentence);
 			}
 		}
-		return thisResult;
+		finally
+		{
+			if (query != null)
+			{
+				query.release();
+			}
+		}
+		return result;
 	}
 }

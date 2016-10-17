@@ -18,40 +18,40 @@ import org.sqlunet.sql.DBQueryCommand;
 class LinksQueryCommand extends DBQueryCommand
 {
 	/**
-	 * <code>theQuery</code> is the SQL statement
+	 * <code>QUERY</code> is the SQL statement
 	 */
-	private static final String theQuery = SqLiteDialect.LinksQuery; // ;
+	private static final String QUERY = SqLiteDialect.LinksQuery; // ;
 
 	/**
 	 * Constructor
 	 *
-	 * @param thisConnection is the database connection
+	 * @param connection is the database connection
 	 */
-	public LinksQueryCommand(final SQLiteDatabase thisConnection)
+	public LinksQueryCommand(final SQLiteDatabase connection)
 	{
-		super(thisConnection, LinksQueryCommand.theQuery);
+		super(connection, LinksQueryCommand.QUERY);
 	}
 
 	/**
 	 * Set source synset parameter in prepared statement
 	 *
-	 * @param thisSynsetId is the synset id
+	 * @param synsetId is the synset id
 	 */
-	public void setFromSynset(final long thisSynsetId)
+	public void setFromSynset(final long synsetId)
 	{
-		this.statement.setLong(0, thisSynsetId);
-		this.statement.setLong(1, thisSynsetId);
+		this.statement.setLong(0, synsetId);
+		this.statement.setLong(1, synsetId);
 	}
 
 	/**
 	 * Set source word parameter in prepared statement
 	 *
-	 * @param thisWordId is the word id or -1 if word is any in which case the query returns all lexical links whatever the word
+	 * @param wordId is the word id or -1 if word is any in which case the query returns all lexical links whatever the word
 	 */
-	public void setFromWord(final long thisWordId)
+	public void setFromWord(final long wordId)
 	{
-		this.statement.setLong(2, thisWordId);
-		this.statement.setLong(3, thisWordId);
+		this.statement.setLong(2, wordId);
+		this.statement.setLong(3, wordId);
 	}
 
 	/**

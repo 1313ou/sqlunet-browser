@@ -216,7 +216,9 @@ public class FrameNetProvider extends SqlUNetProvider
 	public Cursor query(final Uri uri, final String[] projection, final String selection0, final String[] selectionArgs, String sortOrder)
 	{
 		if (this.db == null)
+		{
 			open();
+		}
 
 		// choose the table to query and a sort order based on the code returned for the incoming URI
 		String table;
@@ -247,7 +249,8 @@ public class FrameNetProvider extends SqlUNetProvider
 				if (selection != null)
 				{
 					selection += " AND "; //$NON-NLS-1$
-				} else
+				}
+				else
 				{
 					selection = ""; //$NON-NLS-1$
 				}
@@ -259,7 +262,8 @@ public class FrameNetProvider extends SqlUNetProvider
 				if (selection != null)
 				{
 					selection += " AND "; //$NON-NLS-1$
-				} else
+				}
+				else
 				{
 					selection = ""; //$NON-NLS-1$
 				}
@@ -271,7 +275,8 @@ public class FrameNetProvider extends SqlUNetProvider
 				if (selection != null)
 				{
 					selection += " AND "; //$NON-NLS-1$
-				} else
+				}
+				else
 				{
 					selection = ""; //$NON-NLS-1$
 				}
@@ -283,7 +288,8 @@ public class FrameNetProvider extends SqlUNetProvider
 				if (selection != null)
 				{
 					selection += " AND "; //$NON-NLS-1$
-				} else
+				}
+				else
 				{
 					selection = ""; //$NON-NLS-1$
 				}
@@ -494,7 +500,8 @@ public class FrameNetProvider extends SqlUNetProvider
 		try
 		{
 			return this.db.query(table, projection, selection, selectionArgs, groupBy, null, sortOrder);
-		} catch (SQLiteException e)
+		}
+		catch (SQLiteException e)
 		{
 			Log.e(TAG, "FrameNet provider query failed", e); //$NON-NLS-1$
 			return null;

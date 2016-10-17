@@ -29,14 +29,14 @@ class FnNodeFactory extends NodeFactory
 	 * @param pos    is the target pos
 	 * @return newly created node
 	 */
-	@SuppressWarnings("boxing")
 	static public Node makeFnRootNode(final Document doc, final long wordId, final Character pos)
 	{
 		final Element rootNode = NodeFactory.makeNode(doc, doc, "framenet", null); //$NON-NLS-1$
 		if (pos == null)
 		{
 			NodeFactory.makeTargetNode(doc, rootNode, "wordid", Long.toString(wordId)); //$NON-NLS-1$
-		} else
+		}
+		else
 		{
 			NodeFactory.makeTargetNode(doc, rootNode, "wordid", Long.toString(wordId), "pos", Character.toString(pos)); //$NON-NLS-1$ //$NON-NLS-2$
 		}
@@ -51,14 +51,14 @@ class FnNodeFactory extends NodeFactory
 	 * @param pos  is the target pos
 	 * @return newly created node
 	 */
-	@SuppressWarnings("boxing")
 	static public Node makeFnRootNode(final Document doc, final String word, final Character pos)
 	{
 		final Element rootNode = NodeFactory.makeNode(doc, doc, "framenet", null); //$NON-NLS-1$
 		if (pos == null)
 		{
 			NodeFactory.makeTargetNode(doc, rootNode, "word", word); //$NON-NLS-1$
-		} else
+		}
+		else
 		{
 			NodeFactory.makeTargetNode(doc, rootNode, "word", word, "pos", Character.toString(pos)); //$NON-NLS-1$ //$NON-NLS-2$
 		}
@@ -166,9 +166,9 @@ class FnNodeFactory extends NodeFactory
 	public static Node makeFnGovernorNode(final Document doc, final Node parent, final FnGovernor governor)
 	{
 		final Element element = NodeFactory.makeNode(doc, parent, "governor", null); //$NON-NLS-1$
-		NodeFactory.makeAttribute(element, "governorid", Long.toString(governor.theGovernorId)); //$NON-NLS-1$
-		NodeFactory.makeAttribute(element, "wordid", Long.toString(governor.theWordId)); //$NON-NLS-1$
-		NodeFactory.makeText(doc, element, governor.theGovernor);
+		NodeFactory.makeAttribute(element, "governorid", Long.toString(governor.governorId)); //$NON-NLS-1$
+		NodeFactory.makeAttribute(element, "wordid", Long.toString(governor.wordId)); //$NON-NLS-1$
+		NodeFactory.makeText(doc, element, governor.governor);
 		return element;
 	}
 

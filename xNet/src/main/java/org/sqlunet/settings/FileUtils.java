@@ -37,9 +37,12 @@ class FileUtils
 			dir.mkdirs();
 			final File file = new File(dir, fileName);
 			if (FileUtils.copyAsset(assetManager, fileName, file.getAbsolutePath()))
+			{
 				return Uri.fromFile(file);
+			}
 			return null;
-		} finally
+		}
+		finally
 		{
 			assert assetManager != null;
 			assetManager.close();
@@ -63,21 +66,26 @@ class FileUtils
 			in = assetManager.open(assetPath);
 			final File f = new File(toPath);
 			if (!f.createNewFile())
+			{
 				return false;
+			}
 			out = new FileOutputStream(f);
 			FileUtils.copyFile(in, out);
 			return true;
-		} catch (final Exception e)
+		}
+		catch (final Exception e)
 		{
 			return false;
-		} finally
+		}
+		finally
 		{
 			if (out != null)
 			{
 				try
 				{
 					out.close();
-				} catch (final IOException e)
+				}
+				catch (final IOException e)
 				{
 					//
 				}
@@ -87,7 +95,8 @@ class FileUtils
 				try
 				{
 					in.close();
-				} catch (final IOException e)
+				}
+				catch (final IOException e)
 				{
 					//
 				}
@@ -132,12 +141,17 @@ class FileUtils
 			//noinspection ResultOfMethodCallIgnored
 			dir.mkdirs();
 			if (FileUtils.expandZipAsset(assetManager, fileName, dir.getAbsolutePath()))
+			{
 				return Uri.fromFile(dir);
+			}
 			return null;
-		} finally
+		}
+		finally
 		{
 			if (assetManager != null)
+			{
 				assetManager.close();
+			}
 		}
 	}
 
@@ -157,17 +171,20 @@ class FileUtils
 			in = assetManager.open(assetPath);
 			FileUtils.expandZip(in, null, new File(toPath));
 			return true;
-		} catch (final Exception e)
+		}
+		catch (final Exception e)
 		{
 			return false;
-		} finally
+		}
+		finally
 		{
 			if (in != null)
 			{
 				try
 				{
 					in.close();
-				} catch (final IOException e)
+				}
+				catch (final IOException e)
 				{
 					//
 				}
@@ -200,7 +217,6 @@ class FileUtils
 		// read and expand entries
 		final ZipInputStream zis = new ZipInputStream(in);
 
-		//noinspection TryFinallyCanBeTryWithResources
 		try
 		{
 			// get the zipped file list entry
@@ -227,7 +243,6 @@ class FileUtils
 
 							// copy
 
-							//noinspection TryFinallyCanBeTryWithResources
 							try
 							{
 								int len;
@@ -235,12 +250,14 @@ class FileUtils
 								{
 									os.write(buffer, 0, len);
 								}
-							} finally
+							}
+							finally
 							{
 								try
 								{
 									os.close();
-								} catch (IOException ignored)
+								}
+								catch (IOException ignored)
 								{
 								}
 							}
@@ -250,18 +267,21 @@ class FileUtils
 				zis.closeEntry();
 				entry = zis.getNextEntry();
 			}
-		} finally
+		}
+		finally
 		{
 			try
 			{
 				zis.close();
-			} catch (IOException ignored)
+			}
+			catch (IOException ignored)
 			{
 			}
 			try
 			{
 				in.close();
-			} catch (IOException ignored)
+			}
+			catch (IOException ignored)
 			{
 			}
 		}

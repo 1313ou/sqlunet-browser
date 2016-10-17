@@ -18,14 +18,14 @@ import org.sqlunet.sql.DBQueryCommand;
 class TypedSynsetsQueryCommand extends DBQueryCommand
 {
 	/**
-	 * <code>thePosQuery</code> is the (part-of-speech based) SQL statement
+	 * <code>posQuery</code> is the (part-of-speech based) SQL statement
 	 */
-	private static String thePosQuery = null;
+	private static String posQuery = null;
 
 	/**
-	 * <code>theLexDomainQuery</code> is the (lexdomain based) SQL statement
+	 * <code>lexDomainQuery</code> is the (lexdomain based) SQL statement
 	 */
-	private static String theLexDomainQuery = null;
+	private static String lexDomainQuery = null;
 
 	/**
 	 * Init data (resources, ...)
@@ -33,52 +33,52 @@ class TypedSynsetsQueryCommand extends DBQueryCommand
 	@SuppressWarnings("unused")
 	static void init()
 	{
-		TypedSynsetsQueryCommand.theLexDomainQuery = SqLiteDialect.LexDomainTypedSynsetsQuery;
-		TypedSynsetsQueryCommand.thePosQuery = SqLiteDialect.PosTypedSynsetsQuery;
+		TypedSynsetsQueryCommand.lexDomainQuery = SqLiteDialect.LexDomainTypedSynsetsQuery;
+		TypedSynsetsQueryCommand.posQuery = SqLiteDialect.PosTypedSynsetsQuery;
 	}
 
 	/**
 	 * Constructor
 	 *
-	 * @param thisConnection is the database connection
+	 * @param connection is the database connection
 	 * @param lexDomainBased is whether the query is lexdomain based
 	 */
-	public TypedSynsetsQueryCommand(final SQLiteDatabase thisConnection, final boolean lexDomainBased)
+	public TypedSynsetsQueryCommand(final SQLiteDatabase connection, final boolean lexDomainBased)
 	{
-		super(thisConnection, lexDomainBased ?
-				TypedSynsetsQueryCommand.theLexDomainQuery :
-				TypedSynsetsQueryCommand.thePosQuery);
+		super(connection, lexDomainBased ?
+				TypedSynsetsQueryCommand.lexDomainQuery :
+				TypedSynsetsQueryCommand.posQuery);
 	}
 
 	/**
 	 * Set word parameter in prepared SQL statement
 	 *
-	 * @param thisWordId is the target word
+	 * @param wordId is the target word
 	 */
-	public void setWordId(final long thisWordId)
+	public void setWordId(final long wordId)
 	{
-		this.statement.setLong(0, thisWordId);
+		this.statement.setLong(0, wordId);
 	}
 
 	/**
 	 * Set part-of-speech type parameter in prepared SQL statement
 	 *
-	 * @param thisType is the target part-of-speech type
+	 * @param type is the target part-of-speech type
 	 */
-	public void setPosType(final int thisType)
+	public void setPosType(final int type)
 	{
-		final String thisString = Character.valueOf((char) thisType).toString();
-		this.statement.setString(1, thisString);
+		final String pos = Character.valueOf((char) type).toString();
+		this.statement.setString(1, pos);
 	}
 
 	/**
 	 * Set lexdomain type parameter in prepared SQL statement
 	 *
-	 * @param thisType is the target lexdomain type
+	 * @param type is the target lexdomain type
 	 */
-	public void setLexDomainType(final int thisType)
+	public void setLexDomainType(final int type)
 	{
-		this.statement.setInt(1, thisType);
+		this.statement.setInt(1, type);
 	}
 
 	/**

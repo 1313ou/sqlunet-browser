@@ -57,7 +57,6 @@ public class RoleSetModule extends BasicModule
 	 * 
 	 * @see org.sqlunet.Module#process()
 	 */
-	@SuppressWarnings("boxing")
 	@Override
 	public void process(final TreeNode node)
 	{
@@ -65,7 +64,8 @@ public class RoleSetModule extends BasicModule
 		{
 			// data
 			roleset(RoleSetModule.this.rolesetid, node);
-		} else
+		}
+		else
 		{
 			node.disable();
 		}

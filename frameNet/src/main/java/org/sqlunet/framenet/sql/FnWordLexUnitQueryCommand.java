@@ -5,36 +5,36 @@ import android.database.sqlite.SQLiteDatabase;
 import org.sqlunet.sql.DBQueryCommand;
 
 /**
- * VerbNet Class Membership query command
+ * FrameNet lex unit query command
  *
  * @author Bernard Bou
  */
 class FnWordLexUnitQueryCommand extends DBQueryCommand
 {
 	/**
-	 * <code>theQuery</code> is the SQL statement
+	 * <code>QUERY</code> is the SQL statement
 	 */
-	private static final String theQuery = SqLiteDialect.FrameNetWordLexUnitQueryFromWordId;
+	private static final String QUERY = SqLiteDialect.FrameNetWordLexUnitQueryFromWordId;
 
 	/**
-	 * <code>theQuery2</code> is the SQL statement with Pos input
+	 * <code>QUERY2</code> is the SQL statement with Pos input
 	 */
-	private static final String theQuery2 = SqLiteDialect.FrameNetWordLexUnitWithPosQuery;
+	private static final String QUERY2 = SqLiteDialect.FrameNetWordLexUnitWithPosQuery;
 
 	/**
 	 * Constructor
 	 *
-	 * @param thisConnection   is the database connection
-	 * @param thisTargetWordId target wordid
-	 * @param thisTargetPos    target pos or null
+	 * @param connection   is the database connection
+	 * @param targetWordId target wordid
+	 * @param targetPos    target pos or null
 	 */
 	@SuppressWarnings("boxing")
-	public FnWordLexUnitQueryCommand(final SQLiteDatabase thisConnection, final long thisTargetWordId, final Character thisTargetPos)
+	public FnWordLexUnitQueryCommand(final SQLiteDatabase connection, final long targetWordId, final Character targetPos)
 	{
-		super(thisConnection, thisTargetPos != null ?
-				FnWordLexUnitQueryCommand.theQuery2 :
-				FnWordLexUnitQueryCommand.theQuery);
-		setParams(thisTargetWordId, FnWordLexUnitQueryCommand.mapPos(thisTargetPos));
+		super(connection, targetPos != null ?
+				FnWordLexUnitQueryCommand.QUERY2 :
+				FnWordLexUnitQueryCommand.QUERY);
+		setParams(targetWordId, FnWordLexUnitQueryCommand.mapPos(targetPos));
 	}
 
 	/**
@@ -137,7 +137,9 @@ class FnWordLexUnitQueryCommand extends DBQueryCommand
 	private static Integer mapPos(final Character thatTargetPos)
 	{
 		if (thatTargetPos == null)
+		{
 			return null;
+		}
 		switch (thatTargetPos)
 		{
 			case 'n':

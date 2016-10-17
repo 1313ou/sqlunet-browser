@@ -116,12 +116,13 @@ abstract public class BasicModule extends Module
 				return new CursorLoader(getContext(), uri, projection, selection, selectionArgs, sortOrder);
 			}
 
-			@SuppressWarnings("synthetic-access")
 			@Override
 			public void onLoadFinished(final Loader<Cursor> loader, final Cursor cursor)
 			{
 				if (cursor.getCount() > 1)
+				{
 					throw new RuntimeException("Unexpected number of rows"); //$NON-NLS-1$
+				}
 				if (cursor.moveToFirst())
 				{
 					final SpannableStringBuilder sb = new SpannableStringBuilder();
@@ -161,7 +162,8 @@ abstract public class BasicModule extends Module
 
 					// expand
 					TreeView.expand(parent, false);
-				} else
+				}
+				else
 				{
 					parent.disable();
 				}
@@ -198,12 +200,13 @@ abstract public class BasicModule extends Module
 				return new CursorLoader(getContext(), uri, projection, selection, selectionArgs, sortOrder);
 			}
 
-			@SuppressWarnings("synthetic-access")
 			@Override
 			public void onLoadFinished(final Loader<Cursor> loader, final Cursor cursor)
 			{
 				if (cursor.getCount() > 1)
+				{
 					throw new RuntimeException("Unexpected number of rows"); //$NON-NLS-1$
+				}
 				if (cursor.moveToFirst())
 				{
 					final SpannableStringBuilder sb = new SpannableStringBuilder();
@@ -238,11 +241,13 @@ abstract public class BasicModule extends Module
 
 						// expand
 						TreeView.expand(parent, false);
-					} else
+					}
+					else
 					{
 						TreeFactory.setNodeValue(parent, sb);
 					}
-				} else
+				}
+				else
 				{
 					parent.disable();
 				}
@@ -277,14 +282,15 @@ abstract public class BasicModule extends Module
 				return new CursorLoader(getContext(), uri, projection, selection, selectionArgs, sortOrder);
 			}
 
-			@SuppressWarnings("synthetic-access")
 			@Override
 			public void onLoadFinished(final Loader<Cursor> loader0, final Cursor cursor)
 			{
 				if (BasicModule.this.membersGrouped)
 				{
 					if (cursor.getCount() > 1)
+					{
 						throw new RuntimeException("Unexpected number of rows"); //$NON-NLS-1$
+					}
 				}
 
 				if (cursor.moveToFirst())
@@ -294,7 +300,8 @@ abstract public class BasicModule extends Module
 					{
 						final int idMembers = cursor.getColumnIndex(Senses_Words.MEMBERS);
 						sb.append(cursor.getString(idMembers));
-					} else
+					}
+					else
 					{
 						final int lemmaId = cursor.getColumnIndex(Words.LEMMA);
 						// int i = 1;
@@ -313,7 +320,8 @@ abstract public class BasicModule extends Module
 							// sb.append('-');
 							// sb.append(lemma);
 							Spanner.append(sb, lemma, 0, WordNetFactories.membersFactory);
-						} while (cursor.moveToNext());
+						}
+						while (cursor.moveToNext());
 					}
 
 					// attach result
@@ -324,11 +332,13 @@ abstract public class BasicModule extends Module
 
 						// expand
 						TreeView.expand(parent, false);
-					} else
+					}
+					else
 					{
 						TreeFactory.setNodeValue(parent, sb);
 					}
-				} else
+				}
+				else
 				{
 					parent.disable();
 				}
@@ -363,7 +373,6 @@ abstract public class BasicModule extends Module
 				return new CursorLoader(getContext(), uri, projection, selection, selectionArgs, sortOrder);
 			}
 
-			@SuppressWarnings("synthetic-access")
 			@Override
 			public void onLoadFinished(final Loader<Cursor> loader, final Cursor cursor)
 			{
@@ -387,14 +396,16 @@ abstract public class BasicModule extends Module
 						Spanner.append(sb, sample, 0, WordNetFactories.sampleFactory);
 						// final String record = String.format(Locale.ENGLISH, "[%d] %s", sampleId, sample);
 						// sb.append(record);
-					} while (cursor.moveToNext());
+					}
+					while (cursor.moveToNext());
 
 					// attach result
 					TreeFactory.addTextNode(parent, sb, BasicModule.this.getContext());
 
 					// expand
 					TreeView.expand(parent, false);
-				} else
+				}
+				else
 				{
 					parent.disable();
 				}
@@ -435,7 +446,7 @@ abstract public class BasicModule extends Module
 			@Override
 			public void onLoadFinished(final Loader<Cursor> loader, final Cursor cursor)
 			{
-				//noinspection StatementWithEmptyBody,StatementWithEmptyBody,StatementWithEmptyBody,StatementWithEmptyBody,StatementWithEmptyBody,StatementWithEmptyBody,StatementWithEmptyBody
+				// noinspection StatementWithEmptyBody,StatementWithEmptyBody,StatementWithEmptyBody,StatementWithEmptyBody,StatementWithEmptyBody,StatementWithEmptyBody
 				if (cursor.moveToFirst())
 				{
 					final int idSynsetId = cursor.getColumnIndex(SemLinks_Synsets_X.SYNSETID);
@@ -465,11 +476,13 @@ abstract public class BasicModule extends Module
 								TreeFactory.newLeafNode(sb, getLinkRes(linkid), context) :
 								TreeFactory.newQueryNode(new SubLinksQuery(synsetid, linkid, getLinkRes(linkid), sb), BasicModule.this.getContext());
 						parent.addChild(linkNode);
-					} while (cursor.moveToNext());
+					}
+					while (cursor.moveToNext());
 
 					// expand
 					TreeView.expand(parent, false);
-				} else
+				}
+				else
 				{
 					// parent.disable();
 				}
@@ -539,11 +552,13 @@ abstract public class BasicModule extends Module
 								TreeFactory.newLeafNode(sb, getLinkRes(linkid), context) :
 								TreeFactory.newQueryNode(new SubLinksQuery(synsetid, linkid, getLinkRes(linkid), sb), context);
 						parent.addChild(linkNode);
-					} while (cursor.moveToNext());
+					}
+					while (cursor.moveToNext());
 
 					// expand
 					TreeView.expand(parent, false);
-				} else
+				}
+				else
 				{
 					parent.disable();
 				}
@@ -584,7 +599,7 @@ abstract public class BasicModule extends Module
 			@Override
 			public void onLoadFinished(final Loader<Cursor> loader, final Cursor cursor)
 			{
-				//noinspection StatementWithEmptyBody,StatementWithEmptyBody,StatementWithEmptyBody,StatementWithEmptyBody
+				// noinspection StatementWithEmptyBody,StatementWithEmptyBody,StatementWithEmptyBody
 				if (cursor.moveToFirst())
 				{
 					final int idLinkId = cursor.getColumnIndex(LinkTypes.LINKID);
@@ -626,14 +641,16 @@ abstract public class BasicModule extends Module
 
 						// attach result
 						TreeFactory.newLeafNode(sb, getLinkRes(linkid), BasicModule.this.getContext());
-					} while (cursor.moveToNext());
+					}
+					while (cursor.moveToNext());
 
 					// attach result
 					// TreeFactory.addTextNode(parent, sb, BasicModule.this.getContext());
 
 					// expand
 					TreeView.expand(parent, false);
-				} else
+				}
+				else
 				{
 					// parent.disable();
 				}
@@ -714,14 +731,16 @@ abstract public class BasicModule extends Module
 
 						// attach result
 						TreeFactory.newLeafNode(sb, getLinkRes(linkid), BasicModule.this.getContext());
-					} while (cursor.moveToNext());
+					}
+					while (cursor.moveToNext());
 
 					// attach result
 					// TreeFactory.addTextNode(parent, sb, BasicModule.this.getContext());
 
 					// expand
 					TreeView.expand(parent, false);
-				} else
+				}
+				else
 				{
 					// parent.disable();
 				}
@@ -753,7 +772,6 @@ abstract public class BasicModule extends Module
 				return new CursorLoader(getContext(), uri, projection, selection, selectionArgs, sortOrder);
 			}
 
-			@SuppressWarnings("synthetic-access")
 			@Override
 			public void onLoadFinished(final Loader<Cursor> loader, final Cursor cursor)
 			{
@@ -774,14 +792,16 @@ abstract public class BasicModule extends Module
 						Spanner.appendImage(sb, BasicModule.this.flagDrawable);
 						sb.append(' ');
 						sb.append(record);
-					} while (cursor.moveToNext());
+					}
+					while (cursor.moveToNext());
 
 					// attach result
 					TreeFactory.addTextNode(parent, sb, BasicModule.this.getContext());
 
 					// expand
 					TreeView.expand(parent, false);
-				} else
+				}
+				else
 				{
 					// parent.disable();
 				}
@@ -813,7 +833,6 @@ abstract public class BasicModule extends Module
 				return new CursorLoader(getContext(), uri, projection, selection, selectionArgs, sortOrder);
 			}
 
-			@SuppressWarnings("synthetic-access")
 			@Override
 			public void onLoadFinished(final Loader<Cursor> loader, final Cursor cursor)
 			{
@@ -834,14 +853,16 @@ abstract public class BasicModule extends Module
 						Spanner.appendImage(sb, BasicModule.this.flagDrawable);
 						sb.append(' ');
 						sb.append(record);
-					} while (cursor.moveToNext());
+					}
+					while (cursor.moveToNext());
 
 					// attach result
 					TreeFactory.addTextNode(parent, sb, BasicModule.this.getContext());
 
 					// expand
 					TreeView.expand(parent, false);
-				} else
+				}
+				else
 				{
 					// parent.disable();
 				}
@@ -873,7 +894,6 @@ abstract public class BasicModule extends Module
 				return new CursorLoader(BasicModule.this.getContext(), uri, projection, selection, selectionArgs, sortOrder);
 			}
 
-			@SuppressWarnings("synthetic-access")
 			@Override
 			public void onLoadFinished(final Loader<Cursor> loader, final Cursor cursor)
 			{
@@ -894,14 +914,16 @@ abstract public class BasicModule extends Module
 						Spanner.appendImage(sb, BasicModule.this.flagDrawable);
 						sb.append(' ');
 						sb.append(record);
-					} while (cursor.moveToNext());
+					}
+					while (cursor.moveToNext());
 
 					// attach result
 					TreeFactory.addTextNode(parent, sb, BasicModule.this.getContext());
 
 					// expand
 					TreeView.expand(parent, false);
-				} else
+				}
+				else
 				{
 					// parent.disable();
 				}
@@ -934,7 +956,6 @@ abstract public class BasicModule extends Module
 				return new CursorLoader(getContext(), uri, projection, selection, selectionArgs, sortOrder);
 			}
 
-			@SuppressWarnings({"synthetic-access", "StatementWithEmptyBody"})
 			@Override
 			public void onLoadFinished(final Loader<Cursor> loader0, final Cursor cursor)
 			{
@@ -955,14 +976,16 @@ abstract public class BasicModule extends Module
 						Spanner.appendImage(sb, BasicModule.this.flagDrawable);
 						sb.append(' ');
 						sb.append(record);
-					} while (cursor.moveToNext());
+					}
+					while (cursor.moveToNext());
 
 					// attach result
 					TreeFactory.addTextNode(parent, sb, BasicModule.this.getContext());
 
 					// expand
 					TreeView.expand(parent, false);
-				} else
+				}
+				else
 				{
 					// parent.disable();
 				}
@@ -994,7 +1017,6 @@ abstract public class BasicModule extends Module
 				return new CursorLoader(BasicModule.this.getContext(), uri, projection, selection, selectionArgs, sortOrder);
 			}
 
-			@SuppressWarnings("synthetic-access")
 			@Override
 			public void onLoadFinished(final Loader<Cursor> loader, final Cursor cursor)
 			{
@@ -1015,14 +1037,16 @@ abstract public class BasicModule extends Module
 						Spanner.appendImage(sb, BasicModule.this.flagDrawable);
 						sb.append(' ');
 						sb.append(record);
-					} while (cursor.moveToNext());
+					}
+					while (cursor.moveToNext());
 
 					// attach result
 					TreeFactory.addTextNode(parent, sb, BasicModule.this.getContext());
 
 					// expand
 					TreeView.expand(parent, false);
-				} else
+				}
+				else
 				{
 					// parent.disable();
 				}
@@ -1054,7 +1078,6 @@ abstract public class BasicModule extends Module
 				return new CursorLoader(getContext(), uri, projection, selection, selectionArgs, sortOrder);
 			}
 
-			@SuppressWarnings("synthetic-access")
 			@Override
 			public void onLoadFinished(final Loader<Cursor> loader, final Cursor cursor)
 			{
@@ -1075,14 +1098,16 @@ abstract public class BasicModule extends Module
 						Spanner.appendImage(sb, BasicModule.this.flagDrawable);
 						sb.append(' ');
 						sb.append(record);
-					} while (cursor.moveToNext());
+					}
+					while (cursor.moveToNext());
 
 					// attach result
 					TreeFactory.addTextNode(parent, sb, BasicModule.this.getContext());
 
 					// expand
 					TreeView.expand(parent, false);
-				} else
+				}
+				else
 				{
 					// parent.disable();
 				}
@@ -1113,7 +1138,6 @@ abstract public class BasicModule extends Module
 				return new CursorLoader(BasicModule.this.getContext(), uri, projection, selection, selectionArgs, sortOrder);
 			}
 
-			@SuppressWarnings("synthetic-access")
 			@Override
 			public void onLoadFinished(final Loader<Cursor> loader, final Cursor cursor)
 			{
@@ -1136,14 +1160,16 @@ abstract public class BasicModule extends Module
 						Spanner.appendImage(sb, BasicModule.this.flagDrawable);
 						sb.append(' ');
 						sb.append(record);
-					} while (cursor.moveToNext());
+					}
+					while (cursor.moveToNext());
 
 					// attach result
 					TreeFactory.addTextNode(parent, sb, BasicModule.this.getContext());
 
 					// expand
 					TreeView.expand(parent, false);
-				} else
+				}
+				else
 				{
 					// parent.disable();
 				}

@@ -73,7 +73,6 @@ public class SentenceModule extends BasicModule
 	 * (non-Javadoc)
 	 * @see org.sqlunet.framenet.browser.FrameModule#process()
 	 */
-	@SuppressWarnings("boxing")
 	@Override
 	public void process(final TreeNode node)
 	{
@@ -104,12 +103,13 @@ public class SentenceModule extends BasicModule
 				return new CursorLoader(SentenceModule.this.getContext(), uri, projection, selection, selectionArgs, sortOrder);
 			}
 
-			@SuppressWarnings("synthetic-access")
 			@Override
 			public void onLoadFinished(final Loader<Cursor> loader, final Cursor cursor)
 			{
 				if (cursor.getCount() > 1)
+				{
 					throw new RuntimeException("Unexpected number of rows"); //$NON-NLS-1$
+				}
 				if (cursor.moveToFirst())
 				{
 					final SpannableStringBuilder sb = new SpannableStringBuilder();
@@ -131,7 +131,8 @@ public class SentenceModule extends BasicModule
 
 					// expand
 					TreeView.expand(parent, false);
-				} else
+				}
+				else
 				{
 					parent.disable();
 				}

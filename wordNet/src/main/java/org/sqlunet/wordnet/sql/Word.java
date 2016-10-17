@@ -64,11 +64,13 @@ public class Word extends BasicWord
 			{
 				word = new Word(query);
 			}
-		} catch (final SQLException e)
+		}
+		catch (final SQLException e)
 		{
 			e.printStackTrace();
 			// word can only be null here
-		} finally
+		}
+		finally
 		{
 			if (query != null)
 			{
@@ -98,11 +100,13 @@ public class Word extends BasicWord
 				final Synset synset = new Synset(query);
 				synsets.add(synset);
 			}
-		} catch (final SQLException e)
+		}
+		catch (final SQLException e)
 		{
 			e.printStackTrace();
 			synsets = null;
-		} finally
+		}
+		finally
 		{
 			if (query != null)
 			{
@@ -131,7 +135,8 @@ public class Word extends BasicWord
 			if (lexDomainBased)
 			{
 				query.setLexDomainType(targetType);
-			} else
+			}
+			else
 			{
 				query.setPosType(targetType);
 			}
@@ -139,14 +144,16 @@ public class Word extends BasicWord
 
 			while (query.next())
 			{
-				final Synset thisSynset = new Synset(query);
-				synsets.add(thisSynset);
+				final Synset synset = new Synset(query);
+				synsets.add(synset);
 			}
-		} catch (final SQLException e)
+		}
+		catch (final SQLException e)
 		{
 			e.printStackTrace();
 			synsets = null;
-		} finally
+		}
+		finally
 		{
 			if (query != null)
 			{
@@ -187,18 +194,21 @@ public class Word extends BasicWord
 				if (map.containsKey(key))
 				{
 					values = map.get(key);
-				} else
+				}
+				else
 				{
 					values = new TreeSet<>();
 					map.put(key, values);
 				}
 				values.add(linkType);
 			}
-		} catch (final SQLException e)
+		}
+		catch (final SQLException e)
 		{
 			e.printStackTrace();
 			map = null;
-		} finally
+		}
+		finally
 		{
 			if (query != null)
 			{

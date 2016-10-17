@@ -6,6 +6,11 @@ import android.util.Pair;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Lex unit
+ *
+ * @author Bernard Bou
+ */
 public class FnLexUnit
 {
 	public final long luId;
@@ -42,42 +47,43 @@ public class FnLexUnit
 	/**
 	 * Make sets of lexunits from query built from word
 	 *
-	 * @param thisConnection is the database connection
-	 * @param thisTargetWord is the word to build query from
+	 * @param connection is the database connection
+	 * @param targetWord is the word to build query from
 	 * @return wordid + list of lexunits
 	 */
-	static public Pair<Long, List<FnLexUnit>> makeFromWord(final SQLiteDatabase thisConnection, final String thisTargetWord)
+	static public Pair<Long, List<FnLexUnit>> makeFromWord(final SQLiteDatabase connection, final String targetWord)
 	{
-		final List<FnLexUnit> thisResult = new ArrayList<>();
-		FnLexUnitQueryCommandFromWord thisQuery = null;
+		final List<FnLexUnit> result = new ArrayList<>();
+		FnLexUnitQueryCommandFromWord query = null;
 		try
 		{
-			thisQuery = new FnLexUnitQueryCommandFromWord(thisConnection, thisTargetWord);
-			thisQuery.execute();
+			query = new FnLexUnitQueryCommandFromWord(connection, targetWord);
+			query.execute();
 
-			long thisWordId = 0;
-			while (thisQuery.next())
+			long wordId = 0;
+			while (query.next())
 			{
-				thisWordId = thisQuery.getWordId();
+				wordId = query.getWordId();
 
-				final long thisLuId = thisQuery.getLuId();
-				final String thisLexUnit = thisQuery.getLexUnit();
-				final String thisPos = thisQuery.getPos();
-				final String thisDefinition = thisQuery.getLexUnitDefinition();
-				final String thisDictionary = thisQuery.getLexUnitDictionary();
-				final String thisIncorporatedFe = thisQuery.getIncoporatedFe();
-				final long thisFrameId = thisQuery.getFrameId();
-				final String thisFrame = thisQuery.getFrame();
-				final String thisFrameDefinition = thisQuery.getFrameDefinition();
+				final long luId = query.getLuId();
+				final String lexUnit = query.getLexUnit();
+				final String pos = query.getPos();
+				final String definition = query.getLexUnitDefinition();
+				final String dictionary = query.getLexUnitDictionary();
+				final String incorporatedFe = query.getIncoporatedFe();
+				final long frameId = query.getFrameId();
+				final String frame = query.getFrame();
+				final String frameDefinition = query.getFrameDefinition();
 
-				thisResult.add(new FnLexUnit(thisLuId, thisLexUnit, thisPos, thisDefinition, thisDictionary, thisIncorporatedFe, thisFrameId, thisFrame, thisFrameDefinition));
+				result.add(new FnLexUnit(luId, lexUnit, pos, definition, dictionary, incorporatedFe, frameId, frame, frameDefinition));
 			}
-			return new Pair<>(thisWordId, thisResult);
-		} finally
+			return new Pair<>(wordId, result);
+		}
+		finally
 		{
-			if (thisQuery != null)
+			if (query != null)
 			{
-				thisQuery.release();
+				query.release();
 			}
 		}
 	}
@@ -85,103 +91,106 @@ public class FnLexUnit
 	/**
 	 * Make sets of lexunits from query built from wordid
 	 *
-	 * @param thisConnection   is the database connection
-	 * @param thisTargetWordId is the word id to build query from
-	 * @param thisTargetPos    is the pos to build query from, null if any
+	 * @param connection   is the database connection
+	 * @param targetWordId is the word id to build query from
+	 * @param targetPos    is the pos to build query from, null if any
 	 * @return list of lexunits
 	 */
-	static public List<FnLexUnit> makeFromWordId(final SQLiteDatabase thisConnection, final long thisTargetWordId, final Character thisTargetPos)
+	static public List<FnLexUnit> makeFromWordId(final SQLiteDatabase connection, final long targetWordId, final Character targetPos)
 	{
-		final List<FnLexUnit> thisResult = new ArrayList<>();
-		FnWordLexUnitQueryCommand thisQuery = null;
+		final List<FnLexUnit> result = new ArrayList<>();
+		FnWordLexUnitQueryCommand query = null;
 		try
 		{
-			thisQuery = new FnWordLexUnitQueryCommand(thisConnection, thisTargetWordId, thisTargetPos);
-			thisQuery.execute();
+			query = new FnWordLexUnitQueryCommand(connection, targetWordId, targetPos);
+			query.execute();
 
-			while (thisQuery.next())
+			while (query.next())
 			{
-				final long thisLuId = thisQuery.getLuId();
-				final String thisLexUnit = thisQuery.getLexUnit();
-				final String thisPos = thisQuery.getPos();
-				final String thisDefinition = thisQuery.getDefinition();
-				final String thisDictionary = thisQuery.getDictionary();
-				final String thisIncorporatedFe = thisQuery.getIncorporatedFe();
-				final long thisFrameId = thisQuery.getFrameId();
-				final String thisFrame = thisQuery.getFrame();
-				final String thisFrameDescription = thisQuery.getFrameDescription();
+				final long luId = query.getLuId();
+				final String lexUnit = query.getLexUnit();
+				final String pos = query.getPos();
+				final String definition = query.getDefinition();
+				final String dictionary = query.getDictionary();
+				final String incorporatedFe = query.getIncorporatedFe();
+				final long frameId = query.getFrameId();
+				final String frame = query.getFrame();
+				final String frameDescription = query.getFrameDescription();
 
-				thisResult.add(new FnLexUnit(thisLuId, thisLexUnit, thisPos, thisDefinition, thisDictionary, thisIncorporatedFe, thisFrameId, thisFrame, thisFrameDescription));
-			}
-		} finally
-		{
-			if (thisQuery != null)
-			{
-				thisQuery.release();
+				result.add(new FnLexUnit(luId, lexUnit, pos, definition, dictionary, incorporatedFe, frameId, frame, frameDescription));
 			}
 		}
-		return thisResult;
+		finally
+		{
+			if (query != null)
+			{
+				query.release();
+			}
+		}
+		return result;
 	}
 
-	public static List<FnLexUnit> makeFromFrame(final SQLiteDatabase thisConnection, final long thisTargetFrameId)
+	public static List<FnLexUnit> makeFromFrame(final SQLiteDatabase connection, final long targetFrameId)
 	{
-		final List<FnLexUnit> thisResult = new ArrayList<>();
-		FnFrameLexUnitQueryCommand thisQuery = null;
+		final List<FnLexUnit> result = new ArrayList<>();
+		FnFrameLexUnitQueryCommand query = null;
 		try
 		{
-			thisQuery = new FnFrameLexUnitQueryCommand(thisConnection, thisTargetFrameId);
-			thisQuery.execute();
+			query = new FnFrameLexUnitQueryCommand(connection, targetFrameId);
+			query.execute();
 
-			while (thisQuery.next())
+			while (query.next())
 			{
-				final long thisLuId = thisQuery.getLuId();
-				final String thisLexUnit = thisQuery.getLexUnit();
-				final String thisPos = thisQuery.getPos();
-				final String thisDefinition = thisQuery.getDefinition();
-				final String thisDictionary = thisQuery.getDictionary();
-				final String thisIncorporatedFe = thisQuery.getIncorporatedFe();
-				thisResult.add(new FnLexUnit(thisLuId, thisLexUnit, thisPos, thisDefinition, thisDictionary, thisIncorporatedFe, -1, null, null));
-			}
-		} finally
-		{
-			if (thisQuery != null)
-			{
-				thisQuery.release();
+				final long luId = query.getLuId();
+				final String lexUnit = query.getLexUnit();
+				final String pos = query.getPos();
+				final String definition = query.getDefinition();
+				final String dictionary = query.getDictionary();
+				final String incorporatedFe = query.getIncorporatedFe();
+				result.add(new FnLexUnit(luId, lexUnit, pos, definition, dictionary, incorporatedFe, -1, null, null));
 			}
 		}
-		return thisResult;
+		finally
+		{
+			if (query != null)
+			{
+				query.release();
+			}
+		}
+		return result;
 	}
 
-	public static FnLexUnit makeFromId(final SQLiteDatabase thisConnection, final long thisTargetLuId)
+	public static FnLexUnit makeFromId(final SQLiteDatabase connection, final long targetLuId)
 	{
-		FnLexUnit thisResult = null;
-		FnLexUnitQueryCommand thisQuery = null;
+		FnLexUnit result = null;
+		FnLexUnitQueryCommand query = null;
 		try
 		{
-			thisQuery = new FnLexUnitQueryCommand(thisConnection, thisTargetLuId);
-			thisQuery.execute();
+			query = new FnLexUnitQueryCommand(connection, targetLuId);
+			query.execute();
 
-			if (thisQuery.next())
+			if (query.next())
 			{
-				final long thisLuId = thisQuery.getLuId();
-				final String thisLexUnit = thisQuery.getLexUnit();
-				final String thisPos = thisQuery.getPos();
-				final String thisDefinition = thisQuery.getDefinition();
-				final String thisDictionary = thisQuery.getDictionary();
-				final String thisIncorporatedFe = thisQuery.getIncorporatedFe();
-				final long thisFrameId = thisQuery.getFrameId();
-				final String thisFrame = thisQuery.getFrame();
-				final String thisFrameDefinition = thisQuery.getFrameDescription();
-				thisResult = new FnLexUnit(thisLuId, thisLexUnit, thisPos, thisDefinition, thisDictionary, thisIncorporatedFe, thisFrameId, thisFrame, thisFrameDefinition);
-			}
-		} finally
-		{
-			if (thisQuery != null)
-			{
-				thisQuery.release();
+				final long luId = query.getLuId();
+				final String lexUnit = query.getLexUnit();
+				final String pos = query.getPos();
+				final String definition = query.getDefinition();
+				final String dictionary = query.getDictionary();
+				final String incorporatedFe = query.getIncorporatedFe();
+				final long frameId = query.getFrameId();
+				final String frame = query.getFrame();
+				final String frameDescription = query.getFrameDescription();
+				result = new FnLexUnit(luId, lexUnit, pos, definition, dictionary, incorporatedFe, frameId, frame, frameDescription);
 			}
 		}
-		return thisResult;
+		finally
+		{
+			if (query != null)
+			{
+				query.release();
+			}
+		}
+		return result;
 	}
 
 }

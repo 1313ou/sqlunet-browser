@@ -49,7 +49,8 @@ public class FrameNetSpanner
 				{
 					builder.setSpan(span, start, end, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
 				}
-			} else
+			}
+			else
 			{
 				builder.setSpan(spans, start, end, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
 			}

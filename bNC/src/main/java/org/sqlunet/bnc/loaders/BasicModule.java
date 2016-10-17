@@ -1,16 +1,5 @@
 package org.sqlunet.bnc.loaders;
 
-import org.sqlunet.HasPos;
-import org.sqlunet.HasWordId;
-import org.sqlunet.bnc.R;
-import org.sqlunet.bnc.provider.BNCContract.Words_BNCs;
-import org.sqlunet.bnc.style.BNCFactories;
-import org.sqlunet.browser.Module;
-import org.sqlunet.style.Spanner;
-import org.sqlunet.treeview.model.TreeNode;
-import org.sqlunet.view.TreeFactory;
-import org.sqlunet.treeview.view.TreeView;
-
 import android.app.Fragment;
 import android.app.LoaderManager.LoaderCallbacks;
 import android.content.CursorLoader;
@@ -22,6 +11,17 @@ import android.os.Bundle;
 import android.os.Parcelable;
 import android.text.SpannableStringBuilder;
 
+import org.sqlunet.HasPos;
+import org.sqlunet.HasWordId;
+import org.sqlunet.bnc.R;
+import org.sqlunet.bnc.provider.BNCContract.Words_BNCs;
+import org.sqlunet.bnc.style.BNCFactories;
+import org.sqlunet.browser.Module;
+import org.sqlunet.style.Spanner;
+import org.sqlunet.treeview.model.TreeNode;
+import org.sqlunet.treeview.view.TreeView;
+import org.sqlunet.view.TreeFactory;
+
 public class BasicModule extends Module
 {
 	/**
@@ -32,12 +32,12 @@ public class BasicModule extends Module
 	private Character pos;
 
 	// Resources
-	
+
 	/**
 	 * Drawable for domain
 	 */
 	private Drawable domainDrawable;
-	
+
 	/**
 	 * Drawable for pos
 	 */
@@ -76,7 +76,6 @@ public class BasicModule extends Module
 		}
 	}
 
-	@SuppressWarnings("boxing")
 	@Override
 	public void process(final TreeNode node)
 	{
@@ -95,12 +94,11 @@ public class BasicModule extends Module
 	{
 		getLoaderManager().restartLoader(++Module.loaderId, null, new LoaderCallbacks<Cursor>()
 		{
-			@SuppressWarnings("boxing")
 			@Override
 			public Loader<Cursor> onCreateLoader(final int loaderId0, final Bundle args)
 			{
 				final Uri uri = Uri.parse(Words_BNCs.CONTENT_URI);
-				final String[] projection = new String[] { Words_BNCs.POS, Words_BNCs.FREQ, Words_BNCs.RANGE, Words_BNCs.DISP, //
+				final String[] projection = new String[]{Words_BNCs.POS, Words_BNCs.FREQ, Words_BNCs.RANGE, Words_BNCs.DISP, //
 						Words_BNCs.BNCCONVTASKS + '.' + Words_BNCs.FREQ1 + " AS " + Words_BNCs.BNCCONVTASKS + Words_BNCs.FREQ1, // //$NON-NLS-1$
 						Words_BNCs.BNCCONVTASKS + '.' + Words_BNCs.RANGE1 + " AS " + Words_BNCs.BNCCONVTASKS + Words_BNCs.RANGE1, // //$NON-NLS-1$
 						Words_BNCs.BNCCONVTASKS + '.' + Words_BNCs.DISP1 + " AS " + Words_BNCs.BNCCONVTASKS + Words_BNCs.DISP1, // //$NON-NLS-1$
@@ -122,8 +120,12 @@ public class BasicModule extends Module
 						Words_BNCs.BNCSPWRS + '.' + Words_BNCs.RANGE2 + " AS " + Words_BNCs.BNCSPWRS + Words_BNCs.RANGE2, // //$NON-NLS-1$
 						Words_BNCs.BNCSPWRS + '.' + Words_BNCs.DISP2 + " AS " + Words_BNCs.BNCSPWRS + Words_BNCs.DISP2, // //$NON-NLS-1$
 				};
-				final String selection = pos0 == null ? Words_BNCs.WORDID + " = ?" : Words_BNCs.WORDID + " = ? AND " + Words_BNCs.POS + "= ?"; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				final String[] selectionArgs = pos0 == null ? new String[] { Long.toString(wordid0) } : new String[] { Long.toString(wordid0), Character.toString(pos0), };
+				final String selection = pos0 == null ?
+						Words_BNCs.WORDID + " = ?" :
+						Words_BNCs.WORDID + " = ? AND " + Words_BNCs.POS + "= ?"; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				final String[] selectionArgs = pos0 == null ?
+						new String[]{Long.toString(wordid0)} :
+						new String[]{Long.toString(wordid0), Character.toString(pos0),};
 				final String sortOrder = null;
 				return new CursorLoader(getContext(), uri, projection, selection, selectionArgs, sortOrder);
 			}
@@ -170,7 +172,7 @@ public class BasicModule extends Module
 
 					do
 					{
-						
+
 						pos1 = cursor.getString(idPos);
 						Spanner.appendImage(sb, BasicModule.this.posDrawable);
 						sb.append(' ');
@@ -178,11 +180,17 @@ public class BasicModule extends Module
 						sb.append('\n');
 
 						if ((value1 = cursor.getString(idFreq)) != null)
+						{
 							sb.append("freq=").append(value1).append(' '); //$NON-NLS-1$
+						}
 						if ((value1 = cursor.getString(idRange)) != null)
+						{
 							sb.append("range=").append(value1).append(' '); //$NON-NLS-1$
+						}
 						if ((value1 = cursor.getString(idDisp)) != null)
+						{
 							sb.append("disp=").append(value1); //$NON-NLS-1$
+						}
 						sb.append('\n');
 
 						String fvalue, fvalue2;
@@ -201,11 +209,17 @@ public class BasicModule extends Module
 							sb.append(' ');
 							Spanner.append(sb, "conversation / task\n", 0, BNCFactories.headerFactory); //$NON-NLS-1$
 							if (fvalue != null && fvalue2 != null)
+							{
 								sb.append("freq=").append(fvalue).append(" / ").append(fvalue2).append(' '); //$NON-NLS-1$ //$NON-NLS-2$
+							}
 							if (rvalue != null && rvalue2 != null)
+							{
 								sb.append("range=").append(rvalue).append(" / ").append(rvalue2).append(' '); //$NON-NLS-1$ //$NON-NLS-2$
+							}
 							if (dvalue != null && dvalue2 != null)
+							{
 								sb.append("disp=").append(dvalue).append(" / ").append(dvalue2); //$NON-NLS-1$ //$NON-NLS-2$
+							}
 							sb.append('\n');
 						}
 
@@ -221,11 +235,17 @@ public class BasicModule extends Module
 							sb.append(' ');
 							Spanner.append(sb, "imagination / information\n", 0, BNCFactories.headerFactory); //$NON-NLS-1$
 							if (fvalue != null && fvalue2 != null)
+							{
 								sb.append("freq=").append(fvalue).append(" / ").append(fvalue2).append(' '); //$NON-NLS-1$ //$NON-NLS-2$
+							}
 							if (rvalue != null && rvalue2 != null)
+							{
 								sb.append("range=").append(rvalue).append(" / ").append(rvalue2).append(' '); //$NON-NLS-1$ //$NON-NLS-2$
+							}
 							if (dvalue != null && dvalue2 != null)
+							{
 								sb.append("disp=").append(dvalue).append(" / ").append(dvalue2); //$NON-NLS-1$ //$NON-NLS-2$
+							}
 							sb.append('\n');
 
 						}
@@ -242,11 +262,17 @@ public class BasicModule extends Module
 							sb.append(' ');
 							Spanner.append(sb, "spoken / written\n", 0, BNCFactories.headerFactory); //$NON-NLS-1$
 							if (fvalue != null && fvalue2 != null)
+							{
 								sb.append("freq=").append(fvalue).append(" / ").append(fvalue2).append(' '); //$NON-NLS-1$ //$NON-NLS-2$
+							}
 							if (rvalue != null && rvalue2 != null)
+							{
 								sb.append("range=").append(rvalue).append(" / ").append(rvalue2).append(' '); //$NON-NLS-1$ //$NON-NLS-2$
+							}
 							if (dvalue != null && dvalue2 != null)
+							{
 								sb.append("disp=").append(dvalue).append(" / ").append(dvalue2); //$NON-NLS-1$ //$NON-NLS-2$
+							}
 							sb.append('\n');
 
 						}
@@ -255,9 +281,9 @@ public class BasicModule extends Module
 
 					// attach result
 					TreeFactory.addTextNode(parent, sb, BasicModule.this.getContext());
-					
+
 					// expand
-					TreeView.expand(parent, false);		
+					TreeView.expand(parent, false);
 				}
 				else
 				{

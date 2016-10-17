@@ -6,57 +6,81 @@ import android.util.Pair;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Role set
+ * @author Bernard Bou
+ */
 class PbRoleSet
 {
+	/**
+	 * Name
+	 */
 	public final String roleSetName;
 
+	/**
+	 * Head
+	 */
 	public final String roleSetHead;
 
+	/**
+	 * Description
+	 */
 	public final String roleSetDescr;
 
+	/**
+	 * Id
+	 */
 	public final long roleSetId;
 
-	private PbRoleSet(final String thisRoleSetName, final String thisRoleSetHead, final String thisRoleSetDescr, final long thisRoleSetId)
+	/**
+	 * Constructor
+	 * @param roleSetName name
+	 * @param roleSetHead head
+	 * @param roleSetDescr description
+	 * @param roleSetId id
+	 */
+	private PbRoleSet(final String roleSetName, final String roleSetHead, final String roleSetDescr, final long roleSetId)
 	{
 		super();
-		this.roleSetName = thisRoleSetName;
-		this.roleSetHead = thisRoleSetHead;
-		this.roleSetDescr = thisRoleSetDescr;
-		this.roleSetId = thisRoleSetId;
+		this.roleSetName = roleSetName;
+		this.roleSetHead = roleSetHead;
+		this.roleSetDescr = roleSetDescr;
+		this.roleSetId = roleSetId;
 	}
 
 	/**
 	 * Make sets of PropBank rolesets from query built from wordid
 	 *
-	 * @param thisConnection is the database connection
-	 * @param thisWord       is the word to build query from
+	 * @param connection is the database connection
+	 * @param word       is the word to build query from
 	 * @return list of PropBank rolesets
 	 */
-	static public Pair<Long, List<PbRoleSet>> makeFromWord(final SQLiteDatabase thisConnection, final String thisWord)
+	static public Pair<Long, List<PbRoleSet>> makeFromWord(final SQLiteDatabase connection, final String word)
 	{
-		final List<PbRoleSet> thisResult = new ArrayList<>();
-		PbRoleSetQueryFromWordCommand thisQuery = null;
+		final List<PbRoleSet> result = new ArrayList<>();
+		PbRoleSetQueryFromWordCommand query = null;
 		try
 		{
-			thisQuery = new PbRoleSetQueryFromWordCommand(thisConnection, thisWord);
-			thisQuery.execute();
+			query = new PbRoleSetQueryFromWordCommand(connection, word);
+			query.execute();
 
-			long thisWordId = 0;
-			while (thisQuery.next())
+			long wordId = 0;
+			while (query.next())
 			{
-				thisWordId = thisQuery.getWordId();
-				final String thisRoleSetName = thisQuery.getRoleSetName();
-				final String thisRoleSetHead = thisQuery.getRoleSetHead();
-				final String thisRoleSetDescr = thisQuery.getRoleSetDescr();
-				final long thisRoleSetId = thisQuery.getRoleSetId();
-				thisResult.add(new PbRoleSet(thisRoleSetName, thisRoleSetHead, thisRoleSetDescr, thisRoleSetId));
+				wordId = query.getWordId();
+				final String roleSetName = query.getRoleSetName();
+				final String roleSetHead = query.getRoleSetHead();
+				final String roleSetDescr = query.getRoleSetDescr();
+				final long roleSetId = query.getRoleSetId();
+				result.add(new PbRoleSet(roleSetName, roleSetHead, roleSetDescr, roleSetId));
 			}
-			return new Pair<>(thisWordId, thisResult);
-		} finally
+			return new Pair<>(wordId, result);
+		}
+		finally
 		{
-			if (thisQuery != null)
+			if (query != null)
 			{
-				thisQuery.release();
+				query.release();
 			}
 		}
 	}
@@ -64,67 +88,69 @@ class PbRoleSet
 	/**
 	 * Make sets of PropBank rolesets from query built from wordid
 	 *
-	 * @param thisConnection is the database connection
-	 * @param thisWordId     is the word id to build query from
+	 * @param connection is the database connection
+	 * @param wordId     is the word id to build query from
 	 * @return list of PropBank rolesets
 	 */
-	static public List<PbRoleSet> makeFromWordId(final SQLiteDatabase thisConnection, final long thisWordId)
+	static public List<PbRoleSet> makeFromWordId(final SQLiteDatabase connection, final long wordId)
 	{
-		final List<PbRoleSet> thisResult = new ArrayList<>();
-		PbRoleSetQueryFromWordIdCommand thisQuery = null;
+		final List<PbRoleSet> result = new ArrayList<>();
+		PbRoleSetQueryFromWordIdCommand query = null;
 		try
 		{
-			thisQuery = new PbRoleSetQueryFromWordIdCommand(thisConnection, thisWordId);
-			thisQuery.execute();
+			query = new PbRoleSetQueryFromWordIdCommand(connection, wordId);
+			query.execute();
 
-			while (thisQuery.next())
+			while (query.next())
 			{
-				final String thisRoleSetName = thisQuery.getRoleSetName();
-				final String thisRoleSetHead = thisQuery.getRoleSetHead();
-				final String thisRoleSetDescr = thisQuery.getRoleSetDescr();
-				final long thisRoleSetId = thisQuery.getRoleSetId();
-				thisResult.add(new PbRoleSet(thisRoleSetName, thisRoleSetHead, thisRoleSetDescr, thisRoleSetId));
-			}
-		} finally
-		{
-			if (thisQuery != null)
-			{
-				thisQuery.release();
+				final String roleSetName = query.getRoleSetName();
+				final String roleSetHead = query.getRoleSetHead();
+				final String roleSetDescr = query.getRoleSetDescr();
+				final long roleSetId = query.getRoleSetId();
+				result.add(new PbRoleSet(roleSetName, roleSetHead, roleSetDescr, roleSetId));
 			}
 		}
-		return thisResult;
+		finally
+		{
+			if (query != null)
+			{
+				query.release();
+			}
+		}
+		return result;
 	}
 
 	/**
 	 * Make sets of PropBank rolesets from query built from wordid
 	 *
-	 * @param thisConnection is the database connection
-	 * @param thisRoleSetId  is the roleset id to build query from
+	 * @param connection is the database connection
+	 * @param roleSetId  is the roleset id to build query from
 	 * @return list of PropBank rolesets
 	 */
-	static public List<PbRoleSet> make(final SQLiteDatabase thisConnection, final long thisRoleSetId)
+	static public List<PbRoleSet> make(final SQLiteDatabase connection, final long roleSetId)
 	{
-		final List<PbRoleSet> thisResult = new ArrayList<>();
-		PbRoleSetQueryCommand thisQuery = null;
+		final List<PbRoleSet> result = new ArrayList<>();
+		PbRoleSetQueryCommand query = null;
 		try
 		{
-			thisQuery = new PbRoleSetQueryCommand(thisConnection, thisRoleSetId);
-			thisQuery.execute();
+			query = new PbRoleSetQueryCommand(connection, roleSetId);
+			query.execute();
 
-			while (thisQuery.next())
+			while (query.next())
 			{
-				final String thisRoleSetName = thisQuery.getRoleSetName();
-				final String thisRoleSetHead = thisQuery.getRoleSetHead();
-				final String thisRoleSetDescr = thisQuery.getRoleSetDescr();
-				thisResult.add(new PbRoleSet(thisRoleSetName, thisRoleSetHead, thisRoleSetDescr, thisRoleSetId));
-			}
-		} finally
-		{
-			if (thisQuery != null)
-			{
-				thisQuery.release();
+				final String roleSetName = query.getRoleSetName();
+				final String roleSetHead = query.getRoleSetHead();
+				final String roleSetDescr = query.getRoleSetDescr();
+				result.add(new PbRoleSet(roleSetName, roleSetHead, roleSetDescr, roleSetId));
 			}
 		}
-		return thisResult;
+		finally
+		{
+			if (query != null)
+			{
+				query.release();
+			}
+		}
+		return result;
 	}
 }

@@ -131,7 +131,6 @@ public class SetupBaseActivity extends Activity implements Downloader.Listener, 
 		progressDialog.setCancelable(true);
 		progressDialog.setButton(DialogInterface.BUTTON_NEGATIVE, getString(R.string.action_abort), new DialogInterface.OnClickListener()
 		{
-			@SuppressWarnings("synthetic-access")
 			@Override
 			public void onClick(final DialogInterface dialog, final int which)
 			{

@@ -142,7 +142,8 @@ public class XSelectorFragment extends ExpandableListFragment
 
 					// pass on to list adapter
 					((SimpleCursorTreeAdapter) getListAdapter()).setChildrenCursor(groupPosition, cursor);
-				} else
+				}
+				else
 				{
 					Log.i(TAG, "WN none"); //$NON-NLS-1$
 				}
@@ -169,7 +170,8 @@ public class XSelectorFragment extends ExpandableListFragment
 
 					// pass on to list adapter
 					((SimpleCursorTreeAdapter) getListAdapter()).setChildrenCursor(groupPosition, cursor);
-				} else
+				}
+				else
 				{
 					Log.i(TAG, "VN none"); //$NON-NLS-1$
 				}
@@ -196,7 +198,8 @@ public class XSelectorFragment extends ExpandableListFragment
 
 					// pass on to list adapter
 					((SimpleCursorTreeAdapter) getListAdapter()).setChildrenCursor(groupPosition, cursor);
-				} else
+				}
+				else
 				{
 					Log.i(TAG, "PB none"); //$NON-NLS-1$
 				}
@@ -222,7 +225,8 @@ public class XSelectorFragment extends ExpandableListFragment
 
 					// pass on to list adapter
 					((SimpleCursorTreeAdapter) getListAdapter()).setChildrenCursor(groupPosition, cursor);
-				} else
+				}
+				else
 				{
 					Log.i(TAG, "FN none"); //$NON-NLS-1$
 				}
@@ -247,7 +251,9 @@ public class XSelectorFragment extends ExpandableListFragment
 		ExpandableListView listView = getExpandableListView();
 		int count = this.xnCursor.getCount();
 		for (int position = 0; position < count; position++)
+		{
 			listView.expandGroup(position);
+		}
 	}
 
 	/*
@@ -278,7 +284,6 @@ public class XSelectorFragment extends ExpandableListFragment
 		// load the contents
 		getLoaderManager().restartLoader(++Module.loaderId, null, new LoaderCallbacks<Cursor>()
 		{
-			@SuppressWarnings("synthetic-access")
 			@Override
 			public Loader<Cursor> onCreateLoader(final int id, final Bundle args)
 			{
@@ -296,7 +301,6 @@ public class XSelectorFragment extends ExpandableListFragment
 				return new CursorLoader(getActivity(), uri, projection, selection, selectionArgs, sortOrder);
 			}
 
-			@SuppressWarnings("synthetic-access")
 			@Override
 			public void onLoadFinished(final Loader<Cursor> loader0, final Cursor cursor)
 			{
@@ -373,13 +377,14 @@ public class XSelectorFragment extends ExpandableListFragment
 				}
 			}
 
-			@SuppressWarnings("synthetic-access")
 			@Override
 			protected Cursor getChildrenCursor(Cursor groupCursor)
 			{
 				Activity activity = getActivity();
 				if (activity == null)
+				{
 					return null;
+				}
 
 				// given the group, we return a cursor for all the children within that group
 				int groupPos = groupCursor.getPosition();
@@ -408,7 +413,8 @@ public class XSelectorFragment extends ExpandableListFragment
 				if (loader1 != null && !loader1.isReset())
 				{
 					activity.getLoaderManager().restartLoader(loaderid, null, callbacks);
-				} else
+				}
+				else
 				{
 					activity.getLoaderManager().initLoader(loaderid, null, callbacks);
 				}
@@ -461,7 +467,8 @@ public class XSelectorFragment extends ExpandableListFragment
 			if (position == AdapterView.INVALID_POSITION)
 			{
 				getListView().setItemChecked(this.activatedPosition, false);
-			} else
+			}
+			else
 			{
 				getListView().setItemChecked(position, true);
 			}
@@ -516,7 +523,9 @@ public class XSelectorFragment extends ExpandableListFragment
 	{
 		// activities containing this fragment must implement its listener
 		if (!(context instanceof Listener))
+		{
 			throw new IllegalStateException("Activity must implement fragment's listener."); //$NON-NLS-1$
+		}
 		this.listener = (Listener) context;
 	}
 
@@ -602,11 +611,12 @@ public class XSelectorFragment extends ExpandableListFragment
 		return true;
 	}
 
-	@SuppressWarnings("boxing")
 	private String synsetidToPos(final Long synsetid)
 	{
 		if (synsetid == null)
+		{
 			return null;
+		}
 		int p = (int) Math.floor(synsetid / 100000000F);
 		switch (p)
 		{

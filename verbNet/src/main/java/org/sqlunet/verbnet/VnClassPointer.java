@@ -32,14 +32,17 @@ public class VnClassPointer implements Parcelable
 		this();
 		long classid0 = pc.readLong();
 		if (classid0 != -1)
+		{
 			this.classid = classid0;
+		}
 	}
 
-	@SuppressWarnings("boxing")
 	public Long getClassId()
 	{
 		if (this.classid != 0)
+		{
 			return this.classid;
+		}
 		return null;
 	}
 
@@ -66,7 +69,6 @@ public class VnClassPointer implements Parcelable
 	 * 
 	 * @see android.os.Parcelable#writeToParcel(android.os.Parcel, int)
 	 */
-	@SuppressWarnings("boxing")
 	@Override
 	public void writeToParcel(final Parcel pc, final int flags)
 	{

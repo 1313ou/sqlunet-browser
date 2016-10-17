@@ -62,7 +62,8 @@ public class VnRoleSet
 				// add role to role set
 				roleSet.roles.add(role);
 			}
-		} finally
+		}
+		finally
 		{
 			if (query != null)
 			{
@@ -109,7 +110,8 @@ public class VnRoleSet
 				// add role to role set
 				roleSet.roles.add(role);
 			}
-		} finally
+		}
+		finally
 		{
 			if (query != null)
 			{

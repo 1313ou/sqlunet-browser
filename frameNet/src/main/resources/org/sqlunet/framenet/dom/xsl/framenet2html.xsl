@@ -111,12 +111,12 @@
                         <SPAN class="fnfename">
                             <xsl:value-of select="./@name"/>
                         </SPAN>
-                        <xsl:text></xsl:text>
+                        <xsl:text/>
                         <xsl:if test="./@semtype != ''">
                             <SPAN class="fnfesemtype">
                                 <xsl:value-of select="./@semtype"/>
                             </SPAN>
-                            <xsl:text></xsl:text>
+                            <xsl:text/>
                         </xsl:if>
                         <xsl:if test="./@type != ''">
                             <xsl:text>type=</xsl:text>
@@ -136,12 +136,12 @@
                         <SPAN class="fnfename">
                             <xsl:value-of select="./@name"/>
                         </SPAN>
-                        <xsl:text></xsl:text>
+                        <xsl:text/>
                         <xsl:if test="./@semtype != ''">
                             <SPAN class="fnfesemtype">
                                 <xsl:value-of select="./@semtype"/>
                             </SPAN>
-                            <xsl:text></xsl:text>
+                            <xsl:text/>
                         </xsl:if>
                         <xsl:if test="./@type != ''">
                             <xsl:text>type=</xsl:text>

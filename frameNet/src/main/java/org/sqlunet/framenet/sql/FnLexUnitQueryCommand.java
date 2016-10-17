@@ -5,28 +5,28 @@ import android.database.sqlite.SQLiteDatabase;
 import org.sqlunet.sql.DBQueryCommand;
 
 /**
- * VerbNet Class Membership query command
+ * FrameNet lex unit query command
  *
  * @author Bernard Bou
  */
 class FnLexUnitQueryCommand extends DBQueryCommand
 {
 	/**
-	 * <code>theQuery</code> is the SQL statement
+	 * <code>QUERY</code> is the SQL statement
 	 */
-	private static final String theQuery = SqLiteDialect.FrameNetLexUnitQuery;
+	private static final String QUERY = SqLiteDialect.FrameNetLexUnitQuery;
 
 	/**
 	 * Constructor
 	 *
-	 * @param thisConnection is the database connection
-	 * @param thisTargetLuId target luid
+	 * @param connection is the database connection
+	 * @param targetLuId target luid
 	 */
 	@SuppressWarnings("boxing")
-	public FnLexUnitQueryCommand(final SQLiteDatabase thisConnection, final long thisTargetLuId)
+	public FnLexUnitQueryCommand(final SQLiteDatabase connection, final long targetLuId)
 	{
-		super(thisConnection, FnLexUnitQueryCommand.theQuery);
-		setParams(thisTargetLuId);
+		super(connection, FnLexUnitQueryCommand.QUERY);
+		setParams(targetLuId);
 	}
 
 	/**

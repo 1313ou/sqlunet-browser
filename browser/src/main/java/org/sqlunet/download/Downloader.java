@@ -73,7 +73,6 @@ public class Downloader extends AsyncTask<Void, Integer, Boolean>
 	 * 
 	 * @see android.os.AsyncTask#onProgressUpdate(Progress[])
 	 */
-	@SuppressWarnings("boxing")
 	@Override
 	protected void onProgressUpdate(final Integer... progress)
 	{
@@ -86,7 +85,6 @@ public class Downloader extends AsyncTask<Void, Integer, Boolean>
 	 * 
 	 * @see android.os.AsyncTask#onPostExecute(java.lang.Object)
 	 */
-	@SuppressWarnings("boxing")
 	@Override
 	protected void onPostExecute(final Boolean result)
 	{
@@ -100,7 +98,6 @@ public class Downloader extends AsyncTask<Void, Integer, Boolean>
 	 * 
 	 * @see android.os.AsyncTask#onCancelled(java.lang.Object)
 	 */
-	@SuppressWarnings("boxing")
 	@Override
 	protected void onCancelled(final Boolean result)
 	{
@@ -155,24 +152,30 @@ public class Downloader extends AsyncTask<Void, Integer, Boolean>
 
 				// interrupted
 				if (Thread.interrupted())
+				{
 					throw new InterruptedException();
+				}
 			}
 			output.flush();
 			return true;
-		} catch (final InterruptedException e)
+		}
+		catch (final InterruptedException e)
 		{
 			Log.d(TAG, "Interrupted downloading"); //$NON-NLS-1$
-		} catch (final Exception e)
+		}
+		catch (final Exception e)
 		{
 			Log.e(TAG, "While downloading", e); //$NON-NLS-1$
-		} finally
+		}
+		finally
 		{
 			if (output != null)
 			{
 				try
 				{
 					output.close();
-				} catch (final IOException e)
+				}
+				catch (final IOException e)
 				{
 					e.printStackTrace();
 				}
@@ -182,7 +185,8 @@ public class Downloader extends AsyncTask<Void, Integer, Boolean>
 				try
 				{
 					input.close();
-				} catch (final IOException e)
+				}
+				catch (final IOException e)
 				{
 					e.printStackTrace();
 				}
