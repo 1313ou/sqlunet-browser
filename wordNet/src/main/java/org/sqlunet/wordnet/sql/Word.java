@@ -8,6 +8,7 @@ package org.sqlunet.wordnet.sql;
 
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,6 +24,8 @@ import java.util.TreeSet;
  */
 public class Word extends BasicWord
 {
+	private static final String TAG = "Word"; //$NON-NLS-1$
+
 	/**
 	 * Word
 	 *
@@ -67,7 +70,7 @@ public class Word extends BasicWord
 		}
 		catch (final SQLException e)
 		{
-			e.printStackTrace();
+			Log.e(TAG, "While querying word", e);
 			// word can only be null here
 		}
 		finally
@@ -103,7 +106,7 @@ public class Word extends BasicWord
 		}
 		catch (final SQLException e)
 		{
-			e.printStackTrace();
+			Log.e(TAG, "While querying synsets", e);
 			synsets = null;
 		}
 		finally
@@ -150,7 +153,7 @@ public class Word extends BasicWord
 		}
 		catch (final SQLException e)
 		{
-			e.printStackTrace();
+			Log.e(TAG, "While querying typed synsets", e);
 			synsets = null;
 		}
 		finally
@@ -205,7 +208,7 @@ public class Word extends BasicWord
 		}
 		catch (final SQLException e)
 		{
-			e.printStackTrace();
+			Log.e(TAG, "While querying link types", e);
 			map = null;
 		}
 		finally

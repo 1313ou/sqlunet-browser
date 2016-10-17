@@ -91,12 +91,7 @@ public class PredicateMatrixFragment extends Fragment
 			final Settings.PMMode mode = Settings.PMMode.getPref(getActivity());
 
 			// module
-			/*
-	  Module
-	 */
-			Module module = (pointer instanceof PmRolePointer) ?
-					new PredicateRoleModule(this, mode) :
-					new PredicateRoleFromWordModule(this, mode);
+			Module module = (pointer instanceof PmRolePointer) ? new PredicateRoleModule(this, mode) : new PredicateRoleFromWordModule(this, mode);
 			module.init(pointer);
 			module.process(queryNode);
 		}

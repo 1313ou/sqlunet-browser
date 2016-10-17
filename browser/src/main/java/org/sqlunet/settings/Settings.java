@@ -244,9 +244,7 @@ public class Settings
 		}
 		else
 		{
-			final String appPkgName = apiLevel == 8 ?
-					"pkg" :
-					"com.android.settings.ApplicationPkgName"; //$NON-NLS-1$ //$NON-NLS-2$
+			final String appPkgName = apiLevel == 8 ? "pkg" : "com.android.settings.ApplicationPkgName"; //$NON-NLS-1$ //$NON-NLS-2$
 
 			intent.setAction(Intent.ACTION_VIEW);
 			intent.setClassName("com.android.settings", "com.android.settings.InstalledAppDetails"); //$NON-NLS-1$ //$NON-NLS-2$

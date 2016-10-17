@@ -45,7 +45,7 @@ class XLoader
 		public Loader<Cursor> onCreateLoader(final int id, final Bundle args)
 		{
 			final Uri uri = Uri.parse(Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.CONTENT_URI);
-			final String[] projection = new String[]{ //
+			final String[] projection = { //
 					"'wn' AS " + Words_XNet_U.SOURCES, // //$NON-NLS-1$
 					Words_VnWords_VnClasses_U.WORDID, //
 					Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.SYNSETID, //
@@ -58,7 +58,7 @@ class XLoader
 					Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.DEFINITION + " AS " + Words_XNet_U.XDEFINITION, // //$NON-NLS-1$
 					Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.SYNSETID + " AS _id"}; //$NON-NLS-1$
 			final String selection = Words_VnWords_VnClasses_U.WORDID + " = ?"; //$NON-NLS-1$
-			final String[] selectionArgs = new String[]{Long.toString(this.wordid)};
+			final String[] selectionArgs = {Long.toString(this.wordid)};
 			final String sortOrder = null;
 			return new CursorLoader(this.context, uri, projection, selection, selectionArgs, sortOrder);
 		}
@@ -75,7 +75,7 @@ class XLoader
 		public Loader<Cursor> onCreateLoader(final int id, final Bundle args)
 		{
 			final Uri uri = Uri.parse(Words_VnWords_VnClasses_U.CONTENT_URI);
-			final String[] projection = new String[]{ //
+			final String[] projection = { //
 					Words_VnWords_VnClasses_U.WORDID, //
 					Words_VnWords_VnClasses_U.SYNSETID, //
 					Words_VnWords_VnClasses_U.CLASSID + " AS " + Words_XNet_U.XID, // //$NON-NLS-1$
@@ -87,7 +87,7 @@ class XLoader
 					Words_VnWords_VnClasses_U.DEFINITION + " AS " + Words_XNet_U.XDEFINITION, // //$NON-NLS-1$
 					"rowid AS _id",}; //$NON-NLS-1$
 			final String selection = Words_VnWords_VnClasses_U.WORDID + " = ?"; //$NON-NLS-1$
-			final String[] selectionArgs = new String[]{Long.toString(this.wordid)};
+			final String[] selectionArgs = {Long.toString(this.wordid)};
 			final String sortOrder = null;
 			return new CursorLoader(this.context, uri, projection, selection, selectionArgs, sortOrder);
 		}
@@ -104,7 +104,7 @@ class XLoader
 		public Loader<Cursor> onCreateLoader(final int id, final Bundle args)
 		{
 			final Uri uri = Uri.parse(Words_PbWords_PbRolesets_U.CONTENT_URI);
-			final String[] projection = new String[]{ //
+			final String[] projection = { //
 					Words_PbWords_PbRolesets_U.WORDID, //
 					Words_PbWords_PbRolesets_U.SYNSETID, //
 					Words_PbWords_PbRolesets_U.ROLESETID + " AS " + Words_XNet_U.XID, // //$NON-NLS-1$
@@ -117,7 +117,7 @@ class XLoader
 					Words_PbWords_PbRolesets_U.DEFINITION + " AS " + Words_XNet_U.XDEFINITION, // //$NON-NLS-1$
 					"rowid AS _id",}; //$NON-NLS-1$
 			final String selection = PredicateMatrix_Propbank.WORDID + " = ?"; //$NON-NLS-1$
-			final String[] selectionArgs = new String[]{Long.toString(this.wordid)};
+			final String[] selectionArgs = {Long.toString(this.wordid)};
 			final String sortOrder = null;
 			return new CursorLoader(this.context, uri, projection, selection, selectionArgs, sortOrder);
 		}
@@ -134,7 +134,7 @@ class XLoader
 		public Loader<Cursor> onCreateLoader(final int id, final Bundle args)
 		{
 			final Uri uri = Uri.parse(Words_FnWords_FnFrames_U.CONTENT_URI);
-			final String[] projection = new String[]{ //
+			final String[] projection = { //
 					Words_FnWords_FnFrames_U.WORDID, //
 					Words_FnWords_FnFrames_U.SYNSETID, //
 					Words_FnWords_FnFrames_U.FRAMEID + " AS " + Words_XNet_U.XID, // //$NON-NLS-1$
@@ -146,7 +146,7 @@ class XLoader
 					Words_FnWords_FnFrames_U.DEFINITION + " AS " + Words_XNet_U.XDEFINITION, // //$NON-NLS-1$
 					"rowid AS _id",}; //$NON-NLS-1$
 			final String selection = Words_FnWords_FnFrames_U.WORDID + " = ?"; //$NON-NLS-1$
-			final String[] selectionArgs = new String[]{Long.toString(this.wordid)};
+			final String[] selectionArgs = {Long.toString(this.wordid)};
 			final String sortOrder = null;
 			return new CursorLoader(this.context, uri, projection, selection, selectionArgs, sortOrder);
 		}
@@ -264,11 +264,9 @@ class XLoader
 				String xheader = cursor.isNull(idXHeader) ? null : cursor.getString(idXHeader);
 				String xinfo = cursor.isNull(idXInfo) ? null : cursor.getString(idXInfo);
 				String definition = cursor.isNull(idXInfo) ? null : cursor.getString(idDefinition);
-				String sources = cursor.isNull(idSources) ?
-						"" : //$NON-NLS-1$
+				String sources = cursor.isNull(idSources) ? "" : //$NON-NLS-1$
 						cursor.getString(idSources);
-				Log.i("DUMP",
-						"sources=" + sources +  //$NON-NLS-1$
+				Log.i("DUMP", "sources=" + sources +  //$NON-NLS-1$
 						" wordid=" + wordid +  //$NON-NLS-1$
 						" synsetid=" + synsetid +  //$NON-NLS-1$
 						" xid=" + xid +  //$NON-NLS-1$

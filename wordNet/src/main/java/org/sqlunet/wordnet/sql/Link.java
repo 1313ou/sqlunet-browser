@@ -8,6 +8,7 @@ package org.sqlunet.wordnet.sql;
 
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,6 +20,8 @@ import java.util.List;
  */
 class Link extends Synset
 {
+	private static final String TAG = "Link"; //$NON-NLS-1$
+
 	/**
 	 * <code>linkType</code> is the relation type
 	 */
@@ -106,7 +109,7 @@ class Link extends Synset
 		}
 		catch (final SQLException e)
 		{
-			e.printStackTrace();
+			Log.e(TAG, "While querying", e);
 			links = null;
 		}
 		finally

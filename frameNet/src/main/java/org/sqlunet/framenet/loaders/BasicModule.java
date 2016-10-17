@@ -9,10 +9,12 @@ import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Parcelable;
+import android.text.Editable;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
 import android.text.style.BackgroundColorSpan;
 import android.text.style.ForegroundColorSpan;
+import android.util.Log;
 
 import org.sqlunet.browser.Module;
 import org.sqlunet.framenet.R;
@@ -204,7 +206,7 @@ abstract public class BasicModule extends Module
 			public Loader<Cursor> onCreateLoader(final int loaderId0, final Bundle args)
 			{
 				final Uri uri = Uri.parse(Frames_X.CONTENT_URI);
-				final String[] projection = new String[]{ //
+				final String[] projection = { //
 						Frames_X.FRAMEID, //
 						Frames_X.FRAME, //
 						Frames_X.FRAMEDEFINITION, //
@@ -213,7 +215,7 @@ abstract public class BasicModule extends Module
 						Frames_X.SEMTYPEDEFINITION, //
 				};
 				final String selection = Frames_X.FRAMEID + " = ?"; //$NON-NLS-1$
-				final String[] selectionArgs = new String[]{Long.toString(frameid0)};
+				final String[] selectionArgs = {Long.toString(frameid0)};
 				final String sortOrder = Frames_X.FRAME;
 				return new CursorLoader(BasicModule.this.getContext(), uri, projection, selection, selectionArgs, sortOrder);
 			}
@@ -297,7 +299,7 @@ abstract public class BasicModule extends Module
 			public Loader<Cursor> onCreateLoader(final int loaderId0, final Bundle args)
 			{
 				final Uri uri = Uri.parse(Frames_Related.CONTENT_URI);
-				final String[] projection = new String[]{ //
+				final String[] projection = { //
 						Frames_Related.FRAMEID + " AS " + "i1", // //$NON-NLS-1$ //$NON-NLS-2$
 						Frames_Related.FRAME + " AS " + "f1", // //$NON-NLS-1$ //$NON-NLS-2$
 						Frames_Related.FRAME2ID + " AS " + "i2", // //$NON-NLS-1$ //$NON-NLS-2$
@@ -306,7 +308,7 @@ abstract public class BasicModule extends Module
 						Frames_Related.RELATION, //
 				};
 				final String selection = Frames_Related.FRAMEID + " = ?" + " OR " + Frames_Related.FRAME2ID + " = ?"; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				final String[] selectionArgs = new String[]{Long.toString(frameid0), Long.toString(frameid0)};
+				final String[] selectionArgs = {Long.toString(frameid0), Long.toString(frameid0)};
 				final String sortOrder = Frames_Related.FRAME;
 				return new CursorLoader(BasicModule.this.getContext(), uri, projection, selection, selectionArgs, sortOrder);
 			}
@@ -440,7 +442,7 @@ abstract public class BasicModule extends Module
 			public Loader<Cursor> onCreateLoader(final int loaderId0, final Bundle args)
 			{
 				final Uri uri = Uri.parse(Frames_FEs.CONTENT_URI_BY_FE);
-				final String[] projection = new String[]{ //
+				final String[] projection = { //
 						Frames_FEs.FETYPEID, //
 						Frames_FEs.FETYPE, //
 						Frames_FEs.FEABBREV, //
@@ -451,7 +453,7 @@ abstract public class BasicModule extends Module
 						Frames_FEs.CORESET, //
 				};
 				final String selection = Frames_FEs.FRAMEID + " = ? "; //$NON-NLS-1$
-				final String[] selectionArgs = new String[]{Integer.toString(frameid0)};
+				final String[] selectionArgs = {Integer.toString(frameid0)};
 				final String sortOrder = Frames_FEs.CORETYPEID + ',' + Frames_FEs.FETYPE;
 				return new CursorLoader(BasicModule.this.getContext(), uri, projection, selection, selectionArgs, sortOrder);
 			}
@@ -484,9 +486,7 @@ abstract public class BasicModule extends Module
 						final String coreType = cursor.getString(idCoreType);
 
 						// fe
-						Spanner.appendImage(sb, coreTypeId == 1 ?
-								BasicModule.this.corefeDrawable :
-								BasicModule.this.feDrawable);
+						Spanner.appendImage(sb, coreTypeId == 1 ? BasicModule.this.corefeDrawable : BasicModule.this.feDrawable);
 						sb.append(' ');
 						Spanner.append(sb, feType, 0, FrameNetFactories.feFactory);
 						sb.append(' ');
@@ -535,8 +535,8 @@ abstract public class BasicModule extends Module
 						}
 
 						if (!cursor.moveToNext())
-						//noinspection BreakStatement
 						{
+							//noinspection BreakStatement
 							break;
 						}
 
@@ -575,7 +575,7 @@ abstract public class BasicModule extends Module
 			public Loader<Cursor> onCreateLoader(final int loaderId0, final Bundle args)
 			{
 				final Uri uri = Uri.parse(LexUnits_X.CONTENT_URI);
-				final String[] projection = new String[]{ //
+				final String[] projection = { //
 						LexUnits_X.LUID, //
 						LexUnits_X.LEXUNIT, //
 						"lu." + LexUnits_X.FRAMEID, // //$NON-NLS-1$
@@ -586,7 +586,7 @@ abstract public class BasicModule extends Module
 						LexUnits_X.INCORPORATEDFEDEFINITION, //
 				};
 				final String selection = LexUnits_X.LUID + " = ?"; //$NON-NLS-1$
-				final String[] selectionArgs = new String[]{Long.toString(luid0)};
+				final String[] selectionArgs = {Long.toString(luid0)};
 				final String sortOrder = null;
 				return new CursorLoader(BasicModule.this.getContext(), uri, projection, selection, selectionArgs, sortOrder);
 			}
@@ -717,7 +717,7 @@ abstract public class BasicModule extends Module
 			public Loader<Cursor> onCreateLoader(final int loaderId0, final Bundle args)
 			{
 				final Uri uri = Uri.parse(LexUnits_X.CONTENT_URI);
-				final String[] projection = new String[]{ //
+				final String[] projection = { //
 						LexUnits_X.LUID, //
 						LexUnits_X.LEXUNIT, //
 						"lu." + LexUnits_X.FRAMEID, // //$NON-NLS-1$
@@ -728,7 +728,7 @@ abstract public class BasicModule extends Module
 						LexUnits_X.INCORPORATEDFEDEFINITION, //
 				};
 				final String selection = "f." + LexUnits_X.FRAMEID + " = ?"; //$NON-NLS-1$ //$NON-NLS-2$
-				final String[] selectionArgs = new String[]{Long.toString(frameid0)};
+				final String[] selectionArgs = {Long.toString(frameid0)};
 				final String sortOrder = LexUnits_X.LEXUNIT;
 				return new CursorLoader(BasicModule.this.getContext(), uri, projection, selection, selectionArgs, sortOrder);
 			}
@@ -844,7 +844,7 @@ abstract public class BasicModule extends Module
 			public Loader<Cursor> onCreateLoader(final int loaderId0, final Bundle args)
 			{
 				final Uri uri = Uri.parse(Words_LexUnits_Frames.CONTENT_URI);
-				final String[] projection = new String[]{ //
+				final String[] projection = { //
 						Words_LexUnits_Frames.LUID, //
 						Words_LexUnits_Frames.LEXUNIT, //
 						"lu." + Words_LexUnits_Frames.FRAMEID, // //$NON-NLS-1$
@@ -854,12 +854,8 @@ abstract public class BasicModule extends Module
 						Words_LexUnits_Frames.INCORPORATEDFETYPE, //
 						Words_LexUnits_Frames.INCORPORATEDFEDEFINITION, //
 				};
-				final String selection = pos0 == null ?
-						Words_LexUnits_Frames.WORDID + " = ?" :
-						Words_LexUnits_Frames.WORDID + " = ? AND " + "lu." + Words_LexUnits_Frames.POSID + " = ?"; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
-				final String[] selectionArgs = pos0 == null ?
-						new String[]{Long.toString(wordid0)} :
-						new String[]{Long.toString(wordid0), Integer.toString(Utils.posToPosId(pos0))};
+				final String selection = pos0 == null ? Words_LexUnits_Frames.WORDID + " = ?" : Words_LexUnits_Frames.WORDID + " = ? AND " + "lu." + Words_LexUnits_Frames.POSID + " = ?"; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
+				final String[] selectionArgs = pos0 == null ? new String[]{Long.toString(wordid0)} : new String[]{Long.toString(wordid0), Integer.toString(Utils.posToPosId(pos0))};
 				final String sortOrder = Words_LexUnits_Frames.FRAME + ',' + Words_LexUnits_Frames.LUID;
 				return new CursorLoader(BasicModule.this.getContext(), uri, projection, selection, selectionArgs, sortOrder);
 			}
@@ -971,7 +967,7 @@ abstract public class BasicModule extends Module
 			public Loader<Cursor> onCreateLoader(final int loaderId0, final Bundle args)
 			{
 				final Uri uri = Uri.parse(LexUnits_Governors.CONTENT_URI);
-				final String[] projection = new String[]{ //
+				final String[] projection = { //
 						LexUnits_Governors.LUID, //
 						LexUnits_Governors.GOVERNORID, //
 						LexUnits_Governors.GOVERNORTYPE, //
@@ -979,7 +975,7 @@ abstract public class BasicModule extends Module
 						LexUnits_Governors.FNWORD, //
 				};
 				final String selection = LexUnits_Governors.LUID + " = ?"; //$NON-NLS-1$
-				final String[] selectionArgs = new String[]{Long.toString(luid0)};
+				final String[] selectionArgs = {Long.toString(luid0)};
 				final String sortOrder = LexUnits_Governors.GOVERNORID;
 				return new CursorLoader(BasicModule.this.getContext(), uri, projection, selection, selectionArgs, sortOrder);
 			}
@@ -1051,14 +1047,14 @@ abstract public class BasicModule extends Module
 			public Loader<Cursor> onCreateLoader(final int loaderId0, final Bundle args)
 			{
 				final Uri uri = Uri.parse(Governors_AnnoSets_Sentences.CONTENT_URI);
-				final String[] projection = new String[]{ //
+				final String[] projection = { //
 						Governors_AnnoSets_Sentences.GOVERNORID, //
 						Governors_AnnoSets_Sentences.ANNOSETID, //
 						Governors_AnnoSets_Sentences.SENTENCEID, //
 						Governors_AnnoSets_Sentences.TEXT, //
 				};
 				final String selection = Governors_AnnoSets_Sentences.GOVERNORID + " = ?"; //$NON-NLS-1$
-				final String[] selectionArgs = new String[]{Long.toString(governorid0)};
+				final String[] selectionArgs = {Long.toString(governorid0)};
 				final String sortOrder = null;
 				return new CursorLoader(BasicModule.this.getContext(), uri, projection, selection, selectionArgs, sortOrder);
 			}
@@ -1130,7 +1126,7 @@ abstract public class BasicModule extends Module
 			public Loader<Cursor> onCreateLoader(final int loaderId0, final Bundle args)
 			{
 				final Uri uri = Uri.parse(LexUnits_FERealizations_ValenceUnits.CONTENT_URI_BY_REALIZATION);
-				final String[] projection = new String[]{ //
+				final String[] projection = { //
 						LexUnits_FERealizations_ValenceUnits.LUID, //
 						LexUnits_FERealizations_ValenceUnits.FERID, //
 						LexUnits_FERealizations_ValenceUnits.FETYPE, //
@@ -1145,7 +1141,7 @@ abstract public class BasicModule extends Module
 						LexUnits_FERealizations_ValenceUnits.TOTAL, //
 				};
 				final String selection = LexUnits_FERealizations_ValenceUnits.LUID + " = ?"; //$NON-NLS-1$
-				final String[] selectionArgs = new String[]{Long.toString(luid0)};
+				final String[] selectionArgs = {Long.toString(luid0)};
 				final String sortOrder = LexUnits_FERealizations_ValenceUnits.FERID;
 				return new CursorLoader(BasicModule.this.getContext(), uri, projection, selection, selectionArgs, sortOrder);
 			}
@@ -1249,7 +1245,7 @@ abstract public class BasicModule extends Module
 			public Loader<Cursor> onCreateLoader(final int loaderId0, final Bundle args)
 			{
 				final Uri uri = Uri.parse(LexUnits_FEGroupRealizations_Patterns_ValenceUnits.CONTENT_URI_BY_PATTERN);
-				final String[] projection = new String[]{ //
+				final String[] projection = { //
 						LexUnits_FEGroupRealizations_Patterns_ValenceUnits.LUID, //
 						LexUnits_FEGroupRealizations_Patterns_ValenceUnits.FEGRID, //
 						LexUnits_FEGroupRealizations_Patterns_ValenceUnits.PATTERNID, //
@@ -1258,11 +1254,10 @@ abstract public class BasicModule extends Module
 								" || '.' || " + //$NON-NLS-1$
 								LexUnits_FEGroupRealizations_Patterns_ValenceUnits.PT +
 								" || '.'|| IFNULL(" + //$NON-NLS-1$
-								LexUnits_FEGroupRealizations_Patterns_ValenceUnits.GF
-								+ ", '--')) AS " + //$NON-NLS-1$
+								LexUnits_FEGroupRealizations_Patterns_ValenceUnits.GF + ", '--')) AS " + //$NON-NLS-1$
 								LexUnits_FEGroupRealizations_Patterns_ValenceUnits.GROUPREALIZATIONS,}; //$NON-NLS-1$
 				final String selection = LexUnits_FEGroupRealizations_Patterns_ValenceUnits.LUID + " = ?"; //$NON-NLS-1$
-				final String[] selectionArgs = new String[]{Long.toString(luid0)};
+				final String[] selectionArgs = {Long.toString(luid0)};
 				final String sortOrder = null; // LexUnits_FEGroupRealizations_Patterns_ValenceUnits.FEGRID;
 				return new CursorLoader(BasicModule.this.getContext(), uri, projection, selection, selectionArgs, sortOrder);
 			}
@@ -1298,7 +1293,7 @@ abstract public class BasicModule extends Module
 						// group
 						if (groupid != fegrid)
 						{
-							final SpannableStringBuilder sb1 = new SpannableStringBuilder();
+							final Editable sb1 = new SpannableStringBuilder();
 							sb1.append("group"); //$NON-NLS-1$
 							sb1.append(' ');
 							sb1.append(Integer.toString(++g));
@@ -1393,7 +1388,7 @@ abstract public class BasicModule extends Module
 			public Loader<Cursor> onCreateLoader(final int loaderId0, final Bundle args)
 			{
 				final Uri uri = Uri.parse(LexUnits_Sentences_Annosets_Layers_Labels.CONTENT_URI_BY_SENTENCE);
-				final String[] projection = new String[]{ //
+				final String[] projection = { //
 						LexUnits_Sentences_Annosets_Layers_Labels.SENTENCEID, //
 						LexUnits_Sentences_Annosets_Layers_Labels.TEXT, //
 						LexUnits_Sentences_Annosets_Layers_Labels.LAYERTYPE, //
@@ -1409,7 +1404,7 @@ abstract public class BasicModule extends Module
 								" AS " + LexUnits_Sentences_Annosets_Layers_Labels.LAYERANNOTATION, // //$NON-NLS-1$
 				};
 				final String selection = "u." + LexUnits_Sentences_Annosets_Layers_Labels.LUID + " = ? AND " + LexUnits_Sentences_Annosets_Layers_Labels.LAYERTYPE + " = ?"; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				final String[] selectionArgs = new String[]{Long.toString(luid0), BasicModule.FOCUSLAYER};
+				final String[] selectionArgs = {Long.toString(luid0), BasicModule.FOCUSLAYER};
 				final String sortOrder = LexUnits_Sentences_Annosets_Layers_Labels.CORPUSID + ',' + //
 						LexUnits_Sentences_Annosets_Layers_Labels.DOCUMENTID + ',' + //
 						LexUnits_Sentences_Annosets_Layers_Labels.PARAGNO + ',' + //
@@ -1461,16 +1456,11 @@ abstract public class BasicModule extends Module
 								final int to = Integer.parseInt(label.to) + 1;
 
 								// span text
-								Spanner.setSpan(sb, sentenceStart + from, sentenceStart + to, 0,
-										"Target".equals(layerType) ?
-												FrameNetFactories.targetFactory :
-												FrameNetFactories.highlightTextFactory); //$NON-NLS-1$
+								Spanner.setSpan(sb, sentenceStart + from, sentenceStart + to, 0, "Target".equals(layerType) ? FrameNetFactories.targetFactory : FrameNetFactories.highlightTextFactory); //$NON-NLS-1$
 
 								// label
 								sb.append('\t');
-								Spanner.append(sb, label.label, 0, "FE".equals(layerType) ?
-										FrameNetFactories.feFactory :
-										FrameNetFactories.labelFactory); //$NON-NLS-1$
+								Spanner.append(sb, label.label, 0, "FE".equals(layerType) ? FrameNetFactories.feFactory : FrameNetFactories.labelFactory); //$NON-NLS-1$
 								sb.append(' ');
 
 								// value (subtext)
@@ -1524,13 +1514,13 @@ abstract public class BasicModule extends Module
 			public Loader<Cursor> onCreateLoader(final int loaderId0, final Bundle args)
 			{
 				final Uri uri = Uri.parse(Patterns_Sentences.CONTENT_URI);
-				final String[] projection = new String[]{ //
+				final String[] projection = { //
 						Patterns_Sentences.ANNOSETID, //
 						Patterns_Sentences.SENTENCEID, //
 						Patterns_Sentences.TEXT, //
 				};
 				final String selection = Patterns_Sentences.PATTERNID + " = ?"; //$NON-NLS-1$
-				final String[] selectionArgs = new String[]{Long.toString(patternid0)};
+				final String[] selectionArgs = {Long.toString(patternid0)};
 				final String sortOrder = Patterns_Sentences.SENTENCEID;
 				return new CursorLoader(BasicModule.this.getContext(), uri, projection, selection, selectionArgs, sortOrder);
 			}
@@ -1597,13 +1587,13 @@ abstract public class BasicModule extends Module
 			public Loader<Cursor> onCreateLoader(final int loaderId0, final Bundle args)
 			{
 				final Uri uri = Uri.parse(ValenceUnits_Sentences.CONTENT_URI);
-				final String[] projection = new String[]{ //
+				final String[] projection = { //
 						Patterns_Sentences.ANNOSETID, //
 						Patterns_Sentences.SENTENCEID, //
 						Patterns_Sentences.TEXT, //
 				};
 				final String selection = ValenceUnits_Sentences.VUID + " = ?"; //$NON-NLS-1$
-				final String[] selectionArgs = new String[]{Long.toString(vuid0)};
+				final String[] selectionArgs = {Long.toString(vuid0)};
 				final String sortOrder = ValenceUnits_Sentences.SENTENCEID;
 				return new CursorLoader(BasicModule.this.getContext(), uri, projection, selection, selectionArgs, sortOrder);
 			}
@@ -1672,7 +1662,7 @@ abstract public class BasicModule extends Module
 			public Loader<Cursor> onCreateLoader(final int loaderId0, final Bundle args)
 			{
 				final Uri uri = Uri.parse(AnnoSets_Layers_X.CONTENT_URI);
-				final String[] projection = new String[]{ //
+				final String[] projection = { //
 						AnnoSets_Layers_X.SENTENCEID, //
 						AnnoSets_Layers_X.SENTENCETEXT, //
 						AnnoSets_Layers_X.LAYERID, //
@@ -1681,7 +1671,7 @@ abstract public class BasicModule extends Module
 						AnnoSets_Layers_X.LAYERANNOTATIONS, //
 				};
 				final String selection = null; // embedded selection
-				final String[] selectionArgs = new String[]{Long.toString(annosetid0)};
+				final String[] selectionArgs = {Long.toString(annosetid0)};
 				final String sortOrder = null;
 				return new CursorLoader(BasicModule.this.getContext(), uri, projection, selection, selectionArgs, sortOrder);
 			}
@@ -1748,9 +1738,7 @@ abstract public class BasicModule extends Module
 								sb.append('\t');
 
 								// label
-								Spanner.append(sb, label.label, 0, "FE".equals(layerType) ?
-										FrameNetFactories.feFactory :
-										FrameNetFactories.labelFactory); //$NON-NLS-1$
+								Spanner.append(sb, label.label, 0, "FE".equals(layerType) ? FrameNetFactories.feFactory : FrameNetFactories.labelFactory); //$NON-NLS-1$
 								sb.append(' ');
 
 								// subtext value
@@ -1772,8 +1760,8 @@ abstract public class BasicModule extends Module
 							}
 						}
 						if (!cursor.moveToNext())
-						//noinspection BreakStatement
 						{
+							//noinspection BreakStatement
 							break;
 						}
 						sb.append('\n');
@@ -1809,7 +1797,7 @@ abstract public class BasicModule extends Module
 			public Loader<Cursor> onCreateLoader(final int loaderId0, final Bundle args)
 			{
 				final Uri uri = Uri.parse(Patterns_Layers_X.CONTENT_URI);
-				final String[] projection = new String[]{ //
+				final String[] projection = { //
 						Patterns_Layers_X.SENTENCEID, //
 						Patterns_Layers_X.SENTENCETEXT, //
 						Patterns_Layers_X.LAYERID, //
@@ -1818,7 +1806,7 @@ abstract public class BasicModule extends Module
 						Patterns_Layers_X.LAYERANNOTATIONS, //
 				};
 				final String selection = null; // embedded selection
-				final String[] selectionArgs = new String[]{Long.toString(patternid0)};
+				final String[] selectionArgs = {Long.toString(patternid0)};
 				final String sortOrder = null;
 				return new CursorLoader(BasicModule.this.getContext(), uri, projection, selection, selectionArgs, sortOrder);
 			}
@@ -1883,9 +1871,7 @@ abstract public class BasicModule extends Module
 									sb.append('\t');
 									sb.append('\t');
 
-									Spanner.append(sb, label.label, 0, "FE".equals(layerType) ?
-											FrameNetFactories.feFactory :
-											FrameNetFactories.labelFactory); //$NON-NLS-1$
+									Spanner.append(sb, label.label, 0, "FE".equals(layerType) ? FrameNetFactories.feFactory : FrameNetFactories.labelFactory); //$NON-NLS-1$
 									sb.append(' ');
 
 									final int from = Integer.parseInt(label.from);
@@ -1940,7 +1926,7 @@ abstract public class BasicModule extends Module
 			public Loader<Cursor> onCreateLoader(final int loaderId0, final Bundle args)
 			{
 				final Uri uri = Uri.parse(ValenceUnits_Layers_X.CONTENT_URI);
-				final String[] projection = new String[]{ //
+				final String[] projection = { //
 						ValenceUnits_Layers_X.SENTENCEID, //
 						ValenceUnits_Layers_X.SENTENCETEXT, //
 						ValenceUnits_Layers_X.LAYERID, //
@@ -1949,7 +1935,7 @@ abstract public class BasicModule extends Module
 						ValenceUnits_Layers_X.LAYERANNOTATIONS, //
 				};
 				final String selection = null; // embedded selection
-				final String[] selectionArgs = new String[]{Long.toString(vuid0)};
+				final String[] selectionArgs = {Long.toString(vuid0)};
 				final String sortOrder = null;
 				return new CursorLoader(BasicModule.this.getContext(), uri, projection, selection, selectionArgs, sortOrder);
 			}
@@ -2014,9 +2000,7 @@ abstract public class BasicModule extends Module
 									sb.append('\t');
 
 									// label
-									Spanner.append(sb, label.label, 0, "FE".equals(layerType) ?
-											FrameNetFactories.feFactory :
-											FrameNetFactories.labelFactory); //$NON-NLS-1$
+									Spanner.append(sb, label.label, 0, "FE".equals(layerType) ? FrameNetFactories.feFactory : FrameNetFactories.labelFactory); //$NON-NLS-1$
 									sb.append(' ');
 
 									// subtext
@@ -2074,14 +2058,14 @@ abstract public class BasicModule extends Module
 			public Loader<Cursor> onCreateLoader(final int loaderId0, final Bundle args)
 			{
 				final Uri uri = Uri.parse(Sentences_Layers_X.CONTENT_URI);
-				final String[] projection = new String[]{ //
+				final String[] projection = { //
 						Sentences_Layers_X.LAYERID, //
 						Sentences_Layers_X.LAYERTYPE, //
 						Sentences_Layers_X.RANK, //
 						Sentences_Layers_X.LAYERANNOTATIONS, //
 				};
 				final String selection = null; // embedded selection
-				final String[] selectionArgs = new String[]{Long.toString(sentenceid0)};
+				final String[] selectionArgs = {Long.toString(sentenceid0)};
 				final String sortOrder = null;
 				return new CursorLoader(BasicModule.this.getContext(), uri, projection, selection, selectionArgs, sortOrder);
 			}
@@ -2129,9 +2113,7 @@ abstract public class BasicModule extends Module
 								sb.append('\t');
 
 								// label
-								Spanner.append(sb, label.label, 0, "FE".equals(layerType) ?
-										FrameNetFactories.feFactory :
-										FrameNetFactories.labelFactory); //$NON-NLS-1$
+								Spanner.append(sb, label.label, 0, "FE".equals(layerType) ? FrameNetFactories.feFactory : FrameNetFactories.labelFactory); //$NON-NLS-1$
 								sb.append(' ');
 
 								// subtext value
@@ -2153,8 +2135,8 @@ abstract public class BasicModule extends Module
 							}
 						}
 						if (!cursor.moveToNext())
-						//noinspection BreakStatement
 						{
+							//noinspection BreakStatement
 							break;
 						}
 						sb.append('\n');
@@ -2189,9 +2171,7 @@ abstract public class BasicModule extends Module
 
 		for (int i = 0; i < texts.length; i++)
 		{
-			CharSequence field = (flags & FrameNetMarkupFactory.FEDEF) == 0 ?
-					this.frameProcessor.process(texts[i]) :
-					texts[i];
+			CharSequence field = (flags & FrameNetMarkupFactory.FEDEF) == 0 ? this.frameProcessor.process(texts[i]) : texts[i];
 			fields[i] = this.spanner.process(field, flags);
 		}
 		return fields;
@@ -2199,15 +2179,15 @@ abstract public class BasicModule extends Module
 
 	private CharSequence processLayer(final CharSequence name)
 	{
-		if (name.equals("FE")) //$NON-NLS-1$
+		if ("FE".equals(name)) //$NON-NLS-1$
 		{
 			return "Frame element"; //$NON-NLS-1$
 		}
-		if (name.equals("PT")) //$NON-NLS-1$
+		if ("PT".equals(name)) //$NON-NLS-1$
 		{
 			return "Phrase type"; //$NON-NLS-1$
 		}
-		if (name.equals("GF")) //$NON-NLS-1$
+		if ("GF".equals(name)) //$NON-NLS-1$
 		{
 			return "Grammatical function"; //$NON-NLS-1$
 		}
@@ -2216,15 +2196,15 @@ abstract public class BasicModule extends Module
 
 	private CharSequence processPT(final CharSequence name)
 	{
-		if (name.equals("CNI")) //$NON-NLS-1$
+		if ("CNI".equals(name)) //$NON-NLS-1$
 		{
 			return "constructional ∅"; //$NON-NLS-1$
 		}
-		if (name.equals("DNI")) //$NON-NLS-1$
+		if ("DNI".equals(name)) //$NON-NLS-1$
 		{
 			return "definite ∅"; //$NON-NLS-1$
 		}
-		if (name.equals("INI")) //$NON-NLS-1$
+		if ("INI".equals(name)) //$NON-NLS-1$
 		{
 			return "indefinite ∅"; //$NON-NLS-1$
 		}
@@ -2406,6 +2386,8 @@ abstract public class BasicModule extends Module
 
 	class DummyQuery extends QueryHolder.Query
 	{
+		private static final String TAG = "DummyQuery"; //$NON-NLS-1$
+
 		@SuppressWarnings("unused")
 		public DummyQuery(final long annosetid0, final int icon, final CharSequence text)
 		{
@@ -2415,7 +2397,7 @@ abstract public class BasicModule extends Module
 		@Override
 		public void process(final TreeNode node0)
 		{
-			System.out.println("QUERY " + this.id); //$NON-NLS-1$
+			Log.d(TAG, "QUERY " + this.id); //$NON-NLS-1$
 		}
 	}
 }

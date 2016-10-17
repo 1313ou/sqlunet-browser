@@ -64,12 +64,7 @@ public class PropbankFragment extends Fragment
 		final Parcelable pointer = args.getParcelable(SqlUNetContract.ARG_QUERYPOINTER);
 
 		// module
-		/*
-	  Module
-	 */
-		Module module = (pointer instanceof HasXId) ?
-				new RoleSetModule(this) :
-				new RoleSetFromWordModule(this);
+		Module module = (pointer instanceof HasXId) ? new RoleSetModule(this) : new RoleSetFromWordModule(this);
 		module.init(pointer);
 		module.process(queryNode);
 

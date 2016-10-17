@@ -3,6 +3,7 @@ package org.sqlunet.sql;
 import org.w3c.dom.Document;
 import org.w3c.dom.DocumentFragment;
 import org.w3c.dom.Element;
+import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.EntityResolver;
 import org.xml.sax.InputSource;
@@ -174,7 +175,7 @@ public class DocumentFragmentParser
 	 * @param element  is the DOM element to attach to
 	 * @param xml      definition
 	 */
-	static public void mount(final Document document, final Element element, final String xml, final String tag)
+	static public void mount(final Document document, final Node element, final String xml, final String tag)
 	{
 		final DocumentFragmentParser parser = new DocumentFragmentParser();
 		try

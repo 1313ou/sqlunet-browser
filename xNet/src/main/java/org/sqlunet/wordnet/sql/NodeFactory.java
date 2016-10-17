@@ -76,10 +76,10 @@ public class NodeFactory extends org.sqlunet.sql.NodeFactory
 	/**
 	 * Make synset node
 	 *
-	 * @param doc    is the DOM Document being built
-	 * @param parent is the parent node to attach this node to
-	 * @param size   is the synset's size (the number of words in the synset)
-	 * @param synsetId     is the synset's id in the database
+	 * @param doc      is the DOM Document being built
+	 * @param parent   is the parent node to attach this node to
+	 * @param size     is the synset's size (the number of words in the synset)
+	 * @param synsetId is the synset's id in the database
 	 * @return newly created element
 	 */
 	static public Element makeSynsetNode(final Document doc, final Node parent, final int size, final long synsetId)
@@ -99,6 +99,7 @@ public class NodeFactory extends org.sqlunet.sql.NodeFactory
 	 * @param id     is the word id
 	 * @return newly created node
 	 */
+	@SuppressWarnings("UnusedReturnValue")
 	static public Node makeWordNode(final Document doc, final Node parent, final String word, final long id)
 	{
 		final Element element = org.sqlunet.sql.NodeFactory.makeNode(doc, parent, "word", word); //$NON-NLS-1$
@@ -134,6 +135,7 @@ public class NodeFactory extends org.sqlunet.sql.NodeFactory
 	 * @param level    is the recursion level
 	 * @return newly created node
 	 */
+	@SuppressWarnings("UnusedReturnValue")
 	static public Node makeMoreLinkNode(final Document doc, final Node parent, final String linkType, final int level)
 	{
 		final Element element = org.sqlunet.sql.NodeFactory.makeNode(doc, parent, linkType, null);

@@ -16,7 +16,7 @@ public class PropbankSpanner extends RegExprSpanner
 	/**
 	 * Patterns
 	 */
-	private static final String[] patterns = new String[]{"((?:\\[\\*\\]|\\*trace\\*)(\\-?\\d*))", // *trace*-n or [*] : 1 capture //$NON-NLS-1$
+	private static final String[] patterns = {"((?:\\[\\*\\]|\\*trace\\*)(\\-?\\d*))", // *trace*-n or [*] : 1 capture //$NON-NLS-1$
 			// static public String[] patterns = new String[] { "(\\*trace\\*)(\\-?\\d*)", // *trace*-n or [*] : 1 capture
 	};
 

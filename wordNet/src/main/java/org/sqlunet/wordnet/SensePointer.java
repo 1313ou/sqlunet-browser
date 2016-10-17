@@ -10,7 +10,7 @@ import org.sqlunet.HasWordId;
  *
  * @author Bernard Bou
  */
-public class SensePointer extends SynsetPointer implements Parcelable, HasWordId
+public class SensePointer extends SynsetPointer implements HasWordId
 {
 	/**
 	 * wordid : compulsory

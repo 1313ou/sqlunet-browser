@@ -48,16 +48,12 @@ public class SettingsActivity extends PreferenceActivity
 				final int index = listPreference.findIndexOfValue(stringValue);
 
 				// Set the summary to reflect the new value.
-				preference.setSummary(index >= 0 ?
-						listPreference.getEntries()[index].toString().trim() :
-						null);
+				preference.setSummary(index >= 0 ? listPreference.getEntries()[index].toString().trim() : null);
 			}
 			else
 			{
 				// For all other preferences, set the summary to the value's simple string representation.
-				final String stringValue = value != null ?
-						value.toString() :
-						"<default>"; //$NON-NLS-1$
+				final String stringValue = value != null ? value.toString() : "<default>"; //$NON-NLS-1$
 				preference.setSummary(stringValue);
 			}
 			return true;

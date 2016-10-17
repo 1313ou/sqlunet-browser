@@ -51,9 +51,6 @@ public class SynsetFragment extends Fragment
 		final TreeNode queryNode = TreeFactory.addTreeItemNode(root, "WordNet", R.drawable.wordnet, getActivity()); //$NON-NLS-1$
 
 		// tree
-		/*
-	  Tree view
-	 */
 		TreeView treeView = new TreeView(getActivity(), root);
 		treeView.setDefaultAnimation(true);
 		treeView.setDefaultContainerStyle(R.style.TreeNodeStyleCustom); // R.style.TreeNodeStyleDivided
@@ -85,9 +82,6 @@ public class SynsetFragment extends Fragment
 			}
 
 			// module
-			/*
-	  Module
-	 */
 			Module module = isSense ? new SenseModule(this) : new SynsetModule(this);
 			module.init(parcelable);
 			module.process(queryNode);

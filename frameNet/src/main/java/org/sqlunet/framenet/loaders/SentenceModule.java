@@ -93,12 +93,12 @@ public class SentenceModule extends BasicModule
 			public Loader<Cursor> onCreateLoader(final int loaderId0, final Bundle args)
 			{
 				final Uri uri = Uri.parse(Sentences.CONTENT_URI);
-				final String[] projection = new String[]{ //
+				final String[] projection = { //
 						Sentences.SENTENCEID, //
 						Sentences.TEXT, //
 				};
 				final String selection = Sentences.SENTENCEID + " = ?"; //$NON-NLS-1$
-				final String[] selectionArgs = new String[]{Long.toString(sentenceid0)};
+				final String[] selectionArgs = {Long.toString(sentenceid0)};
 				final String sortOrder = null;
 				return new CursorLoader(SentenceModule.this.getContext(), uri, projection, selection, selectionArgs, sortOrder);
 			}

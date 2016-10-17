@@ -12,20 +12,20 @@ import org.sqlunet.sql.DBQueryCommand;
 class VnQueryCommand extends DBQueryCommand
 {
 	/**
-	 * <code>theQuery</code> is the SQL statement
+	 * <code>QUERY</code> is the SQL statement
 	 */
-	private static final String theQuery = SqLiteDialect.VerbNetQueryFromWord;
+	private static final String QUERY = SqLiteDialect.VerbNetQueryFromWord;
 
 	/**
 	 * Constructor
 	 *
-	 * @param thisConnection is the database connection
-	 * @param thisLemma      is the target word
+	 * @param connection is the database connection
+	 * @param lemma      is the target word
 	 */
-	public VnQueryCommand(final SQLiteDatabase thisConnection, final String thisLemma)
+	public VnQueryCommand(final SQLiteDatabase connection, final String lemma)
 	{
-		super(thisConnection, VnQueryCommand.theQuery);
-		setParams(thisLemma);
+		super(connection, VnQueryCommand.QUERY);
+		setParams(lemma);
 	}
 
 	/**
@@ -45,8 +45,8 @@ class VnQueryCommand extends DBQueryCommand
 	 */
 	public boolean getSynsetSpecific()
 	{
-		final int thisResult = this.cursor.getInt(1);
-		return thisResult != 0;
+		final int result = this.cursor.getInt(1);
+		return result != 0;
 	}
 
 	/**

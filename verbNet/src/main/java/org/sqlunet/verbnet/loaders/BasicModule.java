@@ -27,6 +27,7 @@ import org.sqlunet.verbnet.style.VerbNetSemanticsSpanner;
 import org.sqlunet.verbnet.style.VerbNetSyntaxSpanner;
 import org.sqlunet.view.TreeFactory;
 
+@SuppressWarnings("RedundantSuppression")
 abstract class BasicModule extends Module
 {
 	/**
@@ -147,14 +148,14 @@ abstract class BasicModule extends Module
 			public Loader<Cursor> onCreateLoader(final int loaderId0, final Bundle args)
 			{
 				final Uri uri = Uri.parse(VnClasses_X.CONTENT_URI);
-				final String[] projection = new String[]{ //
+				final String[] projection = { //
 						VnClasses_X.CLASSID, //
 						VnClasses_X.CLASS, //
 						VnClasses_X.CLASSTAG, //
 						"GROUP_CONCAT(" + VnClasses_X.GROUPING + ", '|') AS " + VnClasses_X.GROUPINGS, // //$NON-NLS-1$ //$NON-NLS-2$
 				};
 				final String selection = VnClasses_X.CLASSID + " = ?"; //$NON-NLS-1$
-				final String[] selectionArgs = new String[]{ //
+				final String[] selectionArgs = { //
 						Long.toString(classid0)};
 				final String sortOrder = null;
 				return new CursorLoader(BasicModule.this.getContext(), uri, projection, selection, selectionArgs, sortOrder);
@@ -233,14 +234,14 @@ abstract class BasicModule extends Module
 			public Loader<Cursor> onCreateLoader(final int loaderId0, final Bundle args)
 			{
 				final Uri uri = Uri.parse(VnClasses_VnRoles_X.CONTENT_URI);
-				final String[] projection = new String[]{ //
+				final String[] projection = { //
 						VnClasses_VnRoles_X.ROLEID, //
 						VnClasses_VnRoles_X.ROLETYPE, //
 						VnClasses_VnRoles_X.RESTRS, //
 						VnClasses_VnRoles_X.CLASSID, //
 				};
 				final String selection = VnClasses_VnRoles_X.CLASSID + " = ?"; //$NON-NLS-1$
-				final String[] selectionArgs = new String[]{Long.toString(classid)};
+				final String[] selectionArgs = {Long.toString(classid)};
 				final String sortOrder = null;
 				return new CursorLoader(BasicModule.this.getContext(), uri, projection, selection, selectionArgs, sortOrder);
 			}
@@ -279,8 +280,8 @@ abstract class BasicModule extends Module
 						// sb.append(Integer.toString(roleid));
 
 						if (!cursor.moveToNext())
-						//noinspection BreakStatement
 						{
+							//noinspection BreakStatement
 							break;
 						}
 
@@ -318,7 +319,7 @@ abstract class BasicModule extends Module
 			public Loader<Cursor> onCreateLoader(final int loaderId0, final Bundle args)
 			{
 				final Uri uri = Uri.parse(VnClasses_VnFrames_X.CONTENT_URI);
-				final String[] projection = new String[]{ //
+				final String[] projection = { //
 						VnClasses_VnFrames_X.FRAMEID, //
 						VnClasses_VnFrames_X.NUMBER, //
 						VnClasses_VnFrames_X.XTAG, //
@@ -330,7 +331,7 @@ abstract class BasicModule extends Module
 						VnClasses_VnFrames_X.CLASSID, //
 				};
 				final String selection = VnClasses_VnFrames_X.CLASSID + " = ?"; //$NON-NLS-1$
-				final String[] selectionArgs = new String[]{Long.toString(classid)};
+				final String[] selectionArgs = {Long.toString(classid)};
 				final String sortOrder = null;
 				return new CursorLoader(BasicModule.this.getContext(), uri, projection, selection, selectionArgs, sortOrder);
 			}
@@ -397,8 +398,8 @@ abstract class BasicModule extends Module
 						}
 
 						if (!cursor.moveToNext())
-						//noinspection BreakStatement
 						{
+							//noinspection BreakStatement
 							break;
 						}
 						sb.append('\n');

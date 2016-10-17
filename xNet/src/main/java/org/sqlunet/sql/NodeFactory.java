@@ -59,6 +59,7 @@ public class NodeFactory
 	 * @param args     name-value pairs
 	 * @return newly created node
 	 */
+	@SuppressWarnings("UnusedReturnValue")
 	static public Element makeTargetNode(final Document document, final Node parent, final String... args)
 	{
 		final Element element = document.createElement("target"); //$NON-NLS-1$

@@ -39,9 +39,7 @@ public class FnLexUnit
 		this.definition = definition;
 		this.dictionary = dictionary;
 		this.incorporatedFe = incorporatedFe;
-		this.frame = frameId == -1 ?
-				null :
-				new FnFrame(frameId, frame, frameDefinition, null, null);
+		this.frame = frameId == -1 ? null : new FnFrame(frameId, frame, frameDefinition, null, null);
 	}
 
 	/**

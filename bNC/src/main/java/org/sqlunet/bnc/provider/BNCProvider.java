@@ -92,11 +92,10 @@ public class BNCProvider extends SqlUNetProvider
 
 		String selection = selection0;
 		// choose the table to query and a sort order based on the code returned for the incoming URI
-		String table;
-		final String groupBy = null;
 		final int code = BNCProvider.uriMatcher.match(uri);
 		Log.d(BNCProvider.TAG + "URI", String.format("%s (code %s)", uri, code)); //$NON-NLS-1$ //$NON-NLS-2$
 
+		String table;
 		switch (code)
 		{
 
@@ -131,6 +130,7 @@ public class BNCProvider extends SqlUNetProvider
 				throw new RuntimeException("Malformed URI " + uri); //$NON-NLS-1$
 		}
 
+		final String groupBy = null;
 		if (SqlUNetProvider.debugSql)
 		{
 			final String sql = SQLiteQueryBuilder.buildQueryString(false, table, projection, selection, groupBy, null, sortOrder, null);

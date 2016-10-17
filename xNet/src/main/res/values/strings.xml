@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="label_info">Target info</string>
-    <string name="label_contents">Contents</string>
-    <string name="open_success">Opened</string>
-    <string name="open_fail">Failed to open</string>
-    <string name="pref_default_download_site">http://sqlunet.sourceforge.net/sqlunet</string>
-    <string name="pref_default_download_dbfile">sqlunet.db</string>
-    <string name="pref_default_download_sqlfile">sqlunet.sql.zip</string>
-    <string name="pref_default_entry_import">sqlunet.sql</string>
-    <string name="pref_default_entry_pm">sqlunet-pm-classes.sql</string>
-    <string name="pref_default_entry_index">sqlunet-index.sql</string>
+	<string name="label_info">Target info</string>
+	<string name="label_contents">Contents</string>
+	<string name="open_success">Opened</string>
+	<string name="open_fail">Failed to open</string>
+	<string name="pref_default_download_site">http://sqlunet.sourceforge.net/sqlunet</string>
+	<string name="pref_default_download_dbfile">sqlunet.db</string>
+	<string name="pref_default_download_sqlfile">sqlunet.sql.zip</string>
+	<string name="pref_default_entry_import">sqlunet.sql</string>
+	<string name="pref_default_entry_pm">sqlunet-pm-classes.sql</string>
+	<string name="pref_default_entry_index">sqlunet-index.sql</string>
 
 </resources>

@@ -137,7 +137,7 @@ public class Downloader extends AsyncTask<Void, Integer, Boolean>
 			output = new FileOutputStream(this.to);
 
 			// copy streams
-			final byte buffer[] = new byte[1024];
+			final byte[] buffer = new byte[1024];
 			long counter = 0;
 			int count;
 			while ((count = input.read(buffer)) != -1)
@@ -153,7 +153,7 @@ public class Downloader extends AsyncTask<Void, Integer, Boolean>
 				// interrupted
 				if (Thread.interrupted())
 				{
-					throw new InterruptedException();
+					throw new InterruptedException("While copying download stream");
 				}
 			}
 			output.flush();
@@ -177,7 +177,7 @@ public class Downloader extends AsyncTask<Void, Integer, Boolean>
 				}
 				catch (final IOException e)
 				{
-					e.printStackTrace();
+					Log.e(TAG, "While closing output", e);
 				}
 			}
 			if (input != null)
@@ -188,7 +188,7 @@ public class Downloader extends AsyncTask<Void, Integer, Boolean>
 				}
 				catch (final IOException e)
 				{
-					e.printStackTrace();
+					Log.e(TAG, "While closing input", e);
 				}
 			}
 		}

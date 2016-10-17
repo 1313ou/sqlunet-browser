@@ -131,7 +131,7 @@ public class Spanner
 	 * @param to    finish
 	 * @param spans spans to apply
 	 */
-	static void setSpan(final SpannableStringBuilder sb, final int from, final int to, final Object spans)
+	static void setSpan(@SuppressWarnings("TypeMayBeWeakened") final SpannableStringBuilder sb, final int from, final int to, final Object spans)
 	{
 		if (spans != null && from != to)
 		{
@@ -211,7 +211,7 @@ public class Spanner
 	 * @param context  context
 	 */
 	@SuppressWarnings("unused")
-	static public void appendClickableImage(final SpannableStringBuilder sb, final String caption, final OnClickImage listener, final Context context)
+	static public void appendClickableImage(final SpannableStringBuilder sb, final CharSequence caption, final OnClickImage listener, final Context context)
 	{
 		final Drawable collapsedDrawable = getDrawable(context, R.drawable.ic_collapsed);
 		final Drawable expandedDrawable = getDrawable(context, R.drawable.ic_expanded);
@@ -227,7 +227,7 @@ public class Spanner
 	 * @param caption           caption
 	 * @param listener          click listener
 	 */
-	private static void appendClickableImage(final SpannableStringBuilder sb, final Drawable collapsedDrawable, final Drawable expandedDrawable, final String caption, final OnClickImage listener)
+	private static void appendClickableImage(final SpannableStringBuilder sb, final Drawable collapsedDrawable, final Drawable expandedDrawable, final CharSequence caption, final OnClickImage listener)
 	{
 		final ImageSpan span = new ImageSpan(collapsedDrawable, DynamicDrawableSpan.ALIGN_BASELINE);
 		final ClickableSpan span2 = new ClickableSpan()
@@ -256,9 +256,7 @@ public class Spanner
 					sb1.replace(from, to, collapsed ? EXPANDEDSTRING : COLLAPSEDSTRING);
 
 					// set new imagespan
-					final Object newimagespan = new ImageSpan(collapsed ?
-							expandedDrawable :
-							collapsedDrawable, DynamicDrawableSpan.ALIGN_BASELINE);
+					final Object newimagespan = new ImageSpan(collapsed ? expandedDrawable : collapsedDrawable, DynamicDrawableSpan.ALIGN_BASELINE);
 					sb1.setSpan(newimagespan, from, to, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
 
 					// fire toggle
@@ -350,7 +348,7 @@ public class Spanner
 	 * @param delimiter delimiter
 	 * @return delimiter position or -1 if not found
 	 */
-	private static int find(final SpannableStringBuilder sb, final int start, @SuppressWarnings("SameParameterValue") final char delimiter)
+	private static int find(@SuppressWarnings("TypeMayBeWeakened") final SpannableStringBuilder sb, final int start, @SuppressWarnings("SameParameterValue") final char delimiter)
 	{
 		int i = start;
 		while (i < sb.length())

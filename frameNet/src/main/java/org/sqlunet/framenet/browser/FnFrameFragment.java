@@ -75,9 +75,6 @@ public class FnFrameFragment extends Fragment
 		final Parcelable pointer = args.getParcelable(SqlUNetContract.ARG_QUERYPOINTER);
 
 		// module
-		/*
-	  Module
-	 */
 		Module module = new FrameModule(this);
 		module.init(pointer);
 		module.process(queryNode);

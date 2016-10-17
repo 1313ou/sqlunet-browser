@@ -201,7 +201,7 @@ class FileUtils
 	 * @return dest dir
 	 */
 	@SuppressWarnings("UnusedReturnValue")
-	static private File expandZip(final InputStream in, @SuppressWarnings("SameParameterValue") final String pathPrefixFilter0, final File destDir) throws IOException
+	static private File expandZip(final InputStream in, final String pathPrefixFilter0, final File destDir) throws IOException
 	{
 		// prefix
 		String pathPrefixFilter = pathPrefixFilter0;

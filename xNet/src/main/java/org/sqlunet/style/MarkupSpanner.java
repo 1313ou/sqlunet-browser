@@ -46,8 +46,7 @@ public class MarkupSpanner extends Spanner
 					return 2;
 				case TEXT:
 					return 3;
-				default:
-					break;
+
 			}
 			return 0;
 		}
@@ -86,6 +85,7 @@ public class MarkupSpanner extends Spanner
 	 * @param extraPatterns more patterns
 	 * @return spannable string builder
 	 */
+	@SuppressWarnings("UnusedReturnValue")
 	static public CharSequence setSpan(final CharSequence text, //
 			final SpannableStringBuilder sb, final SpanFactory spanFactory, //
 			final long flags, //

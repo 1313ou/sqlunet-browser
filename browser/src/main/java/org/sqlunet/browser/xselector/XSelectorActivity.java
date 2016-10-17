@@ -128,42 +128,42 @@ public class XSelectorActivity extends Activity implements XSelectorFragment.Lis
 					{
 						// final View labelView = findViewById(R.id.label_verbnet);
 						// labelView.setVisibility(View.VISIBLE);
-						verbnetFragment = new VerbNetFragment();
-						verbnetFragment.setArguments(arguments);
-						transaction.replace(R.id.container_verbnet, verbnetFragment);
+						this.verbnetFragment = new VerbNetFragment();
+						this.verbnetFragment.setArguments(arguments);
+						transaction.replace(R.id.container_verbnet, this.verbnetFragment);
 					}
-					else if (verbnetFragment != null)
+					else if (this.verbnetFragment != null)
 					{
-						transaction.remove(verbnetFragment);
-						verbnetFragment = null;
+						transaction.remove(this.verbnetFragment);
+						this.verbnetFragment = null;
 					}
 
 					if (Settings.getPropBankPref(this) && pointer.getXsources().contains("pb")) //$NON-NLS-1$
 					{
 						// final View labelView = findViewById(R.id.label_propbank);
 						// labelView.setVisibility(View.VISIBLE);
-						propbankFragment = new PropbankFragment();
-						propbankFragment.setArguments(arguments);
-						transaction.replace(R.id.container_propbank, propbankFragment);
+						this.propbankFragment = new PropbankFragment();
+						this.propbankFragment.setArguments(arguments);
+						transaction.replace(R.id.container_propbank, this.propbankFragment);
 					}
-					else if (propbankFragment != null)
+					else if (this.propbankFragment != null)
 					{
-						transaction.remove(propbankFragment);
-						propbankFragment = null;
+						transaction.remove(this.propbankFragment);
+						this.propbankFragment = null;
 					}
 
 					if (Settings.getFrameNetPref(this) && pointer.getXsources().contains("fn")) //$NON-NLS-1$
 					{
 						// final View labelView = findViewById(R.id.label_framenet);
 						// labelView.setVisibility(View.VISIBLE);
-						framenetFragment = new FrameNetFragment();
-						framenetFragment.setArguments(arguments);
-						transaction.replace(R.id.container_framenet, framenetFragment);
+						this.framenetFragment = new FrameNetFragment();
+						this.framenetFragment.setArguments(arguments);
+						transaction.replace(R.id.container_framenet, this.framenetFragment);
 					}
-					else if (framenetFragment != null)
+					else if (this.framenetFragment != null)
 					{
-						transaction.remove(framenetFragment);
-						framenetFragment = null;
+						transaction.remove(this.framenetFragment);
+						this.framenetFragment = null;
 					}
 
 					if (Settings.getBncPref(this))
@@ -185,8 +185,6 @@ public class XSelectorActivity extends Activity implements XSelectorFragment.Lis
 					// detail fragment replace
 					transaction.replace(R.id.container_main, fragment);
 					break;
-				default:
-					return;
 			}
 			transaction.commit();
 		}

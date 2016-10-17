@@ -1,121 +1,121 @@
 <resources>
 
-    <style name="Label.WnMembers">
-        <item name="android:visibility">gone</item>
-    </style>
+	<style name="Label.WnMembers">
+		<item name="android:visibility">gone</item>
+	</style>
 
-    <style name="Label.WnDefinition">
-        <item name="android:visibility">gone</item>
-    </style>
+	<style name="Label.WnDefinition">
+		<item name="android:visibility">gone</item>
+	</style>
 
-    <style name="Label.WnSamples">
-        <item name="android:visibility">gone</item>
-    </style>
+	<style name="Label.WnSamples">
+		<item name="android:visibility">gone</item>
+	</style>
 
-    <style name="Label.WnSemLinks">
-        <item name="android:visibility">gone</item>
-    </style>
+	<style name="Label.WnSemLinks">
+		<item name="android:visibility">gone</item>
+	</style>
 
-    <style name="Label.WnLexLinks">
-        <item name="android:visibility">gone</item>
-    </style>
+	<style name="Label.WnLexLinks">
+		<item name="android:visibility">gone</item>
+	</style>
 
-    <style name="Label.WnVerbFrames">
-        <item name="android:visibility">gone</item>
-    </style>
+	<style name="Label.WnVerbFrames">
+		<item name="android:visibility">gone</item>
+	</style>
 
-    <style name="Label.WnVerbSentenceFrames">
-        <item name="android:visibility">gone</item>
-    </style>
+	<style name="Label.WnVerbSentenceFrames">
+		<item name="android:visibility">gone</item>
+	</style>
 
-    <style name="Label.WnMorphology">
-        <item name="android:visibility">gone</item>
-    </style>
+	<style name="Label.WnMorphology">
+		<item name="android:visibility">gone</item>
+	</style>
 
-    <style name="Label.WnAdjPosition">
-        <item name="android:visibility">gone</item>
-    </style>
+	<style name="Label.WnAdjPosition">
+		<item name="android:visibility">gone</item>
+	</style>
 
-    <style name="Data.WnPos">
-        <item name="android:maxLines">1</item>
-        <item name="android:textSize">20sp</item>
-    </style>
+	<style name="Data.WnPos">
+		<item name="android:maxLines">1</item>
+		<item name="android:textSize">20sp</item>
+	</style>
 
-    <style name="Data.WnLexDomain">
-        <item name="android:maxLines">1</item>
-        <item name="android:textSize">20sp</item>
-    </style>
+	<style name="Data.WnLexDomain">
+		<item name="android:maxLines">1</item>
+		<item name="android:textSize">20sp</item>
+	</style>
 
-    <style name="Data.WnSenseNum">
-        <item name="android:maxLines">1</item>
-        <item name="android:textColor">#FF808080</item>
-        <item name="android:textSize">12sp</item>
-    </style>
+	<style name="Data.WnSenseNum">
+		<item name="android:maxLines">1</item>
+		<item name="android:textColor">#FF808080</item>
+		<item name="android:textSize">12sp</item>
+	</style>
 
-    <style name="Data.WnCased">
-        <item name="android:textColor">#0000FF</item>
-        <item name="android:textSize">12sp</item>
-    </style>
+	<style name="Data.WnCased">
+		<item name="android:textColor">#0000FF</item>
+		<item name="android:textSize">12sp</item>
+	</style>
 
-    <style name="Data.WnTagCount">
-        <item name="android:textColor">#FF808080</item>
-        <item name="android:textSize">12sp</item>
-    </style>
+	<style name="Data.WnTagCount">
+		<item name="android:textColor">#FF808080</item>
+		<item name="android:textSize">12sp</item>
+	</style>
 
-    <style name="Data.WnSenseKey">
-        <item name="android:textColor">#FF808080</item>
-        <item name="android:textSize">12sp</item>
-    </style>
+	<style name="Data.WnSenseKey">
+		<item name="android:textColor">#FF808080</item>
+		<item name="android:textSize">12sp</item>
+	</style>
 
-    <style name="Data.WnLexId">
-        <item name="android:textColor">#FF808080</item>
-        <item name="android:textSize">12sp</item>
-    </style>
+	<style name="Data.WnLexId">
+		<item name="android:textColor">#FF808080</item>
+		<item name="android:textSize">12sp</item>
+	</style>
 
-    <style name="Data.WnWordId">
-        <item name="android:textColor">#808080</item>
-        <item name="android:textSize">10sp</item>
-    </style>
+	<style name="Data.WnWordId">
+		<item name="android:textColor">#808080</item>
+		<item name="android:textSize">10sp</item>
+	</style>
 
-    <style name="Data.WnSenseId">
-        <item name="android:textColor">#808080</item>
-        <item name="android:textSize">10sp</item>
-    </style>
+	<style name="Data.WnSenseId">
+		<item name="android:textColor">#808080</item>
+		<item name="android:textSize">10sp</item>
+	</style>
 
-    <style name="Data.WnSynsetId">
-        <item name="android:textColor">#FF808080</item>
-        <item name="android:textSize">10sp</item>
-    </style>
+	<style name="Data.WnSynsetId">
+		<item name="android:textColor">#FF808080</item>
+		<item name="android:textSize">10sp</item>
+	</style>
 
-    <style name="Data.WnMembers">
-        <item name="android:textColor">#FF0000FF</item>
-    </style>
+	<style name="Data.WnMembers">
+		<item name="android:textColor">#FF0000FF</item>
+	</style>
 
-    <style name="Data.WnDefinition"/>
+	<style name="Data.WnDefinition"/>
 
-    <style name="Data.WnSamples"/>
+	<style name="Data.WnSamples"/>
 
-    <style name="Data.WnSemLinks"/>
+	<style name="Data.WnSemLinks"/>
 
-    <style name="Data.WnLexLinks"/>
+	<style name="Data.WnLexLinks"/>
 
-    <style name="Data.WnVerbFrames"/>
+	<style name="Data.WnVerbFrames"/>
 
-    <style name="Data.WnVerbSentenceFrames"/>
+	<style name="Data.WnVerbSentenceFrames"/>
 
-    <style name="Data.WnMorphology"/>
+	<style name="Data.WnMorphology"/>
 
-    <style name="Data.WnAdjPosition"/>
+	<style name="Data.WnAdjPosition"/>
 
-    <style name="Senses">
-        <item name="android:layout_width">fill_parent</item>
-        <item name="android:layout_height">1dp</item>
-        <item name="android:layout_marginTop">6dp</item>
-        <item name="android:background">?android:attr/activatedBackgroundIndicator</item>
-        <item name="android:paddingRight">0dp</item>
-        <item name="android:paddingLeft">0dp</item>
-        <item name="android:paddingBottom">8dp</item>
-        <item name="android:descendantFocusability">blocksDescendants</item>
-    </style>
+	<style name="Senses">
+		<item name="android:layout_width">fill_parent</item>
+		<item name="android:layout_height">1dp</item>
+		<item name="android:layout_marginTop">6dp</item>
+		<item name="android:background">?android:attr/activatedBackgroundIndicator</item>
+		<item name="android:paddingRight">0dp</item>
+		<item name="android:paddingLeft">0dp</item>
+		<item name="android:paddingBottom">8dp</item>
+		<item name="android:descendantFocusability">blocksDescendants</item>
+	</style>
 
 </resources>

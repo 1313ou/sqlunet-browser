@@ -3,16 +3,16 @@
 
 <xsl:transform version="1.0"
                xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
-    <xsl:output method="xml" indent="yes" encoding="UTF-8"/>
-    <xsl:strip-space elements="label"/>
+	<xsl:output method="xml" indent="yes" encoding="UTF-8"/>
+	<xsl:strip-space elements="label"/>
 
-    <xsl:template match="/">
-        <DIV id="bnc">
-            <xsl:apply-templates select="./bnc"/>
-        </DIV>
-    </xsl:template>
+	<xsl:template match="/">
+		<DIV id="bnc">
+			<xsl:apply-templates select="./bnc"/>
+		</DIV>
+	</xsl:template>
 
-    <xsl:template match="bnc">
-    </xsl:template>
+	<xsl:template match="bnc">
+	</xsl:template>
 
 </xsl:transform>

@@ -18,7 +18,7 @@ public class FrameNetSpanner
 
 	// factory
 
-	private FrameNetMarkupFactory factory = null;
+	private final FrameNetMarkupFactory factory;
 
 	/**
 	 * Constructor
@@ -38,7 +38,7 @@ public class FrameNetSpanner
 	}
 
 	@SuppressWarnings("unused")
-	public void addSpan(final SpannableStringBuilder builder, final int start, final int end, final String selector, final long flags)
+	public void addSpan(@SuppressWarnings("TypeMayBeWeakened") final SpannableStringBuilder builder, final int start, final int end, final String selector, final long flags)
 	{
 		final Object spans = this.factory.makeSpans(selector, flags);
 		if (spans != null)

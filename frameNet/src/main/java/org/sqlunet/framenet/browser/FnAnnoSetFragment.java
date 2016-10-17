@@ -90,9 +90,6 @@ public class FnAnnoSetFragment extends Fragment
 		}
 
 		// module
-		/*
-	  Module
-	 */
 		Module module;
 		switch (action)
 		{

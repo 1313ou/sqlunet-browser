@@ -18,6 +18,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
+import android.widget.CursorTreeAdapter;
 import android.widget.ExpandableListAdapter;
 import android.widget.ExpandableListView;
 import android.widget.ImageView;
@@ -47,12 +48,12 @@ public class XSelectorFragment extends ExpandableListFragment
 {
 	private static final String TAG = "XSelectorFragment"; //$NON-NLS-1$
 
-	private static final int[] groupTo = new int[]{ //
+	private static final int[] groupTo = { //
 			R.id.xn, //
 	};
-	private static final String[] groupFrom = new String[]{"xn",}; //$NON-NLS-1$
+	private static final String[] groupFrom = {"xn",}; //$NON-NLS-1$
 
-	private static final int[] childTo = new int[]{ //
+	private static final int[] childTo = { //
 			R.id.wordid, //
 			R.id.synsetid, //
 			R.id.xid, //
@@ -64,7 +65,7 @@ public class XSelectorFragment extends ExpandableListFragment
 			R.id.xsources, //
 			R.id.pm, //
 	};
-	private static final String[] childFrom = new String[]{Words_XNet_U.WORDID, //
+	private static final String[] childFrom = {Words_XNet_U.WORDID, //
 			Words_XNet_U.SYNSETID, //
 			Words_XNet_U.XID, //
 			Words_XNet_U.XNAME, //
@@ -104,7 +105,7 @@ public class XSelectorFragment extends ExpandableListFragment
 	/**
 	 * The fragment's current callback object, which is notified of list item clicks.
 	 */
-	private Listener listener = null;
+	private Listener listener;
 
 	/**
 	 * Search query
@@ -141,7 +142,7 @@ public class XSelectorFragment extends ExpandableListFragment
 					XLoader.dump(cursor);
 
 					// pass on to list adapter
-					((SimpleCursorTreeAdapter) getListAdapter()).setChildrenCursor(groupPosition, cursor);
+					((CursorTreeAdapter) getListAdapter()).setChildrenCursor(groupPosition, cursor);
 				}
 				else
 				{
@@ -152,7 +153,7 @@ public class XSelectorFragment extends ExpandableListFragment
 			@Override
 			public void onLoaderReset(final Loader<Cursor> arg0)
 			{
-				((SimpleCursorTreeAdapter) getListAdapter()).setChildrenCursor(groupPosition, null);
+				((CursorTreeAdapter) getListAdapter()).setChildrenCursor(groupPosition, null);
 			}
 		};
 	}
@@ -169,7 +170,7 @@ public class XSelectorFragment extends ExpandableListFragment
 					XLoader.dump(cursor);
 
 					// pass on to list adapter
-					((SimpleCursorTreeAdapter) getListAdapter()).setChildrenCursor(groupPosition, cursor);
+					((CursorTreeAdapter) getListAdapter()).setChildrenCursor(groupPosition, cursor);
 				}
 				else
 				{
@@ -180,7 +181,7 @@ public class XSelectorFragment extends ExpandableListFragment
 			@Override
 			public void onLoaderReset(final Loader<Cursor> arg0)
 			{
-				((SimpleCursorTreeAdapter) getListAdapter()).setChildrenCursor(groupPosition, null);
+				((CursorTreeAdapter) getListAdapter()).setChildrenCursor(groupPosition, null);
 			}
 		};
 	}
@@ -197,7 +198,7 @@ public class XSelectorFragment extends ExpandableListFragment
 					XLoader.dump(cursor);
 
 					// pass on to list adapter
-					((SimpleCursorTreeAdapter) getListAdapter()).setChildrenCursor(groupPosition, cursor);
+					((CursorTreeAdapter) getListAdapter()).setChildrenCursor(groupPosition, cursor);
 				}
 				else
 				{
@@ -208,7 +209,7 @@ public class XSelectorFragment extends ExpandableListFragment
 			@Override
 			public void onLoaderReset(final Loader<Cursor> arg0)
 			{
-				((SimpleCursorTreeAdapter) getListAdapter()).setChildrenCursor(groupPosition, null);
+				((CursorTreeAdapter) getListAdapter()).setChildrenCursor(groupPosition, null);
 			}
 		};
 	}
@@ -224,7 +225,7 @@ public class XSelectorFragment extends ExpandableListFragment
 					XLoader.dump(cursor);
 
 					// pass on to list adapter
-					((SimpleCursorTreeAdapter) getListAdapter()).setChildrenCursor(groupPosition, cursor);
+					((CursorTreeAdapter) getListAdapter()).setChildrenCursor(groupPosition, cursor);
 				}
 				else
 				{
@@ -234,7 +235,7 @@ public class XSelectorFragment extends ExpandableListFragment
 
 			public void onLoaderReset(final Loader<Cursor> arg0)
 			{
-				((SimpleCursorTreeAdapter) getListAdapter()).setChildrenCursor(groupPosition, null);
+				((CursorTreeAdapter) getListAdapter()).setChildrenCursor(groupPosition, null);
 			}
 		};
 	}
@@ -288,7 +289,7 @@ public class XSelectorFragment extends ExpandableListFragment
 			public Loader<Cursor> onCreateLoader(final int id, final Bundle args)
 			{
 				final Uri uri = Uri.parse(Words_FnWords_PbWords_VnWords.CONTENT_URI);
-				final String[] projection = new String[]{ //
+				final String[] projection = { //
 						Words_FnWords_PbWords_VnWords.SYNSETID + " AS _id", // //$NON-NLS-1$
 						Words_FnWords_PbWords_VnWords.WORDID, //
 						Words_FnWords_PbWords_VnWords.FNWORDID, //
@@ -296,7 +297,7 @@ public class XSelectorFragment extends ExpandableListFragment
 						Words_FnWords_PbWords_VnWords.PBWORDID, //
 				};
 				final String selection = "w." + Words_FnWords_PbWords_VnWords.LEMMA + " = ?"; //$NON-NLS-1$ //$NON-NLS-2$
-				final String[] selectionArgs = new String[]{XSelectorFragment.this.queryWord};
+				final String[] selectionArgs = {XSelectorFragment.this.queryWord};
 				final String sortOrder = "y." + Words_FnWords_PbWords_VnWords.POS + ',' + Words_FnWords_PbWords_VnWords.SENSENUM; //$NON-NLS-1$
 				return new CursorLoader(getActivity(), uri, projection, selection, selectionArgs, sortOrder);
 			}
@@ -326,9 +327,7 @@ public class XSelectorFragment extends ExpandableListFragment
 
 	private void load(final long wordid)
 	{
-		/*
-	  Adapter
-	 */
+		// adapter
 		ExpandableListAdapter adapter = new SimpleCursorTreeAdapter(getActivity(), this.xnCursor, R.layout.item_group_xselector, groupFrom, groupTo, R.layout.item_xselector, childFrom, childTo)
 		{
 			@Override
@@ -551,9 +550,7 @@ public class XSelectorFragment extends ExpandableListFragment
 	public void setActivateOnItemClick(@SuppressWarnings("SameParameterValue") final boolean activateOnItemClick)
 	{
 		// when setting CHOICE_MODE_SINGLE, ListView will automatically give items the 'activated' state when touched.
-		getListView().setChoiceMode(activateOnItemClick ?
-				AbsListView.CHOICE_MODE_SINGLE :
-				AbsListView.CHOICE_MODE_NONE);
+		getListView().setChoiceMode(activateOnItemClick ? AbsListView.CHOICE_MODE_SINGLE : AbsListView.CHOICE_MODE_NONE);
 	}
 
 	@SuppressWarnings("boxing")
@@ -566,7 +563,7 @@ public class XSelectorFragment extends ExpandableListFragment
 		listView.setItemChecked(index, true);
 		view.setSelected(true);
 
-		final SimpleCursorTreeAdapter adapter1 = (SimpleCursorTreeAdapter) getListAdapter();
+		@SuppressWarnings("TypeMayBeWeakened") final SimpleCursorTreeAdapter adapter1 = (SimpleCursorTreeAdapter) getListAdapter();
 		final Cursor cursor = adapter1.getChild(groupPosition, childPosition);
 		if (!cursor.isAfterLast())
 		{
@@ -586,9 +583,7 @@ public class XSelectorFragment extends ExpandableListFragment
 			final String pos = synsetidToPos(synsetid);
 			final Long xid = cursor.isNull(idXId) ? null : cursor.getLong(idXId);
 			final Long xclassid = cursor.isNull(idXClassId) ? null : cursor.getLong(idXClassId);
-			final Long xinstanceid = cursor.isNull(idXInstanceId) ?
-					null :
-					cursor.getLong(idXInstanceId);
+			final Long xinstanceid = cursor.isNull(idXInstanceId) ? null : cursor.getLong(idXInstanceId);
 			final String sources = cursor.getString(idXSources);
 
 			// pointer

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="text_ltgray">#808080</color>
-    <color name="text_gray">#323232</color>
-    <color name="text_white">#FFFFFF</color>
+	<color name="text_ltgray">#808080</color>
+	<color name="text_gray">#323232</color>
+	<color name="text_white">#FFFFFF</color>
 </resources>

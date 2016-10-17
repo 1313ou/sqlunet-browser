@@ -52,7 +52,7 @@ public class ClassFromWordModule extends BasicModule
 			final HasSynsetId synsetQuery = (HasSynsetId) query;
 			this.synsetid = synsetQuery.getSynsetId();
 		}
-		if (query instanceof HasSynsetId)
+		if (query instanceof HasWordId)
 		{
 			final HasWordId wordidQuery = (HasWordId) query;
 			this.wordid = wordidQuery.getWordId();
@@ -88,7 +88,7 @@ public class ClassFromWordModule extends BasicModule
 			public Loader<Cursor> onCreateLoader(final int loaderId0, final Bundle args)
 			{
 				final Uri uri = Uri.parse(Words_VnClasses_VnGroupings.CONTENT_URI);
-				final String[] projection = new String[]{ //
+				final String[] projection = { //
 						Words_VnClasses_VnGroupings.CLASSID, //
 						Words_VnClasses_VnGroupings.CLASS, //
 						Words_VnClasses_VnGroupings.CLASSTAG, //

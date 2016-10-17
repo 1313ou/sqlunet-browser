@@ -5,28 +5,28 @@ import android.database.sqlite.SQLiteDatabase;
 import org.sqlunet.sql.DBQueryCommand;
 
 /**
- * PropBank RoleSets query command
+ * PropBank role sets query command
  *
  * @author Bernard Bou
  */
 class PbRoleSetQueryCommand extends DBQueryCommand
 {
 	/**
-	 * <code>theQuery</code> is the SQL statement
+	 * <code>QUERY</code> is the SQL statement
 	 */
-	private static final String theQuery = SqLiteDialect.PropBankRoleset;
+	private static final String QUERY = SqLiteDialect.PropBankRoleset;
 
 	/**
 	 * Constructor
 	 *
-	 * @param thisConnection is the database connection
-	 * @param thisRoleSetId  is the target roleset id
+	 * @param connection is the database connection
+	 * @param roleSetId  is the target roleset id
 	 */
 	@SuppressWarnings("boxing")
-	public PbRoleSetQueryCommand(final SQLiteDatabase thisConnection, final long thisRoleSetId)
+	public PbRoleSetQueryCommand(final SQLiteDatabase connection, final long roleSetId)
 	{
-		super(thisConnection, PbRoleSetQueryCommand.theQuery);
-		setParams(thisRoleSetId);
+		super(connection, PbRoleSetQueryCommand.QUERY);
+		setParams(roleSetId);
 	}
 
 	/**

@@ -20,12 +20,12 @@ class TypedSynsetsQueryCommand extends DBQueryCommand
 	/**
 	 * <code>posQuery</code> is the (part-of-speech based) SQL statement
 	 */
-	private static String posQuery = null;
+	private static String posQuery;
 
 	/**
 	 * <code>lexDomainQuery</code> is the (lexdomain based) SQL statement
 	 */
-	private static String lexDomainQuery = null;
+	private static String lexDomainQuery;
 
 	/**
 	 * Init data (resources, ...)
@@ -40,14 +40,12 @@ class TypedSynsetsQueryCommand extends DBQueryCommand
 	/**
 	 * Constructor
 	 *
-	 * @param connection is the database connection
+	 * @param connection     is the database connection
 	 * @param lexDomainBased is whether the query is lexdomain based
 	 */
 	public TypedSynsetsQueryCommand(final SQLiteDatabase connection, final boolean lexDomainBased)
 	{
-		super(connection, lexDomainBased ?
-				TypedSynsetsQueryCommand.lexDomainQuery :
-				TypedSynsetsQueryCommand.posQuery);
+		super(connection, lexDomainBased ? TypedSynsetsQueryCommand.lexDomainQuery : TypedSynsetsQueryCommand.posQuery);
 	}
 
 	/**

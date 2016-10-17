@@ -151,9 +151,7 @@ public class MainActivity extends Activity
 				final LayoutInflater inflater = getLayoutInflater();
 				final View row = inflater.inflate(layoutId, parent, false);
 				final ImageView icon = (ImageView) row.findViewById(R.id.icon);
-				icon.setImageResource(position == 0 ?
-						R.drawable.ic_selector :
-						R.drawable.ic_xselector);
+				icon.setImageResource(position == 0 ? R.drawable.ic_selector : R.drawable.ic_xselector);
 
 				final TextView label = (TextView) row.findViewById(R.id.selector);
 				if (label != null)
@@ -306,7 +304,6 @@ public class MainActivity extends Activity
 	 */
 	private Intent makeSelectorIntent()
 	{
-		Intent intent = null;
 		Class<?> intentClass = null;
 
 		// mode
@@ -319,12 +316,11 @@ public class MainActivity extends Activity
 			case XSELECTOR:
 				intentClass = XSelectorActivity.class;
 				break;
-			default:
-				break;
 		}
 
 		// mode
 		final Settings.SelectorMode mode = Settings.getSelectorModePref(this);
+		Intent intent = null;
 		switch (mode)
 		{
 			case VIEW:
@@ -333,9 +329,6 @@ public class MainActivity extends Activity
 
 			case WEB:
 				intent = new Intent(this, WebActivity.class);
-				break;
-
-			default:
 				break;
 		}
 		return intent;
@@ -361,9 +354,6 @@ public class MainActivity extends Activity
 
 			case WEB:
 				intent = new Intent(this, WebActivity.class);
-				break;
-
-			default:
 				break;
 		}
 		return intent;
@@ -626,7 +616,7 @@ public class MainActivity extends Activity
 			else if (query.startsWith("#fs")) //$NON-NLS-1$
 			{
 				final long sentenceid = Long.valueOf(query.substring(3));
-				final FnSentencePointer sentencePointer = new FnSentencePointer(sentenceid);
+				@SuppressWarnings("TypeMayBeWeakened") final FnSentencePointer sentencePointer = new FnSentencePointer(sentenceid);
 				searchIntent = makeDetailIntent(FnSentenceActivity.class);
 				searchIntent.putExtra(SqlUNetContract.ARG_QUERYACTION, SqlUNetContract.ARG_QUERYACTION_FNSENTENCE);
 				searchIntent.putExtra(SqlUNetContract.ARG_QUERYPOINTER, sentencePointer);

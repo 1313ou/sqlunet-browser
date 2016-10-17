@@ -8,6 +8,7 @@ package org.sqlunet.wordnet.sql;
 
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,6 +20,8 @@ import java.util.List;
  */
 class Synset extends BasicSynset
 {
+	private static final String TAG = "Synset"; //$NON-NLS-1$
+
 	/**
 	 * Constructor from data
 	 *
@@ -107,7 +110,7 @@ class Synset extends BasicSynset
 		}
 		catch (final SQLException e)
 		{
-			e.printStackTrace();
+			Log.e(TAG, "While querying synset words", e);
 			words = null;
 		}
 		finally
@@ -194,7 +197,7 @@ class Synset extends BasicSynset
 		}
 		catch (final SQLException e)
 		{
-			e.printStackTrace();
+			Log.e(TAG, "While querying links", e);
 			links = null;
 		}
 		finally
@@ -235,7 +238,7 @@ class Synset extends BasicSynset
 		}
 		catch (final SQLException e)
 		{
-			e.printStackTrace();
+			Log.e(TAG, "While querying typed links", e);
 			links = null;
 		}
 		finally

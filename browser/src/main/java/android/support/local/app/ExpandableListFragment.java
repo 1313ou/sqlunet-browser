@@ -9,7 +9,6 @@ import android.view.ContextMenu.ContextMenuInfo;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.View.OnCreateContextMenuListener;
 import android.view.ViewGroup;
 import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
@@ -21,7 +20,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 @SuppressWarnings("unused")
-public class ExpandableListFragment extends Fragment implements OnCreateContextMenuListener, ExpandableListView.OnChildClickListener, ExpandableListView.OnGroupCollapseListener, ExpandableListView.OnGroupExpandListener
+public class ExpandableListFragment extends Fragment implements ExpandableListView.OnChildClickListener, ExpandableListView.OnGroupCollapseListener, ExpandableListView.OnGroupExpandListener
 {
 	private static final int INTERNAL_EMPTY_ID = 0x00ff0001;
 	private static final int INTERNAL_PROGRESS_CONTAINER_ID = 0x00ff0002;

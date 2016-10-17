@@ -38,7 +38,6 @@ public class VnRoleSet
 	{
 		VnRoleQueryCommand query = null;
 		VnRoleSet roleSet = null;
-		VnRole role;
 
 		try
 		{
@@ -51,7 +50,7 @@ public class VnRoleSet
 				final String selectionRestrictions = query.getSelectionRestriction();
 
 				// new role
-				role = new VnRole(roleType, selectionRestrictions);
+				VnRole role = new VnRole(roleType, selectionRestrictions);
 
 				// allocate
 				if (roleSet == null)
@@ -86,7 +85,6 @@ public class VnRoleSet
 	{
 		VnRoleQueryFromSenseCommand query = null;
 		VnRoleSet roleSet = null;
-		VnRole role;
 
 		try
 		{
@@ -99,7 +97,7 @@ public class VnRoleSet
 				final String selectionRestrictions = query.getSelectionRestriction();
 
 				// new role
-				role = new VnRole(roleType, selectionRestrictions);
+				VnRole role = new VnRole(roleType, selectionRestrictions);
 
 				// allocate
 				if (roleSet == null)

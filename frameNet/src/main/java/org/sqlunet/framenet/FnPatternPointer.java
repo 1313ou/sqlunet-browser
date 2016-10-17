@@ -10,7 +10,7 @@ import org.sqlunet.Pointer;
  *
  * @author Bernard Bou
  */
-public class FnPatternPointer extends Pointer implements Parcelable
+public class FnPatternPointer extends Pointer
 {
 	/**
 	 * Constructor

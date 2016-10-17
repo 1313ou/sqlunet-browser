@@ -96,7 +96,7 @@ public class WebFragment extends Fragment
 	 * @param bncDomDoc  bnc document
 	 * @return string
 	 */
-	static private String docsToString(@SuppressWarnings("UnusedParameters") final String word,  //
+	static private String docsToString(@SuppressWarnings({"SameParameterValue", "UnusedParameters"}) final String word,  //
 			final boolean xml,  //
 			final boolean isSelector,  //
 			final Document wnDomDoc,  //
@@ -270,7 +270,7 @@ public class WebFragment extends Fragment
 		webSettings.setBuiltInZoomControls(true);
 
 		// client
-		@SuppressWarnings("UnusedParameters") final WebViewClient webClient = new WebViewClient()
+		final WebViewClient webClient = new WebViewClient()
 		{
 			@SuppressWarnings("deprecation")
 			@Override
@@ -541,7 +541,7 @@ public class WebFragment extends Fragment
 										break;
 
 									case SqlUNetContract.ARG_QUERYACTION_SYNSET:
-										final SynsetPointer synsetPointer = (SynsetPointer) pointer;
+										@SuppressWarnings("TypeMayBeWeakened") final SynsetPointer synsetPointer = (SynsetPointer) pointer;
 										Log.d(WebFragment.TAG, "ARG synset=" + synsetPointer); //$NON-NLS-1$
 										if (synsetPointer != null && Settings.Source.WORDNET.test(sources))
 										{

@@ -9,12 +9,12 @@
                 android:paddingTop="@dimen/activity_vertical_margin"
                 tools:context="org.sqlunet.browser.web.WebActivity">
 
-    <fragment
-        android:id="@+id/web"
-        android:name="org.sqlunet.browser.web.WebFragment"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context=".WebActivity"
-        tools:layout="@layout/fragment_web"/>
+	<fragment
+		android:id="@+id/web"
+		android:name="org.sqlunet.browser.web.WebFragment"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		tools:context=".WebActivity"
+		tools:layout="@layout/fragment_web"/>
 
 </RelativeLayout>

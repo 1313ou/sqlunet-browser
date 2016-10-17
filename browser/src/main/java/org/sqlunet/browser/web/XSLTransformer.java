@@ -1,11 +1,15 @@
 package org.sqlunet.browser.web;
 
+import android.util.Log;
+
 import org.sqlunet.settings.Settings;
 import org.w3c.dom.Document;
 
 import java.io.InputStream;
 import java.io.StringWriter;
 
+import javax.xml.transform.Result;
+import javax.xml.transform.Source;
 import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerConfigurationException;
 import javax.xml.transform.TransformerException;
@@ -21,10 +25,12 @@ import javax.xml.transform.stream.StreamSource;
  */
 class XSLTransformer
 {
+	private static final String TAG = "XSLTransformer"; //$NON-NLS-1$
+
 	/**
 	 * Transform Document to HTML
 	 *
-	 * @param doc    doc
+	 * @param doc        doc
 	 * @param isSelector is selector source
 	 * @return html
 	 */
@@ -36,7 +42,7 @@ class XSLTransformer
 		}
 		catch (final Exception e)
 		{
-			e.printStackTrace();
+			Log.e(TAG, "While transforming doc to HTML", e); //$NON-NLS-1$
 			return "error " + e; //$NON-NLS-1$
 		}
 	}
@@ -55,7 +61,7 @@ class XSLTransformer
 		}
 		catch (final Exception e)
 		{
-			e.printStackTrace();
+			Log.e(TAG, "While transforming doc to XML", e); //$NON-NLS-1$
 			return "error " + e; //$NON-NLS-1$
 		}
 	}
@@ -73,31 +79,19 @@ class XSLTransformer
 		switch (from)
 		{
 			case WORDNET:
-				xsl = "/org/sqlunet/wordnet/dom/xsl/" + (isSelector ?
-						"select_wordnet2html.xsl" :
-						"wordnet2html.xsl"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				xsl = "/org/sqlunet/wordnet/dom/xsl/" + (isSelector ? "select_wordnet2html.xsl" : "wordnet2html.xsl"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 				break;
 			case VERBNET:
-				xsl = "/org/sqlunet/verbnet/dom/xsl/" + (isSelector ?
-						"select_verbnet2html.xsl" :
-						"verbnet2html.xsl"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				xsl = "/org/sqlunet/verbnet/dom/xsl/" + (isSelector ? "select_verbnet2html.xsl" : "verbnet2html.xsl"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 				break;
 			case PROPBANK:
-				xsl = "/org/sqlunet/propbank/dom/xsl/" + (isSelector ?
-						"select_propbank2html.xsl" :
-						"propbank2html.xsl"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				xsl = "/org/sqlunet/propbank/dom/xsl/" + (isSelector ? "select_propbank2html.xsl" : "propbank2html.xsl"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 				break;
 			case FRAMENET:
-				xsl = "/org/sqlunet/framenet/dom/xsl/" + (isSelector ?
-						"select_framenet2html.xsl" :
-						"framenet2html.xsl"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				xsl = "/org/sqlunet/framenet/dom/xsl/" + (isSelector ? "select_framenet2html.xsl" : "framenet2html.xsl"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 				break;
 			case BNC:
-				xsl = "/org/sqlunet/bnc/dom/xsl/" + (isSelector ?
-						"select_bnc2html.xsl" :
-						"bnc2html.xsl"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				break;
-			default:
+				xsl = "/org/sqlunet/bnc/dom/xsl/" + (isSelector ? "select_bnc2html.xsl" : "bnc2html.xsl"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 				break;
 		}
 		return XSLTransformer.class.getResourceAsStream(xsl);
@@ -114,11 +108,11 @@ class XSLTransformer
 	 */
 	static private String docToString(final Document doc, final InputStream xslStream, final String method) throws TransformerException
 	{
-		final DOMSource source = new DOMSource(doc);
+		final Source source = new DOMSource(doc);
 
 		// output stream
 		final StringWriter outStream = new StringWriter();
-		final StreamResult resultStream = new StreamResult(outStream);
+		final Result resultStream = new StreamResult(outStream);
 
 		// style
 		StreamSource styleSource = null;
@@ -130,9 +124,7 @@ class XSLTransformer
 
 		// transform
 		final TransformerFactory transformerFactory = TransformerFactory.newInstance();
-		final Transformer transformer = styleSource == null ?
-				transformerFactory.newTransformer() :
-				transformerFactory.newTransformer(styleSource);
+		final Transformer transformer = styleSource == null ? transformerFactory.newTransformer() : transformerFactory.newTransformer(styleSource);
 		transformer.setOutputProperty(javax.xml.transform.OutputKeys.METHOD, method);
 		transformer.transform(source, resultStream);
 

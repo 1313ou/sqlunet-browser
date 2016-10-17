@@ -141,14 +141,10 @@ public class DownloadActivity extends Activity implements View.OnClickListener
 
 						// progress
 						DownloadActivity.this.progressBar.setVisibility(View.GONE);
-						DownloadActivity.this.progressStatus.setText(success ?
-								R.string.status_download_successful :
-								R.string.status_download_fail);
+						DownloadActivity.this.progressStatus.setText(success ? R.string.status_download_successful : R.string.status_download_fail);
 
 						// toast
-						Toast.makeText(DownloadActivity.this, success ?
-								R.string.status_data_ok :
-								R.string.status_data_fail, Toast.LENGTH_SHORT).show();
+						Toast.makeText(DownloadActivity.this, success ? R.string.status_data_ok : R.string.status_data_fail, Toast.LENGTH_SHORT).show();
 
 						// return result
 						final Intent resultIntent = new Intent();
@@ -173,9 +169,7 @@ public class DownloadActivity extends Activity implements View.OnClickListener
 		super.onPostCreate(savedInstanceState);
 
 		this.src.setText(this.downloadUrl);
-		this.target.setText(this.destDir != null ?
-				this.destDir.getAbsolutePath() :
-				""); //$NON-NLS-1$
+		this.target.setText(this.destDir != null ? this.destDir.getAbsolutePath() : ""); //$NON-NLS-1$
 
 		// TODO
 		// this.src.setSingleLine(true);

@@ -2,16 +2,16 @@
 <shape xmlns:android="http://schemas.android.com/apk/res/android"
        android:shape="oval">
 
-    <solid android:color="@color/button_color"/>
+	<solid android:color="@color/button_color"/>
 
-    <!--     <stroke -->
-    <!--         android:width="2dip" -->
-    <!--         android:color="@color/button_border_color" /> -->
+	<!--     <stroke -->
+	<!--         android:width="2dip" -->
+	<!--         android:color="@color/button_border_color" /> -->
 
-    <!--     <padding -->
-    <!--         android:bottom="10dip" -->
-    <!--         android:left="10dip" -->
-    <!--         android:right="10dip" -->
-    <!--         android:top="10dip" /> -->
+	<!--     <padding -->
+	<!--         android:bottom="10dip" -->
+	<!--         android:left="10dip" -->
+	<!--         android:right="10dip" -->
+	<!--         android:top="10dip" /> -->
 
 </shape>

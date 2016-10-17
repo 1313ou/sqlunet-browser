@@ -179,12 +179,8 @@ public class SetupBaseActivity extends Activity implements Downloader.Listener, 
 	public void downloadFinish(final int code, final boolean result)
 	{
 		this.progressDialog.dismiss();
-		Log.d(TAG, "Download " + (result ?
-				"succeeded" :
-				"failed")); //$NON-NLS-1$ //$NON-NLS-2$//$NON-NLS-3$
-		Toast.makeText(this, result ?
-				R.string.title_download_complete :
-				R.string.title_download_failed, Toast.LENGTH_SHORT).show();
+		Log.d(TAG, "Download " + (result ? "succeeded" : "failed")); //$NON-NLS-1$ //$NON-NLS-2$//$NON-NLS-3$
+		Toast.makeText(this, result ? R.string.title_download_complete : R.string.title_download_failed, Toast.LENGTH_SHORT).show();
 
 		// delete file if failed
 		if (!result)
@@ -217,12 +213,8 @@ public class SetupBaseActivity extends Activity implements Downloader.Listener, 
 	public void managerFinish(final boolean result)
 	{
 		this.progressDialog.dismiss();
-		Log.d(TAG, "SQL update " + (result ?
-				"succeeded" :
-				"failed")); //$NON-NLS-1$//$NON-NLS-2$ //$NON-NLS-3$
-		Toast.makeText(this, result ?
-				R.string.title_sqlupdate_complete :
-				R.string.title_sqlupdate_failed, Toast.LENGTH_SHORT).show();
+		Log.d(TAG, "SQL update " + (result ? "succeeded" : "failed")); //$NON-NLS-1$//$NON-NLS-2$ //$NON-NLS-3$
+		Toast.makeText(this, result ? R.string.title_sqlupdate_complete : R.string.title_sqlupdate_failed, Toast.LENGTH_SHORT).show();
 	}
 
 	@Override

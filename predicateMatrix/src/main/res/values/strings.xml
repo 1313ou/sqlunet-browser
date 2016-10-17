@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="title_activity_predicatematrix">PredicateMatrix</string>
-    <string name="hint_search_predicatematrix">Search PredicateMatrix</string>
-    <string name="tip_pmmode">PredicateMatrix Mode</string>
+	<string name="title_activity_predicatematrix">PredicateMatrix</string>
+	<string name="hint_search_predicatematrix">Search PredicateMatrix</string>
+	<string name="tip_pmmode">PredicateMatrix Mode</string>
 
-    <!-- ROLES_GROUPED, ROLES_GROUPED_BY_INDEX, ROLES_GROUPED_BY_SYNSET, ROLES_FLAT, ROLE; -->
-    <string-array name="pmmodes">
-        <item>grouped</item>
-        <item>rows by role</item>
-        <item>rows by synset</item>
-        <item>rows</item>
-    </string-array>
+	<!-- ROLES_GROUPED, ROLES_GROUPED_BY_INDEX, ROLES_GROUPED_BY_SYNSET, ROLES_FLAT, ROLE; -->
+	<string-array name="pmmodes">
+		<item>grouped</item>
+		<item>rows by role</item>
+		<item>rows by synset</item>
+		<item>rows</item>
+	</string-array>
 
 </resources>

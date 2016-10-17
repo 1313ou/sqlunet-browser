@@ -32,7 +32,7 @@ public class IconLeafRenderer extends TreeNode.Renderer<IconTreeItem>
 	public View createNodeView(final TreeNode node, final IconTreeItem value)
 	{
 		final LayoutInflater inflater = LayoutInflater.from(this.context);
-		final View view = inflater.inflate(layoutRes, null, false);
+		final View view = inflater.inflate(this.layoutRes, null, false);
 
 		// junction
 		// final ImageView junctionView = (ImageView) view.findViewById(R.id.junction_icon);

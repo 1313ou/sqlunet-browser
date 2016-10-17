@@ -2,11 +2,11 @@
       xmlns:tools="http://schemas.android.com/tools"
       tools:context="org.sqlunet.predicatematrix.browser.PredicateMatrixActivity">
 
-    <item
-        android:id="@+id/searchView"
-        android:actionViewClass="android.widget.SearchView"
-        android:icon="@android:drawable/ic_menu_search"
-        android:showAsAction="collapseActionView|ifRoom"
-        android:title="@string/hint_search_predicatematrix"/>
+	<item
+		android:id="@+id/searchView"
+		android:actionViewClass="android.widget.SearchView"
+		android:icon="@android:drawable/ic_menu_search"
+		android:showAsAction="collapseActionView|ifRoom"
+		android:title="@string/hint_search_predicatematrix"/>
 
 </menu>

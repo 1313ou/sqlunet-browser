@@ -43,16 +43,16 @@ public class WordNetImplementation implements WordNetInterface
 		NodeFactory.makeWordNode(doc, parent, word.lemma, word.id);
 
 		// iterate synsets
-		Node posNode = null;
-		Node lexDomainNode = null;
-		String pos = null;
-		String lexDomain = null;
 
 		final List<Synset> synsets = word.getSynsets(connection);
 		if (synsets == null)
 		{
 			return;
 		}
+		String lexDomain = null;
+		String pos = null;
+		Node lexDomainNode = null;
+		Node posNode = null;
 		for (int i = 0; i < synsets.size(); i++)
 		{
 			final Synset synset = synsets.get(i);
@@ -106,19 +106,17 @@ public class WordNetImplementation implements WordNetInterface
 		NodeFactory.makeWordNode(doc, parent, word.lemma, word.id);
 
 		// iterate synsets
-		Node posNode = null;
-		Node lexDomainNode = null;
-		String pos = null;
-		String lexDomain = null;
 		final List<Synset> synsets = targetPosType == Mapping.ANYTYPE && targetLexDomainType == Mapping.ANYTYPE ?
 				word.getSynsets(connection) :
-				word.getTypedSynsets(connection, targetLexDomainType == Mapping.ANYTYPE ?
-						targetPosType :
-						targetLexDomainType, targetLexDomainType != Mapping.ANYTYPE);
+				word.getTypedSynsets(connection, targetLexDomainType == Mapping.ANYTYPE ? targetPosType : targetLexDomainType, targetLexDomainType != Mapping.ANYTYPE);
 		if (synsets == null)
 		{
 			return;
 		}
+		String lexDomain = null;
+		String pos = null;
+		Node lexDomainNode = null;
+		Node posNode = null;
 		for (int i = 0; i < synsets.size(); i++)
 		{
 			final Synset synset = synsets.get(i);
@@ -255,9 +253,7 @@ public class WordNetImplementation implements WordNetInterface
 		final List<Word> words = synset.getSynsetWords(connection);
 
 		// anchor node
-		final Node synsetNode = NodeFactory.makeSynsetNode(doc, parent, words != null ?
-				words.size() :
-				0, synset.synsetId);
+		final Node synsetNode = NodeFactory.makeSynsetNode(doc, parent, words != null ? words.size() : 0, synset.synsetId);
 
 		// words
 		if (words != null)
@@ -299,9 +295,7 @@ public class WordNetImplementation implements WordNetInterface
 			final Node linkNode = org.sqlunet.sql.NodeFactory.makeNode(doc, parent, "links", null); //$NON-NLS-1$
 
 			// get links
-			final List<Link> links = targetLinkType == Mapping.ANYTYPE ?
-					synset.getLinks(connection, wordId) :
-					synset.getTypedLinks(connection, wordId, targetLinkType);
+			final List<Link> links = targetLinkType == Mapping.ANYTYPE ? synset.getLinks(connection, wordId) : synset.getTypedLinks(connection, wordId, targetLinkType);
 			if (links == null)
 			{
 				return;
@@ -322,9 +316,7 @@ public class WordNetImplementation implements WordNetInterface
 
 				// recurse check
 				final int recurse2 = recurse ?
-						synset.lexDomainId == Mapping.topsId && (targetLinkType == Mapping.hyponymId || targetLinkType == Mapping.instanceHyponymId || targetLinkType == Mapping.ANYTYPE) ?
-								Mapping.NONRECURSIVE :
-								0 :
+						synset.lexDomainId == Mapping.topsId && (targetLinkType == Mapping.hyponymId || targetLinkType == Mapping.instanceHyponymId || targetLinkType == Mapping.ANYTYPE) ? Mapping.NONRECURSIVE : 0 :
 						Mapping.NONRECURSIVE;
 
 				// process link
@@ -361,9 +353,7 @@ public class WordNetImplementation implements WordNetInterface
 			else
 			{
 				// links
-				final List<Link> subLinks = targetLinkType == Mapping.ANYTYPE ?
-						link.getLinks(connection, wordId) :
-						link.getTypedLinks(connection, wordId, targetLinkType);
+				final List<Link> subLinks = targetLinkType == Mapping.ANYTYPE ? link.getLinks(connection, wordId) : link.getTypedLinks(connection, wordId, targetLinkType);
 				if (subLinks == null)
 				{
 					return;
@@ -466,10 +456,7 @@ public class WordNetImplementation implements WordNetInterface
 	{
 		final Document doc = Factory.makeDocument();
 		final Node rootNode = org.sqlunet.sql.NodeFactory.makeNode(doc, doc, "wordnet", null); //$NON-NLS-1$
-		org.sqlunet.sql.NodeFactory.makeTargetNode(doc, rootNode, "word-id", Long.toString(wordId), "synset-id",
-				synsetId == null ?
-						null :
-						Long.toString(synsetId)); //$NON-NLS-1$ //$NON-NLS-2$
+		org.sqlunet.sql.NodeFactory.makeTargetNode(doc, rootNode, "word-id", Long.toString(wordId), "synset-id", synsetId == null ? null : Long.toString(synsetId)); //$NON-NLS-1$ //$NON-NLS-2$
 		WordNetImplementation.walkSense(connection, wordId, synsetId, doc, rootNode, withLinks, recurse, Mapping.ANYTYPE);
 		return doc;
 	}

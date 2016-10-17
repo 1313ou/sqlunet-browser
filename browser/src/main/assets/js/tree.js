@@ -22,43 +22,43 @@ function Tree()
  * @memberOf Tree
  * @type method
  * @param {Element}
- *            thisElement
+ *            element
  *            <OL>/<TABLE>
  *            element to expand
  */
-Tree.toggle = function(thisElement)
+Tree.toggle = function(element)
 {
-	thisDisplay = null;
-	thisSubElement = thisElement.nextSibling;
+	display = null;
+	subElement = element.nextSibling;
 
 	// peep first subelement to see state
-	while (thisSubElement != null)
+	while (subElement != null)
 	{
-		if (thisSubElement.nodeName == "OL" || thisSubElement.nodeName == "ol")
+		if (subElement.nodeName == "OL" || subElement.nodeName == "ol")
 		{
-			if (Tree.isVisible(thisSubElement))
+			if (Tree.isVisible(subElement))
 			{
-				thisDisplay = false;
-				Tree.setImage(thisElement, 'images/closed.png');
+				display = false;
+				Tree.setImage(element, 'images/closed.png');
 			}
 			else
 			{
-				thisDisplay = true;
-				Tree.setImage(thisElement, 'images/open.png');
+				display = true;
+				Tree.setImage(element, 'images/open.png');
 			}
 			break;
 		}
-		thisSubElement = thisSubElement.nextSibling;
+		subElement = subElement.nextSibling;
 	}
 
 	// hide/show this subelement and next
-	while (thisSubElement != null)
+	while (subElement != null)
 	{
-		if (thisSubElement.nodeName == "OL" || thisSubElement.nodeName == "ol")
+		if (subElement.nodeName == "OL" || subElement.nodeName == "ol")
 		{
-			Tree.display(thisSubElement, thisDisplay);
+			Tree.display(subElement, display);
 		}
-		thisSubElement = thisSubElement.nextSibling;
+		subElement = subElement.nextSibling;
 	}
 };
 
@@ -68,25 +68,25 @@ Tree.toggle = function(thisElement)
  * @memberOf Tree
  * @type method
  * @param {String}
- *            thisElementId id of
+ *            elementId id of
  *            <OL>/<TABLE>
  *            element to expand
  */
-Tree.expand = function(thisElementId)
+Tree.expand = function(elementId)
 {
-	var thisElement = document.getElementById(thisElementId);
-	Tree.setImage(thisElement, 'images/open.png');
+	var element = document.getElementById(elementId);
+	Tree.setImage(element, 'images/open.png');
 
 	// show this OL subelement and next
-	thisSubElement = thisElement.nextSibling;
-	while (thisSubElement != null)
+	subElement = element.nextSibling;
+	while (subElement != null)
 	{
-		if (thisSubElement.nodeName == "OL" || thisSubElement.nodeName == "ol" || 
-			thisSubElement.nodeName == "TABLE" || thisSubElement.nodeName == "table")
+		if (subElement.nodeName == "OL" || subElement.nodeName == "ol" ||
+			subElement.nodeName == "TABLE" || subElement.nodeName == "table")
 		{
-			Tree.display(thisSubElement, true);
+			Tree.display(subElement, true);
 		}
-		thisSubElement = thisSubElement.nextSibling;
+		subElement = subElement.nextSibling;
 	}
 };
 
@@ -96,17 +96,17 @@ Tree.expand = function(thisElementId)
  * @memberOf Tree
  * @type method
  * @param {Array}
- *            theseTags list of element tags to collapse
+ *            tags list of element tags to collapse
  */
-Tree.collapseAll = function(theseTags)
+Tree.collapseAll = function(tags)
 {
 	for ( var i = 0; i < tags.length; i++)
 	{
-		var theseElements = document.getElementsByTagName(theseTags[i]);
-		for ( var j = 0; j < theseElements.length; j++)
-			Tree.display(theseElements[j], false);
-		thisRoot = document.getElementById("root");
-		Tree.display(thisRoot, true);
+		var elements = document.getElementsByTagName(tags[i]);
+		for ( var j = 0; j < elements.length; j++)
+			Tree.display(elements[j], false);
+		root = document.getElementById("root");
+		Tree.display(root, true);
 	}
 };
 
@@ -116,17 +116,17 @@ Tree.collapseAll = function(theseTags)
  * @memberOf Tree
  * @type method
  * @param {Array}
- *            theseTags list of element tags to expand
+ *            tags list of element tags to expand
  */
-Tree.expandAll = function(theseTags)
+Tree.expandAll = function(tags)
 {
 	for ( var i = 0; i < tags.length; i++)
 	{
-		var theseElements = document.getElementsByTagName(theseTags[i]);
-		for ( var j = 0; j < theseElements.length; j++)
-			Tree.display(theseElements[j], true);
-		thisRoot = document.getElementById("root");
-		Tree.display(thisRoot, true);
+		var elements = document.getElementsByTagName(tags[i]);
+		for ( var j = 0; j < elements.length; j++)
+			Tree.display(elements[j], true);
+		root = document.getElementById("root");
+		Tree.display(root, true);
 	}
 };
 
@@ -136,13 +136,13 @@ Tree.expandAll = function(theseTags)
  * @memberOf Tree
  * @type method
  * @param {Element}
- *            thisElement element
+ *            element element
  * @param {boolean}
  *            visible whether to make visible or not
  */
-Tree.display = function(thisElement, visible)
+Tree.display = function(element, visible)
 {
-	thisElement.style.display = visible ? "block" : "none";
+	element.style.display = visible ? "block" : "none";
 };
 
 /**
@@ -151,12 +151,12 @@ Tree.display = function(thisElement, visible)
  * @memberOf Tree
  * @type method
  * @param {Element}
- *            thisElement element
+ *            element element
  * @return {boolean} whether element visible or not
  */
-Tree.isVisible = function(thisElement)
+Tree.isVisible = function(element)
 {
-	return thisElement.style.display == "block";
+	return element.style.display == "block";
 };
 
 /**
@@ -165,17 +165,17 @@ Tree.isVisible = function(thisElement)
  * @memberOf Tree
  * @type method
  * @param {Element}
- *            thisParentElement element's parent node
+ *            parentElement element's parent node
  * @param {String}
- *            thisImage image's src
+ *            image image's src
  */
-Tree.setImage = function(thisParentElement, thisImage)
+Tree.setImage = function(parentElement, image)
 {
-	thisElement = thisParentElement.firstChild;
-	for (; thisElement != null; thisElement = thisElement.nextSibling)
-		if (thisElement.nodeName == "IMG" || thisElement.nodeName == "img")
+	element = parentElement.firstChild;
+	for (; element != null; element = element.nextSibling)
+		if (element.nodeName == "IMG" || element.nodeName == "img")
 		{
-			thisElement.src = thisImage;
+			element.src = image;
 			break;
 		}
 };

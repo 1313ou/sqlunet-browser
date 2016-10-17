@@ -57,9 +57,7 @@ public class StorageStyle
 		sb.append('\n');
 		append(sb, candidate.dir.file.getAbsolutePath(), new StyleSpan(Typeface.ITALIC), new ForegroundColorSpan(Color.GRAY));
 		sb.append('\n');
-		append(sb, StorageUtils.mbToString(candidate.free), new ForegroundColorSpan(candidate.status == 0 && candidate.fitsIn() ?
-				dkgreen :
-				dkred));
+		append(sb, StorageUtils.mbToString(candidate.free), new ForegroundColorSpan(candidate.status == 0 && candidate.fitsIn() ? dkgreen : dkred));
 
 		return sb;
 	}
@@ -74,9 +72,7 @@ public class StorageStyle
 	{
 		final SpannableStringBuilder sb = new SpannableStringBuilder();
 		final boolean fitsIn = candidate.fitsIn();
-		append(sb, fitsIn ? "Fits in" : "Does not fit in", new ForegroundColorSpan(fitsIn ?
-				dkgreen :
-				dkred)); //$NON-NLS-1$ //$NON-NLS-2$
+		append(sb, fitsIn ? "Fits in" : "Does not fit in", new ForegroundColorSpan(fitsIn ? dkgreen : dkred)); //$NON-NLS-1$ //$NON-NLS-2$
 		return sb;
 	}
 
@@ -169,11 +165,11 @@ public class StorageStyle
 	 * @param resId   res id
 	 * @return image span
 	 */
+	@SuppressWarnings("deprecation")
 	static private Object makeImageSpan(final Context context, int resId)
 	{
 		Drawable drawable;
 		if (Build.VERSION.SDK_INT < Build.VERSION_CODES.N)
-		//noinspection deprecation
 		{
 			drawable = context.getResources().getDrawable(resId);
 		}
@@ -225,7 +221,7 @@ public class StorageStyle
 	 */
 	static public CharSequence reportStyledCandidateStorage(final Context context)
 	{
-		final SpannableStringBuilder sb = new SpannableStringBuilder();
+		@SuppressWarnings("TypeMayBeWeakened") final SpannableStringBuilder sb = new SpannableStringBuilder();
 		final List<CandidateStorage> candidates = StorageUtils.getSortedCandidateStorages(context);
 		for (CandidateStorage candidate : candidates)
 		{
@@ -271,9 +267,7 @@ public class StorageStyle
 				sb.append(' ');
 				try
 				{
-					sb.append(Environment.isExternalStorageEmulated(f) ?
-							"emulated" :
-							"not-emulated"); //$NON-NLS-1$ //$NON-NLS-2$
+					sb.append(Environment.isExternalStorageEmulated(f) ? "emulated" : "not-emulated"); //$NON-NLS-1$ //$NON-NLS-2$
 				}
 				catch (Throwable e)
 				{ //
@@ -296,9 +290,7 @@ public class StorageStyle
 				sb.append(' ');
 				try
 				{
-					sb.append(Environment.isExternalStorageEmulated(f) ?
-							"emulated" :
-							"not-emulated"); //$NON-NLS-1$ //$NON-NLS-2$
+					sb.append(Environment.isExternalStorageEmulated(f) ? "emulated" : "not-emulated"); //$NON-NLS-1$ //$NON-NLS-2$
 				}
 				catch (Throwable e)
 				{ //
@@ -322,9 +314,7 @@ public class StorageStyle
 				sb.append(' ');
 				try
 				{
-					sb.append(Environment.isExternalStorageEmulated(f) ?
-							"emulated" :
-							"not-emulated"); //$NON-NLS-1$ //$NON-NLS-2$
+					sb.append(Environment.isExternalStorageEmulated(f) ? "emulated" : "not-emulated"); //$NON-NLS-1$ //$NON-NLS-2$
 				}
 				catch (Throwable e)
 				{ //

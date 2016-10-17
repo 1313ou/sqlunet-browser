@@ -42,6 +42,7 @@ class BncNodeFactory extends NodeFactory
 	 * @param data   is the BNC data
 	 * @param i      the ith BNC data
 	 */
+	@SuppressWarnings("UnusedReturnValue")
 	public static Node makeBncNode(final Document doc, final Node parent, final BncData data, final int i)
 	{
 		final Element element = NodeFactory.makeNode(doc, parent, "bncdata", null); //$NON-NLS-1$
@@ -78,7 +79,7 @@ class BncNodeFactory extends NodeFactory
 		return element;
 	}
 
-	static private void makeDataNode(final Document doc, final Element parent, final String name, final Object object)
+	static private void makeDataNode(final Document doc, final Node parent, final String name, final Object object)
 	{
 		if (object == null)
 		{

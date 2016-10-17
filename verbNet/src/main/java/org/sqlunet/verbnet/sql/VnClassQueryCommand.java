@@ -12,21 +12,21 @@ import org.sqlunet.sql.DBQueryCommand;
 class VnClassQueryCommand extends DBQueryCommand
 {
 	/**
-	 * <code>theQuery</code> is the SQL statement
+	 * <code>QUERY</code> is the SQL statement
 	 */
-	private static final String theQuery = SqLiteDialect.VerbNetClassQuery;
+	private static final String QUERY = SqLiteDialect.VerbNetClassQuery;
 
 	/**
 	 * Constructor
 	 *
-	 * @param thisConnection is the database connection
-	 * @param thisClassId    is the target classid (null corresponds to no value)
+	 * @param connection is the database connection
+	 * @param classId    is the target classid (null corresponds to no value)
 	 */
 	@SuppressWarnings("boxing")
-	public VnClassQueryCommand(final SQLiteDatabase thisConnection, final long thisClassId)
+	public VnClassQueryCommand(final SQLiteDatabase connection, final long classId)
 	{
-		super(thisConnection, VnClassQueryCommand.theQuery);
-		setParams(thisClassId);
+		super(connection, VnClassQueryCommand.QUERY);
+		setParams(classId);
 	}
 
 	/**

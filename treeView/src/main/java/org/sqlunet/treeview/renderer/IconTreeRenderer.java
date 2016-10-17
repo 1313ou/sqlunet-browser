@@ -59,9 +59,7 @@ public class IconTreeRenderer extends TreeNode.Renderer<IconTreeItem>
 	@Override
 	public void toggle(boolean active)
 	{
-		this.junctionView.setImageResource(active ?
-				R.drawable.ic_expanded :
-				R.drawable.ic_collapsed);
+		this.junctionView.setImageResource(active ? R.drawable.ic_expanded : R.drawable.ic_collapsed);
 	}
 
 	@Override

@@ -187,7 +187,6 @@ public abstract class SqlUNetProvider extends ContentProvider
 	static String[] prependProjection(final String[] projection, @SuppressWarnings("SameParameterValue") final String... items)
 	{
 		String[] projection2;
-		int i = 0;
 		if (projection == null)
 		{
 			projection2 = new String[1 + items.length];
@@ -196,6 +195,7 @@ public abstract class SqlUNetProvider extends ContentProvider
 		{
 			projection2 = new String[projection.length + items.length];
 		}
+		int i = 0;
 		for (final String item : items)
 		{
 			projection2[i++] = item;

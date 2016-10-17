@@ -27,7 +27,7 @@ public class VnEntry
 	/**
 	 * FnEntry
 	 *
-	 * @param word     is the word string
+	 * @param word    is the word string
 	 * @param synsets is the list of synsets attached to this entry
 	 */
 	private VnEntry(final BasicWord word, final List<VnSynset> synsets)

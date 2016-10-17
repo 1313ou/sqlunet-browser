@@ -11,7 +11,7 @@ import android.util.Log;
 import org.sqlunet.provider.ManagerContract.TablesAndIndices;
 
 import java.util.ArrayList;
-import java.util.List;
+import java.util.Collection;
 
 /**
  * WordNet provider
@@ -82,11 +82,10 @@ public class ManagerProvider extends SqlUNetProvider
 		}
 
 		// choose the table to query and a sort order based on the code returned for the incoming URI
-		String table;
-		final String groupBy = null;
 		final int code = ManagerProvider.uriMatcher.match(uri);
 		Log.d(ManagerProvider.TAG + "URI", String.format("%s (code %s)\n", uri, code)); //$NON-NLS-1$ //$NON-NLS-2$
 
+		String table;
 		switch (code)
 		{
 			case TABLES_AND_INDICES:
@@ -98,6 +97,7 @@ public class ManagerProvider extends SqlUNetProvider
 				throw new RuntimeException("Malformed URI " + uri); //$NON-NLS-1$
 		}
 
+		final String groupBy = null;
 		if (SqlUNetProvider.debugSql)
 		{
 			final String sql = SQLiteQueryBuilder.buildQueryString(false, table, projection, selection, groupBy, null, sortOrder, null);
@@ -117,13 +117,13 @@ public class ManagerProvider extends SqlUNetProvider
 		}
 	}
 
-	static public List<String> getTables(final Context context)
+	static public Collection<String> getTables(final Context context)
 	{
-		final List<String> tables = new ArrayList<>();
+		final Collection<String> tables = new ArrayList<>();
 		final Uri uri = Uri.parse(TablesAndIndices.CONTENT_URI);
-		final String[] projection = new String[]{TablesAndIndices.TYPE, TablesAndIndices.NAME};
+		final String[] projection = {TablesAndIndices.TYPE, TablesAndIndices.NAME};
 		final String selection = TablesAndIndices.TYPE + " = 'table' AND name NOT IN ('sqlite_sequence', 'android_metadata' )"; //$NON-NLS-1$
-		final String[] selectionArgs = new String[]{};
+		final String[] selectionArgs = {};
 		final String sortOrder = null;
 		final Cursor cursor = context.getContentResolver().query(uri, projection, selection, selectionArgs, sortOrder);
 		if (cursor != null)

@@ -33,6 +33,8 @@ import org.sqlunet.predicatematrix.settings.Settings;
 import org.sqlunet.provider.SqlUNetContract;
 
 /**
+ * Predicate Matrix activity
+ *
  * @author bbou
  */
 public class PredicateMatrixActivity extends Activity
@@ -82,9 +84,6 @@ public class PredicateMatrixActivity extends Activity
 		final CharSequence[] modes = getResources().getTextArray(R.array.pmmodes);
 
 		// adapter
-		/*
-	  PredicateMatrix mode adapter
-	 */
 		SpinnerAdapter adapter = new ArrayAdapter<CharSequence>(this, R.layout.actionbar_item_pmmodes, modes)
 		{
 			@Override

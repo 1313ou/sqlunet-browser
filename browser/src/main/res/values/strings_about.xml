@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="title_about">About</string>
-    <string name="title_activity_about">About</string>
-    <string name="about_sqlunet_text">SqlUNet™ is a database that unifies WordNet™, VerbNet™, Propbank™, FrameNet™ and PredicateMatrix™. Some statistical data from BNC™ are also included</string>
-    <string name="about_sqlunet_label">SqlUNet Browser</string>
-    <string name="about_sqlunet_author">Bernard Bou</string>
-    <string name="about_sqlunet_copyright">© 2016</string>
+	<string name="title_about">About</string>
+	<string name="title_activity_about">About</string>
+	<string name="about_sqlunet_text">SqlUNet™ is a database that unifies WordNet™, VerbNet™, Propbank™, FrameNet™ and PredicateMatrix™. Some statistical data from BNC™ are also included</string>
+	<string name="about_sqlunet_label">SqlUNet Browser</string>
+	<string name="about_sqlunet_author">Bernard Bou</string>
+	<string name="about_sqlunet_copyright">© 2016</string>
 
 </resources>

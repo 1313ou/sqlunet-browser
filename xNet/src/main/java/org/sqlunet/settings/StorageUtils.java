@@ -177,7 +177,7 @@ public class StorageUtils
 		 *
 		 * @return short string
 		 */
-		public String toShortString()
+		public CharSequence toShortString()
 		{
 			return String.format(Locale.ENGLISH, "%s %s %s free", this.dir.type.toString(), this.dir.file.getAbsolutePath(), mbToString(this.free)); //$NON-NLS-1$
 		}
@@ -203,10 +203,20 @@ public class StorageUtils
 		}
 
 		/**
-		 * Comparison (most suitable first)
+		 * Equals
 		 */
-		/*
-		 * (non-Javadoc)
+		@Override
+		public boolean equals(Object another)
+		{
+			if(!(another instanceof CandidateStorage))
+				return false;
+			final CandidateStorage storage2 = (CandidateStorage) another;
+			return this.dir.equals(storage2.dir);
+		}
+
+		/**
+		 * Comparison (most suitable first)
+		 *
 		 * @see java.lang.Comparable#compareTo(java.lang.Object)
 		 */
 		@Override
@@ -368,7 +378,7 @@ public class StorageUtils
 	 * @param dirs list of directories
 	 * @return list of candidate storages
 	 */
-	private static List<CandidateStorage> makeCandidateStorages(final List<Directory> dirs)
+	private static List<CandidateStorage> makeCandidateStorages(final Iterable<Directory> dirs)
 	{
 		final List<CandidateStorage> storages = new ArrayList<>();
 		for (final Directory dir : dirs)
@@ -414,7 +424,6 @@ public class StorageUtils
 	@TargetApi(Build.VERSION_CODES.KITKAT)
 	private static List<Directory> getDirectories(final Context context)
 	{
-		File dir;
 		final List<Directory> storages = new ArrayList<>();
 
 		// A P P - S P E C I F I C - P O S S I B L Y A D O P T E D
@@ -427,6 +436,7 @@ public class StorageUtils
 		// A P P - S P E C I F I C
 
 		// application-specific secondary external storage or primary external (KITKAT)
+		File dir;
 		try
 		{
 			final File[] dirs = context.getExternalFilesDirs(null);
@@ -453,6 +463,7 @@ public class StorageUtils
 			}
 			catch (Exception e2)
 			{
+				//noinspection ErrorNotRethrown
 				try
 				{
 					dir = context.getExternalFilesDir(Storage.SQLUNETDIR);
@@ -728,9 +739,7 @@ public class StorageUtils
 		float[] stats = new float[3];
 		stats[STORAGE_FREE] = storageFree(path);
 		stats[STORAGE_CAPACITY] = storageCapacity(path);
-		stats[STORAGE_OCCUPANCY] = stats[STORAGE_CAPACITY] == 0F ?
-				0F :
-				100F * ((stats[STORAGE_CAPACITY] - stats[STORAGE_FREE]) / stats[STORAGE_CAPACITY]);
+		stats[STORAGE_OCCUPANCY] = stats[STORAGE_CAPACITY] == 0F ? 0F : 100F * ((stats[STORAGE_CAPACITY] - stats[STORAGE_FREE]) / stats[STORAGE_CAPACITY]);
 		return stats;
 	}
 
@@ -845,9 +854,7 @@ public class StorageUtils
 			sb.append(' ');
 			sb.append(candidate.toLongString());
 			sb.append(' ');
-			sb.append(candidate.fitsIn() ?
-					"Fits in" :
-					"Does not fit in"); //$NON-NLS-1$ //$NON-NLS-2$
+			sb.append(candidate.fitsIn() ? "Fits in" : "Does not fit in"); //$NON-NLS-1$ //$NON-NLS-2$
 			sb.append('\n');
 			sb.append('\n');
 		}
@@ -880,9 +887,7 @@ public class StorageUtils
 				sb.append(' ');
 				try
 				{
-					sb.append(Environment.isExternalStorageEmulated(f) ?
-							"emulated" :
-							"not-emulated"); //$NON-NLS-1$ //$NON-NLS-2$
+					sb.append(Environment.isExternalStorageEmulated(f) ? "emulated" : "not-emulated"); //$NON-NLS-1$ //$NON-NLS-2$
 				}
 				catch (Throwable e)
 				{ //
@@ -902,9 +907,7 @@ public class StorageUtils
 				sb.append(' ');
 				try
 				{
-					sb.append(Environment.isExternalStorageEmulated(f) ?
-							"emulated" :
-							"not-emulated"); //$NON-NLS-1$ //$NON-NLS-2$
+					sb.append(Environment.isExternalStorageEmulated(f) ? "emulated" : "not-emulated"); //$NON-NLS-1$ //$NON-NLS-2$
 				}
 				catch (Throwable e)
 				{ //
@@ -924,9 +927,7 @@ public class StorageUtils
 				sb.append(' ');
 				try
 				{
-					sb.append(Environment.isExternalStorageEmulated(f) ?
-							"emulated" :
-							"not-emulated"); //$NON-NLS-1$ //$NON-NLS-2$
+					sb.append(Environment.isExternalStorageEmulated(f) ? "emulated" : "not-emulated"); //$NON-NLS-1$ //$NON-NLS-2$
 				}
 				catch (Throwable e)
 				{ //

@@ -80,7 +80,7 @@ interface FrameNetInterface
 	 * @param pos        the pos to build query from
 	 * @return FrameNet frame id data as DOM document
 	 */
-	Document queryFrameDoc(final SQLiteDatabase connection, final long frameId, @SuppressWarnings("UnusedParameters") final Character pos);
+	Document queryFrameDoc(final SQLiteDatabase connection, final long frameId, final Character pos);
 
 	/**
 	 * Business method that returns FrameNet frame data as XML

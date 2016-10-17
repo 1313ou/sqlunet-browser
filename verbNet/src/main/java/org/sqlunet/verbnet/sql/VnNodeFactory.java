@@ -123,9 +123,10 @@ class VnNodeFactory extends NodeFactory
 	 * @param doc    is the DOM Document being built
 	 * @param parent is the parent node to attach this node to
 	 * @param role   is the role
-	 * @param i          is the index
+	 * @param i      is the index
 	 * @return newly created node
 	 */
+	@SuppressWarnings("UnusedReturnValue")
 	static public Node makeVnRoleNode(final Document doc, final Node parent, final VnRole role, final int i)
 	{
 		final Element element = org.sqlunet.sql.NodeFactory.makeNode(doc, parent, "themrole", null); //$NON-NLS-1$
@@ -159,9 +160,10 @@ class VnNodeFactory extends NodeFactory
 	 * @param doc    is the DOM Document being built
 	 * @param parent is the parent node to attach this node to
 	 * @param frame  is the frame
-	 * @param i          is the rank
+	 * @param i      is the rank
 	 * @return newly created node
 	 */
+	@SuppressWarnings("UnusedReturnValue")
 	static public Node makeVnFrameNode(final Document doc, final Node parent, final VnFrame frame, final int i)
 	{
 		final Element element = org.sqlunet.sql.NodeFactory.makeNode(doc, parent, "frame", null); //$NON-NLS-1$
@@ -209,7 +211,7 @@ class VnNodeFactory extends NodeFactory
 		return element;
 	}
 
-	private static String[] parse(final String text, final Pattern pattern)
+	private static String[] parse(final CharSequence text, final Pattern pattern)
 	{
 		// general pattern
 		final Matcher matcher = pattern.matcher(text);
@@ -233,7 +235,7 @@ class VnNodeFactory extends NodeFactory
 	static private final Pattern syntaxPattern = Pattern.compile("^([^\\s]+) ?(\\p{Upper}\\p{Lower}*)? ?(.+)?"); //$NON-NLS-1$
 
 	@SuppressWarnings("UnusedReturnValue")
-	private static Node makeVnSyntaxNodes(final Document doc, final Node parent, final String statement)
+	private static Node makeVnSyntaxNodes(final Document doc, final Node parent, final CharSequence statement)
 	{
 		final String[] fields = VnNodeFactory.parse(statement, VnNodeFactory.syntaxPattern);
 		if (fields != null && fields.length == 3)
@@ -264,7 +266,7 @@ class VnNodeFactory extends NodeFactory
 	private static final String argsPattern = "[\\s,]+"; //$NON-NLS-1$
 
 	@SuppressWarnings("UnusedReturnValue")
-	private static Node makeVnSemanticNodes(final Document doc, final Node parent, final String statement)
+	private static Node makeVnSemanticNodes(final Document doc, final Node parent, final CharSequence statement)
 	{
 		final String[] relArgs = VnNodeFactory.parse(statement, VnNodeFactory.semanticsPattern);
 		if (relArgs != null && relArgs.length == 2)

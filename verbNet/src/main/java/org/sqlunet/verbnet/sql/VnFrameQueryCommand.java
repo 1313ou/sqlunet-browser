@@ -12,21 +12,21 @@ import org.sqlunet.sql.DBQueryCommand;
 class VnFrameQueryCommand extends DBQueryCommand
 {
 	/**
-	 * <code>theQuery</code> is the SQL statement
+	 * <code>QUERY</code> is the SQL statement
 	 */
-	private static final String theQuery = SqLiteDialect.VerbNetFramesQuery;
+	private static final String QUERY = SqLiteDialect.VerbNetFramesQuery;
 
 	/**
 	 * Constructor
 	 *
-	 * @param thisConnection is the database connection
-	 * @param thisClassId    is the target classid
+	 * @param connection is the database connection
+	 * @param classId    is the target classid
 	 */
 	@SuppressWarnings("boxing")
-	public VnFrameQueryCommand(final SQLiteDatabase thisConnection, final long thisClassId)
+	public VnFrameQueryCommand(final SQLiteDatabase connection, final long classId)
 	{
-		super(thisConnection, VnFrameQueryCommand.theQuery);
-		setParams(thisClassId);
+		super(connection, VnFrameQueryCommand.QUERY);
+		setParams(classId);
 	}
 
 	/**

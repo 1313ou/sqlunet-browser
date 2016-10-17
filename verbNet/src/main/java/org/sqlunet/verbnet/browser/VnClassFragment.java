@@ -62,9 +62,6 @@ public class VnClassFragment extends Fragment
 		final Parcelable pointer = args.getParcelable(SqlUNetContract.ARG_QUERYPOINTER);
 
 		// module
-		/*
-	  Module
-	 */
 		Module module = new ClassModule(this);
 		module.init(pointer);
 		module.process(queryNode);

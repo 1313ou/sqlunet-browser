@@ -83,7 +83,7 @@ public class PreparedStatement
 	 * @param i    ith parameter
 	 * @param type type
 	 */
-	public void setNull(@SuppressWarnings("SameParameterValue") final int i, @SuppressWarnings({"UnusedParameters", "SameParameterValue"}) final int type)
+	public void setNull(@SuppressWarnings("SameParameterValue") final int i, @SuppressWarnings({"UnusedParameters", "SameParameterValue", "RedundantSuppression"}) final int type)
 	{
 		this.selectionArgs.put(i, null);
 	}

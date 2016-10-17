@@ -6,17 +6,17 @@
                 tools:context=".TextSearchActivity"
                 tools:ignore="MergeRootFrame">
 
-    <TextView
-        android:id="@+id/statusView"
-        style="@style/Search"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"/>
+	<TextView
+		android:id="@+id/statusView"
+		style="@style/Search"
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+		android:layout_centerHorizontal="true"/>
 
-    <FrameLayout
-        android:id="@+id/container_textsearch"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@+id/statusView"/>
+	<FrameLayout
+		android:id="@+id/container_textsearch"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:layout_below="@+id/statusView"/>
 
 </RelativeLayout>

@@ -6,6 +6,8 @@ import org.sqlunet.treeview.R;
 import org.sqlunet.treeview.model.TreeNode;
 
 /**
+ * Link holder
+ *
  * @author Bernard Bou
  */
 public class LinkHolder extends IconLeafRenderer

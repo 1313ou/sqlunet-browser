@@ -8,19 +8,19 @@
                 android:showDividers="middle"
                 tools:context="org.sqlunet.browser.config.TableActivity">
 
-    <TextView
-        android:id="@+id/queryView"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        style="@style/Query"/>
+	<TextView
+		android:id="@+id/queryView"
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+		style="@style/Query"/>
 
-    <fragment
-        android:id="@+id/table"
-        android:name="org.sqlunet.browser.config.TableFragment"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@+id/queryView"
-        tools:context=".TableActivity"
-        tools:layout="@layout/fragment_table"/>
+	<fragment
+		android:id="@+id/table"
+		android:name="org.sqlunet.browser.config.TableFragment"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:layout_below="@+id/queryView"
+		tools:context=".TableActivity"
+		tools:layout="@layout/fragment_table"/>
 
 </RelativeLayout>

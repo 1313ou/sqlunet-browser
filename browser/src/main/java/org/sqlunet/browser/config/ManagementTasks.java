@@ -8,7 +8,7 @@ import android.widget.Toast;
 
 import org.sqlunet.browser.R;
 
-import java.util.List;
+import java.util.Collection;
 
 class ManagementTasks
 {
@@ -72,7 +72,7 @@ class ManagementTasks
 		}.execute();
 	}
 
-	static public void flushAll(final Context context, final String databasePath, final List<String> tables)
+	static public void flushAll(final Context context, final String databasePath, final Collection<String> tables)
 	{
 		if (tables != null && !tables.isEmpty())
 		{
@@ -86,7 +86,7 @@ class ManagementTasks
 		}
 	}
 
-	static public void dropAll(final Context context, final String databasePath, final List<String> tables)
+	static public void dropAll(final Context context, final String databasePath, final Collection<String> tables)
 	{
 		if (tables != null && !tables.isEmpty())
 		{

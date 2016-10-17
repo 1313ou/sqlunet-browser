@@ -60,9 +60,7 @@ public class TreeView
 		}
 		else
 		{
-			view = this.use2dScroll ?
-					new TwoDScrollView(this.mContext) :
-					new ScrollView(this.mContext);
+			view = this.use2dScroll ? new TwoDScrollView(this.mContext) : new ScrollView(this.mContext);
 		}
 
 		Context containerContext = this.mContext;
@@ -349,9 +347,7 @@ public class TreeView
 			@Override
 			protected void applyTransformation(float interpolatedTime, Transformation t)
 			{
-				v.getLayoutParams().height = interpolatedTime == 1 ?
-						LayoutParams.WRAP_CONTENT :
-						(int) (targetHeight * interpolatedTime);
+				v.getLayoutParams().height = interpolatedTime == 1 ? LayoutParams.WRAP_CONTENT : (int) (targetHeight * interpolatedTime);
 				v.requestLayout();
 			}
 

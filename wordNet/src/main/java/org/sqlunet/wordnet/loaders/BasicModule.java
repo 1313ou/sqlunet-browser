@@ -105,13 +105,13 @@ abstract public class BasicModule extends Module
 			public Loader<Cursor> onCreateLoader(final int loaderId0, final Bundle args)
 			{
 				final Uri uri = Uri.parse(Synsets_PosTypes_LexDomains.CONTENT_URI);
-				final String[] projection = new String[]{ //
+				final String[] projection = { //
 						Synsets.DEFINITION, //
 						PosTypes.POSNAME, //
 						LexDomains.LEXDOMAIN, //
 				};
 				final String selection = Synsets_PosTypes_LexDomains.SYNSETID + " = ?"; //$NON-NLS-1$
-				final String[] selectionArgs = new String[]{Long.toString(synsetid0)};
+				final String[] selectionArgs = {Long.toString(synsetid0)};
 				final String sortOrder = null;
 				return new CursorLoader(getContext(), uri, projection, selection, selectionArgs, sortOrder);
 			}
@@ -189,13 +189,13 @@ abstract public class BasicModule extends Module
 			public Loader<Cursor> onCreateLoader(final int loaderId0, final Bundle args)
 			{
 				final Uri uri = Uri.parse(Synsets_PosTypes_LexDomains.CONTENT_URI);
-				final String[] projection = new String[]{ //
+				final String[] projection = { //
 						Synsets.DEFINITION, //
 						PosTypes.POSNAME, //
 						LexDomains.LEXDOMAIN, //
 				};
 				final String selection = Synsets_PosTypes_LexDomains.SYNSETID + " = ?"; //$NON-NLS-1$
-				final String[] selectionArgs = new String[]{Long.toString(synsetid0)};
+				final String[] selectionArgs = {Long.toString(synsetid0)};
 				final String sortOrder = null;
 				return new CursorLoader(getContext(), uri, projection, selection, selectionArgs, sortOrder);
 			}
@@ -271,13 +271,11 @@ abstract public class BasicModule extends Module
 			@Override
 			public Loader<Cursor> onCreateLoader(final int loaderId0, final Bundle args)
 			{
-				final Uri uri = Uri.parse(BasicModule.this.membersGrouped ?
-						Senses_Words.CONTENT_URI_BY_SYNSET :
-						Senses_Words.CONTENT_URI);
+				final Uri uri = Uri.parse(BasicModule.this.membersGrouped ? Senses_Words.CONTENT_URI_BY_SYNSET : Senses_Words.CONTENT_URI);
 				final String[] projection = BasicModule.this.membersGrouped ? //
 						new String[]{Senses_Words.MEMBERS} : new String[]{Words.LEMMA};
 				final String selection = Senses_Words.SYNSETID + " = ?"; //$NON-NLS-1$
-				final String[] selectionArgs = new String[]{Long.toString(synsetid0)};
+				final String[] selectionArgs = {Long.toString(synsetid0)};
 				final String sortOrder = Words.LEMMA;
 				return new CursorLoader(getContext(), uri, projection, selection, selectionArgs, sortOrder);
 			}
@@ -363,12 +361,12 @@ abstract public class BasicModule extends Module
 			public Loader<Cursor> onCreateLoader(final int loaderId0, final Bundle args)
 			{
 				final Uri uri = Uri.parse(Samples.CONTENT_URI);
-				final String[] projection = new String[]{ //
+				final String[] projection = { //
 						Samples.SAMPLEID, //
 						Samples.SAMPLE, //
 				};
 				final String selection = Samples.SYNSETID + " = ?"; //$NON-NLS-1$
-				final String[] selectionArgs = new String[]{Long.toString(synsetid0)};
+				final String[] selectionArgs = {Long.toString(synsetid0)};
 				final String sortOrder = Samples.SAMPLEID;
 				return new CursorLoader(getContext(), uri, projection, selection, selectionArgs, sortOrder);
 			}
@@ -430,7 +428,7 @@ abstract public class BasicModule extends Module
 			public Loader<Cursor> onCreateLoader(final int loaderId0, final Bundle args)
 			{
 				final Uri uri = Uri.parse(SemLinks_Synsets_Words_X.CONTENT_URI);
-				final String[] projection = new String[]{ //
+				final String[] projection = { //
 						"d." + Synsets.SYNSETID + " AS " + SemLinks_Synsets_X.SYNSETID, // //$NON-NLS-1$ //$NON-NLS-2$
 						"d." + Synsets.DEFINITION + " AS " + SemLinks_Synsets_X.DEFINITION, // //$NON-NLS-1$ //$NON-NLS-2$
 						LinkTypes.LINK, //
@@ -438,7 +436,7 @@ abstract public class BasicModule extends Module
 						LinkTypes.RECURSES, //
 				};
 				final String selection = "l." + SemLinks_Synsets_Words_X.SYNSET1ID + " = ?";  //$NON-NLS-1$//$NON-NLS-2$
-				final String[] selectionArgs = new String[]{Long.toString(synsetid0)};
+				final String[] selectionArgs = {Long.toString(synsetid0)};
 				final String sortOrder = LinkTypes.LINKID;
 				return new CursorLoader(getContext(), uri, projection, selection, selectionArgs, sortOrder);
 			}
@@ -446,7 +444,7 @@ abstract public class BasicModule extends Module
 			@Override
 			public void onLoadFinished(final Loader<Cursor> loader, final Cursor cursor)
 			{
-				// noinspection StatementWithEmptyBody,StatementWithEmptyBody,StatementWithEmptyBody,StatementWithEmptyBody,StatementWithEmptyBody,StatementWithEmptyBody
+				// noinspection StatementWithEmptyBody
 				if (cursor.moveToFirst())
 				{
 					final int idSynsetId = cursor.getColumnIndex(SemLinks_Synsets_X.SYNSETID);
@@ -472,9 +470,7 @@ abstract public class BasicModule extends Module
 						Spanner.append(sb, definition, 0, WordNetFactories.definitionFactory);
 
 						final Context context = BasicModule.this.getContext();
-						TreeNode linkNode = recurses == 0 ?
-								TreeFactory.newLeafNode(sb, getLinkRes(linkid), context) :
-								TreeFactory.newQueryNode(new SubLinksQuery(synsetid, linkid, getLinkRes(linkid), sb), BasicModule.this.getContext());
+						TreeNode linkNode = recurses == 0 ? TreeFactory.newLeafNode(sb, getLinkRes(linkid), context) : TreeFactory.newQueryNode(new SubLinksQuery(synsetid, linkid, getLinkRes(linkid), sb), BasicModule.this.getContext());
 						parent.addChild(linkNode);
 					}
 					while (cursor.moveToNext());
@@ -507,7 +503,7 @@ abstract public class BasicModule extends Module
 			public Loader<Cursor> onCreateLoader(final int loaderId0, final Bundle args)
 			{
 				final Uri uri = Uri.parse(SemLinks_Synsets_Words_X.CONTENT_URI);
-				final String[] projection = new String[]{ //
+				final String[] projection = { //
 						"d." + Synsets.SYNSETID + " AS " + SemLinks_Synsets_X.SYNSETID, // //$NON-NLS-1$ //$NON-NLS-2$
 						"d." + Synsets.DEFINITION + " AS " + SemLinks_Synsets_X.DEFINITION, // //$NON-NLS-1$ //$NON-NLS-2$
 						LinkTypes.LINK, //
@@ -515,7 +511,7 @@ abstract public class BasicModule extends Module
 						LinkTypes.RECURSES, //
 				};
 				final String selection = "l." + SemLinks_Synsets_Words_X.SYNSET1ID + " = ? AND " + LinkTypes.LINKID + " = ?"; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				final String[] selectionArgs = new String[]{Long.toString(synsetid0), Integer.toString(linkid0)};
+				final String[] selectionArgs = {Long.toString(synsetid0), Integer.toString(linkid0)};
 				final String sortOrder = null;
 				return new CursorLoader(getContext(), uri, projection, selection, selectionArgs, sortOrder);
 			}
@@ -548,9 +544,7 @@ abstract public class BasicModule extends Module
 						Spanner.append(sb, definition, 0, WordNetFactories.definitionFactory);
 
 						final Context context = BasicModule.this.getContext();
-						TreeNode linkNode = recurses == 0 ?
-								TreeFactory.newLeafNode(sb, getLinkRes(linkid), context) :
-								TreeFactory.newQueryNode(new SubLinksQuery(synsetid, linkid, getLinkRes(linkid), sb), context);
+						TreeNode linkNode = recurses == 0 ? TreeFactory.newLeafNode(sb, getLinkRes(linkid), context) : TreeFactory.newQueryNode(new SubLinksQuery(synsetid, linkid, getLinkRes(linkid), sb), context);
 						parent.addChild(linkNode);
 					}
 					while (cursor.moveToNext());
@@ -583,7 +577,7 @@ abstract public class BasicModule extends Module
 			public Loader<Cursor> onCreateLoader(final int loaderId0, final Bundle args)
 			{
 				final Uri uri = Uri.parse(LexLinks_Senses_Words_X.CONTENT_URI);
-				final String[] projection = new String[]{ //
+				final String[] projection = { //
 						"d." + Synsets.SYNSETID + " AS " + LexLinks_Senses_X.SYNSETID, // //$NON-NLS-1$ //$NON-NLS-2$
 						"d." + Synsets.DEFINITION + " AS " + LexLinks_Senses_X.DEFINITION, // //$NON-NLS-1$ //$NON-NLS-2$
 						"w." + Words.LEMMA + " AS " + LexLinks_Senses_X.TARGET_LEMMA, // //$NON-NLS-1$ //$NON-NLS-2$
@@ -591,7 +585,7 @@ abstract public class BasicModule extends Module
 						LinkTypes.LINKID, //
 						LinkTypes.LINK};
 				final String selection = "l." + LexLinks_Senses_Words_X.SYNSET1ID + " = ?";  //$NON-NLS-1$//$NON-NLS-2$
-				final String[] selectionArgs = new String[]{Long.toString(synsetid0)};
+				final String[] selectionArgs = {Long.toString(synsetid0)};
 				final String sortOrder = null;
 				return new CursorLoader(getContext(), uri, projection, selection, selectionArgs, sortOrder);
 			}
@@ -599,7 +593,7 @@ abstract public class BasicModule extends Module
 			@Override
 			public void onLoadFinished(final Loader<Cursor> loader, final Cursor cursor)
 			{
-				// noinspection StatementWithEmptyBody,StatementWithEmptyBody,StatementWithEmptyBody
+				// noinspection StatementWithEmptyBody
 				if (cursor.moveToFirst())
 				{
 					final int idLinkId = cursor.getColumnIndex(LinkTypes.LINKID);
@@ -674,14 +668,14 @@ abstract public class BasicModule extends Module
 			public Loader<Cursor> onCreateLoader(final int loaderId0, final Bundle args)
 			{
 				final Uri uri = Uri.parse(LexLinks_Senses_Words_X.CONTENT_URI);
-				final String[] projection = new String[]{ //
+				final String[] projection = { //
 						"d." + Synsets.SYNSETID + " AS " + LexLinks_Senses_X.SYNSETID, // //$NON-NLS-1$ //$NON-NLS-2$
 						"d." + Synsets.DEFINITION + " AS " + LexLinks_Senses_X.DEFINITION, // //$NON-NLS-1$ //$NON-NLS-2$
 						"w." + Words.LEMMA + " AS " + LexLinks_Senses_X.TARGET_LEMMA, // //$NON-NLS-1$ //$NON-NLS-2$
 						"w." + Words.WORDID + " AS " + LexLinks_Senses_X.TARGET_WORDID, // //$NON-NLS-1$ //$NON-NLS-2$
 						LinkTypes.LINK, LinkTypes.LINKID,};
 				final String selection = "l.synset1id = ? AND l.word1id = ?"; //$NON-NLS-1$
-				final String[] selectionArgs = new String[]{Long.toString(synsetid0), Long.toString(wordid0)};
+				final String[] selectionArgs = {Long.toString(synsetid0), Long.toString(wordid0)};
 				final String sortOrder = LinkTypes.LINKID;
 				return new CursorLoader(getContext(), uri, projection, selection, selectionArgs, sortOrder);
 			}
@@ -765,9 +759,9 @@ abstract public class BasicModule extends Module
 			public Loader<Cursor> onCreateLoader(final int loaderId0, final Bundle args)
 			{
 				final Uri uri = Uri.parse(VerbFrameMaps_VerbFrames.CONTENT_URI);
-				final String[] projection = new String[]{VerbFrameMaps_VerbFrames.FRAME};
+				final String[] projection = {VerbFrameMaps_VerbFrames.FRAME};
 				final String selection = VerbFrameMaps_VerbFrames.SYNSETID + " = ?"; //$NON-NLS-1$
-				final String[] selectionArgs = new String[]{Long.toString(synsetid0)};
+				final String[] selectionArgs = {Long.toString(synsetid0)};
 				final String sortOrder = null;
 				return new CursorLoader(getContext(), uri, projection, selection, selectionArgs, sortOrder);
 			}
@@ -826,9 +820,9 @@ abstract public class BasicModule extends Module
 			public Loader<Cursor> onCreateLoader(final int loaderId0, final Bundle args)
 			{
 				final Uri uri = Uri.parse(VerbFrameMaps_VerbFrames.CONTENT_URI);
-				final String[] projection = new String[]{VerbFrameMaps_VerbFrames.FRAME};
+				final String[] projection = {VerbFrameMaps_VerbFrames.FRAME};
 				final String selection = VerbFrameMaps_VerbFrames.SYNSETID + " = ? AND " + VerbFrameMaps_VerbFrames.WORDID + " = ?"; //$NON-NLS-1$ //$NON-NLS-2$
-				final String[] selectionArgs = new String[]{Long.toString(synsetid0), Long.toString(wordid0)};
+				final String[] selectionArgs = {Long.toString(synsetid0), Long.toString(wordid0)};
 				final String sortOrder = null;
 				return new CursorLoader(getContext(), uri, projection, selection, selectionArgs, sortOrder);
 			}
@@ -887,9 +881,9 @@ abstract public class BasicModule extends Module
 			public Loader<Cursor> onCreateLoader(final int loaderId0, final Bundle args)
 			{
 				final Uri uri = Uri.parse(VerbFrameSentenceMaps_VerbFrameSentences.CONTENT_URI);
-				final String[] projection = new String[]{VerbFrameSentenceMaps_VerbFrameSentences.SENTENCE};
+				final String[] projection = {VerbFrameSentenceMaps_VerbFrameSentences.SENTENCE};
 				final String selection = VerbFrameSentenceMaps_VerbFrameSentences.SYNSETID + " = ?"; //$NON-NLS-1$
-				final String[] selectionArgs = new String[]{Long.toString(synsetid0)};
+				final String[] selectionArgs = {Long.toString(synsetid0)};
 				final String sortOrder = null;
 				return new CursorLoader(BasicModule.this.getContext(), uri, projection, selection, selectionArgs, sortOrder);
 			}
@@ -949,9 +943,9 @@ abstract public class BasicModule extends Module
 			public Loader<Cursor> onCreateLoader(final int loaderId0, final Bundle args)
 			{
 				final Uri uri = Uri.parse(VerbFrameSentenceMaps_VerbFrameSentences.CONTENT_URI);
-				final String[] projection = new String[]{VerbFrameSentenceMaps_VerbFrameSentences.SENTENCE};
+				final String[] projection = {VerbFrameSentenceMaps_VerbFrameSentences.SENTENCE};
 				final String selection = VerbFrameSentenceMaps_VerbFrameSentences.SYNSETID + " = ? AND " + VerbFrameSentenceMaps_VerbFrameSentences.WORDID + " = ?"; //$NON-NLS-1$ //$NON-NLS-2$
-				final String[] selectionArgs = new String[]{Long.toString(synsetid0), Long.toString(wordid0)};
+				final String[] selectionArgs = {Long.toString(synsetid0), Long.toString(wordid0)};
 				final String sortOrder = null;
 				return new CursorLoader(getContext(), uri, projection, selection, selectionArgs, sortOrder);
 			}
@@ -959,7 +953,7 @@ abstract public class BasicModule extends Module
 			@Override
 			public void onLoadFinished(final Loader<Cursor> loader0, final Cursor cursor)
 			{
-				//noinspection StatementWithEmptyBody,StatementWithEmptyBody,StatementWithEmptyBody
+				// noinspection StatementWithEmptyBody
 				if (cursor.moveToFirst())
 				{
 					final int vframeId = cursor.getColumnIndex(VerbFrameSentenceMaps_VerbFrameSentences.SENTENCE);
@@ -1010,9 +1004,9 @@ abstract public class BasicModule extends Module
 			public Loader<Cursor> onCreateLoader(final int loaderId0, final Bundle args)
 			{
 				final Uri uri = Uri.parse(AdjPositions_AdjPositionTypes.CONTENT_URI);
-				final String[] projection = new String[]{AdjPositions_AdjPositionTypes.POSITIONNAME};
+				final String[] projection = {AdjPositions_AdjPositionTypes.POSITIONNAME};
 				final String selection = AdjPositions_AdjPositionTypes.SYNSETID + " = ?"; //$NON-NLS-1$
-				final String[] selectionArgs = new String[]{Long.toString(synsetid0)};
+				final String[] selectionArgs = {Long.toString(synsetid0)};
 				final String sortOrder = null;
 				return new CursorLoader(BasicModule.this.getContext(), uri, projection, selection, selectionArgs, sortOrder);
 			}
@@ -1071,9 +1065,9 @@ abstract public class BasicModule extends Module
 			public Loader<Cursor> onCreateLoader(final int loaderId0, final Bundle args)
 			{
 				final Uri uri = Uri.parse(AdjPositions_AdjPositionTypes.CONTENT_URI);
-				final String[] projection = new String[]{AdjPositions_AdjPositionTypes.POSITIONNAME};
+				final String[] projection = {AdjPositions_AdjPositionTypes.POSITIONNAME};
 				final String selection = AdjPositions_AdjPositionTypes.SYNSETID + " = ? AND " + AdjPositions_AdjPositionTypes.WORDID + " = ?"; //$NON-NLS-1$ //$NON-NLS-2$
-				final String[] selectionArgs = new String[]{Long.toString(synsetid0), Long.toString(wordid0)};
+				final String[] selectionArgs = {Long.toString(synsetid0), Long.toString(wordid0)};
 				final String sortOrder = null;
 				return new CursorLoader(getContext(), uri, projection, selection, selectionArgs, sortOrder);
 			}
@@ -1131,9 +1125,9 @@ abstract public class BasicModule extends Module
 			public Loader<Cursor> onCreateLoader(final int loaderId0, final Bundle args)
 			{
 				final Uri uri = Uri.parse(MorphMaps_Morphs.CONTENT_URI);
-				final String[] projection = new String[]{MorphMaps_Morphs.POS, MorphMaps_Morphs.MORPH};
+				final String[] projection = {MorphMaps_Morphs.POS, MorphMaps_Morphs.MORPH};
 				final String selection = MorphMaps_Morphs.WORDID + " = ?"; //$NON-NLS-1$
-				final String[] selectionArgs = new String[]{Long.toString(wordid0)};
+				final String[] selectionArgs = {Long.toString(wordid0)};
 				final String sortOrder = null;
 				return new CursorLoader(BasicModule.this.getContext(), uri, projection, selection, selectionArgs, sortOrder);
 			}

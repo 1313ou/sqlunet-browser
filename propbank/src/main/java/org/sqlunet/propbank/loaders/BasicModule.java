@@ -129,14 +129,14 @@ abstract class BasicModule extends Module
 			public Loader<Cursor> onCreateLoader(final int loaderId0, final Bundle args)
 			{
 				final Uri uri = Uri.parse(PbRolesets.CONTENT_URI);
-				final String[] projection = new String[]{ //
+				final String[] projection = { //
 						PbRolesets.ROLESETID, //
 						PbRolesets.ROLESETNAME, //
 						PbRolesets.ROLESETHEAD, //
 						PbRolesets.ROLESETDESC, //
 				};
 				final String selection = PbRolesets.ROLESETID + " = ?"; //$NON-NLS-1$
-				final String[] selectionArgs = new String[]{Long.toString(rolesetid0)};
+				final String[] selectionArgs = {Long.toString(rolesetid0)};
 				final String sortOrder = null;
 				return new CursorLoader(getContext(), uri, projection, selection, selectionArgs, sortOrder);
 			}
@@ -209,14 +209,14 @@ abstract class BasicModule extends Module
 			public Loader<Cursor> onCreateLoader(final int loaderId0, final Bundle args)
 			{
 				final Uri uri = Uri.parse(PropbankContract.Words_PbRolesets.CONTENT_URI);
-				final String[] projection = new String[]{ //
+				final String[] projection = { //
 						Words_PbRolesets.ROLESETID, //
 						Words_PbRolesets.ROLESETNAME, //
 						Words_PbRolesets.ROLESETHEAD, //
 						Words_PbRolesets.ROLESETDESC, //
 				};
 				final String selection = Words_PbRolesets.WORDID + " = ?"; //$NON-NLS-1$
-				final String[] selectionArgs = new String[]{Long.toString(wordid0)};
+				final String[] selectionArgs = {Long.toString(wordid0)};
 				final String sortOrder = null;
 				return new CursorLoader(BasicModule.this.getContext(), uri, projection, selection, selectionArgs, sortOrder);
 			}
@@ -291,7 +291,7 @@ abstract class BasicModule extends Module
 			public Loader<Cursor> onCreateLoader(final int loaderId0, final Bundle args)
 			{
 				final Uri uri = Uri.parse(PbRolesets_PbRoles.CONTENT_URI);
-				final String[] projection = new String[]{ //
+				final String[] projection = { //
 						PbRolesets_PbRoles.ROLEID, //
 						PbRolesets_PbRoles.ROLEDESCR, //
 						PbRolesets_PbRoles.NARG, //
@@ -299,7 +299,7 @@ abstract class BasicModule extends Module
 						PbRolesets_PbRoles.THETANAME, //
 				};
 				final String selection = PbRolesets_PbRoles.ROLESETID + "= ?"; //$NON-NLS-1$
-				final String[] selectionArgs = new String[]{Long.toString(rolesetid)};
+				final String[] selectionArgs = {Long.toString(rolesetid)};
 				final String sortOrder = null;
 				return new CursorLoader(getContext(), uri, projection, selection, selectionArgs, sortOrder);
 			}
@@ -355,8 +355,8 @@ abstract class BasicModule extends Module
 						// sb.append(' ');
 
 						if (!cursor.moveToNext())
-						//noinspection BreakStatement
 						{
+							//noinspection BreakStatement
 							break;
 						}
 
@@ -395,7 +395,7 @@ abstract class BasicModule extends Module
 			public Loader<Cursor> onCreateLoader(final int loaderId0, final Bundle args)
 			{
 				final Uri uri = Uri.parse(PbRolesets_PbExamples.CONTENT_URI);
-				final String[] projection = new String[]{ //
+				final String[] projection = { //
 						PbRolesets_PbExamples.TEXT, //
 						PbRolesets_PbExamples.REL, //
 						"GROUP_CONCAT(" + // //$NON-NLS-1$
@@ -415,7 +415,7 @@ abstract class BasicModule extends Module
 						PbRolesets_PbExamples.PERSONNAME, //
 				};
 				final String selection = PbRolesets_PbExamples.ROLESETID + "= ?"; //$NON-NLS-1$
-				final String[] selectionArgs = new String[]{Long.toString(rolesetid)};
+				final String[] selectionArgs = {Long.toString(rolesetid)};
 				final String sortOrder = PbRolesets_PbExamples.EXAMPLEID + ',' + PbRolesets_PbExamples.NARG;
 				return new CursorLoader(getContext(), uri, projection, selection, selectionArgs, sortOrder);
 			}

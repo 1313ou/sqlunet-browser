@@ -60,7 +60,7 @@ public class TwoDScrollView extends FrameLayout
 	 * The child to give focus to in the event that a child has requested focus while the layout is dirty. This prevents the scroll from being wrong if the
 	 * child has not been laid out before requesting focus.
 	 */
-	private View mChildToScrollTo = null;
+	private View mChildToScrollTo;
 
 	/**
 	 * True if the user is currently dragging this TwoDScrollView around. This is not the same as 'is being flung', which can be checked by
@@ -577,12 +577,8 @@ public class TwoDScrollView extends FrameLayout
 				}
 				else
 				{
-					final boolean viewIsCloserToVerticalBoundary = topFocus ?
-							viewTop < focusCandidate.getTop() :
-							viewBottom > focusCandidate.getBottom();
-					final boolean viewIsCloserToHorizontalBoundary = leftFocus ?
-							viewLeft < focusCandidate.getLeft() :
-							viewRight > focusCandidate.getRight();
+					final boolean viewIsCloserToVerticalBoundary = topFocus ? viewTop < focusCandidate.getTop() : viewBottom > focusCandidate.getBottom();
+					final boolean viewIsCloserToHorizontalBoundary = leftFocus ? viewLeft < focusCandidate.getLeft() : viewRight > focusCandidate.getRight();
 					if (foundFullyContainedFocusable)
 					{
 						if (viewIsFullyContained && viewIsCloserToVerticalBoundary && viewIsCloserToHorizontalBoundary)
@@ -680,7 +676,6 @@ public class TwoDScrollView extends FrameLayout
 	 */
 	private boolean scrollAndFocus(int directionY, int top, int bottom, int directionX, int left, int right)
 	{
-		boolean handled = true;
 		int height = getHeight();
 		int containerTop = getScrollY();
 		int containerBottom = containerTop + height;
@@ -694,6 +689,7 @@ public class TwoDScrollView extends FrameLayout
 		{
 			newFocused = this;
 		}
+		boolean handled = true;
 		if ((top >= containerTop && bottom <= containerBottom) || (left >= containerLeft && right <= containerRight))
 		{
 			handled = false;
@@ -726,9 +722,7 @@ public class TwoDScrollView extends FrameLayout
 			currentFocused = null;
 		}
 		View nextFocused = FocusFinder.getInstance().findNextFocus(this, currentFocused, direction);
-		final int maxJump = horizontal ?
-				getMaxScrollAmountHorizontal() :
-				getMaxScrollAmountVertical();
+		final int maxJump = horizontal ? getMaxScrollAmountHorizontal() : getMaxScrollAmountVertical();
 
 		if (!horizontal)
 		{
@@ -882,11 +876,9 @@ public class TwoDScrollView extends FrameLayout
 	protected void measureChild(View child, int parentWidthMeasureSpec, int parentHeightMeasureSpec)
 	{
 		ViewGroup.LayoutParams lp = child.getLayoutParams();
-		int childWidthMeasureSpec;
-		int childHeightMeasureSpec;
 
-		childWidthMeasureSpec = getChildMeasureSpec(parentWidthMeasureSpec, getPaddingLeft() + getPaddingRight(), lp.width);
-		childHeightMeasureSpec = MeasureSpec.makeMeasureSpec(0, MeasureSpec.UNSPECIFIED);
+		int childWidthMeasureSpec = getChildMeasureSpec(parentWidthMeasureSpec, getPaddingLeft() + getPaddingRight(), lp.width);
+		int childHeightMeasureSpec = MeasureSpec.makeMeasureSpec(0, MeasureSpec.UNSPECIFIED);
 
 		child.measure(childWidthMeasureSpec, childHeightMeasureSpec);
 	}
@@ -1100,9 +1092,7 @@ public class TwoDScrollView extends FrameLayout
 			direction = View.FOCUS_UP;
 		}
 
-		final View nextFocus = previouslyFocusedRect == null ?
-				FocusFinder.getInstance().findNextFocus(this, null, direction) :
-				FocusFinder.getInstance().findNextFocusFromRect(this, previouslyFocusedRect, direction);
+		final View nextFocus = previouslyFocusedRect == null ? FocusFinder.getInstance().findNextFocus(this, null, direction) : FocusFinder.getInstance().findNextFocusFromRect(this, previouslyFocusedRect, direction);
 
 		return nextFocus != null && nextFocus.requestFocus(direction, previouslyFocusedRect);
 	}
@@ -1199,9 +1189,7 @@ public class TwoDScrollView extends FrameLayout
 				newFocused = this;
 			}
 
-			if (newFocused != findFocus() && newFocused.requestFocus(movingDown ?
-					View.FOCUS_DOWN :
-					View.FOCUS_UP))
+			if (newFocused != findFocus() && newFocused.requestFocus(movingDown ? View.FOCUS_DOWN : View.FOCUS_UP))
 			{
 				this.mTwoDScrollViewMovedFocus = true;
 				this.mTwoDScrollViewMovedFocus = false;

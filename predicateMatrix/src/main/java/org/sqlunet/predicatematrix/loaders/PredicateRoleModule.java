@@ -57,10 +57,9 @@ public class PredicateRoleModule extends BasicModule
 	{
 		if (this.pmroleid != null)
 		{
-			Displayer displayer;
+			Displayer displayer = null;
 			switch (this.mode)
 			{
-				default:
 				case ROWS:
 					displayer = new DisplayerUngrouped();
 					break;

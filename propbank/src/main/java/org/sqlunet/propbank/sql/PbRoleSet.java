@@ -8,6 +8,7 @@ import java.util.List;
 
 /**
  * Role set
+ *
  * @author Bernard Bou
  */
 class PbRoleSet
@@ -34,10 +35,11 @@ class PbRoleSet
 
 	/**
 	 * Constructor
-	 * @param roleSetName name
-	 * @param roleSetHead head
+	 *
+	 * @param roleSetName  name
+	 * @param roleSetHead  head
 	 * @param roleSetDescr description
-	 * @param roleSetId id
+	 * @param roleSetId    id
 	 */
 	private PbRoleSet(final String roleSetName, final String roleSetHead, final String roleSetDescr, final long roleSetId)
 	{

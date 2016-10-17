@@ -89,8 +89,8 @@ class FnFrameElement
 	/**
 	 * Make sets of FEs from query built from annosetid
 	 *
-	 * @param connection  is the database connection
-	 * @param frameId is the word id to build query from
+	 * @param connection is the database connection
+	 * @param frameId    is the word id to build query from
 	 * @return list of FEs
 	 */
 	public static List<FnFrameElement> make(final SQLiteDatabase connection, final long frameId)

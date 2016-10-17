@@ -1,138 +1,138 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
 
-    <string name="app_name">SqlUNet Browser</string>
+	<string name="app_name">SqlUNet Browser</string>
 
-    <!-- ACTIONS -->
+	<!-- ACTIONS -->
 
-    <!-- menu -->
-    <string name="action_settings">Settings</string>
-    <string name="action_status">Status</string>
-    <string name="action_run">Run</string>
+	<!-- menu -->
+	<string name="action_settings">Settings</string>
+	<string name="action_status">Status</string>
+	<string name="action_run">Run</string>
 
-    <!-- setup -->
-    <string name="action_setup">Set up</string>
-    <string name="action_storage">Storage</string>
-    <string name="action_setup_sql">Set up with SQL</string>
-    <string name="action_setup_import">Import SQL data</string>
-    <string name="action_setup_indexes">Setup indexes</string>
-    <string name="action_setup_predicatematrix">Setup PredicateMatrix</string>
-    <string name="action_setup_textsearch" tools:keep="@string/action_setup_textsearch">Setup text search</string>
-    <string name="action_setup_textsearchfn" tools:keep="@string/action_setup_textsearchfn">Setup text search for FrameNet</string>
-    <string name="action_download">Download</string>
-    <string name="action_downloadDb">Download DB </string>
-    <string name="action_downloadSql">Download SQL </string>
+	<!-- setup -->
+	<string name="action_setup">Set up</string>
+	<string name="action_storage">Storage</string>
+	<string name="action_setup_sql">Set up with SQL</string>
+	<string name="action_setup_import">Import SQL data</string>
+	<string name="action_setup_indexes">Setup indexes</string>
+	<string name="action_setup_predicatematrix">Setup PredicateMatrix</string>
+	<string name="action_setup_textsearch" tools:keep="@string/action_setup_textsearch">Setup text search</string>
+	<string name="action_setup_textsearchfn" tools:keep="@string/action_setup_textsearchfn">Setup text search for FrameNet</string>
+	<string name="action_download">Download</string>
+	<string name="action_downloadDb">Download DB </string>
+	<string name="action_downloadSql">Download SQL </string>
 
-    <!-- search -->
-    <string name="action_text_search">Text search</string>
-    <string name="action_pm_search">PredicateMatrix search</string>
+	<!-- search -->
+	<string name="action_text_search">Text search</string>
+	<string name="action_pm_search">PredicateMatrix search</string>
 
-    <!-- management -->
-    <string name="action_management">Database Management</string>
-    <string name="action_create_database">Create database</string>
-    <string name="action_drop_database">Drop database</string>
-    <string name="action_drop_tables">Drop tables</string>
-    <string name="action_flush_tables">Flush tables</string>
-    <string name="action_vacuum">Compact</string>
-    <string name="action_tables_and_indices">Tables and Indices</string>
-    <string name="action_table_lexdomains">Lex Domains</string>
-    <string name="action_table_linktypes">Link types</string>
-    <string name="action_table_postypes">POS types</string>
-    <string name="action_table_adjpositiontypes">Adjective Position types</string>
+	<!-- management -->
+	<string name="action_management">Database Management</string>
+	<string name="action_create_database">Create database</string>
+	<string name="action_drop_database">Drop database</string>
+	<string name="action_drop_tables">Drop tables</string>
+	<string name="action_flush_tables">Flush tables</string>
+	<string name="action_vacuum">Compact</string>
+	<string name="action_tables_and_indices">Tables and Indices</string>
+	<string name="action_table_lexdomains">Lex Domains</string>
+	<string name="action_table_linktypes">Link types</string>
+	<string name="action_table_postypes">POS types</string>
+	<string name="action_table_adjpositiontypes">Adjective Position types</string>
 
-    <!-- misc -->
-    <string name="action_help">Help</string>
-    <string name="action_about">About</string>
-    <string name="action_appsettings">Application</string>
-    <string name="action_restart">Restart</string>
-    <string name="action_abort">Abort</string>
-    <string name="action_quit">Quit</string>
-    <string name="action_dismiss">Dismiss</string>
+	<!-- misc -->
+	<string name="action_help">Help</string>
+	<string name="action_about">About</string>
+	<string name="action_appsettings">Application</string>
+	<string name="action_restart">Restart</string>
+	<string name="action_abort">Abort</string>
+	<string name="action_quit">Quit</string>
+	<string name="action_dismiss">Dismiss</string>
 
-    <!-- labels -->
-    <string name="title_activity_selector">Senses</string>
-    <string name="title_activity_xselector">Senses per base</string>
-    <string name="title_activity_sense">Sense</string>
-    <string name="title_activity_table">Table</string>
-    <string name="title_activity_synset">Synset</string>
-    <string name="title_activity_vnclass">VerbNet Class</string>
-    <string name="title_activity_pbroleset">Propbank RoleSet</string>
-    <string name="title_activity_fnframe">FrameNet Frame</string>
-    <string name="title_activity_fnlexunit">FrameNet LexUnit</string>
-    <string name="title_activity_fnsentence">FrameNet Sentence</string>
-    <string name="title_activity_fnannoset">FrameNet AnnoSet</string>
+	<!-- labels -->
+	<string name="title_activity_selector">Senses</string>
+	<string name="title_activity_xselector">Senses per base</string>
+	<string name="title_activity_sense">Sense</string>
+	<string name="title_activity_table">Table</string>
+	<string name="title_activity_synset">Synset</string>
+	<string name="title_activity_vnclass">VerbNet Class</string>
+	<string name="title_activity_pbroleset">Propbank RoleSet</string>
+	<string name="title_activity_fnframe">FrameNet Frame</string>
+	<string name="title_activity_fnlexunit">FrameNet LexUnit</string>
+	<string name="title_activity_fnsentence">FrameNet Sentence</string>
+	<string name="title_activity_fnannoset">FrameNet AnnoSet</string>
 
-    <string name="title_activity_web">Web</string>
-    <string name="title_activity_setup">Setup</string>
-    <string name="title_activity_storage">Storage</string>
-    <string name="title_activity_status">Status</string>
-    <string name="title_activity_download">Download</string>
-    <string name="title_activity_management">Management</string>
-    <string name="title_activity_text_search">Text Search</string>
+	<string name="title_activity_web">Web</string>
+	<string name="title_activity_setup">Setup</string>
+	<string name="title_activity_storage">Storage</string>
+	<string name="title_activity_status">Status</string>
+	<string name="title_activity_download">Download</string>
+	<string name="title_activity_management">Management</string>
+	<string name="title_activity_text_search">Text Search</string>
 
-    <!-- status -->
-    <string name="status_data_ok">Data is available</string>
-    <string name="status_data_fail">Data is unavailable</string>
-    <string name="status_database">Database</string>
-    <string name="status_indexes">Indexes</string>
-    <string name="status_predicatematrix">Predicate Matrix</string>
-    <string name="status_textsearch">Text Search on WordNet</string>
-    <string name="status_textsearchfn">Text Search on FrameNet</string>
-    <string name="status_downloading">Downloading</string>
-    <string name="status_download_fail">Download failed!</string>
-    <string name="status_download_paused">Download paused!</string>
-    <string name="status_download_pending">Download pending!</string>
-    <string name="status_download_running">Download in progress!</string>
-    <string name="status_download_successful">Download complete!</string>
-    <string name="status_managing">Managing</string>
-    <string name="status_op_running">running</string>
-    <string name="status_op_done">done</string>
-    <string name="status_op_failed">failed</string>
-    <string name="status_update_start">Start update</string>
-    <string name="status_update_success">Update succeeded</string>
-    <string name="status_update_failure">Update failed</string>
-    <string name="status_error_null_download_url">Null download URL (see Settings)</string>
-    <string name="status_provider_query_failed">Could not perform query, cause is logged</string>
+	<!-- status -->
+	<string name="status_data_ok">Data is available</string>
+	<string name="status_data_fail">Data is unavailable</string>
+	<string name="status_database">Database</string>
+	<string name="status_indexes">Indexes</string>
+	<string name="status_predicatematrix">Predicate Matrix</string>
+	<string name="status_textsearch">Text Search on WordNet</string>
+	<string name="status_textsearchfn">Text Search on FrameNet</string>
+	<string name="status_downloading">Downloading</string>
+	<string name="status_download_fail">Download failed!</string>
+	<string name="status_download_paused">Download paused!</string>
+	<string name="status_download_pending">Download pending!</string>
+	<string name="status_download_running">Download in progress!</string>
+	<string name="status_download_successful">Download complete!</string>
+	<string name="status_managing">Managing</string>
+	<string name="status_op_running">running</string>
+	<string name="status_op_done">done</string>
+	<string name="status_op_failed">failed</string>
+	<string name="status_update_start">Start update</string>
+	<string name="status_update_success">Update succeeded</string>
+	<string name="status_update_failure">Update failed</string>
+	<string name="status_error_null_download_url">Null download URL (see Settings)</string>
+	<string name="status_provider_query_failed">Could not perform query, cause is logged</string>
 
-    <!-- misc -->
-    <string name="hint_search">Search WordNet</string>
-    <string name="hint_search_text">Text Search WordNet</string>
-    <string name="hint_splash">Exploring Semantic Roles</string>
-    <string name="tip_search_mode">Search Mode</string>
-    <string name="tip_selector">Selector Mode</string>
+	<!-- misc -->
+	<string name="hint_search">Search WordNet</string>
+	<string name="hint_search_text">Text Search WordNet</string>
+	<string name="hint_splash">Exploring Semantic Roles</string>
+	<string name="tip_search_mode">Search Mode</string>
+	<string name="tip_selector">Selector Mode</string>
 
-    <!-- items -->
-    <string name="download_source">source</string>
-    <string name="download_dest">destination</string>
-    <string name="item">item</string>
+	<!-- items -->
+	<string name="download_source">source</string>
+	<string name="download_dest">destination</string>
+	<string name="item">item</string>
 
-    <!-- databases -->
-    <!--
-        <string name="sqlunet">SqlUNet</string>
-        <string name="wordnet">WordNet</string>
-        <string name="framenet">FrameNet</string>
-        <string name="propbank">PropBank</string>
-        <string name="verbnet">VerbNet</string>
-        <string name="bnc">BNC</string>
-        <string name="xnet">XNet</string>
-    -->
+	<!-- databases -->
+	<!--
+		<string name="sqlunet">SqlUNet</string>
+		<string name="wordnet">WordNet</string>
+		<string name="framenet">FrameNet</string>
+		<string name="propbank">PropBank</string>
+		<string name="verbnet">VerbNet</string>
+		<string name="bnc">BNC</string>
+		<string name="xnet">XNet</string>
+	-->
 
-    <!-- arrays -->
-    <string-array name="text_search_titles">
-        <item>Words</item>
-        <item>Definitions</item>
-        <item>Samples</item>
-        <item>FrameNet Sentences</item>
-    </string-array>
-    <string-array name="text_search_values">
-        <item>words</item>
-        <item>definitions</item>
-        <item>samples</item>
-        <item>fnsentences</item>
-    </string-array>
-    <string-array name="selectors">
-        <item>senses</item>
-        <item>per base</item>
-    </string-array>
+	<!-- arrays -->
+	<string-array name="text_search_titles">
+		<item>Words</item>
+		<item>Definitions</item>
+		<item>Samples</item>
+		<item>FrameNet Sentences</item>
+	</string-array>
+	<string-array name="text_search_values">
+		<item>words</item>
+		<item>definitions</item>
+		<item>samples</item>
+		<item>fnsentences</item>
+	</string-array>
+	<string-array name="selectors">
+		<item>senses</item>
+		<item>per base</item>
+	</string-array>
 
 </resources>

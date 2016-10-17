@@ -114,11 +114,11 @@ public class VerbNetProvider extends SqlUNetProvider
 		}
 
 		// choose the table to query and a sort order based on the code returned for the incoming URI
-		String table;
 		String selection = selection0;
-		String groupBy = null;
 		final int code = VerbNetProvider.uriMatcher.match(uri);
 		Log.d(VerbNetProvider.TAG + "URI", String.format("%s (code %s)\n", uri, code)); //$NON-NLS-1$ //$NON-NLS-2$
+		String groupBy = null;
+		String table;
 		switch (code)
 		{
 

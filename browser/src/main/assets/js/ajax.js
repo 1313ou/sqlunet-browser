@@ -25,17 +25,17 @@ function Ajax()
  * @memberOf Ajax
  * @type method
  * @param {String}
- *            thisXmlUrl the document url
+ *            xmlUrl the document url
  * @return {Document} DOMDocument result
  * @see Sarissa
  * @see http://www.sarissa.org
  */
-Ajax.getXml = function(thisXmlUrl)
+Ajax.getXml = function(xmlUrl)
 {
-	var thisRequest = new XMLHttpRequest();
-	thisRequest.open('GET', thisXmlUrl, false);
-	thisRequest.send(null);
-	return thisRequest.responseXML;
+	var request = new XMLHttpRequest();
+	request.open('GET', xmlUrl, false);
+	request.send(null);
+	return request.responseXML;
 };
 
 /**
@@ -44,17 +44,17 @@ Ajax.getXml = function(thisXmlUrl)
  * @memberOf Ajax
  * @type method
  * @param {String}
- *            thisXslUrl the XSLT stylesheet document url
+ *            xslUrl the XSLT stylesheet document url
  * @return {XSLTProcessor} XSLTProcessor
  * @see Sarissa
  * @see http://www.sarissa.org
  */
-Ajax.getProcessor = function(thisXslUrl)
+Ajax.getProcessor = function(xslUrl)
 {
-	var thisXsl = Ajax.getXml(thisXslUrl);
-	var thisProcessor = new XSLTProcessor();
-	thisProcessor.importStylesheet(thisXsl);
-	return thisProcessor;
+	var xsl = Ajax.getXml(xslUrl);
+	var processor = new XSLTProcessor();
+	processor.importStylesheet(xsl);
+	return processor;
 };
 
 /**
@@ -63,17 +63,17 @@ Ajax.getProcessor = function(thisXslUrl)
  * @memberOf Ajax
  * @type method
  * @param {String}
- *            thisId the node's id
+ *            id the node's id
  * @param {String}
- *            thisXmlUrl the XML document url
+ *            xmlUrl the XML document url
  * @param {Function}
  *            onEnd the callback called when asynchronous operation completes
  * @see Sarissa
  * @see http://www.sarissa.org
  */
-Ajax.insertHtml = function(thisId, thisXmlUrl, onEnd)
+Ajax.insertHtml = function(id, xmlUrl, onEnd)
 {
-	Sarissa.updateContentFromURI(thisXmlUrl, document.getElementById(thisId), null, onEnd, false);
+	Sarissa.updateContentFromURI(xmlUrl, document.getElementById(id), null, onEnd, false);
 };
 
 /**
@@ -82,18 +82,18 @@ Ajax.insertHtml = function(thisId, thisXmlUrl, onEnd)
  * @memberOf Ajax
  * @type method
  * @param {String}
- *            thisId the node's id
+ *            id the node's id
  * @param {String}
- *            thisXmlUrl the XML document url
+ *            xmlUrl the XML document url
  * @param {String}
- *            thisXslUrl the XSLT stylesheet document url
+ *            xslUrl the XSLT stylesheet document url
  * @param {Function}
  *            onEnd the callback called when asynchronous operation completes
  * @see Sarissa
  * @see http://www.sarissa.org
  */
-Ajax.insertHtmlXsl = function(thisId, thisXmlUrl, thisXslUrl, onEnd)
+Ajax.insertHtmlXsl = function(id, xmlUrl, xslUrl, onEnd)
 {
-	var thisProcessor = Ajax.getProcessor(thisXslUrl);
-	Sarissa.updateContentFromURI(thisXmlUrl, document.getElementById(thisId), thisProcessor, onEnd, false);
+	var processor = Ajax.getProcessor(xslUrl);
+	Sarissa.updateContentFromURI(xmlUrl, document.getElementById(id), processor, onEnd, false);
 };

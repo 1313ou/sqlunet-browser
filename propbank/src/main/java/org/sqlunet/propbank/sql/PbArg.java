@@ -2,6 +2,11 @@ package org.sqlunet.propbank.sql;
 
 import java.util.Locale;
 
+/**
+ * Argument
+ *
+ * @author Bernard Bou
+ */
 class PbArg
 {
 	public final String nArg;
@@ -14,21 +19,19 @@ class PbArg
 
 	public final String subText;
 
-	private PbArg(final String thisNArg, final String thisF, final String thisDescription, final String thisVnTheta, final String thisSubText)
+	private PbArg(final String nArg, final String f, final String description, final String vnTheta, final String subText)
 	{
-		this.nArg = thisNArg;
-		this.f = thisF;
-		this.vnTheta = thisVnTheta;
-		this.description = thisDescription;
-		this.subText = thisSubText;
+		this.nArg = nArg;
+		this.f = f;
+		this.vnTheta = vnTheta;
+		this.description = description;
+		this.subText = subText;
 	}
 
-	public PbArg(final String... theseArgFields)
+	public PbArg(final String... argFields)
 	{
-		this(theseArgFields[0], theseArgFields[1].equals("*") ?
-				null :
-				theseArgFields[1], theseArgFields[2].toLowerCase(Locale.ENGLISH), theseArgFields[3].equals("*") ?
-				null :
-				theseArgFields[3], theseArgFields[4]); //$NON-NLS-1$ //$NON-NLS-2$
+		this(argFields[0], "*".equals(argFields[1]) ? //$NON-NLS-1$
+				null : argFields[1], argFields[2].toLowerCase(Locale.ENGLISH), "*".equals(argFields[3]) ? //$NON-NLS-1$
+				null : argFields[3], argFields[4]);
 	}
 }

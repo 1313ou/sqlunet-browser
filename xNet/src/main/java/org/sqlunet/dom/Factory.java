@@ -7,6 +7,8 @@ import java.io.StringWriter;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.Result;
+import javax.xml.transform.Source;
 import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactory;
@@ -54,11 +56,11 @@ public class Factory
 	{
 		try
 		{
-			final DOMSource source = new DOMSource(document);
+			final Source source = new DOMSource(document);
 
 			// output stream
 			final StringWriter os = new StringWriter();
-			final StreamResult result = new StreamResult(os);
+			final Result result = new StreamResult(os);
 
 			// use a Transformer for output
 			final TransformerFactory tf = TransformerFactory.newInstance();

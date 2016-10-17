@@ -3,11 +3,11 @@
           xmlns:tools="http://schemas.android.com/tools"
           package="org.sqlunet.treeview">
 
-    <uses-sdk
-        android:minSdkVersion="11"
-        android:targetSdkVersion="24"
-        tools:ignore="GradleOverrides"/>
+	<uses-sdk
+		android:minSdkVersion="11"
+		android:targetSdkVersion="24"
+		tools:ignore="GradleOverrides"/>
 
-    <application android:allowBackup="true"/>
+	<application android:allowBackup="true"/>
 
 </manifest>

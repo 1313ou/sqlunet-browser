@@ -62,9 +62,6 @@ public class BNCFragment extends Fragment
 		final Parcelable pointer = args.getParcelable(SqlUNetContract.ARG_QUERYPOINTER);
 
 		// module
-		/*
-	  Module
-	 */
 		Module module = new BasicModule(this);
 		module.init(pointer);
 		module.process(queryNode);

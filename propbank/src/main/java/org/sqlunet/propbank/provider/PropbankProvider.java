@@ -102,12 +102,12 @@ public class PropbankProvider extends SqlUNetProvider
 		}
 
 		// choose the table to query and a sort order based on the code returned for the incoming URI
-		String table;
 		String selection = selection0;
-		String groupBy = null;
 		String sortOrder = sortOrder0;
 		final int code = PropbankProvider.uriMatcher.match(uri);
 		Log.d(PropbankProvider.TAG + "URI", String.format("%s (code %s)\n", uri, code)); //$NON-NLS-1$ //$NON-NLS-2$
+		String groupBy = null;
+		String table;
 		switch (code)
 		{
 
@@ -151,6 +151,7 @@ public class PropbankProvider extends SqlUNetProvider
 			case PBROLESETS_PBEXAMPLES_BY_EXAMPLE:
 				groupBy = "e.exampleid"; //$NON-NLS-1$
 				//$FALL-THROUGH$
+				//noinspection fallthrough
 			case PBROLESETS_PBEXAMPLES:
 				table = "pbrolesets " + // //$NON-NLS-1$
 						"INNER JOIN pbexamples AS e USING (rolesetid) " + // //$NON-NLS-1$

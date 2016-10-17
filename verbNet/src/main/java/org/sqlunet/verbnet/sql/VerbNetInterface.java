@@ -17,76 +17,76 @@ interface VerbNetInterface
 	/**
 	 * Business method the returns VerbNet selector data as DOM document
 	 *
-	 * @param thisWord is the target word
+	 * @param word is the target word
 	 * @return VerbNet selector data as DOM document
 	 */
-	Document querySelectorDoc(final SQLiteDatabase thisConnection, final String thisWord);
+	Document querySelectorDoc(final SQLiteDatabase connection, final String word);
 
 	/**
 	 * Business method that returns VerbNet selector data as XML
 	 *
-	 * @param thisWord is the target word
+	 * @param word is the target word
 	 * @return VerbNet selector data as XML
 	 */
-	String querySelectorXML(final SQLiteDatabase thisConnection, final String thisWord);
+	String querySelectorXML(final SQLiteDatabase connection, final String word);
 
 	// D E T A I L
 
 	/**
 	 * Business method the returns VerbNet data as DOM document from word
 	 *
-	 * @param thisWord is the target word
+	 * @param word is the target word
 	 * @return VerbNet data as DOM document
 	 */
-	Document queryDoc(final SQLiteDatabase thisConnection, final String thisWord);
+	Document queryDoc(final SQLiteDatabase connection, final String word);
 
 	/**
 	 * Business method that returns VerbNet data as XML from word
 	 *
-	 * @param thisWord is the target word
+	 * @param word is the target word
 	 * @return VerbNet data as XML
 	 */
-	String queryXML(final SQLiteDatabase thisConnection, final String thisWord);
+	String queryXML(final SQLiteDatabase connection, final String word);
 
 	/**
 	 * Business method that returns VerbNet data as DOM document from sense
 	 *
-	 * @param thisWordId   is the word id to build query from
-	 * @param thisSynsetId is the synset id to build query from (-1 if any)
-	 * @param thisPos      the pos to build query from
+	 * @param wordId   is the word id to build query from
+	 * @param synsetId is the synset id to build query from (-1 if any)
+	 * @param pos      the pos to build query from
 	 * @return VerbNet data as DOM document
 	 */
-	Document queryDoc(final SQLiteDatabase thisConnection, final long thisWordId, final Long thisSynsetId, final Character thisPos);
+	Document queryDoc(final SQLiteDatabase connection, final long wordId, final Long synsetId, final Character pos);
 
 	/**
 	 * Business method that returns VerbNet data as XML from sense
 	 *
-	 * @param thisWordId   is the target word id
-	 * @param thisSynsetId is the target synset id (-1 if any)
-	 * @param thisPos      the pos to build query from
+	 * @param wordId   is the target word id
+	 * @param synsetId is the target synset id (-1 if any)
+	 * @param pos      the pos to build query from
 	 * @return VerbNet data as XML
 	 */
-	String queryXML(final SQLiteDatabase thisConnection, final long thisWordId, final Long thisSynsetId, final Character thisPos);
+	String queryXML(final SQLiteDatabase connection, final long wordId, final Long synsetId, final Character pos);
 
 	// I T E M S
 
 	/**
 	 * Business method the returns class data as DOM document from class id
 	 *
-	 * @param thisConnection database connection
-	 * @param thisClassId    the class to build query from
-	 * @param thisPos        the pos to build query from
+	 * @param connection database connection
+	 * @param classId    the class to build query from
+	 * @param pos        the pos to build query from
 	 * @return VerbNet class data as DOM document
 	 */
-	Document queryClassDoc(final SQLiteDatabase thisConnection, final long thisClassId, final Character thisPos);
+	Document queryClassDoc(final SQLiteDatabase connection, final long classId, final Character pos);
 
 	/**
 	 * Business method that returns class data as XML
 	 *
-	 * @param thisConnection database connection
-	 * @param thisClassId    the class to build query from
-	 * @param thisPos        the pos to build query from
+	 * @param connection database connection
+	 * @param classId    the class to build query from
+	 * @param pos        the pos to build query from
 	 * @return VerbNet class data as XML
 	 */
-	String queryClassXML(final SQLiteDatabase thisConnection, final long thisClassId, final Character thisPos);
+	String queryClassXML(final SQLiteDatabase connection, final long classId, final Character pos);
 }

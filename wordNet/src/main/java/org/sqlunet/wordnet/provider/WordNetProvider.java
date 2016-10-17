@@ -302,11 +302,11 @@ public class WordNetProvider extends SqlUNetProvider
 
 		String[] projection = projection0;
 		String selection = selection0;
-		String table;
-		String groupBy = null;
 		final int code = WordNetProvider.uriMatcher.match(uri);
 		Log.d(WordNetProvider.TAG + "URI", String.format("%s (code %s)\n", uri, code)); //$NON-NLS-1$ //$NON-NLS-2$
 
+		String groupBy = null;
+		String table;
 		switch (code)
 		{
 
@@ -378,114 +378,114 @@ public class WordNetProvider extends SqlUNetProvider
 			// J O I N S
 
 			case WORDS_SENSES_SYNSETS:
-				table = "words " + // //$NON-NLS-1$
-						"LEFT JOIN senses USING (wordid) " + // //$NON-NLS-1$
+				table = "words " + //$NON-NLS-1$
+						"LEFT JOIN senses USING (wordid) " + //$NON-NLS-1$
 						"LEFT JOIN synsets USING (synsetid)"; //$NON-NLS-1$
 				break;
 
 			case WORDS_SENSES_CASEDWORDS_SYNSETS:
-				table = "words " + // //$NON-NLS-1$
-						"LEFT JOIN senses USING (wordid) " + // //$NON-NLS-1$
-						"LEFT JOIN casedwords USING (wordid,casedwordid) " + // //$NON-NLS-1$
+				table = "words " + //$NON-NLS-1$
+						"LEFT JOIN senses USING (wordid) " + //$NON-NLS-1$
+						"LEFT JOIN casedwords USING (wordid,casedwordid) " + //$NON-NLS-1$
 						"LEFT JOIN synsets USING (synsetid)"; //$NON-NLS-1$
 				break;
 
 			case WORDS_SENSES_CASEDWORDS_SYNSETS_POSTYPES_LEXDOMAINS:
-				table = "words " + // //$NON-NLS-1$
-						"LEFT JOIN senses USING (wordid) " + // //$NON-NLS-1$
-						"LEFT JOIN casedwords USING (wordid,casedwordid) " + // //$NON-NLS-1$
-						"LEFT JOIN synsets USING (synsetid) " + // //$NON-NLS-1$
-						"LEFT JOIN postypes USING (pos) " + // //$NON-NLS-1$
+				table = "words " + //$NON-NLS-1$
+						"LEFT JOIN senses USING (wordid) " + //$NON-NLS-1$
+						"LEFT JOIN casedwords USING (wordid,casedwordid) " + //$NON-NLS-1$
+						"LEFT JOIN synsets USING (synsetid) " + //$NON-NLS-1$
+						"LEFT JOIN postypes USING (pos) " + //$NON-NLS-1$
 						"LEFT JOIN lexdomains USING (lexdomainid)"; //$NON-NLS-1$
 				break;
 
 			case SENSES_WORDS:
-				table = "senses " + // //$NON-NLS-1$
+				table = "senses " + //$NON-NLS-1$
 						"LEFT JOIN words USING(wordid)"; //$NON-NLS-1$
 				break;
 
 			case SENSES_WORDS_BY_SYNSET:
 				groupBy = "synsetid"; //$NON-NLS-1$
-				table = "senses " + // //$NON-NLS-1$
+				table = "senses " + //$NON-NLS-1$
 						"LEFT JOIN words USING(wordid)"; //$NON-NLS-1$
 				projection = SqlUNetProvider.appendProjection(projection, "GROUP_CONCAT(words.lemma, ', ' ) AS members"); //$NON-NLS-1$
 				break;
 
 			case SENSES_SYNSETS_POSTYPES_LEXDOMAINS:
-				table = "senses " + // //$NON-NLS-1$
-						"INNER JOIN synsets USING (synsetid) " + // //$NON-NLS-1$
-						"LEFT JOIN postypes USING(pos) " + // //$NON-NLS-1$
+				table = "senses " + //$NON-NLS-1$
+						"INNER JOIN synsets USING (synsetid) " + //$NON-NLS-1$
+						"LEFT JOIN postypes USING(pos) " + //$NON-NLS-1$
 						"LEFT JOIN lexdomains USING(lexdomainid)"; //$NON-NLS-1$
 				break;
 
 			case SYNSETS_POSTYPES_LEXDOMAINS:
-				table = "synsets " + // //$NON-NLS-1$
-						"LEFT JOIN postypes USING(pos) " + // //$NON-NLS-1$
+				table = "synsets " + //$NON-NLS-1$
+						"LEFT JOIN postypes USING(pos) " + //$NON-NLS-1$
 						"LEFT JOIN lexdomains USING(lexdomainid)"; //$NON-NLS-1$
 				break;
 
 			case SEMLINKS_SYNSETS:
-				table = "semlinks AS l " + // //$NON-NLS-1$
+				table = "semlinks AS l " + //$NON-NLS-1$
 						"INNER JOIN synsets AS d ON l.synset2id = d.synsetid"; //$NON-NLS-1$
 				break;
 
 			case SEMLINKS_SYNSETS_X:
-				table = "semlinks AS l " + // //$NON-NLS-1$
-						"INNER JOIN synsets AS d ON l.synset2id = d.synsetid " + // //$NON-NLS-1$
+				table = "semlinks AS l " + //$NON-NLS-1$
+						"INNER JOIN synsets AS d ON l.synset2id = d.synsetid " + //$NON-NLS-1$
 						"LEFT JOIN linktypes USING (linkid)"; //$NON-NLS-1$
 				break;
 
 			case SEMLINKS_SYNSETS_WORDS_X_BY_SYNSET:
 				groupBy = "d.synsetid"; //$NON-NLS-1$
-				table = "semlinks AS l " + // //$NON-NLS-1$
-						"INNER JOIN synsets AS d ON l.synset2id = d.synsetid " + // //$NON-NLS-1$
-						"LEFT JOIN linktypes USING (linkid) " + // //$NON-NLS-1$
-						"LEFT JOIN senses ON d.synsetid = senses.synsetid " + // //$NON-NLS-1$
+				table = "semlinks AS l " + //$NON-NLS-1$
+						"INNER JOIN synsets AS d ON l.synset2id = d.synsetid " + //$NON-NLS-1$
+						"LEFT JOIN linktypes USING (linkid) " + //$NON-NLS-1$
+						"LEFT JOIN senses ON d.synsetid = senses.synsetid " + //$NON-NLS-1$
 						"LEFT JOIN words USING (wordid)"; //$NON-NLS-1$
 				projection = SqlUNetProvider.appendProjection(projection, "GROUP_CONCAT(words.lemma, ', ' ) AS members"); //$NON-NLS-1$
 				break;
 
 			case LEXLINKS_SENSES:
-				table = "lexlinks AS l " + // //$NON-NLS-1$
-						"INNER JOIN synsets AS d ON l.synset2id = d.synsetid " + // //$NON-NLS-1$
+				table = "lexlinks AS l " + //$NON-NLS-1$
+						"INNER JOIN synsets AS d ON l.synset2id = d.synsetid " + //$NON-NLS-1$
 						"INNER JOIN words AS w ON l.word2id = w.wordid"; //$NON-NLS-1$
 				break;
 
 			case LEXLINKS_SENSES_X:
-				table = "lexlinks AS l " + // //$NON-NLS-1$
-						"INNER JOIN synsets AS d ON l.synset2id = d.synsetid " + // //$NON-NLS-1$
-						"INNER JOIN words AS w ON l.word2id = w.wordid " + // //$NON-NLS-1$
+				table = "lexlinks AS l " + //$NON-NLS-1$
+						"INNER JOIN synsets AS d ON l.synset2id = d.synsetid " + //$NON-NLS-1$
+						"INNER JOIN words AS w ON l.word2id = w.wordid " + //$NON-NLS-1$
 						"LEFT JOIN linktypes USING (linkid)"; //$NON-NLS-1$
 				break;
 
 			case LEXLINKS_SENSES_WORDS_X_BY_SYNSET:
 				groupBy = "d.synsetid"; //$NON-NLS-1$
 				projection = SqlUNetProvider.appendProjection(projection, "GROUP_CONCAT(DISTINCT t.lemma) AS members"); //$NON-NLS-1$
-				table = "lexlinks AS l " + // //$NON-NLS-1$
-						"INNER JOIN synsets AS d ON l.synset2id = d.synsetid " + // //$NON-NLS-1$
-						"INNER JOIN words AS w ON l.word2id = w.wordid " + // //$NON-NLS-1$
-						"LEFT JOIN linktypes USING (linkid) " + // //$NON-NLS-1$
-						"LEFT JOIN senses AS s ON d.synsetid = s.synsetid " + // //$NON-NLS-1$
+				table = "lexlinks AS l " + //$NON-NLS-1$
+						"INNER JOIN synsets AS d ON l.synset2id = d.synsetid " + //$NON-NLS-1$
+						"INNER JOIN words AS w ON l.word2id = w.wordid " + //$NON-NLS-1$
+						"LEFT JOIN linktypes USING (linkid) " + //$NON-NLS-1$
+						"LEFT JOIN senses AS s ON d.synsetid = s.synsetid " + //$NON-NLS-1$
 						"LEFT JOIN words AS t USING (wordid)"; //$NON-NLS-1$
 				break;
 
 			case VFRAMEMAPS_VFRAMES:
-				table = "vframemaps " + // //$NON-NLS-1$
+				table = "vframemaps " + //$NON-NLS-1$
 						"LEFT JOIN vframes USING (frameid)"; //$NON-NLS-1$
 				break;
 
 			case VFRAMESENTENCEMAPS_VFRAMESENTENCES:
-				table = "vframesentencemaps " + // //$NON-NLS-1$
+				table = "vframesentencemaps " + //$NON-NLS-1$
 						"LEFT JOIN vframesentences USING (sentenceid)"; //$NON-NLS-1$
 				break;
 
 			case ADJPOSITIONS_ADJPOSITIONTYPES:
-				table = "adjpositions " + // //$NON-NLS-1$
+				table = "adjpositions " + //$NON-NLS-1$
 						"LEFT JOIN adjpositiontypes USING (position)"; //$NON-NLS-1$
 				break;
 
 			case MORPHMAPS_MORPHS:
-				table = "morphmaps " + // //$NON-NLS-1$
+				table = "morphmaps " + //$NON-NLS-1$
 						"LEFT JOIN morphs USING (morphid)"; //$NON-NLS-1$
 				break;
 
@@ -513,15 +513,22 @@ public class WordNetProvider extends SqlUNetProvider
 					return null;
 				}
 				table = "words_lemma_fts4"; //$NON-NLS-1$
-				return this.db.query(table, new String[]{"wordid AS _id", "lemma AS " + SearchManager.SUGGEST_COLUMN_TEXT_1, "lemma AS " + SearchManager.SUGGEST_COLUMN_QUERY}, "lemma MATCH ?", new String[]{last}, null, null, null);
+				return this.db.query(table, new String[]{"wordid AS _id", //$NON-NLS-1$
+								"lemma AS " + SearchManager.SUGGEST_COLUMN_TEXT_1, //$NON-NLS-1$
+								"lemma AS " + SearchManager.SUGGEST_COLUMN_QUERY}, //$NON-NLS-1$
+						"lemma MATCH ?", //$NON-NLS-1$
+						new String[]{last}, null, null, null);
 			}
 
 			case LOOKUP_DEFINITIONS:
 			{
 				final String last = uri.getLastPathSegment();
 				table = "synsets_definition_fts4"; //$NON-NLS-1$
-				return this.db.query(table, new String[]{"synsetid AS _id", "definition AS " + SearchManager.SUGGEST_COLUMN_TEXT_1, "definition AS " + SearchManager.SUGGEST_COLUMN_QUERY}, "definition MATCH ?", new String[]{last}, null, //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
-						null, null);
+				return this.db.query(table, new String[]{"synsetid AS _id", //$NON-NLS-1$
+								"definition AS " + SearchManager.SUGGEST_COLUMN_TEXT_1, //$NON-NLS-1$
+								"definition AS " + SearchManager.SUGGEST_COLUMN_QUERY}, //$NON-NLS-1$
+						"definition MATCH ?", //$NON-NLS-1$
+						new String[]{last}, null, null, null);
 			}
 
 			case LOOKUP_SAMPLES:
@@ -532,7 +539,10 @@ public class WordNetProvider extends SqlUNetProvider
 					return null;
 				}
 				table = "samples_sample_fts4"; //$NON-NLS-1$
-				return this.db.query(table, new String[]{"sampleid AS _id", "sample AS " + SearchManager.SUGGEST_COLUMN_TEXT_1, "sample AS " + SearchManager.SUGGEST_COLUMN_QUERY}, "sample MATCH ?", new String[]{last}, null, null, null);
+				return this.db.query(table, new String[]{"sampleid AS _id", //$NON-NLS-1$
+								"sample AS " + SearchManager.SUGGEST_COLUMN_TEXT_1, //$NON-NLS-1$
+								"sample AS " + SearchManager.SUGGEST_COLUMN_QUERY}, //$NON-NLS-1$
+						"sample MATCH ?", new String[]{last}, null, null, null); //$NON-NLS-1$
 			}
 
 			case UriMatcher.NO_MATCH:

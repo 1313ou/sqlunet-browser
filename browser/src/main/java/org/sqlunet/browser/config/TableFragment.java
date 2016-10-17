@@ -13,6 +13,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CursorAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
@@ -27,6 +28,7 @@ import org.sqlunet.provider.SqlUNetContract;
 import org.sqlunet.wordnet.SynsetPointer;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
@@ -136,7 +138,7 @@ public class TableFragment extends ListFragment
 		// Log.d(TableFragment.TAG + "From", TableFragment.toString(from));
 
 		// to (view ids)
-		final List<Integer> to0 = new ArrayList<>();
+		final Collection<Integer> to0 = new ArrayList<>();
 		if (items != null)
 		{
 			for (int i = 0; i < items.length; i++)
@@ -184,10 +186,10 @@ public class TableFragment extends ListFragment
 				}
 
 				final String[] projection = fields0.toArray(new String[0]);
-				for (String p : projection)
-				{
-					System.out.println(p);
-				}
+				// for (String p : projection)
+				// {
+				//	System.out.println(p);
+				//}
 				final String[] selectionArgs = queryArg == null ? null : new String[]{queryArg};
 				return new CursorLoader(getActivity(), uri, projection, selection, selectionArgs, sort);
 			}
@@ -200,13 +202,13 @@ public class TableFragment extends ListFragment
 					Toast.makeText(getActivity(), R.string.status_provider_query_failed, Toast.LENGTH_LONG).show();
 				}
 
-				((SimpleCursorAdapter) getListAdapter()).swapCursor(cursor);
+				((CursorAdapter) getListAdapter()).swapCursor(cursor);
 			}
 
 			@Override
 			public void onLoaderReset(final Loader<Cursor> loader)
 			{
-				((SimpleCursorAdapter) getListAdapter()).swapCursor(null);
+				((CursorAdapter) getListAdapter()).swapCursor(null);
 			}
 		});
 	}
@@ -249,7 +251,7 @@ public class TableFragment extends ListFragment
 			if ("org.sqlunet.framenet.browser.SentenceActivity".equals(className)) //$NON-NLS-1$
 			{
 				// build pointer
-				final FnSentencePointer sentencePointer = new FnSentencePointer(targetId);
+				@SuppressWarnings("TypeMayBeWeakened") final FnSentencePointer sentencePointer = new FnSentencePointer(targetId);
 
 				// pass pointer
 				this.targetIntent.putExtra(SqlUNetContract.ARG_QUERYACTION, SqlUNetContract.ARG_QUERYACTION_FNSENTENCE);

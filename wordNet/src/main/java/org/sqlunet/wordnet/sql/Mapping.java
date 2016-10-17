@@ -9,6 +9,7 @@ package org.sqlunet.wordnet.sql;
 import android.annotation.SuppressLint;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 import android.util.SparseArray;
 
 import java.util.ArrayList;
@@ -19,120 +20,6 @@ import java.util.Map;
 import java.util.Set;
 
 /**
- * LexDomainDef, utility class to encapsulate lexdomain data
- *
- * @author <a href="mailto:bbou@ac-toulouse.fr">Bernard Bou</a>
- */
-class LexDomainDef
-{
-	/**
-	 * <code>id</code> is the lexdomain id
-	 */
-	public final int id;
-
-	/**
-	 * <code>pos</code> is the pos id
-	 */
-	@SuppressWarnings("unused")
-	public final int pos;
-
-	/**
-	 * <code>posName</code> is the part-of-speech
-	 */
-	public final String posName;
-
-	/**
-	 * <code>lexDomainName</code> is the lexdomain name
-	 */
-	public final String lexDomainName;
-
-	/**
-	 * Constructor
-	 *
-	 * @param id   is the lexdomain id
-	 * @param pos  is the part-of-speech-id
-	 * @param name is the lexdomain name
-	 */
-	public LexDomainDef(final int id, final int pos, final String name)
-	{
-		super();
-		this.id = id;
-		this.pos = pos;
-		this.posName = getPosName(name);
-		this.lexDomainName = getLexDomainName(name);
-	}
-
-	/**
-	 * Get part-of-speech name
-	 *
-	 * @param string is the full lexdomain name
-	 * @return the part-of-speech name
-	 */
-	private String getPosName(final String string)
-	{
-		final int index = string.indexOf('.');
-		return index == -1 ? string : string.substring(0, index);
-	}
-
-	/**
-	 * Get lexdomain name
-	 *
-	 * @param string is the full lexdomain name
-	 * @return the lexdomain name
-	 */
-	private String getLexDomainName(final String string)
-	{
-		final int index = string.indexOf('.');
-		return index == -1 ? string : string.substring(index + 1);
-	}
-}
-
-/**
- * LinkDef, utility class to encapsulate link data
- *
- * @author <a href="mailto:bbou@ac-toulouse.fr">Bernard Bou</a>
- */
-
-class LinkDef
-{
-	/**
-	 * <code>id</code> is the link id
-	 */
-	public final int id;
-
-	/**
-	 * <code>pos</code> is the part-of-speech id
-	 */
-	@SuppressWarnings("unused")
-	public int pos;
-
-	/**
-	 * <code>name</code> is the link name
-	 */
-	public final String name;
-
-	/**
-	 * <code>recurses</code> is whether the link recurses
-	 */
-	public final boolean recurses;
-
-	/**
-	 * Constructor
-	 *
-	 * @param id       is the link id
-	 * @param name     is the link name
-	 * @param recurses is whether the link recurses
-	 */
-	public LinkDef(final int id, final String name, final boolean recurses)
-	{
-		super();
-		this.id = id;
-		this.name = name;
-		this.recurses = recurses;
-	}
-}
-
-/**
  * Id-name mappings
  *
  * @author <a href="mailto:bbou@ac-toulouse.fr">Bernard Bou</a>
@@ -140,25 +27,27 @@ class LinkDef
 
 class Mapping
 {
+	private static final String TAG = "LexDomain"; //$NON-NLS-1$
+
 	/**
 	 * <code>lexDomains</code> is an array of lexdomains
 	 */
-	static private List<LexDomainDef> lexDomains = null;
+	static private List<LexDomainDef> lexDomains;
 
 	/**
 	 * <code>lexDomains</code> is map of lexdomains by name
 	 */
-	static private Map<String, LexDomainDef> lexDomainsByName = null;
+	static private Map<String, LexDomainDef> lexDomainsByName;
 
 	/**
 	 * <code>linksById</code> is links mapped by id
 	 */
-	static private SparseArray<LinkDef> linksById = null;
+	static private SparseArray<LinkDef> linksById;
 
 	/**
 	 * <code>linksByName</code> is links mapped by name
 	 */
-	static private Map<String, LinkDef> linksByName = null;
+	static private Map<String, LinkDef> linksByName;
 
 	/**
 	 * <code>topsId</code> is a constant for Tops lexdomain id
@@ -193,9 +82,9 @@ class Mapping
 	static public void initLexDomains(final SQLiteDatabase connection)
 	{
 		// lexdomain
-		LexDomainEnumQueryCommand query = null;
 		Mapping.lexDomains = new ArrayList<>();
 		Mapping.lexDomainsByName = new HashMap<>();
+		LexDomainEnumQueryCommand query = null;
 		try
 		{
 			query = new LexDomainEnumQueryCommand(connection);
@@ -213,7 +102,7 @@ class Mapping
 		}
 		catch (final SQLException e)
 		{
-			e.printStackTrace();
+			Log.e(TAG, "While initializing lexdomains", e); //$NON-NLS-1$
 			throw new RuntimeException(e);
 		}
 		finally
@@ -233,9 +122,9 @@ class Mapping
 	@SuppressLint("DefaultLocale")
 	static public void initLinks(final SQLiteDatabase connection)
 	{
-		LinkEnumQueryCommand query = null;
 		Mapping.linksById = new SparseArray<>();
 		Mapping.linksByName = new HashMap<>();
+		LinkEnumQueryCommand query = null;
 		try
 		{
 			query = new LinkEnumQueryCommand(connection);
@@ -253,7 +142,7 @@ class Mapping
 		}
 		catch (final SQLException e)
 		{
-			e.printStackTrace();
+			Log.e(TAG, "While initializing links", e);
 			throw new RuntimeException(e);
 		}
 		finally

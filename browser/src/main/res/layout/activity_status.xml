@@ -9,12 +9,12 @@
              android:paddingTop="@dimen/activity_vertical_margin"
              tools:context=".StatusActivity">
 
-    <fragment
-        android:id="@+id/status"
-        android:name="org.sqlunet.browser.StatusFragment"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        tools:context=".StatusActivity"
-        tools:layout="@layout/fragment_status"/>
+	<fragment
+		android:id="@+id/status"
+		android:name="org.sqlunet.browser.StatusFragment"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		tools:context=".StatusActivity"
+		tools:layout="@layout/fragment_status"/>
 
 </FrameLayout>

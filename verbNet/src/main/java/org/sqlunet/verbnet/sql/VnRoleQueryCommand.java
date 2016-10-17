@@ -12,21 +12,21 @@ import org.sqlunet.sql.DBQueryCommand;
 class VnRoleQueryCommand extends DBQueryCommand
 {
 	/**
-	 * <code>theQuery</code> is the SQL statement
+	 * <code>QUERY</code> is the SQL statement
 	 */
-	private static final String theQuery = SqLiteDialect.VerbNetThematicRolesQuery;
+	private static final String QUERY = SqLiteDialect.VerbNetThematicRolesQuery;
 
 	/**
 	 * Constructor
 	 *
-	 * @param thisConnection is the database connection
-	 * @param thisClassId    is the target classid
+	 * @param connection is the database connection
+	 * @param classId    is the target classid
 	 */
 	@SuppressWarnings("boxing")
-	public VnRoleQueryCommand(final SQLiteDatabase thisConnection, final long thisClassId)
+	public VnRoleQueryCommand(final SQLiteDatabase connection, final long classId)
 	{
-		super(thisConnection, VnRoleQueryCommand.theQuery);
-		setParams(thisClassId);
+		super(connection, VnRoleQueryCommand.QUERY);
+		setParams(classId);
 	}
 
 	/**

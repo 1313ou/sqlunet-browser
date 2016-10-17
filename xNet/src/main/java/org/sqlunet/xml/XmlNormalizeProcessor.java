@@ -1,13 +1,18 @@
 package org.sqlunet.xml;
 
+import android.util.Log;
+
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
+import org.w3c.dom.Node;
 import org.w3c.dom.ls.DOMImplementationLS;
 import org.w3c.dom.ls.LSSerializer;
 
 @SuppressWarnings("unused")
 public class XmlNormalizeProcessor extends XmlProcessor
 {
+	private static final String TAG = "XmlNormalizeProcessor"; //$NON-NLS-1$
+
 	@Override
 	public String process(final String xml) throws Exception
 	{
@@ -18,13 +23,12 @@ public class XmlNormalizeProcessor extends XmlProcessor
 		}
 		catch (final Exception ex)
 		{
-			System.err.println(xml);
-			ex.printStackTrace();
+			Log.e(TAG, "While normalizing xml " + xml, ex);
 		}
 		return null;
 	}
 
-	private static String elementToString(final Element e)
+	private static String elementToString(final Node e)
 	{
 		final Document document = e.getOwnerDocument();
 		final DOMImplementationLS domImplLS = (DOMImplementationLS) document.getImplementation();

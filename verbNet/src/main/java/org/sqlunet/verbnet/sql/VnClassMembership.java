@@ -64,9 +64,7 @@ class VnClassMembership
 				final int quality = query.getQuality();
 				final String groupings = query.getGroupings();
 
-				result.add(new VnClassMembership(className, classId, wordId, synsetSpecificFlag ?
-						synsetId :
-						-1, sensenum, sensekey, quality, groupings));
+				result.add(new VnClassMembership(className, classId, wordId, synsetSpecificFlag ? synsetId : -1, sensenum, sensekey, quality, groupings));
 			}
 		}
 		finally

@@ -221,12 +221,12 @@ public class FrameNetProvider extends SqlUNetProvider
 		}
 
 		// choose the table to query and a sort order based on the code returned for the incoming URI
-		String table;
 		String selection = selection0;
-		String groupBy = null;
 		final int code = FrameNetProvider.uriMatcher.match(uri);
 		Log.d(FrameNetProvider.TAG + "URI", String.format("%s (code %s)", uri, code)); //$NON-NLS-1$ //$NON-NLS-2$
 
+		String groupBy = null;
+		String table;
 		switch (code)
 		{
 
@@ -300,8 +300,8 @@ public class FrameNetProvider extends SqlUNetProvider
 
 			case FRAMES_X_BY_FRAME:
 				groupBy = "frameid"; //$NON-NLS-1$
-				table = "fnframes " + // //$NON-NLS-1$
-						"LEFT JOIN fnframes_semtypes USING (frameid) " + // //$NON-NLS-1$
+				table = "fnframes " + //$NON-NLS-1$
+						"LEFT JOIN fnframes_semtypes USING (frameid) " + //$NON-NLS-1$
 						"LEFT JOIN fnsemtypes USING (semtypeid)"; //$NON-NLS-1$
 				break;
 
@@ -311,172 +311,197 @@ public class FrameNetProvider extends SqlUNetProvider
 
 			case LEXUNITS_X_BY_LEXUNIT:
 				groupBy = "luid"; //$NON-NLS-1$
-				table = "fnlexunits AS lu " + // //$NON-NLS-1$
-						"LEFT JOIN fnframes AS f USING (frameid) " + // //$NON-NLS-1$
-						"LEFT JOIN fnposes AS p ON (lu.posid = p.posid) " + // //$NON-NLS-1$
+				table = "fnlexunits AS lu " + //$NON-NLS-1$
+						"LEFT JOIN fnframes AS f USING (frameid) " + //$NON-NLS-1$
+						"LEFT JOIN fnposes AS p ON (lu.posid = p.posid) " + //$NON-NLS-1$
 						"LEFT JOIN fnfetypes AS it ON (incorporatedfetypeid = it.fetypeid) " + //$NON-NLS-1$
 						"LEFT JOIN fnfes AS ie ON (incorporatedfeid = ie.feid)"; //$NON-NLS-1$
 				break;
 
 			case SENTENCES_LAYERS_X:
-				table = "(SELECT sentenceid,layerid,layertype,rank,GROUP_CONCAT(start||':'||end||':'||labeltype||':'||CASE WHEN labelitype IS NULL THEN '' ELSE labelitype END||':'||CASE WHEN bgcolor IS NULL THEN '' ELSE bgcolor END||':'||CASE WHEN fgcolor IS NULL THEN '' ELSE fgcolor END,'|') AS annotations " //$NON-NLS-1$
-						+ //
-						"FROM fnsentences " + // //$NON-NLS-1$
-						"LEFT JOIN fnannosets USING (sentenceid) " + // //$NON-NLS-1$
-						"LEFT JOIN fnlayers USING (annosetid) " + // //$NON-NLS-1$
-						"LEFT JOIN fnlayertypes USING (layertypeid) " + // //$NON-NLS-1$
-						"LEFT JOIN fnlabels USING (layerid) " + // //$NON-NLS-1$
-						"LEFT JOIN fnlabeltypes USING (labeltypeid) " + // //$NON-NLS-1$
-						"LEFT JOIN fnlabelitypes USING (labelitypeid) " + // //$NON-NLS-1$
-						"WHERE sentenceid = ? AND labeltypeid IS NOT NULL " + // //$NON-NLS-1$
-						"GROUP BY layerid " + // //$NON-NLS-1$
+				table = "(SELECT sentenceid,layerid,layertype,rank," + //$NON-NLS-1$
+						"GROUP_CONCAT(start||':'||" + //$NON-NLS-1$
+						"end||':'||" + //$NON-NLS-1$
+						"labeltype||':'||" + //$NON-NLS-1$
+						"CASE WHEN labelitype IS NULL THEN '' ELSE labelitype END||':'||" + //$NON-NLS-1$
+						"CASE WHEN bgcolor IS NULL THEN '' ELSE bgcolor END||':'||" + //$NON-NLS-1$
+						"CASE WHEN fgcolor IS NULL THEN '' ELSE fgcolor END,'|') AS annotations " + //$NON-NLS-1$
+						"FROM fnsentences " + //$NON-NLS-1$
+						"LEFT JOIN fnannosets USING (sentenceid) " + //$NON-NLS-1$
+						"LEFT JOIN fnlayers USING (annosetid) " + //$NON-NLS-1$
+						"LEFT JOIN fnlayertypes USING (layertypeid) " + //$NON-NLS-1$
+						"LEFT JOIN fnlabels USING (layerid) " + //$NON-NLS-1$
+						"LEFT JOIN fnlabeltypes USING (labeltypeid) " + //$NON-NLS-1$
+						"LEFT JOIN fnlabelitypes USING (labelitypeid) " + //$NON-NLS-1$
+						"WHERE sentenceid = ? AND labeltypeid IS NOT NULL " + //$NON-NLS-1$
+						"GROUP BY layerid " + //$NON-NLS-1$
 						"ORDER BY rank,layerid,start,end)"; //$NON-NLS-1$
 				break;
 
 			case ANNOSETS_LAYERS_X:
-				table = "(SELECT sentenceid,text,layerid,layertype,rank,GROUP_CONCAT(start||':'||end||':'||labeltype||':'||CASE WHEN labelitype IS NULL THEN '' ELSE labelitype END||':'||CASE WHEN bgcolor IS NULL THEN '' ELSE bgcolor END||':'||CASE WHEN fgcolor IS NULL THEN '' ELSE fgcolor END,'|') AS annotations " //$NON-NLS-1$
-						+ //
-						"FROM fnannosets " + // //$NON-NLS-1$
-						"LEFT JOIN fnsentences USING (sentenceid) " + // //$NON-NLS-1$
-						"LEFT JOIN fnlayers USING (annosetid) " + // //$NON-NLS-1$
-						"LEFT JOIN fnlayertypes USING (layertypeid) " + // //$NON-NLS-1$
-						"LEFT JOIN fnlabels USING (layerid) " + // //$NON-NLS-1$
-						"LEFT JOIN fnlabeltypes USING (labeltypeid) " + // //$NON-NLS-1$
-						"LEFT JOIN fnlabelitypes USING (labelitypeid) " + // //$NON-NLS-1$
-						"WHERE annosetid = ? AND labeltypeid IS NOT NULL " + // //$NON-NLS-1$
-						"GROUP BY layerid " + // //$NON-NLS-1$
+				table = "(SELECT sentenceid,text,layerid,layertype,rank," + //$NON-NLS-1$
+						"GROUP_CONCAT(start||':'||" + //$NON-NLS-1$
+						"end||':'||" + //$NON-NLS-1$
+						"labeltype||':'||" + //$NON-NLS-1$
+						"CASE WHEN labelitype IS NULL THEN '' ELSE labelitype END||':'||" + //$NON-NLS-1$
+						"CASE WHEN bgcolor IS NULL THEN '' ELSE bgcolor END||':'||" + //$NON-NLS-1$
+						"CASE WHEN fgcolor IS NULL THEN '' ELSE fgcolor END,'|') AS annotations " + //$NON-NLS-1$
+						"FROM fnannosets " + //$NON-NLS-1$
+						"LEFT JOIN fnsentences USING (sentenceid) " + //$NON-NLS-1$
+						"LEFT JOIN fnlayers USING (annosetid) " + //$NON-NLS-1$
+						"LEFT JOIN fnlayertypes USING (layertypeid) " + //$NON-NLS-1$
+						"LEFT JOIN fnlabels USING (layerid) " + //$NON-NLS-1$
+						"LEFT JOIN fnlabeltypes USING (labeltypeid) " + //$NON-NLS-1$
+						"LEFT JOIN fnlabelitypes USING (labelitypeid) " + //$NON-NLS-1$
+						"WHERE annosetid = ? AND labeltypeid IS NOT NULL " + //$NON-NLS-1$
+						"GROUP BY layerid " + //$NON-NLS-1$
 						"ORDER BY rank,layerid,start,end)"; //$NON-NLS-1$
 				break;
 
 			case PATTERNS_LAYERS_X:
-				table = "(SELECT sentenceid,text,layerid,layertype,rank,GROUP_CONCAT(start||':'||end||':'||labeltype||':'||CASE WHEN labelitype IS NULL THEN '' ELSE labelitype END||':'||CASE WHEN bgcolor IS NULL THEN '' ELSE bgcolor END||':'||CASE WHEN fgcolor IS NULL THEN '' ELSE fgcolor END,'|') AS annotations " //$NON-NLS-1$
-						+ //
-						"FROM fnpatterns_annosets " + // //$NON-NLS-1$
-						"LEFT JOIN fnannosets USING (annosetid) " + // //$NON-NLS-1$
-						"LEFT JOIN fnsentences USING (sentenceid) " + // //$NON-NLS-1$
-						"LEFT JOIN fnlayers USING (annosetid) " + // //$NON-NLS-1$
-						"LEFT JOIN fnlayertypes USING (layertypeid) " + // //$NON-NLS-1$
-						"LEFT JOIN fnlabels USING (layerid) " + // //$NON-NLS-1$
-						"LEFT JOIN fnlabeltypes USING (labeltypeid) " + // //$NON-NLS-1$
-						"LEFT JOIN fnlabelitypes USING (labelitypeid) " + // //$NON-NLS-1$
-						"WHERE patternid = ? AND labeltypeid IS NOT NULL " + // //$NON-NLS-1$
-						"GROUP BY layerid " + // //$NON-NLS-1$
+				table = "(SELECT sentenceid,text,layerid,layertype,rank," + //$NON-NLS-1$
+						"GROUP_CONCAT(start||':'||" + //$NON-NLS-1$
+						"end||':'||" + //$NON-NLS-1$
+						"labeltype||':'||" + //$NON-NLS-1$
+						"CASE WHEN labelitype IS NULL THEN '' ELSE labelitype END||':'||" + //$NON-NLS-1$
+						"CASE WHEN bgcolor IS NULL THEN '' ELSE bgcolor END||':'||" + //$NON-NLS-1$
+						"CASE WHEN fgcolor IS NULL THEN '' ELSE fgcolor END,'|') AS annotations " + //$NON-NLS-1$
+						"FROM fnpatterns_annosets " + //$NON-NLS-1$
+						"LEFT JOIN fnannosets USING (annosetid) " + //$NON-NLS-1$
+						"LEFT JOIN fnsentences USING (sentenceid) " + //$NON-NLS-1$
+						"LEFT JOIN fnlayers USING (annosetid) " + //$NON-NLS-1$
+						"LEFT JOIN fnlayertypes USING (layertypeid) " + //$NON-NLS-1$
+						"LEFT JOIN fnlabels USING (layerid) " + //$NON-NLS-1$
+						"LEFT JOIN fnlabeltypes USING (labeltypeid) " + //$NON-NLS-1$
+						"LEFT JOIN fnlabelitypes USING (labelitypeid) " + //$NON-NLS-1$
+						"WHERE patternid = ? AND labeltypeid IS NOT NULL " + //$NON-NLS-1$
+						"GROUP BY layerid " + //$NON-NLS-1$
 						"ORDER BY rank,layerid,start,end)"; //$NON-NLS-1$
 				break;
 
 			case VALENCEUNITS_LAYERS_X:
-				table = "(SELECT sentenceid,text,layerid,layertype,rank,GROUP_CONCAT(start||':'||end||':'||labeltype||':'||CASE WHEN labelitype IS NULL THEN '' ELSE labelitype END||':'||CASE WHEN bgcolor IS NULL THEN '' ELSE bgcolor END||':'||CASE WHEN fgcolor IS NULL THEN '' ELSE fgcolor END,'|') AS annotations " //$NON-NLS-1$
-						+ //
-						"FROM fnvalenceunits_annosets " + // //$NON-NLS-1$
-						"LEFT JOIN fnannosets USING (annosetid) " + // //$NON-NLS-1$
-						"LEFT JOIN fnsentences USING (sentenceid) " + // //$NON-NLS-1$
-						"LEFT JOIN fnlayers USING (annosetid) " + // //$NON-NLS-1$
-						"LEFT JOIN fnlayertypes USING (layertypeid) " + // //$NON-NLS-1$
-						"LEFT JOIN fnlabels USING (layerid) " + // //$NON-NLS-1$
-						"LEFT JOIN fnlabeltypes USING (labeltypeid) " + // //$NON-NLS-1$
-						"LEFT JOIN fnlabelitypes USING (labelitypeid) " + // //$NON-NLS-1$
-						"WHERE vuid = ? AND labeltypeid IS NOT NULL " + // //$NON-NLS-1$
-						"GROUP BY layerid " + // //$NON-NLS-1$
+				table = "(SELECT sentenceid,text,layerid,layertype,rank," + //$NON-NLS-1$
+						"GROUP_CONCAT(start||':'||" + //$NON-NLS-1$
+						"end||':'||" + //$NON-NLS-1$
+						"labeltype||':'||" + //$NON-NLS-1$
+						"CASE WHEN labelitype IS NULL THEN '' ELSE labelitype END||':'||" + //$NON-NLS-1$
+						"CASE WHEN bgcolor IS NULL THEN '' ELSE bgcolor END||':'||" + //$NON-NLS-1$
+						"CASE WHEN fgcolor IS NULL THEN '' ELSE fgcolor END,'|') AS annotations " + //$NON-NLS-1$
+						"FROM fnvalenceunits_annosets " + //$NON-NLS-1$
+						"LEFT JOIN fnannosets USING (annosetid) " + //$NON-NLS-1$
+						"LEFT JOIN fnsentences USING (sentenceid) " + //$NON-NLS-1$
+						"LEFT JOIN fnlayers USING (annosetid) " + //$NON-NLS-1$
+						"LEFT JOIN fnlayertypes USING (layertypeid) " + //$NON-NLS-1$
+						"LEFT JOIN fnlabels USING (layerid) " + //$NON-NLS-1$
+						"LEFT JOIN fnlabeltypes USING (labeltypeid) " + //$NON-NLS-1$
+						"LEFT JOIN fnlabelitypes USING (labelitypeid) " + //$NON-NLS-1$
+						"WHERE vuid = ? AND labeltypeid IS NOT NULL " + //$NON-NLS-1$
+						"GROUP BY layerid " + //$NON-NLS-1$
 						"ORDER BY rank,layerid,start,end)"; //$NON-NLS-1$
 				break;
 
 			case WORDS_LEXUNITS_FRAMES:
-				table = "words " + // //$NON-NLS-1$
-						"INNER JOIN fnwords USING (wordid) " + // //$NON-NLS-1$
-						"INNER JOIN fnlexemes USING (fnwordid) " + // //$NON-NLS-1$
-						"INNER JOIN fnlexunits AS lu USING (luid) " + // //$NON-NLS-1$
-						"LEFT JOIN fnframes USING (frameid) " + // //$NON-NLS-1$
-						"LEFT JOIN fnposes AS p ON (lu.posid = p.posid) " + // //$NON-NLS-1$
-						"LEFT JOIN fnfes AS ie ON (incorporatedfeid = feid) " + // //$NON-NLS-1$
+				table = "words " + //$NON-NLS-1$
+						"INNER JOIN fnwords USING (wordid) " + //$NON-NLS-1$
+						"INNER JOIN fnlexemes USING (fnwordid) " + //$NON-NLS-1$
+						"INNER JOIN fnlexunits AS lu USING (luid) " + //$NON-NLS-1$
+						"LEFT JOIN fnframes USING (frameid) " + //$NON-NLS-1$
+						"LEFT JOIN fnposes AS p ON (lu.posid = p.posid) " + //$NON-NLS-1$
+						"LEFT JOIN fnfes AS ie ON (incorporatedfeid = feid) " + //$NON-NLS-1$
 						"LEFT JOIN fnfetypes AS it ON (incorporatedfetypeid = it.fetypeid)"; //$NON-NLS-1$
 				break;
 
 			case FRAMES_FES_BY_FE:
 				groupBy = "feid"; //$NON-NLS-1$
 				//$FALL-THROUGH$
+				//noinspection fallthrough
 			case FRAMES_FES:
-				table = "fnframes " + // //$NON-NLS-1$
-						"INNER JOIN fnfes USING (frameid) " + // //$NON-NLS-1$
-						"LEFT JOIN fnfetypes USING (fetypeid) " + // //$NON-NLS-1$
-						"LEFT JOIN fncoretypes USING (coretypeid) " + // //$NON-NLS-1$
-						"LEFT JOIN fnfes_semtypes USING (feid) " + // //$NON-NLS-1$
+				table = "fnframes " + //$NON-NLS-1$
+						"INNER JOIN fnfes USING (frameid) " + //$NON-NLS-1$
+						"LEFT JOIN fnfetypes USING (fetypeid) " + //$NON-NLS-1$
+						"LEFT JOIN fncoretypes USING (coretypeid) " + //$NON-NLS-1$
+						"LEFT JOIN fnfes_semtypes USING (feid) " + //$NON-NLS-1$
 						"LEFT JOIN fnsemtypes USING (semtypeid)"; //$NON-NLS-1$
 				break;
 
 			case LEXUNITS_SENTENCES_BY_SENTENCE:
 				groupBy = "s.sentenceid"; //$NON-NLS-1$
 				//$FALL-THROUGH$
+				//noinspection fallthrough
 			case LEXUNITS_SENTENCES:
-				table = "fnlexunits AS u " + // //$NON-NLS-1$
-						"LEFT JOIN fnsubcorpuses USING (luid) " + // //$NON-NLS-1$
-						"LEFT JOIN fnsubcorpuses_sentences USING (subcorpusid) " + // //$NON-NLS-1$
+				table = "fnlexunits AS u " + //$NON-NLS-1$
+						"LEFT JOIN fnsubcorpuses USING (luid) " + //$NON-NLS-1$
+						"LEFT JOIN fnsubcorpuses_sentences USING (subcorpusid) " + //$NON-NLS-1$
 						"INNER JOIN fnsentences AS s USING (sentenceid)"; //$NON-NLS-1$
 				break;
 
 			case LEXUNITS_SENTENCES_ANNOSETS_LAYERS_LABELS_BY_SENTENCE:
 				groupBy = "s.sentenceid"; //$NON-NLS-1$
 				//$FALL-THROUGH$
+				//noinspection fallthrough
 			case LEXUNITS_SENTENCES_ANNOSETS_LAYERS_LABELS:
-				table = "fnlexunits AS u " + // //$NON-NLS-1$
-						"LEFT JOIN fnsubcorpuses USING (luid) " + // //$NON-NLS-1$
-						"LEFT JOIN fnsubcorpuses_sentences USING (subcorpusid) " + // //$NON-NLS-1$
-						"INNER JOIN fnsentences AS s USING (sentenceid) " + // //$NON-NLS-1$
-						"LEFT JOIN fnannosets USING (sentenceid) " + // //$NON-NLS-1$
-						"LEFT JOIN fnlayers USING (annosetid) " + // //$NON-NLS-1$
-						"LEFT JOIN fnlayertypes USING (layertypeid) " + // //$NON-NLS-1$
-						"LEFT JOIN fnlabels USING (layerid) " + // //$NON-NLS-1$
-						"LEFT JOIN fnlabeltypes USING (labeltypeid) " + // //$NON-NLS-1$
+				table = "fnlexunits AS u " + //$NON-NLS-1$
+						"LEFT JOIN fnsubcorpuses USING (luid) " + //$NON-NLS-1$
+						"LEFT JOIN fnsubcorpuses_sentences USING (subcorpusid) " + //$NON-NLS-1$
+						"INNER JOIN fnsentences AS s USING (sentenceid) " + //$NON-NLS-1$
+						"LEFT JOIN fnannosets USING (sentenceid) " + //$NON-NLS-1$
+						"LEFT JOIN fnlayers USING (annosetid) " + //$NON-NLS-1$
+						"LEFT JOIN fnlayertypes USING (layertypeid) " + //$NON-NLS-1$
+						"LEFT JOIN fnlabels USING (layerid) " + //$NON-NLS-1$
+						"LEFT JOIN fnlabeltypes USING (labeltypeid) " + //$NON-NLS-1$
 						"LEFT JOIN fnlabelitypes USING (labelitypeid)"; //$NON-NLS-1$
 				break;
 
 			case LEXUNITS_GOVERNORS:
-				table = "fnlexunits " + // //$NON-NLS-1$
-						"INNER JOIN fnlexunits_governors AS s USING (luid) " + // //$NON-NLS-1$
-						"INNER JOIN fngovernors USING (governorid) " + // //$NON-NLS-1$
+				table = "fnlexunits " + //$NON-NLS-1$
+						"INNER JOIN fnlexunits_governors AS s USING (luid) " + //$NON-NLS-1$
+						"INNER JOIN fngovernors USING (governorid) " + //$NON-NLS-1$
 						"LEFT JOIN fnwords USING (fnwordid)"; //$NON-NLS-1$
 				break;
 
 			case GOVERNORS_ANNOSETS:
-				table = "fngovernors_annosets " + // //$NON-NLS-1$
-						"LEFT JOIN fnannosets USING (annosetid) " + // //$NON-NLS-1$
+				table = "fngovernors_annosets " + //$NON-NLS-1$
+						"LEFT JOIN fnannosets USING (annosetid) " + //$NON-NLS-1$
 						"LEFT JOIN fnsentences USING (sentenceid)"; //$NON-NLS-1$
 				break;
 
 			case LEXUNITS_REALIZATIONS_BY_REALIZATION:
 				groupBy = "ferid"; //$NON-NLS-1$
 				//$FALL-THROUGH$
+				//noinspection fallthrough
 			case LEXUNITS_REALIZATIONS:
-				table = "fnlexunits " + // //$NON-NLS-1$
-						"INNER JOIN fnferealizations AS r USING (luid) " + // //$NON-NLS-1$
-						"LEFT JOIN fnvalenceunits USING (ferid) " + // //$NON-NLS-1$
-						"LEFT JOIN fnfetypes USING (fetypeid) " + // //$NON-NLS-1$
-						"LEFT JOIN fngftypes USING (gfid) " + // //$NON-NLS-1$
+				table = "fnlexunits " + //$NON-NLS-1$
+						"INNER JOIN fnferealizations AS r USING (luid) " + //$NON-NLS-1$
+						"LEFT JOIN fnvalenceunits USING (ferid) " + //$NON-NLS-1$
+						"LEFT JOIN fnfetypes USING (fetypeid) " + //$NON-NLS-1$
+						"LEFT JOIN fngftypes USING (gfid) " + //$NON-NLS-1$
 						"LEFT JOIN fnpttypes USING (ptid)"; //$NON-NLS-1$
 				break;
 
 			case LEXUNITS_GROUPREALIZATIONS_BY_PATTERN:
 				groupBy = "patternid"; //$NON-NLS-1$
 				//$FALL-THROUGH$
+				//noinspection fallthrough
 			case LEXUNITS_GROUPREALIZATIONS:
-				table = "fnlexunits " + // //$NON-NLS-1$
-						"LEFT JOIN fnfegrouprealizations AS r USING (luid) " + // //$NON-NLS-1$
-						"LEFT JOIN fnpatterns AS p USING (fegrid) " + // //$NON-NLS-1$
-						"LEFT JOIN fnpatterns_valenceunits AS v USING (patternid) " + // //$NON-NLS-1$
-						"LEFT JOIN fnvalenceunits USING (vuid) " + // //$NON-NLS-1$
-						"LEFT JOIN fnfetypes USING (fetypeid) " + // //$NON-NLS-1$
-						"LEFT JOIN fngftypes USING (gfid) " + // //$NON-NLS-1$
+				table = "fnlexunits " + //$NON-NLS-1$
+						"LEFT JOIN fnfegrouprealizations AS r USING (luid) " + //$NON-NLS-1$
+						"LEFT JOIN fnpatterns AS p USING (fegrid) " + //$NON-NLS-1$
+						"LEFT JOIN fnpatterns_valenceunits AS v USING (patternid) " + //$NON-NLS-1$
+						"LEFT JOIN fnvalenceunits USING (vuid) " + //$NON-NLS-1$
+						"LEFT JOIN fnfetypes USING (fetypeid) " + //$NON-NLS-1$
+						"LEFT JOIN fngftypes USING (gfid) " + //$NON-NLS-1$
 						"LEFT JOIN fnpttypes USING (ptid)"; //$NON-NLS-1$
 				break;
 
 			case PATTERNS_SENTENCES:
-				table = "fnpatterns_annosets " + // //$NON-NLS-1$
-						"LEFT JOIN fnannosets AS r USING (annosetid) " + // //$NON-NLS-1$
+				table = "fnpatterns_annosets " + //$NON-NLS-1$
+						"LEFT JOIN fnannosets AS r USING (annosetid) " + //$NON-NLS-1$
 						"LEFT JOIN fnsentences AS r USING (sentenceid)"; //$NON-NLS-1$
 				break;
 
 			case VALENCEUNITS_SENTENCES:
-				table = "fnvalenceunits_annosets " + // //$NON-NLS-1$
-						"LEFT JOIN fnannosets AS r USING (annosetid) " + // //$NON-NLS-1$
+				table = "fnvalenceunits_annosets " + //$NON-NLS-1$
+						"LEFT JOIN fnannosets AS r USING (annosetid) " + //$NON-NLS-1$
 						"LEFT JOIN fnsentences AS r USING (sentenceid)"; //$NON-NLS-1$
 				break;
 

@@ -12,22 +12,22 @@ import org.sqlunet.sql.DBQueryCommand;
 class VnClassMembershipQueryCommand extends DBQueryCommand
 {
 	/**
-	 * <code>theQuery</code> is the SQL statement
+	 * <code>QUERY</code> is the SQL statement
 	 */
-	private static final String theQuery = SqLiteDialect.VerbNetClassMembershipQuery;
+	private static final String QUERY = SqLiteDialect.VerbNetClassMembershipQuery;
 
 	/**
 	 * Constructor
 	 *
-	 * @param thisConnection is the database connection
-	 * @param thisWordId     is the target wordid
-	 * @param thisSynsetId   is the target synsetid (null corresponds to no value)
+	 * @param connection is the database connection
+	 * @param wordId     is the target wordid
+	 * @param synsetId   is the target synsetid (null corresponds to no value)
 	 */
 	@SuppressWarnings("boxing")
-	public VnClassMembershipQueryCommand(final SQLiteDatabase thisConnection, final long thisWordId, final Long thisSynsetId)
+	public VnClassMembershipQueryCommand(final SQLiteDatabase connection, final long wordId, final Long synsetId)
 	{
-		super(thisConnection, VnClassMembershipQueryCommand.theQuery);
-		setParams(thisWordId, thisSynsetId);
+		super(connection, VnClassMembershipQueryCommand.QUERY);
+		setParams(wordId, synsetId);
 	}
 
 	/**

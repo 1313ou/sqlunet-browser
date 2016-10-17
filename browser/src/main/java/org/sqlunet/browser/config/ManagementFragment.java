@@ -135,15 +135,9 @@ public class ManagementFragment extends Fragment implements Listener
 	@Override
 	public void managerFinish(final boolean result)
 	{
-		Log.d(TAG, "Update " + (result ?
-				"succeeded" :
-				"failed")); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-		Toast.makeText(getActivity(), result ?
-				R.string.status_update_success :
-				R.string.status_update_failure, Toast.LENGTH_SHORT).show();
-		ManagementFragment.this.status.setText(result ?
-				R.string.status_op_done :
-				R.string.status_op_failed);
+		Log.d(TAG, "Update " + (result ? "succeeded" : "failed")); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+		Toast.makeText(getActivity(), result ? R.string.status_update_success : R.string.status_update_failure, Toast.LENGTH_SHORT).show();
+		ManagementFragment.this.status.setText(result ? R.string.status_op_done : R.string.status_op_failed);
 	}
 
 	/*

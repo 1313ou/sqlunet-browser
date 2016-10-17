@@ -49,9 +49,6 @@ public class FnSentenceFragment extends Fragment
 		final TreeNode queryNode = TreeFactory.addTreeItemNode(root, "Sentence", R.drawable.sentence, getActivity()); //$NON-NLS-1$
 
 		// tree
-		/*
-	  Tree view
-	 */
 		TreeView treeView = new TreeView(getActivity(), root);
 		treeView.setDefaultAnimation(true);
 		treeView.setDefaultContainerStyle(R.style.TreeNodeStyleCustom); // R.style.TreeNodeStyleDivided
@@ -74,9 +71,6 @@ public class FnSentenceFragment extends Fragment
 		final Parcelable pointer = args.getParcelable(SqlUNetContract.ARG_QUERYPOINTER);
 
 		// module
-		/*
-	  Module
-	 */
 		Module module = new SentenceModule(this);
 		module.init(pointer);
 		module.process(queryNode);

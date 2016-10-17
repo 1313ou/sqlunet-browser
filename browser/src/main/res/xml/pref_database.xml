@@ -1,18 +1,18 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <!-- NOTE: Hide buttons to simplify the UI. Users can touch outside the dialog to dismiss it. -->
-    <!-- NOTE: ListPreference's summary should be set to its value by the activity code. -->
+	<!-- NOTE: Hide buttons to simplify the UI. Users can touch outside the dialog to dismiss it. -->
+	<!-- NOTE: ListPreference's summary should be set to its value by the activity code. -->
 
-    <!--     <EditTextPreference -->
-    <!--         android:key="pref_storage" -->
-    <!--         android:summary="@string/pref_description_storage" -->
-    <!--         android:title="@string/pref_title_storage" /> -->
-    <ListPreference
-        android:defaultValue="-1"
-        android:key="pref_storage"
-        android:negativeButtonText="@null"
-        android:positiveButtonText="@null"
-        android:summary="@string/pref_description_storage"
-        android:title="@string/pref_title_storage"/>
+	<!--     <EditTextPreference -->
+	<!--         android:key="pref_storage" -->
+	<!--         android:summary="@string/pref_description_storage" -->
+	<!--         android:title="@string/pref_title_storage" /> -->
+	<ListPreference
+		android:defaultValue="-1"
+		android:key="pref_storage"
+		android:negativeButtonText="@null"
+		android:positiveButtonText="@null"
+		android:summary="@string/pref_description_storage"
+		android:title="@string/pref_title_storage"/>
 
 </PreferenceScreen>

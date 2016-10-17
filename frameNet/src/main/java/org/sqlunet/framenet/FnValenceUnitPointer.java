@@ -10,7 +10,7 @@ import org.sqlunet.Pointer;
  *
  * @author Bernard Bou
  */
-public class FnValenceUnitPointer extends Pointer implements Parcelable
+public class FnValenceUnitPointer extends Pointer
 {
 	/**
 	 * Constructor

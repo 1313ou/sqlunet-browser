@@ -93,9 +93,7 @@ public class VerbNetImplementation implements VerbNetInterface
 	public Document queryDoc(final SQLiteDatabase connection, final long wordId, final Long synsetId, final Character pos)
 	{
 		final Document doc = Factory.makeDocument();
-		final Node rootNode = VnNodeFactory.makeVnRootNode(doc, wordId, synsetId == null ?
-				-1 :
-				synsetId);
+		final Node rootNode = VnNodeFactory.makeVnRootNode(doc, wordId, synsetId == null ? -1 : synsetId);
 		VerbNetImplementation.walk(connection, doc, rootNode, wordId, synsetId, true, true);
 		return doc;
 	}

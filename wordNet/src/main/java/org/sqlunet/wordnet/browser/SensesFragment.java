@@ -16,6 +16,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
+import android.widget.CursorAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
@@ -64,7 +65,7 @@ public class SensesFragment extends ListFragment
 	/**
 	 * The fragment's current callback object, which is notified of list item clicks.
 	 */
-	private Listener listener = null;
+	private Listener listener;
 
 	/**
 	 * Search query
@@ -174,7 +175,7 @@ public class SensesFragment extends ListFragment
 			public Loader<Cursor> onCreateLoader(final int loaderId0, final Bundle args0)
 			{
 				final Uri uri = Uri.parse(Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.CONTENT_URI);
-				final String[] projection = new String[]{ //
+				final String[] projection = { //
 						WordNetContract.Synsets.SYNSETID + " AS _id", // //$NON-NLS-1$
 						WordNetContract.Words.WORDID, //
 						WordNetContract.Senses.SENSEID, //
@@ -188,7 +189,7 @@ public class SensesFragment extends ListFragment
 						WordNetContract.LexDomains.LEXDOMAIN, //
 						WordNetContract.CasedWords.CASED};
 				final String selection = Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.LEMMA + " = ?"; //$NON-NLS-1$
-				final String[] selectionArgs = new String[]{SensesFragment.this.queryWord};
+				final String[] selectionArgs = {SensesFragment.this.queryWord};
 				final String sortOrder = Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.POS + ',' + Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.SENSENUM;
 				return new CursorLoader(getActivity(), uri, projection, selection, selectionArgs, sortOrder);
 			}
@@ -206,13 +207,13 @@ public class SensesFragment extends ListFragment
 				}
 
 				// pass on to list adapter
-				((SimpleCursorAdapter) getListAdapter()).swapCursor(c);
+				((CursorAdapter) getListAdapter()).swapCursor(c);
 			}
 
 			@Override
 			public void onLoaderReset(final Loader<Cursor> arg0)
 			{
-				((SimpleCursorAdapter) getListAdapter()).swapCursor(null);
+				((CursorAdapter) getListAdapter()).swapCursor(null);
 			}
 		});
 	}
@@ -283,9 +284,7 @@ public class SensesFragment extends ListFragment
 	public void setActivateOnItemClick(final boolean activateOnItemClick)
 	{
 		// when setting CHOICE_MODE_SINGLE, ListView will automatically give items the 'activated' state when touched.
-		getListView().setChoiceMode(activateOnItemClick ?
-				AbsListView.CHOICE_MODE_SINGLE :
-				AbsListView.CHOICE_MODE_NONE);
+		getListView().setChoiceMode(activateOnItemClick ? AbsListView.CHOICE_MODE_SINGLE : AbsListView.CHOICE_MODE_NONE);
 	}
 
 	// C L I C K E V E N T L I S T E N
@@ -317,11 +316,13 @@ public class SensesFragment extends ListFragment
 	private void onAttachToContext(final Context context)
 	{
 		// activities containing this fragment must implement its listener
-		if (!(context instanceof Listener))
+		if (context instanceof Listener)
 		{
-			throw new IllegalStateException("Activity must implement fragment's listener."); //$NON-NLS-1$
+			//noinspection CastToIncompatibleInterface
+			this.listener = (Listener) context;
+			return;
 		}
-		this.listener = (Listener) context;
+		throw new IllegalStateException("Activity must implement fragment's listener."); //$NON-NLS-1$
 	}
 
 	/*
@@ -358,9 +359,7 @@ public class SensesFragment extends ListFragment
 			final int casedId = cursor.getColumnIndex(WordNetContract.CasedWords.CASED);
 
 			final SensePointer sense = new SensePointer();
-			sense.setSynset(cursor.isNull(synsetId) ?
-					null :
-					cursor.getLong(synsetId), cursor.getString(posId));
+			sense.setSynset(cursor.isNull(synsetId) ? null : cursor.getLong(synsetId), cursor.getString(posId));
 			sense.setWord(this.word.wordid, this.word.lemma, cursor.getString(casedId));
 
 			// notify the active listener (the activity, if the fragment is attached to one) that an item has been selected

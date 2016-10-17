@@ -69,31 +69,27 @@ public class FrameNetMarkupFactory implements MarkupSpanner.SpanFactory
 		@Override
 		public Object makeSpans(final String selector, final long flags)
 		{
-			if (selector.equals("fe")) //$NON-NLS-1$
+			if ("fe".equals(selector)) //$NON-NLS-1$
 			{
 				return new BackgroundColorSpan(Color.MAGENTA);
 			}
-			if (selector.equals("t")) //$NON-NLS-1$
+			if ("t".equals(selector)) //$NON-NLS-1$
 			{
 				return new BackgroundColorSpan(Color.BLACK);
 			}
-			if (selector.equals("fen")) //$NON-NLS-1$
+			if ("fen".equals(selector)) //$NON-NLS-1$
 			{
-				return new BackgroundColorSpan((flags & FrameNetMarkupFactory.FEDEF) == 0 ?
-						Color.MAGENTA :
-						Color.LTGRAY);
+				return new BackgroundColorSpan((flags & FrameNetMarkupFactory.FEDEF) == 0 ? Color.MAGENTA : Color.LTGRAY);
 			}
 			if (selector.matches("fex.*")) //$NON-NLS-1$
 			{
-				return new BackgroundColorSpan((flags & FrameNetMarkupFactory.FEDEF) == 0 ?
-						Colors.pink :
-						Colors.ltmagenta);
+				return new BackgroundColorSpan((flags & FrameNetMarkupFactory.FEDEF) == 0 ? Colors.pink : Colors.ltmagenta);
 			}
 			if (selector.matches("xfen")) //$NON-NLS-1$
 			{
 				return new BackgroundColorSpan(Colors.ltyellow);
 			}
-			if (selector.equals("ex")) //$NON-NLS-1$
+			if ("ex".equals(selector)) //$NON-NLS-1$
 			{
 				return new StyleSpan(android.graphics.Typeface.ITALIC); // new BackgroundColorSpan(Color.LTGRAY);
 			}
@@ -113,11 +109,11 @@ public class FrameNetMarkupFactory implements MarkupSpanner.SpanFactory
 		@Override
 		public Object makeSpans(final String selector, final long flags)
 		{
-			if (selector.equals("t")) //$NON-NLS-1$
+			if ("t".equals(selector)) //$NON-NLS-1$
 			{
 				return new ForegroundColorSpan(Color.WHITE);
 			}
-			if (selector.equals("fe")) //$NON-NLS-1$
+			if ("fe".equals(selector)) //$NON-NLS-1$
 			{
 				return new ForegroundColorSpan(Color.WHITE);
 			}
@@ -137,15 +133,15 @@ public class FrameNetMarkupFactory implements MarkupSpanner.SpanFactory
 		switch (position)
 		{
 			case TAG1:
-				if (selector.equals("t")) //$NON-NLS-1$
+				if ("t".equals(selector)) //$NON-NLS-1$
 				{
 					return new ImageSpan(this.relationDrawable, DynamicDrawableSpan.ALIGN_BASELINE);
 				}
-				if (selector.equals("fe")) //$NON-NLS-1$
+				if ("fe".equals(selector)) //$NON-NLS-1$
 				{
 					return new ImageSpan(this.roleDrawable, DynamicDrawableSpan.ALIGN_BASELINE);
 				}
-				if (selector.equals("fen")) //$NON-NLS-1$
+				if ("fen".equals(selector)) //$NON-NLS-1$
 				{
 					return new ImageSpan(this.role1Drawable, DynamicDrawableSpan.ALIGN_BASELINE);
 				}
@@ -203,9 +199,6 @@ public class FrameNetMarkupFactory implements MarkupSpanner.SpanFactory
 					return foregroundSpan;
 				}
 				return new BackgroundColorSpan(Color.GREEN);
-
-			default:
-				break;
 		}
 		return null;
 	}

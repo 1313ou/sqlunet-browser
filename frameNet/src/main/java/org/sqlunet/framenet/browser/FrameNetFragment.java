@@ -64,12 +64,7 @@ public class FrameNetFragment extends Fragment
 		final Parcelable pointer = args.getParcelable(SqlUNetContract.ARG_QUERYPOINTER);
 
 		// module
-		/*
-	  Module
-	 */
-		Module module = pointer instanceof HasXId ?
-				new FrameModule(this) :
-				new LexUnitFromWordModule(this);
+		Module module = pointer instanceof HasXId ? new FrameModule(this) : new LexUnitFromWordModule(this);
 		module.init(pointer);
 		module.process(queryNode);
 

@@ -33,9 +33,9 @@ import org.sqlunet.verbnet.browser.VnClassActivity;
 import org.sqlunet.view.TreeFactory;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
@@ -70,11 +70,6 @@ abstract class BasicModule extends Module
 	BasicModule(final Fragment fragment0)
 	{
 		super(fragment0);
-	}
-
-	private static String capitalize1(final String s)
-	{
-		return s.substring(0, 1).toUpperCase(Locale.ENGLISH) + s.substring(1);
 	}
 
 	/**
@@ -179,17 +174,17 @@ abstract class BasicModule extends Module
 		@Override
 		public int compareTo(final PmRole another)
 		{
-			if (pmpos.charAt(0) != another.pmpos.charAt(0))
+			if (this.pmpos.charAt(0) != another.pmpos.charAt(0))
 			{
-				return pmpos.charAt(0) > another.pmpos.charAt(0) ? 1 : -1;
+				return this.pmpos.charAt(0) > another.pmpos.charAt(0) ? 1 : -1;
 			}
-			if (pmpredid != another.pmpredid)
+			if (this.pmpredid != another.pmpredid)
 			{
-				return pmpredid > another.pmpredid ? 1 : -1;
+				return this.pmpredid > another.pmpredid ? 1 : -1;
 			}
-			if (pmroleid != another.pmroleid)
+			if (this.pmroleid != another.pmroleid)
 			{
-				return pmroleid > another.pmroleid ? 1 : -1;
+				return this.pmroleid > another.pmroleid ? 1 : -1;
 			}
 			return 0;
 		}
@@ -277,9 +272,9 @@ abstract class BasicModule extends Module
 		@Override
 		public int compareTo(final WnData another)
 		{
-			if (synsetid != another.synsetid)
+			if (this.synsetid != another.synsetid)
 			{
-				return synsetid > another.synsetid ? 1 : -1;
+				return this.synsetid > another.synsetid ? 1 : -1;
 			}
 			return 0;
 		}
@@ -331,13 +326,13 @@ abstract class BasicModule extends Module
 		@Override
 		public int compareTo(final VnData another)
 		{
-			if (vnclassid != another.vnclassid)
+			if (this.vnclassid != another.vnclassid)
 			{
-				return vnclassid > another.vnclassid ? 1 : -1;
+				return this.vnclassid > another.vnclassid ? 1 : -1;
 			}
-			if (vnroleid != another.vnroleid)
+			if (this.vnroleid != another.vnroleid)
 			{
-				return vnroleid > another.vnroleid ? 1 : -1;
+				return this.vnroleid > another.vnroleid ? 1 : -1;
 			}
 			return 0;
 		}
@@ -359,7 +354,7 @@ abstract class BasicModule extends Module
 			return (int) (19 * this.vnclassid + 13 * this.vnroleid);
 		}
 
-		public String toData()
+		public CharSequence toData()
 		{
 			return Long.toString(this.vnclassid) + '-' + Long.toString(this.vnroleid);
 		}
@@ -398,13 +393,13 @@ abstract class BasicModule extends Module
 		@Override
 		public int compareTo(final PbData another)
 		{
-			if (pbrolesetid != another.pbrolesetid)
+			if (this.pbrolesetid != another.pbrolesetid)
 			{
-				return pbrolesetid > another.pbrolesetid ? 1 : -1;
+				return this.pbrolesetid > another.pbrolesetid ? 1 : -1;
 			}
-			if (pbroleid != another.pbroleid)
+			if (this.pbroleid != another.pbroleid)
 			{
-				return pbroleid > another.pbroleid ? 1 : -1;
+				return this.pbroleid > another.pbroleid ? 1 : -1;
 			}
 			return 0;
 		}
@@ -426,7 +421,7 @@ abstract class BasicModule extends Module
 			return (int) (23 * this.pbrolesetid + 51 * this.pbroleid);
 		}
 
-		public String toData()
+		public CharSequence toData()
 		{
 			return Long.toString(this.pbrolesetid) + '-' + Long.toString(this.pbroleid);
 		}
@@ -460,13 +455,13 @@ abstract class BasicModule extends Module
 		@Override
 		public int compareTo(final FnData another)
 		{
-			if (fnframeid != another.fnframeid)
+			if (this.fnframeid != another.fnframeid)
 			{
-				return fnframeid > another.fnframeid ? 1 : -1;
+				return this.fnframeid > another.fnframeid ? 1 : -1;
 			}
-			if (fnfeid != another.fnfeid)
+			if (this.fnfeid != another.fnfeid)
 			{
-				return fnfeid > another.fnfeid ? 1 : -1;
+				return this.fnfeid > another.fnfeid ? 1 : -1;
 			}
 			return 0;
 		}
@@ -488,7 +483,7 @@ abstract class BasicModule extends Module
 			return (int) (17 * this.fnframeid + 7 * this.fnfeid);
 		}
 
-		public String toData()
+		public CharSequence toData()
 		{
 			return Long.toString(this.fnframeid) + '-' + Long.toString(this.fnfeid);
 		}
@@ -520,7 +515,7 @@ abstract class BasicModule extends Module
 		public Loader<Cursor> onCreateLoader(final int loaderId0, final Bundle args)
 		{
 			final Uri uri = Uri.parse(Pm_X.CONTENT_URI);
-			final String[] projection = new String[]{ //
+			final String[] projection = { //
 					PredicateMatrix.PMID, //
 					PredicateMatrix.PMROLEID, //
 					PredicateMatrix.PMPREDID, //
@@ -559,7 +554,7 @@ abstract class BasicModule extends Module
 			};
 			final String selection = getSelection();
 			final String[] selectionArgs = getSelectionArgs();
-			final String sortOrder = displayer.getRequiredOrder();
+			final String sortOrder = this.displayer.getRequiredOrder();
 			return new CursorLoader(BasicModule.this.getContext(), uri, projection, selection, selectionArgs, sortOrder);
 		}
 
@@ -674,7 +669,7 @@ abstract class BasicModule extends Module
 
 	abstract class PmProcessGrouped extends PmCallbacks
 	{
-		private final List<Integer> pmroleids = new ArrayList<>();
+		private final Collection<Integer> pmroleids = new ArrayList<>();
 
 		private final SparseArray<PmRole> pm = new SparseArray<>();
 
@@ -698,67 +693,67 @@ abstract class BasicModule extends Module
 		{
 			if (this.pmroleid != pmRow.pmroleid)
 			{
-				pmroleids.add((int) pmRow.pmroleid);
-				pm.append((int) pmRow.pmroleid, pmRow);
+				this.pmroleids.add((int) pmRow.pmroleid);
+				this.pm.append((int) pmRow.pmroleid, pmRow);
 				this.pmroleid = pmRow.pmroleid;
 			}
 
 			if (vnData.vnclassid > 0)
 			{
-				Set<VnData> vnSet = vnMap.get((int) pmroleid);
+				Set<VnData> vnSet = this.vnMap.get((int) this.pmroleid);
 				if (vnSet == null)
 				{
 					vnSet = new TreeSet<>();
-					vnMap.put((int) pmroleid, vnSet);
+					this.vnMap.put((int) this.pmroleid, vnSet);
 				}
 				vnSet.add(vnData);
 
 				// wn
-				Set<WnData> wnSet = wnMap.get(vnData);
+				Set<WnData> wnSet = this.wnMap.get(vnData);
 				if (wnSet == null)
 				{
 					wnSet = new HashSet<>();
-					wnMap.put(vnData, wnSet);
+					this.wnMap.put(vnData, wnSet);
 				}
 				wnSet.add(wnData);
 			}
 
 			if (pbData.pbrolesetid > 0)
 			{
-				Set<PbData> pbSet = pbMap.get((int) pmroleid);
+				Set<PbData> pbSet = this.pbMap.get((int) this.pmroleid);
 				if (pbSet == null)
 				{
 					pbSet = new TreeSet<>();
-					pbMap.put((int) pmroleid, pbSet);
+					this.pbMap.put((int) this.pmroleid, pbSet);
 				}
 				pbSet.add(pbData);
 
 				// wn
-				Set<WnData> wnSet = wnMap.get(pbData);
+				Set<WnData> wnSet = this.wnMap.get(pbData);
 				if (wnSet == null)
 				{
 					wnSet = new HashSet<>();
-					wnMap.put(pbData, wnSet);
+					this.wnMap.put(pbData, wnSet);
 				}
 				wnSet.add(wnData);
 			}
 
 			if (fnData.fnframeid > 0)
 			{
-				Set<FnData> fnSet = fnMap.get((int) pmroleid);
+				Set<FnData> fnSet = this.fnMap.get((int) this.pmroleid);
 				if (fnSet == null)
 				{
 					fnSet = new TreeSet<>();
-					fnMap.put((int) pmroleid, fnSet);
+					this.fnMap.put((int) this.pmroleid, fnSet);
 				}
 				fnSet.add(fnData);
 
 				// wn
-				Set<WnData> wnSet = wnMap.get(fnData);
+				Set<WnData> wnSet = this.wnMap.get(fnData);
 				if (wnSet == null)
 				{
 					wnSet = new HashSet<>();
-					wnMap.put(fnData, wnSet);
+					this.wnMap.put(fnData, wnSet);
 				}
 				wnSet.add(wnData);
 			}
@@ -766,19 +761,19 @@ abstract class BasicModule extends Module
 
 		protected void endProcess(TreeNode parent2)
 		{
-			for (int pmroleid : pmroleids)
+			for (int pmroleid : this.pmroleids)
 			{
-				final PmRole pmRole = pm.get(pmroleid);
-				final Set<VnData> vnDatas = vnMap.get(pmroleid);
-				final Set<PbData> pbDatas = pbMap.get(pmroleid);
-				final Set<FnData> fnDatas = fnMap.get(pmroleid);
-				final TreeNode pmroleNode = displayer.displayPmRole(this.parent, pmRole);
+				final PmRole pmRole = this.pm.get(pmroleid);
+				final Set<VnData> vnDatas = this.vnMap.get(pmroleid);
+				final Set<PbData> pbDatas = this.pbMap.get(pmroleid);
+				final Set<FnData> fnDatas = this.fnMap.get(pmroleid);
+				final TreeNode pmroleNode = this.displayer.displayPmRole(this.parent, pmRole);
 				if (vnDatas != null)
 				{
 					for (VnData vnData : vnDatas)
 					{
-						final Set<WnData> wnData = wnMap.get(vnData);
-						final TreeNode vnNode = displayer.makeVnNode(vnData, wnData.toArray(new WnData[0]));
+						final Set<WnData> wnData = this.wnMap.get(vnData);
+						final TreeNode vnNode = this.displayer.makeVnNode(vnData, wnData.toArray(new WnData[0]));
 						pmroleNode.addChild(vnNode);
 					}
 				}
@@ -786,8 +781,8 @@ abstract class BasicModule extends Module
 				{
 					for (PbData pbData : pbDatas)
 					{
-						final Set<WnData> wnData = wnMap.get(pbData);
-						final TreeNode pbNode = displayer.makePbNode(pbData, wnData.toArray(new WnData[0]));
+						final Set<WnData> wnData = this.wnMap.get(pbData);
+						final TreeNode pbNode = this.displayer.makePbNode(pbData, wnData.toArray(new WnData[0]));
 						pmroleNode.addChild(pbNode);
 					}
 				}
@@ -795,8 +790,8 @@ abstract class BasicModule extends Module
 				{
 					for (FnData fnData : fnDatas)
 					{
-						final Set<WnData> wnData = wnMap.get(fnData);
-						final TreeNode fnNode = displayer.makeFnNode(fnData, wnData.toArray(new WnData[0]));
+						final Set<WnData> wnData = this.wnMap.get(fnData);
+						final TreeNode fnNode = this.displayer.makeFnNode(fnData, wnData.toArray(new WnData[0]));
 						pmroleNode.addChild(fnNode);
 					}
 				}
@@ -813,7 +808,7 @@ abstract class BasicModule extends Module
 
 		protected void process(final TreeNode parentNode, final WnData wnData, final PmRow pmRow, final VnData vnData, final PbData pbData, final FnData fnData)
 		{
-			displayer.display(parentNode, wnData, pmRow, vnData, pbData, fnData);
+			this.displayer.display(parentNode, wnData, pmRow, vnData, pbData, fnData);
 		}
 	}
 
@@ -824,6 +819,11 @@ abstract class BasicModule extends Module
 		abstract protected String getRequiredOrder();
 
 		abstract protected int getExpandLevels();
+
+		private CharSequence capitalize1(final String s)
+		{
+			return s.substring(0, 1).toUpperCase(Locale.ENGLISH) + s.substring(1);
+		}
 
 		void displayRow(final TreeNode parentNode, final WnData wnData, final PmRow pmRow, final VnData vnData, final PbData pbData, final FnData fnData, final boolean wnDataOnRow, @SuppressWarnings("SameParameterValue") final boolean wnDataOnXData)
 		{
@@ -921,9 +921,7 @@ abstract class BasicModule extends Module
 				Spanner.append(vnsb, wnData.definition, 0, PredicateMatrixFactories.definitionFactory);
 			}
 
-			return vnData.vnclassid == 0L ?
-					TreeFactory.newLeafNode(vnsb, R.drawable.verbnet, BasicModule.this.getContext()) :
-					TreeFactory.newLinkNode(new VnClassQuery(vnData.vnclassid, R.drawable.verbnet, vnsb), BasicModule.this.getContext());
+			return vnData.vnclassid == 0L ? TreeFactory.newLeafNode(vnsb, R.drawable.verbnet, BasicModule.this.getContext()) : TreeFactory.newLinkNode(new VnClassQuery(vnData.vnclassid, R.drawable.verbnet, vnsb), BasicModule.this.getContext());
 		}
 
 		TreeNode makePbNode(final PbData pbData, final WnData... wnDatas)
@@ -981,9 +979,7 @@ abstract class BasicModule extends Module
 				Spanner.append(pbsb, wnData.definition, 0, PredicateMatrixFactories.definitionFactory);
 			}
 
-			return pbData.pbrolesetid == 0L ?
-					TreeFactory.newLeafNode(pbsb, R.drawable.propbank, BasicModule.this.getContext()) :
-					TreeFactory.newLinkNode(new PbRoleSetQuery(pbData.pbrolesetid, R.drawable.propbank, pbsb), BasicModule.this.getContext());
+			return pbData.pbrolesetid == 0L ? TreeFactory.newLeafNode(pbsb, R.drawable.propbank, BasicModule.this.getContext()) : TreeFactory.newLinkNode(new PbRoleSetQuery(pbData.pbrolesetid, R.drawable.propbank, pbsb), BasicModule.this.getContext());
 		}
 
 		TreeNode makeFnNode(final FnData fnData, final WnData... wnDatas)
@@ -1028,9 +1024,7 @@ abstract class BasicModule extends Module
 				Spanner.append(fnsb, wnData.definition, 0, PredicateMatrixFactories.definitionFactory);
 			}
 
-			return fnData.fnframeid == 0L ?
-					TreeFactory.newLeafNode(fnsb, R.drawable.framenet, BasicModule.this.getContext()) :
-					TreeFactory.newLinkNode(new FnFrameQuery(fnData.fnframeid, R.drawable.framenet, fnsb), BasicModule.this.getContext());
+			return fnData.fnframeid == 0L ? TreeFactory.newLeafNode(fnsb, R.drawable.framenet, BasicModule.this.getContext()) : TreeFactory.newLinkNode(new FnFrameQuery(fnData.fnframeid, R.drawable.framenet, fnsb), BasicModule.this.getContext());
 		}
 	}
 
@@ -1092,18 +1086,18 @@ abstract class BasicModule extends Module
 	{
 		private long synsetid = -1L;
 
-		private TreeNode synsetNode = null;
+		private TreeNode synsetNode;
 
 		public void display(final TreeNode parentNode, final WnData wnData, final PmRow pmRole, final VnData vnData, final PbData pbData, final FnData fnData)
 		{
 			if (this.synsetid != wnData.synsetid)
 			{
 				final SpannableStringBuilder synsetsb = new SpannableStringBuilder();
-				if (synsetid != -1)
+				if (this.synsetid != -1)
 				{
 					Spanner.append(synsetsb, wnData.definition, 0, PredicateMatrixFactories.definitionFactory);
 					synsetsb.append(' ');
-					Spanner.append(synsetsb, Long.toString(synsetid), 0, PredicateMatrixFactories.dataFactory);
+					Spanner.append(synsetsb, Long.toString(this.synsetid), 0, PredicateMatrixFactories.dataFactory);
 				}
 				else
 				{
@@ -1136,7 +1130,7 @@ abstract class BasicModule extends Module
 	{
 		private long pmroleid = -1L;
 
-		private TreeNode pmroleNode = null;
+		private TreeNode pmroleNode;
 
 		public void display(final TreeNode parentNode, final WnData wnData, final PmRow pmRole, final VnData vnData, final PbData pbData, final FnData fnData)
 		{
@@ -1221,7 +1215,7 @@ abstract class BasicModule extends Module
 		@Override
 		public void process(final TreeNode node0)
 		{
-			System.out.println("roleset " + this.id); //$NON-NLS-1$
+			// System.out.println("roleset " + this.id); //$NON-NLS-1$
 			final PbRoleSetPointer pointer = new PbRoleSetPointer();
 			pointer.rolesetid = this.id;
 			final Intent intent = new Intent(BasicModule.this.getContext(), PbRoleSetActivity.class);
@@ -1243,7 +1237,7 @@ abstract class BasicModule extends Module
 		@Override
 		public void process(final TreeNode node0)
 		{
-			System.out.println("frame " + this.id); //$NON-NLS-1$
+			// System.out.println("frame " + this.id); //$NON-NLS-1$
 
 			final FnFramePointer pointer = new FnFramePointer();
 			pointer.frameid = this.id;

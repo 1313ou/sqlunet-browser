@@ -4,11 +4,11 @@
               android:layout_height="fill_parent"
               android:orientation="vertical">
 
-    <ImageView
-        android:padding="5dp"
-        android:id="@+id/icon"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:contentDescription="@string/tip_selector"/>
+	<ImageView
+		android:padding="5dp"
+		android:id="@+id/icon"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:contentDescription="@string/tip_selector"/>
 
 </LinearLayout>

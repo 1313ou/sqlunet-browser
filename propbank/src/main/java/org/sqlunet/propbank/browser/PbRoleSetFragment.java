@@ -62,9 +62,6 @@ public class PbRoleSetFragment extends Fragment
 		final Parcelable pointer = args.getParcelable(SqlUNetContract.ARG_QUERYPOINTER);
 
 		// module
-		/*
-	  Module
-	 */
 		Module module = new RoleSetModule(this);
 		module.init(pointer);
 		module.process(queryNode);

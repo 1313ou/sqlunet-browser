@@ -7,38 +7,38 @@ import org.sqlunet.sql.DBQueryCommand;
 import java.util.Locale;
 
 /**
- * Query command for VerbNet roles
+ * Query command for Propbank roles
  *
  * @author Bernard Bou
  */
 class PbRoleQueryCommand extends DBQueryCommand
 {
 	/**
-	 * <code>theQuery</code> is the SQL statement
+	 * <code>QUERY</code> is the SQL statement
 	 */
-	private static final String theQuery = SqLiteDialect.PropBankRolesQuery;
+	private static final String QUERY = SqLiteDialect.PropBankRolesQuery;
 
 	/**
 	 * Constructor
 	 *
-	 * @param thisConnection is the database connection
+	 * @param connection is the database connection
 	 */
 	@SuppressWarnings("boxing")
-	public PbRoleQueryCommand(final SQLiteDatabase thisConnection, final long thisRoleSetId)
+	public PbRoleQueryCommand(final SQLiteDatabase connection, final long roleSetId)
 	{
-		super(thisConnection, PbRoleQueryCommand.theQuery);
-		setParams(thisRoleSetId);
+		super(connection, PbRoleQueryCommand.QUERY);
+		setParams(roleSetId);
 	}
 
 	/**
 	 * Set id parameters in prepared SQL statement
 	 *
-	 * @param thisRoleSetId is the target roleset id
+	 * @param roleSetId is the target roleset id
 	 */
 	@SuppressWarnings("unused")
-	public void setId(final long thisRoleSetId)
+	public void setId(final long roleSetId)
 	{
-		this.statement.setLong(0, thisRoleSetId);
+		this.statement.setLong(0, roleSetId);
 	}
 
 	/**

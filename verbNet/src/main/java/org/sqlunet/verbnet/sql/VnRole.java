@@ -8,22 +8,22 @@ class VnRole
 	/**
 	 * Role type
 	 */
-	public final String theRoleType;
+	public final String roleType;
 
 	/**
 	 * Role selectional restrictions
 	 */
-	public final String theSelectionRestrictions;
+	public final String selectionRestrictions;
 
 	/**
 	 * Constructor
 	 *
-	 * @param thisRoleType               is the role type
-	 * @param theseSelectionRestrictions is the selectional restriction (XML)
+	 * @param roleType              is the role type
+	 * @param selectionRestrictions is the selectional restriction (XML)
 	 */
-	VnRole(final String thisRoleType, final String theseSelectionRestrictions)
+	VnRole(final String roleType, final String selectionRestrictions)
 	{
-		this.theRoleType = thisRoleType;
-		this.theSelectionRestrictions = theseSelectionRestrictions;
+		this.roleType = roleType;
+		this.selectionRestrictions = selectionRestrictions;
 	}
 }

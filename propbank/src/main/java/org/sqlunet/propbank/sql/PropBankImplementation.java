@@ -240,9 +240,9 @@ public class PropBankImplementation implements PropBankInterface
 	 * @param connection data source
 	 * @param doc        the org.w3c.dom.Document being built
 	 * @param parent     the org.w3c.dom.Node the walk will attach results to
-	 * @param roleSets  rolesets
+	 * @param roleSets   rolesets
 	 */
-	static private void walk(final SQLiteDatabase connection, final Document doc, final Node parent, final List<PbRoleSet> roleSets)
+	static private void walk(final SQLiteDatabase connection, final Document doc, final Node parent, final Iterable<PbRoleSet> roleSets)
 	{
 		// rolesets
 		int i = 1;
@@ -275,7 +275,7 @@ public class PropBankImplementation implements PropBankInterface
 	 * @param parent   the org.w3c.dom.Node the walk will attach results to
 	 * @param roleSets rolesets
 	 */
-	static private void makeSelector(final Document doc, final Node parent, final List<PbRoleSet> roleSets)
+	static private void makeSelector(final Document doc, final Node parent, final Iterable<PbRoleSet> roleSets)
 	{
 		// rolesets
 		int i = 1;

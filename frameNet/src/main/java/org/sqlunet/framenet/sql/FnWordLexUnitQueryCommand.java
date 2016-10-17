@@ -31,9 +31,7 @@ class FnWordLexUnitQueryCommand extends DBQueryCommand
 	@SuppressWarnings("boxing")
 	public FnWordLexUnitQueryCommand(final SQLiteDatabase connection, final long targetWordId, final Character targetPos)
 	{
-		super(connection, targetPos != null ?
-				FnWordLexUnitQueryCommand.QUERY2 :
-				FnWordLexUnitQueryCommand.QUERY);
+		super(connection, targetPos != null ? FnWordLexUnitQueryCommand.QUERY2 : FnWordLexUnitQueryCommand.QUERY);
 		setParams(targetWordId, FnWordLexUnitQueryCommand.mapPos(targetPos));
 	}
 

@@ -12,6 +12,7 @@ import org.sqlunet.settings.StorageSettings;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.List;
 
 /**
@@ -50,10 +51,14 @@ public class Status
 				return status;
 			}
 
-			boolean existsIdx = contains(existingTablesAndIndexes, "index_words_lemma", "index_senses_wordid", "index_senses_synsetid", "index_synsets_synsetid", "index_casedwords_wordid_casedwordid", "index_semlinks_synset1id", //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$ //$NON-NLS-6$
-					"index_semlinks_linkid", //$NON-NLS-1$
-					"index_samples_synsetid", "index_vnwords_wordid", "index_vnrolemaps_classid", "index_vnframemaps_classid", "index_pbwords_wordid", "index_pbrolesets_pbwordid", "index_pbroles_rolesetid", "index_pbexamples_rolesetid", //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$ //$NON-NLS-6$ //$NON-NLS-7$ //$NON-NLS-8$
-					"index_fnwords_wordid", "index_fnlexemes_fnwordid", "index_fnfes_frameid", "index_fnlayers_annosetid", "index_fnlabels_layerid", "index_pm_wordid", "index_pm_synsetid"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$ //$NON-NLS-6$ //$NON-NLS-7$
+			boolean existsIdx = contains(existingTablesAndIndexes, "index_words_lemma", "index_senses_wordid", "index_senses_synsetid", "index_synsets_synsetid", //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
+					"index_casedwords_wordid_casedwordid", //$NON-NLS-1$
+					"index_semlinks_synset1id", "index_semlinks_linkid", //$NON-NLS-1$ //$NON-NLS-2$
+					"index_samples_synsetid", //$NON-NLS-1$
+					"index_vnwords_wordid", "index_vnrolemaps_classid", "index_vnframemaps_classid", //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+					"index_pbwords_wordid", "index_pbrolesets_pbwordid", "index_pbroles_rolesetid", "index_pbexamples_rolesetid", //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
+					"index_fnwords_wordid", "index_fnlexemes_fnwordid", "index_fnfes_frameid", "index_fnlayers_annosetid", "index_fnlabels_layerid", //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$
+					"index_pm_wordid", "index_pm_synsetid"); //$NON-NLS-1$ //$NON-NLS-2$
 			boolean existsPm = contains(existingTablesAndIndexes, "pmvn", "pmpb", "pmfn"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 			boolean existsTs = contains(existingTablesAndIndexes, "words_lemma_fts4", "synsets_definition_fts4", "samples_sample_fts4"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 			boolean existsTsFn = contains(existingTablesAndIndexes, "fnsentences_text_fts4"); //$NON-NLS-1$
@@ -124,7 +129,7 @@ public class Status
 		return result;
 	}
 
-	static private boolean contains(final List<String> tablesAndIndexes, final String... targets)
+	static private boolean contains(final Collection<String> tablesAndIndexes, final String... targets)
 	{
 		return tablesAndIndexes.containsAll(Arrays.asList(targets));
 	}

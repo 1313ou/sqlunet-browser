@@ -12,6 +12,10 @@ import java.io.InputStreamReader;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
 
+/**
+ * Execution manager
+ */
+@SuppressWarnings("RedundantSuppression")
 public class ExecuteManager
 {
 	private static final String TAG = "ManagedTask"; //$NON-NLS-1$
@@ -53,6 +57,7 @@ public class ExecuteManager
 	 *
 	 * @param sqls sql statements
 	 */
+	@SuppressWarnings("UnusedReturnValue")
 	public AsyncTask<String, Integer, Boolean> executeFromSql(final String... sqls)
 	{
 		final AsyncTask<String, Integer, Boolean> task = new AsyncTask<String, Integer, Boolean>()
@@ -94,7 +99,7 @@ public class ExecuteManager
 				}
 				catch (final Exception e)
 				{
-					e.printStackTrace();
+					Log.e(TAG, "While executing", e);
 				}
 				finally
 				{
@@ -123,7 +128,6 @@ public class ExecuteManager
 			 * 
 			 * @see android.os.AsyncTask#onProgressUpdate(Progress[])
 			 */
-			@SuppressWarnings({"boxing"})
 			@Override
 			protected void onProgressUpdate(final Integer... progress)
 			{
@@ -136,7 +140,6 @@ public class ExecuteManager
 			 * 
 			 * @see android.os.AsyncTask#onPostExecute(java.lang.Object)
 			 */
-			@SuppressWarnings({"boxing"})
 			@Override
 			protected void onPostExecute(final Boolean result)
 			{
@@ -173,7 +176,6 @@ public class ExecuteManager
 				ZipFile zipFile = null;
 				SQLiteDatabase db = null;
 				BufferedReader reader = null;
-				InputStreamReader isr;
 				InputStream is = null;
 				try
 				{
@@ -190,7 +192,7 @@ public class ExecuteManager
 					db = SQLiteDatabase.openDatabase(ExecuteManager.this.databasePath, null, SQLiteDatabase.CREATE_IF_NECESSARY);
 
 					// open the reader
-					isr = new InputStreamReader(is);
+					InputStreamReader isr = new InputStreamReader(is);
 					reader = new BufferedReader(isr);
 
 					// iterate through lines (assuming each insert has its own line and there's no other stuff)
@@ -245,7 +247,7 @@ public class ExecuteManager
 				}
 				catch (IOException e1)
 				{
-					e1.printStackTrace();
+					Log.e(TAG, "While executing from archive", e1);
 				}
 				finally
 				{
@@ -261,7 +263,7 @@ public class ExecuteManager
 						}
 						catch (IOException e)
 						{
-							e.printStackTrace();
+							Log.e(TAG, "While closing archive", e);
 						}
 					}
 					if (reader != null)
@@ -306,7 +308,6 @@ public class ExecuteManager
 			 * 
 			 * @see android.os.AsyncTask#onProgressUpdate(Progress[])
 			 */
-			@SuppressWarnings({"boxing"})
 			@Override
 			protected void onProgressUpdate(final Integer... progress)
 			{
@@ -318,7 +319,6 @@ public class ExecuteManager
 			 * 
 			 * @see android.os.AsyncTask#onPostExecute(java.lang.Object)
 			 */
-			@SuppressWarnings({"boxing"})
 			@Override
 			protected void onPostExecute(final Boolean result)
 			{

@@ -9,7 +9,6 @@ import org.sqlunet.treeview.view.TreeNodeWrapperView;
 import org.sqlunet.treeview.view.TreeView;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
@@ -69,6 +68,7 @@ public class TreeNode
 		return this;
 	}
 
+	@SuppressWarnings("UnusedReturnValue")
 	public TreeNode addChildren(TreeNode... nodes)
 	{
 		for (TreeNode n : nodes)
@@ -82,7 +82,7 @@ public class TreeNode
 	}
 
 	@SuppressWarnings("unused")
-	public TreeNode addChildren(Collection<TreeNode> nodes)
+	public TreeNode addChildren(Iterable<TreeNode> nodes)
 	{
 		for (TreeNode n : nodes)
 		{
@@ -107,7 +107,7 @@ public class TreeNode
 		return -1;
 	}
 
-	public List<TreeNode> getChildren()
+	public Iterable<TreeNode> getChildren()
 	{
 		return Collections.unmodifiableList(this.children);
 	}
@@ -166,6 +166,7 @@ public class TreeNode
 		return size() == 0;
 	}
 
+	@SuppressWarnings("BooleanMethodIsAlwaysInverted")
 	private boolean isRoot()
 	{
 		return this.mParent == null;
@@ -219,6 +220,7 @@ public class TreeNode
 		return this.mExpanded;
 	}
 
+	@SuppressWarnings("UnusedReturnValue")
 	public TreeNode setExpanded(boolean expanded)
 	{
 		this.mExpanded = expanded;
@@ -291,9 +293,10 @@ public class TreeNode
 		this.mEnabled = false;
 	}
 
+	@SuppressWarnings("BooleanMethodIsAlwaysInverted")
 	public boolean isEnabled()
 	{
-		return mEnabled;
+		return this.mEnabled;
 	}
 
 	// B A S E R E N D E R E R

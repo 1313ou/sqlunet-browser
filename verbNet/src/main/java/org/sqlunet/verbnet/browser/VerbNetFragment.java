@@ -64,12 +64,7 @@ public class VerbNetFragment extends Fragment
 		final Parcelable pointer = args.getParcelable(SqlUNetContract.ARG_QUERYPOINTER);
 
 		// module
-		/*
-	  Module
-	 */
-		Module module = pointer instanceof HasXId ?
-				new ClassModule(this) :
-				new ClassFromWordModule(this);
+		Module module = pointer instanceof HasXId ? new ClassModule(this) : new ClassFromWordModule(this);
 		module.init(pointer);
 		module.process(queryNode);
 

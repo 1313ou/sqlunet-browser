@@ -118,10 +118,10 @@ public class XSqlUNetProvider extends SqlUNetProvider
 		}
 
 		// choose the table to query and a sort order based on the code returned for the incoming URI
-		String table;
-		String groupBy = null;
 		final int code = XSqlUNetProvider.uriMatcher.match(uri);
 		Log.d(XSqlUNetProvider.TAG + "URI", String.format("%s (code %s)\n", uri, code)); //$NON-NLS-1$ //$NON-NLS-2$
+		String groupBy = null;
+		String table;
 		switch (code)
 		{
 			// J O I N S
@@ -163,9 +163,9 @@ public class XSqlUNetProvider extends SqlUNetProvider
 			{
 				final String table1 = "pmvn INNER JOIN vnclasses ON vnclassid = classid LEFT JOIN synsets USING (synsetid)"; //$NON-NLS-1$
 				final String table2 = "vnwords INNER JOIN vnclassmembersenses USING (vnwordid) INNER JOIN vnclasses USING (classid)"; //$NON-NLS-1$
-				final String[] unionProjection = new String[]{"wordid", "synsetid", "classid", "class", "classtag", "definition"}; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$ //$NON-NLS-6$
-				final String[] tableProjection = new String[]{"wordid", "synsetid", "classid", "class", "classtag"}; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$
-				final String[] groupBy0 = new String[]{"wordid", "synsetid", "classid"}; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				final String[] unionProjection = {"wordid", "synsetid", "classid", "class", "classtag", "definition"}; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$ //$NON-NLS-6$
+				final String[] tableProjection = {"wordid", "synsetid", "classid", "class", "classtag"}; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$
+				final String[] groupBy0 = {"wordid", "synsetid", "classid"}; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 				final String query = makeQuery(table1, table2, tableProjection, unionProjection, projection0, selection, groupBy0, sortOrder, "vn"); //$NON-NLS-1$
 				Log.d(XSqlUNetProvider.TAG + "PM-VN", query); //$NON-NLS-1$
 
@@ -176,9 +176,9 @@ public class XSqlUNetProvider extends SqlUNetProvider
 			{
 				final String table1 = "pmpb INNER JOIN pbrolesets ON pbrolesetid = rolesetid LEFT JOIN synsets USING (synsetid)"; //$NON-NLS-1$
 				final String table2 = "pbwords INNER JOIN pbrolesets USING (pbwordid)"; //$NON-NLS-1$
-				final String[] unionProjection = new String[]{"wordid", "synsetid", "rolesetid", "rolesetname", "rolesethead", "rolesetdescr", "definition"}; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$ //$NON-NLS-6$ //$NON-NLS-7$
-				final String[] tableProjection = new String[]{"wordid", "rolesetid", "rolesetname", "rolesethead", "rolesetdescr"}; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$
-				final String[] groupBy0 = new String[]{"wordid", "synsetid", "rolesetid"}; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				final String[] unionProjection = {"wordid", "synsetid", "rolesetid", "rolesetname", "rolesethead", "rolesetdescr", "definition"}; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$ //$NON-NLS-6$ //$NON-NLS-7$
+				final String[] tableProjection = {"wordid", "rolesetid", "rolesetname", "rolesethead", "rolesetdescr"}; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$
+				final String[] groupBy0 = {"wordid", "synsetid", "rolesetid"}; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 				final String query = makeQuery(table1, table2, tableProjection, unionProjection, projection0, selection, groupBy0, sortOrder, "pb"); //$NON-NLS-1$
 				Log.d(XSqlUNetProvider.TAG + "PM-PB", query); //$NON-NLS-1$
 
@@ -189,9 +189,10 @@ public class XSqlUNetProvider extends SqlUNetProvider
 			{
 				final String table1 = "pmfn INNER JOIN fnframes ON frameid = fnframeid LEFT JOIN fnlexemes USING (fnwordid) LEFT JOIN fnlexunits USING (luid,frameid) LEFT JOIN synsets USING (synsetid)"; //$NON-NLS-1$
 				final String table2 = "fnwords INNER JOIN fnlexemes USING (fnwordid) INNER JOIN fnlexunits USING (luid,posid) INNER JOIN fnframes USING (frameid)"; //$NON-NLS-1$
-				final String[] unionProjection = new String[]{"wordid", "synsetid", "frameid", "frame", "framedefinition", "luid", "lexunit", "ludefinition", "definition"}; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$ //$NON-NLS-6$ //$NON-NLS-7$ //$NON-NLS-8$ //$NON-NLS-9$
-				final String[] tableProjection = new String[]{"wordid", "frameid", "frame", "framedefinition", "luid", "lexunit", "ludefinition"}; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$ //$NON-NLS-6$ //$NON-NLS-7$
-				final String[] groupBy0 = new String[]{"wordid", "synsetid", "frameid"}; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				final String[] unionProjection = {"wordid", "synsetid", "frameid", "frame", //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
+						"framedefinition", "luid", "lexunit", "ludefinition", "definition"}; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$
+				final String[] tableProjection = {"wordid", "frameid", "frame", "framedefinition", "luid", "lexunit", "ludefinition"}; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$ //$NON-NLS-6$ //$NON-NLS-7$
+				final String[] groupBy0 = {"wordid", "synsetid", "frameid"}; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 				final String query = makeQuery(table1, table2, tableProjection, unionProjection, projection0, selection, groupBy0, sortOrder, "fn"); //$NON-NLS-1$
 				Log.d(XSqlUNetProvider.TAG + "PM-FN", query); //$NON-NLS-1$
 
@@ -222,7 +223,10 @@ public class XSqlUNetProvider extends SqlUNetProvider
 		}
 	}
 
-	private String makeQuery(final String table1, final String table2, final String[] tableProjection0, final String[] unionProjection0, final String[] projection0, final String selection0, final String[] groupBys0, final String sortOrder0, final String tag0)
+	private String makeQuery(final String table1, final String table2, //
+			final String[] tableProjection0, final String[] unionProjection0, final String[] projection0, //
+			final String selection0, //
+			final String[] groupBys0, final String sortOrder0, final String tag0)
 	{
 		final String[] unionProjection = SqlUNetProvider.appendProjection(unionProjection0, "source"); //$NON-NLS-1$
 		final List<String> table1ProjectionList = Arrays.asList(unionProjection0);

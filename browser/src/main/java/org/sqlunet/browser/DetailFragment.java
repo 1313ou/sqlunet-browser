@@ -141,7 +141,6 @@ public class DetailFragment extends Fragment
 				// detail fragment replace
 				getFragmentManager().beginTransaction().replace(R.id.container_web, fragment).commit();
 				break;
-			default:
 		}
 	}
 }

@@ -98,7 +98,7 @@ public class BasicModule extends Module
 			public Loader<Cursor> onCreateLoader(final int loaderId0, final Bundle args)
 			{
 				final Uri uri = Uri.parse(Words_BNCs.CONTENT_URI);
-				final String[] projection = new String[]{Words_BNCs.POS, Words_BNCs.FREQ, Words_BNCs.RANGE, Words_BNCs.DISP, //
+				final String[] projection = {Words_BNCs.POS, Words_BNCs.FREQ, Words_BNCs.RANGE, Words_BNCs.DISP, //
 						Words_BNCs.BNCCONVTASKS + '.' + Words_BNCs.FREQ1 + " AS " + Words_BNCs.BNCCONVTASKS + Words_BNCs.FREQ1, // //$NON-NLS-1$
 						Words_BNCs.BNCCONVTASKS + '.' + Words_BNCs.RANGE1 + " AS " + Words_BNCs.BNCCONVTASKS + Words_BNCs.RANGE1, // //$NON-NLS-1$
 						Words_BNCs.BNCCONVTASKS + '.' + Words_BNCs.DISP1 + " AS " + Words_BNCs.BNCCONVTASKS + Words_BNCs.DISP1, // //$NON-NLS-1$
@@ -120,12 +120,8 @@ public class BasicModule extends Module
 						Words_BNCs.BNCSPWRS + '.' + Words_BNCs.RANGE2 + " AS " + Words_BNCs.BNCSPWRS + Words_BNCs.RANGE2, // //$NON-NLS-1$
 						Words_BNCs.BNCSPWRS + '.' + Words_BNCs.DISP2 + " AS " + Words_BNCs.BNCSPWRS + Words_BNCs.DISP2, // //$NON-NLS-1$
 				};
-				final String selection = pos0 == null ?
-						Words_BNCs.WORDID + " = ?" :
-						Words_BNCs.WORDID + " = ? AND " + Words_BNCs.POS + "= ?"; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				final String[] selectionArgs = pos0 == null ?
-						new String[]{Long.toString(wordid0)} :
-						new String[]{Long.toString(wordid0), Character.toString(pos0),};
+				final String selection = pos0 == null ? Words_BNCs.WORDID + " = ?" : Words_BNCs.WORDID + " = ? AND " + Words_BNCs.POS + "= ?"; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				final String[] selectionArgs = pos0 == null ? new String[]{Long.toString(wordid0)} : new String[]{Long.toString(wordid0), Character.toString(pos0),};
 				final String sortOrder = null;
 				return new CursorLoader(getContext(), uri, projection, selection, selectionArgs, sortOrder);
 			}
@@ -167,18 +163,16 @@ public class BasicModule extends Module
 					final int idWrRange = cursor.getColumnIndexOrThrow(Words_BNCs.BNCSPWRS + Words_BNCs.RANGE2);
 					final int idWrDisp = cursor.getColumnIndexOrThrow(Words_BNCs.BNCSPWRS + Words_BNCs.DISP2);
 
-					String pos1;
-					String value1;
-
 					do
 					{
 
-						pos1 = cursor.getString(idPos);
+						String pos1 = cursor.getString(idPos);
 						Spanner.appendImage(sb, BasicModule.this.posDrawable);
 						sb.append(' ');
 						sb.append(pos1);
 						sb.append('\n');
 
+						String value1;
 						if ((value1 = cursor.getString(idFreq)) != null)
 						{
 							sb.append("freq=").append(value1).append(' '); //$NON-NLS-1$
@@ -193,16 +187,12 @@ public class BasicModule extends Module
 						}
 						sb.append('\n');
 
-						String fvalue, fvalue2;
-						String rvalue, rvalue2;
-						String dvalue, dvalue2;
-
-						fvalue = cursor.getString(idConvFreq);
-						fvalue2 = cursor.getString(idTaskFreq);
-						rvalue = cursor.getString(idConvRange);
-						rvalue2 = cursor.getString(idTaskRange);
-						dvalue = cursor.getString(idConvDisp);
-						dvalue2 = cursor.getString(idTaskDisp);
+						String fvalue = cursor.getString(idConvFreq);
+						String fvalue2 = cursor.getString(idTaskFreq);
+						String rvalue = cursor.getString(idConvRange);
+						String rvalue2 = cursor.getString(idTaskRange);
+						String dvalue = cursor.getString(idConvDisp);
+						String dvalue2 = cursor.getString(idTaskDisp);
 						if (fvalue != null || fvalue2 != null || rvalue != null || rvalue2 != null || dvalue != null || dvalue2 != null)
 						{
 							Spanner.appendImage(sb, BasicModule.this.domainDrawable);

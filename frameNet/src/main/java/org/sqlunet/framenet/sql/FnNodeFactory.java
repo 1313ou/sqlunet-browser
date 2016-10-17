@@ -103,7 +103,7 @@ class FnNodeFactory extends NodeFactory
 			final NodeList examples = element.getElementsByTagName("ex"); //$NON-NLS-1$
 			for (int i = 0; i < examples.getLength(); i++)
 			{
-				final Element example = (Element) examples.item(i);
+				final Node example = examples.item(i);
 				example.getParentNode().removeChild(example);
 			}
 			element.normalize();

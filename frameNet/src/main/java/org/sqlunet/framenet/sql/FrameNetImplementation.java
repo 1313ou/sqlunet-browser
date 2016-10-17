@@ -521,7 +521,7 @@ public class FrameNetImplementation implements FrameNetInterface
 	 * @param lexUnits lexunits
 	 * @param doFrame  whether to include frame data
 	 */
-	private static void makeSelector(final Document doc, final Node parent, final List<FnLexUnit> lexUnits, @SuppressWarnings("SameParameterValue") final boolean doFrame)
+	private static void makeSelector(final Document doc, final Node parent, final Iterable<FnLexUnit> lexUnits, @SuppressWarnings("SameParameterValue") final boolean doFrame)
 	{
 		// lexunits
 		for (final FnLexUnit lexUnit : lexUnits)

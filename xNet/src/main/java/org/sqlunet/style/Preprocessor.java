@@ -45,7 +45,7 @@ public class Preprocessor
 		 * @param input input
 		 * @return output
 		 */
-		public String replace(final String input)
+		public String replace(final CharSequence input)
 		{
 			final Matcher matcher = this.pattern.matcher(input);
 			return matcher.replaceAll(this.replacement);

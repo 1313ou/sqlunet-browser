@@ -86,9 +86,9 @@ public class PredicateMatrixProvider extends SqlUNetProvider
 		}
 
 		// choose the table to query and a sort order based on the code returned for the incoming URI
-		String table;
 		final int code = PredicateMatrixProvider.uriMatcher.match(uri);
 		Log.d(PredicateMatrixProvider.TAG + "URI", String.format("%s (code %s)\n", uri, code)); //$NON-NLS-1$ //$NON-NLS-2$
+		String table;
 		switch (code)
 		{
 
