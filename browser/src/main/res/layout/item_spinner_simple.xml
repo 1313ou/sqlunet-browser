@@ -7,4 +7,5 @@
           android:ellipsize="marquee"
           android:gravity="center"
           android:textAlignment="inherit"
-          android:maxLines="1"/>
+          android:maxLines="1"
+          android:textIsSelectable="true"/>

@@ -23,7 +23,8 @@
 		<TextView
 			android:id="@+id/cache_storage"
 			android:layout_width="match_parent"
-			android:layout_height="wrap_content"/>
+			android:layout_height="wrap_content"
+			android:textIsSelectable="true"/>
 
 		<TextView
 			android:layout_width="match_parent"
@@ -34,7 +35,8 @@
 		<TextView
 			android:id="@+id/data_storage"
 			android:layout_width="match_parent"
-			android:layout_height="wrap_content"/>
+			android:layout_height="wrap_content"
+			android:textIsSelectable="true"/>
 
 		<TextView
 			android:layout_width="match_parent"
@@ -45,7 +47,8 @@
 		<TextView
 			android:id="@+id/source"
 			android:layout_width="match_parent"
-			android:layout_height="wrap_content"/>
+			android:layout_height="wrap_content"
+			android:textIsSelectable="true"/>
 
 		<TextView
 			android:layout_width="match_parent"
@@ -56,7 +59,8 @@
 		<TextView
 			android:id="@+id/target"
 			android:layout_width="match_parent"
-			android:layout_height="wrap_content"/>
+			android:layout_height="wrap_content"
+			android:textIsSelectable="true"/>
 
 		<TextView
 			android:layout_width="match_parent"
@@ -67,7 +71,8 @@
 		<TextView
 			android:id="@+id/sql_import"
 			android:layout_width="match_parent"
-			android:layout_height="wrap_content"/>
+			android:layout_height="wrap_content"
+			android:textIsSelectable="true"/>
 
 		<TextView
 			android:layout_width="match_parent"
@@ -78,7 +83,8 @@
 		<TextView
 			android:id="@+id/sql_pm"
 			android:layout_width="match_parent"
-			android:layout_height="wrap_content"/>
+			android:layout_height="wrap_content"
+			android:textIsSelectable="true"/>
 
 		<TextView
 			android:layout_width="match_parent"
@@ -89,7 +95,8 @@
 		<TextView
 			android:id="@+id/sql_index"
 			android:layout_width="match_parent"
-			android:layout_height="wrap_content"/>
+			android:layout_height="wrap_content"
+			android:textIsSelectable="true"/>
 
 		<TextView
 			android:layout_width="match_parent"
@@ -100,7 +107,8 @@
 		<TextView
 			android:id="@+id/database"
 			android:layout_width="match_parent"
-			android:layout_height="wrap_content"/>
+			android:layout_height="wrap_content"
+			android:textIsSelectable="true"/>
 
 		<TextView
 			android:layout_width="match_parent"

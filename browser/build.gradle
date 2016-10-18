@@ -21,6 +21,7 @@ android {
 }
 
 dependencies {
+    compile project(':expandableListFragment')
     compile project(':bNC')
     compile project(':frameNet')
     compile project(':predicateMatrix')

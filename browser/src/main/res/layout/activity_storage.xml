@@ -23,7 +23,8 @@
 		<TextView
 			android:id="@+id/database"
 			android:layout_width="match_parent"
-			android:layout_height="wrap_content"/>
+			android:layout_height="wrap_content"
+			android:textIsSelectable="true"/>
 
 		<TextView
 			android:layout_width="match_parent"
@@ -34,7 +35,8 @@
 		<TextView
 			android:id="@+id/storage"
 			android:layout_width="match_parent"
-			android:layout_height="wrap_content"/>
+			android:layout_height="wrap_content"
+			android:textIsSelectable="true"/>
 
 		<TextView
 			android:layout_width="match_parent"
@@ -45,7 +47,8 @@
 		<TextView
 			android:id="@+id/storage_devices"
 			android:layout_width="match_parent"
-			android:layout_height="wrap_content"/>
+			android:layout_height="wrap_content"
+			android:textIsSelectable="true"/>
 	</LinearLayout>
 
 </ScrollView>

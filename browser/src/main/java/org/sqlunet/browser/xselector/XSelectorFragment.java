@@ -11,7 +11,7 @@ import android.database.MatrixCursor;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.local.app.ExpandableListFragment;
+import android.android.support.local.app.ExpandableListFragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;

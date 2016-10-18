@@ -5,7 +5,6 @@
             tools:context="org.sqlunet.browser.AboutActivity">
 
 	<LinearLayout
-		android:id="@+id/sqlunet"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
 		android:orientation="vertical"
@@ -15,7 +14,6 @@
 		android:paddingTop="16dp">
 
 		<ImageView
-			android:id="@+id/sqlunetImage"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			android:layout_gravity="center_horizontal"
@@ -23,7 +21,6 @@
 			android:src="@drawable/ic_launcher"/>
 
 		<TextView
-			android:id="@+id/sqlunetLabel"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			android:layout_gravity="center_horizontal"
@@ -32,7 +29,6 @@
 			android:textStyle="bold"/>
 
 		<TextView
-			android:id="@+id/sqlunetText"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			android:layout_gravity="center_horizontal"
@@ -40,7 +36,6 @@
 			android:text="@string/about_sqlunet_text"/>
 
 		<TextView
-			android:id="@+id/sqlunetAuthor"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			android:layout_gravity="center_horizontal"
@@ -48,7 +43,6 @@
 			android:textStyle="italic"/>
 
 		<TextView
-			android:id="@+id/sqlunetCopyright"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			android:layout_gravity="center_horizontal"

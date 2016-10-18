@@ -14,7 +14,8 @@
 		android:id="@+id/selector"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
-		android:textStyle="bold"/>
+		android:textStyle="bold"
+		android:textIsSelectable="true"/>
 
 	<View
 		android:layout_width="fill_parent"

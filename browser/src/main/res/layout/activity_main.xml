@@ -17,7 +17,8 @@
 		style="@style/Search"
 		android:layout_width="fill_parent"
 		android:layout_height="wrap_content"
-		android:layout_centerHorizontal="true"/>
+		android:layout_centerHorizontal="true"
+		android:textIsSelectable="true"/>
 
 	<ImageView
 		android:id="@+id/splash"
@@ -28,7 +29,6 @@
 		android:src="@drawable/ic_splash"/>
 
 	<TextView
-		android:id="@+id/blurb"
 		android:layout_width="fill_parent"
 		android:layout_height="wrap_content"
 		android:layout_below="@+id/splash"

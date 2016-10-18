@@ -9,7 +9,8 @@
 		android:id="@+id/queryView"
 		android:layout_width="fill_parent"
 		android:layout_height="wrap_content"
-		style="@style/Query"/>
+		style="@style/Query"
+		android:textIsSelectable="true"/>
 
 	<fragment
 		android:id="@+id/selector"

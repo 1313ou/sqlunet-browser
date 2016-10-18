@@ -18,7 +18,8 @@
 			android:id="@+id/data_info"
 			style="@style/Data.Info"
 			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"/>
+			android:layout_height="wrap_content"
+			android:textIsSelectable="true"/>
 
 		<TextView
 			style="@style/Label.Contents"

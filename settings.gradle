@@ -1,3 +1,4 @@
+include ':expandableListFragment'
 include ':treeView'
 include ':xNet'
 include ':bNC'
