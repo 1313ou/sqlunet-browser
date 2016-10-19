@@ -35,7 +35,7 @@
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			android:contentDescription="@string/download_source"
-			android:textIsSelectable="true"/>
+			android:textIsSelectable="false"/>
 
 		<ImageView
 			android:id="@+id/xsources"
@@ -57,28 +57,28 @@
 		style="@style/Data.XName"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
-		android:textIsSelectable="true"/>
+		android:textIsSelectable="false"/>
 
 	<TextView
 		android:id="@+id/xheader"
 		style="@style/Data.XHeader"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
-		android:textIsSelectable="true"/>
+		android:textIsSelectable="false"/>
 
 	<TextView
 		android:id="@+id/xinfo"
 		style="@style/Data.XInfo"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
-		android:textIsSelectable="true"/>
+		android:textIsSelectable="false"/>
 
 	<TextView
 		android:id="@+id/xdefinition"
 		style="@style/Data.XDefinition"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
-		android:textIsSelectable="true"/>
+		android:textIsSelectable="false"/>
 
 	<LinearLayout
 		android:layout_width="match_parent"
@@ -90,21 +90,21 @@
 			style="@style/Data.XWordId"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
-			android:textIsSelectable="true"/>
+			android:textIsSelectable="false"/>
 
 		<TextView
 			android:id="@+id/synsetid"
 			style="@style/Data.XSynsetId"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
-			android:textIsSelectable="true"/>
+			android:textIsSelectable="false"/>
 
 		<TextView
 			android:id="@+id/xid"
 			style="@style/Data.XId"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
-			android:textIsSelectable="true"/>
+			android:textIsSelectable="false"/>
 	</LinearLayout>
 
 </LinearLayout>

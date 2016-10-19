@@ -328,14 +328,17 @@ public class PredicateMatrixActivity extends Activity
 		else
 		{
 			final Bundle bundle = intent.getExtras();
-			final int actionCode = bundle.getInt(SqlUNetContract.ARG_QUERYACTION);
-			if (SqlUNetContract.ARG_QUERYACTION_PM == actionCode || SqlUNetContract.ARG_QUERYACTION_PMROLE == actionCode)
+			if(bundle != null)
 			{
-				final Parcelable param = bundle.getParcelable(SqlUNetContract.ARG_QUERYPOINTER);
-				if (param instanceof PmRolePointer)
+				final int actionCode = bundle.getInt(SqlUNetContract.ARG_QUERYACTION);
+				if (SqlUNetContract.ARG_QUERYACTION_PM == actionCode || SqlUNetContract.ARG_QUERYACTION_PMROLE == actionCode)
 				{
-					final PmRolePointer pointer = (PmRolePointer) param;
-					handleSearch(pointer);
+					final Parcelable param = bundle.getParcelable(SqlUNetContract.ARG_QUERYPOINTER);
+					if (param instanceof PmRolePointer)
+					{
+						final PmRolePointer pointer = (PmRolePointer) param;
+						handleSearch(pointer);
+					}
 				}
 			}
 		}

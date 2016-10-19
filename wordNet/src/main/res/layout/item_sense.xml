@@ -18,14 +18,14 @@
 			style="@style/Data.WnPos"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
-			android:textIsSelectable="true"/>
+			android:textIsSelectable="false"/>
 
 		<TextView
 			android:id="@+id/sensenum"
 			style="@style/Data.WnSenseNum"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
-			android:textIsSelectable="true"/>
+			android:textIsSelectable="false"/>
 
 		<TextView
 			android:id="@+id/lexdomain"
@@ -33,7 +33,7 @@
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
 			android:gravity="end"
-			android:textIsSelectable="true"/>
+			android:textIsSelectable="false"/>
 	</LinearLayout>
 
 	<TextView
@@ -41,7 +41,7 @@
 		style="@style/Data.WnDefinition"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
-		android:textIsSelectable="true"/>
+		android:textIsSelectable="false"/>
 
 	<LinearLayout
 		android:layout_width="match_parent"
@@ -52,14 +52,14 @@
 			style="@style/Data.WnTagCount"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
-			android:textIsSelectable="true"/>
+			android:textIsSelectable="false"/>
 
 		<TextView
 			android:id="@+id/cased"
 			style="@style/Data.WnCased"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
-			android:textIsSelectable="true"/>
+			android:textIsSelectable="false"/>
 	</LinearLayout>
 
 	<LinearLayout
@@ -71,7 +71,7 @@
 			style="@style/Data.WnSenseKey"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
-			android:textIsSelectable="true"/>
+			android:textIsSelectable="false"/>
 	</LinearLayout>
 
 	<LinearLayout
@@ -83,28 +83,28 @@
 			style="@style/Data.WnLexId"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
-			android:textIsSelectable="true"/>
+			android:textIsSelectable="false"/>
 
 		<TextView
 			android:id="@+id/wordid"
 			style="@style/Data.WnWordId"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
-			android:textIsSelectable="true"/>
+			android:textIsSelectable="false"/>
 
 		<TextView
 			android:id="@+id/synsetid"
 			style="@style/Data.WnSynsetId"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
-			android:textIsSelectable="true"/>
+			android:textIsSelectable="false"/>
 
 		<TextView
 			android:id="@+id/senseid"
 			style="@style/Data.WnSenseId"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
-			android:textIsSelectable="true"/>
+			android:textIsSelectable="false"/>
 	</LinearLayout>
 
 </LinearLayout>

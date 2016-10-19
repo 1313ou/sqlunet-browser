@@ -114,7 +114,7 @@ public class MainActivity extends Activity
 		// layout
 		setContentView(R.layout.activity_main);
 
-		// get views from handles
+		// get views from ids
 		this.statusView = (TextView) findViewById(R.id.statusView);
 
 		// show the Up button in the action bar.
@@ -128,22 +128,22 @@ public class MainActivity extends Activity
 		actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM | ActionBar.DISPLAY_SHOW_HOME);
 		actionBar.setDisplayShowTitleEnabled(false);
 
-		// adapter range
+		// selector mode adapter data
 		final CharSequence[] modes = getResources().getTextArray(R.array.selectors);
 
 		// selector mode adapter
-		SpinnerAdapter adapter = new ArrayAdapter<CharSequence>(this, R.layout.actionbar_item_selectors, modes)
+		SpinnerAdapter adapter = new ArrayAdapter<CharSequence>(this, R.layout.spinner_item_selectors, modes)
 		{
 			@Override
 			public View getView(int position, View convertView, ViewGroup parent)
 			{
-				return getCustomView(position, convertView, parent, R.layout.actionbar_item_selectors);
+				return getCustomView(position, convertView, parent, R.layout.spinner_item_selectors);
 			}
 
 			@Override
 			public View getDropDownView(int position, View convertView, ViewGroup parent)
 			{
-				return getCustomView(position, convertView, parent, R.layout.actionbar_item_selectors_dropdown);
+				return getCustomView(position, convertView, parent, R.layout.spinner_item_selectors_dropdown);
 			}
 
 			private View getCustomView(int position, @SuppressWarnings("UnusedParameters") View convertView, ViewGroup parent, int layoutId)
@@ -171,10 +171,10 @@ public class MainActivity extends Activity
 			@Override
 			public void onItemSelected(final AdapterView<?> parentView, final View selectedItemView, final int position, final long id)
 			{
-				final Settings.Selector mode = Settings.Selector.values()[position];
-				mode.setPref(MainActivity.this);
+				final Settings.Selector selectorMode = Settings.Selector.values()[position];
+				selectorMode.setPref(MainActivity.this);
 
-				// Log.d(MainActivity.TAG, mode.name());
+				// Log.d(MainActivity.TAG, selectorMode.name());
 			}
 
 			@Override
@@ -187,11 +187,11 @@ public class MainActivity extends Activity
 		// apply spinner adapter
 		this.spinner.setAdapter(adapter);
 
-		// saved mode
-		final Settings.Selector mode = Settings.Selector.getPref(this);
-		if (mode != null)
+		// saved selector mode
+		final Settings.Selector selectorMode = Settings.Selector.getPref(this);
+		if (selectorMode != null)
 		{
-			this.spinner.setSelection(mode.ordinal());
+			this.spinner.setSelection(selectorMode.ordinal());
 		}
 	}
 
@@ -306,9 +306,9 @@ public class MainActivity extends Activity
 	{
 		Class<?> intentClass = null;
 
-		// mode
-		final Settings.Selector type = Settings.getXnModePref(this);
-		switch (type)
+		// type
+		final Settings.Selector selectorType = Settings.getXnModePref(this);
+		switch (selectorType)
 		{
 			case SELECTOR:
 				intentClass = SelectorActivity.class;
@@ -319,9 +319,9 @@ public class MainActivity extends Activity
 		}
 
 		// mode
-		final Settings.SelectorMode mode = Settings.getSelectorModePref(this);
+		final Settings.SelectorMode selectorMode = Settings.getSelectorModePref(this);
 		Intent intent = null;
-		switch (mode)
+		switch (selectorMode)
 		{
 			case VIEW:
 				intent = new Intent(this, intentClass);
@@ -345,8 +345,8 @@ public class MainActivity extends Activity
 		Intent intent = null;
 
 		// mode
-		final Settings.DetailMode mode = Settings.getDetailModePref(this);
-		switch (mode)
+		final Settings.DetailMode detailMode = Settings.getDetailModePref(this);
+		switch (detailMode)
 		{
 			case VIEW:
 				intent = new Intent(this, intentClass);

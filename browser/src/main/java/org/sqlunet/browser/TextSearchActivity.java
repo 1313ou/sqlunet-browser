@@ -75,7 +75,7 @@ public class TextSearchActivity extends Activity
 		// layout
 		setContentView(R.layout.activity_textsearch);
 
-		// get views from handles
+		// get views from ids
 		this.statusView = (TextView) findViewById(R.id.statusView);
 
 		// show the Up button in the action bar.
@@ -92,7 +92,7 @@ public class TextSearchActivity extends Activity
 		// adapter range dropdown list
 		this.ranges = getResources().getTextArray(R.array.text_search_values);
 		final CharSequence[] titles = getResources().getTextArray(R.array.text_search_titles);
-		final SpinnerAdapter adapter = new ArrayAdapter<>(this, R.layout.actionbar_item_search_modes, R.id.spinner_title, titles);
+		final SpinnerAdapter adapter = new ArrayAdapter<>(this, R.layout.spinner_item_search_modes, R.id.spinner_title, titles);
 
 		// spinner
 		this.spinner = (Spinner) actionBarView.findViewById(R.id.spinner);

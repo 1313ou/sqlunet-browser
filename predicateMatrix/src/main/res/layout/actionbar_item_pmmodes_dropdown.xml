@@ -15,7 +15,7 @@
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
 		android:textStyle="bold"
-		android:textIsSelectable="true"/>
+		android:textIsSelectable="false"/>
 
 	<View
 		android:layout_width="fill_parent"

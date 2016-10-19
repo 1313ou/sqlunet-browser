@@ -19,7 +19,7 @@
 		android:paddingRight="4dp"
 		android:textColor="#ff707070"
 		android:textSize="20sp"
-		android:textIsSelectable="true"/>
+		android:textIsSelectable="false"/>
 
 	<TextView
 		android:layout_width="0dp"
@@ -30,7 +30,7 @@
 		android:paddingRight="4dp"
 		android:textColor="#ff303030"
 		android:textSize="20sp"
-		android:textIsSelectable="true"/>
+		android:textIsSelectable="false"/>
 
 	<TextView
 		android:layout_width="0dp"
@@ -42,6 +42,6 @@
 		android:textColor="#ff707070"
 		android:textSize="20sp"
 		android:maxLines="1"
-		android:textIsSelectable="true"/>
+		android:textIsSelectable="false"/>
 
 </LinearLayout>

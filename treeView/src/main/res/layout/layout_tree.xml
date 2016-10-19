@@ -35,7 +35,7 @@
 		android:layout_marginStart="10dp"
 		android:layout_toEndOf="@+id/icon"
 		android:layout_toRightOf="@+id/icon"
-		android:textIsSelectable="true"/>
+		android:textIsSelectable="false"/>
 
 	<ImageView
 		android:id="@+id/btn_more"

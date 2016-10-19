@@ -1155,7 +1155,7 @@ abstract class BasicModule extends Module
 		@Override
 		protected int getExpandLevels()
 		{
-			return 3;
+			return 2;
 		}
 	}
 

@@ -12,7 +12,7 @@
 		android:layout_width="fill_parent"
 		android:layout_height="wrap_content"
 		android:layout_centerHorizontal="true"
-		android:textIsSelectable="true"/>
+		android:textIsSelectable="false"/>
 
 	<FrameLayout
 		android:id="@+id/container_textsearch"
