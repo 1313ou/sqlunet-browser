@@ -1,5 +1,5 @@
 /*
- * @author <a href="mailto:bbou@ac-toulouse.fr">Bernard Bou</a>
+ * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  * Created on 25 jan. 2005
  * Filename : Word.java
  * Class encapsulating access to WordNet data starting from word
@@ -20,7 +20,7 @@ import java.util.TreeSet;
 /**
  * Word
  *
- * @author <a href="mailto:bbou@ac-toulouse.fr">Bernard Bou</a>
+ * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
 public class Word extends BasicWord
 {

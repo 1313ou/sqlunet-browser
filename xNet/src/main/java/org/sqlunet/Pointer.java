@@ -11,7 +11,7 @@ import android.os.Parcelable;
 public class Pointer implements Parcelable
 {
 	/**
-	 * Members
+	 * Id of pointed-to object
 	 */
 	public long id;
 
@@ -63,30 +63,18 @@ public class Pointer implements Parcelable
 		return null;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * @see android.os.Parcelable#writeToParcel(android.os.Parcel, int)
-	 */
 	@Override
 	public void writeToParcel(final Parcel pc, final int flags)
 	{
 		pc.writeLong(this.id);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * @see android.os.Parcelable#describeContents()
-	 */
 	@Override
 	public int describeContents()
 	{
 		return 0;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * @see java.lang.Object#toString()
-	 */
 	@Override
 	public String toString()
 	{

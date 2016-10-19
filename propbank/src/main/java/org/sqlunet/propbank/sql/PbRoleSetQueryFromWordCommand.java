@@ -7,7 +7,7 @@ import org.sqlunet.sql.DBQueryCommand;
 /**
  * PropBank role sets query command from word
  *
- * @author Bernard Bou
+ * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
 class PbRoleSetQueryFromWordCommand extends DBQueryCommand
 {

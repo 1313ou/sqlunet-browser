@@ -21,7 +21,7 @@ import org.sqlunet.view.TreeFactory;
 /**
  * A fragment representing a framenet search from a (word, pos)
  *
- * @author Bernard Bou
+ * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
 public class FrameNetFragment extends Fragment
 {

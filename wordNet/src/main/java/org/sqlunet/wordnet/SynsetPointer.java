@@ -9,7 +9,7 @@ import org.sqlunet.HasSynsetId;
 /**
  * Parcelable synset
  *
- * @author Bernard Bou
+ * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
 public class SynsetPointer implements Parcelable, HasSynsetId, HasPos
 {
@@ -87,11 +87,6 @@ public class SynsetPointer implements Parcelable, HasSynsetId, HasPos
 		}
 	};
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see android.os.Parcelable#writeToParcel(android.os.Parcel, int)
-	 */
 	@Override
 	public void writeToParcel(final Parcel pc, final int flags)
 	{
@@ -99,11 +94,6 @@ public class SynsetPointer implements Parcelable, HasSynsetId, HasPos
 		pc.writeString(this.pos);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see android.os.Parcelable#describeContents()
-	 */
 	@Override
 	public int describeContents()
 	{

@@ -19,8 +19,16 @@ public class IconTreeRenderer extends TreeNode.Renderer<IconTreeItem>
 {
 	/// private static final String TAG = "IconTreeRenderer";
 
+	/**
+	 * Junction view
+	 */
 	private ImageView junctionView;
 
+	/**
+	 * Constructor
+	 *
+	 * @param context context
+	 */
 	public IconTreeRenderer(Context context)
 	{
 		super(context);
@@ -32,7 +40,7 @@ public class IconTreeRenderer extends TreeNode.Renderer<IconTreeItem>
 		final LayoutInflater inflater = LayoutInflater.from(this.context);
 		@SuppressLint("InflateParams") final View view = inflater.inflate(R.layout.layout_tree, null, false);
 
-		// arrow
+		// junction icon (arrow)
 		this.junctionView = (ImageView) view.findViewById(R.id.junction_icon);
 
 		// icon

@@ -27,11 +27,11 @@ public abstract class Module
 	/**
 	 * Constructor
 	 *
-	 * @param fragment0 fragment
+	 * @param fragment fragment
 	 */
-	protected Module(final Fragment fragment0)
+	protected Module(final Fragment fragment)
 	{
-		this.fragment = fragment0;
+		this.fragment = fragment;
 	}
 
 	/**

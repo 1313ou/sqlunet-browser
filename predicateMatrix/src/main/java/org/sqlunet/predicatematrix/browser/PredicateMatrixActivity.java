@@ -173,10 +173,6 @@ public class PredicateMatrixActivity extends Activity
 		}
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * @see android.app.Activity#onSaveInstanceState(android.os.Bundle)
-	 */
 	@Override
 	public void onSaveInstanceState(final Bundle savedInstanceState)
 	{
@@ -193,10 +189,6 @@ public class PredicateMatrixActivity extends Activity
 		super.onSaveInstanceState(savedInstanceState);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * @see android.app.Activity#onRestoreInstanceState(android.os.Bundle)
-	 */
 	@Override
 	public void onRestoreInstanceState(final Bundle savedInstanceState)
 	{
@@ -300,10 +292,6 @@ public class PredicateMatrixActivity extends Activity
 
 	// I N T E N T
 
-	/*
-	 * (non-Javadoc)
-	 * @see android.app.Activity#onNewIntent(android.content.Intent)
-	 */
 	@Override
 	protected void onNewIntent(final Intent intent)
 	{

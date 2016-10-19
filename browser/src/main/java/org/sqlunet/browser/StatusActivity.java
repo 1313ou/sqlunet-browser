@@ -20,30 +20,23 @@ import org.sqlunet.browser.config.SetupActivity;
 import org.sqlunet.browser.config.SetupSqlActivity;
 import org.sqlunet.browser.config.Status;
 import org.sqlunet.browser.config.StorageActivity;
-import org.sqlunet.browser.selector.SelectorActivity;
 import org.sqlunet.settings.Settings;
-import org.sqlunet.wordnet.browser.SenseFragment;
 
 /**
- * An activity representing a sense detail screen. This activity is only used on handset devices. On tablet-size devices, sense details are presented
- * side-by-side with a list of items in a {@link SelectorActivity}. This activity is mostly just a 'shell' activity containing nothing more than a
- * {@link SenseFragment}.
+ * Status activity
  *
- * @author Bernard Bou
+ * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
 public class StatusActivity extends Activity
 {
 	static private final String TAG = "SqlUNet Status"; //$NON-NLS-1$
 
+	// codes
+
 	private static final int REQUEST_DOWNLOAD_CODE = 0xDDDD;
 
 	private static final int REQUEST_MANAGEMENT_CODE = 0xAAA0;
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see android.app.Activity#onCreate(android.os.Bundle)
-	 */
 	@Override
 	protected void onCreate(final Bundle savedInstanceState)
 	{
@@ -160,11 +153,6 @@ public class StatusActivity extends Activity
 
 	// M E N U
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see android.app.Activity#onCreateOptionsMenu(android.view.Menu)
-	 */
 	@Override
 	public boolean onCreateOptionsMenu(final Menu menu)
 	{
@@ -175,11 +163,6 @@ public class StatusActivity extends Activity
 
 	// A C T I O N H A N D L I N G
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see android.app.Activity#onOptionsItemSelected(android.view.MenuItem)
-	 */
 	@Override
 	public boolean onOptionsItemSelected(final MenuItem item)
 	{
@@ -220,11 +203,6 @@ public class StatusActivity extends Activity
 
 	// S P E C I F I C R E T U R N S
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see android.app.Activity#onActivityResult(int, int, android.content.Intent)
-	 */
 	@Override
 	protected void onActivityResult(final int requestCode, final int resultCode, final Intent returnIntent)
 	{

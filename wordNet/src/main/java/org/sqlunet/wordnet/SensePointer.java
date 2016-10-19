@@ -8,7 +8,7 @@ import org.sqlunet.HasWordId;
 /**
  * Parcelable sense
  *
- * @author Bernard Bou
+ * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
 public class SensePointer extends SynsetPointer implements HasWordId
 {
@@ -97,11 +97,6 @@ public class SensePointer extends SynsetPointer implements HasWordId
 		}
 	};
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.sqlunet.wordnet.Synset#writeToParcel(android.os.Parcel, int)
-	 */
 	@Override
 	public void writeToParcel(final Parcel parcel, final int flags)
 	{
@@ -112,11 +107,6 @@ public class SensePointer extends SynsetPointer implements HasWordId
 		parcel.writeString(this.cased);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.sqlunet.wordnet.Synset#describeContents()
-	 */
 	@Override
 	public int describeContents()
 	{

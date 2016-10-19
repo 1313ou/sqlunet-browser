@@ -3,11 +3,12 @@ package org.sqlunet.framenet.sql;
 import android.database.sqlite.SQLiteDatabase;
 
 import org.sqlunet.sql.DBQueryCommand;
+import org.sqlunet.sql.Utils;
 
 /**
  * FrameNet annoset query command
  *
- * @author Bernard Bou
+ * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
 class FnAnnoSetQueryCommand extends DBQueryCommand
 {
@@ -57,6 +58,6 @@ class FnAnnoSetQueryCommand extends DBQueryCommand
 	@SuppressWarnings("unused")
 	public long[] getAnnoSetIds()
 	{
-		return DBQueryCommand.toIds(this.cursor.getString(2));
+		return Utils.toIds(this.cursor.getString(2));
 	}
 }

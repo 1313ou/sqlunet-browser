@@ -9,15 +9,11 @@ import org.sqlunet.framenet.R;
 /**
  * LexUnitQuery activity
  *
- * @author Bernard Bou
+ * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
 public class FnLexUnitActivity extends Activity
 {
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see android.app.Activity#onCreate(android.os.Bundle)
-	 */
+
 	@Override
 	protected void onCreate(final Bundle savedInstanceState)
 	{

@@ -11,17 +11,12 @@ import android.view.MenuItem;
 /**
  * About activity
  *
- * @author Bernard Bou
+ * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
 public class AboutActivity extends Activity
 {
-	// --Commented out by Inspection (10/15/16 5:59 AM):protected static final String TAG = "AboutActivity"; //$NON-NLS-1$
+	// protected static final String TAG = "AboutActivity"; //$NON-NLS-1$
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see android.app.Activity#onCreate(android.os.Bundle)
-	 */
 	@Override
 	protected void onCreate(final Bundle savedInstanceState)
 	{
@@ -36,11 +31,6 @@ public class AboutActivity extends Activity
 		actionBar.setDisplayHomeAsUpEnabled(true);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see android.app.Activity#onCreateOptionsMenu(android.view.Menu)
-	 */
 	@Override
 	public boolean onCreateOptionsMenu(final Menu menu)
 	{
@@ -49,11 +39,6 @@ public class AboutActivity extends Activity
 		return true;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see android.app.Activity#onOptionsItemSelected(android.view.MenuItem)
-	 */
 	@Override
 	public boolean onOptionsItemSelected(final MenuItem item)
 	{

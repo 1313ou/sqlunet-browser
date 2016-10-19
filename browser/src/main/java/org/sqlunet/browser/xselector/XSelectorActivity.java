@@ -12,7 +12,6 @@ import org.sqlunet.bnc.browser.BNCFragment;
 import org.sqlunet.browser.DetailActivity;
 import org.sqlunet.browser.DetailFragment;
 import org.sqlunet.browser.R;
-import org.sqlunet.browser.selector.SelectorFragment;
 import org.sqlunet.browser.web.WebFragment;
 import org.sqlunet.framenet.browser.FrameNetFragment;
 import org.sqlunet.propbank.browser.PropbankFragment;
@@ -22,15 +21,9 @@ import org.sqlunet.verbnet.browser.VerbNetFragment;
 import org.sqlunet.wordnet.browser.SenseFragment;
 
 /**
- * An activity representing a list of synsets. This activity has different presentations for handset and tablet-size devices. On handsets, the activity presents
- * a list of items, which when touched, lead to a {@link DetailActivity} representing item details. On tablets, the activity presents the list of items and item
- * details side-by-side using two vertical panes.
- * <p>
- * The activity makes heavy use of fragments. The list of items is a {@link SelectorFragment} and the item details (if present) is a {@link SenseFragment}.
- * <p>
- * This activity also implements the required {@link SelectorFragment.Listener} interface to listen for item selections.
+ * X selector activity
  *
- * @author Bernard Bou
+ * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
 public class XSelectorActivity extends Activity implements XSelectorFragment.Listener
 {
@@ -41,11 +34,6 @@ public class XSelectorActivity extends Activity implements XSelectorFragment.Lis
 
 	// C R E A T I O N
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see android.app.Activity#onCreate(android.os.Bundle)
-	 */
 	@Override
 	protected void onCreate(final Bundle savedInstanceState)
 	{

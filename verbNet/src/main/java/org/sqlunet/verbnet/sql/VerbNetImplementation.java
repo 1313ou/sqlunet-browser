@@ -12,7 +12,7 @@ import java.util.List;
 /**
  * Encapsulates VerbNet query implementation
  *
- * @author Bernard Bou
+ * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
 public class VerbNetImplementation implements VerbNetInterface
 {

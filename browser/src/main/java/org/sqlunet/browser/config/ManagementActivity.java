@@ -15,6 +15,11 @@ import org.sqlunet.provider.ManagerProvider;
 import org.sqlunet.provider.SqlUNetContract;
 import org.sqlunet.settings.StorageSettings;
 
+/**
+ * Management activity
+ *
+ * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
+ */
 public class ManagementActivity extends Activity
 {
 	// private static final String TAG = "ManagementActivity";
@@ -45,11 +50,6 @@ public class ManagementActivity extends Activity
 
 	// M E N U
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see android.app.Activity#onCreateOptionsMenu(android.view.Menu)
-	 */
 	@Override
 	public boolean onCreateOptionsMenu(final Menu menu)
 	{
@@ -60,11 +60,6 @@ public class ManagementActivity extends Activity
 
 	// A C T I O N H A N D L I N G
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see android.app.Activity#onOptionsItemSelected(android.view.MenuItem)
-	 */
 	@Override
 	public boolean onOptionsItemSelected(final MenuItem item)
 	{

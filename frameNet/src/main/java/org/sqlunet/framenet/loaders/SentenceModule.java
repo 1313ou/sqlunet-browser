@@ -22,7 +22,7 @@ import org.sqlunet.view.TreeFactory;
 /**
  * A fragment representing a lexunit.
  *
- * @author Bernard Bou
+ * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
 
 /**
@@ -52,10 +52,6 @@ public class SentenceModule extends BasicModule
 		super(fragment0);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * @see org.sqlunet.framenet.browser.FrameModule#init(android.os.Parcelable)
-	 */
 	@Override
 	public void init(final Parcelable query0)
 	{
@@ -69,10 +65,6 @@ public class SentenceModule extends BasicModule
 		}
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * @see org.sqlunet.framenet.browser.FrameModule#process()
-	 */
 	@Override
 	public void process(final TreeNode node)
 	{

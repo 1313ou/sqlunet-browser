@@ -6,7 +6,7 @@ import android.os.Parcelable;
 /**
  * Parcelable frame
  *
- * @author Bernard Bou
+ * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
 public class FnLexUnitPointer implements Parcelable
 {
@@ -58,22 +58,14 @@ public class FnLexUnitPointer implements Parcelable
 		}
 	};
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see android.os.Parcelable#writeToParcel(android.os.Parcel, int)
-	 */
+
 	@Override
 	public void writeToParcel(final Parcel pc, final int flags)
 	{
 		pc.writeLong(this.luid);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see android.os.Parcelable#describeContents()
-	 */
+
 	@Override
 	public int describeContents()
 	{

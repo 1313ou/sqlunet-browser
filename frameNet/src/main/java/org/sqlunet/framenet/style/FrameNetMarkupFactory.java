@@ -102,10 +102,6 @@ public class FrameNetMarkupFactory implements MarkupSpanner.SpanFactory
 	 */
 	private static final MarkupSpanner.SpanFactory foregroundFactory = new MarkupSpanner.SpanFactory()
 	{
-		/*
-		 * (non-Javadoc)
-		 * @see org.sqlunet.style.MarkupSpanner.SpanFactory#makeSpans(java.lang.String, long)
-		 */
 		@Override
 		public Object makeSpans(final String selector, final long flags)
 		{
@@ -121,10 +117,6 @@ public class FrameNetMarkupFactory implements MarkupSpanner.SpanFactory
 		}
 	};
 
-	/*
-	 * (non-Javadoc)
-	 * @see org.sqlunet.style.MarkupSpanner.SpanFactory#makeSpans(java.lang.String, long)
-	 */
 	@Override
 	public Object makeSpans(final String selector, final long flags)
 	{

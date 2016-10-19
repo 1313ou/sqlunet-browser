@@ -62,7 +62,7 @@ import org.sqlunet.wordnet.provider.WordNetContract.PosTypes;
 /**
  * Main activity
  *
- * @author Bernard Bou
+ * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
 public class MainActivity extends Activity
 {
@@ -90,11 +90,6 @@ public class MainActivity extends Activity
 
 	// C R E A T I O N
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see android.app.Activity#onCreate(android.os.Bundle)
-	 */
 	@Override
 	protected void onCreate(final Bundle savedInstanceState)
 	{
@@ -195,11 +190,6 @@ public class MainActivity extends Activity
 		}
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see android.app.Activity#onSaveInstanceState(android.os.Bundle)
-	 */
 	@Override
 	public void onSaveInstanceState(final Bundle savedInstanceState)
 	{
@@ -216,11 +206,6 @@ public class MainActivity extends Activity
 		super.onSaveInstanceState(savedInstanceState);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see android.app.Activity#onRestoreInstanceState(android.os.Bundle)
-	 */
 	@Override
 	public void onRestoreInstanceState(final Bundle savedInstanceState)
 	{
@@ -258,11 +243,6 @@ public class MainActivity extends Activity
 
 	// I N T E N T H A N D L I N G
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see android.app.Activity#onNewIntent(android.content.Intent)
-	 */
 	@Override
 	protected void onNewIntent(final Intent intent)
 	{
@@ -373,11 +353,6 @@ public class MainActivity extends Activity
 
 	// M E N U
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see android.app.Activity#onCreateOptionsMenu(android.view.Menu)
-	 */
 	@Override
 	public boolean onCreateOptionsMenu(final Menu menu)
 	{
@@ -390,11 +365,6 @@ public class MainActivity extends Activity
 		return true;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see android.app.Activity#onOptionsItemSelected(android.view.MenuItem)
-	 */
 	@Override
 	public boolean onOptionsItemSelected(final MenuItem item)
 	{
@@ -403,7 +373,6 @@ public class MainActivity extends Activity
 		// handle item selection
 		switch (item.getItemId())
 		{
-
 			// settings
 
 			case R.id.action_settings:

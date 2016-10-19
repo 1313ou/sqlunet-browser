@@ -10,15 +10,11 @@ import org.sqlunet.verbnet.R;
 /**
  * LexUnitQuery activity
  *
- * @author Bernard Bou
+ * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
 public class VnClassActivity extends Activity
 {
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see android.app.Activity#onCreate(android.os.Bundle)
-	 */
+
 	@Override
 	protected void onCreate(final Bundle savedInstanceState)
 	{

@@ -77,22 +77,14 @@ public abstract class SqlUNetProvider extends ContentProvider
 		return this.db;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see android.content.ContentProvider#onCreate()
-	 */
+
 	@Override
 	public boolean onCreate()
 	{
 		return true;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see android.content.ContentProvider#shutdown()
-	 */
+
 	@Override
 	public void shutdown()
 	{
@@ -110,33 +102,21 @@ public abstract class SqlUNetProvider extends ContentProvider
 
 	// W R I T E O P E R A T I O N S
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see android.content.ContentProvider#delete(android.net.Uri, java.lang.String, java.lang.String[])
-	 */
+
 	@Override
 	public int delete(final Uri uri, final String selection, final String[] selectionArgs)
 	{
 		throw new UnsupportedOperationException("Read-only"); //$NON-NLS-1$
 	}
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see android.content.ContentProvider#insert(android.net.Uri, android.content.ContentValues)
-	 */
+
 	@Override
 	public Uri insert(final Uri uri, final ContentValues values)
 	{
 		throw new UnsupportedOperationException("Read-only"); //$NON-NLS-1$
 	}
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see android.content.ContentProvider#update(android.net.Uri, android.content.ContentValues, java.lang.String, java.lang.String[])
-	 */
+
 	@Override
 	public int update(final Uri uri, final ContentValues values, final String selection, final String[] selectionArgs)
 	{

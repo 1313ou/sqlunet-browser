@@ -11,7 +11,7 @@ import android.os.Parcelable;
 public class Word implements Parcelable
 {
 	/**
-	 * Members
+	 * Word
 	 */
 	public String word;
 
@@ -59,20 +59,12 @@ public class Word implements Parcelable
 		return this.word;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * @see android.os.Parcelable#writeToParcel(android.os.Parcel, int)
-	 */
 	@Override
 	public void writeToParcel(final Parcel pc, final int flags)
 	{
 		pc.writeString(this.word);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * @see android.os.Parcelable#describeContents()
-	 */
 	@Override
 	public int describeContents()
 	{

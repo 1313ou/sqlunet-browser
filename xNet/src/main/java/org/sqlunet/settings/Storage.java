@@ -22,12 +22,12 @@ public class Storage
 	private static final String TAG = "Storage"; //$NON-NLS-1$
 
 	/**
-	 * DB filename
+	 * SqlUnet DB filename
 	 */
 	public static final String DBFILE = "sqlunet.db"; //$NON-NLS-1$
 
 	/**
-	 * SqlUnet sub directory when public
+	 * SqlUnet sub directory when external public
 	 */
 	static final String SQLUNETDIR = "sqlunet" + '/'; //$NON-NLS-1$
 

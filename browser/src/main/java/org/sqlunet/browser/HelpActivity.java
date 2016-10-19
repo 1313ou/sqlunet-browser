@@ -19,7 +19,7 @@ import android.webkit.WebViewClient;
 /**
  * Help activity
  *
- * @author Bernard Bou
+ * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
 public class HelpActivity extends Activity
 {
@@ -37,11 +37,6 @@ public class HelpActivity extends Activity
 		context.startActivity(intent);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see android.app.Activity#onCreate(android.os.Bundle)
-	 */
 	@Override
 	protected void onCreate(final Bundle savedInstanceState)
 	{
@@ -101,24 +96,16 @@ public class HelpActivity extends Activity
 		webview.loadUrl(url);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see android.app.Activity#onCreateOptionsMenu(android.view.Menu)
-	 */
+
 	@Override
 	public boolean onCreateOptionsMenu(final Menu menu)
 	{
-		// Inflate the menu; this adds items to the action bar if it is present.
+		// inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.help, menu);
 		return true;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see android.app.Activity#onOptionsItemSelected(android.view.MenuItem)
-	 */
+
 	@Override
 	public boolean onOptionsItemSelected(final MenuItem item)
 	{

@@ -9,7 +9,7 @@ import java.sql.Types;
 /**
  * VerbNet FrameQuery query command
  *
- * @author Bernard Bou
+ * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
 class VnFrameQueryFromSenseCommand extends DBQueryCommand
 {

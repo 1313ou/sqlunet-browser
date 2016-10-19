@@ -106,11 +106,6 @@ abstract class BasicModule extends Module
 	 */
 	abstract void unmarshall(final Parcelable arguments);
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.sqlunet.Module#init(android.os.Parcelable)
-	 */
 	@Override
 	public void init(final Parcelable arguments)
 	{

@@ -3,7 +3,7 @@ package org.sqlunet.framenet.sql;
 /**
  * FrameNet SQL dialect
  *
- * @author Bernard Bou
+ * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
 @SuppressWarnings("unused")
 class SqLiteDialect

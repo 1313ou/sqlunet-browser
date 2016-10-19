@@ -85,20 +85,12 @@ public class Spanner
 		{
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * @see android.text.style.ReplacementSpan#draw(android.graphics.Canvas, java.lang.CharSequence, int, int, float, int, int, int, android.graphics.Paint)
-		 */
 		@Override
 		public void draw(final Canvas arg0, final CharSequence arg1, final int arg2, final int arg3, final float arg4, final int arg5, final int arg6, final int arg7, final Paint arg8)
 		{
 			//
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * @see android.text.style.ReplacementSpan#getSize(android.graphics.Paint, java.lang.CharSequence, int, int, android.graphics.Paint.FontMetricsInt)
-		 */
 		@Override
 		public int getSize(final Paint paint, final CharSequence text, final int from, final int to, final FontMetricsInt fm)
 		{

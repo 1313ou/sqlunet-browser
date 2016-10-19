@@ -4,7 +4,7 @@ import org.sqlunet.style.Preprocessor;
 
 public class FrameNetProcessor extends Preprocessor
 {
-	// --Commented out by Inspection (10/15/16 11:27 AM):static final String TAG = "FrameNetProcessor"; //$NON-NLS-1$
+	// static final String TAG = "FrameNetProcessor"; //$NON-NLS-1$
 
 	// processor
 

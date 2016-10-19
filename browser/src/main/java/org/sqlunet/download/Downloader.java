@@ -12,37 +12,37 @@ import java.io.OutputStream;
 import java.net.URL;
 import java.net.URLConnection;
 
+/**
+ * Downloader task
+ *
+ * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
+ */
 public class Downloader extends AsyncTask<Void, Integer, Boolean>
 {
 	private static final String TAG = "Downloader"; //$NON-NLS-1$
 
+	/**
+	 * From URL
+	 */
 	private final String from;
 
+	/**
+	 * To file
+	 */
 	private final String to;
 
-	private final int code;
-
 	/**
-	 * Downloader listener
+	 * Download code
 	 */
-	public interface Listener
-	{
-		void downloadStart();
-
-		void downloadFinish(int code, boolean result);
-
-		void downloadUpdate(int progress, int bytes);
-	}
-
+	private final int code;
+	/**
+	 * Listener
+	 */
 	private final Listener listener;
 
 	/**
 	 * Constructor
 	 *
-	 * @param listener
-	 *            listener
-	 */
-	/**
 	 * @param from     from-url
 	 * @param to       to-file
 	 * @param code     code
@@ -56,11 +56,6 @@ public class Downloader extends AsyncTask<Void, Integer, Boolean>
 		this.listener = listener;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see android.os.AsyncTask#onPreExecute()
-	 */
 	@Override
 	protected void onPreExecute()
 	{
@@ -68,11 +63,6 @@ public class Downloader extends AsyncTask<Void, Integer, Boolean>
 		this.listener.downloadStart();
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see android.os.AsyncTask#onProgressUpdate(Progress[])
-	 */
 	@Override
 	protected void onProgressUpdate(final Integer... progress)
 	{
@@ -80,11 +70,6 @@ public class Downloader extends AsyncTask<Void, Integer, Boolean>
 		this.listener.downloadUpdate(progress[0], progress[1]);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see android.os.AsyncTask#onPostExecute(java.lang.Object)
-	 */
 	@Override
 	protected void onPostExecute(final Boolean result)
 	{
@@ -93,11 +78,6 @@ public class Downloader extends AsyncTask<Void, Integer, Boolean>
 		this.listener.downloadFinish(this.code, result);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see android.os.AsyncTask#onCancelled(java.lang.Object)
-	 */
 	@Override
 	protected void onCancelled(final Boolean result)
 	{
@@ -106,11 +86,6 @@ public class Downloader extends AsyncTask<Void, Integer, Boolean>
 		this.listener.downloadFinish(this.code, result);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see android.os.AsyncTask#doInBackground(Params[])
-	 */
 	@SuppressWarnings("boxing")
 	@Override
 	protected Boolean doInBackground(final Void... params)
@@ -206,5 +181,32 @@ public class Downloader extends AsyncTask<Void, Integer, Boolean>
 			//noinspection ResultOfMethodCallIgnored
 			dir.mkdirs();
 		}
+	}
+
+	/**
+	 * Downloader listener
+	 */
+	public interface Listener
+	{
+		/**
+		 * Start
+		 */
+		void downloadStart();
+
+		/**
+		 * Finish
+		 *
+		 * @param code   download code
+		 * @param result true if success
+		 */
+		void downloadFinish(int code, boolean result);
+
+		/**
+		 * Intermediate progress notification
+		 *
+		 * @param progress progress
+		 * @param bytes    byte count
+		 */
+		void downloadUpdate(int progress, int bytes);
 	}
 }

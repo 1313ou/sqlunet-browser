@@ -62,6 +62,7 @@
       <w>datadir</w>
       <w>dataimg</w>
       <w>datas</w>
+      <w>dbcolumn</w>
       <w>dbfile</w>
       <w>descr</w>
       <w>devel</w>
@@ -206,6 +207,7 @@
       <w>iscorefe</w>
       <w>itype</w>
       <w>javascripts</w>
+      <w>jdbc</w>
       <w>konqueror</w>
       <w>labelitype</w>
       <w>labelitypeid</w>
@@ -246,6 +248,7 @@
       <w>ludefinition</w>
       <w>ludict</w>
       <w>luid</w>
+      <w>mailto</w>
       <w>manos</w>
       <w>melnychuk</w>
       <w>ment</w>

@@ -25,11 +25,6 @@ public class AnnoSetFromValenceUnitModule extends BasicModule
 		super(fragment0);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.sqlunet.Module#init(android.os.Parcelable)
-	 */
 	@Override
 	public void init(final Parcelable arguments)
 	{

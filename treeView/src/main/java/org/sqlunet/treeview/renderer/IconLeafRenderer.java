@@ -18,16 +18,21 @@ public class IconLeafRenderer extends TreeNode.Renderer<IconTreeItem>
 {
 	/// private static final String TAG = "IconLeafRenderer";
 
+	/**
+	 * Resource used (changed by derived classes)
+	 */
 	int layoutRes = R.layout.layout_leaf;
 
+	/**
+	 * Constructor
+	 *
+	 * @param context context
+	 */
 	public IconLeafRenderer(Context context)
 	{
 		super(context);
 	}
 
-	/* (non-Javadoc)
-	 * @see org.sqlunet.treeview.model.TreeNode.Renderer#createNodeView(org.sqlunet.treeview.model.TreeNode, java.lang.Object)
-	 */
 	@Override
 	public View createNodeView(final TreeNode node, final IconTreeItem value)
 	{

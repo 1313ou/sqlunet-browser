@@ -24,7 +24,7 @@ import java.util.List;
 /**
  * Cross WordNet-FrameNet-Propbank-VerbNet provider
  *
- * @author Bernard Bou
+ * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
 public class XSqlUNetProvider extends SqlUNetProvider
 {
@@ -69,11 +69,6 @@ public class XSqlUNetProvider extends SqlUNetProvider
 
 	// M I M E
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see android.content.ContentProvider#getType(android.net.Uri)
-	 */
 	@Override
 	public String getType(final Uri uri)
 	{
@@ -103,11 +98,6 @@ public class XSqlUNetProvider extends SqlUNetProvider
 
 	// Q U E R Y
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see android.content.ContentProvider#query(android.net.Uri, java.lang.String[], java.lang.String, java.lang.String[], java.lang.String)
-	 */
 	@SuppressWarnings("boxing")
 	@Override
 	public Cursor query(final Uri uri, final String[] projection0, final String selection, final String[] selectionArgs, final String sortOrder)
@@ -124,21 +114,6 @@ public class XSqlUNetProvider extends SqlUNetProvider
 		String table;
 		switch (code)
 		{
-			// J O I N S
-
-			case WORDS_FNWORDS_PBWORDS_VNWORDS:
-				table = "words AS w " + // //$NON-NLS-1$
-						"LEFT JOIN senses AS s USING (wordid) " + // //$NON-NLS-1$
-						"LEFT JOIN casedwords AS c USING (wordid,casedwordid) " + // //$NON-NLS-1$
-						"LEFT JOIN synsets AS y USING (synsetid) " + // //$NON-NLS-1$
-						"LEFT JOIN postypes AS p USING (pos) " + // //$NON-NLS-1$
-						"LEFT JOIN lexdomains USING (lexdomainid) " + // //$NON-NLS-1$
-						"LEFT JOIN fnwords USING (wordid) " + // //$NON-NLS-1$
-						"LEFT JOIN vnwords USING (wordid) " + // //$NON-NLS-1$
-						"LEFT JOIN pbwords USING (wordid)"; //$NON-NLS-1$
-				groupBy = "synsetid"; //$NON-NLS-1$
-				break;
-
 			case PREDICATEMATRIX:
 				// table = "pm";
 				table = "pmvn " + // //$NON-NLS-1$
@@ -157,6 +132,21 @@ public class XSqlUNetProvider extends SqlUNetProvider
 
 			case PREDICATEMATRIX_FRAMENET:
 				table = "pmfn"; //$NON-NLS-1$
+				break;
+
+			// J O I N S
+
+			case WORDS_FNWORDS_PBWORDS_VNWORDS:
+				table = "words AS w " + // //$NON-NLS-1$
+						"LEFT JOIN senses AS s USING (wordid) " + // //$NON-NLS-1$
+						"LEFT JOIN casedwords AS c USING (wordid,casedwordid) " + // //$NON-NLS-1$
+						"LEFT JOIN synsets AS y USING (synsetid) " + // //$NON-NLS-1$
+						"LEFT JOIN postypes AS p USING (pos) " + // //$NON-NLS-1$
+						"LEFT JOIN lexdomains USING (lexdomainid) " + // //$NON-NLS-1$
+						"LEFT JOIN fnwords USING (wordid) " + // //$NON-NLS-1$
+						"LEFT JOIN vnwords USING (wordid) " + // //$NON-NLS-1$
+						"LEFT JOIN pbwords USING (wordid)"; //$NON-NLS-1$
+				groupBy = "synsetid"; //$NON-NLS-1$
 				break;
 
 			case WORDS_VNWORDS_VNCLASSES_U:
@@ -223,6 +213,20 @@ public class XSqlUNetProvider extends SqlUNetProvider
 		}
 	}
 
+	/**
+	 * Make union query
+	 *
+	 * @param table1           table1
+	 * @param table2           table2
+	 * @param tableProjection0 table projection
+	 * @param unionProjection0 union projection
+	 * @param projection0      projection
+	 * @param selection0       selection
+	 * @param groupBys0        group by
+	 * @param sortOrder0       sort
+	 * @param tag0             tag
+	 * @return union sql
+	 */
 	private String makeQuery(final String table1, final String table2, //
 			final String[] tableProjection0, final String[] unionProjection0, final String[] projection0, //
 			final String selection0, //
@@ -281,6 +285,13 @@ public class XSqlUNetProvider extends SqlUNetProvider
 		return embeddingQueryBuilder.buildQuery(resultProjection, null, groupBy, null, sortOrder0, null);
 	}
 
+	/**
+	 * Raw query
+	 *
+	 * @param sql           sql
+	 * @param selectionArgs selection arguments
+	 * @return cursor
+	 */
 	private Cursor raw(final String sql, final String[] selectionArgs)
 	{
 		final String[] selectionArgs2 = new String[2 * selectionArgs.length];

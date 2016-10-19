@@ -29,19 +29,15 @@ import org.sqlunet.provider.SqlUNetContract;
 import org.sqlunet.provider.XSqlUNetContract.Words_FnWords_PbWords_VnWords;
 import org.sqlunet.wordnet.SensePointer;
 import org.sqlunet.wordnet.WordPointer;
-import org.sqlunet.wordnet.browser.SenseFragment;
 
 /**
- * A list fragment representing a list of synsets. This fragment also supports tablet devices by allowing list items to be given an 'activated' state upon
- * selection. This helps indicate which item is currently being viewed in a {@link SenseFragment}.
- * <p>
- * Activities containing this fragment MUST implement the {@link Listener} interface.
+ * Selector Fragment
  *
- * @author Bernard Bou
+ * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
 public class SelectorFragment extends ListFragment
 {
-	// --Commented out by Inspection (10/15/16 6:53 PM):protected static final String TAG = "SelectorFragment"; //$NON-NLS-1$
+	// protected static final String TAG = "SelectorFragment"; //$NON-NLS-1$
 
 	/**
 	 * The serialization (saved instance state) Bundle key representing the activated item position. Only used on tablets.
@@ -86,11 +82,8 @@ public class SelectorFragment extends ListFragment
 	{
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see android.app.Fragment#onCreate(android.os.Bundle)
-	 */
+	// L I F E   C Y C L E
+
 	@Override
 	public void onCreate(final Bundle savedInstanceState)
 	{
@@ -230,75 +223,7 @@ public class SelectorFragment extends ListFragment
 		});
 	}
 
-	// L A Y O U T
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see android.app.ListFragment#onCreateView(android.view.LayoutInflater, android.view.ViewGroup, android.os.Bundle)
-	 */
-	@Override
-	public View onCreateView(final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState)
-	{
-		// layout
-		return inflater.inflate(R.layout.fragment_selector, container);
-	}
-
-	// R E S T O R E / S A V E A C T I V A T E D S T A T E
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see android.app.ListFragment#onViewCreated(android.view.View, android.os.Bundle)
-	 */
-	@Override
-	public void onViewCreated(final View view, final Bundle savedInstanceState)
-	{
-		super.onViewCreated(view, savedInstanceState);
-
-		// restore the previously serialized activated item position, if any
-		if (savedInstanceState != null && savedInstanceState.containsKey(SelectorFragment.ACTIVATED_POSITION_NAME))
-		{
-			final int position = savedInstanceState.getInt(SelectorFragment.ACTIVATED_POSITION_NAME);
-			if (position == AdapterView.INVALID_POSITION)
-			{
-				getListView().setItemChecked(this.activatedPosition, false);
-			}
-			else
-			{
-				getListView().setItemChecked(position, true);
-			}
-			this.activatedPosition = position;
-		}
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see android.app.Fragment#onSaveInstanceState(android.os.Bundle)
-	 */
-	@Override
-	public void onSaveInstanceState(final Bundle outState)
-	{
-		super.onSaveInstanceState(outState);
-
-		if (this.activatedPosition != AdapterView.INVALID_POSITION)
-		{
-			// serialize and persist the activated item position.
-			outState.putInt(SelectorFragment.ACTIVATED_POSITION_NAME, this.activatedPosition);
-		}
-	}
-
-	/**
-	 * Turns on activate-on-click mode. When this mode is on, list items will be given the 'activated' state when touched.
-	 */
-	public void setActivateOnItemClick(@SuppressWarnings("SameParameterValue") final boolean activateOnItemClick)
-	{
-		// when setting CHOICE_MODE_SINGLE, ListView will automatically give items the 'activated' state when touched.
-		getListView().setChoiceMode(activateOnItemClick ? AbsListView.CHOICE_MODE_SINGLE : AbsListView.CHOICE_MODE_NONE);
-	}
-
-	// C L I C K E V E N T L I S T E N
+	// A T T A C H / D E T A C H
 
 	@TargetApi(Build.VERSION_CODES.M)
 	@Override
@@ -308,11 +233,6 @@ public class SelectorFragment extends ListFragment
 		onAttachToContext(context);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see android.app.Fragment#onAttach(android.app.Activity)
-	 */
 	@SuppressWarnings("deprecation")
 	@Override
 	public void onAttach(final Activity activity)
@@ -334,11 +254,6 @@ public class SelectorFragment extends ListFragment
 		this.listener = (Listener) context;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see android.app.Fragment#onDetach()
-	 */
 	@Override
 	public void onDetach()
 	{
@@ -348,11 +263,63 @@ public class SelectorFragment extends ListFragment
 		this.listener = null;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see android.app.ListFragment#onListItemClick(android.widget.ListView, android.view.View, int, long)
+	// L A Y O U T
+
+	@Override
+	public View onCreateView(final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState)
+	{
+		// layout
+		return inflater.inflate(R.layout.fragment_selector, container);
+	}
+
+	// R E S T O R E / S A V E A C T I V A T E D S T A T E
+
+	@Override
+	public void onViewCreated(final View view, final Bundle savedInstanceState)
+	{
+		super.onViewCreated(view, savedInstanceState);
+
+		// restore the previously serialized activated item position, if any
+		if (savedInstanceState != null && savedInstanceState.containsKey(SelectorFragment.ACTIVATED_POSITION_NAME))
+		{
+			final int position = savedInstanceState.getInt(SelectorFragment.ACTIVATED_POSITION_NAME);
+			if (position == AdapterView.INVALID_POSITION)
+			{
+				getListView().setItemChecked(this.activatedPosition, false);
+			}
+			else
+			{
+				getListView().setItemChecked(position, true);
+			}
+			this.activatedPosition = position;
+		}
+	}
+
+	@Override
+	public void onSaveInstanceState(final Bundle outState)
+	{
+		super.onSaveInstanceState(outState);
+
+		if (this.activatedPosition != AdapterView.INVALID_POSITION)
+		{
+			// serialize and persist the activated item position.
+			outState.putInt(SelectorFragment.ACTIVATED_POSITION_NAME, this.activatedPosition);
+		}
+	}
+
+	// C L I C K
+
+	/**
+	 * Turns on activate-on-click mode. When this mode is on, list items will be given the 'activated' state when touched.
+	 *
+	 * @param activateOnItemClick true if activate
 	 */
+	public void setActivateOnItemClick(@SuppressWarnings("SameParameterValue") final boolean activateOnItemClick)
+	{
+		// when setting CHOICE_MODE_SINGLE, ListView will automatically give items the 'activated' state when touched.
+		getListView().setChoiceMode(activateOnItemClick ? AbsListView.CHOICE_MODE_SINGLE : AbsListView.CHOICE_MODE_NONE);
+	}
+
 	@SuppressWarnings("boxing")
 	@Override
 	public void onListItemClick(final ListView listView, final View view, final int position, final long id)

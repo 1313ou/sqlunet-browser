@@ -34,6 +34,8 @@ import java.util.Map;
  */
 public class StorageStyle
 {
+	// Colors
+
 	private static final int dkgreen = 0xFF008B00;
 
 	private static final int dkred = 0xFF8B0000;
@@ -77,7 +79,7 @@ public class StorageStyle
 	}
 
 	/**
-	 * Styled fits-in string
+	 * Styled status string
 	 *
 	 * @param candidate candidate storage
 	 * @return styled string
@@ -166,7 +168,7 @@ public class StorageStyle
 	 * @return image span
 	 */
 	@SuppressWarnings("deprecation")
-	static private Object makeImageSpan(final Context context, int resId)
+	static private Object makeImageSpan(final Context context, final int resId)
 	{
 		Drawable drawable;
 		if (Build.VERSION.SDK_INT < Build.VERSION_CODES.N)

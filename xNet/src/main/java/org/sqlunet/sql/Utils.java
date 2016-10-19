@@ -108,4 +108,22 @@ public class Utils
 		}
 		return sql1;
 	}
+
+
+	/**
+	 * Convert to ids
+	 *
+	 * @param string ,-separated string of ids
+	 * @return ids as long array
+	 */
+	static public long[] toIds(final String string)
+	{
+		final String[] strings = string.split(","); //$NON-NLS-1$
+		final long[] ids = new long[strings.length];
+		for (int i = 0; i < strings.length; i++)
+		{
+			ids[i] = Long.parseLong(strings[i]);
+		}
+		return ids;
+	}
 }

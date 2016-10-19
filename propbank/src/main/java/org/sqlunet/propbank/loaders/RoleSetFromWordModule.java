@@ -9,7 +9,7 @@ import org.sqlunet.treeview.model.TreeNode;
 /**
  * Module for rolesets
  *
- * @author Bernard Bou
+ * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
 public class RoleSetFromWordModule extends BasicModule
 {
@@ -26,11 +26,6 @@ public class RoleSetFromWordModule extends BasicModule
 		super(fragment0);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.sqlunet.propbank.browser.BasicModule#unmarshall(android.os.Parcelable)
-	 */
 	@Override
 	void unmarshall(final Parcelable query0)
 	{
@@ -38,11 +33,6 @@ public class RoleSetFromWordModule extends BasicModule
 		this.wordid = wordQuery.getWordId();
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.sqlunet.Module#process()
-	 */
 	@Override
 	public void process(final TreeNode node)
 	{

@@ -15,6 +15,9 @@ public class PreparedStatement
 	static private final String TAG = "PreparedStatement"; //$NON-NLS-1$
 
 	// TODO
+	/**
+	 * Whether to output SQL statements
+	 */
 	private static final boolean debugSql = true;
 
 	/**

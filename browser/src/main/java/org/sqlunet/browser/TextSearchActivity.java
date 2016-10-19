@@ -27,13 +27,18 @@ import org.sqlunet.wordnet.provider.WordNetContract.Lookup_Samples;
 import org.sqlunet.wordnet.provider.WordNetContract.Lookup_Words;
 
 /**
- * Text Search activity
+ * Text search activity
  *
- * @author Bernard Bou
+ * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
 public class TextSearchActivity extends Activity
 {
 	private static final String TAG = "TextSearchActivity"; //$NON-NLS-1$
+
+	/**
+	 * State
+	 */
+	private static final String STATE_SELECTED_SEARCHMODE_ITEM = "org.sqlunet.search.mode.selected"; //$NON-NLS-1$
 
 	/**
 	 * Search view
@@ -55,18 +60,8 @@ public class TextSearchActivity extends Activity
 	 */
 	private CharSequence[] ranges;
 
-	/**
-	 * State
-	 */
-	private static final String STATE_SELECTED_SEARCHMODE_ITEM = "org.sqlunet.search.mode.selected"; //$NON-NLS-1$
-
 	// C R E A T I O N
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see android.app.Activity#onCreate(android.os.Bundle)
-	 */
 	@Override
 	protected void onCreate(final Bundle savedInstanceState)
 	{
@@ -119,11 +114,6 @@ public class TextSearchActivity extends Activity
 
 	// M E N U
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see android.app.Activity#onCreateOptionsMenu(android.view.Menu)
-	 */
 	@Override
 	public boolean onCreateOptionsMenu(final Menu menu)
 	{
@@ -169,11 +159,6 @@ public class TextSearchActivity extends Activity
 
 	// I N T E N T
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see android.app.Activity#onNewIntent(android.content.Intent)
-	 */
 	@Override
 	protected void onNewIntent(final Intent intent)
 	{
@@ -284,11 +269,6 @@ public class TextSearchActivity extends Activity
 
 	// P E R S I S T
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see android.app.Activity#onSaveInstanceState(android.os.Bundle)
-	 */
 	@Override
 	public void onSaveInstanceState(final Bundle savedInstanceState)
 	{
@@ -302,11 +282,6 @@ public class TextSearchActivity extends Activity
 		super.onSaveInstanceState(savedInstanceState);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see android.app.Activity#onRestoreInstanceState(android.os.Bundle)
-	 */
 	@Override
 	public void onRestoreInstanceState(final Bundle savedInstanceState)
 	{

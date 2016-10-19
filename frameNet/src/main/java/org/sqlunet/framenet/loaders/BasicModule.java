@@ -53,7 +53,7 @@ import java.util.Locale;
 /**
  * A module to retrieve frame
  *
- * @author Bernard Bou
+ * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
 abstract public class BasicModule extends Module
 {
@@ -165,10 +165,6 @@ abstract public class BasicModule extends Module
 		super(fragment0);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * @see org.sqlunet.Module#init(android.os.Parcelable)
-	 */
 	@Override
 	public void init(final Parcelable arguments)
 	{

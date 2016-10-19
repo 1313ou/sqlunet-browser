@@ -12,15 +12,10 @@ import org.sqlunet.provider.SqlUNetContract;
 /**
  * An activity representing table.
  *
- * @author Bernard Bou
+ * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
 public class TableActivity extends Activity
 {
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see android.app.Activity#onCreate(android.os.Bundle)
-	 */
 	@Override
 	protected void onCreate(final Bundle savedInstanceState)
 	{

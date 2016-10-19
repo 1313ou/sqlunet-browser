@@ -1,5 +1,5 @@
 /*
- * @author <a href="mailto:bbou@ac-toulouse.fr">Bernard Bou</a>
+ * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  * Created on 31 dec. 2004
  * Filename : LexDomainEnumQueryCommand.java
  * Class encapsulating query for lexdomain enumeration
@@ -13,7 +13,7 @@ import org.sqlunet.sql.DBQueryCommand;
 /**
  * Query for lexdomain enumeration
  *
- * @author <a href="mailto:bbou@ac-toulouse.fr">Bernard Bou</a>
+ * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
 class LexDomainEnumQueryCommand extends DBQueryCommand
 {

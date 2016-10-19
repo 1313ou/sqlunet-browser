@@ -12,7 +12,7 @@ import java.util.List;
 /**
  * Encapsulates BNC query implementation
  *
- * @author Bernard Bou
+ * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
 public class BncImplementation implements BncInterface
 {

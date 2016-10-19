@@ -6,6 +6,11 @@ import android.os.Parcelable;
 import org.sqlunet.HasXId;
 import org.sqlunet.browser.selector.Pointer;
 
+/**
+ * X pointer
+ *
+ * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
+ */
 public class XPointer extends Pointer implements HasXId
 {
 	private static final int WORDNETSOURCE = 0x00001;
@@ -98,26 +103,43 @@ public class XPointer extends Pointer implements HasXId
 		this.xmask = parcel.readLong();
 	}
 
+	/**
+	 * Set x id
+	 *
+	 * @param xid xid
+	 */
 	public void setXid(Long xid)
 	{
 		this.xid = xid;
 	}
 
+	@Override
 	public Long getXclassid()
 	{
 		return this.xclassid;
 	}
 
+	/**
+	 * Set x class id
+	 *
+	 * @param xclassid x class id
+	 */
 	public void setXclassid(Long xclassid)
 	{
 		this.xclassid = xclassid;
 	}
 
+	@Override
 	public Long getXinstanceid()
 	{
 		return this.xinstanceid;
 	}
 
+	/**
+	 * Set x instance id
+	 *
+	 * @param xinstanceid x instance id
+	 */
 	public void setXinstanceid(Long xinstanceid)
 	{
 		this.xinstanceid = xinstanceid;
@@ -153,11 +175,6 @@ public class XPointer extends Pointer implements HasXId
 		}
 	};
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.sqlunet.wordnet.Synset#writeToParcel(android.os.Parcel, int)
-	 */
 	@Override
 	public void writeToParcel(final Parcel parcel, final int flags)
 	{
@@ -171,11 +188,6 @@ public class XPointer extends Pointer implements HasXId
 		parcel.writeLong(this.xmask);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.sqlunet.wordnet.Synset#describeContents()
-	 */
 	@Override
 	public int describeContents()
 	{
@@ -188,6 +200,11 @@ public class XPointer extends Pointer implements HasXId
 		return this.xsources;
 	}
 
+	/**
+	 * Set x sources
+	 *
+	 * @param xsources x sources
+	 */
 	public void setXsources(String xsources)
 	{
 		this.xsources = xsources;
@@ -224,6 +241,11 @@ public class XPointer extends Pointer implements HasXId
 		}
 	}
 
+	/**
+	 * Get x mask
+	 *
+	 * @return x mask
+	 */
 	@SuppressWarnings("unused")
 	public long getXmask()
 	{

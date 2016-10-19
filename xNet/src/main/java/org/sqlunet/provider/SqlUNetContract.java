@@ -1,5 +1,8 @@
 package org.sqlunet.provider;
 
+/**
+ * Contract for SqlUNet provider
+ */
 @SuppressWarnings("unused")
 public final class SqlUNetContract
 {

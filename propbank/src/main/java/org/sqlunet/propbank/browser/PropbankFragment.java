@@ -21,7 +21,7 @@ import org.sqlunet.view.TreeFactory;
 /**
  * A fragment representing a propbank search
  *
- * @author Bernard Bou
+ * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
 public class PropbankFragment extends Fragment
 {

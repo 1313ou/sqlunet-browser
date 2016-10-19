@@ -21,7 +21,7 @@ import org.sqlunet.view.TreeFactory;
 /**
  * A fragment representing an annoset.
  *
- * @author Bernard Bou
+ * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
 public class FnAnnoSetFragment extends Fragment
 {
@@ -37,11 +37,6 @@ public class FnAnnoSetFragment extends Fragment
 	{
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see android.app.Fragment#onCreateView(android.view.LayoutInflater, android.view.ViewGroup, android.os.Bundle)
-	 */
 	@Override
 	public View onCreateView(final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState)
 	{

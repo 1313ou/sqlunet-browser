@@ -21,7 +21,7 @@ import org.sqlunet.wordnet.loaders.SynsetModule;
 /**
  * A fragment representing a synset.
  *
- * @author Bernard Bou
+ * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
 public class SynsetFragment extends Fragment
 {
@@ -34,11 +34,6 @@ public class SynsetFragment extends Fragment
 		//
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see android.app.Fragment#onCreateView(android.view.LayoutInflater, android.view.ViewGroup, android.os.Bundle)
-	 */
 	@Override
 	public View onCreateView(final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState)
 	{

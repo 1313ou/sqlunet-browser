@@ -18,11 +18,13 @@ import java.util.List;
 /**
  * Database status
  *
- * @author Bernard Bou
+ * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
 public class Status
 {
 	static private final String TAG = "SqlUNet Status"; //$NON-NLS-1$
+
+	// status flags
 
 	private static final int EXISTS = 0x1;
 
@@ -34,6 +36,12 @@ public class Status
 
 	static public final int EXISTS_TSFN = 0x200;
 
+	/**
+	 * Get status
+	 *
+	 * @param context context
+	 * @return status
+	 */
 	static public int status(final Context context)
 	{
 		if (existsDatabase(context))
@@ -84,12 +92,24 @@ public class Status
 		return 0;
 	}
 
+	/**
+	 * Can run status
+	 *
+	 * @param context context
+	 * @return true if app is ready to run
+	 */
 	static public boolean canRun(final Context context)
 	{
 		final int status = status(context);
 		return (status & (EXISTS | EXISTS_IDX | EXISTS_PM)) == (EXISTS | EXISTS_IDX | EXISTS_PM);
 	}
 
+	/**
+	 * Test existence of database
+	 *
+	 * @param context context
+	 * @return true if database exists
+	 */
 	private static boolean existsDatabase(final Context context)
 	{
 		final String databasePath = StorageSettings.getDatabasePath(context);
@@ -97,6 +117,12 @@ public class Status
 		return db.exists() && db.isFile() && db.canWrite();
 	}
 
+	/**
+	 * Get tables and indexes
+	 *
+	 * @param context context
+	 * @return list of tables and indexes
+	 */
 	private static List<String> tablesAndIndexes(final Context context)
 	{
 		final String order = "CASE " // //$NON-NLS-1$
@@ -129,6 +155,13 @@ public class Status
 		return result;
 	}
 
+	/**
+	 * Test if targets are contained in tables and indexes
+	 *
+	 * @param tablesAndIndexes tables and indexes
+	 * @param targets          targets
+	 * @return true if targets are contained in tables and indexes
+	 */
 	static private boolean contains(final Collection<String> tablesAndIndexes, final String... targets)
 	{
 		return tablesAndIndexes.containsAll(Arrays.asList(targets));

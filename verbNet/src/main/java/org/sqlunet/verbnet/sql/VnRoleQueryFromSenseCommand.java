@@ -9,7 +9,7 @@ import java.sql.Types;
 /**
  * Query command for VerbNet roles
  *
- * @author Bernard Bou
+ * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
 class VnRoleQueryFromSenseCommand extends DBQueryCommand
 {

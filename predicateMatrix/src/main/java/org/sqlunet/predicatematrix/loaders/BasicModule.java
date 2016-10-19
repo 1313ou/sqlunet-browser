@@ -44,7 +44,7 @@ import java.util.TreeSet;
 /**
  * Module for predicate matrix
  *
- * @author Bernard Bou
+ * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
 abstract class BasicModule extends Module
 {
@@ -81,10 +81,6 @@ abstract class BasicModule extends Module
 
 	// D A T A
 
-	/*
-	 * (non-Javadoc)
-	 * @see org.sqlunet.Module#init(android.widget.TextView, android.widget.TextView, android.os.Parcelable)
-	 */
 	@Override
 	public void init(final Parcelable query)
 	{
@@ -243,6 +239,7 @@ abstract class BasicModule extends Module
 			this.pmid = pmid;
 		}
 
+		@Override
 		public String toData()
 		{
 			return '[' + Long.toString(this.pmid) + ']' + '-' + super.toData();
@@ -689,6 +686,7 @@ abstract class BasicModule extends Module
 			this.pmroleid = -1;
 		}
 
+		@Override
 		protected void process(final TreeNode parentNode, final WnData wnData, final PmRow pmRow, final VnData vnData, final PbData pbData, final FnData fnData)
 		{
 			if (this.pmroleid != pmRow.pmroleid)
@@ -759,6 +757,7 @@ abstract class BasicModule extends Module
 			}
 		}
 
+		@Override
 		protected void endProcess(TreeNode parent2)
 		{
 			for (int pmroleid : this.pmroleids)
@@ -806,6 +805,7 @@ abstract class BasicModule extends Module
 			super(parent, displayer);
 		}
 
+		@Override
 		protected void process(final TreeNode parentNode, final WnData wnData, final PmRow pmRow, final VnData vnData, final PbData pbData, final FnData fnData)
 		{
 			this.displayer.display(parentNode, wnData, pmRow, vnData, pbData, fnData);
@@ -1088,6 +1088,7 @@ abstract class BasicModule extends Module
 
 		private TreeNode synsetNode;
 
+		@Override
 		public void display(final TreeNode parentNode, final WnData wnData, final PmRow pmRole, final VnData vnData, final PbData pbData, final FnData fnData)
 		{
 			if (this.synsetid != wnData.synsetid)
@@ -1132,6 +1133,7 @@ abstract class BasicModule extends Module
 
 		private TreeNode pmroleNode;
 
+		@Override
 		public void display(final TreeNode parentNode, final WnData wnData, final PmRow pmRole, final VnData vnData, final PbData pbData, final FnData fnData)
 		{
 			if (this.pmroleid != pmRole.pmroleid)
@@ -1161,6 +1163,7 @@ abstract class BasicModule extends Module
 
 	class DisplayerUngrouped extends Displayer
 	{
+		@Override
 		public void display(final TreeNode parentNode, final WnData wnData, final PmRow pmRole, final VnData vnData, final PbData pbData, final FnData fnData)
 		{
 			super.displayRow(parentNode, wnData, pmRole, vnData, pbData, fnData, true, false);

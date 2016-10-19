@@ -10,7 +10,7 @@ import java.util.List;
 /**
  * FrameNet layer query command
  *
- * @author Bernard Bou
+ * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
 class FnLayerQueryCommand extends DBQueryCommand
 {

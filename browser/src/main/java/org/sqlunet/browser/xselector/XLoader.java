@@ -20,8 +20,16 @@ import org.sqlunet.provider.XSqlUNetContract.Words_VnWords_VnClasses_U;
 import org.sqlunet.provider.XSqlUNetContract.Words_XNet_U;
 import org.sqlunet.wordnet.provider.WordNetContract.Words_Senses_CasedWords_Synsets_PosTypes_LexDomains;
 
+/**
+ * X loader
+ *
+ * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
+ */
 class XLoader
 {
+	/**
+	 * Xn callbacks
+	 */
 	public abstract static class XnLoaderCallbacks implements LoaderCallbacks<Cursor>
 	{
 		final Context context;
@@ -34,6 +42,9 @@ class XLoader
 		}
 	}
 
+	/**
+	 * WordNet callbacks
+	 */
 	public abstract static class WnLoaderCallbacks extends XnLoaderCallbacks
 	{
 		public WnLoaderCallbacks(final Context context, final long wordid)
@@ -64,6 +75,9 @@ class XLoader
 		}
 	}
 
+	/**
+	 * VerbNet callbacks
+	 */
 	public abstract static class VnLoaderCallbacks extends XnLoaderCallbacks
 	{
 		public VnLoaderCallbacks(final Context context, final long wordid)
@@ -93,6 +107,9 @@ class XLoader
 		}
 	}
 
+	/**
+	 * Propbank loader callbacks
+	 */
 	public abstract static class PbLoaderCallbacks extends XnLoaderCallbacks
 	{
 		public PbLoaderCallbacks(final Context context, final long wordid)
@@ -123,6 +140,9 @@ class XLoader
 		}
 	}
 
+	/**
+	 * FrameNet loader callbacks
+	 */
 	abstract static class FnLoaderCallbacks extends XnLoaderCallbacks
 	{
 		public FnLoaderCallbacks(final Context context, final long wordid)
@@ -152,6 +172,9 @@ class XLoader
 		}
 	}
 
+	/**
+	 * Full loader callbacks
+	 */
 	abstract static class FullLoaderCallbacks implements LoaderCallbacks<Cursor>
 	{
 		final Activity activity;
@@ -242,6 +265,9 @@ class XLoader
 		}
 	}
 
+	/**
+	 * Dump utility
+	 */
 	static public void dump(final Cursor cursor)
 	{
 		if (cursor.moveToFirst())

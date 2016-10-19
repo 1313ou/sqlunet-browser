@@ -17,6 +17,8 @@ public class StorageSettings
 	 */
 	static private final String DBFILE = Storage.DBFILE;
 
+	// storage preferences
+
 	static public final String PREF_STORAGE = Storage.PREF_SQLUNET_STORAGE;
 
 	// download preferences

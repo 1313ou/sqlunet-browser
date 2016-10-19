@@ -9,7 +9,7 @@ import java.util.Locale;
 /**
  * Query command for Propbank roles
  *
- * @author Bernard Bou
+ * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
 class PbRoleQueryCommand extends DBQueryCommand
 {

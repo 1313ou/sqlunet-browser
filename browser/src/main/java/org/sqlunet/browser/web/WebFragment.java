@@ -49,7 +49,9 @@ import org.w3c.dom.Document;
 import java.net.URLDecoder;
 
 /**
- * A fragment representing a web view.
+ * A fragment representing a SqlUNet web view.
+ *
+ * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
 public class WebFragment extends Fragment
 {
@@ -233,11 +235,7 @@ public class WebFragment extends Fragment
 		return data;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see android.app.Fragment#onCreateView(android.view.LayoutInflater, android.view.ViewGroup, android.os.Bundle)
-	 */
+
 	@Override
 	public View onCreateView(final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState)
 	{
@@ -312,6 +310,7 @@ public class WebFragment extends Fragment
 						final Activity activity = WebFragment.this.getActivity();
 						activity.runOnUiThread(new Runnable()
 						{
+							@Override
 							public void run()
 							{
 								Toast.makeText(activity, "id=" + id, Toast.LENGTH_SHORT).show(); //$NON-NLS-1$
@@ -414,21 +413,11 @@ public class WebFragment extends Fragment
 		// load the contents
 		getLoaderManager().restartLoader(++Module.loaderId, null, new LoaderCallbacks<String>()
 		{
-			/*
-			 * (non-Javadoc)
-			 *
-			 * @see android.app.LoaderManager.LoaderCallbacks#onCreateLoader(int, android.os.Bundle)
-			 */
 			@Override
 			public Loader<String> onCreateLoader(final int loaderId0, final Bundle args0)
 			{
 				return new DocumentStringLoader(getActivity())
 				{
-					/*
-					 * (non-Javadoc)
-					 *
-					 * @see org.sqlunet.DocumentLoader#getDoc(android.os.CancellationSignal)
-					 */
 					@SuppressWarnings({"boxing"})
 					@Override
 					protected String getDoc()
@@ -621,7 +610,6 @@ public class WebFragment extends Fragment
 						}
 						return null;
 					}
-
 				};
 			}
 

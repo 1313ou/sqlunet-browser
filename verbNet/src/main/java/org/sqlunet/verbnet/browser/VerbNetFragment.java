@@ -21,7 +21,7 @@ import org.sqlunet.view.TreeFactory;
 /**
  * A fragment representing a verbnet search
  *
- * @author Bernard Bou
+ * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
 public class VerbNetFragment extends Fragment
 {

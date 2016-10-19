@@ -9,10 +9,14 @@ import org.sqlunet.browser.R;
 import org.sqlunet.download.Downloader;
 import org.sqlunet.settings.StorageSettings;
 
+/**
+ * Set up activity
+ *
+ * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
+ */
 public class SetupActivity extends SetupBaseActivity
 {
-	@SuppressWarnings("unused")
-	private static final String TAG = "SetupActivity"; //$NON-NLS-1$
+	// private static final String TAG = "SetupActivity"; //$NON-NLS-1$
 
 	// download db button
 	private Button downloadDbButton;

@@ -211,11 +211,7 @@ public class SettingsActivity extends PreferenceActivity
 
 	// B I N D
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see android.preference.PreferenceActivity#isValidFragment(java.lang.String)
-	 */
+
 	@Override
 	protected boolean isValidFragment(final String fragmentName)
 	{

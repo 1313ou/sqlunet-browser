@@ -61,10 +61,6 @@ public class StorageUtils
 			return i1 < i2 ? -1 : (i1 == i2 ? 0 : 1);
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * @see java.lang.Enum#toString()
-		 */
 		public String toString()
 		{
 			switch (this)
@@ -192,10 +188,6 @@ public class StorageUtils
 			return String.format(Locale.ENGLISH, "%s\n%s\n%s free %.1f%% occupancy\n%s", this.dir.type.toString(), this.dir.file.getAbsolutePath(), mbToString(this.free), this.occupancy, this.status()); //$NON-NLS-1$
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * @see java.lang.Object#toString()
-		 */
 		@Override
 		public String toString()
 		{

@@ -10,7 +10,7 @@ import org.sqlunet.treeview.model.TreeNode;
 /**
  * Module for rolesets
  *
- * @author Bernard Bou
+ * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
 public class RoleSetModule extends BasicModule
 {
@@ -26,11 +26,6 @@ public class RoleSetModule extends BasicModule
 		super(fragment0);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.sqlunet.propbank.browser.BasicModule#unmarshall(android.os.Parcelable)
-	 */
 	@Override
 	void unmarshall(final Parcelable query)
 	{
@@ -52,11 +47,6 @@ public class RoleSetModule extends BasicModule
 		}
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.sqlunet.Module#process()
-	 */
 	@Override
 	public void process(final TreeNode node)
 	{

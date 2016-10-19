@@ -35,7 +35,7 @@ import java.util.List;
 /**
  * A list fragment representing a table.
  *
- * @author Bernard Bou
+ * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
 public class TableFragment extends ListFragment
 {
@@ -51,11 +51,7 @@ public class TableFragment extends ListFragment
 		//
 	}
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see android.app.Fragment#onCreate(android.os.Bundle)
-	 */
+
 	@SuppressWarnings("boxing")
 	@Override
 	public void onCreate(final Bundle savedInstanceState)
@@ -215,11 +211,7 @@ public class TableFragment extends ListFragment
 
 	// L A Y O U T
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see android.app.ListFragment#onCreateView(android.view.LayoutInflater, android.view.ViewGroup, android.os.Bundle)
-	 */
+
 	@Override
 	public View onCreateView(final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState)
 	{

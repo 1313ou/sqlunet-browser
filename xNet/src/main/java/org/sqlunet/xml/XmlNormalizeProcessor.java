@@ -8,6 +8,9 @@ import org.w3c.dom.Node;
 import org.w3c.dom.ls.DOMImplementationLS;
 import org.w3c.dom.ls.LSSerializer;
 
+/**
+ * Normalizing processor
+ */
 @SuppressWarnings("unused")
 public class XmlNormalizeProcessor extends XmlProcessor
 {
@@ -28,6 +31,12 @@ public class XmlNormalizeProcessor extends XmlProcessor
 		return null;
 	}
 
+	/**
+	 * Element to string
+	 *
+	 * @param e element
+	 * @return string
+	 */
 	private static String elementToString(final Node e)
 	{
 		final Document document = e.getOwnerDocument();

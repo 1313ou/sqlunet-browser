@@ -44,11 +44,6 @@ public class SynsetModule extends BasicModule
 		}
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.sqlunet.Module#data()
-	 */
 	@Override
 	public void process(final TreeNode node)
 	{

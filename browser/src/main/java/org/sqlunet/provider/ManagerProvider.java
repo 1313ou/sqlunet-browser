@@ -16,7 +16,7 @@ import java.util.Collection;
 /**
  * WordNet provider
  *
- * @author Bernard Bou
+ * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
 public class ManagerProvider extends SqlUNetProvider
 {
@@ -47,11 +47,6 @@ public class ManagerProvider extends SqlUNetProvider
 
 	// M I M E
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see android.content.ContentProvider#getType(android.net.Uri)
-	 */
 	@Override
 	public String getType(final Uri uri)
 	{
@@ -67,11 +62,6 @@ public class ManagerProvider extends SqlUNetProvider
 
 	// Q U E R Y
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see android.content.ContentProvider#query(android.net.Uri, java.lang.String[], java.lang.String, java.lang.String[], java.lang.String)
-	 */
 	@SuppressWarnings("boxing")
 	@Override
 	public Cursor query(final Uri uri, final String[] projection, final String selection, final String[] selectionArgs, final String sortOrder)

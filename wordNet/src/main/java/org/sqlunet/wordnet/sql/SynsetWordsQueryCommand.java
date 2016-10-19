@@ -1,5 +1,5 @@
 /*
- * @author <a href="mailto:bbou@ac-toulouse.fr">Bernard Bou</a>
+ * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  * Created on 31 dec. 2004
  * Filename : SynsetWordsQueryCommand.java
  * Class encapsulating query for words in synset
@@ -13,7 +13,7 @@ import org.sqlunet.sql.DBQueryCommand;
 /**
  * Query command for words in synset
  *
- * @author <a href="mailto:bbou@ac-toulouse.fr">Bernard Bou</a>
+ * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
 class SynsetWordsQueryCommand extends DBQueryCommand
 {

@@ -40,10 +40,6 @@ public class ClassFromWordModule extends BasicModule
 		super(fragment0);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * @see org.sqlunet.verbnet.browser.BasicModule#unmarshall(android.os.Parcelable)
-	 */
 	@Override
 	void unmarshall(final Parcelable query)
 	{
@@ -59,10 +55,6 @@ public class ClassFromWordModule extends BasicModule
 		}
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * @see org.sqlunet.Module#data()
-	 */
 	@Override
 	public void process(final TreeNode node)
 	{

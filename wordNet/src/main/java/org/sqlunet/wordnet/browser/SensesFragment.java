@@ -37,7 +37,7 @@ import org.sqlunet.wordnet.provider.WordNetContract.Words_Senses_CasedWords_Syns
  * <p>
  * Activities containing this fragment MUST implement the {@link Listener} interface.
  *
- * @author Bernard Bou
+ * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
 public class SensesFragment extends ListFragment
 {
@@ -85,11 +85,6 @@ public class SensesFragment extends ListFragment
 		//
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see android.app.Fragment#onCreate(android.os.Bundle)
-	 */
 	@Override
 	public void onCreate(final Bundle savedInstanceState)
 	{
@@ -220,11 +215,6 @@ public class SensesFragment extends ListFragment
 
 	// L A Y O U T
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see android.app.ListFragment#onCreateView(android.view.LayoutInflater, android.view.ViewGroup, android.os.Bundle)
-	 */
 	@Override
 	public View onCreateView(final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState)
 	{
@@ -234,11 +224,6 @@ public class SensesFragment extends ListFragment
 
 	// R E S T O R E / S A V E A C T I V A T E D S T A T E
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see android.app.ListFragment#onViewCreated(android.view.View, android.os.Bundle)
-	 */
 	@Override
 	public void onViewCreated(final View view, final Bundle savedInstanceState)
 	{
@@ -260,11 +245,6 @@ public class SensesFragment extends ListFragment
 		}
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see android.app.Fragment#onSaveInstanceState(android.os.Bundle)
-	 */
 	@Override
 	public void onSaveInstanceState(final Bundle outState)
 	{
@@ -289,7 +269,7 @@ public class SensesFragment extends ListFragment
 
 	// C L I C K E V E N T L I S T E N
 
-	@TargetApi(23)
+	@TargetApi(Build.VERSION_CODES.LOLLIPOP)
 	@Override
 	public void onAttach(final Context context)
 	{
@@ -297,11 +277,6 @@ public class SensesFragment extends ListFragment
 		onAttachToContext(context);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see android.app.Fragment#onAttach(android.app.Activity)
-	 */
 	@SuppressWarnings("deprecation")
 	@Override
 	public void onAttach(final Activity activity)
@@ -325,11 +300,6 @@ public class SensesFragment extends ListFragment
 		throw new IllegalStateException("Activity must implement fragment's listener."); //$NON-NLS-1$
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see android.app.Fragment#onDetach()
-	 */
 	@Override
 	public void onDetach()
 	{
@@ -339,11 +309,6 @@ public class SensesFragment extends ListFragment
 		this.listener = null;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see android.app.ListFragment#onListItemClick(android.widget.ListView, android.view.View, int, long)
-	 */
 	@SuppressWarnings("boxing")
 	@Override
 	public void onListItemClick(final ListView listView, final View view, final int position, final long id)

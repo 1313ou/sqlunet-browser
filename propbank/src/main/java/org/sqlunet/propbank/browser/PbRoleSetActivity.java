@@ -9,15 +9,11 @@ import org.sqlunet.propbank.R;
 /**
  * LexUnitQuery activity
  *
- * @author Bernard Bou
+ * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
 public class PbRoleSetActivity extends Activity
 {
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see android.app.Activity#onCreate(android.os.Bundle)
-	 */
+
 	@Override
 	protected void onCreate(final Bundle savedInstanceState)
 	{

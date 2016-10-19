@@ -12,18 +12,11 @@ import org.sqlunet.browser.DetailFragment;
 import org.sqlunet.browser.R;
 import org.sqlunet.provider.SqlUNetContract;
 import org.sqlunet.wordnet.SensePointer;
-import org.sqlunet.wordnet.browser.SenseFragment;
 
 /**
- * An activity representing a list of synsets. This activity has different presentations for handset and tablet-size devices. On handsets, the activity presents
- * a list of items, which when touched, lead to a {@link DetailActivity} representing item details. On tablets, the activity presents the list of items and item
- * details side-by-side using two vertical panes.
- * <p>
- * The activity makes heavy use of fragments. The list of items is a {@link SelectorFragment} and the item details (if present) is a {@link SenseFragment}.
- * <p>
- * This activity also implements the required {@link SelectorFragment.Listener} interface to listen for item selections.
+ * Selector activity
  *
- * @author Bernard Bou
+ * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
 public class SelectorActivity extends Activity implements SelectorFragment.Listener
 {
@@ -34,11 +27,6 @@ public class SelectorActivity extends Activity implements SelectorFragment.Liste
 
 	// C R E A T I O N
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see android.app.Activity#onCreate(android.os.Bundle)
-	 */
 	@Override
 	protected void onCreate(final Bundle savedInstanceState)
 	{

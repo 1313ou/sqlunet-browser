@@ -21,8 +21,9 @@ import org.sqlunet.provider.ExecuteManager.Listener;
 import org.sqlunet.settings.StorageSettings;
 
 /**
- * A simple {@link android.app.Fragment} subclass. Activities that contain this fragment must implement the ManagementFragment.ManagementListener
- * interface to handle interaction events. Use the ManagementFragment#newInstance factory method to create an instance of this fragment.
+ * Management fragment
+ *
+ * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
 public class ManagementFragment extends Fragment implements Listener
 {
@@ -30,10 +31,19 @@ public class ManagementFragment extends Fragment implements Listener
 
 	public static final String ARG = "statement"; //$NON-NLS-1$
 
+	/**
+	 * Action spinner
+	 */
 	private Spinner spinner;
 
+	/**
+	 * Status view
+	 */
 	private TextView status;
 
+	/**
+	 * Constructor
+	 */
 	public ManagementFragment()
 	{
 		// Required empty public constructor
@@ -77,6 +87,8 @@ public class ManagementFragment extends Fragment implements Listener
 				ManagementFragment.this.status.setText(""); //$NON-NLS-1$
 			}
 		});
+
+		// args
 		Bundle args = getArguments();
 		if (args != null)
 		{
@@ -114,11 +126,6 @@ public class ManagementFragment extends Fragment implements Listener
 		return rootView;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.sqlunet.provider.ExecuteManager.Listener#managerStart()
-	 */
 	@Override
 	public void managerStart()
 	{
@@ -127,11 +134,6 @@ public class ManagementFragment extends Fragment implements Listener
 		ManagementFragment.this.status.setText(R.string.status_op_running);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.sqlunet.provider.ExecuteManager.Listener#managerFinish(boolean)
-	 */
 	@Override
 	public void managerFinish(final boolean result)
 	{
@@ -140,11 +142,6 @@ public class ManagementFragment extends Fragment implements Listener
 		ManagementFragment.this.status.setText(result ? R.string.status_op_done : R.string.status_op_failed);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.sqlunet.provider.ExecuteManager.Listener#managerUpdate(int)
-	 */
 	@Override
 	public void managerUpdate(final int progress)
 	{

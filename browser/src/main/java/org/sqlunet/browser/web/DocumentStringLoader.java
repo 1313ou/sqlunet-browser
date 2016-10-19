@@ -1,20 +1,40 @@
 package org.sqlunet.browser.web;
 
-import android.annotation.SuppressLint;
+import android.annotation.TargetApi;
 import android.content.AsyncTaskLoader;
 import android.content.Context;
+import android.os.Build;
 import android.os.CancellationSignal;
 
-//TODO
+/**
+ * Document string loader
+ *
+ * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
+ */
 abstract class DocumentStringLoader extends AsyncTaskLoader<String>
 {
-
-	private CancellationSignal cancellationSignal;
-
+	/**
+	 * String document
+	 */
 	private String document;
 
+	/**
+	 * Cancellation signal
+	 */
+	private CancellationSignal cancellationSignal;
+
+	/**
+	 * Constructor
+	 *
+	 * @param context context
+	 */
+	public DocumentStringLoader(final Context context)
+	{
+		super(context);
+	}
+
 	/* Runs on a worker thread */
-	@SuppressLint("NewApi")
+	@TargetApi(Build.VERSION_CODES.JELLY_BEAN)
 	@Override
 	public String loadInBackground()
 	{
@@ -40,9 +60,14 @@ abstract class DocumentStringLoader extends AsyncTaskLoader<String>
 		}
 	}
 
+	/**
+	 * Get document
+	 *
+	 * @return document
+	 */
 	abstract protected String getDoc();
 
-	@SuppressLint("NewApi")
+	@TargetApi(Build.VERSION_CODES.JELLY_BEAN)
 	@Override
 	public boolean cancelLoad()
 	{
@@ -75,15 +100,6 @@ abstract class DocumentStringLoader extends AsyncTaskLoader<String>
 	}
 
 	/**
-	 * Creates an empty unspecified CursorLoader. You must follow this with calls to setUri(Uri), setSelection(String), etc to specify the
-	 * query to perform.
-	 */
-	public DocumentStringLoader(final Context context)
-	{
-		super(context);
-	}
-
-	/**
 	 * Starts an asynchronous load of the contacts list data. When the result is ready the callbacks will be called on the UI thread. If a previous load has
 	 * been completed and is still valid the result may be passed to the callbacks immediately. Must be called from the UI thread
 	 */
@@ -106,14 +122,14 @@ abstract class DocumentStringLoader extends AsyncTaskLoader<String>
 	@Override
 	protected void onStopLoading()
 	{
-		// Attempt to cancel the current load task if possible.
+		// attempt to cancel the current load task if possible.
 		cancelLoad();
 	}
 
 	@Override
 	public void onCanceled(final String document0)
 	{
-		// Do nothing
+		// do nothing
 	}
 
 	@Override

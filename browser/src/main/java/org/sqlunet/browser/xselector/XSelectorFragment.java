@@ -1,5 +1,6 @@
 package org.sqlunet.browser.xselector;
 
+import android.android.support.local.app.ExpandableListFragment;
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.LoaderManager.LoaderCallbacks;
@@ -11,7 +12,6 @@ import android.database.MatrixCursor;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.android.support.local.app.ExpandableListFragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -34,25 +34,39 @@ import org.sqlunet.provider.SqlUNetContract;
 import org.sqlunet.provider.XSqlUNetContract.Words_FnWords_PbWords_VnWords;
 import org.sqlunet.provider.XSqlUNetContract.Words_XNet_U;
 import org.sqlunet.wordnet.WordPointer;
-import org.sqlunet.wordnet.browser.SenseFragment;
 
 /**
- * A list fragment representing a list of synsets. This fragment also supports tablet devices by allowing list items to be given an 'activated' state upon
- * selection. This helps indicate which item is currently being viewed in a {@link SenseFragment}.
- * <p>
- * Activities containing this fragment MUST implement the {@link Listener} interface.
+ * X selector fragment
  *
- * @author Bernard Bou
+ * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
 public class XSelectorFragment extends ExpandableListFragment
 {
 	private static final String TAG = "XSelectorFragment"; //$NON-NLS-1$
 
-	private static final int[] groupTo = { //
-			R.id.xn, //
-	};
-	private static final String[] groupFrom = {"xn",}; //$NON-NLS-1$
+	/**
+	 * The serialization (saved instance state) Bundle key representing the activated item position. Only used on tablets.
+	 */
+	private static final String ACTIVATED_POSITION_NAME = "activated_position"; //$NON-NLS-1$
 
+	/**
+	 * Database column
+	 */
+	private static final String DBCOLUMN = "xb"; //$NON-NLS-1$
+
+	/**
+	 * Source fields for groups
+	 */
+	private static final String[] groupFrom = {DBCOLUMN,}; //$NON-NLS-1$
+
+	/**
+	 * Target resource for groups
+	 */
+	private static final int[] groupTo = {R.id.xn,};
+
+	/**
+	 * Source fields
+	 */
 	private static final int[] childTo = { //
 			R.id.wordid, //
 			R.id.synsetid, //
@@ -65,6 +79,10 @@ public class XSelectorFragment extends ExpandableListFragment
 			R.id.xsources, //
 			R.id.pm, //
 	};
+
+	/**
+	 * Target resource
+	 */
 	private static final String[] childFrom = {Words_XNet_U.WORDID, //
 			Words_XNet_U.SYNSETID, //
 			Words_XNet_U.XID, //
@@ -77,11 +95,6 @@ public class XSelectorFragment extends ExpandableListFragment
 			Words_XNet_U.SOURCES,};
 
 	/**
-	 * The serialization (saved instance state) Bundle key representing the activated item position. Only used on tablets.
-	 */
-	private static final String ACTIVATED_POSITION_NAME = "activated_position"; //$NON-NLS-1$
-
-	/**
 	 * Xn group cursor
 	 */
 	private final MatrixCursor xnCursor;
@@ -90,28 +103,14 @@ public class XSelectorFragment extends ExpandableListFragment
 	 * The current activated item position. Only used on tablets.
 	 */
 	private int activatedPosition = AdapterView.INVALID_POSITION;
-
-	/**
-	 * A callback interface that all activities containing this fragment must implement. This mechanism allows activities to be notified of item selections.
-	 */
-	public interface Listener
-	{
-		/**
-		 * Callback for when an item has been selected.
-		 */
-		void onItemSelected(XPointer pointer);
-	}
-
 	/**
 	 * The fragment's current callback object, which is notified of list item clicks.
 	 */
 	private Listener listener;
-
 	/**
 	 * Search query
 	 */
 	private String queryWord;
-
 	/**
 	 * Search word
 	 */
@@ -123,145 +122,13 @@ public class XSelectorFragment extends ExpandableListFragment
 	@SuppressWarnings("boxing")
 	public XSelectorFragment()
 	{
-		this.xnCursor = new MatrixCursor(new String[]{"_id", "xn", "loader"}); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+		this.xnCursor = new MatrixCursor(new String[]{"_id", DBCOLUMN, "loader"}); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 		this.xnCursor.addRow(new Object[]{0, "wordnet", 1111}); //$NON-NLS-1$
 		this.xnCursor.addRow(new Object[]{1, "verbnet", 2222}); //$NON-NLS-1$
 		this.xnCursor.addRow(new Object[]{2, "propbank", 3333}); //$NON-NLS-1$
 		this.xnCursor.addRow(new Object[]{3, "framenet", 4444}); //$NON-NLS-1$
 	}
 
-	private LoaderCallbacks<Cursor> getWnCallbacks(final long wordid, final int groupPosition)
-	{
-		return new WnLoaderCallbacks(getActivity(), wordid)
-		{
-			@Override
-			public void onLoadFinished(final Loader<Cursor> loader0, final Cursor cursor)
-			{
-				if (cursor != null)
-				{
-					XLoader.dump(cursor);
-
-					// pass on to list adapter
-					((CursorTreeAdapter) getListAdapter()).setChildrenCursor(groupPosition, cursor);
-				}
-				else
-				{
-					Log.i(TAG, "WN none"); //$NON-NLS-1$
-				}
-			}
-
-			@Override
-			public void onLoaderReset(final Loader<Cursor> arg0)
-			{
-				((CursorTreeAdapter) getListAdapter()).setChildrenCursor(groupPosition, null);
-			}
-		};
-	}
-
-	private LoaderCallbacks<Cursor> getVnCallbacks(final long wordid, final int groupPosition)
-	{
-		return new VnLoaderCallbacks(getActivity(), wordid)
-		{
-			@Override
-			public void onLoadFinished(final Loader<Cursor> loader0, final Cursor cursor)
-			{
-				if (cursor != null)
-				{
-					XLoader.dump(cursor);
-
-					// pass on to list adapter
-					((CursorTreeAdapter) getListAdapter()).setChildrenCursor(groupPosition, cursor);
-				}
-				else
-				{
-					Log.i(TAG, "VN none"); //$NON-NLS-1$
-				}
-			}
-
-			@Override
-			public void onLoaderReset(final Loader<Cursor> arg0)
-			{
-				((CursorTreeAdapter) getListAdapter()).setChildrenCursor(groupPosition, null);
-			}
-		};
-	}
-
-	private LoaderCallbacks<Cursor> getPbCallbacks(final long wordid, final int groupPosition)
-	{
-		return new PbLoaderCallbacks(getActivity(), wordid)
-		{
-			@Override
-			public void onLoadFinished(final Loader<Cursor> loader0, final Cursor cursor)
-			{
-				if (cursor != null)
-				{
-					XLoader.dump(cursor);
-
-					// pass on to list adapter
-					((CursorTreeAdapter) getListAdapter()).setChildrenCursor(groupPosition, cursor);
-				}
-				else
-				{
-					Log.i(TAG, "PB none"); //$NON-NLS-1$
-				}
-			}
-
-			@Override
-			public void onLoaderReset(final Loader<Cursor> arg0)
-			{
-				((CursorTreeAdapter) getListAdapter()).setChildrenCursor(groupPosition, null);
-			}
-		};
-	}
-
-	private LoaderCallbacks<Cursor> getFnCallbacks(final long wordid, final int groupPosition)
-	{
-		return new FnLoaderCallbacks(getActivity(), wordid)
-		{
-			public void onLoadFinished(final Loader<Cursor> loader0, final Cursor cursor)
-			{
-				if (cursor != null)
-				{
-					XLoader.dump(cursor);
-
-					// pass on to list adapter
-					((CursorTreeAdapter) getListAdapter()).setChildrenCursor(groupPosition, cursor);
-				}
-				else
-				{
-					Log.i(TAG, "FN none"); //$NON-NLS-1$
-				}
-			}
-
-			public void onLoaderReset(final Loader<Cursor> arg0)
-			{
-				((CursorTreeAdapter) getListAdapter()).setChildrenCursor(groupPosition, null);
-			}
-		};
-	}
-
-	private void expandWordNet()
-	{
-		ExpandableListView listView = getExpandableListView();
-		listView.expandGroup(0);
-	}
-
-	@SuppressWarnings("unused")
-	private void expandAll()
-	{
-		ExpandableListView listView = getExpandableListView();
-		int count = this.xnCursor.getCount();
-		for (int position = 0; position < count; position++)
-		{
-			listView.expandGroup(position);
-		}
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see android.app.Fragment#onCreate(android.os.Bundle)
-	 */
 	@Override
 	public void onCreate(final Bundle savedInstanceState)
 	{
@@ -280,6 +147,11 @@ public class XSelectorFragment extends ExpandableListFragment
 		load();
 	}
 
+	// L I F E   C Y C L E
+
+	/**
+	 * Load data
+	 */
 	private void load()
 	{
 		// load the contents
@@ -325,10 +197,15 @@ public class XSelectorFragment extends ExpandableListFragment
 		});
 	}
 
+	/**
+	 * Load data
+	 *
+	 * @param wordid word id
+	 */
 	private void load(final long wordid)
 	{
 		// adapter
-		ExpandableListAdapter adapter = new SimpleCursorTreeAdapter(getActivity(), this.xnCursor, R.layout.item_group_xselector, groupFrom, groupTo, R.layout.item_xselector, childFrom, childTo)
+		final ExpandableListAdapter adapter = new SimpleCursorTreeAdapter(getActivity(), this.xnCursor, R.layout.item_group_xselector, groupFrom, groupTo, R.layout.item_xselector, childFrom, childTo)
 		{
 			@Override
 			protected void setViewImage(ImageView v, String value)
@@ -387,7 +264,7 @@ public class XSelectorFragment extends ExpandableListFragment
 
 				// given the group, we return a cursor for all the children within that group
 				int groupPos = groupCursor.getPosition();
-				String groupName = groupCursor.getString(groupCursor.getColumnIndex("xn")); //$NON-NLS-1$
+				String groupName = groupCursor.getString(groupCursor.getColumnIndex(DBCOLUMN)); //$NON-NLS-1$
 				int loaderid = groupCursor.getInt(groupCursor.getColumnIndex("loader")); //$NON-NLS-1$
 				Log.d(TAG, "group " + groupPos + ' ' + groupName + " loader=" + loaderid); //$NON-NLS-1$ //$NON-NLS-2$
 
@@ -433,13 +310,53 @@ public class XSelectorFragment extends ExpandableListFragment
 		expandWordNet();
 	}
 
+	@TargetApi(Build.VERSION_CODES.LOLLIPOP)
+	@Override
+	public void onAttach(final Context context)
+	{
+		super.onAttach(context);
+		onAttachToContext(context);
+	}
+
+	// A T T A C H / D E T A C H
+
+	@SuppressWarnings("deprecation")
+	@Override
+	public void onAttach(final Activity activity)
+	{
+		super.onAttach(activity);
+		if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M)
+		{
+			onAttachToContext(activity);
+		}
+	}
+
+	/**
+	 * What to do on attach factored out
+	 *
+	 * @param context context
+	 */
+	private void onAttachToContext(final Context context)
+	{
+		// activities containing this fragment must implement its listener
+		if (!(context instanceof Listener))
+		{
+			throw new IllegalStateException("Activity must implement fragment's listener."); //$NON-NLS-1$
+		}
+		this.listener = (Listener) context;
+	}
+
+	@Override
+	public void onDetach()
+	{
+		super.onDetach();
+
+		// reset the active listener interface to the dummy implementation.
+		this.listener = null;
+	}
+
 	// L A Y O U T
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see android.app.ListFragment#onCreateView(android.view.LayoutInflater, android.view.ViewGroup, android.os.Bundle)
-	 */
 	@Override
 	public View onCreateView(final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState)
 	{
@@ -447,13 +364,148 @@ public class XSelectorFragment extends ExpandableListFragment
 		return inflater.inflate(R.layout.fragment_xselector, container);
 	}
 
-	// R E S T O R E / S A V E A C T I V A T E D S T A T E
+	// C A L L B A C K S
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see android.app.ListFragment#onViewCreated(android.view.View, android.os.Bundle)
+	/**
+	 * Get WordNet callbacks
+	 *
+	 * @param wordid        word id
+	 * @param groupPosition position in group
+	 * @return WordNet callbacks
 	 */
+	private LoaderCallbacks<Cursor> getWnCallbacks(final long wordid, final int groupPosition)
+	{
+		return new WnLoaderCallbacks(getActivity(), wordid)
+		{
+			@Override
+			public void onLoadFinished(final Loader<Cursor> loader0, final Cursor cursor)
+			{
+				if (cursor != null)
+				{
+					XLoader.dump(cursor);
+
+					// pass on to list adapter
+					((CursorTreeAdapter) getListAdapter()).setChildrenCursor(groupPosition, cursor);
+				}
+				else
+				{
+					Log.i(TAG, "WN none"); //$NON-NLS-1$
+				}
+			}
+
+			@Override
+			public void onLoaderReset(final Loader<Cursor> arg0)
+			{
+				((CursorTreeAdapter) getListAdapter()).setChildrenCursor(groupPosition, null);
+			}
+		};
+	}
+
+	/**
+	 * Get VerbNet callbacks
+	 *
+	 * @param wordid        word id
+	 * @param groupPosition position in group
+	 * @return VerbNet callbacks
+	 */
+	private LoaderCallbacks<Cursor> getVnCallbacks(final long wordid, final int groupPosition)
+	{
+		return new VnLoaderCallbacks(getActivity(), wordid)
+		{
+			@Override
+			public void onLoadFinished(final Loader<Cursor> loader0, final Cursor cursor)
+			{
+				if (cursor != null)
+				{
+					XLoader.dump(cursor);
+
+					// pass on to list adapter
+					((CursorTreeAdapter) getListAdapter()).setChildrenCursor(groupPosition, cursor);
+				}
+				else
+				{
+					Log.i(TAG, "VN none"); //$NON-NLS-1$
+				}
+			}
+
+			@Override
+			public void onLoaderReset(final Loader<Cursor> arg0)
+			{
+				((CursorTreeAdapter) getListAdapter()).setChildrenCursor(groupPosition, null);
+			}
+		};
+	}
+
+	/**
+	 * Get PropBank callbacks
+	 *
+	 * @param wordid        word id
+	 * @param groupPosition position in group
+	 * @return PropBank callbacks
+	 */
+	private LoaderCallbacks<Cursor> getPbCallbacks(final long wordid, final int groupPosition)
+	{
+		return new PbLoaderCallbacks(getActivity(), wordid)
+		{
+			@Override
+			public void onLoadFinished(final Loader<Cursor> loader0, final Cursor cursor)
+			{
+				if (cursor != null)
+				{
+					XLoader.dump(cursor);
+
+					// pass on to list adapter
+					((CursorTreeAdapter) getListAdapter()).setChildrenCursor(groupPosition, cursor);
+				}
+				else
+				{
+					Log.i(TAG, "PB none"); //$NON-NLS-1$
+				}
+			}
+
+			@Override
+			public void onLoaderReset(final Loader<Cursor> arg0)
+			{
+				((CursorTreeAdapter) getListAdapter()).setChildrenCursor(groupPosition, null);
+			}
+		};
+	}
+
+	/**
+	 * Get FrameNet callbacks
+	 *
+	 * @param wordid        word id
+	 * @param groupPosition position in group
+	 * @return FrameNet callbacks
+	 */
+	private LoaderCallbacks<Cursor> getFnCallbacks(final long wordid, final int groupPosition)
+	{
+		return new FnLoaderCallbacks(getActivity(), wordid)
+		{
+			@Override
+			public void onLoadFinished(final Loader<Cursor> loader0, final Cursor cursor)
+			{
+				if (cursor != null)
+				{
+					XLoader.dump(cursor);
+
+					// pass on to list adapter
+					((CursorTreeAdapter) getListAdapter()).setChildrenCursor(groupPosition, cursor);
+				}
+				else
+				{
+					Log.i(TAG, "FN none"); //$NON-NLS-1$
+				}
+			}
+
+			@Override
+			public void onLoaderReset(final Loader<Cursor> arg0)
+			{
+				((CursorTreeAdapter) getListAdapter()).setChildrenCursor(groupPosition, null);
+			}
+		};
+	}
+
 	@Override
 	public void onViewCreated(final View view, final Bundle savedInstanceState)
 	{
@@ -475,11 +527,8 @@ public class XSelectorFragment extends ExpandableListFragment
 		}
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see android.app.Fragment#onSaveInstanceState(android.os.Bundle)
-	 */
+	// R E S T O R E / S A V E A C T I V A T E D S T A T E
+
 	@Override
 	public void onSaveInstanceState(final Bundle outState)
 	{
@@ -492,66 +541,18 @@ public class XSelectorFragment extends ExpandableListFragment
 		}
 	}
 
-	// A T T A C H / D E T A C H
-
-	@TargetApi(23)
-	@Override
-	public void onAttach(final Context context)
-	{
-		super.onAttach(context);
-		onAttachToContext(context);
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see android.app.Fragment#onAttach(android.app.Activity)
-	 */
-	@SuppressWarnings("deprecation")
-	@Override
-	public void onAttach(final Activity activity)
-	{
-		super.onAttach(activity);
-		if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M)
-		{
-			onAttachToContext(activity);
-		}
-	}
-
-	private void onAttachToContext(final Context context)
-	{
-		// activities containing this fragment must implement its listener
-		if (!(context instanceof Listener))
-		{
-			throw new IllegalStateException("Activity must implement fragment's listener."); //$NON-NLS-1$
-		}
-		this.listener = (Listener) context;
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see android.app.Fragment#onDetach()
-	 */
-	@Override
-	public void onDetach()
-	{
-		super.onDetach();
-
-		// reset the active listener interface to the dummy implementation.
-		this.listener = null;
-	}
-
-	// C L I C K E V E N T L I S T E N
-
 	/**
 	 * Turns on activate-on-click mode. When this mode is on, list items will be given the 'activated' state when touched.
+	 *
+	 * @param activateOnItemClick true if activate
 	 */
 	public void setActivateOnItemClick(@SuppressWarnings("SameParameterValue") final boolean activateOnItemClick)
 	{
 		// when setting CHOICE_MODE_SINGLE, ListView will automatically give items the 'activated' state when touched.
 		getListView().setChoiceMode(activateOnItemClick ? AbsListView.CHOICE_MODE_SINGLE : AbsListView.CHOICE_MODE_NONE);
 	}
+
+	// C L I C K
 
 	@SuppressWarnings("boxing")
 	@Override
@@ -606,6 +607,37 @@ public class XSelectorFragment extends ExpandableListFragment
 		return true;
 	}
 
+	/**
+	 * Expand WordNet section
+	 */
+	private void expandWordNet()
+	{
+		ExpandableListView listView = getExpandableListView();
+		listView.expandGroup(0);
+	}
+
+	// E X P A N D
+
+	/**
+	 * Expand all
+	 */
+	@SuppressWarnings("unused")
+	private void expandAll()
+	{
+		ExpandableListView listView = getExpandableListView();
+		int count = this.xnCursor.getCount();
+		for (int position = 0; position < count; position++)
+		{
+			listView.expandGroup(position);
+		}
+	}
+
+	/**
+	 * Extract pos from synset id number
+	 *
+	 * @param synsetid synset id
+	 * @return pos
+	 */
 	private String synsetidToPos(final Long synsetid)
 	{
 		if (synsetid == null)
@@ -626,5 +658,18 @@ public class XSelectorFragment extends ExpandableListFragment
 			default:
 				return null;
 		}
+	}
+
+	// H E L P E R
+
+	/**
+	 * A callback interface that all activities containing this fragment must implement. This mechanism allows activities to be notified of item selections.
+	 */
+	public interface Listener
+	{
+		/**
+		 * Callback for when an item has been selected.
+		 */
+		void onItemSelected(XPointer pointer);
 	}
 }

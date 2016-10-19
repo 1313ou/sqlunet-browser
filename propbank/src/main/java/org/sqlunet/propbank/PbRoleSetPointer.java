@@ -6,7 +6,7 @@ import android.os.Parcelable;
 /**
  * Parcelable roleset
  *
- * @author Bernard Bou
+ * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
 public class PbRoleSetPointer implements Parcelable
 {
@@ -64,22 +64,12 @@ public class PbRoleSetPointer implements Parcelable
 		}
 	};
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see android.os.Parcelable#writeToParcel(android.os.Parcel, int)
-	 */
 	@Override
 	public void writeToParcel(final Parcel pc, final int flags)
 	{
 		pc.writeLong(this.rolesetid == null ? -1 : this.rolesetid);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see android.os.Parcelable#describeContents()
-	 */
 	@Override
 	public int describeContents()
 	{

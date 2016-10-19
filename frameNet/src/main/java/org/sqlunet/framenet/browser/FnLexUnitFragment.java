@@ -19,7 +19,7 @@ import org.sqlunet.view.TreeFactory;
 /**
  * A fragment representing a lexunit
  *
- * @author Bernard Bou
+ * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
 public class FnLexUnitFragment extends Fragment
 {

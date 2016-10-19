@@ -21,7 +21,7 @@ import javax.xml.transform.stream.StreamSource;
 /**
  * XSL Transformer
  *
- * @author Bernard Bou
+ * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
 class XSLTransformer
 {

@@ -131,10 +131,6 @@ public class RegExprSpanner extends Spanner
 			}
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * @see java.lang.Object#toString()
-		 */
 		@Override
 		public String toString()
 		{

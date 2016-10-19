@@ -10,7 +10,7 @@ import org.sqlunet.treeview.model.TreeNode;
 /**
  * A fragment representing a lexunit.
  *
- * @author Bernard Bou
+ * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
 public class LexUnitFromWordModule extends LexUnitModule
 {
@@ -29,11 +29,7 @@ public class LexUnitFromWordModule extends LexUnitModule
 		super(fragment0);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see org.sqlunet.framenet.browser.LexUnitModule#init(android.os.Parcelable)
-	 */
+
 	@Override
 	public void init(final Parcelable query0)
 	{
@@ -54,11 +50,7 @@ public class LexUnitFromWordModule extends LexUnitModule
 		}
 	}
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see org.sqlunet.framenet.browser.LexUnitModule#process()
-	 */
+
 	@Override
 	public void process(final TreeNode node)
 	{

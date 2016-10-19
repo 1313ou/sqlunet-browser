@@ -19,7 +19,7 @@ import org.sqlunet.view.TreeFactory;
 /**
  * A fragment representing a frame
  *
- * @author Bernard Bou
+ * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
 public class FnFrameFragment extends Fragment
 {
@@ -36,11 +36,6 @@ public class FnFrameFragment extends Fragment
 		//
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see android.app.Fragment#onCreateView(android.view.LayoutInflater, android.view.ViewGroup, android.os.Bundle)
-	 */
 	@Override
 	public View onCreateView(final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState)
 	{

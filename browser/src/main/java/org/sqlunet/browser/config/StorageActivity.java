@@ -8,8 +8,14 @@ import org.sqlunet.browser.R;
 import org.sqlunet.settings.Storage;
 import org.sqlunet.settings.StorageStyle;
 
+/**
+ * Storage activity
+ *
+ * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
+ */
 public class StorageActivity extends Activity
 {
+	@Override
 	protected void onCreate(final Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
@@ -18,6 +24,7 @@ public class StorageActivity extends Activity
 		setContentView(R.layout.activity_storage);
 	}
 
+	@Override
 	protected void onResume()
 	{
 		super.onResume();

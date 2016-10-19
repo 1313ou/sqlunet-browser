@@ -31,7 +31,7 @@ import java.util.Arrays;
 /**
  * Module for rolesets
  *
- * @author Bernard Bou
+ * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
 abstract class BasicModule extends Module
 {
@@ -94,10 +94,6 @@ abstract class BasicModule extends Module
 	 */
 	abstract void unmarshall(final Parcelable query);
 
-	/*
-	 * (non-Javadoc)
-	 * @see org.sqlunet.Module#init(android.widget.TextView, android.widget.TextView, android.os.Parcelable)
-	 */
 	@Override
 	public void init(final Parcelable query)
 	{

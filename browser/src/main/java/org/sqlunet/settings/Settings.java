@@ -9,19 +9,24 @@ import android.net.Uri;
 import android.os.Build;
 import android.preference.PreferenceManager;
 
+/**
+ * Settings
+ */
 public class Settings
 {
+	// preferences
+
 	static public final String PREF_SELECTOR_MODE = "pref_viewweb_mode"; //$NON-NLS-1$
-	private static final String PREF_SELECTOR = "pref_selector_mode"; //$NON-NLS-1$
+	static private final String PREF_SELECTOR = "pref_selector_mode"; //$NON-NLS-1$
 	static public final String PREF_DETAIL_MODE = "pref_detail_mode"; //$NON-NLS-1$
-	private static final String PREF_XML = "pref_xml"; //$NON-NLS-1$
-	private static final String PREF_ENABLE_LINKS = "pref_enable_links"; //$NON-NLS-1$
-	private static final String PREF_ENABLE_WORDNET = "pref_enable_wordnet"; //$NON-NLS-1$
-	private static final String PREF_ENABLE_VERBNET = "pref_enable_verbnet"; //$NON-NLS-1$
-	private static final String PREF_ENABLE_PROPBANK = "pref_enable_propbank"; //$NON-NLS-1$
-	private static final String PREF_ENABLE_FRAMENET = "pref_enable_framenet"; //$NON-NLS-1$
-	private static final String PREF_ENABLE_BNC = "pref_enable_bnc"; //$NON-NLS-1$
-	private static final String PREF_SEARCH_MODE = "pref_search_mode"; //$NON-NLS-1$
+	static private final String PREF_XML = "pref_xml"; //$NON-NLS-1$
+	static private final String PREF_ENABLE_LINKS = "pref_enable_links"; //$NON-NLS-1$
+	static private final String PREF_ENABLE_WORDNET = "pref_enable_wordnet"; //$NON-NLS-1$
+	static private final String PREF_ENABLE_VERBNET = "pref_enable_verbnet"; //$NON-NLS-1$
+	static private final String PREF_ENABLE_PROPBANK = "pref_enable_propbank"; //$NON-NLS-1$
+	static private final String PREF_ENABLE_FRAMENET = "pref_enable_framenet"; //$NON-NLS-1$
+	static private final String PREF_ENABLE_BNC = "pref_enable_bnc"; //$NON-NLS-1$
+	static private final String PREF_SEARCH_MODE = "pref_search_mode"; //$NON-NLS-1$
 	static public final String PREF_STORAGE = StorageSettings.PREF_STORAGE;
 	static public final String PREF_DOWNLOAD_SITE = StorageSettings.PREF_DOWNLOAD_SITE;
 	static public final String PREF_DOWNLOAD_DBFILE = StorageSettings.PREF_DOWNLOAD_DBFILE;
@@ -39,18 +44,38 @@ public class Settings
 	{
 		WORDNET(0x1), BNC(0x2), VERBNET(0x10), PROPBANK(0x20), FRAMENET(0x40);
 
+		/**
+		 * Source mask
+		 */
 		final private int mask;
 
+		/**
+		 * Constructor
+		 *
+		 * @param mask mask
+		 */
 		Source(final int mask)
 		{
 			this.mask = mask;
 		}
 
+		/**
+		 * Set this source in sources
+		 *
+		 * @param sources sources to set
+		 * @return result
+		 */
 		public int set(final int sources)
 		{
 			return sources | this.mask;
 		}
 
+		/**
+		 * Test
+		 *
+		 * @param sources sources to test
+		 * @return true if this source is set
+		 */
 		public boolean test(final int sources)
 		{
 			return (sources & this.mask) != 0;

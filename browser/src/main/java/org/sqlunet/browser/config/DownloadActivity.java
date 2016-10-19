@@ -26,7 +26,7 @@ import java.io.File;
 /**
  * Download activity
  *
- * @author Bernard Bou
+ * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
 public class DownloadActivity extends Activity implements View.OnClickListener
 {
@@ -66,7 +66,7 @@ public class DownloadActivity extends Activity implements View.OnClickListener
 	private BroadcastReceiver receiver;
 
 	/**
-	 * Downloads
+	 * Download button
 	 */
 	private ImageButton downloadButton;
 
@@ -90,20 +90,15 @@ public class DownloadActivity extends Activity implements View.OnClickListener
 	 */
 	private TextView target;
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see android.app.Activity#onCreate(android.os.Bundle)
-	 */
 	@Override
 	protected void onCreate(final Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
 
-		this.downloadManager = (DownloadManager) getSystemService(Context.DOWNLOAD_SERVICE);
-
 		setContentView(R.layout.activity_download);
 
+		// download data
+		this.downloadManager = (DownloadManager) getSystemService(Context.DOWNLOAD_SERVICE);
 		this.destDir = new File(StorageSettings.getDataDir(this));
 		this.downloadUrl = StorageSettings.getDbDownloadSource(this);
 		if (this.downloadUrl == null || this.downloadUrl.isEmpty())
@@ -123,11 +118,6 @@ public class DownloadActivity extends Activity implements View.OnClickListener
 		// receiver
 		this.receiver = new BroadcastReceiver()
 		{
-			/*
-			 * (non-Javadoc)
-			 * 
-			 * @see android.content.BroadcastReceiver#onReceive(android.content.Context, android.content.Intent)
-			 */
 			@Override
 			public void onReceive(final Context context, final Intent intent)
 			{
@@ -158,11 +148,6 @@ public class DownloadActivity extends Activity implements View.OnClickListener
 		};
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see android.app.Activity#onPostCreate(android.os.Bundle)
-	 */
 	@Override
 	protected void onPostCreate(final Bundle savedInstanceState)
 	{
@@ -178,11 +163,6 @@ public class DownloadActivity extends Activity implements View.OnClickListener
 		// this.target.setEllipsize(TextUtils.TruncateAt.MARQUEE);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see android.app.Activity#onStart()
-	 */
 	@Override
 	protected void onStart()
 	{
@@ -194,6 +174,7 @@ public class DownloadActivity extends Activity implements View.OnClickListener
 		// finish
 		if (finished())
 		{
+			// toast
 			Toast.makeText(DownloadActivity.this, R.string.status_data_ok, Toast.LENGTH_SHORT).show();
 
 			// return result
@@ -205,11 +186,6 @@ public class DownloadActivity extends Activity implements View.OnClickListener
 		}
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see android.app.Activity#onStop()
-	 */
 	@Override
 	protected void onStop()
 	{
@@ -218,11 +194,6 @@ public class DownloadActivity extends Activity implements View.OnClickListener
 		super.onStop();
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see android.view.View.OnClickListener#onClick(android.view.View)
-	 */
 	@Override
 	public void onClick(final View view)
 	{
@@ -251,7 +222,7 @@ public class DownloadActivity extends Activity implements View.OnClickListener
 	 */
 	private void start(@SuppressWarnings("SameParameterValue") final int titleRes)
 	{
-		Uri downloadUri = Uri.parse(this.downloadUrl);
+		final Uri downloadUri = Uri.parse(this.downloadUrl);
 		try
 		{
 			final Request request = new Request(downloadUri);
@@ -267,11 +238,11 @@ public class DownloadActivity extends Activity implements View.OnClickListener
 			// @formatter: off
 			// if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN)
 			// {
-			// request.setAllowedOverMetered(false);
+			//      request.setAllowedOverMetered(false);
 			// }
 			// else
 			// {
-			// request.setAllowedNetworkTypes(Request.NETWORK_WIFI);
+			//      request.setAllowedNetworkTypes(Request.NETWORK_WIFI);
 			// }
 			// request.setAllowedOverRoaming(false);
 			// @formatter: on

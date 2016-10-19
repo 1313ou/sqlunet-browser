@@ -8,7 +8,7 @@ import java.util.List;
 /**
  * Layer
  *
- * @author Bernard Bou
+ * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
 class FnLayer
 {

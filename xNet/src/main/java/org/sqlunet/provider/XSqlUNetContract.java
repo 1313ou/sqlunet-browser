@@ -2,9 +2,11 @@ package org.sqlunet.provider;
 
 public final class XSqlUNetContract
 {
-	// cross provider
+	// Contract for SqlUNet cross provider
 
 	static public final String AUTHORITY = "org.sqlunet.cross.provider"; //$NON-NLS-1$
+
+	// Word cross reference
 
 	@SuppressWarnings("unused")
 	static public final class Words_FnWords_PbWords_VnWords
@@ -30,7 +32,7 @@ public final class XSqlUNetContract
 		static public final String SOURCES = "sources"; //$NON-NLS-1$
 	}
 
-	// predicate matrix
+	// PredicateMatrix
 
 	@SuppressWarnings("unused")
 	static public final class PredicateMatrix
@@ -82,7 +84,7 @@ public final class XSqlUNetContract
 		public static final String FRAMEID = "fnframeid"; //$NON-NLS-1$
 	}
 
-	// SqlUNet - predicateMatrix unions
+	// PredicateMatrix unions
 
 	@SuppressWarnings("unused")
 	static public final class Words_XNet_U

@@ -11,7 +11,7 @@ import java.util.List;
 /**
  * Encapsulates WordNet query implementation
  *
- * @author <a href="mailto:bbou@ac-toulouse.fr">Bernard Bou</a>
+ * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
 public class WordNetImplementation implements WordNetInterface
 {

@@ -24,6 +24,11 @@ import org.sqlunet.settings.StorageUtils;
 
 import java.io.File;
 
+/**
+ * Set up activity
+ *
+ * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
+ */
 @SuppressLint("Registered")
 public class SetupBaseActivity extends Activity implements Downloader.Listener, ExecuteManager.Listener
 {
@@ -69,11 +74,6 @@ public class SetupBaseActivity extends Activity implements Downloader.Listener, 
 
 	// M E N U
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see android.app.Activity#onCreateOptionsMenu(android.view.Menu)
-	 */
 	@Override
 	public boolean onCreateOptionsMenu(final Menu menu)
 	{
@@ -82,11 +82,6 @@ public class SetupBaseActivity extends Activity implements Downloader.Listener, 
 		return true;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see android.app.Activity#onOptionsItemSelected(android.view.MenuItem)
-	 */
 	@Override
 	public boolean onOptionsItemSelected(final MenuItem item)
 	{
@@ -120,6 +115,13 @@ public class SetupBaseActivity extends Activity implements Downloader.Listener, 
 
 	// D I A L O G
 
+	/**
+	 * Make dialog
+	 *
+	 * @param messageId message resource
+	 * @param style     style
+	 * @return dialog
+	 */
 	private ProgressDialog makeDialog(final int messageId, final int style)
 	{
 		final ProgressDialog progressDialog = new ProgressDialog(this);
@@ -158,11 +160,6 @@ public class SetupBaseActivity extends Activity implements Downloader.Listener, 
 
 	// D O W N L O A D L I S T E N E R
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.sqlunet.download.Downloader.Listener#downloadStart(int)
-	 */
 	@Override
 	public void downloadStart()
 	{
@@ -170,11 +167,6 @@ public class SetupBaseActivity extends Activity implements Downloader.Listener, 
 		this.progressDialog.show();
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.sqlunet.download.Downloader.Listener#downloadFinish(int, boolean)
-	 */
 	@Override
 	public void downloadFinish(final int code, final boolean result)
 	{

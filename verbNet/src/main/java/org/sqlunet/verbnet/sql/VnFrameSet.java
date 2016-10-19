@@ -12,7 +12,7 @@ import java.util.List;
 /**
  * Frames attached to a VerbNet class
  *
- * @author Bernard Bou
+ * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
 public class VnFrameSet
 {

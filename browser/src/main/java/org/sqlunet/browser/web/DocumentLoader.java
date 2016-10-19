@@ -1,21 +1,42 @@
 package org.sqlunet.browser.web;
 
-import android.annotation.SuppressLint;
+import android.annotation.TargetApi;
 import android.content.AsyncTaskLoader;
 import android.content.Context;
+import android.os.Build;
 import android.os.CancellationSignal;
 
 import org.w3c.dom.Document;
 
-//TODO
+/**
+ * Abstract document loader
+ */
 abstract public class DocumentLoader extends AsyncTaskLoader<Document>
 {
-	private CancellationSignal cancellationSignal;
-
+	/**
+	 * Document
+	 */
 	private Document document;
 
+	/**
+	 * Cancellation signal
+	 */
+	@SuppressWarnings("WeakerAccess")
+	protected CancellationSignal cancellationSignal;
+
+	/**
+	 * Constructor
+	 *
+	 * @param context context
+	 */
+	@SuppressWarnings("unused")
+	public DocumentLoader(final Context context)
+	{
+		super(context);
+	}
+
 	/* Runs on a worker thread */
-	@SuppressLint("NewApi")
+	@TargetApi(Build.VERSION_CODES.JELLY_BEAN)
 	@Override
 	public Document loadInBackground()
 	{
@@ -30,7 +51,7 @@ abstract public class DocumentLoader extends AsyncTaskLoader<Document>
 		}
 		try
 		{
-			return getDoc(this.cancellationSignal);
+			return getDoc();
 		}
 		finally
 		{
@@ -41,9 +62,14 @@ abstract public class DocumentLoader extends AsyncTaskLoader<Document>
 		}
 	}
 
-	abstract protected Document getDoc(CancellationSignal mCancellationSignal2);
+	/**
+	 * Get document
+	 *
+	 * @return document
+	 */
+	abstract protected Document getDoc();
 
-	@SuppressLint("NewApi")
+	@TargetApi(Build.VERSION_CODES.JELLY_BEAN)
 	@Override
 	public boolean cancelLoad()
 	{
@@ -57,32 +83,23 @@ abstract public class DocumentLoader extends AsyncTaskLoader<Document>
 		}
 	}
 
-	/* Runs on the UI thread */
 	@Override
-	public void deliverResult(final Document document0)
+	public void deliverResult(final Document document)
 	{
+		// runs on the UI thread
+
 		if (isReset())
-		// An async query came in while the loader is stopped
 		{
+			// an async query came in while the loader is stopped
 			return;
 		}
 
-		this.document = document0;
+		this.document = document;
 
 		if (isStarted())
 		{
-			super.deliverResult(document0);
+			super.deliverResult(document);
 		}
-	}
-
-	/**
-	 * Creates an empty unspecified CursorLoader. You must follow this with calls to setUri(Uri), setSelection(String), etc to specify the
-	 * query to perform.
-	 */
-	@SuppressWarnings("unused")
-	public DocumentLoader(final Context context)
-	{
-		super(context);
 	}
 
 	/**
@@ -108,14 +125,14 @@ abstract public class DocumentLoader extends AsyncTaskLoader<Document>
 	@Override
 	protected void onStopLoading()
 	{
-		// Attempt to cancel the current load task if possible.
+		// attempt to cancel the current load task if possible.
 		cancelLoad();
 	}
 
 	@Override
 	public void onCanceled(final Document document0)
 	{
-		// Do nothing
+		// do nothing
 	}
 
 	@Override
@@ -123,7 +140,7 @@ abstract public class DocumentLoader extends AsyncTaskLoader<Document>
 	{
 		super.onReset();
 
-		// Ensure the loader is stopped
+		// ensure the loader is stopped
 		onStopLoading();
 
 		this.document = null;

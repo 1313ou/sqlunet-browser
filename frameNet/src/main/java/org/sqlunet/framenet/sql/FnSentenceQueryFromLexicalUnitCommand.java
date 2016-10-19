@@ -7,7 +7,7 @@ import org.sqlunet.sql.DBQueryCommand;
 /**
  * FrameNet sentence query command from lex unit
  *
- * @author Bernard Bou
+ * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
 class FnSentenceQueryFromLexicalUnitCommand extends DBQueryCommand
 {

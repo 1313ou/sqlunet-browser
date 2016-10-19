@@ -10,7 +10,7 @@ import org.sqlunet.treeview.model.TreeNode;
 /**
  * Module for predicate roles obtained from id
  *
- * @author Bernard Bou
+ * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
 public class PredicateRoleModule extends BasicModule
 {
@@ -33,10 +33,6 @@ public class PredicateRoleModule extends BasicModule
 		this.mode = mode;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * @see org.sqlunet.propbank.browser.BasicModule#unmarshall(android.os.Parcelable)
-	 */
 	@Override
 	void unmarshall(final Parcelable query)
 	{
@@ -48,10 +44,6 @@ public class PredicateRoleModule extends BasicModule
 		}
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * @see org.sqlunet.Module#process()
-	 */
 	@Override
 	public void process(final TreeNode node)
 	{

@@ -8,14 +8,11 @@ import org.sqlunet.browser.R;
 
 /**
  * An activity representing a web view.
+ *
+ * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
 public class WebActivity extends Activity
 {
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see android.app.Activity#onCreate(android.os.Bundle)
-	 */
 	@Override
 	public void onCreate(final Bundle savedInstanceState)
 	{

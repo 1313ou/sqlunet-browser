@@ -62,11 +62,6 @@ public class ExecuteManager
 	{
 		final AsyncTask<String, Integer, Boolean> task = new AsyncTask<String, Integer, Boolean>()
 		{
-			/*
-			 * (non-Javadoc)
-			 * 
-			 * @see android.os.AsyncTask#doInBackground(Params[])
-			 */
 			@SuppressWarnings("boxing")
 			@Override
 			protected Boolean doInBackground(final String... sqls0)
@@ -111,11 +106,6 @@ public class ExecuteManager
 				return false;
 			}
 
-			/*
-			 * (non-Javadoc)
-			 * 
-			 * @see android.os.AsyncTask#onPreExecute()
-			 */
 			@Override
 			protected void onPreExecute()
 			{
@@ -123,11 +113,6 @@ public class ExecuteManager
 				ExecuteManager.this.listener.managerStart();
 			}
 
-			/*
-			 * (non-Javadoc)
-			 * 
-			 * @see android.os.AsyncTask#onProgressUpdate(Progress[])
-			 */
 			@Override
 			protected void onProgressUpdate(final Integer... progress)
 			{
@@ -135,11 +120,6 @@ public class ExecuteManager
 				ExecuteManager.this.listener.managerUpdate(progress[0]);
 			}
 
-			/*
-			 * (non-Javadoc)
-			 * 
-			 * @see android.os.AsyncTask#onPostExecute(java.lang.Object)
-			 */
 			@Override
 			protected void onPostExecute(final Boolean result)
 			{
@@ -161,11 +141,6 @@ public class ExecuteManager
 	{
 		final AsyncTask<String, Integer, Boolean> task = new AsyncTask<String, Integer, Boolean>()
 		{
-			/*
-			 * (non-Javadoc)
-			 * 
-			 * @see android.os.AsyncTask#doInBackground(Params[])
-			 */
 			@Override
 			@SuppressWarnings("boxing")
 			protected Boolean doInBackground(final String... params)
@@ -292,33 +267,18 @@ public class ExecuteManager
 				return false;
 			}
 
-			/*
-			 * (non-Javadoc)
-			 * 
-			 * @see android.os.AsyncTask#onPreExecute()
-			 */
 			@Override
 			protected void onPreExecute()
 			{
 				ExecuteManager.this.listener.managerStart();
 			}
 
-			/*
-			 * (non-Javadoc)
-			 * 
-			 * @see android.os.AsyncTask#onProgressUpdate(Progress[])
-			 */
 			@Override
 			protected void onProgressUpdate(final Integer... progress)
 			{
 				ExecuteManager.this.listener.managerUpdate(progress[0]);
 			}
 
-			/*
-			 * (non-Javadoc)
-			 * 
-			 * @see android.os.AsyncTask#onPostExecute(java.lang.Object)
-			 */
 			@Override
 			protected void onPostExecute(final Boolean result)
 			{

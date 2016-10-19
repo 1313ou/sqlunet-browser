@@ -9,7 +9,7 @@ import java.util.List;
 /**
  * Role set
  *
- * @author Bernard Bou
+ * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
 class PbRoleSet
 {

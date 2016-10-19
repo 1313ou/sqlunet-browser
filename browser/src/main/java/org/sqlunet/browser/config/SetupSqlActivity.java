@@ -14,6 +14,11 @@ import org.sqlunet.settings.StorageUtils;
 
 import java.io.File;
 
+/**
+ * Set up with SQL activity
+ *
+ * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
+ */
 public class SetupSqlActivity extends SetupBaseActivity
 {
 	private static final String TAG = "SetupSqlActivity"; //$NON-NLS-1$
@@ -166,11 +171,6 @@ public class SetupSqlActivity extends SetupBaseActivity
 
 	// D O W N L O A D L I S T E N E R
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.sqlunet.download.Downloader.Listener#downloadFinish(int, boolean)
-	 */
 	@Override
 	public void downloadFinish(final int code, final boolean result)
 	{

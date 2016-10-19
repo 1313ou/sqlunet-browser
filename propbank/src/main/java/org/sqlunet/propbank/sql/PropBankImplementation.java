@@ -13,7 +13,7 @@ import java.util.List;
 /**
  * Encapsulates PropBank query implementation
  *
- * @author Bernard Bou
+ * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
 public class PropBankImplementation implements PropBankInterface
 {

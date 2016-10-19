@@ -1,6 +1,6 @@
 /**
  * Ajax
- * @author Bernard Bou <bbou@ac-toulouse.fr>
+ * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  * @requires Sarissa
  */
 

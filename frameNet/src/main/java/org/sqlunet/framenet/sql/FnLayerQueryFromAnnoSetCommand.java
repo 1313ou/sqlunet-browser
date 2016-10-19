@@ -5,7 +5,7 @@ import android.database.sqlite.SQLiteDatabase;
 /**
  * FrameNet layer command from annoset
  *
- * @author Bernard Bou
+ * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
 class FnLayerQueryFromAnnoSetCommand extends FnLayerQueryCommand
 {

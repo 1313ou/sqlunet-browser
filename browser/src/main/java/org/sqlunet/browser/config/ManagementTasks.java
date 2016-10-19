@@ -10,10 +10,21 @@ import org.sqlunet.browser.R;
 
 import java.util.Collection;
 
+/**
+ * Management tasks
+ *
+ * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
+ */
 class ManagementTasks
 {
 	private static final String TAG = "Management Tasks"; //$NON-NLS-1$
 
+	/**
+	 * Create database
+	 *
+	 * @param context      context
+	 * @param databasePath path
+	 */
 	static public void createDatabase(final Context context, final String databasePath)
 	{
 		try
@@ -27,6 +38,12 @@ class ManagementTasks
 		}
 	}
 
+	/**
+	 * Delete database
+	 *
+	 * @param context      context
+	 * @param databasePath path
+	 */
 	static public void deleteDatabase(final Context context, final String databasePath)
 	{
 		// make sure you close all database connections before deleting
@@ -34,6 +51,13 @@ class ManagementTasks
 		Log.d(TAG, "While dropping database: " + result); //$NON-NLS-1$	
 	}
 
+	/**
+	 * Vacuum database
+	 *
+	 * @param context      context
+	 * @param databasePath path
+	 * @param tempDir      temp directory
+	 */
 	static public void vacuum(final Context context, final String databasePath, final String tempDir)
 	{
 		new AsyncTask<Void, Void, Void>()
@@ -72,6 +96,13 @@ class ManagementTasks
 		}.execute();
 	}
 
+	/**
+	 * Flush tables
+	 *
+	 * @param context      context
+	 * @param databasePath path
+	 * @param tables       tables to flush
+	 */
 	static public void flushAll(final Context context, final String databasePath, final Collection<String> tables)
 	{
 		if (tables != null && !tables.isEmpty())
@@ -86,6 +117,13 @@ class ManagementTasks
 		}
 	}
 
+	/**
+	 * Drop tables
+	 *
+	 * @param context      context
+	 * @param databasePath path
+	 * @param tables       tables to drop
+	 */
 	static public void dropAll(final Context context, final String databasePath, final Collection<String> tables)
 	{
 		if (tables != null && !tables.isEmpty())

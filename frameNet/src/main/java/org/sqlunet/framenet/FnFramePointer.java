@@ -6,7 +6,7 @@ import android.os.Parcelable;
 /**
  * Parcelable frame
  *
- * @author Bernard Bou
+ * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
 public class FnFramePointer implements Parcelable
 {
@@ -79,11 +79,6 @@ public class FnFramePointer implements Parcelable
 		}
 	};
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see android.os.Parcelable#writeToParcel(android.os.Parcel, int)
-	 */
 	@Override
 	public void writeToParcel(final Parcel pc, final int flags)
 	{
@@ -91,11 +86,6 @@ public class FnFramePointer implements Parcelable
 		pc.writeString(this.pos);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see android.os.Parcelable#describeContents()
-	 */
 	@Override
 	public int describeContents()
 	{

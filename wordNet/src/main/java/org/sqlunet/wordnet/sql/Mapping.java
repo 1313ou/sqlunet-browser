@@ -1,5 +1,5 @@
 /*
- * @author <a href="mailto:bbou@ac-toulouse.fr">Bernard Bou</a>
+ * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  * Created on 26 jan. 2005
  * Filename : Mapping.java
  * Class encapsulating id-name mappings
@@ -22,7 +22,7 @@ import java.util.Set;
 /**
  * Id-name mappings
  *
- * @author <a href="mailto:bbou@ac-toulouse.fr">Bernard Bou</a>
+ * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
 
 class Mapping

@@ -10,7 +10,7 @@ import org.sqlunet.treeview.model.TreeNode;
 /**
  * A module to retrieve frame
  *
- * @author Bernard Bou
+ * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
 public class FrameModule extends BasicModule
 {
@@ -31,11 +31,7 @@ public class FrameModule extends BasicModule
 		super(fragment0);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see org.sqlunet.Module#init(android.os.Parcelable)
-	 */
+
 	@Override
 	public void init(final Parcelable arguments)
 	{
@@ -64,11 +60,7 @@ public class FrameModule extends BasicModule
 		}
 	}
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see org.sqlunet.Module#process()
-	 */
+
 	@Override
 	public void process(final TreeNode node)
 	{

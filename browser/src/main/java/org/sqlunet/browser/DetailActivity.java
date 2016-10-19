@@ -5,24 +5,15 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.os.Parcelable;
 
-import org.sqlunet.browser.selector.SelectorActivity;
 import org.sqlunet.provider.SqlUNetContract;
-import org.sqlunet.wordnet.browser.SenseFragment;
 
 /**
- * An activity representing a sense detail screen. This activity is only used on handset devices. On tablet-size devices, sense details are presented
- * side-by-side with a list of items in a {@link SelectorActivity}. This activity is mostly just a 'shell' activity containing nothing more than a
- * {@link SenseFragment}.
+ * Detail activity
  *
- * @author Bernard Bou
+ * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
 public class DetailActivity extends Activity
 {
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see android.app.Activity#onCreate(android.os.Bundle)
-	 */
 	@Override
 	protected void onCreate(final Bundle savedInstanceState)
 	{

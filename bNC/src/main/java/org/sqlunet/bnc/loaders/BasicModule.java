@@ -51,11 +51,6 @@ public class BasicModule extends Module
 		super(fragment0);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.sqlunet.Module#init(android.widget.TextView, android.widget.TextView, android.os.Parcelable)
-	 */
 	@Override
 	public void init(final Parcelable query)
 	{

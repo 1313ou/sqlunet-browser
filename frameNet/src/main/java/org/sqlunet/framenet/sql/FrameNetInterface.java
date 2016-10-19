@@ -7,7 +7,7 @@ import org.w3c.dom.Document;
 /**
  * Business methods for FrameNet interface
  *
- * @author Bernard Bou <bbou@ac-toulouse.fr>
+ * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
 @SuppressWarnings("unused")
 interface FrameNetInterface

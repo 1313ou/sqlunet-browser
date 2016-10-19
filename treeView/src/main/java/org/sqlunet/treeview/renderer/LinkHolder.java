@@ -8,7 +8,7 @@ import org.sqlunet.treeview.model.TreeNode;
 /**
  * Link holder
  *
- * @author Bernard Bou
+ * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
 public class LinkHolder extends IconLeafRenderer
 {
@@ -20,10 +20,6 @@ public class LinkHolder extends IconLeafRenderer
 		this.layoutRes = R.layout.layout_link;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * @see org.sqlunet.treeview.model.TreeNode.Renderer#toggle(boolean)
-	 */
 	@Override
 	public void toggle(boolean active)
 	{
@@ -35,24 +31,44 @@ public class LinkHolder extends IconLeafRenderer
 		}
 	}
 
-	// D A T A
-
+	/**
+	 * Follow link
+	 */
 	private void followLink()
 	{
 		final Link link = (Link) this.mNode.getValue();
 		link.process(this.mNode);
 	}
 
+	// D A T A
+
+	/**
+	 * Link
+	 */
 	public static abstract class Link extends IconTreeItem
 	{
+		/**
+		 * Id used in link
+		 */
 		public final long id;
 
-		public Link(long id0, int icon, CharSequence text)
+		/**
+		 * Constructor
+		 *
+		 * @param id id
+		 * @param icon extra icon
+		 * @param text label text
+		 */
+		public Link(long id, int icon, CharSequence text)
 		{
 			super(icon, text);
-			this.id = id0;
+			this.id = id;
 		}
 
+		/**
+		 * Process
+		 * @param node node
+		 */
 		abstract public void process(@SuppressWarnings("UnusedParameters") final TreeNode node);
 	}
 }

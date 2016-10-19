@@ -33,9 +33,9 @@ public class Factory
 	{
 		try
 		{
-			final DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
-			final DocumentBuilder db = dbf.newDocumentBuilder();
-			return db.newDocument();
+			final DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+			final DocumentBuilder builder = factory.newDocumentBuilder();
+			return builder.newDocument();
 		}
 		catch (final ParserConfigurationException e)
 		{
@@ -59,15 +59,15 @@ public class Factory
 			final Source source = new DOMSource(document);
 
 			// output stream
-			final StringWriter os = new StringWriter();
-			final Result result = new StreamResult(os);
+			final StringWriter writer = new StringWriter();
+			final Result result = new StreamResult(writer);
 
 			// use a Transformer for output
-			final TransformerFactory tf = TransformerFactory.newInstance();
-			final Transformer transformer = tf.newTransformer();
+			final TransformerFactory factory = TransformerFactory.newInstance();
+			final Transformer transformer = factory.newTransformer();
 			transformer.setOutputProperty(javax.xml.transform.OutputKeys.DOCTYPE_SYSTEM, dtd);
 			transformer.transform(source, result);
-			return os.toString();
+			return writer.toString();
 		}
 		catch (final TransformerException e)
 		{

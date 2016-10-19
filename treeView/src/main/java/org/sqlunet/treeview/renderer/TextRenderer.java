@@ -13,6 +13,11 @@ import org.sqlunet.treeview.model.TreeNode;
  */
 public class TextRenderer extends TreeNode.Renderer<Object>
 {
+	/**
+	 * Constructor
+	 *
+	 * @param context context
+	 */
 	public TextRenderer(Context context)
 	{
 		super(context);

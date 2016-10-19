@@ -1,5 +1,5 @@
 /*
- * @author <a href="mailto:bbou@ac-toulouse.fr">Bernard Bou</a>
+ * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  * Created on 26 mars 2005
  * Filename : WordQueryCommand.java
  */
@@ -12,7 +12,7 @@ import org.sqlunet.sql.DBQueryCommand;
 /**
  * Word query command
  *
- * @author <a href="mailto:bbou@ac-toulouse.fr">Bernard Bou</a>
+ * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
 class WordQueryCommand extends DBQueryCommand
 {

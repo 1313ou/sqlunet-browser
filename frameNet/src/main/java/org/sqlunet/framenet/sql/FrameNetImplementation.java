@@ -13,7 +13,7 @@ import java.util.List;
 /**
  * Encapsulates FrameNet query implementation
  *
- * @author Bernard Bou
+ * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
 public class FrameNetImplementation implements FrameNetInterface
 {
@@ -164,6 +164,7 @@ public class FrameNetImplementation implements FrameNetInterface
 	 * @param luId       the luid to build query from
 	 * @return FrameNet lexunit data as DOM document
 	 */
+	@Override
 	public Document queryLexUnitDoc(final SQLiteDatabase connection, final long luId)
 	{
 		final Document doc = Factory.makeDocument();
@@ -179,6 +180,7 @@ public class FrameNetImplementation implements FrameNetInterface
 	 * @param luId       the luid to build query from
 	 * @return FrameNet lexunit data as XML
 	 */
+	@Override
 	public String queryLexUnitXML(final SQLiteDatabase connection, final long luId)
 	{
 		final Document doc = queryLexUnitDoc(connection, luId);

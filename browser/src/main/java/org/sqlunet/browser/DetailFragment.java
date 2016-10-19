@@ -18,9 +18,9 @@ import org.sqlunet.verbnet.browser.VerbNetFragment;
 import org.sqlunet.wordnet.browser.SenseFragment;
 
 /**
- * A fragment representing a synset.
+ * A fragment representing a detail
  *
- * @author Bernard Bou
+ * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
 public class DetailFragment extends Fragment
 {
@@ -34,11 +34,6 @@ public class DetailFragment extends Fragment
 		//
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see android.app.Fragment#onCreateView(android.view.LayoutInflater, android.view.ViewGroup, android.os.Bundle)
-	 */
 	@Override
 	public View onCreateView(final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState)
 	{
@@ -58,6 +53,11 @@ public class DetailFragment extends Fragment
 		return rootView;
 	}
 
+	/**
+	 * Search
+	 *
+	 * @param pointer pointer
+	 */
 	public void search(Parcelable pointer)
 	{
 		final Context context = this.getActivity();

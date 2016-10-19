@@ -1,5 +1,5 @@
 /*
- * @author <a href="mailto:bbou@ac-toulouse.fr">Bernard Bou</a>
+ * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  * Created on 31 dec. 2004
  * Filename : TypedSynsetsQueryCommand.java
  * Class encapsulating query for synsets of a given part-of-speech or lexdomain type and containing a given word
@@ -13,7 +13,7 @@ import org.sqlunet.sql.DBQueryCommand;
 /**
  * Query command for synsets of a given part-of-speech or lexdomain type and containing a given word
  *
- * @author <a href="mailto:bbou@ac-toulouse.fr">Bernard Bou</a>
+ * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
 class TypedSynsetsQueryCommand extends DBQueryCommand
 {

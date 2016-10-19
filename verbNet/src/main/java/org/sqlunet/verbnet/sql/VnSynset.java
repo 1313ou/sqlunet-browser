@@ -5,7 +5,7 @@ import org.sqlunet.wordnet.sql.BasicSynset;
 /**
  * Synset extended to hold VerbNet specific data
  *
- * @author Bernard Bou
+ * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
 class VnSynset extends BasicSynset
 {

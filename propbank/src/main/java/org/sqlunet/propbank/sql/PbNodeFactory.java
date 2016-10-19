@@ -1,5 +1,5 @@
 /*
- * @author Bernard Bou
+ * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  * Created on 31 dec. 2004
  * Filename : FnNodeFactory.java
  * Class encapsulates creation of DOM nodes
@@ -14,7 +14,7 @@ import org.w3c.dom.Node;
 /**
  * DOM node factory
  *
- * @author Bernard Bou
+ * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
 class PbNodeFactory extends NodeFactory
 {
