@@ -17,7 +17,7 @@ public class PredicateRoleModule extends BasicModule
 	/**
 	 * Query id
 	 */
-	private Long pmroleid;
+	private Long pmRoleId;
 
 	/**
 	 * View mode
@@ -27,27 +27,27 @@ public class PredicateRoleModule extends BasicModule
 	/**
 	 * Constructor
 	 */
-	public PredicateRoleModule(final Fragment fragment0, final PMMode mode)
+	public PredicateRoleModule(final Fragment fragment, final PMMode mode)
 	{
-		super(fragment0);
+		super(fragment);
 		this.mode = mode;
 	}
 
 	@Override
-	void unmarshall(final Parcelable query)
+	void unmarshal(final Parcelable query)
 	{
 		// get query
 		if (query instanceof PmRolePointer)
 		{
 			final PmRolePointer pointer = (PmRolePointer) query;
-			this.pmroleid = pointer.getRoleId();
+			this.pmRoleId = pointer.getRoleId();
 		}
 	}
 
 	@Override
 	public void process(final TreeNode node)
 	{
-		if (this.pmroleid != null)
+		if (this.pmRoleId != null)
 		{
 			Displayer displayer = null;
 			switch (this.mode)
@@ -63,7 +63,7 @@ public class PredicateRoleModule extends BasicModule
 					displayer = new DisplayerByPmRole();
 					break;
 			}
-			fromRoleId(PredicateRoleModule.this.pmroleid, node, displayer);
+			fromRoleId(PredicateRoleModule.this.pmRoleId, node, displayer);
 		}
 	}
 }

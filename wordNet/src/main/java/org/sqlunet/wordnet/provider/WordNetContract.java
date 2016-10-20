@@ -13,7 +13,7 @@ public class WordNetContract
 	{
 		static public final String TABLE = "words"; //$NON-NLS-1$
 		static public final String CONTENT_URI = "content://" + WordNetContract.AUTHORITY + '/' + Words.TABLE; //$NON-NLS-1$
-		static public final String WORDID = "wordid"; //$NON-NLS-1$
+		static public final String WORDID = "wordId"; //$NON-NLS-1$
 		static public final String LEMMA = "lemma"; //$NON-NLS-1$
 	}
 
@@ -23,7 +23,7 @@ public class WordNetContract
 		static public final String TABLE = "casedwords"; //$NON-NLS-1$
 		static public final String CONTENT_URI = "content://" + WordNetContract.AUTHORITY + '/' + CasedWords.TABLE; //$NON-NLS-1$
 		static public final String CASEDWORDID = "casedwordid"; //$NON-NLS-1$
-		static public final String WORDID = "wordid"; //$NON-NLS-1$
+		static public final String WORDID = "wordId"; //$NON-NLS-1$
 		static public final String CASED = "cased"; //$NON-NLS-1$
 	}
 
@@ -32,7 +32,7 @@ public class WordNetContract
 	{
 		static public final String TABLE = "senses"; //$NON-NLS-1$
 		static public final String CONTENT_URI = "content://" + WordNetContract.AUTHORITY + '/' + Senses.TABLE; //$NON-NLS-1$
-		static public final String WORDID = "wordid"; //$NON-NLS-1$
+		static public final String WORDID = "wordId"; //$NON-NLS-1$
 		static public final String SYNSETID = "synsetid"; //$NON-NLS-1$
 		static public final String CASEDWORDID = "casedwordid"; //$NON-NLS-1$
 		static public final String SENSEID = "senseid"; //$NON-NLS-1$
@@ -245,7 +245,7 @@ public class WordNetContract
 		static public final String TABLE = "vframemaps_vframes"; //$NON-NLS-1$
 		static public final String CONTENT_URI = "content://" + WordNetContract.AUTHORITY + '/' + VerbFrameMaps_VerbFrames.TABLE; //$NON-NLS-1$
 		static public final String SYNSETID = "synsetid"; //$NON-NLS-1$
-		static public final String WORDID = "wordid"; //$NON-NLS-1$
+		static public final String WORDID = "wordId"; //$NON-NLS-1$
 		static public final String FRAME = "frame"; //$NON-NLS-1$
 		// vframemap LEFT JOIN vframes
 	}
@@ -255,7 +255,7 @@ public class WordNetContract
 		static public final String TABLE = "vframesentencemaps_vframesentences"; //$NON-NLS-1$
 		static public final String CONTENT_URI = "content://" + WordNetContract.AUTHORITY + '/' + VerbFrameSentenceMaps_VerbFrameSentences.TABLE; //$NON-NLS-1$
 		static public final String SYNSETID = "synsetid"; //$NON-NLS-1$
-		static public final String WORDID = "wordid"; //$NON-NLS-1$
+		static public final String WORDID = "wordId"; //$NON-NLS-1$
 		static public final String SENTENCE = "sentence"; //$NON-NLS-1$
 		// vframesentencemaps LEFT JOIN vframesentences
 	}
@@ -266,7 +266,7 @@ public class WordNetContract
 		static public final String TABLE = "adjpositions_adjpositiontypes"; //$NON-NLS-1$
 		static public final String CONTENT_URI = "content://" + WordNetContract.AUTHORITY + '/' + AdjPositions_AdjPositionTypes.TABLE; //$NON-NLS-1$
 		static public final String SYNSETID = "synsetid"; //$NON-NLS-1$
-		static public final String WORDID = "wordid"; //$NON-NLS-1$
+		static public final String WORDID = "wordId"; //$NON-NLS-1$
 		static public final String POSITION = "position"; //$NON-NLS-1$
 		static public final String POSITIONNAME = "positionname"; //$NON-NLS-1$
 		// adjpositions LEFT JOIN adjpositiontypes
@@ -276,7 +276,7 @@ public class WordNetContract
 	{
 		static public final String TABLE = "morphmaps_morphs"; //$NON-NLS-1$
 		static public final String CONTENT_URI = "content://" + WordNetContract.AUTHORITY + '/' + MorphMaps_Morphs.TABLE; //$NON-NLS-1$
-		static public final String WORDID = "wordid"; //$NON-NLS-1$
+		static public final String WORDID = "wordId"; //$NON-NLS-1$
 		static public final String MORPH = "morph"; //$NON-NLS-1$
 		static public final String POS = "pos"; //$NON-NLS-1$
 		// morphmaps LEFT JOIN morphs
@@ -298,7 +298,7 @@ public class WordNetContract
 	{
 		static public final String TABLE = "fts_words"; //$NON-NLS-1$
 		static public final String CONTENT_URI = "content://" + WordNetContract.AUTHORITY + '/' + Lookup_Words.TABLE; //$NON-NLS-1$
-		static public final String WORDID = "wordid"; //$NON-NLS-1$
+		static public final String WORDID = "wordId"; //$NON-NLS-1$
 		static public final String LEMMA = "lemma"; //$NON-NLS-1$
 	}
 

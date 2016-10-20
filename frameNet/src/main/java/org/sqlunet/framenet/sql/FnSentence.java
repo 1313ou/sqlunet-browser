@@ -23,7 +23,7 @@ public class FnSentence
 	}
 
 	/**
-	 * Make sets of sentences from query built from frameid
+	 * Make sets of sentences from query built from frameId
 	 *
 	 * @param connection  is the database connection
 	 * @param sentenceId0 is the sentence id to build query from
@@ -57,10 +57,10 @@ public class FnSentence
 	}
 
 	/**
-	 * Make sets of sentences from query built from frameid
+	 * Make sets of sentences from query built from frameId
 	 *
 	 * @param connection is the database connection
-	 * @param luId       is the luid to build query from
+	 * @param luId       is the luId to build query from
 	 * @return list of sentences
 	 */
 	public static List<FnSentence> makeFromLexicalUnit(final SQLiteDatabase connection, final long luId)

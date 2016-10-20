@@ -532,9 +532,9 @@ public class MainActivity extends Activity
 			// wordnet
 			if (query.startsWith("#ws")) //$NON-NLS-1$
 			{
-				final long synsetid = Long.valueOf(query.substring(3));
+				final long synsetId = Long.valueOf(query.substring(3));
 				final SynsetPointer synsetPointer = new SynsetPointer();
-				synsetPointer.setSynset(synsetid, null);
+				synsetPointer.setSynset(synsetId, null);
 				searchIntent = makeDetailIntent(SynsetActivity.class);
 				searchIntent.putExtra(SqlUNetContract.ARG_QUERYACTION, SqlUNetContract.ARG_QUERYACTION_SYNSET);
 				searchIntent.putExtra(SqlUNetContract.ARG_QUERYPOINTER, synsetPointer);
@@ -544,9 +544,9 @@ public class MainActivity extends Activity
 			// verbnet
 			else if (query.startsWith("#vc")) //$NON-NLS-1$
 			{
-				final long classid = Long.valueOf(query.substring(3));
+				final long classId = Long.valueOf(query.substring(3));
 				final VnClassPointer framePointer = new VnClassPointer();
-				framePointer.classid = classid;
+				framePointer.classId = classId;
 				searchIntent = makeDetailIntent(VnClassActivity.class);
 				searchIntent.putExtra(SqlUNetContract.ARG_QUERYACTION, SqlUNetContract.ARG_QUERYACTION_VNCLASS);
 				searchIntent.putExtra(SqlUNetContract.ARG_QUERYPOINTER, framePointer);
@@ -555,64 +555,64 @@ public class MainActivity extends Activity
 			// propbank
 			else if (query.startsWith("#pr")) //$NON-NLS-1$
 			{
-				final long rolesetid = Long.valueOf(query.substring(3));
-				final PbRoleSetPointer rolesetPointer = new PbRoleSetPointer();
-				rolesetPointer.rolesetid = rolesetid;
+				final long roleSetId = Long.valueOf(query.substring(3));
+				final PbRoleSetPointer roleSetPointer = new PbRoleSetPointer();
+				roleSetPointer.roleSetId = roleSetId;
 				searchIntent = makeDetailIntent(PbRoleSetActivity.class);
 				searchIntent.putExtra(SqlUNetContract.ARG_QUERYACTION, SqlUNetContract.ARG_QUERYACTION_PBROLESET);
-				searchIntent.putExtra(SqlUNetContract.ARG_QUERYPOINTER, rolesetPointer);
+				searchIntent.putExtra(SqlUNetContract.ARG_QUERYPOINTER, roleSetPointer);
 			}
 
 			// framenet
 			else if (query.startsWith("#ff")) //$NON-NLS-1$
 			{
-				final long frameid = Long.valueOf(query.substring(3));
+				final long frameId = Long.valueOf(query.substring(3));
 				final FnFramePointer framePointer = new FnFramePointer();
-				framePointer.frameid = frameid;
+				framePointer.frameId = frameId;
 				searchIntent = makeDetailIntent(FnFrameActivity.class);
 				searchIntent.putExtra(SqlUNetContract.ARG_QUERYACTION, SqlUNetContract.ARG_QUERYACTION_FNFRAME);
 				searchIntent.putExtra(SqlUNetContract.ARG_QUERYPOINTER, framePointer);
 			}
 			else if (query.startsWith("#fl")) //$NON-NLS-1$
 			{
-				final long luid = Long.valueOf(query.substring(3));
+				final long luId = Long.valueOf(query.substring(3));
 				final FnLexUnitPointer lexunitPointer = new FnLexUnitPointer();
-				lexunitPointer.luid = luid;
+				lexunitPointer.luId = luId;
 				searchIntent = makeDetailIntent(FnLexUnitActivity.class);
 				searchIntent.putExtra(SqlUNetContract.ARG_QUERYACTION, SqlUNetContract.ARG_QUERYACTION_FNLEXUNIT);
 				searchIntent.putExtra(SqlUNetContract.ARG_QUERYPOINTER, lexunitPointer);
 			}
 			else if (query.startsWith("#fs")) //$NON-NLS-1$
 			{
-				final long sentenceid = Long.valueOf(query.substring(3));
-				@SuppressWarnings("TypeMayBeWeakened") final FnSentencePointer sentencePointer = new FnSentencePointer(sentenceid);
+				final long sentenceId = Long.valueOf(query.substring(3));
+				@SuppressWarnings("TypeMayBeWeakened") final FnSentencePointer sentencePointer = new FnSentencePointer(sentenceId);
 				searchIntent = makeDetailIntent(FnSentenceActivity.class);
 				searchIntent.putExtra(SqlUNetContract.ARG_QUERYACTION, SqlUNetContract.ARG_QUERYACTION_FNSENTENCE);
 				searchIntent.putExtra(SqlUNetContract.ARG_QUERYPOINTER, sentencePointer);
 			}
 			else if (query.startsWith("#fa")) //$NON-NLS-1$
 			{
-				final long annosetid = Long.valueOf(query.substring(3));
-				final FnAnnoSetPointer annosetPointer = new FnAnnoSetPointer();
-				annosetPointer.annosetid = annosetid;
+				final long annoSetId = Long.valueOf(query.substring(3));
+				final FnAnnoSetPointer annoSetPointer = new FnAnnoSetPointer();
+				annoSetPointer.annoSetId = annoSetId;
 				searchIntent = makeDetailIntent(FnAnnoSetActivity.class);
 				searchIntent.putExtra(SqlUNetContract.ARG_QUERYACTION, SqlUNetContract.ARG_QUERYACTION_FNANNOSET);
-				searchIntent.putExtra(SqlUNetContract.ARG_QUERYPOINTER, annosetPointer);
+				searchIntent.putExtra(SqlUNetContract.ARG_QUERYPOINTER, annoSetPointer);
 			}
 			else if (query.startsWith("#fp")) //$NON-NLS-1$
 			{
-				final long patternid = Long.valueOf(query.substring(3));
+				final long patternId = Long.valueOf(query.substring(3));
 				final FnPatternPointer patternPointer = new FnPatternPointer();
-				patternPointer.id = patternid;
+				patternPointer.id = patternId;
 				searchIntent = makeDetailIntent(FnAnnoSetActivity.class);
 				searchIntent.putExtra(SqlUNetContract.ARG_QUERYACTION, SqlUNetContract.ARG_QUERYACTION_FNPATTERN);
 				searchIntent.putExtra(SqlUNetContract.ARG_QUERYPOINTER, patternPointer);
 			}
 			else if (query.startsWith("#fv")) //$NON-NLS-1$
 			{
-				final long valenceunitid = Long.valueOf(query.substring(3));
+				final long valenceUnitId = Long.valueOf(query.substring(3));
 				final FnValenceUnitPointer valenceunitPointer = new FnValenceUnitPointer();
-				valenceunitPointer.id = valenceunitid;
+				valenceunitPointer.id = valenceUnitId;
 				searchIntent = makeDetailIntent(FnAnnoSetActivity.class);
 				searchIntent.putExtra(SqlUNetContract.ARG_QUERYACTION, SqlUNetContract.ARG_QUERYACTION_FNVALENCEUNIT);
 				searchIntent.putExtra(SqlUNetContract.ARG_QUERYPOINTER, valenceunitPointer);
@@ -621,9 +621,9 @@ public class MainActivity extends Activity
 			// predicate matrix
 			else if (query.startsWith("#mr")) //$NON-NLS-1$
 			{
-				final long pmroleid = Long.valueOf(query.substring(3));
+				final long pmRoleId = Long.valueOf(query.substring(3));
 				final PmRolePointer rolePointer = new PmRolePointer();
-				rolePointer.roleid = pmroleid;
+				rolePointer.roleId = pmRoleId;
 				searchIntent = makeDetailIntent(PredicateMatrixActivity.class);
 				searchIntent.putExtra(SqlUNetContract.ARG_QUERYACTION, SqlUNetContract.ARG_QUERYACTION_PMROLE);
 				searchIntent.putExtra(SqlUNetContract.ARG_QUERYPOINTER, rolePointer);

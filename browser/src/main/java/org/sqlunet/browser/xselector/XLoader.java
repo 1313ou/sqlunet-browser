@@ -33,12 +33,12 @@ class XLoader
 	public abstract static class XnLoaderCallbacks implements LoaderCallbacks<Cursor>
 	{
 		final Context context;
-		final long wordid;
+		final long wordId;
 
-		public XnLoaderCallbacks(final Context context, final long wordid)
+		public XnLoaderCallbacks(final Context context, final long wordId)
 		{
 			this.context = context;
-			this.wordid = wordid;
+			this.wordId = wordId;
 		}
 	}
 
@@ -47,9 +47,9 @@ class XLoader
 	 */
 	public abstract static class WnLoaderCallbacks extends XnLoaderCallbacks
 	{
-		public WnLoaderCallbacks(final Context context, final long wordid)
+		public WnLoaderCallbacks(final Context context, final long wordId)
 		{
-			super(context, wordid);
+			super(context, wordId);
 		}
 
 		@Override
@@ -69,7 +69,7 @@ class XLoader
 					Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.DEFINITION + " AS " + Words_XNet_U.XDEFINITION, // //$NON-NLS-1$
 					Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.SYNSETID + " AS _id"}; //$NON-NLS-1$
 			final String selection = Words_VnWords_VnClasses_U.WORDID + " = ?"; //$NON-NLS-1$
-			final String[] selectionArgs = {Long.toString(this.wordid)};
+			final String[] selectionArgs = {Long.toString(this.wordId)};
 			final String sortOrder = null;
 			return new CursorLoader(this.context, uri, projection, selection, selectionArgs, sortOrder);
 		}
@@ -80,9 +80,9 @@ class XLoader
 	 */
 	public abstract static class VnLoaderCallbacks extends XnLoaderCallbacks
 	{
-		public VnLoaderCallbacks(final Context context, final long wordid)
+		public VnLoaderCallbacks(final Context context, final long wordId)
 		{
-			super(context, wordid);
+			super(context, wordId);
 		}
 
 		@Override
@@ -101,7 +101,7 @@ class XLoader
 					Words_VnWords_VnClasses_U.DEFINITION + " AS " + Words_XNet_U.XDEFINITION, // //$NON-NLS-1$
 					"rowid AS _id",}; //$NON-NLS-1$
 			final String selection = Words_VnWords_VnClasses_U.WORDID + " = ?"; //$NON-NLS-1$
-			final String[] selectionArgs = {Long.toString(this.wordid)};
+			final String[] selectionArgs = {Long.toString(this.wordId)};
 			final String sortOrder = null;
 			return new CursorLoader(this.context, uri, projection, selection, selectionArgs, sortOrder);
 		}
@@ -112,9 +112,9 @@ class XLoader
 	 */
 	public abstract static class PbLoaderCallbacks extends XnLoaderCallbacks
 	{
-		public PbLoaderCallbacks(final Context context, final long wordid)
+		public PbLoaderCallbacks(final Context context, final long wordId)
 		{
-			super(context, wordid);
+			super(context, wordId);
 		}
 
 		@Override
@@ -134,7 +134,7 @@ class XLoader
 					Words_PbWords_PbRolesets_U.DEFINITION + " AS " + Words_XNet_U.XDEFINITION, // //$NON-NLS-1$
 					"rowid AS _id",}; //$NON-NLS-1$
 			final String selection = PredicateMatrix_Propbank.WORDID + " = ?"; //$NON-NLS-1$
-			final String[] selectionArgs = {Long.toString(this.wordid)};
+			final String[] selectionArgs = {Long.toString(this.wordId)};
 			final String sortOrder = null;
 			return new CursorLoader(this.context, uri, projection, selection, selectionArgs, sortOrder);
 		}
@@ -145,9 +145,9 @@ class XLoader
 	 */
 	abstract static class FnLoaderCallbacks extends XnLoaderCallbacks
 	{
-		public FnLoaderCallbacks(final Context context, final long wordid)
+		public FnLoaderCallbacks(final Context context, final long wordId)
 		{
-			super(context, wordid);
+			super(context, wordId);
 		}
 
 		@Override
@@ -166,7 +166,7 @@ class XLoader
 					Words_FnWords_FnFrames_U.DEFINITION + " AS " + Words_XNet_U.XDEFINITION, // //$NON-NLS-1$
 					"rowid AS _id",}; //$NON-NLS-1$
 			final String selection = Words_FnWords_FnFrames_U.WORDID + " = ?"; //$NON-NLS-1$
-			final String[] selectionArgs = {Long.toString(this.wordid)};
+			final String[] selectionArgs = {Long.toString(this.wordId)};
 			final String sortOrder = null;
 			return new CursorLoader(this.context, uri, projection, selection, selectionArgs, sortOrder);
 		}
@@ -178,15 +178,15 @@ class XLoader
 	abstract static class FullLoaderCallbacks implements LoaderCallbacks<Cursor>
 	{
 		final Activity activity;
-		final long wordid;
+		final long wordId;
 		final Loader<Cursor> loader;
 		final SparseArray<Cursor> cursors;
 
 		@SuppressWarnings("unused")
-		public FullLoaderCallbacks(Activity activity, long wordid, final Loader<Cursor> loader)
+		public FullLoaderCallbacks(Activity activity, long wordId, final Loader<Cursor> loader)
 		{
 			this.activity = activity;
-			this.wordid = wordid;
+			this.wordId = wordId;
 			this.cursors = new SparseArray<>();
 			this.loader = loader;
 		}
@@ -214,50 +214,50 @@ class XLoader
 		@Override
 		public Loader<Cursor> onCreateLoader(int id, Bundle args)
 		{
-			final Loader<Cursor> vnloader = this.activity.getLoaderManager().restartLoader(++Module.loaderId, null, new VnLoaderCallbacks(this.activity, this.wordid)
+			final Loader<Cursor> vnloader = this.activity.getLoaderManager().restartLoader(++Module.loaderId, null, new VnLoaderCallbacks(this.activity, this.wordId)
 			{
 				@Override
-				public void onLoadFinished(Loader<Cursor> loader0, Cursor data)
+				public void onLoadFinished(Loader<Cursor> loader, Cursor data)
 				{
-					loader0.deliverResult(data);
+					loader.deliverResult(data);
 				}
 
 				@Override
-				public void onLoaderReset(Loader<Cursor> loader0)
+				public void onLoaderReset(Loader<Cursor> loader)
 				{
-					loader0.deliverResult(null);
+					loader.deliverResult(null);
 				}
 			});
 			vnloader.registerListener(1, this.listener);
 
-			final Loader<Cursor> pbloader = this.activity.getLoaderManager().restartLoader(++Module.loaderId, null, new PbLoaderCallbacks(this.activity, this.wordid)
+			final Loader<Cursor> pbloader = this.activity.getLoaderManager().restartLoader(++Module.loaderId, null, new PbLoaderCallbacks(this.activity, this.wordId)
 			{
 				@Override
-				public void onLoadFinished(Loader<Cursor> loader0, Cursor data)
+				public void onLoadFinished(Loader<Cursor> loader, Cursor data)
 				{
-					loader0.deliverResult(data);
+					loader.deliverResult(data);
 				}
 
 				@Override
-				public void onLoaderReset(Loader<Cursor> loader0)
+				public void onLoaderReset(Loader<Cursor> loader)
 				{
-					loader0.deliverResult(null);
+					loader.deliverResult(null);
 				}
 			});
 			pbloader.registerListener(2, this.listener);
 
-			final Loader<Cursor> fnloader = this.activity.getLoaderManager().restartLoader(++Module.loaderId, null, new FnLoaderCallbacks(this.activity, this.wordid)
+			final Loader<Cursor> fnloader = this.activity.getLoaderManager().restartLoader(++Module.loaderId, null, new FnLoaderCallbacks(this.activity, this.wordId)
 			{
 				@Override
-				public void onLoadFinished(Loader<Cursor> loader0, Cursor data)
+				public void onLoadFinished(Loader<Cursor> loader, Cursor data)
 				{
-					loader0.deliverResult(data);
+					loader.deliverResult(data);
 				}
 
 				@Override
-				public void onLoaderReset(Loader<Cursor> loader0)
+				public void onLoaderReset(Loader<Cursor> loader)
 				{
-					loader0.deliverResult(null);
+					loader.deliverResult(null);
 				}
 			});
 			fnloader.registerListener(3, this.listener);
@@ -283,22 +283,22 @@ class XLoader
 
 			do
 			{
-				long wordid = cursor.getLong(idWordId);
-				long synsetid = cursor.isNull(idSynsetId) ? -1 : cursor.getLong(idSynsetId);
-				long xid = cursor.isNull(idXId) ? -1 : cursor.getLong(idXId);
-				String xname = cursor.isNull(idXName) ? null : cursor.getString(idXName);
-				String xheader = cursor.isNull(idXHeader) ? null : cursor.getString(idXHeader);
-				String xinfo = cursor.isNull(idXInfo) ? null : cursor.getString(idXInfo);
+				long wordId = cursor.getLong(idWordId);
+				long synsetId = cursor.isNull(idSynsetId) ? -1 : cursor.getLong(idSynsetId);
+				long xId = cursor.isNull(idXId) ? -1 : cursor.getLong(idXId);
+				String xName = cursor.isNull(idXName) ? null : cursor.getString(idXName);
+				String xHeader = cursor.isNull(idXHeader) ? null : cursor.getString(idXHeader);
+				String xInfo = cursor.isNull(idXInfo) ? null : cursor.getString(idXInfo);
 				String definition = cursor.isNull(idXInfo) ? null : cursor.getString(idDefinition);
 				String sources = cursor.isNull(idSources) ? "" : //$NON-NLS-1$
 						cursor.getString(idSources);
 				Log.i("DUMP", "sources=" + sources +  //$NON-NLS-1$
-						" wordid=" + wordid +  //$NON-NLS-1$
-						" synsetid=" + synsetid +  //$NON-NLS-1$
-						" xid=" + xid +  //$NON-NLS-1$
-						" name=" + xname +  //$NON-NLS-1$
-						" header=" + xheader +  //$NON-NLS-1$
-						" info=" + xinfo +  //$NON-NLS-1$
+						" wordId=" + wordId +  //$NON-NLS-1$
+						" synsetid=" + synsetId +  //$NON-NLS-1$
+						" xid=" + xId +  //$NON-NLS-1$
+						" name=" + xName +  //$NON-NLS-1$
+						" header=" + xHeader +  //$NON-NLS-1$
+						" info=" + xInfo +  //$NON-NLS-1$
 						" definition=" + definition); //$NON-NLS-1$
 			}
 			while (cursor.moveToNext());

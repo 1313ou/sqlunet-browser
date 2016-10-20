@@ -175,7 +175,7 @@ public class XSelectorFragment extends ExpandableListFragment
 			}
 
 			@Override
-			public void onLoadFinished(final Loader<Cursor> loader0, final Cursor cursor)
+			public void onLoadFinished(final Loader<Cursor> loader, final Cursor cursor)
 			{
 				// store source result
 				if (cursor.moveToFirst())
@@ -183,14 +183,14 @@ public class XSelectorFragment extends ExpandableListFragment
 					XSelectorFragment.this.word = new WordPointer();
 					XSelectorFragment.this.word.lemma = XSelectorFragment.this.queryWord;
 					final int idWordId = cursor.getColumnIndex(Words_FnWords_PbWords_VnWords.WORDID);
-					XSelectorFragment.this.word.wordid = cursor.getLong(idWordId);
+					XSelectorFragment.this.word.wordId = cursor.getLong(idWordId);
 
-					load(XSelectorFragment.this.word.wordid);
+					load(XSelectorFragment.this.word.wordId);
 				}
 			}
 
 			@Override
-			public void onLoaderReset(final Loader<Cursor> arg0)
+			public void onLoaderReset(final Loader<Cursor> loader)
 			{
 				//
 			}
@@ -200,9 +200,9 @@ public class XSelectorFragment extends ExpandableListFragment
 	/**
 	 * Load data
 	 *
-	 * @param wordid word id
+	 * @param wordId word id
 	 */
-	private void load(final long wordid)
+	private void load(final long wordId)
 	{
 		// adapter
 		final ExpandableListAdapter adapter = new SimpleCursorTreeAdapter(getActivity(), this.xnCursor, R.layout.item_group_xselector, groupFrom, groupTo, R.layout.item_xselector, childFrom, childTo)
@@ -265,34 +265,34 @@ public class XSelectorFragment extends ExpandableListFragment
 				// given the group, we return a cursor for all the children within that group
 				int groupPos = groupCursor.getPosition();
 				String groupName = groupCursor.getString(groupCursor.getColumnIndex(DBCOLUMN)); //$NON-NLS-1$
-				int loaderid = groupCursor.getInt(groupCursor.getColumnIndex("loader")); //$NON-NLS-1$
-				Log.d(TAG, "group " + groupPos + ' ' + groupName + " loader=" + loaderid); //$NON-NLS-1$ //$NON-NLS-2$
+				int loaderId = groupCursor.getInt(groupCursor.getColumnIndex("loader")); //$NON-NLS-1$
+				Log.d(TAG, "group " + groupPos + ' ' + groupName + " loader=" + loaderId); //$NON-NLS-1$ //$NON-NLS-2$
 
 				LoaderCallbacks<Cursor> callbacks = null;
 				switch (groupPos)
 				{
 					case 0:
-						callbacks = getWnCallbacks(wordid, groupPos);
+						callbacks = getWnCallbacks(wordId, groupPos);
 						break;
 					case 1:
-						callbacks = getVnCallbacks(wordid, groupPos);
+						callbacks = getVnCallbacks(wordId, groupPos);
 						break;
 					case 2:
-						callbacks = getPbCallbacks(wordid, groupPos);
+						callbacks = getPbCallbacks(wordId, groupPos);
 						break;
 					case 3:
-						callbacks = getFnCallbacks(wordid, groupPos);
+						callbacks = getFnCallbacks(wordId, groupPos);
 						break;
 				}
 
-				Loader<Cursor> loader1 = activity.getLoaderManager().getLoader(loaderid);
+				Loader<Cursor> loader1 = activity.getLoaderManager().getLoader(loaderId);
 				if (loader1 != null && !loader1.isReset())
 				{
-					activity.getLoaderManager().restartLoader(loaderid, null, callbacks);
+					activity.getLoaderManager().restartLoader(loaderId, null, callbacks);
 				}
 				else
 				{
-					activity.getLoaderManager().initLoader(loaderid, null, callbacks);
+					activity.getLoaderManager().initLoader(loaderId, null, callbacks);
 				}
 
 				return null;
@@ -369,16 +369,16 @@ public class XSelectorFragment extends ExpandableListFragment
 	/**
 	 * Get WordNet callbacks
 	 *
-	 * @param wordid        word id
+	 * @param wordId        word id
 	 * @param groupPosition position in group
 	 * @return WordNet callbacks
 	 */
-	private LoaderCallbacks<Cursor> getWnCallbacks(final long wordid, final int groupPosition)
+	private LoaderCallbacks<Cursor> getWnCallbacks(final long wordId, final int groupPosition)
 	{
-		return new WnLoaderCallbacks(getActivity(), wordid)
+		return new WnLoaderCallbacks(getActivity(), wordId)
 		{
 			@Override
-			public void onLoadFinished(final Loader<Cursor> loader0, final Cursor cursor)
+			public void onLoadFinished(final Loader<Cursor> loader, final Cursor cursor)
 			{
 				if (cursor != null)
 				{
@@ -394,7 +394,7 @@ public class XSelectorFragment extends ExpandableListFragment
 			}
 
 			@Override
-			public void onLoaderReset(final Loader<Cursor> arg0)
+			public void onLoaderReset(final Loader<Cursor> loader)
 			{
 				((CursorTreeAdapter) getListAdapter()).setChildrenCursor(groupPosition, null);
 			}
@@ -404,16 +404,16 @@ public class XSelectorFragment extends ExpandableListFragment
 	/**
 	 * Get VerbNet callbacks
 	 *
-	 * @param wordid        word id
+	 * @param wordId        word id
 	 * @param groupPosition position in group
 	 * @return VerbNet callbacks
 	 */
-	private LoaderCallbacks<Cursor> getVnCallbacks(final long wordid, final int groupPosition)
+	private LoaderCallbacks<Cursor> getVnCallbacks(final long wordId, final int groupPosition)
 	{
-		return new VnLoaderCallbacks(getActivity(), wordid)
+		return new VnLoaderCallbacks(getActivity(), wordId)
 		{
 			@Override
-			public void onLoadFinished(final Loader<Cursor> loader0, final Cursor cursor)
+			public void onLoadFinished(final Loader<Cursor> loader, final Cursor cursor)
 			{
 				if (cursor != null)
 				{
@@ -429,7 +429,7 @@ public class XSelectorFragment extends ExpandableListFragment
 			}
 
 			@Override
-			public void onLoaderReset(final Loader<Cursor> arg0)
+			public void onLoaderReset(final Loader<Cursor> loader)
 			{
 				((CursorTreeAdapter) getListAdapter()).setChildrenCursor(groupPosition, null);
 			}
@@ -439,16 +439,16 @@ public class XSelectorFragment extends ExpandableListFragment
 	/**
 	 * Get PropBank callbacks
 	 *
-	 * @param wordid        word id
+	 * @param wordId        word id
 	 * @param groupPosition position in group
 	 * @return PropBank callbacks
 	 */
-	private LoaderCallbacks<Cursor> getPbCallbacks(final long wordid, final int groupPosition)
+	private LoaderCallbacks<Cursor> getPbCallbacks(final long wordId, final int groupPosition)
 	{
-		return new PbLoaderCallbacks(getActivity(), wordid)
+		return new PbLoaderCallbacks(getActivity(), wordId)
 		{
 			@Override
-			public void onLoadFinished(final Loader<Cursor> loader0, final Cursor cursor)
+			public void onLoadFinished(final Loader<Cursor> loader, final Cursor cursor)
 			{
 				if (cursor != null)
 				{
@@ -464,7 +464,7 @@ public class XSelectorFragment extends ExpandableListFragment
 			}
 
 			@Override
-			public void onLoaderReset(final Loader<Cursor> arg0)
+			public void onLoaderReset(final Loader<Cursor> loader)
 			{
 				((CursorTreeAdapter) getListAdapter()).setChildrenCursor(groupPosition, null);
 			}
@@ -474,16 +474,16 @@ public class XSelectorFragment extends ExpandableListFragment
 	/**
 	 * Get FrameNet callbacks
 	 *
-	 * @param wordid        word id
+	 * @param wordId        word id
 	 * @param groupPosition position in group
 	 * @return FrameNet callbacks
 	 */
-	private LoaderCallbacks<Cursor> getFnCallbacks(final long wordid, final int groupPosition)
+	private LoaderCallbacks<Cursor> getFnCallbacks(final long wordId, final int groupPosition)
 	{
-		return new FnLoaderCallbacks(getActivity(), wordid)
+		return new FnLoaderCallbacks(getActivity(), wordId)
 		{
 			@Override
-			public void onLoadFinished(final Loader<Cursor> loader0, final Cursor cursor)
+			public void onLoadFinished(final Loader<Cursor> loader, final Cursor cursor)
 			{
 				if (cursor != null)
 				{
@@ -499,7 +499,7 @@ public class XSelectorFragment extends ExpandableListFragment
 			}
 
 			@Override
-			public void onLoaderReset(final Loader<Cursor> arg0)
+			public void onLoaderReset(final Loader<Cursor> loader)
 			{
 				((CursorTreeAdapter) getListAdapter()).setChildrenCursor(groupPosition, null);
 			}
@@ -577,24 +577,24 @@ public class XSelectorFragment extends ExpandableListFragment
 			// final int idWordId = cursor.getColumnIndex(Words_XNet_U.WORDID);
 
 			// data
-			final long wordid = this.word.wordid;
+			final long wordId = this.word.wordId;
 			final String lemma = this.word.lemma;
 			final String cased = this.word.lemma;
-			final Long synsetid = cursor.isNull(idSynsetId) ? null : cursor.getLong(idSynsetId);
-			final String pos = synsetidToPos(synsetid);
-			final Long xid = cursor.isNull(idXId) ? null : cursor.getLong(idXId);
-			final Long xclassid = cursor.isNull(idXClassId) ? null : cursor.getLong(idXClassId);
-			final Long xinstanceid = cursor.isNull(idXInstanceId) ? null : cursor.getLong(idXInstanceId);
+			final Long synsetId = cursor.isNull(idSynsetId) ? null : cursor.getLong(idSynsetId);
+			final String pos = synsetIdToPos(synsetId);
+			final Long xId = cursor.isNull(idXId) ? null : cursor.getLong(idXId);
+			final Long xClassId = cursor.isNull(idXClassId) ? null : cursor.getLong(idXClassId);
+			final Long xInstanceId = cursor.isNull(idXInstanceId) ? null : cursor.getLong(idXInstanceId);
 			final String sources = cursor.getString(idXSources);
 
 			// pointer
 			final XPointer pointer = new XPointer();
-			pointer.setWord(wordid, lemma, cased);
-			pointer.setSynset(synsetid, pos);
-			pointer.setXid(xid);
-			pointer.setXclassid(xclassid);
-			pointer.setXinstanceid(xinstanceid);
-			pointer.setXsources(sources);
+			pointer.setWord(wordId, lemma, cased);
+			pointer.setSynset(synsetId, pos);
+			pointer.setxId(xId);
+			pointer.setXClassId(xClassId);
+			pointer.setxInstanceId(xInstanceId);
+			pointer.setxSources(sources);
 			Log.d(TAG, "pointer=" + pointer); //$NON-NLS-1$
 
 			// notify the active listener (the activity, if the fragment is attached to one) that an item has been selected
@@ -635,16 +635,16 @@ public class XSelectorFragment extends ExpandableListFragment
 	/**
 	 * Extract pos from synset id number
 	 *
-	 * @param synsetid synset id
+	 * @param synsetId synset id
 	 * @return pos
 	 */
-	private String synsetidToPos(final Long synsetid)
+	private String synsetIdToPos(final Long synsetId)
 	{
-		if (synsetid == null)
+		if (synsetId == null)
 		{
 			return null;
 		}
-		int p = (int) Math.floor(synsetid / 100000000F);
+		int p = (int) Math.floor(synsetId / 100000000F);
 		switch (p)
 		{
 			case 1:

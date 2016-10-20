@@ -81,7 +81,7 @@
 			</xsl:variable>
 			<A class="pointer">
 				<xsl:attribute name="href">
-					<xsl:value-of select="concat('query?synsetid=',$ref)"/>
+					<xsl:value-of select="concat('query?synsetId=',$ref)"/>
 				</xsl:attribute>
 				<IMG class="dataimg" src="images/pointer.png"/>
 				<!-- 				<xsl:value-of select="$ref" /> -->

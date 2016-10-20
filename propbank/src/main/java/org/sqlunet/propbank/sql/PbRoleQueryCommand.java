@@ -33,7 +33,7 @@ class PbRoleQueryCommand extends DBQueryCommand
 	/**
 	 * Set id parameters in prepared SQL statement
 	 *
-	 * @param roleSetId is the target roleset id
+	 * @param roleSetId is the target roleSet id
 	 */
 	@SuppressWarnings("unused")
 	public void setId(final long roleSetId)

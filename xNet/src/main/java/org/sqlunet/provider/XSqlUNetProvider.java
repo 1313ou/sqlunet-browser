@@ -98,9 +98,19 @@ public class XSqlUNetProvider extends SqlUNetProvider
 
 	// Q U E R Y
 
+	/**
+	 * Query
+	 *
+	 * @param uri           uri
+	 * @param projection    projection
+	 * @param selection     selection
+	 * @param selectionArgs selection arguments
+	 * @param sortOrder     sort order
+	 * @return cursor
+	 */
 	@SuppressWarnings("boxing")
 	@Override
-	public Cursor query(final Uri uri, final String[] projection0, final String selection, final String[] selectionArgs, final String sortOrder)
+	public Cursor query(final Uri uri, final String[] projection, final String selection, final String[] selectionArgs, final String sortOrder)
 	{
 		if (this.db == null)
 		{
@@ -156,7 +166,7 @@ public class XSqlUNetProvider extends SqlUNetProvider
 				final String[] unionProjection = {"wordid", "synsetid", "classid", "class", "classtag", "definition"}; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$ //$NON-NLS-6$
 				final String[] tableProjection = {"wordid", "synsetid", "classid", "class", "classtag"}; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$
 				final String[] groupBy0 = {"wordid", "synsetid", "classid"}; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				final String query = makeQuery(table1, table2, tableProjection, unionProjection, projection0, selection, groupBy0, sortOrder, "vn"); //$NON-NLS-1$
+				final String query = makeQuery(table1, table2, tableProjection, unionProjection, projection, selection, groupBy0, sortOrder, "vn"); //$NON-NLS-1$
 				Log.d(XSqlUNetProvider.TAG + "PM-VN", query); //$NON-NLS-1$
 
 				return raw(query, selectionArgs);
@@ -169,7 +179,7 @@ public class XSqlUNetProvider extends SqlUNetProvider
 				final String[] unionProjection = {"wordid", "synsetid", "rolesetid", "rolesetname", "rolesethead", "rolesetdescr", "definition"}; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$ //$NON-NLS-6$ //$NON-NLS-7$
 				final String[] tableProjection = {"wordid", "rolesetid", "rolesetname", "rolesethead", "rolesetdescr"}; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$
 				final String[] groupBy0 = {"wordid", "synsetid", "rolesetid"}; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				final String query = makeQuery(table1, table2, tableProjection, unionProjection, projection0, selection, groupBy0, sortOrder, "pb"); //$NON-NLS-1$
+				final String query = makeQuery(table1, table2, tableProjection, unionProjection, projection, selection, groupBy0, sortOrder, "pb"); //$NON-NLS-1$
 				Log.d(XSqlUNetProvider.TAG + "PM-PB", query); //$NON-NLS-1$
 
 				return raw(query, selectionArgs);
@@ -183,7 +193,7 @@ public class XSqlUNetProvider extends SqlUNetProvider
 						"framedefinition", "luid", "lexunit", "ludefinition", "definition"}; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$
 				final String[] tableProjection = {"wordid", "frameid", "frame", "framedefinition", "luid", "lexunit", "ludefinition"}; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$ //$NON-NLS-6$ //$NON-NLS-7$
 				final String[] groupBy0 = {"wordid", "synsetid", "frameid"}; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				final String query = makeQuery(table1, table2, tableProjection, unionProjection, projection0, selection, groupBy0, sortOrder, "fn"); //$NON-NLS-1$
+				final String query = makeQuery(table1, table2, tableProjection, unionProjection, projection, selection, groupBy0, sortOrder, "fn"); //$NON-NLS-1$
 				Log.d(XSqlUNetProvider.TAG + "PM-FN", query); //$NON-NLS-1$
 
 				return raw(query, selectionArgs);
@@ -196,7 +206,7 @@ public class XSqlUNetProvider extends SqlUNetProvider
 
 		if (SqlUNetProvider.debugSql)
 		{
-			final String sql = SQLiteQueryBuilder.buildQueryString(false, table, projection0, selection, groupBy, null, sortOrder, null);
+			final String sql = SQLiteQueryBuilder.buildQueryString(false, table, projection, selection, groupBy, null, sortOrder, null);
 			Log.d(XSqlUNetProvider.TAG + "SQL", sql); //$NON-NLS-1$
 			Log.d(XSqlUNetProvider.TAG + "ARGS", SqlUNetProvider.argsToString(selectionArgs)); //$NON-NLS-1$
 		}
@@ -204,7 +214,7 @@ public class XSqlUNetProvider extends SqlUNetProvider
 		// do query
 		try
 		{
-			return this.db.query(table, projection0, selection, selectionArgs, groupBy, null, sortOrder);
+			return this.db.query(table, projection, selection, selectionArgs, groupBy, null, sortOrder);
 		}
 		catch (final SQLiteException e)
 		{
@@ -218,33 +228,33 @@ public class XSqlUNetProvider extends SqlUNetProvider
 	 *
 	 * @param table1           table1
 	 * @param table2           table2
-	 * @param tableProjection0 table projection
+	 * @param tableProjection  table projection
 	 * @param unionProjection0 union projection
-	 * @param projection0      projection
-	 * @param selection0       selection
-	 * @param groupBys0        group by
-	 * @param sortOrder0       sort
-	 * @param tag0             tag
+	 * @param projection       projection
+	 * @param selection        selection
+	 * @param groupBys         group by
+	 * @param sortOrder        sort
+	 * @param tag              tag
 	 * @return union sql
 	 */
 	private String makeQuery(final String table1, final String table2, //
-			final String[] tableProjection0, final String[] unionProjection0, final String[] projection0, //
-			final String selection0, //
-			final String[] groupBys0, final String sortOrder0, final String tag0)
+			final String[] tableProjection, final String[] unionProjection0, final String[] projection, //
+			final String selection, //
+			final String[] groupBys, final String sortOrder, final String tag)
 	{
-		final String[] unionProjection = SqlUNetProvider.appendProjection(unionProjection0, "source"); //$NON-NLS-1$
+		final String[] actualUnionProjection = SqlUNetProvider.appendProjection(unionProjection0, "source"); //$NON-NLS-1$
 		final List<String> table1ProjectionList = Arrays.asList(unionProjection0);
-		final List<String> table2ProjectionList = Arrays.asList(tableProjection0);
+		final List<String> table2ProjectionList = Arrays.asList(tableProjection);
 
 		// predicate matrix
 		final SQLiteQueryBuilder pmSubQueryBuilder = new SQLiteQueryBuilder();
 		pmSubQueryBuilder.setTables(table1);
 		final String pmSubquery = pmSubQueryBuilder.buildUnionSubQuery("source", // //$NON-NLS-1$
-				unionProjection, //
+				actualUnionProjection, //
 				new HashSet<>(table1ProjectionList), //
 				0, //
-				"pm" + tag0, // //$NON-NLS-1$
-				selection0, //
+				"pm" + tag, // //$NON-NLS-1$
+				selection, //
 				null, //
 				null);
 
@@ -252,11 +262,11 @@ public class XSqlUNetProvider extends SqlUNetProvider
 		final SQLiteQueryBuilder sqlunetSubQueryBuilder = new SQLiteQueryBuilder();
 		sqlunetSubQueryBuilder.setTables(table2);
 		final String sqlunetSubquery = sqlunetSubQueryBuilder.buildUnionSubQuery("source", // //$NON-NLS-1$
-				unionProjection, //
+				actualUnionProjection, //
 				new HashSet<>(table2ProjectionList), //
 				0, //
-				tag0, //
-				selection0, //
+				tag, //
+				selection, //
 				null, //
 				null);
 
@@ -268,21 +278,21 @@ public class XSqlUNetProvider extends SqlUNetProvider
 		// embed
 		final SQLiteQueryBuilder embeddingQueryBuilder = new SQLiteQueryBuilder();
 		embeddingQueryBuilder.setTables('(' + uQuery + ')');
-		final String[] resultProjection = SqlUNetProvider.prependProjection(projection0, "GROUP_CONCAT(DISTINCT source) AS sources"); //$NON-NLS-1$
+		final String[] resultProjection = SqlUNetProvider.prependProjection(projection, "GROUP_CONCAT(DISTINCT source) AS sources"); //$NON-NLS-1$
 
 		// group by
-		String[] groupBys = groupBys0;
-		if (groupBys == null)
+		String[] actualGroupBys = groupBys;
+		if (actualGroupBys == null)
 		{
-			groupBys = new String[projection0.length];
-			for (int i = 0; i < projection0.length; i++)
+			actualGroupBys = new String[projection.length];
+			for (int i = 0; i < projection.length; i++)
 			{
-				groupBys[i] = projection0[i].replaceFirst("\\sAS\\s*.*$", ""); //$NON-NLS-1$ //$NON-NLS-2$
+				actualGroupBys[i] = projection[i].replaceFirst("\\sAS\\s*.*$", ""); //$NON-NLS-1$ //$NON-NLS-2$
 			}
 		}
-		String groupBy = TextUtils.join(",", groupBys); //$NON-NLS-1$
+		String groupBy = TextUtils.join(",", actualGroupBys); //$NON-NLS-1$
 
-		return embeddingQueryBuilder.buildQuery(resultProjection, null, groupBy, null, sortOrder0, null);
+		return embeddingQueryBuilder.buildQuery(resultProjection, null, groupBy, null, sortOrder, null);
 	}
 
 	/**

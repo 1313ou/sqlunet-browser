@@ -61,8 +61,8 @@ public class NodeFactory extends org.sqlunet.sql.NodeFactory
 	 *
 	 * @param doc      is the DOM Document being built
 	 * @param parent   is the parent node to attach this node to
-	 * @param wordId   is the wordid
-	 * @param synsetId is the synsetid
+	 * @param wordId   is the word id
+	 * @param synsetId is the synset id
 	 * @return newly created node
 	 */
 	static public Node makeSenseNode(final Document doc, final Node parent, final long wordId, final long synsetId)

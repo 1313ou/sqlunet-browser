@@ -13,7 +13,7 @@ public class FnLexUnitPointer implements Parcelable
 	/**
 	 * Members
 	 */
-	public long luid;
+	public long luId;
 
 	/**
 	 * Constructor
@@ -27,15 +27,15 @@ public class FnLexUnitPointer implements Parcelable
 	 */
 	private FnLexUnitPointer(final Parcel pc)
 	{
-		this.luid = pc.readLong();
+		this.luId = pc.readLong();
 	}
 
 	@SuppressWarnings("boxing")
 	public Long getLuId()
 	{
-		if (this.luid != 0)
+		if (this.luId != 0)
 		{
-			return this.luid;
+			return this.luId;
 		}
 		return null;
 	}
@@ -62,7 +62,7 @@ public class FnLexUnitPointer implements Parcelable
 	@Override
 	public void writeToParcel(final Parcel pc, final int flags)
 	{
-		pc.writeLong(this.luid);
+		pc.writeLong(this.luId);
 	}
 
 

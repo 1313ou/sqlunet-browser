@@ -61,8 +61,8 @@
 					<xsl:value-of select="./@name"/>
 				</SPAN>
 				<!--
-				<xsl:text> rolesetid=</xsl:text>
-				<xsl:value-of select="./@rolesetid" />
+				<xsl:text> roleSetId=</xsl:text>
+				<xsl:value-of select="./@roleSetId" />
 				<xsl:text> num=</xsl:text>
 				<xsl:value-of select="./@num" />
 				<xsl:text> head=</xsl:text>

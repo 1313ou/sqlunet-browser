@@ -13,7 +13,7 @@ public class FnAnnoSetPointer implements Parcelable
 	/**
 	 * Members
 	 */
-	public long annosetid;
+	public long annoSetId;
 
 	/**
 	 * Constructor
@@ -27,15 +27,15 @@ public class FnAnnoSetPointer implements Parcelable
 	 */
 	private FnAnnoSetPointer(final Parcel pc)
 	{
-		this.annosetid = pc.readLong();
+		this.annoSetId = pc.readLong();
 	}
 
 	@SuppressWarnings("boxing")
 	public Long getAnnoSetId()
 	{
-		if (this.annosetid != 0)
+		if (this.annoSetId != 0)
 		{
-			return this.annosetid;
+			return this.annoSetId;
 		}
 		return null;
 	}
@@ -62,7 +62,7 @@ public class FnAnnoSetPointer implements Parcelable
 	@Override
 	public void writeToParcel(final Parcel pc, final int flags)
 	{
-		pc.writeLong(this.annosetid);
+		pc.writeLong(this.annoSetId);
 	}
 
 

@@ -84,7 +84,7 @@ public class PropbankProvider extends SqlUNetProvider
 
 	@SuppressWarnings("boxing")
 	@Override
-	public Cursor query(final Uri uri, final String[] projection, final String selection0, final String[] selectionArgs, final String sortOrder0)
+	public Cursor query(final Uri uri, final String[] projection, final String selection, final String[] selectionArgs, final String sortOrder)
 	{
 		if (this.db == null)
 		{
@@ -92,8 +92,8 @@ public class PropbankProvider extends SqlUNetProvider
 		}
 
 		// choose the table to query and a sort order based on the code returned for the incoming URI
-		String selection = selection0;
-		String sortOrder = sortOrder0;
+		String actualSelection = selection;
+		String actualSortOrder = sortOrder;
 		final int code = PropbankProvider.uriMatcher.match(uri);
 		Log.d(PropbankProvider.TAG + "URI", String.format("%s (code %s)\n", uri, code)); //$NON-NLS-1$ //$NON-NLS-2$
 		String groupBy = null;
@@ -107,15 +107,15 @@ public class PropbankProvider extends SqlUNetProvider
 
 			case PBROLESET:
 				table = PbRolesets.TABLE;
-				if (selection != null)
+				if (actualSelection != null)
 				{
-					selection += " AND "; //$NON-NLS-1$
+					actualSelection += " AND "; //$NON-NLS-1$
 				}
 				else
 				{
-					selection = ""; //$NON-NLS-1$
+					actualSelection = ""; //$NON-NLS-1$
 				}
-				selection += PbRolesets.ROLESETID + " = ?"; //$NON-NLS-1$
+				actualSelection += PbRolesets.ROLESETID + " = ?"; //$NON-NLS-1$
 				break;
 
 			case PBROLESETS:
@@ -132,10 +132,10 @@ public class PropbankProvider extends SqlUNetProvider
 
 			case PBROLESETS_PBROLES:
 				table = "pbrolesets " + // //$NON-NLS-1$
-						"INNER JOIN pbroles USING (rolesetid) " + // //$NON-NLS-1$
+						"INNER JOIN pbroles USING (roleSetId) " + // //$NON-NLS-1$
 						"LEFT JOIN pbfuncs USING (func) " + // //$NON-NLS-1$
 						"LEFT JOIN pbvnthetas USING (theta)"; //$NON-NLS-1$
-				sortOrder = "narg"; //$NON-NLS-1$
+				actualSortOrder = "narg"; //$NON-NLS-1$
 				break;
 
 			case PBROLESETS_PBEXAMPLES_BY_EXAMPLE:
@@ -144,7 +144,7 @@ public class PropbankProvider extends SqlUNetProvider
 				//noinspection fallthrough
 			case PBROLESETS_PBEXAMPLES:
 				table = "pbrolesets " + // //$NON-NLS-1$
-						"INNER JOIN pbexamples AS e USING (rolesetid) " + // //$NON-NLS-1$
+						"INNER JOIN pbexamples AS e USING (roleSetId) " + // //$NON-NLS-1$
 						"LEFT JOIN pbrels AS r USING (exampleid) " + // //$NON-NLS-1$
 						"LEFT JOIN pbargs AS a USING (exampleid) " + // //$NON-NLS-1$
 						"LEFT JOIN pbfuncs AS f ON (a.func = f.func) " + // //$NON-NLS-1$
@@ -153,9 +153,9 @@ public class PropbankProvider extends SqlUNetProvider
 						"LEFT JOIN pbtenses USING (tense) " + // //$NON-NLS-1$
 						"LEFT JOIN pbvoices USING (voice) " + // //$NON-NLS-1$
 						"LEFT JOIN pbpersons USING (person) " + // //$NON-NLS-1$
-						"LEFT JOIN pbroles USING (rolesetid,narg) " + // //$NON-NLS-1$
+						"LEFT JOIN pbroles USING (roleSetId,narg) " + // //$NON-NLS-1$
 						"LEFT JOIN pbvnthetas USING (theta)"; //$NON-NLS-1$
-				sortOrder = "e.exampleid,narg"; //$NON-NLS-1$
+				actualSortOrder = "e.exampleid,narg"; //$NON-NLS-1$
 				break;
 
 			default:
@@ -165,7 +165,7 @@ public class PropbankProvider extends SqlUNetProvider
 
 		if (SqlUNetProvider.debugSql)
 		{
-			final String sql = SQLiteQueryBuilder.buildQueryString(false, table, projection, selection, groupBy, null, sortOrder, null);
+			final String sql = SQLiteQueryBuilder.buildQueryString(false, table, projection, actualSelection, groupBy, null, actualSortOrder, null);
 			Log.d(PropbankProvider.TAG + "SQL", sql); //$NON-NLS-1$
 			Log.d(PropbankProvider.TAG + "ARGS", SqlUNetProvider.argsToString(selectionArgs)); //$NON-NLS-1$
 		}
@@ -173,7 +173,7 @@ public class PropbankProvider extends SqlUNetProvider
 		// do query
 		try
 		{
-			return this.db.query(table, projection, selection, selectionArgs, groupBy, null, sortOrder);
+			return this.db.query(table, projection, actualSelection, selectionArgs, groupBy, null, actualSortOrder);
 		}
 		catch (SQLiteException e)
 		{

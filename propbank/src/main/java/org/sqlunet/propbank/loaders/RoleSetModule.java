@@ -8,7 +8,7 @@ import org.sqlunet.propbank.PbRoleSetPointer;
 import org.sqlunet.treeview.model.TreeNode;
 
 /**
- * Module for rolesets
+ * Module for roleSets
  *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
@@ -16,33 +16,33 @@ public class RoleSetModule extends BasicModule
 {
 	// query
 
-	private Long rolesetid;
+	private Long roleSetId;
 
 	/**
 	 * Constructor
 	 */
-	public RoleSetModule(final Fragment fragment0)
+	public RoleSetModule(final Fragment fragment)
 	{
-		super(fragment0);
+		super(fragment);
 	}
 
 	@Override
-	void unmarshall(final Parcelable query)
+	void unmarshal(final Parcelable query)
 	{
 		// get query
 		if (query instanceof PbRoleSetPointer)
 		{
 			final PbRoleSetPointer pointer = (PbRoleSetPointer) query;
-			this.rolesetid = pointer.rolesetid;
+			this.roleSetId = pointer.roleSetId;
 		}
 		if (query instanceof HasXId)
 		{
 			final HasXId pointer = (HasXId) query;
-			if (pointer.getXsources().contains("pb")) //$NON-NLS-1$
+			if (pointer.getxSources().contains("pb")) //$NON-NLS-1$
 			{
-				this.rolesetid = pointer.getXinstanceid();
-				// Long classid = pointer.getXclassid();
-				// String sources = pointer.getXsources();
+				this.roleSetId = pointer.getXInstanceId();
+				// Long classId = pointer.getxClassId();
+				// String sources = pointer.getxSources();
 			}
 		}
 	}
@@ -50,10 +50,10 @@ public class RoleSetModule extends BasicModule
 	@Override
 	public void process(final TreeNode node)
 	{
-		if (this.rolesetid != null)
+		if (this.roleSetId != null)
 		{
 			// data
-			roleset(RoleSetModule.this.rolesetid, node);
+			roleSet(RoleSetModule.this.roleSetId, node);
 		}
 		else
 		{

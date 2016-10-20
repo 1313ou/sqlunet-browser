@@ -20,7 +20,7 @@ class FnFrameElementQueryCommand extends DBQueryCommand
 	 * Constructor
 	 *
 	 * @param connection    is the database connection
-	 * @param targetFrameId is the target frameid
+	 * @param targetFrameId is the target frameId
 	 */
 	@SuppressWarnings("boxing")
 	public FnFrameElementQueryCommand(final SQLiteDatabase connection, final long targetFrameId)

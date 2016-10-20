@@ -12,34 +12,34 @@ public class ClassModule extends BasicModule
 	/**
 	 * Query
 	 */
-	private Long classid;
+	private Long classId;
 
 	/**
 	 * Constructor
 	 *
-	 * @param fragment0 host fragment
+	 * @param fragment host fragment
 	 */
-	public ClassModule(final Fragment fragment0)
+	public ClassModule(final Fragment fragment)
 	{
-		super(fragment0);
+		super(fragment);
 	}
 
 	@Override
-	void unmarshall(final Parcelable query)
+	void unmarshal(final Parcelable query)
 	{
 		if (query instanceof VnClassPointer)
 		{
 			final VnClassPointer pointer = (VnClassPointer) query;
-			this.classid = pointer.classid;
+			this.classId = pointer.classId;
 		}
 		if (query instanceof HasXId)
 		{
 			final HasXId pointer = (HasXId) query;
-			if (pointer.getXsources().contains("vn")) //$NON-NLS-1$
+			if (pointer.getxSources().contains("vn")) //$NON-NLS-1$
 			{
-				this.classid = pointer.getXclassid();
-				// Long instanceid = pointer.getXinstanceid();
-				// String sources = pointer.getXsources();
+				this.classId = pointer.getxClassId();
+				// Long instanceId = pointer.getXInstanceId();
+				// String sources = pointer.getxSources();
 			}
 		}
 	}
@@ -47,10 +47,10 @@ public class ClassModule extends BasicModule
 	@Override
 	public void process(final TreeNode node)
 	{
-		if (this.classid != null)
+		if (this.classId != null)
 		{
 			// data
-			vnclasses(this.classid, node);
+			vnClasses(this.classId, node);
 		}
 		else
 		{

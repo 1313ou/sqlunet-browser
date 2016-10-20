@@ -167,7 +167,7 @@ public class SensesFragment extends ListFragment
 		getLoaderManager().restartLoader(++Module.loaderId, null, new LoaderCallbacks<Cursor>()
 		{
 			@Override
-			public Loader<Cursor> onCreateLoader(final int loaderId0, final Bundle args0)
+			public Loader<Cursor> onCreateLoader(final int loaderId, final Bundle loaderArgs)
 			{
 				final Uri uri = Uri.parse(Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.CONTENT_URI);
 				final String[] projection = { //
@@ -190,23 +190,23 @@ public class SensesFragment extends ListFragment
 			}
 
 			@Override
-			public void onLoadFinished(final Loader<Cursor> loader0, final Cursor c)
+			public void onLoadFinished(final Loader<Cursor> loader, final Cursor cursor)
 			{
 				// store source result
-				if (c.moveToFirst())
+				if (cursor.moveToFirst())
 				{
 					SensesFragment.this.word = new WordPointer();
 					SensesFragment.this.word.lemma = SensesFragment.this.queryWord;
-					final int wordidId = c.getColumnIndex(WordNetContract.Words.WORDID);
-					SensesFragment.this.word.wordid = c.getLong(wordidId);
+					final int wordId = cursor.getColumnIndex(WordNetContract.Words.WORDID);
+					SensesFragment.this.word.wordId = cursor.getLong(wordId);
 				}
 
 				// pass on to list adapter
-				((CursorAdapter) getListAdapter()).swapCursor(c);
+				((CursorAdapter) getListAdapter()).swapCursor(cursor);
 			}
 
 			@Override
-			public void onLoaderReset(final Loader<Cursor> arg0)
+			public void onLoaderReset(final Loader<Cursor> loader)
 			{
 				((CursorAdapter) getListAdapter()).swapCursor(null);
 			}
@@ -325,7 +325,7 @@ public class SensesFragment extends ListFragment
 
 			final SensePointer sense = new SensePointer();
 			sense.setSynset(cursor.isNull(synsetId) ? null : cursor.getLong(synsetId), cursor.getString(posId));
-			sense.setWord(this.word.wordid, this.word.lemma, cursor.getString(casedId));
+			sense.setWord(this.word.wordId, this.word.lemma, cursor.getString(casedId));
 
 			// notify the active listener (the activity, if the fragment is attached to one) that an item has been selected
 			if (this.listener != null)

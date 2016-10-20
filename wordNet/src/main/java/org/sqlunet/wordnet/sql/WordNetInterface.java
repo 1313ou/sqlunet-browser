@@ -102,8 +102,8 @@ interface WordNetInterface
 	 * Business method that returns WordNet sense data as DOM document
 	 *
 	 * @param connection connection
-	 * @param wordId     the target wordid
-	 * @param synsetId   the target synsetid
+	 * @param wordId     the target word id
+	 * @param synsetId   the target synset id
 	 * @return WordNet synset data as DOM document <!-- end-user-doc -->
 	 */
 	Document querySenseDoc(final SQLiteDatabase connection, final long wordId, final long synsetId);
@@ -112,8 +112,8 @@ interface WordNetInterface
 	 * Business method that returns WordNet sense data as XML
 	 *
 	 * @param connection connection
-	 * @param wordId     the target wordid
-	 * @param synsetId   the target synsetid
+	 * @param wordId     the target word id
+	 * @param synsetId   the target synset id
 	 * @return WordNet synset data as XML
 	 */
 	String querySenseXML(final SQLiteDatabase connection, final long wordId, final long synsetId);
@@ -122,7 +122,7 @@ interface WordNetInterface
 	 * Business method that returns WordNet synset data as DOM document
 	 *
 	 * @param connection connection
-	 * @param synsetId   the target synsetid
+	 * @param synsetId   the target synset id
 	 * @return WordNet synset data as DOM document <!-- end-user-doc -->
 	 */
 	Document querySynsetDoc(final SQLiteDatabase connection, final long synsetId);
@@ -131,7 +131,7 @@ interface WordNetInterface
 	 * Business method that returns WordNet synset data as XML
 	 *
 	 * @param connection connection
-	 * @param synsetId   the target synsetid
+	 * @param synsetId   the target synset id
 	 * @return WordNet synset data as XML
 	 */
 	String querySynsetXML(final SQLiteDatabase connection, final long synsetId);

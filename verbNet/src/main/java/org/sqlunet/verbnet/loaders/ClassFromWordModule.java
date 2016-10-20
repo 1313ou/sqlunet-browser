@@ -26,41 +26,41 @@ public class ClassFromWordModule extends BasicModule
 	/**
 	 * Query
 	 */
-	private Long wordid;
+	private Long wordId;
 
-	private Long synsetid;
+	private Long synsetId;
 
 	/**
 	 * Constructor
 	 *
-	 * @param fragment0 host fragment
+	 * @param fragment host fragment
 	 */
-	public ClassFromWordModule(final Fragment fragment0)
+	public ClassFromWordModule(final Fragment fragment)
 	{
-		super(fragment0);
+		super(fragment);
 	}
 
 	@Override
-	void unmarshall(final Parcelable query)
+	void unmarshal(final Parcelable query)
 	{
 		if (query instanceof HasSynsetId)
 		{
 			final HasSynsetId synsetQuery = (HasSynsetId) query;
-			this.synsetid = synsetQuery.getSynsetId();
+			this.synsetId = synsetQuery.getSynsetId();
 		}
 		if (query instanceof HasWordId)
 		{
-			final HasWordId wordidQuery = (HasWordId) query;
-			this.wordid = wordidQuery.getWordId();
+			final HasWordId wordIdQuery = (HasWordId) query;
+			this.wordId = wordIdQuery.getWordId();
 		}
 	}
 
 	@Override
 	public void process(final TreeNode node)
 	{
-		if (this.wordid != null)
+		if (this.wordId != null)
 		{
-			vnclasses(this.wordid, this.synsetid, node);
+			vnClasses(this.wordId, this.synsetId, node);
 		}
 		else
 		{
@@ -70,14 +70,14 @@ public class ClassFromWordModule extends BasicModule
 
 	// L O A D E R S
 
-	// vnclasses
+	// vnClasses
 
-	private void vnclasses(final long wordid0, final long synsetid0, final TreeNode parent)
+	private void vnClasses(final long wordId, final long synsetId, final TreeNode parent)
 	{
 		getLoaderManager().restartLoader(++Module.loaderId, null, new LoaderCallbacks<Cursor>()
 		{
 			@Override
-			public Loader<Cursor> onCreateLoader(final int loaderId0, final Bundle args)
+			public Loader<Cursor> onCreateLoader(final int loaderId, final Bundle loaderArgs)
 			{
 				final Uri uri = Uri.parse(Words_VnClasses_VnGroupings.CONTENT_URI);
 				final String[] projection = { //
@@ -92,17 +92,17 @@ public class ClassFromWordModule extends BasicModule
 				};
 				String selection = Words_VnClasses_VnGroupings.WORDID + " = ?"; //$NON-NLS-1$
 				String[] selectionArgs;
-				if (synsetid0 != 0)
+				if (synsetId != 0)
 				{
 					selection += " AND (" + Words_VnClasses_VnGroupings.SYNSETID + " = ? OR " + Words_VnClasses_VnGroupings.SYNSETID + " IS NULL)"; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 					selectionArgs = new String[]{ //
-							Long.toString(wordid0), //
-							Long.toString(synsetid0)};
+							Long.toString(wordId), //
+							Long.toString(synsetId)};
 				}
 				else
 				{
 					selectionArgs = new String[]{ //
-							Long.toString(wordid0)};
+							Long.toString(wordId)};
 				}
 				final String sortOrder = null;
 				return new CursorLoader(ClassFromWordModule.this.getContext(), uri, projection, selection, selectionArgs, sortOrder);
@@ -125,25 +125,25 @@ public class ClassFromWordModule extends BasicModule
 						final SpannableStringBuilder sb = new SpannableStringBuilder();
 
 						// data
-						final int classid1 = cursor.getInt(idClassId);
-						final String vnclass = cursor.getString(idClass);
+						final int classId = cursor.getInt(idClassId);
+						final String vnClass = cursor.getString(idClass);
 						final String groupings = cursor.getString(idGroupings);
 
 						// sb.append("[class]");
 						Spanner.appendImage(sb, ClassFromWordModule.this.drawableRoles);
 						sb.append(' ');
-						Spanner.append(sb, vnclass, 0, VerbNetFactories.classFactory);
+						Spanner.append(sb, vnClass, 0, VerbNetFactories.classFactory);
 						// sb.append(" tag=");
 						// sb.append(cursor.getString(idClassTag));
 						sb.append(" id="); //$NON-NLS-1$
-						sb.append(Integer.toString(classid1));
+						sb.append(Integer.toString(classId));
 
 						// groupings
 						final TreeNode itemsNode = groupings(groupings);
 
 						// sub nodes
-						final TreeNode rolesNode = TreeFactory.newQueryNode(new RolesQuery(classid1, R.drawable.role, "Roles"), ClassFromWordModule.this.getContext()); //$NON-NLS-1$
-						final TreeNode framesNode = TreeFactory.newQueryNode(new FramesQuery(classid1, R.drawable.vnframe, "Frames"), ClassFromWordModule.this.getContext()); //$NON-NLS-1$
+						final TreeNode rolesNode = TreeFactory.newQueryNode(new RolesQuery(classId, R.drawable.role, "Roles"), ClassFromWordModule.this.getContext()); //$NON-NLS-1$
+						final TreeNode framesNode = TreeFactory.newQueryNode(new FramesQuery(classId, R.drawable.vnframe, "Frames"), ClassFromWordModule.this.getContext()); //$NON-NLS-1$
 
 						// attach result
 						TreeFactory.addTextNode(parent, sb, ClassFromWordModule.this.getContext(), itemsNode, rolesNode, framesNode);
@@ -162,7 +162,7 @@ public class ClassFromWordModule extends BasicModule
 			}
 
 			@Override
-			public void onLoaderReset(final Loader<Cursor> arg0)
+			public void onLoaderReset(final Loader<Cursor> loader)
 			{
 				//
 			}

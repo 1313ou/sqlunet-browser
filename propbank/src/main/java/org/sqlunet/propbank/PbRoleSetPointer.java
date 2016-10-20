@@ -4,7 +4,7 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 /**
- * Parcelable roleset
+ * Parcelable roleSet
  *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
@@ -13,35 +13,35 @@ public class PbRoleSetPointer implements Parcelable
 	/**
 	 * Members
 	 */
-	public Long rolesetid;
+	public Long roleSetId;
 
 	/**
 	 * Constructor
 	 */
 	public PbRoleSetPointer()
 	{
-		this.rolesetid = null;
+		this.roleSetId = null;
 	}
 
 	/**
 	 * Constructor from Parcel, reads back fields IN THE ORDER they were written
 	 */
 	@SuppressWarnings("boxing")
-	private PbRoleSetPointer(final Parcel pc)
+	private PbRoleSetPointer(final Parcel parcel)
 	{
 		this();
-		long frameid0 = pc.readLong();
-		if (frameid0 != -1)
+		long parcelRoleSetId = parcel.readLong();
+		if (parcelRoleSetId != -1)
 		{
-			this.rolesetid = frameid0;
+			this.roleSetId = parcelRoleSetId;
 		}
 	}
 
 	public Long getRoleSetId()
 	{
-		if (this.rolesetid != 0)
+		if (this.roleSetId != 0)
 		{
-			return this.rolesetid;
+			return this.roleSetId;
 		}
 		return null;
 	}
@@ -67,7 +67,7 @@ public class PbRoleSetPointer implements Parcelable
 	@Override
 	public void writeToParcel(final Parcel pc, final int flags)
 	{
-		pc.writeLong(this.rolesetid == null ? -1 : this.rolesetid);
+		pc.writeLong(this.roleSetId == null ? -1 : this.roleSetId);
 	}
 
 	@Override

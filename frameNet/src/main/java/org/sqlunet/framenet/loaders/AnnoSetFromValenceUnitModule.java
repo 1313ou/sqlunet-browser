@@ -13,16 +13,16 @@ public class AnnoSetFromValenceUnitModule extends BasicModule
 	/**
 	 * Pointer
 	 */
-	private Long vuid;
+	private Long vuId;
 
 	/**
 	 * Constructor
 	 *
-	 * @param fragment0 fragment
+	 * @param fragment fragment
 	 */
-	public AnnoSetFromValenceUnitModule(final Fragment fragment0)
+	public AnnoSetFromValenceUnitModule(final Fragment fragment)
 	{
-		super(fragment0);
+		super(fragment);
 	}
 
 	@Override
@@ -34,17 +34,17 @@ public class AnnoSetFromValenceUnitModule extends BasicModule
 		if (arguments instanceof FnValenceUnitPointer)
 		{
 			final FnValenceUnitPointer query = (FnValenceUnitPointer) arguments;
-			this.vuid = query.getId();
+			this.vuId = query.getId();
 		}
 	}
 
 	@Override
 	public void process(final TreeNode node)
 	{
-		if (this.vuid != null)
+		if (this.vuId != null)
 		{
 			// data
-			annosets_for_valenceunit(this.vuid, node);
+			annosets_for_valenceunit(this.vuId, node);
 		}
 	}
 }

@@ -85,12 +85,12 @@ public class RegExprSpanner extends Spanner
 		 * Constructor
 		 *
 		 * @param regexpr    regexpr
-		 * @param factories0 span factories
+		 * @param factories span factories
 		 */
-		SpanReplacer(final String regexpr, final SpanFactory... factories0)
+		SpanReplacer(final String regexpr, final SpanFactory... factories)
 		{
 			this.pattern = Pattern.compile(regexpr, Pattern.MULTILINE);
-			this.spanFactories = factories0;
+			this.spanFactories = factories;
 		}
 
 		/**

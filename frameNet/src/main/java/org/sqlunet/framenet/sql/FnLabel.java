@@ -19,14 +19,14 @@ public class FnLabel
 
 	public final String fgColor;
 
-	public FnLabel(final String from0, final String to0, final String label0, final String itype0, final String bgColor0, final String fgColor0)
+	public FnLabel(final String from, final String to, final String label, final String iType, final String bgColor, final String fgColor)
 	{
 		super();
-		this.from = from0;
-		this.to = to0;
-		this.label = label0;
-		this.itype = itype0;
-		this.bgColor = bgColor0 != null && bgColor0.isEmpty() ? null : bgColor0;
-		this.fgColor = fgColor0 != null && fgColor0.isEmpty() ? null : fgColor0;
+		this.from = from;
+		this.to = to;
+		this.label = label;
+		this.itype = iType;
+		this.bgColor = bgColor != null && bgColor.isEmpty() ? null : bgColor;
+		this.fgColor = fgColor != null && fgColor.isEmpty() ? null : fgColor;
 	}
 }

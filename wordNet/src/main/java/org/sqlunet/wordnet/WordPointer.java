@@ -4,5 +4,5 @@ public class WordPointer
 {
 	public String lemma;
 
-	public long wordid;
+	public long wordId;
 }

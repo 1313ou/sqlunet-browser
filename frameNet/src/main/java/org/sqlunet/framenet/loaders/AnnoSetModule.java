@@ -13,18 +13,18 @@ public class AnnoSetModule extends BasicModule
 	/**
 	 * Pointer
 	 */
-	private Long annosetid;
+	private Long annoSetId;
 
 	// resources
 
 	/**
 	 * Constructor
 	 *
-	 * @param fragment0 fragment
+	 * @param fragment fragment
 	 */
-	public AnnoSetModule(final Fragment fragment0)
+	public AnnoSetModule(final Fragment fragment)
 	{
-		super(fragment0);
+		super(fragment);
 	}
 
 	@Override
@@ -36,17 +36,17 @@ public class AnnoSetModule extends BasicModule
 		if (arguments instanceof FnAnnoSetPointer)
 		{
 			final FnAnnoSetPointer query = (FnAnnoSetPointer) arguments;
-			this.annosetid = query.getAnnoSetId();
+			this.annoSetId = query.getAnnoSetId();
 		}
 	}
 
 	@Override
 	public void process(final TreeNode node)
 	{
-		if (this.annosetid != null)
+		if (this.annoSetId != null)
 		{
 			// data
-			annoset(this.annosetid, node, true);
+			annoset(this.annoSetId, node, true);
 		}
 	}
 }

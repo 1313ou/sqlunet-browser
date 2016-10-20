@@ -11,7 +11,7 @@ import org.sqlunet.style.Spanner.SpanFactory;
 
 public class PropbankFactories
 {
-	static public final SpanFactory rolesetFactory = new SpanFactory()
+	static public final SpanFactory roleSetFactory = new SpanFactory()
 	{
 		@Override
 		public Object makeSpans(final long flags)

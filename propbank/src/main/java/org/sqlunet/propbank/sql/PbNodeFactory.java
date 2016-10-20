@@ -36,7 +36,7 @@ class PbNodeFactory extends NodeFactory
 	 * Make PropBank root node
 	 *
 	 * @param doc       is the DOM Document being built
-	 * @param roleSetId is the target roleset id
+	 * @param roleSetId is the target roleSet id
 	 * @return newly created node
 	 */
 	public static Node makePbRootRoleSetNode(final Document doc, long roleSetId)
@@ -47,26 +47,26 @@ class PbNodeFactory extends NodeFactory
 	}
 
 	/**
-	 * Make the roleset node
+	 * Make the roleSet node
 	 *
 	 * @param doc     is the DOM Document being built
 	 * @param parent  is the parent node to attach this node to
-	 * @param roleSet is the roleset information
-	 * @param i       the ith roleset
+	 * @param roleSet is the roleSet information
+	 * @param i       the ith roleSet
 	 */
 	public static Node makePbRoleSetNode(final Document doc, final Node parent, final PbRoleSet roleSet, final int i)
 	{
 		final Element element = NodeFactory.makeNode(doc, parent, "roleset", null); //$NON-NLS-1$
 		NodeFactory.makeAttribute(element, "num", Integer.toString(i)); //$NON-NLS-1$
 		NodeFactory.makeAttribute(element, "name", roleSet.roleSetName); //$NON-NLS-1$
-		NodeFactory.makeAttribute(element, "rolesetid", Long.toString(roleSet.roleSetId)); //$NON-NLS-1$
+		NodeFactory.makeAttribute(element, "roleSetId", Long.toString(roleSet.roleSetId)); //$NON-NLS-1$
 		NodeFactory.makeAttribute(element, "head", roleSet.roleSetHead); //$NON-NLS-1$
 		NodeFactory.makeText(doc, element, roleSet.roleSetDescr);
 		return element;
 	}
 
 	/**
-	 * Make the roleset node
+	 * Make the roleSet node
 	 *
 	 * @param doc    is the DOM Document being built
 	 * @param parent is the parent node to attach this node to

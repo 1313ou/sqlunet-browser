@@ -96,7 +96,7 @@ public class VerbNetProvider extends SqlUNetProvider
 
 	@SuppressWarnings("boxing")
 	@Override
-	public Cursor query(final Uri uri, final String[] projection, String selection0, final String[] selectionArgs, String sortOrder)
+	public Cursor query(final Uri uri, final String[] projection, final String selection, final String[] selectionArgs, String sortOrder)
 	{
 		if (this.db == null)
 		{
@@ -104,7 +104,7 @@ public class VerbNetProvider extends SqlUNetProvider
 		}
 
 		// choose the table to query and a sort order based on the code returned for the incoming URI
-		String selection = selection0;
+		String actualSelection = selection;
 		final int code = VerbNetProvider.uriMatcher.match(uri);
 		Log.d(VerbNetProvider.TAG + "URI", String.format("%s (code %s)\n", uri, code)); //$NON-NLS-1$ //$NON-NLS-2$
 		String groupBy = null;
@@ -118,15 +118,15 @@ public class VerbNetProvider extends SqlUNetProvider
 
 			case VNCLASS:
 				table = VerbNetContract.VnClasses.TABLE;
-				if (selection != null)
+				if (actualSelection != null)
 				{
-					selection += " AND "; //$NON-NLS-1$
+					actualSelection += " AND "; //$NON-NLS-1$
 				}
 				else
 				{
-					selection = ""; //$NON-NLS-1$
+					actualSelection = ""; //$NON-NLS-1$
 				}
-				selection += VerbNetContract.VnClasses.CLASSID + " = " + uri.getLastPathSegment(); //$NON-NLS-1$
+				actualSelection += VerbNetContract.VnClasses.CLASSID + " = " + uri.getLastPathSegment(); //$NON-NLS-1$
 				break;
 
 			case VNCLASSES:
@@ -134,9 +134,9 @@ public class VerbNetProvider extends SqlUNetProvider
 				break;
 
 			case VNCLASSES_X_BY_VNCLASS:
-				groupBy = "classid"; //$NON-NLS-1$
+				groupBy = "classId"; //$NON-NLS-1$
 				table = "vnclasses " + // //$NON-NLS-1$
-						"LEFT JOIN vngroupingmaps USING (classid) " + // //$NON-NLS-1$
+						"LEFT JOIN vngroupingmaps USING (classId) " + // //$NON-NLS-1$
 						"LEFT JOIN vngroupings USING (groupingid)"; //$NON-NLS-1$
 				break;
 
@@ -146,16 +146,16 @@ public class VerbNetProvider extends SqlUNetProvider
 				table = "words " + // //$NON-NLS-1$
 						"INNER JOIN vnwords USING (wordid) " + // //$NON-NLS-1$
 						"INNER JOIN vnclassmembersenses USING (vnwordid) " + // //$NON-NLS-1$
-						"LEFT JOIN vnclasses USING (classid)"; //$NON-NLS-1$
+						"LEFT JOIN vnclasses USING (classId)"; //$NON-NLS-1$
 				break;
 
 			case WORDS_VNCLASSES_VNGROUPING_BY_VNCLASS:
-				groupBy = "classid"; //$NON-NLS-1$
+				groupBy = "classId"; //$NON-NLS-1$
 				table = "words " + // //$NON-NLS-1$
 						"INNER JOIN vnwords USING (wordid) " + // //$NON-NLS-1$
 						"INNER JOIN vnclassmembersenses USING (vnwordid) " + // //$NON-NLS-1$
-						"LEFT JOIN vnclasses USING (classid) " + // //$NON-NLS-1$
-						"LEFT JOIN vngroupingmaps USING (classid, vnwordid) " + // //$NON-NLS-1$
+						"LEFT JOIN vnclasses USING (classId) " + // //$NON-NLS-1$
+						"LEFT JOIN vngroupingmaps USING (classId, vnwordid) " + // //$NON-NLS-1$
 						"LEFT JOIN vngroupings USING (groupingid)"; //$NON-NLS-1$
 				break;
 
@@ -186,7 +186,7 @@ public class VerbNetProvider extends SqlUNetProvider
 
 		if (SqlUNetProvider.debugSql)
 		{
-			final String sql = SQLiteQueryBuilder.buildQueryString(false, table, projection, selection, groupBy, null, sortOrder, null);
+			final String sql = SQLiteQueryBuilder.buildQueryString(false, table, projection, actualSelection, groupBy, null, sortOrder, null);
 			Log.d(VerbNetProvider.TAG + "SQL", sql); //$NON-NLS-1$
 			Log.d(VerbNetProvider.TAG + "ARGS", SqlUNetProvider.argsToString(selectionArgs)); //$NON-NLS-1$
 		}
@@ -194,7 +194,7 @@ public class VerbNetProvider extends SqlUNetProvider
 		// do query
 		try
 		{
-			return this.db.query(table, projection, selection, selectionArgs, groupBy, null, sortOrder);
+			return this.db.query(table, projection, actualSelection, selectionArgs, groupBy, null, sortOrder);
 		}
 		catch (final SQLiteException e)
 		{

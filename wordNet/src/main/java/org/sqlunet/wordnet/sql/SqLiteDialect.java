@@ -13,14 +13,14 @@ class SqLiteDialect
 			"ORDER BY linkid;"; //$NON-NLS-1$
 
 	// query for word id
-	static final String WordQuery = "SELECT wordid, lemma " +
+	static final String WordQuery = "SELECT wordId, lemma " +
 			"FROM words " +
 			"WHERE lemma = ?;"; //$NON-NLS-1$
 
 	// query for words in synsets
-	static final String SynsetWordsQuery = "SELECT lemma, wordid " +
+	static final String SynsetWordsQuery = "SELECT lemma, wordId " +
 			"FROM senses " +
-			"INNER JOIN words USING (wordid) " +
+			"INNER JOIN words USING (wordId) " +
 			"WHERE synsetid = ?;"; //$NON-NLS-1$
 
 	// query for synsets from word
@@ -28,11 +28,11 @@ class SqLiteDialect
 			"FROM senses " +
 			"INNER JOIN synsets USING (synsetid) " +
 			"LEFT JOIN samples USING (synsetid) " +
-			"WHERE wordid = ? " + //$NON-NLS-1$
+			"WHERE wordId = ? " + //$NON-NLS-1$
 			"GROUP BY synsetid " +
 			"ORDER BY lexdomainid ASC, sensenum DESC;"; //$NON-NLS-1$
 
-	// query for synset from synseid
+	// query for synset from synset id
 	static final String SynsetQuery = "SELECT synsetid, definition, lexdomainid, GROUP_CONCAT(sample, '|' ) AS sampleset " +
 			"FROM synsets " +
 			"LEFT JOIN samples USING (synsetid) " +
@@ -44,7 +44,7 @@ class SqLiteDialect
 			"FROM senses " +
 			"INNER JOIN synsets USING (synsetid) " + //$NON-NLS-1$
 			"LEFT JOIN samples USING (synsetid) " + //$NON-NLS-1$
-			"WHERE wordid = ? AND pos = ? " + //$NON-NLS-1$
+			"WHERE wordId = ? AND pos = ? " + //$NON-NLS-1$
 			"GROUP BY synsetid " + //$NON-NLS-1$
 			"ORDER BY lexdomainid ASC, sensenum ASC;"; //$NON-NLS-1$
 
@@ -53,7 +53,7 @@ class SqLiteDialect
 			"FROM senses " + //$NON-NLS-1$
 			"INNER JOIN synsets USING (synsetid) " + //$NON-NLS-1$
 			"LEFT JOIN samples USING (synsetid) " + //$NON-NLS-1$
-			"WHERE wordid = ? AND lexdomainid = ? " + //$NON-NLS-1$
+			"WHERE wordId = ? AND lexdomainid = ? " + //$NON-NLS-1$
 			"GROUP BY synsetid " + //$NON-NLS-1$
 			"ORDER BY lexdomainid ASC, sensenum ASC;"; //$NON-NLS-1$
 
@@ -95,7 +95,7 @@ class SqLiteDialect
 	// query for link types for word
 	static final String LinkTypesQuery = "SELECT lexdomainid, linkid " + //$NON-NLS-1$
 			"FROM words " + //$NON-NLS-1$
-			"LEFT JOIN senses USING (wordid) " + //$NON-NLS-1$
+			"LEFT JOIN senses USING (wordId) " + //$NON-NLS-1$
 			"LEFT JOIN synsets USING (synsetid) " + //$NON-NLS-1$
 			"LEFT JOIN semlinks ON synsetid = synset1id " + //$NON-NLS-1$
 			"WHERE lemma = ? " + //$NON-NLS-1$
@@ -103,9 +103,9 @@ class SqLiteDialect
 			"UNION " + //$NON-NLS-1$
 			"SELECT lexdomainid, linkid " + //$NON-NLS-1$
 			"FROM words " + //$NON-NLS-1$
-			"LEFT JOIN senses USING (wordid) " + //$NON-NLS-1$
+			"LEFT JOIN senses USING (wordId) " + //$NON-NLS-1$
 			"LEFT JOIN synsets USING (synsetid) " + //$NON-NLS-1$
-			"LEFT JOIN lexlinks ON synsetid = synset1id AND wordid = word1id " + //$NON-NLS-1$
+			"LEFT JOIN lexlinks ON synsetid = synset1id AND wordId = word1id " + //$NON-NLS-1$
 			"WHERE lemma = ? " + //$NON-NLS-1$
 			"GROUP BY lexdomainid, linkid " + //$NON-NLS-1$
 			"ORDER BY 1, 2;"; //$NON-NLS-1$

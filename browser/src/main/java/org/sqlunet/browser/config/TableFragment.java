@@ -74,7 +74,7 @@ public class TableFragment extends ListFragment
 		final String sort = args.getString(SqlUNetContract.ARG_QUERYSORT);
 		final String selection = args.getString(SqlUNetContract.ARG_QUERYFILTER);
 		final String queryArg = args.getString(SqlUNetContract.ARG_QUERYARG);
-		final int layoutid = args.getInt(SqlUNetContract.ARG_QUERYLAYOUT);
+		final int layoutId = args.getInt(SqlUNetContract.ARG_QUERYLAYOUT);
 		this.targetIntent = args.getParcelable(SqlUNetContract.ARG_QUERYINTENT);
 
 		// view binder
@@ -114,7 +114,7 @@ public class TableFragment extends ListFragment
 
 		// adapter
 		// from (database fields)
-		final List<String> from0 = new ArrayList<>();
+		final List<String> fromList = new ArrayList<>();
 		if (items != null)
 		{
 			for (final String item2 : items)
@@ -127,31 +127,31 @@ public class TableFragment extends ListFragment
 				{
 					field = field.substring(asIndex + 4);
 				}
-				from0.add(field);
+				fromList.add(field);
 			}
 		}
-		final String[] from = from0.toArray(new String[0]);
+		final String[] from = fromList.toArray(new String[0]);
 		// Log.d(TableFragment.TAG + "From", TableFragment.toString(from));
 
 		// to (view ids)
-		final Collection<Integer> to0 = new ArrayList<>();
+		final Collection<Integer> toList = new ArrayList<>();
 		if (items != null)
 		{
 			for (int i = 0; i < items.length; i++)
 			{
-				to0.add(R.id.item0 + i);
+				toList.add(R.id.item0 + i);
 			}
 		}
-		final int[] to = new int[to0.size()];
+		final int[] to = new int[toList.size()];
 		int i = 0;
-		for (final Integer n : to0)
+		for (final Integer n : toList)
 		{
 			to[i++] = n;
 		}
 		// Log.d(TableFragment.TAG + "To", TableFragment.toString(to));
 
 		// make
-		final SimpleCursorAdapter adapter = new SimpleCursorAdapter(getActivity(), layoutid, null, //
+		final SimpleCursorAdapter adapter = new SimpleCursorAdapter(getActivity(), layoutId, null, //
 				from, //
 				to, 0); //
 		adapter.setViewBinder(viewBinder);
@@ -161,27 +161,27 @@ public class TableFragment extends ListFragment
 		getLoaderManager().restartLoader(++Module.loaderId, null, new LoaderCallbacks<Cursor>()
 		{
 			@Override
-			public Loader<Cursor> onCreateLoader(final int loaderId0, final Bundle args0)
+			public Loader<Cursor> onCreateLoader(final int loaderId, final Bundle loaderArgs)
 			{
 				// make projection
-				final List<String> fields0 = new ArrayList<>();
+				final List<String> fields = new ArrayList<>();
 
 				// add _id alias for first column
-				fields0.add(id + " AS _id"); //$NON-NLS-1$
+				fields.add(id + " AS _id"); //$NON-NLS-1$
 
 				// add items
 				if (items != null)
 				{
-					Collections.addAll(fields0, items);
+					Collections.addAll(fields, items);
 				}
 
 				// add xitems
 				if (xitems != null)
 				{
-					Collections.addAll(fields0, xitems);
+					Collections.addAll(fields, xitems);
 				}
 
-				final String[] projection = fields0.toArray(new String[0]);
+				final String[] projection = fields.toArray(new String[0]);
 				// for (String p : projection)
 				// {
 				//	System.out.println(p);

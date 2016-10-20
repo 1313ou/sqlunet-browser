@@ -92,22 +92,22 @@ abstract class BasicModule extends Module
 	/**
 	 * Constructor
 	 *
-	 * @param fragment0 host fragment
+	 * @param fragment host fragment
 	 */
-	BasicModule(final Fragment fragment0)
+	BasicModule(final Fragment fragment)
 	{
-		super(fragment0);
+		super(fragment);
 	}
 
 	/**
-	 * Unmarshal data from parcelable
+	 * Unmarshal parceled query
 	 *
-	 * @param arguments parcelable
+	 * @param query parceled query
 	 */
-	abstract void unmarshall(final Parcelable arguments);
+	abstract void unmarshal(final Parcelable query);
 
 	@Override
-	public void init(final Parcelable arguments)
+	public void init(final Parcelable query)
 	{
 		// context
 		final Context context = getContext();
@@ -128,19 +128,19 @@ abstract class BasicModule extends Module
 		this.semanticsSpanner = new VerbNetSemanticsSpanner();
 
 		// get query
-		unmarshall(arguments);
+		unmarshal(query);
 	}
 
 	// L O A D E R S
 
-	// vnclasses
+	// vnClasses
 
-	void vnclasses(final long classid0, final TreeNode parent)
+	void vnClasses(final long classId, final TreeNode parent)
 	{
 		getLoaderManager().restartLoader(++Module.loaderId, null, new LoaderCallbacks<Cursor>()
 		{
 			@Override
-			public Loader<Cursor> onCreateLoader(final int loaderId0, final Bundle args)
+			public Loader<Cursor> onCreateLoader(final int loaderId, final Bundle loaderArgs)
 			{
 				final Uri uri = Uri.parse(VnClasses_X.CONTENT_URI);
 				final String[] projection = { //
@@ -151,7 +151,7 @@ abstract class BasicModule extends Module
 				};
 				final String selection = VnClasses_X.CLASSID + " = ?"; //$NON-NLS-1$
 				final String[] selectionArgs = { //
-						Long.toString(classid0)};
+						Long.toString(classId)};
 				final String sortOrder = null;
 				return new CursorLoader(BasicModule.this.getContext(), uri, projection, selection, selectionArgs, sortOrder);
 			}
@@ -176,25 +176,25 @@ abstract class BasicModule extends Module
 					// read cursor
 
 					// data
-					final int classid1 = cursor.getInt(idClassId);
-					final String vnclass = cursor.getString(idClass);
+					final int classId = cursor.getInt(idClassId);
+					final String vnClass = cursor.getString(idClass);
 					final String groupings = cursor.getString(idGroupings);
 
 					// sb.append("[class]");
 					Spanner.appendImage(sb, BasicModule.this.drawableClass);
 					sb.append(' ');
-					Spanner.append(sb, vnclass, 0, VerbNetFactories.classFactory);
+					Spanner.append(sb, vnClass, 0, VerbNetFactories.classFactory);
 					// sb.append(" tag=");
 					// sb.append(cursor.getString(idClassTag));
 					sb.append(" id="); //$NON-NLS-1$
-					sb.append(Integer.toString(classid1));
+					sb.append(Integer.toString(classId));
 
 					// groupings
 					final TreeNode itemsNode = groupings(groupings);
 
 					// sub nodes
-					final TreeNode rolesNode = TreeFactory.newQueryNode(new RolesQuery(classid1, R.drawable.role, "Roles"), BasicModule.this.getContext()); //$NON-NLS-1$
-					final TreeNode framesNode = TreeFactory.newQueryNode(new FramesQuery(classid1, R.drawable.vnframe, "Frames"), //$NON-NLS-1$
+					final TreeNode rolesNode = TreeFactory.newQueryNode(new RolesQuery(classId, R.drawable.role, "Roles"), BasicModule.this.getContext()); //$NON-NLS-1$
+					final TreeNode framesNode = TreeFactory.newQueryNode(new FramesQuery(classId, R.drawable.vnframe, "Frames"), //$NON-NLS-1$
 							BasicModule.this.getContext());
 
 					// attach result
@@ -212,21 +212,21 @@ abstract class BasicModule extends Module
 			}
 
 			@Override
-			public void onLoaderReset(final Loader<Cursor> arg0)
+			public void onLoaderReset(final Loader<Cursor> loader)
 			{
 				//
 			}
 		});
 	}
 
-	// vnroles
+	// vnRoles
 
-	private void vnroles(final int classid, final TreeNode parent)
+	private void vnRoles(final int classId, final TreeNode parent)
 	{
 		getLoaderManager().restartLoader(++Module.loaderId, null, new LoaderCallbacks<Cursor>()
 		{
 			@Override
-			public Loader<Cursor> onCreateLoader(final int loaderId0, final Bundle args)
+			public Loader<Cursor> onCreateLoader(final int loaderId, final Bundle loaderArgs)
 			{
 				final Uri uri = Uri.parse(VnClasses_VnRoles_X.CONTENT_URI);
 				final String[] projection = { //
@@ -236,7 +236,7 @@ abstract class BasicModule extends Module
 						VnClasses_VnRoles_X.CLASSID, //
 				};
 				final String selection = VnClasses_VnRoles_X.CLASSID + " = ?"; //$NON-NLS-1$
-				final String[] selectionArgs = {Long.toString(classid)};
+				final String[] selectionArgs = {Long.toString(classId)};
 				final String sortOrder = null;
 				return new CursorLoader(BasicModule.this.getContext(), uri, projection, selection, selectionArgs, sortOrder);
 			}
@@ -269,10 +269,10 @@ abstract class BasicModule extends Module
 							Spanner.append(sb, restrs, 0, VerbNetFactories.restrsFactory);
 						}
 
-						// roleid
-						// final int roleid = cursor.getInt(idRoleId);
-						// sb.append(" roleid=");
-						// sb.append(Integer.toString(roleid));
+						// role id
+						// final int roleId = cursor.getInt(idRoleId);
+						// sb.append(" role id=");
+						// sb.append(Integer.toString(roleId));
 
 						if (!cursor.moveToNext())
 						{
@@ -297,7 +297,7 @@ abstract class BasicModule extends Module
 			}
 
 			@Override
-			public void onLoaderReset(final Loader<Cursor> arg0)
+			public void onLoaderReset(final Loader<Cursor> loader)
 			{
 				//
 			}
@@ -306,12 +306,12 @@ abstract class BasicModule extends Module
 
 	// vnframes
 
-	private void vnframes(final int classid, final TreeNode parent)
+	private void vnframes(final int classId, final TreeNode parent)
 	{
 		getLoaderManager().restartLoader(++Module.loaderId, null, new LoaderCallbacks<Cursor>()
 		{
 			@Override
-			public Loader<Cursor> onCreateLoader(final int loaderId0, final Bundle args)
+			public Loader<Cursor> onCreateLoader(final int loaderId, final Bundle loaderArgs)
 			{
 				final Uri uri = Uri.parse(VnClasses_VnFrames_X.CONTENT_URI);
 				final String[] projection = { //
@@ -326,7 +326,7 @@ abstract class BasicModule extends Module
 						VnClasses_VnFrames_X.CLASSID, //
 				};
 				final String selection = VnClasses_VnFrames_X.CLASSID + " = ?"; //$NON-NLS-1$
-				final String[] selectionArgs = {Long.toString(classid)};
+				final String[] selectionArgs = {Long.toString(classId)};
 				final String sortOrder = null;
 				return new CursorLoader(BasicModule.this.getContext(), uri, projection, selection, selectionArgs, sortOrder);
 			}
@@ -356,7 +356,7 @@ abstract class BasicModule extends Module
 						sb.append(' ');
 						Spanner.append(sb, cursor.getString(idFrameSubName), 0, VerbNetFactories.framesubnameFactory);
 
-						// frameid
+						// frame id
 						// sb.append(Integer.toString(cursor.getInt(idFrameId)));
 						// sb.append('\n');
 
@@ -415,7 +415,7 @@ abstract class BasicModule extends Module
 			}
 
 			@Override
-			public void onLoaderReset(final Loader<Cursor> arg0)
+			public void onLoaderReset(final Loader<Cursor> loader)
 			{
 				//
 			}
@@ -459,29 +459,29 @@ abstract class BasicModule extends Module
 
 	class RolesQuery extends QueryHolder.Query
 	{
-		public RolesQuery(final long classid0, final int icon, @SuppressWarnings("SameParameterValue") final CharSequence text)
+		public RolesQuery(final long classId, final int icon, @SuppressWarnings("SameParameterValue") final CharSequence text)
 		{
-			super(classid0, icon, text);
+			super(classId, icon, text);
 		}
 
 		@Override
-		public void process(final TreeNode node0)
+		public void process(final TreeNode node)
 		{
-			vnroles((int) this.id, node0);
+			vnRoles((int) this.id, node);
 		}
 	}
 
 	class FramesQuery extends QueryHolder.Query
 	{
-		public FramesQuery(final long classid0, final int icon, @SuppressWarnings("SameParameterValue") final CharSequence text)
+		public FramesQuery(final long classId, final int icon, @SuppressWarnings("SameParameterValue") final CharSequence text)
 		{
-			super(classid0, icon, text);
+			super(classId, icon, text);
 		}
 
 		@Override
-		public void process(final TreeNode node0)
+		public void process(final TreeNode node)
 		{
-			vnframes((int) this.id, node0);
+			vnframes((int) this.id, node);
 		}
 	}
 }

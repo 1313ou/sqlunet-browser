@@ -20,7 +20,7 @@ class FnFrameLexUnitQueryCommand extends DBQueryCommand
 	 * Constructor
 	 *
 	 * @param connection    is the database connection
-	 * @param targetFrameId target annosetid
+	 * @param targetFrameId target annoSetId
 	 */
 	@SuppressWarnings("boxing")
 	public FnFrameLexUnitQueryCommand(final SQLiteDatabase connection, final long targetFrameId)
@@ -90,9 +90,9 @@ class FnFrameLexUnitQueryCommand extends DBQueryCommand
 	}
 
 	/**
-	 * Get the annosetid from the result set
+	 * Get the annoSetId from the result set
 	 *
-	 * @return the annosetid from the result set
+	 * @return the annoSetId from the result set
 	 */
 	@SuppressWarnings("unused")
 	public long getFrameId()

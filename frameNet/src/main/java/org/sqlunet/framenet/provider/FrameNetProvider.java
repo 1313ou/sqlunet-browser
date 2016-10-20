@@ -203,7 +203,7 @@ public class FrameNetProvider extends SqlUNetProvider
 
 	@SuppressWarnings("boxing")
 	@Override
-	public Cursor query(final Uri uri, final String[] projection, final String selection0, final String[] selectionArgs, String sortOrder)
+	public Cursor query(final Uri uri, final String[] projection, final String selection, final String[] selectionArgs, String sortOrder)
 	{
 		if (this.db == null)
 		{
@@ -211,7 +211,7 @@ public class FrameNetProvider extends SqlUNetProvider
 		}
 
 		// choose the table to query and a sort order based on the code returned for the incoming URI
-		String selection = selection0;
+		String actualSelection = selection;
 		final int code = FrameNetProvider.uriMatcher.match(uri);
 		Log.d(FrameNetProvider.TAG + "URI", String.format("%s (code %s)", uri, code)); //$NON-NLS-1$ //$NON-NLS-2$
 
@@ -236,73 +236,73 @@ public class FrameNetProvider extends SqlUNetProvider
 
 			case LEXUNIT:
 				table = LexUnits.TABLE;
-				if (selection != null)
+				if (actualSelection != null)
 				{
-					selection += " AND "; //$NON-NLS-1$
+					actualSelection += " AND "; //$NON-NLS-1$
 				}
 				else
 				{
-					selection = ""; //$NON-NLS-1$
+					actualSelection = ""; //$NON-NLS-1$
 				}
-				selection += LexUnits.LUID + " = " + uri.getLastPathSegment(); //$NON-NLS-1$
+				actualSelection += LexUnits.LUID + " = " + uri.getLastPathSegment(); //$NON-NLS-1$
 				break;
 
 			case FRAME:
 				table = Frames.TABLE;
-				if (selection != null)
+				if (actualSelection != null)
 				{
-					selection += " AND "; //$NON-NLS-1$
+					actualSelection += " AND "; //$NON-NLS-1$
 				}
 				else
 				{
-					selection = ""; //$NON-NLS-1$
+					actualSelection = ""; //$NON-NLS-1$
 				}
-				selection += Frames.FRAMEID + " = " + uri.getLastPathSegment(); //$NON-NLS-1$
+				actualSelection += Frames.FRAMEID + " = " + uri.getLastPathSegment(); //$NON-NLS-1$
 				break;
 
 			case SENTENCE:
 				table = uri.getLastPathSegment();
-				if (selection != null)
+				if (actualSelection != null)
 				{
-					selection += " AND "; //$NON-NLS-1$
+					actualSelection += " AND "; //$NON-NLS-1$
 				}
 				else
 				{
-					selection = ""; //$NON-NLS-1$
+					actualSelection = ""; //$NON-NLS-1$
 				}
-				selection += Sentences.SENTENCEID + " = " + uri.getLastPathSegment(); //$NON-NLS-1$
+				actualSelection += Sentences.SENTENCEID + " = " + uri.getLastPathSegment(); //$NON-NLS-1$
 				break;
 
 			case ANNOSET:
 				table = uri.getLastPathSegment();
-				if (selection != null)
+				if (actualSelection != null)
 				{
-					selection += " AND "; //$NON-NLS-1$
+					actualSelection += " AND "; //$NON-NLS-1$
 				}
 				else
 				{
-					selection = ""; //$NON-NLS-1$
+					actualSelection = ""; //$NON-NLS-1$
 				}
-				selection += AnnoSets.ANNOSETID + " = " + uri.getLastPathSegment(); //$NON-NLS-1$
+				actualSelection += AnnoSets.ANNOSETID + " = " + uri.getLastPathSegment(); //$NON-NLS-1$
 				break;
 
 			// J O I N S
 
 			case FRAMES_X_BY_FRAME:
-				groupBy = "frameid"; //$NON-NLS-1$
+				groupBy = "frameId"; //$NON-NLS-1$
 				table = "fnframes " + //$NON-NLS-1$
-						"LEFT JOIN fnframes_semtypes USING (frameid) " + //$NON-NLS-1$
+						"LEFT JOIN fnframes_semtypes USING (frameId) " + //$NON-NLS-1$
 						"LEFT JOIN fnsemtypes USING (semtypeid)"; //$NON-NLS-1$
 				break;
 
 			case FRAMES_RELATED:
-				table = "fnframes_related LEFT JOIN fnframes AS s USING (frameid) LEFT JOIN fnframes AS d ON (frame2id = d.frameid) LEFT JOIN fnframerelations USING (relationid)"; //$NON-NLS-1$
+				table = "fnframes_related LEFT JOIN fnframes AS s USING (frameId) LEFT JOIN fnframes AS d ON (frame2id = d.frameId) LEFT JOIN fnframerelations USING (relationid)"; //$NON-NLS-1$
 				break;
 
 			case LEXUNITS_X_BY_LEXUNIT:
-				groupBy = "luid"; //$NON-NLS-1$
+				groupBy = "luId"; //$NON-NLS-1$
 				table = "fnlexunits AS lu " + //$NON-NLS-1$
-						"LEFT JOIN fnframes AS f USING (frameid) " + //$NON-NLS-1$
+						"LEFT JOIN fnframes AS f USING (frameId) " + //$NON-NLS-1$
 						"LEFT JOIN fnposes AS p ON (lu.posid = p.posid) " + //$NON-NLS-1$
 						"LEFT JOIN fnfetypes AS it ON (incorporatedfetypeid = it.fetypeid) " + //$NON-NLS-1$
 						"LEFT JOIN fnfes AS ie ON (incorporatedfeid = ie.feid)"; //$NON-NLS-1$
@@ -318,7 +318,7 @@ public class FrameNetProvider extends SqlUNetProvider
 						"CASE WHEN fgcolor IS NULL THEN '' ELSE fgcolor END,'|') AS annotations " + //$NON-NLS-1$
 						"FROM fnsentences " + //$NON-NLS-1$
 						"LEFT JOIN fnannosets USING (sentenceid) " + //$NON-NLS-1$
-						"LEFT JOIN fnlayers USING (annosetid) " + //$NON-NLS-1$
+						"LEFT JOIN fnlayers USING (annoSetId) " + //$NON-NLS-1$
 						"LEFT JOIN fnlayertypes USING (layertypeid) " + //$NON-NLS-1$
 						"LEFT JOIN fnlabels USING (layerid) " + //$NON-NLS-1$
 						"LEFT JOIN fnlabeltypes USING (labeltypeid) " + //$NON-NLS-1$
@@ -338,12 +338,12 @@ public class FrameNetProvider extends SqlUNetProvider
 						"CASE WHEN fgcolor IS NULL THEN '' ELSE fgcolor END,'|') AS annotations " + //$NON-NLS-1$
 						"FROM fnannosets " + //$NON-NLS-1$
 						"LEFT JOIN fnsentences USING (sentenceid) " + //$NON-NLS-1$
-						"LEFT JOIN fnlayers USING (annosetid) " + //$NON-NLS-1$
+						"LEFT JOIN fnlayers USING (annoSetId) " + //$NON-NLS-1$
 						"LEFT JOIN fnlayertypes USING (layertypeid) " + //$NON-NLS-1$
 						"LEFT JOIN fnlabels USING (layerid) " + //$NON-NLS-1$
 						"LEFT JOIN fnlabeltypes USING (labeltypeid) " + //$NON-NLS-1$
 						"LEFT JOIN fnlabelitypes USING (labelitypeid) " + //$NON-NLS-1$
-						"WHERE annosetid = ? AND labeltypeid IS NOT NULL " + //$NON-NLS-1$
+						"WHERE annoSetId = ? AND labeltypeid IS NOT NULL " + //$NON-NLS-1$
 						"GROUP BY layerid " + //$NON-NLS-1$
 						"ORDER BY rank,layerid,start,end)"; //$NON-NLS-1$
 				break;
@@ -357,9 +357,9 @@ public class FrameNetProvider extends SqlUNetProvider
 						"CASE WHEN bgcolor IS NULL THEN '' ELSE bgcolor END||':'||" + //$NON-NLS-1$
 						"CASE WHEN fgcolor IS NULL THEN '' ELSE fgcolor END,'|') AS annotations " + //$NON-NLS-1$
 						"FROM fnpatterns_annosets " + //$NON-NLS-1$
-						"LEFT JOIN fnannosets USING (annosetid) " + //$NON-NLS-1$
+						"LEFT JOIN fnannosets USING (annoSetId) " + //$NON-NLS-1$
 						"LEFT JOIN fnsentences USING (sentenceid) " + //$NON-NLS-1$
-						"LEFT JOIN fnlayers USING (annosetid) " + //$NON-NLS-1$
+						"LEFT JOIN fnlayers USING (annoSetId) " + //$NON-NLS-1$
 						"LEFT JOIN fnlayertypes USING (layertypeid) " + //$NON-NLS-1$
 						"LEFT JOIN fnlabels USING (layerid) " + //$NON-NLS-1$
 						"LEFT JOIN fnlabeltypes USING (labeltypeid) " + //$NON-NLS-1$
@@ -378,9 +378,9 @@ public class FrameNetProvider extends SqlUNetProvider
 						"CASE WHEN bgcolor IS NULL THEN '' ELSE bgcolor END||':'||" + //$NON-NLS-1$
 						"CASE WHEN fgcolor IS NULL THEN '' ELSE fgcolor END,'|') AS annotations " + //$NON-NLS-1$
 						"FROM fnvalenceunits_annosets " + //$NON-NLS-1$
-						"LEFT JOIN fnannosets USING (annosetid) " + //$NON-NLS-1$
+						"LEFT JOIN fnannosets USING (annoSetId) " + //$NON-NLS-1$
 						"LEFT JOIN fnsentences USING (sentenceid) " + //$NON-NLS-1$
-						"LEFT JOIN fnlayers USING (annosetid) " + //$NON-NLS-1$
+						"LEFT JOIN fnlayers USING (annoSetId) " + //$NON-NLS-1$
 						"LEFT JOIN fnlayertypes USING (layertypeid) " + //$NON-NLS-1$
 						"LEFT JOIN fnlabels USING (layerid) " + //$NON-NLS-1$
 						"LEFT JOIN fnlabeltypes USING (labeltypeid) " + //$NON-NLS-1$
@@ -394,8 +394,8 @@ public class FrameNetProvider extends SqlUNetProvider
 				table = "words " + //$NON-NLS-1$
 						"INNER JOIN fnwords USING (wordid) " + //$NON-NLS-1$
 						"INNER JOIN fnlexemes USING (fnwordid) " + //$NON-NLS-1$
-						"INNER JOIN fnlexunits AS lu USING (luid) " + //$NON-NLS-1$
-						"LEFT JOIN fnframes USING (frameid) " + //$NON-NLS-1$
+						"INNER JOIN fnlexunits AS lu USING (luId) " + //$NON-NLS-1$
+						"LEFT JOIN fnframes USING (frameId) " + //$NON-NLS-1$
 						"LEFT JOIN fnposes AS p ON (lu.posid = p.posid) " + //$NON-NLS-1$
 						"LEFT JOIN fnfes AS ie ON (incorporatedfeid = feid) " + //$NON-NLS-1$
 						"LEFT JOIN fnfetypes AS it ON (incorporatedfetypeid = it.fetypeid)"; //$NON-NLS-1$
@@ -407,7 +407,7 @@ public class FrameNetProvider extends SqlUNetProvider
 				//noinspection fallthrough
 			case FRAMES_FES:
 				table = "fnframes " + //$NON-NLS-1$
-						"INNER JOIN fnfes USING (frameid) " + //$NON-NLS-1$
+						"INNER JOIN fnfes USING (frameId) " + //$NON-NLS-1$
 						"LEFT JOIN fnfetypes USING (fetypeid) " + //$NON-NLS-1$
 						"LEFT JOIN fncoretypes USING (coretypeid) " + //$NON-NLS-1$
 						"LEFT JOIN fnfes_semtypes USING (feid) " + //$NON-NLS-1$
@@ -420,7 +420,7 @@ public class FrameNetProvider extends SqlUNetProvider
 				//noinspection fallthrough
 			case LEXUNITS_SENTENCES:
 				table = "fnlexunits AS u " + //$NON-NLS-1$
-						"LEFT JOIN fnsubcorpuses USING (luid) " + //$NON-NLS-1$
+						"LEFT JOIN fnsubcorpuses USING (luId) " + //$NON-NLS-1$
 						"LEFT JOIN fnsubcorpuses_sentences USING (subcorpusid) " + //$NON-NLS-1$
 						"INNER JOIN fnsentences AS s USING (sentenceid)"; //$NON-NLS-1$
 				break;
@@ -431,11 +431,11 @@ public class FrameNetProvider extends SqlUNetProvider
 				//noinspection fallthrough
 			case LEXUNITS_SENTENCES_ANNOSETS_LAYERS_LABELS:
 				table = "fnlexunits AS u " + //$NON-NLS-1$
-						"LEFT JOIN fnsubcorpuses USING (luid) " + //$NON-NLS-1$
+						"LEFT JOIN fnsubcorpuses USING (luId) " + //$NON-NLS-1$
 						"LEFT JOIN fnsubcorpuses_sentences USING (subcorpusid) " + //$NON-NLS-1$
 						"INNER JOIN fnsentences AS s USING (sentenceid) " + //$NON-NLS-1$
 						"LEFT JOIN fnannosets USING (sentenceid) " + //$NON-NLS-1$
-						"LEFT JOIN fnlayers USING (annosetid) " + //$NON-NLS-1$
+						"LEFT JOIN fnlayers USING (annoSetId) " + //$NON-NLS-1$
 						"LEFT JOIN fnlayertypes USING (layertypeid) " + //$NON-NLS-1$
 						"LEFT JOIN fnlabels USING (layerid) " + //$NON-NLS-1$
 						"LEFT JOIN fnlabeltypes USING (labeltypeid) " + //$NON-NLS-1$
@@ -444,14 +444,14 @@ public class FrameNetProvider extends SqlUNetProvider
 
 			case LEXUNITS_GOVERNORS:
 				table = "fnlexunits " + //$NON-NLS-1$
-						"INNER JOIN fnlexunits_governors AS s USING (luid) " + //$NON-NLS-1$
+						"INNER JOIN fnlexunits_governors AS s USING (luId) " + //$NON-NLS-1$
 						"INNER JOIN fngovernors USING (governorid) " + //$NON-NLS-1$
 						"LEFT JOIN fnwords USING (fnwordid)"; //$NON-NLS-1$
 				break;
 
 			case GOVERNORS_ANNOSETS:
 				table = "fngovernors_annosets " + //$NON-NLS-1$
-						"LEFT JOIN fnannosets USING (annosetid) " + //$NON-NLS-1$
+						"LEFT JOIN fnannosets USING (annoSetId) " + //$NON-NLS-1$
 						"LEFT JOIN fnsentences USING (sentenceid)"; //$NON-NLS-1$
 				break;
 
@@ -461,7 +461,7 @@ public class FrameNetProvider extends SqlUNetProvider
 				//noinspection fallthrough
 			case LEXUNITS_REALIZATIONS:
 				table = "fnlexunits " + //$NON-NLS-1$
-						"INNER JOIN fnferealizations AS r USING (luid) " + //$NON-NLS-1$
+						"INNER JOIN fnferealizations AS r USING (luId) " + //$NON-NLS-1$
 						"LEFT JOIN fnvalenceunits USING (ferid) " + //$NON-NLS-1$
 						"LEFT JOIN fnfetypes USING (fetypeid) " + //$NON-NLS-1$
 						"LEFT JOIN fngftypes USING (gfid) " + //$NON-NLS-1$
@@ -474,7 +474,7 @@ public class FrameNetProvider extends SqlUNetProvider
 				//noinspection fallthrough
 			case LEXUNITS_GROUPREALIZATIONS:
 				table = "fnlexunits " + //$NON-NLS-1$
-						"LEFT JOIN fnfegrouprealizations AS r USING (luid) " + //$NON-NLS-1$
+						"LEFT JOIN fnfegrouprealizations AS r USING (luId) " + //$NON-NLS-1$
 						"LEFT JOIN fnpatterns AS p USING (fegrid) " + //$NON-NLS-1$
 						"LEFT JOIN fnpatterns_valenceunits AS v USING (patternid) " + //$NON-NLS-1$
 						"LEFT JOIN fnvalenceunits USING (vuid) " + //$NON-NLS-1$
@@ -485,13 +485,13 @@ public class FrameNetProvider extends SqlUNetProvider
 
 			case PATTERNS_SENTENCES:
 				table = "fnpatterns_annosets " + //$NON-NLS-1$
-						"LEFT JOIN fnannosets AS r USING (annosetid) " + //$NON-NLS-1$
+						"LEFT JOIN fnannosets AS r USING (annoSetId) " + //$NON-NLS-1$
 						"LEFT JOIN fnsentences AS r USING (sentenceid)"; //$NON-NLS-1$
 				break;
 
 			case VALENCEUNITS_SENTENCES:
 				table = "fnvalenceunits_annosets " + //$NON-NLS-1$
-						"LEFT JOIN fnannosets AS r USING (annosetid) " + //$NON-NLS-1$
+						"LEFT JOIN fnannosets AS r USING (annoSetId) " + //$NON-NLS-1$
 						"LEFT JOIN fnsentences AS r USING (sentenceid)"; //$NON-NLS-1$
 				break;
 
@@ -506,7 +506,7 @@ public class FrameNetProvider extends SqlUNetProvider
 
 		if (SqlUNetProvider.debugSql)
 		{
-			final String sql = SQLiteQueryBuilder.buildQueryString(false, table, projection, selection, groupBy, null, sortOrder, null);
+			final String sql = SQLiteQueryBuilder.buildQueryString(false, table, projection, actualSelection, groupBy, null, sortOrder, null);
 			Log.d(FrameNetProvider.TAG + "SQL", sql); //$NON-NLS-1$
 			Log.d(FrameNetProvider.TAG + "ARGS", SqlUNetProvider.argsToString(selectionArgs)); //$NON-NLS-1$
 		}
@@ -514,7 +514,7 @@ public class FrameNetProvider extends SqlUNetProvider
 		// do query
 		try
 		{
-			return this.db.query(table, projection, selection, selectionArgs, groupBy, null, sortOrder);
+			return this.db.query(table, projection, actualSelection, selectionArgs, groupBy, null, sortOrder);
 		}
 		catch (SQLiteException e)
 		{

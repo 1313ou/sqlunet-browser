@@ -29,18 +29,18 @@ public class PredicateRoleFromWordModule extends BasicModule
 	 *
 	 * @param mode predicatematrix mode
 	 */
-	public PredicateRoleFromWordModule(final Fragment fragment0, final PMMode mode)
+	public PredicateRoleFromWordModule(final Fragment fragment, final PMMode mode)
 	{
-		super(fragment0);
+		super(fragment);
 		this.mode = mode;
 	}
 
 	@Override
-	void unmarshall(final Parcelable query0)
+	void unmarshal(final Parcelable query)
 	{
-		if (query0 instanceof Word)
+		if (query instanceof Word)
 		{
-			Word wordQuery = (Word) query0;
+			Word wordQuery = (Word) query;
 			this.word = wordQuery.getWord();
 		}
 	}

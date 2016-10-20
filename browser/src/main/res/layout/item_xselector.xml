@@ -38,7 +38,7 @@
 			android:textIsSelectable="false"/>
 
 		<ImageView
-			android:id="@+id/xsources"
+			android:id="@+id/xSources"
 			style="@style/Data.XSources"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
@@ -93,14 +93,14 @@
 			android:textIsSelectable="false"/>
 
 		<TextView
-			android:id="@+id/synsetid"
+			android:id="@+id/synsetId"
 			style="@style/Data.XSynsetId"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			android:textIsSelectable="false"/>
 
 		<TextView
-			android:id="@+id/xid"
+			android:id="@+id/xId"
 			style="@style/Data.XId"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"

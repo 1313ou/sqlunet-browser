@@ -13,35 +13,42 @@ public class PmRolePointer implements Parcelable
 	/**
 	 * Members
 	 */
-	public Long roleid;
+	public Long roleId;
 
 	/**
 	 * Constructor
 	 */
 	public PmRolePointer()
 	{
-		this.roleid = null;
+		this.roleId = null;
 	}
 
 	/**
 	 * Constructor from Parcel, reads back fields IN THE ORDER they were written
+	 *
+	 * @param parcel parcel
 	 */
 	@SuppressWarnings("boxing")
-	private PmRolePointer(final Parcel pc)
+	private PmRolePointer(final Parcel parcel)
 	{
 		this();
-		long roleid0 = pc.readLong();
-		if (roleid0 != -1)
+		long parcelRoleId = parcel.readLong();
+		if (parcelRoleId != -1)
 		{
-			this.roleid = roleid0;
+			this.roleId = parcelRoleId;
 		}
 	}
 
+	/**
+	 * Get role id
+	 *
+	 * @return return role id
+	 */
 	public Long getRoleId()
 	{
-		if (this.roleid != 0)
+		if (this.roleId != 0)
 		{
-			return this.roleid;
+			return this.roleId;
 		}
 		return null;
 	}
@@ -67,7 +74,7 @@ public class PmRolePointer implements Parcelable
 	@Override
 	public void writeToParcel(final Parcel pc, final int flags)
 	{
-		pc.writeLong(this.roleid == null ? -1 : this.roleid);
+		pc.writeLong(this.roleId == null ? -1 : this.roleId);
 	}
 
 	@Override
@@ -79,6 +86,6 @@ public class PmRolePointer implements Parcelable
 	@Override
 	public String toString()
 	{
-		return "roleid=" + this.roleid; //$NON-NLS-1$
+		return "roleId=" + this.roleId; //$NON-NLS-1$
 	}
 }

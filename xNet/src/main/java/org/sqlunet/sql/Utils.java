@@ -92,21 +92,21 @@ public class Utils
 	/**
 	 * Replace argument placeholders with argument values
 	 *
-	 * @param sql0 sql
+	 * @param sql sql
 	 * @param args arguments
 	 * @return expanded sql
 	 */
-	static public String replaceArgs(final String sql0, final String[] args)
+	static public String replaceArgs(final String sql, final String[] args)
 	{
-		String sql1 = sql0;
+		String processedSql = sql;
 		if (args != null && args.length > 0)
 		{
 			for (final String a : args)
 			{
-				sql1 = sql1.replaceFirst("\\?", a); //$NON-NLS-1$
+				processedSql = processedSql.replaceFirst("\\?", a); //$NON-NLS-1$
 			}
 		}
-		return sql1;
+		return processedSql;
 	}
 
 

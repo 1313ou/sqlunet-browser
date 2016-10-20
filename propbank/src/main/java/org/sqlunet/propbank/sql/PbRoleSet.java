@@ -51,11 +51,11 @@ class PbRoleSet
 	}
 
 	/**
-	 * Make sets of PropBank rolesets from query built from wordid
+	 * Make sets of PropBank roleSets from query built from word id
 	 *
 	 * @param connection is the database connection
 	 * @param word       is the word to build query from
-	 * @return list of PropBank rolesets
+	 * @return list of PropBank roleSets
 	 */
 	static public Pair<Long, List<PbRoleSet>> makeFromWord(final SQLiteDatabase connection, final String word)
 	{
@@ -88,11 +88,11 @@ class PbRoleSet
 	}
 
 	/**
-	 * Make sets of PropBank rolesets from query built from wordid
+	 * Make sets of PropBank roleSets from query built from word id
 	 *
 	 * @param connection is the database connection
 	 * @param wordId     is the word id to build query from
-	 * @return list of PropBank rolesets
+	 * @return list of PropBank roleSets
 	 */
 	static public List<PbRoleSet> makeFromWordId(final SQLiteDatabase connection, final long wordId)
 	{
@@ -123,11 +123,11 @@ class PbRoleSet
 	}
 
 	/**
-	 * Make sets of PropBank rolesets from query built from wordid
+	 * Make sets of PropBank roleSets from query built from word id
 	 *
 	 * @param connection is the database connection
-	 * @param roleSetId  is the roleset id to build query from
-	 * @return list of PropBank rolesets
+	 * @param roleSetId  is the roleSet id to build query from
+	 * @return list of PropBank roleSets
 	 */
 	static public List<PbRoleSet> make(final SQLiteDatabase connection, final long roleSetId)
 	{

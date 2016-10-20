@@ -20,7 +20,7 @@ class FnSentenceQueryFromLexicalUnitCommand extends DBQueryCommand
 	 * Constructor
 	 *
 	 * @param connection is the database connection
-	 * @param luId       is the target luid
+	 * @param luId       is the target luId
 	 */
 	@SuppressWarnings("boxing")
 	public FnSentenceQueryFromLexicalUnitCommand(final SQLiteDatabase connection, final long luId)

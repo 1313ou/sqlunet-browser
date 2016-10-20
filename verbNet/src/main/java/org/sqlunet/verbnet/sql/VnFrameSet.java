@@ -32,7 +32,7 @@ public class VnFrameSet
 	}
 
 	/**
-	 * Make a verbnet frame set from query built from classid, wordid and synsetid
+	 * Make a verbnet frame set from query built from class id, word id and synset id
 	 *
 	 * @param connection is the database connection
 	 * @param classId    is the class id to build query from

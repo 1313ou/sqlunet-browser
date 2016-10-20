@@ -21,7 +21,7 @@ class FnAnnoSetQueryCommand extends DBQueryCommand
 	 * Constructor
 	 *
 	 * @param connection      is the database connection
-	 * @param targetAnnoSetId is the target annosetid
+	 * @param targetAnnoSetId is the target annoSetId
 	 */
 	@SuppressWarnings("boxing")
 	public FnAnnoSetQueryCommand(final SQLiteDatabase connection, final long targetAnnoSetId)

@@ -13,7 +13,7 @@ public class FnFramePointer implements Parcelable
 	/**
 	 * Members
 	 */
-	public Long frameid;
+	public Long frameId;
 
 	private String pos;
 
@@ -22,7 +22,7 @@ public class FnFramePointer implements Parcelable
 	 */
 	public FnFramePointer()
 	{
-		this.frameid = null;
+		this.frameId = null;
 		this.pos = null;
 	}
 
@@ -30,15 +30,15 @@ public class FnFramePointer implements Parcelable
 	 * Constructor from Parcel, reads back fields IN THE ORDER they were written
 	 */
 	@SuppressWarnings("boxing")
-	private FnFramePointer(final Parcel pc)
+	private FnFramePointer(final Parcel parcel)
 	{
 		this();
-		long frameid0 = pc.readLong();
-		if (frameid0 != -1)
+		long parcelFrameId = parcel.readLong();
+		if (parcelFrameId != -1)
 		{
-			this.frameid = frameid0;
+			this.frameId = parcelFrameId;
 		}
-		this.pos = pc.readString();
+		this.pos = parcel.readString();
 	}
 
 	@SuppressWarnings({"boxing", "unused"})
@@ -54,9 +54,9 @@ public class FnFramePointer implements Parcelable
 	@SuppressWarnings({"unused"})
 	public Long getFrameId()
 	{
-		if (this.frameid != 0)
+		if (this.frameId != 0)
 		{
-			return this.frameid;
+			return this.frameId;
 		}
 		return null;
 	}
@@ -82,7 +82,7 @@ public class FnFramePointer implements Parcelable
 	@Override
 	public void writeToParcel(final Parcel pc, final int flags)
 	{
-		pc.writeLong(this.frameid == null ? -1 : this.frameid);
+		pc.writeLong(this.frameId == null ? -1 : this.frameId);
 		pc.writeString(this.pos);
 	}
 

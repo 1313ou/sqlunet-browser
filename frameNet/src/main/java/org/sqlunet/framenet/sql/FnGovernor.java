@@ -42,10 +42,10 @@ class FnGovernor
 	}
 
 	/**
-	 * Make set of governors from query built from frameid
+	 * Make set of governors from query built from frameId
 	 *
 	 * @param connection is the database connection
-	 * @param luId       is the frameid to build query from
+	 * @param luId       is the frameId to build query from
 	 * @return list of governors
 	 */
 	public static List<FnGovernor> make(final SQLiteDatabase connection, final long luId)

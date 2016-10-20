@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Example attached to a PropBank roleset
+ * Example attached to a PropBank roleSet
  *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
@@ -79,7 +79,7 @@ class PbExample
 	}
 
 	/**
-	 * Make a list of examples from query built from relationsetid
+	 * Make a list of examples from query built from roleSet id
 	 *
 	 * @param connection is the database connection
 	 * @return list of PropBank examples

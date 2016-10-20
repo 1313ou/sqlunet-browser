@@ -14,16 +14,16 @@ public class SenseModule extends SynsetModule
 	/**
 	 * Query
 	 */
-	private Long wordid;
+	private Long wordId;
 
 	/**
 	 * Constructor
 	 *
-	 * @param fragment0 fragment
+	 * @param fragment fragment
 	 */
-	public SenseModule(final Fragment fragment0)
+	public SenseModule(final Fragment fragment)
 	{
-		super(fragment0);
+		super(fragment);
 	}
 
 	@Override
@@ -35,7 +35,7 @@ public class SenseModule extends SynsetModule
 		if (parcelable instanceof HasWordId)
 		{
 			final HasWordId query = (HasWordId) parcelable;
-			this.wordid = query.getWordId();
+			this.wordId = query.getWordId();
 		}
 	}
 
@@ -44,7 +44,7 @@ public class SenseModule extends SynsetModule
 	@Override
 	public void process(final TreeNode node)
 	{
-		if (this.wordid == null || this.synsetid == null)
+		if (this.wordId == null || this.synsetId == null)
 		{
 			return;
 		}
@@ -52,20 +52,20 @@ public class SenseModule extends SynsetModule
 		// sub nodes
 		final TreeNode dataNode = TreeFactory.newTextNode("data", SenseModule.this.getContext()); //$NON-NLS-1$
 		final TreeNode membersNode = TreeFactory.newTextNode("members", SenseModule.this.getContext()); //$NON-NLS-1$
-		final TreeNode linksNode = TreeFactory.newQueryNode(new LinksQuery(this.synsetid, this.wordid, R.drawable.ic_other, "Links"), SenseModule.this.getContext()); //$NON-NLS-1$
-		final TreeNode samplesNode = TreeFactory.newQueryNode(new SamplesQuery(this.synsetid, R.drawable.sample, "Samples"), SenseModule.this.getContext()); //$NON-NLS-1$
+		final TreeNode linksNode = TreeFactory.newQueryNode(new LinksQuery(this.synsetId, this.wordId, R.drawable.ic_other, "Links"), SenseModule.this.getContext()); //$NON-NLS-1$
+		final TreeNode samplesNode = TreeFactory.newQueryNode(new SamplesQuery(this.synsetId, R.drawable.sample, "Samples"), SenseModule.this.getContext()); //$NON-NLS-1$
 
 		// attach result
 		node.addChildren(dataNode, membersNode, linksNode, samplesNode);
 
 		// synset
-		synset(this.synsetid, dataNode, false);
+		synset(this.synsetId, dataNode, false);
 
 		// members
-		members(this.synsetid, membersNode, false);
+		members(this.synsetId, membersNode, false);
 
 		// morph
-		morphs(this.wordid, node);
+		morphs(this.wordId, node);
 
 		// special
 		if (this.pos != null)
@@ -73,20 +73,20 @@ public class SenseModule extends SynsetModule
 			switch (this.pos)
 			{
 				case 'v':
-					vframes(this.synsetid, this.wordid, node);
-					vframesentences(this.synsetid, this.wordid, node);
+					vFrames(this.synsetId, this.wordId, node);
+					vFrameSentences(this.synsetId, this.wordId, node);
 					break;
 
 				case 'a':
-					adjposition(this.synsetid, this.wordid, node);
+					adjPosition(this.synsetId, this.wordId, node);
 					break;
 			}
 		}
 		else
 		{
-			vframes(this.synsetid, this.wordid, node);
-			vframesentences(this.synsetid, this.wordid, node);
-			adjposition(this.synsetid, this.wordid, node);
+			vFrames(this.synsetId, this.wordId, node);
+			vFrameSentences(this.synsetId, this.wordId, node);
+			adjPosition(this.synsetId, this.wordId, node);
 		}
 
 		TreeView.expand(node, false);

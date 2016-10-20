@@ -17,35 +17,35 @@ public class LexUnitFromWordModule extends LexUnitModule
 	/**
 	 * Query
 	 */
-	private Long wordid;
+	private Long wordId;
 
 	private Character pos;
 
 	/**
 	 * Constructor
 	 */
-	public LexUnitFromWordModule(final Fragment fragment0)
+	public LexUnitFromWordModule(final Fragment fragment)
 	{
-		super(fragment0);
+		super(fragment);
 	}
 
 
 	@Override
-	public void init(final Parcelable query0)
+	public void init(final Parcelable query)
 	{
-		super.init(query0);
+		super.init(query);
 
 		// get query
-		this.wordid = null;
+		this.wordId = null;
 		this.pos = null;
-		if (query0 instanceof HasWordId)
+		if (query instanceof HasWordId)
 		{
-			final HasWordId wordQuery = (HasWordId) query0;
-			this.wordid = wordQuery.getWordId();
+			final HasWordId wordQuery = (HasWordId) query;
+			this.wordId = wordQuery.getWordId();
 		}
-		if (query0 instanceof HasPos)
+		if (query instanceof HasPos)
 		{
-			final HasPos posQuery = (HasPos) query0;
+			final HasPos posQuery = (HasPos) query;
 			this.pos = posQuery.getPos();
 		}
 	}
@@ -54,10 +54,10 @@ public class LexUnitFromWordModule extends LexUnitModule
 	@Override
 	public void process(final TreeNode node)
 	{
-		if (this.wordid != null && this.pos != null)
+		if (this.wordId != null && this.pos != null)
 		{
 			// data
-			lexunits_for_word_pos(this.wordid, this.pos, node);
+			lexunits_for_word_pos(this.wordId, this.pos, node);
 		}
 		else
 		{

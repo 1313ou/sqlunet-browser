@@ -116,7 +116,7 @@ public class PropBankImplementation implements PropBankInterface
 	// I T E M S
 
 	/**
-	 * Business method the returns role set data as DOM document from roleset id
+	 * Business method the returns role set data as DOM document from roleSet id
 	 *
 	 * @param connection database connection
 	 * @param roleSetId  the role set to build query from
@@ -133,10 +133,10 @@ public class PropBankImplementation implements PropBankInterface
 	}
 
 	/**
-	 * Business method that returns role set data as XML from roleset id
+	 * Business method that returns role set data as XML from roleSet id
 	 *
 	 * @param connection database connection
-	 * @param roleSetId  the roleset id to build query from
+	 * @param roleSetId  the roleSet id to build query from
 	 * @param pos        the pos to build query from
 	 * @return Propbank role set data as XML
 	 */
@@ -195,11 +195,11 @@ public class PropBankImplementation implements PropBankInterface
 		// word
 		NodeFactory.makeWordNode(doc, parent, targetWord, wordId);
 
-		// rolesets
+		// roleSets
 		int i = 1;
 		for (final PbRoleSet roleSet : roleSets)
 		{
-			// roleset
+			// roleSet
 			PbNodeFactory.makePbRoleSetNode(doc, parent, roleSet, i++);
 		}
 	}
@@ -214,41 +214,41 @@ public class PropBankImplementation implements PropBankInterface
 	 */
 	static private void walk(final SQLiteDatabase connection, final Document doc, final Node parent, final long targetWordId)
 	{
-		// rolesets
+		// roleSets
 		final List<PbRoleSet> roleSets = PbRoleSet.makeFromWordId(connection, targetWordId);
 		walk(connection, doc, parent, roleSets);
 	}
 
 	/**
-	 * Perform queries for PropBank data from roleset id
+	 * Perform queries for PropBank data from roleSet id
 	 *
 	 * @param connection data source
 	 * @param doc        the org.w3c.dom.Document being built
 	 * @param parent     the org.w3c.dom.Node the walk will attach results to
-	 * @param roleSetId  rolesetid
+	 * @param roleSetId  roleSetId
 	 */
 	private static void walkRoleSet(final SQLiteDatabase connection, final Document doc, final Node parent, final long roleSetId)
 	{
-		// rolesets
+		// roleSets
 		final List<PbRoleSet> roleSets = PbRoleSet.make(connection, roleSetId);
 		walk(connection, doc, parent, roleSets);
 	}
 
 	/**
-	 * Query PropBank data from rolesets
+	 * Query PropBank data from roleSets
 	 *
 	 * @param connection data source
 	 * @param doc        the org.w3c.dom.Document being built
 	 * @param parent     the org.w3c.dom.Node the walk will attach results to
-	 * @param roleSets   rolesets
+	 * @param roleSets   roleSets
 	 */
 	static private void walk(final SQLiteDatabase connection, final Document doc, final Node parent, final Iterable<PbRoleSet> roleSets)
 	{
-		// rolesets
+		// roleSets
 		int i = 1;
 		for (final PbRoleSet roleSet : roleSets)
 		{
-			// roleset
+			// roleSet
 			final Node roleSetNode = PbNodeFactory.makePbRoleSetNode(doc, parent, roleSet, i++);
 
 			// roles
@@ -273,15 +273,15 @@ public class PropBankImplementation implements PropBankInterface
 	 *
 	 * @param doc      the org.w3c.dom.Document being built
 	 * @param parent   the org.w3c.dom.Node the walk will attach results to
-	 * @param roleSets rolesets
+	 * @param roleSets roleSets
 	 */
 	static private void makeSelector(final Document doc, final Node parent, final Iterable<PbRoleSet> roleSets)
 	{
-		// rolesets
+		// roleSets
 		int i = 1;
 		for (final PbRoleSet roleSet : roleSets)
 		{
-			// roleset
+			// roleSet
 			PbNodeFactory.makePbRoleSetNode(doc, parent, roleSet, i++);
 		}
 	}

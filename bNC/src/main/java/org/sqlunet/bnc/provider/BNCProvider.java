@@ -73,14 +73,15 @@ public class BNCProvider extends SqlUNetProvider
 
 	@SuppressWarnings("boxing")
 	@Override
-	public Cursor query(final Uri uri, final String[] projection, final String selection0, final String[] selectionArgs, final String sortOrder)
+	public Cursor query(final Uri uri, final String[] projection, final String selection, final String[] selectionArgs, final String sortOrder)
 	{
 		if (this.db == null)
 		{
 			open();
 		}
 
-		String selection = selection0;
+		String actualSelection = selection;
+
 		// choose the table to query and a sort order based on the code returned for the incoming URI
 		final int code = BNCProvider.uriMatcher.match(uri);
 		Log.d(BNCProvider.TAG + "URI", String.format("%s (code %s)", uri, code)); //$NON-NLS-1$ //$NON-NLS-2$
@@ -95,15 +96,15 @@ public class BNCProvider extends SqlUNetProvider
 
 			case BNC:
 				table = BNCContract.BNCs.TABLE;
-				if (selection != null)
+				if (actualSelection != null)
 				{
-					selection += " AND "; //$NON-NLS-1$
+					actualSelection += " AND "; //$NON-NLS-1$
 				}
 				else
 				{
-					selection = ""; //$NON-NLS-1$
+					actualSelection = ""; //$NON-NLS-1$
 				}
-				selection += BNCContract.BNCs.POS + " = ?"; //$NON-NLS-1$
+				actualSelection += BNCContract.BNCs.POS + " = ?"; //$NON-NLS-1$
 				break;
 
 			// J O I N S
@@ -123,7 +124,7 @@ public class BNCProvider extends SqlUNetProvider
 		final String groupBy = null;
 		if (SqlUNetProvider.debugSql)
 		{
-			final String sql = SQLiteQueryBuilder.buildQueryString(false, table, projection, selection, groupBy, null, sortOrder, null);
+			final String sql = SQLiteQueryBuilder.buildQueryString(false, table, projection, actualSelection, groupBy, null, sortOrder, null);
 			Log.d(BNCProvider.TAG + "SQL", sql); //$NON-NLS-1$
 			Log.d(BNCProvider.TAG + "ARGS", SqlUNetProvider.argsToString(selectionArgs)); //$NON-NLS-1$
 		}
@@ -131,7 +132,7 @@ public class BNCProvider extends SqlUNetProvider
 		// do query
 		try
 		{
-			return this.db.query(table, projection, selection, selectionArgs, groupBy, null, sortOrder);
+			return this.db.query(table, projection, actualSelection, selectionArgs, groupBy, null, sortOrder);
 		}
 		catch (SQLiteException e)
 		{

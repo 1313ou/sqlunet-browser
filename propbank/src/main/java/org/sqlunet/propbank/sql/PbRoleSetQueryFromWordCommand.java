@@ -20,7 +20,7 @@ class PbRoleSetQueryFromWordCommand extends DBQueryCommand
 	 * Constructor
 	 *
 	 * @param connection is the database connection
-	 * @param wordId     is the target wordid
+	 * @param wordId     is the target word id
 	 */
 	public PbRoleSetQueryFromWordCommand(final SQLiteDatabase connection, final String wordId)
 	{
@@ -39,9 +39,9 @@ class PbRoleSetQueryFromWordCommand extends DBQueryCommand
 	}
 
 	/**
-	 * Get the roleset id from the result set
+	 * Get the roleSet id from the result set
 	 *
-	 * @return the roleset id from the result set
+	 * @return the roleSet id from the result set
 	 */
 	public long getRoleSetId()
 	{
@@ -49,9 +49,9 @@ class PbRoleSetQueryFromWordCommand extends DBQueryCommand
 	}
 
 	/**
-	 * Get the roleset name from the result set
+	 * Get the roleSet name from the result set
 	 *
-	 * @return the roleset name from the result set
+	 * @return the roleSet name from the result set
 	 */
 	public String getRoleSetName()
 	{
@@ -59,9 +59,9 @@ class PbRoleSetQueryFromWordCommand extends DBQueryCommand
 	}
 
 	/**
-	 * Get roleset head
+	 * Get roleSet head
 	 *
-	 * @return roleset head
+	 * @return roleSet head
 	 */
 	public String getRoleSetHead()
 	{
@@ -69,9 +69,9 @@ class PbRoleSetQueryFromWordCommand extends DBQueryCommand
 	}
 
 	/**
-	 * Get roleset description
+	 * Get roleSet description
 	 *
-	 * @return roleset description
+	 * @return roleSet description
 	 */
 	public String getRoleSetDescr()
 	{

@@ -13,35 +13,35 @@ public class VnClassPointer implements Parcelable
 	/**
 	 * Members
 	 */
-	public Long classid;
+	public Long classId;
 
 	/**
 	 * Constructor
 	 */
 	public VnClassPointer()
 	{
-		this.classid = null;
+		this.classId = null;
 	}
 
 	/**
 	 * Constructor from Parcel, reads back fields IN THE ORDER they were written
 	 */
 	@SuppressWarnings("boxing")
-	private VnClassPointer(final Parcel pc)
+	private VnClassPointer(final Parcel parcel)
 	{
 		this();
-		long classid0 = pc.readLong();
-		if (classid0 != -1)
+		long parcelClassId = parcel.readLong();
+		if (parcelClassId != -1)
 		{
-			this.classid = classid0;
+			this.classId = parcelClassId;
 		}
 	}
 
 	public Long getClassId()
 	{
-		if (this.classid != 0)
+		if (this.classId != 0)
 		{
-			return this.classid;
+			return this.classId;
 		}
 		return null;
 	}
@@ -67,7 +67,7 @@ public class VnClassPointer implements Parcelable
 	@Override
 	public void writeToParcel(final Parcel pc, final int flags)
 	{
-		pc.writeLong(this.classid == null ? -1 : this.classid);
+		pc.writeLong(this.classId == null ? -1 : this.classId);
 	}
 
 	@Override

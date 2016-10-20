@@ -7,7 +7,7 @@ import org.sqlunet.HasWordId;
 import org.sqlunet.treeview.model.TreeNode;
 
 /**
- * Module for rolesets
+ * Module for roleSets
  *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
@@ -16,30 +16,30 @@ public class RoleSetFromWordModule extends BasicModule
 	/**
 	 * Query
 	 */
-	private Long wordid;
+	private Long wordId;
 
 	/**
 	 * Constructor
 	 */
-	public RoleSetFromWordModule(final Fragment fragment0)
+	public RoleSetFromWordModule(final Fragment fragment)
 	{
-		super(fragment0);
+		super(fragment);
 	}
 
 	@Override
-	void unmarshall(final Parcelable query0)
+	void unmarshal(final Parcelable query)
 	{
-		final HasWordId wordQuery = (HasWordId) query0;
-		this.wordid = wordQuery.getWordId();
+		final HasWordId wordQuery = (HasWordId) query;
+		this.wordId = wordQuery.getWordId();
 	}
 
 	@Override
 	public void process(final TreeNode node)
 	{
-		if (this.wordid != 0)
+		if (this.wordId != 0)
 		{
 			// data
-			rolesets(this.wordid, node);
+			roleSets(this.wordId, node);
 		}
 		else
 		{

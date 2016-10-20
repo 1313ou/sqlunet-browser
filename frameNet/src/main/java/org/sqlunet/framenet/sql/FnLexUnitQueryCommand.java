@@ -20,7 +20,7 @@ class FnLexUnitQueryCommand extends DBQueryCommand
 	 * Constructor
 	 *
 	 * @param connection is the database connection
-	 * @param targetLuId target luid
+	 * @param targetLuId target luId
 	 */
 	@SuppressWarnings("boxing")
 	public FnLexUnitQueryCommand(final SQLiteDatabase connection, final long targetLuId)
@@ -90,9 +90,9 @@ class FnLexUnitQueryCommand extends DBQueryCommand
 	}
 
 	/**
-	 * Get the annosetid from the result set
+	 * Get the annoSetId from the result set
 	 *
-	 * @return the annosetid from the result set
+	 * @return the annoSetId from the result set
 	 */
 	public long getFrameId()
 	{

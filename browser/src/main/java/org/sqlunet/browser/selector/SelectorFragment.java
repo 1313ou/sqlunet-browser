@@ -172,7 +172,7 @@ public class SelectorFragment extends ListFragment
 		getLoaderManager().restartLoader(++Module.loaderId, null, new LoaderCallbacks<Cursor>()
 		{
 			@Override
-			public Loader<Cursor> onCreateLoader(final int loader0, final Bundle args0)
+			public Loader<Cursor> onCreateLoader(final int loaderId, final Bundle loaderArgs)
 			{
 				final Uri uri = Uri.parse(Words_FnWords_PbWords_VnWords.CONTENT_URI);
 				final String[] projection = { //
@@ -200,7 +200,7 @@ public class SelectorFragment extends ListFragment
 			}
 
 			@Override
-			public void onLoadFinished(final Loader<Cursor> loader0, final Cursor cursor)
+			public void onLoadFinished(final Loader<Cursor> loader, final Cursor cursor)
 			{
 				// store source result
 				if (cursor.moveToFirst())
@@ -208,7 +208,7 @@ public class SelectorFragment extends ListFragment
 					SelectorFragment.this.word = new WordPointer();
 					SelectorFragment.this.word.lemma = SelectorFragment.this.queryWord;
 					final int idWordId = cursor.getColumnIndex(Words_FnWords_PbWords_VnWords.WORDID);
-					SelectorFragment.this.word.wordid = cursor.getLong(idWordId);
+					SelectorFragment.this.word.wordId = cursor.getLong(idWordId);
 				}
 
 				// pass on to list adapter
@@ -216,7 +216,7 @@ public class SelectorFragment extends ListFragment
 			}
 
 			@Override
-			public void onLoaderReset(final Loader<Cursor> arg0)
+			public void onLoaderReset(final Loader<Cursor> arg)
 			{
 				((CursorAdapter) getListAdapter()).swapCursor(null);
 			}
@@ -339,7 +339,7 @@ public class SelectorFragment extends ListFragment
 			// sense pointer
 			final Pointer pointer = new Pointer();
 			pointer.setSynset(cursor.isNull(idSynsetId) ? null : cursor.getLong(idSynsetId), cursor.getString(idPos));
-			pointer.setWord(this.word.wordid, this.word.lemma, cursor.getString(idCased));
+			pointer.setWord(this.word.wordId, this.word.lemma, cursor.getString(idCased));
 
 			// notify the active listener (the activity, if the fragment is attached to one) that an item has been selected
 			if (this.listener != null)

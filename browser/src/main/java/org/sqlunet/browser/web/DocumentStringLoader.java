@@ -84,7 +84,7 @@ abstract class DocumentStringLoader extends AsyncTaskLoader<String>
 
 	/* Runs on the UI thread */
 	@Override
-	public void deliverResult(final String document0)
+	public void deliverResult(final String document)
 	{
 		if (isReset())
 		// An async query came in while the loader is stopped
@@ -92,11 +92,11 @@ abstract class DocumentStringLoader extends AsyncTaskLoader<String>
 			return;
 		}
 
-		this.document = document0;
+		this.document = document;
 
 		if (isStarted())
 		{
-			super.deliverResult(document0);
+			super.deliverResult(document);
 		}
 	}
 
@@ -128,7 +128,7 @@ abstract class DocumentStringLoader extends AsyncTaskLoader<String>
 	}
 
 	@Override
-	public void onCanceled(final String document0)
+	public void onCanceled(final String document)
 	{
 		// do nothing
 	}

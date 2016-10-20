@@ -88,16 +88,16 @@ public class ExecuteManager
 		{
 			@SuppressWarnings("boxing")
 			@Override
-			protected Boolean doInBackground(final String... sqls0)
+			protected Boolean doInBackground(final String... sqlsToExecute)
 			{
 				SQLiteDatabase db = null;
 				try
 				{
 					db = SQLiteDatabase.openDatabase(ExecuteManager.this.databasePath, null, SQLiteDatabase.OPEN_READWRITE);
-					final int count = sqls0.length;
+					final int count = sqlsToExecute.length;
 					for (int i = 0; i < count; i++)
 					{
-						final String sql = sqls0[i].trim();
+						final String sql = sqlsToExecute[i].trim();
 						if (sql.isEmpty())
 						{
 							continue;
@@ -158,10 +158,10 @@ public class ExecuteManager
 	/**
 	 * Execute sql statements from zipfile
 	 *
-	 * @param archive0 zip file path with sql statements
-	 * @param entry0   entry
+	 * @param archive zip file path with sql statements
+	 * @param entry   entry
 	 */
-	public AsyncTask<String, Integer, Boolean> executeFromArchive(final String archive0, final String entry0)
+	public AsyncTask<String, Integer, Boolean> executeFromArchive(final String archive, final String entry)
 	{
 		final AsyncTask<String, Integer, Boolean> task = new AsyncTask<String, Integer, Boolean>()
 		{
@@ -169,9 +169,9 @@ public class ExecuteManager
 			@SuppressWarnings("boxing")
 			protected Boolean doInBackground(final String... params)
 			{
-				String archive = params[0];
-				String entry = params[1];
-				Log.d(ExecuteManager.TAG, archive + " entry " + entry); //$NON-NLS-1$
+				String archiveArg = params[0];
+				String entryArg = params[1];
+				Log.d(ExecuteManager.TAG, archiveArg + " entry " + entryArg); //$NON-NLS-1$
 				ZipFile zipFile = null;
 				SQLiteDatabase db = null;
 				BufferedReader reader = null;
@@ -179,11 +179,11 @@ public class ExecuteManager
 				try
 				{
 					// zip
-					zipFile = new ZipFile(archive);
-					final ZipEntry zipEntry = zipFile.getEntry(entry);
+					zipFile = new ZipFile(archiveArg);
+					final ZipEntry zipEntry = zipFile.getEntry(entryArg);
 					if (zipEntry == null)
 					{
-						throw new IOException("Zip entry not found " + entry); //$NON-NLS-1$
+						throw new IOException("Zip entry not found " + entryArg); //$NON-NLS-1$
 					}
 
 					is = zipFile.getInputStream(zipEntry);
@@ -309,6 +309,6 @@ public class ExecuteManager
 				ExecuteManager.this.listener.managerFinish(result);
 			}
 		};
-		return task.execute(archive0, entry0);
+		return task.execute(archive, entry);
 	}
 }

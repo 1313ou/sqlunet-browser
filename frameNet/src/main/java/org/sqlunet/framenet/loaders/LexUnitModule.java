@@ -22,28 +22,28 @@ public class LexUnitModule extends FrameModule
 	/**
 	 * LuId
 	 */
-	private Long luid;
+	private Long luId;
 
 	/**
 	 * Constructor
 	 */
-	public LexUnitModule(final Fragment fragment0)
+	public LexUnitModule(final Fragment fragment)
 	{
-		super(fragment0);
+		super(fragment);
 	}
 
 
 	@Override
-	public void init(final Parcelable query0)
+	public void init(final Parcelable query)
 	{
-		super.init(query0);
+		super.init(query);
 
 		// get query
-		this.luid = null;
-		if (query0 instanceof FnLexUnitPointer)
+		this.luId = null;
+		if (query instanceof FnLexUnitPointer)
 		{
-			final FnLexUnitPointer lexUnitQuery = (FnLexUnitPointer) query0;
-			this.luid = lexUnitQuery.getLuId();
+			final FnLexUnitPointer lexUnitQuery = (FnLexUnitPointer) query;
+			this.luId = lexUnitQuery.getLuId();
 		}
 	}
 
@@ -51,10 +51,10 @@ public class LexUnitModule extends FrameModule
 	@Override
 	public void process(final TreeNode node)
 	{
-		if (this.luid != null)
+		if (this.luId != null)
 		{
 			// data
-			lexunit(this.luid, node, true, false);
+			lexunit(this.luId, node, true, false);
 		}
 	}
 }

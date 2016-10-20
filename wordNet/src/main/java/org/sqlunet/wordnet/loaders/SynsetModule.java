@@ -12,18 +12,18 @@ public class SynsetModule extends BasicModule
 	/**
 	 * Query
 	 */
-	Long synsetid;
+	Long synsetId;
 
 	Character pos;
 
 	/**
 	 * Constructor
 	 *
-	 * @param fragment0 fragment
+	 * @param fragment fragment
 	 */
-	public SynsetModule(final Fragment fragment0)
+	public SynsetModule(final Fragment fragment)
 	{
-		super(fragment0);
+		super(fragment);
 	}
 
 	@Override
@@ -35,7 +35,7 @@ public class SynsetModule extends BasicModule
 		if (parcelable instanceof HasSynsetId)
 		{
 			final HasSynsetId query = (HasSynsetId) parcelable;
-			this.synsetid = query.getSynsetId();
+			this.synsetId = query.getSynsetId();
 		}
 		if (parcelable instanceof HasPos)
 		{
@@ -47,22 +47,22 @@ public class SynsetModule extends BasicModule
 	@Override
 	public void process(final TreeNode node)
 	{
-		if (this.synsetid != null && this.synsetid != 0)
+		if (this.synsetId != null && this.synsetId != 0)
 		{
 			// synset
-			synset(this.synsetid, node, true);
+			synset(this.synsetId, node, true);
 
 			// members
-			members(this.synsetid, node, true);
+			members(this.synsetId, node, true);
 
 			// samples
-			samples(this.synsetid, node);
+			samples(this.synsetId, node);
 
-			// semlinks
-			semlinks(this.synsetid, node);
+			// semLinks
+			semLinks(this.synsetId, node);
 
-			// lexlinks
-			this.lexlinks(this.synsetid, node);
+			// lexLinks
+			this.lexLinks(this.synsetId, node);
 
 			// special
 			if (this.pos != null)
@@ -70,12 +70,12 @@ public class SynsetModule extends BasicModule
 				switch (this.pos)
 				{
 					case 'v':
-						this.vframes(this.synsetid, node);
-						this.vframesentences(this.synsetid, node);
+						this.vFrames(this.synsetId, node);
+						this.vFrameSentences(this.synsetId, node);
 						break;
 
 					case 'a':
-						this.adjposition(this.synsetid, node);
+						this.adjPosition(this.synsetId, node);
 						break;
 				}
 			}

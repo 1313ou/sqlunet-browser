@@ -87,7 +87,7 @@ class FnFrameElement
 	}
 
 	/**
-	 * Make sets of FEs from query built from annosetid
+	 * Make sets of FEs from query built from annoSetId
 	 *
 	 * @param connection is the database connection
 	 * @param frameId    is the word id to build query from

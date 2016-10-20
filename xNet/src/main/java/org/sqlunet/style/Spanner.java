@@ -86,7 +86,7 @@ public class Spanner
 		}
 
 		@Override
-		public void draw(final Canvas arg0, final CharSequence arg1, final int arg2, final int arg3, final float arg4, final int arg5, final int arg6, final int arg7, final Paint arg8)
+		public void draw(final Canvas canvas, final CharSequence arg1, final int arg2, final int arg3, final float arg4, final int arg5, final int arg6, final int arg7, final Paint arg8)
 		{
 			//
 		}
@@ -225,13 +225,13 @@ public class Spanner
 		final ClickableSpan span2 = new ClickableSpan()
 		{
 			@Override
-			synchronized public void onClick(View view0)
+			synchronized public void onClick(final View view)
 			{
 				// Log.d(TAG, "Click image"); //$NON-NLS-1$
-				final TextView view = (TextView) view0;
-				final SpannableStringBuilder sb1 = (SpannableStringBuilder) view.getText();
-				final int clickableStart = view.getSelectionStart();
-				final int clickableEnd = view.getSelectionEnd();
+				final TextView textView = (TextView) view;
+				final SpannableStringBuilder sb1 = (SpannableStringBuilder) textView.getText();
+				final int clickableStart = textView.getSelectionStart();
+				final int clickableEnd = textView.getSelectionEnd();
 				final Object[] spans = sb1.getSpans(clickableStart, clickableEnd, ImageSpan.class);
 				for (final Object span1 : spans)
 				{
@@ -255,7 +255,7 @@ public class Spanner
 					Log.d(TAG, from + "->" + to); //$NON-NLS-1$
 					listener.onClickImage(sb1, to + caption.length() + 2, collapsed);
 				}
-				view.setText(sb1);
+				textView.setText(sb1);
 			}
 		};
 		Spanner.appendImageSpans(sb, span, span2);

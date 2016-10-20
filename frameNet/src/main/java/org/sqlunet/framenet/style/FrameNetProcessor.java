@@ -20,9 +20,9 @@ public class FrameNetProcessor extends Preprocessor
 		super(FrameNetProcessor.replacers);
 	}
 
-	public CharSequence[] split(final CharSequence text0)
+	public CharSequence[] split(final CharSequence text)
 	{
-		CharSequence text = process(text0);
-		return text.toString().split("\n");
+		CharSequence processedText = process(text);
+		return processedText.toString().split("\n");
 	}
 }

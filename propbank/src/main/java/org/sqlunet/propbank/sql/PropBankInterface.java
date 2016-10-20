@@ -69,7 +69,7 @@ interface PropBankInterface
 	// I T E M S
 
 	/**
-	 * Business method the returns role set data as DOM document from roleset id
+	 * Business method the returns role set data as DOM document from roleSet id
 	 *
 	 * @param connection database connection
 	 * @param roleSetId  the role set to build query from
@@ -79,10 +79,10 @@ interface PropBankInterface
 	Document queryRoleSetDoc(final SQLiteDatabase connection, final long roleSetId, final Character pos);
 
 	/**
-	 * Business method that returns role set data as XML from roleset id
+	 * Business method that returns role set data as XML from roleSet id
 	 *
 	 * @param connection database connection
-	 * @param roleSetId  the roleset id to build query from
+	 * @param roleSetId  the roleSet id to build query from
 	 * @param pos        the pos to build query from
 	 * @return Propbank role set data as XML
 	 */

@@ -13,9 +13,9 @@ import org.sqlunet.HasWordId;
 public class SensePointer extends SynsetPointer implements HasWordId
 {
 	/**
-	 * wordid : compulsory
+	 * wordId : compulsory
 	 */
-	private Long wordid;
+	private Long wordId;
 
 	/**
 	 * pos : optional/nullable (may be retrieved if need be)
@@ -33,7 +33,7 @@ public class SensePointer extends SynsetPointer implements HasWordId
 	public SensePointer()
 	{
 		super();
-		this.wordid = null;
+		this.wordId = null;
 		this.lemma = null;
 		this.cased = null;
 	}
@@ -44,15 +44,15 @@ public class SensePointer extends SynsetPointer implements HasWordId
 	protected SensePointer(final Parcel parcel)
 	{
 		super(parcel);
-		this.wordid = (Long) parcel.readValue(getClass().getClassLoader());
+		this.wordId = (Long) parcel.readValue(getClass().getClassLoader());
 		this.lemma = parcel.readString();
 		this.cased = parcel.readString();
 	}
 
 	@SuppressWarnings("boxing")
-	public void setWord(final Long wordid, final String lemma, final String cased)
+	public void setWord(final Long wordId, final String lemma, final String cased)
 	{
-		this.wordid = wordid == null ? -1L : wordid;
+		this.wordId = wordId == null ? -1L : wordId;
 		this.lemma = lemma;
 		this.cased = cased;
 	}
@@ -60,9 +60,9 @@ public class SensePointer extends SynsetPointer implements HasWordId
 	@Override
 	public Long getWordId()
 	{
-		if (this.wordid != -1)
+		if (this.wordId != -1)
 		{
-			return this.wordid;
+			return this.wordId;
 		}
 		return null;
 	}
@@ -102,7 +102,7 @@ public class SensePointer extends SynsetPointer implements HasWordId
 	{
 		super.writeToParcel(parcel, flags);
 
-		parcel.writeValue(this.wordid);
+		parcel.writeValue(this.wordId);
 		parcel.writeString(this.lemma);
 		parcel.writeString(this.cased);
 	}
@@ -118,8 +118,8 @@ public class SensePointer extends SynsetPointer implements HasWordId
 	{
 		return super.toString() +
 				' ' +
-				"wordid=" + //$NON-NLS-1$
-				this.wordid +
+				"wordId=" + //$NON-NLS-1$
+				this.wordId +
 				' ' +
 				"lemma=" + //$NON-NLS-1$
 				this.lemma +

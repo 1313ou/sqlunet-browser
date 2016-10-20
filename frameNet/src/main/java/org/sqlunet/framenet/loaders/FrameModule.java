@@ -17,18 +17,18 @@ public class FrameModule extends BasicModule
 	/**
 	 * Query
 	 */
-	private Long frameid;
+	private Long frameId;
 
-	private Long luid;
+	private Long luId;
 
 	// C R E A T I O N
 
 	/**
 	 * Mandatory empty constructor for the fragment manager to instantiate the fragment (e.g. upon screen orientation changes).
 	 */
-	public FrameModule(final Fragment fragment0)
+	public FrameModule(final Fragment fragment)
 	{
-		super(fragment0);
+		super(fragment);
 	}
 
 
@@ -37,25 +37,30 @@ public class FrameModule extends BasicModule
 	{
 		super.init(arguments);
 
-		unmarshall(arguments);
+		unmarshal(arguments);
 	}
 
-	private void unmarshall(final Parcelable query)
+	/**
+	 * Unmarshal parceled query
+	 *
+	 * @param query parceled query
+	 */
+	private void unmarshal(final Parcelable query)
 	{
 		// get query
 		if (query instanceof FnFramePointer)
 		{
 			final FnFramePointer pointer = (FnFramePointer) query;
-			this.frameid = pointer.frameid;
-			this.luid = null;
+			this.frameId = pointer.frameId;
+			this.luId = null;
 		}
 		if (query instanceof HasXId)
 		{
 			final HasXId pointer = (HasXId) query;
-			if (pointer.getXsources().contains("fn")) //$NON-NLS-1$
+			if (pointer.getxSources().contains("fn")) //$NON-NLS-1$
 			{
-				this.frameid = pointer.getXclassid();
-				this.luid = pointer.getXinstanceid();
+				this.frameId = pointer.getxClassId();
+				this.luId = pointer.getXInstanceId();
 			}
 		}
 	}
@@ -64,15 +69,15 @@ public class FrameModule extends BasicModule
 	@Override
 	public void process(final TreeNode node)
 	{
-		if (this.luid != null)
+		if (this.luId != null)
 		{
 			// data
-			lexunit(this.luid, node, true, false);
+			lexunit(this.luId, node, true, false);
 		}
-		else if (this.frameid != null)
+		else if (this.frameId != null)
 		{
 			// data
-			frame(this.frameid, node);
+			frame(this.frameId, node);
 		}
 		else
 		{

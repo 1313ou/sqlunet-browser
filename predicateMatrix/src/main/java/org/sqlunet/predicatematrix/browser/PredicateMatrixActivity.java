@@ -381,7 +381,7 @@ public class PredicateMatrixActivity extends Activity
 		if (query.startsWith("#mr")) //$NON-NLS-1$
 		{
 			final PmRolePointer pointer1 = new PmRolePointer();
-			pointer1.roleid = Long.parseLong(query.substring(3));
+			pointer1.roleId = Long.parseLong(query.substring(3));
 			pointer = pointer1;
 		}
 		else

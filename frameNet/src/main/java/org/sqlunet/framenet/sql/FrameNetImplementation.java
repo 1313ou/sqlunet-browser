@@ -161,7 +161,7 @@ public class FrameNetImplementation implements FrameNetInterface
 	 * Business method that returns lexunit data as DOM document
 	 *
 	 * @param connection database connection
-	 * @param luId       the luid to build query from
+	 * @param luId       the luId to build query from
 	 * @return FrameNet lexunit data as DOM document
 	 */
 	@Override
@@ -177,7 +177,7 @@ public class FrameNetImplementation implements FrameNetInterface
 	 * Business method that returns lexunit data as XML
 	 *
 	 * @param connection database connection
-	 * @param luId       the luid to build query from
+	 * @param luId       the luId to build query from
 	 * @return FrameNet lexunit data as XML
 	 */
 	@Override
@@ -193,7 +193,7 @@ public class FrameNetImplementation implements FrameNetInterface
 	 * Business method that returns sentence data as DOM document
 	 *
 	 * @param connection database connection
-	 * @param sentenceId the sentenceid to build query from
+	 * @param sentenceId the sentence id to build query from
 	 * @return FrameNet sentence data as DOM document
 	 */
 	public Document querySentenceDoc(final SQLiteDatabase connection, final long sentenceId)
@@ -208,7 +208,7 @@ public class FrameNetImplementation implements FrameNetInterface
 	 * Business method that returns sentence data as XML
 	 *
 	 * @param connection database connection
-	 * @param sentenceId the sentenceid to build query from
+	 * @param sentenceId the sentence id to build query from
 	 * @return FrameNet sentence data as XML
 	 */
 	@SuppressWarnings("unused")
@@ -224,7 +224,7 @@ public class FrameNetImplementation implements FrameNetInterface
 	 * Business method that returns annoset data as DOM document
 	 *
 	 * @param connection database connection
-	 * @param annoSetId  the annosetid to build query from
+	 * @param annoSetId  the annoSetId to build query from
 	 * @return FrameNet annoset data as DOM document
 	 */
 	public Document queryAnnoSetDoc(final SQLiteDatabase connection, final long annoSetId)
@@ -239,7 +239,7 @@ public class FrameNetImplementation implements FrameNetInterface
 	 * Business method that returns annoset data as XML
 	 *
 	 * @param connection database connection
-	 * @param annoSetId  the annosetid to build query from
+	 * @param annoSetId  the annoSetId to build query from
 	 * @return FrameNet annoset data as XML
 	 */
 	@SuppressWarnings("unused")

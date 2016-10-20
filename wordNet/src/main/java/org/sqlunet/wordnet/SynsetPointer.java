@@ -14,9 +14,9 @@ import org.sqlunet.HasSynsetId;
 public class SynsetPointer implements Parcelable, HasSynsetId, HasPos
 {
 	/**
-	 * synsetid : compulsory
+	 * synsetId : compulsory
 	 */
-	private long synsetid;
+	private long synsetId;
 
 	/**
 	 * pos : optional/nullable (may be retrieved if need be)
@@ -28,7 +28,7 @@ public class SynsetPointer implements Parcelable, HasSynsetId, HasPos
 	 */
 	public SynsetPointer()
 	{
-		this.synsetid = -1;
+		this.synsetId = -1;
 		this.pos = null;
 	}
 
@@ -37,13 +37,13 @@ public class SynsetPointer implements Parcelable, HasSynsetId, HasPos
 	 */
 	SynsetPointer(final Parcel pc)
 	{
-		this.synsetid = pc.readLong();
+		this.synsetId = pc.readLong();
 		this.pos = pc.readString();
 	}
 
-	public void setSynset(final Long synsetid, final String pos)
+	public void setSynset(final Long synsetId, final String pos)
 	{
-		this.synsetid = synsetid == null ? -1 : synsetid;
+		this.synsetId = synsetId == null ? -1 : synsetId;
 		this.pos = pos;
 	}
 
@@ -62,9 +62,9 @@ public class SynsetPointer implements Parcelable, HasSynsetId, HasPos
 	@Override
 	public Long getSynsetId()
 	{
-		if (this.synsetid != -1)
+		if (this.synsetId != -1)
 		{
-			return this.synsetid;
+			return this.synsetId;
 		}
 		return null;
 	}
@@ -90,7 +90,7 @@ public class SynsetPointer implements Parcelable, HasSynsetId, HasPos
 	@Override
 	public void writeToParcel(final Parcel pc, final int flags)
 	{
-		pc.writeLong(this.synsetid);
+		pc.writeLong(this.synsetId);
 		pc.writeString(this.pos);
 	}
 
@@ -103,8 +103,8 @@ public class SynsetPointer implements Parcelable, HasSynsetId, HasPos
 	@Override
 	public String toString()
 	{
-		return "synsetid=" + //$NON-NLS-1$
-				this.synsetid +
+		return "synsetId=" + //$NON-NLS-1$
+				this.synsetId +
 				' ' +
 				"pos=" + //$NON-NLS-1$
 				this.pos;

@@ -23,7 +23,7 @@ class PbExampleQueryCommand extends DBQueryCommand
 	 * Constructor
 	 *
 	 * @param connection is the database connection
-	 * @param roleSetId  roleset id to build query from
+	 * @param roleSetId  roleSet id to build query from
 	 */
 	@SuppressWarnings("boxing")
 	public PbExampleQueryCommand(final SQLiteDatabase connection, final long roleSetId)

@@ -1077,24 +1077,24 @@ public class TwoDScrollView extends FrameLayout
 	 * This is more expensive than the default {@link android.view.ViewGroup} implementation, otherwise this behavior might have been made the default.
 	 */
 	@Override
-	protected boolean onRequestFocusInDescendants(int direction0, Rect previouslyFocusedRect)
+	protected boolean onRequestFocusInDescendants(int direction, Rect previouslyFocusedRect)
 	{
-		int direction = direction0;
+		int actualDirection = direction;
 
 		// convert from forward / backward notation to up / down / left / right
 		// (ugh).
-		if (direction == View.FOCUS_FORWARD)
+		if (actualDirection == View.FOCUS_FORWARD)
 		{
-			direction = View.FOCUS_DOWN;
+			actualDirection = View.FOCUS_DOWN;
 		}
-		else if (direction == View.FOCUS_BACKWARD)
+		else if (actualDirection == View.FOCUS_BACKWARD)
 		{
-			direction = View.FOCUS_UP;
+			actualDirection = View.FOCUS_UP;
 		}
 
-		final View nextFocus = previouslyFocusedRect == null ? FocusFinder.getInstance().findNextFocus(this, null, direction) : FocusFinder.getInstance().findNextFocusFromRect(this, previouslyFocusedRect, direction);
+		final View nextFocus = previouslyFocusedRect == null ? FocusFinder.getInstance().findNextFocus(this, null, actualDirection) : FocusFinder.getInstance().findNextFocusFromRect(this, previouslyFocusedRect, actualDirection);
 
-		return nextFocus != null && nextFocus.requestFocus(direction, previouslyFocusedRect);
+		return nextFocus != null && nextFocus.requestFocus(actualDirection, previouslyFocusedRect);
 	}
 
 	@Override
@@ -1152,15 +1152,15 @@ public class TwoDScrollView extends FrameLayout
 	/**
 	 * Return true if child is an descendant of parent, (or equal to the parent).
 	 */
-	private boolean isViewDescendantOf(View child, View parent0)
+	private boolean isViewDescendantOf(View child, View parent)
 	{
-		if (child == parent0)
+		if (child == parent)
 		{
 			return true;
 		}
 
-		final ViewParent parent = child.getParent();
-		return (parent instanceof ViewGroup) && isViewDescendantOf((View) parent, parent0);
+		final ViewParent childParent = child.getParent();
+		return (childParent instanceof ViewGroup) && isViewDescendantOf((View) childParent, parent);
 	}
 
 	/**
@@ -1207,10 +1207,10 @@ public class TwoDScrollView extends FrameLayout
 	 * This version also clamps the scrolling to the bounds of our child.
 	 */
 	@Override
-	public void scrollTo(int x0, int y0)
+	public void scrollTo(int destX, int destY)
 	{
-		int x = x0;
-		int y = y0;
+		int x = destX;
+		int y = destY;
 
 		// we rely on the fact the View.scrollBy calls scrollTo.
 		if (getChildCount() > 0)

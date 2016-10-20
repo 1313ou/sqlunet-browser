@@ -29,7 +29,7 @@ import org.sqlunet.view.TreeFactory;
 import java.util.Arrays;
 
 /**
- * Module for rolesets
+ * Module for roleSets
  *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
@@ -38,9 +38,9 @@ abstract class BasicModule extends Module
 	// resources
 
 	/**
-	 * Drawable for rolesets
+	 * Drawable for roleSets
 	 */
-	private Drawable rolesetDrawable;
+	private Drawable roleSetDrawable;
 
 	/**
 	 * Drawable for roles
@@ -82,17 +82,17 @@ abstract class BasicModule extends Module
 	/**
 	 * Constructor
 	 */
-	BasicModule(final Fragment fragment0)
+	BasicModule(final Fragment fragment)
 	{
-		super(fragment0);
+		super(fragment);
 	}
 
 	/**
-	 * Unmarshall query arguments
+	 * Unmarshal parceled query
 	 *
 	 * @param query parceled query
 	 */
-	abstract void unmarshall(final Parcelable query);
+	abstract void unmarshal(final Parcelable query);
 
 	@Override
 	public void init(final Parcelable query)
@@ -101,7 +101,7 @@ abstract class BasicModule extends Module
 		this.spanner = new PropbankSpanner(getContext());
 
 		// drawables
-		this.rolesetDrawable = Spanner.getDrawable(getContext(), R.drawable.roleset);
+		this.roleSetDrawable = Spanner.getDrawable(getContext(), R.drawable.roleset);
 		this.rolesDrawable = Spanner.getDrawable(getContext(), R.drawable.roles);
 		this.relationDrawable = Spanner.getDrawable(getContext(), R.drawable.relation);
 		this.roleDrawable = Spanner.getDrawable(getContext(), R.drawable.role);
@@ -110,19 +110,19 @@ abstract class BasicModule extends Module
 		this.sampleDrawable = Spanner.getDrawable(getContext(), R.drawable.sample);
 
 		// get query
-		unmarshall(query);
+		unmarshal(query);
 	}
 
 	// L O A D E R S
 
-	// rolesets
+	// role sets
 
-	void roleset(final long rolesetid0, final TreeNode parent)
+	void roleSet(final long roleSetId, final TreeNode parent)
 	{
 		getLoaderManager().restartLoader(++Module.loaderId, null, new LoaderCallbacks<Cursor>()
 		{
 			@Override
-			public Loader<Cursor> onCreateLoader(final int loaderId0, final Bundle args)
+			public Loader<Cursor> onCreateLoader(final int loaderId, final Bundle loaderArgs)
 			{
 				final Uri uri = Uri.parse(PbRolesets.CONTENT_URI);
 				final String[] projection = { //
@@ -132,13 +132,13 @@ abstract class BasicModule extends Module
 						PbRolesets.ROLESETDESC, //
 				};
 				final String selection = PbRolesets.ROLESETID + " = ?"; //$NON-NLS-1$
-				final String[] selectionArgs = {Long.toString(rolesetid0)};
+				final String[] selectionArgs = {Long.toString(roleSetId)};
 				final String sortOrder = null;
 				return new CursorLoader(getContext(), uri, projection, selection, selectionArgs, sortOrder);
 			}
 
 			@Override
-			public void onLoadFinished(final Loader<Cursor> loader0, final Cursor cursor)
+			public void onLoadFinished(final Loader<Cursor> loader, final Cursor cursor)
 			{
 				if (cursor.getCount() > 1)
 				{
@@ -156,12 +156,12 @@ abstract class BasicModule extends Module
 					final SpannableStringBuilder sb = new SpannableStringBuilder();
 
 					// data
-					final int rolesetid1 = cursor.getInt(idRolesetId);
+					final int roleSetid1 = cursor.getInt(idRolesetId);
 
-					// roleset
-					Spanner.appendImage(sb, BasicModule.this.rolesetDrawable);
+					// roleSet
+					Spanner.appendImage(sb, BasicModule.this.roleSetDrawable);
 					sb.append(' ');
-					Spanner.append(sb, cursor.getString(idRolesetName), 0, PropbankFactories.rolesetFactory);
+					Spanner.append(sb, cursor.getString(idRolesetName), 0, PropbankFactories.roleSetFactory);
 					sb.append(' ');
 					sb.append("head="); //$NON-NLS-1$
 					sb.append(cursor.getString(idRolesetHead));
@@ -172,8 +172,8 @@ abstract class BasicModule extends Module
 					Spanner.append(sb, cursor.getString(idRolesetDesc), 0, PropbankFactories.definitionFactory);
 
 					// sub nodes
-					final TreeNode rolesNode = TreeFactory.newQueryNode(new RolesQuery(rolesetid1, R.drawable.roles, "Roles"), BasicModule.this.getContext()); //$NON-NLS-1$
-					final TreeNode examplesNode = TreeFactory.newQueryNode(new ExamplesQuery(rolesetid1, R.drawable.sample, "Examples"), BasicModule.this.getContext()); //$NON-NLS-1$
+					final TreeNode rolesNode = TreeFactory.newQueryNode(new RolesQuery(roleSetid1, R.drawable.roles, "Roles"), BasicModule.this.getContext()); //$NON-NLS-1$
+					final TreeNode examplesNode = TreeFactory.newQueryNode(new ExamplesQuery(roleSetid1, R.drawable.sample, "Examples"), BasicModule.this.getContext()); //$NON-NLS-1$
 
 					// attach result
 					TreeFactory.addTextNode(parent, sb, BasicModule.this.getContext(), rolesNode, examplesNode);
@@ -190,19 +190,19 @@ abstract class BasicModule extends Module
 			}
 
 			@Override
-			public void onLoaderReset(final Loader<Cursor> arg0)
+			public void onLoaderReset(final Loader<Cursor> loader)
 			{
 				//
 			}
 		});
 	}
 
-	void rolesets(final long wordid0, final TreeNode parent)
+	void roleSets(final long wordId, final TreeNode parent)
 	{
 		getLoaderManager().restartLoader(++Module.loaderId, null, new LoaderCallbacks<Cursor>()
 		{
 			@Override
-			public Loader<Cursor> onCreateLoader(final int loaderId0, final Bundle args)
+			public Loader<Cursor> onCreateLoader(final int loaderId, final Bundle loaderArgs)
 			{
 				final Uri uri = Uri.parse(PropbankContract.Words_PbRolesets.CONTENT_URI);
 				final String[] projection = { //
@@ -212,7 +212,7 @@ abstract class BasicModule extends Module
 						Words_PbRolesets.ROLESETDESC, //
 				};
 				final String selection = Words_PbRolesets.WORDID + " = ?"; //$NON-NLS-1$
-				final String[] selectionArgs = {Long.toString(wordid0)};
+				final String[] selectionArgs = {Long.toString(wordId)};
 				final String sortOrder = null;
 				return new CursorLoader(BasicModule.this.getContext(), uri, projection, selection, selectionArgs, sortOrder);
 			}
@@ -234,12 +234,12 @@ abstract class BasicModule extends Module
 						final SpannableStringBuilder sb = new SpannableStringBuilder();
 
 						// data
-						final int rolesetid1 = cursor.getInt(idRolesetId);
+						final int roleSetid1 = cursor.getInt(idRolesetId);
 
-						// roleset
+						// roleSet
 						Spanner.appendImage(sb, BasicModule.this.rolesDrawable);
 						sb.append(' ');
-						Spanner.append(sb, cursor.getString(idRolesetName), 0, PropbankFactories.rolesetFactory);
+						Spanner.append(sb, cursor.getString(idRolesetName), 0, PropbankFactories.roleSetFactory);
 						sb.append(' ');
 						sb.append("head="); //$NON-NLS-1$
 						sb.append(cursor.getString(idRolesetHead));
@@ -250,8 +250,8 @@ abstract class BasicModule extends Module
 						Spanner.append(sb, cursor.getString(idRolesetDesc), 0, PropbankFactories.definitionFactory);
 
 						// sub nodes
-						final TreeNode rolesNode = TreeFactory.newQueryNode(new RolesQuery(rolesetid1, R.drawable.roles, "Roles"), BasicModule.this.getContext()); //$NON-NLS-1$
-						final TreeNode examplesNode = TreeFactory.newQueryNode(new ExamplesQuery(rolesetid1, R.drawable.sample, "Examples"), BasicModule.this.getContext()); //$NON-NLS-1$
+						final TreeNode rolesNode = TreeFactory.newQueryNode(new RolesQuery(roleSetid1, R.drawable.roles, "Roles"), BasicModule.this.getContext()); //$NON-NLS-1$
+						final TreeNode examplesNode = TreeFactory.newQueryNode(new ExamplesQuery(roleSetid1, R.drawable.sample, "Examples"), BasicModule.this.getContext()); //$NON-NLS-1$
 
 						// attach result
 						TreeFactory.addTextNode(parent, sb, getContext(), rolesNode, examplesNode);
@@ -270,7 +270,7 @@ abstract class BasicModule extends Module
 			}
 
 			@Override
-			public void onLoaderReset(final Loader<Cursor> arg0)
+			public void onLoaderReset(final Loader<Cursor> loader)
 			{
 				//
 			}
@@ -279,12 +279,12 @@ abstract class BasicModule extends Module
 
 	// roles
 
-	private void roles(final int rolesetid, final TreeNode parent)
+	private void roles(final int roleSetId, final TreeNode parent)
 	{
 		getLoaderManager().restartLoader(++Module.loaderId, null, new LoaderCallbacks<Cursor>()
 		{
 			@Override
-			public Loader<Cursor> onCreateLoader(final int loaderId0, final Bundle args)
+			public Loader<Cursor> onCreateLoader(final int loaderId, final Bundle loaderArgs)
 			{
 				final Uri uri = Uri.parse(PbRolesets_PbRoles.CONTENT_URI);
 				final String[] projection = { //
@@ -295,13 +295,13 @@ abstract class BasicModule extends Module
 						PbRolesets_PbRoles.THETANAME, //
 				};
 				final String selection = PbRolesets_PbRoles.ROLESETID + "= ?"; //$NON-NLS-1$
-				final String[] selectionArgs = {Long.toString(rolesetid)};
+				final String[] selectionArgs = {Long.toString(roleSetId)};
 				final String sortOrder = null;
 				return new CursorLoader(getContext(), uri, projection, selection, selectionArgs, sortOrder);
 			}
 
 			@Override
-			public void onLoadFinished(final Loader<Cursor> loader0, final Cursor cursor)
+			public void onLoadFinished(final Loader<Cursor> loader, final Cursor cursor)
 			{
 				final SpannableStringBuilder sb = new SpannableStringBuilder();
 				if (cursor.moveToFirst())
@@ -345,9 +345,9 @@ abstract class BasicModule extends Module
 							sb.append(Integer.toString(cursor.getInt(idFunc)));
 						}
 
-						// final int roleid = cursor.getInt(idRoleId);
-						// sb.append(" roleid=");
-						// sb.append(Integer.toString(roleid));
+						// final int roleId = cursor.getInt(idRoleId);
+						// sb.append(" role id=");
+						// sb.append(Integer.toString(roleId));
 						// sb.append(' ');
 
 						if (!cursor.moveToNext())
@@ -374,7 +374,7 @@ abstract class BasicModule extends Module
 			}
 
 			@Override
-			public void onLoaderReset(final Loader<Cursor> arg0)
+			public void onLoaderReset(final Loader<Cursor> loader)
 			{
 				//
 			}
@@ -383,12 +383,12 @@ abstract class BasicModule extends Module
 
 	// examples
 
-	private void examples(final int rolesetid, final TreeNode parent)
+	private void examples(final int roleSetId, final TreeNode parent)
 	{
 		getLoaderManager().restartLoader(++Module.loaderId, null, new LoaderCallbacks<Cursor>()
 		{
 			@Override
-			public Loader<Cursor> onCreateLoader(final int loaderId0, final Bundle args)
+			public Loader<Cursor> onCreateLoader(final int loaderId, final Bundle loaderArgs)
 			{
 				final Uri uri = Uri.parse(PbRolesets_PbExamples.CONTENT_URI);
 				final String[] projection = { //
@@ -411,13 +411,13 @@ abstract class BasicModule extends Module
 						PbRolesets_PbExamples.PERSONNAME, //
 				};
 				final String selection = PbRolesets_PbExamples.ROLESETID + "= ?"; //$NON-NLS-1$
-				final String[] selectionArgs = {Long.toString(rolesetid)};
+				final String[] selectionArgs = {Long.toString(roleSetId)};
 				final String sortOrder = PbRolesets_PbExamples.EXAMPLEID + ',' + PbRolesets_PbExamples.NARG;
 				return new CursorLoader(getContext(), uri, projection, selection, selectionArgs, sortOrder);
 			}
 
 			@Override
-			public void onLoadFinished(final Loader<Cursor> loader0, final Cursor cursor)
+			public void onLoadFinished(final Loader<Cursor> loader, final Cursor cursor)
 			{
 				final SpannableStringBuilder sb = new SpannableStringBuilder();
 
@@ -513,7 +513,7 @@ abstract class BasicModule extends Module
 			}
 
 			@Override
-			public void onLoaderReset(final Loader<Cursor> arg0)
+			public void onLoaderReset(final Loader<Cursor> loader)
 			{
 				//
 			}
@@ -522,29 +522,29 @@ abstract class BasicModule extends Module
 
 	class RolesQuery extends QueryHolder.Query
 	{
-		public RolesQuery(final long rolesetid0, final int icon, @SuppressWarnings("SameParameterValue") final CharSequence text)
+		public RolesQuery(final long roleSetId, final int icon, @SuppressWarnings("SameParameterValue") final CharSequence text)
 		{
-			super(rolesetid0, icon, text);
+			super(roleSetId, icon, text);
 		}
 
 		@Override
-		public void process(final TreeNode node0)
+		public void process(final TreeNode node)
 		{
-			roles((int) this.id, node0);
+			roles((int) this.id, node);
 		}
 	}
 
 	class ExamplesQuery extends QueryHolder.Query
 	{
-		public ExamplesQuery(final long rolesetid0, final int icon, @SuppressWarnings("SameParameterValue") final CharSequence text)
+		public ExamplesQuery(final long roleSetId, final int icon, @SuppressWarnings("SameParameterValue") final CharSequence text)
 		{
-			super(rolesetid0, icon, text);
+			super(roleSetId, icon, text);
 		}
 
 		@Override
-		public void process(final TreeNode node0)
+		public void process(final TreeNode node)
 		{
-			examples((int) this.id, node0);
+			examples((int) this.id, node);
 		}
 	}
 }

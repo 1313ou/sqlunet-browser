@@ -76,7 +76,7 @@ class FnNodeFactory extends NodeFactory
 	{
 		final Element element = NodeFactory.makeNode(doc, parent, "lexunit", null); //$NON-NLS-1$
 		NodeFactory.makeAttribute(element, "name", lexUnit.lexUnit); //$NON-NLS-1$
-		NodeFactory.makeAttribute(element, "luid", Long.toString(lexUnit.luId)); //$NON-NLS-1$
+		NodeFactory.makeAttribute(element, "luId", Long.toString(lexUnit.luId)); //$NON-NLS-1$
 		NodeFactory.makeText(doc, element, lexUnit.definition);
 		return element;
 	}
@@ -94,7 +94,7 @@ class FnNodeFactory extends NodeFactory
 	{
 		final Element element = NodeFactory.makeNode(doc, parent, "frame", null); //$NON-NLS-1$
 		NodeFactory.makeAttribute(element, "name", frame.frameName); //$NON-NLS-1$
-		NodeFactory.makeAttribute(element, "frameid", Long.toString(frame.frameId)); //$NON-NLS-1$
+		NodeFactory.makeAttribute(element, "frameId", Long.toString(frame.frameId)); //$NON-NLS-1$
 
 		DocumentFragmentParser.mount(doc, element, frame.frameDefinition, "framedefinition"); //$NON-NLS-1$
 		if (removeEx)
@@ -124,7 +124,7 @@ class FnNodeFactory extends NodeFactory
 			for (final FnRelatedFrame relatedFrame : frame.relatedFrames)
 			{
 				final Element element2 = NodeFactory.makeNode(doc, element, "related", null); //$NON-NLS-1$
-				NodeFactory.makeAttribute(element2, "frameid", Long.toString(relatedFrame.frameId)); //$NON-NLS-1$
+				NodeFactory.makeAttribute(element2, "frameId", Long.toString(relatedFrame.frameId)); //$NON-NLS-1$
 				NodeFactory.makeAttribute(element2, "frame", relatedFrame.frameName); //$NON-NLS-1$
 				NodeFactory.makeAttribute(element2, "relation", relatedFrame.relation); //$NON-NLS-1$
 			}
@@ -214,7 +214,7 @@ class FnNodeFactory extends NodeFactory
 	public static Node makeFnAnnoSetNode(final Document doc, final Node parent, final FnAnnoSet annoSet)
 	{
 		final Element element = NodeFactory.makeNode(doc, parent, "annoset", null); //$NON-NLS-1$
-		NodeFactory.makeAttribute(element, "annosetid", Long.toString(annoSet.annoSetId)); //$NON-NLS-1$
+		NodeFactory.makeAttribute(element, "annoSetId", Long.toString(annoSet.annoSetId)); //$NON-NLS-1$
 		FnNodeFactory.makeFnSentenceNode(doc, element, annoSet.sentence, -1);
 		return element;
 	}
@@ -263,7 +263,7 @@ class FnNodeFactory extends NodeFactory
 	public static Node makeFnRootFrameNode(final Document doc, final long frameId)
 	{
 		final Element rootNode = NodeFactory.makeNode(doc, doc, "framenet", null); //$NON-NLS-1$
-		NodeFactory.makeTargetNode(doc, rootNode, "frameid", Long.toString(frameId)); //$NON-NLS-1$
+		NodeFactory.makeTargetNode(doc, rootNode, "frameId", Long.toString(frameId)); //$NON-NLS-1$
 		return rootNode;
 	}
 
@@ -271,13 +271,13 @@ class FnNodeFactory extends NodeFactory
 	 * Make root lexunit node
 	 *
 	 * @param doc  is the DOM Document being built
-	 * @param luId is the target luid
+	 * @param luId is the target luId
 	 * @return root lexunit node
 	 */
 	public static Node makeFnRootLexUnitNode(final Document doc, final long luId)
 	{
 		final Element rootNode = NodeFactory.makeNode(doc, doc, "framenet", null); //$NON-NLS-1$
-		NodeFactory.makeTargetNode(doc, rootNode, "luid", Long.toString(luId)); //$NON-NLS-1$
+		NodeFactory.makeTargetNode(doc, rootNode, "luId", Long.toString(luId)); //$NON-NLS-1$
 		return rootNode;
 	}
 
@@ -285,7 +285,7 @@ class FnNodeFactory extends NodeFactory
 	 * Make root sentence node
 	 *
 	 * @param doc        is the DOM Document being built
-	 * @param sentenceId is the target sentenceid
+	 * @param sentenceId is the target sentence id
 	 * @return root sentence node
 	 */
 	public static Node makeFnRootSentenceNode(final Document doc, final long sentenceId)
@@ -299,13 +299,13 @@ class FnNodeFactory extends NodeFactory
 	 * Make root annoset node
 	 *
 	 * @param doc       is the DOM Document being built
-	 * @param annoSetId is the target annosetid
+	 * @param annoSetId is the target annoSetId
 	 * @return root annoset node
 	 */
 	public static Node makeFnRootAnnosetNode(final Document doc, final long annoSetId)
 	{
 		final Element rootNode = NodeFactory.makeNode(doc, doc, "framenet", null); //$NON-NLS-1$
-		NodeFactory.makeTargetNode(doc, rootNode, "annosetid", Long.toString(annoSetId)); //$NON-NLS-1$
+		NodeFactory.makeTargetNode(doc, rootNode, "annoSetId", Long.toString(annoSetId)); //$NON-NLS-1$
 		return rootNode;
 	}
 }

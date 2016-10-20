@@ -22,9 +22,9 @@ class VnRoleQueryFromSenseCommand extends DBQueryCommand
 	 * Constructor
 	 *
 	 * @param connection is the database connection
-	 * @param classId    is the target classid
-	 * @param wordId     is the target wordid
-	 * @param synsetId   is the target synsetid
+	 * @param classId    is the target class id
+	 * @param wordId     is the target word id
+	 * @param synsetId   is the target synset id
 	 */
 	@SuppressWarnings("boxing")
 	public VnRoleQueryFromSenseCommand(final SQLiteDatabase connection, final long classId, final long wordId, final Long synsetId)

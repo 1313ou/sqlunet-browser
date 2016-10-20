@@ -68,7 +68,7 @@ public class PredicateMatrixProvider extends SqlUNetProvider
 
 	@SuppressWarnings("boxing")
 	@Override
-	public Cursor query(final Uri uri, final String[] projection, final String selection0, final String[] selectionArgs, final String sortOrder0)
+	public Cursor query(final Uri uri, final String[] projection, final String selection, final String[] selectionArgs, final String sortOrder0)
 	{
 		if (this.db == null)
 		{
@@ -97,16 +97,16 @@ public class PredicateMatrixProvider extends SqlUNetProvider
 						"LEFT JOIN pmroles AS mr USING (pmroleid) " + // //$NON-NLS-1$
 						"LEFT JOIN pmpredicates AS mp USING (pmpredid) " + // //$NON-NLS-1$
 						"LEFT JOIN synsets USING (synsetid) " + // //$NON-NLS-1$
-						"LEFT JOIN vnclasses AS vc ON vnclassid = vc.classid " + // //$NON-NLS-1$
-						"LEFT JOIN vnroles AS vr ON vnroleid = vr.roleid " + // //$NON-NLS-1$
+						"LEFT JOIN vnclasses AS vc ON vnclassid = vc.classId " + // //$NON-NLS-1$
+						"LEFT JOIN vnroles AS vr ON vnroleid = vr.roleId " + // //$NON-NLS-1$
 						"LEFT JOIN vnroletypes AS vt ON vr.roletypeid = vt.roletypeid " + // //$NON-NLS-1$
-						"LEFT JOIN pbrolesets AS ps ON pbrolesetid = ps.rolesetid " + // //$NON-NLS-1$
-						"LEFT JOIN pbroles AS pr ON pbroleid = pr.roleid " + // //$NON-NLS-1$
+						"LEFT JOIN pbrolesets AS ps ON pbrolesetid = ps.roleSetId " + // //$NON-NLS-1$
+						"LEFT JOIN pbroles AS pr ON pbroleid = pr.roleId " + // //$NON-NLS-1$
 						"LEFT JOIN pbargns AS pt ON pr.narg = pt.narg " + // //$NON-NLS-1$
-						"LEFT JOIN fnframes AS ff ON fnframeid = ff.frameid " + // //$NON-NLS-1$
+						"LEFT JOIN fnframes AS ff ON fnframeid = ff.frameId " + // //$NON-NLS-1$
 						"LEFT JOIN fnfes AS fr ON fnfeid = fr.feid " + // //$NON-NLS-1$
 						"LEFT JOIN fnfetypes AS ft ON fr.fetypeid = ft.fetypeid " + // //$NON-NLS-1$
-						"LEFT JOIN fnlexunits AS fl ON fnluid = fl.luid"; //$NON-NLS-1$
+						"LEFT JOIN fnlexunits AS fl ON fnluid = fl.luId"; //$NON-NLS-1$
 				break;
 
 			default:
@@ -116,7 +116,7 @@ public class PredicateMatrixProvider extends SqlUNetProvider
 
 		if (SqlUNetProvider.debugSql)
 		{
-			final String sql = SQLiteQueryBuilder.buildQueryString(false, table, projection, selection0, null, null, sortOrder0, null);
+			final String sql = SQLiteQueryBuilder.buildQueryString(false, table, projection, selection, null, null, sortOrder0, null);
 			Log.d(PredicateMatrixProvider.TAG + "SQL", sql); //$NON-NLS-1$
 			Log.d(PredicateMatrixProvider.TAG + "ARGS", SqlUNetProvider.argsToString(selectionArgs)); //$NON-NLS-1$
 		}
@@ -124,7 +124,7 @@ public class PredicateMatrixProvider extends SqlUNetProvider
 		// do query
 		try
 		{
-			return this.db.query(table, projection, selection0, selectionArgs, null, null, sortOrder0);
+			return this.db.query(table, projection, selection, selectionArgs, null, null, sortOrder0);
 		}
 		catch (SQLiteException e)
 		{

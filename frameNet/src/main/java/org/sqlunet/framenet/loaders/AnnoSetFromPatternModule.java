@@ -13,18 +13,18 @@ public class AnnoSetFromPatternModule extends BasicModule
 	/**
 	 * Pointer
 	 */
-	private Long patternid;
+	private Long patternId;
 
 	// resources
 
 	/**
 	 * Constructor
 	 *
-	 * @param fragment0 fragment
+	 * @param fragment fragment
 	 */
-	public AnnoSetFromPatternModule(final Fragment fragment0)
+	public AnnoSetFromPatternModule(final Fragment fragment)
 	{
-		super(fragment0);
+		super(fragment);
 	}
 
 	@Override
@@ -36,17 +36,17 @@ public class AnnoSetFromPatternModule extends BasicModule
 		if (arguments instanceof FnPatternPointer)
 		{
 			final FnPatternPointer query = (FnPatternPointer) arguments;
-			this.patternid = query.getId();
+			this.patternId = query.getId();
 		}
 	}
 
 	@Override
 	public void process(final TreeNode node)
 	{
-		if (this.patternid != null)
+		if (this.patternId != null)
 		{
 			// data
-			annosets_for_pattern(this.patternid, node);
+			annosets_for_pattern(this.patternId, node);
 		}
 	}
 }

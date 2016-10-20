@@ -25,7 +25,7 @@ class FnWordLexUnitQueryCommand extends DBQueryCommand
 	 * Constructor
 	 *
 	 * @param connection   is the database connection
-	 * @param targetWordId target wordid
+	 * @param targetWordId target word id
 	 * @param targetPos    target pos or null
 	 */
 	@SuppressWarnings("boxing")
@@ -96,9 +96,9 @@ class FnWordLexUnitQueryCommand extends DBQueryCommand
 	}
 
 	/**
-	 * Get the annosetid from the result set
+	 * Get the annoSetId from the result set
 	 *
-	 * @return the annosetid from the result set
+	 * @return the annoSetId from the result set
 	 */
 	public long getFrameId()
 	{

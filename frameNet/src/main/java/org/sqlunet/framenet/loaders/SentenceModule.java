@@ -35,7 +35,7 @@ public class SentenceModule extends BasicModule
 	/**
 	 * Sentence id
 	 */
-	private Long sentenceid;
+	private Long sentenceId;
 
 	// text
 
@@ -47,42 +47,42 @@ public class SentenceModule extends BasicModule
 	/**
 	 * Constructor
 	 */
-	public SentenceModule(final Fragment fragment0)
+	public SentenceModule(final Fragment fragment)
 	{
-		super(fragment0);
+		super(fragment);
 	}
 
 	@Override
-	public void init(final Parcelable query0)
+	public void init(final Parcelable query)
 	{
-		super.init(query0);
+		super.init(query);
 
 		// get query
-		if (query0 instanceof FnSentencePointer)
+		if (query instanceof FnSentencePointer)
 		{
-			final FnSentencePointer sentenceQuery = (FnSentencePointer) query0;
-			this.sentenceid = sentenceQuery.getSentenceId();
+			final FnSentencePointer sentenceQuery = (FnSentencePointer) query;
+			this.sentenceId = sentenceQuery.getSentenceId();
 		}
 	}
 
 	@Override
 	public void process(final TreeNode node)
 	{
-		if (this.sentenceid != null)
+		if (this.sentenceId != null)
 		{
 			// data
-			sentence(this.sentenceid, node);
+			sentence(this.sentenceId, node);
 		}
 	}
 
 	// L O A D E R S
 
-	private void sentence(final long sentenceid0, final TreeNode parent)
+	private void sentence(final long sentenceId, final TreeNode parent)
 	{
 		getLoaderManager().restartLoader(++Module.loaderId, null, new LoaderCallbacks<Cursor>()
 		{
 			@Override
-			public Loader<Cursor> onCreateLoader(final int loaderId0, final Bundle args)
+			public Loader<Cursor> onCreateLoader(final int loaderId, final Bundle loaderArgs)
 			{
 				final Uri uri = Uri.parse(Sentences.CONTENT_URI);
 				final String[] projection = { //
@@ -90,7 +90,7 @@ public class SentenceModule extends BasicModule
 						Sentences.TEXT, //
 				};
 				final String selection = Sentences.SENTENCEID + " = ?"; //$NON-NLS-1$
-				final String[] selectionArgs = {Long.toString(sentenceid0)};
+				final String[] selectionArgs = {Long.toString(sentenceId)};
 				final String sortOrder = null;
 				return new CursorLoader(SentenceModule.this.getContext(), uri, projection, selection, selectionArgs, sortOrder);
 			}
@@ -111,15 +111,14 @@ public class SentenceModule extends BasicModule
 
 					// data
 					SentenceModule.this.sentenceText = cursor.getString(idText);
-					final long sentenceId = cursor.getLong(idSentenceId);
-
+					final long id = cursor.getLong(idSentenceId);
 					Spanner.append(sb, SentenceModule.this.sentenceText, 0, FrameNetFactories.sentenceFactory);
 
 					// attach result
 					TreeFactory.addTextNode(parent, sb, SentenceModule.this.getContext());
 
 					// layers
-					layers_for_sentence(sentenceId, SentenceModule.this.sentenceText, parent);
+					layers_for_sentence(id, SentenceModule.this.sentenceText, parent);
 
 					// expand
 					TreeView.expand(parent, false);
@@ -133,7 +132,7 @@ public class SentenceModule extends BasicModule
 			}
 
 			@Override
-			public void onLoaderReset(final Loader<Cursor> arg0)
+			public void onLoaderReset(final Loader<Cursor> loader)
 			{
 				//
 			}

@@ -28,34 +28,34 @@ public class XPointer extends Pointer implements HasXId
 	private static final int PMFRAMENETSOURCE = 0x00080;
 
 	/**
-	 * xwordid : optional/nullable
+	 * xWordId : optional/nullable
 	 */
-	private Long xwordid;
+	private Long xWordId;
 
 	/**
-	 * xid : optional/nullable
+	 * xId : optional/nullable
 	 */
-	private Long xid;
+	private Long xId;
 
 	/**
-	 * xid : optional/nullable
+	 * xId : optional/nullable
 	 */
-	private Long xclassid;
+	private Long xClassId;
 
 	/**
-	 * xid : optional/nullable
+	 * xId : optional/nullable
 	 */
-	private Long xinstanceid;
+	private Long xInstanceId;
 
 	/**
-	 * xsources : optional/nullable
+	 * xSources : optional/nullable
 	 */
-	private String xsources;
+	private String xSources;
 
 	/**
-	 * xmask
+	 * xMask
 	 */
-	private long xmask;
+	private long xMask;
 
 	/**
 	 * Constructor
@@ -63,98 +63,96 @@ public class XPointer extends Pointer implements HasXId
 	public XPointer()
 	{
 		super();
-		this.xid = null;
-		this.xwordid = null;
+		this.xId = null;
+		this.xWordId = null;
 	}
 
 	/**
 	 * Constructor from Parcel, reads back fields IN THE ORDER they were written
 	 */
 	@SuppressWarnings("boxing")
-	private XPointer(Parcel parcel)
+	private XPointer(final Parcel parcel)
 	{
 		super(parcel);
 
-		long xid0 = parcel.readLong();
-		if (xid0 != -1)
+		long parcelXId = parcel.readLong();
+		if (parcelXId != -1)
 		{
-			this.xid = xid0;
+			this.xId = parcelXId;
 		}
 
-		long xclassid0 = parcel.readLong();
-		if (xclassid0 != -1)
+		long parcelXClassId = parcel.readLong();
+		if (parcelXClassId != -1)
 		{
-			this.xclassid = xclassid0;
+			this.xClassId = parcelXClassId;
 		}
 
-		long xinstanceid0 = parcel.readLong();
-		if (xinstanceid0 != -1)
+		long parcelXInstanceId = parcel.readLong();
+		if (parcelXInstanceId != -1)
 		{
-			this.xinstanceid = xinstanceid0;
+			this.xInstanceId = parcelXInstanceId;
 		}
 
-		long xwordid0 = parcel.readLong();
-		if (xwordid0 != -1)
+		long parcelXWordId = parcel.readLong();
+		if (parcelXWordId != -1)
 		{
-			this.xwordid = xwordid0;
+			this.xWordId = parcelXWordId;
 		}
 
-		this.xsources = parcel.readString();
-		this.xmask = parcel.readLong();
+		this.xSources = parcel.readString();
+		this.xMask = parcel.readLong();
 	}
 
 	/**
 	 * Set x id
 	 *
-	 * @param xid xid
+	 * @param xId xId
 	 */
-	public void setXid(Long xid)
+	public void setxId(final Long xId)
 	{
-		this.xid = xid;
+		this.xId = xId;
 	}
 
-	@Override
-	public Long getXclassid()
+	public Long getxClassId()
 	{
-		return this.xclassid;
+		return this.xClassId;
 	}
 
 	/**
 	 * Set x class id
 	 *
-	 * @param xclassid x class id
+	 * @param xClassId x class id
 	 */
-	public void setXclassid(Long xclassid)
+	public void setXClassId(final Long xClassId)
 	{
-		this.xclassid = xclassid;
+		this.xClassId = xClassId;
 	}
 
-	@Override
-	public Long getXinstanceid()
+	public Long getXInstanceId()
 	{
-		return this.xinstanceid;
+		return this.xInstanceId;
 	}
 
 	/**
 	 * Set x instance id
 	 *
-	 * @param xinstanceid x instance id
+	 * @param xInstanceId x instance id
 	 */
-	public void setXinstanceid(Long xinstanceid)
+	public void setxInstanceId(final Long xInstanceId)
 	{
-		this.xinstanceid = xinstanceid;
+		this.xInstanceId = xInstanceId;
 	}
 
 	@SuppressWarnings("unused")
-	public Long getXwordid()
+	public Long getXWordId()
 	{
-		return this.xwordid;
+		return this.xWordId;
 	}
 
 	@SuppressWarnings("unused")
-	public void setXwordid(Long xwordid)
+	public void setXWordId(final Long xWordId)
 	{
-		this.xwordid = xwordid;
+		this.xWordId = xWordId;
 	}
 
 	/**
@@ -180,12 +178,12 @@ public class XPointer extends Pointer implements HasXId
 	{
 		super.writeToParcel(parcel, flags);
 
-		parcel.writeLong(this.xid == null ? -1 : this.xid);
-		parcel.writeLong(this.xclassid == null ? -1 : this.xclassid);
-		parcel.writeLong(this.xinstanceid == null ? -1 : this.xinstanceid);
-		parcel.writeLong(this.xwordid == null ? -1 : this.xwordid);
-		parcel.writeString(this.xsources);
-		parcel.writeLong(this.xmask);
+		parcel.writeLong(this.xId == null ? -1 : this.xId);
+		parcel.writeLong(this.xClassId == null ? -1 : this.xClassId);
+		parcel.writeLong(this.xInstanceId == null ? -1 : this.xInstanceId);
+		parcel.writeLong(this.xWordId == null ? -1 : this.xWordId);
+		parcel.writeString(this.xSources);
+		parcel.writeLong(this.xMask);
 	}
 
 	@Override
@@ -194,50 +192,49 @@ public class XPointer extends Pointer implements HasXId
 		return 0;
 	}
 
-	@Override
-	public String getXsources()
+	public String getxSources()
 	{
-		return this.xsources;
+		return this.xSources;
 	}
 
 	/**
 	 * Set x sources
 	 *
-	 * @param xsources x sources
+	 * @param xSources x sources
 	 */
-	public void setXsources(String xsources)
+	public void setxSources(String xSources)
 	{
-		this.xsources = xsources;
-		this.xmask = 0L;
-		if (xsources.contains("wn")) //$NON-NLS-1$
+		this.xSources = xSources;
+		this.xMask = 0L;
+		if (xSources.contains("wn")) //$NON-NLS-1$
 		{
-			this.xmask |= WORDNETSOURCE;
+			this.xMask |= WORDNETSOURCE;
 		}
 
-		if (xsources.contains("vn")) //$NON-NLS-1$
+		if (xSources.contains("vn")) //$NON-NLS-1$
 		{
-			this.xmask |= VERBNETSOURCE;
+			this.xMask |= VERBNETSOURCE;
 		}
-		if (xsources.contains("pb")) //$NON-NLS-1$
+		if (xSources.contains("pb")) //$NON-NLS-1$
 		{
-			this.xmask |= PROPBANKSOURCE;
+			this.xMask |= PROPBANKSOURCE;
 		}
-		if (xsources.contains("fn")) //$NON-NLS-1$
+		if (xSources.contains("fn")) //$NON-NLS-1$
 		{
-			this.xmask |= FRAMENETSOURCE;
+			this.xMask |= FRAMENETSOURCE;
 		}
 
-		if (xsources.contains("pmvn")) //$NON-NLS-1$
+		if (xSources.contains("pmvn")) //$NON-NLS-1$
 		{
-			this.xmask |= PMVERBNETSOURCE;
+			this.xMask |= PMVERBNETSOURCE;
 		}
-		if (xsources.contains("pmpb")) //$NON-NLS-1$
+		if (xSources.contains("pmpb")) //$NON-NLS-1$
 		{
-			this.xmask |= PMPROPBANKSOURCE;
+			this.xMask |= PMPROPBANKSOURCE;
 		}
-		if (xsources.contains("pmfn")) //$NON-NLS-1$
+		if (xSources.contains("pmfn")) //$NON-NLS-1$
 		{
-			this.xmask |= PMFRAMENETSOURCE;
+			this.xMask |= PMFRAMENETSOURCE;
 		}
 	}
 
@@ -247,9 +244,9 @@ public class XPointer extends Pointer implements HasXId
 	 * @return x mask
 	 */
 	@SuppressWarnings("unused")
-	public long getXmask()
+	public long getxMask()
 	{
-		return this.xmask;
+		return this.xMask;
 	}
 
 	@Override
@@ -257,21 +254,21 @@ public class XPointer extends Pointer implements HasXId
 	{
 		return super.toString() +
 				' ' +
-				"xid=" + //$NON-NLS-1$
-				this.xid +
+				"xId=" + //$NON-NLS-1$
+				this.xId +
 				' ' +
-				"xclassid=" + //$NON-NLS-1$
-				this.xclassid +
+				"xClassId=" + //$NON-NLS-1$
+				this.xClassId +
 				' ' +
-				"xinstanceid=" + //$NON-NLS-1$
-				this.xinstanceid +
+				"xInstanceId=" + //$NON-NLS-1$
+				this.xInstanceId +
 				' ' +
-				"xwordid=" + //$NON-NLS-1$
-				this.xwordid +
+				"xWordId=" + //$NON-NLS-1$
+				this.xWordId +
 				' ' +
-				"xsources=" + //$NON-NLS-1$
-				this.xsources +
-				"xmask=" + //$NON-NLS-1$
-				Long.toHexString(this.xmask);
+				"xSources=" + //$NON-NLS-1$
+				this.xSources +
+				"xMask=" + //$NON-NLS-1$
+				Long.toHexString(this.xMask);
 	}
 }

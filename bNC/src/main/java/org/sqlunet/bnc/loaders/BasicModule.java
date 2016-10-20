@@ -27,7 +27,7 @@ public class BasicModule extends Module
 	/**
 	 * Query
 	 */
-	private Long wordid;
+	private Long wordId;
 
 	private Character pos;
 
@@ -46,9 +46,9 @@ public class BasicModule extends Module
 	/**
 	 * Constructor
 	 */
-	public BasicModule(final Fragment fragment0)
+	public BasicModule(final Fragment fragment)
 	{
-		super(fragment0);
+		super(fragment);
 	}
 
 	@Override
@@ -62,7 +62,7 @@ public class BasicModule extends Module
 		if (query instanceof HasWordId)
 		{
 			final HasWordId wordQuery = (HasWordId) query;
-			this.wordid = wordQuery.getWordId();
+			this.wordId = wordQuery.getWordId();
 		}
 		if (query instanceof HasPos)
 		{
@@ -74,10 +74,10 @@ public class BasicModule extends Module
 	@Override
 	public void process(final TreeNode node)
 	{
-		if (this.wordid != null)
+		if (this.wordId != null)
 		{
 			// data
-			bnc(this.wordid, this.pos, node);
+			bnc(this.wordId, this.pos, node);
 		}
 	}
 
@@ -85,12 +85,19 @@ public class BasicModule extends Module
 
 	// contents
 
-	private void bnc(final long wordid0, final Character pos0, final TreeNode parent)
+	/**
+	 * Load BNC data
+	 *
+	 * @param wordId word id
+	 * @param pos pos
+	 * @param parent parent node
+	 */
+	private void bnc(final long wordId, final Character pos, final TreeNode parent)
 	{
 		getLoaderManager().restartLoader(++Module.loaderId, null, new LoaderCallbacks<Cursor>()
 		{
 			@Override
-			public Loader<Cursor> onCreateLoader(final int loaderId0, final Bundle args)
+			public Loader<Cursor> onCreateLoader(final int loaderId, final Bundle loaderArgs)
 			{
 				final Uri uri = Uri.parse(Words_BNCs.CONTENT_URI);
 				final String[] projection = {Words_BNCs.POS, Words_BNCs.FREQ, Words_BNCs.RANGE, Words_BNCs.DISP, //
@@ -115,14 +122,14 @@ public class BasicModule extends Module
 						Words_BNCs.BNCSPWRS + '.' + Words_BNCs.RANGE2 + " AS " + Words_BNCs.BNCSPWRS + Words_BNCs.RANGE2, // //$NON-NLS-1$
 						Words_BNCs.BNCSPWRS + '.' + Words_BNCs.DISP2 + " AS " + Words_BNCs.BNCSPWRS + Words_BNCs.DISP2, // //$NON-NLS-1$
 				};
-				final String selection = pos0 == null ? Words_BNCs.WORDID + " = ?" : Words_BNCs.WORDID + " = ? AND " + Words_BNCs.POS + "= ?"; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				final String[] selectionArgs = pos0 == null ? new String[]{Long.toString(wordid0)} : new String[]{Long.toString(wordid0), Character.toString(pos0),};
+				final String selection = pos == null ? Words_BNCs.WORDID + " = ?" : Words_BNCs.WORDID + " = ? AND " + Words_BNCs.POS + "= ?"; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				final String[] selectionArgs = pos == null ? new String[]{Long.toString(wordId)} : new String[]{Long.toString(wordId), Character.toString(pos),};
 				final String sortOrder = null;
 				return new CursorLoader(getContext(), uri, projection, selection, selectionArgs, sortOrder);
 			}
 
 			@Override
-			public void onLoadFinished(final Loader<Cursor> loader0, final Cursor cursor)
+			public void onLoadFinished(final Loader<Cursor> loader, final Cursor cursor)
 			{
 				final SpannableStringBuilder sb = new SpannableStringBuilder();
 				// if (cursor.getCount() > 1)
@@ -279,7 +286,7 @@ public class BasicModule extends Module
 			}
 
 			@Override
-			public void onLoaderReset(final Loader<Cursor> arg0)
+			public void onLoaderReset(final Loader<Cursor> arg)
 			{
 				//
 			}

@@ -210,9 +210,9 @@ public class TreeNode
 		return this.mValue;
 	}
 
-	public void setValue(final Object value0)
+	public void setValue(final Object value)
 	{
-		this.mValue = value0;
+		this.mValue = value;
 	}
 
 	public boolean isExpanded()

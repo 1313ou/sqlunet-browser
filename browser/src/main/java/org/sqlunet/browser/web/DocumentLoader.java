@@ -132,7 +132,7 @@ abstract public class DocumentLoader extends AsyncTaskLoader<Document>
 	}
 
 	@Override
-	public void onCanceled(final Document document0)
+	public void onCanceled(final Document document)
 	{
 		// do nothing
 	}

@@ -332,21 +332,21 @@ public class WebFragment extends Fragment
 						{
 							action = SqlUNetContract.ARG_QUERYACTION_VNCLASS;
 							final VnClassPointer xpointer = new VnClassPointer();
-							xpointer.classid = id;
+							xpointer.classId = id;
 							pointer = xpointer;
 						}
 						else if ("fnframeid".equals(type)) //$NON-NLS-1$
 						{
 							action = SqlUNetContract.ARG_QUERYACTION_PBROLESET;
 							final PbRoleSetPointer xpointer = new PbRoleSetPointer();
-							xpointer.rolesetid = id;
+							xpointer.roleSetId = id;
 							pointer = xpointer;
 						}
 						else if ("fnluid".equals(type)) //$NON-NLS-1$
 						{
 							action = SqlUNetContract.ARG_QUERYACTION_FNLEXUNIT;
 							final FnLexUnitPointer xpointer = new FnLexUnitPointer();
-							xpointer.luid = id;
+							xpointer.luId = id;
 							pointer = xpointer;
 						}
 
@@ -414,7 +414,7 @@ public class WebFragment extends Fragment
 		getLoaderManager().restartLoader(++Module.loaderId, null, new LoaderCallbacks<String>()
 		{
 			@Override
-			public Loader<String> onCreateLoader(final int loaderId0, final Bundle args0)
+			public Loader<String> onCreateLoader(final int loaderId, final Bundle loaderArgs)
 			{
 				return new DocumentStringLoader(getActivity())
 				{
@@ -475,9 +475,9 @@ public class WebFragment extends Fragment
 											if (pointer instanceof XPointer)
 											{
 												final XPointer xpointer = (XPointer) pointer;
-												final String xSources = xpointer.getXsources();
-												final Long xclassId = xpointer.getXclassid();
-												// final Long xinstanceId = xpointer.getXinstanceid();
+												final String xSources = xpointer.getxSources();
+												final Long xclassId = xpointer.getxClassId();
+												// final Long xinstanceId = xpointer.getXInstanceId();
 												final Long wordId = xpointer.getWordId();
 												final Long synsetId = xpointer.getSynsetId();
 												final Character pos = xpointer.getPos();
@@ -548,11 +548,11 @@ public class WebFragment extends Fragment
 										break;
 
 									case SqlUNetContract.ARG_QUERYACTION_PBROLESET:
-										final PbRoleSetPointer pbrolesetPointer = (PbRoleSetPointer) pointer;
-										Log.d(WebFragment.TAG, "ARG fnframe=" + pbrolesetPointer); //$NON-NLS-1$
-										if (pbrolesetPointer != null && Settings.Source.PROPBANK.test(sources))
+										final PbRoleSetPointer pbroleSetPointer = (PbRoleSetPointer) pointer;
+										Log.d(WebFragment.TAG, "ARG fnframe=" + pbroleSetPointer); //$NON-NLS-1$
+										if (pbroleSetPointer != null && Settings.Source.PROPBANK.test(sources))
 										{
-											pbDomDoc = new PropBankImplementation().queryRoleSetDoc(db, pbrolesetPointer.getRoleSetId(), null);
+											pbDomDoc = new PropBankImplementation().queryRoleSetDoc(db, pbroleSetPointer.getRoleSetId(), null);
 										}
 										break;
 
@@ -561,7 +561,7 @@ public class WebFragment extends Fragment
 										Log.d(WebFragment.TAG, "ARG fnlexunit=" + lexunitPointer); //$NON-NLS-1$
 										if (lexunitPointer != null && Settings.Source.FRAMENET.test(sources))
 										{
-											fnDomDoc = new FrameNetImplementation().queryLexUnitDoc(db, lexunitPointer.luid);
+											fnDomDoc = new FrameNetImplementation().queryLexUnitDoc(db, lexunitPointer.luId);
 										}
 										break;
 
@@ -570,7 +570,7 @@ public class WebFragment extends Fragment
 										Log.d(WebFragment.TAG, "ARG fnframe=" + framePointer); //$NON-NLS-1$
 										if (framePointer != null && Settings.Source.FRAMENET.test(sources))
 										{
-											fnDomDoc = new FrameNetImplementation().queryFrameDoc(db, framePointer.frameid, null);
+											fnDomDoc = new FrameNetImplementation().queryFrameDoc(db, framePointer.frameId, null);
 										}
 										break;
 
@@ -588,7 +588,7 @@ public class WebFragment extends Fragment
 										Log.d(WebFragment.TAG, "ARG fnannoset=" + annosetPointer); //$NON-NLS-1$
 										if (annosetPointer != null && Settings.Source.FRAMENET.test(sources))
 										{
-											fnDomDoc = new FrameNetImplementation().queryAnnoSetDoc(db, annosetPointer.annosetid);
+											fnDomDoc = new FrameNetImplementation().queryAnnoSetDoc(db, annosetPointer.annoSetId);
 										}
 										break;
 								}
@@ -624,7 +624,7 @@ public class WebFragment extends Fragment
 			}
 
 			@Override
-			public void onLoaderReset(final Loader<String> arg0)
+			public void onLoaderReset(final Loader<String> loader)
 			{
 				WebFragment.this.webview.loadUrl("about:blank"); //$NON-NLS-1$
 			}

@@ -13,14 +13,14 @@ public class FnSentencePointer implements Parcelable
 	/**
 	 * Members
 	 */
-	private final long sentenceid;
+	private final long sentenceId;
 
 	/**
 	 * Constructor
 	 */
-	public FnSentencePointer(final long sentenceid0)
+	public FnSentencePointer(final long sentenceId)
 	{
-		this.sentenceid = sentenceid0;
+		this.sentenceId = sentenceId;
 	}
 
 	/**
@@ -28,15 +28,15 @@ public class FnSentencePointer implements Parcelable
 	 */
 	private FnSentencePointer(final Parcel pc)
 	{
-		this.sentenceid = pc.readLong();
+		this.sentenceId = pc.readLong();
 	}
 
 	@SuppressWarnings("boxing")
 	public Long getSentenceId()
 	{
-		if (this.sentenceid != 0)
+		if (this.sentenceId != 0)
 		{
-			return this.sentenceid;
+			return this.sentenceId;
 		}
 		return null;
 	}
@@ -62,7 +62,7 @@ public class FnSentencePointer implements Parcelable
 	@Override
 	public void writeToParcel(final Parcel pc, final int flags)
 	{
-		pc.writeLong(this.sentenceid);
+		pc.writeLong(this.sentenceId);
 	}
 
 	@Override

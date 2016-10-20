@@ -27,12 +27,12 @@
 		<item>
 			CREATE INDEX IF NOT EXISTS index_words_lemma ON words(lemma);
 			CREATE INDEX IF NOT EXISTS index_senses_wordid ON senses(wordid);
-			CREATE INDEX IF NOT EXISTS index_senses_synsetid ON senses(synsetid);
-			CREATE INDEX IF NOT EXISTS index_synsets_synsetid ON synsets(synsetid);
+			CREATE INDEX IF NOT EXISTS index_senses_synsetid ON senses(synsetId);
+			CREATE INDEX IF NOT EXISTS index_synsets_synsetid ON synsets(synsetId);
 			CREATE INDEX IF NOT EXISTS index_casedwords_wordid_casedwordid ON casedwords(wordid,casedwordid);
 			CREATE INDEX IF NOT EXISTS index_semlinks_synset1id ON semlinks(synset1id);
 			CREATE INDEX IF NOT EXISTS index_semlinks_linkid ON semlinks(linkid);
-			CREATE INDEX IF NOT EXISTS index_samples_synsetid ON samples(synsetid);
+			CREATE INDEX IF NOT EXISTS index_samples_synsetid ON samples(synsetId);
 			CREATE INDEX IF NOT EXISTS index_vnwords_wordid ON vnwords(wordid);
 			CREATE INDEX IF NOT EXISTS index_vnrolemaps_classid ON vnrolemaps(classid);
 			CREATE INDEX IF NOT EXISTS index_vnframemaps_classid ON vnframemaps(classid);
@@ -46,39 +46,39 @@
 			CREATE INDEX IF NOT EXISTS index_fnlayers_annosetid ON fnlayers (annosetid);
 			CREATE INDEX IF NOT EXISTS index_fnlabels_layerid ON fnlabels(layerid);
 			CREATE INDEX IF NOT EXISTS index_pm_wordid ON pm(wordid);
-			CREATE INDEX IF NOT EXISTS index_pm_synsetid ON pm(synsetid);</item>
+			CREATE INDEX IF NOT EXISTS index_pm_synsetid ON pm(synsetId);</item>
 		<item>
 			DROP TABLE IF EXISTS pmvn;
-			CREATE TABLE IF NOT EXISTS pmvn (pmvnid integer primary key,wordid integer,synsetid integer,vnwordid integer,vnclassid integer);
-			INSERT INTO pmvn (pmvnid,wordid,synsetid,vnwordid,vnclassid) SELECT pmroleid,wordid,synsetid,vnwordid,vnclassid FROM pm WHERE vnclassid IS NOT NULL;
-			DELETE FROM pmvn WHERE pmvnid NOT IN (SELECT MIN(pmvnid) FROM pmvn GROUP BY wordid,synsetid,vnwordid,vnclassid);
+			CREATE TABLE IF NOT EXISTS pmvn (pmvnid integer primary key,wordid integer,synsetId integer,vnwordid integer,vnclassid integer);
+			INSERT INTO pmvn (pmvnid,wordid,synsetId,vnwordid,vnclassid) SELECT pmroleid,wordid,synsetId,vnwordid,vnclassid FROM pm WHERE vnclassid IS NOT NULL;
+			DELETE FROM pmvn WHERE pmvnid NOT IN (SELECT MIN(pmvnid) FROM pmvn GROUP BY wordid,synsetId,vnwordid,vnclassid);
 			DROP TABLE IF EXISTS pmpb;
-			CREATE TABLE IF NOT EXISTS pmpb (pmpbid integer primary key,wordid integer,synsetid integer,pbwordid integer,pbrolesetid integer);
-			INSERT INTO pmpb (pmpbid,wordid,synsetid,pbwordid,pbrolesetid) SELECT pmroleid,wordid,synsetid,pbwordid,pbrolesetid FROM pm WHERE pbrolesetid IS NOT NULL;
-			DELETE FROM pmpb WHERE pmpbid NOT IN (SELECT MIN(pmpbid) FROM pmpb GROUP BY wordid,synsetid,pbwordid,pbrolesetid));
+			CREATE TABLE IF NOT EXISTS pmpb (pmpbid integer primary key,wordid integer,synsetId integer,pbwordid integer,pbrolesetid integer);
+			INSERT INTO pmpb (pmpbid,wordid,synsetId,pbwordid,pbrolesetid) SELECT pmroleid,wordid,synsetId,pbwordid,pbrolesetid FROM pm WHERE pbrolesetid IS NOT NULL;
+			DELETE FROM pmpb WHERE pmpbid NOT IN (SELECT MIN(pmpbid) FROM pmpb GROUP BY wordid,synsetId,pbwordid,pbrolesetid));
 			DROP TABLE IF EXISTS pmfn;
-			CREATE TABLE IF NOT EXISTS pmfn (pmfnid integer primary key,wordid integer,synsetid integer,fnwordid integer,fnluid integer,fnframeid integer);
-			INSERT INTO pmfn (pmfnid,wordid,synsetid,fnwordid,fnluid,fnframeid) SELECT pmroleid,wordid,synsetid,fnwordid,fnluid,fnframeid FROM pm WHERE fnframeid IS NOT NULL;
-			DELETE FROM pmfn WHERE pmfnid NOT IN (SELECT MIN(pmfnid) FROM pmfn GROUP BY wordid,synsetid,fnwordid,fnluid,fnframeid);</item>
+			CREATE TABLE IF NOT EXISTS pmfn (pmfnid integer primary key,wordid integer,synsetId integer,fnwordid integer,fnluid integer,fnframeid integer);
+			INSERT INTO pmfn (pmfnid,wordid,synsetId,fnwordid,fnluid,fnframeid) SELECT pmroleid,wordid,synsetId,fnwordid,fnluid,fnframeid FROM pm WHERE fnframeid IS NOT NULL;
+			DELETE FROM pmfn WHERE pmfnid NOT IN (SELECT MIN(pmfnid) FROM pmfn GROUP BY wordid,synsetId,fnwordid,fnluid,fnframeid);</item>
 		<item>
 			CREATE VIRTUAL TABLE IF NOT EXISTS words_lemma_fts4 USING fts4(wordid integer not null, lemma);
 			INSERT INTO words_lemma_fts4 SELECT wordid, lemma from words;
-			CREATE VIRTUAL TABLE IF NOT EXISTS synsets_definition_fts4 USING fts4(synsetid integer not null, definition);
-			INSERT INTO synsets_definition_fts4 SELECT synsetid, definition from synsets;
-			CREATE VIRTUAL TABLE IF NOT EXISTS samples_sample_fts4 USING fts4(synsetid integer not null, sample);
-			INSERT INTO samples_sample_fts4 SELECT synsetid, sample from samples;</item>
+			CREATE VIRTUAL TABLE IF NOT EXISTS synsets_definition_fts4 USING fts4(synsetId integer not null, definition);
+			INSERT INTO synsets_definition_fts4 SELECT synsetId, definition from synsets;
+			CREATE VIRTUAL TABLE IF NOT EXISTS samples_sample_fts4 USING fts4(synsetId integer not null, sample);
+			INSERT INTO samples_sample_fts4 SELECT synsetId, sample from samples;</item>
 		<item>
 			CREATE VIRTUAL TABLE IF NOT EXISTS fnsentences_text_fts4 USING fts4(sentenceid integer not null, text);
 			INSERT INTO fnsentences_text_fts4 SELECT sentenceid, text from fnsentences;</item>
 		<item>
 			CREATE INDEX IF NOT EXISTS index_words_lemma ON words(lemma);
 			CREATE INDEX IF NOT EXISTS index_senses_wordid ON senses(wordid);
-			CREATE INDEX IF NOT EXISTS index_senses_synsetid ON senses(synsetid);
-			CREATE INDEX IF NOT EXISTS index_synsets_synsetid ON synsets(synsetid);
+			CREATE INDEX IF NOT EXISTS index_senses_synsetid ON senses(synsetId);
+			CREATE INDEX IF NOT EXISTS index_synsets_synsetid ON synsets(synsetId);
 			CREATE INDEX IF NOT EXISTS index_casedwords_wordid_casedwordid ON casedwords(wordid,casedwordid);
 			CREATE INDEX IF NOT EXISTS index_semlinks_synset1id ON semlinks(synset1id);
 			CREATE INDEX IF NOT EXISTS index_semlinks_linkid ON semlinks(linkid);
-			CREATE INDEX IF NOT EXISTS index_samples_synsetid ON samples(synsetid);</item>
+			CREATE INDEX IF NOT EXISTS index_samples_synsetid ON samples(synsetId);</item>
 		<item>
 			DROP INDEX IF EXISTS index_words_lemma;
 			DROP INDEX IF EXISTS index_senses_wordid;
@@ -121,7 +121,7 @@
 			DROP INDEX IF EXISTS index_fnlabels_layerid;</item>
 		<item>
 			CREATE INDEX IF NOT EXISTS index_pm_wordid ON pm(wordid);
-			CREATE INDEX IF NOT EXISTS index_pm_synsetid ON pm(synsetid);</item>
+			CREATE INDEX IF NOT EXISTS index_pm_synsetid ON pm(synsetId);</item>
 		<item>
 			DROP INDEX IF EXISTS index_pm_wordid;
 			DROP INDEX IF EXISTS index_pm_synsetid;</item>
@@ -142,7 +142,7 @@
 			ALTER TABLE lexdomains ADD COLUMN lexdomain varchar(32);
 			UPDATE lexdomains SET lexdomain = SUBSTR(lexdomainname, INSTR(lexdomainname, \'.\')+1);</item>
 		<item>
-			CREATE VIEW IF NOT EXISTS samplesets AS SELECT synsetid, GROUP_CONCAT(samples.sample, \'|\' ) AS sampleset FROM samples GROUP BY synsetid;</item>
+			CREATE VIEW IF NOT EXISTS samplesets AS SELECT synsetId, GROUP_CONCAT(samples.sample, \'|\' ) AS sampleset FROM samples GROUP BY synsetId;</item>
 		<item>
 			DROP VIEW IF EXISTS samplesets;</item>
 	</string-array>
