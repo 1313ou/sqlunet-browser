@@ -8,29 +8,29 @@ import org.sqlunet.framenet.FnFramePointer;
 import org.sqlunet.treeview.model.TreeNode;
 
 /**
- * A module to retrieve frame
+ * Frame module
  *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
 public class FrameModule extends BasicModule
 {
 	/**
-	 * Query
+	 * Frame id
 	 */
 	private Long frameId;
 
+	/**
+	 * Lex unit id
+	 */
 	private Long luId;
 
-	// C R E A T I O N
-
 	/**
-	 * Mandatory empty constructor for the fragment manager to instantiate the fragment (e.g. upon screen orientation changes).
+	 * Constructor
 	 */
 	public FrameModule(final Fragment fragment)
 	{
 		super(fragment);
 	}
-
 
 	@Override
 	public void init(final Parcelable arguments)
@@ -64,7 +64,6 @@ public class FrameModule extends BasicModule
 			}
 		}
 	}
-
 
 	@Override
 	public void process(final TreeNode node)

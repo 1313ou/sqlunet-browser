@@ -19,8 +19,8 @@ class VnClassQueryCommand extends DBQueryCommand
 	/**
 	 * Constructor
 	 *
-	 * @param connection is the database connection
-	 * @param classId    is the target classId (null corresponds to no value)
+	 * @param connection database connection
+	 * @param classId    target classId (null corresponds to no value)
 	 */
 	@SuppressWarnings("boxing")
 	public VnClassQueryCommand(final SQLiteDatabase connection, final long classId)

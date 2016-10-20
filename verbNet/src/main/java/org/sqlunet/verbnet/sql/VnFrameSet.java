@@ -6,10 +6,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * @author bbou
- */
-
-/**
  * Frames attached to a VerbNet class
  *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
@@ -34,7 +30,7 @@ public class VnFrameSet
 	/**
 	 * Make a verbnet frame set from query built from class id, word id and synset id
 	 *
-	 * @param connection is the database connection
+	 * @param connection database connection
 	 * @param classId    is the class id to build query from
 	 * @param wordId     is the word id to build query from
 	 * @param synsetId   is the synset id to build query from (null for any)

@@ -218,32 +218,32 @@ public class FrameNetImplementation implements FrameNetInterface
 		return Factory.docToString(doc, "FrameNet.dtd");
 	}
 
-	// annoset
+	// annoSet
 
 	/**
-	 * Business method that returns annoset data as DOM document
+	 * Business method that returns annoSet data as DOM document
 	 *
 	 * @param connection database connection
 	 * @param annoSetId  the annoSetId to build query from
-	 * @return FrameNet annoset data as DOM document
+	 * @return FrameNet annoSet data as DOM document
 	 */
 	public Document queryAnnoSetDoc(final SQLiteDatabase connection, final long annoSetId)
 	{
 		final Document doc = Factory.makeDocument();
-		final Node rootNode = FnNodeFactory.makeFnRootAnnosetNode(doc, annoSetId);
+		final Node rootNode = FnNodeFactory.makeFnRootAnnoSetNode(doc, annoSetId);
 		FrameNetImplementation.walkAnnoSet(connection, doc, rootNode, annoSetId);
 		return doc;
 	}
 
 	/**
-	 * Business method that returns annoset data as XML
+	 * Business method that returns annoSet data as XML
 	 *
 	 * @param connection database connection
 	 * @param annoSetId  the annoSetId to build query from
-	 * @return FrameNet annoset data as XML
+	 * @return FrameNet annoSet data as XML
 	 */
 	@SuppressWarnings("unused")
-	public String queryAnnosetXML(final SQLiteDatabase connection, final long annoSetId)
+	public String queryAnnoSetXML(final SQLiteDatabase connection, final long annoSetId)
 	{
 		final Document doc = queryAnnoSetDoc(connection, annoSetId);
 		return Factory.docToString(doc, "FrameNet.dtd");
@@ -449,7 +449,7 @@ public class FrameNetImplementation implements FrameNetInterface
 	 */
 	private static void walkSentence(final SQLiteDatabase connection, final Document doc, final Node parent, final long sentenceId)
 	{
-		// annoset
+		// sentence
 		final FnSentence sentence = FnSentence.make(connection, sentenceId);
 		final Node sentenceNode = FnNodeFactory.makeFnSentenceNode(doc, parent, sentence, -1);
 
@@ -458,16 +458,16 @@ public class FrameNetImplementation implements FrameNetInterface
 	}
 
 	/**
-	 * Perform queries for FrameNet data from annoset id
+	 * Perform queries for FrameNet data from annoSet id
 	 *
 	 * @param connection data source
 	 * @param doc        the org.w3c.dom.Document being built
 	 * @param parent     the org.w3c.dom.Node the walk will attach results to
-	 * @param annoSetId  the target annoset id
+	 * @param annoSetId  the target annoSet id
 	 */
 	private static void walkAnnoSet(final SQLiteDatabase connection, final Document doc, final Node parent, final long annoSetId)
 	{
-		// annoset
+		// annoSet
 		final FnAnnoSet annoSet = FnAnnoSet.make(connection, annoSetId);
 		final Node annoSetNode = FnNodeFactory.makeFnAnnoSetNode(doc, parent, annoSet);
 
@@ -476,12 +476,12 @@ public class FrameNetImplementation implements FrameNetInterface
 	}
 
 	/**
-	 * Perform queries for FrameNet layers data from annoset id
+	 * Perform queries for FrameNet layers data from annoSet id
 	 *
 	 * @param connection data source
 	 * @param doc        the org.w3c.dom.Document being built
 	 * @param parent     the org.w3c.dom.Node the walk will attach results to
-	 * @param annoSetId  the target annoset id
+	 * @param annoSetId  the target annoSet id
 	 */
 	private static void walkLayersFromAnnoSet(final SQLiteDatabase connection, final Document doc, final Node parent, final long annoSetId)
 	{

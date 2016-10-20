@@ -7,7 +7,7 @@ public class PredicateMatrixContract
 	@SuppressWarnings("unused")
 	static public class PredicateMatrix
 	{
-		public static final String PMID = "pmId"; //$NON-NLS-1$
+		public static final String PMID = "pmid"; //$NON-NLS-1$
 		public static final String PMROLEID = "pmroleid"; //$NON-NLS-1$
 		public static final String PMPREDID = "pmpredid"; //$NON-NLS-1$
 		public static final String PMPREDICATE = "predicate"; //$NON-NLS-1$

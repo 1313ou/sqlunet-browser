@@ -16,8 +16,8 @@ class BncNodeFactory extends NodeFactory
 	 * Make BNC root node
 	 *
 	 * @param doc    is the DOM Document being built
-	 * @param wordId is the target word id
-	 * @param pos    is the target pos
+	 * @param wordId target word id
+	 * @param pos    target pos
 	 * @return newly created node
 	 */
 	static public Node makeBncRootNode(final Document doc, final long wordId, final Character pos)

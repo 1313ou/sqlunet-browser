@@ -9,16 +9,35 @@ import android.database.sqlite.SQLiteDatabase;
  */
 public class FnAnnoSet
 {
+	/**
+	 * AnnoSet id
+	 */
 	public final long annoSetId;
 
+	/**
+	 * Sentence
+	 */
 	public final FnSentence sentence;
 
+	/**
+	 * Constructor
+	 *
+	 * @param annoSetId annoSet id
+	 * @param sentence  sentence
+	 */
 	private FnAnnoSet(final long annoSetId, final FnSentence sentence)
 	{
 		this.annoSetId = annoSetId;
 		this.sentence = sentence;
 	}
 
+	/**
+	 * Make annoSet
+	 *
+	 * @param connection connection
+	 * @param annoSetId  annoSet id
+	 * @return annoSet
+	 */
 	public static FnAnnoSet make(final SQLiteDatabase connection, final long annoSetId)
 	{
 		FnAnnoSet result = null;

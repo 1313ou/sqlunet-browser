@@ -5,7 +5,7 @@
 	<!-- R E F E R E N C E -->
 
 	<!ELEMENT TARGET (#PCDATA)>
-	<!ATTLIST TARGET word-id CDATA #IMPLIED>
+	<!ATTLIST TARGET wordid CDATA #IMPLIED>
 
 	<!-- R O L E S E T -->
 

@@ -19,7 +19,7 @@ class FnLexUnitQueryCommand extends DBQueryCommand
 	/**
 	 * Constructor
 	 *
-	 * @param connection is the database connection
+	 * @param connection database connection
 	 * @param targetLuId target luId
 	 */
 	@SuppressWarnings("boxing")
@@ -34,6 +34,7 @@ class FnLexUnitQueryCommand extends DBQueryCommand
 	 *
 	 * @return the frame id from the result set
 	 */
+	@SuppressWarnings("unused")
 	public long getLuId()
 	{
 		return this.cursor.getLong(0);

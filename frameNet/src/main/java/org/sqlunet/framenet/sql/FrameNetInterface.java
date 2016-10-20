@@ -12,13 +12,13 @@ import org.w3c.dom.Document;
 @SuppressWarnings("unused")
 interface FrameNetInterface
 {
-	// S E L E C T I O N
+	// S E L E C T O R
 
 	/**
 	 * Business method the returns FrameNet selector data as DOM document
 	 *
-	 * @param word is the target word
-	 * @param pos  the pos to build query from
+	 * @param word target word
+	 * @param pos  target pos to build query from
 	 * @return FrameNet selector data as DOM document
 	 */
 	Document querySelectorDoc(final SQLiteDatabase connection, final String word, final Character pos);
@@ -26,8 +26,8 @@ interface FrameNetInterface
 	/**
 	 * Business method that returns FrameNet selector data as XML
 	 *
-	 * @param word is the target word
-	 * @param pos  the pos to build query from
+	 * @param word target word
+	 * @param pos  target pos to build query from
 	 * @return FrameNet selector data as XML
 	 */
 	String querySelectorXML(final SQLiteDatabase connection, final String word, final Character pos);
@@ -37,8 +37,8 @@ interface FrameNetInterface
 	/**
 	 * Business method that returns FrameNet data as DOM document
 	 *
-	 * @param wordId is the word id to build query from
-	 * @param pos    the pos to build query from
+	 * @param wordId target word id to build query from
+	 * @param pos    target pos to build query from
 	 * @return FrameNet data as DOM document
 	 */
 	Document queryDoc(final SQLiteDatabase connection, final long wordId, final Character pos);
@@ -46,8 +46,8 @@ interface FrameNetInterface
 	/**
 	 * Business method that returns FrameNet data as XML
 	 *
-	 * @param wordId is the target word id
-	 * @param pos    the pos to build query from
+	 * @param wordId target word id
+	 * @param pos    target pos to build query from
 	 * @return FrameNet data as XML
 	 */
 	String queryXML(final SQLiteDatabase connection, final long wordId, final Character pos);
@@ -55,8 +55,8 @@ interface FrameNetInterface
 	/**
 	 * Business method the returns FrameNet data as DOM document
 	 *
-	 * @param word is the target word
-	 * @param pos  the pos to build query from
+	 * @param word target word
+	 * @param pos  target pos to build query from
 	 * @return FrameNet data as DOM document
 	 */
 	Document queryDoc(final SQLiteDatabase connection, final String word, final Character pos);
@@ -64,8 +64,8 @@ interface FrameNetInterface
 	/**
 	 * Business method that returns FrameNet data as XML
 	 *
-	 * @param word is the target word
-	 * @param pos  the pos to build query from
+	 * @param word target word
+	 * @param pos  target pos to build query from
 	 * @return FrameNet data as XML
 	 */
 	String queryXML(final SQLiteDatabase connection, final String word, final Character pos);
@@ -76,8 +76,8 @@ interface FrameNetInterface
 	 * Business method the returns FrameNet frame data as DOM document
 	 *
 	 * @param connection database connection
-	 * @param frameId    the frame to build query from
-	 * @param pos        the pos to build query from
+	 * @param frameId    target frame to build query from
+	 * @param pos        target pos to build query from
 	 * @return FrameNet frame id data as DOM document
 	 */
 	Document queryFrameDoc(final SQLiteDatabase connection, final long frameId, final Character pos);
@@ -86,8 +86,8 @@ interface FrameNetInterface
 	 * Business method that returns FrameNet frame data as XML
 	 *
 	 * @param connection database connection
-	 * @param frameId    the frame id to build query from
-	 * @param pos        the pos to build query from
+	 * @param frameId    target frame id to build query from
+	 * @param pos        target pos to build query from
 	 * @return FrameNet frame data as XML
 	 */
 	String queryFrameXML(final SQLiteDatabase connection, final long frameId, final Character pos);
@@ -96,7 +96,7 @@ interface FrameNetInterface
 	 * Business method the returns FrameNet lex unit data as DOM document
 	 *
 	 * @param connection database connection
-	 * @param luId       the lex unit id to build query from
+	 * @param luId       target lex unit id to build query from
 	 * @return FrameNet lex unit data as DOM document
 	 */
 	Document queryLexUnitDoc(final SQLiteDatabase connection, final long luId);
@@ -105,7 +105,7 @@ interface FrameNetInterface
 	 * Business method that returns FrameNet lex unit data as XML
 	 *
 	 * @param connection database connection
-	 * @param luId       the lex unit id to build query from
+	 * @param luId       target lex unit id to build query from
 	 * @return FrameNet lex unit data as XML
 	 */
 	String queryLexUnitXML(final SQLiteDatabase connection, final long luId);

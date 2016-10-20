@@ -6,19 +6,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * FE
+ * Frame element
  *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
 class FnFrameElement
 {
 	/**
-	 * FEType
+	 * FE type
 	 */
 	public final String feType;
 
 	/**
-	 * FEType id
+	 * FE type id
 	 */
 	@SuppressWarnings("unused")
 	public final long feTypeId;
@@ -87,10 +87,10 @@ class FnFrameElement
 	}
 
 	/**
-	 * Make sets of FEs from query built from annoSetId
+	 * Make sets of FEs from frame id
 	 *
-	 * @param connection is the database connection
-	 * @param frameId    is the word id to build query from
+	 * @param connection database connection
+	 * @param frameId    target frame id
 	 * @return list of FEs
 	 */
 	public static List<FnFrameElement> make(final SQLiteDatabase connection, final long frameId)

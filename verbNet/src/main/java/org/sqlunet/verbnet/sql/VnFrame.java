@@ -1,10 +1,6 @@
 package org.sqlunet.verbnet.sql;
 
 /**
- * @author bbou
- */
-
-/**
  * VerbNet frame
  *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>

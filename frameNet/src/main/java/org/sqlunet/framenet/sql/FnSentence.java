@@ -12,10 +12,22 @@ import java.util.List;
  */
 public class FnSentence
 {
-	public final String text;
-
+	/**
+	 * Sentence id
+	 */
 	public final long sentenceId;
 
+	/**
+	 * Sentence text
+	 */
+	public final String text;
+
+	/**
+	 * Constructor
+	 *
+	 * @param sentenceId sentence id
+	 * @param text       sentence text
+	 */
 	FnSentence(final long sentenceId, final String text)
 	{
 		this.text = text;
@@ -25,22 +37,22 @@ public class FnSentence
 	/**
 	 * Make sets of sentences from query built from frameId
 	 *
-	 * @param connection  is the database connection
-	 * @param sentenceId0 is the sentence id to build query from
+	 * @param connection  database connection
+	 * @param sentenceId is the sentence id to build query from
 	 * @return sentence
 	 */
-	public static FnSentence make(final SQLiteDatabase connection, final long sentenceId0)
+	public static FnSentence make(final SQLiteDatabase connection, final long sentenceId)
 	{
 		FnSentence result = null;
 		FnSentenceQueryCommand query = null;
 		try
 		{
-			query = new FnSentenceQueryCommand(connection, sentenceId0);
+			query = new FnSentenceQueryCommand(connection, sentenceId);
 			query.execute();
 
 			if (query.next())
 			{
-				final long sentenceId = query.getSentenceId();
+				// final long sentenceId = query.getSentenceId();
 				final String text = query.getText();
 
 				result = new FnSentence(sentenceId, text);
@@ -57,10 +69,10 @@ public class FnSentence
 	}
 
 	/**
-	 * Make sets of sentences from query built from frameId
+	 * Make sets of sentences from query built from lex unit id
 	 *
-	 * @param connection is the database connection
-	 * @param luId       is the luId to build query from
+	 * @param connection database connection
+	 * @param luId       is the lex unit id to build query from
 	 * @return list of sentences
 	 */
 	public static List<FnSentence> makeFromLexicalUnit(final SQLiteDatabase connection, final long luId)

@@ -40,7 +40,7 @@ class VnClassMembership
 	/**
 	 * Make sets of VerbNet memberships from query built from word id and synset id
 	 *
-	 * @param connection is the database connection
+	 * @param connection database connection
 	 * @param wordId     is the word id to build query from
 	 * @param synsetId   is the synset id to build the query from (-1 if any)
 	 * @return list of VerbNet memberships

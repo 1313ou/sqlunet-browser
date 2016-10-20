@@ -12,14 +12,34 @@ import java.util.List;
  */
 class FnLayer
 {
+	/**
+	 * Layer id
+	 */
 	public final long layerId;
 
+	/**
+	 * Layer type
+	 */
 	public final String layerType;
 
+	/**
+	 * Layer rank
+	 */
 	public final int rank;
 
+	/**
+	 * Labels
+	 */
 	public final List<FnLabel> labels;
 
+	/**
+	 * Constructor
+	 *
+	 * @param layerId   layer id
+	 * @param layerType layer type
+	 * @param rank      layer rank
+	 * @param labels    labels
+	 */
 	private FnLayer(final long layerId, final String layerType, final int rank, final List<FnLabel> labels)
 	{
 		super();
@@ -29,13 +49,20 @@ class FnLayer
 		this.labels = labels;
 	}
 
-	public static List<FnLayer> makeFromAnnoSet(final SQLiteDatabase connection, final long annoSetId)
+	/**
+	 * From-sentence factory
+	 *
+	 * @param connection connection
+	 * @param sentenceId sentence id
+	 * @return layers
+	 */
+	public static List<FnLayer> makeFromSentence(final SQLiteDatabase connection, final long sentenceId)
 	{
 		List<FnLayer> result = null;
-		FnLayerQueryFromAnnoSetCommand query = null;
+		FnLayerQueryFromSentenceCommand query = null;
 		try
 		{
-			query = new FnLayerQueryFromAnnoSetCommand(connection, annoSetId);
+			query = new FnLayerQueryFromSentenceCommand(connection, sentenceId);
 			query.execute();
 
 			while (query.next())
@@ -61,13 +88,20 @@ class FnLayer
 		return result;
 	}
 
-	public static List<FnLayer> makeFromSentence(final SQLiteDatabase connection, final long sentenceId)
+	/**
+	 * From-annoSet factory
+	 *
+	 * @param connection connection
+	 * @param annoSetId  annoset id
+	 * @return layers
+	 */
+	public static List<FnLayer> makeFromAnnoSet(final SQLiteDatabase connection, final long annoSetId)
 	{
 		List<FnLayer> result = null;
-		FnLayerQueryFromSentenceCommand query = null;
+		FnLayerQueryFromAnnoSetCommand query = null;
 		try
 		{
-			query = new FnLayerQueryFromSentenceCommand(connection, sentenceId);
+			query = new FnLayerQueryFromAnnoSetCommand(connection, annoSetId);
 			query.execute();
 
 			while (query.next())

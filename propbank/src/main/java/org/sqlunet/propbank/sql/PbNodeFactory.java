@@ -22,7 +22,7 @@ class PbNodeFactory extends NodeFactory
 	 * Make PropBank root node
 	 *
 	 * @param doc    is the DOM Document being built
-	 * @param wordId is the target word id
+	 * @param wordId target word id
 	 * @return newly created node
 	 */
 	static public Node makePbRootNode(final Document doc, final long wordId)
@@ -36,7 +36,7 @@ class PbNodeFactory extends NodeFactory
 	 * Make PropBank root node
 	 *
 	 * @param doc       is the DOM Document being built
-	 * @param roleSetId is the target roleSet id
+	 * @param roleSetId target roleSet id
 	 * @return newly created node
 	 */
 	public static Node makePbRootRoleSetNode(final Document doc, long roleSetId)
@@ -59,7 +59,7 @@ class PbNodeFactory extends NodeFactory
 		final Element element = NodeFactory.makeNode(doc, parent, "roleset", null); //$NON-NLS-1$
 		NodeFactory.makeAttribute(element, "num", Integer.toString(i)); //$NON-NLS-1$
 		NodeFactory.makeAttribute(element, "name", roleSet.roleSetName); //$NON-NLS-1$
-		NodeFactory.makeAttribute(element, "roleSetId", Long.toString(roleSet.roleSetId)); //$NON-NLS-1$
+		NodeFactory.makeAttribute(element, "rolesetid", Long.toString(roleSet.roleSetId)); //$NON-NLS-1$
 		NodeFactory.makeAttribute(element, "head", roleSet.roleSetHead); //$NON-NLS-1$
 		NodeFactory.makeText(doc, element, roleSet.roleSetDescr);
 		return element;

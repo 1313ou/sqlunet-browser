@@ -24,7 +24,7 @@ class WordQueryCommand extends DBQueryCommand
 	/**
 	 * Constructor
 	 *
-	 * @param connection is the database connection
+	 * @param connection database connection
 	 * @param lemma      is the word lemma
 	 */
 	public WordQueryCommand(final SQLiteDatabase connection, final String lemma)

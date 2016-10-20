@@ -19,7 +19,7 @@ import org.sqlunet.framenet.provider.FrameNetContract.LexUnits_FEGroupRealizatio
 import org.sqlunet.framenet.provider.FrameNetContract.LexUnits_FERealizations_ValenceUnits;
 import org.sqlunet.framenet.provider.FrameNetContract.LexUnits_Governors;
 import org.sqlunet.framenet.provider.FrameNetContract.LexUnits_Sentences;
-import org.sqlunet.framenet.provider.FrameNetContract.LexUnits_Sentences_Annosets_Layers_Labels;
+import org.sqlunet.framenet.provider.FrameNetContract.LexUnits_Sentences_AnnoSets_Layers_Labels;
 import org.sqlunet.framenet.provider.FrameNetContract.LexUnits_X;
 import org.sqlunet.framenet.provider.FrameNetContract.Lookup_FnSentences;
 import org.sqlunet.framenet.provider.FrameNetContract.Patterns_Layers_X;
@@ -33,7 +33,7 @@ import org.sqlunet.provider.SqlUNetContract;
 import org.sqlunet.provider.SqlUNetProvider;
 
 /**
- * WordNet provider
+ * FrameNet provider
  *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
@@ -104,8 +104,8 @@ public class FrameNetProvider extends SqlUNetProvider
 		FrameNetProvider.uriMatcher.addURI(FrameNetContract.AUTHORITY, Frames_FEs.TABLE_BY_FE, FrameNetProvider.FRAMES_FES_BY_FE);
 		FrameNetProvider.uriMatcher.addURI(FrameNetContract.AUTHORITY, LexUnits_Sentences.TABLE, FrameNetProvider.LEXUNITS_SENTENCES);
 		FrameNetProvider.uriMatcher.addURI(FrameNetContract.AUTHORITY, LexUnits_Sentences.TABLE_BY_SENTENCE, FrameNetProvider.LEXUNITS_SENTENCES_BY_SENTENCE);
-		FrameNetProvider.uriMatcher.addURI(FrameNetContract.AUTHORITY, LexUnits_Sentences_Annosets_Layers_Labels.TABLE, FrameNetProvider.LEXUNITS_SENTENCES_ANNOSETS_LAYERS_LABELS);
-		FrameNetProvider.uriMatcher.addURI(FrameNetContract.AUTHORITY, LexUnits_Sentences_Annosets_Layers_Labels.TABLE_BY_SENTENCE, FrameNetProvider.LEXUNITS_SENTENCES_ANNOSETS_LAYERS_LABELS_BY_SENTENCE);
+		FrameNetProvider.uriMatcher.addURI(FrameNetContract.AUTHORITY, LexUnits_Sentences_AnnoSets_Layers_Labels.TABLE, FrameNetProvider.LEXUNITS_SENTENCES_ANNOSETS_LAYERS_LABELS);
+		FrameNetProvider.uriMatcher.addURI(FrameNetContract.AUTHORITY, LexUnits_Sentences_AnnoSets_Layers_Labels.TABLE_BY_SENTENCE, FrameNetProvider.LEXUNITS_SENTENCES_ANNOSETS_LAYERS_LABELS_BY_SENTENCE);
 		FrameNetProvider.uriMatcher.addURI(FrameNetContract.AUTHORITY, LexUnits_Governors.TABLE, FrameNetProvider.LEXUNITS_GOVERNORS);
 		FrameNetProvider.uriMatcher.addURI(FrameNetContract.AUTHORITY, LexUnits_FERealizations_ValenceUnits.TABLE, FrameNetProvider.LEXUNITS_REALIZATIONS);
 		FrameNetProvider.uriMatcher.addURI(FrameNetContract.AUTHORITY, LexUnits_FERealizations_ValenceUnits.TABLE_BY_REALIZATION, FrameNetProvider.LEXUNITS_REALIZATIONS_BY_REALIZATION);
@@ -134,7 +134,6 @@ public class FrameNetProvider extends SqlUNetProvider
 	{
 		switch (FrameNetProvider.uriMatcher.match(uri))
 		{
-
 			// TABLES
 
 			case LEXUNIT:
@@ -289,9 +288,9 @@ public class FrameNetProvider extends SqlUNetProvider
 			// J O I N S
 
 			case FRAMES_X_BY_FRAME:
-				groupBy = "frameId"; //$NON-NLS-1$
+				groupBy = "frameid"; //$NON-NLS-1$
 				table = "fnframes " + //$NON-NLS-1$
-						"LEFT JOIN fnframes_semtypes USING (frameId) " + //$NON-NLS-1$
+						"LEFT JOIN fnframes_semtypes USING (frameid) " + //$NON-NLS-1$
 						"LEFT JOIN fnsemtypes USING (semtypeid)"; //$NON-NLS-1$
 				break;
 
@@ -300,7 +299,7 @@ public class FrameNetProvider extends SqlUNetProvider
 				break;
 
 			case LEXUNITS_X_BY_LEXUNIT:
-				groupBy = "luId"; //$NON-NLS-1$
+				groupBy = "luid"; //$NON-NLS-1$
 				table = "fnlexunits AS lu " + //$NON-NLS-1$
 						"LEFT JOIN fnframes AS f USING (frameId) " + //$NON-NLS-1$
 						"LEFT JOIN fnposes AS p ON (lu.posid = p.posid) " + //$NON-NLS-1$

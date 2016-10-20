@@ -121,7 +121,7 @@ class SqLiteDialect
 					"WHERE luId = ? " + // //$NON-NLS-1$
 					"ORDER BY governor;"; //$NON-NLS-1$
 
-	// query for annoset from annoSetId
+	// query for annoSet from annoSetId
 	public static final String FrameNetAnnoSetQuery = //
 			"SELECT s.sentenceid,`text`,GROUP_CONCAT(o.annoSetId) " + // //$NON-NLS-1$
 					"FROM fnannosets AS a " + // //$NON-NLS-1$

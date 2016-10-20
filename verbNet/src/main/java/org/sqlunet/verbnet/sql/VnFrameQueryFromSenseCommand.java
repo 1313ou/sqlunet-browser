@@ -21,10 +21,10 @@ class VnFrameQueryFromSenseCommand extends DBQueryCommand
 	/**
 	 * Constructor
 	 *
-	 * @param connection is the database connection
-	 * @param classId    is the target class id
-	 * @param wordId     is the target word id
-	 * @param synsetId   is the target synset id
+	 * @param connection database connection
+	 * @param classId    target class id
+	 * @param wordId     target word id
+	 * @param synsetId   target synset id
 	 */
 	@SuppressWarnings("boxing")
 	public VnFrameQueryFromSenseCommand(final SQLiteDatabase connection, final long classId, final long wordId, final Long synsetId)

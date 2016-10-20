@@ -29,7 +29,7 @@ public class VnClass
 	/**
 	 * Make sets of VerbNet memberships from query built from classId
 	 *
-	 * @param connection is the database connection
+	 * @param connection database connection
 	 * @param classId    is the class id to build the query from
 	 * @return list of VerbNet classes
 	 */

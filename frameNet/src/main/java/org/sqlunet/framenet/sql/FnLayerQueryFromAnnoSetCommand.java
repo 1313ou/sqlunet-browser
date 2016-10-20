@@ -3,7 +3,7 @@ package org.sqlunet.framenet.sql;
 import android.database.sqlite.SQLiteDatabase;
 
 /**
- * FrameNet layer command from annoset
+ * FrameNet layer command from annoSet
  *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
@@ -17,8 +17,8 @@ class FnLayerQueryFromAnnoSetCommand extends FnLayerQueryCommand
 	/**
 	 * Constructor
 	 *
-	 * @param connection      is the database connection
-	 * @param targetAnnoSetId is the target annoSetId
+	 * @param connection      database connection
+	 * @param targetAnnoSetId target annoSet id
 	 */
 	public FnLayerQueryFromAnnoSetCommand(final SQLiteDatabase connection, final long targetAnnoSetId)
 	{

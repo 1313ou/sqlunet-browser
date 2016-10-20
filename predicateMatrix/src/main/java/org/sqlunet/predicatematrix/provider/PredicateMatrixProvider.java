@@ -106,7 +106,7 @@ public class PredicateMatrixProvider extends SqlUNetProvider
 						"LEFT JOIN fnframes AS ff ON fnframeid = ff.frameId " + // //$NON-NLS-1$
 						"LEFT JOIN fnfes AS fr ON fnfeid = fr.feid " + // //$NON-NLS-1$
 						"LEFT JOIN fnfetypes AS ft ON fr.fetypeid = ft.fetypeid " + // //$NON-NLS-1$
-						"LEFT JOIN fnlexunits AS fl ON fnluid = fl.luId"; //$NON-NLS-1$
+						"LEFT JOIN fnlexunits AS fl ON fnluid = fl.luid"; //$NON-NLS-1$
 				break;
 
 			default:

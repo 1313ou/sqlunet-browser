@@ -7,13 +7,12 @@ import android.os.Bundle;
 import org.sqlunet.framenet.R;
 
 /**
- * LexUnitQuery activity
+ * Lex unit activity
  *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
 public class FnLexUnitActivity extends Activity
 {
-
 	@Override
 	protected void onCreate(final Bundle savedInstanceState)
 	{

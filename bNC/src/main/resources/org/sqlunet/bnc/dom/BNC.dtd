@@ -5,7 +5,7 @@
 	<!-- R E F E R E N C E -->
 
 	<!ELEMENT word (#PCDATA)>
-	<!ATTLIST word word-id CDATA #REQUIRED>
+	<!ATTLIST word wordid CDATA #REQUIRED>
 	<!ATTLIST word pos CDATA #IMPLIED>
 
 	<!-- D A T A -->

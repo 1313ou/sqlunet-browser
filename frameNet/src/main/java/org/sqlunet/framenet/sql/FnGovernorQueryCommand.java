@@ -19,8 +19,8 @@ class FnGovernorQueryCommand extends DBQueryCommand
 	/**
 	 * Constructor
 	 *
-	 * @param connection is the database connection
-	 * @param luId       is the target frameId
+	 * @param connection database connection
+	 * @param luId       target lex unit id
 	 */
 	@SuppressWarnings("boxing")
 	public FnGovernorQueryCommand(final SQLiteDatabase connection, final long luId)

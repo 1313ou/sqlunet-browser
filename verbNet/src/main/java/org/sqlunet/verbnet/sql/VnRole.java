@@ -1,7 +1,9 @@
 package org.sqlunet.verbnet.sql;
 
 /**
- * @author bbou
+ * VerbNet role
+ *
+ * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
 class VnRole
 {

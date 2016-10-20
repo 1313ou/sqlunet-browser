@@ -6,7 +6,7 @@ import org.sqlunet.sql.DBQueryCommand;
 import org.sqlunet.sql.Utils;
 
 /**
- * FrameNet annoset query command
+ * FrameNet annoSet query command
  *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
@@ -20,14 +20,14 @@ class FnAnnoSetQueryCommand extends DBQueryCommand
 	/**
 	 * Constructor
 	 *
-	 * @param connection      is the database connection
-	 * @param targetAnnoSetId is the target annoSetId
+	 * @param connection database connection
+	 * @param annoSetId  target annoSet id
 	 */
 	@SuppressWarnings("boxing")
-	public FnAnnoSetQueryCommand(final SQLiteDatabase connection, final long targetAnnoSetId)
+	public FnAnnoSetQueryCommand(final SQLiteDatabase connection, final long annoSetId)
 	{
 		super(connection, FnAnnoSetQueryCommand.QUERY);
-		setParams(targetAnnoSetId);
+		setParams(annoSetId);
 	}
 
 	/**
@@ -51,9 +51,9 @@ class FnAnnoSetQueryCommand extends DBQueryCommand
 	}
 
 	/**
-	 * Get the annoset ids from the result set
+	 * Get the annoSet ids from the result set
 	 *
-	 * @return the annoset ids from the result set
+	 * @return the annoSet ids from the result set
 	 */
 	@SuppressWarnings("unused")
 	public long[] getAnnoSetIds()

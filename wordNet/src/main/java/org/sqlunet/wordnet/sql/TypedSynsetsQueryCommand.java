@@ -40,7 +40,7 @@ class TypedSynsetsQueryCommand extends DBQueryCommand
 	/**
 	 * Constructor
 	 *
-	 * @param connection     is the database connection
+	 * @param connection     database connection
 	 * @param lexDomainBased is whether the query is lexdomain based
 	 */
 	public TypedSynsetsQueryCommand(final SQLiteDatabase connection, final boolean lexDomainBased)
@@ -51,7 +51,7 @@ class TypedSynsetsQueryCommand extends DBQueryCommand
 	/**
 	 * Set word parameter in prepared SQL statement
 	 *
-	 * @param wordId is the target word
+	 * @param wordId target word
 	 */
 	public void setWordId(final long wordId)
 	{
@@ -61,7 +61,7 @@ class TypedSynsetsQueryCommand extends DBQueryCommand
 	/**
 	 * Set part-of-speech type parameter in prepared SQL statement
 	 *
-	 * @param type is the target part-of-speech type
+	 * @param type target part-of-speech type
 	 */
 	public void setPosType(final int type)
 	{
@@ -72,7 +72,7 @@ class TypedSynsetsQueryCommand extends DBQueryCommand
 	/**
 	 * Set lexdomain type parameter in prepared SQL statement
 	 *
-	 * @param type is the target lexdomain type
+	 * @param type target lexdomain type
 	 */
 	public void setLexDomainType(final int type)
 	{

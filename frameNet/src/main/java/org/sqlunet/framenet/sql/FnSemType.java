@@ -4,24 +4,33 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Sem type
+ * Semantic type
  *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
 class FnSemType
 {
+	/**
+	 * Semantic type id
+	 */
 	public final long semTypeId;
 
+	/**
+	 * Semantic type name
+	 */
 	public final String semTypeName;
 
+	/**
+	 * Semantic type definition
+	 */
 	public final String semTypeDefinition;
 
 	/**
 	 * Constructor
 	 *
-	 * @param semTypeId         is the semtype id
-	 * @param semTypeName       is the semtype name
-	 * @param semTypeDefinition is the semtype definition
+	 * @param semTypeId         semtype id
+	 * @param semTypeName       semtype name
+	 * @param semTypeDefinition semtype definition
 	 */
 	private FnSemType(final long semTypeId, final String semTypeName, final String semTypeDefinition)
 	{

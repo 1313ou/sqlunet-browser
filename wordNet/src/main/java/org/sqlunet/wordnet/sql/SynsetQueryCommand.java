@@ -25,8 +25,8 @@ class SynsetQueryCommand extends DBQueryCommand
 	/**
 	 * Constructor
 	 *
-	 * @param connection is the database connection
-	 * @param synsetId   is the target synset id
+	 * @param connection database connection
+	 * @param synsetId   target synset id
 	 */
 	@SuppressWarnings("boxing")
 	public SynsetQueryCommand(final SQLiteDatabase connection, final long synsetId)

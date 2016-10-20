@@ -28,6 +28,14 @@ public class PbRoleSetFragment extends Fragment
 	 */
 	private TreeView treeView;
 
+	/**
+	 * Constructor
+	 */
+	public PbRoleSetFragment()
+	{
+		//
+	}
+
 	@Override
 	public View onCreateView(final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState)
 	{
@@ -74,13 +82,5 @@ public class PbRoleSetFragment extends Fragment
 	{
 		super.onSaveInstanceState(outState);
 		outState.putString("treeViewState", this.treeView.getSaveState()); //$NON-NLS-1$
-	}
-
-	/**
-	 * Constructor
-	 */
-	public PbRoleSetFragment()
-	{
-		//
 	}
 }

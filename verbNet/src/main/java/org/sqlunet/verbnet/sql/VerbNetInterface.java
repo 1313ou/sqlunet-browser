@@ -17,7 +17,7 @@ interface VerbNetInterface
 	/**
 	 * Business method the returns VerbNet selector data as DOM document
 	 *
-	 * @param word is the target word
+	 * @param word target word
 	 * @return VerbNet selector data as DOM document
 	 */
 	Document querySelectorDoc(final SQLiteDatabase connection, final String word);
@@ -25,7 +25,7 @@ interface VerbNetInterface
 	/**
 	 * Business method that returns VerbNet selector data as XML
 	 *
-	 * @param word is the target word
+	 * @param word target word
 	 * @return VerbNet selector data as XML
 	 */
 	String querySelectorXML(final SQLiteDatabase connection, final String word);
@@ -35,7 +35,7 @@ interface VerbNetInterface
 	/**
 	 * Business method the returns VerbNet data as DOM document from word
 	 *
-	 * @param word is the target word
+	 * @param word target word
 	 * @return VerbNet data as DOM document
 	 */
 	Document queryDoc(final SQLiteDatabase connection, final String word);
@@ -43,7 +43,7 @@ interface VerbNetInterface
 	/**
 	 * Business method that returns VerbNet data as XML from word
 	 *
-	 * @param word is the target word
+	 * @param word target word
 	 * @return VerbNet data as XML
 	 */
 	String queryXML(final SQLiteDatabase connection, final String word);
@@ -61,8 +61,8 @@ interface VerbNetInterface
 	/**
 	 * Business method that returns VerbNet data as XML from sense
 	 *
-	 * @param wordId   is the target word id
-	 * @param synsetId is the target synset id (-1 if any)
+	 * @param wordId   target word id
+	 * @param synsetId target synset id (-1 if any)
 	 * @param pos      the pos to build query from
 	 * @return VerbNet data as XML
 	 */

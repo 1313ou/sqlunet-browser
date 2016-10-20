@@ -6,12 +6,15 @@ import android.os.Parcelable;
 import org.sqlunet.framenet.FnValenceUnitPointer;
 import org.sqlunet.treeview.model.TreeNode;
 
+/**
+ * AnnoSet from valence unit module
+ *
+ * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
+ */
 public class AnnoSetFromValenceUnitModule extends BasicModule
 {
-	// query
-
 	/**
-	 * Pointer
+	 * Valence unit id
 	 */
 	private Long vuId;
 
@@ -44,7 +47,7 @@ public class AnnoSetFromValenceUnitModule extends BasicModule
 		if (this.vuId != null)
 		{
 			// data
-			annosets_for_valenceunit(this.vuId, node);
+			annoSetsForValenceUnit(this.vuId, node);
 		}
 	}
 }

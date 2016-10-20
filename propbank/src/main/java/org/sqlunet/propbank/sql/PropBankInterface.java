@@ -17,7 +17,7 @@ interface PropBankInterface
 	/**
 	 * Business method the returns PropBank selector data as DOM document
 	 *
-	 * @param word is the target word
+	 * @param word target word
 	 * @return PropBank selector data as DOM document
 	 */
 	Document querySelectorDoc(final SQLiteDatabase connection, final String word);
@@ -25,7 +25,7 @@ interface PropBankInterface
 	/**
 	 * Business method that returns PropBank selector data as XML
 	 *
-	 * @param word is the target word
+	 * @param word target word
 	 * @return PropBank selector data as XML
 	 */
 	String querySelectorXML(final SQLiteDatabase connection, final String word);
@@ -35,7 +35,7 @@ interface PropBankInterface
 	/**
 	 * Business method the returns PropBank data as DOM document from word
 	 *
-	 * @param word is the target word
+	 * @param word target word
 	 * @return PropBank data as DOM document
 	 */
 	Document queryDoc(final SQLiteDatabase connection, final String word);
@@ -43,7 +43,7 @@ interface PropBankInterface
 	/**
 	 * Business method that returns PropBank selector data as XML from word
 	 *
-	 * @param word is the target word
+	 * @param word target word
 	 * @return PropBank selector data as XML
 	 */
 	String queryXML(final SQLiteDatabase connection, final String word);
@@ -60,7 +60,7 @@ interface PropBankInterface
 	/**
 	 * Business method that returns PropBank data as XML from word id
 	 *
-	 * @param wordId is the target word id
+	 * @param wordId target word id
 	 * @param pos    the pos to build query from
 	 * @return PropBank data as XML
 	 */

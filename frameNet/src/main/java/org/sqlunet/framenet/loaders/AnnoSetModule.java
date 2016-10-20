@@ -6,16 +6,17 @@ import android.os.Parcelable;
 import org.sqlunet.framenet.FnAnnoSetPointer;
 import org.sqlunet.treeview.model.TreeNode;
 
+/**
+ * AnnoSet module
+ *
+ * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
+ */
 public class AnnoSetModule extends BasicModule
 {
-	// query
-
 	/**
-	 * Pointer
+	 * AnnoSet id
 	 */
 	private Long annoSetId;
-
-	// resources
 
 	/**
 	 * Constructor
@@ -46,7 +47,7 @@ public class AnnoSetModule extends BasicModule
 		if (this.annoSetId != null)
 		{
 			// data
-			annoset(this.annoSetId, node, true);
+			annoSet(this.annoSetId, node, true);
 		}
 	}
 }

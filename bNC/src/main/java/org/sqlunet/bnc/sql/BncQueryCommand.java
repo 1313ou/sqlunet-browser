@@ -24,7 +24,7 @@ class BncQueryCommand extends DBQueryCommand
 	/**
 	 * Constructor
 	 *
-	 * @param connection is the database connection
+	 * @param connection database connection
 	 * @param params     parameters
 	 */
 	public BncQueryCommand(final SQLiteDatabase connection, final Object... params)

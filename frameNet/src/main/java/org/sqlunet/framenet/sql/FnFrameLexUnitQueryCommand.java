@@ -19,14 +19,14 @@ class FnFrameLexUnitQueryCommand extends DBQueryCommand
 	/**
 	 * Constructor
 	 *
-	 * @param connection    is the database connection
-	 * @param targetFrameId target annoSetId
+	 * @param connection database connection
+	 * @param luId       target lex unit id
 	 */
 	@SuppressWarnings("boxing")
-	public FnFrameLexUnitQueryCommand(final SQLiteDatabase connection, final long targetFrameId)
+	public FnFrameLexUnitQueryCommand(final SQLiteDatabase connection, final long luId)
 	{
 		super(connection, FnFrameLexUnitQueryCommand.QUERY);
-		setParams(targetFrameId);
+		setParams(luId);
 	}
 
 	/**

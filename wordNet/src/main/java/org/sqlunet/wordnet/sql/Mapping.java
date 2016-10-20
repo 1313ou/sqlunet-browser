@@ -77,7 +77,7 @@ class Mapping
 	/**
 	 * Read lexdomain mappings from database
 	 *
-	 * @param connection is the database connection
+	 * @param connection database connection
 	 */
 	static public void initLexDomains(final SQLiteDatabase connection)
 	{
@@ -117,7 +117,7 @@ class Mapping
 	/**
 	 * Read link mappings from database
 	 *
-	 * @param connection is the database connection
+	 * @param connection database connection
 	 */
 	@SuppressLint("DefaultLocale")
 	static public void initLinks(final SQLiteDatabase connection)
@@ -231,8 +231,8 @@ class Mapping
 	/**
 	 * Find lexdomain id from part-of-speech name and lexdomain name
 	 *
-	 * @param posName       is the target part-of-speech name
-	 * @param lexDomainName is the target lexdomain name
+	 * @param posName       target part-of-speech name
+	 * @param lexDomainName target lexdomain name
 	 * @return lexdomain id or -1 if not found
 	 */
 	static public int getLexDomainId(final String posName, final String lexDomainName)
@@ -256,7 +256,7 @@ class Mapping
 	/**
 	 * Find part-of-speech id (n,v,a,r) from part-of-speech name
 	 *
-	 * @param posName is the target part-of-speech name
+	 * @param posName target part-of-speech name
 	 * @return part-of-speech id or ANYTYPE if not found
 	 */
 	static public int getPosId(final String posName)
@@ -289,7 +289,7 @@ class Mapping
 	/**
 	 * Find link name from link id
 	 *
-	 * @param linkType is the target link id
+	 * @param linkType target link id
 	 * @return link name or "linktype.xxx" if not found
 	 */
 	static public String getLinkName(final int linkType)
@@ -308,7 +308,7 @@ class Mapping
 	/**
 	 * Find link id from link name
 	 *
-	 * @param linkName is the target link name
+	 * @param linkName target link name
 	 * @return link id or ANYTYPE if it is not found
 	 */
 	static public int getLinkType(final String linkName)
@@ -332,7 +332,7 @@ class Mapping
 	/**
 	 * Determine if this link can recurse
 	 *
-	 * @param linkType is the target link id
+	 * @param linkType target link id
 	 * @return whether this link type can recurse
 	 */
 	static public boolean canRecurse(final int linkType)

@@ -39,8 +39,8 @@ public class VnEntry
 	/**
 	 * Make word
 	 *
-	 * @param connection is the database connection
-	 * @param lemma      is the target string
+	 * @param connection database connection
+	 * @param lemma      target string
 	 * @return Word or null
 	 */
 	static public VnEntry make(final SQLiteDatabase connection, final String lemma)

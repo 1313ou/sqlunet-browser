@@ -7,6 +7,12 @@ import java.util.List;
 
 public class Utils
 {
+	/**
+	 * Convert pos character to pos id
+	 *
+	 * @param c pos character
+	 * @return pos id
+	 */
 	static public int posToPosId(final Character c)
 	{
 		if (c == null)

@@ -17,8 +17,8 @@ class FnLayerQueryFromSentenceCommand extends FnLayerQueryCommand
 	/**
 	 * Constructor
 	 *
-	 * @param connection       is the database connection
-	 * @param targetSentenceId is the target sentence id
+	 * @param connection       database connection
+	 * @param targetSentenceId target sentence id
 	 */
 	public FnLayerQueryFromSentenceCommand(final SQLiteDatabase connection, final long targetSentenceId)
 	{

@@ -174,7 +174,7 @@ class Synset extends BasicSynset
 	/**
 	 * Get synsets linked to the synset
 	 *
-	 * @param connection is the database connection
+	 * @param connection database connection
 	 * @param wordId     is the word id (for lexical links)
 	 * @return list of synsets linked to the synset
 	 */
@@ -213,7 +213,7 @@ class Synset extends BasicSynset
 	/**
 	 * Get synsets linked to the synset through a given relation type
 	 *
-	 * @param connection is the database connection
+	 * @param connection database connection
 	 * @param wordId     is the word id (for lexical links)
 	 * @param linkType   is the link type
 	 * @return list of synsets linked to the synset through a given relation type

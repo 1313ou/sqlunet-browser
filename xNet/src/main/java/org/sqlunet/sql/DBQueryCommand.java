@@ -25,7 +25,7 @@ public class DBQueryCommand
 	/**
 	 * Constructor
 	 *
-	 * @param connection is the database connection
+	 * @param connection database connection
 	 * @param statement  is the SQL statement
 	 */
 	protected DBQueryCommand(final SQLiteDatabase connection, final String statement)

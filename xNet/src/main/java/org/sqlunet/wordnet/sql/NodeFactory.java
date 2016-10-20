@@ -95,7 +95,7 @@ public class NodeFactory extends org.sqlunet.sql.NodeFactory
 	 *
 	 * @param doc    is the DOM Document being built
 	 * @param parent is the parent node to attach this node to
-	 * @param word   is the target word
+	 * @param word   target word
 	 * @param id     is the word id
 	 * @return newly created node
 	 */

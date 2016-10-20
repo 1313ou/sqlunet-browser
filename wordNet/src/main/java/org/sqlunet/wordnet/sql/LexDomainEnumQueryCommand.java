@@ -25,7 +25,7 @@ class LexDomainEnumQueryCommand extends DBQueryCommand
 	/**
 	 * Constructor
 	 *
-	 * @param connection is the database connection
+	 * @param connection database connection
 	 */
 	public LexDomainEnumQueryCommand(final SQLiteDatabase connection)
 	{

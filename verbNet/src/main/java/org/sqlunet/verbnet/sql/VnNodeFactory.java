@@ -25,8 +25,8 @@ class VnNodeFactory extends NodeFactory
 	 * Make VerbNet root node
 	 *
 	 * @param doc      is the DOM Document being built
-	 * @param wordId   is the target word id
-	 * @param synsetId is the target synset id (0 for all)
+	 * @param wordId   target word id
+	 * @param synsetId target synset id (0 for all)
 	 * @return newly created node
 	 */
 	static public Node makeVnRootNode(final Document doc, final long wordId, final long synsetId)
@@ -47,7 +47,7 @@ class VnNodeFactory extends NodeFactory
 	 * Make VerbNet root node
 	 *
 	 * @param doc     is the DOM Document being built
-	 * @param classId is the target class id
+	 * @param classId target class id
 	 * @return newly created node
 	 */
 	public static Node makeVnRootClassNode(final Document doc, final long classId)
@@ -68,7 +68,7 @@ class VnNodeFactory extends NodeFactory
 	{
 		final Element element = org.sqlunet.sql.NodeFactory.makeNode(doc, parent, "vnclass", null); //$NON-NLS-1$
 		org.sqlunet.sql.NodeFactory.makeAttribute(element, "name", classMembership.className); //$NON-NLS-1$
-		org.sqlunet.sql.NodeFactory.makeAttribute(element, "classId", Long.toString(classMembership.classId)); //$NON-NLS-1$
+		org.sqlunet.sql.NodeFactory.makeAttribute(element, "classid", Long.toString(classMembership.classId)); //$NON-NLS-1$
 		org.sqlunet.sql.NodeFactory.makeAttribute(element, "synsetid", Long.toString(classMembership.synsetId)); //$NON-NLS-1$
 		org.sqlunet.sql.NodeFactory.makeAttribute(element, "sensenum", Integer.toString(classMembership.senseNum)); //$NON-NLS-1$
 		org.sqlunet.sql.NodeFactory.makeAttribute(element, "sensekey", classMembership.senseKey); //$NON-NLS-1$

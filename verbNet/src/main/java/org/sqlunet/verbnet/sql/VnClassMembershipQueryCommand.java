@@ -19,9 +19,9 @@ class VnClassMembershipQueryCommand extends DBQueryCommand
 	/**
 	 * Constructor
 	 *
-	 * @param connection is the database connection
-	 * @param wordId     is the target word id
-	 * @param synsetId   is the target synset id (null corresponds to no value)
+	 * @param connection database connection
+	 * @param wordId     target word id
+	 * @param synsetId   target synset id (null corresponds to no value)
 	 */
 	@SuppressWarnings("boxing")
 	public VnClassMembershipQueryCommand(final SQLiteDatabase connection, final long wordId, final Long synsetId)

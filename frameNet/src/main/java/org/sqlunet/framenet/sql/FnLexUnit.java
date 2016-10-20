@@ -13,23 +13,57 @@ import java.util.List;
  */
 public class FnLexUnit
 {
+	/**
+	 * Lex unit id
+	 */
 	public final long luId;
 
+	/**
+	 * Lex unit string
+	 */
 	public final String lexUnit;
 
+	/**
+	 * Pos
+	 */
 	@SuppressWarnings("unused")
 	public final String pos;
 
+	/**
+	 * Definition
+	 */
 	public final String definition;
 
+	/**
+	 * Source dictionary
+	 */
 	@SuppressWarnings("unused")
 	public final String dictionary;
 
+	/**
+	 * Buddy frame
+	 */
 	public final FnFrame frame;
 
+	/**
+	 * Incorporated frame element
+	 */
 	@SuppressWarnings("unused")
 	public final String incorporatedFe;
 
+	/**
+	 * Constructor
+	 *
+	 * @param luId            lex unit id
+	 * @param lexUnit         lex unit string
+	 * @param pos             pos
+	 * @param definition      definition
+	 * @param dictionary      source dictionary
+	 * @param incorporatedFe  incorporated frame element
+	 * @param frameId         frame id
+	 * @param frame           frame
+	 * @param frameDefinition frame definition
+	 */
 	private FnLexUnit(final long luId, final String lexUnit, final String pos, final String definition, final String dictionary, final String incorporatedFe, final long frameId, final String frame, final String frameDefinition)
 	{
 		super();
@@ -43,19 +77,59 @@ public class FnLexUnit
 	}
 
 	/**
-	 * Make sets of lexunits from query built from word
+	 * Lex unit from lex unit id
 	 *
-	 * @param connection is the database connection
-	 * @param targetWord is the word to build query from
-	 * @return word id + list of lexunits
+	 * @param connection connection
+	 * @param luId       lex unit id
+	 * @return lex units
 	 */
-	static public Pair<Long, List<FnLexUnit>> makeFromWord(final SQLiteDatabase connection, final String targetWord)
+	public static FnLexUnit makeFromId(final SQLiteDatabase connection, final long luId)
+	{
+		FnLexUnit result = null;
+		FnLexUnitQueryCommand query = null;
+		try
+		{
+			query = new FnLexUnitQueryCommand(connection, luId);
+			query.execute();
+
+			if (query.next())
+			{
+				// final long luId = query.getLuId();
+				final String lexUnit = query.getLexUnit();
+				final String pos = query.getPos();
+				final String definition = query.getDefinition();
+				final String dictionary = query.getDictionary();
+				final String incorporatedFe = query.getIncorporatedFe();
+				final long frameId = query.getFrameId();
+				final String frame = query.getFrame();
+				final String frameDescription = query.getFrameDescription();
+				result = new FnLexUnit(luId, lexUnit, pos, definition, dictionary, incorporatedFe, frameId, frame, frameDescription);
+			}
+		}
+		finally
+		{
+			if (query != null)
+			{
+				query.release();
+			}
+		}
+		return result;
+	}
+
+	/**
+	 * Make pairs of (word id-lex units) from query built from word
+	 *
+	 * @param connection database connection
+	 * @param word       target word
+	 * @return paris of (word id-list of lex units)
+	 */
+	static public Pair<Long, List<FnLexUnit>> makeFromWord(final SQLiteDatabase connection, final String word)
 	{
 		final List<FnLexUnit> result = new ArrayList<>();
 		FnLexUnitQueryCommandFromWord query = null;
 		try
 		{
-			query = new FnLexUnitQueryCommandFromWord(connection, targetWord);
+			query = new FnLexUnitQueryCommandFromWord(connection, word);
 			query.execute();
 
 			long wordId = 0;
@@ -87,27 +161,27 @@ public class FnLexUnit
 	}
 
 	/**
-	 * Make sets of lexunits from query built from word id
+	 * Make list of lex units from query built from word id
 	 *
-	 * @param connection   is the database connection
-	 * @param targetWordId is the word id to build query from
-	 * @param targetPos    is the pos to build query from, null if any
-	 * @return list of lexunits
+	 * @param connection database connection
+	 * @param wordId     word id to build query from
+	 * @param pos        pos to build query from, null if any
+	 * @return list of lex units
 	 */
-	static public List<FnLexUnit> makeFromWordId(final SQLiteDatabase connection, final long targetWordId, final Character targetPos)
+	static public List<FnLexUnit> makeFromWordId(final SQLiteDatabase connection, final long wordId, final Character pos)
 	{
 		final List<FnLexUnit> result = new ArrayList<>();
-		FnWordLexUnitQueryCommand query = null;
+		FnLexUnitFromWordQueryCommand query = null;
 		try
 		{
-			query = new FnWordLexUnitQueryCommand(connection, targetWordId, targetPos);
+			query = new FnLexUnitFromWordQueryCommand(connection, wordId, pos);
 			query.execute();
 
 			while (query.next())
 			{
 				final long luId = query.getLuId();
 				final String lexUnit = query.getLexUnit();
-				final String pos = query.getPos();
+				final String luPos = query.getPos();
 				final String definition = query.getDefinition();
 				final String dictionary = query.getDictionary();
 				final String incorporatedFe = query.getIncorporatedFe();
@@ -115,7 +189,7 @@ public class FnLexUnit
 				final String frame = query.getFrame();
 				final String frameDescription = query.getFrameDescription();
 
-				result.add(new FnLexUnit(luId, lexUnit, pos, definition, dictionary, incorporatedFe, frameId, frame, frameDescription));
+				result.add(new FnLexUnit(luId, lexUnit, luPos, definition, dictionary, incorporatedFe, frameId, frame, frameDescription));
 			}
 		}
 		finally
@@ -128,13 +202,20 @@ public class FnLexUnit
 		return result;
 	}
 
-	public static List<FnLexUnit> makeFromFrame(final SQLiteDatabase connection, final long targetFrameId)
+	/**
+	 * Make list of lex units from query built from frame id
+	 *
+	 * @param connection connection
+	 * @param frameId    frame id
+	 * @return list of lex units
+	 */
+	public static List<FnLexUnit> makeFromFrame(final SQLiteDatabase connection, final long frameId)
 	{
 		final List<FnLexUnit> result = new ArrayList<>();
 		FnFrameLexUnitQueryCommand query = null;
 		try
 		{
-			query = new FnFrameLexUnitQueryCommand(connection, targetFrameId);
+			query = new FnFrameLexUnitQueryCommand(connection, frameId);
 			query.execute();
 
 			while (query.next())
@@ -157,38 +238,4 @@ public class FnLexUnit
 		}
 		return result;
 	}
-
-	public static FnLexUnit makeFromId(final SQLiteDatabase connection, final long targetLuId)
-	{
-		FnLexUnit result = null;
-		FnLexUnitQueryCommand query = null;
-		try
-		{
-			query = new FnLexUnitQueryCommand(connection, targetLuId);
-			query.execute();
-
-			if (query.next())
-			{
-				final long luId = query.getLuId();
-				final String lexUnit = query.getLexUnit();
-				final String pos = query.getPos();
-				final String definition = query.getDefinition();
-				final String dictionary = query.getDictionary();
-				final String incorporatedFe = query.getIncorporatedFe();
-				final long frameId = query.getFrameId();
-				final String frame = query.getFrame();
-				final String frameDescription = query.getFrameDescription();
-				result = new FnLexUnit(luId, lexUnit, pos, definition, dictionary, incorporatedFe, frameId, frame, frameDescription);
-			}
-		}
-		finally
-		{
-			if (query != null)
-			{
-				query.release();
-			}
-		}
-		return result;
-	}
-
 }

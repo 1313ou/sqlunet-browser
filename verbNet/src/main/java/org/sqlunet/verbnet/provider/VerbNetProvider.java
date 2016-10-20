@@ -134,7 +134,7 @@ public class VerbNetProvider extends SqlUNetProvider
 				break;
 
 			case VNCLASSES_X_BY_VNCLASS:
-				groupBy = "classId"; //$NON-NLS-1$
+				groupBy = "classid"; //$NON-NLS-1$
 				table = "vnclasses " + // //$NON-NLS-1$
 						"LEFT JOIN vngroupingmaps USING (classId) " + // //$NON-NLS-1$
 						"LEFT JOIN vngroupings USING (groupingid)"; //$NON-NLS-1$
@@ -150,7 +150,7 @@ public class VerbNetProvider extends SqlUNetProvider
 				break;
 
 			case WORDS_VNCLASSES_VNGROUPING_BY_VNCLASS:
-				groupBy = "classId"; //$NON-NLS-1$
+				groupBy = "classid"; //$NON-NLS-1$
 				table = "words " + // //$NON-NLS-1$
 						"INNER JOIN vnwords USING (wordid) " + // //$NON-NLS-1$
 						"INNER JOIN vnclassmembersenses USING (vnwordid) " + // //$NON-NLS-1$

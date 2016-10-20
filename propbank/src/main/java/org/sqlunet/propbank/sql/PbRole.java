@@ -8,7 +8,7 @@ import java.util.List;
 /**
  * Role
  *
- * @author bbou
+ * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
 class PbRole
 {
@@ -59,7 +59,7 @@ class PbRole
 	/**
 	 * Make sets of PropBank roles from query built from roleSetId
 	 *
-	 * @param connection is the database connection
+	 * @param connection database connection
 	 * @param roleSetId  is the roleSet id to build query from
 	 * @return list of PropBank roles
 	 */

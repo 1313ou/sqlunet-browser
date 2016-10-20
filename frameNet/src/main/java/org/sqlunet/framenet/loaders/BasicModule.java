@@ -51,85 +51,105 @@ import java.util.List;
 import java.util.Locale;
 
 /**
- * A module to retrieve frame
+ * Basic frame module
  *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
 abstract public class BasicModule extends Module
 {
-	private static final String FOCUSLAYER = "FE"; // "Target"; //$NON-NLS-1$
-	private static boolean VERBOSE = false;
-
 	// private static final String TAG = "BasicModule";
 
-	// target layer
+	/**
+	 * Verbose flag
+	 */
+	private static boolean VERBOSE = false;
+
+	/**
+	 * Focused layer name
+	 */
+	private static final String FOCUSLAYER = "FE"; // "Target"; //$NON-NLS-1$
+
+	// agents
+
 	/**
 	 * Processor
 	 */
 	private FrameNetProcessor processor;
 
-	// agents
 	/**
 	 * Frame Processor
 	 */
 	private FrameNetFrameProcessor frameProcessor;
+
 	/**
 	 * Spanner
 	 */
 	private FrameNetSpanner spanner;
+
+	// resources
+
 	/**
 	 * Drawable for frame
 	 */
 	private Drawable frameDrawable;
 
-	// resources
+	/**
+	 * Drawable for FE
+	 */
+	private Drawable topFeDrawable;
+
 	/**
 	 * Drawable for FE
 	 */
 	private Drawable feDrawable;
-	/**
-	 * Drawable for FE
-	 */
-	private Drawable fe2Drawable;
+
 	/**
 	 * Drawable for core FE
 	 */
 	private Drawable corefeDrawable;
+
 	/**
 	 * Drawable for lexUnit
 	 */
 	private Drawable lexunitDrawable;
+
 	/**
 	 * Drawable for definition
 	 */
 	private Drawable definitionDrawable;
+
 	/**
 	 * Drawable for meta definition
 	 */
 	private Drawable metadefinitionDrawable;
+
 	/**
 	 * Drawable for realization
 	 */
 	private Drawable realizationDrawable;
+
 	/**
 	 * Drawable for sentence
 	 */
 	private Drawable sentenceDrawable;
+
 	/**
 	 * Drawable for semtype
 	 */
 	private Drawable semtypeDrawable;
+
 	/**
 	 * Drawable for coreset
 	 */
 	private Drawable coresetDrawable;
+
 	/**
 	 * Drawable for layer
 	 */
 	private Drawable layerDrawable;
 
 	/**
-	 * Mandatory empty constructor for the fragment manager to instantiate the fragment (e.g. upon screen orientation changes).
+	 * Constructor
 	 */
 	BasicModule(final Fragment fragment)
 	{
@@ -156,8 +176,8 @@ abstract public class BasicModule extends Module
 
 		// drawables
 		this.frameDrawable = Spanner.getDrawable(getContext(), R.drawable.fnframe);
-		this.feDrawable = Spanner.getDrawable(getContext(), R.drawable.role);
-		this.fe2Drawable = Spanner.getDrawable(getContext(), R.drawable.role2);
+		this.topFeDrawable = Spanner.getDrawable(getContext(), R.drawable.toprole);
+		this.feDrawable = Spanner.getDrawable(getContext(), R.drawable.rolealt);
 		this.corefeDrawable = Spanner.getDrawable(getContext(), R.drawable.corerole);
 		this.lexunitDrawable = Spanner.getDrawable(getContext(), R.drawable.lexunit);
 		this.definitionDrawable = Spanner.getDrawable(getContext(), R.drawable.definition);
@@ -274,8 +294,6 @@ abstract public class BasicModule extends Module
 			}
 		});
 	}
-
-	// frame
 
 	/**
 	 * Related frames
@@ -484,7 +502,7 @@ abstract public class BasicModule extends Module
 						final String coreType = cursor.getString(idCoreType);
 
 						// fe
-						Spanner.appendImage(sb, coreTypeId == 1 ? BasicModule.this.corefeDrawable : BasicModule.this.feDrawable);
+						Spanner.appendImage(sb, coreTypeId == 1 ? BasicModule.this.corefeDrawable : BasicModule.this.topFeDrawable);
 						sb.append(' ');
 						Spanner.append(sb, feType, 0, FrameNetFactories.feFactory);
 						sb.append(' ');
@@ -649,7 +667,7 @@ abstract public class BasicModule extends Module
 					if (incorporatedFEType != null)
 					{
 						sb.append('\n');
-						Spanner.appendImage(sb, BasicModule.this.fe2Drawable);
+						Spanner.appendImage(sb, BasicModule.this.feDrawable);
 						sb.append(' ');
 						sb.append("Incorporated"); //$NON-NLS-1$
 						sb.append(' ');
@@ -789,7 +807,7 @@ abstract public class BasicModule extends Module
 						if (incorporatedFEType != null)
 						{
 							sb.append('\n');
-							Spanner.appendImage(sb, BasicModule.this.fe2Drawable);
+							Spanner.appendImage(sb, BasicModule.this.feDrawable);
 							sb.append(' ');
 							sb.append("Incorporated"); //$NON-NLS-1$
 							sb.append(' ');
@@ -924,7 +942,7 @@ abstract public class BasicModule extends Module
 						if (incorporatedFEType != null)
 						{
 							sb.append('\n');
-							Spanner.appendImage(sb, BasicModule.this.fe2Drawable);
+							Spanner.appendImage(sb, BasicModule.this.feDrawable);
 							sb.append(' ');
 							sb.append("Incorporated"); //$NON-NLS-1$
 							sb.append(' ');
@@ -1212,7 +1230,7 @@ abstract public class BasicModule extends Module
 						}
 
 						// fe
-						final TreeNode feNode = TreeFactory.addTreeItemNode(parent, sb, R.drawable.role, BasicModule.this.getContext());
+						final TreeNode feNode = TreeFactory.addTreeItemNode(parent, sb, R.drawable.toprole, BasicModule.this.getContext());
 
 						// fe realizations
 						final String fers = cursor.getString(idFers);
@@ -2258,6 +2276,8 @@ abstract public class BasicModule extends Module
 			}
 		});
 	}
+
+	// agents
 
 	/**
 	 * Process definition

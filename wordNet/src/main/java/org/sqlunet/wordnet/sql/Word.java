@@ -30,7 +30,7 @@ public class Word extends BasicWord
 	 * Word
 	 *
 	 * @param lemma is the word string
-	 * @param id    is the database id
+	 * @param id    database id
 	 */
 	public Word(final String lemma, final long id)
 	{
@@ -40,7 +40,7 @@ public class Word extends BasicWord
 	/**
 	 * Constructor
 	 *
-	 * @param query is the database query
+	 * @param query database query
 	 */
 	private Word(final WordQueryCommand query)
 	{
@@ -50,8 +50,8 @@ public class Word extends BasicWord
 	/**
 	 * Make word
 	 *
-	 * @param connection is the database connection
-	 * @param lemma      is the target string
+	 * @param connection database connection
+	 * @param lemma      target string
 	 * @return Word or null
 	 */
 	static public Word make(final SQLiteDatabase connection, final String lemma)
@@ -86,7 +86,7 @@ public class Word extends BasicWord
 	/**
 	 * Get synsets containing a given word
 	 *
-	 * @param connection is the database connection
+	 * @param connection database connection
 	 * @return list of synsets containing a given word
 	 */
 	public List<Synset> getSynsets(final SQLiteDatabase connection)
@@ -122,8 +122,8 @@ public class Word extends BasicWord
 	/**
 	 * Get synsets containing a given word and of a given part-of-speech or lexdomain id
 	 *
-	 * @param connection     is the database connection
-	 * @param targetType     is the target type to restrict search to
+	 * @param connection     database connection
+	 * @param targetType     target type to restrict search to
 	 * @param lexDomainBased is whether the query is lexdomain based
 	 * @return list of synsets for a given word
 	 */
@@ -169,8 +169,8 @@ public class Word extends BasicWord
 	/**
 	 * Get lexdomain-link type map for a given word
 	 *
-	 * @param connection is the database connection
-	 * @param word       is the target word
+	 * @param connection database connection
+	 * @param word       target word
 	 * @return lexdomain-link type map for a given word
 	 */
 	@SuppressWarnings("unused")

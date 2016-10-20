@@ -25,7 +25,7 @@ class TypedLinksQueryCommand extends DBQueryCommand
 	/**
 	 * Constructor
 	 *
-	 * @param connection is the database connection
+	 * @param connection database connection
 	 */
 	public TypedLinksQueryCommand(final SQLiteDatabase connection)
 	{
@@ -57,7 +57,7 @@ class TypedLinksQueryCommand extends DBQueryCommand
 	/**
 	 * Set source type parameter in prepared statement
 	 *
-	 * @param type is the target synset type
+	 * @param type target synset type
 	 */
 	public void setLinkType(final int type)
 	{

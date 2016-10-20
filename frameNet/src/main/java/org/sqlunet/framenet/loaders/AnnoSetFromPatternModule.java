@@ -6,16 +6,17 @@ import android.os.Parcelable;
 import org.sqlunet.framenet.FnPatternPointer;
 import org.sqlunet.treeview.model.TreeNode;
 
+/**
+ * AnnoSet from pattern module
+ *
+ * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
+ */
 public class AnnoSetFromPatternModule extends BasicModule
 {
-	// query
-
 	/**
-	 * Pointer
+	 * Pattern id
 	 */
 	private Long patternId;
-
-	// resources
 
 	/**
 	 * Constructor
@@ -46,7 +47,7 @@ public class AnnoSetFromPatternModule extends BasicModule
 		if (this.patternId != null)
 		{
 			// data
-			annosets_for_pattern(this.patternId, node);
+			annoSetsForPattern(this.patternId, node);
 		}
 	}
 }

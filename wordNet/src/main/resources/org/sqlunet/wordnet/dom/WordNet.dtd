@@ -7,7 +7,7 @@
 
 	<!ELEMENT word (#PCDATA)>
 	<!ATTLIST wordnet
-		word-id CDATA #IMPLIED
+		wordid CDATA #IMPLIED
 		>
 
 	<!ELEMENT pos (lexdomain*)>
@@ -28,7 +28,7 @@
 	<!ELEMENT synset (word*,definition,sample?)>
 	<!ATTLIST synset
 		size CDATA #IMPLIED
-		synset-id CDATA #IMPLIED
+		synsetid CDATA #IMPLIED
 		>
 
 	<!ELEMENT definition (#PCDATA)>

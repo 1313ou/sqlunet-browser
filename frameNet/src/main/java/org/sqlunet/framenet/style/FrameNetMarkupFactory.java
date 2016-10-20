@@ -25,41 +25,10 @@ public class FrameNetMarkupFactory implements MarkupSpanner.SpanFactory
 {
 	// static private final String TAG = "FrameNetMarkupFactory";
 
+	/**
+	 * Flag value : fe definition
+	 */
 	static public final int FEDEF = 0x10000;
-
-	/**
-	 * Role drawable
-	 */
-	private final Drawable roleDrawable;
-
-	/**
-	 *
-	 */
-	private final Drawable role1Drawable;
-
-	/**
-	 * Relation drawable
-	 */
-	private final Drawable relationDrawable;
-
-	/**
-	 * Sample drawable
-	 */
-	private final Drawable sampleDrawable;
-
-	/**
-	 * Constructor
-	 *
-	 * @param context context
-	 */
-	FrameNetMarkupFactory(final Context context)
-	{
-		super();
-		this.roleDrawable = Spanner.getDrawable(context, R.drawable.role);
-		this.role1Drawable = Spanner.getDrawable(context, R.drawable.role1);
-		this.relationDrawable = Spanner.getDrawable(context, R.drawable.relation);
-		this.sampleDrawable = Spanner.getDrawable(context, R.drawable.sample);
-	}
 
 	/**
 	 * Background factory
@@ -117,6 +86,47 @@ public class FrameNetMarkupFactory implements MarkupSpanner.SpanFactory
 		}
 	};
 
+	/**
+	 * Top role drawable
+	 */
+	private final Drawable topRoleDrawable;
+
+	/**
+	 * Role drawable
+	 */
+	private final Drawable roleDrawable;
+
+	/**
+	 * Relation drawable
+	 */
+	private final Drawable relationDrawable;
+
+	/**
+	 * Sample drawable
+	 */
+	private final Drawable sampleDrawable;
+
+	/**
+	 * Constructor
+	 *
+	 * @param context context
+	 */
+	FrameNetMarkupFactory(final Context context)
+	{
+		super();
+		this.topRoleDrawable = Spanner.getDrawable(context, R.drawable.toprole);
+		this.roleDrawable = Spanner.getDrawable(context, R.drawable.role);
+		this.relationDrawable = Spanner.getDrawable(context, R.drawable.relation);
+		this.sampleDrawable = Spanner.getDrawable(context, R.drawable.sample);
+	}
+
+	/**
+	 * Make spans
+	 *
+	 * @param selector selector guide
+	 * @param flags    flags
+	 * @return spans
+	 */
 	@Override
 	public Object makeSpans(final String selector, final long flags)
 	{
@@ -131,15 +141,15 @@ public class FrameNetMarkupFactory implements MarkupSpanner.SpanFactory
 				}
 				if ("fe".equals(selector)) //$NON-NLS-1$
 				{
-					return new ImageSpan(this.roleDrawable, DynamicDrawableSpan.ALIGN_BASELINE);
+					return new ImageSpan(this.topRoleDrawable, DynamicDrawableSpan.ALIGN_BASELINE);
 				}
 				if ("fen".equals(selector)) //$NON-NLS-1$
 				{
-					return new ImageSpan(this.role1Drawable, DynamicDrawableSpan.ALIGN_BASELINE);
+					return new ImageSpan(this.roleDrawable, DynamicDrawableSpan.ALIGN_BASELINE);
 				}
 				if (selector.matches("fex.*")) //$NON-NLS-1$
 				{
-					return new ImageSpan(this.roleDrawable, DynamicDrawableSpan.ALIGN_BASELINE);
+					return new ImageSpan(this.topRoleDrawable, DynamicDrawableSpan.ALIGN_BASELINE);
 				}
 				if (selector.matches("xfen")) //$NON-NLS-1$
 				{

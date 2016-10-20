@@ -28,6 +28,14 @@ public class VnClassFragment extends Fragment
 	 */
 	private TreeView treeView;
 
+	/**
+	 * Constructor
+	 */
+	public VnClassFragment()
+	{
+		//
+	}
+
 	@Override
 	public View onCreateView(final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState)
 	{
@@ -74,13 +82,5 @@ public class VnClassFragment extends Fragment
 	{
 		super.onSaveInstanceState(outState);
 		outState.putString("treeViewState", this.treeView.getSaveState()); //$NON-NLS-1$
-	}
-
-	/**
-	 * Constructor
-	 */
-	public VnClassFragment()
-	{
-		//
 	}
 }

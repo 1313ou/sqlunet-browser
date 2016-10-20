@@ -19,8 +19,8 @@ class FnSentenceQueryCommand extends DBQueryCommand
 	/**
 	 * Constructor
 	 *
-	 * @param connection is the database connection
-	 * @param sentenceId is the target sentence id
+	 * @param connection database connection
+	 * @param sentenceId target sentence id
 	 */
 	@SuppressWarnings("boxing")
 	public FnSentenceQueryCommand(final SQLiteDatabase connection, final long sentenceId)
@@ -34,6 +34,7 @@ class FnSentenceQueryCommand extends DBQueryCommand
 	 *
 	 * @return the governor id from the result set
 	 */
+	@SuppressWarnings("unused")
 	public long getSentenceId()
 	{
 		return this.cursor.getLong(0);

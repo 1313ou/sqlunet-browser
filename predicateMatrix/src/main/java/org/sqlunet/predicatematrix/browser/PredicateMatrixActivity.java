@@ -35,7 +35,7 @@ import org.sqlunet.provider.SqlUNetContract;
 /**
  * Predicate Matrix activity
  *
- * @author bbou
+ * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
 public class PredicateMatrixActivity extends Activity
 {
@@ -335,7 +335,7 @@ public class PredicateMatrixActivity extends Activity
 	/**
 	 * Handle search
 	 *
-	 * @param pointer pointer
+	 * @param pointer query pointer
 	 */
 	private void handleSearch(final PmRolePointer pointer)
 	{
@@ -362,7 +362,7 @@ public class PredicateMatrixActivity extends Activity
 	/**
 	 * Handle search
 	 *
-	 * @param query string
+	 * @param query query string
 	 */
 	private void handleSearch(final String query)
 	{

@@ -9,6 +9,11 @@ import android.text.style.StyleSpan;
 import org.sqlunet.style.Colors;
 import org.sqlunet.style.Spanner.SpanFactory;
 
+/**
+ * FrameNet span factories
+ *
+ * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
+ */
 public class FrameNetFactories
 {
 	static public final SpanFactory frameFactory = new SpanFactory()
@@ -92,7 +97,7 @@ public class FrameNetFactories
 		}
 	};
 
-	public static final SpanFactory definitionFactory = new SpanFactory()
+	static public final SpanFactory definitionFactory = new SpanFactory()
 	{
 		@Override
 		public Object makeSpans(final long flags)
@@ -101,7 +106,7 @@ public class FrameNetFactories
 		}
 	};
 
-	public static final SpanFactory metadefinitionFactory = new SpanFactory()
+	static public final SpanFactory metadefinitionFactory = new SpanFactory()
 	{
 		@Override
 		public Object makeSpans(final long flags)

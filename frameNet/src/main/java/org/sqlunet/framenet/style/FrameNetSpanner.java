@@ -8,16 +8,20 @@ import org.sqlunet.style.MarkupSpanner;
 
 import java.util.regex.Pattern;
 
+/**
+ * FrameNet spanner
+ *
+ * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
+ */
 public class FrameNetSpanner
 {
-	// spanner
-
 	private static final Pattern pattern = Pattern.compile("<([^>]*)>([^<]*)</([^>]*)>"); //$NON-NLS-1$
 
 	private static final Pattern pattern1 = Pattern.compile("<(ex)>(.*)</(ex)>"); //$NON-NLS-1$
 
-	// factory
-
+	/**
+	 * Span factory
+	 */
 	private final FrameNetMarkupFactory factory;
 
 	/**
@@ -30,6 +34,13 @@ public class FrameNetSpanner
 		this.factory = new FrameNetMarkupFactory(context);
 	}
 
+	/**
+	 * Process
+	 *
+	 * @param text  text to process
+	 * @param flags flags
+	 * @return processed text
+	 */
 	public CharSequence process(final CharSequence text, final long flags)
 	{
 		final SpannableStringBuilder sb = new SpannableStringBuilder(text);
@@ -37,8 +48,17 @@ public class FrameNetSpanner
 		return sb;
 	}
 
+	/**
+	 * Add span
+	 *
+	 * @param sb       spannable string builder
+	 * @param start    start
+	 * @param end      end
+	 * @param selector selector guide
+	 * @param flags    flags
+	 */
 	@SuppressWarnings("unused")
-	public void addSpan(@SuppressWarnings("TypeMayBeWeakened") final SpannableStringBuilder builder, final int start, final int end, final String selector, final long flags)
+	public void addSpan(@SuppressWarnings("TypeMayBeWeakened") final SpannableStringBuilder sb, final int start, final int end, final String selector, final long flags)
 	{
 		final Object spans = this.factory.makeSpans(selector, flags);
 		if (spans != null)
@@ -47,12 +67,12 @@ public class FrameNetSpanner
 			{
 				for (final Object span : (Object[]) spans)
 				{
-					builder.setSpan(span, start, end, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+					sb.setSpan(span, start, end, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
 				}
 			}
 			else
 			{
-				builder.setSpan(spans, start, end, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+				sb.setSpan(spans, start, end, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
 			}
 		}
 	}

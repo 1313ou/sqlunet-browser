@@ -448,13 +448,13 @@ public class WordNetProvider extends SqlUNetProvider
 			case LEXLINKS_SENSES:
 				table = "lexlinks AS l " + //$NON-NLS-1$
 						"INNER JOIN synsets AS d ON l.synset2id = d.synsetid " + //$NON-NLS-1$
-						"INNER JOIN words AS w ON l.word2id = w.wordId"; //$NON-NLS-1$
+						"INNER JOIN words AS w ON l.word2id = w.wordid"; //$NON-NLS-1$
 				break;
 
 			case LEXLINKS_SENSES_X:
 				table = "lexlinks AS l " + //$NON-NLS-1$
 						"INNER JOIN synsets AS d ON l.synset2id = d.synsetid " + //$NON-NLS-1$
-						"INNER JOIN words AS w ON l.word2id = w.wordId " + //$NON-NLS-1$
+						"INNER JOIN words AS w ON l.word2id = w.wordid " + //$NON-NLS-1$
 						"LEFT JOIN linktypes USING (linkid)"; //$NON-NLS-1$
 				break;
 

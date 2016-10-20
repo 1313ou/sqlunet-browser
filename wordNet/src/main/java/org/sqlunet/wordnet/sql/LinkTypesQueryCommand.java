@@ -25,7 +25,7 @@ class LinkTypesQueryCommand extends DBQueryCommand
 	/**
 	 * Constructor
 	 *
-	 * @param connection is the database connection
+	 * @param connection database connection
 	 */
 	public LinkTypesQueryCommand(final SQLiteDatabase connection)
 	{
@@ -35,7 +35,7 @@ class LinkTypesQueryCommand extends DBQueryCommand
 	/**
 	 * Set word parameter in prepared SQL statement
 	 *
-	 * @param word is the target word
+	 * @param word target word
 	 */
 	public void setWord(final String word)
 	{

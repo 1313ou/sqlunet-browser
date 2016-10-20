@@ -11,10 +11,31 @@ import android.os.Parcelable;
 public class FnFramePointer implements Parcelable
 {
 	/**
-	 * Members
+	 * Static field used to regenerate object, individually or as arrays
+	 */
+	public static final Parcelable.Creator<FnFramePointer> CREATOR = new Parcelable.Creator<FnFramePointer>()
+	{
+		@Override
+		public FnFramePointer createFromParcel(final Parcel parcel)
+		{
+			return new FnFramePointer(parcel);
+		}
+
+		@Override
+		public FnFramePointer[] newArray(final int size)
+		{
+			return new FnFramePointer[size];
+		}
+	};
+
+	/**
+	 * Frame id
 	 */
 	public Long frameId;
 
+	/**
+	 * Pos
+	 */
 	private String pos;
 
 	/**
@@ -41,6 +62,11 @@ public class FnFramePointer implements Parcelable
 		this.pos = parcel.readString();
 	}
 
+	/**
+	 * Get pos
+	 *
+	 * @return pos
+	 */
 	@SuppressWarnings({"boxing", "unused"})
 	public Character getPos()
 	{
@@ -51,6 +77,11 @@ public class FnFramePointer implements Parcelable
 		return null;
 	}
 
+	/**
+	 * Get frame id
+	 *
+	 * @return frame id
+	 */
 	@SuppressWarnings({"unused"})
 	public Long getFrameId()
 	{
@@ -61,29 +92,11 @@ public class FnFramePointer implements Parcelable
 		return null;
 	}
 
-	/**
-	 * Static field used to regenerate object, individually or as arrays
-	 */
-	public static final Parcelable.Creator<FnFramePointer> CREATOR = new Parcelable.Creator<FnFramePointer>()
-	{
-		@Override
-		public FnFramePointer createFromParcel(final Parcel pc)
-		{
-			return new FnFramePointer(pc);
-		}
-
-		@Override
-		public FnFramePointer[] newArray(final int size)
-		{
-			return new FnFramePointer[size];
-		}
-	};
-
 	@Override
-	public void writeToParcel(final Parcel pc, final int flags)
+	public void writeToParcel(final Parcel parcel, final int flags)
 	{
-		pc.writeLong(this.frameId == null ? -1 : this.frameId);
-		pc.writeString(this.pos);
+		parcel.writeLong(this.frameId == null ? -1 : this.frameId);
+		parcel.writeString(this.pos);
 	}
 
 	@Override

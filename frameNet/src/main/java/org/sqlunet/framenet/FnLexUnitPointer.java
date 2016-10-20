@@ -4,32 +4,56 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 /**
- * Parcelable frame
+ * Parcelable lex unit
  *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
 public class FnLexUnitPointer implements Parcelable
 {
 	/**
-	 * Members
+	 * Lex unit id
 	 */
 	public long luId;
+
+	/**
+	 * Static field used to regenerate object, individually or as arrays
+	 */
+	public static final Parcelable.Creator<FnLexUnitPointer> CREATOR = new Parcelable.Creator<FnLexUnitPointer>()
+	{
+		@Override
+		public FnLexUnitPointer createFromParcel(final Parcel parcel)
+		{
+			return new FnLexUnitPointer(parcel);
+		}
+
+		@Override
+		public FnLexUnitPointer[] newArray(final int size)
+		{
+			return new FnLexUnitPointer[size];
+		}
+	};
 
 	/**
 	 * Constructor
 	 */
 	public FnLexUnitPointer()
 	{
+		//
 	}
 
 	/**
-	 * Constructor from Parcel, reads back fields IN THE ORDER they were written
+	 * Constructor from parcel, reads back fields IN THE ORDER they were written
 	 */
-	private FnLexUnitPointer(final Parcel pc)
+	private FnLexUnitPointer(final Parcel parcel)
 	{
-		this.luId = pc.readLong();
+		this.luId = parcel.readLong();
 	}
 
+	/**
+	 * Get lex unit id
+	 *
+	 * @return lex unit id
+	 */
 	@SuppressWarnings("boxing")
 	public Long getLuId()
 	{
@@ -40,29 +64,10 @@ public class FnLexUnitPointer implements Parcelable
 		return null;
 	}
 
-	/**
-	 * Static field used to regenerate object, individually or as arrays
-	 */
-	public static final Parcelable.Creator<FnLexUnitPointer> CREATOR = new Parcelable.Creator<FnLexUnitPointer>()
-	{
-		@Override
-		public FnLexUnitPointer createFromParcel(final Parcel pc)
-		{
-			return new FnLexUnitPointer(pc);
-		}
-
-		@Override
-		public FnLexUnitPointer[] newArray(final int size)
-		{
-			return new FnLexUnitPointer[size];
-		}
-	};
-
-
 	@Override
-	public void writeToParcel(final Parcel pc, final int flags)
+	public void writeToParcel(final Parcel parcel, final int flags)
 	{
-		pc.writeLong(this.luId);
+		parcel.writeLong(this.luId);
 	}
 
 

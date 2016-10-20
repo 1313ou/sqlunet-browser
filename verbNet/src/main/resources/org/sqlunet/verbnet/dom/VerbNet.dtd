@@ -5,10 +5,10 @@
 	<!-- R E F E R E N C E -->
 
 	<!ELEMENT WORD (#PCDATA)>
-	<!ATTLIST WORD word-id CDATA #IMPLIED>
+	<!ATTLIST WORD wordid CDATA #IMPLIED>
 
 	<!ELEMENT SYNSET (#PCDATA)>
-	<!ATTLIST SYNSET synset-id CDATA #IMPLIED>
+	<!ATTLIST SYNSET synsetid CDATA #IMPLIED>
 
 	<!-- R O L E S -->
 

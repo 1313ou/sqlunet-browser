@@ -11,7 +11,7 @@ public class VerbNetContract
 		static public final String CONTENT_URI = "content://" + VerbNetContract.AUTHORITY + '/' + VnClasses.TABLE; //$NON-NLS-1$
 		public static final String WORDID = "wordid"; //$NON-NLS-1$
 		public static final String POS = "pos"; //$NON-NLS-1$
-		public static final String CLASSID = "classId"; //$NON-NLS-1$
+		public static final String CLASSID = "classid"; //$NON-NLS-1$
 		public static final String CLASS = "class"; //$NON-NLS-1$
 		public static final String CLASSTAG = "classtag"; //$NON-NLS-1$
 	}
@@ -23,7 +23,7 @@ public class VerbNetContract
 		static public final String CONTENT_URI = "content://" + VerbNetContract.AUTHORITY + '/' + VnClasses_X.TABLE_BY_VNCLASS; //$NON-NLS-1$
 		public static final String WORDID = "wordid"; //$NON-NLS-1$
 		public static final String POS = "pos"; //$NON-NLS-1$
-		public static final String CLASSID = "classId"; //$NON-NLS-1$
+		public static final String CLASSID = "classid"; //$NON-NLS-1$
 		public static final String CLASS = "class"; //$NON-NLS-1$
 		public static final String CLASSTAG = "classtag"; //$NON-NLS-1$
 		public static final String GROUPING = "grouping"; //$NON-NLS-1$
@@ -37,7 +37,7 @@ public class VerbNetContract
 		static public final String CONTENT_URI = "content://" + VerbNetContract.AUTHORITY + '/' + Words_VnClasses.TABLE; //$NON-NLS-1$
 		public static final String WORDID = "wordid"; //$NON-NLS-1$
 		public static final String SYNSETID = "synsetid"; //$NON-NLS-1$
-		public static final String CLASSID = "classId"; //$NON-NLS-1$
+		public static final String CLASSID = "classid"; //$NON-NLS-1$
 		public static final String CLASS = "class"; //$NON-NLS-1$
 		public static final String CLASSTAG = "classtag"; //$NON-NLS-1$
 		public static final String SENSENUM = "sensenum"; //$NON-NLS-1$
@@ -52,7 +52,7 @@ public class VerbNetContract
 		static public final String CONTENT_URI = "content://" + VerbNetContract.AUTHORITY + '/' + Words_VnClasses_VnGroupings.TABLE_BY_CLASS; //$NON-NLS-1$
 		public static final String WORDID = "wordid"; //$NON-NLS-1$
 		public static final String SYNSETID = "synsetid"; //$NON-NLS-1$
-		public static final String CLASSID = "classId"; //$NON-NLS-1$
+		public static final String CLASSID = "classid"; //$NON-NLS-1$
 		public static final String CLASS = "class"; //$NON-NLS-1$
 		public static final String CLASSTAG = "classtag"; //$NON-NLS-1$
 		public static final String SENSENUM = "sensenum"; //$NON-NLS-1$
@@ -67,7 +67,7 @@ public class VerbNetContract
 	{
 		static public final String TABLE_BY_ROLE = "vnclasses_vnroles_x_by_vnrole"; //$NON-NLS-1$
 		static public final String CONTENT_URI = "content://" + VerbNetContract.AUTHORITY + '/' + VnClasses_VnRoles_X.TABLE_BY_ROLE; //$NON-NLS-1$
-		public static final String CLASSID = "classId"; //$NON-NLS-1$
+		public static final String CLASSID = "classid"; //$NON-NLS-1$
 		public static final String ROLEID = "roleid"; //$NON-NLS-1$
 		public static final String ROLETYPE = "roletype"; //$NON-NLS-1$
 		public static final String RESTRS = "restrs"; //$NON-NLS-1$
@@ -77,7 +77,7 @@ public class VerbNetContract
 	{
 		static public final String TABLE_BY_FRAME = "vnclasses_vnframes_x_by_vnframe"; //$NON-NLS-1$
 		static public final String CONTENT_URI = "content://" + VerbNetContract.AUTHORITY + '/' + VnClasses_VnFrames_X.TABLE_BY_FRAME; //$NON-NLS-1$
-		public static final String CLASSID = "classId"; //$NON-NLS-1$
+		public static final String CLASSID = "classid"; //$NON-NLS-1$
 		public static final String FRAMEID = "frameid"; //$NON-NLS-1$
 		public static final String FRAMENAME = "framename"; //$NON-NLS-1$
 		public static final String FRAMESUBNAME = "framesubname"; //$NON-NLS-1$

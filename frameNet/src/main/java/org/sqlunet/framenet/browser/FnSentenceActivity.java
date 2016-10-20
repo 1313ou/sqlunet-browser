@@ -13,7 +13,6 @@ import org.sqlunet.framenet.R;
  */
 public class FnSentenceActivity extends Activity
 {
-
 	@Override
 	protected void onCreate(final Bundle savedInstanceState)
 	{

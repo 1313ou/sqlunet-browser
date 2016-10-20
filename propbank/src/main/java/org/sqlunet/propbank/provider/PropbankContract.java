@@ -8,7 +8,7 @@ public class PropbankContract
 	{
 		static public final String TABLE = "pbrolesets"; //$NON-NLS-1$
 		static public final String CONTENT_URI = "content://" + PropbankContract.AUTHORITY + '/' + PbRolesets.TABLE; //$NON-NLS-1$
-		public static final String ROLESETID = "roleSetId"; //$NON-NLS-1$
+		public static final String ROLESETID = "rolesetid"; //$NON-NLS-1$
 		public static final String ROLESETNAME = "rolesetname"; //$NON-NLS-1$
 		public static final String ROLESETDESC = "rolesetdescr"; //$NON-NLS-1$
 		public static final String ROLESETHEAD = "rolesethead"; //$NON-NLS-1$
@@ -21,7 +21,7 @@ public class PropbankContract
 		static public final String CONTENT_URI = "content://" + PropbankContract.AUTHORITY + '/' + Words_PbRolesets.TABLE; //$NON-NLS-1$
 		public static final String WORDID = "wordid"; //$NON-NLS-1$
 		public static final String POS = "pos"; //$NON-NLS-1$
-		public static final String ROLESETID = "roleSetId"; //$NON-NLS-1$
+		public static final String ROLESETID = "rolesetid"; //$NON-NLS-1$
 		public static final String ROLESETNAME = "rolesetname"; //$NON-NLS-1$
 		public static final String ROLESETDESC = "rolesetdescr"; //$NON-NLS-1$
 		public static final String ROLESETHEAD = "rolesethead"; //$NON-NLS-1$
@@ -31,7 +31,7 @@ public class PropbankContract
 	{
 		static public final String TABLE = "pbrolesets_pbroles"; //$NON-NLS-1$
 		static public final String CONTENT_URI = "content://" + PropbankContract.AUTHORITY + '/' + PbRolesets_PbRoles.TABLE; //$NON-NLS-1$
-		public static final String ROLESETID = "roleSetId"; //$NON-NLS-1$
+		public static final String ROLESETID = "rolesetid"; //$NON-NLS-1$
 		public static final String ROLEID = "roleid"; //$NON-NLS-1$
 		public static final String ROLEDESCR = "roledescr"; //$NON-NLS-1$
 		public static final String NARG = "narg"; //$NON-NLS-1$
@@ -44,7 +44,7 @@ public class PropbankContract
 		static public final String TABLE = "pbrolesets_pbexamples"; //$NON-NLS-1$
 		static public final String TABLE_BY_EXAMPLE = "pbrolesets_pbexamples_by_example"; //$NON-NLS-1$
 		static public final String CONTENT_URI = "content://" + PropbankContract.AUTHORITY + '/' + PbRolesets_PbExamples.TABLE_BY_EXAMPLE; //$NON-NLS-1$
-		public static final String ROLESETID = "roleSetId"; //$NON-NLS-1$
+		public static final String ROLESETID = "rolesetid"; //$NON-NLS-1$
 		public static final String TEXT = "text"; //$NON-NLS-1$
 		public static final String REL = "rel"; //$NON-NLS-1$
 		public static final String NARG = "narg"; //$NON-NLS-1$

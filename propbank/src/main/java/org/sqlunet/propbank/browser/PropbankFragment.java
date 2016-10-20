@@ -30,6 +30,14 @@ public class PropbankFragment extends Fragment
 	 */
 	private TreeView treeView;
 
+	/**
+	 * Constructor
+	 */
+	public PropbankFragment()
+	{
+		//
+	}
+
 	@Override
 	public View onCreateView(final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState)
 	{
@@ -76,13 +84,5 @@ public class PropbankFragment extends Fragment
 	{
 		super.onSaveInstanceState(outState);
 		outState.putString("treeViewState", this.treeView.getSaveState()); //$NON-NLS-1$
-	}
-
-	/**
-	 * Constructor
-	 */
-	public PropbankFragment()
-	{
-		//
 	}
 }

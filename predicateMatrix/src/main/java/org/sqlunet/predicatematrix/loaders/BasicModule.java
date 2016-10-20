@@ -42,15 +42,15 @@ import java.util.Set;
 import java.util.TreeSet;
 
 /**
- * Module for predicate matrix
+ * Basic module for PredicateMatrix
  *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
 abstract class BasicModule extends Module
 {
-	// resources
-
 	private static final String LOG = "PredicateMatrix"; //$NON-NLS-1$
+
+	// resources
 
 	/**
 	 * Drawable for roles
@@ -61,8 +61,6 @@ abstract class BasicModule extends Module
 	 * Drawable for role
 	 */
 	private Drawable roleDrawable;
-
-	// spanner
 
 	/**
 	 * Constructor
@@ -79,8 +77,6 @@ abstract class BasicModule extends Module
 	 */
 	abstract void unmarshal(final Parcelable query);
 
-	// D A T A
-
 	@Override
 	public void init(final Parcelable query)
 	{
@@ -92,24 +88,15 @@ abstract class BasicModule extends Module
 		unmarshal(query);
 	}
 
-	void fromRoleId(final long pmRoleId, final TreeNode parent, final Displayer displayer)
-	{
-		getLoaderManager().restartLoader(++Module.loaderId, null, new PmProcessOnIteration(parent, displayer)
-		{
-			@Override
-			protected String getSelection()
-			{
-				return PredicateMatrix.PMROLEID + "= ?"; //$NON-NLS-1$
-			}
+	// L O A D E R S
 
-			@Override
-			protected String[] getSelectionArgs()
-			{
-				return new String[]{Long.toString(pmRoleId)};
-			}
-		});
-	}
-
+	/**
+	 * Load from word
+	 *
+	 * @param word      target word
+	 * @param parent    parent node
+	 * @param displayer displayer
+	 */
 	void fromWord(final String word, final TreeNode parent, final Displayer displayer)
 	{
 		getLoaderManager().restartLoader(++Module.loaderId, null, new PmProcessOnIteration(parent, displayer)
@@ -128,6 +115,12 @@ abstract class BasicModule extends Module
 		});
 	}
 
+	/**
+	 * Load from word
+	 *
+	 * @param word   word
+	 * @param parent parent node
+	 */
 	void fromWordGrouped(final String word, final TreeNode parent)
 	{
 		getLoaderManager().restartLoader(++Module.loaderId, null, new PmProcessGrouped(parent, new DisplayerByPmRole())
@@ -146,18 +139,72 @@ abstract class BasicModule extends Module
 		});
 	}
 
+	/**
+	 * Load from role id
+	 *
+	 * @param pmRoleId  role id
+	 * @param parent    parent node
+	 * @param displayer displayer
+	 */
+	void fromRoleId(final long pmRoleId, final TreeNode parent, final Displayer displayer)
+	{
+		getLoaderManager().restartLoader(++Module.loaderId, null, new PmProcessOnIteration(parent, displayer)
+		{
+			@Override
+			protected String getSelection()
+			{
+				return PredicateMatrix.PMROLEID + "= ?"; //$NON-NLS-1$
+			}
+
+			@Override
+			protected String[] getSelectionArgs()
+			{
+				return new String[]{Long.toString(pmRoleId)};
+			}
+		});
+	}
+
+	// D A T A
+
+	/**
+	 * PredicateMatrix role
+	 */
 	static class PmRole implements Comparable<PmRole>
 	{
+		/**
+		 * PredicateMatrix predicate id
+		 */
 		final long pmPredId;
 
+		/**
+		 * PredicateMatrix role id
+		 */
 		final long pmRoleId;
 
+		/**
+		 * PredicateMatrix predicate
+		 */
 		final String pmPredicate;
 
+		/**
+		 * PredicateMatrix role
+		 */
 		final String pmRole;
 
+		/**
+		 * PredicateMatrix pos
+		 */
 		final String pmPos;
 
+		/**
+		 * Constructor
+		 *
+		 * @param pmPredId    PredicateMatrix predicate id
+		 * @param pmRoleId    PredicateMatrix role id
+		 * @param pmPredicate predicate
+		 * @param pmRole      PredicateMatrix role
+		 * @param pmPos       PredicateMatrix pos
+		 */
 		public PmRole(final long pmPredId, final long pmRoleId, final String pmPredicate, final String pmRole, final String pmPos)
 		{
 			this.pmPredId = pmPredId;
@@ -229,10 +276,26 @@ abstract class BasicModule extends Module
 		}
 	}
 
+	/**
+	 * PreidcateMatrix row
+	 */
 	static class PmRow extends PmRole
 	{
+		/**
+		 * PredicateMatrix row id
+		 */
 		public final long pmId;
 
+		/**
+		 * Constructor
+		 *
+		 * @param pmId        PredicateMatrix row id
+		 * @param pmPredId    PredicateMatrix predicate id
+		 * @param pmRoleId    PredicateMatrix role id
+		 * @param pmPredicate PredicateMatrix predicate
+		 * @param pmRole      PredicateMatrix role
+		 * @param pmPos       PredicateMatrix pos
+		 */
 		public PmRow(final long pmId, final long pmPredId, final long pmRoleId, final String pmPredicate, final String pmRole, final String pmPos)
 		{
 			super(pmPredId, pmRoleId, pmPredicate, pmRole, pmPos);
@@ -252,14 +315,27 @@ abstract class BasicModule extends Module
 		}
 	}
 
-	// L O A D E R S
-
+	/**
+	 * WordNet data
+	 */
 	static class WnData implements Comparable<WnData>
 	{
+		/**
+		 * Synset id
+		 */
 		final long synsetId;
 
+		/**
+		 * Synset definition
+		 */
 		final String definition;
 
+		/**
+		 * Constructor
+		 *
+		 * @param synsetId   synset id
+		 * @param definition definition
+		 */
 		public WnData(final long synsetId, final String definition)
 		{
 			this.synsetId = synsetId;
@@ -300,8 +376,9 @@ abstract class BasicModule extends Module
 		}
 	}
 
-	// P R O C E S S O R S
-
+	/**
+	 * VerbNet data
+	 */
 	static class VnData implements Comparable<VnData>
 	{
 		final long vnClassId;
@@ -351,6 +428,11 @@ abstract class BasicModule extends Module
 			return (int) (19 * this.vnClassId + 13 * this.vnRoleId);
 		}
 
+		/**
+		 * Convert id data to string
+		 *
+		 * @return string
+		 */
 		public CharSequence toData()
 		{
 			return Long.toString(this.vnClassId) + '-' + Long.toString(this.vnRoleId);
@@ -363,6 +445,9 @@ abstract class BasicModule extends Module
 		}
 	}
 
+	/**
+	 * PropBank data
+	 */
 	static class PbData implements Comparable<PbData>
 	{
 		final long pbRoleSetId;
@@ -418,6 +503,11 @@ abstract class BasicModule extends Module
 			return (int) (23 * this.pbRoleSetId + 51 * this.pbRoleId);
 		}
 
+		/**
+		 * Convert id data to string
+		 *
+		 * @return string
+		 */
 		public CharSequence toData()
 		{
 			return Long.toString(this.pbRoleSetId) + '-' + Long.toString(this.pbRoleId);
@@ -428,8 +518,6 @@ abstract class BasicModule extends Module
 			return this.pbRoleSet + '-' + this.pbRole;
 		}
 	}
-
-	// D I S P L A Y E R S
 
 	class FnData implements Comparable<FnData>
 	{
@@ -480,32 +568,64 @@ abstract class BasicModule extends Module
 			return (int) (17 * this.fnFrameId + 7 * this.fnFeId);
 		}
 
-		public CharSequence toData()
-		{
-			return Long.toString(this.fnFrameId) + '-' + Long.toString(this.fnFeId);
-		}
-
 		@Override
 		public String toString()
 		{
 			return this.fnFrame + '-' + this.fnFe;
 		}
+
+		/**
+		 * Convert id data to string
+		 *
+		 * @return string
+		 */
+		public CharSequence toData()
+		{
+			return Long.toString(this.fnFrameId) + '-' + Long.toString(this.fnFeId);
+		}
 	}
 
+	// D I S P L A Y E R S
+
+	/**
+	 * Abstract PredicateMatrix loader callbacks
+	 */
 	abstract class PmCallbacks implements LoaderCallbacks<Cursor>
 	{
+		/**
+		 * Displayer
+		 */
 		final Displayer displayer;
 
+		/**
+		 * Parent node
+		 */
 		final TreeNode parent;
 
+		/**
+		 * Constructor
+		 *
+		 * @param parent    parent node
+		 * @param displayer displayer
+		 */
 		public PmCallbacks(final TreeNode parent, final Displayer displayer)
 		{
 			this.parent = parent;
 			this.displayer = displayer;
 		}
 
+		/**
+		 * Selection
+		 *
+		 * @return selection
+		 */
 		abstract protected String getSelection();
 
+		/**
+		 * Selection arguments
+		 *
+		 * @return selection arguments
+		 */
 		abstract protected String[] getSelectionArgs();
 
 		@Override
@@ -656,30 +776,75 @@ abstract class BasicModule extends Module
 			//
 		}
 
+		/**
+		 * Process row
+		 *
+		 * @param parentNode
+		 * @param wnData     WordNet data
+		 * @param pmRow      PredicateMatrix row
+		 * @param vnData     VerbNet data
+		 * @param pbData     Propbank data
+		 * @param fnData     FrameNet data
+		 */
 		abstract protected void process(final TreeNode parentNode, final WnData wnData, final PmRow pmRow, final VnData vnData, final PbData pbData, final FnData fnData);
 
+		/**
+		 * End of processing
+		 *
+		 * @param parent parent node
+		 */
 		void endProcess(@SuppressWarnings("UnusedParameters") final TreeNode parent)
 		{
 			//
 		}
 	}
 
+	/**
+	 * Processor of data based on grouping rows
+	 */
 	abstract class PmProcessGrouped extends PmCallbacks
 	{
+		/**
+		 * Role ids
+		 */
 		private final Collection<Integer> pmRoleIds = new ArrayList<>();
 
+		/**
+		 * Map role id to role
+		 */
 		private final SparseArray<PmRole> pm = new SparseArray<>();
 
+		/**
+		 * Map role id to VerbNet data
+		 */
 		private final SparseArray<Set<VnData>> vnMap = new SparseArray<>();
 
+		/**
+		 * Map role id to PropBankNet data
+		 */
 		private final SparseArray<Set<PbData>> pbMap = new SparseArray<>();
 
+		/**
+		 * Map role id to FrameNet data
+		 */
 		private final SparseArray<Set<FnData>> fnMap = new SparseArray<>();
 
+		/**
+		 * Map VerbNet/PropBank/FrameNet data to WordNet data
+		 */
 		private final Map<Object, Set<WnData>> wnMap = new HashMap<>();
 
+		/**
+		 * Grouping role id
+		 */
 		private long pmRoleId;
 
+		/**
+		 * Constructor
+		 *
+		 * @param parent    parent
+		 * @param displayer displayer
+		 */
 		public PmProcessGrouped(final TreeNode parent, final Displayer displayer)
 		{
 			super(parent, displayer);
@@ -798,8 +963,17 @@ abstract class BasicModule extends Module
 		}
 	}
 
+	/**
+	 * Processor of data based on row iteration
+	 */
 	abstract class PmProcessOnIteration extends PmCallbacks
 	{
+		/**
+		 * Constructor
+		 *
+		 * @param parent    parent
+		 * @param displayer displayer to use
+		 */
 		public PmProcessOnIteration(final TreeNode parent, final Displayer displayer)
 		{
 			super(parent, displayer);
@@ -812,19 +986,61 @@ abstract class BasicModule extends Module
 		}
 	}
 
+	/**
+	 * Abstract displayer
+	 */
 	abstract class Displayer
 	{
+		/**
+		 * Display
+		 *
+		 * @param parentNode parent node
+		 * @param wnData     WordNet data
+		 * @param pmRow      PredicateMatrix row
+		 * @param vnData     VerbNet data
+		 * @param pbData     PropBank data
+		 * @param fnData     FrameNet data
+		 */
 		abstract protected void display(final TreeNode parentNode, final WnData wnData, final PmRow pmRow, final VnData vnData, final PbData pbData, final FnData fnData);
 
+		/**
+		 * Get required sort order
+		 *
+		 * @return sort order
+		 */
 		abstract protected String getRequiredOrder();
 
+		/**
+		 * Get number of expanded tree level
+		 *
+		 * @return number of expanded tree levels
+		 */
 		abstract protected int getExpandLevels();
 
+		/**
+		 * Utility to capitalize first character
+		 *
+		 * @param s string
+		 * @return string with capitalized first character
+		 */
 		private CharSequence capitalize1(final String s)
 		{
 			return s.substring(0, 1).toUpperCase(Locale.ENGLISH) + s.substring(1);
 		}
 
+		/**
+		 * Display PredicateMatrix row
+		 *
+		 * @param parentNode    parent node
+		 * @param pmRow         PredicateMatrix row
+		 * @param wnData        WordNet data
+		 * @param pmRow         PredicateMatrix row
+		 * @param vnData        VerbNet data
+		 * @param pbData        PropBank data
+		 * @param fnData        FrameNet data
+		 * @param wnDataOnRow   whether to display WordNet data on label
+		 * @param wnDataOnXData whether to displau WordNet data on extended data
+		 */
 		void displayRow(final TreeNode parentNode, final WnData wnData, final PmRow pmRow, final VnData vnData, final PbData pbData, final FnData fnData, final boolean wnDataOnRow, @SuppressWarnings("SameParameterValue") final boolean wnDataOnXData)
 		{
 			// vn
@@ -841,6 +1057,13 @@ abstract class BasicModule extends Module
 			roleNode.addChildren(vnNode, pbNode, fnNode);
 		}
 
+		/**
+		 * Display PredicateMatrix role
+		 *
+		 * @param parentNode parent node
+		 * @param pmRole     PredicateMatrix role
+		 * @return created node
+		 */
 		TreeNode displayPmRole(final TreeNode parentNode, final PmRole pmRole)
 		{
 			final SpannableStringBuilder pmsb = new SpannableStringBuilder();
@@ -858,6 +1081,14 @@ abstract class BasicModule extends Module
 			return TreeFactory.addTreeItemNode(parentNode, pmsb, R.drawable.role, BasicModule.this.getContext());
 		}
 
+		/**
+		 * Display PredicateMatrix row
+		 *
+		 * @param parentNode parent node
+		 * @param pmRow      PredicateMatrix row
+		 * @param wnData     WordNet data
+		 * @return created node
+		 */
 		TreeNode displayPmRow(final TreeNode parentNode, final PmRow pmRow, final WnData wnData)
 		{
 			final SpannableStringBuilder pmsb = new SpannableStringBuilder();
@@ -880,6 +1111,13 @@ abstract class BasicModule extends Module
 			return TreeFactory.addTreeItemNode(parentNode, pmsb, R.drawable.predicatematrix, BasicModule.this.getContext());
 		}
 
+		/**
+		 * Make VerbNet node
+		 *
+		 * @param vnData  VerbNet data
+		 * @param wnDatas WordNet data
+		 * @return created node
+		 */
 		TreeNode makeVnNode(final VnData vnData, final WnData... wnDatas)
 		{
 			final SpannableStringBuilder vnsb = new SpannableStringBuilder();
@@ -924,6 +1162,13 @@ abstract class BasicModule extends Module
 			return vnData.vnClassId == 0L ? TreeFactory.newLeafNode(vnsb, R.drawable.verbnet, BasicModule.this.getContext()) : TreeFactory.newLinkNode(new VnClassQuery(vnData.vnClassId, R.drawable.verbnet, vnsb), BasicModule.this.getContext());
 		}
 
+		/**
+		 * Make PropBank node
+		 *
+		 * @param pbData  PropBank data
+		 * @param wnDatas WordNet data
+		 * @return created node
+		 */
 		TreeNode makePbNode(final PbData pbData, final WnData... wnDatas)
 		{
 			// pb
@@ -982,6 +1227,13 @@ abstract class BasicModule extends Module
 			return pbData.pbRoleSetId == 0L ? TreeFactory.newLeafNode(pbsb, R.drawable.propbank, BasicModule.this.getContext()) : TreeFactory.newLinkNode(new PbRoleSetQuery(pbData.pbRoleSetId, R.drawable.propbank, pbsb), BasicModule.this.getContext());
 		}
 
+		/**
+		 * Make FrameNet node
+		 *
+		 * @param fnData  FrameNet data
+		 * @param wnDatas WordNet data
+		 * @return created node
+		 */
 		TreeNode makeFnNode(final FnData fnData, final WnData... wnDatas)
 		{
 			// fn
@@ -1082,10 +1334,19 @@ abstract class BasicModule extends Module
 
 	// Q U E R I E S
 
+	/**
+	 * Displayer grouping on synset
+	 */
 	class DisplayerBySynset extends Displayer
 	{
+		/**
+		 * Grouping synset id
+		 */
 		private long synsetId = -1L;
 
+		/**
+		 * Grouping node
+		 */
 		private TreeNode synsetNode;
 
 		@Override
@@ -1117,7 +1378,7 @@ abstract class BasicModule extends Module
 		@Override
 		protected String getRequiredOrder()
 		{
-			return "synsetId"; //$NON-NLS-1$
+			return "synsetid"; //$NON-NLS-1$
 		}
 
 		@Override
@@ -1127,10 +1388,19 @@ abstract class BasicModule extends Module
 		}
 	}
 
+	/**
+	 * Displayer grouping on PredicateMatrix role
+	 */
 	class DisplayerByPmRole extends Displayer
 	{
+		/**
+		 * Grouping PredicateMatrix role id
+		 */
 		private long pmRoleId = -1L;
 
+		/**
+		 * Grouping node
+		 */
 		private TreeNode pmRoleNode;
 
 		@Override
@@ -1151,7 +1421,7 @@ abstract class BasicModule extends Module
 		@Override
 		protected String getRequiredOrder()
 		{
-			return "pmRoleId"; //$NON-NLS-1$
+			return "pmroleid"; //$NON-NLS-1$
 		}
 
 		@Override
@@ -1161,6 +1431,9 @@ abstract class BasicModule extends Module
 		}
 	}
 
+	/**
+	 * Displayer not grouping rows
+	 */
 	class DisplayerUngrouped extends Displayer
 	{
 		@Override
@@ -1172,7 +1445,7 @@ abstract class BasicModule extends Module
 		@Override
 		protected String getRequiredOrder()
 		{
-			return "pmId"; //$NON-NLS-1$
+			return "pmid"; //$NON-NLS-1$
 		}
 
 		@Override

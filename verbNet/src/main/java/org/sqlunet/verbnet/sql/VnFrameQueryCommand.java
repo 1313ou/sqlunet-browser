@@ -19,8 +19,8 @@ class VnFrameQueryCommand extends DBQueryCommand
 	/**
 	 * Constructor
 	 *
-	 * @param connection is the database connection
-	 * @param classId    is the target classId
+	 * @param connection database connection
+	 * @param classId    target classId
 	 */
 	@SuppressWarnings("boxing")
 	public VnFrameQueryCommand(final SQLiteDatabase connection, final long classId)

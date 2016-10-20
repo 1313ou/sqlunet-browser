@@ -17,8 +17,8 @@ class FnLayerQueryCommand extends DBQueryCommand
 	/**
 	 * Constructor
 	 *
-	 * @param connection is the database connection
-	 * @param targetId   is the target id
+	 * @param connection database connection
+	 * @param targetId   target id
 	 */
 	@SuppressWarnings("boxing")
 	FnLayerQueryCommand(final SQLiteDatabase connection, final long targetId, final String query)

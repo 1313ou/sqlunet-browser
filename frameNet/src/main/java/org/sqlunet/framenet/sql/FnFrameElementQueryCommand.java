@@ -19,14 +19,14 @@ class FnFrameElementQueryCommand extends DBQueryCommand
 	/**
 	 * Constructor
 	 *
-	 * @param connection    is the database connection
-	 * @param targetFrameId is the target frameId
+	 * @param connection database connection
+	 * @param frameId    target frame id
 	 */
 	@SuppressWarnings("boxing")
-	public FnFrameElementQueryCommand(final SQLiteDatabase connection, final long targetFrameId)
+	public FnFrameElementQueryCommand(final SQLiteDatabase connection, final long frameId)
 	{
 		super(connection, FnFrameElementQueryCommand.QUERY);
-		setParams(targetFrameId);
+		setParams(frameId);
 	}
 
 	/**

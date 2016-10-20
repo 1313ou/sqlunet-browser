@@ -11,9 +11,27 @@ import android.os.Parcelable;
 public class FnSentencePointer implements Parcelable
 {
 	/**
-	 * Members
+	 * Sentence id
 	 */
 	private final long sentenceId;
+
+	/**
+	 * Static field used to regenerate object, individually or as arrays
+	 */
+	public static final Parcelable.Creator<FnSentencePointer> CREATOR = new Parcelable.Creator<FnSentencePointer>()
+	{
+		@Override
+		public FnSentencePointer createFromParcel(final Parcel parcel)
+		{
+			return new FnSentencePointer(parcel);
+		}
+
+		@Override
+		public FnSentencePointer[] newArray(final int size)
+		{
+			return new FnSentencePointer[size];
+		}
+	};
 
 	/**
 	 * Constructor
@@ -26,11 +44,16 @@ public class FnSentencePointer implements Parcelable
 	/**
 	 * Constructor from Parcel, reads back fields IN THE ORDER they were written
 	 */
-	private FnSentencePointer(final Parcel pc)
+	private FnSentencePointer(final Parcel parcel)
 	{
-		this.sentenceId = pc.readLong();
+		this.sentenceId = parcel.readLong();
 	}
 
+	/**
+	 * Get sentence id
+	 *
+	 * @return sentence id
+	 */
 	@SuppressWarnings("boxing")
 	public Long getSentenceId()
 	{
@@ -41,28 +64,10 @@ public class FnSentencePointer implements Parcelable
 		return null;
 	}
 
-	/**
-	 * Static field used to regenerate object, individually or as arrays
-	 */
-	public static final Parcelable.Creator<FnSentencePointer> CREATOR = new Parcelable.Creator<FnSentencePointer>()
-	{
-		@Override
-		public FnSentencePointer createFromParcel(final Parcel pc)
-		{
-			return new FnSentencePointer(pc);
-		}
-
-		@Override
-		public FnSentencePointer[] newArray(final int size)
-		{
-			return new FnSentencePointer[size];
-		}
-	};
-
 	@Override
-	public void writeToParcel(final Parcel pc, final int flags)
+	public void writeToParcel(final Parcel parcel, final int flags)
 	{
-		pc.writeLong(this.sentenceId);
+		parcel.writeLong(this.sentenceId);
 	}
 
 	@Override

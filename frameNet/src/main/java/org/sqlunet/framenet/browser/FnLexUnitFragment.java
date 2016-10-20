@@ -17,7 +17,7 @@ import org.sqlunet.treeview.view.TreeView;
 import org.sqlunet.view.TreeFactory;
 
 /**
- * A fragment representing a lexunit
+ * A fragment representing a lex unit
  *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
@@ -27,6 +27,14 @@ public class FnLexUnitFragment extends Fragment
 	 * Tree view
 	 */
 	private TreeView treeView;
+
+	/**
+	 * Constructor
+	 */
+	public FnLexUnitFragment()
+	{
+		//
+	}
 
 	@Override
 	public View onCreateView(final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState)
@@ -74,13 +82,5 @@ public class FnLexUnitFragment extends Fragment
 	{
 		super.onSaveInstanceState(outState);
 		outState.putString("treeViewState", this.treeView.getSaveState()); //$NON-NLS-1$
-	}
-
-	/**
-	 * Constructor
-	 */
-	public FnLexUnitFragment()
-	{
-		//
 	}
 }

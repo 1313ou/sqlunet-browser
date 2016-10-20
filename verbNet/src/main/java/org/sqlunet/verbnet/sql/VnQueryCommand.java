@@ -19,8 +19,8 @@ class VnQueryCommand extends DBQueryCommand
 	/**
 	 * Constructor
 	 *
-	 * @param connection is the database connection
-	 * @param lemma      is the target word
+	 * @param connection database connection
+	 * @param lemma      target word
 	 */
 	public VnQueryCommand(final SQLiteDatabase connection, final String lemma)
 	{

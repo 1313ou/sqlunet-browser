@@ -7,18 +7,12 @@ import org.sqlunet.framenet.FnLexUnitPointer;
 import org.sqlunet.treeview.model.TreeNode;
 
 /**
- * A fragment representing a lexUnit.
+ * Lex unit module
  *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
-
-/**
- * @author bbou
- */
 public class LexUnitModule extends FrameModule
 {
-	// Query
-
 	/**
 	 * LuId
 	 */

@@ -25,7 +25,7 @@ class LinksQueryCommand extends DBQueryCommand
 	/**
 	 * Constructor
 	 *
-	 * @param connection is the database connection
+	 * @param connection database connection
 	 */
 	public LinksQueryCommand(final SQLiteDatabase connection)
 	{

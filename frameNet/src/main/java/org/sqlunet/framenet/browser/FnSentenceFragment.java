@@ -23,6 +23,10 @@ import org.sqlunet.view.TreeFactory;
  */
 public class FnSentenceFragment extends Fragment
 {
+	/**
+	 * Tree view
+	 */
+	private TreeView treeView;
 
 	/**
 	 * Mandatory empty constructor for the fragment manager to instantiate the fragment (e.g. upon screen orientation changes).
@@ -31,7 +35,6 @@ public class FnSentenceFragment extends Fragment
 	{
 		//
 	}
-
 
 	@Override
 	public View onCreateView(final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState)
@@ -45,11 +48,11 @@ public class FnSentenceFragment extends Fragment
 		final TreeNode queryNode = TreeFactory.addTreeItemNode(root, "Sentence", R.drawable.sentence, getActivity()); //$NON-NLS-1$
 
 		// tree
-		TreeView treeView = new TreeView(getActivity(), root);
-		treeView.setDefaultAnimation(true);
-		treeView.setDefaultContainerStyle(R.style.TreeNodeStyleCustom); // R.style.TreeNodeStyleDivided
-		treeView.setDefaultViewHolder(IconTreeRenderer.class);
-		containerView.addView(treeView.getView());
+		this.treeView = new TreeView(getActivity(), root);
+		this.treeView.setDefaultAnimation(true);
+		this.treeView.setDefaultContainerStyle(R.style.TreeNodeStyleCustom); // R.style.TreeNodeStyleDivided
+		this.treeView.setDefaultViewHolder(IconTreeRenderer.class);
+		containerView.addView(this.treeView.getView());
 
 		// saved state
 		if (savedInstanceState != null)
@@ -57,7 +60,7 @@ public class FnSentenceFragment extends Fragment
 			final String state = savedInstanceState.getString("treeViewState"); //$NON-NLS-1$
 			if (state != null && !state.isEmpty())
 			{
-				treeView.restoreState(state);
+				this.treeView.restoreState(state);
 				return rootView;
 			}
 		}
@@ -72,5 +75,12 @@ public class FnSentenceFragment extends Fragment
 		module.process(queryNode);
 
 		return rootView;
+	}
+
+	@Override
+	public void onSaveInstanceState(final Bundle outState)
+	{
+		super.onSaveInstanceState(outState);
+		outState.putString("treeViewState", this.treeView.getSaveState()); //$NON-NLS-1$
 	}
 }

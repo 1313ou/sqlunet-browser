@@ -4,7 +4,7 @@ import org.sqlunet.style.Preprocessor;
 
 public class VerbNetSemanticsProcessor extends Preprocessor
 {
-	// static final String TAG = "FrameNetProcessor"; //$NON-NLS-1$
+	// static final String TAG = "VerbNetSemanticsProcessor"; //$NON-NLS-1$
 
 	// processor
 

@@ -20,24 +20,16 @@ import org.sqlunet.treeview.view.TreeView;
 import org.sqlunet.view.TreeFactory;
 
 /**
- * A fragment representing a lexUnit.
+ * Sentence module
  *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
-
-/**
- * @author bbou
- */
 public class SentenceModule extends BasicModule
 {
-	// query
-
 	/**
 	 * Sentence id
 	 */
 	private Long sentenceId;
-
-	// text
 
 	/**
 	 * Sentence text
@@ -77,6 +69,12 @@ public class SentenceModule extends BasicModule
 
 	// L O A D E R S
 
+	/**
+	 * Sentence
+	 *
+	 * @param sentenceId sentence id
+	 * @param parent     parent node
+	 */
 	private void sentence(final long sentenceId, final TreeNode parent)
 	{
 		getLoaderManager().restartLoader(++Module.loaderId, null, new LoaderCallbacks<Cursor>()

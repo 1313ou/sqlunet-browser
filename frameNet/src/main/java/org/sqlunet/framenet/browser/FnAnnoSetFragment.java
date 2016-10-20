@@ -19,7 +19,7 @@ import org.sqlunet.treeview.view.TreeView;
 import org.sqlunet.view.TreeFactory;
 
 /**
- * A fragment representing an annoset.
+ * A fragment representing an annoSet.
  *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
@@ -35,6 +35,7 @@ public class FnAnnoSetFragment extends Fragment
 	 */
 	public FnAnnoSetFragment()
 	{
+		//
 	}
 
 	@Override

@@ -19,14 +19,14 @@ class FnFrameQueryCommand extends DBQueryCommand
 	/**
 	 * Constructor
 	 *
-	 * @param connection    is the database connection
-	 * @param targetFrameId target annoSetId
+	 * @param connection database connection
+	 * @param frameId    target frame id
 	 */
 	@SuppressWarnings("boxing")
-	public FnFrameQueryCommand(final SQLiteDatabase connection, final long targetFrameId)
+	public FnFrameQueryCommand(final SQLiteDatabase connection, final long frameId)
 	{
 		super(connection, FnFrameQueryCommand.QUERY);
-		setParams(targetFrameId);
+		setParams(frameId);
 	}
 
 	/**
@@ -34,6 +34,7 @@ class FnFrameQueryCommand extends DBQueryCommand
 	 *
 	 * @return the annoSetId from the result set
 	 */
+	@SuppressWarnings("unused")
 	public long getFrameId()
 	{
 		return this.cursor.getInt(0);

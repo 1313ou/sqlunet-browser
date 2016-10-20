@@ -10,18 +10,27 @@ import java.util.List;
  */
 class FnRelatedFrame
 {
+	/**
+	 * Related frame id
+	 */
 	public final long frameId;
 
+	/**
+	 * Related frame name
+	 */
 	public final String frameName;
 
+	/**
+	 * Relation
+	 */
 	public final String relation;
 
 	/**
 	 * Constructor
 	 *
-	 * @param frameId   is the related frame id
-	 * @param frameName is the related frame name
-	 * @param relation  is the relation
+	 * @param frameId   related frame id
+	 * @param frameName related frame name
+	 * @param relation  relation
 	 */
 	private FnRelatedFrame(final long frameId, final String frameName, final String relation)
 	{

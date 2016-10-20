@@ -19,8 +19,8 @@ class PbRoleSetQueryFromWordCommand extends DBQueryCommand
 	/**
 	 * Constructor
 	 *
-	 * @param connection is the database connection
-	 * @param wordId     is the target word id
+	 * @param connection database connection
+	 * @param wordId     target word id
 	 */
 	public PbRoleSetQueryFromWordCommand(final SQLiteDatabase connection, final String wordId)
 	{
