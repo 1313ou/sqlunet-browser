@@ -8,7 +8,7 @@ import org.sqlunet.predicatematrix.settings.Settings.PMMode;
 import org.sqlunet.treeview.model.TreeNode;
 
 /**
- * Module for predicate roles obtained from id
+ * Module for predicate roles obtained from pm role id
  *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
