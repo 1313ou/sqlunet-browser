@@ -20,7 +20,7 @@ import org.sqlunet.treeview.view.TreeView;
 import org.sqlunet.view.TreeFactory;
 
 /**
- * A fragment representing a lexunit.
+ * A fragment representing a lexUnit.
  *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
@@ -118,7 +118,7 @@ public class SentenceModule extends BasicModule
 					TreeFactory.addTextNode(parent, sb, SentenceModule.this.getContext());
 
 					// layers
-					layers_for_sentence(id, SentenceModule.this.sentenceText, parent);
+					layersForSentence(id, SentenceModule.this.sentenceText, parent);
 
 					// expand
 					TreeView.expand(parent, false);

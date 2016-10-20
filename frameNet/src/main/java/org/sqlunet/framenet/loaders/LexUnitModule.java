@@ -7,7 +7,7 @@ import org.sqlunet.framenet.FnLexUnitPointer;
 import org.sqlunet.treeview.model.TreeNode;
 
 /**
- * A fragment representing a lexunit.
+ * A fragment representing a lexUnit.
  *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
@@ -54,7 +54,7 @@ public class LexUnitModule extends FrameModule
 		if (this.luId != null)
 		{
 			// data
-			lexunit(this.luId, node, true, false);
+			lexUnit(this.luId, node, true, false);
 		}
 	}
 }

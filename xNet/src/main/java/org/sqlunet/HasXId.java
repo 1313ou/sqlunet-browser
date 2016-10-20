@@ -7,9 +7,9 @@ package org.sqlunet;
  */
 public interface HasXId
 {
-	Long getXclassid();
+	Long getXClassId();
 
-	Long getXinstanceid();
+	Long getXInstanceId();
 
-	String getXsources();
+	String getXSources();
 }

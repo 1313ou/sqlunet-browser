@@ -108,12 +108,13 @@ public class XPointer extends Pointer implements HasXId
 	 *
 	 * @param xId xId
 	 */
-	public void setxId(final Long xId)
+	public void setXId(final Long xId)
 	{
 		this.xId = xId;
 	}
 
-	public Long getxClassId()
+	@Override
+	public Long getXClassId()
 	{
 		return this.xClassId;
 	}
@@ -128,6 +129,7 @@ public class XPointer extends Pointer implements HasXId
 		this.xClassId = xClassId;
 	}
 
+	@Override
 	public Long getXInstanceId()
 	{
 		return this.xInstanceId;
@@ -138,7 +140,7 @@ public class XPointer extends Pointer implements HasXId
 	 *
 	 * @param xInstanceId x instance id
 	 */
-	public void setxInstanceId(final Long xInstanceId)
+	public void setXInstanceId(final Long xInstanceId)
 	{
 		this.xInstanceId = xInstanceId;
 	}
@@ -192,7 +194,8 @@ public class XPointer extends Pointer implements HasXId
 		return 0;
 	}
 
-	public String getxSources()
+	@Override
+	public String getXSources()
 	{
 		return this.xSources;
 	}
@@ -202,7 +205,7 @@ public class XPointer extends Pointer implements HasXId
 	 *
 	 * @param xSources x sources
 	 */
-	public void setxSources(String xSources)
+	public void setXSources(final String xSources)
 	{
 		this.xSources = xSources;
 		this.xMask = 0L;
@@ -244,7 +247,7 @@ public class XPointer extends Pointer implements HasXId
 	 * @return x mask
 	 */
 	@SuppressWarnings("unused")
-	public long getxMask()
+	public long getXMask()
 	{
 		return this.xMask;
 	}

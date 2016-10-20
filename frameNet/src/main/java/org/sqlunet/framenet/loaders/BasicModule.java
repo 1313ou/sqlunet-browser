@@ -27,7 +27,7 @@ import org.sqlunet.framenet.provider.FrameNetContract.Governors_AnnoSets_Sentenc
 import org.sqlunet.framenet.provider.FrameNetContract.LexUnits_FEGroupRealizations_Patterns_ValenceUnits;
 import org.sqlunet.framenet.provider.FrameNetContract.LexUnits_FERealizations_ValenceUnits;
 import org.sqlunet.framenet.provider.FrameNetContract.LexUnits_Governors;
-import org.sqlunet.framenet.provider.FrameNetContract.LexUnits_Sentences_Annosets_Layers_Labels;
+import org.sqlunet.framenet.provider.FrameNetContract.LexUnits_Sentences_AnnoSets_Layers_Labels;
 import org.sqlunet.framenet.provider.FrameNetContract.LexUnits_X;
 import org.sqlunet.framenet.provider.FrameNetContract.Patterns_Layers_X;
 import org.sqlunet.framenet.provider.FrameNetContract.Patterns_Sentences;
@@ -57,7 +57,86 @@ import java.util.Locale;
  */
 abstract public class BasicModule extends Module
 {
+	private static final String FOCUSLAYER = "FE"; // "Target"; //$NON-NLS-1$
 	private static boolean VERBOSE = false;
+
+	// private static final String TAG = "BasicModule";
+
+	// target layer
+	/**
+	 * Processor
+	 */
+	private FrameNetProcessor processor;
+
+	// agents
+	/**
+	 * Frame Processor
+	 */
+	private FrameNetFrameProcessor frameProcessor;
+	/**
+	 * Spanner
+	 */
+	private FrameNetSpanner spanner;
+	/**
+	 * Drawable for frame
+	 */
+	private Drawable frameDrawable;
+
+	// resources
+	/**
+	 * Drawable for FE
+	 */
+	private Drawable feDrawable;
+	/**
+	 * Drawable for FE
+	 */
+	private Drawable fe2Drawable;
+	/**
+	 * Drawable for core FE
+	 */
+	private Drawable corefeDrawable;
+	/**
+	 * Drawable for lexUnit
+	 */
+	private Drawable lexunitDrawable;
+	/**
+	 * Drawable for definition
+	 */
+	private Drawable definitionDrawable;
+	/**
+	 * Drawable for meta definition
+	 */
+	private Drawable metadefinitionDrawable;
+	/**
+	 * Drawable for realization
+	 */
+	private Drawable realizationDrawable;
+	/**
+	 * Drawable for sentence
+	 */
+	private Drawable sentenceDrawable;
+	/**
+	 * Drawable for semtype
+	 */
+	private Drawable semtypeDrawable;
+	/**
+	 * Drawable for coreset
+	 */
+	private Drawable coresetDrawable;
+	/**
+	 * Drawable for layer
+	 */
+	private Drawable layerDrawable;
+
+	/**
+	 * Mandatory empty constructor for the fragment manager to instantiate the fragment (e.g. upon screen orientation changes).
+	 */
+	BasicModule(final Fragment fragment)
+	{
+		super(fragment);
+	}
+
+	// C R E A T I O N
 
 	/**
 	 * Set always-simple-preferences flag
@@ -68,101 +147,6 @@ abstract public class BasicModule extends Module
 	public static void setVerbose(boolean verbose)
 	{
 		VERBOSE = verbose;
-	}
-
-	// private static final String TAG = "BasicModule";
-
-	// target layer
-
-	private static final String FOCUSLAYER = "FE"; // "Target"; //$NON-NLS-1$
-
-	// agents
-
-	/**
-	 * Processor
-	 */
-	private FrameNetProcessor processor;
-
-	/**
-	 * Frame Processor
-	 */
-	private FrameNetFrameProcessor frameProcessor;
-
-	/**
-	 * Spanner
-	 */
-	private FrameNetSpanner spanner;
-
-	// resources
-
-	/**
-	 * Drawable for frame
-	 */
-	private Drawable frameDrawable;
-
-	/**
-	 * Drawable for FE
-	 */
-	private Drawable feDrawable;
-
-	/**
-	 * Drawable for FE
-	 */
-	private Drawable fe2Drawable;
-
-	/**
-	 * Drawable for core FE
-	 */
-	private Drawable corefeDrawable;
-
-	/**
-	 * Drawable for lexunit
-	 */
-	private Drawable lexunitDrawable;
-
-	/**
-	 * Drawable for definition
-	 */
-	private Drawable definitionDrawable;
-
-	/**
-	 * Drawable for meta definition
-	 */
-	private Drawable metadefinitionDrawable;
-
-	/**
-	 * Drawable for realization
-	 */
-	private Drawable realizationDrawable;
-
-	/**
-	 * Drawable for sentence
-	 */
-	private Drawable sentenceDrawable;
-
-	/**
-	 * Drawable for semtype
-	 */
-	private Drawable semtypeDrawable;
-
-	/**
-	 * Drawable for coreset
-	 */
-	private Drawable coresetDrawable;
-
-	/**
-	 * Drawable for layer
-	 */
-	private Drawable layerDrawable;
-
-	// C R E A T I O N
-
-	/**
-	 * Mandatory empty constructor for the fragment manager to instantiate the fragment (e.g. upon screen orientation changes).
-	 */
-	BasicModule(final Fragment fragment)
-	{
-		super(fragment);
 	}
 
 	@Override
@@ -194,6 +178,12 @@ abstract public class BasicModule extends Module
 
 	// frame
 
+	/**
+	 * FrameNet frame
+	 *
+	 * @param frameId frame id
+	 * @param parent  parent node
+	 */
 	void frame(final long frameId, final TreeNode parent)
 	{
 		getLoaderManager().restartLoader(++Module.loaderId, null, new LoaderCallbacks<Cursor>()
@@ -228,12 +218,12 @@ abstract public class BasicModule extends Module
 					final SpannableStringBuilder sb = new SpannableStringBuilder();
 
 					// column indices
-					final int idFrameId = cursor.getColumnIndex(Frames_X.FRAMEID);
+					// final int idFrameId = cursor.getColumnIndex(Frames_X.FRAMEID);
 					final int idFrame = cursor.getColumnIndex(Frames_X.FRAME);
 					final int idFrameDefinition = cursor.getColumnIndex(Frames_X.FRAMEDEFINITION);
 
 					// data
-					final int frameId = cursor.getInt(idFrameId);
+					// final int frameId = cursor.getInt(idFrameId);
 
 					// frame
 					Spanner.appendImage(sb, BasicModule.this.frameDrawable);
@@ -242,7 +232,7 @@ abstract public class BasicModule extends Module
 					if (VERBOSE)
 					{
 						sb.append(' ');
-						sb.append(Integer.toString(frameId));
+						sb.append(Long.toString(frameId));
 					}
 					sb.append('\n');
 
@@ -287,7 +277,13 @@ abstract public class BasicModule extends Module
 
 	// frame
 
-	private void frame_related(final long frameId, final TreeNode parent)
+	/**
+	 * Related frames
+	 *
+	 * @param frameId frame id
+	 * @param parent  parent node
+	 */
+	private void relatedFrames(final long frameId, final TreeNode parent)
 	{
 		getLoaderManager().restartLoader(++Module.loaderId, null, new LoaderCallbacks<Cursor>()
 		{
@@ -430,7 +426,13 @@ abstract public class BasicModule extends Module
 
 	// fes
 
-	private void fes_for_frame(final int frameId, final TreeNode parent)
+	/**
+	 * Frame elements for frame
+	 *
+	 * @param frameId frame id
+	 * @param parent  parent node
+	 */
+	private void fesForFrame(final int frameId, final TreeNode parent)
 	{
 		getLoaderManager().restartLoader(++Module.loaderId, null, new LoaderCallbacks<Cursor>()
 		{
@@ -563,7 +565,15 @@ abstract public class BasicModule extends Module
 
 	// lexunits
 
-	void lexunit(final long luId, final TreeNode parent, @SuppressWarnings("SameParameterValue") final boolean withFrame, @SuppressWarnings("SameParameterValue") final boolean withFEs)
+	/**
+	 * Lex unit
+	 *
+	 * @param luId      lu id
+	 * @param parent    parent node
+	 * @param withFrame whether to include frames
+	 * @param withFes   whether to include frame elements
+	 */
+	void lexUnit(final long luId, final TreeNode parent, @SuppressWarnings("SameParameterValue") final boolean withFrame, @SuppressWarnings("SameParameterValue") final boolean withFes)
 	{
 		getLoaderManager().restartLoader(++Module.loaderId, null, new LoaderCallbacks<Cursor>()
 		{
@@ -599,7 +609,7 @@ abstract public class BasicModule extends Module
 					final SpannableStringBuilder sb = new SpannableStringBuilder();
 
 					// column indices
-					final int idLuId = cursor.getColumnIndex(LexUnits_X.LUID);
+					// final int idLuId = cursor.getColumnIndex(LexUnits_X.LUID);
 					final int idLexUnit = cursor.getColumnIndex(LexUnits_X.LEXUNIT);
 					final int idDefinition = cursor.getColumnIndex(LexUnits_X.LUDEFINITION);
 					final int idDictionary = cursor.getColumnIndex(LexUnits_X.LUDICT);
@@ -608,21 +618,21 @@ abstract public class BasicModule extends Module
 					final int idIncorporatedFEDefinition = cursor.getColumnIndex(LexUnits_X.INCORPORATEDFEDEFINITION);
 
 					// data
-					final int luId = cursor.getInt(idLuId);
+					// final int luId = cursor.getInt(idLuId);
 					final int frameId = cursor.getInt(idFrameId);
 					final String definition = cursor.getString(idDefinition);
 					final String dictionary = cursor.getString(idDictionary);
 					final String incorporatedFEType = cursor.getString(idIncorporatedFEType);
 					final String incorporatedFEDefinition = cursor.getString(idIncorporatedFEDefinition);
 
-					// lexunit
+					// lexUnit
 					Spanner.appendImage(sb, BasicModule.this.lexunitDrawable);
 					sb.append(' ');
 					Spanner.append(sb, cursor.getString(idLexUnit), 0, FrameNetFactories.lexunitFactory);
 					if (VERBOSE)
 					{
 						sb.append(' ');
-						sb.append(Integer.toString(luId));
+						sb.append(Long.toString(luId));
 					}
 
 					// definition
@@ -664,13 +674,13 @@ abstract public class BasicModule extends Module
 					final TreeNode governorsNode = TreeFactory.newQueryNode(new GovernorsQuery(luId, R.drawable.governor, "Governors"), BasicModule.this.getContext()); //$NON-NLS-1$
 					final TreeNode realizationsNode = TreeFactory.newQueryNode(new RealizationsQuery(luId, R.drawable.realization, "Realizations"), BasicModule.this.getContext()); //$NON-NLS-1$
 					final TreeNode groupRealizationsNode = TreeFactory.newQueryNode(new GroupRealizationsQuery(luId, R.drawable.grouprealization, "Group realizations"), BasicModule.this.getContext()); //$NON-NLS-1$
-					final TreeNode sentencesNode = TreeFactory.newQueryNode(new SentencesQuery(luId, R.drawable.sentence, "Sentences"), BasicModule.this.getContext()); //$NON-NLS-1$
+					final TreeNode sentencesNode = TreeFactory.newQueryNode(new SentencesForLexUnitQuery(luId, R.drawable.sentence, "Sentences"), BasicModule.this.getContext()); //$NON-NLS-1$
 
 					// attach result
 					if (withFrame)
 					{
 						final TreeNode frameNode = TreeFactory.newQueryNode(new FrameQuery(frameId, R.drawable.fnframe, "Frame"), BasicModule.this.getContext()); //$NON-NLS-1$
-						if (withFEs)
+						if (withFes)
 						{
 							final TreeNode fesNode = TreeFactory.newQueryNode(new FEsQuery(frameId, R.drawable.roles, "Frame Elements"), BasicModule.this.getContext()); //$NON-NLS-1$
 							TreeFactory.addTextNode(parent, sb, BasicModule.this.getContext(), frameNode, fesNode, governorsNode, realizationsNode, groupRealizationsNode, sentencesNode);
@@ -705,7 +715,14 @@ abstract public class BasicModule extends Module
 		});
 	}
 
-	private void lexunits_for_frame(final long frameId, final TreeNode parent, @SuppressWarnings("SameParameterValue") final boolean withFrame)
+	/**
+	 * Lex units for frame
+	 *
+	 * @param frameId   frame id
+	 * @param parent    parent node
+	 * @param withFrame whether to include frame
+	 */
+	private void lexUnitsForFrame(final long frameId, final TreeNode parent, @SuppressWarnings("SameParameterValue") final boolean withFrame)
 	{
 		getLoaderManager().restartLoader(++Module.loaderId, null, new LoaderCallbacks<Cursor>()
 		{
@@ -735,7 +752,7 @@ abstract public class BasicModule extends Module
 				if (cursor.moveToFirst())
 				{
 					// column indices
-					final int idFrameId = cursor.getColumnIndex(LexUnits_X.FRAMEID);
+					// final int idFrameId = cursor.getColumnIndex(LexUnits_X.FRAMEID);
 					final int idLuId = cursor.getColumnIndex(LexUnits_X.LUID);
 					final int idLexUnit = cursor.getColumnIndex(LexUnits_X.LEXUNIT);
 					final int idDefinition = cursor.getColumnIndex(LexUnits_X.LUDEFINITION);
@@ -747,13 +764,13 @@ abstract public class BasicModule extends Module
 					{
 						final SpannableStringBuilder sb = new SpannableStringBuilder();
 
-						final int frameId = cursor.getInt(idFrameId);
+						// final int frameId = cursor.getInt(idFrameId);
 						final long luId = cursor.getLong(idLuId);
 						final String lexUnit = cursor.getString(idLexUnit);
 						final String incorporatedFEType = cursor.getString(idIncorporatedFEType);
 						final String incorporatedFEDefinition = cursor.getString(idIncorporatedFEDefinition);
 
-						// lexunit
+						// lexUnit
 						Spanner.appendImage(sb, BasicModule.this.lexunitDrawable);
 						sb.append(' ');
 						Spanner.append(sb, lexUnit, 0, FrameNetFactories.lexunitFactory);
@@ -797,7 +814,7 @@ abstract public class BasicModule extends Module
 						final TreeNode governorsNode = TreeFactory.newQueryNode(new GovernorsQuery(luId, R.drawable.governor, "Governors"), BasicModule.this.getContext()); //$NON-NLS-1$
 						final TreeNode realizationsNode = TreeFactory.newQueryNode(new RealizationsQuery(luId, R.drawable.realization, "Realizations"), BasicModule.this.getContext()); //$NON-NLS-1$
 						final TreeNode groupRealizationsNode = TreeFactory.newQueryNode(new GroupRealizationsQuery(luId, R.drawable.grouprealization, "Group realizations"), BasicModule.this.getContext()); //$NON-NLS-1$
-						final TreeNode sentencesNode = TreeFactory.newQueryNode(new SentencesQuery(luId, R.drawable.sentence, "Sentences"), BasicModule.this.getContext()); //$NON-NLS-1$
+						final TreeNode sentencesNode = TreeFactory.newQueryNode(new SentencesForLexUnitQuery(luId, R.drawable.sentence, "Sentences"), BasicModule.this.getContext()); //$NON-NLS-1$
 
 						// attach result
 						if (withFrame)
@@ -832,7 +849,14 @@ abstract public class BasicModule extends Module
 		});
 	}
 
-	void lexunits_for_word_pos(final long wordId, final Character pos, final TreeNode parent)
+	/**
+	 * Lex units for word and pos
+	 *
+	 * @param wordId word id
+	 * @param pos    pos
+	 * @param parent parent node
+	 */
+	void lexUnitsForWordAndPos(final long wordId, final Character pos, final TreeNode parent)
 	{
 		getLoaderManager().restartLoader(++Module.loaderId, null, new LoaderCallbacks<Cursor>()
 		{
@@ -880,7 +904,7 @@ abstract public class BasicModule extends Module
 						final String incorporatedFEType = cursor.getString(idIncorporatedFEType);
 						final String incorporatedFEDefinition = cursor.getString(idIncorporatedFEDefinition);
 
-						// lexunit
+						// lexUnit
 						Spanner.appendImage(sb, BasicModule.this.lexunitDrawable);
 						sb.append(' ');
 						Spanner.append(sb, cursor.getString(idLexUnit), 0, FrameNetFactories.lexunitFactory);
@@ -927,7 +951,7 @@ abstract public class BasicModule extends Module
 						final TreeNode governorsNode = TreeFactory.newQueryNode(new GovernorsQuery(luId, R.drawable.governor, "Governors"), BasicModule.this.getContext()); //$NON-NLS-1$
 						final TreeNode realizationsNode = TreeFactory.newQueryNode(new RealizationsQuery(luId, R.drawable.realization, "Realizations"), BasicModule.this.getContext()); //$NON-NLS-1$
 						final TreeNode groupRealizationsNode = TreeFactory.newQueryNode(new GroupRealizationsQuery(luId, R.drawable.grouprealization, "Group realizations"), BasicModule.this.getContext()); //$NON-NLS-1$
-						final TreeNode sentencesNode = TreeFactory.newQueryNode(new SentencesQuery(luId, R.drawable.sentence, "Sentences"), BasicModule.this.getContext()); //$NON-NLS-1$
+						final TreeNode sentencesNode = TreeFactory.newQueryNode(new SentencesForLexUnitQuery(luId, R.drawable.sentence, "Sentences"), BasicModule.this.getContext()); //$NON-NLS-1$
 
 						// attach result
 						TreeFactory.addTextNode(parent, sb, BasicModule.this.getContext(), frameNode, fesNode, governorsNode, realizationsNode, groupRealizationsNode, sentencesNode);
@@ -955,7 +979,13 @@ abstract public class BasicModule extends Module
 
 	// governors
 
-	private void governors_for_lexicalunit(final long luId, final TreeNode parent)
+	/**
+	 * Governors for lex unit
+	 *
+	 * @param luId   lex unit id
+	 * @param parent parent node
+	 */
+	private void governorsForLexUnit(final long luId, final TreeNode parent)
 	{
 		getLoaderManager().restartLoader(++Module.loaderId, null, new LoaderCallbacks<Cursor>()
 		{
@@ -1011,7 +1041,7 @@ abstract public class BasicModule extends Module
 						Spanner.append(sb, word, 0, FrameNetFactories.governorFactory);
 
 						// governor
-						final TreeNode governorNode = TreeFactory.newQueryNode(new GovernorsAnnoSetsQuery(governorId, R.drawable.governor, sb), BasicModule.this.getContext());
+						final TreeNode governorNode = TreeFactory.newQueryNode(new AnnoSetsForGovernorQuery(governorId, R.drawable.governor, sb), BasicModule.this.getContext());
 						parent.addChild(governorNode);
 					}
 					while (cursor.moveToNext());
@@ -1035,7 +1065,13 @@ abstract public class BasicModule extends Module
 		});
 	}
 
-	private void annosets_for_governor(final long governorId, final TreeNode parent)
+	/**
+	 * AnnoSets for governor
+	 *
+	 * @param governorId governor id
+	 * @param parent     parent id
+	 */
+	private void annoSetsForGovernor(final long governorId, final TreeNode parent)
 	{
 		getLoaderManager().restartLoader(++Module.loaderId, null, new LoaderCallbacks<Cursor>()
 		{
@@ -1114,7 +1150,13 @@ abstract public class BasicModule extends Module
 
 	// realizations
 
-	private void realizations_for_lexicalunit(final long luId, final TreeNode parent)
+	/**
+	 * Realizations for lex unit
+	 *
+	 * @param luId   lex unit id
+	 * @param parent parent node
+	 */
+	private void realizationsForLexicalunit(final long luId, final TreeNode parent)
 	{
 		getLoaderManager().restartLoader(++Module.loaderId, null, new LoaderCallbacks<Cursor>()
 		{
@@ -1208,7 +1250,7 @@ abstract public class BasicModule extends Module
 							}
 
 							// attach fer node
-							final TreeNode ferNode = TreeFactory.newQueryNode(new ValenceUnitQuery(vuId, R.drawable.realization, sb1), BasicModule.this.getContext());
+							final TreeNode ferNode = TreeFactory.newQueryNode(new SentencesForValenceUnitQuery(vuId, R.drawable.realization, sb1), BasicModule.this.getContext());
 							feNode.addChild(ferNode);
 						}
 					}
@@ -1233,7 +1275,13 @@ abstract public class BasicModule extends Module
 		});
 	}
 
-	private void grouprealizations_for_lexicalunit(final long luId, final TreeNode parent)
+	/**
+	 * Group realizations for lex unit
+	 *
+	 * @param luId   lex unit id
+	 * @param parent parent node
+	 */
+	private void groupRealizationsForLexUnit(final long luId, final TreeNode parent)
 	{
 		getLoaderManager().restartLoader(++Module.loaderId, null, new LoaderCallbacks<Cursor>()
 		{
@@ -1308,7 +1356,7 @@ abstract public class BasicModule extends Module
 						parseGroupRealizations(groupRealizations, sb);
 
 						// node
-						final TreeNode patternNode = TreeFactory.newQueryNode(new PatternQuery(patternId, R.drawable.grouprealization, sb), BasicModule.this.getContext());
+						final TreeNode patternNode = TreeFactory.newQueryNode(new SentencesForPatternQuery(patternId, R.drawable.grouprealization, sb), BasicModule.this.getContext());
 						assert groupNode != null;
 						groupNode.addChild(patternNode);
 					}
@@ -1333,6 +1381,13 @@ abstract public class BasicModule extends Module
 		});
 	}
 
+	/**
+	 * Parse group realizations
+	 *
+	 * @param aggregate aggregate to parse
+	 * @param sb        builder to host result
+	 * @return builder
+	 */
 	@SuppressWarnings("UnusedReturnValue")
 	private CharSequence parseGroupRealizations(final String aggregate, final SpannableStringBuilder sb)
 	{
@@ -1376,35 +1431,41 @@ abstract public class BasicModule extends Module
 
 	// sentences
 
-	private void sentences_for_lexunit(final long luId, final TreeNode parent)
+	/**
+	 * Sentences for lex unit
+	 *
+	 * @param luId   lex unit id
+	 * @param parent parent node
+	 */
+	private void sentencesForLexUnit(final long luId, final TreeNode parent)
 	{
 		getLoaderManager().restartLoader(++Module.loaderId, null, new LoaderCallbacks<Cursor>()
 		{
 			@Override
 			public Loader<Cursor> onCreateLoader(final int loaderId, final Bundle loaderArgs)
 			{
-				final Uri uri = Uri.parse(LexUnits_Sentences_Annosets_Layers_Labels.CONTENT_URI_BY_SENTENCE);
+				final Uri uri = Uri.parse(LexUnits_Sentences_AnnoSets_Layers_Labels.CONTENT_URI_BY_SENTENCE);
 				final String[] projection = { //
-						LexUnits_Sentences_Annosets_Layers_Labels.SENTENCEID, //
-						LexUnits_Sentences_Annosets_Layers_Labels.TEXT, //
-						LexUnits_Sentences_Annosets_Layers_Labels.LAYERTYPE, //
-						LexUnits_Sentences_Annosets_Layers_Labels.RANK, //
+						LexUnits_Sentences_AnnoSets_Layers_Labels.SENTENCEID, //
+						LexUnits_Sentences_AnnoSets_Layers_Labels.TEXT, //
+						LexUnits_Sentences_AnnoSets_Layers_Labels.LAYERTYPE, //
+						LexUnits_Sentences_AnnoSets_Layers_Labels.RANK, //
 						"GROUP_CONCAT(" + // //$NON-NLS-1$
-								LexUnits_Sentences_Annosets_Layers_Labels.START + "||':'||" + // //$NON-NLS-1$
-								LexUnits_Sentences_Annosets_Layers_Labels.END + "||':'||" + // //$NON-NLS-1$
-								LexUnits_Sentences_Annosets_Layers_Labels.LABELTYPE + "||':'||" + // //$NON-NLS-1$
-								"CASE WHEN " + LexUnits_Sentences_Annosets_Layers_Labels.LABELITYPE + " IS NULL THEN '' ELSE " + LexUnits_Sentences_Annosets_Layers_Labels.LABELITYPE + " END||':'||" + // //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-								"CASE WHEN " + LexUnits_Sentences_Annosets_Layers_Labels.BGCOLOR + " IS NULL THEN '' ELSE " + LexUnits_Sentences_Annosets_Layers_Labels.BGCOLOR + " END||':'||" + // //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-								"CASE WHEN " + LexUnits_Sentences_Annosets_Layers_Labels.FGCOLOR + " IS NULL THEN '' ELSE " + LexUnits_Sentences_Annosets_Layers_Labels.FGCOLOR + " END" + // //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+								LexUnits_Sentences_AnnoSets_Layers_Labels.START + "||':'||" + // //$NON-NLS-1$
+								LexUnits_Sentences_AnnoSets_Layers_Labels.END + "||':'||" + // //$NON-NLS-1$
+								LexUnits_Sentences_AnnoSets_Layers_Labels.LABELTYPE + "||':'||" + // //$NON-NLS-1$
+								"CASE WHEN " + LexUnits_Sentences_AnnoSets_Layers_Labels.LABELITYPE + " IS NULL THEN '' ELSE " + LexUnits_Sentences_AnnoSets_Layers_Labels.LABELITYPE + " END||':'||" + // //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+								"CASE WHEN " + LexUnits_Sentences_AnnoSets_Layers_Labels.BGCOLOR + " IS NULL THEN '' ELSE " + LexUnits_Sentences_AnnoSets_Layers_Labels.BGCOLOR + " END||':'||" + // //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+								"CASE WHEN " + LexUnits_Sentences_AnnoSets_Layers_Labels.FGCOLOR + " IS NULL THEN '' ELSE " + LexUnits_Sentences_AnnoSets_Layers_Labels.FGCOLOR + " END" + // //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 								",'|')" + // //$NON-NLS-1$
-								" AS " + LexUnits_Sentences_Annosets_Layers_Labels.LAYERANNOTATION, // //$NON-NLS-1$
+								" AS " + LexUnits_Sentences_AnnoSets_Layers_Labels.LAYERANNOTATION, // //$NON-NLS-1$
 				};
-				final String selection = "u." + LexUnits_Sentences_Annosets_Layers_Labels.LUID + " = ? AND " + LexUnits_Sentences_Annosets_Layers_Labels.LAYERTYPE + " = ?"; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				final String selection = "u." + LexUnits_Sentences_AnnoSets_Layers_Labels.LUID + " = ? AND " + LexUnits_Sentences_AnnoSets_Layers_Labels.LAYERTYPE + " = ?"; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 				final String[] selectionArgs = {Long.toString(luId), BasicModule.FOCUSLAYER};
-				final String sortOrder = LexUnits_Sentences_Annosets_Layers_Labels.CORPUSID + ',' + //
-						LexUnits_Sentences_Annosets_Layers_Labels.DOCUMENTID + ',' + //
-						LexUnits_Sentences_Annosets_Layers_Labels.PARAGNO + ',' + //
-						LexUnits_Sentences_Annosets_Layers_Labels.SENTNO; //
+				final String sortOrder = LexUnits_Sentences_AnnoSets_Layers_Labels.CORPUSID + ',' + //
+						LexUnits_Sentences_AnnoSets_Layers_Labels.DOCUMENTID + ',' + //
+						LexUnits_Sentences_AnnoSets_Layers_Labels.PARAGNO + ',' + //
+						LexUnits_Sentences_AnnoSets_Layers_Labels.SENTNO; //
 				return new CursorLoader(BasicModule.this.getContext(), uri, projection, selection, selectionArgs, sortOrder);
 			}
 
@@ -1416,10 +1477,10 @@ abstract public class BasicModule extends Module
 				if (cursor.moveToFirst())
 				{
 					// column indices
-					final int idText = cursor.getColumnIndex(LexUnits_Sentences_Annosets_Layers_Labels.TEXT);
-					final int idLayerType = cursor.getColumnIndex(LexUnits_Sentences_Annosets_Layers_Labels.LAYERTYPE);
-					final int idAnnotations = cursor.getColumnIndex(LexUnits_Sentences_Annosets_Layers_Labels.LAYERANNOTATION);
-					final int idSentenceId = cursor.getColumnIndex(LexUnits_Sentences_Annosets_Layers_Labels.SENTENCEID);
+					final int idText = cursor.getColumnIndex(LexUnits_Sentences_AnnoSets_Layers_Labels.TEXT);
+					final int idLayerType = cursor.getColumnIndex(LexUnits_Sentences_AnnoSets_Layers_Labels.LAYERTYPE);
+					final int idAnnotations = cursor.getColumnIndex(LexUnits_Sentences_AnnoSets_Layers_Labels.LAYERANNOTATION);
+					final int idSentenceId = cursor.getColumnIndex(LexUnits_Sentences_AnnoSets_Layers_Labels.SENTENCEID);
 
 					// read cursor
 					do
@@ -1502,7 +1563,13 @@ abstract public class BasicModule extends Module
 		});
 	}
 
-	private void sentences_for_pattern(final long patternId, final TreeNode parent)
+	/**
+	 * Sentences for pattern
+	 *
+	 * @param patternId pattern id
+	 * @param parent    parent node
+	 */
+	private void sentencesForPattern(final long patternId, final TreeNode parent)
 	{
 		getLoaderManager().restartLoader(++Module.loaderId, null, new LoaderCallbacks<Cursor>()
 		{
@@ -1575,7 +1642,13 @@ abstract public class BasicModule extends Module
 		});
 	}
 
-	private void sentences_for_valenceunit(final long vuId, final TreeNode parent)
+	/**
+	 * Sentences for valence unit
+	 *
+	 * @param vuId   valence unit id
+	 * @param parent parent node
+	 */
+	private void sentencesForValenceUnit(final long vuId, final TreeNode parent)
 	{
 		getLoaderManager().restartLoader(++Module.loaderId, null, new LoaderCallbacks<Cursor>()
 		{
@@ -1648,9 +1721,16 @@ abstract public class BasicModule extends Module
 		});
 	}
 
-	// annosets
+	// annoSets
 
-	void annoset(final long annoSetId, final TreeNode parent, final boolean withSentence)
+	/**
+	 * AnnoSet
+	 *
+	 * @param annoSetId    annoSetId
+	 * @param parent       parent node
+	 * @param withSentence whether to include sentence
+	 */
+	void annoSet(final long annoSetId, final TreeNode parent, final boolean withSentence)
 	{
 		getLoaderManager().restartLoader(++Module.loaderId, null, new LoaderCallbacks<Cursor>()
 		{
@@ -1785,7 +1865,13 @@ abstract public class BasicModule extends Module
 		});
 	}
 
-	void annosets_for_pattern(final long patternId, final TreeNode parent)
+	/**
+	 * AnnoSets for pattern
+	 *
+	 * @param patternId pattern id
+	 * @param parent    parent node
+	 */
+	void annoSetsForPattern(final long patternId, final TreeNode parent)
 	{
 		getLoaderManager().restartLoader(++Module.loaderId, null, new LoaderCallbacks<Cursor>()
 		{
@@ -1914,7 +2000,13 @@ abstract public class BasicModule extends Module
 		});
 	}
 
-	void annosets_for_valenceunit(final long vuId, final TreeNode parent)
+	/**
+	 * AnnoSets for valence unit
+	 *
+	 * @param vuId   valence unit id
+	 * @param parent parent node
+	 */
+	void annoSetsForValenceUnit(final long vuId, final TreeNode parent)
 	{
 		getLoaderManager().restartLoader(++Module.loaderId, null, new LoaderCallbacks<Cursor>()
 		{
@@ -2046,7 +2138,14 @@ abstract public class BasicModule extends Module
 
 	// layers
 
-	void layers_for_sentence(final long sentenceId, final String text, final TreeNode parent)
+	/**
+	 * Layers for sentence
+	 *
+	 * @param sentenceId sentence id
+	 * @param text       reference sentence text
+	 * @param parent     parent node
+	 */
+	void layersForSentence(final long sentenceId, final String text, final TreeNode parent)
 	{
 		getLoaderManager().restartLoader(++Module.loaderId, null, new LoaderCallbacks<Cursor>()
 		{
@@ -2160,6 +2259,13 @@ abstract public class BasicModule extends Module
 		});
 	}
 
+	/**
+	 * Process definition
+	 *
+	 * @param text  text
+	 * @param flags flags
+	 * @return processed definition
+	 */
 	private CharSequence[] processDefinition(final CharSequence text, final long flags)
 	{
 		CharSequence[] texts = this.processor.split(text);
@@ -2173,6 +2279,12 @@ abstract public class BasicModule extends Module
 		return fields;
 	}
 
+	/**
+	 * Process layer name
+	 *
+	 * @param name layer name
+	 * @return processed layer name
+	 */
 	private CharSequence processLayer(final CharSequence name)
 	{
 		if ("FE".equals(name)) //$NON-NLS-1$
@@ -2190,6 +2302,12 @@ abstract public class BasicModule extends Module
 		return name;
 	}
 
+	/**
+	 * Process PT
+	 *
+	 * @param name PT name
+	 * @return processed PT
+	 */
 	private CharSequence processPT(final CharSequence name)
 	{
 		if ("CNI".equals(name)) //$NON-NLS-1$
@@ -2209,6 +2327,9 @@ abstract public class BasicModule extends Module
 
 	// Q U E R I E S
 
+	/**
+	 * Frame query
+	 */
 	class FrameQuery extends QueryHolder.Query
 	{
 		public FrameQuery(final long frameId, final int icon, @SuppressWarnings("SameParameterValue") final CharSequence text)
@@ -2223,6 +2344,9 @@ abstract public class BasicModule extends Module
 		}
 	}
 
+	/**
+	 * Related frame query
+	 */
 	class RelatedQuery extends QueryHolder.Query
 	{
 		public RelatedQuery(final long frameId, final int icon, @SuppressWarnings("SameParameterValue") final CharSequence text)
@@ -2233,10 +2357,13 @@ abstract public class BasicModule extends Module
 		@Override
 		public void process(final TreeNode node)
 		{
-			frame_related((int) this.id, node);
+			relatedFrames((int) this.id, node);
 		}
 	}
 
+	/**
+	 * Lex units query
+	 */
 	class LexUnitsQuery extends QueryHolder.Query
 	{
 		public LexUnitsQuery(final long frameId, final int icon, @SuppressWarnings("SameParameterValue") final CharSequence text)
@@ -2247,10 +2374,13 @@ abstract public class BasicModule extends Module
 		@Override
 		public void process(final TreeNode node)
 		{
-			lexunits_for_frame((int) this.id, node, false);
+			lexUnitsForFrame((int) this.id, node, false);
 		}
 	}
 
+	/**
+	 * Frame elements query
+	 */
 	class FEsQuery extends QueryHolder.Query
 	{
 		public FEsQuery(final long frameId, final int icon, @SuppressWarnings("SameParameterValue") final CharSequence text)
@@ -2261,10 +2391,13 @@ abstract public class BasicModule extends Module
 		@Override
 		public void process(final TreeNode node)
 		{
-			fes_for_frame((int) this.id, node);
+			fesForFrame((int) this.id, node);
 		}
 	}
 
+	/**
+	 * Governors query
+	 */
 	class GovernorsQuery extends QueryHolder.Query
 	{
 		public GovernorsQuery(final long luId, final int icon, @SuppressWarnings("SameParameterValue") final CharSequence text)
@@ -2275,24 +2408,13 @@ abstract public class BasicModule extends Module
 		@Override
 		public void process(final TreeNode node)
 		{
-			governors_for_lexicalunit(this.id, node);
+			governorsForLexUnit(this.id, node);
 		}
 	}
 
-	class GovernorsAnnoSetsQuery extends QueryHolder.Query
-	{
-		public GovernorsAnnoSetsQuery(final long governorId, final int icon, final CharSequence text)
-		{
-			super(governorId, icon, text);
-		}
-
-		@Override
-		public void process(final TreeNode node)
-		{
-			annosets_for_governor(this.id, node);
-		}
-	}
-
+	/**
+	 * Realizations query
+	 */
 	class RealizationsQuery extends QueryHolder.Query
 	{
 		public RealizationsQuery(final long luId, final int icon, @SuppressWarnings("SameParameterValue") final CharSequence text)
@@ -2303,10 +2425,13 @@ abstract public class BasicModule extends Module
 		@Override
 		public void process(final TreeNode node)
 		{
-			realizations_for_lexicalunit(this.id, node);
+			realizationsForLexicalunit(this.id, node);
 		}
 	}
 
+	/**
+	 * Group realizations query
+	 */
 	class GroupRealizationsQuery extends QueryHolder.Query
 	{
 		public GroupRealizationsQuery(final long luId, final int icon, @SuppressWarnings("SameParameterValue") final CharSequence text)
@@ -2317,13 +2442,16 @@ abstract public class BasicModule extends Module
 		@Override
 		public void process(final TreeNode node)
 		{
-			grouprealizations_for_lexicalunit(this.id, node);
+			groupRealizationsForLexUnit(this.id, node);
 		}
 	}
 
-	class PatternQuery extends QueryHolder.Query
+	/**
+	 * Sentences for pattern query
+	 */
+	class SentencesForPatternQuery extends QueryHolder.Query
 	{
-		public PatternQuery(final long patternId, final int icon, final CharSequence text)
+		public SentencesForPatternQuery(final long patternId, final int icon, final CharSequence text)
 		{
 			super(patternId, icon, text);
 		}
@@ -2331,13 +2459,16 @@ abstract public class BasicModule extends Module
 		@Override
 		public void process(final TreeNode node)
 		{
-			sentences_for_pattern(this.id, node);
+			sentencesForPattern(this.id, node);
 		}
 	}
 
-	class ValenceUnitQuery extends QueryHolder.Query
+	/**
+	 * Sentences for valence unit query
+	 */
+	class SentencesForValenceUnitQuery extends QueryHolder.Query
 	{
-		public ValenceUnitQuery(final long vuId, final int icon, final CharSequence text)
+		public SentencesForValenceUnitQuery(final long vuId, final int icon, final CharSequence text)
 		{
 			super(vuId, icon, text);
 		}
@@ -2345,30 +2476,16 @@ abstract public class BasicModule extends Module
 		@Override
 		public void process(final TreeNode node)
 		{
-			sentences_for_valenceunit(this.id, node);
+			sentencesForValenceUnit(this.id, node);
 		}
 	}
 
-	class AnnoSetQuery extends QueryHolder.Query
+	/**
+	 * Sentences for lex unit query
+	 */
+	class SentencesForLexUnitQuery extends QueryHolder.Query
 	{
-		private final boolean withSentence;
-
-		public AnnoSetQuery(final long annosetId, final int icon, final CharSequence text, @SuppressWarnings("SameParameterValue") final boolean withSentence)
-		{
-			super(annosetId, icon, text);
-			this.withSentence = withSentence;
-		}
-
-		@Override
-		public void process(final TreeNode node)
-		{
-			annoset(this.id, node, this.withSentence);
-		}
-	}
-
-	class SentencesQuery extends QueryHolder.Query
-	{
-		public SentencesQuery(final long luId, final int icon, @SuppressWarnings("SameParameterValue") final CharSequence text)
+		public SentencesForLexUnitQuery(final long luId, final int icon, @SuppressWarnings("SameParameterValue") final CharSequence text)
 		{
 			super(luId, icon, text);
 		}
@@ -2376,18 +2493,58 @@ abstract public class BasicModule extends Module
 		@Override
 		public void process(final TreeNode node)
 		{
-			sentences_for_lexunit(this.id, node);
+			sentencesForLexUnit(this.id, node);
 		}
 	}
 
+	/**
+	 * AnnoSet query
+	 */
+	class AnnoSetQuery extends QueryHolder.Query
+	{
+		private final boolean withSentence;
+
+		public AnnoSetQuery(final long annoSetId, final int icon, final CharSequence text, @SuppressWarnings("SameParameterValue") final boolean withSentence)
+		{
+			super(annoSetId, icon, text);
+			this.withSentence = withSentence;
+		}
+
+		@Override
+		public void process(final TreeNode node)
+		{
+			annoSet(this.id, node, this.withSentence);
+		}
+	}
+
+	/**
+	 * AnnoSets for governor query
+	 */
+	class AnnoSetsForGovernorQuery extends QueryHolder.Query
+	{
+		public AnnoSetsForGovernorQuery(final long governorId, final int icon, final CharSequence text)
+		{
+			super(governorId, icon, text);
+		}
+
+		@Override
+		public void process(final TreeNode node)
+		{
+			annoSetsForGovernor(this.id, node);
+		}
+	}
+
+	/**
+	 * Dummy query
+	 */
 	class DummyQuery extends QueryHolder.Query
 	{
 		private static final String TAG = "DummyQuery"; //$NON-NLS-1$
 
 		@SuppressWarnings("unused")
-		public DummyQuery(final long annosetId, final int icon, final CharSequence text)
+		public DummyQuery(final long annoSetId, final int icon, final CharSequence text)
 		{
-			super(annosetId, icon, text);
+			super(annoSetId, icon, text);
 		}
 
 		@Override

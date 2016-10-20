@@ -47,7 +47,7 @@ public class FnLexUnit
 	 *
 	 * @param connection is the database connection
 	 * @param targetWord is the word to build query from
-	 * @return wordid + list of lexunits
+	 * @return word id + list of lexunits
 	 */
 	static public Pair<Long, List<FnLexUnit>> makeFromWord(final SQLiteDatabase connection, final String targetWord)
 	{
@@ -87,7 +87,7 @@ public class FnLexUnit
 	}
 
 	/**
-	 * Make sets of lexunits from query built from wordid
+	 * Make sets of lexunits from query built from word id
 	 *
 	 * @param connection   is the database connection
 	 * @param targetWordId is the word id to build query from

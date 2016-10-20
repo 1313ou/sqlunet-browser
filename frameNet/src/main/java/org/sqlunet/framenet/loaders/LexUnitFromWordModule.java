@@ -8,7 +8,7 @@ import org.sqlunet.HasWordId;
 import org.sqlunet.treeview.model.TreeNode;
 
 /**
- * A fragment representing a lexunit.
+ * A fragment representing a lexUnit.
  *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
@@ -57,7 +57,7 @@ public class LexUnitFromWordModule extends LexUnitModule
 		if (this.wordId != null && this.pos != null)
 		{
 			// data
-			lexunits_for_word_pos(this.wordId, this.pos, node);
+			lexUnitsForWordAndPos(this.wordId, this.pos, node);
 		}
 		else
 		{

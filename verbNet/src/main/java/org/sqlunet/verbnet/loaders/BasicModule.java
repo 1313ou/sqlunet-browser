@@ -31,39 +31,33 @@ import org.sqlunet.view.TreeFactory;
 abstract class BasicModule extends Module
 {
 	/**
+	 * Drawable for role sets
+	 */
+	Drawable drawableRoles;
+
+	// spanners
+	/**
 	 * Processor
 	 */
 	private VerbNetSemanticsProcessor semanticsProcessor;
-
-	// spanners
-
 	/**
 	 * Syntax spanner
 	 */
 	private VerbNetSyntaxSpanner syntaxSpanner;
 
+	// drawables
 	/**
 	 * Semantics
 	 */
 	private VerbNetSemanticsSpanner semanticsSpanner;
-
-	// drawables
-
 	/**
 	 * Drawable for class
 	 */
 	private Drawable drawableClass;
-
 	/**
 	 * Drawable for (group) item
 	 */
 	private Drawable drawableItem;
-
-	/**
-	 * Drawable for role sets
-	 */
-	Drawable drawableRoles;
-
 	/**
 	 * Drawable for role
 	 */
@@ -133,9 +127,15 @@ abstract class BasicModule extends Module
 
 	// L O A D E R S
 
-	// vnClasses
+	// vnClass
 
-	void vnClasses(final long classId, final TreeNode parent)
+	/**
+	 * VerbNet class
+	 *
+	 * @param classId class id
+	 * @param parent  parent node
+	 */
+	void vnClass(final long classId, final TreeNode parent)
 	{
 		getLoaderManager().restartLoader(++Module.loaderId, null, new LoaderCallbacks<Cursor>()
 		{
@@ -168,7 +168,7 @@ abstract class BasicModule extends Module
 					final SpannableStringBuilder sb = new SpannableStringBuilder();
 
 					// column indices
-					final int idClassId = cursor.getColumnIndex(VnClasses_X.CLASSID);
+					// final int idClassId = cursor.getColumnIndex(VnClasses_X.CLASSID);
 					final int idClass = cursor.getColumnIndex(VnClasses_X.CLASS);
 					final int idGroupings = cursor.getColumnIndex(VnClasses_X.GROUPINGS);
 					// final int idClassTag = cursor.getColumnIndex(VnClasses.CLASSTAG);
@@ -176,7 +176,7 @@ abstract class BasicModule extends Module
 					// read cursor
 
 					// data
-					final int classId = cursor.getInt(idClassId);
+					// final int classId = cursor.getInt(idClassId);
 					final String vnClass = cursor.getString(idClass);
 					final String groupings = cursor.getString(idGroupings);
 
@@ -187,7 +187,7 @@ abstract class BasicModule extends Module
 					// sb.append(" tag=");
 					// sb.append(cursor.getString(idClassTag));
 					sb.append(" id="); //$NON-NLS-1$
-					sb.append(Integer.toString(classId));
+					sb.append(Long.toString(classId));
 
 					// groupings
 					final TreeNode itemsNode = groupings(groupings);
@@ -221,6 +221,12 @@ abstract class BasicModule extends Module
 
 	// vnRoles
 
+	/**
+	 * VerbNet roles
+	 *
+	 * @param classId class id
+	 * @param parent  parent node
+	 */
 	private void vnRoles(final int classId, final TreeNode parent)
 	{
 		getLoaderManager().restartLoader(++Module.loaderId, null, new LoaderCallbacks<Cursor>()

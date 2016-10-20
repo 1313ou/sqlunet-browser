@@ -189,7 +189,7 @@ abstract public class BasicModule extends Module
 	/**
 	 * Synset
 	 *
-	 * @param synsetId
+	 * @param synsetId synset id
 	 * @param parent   parent node
 	 * @param add      whether to add to (or set) node
 	 */
@@ -478,7 +478,7 @@ abstract public class BasicModule extends Module
 				// noinspection StatementWithEmptyBody
 				if (cursor.moveToFirst())
 				{
-					final int idSynsetId = cursor.getColumnIndex(SemLinks_Synsets_X.SYNSETID);
+					// final int idSynsetId = cursor.getColumnIndex(SemLinks_Synsets_X.SYNSETID);
 					final int idDefinition = cursor.getColumnIndex(SemLinks_Synsets_X.DEFINITION);
 					final int idLinkId = cursor.getColumnIndex(LinkTypes.LINKID);
 					final int idMembers = cursor.getColumnIndex(SemLinks_Synsets_Words_X.MEMBERS);
@@ -489,7 +489,7 @@ abstract public class BasicModule extends Module
 					{
 						final SpannableStringBuilder sb = new SpannableStringBuilder();
 
-						final long synsetId = cursor.getLong(idSynsetId);
+						// final long synsetId = cursor.getLong(idSynsetId);
 						final int linkId = cursor.getInt(idLinkId);
 						final String definition = cursor.getString(idDefinition);
 						final String members = cursor.getString(idMembers);
@@ -558,9 +558,9 @@ abstract public class BasicModule extends Module
 			{
 				if (cursor.moveToFirst())
 				{
-					final int idSynsetId = cursor.getColumnIndex(SemLinks_Synsets_X.SYNSETID);
+					// final int idSynsetId = cursor.getColumnIndex(SemLinks_Synsets_X.SYNSETID);
 					final int idDefinition = cursor.getColumnIndex(SemLinks_Synsets_X.DEFINITION);
-					final int idLinkId = cursor.getColumnIndex(LinkTypes.LINKID);
+					// final int idLinkId = cursor.getColumnIndex(LinkTypes.LINKID);
 					final int idMembers = cursor.getColumnIndex(SemLinks_Synsets_Words_X.MEMBERS);
 					final int idRecurses = cursor.getColumnIndex(SemLinks_Synsets_Words_X.RECURSES);
 					// final int idLink = cursor.getColumnIndex(LinkTypes.LINK);
@@ -569,10 +569,10 @@ abstract public class BasicModule extends Module
 					{
 						final SpannableStringBuilder sb = new SpannableStringBuilder();
 
-						final int linkId = cursor.getInt(idLinkId);
+						// final int linkId = cursor.getInt(idLinkId);
 						final String definition = cursor.getString(idDefinition);
 						final String members = cursor.getString(idMembers);
-						final long synsetId = cursor.getLong(idSynsetId);
+						// final long synsetId = cursor.getLong(idSynsetId);
 						final int recurses = cursor.getInt(idRecurses);
 						// final String link = cursor.getString(idLink);
 

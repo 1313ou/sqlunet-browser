@@ -475,8 +475,8 @@ public class WebFragment extends Fragment
 											if (pointer instanceof XPointer)
 											{
 												final XPointer xpointer = (XPointer) pointer;
-												final String xSources = xpointer.getxSources();
-												final Long xclassId = xpointer.getxClassId();
+												final String xSources = xpointer.getXSources();
+												final Long xclassId = xpointer.getXClassId();
 												// final Long xinstanceId = xpointer.getXInstanceId();
 												final Long wordId = xpointer.getWordId();
 												final Long synsetId = xpointer.getSynsetId();
@@ -584,11 +584,11 @@ public class WebFragment extends Fragment
 										break;
 
 									case SqlUNetContract.ARG_QUERYACTION_FNANNOSET:
-										final FnAnnoSetPointer annosetPointer = (FnAnnoSetPointer) pointer;
-										Log.d(WebFragment.TAG, "ARG fnannoset=" + annosetPointer); //$NON-NLS-1$
-										if (annosetPointer != null && Settings.Source.FRAMENET.test(sources))
+										final FnAnnoSetPointer annoSetPointer = (FnAnnoSetPointer) pointer;
+										Log.d(WebFragment.TAG, "ARG fnannoset=" + annoSetPointer); //$NON-NLS-1$
+										if (annoSetPointer != null && Settings.Source.FRAMENET.test(sources))
 										{
-											fnDomDoc = new FrameNetImplementation().queryAnnoSetDoc(db, annosetPointer.annoSetId);
+											fnDomDoc = new FrameNetImplementation().queryAnnoSetDoc(db, annoSetPointer.annoSetId);
 										}
 										break;
 								}

@@ -147,7 +147,7 @@ abstract class BasicModule extends Module
 				if (cursor.moveToFirst())
 				{
 					// column indices
-					final int idRolesetId = cursor.getColumnIndex(PbRolesets.ROLESETID);
+					// final int idRolesetId = cursor.getColumnIndex(PbRolesets.ROLESETID);
 					final int idRolesetName = cursor.getColumnIndex(PbRolesets.ROLESETNAME);
 					final int idRolesetDesc = cursor.getColumnIndex(PbRolesets.ROLESETDESC);
 					final int idRolesetHead = cursor.getColumnIndex(PbRolesets.ROLESETHEAD);
@@ -156,7 +156,7 @@ abstract class BasicModule extends Module
 					final SpannableStringBuilder sb = new SpannableStringBuilder();
 
 					// data
-					final int roleSetid1 = cursor.getInt(idRolesetId);
+					// final int roleSetId = cursor.getInt(idRolesetId);
 
 					// roleSet
 					Spanner.appendImage(sb, BasicModule.this.roleSetDrawable);
@@ -172,8 +172,8 @@ abstract class BasicModule extends Module
 					Spanner.append(sb, cursor.getString(idRolesetDesc), 0, PropbankFactories.definitionFactory);
 
 					// sub nodes
-					final TreeNode rolesNode = TreeFactory.newQueryNode(new RolesQuery(roleSetid1, R.drawable.roles, "Roles"), BasicModule.this.getContext()); //$NON-NLS-1$
-					final TreeNode examplesNode = TreeFactory.newQueryNode(new ExamplesQuery(roleSetid1, R.drawable.sample, "Examples"), BasicModule.this.getContext()); //$NON-NLS-1$
+					final TreeNode rolesNode = TreeFactory.newQueryNode(new RolesQuery(roleSetId, R.drawable.roles, "Roles"), BasicModule.this.getContext()); //$NON-NLS-1$
+					final TreeNode examplesNode = TreeFactory.newQueryNode(new ExamplesQuery(roleSetId, R.drawable.sample, "Examples"), BasicModule.this.getContext()); //$NON-NLS-1$
 
 					// attach result
 					TreeFactory.addTextNode(parent, sb, BasicModule.this.getContext(), rolesNode, examplesNode);
@@ -223,10 +223,10 @@ abstract class BasicModule extends Module
 				if (cursor.moveToFirst())
 				{
 					// column indices
-					final int idRolesetId = cursor.getColumnIndex(Words_PbRolesets.ROLESETID);
-					final int idRolesetName = cursor.getColumnIndex(Words_PbRolesets.ROLESETNAME);
-					final int idRolesetDesc = cursor.getColumnIndex(Words_PbRolesets.ROLESETDESC);
-					final int idRolesetHead = cursor.getColumnIndex(Words_PbRolesets.ROLESETHEAD);
+					final int idRoleSetId = cursor.getColumnIndex(Words_PbRolesets.ROLESETID);
+					final int idRoleSetName = cursor.getColumnIndex(Words_PbRolesets.ROLESETNAME);
+					final int idRoleSetDesc = cursor.getColumnIndex(Words_PbRolesets.ROLESETDESC);
+					final int idRoleSetHead = cursor.getColumnIndex(Words_PbRolesets.ROLESETHEAD);
 
 					// read cursor
 					do
@@ -234,24 +234,24 @@ abstract class BasicModule extends Module
 						final SpannableStringBuilder sb = new SpannableStringBuilder();
 
 						// data
-						final int roleSetid1 = cursor.getInt(idRolesetId);
+						final int roleSetId = cursor.getInt(idRoleSetId);
 
 						// roleSet
 						Spanner.appendImage(sb, BasicModule.this.rolesDrawable);
 						sb.append(' ');
-						Spanner.append(sb, cursor.getString(idRolesetName), 0, PropbankFactories.roleSetFactory);
+						Spanner.append(sb, cursor.getString(idRoleSetName), 0, PropbankFactories.roleSetFactory);
 						sb.append(' ');
 						sb.append("head="); //$NON-NLS-1$
-						sb.append(cursor.getString(idRolesetHead));
+						sb.append(cursor.getString(idRoleSetHead));
 						sb.append('\n');
 
 						// description
 						Spanner.appendImage(sb, BasicModule.this.definitionDrawable);
-						Spanner.append(sb, cursor.getString(idRolesetDesc), 0, PropbankFactories.definitionFactory);
+						Spanner.append(sb, cursor.getString(idRoleSetDesc), 0, PropbankFactories.definitionFactory);
 
 						// sub nodes
-						final TreeNode rolesNode = TreeFactory.newQueryNode(new RolesQuery(roleSetid1, R.drawable.roles, "Roles"), BasicModule.this.getContext()); //$NON-NLS-1$
-						final TreeNode examplesNode = TreeFactory.newQueryNode(new ExamplesQuery(roleSetid1, R.drawable.sample, "Examples"), BasicModule.this.getContext()); //$NON-NLS-1$
+						final TreeNode rolesNode = TreeFactory.newQueryNode(new RolesQuery(roleSetId, R.drawable.roles, "Roles"), BasicModule.this.getContext()); //$NON-NLS-1$
+						final TreeNode examplesNode = TreeFactory.newQueryNode(new ExamplesQuery(roleSetId, R.drawable.sample, "Examples"), BasicModule.this.getContext()); //$NON-NLS-1$
 
 						// attach result
 						TreeFactory.addTextNode(parent, sb, getContext(), rolesNode, examplesNode);

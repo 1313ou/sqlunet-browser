@@ -57,9 +57,9 @@ public class FrameModule extends BasicModule
 		if (query instanceof HasXId)
 		{
 			final HasXId pointer = (HasXId) query;
-			if (pointer.getxSources().contains("fn")) //$NON-NLS-1$
+			if (pointer.getXSources().contains("fn")) //$NON-NLS-1$
 			{
-				this.frameId = pointer.getxClassId();
+				this.frameId = pointer.getXClassId();
 				this.luId = pointer.getXInstanceId();
 			}
 		}
@@ -72,7 +72,7 @@ public class FrameModule extends BasicModule
 		if (this.luId != null)
 		{
 			// data
-			lexunit(this.luId, node, true, false);
+			lexUnit(this.luId, node, true, false);
 		}
 		else if (this.frameId != null)
 		{

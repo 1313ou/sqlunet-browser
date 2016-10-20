@@ -33,7 +33,7 @@ public class BasicSynset
 	/**
 	 * @param synsetId    is the synset id
 	 * @param definition  is the definition
-	 * @param lexDomainId is the lexdomainid
+	 * @param lexDomainId is the lexdomain id
 	 * @param sample      is the sample
 	 */
 	protected BasicSynset(final long synsetId, final String definition, final int lexDomainId, final String sample)

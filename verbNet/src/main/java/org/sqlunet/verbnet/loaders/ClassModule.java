@@ -35,11 +35,11 @@ public class ClassModule extends BasicModule
 		if (query instanceof HasXId)
 		{
 			final HasXId pointer = (HasXId) query;
-			if (pointer.getxSources().contains("vn")) //$NON-NLS-1$
+			if (pointer.getXSources().contains("vn")) //$NON-NLS-1$
 			{
-				this.classId = pointer.getxClassId();
+				this.classId = pointer.getXClassId();
 				// Long instanceId = pointer.getXInstanceId();
-				// String sources = pointer.getxSources();
+				// String sources = pointer.getXSources();
 			}
 		}
 	}
@@ -50,7 +50,7 @@ public class ClassModule extends BasicModule
 		if (this.classId != null)
 		{
 			// data
-			vnClasses(this.classId, node);
+			vnClass(this.classId, node);
 		}
 		else
 		{

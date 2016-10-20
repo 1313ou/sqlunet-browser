@@ -70,7 +70,7 @@ public class ClassFromWordModule extends BasicModule
 
 	// L O A D E R S
 
-	// vnClasses
+	// vnClass
 
 	private void vnClasses(final long wordId, final long synsetId, final TreeNode parent)
 	{
