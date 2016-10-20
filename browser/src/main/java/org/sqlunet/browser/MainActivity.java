@@ -287,7 +287,7 @@ public class MainActivity extends Activity
 		Class<?> intentClass = null;
 
 		// type
-		final Settings.Selector selectorType = Settings.getXnModePref(this);
+		final Settings.Selector selectorType = Settings.getSelectorPref(this);
 		switch (selectorType)
 		{
 			case SELECTOR:
@@ -299,7 +299,7 @@ public class MainActivity extends Activity
 		}
 
 		// mode
-		final Settings.SelectorMode selectorMode = Settings.getSelectorModePref(this);
+		final Settings.SelectorViewMode selectorMode = Settings.getSelectorViewModePref(this);
 		Intent intent = null;
 		switch (selectorMode)
 		{
@@ -325,7 +325,7 @@ public class MainActivity extends Activity
 		Intent intent = null;
 
 		// mode
-		final Settings.DetailMode detailMode = Settings.getDetailModePref(this);
+		final Settings.DetailViewMode detailMode = Settings.getDetailViewModePref(this);
 		switch (detailMode)
 		{
 			case VIEW:

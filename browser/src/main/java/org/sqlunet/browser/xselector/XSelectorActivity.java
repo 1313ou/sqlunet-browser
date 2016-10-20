@@ -94,7 +94,7 @@ public class XSelectorActivity extends Activity implements XSelectorFragment.Lis
 			// in two-pane mode, show the detail view in this activity by adding or replacing the detail fragment using a fragment transaction.
 			final Bundle arguments = new Bundle();
 			arguments.putParcelable(SqlUNetContract.ARG_QUERYPOINTER, pointer);
-			final Settings.DetailMode mode = Settings.getDetailModePref(this);
+			final Settings.DetailViewMode mode = Settings.getDetailViewModePref(this);
 
 			// transaction
 			final FragmentTransaction transaction = getFragmentManager().beginTransaction();

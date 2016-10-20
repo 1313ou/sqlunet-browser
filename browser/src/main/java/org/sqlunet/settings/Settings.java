@@ -11,6 +11,8 @@ import android.preference.PreferenceManager;
 
 /**
  * Settings
+ *
+ * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
 public class Settings
 {
@@ -85,62 +87,93 @@ public class Settings
 	// D I S P L A Y
 
 	/**
-	 * Modes
+	 * Selector view modes
 	 */
-	public enum SelectorMode
+	public enum SelectorViewMode
 	{
 		VIEW, WEB;
 
-		static SelectorMode getPref(final Context context)
+		/**
+		 * Get selector preferred view mode
+		 *
+		 * @param context context
+		 * @return preferred selector view mode
+		 */
+		static SelectorViewMode getPref(final Context context)
 		{
 			final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
-			final String mode_string = sharedPref.getString(Settings.PREF_SELECTOR_MODE, Settings.SelectorMode.VIEW.name());
-			Settings.SelectorMode mode;
+			final String mode_string = sharedPref.getString(Settings.PREF_SELECTOR_MODE, SelectorViewMode.VIEW.name());
+			SelectorViewMode mode;
 			try
 			{
-				mode = Settings.SelectorMode.valueOf(mode_string);
+				mode = SelectorViewMode.valueOf(mode_string);
 			}
 			catch (final Exception e)
 			{
-				mode = Settings.SelectorMode.VIEW;
+				mode = SelectorViewMode.VIEW;
 				sharedPref.edit().putString(Settings.PREF_SELECTOR_MODE, mode.name()).apply();
 			}
 			return mode;
 		}
 	}
 
-	public enum DetailMode
+	/**
+	 * Detail detail view modes
+	 */
+	public enum DetailViewMode
 	{
 		VIEW, WEB;
 
-		static DetailMode getPref(final Context context)
+		/**
+		 * Get preferred view mode
+		 *
+		 * @param context context
+		 * @return preferred selector mode
+		 */
+		static DetailViewMode getPref(final Context context)
 		{
 			final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
-			final String mode_string = sharedPref.getString(Settings.PREF_DETAIL_MODE, Settings.DetailMode.VIEW.name());
-			Settings.DetailMode mode;
+			final String mode_string = sharedPref.getString(Settings.PREF_DETAIL_MODE, DetailViewMode.VIEW.name());
+			DetailViewMode mode;
 			try
 			{
-				mode = Settings.DetailMode.valueOf(mode_string);
+				mode = DetailViewMode.valueOf(mode_string);
 			}
 			catch (final Exception e)
 			{
-				mode = Settings.DetailMode.VIEW;
+				mode = DetailViewMode.VIEW;
 				sharedPref.edit().putString(Settings.PREF_DETAIL_MODE, mode.name()).apply();
 			}
 			return mode;
 		}
 	}
 
+	// S E L E C T O R   T Y P E
+
+	/**
+	 * Selectors
+	 */
 	public enum Selector
 	{
 		SELECTOR, XSELECTOR;
 
+		/**
+		 * Set this selector as preferred selector
+		 *
+		 * @param context context
+		 */
 		public void setPref(final Context context)
 		{
 			final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
 			sharedPref.edit().putString(Settings.PREF_SELECTOR, this.name()).apply();
 		}
 
+		/**
+		 * Get preferred mode
+		 *
+		 * @param context context
+		 * @return preferred selector mode
+		 */
 		public static Selector getPref(final Context context)
 		{
 			final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
@@ -161,69 +194,140 @@ public class Settings
 
 	// P R E F E R E N C E S H O R T C U T S
 
-	static public SelectorMode getSelectorModePref(final Context context)
+	/**
+	 * Get selector preferred view mode
+	 *
+	 * @param context context
+	 * @return preferred selector view mode
+	 */
+	static public SelectorViewMode getSelectorViewModePref(final Context context)
 	{
-		return SelectorMode.getPref(context);
+		return SelectorViewMode.getPref(context);
 	}
 
-	static public DetailMode getDetailModePref(final Context context)
+	/**
+	 * Get detail preferred view mode
+	 *
+	 * @param context context
+	 * @return preferred detail view mode
+	 */
+	static public DetailViewMode getDetailViewModePref(final Context context)
 	{
-		return DetailMode.getPref(context);
+		return DetailViewMode.getPref(context);
 	}
 
-	static public Selector getXnModePref(final Context context)
+	/**
+	 * Get preferred selector type
+	 *
+	 * @param context context
+	 * @return preferred selector type
+	 */
+	static public Selector getSelectorPref(final Context context)
 	{
 		return Selector.getPref(context);
 	}
 
+	/**
+	 * Get preferred recurse flag
+	 *
+	 * @param context context
+	 * @return preferred recurse flag
+	 */
 	static public boolean getRecursePref(final Context context)
 	{
 		final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
 		return sharedPref.getBoolean(Settings.PREF_ENABLE_LINKS, false);
 	}
 
+	/**
+	 * Get preferred enable WordNet flag
+	 *
+	 * @param context context
+	 * @return preferred enable WordNet flag
+	 */
 	static public boolean getWordNetPref(final Context context)
 	{
 		final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
 		return sharedPref.getBoolean(Settings.PREF_ENABLE_WORDNET, true);
 	}
 
+	/**
+	 * Get preferred enable VerbNet flag
+	 *
+	 * @param context context
+	 * @return preferred enable VerbNet flag
+	 */
 	static public boolean getVerbNetPref(final Context context)
 	{
 		final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
 		return sharedPref.getBoolean(Settings.PREF_ENABLE_VERBNET, true);
 	}
 
+	/**
+	 * Get preferred enable PropBank flag
+	 *
+	 * @param context context
+	 * @return preferred enable PropbankNet flag
+	 */
 	static public boolean getPropBankPref(final Context context)
 	{
 		final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
 		return sharedPref.getBoolean(Settings.PREF_ENABLE_PROPBANK, true);
 	}
 
+	/**
+	 * Get preferred enable FrameNet flag
+	 *
+	 * @param context context
+	 * @return preferred enable FrameNet flag
+	 */
 	static public boolean getFrameNetPref(final Context context)
 	{
 		final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
 		return sharedPref.getBoolean(Settings.PREF_ENABLE_FRAMENET, true);
 	}
 
+	/**
+	 * Get preferred enable BNC flag
+	 *
+	 * @param context context
+	 * @return preferred enable BNC flag
+	 */
 	static public boolean getBncPref(final Context context)
 	{
 		final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
 		return sharedPref.getBoolean(Settings.PREF_ENABLE_BNC, true);
 	}
 
+	/**
+	 * Get preferred XML output flag when view mode is WEB
+	 *
+	 * @param context context
+	 * @return preferred XML output flag when view mode is WEB
+	 */
 	static public boolean getXmlPref(final Context context)
 	{
 		final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
 		return sharedPref.getBoolean(Settings.PREF_XML, true);
 	}
 
+	/**
+	 * Get preferred search mode
+	 *
+	 * @param context context
+	 * @return preferred search mode
+	 */
 	static public String getSearchModePref(final Context context)
 	{
 		final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
 		return sharedPref.getString(Settings.PREF_SEARCH_MODE, null);
 	}
 
+	/**
+	 * Initialize preferences
+	 *
+	 * @param context context
+	 */
 	@SuppressLint("CommitPrefEdits")
 	static public void initialize(final Context context)
 	{
@@ -239,13 +343,13 @@ public class Settings
 		final String viewwebMode_string = sharedPref.getString(Settings.PREF_SELECTOR_MODE, null);
 		if (viewwebMode_string == null)
 		{
-			editor.putString(Settings.PREF_SELECTOR_MODE, Settings.SelectorMode.VIEW.name());
+			editor.putString(Settings.PREF_SELECTOR_MODE, SelectorViewMode.VIEW.name());
 		}
 
 		final String detailMode_string = sharedPref.getString(Settings.PREF_DETAIL_MODE, null);
 		if (detailMode_string == null)
 		{
-			editor.putString(Settings.PREF_DETAIL_MODE, Settings.DetailMode.VIEW.name());
+			editor.putString(Settings.PREF_DETAIL_MODE, DetailViewMode.VIEW.name());
 		}
 
 		editor.commit();

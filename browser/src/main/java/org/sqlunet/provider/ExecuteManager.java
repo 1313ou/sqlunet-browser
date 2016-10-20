@@ -14,42 +14,66 @@ import java.util.zip.ZipFile;
 
 /**
  * Execution manager
+ *
+ * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
 @SuppressWarnings("RedundantSuppression")
 public class ExecuteManager
 {
-	private static final String TAG = "ManagedTask"; //$NON-NLS-1$
-
-	private final int publishRate;
+	private static final String TAG = "ExecuteManager"; //$NON-NLS-1$
 
 	/**
 	 * Manager listener
 	 */
 	public interface Listener
 	{
+		/**
+		 * Start event
+		 */
 		void managerStart();
 
+		/**
+		 * Finish event
+		 *
+		 * @param result result
+		 */
 		void managerFinish(boolean result);
 
+		/**
+		 * Intermediate update event
+		 *
+		 * @param progress progress value
+		 */
 		void managerUpdate(int progress);
 	}
 
-	private final String databasePath;
-
+	/**
+	 * Listener
+	 */
 	final private Listener listener;
+
+	/**
+	 * Publish rate
+	 */
+	private final int publishRate;
+
+	/**
+	 * Database path
+	 */
+	private final String databasePath;
 
 	/**
 	 * Constructor
 	 *
-	 * @param databasePath0 database file path
-	 * @param listener0     listener
-	 * @param publishRate0  publish rate
+	 * @param databasePath database file path
+	 * @param listener     listener
+	 * @param publishRate  publish rate
 	 */
-	public ExecuteManager(final String databasePath0, final Listener listener0, final int publishRate0)
+	public ExecuteManager(final String databasePath, final Listener listener, final int publishRate)
 	{
-		this.listener = listener0;
-		this.databasePath = databasePath0;
-		this.publishRate = publishRate0;
+		this.listener = listener;
+		this.databasePath = databasePath;
+		this.publishRate = publishRate;
 	}
 
 	/**
@@ -159,7 +183,7 @@ public class ExecuteManager
 					final ZipEntry zipEntry = zipFile.getEntry(entry);
 					if (zipEntry == null)
 					{
-						throw new IOException("zip entry not found " + entry); //$NON-NLS-1$
+						throw new IOException("Zip entry not found " + entry); //$NON-NLS-1$
 					}
 
 					is = zipFile.getInputStream(zipEntry);

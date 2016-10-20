@@ -10,6 +10,8 @@ import org.w3c.dom.Document;
 
 /**
  * Abstract document loader
+ *
+ * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
 abstract public class DocumentLoader extends AsyncTaskLoader<Document>
 {

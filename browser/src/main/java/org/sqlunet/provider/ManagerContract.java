@@ -5,19 +5,22 @@ import android.content.Intent;
 
 import org.sqlunet.browser.config.TableActivity;
 
+/**
+ * Manager contract
+ *
+ * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
+ */
 public class ManagerContract
 {
 	static public final String AUTHORITY = "org.sqlunet.provider.manager"; //$NON-NLS-1$
 
-	static public final class TablesAndIndices
-	{
-		static public final String TABLE = "sqlite_master"; //$NON-NLS-1$
-		static public final String CONTENT_URI = "content://" + ManagerContract.AUTHORITY + '/' + TablesAndIndices.TABLE; //$NON-NLS-1$
-		static public final String NAME = "name"; //$NON-NLS-1$
-		static public final String TYPE = "type"; //$NON-NLS-1$
-	}
-
-	static public Intent makeTablesAndIndicesIntent(final Context context)
+	/**
+	 * Query tables and indexes intent factory
+	 *
+	 * @param context context
+	 * @return intent
+	 */
+	static public Intent makeTablesAndIndexesIntent(final Context context)
 	{
 		final Intent intent = new Intent(context, TableActivity.class);
 		intent.putExtra(SqlUNetContract.ARG_QUERYURI, TablesAndIndices.CONTENT_URI);
@@ -32,5 +35,16 @@ public class ManagerContract
 		intent.putExtra(SqlUNetContract.ARG_QUERYSORT, order);
 		intent.putExtra(SqlUNetContract.ARG_QUERYFILTER, "name NOT LIKE 'sqlite_%' AND name NOT LIKE 'android_%'"); //$NON-NLS-1$
 		return intent;
+	}
+
+	/**
+	 * Table and indices contract
+	 */
+	static public final class TablesAndIndices
+	{
+		static public final String TABLE = "sqlite_master"; //$NON-NLS-1$
+		static public final String CONTENT_URI = "content://" + ManagerContract.AUTHORITY + '/' + TablesAndIndices.TABLE; //$NON-NLS-1$
+		static public final String NAME = "name"; //$NON-NLS-1$
+		static public final String TYPE = "type"; //$NON-NLS-1$
 	}
 }

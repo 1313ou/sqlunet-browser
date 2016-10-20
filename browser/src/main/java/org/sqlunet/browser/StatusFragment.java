@@ -13,8 +13,6 @@ import android.view.ViewGroup;
  */
 public class StatusFragment extends Fragment
 {
-	// C R E A T I O N
-
 	/**
 	 * Mandatory empty constructor for the fragment manager to instantiate the fragment (e.g. upon screen orientation changes).
 	 */

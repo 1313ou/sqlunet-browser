@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 /**
- * WordNet provider
+ * 5House-keeping) Manager provider
  *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
@@ -107,6 +107,12 @@ public class ManagerProvider extends SqlUNetProvider
 		}
 	}
 
+	/**
+	 * Get tables utility
+	 *
+	 * @param context context
+	 * @return collection of tables
+	 */
 	static public Collection<String> getTables(final Context context)
 	{
 		final Collection<String> tables = new ArrayList<>();

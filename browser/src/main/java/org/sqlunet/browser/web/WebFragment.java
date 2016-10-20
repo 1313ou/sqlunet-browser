@@ -72,6 +72,7 @@ public class WebFragment extends Fragment
 	private static final String LIST2 = "</OL>"; //$NON-NLS-1$
 	private static final String ITEM1 = "<LI class='treeitem treepanel'>"; //$NON-NLS-1$
 	private static final String ITEM2 = "</LI>"; //$NON-NLS-1$
+
 	/**
 	 * WebView
 	 */
@@ -231,7 +232,6 @@ public class WebFragment extends Fragment
 
 			data = sb.toString();
 		}
-		// System.out.println(data);
 		return data;
 	}
 

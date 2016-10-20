@@ -21,7 +21,8 @@ abstract class DocumentStringLoader extends AsyncTaskLoader<String>
 	/**
 	 * Cancellation signal
 	 */
-	private CancellationSignal cancellationSignal;
+	@SuppressWarnings("WeakerAccess")
+	protected CancellationSignal cancellationSignal;
 
 	/**
 	 * Constructor

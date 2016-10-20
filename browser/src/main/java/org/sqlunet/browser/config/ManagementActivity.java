@@ -85,7 +85,7 @@ public class ManagementActivity extends Activity
 				break;
 
 			case R.id.action_tables_and_indices:
-				intent = ManagerContract.makeTablesAndIndicesIntent(this);
+				intent = ManagerContract.makeTablesAndIndexesIntent(this);
 				intent.putExtra(SqlUNetContract.ARG_QUERYLAYOUT, R.layout.item_manager);
 				break;
 

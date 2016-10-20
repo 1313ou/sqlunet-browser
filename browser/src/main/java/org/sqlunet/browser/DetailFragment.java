@@ -37,7 +37,7 @@ public class DetailFragment extends Fragment
 	@Override
 	public View onCreateView(final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState)
 	{
-		final Settings.DetailMode mode = Settings.getDetailModePref(this.getActivity());
+		final Settings.DetailViewMode mode = Settings.getDetailViewModePref(this.getActivity());
 
 		// layout
 		View rootView = null;
@@ -66,7 +66,7 @@ public class DetailFragment extends Fragment
 		arguments.putParcelable(SqlUNetContract.ARG_QUERYPOINTER, pointer);
 
 		// detail fragment
-		final Settings.DetailMode mode = Settings.getDetailModePref(context);
+		final Settings.DetailViewMode mode = Settings.getDetailViewModePref(context);
 		switch (mode)
 		{
 			case VIEW:
