@@ -12,7 +12,7 @@ import org.sqlunet.provider.SqlUNetContract;
 import org.sqlunet.provider.SqlUNetProvider;
 
 /**
- * WordNet provider
+ * PredicateMatrix provider
  *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */

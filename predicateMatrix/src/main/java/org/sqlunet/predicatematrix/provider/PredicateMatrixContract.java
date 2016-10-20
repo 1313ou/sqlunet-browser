@@ -1,5 +1,10 @@
 package org.sqlunet.predicatematrix.provider;
 
+/**
+ * PredicateMatrix provider contract
+ *
+ * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
+ */
 public class PredicateMatrixContract
 {
 	static public final String AUTHORITY = "org.sqlunet.predicatematrix.provider"; //$NON-NLS-1$

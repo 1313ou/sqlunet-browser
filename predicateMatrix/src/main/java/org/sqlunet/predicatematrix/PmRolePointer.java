@@ -4,7 +4,7 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 /**
- * Parcelable frame
+ * Parcelable PredicateMatrix role
  *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */

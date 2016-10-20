@@ -23,7 +23,7 @@ import org.sqlunet.treeview.view.TreeView;
 import org.sqlunet.view.TreeFactory;
 
 /**
- * A fragment representing a predicate matrix.
+ * A fragment representing a predicate matrix
  *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */

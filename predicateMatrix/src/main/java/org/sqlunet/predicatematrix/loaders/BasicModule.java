@@ -249,16 +249,17 @@ abstract class BasicModule extends Module
 			return (int) (17 * (int) this.pmPos.charAt(0) + 19 * this.pmRoleId + 3 * this.pmPredId);
 		}
 
-		public String toRoleData()
+		@Override
+		public String toString()
 		{
-			return this.pmPos + '-' + Long.toString(this.pmRoleId) + '-' + Long.toString(this.pmPredId);
+			return toRoleString();
 		}
 
-		public String toData()
-		{
-			return toRoleData();
-		}
-
+		/**
+		 * Role data to string
+		 *
+		 * @return role data as string
+		 */
 		public String toRoleString()
 		{
 			return (this.pmPos == null ? "null" : this.pmPos) + //$NON-NLS-1$
@@ -269,15 +270,29 @@ abstract class BasicModule extends Module
 					;
 		}
 
-		@Override
-		public String toString()
+		/**
+		 * Role data to string
+		 *
+		 * @return role data as string
+		 */
+		public String toData()
 		{
-			return toRoleString();
+			return toRoleData();
+		}
+
+		/**
+		 * Role data to string
+		 *
+		 * @return role data as string
+		 */
+		public String toRoleData()
+		{
+			return this.pmPos + '-' + Long.toString(this.pmRoleId) + '-' + Long.toString(this.pmPredId);
 		}
 	}
 
 	/**
-	 * PreidcateMatrix row
+	 * PredicateMatrix row
 	 */
 	static class PmRow extends PmRole
 	{
@@ -303,15 +318,15 @@ abstract class BasicModule extends Module
 		}
 
 		@Override
-		public String toData()
-		{
-			return '[' + Long.toString(this.pmId) + ']' + '-' + super.toData();
-		}
-
-		@Override
 		public String toString()
 		{
 			return '[' + Long.toString(this.pmId) + ']' + '-' + super.toString();
+		}
+
+		@Override
+		public String toData()
+		{
+			return '[' + Long.toString(this.pmId) + ']' + '-' + super.toData();
 		}
 	}
 
@@ -381,14 +396,34 @@ abstract class BasicModule extends Module
 	 */
 	static class VnData implements Comparable<VnData>
 	{
+		/**
+		 * Class id
+		 */
 		final long vnClassId;
 
+		/**
+		 * Role id
+		 */
 		final long vnRoleId;
 
+		/**
+		 * Class
+		 */
 		final String vnClass;
 
+		/**
+		 * Role
+		 */
 		final String vnRole;
 
+		/**
+		 * Constructor
+		 *
+		 * @param vnClassId class id
+		 * @param vnRoleId  role id
+		 * @param vnClass   class
+		 * @param vnRole    role
+		 */
 		public VnData(final long vnClassId, final long vnRoleId, final String vnClass, final String vnRole)
 		{
 			this.vnClassId = vnClassId;
@@ -428,6 +463,12 @@ abstract class BasicModule extends Module
 			return (int) (19 * this.vnClassId + 13 * this.vnRoleId);
 		}
 
+		@Override
+		public String toString()
+		{
+			return this.vnClass + '-' + this.vnRole;
+		}
+
 		/**
 		 * Convert id data to string
 		 *
@@ -437,12 +478,6 @@ abstract class BasicModule extends Module
 		{
 			return Long.toString(this.vnClassId) + '-' + Long.toString(this.vnRoleId);
 		}
-
-		@Override
-		public String toString()
-		{
-			return this.vnClass + '-' + this.vnRole;
-		}
 	}
 
 	/**
@@ -450,18 +485,44 @@ abstract class BasicModule extends Module
 	 */
 	static class PbData implements Comparable<PbData>
 	{
+		/**
+		 * Role set id
+		 */
 		final long pbRoleSetId;
 
+		/**
+		 * Role id
+		 */
 		final long pbRoleId;
 
+		/**
+		 * Role set
+		 */
 		final String pbRoleSet;
 
+		/**
+		 * Role set description
+		 */
 		final String pbRoleSetDescr;
 
+		/**
+		 * Role
+		 */
 		final String pbRole;
 
+		/**
+		 * Role description
+		 */
 		final String pbRoleDescr;
 
+		/**
+		 * @param pbRoleSetId    role set id
+		 * @param pbRoleId       role id
+		 * @param pbRoleSet      role set
+		 * @param pbRoleSetDescr role set description
+		 * @param pbRole         role
+		 * @param pbRoleDescr    role description
+		 */
 		public PbData(final long pbRoleSetId, final long pbRoleId, final String pbRoleSet, final String pbRoleSetDescr, final String pbRole, final String pbRoleDescr)
 		{
 			this.pbRoleSetId = pbRoleSetId;
@@ -503,6 +564,12 @@ abstract class BasicModule extends Module
 			return (int) (23 * this.pbRoleSetId + 51 * this.pbRoleId);
 		}
 
+		@Override
+		public String toString()
+		{
+			return this.pbRoleSet + '-' + this.pbRole;
+		}
+
 		/**
 		 * Convert id data to string
 		 *
@@ -512,23 +579,41 @@ abstract class BasicModule extends Module
 		{
 			return Long.toString(this.pbRoleSetId) + '-' + Long.toString(this.pbRoleId);
 		}
-
-		public String toString()
-		{
-			return this.pbRoleSet + '-' + this.pbRole;
-		}
 	}
 
+	/**
+	 * FrameNet data
+	 */
 	class FnData implements Comparable<FnData>
 	{
+		/**
+		 * Frame id
+		 */
 		final long fnFrameId;
 
+		/**
+		 * Frame element id
+		 */
 		final long fnFeId;
 
+		/**
+		 * Frame
+		 */
 		final String fnFrame;
 
+		/**
+		 * Frame
+		 */
 		final String fnFe;
 
+		/**
+		 * Constructor
+		 *
+		 * @param fnFrameId Frame id
+		 * @param fnFeId    Frame element id
+		 * @param fnFrame   Frame
+		 * @param fnFe      Frame element
+		 */
 		public FnData(final long fnFrameId, final long fnFeId, final String fnFrame, final String fnFe)
 		{
 			this.fnFrameId = fnFrameId;
@@ -779,14 +864,14 @@ abstract class BasicModule extends Module
 		/**
 		 * Process row
 		 *
-		 * @param parentNode
-		 * @param wnData     WordNet data
-		 * @param pmRow      PredicateMatrix row
-		 * @param vnData     VerbNet data
-		 * @param pbData     Propbank data
-		 * @param fnData     FrameNet data
+		 * @param parent parent node
+		 * @param wnData WordNet data
+		 * @param pmRow  PredicateMatrix row
+		 * @param vnData VerbNet data
+		 * @param pbData Propbank data
+		 * @param fnData FrameNet data
 		 */
-		abstract protected void process(final TreeNode parentNode, final WnData wnData, final PmRow pmRow, final VnData vnData, final PbData pbData, final FnData fnData);
+		abstract protected void process(final TreeNode parent, final WnData wnData, final PmRow pmRow, final VnData vnData, final PbData pbData, final FnData fnData);
 
 		/**
 		 * End of processing
@@ -852,7 +937,7 @@ abstract class BasicModule extends Module
 		}
 
 		@Override
-		protected void process(final TreeNode parentNode, final WnData wnData, final PmRow pmRow, final VnData vnData, final PbData pbData, final FnData fnData)
+		protected void process(final TreeNode parent, final WnData wnData, final PmRow pmRow, final VnData vnData, final PbData pbData, final FnData fnData)
 		{
 			if (this.pmRoleId != pmRow.pmRoleId)
 			{
@@ -980,9 +1065,9 @@ abstract class BasicModule extends Module
 		}
 
 		@Override
-		protected void process(final TreeNode parentNode, final WnData wnData, final PmRow pmRow, final VnData vnData, final PbData pbData, final FnData fnData)
+		protected void process(final TreeNode parent, final WnData wnData, final PmRow pmRow, final VnData vnData, final PbData pbData, final FnData fnData)
 		{
-			this.displayer.display(parentNode, wnData, pmRow, vnData, pbData, fnData);
+			this.displayer.display(parent, wnData, pmRow, vnData, pbData, fnData);
 		}
 	}
 
@@ -1032,14 +1117,13 @@ abstract class BasicModule extends Module
 		 * Display PredicateMatrix row
 		 *
 		 * @param parentNode    parent node
-		 * @param pmRow         PredicateMatrix row
 		 * @param wnData        WordNet data
 		 * @param pmRow         PredicateMatrix row
 		 * @param vnData        VerbNet data
 		 * @param pbData        PropBank data
 		 * @param fnData        FrameNet data
 		 * @param wnDataOnRow   whether to display WordNet data on label
-		 * @param wnDataOnXData whether to displau WordNet data on extended data
+		 * @param wnDataOnXData whether to display WordNet data on extended data
 		 */
 		void displayRow(final TreeNode parentNode, final WnData wnData, final PmRow pmRow, final VnData vnData, final PbData pbData, final FnData fnData, final boolean wnDataOnRow, @SuppressWarnings("SameParameterValue") final boolean wnDataOnXData)
 		{
@@ -1457,8 +1541,18 @@ abstract class BasicModule extends Module
 
 	// R O L E S
 
+	/**
+	 * VerbNet class query
+	 */
 	class VnClassQuery extends LinkHolder.Link
 	{
+		/**
+		 * Constructor
+		 *
+		 * @param classId class id
+		 * @param icon    icon
+		 * @param text    label text
+		 */
 		public VnClassQuery(final long classId, final int icon, final CharSequence text)
 		{
 			super(classId, icon, text);
@@ -1480,8 +1574,18 @@ abstract class BasicModule extends Module
 		}
 	}
 
+	/**
+	 * PropBank role set query
+	 */
 	class PbRoleSetQuery extends LinkHolder.Link
 	{
+		/**
+		 * Constructor
+		 *
+		 * @param roleSetId role set id
+		 * @param icon      icon
+		 * @param text      label text
+		 */
 		public PbRoleSetQuery(final long roleSetId, final int icon, final CharSequence text)
 		{
 			super(roleSetId, icon, text);
@@ -1502,8 +1606,18 @@ abstract class BasicModule extends Module
 		}
 	}
 
+	/**
+	 * FrameNet frame query
+	 */
 	class FnFrameQuery extends LinkHolder.Link
 	{
+		/**
+		 * Constructor
+		 *
+		 * @param frameId frame id
+		 * @param icon    icon
+		 * @param text    label text
+		 */
 		public FnFrameQuery(final long frameId, final int icon, final CharSequence text)
 		{
 			super(frameId, icon, text);

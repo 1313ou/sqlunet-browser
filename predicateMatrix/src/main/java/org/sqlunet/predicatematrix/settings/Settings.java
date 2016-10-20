@@ -4,6 +4,11 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
+/**
+ * Settings
+ *
+ * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
+ */
 public class Settings
 {
 	private static final String PREF_PM_MODE = "pref_pm_mode"; //$NON-NLS-1$
@@ -15,12 +20,12 @@ public class Settings
 	{
 		ROLES, ROWS_GROUPED_BY_ROLE, ROWS_GROUPED_BY_SYNSET, ROWS;
 
-		public void setPref(final Context context)
-		{
-			final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
-			sharedPref.edit().putString(Settings.PREF_PM_MODE, this.name()).apply();
-		}
-
+		/**
+		 * Get mode preference
+		 *
+		 * @param context context
+		 * @return mode preference
+		 */
 		public static PMMode getPref(final Context context)
 		{
 			final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
@@ -36,6 +41,17 @@ public class Settings
 				sharedPref.edit().putString(Settings.PREF_PM_MODE, mode.name()).apply();
 			}
 			return mode;
+		}
+
+		/**
+		 * Set preferred mode to this mode
+		 *
+		 * @param context context
+		 */
+		public void setPref(final Context context)
+		{
+			final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
+			sharedPref.edit().putString(Settings.PREF_PM_MODE, this.name()).apply();
 		}
 	}
 }
