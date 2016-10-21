@@ -868,7 +868,7 @@ abstract class BasicModule extends Module
 		 * @param wnData WordNet data
 		 * @param pmRow  PredicateMatrix row
 		 * @param vnData VerbNet data
-		 * @param pbData Propbank data
+		 * @param pbData PropBank data
 		 * @param fnData FrameNet data
 		 */
 		abstract protected void process(final TreeNode parent, final WnData wnData, final PmRow pmRow, final VnData vnData, final PbData pbData, final FnData fnData);

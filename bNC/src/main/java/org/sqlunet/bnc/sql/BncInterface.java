@@ -8,7 +8,7 @@ import org.w3c.dom.Document;
 interface BncInterface
 {
 	/**
-	 * Business method the returns BNC data as DOM document
+	 * Business method that returns BNC data as DOM document
 	 *
 	 * @param connection database connection
 	 * @param word       the target word

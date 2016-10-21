@@ -128,7 +128,7 @@ public class PredicateMatrixProvider extends SqlUNetProvider
 		}
 		catch (SQLiteException e)
 		{
-			Log.e(TAG, "Propbank provider query failed", e); //$NON-NLS-1$
+			Log.e(TAG, "PropBank provider query failed", e); //$NON-NLS-1$
 			return null;
 		}
 	}

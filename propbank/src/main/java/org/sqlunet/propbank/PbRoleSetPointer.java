@@ -4,14 +4,31 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 /**
- * Parcelable roleSet
+ * Parcelable role set pointer
  *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
 public class PbRoleSetPointer implements Parcelable
 {
 	/**
-	 * Members
+	 * Static field used to regenerate object, individually or as arrays
+	 */
+	public static final Parcelable.Creator<PbRoleSetPointer> CREATOR = new Parcelable.Creator<PbRoleSetPointer>()
+	{
+		@Override
+		public PbRoleSetPointer createFromParcel(final Parcel parcel)
+		{
+			return new PbRoleSetPointer(parcel);
+		}
+
+		@Override
+		public PbRoleSetPointer[] newArray(final int size)
+		{
+			return new PbRoleSetPointer[size];
+		}
+	};
+	/**
+	 * Role set id
 	 */
 	public Long roleSetId;
 
@@ -25,6 +42,8 @@ public class PbRoleSetPointer implements Parcelable
 
 	/**
 	 * Constructor from Parcel, reads back fields IN THE ORDER they were written
+	 *
+	 * @param parcel parcel
 	 */
 	@SuppressWarnings("boxing")
 	private PbRoleSetPointer(final Parcel parcel)
@@ -37,6 +56,11 @@ public class PbRoleSetPointer implements Parcelable
 		}
 	}
 
+	/**
+	 * Get role set id
+	 *
+	 * @return role set id
+	 */
 	public Long getRoleSetId()
 	{
 		if (this.roleSetId != 0)
@@ -45,24 +69,6 @@ public class PbRoleSetPointer implements Parcelable
 		}
 		return null;
 	}
-
-	/**
-	 * Static field used to regenerate object, individually or as arrays
-	 */
-	public static final Parcelable.Creator<PbRoleSetPointer> CREATOR = new Parcelable.Creator<PbRoleSetPointer>()
-	{
-		@Override
-		public PbRoleSetPointer createFromParcel(final Parcel pc)
-		{
-			return new PbRoleSetPointer(pc);
-		}
-
-		@Override
-		public PbRoleSetPointer[] newArray(final int size)
-		{
-			return new PbRoleSetPointer[size];
-		}
-	};
 
 	@Override
 	public void writeToParcel(final Parcel pc, final int flags)

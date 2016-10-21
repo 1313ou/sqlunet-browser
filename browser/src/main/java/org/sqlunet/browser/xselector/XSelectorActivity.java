@@ -14,7 +14,7 @@ import org.sqlunet.browser.DetailFragment;
 import org.sqlunet.browser.R;
 import org.sqlunet.browser.web.WebFragment;
 import org.sqlunet.framenet.browser.FrameNetFragment;
-import org.sqlunet.propbank.browser.PropbankFragment;
+import org.sqlunet.propbank.browser.PropBankFragment;
 import org.sqlunet.provider.SqlUNetContract;
 import org.sqlunet.settings.Settings;
 import org.sqlunet.verbnet.browser.VerbNetFragment;
@@ -130,7 +130,7 @@ public class XSelectorActivity extends Activity implements XSelectorFragment.Lis
 					{
 						// final View labelView = findViewById(R.id.label_propbank);
 						// labelView.setVisibility(View.VISIBLE);
-						this.propbankFragment = new PropbankFragment();
+						this.propbankFragment = new PropBankFragment();
 						this.propbankFragment.setArguments(arguments);
 						transaction.replace(R.id.container_propbank, this.propbankFragment);
 					}

@@ -20,7 +20,7 @@ class PbRoleSetQueryCommand extends DBQueryCommand
 	 * Constructor
 	 *
 	 * @param connection database connection
-	 * @param roleSetId  target roleSet id
+	 * @param roleSetId  target role set id
 	 */
 	@SuppressWarnings("boxing")
 	public PbRoleSetQueryCommand(final SQLiteDatabase connection, final long roleSetId)
@@ -32,7 +32,7 @@ class PbRoleSetQueryCommand extends DBQueryCommand
 	/**
 	 * Get the roleSet id from the result set
 	 *
-	 * @return the roleSet id from the result set
+	 * @return the role set id from the result set
 	 */
 	@SuppressWarnings("unused")
 	public long getRoleSetId()
@@ -41,9 +41,9 @@ class PbRoleSetQueryCommand extends DBQueryCommand
 	}
 
 	/**
-	 * Get the roleSet name from the result set
+	 * Get the role set name from the result set
 	 *
-	 * @return the roleSet name from the result set
+	 * @return the role set name from the result set
 	 */
 	public String getRoleSetName()
 	{
@@ -51,7 +51,7 @@ class PbRoleSetQueryCommand extends DBQueryCommand
 	}
 
 	/**
-	 * Get roleSet head
+	 * Get role set head
 	 *
 	 * @return roleSet head
 	 */
@@ -61,9 +61,9 @@ class PbRoleSetQueryCommand extends DBQueryCommand
 	}
 
 	/**
-	 * Get roleSet description
+	 * Get role set description
 	 *
-	 * @return roleSet description
+	 * @return role set description
 	 */
 	public String getRoleSetDescr()
 	{

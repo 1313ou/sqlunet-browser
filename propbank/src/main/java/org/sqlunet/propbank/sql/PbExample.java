@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Example attached to a PropBank roleSet
+ * Examples attached to a PropBank role set
  *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */

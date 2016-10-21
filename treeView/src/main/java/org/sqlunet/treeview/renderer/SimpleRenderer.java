@@ -8,8 +8,8 @@ import org.sqlunet.treeview.model.TreeNode;
 
 /**
  * Simple renderer
- * <p>
- * Created by Bogdan Melnychuk on 2/11/15.
+ *
+ * @author Bogdan Melnychuk on 2/11/15.
  */
 public class SimpleRenderer extends TreeNode.Renderer<Object>
 {

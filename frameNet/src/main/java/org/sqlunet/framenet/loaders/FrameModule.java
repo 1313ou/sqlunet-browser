@@ -33,11 +33,11 @@ public class FrameModule extends BasicModule
 	}
 
 	@Override
-	public void init(final Parcelable arguments)
+	public void init(final Parcelable query)
 	{
-		super.init(arguments);
+		super.init(query);
 
-		unmarshal(arguments);
+		unmarshal(query);
 	}
 
 	/**

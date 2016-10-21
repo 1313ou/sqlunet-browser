@@ -56,7 +56,7 @@
 	<string name="title_activity_table">Table</string>
 	<string name="title_activity_synset">Synset</string>
 	<string name="title_activity_vnclass">VerbNet Class</string>
-	<string name="title_activity_pbroleset">Propbank RoleSet</string>
+	<string name="title_activity_pbroleset">PropBank RoleSet</string>
 	<string name="title_activity_fnframe">FrameNet Frame</string>
 	<string name="title_activity_fnlexunit">FrameNet LexUnit</string>
 	<string name="title_activity_fnsentence">FrameNet Sentence</string>

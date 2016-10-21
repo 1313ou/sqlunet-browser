@@ -10,7 +10,7 @@ import android.util.Log;
 
 import org.sqlunet.provider.XSqlUNetContract.PredicateMatrix;
 import org.sqlunet.provider.XSqlUNetContract.PredicateMatrix_FrameNet;
-import org.sqlunet.provider.XSqlUNetContract.PredicateMatrix_Propbank;
+import org.sqlunet.provider.XSqlUNetContract.PredicateMatrix_PropBank;
 import org.sqlunet.provider.XSqlUNetContract.PredicateMatrix_VerbNet;
 import org.sqlunet.provider.XSqlUNetContract.Words_FnWords_FnFrames_U;
 import org.sqlunet.provider.XSqlUNetContract.Words_FnWords_PbWords_VnWords;
@@ -22,7 +22,7 @@ import java.util.HashSet;
 import java.util.List;
 
 /**
- * Cross WordNet-FrameNet-Propbank-VerbNet provider
+ * Cross WordNet-FrameNet-PropBank-VerbNet provider
  *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
@@ -51,7 +51,7 @@ public class XSqlUNetProvider extends SqlUNetProvider
 		XSqlUNetProvider.uriMatcher.addURI(XSqlUNetContract.AUTHORITY, Words_FnWords_PbWords_VnWords.TABLE, XSqlUNetProvider.WORDS_FNWORDS_PBWORDS_VNWORDS);
 		XSqlUNetProvider.uriMatcher.addURI(XSqlUNetContract.AUTHORITY, PredicateMatrix.TABLE, XSqlUNetProvider.PREDICATEMATRIX);
 		XSqlUNetProvider.uriMatcher.addURI(XSqlUNetContract.AUTHORITY, PredicateMatrix_VerbNet.TABLE, XSqlUNetProvider.PREDICATEMATRIX_VERBNET);
-		XSqlUNetProvider.uriMatcher.addURI(XSqlUNetContract.AUTHORITY, PredicateMatrix_Propbank.TABLE, XSqlUNetProvider.PREDICATEMATRIX_PROPBANK);
+		XSqlUNetProvider.uriMatcher.addURI(XSqlUNetContract.AUTHORITY, PredicateMatrix_PropBank.TABLE, XSqlUNetProvider.PREDICATEMATRIX_PROPBANK);
 		XSqlUNetProvider.uriMatcher.addURI(XSqlUNetContract.AUTHORITY, PredicateMatrix_FrameNet.TABLE, XSqlUNetProvider.PREDICATEMATRIX_FRAMENET);
 		XSqlUNetProvider.uriMatcher.addURI(XSqlUNetContract.AUTHORITY, Words_VnWords_VnClasses_U.TABLE, XSqlUNetProvider.WORDS_VNWORDS_VNCLASSES_U);
 		XSqlUNetProvider.uriMatcher.addURI(XSqlUNetContract.AUTHORITY, Words_PbWords_PbRolesets_U.TABLE, XSqlUNetProvider.WORDS_PBWORDS_PBROLESETS_U);
@@ -81,7 +81,7 @@ public class XSqlUNetProvider extends SqlUNetProvider
 			case PREDICATEMATRIX_VERBNET:
 				return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + XSqlUNetContract.AUTHORITY + '.' + PredicateMatrix_VerbNet.TABLE; //$NON-NLS-1$
 			case PREDICATEMATRIX_PROPBANK:
-				return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + XSqlUNetContract.AUTHORITY + '.' + PredicateMatrix_Propbank.TABLE; //$NON-NLS-1$
+				return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + XSqlUNetContract.AUTHORITY + '.' + PredicateMatrix_PropBank.TABLE; //$NON-NLS-1$
 			case PREDICATEMATRIX_FRAMENET:
 				return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + XSqlUNetContract.AUTHORITY + '.' + PredicateMatrix_FrameNet.TABLE; //$NON-NLS-1$
 			case WORDS_VNWORDS_VNCLASSES_U:

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Propbank to HTML Client-side 2015/05/15 (C) 2015 Author: Bernard Bou -->
+<!-- PropBank to HTML Client-side 2015/05/15 (C) 2015 Author: Bernard Bou -->
 
 <xsl:transform version="1.0"
                xmlns:xsl="http://www.w3.org/1999/XSL/Transform">

@@ -296,7 +296,7 @@
 			tools:ignore="ExportedContentProvider">
 		</provider>
 		<provider
-			android:name="org.sqlunet.propbank.provider.PropbankProvider"
+			android:name="org.sqlunet.propbank.provider.PropBankProvider"
 			android:authorities="org.sqlunet.propbank.provider"
 			android:enabled="true"
 			android:exported="true"

@@ -15,7 +15,7 @@ interface VerbNetInterface
 	// S E L E C T I O N
 
 	/**
-	 * Business method the returns VerbNet selector data as DOM document
+	 * Business method that returns VerbNet selector data as DOM document
 	 *
 	 * @param word target word
 	 * @return VerbNet selector data as DOM document
@@ -33,7 +33,7 @@ interface VerbNetInterface
 	// D E T A I L
 
 	/**
-	 * Business method the returns VerbNet data as DOM document from word
+	 * Business method that returns VerbNet data as DOM document from word
 	 *
 	 * @param word target word
 	 * @return VerbNet data as DOM document
@@ -71,7 +71,7 @@ interface VerbNetInterface
 	// I T E M S
 
 	/**
-	 * Business method the returns class data as DOM document from class id
+	 * Business method that returns class data as DOM document from class id
 	 *
 	 * @param connection database connection
 	 * @param classId    the class to build query from

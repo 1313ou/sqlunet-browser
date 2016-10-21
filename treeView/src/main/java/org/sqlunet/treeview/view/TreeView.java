@@ -23,50 +23,97 @@ import java.util.Set;
 
 /**
  * Tree view
- * <p>
- * Created by Bogdan Melnychuk on 2/10/15.
+ *
+ * @author Bogdan Melnychuk on 2/10/15.
  */
 public class TreeView
 {
 	private static final String NODES_PATH_SEPARATOR = ";"; //$NON-NLS-1$
 
-	private final TreeNode mRoot;
-	private final Context mContext;
-	private boolean applyForRoot;
+	/**
+	 * Root node
+	 */
+	private final TreeNode root;
+
+	/**
+	 * Context
+	 */
+	private final Context context;
+
+	/**
+	 * Container style
+	 */
 	private int containerStyle = 0;
-	private Class<? extends TreeNode.Renderer<?>> defaultViewHolderClass = SimpleRenderer.class;
+
+	/**
+	 * Default renderer
+	 */
+	private Class<? extends TreeNode.Renderer<?>> defaultRendererClass = SimpleRenderer.class;
+
+	/**
+	 * Node click listener
+	 */
 	private TreeNode.TreeNodeClickListener nodeClickListener;
-	private boolean mSelectionModeEnabled;
-	private boolean mUseDefaultAnimation = false;
+
+	/**
+	 * Apply for root
+	 */
+	private boolean applyForRoot;
+
+	/**
+	 * Selection mode enabled
+	 */
+	private boolean enableSelectionMode;
+
+	/**
+	 * Use default animation
+	 */
+	private boolean useDefaultAnimation = false;
+
+	/**
+	 * Use 2D scrolling
+	 */
 	private boolean use2dScroll = false;
 
 	// C O N S T R U C T O R
 
-	public TreeView(Context context, TreeNode root)
+	/**
+	 * Constructor
+	 *
+	 * @param context context
+	 * @param root    root
+	 */
+	public TreeView(final Context context, final TreeNode root)
 	{
-		this.mRoot = root;
-		this.mContext = context;
+		this.root = root;
+		this.context = context;
 	}
 
 	// V I E W
 
-	private View getView(int style)
+	/**
+	 * Get view
+	 *
+	 * @param style style
+	 * @return view
+	 */
+	private View getView(final int style)
 	{
 		final ViewGroup view;
 		if (style > 0)
 		{
-			ContextThemeWrapper newContext = new ContextThemeWrapper(this.mContext, style);
+			ContextThemeWrapper newContext = new ContextThemeWrapper(this.context, style);
 			view = this.use2dScroll ? new TwoDScrollView(newContext) : new ScrollView(newContext);
 		}
 		else
 		{
-			view = this.use2dScroll ? new TwoDScrollView(this.mContext) : new ScrollView(this.mContext);
+			view = this.use2dScroll ? new TwoDScrollView(this.context) : new ScrollView(this.context);
 		}
 
-		Context containerContext = this.mContext;
+		Context containerContext = this.context;
 		if (this.containerStyle != 0 && this.applyForRoot)
 		{
-			containerContext = new ContextThemeWrapper(this.mContext, this.containerStyle);
+			containerContext = new ContextThemeWrapper(this.context, this.containerStyle);
 		}
 
 		final LinearLayout viewTreeItems = new LinearLayout(containerContext, null, this.containerStyle);
@@ -74,7 +121,7 @@ public class TreeView
 		viewTreeItems.setOrientation(LinearLayout.VERTICAL);
 		view.addView(viewTreeItems);
 
-		this.mRoot.setRenderer(new TreeNode.Renderer<Void>(this.mContext)
+		this.root.setRenderer(new TreeNode.Renderer<Void>(this.context)
 		{
 			@Override
 			public View createNodeView(TreeNode node, Void value)
@@ -89,10 +136,15 @@ public class TreeView
 			}
 		});
 
-		expandNode(this.mRoot, false);
+		expandNode(this.root, false);
 		return view;
 	}
 
+	/**
+	 * Get view
+	 *
+	 * @return view
+	 */
 	public View getView()
 	{
 		return getView(-1);
@@ -100,14 +152,20 @@ public class TreeView
 
 	// A D D / R E M O V E
 
-	private void addNode(ViewGroup container, final TreeNode node)
+	/**
+	 * Add node to container
+	 *
+	 * @param container container
+	 * @param node      node
+	 */
+	private void addNode(final ViewGroup container, final TreeNode node)
 	{
-		final TreeNode.Renderer<?> viewHolder = getViewHolderForNode(node);
+		final TreeNode.Renderer<?> viewHolder = getNodeRenderer(node);
 		final View nodeView = viewHolder.getView();
 		container.addView(nodeView);
 
 		// selection
-		if (this.mSelectionModeEnabled)
+		if (this.enableSelectionMode)
 		{
 			viewHolder.toggleSelectionMode();
 		}
@@ -137,22 +195,33 @@ public class TreeView
 		});
 	}
 
+	/**
+	 * Add node to parent
+	 *
+	 * @param parent parent node
+	 * @param node   node to add
+	 */
 	@SuppressWarnings("unused")
-	public void addNode(TreeNode parent, final TreeNode nodeToAdd)
+	public void addNode(final TreeNode parent, final TreeNode node)
 	{
 		// tree
-		parent.addChild(nodeToAdd);
+		parent.addChild(node);
 
 		// view
 		if (parent.isExpanded())
 		{
-			final TreeNode.Renderer<?> parentViewHolder = getViewHolderForNode(parent);
-			addNode(parentViewHolder.getNodeItemsView(), nodeToAdd);
+			final TreeNode.Renderer<?> parentViewHolder = getNodeRenderer(parent);
+			addNode(parentViewHolder.getNodeItemsView(), node);
 		}
 	}
 
+	/**
+	 * Remove node
+	 *
+	 * @param node node to remove
+	 */
 	@SuppressWarnings("unused")
-	public void removeNode(TreeNode node)
+	public void removeNode(final TreeNode node)
 	{
 		if (node.getParent() != null)
 		{
@@ -163,79 +232,159 @@ public class TreeView
 			// view
 			if (parent.isExpanded() && index >= 0)
 			{
-				final TreeNode.Renderer<?> parentViewHolder = getViewHolderForNode(parent);
+				final TreeNode.Renderer<?> parentViewHolder = getNodeRenderer(parent);
 				parentViewHolder.getNodeItemsView().removeViewAt(index);
 			}
 		}
 	}
 
-	// P R O P E R T I E S
+	// E X P A N D  /  C O L L A P S E
 
-	public void setDefaultAnimation(@SuppressWarnings("SameParameterValue") boolean defaultAnimation)
+	/**
+	 * Expand
+	 *
+	 * @param node            node
+	 * @param includeSubnodes whether to include subnodes
+	 */
+	static public void expand(final TreeNode node, @SuppressWarnings("SameParameterValue") boolean includeSubnodes)
 	{
-		this.mUseDefaultAnimation = defaultAnimation;
+		node.getRenderer().getTreeView().expandNode(node, includeSubnodes);
 	}
 
-	public void setDefaultContainerStyle(int style)
+	/**
+	 * Expand
+	 *
+	 * @param node   node
+	 * @param levels number of levels to expand
+	 */
+	static public void expand(final TreeNode node, int levels)
 	{
-		setDefaultContainerStyle(style, false);
+		node.getRenderer().getTreeView().expandRelativeLevel(node, levels);
 	}
 
-	private void setDefaultContainerStyle(int style, @SuppressWarnings("SameParameterValue") boolean applyForRoot)
-	{
-		this.containerStyle = style;
-		this.applyForRoot = applyForRoot;
-	}
-
+	/**
+	 * Collapse
+	 *
+	 * @param node            node
+	 * @param includeSubnodes whether to include subnodes
+	 */
 	@SuppressWarnings("unused")
-	public void setUse2dScroll(boolean use2dScroll)
+	static public void collapse(final TreeNode node, boolean includeSubnodes)
 	{
-		this.use2dScroll = use2dScroll;
+		node.getRenderer().getTreeView().collapseNode(node, includeSubnodes);
 	}
 
-	@SuppressWarnings("unused")
-	public boolean is2dScrollEnabled()
+	/**
+	 * Expand view
+	 *
+	 * @param view view
+	 */
+	private static void expand(final View view)
 	{
-		return this.use2dScroll;
+		view.measure(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
+		final int targetHeight = view.getMeasuredHeight();
+
+		view.getLayoutParams().height = 0;
+		view.setVisibility(View.VISIBLE);
+		Animation animation = new Animation()
+		{
+			@Override
+			protected void applyTransformation(float interpolatedTime, Transformation t)
+			{
+				view.getLayoutParams().height = interpolatedTime == 1 ? LayoutParams.WRAP_CONTENT : (int) (targetHeight * interpolatedTime);
+				view.requestLayout();
+			}
+
+			@Override
+			public boolean willChangeBounds()
+			{
+				return true;
+			}
+		};
+
+		// 1dp/ms
+		animation.setDuration((int) (targetHeight / view.getContext().getResources().getDisplayMetrics().density));
+		view.startAnimation(animation);
 	}
 
-	public void setDefaultViewHolder(Class<? extends TreeNode.Renderer<?>> viewHolder)
+	/**
+	 * Collapse view
+	 *
+	 * @param view view
+	 */
+	private static void collapse(final View view)
 	{
-		this.defaultViewHolderClass = viewHolder;
+		final int initialHeight = view.getMeasuredHeight();
+
+		Animation a = new Animation()
+		{
+			@Override
+			protected void applyTransformation(float interpolatedTime, Transformation t)
+			{
+				if (interpolatedTime == 1)
+				{
+					view.setVisibility(View.GONE);
+				}
+				else
+				{
+					view.getLayoutParams().height = initialHeight - (int) (initialHeight * interpolatedTime);
+					view.requestLayout();
+				}
+			}
+
+			@Override
+			public boolean willChangeBounds()
+			{
+				return true;
+			}
+		};
+
+		// 1dp/ms
+		a.setDuration((int) (initialHeight / view.getContext().getResources().getDisplayMetrics().density));
+		view.startAnimation(a);
 	}
 
-	@SuppressWarnings("unused")
-	public void setDefaultNodeClickListener(TreeNode.TreeNodeClickListener listener)
-	{
-		this.nodeClickListener = listener;
-	}
-
-	// E X P A N D / C O L L A P S E
-
+	/**
+	 * Expand all
+	 */
 	@SuppressWarnings("unused")
 	public void expandAll()
 	{
-		expandNode(this.mRoot, true);
+		expandNode(this.root, true);
 	}
 
+	/**
+	 * Collapse all
+	 */
 	private void collapseAll()
 	{
-		for (TreeNode n : this.mRoot.getChildren())
+		for (TreeNode n : this.root.getChildren())
 		{
 			collapseNode(n, true);
 		}
 	}
 
+	/**
+	 * Expand from root to level
+	 *
+	 * @param level level number
+	 */
 	@SuppressWarnings("unused")
-	public void expandLevel(int level)
+	public void expandLevel(final int level)
 	{
-		for (TreeNode n : this.mRoot.getChildren())
+		for (TreeNode n : this.root.getChildren())
 		{
 			expandLevel(n, level);
 		}
 	}
 
-	private void expandLevel(TreeNode node, int level)
+	/**
+	 * Expand to level
+	 *
+	 * @param node  node
+	 * @param level level number
+	 */
+	private void expandLevel(final TreeNode node, final int level)
 	{
 		if (node.getLevel() <= level)
 		{
@@ -247,7 +396,13 @@ public class TreeView
 		}
 	}
 
-	private void expandRelativeLevel(TreeNode node, int levels)
+	/**
+	 * Expand relative level
+	 *
+	 * @param node   node
+	 * @param levels number of levels
+	 */
+	private void expandRelativeLevel(final TreeNode node, final int levels)
 	{
 		if (levels <= 0)
 		{
@@ -262,18 +417,33 @@ public class TreeView
 		}
 	}
 
-	private void expandNode(TreeNode node)
+	/**
+	 * Expand node
+	 *
+	 * @param node node
+	 */
+	private void expandNode(final TreeNode node)
 	{
 		expandNode(node, false);
 	}
 
+	/**
+	 * Collapse node
+	 *
+	 * @param node node
+	 */
 	@SuppressWarnings("unused")
-	public void collapseNode(TreeNode node)
+	public void collapseNode(final TreeNode node)
 	{
 		collapseNode(node, false);
 	}
 
-	private void toggleNode(TreeNode node)
+	/**
+	 * Toggle node
+	 *
+	 * @param node node
+	 */
+	private void toggleNode(final TreeNode node)
 	{
 		if (node.isExpanded())
 		{
@@ -285,12 +455,18 @@ public class TreeView
 		}
 	}
 
-	private void collapseNode(TreeNode node, final boolean includeSubnodes)
+	/**
+	 * Collapse node
+	 *
+	 * @param node            node
+	 * @param includeSubnodes whether to include subnodes
+	 */
+	private void collapseNode(final TreeNode node, final boolean includeSubnodes)
 	{
 		node.setExpanded(false);
-		TreeNode.Renderer<?> nodeViewHolder = getViewHolderForNode(node);
+		TreeNode.Renderer<?> nodeViewHolder = getNodeRenderer(node);
 
-		if (this.mUseDefaultAnimation)
+		if (this.useDefaultAnimation)
 		{
 			collapse(nodeViewHolder.getNodeItemsView());
 		}
@@ -308,10 +484,16 @@ public class TreeView
 		}
 	}
 
+	/**
+	 * Expand node
+	 *
+	 * @param node            node
+	 * @param includeSubnodes whether to include subnodes
+	 */
 	private void expandNode(final TreeNode node, boolean includeSubnodes)
 	{
 		node.setExpanded(true);
-		final TreeNode.Renderer<?> parentViewHolder = getViewHolderForNode(node);
+		final TreeNode.Renderer<?> parentViewHolder = getNodeRenderer(node);
 		parentViewHolder.getNodeItemsView().removeAllViews();
 
 		parentViewHolder.toggle(true);
@@ -325,7 +507,7 @@ public class TreeView
 				expandNode(n, includeSubnodes);
 			}
 		}
-		if (this.mUseDefaultAnimation)
+		if (this.useDefaultAnimation)
 		{
 			expand(parentViewHolder.getNodeItemsView());
 		}
@@ -335,88 +517,94 @@ public class TreeView
 		}
 	}
 
-	private static void expand(final View v)
+	// P R O P E R T I E S
+
+	/**
+	 * Set default animation
+	 *
+	 * @param defaultAnimation default animation
+	 */
+	public void setDefaultAnimation(@SuppressWarnings("SameParameterValue") final boolean defaultAnimation)
 	{
-		v.measure(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
-		final int targetHeight = v.getMeasuredHeight();
-
-		v.getLayoutParams().height = 0;
-		v.setVisibility(View.VISIBLE);
-		Animation a = new Animation()
-		{
-			@Override
-			protected void applyTransformation(float interpolatedTime, Transformation t)
-			{
-				v.getLayoutParams().height = interpolatedTime == 1 ? LayoutParams.WRAP_CONTENT : (int) (targetHeight * interpolatedTime);
-				v.requestLayout();
-			}
-
-			@Override
-			public boolean willChangeBounds()
-			{
-				return true;
-			}
-		};
-
-		// 1dp/ms
-		a.setDuration((int) (targetHeight / v.getContext().getResources().getDisplayMetrics().density));
-		v.startAnimation(a);
+		this.useDefaultAnimation = defaultAnimation;
 	}
 
-	private static void collapse(final View v)
+	/**
+	 * Set default container style
+	 *
+	 * @param defaultStyle default container style
+	 */
+	public void setDefaultContainerStyle(final int defaultStyle)
 	{
-		final int initialHeight = v.getMeasuredHeight();
-
-		Animation a = new Animation()
-		{
-			@Override
-			protected void applyTransformation(float interpolatedTime, Transformation t)
-			{
-				if (interpolatedTime == 1)
-				{
-					v.setVisibility(View.GONE);
-				}
-				else
-				{
-					v.getLayoutParams().height = initialHeight - (int) (initialHeight * interpolatedTime);
-					v.requestLayout();
-				}
-			}
-
-			@Override
-			public boolean willChangeBounds()
-			{
-				return true;
-			}
-		};
-
-		// 1dp/ms
-		a.setDuration((int) (initialHeight / v.getContext().getResources().getDisplayMetrics().density));
-		v.startAnimation(a);
+		setDefaultContainerStyle(defaultStyle, false);
 	}
 
-	static public void expand(final TreeNode node, @SuppressWarnings("SameParameterValue") boolean includeSubnodes)
+	/**
+	 * Set default container style
+	 *
+	 * @param defaultStyle default container style
+	 * @param applyForRoot apply for root
+	 */
+	private void setDefaultContainerStyle(final int defaultStyle, @SuppressWarnings("SameParameterValue") boolean applyForRoot)
 	{
-		node.getRenderer().getTreeView().expandNode(node, includeSubnodes);
+		this.containerStyle = defaultStyle;
+		this.applyForRoot = applyForRoot;
 	}
 
-	static public void expand(final TreeNode node, int levels)
-	{
-		node.getRenderer().getTreeView().expandRelativeLevel(node, levels);
-	}
-
+	/**
+	 * Use 2D scroll
+	 *
+	 * @param use2dScroll use 2D scroll flag
+	 */
 	@SuppressWarnings("unused")
-	static public void collapse(final TreeNode node, boolean includeSubnodes)
+	public void setUse2dScroll(final boolean use2dScroll)
 	{
-		node.getRenderer().getTreeView().collapseNode(node, includeSubnodes);
+		this.use2dScroll = use2dScroll;
+	}
+
+	/**
+	 * Get use 2D scroll
+	 *
+	 * @return use2dScroll use 2D scroll flag
+	 */
+	@SuppressWarnings("unused")
+	public boolean is2dScrollEnabled()
+	{
+		return this.use2dScroll;
+	}
+
+	/**
+	 * Set default renderer
+	 *
+	 * @param renderer default renderer
+	 */
+	public void setDefaultRenderer(final Class<? extends TreeNode.Renderer<?>> renderer)
+	{
+		this.defaultRendererClass = renderer;
+	}
+
+	/**
+	 * Set default on-click listener
+	 *
+	 * @param listener on-click listener
+	 */
+	@SuppressWarnings("unused")
+	public void setDefaultNodeClickListener(final TreeNode.TreeNodeClickListener listener)
+	{
+		this.nodeClickListener = listener;
 	}
 
 	// S T A T E
 
+	/**
+	 * Get save state
+	 *
+	 * @return save state
+	 */
 	public String getSaveState()
 	{
 		final StringBuilder builder = new StringBuilder();
-		getSaveState(this.mRoot, builder);
+		getSaveState(this.root, builder);
 		if (builder.length() > 0)
 		{
 			builder.setLength(builder.length() - 1);
@@ -424,18 +612,29 @@ public class TreeView
 		return builder.toString();
 	}
 
-	public void restoreState(String saveState)
+	/**
+	 * Restore save state
+	 *
+	 * @param saveState save state
+	 */
+	public void restoreState(final String saveState)
 	{
 		if (!TextUtils.isEmpty(saveState))
 		{
 			collapseAll();
 			final String[] openNodesArray = saveState.split(NODES_PATH_SEPARATOR);
 			final Set<String> openNodes = new HashSet<>(Arrays.asList(openNodesArray));
-			restoreNodeState(this.mRoot, openNodes);
+			restoreNodeState(this.root, openNodes);
 		}
 	}
 
-	private void restoreNodeState(TreeNode node, Set<String> openNodes)
+	/**
+	 * Restore node state
+	 *
+	 * @param node      node
+	 * @param openNodes open nodes
+	 */
+	private void restoreNodeState(final TreeNode node, final Set<String> openNodes)
 	{
 		for (TreeNode n : node.getChildren())
 		{
@@ -447,77 +646,89 @@ public class TreeView
 		}
 	}
 
-	private void getSaveState(TreeNode root, StringBuilder sBuilder)
+	/**
+	 * Get save state
+	 *
+	 * @param root root
+	 * @param sb   builder
+	 */
+	private void getSaveState(final TreeNode root, final StringBuilder sb)
 	{
 		for (TreeNode node : root.getChildren())
 		{
 			if (node.isExpanded())
 			{
-				sBuilder.append(node.getPath());
-				sBuilder.append(NODES_PATH_SEPARATOR);
-				getSaveState(node, sBuilder);
+				sb.append(node.getPath());
+				sb.append(NODES_PATH_SEPARATOR);
+				getSaveState(node, sb);
 			}
 		}
 	}
 
 	// S E L E C T I O N
 
+	/**
+	 * Get whether selection mode is enabled
+	 *
+	 * @return whether selection mode is enabled
+	 */
 	@SuppressWarnings("unused")
-	public void setSelectionModeEnabled(boolean selectionModeEnabled)
+	public boolean isEnableSelectionMode()
 	{
-		if (!selectionModeEnabled)
+		return this.enableSelectionMode;
+	}
+
+	/**
+	 * Set selection mode enabled
+	 *
+	 * @param flag selection mode enabled flag
+	 */
+	@SuppressWarnings("unused")
+	public void setEnableSelectionMode(final boolean flag)
+	{
+		if (!flag)
 		{
 			// TODO fix double iteration over tree
 			deselectAll();
 		}
-		this.mSelectionModeEnabled = selectionModeEnabled;
 
-		for (TreeNode node : this.mRoot.getChildren())
+		this.enableSelectionMode = flag;
+
+		for (TreeNode node : this.root.getChildren())
 		{
-			toggleSelectionMode(node, selectionModeEnabled);
+			toggleSelectionMode(node, flag);
 		}
 
 	}
 
-	@SuppressWarnings({"unchecked", "unused"})
-	public <E> List<E> getSelectedValues(Class<E> clazz)
-	{
-		List<E> result = new ArrayList<>();
-		List<TreeNode> selected = getSelected();
-		for (TreeNode n : selected)
-		{
-			Object value = n.getValue();
-			if (value != null && value.getClass().equals(clazz))
-			{
-				result.add((E) value);
-			}
-		}
-		return result;
-	}
-
-	@SuppressWarnings("unused")
-	public boolean isSelectionModeEnabled()
-	{
-		return this.mSelectionModeEnabled;
-	}
-
-	private void toggleSelectionMode(TreeNode parent, boolean selectionModeEnabled1)
+	/**
+	 * Toggle selection mode
+	 *
+	 * @param parent       parent
+	 * @param childrenFlag flag for children
+	 */
+	private void toggleSelectionMode(final TreeNode parent, final boolean childrenFlag)
 	{
 		toggleSelectionForNode(parent);
 		if (parent.isExpanded())
 		{
 			for (TreeNode node : parent.getChildren())
 			{
-				toggleSelectionMode(node, selectionModeEnabled1);
+				toggleSelectionMode(node, childrenFlag);
 			}
 		}
 	}
 
+	/**
+	 * Get selected nodes
+	 *
+	 * @return selected nodes
+	 */
 	private List<TreeNode> getSelected()
 	{
-		if (this.mSelectionModeEnabled)
+		if (this.enableSelectionMode)
 		{
-			return getSelected(this.mRoot);
+			return getSelected(this.root);
 		}
 		else
 		{
@@ -525,57 +736,113 @@ public class TreeView
 		}
 	}
 
-	// TODO Do we need to go through whole tree? Save references or consider collapsed nodes as not selected
-	private List<TreeNode> getSelected(TreeNode parent)
+	/**
+	 * Get selected nodes from parent
+	 *
+	 * @param parent parent
+	 * @return selected nodes
+	 */
+	private List<TreeNode> getSelected(final TreeNode parent)
 	{
+		// TODO Do we need to go through whole tree? Save references or consider collapsed nodes as not selected
 		List<TreeNode> result = new ArrayList<>();
-		for (TreeNode n : parent.getChildren())
+		for (TreeNode node : parent.getChildren())
 		{
-			if (n.isSelected())
+			if (node.isSelected())
 			{
-				result.add(n);
+				result.add(node);
 			}
-			result.addAll(getSelected(n));
+			result.addAll(getSelected(node));
 		}
 		return result;
 	}
 
-	@SuppressWarnings("unused")
-	public void selectAll(boolean skipCollapsed)
+	/**
+	 * Get selected values that are instances of class
+	 *
+	 * @param valueClass value class
+	 * @param <E>        value type
+	 * @return values
+	 */
+	@SuppressWarnings({"unchecked", "unused"})
+	public <E> List<E> getSelectedValues(final Class<E> valueClass)
 	{
-		makeAllSelection(true, skipCollapsed);
+		List<E> result = new ArrayList<>();
+		List<TreeNode> selected = getSelected();
+		for (TreeNode node : selected)
+		{
+			Object value = node.getValue();
+			if (value != null && value.getClass().equals(valueClass))
+			{
+				result.add((E) value);
+			}
+		}
+		return result;
 	}
 
+	/**
+	 * Select all
+	 *
+	 * @param skipCollapsed whether to skip collapsed nod
+	 */
+	@SuppressWarnings("unused")
+	public void selectAll(final boolean skipCollapsed)
+	{
+		propagateSelection(true, skipCollapsed);
+	}
+
+	/**
+	 * Deselect all
+	 */
 	private void deselectAll()
 	{
-		makeAllSelection(false, false);
+		propagateSelection(false, false);
 	}
 
-	private void makeAllSelection(boolean selected, boolean skipCollapsed)
+	/**
+	 * Propagate selection
+	 *
+	 * @param selected      selected flag
+	 * @param skipCollapsed whether to skip collapsed node
+	 */
+	private void propagateSelection(final boolean selected, boolean skipCollapsed)
 	{
-		if (this.mSelectionModeEnabled)
+		if (this.enableSelectionMode)
 		{
-			for (TreeNode node : this.mRoot.getChildren())
+			for (TreeNode node : this.root.getChildren())
 			{
 				selectNode(node, selected, skipCollapsed);
 			}
 		}
 	}
 
+	/**
+	 * Select node
+	 *
+	 * @param node     node
+	 * @param selected selected flag
+	 */
 	@SuppressWarnings("unused")
-	public void selectNode(TreeNode node, boolean selected)
+	public void selectNode(final TreeNode node, boolean selected)
 	{
-		if (this.mSelectionModeEnabled)
+		if (this.enableSelectionMode)
 		{
 			node.setSelected(selected);
 			toggleSelectionForNode(node);
 		}
 	}
 
-	private void selectNode(TreeNode parent, boolean selected, boolean skipCollapsed)
+	/**
+	 * Select node and childfe
+	 *
+	 * @param parent   parent node
+	 * @param selected selected flag
+	 */
+	private void selectNode(final TreeNode parent, final boolean selected, final boolean skipCollapsed)
 	{
 		parent.setSelected(selected);
 		toggleSelectionForNode(parent);
+
 		boolean toContinue = !skipCollapsed || parent.isExpanded();
 		if (toContinue)
 		{
@@ -586,42 +853,52 @@ public class TreeView
 		}
 	}
 
-	private void toggleSelectionForNode(TreeNode node)
+	/**
+	 * Toggle selection for node
+	 *
+	 * @param node node
+	 */
+	private void toggleSelectionForNode(final TreeNode node)
 	{
-		TreeNode.Renderer<?> holder = getViewHolderForNode(node);
-		if (holder.isInitialized())
+		TreeNode.Renderer<?> renderer = getNodeRenderer(node);
+		if (renderer.isInitialized())
 		{
-			getViewHolderForNode(node).toggleSelectionMode();
+			getNodeRenderer(node).toggleSelectionMode();
 		}
 	}
 
-	// V I E W H O L D E R
+	// R E N D E R E R
 
-	private TreeNode.Renderer<?> getViewHolderForNode(TreeNode node)
+	/**
+	 * Get renderer for node
+	 *
+	 * @param node node
+	 * @return renderer
+	 */
+	private TreeNode.Renderer<?> getNodeRenderer(final TreeNode node)
 	{
-		TreeNode.Renderer<?> viewHolder = node.getRenderer();
-		if (viewHolder == null)
+		TreeNode.Renderer<?> renderer = node.getRenderer();
+		if (renderer == null)
 		{
 			try
 			{
-				final Object object = this.defaultViewHolderClass.getConstructor(Context.class).newInstance(this.mContext);
-				viewHolder = (TreeNode.Renderer<?>) object;
-				node.setRenderer(viewHolder);
+				final Object object = this.defaultRendererClass.getConstructor(Context.class).newInstance(this.context);
+				renderer = (TreeNode.Renderer<?>) object;
+				node.setRenderer(renderer);
 			}
 			catch (Exception e)
 			{
-				throw new RuntimeException("Could not instantiate class " + this.defaultViewHolderClass); //$NON-NLS-1$
+				throw new RuntimeException("Could not instantiate class " + this.defaultRendererClass); //$NON-NLS-1$
 			}
 		}
-		if (viewHolder.getContainerStyle() <= 0)
+		if (renderer.getContainerStyle() <= 0)
 		{
-			viewHolder.setContainerStyle(this.containerStyle);
+			renderer.setContainerStyle(this.containerStyle);
 		}
-		if (viewHolder.getTreeView() == null)
+		if (renderer.getTreeView() == null)
 		{
-			viewHolder.setTreeView(this);
+			renderer.setTreeView(this);
 		}
-		return viewHolder;
+		return renderer;
 	}
-
 }

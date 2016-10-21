@@ -1,4 +1,4 @@
-<!-- DTD for VerbNet v 1.0 20070328 -->
+<!-- DTD for PropBank v 1.0 20070328 -->
 
 	<!ELEMENT PROPBANK (TARGET,ROLESET*)>
 

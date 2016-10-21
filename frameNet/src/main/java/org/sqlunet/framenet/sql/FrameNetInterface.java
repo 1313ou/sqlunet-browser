@@ -15,7 +15,7 @@ interface FrameNetInterface
 	// S E L E C T O R
 
 	/**
-	 * Business method the returns FrameNet selector data as DOM document
+	 * Business method that returns FrameNet selector data as DOM document
 	 *
 	 * @param word target word
 	 * @param pos  target pos to build query from
@@ -53,7 +53,7 @@ interface FrameNetInterface
 	String queryXML(final SQLiteDatabase connection, final long wordId, final Character pos);
 
 	/**
-	 * Business method the returns FrameNet data as DOM document
+	 * Business method that returns FrameNet data as DOM document
 	 *
 	 * @param word target word
 	 * @param pos  target pos to build query from
@@ -73,7 +73,7 @@ interface FrameNetInterface
 	// I T E M S
 
 	/**
-	 * Business method the returns FrameNet frame data as DOM document
+	 * Business method that returns FrameNet frame data as DOM document
 	 *
 	 * @param connection database connection
 	 * @param frameId    target frame to build query from
@@ -93,7 +93,7 @@ interface FrameNetInterface
 	String queryFrameXML(final SQLiteDatabase connection, final long frameId, final Character pos);
 
 	/**
-	 * Business method the returns FrameNet lex unit data as DOM document
+	 * Business method that returns FrameNet lex unit data as DOM document
 	 *
 	 * @param connection database connection
 	 * @param luId       target lex unit id to build query from

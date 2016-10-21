@@ -29,15 +29,15 @@ public class AnnoSetFromValenceUnitModule extends BasicModule
 	}
 
 	@Override
-	public void init(final Parcelable arguments)
+	public void init(final Parcelable query)
 	{
-		super.init(arguments);
+		super.init(query);
 
 		// get query
-		if (arguments instanceof FnValenceUnitPointer)
+		if (query instanceof FnValenceUnitPointer)
 		{
-			final FnValenceUnitPointer query = (FnValenceUnitPointer) arguments;
-			this.vuId = query.getId();
+			final FnValenceUnitPointer pointer = (FnValenceUnitPointer) query;
+			this.vuId = pointer.getId();
 		}
 	}
 

@@ -7,13 +7,12 @@ import android.os.Bundle;
 import org.sqlunet.propbank.R;
 
 /**
- * LexUnitQuery activity
+ * PropBank role set activity
  *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
 public class PbRoleSetActivity extends Activity
 {
-
 	@Override
 	protected void onCreate(final Bundle savedInstanceState)
 	{

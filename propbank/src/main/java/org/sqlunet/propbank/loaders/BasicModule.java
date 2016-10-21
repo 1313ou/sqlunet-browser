@@ -13,13 +13,13 @@ import android.text.SpannableStringBuilder;
 
 import org.sqlunet.browser.Module;
 import org.sqlunet.propbank.R;
-import org.sqlunet.propbank.provider.PropbankContract;
-import org.sqlunet.propbank.provider.PropbankContract.PbRolesets;
-import org.sqlunet.propbank.provider.PropbankContract.PbRolesets_PbExamples;
-import org.sqlunet.propbank.provider.PropbankContract.PbRolesets_PbRoles;
-import org.sqlunet.propbank.provider.PropbankContract.Words_PbRolesets;
-import org.sqlunet.propbank.style.PropbankFactories;
-import org.sqlunet.propbank.style.PropbankSpanner;
+import org.sqlunet.propbank.provider.PropBankContract;
+import org.sqlunet.propbank.provider.PropBankContract.PbRoleSets;
+import org.sqlunet.propbank.provider.PropBankContract.PbRoleSets_PbExamples;
+import org.sqlunet.propbank.provider.PropBankContract.PbRoleSets_PbRoles;
+import org.sqlunet.propbank.provider.PropBankContract.Words_PbRoleSets;
+import org.sqlunet.propbank.style.PropBankFactories;
+import org.sqlunet.propbank.style.PropBankSpanner;
 import org.sqlunet.style.Spanner;
 import org.sqlunet.treeview.model.TreeNode;
 import org.sqlunet.treeview.renderer.QueryHolder;
@@ -29,7 +29,7 @@ import org.sqlunet.view.TreeFactory;
 import java.util.Arrays;
 
 /**
- * Module for roleSets
+ * Module for PropBank role sets
  *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
@@ -72,33 +72,28 @@ abstract class BasicModule extends Module
 	 */
 	private Drawable sampleDrawable;
 
-	// spanner
+	// agents
 
 	/**
 	 * Spanner
 	 */
-	private PropbankSpanner spanner;
+	private PropBankSpanner spanner;
 
 	/**
 	 * Constructor
+	 *
+	 * @param fragment fragment
 	 */
 	BasicModule(final Fragment fragment)
 	{
 		super(fragment);
 	}
 
-	/**
-	 * Unmarshal parceled query
-	 *
-	 * @param query parceled query
-	 */
-	abstract void unmarshal(final Parcelable query);
-
 	@Override
 	public void init(final Parcelable query)
 	{
 		// spanner
-		this.spanner = new PropbankSpanner(getContext());
+		this.spanner = new PropBankSpanner(getContext());
 
 		// drawables
 		this.roleSetDrawable = Spanner.getDrawable(getContext(), R.drawable.roleset);
@@ -113,10 +108,23 @@ abstract class BasicModule extends Module
 		unmarshal(query);
 	}
 
+	/**
+	 * Unmarshal parceled query
+	 *
+	 * @param query parceled query
+	 */
+	abstract void unmarshal(final Parcelable query);
+
 	// L O A D E R S
 
 	// role sets
 
+	/**
+	 * Role set from id
+	 *
+	 * @param roleSetId role set id
+	 * @param parent    parent node
+	 */
 	void roleSet(final long roleSetId, final TreeNode parent)
 	{
 		getLoaderManager().restartLoader(++Module.loaderId, null, new LoaderCallbacks<Cursor>()
@@ -124,14 +132,14 @@ abstract class BasicModule extends Module
 			@Override
 			public Loader<Cursor> onCreateLoader(final int loaderId, final Bundle loaderArgs)
 			{
-				final Uri uri = Uri.parse(PbRolesets.CONTENT_URI);
+				final Uri uri = Uri.parse(PropBankContract.PbRoleSets.CONTENT_URI);
 				final String[] projection = { //
-						PbRolesets.ROLESETID, //
-						PbRolesets.ROLESETNAME, //
-						PbRolesets.ROLESETHEAD, //
-						PbRolesets.ROLESETDESC, //
+						PropBankContract.PbRoleSets.ROLESETID, //
+						PropBankContract.PbRoleSets.ROLESETNAME, //
+						PropBankContract.PbRoleSets.ROLESETHEAD, //
+						PropBankContract.PbRoleSets.ROLESETDESC, //
 				};
-				final String selection = PbRolesets.ROLESETID + " = ?"; //$NON-NLS-1$
+				final String selection = PropBankContract.PbRoleSets.ROLESETID + " = ?"; //$NON-NLS-1$
 				final String[] selectionArgs = {Long.toString(roleSetId)};
 				final String sortOrder = null;
 				return new CursorLoader(getContext(), uri, projection, selection, selectionArgs, sortOrder);
@@ -147,10 +155,10 @@ abstract class BasicModule extends Module
 				if (cursor.moveToFirst())
 				{
 					// column indices
-					// final int idRolesetId = cursor.getColumnIndex(PbRolesets.ROLESETID);
-					final int idRolesetName = cursor.getColumnIndex(PbRolesets.ROLESETNAME);
-					final int idRolesetDesc = cursor.getColumnIndex(PbRolesets.ROLESETDESC);
-					final int idRolesetHead = cursor.getColumnIndex(PbRolesets.ROLESETHEAD);
+					// final int idRolesetId = cursor.getColumnIndex(PbRoleSets.ROLESETID);
+					final int idRolesetName = cursor.getColumnIndex(PbRoleSets.ROLESETNAME);
+					final int idRolesetDesc = cursor.getColumnIndex(PropBankContract.PbRoleSets.ROLESETDESC);
+					final int idRolesetHead = cursor.getColumnIndex(PropBankContract.PbRoleSets.ROLESETHEAD);
 
 					// read cursor
 					final SpannableStringBuilder sb = new SpannableStringBuilder();
@@ -161,7 +169,7 @@ abstract class BasicModule extends Module
 					// roleSet
 					Spanner.appendImage(sb, BasicModule.this.roleSetDrawable);
 					sb.append(' ');
-					Spanner.append(sb, cursor.getString(idRolesetName), 0, PropbankFactories.roleSetFactory);
+					Spanner.append(sb, cursor.getString(idRolesetName), 0, PropBankFactories.roleSetFactory);
 					sb.append(' ');
 					sb.append("head="); //$NON-NLS-1$
 					sb.append(cursor.getString(idRolesetHead));
@@ -169,7 +177,7 @@ abstract class BasicModule extends Module
 
 					// description
 					Spanner.appendImage(sb, BasicModule.this.definitionDrawable);
-					Spanner.append(sb, cursor.getString(idRolesetDesc), 0, PropbankFactories.definitionFactory);
+					Spanner.append(sb, cursor.getString(idRolesetDesc), 0, PropBankFactories.definitionFactory);
 
 					// sub nodes
 					final TreeNode rolesNode = TreeFactory.newQueryNode(new RolesQuery(roleSetId, R.drawable.roles, "Roles"), BasicModule.this.getContext()); //$NON-NLS-1$
@@ -197,6 +205,12 @@ abstract class BasicModule extends Module
 		});
 	}
 
+	/**
+	 * Role sets for word id
+	 *
+	 * @param wordId word id
+	 * @param parent parent node
+	 */
 	void roleSets(final long wordId, final TreeNode parent)
 	{
 		getLoaderManager().restartLoader(++Module.loaderId, null, new LoaderCallbacks<Cursor>()
@@ -204,14 +218,14 @@ abstract class BasicModule extends Module
 			@Override
 			public Loader<Cursor> onCreateLoader(final int loaderId, final Bundle loaderArgs)
 			{
-				final Uri uri = Uri.parse(PropbankContract.Words_PbRolesets.CONTENT_URI);
+				final Uri uri = Uri.parse(Words_PbRoleSets.CONTENT_URI);
 				final String[] projection = { //
-						Words_PbRolesets.ROLESETID, //
-						Words_PbRolesets.ROLESETNAME, //
-						Words_PbRolesets.ROLESETHEAD, //
-						Words_PbRolesets.ROLESETDESC, //
+						Words_PbRoleSets.ROLESETID, //
+						Words_PbRoleSets.ROLESETNAME, //
+						Words_PbRoleSets.ROLESETHEAD, //
+						Words_PbRoleSets.ROLESETDESC, //
 				};
-				final String selection = Words_PbRolesets.WORDID + " = ?"; //$NON-NLS-1$
+				final String selection = Words_PbRoleSets.WORDID + " = ?"; //$NON-NLS-1$
 				final String[] selectionArgs = {Long.toString(wordId)};
 				final String sortOrder = null;
 				return new CursorLoader(BasicModule.this.getContext(), uri, projection, selection, selectionArgs, sortOrder);
@@ -223,10 +237,10 @@ abstract class BasicModule extends Module
 				if (cursor.moveToFirst())
 				{
 					// column indices
-					final int idRoleSetId = cursor.getColumnIndex(Words_PbRolesets.ROLESETID);
-					final int idRoleSetName = cursor.getColumnIndex(Words_PbRolesets.ROLESETNAME);
-					final int idRoleSetDesc = cursor.getColumnIndex(Words_PbRolesets.ROLESETDESC);
-					final int idRoleSetHead = cursor.getColumnIndex(Words_PbRolesets.ROLESETHEAD);
+					final int idRoleSetId = cursor.getColumnIndex(Words_PbRoleSets.ROLESETID);
+					final int idRoleSetName = cursor.getColumnIndex(Words_PbRoleSets.ROLESETNAME);
+					final int idRoleSetDesc = cursor.getColumnIndex(Words_PbRoleSets.ROLESETDESC);
+					final int idRoleSetHead = cursor.getColumnIndex(Words_PbRoleSets.ROLESETHEAD);
 
 					// read cursor
 					do
@@ -239,7 +253,7 @@ abstract class BasicModule extends Module
 						// roleSet
 						Spanner.appendImage(sb, BasicModule.this.rolesDrawable);
 						sb.append(' ');
-						Spanner.append(sb, cursor.getString(idRoleSetName), 0, PropbankFactories.roleSetFactory);
+						Spanner.append(sb, cursor.getString(idRoleSetName), 0, PropBankFactories.roleSetFactory);
 						sb.append(' ');
 						sb.append("head="); //$NON-NLS-1$
 						sb.append(cursor.getString(idRoleSetHead));
@@ -247,7 +261,7 @@ abstract class BasicModule extends Module
 
 						// description
 						Spanner.appendImage(sb, BasicModule.this.definitionDrawable);
-						Spanner.append(sb, cursor.getString(idRoleSetDesc), 0, PropbankFactories.definitionFactory);
+						Spanner.append(sb, cursor.getString(idRoleSetDesc), 0, PropBankFactories.definitionFactory);
 
 						// sub nodes
 						final TreeNode rolesNode = TreeFactory.newQueryNode(new RolesQuery(roleSetId, R.drawable.roles, "Roles"), BasicModule.this.getContext()); //$NON-NLS-1$
@@ -279,6 +293,12 @@ abstract class BasicModule extends Module
 
 	// roles
 
+	/**
+	 * Roles in role set
+	 *
+	 * @param roleSetId role set id
+	 * @param parent    parent node
+	 */
 	private void roles(final int roleSetId, final TreeNode parent)
 	{
 		getLoaderManager().restartLoader(++Module.loaderId, null, new LoaderCallbacks<Cursor>()
@@ -286,15 +306,15 @@ abstract class BasicModule extends Module
 			@Override
 			public Loader<Cursor> onCreateLoader(final int loaderId, final Bundle loaderArgs)
 			{
-				final Uri uri = Uri.parse(PbRolesets_PbRoles.CONTENT_URI);
+				final Uri uri = Uri.parse(PbRoleSets_PbRoles.CONTENT_URI);
 				final String[] projection = { //
-						PbRolesets_PbRoles.ROLEID, //
-						PbRolesets_PbRoles.ROLEDESCR, //
-						PbRolesets_PbRoles.NARG, //
-						PbRolesets_PbRoles.FUNCNAME, //
-						PbRolesets_PbRoles.THETANAME, //
+						PbRoleSets_PbRoles.ROLEID, //
+						PbRoleSets_PbRoles.ROLEDESCR, //
+						PbRoleSets_PbRoles.NARG, //
+						PbRoleSets_PbRoles.FUNCNAME, //
+						PbRoleSets_PbRoles.THETANAME, //
 				};
-				final String selection = PbRolesets_PbRoles.ROLESETID + "= ?"; //$NON-NLS-1$
+				final String selection = PbRoleSets_PbRoles.ROLESETID + "= ?"; //$NON-NLS-1$
 				final String[] selectionArgs = {Long.toString(roleSetId)};
 				final String sortOrder = null;
 				return new CursorLoader(getContext(), uri, projection, selection, selectionArgs, sortOrder);
@@ -307,11 +327,11 @@ abstract class BasicModule extends Module
 				if (cursor.moveToFirst())
 				{
 					// column indices
-					// final int idRoleId = cursor.getColumnIndex(PbRolesets_PbRoles.ROLEID);
-					final int idRoleDescr = cursor.getColumnIndex(PbRolesets_PbRoles.ROLEDESCR);
-					final int idFunc = cursor.getColumnIndex(PbRolesets_PbRoles.FUNCNAME);
-					final int idTheta = cursor.getColumnIndex(PbRolesets_PbRoles.THETANAME);
-					final int idNArg = cursor.getColumnIndex(PbRolesets_PbRoles.NARG);
+					// final int idRoleId = cursor.getColumnIndex(PbRoleSets_PbRoles.ROLEID);
+					final int idRoleDescr = cursor.getColumnIndex(PbRoleSets_PbRoles.ROLEDESCR);
+					final int idFunc = cursor.getColumnIndex(PbRoleSets_PbRoles.FUNCNAME);
+					final int idTheta = cursor.getColumnIndex(PbRoleSets_PbRoles.THETANAME);
+					final int idNArg = cursor.getColumnIndex(PropBankContract.PbRoleSets_PbRoles.NARG);
 
 					// read cursor
 					while (true)
@@ -328,14 +348,14 @@ abstract class BasicModule extends Module
 						{
 							Spanner.appendImage(sb, BasicModule.this.thetaDrawable);
 							sb.append(' ');
-							Spanner.append(sb, theta, 0, PropbankFactories.thetaFactory);
+							Spanner.append(sb, theta, 0, PropBankFactories.thetaFactory);
 							sb.append(' ');
 						}
 
 						// role
 						Spanner.appendImage(sb, BasicModule.this.roleDrawable);
 						sb.append(' ');
-						Spanner.append(sb, cursor.getString(idRoleDescr), 0, PropbankFactories.roleFactory);
+						Spanner.append(sb, cursor.getString(idRoleDescr), 0, PropBankFactories.roleFactory);
 
 						// func
 						if (!cursor.isNull(idFunc))
@@ -383,6 +403,12 @@ abstract class BasicModule extends Module
 
 	// examples
 
+	/**
+	 * Examples in role set
+	 *
+	 * @param roleSetId role set id
+	 * @param parent    parent node
+	 */
 	private void examples(final int roleSetId, final TreeNode parent)
 	{
 		getLoaderManager().restartLoader(++Module.loaderId, null, new LoaderCallbacks<Cursor>()
@@ -390,29 +416,29 @@ abstract class BasicModule extends Module
 			@Override
 			public Loader<Cursor> onCreateLoader(final int loaderId, final Bundle loaderArgs)
 			{
-				final Uri uri = Uri.parse(PbRolesets_PbExamples.CONTENT_URI);
+				final Uri uri = Uri.parse(PbRoleSets_PbExamples.CONTENT_URI);
 				final String[] projection = { //
-						PbRolesets_PbExamples.TEXT, //
-						PbRolesets_PbExamples.REL, //
+						PbRoleSets_PbExamples.TEXT, //
+						PbRoleSets_PbExamples.REL, //
 						"GROUP_CONCAT(" + // //$NON-NLS-1$
-								PbRolesets_PbExamples.NARG + //
+								PbRoleSets_PbExamples.NARG + //
 								"||'~'" + // //$NON-NLS-1$
-								"||(CASE WHEN " + PbRolesets_PbExamples.FUNCNAME + " IS NULL THEN '*' ELSE " + PbRolesets_PbExamples.FUNCNAME + " END)" + // //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+								"||(CASE WHEN " + PbRoleSets_PbExamples.FUNCNAME + " IS NULL THEN '*' ELSE " + PbRoleSets_PbExamples.FUNCNAME + " END)" + // //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 								"||'~'" + // //$NON-NLS-1$
-								"||" + PbRolesets_PbExamples.ROLEDESCR + // //$NON-NLS-1$
+								"||" + PbRoleSets_PbExamples.ROLEDESCR + // //$NON-NLS-1$
 								"||'~'" + // //$NON-NLS-1$
-								"||(CASE WHEN " + PbRolesets_PbExamples.THETANAME + " IS NULL THEN '*' ELSE " + PbRolesets_PbExamples.THETANAME + " END)" + // //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+								"||(CASE WHEN " + PbRoleSets_PbExamples.THETANAME + " IS NULL THEN '*' ELSE " + PbRoleSets_PbExamples.THETANAME + " END)" + // //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 								"||'~'" + // //$NON-NLS-1$
-								"||" + PbRolesets_PbExamples.ARG + ",'|') AS " + PbRolesets_PbExamples.ARGS, // //$NON-NLS-1$ //$NON-NLS-2$
-						PbRolesets_PbExamples.ASPECTNAME, //
-						PbRolesets_PbExamples.FORMNAME, //
-						PbRolesets_PbExamples.TENSENAME, //
-						PbRolesets_PbExamples.VOICENAME, //
-						PbRolesets_PbExamples.PERSONNAME, //
+								"||" + PbRoleSets_PbExamples.ARG + ",'|') AS " + PbRoleSets_PbExamples.ARGS, // //$NON-NLS-1$ //$NON-NLS-2$
+						PbRoleSets_PbExamples.ASPECTNAME, //
+						PbRoleSets_PbExamples.FORMNAME, //
+						PbRoleSets_PbExamples.TENSENAME, //
+						PbRoleSets_PbExamples.VOICENAME, //
+						PbRoleSets_PbExamples.PERSONNAME, //
 				};
-				final String selection = PbRolesets_PbExamples.ROLESETID + "= ?"; //$NON-NLS-1$
+				final String selection = PbRoleSets_PbExamples.ROLESETID + "= ?"; //$NON-NLS-1$
 				final String[] selectionArgs = {Long.toString(roleSetId)};
-				final String sortOrder = PbRolesets_PbExamples.EXAMPLEID + ',' + PbRolesets_PbExamples.NARG;
+				final String sortOrder = "e" + PbRoleSets_PbExamples.EXAMPLEID + ',' + PbRoleSets_PbExamples.NARG; //$NON-NLS-1$
 				return new CursorLoader(getContext(), uri, projection, selection, selectionArgs, sortOrder);
 			}
 
@@ -424,26 +450,24 @@ abstract class BasicModule extends Module
 				if (cursor.moveToFirst())
 				{
 					// column indices
-					final int idText = cursor.getColumnIndex(PbRolesets_PbExamples.TEXT);
-					final int idRel = cursor.getColumnIndex(PbRolesets_PbExamples.REL);
-					final int idArgs = cursor.getColumnIndex(PbRolesets_PbExamples.ARGS);
+					final int idText = cursor.getColumnIndex(PbRoleSets_PbExamples.TEXT);
+					final int idRel = cursor.getColumnIndex(PbRoleSets_PbExamples.REL);
+					final int idArgs = cursor.getColumnIndex(PbRoleSets_PbExamples.ARGS);
 
 					// read cursor
 					do
 					{
-						// data
-
 						// text
 						String text = cursor.getString(idText);
 						Spanner.appendImage(sb, BasicModule.this.sampleDrawable);
-						Spanner.append(sb, text, 0, PropbankFactories.exampleFactory);
+						Spanner.append(sb, text, 0, PropBankFactories.exampleFactory);
 						sb.append('\n');
 
 						// relation
 						sb.append('\t');
 						Spanner.appendImage(sb, BasicModule.this.relationDrawable);
 						sb.append(' ');
-						Spanner.append(sb, cursor.getString(idRel), 0, PropbankFactories.relationFactory);
+						Spanner.append(sb, cursor.getString(idRel), 0, PropBankFactories.relationFactory);
 
 						// args
 						final String argspack = cursor.getString(idArgs);
@@ -470,13 +494,13 @@ abstract class BasicModule extends Module
 								// theta
 								Spanner.appendImage(sb, BasicModule.this.thetaDrawable);
 								sb.append(' ');
-								Spanner.append(sb, fields[3], 0, PropbankFactories.thetaFactory);
+								Spanner.append(sb, fields[3], 0, PropBankFactories.thetaFactory);
 								sb.append(' ');
 
 								// role
 								Spanner.appendImage(sb, BasicModule.this.roleDrawable);
 								sb.append(' ');
-								Spanner.append(sb, fields[2], 0, PropbankFactories.roleFactory);
+								Spanner.append(sb, fields[2], 0, PropBankFactories.roleFactory);
 
 								// func
 								if (!fields[1].isEmpty())
@@ -489,7 +513,7 @@ abstract class BasicModule extends Module
 								// subtext
 								sb.append(' ');
 								// sb.append("subtext=");
-								Spanner.append(sb, fields[4], 0, PropbankFactories.textFactory);
+								Spanner.append(sb, fields[4], 0, PropBankFactories.textFactory);
 							}
 						}
 					}
@@ -520,8 +544,18 @@ abstract class BasicModule extends Module
 		});
 	}
 
+	/**
+	 * Role query
+	 */
 	class RolesQuery extends QueryHolder.Query
 	{
+		/**
+		 * Constructor
+		 *
+		 * @param roleSetId role set id
+		 * @param icon      icon
+		 * @param text      label text
+		 */
 		public RolesQuery(final long roleSetId, final int icon, @SuppressWarnings("SameParameterValue") final CharSequence text)
 		{
 			super(roleSetId, icon, text);
@@ -534,8 +568,18 @@ abstract class BasicModule extends Module
 		}
 	}
 
+	/**
+	 * Examples query
+	 */
 	class ExamplesQuery extends QueryHolder.Query
 	{
+		/**
+		 * Constructor
+		 *
+		 * @param roleSetId role set id
+		 * @param icon      icon
+		 * @param text      label text
+		 */
 		public ExamplesQuery(final long roleSetId, final int icon, @SuppressWarnings("SameParameterValue") final CharSequence text)
 		{
 			super(roleSetId, icon, text);

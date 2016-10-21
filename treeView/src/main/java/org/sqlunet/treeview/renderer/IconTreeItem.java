@@ -2,6 +2,8 @@ package org.sqlunet.treeview.renderer;
 
 /**
  * Tree item with extra icon
+ *
+ * @author Bogdan Melnychuk on 2/12/15.
  */
 public class IconTreeItem
 {

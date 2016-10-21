@@ -24,9 +24,9 @@ public class LinkHolder extends IconLeafRenderer
 	public void toggle(boolean active)
 	{
 		super.toggle(active);
-		if (active && this.mNode.isLeaf())
+		if (active && this.node.isLeaf())
 		{
-			// Log.d(TAG, "size=" + this.mNode.size());
+			// Log.d(TAG, "size=" + this.node.size());
 			followLink();
 		}
 	}
@@ -36,8 +36,8 @@ public class LinkHolder extends IconLeafRenderer
 	 */
 	private void followLink()
 	{
-		final Link link = (Link) this.mNode.getValue();
-		link.process(this.mNode);
+		final Link link = (Link) this.node.getValue();
+		link.process(this.node);
 	}
 
 	// D A T A

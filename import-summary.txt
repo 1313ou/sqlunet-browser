@@ -193,9 +193,9 @@ From PredicateMatrix:
 * artwork/verbnet.svg
 * build.xml
 * proguard-project.txt
-From Propbank:
+From PropBank:
 * .gitignore
-* Propbank.iml
+* PropBank.iml
 * artwork/
 * artwork/definition.svg
 * artwork/make-images.sh
@@ -404,7 +404,7 @@ In FrameNet:
 * src/org/sqlunet/framenet/dom/FrameNet.dtd => frameNet/src/main/resources/org/sqlunet/framenet/dom/FrameNet.dtd
 * src/org/sqlunet/framenet/dom/xsl/framenet2html.xsl => frameNet/src/main/resources/org/sqlunet/framenet/dom/xsl/framenet2html.xsl
 * src/org/sqlunet/framenet/dom/xsl/select_framenet2html.xsl => frameNet/src/main/resources/org/sqlunet/framenet/dom/xsl/select_framenet2html.xsl
-In Propbank:
+In PropBank:
 * AndroidManifest.xml => propbank/src/main/AndroidManifest.xml
 * assets/ => propbank/src/main/assets/
 * lint.xml => propbank/lint.xml

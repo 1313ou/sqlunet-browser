@@ -11,8 +11,8 @@ import org.sqlunet.treeview.model.TreeNode;
 
 /**
  * Leaf renderer with icon
- * <p>
- * Created by Bogdan Melnychuk on 2/12/15.
+ *
+ * @author Bogdan Melnychuk on 2/12/15.
  */
 public class IconLeafRenderer extends TreeNode.Renderer<IconTreeItem>
 {

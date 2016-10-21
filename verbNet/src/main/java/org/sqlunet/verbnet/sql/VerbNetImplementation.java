@@ -19,7 +19,7 @@ public class VerbNetImplementation implements VerbNetInterface
 	// S E L E C T I O N
 
 	/**
-	 * Business method the returns VerbNet selector data as DOM document
+	 * Business method that returns VerbNet selector data as DOM document
 	 *
 	 * @param connection database connection
 	 * @param word       the target word
@@ -51,7 +51,7 @@ public class VerbNetImplementation implements VerbNetInterface
 	// D E T A I L
 
 	/**
-	 * Business method the returns VerbNet data as DOM document from word
+	 * Business method that returns VerbNet data as DOM document from word
 	 *
 	 * @param connection database connection
 	 * @param word       the target word
@@ -117,7 +117,7 @@ public class VerbNetImplementation implements VerbNetInterface
 	// class
 
 	/**
-	 * Business method the returns class data as DOM document from class id
+	 * Business method that returns class data as DOM document from class id
 	 *
 	 * @param connection database connection
 	 * @param classId    the class to build query from

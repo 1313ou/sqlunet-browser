@@ -11,7 +11,7 @@ import android.view.ViewGroup;
 import org.sqlunet.bnc.browser.BNCFragment;
 import org.sqlunet.browser.web.WebFragment;
 import org.sqlunet.framenet.browser.FrameNetFragment;
-import org.sqlunet.propbank.browser.PropbankFragment;
+import org.sqlunet.propbank.browser.PropBankFragment;
 import org.sqlunet.provider.SqlUNetContract;
 import org.sqlunet.settings.Settings;
 import org.sqlunet.verbnet.browser.VerbNetFragment;
@@ -98,7 +98,7 @@ public class DetailFragment extends Fragment
 				{
 					// final View labelView = findViewById(R.id.label_propbank);
 					// labelView.setVisibility(View.VISIBLE);
-					final Fragment propbankFragment = new PropbankFragment();
+					final Fragment propbankFragment = new PropBankFragment();
 					propbankFragment.setArguments(arguments);
 					getFragmentManager() //
 							.beginTransaction() //

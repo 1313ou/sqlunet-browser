@@ -13,7 +13,7 @@ import android.util.Log;
 import android.util.SparseArray;
 
 import org.sqlunet.browser.Module;
-import org.sqlunet.provider.XSqlUNetContract.PredicateMatrix_Propbank;
+import org.sqlunet.provider.XSqlUNetContract.PredicateMatrix_PropBank;
 import org.sqlunet.provider.XSqlUNetContract.Words_FnWords_FnFrames_U;
 import org.sqlunet.provider.XSqlUNetContract.Words_PbWords_PbRolesets_U;
 import org.sqlunet.provider.XSqlUNetContract.Words_VnWords_VnClasses_U;
@@ -108,7 +108,7 @@ class XLoader
 	}
 
 	/**
-	 * Propbank loader callbacks
+	 * PropBank loader callbacks
 	 */
 	public abstract static class PbLoaderCallbacks extends XnLoaderCallbacks
 	{
@@ -133,7 +133,7 @@ class XLoader
 					Words_PbWords_PbRolesets_U.ROLESETDESCR + " AS " + Words_XNet_U.XINFO, // //$NON-NLS-1$
 					Words_PbWords_PbRolesets_U.DEFINITION + " AS " + Words_XNet_U.XDEFINITION, // //$NON-NLS-1$
 					"rowid AS _id",}; //$NON-NLS-1$
-			final String selection = PredicateMatrix_Propbank.WORDID + " = ?"; //$NON-NLS-1$
+			final String selection = PredicateMatrix_PropBank.WORDID + " = ?"; //$NON-NLS-1$
 			final String[] selectionArgs = {Long.toString(this.wordId)};
 			final String sortOrder = null;
 			return new CursorLoader(this.context, uri, projection, selection, selectionArgs, sortOrder);

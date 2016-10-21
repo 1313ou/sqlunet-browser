@@ -62,10 +62,10 @@ public final class XSqlUNetContract
 	}
 
 	@SuppressWarnings("unused")
-	static public final class PredicateMatrix_Propbank
+	static public final class PredicateMatrix_PropBank
 	{
 		static public final String TABLE = "predicatematrix_propbank"; //$NON-NLS-1$
-		static public final String CONTENT_URI = "content://" + XSqlUNetContract.AUTHORITY + '/' + PredicateMatrix_Propbank.TABLE; //$NON-NLS-1$
+		static public final String CONTENT_URI = "content://" + XSqlUNetContract.AUTHORITY + '/' + PredicateMatrix_PropBank.TABLE; //$NON-NLS-1$
 		public static final String WORDID = "wordid"; //$NON-NLS-1$
 		public static final String SYNSETID = "synsetid"; //$NON-NLS-1$
 		public static final String PBWORDID = "pbwordid"; //$NON-NLS-1$

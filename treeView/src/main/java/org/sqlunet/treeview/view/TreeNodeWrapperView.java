@@ -14,26 +14,49 @@ import org.sqlunet.treeview.R;
 
 /**
  * Tree node wrapper view
- * <p>
- * Created by Bogdan Melnychuk on 2/10/15.
+ *
+ * @author Bogdan Melnychuk on 2/10/15.
  */
 @SuppressWarnings("unused")
 public class TreeNodeWrapperView extends LinearLayout
 {
+	/**
+	 * Container style
+	 */
+	private final int containerStyle;
+	/**
+	 * Node container
+	 */
 	private ViewGroup nodeContainer;
 
-	private final int containerStyle;
-
+	/**
+	 * Constructor
+	 *
+	 * @param context context
+	 */
 	public TreeNodeWrapperView(Context context)
 	{
 		this(context, -1, null);
 	}
 
+	/**
+	 * Constructor
+	 *
+	 * @param context        context
+	 * @param containerStyle container style
+	 */
 	public TreeNodeWrapperView(Context context, int containerStyle)
 	{
 		this(context, containerStyle, null);
 	}
 
+	/**
+	 * Constructor
+	 *
+	 * @param context        context
+	 * @param containerStyle container style
+	 * @param nodeContainer  node container
+	 */
 	public TreeNodeWrapperView(Context context, int containerStyle, ViewGroup nodeContainer)
 	{
 		super(context);
@@ -42,6 +65,14 @@ public class TreeNodeWrapperView extends LinearLayout
 		init();
 	}
 
+	/**
+	 * Constructor
+	 *
+	 * @param context        context
+	 * @param attrs          attributes
+	 * @param containerStyle container style
+	 * @param nodeContainer  node container
+	 */
 	public TreeNodeWrapperView(Context context, AttributeSet attrs, int containerStyle, ViewGroup nodeContainer)
 	{
 		super(context, attrs);
@@ -50,6 +81,15 @@ public class TreeNodeWrapperView extends LinearLayout
 		init();
 	}
 
+	/**
+	 * Constructor
+	 *
+	 * @param context        context
+	 * @param attrs          attributes
+	 * @param defStyleAttr   def style attribute
+	 * @param containerStyle container style
+	 * @param nodeContainer  node container
+	 */
 	public TreeNodeWrapperView(Context context, AttributeSet attrs, int defStyleAttr, int containerStyle, ViewGroup nodeContainer)
 	{
 		super(context, attrs, defStyleAttr);
@@ -58,6 +98,16 @@ public class TreeNodeWrapperView extends LinearLayout
 		init();
 	}
 
+	/**
+	 * Constructor
+	 *
+	 * @param context        context
+	 * @param attrs          attributes
+	 * @param defStyleAttr   def style attribute
+	 * @param defStyleRes    def style resource
+	 * @param containerStyle container style
+	 * @param nodeContainer  node container
+	 */
 	@TargetApi(Build.VERSION_CODES.LOLLIPOP)
 	public TreeNodeWrapperView(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes, int containerStyle, ViewGroup nodeContainer)
 	{
@@ -67,6 +117,9 @@ public class TreeNodeWrapperView extends LinearLayout
 		init();
 	}
 
+	/**
+	 * Init
+	 */
 	private void init()
 	{
 		setOrientation(LinearLayout.VERTICAL);
@@ -88,7 +141,12 @@ public class TreeNodeWrapperView extends LinearLayout
 		addView(nodeItemsContainer);
 	}
 
-	public void insertNodeView(View nodeView)
+	/**
+	 * Insert node view
+	 *
+	 * @param nodeView node view
+	 */
+	public void insertNodeView(final View nodeView)
 	{
 		this.nodeContainer.addView(nodeView);
 	}

@@ -17,7 +17,7 @@ import org.sqlunet.treeview.view.TreeView;
 import org.sqlunet.view.TreeFactory;
 
 /**
- * A fragment representing a lexunit
+ * A fragment representing a PropBank role set
  *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
@@ -51,7 +51,7 @@ public class PbRoleSetFragment extends Fragment
 		this.treeView = new TreeView(getActivity(), root);
 		this.treeView.setDefaultAnimation(true);
 		this.treeView.setDefaultContainerStyle(R.style.TreeNodeStyleCustom); // R.style.TreeNodeStyleDivided
-		this.treeView.setDefaultViewHolder(IconTreeRenderer.class);
+		this.treeView.setDefaultRenderer(IconTreeRenderer.class);
 		containerView.addView(this.treeView.getView());
 
 		// saved state
@@ -70,7 +70,7 @@ public class PbRoleSetFragment extends Fragment
 		final Parcelable pointer = args.getParcelable(SqlUNetContract.ARG_QUERYPOINTER);
 
 		// module
-		Module module = new RoleSetModule(this);
+		final Module module = new RoleSetModule(this);
 		module.init(pointer);
 		module.process(queryNode);
 

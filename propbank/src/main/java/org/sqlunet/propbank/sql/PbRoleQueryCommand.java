@@ -7,7 +7,7 @@ import org.sqlunet.sql.DBQueryCommand;
 import java.util.Locale;
 
 /**
- * Query command for Propbank roles
+ * PropBank roles query command
  *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
@@ -33,7 +33,7 @@ class PbRoleQueryCommand extends DBQueryCommand
 	/**
 	 * Set id parameters in prepared SQL statement
 	 *
-	 * @param roleSetId target roleSet id
+	 * @param roleSetId target role set id
 	 */
 	@SuppressWarnings("unused")
 	public void setId(final long roleSetId)
@@ -82,9 +82,9 @@ class PbRoleQueryCommand extends DBQueryCommand
 	}
 
 	/**
-	 * Get role theta
+	 * Get role VerbNet theta
 	 *
-	 * @return role theta
+	 * @return role VerbNet theta
 	 */
 	public String getRoleTheta()
 	{

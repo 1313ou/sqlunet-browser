@@ -8,18 +8,21 @@ import org.sqlunet.propbank.PbRoleSetPointer;
 import org.sqlunet.treeview.model.TreeNode;
 
 /**
- * Module for roleSets
+ * Module for PropBank role sets from id
  *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
 public class RoleSetModule extends BasicModule
 {
-	// query
-
+	/**
+	 * Role set id
+	 */
 	private Long roleSetId;
 
 	/**
 	 * Constructor
+	 *
+	 * @param fragment fragment
 	 */
 	public RoleSetModule(final Fragment fragment)
 	{

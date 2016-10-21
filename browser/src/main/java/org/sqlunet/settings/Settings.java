@@ -267,7 +267,7 @@ public class Settings
 	 * Get preferred enable PropBank flag
 	 *
 	 * @param context context
-	 * @return preferred enable PropbankNet flag
+	 * @return preferred enable PropBank flag
 	 */
 	static public boolean getPropBankPref(final Context context)
 	{

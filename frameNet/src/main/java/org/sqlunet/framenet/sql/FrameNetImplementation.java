@@ -54,7 +54,7 @@ public class FrameNetImplementation implements FrameNetInterface
 	// D E T A I L
 
 	/**
-	 * Business method the returns FrameNet data as DOM document
+	 * Business method that returns FrameNet data as DOM document
 	 *
 	 * @param connection database connection
 	 * @param word       the target word
@@ -124,7 +124,7 @@ public class FrameNetImplementation implements FrameNetInterface
 	// frame
 
 	/**
-	 * Business method the returns frame data as DOM document
+	 * Business method that returns frame data as DOM document
 	 *
 	 * @param connection database connection
 	 * @param frameId    the frame to build query from

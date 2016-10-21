@@ -9,16 +9,40 @@ import java.util.Locale;
  */
 class PbArg
 {
+	/**
+	 * Argument n
+	 */
 	public final String nArg;
 
+	/**
+	 * Argument f
+	 */
 	public final String f;
 
+	/**
+	 * Argument VerbNet theta
+	 */
 	public final String vnTheta;
 
+	/**
+	 * Argument description
+	 */
 	public final String description;
 
+	/**
+	 * Argument subtext
+	 */
 	public final String subText;
 
+	/**
+	 * Constructor
+	 *
+	 * @param nArg        n
+	 * @param f           f
+	 * @param description description
+	 * @param vnTheta     VerbNet theta
+	 * @param subText     sub text
+	 */
 	private PbArg(final String nArg, final String f, final String description, final String vnTheta, final String subText)
 	{
 		this.nArg = nArg;
@@ -28,6 +52,11 @@ class PbArg
 		this.subText = subText;
 	}
 
+	/**
+	 * Constructor from argument fields
+	 *
+	 * @param argFields argument fields
+	 */
 	public PbArg(final String... argFields)
 	{
 		this(argFields[0], "*".equals(argFields[1]) ? //$NON-NLS-1$

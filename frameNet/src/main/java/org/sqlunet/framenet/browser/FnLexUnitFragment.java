@@ -51,7 +51,7 @@ public class FnLexUnitFragment extends Fragment
 		this.treeView = new TreeView(getActivity(), root);
 		this.treeView.setDefaultAnimation(true);
 		this.treeView.setDefaultContainerStyle(R.style.TreeNodeStyleCustom); // R.style.TreeNodeStyleDivided
-		this.treeView.setDefaultViewHolder(IconTreeRenderer.class);
+		this.treeView.setDefaultRenderer(IconTreeRenderer.class);
 		containerView.addView(this.treeView.getView());
 
 		// saved state

@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Role set
+ * PropBank role set
  *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
@@ -39,7 +39,7 @@ class PbRoleSet
 	 * @param roleSetName  name
 	 * @param roleSetHead  head
 	 * @param roleSetDescr description
-	 * @param roleSetId    id
+	 * @param roleSetId    role set id
 	 */
 	private PbRoleSet(final String roleSetName, final String roleSetHead, final String roleSetDescr, final long roleSetId)
 	{
@@ -126,8 +126,8 @@ class PbRoleSet
 	 * Make sets of PropBank roleSets from query built from word id
 	 *
 	 * @param connection database connection
-	 * @param roleSetId  is the roleSet id to build query from
-	 * @return list of PropBank roleSets
+	 * @param roleSetId  is the role set id to build query from
+	 * @return list of PropBank role sets
 	 */
 	static public List<PbRoleSet> make(final SQLiteDatabase connection, final long roleSetId)
 	{

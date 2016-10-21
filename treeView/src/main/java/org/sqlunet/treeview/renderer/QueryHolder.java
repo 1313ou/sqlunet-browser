@@ -5,6 +5,8 @@ import android.content.Context;
 import org.sqlunet.treeview.model.TreeNode;
 
 /**
+ * Query holder
+ *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
 public class QueryHolder extends IconTreeRenderer
@@ -25,9 +27,9 @@ public class QueryHolder extends IconTreeRenderer
 	public void toggle(boolean active)
 	{
 		super.toggle(active);
-		if (active && this.mNode.isLeaf())
+		if (active && this.node.isLeaf())
 		{
-			// Log.d(TAG, "size=" + this.mNode.size());
+			// Log.d(TAG, "size=" + this.node.size());
 			addData();
 		}
 	}
@@ -37,8 +39,8 @@ public class QueryHolder extends IconTreeRenderer
 	 */
 	private void addData()
 	{
-		final Query query = (Query) this.mNode.getValue();
-		query.process(this.mNode);
+		final Query query = (Query) this.node.getValue();
+		query.process(this.node);
 	}
 
 	// D A T A
@@ -56,7 +58,7 @@ public class QueryHolder extends IconTreeRenderer
 		/**
 		 * Constructor
 		 *
-		 * @param id id
+		 * @param id   id
 		 * @param icon extra icon
 		 * @param text label text
 		 */

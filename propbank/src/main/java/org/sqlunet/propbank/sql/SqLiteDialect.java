@@ -1,28 +1,28 @@
 package org.sqlunet.propbank.sql;
 
 /**
- * SQL dialect
+ * SQL dialect for PropBank
  */
 @SuppressWarnings("unused")
 class SqLiteDialect
 {
-	// query for roleSet from roleSetId
+	// query for role set  from role set Id
 	static final String PropBankRoleset = //
-			"SELECT roleSetId, rolesetname, rolesethead, rolesetdescr " + //$NON-NLS-1$
+			"SELECT rolesetid, rolesetname, rolesethead, rolesetdescr " + //$NON-NLS-1$
 					"FROM pbrolesets " + //$NON-NLS-1$
-					"WHERE roleSetId = ? ;"; //$NON-NLS-1$
+					"WHERE rolesetid = ? ;"; //$NON-NLS-1$
 
-	// query for roleSet from word
+	// query for role set  from word
 	static final String PropBankRolesetFromWord = //
-			"SELECT wordid, roleSetId, rolesetname, rolesethead, rolesetdescr " + //$NON-NLS-1$
+			"SELECT wordid, rolesetid, rolesetname, rolesethead, rolesetdescr " + //$NON-NLS-1$
 					"FROM words AS w " + //$NON-NLS-1$
 					"INNER JOIN pbwords USING (wordid) " + //$NON-NLS-1$
 					"LEFT JOIN pbrolesets USING (pbwordid) " + //$NON-NLS-1$
 					"WHERE w.lemma = ? "; //$NON-NLS-1$
 
-	// query for roleSet from word id
+	// query for role set  from word id
 	static final String PropBankRolesetFromWordId = //
-			"SELECT roleSetId, rolesetname, rolesethead, rolesetdescr " + //$NON-NLS-1$
+			"SELECT rolesetid, rolesetname, rolesethead, rolesetdescr " + //$NON-NLS-1$
 					"FROM words " + //$NON-NLS-1$
 					"INNER JOIN pbwords USING (wordid) " + //$NON-NLS-1$
 					"INNER JOIN pbrolesets USING (pbwordid) " + //$NON-NLS-1$
@@ -32,10 +32,10 @@ class SqLiteDialect
 	static final String PropBankRolesQuery = //
 			"SELECT roleid,roledescr,narg,funcname,thetaname " + //$NON-NLS-1$
 					"FROM pbrolesets " + //$NON-NLS-1$
-					"INNER JOIN pbroles USING (roleSetId) " + //$NON-NLS-1$
+					"INNER JOIN pbroles USING (rolesetid) " + //$NON-NLS-1$
 					"LEFT JOIN pbfuncs USING (func) " + //$NON-NLS-1$
 					"LEFT JOIN pbvnthetas USING (theta) " + //$NON-NLS-1$
-					"WHERE roleSetId = ? " + //$NON-NLS-1$
+					"WHERE rolesetid = ? " + //$NON-NLS-1$
 					"ORDER BY narg;"; //$NON-NLS-1$
 
 	// query for examples rel(n~arg|n~arg|..)
@@ -45,7 +45,7 @@ class SqLiteDialect
 					"arg,'|')," + //$NON-NLS-1$
 					"aspectname,formname,tensename,voicename,personname " + //$NON-NLS-1$
 					"FROM pbrolesets " + //$NON-NLS-1$
-					"INNER JOIN pbexamples AS e USING (roleSetId) " + //$NON-NLS-1$
+					"INNER JOIN pbexamples AS e USING (rolesetid) " + //$NON-NLS-1$
 					"LEFT JOIN pbrels AS r USING (exampleid) " + //$NON-NLS-1$
 					"LEFT JOIN pbargs AS a USING (exampleid) " + //$NON-NLS-1$
 					"LEFT JOIN pbfuncs AS f ON (a.func = f.func) " + //$NON-NLS-1$
@@ -54,7 +54,7 @@ class SqLiteDialect
 					"LEFT JOIN pbtenses USING (tense) " + //$NON-NLS-1$
 					"LEFT JOIN pbvoices USING (voice) " + //$NON-NLS-1$
 					"LEFT JOIN pbpersons USING (person) " + //$NON-NLS-1$
-					"WHERE roleSetId = ? " + //$NON-NLS-1$
+					"WHERE rolesetid = ? " + //$NON-NLS-1$
 					"GROUP BY e.exampleid " + //$NON-NLS-1$
 					"ORDER BY e.exampleid,narg;"; //$NON-NLS-1$
 
@@ -67,7 +67,7 @@ class SqLiteDialect
 					"arg,'|')," + //$NON-NLS-1$
 					"aspectname,formname,tensename,voicename,personname " + //$NON-NLS-1$
 					"FROM pbrolesets " + //$NON-NLS-1$
-					"INNER JOIN pbexamples AS e USING (roleSetId) " + //$NON-NLS-1$
+					"INNER JOIN pbexamples AS e USING (rolesetid) " + //$NON-NLS-1$
 					"LEFT JOIN pbrels AS r USING (exampleid) " + //$NON-NLS-1$
 					"LEFT JOIN pbargs AS a USING (exampleid) " + //$NON-NLS-1$
 					"LEFT JOIN pbfuncs AS f ON (a.func = f.func) " + //$NON-NLS-1$
@@ -76,9 +76,9 @@ class SqLiteDialect
 					"LEFT JOIN pbtenses USING (tense) " + //$NON-NLS-1$
 					"LEFT JOIN pbvoices USING (voice) " + //$NON-NLS-1$
 					"LEFT JOIN pbpersons USING (person) " + //$NON-NLS-1$
-					"LEFT JOIN pbroles USING (roleSetId,narg) " + //$NON-NLS-1$
+					"LEFT JOIN pbroles USING (rolesetid,narg) " + //$NON-NLS-1$
 					"LEFT JOIN pbvnthetas USING (theta) " + //$NON-NLS-1$
-					"WHERE roleSetId = ? " + //$NON-NLS-1$
+					"WHERE rolesetid = ? " + //$NON-NLS-1$
 					"GROUP BY e.exampleid " + //$NON-NLS-1$
 					"ORDER BY e.exampleid,narg;"; //$NON-NLS-1$
 }

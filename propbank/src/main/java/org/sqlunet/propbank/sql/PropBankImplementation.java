@@ -20,142 +20,12 @@ public class PropBankImplementation implements PropBankInterface
 	// S E L E C T I O N
 
 	/**
-	 * Business method the returns PropBank selector data as DOM document
-	 *
-	 * @param connection database connection
-	 * @param word       the target word
-	 * @return PropBank selector data as DOM document
-	 */
-	@Override
-	public Document querySelectorDoc(final SQLiteDatabase connection, final String word)
-	{
-		final Document doc = Factory.makeDocument();
-		final Node wordNode = org.sqlunet.sql.NodeFactory.makeNode(doc, doc, "propbank", word); //$NON-NLS-1$
-		PropBankImplementation.walkSelector(connection, doc, wordNode, word);
-		return doc;
-	}
-
-	/**
-	 * Business method that returns PropBank selector data as XML
-	 *
-	 * @param connection database connection
-	 * @param word       the target word
-	 * @return PropBank selector data as XML
-	 */
-	@Override
-	public String querySelectorXML(final SQLiteDatabase connection, final String word)
-	{
-		final Document doc = querySelectorDoc(connection, word);
-		return Factory.docToString(doc, "PropBank_select.dtd");
-	}
-
-	// D E T A I L
-
-	/**
-	 * Business method the returns PropBank data as DOM document from word
-	 *
-	 * @param connection database connection
-	 * @param word       the target word
-	 * @return PropBank data as DOM document
-	 */
-	@Override
-	public Document queryDoc(final SQLiteDatabase connection, final String word)
-	{
-		final Document doc = Factory.makeDocument();
-		final Node wordNode = org.sqlunet.sql.NodeFactory.makeNode(doc, doc, "propbank", word); //$NON-NLS-1$
-		PropBankImplementation.walk(connection, doc, wordNode, word);
-		return doc;
-	}
-
-	/**
-	 * Business method that returns PropBank data as XML from word
-	 *
-	 * @param connection database connection
-	 * @param word       the target word
-	 * @return PropBank data as XML
-	 */
-	@Override
-	public String queryXML(final SQLiteDatabase connection, final String word)
-	{
-		final Document doc = queryDoc(connection, word);
-		return Factory.docToString(doc, "PropBank.dtd");
-	}
-
-	/**
-	 * Business method that returns PropBank data as DOM document from word id
-	 *
-	 * @param connection database connection
-	 * @param wordId     the word id to build query from
-	 * @param pos        the pos to build query from
-	 * @return PropBank data as DOM document
-	 */
-	@Override
-	public Document queryDoc(final SQLiteDatabase connection, final long wordId, final Character pos)
-	{
-		final Document doc = Factory.makeDocument();
-		final Node wordNode = PbNodeFactory.makePbRootNode(doc, wordId);
-		PropBankImplementation.walk(connection, doc, wordNode, wordId);
-		return doc;
-	}
-
-	/**
-	 * Business method that returns PropBank data as XML from word id
-	 *
-	 * @param connection database connection
-	 * @param wordId     the target word id
-	 * @param pos        the pos to build query from
-	 * @return PropBank data as XML
-	 */
-	@Override
-	public String queryXML(final SQLiteDatabase connection, final long wordId, final Character pos)
-	{
-		final Document doc = queryDoc(connection, wordId, pos);
-		return Factory.docToString(doc, "PropBank.dtd");
-	}
-
-	// I T E M S
-
-	/**
-	 * Business method the returns role set data as DOM document from roleSet id
-	 *
-	 * @param connection database connection
-	 * @param roleSetId  the role set to build query from
-	 * @param pos        the pos to build query from
-	 * @return Propbank role set data as DOM document
-	 */
-	@Override
-	public Document queryRoleSetDoc(final SQLiteDatabase connection, final long roleSetId, final Character pos)
-	{
-		final Document doc = Factory.makeDocument();
-		final Node rootNode = PbNodeFactory.makePbRootRoleSetNode(doc, roleSetId);
-		PropBankImplementation.walkRoleSet(connection, doc, rootNode, roleSetId);
-		return doc;
-	}
-
-	/**
-	 * Business method that returns role set data as XML from roleSet id
-	 *
-	 * @param connection database connection
-	 * @param roleSetId  the roleSet id to build query from
-	 * @param pos        the pos to build query from
-	 * @return Propbank role set data as XML
-	 */
-	@Override
-	public String queryRoleSetXML(final SQLiteDatabase connection, final long roleSetId, final Character pos)
-	{
-		final Document doc = queryRoleSetDoc(connection, roleSetId, pos);
-		return Factory.docToString(doc, "PropBank.dtd");
-	}
-
-	// W A L K
-
-	/**
 	 * Perform queries for PropBank selector data from word
 	 *
 	 * @param connection connection
-	 * @param doc        the org.w3c.dom.Document being built
-	 * @param parent     the org.w3c.dom.Node the walk will attach results to
-	 * @param targetWord the target word
+	 * @param doc        org.w3c.dom.Document being built
+	 * @param parent     org.w3c.dom.Node the walk will attach results to
+	 * @param targetWord target word
 	 */
 	static private void walkSelector(final SQLiteDatabase connection, final Document doc, final Node parent, final String targetWord)
 	{
@@ -178,9 +48,9 @@ public class PropBankImplementation implements PropBankInterface
 	 * Perform queries for PropBank data from word
 	 *
 	 * @param connection connection
-	 * @param doc        the org.w3c.dom.Document being built
-	 * @param parent     the org.w3c.dom.Node the walk will attach results to
-	 * @param targetWord the target word
+	 * @param doc        org.w3c.dom.Document being built
+	 * @param parent     org.w3c.dom.Node the walk will attach results to
+	 * @param targetWord target word
 	 */
 	static private void walk(final SQLiteDatabase connection, final Document doc, final Node parent, final String targetWord)
 	{
@@ -195,60 +65,62 @@ public class PropBankImplementation implements PropBankInterface
 		// word
 		NodeFactory.makeWordNode(doc, parent, targetWord, wordId);
 
-		// roleSets
+		// role sets
 		int i = 1;
 		for (final PbRoleSet roleSet : roleSets)
 		{
-			// roleSet
+			// role set
 			PbNodeFactory.makePbRoleSetNode(doc, parent, roleSet, i++);
 		}
 	}
+
+	// D E T A I L
 
 	/**
 	 * Perform queries for PropBank data from word id
 	 *
 	 * @param connection   data source
-	 * @param doc          the org.w3c.dom.Document being built
-	 * @param parent       the org.w3c.dom.Node the walk will attach results to
-	 * @param targetWordId the target word id
+	 * @param doc          org.w3c.dom.Document being built
+	 * @param parent       org.w3c.dom.Node the walk will attach results to
+	 * @param targetWordId target word id
 	 */
 	static private void walk(final SQLiteDatabase connection, final Document doc, final Node parent, final long targetWordId)
 	{
-		// roleSets
+		// role sets
 		final List<PbRoleSet> roleSets = PbRoleSet.makeFromWordId(connection, targetWordId);
 		walk(connection, doc, parent, roleSets);
 	}
 
 	/**
-	 * Perform queries for PropBank data from roleSet id
+	 * Perform queries for PropBank data from role set id
 	 *
 	 * @param connection data source
-	 * @param doc        the org.w3c.dom.Document being built
-	 * @param parent     the org.w3c.dom.Node the walk will attach results to
-	 * @param roleSetId  roleSetId
+	 * @param doc        org.w3c.dom.Document being built
+	 * @param parent     org.w3c.dom.Node the walk will attach results to
+	 * @param roleSetId  role set id
 	 */
 	private static void walkRoleSet(final SQLiteDatabase connection, final Document doc, final Node parent, final long roleSetId)
 	{
-		// roleSets
+		// role sets
 		final List<PbRoleSet> roleSets = PbRoleSet.make(connection, roleSetId);
 		walk(connection, doc, parent, roleSets);
 	}
 
 	/**
-	 * Query PropBank data from roleSets
+	 * Query PropBank data from role sets
 	 *
 	 * @param connection data source
-	 * @param doc        the org.w3c.dom.Document being built
-	 * @param parent     the org.w3c.dom.Node the walk will attach results to
-	 * @param roleSets   roleSets
+	 * @param doc        org.w3c.dom.Document being built
+	 * @param parent     org.w3c.dom.Node the walk will attach results to
+	 * @param roleSets   role sets
 	 */
 	static private void walk(final SQLiteDatabase connection, final Document doc, final Node parent, final Iterable<PbRoleSet> roleSets)
 	{
-		// roleSets
+		// role sets
 		int i = 1;
 		for (final PbRoleSet roleSet : roleSets)
 		{
-			// roleSet
+			// role set
 			final Node roleSetNode = PbNodeFactory.makePbRoleSetNode(doc, parent, roleSet, i++);
 
 			// roles
@@ -266,23 +138,151 @@ public class PropBankImplementation implements PropBankInterface
 		}
 	}
 
-	// H E L P E R S
-
 	/**
 	 * Display query results for PropBank data from query result
 	 *
-	 * @param doc      the org.w3c.dom.Document being built
-	 * @param parent   the org.w3c.dom.Node the walk will attach results to
-	 * @param roleSets roleSets
+	 * @param doc      org.w3c.dom.Document being built
+	 * @param parent   org.w3c.dom.Node the walk will attach results to
+	 * @param roleSets role sets
 	 */
 	static private void makeSelector(final Document doc, final Node parent, final Iterable<PbRoleSet> roleSets)
 	{
-		// roleSets
+		// role sets
 		int i = 1;
 		for (final PbRoleSet roleSet : roleSets)
 		{
-			// roleSet
+			// role set
 			PbNodeFactory.makePbRoleSetNode(doc, parent, roleSet, i++);
 		}
+	}
+
+	// I T E M S
+
+	/**
+	 * Business method that returns PropBank selector data as DOM document
+	 *
+	 * @param connection database connection
+	 * @param word       target word
+	 * @return PropBank selector data as DOM document
+	 */
+	@Override
+	public Document querySelectorDoc(final SQLiteDatabase connection, final String word)
+	{
+		final Document doc = Factory.makeDocument();
+		final Node wordNode = org.sqlunet.sql.NodeFactory.makeNode(doc, doc, "propbank", word); //$NON-NLS-1$
+		PropBankImplementation.walkSelector(connection, doc, wordNode, word);
+		return doc;
+	}
+
+	/**
+	 * Business method that returns PropBank selector data as XML
+	 *
+	 * @param connection database connection
+	 * @param word       target word
+	 * @return PropBank selector data as XML
+	 */
+	@Override
+	public String querySelectorXML(final SQLiteDatabase connection, final String word)
+	{
+		final Document doc = querySelectorDoc(connection, word);
+		return Factory.docToString(doc, "PropBank_select.dtd");
+	}
+
+	// W A L K
+
+	/**
+	 * Business method that returns PropBank data as DOM document from word
+	 *
+	 * @param connection database connection
+	 * @param word       target word
+	 * @return PropBank data as DOM document
+	 */
+	@Override
+	public Document queryDoc(final SQLiteDatabase connection, final String word)
+	{
+		final Document doc = Factory.makeDocument();
+		final Node wordNode = org.sqlunet.sql.NodeFactory.makeNode(doc, doc, "propbank", word); //$NON-NLS-1$
+		PropBankImplementation.walk(connection, doc, wordNode, word);
+		return doc;
+	}
+
+	/**
+	 * Business method that returns PropBank data as XML from word
+	 *
+	 * @param connection database connection
+	 * @param word       target word
+	 * @return PropBank data as XML
+	 */
+	@Override
+	public String queryXML(final SQLiteDatabase connection, final String word)
+	{
+		final Document doc = queryDoc(connection, word);
+		return Factory.docToString(doc, "PropBank.dtd");
+	}
+
+	/**
+	 * Business method that returns PropBank data as DOM document from word id
+	 *
+	 * @param connection database connection
+	 * @param wordId     word id to build query from
+	 * @param pos        pos to build query from
+	 * @return PropBank data as DOM document
+	 */
+	@Override
+	public Document queryDoc(final SQLiteDatabase connection, final long wordId, final Character pos)
+	{
+		final Document doc = Factory.makeDocument();
+		final Node wordNode = PbNodeFactory.makePbRootNode(doc, wordId);
+		PropBankImplementation.walk(connection, doc, wordNode, wordId);
+		return doc;
+	}
+
+	/**
+	 * Business method that returns PropBank data as XML from word id
+	 *
+	 * @param connection database connection
+	 * @param wordId     target word id
+	 * @param pos        pos to build query from
+	 * @return PropBank data as XML
+	 */
+	@Override
+	public String queryXML(final SQLiteDatabase connection, final long wordId, final Character pos)
+	{
+		final Document doc = queryDoc(connection, wordId, pos);
+		return Factory.docToString(doc, "PropBank.dtd");
+	}
+
+	/**
+	 * Business method that returns role set data as DOM document from role set id
+	 *
+	 * @param connection database connection
+	 * @param roleSetId  role set to build query from
+	 * @param pos        pos to build query from
+	 * @return PropBank role set data as DOM document
+	 */
+	@Override
+	public Document queryRoleSetDoc(final SQLiteDatabase connection, final long roleSetId, final Character pos)
+	{
+		final Document doc = Factory.makeDocument();
+		final Node rootNode = PbNodeFactory.makePbRootRoleSetNode(doc, roleSetId);
+		PropBankImplementation.walkRoleSet(connection, doc, rootNode, roleSetId);
+		return doc;
+	}
+
+	// H E L P E R S
+
+	/**
+	 * Business method that returns role set data as XML from role set id
+	 *
+	 * @param connection database connection
+	 * @param roleSetId  role set id to build query from
+	 * @param pos        pos to build query from
+	 * @return PropBank role set data as XML
+	 */
+	@Override
+	public String queryRoleSetXML(final SQLiteDatabase connection, final long roleSetId, final Character pos)
+	{
+		final Document doc = queryRoleSetDoc(connection, roleSetId, pos);
+		return Factory.docToString(doc, "PropBank.dtd");
 	}
 }

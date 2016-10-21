@@ -7,19 +7,21 @@ import org.sqlunet.HasWordId;
 import org.sqlunet.treeview.model.TreeNode;
 
 /**
- * Module for roleSets
+ * Module for PropBank role sets from word
  *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
 public class RoleSetFromWordModule extends BasicModule
 {
 	/**
-	 * Query
+	 * Word id
 	 */
 	private Long wordId;
 
 	/**
 	 * Constructor
+	 *
+	 * @param fragment fragment
 	 */
 	public RoleSetFromWordModule(final Fragment fragment)
 	{

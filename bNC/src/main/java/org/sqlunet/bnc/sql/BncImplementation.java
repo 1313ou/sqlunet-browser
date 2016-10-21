@@ -17,7 +17,7 @@ import java.util.List;
 public class BncImplementation implements BncInterface
 {
 	/**
-	 * Business method the returns BNC data as DOM document from word
+	 * Business method that returns BNC data as DOM document from word
 	 *
 	 * @param connection database connection
 	 * @param word       the target word
