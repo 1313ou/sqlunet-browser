@@ -2,12 +2,26 @@ package org.sqlunet.verbnet.sql;
 
 import android.database.sqlite.SQLiteDatabase;
 
+/**
+ * VerbNet class
+ *
+ * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
+ */
 public class VnClass
 {
+	/**
+	 * Class name
+	 */
 	public final String className;
 
+	/**
+	 * Class id
+	 */
 	public final long classId;
 
+	/**
+	 * Groupings
+	 */
 	@SuppressWarnings("unused")
 	public final String groupings;
 
@@ -29,7 +43,7 @@ public class VnClass
 	/**
 	 * Make sets of VerbNet memberships from query built from classId
 	 *
-	 * @param connection database connection
+	 * @param connection connection
 	 * @param classId    is the class id to build the query from
 	 * @return list of VerbNet classes
 	 */

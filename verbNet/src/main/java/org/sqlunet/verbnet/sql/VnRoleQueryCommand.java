@@ -19,7 +19,7 @@ class VnRoleQueryCommand extends DBQueryCommand
 	/**
 	 * Constructor
 	 *
-	 * @param connection database connection
+	 * @param connection connection
 	 * @param classId    target classId
 	 */
 	@SuppressWarnings("boxing")

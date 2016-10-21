@@ -89,7 +89,7 @@ class FnFrameElement
 	/**
 	 * Make sets of FEs from frame id
 	 *
-	 * @param connection database connection
+	 * @param connection connection
 	 * @param frameId    target frame id
 	 * @return list of FEs
 	 */

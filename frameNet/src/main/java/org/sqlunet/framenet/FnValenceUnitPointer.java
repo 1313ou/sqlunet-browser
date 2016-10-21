@@ -39,7 +39,7 @@ public class FnValenceUnitPointer extends Pointer
 	}
 
 	/**
-	 * Constructor from Parcel, reads back fields IN THE ORDER they were written
+	 * Constructor from parcel, reads back fields IN THE ORDER they were written
 	 */
 	private FnValenceUnitPointer(final Parcel parcel)
 	{

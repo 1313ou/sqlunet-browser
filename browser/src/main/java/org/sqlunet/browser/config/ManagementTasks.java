@@ -46,7 +46,7 @@ class ManagementTasks
 	 */
 	static public void deleteDatabase(final Context context, final String databasePath)
 	{
-		// make sure you close all database connections before deleting
+		// make sure you close all connections before deleting
 		boolean result = context.deleteDatabase(databasePath);
 		Log.d(TAG, "While dropping database: " + result); //$NON-NLS-1$	
 	}

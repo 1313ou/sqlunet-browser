@@ -17,19 +17,19 @@ class BncQueryCommand extends DBQueryCommand
 	private static final String QUERY = SqLiteDialect.BNCQuery;
 
 	/**
-	 * <code>QUERY_2</code> is the SQL statement
+	 * <code>QUERYWITHPOS</code> is the SQL statement
 	 */
-	private static final String QUERY_2 = SqLiteDialect.BNCPosQuery;
+	private static final String QUERYWITHPOS = SqLiteDialect.BNCPosQuery;
 
 	/**
 	 * Constructor
 	 *
-	 * @param connection database connection
+	 * @param connection connection
 	 * @param params     parameters
 	 */
 	public BncQueryCommand(final SQLiteDatabase connection, final Object... params)
 	{
-		super(connection, params.length > 1 ? BncQueryCommand.QUERY_2 : BncQueryCommand.QUERY);
+		super(connection, params.length > 1 ? BncQueryCommand.QUERYWITHPOS : BncQueryCommand.QUERY);
 		setParams(params);
 	}
 

@@ -19,7 +19,7 @@ class FnSentenceQueryCommand extends DBQueryCommand
 	/**
 	 * Constructor
 	 *
-	 * @param connection database connection
+	 * @param connection connection
 	 * @param sentenceId target sentence id
 	 */
 	@SuppressWarnings("boxing")

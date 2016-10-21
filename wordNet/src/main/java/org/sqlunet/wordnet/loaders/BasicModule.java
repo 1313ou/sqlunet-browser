@@ -38,9 +38,14 @@ import org.sqlunet.wordnet.style.WordNetFactories;
 
 import java.util.Locale;
 
+/**
+ * Base module for WordNet
+ *
+ * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
+ */
 abstract public class BasicModule extends Module
 {
-	// Drawables;
+	// Resources
 
 	private final Drawable memberDrawable;
 
@@ -104,7 +109,7 @@ abstract public class BasicModule extends Module
 	 * @param parent   parent node
 	 */
 	@SuppressWarnings("unused")
-	public void synset_full(final long synsetId, final long wordId, final TreeNode parent)
+	public void synsetFull(final long synsetId, final long wordId, final TreeNode parent)
 	{
 		getLoaderManager().restartLoader(++Module.loaderId, null, new LoaderCallbacks<Cursor>()
 		{
@@ -1274,6 +1279,14 @@ abstract public class BasicModule extends Module
 		});
 	}
 
+	// H E L P E R S
+
+	/**
+	 * Match link id to drawable resource id
+	 *
+	 * @param linkId link id
+	 * @return kink res id
+	 */
 	private int getLinkRes(final int linkId)
 	{
 		switch (linkId)
@@ -1339,26 +1352,55 @@ abstract public class BasicModule extends Module
 		}
 	}
 
+	/**
+	 * Match link id to drawable
+	 *
+	 * @param linkId link id
+	 * @return drawable
+	 */
 	private Drawable getLinkDrawable(final int linkId)
 	{
 		final Context context = getContext();
 		return getLinkDrawable(context, linkId);
 	}
 
+	/**
+	 * Match link id to drawable
+	 *
+	 * @param context context
+	 * @param linkId  link id
+	 * @return drawable
+	 */
 	private Drawable getLinkDrawable(final Context context, final int linkId)
 	{
 		int resId = getLinkRes(linkId);
 		return Spanner.getDrawable(context, resId);
 	}
 
+	// Q U E R I E S
+
+	/**
+	 * Link query
+	 */
 	public class LinksQuery extends QueryHolder.Query
 	{
-		final long id2;
+		/**
+		 * Word id
+		 */
+		final long wordId;
 
+		/**
+		 * Constructor
+		 *
+		 * @param synsetId synset id
+		 * @param wordId   word id
+		 * @param icon     icon
+		 * @param text     label text
+		 */
 		public LinksQuery(final long synsetId, final long wordId, final int icon, @SuppressWarnings("SameParameterValue") final CharSequence text)
 		{
 			super(synsetId, icon, text);
-			this.id2 = wordId;
+			this.wordId = wordId;
 		}
 
 		@Override
@@ -1368,30 +1410,51 @@ abstract public class BasicModule extends Module
 			semLinks(this.id, node);
 
 			// lex links
-			lexLinks(this.id, this.id2, node);
+			lexLinks(this.id, this.wordId, node);
 		}
 	}
 
 	public class SubLinksQuery extends QueryHolder.Query
 	{
-		final int id2;
+		/**
+		 * Link id
+		 */
+		final int linkId;
 
+		/**
+		 * Constructor
+		 *
+		 * @param synsetId synset id
+		 * @param linkId   link id
+		 * @param icon     icon
+		 * @param text     label text
+		 */
 		public SubLinksQuery(final long synsetId, final int linkId, final int icon, final CharSequence text)
 		{
 			super(synsetId, icon, text);
-			this.id2 = linkId;
+			this.linkId = linkId;
 		}
 
 		@Override
 		public void process(final TreeNode node)
 		{
 			// semLinks
-			semLinks(this.id, this.id2, node);
+			semLinks(this.id, this.linkId, node);
 		}
 	}
 
+	/**
+	 * Samples query
+	 */
 	public class SamplesQuery extends QueryHolder.Query
 	{
+		/**
+		 * Constructor
+		 *
+		 * @param synsetId synset id
+		 * @param icon     icon
+		 * @param text     label text
+		 */
 		public SamplesQuery(final long synsetId, final int icon, @SuppressWarnings("SameParameterValue") final CharSequence text)
 		{
 			super(synsetId, icon, text);

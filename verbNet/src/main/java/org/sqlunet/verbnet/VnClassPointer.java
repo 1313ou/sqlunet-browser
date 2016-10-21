@@ -11,9 +11,27 @@ import android.os.Parcelable;
 public class VnClassPointer implements Parcelable
 {
 	/**
-	 * Members
+	 * Class od
 	 */
 	public Long classId;
+
+	/**
+	 * Static field used to regenerate object, individually or as arrays
+	 */
+	public static final Parcelable.Creator<VnClassPointer> CREATOR = new Parcelable.Creator<VnClassPointer>()
+	{
+		@Override
+		public VnClassPointer createFromParcel(final Parcel parcel)
+		{
+			return new VnClassPointer(parcel);
+		}
+
+		@Override
+		public VnClassPointer[] newArray(final int size)
+		{
+			return new VnClassPointer[size];
+		}
+	};
 
 	/**
 	 * Constructor
@@ -24,7 +42,7 @@ public class VnClassPointer implements Parcelable
 	}
 
 	/**
-	 * Constructor from Parcel, reads back fields IN THE ORDER they were written
+	 * Constructor from parcel, reads back fields IN THE ORDER they were written
 	 */
 	@SuppressWarnings("boxing")
 	private VnClassPointer(final Parcel parcel)
@@ -37,6 +55,11 @@ public class VnClassPointer implements Parcelable
 		}
 	}
 
+	/**
+	 * Get class id
+	 *
+	 * @return class id
+	 */
 	public Long getClassId()
 	{
 		if (this.classId != 0)
@@ -46,28 +69,10 @@ public class VnClassPointer implements Parcelable
 		return null;
 	}
 
-	/**
-	 * Static field used to regenerate object, individually or as arrays
-	 */
-	public static final Parcelable.Creator<VnClassPointer> CREATOR = new Parcelable.Creator<VnClassPointer>()
-	{
-		@Override
-		public VnClassPointer createFromParcel(final Parcel pc)
-		{
-			return new VnClassPointer(pc);
-		}
-
-		@Override
-		public VnClassPointer[] newArray(final int size)
-		{
-			return new VnClassPointer[size];
-		}
-	};
-
 	@Override
-	public void writeToParcel(final Parcel pc, final int flags)
+	public void writeToParcel(final Parcel parcel, final int flags)
 	{
-		pc.writeLong(this.classId == null ? -1 : this.classId);
+		parcel.writeLong(this.classId == null ? -1 : this.classId);
 	}
 
 	@Override

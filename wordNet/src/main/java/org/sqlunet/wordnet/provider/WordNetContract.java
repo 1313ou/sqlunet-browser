@@ -2,6 +2,11 @@ package org.sqlunet.wordnet.provider;
 
 import android.app.SearchManager;
 
+/**
+ * WordNet provider contract
+ *
+ * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
+ */
 public class WordNetContract
 {
 	static public final String AUTHORITY = "org.sqlunet.wordnet.provider"; //$NON-NLS-1$

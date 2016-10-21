@@ -16,13 +16,13 @@ import java.util.List;
  */
 public class VerbNetImplementation implements VerbNetInterface
 {
-	// S E L E C T I O N
+	// S E L E C T O R
 
 	/**
 	 * Business method that returns VerbNet selector data as DOM document
 	 *
-	 * @param connection database connection
-	 * @param word       the target word
+	 * @param connection connection
+	 * @param word       target word
 	 * @return VerbNet selector data as DOM document
 	 */
 	@Override
@@ -37,8 +37,8 @@ public class VerbNetImplementation implements VerbNetInterface
 	/**
 	 * Business method that returns VerbNet selector data as XML
 	 *
-	 * @param connection database connection
-	 * @param word       the target word
+	 * @param connection connection
+	 * @param word       target word
 	 * @return VerbNet selector data as XML
 	 */
 	@Override
@@ -53,8 +53,8 @@ public class VerbNetImplementation implements VerbNetInterface
 	/**
 	 * Business method that returns VerbNet data as DOM document from word
 	 *
-	 * @param connection database connection
-	 * @param word       the target word
+	 * @param connection connection
+	 * @param word       target word
 	 * @return VerbNet data as DOM document
 	 */
 	@Override
@@ -69,8 +69,8 @@ public class VerbNetImplementation implements VerbNetInterface
 	/**
 	 * Business method that returns VerbNet data as XML
 	 *
-	 * @param connection database connection
-	 * @param word       the target word
+	 * @param connection connection
+	 * @param word       target word
 	 * @return VerbNet data as XML
 	 */
 	@Override
@@ -83,17 +83,17 @@ public class VerbNetImplementation implements VerbNetInterface
 	/**
 	 * Business method that returns VerbNet data as DOM document from sense
 	 *
-	 * @param connection database connection
-	 * @param wordId     the word id to build query from
-	 * @param synsetId   the synset id to build query from (null if any)
-	 * @param pos        the pos to build query from
+	 * @param connection connection
+	 * @param wordId     word id to build query from
+	 * @param synsetId   synset id to build query from (null if any)
+	 * @param pos        pos to build query from
 	 * @return VerbNet data as DOM document
 	 */
 	@Override
 	public Document queryDoc(final SQLiteDatabase connection, final long wordId, final Long synsetId, final Character pos)
 	{
 		final Document doc = Factory.makeDocument();
-		final Node rootNode = VnNodeFactory.makeVnRootNode(doc, wordId, synsetId == null ? -1 : synsetId);
+		final Node rootNode = VnNodeFactory.makeVnRootNode(doc, wordId, synsetId);
 		VerbNetImplementation.walk(connection, doc, rootNode, wordId, synsetId, true, true);
 		return doc;
 	}
@@ -101,10 +101,10 @@ public class VerbNetImplementation implements VerbNetInterface
 	/**
 	 * Business method that returns VerbNet data as XML from sense
 	 *
-	 * @param connection database connection
-	 * @param wordId     the target word id
-	 * @param synsetId   the target synset id (-1 if any)
-	 * @param pos        the pos to build query from
+	 * @param connection connection
+	 * @param wordId     target word id
+	 * @param synsetId   target synset id (null if any)
+	 * @param pos        pos to build query from
 	 * @return VerbNet data as XML
 	 */
 	@Override
@@ -116,14 +116,6 @@ public class VerbNetImplementation implements VerbNetInterface
 
 	// class
 
-	/**
-	 * Business method that returns class data as DOM document from class id
-	 *
-	 * @param connection database connection
-	 * @param classId    the class to build query from
-	 * @param pos        the pos to build query from
-	 * @return VerbNet class data as DOM document
-	 */
 	@Override
 	public Document queryClassDoc(final SQLiteDatabase connection, final long classId, final Character pos)
 	{
@@ -136,9 +128,9 @@ public class VerbNetImplementation implements VerbNetInterface
 	/**
 	 * Business method that returns class data as XML from class id
 	 *
-	 * @param connection database connection
-	 * @param classId    the class to build query from
-	 * @param pos        the pos to build query from
+	 * @param connection connection
+	 * @param classId    class to build query from
+	 * @param pos        pos to build query from
 	 * @return VerbNet class data as XML
 	 */
 	@Override
@@ -154,9 +146,9 @@ public class VerbNetImplementation implements VerbNetInterface
 	 * Perform queries for VerbNet selector data
 	 *
 	 * @param connection connection
-	 * @param doc        the org.w3c.dom.Document being built
-	 * @param parent     the org.w3c.dom.Node the walk will attach results to
-	 * @param targetWord the target word
+	 * @param doc        org.w3c.dom.Document being built
+	 * @param parent     org.w3c.dom.Node walk will attach results to
+	 * @param targetWord target word
 	 */
 	@SuppressWarnings("boxing")
 	static private void walkSelector(final SQLiteDatabase connection, final Document doc, final Node parent, final String targetWord)
@@ -179,7 +171,7 @@ public class VerbNetImplementation implements VerbNetInterface
 		}
 
 		int i = 1;
-		long currentId = -1;
+		long currentId = -1L;
 		boolean currentFlag = false;
 		for (final VnSynset synset : synsets)
 		{
@@ -210,9 +202,9 @@ public class VerbNetImplementation implements VerbNetInterface
 	 * Perform queries for VerbNet data from word
 	 *
 	 * @param connection connection
-	 * @param doc        the org.w3c.dom.Document being built
-	 * @param parent     the org.w3c.dom.Node the walk will attach results to
-	 * @param targetWord the target word
+	 * @param doc        org.w3c.dom.Document being built
+	 * @param parent     org.w3c.dom.Node walk will attach results to
+	 * @param targetWord target word
 	 */
 	@SuppressWarnings("boxing")
 	static private void walk(final SQLiteDatabase connection, final Document doc, final Node parent, final String targetWord)
@@ -235,7 +227,7 @@ public class VerbNetImplementation implements VerbNetInterface
 		}
 
 		int i = 1;
-		long currentId = -1;
+		long currentId = -1L;
 		boolean currentFlag = false;
 		for (final VnSynset synset : synsets)
 		{
@@ -263,10 +255,10 @@ public class VerbNetImplementation implements VerbNetInterface
 	 * Perform queries for VerbNet data from sense
 	 *
 	 * @param connection     data source
-	 * @param doc            the org.w3c.dom.Document being built
-	 * @param parent         the org.w3c.dom.Node the walk will attach results to
-	 * @param targetWordId   the target word id
-	 * @param targetSynsetId the target synset id (null for any)
+	 * @param doc            org.w3c.dom.Document being built
+	 * @param parent         org.w3c.dom.Node walk will attach results to
+	 * @param targetWordId   target word id
+	 * @param targetSynsetId target synset id (null for any)
 	 * @param roles          whether to include roles
 	 * @param frames         whether to include frames
 	 */
@@ -319,9 +311,9 @@ public class VerbNetImplementation implements VerbNetInterface
 	 * Perform queries for VerbNet data from class id
 	 *
 	 * @param connection data source
-	 * @param doc        the org.w3c.dom.Document being built
-	 * @param parent     the org.w3c.dom.Node the walk will attach results to
-	 * @param classId    the target class id
+	 * @param doc        org.w3c.dom.Document being built
+	 * @param parent     org.w3c.dom.Node walk will attach results to
+	 * @param classId    target class id
 	 */
 	private static void walkClass(final SQLiteDatabase connection, final Document doc, final Node parent, final long classId)
 	{

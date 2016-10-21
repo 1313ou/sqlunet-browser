@@ -12,7 +12,7 @@ import org.w3c.dom.Document;
 @SuppressWarnings("unused")
 interface PropBankInterface
 {
-	// S E L E C T I O N
+	// S E L E C T O R
 
 	/**
 	 * Business method that returns PropBank selector data as DOM document
@@ -71,7 +71,7 @@ interface PropBankInterface
 	/**
 	 * Business method that returns role set data as DOM document from role set id
 	 *
-	 * @param connection database connection
+	 * @param connection connection
 	 * @param roleSetId  the role set to build query from
 	 * @param pos        the pos to build query from
 	 * @return PropBank role set data as DOM document
@@ -81,7 +81,7 @@ interface PropBankInterface
 	/**
 	 * Business method that returns role set data as XML from role set id
 	 *
-	 * @param connection database connection
+	 * @param connection connection
 	 * @param roleSetId  the role set id to build query from
 	 * @param pos        the pos to build query from
 	 * @return PropBank role set data as XML

@@ -19,7 +19,7 @@ class FnGovernorQueryCommand extends DBQueryCommand
 	/**
 	 * Constructor
 	 *
-	 * @param connection database connection
+	 * @param connection connection
 	 * @param luId       target lex unit id
 	 */
 	@SuppressWarnings("boxing")

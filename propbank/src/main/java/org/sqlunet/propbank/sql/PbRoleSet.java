@@ -53,7 +53,7 @@ class PbRoleSet
 	/**
 	 * Make sets of PropBank roleSets from query built from word id
 	 *
-	 * @param connection database connection
+	 * @param connection connection
 	 * @param word       is the word to build query from
 	 * @return list of PropBank roleSets
 	 */
@@ -90,7 +90,7 @@ class PbRoleSet
 	/**
 	 * Make sets of PropBank roleSets from query built from word id
 	 *
-	 * @param connection database connection
+	 * @param connection connection
 	 * @param wordId     is the word id to build query from
 	 * @return list of PropBank roleSets
 	 */
@@ -125,7 +125,7 @@ class PbRoleSet
 	/**
 	 * Make sets of PropBank roleSets from query built from word id
 	 *
-	 * @param connection database connection
+	 * @param connection connection
 	 * @param roleSetId  is the role set id to build query from
 	 * @return list of PropBank role sets
 	 */

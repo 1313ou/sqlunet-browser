@@ -1,9 +1,3 @@
-/*
- * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
- * Created on 25 jan. 2005
- * Filename : Word.java
- * Class encapsulating access to WordNet data starting from word
- */
 package org.sqlunet.wordnet.sql;
 
 import android.database.SQLException;
@@ -29,7 +23,7 @@ public class Word extends BasicWord
 	/**
 	 * Word
 	 *
-	 * @param lemma is the word string
+	 * @param lemma word string
 	 * @param id    database id
 	 */
 	public Word(final String lemma, final long id)
@@ -50,7 +44,7 @@ public class Word extends BasicWord
 	/**
 	 * Make word
 	 *
-	 * @param connection database connection
+	 * @param connection connection
 	 * @param lemma      target string
 	 * @return Word or null
 	 */
@@ -86,7 +80,7 @@ public class Word extends BasicWord
 	/**
 	 * Get synsets containing a given word
 	 *
-	 * @param connection database connection
+	 * @param connection connection
 	 * @return list of synsets containing a given word
 	 */
 	public List<Synset> getSynsets(final SQLiteDatabase connection)
@@ -122,7 +116,7 @@ public class Word extends BasicWord
 	/**
 	 * Get synsets containing a given word and of a given part-of-speech or lexdomain id
 	 *
-	 * @param connection     database connection
+	 * @param connection     connection
 	 * @param targetType     target type to restrict search to
 	 * @param lexDomainBased is whether the query is lexdomain based
 	 * @return list of synsets for a given word
@@ -169,7 +163,7 @@ public class Word extends BasicWord
 	/**
 	 * Get lexdomain-link type map for a given word
 	 *
-	 * @param connection database connection
+	 * @param connection connection
 	 * @param word       target word
 	 * @return lexdomain-link type map for a given word
 	 */

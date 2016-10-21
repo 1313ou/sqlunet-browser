@@ -1,9 +1,3 @@
-/*
- * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
- * Created on 31 dec. 2004
- * Filename : SynsetWordsQueryCommand.java
- * Class encapsulating query for words in synset
- */
 package org.sqlunet.wordnet.sql;
 
 import android.database.sqlite.SQLiteDatabase;
@@ -25,7 +19,7 @@ class SynsetWordsQueryCommand extends DBQueryCommand
 	/**
 	 * Constructor
 	 *
-	 * @param connection database connection
+	 * @param connection connection
 	 * @param synsetId   target synset id
 	 */
 	@SuppressWarnings("boxing")

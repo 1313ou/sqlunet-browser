@@ -7,7 +7,7 @@ import org.sqlunet.sql.DBQueryCommand;
 import java.sql.Types;
 
 /**
- * VerbNet FrameQuery query command
+ * VerbNet frame query command from sense
  *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
@@ -21,7 +21,7 @@ class VnFrameQueryFromSenseCommand extends DBQueryCommand
 	/**
 	 * Constructor
 	 *
-	 * @param connection database connection
+	 * @param connection connection
 	 * @param classId    target class id
 	 * @param wordId     target word id
 	 * @param synsetId   target synset id

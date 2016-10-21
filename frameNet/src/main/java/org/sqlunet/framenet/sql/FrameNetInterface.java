@@ -75,7 +75,7 @@ interface FrameNetInterface
 	/**
 	 * Business method that returns FrameNet frame data as DOM document
 	 *
-	 * @param connection database connection
+	 * @param connection connection
 	 * @param frameId    target frame to build query from
 	 * @param pos        target pos to build query from
 	 * @return FrameNet frame id data as DOM document
@@ -85,7 +85,7 @@ interface FrameNetInterface
 	/**
 	 * Business method that returns FrameNet frame data as XML
 	 *
-	 * @param connection database connection
+	 * @param connection connection
 	 * @param frameId    target frame id to build query from
 	 * @param pos        target pos to build query from
 	 * @return FrameNet frame data as XML
@@ -95,7 +95,7 @@ interface FrameNetInterface
 	/**
 	 * Business method that returns FrameNet lex unit data as DOM document
 	 *
-	 * @param connection database connection
+	 * @param connection connection
 	 * @param luId       target lex unit id to build query from
 	 * @return FrameNet lex unit data as DOM document
 	 */
@@ -104,7 +104,7 @@ interface FrameNetInterface
 	/**
 	 * Business method that returns FrameNet lex unit data as XML
 	 *
-	 * @param connection database connection
+	 * @param connection connection
 	 * @param luId       target lex unit id to build query from
 	 * @return FrameNet lex unit data as XML
 	 */

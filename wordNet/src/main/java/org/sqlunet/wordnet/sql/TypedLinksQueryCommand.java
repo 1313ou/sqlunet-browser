@@ -1,9 +1,3 @@
-/*
- * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
- * Created on 31 dec. 2004
- * Filename : TypedLinksQueryCommand.java
- * Class encapsulating query for synsets linked through a given relation type
- */
 package org.sqlunet.wordnet.sql;
 
 import android.database.sqlite.SQLiteDatabase;
@@ -25,7 +19,7 @@ class TypedLinksQueryCommand extends DBQueryCommand
 	/**
 	 * Constructor
 	 *
-	 * @param connection database connection
+	 * @param connection connection
 	 */
 	public TypedLinksQueryCommand(final SQLiteDatabase connection)
 	{

@@ -9,10 +9,13 @@ import android.text.style.StyleSpan;
 import org.sqlunet.style.Colors;
 import org.sqlunet.style.Spanner.SpanFactory;
 
+/**
+ * VerbNet span factories
+ *
+ * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
+ */
 public class VerbNetFactories
 {
-	// colors
-
 	// class
 
 	static public final SpanFactory classFactory = new SpanFactory()

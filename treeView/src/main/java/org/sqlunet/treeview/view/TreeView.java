@@ -833,7 +833,7 @@ public class TreeView
 	}
 
 	/**
-	 * Select node and childfe
+	 * Select node and children
 	 *
 	 * @param parent   parent node
 	 * @param selected selected flag

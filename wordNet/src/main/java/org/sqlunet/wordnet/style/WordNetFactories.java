@@ -9,6 +9,11 @@ import android.text.style.StyleSpan;
 import org.sqlunet.style.Colors;
 import org.sqlunet.style.Spanner.SpanFactory;
 
+/**
+ * WordNet span factories
+ *
+ * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
+ */
 public class WordNetFactories
 {
 	public static final SpanFactory membersFactory = new SpanFactory()

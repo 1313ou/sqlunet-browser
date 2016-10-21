@@ -22,15 +22,15 @@ public class WordNetImplementation implements WordNetInterface
 	 */
 	static private final int MAX_RECURSE_LEVEL = 2;
 
-	// S E L E C T I O N
+	// S E L E C T O R
 
 	/**
 	 * Perform queries for WordNet selector
 	 *
 	 * @param connection connection
-	 * @param doc        the org.w3c.dom.Document being built
-	 * @param parent     the org.w3c.dom.Node the walk will attach results to
-	 * @param targetWord the target word
+	 * @param doc        org.w3c.dom.Document being built
+	 * @param parent     org.w3c.dom.Node walk will attach results to
+	 * @param targetWord target word
 	 */
 	private static void walkSelector(final SQLiteDatabase connection, final Document doc, final Node parent, final String targetWord)
 	{
@@ -86,14 +86,14 @@ public class WordNetImplementation implements WordNetInterface
 	 * Perform queries for WordNet data from word
 	 *
 	 * @param connection          connection
-	 * @param targetWord          the target word
-	 * @param doc                 the org.w3c.dom.Document being built
-	 * @param parent              the org.w3c.dom.Node the walk will attach results to
+	 * @param targetWord          target word
+	 * @param doc                 org.w3c.dom.Document being built
+	 * @param parent              org.w3c.dom.Node walk will attach results to
 	 * @param withLinks           determines if queries are to include links
 	 * @param recurse             determines if queries are to follow links recursively
-	 * @param targetPosType       the target part-of-speech type (ANYTYPE for all types)
-	 * @param targetLexDomainType the target lexdomain type (ANYTYPE for all types)
-	 * @param targetLinkType      the target link type (ANYTYPE for all types)
+	 * @param targetPosType       target part-of-speech type (ANYTYPE for all types)
+	 * @param targetLexDomainType target lexdomain type (ANYTYPE for all types)
+	 * @param targetLinkType      target link type (ANYTYPE for all types)
 	 */
 	private static void walk(final SQLiteDatabase connection, final String targetWord, final Document doc, final Node parent, final boolean withLinks, final boolean recurse, final int targetPosType, final int targetLexDomainType, final int targetLinkType)
 	{
@@ -155,10 +155,10 @@ public class WordNetImplementation implements WordNetInterface
 	 * Perform queries for WordNet data from word id and synset id
 	 *
 	 * @param connection     connection
-	 * @param wordId         the target word id
-	 * @param synsetId       the target synset id
-	 * @param doc            the org.w3c.dom.Document being built
-	 * @param parent         the org.w3c.dom.Node the walk will attach results to
+	 * @param wordId         target word id
+	 * @param synsetId       target synset id
+	 * @param doc            org.w3c.dom.Document being built
+	 * @param parent         org.w3c.dom.Node walk will attach results to
 	 * @param withLinks      determines if queries are to include links
 	 * @param recurse        determines if queries are to follow links recursively
 	 * @param targetLinkType target link type
@@ -242,10 +242,10 @@ public class WordNetImplementation implements WordNetInterface
 	/**
 	 * Process synset data
 	 *
-	 * @param connection the database connection
-	 * @param doc        the org.w3c.dom.Document being built
-	 * @param parent     the org.w3c.dom.Node the walk will attach results to
-	 * @param synset     the synset whose data are to be processed
+	 * @param connection connection
+	 * @param doc        org.w3c.dom.Document being built
+	 * @param parent     org.w3c.dom.Node walk will attach results to
+	 * @param synset     synset whose data are to be processed
 	 */
 	private static void walkSynset(final SQLiteDatabase connection, final Document doc, final Node parent, final Synset synset)
 	{
@@ -279,10 +279,10 @@ public class WordNetImplementation implements WordNetInterface
 	 * Perform synset link queries for WordNet data
 	 *
 	 * @param connection     connection
-	 * @param doc            the org.w3c.dom.Document being built
-	 * @param parent         the org.w3c.dom.Node the walk will attach results to
-	 * @param synset         the target synset
-	 * @param wordId         the target word id
+	 * @param doc            org.w3c.dom.Document being built
+	 * @param parent         org.w3c.dom.Node walk will attach results to
+	 * @param synset         target synset
+	 * @param wordId         target word id
 	 * @param withLinks      determines if queries are to include links
 	 * @param recurse        determines if queries are to follow links recursively
 	 * @param targetLinkType target link type
@@ -328,13 +328,13 @@ public class WordNetImplementation implements WordNetInterface
 	/**
 	 * Process synset links (recurses)
 	 *
-	 * @param connection     the database connection
-	 * @param doc            the org.w3c.dom.Document being built
-	 * @param parent         the org.w3c.dom.Node the walk will attach results to
-	 * @param link           the synset to start walk from
-	 * @param wordId         the word id to start walk from
-	 * @param recurseLevel   the recursion level
-	 * @param targetLinkType the target link type (cannot be ANYTYPE for all types)
+	 * @param connection     connection
+	 * @param doc            org.w3c.dom.Document being built
+	 * @param parent         org.w3c.dom.Node walk will attach results to
+	 * @param link           synset to start walk from
+	 * @param wordId         word id to start walk from
+	 * @param recurseLevel   recursion level
+	 * @param targetLinkType target link type (cannot be ANYTYPE for all types)
 	 */
 	static private void walkLink(final SQLiteDatabase connection, final Document doc, final Node parent, final Link link, final long wordId, final int recurseLevel, final int targetLinkType)
 	{
@@ -378,7 +378,7 @@ public class WordNetImplementation implements WordNetInterface
 	}
 
 	/**
-	 * Initial house-keeping - directory queries - database connections - database static data
+	 * Initial house-keeping - directory queries - connections - database static data
 	 *
 	 * @throws RuntimeException
 	 */
@@ -395,7 +395,7 @@ public class WordNetImplementation implements WordNetInterface
 	 * Business method that returns WordNet selector data as DOM document
 	 *
 	 * @param connection connection
-	 * @param word       the target word
+	 * @param word       target word
 	 * @return WordNet selector data as DOM document <!-- end-user-doc -->
 	 */
 	@Override
@@ -412,7 +412,7 @@ public class WordNetImplementation implements WordNetInterface
 	 * Business method that returns WordNet selector data as XML
 	 *
 	 * @param connection connection
-	 * @param word       the target word
+	 * @param word       target word
 	 * @return WordNet selector data as XML
 	 */
 	@Override
@@ -426,7 +426,7 @@ public class WordNetImplementation implements WordNetInterface
 	 * Business method that returns WordNet data as a Document
 	 *
 	 * @param connection connection
-	 * @param word       the target word
+	 * @param word       target word
 	 * @param withLinks  determines if queries are to include links
 	 * @param recurse    determines if queries are to follow links recursively
 	 * @return WordNet data as a DOM Document <!-- end-user-doc -->
@@ -445,8 +445,8 @@ public class WordNetImplementation implements WordNetInterface
 	 * Business method that returns WordNet data as a Document
 	 *
 	 * @param connection connection
-	 * @param wordId     the target word id
-	 * @param synsetId   the target synset id
+	 * @param wordId     target word id
+	 * @param synsetId   target synset id
 	 * @param withLinks  determines if queries are to include links
 	 * @param recurse    determines if queries are to follow links recursively
 	 * @return WordNet data as a DOM Document <!-- end-user-doc -->
@@ -465,7 +465,7 @@ public class WordNetImplementation implements WordNetInterface
 	 * Business method that returns complete data as XML
 	 *
 	 * @param connection connection
-	 * @param word       the target word
+	 * @param word       target word
 	 * @param withLinks  determines if queries are to include links
 	 * @param recurse    determines if queries are to follow links recursively
 	 * @return WordNet data as XML <!-- end-user-doc -->
@@ -481,10 +481,10 @@ public class WordNetImplementation implements WordNetInterface
 	 * Business method that returns WordNet data as DOM document
 	 *
 	 * @param connection    connection
-	 * @param word          the target word
-	 * @param posName       the target part-of-speech
-	 * @param lexDomainName the target lexdomain
-	 * @param linkName      the target link type
+	 * @param word          target word
+	 * @param posName       target part-of-speech
+	 * @param lexDomainName target lexdomain
+	 * @param linkName      target link type
 	 * @param withLinks     determines if queries are to include links
 	 * @param recurse       determines if queries are to follow links recursively
 	 * @return WordNet data as DOM document <!-- end-user-doc -->
@@ -517,10 +517,10 @@ public class WordNetImplementation implements WordNetInterface
 	 * Business method that returns WordNet data as XML
 	 *
 	 * @param connection    connection
-	 * @param word          the target word
-	 * @param posName       the target part-of-speech
-	 * @param lexDomainName the target lexdomain
-	 * @param linkName      the target link type
+	 * @param word          target word
+	 * @param posName       target part-of-speech
+	 * @param lexDomainName target lexdomain
+	 * @param linkName      target link type
 	 * @param withLinks     determines if queries are to include links
 	 * @param recurse       determines if queries are to follow links recursively
 	 * @return WordNet data as XML data <!-- end-user-doc -->
@@ -538,8 +538,8 @@ public class WordNetImplementation implements WordNetInterface
 	 * Business method that returns WordNet sense data as DOM document
 	 *
 	 * @param connection connection
-	 * @param wordId     the target word id
-	 * @param synsetId   the target synset id
+	 * @param wordId     target word id
+	 * @param synsetId   target synset id
 	 * @return WordNet synset data as DOM document <!-- end-user-doc -->
 	 */
 	@Override
@@ -569,8 +569,8 @@ public class WordNetImplementation implements WordNetInterface
 	 * Business method that returns WordNet sense data as XML
 	 *
 	 * @param connection connection
-	 * @param wordId     the target word id
-	 * @param synsetId   the target synset id
+	 * @param wordId     target word id
+	 * @param synsetId   target synset id
 	 * @return WordNet synset data as XML
 	 */
 	@Override
@@ -584,7 +584,7 @@ public class WordNetImplementation implements WordNetInterface
 	 * Business method that returns WordNet synset data as DOM document
 	 *
 	 * @param connection connection
-	 * @param synsetId   the target synset id
+	 * @param synsetId   target synset id
 	 * @return WordNet synset data as DOM document <!-- end-user-doc -->
 	 */
 	@Override
@@ -611,7 +611,7 @@ public class WordNetImplementation implements WordNetInterface
 	 * Business method that returns WordNet synset data as XML
 	 *
 	 * @param connection connection
-	 * @param synsetId   the target synset id
+	 * @param synsetId   target synset id
 	 * @return WordNet synset data as XML
 	 */
 	@Override

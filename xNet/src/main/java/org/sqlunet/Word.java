@@ -16,30 +16,14 @@ public class Word implements Parcelable
 	public String word;
 
 	/**
-	 * Constructor
-	 */
-	public Word()
-	{
-	}
-
-	/**
-	 * Constructor from Parcel, reads back fields IN THE ORDER they were written
-	 */
-	@SuppressWarnings("unused")
-	public Word(final Parcel pc)
-	{
-		this.word = pc.readString();
-	}
-
-	/**
 	 * Creator
 	 */
 	public static final Creator<Word> CREATOR = new Creator<Word>()
 	{
 		@Override
-		public Word createFromParcel(Parcel in)
+		public Word createFromParcel(Parcel parcel)
 		{
-			return new Word(in);
+			return new Word(parcel);
 		}
 
 		@Override
@@ -48,6 +32,22 @@ public class Word implements Parcelable
 			return new Word[size];
 		}
 	};
+
+	/**
+	 * Constructor
+	 */
+	public Word()
+	{
+	}
+
+	/**
+	 * Constructor from parcel, reads back fields IN THE ORDER they were written
+	 */
+	@SuppressWarnings("unused")
+	public Word(final Parcel parcel)
+	{
+		this.word = parcel.readString();
+	}
 
 	/**
 	 * Get word
@@ -60,9 +60,9 @@ public class Word implements Parcelable
 	}
 
 	@Override
-	public void writeToParcel(final Parcel pc, final int flags)
+	public void writeToParcel(final Parcel parcel, final int flags)
 	{
-		pc.writeString(this.word);
+		parcel.writeString(this.word);
 	}
 
 	@Override

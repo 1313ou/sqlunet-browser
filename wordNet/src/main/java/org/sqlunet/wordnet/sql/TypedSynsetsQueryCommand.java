@@ -1,9 +1,3 @@
-/*
- * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
- * Created on 31 dec. 2004
- * Filename : TypedSynsetsQueryCommand.java
- * Class encapsulating query for synsets of a given part-of-speech or lexdomain type and containing a given word
- */
 package org.sqlunet.wordnet.sql;
 
 import android.database.sqlite.SQLiteDatabase;
@@ -18,14 +12,14 @@ import org.sqlunet.sql.DBQueryCommand;
 class TypedSynsetsQueryCommand extends DBQueryCommand
 {
 	/**
-	 * <code>posQuery</code> is the (part-of-speech based) SQL statement
+	 * <code>QUERYWITHPOS</code> is the (part-of-speech based) SQL statement
 	 */
-	private static String posQuery;
+	private static String QUERYWITHPOS;
 
 	/**
-	 * <code>lexDomainQuery</code> is the (lexdomain based) SQL statement
+	 * <code>QUERYWITHLEXDOMAIN</code> is the (lexdomain based) SQL statement
 	 */
-	private static String lexDomainQuery;
+	private static String QUERYWITHLEXDOMAIN;
 
 	/**
 	 * Init data (resources, ...)
@@ -33,19 +27,19 @@ class TypedSynsetsQueryCommand extends DBQueryCommand
 	@SuppressWarnings("unused")
 	static void init()
 	{
-		TypedSynsetsQueryCommand.lexDomainQuery = SqLiteDialect.LexDomainTypedSynsetsQuery;
-		TypedSynsetsQueryCommand.posQuery = SqLiteDialect.PosTypedSynsetsQuery;
+		TypedSynsetsQueryCommand.QUERYWITHLEXDOMAIN = SqLiteDialect.LexDomainTypedSynsetsQuery;
+		TypedSynsetsQueryCommand.QUERYWITHPOS = SqLiteDialect.PosTypedSynsetsQuery;
 	}
 
 	/**
 	 * Constructor
 	 *
-	 * @param connection     database connection
+	 * @param connection     connection
 	 * @param lexDomainBased is whether the query is lexdomain based
 	 */
 	public TypedSynsetsQueryCommand(final SQLiteDatabase connection, final boolean lexDomainBased)
 	{
-		super(connection, lexDomainBased ? TypedSynsetsQueryCommand.lexDomainQuery : TypedSynsetsQueryCommand.posQuery);
+		super(connection, lexDomainBased ? TypedSynsetsQueryCommand.QUERYWITHLEXDOMAIN : TypedSynsetsQueryCommand.QUERYWITHPOS);
 	}
 
 	/**

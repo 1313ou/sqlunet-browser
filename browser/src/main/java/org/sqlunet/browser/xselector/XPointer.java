@@ -58,6 +58,24 @@ public class XPointer extends Pointer implements HasXId
 	private long xMask;
 
 	/**
+	 * Static field used to regenerate object, individually or as arrays
+	 */
+	public static final Parcelable.Creator<XPointer> CREATOR = new Parcelable.Creator<XPointer>()
+	{
+		@Override
+		public XPointer createFromParcel(final Parcel parcel)
+		{
+			return new XPointer(parcel);
+		}
+
+		@Override
+		public XPointer[] newArray(final int size)
+		{
+			return new XPointer[size];
+		}
+	};
+
+	/**
 	 * Constructor
 	 */
 	public XPointer()
@@ -68,7 +86,7 @@ public class XPointer extends Pointer implements HasXId
 	}
 
 	/**
-	 * Constructor from Parcel, reads back fields IN THE ORDER they were written
+	 * Constructor from parcel, reads back fields IN THE ORDER they were written
 	 */
 	@SuppressWarnings("boxing")
 	private XPointer(final Parcel parcel)
@@ -156,24 +174,6 @@ public class XPointer extends Pointer implements HasXId
 	{
 		this.xWordId = xWordId;
 	}
-
-	/**
-	 * Static field used to regenerate object, individually or as arrays
-	 */
-	public static final Parcelable.Creator<XPointer> CREATOR = new Parcelable.Creator<XPointer>()
-	{
-		@Override
-		public XPointer createFromParcel(final Parcel parcel)
-		{
-			return new XPointer(parcel);
-		}
-
-		@Override
-		public XPointer[] newArray(final int size)
-		{
-			return new XPointer[size];
-		}
-	};
 
 	@Override
 	public void writeToParcel(final Parcel parcel, final int flags)

@@ -19,7 +19,7 @@ class FnLexUnitQueryCommand extends DBQueryCommand
 	/**
 	 * Constructor
 	 *
-	 * @param connection database connection
+	 * @param connection connection
 	 * @param targetLuId target luId
 	 */
 	@SuppressWarnings("boxing")

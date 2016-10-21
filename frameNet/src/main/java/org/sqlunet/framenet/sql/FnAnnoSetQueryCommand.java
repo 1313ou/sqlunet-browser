@@ -20,7 +20,7 @@ class FnAnnoSetQueryCommand extends DBQueryCommand
 	/**
 	 * Constructor
 	 *
-	 * @param connection database connection
+	 * @param connection connection
 	 * @param annoSetId  target annoSet id
 	 */
 	@SuppressWarnings("boxing")

@@ -77,10 +77,19 @@ public class XSelectorActivity extends Activity implements XSelectorFragment.Lis
 
 	// I T E M S E L E C T I O N H A N D L I N G
 
+	/**
+	 * VerbNet fragment
+	 */
 	private Fragment verbnetFragment;
 
+	/**
+	 * PropBank fragment
+	 */
 	private Fragment propbankFragment;
 
+	/**
+	 * FrameNet fragment
+	 */
 	private Fragment framenetFragment;
 
 	/**

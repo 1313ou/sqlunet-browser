@@ -1,9 +1,3 @@
-/*
- * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
- * Created on 31 dec. 2004
- * Filename : LinkEnumQueryCommand.java
- * Class encapsulating query for link enumeration
- */
 package org.sqlunet.wordnet.sql;
 
 import android.database.sqlite.SQLiteDatabase;
@@ -25,7 +19,7 @@ class LinkEnumQueryCommand extends DBQueryCommand
 	/**
 	 * Constructor
 	 *
-	 * @param connection database connection
+	 * @param connection connection
 	 */
 	public LinkEnumQueryCommand(final SQLiteDatabase connection)
 	{

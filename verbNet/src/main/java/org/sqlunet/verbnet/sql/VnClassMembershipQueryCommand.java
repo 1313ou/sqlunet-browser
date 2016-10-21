@@ -5,7 +5,7 @@ import android.database.sqlite.SQLiteDatabase;
 import org.sqlunet.sql.DBQueryCommand;
 
 /**
- * VerbNet Class Membership query command
+ * VerbNet class membership query command
  *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
@@ -19,7 +19,7 @@ class VnClassMembershipQueryCommand extends DBQueryCommand
 	/**
 	 * Constructor
 	 *
-	 * @param connection database connection
+	 * @param connection connection
 	 * @param wordId     target word id
 	 * @param synsetId   target synset id (null corresponds to no value)
 	 */

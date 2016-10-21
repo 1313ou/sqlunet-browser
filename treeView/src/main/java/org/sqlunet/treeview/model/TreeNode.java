@@ -457,7 +457,7 @@ public class TreeNode
 	}
 
 	/**
-	 * Click listener intarface
+	 * Click listener interface
 	 */
 	@SuppressWarnings("unused")
 	public interface TreeNodeClickListener

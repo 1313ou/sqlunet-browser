@@ -11,6 +11,11 @@ import android.os.Parcelable;
 public class PbRoleSetPointer implements Parcelable
 {
 	/**
+	 * Role set id
+	 */
+	public Long roleSetId;
+
+	/**
 	 * Static field used to regenerate object, individually or as arrays
 	 */
 	public static final Parcelable.Creator<PbRoleSetPointer> CREATOR = new Parcelable.Creator<PbRoleSetPointer>()
@@ -27,10 +32,6 @@ public class PbRoleSetPointer implements Parcelable
 			return new PbRoleSetPointer[size];
 		}
 	};
-	/**
-	 * Role set id
-	 */
-	public Long roleSetId;
 
 	/**
 	 * Constructor
@@ -41,7 +42,7 @@ public class PbRoleSetPointer implements Parcelable
 	}
 
 	/**
-	 * Constructor from Parcel, reads back fields IN THE ORDER they were written
+	 * Constructor from parcel, reads back fields IN THE ORDER they were written
 	 *
 	 * @param parcel parcel
 	 */
@@ -71,9 +72,9 @@ public class PbRoleSetPointer implements Parcelable
 	}
 
 	@Override
-	public void writeToParcel(final Parcel pc, final int flags)
+	public void writeToParcel(final Parcel parcel, final int flags)
 	{
-		pc.writeLong(this.roleSetId == null ? -1 : this.roleSetId);
+		parcel.writeLong(this.roleSetId == null ? -1 : this.roleSetId);
 	}
 
 	@Override

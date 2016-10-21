@@ -10,7 +10,7 @@ interface BncInterface
 	/**
 	 * Business method that returns BNC data as DOM document
 	 *
-	 * @param connection database connection
+	 * @param connection connection
 	 * @param word       the target word
 	 * @return BNC data as DOM document
 	 */
@@ -19,7 +19,7 @@ interface BncInterface
 	/**
 	 * Business method that returns BNC data as XML
 	 *
-	 * @param connection database connection
+	 * @param connection connection
 	 * @param word       the target word
 	 * @return BNC data as XML
 	 */
@@ -28,7 +28,7 @@ interface BncInterface
 	/**
 	 * Business method that returns BNC data as DOM document
 	 *
-	 * @param connection database connection
+	 * @param connection connection
 	 * @param wordId     the word id to build query from
 	 * @param pos        the pos to build query from (null if any)
 	 * @return BNC data as DOM document
@@ -38,7 +38,7 @@ interface BncInterface
 	/**
 	 * Business method that returns BNC data as XML
 	 *
-	 * @param connection database connection
+	 * @param connection connection
 	 * @param wordId     the target word id
 	 * @param pos        the target pos (null if any)
 	 * @return BNC data as XML

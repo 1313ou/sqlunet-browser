@@ -19,7 +19,7 @@ class FnFrameElementQueryCommand extends DBQueryCommand
 	/**
 	 * Constructor
 	 *
-	 * @param connection database connection
+	 * @param connection connection
 	 * @param frameId    target frame id
 	 */
 	@SuppressWarnings("boxing")

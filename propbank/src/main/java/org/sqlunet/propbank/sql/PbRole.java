@@ -59,7 +59,7 @@ class PbRole
 	/**
 	 * Make sets of PropBank roles from query built from roleSetId
 	 *
-	 * @param connection database connection
+	 * @param connection connection
 	 * @param roleSetId  role set id to build query from
 	 * @return list of PropBank roles
 	 */

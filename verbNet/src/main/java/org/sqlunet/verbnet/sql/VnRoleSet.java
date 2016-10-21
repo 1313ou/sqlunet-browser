@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Roles attached to a VerbNet Class
+ * Set of roles attached to a VerbNet class
  *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
@@ -30,9 +30,9 @@ public class VnRoleSet
 	/**
 	 * Make VerbNet role sets from query built from class id, word id and synset id
 	 *
-	 * @param connection database connection
+	 * @param connection connection
 	 * @param classId    is the class id to build query from
-	 * @return list of VerbNet role sets
+	 * @return set of VerbNet roles
 	 */
 	static public VnRoleSet make(final SQLiteDatabase connection, final long classId)
 	{
@@ -75,11 +75,11 @@ public class VnRoleSet
 	/**
 	 * Make VerbNet role sets from query built from class id, word id and synset id
 	 *
-	 * @param connection database connection
+	 * @param connection connection
 	 * @param classId    is the class id to build query from
 	 * @param wordId     is the word id to build query from
-	 * @param synsetId   is the synset id to build query from (-1 for any)
-	 * @return list of VerbNet role sets
+	 * @param synsetId   is the synset id to build query from (null for any)
+	 * @return set of VerbNet roles
 	 */
 	static public VnRoleSet make(final SQLiteDatabase connection, final long classId, final long wordId, final Long synsetId)
 	{

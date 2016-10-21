@@ -1,8 +1,3 @@
-/*
- * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
- * Created on 26 mars 2005
- * Filename : WordQueryCommand.java
- */
 package org.sqlunet.wordnet.sql;
 
 import android.database.sqlite.SQLiteDatabase;
@@ -24,13 +19,13 @@ class WordQueryCommand extends DBQueryCommand
 	/**
 	 * Constructor
 	 *
-	 * @param connection database connection
-	 * @param lemma      is the word lemma
+	 * @param connection connection
+	 * @param word      is the word lemma
 	 */
-	public WordQueryCommand(final SQLiteDatabase connection, final String lemma)
+	public WordQueryCommand(final SQLiteDatabase connection, final String word)
 	{
 		super(connection, WordQueryCommand.QUERY);
-		setParams(lemma);
+		setParams(word);
 	}
 
 	/**

@@ -1,5 +1,10 @@
 package org.sqlunet.verbnet.provider;
 
+/**
+ * VerbNet provider contract
+ *
+ * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
+ */
 public class VerbNetContract
 {
 	static public final String AUTHORITY = "org.sqlunet.verbnet.provider"; //$NON-NLS-1$

@@ -42,7 +42,7 @@ public class FnSentencePointer implements Parcelable
 	}
 
 	/**
-	 * Constructor from Parcel, reads back fields IN THE ORDER they were written
+	 * Constructor from parcel, reads back fields IN THE ORDER they were written
 	 */
 	private FnSentencePointer(final Parcel parcel)
 	{

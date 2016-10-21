@@ -16,21 +16,6 @@ public class Pointer implements Parcelable
 	public long id;
 
 	/**
-	 * Constructor
-	 */
-	protected Pointer()
-	{
-	}
-
-	/**
-	 * Constructor from Parcel, reads back fields IN THE ORDER they were written
-	 */
-	protected Pointer(final Parcel pc)
-	{
-		this.id = pc.readLong();
-	}
-
-	/**
 	 * Creator
 	 */
 	public static final Creator<Pointer> CREATOR = new Creator<Pointer>()
@@ -49,6 +34,21 @@ public class Pointer implements Parcelable
 	};
 
 	/**
+	 * Constructor
+	 */
+	protected Pointer()
+	{
+	}
+
+	/**
+	 * Constructor from parcel, reads back fields IN THE ORDER they were written
+	 */
+	protected Pointer(final Parcel parcel)
+	{
+		this.id = parcel.readLong();
+	}
+
+	/**
 	 * Get id
 	 *
 	 * @return id
@@ -64,9 +64,9 @@ public class Pointer implements Parcelable
 	}
 
 	@Override
-	public void writeToParcel(final Parcel pc, final int flags)
+	public void writeToParcel(final Parcel parcel, final int flags)
 	{
-		pc.writeLong(this.id);
+		parcel.writeLong(this.id);
 	}
 
 	@Override

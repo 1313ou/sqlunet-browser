@@ -7,7 +7,7 @@ import org.sqlunet.sql.DBQueryCommand;
 import java.sql.Types;
 
 /**
- * Query command for VerbNet roles
+ * Query command for VerbNet roles from sense
  *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
@@ -21,7 +21,7 @@ class VnRoleQueryFromSenseCommand extends DBQueryCommand
 	/**
 	 * Constructor
 	 *
-	 * @param connection database connection
+	 * @param connection connection
 	 * @param classId    target class id
 	 * @param wordId     target word id
 	 * @param synsetId   target synset id

@@ -21,7 +21,7 @@ class PbRoleQueryCommand extends DBQueryCommand
 	/**
 	 * Constructor
 	 *
-	 * @param connection database connection
+	 * @param connection connection
 	 */
 	@SuppressWarnings("boxing")
 	public PbRoleQueryCommand(final SQLiteDatabase connection, final long roleSetId)

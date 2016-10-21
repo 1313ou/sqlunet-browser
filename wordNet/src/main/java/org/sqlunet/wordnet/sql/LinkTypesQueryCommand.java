@@ -1,9 +1,3 @@
-/*
- * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
- * Created on 31 dec. 2004
- * Filename : LinksQueryCommand.java
- * Class encapsulating query for link types of a given word
- */
 package org.sqlunet.wordnet.sql;
 
 import android.database.sqlite.SQLiteDatabase;
@@ -25,7 +19,7 @@ class LinkTypesQueryCommand extends DBQueryCommand
 	/**
 	 * Constructor
 	 *
-	 * @param connection database connection
+	 * @param connection connection
 	 */
 	public LinkTypesQueryCommand(final SQLiteDatabase connection)
 	{

@@ -42,7 +42,7 @@ public class FnAnnoSetPointer implements Parcelable
 	}
 
 	/**
-	 * Constructor from Parcel, reads back fields IN THE ORDER they were written
+	 * Constructor from parcel, reads back fields IN THE ORDER they were written
 	 */
 	private FnAnnoSetPointer(final Parcel parcel)
 	{

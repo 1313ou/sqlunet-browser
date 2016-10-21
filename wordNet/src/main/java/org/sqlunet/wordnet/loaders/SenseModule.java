@@ -9,10 +9,16 @@ import org.sqlunet.treeview.view.TreeView;
 import org.sqlunet.view.TreeFactory;
 import org.sqlunet.wordnet.R;
 
+/**
+ * Module for WordNet sense
+ *
+ * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
+ */
+
 public class SenseModule extends SynsetModule
 {
 	/**
-	 * Query
+	 * WordId
 	 */
 	private Long wordId;
 
@@ -38,8 +44,6 @@ public class SenseModule extends SynsetModule
 			this.wordId = query.getWordId();
 		}
 	}
-
-	// L O A D E R S
 
 	@Override
 	public void process(final TreeNode node)

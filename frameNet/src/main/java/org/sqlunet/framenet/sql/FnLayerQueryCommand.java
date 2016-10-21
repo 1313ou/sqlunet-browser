@@ -17,7 +17,7 @@ class FnLayerQueryCommand extends DBQueryCommand
 	/**
 	 * Constructor
 	 *
-	 * @param connection database connection
+	 * @param connection connection
 	 * @param targetId   target id
 	 */
 	@SuppressWarnings("boxing")

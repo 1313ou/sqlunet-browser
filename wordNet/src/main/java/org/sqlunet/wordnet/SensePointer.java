@@ -13,19 +13,37 @@ import org.sqlunet.HasWordId;
 public class SensePointer extends SynsetPointer implements HasWordId
 {
 	/**
-	 * wordId : compulsory
+	 * Word id : compulsory
 	 */
 	private Long wordId;
 
 	/**
-	 * pos : optional/nullable (may be retrieved if need be)
+	 * Lemma : optional/nullable (may be retrieved if need be)
 	 */
 	private String lemma;
 
 	/**
-	 * cased : optional/nullable (may be retrieved if need be)
+	 * Cased : optional/nullable (may be retrieved if need be)
 	 */
 	private String cased;
+
+	/**
+	 * Static field used to regenerate object, individually or as arrays
+	 */
+	public static final Parcelable.Creator<SensePointer> CREATOR = new Parcelable.Creator<SensePointer>()
+	{
+		@Override
+		public SensePointer createFromParcel(final Parcel parcel)
+		{
+			return new SensePointer(parcel);
+		}
+
+		@Override
+		public SensePointer[] newArray(final int size)
+		{
+			return new SensePointer[size];
+		}
+	};
 
 	/**
 	 * Constructor
@@ -39,7 +57,7 @@ public class SensePointer extends SynsetPointer implements HasWordId
 	}
 
 	/**
-	 * Constructor from Parcel, reads back fields IN THE ORDER they were written
+	 * Constructor from parcel, reads back fields IN THE ORDER they were written
 	 */
 	protected SensePointer(final Parcel parcel)
 	{
@@ -49,6 +67,13 @@ public class SensePointer extends SynsetPointer implements HasWordId
 		this.cased = parcel.readString();
 	}
 
+	/**
+	 * Set word
+	 *
+	 * @param wordId word id
+	 * @param lemma  lemma
+	 * @param cased  cased word
+	 */
 	@SuppressWarnings("boxing")
 	public void setWord(final Long wordId, final String lemma, final String cased)
 	{
@@ -67,35 +92,27 @@ public class SensePointer extends SynsetPointer implements HasWordId
 		return null;
 	}
 
+	/**
+	 * Get lemma
+	 *
+	 * @return lemma
+	 */
 	@SuppressWarnings("unused")
 	public String getLemma()
 	{
 		return this.lemma;
 	}
 
+	/**
+	 * Get cased word
+	 *
+	 * @return cased word
+	 */
 	@SuppressWarnings("unused")
 	public String getCased()
 	{
 		return this.cased;
 	}
-
-	/**
-	 * Static field used to regenerate object, individually or as arrays
-	 */
-	public static final Parcelable.Creator<SensePointer> CREATOR = new Parcelable.Creator<SensePointer>()
-	{
-		@Override
-		public SensePointer createFromParcel(final Parcel pc)
-		{
-			return new SensePointer(pc);
-		}
-
-		@Override
-		public SensePointer[] newArray(final int size)
-		{
-			return new SensePointer[size];
-		}
-	};
 
 	@Override
 	public void writeToParcel(final Parcel parcel, final int flags)

@@ -19,7 +19,7 @@ public class BncImplementation implements BncInterface
 	/**
 	 * Business method that returns BNC data as DOM document from word
 	 *
-	 * @param connection database connection
+	 * @param connection connection
 	 * @param word       the target word
 	 * @return BNC data as DOM document
 	 */
@@ -35,7 +35,7 @@ public class BncImplementation implements BncInterface
 	/**
 	 * Business method that returns BNC data as XML from word
 	 *
-	 * @param connection database connection
+	 * @param connection connection
 	 * @param word       the target word
 	 * @return BNC data as XML
 	 */
@@ -49,7 +49,7 @@ public class BncImplementation implements BncInterface
 	/**
 	 * Business method that returns BNC data as DOM document from word id and pos
 	 *
-	 * @param connection database connection
+	 * @param connection connection
 	 * @param wordId     the word id to build query from
 	 * @param pos        the pos to build query from (null if any)
 	 * @return BNC data as DOM document
@@ -66,7 +66,7 @@ public class BncImplementation implements BncInterface
 	/**
 	 * Business method that returns BNC data as XML from word id and pos
 	 *
-	 * @param connection database connection
+	 * @param connection connection
 	 * @param wordId     the target word id
 	 * @param pos        the target pos (null if any)
 	 * @return BNC data as XML

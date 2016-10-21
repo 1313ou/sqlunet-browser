@@ -37,7 +37,7 @@ public class FnSentence
 	/**
 	 * Make sets of sentences from query built from frameId
 	 *
-	 * @param connection  database connection
+	 * @param connection  connection
 	 * @param sentenceId is the sentence id to build query from
 	 * @return sentence
 	 */
@@ -71,7 +71,7 @@ public class FnSentence
 	/**
 	 * Make sets of sentences from query built from lex unit id
 	 *
-	 * @param connection database connection
+	 * @param connection connection
 	 * @param luId       is the lex unit id to build query from
 	 * @return list of sentences
 	 */

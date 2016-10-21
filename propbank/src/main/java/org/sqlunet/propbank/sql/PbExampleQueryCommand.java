@@ -22,7 +22,7 @@ class PbExampleQueryCommand extends DBQueryCommand
 	/**
 	 * Constructor
 	 *
-	 * @param connection database connection
+	 * @param connection connection
 	 * @param roleSetId  role set id to build query from
 	 */
 	@SuppressWarnings("boxing")

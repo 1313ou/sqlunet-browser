@@ -19,7 +19,7 @@ class PbRoleSetQueryCommand extends DBQueryCommand
 	/**
 	 * Constructor
 	 *
-	 * @param connection database connection
+	 * @param connection connection
 	 * @param roleSetId  target role set id
 	 */
 	@SuppressWarnings("boxing")

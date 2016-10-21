@@ -20,15 +20,15 @@ public class VnEntry
 	public final BasicWord word;
 
 	/**
-	 * Synsets attached to VerbNet entry
+	 * Synsets attached to entry
 	 */
 	public final List<VnSynset> synsets;
 
 	/**
-	 * FnEntry
+	 * Constructor
 	 *
-	 * @param word    is the word string
-	 * @param synsets is the list of synsets attached to this entry
+	 * @param word    word string
+	 * @param synsets list of synsets attached to this entry
 	 */
 	private VnEntry(final BasicWord word, final List<VnSynset> synsets)
 	{
@@ -37,25 +37,24 @@ public class VnEntry
 	}
 
 	/**
-	 * Make word
+	 * Make entry
 	 *
-	 * @param connection database connection
-	 * @param lemma      target string
-	 * @return Word or null
+	 * @param connection connection
+	 * @param word       target word
+	 * @return new entry or null
 	 */
-	static public VnEntry make(final SQLiteDatabase connection, final String lemma)
+	static public VnEntry make(final SQLiteDatabase connection, final String word)
 	{
 		VnEntry entry = null;
 		VnQueryCommand query = null;
 		try
 		{
-			query = new VnQueryCommand(connection, lemma);
+			query = new VnQueryCommand(connection, word);
 			query.execute();
 
-			long wordId = -1;
-
-			// synsets
+			long wordId = -1L;
 			List<VnSynset> synsets = null;
+
 			while (query.next())
 			{
 				wordId = query.getWordId();
@@ -66,9 +65,9 @@ public class VnEntry
 				synsets.add(new VnSynset(query));
 			}
 			//noinspection ConstantConditions
-			if (wordId != -1 && synsets != null)
+			if (wordId != -1L && synsets != null)
 			{
-				entry = new VnEntry(new BasicWord(lemma, wordId), synsets);
+				entry = new VnEntry(new BasicWord(word, wordId), synsets);
 			}
 		}
 		finally

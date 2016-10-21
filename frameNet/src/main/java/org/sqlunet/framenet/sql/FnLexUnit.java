@@ -119,7 +119,7 @@ public class FnLexUnit
 	/**
 	 * Make pairs of (word id-lex units) from query built from word
 	 *
-	 * @param connection database connection
+	 * @param connection connection
 	 * @param word       target word
 	 * @return paris of (word id-list of lex units)
 	 */
@@ -163,7 +163,7 @@ public class FnLexUnit
 	/**
 	 * Make list of lex units from query built from word id
 	 *
-	 * @param connection database connection
+	 * @param connection connection
 	 * @param wordId     word id to build query from
 	 * @param pos        pos to build query from, null if any
 	 * @return list of lex units

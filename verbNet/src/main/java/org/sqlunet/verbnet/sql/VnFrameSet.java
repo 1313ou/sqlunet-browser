@@ -20,7 +20,7 @@ public class VnFrameSet
 	/**
 	 * Constructor
 	 *
-	 * @param frames is the list of frames
+	 * @param frames list of frames
 	 */
 	private VnFrameSet(final List<VnFrame> frames)
 	{
@@ -28,13 +28,13 @@ public class VnFrameSet
 	}
 
 	/**
-	 * Make a verbnet frame set from query built from class id, word id and synset id
+	 * Make a set of frames from query built from class id, word id and synset id
 	 *
-	 * @param connection database connection
-	 * @param classId    is the class id to build query from
-	 * @param wordId     is the word id to build query from
-	 * @param synsetId   is the synset id to build query from (null for any)
-	 * @return list of VerbNet frame sets
+	 * @param connection connection
+	 * @param classId    class id to build query from
+	 * @param wordId     word id to build query from
+	 * @param synsetId   synset id to build query from (null for any)
+	 * @return set of frames
 	 */
 	static public VnFrameSet make(final SQLiteDatabase connection, final long classId, final long wordId, final Long synsetId)
 	{
@@ -84,6 +84,13 @@ public class VnFrameSet
 		return frameSet;
 	}
 
+	/**
+	 * Make frame set for class from query built from class id
+	 *
+	 * @param connection connection
+	 * @param classId    class id
+	 * @return set of frames
+	 */
 	public static VnFrameSet make(final SQLiteDatabase connection, final long classId)
 	{
 		VnFrameQueryCommand query = null;

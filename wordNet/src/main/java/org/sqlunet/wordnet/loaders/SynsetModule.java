@@ -7,13 +7,22 @@ import org.sqlunet.HasPos;
 import org.sqlunet.HasSynsetId;
 import org.sqlunet.treeview.model.TreeNode;
 
+/**
+ * Module for WordNet synset
+ *
+ * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
+ */
+
 public class SynsetModule extends BasicModule
 {
 	/**
-	 * Query
+	 * Synset id
 	 */
 	Long synsetId;
 
+	/**
+	 * Pos
+	 */
 	Character pos;
 
 	/**

@@ -44,7 +44,7 @@ class FnGovernor
 	/**
 	 * Make set of governors from query built from lex unit
 	 *
-	 * @param connection database connection
+	 * @param connection connection
 	 * @param luId       target lex unit id
 	 * @return list of governors
 	 */

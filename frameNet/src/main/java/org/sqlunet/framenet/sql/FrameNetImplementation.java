@@ -17,12 +17,12 @@ import java.util.List;
  */
 public class FrameNetImplementation implements FrameNetInterface
 {
-	// S E L E C T I O N
+	// S E L E C T O R
 
 	/**
 	 * Business method that returns FrameNet selector data as DOM document
 	 *
-	 * @param connection database connection
+	 * @param connection connection
 	 * @param word       the target word
 	 * @param pos        the pos to build query from
 	 * @return FrameNet selector data as DOM document
@@ -39,7 +39,7 @@ public class FrameNetImplementation implements FrameNetInterface
 	/**
 	 * Business method that returns FrameNet selector data as XML
 	 *
-	 * @param connection database connection
+	 * @param connection connection
 	 * @param word       the target word
 	 * @param pos        the pos to build query from
 	 * @return FrameNet selector data as XML
@@ -56,7 +56,7 @@ public class FrameNetImplementation implements FrameNetInterface
 	/**
 	 * Business method that returns FrameNet data as DOM document
 	 *
-	 * @param connection database connection
+	 * @param connection connection
 	 * @param word       the target word
 	 * @param pos        the pos to build query from
 	 * @return FrameNet data as DOM document
@@ -73,7 +73,7 @@ public class FrameNetImplementation implements FrameNetInterface
 	/**
 	 * Business method that returns FrameNet data as XML
 	 *
-	 * @param connection database connection
+	 * @param connection connection
 	 * @param word       the target word
 	 * @param pos        the pos to build query from
 	 * @return FrameNet data as XML
@@ -92,7 +92,7 @@ public class FrameNetImplementation implements FrameNetInterface
 	/**
 	 * Business method that returns FrameNet data as DOM document
 	 *
-	 * @param connection database connection
+	 * @param connection connection
 	 * @param wordId     the word id to build query from
 	 * @param pos        the pos to build query from
 	 * @return FrameNet data as DOM document
@@ -109,7 +109,7 @@ public class FrameNetImplementation implements FrameNetInterface
 	/**
 	 * Business method that returns FrameNet data as XML
 	 *
-	 * @param connection database connection
+	 * @param connection connection
 	 * @param wordId     the target word id
 	 * @param pos        the pos to build query from
 	 * @return FrameNet data as XML
@@ -126,7 +126,7 @@ public class FrameNetImplementation implements FrameNetInterface
 	/**
 	 * Business method that returns frame data as DOM document
 	 *
-	 * @param connection database connection
+	 * @param connection connection
 	 * @param frameId    the frame to build query from
 	 * @param pos        the pos to build query from
 	 * @return FrameNet frame data as DOM document
@@ -143,7 +143,7 @@ public class FrameNetImplementation implements FrameNetInterface
 	/**
 	 * Business method that returns frame data as XML
 	 *
-	 * @param connection database connection
+	 * @param connection connection
 	 * @param frameId    the frame to build query from
 	 * @param pos        the pos to build query from
 	 * @return FrameNet frame data as XML
@@ -160,7 +160,7 @@ public class FrameNetImplementation implements FrameNetInterface
 	/**
 	 * Business method that returns lexunit data as DOM document
 	 *
-	 * @param connection database connection
+	 * @param connection connection
 	 * @param luId       the luId to build query from
 	 * @return FrameNet lexunit data as DOM document
 	 */
@@ -176,7 +176,7 @@ public class FrameNetImplementation implements FrameNetInterface
 	/**
 	 * Business method that returns lexunit data as XML
 	 *
-	 * @param connection database connection
+	 * @param connection connection
 	 * @param luId       the luId to build query from
 	 * @return FrameNet lexunit data as XML
 	 */
@@ -192,7 +192,7 @@ public class FrameNetImplementation implements FrameNetInterface
 	/**
 	 * Business method that returns sentence data as DOM document
 	 *
-	 * @param connection database connection
+	 * @param connection connection
 	 * @param sentenceId the sentence id to build query from
 	 * @return FrameNet sentence data as DOM document
 	 */
@@ -207,7 +207,7 @@ public class FrameNetImplementation implements FrameNetInterface
 	/**
 	 * Business method that returns sentence data as XML
 	 *
-	 * @param connection database connection
+	 * @param connection connection
 	 * @param sentenceId the sentence id to build query from
 	 * @return FrameNet sentence data as XML
 	 */
@@ -223,7 +223,7 @@ public class FrameNetImplementation implements FrameNetInterface
 	/**
 	 * Business method that returns annoSet data as DOM document
 	 *
-	 * @param connection database connection
+	 * @param connection connection
 	 * @param annoSetId  the annoSetId to build query from
 	 * @return FrameNet annoSet data as DOM document
 	 */
@@ -238,7 +238,7 @@ public class FrameNetImplementation implements FrameNetInterface
 	/**
 	 * Business method that returns annoSet data as XML
 	 *
-	 * @param connection database connection
+	 * @param connection connection
 	 * @param annoSetId  the annoSetId to build query from
 	 * @return FrameNet annoSet data as XML
 	 */

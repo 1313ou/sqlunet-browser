@@ -11,6 +11,16 @@ import android.os.Parcelable;
 public class FnFramePointer implements Parcelable
 {
 	/**
+	 * Frame id
+	 */
+	public Long frameId;
+
+	/**
+	 * Pos
+	 */
+	private String pos;
+
+	/**
 	 * Static field used to regenerate object, individually or as arrays
 	 */
 	public static final Parcelable.Creator<FnFramePointer> CREATOR = new Parcelable.Creator<FnFramePointer>()
@@ -29,16 +39,6 @@ public class FnFramePointer implements Parcelable
 	};
 
 	/**
-	 * Frame id
-	 */
-	public Long frameId;
-
-	/**
-	 * Pos
-	 */
-	private String pos;
-
-	/**
 	 * Constructor
 	 */
 	public FnFramePointer()
@@ -48,7 +48,7 @@ public class FnFramePointer implements Parcelable
 	}
 
 	/**
-	 * Constructor from Parcel, reads back fields IN THE ORDER they were written
+	 * Constructor from parcel, reads back fields IN THE ORDER they were written
 	 */
 	@SuppressWarnings("boxing")
 	private FnFramePointer(final Parcel parcel)

@@ -1,9 +1,3 @@
-/*
- * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
- * Created on 31 dec. 2004
- * Filename : LinksQueryCommand.java
- * Class encapsulating query for all linked synsets
- */
 package org.sqlunet.wordnet.sql;
 
 import android.database.sqlite.SQLiteDatabase;
@@ -18,14 +12,14 @@ import org.sqlunet.sql.DBQueryCommand;
 class LinksQueryCommand extends DBQueryCommand
 {
 	/**
-	 * <code>QUERY</code> is the SQL statement
+	 * <code>QUERY</code> SQL statement
 	 */
 	private static final String QUERY = SqLiteDialect.LinksQuery; // ;
 
 	/**
 	 * Constructor
 	 *
-	 * @param connection database connection
+	 * @param connection connection
 	 */
 	public LinksQueryCommand(final SQLiteDatabase connection)
 	{
@@ -35,7 +29,7 @@ class LinksQueryCommand extends DBQueryCommand
 	/**
 	 * Set source synset parameter in prepared statement
 	 *
-	 * @param synsetId is the synset id
+	 * @param synsetId synset id
 	 */
 	public void setFromSynset(final long synsetId)
 	{
@@ -46,7 +40,7 @@ class LinksQueryCommand extends DBQueryCommand
 	/**
 	 * Set source word parameter in prepared statement
 	 *
-	 * @param wordId is the word id or -1 if word is any in which case the query returns all lexical links whatever the word
+	 * @param wordId word id or -1 if word is any in which case the query returns all lexical links whatever the word
 	 */
 	public void setFromWord(final long wordId)
 	{

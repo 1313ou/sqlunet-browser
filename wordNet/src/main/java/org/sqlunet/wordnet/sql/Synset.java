@@ -1,9 +1,3 @@
-/*
- * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
- * Created on 31 dec. 2004
- * Filename : Synset.java
- * Class encapsulating WordNet synset
- */
 package org.sqlunet.wordnet.sql;
 
 import android.database.SQLException;
@@ -25,10 +19,10 @@ class Synset extends BasicSynset
 	/**
 	 * Constructor from data
 	 *
-	 * @param synsetId    is the synset id
-	 * @param definition  is the definition
-	 * @param lexDomainId is the lexdomain id
-	 * @param sample      is the sample
+	 * @param synsetId    synset id
+	 * @param definition  definition
+	 * @param lexDomainId lexdomain id
+	 * @param sample      sample
 	 */
 	@SuppressWarnings("unused")
 	protected Synset(final long synsetId, final String definition, final int lexDomainId, final String sample)
@@ -39,7 +33,7 @@ class Synset extends BasicSynset
 	/**
 	 * Constructor from query for synsets
 	 *
-	 * @param query is a query for synsets
+	 * @param query query for synsets
 	 */
 	Synset(final SynsetsQueryCommand query)
 	{
@@ -49,7 +43,7 @@ class Synset extends BasicSynset
 	/**
 	 * Constructor from query for synset
 	 *
-	 * @param query is a query for synset
+	 * @param query query for synset
 	 */
 	Synset(final SynsetQueryCommand query)
 	{
@@ -59,7 +53,7 @@ class Synset extends BasicSynset
 	/**
 	 * Constructor from query for synsets of a given type
 	 *
-	 * @param query is a query for synsets of a given type
+	 * @param query query for synsets of a given type
 	 */
 	Synset(final TypedSynsetsQueryCommand query)
 	{
@@ -69,7 +63,7 @@ class Synset extends BasicSynset
 	/**
 	 * Constructor from query for linked synsets
 	 *
-	 * @param query is a query for linked synsets
+	 * @param query query for linked synsets
 	 */
 	Synset(final LinksQueryCommand query)
 	{
@@ -79,7 +73,7 @@ class Synset extends BasicSynset
 	/**
 	 * Constructor from query for synsets linked through a given relation type
 	 *
-	 * @param query is a query for synsets linked through a given relation type
+	 * @param query query for synsets linked through a given relation type
 	 */
 	Synset(final TypedLinksQueryCommand query)
 	{
@@ -89,7 +83,7 @@ class Synset extends BasicSynset
 	/**
 	 * Get words in the synset as a list
 	 *
-	 * @param connection is the connection to the database
+	 * @param connection connection to the database
 	 * @return list of words in synset
 	 */
 	public List<Word> getSynsetWords(final SQLiteDatabase connection)
@@ -126,7 +120,7 @@ class Synset extends BasicSynset
 	/**
 	 * Get words in the synset as a string
 	 *
-	 * @param connection is the connection to the database
+	 * @param connection connection to the database
 	 * @return list of words in synset as a comma-separated string
 	 */
 	@SuppressWarnings("unused")
@@ -174,8 +168,8 @@ class Synset extends BasicSynset
 	/**
 	 * Get synsets linked to the synset
 	 *
-	 * @param connection database connection
-	 * @param wordId     is the word id (for lexical links)
+	 * @param connection connection
+	 * @param wordId     word id (for lexical links)
 	 * @return list of synsets linked to the synset
 	 */
 	public List<Link> getLinks(final SQLiteDatabase connection, final long wordId)
@@ -213,9 +207,9 @@ class Synset extends BasicSynset
 	/**
 	 * Get synsets linked to the synset through a given relation type
 	 *
-	 * @param connection database connection
-	 * @param wordId     is the word id (for lexical links)
-	 * @param linkType   is the link type
+	 * @param connection connection
+	 * @param wordId     word id (for lexical links)
+	 * @param linkType   link type
 	 * @return list of synsets linked to the synset through a given relation type
 	 */
 	public List<Link> getTypedLinks(final SQLiteDatabase connection, final long wordId, final int linkType)

@@ -1,9 +1,3 @@
-/*
- * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
- * Created on 31 dec. 2004
- * Filename : FnNodeFactory.java
- * Class encapsulates creation of DOM nodes
- */
 package org.sqlunet.verbnet.sql;
 
 import org.sqlunet.wordnet.sql.NodeFactory;
@@ -15,7 +9,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
- * DOM node factory
+ * VerbNet DOM node factory
  *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
@@ -29,10 +23,10 @@ class VnNodeFactory extends NodeFactory
 	 * @param synsetId target synset id (0 for all)
 	 * @return newly created node
 	 */
-	static public Node makeVnRootNode(final Document doc, final long wordId, final long synsetId)
+	static public Node makeVnRootNode(final Document doc, final long wordId, final Long synsetId)
 	{
 		final Element rootNode = org.sqlunet.sql.NodeFactory.makeNode(doc, doc, "verbnet", null); //$NON-NLS-1$
-		if (synsetId == 0)
+		if (synsetId == null || synsetId == 0)
 		{
 			org.sqlunet.sql.NodeFactory.makeTargetNode(doc, rootNode, "word-id", Long.toString(wordId)); //$NON-NLS-1$
 		}
@@ -211,6 +205,13 @@ class VnNodeFactory extends NodeFactory
 		return element;
 	}
 
+	/**
+	 * Parse text into segments
+	 *
+	 * @param text    input text
+	 * @param pattern delimiter pattern
+	 * @return segments
+	 */
 	private static String[] parse(final CharSequence text, final Pattern pattern)
 	{
 		// general pattern
@@ -232,8 +233,19 @@ class VnNodeFactory extends NodeFactory
 		return null;
 	}
 
+	/**
+	 * Syntax pattern
+	 */
 	static private final Pattern syntaxPattern = Pattern.compile("^([^\\s]+) ?(\\p{Upper}\\p{Lower}*)? ?(.+)?"); //$NON-NLS-1$
 
+	/**
+	 * Make syntax nodes
+	 *
+	 * @param doc       doc
+	 * @param parent    parent node
+	 * @param statement statement
+	 * @return node
+	 */
 	@SuppressWarnings("UnusedReturnValue")
 	private static Node makeVnSyntaxNodes(final Document doc, final Node parent, final CharSequence statement)
 	{
@@ -261,10 +273,24 @@ class VnNodeFactory extends NodeFactory
 		return parent;
 	}
 
+	/**
+	 * Semantics pattern
+	 */
 	private static final Pattern semanticsPattern = Pattern.compile("([^\\(]+)\\((.*)\\)"); //$NON-NLS-1$
 
+	/**
+	 * Arguments pattern
+	 */
 	private static final String argsPattern = "[\\s,]+"; //$NON-NLS-1$
 
+	/**
+	 * Make semantics nodes
+	 *
+	 * @param doc       doc
+	 * @param parent    parent node
+	 * @param statement statement
+	 * @return node
+	 */
 	@SuppressWarnings("UnusedReturnValue")
 	private static Node makeVnSemanticNodes(final Document doc, final Node parent, final CharSequence statement)
 	{

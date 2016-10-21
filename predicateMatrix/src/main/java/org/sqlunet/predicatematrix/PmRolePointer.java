@@ -11,9 +11,27 @@ import android.os.Parcelable;
 public class PmRolePointer implements Parcelable
 {
 	/**
-	 * Members
+	 * Role id
 	 */
 	public Long roleId;
+
+	/**
+	 * Static field used to regenerate object, individually or as arrays
+	 */
+	public static final Parcelable.Creator<PmRolePointer> CREATOR = new Parcelable.Creator<PmRolePointer>()
+	{
+		@Override
+		public PmRolePointer createFromParcel(final Parcel parcel)
+		{
+			return new PmRolePointer(parcel);
+		}
+
+		@Override
+		public PmRolePointer[] newArray(final int size)
+		{
+			return new PmRolePointer[size];
+		}
+	};
 
 	/**
 	 * Constructor
@@ -24,7 +42,7 @@ public class PmRolePointer implements Parcelable
 	}
 
 	/**
-	 * Constructor from Parcel, reads back fields IN THE ORDER they were written
+	 * Constructor from parcel, reads back fields IN THE ORDER they were written
 	 *
 	 * @param parcel parcel
 	 */
@@ -53,28 +71,10 @@ public class PmRolePointer implements Parcelable
 		return null;
 	}
 
-	/**
-	 * Static field used to regenerate object, individually or as arrays
-	 */
-	public static final Parcelable.Creator<PmRolePointer> CREATOR = new Parcelable.Creator<PmRolePointer>()
-	{
-		@Override
-		public PmRolePointer createFromParcel(final Parcel pc)
-		{
-			return new PmRolePointer(pc);
-		}
-
-		@Override
-		public PmRolePointer[] newArray(final int size)
-		{
-			return new PmRolePointer[size];
-		}
-	};
-
 	@Override
-	public void writeToParcel(final Parcel pc, final int flags)
+	public void writeToParcel(final Parcel parcel, final int flags)
 	{
-		pc.writeLong(this.roleId == null ? -1 : this.roleId);
+		parcel.writeLong(this.roleId == null ? -1 : this.roleId);
 	}
 
 	@Override

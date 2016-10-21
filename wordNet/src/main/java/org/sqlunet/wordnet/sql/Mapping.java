@@ -1,9 +1,3 @@
-/*
- * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
- * Created on 26 jan. 2005
- * Filename : Mapping.java
- * Class encapsulating id-name mappings
- */
 package org.sqlunet.wordnet.sql;
 
 import android.annotation.SuppressLint;
@@ -77,7 +71,7 @@ class Mapping
 	/**
 	 * Read lexdomain mappings from database
 	 *
-	 * @param connection database connection
+	 * @param connection connection
 	 */
 	static public void initLexDomains(final SQLiteDatabase connection)
 	{
@@ -117,7 +111,7 @@ class Mapping
 	/**
 	 * Read link mappings from database
 	 *
-	 * @param connection database connection
+	 * @param connection connection
 	 */
 	@SuppressLint("DefaultLocale")
 	static public void initLinks(final SQLiteDatabase connection)
@@ -154,8 +148,6 @@ class Mapping
 		}
 	}
 
-	// get tables
-
 	/**
 	 * Get part-of-speech names as array of strings
 	 *
@@ -187,8 +179,6 @@ class Mapping
 		final Set<String> nameSet = Mapping.linksByName.keySet();
 		return nameSet.toArray(new String[nameSet.size()]);
 	}
-
-	// pos and lexdomain
 
 	/**
 	 * Find part-of-speech name from lexdomain id
@@ -283,8 +273,6 @@ class Mapping
 		}
 		return Mapping.ANYTYPE;
 	}
-
-	// links
 
 	/**
 	 * Find link name from link id

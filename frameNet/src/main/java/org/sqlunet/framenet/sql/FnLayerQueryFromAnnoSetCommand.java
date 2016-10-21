@@ -17,7 +17,7 @@ class FnLayerQueryFromAnnoSetCommand extends FnLayerQueryCommand
 	/**
 	 * Constructor
 	 *
-	 * @param connection      database connection
+	 * @param connection      connection
 	 * @param targetAnnoSetId target annoSet id
 	 */
 	public FnLayerQueryFromAnnoSetCommand(final SQLiteDatabase connection, final long targetAnnoSetId)

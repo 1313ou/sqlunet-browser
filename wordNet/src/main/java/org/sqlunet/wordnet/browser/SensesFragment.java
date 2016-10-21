@@ -32,10 +32,7 @@ import org.sqlunet.wordnet.provider.WordNetContract;
 import org.sqlunet.wordnet.provider.WordNetContract.Words_Senses_CasedWords_Synsets_PosTypes_LexDomains;
 
 /**
- * A list fragment representing a list of synsets. This fragment also supports tablet devices by allowing list items to be given an 'activated' state upon
- * selection. This helps indicate which item is currently being viewed in a {@link SenseFragment}.
- * <p>
- * Activities containing this fragment MUST implement the {@link Listener} interface.
+ * A fragment representing senses
  *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
@@ -84,6 +81,8 @@ public class SensesFragment extends ListFragment
 	{
 		//
 	}
+
+	// L I F E C Y C L E
 
 	@Override
 	public void onCreate(final Bundle savedInstanceState)
@@ -213,38 +212,6 @@ public class SensesFragment extends ListFragment
 		});
 	}
 
-	// L A Y O U T
-
-	@Override
-	public View onCreateView(final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState)
-	{
-		// layout
-		return inflater.inflate(R.layout.fragment_senses, container);
-	}
-
-	// R E S T O R E / S A V E A C T I V A T E D S T A T E
-
-	@Override
-	public void onViewCreated(final View view, final Bundle savedInstanceState)
-	{
-		super.onViewCreated(view, savedInstanceState);
-
-		// restore the previously serialized activated item position, if any
-		if (savedInstanceState != null && savedInstanceState.containsKey(SensesFragment.ACTIVATED_POSITION_NAME))
-		{
-			final int position = savedInstanceState.getInt(SensesFragment.ACTIVATED_POSITION_NAME);
-			if (position == AdapterView.INVALID_POSITION)
-			{
-				getListView().setItemChecked(this.activatedPosition, false);
-			}
-			else
-			{
-				getListView().setItemChecked(position, true);
-			}
-			this.activatedPosition = position;
-		}
-	}
-
 	@Override
 	public void onSaveInstanceState(final Bundle outState)
 	{
@@ -256,18 +223,6 @@ public class SensesFragment extends ListFragment
 			outState.putInt(SensesFragment.ACTIVATED_POSITION_NAME, this.activatedPosition);
 		}
 	}
-
-	/**
-	 * Turns on activate-on-click mode. When this mode is on, list items will be given the 'activated' state when touched.
-	 */
-	@SuppressWarnings("unused")
-	public void setActivateOnItemClick(final boolean activateOnItemClick)
-	{
-		// when setting CHOICE_MODE_SINGLE, ListView will automatically give items the 'activated' state when touched.
-		getListView().setChoiceMode(activateOnItemClick ? AbsListView.CHOICE_MODE_SINGLE : AbsListView.CHOICE_MODE_NONE);
-	}
-
-	// C L I C K E V E N T L I S T E N
 
 	@TargetApi(Build.VERSION_CODES.LOLLIPOP)
 	@Override
@@ -307,6 +262,48 @@ public class SensesFragment extends ListFragment
 
 		// reset the active listener interface to the dummy implementation.
 		this.listener = null;
+	}
+
+	// V I E W
+
+	@Override
+	public View onCreateView(final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState)
+	{
+		// layout
+		return inflater.inflate(R.layout.fragment_senses, container);
+	}
+
+	@Override
+	public void onViewCreated(final View view, final Bundle savedInstanceState)
+	{
+		super.onViewCreated(view, savedInstanceState);
+
+		// restore the previously serialized activated item position, if any
+		if (savedInstanceState != null && savedInstanceState.containsKey(SensesFragment.ACTIVATED_POSITION_NAME))
+		{
+			final int position = savedInstanceState.getInt(SensesFragment.ACTIVATED_POSITION_NAME);
+			if (position == AdapterView.INVALID_POSITION)
+			{
+				getListView().setItemChecked(this.activatedPosition, false);
+			}
+			else
+			{
+				getListView().setItemChecked(position, true);
+			}
+			this.activatedPosition = position;
+		}
+	}
+
+	// C L I C K E V E N T L I S T E N
+
+	/**
+	 * Turns on activate-on-click mode. When this mode is on, list items will be given the 'activated' state when touched.
+	 */
+	@SuppressWarnings("unused")
+	public void setActivateOnItemClick(final boolean activateOnItemClick)
+	{
+		// when setting CHOICE_MODE_SINGLE, ListView will automatically give items the 'activated' state when touched.
+		getListView().setChoiceMode(activateOnItemClick ? AbsListView.CHOICE_MODE_SINGLE : AbsListView.CHOICE_MODE_NONE);
 	}
 
 	@SuppressWarnings("boxing")

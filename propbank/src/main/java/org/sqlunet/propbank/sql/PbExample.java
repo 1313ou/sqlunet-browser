@@ -81,7 +81,7 @@ class PbExample
 	/**
 	 * Make a list of examples from query built from roleSet id
 	 *
-	 * @param connection database connection
+	 * @param connection connection
 	 * @return list of PropBank examples
 	 */
 	static public List<PbExample> make(final SQLiteDatabase connection, final long roleSetId)

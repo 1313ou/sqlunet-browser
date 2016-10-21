@@ -12,7 +12,7 @@ import org.w3c.dom.Document;
 @SuppressWarnings("unused")
 interface VerbNetInterface
 {
-	// S E L E C T I O N
+	// S E L E C T O R
 
 	/**
 	 * Business method that returns VerbNet selector data as DOM document
@@ -51,9 +51,9 @@ interface VerbNetInterface
 	/**
 	 * Business method that returns VerbNet data as DOM document from sense
 	 *
-	 * @param wordId   is the word id to build query from
-	 * @param synsetId is the synset id to build query from (-1 if any)
-	 * @param pos      the pos to build query from
+	 * @param wordId   word id to build query from
+	 * @param synsetId synset id to build query from (null if any)
+	 * @param pos      pos to build query from
 	 * @return VerbNet data as DOM document
 	 */
 	Document queryDoc(final SQLiteDatabase connection, final long wordId, final Long synsetId, final Character pos);
@@ -62,8 +62,8 @@ interface VerbNetInterface
 	 * Business method that returns VerbNet data as XML from sense
 	 *
 	 * @param wordId   target word id
-	 * @param synsetId target synset id (-1 if any)
-	 * @param pos      the pos to build query from
+	 * @param synsetId target synset id (null if any)
+	 * @param pos      pos to build query from
 	 * @return VerbNet data as XML
 	 */
 	String queryXML(final SQLiteDatabase connection, final long wordId, final Long synsetId, final Character pos);
@@ -73,9 +73,9 @@ interface VerbNetInterface
 	/**
 	 * Business method that returns class data as DOM document from class id
 	 *
-	 * @param connection database connection
-	 * @param classId    the class to build query from
-	 * @param pos        the pos to build query from
+	 * @param connection connection
+	 * @param classId    class to build query from
+	 * @param pos        pos to build query from
 	 * @return VerbNet class data as DOM document
 	 */
 	Document queryClassDoc(final SQLiteDatabase connection, final long classId, final Character pos);
@@ -83,9 +83,9 @@ interface VerbNetInterface
 	/**
 	 * Business method that returns class data as XML
 	 *
-	 * @param connection database connection
-	 * @param classId    the class to build query from
-	 * @param pos        the pos to build query from
+	 * @param connection connection
+	 * @param classId    class to build query from
+	 * @param pos        pos to build query from
 	 * @return VerbNet class data as XML
 	 */
 	String queryClassXML(final SQLiteDatabase connection, final long classId, final Character pos);

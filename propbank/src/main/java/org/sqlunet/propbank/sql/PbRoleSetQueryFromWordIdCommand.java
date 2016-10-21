@@ -19,7 +19,7 @@ class PbRoleSetQueryFromWordIdCommand extends DBQueryCommand
 	/**
 	 * Constructor
 	 *
-	 * @param connection database connection
+	 * @param connection connection
 	 * @param wordId     target word id
 	 */
 	@SuppressWarnings("boxing")

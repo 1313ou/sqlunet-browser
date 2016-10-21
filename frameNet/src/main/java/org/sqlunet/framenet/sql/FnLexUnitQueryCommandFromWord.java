@@ -19,7 +19,7 @@ class FnLexUnitQueryCommandFromWord extends DBQueryCommand
 	/**
 	 * Constructor
 	 *
-	 * @param connection database connection
+	 * @param connection connection
 	 * @param word       target word
 	 */
 	public FnLexUnitQueryCommandFromWord(final SQLiteDatabase connection, final String word)

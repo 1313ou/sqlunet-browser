@@ -5,7 +5,7 @@ import android.database.sqlite.SQLiteDatabase;
 import org.sqlunet.sql.DBQueryCommand;
 
 /**
- * VerbNet Class query command
+ * VerbNet class query command
  *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
@@ -19,8 +19,8 @@ class VnClassQueryCommand extends DBQueryCommand
 	/**
 	 * Constructor
 	 *
-	 * @param connection database connection
-	 * @param classId    target classId (null corresponds to no value)
+	 * @param connection connection
+	 * @param classId    target class id
 	 */
 	@SuppressWarnings("boxing")
 	public VnClassQueryCommand(final SQLiteDatabase connection, final long classId)

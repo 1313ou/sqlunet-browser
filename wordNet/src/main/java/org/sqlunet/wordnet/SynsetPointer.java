@@ -14,14 +14,41 @@ import org.sqlunet.HasSynsetId;
 public class SynsetPointer implements Parcelable, HasSynsetId, HasPos
 {
 	/**
-	 * synsetId : compulsory
+	 * Synset id : compulsory
 	 */
 	private long synsetId;
 
 	/**
-	 * pos : optional/nullable (may be retrieved if need be)
+	 * Pos : optional/nullable (may be retrieved if need be)
 	 */
 	private String pos;
+
+	/**
+	 * Static field used to regenerate object, individually or as arrays
+	 */
+	public static final Parcelable.Creator<SynsetPointer> CREATOR = new Parcelable.Creator<SynsetPointer>()
+	{
+		@Override
+		public SynsetPointer createFromParcel(final Parcel parcel)
+		{
+			return new SynsetPointer(parcel);
+		}
+
+		@Override
+		public SynsetPointer[] newArray(final int size)
+		{
+			return new SynsetPointer[size];
+		}
+	};
+
+	/**
+	 * Constructor from parcel, reads back fields IN THE ORDER they were written
+	 */
+	SynsetPointer(final Parcel parcel)
+	{
+		this.synsetId = parcel.readLong();
+		this.pos = parcel.readString();
+	}
 
 	/**
 	 * Constructor
@@ -33,14 +60,11 @@ public class SynsetPointer implements Parcelable, HasSynsetId, HasPos
 	}
 
 	/**
-	 * Constructor from Parcel, reads back fields IN THE ORDER they were written
+	 * Set synset
+	 *
+	 * @param synsetId synset id
+	 * @param pos      pos
 	 */
-	SynsetPointer(final Parcel pc)
-	{
-		this.synsetId = pc.readLong();
-		this.pos = pc.readString();
-	}
-
 	public void setSynset(final Long synsetId, final String pos)
 	{
 		this.synsetId = synsetId == null ? -1 : synsetId;
@@ -69,29 +93,11 @@ public class SynsetPointer implements Parcelable, HasSynsetId, HasPos
 		return null;
 	}
 
-	/**
-	 * Static field used to regenerate object, individually or as arrays
-	 */
-	public static final Parcelable.Creator<SynsetPointer> CREATOR = new Parcelable.Creator<SynsetPointer>()
-	{
-		@Override
-		public SynsetPointer createFromParcel(final Parcel pc)
-		{
-			return new SynsetPointer(pc);
-		}
-
-		@Override
-		public SynsetPointer[] newArray(final int size)
-		{
-			return new SynsetPointer[size];
-		}
-	};
-
 	@Override
-	public void writeToParcel(final Parcel pc, final int flags)
+	public void writeToParcel(final Parcel parcel, final int flags)
 	{
-		pc.writeLong(this.synsetId);
-		pc.writeString(this.pos);
+		parcel.writeLong(this.synsetId);
+		parcel.writeString(this.pos);
 	}
 
 	@Override

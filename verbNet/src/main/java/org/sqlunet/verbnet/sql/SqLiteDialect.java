@@ -1,5 +1,10 @@
 package org.sqlunet.verbnet.sql;
 
+/**
+ * VerbNet SQL dialect
+ *
+ * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
+ */
 class SqLiteDialect
 {
 	// get verbnet entry

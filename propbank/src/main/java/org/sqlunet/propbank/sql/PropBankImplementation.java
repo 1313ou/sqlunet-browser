@@ -17,7 +17,7 @@ import java.util.List;
  */
 public class PropBankImplementation implements PropBankInterface
 {
-	// S E L E C T I O N
+	// S E L E C T O R
 
 	/**
 	 * Perform queries for PropBank selector data from word
@@ -161,7 +161,7 @@ public class PropBankImplementation implements PropBankInterface
 	/**
 	 * Business method that returns PropBank selector data as DOM document
 	 *
-	 * @param connection database connection
+	 * @param connection connection
 	 * @param word       target word
 	 * @return PropBank selector data as DOM document
 	 */
@@ -177,7 +177,7 @@ public class PropBankImplementation implements PropBankInterface
 	/**
 	 * Business method that returns PropBank selector data as XML
 	 *
-	 * @param connection database connection
+	 * @param connection connection
 	 * @param word       target word
 	 * @return PropBank selector data as XML
 	 */
@@ -193,7 +193,7 @@ public class PropBankImplementation implements PropBankInterface
 	/**
 	 * Business method that returns PropBank data as DOM document from word
 	 *
-	 * @param connection database connection
+	 * @param connection connection
 	 * @param word       target word
 	 * @return PropBank data as DOM document
 	 */
@@ -209,7 +209,7 @@ public class PropBankImplementation implements PropBankInterface
 	/**
 	 * Business method that returns PropBank data as XML from word
 	 *
-	 * @param connection database connection
+	 * @param connection connection
 	 * @param word       target word
 	 * @return PropBank data as XML
 	 */
@@ -223,7 +223,7 @@ public class PropBankImplementation implements PropBankInterface
 	/**
 	 * Business method that returns PropBank data as DOM document from word id
 	 *
-	 * @param connection database connection
+	 * @param connection connection
 	 * @param wordId     word id to build query from
 	 * @param pos        pos to build query from
 	 * @return PropBank data as DOM document
@@ -240,7 +240,7 @@ public class PropBankImplementation implements PropBankInterface
 	/**
 	 * Business method that returns PropBank data as XML from word id
 	 *
-	 * @param connection database connection
+	 * @param connection connection
 	 * @param wordId     target word id
 	 * @param pos        pos to build query from
 	 * @return PropBank data as XML
@@ -255,7 +255,7 @@ public class PropBankImplementation implements PropBankInterface
 	/**
 	 * Business method that returns role set data as DOM document from role set id
 	 *
-	 * @param connection database connection
+	 * @param connection connection
 	 * @param roleSetId  role set to build query from
 	 * @param pos        pos to build query from
 	 * @return PropBank role set data as DOM document
@@ -274,7 +274,7 @@ public class PropBankImplementation implements PropBankInterface
 	/**
 	 * Business method that returns role set data as XML from role set id
 	 *
-	 * @param connection database connection
+	 * @param connection connection
 	 * @param roleSetId  role set id to build query from
 	 * @param pos        pos to build query from
 	 * @return PropBank role set data as XML
