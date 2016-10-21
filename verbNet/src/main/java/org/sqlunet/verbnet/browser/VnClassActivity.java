@@ -8,13 +8,12 @@ import android.os.Bundle;
 import org.sqlunet.verbnet.R;
 
 /**
- * LexUnitQuery activity
+ * VerbNet class activity
  *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
 public class VnClassActivity extends Activity
 {
-
 	@Override
 	protected void onCreate(final Bundle savedInstanceState)
 	{
@@ -34,9 +33,9 @@ public class VnClassActivity extends Activity
 		if (savedInstanceState == null)
 		{
 			// create the sense fragment, transmit intent's extras as parameters and add it to the activity using a fragment transaction
-			final Bundle arguments = getIntent().getExtras();
+			final Bundle args = getIntent().getExtras();
 			final VnClassFragment fragment = new VnClassFragment();
-			fragment.setArguments(arguments);
+			fragment.setArguments(args);
 			getFragmentManager().beginTransaction().add(R.id.container_vnclass, fragment).commit();
 		}
 	}

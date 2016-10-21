@@ -19,7 +19,7 @@ import org.sqlunet.verbnet.loaders.ClassModule;
 import org.sqlunet.view.TreeFactory;
 
 /**
- * A fragment representing a verbnet search
+ * A fragment representing a VerbNet search
  *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */

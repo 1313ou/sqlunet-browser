@@ -27,37 +27,49 @@ import org.sqlunet.verbnet.style.VerbNetSemanticsSpanner;
 import org.sqlunet.verbnet.style.VerbNetSyntaxSpanner;
 import org.sqlunet.view.TreeFactory;
 
+/**
+ * VerbNet basic module
+ *
+ * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
+ */
 @SuppressWarnings("RedundantSuppression")
 abstract class BasicModule extends Module
 {
-	/**
-	 * Drawable for role sets
-	 */
-	Drawable drawableRoles;
+	// agents
 
-	// spanners
 	/**
 	 * Processor
 	 */
 	private VerbNetSemanticsProcessor semanticsProcessor;
+
 	/**
 	 * Syntax spanner
 	 */
 	private VerbNetSyntaxSpanner syntaxSpanner;
 
-	// drawables
 	/**
 	 * Semantics
 	 */
 	private VerbNetSemanticsSpanner semanticsSpanner;
+
+	// drawables
+
+	/**
+	 * Drawable for role sets
+	 */
+	@SuppressWarnings("WeakerAccess")
+	protected Drawable drawableRoles;
+
 	/**
 	 * Drawable for class
 	 */
 	private Drawable drawableClass;
+
 	/**
 	 * Drawable for (group) item
 	 */
 	private Drawable drawableItem;
+
 	/**
 	 * Drawable for role
 	 */
@@ -86,7 +98,7 @@ abstract class BasicModule extends Module
 	/**
 	 * Constructor
 	 *
-	 * @param fragment host fragment
+	 * @param fragment fragment
 	 */
 	BasicModule(final Fragment fragment)
 	{
@@ -310,9 +322,9 @@ abstract class BasicModule extends Module
 		});
 	}
 
-	// vnframes
+	// vnFrames
 
-	private void vnframes(final int classId, final TreeNode parent)
+	private void vnFrames(final int classId, final TreeNode parent)
 	{
 		getLoaderManager().restartLoader(++Module.loaderId, null, new LoaderCallbacks<Cursor>()
 		{
@@ -428,7 +440,14 @@ abstract class BasicModule extends Module
 		});
 	}
 
-	TreeNode groupings(final String itemGroup)
+	/**
+	 * Groupings
+	 *
+	 * @param itemGroup item groups
+	 * @return node
+	 */
+	@SuppressWarnings("WeakerAccess")
+	protected TreeNode groupings(final String itemGroup)
 	{
 		if (itemGroup != null)
 		{
@@ -463,6 +482,9 @@ abstract class BasicModule extends Module
 		return null;
 	}
 
+	/**
+	 * Roles query
+	 */
 	class RolesQuery extends QueryHolder.Query
 	{
 		public RolesQuery(final long classId, final int icon, @SuppressWarnings("SameParameterValue") final CharSequence text)
@@ -477,6 +499,9 @@ abstract class BasicModule extends Module
 		}
 	}
 
+	/**
+	 * Frames query
+	 */
 	class FramesQuery extends QueryHolder.Query
 	{
 		public FramesQuery(final long classId, final int icon, @SuppressWarnings("SameParameterValue") final CharSequence text)
@@ -487,7 +512,7 @@ abstract class BasicModule extends Module
 		@Override
 		public void process(final TreeNode node)
 		{
-			vnframes((int) this.id, node);
+			vnFrames((int) this.id, node);
 		}
 	}
 }

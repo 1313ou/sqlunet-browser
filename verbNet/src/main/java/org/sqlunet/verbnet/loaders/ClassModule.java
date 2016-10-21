@@ -7,6 +7,11 @@ import org.sqlunet.HasXId;
 import org.sqlunet.treeview.model.TreeNode;
 import org.sqlunet.verbnet.VnClassPointer;
 
+/**
+ * VerbNet class module
+ *
+ * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
+ */
 public class ClassModule extends BasicModule
 {
 	/**
@@ -17,7 +22,7 @@ public class ClassModule extends BasicModule
 	/**
 	 * Constructor
 	 *
-	 * @param fragment host fragment
+	 * @param fragment fragment
 	 */
 	public ClassModule(final Fragment fragment)
 	{

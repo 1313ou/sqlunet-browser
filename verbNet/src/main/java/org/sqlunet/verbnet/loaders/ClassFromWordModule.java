@@ -21,19 +21,27 @@ import org.sqlunet.verbnet.provider.VerbNetContract.Words_VnClasses_VnGroupings;
 import org.sqlunet.verbnet.style.VerbNetFactories;
 import org.sqlunet.view.TreeFactory;
 
+/**
+ * VerbNet class from word/sense module
+ *
+ * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
+ */
 public class ClassFromWordModule extends BasicModule
 {
 	/**
-	 * Query
+	 * Word id
 	 */
 	private Long wordId;
 
+	/**
+	 * Synset id (null=ignore)
+	 */
 	private Long synsetId;
 
 	/**
 	 * Constructor
 	 *
-	 * @param fragment host fragment
+	 * @param fragment fragment
 	 */
 	public ClassFromWordModule(final Fragment fragment)
 	{
@@ -43,15 +51,15 @@ public class ClassFromWordModule extends BasicModule
 	@Override
 	void unmarshal(final Parcelable query)
 	{
-		if (query instanceof HasSynsetId)
-		{
-			final HasSynsetId synsetQuery = (HasSynsetId) query;
-			this.synsetId = synsetQuery.getSynsetId();
-		}
 		if (query instanceof HasWordId)
 		{
 			final HasWordId wordIdQuery = (HasWordId) query;
 			this.wordId = wordIdQuery.getWordId();
+		}
+		if (query instanceof HasSynsetId)
+		{
+			final HasSynsetId synsetQuery = (HasSynsetId) query;
+			this.synsetId = synsetQuery.getSynsetId();
 		}
 	}
 
@@ -70,9 +78,14 @@ public class ClassFromWordModule extends BasicModule
 
 	// L O A D E R S
 
-	// vnClass
-
-	private void vnClasses(final long wordId, final long synsetId, final TreeNode parent)
+	/**
+	 * Classes from word id and synset id
+	 *
+	 * @param wordId   word id
+	 * @param synsetId synset id (null or 0 means ignore)
+	 * @param parent   parent node
+	 */
+	private void vnClasses(final long wordId, final Long synsetId, final TreeNode parent)
 	{
 		getLoaderManager().restartLoader(++Module.loaderId, null, new LoaderCallbacks<Cursor>()
 		{
@@ -92,7 +105,7 @@ public class ClassFromWordModule extends BasicModule
 				};
 				String selection = Words_VnClasses_VnGroupings.WORDID + " = ?"; //$NON-NLS-1$
 				String[] selectionArgs;
-				if (synsetId != 0)
+				if (synsetId != null && synsetId != 0)
 				{
 					selection += " AND (" + Words_VnClasses_VnGroupings.SYNSETID + " = ? OR " + Words_VnClasses_VnGroupings.SYNSETID + " IS NULL)"; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 					selectionArgs = new String[]{ //
