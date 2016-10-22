@@ -448,6 +448,11 @@ abstract public class BasicModule extends Module
 		});
 	}
 
+	static private final String TARGET_SYNSETID = "d_synsetid"; //$NON-NLS-1$
+	static private final String TARGET_DEFINITION = "d_definition"; //$NON-NLS-1$
+	static private final String TARGET_LEMMA = "w_lemma"; //$NON-NLS-1$
+	static private final String TARGET_WORDID = "w_wordid"; //$NON-NLS-1$
+
 	/**
 	 * Semantic links
 	 *
@@ -481,30 +486,31 @@ abstract public class BasicModule extends Module
 				// noinspection StatementWithEmptyBody
 				if (cursor.moveToFirst())
 				{
-					final int idSynset2Id = cursor.getColumnIndex(BasicModule.TARGET_SYNSETID);
-					final int idDefinition = cursor.getColumnIndex(BasicModule.TARGET_DEFINITION);
 					final int idLinkId = cursor.getColumnIndex(LinkTypes.LINKID);
-					final int idMembers = cursor.getColumnIndex(SemLinks_Synsets_Words_X.MEMBERS2);
+					final int idLink = cursor.getColumnIndex(LinkTypes.LINK);
+					final int idTargetSynsetId = cursor.getColumnIndex(BasicModule.TARGET_SYNSETID);
+					final int idTargetDefinition = cursor.getColumnIndex(BasicModule.TARGET_DEFINITION);
+					final int idTargetMembers = cursor.getColumnIndex(SemLinks_Synsets_Words_X.MEMBERS2);
 					final int idRecurses = cursor.getColumnIndex(SemLinks_Synsets_Words_X.RECURSES);
-					// final int idLink = cursor.getColumnIndex(SemLinks_Synsets_X.LINK);
 
 					do
 					{
 						final SpannableStringBuilder sb = new SpannableStringBuilder();
 
-						final long synset2Id = cursor.getLong(idSynset2Id);
 						final int linkId = cursor.getInt(idLinkId);
-						final String definition = cursor.getString(idDefinition);
-						final String members = cursor.getString(idMembers);
-						final int recurses = cursor.getInt(idRecurses);
-						// final String link = cursor.getString(idLink);
+						final String link = cursor.getString(idLink);
 
-						Spanner.append(sb, members, 0, WordNetFactories.membersFactory);
+						final long targetSynsetId = cursor.getLong(idTargetSynsetId);
+						final String targetDefinition = cursor.getString(idTargetDefinition);
+						final String targetMembers = cursor.getString(idTargetMembers);
+						final int recurses = cursor.getInt(idRecurses);
+
+						Spanner.append(sb, targetMembers, 0, WordNetFactories.membersFactory);
 						sb.append(' ');
-						Spanner.append(sb, definition, 0, WordNetFactories.definitionFactory);
+						Spanner.append(sb, targetDefinition, 0, WordNetFactories.definitionFactory);
 
 						final Context context = BasicModule.this.getContext();
-						TreeNode linkNode = recurses == 0 ? TreeFactory.newLeafNode(sb, getLinkRes(linkId), context) : TreeFactory.newQueryNode(new SubLinksQuery(synset2Id, linkId, getLinkRes(linkId), sb), BasicModule.this.getContext());
+						TreeNode linkNode = recurses == 0 ? TreeFactory.newLeafNode(sb, getLinkRes(linkId), context) : TreeFactory.newQueryNode(new SubLinksQuery(targetSynsetId, linkId, getLinkRes(linkId), sb), BasicModule.this.getContext());
 						parent.addChild(linkNode);
 					}
 					while (cursor.moveToNext());
@@ -527,11 +533,6 @@ abstract public class BasicModule extends Module
 			}
 		});
 	}
-
-	static public final String TARGET_SYNSETID = "d_synsetid"; //$NON-NLS-1$
-	static public final String TARGET_DEFINITION = "d_definition"; //$NON-NLS-1$
-	static public final String TARGET_LEMMA = "w_lemma"; //$NON-NLS-1$
-	static public final String TARGET_WORDID = "w_wordid"; //$NON-NLS-1$
 
 	/**
 	 * Semantic links
@@ -566,30 +567,32 @@ abstract public class BasicModule extends Module
 			{
 				if (cursor.moveToFirst())
 				{
-					final int idSynsetId2 = cursor.getColumnIndex(BasicModule.TARGET_SYNSETID);
-					final int idDefinition2 = cursor.getColumnIndex(BasicModule.TARGET_DEFINITION);
-					final int idMembers = cursor.getColumnIndex(SemLinks_Synsets_Words_X.MEMBERS2);
+					final int idLinkId = cursor.getColumnIndex(LinkTypes.LINKID);
+					final int idLink = cursor.getColumnIndex(LinkTypes.LINK);
+
+					final int idTargetSynsetId = cursor.getColumnIndex(BasicModule.TARGET_SYNSETID);
+					final int idTargetDefinition = cursor.getColumnIndex(BasicModule.TARGET_DEFINITION);
+					final int idTargetMembers = cursor.getColumnIndex(SemLinks_Synsets_Words_X.MEMBERS2);
 					final int idRecurses = cursor.getColumnIndex(SemLinks_Synsets_Words_X.RECURSES);
-					// final int idLinkId = cursor.getColumnIndex(LinkTypes.LINKID);
-					// final int idLink = cursor.getColumnIndex(LinkTypes.LINK);
 
 					do
 					{
 						final SpannableStringBuilder sb = new SpannableStringBuilder();
 
-						final String definition2 = cursor.getString(idDefinition2);
-						final String members = cursor.getString(idMembers);
-						final long synset2Id = cursor.getLong(idSynsetId2);
-						final int recurses = cursor.getInt(idRecurses);
-						// final int linkId = cursor.getInt(idLinkId);
-						// final String link = cursor.getString(idLink);
+						final int linkId = cursor.getInt(idLinkId);
+						final String link = cursor.getString(idLink);
 
-						Spanner.append(sb, members, 0, WordNetFactories.membersFactory);
+						final long targetSynsetId = cursor.getLong(idTargetSynsetId);
+						final String targetDefinition = cursor.getString(idTargetDefinition);
+						final String targetMembers = cursor.getString(idTargetMembers);
+						final int recurses = cursor.getInt(idRecurses);
+
+						Spanner.append(sb, targetMembers, 0, WordNetFactories.membersFactory);
 						sb.append(' ');
-						Spanner.append(sb, definition2, 0, WordNetFactories.definitionFactory);
+						Spanner.append(sb, targetDefinition, 0, WordNetFactories.definitionFactory);
 
 						final Context context = BasicModule.this.getContext();
-						TreeNode linkNode = recurses == 0 ? TreeFactory.newLeafNode(sb, getLinkRes(linkId), context) : TreeFactory.newQueryNode(new SubLinksQuery(synset2Id, linkId, getLinkRes(linkId), sb), context);
+						TreeNode linkNode = recurses == 0 ? TreeFactory.newLeafNode(sb, getLinkRes(linkId), context) : TreeFactory.newQueryNode(new SubLinksQuery(targetSynsetId, linkId, getLinkRes(linkId), sb), context);
 						parent.addChild(linkNode);
 					}
 					while (cursor.moveToNext());
@@ -647,25 +650,29 @@ abstract public class BasicModule extends Module
 				if (cursor.moveToFirst())
 				{
 					final int idLinkId = cursor.getColumnIndex(LinkTypes.LINKID);
-					final int idDefinition = cursor.getColumnIndex(BasicModule.TARGET_DEFINITION);
-					final int idTargetLemma = cursor.getColumnIndex(BasicModule.TARGET_LEMMA);
+					final int idLink = cursor.getColumnIndex(LinkTypes.LINK);
+
+					final int idTargetSynsetId = cursor.getColumnIndex(BasicModule.TARGET_SYNSETID);
+					final int idTargetDefinition = cursor.getColumnIndex(BasicModule.TARGET_DEFINITION);
 					final int idTargetMembers = cursor.getColumnIndex(LexLinks_Senses_Words_X.MEMBERS2);
-					// final int idLink = cursor.getColumnIndex(LinkTypes.LINK);
-					// final int idTargetWordId = cursor.getColumnIndex(LexLinks_Synsets_Words_LinkTypes.TARGET_WORDID);
-					final int idSynsetId = cursor.getColumnIndex(BasicModule.TARGET_SYNSETID);
+
+					final int idTargetWordId = cursor.getColumnIndex(BasicModule.TARGET_WORDID);
+					final int idTargetLemma = cursor.getColumnIndex(BasicModule.TARGET_LEMMA);
 
 					final SpannableStringBuilder sb = new SpannableStringBuilder();
 					do
 					{
 						final int linkId = cursor.getInt(idLinkId);
-						final String definition = cursor.getString(idDefinition);
-						final String targetLemma = cursor.getString(idTargetLemma);
+						final String link = cursor.getString(idLink);
+
+						final String targetSynsetId = cursor.getString(idTargetSynsetId);
+						final String targetDefinition = cursor.getString(idTargetDefinition);
 						final String targetMembers = cursor.getString(idTargetMembers);
-						// final String link = cursor.getString(idLink);
-						// final String targetWordId = cursor.getString(idTargetWordId);
-						// final String synsetId = cursor.getString(idSynsetId);
-						// final String record = String.format(Locale.ENGLISH, "[%s] %s (%s)\n\t%s (synset %s) {%s}", link, targetLemma, targetWordId,
-						// definition, synsetId, targetMembers);
+
+						final String targetWordId = cursor.getString(idTargetWordId);
+						final String targetLemma = cursor.getString(idTargetLemma);
+
+						final String record = String.format(Locale.ENGLISH, "[%s] %s (%s)\n\t%s (synset %s) {%s}", link, targetLemma, targetWordId, targetDefinition, targetSynsetId, targetMembers);
 
 						if (sb.length() != 0)
 						{
@@ -681,7 +688,7 @@ abstract public class BasicModule extends Module
 						Spanner.append(sb, targetMembers, 0, WordNetFactories.membersFactory);
 						sb.append('}');
 						sb.append(' ');
-						Spanner.append(sb, definition, 0, WordNetFactories.definitionFactory);
+						Spanner.append(sb, targetDefinition, 0, WordNetFactories.definitionFactory);
 
 						// attach result
 						TreeFactory.newLeafNode(sb, getLinkRes(linkId), BasicModule.this.getContext());
@@ -689,7 +696,7 @@ abstract public class BasicModule extends Module
 					while (cursor.moveToNext());
 
 					// attach result
-					// TreeFactory.addTextNode(parent, sb, BasicModule.this.getContext());
+					TreeFactory.addTextNode(parent, sb, BasicModule.this.getContext());
 
 					// expand
 					TreeView.expand(parent, false);
@@ -744,25 +751,29 @@ abstract public class BasicModule extends Module
 				if (cursor.moveToFirst())
 				{
 					final int idLinkId = cursor.getColumnIndex(LinkTypes.LINKID);
-					final int idDefinition = cursor.getColumnIndex(BasicModule.TARGET_DEFINITION);
+					final int idLink = cursor.getColumnIndex(LinkTypes.LINK);
+
+					final int idTargetSynsetId = cursor.getColumnIndex(BasicModule.TARGET_SYNSETID);
+					final int idTargetDefinition = cursor.getColumnIndex(BasicModule.TARGET_DEFINITION);
+					final int idTargetMembers = cursor.getColumnIndex(LexLinks_Senses_Words_X.MEMBERS2);
+
+					final int idTargetWordId = cursor.getColumnIndex(BasicModule.TARGET_WORDID);
 					final int idTargetLemma = cursor.getColumnIndex(BasicModule.TARGET_LEMMA);
-					// final int idTargetMembers = cursor.getColumnIndex(LexLinks_Synsets_Words_LinkTypes.TARGET_MEMBERS);
-					// final int idLink = cursor.getColumnIndex(LinkTypes.LINK);
-					// final int idSynsetId = cursor.getColumnIndex(LexLinks_Synsets_Words_LinkTypes.TARGET_SYNSETID);
-					// final int idTargetWordId = cursor.getColumnIndex(LexLinks_Synsets_Words_LinkTypes.TARGET_WORDID);
 
 					final SpannableStringBuilder sb = new SpannableStringBuilder();
 					do
 					{
 						final int linkId = cursor.getInt(idLinkId);
-						final String definition = cursor.getString(idDefinition);
-						final String lemma = cursor.getString(idTargetLemma);
-						// final String members = cursor.getString(idTargetMembers);
-						// final String synsetId = cursor.getString(idSynsetId);
-						// final String targetWordId = cursor.getString(idTargetWordId);
-						// final String link = cursor.getString(idLink);
-						// final String record = String.format(Locale.ENGLISH, "[%s] %s (%s)\n\t%s (synset %s) {%s}", link, targetLemma, targetWordId,
-						// definition, synsetId, targetMembers);
+						final String link = cursor.getString(idLink);
+
+						final String targetSynsetId = cursor.getString(idTargetSynsetId);
+						final String targetDefinition = cursor.getString(idTargetDefinition);
+						final String targetMembers = cursor.getString(idTargetMembers);
+
+						final String targetLemma = cursor.getString(idTargetLemma);
+						final String targetWordId = cursor.getString(idTargetWordId);
+
+						final String record = String.format(Locale.ENGLISH, "[%s] %s (%s)\n\t%s (synset %s) {%s}", link, targetLemma, targetWordId,targetDefinition, targetSynsetId, targetMembers);
 
 						if (sb.length() != 0)
 						{
@@ -771,14 +782,14 @@ abstract public class BasicModule extends Module
 						Spanner.appendImage(sb, getLinkDrawable(linkId));
 						// sb.append(record);
 						sb.append(' ');
-						Spanner.append(sb, lemma, 0, WordNetFactories.lemmaFactory);
+						Spanner.append(sb, targetLemma, 0, WordNetFactories.lemmaFactory);
 						// sb.append(" in ");
 						// sb.append(' ');
 						// sb.append('{');
 						// Spanner.append(sb, members, 0, WordNetFactories.membersFactory);
 						// sb.append('}');
 						sb.append(' ');
-						Spanner.append(sb, definition, 0, WordNetFactories.definitionFactory);
+						Spanner.append(sb, targetDefinition, 0, WordNetFactories.definitionFactory);
 
 						// attach result
 						TreeFactory.newLeafNode(sb, getLinkRes(linkId), BasicModule.this.getContext());
