@@ -5,29 +5,54 @@ import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
+/**
+ * Check XML well-formedness
+ *
+ * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
+ */
 @SuppressWarnings("unused")
 class Checker
 {
-	public static void check_nonElement(final Node node, final String... messg)
+	/**
+	 * Check non element
+	 *
+	 * @param node     node
+	 * @param messages messages
+	 */
+	public static void checkNonElement(final Node node, final String... messages)
 	{
 		if (!node.getNodeValue().matches("\\s*")) //$NON-NLS-1$
 		{
-			throw new RuntimeException("non element node " + node + "| " + (messg.length == 0 ? "" : messg[0])); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+			throw new RuntimeException("non element node " + node + "| " + (messages.length == 0 ? "" : messages[0])); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 		}
 	}
 
-	public static void check_ElementName(final String name, final String m, final String... messg)
+	/**
+	 * Check element name
+	 *
+	 * @param name     name
+	 * @param pattern  pattern to match
+	 * @param messages messages
+	 */
+	public static void checkElementName(final String name, final String pattern, final String... messages)
 	{
-		if (!name.matches(m))
+		if (!name.matches(pattern))
 		{
-			throw new RuntimeException("element name |" + name + "| " + (messg.length == 0 ? "" : messg[0])); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+			throw new RuntimeException("element name |" + name + "| " + (messages.length == 0 ? "" : messages[0])); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 		}
 	}
 
-	public static void check_ElementAttributeName(final Node e, final String m, final String... messg)
+	/**
+	 * Check attribute name
+	 *
+	 * @param node     node
+	 * @param pattern  pattern to match
+	 * @param messages messages
+	 */
+	public static void checkElementAttributeName(final Node node, final String pattern, final String... messages)
 	{
-		final NamedNodeMap attrs = e.getAttributes();
-		if (m != null)
+		final NamedNodeMap attrs = node.getAttributes();
+		if (pattern != null)
 		{
 			if (attrs != null)
 			{
@@ -35,9 +60,9 @@ class Checker
 				{
 					final Node attr = attrs.item(i);
 					final String name = attr.getNodeName();
-					if (!name.matches(m))
+					if (!name.matches(pattern))
 					{
-						throw new RuntimeException("attribute name |" + name + "| " + (messg.length == 0 ? "" : messg[0])); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+						throw new RuntimeException("attribute name |" + name + "| " + (messages.length == 0 ? "" : messages[0])); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 					}
 				}
 			}
@@ -52,39 +77,52 @@ class Checker
 					final Node attr = attrs.item(i);
 					sb.append(attr.getNodeName()).append(' ');
 				}
-				throw new RuntimeException("attribute name |" + sb + "| " + (messg.length == 0 ? "" : messg[0])); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				throw new RuntimeException("attribute name |" + sb + "| " + (messages.length == 0 ? "" : messages[0])); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 			}
 		}
 	}
 
-	public static void check_ElementAttributeValue(final String value, final String m, final String... messg)
+	/**
+	 * Check element attribute value
+	 *
+	 * @param value    attribute value
+	 * @param pattern  pattern to match
+	 * @param messages messages
+	 */
+	public static void checkElementAttributeValue(final String value, final String pattern, final String... messages)
 	{
 		final String[] items = value.split("\\s+"); //$NON-NLS-1$
 		for (final String item : items)
 		{
-			if (!item.matches(m))
+			if (!item.matches(pattern))
 			{
-				throw new RuntimeException("attr value |" + item + "| " + (messg.length == 0 ? "" : messg[0])); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				throw new RuntimeException("attr value |" + item + "| " + (messages.length == 0 ? "" : messages[0])); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 			}
 		}
 	}
 
-	public static void check_TextValue(final Node e, final String... messg)
+	/**
+	 * Check text value
+	 *
+	 * @param node     node
+	 * @param messages messages
+	 */
+	public static void checkTextValue(final Node node, final String... messages)
 	{
-		e.normalize();
+		node.normalize();
 
-		final NodeList nodes = e.getChildNodes();
+		final NodeList nodes = node.getChildNodes();
 		if (nodes.getLength() > 1)
 		{
-			throw new RuntimeException("multiple nodes |" + e.getNodeName() + "| " + (messg.length == 0 ? "" : messg[0])); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+			throw new RuntimeException("multiple nodes |" + node.getNodeName() + "| " + (messages.length == 0 ? "" : messages[0])); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 		}
 
 		for (int j = 0; j < nodes.getLength(); j++)
 		{
-			final Node node = nodes.item(j);
-			if (node instanceof Element)
+			final Node childNode = nodes.item(j);
+			if (childNode instanceof Element)
 			{
-				throw new RuntimeException("includes elements |" + e.getNodeName() + "| " + (messg.length == 0 ? "" : messg[0])); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				throw new RuntimeException("includes elements |" + childNode.getNodeName() + "| " + (messages.length == 0 ? "" : messages[0])); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 			}
 		}
 	}

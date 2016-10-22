@@ -9,6 +9,11 @@ import android.util.Log;
 
 import org.sqlunet.settings.StorageSettings;
 
+/**
+ * SqlUNet provider
+ *
+ * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
+ */
 public abstract class SqlUNetProvider extends ContentProvider
 {
 	private static final String TAG = "SqlUNetProvider"; //$NON-NLS-1$

@@ -9,6 +9,8 @@ import javax.xml.parsers.DocumentBuilderFactory;
 
 /**
  * Abstract XML processor
+ *
+ * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
 abstract class XmlProcessor
 {

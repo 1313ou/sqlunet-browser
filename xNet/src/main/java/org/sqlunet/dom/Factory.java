@@ -48,8 +48,8 @@ public class Factory
 	/**
 	 * Transform Document to XML form
 	 *
-	 * @param document the org.w3.dom.Document to convert to XML form
-	 * @param dtd      the name of the DTD
+	 * @param document org.w3.dom.Document to convert to XML form
+	 * @param dtd      name of DTD
 	 * @return XML string for Document
 	 */
 	static public String docToString(final Document document, final String dtd)

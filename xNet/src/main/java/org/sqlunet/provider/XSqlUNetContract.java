@@ -1,5 +1,10 @@
 package org.sqlunet.provider;
 
+/**
+ * Extended cross WordNet-FrameNet-PropBank-VerbNet provider contract
+ *
+ * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
+ */
 public final class XSqlUNetContract
 {
 	// Contract for SqlUNet cross provider

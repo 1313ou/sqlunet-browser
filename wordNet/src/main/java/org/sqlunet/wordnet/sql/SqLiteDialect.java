@@ -1,5 +1,10 @@
 package org.sqlunet.wordnet.sql;
 
+/**
+ * WordNet SQL dialect
+ *
+ * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
+ */
 class SqLiteDialect
 {
 	// query for lexical domain enumeration

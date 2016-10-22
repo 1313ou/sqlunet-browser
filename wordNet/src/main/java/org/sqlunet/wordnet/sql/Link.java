@@ -1,9 +1,3 @@
-/*
- * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
- * Created on 31 dec. 2004
- * Filename : Link.java
- * Class encapsulating WordNet linked synset
- */
 package org.sqlunet.wordnet.sql;
 
 import android.database.SQLException;
@@ -23,12 +17,12 @@ class Link extends Synset
 	private static final String TAG = "Link"; //$NON-NLS-1$
 
 	/**
-	 * <code>linkType</code> is the relation type
+	 * <code>linkType</code> relation type
 	 */
 	private final int linkType;
 
 	/**
-	 * <code>fromSynsetId</code> is the source synset id
+	 * <code>fromSynsetId</code> source synset id
 	 */
 	@SuppressWarnings("unused")
 	private final long fromSynsetId;
@@ -36,7 +30,7 @@ class Link extends Synset
 	/**
 	 * Constructor from query for synsets linked to a given synset
 	 *
-	 * @param query is a query for synsets linked to a given synset
+	 * @param query query for synsets linked to a given synset
 	 */
 	public Link(final LinksQueryCommand query)
 	{
@@ -85,8 +79,6 @@ class Link extends Synset
 
 	/**
 	 * Override : recurse only on links of the same link type
-	 *
-	 * @see org.sqlunet.wordnet.sql.Synset#getLinks(android.database.sqlite.SQLiteDatabase, long)
 	 */
 	@Override
 	public List<Link> getLinks(final SQLiteDatabase connection, final long wordId)

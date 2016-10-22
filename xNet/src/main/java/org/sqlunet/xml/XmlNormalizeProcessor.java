@@ -10,6 +10,8 @@ import org.w3c.dom.ls.LSSerializer;
 
 /**
  * Normalizing processor
+ *
+ * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
 @SuppressWarnings("unused")
 public class XmlNormalizeProcessor extends XmlProcessor
@@ -34,14 +36,14 @@ public class XmlNormalizeProcessor extends XmlProcessor
 	/**
 	 * Element to string
 	 *
-	 * @param e element
+	 * @param node element
 	 * @return string
 	 */
-	private static String elementToString(final Node e)
+	private static String elementToString(final Node node)
 	{
-		final Document document = e.getOwnerDocument();
+		final Document document = node.getOwnerDocument();
 		final DOMImplementationLS domImplLS = (DOMImplementationLS) document.getImplementation();
 		final LSSerializer serializer = domImplLS.createLSSerializer();
-		return serializer.writeToString(e);
+		return serializer.writeToString(node);
 	}
 }

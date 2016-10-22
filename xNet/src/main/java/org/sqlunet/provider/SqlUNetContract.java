@@ -1,7 +1,9 @@
 package org.sqlunet.provider;
 
 /**
- * Contract for SqlUNet provider
+ * SqlUNet provider contract
+ *
+ * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
 @SuppressWarnings("unused")
 public final class SqlUNetContract

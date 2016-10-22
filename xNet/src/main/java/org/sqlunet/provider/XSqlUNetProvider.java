@@ -22,7 +22,7 @@ import java.util.HashSet;
 import java.util.List;
 
 /**
- * Cross WordNet-FrameNet-PropBank-VerbNet provider
+ * Extended cross WordNet-FrameNet-PropBank-VerbNet provider
  *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */

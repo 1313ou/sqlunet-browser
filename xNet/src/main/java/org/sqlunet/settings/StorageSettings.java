@@ -8,6 +8,11 @@ import org.sqlunet.xnet.R;
 
 import java.io.File;
 
+/**
+ * Storage settings
+ *
+ * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
+ */
 public class StorageSettings
 {
 	// database

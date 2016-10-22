@@ -163,6 +163,7 @@
       <w>fnwords</w>
       <w>focusables</w>
       <w>focuslayer</w>
+      <w>formedness</w>
       <w>formname</w>
       <w>framedefinition</w>
       <w>frameid</w>
@@ -375,6 +376,7 @@
       <w>querysort</w>
       <w>querystring</w>
       <w>queryuri</w>
+      <w>querywithlexdomain</w>
       <w>queryxitems</w>
       <w>readystate</w>
       <w>recurses</w>

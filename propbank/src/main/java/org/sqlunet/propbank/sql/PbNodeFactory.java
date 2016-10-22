@@ -1,9 +1,3 @@
-/*
- * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
- * Created on 31 dec. 2004
- * Filename : FnNodeFactory.java
- * Class encapsulates creation of DOM nodes
- */
 package org.sqlunet.propbank.sql;
 
 import org.sqlunet.sql.NodeFactory;

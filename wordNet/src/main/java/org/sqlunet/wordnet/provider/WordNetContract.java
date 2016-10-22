@@ -11,6 +11,14 @@ public class WordNetContract
 {
 	static public final String AUTHORITY = "org.sqlunet.wordnet.provider"; //$NON-NLS-1$
 
+	// A L I A S E S
+
+	static public final String DEST = "d";
+	static public final String WORD = "w";
+	static public final String WORD2 = "t";
+	static public final String LINK = "l";
+	static public final String SENSE = "s";
+
 	// T A B L E S
 
 	@SuppressWarnings("unused")
@@ -157,7 +165,7 @@ public class WordNetContract
 		static public final String SENSEKEY = "sensekey"; //$NON-NLS-1$
 		static public final String DEFINITION = "definition"; //$NON-NLS-1$
 		static public final String LEXDOMAIN = "lexdomain"; //$NON-NLS-1$
-		static public final String POS = "synsets.pos"; //$NON-NLS-1$
+		static public final String POS = "pos"; //$NON-NLS-1$
 		// words LEFT JOIN senses LEFT JOIN casedwords LEFT JOIN synsets
 	}
 
@@ -201,8 +209,6 @@ public class WordNetContract
 	{
 		static public final String TABLE = "semlinks_synsets_linktypes"; //$NON-NLS-1$
 		static public final String CONTENT_URI = "content://" + WordNetContract.AUTHORITY + '/' + SemLinks_Synsets_X.TABLE; //$NON-NLS-1$
-		static public final String SYNSETID = "d_synsetid"; //$NON-NLS-1$
-		static public final String DEFINITION = "d_definition"; //$NON-NLS-1$
 		// semlinks INNER JOIN synsets LEFT JOIN linktypes
 	}
 
@@ -211,7 +217,8 @@ public class WordNetContract
 		static public final String TABLE_BY_SYNSET = "semlinks_synsets_linktypes_senses_words_by_synset"; //$NON-NLS-1$
 		static public final String CONTENT_URI = "content://" + WordNetContract.AUTHORITY + '/' + SemLinks_Synsets_Words_X.TABLE_BY_SYNSET; //$NON-NLS-1$
 		static public final String SYNSET1ID = "synset1id"; //$NON-NLS-1$
-		static public final String MEMBERS = "members"; //$NON-NLS-1$
+		static public final String SYNSET2ID = "synset2id"; //$NON-NLS-1$
+		static public final String MEMBERS2 = "members"; //$NON-NLS-1$
 		static public final String RECURSES = "recurses"; //$NON-NLS-1$
 		// semlinks INNER JOIN synsets LEFT JOIN linktypes LEFT JOIN senses LEFT JOIN words
 	}
@@ -229,10 +236,6 @@ public class WordNetContract
 	{
 		static public final String TABLE = "lexlinks_synsets_words_linktypes"; //$NON-NLS-1$
 		static public final String CONTENT_URI = "content://" + WordNetContract.AUTHORITY + '/' + LexLinks_Senses_X.TABLE; //$NON-NLS-1$
-		static public final String SYNSETID = "d_synsetid"; //$NON-NLS-1$
-		static public final String DEFINITION = "d_definition"; //$NON-NLS-1$
-		static public final String TARGET_LEMMA = "w_lemma"; //$NON-NLS-1$
-		static public final String TARGET_WORDID = "w_wordid"; //$NON-NLS-1$
 		// semlinks INNER JOIN synsets INNER JOIN words LEFT JOIN linktypes
 	}
 
@@ -241,7 +244,8 @@ public class WordNetContract
 		static public final String TABLE_BY_SYNSET = "lexlinks_synsets_words_linktypes_senses_words_by_synset"; //$NON-NLS-1$
 		static public final String CONTENT_URI = "content://" + WordNetContract.AUTHORITY + '/' + LexLinks_Senses_Words_X.TABLE_BY_SYNSET; //$NON-NLS-1$
 		static public final String SYNSET1ID = "synset1id"; //$NON-NLS-1$
-		static public final String MEMBERS = "members"; //$NON-NLS-1$
+		static public final String SYNSET2ID = "synset2id"; //$NON-NLS-1$
+		static public final String MEMBERS2 = "members"; //$NON-NLS-1$
 		// semlinks INNER JOIN synsets INNER JOIN words LEFT JOIN linktypes LEFT JOIN senses LEFT JOIN words
 	}
 
