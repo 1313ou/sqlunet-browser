@@ -326,7 +326,8 @@ public class SelectorFragment extends ListFragment
 	{
 		super.onListItemClick(listView, view, position, id);
 		listView.setItemChecked(position, true);
-		view.setSelected(true);
+		// view.setSelected(true);
+		// view.setActivated(true);
 
 		final SimpleCursorAdapter adapter = (SimpleCursorAdapter) getListAdapter();
 		final Cursor cursor = adapter.getCursor();

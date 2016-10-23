@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               xmlns:tools="http://schemas.android.com/tools"
-              android:theme="@style/NoBackground"
               android:layout_width="match_parent"
               android:layout_height="wrap_content"
+              android:background="?android:attr/activatedBackgroundIndicator"
               android:orientation="vertical"
-              android:background="@drawable/listitem_background"
-              tools:context="org.sqlunet.browser.xselector.XSelectorActivity">
+              tools:context="org.sqlunet.browser.xselector.XSelectorActivity"
+              tools:ignore="Overdraw">
 
 	<View style="@style/Separator"/>
 

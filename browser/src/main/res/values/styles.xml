@@ -167,8 +167,4 @@
 		<item name="android:textSize">12sp</item>
 	</style>
 
-	<style name="NoBackground" parent="AppTheme">
-		<item name="android:windowBackground">@null</item>
-	</style>
-
 </resources>

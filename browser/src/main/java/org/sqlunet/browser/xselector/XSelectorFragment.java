@@ -563,7 +563,8 @@ public class XSelectorFragment extends ExpandableListFragment
 		Log.d(TAG, "click on group=" + groupPosition + " child=" + childPosition + " id=" + id); //
 		int index = listView.getFlatListPosition(ExpandableListView.getPackedPositionForChild(groupPosition, childPosition));
 		listView.setItemChecked(index, true);
-		view.setSelected(true);
+		// view.setSelected(true);
+		// view.setActivated(true);
 
 		@SuppressWarnings("TypeMayBeWeakened") final SimpleCursorTreeAdapter adapter1 = (SimpleCursorTreeAdapter) getListAdapter();
 		final Cursor cursor = adapter1.getChild(groupPosition, childPosition);
