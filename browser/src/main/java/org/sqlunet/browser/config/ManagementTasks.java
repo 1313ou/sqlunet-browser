@@ -17,7 +17,7 @@ import java.util.Collection;
  */
 class ManagementTasks
 {
-	private static final String TAG = "Management Tasks"; //$NON-NLS-1$
+	private static final String TAG = "Management Tasks"; //
 
 	/**
 	 * Create database
@@ -34,7 +34,7 @@ class ManagementTasks
 		}
 		catch (Exception e)
 		{
-			Log.e(TAG, "While creating database", e); //$NON-NLS-1$
+			Log.e(TAG, "While creating database", e); //
 		}
 	}
 
@@ -48,7 +48,7 @@ class ManagementTasks
 	{
 		// make sure you close all connections before deleting
 		boolean result = context.deleteDatabase(databasePath);
-		Log.d(TAG, "While dropping database: " + result); //$NON-NLS-1$	
+		Log.d(TAG, "While dropping database: " + result); //
 	}
 
 	/**
@@ -68,12 +68,12 @@ class ManagementTasks
 				final SQLiteDatabase db = context.openOrCreateDatabase(databasePath, Context.MODE_PRIVATE, null);
 
 				// set parameters
-				// db.execSQL("PRAGMA journal_mode = PERSIST;"); //$NON-NLS-1$
-				db.execSQL("PRAGMA temp_store = FILE;"); //$NON-NLS-1$
-				db.execSQL("PRAGMA temp_store_directory = '" + tempDir + "';"); //$NON-NLS-1$ //$NON-NLS-2$
-				Log.d(TAG, "vacuuming in " + tempDir); //$NON-NLS-1$
-				db.execSQL("VACUUM"); //$NON-NLS-1$
-				Log.d(TAG, "vacuumed in " + tempDir); //$NON-NLS-1$
+				// db.execSQL("PRAGMA journal_mode = PERSIST;"); //
+				db.execSQL("PRAGMA temp_store = FILE;"); //
+				db.execSQL("PRAGMA temp_store_directory = '" + tempDir + "';"); //
+				Log.d(TAG, "vacuuming in " + tempDir); //
+				db.execSQL("VACUUM"); //
+				Log.d(TAG, "vacuumed in " + tempDir); //
 				db.close();
 				return null;
 			}
@@ -111,7 +111,7 @@ class ManagementTasks
 			for (final String table : tables)
 			{
 				int deletedRows = db.delete(table, null, null);
-				Log.d(TAG, table + ": deleted " + deletedRows + " rows"); //$NON-NLS-1$ //$NON-NLS-2$
+				Log.d(TAG, table + ": deleted " + deletedRows + " rows"); //
 			}
 			db.close();
 		}
@@ -131,8 +131,8 @@ class ManagementTasks
 			final SQLiteDatabase db = context.openOrCreateDatabase(databasePath, Context.MODE_PRIVATE, null);
 			for (final String table : tables)
 			{
-				db.execSQL("DROP TABLE IF EXISTS " + table); //$NON-NLS-1$
-				Log.d(TAG, table + ": dropped"); //$NON-NLS-1$
+				db.execSQL("DROP TABLE IF EXISTS " + table); //
+				Log.d(TAG, table + ": dropped"); //
 			}
 			db.close();
 		}

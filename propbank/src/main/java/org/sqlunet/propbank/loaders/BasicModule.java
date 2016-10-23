@@ -139,7 +139,7 @@ abstract class BasicModule extends Module
 						PropBankContract.PbRoleSets.ROLESETHEAD, //
 						PropBankContract.PbRoleSets.ROLESETDESC, //
 				};
-				final String selection = PropBankContract.PbRoleSets.ROLESETID + " = ?"; //$NON-NLS-1$
+				final String selection = PropBankContract.PbRoleSets.ROLESETID + " = ?"; //
 				final String[] selectionArgs = {Long.toString(roleSetId)};
 				final String sortOrder = null;
 				return new CursorLoader(getContext(), uri, projection, selection, selectionArgs, sortOrder);
@@ -150,7 +150,7 @@ abstract class BasicModule extends Module
 			{
 				if (cursor.getCount() > 1)
 				{
-					throw new RuntimeException("Unexpected number of rows"); //$NON-NLS-1$
+					throw new RuntimeException("Unexpected number of rows"); //
 				}
 				if (cursor.moveToFirst())
 				{
@@ -171,7 +171,7 @@ abstract class BasicModule extends Module
 					sb.append(' ');
 					Spanner.append(sb, cursor.getString(idRolesetName), 0, PropBankFactories.roleSetFactory);
 					sb.append(' ');
-					sb.append("head="); //$NON-NLS-1$
+					sb.append("head="); //
 					sb.append(cursor.getString(idRolesetHead));
 					sb.append('\n');
 
@@ -180,8 +180,8 @@ abstract class BasicModule extends Module
 					Spanner.append(sb, cursor.getString(idRolesetDesc), 0, PropBankFactories.definitionFactory);
 
 					// sub nodes
-					final TreeNode rolesNode = TreeFactory.newQueryNode(new RolesQuery(roleSetId, R.drawable.roles, "Roles"), BasicModule.this.getContext()); //$NON-NLS-1$
-					final TreeNode examplesNode = TreeFactory.newQueryNode(new ExamplesQuery(roleSetId, R.drawable.sample, "Examples"), BasicModule.this.getContext()); //$NON-NLS-1$
+					final TreeNode rolesNode = TreeFactory.newQueryNode(new RolesQuery(roleSetId, R.drawable.roles, "Roles"), BasicModule.this.getContext()); //
+					final TreeNode examplesNode = TreeFactory.newQueryNode(new ExamplesQuery(roleSetId, R.drawable.sample, "Examples"), BasicModule.this.getContext()); //
 
 					// attach result
 					TreeFactory.addTextNode(parent, sb, BasicModule.this.getContext(), rolesNode, examplesNode);
@@ -225,7 +225,7 @@ abstract class BasicModule extends Module
 						Words_PbRoleSets.ROLESETHEAD, //
 						Words_PbRoleSets.ROLESETDESC, //
 				};
-				final String selection = Words_PbRoleSets.WORDID + " = ?"; //$NON-NLS-1$
+				final String selection = Words_PbRoleSets.WORDID + " = ?"; //
 				final String[] selectionArgs = {Long.toString(wordId)};
 				final String sortOrder = null;
 				return new CursorLoader(BasicModule.this.getContext(), uri, projection, selection, selectionArgs, sortOrder);
@@ -255,7 +255,7 @@ abstract class BasicModule extends Module
 						sb.append(' ');
 						Spanner.append(sb, cursor.getString(idRoleSetName), 0, PropBankFactories.roleSetFactory);
 						sb.append(' ');
-						sb.append("head="); //$NON-NLS-1$
+						sb.append("head="); //
 						sb.append(cursor.getString(idRoleSetHead));
 						sb.append('\n');
 
@@ -264,8 +264,8 @@ abstract class BasicModule extends Module
 						Spanner.append(sb, cursor.getString(idRoleSetDesc), 0, PropBankFactories.definitionFactory);
 
 						// sub nodes
-						final TreeNode rolesNode = TreeFactory.newQueryNode(new RolesQuery(roleSetId, R.drawable.roles, "Roles"), BasicModule.this.getContext()); //$NON-NLS-1$
-						final TreeNode examplesNode = TreeFactory.newQueryNode(new ExamplesQuery(roleSetId, R.drawable.sample, "Examples"), BasicModule.this.getContext()); //$NON-NLS-1$
+						final TreeNode rolesNode = TreeFactory.newQueryNode(new RolesQuery(roleSetId, R.drawable.roles, "Roles"), BasicModule.this.getContext()); //
+						final TreeNode examplesNode = TreeFactory.newQueryNode(new ExamplesQuery(roleSetId, R.drawable.sample, "Examples"), BasicModule.this.getContext()); //
 
 						// attach result
 						TreeFactory.addTextNode(parent, sb, getContext(), rolesNode, examplesNode);
@@ -314,7 +314,7 @@ abstract class BasicModule extends Module
 						PbRoleSets_PbRoles.FUNCNAME, //
 						PbRoleSets_PbRoles.THETANAME, //
 				};
-				final String selection = PbRoleSets_PbRoles.ROLESETID + "= ?"; //$NON-NLS-1$
+				final String selection = PbRoleSets_PbRoles.ROLESETID + "= ?"; //
 				final String[] selectionArgs = {Long.toString(roleSetId)};
 				final String sortOrder = null;
 				return new CursorLoader(getContext(), uri, projection, selection, selectionArgs, sortOrder);
@@ -361,7 +361,7 @@ abstract class BasicModule extends Module
 						if (!cursor.isNull(idFunc))
 						{
 							sb.append(' ');
-							sb.append("func="); //$NON-NLS-1$
+							sb.append("func="); //
 							sb.append(Integer.toString(cursor.getInt(idFunc)));
 						}
 
@@ -420,25 +420,25 @@ abstract class BasicModule extends Module
 				final String[] projection = { //
 						PbRoleSets_PbExamples.TEXT, //
 						PbRoleSets_PbExamples.REL, //
-						"GROUP_CONCAT(" + // //$NON-NLS-1$
+						"GROUP_CONCAT(" + //
 								PbRoleSets_PbExamples.NARG + //
-								"||'~'" + // //$NON-NLS-1$
-								"||(CASE WHEN " + PbRoleSets_PbExamples.FUNCNAME + " IS NULL THEN '*' ELSE " + PbRoleSets_PbExamples.FUNCNAME + " END)" + // //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-								"||'~'" + // //$NON-NLS-1$
-								"||" + PbRoleSets_PbExamples.ROLEDESCR + // //$NON-NLS-1$
-								"||'~'" + // //$NON-NLS-1$
-								"||(CASE WHEN " + PbRoleSets_PbExamples.THETANAME + " IS NULL THEN '*' ELSE " + PbRoleSets_PbExamples.THETANAME + " END)" + // //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-								"||'~'" + // //$NON-NLS-1$
-								"||" + PbRoleSets_PbExamples.ARG + ",'|') AS " + PbRoleSets_PbExamples.ARGS, // //$NON-NLS-1$ //$NON-NLS-2$
+								"||'~'" + //
+								"||(CASE WHEN " + PbRoleSets_PbExamples.FUNCNAME + " IS NULL THEN '*' ELSE " + PbRoleSets_PbExamples.FUNCNAME + " END)" + //
+								"||'~'" + //
+								"||" + PbRoleSets_PbExamples.ROLEDESCR + //
+								"||'~'" + //
+								"||(CASE WHEN " + PbRoleSets_PbExamples.THETANAME + " IS NULL THEN '*' ELSE " + PbRoleSets_PbExamples.THETANAME + " END)" + //
+								"||'~'" + //
+								"||" + PbRoleSets_PbExamples.ARG + ",'|') AS " + PbRoleSets_PbExamples.ARGS, //
 						PbRoleSets_PbExamples.ASPECTNAME, //
 						PbRoleSets_PbExamples.FORMNAME, //
 						PbRoleSets_PbExamples.TENSENAME, //
 						PbRoleSets_PbExamples.VOICENAME, //
 						PbRoleSets_PbExamples.PERSONNAME, //
 				};
-				final String selection = PbRoleSets_PbExamples.ROLESETID + "= ?"; //$NON-NLS-1$
+				final String selection = PbRoleSets_PbExamples.ROLESETID + "= ?"; //
 				final String[] selectionArgs = {Long.toString(roleSetId)};
-				final String sortOrder = "e" + PbRoleSets_PbExamples.EXAMPLEID + ',' + PbRoleSets_PbExamples.NARG; //$NON-NLS-1$
+				final String sortOrder = PbRoleSets_PbExamples.EXAMPLEID + ',' + PbRoleSets_PbExamples.NARG; //
 				return new CursorLoader(getContext(), uri, projection, selection, selectionArgs, sortOrder);
 			}
 
@@ -473,11 +473,11 @@ abstract class BasicModule extends Module
 						final String argspack = cursor.getString(idArgs);
 						if (argspack != null)
 						{
-							final String[] args = argspack.split("\\|"); //$NON-NLS-1$
+							final String[] args = argspack.split("\\|"); //
 							Arrays.sort(args);
 							for (final String arg : args)
 							{
-								final String[] fields = arg.split("~"); //$NON-NLS-1$
+								final String[] fields = arg.split("~"); //
 								if (fields.length < 5)
 								{
 									sb.append(arg);

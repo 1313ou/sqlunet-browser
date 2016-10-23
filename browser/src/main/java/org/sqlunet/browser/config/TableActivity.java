@@ -34,6 +34,6 @@ public class TableActivity extends Activity
 		final String query = intent.getStringExtra(SqlUNetContract.ARG_QUERYURI);
 		final String filter = intent.getStringExtra(SqlUNetContract.ARG_QUERYFILTER);
 		final TextView queryView = (TextView) findViewById(R.id.queryView);
-		queryView.setText(String.format("%s (filter: %s)", query, filter)); //$NON-NLS-1$
+		queryView.setText(String.format("%s (filter: %s)", query, filter)); //
 	}
 }

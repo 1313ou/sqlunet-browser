@@ -86,6 +86,6 @@ public class PmRolePointer implements Parcelable
 	@Override
 	public String toString()
 	{
-		return "roleId=" + this.roleId; //$NON-NLS-1$
+		return "roleid=" + this.roleId; //
 	}
 }

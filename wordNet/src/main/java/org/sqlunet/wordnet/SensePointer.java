@@ -135,13 +135,13 @@ public class SensePointer extends SynsetPointer implements HasWordId
 	{
 		return super.toString() +
 				' ' +
-				"wordId=" + //$NON-NLS-1$
+				"wordid=" + //
 				this.wordId +
 				' ' +
-				"lemma=" + //$NON-NLS-1$
+				"lemma=" + //
 				this.lemma +
 				' ' +
-				"cased=" + //$NON-NLS-1$
+				"cased=" + //
 				this.cased;
 	}
 }

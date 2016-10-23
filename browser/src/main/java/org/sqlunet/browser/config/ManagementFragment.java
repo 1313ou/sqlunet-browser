@@ -27,9 +27,9 @@ import org.sqlunet.settings.StorageSettings;
  */
 public class ManagementFragment extends Fragment implements Listener
 {
-	private static final String TAG = "ManagementFragment"; //$NON-NLS-1$
+	private static final String TAG = "ManagementFragment"; //
 
-	public static final String ARG = "statement"; //$NON-NLS-1$
+	public static final String ARG = "statement"; //
 
 	/**
 	 * Action spinner
@@ -78,13 +78,13 @@ public class ManagementFragment extends Fragment implements Listener
 			@Override
 			public void onItemSelected(AdapterView<?> parent, View view, int position, long id)
 			{
-				ManagementFragment.this.status.setText(""); //$NON-NLS-1$
+				ManagementFragment.this.status.setText(""); //
 			}
 
 			@Override
 			public void onNothingSelected(AdapterView<?> parent)
 			{
-				ManagementFragment.this.status.setText(""); //$NON-NLS-1$
+				ManagementFragment.this.status.setText(""); //
 			}
 		});
 
@@ -118,7 +118,7 @@ public class ManagementFragment extends Fragment implements Listener
 			{
 				final long id = ManagementFragment.this.spinner.getSelectedItemId();
 				final CharSequence sql = sqls[(int) id];
-				final String[] sqls1 = sql.toString().split(";"); //$NON-NLS-1$
+				final String[] sqls1 = sql.toString().split(";"); //
 				ManagementFragment.this.status.setText(R.string.status_op_running);
 				new ExecuteManager(databasePath, ManagementFragment.this, 1).executeFromSql(sqls1);
 			}
@@ -129,7 +129,7 @@ public class ManagementFragment extends Fragment implements Listener
 	@Override
 	public void managerStart()
 	{
-		Log.d(TAG, "Update start"); //$NON-NLS-1$
+		Log.d(TAG, "Update start"); //
 		Toast.makeText(getActivity(), R.string.status_update_start, Toast.LENGTH_SHORT).show();
 		ManagementFragment.this.status.setText(R.string.status_op_running);
 	}
@@ -137,7 +137,7 @@ public class ManagementFragment extends Fragment implements Listener
 	@Override
 	public void managerFinish(final boolean result)
 	{
-		Log.d(TAG, "Update " + (result ? "succeeded" : "failed")); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+		Log.d(TAG, "Update " + (result ? "succeeded" : "failed")); //
 		Toast.makeText(getActivity(), result ? R.string.status_update_success : R.string.status_update_failure, Toast.LENGTH_SHORT).show();
 		ManagementFragment.this.status.setText(result ? R.string.status_op_done : R.string.status_op_failed);
 	}
@@ -145,7 +145,7 @@ public class ManagementFragment extends Fragment implements Listener
 	@Override
 	public void managerUpdate(final int progress)
 	{
-		Log.d(TAG, "Update " + progress); //$NON-NLS-1$
+		Log.d(TAG, "Update " + progress); //
 		// Toast.makeText(getActivity(), "Update ", Toast.LENGTH_SHORT).show();
 	}
 }

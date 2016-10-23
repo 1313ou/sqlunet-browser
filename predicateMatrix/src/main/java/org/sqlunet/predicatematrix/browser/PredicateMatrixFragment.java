@@ -52,7 +52,7 @@ public class PredicateMatrixFragment extends Fragment
 
 		// module
 		final SpannableStringBuilder hsb = new SpannableStringBuilder();
-		hsb.append("PredicateMatrix "); //$NON-NLS-1$
+		hsb.append("PredicateMatrix "); //
 		Spanner.append(hsb, pointer.toString(), 0, PredicateMatrixFactories.wordFactory);
 
 		// views
@@ -75,7 +75,7 @@ public class PredicateMatrixFragment extends Fragment
 			// saved state
 			if (savedInstanceState != null)
 			{
-				final String state = savedInstanceState.getString("treeViewState"); //$NON-NLS-1$
+				final String state = savedInstanceState.getString("treeViewState"); //
 				if (state != null && !state.isEmpty())
 				{
 					this.treeView.restoreState(state);
@@ -98,6 +98,6 @@ public class PredicateMatrixFragment extends Fragment
 	public void onSaveInstanceState(final Bundle outState)
 	{
 		super.onSaveInstanceState(outState);
-		outState.putString("treeViewState", this.treeView.getSaveState()); //$NON-NLS-1$
+		outState.putString("treeViewState", this.treeView.getSaveState()); //
 	}
 }

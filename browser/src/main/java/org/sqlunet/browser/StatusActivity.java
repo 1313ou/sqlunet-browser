@@ -29,7 +29,7 @@ import org.sqlunet.settings.Settings;
  */
 public class StatusActivity extends Activity
 {
-	static private final String TAG = "SqlUNet Status"; //$NON-NLS-1$
+	static private final String TAG = "SqlUNet Status"; //
 
 	// codes
 
@@ -190,7 +190,7 @@ public class StatusActivity extends Activity
 				intent = new Intent(this, ManagementActivity.class);
 				break;
 			case R.id.action_appsettings:
-				Settings.applicationSettings(this, "org.sqlunet.browser"); //$NON-NLS-1$
+				Settings.applicationSettings(this, "org.sqlunet.browser"); //
 				return true;
 			default:
 				return super.onOptionsItemSelected(item);
@@ -210,7 +210,7 @@ public class StatusActivity extends Activity
 		switch (requestCode)
 		{
 			case REQUEST_DOWNLOAD_CODE:
-				Log.d(TAG, "result=" + resultCode); //$NON-NLS-1$
+				Log.d(TAG, "result=" + resultCode); //
 				break;
 			default:
 				break;

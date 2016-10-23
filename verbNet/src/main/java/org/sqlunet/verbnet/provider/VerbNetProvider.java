@@ -17,7 +17,7 @@ import org.sqlunet.provider.SqlUNetProvider;
  */
 public class VerbNetProvider extends SqlUNetProvider
 {
-	static private final String TAG = "VerbNetProvider"; //$NON-NLS-1$
+	static private final String TAG = "VerbNetProvider"; //
 
 	// U R I M A T C H E R
 
@@ -67,28 +67,28 @@ public class VerbNetProvider extends SqlUNetProvider
 			// I T E M S
 
 			case VNCLASS:
-				return SqlUNetContract.VENDOR + ".android.cursor.item/" + SqlUNetContract.VENDOR + '.' + VerbNetContract.AUTHORITY + '.' + VerbNetContract.VnClasses.TABLE; //$NON-NLS-1$
+				return SqlUNetContract.VENDOR + ".android.cursor.item/" + SqlUNetContract.VENDOR + '.' + VerbNetContract.AUTHORITY + '.' + VerbNetContract.VnClasses.TABLE; //
 
 			// T A B L E S
 
 			case VNCLASSES:
-				return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + VerbNetContract.AUTHORITY + '.' + VerbNetContract.VnClasses.TABLE; //$NON-NLS-1$
+				return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + VerbNetContract.AUTHORITY + '.' + VerbNetContract.VnClasses.TABLE; //
 
 			// J O I N S
 
 			case VNCLASSES_X_BY_VNCLASS:
-				return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + VerbNetContract.AUTHORITY + '.' + VerbNetContract.VnClasses_X.TABLE_BY_VNCLASS; //$NON-NLS-1$
+				return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + VerbNetContract.AUTHORITY + '.' + VerbNetContract.VnClasses_X.TABLE_BY_VNCLASS; //
 			case WORDS_VNCLASSES:
-				return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + VerbNetContract.AUTHORITY + '.' + VerbNetContract.Words_VnClasses.TABLE; //$NON-NLS-1$
+				return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + VerbNetContract.AUTHORITY + '.' + VerbNetContract.Words_VnClasses.TABLE; //
 			case WORDS_VNCLASSES_VNGROUPING_BY_VNCLASS:
-				return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + VerbNetContract.AUTHORITY + '.' + VerbNetContract.Words_VnClasses_VnGroupings.TABLE_BY_CLASS; //$NON-NLS-1$
+				return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + VerbNetContract.AUTHORITY + '.' + VerbNetContract.Words_VnClasses_VnGroupings.TABLE_BY_CLASS; //
 			case VNCLASSES_VNROLES_X_BY_VNROLE:
-				return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + VerbNetContract.AUTHORITY + '.' + VerbNetContract.VnClasses_VnRoles_X.TABLE_BY_ROLE; //$NON-NLS-1$
+				return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + VerbNetContract.AUTHORITY + '.' + VerbNetContract.VnClasses_VnRoles_X.TABLE_BY_ROLE; //
 			case VNCLASSES_VNFRAMES_X_BY_VNFRAME:
-				return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + VerbNetContract.AUTHORITY + '.' + VerbNetContract.VnClasses_VnFrames_X.TABLE_BY_FRAME; //$NON-NLS-1$
+				return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + VerbNetContract.AUTHORITY + '.' + VerbNetContract.VnClasses_VnFrames_X.TABLE_BY_FRAME; //
 
 			default:
-				throw new UnsupportedOperationException("Illegal MIME type"); //$NON-NLS-1$
+				throw new UnsupportedOperationException("Illegal MIME type"); //
 		}
 	}
 
@@ -106,7 +106,7 @@ public class VerbNetProvider extends SqlUNetProvider
 		// choose the table to query and a sort order based on the code returned for the incoming URI
 		String actualSelection = selection;
 		final int code = VerbNetProvider.uriMatcher.match(uri);
-		Log.d(VerbNetProvider.TAG + "URI", String.format("%s (code %s)\n", uri, code)); //$NON-NLS-1$ //$NON-NLS-2$
+		Log.d(VerbNetProvider.TAG + "URI", String.format("%s (code %s)\n", uri, code)); //
 		String groupBy = null;
 		String table;
 		switch (code)
@@ -120,13 +120,13 @@ public class VerbNetProvider extends SqlUNetProvider
 				table = VerbNetContract.VnClasses.TABLE;
 				if (actualSelection != null)
 				{
-					actualSelection += " AND "; //$NON-NLS-1$
+					actualSelection += " AND "; //
 				}
 				else
 				{
-					actualSelection = ""; //$NON-NLS-1$
+					actualSelection = ""; //
 				}
-				actualSelection += VerbNetContract.VnClasses.CLASSID + " = " + uri.getLastPathSegment(); //$NON-NLS-1$
+				actualSelection += VerbNetContract.VnClasses.CLASSID + " = " + uri.getLastPathSegment(); //
 				break;
 
 			case VNCLASSES:
@@ -134,71 +134,73 @@ public class VerbNetProvider extends SqlUNetProvider
 				break;
 
 			case VNCLASSES_X_BY_VNCLASS:
-				groupBy = "classid"; //$NON-NLS-1$
-				table = "vnclasses " + // //$NON-NLS-1$
-						"LEFT JOIN vngroupingmaps USING (classId) " + // //$NON-NLS-1$
-						"LEFT JOIN vngroupings USING (groupingid)"; //$NON-NLS-1$
+				groupBy = "classid"; //
+				table = "vnclasses " + //
+						"LEFT JOIN vngroupingmaps USING (classid) " + //
+						"LEFT JOIN vngroupings USING (groupingid)"; //
 				break;
 
 			// J O I N S
 
 			case WORDS_VNCLASSES:
-				table = "words " + // //$NON-NLS-1$
-						"INNER JOIN vnwords USING (wordid) " + // //$NON-NLS-1$
-						"INNER JOIN vnclassmembersenses USING (vnwordid) " + // //$NON-NLS-1$
-						"LEFT JOIN vnclasses USING (classId)"; //$NON-NLS-1$
+				table = "words " + //
+						"INNER JOIN vnwords USING (wordid) " + //
+						"INNER JOIN vnclassmembersenses USING (vnwordid) " + //
+						"LEFT JOIN vnclasses USING (classid)"; //
 				break;
 
 			case WORDS_VNCLASSES_VNGROUPING_BY_VNCLASS:
-				groupBy = "classid"; //$NON-NLS-1$
-				table = "words " + // //$NON-NLS-1$
-						"INNER JOIN vnwords USING (wordid) " + // //$NON-NLS-1$
-						"INNER JOIN vnclassmembersenses USING (vnwordid) " + // //$NON-NLS-1$
-						"LEFT JOIN vnclasses USING (classId) " + // //$NON-NLS-1$
-						"LEFT JOIN vngroupingmaps USING (classId, vnwordid) " + // //$NON-NLS-1$
-						"LEFT JOIN vngroupings USING (groupingid)"; //$NON-NLS-1$
+				groupBy = "classid"; //
+				table = "words " + //
+						"INNER JOIN vnwords USING (wordid) " + //
+						"INNER JOIN vnclassmembersenses USING (vnwordid) " + //
+						"LEFT JOIN vnclasses USING (classid) " + //
+						"LEFT JOIN vngroupingmaps USING (classid, vnwordid) " + //
+						"LEFT JOIN vngroupings USING (groupingid)"; //
 				break;
 
 			case VNCLASSES_VNROLES_X_BY_VNROLE:
-				groupBy = "roleid"; //$NON-NLS-1$
-				table = "vnrolemaps " + // //$NON-NLS-1$
-						"INNER JOIN vnroles USING (roleid) " + // //$NON-NLS-1$
-						"INNER JOIN vnroletypes USING (roletypeid) " + // //$NON-NLS-1$
-						"LEFT JOIN vnrestrs USING (restrsid)"; //$NON-NLS-1$
+				groupBy = "roleid"; //
+				table = "vnrolemaps " + //
+						"INNER JOIN vnroles USING (roleid) " + //
+						"INNER JOIN vnroletypes USING (roletypeid) " + //
+						"LEFT JOIN vnrestrs USING (restrsid)"; //
 				break;
 
 			case VNCLASSES_VNFRAMES_X_BY_VNFRAME:
-				groupBy = "frameid"; //$NON-NLS-1$
-				table = "vnframemaps " + // //$NON-NLS-1$
-						"INNER JOIN vnframes USING (frameid) " + // //$NON-NLS-1$
-						"LEFT JOIN vnframenames USING (nameid) " + // //$NON-NLS-1$
-						"LEFT JOIN vnframesubnames USING (subnameid) " + // //$NON-NLS-1$
-						"LEFT JOIN vnsyntaxes USING (syntaxid) " + // //$NON-NLS-1$
-						"LEFT JOIN vnsemantics USING (semanticsid) " + // //$NON-NLS-1$
-						"LEFT JOIN vnexamplemaps USING (frameid) " + // //$NON-NLS-1$
-						"LEFT JOIN vnexamples USING (exampleid)"; //$NON-NLS-1$
+				groupBy = "frameid"; //
+				table = "vnframemaps " + //
+						"INNER JOIN vnframes USING (frameid) " + //
+						"LEFT JOIN vnframenames USING (nameid) " + //
+						"LEFT JOIN vnframesubnames USING (subnameid) " + //
+						"LEFT JOIN vnsyntaxes USING (syntaxid) " + //
+						"LEFT JOIN vnsemantics USING (semanticsid) " + //
+						"LEFT JOIN vnexamplemaps USING (frameid) " + //
+						"LEFT JOIN vnexamples USING (exampleid)"; //
 				break;
 
 			default:
 			case UriMatcher.NO_MATCH:
-				throw new RuntimeException("Malformed URI " + uri); //$NON-NLS-1$
+				throw new RuntimeException("Malformed URI " + uri); //
 		}
 
 		if (SqlUNetProvider.debugSql)
 		{
 			final String sql = SQLiteQueryBuilder.buildQueryString(false, table, projection, actualSelection, groupBy, null, sortOrder, null);
-			Log.d(VerbNetProvider.TAG + "SQL", sql); //$NON-NLS-1$
-			Log.d(VerbNetProvider.TAG + "ARGS", SqlUNetProvider.argsToString(selectionArgs)); //$NON-NLS-1$
+			Log.d(VerbNetProvider.TAG + "SQL", sql); //
+			Log.d(VerbNetProvider.TAG + "ARGS", SqlUNetProvider.argsToString(selectionArgs)); //
 		}
 
 		// do query
 		try
 		{
-			return this.db.query(table, projection, actualSelection, selectionArgs, groupBy, null, sortOrder);
+			return this.db.query(table, projection, actualSelection, selectionArgs, groupBy, null, sortOrder, null);
 		}
 		catch (final SQLiteException e)
 		{
-			Log.e(VerbNetProvider.TAG, "VerbNet provider query failed", e); //$NON-NLS-1$
+			final String sql = SQLiteQueryBuilder.buildQueryString(false, table, projection, actualSelection, groupBy, null, sortOrder, null);
+			Log.d(TAG + "SQL", sql); //
+			Log.e(VerbNetProvider.TAG, "VerbNet provider query failed", e); //
 			return null;
 		}
 	}

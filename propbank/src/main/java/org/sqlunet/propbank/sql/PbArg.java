@@ -59,8 +59,8 @@ class PbArg
 	 */
 	public PbArg(final String... argFields)
 	{
-		this(argFields[0], "*".equals(argFields[1]) ? //$NON-NLS-1$
-				null : argFields[1], argFields[2].toLowerCase(Locale.ENGLISH), "*".equals(argFields[3]) ? //$NON-NLS-1$
+		this(argFields[0], "*".equals(argFields[1]) ? //
+				null : argFields[1], argFields[2].toLowerCase(Locale.ENGLISH), "*".equals(argFields[3]) ? //
 				null : argFields[3], argFields[4]);
 	}
 }

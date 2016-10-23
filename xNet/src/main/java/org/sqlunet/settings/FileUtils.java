@@ -20,7 +20,7 @@ import java.util.zip.ZipInputStream;
 @SuppressWarnings("unused")
 class FileUtils
 {
-	// private static final String TAG = "FileUtils"; //$NON-NLS-1$
+	// private static final String TAG = "FileUtils"; //
 
 	// C O P Y A S S E T
 
@@ -232,7 +232,7 @@ class FileUtils
 				if (!entry.isDirectory())
 				{
 					final String entryName = entry.getName();
-					if (!entryName.endsWith("MANIFEST.MF")) //$NON-NLS-1$
+					if (!entryName.endsWith("MANIFEST.MF")) //
 					{
 						if (pathPrefixFilter == null || pathPrefixFilter.isEmpty() || entryName.startsWith(pathPrefixFilter))
 						{

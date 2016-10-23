@@ -18,6 +18,7 @@ import org.sqlunet.provider.XSqlUNetContract.Words_FnWords_FnFrames_U;
 import org.sqlunet.provider.XSqlUNetContract.Words_PbWords_PbRolesets_U;
 import org.sqlunet.provider.XSqlUNetContract.Words_VnWords_VnClasses_U;
 import org.sqlunet.provider.XSqlUNetContract.Words_XNet_U;
+import org.sqlunet.wordnet.provider.WordNetContract;
 import org.sqlunet.wordnet.provider.WordNetContract.Words_Senses_CasedWords_Synsets_PosTypes_LexDomains;
 
 /**
@@ -57,18 +58,18 @@ class XLoader
 		{
 			final Uri uri = Uri.parse(Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.CONTENT_URI);
 			final String[] projection = { //
-					"'wn' AS " + Words_XNet_U.SOURCES, // //$NON-NLS-1$
+					"'wn' AS " + Words_XNet_U.SOURCES, //
 					Words_VnWords_VnClasses_U.WORDID, //
 					Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.SYNSETID, //
-					Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.SYNSETID + " AS " + Words_XNet_U.XID, // //$NON-NLS-1$
-					"NULL AS " + Words_XNet_U.XCLASSID, // //$NON-NLS-1$
-					"NULL AS " + Words_XNet_U.XINSTANCEID, // //$NON-NLS-1$
-					Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.LEMMA + "|| '.' ||" + Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.POS + " AS " + Words_XNet_U.XNAME, // //$NON-NLS-1$ //$NON-NLS-2$
-					Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.LEXDOMAIN + " AS " + Words_XNet_U.XHEADER, // //$NON-NLS-1$
-					Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.SENSEKEY + " AS " + Words_XNet_U.XINFO, // //$NON-NLS-1$
-					Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.DEFINITION + " AS " + Words_XNet_U.XDEFINITION, // //$NON-NLS-1$
-					Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.SYNSETID + " AS _id"}; //$NON-NLS-1$
-			final String selection = Words_VnWords_VnClasses_U.WORDID + " = ?"; //$NON-NLS-1$
+					Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.SYNSETID + " AS " + Words_XNet_U.XID, //
+					"NULL AS " + Words_XNet_U.XCLASSID, //
+					"NULL AS " + Words_XNet_U.XINSTANCEID, //
+					Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.LEMMA + "|| '.' ||" + WordNetContract.POS + '.' + Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.POS + " AS " + Words_XNet_U.XNAME, //
+					Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.LEXDOMAIN + " AS " + Words_XNet_U.XHEADER, //
+					Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.SENSEKEY + " AS " + Words_XNet_U.XINFO, //
+					Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.DEFINITION + " AS " + Words_XNet_U.XDEFINITION, //
+					Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.SYNSETID + " AS _id"}; //
+			final String selection = Words_VnWords_VnClasses_U.WORDID + " = ?"; //
 			final String[] selectionArgs = {Long.toString(this.wordId)};
 			final String sortOrder = null;
 			return new CursorLoader(this.context, uri, projection, selection, selectionArgs, sortOrder);
@@ -92,15 +93,15 @@ class XLoader
 			final String[] projection = { //
 					Words_VnWords_VnClasses_U.WORDID, //
 					Words_VnWords_VnClasses_U.SYNSETID, //
-					Words_VnWords_VnClasses_U.CLASSID + " AS " + Words_XNet_U.XID, // //$NON-NLS-1$
-					Words_VnWords_VnClasses_U.CLASSID + " AS " + Words_XNet_U.XCLASSID, // //$NON-NLS-1$
-					Words_VnWords_VnClasses_U.WORDID + " AS " + Words_XNet_U.XINSTANCEID, // //$NON-NLS-1$
-					"TRIM(" + Words_VnWords_VnClasses_U.CLASS + ",'-.0123456789')" + " AS " + Words_XNet_U.XNAME, // //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-					Words_VnWords_VnClasses_U.CLASS + " AS " + Words_XNet_U.XHEADER, // //$NON-NLS-1$
-					Words_VnWords_VnClasses_U.CLASSTAG + " AS " + Words_XNet_U.XINFO, // //$NON-NLS-1$
-					Words_VnWords_VnClasses_U.DEFINITION + " AS " + Words_XNet_U.XDEFINITION, // //$NON-NLS-1$
-					"rowid AS _id",}; //$NON-NLS-1$
-			final String selection = Words_VnWords_VnClasses_U.WORDID + " = ?"; //$NON-NLS-1$
+					Words_VnWords_VnClasses_U.CLASSID + " AS " + Words_XNet_U.XID, //
+					Words_VnWords_VnClasses_U.CLASSID + " AS " + Words_XNet_U.XCLASSID, //
+					Words_VnWords_VnClasses_U.WORDID + " AS " + Words_XNet_U.XINSTANCEID, //
+					"TRIM(" + Words_VnWords_VnClasses_U.CLASS + ",'-.0123456789')" + " AS " + Words_XNet_U.XNAME, //
+					Words_VnWords_VnClasses_U.CLASS + " AS " + Words_XNet_U.XHEADER, //
+					Words_VnWords_VnClasses_U.CLASSTAG + " AS " + Words_XNet_U.XINFO, //
+					Words_VnWords_VnClasses_U.DEFINITION + " AS " + Words_XNet_U.XDEFINITION, //
+					"rowid AS _id",}; //
+			final String selection = Words_VnWords_VnClasses_U.WORDID + " = ?"; //
 			final String[] selectionArgs = {Long.toString(this.wordId)};
 			final String sortOrder = null;
 			return new CursorLoader(this.context, uri, projection, selection, selectionArgs, sortOrder);
@@ -124,16 +125,16 @@ class XLoader
 			final String[] projection = { //
 					Words_PbWords_PbRolesets_U.WORDID, //
 					Words_PbWords_PbRolesets_U.SYNSETID, //
-					Words_PbWords_PbRolesets_U.ROLESETID + " AS " + Words_XNet_U.XID, // //$NON-NLS-1$
-					"NULL AS " + Words_XNet_U.XCLASSID, // //$NON-NLS-1$
-					Words_PbWords_PbRolesets_U.ROLESETID + " AS " + Words_XNet_U.XINSTANCEID, // //$NON-NLS-1$
-					"TRIM(" + Words_PbWords_PbRolesets_U.ROLESETNAME + ",'.0123456789')" + " AS " + Words_XNet_U.XNAME, // //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-					Words_PbWords_PbRolesets_U.ROLESETNAME + " AS " + Words_XNet_U.XHEADER, // //$NON-NLS-1$
+					Words_PbWords_PbRolesets_U.ROLESETID + " AS " + Words_XNet_U.XID, //
+					"NULL AS " + Words_XNet_U.XCLASSID, //
+					Words_PbWords_PbRolesets_U.ROLESETID + " AS " + Words_XNet_U.XINSTANCEID, //
+					"TRIM(" + Words_PbWords_PbRolesets_U.ROLESETNAME + ",'.0123456789')" + " AS " + Words_XNet_U.XNAME, //
+					Words_PbWords_PbRolesets_U.ROLESETNAME + " AS " + Words_XNet_U.XHEADER, //
 					//Words_PbWords_PbRolesets_U.ROLESETHEAD + " AS " + Words_XNet_U.XHEADER, //
-					Words_PbWords_PbRolesets_U.ROLESETDESCR + " AS " + Words_XNet_U.XINFO, // //$NON-NLS-1$
-					Words_PbWords_PbRolesets_U.DEFINITION + " AS " + Words_XNet_U.XDEFINITION, // //$NON-NLS-1$
-					"rowid AS _id",}; //$NON-NLS-1$
-			final String selection = PredicateMatrix_PropBank.WORDID + " = ?"; //$NON-NLS-1$
+					Words_PbWords_PbRolesets_U.ROLESETDESCR + " AS " + Words_XNet_U.XINFO, //
+					Words_PbWords_PbRolesets_U.DEFINITION + " AS " + Words_XNet_U.XDEFINITION, //
+					"rowid AS _id",}; //
+			final String selection = PredicateMatrix_PropBank.WORDID + " = ?"; //
 			final String[] selectionArgs = {Long.toString(this.wordId)};
 			final String sortOrder = null;
 			return new CursorLoader(this.context, uri, projection, selection, selectionArgs, sortOrder);
@@ -157,15 +158,15 @@ class XLoader
 			final String[] projection = { //
 					Words_FnWords_FnFrames_U.WORDID, //
 					Words_FnWords_FnFrames_U.SYNSETID, //
-					Words_FnWords_FnFrames_U.FRAMEID + " AS " + Words_XNet_U.XID, // //$NON-NLS-1$
-					Words_FnWords_FnFrames_U.FRAMEID + " AS " + Words_XNet_U.XCLASSID, // //$NON-NLS-1$
-					Words_FnWords_FnFrames_U.LUID + " AS " + Words_XNet_U.XINSTANCEID, // //$NON-NLS-1$
-					"GROUP_CONCAT(" + Words_FnWords_FnFrames_U.LEXUNIT + ",'\n')" + " AS " + Words_XNet_U.XNAME, // //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-					Words_FnWords_FnFrames_U.FRAME + " AS " + Words_XNet_U.XHEADER, // //$NON-NLS-1$
-					"GROUP_CONCAT(" + Words_FnWords_FnFrames_U.LUDEFINITION + ",'\n') AS " + Words_XNet_U.XINFO, // //$NON-NLS-1$ //$NON-NLS-2$
-					Words_FnWords_FnFrames_U.DEFINITION + " AS " + Words_XNet_U.XDEFINITION, // //$NON-NLS-1$
-					"rowid AS _id",}; //$NON-NLS-1$
-			final String selection = Words_FnWords_FnFrames_U.WORDID + " = ?"; //$NON-NLS-1$
+					Words_FnWords_FnFrames_U.FRAMEID + " AS " + Words_XNet_U.XID, //
+					Words_FnWords_FnFrames_U.FRAMEID + " AS " + Words_XNet_U.XCLASSID, //
+					Words_FnWords_FnFrames_U.LUID + " AS " + Words_XNet_U.XINSTANCEID, //
+					"GROUP_CONCAT(" + Words_FnWords_FnFrames_U.LEXUNIT + ",'\n')" + " AS " + Words_XNet_U.XNAME, //
+					Words_FnWords_FnFrames_U.FRAME + " AS " + Words_XNet_U.XHEADER, //
+					"GROUP_CONCAT(" + Words_FnWords_FnFrames_U.LUDEFINITION + ",'\n') AS " + Words_XNet_U.XINFO, //
+					Words_FnWords_FnFrames_U.DEFINITION + " AS " + Words_XNet_U.XDEFINITION, //
+					"rowid AS _id",}; //
+			final String selection = Words_FnWords_FnFrames_U.WORDID + " = ?"; //
 			final String[] selectionArgs = {Long.toString(this.wordId)};
 			final String sortOrder = null;
 			return new CursorLoader(this.context, uri, projection, selection, selectionArgs, sortOrder);
@@ -290,16 +291,16 @@ class XLoader
 				String xHeader = cursor.isNull(idXHeader) ? null : cursor.getString(idXHeader);
 				String xInfo = cursor.isNull(idXInfo) ? null : cursor.getString(idXInfo);
 				String definition = cursor.isNull(idXInfo) ? null : cursor.getString(idDefinition);
-				String sources = cursor.isNull(idSources) ? "" : //$NON-NLS-1$
+				String sources = cursor.isNull(idSources) ? "" : //
 						cursor.getString(idSources);
-				Log.i("DUMP", "sources=" + sources +  //$NON-NLS-1$
-						" wordId=" + wordId +  //$NON-NLS-1$
-						" synsetid=" + synsetId +  //$NON-NLS-1$
-						" xid=" + xId +  //$NON-NLS-1$
-						" name=" + xName +  //$NON-NLS-1$
-						" header=" + xHeader +  //$NON-NLS-1$
-						" info=" + xInfo +  //$NON-NLS-1$
-						" definition=" + definition); //$NON-NLS-1$
+				Log.i("DUMP", "sources=" + sources +  //
+						" wordid=" + wordId +  //
+						" synsetid=" + synsetId +  //
+						" xid=" + xId +  //
+						" name=" + xName +  //
+						" header=" + xHeader +  //
+						" info=" + xInfo +  //
+						" definition=" + definition); //
 			}
 			while (cursor.moveToNext());
 			cursor.moveToFirst();

@@ -9,155 +9,155 @@ package org.sqlunet.framenet.sql;
 class SqLiteDialect
 {
 	public static final String FrameNetLexUnitQueryFromWord = //
-			"SELECT wordid,luid,lexunit,pos,ludefinition,ludict,fetype AS incorporatedfe,frameid,frame,framedefinition " + // //$NON-NLS-1$
-					"FROM words AS w " + // //$NON-NLS-1$
-					"INNER JOIN fnwords USING (wordid) " + // //$NON-NLS-1$
-					"INNER JOIN fnlexemes USING (fnwordid) " + // //$NON-NLS-1$
-					"INNER JOIN fnlexunits AS lu USING (luid) " + // //$NON-NLS-1$
-					"LEFT JOIN fnframes USING (frameid) " + // //$NON-NLS-1$
-					"LEFT JOIN fnposes AS p ON (lu.posid = p.posid) " + // //$NON-NLS-1$
-					"LEFT JOIN fnfetypes ON (incorporatedfetypeid = fetypeid) " + // //$NON-NLS-1$
-					"WHERE w.lemma = ?"; // //$NON-NLS-1$
+			"SELECT wordid,luid,lexunit,pos,ludefinition,ludict,fetype AS incorporatedfe,frameid,frame,framedefinition " + //
+					"FROM words AS w " + //
+					"INNER JOIN fnwords USING (wordid) " + //
+					"INNER JOIN fnlexemes USING (fnwordid) " + //
+					"INNER JOIN fnlexunits AS lu USING (luid) " + //
+					"LEFT JOIN fnframes USING (frameid) " + //
+					"LEFT JOIN fnposes AS p ON (lu.posid = p.posid) " + //
+					"LEFT JOIN fnfetypes ON (incorporatedfetypeid = fetypeid) " + //
+					"WHERE w.lemma = ?"; //
 
 	static public final String FrameNetWordLexUnitQueryFromWordId = //
-			"SELECT luid,lexunit,pos,ludefinition,ludict,fetype AS incorporatedfe,frameid,frame,framedefinition " + // //$NON-NLS-1$
-					"FROM words " + // //$NON-NLS-1$
-					"INNER JOIN fnwords USING (wordid) " + // //$NON-NLS-1$
-					"INNER JOIN fnlexemes USING (fnwordid) " + // //$NON-NLS-1$
-					"INNER JOIN fnlexunits AS lu USING (luid) " + // //$NON-NLS-1$
-					"LEFT JOIN fnframes USING (frameid) " + // //$NON-NLS-1$
-					"LEFT JOIN fnposes AS p ON (lu.posid = p.posid) " + // //$NON-NLS-1$
-					"LEFT JOIN fnfetypes ON (incorporatedfetypeid = fetypeid) " + // //$NON-NLS-1$
-					"WHERE wordid = ? " + // //$NON-NLS-1$
-					"ORDER BY frame;"; //$NON-NLS-1$
+			"SELECT luid,lexunit,pos,ludefinition,ludict,fetype AS incorporatedfe,frameid,frame,framedefinition " + //
+					"FROM words " + //
+					"INNER JOIN fnwords USING (wordid) " + //
+					"INNER JOIN fnlexemes USING (fnwordid) " + //
+					"INNER JOIN fnlexunits AS lu USING (luid) " + //
+					"LEFT JOIN fnframes USING (frameid) " + //
+					"LEFT JOIN fnposes AS p ON (lu.posid = p.posid) " + //
+					"LEFT JOIN fnfetypes ON (incorporatedfetypeid = fetypeid) " + //
+					"WHERE wordid = ? " + //
+					"ORDER BY frame;"; //
 
 	static public final String FrameNetLexUnitQuery = //
-			"SELECT luid,lexunit,pos,ludefinition,ludict,fetype AS incorporatedfe,frameid,frame,framedefinition " + // //$NON-NLS-1$
-					"FROM fnlexunits AS lu " + // //$NON-NLS-1$
-					"LEFT JOIN fnframes USING (frameid) " + // //$NON-NLS-1$
-					"LEFT JOIN fnposes AS p ON (lu.posid = p.posid) " + // //$NON-NLS-1$
-					"LEFT JOIN fnfetypes ON (incorporatedfetypeid = fetypeid) " + // //$NON-NLS-1$
-					"WHERE luid = ? " + // //$NON-NLS-1$
-					"ORDER BY frame;"; //$NON-NLS-1$
+			"SELECT luid,lexunit,pos,ludefinition,ludict,fetype AS incorporatedfe,frameid,frame,framedefinition " + //
+					"FROM fnlexunits AS lu " + //
+					"LEFT JOIN fnframes USING (frameid) " + //
+					"LEFT JOIN fnposes AS p ON (lu.posid = p.posid) " + //
+					"LEFT JOIN fnfetypes ON (incorporatedfetypeid = fetypeid) " + //
+					"WHERE luid = ? " + //
+					"ORDER BY frame;"; //
 
 	static public final String FrameNetWordLexUnitWithPosQuery = //
-			"SELECT luid,lexunit,pos,ludefinition,ludict,fetype AS incorporatedfe,frameid,frame,framedefinition " + // //$NON-NLS-1$
-					"FROM words " + // //$NON-NLS-1$
-					"INNER JOIN fnwords USING (wordid) " + // //$NON-NLS-1$
-					"INNER JOIN fnlexemes USING (fnwordid) " + // //$NON-NLS-1$
-					"INNER JOIN fnlexunits AS lu USING (luid) " + // //$NON-NLS-1$
-					"LEFT JOIN fnframes USING (frameid) " + // //$NON-NLS-1$
-					"LEFT JOIN fnposes AS p ON (lu.posid = p.posid) " + // //$NON-NLS-1$
-					"LEFT JOIN fnfetypes ON (incorporatedfetypeid = fetypeid) " + // //$NON-NLS-1$
-					"WHERE wordid = ? AND lu.posid = ? " + // //$NON-NLS-1$
-					"ORDER BY frame;"; //$NON-NLS-1$
+			"SELECT luid,lexunit,pos,ludefinition,ludict,fetype AS incorporatedfe,frameid,frame,framedefinition " + //
+					"FROM words " + //
+					"INNER JOIN fnwords USING (wordid) " + //
+					"INNER JOIN fnlexemes USING (fnwordid) " + //
+					"INNER JOIN fnlexunits AS lu USING (luid) " + //
+					"LEFT JOIN fnframes USING (frameid) " + //
+					"LEFT JOIN fnposes AS p ON (lu.posid = p.posid) " + //
+					"LEFT JOIN fnfetypes ON (incorporatedfetypeid = fetypeid) " + //
+					"WHERE wordid = ? AND lu.posid = ? " + //
+					"ORDER BY frame;"; //
 
 	static public final String FrameNetFrameLexUnitQuery = //
-			"SELECT luid,lexunit,pos,ludefinition,ludict,fetype AS incorporatedfe,frameid,frame " + // //$NON-NLS-1$
-					"FROM fnframes " + // //$NON-NLS-1$
-					"INNER JOIN fnlexunits AS lu USING (frameid) " + // //$NON-NLS-1$
-					"LEFT JOIN fnposes AS p ON (lu.posid = p.posid) " + // //$NON-NLS-1$
-					"LEFT JOIN fnfetypes ON (incorporatedfetypeid = fetypeid) " + // //$NON-NLS-1$
-					"WHERE frameid = ? " + // //$NON-NLS-1$
-					"ORDER BY frame;"; //$NON-NLS-1$
+			"SELECT luid,lexunit,pos,ludefinition,ludict,fetype AS incorporatedfe,frameid,frame " + //
+					"FROM fnframes " + //
+					"INNER JOIN fnlexunits AS lu USING (frameid) " + //
+					"LEFT JOIN fnposes AS p ON (lu.posid = p.posid) " + //
+					"LEFT JOIN fnfetypes ON (incorporatedfetypeid = fetypeid) " + //
+					"WHERE frameid = ? " + //
+					"ORDER BY frame;"; //
 
 	// query for framenet frame
 	static public final String FrameNetFrameQuery = //
-			"SELECT f.frameid,f.frame,f.framedefinition, " + // //$NON-NLS-1$
-					"(SELECT GROUP_CONCAT(semtypeid||':'||semtype||':'||semtypedefinition,'|') " + // //$NON-NLS-1$
-					"	FROM fnframes_semtypes AS t " + // //$NON-NLS-1$
-					"	LEFT JOIN fnsemtypes USING (semtypeid) " + // //$NON-NLS-1$
-					"	WHERE t.frameid = f.frameid), " + // //$NON-NLS-1$
-					"(SELECT GROUP_CONCAT(frame2id||':'||f2.frame||':'||relation,'|') " + // //$NON-NLS-1$
-					"	FROM fnframes_related AS r " + // //$NON-NLS-1$
-					"	LEFT JOIN fnframes AS f2 ON (frame2id = f2.frameid) " + // //$NON-NLS-1$
-					"	LEFT JOIN fnframerelations USING (relationid) " + // //$NON-NLS-1$
-					"	WHERE r.frameid = f.frameid) " + // //$NON-NLS-1$
-					"FROM fnframes AS f " + // //$NON-NLS-1$
-					"WHERE f.frameid = ? ;"; //$NON-NLS-1$
+			"SELECT f.frameid,f.frame,f.framedefinition, " + //
+					"(SELECT GROUP_CONCAT(semtypeid||':'||semtype||':'||semtypedefinition,'|') " + //
+					"	FROM fnframes_semtypes AS t " + //
+					"	LEFT JOIN fnsemtypes USING (semtypeid) " + //
+					"	WHERE t.frameid = f.frameid), " + //
+					"(SELECT GROUP_CONCAT(frame2id||':'||f2.frame||':'||relation,'|') " + //
+					"	FROM fnframes_related AS r " + //
+					"	LEFT JOIN fnframes AS f2 ON (frame2id = f2.frameid) " + //
+					"	LEFT JOIN fnframerelations USING (relationid) " + //
+					"	WHERE r.frameid = f.frameid) " + //
+					"FROM fnframes AS f " + //
+					"WHERE f.frameid = ? ;"; //
 
 	// query for fe from frame
 	static public final String FrameNetFrameFEQuery = //
-			"SELECT fetypeid,fetype,feid,fedefinition,feabbrev,coretype,GROUP_CONCAT(semtype,'|') AS semtypes,coretypeid = 1 AS iscorefe,coreset " + // //$NON-NLS-1$
-					"FROM fnframes " + // //$NON-NLS-1$
-					"INNER JOIN fnfes USING (frameid) " + // //$NON-NLS-1$
-					"LEFT JOIN fnfetypes USING (fetypeid) " + // //$NON-NLS-1$
-					"LEFT JOIN fncoretypes USING (coretypeid) " + // //$NON-NLS-1$
-					"LEFT JOIN fnfes_semtypes USING (feid) " + // //$NON-NLS-1$
-					"LEFT JOIN fnsemtypes USING (semtypeid) " + // //$NON-NLS-1$
-					"WHERE frameid = ? " + // //$NON-NLS-1$
-					"GROUP BY feid " + // //$NON-NLS-1$
-					"ORDER BY iscorefe DESC,coreset,fetype;"; //$NON-NLS-1$
+			"SELECT fetypeid,fetype,feid,fedefinition,feabbrev,coretype,GROUP_CONCAT(semtype,'|') AS semtypes,coretypeid = 1 AS iscorefe,coreset " + //
+					"FROM fnframes " + //
+					"INNER JOIN fnfes USING (frameid) " + //
+					"LEFT JOIN fnfetypes USING (fetypeid) " + //
+					"LEFT JOIN fncoretypes USING (coretypeid) " + //
+					"LEFT JOIN fnfes_semtypes USING (feid) " + //
+					"LEFT JOIN fnsemtypes USING (semtypeid) " + //
+					"WHERE frameid = ? " + //
+					"GROUP BY feid " + //
+					"ORDER BY iscorefe DESC,coreset,fetype;"; //
 
 	// query for framenet annotations
 	//TODO
 	static public final String FrameNetAnnotationsQuery = //
-			""; //$NON-NLS-1$
+			""; //
 
 	// query for framenet sentence
 	static public final String FrameNetSentenceQuery = //
-			"SELECT sentenceid,`text` " + // //$NON-NLS-1$
-					"FROM fnsentences " + // //$NON-NLS-1$
-					"WHERE sentenceid = ?;"; //$NON-NLS-1$
+			"SELECT sentenceid,`text` " + //
+					"FROM fnsentences " + //
+					"WHERE sentenceid = ?;"; //
 
 	// query for framenet sentences from luid
 	static public final String FrameNetSentencesFromLexicalUnitQuery = //
-			"SELECT sentenceid,`text` " + // //$NON-NLS-1$
-					"FROM fnlexunits AS u " + // //$NON-NLS-1$
-					"LEFT JOIN fnsubcorpuses USING (luid) " + // //$NON-NLS-1$
-					"LEFT JOIN fnsubcorpuses_sentences USING (subcorpusid) " + // //$NON-NLS-1$
-					"LEFT JOIN fnsentences AS s USING (sentenceid) " + // //$NON-NLS-1$
-					"WHERE u.luid = ? AND s.sentenceid IS NOT NULL " + // //$NON-NLS-1$
-					"ORDER BY corpusid,documentid,paragno,sentno;"; //$NON-NLS-1$
+			"SELECT sentenceid,`text` " + //
+					"FROM fnlexunits AS u " + //
+					"LEFT JOIN fnsubcorpuses USING (luid) " + //
+					"LEFT JOIN fnsubcorpuses_sentences USING (subcorpusid) " + //
+					"LEFT JOIN fnsentences AS s USING (sentenceid) " + //
+					"WHERE u.luid = ? AND s.sentenceid IS NOT NULL " + //
+					"ORDER BY corpusid,documentid,paragno,sentno;"; //
 
 	// query for governors from frame id
 	static public final String FrameNetGovernorQuery = //
-			"SELECT governorid, wordid, word AS governor " + // //$NON-NLS-1$
-					"FROM fngovernors " + // //$NON-NLS-1$
-					"LEFT JOIN fnlexunits_governors USING (governorid) " + // //$NON-NLS-1$
-					"LEFT JOIN fnlexunits USING (luid) " + // //$NON-NLS-1$
-					"LEFT JOIN fnwords USING (fnwordid) " + // //$NON-NLS-1$
-					"LEFT JOIN words USING (wordid) " + // //$NON-NLS-1$
-					"WHERE luid = ? " + // //$NON-NLS-1$
-					"ORDER BY governor;"; //$NON-NLS-1$
+			"SELECT governorid, wordid, word AS governor " + //
+					"FROM fngovernors " + //
+					"LEFT JOIN fnlexunits_governors USING (governorid) " + //
+					"LEFT JOIN fnlexunits USING (luid) " + //
+					"LEFT JOIN fnwords USING (fnwordid) " + //
+					"LEFT JOIN words USING (wordid) " + //
+					"WHERE luid = ? " + //
+					"ORDER BY governor;"; //
 
 	// query for annoSet from annoSet id
 	public static final String FrameNetAnnoSetQuery = //
-			"SELECT s.sentenceid,`text`,GROUP_CONCAT(o.annosetid) " + // //$NON-NLS-1$
-					"FROM fnannosets AS a " + // //$NON-NLS-1$
-					"LEFT JOIN fnsentences AS s USING (sentenceid) " + // //$NON-NLS-1$
-					"LEFT JOIN fnannosets AS o ON (s.sentenceid = o.sentenceid) " + // //$NON-NLS-1$
-					"WHERE a.annosetid = ? " + // //$NON-NLS-1$
-					"GROUP BY a.annosetid;"; //$NON-NLS-1$
+			"SELECT s.sentenceid,`text`,GROUP_CONCAT(o.annosetid) " + //
+					"FROM fnannosets AS a " + //
+					"LEFT JOIN fnsentences AS s USING (sentenceid) " + //
+					"LEFT JOIN fnannosets AS o ON (s.sentenceid = o.sentenceid) " + //
+					"WHERE a.annosetid = ? " + //
+					"GROUP BY a.annosetid;"; //
 
 	// query for layers from annoSet id
 	public static final String FrameNetLayerQueryFromAnnoSet = //
-			"SELECT layerid,layertype,rank,GROUP_CONCAT(start||':'||end||':'||labeltype||':'||CASE WHEN labelitype IS NULL THEN '' ELSE labelitype END,'|') " + // //$NON-NLS-1$
-					"FROM " + // //$NON-NLS-1$
-					"(SELECT layerid,layertype,rank,start,end,labeltype,labelitype " + // //$NON-NLS-1$
-					"FROM fnlayers " + // //$NON-NLS-1$
-					"LEFT JOIN fnlayertypes USING (layertypeid) " + // //$NON-NLS-1$
-					"LEFT JOIN fnlabels USING (layerid) " + // //$NON-NLS-1$
-					"LEFT JOIN fnlabeltypes USING (labeltypeid) " + // //$NON-NLS-1$
-					"LEFT JOIN fnlabelitypes USING (labelitypeid) " + // //$NON-NLS-1$
-					"WHERE annosetid = ? AND labeltypeid IS NOT NULL " + // //$NON-NLS-1$
-					"ORDER BY rank,layerid,start,end) " + // //$NON-NLS-1$
-					"GROUP BY layerid;"; //$NON-NLS-1$
+			"SELECT layerid,layertype,rank,GROUP_CONCAT(start||':'||end||':'||labeltype||':'||CASE WHEN labelitype IS NULL THEN '' ELSE labelitype END,'|') " + //
+					"FROM " + //
+					"(SELECT layerid,layertype,rank,start,end,labeltype,labelitype " + //
+					"FROM fnlayers " + //
+					"LEFT JOIN fnlayertypes USING (layertypeid) " + //
+					"LEFT JOIN fnlabels USING (layerid) " + //
+					"LEFT JOIN fnlabeltypes USING (labeltypeid) " + //
+					"LEFT JOIN fnlabelitypes USING (labelitypeid) " + //
+					"WHERE annosetid = ? AND labeltypeid IS NOT NULL " + //
+					"ORDER BY rank,layerid,start,end) " + //
+					"GROUP BY layerid;"; //
 
 
 	// query for layers from sentence id
 	public static final String FrameNetLayerQueryFromSentence = //
-			"SELECT layerid,layertype,rank,GROUP_CONCAT(start||':'||end||':'||labeltype||':'||CASE WHEN labelitype IS NULL THEN '' ELSE labelitype END,'|') " + // //$NON-NLS-1$
-					"FROM " + // //$NON-NLS-1$
-					"(SELECT layerid,layertype,rank,start,end,labeltype,labelitype " + // //$NON-NLS-1$
-					"FROM fnsentences " + // //$NON-NLS-1$
-					"LEFT JOIN fnannosets USING (sentenceid) " + // //$NON-NLS-1$
-					"LEFT JOIN fnlayers USING (annosetid) " + // //$NON-NLS-1$
-					"LEFT JOIN fnlayertypes USING (layertypeid) " + // //$NON-NLS-1$
-					"LEFT JOIN fnlabels USING (layerid) " + // //$NON-NLS-1$
-					"LEFT JOIN fnlabeltypes USING (labeltypeid) " + // //$NON-NLS-1$
-					"LEFT JOIN fnlabelitypes USING (labelitypeid) " + // //$NON-NLS-1$
-					"WHERE sentenceid = ? AND labeltypeid IS NOT NULL " + // //$NON-NLS-1$
-					"ORDER BY rank,layerid,start,end) " + // //$NON-NLS-1$
-					"GROUP BY layerid;"; //$NON-NLS-1$
+			"SELECT layerid,layertype,rank,GROUP_CONCAT(start||':'||end||':'||labeltype||':'||CASE WHEN labelitype IS NULL THEN '' ELSE labelitype END,'|') " + //
+					"FROM " + //
+					"(SELECT layerid,layertype,rank,start,end,labeltype,labelitype " + //
+					"FROM fnsentences " + //
+					"LEFT JOIN fnannosets USING (sentenceid) " + //
+					"LEFT JOIN fnlayers USING (annosetid) " + //
+					"LEFT JOIN fnlayertypes USING (layertypeid) " + //
+					"LEFT JOIN fnlabels USING (layerid) " + //
+					"LEFT JOIN fnlabeltypes USING (labeltypeid) " + //
+					"LEFT JOIN fnlabelitypes USING (labelitypeid) " + //
+					"WHERE sentenceid = ? AND labeltypeid IS NOT NULL " + //
+					"ORDER BY rank,layerid,start,end) " + //
+					"GROUP BY layerid;"; //
 }

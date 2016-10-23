@@ -41,7 +41,7 @@ public class SensesFragment extends ListFragment
 	/**
 	 * The serialization (saved instance state) Bundle key representing the activated item position. Only used on tablets.
 	 */
-	private static final String ACTIVATED_POSITION_NAME = "activated_position"; //$NON-NLS-1$
+	private static final String ACTIVATED_POSITION_NAME = "activated_position"; //
 
 	/**
 	 * The current activated item position. Only used on tablets.
@@ -135,7 +135,7 @@ public class SensesFragment extends ListFragment
 				String text = cursor.getString(columnIndex);
 				if (text == null)
 				{
-					text = ""; //$NON-NLS-1$
+					text = ""; //
 				}
 
 				if (view instanceof TextView)
@@ -155,7 +155,7 @@ public class SensesFragment extends ListFragment
 				}
 				else
 				{
-					throw new IllegalStateException(view.getClass().getName() + " is not a view that can be bound by this SimpleCursorAdapter"); //$NON-NLS-1$
+					throw new IllegalStateException(view.getClass().getName() + " is not a view that can be bound by this SimpleCursorAdapter"); //
 				}
 				return false;
 			}
@@ -170,7 +170,7 @@ public class SensesFragment extends ListFragment
 			{
 				final Uri uri = Uri.parse(Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.CONTENT_URI);
 				final String[] projection = { //
-						WordNetContract.Synsets.SYNSETID + " AS _id", // //$NON-NLS-1$
+						WordNetContract.Synsets.SYNSETID + " AS _id", //
 						WordNetContract.Words.WORDID, //
 						WordNetContract.Senses.SENSEID, //
 						WordNetContract.Senses.SENSENUM, //
@@ -182,7 +182,7 @@ public class SensesFragment extends ListFragment
 						WordNetContract.PosTypes.POSNAME, //
 						WordNetContract.LexDomains.LEXDOMAIN, //
 						WordNetContract.CasedWords.CASED};
-				final String selection = Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.LEMMA + " = ?"; //$NON-NLS-1$
+				final String selection = Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.LEMMA + " = ?"; //
 				final String[] selectionArgs = {SensesFragment.this.queryWord};
 				final String sortOrder = Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.POS + ',' + Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.SENSENUM;
 				return new CursorLoader(getActivity(), uri, projection, selection, selectionArgs, sortOrder);
@@ -252,7 +252,7 @@ public class SensesFragment extends ListFragment
 			this.listener = (Listener) context;
 			return;
 		}
-		throw new IllegalStateException("Activity must implement fragment's listener."); //$NON-NLS-1$
+		throw new IllegalStateException("Activity must implement fragment's listener."); //
 	}
 
 	@Override

@@ -28,7 +28,7 @@ import java.util.List;
  */
 public class XSqlUNetProvider extends SqlUNetProvider
 {
-	static private final String TAG = "XSqlUNetProvider"; //$NON-NLS-1$
+	static private final String TAG = "XSqlUNetProvider"; //
 
 	// U R I M A T C H E R
 
@@ -75,24 +75,24 @@ public class XSqlUNetProvider extends SqlUNetProvider
 		switch (XSqlUNetProvider.uriMatcher.match(uri))
 		{
 			case WORDS_FNWORDS_PBWORDS_VNWORDS:
-				return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + XSqlUNetContract.AUTHORITY + '.' + Words_FnWords_PbWords_VnWords.TABLE; //$NON-NLS-1$
+				return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + XSqlUNetContract.AUTHORITY + '.' + Words_FnWords_PbWords_VnWords.TABLE; //
 			case PREDICATEMATRIX:
-				return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + XSqlUNetContract.AUTHORITY + '.' + PredicateMatrix.TABLE; //$NON-NLS-1$
+				return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + XSqlUNetContract.AUTHORITY + '.' + PredicateMatrix.TABLE; //
 			case PREDICATEMATRIX_VERBNET:
-				return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + XSqlUNetContract.AUTHORITY + '.' + PredicateMatrix_VerbNet.TABLE; //$NON-NLS-1$
+				return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + XSqlUNetContract.AUTHORITY + '.' + PredicateMatrix_VerbNet.TABLE; //
 			case PREDICATEMATRIX_PROPBANK:
-				return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + XSqlUNetContract.AUTHORITY + '.' + PredicateMatrix_PropBank.TABLE; //$NON-NLS-1$
+				return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + XSqlUNetContract.AUTHORITY + '.' + PredicateMatrix_PropBank.TABLE; //
 			case PREDICATEMATRIX_FRAMENET:
-				return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + XSqlUNetContract.AUTHORITY + '.' + PredicateMatrix_FrameNet.TABLE; //$NON-NLS-1$
+				return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + XSqlUNetContract.AUTHORITY + '.' + PredicateMatrix_FrameNet.TABLE; //
 			case WORDS_VNWORDS_VNCLASSES_U:
-				return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + XSqlUNetContract.AUTHORITY + '.' + Words_VnWords_VnClasses_U.TABLE; //$NON-NLS-1$
+				return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + XSqlUNetContract.AUTHORITY + '.' + Words_VnWords_VnClasses_U.TABLE; //
 			case WORDS_PBWORDS_PBROLESETS_U:
-				return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + XSqlUNetContract.AUTHORITY + '.' + Words_PbWords_PbRolesets_U.TABLE; //$NON-NLS-1$
+				return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + XSqlUNetContract.AUTHORITY + '.' + Words_PbWords_PbRolesets_U.TABLE; //
 			case WORDS_FNWORDS_FNFRAMES_U:
-				return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + XSqlUNetContract.AUTHORITY + '.' + Words_FnWords_FnFrames_U.TABLE; //$NON-NLS-1$
+				return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + XSqlUNetContract.AUTHORITY + '.' + Words_FnWords_FnFrames_U.TABLE; //
 
 			default:
-				throw new UnsupportedOperationException("Illegal MIME type"); //$NON-NLS-1$
+				throw new UnsupportedOperationException("Illegal MIME type"); //
 		}
 	}
 
@@ -119,106 +119,122 @@ public class XSqlUNetProvider extends SqlUNetProvider
 
 		// choose the table to query and a sort order based on the code returned for the incoming URI
 		final int code = XSqlUNetProvider.uriMatcher.match(uri);
-		Log.d(XSqlUNetProvider.TAG + "URI", String.format("%s (code %s)\n", uri, code)); //$NON-NLS-1$ //$NON-NLS-2$
+		Log.d(XSqlUNetProvider.TAG + "URI", String.format("%s (code %s)\n", uri, code)); //
 		String groupBy = null;
 		String table;
 		switch (code)
 		{
 			case PREDICATEMATRIX:
 				// table = "pm";
-				table = "pmvn " + // //$NON-NLS-1$
-						"LEFT JOIN pnpb USING (wordid)" + // //$NON-NLS-1$
-						"LEFT JOIN pnfn USING (wordid)" // //$NON-NLS-1$
+				table = "pmvn " + //
+						"LEFT JOIN pnpb USING (wordid)" + //
+						"LEFT JOIN pnfn USING (wordid)" //
 				;
 				break;
 
 			case PREDICATEMATRIX_VERBNET:
-				table = "pmvn"; //$NON-NLS-1$
+				table = "pmvn"; //
 				break;
 
 			case PREDICATEMATRIX_PROPBANK:
-				table = "pmpb"; //$NON-NLS-1$
+				table = "pmpb"; //
 				break;
 
 			case PREDICATEMATRIX_FRAMENET:
-				table = "pmfn"; //$NON-NLS-1$
+				table = "pmfn"; //
 				break;
 
 			// J O I N S
 
 			case WORDS_FNWORDS_PBWORDS_VNWORDS:
-				table = "words AS w " + // //$NON-NLS-1$
-						"LEFT JOIN senses AS s USING (wordid) " + // //$NON-NLS-1$
-						"LEFT JOIN casedwords AS c USING (wordid,casedwordid) " + // //$NON-NLS-1$
-						"LEFT JOIN synsets AS y USING (synsetid) " + // //$NON-NLS-1$
-						"LEFT JOIN postypes AS p USING (pos) " + // //$NON-NLS-1$
-						"LEFT JOIN lexdomains USING (lexdomainid) " + // //$NON-NLS-1$
-						"LEFT JOIN fnwords USING (wordid) " + // //$NON-NLS-1$
-						"LEFT JOIN vnwords USING (wordid) " + // //$NON-NLS-1$
-						"LEFT JOIN pbwords USING (wordid)"; //$NON-NLS-1$
-				groupBy = "synsetid"; //$NON-NLS-1$
+				table = "words AS " + XSqlUNetContract.WORD + ' ' + //
+						"LEFT JOIN senses AS " + XSqlUNetContract.SENSE + " USING (wordid) " + //
+						"LEFT JOIN synsets AS " + XSqlUNetContract.SYNSET + " USING (synsetid) " + //
+						"LEFT JOIN postypes AS " + XSqlUNetContract.POS + " USING (pos) " + //
+						"LEFT JOIN casedwords USING (wordid,casedwordid) " + //
+						"LEFT JOIN lexdomains USING (lexdomainid) " + //
+						"LEFT JOIN fnwords USING (wordid) " + //
+						"LEFT JOIN vnwords USING (wordid) " + //
+						"LEFT JOIN pbwords USING (wordid)"; //
+				groupBy = "synsetid"; //
 				break;
 
 			case WORDS_VNWORDS_VNCLASSES_U:
 			{
-				final String table1 = "pmvn INNER JOIN vnclasses ON vnclassid = classid LEFT JOIN synsets USING (synsetid)"; //$NON-NLS-1$
-				final String table2 = "vnwords INNER JOIN vnclassmembersenses USING (vnwordid) INNER JOIN vnclasses USING (classid)"; //$NON-NLS-1$
-				final String[] unionProjection = {"wordid", "synsetid", "classid", "class", "classtag", "definition"}; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$ //$NON-NLS-6$
-				final String[] tableProjection = {"wordid", "synsetid", "classid", "class", "classtag"}; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$
-				final String[] groupBy0 = {"wordid", "synsetid", "classid"}; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				final String query = makeQuery(table1, table2, tableProjection, unionProjection, projection, selection, groupBy0, sortOrder, "vn"); //$NON-NLS-1$
-				Log.d(XSqlUNetProvider.TAG + "PM-VN", query); //$NON-NLS-1$
+				final String table1 = "pmvn " + //
+						"INNER JOIN vnclasses ON vnclassid = classid " + //
+						"LEFT JOIN synsets USING (synsetid)"; //
+				final String table2 = "vnwords INNER JOIN " + //
+						"vnclassmembersenses USING (vnwordid) " + //
+						"INNER JOIN vnclasses USING (classid)"; //
+				final String[] unionProjection = {"wordid", "synsetid", "classid", "class", "classtag", "definition"}; //
+				final String[] tableProjection = {"wordid", "synsetid", "classid", "class", "classtag"}; //
+				final String[] groupBy0 = {"wordid", "synsetid", "classid"}; //
+				final String query = makeQuery(table1, table2, tableProjection, unionProjection, projection, selection, groupBy0, sortOrder, "vn"); //
+				Log.d(XSqlUNetProvider.TAG + "PM-VN", query); //
 
 				return raw(query, selectionArgs);
 			}
 
 			case WORDS_PBWORDS_PBROLESETS_U:
 			{
-				final String table1 = "pmpb INNER JOIN pbrolesets ON pbrolesetid = rolesetid LEFT JOIN synsets USING (synsetid)"; //$NON-NLS-1$
-				final String table2 = "pbwords INNER JOIN pbrolesets USING (pbwordid)"; //$NON-NLS-1$
-				final String[] unionProjection = {"wordid", "synsetid", "rolesetid", "rolesetname", "rolesethead", "rolesetdescr", "definition"}; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$ //$NON-NLS-6$ //$NON-NLS-7$
-				final String[] tableProjection = {"wordid", "rolesetid", "rolesetname", "rolesethead", "rolesetdescr"}; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$
-				final String[] groupBy0 = {"wordid", "synsetid", "rolesetid"}; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				final String query = makeQuery(table1, table2, tableProjection, unionProjection, projection, selection, groupBy0, sortOrder, "pb"); //$NON-NLS-1$
-				Log.d(XSqlUNetProvider.TAG + "PM-PB", query); //$NON-NLS-1$
+				final String table1 = "pmpb " + //
+						"INNER JOIN pbrolesets ON pbrolesetid = rolesetid " + //
+						"LEFT JOIN synsets USING (synsetid)"; //
+				final String table2 = "pbwords " + //
+						"INNER JOIN pbrolesets USING (pbwordid)"; //
+				final String[] unionProjection = {"wordid", "synsetid", "rolesetid", "rolesetname", "rolesethead", "rolesetdescr", "definition"}; //
+				final String[] tableProjection = {"wordid", "rolesetid", "rolesetname", "rolesethead", "rolesetdescr"}; //
+				final String[] groupBy0 = {"wordid", "synsetid", "rolesetid"}; //
+				final String query = makeQuery(table1, table2, tableProjection, unionProjection, projection, selection, groupBy0, sortOrder, "pb"); //
+				Log.d(XSqlUNetProvider.TAG + "PM-PB", query); //
 
 				return raw(query, selectionArgs);
 			}
 
 			case WORDS_FNWORDS_FNFRAMES_U:
 			{
-				final String table1 = "pmfn INNER JOIN fnframes ON frameid = fnframeid LEFT JOIN fnlexemes USING (fnwordid) LEFT JOIN fnlexunits USING (luid,frameid) LEFT JOIN synsets USING (synsetid)"; //$NON-NLS-1$
-				final String table2 = "fnwords INNER JOIN fnlexemes USING (fnwordid) INNER JOIN fnlexunits USING (luid,posid) INNER JOIN fnframes USING (frameid)"; //$NON-NLS-1$
-				final String[] unionProjection = {"wordid", "synsetid", "frameid", "frame", //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
-						"framedefinition", "luid", "lexunit", "ludefinition", "definition"}; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$
-				final String[] tableProjection = {"wordid", "frameid", "frame", "framedefinition", "luid", "lexunit", "ludefinition"}; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$ //$NON-NLS-6$ //$NON-NLS-7$
-				final String[] groupBy0 = {"wordid", "synsetid", "frameid"}; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				final String query = makeQuery(table1, table2, tableProjection, unionProjection, projection, selection, groupBy0, sortOrder, "fn"); //$NON-NLS-1$
-				Log.d(XSqlUNetProvider.TAG + "PM-FN", query); //$NON-NLS-1$
+				final String table1 = "pmfn " + //
+						"INNER JOIN fnframes ON frameid = fnframeid " + //
+						"LEFT JOIN fnlexemes USING (fnwordid) " + //
+						"LEFT JOIN fnlexunits USING (luid,frameid) " + //
+						"LEFT JOIN synsets USING (synsetid)"; //
+				final String table2 = "fnwords " + //
+						"INNER JOIN fnlexemes USING (fnwordid) " + //
+						"INNER JOIN fnlexunits USING (luid,posid) " + //
+						"INNER JOIN fnframes USING (frameid)"; //
+				final String[] unionProjection = {"wordid", "synsetid", "frameid", "frame", //
+						"framedefinition", "luid", "lexunit", "ludefinition", "definition"}; //
+				final String[] tableProjection = {"wordid", "frameid", "frame", "framedefinition", "luid", "lexunit", "ludefinition"}; //
+				final String[] groupBy0 = {"wordid", "synsetid", "frameid"}; //
+				final String query = makeQuery(table1, table2, tableProjection, unionProjection, projection, selection, groupBy0, sortOrder, "fn"); //
+				Log.d(XSqlUNetProvider.TAG + "PM-FN", query); //
 
 				return raw(query, selectionArgs);
 			}
 
 			default:
 			case UriMatcher.NO_MATCH:
-				throw new RuntimeException("Malformed URI " + uri); //$NON-NLS-1$
+				throw new RuntimeException("Malformed URI " + uri); //
 		}
 
 		if (SqlUNetProvider.debugSql)
 		{
 			final String sql = SQLiteQueryBuilder.buildQueryString(false, table, projection, selection, groupBy, null, sortOrder, null);
-			Log.d(XSqlUNetProvider.TAG + "SQL", sql); //$NON-NLS-1$
-			Log.d(XSqlUNetProvider.TAG + "ARGS", SqlUNetProvider.argsToString(selectionArgs)); //$NON-NLS-1$
+			Log.d(XSqlUNetProvider.TAG + "SQL", sql); //
+			Log.d(XSqlUNetProvider.TAG + "ARGS", SqlUNetProvider.argsToString(selectionArgs)); //
 		}
 
 		// do query
 		try
 		{
-			return this.db.query(table, projection, selection, selectionArgs, groupBy, null, sortOrder);
+			return this.db.query(table, projection, selection, selectionArgs, groupBy, null, sortOrder, null);
 		}
 		catch (final SQLiteException e)
 		{
-			Log.e(XSqlUNetProvider.TAG, "XSqlUNet provider query failed", e); //$NON-NLS-1$
+			final String sql = SQLiteQueryBuilder.buildQueryString(false, table, projection, selection, groupBy, null, sortOrder, null);
+			Log.d(TAG + "SQL", sql); //
+			Log.e(XSqlUNetProvider.TAG, "XSqlUNet provider query failed", e); //
 			return null;
 		}
 	}
@@ -242,18 +258,18 @@ public class XSqlUNetProvider extends SqlUNetProvider
 			final String selection, //
 			final String[] groupBys, final String sortOrder, final String tag)
 	{
-		final String[] actualUnionProjection = SqlUNetProvider.appendProjection(unionProjection0, "source"); //$NON-NLS-1$
+		final String[] actualUnionProjection = SqlUNetProvider.appendProjection(unionProjection0, "source"); //
 		final List<String> table1ProjectionList = Arrays.asList(unionProjection0);
 		final List<String> table2ProjectionList = Arrays.asList(tableProjection);
 
 		// predicate matrix
 		final SQLiteQueryBuilder pmSubQueryBuilder = new SQLiteQueryBuilder();
 		pmSubQueryBuilder.setTables(table1);
-		final String pmSubquery = pmSubQueryBuilder.buildUnionSubQuery("source", // //$NON-NLS-1$
+		final String pmSubquery = pmSubQueryBuilder.buildUnionSubQuery("source", //
 				actualUnionProjection, //
 				new HashSet<>(table1ProjectionList), //
 				0, //
-				"pm" + tag, // //$NON-NLS-1$
+				"pm" + tag, //
 				selection, //
 				null, //
 				null);
@@ -261,7 +277,7 @@ public class XSqlUNetProvider extends SqlUNetProvider
 		// sqlunet table
 		final SQLiteQueryBuilder sqlunetSubQueryBuilder = new SQLiteQueryBuilder();
 		sqlunetSubQueryBuilder.setTables(table2);
-		final String sqlunetSubquery = sqlunetSubQueryBuilder.buildUnionSubQuery("source", // //$NON-NLS-1$
+		final String sqlunetSubquery = sqlunetSubQueryBuilder.buildUnionSubQuery("source", //
 				actualUnionProjection, //
 				new HashSet<>(table2ProjectionList), //
 				0, //
@@ -278,7 +294,7 @@ public class XSqlUNetProvider extends SqlUNetProvider
 		// embed
 		final SQLiteQueryBuilder embeddingQueryBuilder = new SQLiteQueryBuilder();
 		embeddingQueryBuilder.setTables('(' + uQuery + ')');
-		final String[] resultProjection = SqlUNetProvider.prependProjection(projection, "GROUP_CONCAT(DISTINCT source) AS sources"); //$NON-NLS-1$
+		final String[] resultProjection = SqlUNetProvider.prependProjection(projection, "GROUP_CONCAT(DISTINCT source) AS sources"); //
 
 		// group by
 		String[] actualGroupBys = groupBys;
@@ -287,10 +303,10 @@ public class XSqlUNetProvider extends SqlUNetProvider
 			actualGroupBys = new String[projection.length];
 			for (int i = 0; i < projection.length; i++)
 			{
-				actualGroupBys[i] = projection[i].replaceFirst("\\sAS\\s*.*$", ""); //$NON-NLS-1$ //$NON-NLS-2$
+				actualGroupBys[i] = projection[i].replaceFirst("\\sAS\\s*.*$", ""); //
 			}
 		}
-		String groupBy = TextUtils.join(",", actualGroupBys); //$NON-NLS-1$
+		String groupBy = TextUtils.join(",", actualGroupBys); //
 
 		return embeddingQueryBuilder.buildQuery(resultProjection, null, groupBy, null, sortOrder, null);
 	}
@@ -312,8 +328,8 @@ public class XSqlUNetProvider extends SqlUNetProvider
 
 		if (SqlUNetProvider.debugSql)
 		{
-			Log.d(XSqlUNetProvider.TAG + "SQL", sql); //$NON-NLS-1$
-			Log.d(XSqlUNetProvider.TAG + "ARGS", SqlUNetProvider.argsToString(selectionArgs2)); //$NON-NLS-1$
+			Log.d(XSqlUNetProvider.TAG + "SQL", sql); //
+			Log.d(XSqlUNetProvider.TAG + "ARGS", SqlUNetProvider.argsToString(selectionArgs2)); //
 		}
 
 		// do query
@@ -323,7 +339,7 @@ public class XSqlUNetProvider extends SqlUNetProvider
 		}
 		catch (final SQLiteException e)
 		{
-			Log.e(XSqlUNetProvider.TAG, "XSqlUNet provider query failed", e); //$NON-NLS-1$
+			Log.e(XSqlUNetProvider.TAG, "XSqlUNet provider query failed", e); //
 			return null;
 		}
 	}

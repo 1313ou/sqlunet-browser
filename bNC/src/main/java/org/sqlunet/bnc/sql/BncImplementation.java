@@ -27,7 +27,7 @@ public class BncImplementation implements BncInterface
 	public Document queryDoc(final SQLiteDatabase connection, final String word)
 	{
 		final Document doc = Factory.makeDocument();
-		final Node rootNode = NodeFactory.makeNode(doc, doc, "bnc", word); //$NON-NLS-1$
+		final Node rootNode = NodeFactory.makeNode(doc, doc, "bnc", word); //
 		BncImplementation.walk(connection, doc, rootNode, word);
 		return doc;
 	}

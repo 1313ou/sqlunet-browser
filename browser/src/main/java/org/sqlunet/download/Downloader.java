@@ -19,7 +19,7 @@ import java.net.URLConnection;
  */
 public class Downloader extends AsyncTask<Void, Integer, Boolean>
 {
-	private static final String TAG = "Downloader"; //$NON-NLS-1$
+	private static final String TAG = "Downloader"; //
 
 	/**
 	 * From URL
@@ -73,7 +73,7 @@ public class Downloader extends AsyncTask<Void, Integer, Boolean>
 	@Override
 	protected void onPostExecute(final Boolean result)
 	{
-		Log.d(TAG, "Completed " + result); //$NON-NLS-1$
+		Log.d(TAG, "Completed " + result); //
 		super.onPostExecute(result);
 		this.listener.downloadFinish(this.code, result);
 	}
@@ -81,7 +81,7 @@ public class Downloader extends AsyncTask<Void, Integer, Boolean>
 	@Override
 	protected void onCancelled(final Boolean result)
 	{
-		Log.d(TAG, "Cancelled, result=" + result); //$NON-NLS-1$
+		Log.d(TAG, "Cancelled, result=" + result); //
 		super.onCancelled(result);
 		this.listener.downloadFinish(this.code, result);
 	}
@@ -98,7 +98,7 @@ public class Downloader extends AsyncTask<Void, Integer, Boolean>
 		{
 			// connect
 			final URL url = new URL(this.from);
-			Log.d(TAG, "Get " + url.toString()); //$NON-NLS-1$
+			Log.d(TAG, "Get " + url.toString()); //
 			final URLConnection connection = url.openConnection();
 			connection.connect();
 
@@ -136,11 +136,11 @@ public class Downloader extends AsyncTask<Void, Integer, Boolean>
 		}
 		catch (final InterruptedException e)
 		{
-			Log.d(TAG, "Interrupted downloading"); //$NON-NLS-1$
+			Log.d(TAG, "Interrupted downloading"); //
 		}
 		catch (final Exception e)
 		{
-			Log.e(TAG, "While downloading", e); //$NON-NLS-1$
+			Log.e(TAG, "While downloading", e); //
 		}
 		finally
 		{

@@ -25,7 +25,7 @@ import javax.xml.transform.stream.StreamSource;
  */
 class XSLTransformer
 {
-	private static final String TAG = "XSLTransformer"; //$NON-NLS-1$
+	private static final String TAG = "XSLTransformer"; //
 
 	/**
 	 * Transform Document to HTML
@@ -38,12 +38,12 @@ class XSLTransformer
 	{
 		try
 		{
-			return XSLTransformer.docToString(doc, XSLTransformer.getXSLStream(source, isSelector), "html"); //$NON-NLS-1$
+			return XSLTransformer.docToString(doc, XSLTransformer.getXSLStream(source, isSelector), "html"); //
 		}
 		catch (final Exception e)
 		{
-			Log.e(TAG, "While transforming doc to HTML", e); //$NON-NLS-1$
-			return "error " + e; //$NON-NLS-1$
+			Log.e(TAG, "While transforming doc to HTML", e); //
+			return "error " + e; //
 		}
 	}
 
@@ -57,12 +57,12 @@ class XSLTransformer
 	{
 		try
 		{
-			return XSLTransformer.docToString(doc, null, "xml"); //$NON-NLS-1$
+			return XSLTransformer.docToString(doc, null, "xml"); //
 		}
 		catch (final Exception e)
 		{
-			Log.e(TAG, "While transforming doc to XML", e); //$NON-NLS-1$
-			return "error " + e; //$NON-NLS-1$
+			Log.e(TAG, "While transforming doc to XML", e); //
+			return "error " + e; //
 		}
 	}
 
@@ -79,19 +79,19 @@ class XSLTransformer
 		switch (from)
 		{
 			case WORDNET:
-				xsl = "/org/sqlunet/wordnet/dom/xsl/" + (isSelector ? "select_wordnet2html.xsl" : "wordnet2html.xsl"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				xsl = "/org/sqlunet/wordnet/dom/xsl/" + (isSelector ? "select_wordnet2html.xsl" : "wordnet2html.xsl"); //
 				break;
 			case VERBNET:
-				xsl = "/org/sqlunet/verbnet/dom/xsl/" + (isSelector ? "select_verbnet2html.xsl" : "verbnet2html.xsl"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				xsl = "/org/sqlunet/verbnet/dom/xsl/" + (isSelector ? "select_verbnet2html.xsl" : "verbnet2html.xsl"); //
 				break;
 			case PROPBANK:
-				xsl = "/org/sqlunet/propbank/dom/xsl/" + (isSelector ? "select_propbank2html.xsl" : "propbank2html.xsl"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				xsl = "/org/sqlunet/propbank/dom/xsl/" + (isSelector ? "select_propbank2html.xsl" : "propbank2html.xsl"); //
 				break;
 			case FRAMENET:
-				xsl = "/org/sqlunet/framenet/dom/xsl/" + (isSelector ? "select_framenet2html.xsl" : "framenet2html.xsl"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				xsl = "/org/sqlunet/framenet/dom/xsl/" + (isSelector ? "select_framenet2html.xsl" : "framenet2html.xsl"); //
 				break;
 			case BNC:
-				xsl = "/org/sqlunet/bnc/dom/xsl/" + (isSelector ? "select_bnc2html.xsl" : "bnc2html.xsl"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				xsl = "/org/sqlunet/bnc/dom/xsl/" + (isSelector ? "select_bnc2html.xsl" : "bnc2html.xsl"); //
 				break;
 		}
 		return XSLTransformer.class.getResourceAsStream(xsl);

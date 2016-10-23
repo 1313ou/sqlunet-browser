@@ -39,7 +39,7 @@ import org.sqlunet.provider.SqlUNetProvider;
  */
 public class FrameNetProvider extends SqlUNetProvider
 {
-	static private final String TAG = "FrameNetProvider"; //$NON-NLS-1$
+	static private final String TAG = "FrameNetProvider"; //
 
 	// U R I M A T C H E R
 
@@ -115,7 +115,7 @@ public class FrameNetProvider extends SqlUNetProvider
 		FrameNetProvider.uriMatcher.addURI(FrameNetContract.AUTHORITY, ValenceUnits_Sentences.TABLE, FrameNetProvider.VALENCEUNITS_SENTENCES);
 		FrameNetProvider.uriMatcher.addURI(FrameNetContract.AUTHORITY, Governors_AnnoSets_Sentences.TABLE, FrameNetProvider.GOVERNORS_ANNOSETS);
 
-		FrameNetProvider.uriMatcher.addURI(FrameNetContract.AUTHORITY, Lookup_FnSentences.TABLE + "/", FrameNetProvider.LOOKUP_FTS_SENTENCES); //$NON-NLS-1$
+		FrameNetProvider.uriMatcher.addURI(FrameNetContract.AUTHORITY, Lookup_FnSentences.TABLE + "/", FrameNetProvider.LOOKUP_FTS_SENTENCES); //
 	}
 
 	// C O N S T R U C T O R
@@ -137,64 +137,64 @@ public class FrameNetProvider extends SqlUNetProvider
 			// TABLES
 
 			case LEXUNIT:
-				return SqlUNetContract.VENDOR + ".android.cursor.item/" + SqlUNetContract.VENDOR + '.' + FrameNetContract.AUTHORITY + '.' + LexUnits.TABLE; //$NON-NLS-1$
+				return SqlUNetContract.VENDOR + ".android.cursor.item/" + SqlUNetContract.VENDOR + '.' + FrameNetContract.AUTHORITY + '.' + LexUnits.TABLE; //
 			case LEXUNITS:
-				return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + FrameNetContract.AUTHORITY + '.' + LexUnits.TABLE; //$NON-NLS-1$
+				return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + FrameNetContract.AUTHORITY + '.' + LexUnits.TABLE; //
 			case LEXUNITS_X_BY_LEXUNIT:
-				return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + FrameNetContract.AUTHORITY + '.' + LexUnits_X.TABLE_BY_LEXUNIT; //$NON-NLS-1$
+				return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + FrameNetContract.AUTHORITY + '.' + LexUnits_X.TABLE_BY_LEXUNIT; //
 			case FRAME:
-				return SqlUNetContract.VENDOR + ".android.cursor.item/" + SqlUNetContract.VENDOR + '.' + FrameNetContract.AUTHORITY + '.' + Frames.TABLE; //$NON-NLS-1$
+				return SqlUNetContract.VENDOR + ".android.cursor.item/" + SqlUNetContract.VENDOR + '.' + FrameNetContract.AUTHORITY + '.' + Frames.TABLE; //
 			case FRAMES:
-				return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + FrameNetContract.AUTHORITY + '.' + Frames.TABLE; //$NON-NLS-1$
+				return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + FrameNetContract.AUTHORITY + '.' + Frames.TABLE; //
 			case FRAMES_X_BY_FRAME:
-				return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + FrameNetContract.AUTHORITY + '.' + Frames_X.TABLE_BY_FRAME; //$NON-NLS-1$
+				return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + FrameNetContract.AUTHORITY + '.' + Frames_X.TABLE_BY_FRAME; //
 			case FRAMES_RELATED:
-				return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + FrameNetContract.AUTHORITY + '.' + Frames_Related.TABLE; //$NON-NLS-1$
+				return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + FrameNetContract.AUTHORITY + '.' + Frames_Related.TABLE; //
 			case SENTENCE:
-				return SqlUNetContract.VENDOR + ".android.cursor.item/" + SqlUNetContract.VENDOR + '.' + FrameNetContract.AUTHORITY + '.' + Sentences.TABLE; //$NON-NLS-1$
+				return SqlUNetContract.VENDOR + ".android.cursor.item/" + SqlUNetContract.VENDOR + '.' + FrameNetContract.AUTHORITY + '.' + Sentences.TABLE; //
 			case SENTENCES:
-				return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + FrameNetContract.AUTHORITY + '.' + Sentences.TABLE; //$NON-NLS-1$
+				return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + FrameNetContract.AUTHORITY + '.' + Sentences.TABLE; //
 			case ANNOSET:
-				return SqlUNetContract.VENDOR + ".android.cursor.item/" + SqlUNetContract.VENDOR + '.' + FrameNetContract.AUTHORITY + '.' + AnnoSets.TABLE; //$NON-NLS-1$
+				return SqlUNetContract.VENDOR + ".android.cursor.item/" + SqlUNetContract.VENDOR + '.' + FrameNetContract.AUTHORITY + '.' + AnnoSets.TABLE; //
 			case ANNOSETS:
-				return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + FrameNetContract.AUTHORITY + '.' + AnnoSets.TABLE; //$NON-NLS-1$
+				return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + FrameNetContract.AUTHORITY + '.' + AnnoSets.TABLE; //
 			case SENTENCES_LAYERS_X:
-				return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + FrameNetContract.AUTHORITY + '.' + Sentences_Layers_X.TABLE; //$NON-NLS-1$
+				return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + FrameNetContract.AUTHORITY + '.' + Sentences_Layers_X.TABLE; //
 			case ANNOSETS_LAYERS_X:
-				return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + FrameNetContract.AUTHORITY + '.' + AnnoSets_Layers_X.TABLE; //$NON-NLS-1$
+				return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + FrameNetContract.AUTHORITY + '.' + AnnoSets_Layers_X.TABLE; //
 			case PATTERNS_LAYERS_X:
-				return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + FrameNetContract.AUTHORITY + '.' + Patterns_Layers_X.TABLE; //$NON-NLS-1$
+				return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + FrameNetContract.AUTHORITY + '.' + Patterns_Layers_X.TABLE; //
 			case VALENCEUNITS_LAYERS_X:
-				return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + FrameNetContract.AUTHORITY + '.' + ValenceUnits_Layers_X.TABLE; //$NON-NLS-1$
+				return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + FrameNetContract.AUTHORITY + '.' + ValenceUnits_Layers_X.TABLE; //
 			case WORDS_LEXUNITS_FRAMES:
-				return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + FrameNetContract.AUTHORITY + '.' + Words_LexUnits_Frames.TABLE; //$NON-NLS-1$
+				return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + FrameNetContract.AUTHORITY + '.' + Words_LexUnits_Frames.TABLE; //
 			case FRAMES_FES:
-				return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + FrameNetContract.AUTHORITY + '.' + Frames_FEs.TABLE; //$NON-NLS-1$
+				return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + FrameNetContract.AUTHORITY + '.' + Frames_FEs.TABLE; //
 			case LEXUNITS_SENTENCES:
-				return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + FrameNetContract.AUTHORITY + '.' + LexUnits_Sentences.TABLE; //$NON-NLS-1$
+				return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + FrameNetContract.AUTHORITY + '.' + LexUnits_Sentences.TABLE; //
 			case LEXUNITS_GOVERNORS:
-				return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + FrameNetContract.AUTHORITY + '.' + LexUnits_Governors.TABLE; //$NON-NLS-1$
+				return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + FrameNetContract.AUTHORITY + '.' + LexUnits_Governors.TABLE; //
 			case LEXUNITS_REALIZATIONS:
-				return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + FrameNetContract.AUTHORITY + '.' + LexUnits_FERealizations_ValenceUnits.TABLE; //$NON-NLS-1$
+				return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + FrameNetContract.AUTHORITY + '.' + LexUnits_FERealizations_ValenceUnits.TABLE; //
 			case LEXUNITS_REALIZATIONS_BY_REALIZATION:
-				return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + FrameNetContract.AUTHORITY + '.' + LexUnits_FERealizations_ValenceUnits.TABLE_BY_REALIZATION; //$NON-NLS-1$
+				return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + FrameNetContract.AUTHORITY + '.' + LexUnits_FERealizations_ValenceUnits.TABLE_BY_REALIZATION; //
 			case LEXUNITS_GROUPREALIZATIONS:
-				return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + FrameNetContract.AUTHORITY + '.' + LexUnits_FEGroupRealizations_Patterns_ValenceUnits.TABLE; //$NON-NLS-1$
+				return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + FrameNetContract.AUTHORITY + '.' + LexUnits_FEGroupRealizations_Patterns_ValenceUnits.TABLE; //
 			case LEXUNITS_GROUPREALIZATIONS_BY_PATTERN:
-				return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + FrameNetContract.AUTHORITY + '.' + LexUnits_FEGroupRealizations_Patterns_ValenceUnits.TABLE_BY_PATTERN; //$NON-NLS-1$
+				return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + FrameNetContract.AUTHORITY + '.' + LexUnits_FEGroupRealizations_Patterns_ValenceUnits.TABLE_BY_PATTERN; //
 			case PATTERNS_SENTENCES:
-				return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + FrameNetContract.AUTHORITY + '.' + Patterns_Sentences.TABLE; //$NON-NLS-1$
+				return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + FrameNetContract.AUTHORITY + '.' + Patterns_Sentences.TABLE; //
 			case VALENCEUNITS_SENTENCES:
-				return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + FrameNetContract.AUTHORITY + '.' + ValenceUnits_Sentences.TABLE; //$NON-NLS-1$
+				return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + FrameNetContract.AUTHORITY + '.' + ValenceUnits_Sentences.TABLE; //
 			case GOVERNORS_ANNOSETS:
-				return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + FrameNetContract.AUTHORITY + '.' + Governors_AnnoSets_Sentences.TABLE; //$NON-NLS-1$
+				return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + FrameNetContract.AUTHORITY + '.' + Governors_AnnoSets_Sentences.TABLE; //
 
 			// S E A R C H
 			case LOOKUP_FTS_SENTENCES:
-				return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + FrameNetContract.AUTHORITY + '.' + Lookup_FnSentences.TABLE; //$NON-NLS-1$
+				return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + FrameNetContract.AUTHORITY + '.' + Lookup_FnSentences.TABLE; //
 
 			default:
-				throw new UnsupportedOperationException("Illegal MIME type"); //$NON-NLS-1$
+				throw new UnsupportedOperationException("Illegal MIME type"); //
 		}
 	}
 
@@ -212,7 +212,7 @@ public class FrameNetProvider extends SqlUNetProvider
 		// choose the table to query and a sort order based on the code returned for the incoming URI
 		String actualSelection = selection;
 		final int code = FrameNetProvider.uriMatcher.match(uri);
-		Log.d(FrameNetProvider.TAG + "URI", String.format("%s (code %s)", uri, code)); //$NON-NLS-1$ //$NON-NLS-2$
+		Log.d(FrameNetProvider.TAG + "URI", String.format("%s (code %s)", uri, code)); //
 
 		String groupBy = null;
 		String table;
@@ -237,277 +237,280 @@ public class FrameNetProvider extends SqlUNetProvider
 				table = LexUnits.TABLE;
 				if (actualSelection != null)
 				{
-					actualSelection += " AND "; //$NON-NLS-1$
+					actualSelection += " AND "; //
 				}
 				else
 				{
-					actualSelection = ""; //$NON-NLS-1$
+					actualSelection = ""; //
 				}
-				actualSelection += LexUnits.LUID + " = " + uri.getLastPathSegment(); //$NON-NLS-1$
+				actualSelection += LexUnits.LUID + " = " + uri.getLastPathSegment(); //
 				break;
 
 			case FRAME:
 				table = Frames.TABLE;
 				if (actualSelection != null)
 				{
-					actualSelection += " AND "; //$NON-NLS-1$
+					actualSelection += " AND "; //
 				}
 				else
 				{
-					actualSelection = ""; //$NON-NLS-1$
+					actualSelection = ""; //
 				}
-				actualSelection += Frames.FRAMEID + " = " + uri.getLastPathSegment(); //$NON-NLS-1$
+				actualSelection += Frames.FRAMEID + " = " + uri.getLastPathSegment(); //
 				break;
 
 			case SENTENCE:
 				table = uri.getLastPathSegment();
 				if (actualSelection != null)
 				{
-					actualSelection += " AND "; //$NON-NLS-1$
+					actualSelection += " AND "; //
 				}
 				else
 				{
-					actualSelection = ""; //$NON-NLS-1$
+					actualSelection = ""; //
 				}
-				actualSelection += Sentences.SENTENCEID + " = " + uri.getLastPathSegment(); //$NON-NLS-1$
+				actualSelection += Sentences.SENTENCEID + " = " + uri.getLastPathSegment(); //
 				break;
 
 			case ANNOSET:
 				table = uri.getLastPathSegment();
 				if (actualSelection != null)
 				{
-					actualSelection += " AND "; //$NON-NLS-1$
+					actualSelection += " AND "; //
 				}
 				else
 				{
-					actualSelection = ""; //$NON-NLS-1$
+					actualSelection = ""; //
 				}
-				actualSelection += AnnoSets.ANNOSETID + " = " + uri.getLastPathSegment(); //$NON-NLS-1$
+				actualSelection += AnnoSets.ANNOSETID + " = " + uri.getLastPathSegment(); //
 				break;
 
 			// J O I N S
 
 			case FRAMES_X_BY_FRAME:
-				groupBy = "frameid"; //$NON-NLS-1$
-				table = "fnframes " + //$NON-NLS-1$
-						"LEFT JOIN fnframes_semtypes USING (frameid) " + //$NON-NLS-1$
-						"LEFT JOIN fnsemtypes USING (semtypeid)"; //$NON-NLS-1$
+				groupBy = "frameid"; //
+				table = "fnframes " + //
+						"LEFT JOIN fnframes_semtypes USING (frameid) " + //
+						"LEFT JOIN fnsemtypes USING (semtypeid)"; //
 				break;
 
 			case FRAMES_RELATED:
-				table = "fnframes_related LEFT JOIN fnframes AS s USING (frameId) LEFT JOIN fnframes AS d ON (frame2id = d.frameId) LEFT JOIN fnframerelations USING (relationid)"; //$NON-NLS-1$
+				table = "fnframes_related " + //
+						"LEFT JOIN fnframes AS " + FrameNetContract.SRC + " USING (frameid) " + //
+						"LEFT JOIN fnframes AS " + FrameNetContract.DEST + " ON (frame2id = " + FrameNetContract.DEST + ".frameid) " + //  //  //
+						"LEFT JOIN fnframerelations USING (relationid)"; //
 				break;
 
 			case LEXUNITS_X_BY_LEXUNIT:
-				groupBy = "luid"; //$NON-NLS-1$
-				table = "fnlexunits AS lu " + //$NON-NLS-1$
-						"LEFT JOIN fnframes AS f USING (frameId) " + //$NON-NLS-1$
-						"LEFT JOIN fnposes AS p ON (lu.posid = p.posid) " + //$NON-NLS-1$
-						"LEFT JOIN fnfetypes AS it ON (incorporatedfetypeid = it.fetypeid) " + //$NON-NLS-1$
-						"LEFT JOIN fnfes AS ie ON (incorporatedfeid = ie.feid)"; //$NON-NLS-1$
+				groupBy = "luid"; //
+				table = "fnlexunits AS " + FrameNetContract.LU + " " + //
+						"LEFT JOIN fnframes AS " + FrameNetContract.FRAME + " USING (frameid) " + //
+						"LEFT JOIN fnposes AS " + FrameNetContract.POS + " ON (" + FrameNetContract.LU + ".posid = " + FrameNetContract.POS + ".posid) " + //
+						"LEFT JOIN fnfetypes AS " + FrameNetContract.FETYPE + " ON (incorporatedfetypeid = " + FrameNetContract.FETYPE + ".fetypeid) " + //
+						"LEFT JOIN fnfes AS " + FrameNetContract.FE + " ON (incorporatedfeid = " + FrameNetContract.FE + ".feid)"; //
 				break;
 
 			case SENTENCES_LAYERS_X:
-				table = "(SELECT sentenceid,layerid,layertype,rank," + //$NON-NLS-1$
-						"GROUP_CONCAT(start||':'||" + //$NON-NLS-1$
-						"end||':'||" + //$NON-NLS-1$
-						"labeltype||':'||" + //$NON-NLS-1$
-						"CASE WHEN labelitype IS NULL THEN '' ELSE labelitype END||':'||" + //$NON-NLS-1$
-						"CASE WHEN bgcolor IS NULL THEN '' ELSE bgcolor END||':'||" + //$NON-NLS-1$
-						"CASE WHEN fgcolor IS NULL THEN '' ELSE fgcolor END,'|') AS annotations " + //$NON-NLS-1$
-						"FROM fnsentences " + //$NON-NLS-1$
-						"LEFT JOIN fnannosets USING (sentenceid) " + //$NON-NLS-1$
-						"LEFT JOIN fnlayers USING (annoSetId) " + //$NON-NLS-1$
-						"LEFT JOIN fnlayertypes USING (layertypeid) " + //$NON-NLS-1$
-						"LEFT JOIN fnlabels USING (layerid) " + //$NON-NLS-1$
-						"LEFT JOIN fnlabeltypes USING (labeltypeid) " + //$NON-NLS-1$
-						"LEFT JOIN fnlabelitypes USING (labelitypeid) " + //$NON-NLS-1$
-						"WHERE sentenceid = ? AND labeltypeid IS NOT NULL " + //$NON-NLS-1$
-						"GROUP BY layerid " + //$NON-NLS-1$
-						"ORDER BY rank,layerid,start,end)"; //$NON-NLS-1$
+				table = "(SELECT sentenceid,layerid,layertype,rank," + //
+						"GROUP_CONCAT(start||':'||" + //
+						"end||':'||" + //
+						"labeltype||':'||" + //
+						"CASE WHEN labelitype IS NULL THEN '' ELSE labelitype END||':'||" + //
+						"CASE WHEN bgcolor IS NULL THEN '' ELSE bgcolor END||':'||" + //
+						"CASE WHEN fgcolor IS NULL THEN '' ELSE fgcolor END,'|') AS " + Sentences_Layers_X.LAYERANNOTATIONS + ' ' + //
+						"FROM fnsentences " + //
+						"LEFT JOIN fnannosets USING (sentenceid) " + //
+						"LEFT JOIN fnlayers USING (annosetid) " + //
+						"LEFT JOIN fnlayertypes USING (layertypeid) " + //
+						"LEFT JOIN fnlabels USING (layerid) " + //
+						"LEFT JOIN fnlabeltypes USING (labeltypeid) " + //
+						"LEFT JOIN fnlabelitypes USING (labelitypeid) " + //
+						"WHERE sentenceid = ? AND labeltypeid IS NOT NULL " + //
+						"GROUP BY layerid " + //
+						"ORDER BY rank,layerid,start,end)"; //
 				break;
 
 			case ANNOSETS_LAYERS_X:
-				table = "(SELECT sentenceid,text,layerid,layertype,rank," + //$NON-NLS-1$
-						"GROUP_CONCAT(start||':'||" + //$NON-NLS-1$
-						"end||':'||" + //$NON-NLS-1$
-						"labeltype||':'||" + //$NON-NLS-1$
-						"CASE WHEN labelitype IS NULL THEN '' ELSE labelitype END||':'||" + //$NON-NLS-1$
-						"CASE WHEN bgcolor IS NULL THEN '' ELSE bgcolor END||':'||" + //$NON-NLS-1$
-						"CASE WHEN fgcolor IS NULL THEN '' ELSE fgcolor END,'|') AS annotations " + //$NON-NLS-1$
-						"FROM fnannosets " + //$NON-NLS-1$
-						"LEFT JOIN fnsentences USING (sentenceid) " + //$NON-NLS-1$
-						"LEFT JOIN fnlayers USING (annoSetId) " + //$NON-NLS-1$
-						"LEFT JOIN fnlayertypes USING (layertypeid) " + //$NON-NLS-1$
-						"LEFT JOIN fnlabels USING (layerid) " + //$NON-NLS-1$
-						"LEFT JOIN fnlabeltypes USING (labeltypeid) " + //$NON-NLS-1$
-						"LEFT JOIN fnlabelitypes USING (labelitypeid) " + //$NON-NLS-1$
-						"WHERE annoSetId = ? AND labeltypeid IS NOT NULL " + //$NON-NLS-1$
-						"GROUP BY layerid " + //$NON-NLS-1$
-						"ORDER BY rank,layerid,start,end)"; //$NON-NLS-1$
+				table = "(SELECT sentenceid,text,layerid,layertype,rank," + //
+						"GROUP_CONCAT(start||':'||" + //
+						"end||':'||" + //
+						"labeltype||':'||" + //
+						"CASE WHEN labelitype IS NULL THEN '' ELSE labelitype END||':'||" + //
+						"CASE WHEN bgcolor IS NULL THEN '' ELSE bgcolor END||':'||" + //
+						"CASE WHEN fgcolor IS NULL THEN '' ELSE fgcolor END,'|') AS " + AnnoSets_Layers_X.LAYERANNOTATIONS + ' ' + //
+						"FROM fnannosets " + //
+						"LEFT JOIN fnsentences USING (sentenceid) " + //
+						"LEFT JOIN fnlayers USING (annosetid) " + //
+						"LEFT JOIN fnlayertypes USING (layertypeid) " + //
+						"LEFT JOIN fnlabels USING (layerid) " + //
+						"LEFT JOIN fnlabeltypes USING (labeltypeid) " + //
+						"LEFT JOIN fnlabelitypes USING (labelitypeid) " + //
+						"WHERE annosetid = ? AND labeltypeid IS NOT NULL " + //
+						"GROUP BY layerid " + //
+						"ORDER BY rank,layerid,start,end)"; //
 				break;
 
 			case PATTERNS_LAYERS_X:
-				table = "(SELECT sentenceid,text,layerid,layertype,rank," + //$NON-NLS-1$
-						"GROUP_CONCAT(start||':'||" + //$NON-NLS-1$
-						"end||':'||" + //$NON-NLS-1$
-						"labeltype||':'||" + //$NON-NLS-1$
-						"CASE WHEN labelitype IS NULL THEN '' ELSE labelitype END||':'||" + //$NON-NLS-1$
-						"CASE WHEN bgcolor IS NULL THEN '' ELSE bgcolor END||':'||" + //$NON-NLS-1$
-						"CASE WHEN fgcolor IS NULL THEN '' ELSE fgcolor END,'|') AS annotations " + //$NON-NLS-1$
-						"FROM fnpatterns_annosets " + //$NON-NLS-1$
-						"LEFT JOIN fnannosets USING (annoSetId) " + //$NON-NLS-1$
-						"LEFT JOIN fnsentences USING (sentenceid) " + //$NON-NLS-1$
-						"LEFT JOIN fnlayers USING (annoSetId) " + //$NON-NLS-1$
-						"LEFT JOIN fnlayertypes USING (layertypeid) " + //$NON-NLS-1$
-						"LEFT JOIN fnlabels USING (layerid) " + //$NON-NLS-1$
-						"LEFT JOIN fnlabeltypes USING (labeltypeid) " + //$NON-NLS-1$
-						"LEFT JOIN fnlabelitypes USING (labelitypeid) " + //$NON-NLS-1$
-						"WHERE patternid = ? AND labeltypeid IS NOT NULL " + //$NON-NLS-1$
-						"GROUP BY layerid " + //$NON-NLS-1$
-						"ORDER BY rank,layerid,start,end)"; //$NON-NLS-1$
+				table = "(SELECT sentenceid,text,layerid,layertype,rank," + //
+						"GROUP_CONCAT(start||':'||" + //
+						"end||':'||" + //
+						"labeltype||':'||" + //
+						"CASE WHEN labelitype IS NULL THEN '' ELSE labelitype END||':'||" + //
+						"CASE WHEN bgcolor IS NULL THEN '' ELSE bgcolor END||':'||" + //
+						"CASE WHEN fgcolor IS NULL THEN '' ELSE fgcolor END,'|') AS " + Patterns_Layers_X.LAYERANNOTATIONS + ' ' + //
+						"FROM fnpatterns_annosets " + //
+						"LEFT JOIN fnannosets USING (annosetid) " + //
+						"LEFT JOIN fnsentences USING (sentenceid) " + //
+						"LEFT JOIN fnlayers USING (annosetid) " + //
+						"LEFT JOIN fnlayertypes USING (layertypeid) " + //
+						"LEFT JOIN fnlabels USING (layerid) " + //
+						"LEFT JOIN fnlabeltypes USING (labeltypeid) " + //
+						"LEFT JOIN fnlabelitypes USING (labelitypeid) " + //
+						"WHERE patternid = ? AND labeltypeid IS NOT NULL " + //
+						"GROUP BY layerid " + //
+						"ORDER BY rank,layerid,start,end)"; //
 				break;
 
 			case VALENCEUNITS_LAYERS_X:
-				table = "(SELECT sentenceid,text,layerid,layertype,rank," + //$NON-NLS-1$
-						"GROUP_CONCAT(start||':'||" + //$NON-NLS-1$
-						"end||':'||" + //$NON-NLS-1$
-						"labeltype||':'||" + //$NON-NLS-1$
-						"CASE WHEN labelitype IS NULL THEN '' ELSE labelitype END||':'||" + //$NON-NLS-1$
-						"CASE WHEN bgcolor IS NULL THEN '' ELSE bgcolor END||':'||" + //$NON-NLS-1$
-						"CASE WHEN fgcolor IS NULL THEN '' ELSE fgcolor END,'|') AS annotations " + //$NON-NLS-1$
-						"FROM fnvalenceunits_annosets " + //$NON-NLS-1$
-						"LEFT JOIN fnannosets USING (annoSetId) " + //$NON-NLS-1$
-						"LEFT JOIN fnsentences USING (sentenceid) " + //$NON-NLS-1$
-						"LEFT JOIN fnlayers USING (annoSetId) " + //$NON-NLS-1$
-						"LEFT JOIN fnlayertypes USING (layertypeid) " + //$NON-NLS-1$
-						"LEFT JOIN fnlabels USING (layerid) " + //$NON-NLS-1$
-						"LEFT JOIN fnlabeltypes USING (labeltypeid) " + //$NON-NLS-1$
-						"LEFT JOIN fnlabelitypes USING (labelitypeid) " + //$NON-NLS-1$
-						"WHERE vuid = ? AND labeltypeid IS NOT NULL " + //$NON-NLS-1$
-						"GROUP BY layerid " + //$NON-NLS-1$
-						"ORDER BY rank,layerid,start,end)"; //$NON-NLS-1$
+				table = "(SELECT sentenceid,text,layerid,layertype,rank," + //
+						"GROUP_CONCAT(start||':'||" + //
+						"end||':'||" + //
+						"labeltype||':'||" + //
+						"CASE WHEN labelitype IS NULL THEN '' ELSE labelitype END||':'||" + //
+						"CASE WHEN bgcolor IS NULL THEN '' ELSE bgcolor END||':'||" + //
+						"CASE WHEN fgcolor IS NULL THEN '' ELSE fgcolor END,'|') AS " + ValenceUnits_Layers_X.LAYERANNOTATIONS + ' ' + //
+						"FROM fnvalenceunits_annosets " + //
+						"LEFT JOIN fnannosets USING (annosetid) " + //
+						"LEFT JOIN fnsentences USING (sentenceid) " + //
+						"LEFT JOIN fnlayers USING (annosetid) " + //
+						"LEFT JOIN fnlayertypes USING (layertypeid) " + //
+						"LEFT JOIN fnlabels USING (layerid) " + //
+						"LEFT JOIN fnlabeltypes USING (labeltypeid) " + //
+						"LEFT JOIN fnlabelitypes USING (labelitypeid) " + //
+						"WHERE vuid = ? AND labeltypeid IS NOT NULL " + //
+						"GROUP BY layerid " + //
+						"ORDER BY rank,layerid,start,end)"; //
 				break;
 
 			case WORDS_LEXUNITS_FRAMES:
-				table = "words " + //$NON-NLS-1$
-						"INNER JOIN fnwords USING (wordid) " + //$NON-NLS-1$
-						"INNER JOIN fnlexemes USING (fnwordid) " + //$NON-NLS-1$
-						"INNER JOIN fnlexunits AS lu USING (luId) " + //$NON-NLS-1$
-						"LEFT JOIN fnframes USING (frameId) " + //$NON-NLS-1$
-						"LEFT JOIN fnposes AS p ON (lu.posid = p.posid) " + //$NON-NLS-1$
-						"LEFT JOIN fnfes AS ie ON (incorporatedfeid = feid) " + //$NON-NLS-1$
-						"LEFT JOIN fnfetypes AS it ON (incorporatedfetypeid = it.fetypeid)"; //$NON-NLS-1$
+				table = "words " + //
+						"INNER JOIN fnwords USING (wordid) " + //
+						"INNER JOIN fnlexemes USING (fnwordid) " + //
+						"INNER JOIN fnlexunits AS " + FrameNetContract.LU + " USING (luid) " + //
+						"LEFT JOIN fnframes USING (frameid) " + //
+						"LEFT JOIN fnposes AS " + FrameNetContract.POS + " ON (" + FrameNetContract.LU + ".posid = " + FrameNetContract.POS + ".posid) " + //
+						"LEFT JOIN fnfes AS " + FrameNetContract.FE + " ON (incorporatedfeid = feid) " + //
+						"LEFT JOIN fnfetypes AS " + FrameNetContract.FETYPE + " ON (incorporatedfetypeid = " + FrameNetContract.FE + ".fetypeid)"; //
 				break;
 
 			case FRAMES_FES_BY_FE:
-				groupBy = "feid"; //$NON-NLS-1$
+				groupBy = "feid"; //
 				//$FALL-THROUGH$
 				//noinspection fallthrough
 			case FRAMES_FES:
-				table = "fnframes " + //$NON-NLS-1$
-						"INNER JOIN fnfes USING (frameId) " + //$NON-NLS-1$
-						"LEFT JOIN fnfetypes USING (fetypeid) " + //$NON-NLS-1$
-						"LEFT JOIN fncoretypes USING (coretypeid) " + //$NON-NLS-1$
-						"LEFT JOIN fnfes_semtypes USING (feid) " + //$NON-NLS-1$
-						"LEFT JOIN fnsemtypes USING (semtypeid)"; //$NON-NLS-1$
+				table = "fnframes " + //
+						"INNER JOIN fnfes USING (frameid) " + //
+						"LEFT JOIN fnfetypes USING (fetypeid) " + //
+						"LEFT JOIN fncoretypes USING (coretypeid) " + //
+						"LEFT JOIN fnfes_semtypes USING (feid) " + //
+						"LEFT JOIN fnsemtypes USING (semtypeid)"; //
 				break;
 
 			case LEXUNITS_SENTENCES_BY_SENTENCE:
-				groupBy = "s.sentenceid"; //$NON-NLS-1$
+				groupBy = FrameNetContract.SENTENCE + ".sentenceid"; //
 				//$FALL-THROUGH$
 				//noinspection fallthrough
 			case LEXUNITS_SENTENCES:
-				table = "fnlexunits AS u " + //$NON-NLS-1$
-						"LEFT JOIN fnsubcorpuses USING (luId) " + //$NON-NLS-1$
-						"LEFT JOIN fnsubcorpuses_sentences USING (subcorpusid) " + //$NON-NLS-1$
-						"INNER JOIN fnsentences AS s USING (sentenceid)"; //$NON-NLS-1$
+				table = "fnlexunits AS " + FrameNetContract.LU + " " + //
+						"LEFT JOIN fnsubcorpuses USING (luid) " + //
+						"LEFT JOIN fnsubcorpuses_sentences USING (subcorpusid) " + //
+						"INNER JOIN fnsentences AS " + FrameNetContract.SENTENCE + " USING (sentenceid)"; //
 				break;
 
 			case LEXUNITS_SENTENCES_ANNOSETS_LAYERS_LABELS_BY_SENTENCE:
-				groupBy = "s.sentenceid"; //$NON-NLS-1$
+				groupBy = FrameNetContract.SENTENCE + ".sentenceid"; //
 				//$FALL-THROUGH$
 				//noinspection fallthrough
 			case LEXUNITS_SENTENCES_ANNOSETS_LAYERS_LABELS:
-				table = "fnlexunits AS u " + //$NON-NLS-1$
-						"LEFT JOIN fnsubcorpuses USING (luId) " + //$NON-NLS-1$
-						"LEFT JOIN fnsubcorpuses_sentences USING (subcorpusid) " + //$NON-NLS-1$
-						"INNER JOIN fnsentences AS s USING (sentenceid) " + //$NON-NLS-1$
-						"LEFT JOIN fnannosets USING (sentenceid) " + //$NON-NLS-1$
-						"LEFT JOIN fnlayers USING (annoSetId) " + //$NON-NLS-1$
-						"LEFT JOIN fnlayertypes USING (layertypeid) " + //$NON-NLS-1$
-						"LEFT JOIN fnlabels USING (layerid) " + //$NON-NLS-1$
-						"LEFT JOIN fnlabeltypes USING (labeltypeid) " + //$NON-NLS-1$
-						"LEFT JOIN fnlabelitypes USING (labelitypeid)"; //$NON-NLS-1$
+				table = "fnlexunits AS " + FrameNetContract.LU + " " + //
+						"LEFT JOIN fnsubcorpuses USING (luid) " + //
+						"LEFT JOIN fnsubcorpuses_sentences USING (subcorpusid) " + //
+						"INNER JOIN fnsentences AS " + FrameNetContract.SENTENCE + " USING (sentenceid) " + //
+						"LEFT JOIN fnannosets USING (sentenceid) " + //
+						"LEFT JOIN fnlayers USING (annosetid) " + //
+						"LEFT JOIN fnlayertypes USING (layertypeid) " + //
+						"LEFT JOIN fnlabels USING (layerid) " + //
+						"LEFT JOIN fnlabeltypes USING (labeltypeid) " + //
+						"LEFT JOIN fnlabelitypes USING (labelitypeid)"; //
 				break;
 
 			case LEXUNITS_GOVERNORS:
-				table = "fnlexunits " + //$NON-NLS-1$
-						"INNER JOIN fnlexunits_governors AS s USING (luId) " + //$NON-NLS-1$
-						"INNER JOIN fngovernors USING (governorid) " + //$NON-NLS-1$
-						"LEFT JOIN fnwords USING (fnwordid)"; //$NON-NLS-1$
+				table = "fnlexunits " + //
+						"INNER JOIN fnlexunits_governors USING (luid) " + //
+						"INNER JOIN fngovernors USING (governorid) " + //
+						"LEFT JOIN fnwords USING (fnwordid)"; //
 				break;
 
 			case GOVERNORS_ANNOSETS:
-				table = "fngovernors_annosets " + //$NON-NLS-1$
-						"LEFT JOIN fnannosets USING (annoSetId) " + //$NON-NLS-1$
-						"LEFT JOIN fnsentences USING (sentenceid)"; //$NON-NLS-1$
+				table = "fngovernors_annosets " + //
+						"LEFT JOIN fnannosets USING (annosetid) " + //
+						"LEFT JOIN fnsentences USING (sentenceid)"; //
 				break;
 
 			case LEXUNITS_REALIZATIONS_BY_REALIZATION:
-				groupBy = "ferid"; //$NON-NLS-1$
+				groupBy = "ferid"; //
 				//$FALL-THROUGH$
 				//noinspection fallthrough
 			case LEXUNITS_REALIZATIONS:
-				table = "fnlexunits " + //$NON-NLS-1$
-						"INNER JOIN fnferealizations AS r USING (luId) " + //$NON-NLS-1$
-						"LEFT JOIN fnvalenceunits USING (ferid) " + //$NON-NLS-1$
-						"LEFT JOIN fnfetypes USING (fetypeid) " + //$NON-NLS-1$
-						"LEFT JOIN fngftypes USING (gfid) " + //$NON-NLS-1$
-						"LEFT JOIN fnpttypes USING (ptid)"; //$NON-NLS-1$
+				table = "fnlexunits " + //
+						"INNER JOIN fnferealizations USING (luid) " + //
+						"LEFT JOIN fnvalenceunits USING (ferid) " + //
+						"LEFT JOIN fnfetypes USING (fetypeid) " + //
+						"LEFT JOIN fngftypes USING (gfid) " + //
+						"LEFT JOIN fnpttypes USING (ptid)"; //
 				break;
 
 			case LEXUNITS_GROUPREALIZATIONS_BY_PATTERN:
-				groupBy = "patternid"; //$NON-NLS-1$
+				groupBy = "patternid"; //
 				//$FALL-THROUGH$
 				//noinspection fallthrough
 			case LEXUNITS_GROUPREALIZATIONS:
-				table = "fnlexunits " + //$NON-NLS-1$
-						"LEFT JOIN fnfegrouprealizations AS r USING (luId) " + //$NON-NLS-1$
-						"LEFT JOIN fnpatterns AS p USING (fegrid) " + //$NON-NLS-1$
-						"LEFT JOIN fnpatterns_valenceunits AS v USING (patternid) " + //$NON-NLS-1$
-						"LEFT JOIN fnvalenceunits USING (vuid) " + //$NON-NLS-1$
-						"LEFT JOIN fnfetypes USING (fetypeid) " + //$NON-NLS-1$
-						"LEFT JOIN fngftypes USING (gfid) " + //$NON-NLS-1$
-						"LEFT JOIN fnpttypes USING (ptid)"; //$NON-NLS-1$
+				table = "fnlexunits " + //
+						"LEFT JOIN fnfegrouprealizations USING (luid) " + //
+						"LEFT JOIN fnpatterns USING (fegrid) " + //
+						"LEFT JOIN fnpatterns_valenceunits USING (patternid) " + //
+						"LEFT JOIN fnvalenceunits USING (vuid) " + //
+						"LEFT JOIN fnfetypes USING (fetypeid) " + //
+						"LEFT JOIN fngftypes USING (gfid) " + //
+						"LEFT JOIN fnpttypes USING (ptid)"; //
 				break;
 
 			case PATTERNS_SENTENCES:
-				table = "fnpatterns_annosets " + //$NON-NLS-1$
-						"LEFT JOIN fnannosets AS r USING (annoSetId) " + //$NON-NLS-1$
-						"LEFT JOIN fnsentences AS r USING (sentenceid)"; //$NON-NLS-1$
+				table = "fnpatterns_annosets " + //
+						"LEFT JOIN fnannosets AS " + FrameNetContract.ANNOSET + " USING (annosetid) " + //
+						"LEFT JOIN fnsentences AS " + FrameNetContract.SENTENCE + " USING (sentenceid)"; //
 				break;
 
 			case VALENCEUNITS_SENTENCES:
-				table = "fnvalenceunits_annosets " + //$NON-NLS-1$
-						"LEFT JOIN fnannosets AS r USING (annoSetId) " + //$NON-NLS-1$
-						"LEFT JOIN fnsentences AS r USING (sentenceid)"; //$NON-NLS-1$
+				table = "fnvalenceunits_annosets " + //
+						"LEFT JOIN fnannosets AS " + FrameNetContract.ANNOSET + " USING (annosetid) " + //
+						"LEFT JOIN fnsentences AS " + FrameNetContract.SENTENCE + " USING (sentenceid)"; //
 				break;
 
 			case LOOKUP_FTS_SENTENCES:
-				table = "fnsentences_text_fts4"; //$NON-NLS-1$
+				table = "fnsentences_text_fts4"; //
 				break;
 
 			default:
 			case UriMatcher.NO_MATCH:
-				throw new RuntimeException("Malformed URI " + uri); //$NON-NLS-1$
+				throw new RuntimeException("Malformed URI " + uri); //
 		}
 
 		if (SqlUNetProvider.debugSql)
 		{
 			final String sql = SQLiteQueryBuilder.buildQueryString(false, table, projection, actualSelection, groupBy, null, sortOrder, null);
-			Log.d(FrameNetProvider.TAG + "SQL", sql); //$NON-NLS-1$
-			Log.d(FrameNetProvider.TAG + "ARGS", SqlUNetProvider.argsToString(selectionArgs)); //$NON-NLS-1$
+			Log.d(FrameNetProvider.TAG + "SQL", sql); //
+			Log.d(FrameNetProvider.TAG + "ARGS", SqlUNetProvider.argsToString(selectionArgs)); //
 		}
 
 		// do query
@@ -517,7 +520,9 @@ public class FrameNetProvider extends SqlUNetProvider
 		}
 		catch (SQLiteException e)
 		{
-			Log.e(TAG, "FrameNet provider query failed", e); //$NON-NLS-1$
+			final String sql = SQLiteQueryBuilder.buildQueryString(false, table, projection, actualSelection, groupBy, null, sortOrder, null);
+			Log.d(TAG + "SQL", sql); //
+			Log.e(TAG, "FrameNet provider query failed", e); //
 			return null;
 		}
 	}

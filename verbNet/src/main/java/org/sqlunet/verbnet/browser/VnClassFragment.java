@@ -45,7 +45,7 @@ public class VnClassFragment extends Fragment
 
 		// root node
 		final TreeNode root = TreeNode.makeRoot();
-		final TreeNode queryNode = TreeFactory.addTreeItemNode(root, "Classes", R.drawable.verbnet, getActivity()); //$NON-NLS-1$
+		final TreeNode queryNode = TreeFactory.addTreeItemNode(root, "Classes", R.drawable.verbnet, getActivity()); //
 
 		// tree
 		this.treeView = new TreeView(getActivity(), root);
@@ -57,7 +57,7 @@ public class VnClassFragment extends Fragment
 		// saved state
 		if (savedInstanceState != null)
 		{
-			final String state = savedInstanceState.getString("treeViewState"); //$NON-NLS-1$
+			final String state = savedInstanceState.getString("treeViewState"); //
 			if (state != null && !state.isEmpty())
 			{
 				this.treeView.restoreState(state);
@@ -81,6 +81,6 @@ public class VnClassFragment extends Fragment
 	public void onSaveInstanceState(final Bundle outState)
 	{
 		super.onSaveInstanceState(outState);
-		outState.putString("treeViewState", this.treeView.getSaveState()); //$NON-NLS-1$
+		outState.putString("treeViewState", this.treeView.getSaveState()); //
 	}
 }

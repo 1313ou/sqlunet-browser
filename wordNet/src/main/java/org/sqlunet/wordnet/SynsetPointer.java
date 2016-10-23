@@ -109,10 +109,10 @@ public class SynsetPointer implements Parcelable, HasSynsetId, HasPos
 	@Override
 	public String toString()
 	{
-		return "synsetId=" + //$NON-NLS-1$
+		return "synsetid=" + //
 				this.synsetId +
 				' ' +
-				"pos=" + //$NON-NLS-1$
+				"pos=" + //
 				this.pos;
 	}
 }

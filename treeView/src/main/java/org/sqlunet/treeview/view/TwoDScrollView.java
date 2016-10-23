@@ -192,7 +192,7 @@ public class TwoDScrollView extends FrameLayout
 	{
 		if (getChildCount() > 0)
 		{
-			throw new IllegalStateException("TwoDScrollView can host only one direct child"); //$NON-NLS-1$
+			throw new IllegalStateException("TwoDScrollView can host only one direct child"); //
 		}
 		super.addView(child);
 	}
@@ -202,7 +202,7 @@ public class TwoDScrollView extends FrameLayout
 	{
 		if (getChildCount() > 0)
 		{
-			throw new IllegalStateException("TwoDScrollView can host only one direct child"); //$NON-NLS-1$
+			throw new IllegalStateException("TwoDScrollView can host only one direct child"); //
 		}
 		super.addView(child, index);
 	}
@@ -212,7 +212,7 @@ public class TwoDScrollView extends FrameLayout
 	{
 		if (getChildCount() > 0)
 		{
-			throw new IllegalStateException("TwoDScrollView can host only one direct child"); //$NON-NLS-1$
+			throw new IllegalStateException("TwoDScrollView can host only one direct child"); //
 		}
 		super.addView(child, params);
 	}
@@ -222,7 +222,7 @@ public class TwoDScrollView extends FrameLayout
 	{
 		if (getChildCount() > 0)
 		{
-			throw new IllegalStateException("TwoDScrollView can host only one direct child"); //$NON-NLS-1$
+			throw new IllegalStateException("TwoDScrollView can host only one direct child"); //
 		}
 		super.addView(child, index, params);
 	}

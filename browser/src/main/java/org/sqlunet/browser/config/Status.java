@@ -22,7 +22,7 @@ import java.util.List;
  */
 public class Status
 {
-	static private final String TAG = "SqlUNet Status"; //$NON-NLS-1$
+	static private final String TAG = "SqlUNet Status"; //
 
 	// status flags
 
@@ -55,21 +55,21 @@ public class Status
 			}
 			catch (Exception e)
 			{
-				Log.e(TAG, "While getting status", e); //$NON-NLS-1$
+				Log.e(TAG, "While getting status", e); //
 				return status;
 			}
 
-			boolean existsIdx = contains(existingTablesAndIndexes, "index_words_lemma", "index_senses_wordid", "index_senses_synsetid", "index_synsets_synsetid", //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
-					"index_casedwords_wordid_casedwordid", //$NON-NLS-1$
-					"index_semlinks_synset1id", "index_semlinks_linkid", //$NON-NLS-1$ //$NON-NLS-2$
-					"index_samples_synsetid", //$NON-NLS-1$
-					"index_vnwords_wordid", "index_vnrolemaps_classid", "index_vnframemaps_classid", //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-					"index_pbwords_wordid", "index_pbrolesets_pbwordid", "index_pbroles_rolesetid", "index_pbexamples_rolesetid", //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
-					"index_fnwords_wordid", "index_fnlexemes_fnwordid", "index_fnfes_frameid", "index_fnlayers_annosetid", "index_fnlabels_layerid", //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$
-					"index_pm_wordid", "index_pm_synsetid"); //$NON-NLS-1$ //$NON-NLS-2$
-			boolean existsPm = contains(existingTablesAndIndexes, "pmvn", "pmpb", "pmfn"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-			boolean existsTs = contains(existingTablesAndIndexes, "words_lemma_fts4", "synsets_definition_fts4", "samples_sample_fts4"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-			boolean existsTsFn = contains(existingTablesAndIndexes, "fnsentences_text_fts4"); //$NON-NLS-1$
+			boolean existsIdx = contains(existingTablesAndIndexes, "index_words_lemma", "index_senses_wordid", "index_senses_synsetid", "index_synsets_synsetid", //
+					"index_casedwords_wordid_casedwordid", //
+					"index_semlinks_synset1id", "index_semlinks_linkid", //
+					"index_samples_synsetid", //
+					"index_vnwords_wordid", "index_vnrolemaps_classid", "index_vnframemaps_classid", //
+					"index_pbwords_wordid", "index_pbrolesets_pbwordid", "index_pbroles_rolesetid", "index_pbexamples_rolesetid", //
+					"index_fnwords_wordid", "index_fnlexemes_fnwordid", "index_fnfes_frameid", "index_fnlayers_annosetid", "index_fnlabels_layerid", //
+					"index_pm_wordid", "index_pm_synsetid"); //
+			boolean existsPm = contains(existingTablesAndIndexes, "pmvn", "pmpb", "pmfn"); //
+			boolean existsTs = contains(existingTablesAndIndexes, "words_lemma_fts4", "synsets_definition_fts4", "samples_sample_fts4"); //
+			boolean existsTsFn = contains(existingTablesAndIndexes, "fnsentences_text_fts4"); //
 
 			if (existsIdx)
 			{
@@ -125,17 +125,17 @@ public class Status
 	 */
 	private static List<String> tablesAndIndexes(final Context context)
 	{
-		final String order = "CASE " // //$NON-NLS-1$
-				+ "WHEN " + ManagerContract.TablesAndIndices.TYPE + " = 'table' THEN '1' " // //$NON-NLS-1$ //$NON-NLS-2$
-				+ "WHEN " + ManagerContract.TablesAndIndices.TYPE + " = 'view' THEN '2' " // //$NON-NLS-1$ //$NON-NLS-2$
-				+ "WHEN " + ManagerContract.TablesAndIndices.TYPE + " = 'index' THEN '3' " // //$NON-NLS-1$ //$NON-NLS-2$
-				+ "ELSE " + ManagerContract.TablesAndIndices.TYPE + " END ASC," // //$NON-NLS-1$ //$NON-NLS-2$
-				+ ManagerContract.TablesAndIndices.NAME + " ASC"; //$NON-NLS-1$
+		final String order = "CASE " //
+				+ "WHEN " + ManagerContract.TablesAndIndices.TYPE + " = 'table' THEN '1' " //
+				+ "WHEN " + ManagerContract.TablesAndIndices.TYPE + " = 'view' THEN '2' " //
+				+ "WHEN " + ManagerContract.TablesAndIndices.TYPE + " = 'index' THEN '3' " //
+				+ "ELSE " + ManagerContract.TablesAndIndices.TYPE + " END ASC," //
+				+ ManagerContract.TablesAndIndices.NAME + " ASC"; //
 
 		final Cursor cursor = context.getContentResolver().query( //
 				Uri.parse(TablesAndIndices.CONTENT_URI), //
 				new String[]{TablesAndIndices.TYPE, TablesAndIndices.NAME}, // projection
-				"name NOT LIKE 'sqlite_%' AND name NOT LIKE 'android_%'", // selection criteria //$NON-NLS-1$
+				"name NOT LIKE 'sqlite_%' AND name NOT LIKE 'android_%'", // selection criteria //
 				null, //
 				order);
 		assert cursor != null;

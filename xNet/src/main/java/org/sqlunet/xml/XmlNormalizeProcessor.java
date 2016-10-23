@@ -16,12 +16,12 @@ import org.w3c.dom.ls.LSSerializer;
 @SuppressWarnings("unused")
 public class XmlNormalizeProcessor extends XmlProcessor
 {
-	private static final String TAG = "XmlNormalizeProcessor"; //$NON-NLS-1$
+	private static final String TAG = "XmlNormalizeProcessor"; //
 
 	@Override
 	public String process(final String xml) throws Exception
 	{
-		final Element e = XmlProcessor.docFromString("<root>" + xml + "</root>"); //$NON-NLS-1$//$NON-NLS-2$
+		final Element e = XmlProcessor.docFromString("<root>" + xml + "</root>"); ////
 		try
 		{
 			return XmlNormalizeProcessor.elementToString(e);

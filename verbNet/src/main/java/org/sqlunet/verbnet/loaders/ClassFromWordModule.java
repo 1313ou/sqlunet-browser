@@ -97,17 +97,17 @@ public class ClassFromWordModule extends BasicModule
 						Words_VnClasses_VnGroupings.CLASSID, //
 						Words_VnClasses_VnGroupings.CLASS, //
 						Words_VnClasses_VnGroupings.CLASSTAG, //
-						"(" + Words_VnClasses_VnGroupings.SYNSETID + " IS NULL) AS " + Words_VnClasses_VnGroupings.NULLSYNSET, // //$NON-NLS-1$ //$NON-NLS-2$
+						"(" + Words_VnClasses_VnGroupings.SYNSETID + " IS NULL) AS " + Words_VnClasses_VnGroupings.NULLSYNSET, //
 						Words_VnClasses_VnGroupings.SENSENUM, //
 						Words_VnClasses_VnGroupings.SENSEKEY, //
 						Words_VnClasses_VnGroupings.QUALITY, //
-						"GROUP_CONCAT(" + Words_VnClasses_VnGroupings.GROUPING + ", '|') AS " + Words_VnClasses_VnGroupings.GROUPINGS, // //$NON-NLS-1$ //$NON-NLS-2$
+						"GROUP_CONCAT(" + Words_VnClasses_VnGroupings.GROUPING + ", '|') AS " + Words_VnClasses_VnGroupings.GROUPINGS, //
 				};
-				String selection = Words_VnClasses_VnGroupings.WORDID + " = ?"; //$NON-NLS-1$
+				String selection = Words_VnClasses_VnGroupings.WORDID + " = ?"; //
 				String[] selectionArgs;
 				if (synsetId != null && synsetId != 0)
 				{
-					selection += " AND (" + Words_VnClasses_VnGroupings.SYNSETID + " = ? OR " + Words_VnClasses_VnGroupings.SYNSETID + " IS NULL)"; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+					selection += " AND (" + Words_VnClasses_VnGroupings.SYNSETID + " = ? OR " + Words_VnClasses_VnGroupings.SYNSETID + " IS NULL)"; //
 					selectionArgs = new String[]{ //
 							Long.toString(wordId), //
 							Long.toString(synsetId)};
@@ -148,15 +148,15 @@ public class ClassFromWordModule extends BasicModule
 						Spanner.append(sb, vnClass, 0, VerbNetFactories.classFactory);
 						// sb.append(" tag=");
 						// sb.append(cursor.getString(idClassTag));
-						sb.append(" id="); //$NON-NLS-1$
+						sb.append(" id="); //
 						sb.append(Integer.toString(classId));
 
 						// groupings
 						final TreeNode itemsNode = groupings(groupings);
 
 						// sub nodes
-						final TreeNode rolesNode = TreeFactory.newQueryNode(new RolesQuery(classId, R.drawable.role, "Roles"), ClassFromWordModule.this.getContext()); //$NON-NLS-1$
-						final TreeNode framesNode = TreeFactory.newQueryNode(new FramesQuery(classId, R.drawable.vnframe, "Frames"), ClassFromWordModule.this.getContext()); //$NON-NLS-1$
+						final TreeNode rolesNode = TreeFactory.newQueryNode(new RolesQuery(classId, R.drawable.role, "Roles"), ClassFromWordModule.this.getContext()); //
+						final TreeNode framesNode = TreeFactory.newQueryNode(new FramesQuery(classId, R.drawable.vnframe, "Frames"), ClassFromWordModule.this.getContext()); //
 
 						// attach result
 						TreeFactory.addTextNode(parent, sb, ClassFromWordModule.this.getContext(), itemsNode, rolesNode, framesNode);

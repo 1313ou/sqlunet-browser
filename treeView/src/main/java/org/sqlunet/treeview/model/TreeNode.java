@@ -19,7 +19,7 @@ import java.util.List;
  */
 public class TreeNode
 {
-	private static final String NODES_ID_SEPARATOR = ":"; //$NON-NLS-1$
+	private static final String NODES_ID_SEPARATOR = ":"; //
 
 	/**
 	 * Id

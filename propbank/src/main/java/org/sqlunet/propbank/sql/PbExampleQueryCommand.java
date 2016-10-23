@@ -75,9 +75,9 @@ class PbExampleQueryCommand extends DBQueryCommand
 			return null;
 		}
 		final List<PbArg> args = new ArrayList<>();
-		for (final String arg : concatArg.split("\\|")) //$NON-NLS-1$
+		for (final String arg : concatArg.split("\\|")) //
 		{
-			final String[] argFields = arg.split("~"); //$NON-NLS-1$
+			final String[] argFields = arg.split("~"); //
 			args.add(new PbArg(argFields));
 		}
 		return args;

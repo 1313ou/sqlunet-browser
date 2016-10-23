@@ -54,10 +54,10 @@ public class SenseModule extends SynsetModule
 		}
 
 		// sub nodes
-		final TreeNode dataNode = TreeFactory.newTextNode("data", SenseModule.this.getContext()); //$NON-NLS-1$
-		final TreeNode membersNode = TreeFactory.newTextNode("members", SenseModule.this.getContext()); //$NON-NLS-1$
-		final TreeNode linksNode = TreeFactory.newQueryNode(new LinksQuery(this.synsetId, this.wordId, R.drawable.ic_other, "Links"), SenseModule.this.getContext()); //$NON-NLS-1$
-		final TreeNode samplesNode = TreeFactory.newQueryNode(new SamplesQuery(this.synsetId, R.drawable.sample, "Samples"), SenseModule.this.getContext()); //$NON-NLS-1$
+		final TreeNode dataNode = TreeFactory.newTextNode("data", SenseModule.this.getContext()); //
+		final TreeNode membersNode = TreeFactory.newTextNode("members", SenseModule.this.getContext()); //
+		final TreeNode linksNode = TreeFactory.newQueryNode(new LinksQuery(this.synsetId, this.wordId, R.drawable.ic_other, "Links"), SenseModule.this.getContext()); //
+		final TreeNode samplesNode = TreeFactory.newQueryNode(new SamplesQuery(this.synsetId, R.drawable.sample, "Samples"), SenseModule.this.getContext()); //
 
 		// attach result
 		node.addChildren(dataNode, membersNode, linksNode, samplesNode);

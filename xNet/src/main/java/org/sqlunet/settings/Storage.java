@@ -19,22 +19,22 @@ import java.util.List;
  */
 public class Storage
 {
-	private static final String TAG = "Storage"; //$NON-NLS-1$
+	private static final String TAG = "Storage"; //
 
 	/**
 	 * SqlUnet DB filename
 	 */
-	public static final String DBFILE = "sqlunet.db"; //$NON-NLS-1$
+	public static final String DBFILE = "sqlunet.db"; //
 
 	/**
 	 * SqlUnet sub directory when external public
 	 */
-	static final String SQLUNETDIR = "sqlunet" + '/'; //$NON-NLS-1$
+	static final String SQLUNETDIR = "sqlunet" + '/'; //
 
 	/**
 	 * SqlUnet storage preference name
 	 */
-	public static final String PREF_SQLUNET_STORAGE = "pref_storage"; //$NON-NLS-1$
+	public static final String PREF_SQLUNET_STORAGE = "pref_storage"; //
 
 	// D A T A B A S E
 
@@ -50,21 +50,21 @@ public class Storage
 		// test if set in preference
 		final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
 		final String pref = sharedPref.getString(Storage.PREF_SQLUNET_STORAGE, null);
-		if (pref != null && !pref.isEmpty() && !"auto".equals(pref)) //$NON-NLS-1$
+		if (pref != null && !pref.isEmpty() && !"auto".equals(pref)) //
 		{
 			final File prefStorage = new File(pref);
 			if (Storage.build(prefStorage))
 			{
-				Log.d(TAG, "Saved " + prefStorage.getAbsolutePath()); //$NON-NLS-1$
+				Log.d(TAG, "Saved " + prefStorage.getAbsolutePath()); //
 				return prefStorage;
 			}
 		}
 
 		// auto
-		if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M || "auto".equals(pref)) //$NON-NLS-1$
+		if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M || "auto".equals(pref)) //
 		{
 			final File autoStorage = context.getFilesDir();
-			Log.d(TAG, "Auto " + autoStorage.getAbsolutePath()); //$NON-NLS-1$
+			Log.d(TAG, "Auto " + autoStorage.getAbsolutePath()); //
 			return autoStorage; // context.getDatabasePath(DBFILE).getParentFile();
 		}
 
@@ -73,7 +73,7 @@ public class Storage
 
 		// record as discovered
 		sharedPref.edit().putString(Storage.PREF_SQLUNET_STORAGE, discoveredStorage.getAbsolutePath()).commit();
-		Log.d(TAG, "Saving " + discoveredStorage.getAbsolutePath()); //$NON-NLS-1$
+		Log.d(TAG, "Saving " + discoveredStorage.getAbsolutePath()); //
 
 		return discoveredStorage;
 	}
@@ -91,12 +91,12 @@ public class Storage
 		{
 			if (candidate.status == 0)
 			{
-				Log.d(TAG, "Select " + candidate.toString()); //$NON-NLS-1$
+				Log.d(TAG, "Select " + candidate.toString()); //
 				return candidate.dir.file;
 			}
 		}
-		Log.e(TAG, "Error while looking for candidate storage. External storage is " + StorageUtils.reportExternalStorage()); //$NON-NLS-1$
-		throw new RuntimeException("Cannot find suitable storage " + StorageStyle.reportStyledCandidateStorage(context) + ' ' + StorageUtils.reportExternalStorage()); //$NON-NLS-1$
+		Log.e(TAG, "Error while looking for candidate storage. External storage is " + StorageUtils.reportExternalStorage()); //
+		throw new RuntimeException("Cannot find suitable storage " + StorageStyle.reportStyledCandidateStorage(context) + ' ' + StorageUtils.reportExternalStorage()); //
 	}
 
 	/**

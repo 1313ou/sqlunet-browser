@@ -16,7 +16,7 @@ import org.sqlunet.settings.StorageSettings;
  */
 public abstract class SqlUNetProvider extends ContentProvider
 {
-	private static final String TAG = "SqlUNetProvider"; //$NON-NLS-1$
+	private static final String TAG = "SqlUNetProvider"; //
 
 	/**
 	 * Debug generated SQL
@@ -42,7 +42,7 @@ public abstract class SqlUNetProvider extends ContentProvider
 		public void onUpgrade(final SQLiteDatabase db, final int oldVersion, final int newVersion)
 		{
 			// do nothing
-			System.err.println("Upgrade"); //$NON-NLS-1$
+			System.err.println("Upgrade"); //
 		}
 	}
 */
@@ -61,11 +61,11 @@ public abstract class SqlUNetProvider extends ContentProvider
 		try
 		{
 			this.db = open(path, SQLiteDatabase.OPEN_READONLY);
-			Log.d(SqlUNetProvider.TAG, "Opened by " + this.getClass() + " content provider: " + this.db.getPath()); //$NON-NLS-1$ //$NON-NLS-2$
+			Log.d(SqlUNetProvider.TAG, "Opened by " + this.getClass() + " content provider: " + this.db.getPath()); //
 		}
 		catch (final SQLiteCantOpenDatabaseException e)
 		{
-			Log.e(SqlUNetProvider.TAG, "Open failed by " + this.getClass() + " content provider: " + this.db.getPath(), e); //$NON-NLS-1$ //$NON-NLS-2$
+			Log.e(SqlUNetProvider.TAG, "Open failed by " + this.getClass() + " content provider: " + this.db.getPath(), e); //
 		}
 	}
 
@@ -100,7 +100,7 @@ public abstract class SqlUNetProvider extends ContentProvider
 				this.db.close();
 				this.db = null;
 			}
-			Log.d(SqlUNetProvider.TAG, "Closed by " + this.getClass() + " content provider: " + this.db.getPath()); //$NON-NLS-1$ //$NON-NLS-2$
+			Log.d(SqlUNetProvider.TAG, "Closed by " + this.getClass() + " content provider: " + this.db.getPath()); //
 		}
 		super.shutdown();
 	}
@@ -111,21 +111,21 @@ public abstract class SqlUNetProvider extends ContentProvider
 	@Override
 	public int delete(final Uri uri, final String selection, final String[] selectionArgs)
 	{
-		throw new UnsupportedOperationException("Read-only"); //$NON-NLS-1$
+		throw new UnsupportedOperationException("Read-only"); //
 	}
 
 
 	@Override
 	public Uri insert(final Uri uri, final ContentValues values)
 	{
-		throw new UnsupportedOperationException("Read-only"); //$NON-NLS-1$
+		throw new UnsupportedOperationException("Read-only"); //
 	}
 
 
 	@Override
 	public int update(final Uri uri, final ContentValues values, final String selection, final String[] selectionArgs)
 	{
-		throw new UnsupportedOperationException("Read-only"); //$NON-NLS-1$
+		throw new UnsupportedOperationException("Read-only"); //
 	}
 
 	// H E L P E R S
@@ -144,7 +144,7 @@ public abstract class SqlUNetProvider extends ContentProvider
 		if (projection == null)
 		{
 			projection2 = new String[1 + items.length];
-			projection2[i++] = "*"; //$NON-NLS-1$
+			projection2[i++] = "*"; //
 		}
 		else
 		{
@@ -187,7 +187,7 @@ public abstract class SqlUNetProvider extends ContentProvider
 		}
 		if (projection == null)
 		{
-			projection2[i] = "*"; //$NON-NLS-1$
+			projection2[i] = "*"; //
 		}
 		else
 		{
@@ -199,6 +199,12 @@ public abstract class SqlUNetProvider extends ContentProvider
 		return projection2;
 	}
 
+	/**
+	 * Convert args to string
+	 *
+	 * @param args args
+	 * @return string
+	 */
 	protected static String argsToString(final String[] args)
 	{
 		final StringBuilder sb = new StringBuilder();
@@ -208,7 +214,7 @@ public abstract class SqlUNetProvider extends ContentProvider
 			{
 				if (sb.length() > 0)
 				{
-					sb.append(", "); //$NON-NLS-1$
+					sb.append(", "); //
 				}
 				sb.append(s);
 			}

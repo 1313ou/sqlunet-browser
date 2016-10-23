@@ -112,6 +112,7 @@
       <w>fnfes</w>
       <w>fnfesemtype</w>
       <w>fnfetext</w>
+      <w>fnfetype</w>
       <w>fnfetypes</w>
       <w>fnfex</w>
       <w>fnframe</w>
@@ -138,6 +139,7 @@
       <w>fnlexunits</w>
       <w>fnlexunittext</w>
       <w>fnloader</w>
+      <w>fnlu</w>
       <w>fnluid</w>
       <w>fnment</w>
       <w>fnpattern</w>

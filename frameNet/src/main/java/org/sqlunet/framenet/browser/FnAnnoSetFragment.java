@@ -47,14 +47,14 @@ public class FnAnnoSetFragment extends Fragment
 		final Parcelable pointer = args.getParcelable(SqlUNetContract.ARG_QUERYPOINTER);
 
 		// module
-		String header = "AnnoSet"; //$NON-NLS-1$
+		String header = "AnnoSet"; //
 		switch (action)
 		{
 			case SqlUNetContract.ARG_QUERYACTION_FNPATTERN:
-				header = "AnnoSets for Pattern"; //$NON-NLS-1$
+				header = "AnnoSets for Pattern"; //
 				break;
 			case SqlUNetContract.ARG_QUERYACTION_FNVALENCEUNIT:
-				header = "AnnoSets for Valence Unit"; //$NON-NLS-1$
+				header = "AnnoSets for Valence Unit"; //
 				break;
 			default:
 		}
@@ -77,7 +77,7 @@ public class FnAnnoSetFragment extends Fragment
 		// saved state
 		if (savedInstanceState != null)
 		{
-			final String state = savedInstanceState.getString("treeViewState"); //$NON-NLS-1$
+			final String state = savedInstanceState.getString("treeViewState"); //
 			if (state != null && !state.isEmpty())
 			{
 				this.treeView.restoreState(state);
@@ -111,6 +111,6 @@ public class FnAnnoSetFragment extends Fragment
 	public void onSaveInstanceState(final Bundle outState)
 	{
 		super.onSaveInstanceState(outState);
-		outState.putString("treeViewState", this.treeView.getSaveState()); //$NON-NLS-1$
+		outState.putString("treeViewState", this.treeView.getSaveState()); //
 	}
 }

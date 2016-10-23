@@ -20,7 +20,7 @@ import java.util.Collection;
  */
 public class ManagerProvider extends SqlUNetProvider
 {
-	static private final String TAG = "ManagerProvider"; //$NON-NLS-1$
+	static private final String TAG = "ManagerProvider"; //
 
 	// U R I M A T C H E R
 
@@ -53,10 +53,10 @@ public class ManagerProvider extends SqlUNetProvider
 		switch (ManagerProvider.uriMatcher.match(uri))
 		{
 			case TABLES_AND_INDICES:
-				return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + ManagerContract.AUTHORITY + '.' + TablesAndIndices.TABLE; //$NON-NLS-1$
+				return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + ManagerContract.AUTHORITY + '.' + TablesAndIndices.TABLE; //
 
 			default:
-				throw new UnsupportedOperationException("Illegal MIME type"); //$NON-NLS-1$
+				throw new UnsupportedOperationException("Illegal MIME type"); //
 		}
 	}
 
@@ -73,7 +73,7 @@ public class ManagerProvider extends SqlUNetProvider
 
 		// choose the table to query and a sort order based on the code returned for the incoming URI
 		final int code = ManagerProvider.uriMatcher.match(uri);
-		Log.d(ManagerProvider.TAG + "URI", String.format("%s (code %s)\n", uri, code)); //$NON-NLS-1$ //$NON-NLS-2$
+		Log.d(ManagerProvider.TAG + "URI", String.format("%s (code %s)\n", uri, code)); //
 
 		String table;
 		switch (code)
@@ -84,15 +84,15 @@ public class ManagerProvider extends SqlUNetProvider
 
 			default:
 			case UriMatcher.NO_MATCH:
-				throw new RuntimeException("Malformed URI " + uri); //$NON-NLS-1$
+				throw new RuntimeException("Malformed URI " + uri); //
 		}
 
 		final String groupBy = null;
 		if (SqlUNetProvider.debugSql)
 		{
 			final String sql = SQLiteQueryBuilder.buildQueryString(false, table, projection, selection, groupBy, null, sortOrder, null);
-			Log.d(ManagerProvider.TAG + "SQL", sql); //$NON-NLS-1$
-			Log.d(ManagerProvider.TAG + "ARGS", SqlUNetProvider.argsToString(selectionArgs)); //$NON-NLS-1$
+			Log.d(ManagerProvider.TAG + "SQL", sql); //
+			Log.d(ManagerProvider.TAG + "ARGS", SqlUNetProvider.argsToString(selectionArgs)); //
 		}
 
 		// do query
@@ -102,7 +102,9 @@ public class ManagerProvider extends SqlUNetProvider
 		}
 		catch (SQLiteException e)
 		{
-			Log.e(TAG, "Manager provider query failed", e); //$NON-NLS-1$
+			final String sql = SQLiteQueryBuilder.buildQueryString(false, table, projection, selection, groupBy, null, sortOrder, null);
+			Log.d(ManagerProvider.TAG + "SQL", sql); //
+			Log.e(TAG, "Manager provider query failed", e); //
 			return null;
 		}
 	}
@@ -118,7 +120,7 @@ public class ManagerProvider extends SqlUNetProvider
 		final Collection<String> tables = new ArrayList<>();
 		final Uri uri = Uri.parse(TablesAndIndices.CONTENT_URI);
 		final String[] projection = {TablesAndIndices.TYPE, TablesAndIndices.NAME};
-		final String selection = TablesAndIndices.TYPE + " = 'table' AND name NOT IN ('sqlite_sequence', 'android_metadata' )"; //$NON-NLS-1$
+		final String selection = TablesAndIndices.TYPE + " = 'table' AND name NOT IN ('sqlite_sequence', 'android_metadata' )"; //
 		final String[] selectionArgs = {};
 		final String sortOrder = null;
 		final Cursor cursor = context.getContentResolver().query(uri, projection, selection, selectionArgs, sortOrder);

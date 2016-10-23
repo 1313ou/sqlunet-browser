@@ -18,7 +18,7 @@ import java.util.TreeSet;
  */
 public class Word extends BasicWord
 {
-	private static final String TAG = "Word"; //$NON-NLS-1$
+	private static final String TAG = "Word"; //
 
 	/**
 	 * Word

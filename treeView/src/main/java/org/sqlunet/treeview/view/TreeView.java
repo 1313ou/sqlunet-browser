@@ -28,7 +28,7 @@ import java.util.Set;
  */
 public class TreeView
 {
-	private static final String NODES_PATH_SEPARATOR = ";"; //$NON-NLS-1$
+	private static final String NODES_PATH_SEPARATOR = ";"; //
 
 	/**
 	 * Root node
@@ -888,7 +888,7 @@ public class TreeView
 			}
 			catch (Exception e)
 			{
-				throw new RuntimeException("Could not instantiate class " + this.defaultRendererClass); //$NON-NLS-1$
+				throw new RuntimeException("Could not instantiate class " + this.defaultRendererClass); //
 			}
 		}
 		if (renderer.getContainerStyle() <= 0)

@@ -33,12 +33,12 @@ import org.sqlunet.wordnet.provider.WordNetContract.Lookup_Words;
  */
 public class TextSearchActivity extends Activity
 {
-	private static final String TAG = "TextSearchActivity"; //$NON-NLS-1$
+	private static final String TAG = "TextSearchActivity"; //
 
 	/**
 	 * State
 	 */
-	private static final String STATE_SELECTED_SEARCHMODE_ITEM = "org.sqlunet.search.mode.selected"; //$NON-NLS-1$
+	private static final String STATE_SELECTED_SEARCHMODE_ITEM = "org.sqlunet.search.mode.selected"; //
 
 	/**
 	 * Search view
@@ -144,7 +144,7 @@ public class TextSearchActivity extends Activity
 			public boolean onQueryTextSubmit(final String query)
 			{
 				searchView.clearFocus();
-				searchView.setQuery("", false); //$NON-NLS-1$
+				searchView.setQuery("", false); //
 				handleSearch(query);
 				return true;
 			}
@@ -185,7 +185,7 @@ public class TextSearchActivity extends Activity
 			final String query = intent.getStringExtra(SearchManager.QUERY);
 
 			// suggestion selection (when a suggested item is selected)
-			this.statusView.setText("view: '" + query + "'"); //$NON-NLS-1$ //$NON-NLS-2$
+			this.statusView.setText("view: '" + query + "'"); //
 			this.searchView.setQuery(query, true); // submit
 		}
 	}
@@ -200,8 +200,8 @@ public class TextSearchActivity extends Activity
 		final int rangeIndex = this.spinner.getSelectedItemPosition();
 
 		// status
-		Log.d(TextSearchActivity.TAG, "TEXT SEARCH " + query); //$NON-NLS-1$
-		this.statusView.setText("search: '" + query + "' " + this.ranges[rangeIndex]); //$NON-NLS-1$ //$NON-NLS-2$
+		Log.d(TextSearchActivity.TAG, "TEXT SEARCH " + query); //
+		this.statusView.setText("search: '" + query + "' " + this.ranges[rangeIndex]); //
 
 		// as per selected mode
 		String searchUri;
@@ -253,7 +253,7 @@ public class TextSearchActivity extends Activity
 		args.putString(SqlUNetContract.ARG_QUERYID, id);
 		args.putStringArray(SqlUNetContract.ARG_QUERYITEMS, columns);
 		args.putStringArray(SqlUNetContract.ARG_QUERYXITEMS, xcolumns);
-		args.putString(SqlUNetContract.ARG_QUERYFILTER, target + " MATCH ?"); //$NON-NLS-1$
+		args.putString(SqlUNetContract.ARG_QUERYFILTER, target + " MATCH ?"); //
 		args.putString(SqlUNetContract.ARG_QUERYARG, query);
 		args.putInt(SqlUNetContract.ARG_QUERYLAYOUT, R.layout.item_table1);
 		if (intent != null)

@@ -37,7 +37,7 @@ public class BNCFragment extends Fragment
 
 		// root node
 		final TreeNode root = TreeNode.makeRoot();
-		final TreeNode queryNode = TreeFactory.addTreeItemNode(root, "BNC", R.drawable.bnc, getActivity()); //$NON-NLS-1$
+		final TreeNode queryNode = TreeFactory.addTreeItemNode(root, "BNC", R.drawable.bnc, getActivity()); //
 
 		// tree
 		this.treeView = new TreeView(getActivity(), root);
@@ -49,7 +49,7 @@ public class BNCFragment extends Fragment
 		// saved state
 		if (savedInstanceState != null)
 		{
-			final String state = savedInstanceState.getString("treeViewState"); //$NON-NLS-1$
+			final String state = savedInstanceState.getString("treeViewState"); //
 			if (state != null && !state.isEmpty())
 			{
 				this.treeView.restoreState(state);
@@ -73,7 +73,7 @@ public class BNCFragment extends Fragment
 	public void onSaveInstanceState(final Bundle outState)
 	{
 		super.onSaveInstanceState(outState);
-		outState.putString("treeViewState", this.treeView.getSaveState()); //$NON-NLS-1$
+		outState.putString("treeViewState", this.treeView.getSaveState()); //
 	}
 
 	// C R E A T I O N

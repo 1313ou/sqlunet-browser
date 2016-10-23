@@ -25,14 +25,14 @@ class FnNodeFactory extends NodeFactory
 	 */
 	static public Node makeFnRootNode(final Document doc, final long wordId, final Character pos)
 	{
-		final Element rootNode = NodeFactory.makeNode(doc, doc, "framenet", null); //$NON-NLS-1$
+		final Element rootNode = NodeFactory.makeNode(doc, doc, "framenet", null); //
 		if (pos == null)
 		{
-			NodeFactory.makeTargetNode(doc, rootNode, "wordid", Long.toString(wordId)); //$NON-NLS-1$
+			NodeFactory.makeTargetNode(doc, rootNode, "wordid", Long.toString(wordId)); //
 		}
 		else
 		{
-			NodeFactory.makeTargetNode(doc, rootNode, "wordid", Long.toString(wordId), "pos", Character.toString(pos)); //$NON-NLS-1$ //$NON-NLS-2$
+			NodeFactory.makeTargetNode(doc, rootNode, "wordid", Long.toString(wordId), "pos", Character.toString(pos)); //
 		}
 		return rootNode;
 	}
@@ -47,14 +47,14 @@ class FnNodeFactory extends NodeFactory
 	 */
 	static public Node makeFnRootNode(final Document doc, final String word, final Character pos)
 	{
-		final Element rootNode = NodeFactory.makeNode(doc, doc, "framenet", null); //$NON-NLS-1$
+		final Element rootNode = NodeFactory.makeNode(doc, doc, "framenet", null); //
 		if (pos == null)
 		{
-			NodeFactory.makeTargetNode(doc, rootNode, "word", word); //$NON-NLS-1$
+			NodeFactory.makeTargetNode(doc, rootNode, "word", word); //
 		}
 		else
 		{
-			NodeFactory.makeTargetNode(doc, rootNode, "word", word, "pos", Character.toString(pos)); //$NON-NLS-1$ //$NON-NLS-2$
+			NodeFactory.makeTargetNode(doc, rootNode, "word", word, "pos", Character.toString(pos)); //
 		}
 		return rootNode;
 	}
@@ -68,9 +68,9 @@ class FnNodeFactory extends NodeFactory
 	 */
 	public static Node makeFnLexunitNode(final Document doc, final Node parent, final FnLexUnit lexUnit)
 	{
-		final Element element = NodeFactory.makeNode(doc, parent, "lexunit", null); //$NON-NLS-1$
-		NodeFactory.makeAttribute(element, "name", lexUnit.lexUnit); //$NON-NLS-1$
-		NodeFactory.makeAttribute(element, "luid", Long.toString(lexUnit.luId)); //$NON-NLS-1$
+		final Element element = NodeFactory.makeNode(doc, parent, "lexunit", null); //
+		NodeFactory.makeAttribute(element, "name", lexUnit.lexUnit); //
+		NodeFactory.makeAttribute(element, "luid", Long.toString(lexUnit.luId)); //
 		NodeFactory.makeText(doc, element, lexUnit.definition);
 		return element;
 	}
@@ -86,15 +86,15 @@ class FnNodeFactory extends NodeFactory
 	 */
 	public static Node makeFnFrameNode(final Document doc, final Node parent, final FnFrame frame, final boolean removeEx)
 	{
-		final Element element = NodeFactory.makeNode(doc, parent, "frame", null); //$NON-NLS-1$
-		NodeFactory.makeAttribute(element, "name", frame.frameName); //$NON-NLS-1$
-		NodeFactory.makeAttribute(element, "frameid", Long.toString(frame.frameId)); //$NON-NLS-1$
+		final Element element = NodeFactory.makeNode(doc, parent, "frame", null); //
+		NodeFactory.makeAttribute(element, "name", frame.frameName); //
+		NodeFactory.makeAttribute(element, "frameid", Long.toString(frame.frameId)); //
 
-		DocumentFragmentParser.mount(doc, element, frame.frameDefinition, "framedefinition"); //$NON-NLS-1$
+		DocumentFragmentParser.mount(doc, element, frame.frameDefinition, "framedefinition"); //
 		if (removeEx)
 		{
 			// retrieve the elements 'ex'
-			final NodeList examples = element.getElementsByTagName("ex"); //$NON-NLS-1$
+			final NodeList examples = element.getElementsByTagName("ex"); //
 			for (int i = 0; i < examples.getLength(); i++)
 			{
 				final Node example = examples.item(i);
@@ -107,9 +107,9 @@ class FnNodeFactory extends NodeFactory
 		{
 			for (final FnSemType semType : frame.semTypes)
 			{
-				final Element element2 = NodeFactory.makeNode(doc, element, "semtype", null); //$NON-NLS-1$
-				NodeFactory.makeAttribute(element2, "semtypeid", Long.toString(semType.semTypeId)); //$NON-NLS-1$
-				NodeFactory.makeAttribute(element2, "semtype", semType.semTypeName); //$NON-NLS-1$
+				final Element element2 = NodeFactory.makeNode(doc, element, "semtype", null); //
+				NodeFactory.makeAttribute(element2, "semtypeid", Long.toString(semType.semTypeId)); //
+				NodeFactory.makeAttribute(element2, "semtype", semType.semTypeName); //
 				NodeFactory.makeText(doc, element, semType.semTypeDefinition);
 			}
 		}
@@ -117,10 +117,10 @@ class FnNodeFactory extends NodeFactory
 		{
 			for (final FnRelatedFrame relatedFrame : frame.relatedFrames)
 			{
-				final Element element2 = NodeFactory.makeNode(doc, element, "related", null); //$NON-NLS-1$
-				NodeFactory.makeAttribute(element2, "frameid", Long.toString(relatedFrame.frameId)); //$NON-NLS-1$
-				NodeFactory.makeAttribute(element2, "frame", relatedFrame.frameName); //$NON-NLS-1$
-				NodeFactory.makeAttribute(element2, "relation", relatedFrame.relation); //$NON-NLS-1$
+				final Element element2 = NodeFactory.makeNode(doc, element, "related", null); //
+				NodeFactory.makeAttribute(element2, "frameid", Long.toString(relatedFrame.frameId)); //
+				NodeFactory.makeAttribute(element2, "frame", relatedFrame.frameName); //
+				NodeFactory.makeAttribute(element2, "relation", relatedFrame.relation); //
 			}
 		}
 
@@ -138,13 +138,13 @@ class FnNodeFactory extends NodeFactory
 	@SuppressWarnings("UnusedReturnValue")
 	public static Node makeFnFENode(final Document doc, final Node parent, final FnFrameElement fe)
 	{
-		final Element element = NodeFactory.makeNode(doc, parent, "fe", null); //$NON-NLS-1$
-		NodeFactory.makeAttribute(element, "name", fe.feType); //$NON-NLS-1$
-		NodeFactory.makeAttribute(element, "feid", Long.toString(fe.feId)); //$NON-NLS-1$
-		NodeFactory.makeAttribute(element, "coreset", Integer.toString(fe.coreSet)); //$NON-NLS-1$
-		NodeFactory.makeAttribute(element, "type", fe.coreType); //$NON-NLS-1$
-		NodeFactory.makeAttribute(element, "semtype", Utils.join(fe.semTypes)); //$NON-NLS-1$
-		DocumentFragmentParser.mount(doc, element, fe.feDefinition, "fedefinition"); //$NON-NLS-1$
+		final Element element = NodeFactory.makeNode(doc, parent, "fe", null); //
+		NodeFactory.makeAttribute(element, "name", fe.feType); //
+		NodeFactory.makeAttribute(element, "feid", Long.toString(fe.feId)); //
+		NodeFactory.makeAttribute(element, "coreset", Integer.toString(fe.coreSet)); //
+		NodeFactory.makeAttribute(element, "type", fe.coreType); //
+		NodeFactory.makeAttribute(element, "semtype", Utils.join(fe.semTypes)); //
+		DocumentFragmentParser.mount(doc, element, fe.feDefinition, "fedefinition"); //
 		return element;
 	}
 
@@ -159,9 +159,9 @@ class FnNodeFactory extends NodeFactory
 	@SuppressWarnings("UnusedReturnValue")
 	public static Node makeFnGovernorNode(final Document doc, final Node parent, final FnGovernor governor)
 	{
-		final Element element = NodeFactory.makeNode(doc, parent, "governor", null); //$NON-NLS-1$
-		NodeFactory.makeAttribute(element, "governorid", Long.toString(governor.governorId)); //$NON-NLS-1$
-		NodeFactory.makeAttribute(element, "wordid", Long.toString(governor.wordId)); //$NON-NLS-1$
+		final Element element = NodeFactory.makeNode(doc, parent, "governor", null); //
+		NodeFactory.makeAttribute(element, "governorid", Long.toString(governor.governorId)); //
+		NodeFactory.makeAttribute(element, "wordid", Long.toString(governor.wordId)); //
 		NodeFactory.makeText(doc, element, governor.governor);
 		return element;
 	}
@@ -187,12 +187,12 @@ class FnNodeFactory extends NodeFactory
 	 */
 	public static Node makeFnSentenceNode(final Document doc, final Node parent, final FnSentence sentence, final int i)
 	{
-		final Element element = NodeFactory.makeNode(doc, parent, "sentence", null); //$NON-NLS-1$
+		final Element element = NodeFactory.makeNode(doc, parent, "sentence", null); //
 		if (i != -1)
 		{
-			NodeFactory.makeAttribute(element, "num", Integer.toString(i)); //$NON-NLS-1$
+			NodeFactory.makeAttribute(element, "num", Integer.toString(i)); //
 		}
-		NodeFactory.makeAttribute(element, "sentenceid", Long.toString(sentence.sentenceId)); //$NON-NLS-1$
+		NodeFactory.makeAttribute(element, "sentenceid", Long.toString(sentence.sentenceId)); //
 		NodeFactory.makeText(doc, element, sentence.text);
 		return element;
 	}
@@ -207,8 +207,8 @@ class FnNodeFactory extends NodeFactory
 	 */
 	public static Node makeFnAnnoSetNode(final Document doc, final Node parent, final FnAnnoSet annoSet)
 	{
-		final Element element = NodeFactory.makeNode(doc, parent, "annoset", null); //$NON-NLS-1$
-		NodeFactory.makeAttribute(element, "annosetid", Long.toString(annoSet.annoSetId)); //$NON-NLS-1$
+		final Element element = NodeFactory.makeNode(doc, parent, "annoset", null); //
+		NodeFactory.makeAttribute(element, "annosetid", Long.toString(annoSet.annoSetId)); //
 		FnNodeFactory.makeFnSentenceNode(doc, element, annoSet.sentence, -1);
 		return element;
 	}
@@ -223,24 +223,24 @@ class FnNodeFactory extends NodeFactory
 	@SuppressWarnings("UnusedReturnValue")
 	public static Node makeFnLayerNode(final Document doc, final Node parent, final FnLayer layer)
 	{
-		final Element element = NodeFactory.makeNode(doc, parent, "layer", null); //$NON-NLS-1$
-		NodeFactory.makeAttribute(element, "rank", Long.toString(layer.rank)); //$NON-NLS-1$
-		NodeFactory.makeAttribute(element, "layerid", Long.toString(layer.layerId)); //$NON-NLS-1$
-		NodeFactory.makeAttribute(element, "type", layer.layerType); //$NON-NLS-1$
+		final Element element = NodeFactory.makeNode(doc, parent, "layer", null); //
+		NodeFactory.makeAttribute(element, "rank", Long.toString(layer.rank)); //
+		NodeFactory.makeAttribute(element, "layerid", Long.toString(layer.layerId)); //
+		NodeFactory.makeAttribute(element, "type", layer.layerType); //
 		if (layer.labels != null)
 		{
 			for (final FnLabel label : layer.labels)
 			{
-				final Element element2 = NodeFactory.makeNode(doc, element, "label", null); //$NON-NLS-1$
-				if (!"0".equals(label.from) || !"0".equals(label.to)) //$NON-NLS-1$ //$NON-NLS-2$
+				final Element element2 = NodeFactory.makeNode(doc, element, "label", null); //
+				if (!"0".equals(label.from) || !"0".equals(label.to)) //
 				{
-					NodeFactory.makeAttribute(element2, "from", label.from); //$NON-NLS-1$
-					NodeFactory.makeAttribute(element2, "to", label.to); //$NON-NLS-1$
+					NodeFactory.makeAttribute(element2, "from", label.from); //
+					NodeFactory.makeAttribute(element2, "to", label.to); //
 				}
-				NodeFactory.makeAttribute(element2, "label", label.label); //$NON-NLS-1$
+				NodeFactory.makeAttribute(element2, "label", label.label); //
 				if (label.iType != null && !label.iType.isEmpty())
 				{
-					NodeFactory.makeAttribute(element2, "itype", label.iType); //$NON-NLS-1$
+					NodeFactory.makeAttribute(element2, "itype", label.iType); //
 				}
 			}
 		}
@@ -256,8 +256,8 @@ class FnNodeFactory extends NodeFactory
 	 */
 	public static Node makeFnRootFrameNode(final Document doc, final long frameId)
 	{
-		final Element rootNode = NodeFactory.makeNode(doc, doc, "framenet", null); //$NON-NLS-1$
-		NodeFactory.makeTargetNode(doc, rootNode, "frameid", Long.toString(frameId)); //$NON-NLS-1$
+		final Element rootNode = NodeFactory.makeNode(doc, doc, "framenet", null); //
+		NodeFactory.makeTargetNode(doc, rootNode, "frameid", Long.toString(frameId)); //
 		return rootNode;
 	}
 
@@ -270,8 +270,8 @@ class FnNodeFactory extends NodeFactory
 	 */
 	public static Node makeFnRootLexUnitNode(final Document doc, final long luId)
 	{
-		final Element rootNode = NodeFactory.makeNode(doc, doc, "framenet", null); //$NON-NLS-1$
-		NodeFactory.makeTargetNode(doc, rootNode, "luid", Long.toString(luId)); //$NON-NLS-1$
+		final Element rootNode = NodeFactory.makeNode(doc, doc, "framenet", null); //
+		NodeFactory.makeTargetNode(doc, rootNode, "luid", Long.toString(luId)); //
 		return rootNode;
 	}
 
@@ -284,8 +284,8 @@ class FnNodeFactory extends NodeFactory
 	 */
 	public static Node makeFnRootSentenceNode(final Document doc, final long sentenceId)
 	{
-		final Element rootNode = NodeFactory.makeNode(doc, doc, "framenet", null); //$NON-NLS-1$
-		NodeFactory.makeTargetNode(doc, rootNode, "sentenceid", Long.toString(sentenceId)); //$NON-NLS-1$
+		final Element rootNode = NodeFactory.makeNode(doc, doc, "framenet", null); //
+		NodeFactory.makeTargetNode(doc, rootNode, "sentenceid", Long.toString(sentenceId)); //
 		return rootNode;
 	}
 
@@ -298,8 +298,8 @@ class FnNodeFactory extends NodeFactory
 	 */
 	public static Node makeFnRootAnnoSetNode(final Document doc, final long annoSetId)
 	{
-		final Element rootNode = NodeFactory.makeNode(doc, doc, "framenet", null); //$NON-NLS-1$
-		NodeFactory.makeTargetNode(doc, rootNode, "annosetid", Long.toString(annoSetId)); //$NON-NLS-1$
+		final Element rootNode = NodeFactory.makeNode(doc, doc, "framenet", null); //
+		NodeFactory.makeTargetNode(doc, rootNode, "annosetid", Long.toString(annoSetId)); //
 		return rootNode;
 	}
 }

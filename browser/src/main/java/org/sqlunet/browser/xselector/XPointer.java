@@ -209,33 +209,33 @@ public class XPointer extends Pointer implements HasXId
 	{
 		this.xSources = xSources;
 		this.xMask = 0L;
-		if (xSources.contains("wn")) //$NON-NLS-1$
+		if (xSources.contains("wn")) //
 		{
 			this.xMask |= WORDNETSOURCE;
 		}
 
-		if (xSources.contains("vn")) //$NON-NLS-1$
+		if (xSources.contains("vn")) //
 		{
 			this.xMask |= VERBNETSOURCE;
 		}
-		if (xSources.contains("pb")) //$NON-NLS-1$
+		if (xSources.contains("pb")) //
 		{
 			this.xMask |= PROPBANKSOURCE;
 		}
-		if (xSources.contains("fn")) //$NON-NLS-1$
+		if (xSources.contains("fn")) //
 		{
 			this.xMask |= FRAMENETSOURCE;
 		}
 
-		if (xSources.contains("pmvn")) //$NON-NLS-1$
+		if (xSources.contains("pmvn")) //
 		{
 			this.xMask |= PMVERBNETSOURCE;
 		}
-		if (xSources.contains("pmpb")) //$NON-NLS-1$
+		if (xSources.contains("pmpb")) //
 		{
 			this.xMask |= PMPROPBANKSOURCE;
 		}
-		if (xSources.contains("pmfn")) //$NON-NLS-1$
+		if (xSources.contains("pmfn")) //
 		{
 			this.xMask |= PMFRAMENETSOURCE;
 		}
@@ -257,21 +257,22 @@ public class XPointer extends Pointer implements HasXId
 	{
 		return super.toString() +
 				' ' +
-				"xId=" + //$NON-NLS-1$
+				"xid=" + //
 				this.xId +
 				' ' +
-				"xClassId=" + //$NON-NLS-1$
+				"xclassid=" + //
 				this.xClassId +
 				' ' +
-				"xInstanceId=" + //$NON-NLS-1$
+				"xinstanceid=" + //
 				this.xInstanceId +
 				' ' +
-				"xWordId=" + //$NON-NLS-1$
+				"xwordid=" + //
 				this.xWordId +
 				' ' +
-				"xSources=" + //$NON-NLS-1$
+				"xsources=" + //
 				this.xSources +
-				"xMask=" + //$NON-NLS-1$
+				' ' +
+				"xmask=" + //
 				Long.toHexString(this.xMask);
 	}
 }

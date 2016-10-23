@@ -87,7 +87,7 @@ public class SentenceModule extends BasicModule
 						Sentences.SENTENCEID, //
 						Sentences.TEXT, //
 				};
-				final String selection = Sentences.SENTENCEID + " = ?"; //$NON-NLS-1$
+				final String selection = Sentences.SENTENCEID + " = ?"; //
 				final String[] selectionArgs = {Long.toString(sentenceId)};
 				final String sortOrder = null;
 				return new CursorLoader(SentenceModule.this.getContext(), uri, projection, selection, selectionArgs, sortOrder);
@@ -98,7 +98,7 @@ public class SentenceModule extends BasicModule
 			{
 				if (cursor.getCount() > 1)
 				{
-					throw new RuntimeException("Unexpected number of rows"); //$NON-NLS-1$
+					throw new RuntimeException("Unexpected number of rows"); //
 				}
 				if (cursor.moveToFirst())
 				{

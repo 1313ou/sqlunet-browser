@@ -121,7 +121,7 @@ public class XSelectorActivity extends Activity implements XSelectorFragment.Lis
 						transaction.replace(R.id.container_wordnet, senseFragment);
 					}
 
-					if (Settings.getVerbNetPref(this) && pointer.getXSources().contains("vn")) //$NON-NLS-1$
+					if (Settings.getVerbNetPref(this) && pointer.getXSources().contains("vn")) //
 					{
 						// final View labelView = findViewById(R.id.label_verbnet);
 						// labelView.setVisibility(View.VISIBLE);
@@ -135,7 +135,7 @@ public class XSelectorActivity extends Activity implements XSelectorFragment.Lis
 						this.verbnetFragment = null;
 					}
 
-					if (Settings.getPropBankPref(this) && pointer.getXSources().contains("pb")) //$NON-NLS-1$
+					if (Settings.getPropBankPref(this) && pointer.getXSources().contains("pb")) //
 					{
 						// final View labelView = findViewById(R.id.label_propbank);
 						// labelView.setVisibility(View.VISIBLE);
@@ -149,7 +149,7 @@ public class XSelectorActivity extends Activity implements XSelectorFragment.Lis
 						this.propbankFragment = null;
 					}
 
-					if (Settings.getFrameNetPref(this) && pointer.getXSources().contains("fn")) //$NON-NLS-1$
+					if (Settings.getFrameNetPref(this) && pointer.getXSources().contains("fn")) //
 					{
 						// final View labelView = findViewById(R.id.label_framenet);
 						// labelView.setVisibility(View.VISIBLE);

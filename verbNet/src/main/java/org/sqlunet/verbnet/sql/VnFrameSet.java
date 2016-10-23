@@ -57,7 +57,7 @@ public class VnFrameSet
 				final String syntax = query.getSyntax();
 				final String semantics = query.getSemantics();
 				final String concatExamples = query.getExample();
-				final String[] examples = concatExamples.split("\\|"); //$NON-NLS-1$
+				final String[] examples = concatExamples.split("\\|"); //
 				// final float quality = query.getQuality();
 				// final boolean synsetSpecific = query.getSynsetSpecific();
 
@@ -112,7 +112,7 @@ public class VnFrameSet
 				final String syntax = query.getSyntax();
 				final String semantics = query.getSemantics();
 				final String exampleConcat = query.getExamples();
-				final String[] examples = exampleConcat.split("\\|"); //$NON-NLS-1$
+				final String[] examples = exampleConcat.split("\\|"); //
 
 				// frame
 				final VnFrame frame = new VnFrame(number, xTag, description1, description2, syntax, semantics, examples);

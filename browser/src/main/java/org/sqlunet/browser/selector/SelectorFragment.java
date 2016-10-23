@@ -37,12 +37,12 @@ import org.sqlunet.wordnet.WordPointer;
  */
 public class SelectorFragment extends ListFragment
 {
-	// protected static final String TAG = "SelectorFragment"; //$NON-NLS-1$
+	// protected static final String TAG = "SelectorFragment"; //
 
 	/**
 	 * The serialization (saved instance state) Bundle key representing the activated item position. Only used on tablets.
 	 */
-	private static final String ACTIVATED_POSITION_NAME = "activated_position"; //$NON-NLS-1$
+	private static final String ACTIVATED_POSITION_NAME = "activated_position"; //
 
 	/**
 	 * The current activated item position. Only used on tablets.
@@ -141,7 +141,7 @@ public class SelectorFragment extends ListFragment
 				String text = cursor.getString(columnIndex);
 				if (text == null)
 				{
-					text = ""; //$NON-NLS-1$
+					text = ""; //
 				}
 
 				if (view instanceof TextView)
@@ -161,7 +161,7 @@ public class SelectorFragment extends ListFragment
 				}
 				else
 				{
-					throw new IllegalStateException(view.getClass().getName() + " is not a view that can be bound by this SimpleCursorAdapter"); //$NON-NLS-1$
+					throw new IllegalStateException(view.getClass().getName() + " is not a view that can be bound by this SimpleCursorAdapter"); //
 				}
 				return false;
 			}
@@ -176,7 +176,7 @@ public class SelectorFragment extends ListFragment
 			{
 				final Uri uri = Uri.parse(Words_FnWords_PbWords_VnWords.CONTENT_URI);
 				final String[] projection = { //
-						Words_FnWords_PbWords_VnWords.SYNSETID + " AS _id", // //$NON-NLS-1$
+						Words_FnWords_PbWords_VnWords.SYNSETID + " AS _id", //
 						Words_FnWords_PbWords_VnWords.WORDID, //
 						Words_FnWords_PbWords_VnWords.SENSEID, //
 						Words_FnWords_PbWords_VnWords.SENSENUM, //
@@ -185,7 +185,7 @@ public class SelectorFragment extends ListFragment
 						Words_FnWords_PbWords_VnWords.TAGCOUNT, //
 						Words_FnWords_PbWords_VnWords.SYNSETID, //
 						Words_FnWords_PbWords_VnWords.DEFINITION, //
-						"y." + Words_FnWords_PbWords_VnWords.POS, // //$NON-NLS-1$
+						"y." + Words_FnWords_PbWords_VnWords.POS, //
 						Words_FnWords_PbWords_VnWords.POSNAME, //
 						Words_FnWords_PbWords_VnWords.LEXDOMAIN, //
 						Words_FnWords_PbWords_VnWords.CASED, //
@@ -193,9 +193,9 @@ public class SelectorFragment extends ListFragment
 						Words_FnWords_PbWords_VnWords.VNWORDID, //
 						Words_FnWords_PbWords_VnWords.PBWORDID, //
 				};
-				final String selection = "w." + Words_FnWords_PbWords_VnWords.LEMMA + " = ?"; //$NON-NLS-1$//$NON-NLS-2$
+				final String selection = "w." + Words_FnWords_PbWords_VnWords.LEMMA + " = ?"; ////
 				final String[] selectionArgs = {SelectorFragment.this.queryWord};
-				final String sortOrder = "y." + Words_FnWords_PbWords_VnWords.POS + ',' + Words_FnWords_PbWords_VnWords.SENSENUM; //$NON-NLS-1$
+				final String sortOrder = "y." + Words_FnWords_PbWords_VnWords.POS + ',' + Words_FnWords_PbWords_VnWords.SENSENUM; //
 				return new CursorLoader(getActivity(), uri, projection, selection, selectionArgs, sortOrder);
 			}
 
@@ -249,7 +249,7 @@ public class SelectorFragment extends ListFragment
 		// activities containing this fragment must implement its listener
 		if (!(context instanceof Listener))
 		{
-			throw new IllegalStateException("Activity must implement fragment's listener."); //$NON-NLS-1$
+			throw new IllegalStateException("Activity must implement fragment's listener."); //
 		}
 		this.listener = (Listener) context;
 	}

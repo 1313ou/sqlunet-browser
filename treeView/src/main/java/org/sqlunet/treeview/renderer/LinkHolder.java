@@ -12,7 +12,7 @@ import org.sqlunet.treeview.model.TreeNode;
  */
 public class LinkHolder extends IconLeafRenderer
 {
-	// private static final String TAG = "LinkHolder"; //$NON-NLS-1$
+	// private static final String TAG = "LinkHolder"; //
 
 	public LinkHolder(Context context)
 	{

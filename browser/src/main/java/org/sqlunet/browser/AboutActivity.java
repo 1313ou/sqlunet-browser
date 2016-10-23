@@ -15,7 +15,7 @@ import android.view.MenuItem;
  */
 public class AboutActivity extends Activity
 {
-	// protected static final String TAG = "AboutActivity"; //$NON-NLS-1$
+	// protected static final String TAG = "AboutActivity"; //
 
 	@Override
 	protected void onCreate(final Bundle savedInstanceState)

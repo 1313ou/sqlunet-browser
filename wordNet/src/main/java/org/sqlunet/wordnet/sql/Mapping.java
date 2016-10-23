@@ -21,7 +21,7 @@ import java.util.Set;
 
 class Mapping
 {
-	private static final String TAG = "LexDomain"; //$NON-NLS-1$
+	private static final String TAG = "LexDomain"; //
 
 	/**
 	 * <code>lexDomains</code> is an array of lexdomains
@@ -96,7 +96,7 @@ class Mapping
 		}
 		catch (final SQLException e)
 		{
-			Log.e(TAG, "While initializing lexdomains", e); //$NON-NLS-1$
+			Log.e(TAG, "While initializing lexdomains", e); //
 			throw new RuntimeException(e);
 		}
 		finally
@@ -155,7 +155,7 @@ class Mapping
 	 */
 	static public String[] getPosNames()
 	{
-		return new String[]{"noun", "verb", "adj", "adv"}; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
+		return new String[]{"noun", "verb", "adj", "adv"}; //
 	}
 
 	/**
@@ -195,7 +195,7 @@ class Mapping
 		}
 		catch (final IndexOutOfBoundsException e)
 		{
-			return "lexdomainid." + Integer.toString(lexDomainId); //$NON-NLS-1$
+			return "lexdomainid." + Integer.toString(lexDomainId); //
 		}
 	}
 
@@ -214,7 +214,7 @@ class Mapping
 		}
 		catch (final IndexOutOfBoundsException e)
 		{
-			return "lexdomainid." + Integer.toString(lexDomainId); //$NON-NLS-1$
+			return "lexdomainid." + Integer.toString(lexDomainId); //
 		}
 	}
 
@@ -259,16 +259,16 @@ class Mapping
 		switch (posName)
 		{
 			case "noun":
-				//$NON-NLS-1$
+				//
 				return 'n';
 			case "verb":
-				//$NON-NLS-1$
+				//
 				return 'v';
 			case "adj":
-				//$NON-NLS-1$
+				//
 				return 'a';
 			case "adv":
-				//$NON-NLS-1$
+				//
 				return 'r';
 		}
 		return Mapping.ANYTYPE;
@@ -289,7 +289,7 @@ class Mapping
 		}
 		catch (final NullPointerException e)
 		{
-			return "linktype." + Integer.toString(linkType); //$NON-NLS-1$
+			return "linktype." + Integer.toString(linkType); //
 		}
 	}
 

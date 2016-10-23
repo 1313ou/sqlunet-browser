@@ -18,17 +18,17 @@ public class Settings
 {
 	// preferences
 
-	static public final String PREF_SELECTOR_MODE = "pref_viewweb_mode"; //$NON-NLS-1$
-	static private final String PREF_SELECTOR = "pref_selector_mode"; //$NON-NLS-1$
-	static public final String PREF_DETAIL_MODE = "pref_detail_mode"; //$NON-NLS-1$
-	static private final String PREF_XML = "pref_xml"; //$NON-NLS-1$
-	static private final String PREF_ENABLE_LINKS = "pref_enable_links"; //$NON-NLS-1$
-	static private final String PREF_ENABLE_WORDNET = "pref_enable_wordnet"; //$NON-NLS-1$
-	static private final String PREF_ENABLE_VERBNET = "pref_enable_verbnet"; //$NON-NLS-1$
-	static private final String PREF_ENABLE_PROPBANK = "pref_enable_propbank"; //$NON-NLS-1$
-	static private final String PREF_ENABLE_FRAMENET = "pref_enable_framenet"; //$NON-NLS-1$
-	static private final String PREF_ENABLE_BNC = "pref_enable_bnc"; //$NON-NLS-1$
-	static private final String PREF_SEARCH_MODE = "pref_search_mode"; //$NON-NLS-1$
+	static public final String PREF_SELECTOR_MODE = "pref_viewweb_mode"; //
+	static private final String PREF_SELECTOR = "pref_selector_mode"; //
+	static public final String PREF_DETAIL_MODE = "pref_detail_mode"; //
+	static private final String PREF_XML = "pref_xml"; //
+	static private final String PREF_ENABLE_LINKS = "pref_enable_links"; //
+	static private final String PREF_ENABLE_WORDNET = "pref_enable_wordnet"; //
+	static private final String PREF_ENABLE_VERBNET = "pref_enable_verbnet"; //
+	static private final String PREF_ENABLE_PROPBANK = "pref_enable_propbank"; //
+	static private final String PREF_ENABLE_FRAMENET = "pref_enable_framenet"; //
+	static private final String PREF_ENABLE_BNC = "pref_enable_bnc"; //
+	static private final String PREF_SEARCH_MODE = "pref_search_mode"; //
 	static public final String PREF_STORAGE = StorageSettings.PREF_STORAGE;
 	static public final String PREF_DOWNLOAD_SITE = StorageSettings.PREF_DOWNLOAD_SITE;
 	static public final String PREF_DOWNLOAD_DBFILE = StorageSettings.PREF_DOWNLOAD_DBFILE;
@@ -369,14 +369,14 @@ public class Settings
 		if (apiLevel >= 9)
 		{
 			intent.setAction(android.provider.Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
-			intent.setData(Uri.parse("package:" + pkgName)); //$NON-NLS-1$
+			intent.setData(Uri.parse("package:" + pkgName)); //
 		}
 		else
 		{
-			final String appPkgName = apiLevel == 8 ? "pkg" : "com.android.settings.ApplicationPkgName"; //$NON-NLS-1$ //$NON-NLS-2$
+			final String appPkgName = apiLevel == 8 ? "pkg" : "com.android.settings.ApplicationPkgName"; //
 
 			intent.setAction(Intent.ACTION_VIEW);
-			intent.setClassName("com.android.settings", "com.android.settings.InstalledAppDetails"); //$NON-NLS-1$ //$NON-NLS-2$
+			intent.setClassName("com.android.settings", "com.android.settings.InstalledAppDetails"); //
 			intent.putExtra(appPkgName, pkgName);
 		}
 

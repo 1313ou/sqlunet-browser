@@ -18,7 +18,7 @@ import org.sqlunet.provider.SqlUNetProvider;
  */
 public class PredicateMatrixProvider extends SqlUNetProvider
 {
-	static private final String TAG = "PMProvider"; //$NON-NLS-1$
+	static private final String TAG = "PMProvider"; //
 
 	// U R I M A T C H E R
 
@@ -55,12 +55,12 @@ public class PredicateMatrixProvider extends SqlUNetProvider
 		switch (PredicateMatrixProvider.uriMatcher.match(uri))
 		{
 			case PM:
-				return SqlUNetContract.VENDOR + ".android.cursor.item/" + SqlUNetContract.VENDOR + '.' + PredicateMatrixContract.AUTHORITY + '.' + PredicateMatrixContract.Pm.TABLE; //$NON-NLS-1$
+				return SqlUNetContract.VENDOR + ".android.cursor.item/" + SqlUNetContract.VENDOR + '.' + PredicateMatrixContract.AUTHORITY + '.' + PredicateMatrixContract.Pm.TABLE; //
 			case PM_X:
-				return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + PredicateMatrixContract.AUTHORITY + '.' + PredicateMatrixContract.Pm_X.TABLE; //$NON-NLS-1$
+				return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + PredicateMatrixContract.AUTHORITY + '.' + PredicateMatrixContract.Pm_X.TABLE; //
 
 			default:
-				throw new UnsupportedOperationException("Illegal MIME type"); //$NON-NLS-1$
+				throw new UnsupportedOperationException("Illegal MIME type"); //
 		}
 	}
 
@@ -68,7 +68,7 @@ public class PredicateMatrixProvider extends SqlUNetProvider
 
 	@SuppressWarnings("boxing")
 	@Override
-	public Cursor query(final Uri uri, final String[] projection, final String selection, final String[] selectionArgs, final String sortOrder0)
+	public Cursor query(final Uri uri, final String[] projection, final String selection, final String[] selectionArgs, final String sortOrder)
 	{
 		if (this.db == null)
 		{
@@ -77,7 +77,7 @@ public class PredicateMatrixProvider extends SqlUNetProvider
 
 		// choose the table to query and a sort order based on the code returned for the incoming URI
 		final int code = PredicateMatrixProvider.uriMatcher.match(uri);
-		Log.d(PredicateMatrixProvider.TAG + "URI", String.format("%s (code %s)\n", uri, code)); //$NON-NLS-1$ //$NON-NLS-2$
+		Log.d(PredicateMatrixProvider.TAG + "URI", String.format("%s (code %s)\n", uri, code)); //
 		String table;
 		switch (code)
 		{
@@ -93,42 +93,44 @@ public class PredicateMatrixProvider extends SqlUNetProvider
 				break;
 
 			case PM_X:
-				table = "pm " + // //$NON-NLS-1$
-						"LEFT JOIN pmroles AS mr USING (pmroleid) " + // //$NON-NLS-1$
-						"LEFT JOIN pmpredicates AS mp USING (pmpredid) " + // //$NON-NLS-1$
-						"LEFT JOIN synsets USING (synsetid) " + // //$NON-NLS-1$
-						"LEFT JOIN vnclasses AS vc ON vnclassid = vc.classId " + // //$NON-NLS-1$
-						"LEFT JOIN vnroles AS vr ON vnroleid = vr.roleId " + // //$NON-NLS-1$
-						"LEFT JOIN vnroletypes AS vt ON vr.roletypeid = vt.roletypeid " + // //$NON-NLS-1$
-						"LEFT JOIN pbrolesets AS ps ON pbrolesetid = ps.roleSetId " + // //$NON-NLS-1$
-						"LEFT JOIN pbroles AS pr ON pbroleid = pr.roleId " + // //$NON-NLS-1$
-						"LEFT JOIN pbargns AS pt ON pr.narg = pt.narg " + // //$NON-NLS-1$
-						"LEFT JOIN fnframes AS ff ON fnframeid = ff.frameId " + // //$NON-NLS-1$
-						"LEFT JOIN fnfes AS fr ON fnfeid = fr.feid " + // //$NON-NLS-1$
-						"LEFT JOIN fnfetypes AS ft ON fr.fetypeid = ft.fetypeid " + // //$NON-NLS-1$
-						"LEFT JOIN fnlexunits AS fl ON fnluid = fl.luid"; //$NON-NLS-1$
+				table = "pm " + //
+						"LEFT JOIN pmroles AS " + PredicateMatrixContract.PMROLE + " USING (pmroleid) " + //
+						"LEFT JOIN pmpredicates AS " + PredicateMatrixContract.PMPREDICATE + " USING (pmpredid) " + //
+						"LEFT JOIN synsets USING (synsetid) " + //
+						"LEFT JOIN vnclasses AS " + PredicateMatrixContract.VNCLASS + " ON vnclassid = " + PredicateMatrixContract.VNCLASS + ".classid " + //
+						"LEFT JOIN vnroles AS " + PredicateMatrixContract.VNROLE + " ON vnroleid = " + PredicateMatrixContract.VNROLE + ".roleid " + //
+						"LEFT JOIN vnroletypes AS " + PredicateMatrixContract.VNROLETYPE + " ON " + PredicateMatrixContract.VNROLE + ".roletypeid = " + PredicateMatrixContract.VNROLETYPE + ".roletypeid " + //
+						"LEFT JOIN pbrolesets AS " + PredicateMatrixContract.PBROLESET + " ON pbrolesetid = " + PredicateMatrixContract.PBROLESET + ".rolesetid " + //
+						"LEFT JOIN pbroles AS " + PredicateMatrixContract.PBROLE + " ON pbroleid = " + PredicateMatrixContract.PBROLE + ".roleid " + //
+						"LEFT JOIN pbargns AS " + PredicateMatrixContract.PBARG + " ON " + PredicateMatrixContract.PBROLE + ".narg = " + PredicateMatrixContract.PBARG + ".narg " + //
+						"LEFT JOIN fnframes AS " + PredicateMatrixContract.FNFRAME + " ON fnframeid = " + PredicateMatrixContract.FNFRAME + ".frameid " + //
+						"LEFT JOIN fnfes AS " + PredicateMatrixContract.FNFE + " ON fnfeid = " + PredicateMatrixContract.FNFE + ".feid " + //
+						"LEFT JOIN fnfetypes AS " + PredicateMatrixContract.FNFETYPE + " ON " + PredicateMatrixContract.FNFE + ".fetypeid = " + PredicateMatrixContract.FNFETYPE + ".fetypeid " + //
+						"LEFT JOIN fnlexunits AS " + PredicateMatrixContract.FNLU + " ON fnluid = " + PredicateMatrixContract.FNLU + ".luid"; //
 				break;
 
 			default:
 			case UriMatcher.NO_MATCH:
-				throw new RuntimeException("Malformed URI " + uri); //$NON-NLS-1$
+				throw new RuntimeException("Malformed URI " + uri); //
 		}
 
 		if (SqlUNetProvider.debugSql)
 		{
-			final String sql = SQLiteQueryBuilder.buildQueryString(false, table, projection, selection, null, null, sortOrder0, null);
-			Log.d(PredicateMatrixProvider.TAG + "SQL", sql); //$NON-NLS-1$
-			Log.d(PredicateMatrixProvider.TAG + "ARGS", SqlUNetProvider.argsToString(selectionArgs)); //$NON-NLS-1$
+			final String sql = SQLiteQueryBuilder.buildQueryString(false, table, projection, selection, null, null, sortOrder, null);
+			Log.d(PredicateMatrixProvider.TAG + "SQL", sql); //
+			Log.d(PredicateMatrixProvider.TAG + "ARGS", SqlUNetProvider.argsToString(selectionArgs)); //
 		}
 
 		// do query
 		try
 		{
-			return this.db.query(table, projection, selection, selectionArgs, null, null, sortOrder0);
+			return this.db.query(table, projection, selection, selectionArgs, null, null, sortOrder, null);
 		}
 		catch (SQLiteException e)
 		{
-			Log.e(TAG, "PropBank provider query failed", e); //$NON-NLS-1$
+			final String sql = SQLiteQueryBuilder.buildQueryString(false, table, projection, selection, null, null, sortOrder, null);
+			Log.d(TAG + "SQL", sql); //
+			Log.e(TAG, "PropBank provider query failed", e); //
 			return null;
 		}
 	}

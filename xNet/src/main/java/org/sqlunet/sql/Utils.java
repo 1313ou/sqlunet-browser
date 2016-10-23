@@ -81,7 +81,7 @@ public class Utils
 			{
 				if (sb.length() > 0)
 				{
-					sb.append(", "); //$NON-NLS-1$
+					sb.append(", "); //
 				}
 				sb.append(arg);
 			}
@@ -103,7 +103,7 @@ public class Utils
 		{
 			for (final String a : args)
 			{
-				processedSql = processedSql.replaceFirst("\\?", a); //$NON-NLS-1$
+				processedSql = processedSql.replaceFirst("\\?", a); //
 			}
 		}
 		return processedSql;
@@ -118,7 +118,7 @@ public class Utils
 	 */
 	static public long[] toIds(final String string)
 	{
-		final String[] strings = string.split(","); //$NON-NLS-1$
+		final String[] strings = string.split(","); //
 		final long[] ids = new long[strings.length];
 		for (int i = 0; i < strings.length; i++)
 		{

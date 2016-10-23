@@ -21,9 +21,9 @@ class Checker
 	 */
 	public static void checkNonElement(final Node node, final String... messages)
 	{
-		if (!node.getNodeValue().matches("\\s*")) //$NON-NLS-1$
+		if (!node.getNodeValue().matches("\\s*")) //
 		{
-			throw new RuntimeException("non element node " + node + "| " + (messages.length == 0 ? "" : messages[0])); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+			throw new RuntimeException("non element node " + node + "| " + (messages.length == 0 ? "" : messages[0])); //
 		}
 	}
 
@@ -38,7 +38,7 @@ class Checker
 	{
 		if (!name.matches(pattern))
 		{
-			throw new RuntimeException("element name |" + name + "| " + (messages.length == 0 ? "" : messages[0])); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+			throw new RuntimeException("element name |" + name + "| " + (messages.length == 0 ? "" : messages[0])); //
 		}
 	}
 
@@ -62,7 +62,7 @@ class Checker
 					final String name = attr.getNodeName();
 					if (!name.matches(pattern))
 					{
-						throw new RuntimeException("attribute name |" + name + "| " + (messages.length == 0 ? "" : messages[0])); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+						throw new RuntimeException("attribute name |" + name + "| " + (messages.length == 0 ? "" : messages[0])); //
 					}
 				}
 			}
@@ -77,7 +77,7 @@ class Checker
 					final Node attr = attrs.item(i);
 					sb.append(attr.getNodeName()).append(' ');
 				}
-				throw new RuntimeException("attribute name |" + sb + "| " + (messages.length == 0 ? "" : messages[0])); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				throw new RuntimeException("attribute name |" + sb + "| " + (messages.length == 0 ? "" : messages[0])); //
 			}
 		}
 	}
@@ -91,12 +91,12 @@ class Checker
 	 */
 	public static void checkElementAttributeValue(final String value, final String pattern, final String... messages)
 	{
-		final String[] items = value.split("\\s+"); //$NON-NLS-1$
+		final String[] items = value.split("\\s+"); //
 		for (final String item : items)
 		{
 			if (!item.matches(pattern))
 			{
-				throw new RuntimeException("attr value |" + item + "| " + (messages.length == 0 ? "" : messages[0])); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				throw new RuntimeException("attr value |" + item + "| " + (messages.length == 0 ? "" : messages[0])); //
 			}
 		}
 	}
@@ -114,7 +114,7 @@ class Checker
 		final NodeList nodes = node.getChildNodes();
 		if (nodes.getLength() > 1)
 		{
-			throw new RuntimeException("multiple nodes |" + node.getNodeName() + "| " + (messages.length == 0 ? "" : messages[0])); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+			throw new RuntimeException("multiple nodes |" + node.getNodeName() + "| " + (messages.length == 0 ? "" : messages[0])); //
 		}
 
 		for (int j = 0; j < nodes.getLength(); j++)
@@ -122,7 +122,7 @@ class Checker
 			final Node childNode = nodes.item(j);
 			if (childNode instanceof Element)
 			{
-				throw new RuntimeException("includes elements |" + childNode.getNodeName() + "| " + (messages.length == 0 ? "" : messages[0])); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				throw new RuntimeException("includes elements |" + childNode.getNodeName() + "| " + (messages.length == 0 ? "" : messages[0])); //
 			}
 		}
 	}

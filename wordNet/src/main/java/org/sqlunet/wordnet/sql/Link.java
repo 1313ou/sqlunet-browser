@@ -14,7 +14,7 @@ import java.util.List;
  */
 class Link extends Synset
 {
-	private static final String TAG = "Link"; //$NON-NLS-1$
+	private static final String TAG = "Link"; //
 
 	/**
 	 * <code>linkType</code> relation type

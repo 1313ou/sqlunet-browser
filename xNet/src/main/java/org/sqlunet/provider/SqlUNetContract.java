@@ -8,16 +8,16 @@ package org.sqlunet.provider;
 @SuppressWarnings("unused")
 public final class SqlUNetContract
 {
-	static public final String VENDOR = "sqlunet"; //$NON-NLS-1$
-	static public final String SCHEME = "content://"; //$NON-NLS-1$
+	static public final String VENDOR = "sqlunet"; //
+	static public final String SCHEME = "content://"; //
 
 	// global
-	public static final String ARG_QUERYPOINTER = "QUERYPOINTER"; //$NON-NLS-1$
-	public static final String ARG_QUERYSTRING = "QUERYSTRING"; //$NON-NLS-1$
-	public static final String ARG_QUERYRECURSE = "QUERYRECURSE"; //$NON-NLS-1$
+	public static final String ARG_QUERYPOINTER = "QUERYPOINTER"; //
+	public static final String ARG_QUERYSTRING = "QUERYSTRING"; //
+	public static final String ARG_QUERYRECURSE = "QUERYRECURSE"; //
 
 	// action
-	public static final String ARG_QUERYACTION = "QUERYACTION"; //$NON-NLS-1$
+	public static final String ARG_QUERYACTION = "QUERYACTION"; //
 	public static final int ARG_QUERYACTION_ALL = 0;
 	public static final int ARG_QUERYACTION_SYNSET = 1;
 	public static final int ARG_QUERYACTION_VNCLASS = 2;
@@ -33,13 +33,13 @@ public final class SqlUNetContract
 	public static final int ARG_QUERYACTION_PMROLE = 12;
 
 	// tables
-	public static final String ARG_QUERYURI = "QUERYURI"; //$NON-NLS-1$
-	public static final String ARG_QUERYID = "QUERYID"; //$NON-NLS-1$
-	public static final String ARG_QUERYITEMS = "QUERYITEMS"; //$NON-NLS-1$
-	public static final String ARG_QUERYXITEMS = "QUERYXITEMS"; //$NON-NLS-1$
-	public static final String ARG_QUERYARG = "QUERYARG"; //$NON-NLS-1$
-	public static final String ARG_QUERYLAYOUT = "QUERYLAYOUT"; //$NON-NLS-1$
-	public static final String ARG_QUERYSORT = "QUERYSORT"; //$NON-NLS-1$
-	public static final String ARG_QUERYFILTER = "QUERYFILTER"; //$NON-NLS-1$
-	public static final String ARG_QUERYINTENT = "QUERYINTENT"; //$NON-NLS-1$
+	public static final String ARG_QUERYURI = "QUERYURI"; //
+	public static final String ARG_QUERYID = "QUERYID"; //
+	public static final String ARG_QUERYITEMS = "QUERYITEMS"; //
+	public static final String ARG_QUERYXITEMS = "QUERYXITEMS"; //
+	public static final String ARG_QUERYARG = "QUERYARG"; //
+	public static final String ARG_QUERYLAYOUT = "QUERYLAYOUT"; //
+	public static final String ARG_QUERYSORT = "QUERYSORT"; //
+	public static final String ARG_QUERYFILTER = "QUERYFILTER"; //
+	public static final String ARG_QUERYINTENT = "QUERYINTENT"; //
 }

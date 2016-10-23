@@ -66,7 +66,7 @@ import org.sqlunet.wordnet.provider.WordNetContract.PosTypes;
  */
 public class MainActivity extends Activity
 {
-	static private final String TAG = "SqlUNet Main"; //$NON-NLS-1$
+	static private final String TAG = "SqlUNet Main"; //
 
 	/**
 	 * Search view
@@ -86,7 +86,7 @@ public class MainActivity extends Activity
 	/**
 	 * Selector mode state
 	 */
-	private static final String STATE_SELECTED_SELECTOR_MODE = "org.sqlunet.browser.selector.selected"; //$NON-NLS-1$
+	private static final String STATE_SELECTED_SELECTOR_MODE = "org.sqlunet.browser.selector.selected"; //
 
 	// C R E A T I O N
 
@@ -99,12 +99,12 @@ public class MainActivity extends Activity
 		Settings.initialize(this);
 
 		// info
-		Log.d(MainActivity.TAG, "DATABASE=" + StorageSettings.getDatabasePath(getBaseContext())); //$NON-NLS-1$
-		// Log.d(MainActivity.TAG, "DATADIR=" + StorageSettings.getDataDir(getBaseContext())); //$NON-NLS-1$
-		// Log.d(MainActivity.TAG, "DOWNLOADDBFROM=" + StorageSettings.getDbDownloadSource(getBaseContext())); //$NON-NLS-1$
-		// Log.d(MainActivity.TAG, "DOWNLOADSQLFROM=" + StorageSettings.getSqlDownloadSource(getBaseContext())); //$NON-NLS-1$
-		// Log.d(MainActivity.TAG, "DOWNLOADSQLTO=" + StorageSettings.getSqlDownloadTarget(getBaseContext())); //$NON-NLS-1$
-		// Log.d(MainActivity.TAG, "SQLFROM=" + StorageSettings.getSqlSource(getBaseContext())); //$NON-NLS-1$
+		Log.d(MainActivity.TAG, "DATABASE=" + StorageSettings.getDatabasePath(getBaseContext())); //
+		// Log.d(MainActivity.TAG, "DATADIR=" + StorageSettings.getDataDir(getBaseContext())); //
+		// Log.d(MainActivity.TAG, "DOWNLOADDBFROM=" + StorageSettings.getDbDownloadSource(getBaseContext())); //
+		// Log.d(MainActivity.TAG, "DOWNLOADSQLFROM=" + StorageSettings.getSqlDownloadSource(getBaseContext())); //
+		// Log.d(MainActivity.TAG, "DOWNLOADSQLTO=" + StorageSettings.getSqlDownloadTarget(getBaseContext())); //
+		// Log.d(MainActivity.TAG, "SQLFROM=" + StorageSettings.getSqlSource(getBaseContext())); //
 
 		// layout
 		setContentView(R.layout.activity_main);
@@ -246,7 +246,7 @@ public class MainActivity extends Activity
 	@Override
 	protected void onNewIntent(final Intent intent)
 	{
-		Log.d(MainActivity.TAG, "NewIntent " + intent); //$NON-NLS-1$
+		Log.d(MainActivity.TAG, "NewIntent " + intent); //
 		handleIntent(intent);
 	}
 
@@ -263,14 +263,14 @@ public class MainActivity extends Activity
 		// search action
 		if (Intent.ACTION_SEARCH.equals(action))
 		{
-			this.statusView.setText("search: '" + query + "'"); //$NON-NLS-1$ //$NON-NLS-2$
+			this.statusView.setText("search: '" + query + "'"); //
 			handleSearch(query);
 		}
 
 		// view action
 		else if (Intent.ACTION_VIEW.equals(action))
 		{
-			this.statusView.setText("query: '" + query + "'"); //$NON-NLS-1$ //$NON-NLS-2$
+			this.statusView.setText("query: '" + query + "'"); //
 			this.searchView.setQuery(query, true); // submit
 		}
 	}
@@ -411,7 +411,7 @@ public class MainActivity extends Activity
 				intent.putExtra(SqlUNetContract.ARG_QUERYURI, LinkTypes.CONTENT_URI);
 				intent.putExtra(SqlUNetContract.ARG_QUERYID, LinkTypes.LINKID);
 				intent.putExtra(SqlUNetContract.ARG_QUERYITEMS, new String[]{LinkTypes.LINKID, LinkTypes.LINK, LinkTypes.RECURSESSELECT});
-				intent.putExtra(SqlUNetContract.ARG_QUERYSORT, LinkTypes.LINKID + " ASC"); //$NON-NLS-1$
+				intent.putExtra(SqlUNetContract.ARG_QUERYSORT, LinkTypes.LINKID + " ASC"); //
 				intent.putExtra(SqlUNetContract.ARG_QUERYLAYOUT, R.layout.item_table3);
 				break;
 
@@ -469,7 +469,7 @@ public class MainActivity extends Activity
 				return true;
 
 			case R.id.action_appsettings:
-				Settings.applicationSettings(this, "org.sqlunet.browser"); //$NON-NLS-1$
+				Settings.applicationSettings(this, "org.sqlunet.browser"); //
 				return true;
 
 			default:
@@ -499,7 +499,7 @@ public class MainActivity extends Activity
 			public boolean onQueryTextSubmit(final String query)
 			{
 				searchView.clearFocus();
-				searchView.setQuery("", false); //$NON-NLS-1$
+				searchView.setQuery("", false); //
 				handleSearch(query);
 				return true;
 			}
@@ -527,10 +527,10 @@ public class MainActivity extends Activity
 
 		// dispatch as per query prefix
 		Intent searchIntent;
-		if (query.startsWith("#")) //$NON-NLS-1$
+		if (query.startsWith("#")) //
 		{
 			// wordnet
-			if (query.startsWith("#ws")) //$NON-NLS-1$
+			if (query.startsWith("#ws")) //
 			{
 				final long synsetId = Long.valueOf(query.substring(3));
 				final SynsetPointer synsetPointer = new SynsetPointer();
@@ -542,7 +542,7 @@ public class MainActivity extends Activity
 			}
 
 			// verbnet
-			else if (query.startsWith("#vc")) //$NON-NLS-1$
+			else if (query.startsWith("#vc")) //
 			{
 				final long classId = Long.valueOf(query.substring(3));
 				final VnClassPointer framePointer = new VnClassPointer();
@@ -553,7 +553,7 @@ public class MainActivity extends Activity
 			}
 
 			// propbank
-			else if (query.startsWith("#pr")) //$NON-NLS-1$
+			else if (query.startsWith("#pr")) //
 			{
 				final long roleSetId = Long.valueOf(query.substring(3));
 				final PbRoleSetPointer roleSetPointer = new PbRoleSetPointer();
@@ -564,7 +564,7 @@ public class MainActivity extends Activity
 			}
 
 			// framenet
-			else if (query.startsWith("#ff")) //$NON-NLS-1$
+			else if (query.startsWith("#ff")) //
 			{
 				final long frameId = Long.valueOf(query.substring(3));
 				final FnFramePointer framePointer = new FnFramePointer();
@@ -573,7 +573,7 @@ public class MainActivity extends Activity
 				searchIntent.putExtra(SqlUNetContract.ARG_QUERYACTION, SqlUNetContract.ARG_QUERYACTION_FNFRAME);
 				searchIntent.putExtra(SqlUNetContract.ARG_QUERYPOINTER, framePointer);
 			}
-			else if (query.startsWith("#fl")) //$NON-NLS-1$
+			else if (query.startsWith("#fl")) //
 			{
 				final long luId = Long.valueOf(query.substring(3));
 				final FnLexUnitPointer lexunitPointer = new FnLexUnitPointer();
@@ -582,7 +582,7 @@ public class MainActivity extends Activity
 				searchIntent.putExtra(SqlUNetContract.ARG_QUERYACTION, SqlUNetContract.ARG_QUERYACTION_FNLEXUNIT);
 				searchIntent.putExtra(SqlUNetContract.ARG_QUERYPOINTER, lexunitPointer);
 			}
-			else if (query.startsWith("#fs")) //$NON-NLS-1$
+			else if (query.startsWith("#fs")) //
 			{
 				final long sentenceId = Long.valueOf(query.substring(3));
 				@SuppressWarnings("TypeMayBeWeakened") final FnSentencePointer sentencePointer = new FnSentencePointer(sentenceId);
@@ -590,7 +590,7 @@ public class MainActivity extends Activity
 				searchIntent.putExtra(SqlUNetContract.ARG_QUERYACTION, SqlUNetContract.ARG_QUERYACTION_FNSENTENCE);
 				searchIntent.putExtra(SqlUNetContract.ARG_QUERYPOINTER, sentencePointer);
 			}
-			else if (query.startsWith("#fa")) //$NON-NLS-1$
+			else if (query.startsWith("#fa")) //
 			{
 				final long annoSetId = Long.valueOf(query.substring(3));
 				final FnAnnoSetPointer annoSetPointer = new FnAnnoSetPointer();
@@ -599,7 +599,7 @@ public class MainActivity extends Activity
 				searchIntent.putExtra(SqlUNetContract.ARG_QUERYACTION, SqlUNetContract.ARG_QUERYACTION_FNANNOSET);
 				searchIntent.putExtra(SqlUNetContract.ARG_QUERYPOINTER, annoSetPointer);
 			}
-			else if (query.startsWith("#fp")) //$NON-NLS-1$
+			else if (query.startsWith("#fp")) //
 			{
 				final long patternId = Long.valueOf(query.substring(3));
 				final FnPatternPointer patternPointer = new FnPatternPointer();
@@ -608,7 +608,7 @@ public class MainActivity extends Activity
 				searchIntent.putExtra(SqlUNetContract.ARG_QUERYACTION, SqlUNetContract.ARG_QUERYACTION_FNPATTERN);
 				searchIntent.putExtra(SqlUNetContract.ARG_QUERYPOINTER, patternPointer);
 			}
-			else if (query.startsWith("#fv")) //$NON-NLS-1$
+			else if (query.startsWith("#fv")) //
 			{
 				final long valenceUnitId = Long.valueOf(query.substring(3));
 				final FnValenceUnitPointer valenceunitPointer = new FnValenceUnitPointer();
@@ -619,7 +619,7 @@ public class MainActivity extends Activity
 			}
 
 			// predicate matrix
-			else if (query.startsWith("#mr")) //$NON-NLS-1$
+			else if (query.startsWith("#mr")) //
 			{
 				final long pmRoleId = Long.valueOf(query.substring(3));
 				final PmRolePointer rolePointer = new PmRolePointer();
@@ -640,7 +640,7 @@ public class MainActivity extends Activity
 			searchIntent.putExtra(SqlUNetContract.ARG_QUERYSTRING, query);
 			searchIntent.putExtra(SqlUNetContract.ARG_QUERYRECURSE, recurse);
 		}
-		Log.d(MainActivity.TAG, "SEARCH " + searchIntent); //$NON-NLS-1$
+		Log.d(MainActivity.TAG, "SEARCH " + searchIntent); //
 		startActivity(searchIntent);
 	}
 

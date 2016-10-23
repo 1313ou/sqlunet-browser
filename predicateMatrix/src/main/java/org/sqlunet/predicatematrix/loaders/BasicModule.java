@@ -11,7 +11,6 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.text.SpannableStringBuilder;
-import android.util.Log;
 import android.util.SparseArray;
 
 import org.sqlunet.browser.Module;
@@ -48,7 +47,7 @@ import java.util.TreeSet;
  */
 abstract class BasicModule extends Module
 {
-	private static final String LOG = "PredicateMatrix"; //$NON-NLS-1$
+	// private static final String LOG = "PredicateMatrix"; //
 
 	// resources
 
@@ -104,7 +103,7 @@ abstract class BasicModule extends Module
 			@Override
 			protected String getSelection()
 			{
-				return PredicateMatrix.WORD + "= ?"; //$NON-NLS-1$
+				return PredicateMatrix.WORD + "= ?"; //
 			}
 
 			@Override
@@ -128,7 +127,7 @@ abstract class BasicModule extends Module
 			@Override
 			protected String getSelection()
 			{
-				return PredicateMatrix.WORD + "= ?"; //$NON-NLS-1$
+				return PredicateMatrix.WORD + "= ?"; //
 			}
 
 			@Override
@@ -153,7 +152,7 @@ abstract class BasicModule extends Module
 			@Override
 			protected String getSelection()
 			{
-				return PredicateMatrix.PMROLEID + "= ?"; //$NON-NLS-1$
+				return PredicateMatrix.PMROLEID + "= ?"; //
 			}
 
 			@Override
@@ -262,11 +261,11 @@ abstract class BasicModule extends Module
 		 */
 		public String toRoleString()
 		{
-			return (this.pmPos == null ? "null" : this.pmPos) + //$NON-NLS-1$
+			return (this.pmPos == null ? "null" : this.pmPos) + //
 					'-' + // $NON-NLS-1$
 					this.pmPredicate +
 					'-' + // $NON-NLS-1$
-					(this.pmRole == null ? "null" : this.pmRole) //$NON-NLS-1$
+					(this.pmRole == null ? "null" : this.pmRole) //
 					;
 		}
 
@@ -723,7 +722,7 @@ abstract class BasicModule extends Module
 					PredicateMatrix.PMPREDID, //
 					PredicateMatrix.PMPREDICATE, //
 					PredicateMatrix.PMROLE, //
-					"mr." + PredicateMatrix.PMPOS, // //$NON-NLS-1$
+					"mr." + PredicateMatrix.PMPOS, //
 
 					PredicateMatrix.WORD, //
 					PredicateMatrix.SYNSETID, //
@@ -731,7 +730,7 @@ abstract class BasicModule extends Module
 
 					PredicateMatrix.VNCLASSID, //
 					Pm_X.VNCLASS, //
-					"vt." + Pm_X.VNROLETYPEID, // //$NON-NLS-1$
+					"vt." + Pm_X.VNROLETYPEID, //
 					Pm_X.VNROLETYPE, //
 
 					PredicateMatrix.PBROLESETID, //
@@ -740,7 +739,7 @@ abstract class BasicModule extends Module
 					Pm_X.PBROLESETHEAD, //
 					Pm_X.PBROLEID, //
 					Pm_X.PBROLEDESCR, //
-					"pt." + Pm_X.PBROLENARG, // //$NON-NLS-1$
+					"pt." + Pm_X.PBROLENARG, //
 					Pm_X.PBROLENARGDESCR, //
 
 					PredicateMatrix.FRAMEID, //
@@ -749,7 +748,7 @@ abstract class BasicModule extends Module
 					Pm_X.LEXUNIT, //
 					Pm_X.LUDEFINITION, //
 					Pm_X.LUDICT, //
-					"ft." + Pm_X.FETYPEID, // //$NON-NLS-1$
+					"ft." + Pm_X.FETYPEID, //
 					Pm_X.FETYPE, //
 					Pm_X.FEABBREV, //
 					Pm_X.FEDEFINITION, //
@@ -1151,7 +1150,7 @@ abstract class BasicModule extends Module
 		TreeNode displayPmRole(final TreeNode parentNode, final PmRole pmRole)
 		{
 			final SpannableStringBuilder pmsb = new SpannableStringBuilder();
-			// rolesb.append("predicate role "); //$NON-NLS-1$
+			// rolesb.append("predicate role "); //
 			if (pmRole.pmRole != null)
 			{
 				final String roleName = pmRole.toRoleString();
@@ -1176,7 +1175,7 @@ abstract class BasicModule extends Module
 		TreeNode displayPmRow(final TreeNode parentNode, final PmRow pmRow, final WnData wnData)
 		{
 			final SpannableStringBuilder pmsb = new SpannableStringBuilder();
-			// rolesb.append("predicate role "); //$NON-NLS-1$
+			// rolesb.append("predicate role "); //
 			if (pmRow.pmRole != null)
 			{
 				final String rowName = pmRow.toRoleString();
@@ -1390,25 +1389,25 @@ abstract class BasicModule extends Module
 	static void parsePmSources(final SpannableStringBuilder sb, final int sources)
 	{
 		if ((sources & SEMLINK) != 0)
-			Spanner.append(sb, "SEMLINK ", 0, PredicateMatrixFactories.dataFactory); //$NON-NLS-1$
+			Spanner.append(sb, "SEMLINK ", 0, PredicateMatrixFactories.dataFactory); //
 		if ((sources & SYNONYMS) != 0)
-			Spanner.append(sb, "SYNONYMS ", 0, PredicateMatrixFactories.dataFactory); //$NON-NLS-1$
+			Spanner.append(sb, "SYNONYMS ", 0, PredicateMatrixFactories.dataFactory); //
 		if ((sources & FRAME) != 0)
-			Spanner.append(sb, "FRAME ", 0, PredicateMatrixFactories.dataFactory); //$NON-NLS-1$
+			Spanner.append(sb, "FRAME ", 0, PredicateMatrixFactories.dataFactory); //
 		if ((sources & FN_FE) != 0)
-			Spanner.append(sb, "FN_FE", 0, PredicateMatrixFactories.dataFactory); //$NON-NLS-1$
+			Spanner.append(sb, "FN_FE", 0, PredicateMatrixFactories.dataFactory); //
 		if ((sources & ADDED_FRAME_FN_ROLE) != 0)
-			Spanner.append(sb, "ADDED_FRAME-FN_ROLE ", 0, PredicateMatrixFactories.dataFactory); //$NON-NLS-1$
+			Spanner.append(sb, "ADDED_FRAME-FN_ROLE ", 0, PredicateMatrixFactories.dataFactory); //
 		if ((sources & FN_MAPPING) != 0)
-			Spanner.append(sb, "FN_MAPPING ", 0, PredicateMatrixFactories.dataFactory); //$NON-NLS-1$
+			Spanner.append(sb, "FN_MAPPING ", 0, PredicateMatrixFactories.dataFactory); //
 		if ((sources & VN_MAPPING) != 0)
-			Spanner.append(sb, "VN_MAPPING ", 0, PredicateMatrixFactories.dataFactory); //$NON-NLS-1$
+			Spanner.append(sb, "VN_MAPPING ", 0, PredicateMatrixFactories.dataFactory); //
 		if ((sources & PREDICATE_MAPPING) != 0)
-			Spanner.append(sb, "PREDICATE_MAPPING ", 0, PredicateMatrixFactories.dataFactory); //$NON-NLS-1$
+			Spanner.append(sb, "PREDICATE_MAPPING ", 0, PredicateMatrixFactories.dataFactory); //
 		if ((sources & ROLE_MAPPING) != 0)
-			Spanner.append(sb, "ROLE_MAPPING ", 0, PredicateMatrixFactories.dataFactory); //$NON-NLS-1$
+			Spanner.append(sb, "ROLE_MAPPING ", 0, PredicateMatrixFactories.dataFactory); //
 		if ((sources & WN_MISSING) != 0)
-			Spanner.append(sb, "WN_MISSING ", 0, PredicateMatrixFactories.dataFactory); //$NON-NLS-1$
+			Spanner.append(sb, "WN_MISSING ", 0, PredicateMatrixFactories.dataFactory); //
 
 		Spanner.append(sb, Long.toString(sources), 0, PredicateMatrixFactories.dataFactory);
 	}
@@ -1462,7 +1461,7 @@ abstract class BasicModule extends Module
 		@Override
 		protected String getRequiredOrder()
 		{
-			return "synsetid"; //$NON-NLS-1$
+			return "synsetid"; //
 		}
 
 		@Override
@@ -1505,7 +1504,7 @@ abstract class BasicModule extends Module
 		@Override
 		protected String getRequiredOrder()
 		{
-			return "pmroleid"; //$NON-NLS-1$
+			return "pmroleid"; //
 		}
 
 		@Override
@@ -1529,7 +1528,7 @@ abstract class BasicModule extends Module
 		@Override
 		protected String getRequiredOrder()
 		{
-			return "pmid"; //$NON-NLS-1$
+			return "pmid"; //
 		}
 
 		@Override
@@ -1562,8 +1561,6 @@ abstract class BasicModule extends Module
 		@Override
 		public void process(final TreeNode node)
 		{
-			Log.d(LOG, "class " + this.id); //$NON-NLS-1$
-
 			final VnClassPointer pointer = new VnClassPointer();
 			pointer.classId = this.id;
 			final Intent intent = new Intent(BasicModule.this.getContext(), VnClassActivity.class);
@@ -1595,7 +1592,6 @@ abstract class BasicModule extends Module
 		@Override
 		public void process(final TreeNode node)
 		{
-			// System.out.println("roleSet " + this.id); //$NON-NLS-1$
 			final PbRoleSetPointer pointer = new PbRoleSetPointer();
 			pointer.roleSetId = this.id;
 			final Intent intent = new Intent(BasicModule.this.getContext(), PbRoleSetActivity.class);
@@ -1627,8 +1623,6 @@ abstract class BasicModule extends Module
 		@Override
 		public void process(final TreeNode node)
 		{
-			// System.out.println("frame " + this.id); //$NON-NLS-1$
-
 			final FnFramePointer pointer = new FnFramePointer();
 			pointer.frameId = this.id;
 			final Intent intent = new Intent(BasicModule.this.getContext(), FnFrameActivity.class);

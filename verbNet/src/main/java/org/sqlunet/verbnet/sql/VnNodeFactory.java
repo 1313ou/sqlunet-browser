@@ -25,14 +25,14 @@ class VnNodeFactory extends NodeFactory
 	 */
 	static public Node makeVnRootNode(final Document doc, final long wordId, final Long synsetId)
 	{
-		final Element rootNode = org.sqlunet.sql.NodeFactory.makeNode(doc, doc, "verbnet", null); //$NON-NLS-1$
+		final Element rootNode = org.sqlunet.sql.NodeFactory.makeNode(doc, doc, "verbnet", null); //
 		if (synsetId == null || synsetId == 0)
 		{
-			org.sqlunet.sql.NodeFactory.makeTargetNode(doc, rootNode, "word-id", Long.toString(wordId)); //$NON-NLS-1$
+			org.sqlunet.sql.NodeFactory.makeTargetNode(doc, rootNode, "word-id", Long.toString(wordId)); //
 		}
 		else
 		{
-			org.sqlunet.sql.NodeFactory.makeTargetNode(doc, rootNode, "word-id", Long.toString(wordId), "synset-id", Long.toString(synsetId)); //$NON-NLS-1$ //$NON-NLS-2$
+			org.sqlunet.sql.NodeFactory.makeTargetNode(doc, rootNode, "word-id", Long.toString(wordId), "synset-id", Long.toString(synsetId)); //
 		}
 		return rootNode;
 	}
@@ -46,8 +46,8 @@ class VnNodeFactory extends NodeFactory
 	 */
 	public static Node makeVnRootClassNode(final Document doc, final long classId)
 	{
-		final Element rootNode = org.sqlunet.sql.NodeFactory.makeNode(doc, doc, "verbnet", null); //$NON-NLS-1$
-		org.sqlunet.sql.NodeFactory.makeTargetNode(doc, rootNode, "class-id", Long.toString(classId)); //$NON-NLS-1$
+		final Element rootNode = org.sqlunet.sql.NodeFactory.makeNode(doc, doc, "verbnet", null); //
+		org.sqlunet.sql.NodeFactory.makeTargetNode(doc, rootNode, "class-id", Long.toString(classId)); //
 		return rootNode;
 	}
 
@@ -60,14 +60,14 @@ class VnNodeFactory extends NodeFactory
 	 */
 	public static Node makeVnClassMembershipNode(final Document doc, final Node parent, final VnClassMembership classMembership)
 	{
-		final Element element = org.sqlunet.sql.NodeFactory.makeNode(doc, parent, "vnclass", null); //$NON-NLS-1$
-		org.sqlunet.sql.NodeFactory.makeAttribute(element, "name", classMembership.className); //$NON-NLS-1$
-		org.sqlunet.sql.NodeFactory.makeAttribute(element, "classid", Long.toString(classMembership.classId)); //$NON-NLS-1$
-		org.sqlunet.sql.NodeFactory.makeAttribute(element, "synsetid", Long.toString(classMembership.synsetId)); //$NON-NLS-1$
-		org.sqlunet.sql.NodeFactory.makeAttribute(element, "sensenum", Integer.toString(classMembership.senseNum)); //$NON-NLS-1$
-		org.sqlunet.sql.NodeFactory.makeAttribute(element, "sensekey", classMembership.senseKey); //$NON-NLS-1$
-		org.sqlunet.sql.NodeFactory.makeAttribute(element, "groupings", classMembership.groupings); //$NON-NLS-1$
-		org.sqlunet.sql.NodeFactory.makeAttribute(element, "quality", Integer.toString(classMembership.quality)); //$NON-NLS-1$
+		final Element element = org.sqlunet.sql.NodeFactory.makeNode(doc, parent, "vnclass", null); //
+		org.sqlunet.sql.NodeFactory.makeAttribute(element, "name", classMembership.className); //
+		org.sqlunet.sql.NodeFactory.makeAttribute(element, "classid", Long.toString(classMembership.classId)); //
+		org.sqlunet.sql.NodeFactory.makeAttribute(element, "synsetid", Long.toString(classMembership.synsetId)); //
+		org.sqlunet.sql.NodeFactory.makeAttribute(element, "sensenum", Integer.toString(classMembership.senseNum)); //
+		org.sqlunet.sql.NodeFactory.makeAttribute(element, "sensekey", classMembership.senseKey); //
+		org.sqlunet.sql.NodeFactory.makeAttribute(element, "groupings", classMembership.groupings); //
+		org.sqlunet.sql.NodeFactory.makeAttribute(element, "quality", Integer.toString(classMembership.quality)); //
 		return element;
 	}
 
@@ -81,8 +81,8 @@ class VnNodeFactory extends NodeFactory
 	 */
 	private static Node makeVnClassNode(final Document doc, final Node parent, final String className)
 	{
-		final Element element = org.sqlunet.sql.NodeFactory.makeNode(doc, parent, "vnclass", null); //$NON-NLS-1$
-		org.sqlunet.sql.NodeFactory.makeAttribute(element, "name", className); //$NON-NLS-1$
+		final Element element = org.sqlunet.sql.NodeFactory.makeNode(doc, parent, "vnclass", null); //
+		org.sqlunet.sql.NodeFactory.makeAttribute(element, "name", className); //
 		return element;
 	}
 
@@ -123,14 +123,14 @@ class VnNodeFactory extends NodeFactory
 	@SuppressWarnings("UnusedReturnValue")
 	static public Node makeVnRoleNode(final Document doc, final Node parent, final VnRole role, final int i)
 	{
-		final Element element = org.sqlunet.sql.NodeFactory.makeNode(doc, parent, "themrole", null); //$NON-NLS-1$
-		org.sqlunet.sql.NodeFactory.makeAttribute(element, "type", role.roleType); //$NON-NLS-1$
+		final Element element = org.sqlunet.sql.NodeFactory.makeNode(doc, parent, "themrole", null); //
+		org.sqlunet.sql.NodeFactory.makeAttribute(element, "type", role.roleType); //
 		// TODO NodeFactory.makeAttribute(element, "synset", role.isSynsetSpecific ? "true" : "false");
-		org.sqlunet.sql.NodeFactory.makeAttribute(element, "id", Long.toString(i)); //$NON-NLS-1$
+		org.sqlunet.sql.NodeFactory.makeAttribute(element, "id", Long.toString(i)); //
 		if (role.selectionRestrictions != null)
 		{
-			final Element restrsElement = org.sqlunet.sql.NodeFactory.makeNode(doc, element, "restrs", null); //$NON-NLS-1$
-			restrsElement.setAttribute("value", role.selectionRestrictions); //$NON-NLS-1$
+			final Element restrsElement = org.sqlunet.sql.NodeFactory.makeNode(doc, element, "restrs", null); //
+			restrsElement.setAttribute("value", role.selectionRestrictions); //
 			// restrsElement.setTextContent(role.selectionRestrictions);
 		}
 		return element;
@@ -160,46 +160,46 @@ class VnNodeFactory extends NodeFactory
 	@SuppressWarnings("UnusedReturnValue")
 	static public Node makeVnFrameNode(final Document doc, final Node parent, final VnFrame frame, final int i)
 	{
-		final Element element = org.sqlunet.sql.NodeFactory.makeNode(doc, parent, "frame", null); //$NON-NLS-1$
-		org.sqlunet.sql.NodeFactory.makeAttribute(element, "id", Integer.toString(i)); //$NON-NLS-1$
+		final Element element = org.sqlunet.sql.NodeFactory.makeNode(doc, parent, "frame", null); //
+		org.sqlunet.sql.NodeFactory.makeAttribute(element, "id", Integer.toString(i)); //
 		// TODO NodeFactory.makeAttribute(element, "synset", frame.isSynsetSpecific ? "true" : "false");
-		org.sqlunet.sql.NodeFactory.makeAttribute(element, "description", frame.description1 + " - " + frame.description2); //$NON-NLS-1$ //$NON-NLS-2$
+		org.sqlunet.sql.NodeFactory.makeAttribute(element, "description", frame.description1 + " - " + frame.description2); //
 
-		final Element descriptionElement = org.sqlunet.sql.NodeFactory.makeNode(doc, element, "description", null); //$NON-NLS-1$
-		org.sqlunet.sql.NodeFactory.makeAttribute(descriptionElement, "descriptionNumber", frame.number); //$NON-NLS-1$
-		org.sqlunet.sql.NodeFactory.makeAttribute(descriptionElement, "xtag", frame.xTag); //$NON-NLS-1$
-		org.sqlunet.sql.NodeFactory.makeAttribute(descriptionElement, "primary", frame.description1); //$NON-NLS-1$
-		org.sqlunet.sql.NodeFactory.makeAttribute(descriptionElement, "secondary", frame.description2); //$NON-NLS-1$
+		final Element descriptionElement = org.sqlunet.sql.NodeFactory.makeNode(doc, element, "description", null); //
+		org.sqlunet.sql.NodeFactory.makeAttribute(descriptionElement, "descriptionNumber", frame.number); //
+		org.sqlunet.sql.NodeFactory.makeAttribute(descriptionElement, "xtag", frame.xTag); //
+		org.sqlunet.sql.NodeFactory.makeAttribute(descriptionElement, "primary", frame.description1); //
+		org.sqlunet.sql.NodeFactory.makeAttribute(descriptionElement, "secondary", frame.description2); //
 
 		// Element syntaxElement = makeNode(doc, element, "syntax", null);
 		// syntaxElement.appendChild(doc.createTextNode(frame.getSyntax()));
 		// Element semanticsElement = makeNode(doc, element, "semantics", null);
 		// semanticsElement.appendChild(doc.createTextNode(frame.getSemantics()));
 
-		final Element syntaxElement = org.sqlunet.sql.NodeFactory.makeNode(doc, element, "syntax", null); //$NON-NLS-1$
+		final Element syntaxElement = org.sqlunet.sql.NodeFactory.makeNode(doc, element, "syntax", null); //
 		final String syntaxConcat = frame.getSyntax();
-		final String[] syntaxItems = syntaxConcat.split("\n"); //$NON-NLS-1$
+		final String[] syntaxItems = syntaxConcat.split("\n"); //
 		for (final String syntaxItem : syntaxItems)
 		{
-			final Element syntaxItemElement = org.sqlunet.sql.NodeFactory.makeNode(doc, syntaxElement, "synitem", null); //$NON-NLS-1$
+			final Element syntaxItemElement = org.sqlunet.sql.NodeFactory.makeNode(doc, syntaxElement, "synitem", null); //
 			VnNodeFactory.makeVnSyntaxNodes(doc, syntaxItemElement, syntaxItem);
 			// syntaxItemElement.setTextContent(syntaxItem);
 		}
 
-		final Element semanticsElement = org.sqlunet.sql.NodeFactory.makeNode(doc, element, "semantics", null); //$NON-NLS-1$
+		final Element semanticsElement = org.sqlunet.sql.NodeFactory.makeNode(doc, element, "semantics", null); //
 		final String semanticsConcat = frame.getSemantics();
-		final String[] semanticsItems = semanticsConcat.split("\n"); //$NON-NLS-1$
+		final String[] semanticsItems = semanticsConcat.split("\n"); //
 		for (final String semanticItem : semanticsItems)
 		{
-			final Element semanticItemElement = org.sqlunet.sql.NodeFactory.makeNode(doc, semanticsElement, "semitem", null); //$NON-NLS-1$
+			final Element semanticItemElement = org.sqlunet.sql.NodeFactory.makeNode(doc, semanticsElement, "semitem", null); //
 			VnNodeFactory.makeVnSemanticNodes(doc, semanticItemElement, semanticItem);
 			// semanticItemElement.setTextContent(semanticItem);
 		}
 
-		final Element examplesElement = org.sqlunet.sql.NodeFactory.makeNode(doc, element, "examples", null); //$NON-NLS-1$
+		final Element examplesElement = org.sqlunet.sql.NodeFactory.makeNode(doc, element, "examples", null); //
 		for (final String example : frame.examples)
 		{
-			final Element exampleElement = org.sqlunet.sql.NodeFactory.makeNode(doc, examplesElement, "example", null); //$NON-NLS-1$
+			final Element exampleElement = org.sqlunet.sql.NodeFactory.makeNode(doc, examplesElement, "example", null); //
 			exampleElement.appendChild(doc.createTextNode(example));
 		}
 		return element;
@@ -236,7 +236,7 @@ class VnNodeFactory extends NodeFactory
 	/**
 	 * Syntax pattern
 	 */
-	static private final Pattern syntaxPattern = Pattern.compile("^([^\\s]+) ?(\\p{Upper}\\p{Lower}*)? ?(.+)?"); //$NON-NLS-1$
+	static private final Pattern syntaxPattern = Pattern.compile("^([^\\s]+) ?(\\p{Upper}\\p{Lower}*)? ?(.+)?"); //
 
 	/**
 	 * Make syntax nodes
@@ -252,21 +252,21 @@ class VnNodeFactory extends NodeFactory
 		final String[] fields = VnNodeFactory.parse(statement, VnNodeFactory.syntaxPattern);
 		if (fields != null && fields.length == 3)
 		{
-			final Element categoryElement = org.sqlunet.sql.NodeFactory.makeNode(doc, parent, "cat", null); //$NON-NLS-1$
-			categoryElement.setAttribute("value", fields[0]); //$NON-NLS-1$
+			final Element categoryElement = org.sqlunet.sql.NodeFactory.makeNode(doc, parent, "cat", null); //
+			categoryElement.setAttribute("value", fields[0]); //
 			// categoryElement.setTextContent(fields[0]);
 
 			if (fields[1] != null)
 			{
-				final Element valueElement = org.sqlunet.sql.NodeFactory.makeNode(doc, parent, "value", null); //$NON-NLS-1$
-				valueElement.setAttribute("value", fields[1]); //$NON-NLS-1$
+				final Element valueElement = org.sqlunet.sql.NodeFactory.makeNode(doc, parent, "value", null); //
+				valueElement.setAttribute("value", fields[1]); //
 				// valueElement.setTextContent(fields[1]);
 			}
 
 			if (fields[2] != null)
 			{
-				final Element restrsElement = org.sqlunet.sql.NodeFactory.makeNode(doc, parent, "restrs", null); //$NON-NLS-1$
-				restrsElement.setAttribute("value", fields[2]); //$NON-NLS-1$
+				final Element restrsElement = org.sqlunet.sql.NodeFactory.makeNode(doc, parent, "restrs", null); //
+				restrsElement.setAttribute("value", fields[2]); //
 				// restrsElement.setTextContent(fields[2]);
 			}
 		}
@@ -276,12 +276,12 @@ class VnNodeFactory extends NodeFactory
 	/**
 	 * Semantics pattern
 	 */
-	private static final Pattern semanticsPattern = Pattern.compile("([^\\(]+)\\((.*)\\)"); //$NON-NLS-1$
+	private static final Pattern semanticsPattern = Pattern.compile("([^\\(]+)\\((.*)\\)"); //
 
 	/**
 	 * Arguments pattern
 	 */
-	private static final String argsPattern = "[\\s,]+"; //$NON-NLS-1$
+	private static final String argsPattern = "[\\s,]+"; //
 
 	/**
 	 * Make semantics nodes
@@ -297,8 +297,8 @@ class VnNodeFactory extends NodeFactory
 		final String[] relArgs = VnNodeFactory.parse(statement, VnNodeFactory.semanticsPattern);
 		if (relArgs != null && relArgs.length == 2)
 		{
-			final Element relElement = org.sqlunet.sql.NodeFactory.makeNode(doc, parent, "rel", null); //$NON-NLS-1$
-			relElement.setAttribute("value", relArgs[0]); //$NON-NLS-1$
+			final Element relElement = org.sqlunet.sql.NodeFactory.makeNode(doc, parent, "rel", null); //
+			relElement.setAttribute("value", relArgs[0]); //
 
 			final String[] args = relArgs[1].split(VnNodeFactory.argsPattern);
 			int i = 1;
@@ -308,9 +308,9 @@ class VnNodeFactory extends NodeFactory
 				{
 					continue;
 				}
-				final Element argElement = org.sqlunet.sql.NodeFactory.makeNode(doc, parent, "arg", null); //$NON-NLS-1$
-				argElement.setAttribute("value", arg); //$NON-NLS-1$
-				argElement.setAttribute("narg", Integer.toString(i++)); //$NON-NLS-1$
+				final Element argElement = org.sqlunet.sql.NodeFactory.makeNode(doc, parent, "arg", null); //
+				argElement.setAttribute("value", arg); //
+				argElement.setAttribute("narg", Integer.toString(i++)); //
 				// argElement.setTextContent(arg);
 			}
 		}
@@ -333,7 +333,7 @@ class VnNodeFactory extends NodeFactory
 		final Element element = NodeFactory.makeSynsetNode(doc, parent, size, id);
 		if (flag)
 		{
-			org.sqlunet.sql.NodeFactory.makeAttribute(element, "flagged", "true"); //$NON-NLS-1$ //$NON-NLS-2$
+			org.sqlunet.sql.NodeFactory.makeAttribute(element, "flagged", "true"); //
 		}
 		return element;
 	}

@@ -40,7 +40,7 @@ public class ClassModule extends BasicModule
 		if (query instanceof HasXId)
 		{
 			final HasXId pointer = (HasXId) query;
-			if (pointer.getXSources().contains("vn")) //$NON-NLS-1$
+			if (pointer.getXSources().contains("vn")) //
 			{
 				this.classId = pointer.getXClassId();
 				// Long instanceId = pointer.getXInstanceId();

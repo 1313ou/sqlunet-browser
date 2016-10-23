@@ -28,17 +28,17 @@ public class StorageSettings
 
 	// download preferences
 
-	static public final String PREF_DOWNLOAD_SITE = "pref_download_site"; //$NON-NLS-1$
+	static public final String PREF_DOWNLOAD_SITE = "pref_download_site"; //
 
-	static public final String PREF_DOWNLOAD_DBFILE = "pref_download_dbfile"; //$NON-NLS-1$
+	static public final String PREF_DOWNLOAD_DBFILE = "pref_download_dbfile"; //
 
-	static public final String PREF_DOWNLOAD_SQLFILE = "pref_download_sqlfile"; //$NON-NLS-1$
+	static public final String PREF_DOWNLOAD_SQLFILE = "pref_download_sqlfile"; //
 
-	static public final String PREF_ENTRY_IMPORT = "pref_entry_import"; //$NON-NLS-1$
+	static public final String PREF_ENTRY_IMPORT = "pref_entry_import"; //
 
-	static public final String PREF_ENTRY_PM = "pref_entry_pm"; //$NON-NLS-1$
+	static public final String PREF_ENTRY_PM = "pref_entry_pm"; //
 
-	static public final String PREF_ENTRY_INDEX = "pref_entry_index"; //$NON-NLS-1$
+	static public final String PREF_ENTRY_INDEX = "pref_entry_index"; //
 
 	// D A T A B A S E
 

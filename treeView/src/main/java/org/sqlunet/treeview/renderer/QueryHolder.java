@@ -11,7 +11,7 @@ import org.sqlunet.treeview.model.TreeNode;
  */
 public class QueryHolder extends IconTreeRenderer
 {
-	// private static final String TAG = "QueryHolder"; //$NON-NLS-1$
+	// private static final String TAG = "QueryHolder"; //
 
 	/**
 	 * Constructor

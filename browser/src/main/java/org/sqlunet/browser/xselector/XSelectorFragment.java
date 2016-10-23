@@ -31,6 +31,7 @@ import org.sqlunet.browser.xselector.XLoader.PbLoaderCallbacks;
 import org.sqlunet.browser.xselector.XLoader.VnLoaderCallbacks;
 import org.sqlunet.browser.xselector.XLoader.WnLoaderCallbacks;
 import org.sqlunet.provider.SqlUNetContract;
+import org.sqlunet.provider.XSqlUNetContract;
 import org.sqlunet.provider.XSqlUNetContract.Words_FnWords_PbWords_VnWords;
 import org.sqlunet.provider.XSqlUNetContract.Words_XNet_U;
 import org.sqlunet.wordnet.WordPointer;
@@ -42,22 +43,22 @@ import org.sqlunet.wordnet.WordPointer;
  */
 public class XSelectorFragment extends ExpandableListFragment
 {
-	private static final String TAG = "XSelectorFragment"; //$NON-NLS-1$
+	private static final String TAG = "XSelectorFragment"; //
 
 	/**
 	 * The serialization (saved instance state) Bundle key representing the activated item position. Only used on tablets.
 	 */
-	private static final String ACTIVATED_POSITION_NAME = "activated_position"; //$NON-NLS-1$
+	private static final String ACTIVATED_POSITION_NAME = "activated_position"; //
 
 	/**
 	 * Database column
 	 */
-	private static final String DBCOLUMN = "xb"; //$NON-NLS-1$
+	private static final String DBCOLUMN = "xb"; //
 
 	/**
 	 * Source fields for groups
 	 */
-	private static final String[] groupFrom = {DBCOLUMN,}; //$NON-NLS-1$
+	private static final String[] groupFrom = {DBCOLUMN,}; //
 
 	/**
 	 * Target resource for groups
@@ -122,11 +123,11 @@ public class XSelectorFragment extends ExpandableListFragment
 	@SuppressWarnings("boxing")
 	public XSelectorFragment()
 	{
-		this.xnCursor = new MatrixCursor(new String[]{"_id", DBCOLUMN, "loader"}); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-		this.xnCursor.addRow(new Object[]{0, "wordnet", 1111}); //$NON-NLS-1$
-		this.xnCursor.addRow(new Object[]{1, "verbnet", 2222}); //$NON-NLS-1$
-		this.xnCursor.addRow(new Object[]{2, "propbank", 3333}); //$NON-NLS-1$
-		this.xnCursor.addRow(new Object[]{3, "framenet", 4444}); //$NON-NLS-1$
+		this.xnCursor = new MatrixCursor(new String[]{"_id", DBCOLUMN, "loader"}); //
+		this.xnCursor.addRow(new Object[]{0, "wordnet", 1111}); //
+		this.xnCursor.addRow(new Object[]{1, "verbnet", 2222}); //
+		this.xnCursor.addRow(new Object[]{2, "propbank", 3333}); //
+		this.xnCursor.addRow(new Object[]{3, "framenet", 4444}); //
 	}
 
 	@Override
@@ -162,15 +163,15 @@ public class XSelectorFragment extends ExpandableListFragment
 			{
 				final Uri uri = Uri.parse(Words_FnWords_PbWords_VnWords.CONTENT_URI);
 				final String[] projection = { //
-						Words_FnWords_PbWords_VnWords.SYNSETID + " AS _id", // //$NON-NLS-1$
+						Words_FnWords_PbWords_VnWords.SYNSETID + " AS _id", //
 						Words_FnWords_PbWords_VnWords.WORDID, //
 						Words_FnWords_PbWords_VnWords.FNWORDID, //
 						Words_FnWords_PbWords_VnWords.VNWORDID, //
 						Words_FnWords_PbWords_VnWords.PBWORDID, //
 				};
-				final String selection = "w." + Words_FnWords_PbWords_VnWords.LEMMA + " = ?"; //$NON-NLS-1$ //$NON-NLS-2$
+				final String selection = XSqlUNetContract.WORD + '.' + Words_FnWords_PbWords_VnWords.LEMMA + " = ?"; //
 				final String[] selectionArgs = {XSelectorFragment.this.queryWord};
-				final String sortOrder = "y." + Words_FnWords_PbWords_VnWords.POS + ',' + Words_FnWords_PbWords_VnWords.SENSENUM; //$NON-NLS-1$
+				final String sortOrder = XSqlUNetContract.POS + '.' + Words_FnWords_PbWords_VnWords.POS + ',' + Words_FnWords_PbWords_VnWords.SENSENUM; //
 				return new CursorLoader(getActivity(), uri, projection, selection, selectionArgs, sortOrder);
 			}
 
@@ -213,21 +214,21 @@ public class XSelectorFragment extends ExpandableListFragment
 				switch (v.getId())
 				{
 					case R.id.xsources:
-						final String[] fields = value.split(","); //$NON-NLS-1$
+						final String[] fields = value.split(","); //
 						for (String field : fields)
 						{
 							switch (field)
 							{
-								case "wn": //$NON-NLS-1$
+								case "wn": //
 									v.setImageResource(R.drawable.wordnet);
 									return;
-								case "vn": //$NON-NLS-1$
+								case "vn": //
 									v.setImageResource(R.drawable.verbnet);
 									return;
-								case "pb": //$NON-NLS-1$
+								case "pb": //
 									v.setImageResource(R.drawable.propbank);
 									return;
-								case "fn": //$NON-NLS-1$
+								case "fn": //
 									v.setImageResource(R.drawable.framenet);
 									return;
 							}
@@ -237,10 +238,10 @@ public class XSelectorFragment extends ExpandableListFragment
 						break;
 
 					case R.id.pm:
-						final String[] fields2 = value.split(","); //$NON-NLS-1$
+						final String[] fields2 = value.split(","); //
 						for (String field2 : fields2)
 						{
-							if (field2.startsWith("pm")) //$NON-NLS-1$
+							if (field2.startsWith("pm")) //
 							{
 								v.setImageResource(R.drawable.predicatematrix);
 								v.setVisibility(View.VISIBLE);
@@ -264,9 +265,9 @@ public class XSelectorFragment extends ExpandableListFragment
 
 				// given the group, we return a cursor for all the children within that group
 				int groupPos = groupCursor.getPosition();
-				String groupName = groupCursor.getString(groupCursor.getColumnIndex(DBCOLUMN)); //$NON-NLS-1$
-				int loaderId = groupCursor.getInt(groupCursor.getColumnIndex("loader")); //$NON-NLS-1$
-				Log.d(TAG, "group " + groupPos + ' ' + groupName + " loader=" + loaderId); //$NON-NLS-1$ //$NON-NLS-2$
+				String groupName = groupCursor.getString(groupCursor.getColumnIndex(DBCOLUMN)); //
+				int loaderId = groupCursor.getInt(groupCursor.getColumnIndex("loader")); //
+				Log.d(TAG, "group " + groupPos + ' ' + groupName + " loader=" + loaderId); //
 
 				LoaderCallbacks<Cursor> callbacks = null;
 				switch (groupPos)
@@ -341,7 +342,7 @@ public class XSelectorFragment extends ExpandableListFragment
 		// activities containing this fragment must implement its listener
 		if (!(context instanceof Listener))
 		{
-			throw new IllegalStateException("Activity must implement fragment's listener."); //$NON-NLS-1$
+			throw new IllegalStateException("Activity must implement fragment's listener."); //
 		}
 		this.listener = (Listener) context;
 	}
@@ -389,7 +390,7 @@ public class XSelectorFragment extends ExpandableListFragment
 				}
 				else
 				{
-					Log.i(TAG, "WN none"); //$NON-NLS-1$
+					Log.i(TAG, "WN none"); //
 				}
 			}
 
@@ -424,7 +425,7 @@ public class XSelectorFragment extends ExpandableListFragment
 				}
 				else
 				{
-					Log.i(TAG, "VN none"); //$NON-NLS-1$
+					Log.i(TAG, "VN none"); //
 				}
 			}
 
@@ -459,7 +460,7 @@ public class XSelectorFragment extends ExpandableListFragment
 				}
 				else
 				{
-					Log.i(TAG, "PB none"); //$NON-NLS-1$
+					Log.i(TAG, "PB none"); //
 				}
 			}
 
@@ -494,7 +495,7 @@ public class XSelectorFragment extends ExpandableListFragment
 				}
 				else
 				{
-					Log.i(TAG, "FN none"); //$NON-NLS-1$
+					Log.i(TAG, "FN none"); //
 				}
 			}
 
@@ -559,7 +560,7 @@ public class XSelectorFragment extends ExpandableListFragment
 	public boolean onChildClick(final ExpandableListView listView, final View view, final int groupPosition, final int childPosition, final long id)
 	{
 		super.onChildClick(listView, view, groupPosition, childPosition, id);
-		Log.d(TAG, "click on group=" + groupPosition + " child=" + childPosition + " id=" + id); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+		Log.d(TAG, "click on group=" + groupPosition + " child=" + childPosition + " id=" + id); //
 		int index = listView.getFlatListPosition(ExpandableListView.getPackedPositionForChild(groupPosition, childPosition));
 		listView.setItemChecked(index, true);
 		view.setSelected(true);
@@ -595,7 +596,7 @@ public class XSelectorFragment extends ExpandableListFragment
 			pointer.setXClassId(xClassId);
 			pointer.setXInstanceId(xInstanceId);
 			pointer.setXSources(sources);
-			Log.d(TAG, "pointer=" + pointer); //$NON-NLS-1$
+			Log.d(TAG, "pointer=" + pointer); //
 
 			// notify the active listener (the activity, if the fragment is attached to one) that an item has been selected
 			if (this.listener != null)
@@ -648,13 +649,13 @@ public class XSelectorFragment extends ExpandableListFragment
 		switch (p)
 		{
 			case 1:
-				return "n"; //$NON-NLS-1$
+				return "n"; //
 			case 2:
-				return "v"; //$NON-NLS-1$
+				return "v"; //
 			case 3:
-				return "a"; //$NON-NLS-1$
+				return "a"; //
 			case 4:
-				return "r"; //$NON-NLS-1$
+				return "r"; //
 			default:
 				return null;
 		}

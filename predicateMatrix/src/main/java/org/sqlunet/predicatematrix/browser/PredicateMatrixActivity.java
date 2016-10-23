@@ -39,7 +39,7 @@ import org.sqlunet.provider.SqlUNetContract;
  */
 public class PredicateMatrixActivity extends Activity
 {
-	private static final String TAG = "PredicateMatrixActivity"; //$NON-NLS-1$
+	private static final String TAG = "PredicateMatrixActivity"; //
 
 	/**
 	 * PredicateMatrix mode spinner
@@ -59,7 +59,7 @@ public class PredicateMatrixActivity extends Activity
 	/**
 	 * Selector mode state
 	 */
-	private static final String STATE_SELECTED_PM_MODE = "org.sqlunet.browser.predicatematrix.mode.selected"; //$NON-NLS-1$
+	private static final String STATE_SELECTED_PM_MODE = "org.sqlunet.browser.predicatematrix.mode.selected"; //
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
@@ -242,7 +242,7 @@ public class PredicateMatrixActivity extends Activity
 			{
 				searchView.clearFocus();
 				searchView.setFocusable(false);
-				searchView.setQuery("", false); //$NON-NLS-1$
+				searchView.setQuery("", false); //
 				closeKeyboard();
 				searchMenuItem.collapseActionView();
 
@@ -345,7 +345,7 @@ public class PredicateMatrixActivity extends Activity
 		}
 
 		// status
-		Log.d(PredicateMatrixActivity.TAG, "PredicateMatrix search " + pointer); //$NON-NLS-1$
+		Log.d(PredicateMatrixActivity.TAG, "PredicateMatrix search " + pointer); //
 		this.pointer = pointer;
 		this.query = null;
 
@@ -372,13 +372,13 @@ public class PredicateMatrixActivity extends Activity
 		}
 
 		// status
-		Log.d(PredicateMatrixActivity.TAG, "PredicateMatrix search " + query); //$NON-NLS-1$
+		Log.d(PredicateMatrixActivity.TAG, "PredicateMatrix search " + query); //
 		this.query = query;
 		this.pointer = null;
 
 		// for fragment to handle
 		Parcelable pointer;
-		if (query.startsWith("#mr")) //$NON-NLS-1$
+		if (query.startsWith("#mr")) //
 		{
 			final PmRolePointer pointer1 = new PmRolePointer();
 			pointer1.roleId = Long.parseLong(query.substring(3));

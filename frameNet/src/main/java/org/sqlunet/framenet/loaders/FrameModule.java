@@ -57,7 +57,7 @@ public class FrameModule extends BasicModule
 		if (query instanceof HasXId)
 		{
 			final HasXId pointer = (HasXId) query;
-			if (pointer.getXSources().contains("fn")) //$NON-NLS-1$
+			if (pointer.getXSources().contains("fn")) //
 			{
 				this.frameId = pointer.getXClassId();
 				this.luId = pointer.getXInstanceId();

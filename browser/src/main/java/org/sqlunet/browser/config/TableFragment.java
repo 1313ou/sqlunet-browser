@@ -39,7 +39,7 @@ import java.util.List;
  */
 public class TableFragment extends ListFragment
 {
-	private static final String TAG = "TableFragment"; //$NON-NLS-1$
+	private static final String TAG = "TableFragment"; //
 
 	private Intent targetIntent;
 
@@ -86,7 +86,7 @@ public class TableFragment extends ListFragment
 				String text = cursor.getString(columnIndex);
 				if (text == null)
 				{
-					text = ""; //$NON-NLS-1$
+					text = ""; //
 				}
 
 				if (view instanceof TextView)
@@ -106,7 +106,7 @@ public class TableFragment extends ListFragment
 				}
 				else
 				{
-					throw new IllegalStateException(view.getClass().getName() + " is not a view that can be bound by this SimpleCursorAdapter"); //$NON-NLS-1$
+					throw new IllegalStateException(view.getClass().getName() + " is not a view that can be bound by this SimpleCursorAdapter"); //
 				}
 				return false;
 			}
@@ -122,7 +122,7 @@ public class TableFragment extends ListFragment
 				String field = item2;
 
 				// remove alias
-				final int asIndex = field.lastIndexOf(" AS "); //$NON-NLS-1$
+				final int asIndex = field.lastIndexOf(" AS "); //
 				if (asIndex != -1)
 				{
 					field = field.substring(asIndex + 4);
@@ -167,7 +167,7 @@ public class TableFragment extends ListFragment
 				final List<String> fields = new ArrayList<>();
 
 				// add _id alias for first column
-				fields.add(id + " AS _id"); //$NON-NLS-1$
+				fields.add(id + " AS _id"); //
 
 				// add items
 				if (items != null)
@@ -235,12 +235,12 @@ public class TableFragment extends ListFragment
 		{
 			// target
 			long targetId = cursor.getLong(0);
-			Log.d(TAG, "targetid=" + targetId); //$NON-NLS-1$
+			Log.d(TAG, "targetid=" + targetId); //
 
 			// intent's classname
 			ComponentName componentName = this.targetIntent.getComponent();
 			String className = componentName.getClassName();
-			if ("org.sqlunet.framenet.browser.SentenceActivity".equals(className)) //$NON-NLS-1$
+			if ("org.sqlunet.framenet.browser.SentenceActivity".equals(className)) //
 			{
 				// build pointer
 				@SuppressWarnings("TypeMayBeWeakened") final FnSentencePointer sentencePointer = new FnSentencePointer(targetId);
@@ -252,7 +252,7 @@ public class TableFragment extends ListFragment
 				// start
 				startActivity(this.targetIntent);
 			}
-			else if ("org.sqlunet.wordnet.browser.SynsetActivity".equals(className)) //$NON-NLS-1$
+			else if ("org.sqlunet.wordnet.browser.SynsetActivity".equals(className)) //
 			{
 				// build pointer
 				final SynsetPointer synsetPointer = new SynsetPointer();
@@ -278,7 +278,7 @@ public class TableFragment extends ListFragment
 			switch (cursor.getType(i))
 			{
 				case Cursor.FIELD_TYPE_NULL:
-					val = "null"; //$NON-NLS-1$
+					val = "null"; //
 					break;
 				case Cursor.FIELD_TYPE_INTEGER:
 					val = Integer.toString(cursor.getInt(i));
@@ -290,13 +290,13 @@ public class TableFragment extends ListFragment
 					val = cursor.getString(i);
 					break;
 				case Cursor.FIELD_TYPE_BLOB:
-					val = "blob"; //$NON-NLS-1$
+					val = "blob"; //
 					break;
 				default:
-					val = "NA"; //$NON-NLS-1$
+					val = "NA"; //
 					break;
 			}
-			Log.d(TAG, "column " + i + " " + cols[i] + "=" + val); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+			Log.d(TAG, "column " + i + " " + cols[i] + "=" + val); //
 		}
 	}
 }

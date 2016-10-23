@@ -13,8 +13,8 @@ public class VerbNetSyntaxSpanner extends RegExprSpanner
 	 * Patterns
 	 */
 	static private final String[] patterns = { //
-			"^([^\\s\n]*)", // cat : 1 capture //$NON-NLS-1$
-			"^[^\\s\n]* (\\p{Upper}[\\p{Lower}_\\p{Upper}]*)", // value : 1 capture //$NON-NLS-1$
+			"^([^\\s\n]*)", // cat : 1 capture //
+			"^[^\\s\n]* (\\p{Upper}[\\p{Lower}_\\p{Upper}]*)", // value : 1 capture //
 	};
 
 	/**

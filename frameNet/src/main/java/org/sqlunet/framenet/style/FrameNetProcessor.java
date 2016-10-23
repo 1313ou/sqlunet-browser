@@ -9,13 +9,13 @@ import org.sqlunet.style.Preprocessor;
  */
 public class FrameNetProcessor extends Preprocessor
 {
-	// static final String TAG = "FrameNetProcessor"; //$NON-NLS-1$
+	// static final String TAG = "FrameNetProcessor"; //
 
 	/**
 	 * Replacers for preprocessor
 	 */
 	private static final String[] replacers = { //
-			"<ex>", "\n<ex>", // //$NON-NLS-1$ //$NON-NLS-2$
+			"<ex>", "\n<ex>", //
 	};
 
 	/**

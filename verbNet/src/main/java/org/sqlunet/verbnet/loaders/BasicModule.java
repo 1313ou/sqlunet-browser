@@ -159,9 +159,9 @@ abstract class BasicModule extends Module
 						VnClasses_X.CLASSID, //
 						VnClasses_X.CLASS, //
 						VnClasses_X.CLASSTAG, //
-						"GROUP_CONCAT(" + VnClasses_X.GROUPING + ", '|') AS " + VnClasses_X.GROUPINGS, // //$NON-NLS-1$ //$NON-NLS-2$
+						"GROUP_CONCAT(" + VnClasses_X.GROUPING + ", '|') AS " + VnClasses_X.GROUPINGS, //
 				};
-				final String selection = VnClasses_X.CLASSID + " = ?"; //$NON-NLS-1$
+				final String selection = VnClasses_X.CLASSID + " = ?"; //
 				final String[] selectionArgs = { //
 						Long.toString(classId)};
 				final String sortOrder = null;
@@ -173,7 +173,7 @@ abstract class BasicModule extends Module
 			{
 				if (cursor.getCount() > 1)
 				{
-					throw new RuntimeException("Unexpected number of rows"); //$NON-NLS-1$
+					throw new RuntimeException("Unexpected number of rows"); //
 				}
 				if (cursor.moveToFirst())
 				{
@@ -198,15 +198,15 @@ abstract class BasicModule extends Module
 					Spanner.append(sb, vnClass, 0, VerbNetFactories.classFactory);
 					// sb.append(" tag=");
 					// sb.append(cursor.getString(idClassTag));
-					sb.append(" id="); //$NON-NLS-1$
+					sb.append(" id="); //
 					sb.append(Long.toString(classId));
 
 					// groupings
 					final TreeNode itemsNode = groupings(groupings);
 
 					// sub nodes
-					final TreeNode rolesNode = TreeFactory.newQueryNode(new RolesQuery(classId, R.drawable.role, "Roles"), BasicModule.this.getContext()); //$NON-NLS-1$
-					final TreeNode framesNode = TreeFactory.newQueryNode(new FramesQuery(classId, R.drawable.vnframe, "Frames"), //$NON-NLS-1$
+					final TreeNode rolesNode = TreeFactory.newQueryNode(new RolesQuery(classId, R.drawable.role, "Roles"), BasicModule.this.getContext()); //
+					final TreeNode framesNode = TreeFactory.newQueryNode(new FramesQuery(classId, R.drawable.vnframe, "Frames"), //
 							BasicModule.this.getContext());
 
 					// attach result
@@ -253,7 +253,7 @@ abstract class BasicModule extends Module
 						VnClasses_VnRoles_X.RESTRS, //
 						VnClasses_VnRoles_X.CLASSID, //
 				};
-				final String selection = VnClasses_VnRoles_X.CLASSID + " = ?"; //$NON-NLS-1$
+				final String selection = VnClasses_VnRoles_X.CLASSID + " = ?"; //
 				final String[] selectionArgs = {Long.toString(classId)};
 				final String sortOrder = null;
 				return new CursorLoader(BasicModule.this.getContext(), uri, projection, selection, selectionArgs, sortOrder);
@@ -340,10 +340,10 @@ abstract class BasicModule extends Module
 						VnClasses_VnFrames_X.FRAMESUBNAME, //
 						VnClasses_VnFrames_X.SYNTAX, //
 						VnClasses_VnFrames_X.SEMANTICS, //
-						"GROUP_CONCAT(" + VnClasses_VnFrames_X.EXAMPLE + " , '|') AS " + VnClasses_VnFrames_X.EXAMPLES, // //$NON-NLS-1$ //$NON-NLS-2$
+						"GROUP_CONCAT(" + VnClasses_VnFrames_X.EXAMPLE + " , '|') AS " + VnClasses_VnFrames_X.EXAMPLES, //
 						VnClasses_VnFrames_X.CLASSID, //
 				};
-				final String selection = VnClasses_VnFrames_X.CLASSID + " = ?"; //$NON-NLS-1$
+				final String selection = VnClasses_VnFrames_X.CLASSID + " = ?"; //
 				final String[] selectionArgs = {Long.toString(classId)};
 				final String sortOrder = null;
 				return new CursorLoader(BasicModule.this.getContext(), uri, projection, selection, selectionArgs, sortOrder);
@@ -380,7 +380,7 @@ abstract class BasicModule extends Module
 
 						// syntax
 						final String syntax = cursor.getString(idSyntax);
-						for (final String line : syntax.split("\n")) //$NON-NLS-1$
+						for (final String line : syntax.split("\n")) //
 						{
 							sb.append('\n');
 							sb.append('\t');
@@ -390,7 +390,7 @@ abstract class BasicModule extends Module
 
 						// semantics
 						final String semantics = cursor.getString(idSemantics);
-						for (final String line : semantics.split("\n")) //$NON-NLS-1$
+						for (final String line : semantics.split("\n")) //
 						{
 							sb.append('\n');
 							sb.append('\t');
@@ -401,7 +401,7 @@ abstract class BasicModule extends Module
 
 						// examples
 						final String examplesConcat = cursor.getString(idExamples);
-						final String[] examples = examplesConcat.split("\\|"); //$NON-NLS-1$
+						final String[] examples = examplesConcat.split("\\|"); //
 						for (final String example : examples)
 						{
 							sb.append('\n');
@@ -452,7 +452,7 @@ abstract class BasicModule extends Module
 		if (itemGroup != null)
 		{
 			final SpannableStringBuilder sb = new SpannableStringBuilder();
-			final String[] items = itemGroup.split("\\|"); //$NON-NLS-1$
+			final String[] items = itemGroup.split("\\|"); //
 			if (items.length == 1)
 			{
 				Spanner.appendImage(sb, BasicModule.this.drawableItem);
@@ -460,7 +460,7 @@ abstract class BasicModule extends Module
 			}
 			else if (items.length > 1)
 			{
-				final TreeNode groupingsNode = TreeFactory.newTreeNode("Groupings", R.drawable.groupitem, this.getContext()); //$NON-NLS-1$
+				final TreeNode groupingsNode = TreeFactory.newTreeNode("Groupings", R.drawable.groupitem, this.getContext()); //
 				boolean first = true;
 				for (final String item : items)
 				{

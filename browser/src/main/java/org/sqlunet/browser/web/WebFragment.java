@@ -55,23 +55,23 @@ import java.net.URLDecoder;
  */
 public class WebFragment extends Fragment
 {
-	static private final String TAG = "WebFragment"; //$NON-NLS-1$
+	static private final String TAG = "WebFragment"; //
 
 	/**
 	 * HTML stuff
 	 */
-	private static final String BODY1 = "<html><head>"; //$NON-NLS-1$
-	private static final String BODY2 = "</head><body>"; //$NON-NLS-1$
-	private static final String BODY3 = "</body></html>"; //$NON-NLS-1$
-	private static final String TOP = "<DIV class='titlesection'><IMG class='titleimg' src='images/logo.png'/></DIV>"; //$NON-NLS-1$
-	private static final String STYLESHEET1 = "<link rel='stylesheet' type='text/css' href='"; //$NON-NLS-1$
-	private static final String STYLESHEET2 = "' />"; //$NON-NLS-1$
-	private static final String SCRIPT1 = "<script type='text/javascript' src='"; //$NON-NLS-1$
-	private static final String SCRIPT2 = "'></script>"; //$NON-NLS-1$
-	private static final String LIST1 = "<OL style='display: block;'>"; //$NON-NLS-1$
-	private static final String LIST2 = "</OL>"; //$NON-NLS-1$
-	private static final String ITEM1 = "<LI class='treeitem treepanel'>"; //$NON-NLS-1$
-	private static final String ITEM2 = "</LI>"; //$NON-NLS-1$
+	private static final String BODY1 = "<html><head>"; //
+	private static final String BODY2 = "</head><body>"; //
+	private static final String BODY3 = "</body></html>"; //
+	private static final String TOP = "<DIV class='titlesection'><IMG class='titleimg' src='images/logo.png'/></DIV>"; //
+	private static final String STYLESHEET1 = "<link rel='stylesheet' type='text/css' href='"; //
+	private static final String STYLESHEET2 = "' />"; //
+	private static final String SCRIPT1 = "<script type='text/javascript' src='"; //
+	private static final String SCRIPT2 = "'></script>"; //
+	private static final String LIST1 = "<OL style='display: block;'>"; //
+	private static final String LIST2 = "</OL>"; //
+	private static final String ITEM1 = "<LI class='treeitem treepanel'>"; //
+	private static final String ITEM2 = "</LI>"; //
 
 	/**
 	 * WebView
@@ -112,7 +112,7 @@ public class WebFragment extends Fragment
 		if (xml)
 		{
 			final Document rootDomDoc = Factory.makeDocument();
-			NodeFactory.makeNode(rootDomDoc, rootDomDoc, "sqlunet", null); //$NON-NLS-1$
+			NodeFactory.makeNode(rootDomDoc, rootDomDoc, "sqlunet", null); //
 			if (wnDomDoc != null)
 			{
 				rootDomDoc.getDocumentElement().appendChild(rootDomDoc.importNode(wnDomDoc.getFirstChild(), true));
@@ -145,46 +145,46 @@ public class WebFragment extends Fragment
 			sb.append(BODY1);
 
 			// css style sheet
-			sb.append(STYLESHEET1).append("css/style.css").append(STYLESHEET2); //$NON-NLS-1$
-			sb.append(STYLESHEET1).append("css/tree.css").append(STYLESHEET2); //$NON-NLS-1$
-			sb.append(STYLESHEET1).append("css/wordnet.css").append(STYLESHEET2); //$NON-NLS-1$
+			sb.append(STYLESHEET1).append("css/style.css").append(STYLESHEET2); //
+			sb.append(STYLESHEET1).append("css/tree.css").append(STYLESHEET2); //
+			sb.append(STYLESHEET1).append("css/wordnet.css").append(STYLESHEET2); //
 			if (vnDomDoc != null)
 			{
-				sb.append(STYLESHEET1).append("css/verbnet.css").append(STYLESHEET2); //$NON-NLS-1$
+				sb.append(STYLESHEET1).append("css/verbnet.css").append(STYLESHEET2); //
 			}
 			if (pbDomDoc != null)
 			{
-				sb.append(STYLESHEET1).append("css/propbank.css").append(STYLESHEET2); //$NON-NLS-1$
+				sb.append(STYLESHEET1).append("css/propbank.css").append(STYLESHEET2); //
 			}
 			if (fnDomDoc != null)
 			{
-				sb.append(STYLESHEET1).append("css/framenet.css").append(STYLESHEET2); //$NON-NLS-1$
+				sb.append(STYLESHEET1).append("css/framenet.css").append(STYLESHEET2); //
 			}
 			if (bncDomDoc != null)
 			{
-				sb.append(STYLESHEET1).append("css/bnc.css").append(STYLESHEET2); //$NON-NLS-1$
+				sb.append(STYLESHEET1).append("css/bnc.css").append(STYLESHEET2); //
 			}
 
 			// javascripts
-			sb.append(SCRIPT1).append("js/tree.js").append(SCRIPT2); //$NON-NLS-1$
-			sb.append(SCRIPT1).append("js/sarissa.js").append(SCRIPT2); //$NON-NLS-1$
-			sb.append(SCRIPT1).append("js/ajax.js").append(SCRIPT2); //$NON-NLS-1$
-			sb.append(SCRIPT1).append("js/wordnet.js").append(SCRIPT2); //$NON-NLS-1$
+			sb.append(SCRIPT1).append("js/tree.js").append(SCRIPT2); //
+			sb.append(SCRIPT1).append("js/sarissa.js").append(SCRIPT2); //
+			sb.append(SCRIPT1).append("js/ajax.js").append(SCRIPT2); //
+			sb.append(SCRIPT1).append("js/wordnet.js").append(SCRIPT2); //
 			if (vnDomDoc != null)
 			{
-				sb.append(SCRIPT1).append("js/verbnet.js'></script>"); //$NON-NLS-1$
+				sb.append(SCRIPT1).append("js/verbnet.js'></script>"); //
 			}
 			if (pbDomDoc != null)
 			{
-				sb.append(SCRIPT1).append("js/propbank.js").append(SCRIPT2); //$NON-NLS-1$
+				sb.append(SCRIPT1).append("js/propbank.js").append(SCRIPT2); //
 			}
 			if (fnDomDoc != null)
 			{
-				sb.append(SCRIPT1).append("js/framenet.js").append(SCRIPT2); //$NON-NLS-1$
+				sb.append(SCRIPT1).append("js/framenet.js").append(SCRIPT2); //
 			}
 			if (bncDomDoc != null)
 			{
-				sb.append(SCRIPT1).append("js/bnc.js").append(SCRIPT2); //$NON-NLS-1$
+				sb.append(SCRIPT1).append("js/bnc.js").append(SCRIPT2); //
 			}
 
 			// body
@@ -288,17 +288,17 @@ public class WebFragment extends Fragment
 
 			private boolean handleUrl(final Uri uri)
 			{
-				Log.d(WebFragment.TAG, "Uri " + uri); //$NON-NLS-1$
+				Log.d(WebFragment.TAG, "Uri " + uri); //
 				try
 				{
-					final String query = URLDecoder.decode(uri.getQuery(), "UTF-8"); //$NON-NLS-1$
-					final String[] target = query.split("="); //$NON-NLS-1$
+					final String query = URLDecoder.decode(uri.getQuery(), "UTF-8"); //
+					final String[] target = query.split("="); //
 					final String type = target[0]; // $NON-NLS-1$
 					final String data = target[1]; // $NON-NLS-1$
-					Log.d(WebFragment.TAG, "QUERY " + query + " type=" + type + " data=" + data); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+					Log.d(WebFragment.TAG, "QUERY " + query + " type=" + type + " data=" + data); //
 
 					final Intent searchIntent = new Intent(getActivity(), WebActivity.class);
-					if ("word".equals(type)) //$NON-NLS-1$
+					if ("word".equals(type)) //
 					{
 						searchIntent.putExtra(SqlUNetContract.ARG_QUERYSTRING, data);
 					}
@@ -313,7 +313,7 @@ public class WebFragment extends Fragment
 							@Override
 							public void run()
 							{
-								Toast.makeText(activity, "id=" + id, Toast.LENGTH_SHORT).show(); //$NON-NLS-1$
+								Toast.makeText(activity, "id=" + id, Toast.LENGTH_SHORT).show(); //
 							}
 						});
 
@@ -321,28 +321,28 @@ public class WebFragment extends Fragment
 						int action = 0;
 						Parcelable pointer = null;
 
-						if ("synsetid".equals(type)) //$NON-NLS-1$
+						if ("synsetid".equals(type)) //
 						{
 							action = SqlUNetContract.ARG_QUERYACTION_SYNSET;
 							final SynsetPointer xpointer = new SynsetPointer();
 							xpointer.setSynset(id, null);
 							pointer = xpointer;
 						}
-						else if ("vnclassid".equals(type)) //$NON-NLS-1$
+						else if ("vnclassid".equals(type)) //
 						{
 							action = SqlUNetContract.ARG_QUERYACTION_VNCLASS;
 							final VnClassPointer xpointer = new VnClassPointer();
 							xpointer.classId = id;
 							pointer = xpointer;
 						}
-						else if ("fnframeid".equals(type)) //$NON-NLS-1$
+						else if ("fnframeid".equals(type)) //
 						{
 							action = SqlUNetContract.ARG_QUERYACTION_PBROLESET;
 							final PbRoleSetPointer xpointer = new PbRoleSetPointer();
 							xpointer.roleSetId = id;
 							pointer = xpointer;
 						}
-						else if ("fnluid".equals(type)) //$NON-NLS-1$
+						else if ("fnluid".equals(type)) //
 						{
 							action = SqlUNetContract.ARG_QUERYACTION_FNLEXUNIT;
 							final FnLexUnitPointer xpointer = new FnLexUnitPointer();
@@ -358,7 +358,7 @@ public class WebFragment extends Fragment
 				}
 				catch (final Exception e)
 				{
-					Log.e(WebFragment.TAG, "URL loading ", e); //$NON-NLS-1$
+					Log.e(WebFragment.TAG, "URL loading ", e); //
 				}
 				return false;
 			}
@@ -401,11 +401,11 @@ public class WebFragment extends Fragment
 
 		// pointer
 		final Parcelable pointer = args.getParcelable(SqlUNetContract.ARG_QUERYPOINTER);
-		Log.d(WebFragment.TAG, "ARG query=" + pointer); //$NON-NLS-1$
+		Log.d(WebFragment.TAG, "ARG query=" + pointer); //
 
 		// text
 		final String data = args.getString(SqlUNetContract.ARG_QUERYSTRING);
-		Log.d(WebFragment.TAG, "ARG data=" + data); //$NON-NLS-1$
+		Log.d(WebFragment.TAG, "ARG data=" + data); //
 
 		// action
 		final int action = args.getInt(SqlUNetContract.ARG_QUERYACTION, SqlUNetContract.ARG_QUERYACTION_ALL);
@@ -481,19 +481,19 @@ public class WebFragment extends Fragment
 												final Long wordId = xpointer.getWordId();
 												final Long synsetId = xpointer.getSynsetId();
 												final Character pos = xpointer.getPos();
-												if (xSources.contains("wn")) //$NON-NLS-1$
+												if (xSources.contains("wn")) //
 												{
 													wnDomDoc = new WordNetImplementation().querySenseDoc(db, wordId, synsetId);
 												}
-												if (xSources.contains("vn")) //$NON-NLS-1$
+												if (xSources.contains("vn")) //
 												{
 													vnDomDoc = new VerbNetImplementation().queryClassDoc(db, xclassId, pos);
 												}
-												if (xSources.contains("pb")) //$NON-NLS-1$
+												if (xSources.contains("pb")) //
 												{
 													pbDomDoc = new PropBankImplementation().queryRoleSetDoc(db, xclassId, pos);
 												}
-												if (xSources.contains("fn")) //$NON-NLS-1$
+												if (xSources.contains("fn")) //
 												{
 													fnDomDoc = new FrameNetImplementation().queryFrameDoc(db, xclassId, pos);
 												}
@@ -531,7 +531,7 @@ public class WebFragment extends Fragment
 
 									case SqlUNetContract.ARG_QUERYACTION_SYNSET:
 										@SuppressWarnings("TypeMayBeWeakened") final SynsetPointer synsetPointer = (SynsetPointer) pointer;
-										Log.d(WebFragment.TAG, "ARG synset=" + synsetPointer); //$NON-NLS-1$
+										Log.d(WebFragment.TAG, "ARG synset=" + synsetPointer); //
 										if (synsetPointer != null && Settings.Source.WORDNET.test(sources))
 										{
 											wnDomDoc = new WordNetImplementation().querySynsetDoc(db, synsetPointer.getSynsetId());
@@ -540,7 +540,7 @@ public class WebFragment extends Fragment
 
 									case SqlUNetContract.ARG_QUERYACTION_VNCLASS:
 										final VnClassPointer vnclassPointer = (VnClassPointer) pointer;
-										Log.d(WebFragment.TAG, "ARG vnclass=" + vnclassPointer); //$NON-NLS-1$
+										Log.d(WebFragment.TAG, "ARG vnclass=" + vnclassPointer); //
 										if (vnclassPointer != null && Settings.Source.VERBNET.test(sources))
 										{
 											vnDomDoc = new VerbNetImplementation().queryClassDoc(db, vnclassPointer.getClassId(), null);
@@ -549,7 +549,7 @@ public class WebFragment extends Fragment
 
 									case SqlUNetContract.ARG_QUERYACTION_PBROLESET:
 										final PbRoleSetPointer pbroleSetPointer = (PbRoleSetPointer) pointer;
-										Log.d(WebFragment.TAG, "ARG fnframe=" + pbroleSetPointer); //$NON-NLS-1$
+										Log.d(WebFragment.TAG, "ARG fnframe=" + pbroleSetPointer); //
 										if (pbroleSetPointer != null && Settings.Source.PROPBANK.test(sources))
 										{
 											pbDomDoc = new PropBankImplementation().queryRoleSetDoc(db, pbroleSetPointer.getRoleSetId(), null);
@@ -558,7 +558,7 @@ public class WebFragment extends Fragment
 
 									case SqlUNetContract.ARG_QUERYACTION_FNLEXUNIT:
 										final FnLexUnitPointer lexunitPointer = (FnLexUnitPointer) pointer;
-										Log.d(WebFragment.TAG, "ARG fnlexunit=" + lexunitPointer); //$NON-NLS-1$
+										Log.d(WebFragment.TAG, "ARG fnlexunit=" + lexunitPointer); //
 										if (lexunitPointer != null && Settings.Source.FRAMENET.test(sources))
 										{
 											fnDomDoc = new FrameNetImplementation().queryLexUnitDoc(db, lexunitPointer.luId);
@@ -567,7 +567,7 @@ public class WebFragment extends Fragment
 
 									case SqlUNetContract.ARG_QUERYACTION_FNFRAME:
 										final FnFramePointer framePointer = (FnFramePointer) pointer;
-										Log.d(WebFragment.TAG, "ARG fnframe=" + framePointer); //$NON-NLS-1$
+										Log.d(WebFragment.TAG, "ARG fnframe=" + framePointer); //
 										if (framePointer != null && Settings.Source.FRAMENET.test(sources))
 										{
 											fnDomDoc = new FrameNetImplementation().queryFrameDoc(db, framePointer.frameId, null);
@@ -576,7 +576,7 @@ public class WebFragment extends Fragment
 
 									case SqlUNetContract.ARG_QUERYACTION_FNSENTENCE:
 										final FnSentencePointer sentencePointer = (FnSentencePointer) pointer;
-										Log.d(WebFragment.TAG, "ARG fnsentence=" + sentencePointer); //$NON-NLS-1$
+										Log.d(WebFragment.TAG, "ARG fnsentence=" + sentencePointer); //
 										if (sentencePointer != null && Settings.Source.FRAMENET.test(sources))
 										{
 											fnDomDoc = new FrameNetImplementation().querySentenceDoc(db, sentencePointer.getSentenceId());
@@ -585,7 +585,7 @@ public class WebFragment extends Fragment
 
 									case SqlUNetContract.ARG_QUERYACTION_FNANNOSET:
 										final FnAnnoSetPointer annoSetPointer = (FnAnnoSetPointer) pointer;
-										Log.d(WebFragment.TAG, "ARG fnannoset=" + annoSetPointer); //$NON-NLS-1$
+										Log.d(WebFragment.TAG, "ARG fnannoset=" + annoSetPointer); //
 										if (annoSetPointer != null && Settings.Source.FRAMENET.test(sources))
 										{
 											fnDomDoc = new FrameNetImplementation().queryAnnoSetDoc(db, annoSetPointer.annoSetId);
@@ -599,7 +599,7 @@ public class WebFragment extends Fragment
 						}
 						catch (final Exception e)
 						{
-							Log.e(WebFragment.TAG, "getDoc", e); //$NON-NLS-1$
+							Log.e(WebFragment.TAG, "getDoc", e); //
 						}
 						finally
 						{
@@ -616,17 +616,17 @@ public class WebFragment extends Fragment
 			@Override
 			public void onLoadFinished(final Loader<String> loader, final String doc)
 			{
-				Log.d(WebFragment.TAG, "onLoadFinished"); //$NON-NLS-1$
-				final String mimeType = xml ? "text/xml" : "text/html"; //$NON-NLS-1$ //$NON-NLS-2$
-				final String baseUrl = "file:///android_asset/"; //$NON-NLS-1$
+				Log.d(WebFragment.TAG, "onLoadFinished"); //
+				final String mimeType = xml ? "text/xml" : "text/html"; //
+				final String baseUrl = "file:///android_asset/"; //
 				final String historyUrl = null;
-				WebFragment.this.webview.loadDataWithBaseURL(baseUrl, doc, mimeType, "utf-8", historyUrl); //$NON-NLS-1$
+				WebFragment.this.webview.loadDataWithBaseURL(baseUrl, doc, mimeType, "utf-8", historyUrl); //
 			}
 
 			@Override
 			public void onLoaderReset(final Loader<String> loader)
 			{
-				WebFragment.this.webview.loadUrl("about:blank"); //$NON-NLS-1$
+				WebFragment.this.webview.loadUrl("about:blank"); //
 			}
 		});
 	}
