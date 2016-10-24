@@ -1,45 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-              android:layout_marginTop="6dp"
-              android:background="@drawable/rounded_corners_white"
-              android:descendantFocusability="blocksDescendants"
-              android:orientation="horizontal"
-              android:paddingBottom="8dp"
-              android:paddingLeft="0dp"
-              android:paddingRight="0dp">
+              xmlns:tools="http://schemas.android.com/tools"
+              style="@style/ListView">
 
 	<TextView
 		android:id="@+id/item0"
-		android:layout_width="0dp"
-		android:layout_height="wrap_content"
+		style="@style/ListItem.Small"
 		android:layout_weight=".1"
-		android:paddingLeft="4dp"
-		android:paddingRight="4dp"
-		android:textColor="#ff707070"
-		android:textSize="12sp"
-		android:textIsSelectable="false"/>
+		tools:ignore="SelectableText"/>
 
 	<TextView
-		android:layout_width="0dp"
-		android:layout_height="wrap_content"
-		android:layout_weight=".20"
-		android:background="#E0E0E0"
-		android:paddingLeft="4dp"
-		android:paddingRight="4dp"
-		android:textColor="#ff707070"
-		android:textSize="18sp"
-		android:textIsSelectable="false"/>
+		android:id="@+id/item1"
+		style="@style/ListItem.Enhanced"
+		android:layout_weight=".2"
+		tools:ignore="SelectableText"/>
 
 	<TextView
-		android:layout_width="0dp"
-		android:layout_height="wrap_content"
-		android:layout_weight=".70"
-		android:paddingLeft="4dp"
-		android:paddingRight="4dp"
-		android:textColor="#ff303030"
-		android:textSize="20sp"
-		android:textIsSelectable="false"/>
+		android:id="@+id/item2"
+		style="@style/ListItem"
+		android:layout_weight=".7"
+		tools:ignore="SelectableText"/>
 
 </LinearLayout>

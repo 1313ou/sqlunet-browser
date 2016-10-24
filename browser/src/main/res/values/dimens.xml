@@ -8,4 +8,12 @@
 	<dimen name="web_horizontal_margin">0dp</dimen>
 	<dimen name="web_vertical_margin">0dp</dimen>
 
+	<dimen name="list_horizontal_margin">0dp</dimen>
+	<dimen name="list_vertical_margin">8dp</dimen>
+	<dimen name="list_horizontal_padding">0dp</dimen>
+	<dimen name="list_vertical_padding">0dp</dimen>
+
+	<dimen name="listitem_horizontal_padding">4dp</dimen>
+	<dimen name="listitem_vertical_padding">4dp</dimen>
+
 </resources>

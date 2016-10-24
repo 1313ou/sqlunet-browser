@@ -25,6 +25,7 @@ import org.sqlunet.browser.Module;
 import org.sqlunet.browser.R;
 import org.sqlunet.framenet.FnSentencePointer;
 import org.sqlunet.provider.SqlUNetContract;
+import org.sqlunet.sql.Utils;
 import org.sqlunet.wordnet.SynsetPointer;
 
 import java.util.ArrayList;
@@ -70,7 +71,7 @@ public class TableFragment extends ListFragment
 		final Uri uri = Uri.parse(uriString);
 		final String id = args.getString(SqlUNetContract.ARG_QUERYID);
 		final String[] items = args.getStringArray(SqlUNetContract.ARG_QUERYITEMS);
-		final String[] xitems = args.getStringArray(SqlUNetContract.ARG_QUERYXITEMS);
+		final String[] xItems = args.getStringArray(SqlUNetContract.ARG_QUERYXITEMS);
 		final String sort = args.getString(SqlUNetContract.ARG_QUERYSORT);
 		final String selection = args.getString(SqlUNetContract.ARG_QUERYFILTER);
 		final String queryArg = args.getString(SqlUNetContract.ARG_QUERYARG);
@@ -117,38 +118,54 @@ public class TableFragment extends ListFragment
 		final List<String> fromList = new ArrayList<>();
 		if (items != null)
 		{
-			for (final String item2 : items)
+			for (final String item : items)
 			{
-				String field = item2;
+				String col = item;
 
 				// remove alias
-				final int asIndex = field.lastIndexOf(" AS "); //
+				final int asIndex = col.lastIndexOf(" AS "); //
 				if (asIndex != -1)
 				{
-					field = field.substring(asIndex + 4);
+					col = col.substring(asIndex + 4);
 				}
-				fromList.add(field);
+				fromList.add(col);
+			}
+		}
+		if (xItems != null)
+		{
+			for (final String item : xItems)
+			{
+				String col = item;
+
+				// remove alias
+				final int asIndex = col.lastIndexOf(" AS "); //
+				if (asIndex != -1)
+				{
+					col = col.substring(asIndex + 4);
+				}
+				fromList.add(col);
 			}
 		}
 		final String[] from = fromList.toArray(new String[0]);
-		// Log.d(TableFragment.TAG + "From", TableFragment.toString(from));
+		Log.d(TableFragment.TAG + "From", Utils.join(from));
 
 		// to (view ids)
 		final Collection<Integer> toList = new ArrayList<>();
-		if (items != null)
+		int nItems = items == null ? 0 : items.length;
+		int nXItems = xItems == null ? 0 : xItems.length;
+		final int[] resIds = {R.id.item0, R.id.item1, R.id.item2};
+		for (int i = 0; i < (nItems + nXItems) && i < resIds.length; i++)
 		{
-			for (int i = 0; i < items.length; i++)
-			{
-				toList.add(R.id.item0 + i);
-			}
+			toList.add(resIds[i]);
 		}
+
 		final int[] to = new int[toList.size()];
 		int i = 0;
 		for (final Integer n : toList)
 		{
 			to[i++] = n;
 		}
-		// Log.d(TableFragment.TAG + "To", TableFragment.toString(to));
+		Log.d(TableFragment.TAG + "To", Utils.join(to));
 
 		// make
 		final SimpleCursorAdapter adapter = new SimpleCursorAdapter(getActivity(), layoutId, null, //
@@ -164,24 +181,24 @@ public class TableFragment extends ListFragment
 			public Loader<Cursor> onCreateLoader(final int loaderId, final Bundle loaderArgs)
 			{
 				// make projection
-				final List<String> fields = new ArrayList<>();
+				final List<String> cols = new ArrayList<>();
 
 				// add _id alias for first column
-				fields.add(id + " AS _id"); //
+				cols.add(id + " AS _id"); //
 
 				// add items
 				if (items != null)
 				{
-					Collections.addAll(fields, items);
+					Collections.addAll(cols, items);
 				}
 
 				// add xitems
-				if (xitems != null)
+				if (xItems != null)
 				{
-					Collections.addAll(fields, xitems);
+					Collections.addAll(cols, xItems);
 				}
 
-				final String[] projection = fields.toArray(new String[0]);
+				final String[] projection = cols.toArray(new String[0]);
 				// for (String p : projection)
 				// {
 				//	System.out.println(p);
@@ -193,6 +210,8 @@ public class TableFragment extends ListFragment
 			@Override
 			public void onLoadFinished(final Loader<Cursor> loader, final Cursor cursor)
 			{
+				dump(cursor);
+
 				if (cursor == null)
 				{
 					Toast.makeText(getActivity(), R.string.status_provider_query_failed, Toast.LENGTH_LONG).show();
@@ -210,7 +229,6 @@ public class TableFragment extends ListFragment
 	}
 
 	// L A Y O U T
-
 
 	@Override
 	public View onCreateView(final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState)
@@ -270,33 +288,51 @@ public class TableFragment extends ListFragment
 
 	private void dump(final Cursor cursor)
 	{
+		if (cursor == null)
+		{
+			Log.d(TAG, "null cursor");
+			return;
+		}
+
+		// column names
 		int n = cursor.getColumnCount();
 		String[] cols = cursor.getColumnNames();
-		for (int i = 0; i < n; i++)
+		if (cursor.moveToFirst())
 		{
-			String val;
-			switch (cursor.getType(i))
+			do
 			{
-				case Cursor.FIELD_TYPE_NULL:
-					val = "null"; //
-					break;
-				case Cursor.FIELD_TYPE_INTEGER:
-					val = Integer.toString(cursor.getInt(i));
-					break;
-				case Cursor.FIELD_TYPE_FLOAT:
-					val = Float.toString(cursor.getFloat(i));
-					break;
-				case Cursor.FIELD_TYPE_STRING:
-					val = cursor.getString(i);
-					break;
-				case Cursor.FIELD_TYPE_BLOB:
-					val = "blob"; //
-					break;
-				default:
-					val = "NA"; //
-					break;
+				// all columns in row
+				for (int i = 0; i < n; i++)
+				{
+					String val;
+					switch (cursor.getType(i))
+					{
+						case Cursor.FIELD_TYPE_NULL:
+							val = "null"; //
+							break;
+						case Cursor.FIELD_TYPE_INTEGER:
+							val = Integer.toString(cursor.getInt(i));
+							break;
+						case Cursor.FIELD_TYPE_FLOAT:
+							val = Float.toString(cursor.getFloat(i));
+							break;
+						case Cursor.FIELD_TYPE_STRING:
+							val = cursor.getString(i);
+							break;
+						case Cursor.FIELD_TYPE_BLOB:
+							val = "blob"; //
+							break;
+						default:
+							val = "NA"; //
+							break;
+					}
+					Log.d(TAG, "column " + i + " " + cols[i] + "=" + val); //
+				}
 			}
-			Log.d(TAG, "column " + i + " " + cols[i] + "=" + val); //
+			while (cursor.moveToNext());
+
+			// reset
+			cursor.moveToFirst();
 		}
 	}
 }

@@ -387,7 +387,7 @@ public class MainActivity extends Activity
 				intent.putExtra(SqlUNetContract.ARG_QUERYID, LexDomains.LEXDOMAINID);
 				intent.putExtra(SqlUNetContract.ARG_QUERYITEMS, new String[]{LexDomains.LEXDOMAINID, LexDomains.LEXDOMAIN});
 				intent.putExtra(SqlUNetContract.ARG_QUERYXITEMS, new String[]{LexDomains.POS});
-				intent.putExtra(SqlUNetContract.ARG_QUERYLAYOUT, R.layout.item_table2);
+				intent.putExtra(SqlUNetContract.ARG_QUERYLAYOUT, R.layout.item_table3);
 				break;
 
 			case R.id.action_table_postypes:

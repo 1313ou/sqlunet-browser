@@ -14,6 +14,36 @@ public class Utils
 	 * @return joined ids
 	 */
 	@SuppressWarnings("unused")
+	static public String join(final int[] ids)
+	{
+		if (ids == null)
+		{
+			return null;
+		}
+		final StringBuilder sb = new StringBuilder();
+		boolean first = true;
+		for (final int id : ids)
+		{
+			if (first)
+			{
+				first = false;
+			}
+			else
+			{
+				sb.append(',');
+			}
+			sb.append(id);
+		}
+		return sb.toString();
+	}
+
+	/**
+	 * Join ids into string
+	 *
+	 * @param ids ids
+	 * @return joined ids
+	 */
+	@SuppressWarnings("unused")
 	static public String join(final long[] ids)
 	{
 		if (ids == null)
