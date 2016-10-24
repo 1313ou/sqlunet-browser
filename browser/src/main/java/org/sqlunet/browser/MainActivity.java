@@ -124,10 +124,10 @@ public class MainActivity extends Activity
 		actionBar.setDisplayShowTitleEnabled(false);
 
 		// selector mode adapter data
-		final CharSequence[] modes = getResources().getTextArray(R.array.selectors);
+		final CharSequence[] modes = getResources().getTextArray(R.array.selectors_names);
 
 		// selector mode adapter
-		SpinnerAdapter adapter = new ArrayAdapter<CharSequence>(this, R.layout.spinner_item_selectors, modes)
+		final SpinnerAdapter adapter = new ArrayAdapter<CharSequence>(this, R.layout.spinner_item_selectors, modes)
 		{
 			@Override
 			public View getView(int position, View convertView, ViewGroup parent)

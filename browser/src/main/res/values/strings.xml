@@ -98,7 +98,7 @@
 	<string name="hint_search">Search WordNet</string>
 	<string name="hint_search_text">Text Search WordNet</string>
 	<string name="hint_splash">Exploring Semantic Roles</string>
-	<string name="tip_search_mode">Search Mode</string>
+	<string name="tip_textsearch">Search Mode</string>
 	<string name="tip_selector">Selector Mode</string>
 
 	<!-- items -->
@@ -118,19 +118,14 @@
 	-->
 
 	<!-- arrays -->
-	<string-array name="text_search_titles">
+	<string-array name="textsearches_names">
 		<item>Words</item>
 		<item>Definitions</item>
 		<item>Samples</item>
 		<item>FrameNet Sentences</item>
 	</string-array>
-	<string-array name="text_search_values">
-		<item>words</item>
-		<item>definitions</item>
-		<item>samples</item>
-		<item>fnsentences</item>
-	</string-array>
-	<string-array name="selectors">
+
+	<string-array name="selectors_names">
 		<item>senses</item>
 		<item>per base</item>
 	</string-array>

@@ -10,15 +10,17 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.SearchView;
 import android.widget.Spinner;
 import android.widget.SpinnerAdapter;
 import android.widget.TextView;
 
-import org.sqlunet.browser.config.TableFragment;
 import org.sqlunet.framenet.provider.FrameNetContract.Lookup_FnSentences;
 import org.sqlunet.provider.SqlUNetContract;
 import org.sqlunet.settings.Settings;
@@ -56,9 +58,9 @@ public class TextSearchActivity extends Activity
 	private Spinner spinner;
 
 	/**
-	 * Search ranges
+	 * Text searches
 	 */
-	private CharSequence[] ranges;
+	private CharSequence[] textSearches;
 
 	// C R E A T I O N
 
@@ -84,10 +86,55 @@ public class TextSearchActivity extends Activity
 		actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM | ActionBar.DISPLAY_SHOW_HOME);
 		actionBar.setDisplayShowTitleEnabled(false);
 
-		// adapter range dropdown list
-		this.ranges = getResources().getTextArray(R.array.text_search_values);
-		final CharSequence[] titles = getResources().getTextArray(R.array.text_search_titles);
-		final SpinnerAdapter adapter = new ArrayAdapter<>(this, R.layout.spinner_item_search_modes, R.id.spinner_title, titles);
+		// search mode adapter data
+		this.textSearches = getResources().getTextArray(R.array.textsearches_names);
+
+		// textsearch mode adapter
+		final SpinnerAdapter adapter = new ArrayAdapter<CharSequence>(this, R.layout.spinner_item_textsearches, this.textSearches)
+		{
+			@Override
+			public View getView(int position, View convertView, ViewGroup parent)
+			{
+				return getCustomView(position, convertView, parent, R.layout.spinner_item_textsearches);
+			}
+
+			@Override
+			public View getDropDownView(int position, View convertView, ViewGroup parent)
+			{
+				return getCustomView(position, convertView, parent, R.layout.spinner_item_textsearches_dropdown);
+			}
+
+			private View getCustomView(int position, @SuppressWarnings("UnusedParameters") View convertView, ViewGroup parent, int layoutId)
+			{
+				final LayoutInflater inflater = getLayoutInflater();
+				final View row = inflater.inflate(layoutId, parent, false);
+				final ImageView icon = (ImageView) row.findViewById(R.id.icon);
+				int resId = 0;
+				switch (position)
+				{
+					case 0:
+						resId = R.drawable.ic_search_wnword;
+						break;
+					case 1:
+						resId = R.drawable.ic_search_wndefinition;
+						break;
+					case 2:
+						resId = R.drawable.ic_search_wnsample;
+						break;
+					case 3:
+						resId = R.drawable.ic_search_fnsentence;
+						break;
+				}
+				icon.setImageResource(resId);
+
+				final TextView label = (TextView) row.findViewById(R.id.textsearch);
+				if (label != null)
+				{
+					label.setText(TextSearchActivity.this.textSearches[position]);
+				}
+				return row;
+			}
+		};
 
 		// spinner
 		this.spinner = (Spinner) actionBarView.findViewById(R.id.spinner);
@@ -197,11 +244,11 @@ public class TextSearchActivity extends Activity
 	 */
 	private void handleSearch(final String query)
 	{
-		final int rangeIndex = this.spinner.getSelectedItemPosition();
+		final int itemPosition = this.spinner.getSelectedItemPosition();
 
 		// status
 		Log.d(TextSearchActivity.TAG, "TEXT SEARCH " + query); //
-		this.statusView.setText("search: '" + query + "' " + this.ranges[rangeIndex]); //
+		this.statusView.setText("search: '" + query + "' " + this.textSearches[itemPosition]); //
 
 		// as per selected mode
 		String searchUri;
@@ -210,7 +257,7 @@ public class TextSearchActivity extends Activity
 		String[] columns;
 		String[] xcolumns;
 		Intent intent = null;
-		switch (rangeIndex)
+		switch (itemPosition)
 		{
 			case 0:
 				searchUri = Lookup_Words.CONTENT_URI;
@@ -262,7 +309,7 @@ public class TextSearchActivity extends Activity
 		}
 
 		// for fragment to handle
-		final Fragment fragment = new TableFragment();
+		final Fragment fragment = new TextSearchFragment();
 		fragment.setArguments(args);
 		getFragmentManager().beginTransaction().replace(R.id.container_textsearch, fragment).commit();
 	}

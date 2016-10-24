@@ -86,7 +86,7 @@ public class ManagementActivity extends Activity
 
 			case R.id.action_tables_and_indices:
 				intent = ManagerContract.makeTablesAndIndexesIntent(this);
-				intent.putExtra(SqlUNetContract.ARG_QUERYLAYOUT, R.layout.item_manager);
+				intent.putExtra(SqlUNetContract.ARG_QUERYLAYOUT, R.layout.item_dbobject);
 				break;
 
 			case R.id.action_create_database:
