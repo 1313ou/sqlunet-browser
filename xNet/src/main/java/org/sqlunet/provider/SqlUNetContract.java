@@ -36,7 +36,7 @@ public final class SqlUNetContract
 	public static final String ARG_QUERYURI = "QUERYURI"; //
 	public static final String ARG_QUERYID = "QUERYID"; //
 	public static final String ARG_QUERYITEMS = "QUERYITEMS"; //
-	public static final String ARG_QUERYXITEMS = "QUERYXITEMS"; //
+	public static final String ARG_QUERYHIDDENITEMS = "QUERYXITEMS"; //
 	public static final String ARG_QUERYARG = "QUERYARG"; //
 	public static final String ARG_QUERYLAYOUT = "QUERYLAYOUT"; //
 	public static final String ARG_QUERYSORT = "QUERYSORT"; //

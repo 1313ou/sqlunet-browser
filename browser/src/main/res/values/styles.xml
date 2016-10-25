@@ -167,29 +167,30 @@
 		<item name="android:textSize">12sp</item>
 	</style>
 
-	<style name="ListItem">
+	<style name="ListItemColumn">
 		<item name="android:layout_width">0dp</item>
 		<item name="android:layout_height">wrap_content</item>
 		<item name="android:paddingLeft">@dimen/listitem_horizontal_padding</item>
 		<item name="android:paddingRight">@dimen/listitem_horizontal_padding</item>
 		<item name="android:paddingTop">@dimen/listitem_vertical_padding</item>
 		<item name="android:paddingBottom">@dimen/listitem_vertical_padding</item>
+		<item name="android:gravity">center_vertical</item>
 		<item name="android:textIsSelectable">true</item>
 		<item name="android:textColor">@color/dark_gray_color</item>
-		<item name="android:textSize">20sp</item>
+		<item name="android:textAppearance">?android:attr/textAppearanceMedium</item>
 		<item name="android:ellipsize">end</item>
 	</style>
 
-	<style name="ListItem.Small">
-		<item name="android:textSize">12sp</item>
+	<style name="ListItemColumn.Small">
+		<item name="android:textAppearance">?android:attr/textAppearanceListItemSmall</item>
 		<item name="android:textColor">@color/middle_gray_color</item>
 	</style>
 
-	<style name="ListItem.Enhanced">
+	<style name="ListItemColumn.Enhanced">
 		<item name="android:background">@color/light_gray_color</item>
 	</style>
 
-	<style name="ListView">
+	<style name="ListItem">
 		<item name="android:layout_width">match_parent</item>
 		<item name="android:layout_height">wrap_content</item>
 		<item name="android:layout_marginBottom">@dimen/list_vertical_margin</item>
@@ -197,11 +198,23 @@
 		<item name="android:layout_marginLeft">@dimen/list_horizontal_margin</item>
 		<item name="android:layout_marginRight">@dimen/list_horizontal_margin</item>
 		<item name="android:background">@drawable/rounded_corners_white</item>
-		<item name="android:descendantFocusability">blocksDescendants</item>
+		<item name="android:gravity">center_vertical</item>
 		<item name="android:paddingTop">@dimen/list_vertical_padding</item>
 		<item name="android:paddingBottom">@dimen/list_vertical_padding</item>
 		<item name="android:paddingLeft">@dimen/list_horizontal_padding</item>
 		<item name="android:paddingRight">@dimen/list_horizontal_padding</item>
+		<item name="android:descendantFocusability">blocksDescendants</item>
+	</style>
+
+	<style name="ListItem1">
+		<item name="android:layout_width">match_parent</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="android:textAppearance">?android:attr/textAppearanceListItemSmall</item>
+		<item name="android:gravity">center_vertical</item>
+		<item name="android:paddingLeft">?android:attr/listPreferredItemPaddingStart</item>
+		<item name="android:paddingRight">?android:attr/listPreferredItemPaddingEnd</item>
+		<item name="android:textIsSelectable">true</item>
+		<item name="android:minHeight">?android:attr/listPreferredItemHeightSmall</item>
 	</style>
 
 </resources>

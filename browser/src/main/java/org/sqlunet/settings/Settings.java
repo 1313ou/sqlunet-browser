@@ -28,7 +28,7 @@ public class Settings
 	static private final String PREF_ENABLE_PROPBANK = "pref_enable_propbank"; //
 	static private final String PREF_ENABLE_FRAMENET = "pref_enable_framenet"; //
 	static private final String PREF_ENABLE_BNC = "pref_enable_bnc"; //
-	static private final String PREF_SEARCH_MODE = "pref_search_mode"; //
+	static private final String PREF_TEXTSEARCH_MODE = "pref_textsearch_mode"; //
 	static public final String PREF_STORAGE = StorageSettings.PREF_STORAGE;
 	static public final String PREF_DOWNLOAD_SITE = StorageSettings.PREF_DOWNLOAD_SITE;
 	static public final String PREF_DOWNLOAD_DBFILE = StorageSettings.PREF_DOWNLOAD_DBFILE;
@@ -317,10 +317,22 @@ public class Settings
 	 * @param context context
 	 * @return preferred search mode
 	 */
-	static public String getSearchModePref(final Context context)
+	static public int getSearchModePref(final Context context)
 	{
 		final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
-		return sharedPref.getString(Settings.PREF_SEARCH_MODE, null);
+		return sharedPref.getInt(Settings.PREF_TEXTSEARCH_MODE, 0);
+	}
+
+	/**
+	 * Set preferred search mode
+	 *
+	 * @param context context
+	 * @param value   preferred search mode
+	 */
+	static public void setSearchModePref(final Context context, final int value)
+	{
+		final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
+		sharedPref.edit().putInt(Settings.PREF_TEXTSEARCH_MODE, value).apply();
 	}
 
 	/**

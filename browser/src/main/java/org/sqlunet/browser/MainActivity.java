@@ -69,6 +69,11 @@ public class MainActivity extends Activity
 	static private final String TAG = "SqlUNet Main"; //
 
 	/**
+	 * Selector mode state
+	 */
+	private static final String STATE_SELECTED_SELECTOR_MODE = "org.sqlunet.browser.selector.selected"; //
+
+	/**
 	 * Search view
 	 */
 	private SearchView searchView;
@@ -83,11 +88,6 @@ public class MainActivity extends Activity
 	 */
 	private Spinner spinner;
 
-	/**
-	 * Selector mode state
-	 */
-	private static final String STATE_SELECTED_SELECTOR_MODE = "org.sqlunet.browser.selector.selected"; //
-
 	// C R E A T I O N
 
 	@Override
@@ -100,11 +100,6 @@ public class MainActivity extends Activity
 
 		// info
 		Log.d(MainActivity.TAG, "DATABASE=" + StorageSettings.getDatabasePath(getBaseContext())); //
-		// Log.d(MainActivity.TAG, "DATADIR=" + StorageSettings.getDataDir(getBaseContext())); //
-		// Log.d(MainActivity.TAG, "DOWNLOADDBFROM=" + StorageSettings.getDbDownloadSource(getBaseContext())); //
-		// Log.d(MainActivity.TAG, "DOWNLOADSQLFROM=" + StorageSettings.getSqlDownloadSource(getBaseContext())); //
-		// Log.d(MainActivity.TAG, "DOWNLOADSQLTO=" + StorageSettings.getSqlDownloadTarget(getBaseContext())); //
-		// Log.d(MainActivity.TAG, "SQLFROM=" + StorageSettings.getSqlSource(getBaseContext())); //
 
 		// layout
 		setContentView(R.layout.activity_main);
@@ -141,6 +136,15 @@ public class MainActivity extends Activity
 				return getCustomView(position, convertView, parent, R.layout.spinner_item_selectors_dropdown);
 			}
 
+			/**
+			 * Get custom view
+			 *
+			 * @param position      position
+			 * @param convertView   convert view
+			 * @param parent        parent
+			 * @param layoutId      layout id
+			 * @return view
+			 */
 			private View getCustomView(int position, @SuppressWarnings("UnusedParameters") View convertView, ViewGroup parent, int layoutId)
 			{
 				final LayoutInflater inflater = getLayoutInflater();
@@ -385,8 +389,7 @@ public class MainActivity extends Activity
 				intent = new Intent(this, TableActivity.class);
 				intent.putExtra(SqlUNetContract.ARG_QUERYURI, LexDomains.CONTENT_URI);
 				intent.putExtra(SqlUNetContract.ARG_QUERYID, LexDomains.LEXDOMAINID);
-				intent.putExtra(SqlUNetContract.ARG_QUERYITEMS, new String[]{LexDomains.LEXDOMAINID, LexDomains.LEXDOMAIN});
-				intent.putExtra(SqlUNetContract.ARG_QUERYXITEMS, new String[]{LexDomains.POS});
+				intent.putExtra(SqlUNetContract.ARG_QUERYITEMS, new String[]{LexDomains.LEXDOMAINID, LexDomains.LEXDOMAIN, LexDomains.POS});
 				intent.putExtra(SqlUNetContract.ARG_QUERYLAYOUT, R.layout.item_table3);
 				break;
 

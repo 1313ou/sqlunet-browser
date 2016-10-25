@@ -269,6 +269,7 @@ class XLoader
 	/**
 	 * Dump utility
 	 */
+	@SuppressWarnings("unused")
 	static public void dump(final Cursor cursor)
 	{
 		if (cursor.moveToFirst())
@@ -293,7 +294,7 @@ class XLoader
 				String definition = cursor.isNull(idXInfo) ? null : cursor.getString(idDefinition);
 				String sources = cursor.isNull(idSources) ? "" : //
 						cursor.getString(idSources);
-				Log.i("DUMP", "sources=" + sources +  //
+				Log.i("xloader", "sources=" + sources +  //
 						" wordid=" + wordId +  //
 						" synsetid=" + synsetId +  //
 						" xid=" + xId +  //

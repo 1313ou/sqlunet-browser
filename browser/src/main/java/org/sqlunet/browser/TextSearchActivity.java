@@ -14,6 +14,7 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.SearchView;
@@ -40,7 +41,7 @@ public class TextSearchActivity extends Activity
 	/**
 	 * State
 	 */
-	private static final String STATE_SELECTED_SEARCHMODE_ITEM = "org.sqlunet.search.mode.selected"; //
+	private static final String STATE_SELECTED_TEXTSEARCH = "org.sqlunet.browser.textsearch.selected"; //
 
 	/**
 	 * Search view
@@ -86,10 +87,10 @@ public class TextSearchActivity extends Activity
 		actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM | ActionBar.DISPLAY_SHOW_HOME);
 		actionBar.setDisplayShowTitleEnabled(false);
 
-		// search mode adapter data
+		// spinner adapter data
 		this.textSearches = getResources().getTextArray(R.array.textsearches_names);
 
-		// textsearch mode adapter
+		// spinner adapter
 		final SpinnerAdapter adapter = new ArrayAdapter<CharSequence>(this, R.layout.spinner_item_textsearches, this.textSearches)
 		{
 			@Override
@@ -139,23 +140,61 @@ public class TextSearchActivity extends Activity
 		// spinner
 		this.spinner = (Spinner) actionBarView.findViewById(R.id.spinner);
 
-		// set spinner adapter
+		// spinner listener
+		this.spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener()
+		{
+			@Override
+			public void onItemSelected(final AdapterView<?> parentView, final View selectedItemView, final int position, final long id)
+			{
+				Settings.setSearchModePref(TextSearchActivity.this, position);
+			}
+
+			@Override
+			public void onNothingSelected(final AdapterView<?> parentView)
+			{
+				//
+			}
+		});
+
+		// spinner adapter applied
 		this.spinner.setAdapter(adapter);
 
-		// saved name
-		final String name = Settings.getSearchModePref(this);
+		// spinner position
+		final int position = Settings.getSearchModePref(this);
+		this.spinner.setSelection(position);
+	}
 
-		// position
-		if (name != null)
+	@Override
+	public void onSaveInstanceState(final Bundle savedInstanceState)
+	{
+		if (this.spinner == null)
 		{
-			for (int position = 0; position < adapter.getCount(); position++)
-			{
-				final String item = (String) adapter.getItem(position);
-				if (item.equals(name))
-				{
-					this.spinner.setSelection(position);
-				}
-			}
+			return;
+		}
+
+		// serialize the current dropdown position
+		final int position = this.spinner.getSelectedItemPosition();
+		savedInstanceState.putInt(TextSearchActivity.STATE_SELECTED_TEXTSEARCH, position);
+
+		// always call the superclass so it can save the view hierarchy state
+		super.onSaveInstanceState(savedInstanceState);
+	}
+
+	@Override
+	public void onRestoreInstanceState(final Bundle savedInstanceState)
+	{
+		if (this.spinner == null)
+		{
+			return;
+		}
+
+		// always call the superclass so it can restore the view hierarchy
+		super.onRestoreInstanceState(savedInstanceState);
+
+		// restore the previously serialized current dropdown position.
+		if (savedInstanceState.containsKey(TextSearchActivity.STATE_SELECTED_TEXTSEARCH))
+		{
+			this.spinner.setSelection(savedInstanceState.getInt(TextSearchActivity.STATE_SELECTED_TEXTSEARCH));
 		}
 	}
 
@@ -255,7 +294,7 @@ public class TextSearchActivity extends Activity
 		String id;
 		String target;
 		String[] columns;
-		String[] xcolumns;
+		String[] hiddenColumns;
 		Intent intent = null;
 		switch (itemPosition)
 		{
@@ -264,14 +303,14 @@ public class TextSearchActivity extends Activity
 				id = Lookup_Words.WORDID;
 				target = Lookup_Words.LEMMA;
 				columns = new String[]{Lookup_Words.LEMMA};
-				xcolumns = new String[]{Lookup_Words.WORDID};
+				hiddenColumns = new String[]{Lookup_Words.WORDID};
 				break;
 			case 1:
 				searchUri = Lookup_Definitions.CONTENT_URI;
 				id = Lookup_Definitions.SYNSETID;
 				target = Lookup_Definitions.DEFINITION;
 				columns = new String[]{Lookup_Definitions.DEFINITION};
-				xcolumns = new String[]{Lookup_Definitions.SYNSETID};
+				hiddenColumns = new String[]{Lookup_Definitions.SYNSETID};
 				intent = new Intent(this, org.sqlunet.wordnet.browser.SynsetActivity.class);
 				break;
 			case 2:
@@ -279,7 +318,7 @@ public class TextSearchActivity extends Activity
 				id = Lookup_Samples.SYNSETID;
 				target = Lookup_Samples.SAMPLE;
 				columns = new String[]{Lookup_Samples.SAMPLE};
-				xcolumns = new String[]{Lookup_Samples.SYNSETID};
+				hiddenColumns = new String[]{Lookup_Samples.SYNSETID};
 				intent = new Intent(this, org.sqlunet.wordnet.browser.SynsetActivity.class);
 				break;
 			case 3:
@@ -287,7 +326,7 @@ public class TextSearchActivity extends Activity
 				id = Lookup_FnSentences.SENTENCEID;
 				target = Lookup_FnSentences.TEXT;
 				columns = new String[]{Lookup_FnSentences.TEXT};
-				xcolumns = new String[]{Lookup_FnSentences.SENTENCEID};
+				hiddenColumns = new String[]{Lookup_FnSentences.SENTENCEID};
 				intent = new Intent(this, org.sqlunet.framenet.browser.FnSentenceActivity.class);
 				break;
 			default:
@@ -299,7 +338,7 @@ public class TextSearchActivity extends Activity
 		args.putString(SqlUNetContract.ARG_QUERYURI, searchUri);
 		args.putString(SqlUNetContract.ARG_QUERYID, id);
 		args.putStringArray(SqlUNetContract.ARG_QUERYITEMS, columns);
-		args.putStringArray(SqlUNetContract.ARG_QUERYXITEMS, xcolumns);
+		args.putStringArray(SqlUNetContract.ARG_QUERYHIDDENITEMS, hiddenColumns);
 		args.putString(SqlUNetContract.ARG_QUERYFILTER, target + " MATCH ?"); //
 		args.putString(SqlUNetContract.ARG_QUERYARG, query);
 		args.putInt(SqlUNetContract.ARG_QUERYLAYOUT, R.layout.item_table1);
@@ -312,33 +351,5 @@ public class TextSearchActivity extends Activity
 		final Fragment fragment = new TextSearchFragment();
 		fragment.setArguments(args);
 		getFragmentManager().beginTransaction().replace(R.id.container_textsearch, fragment).commit();
-	}
-
-	// P E R S I S T
-
-	@Override
-	public void onSaveInstanceState(final Bundle savedInstanceState)
-	{
-		// serialize the current dropdown position
-		final int position = this.spinner.getSelectedItemPosition();
-		savedInstanceState.putInt(TextSearchActivity.STATE_SELECTED_SEARCHMODE_ITEM, position);
-
-		savedInstanceState.putInt(TextSearchActivity.STATE_SELECTED_SEARCHMODE_ITEM, position);
-
-		// always call the superclass so it can save the view hierarchy state
-		super.onSaveInstanceState(savedInstanceState);
-	}
-
-	@Override
-	public void onRestoreInstanceState(final Bundle savedInstanceState)
-	{
-		// always call the superclass so it can restore the view hierarchy
-		super.onRestoreInstanceState(savedInstanceState);
-
-		// restore the previously serialized current dropdown position.
-		if (savedInstanceState.containsKey(TextSearchActivity.STATE_SELECTED_SEARCHMODE_ITEM))
-		{
-			this.spinner.setSelection(savedInstanceState.getInt(TextSearchActivity.STATE_SELECTED_SEARCHMODE_ITEM));
-		}
 	}
 }

@@ -29,7 +29,7 @@ public class TableActivity extends Activity
 		assert actionBar != null;
 		actionBar.setDisplayHomeAsUpEnabled(true);
 
-		// status
+		// query
 		final Intent intent = getIntent();
 		final String query = intent.getStringExtra(SqlUNetContract.ARG_QUERYURI);
 		final String filter = intent.getStringExtra(SqlUNetContract.ARG_QUERYFILTER);

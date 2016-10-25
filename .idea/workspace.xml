@@ -3,7 +3,6 @@
   <component name="AnalysisUIOptions">
     <option name="AUTOSCROLL_TO_SOURCE" value="true" />
     <option name="SPLITTER_PROPORTION" value="0.67219514" />
-    <option name="SCOPE_TYPE" value="8" />
     <option name="CUSTOM_SCOPE_NAME" value="ProjectFiles" />
     <option name="ANALYSIS_IN_BACKGROUND" value="true" />
   </component>
@@ -13,236 +12,36 @@
     </shared>
   </component>
   <component name="AndroidLogFilters">
-    <option name="TOOL_WINDOW_LOG_LEVEL" value="debug" />
+    <option name="TOOL_WINDOW_LOG_LEVEL" value="verbose" />
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
     <option name="TOOL_WINDOW_REGEXP_FILTER" value="false" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e66c28dc-5afe-443a-8883-1d8123a0e6a1" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bNC/src/main/res/drawable-xxxhdpi/bnc.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bNC/src/main/res/drawable-xxxhdpi/domain.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bNC/src/main/res/drawable-xxxhdpi/pos.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/browser/src/main/res/drawable-hdpi/ic_fail.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/browser/src/main/res/drawable-hdpi/ic_ok.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/browser/src/main/res/drawable-hdpi/ic_search_fnsentence.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/browser/src/main/res/drawable-hdpi/ic_search_wndefinition.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/browser/src/main/res/drawable-hdpi/ic_search_wnsample.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/browser/src/main/res/drawable-hdpi/ic_search_wnword.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/browser/src/main/res/drawable-hdpi/ic_unknown.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/browser/src/main/res/drawable-mdpi/ic_fail.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/browser/src/main/res/drawable-mdpi/ic_ok.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/browser/src/main/res/drawable-mdpi/ic_search_fnsentence.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/browser/src/main/res/drawable-mdpi/ic_search_wndefinition.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/browser/src/main/res/drawable-mdpi/ic_search_wnsample.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/browser/src/main/res/drawable-mdpi/ic_search_wnword.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/browser/src/main/res/drawable-mdpi/ic_unknown.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/browser/src/main/res/drawable-xhdpi/ic_fail.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/browser/src/main/res/drawable-xhdpi/ic_ok.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/browser/src/main/res/drawable-xhdpi/ic_search_fnsentence.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/browser/src/main/res/drawable-xhdpi/ic_search_wndefinition.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/browser/src/main/res/drawable-xhdpi/ic_search_wnsample.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/browser/src/main/res/drawable-xhdpi/ic_search_wnword.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/browser/src/main/res/drawable-xhdpi/ic_unknown.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/browser/src/main/res/drawable-xxhdpi/ic_fail.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/browser/src/main/res/drawable-xxhdpi/ic_ok.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/browser/src/main/res/drawable-xxhdpi/ic_search_fnsentence.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/browser/src/main/res/drawable-xxhdpi/ic_search_wndefinition.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/browser/src/main/res/drawable-xxhdpi/ic_search_wnsample.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/browser/src/main/res/drawable-xxhdpi/ic_search_wnword.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/browser/src/main/res/drawable-xxhdpi/ic_unknown.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/browser/src/main/res/drawable-xxxhdpi/bn_download.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/browser/src/main/res/drawable-xxxhdpi/bn_setup.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/browser/src/main/res/drawable-xxxhdpi/framenet.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/browser/src/main/res/drawable-xxxhdpi/ic_download_dest.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/browser/src/main/res/drawable-xxxhdpi/ic_download_source.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/browser/src/main/res/drawable-xxxhdpi/ic_fail.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/browser/src/main/res/drawable-xxxhdpi/ic_item.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/browser/src/main/res/drawable-xxxhdpi/ic_ok.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/browser/src/main/res/drawable-xxxhdpi/ic_role.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/browser/src/main/res/drawable-xxxhdpi/ic_roles.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/browser/src/main/res/drawable-xxxhdpi/ic_run.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/browser/src/main/res/drawable-xxxhdpi/ic_search_fnsentence.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/browser/src/main/res/drawable-xxxhdpi/ic_search_wndefinition.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/browser/src/main/res/drawable-xxxhdpi/ic_search_wnsample.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/browser/src/main/res/drawable-xxxhdpi/ic_search_wnword.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/browser/src/main/res/drawable-xxxhdpi/ic_selector.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/browser/src/main/res/drawable-xxxhdpi/ic_splash.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/browser/src/main/res/drawable-xxxhdpi/ic_unknown.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/browser/src/main/res/drawable-xxxhdpi/ic_xselector.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/browser/src/main/res/drawable-xxxhdpi/predicatematrix.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/browser/src/main/res/drawable-xxxhdpi/propbank.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/browser/src/main/res/drawable-xxxhdpi/verbnet.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/browser/src/main/res/drawable-xxxhdpi/wordnet.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/frameNet/src/main/res/drawable-hdpi/rolealt.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/frameNet/src/main/res/drawable-hdpi/toprole.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/frameNet/src/main/res/drawable-mdpi/rolealt.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/frameNet/src/main/res/drawable-mdpi/toprole.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/frameNet/src/main/res/drawable-xhdpi/rolealt.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/frameNet/src/main/res/drawable-xhdpi/toprole.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/frameNet/src/main/res/drawable-xxhdpi/rolealt.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/frameNet/src/main/res/drawable-xxhdpi/toprole.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/frameNet/src/main/res/drawable-xxxhdpi/annoset.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/frameNet/src/main/res/drawable-xxxhdpi/corerole.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/frameNet/src/main/res/drawable-xxxhdpi/coreset.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/frameNet/src/main/res/drawable-xxxhdpi/definition.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/frameNet/src/main/res/drawable-xxxhdpi/fnframe.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/frameNet/src/main/res/drawable-xxxhdpi/framenet.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/frameNet/src/main/res/drawable-xxxhdpi/governor.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/frameNet/src/main/res/drawable-xxxhdpi/grouprealization.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/frameNet/src/main/res/drawable-xxxhdpi/label1.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/frameNet/src/main/res/drawable-xxxhdpi/label2.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/frameNet/src/main/res/drawable-xxxhdpi/layer.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/frameNet/src/main/res/drawable-xxxhdpi/lexunit.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/frameNet/src/main/res/drawable-xxxhdpi/metadefinition.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/frameNet/src/main/res/drawable-xxxhdpi/realization.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/frameNet/src/main/res/drawable-xxxhdpi/relation.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/frameNet/src/main/res/drawable-xxxhdpi/role.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/frameNet/src/main/res/drawable-xxxhdpi/rolealt.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/frameNet/src/main/res/drawable-xxxhdpi/roles.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/frameNet/src/main/res/drawable-xxxhdpi/sample.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/frameNet/src/main/res/drawable-xxxhdpi/semtype.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/frameNet/src/main/res/drawable-xxxhdpi/sentence.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/frameNet/src/main/res/drawable-xxxhdpi/toprole.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/predicateMatrix/src/main/res/drawable-xxxhdpi/definition.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/predicateMatrix/src/main/res/drawable-xxxhdpi/framenet.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/predicateMatrix/src/main/res/drawable-xxxhdpi/ic_role.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/predicateMatrix/src/main/res/drawable-xxxhdpi/ic_roles.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/predicateMatrix/src/main/res/drawable-xxxhdpi/ic_roles_grouped.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/predicateMatrix/src/main/res/drawable-xxxhdpi/ic_rows_byrole.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/predicateMatrix/src/main/res/drawable-xxxhdpi/ic_rows_bysynset.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/predicateMatrix/src/main/res/drawable-xxxhdpi/ic_rows_ungrouped.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/predicateMatrix/src/main/res/drawable-xxxhdpi/predicatematrix.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/predicateMatrix/src/main/res/drawable-xxxhdpi/propbank.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/predicateMatrix/src/main/res/drawable-xxxhdpi/role.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/predicateMatrix/src/main/res/drawable-xxxhdpi/roles.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/predicateMatrix/src/main/res/drawable-xxxhdpi/synset.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/predicateMatrix/src/main/res/drawable-xxxhdpi/verbnet.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/propbank/src/main/res/drawable-xxxhdpi/definition.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/propbank/src/main/res/drawable-xxxhdpi/propbank.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/propbank/src/main/res/drawable-xxxhdpi/relation.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/propbank/src/main/res/drawable-xxxhdpi/role.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/propbank/src/main/res/drawable-xxxhdpi/role2.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/propbank/src/main/res/drawable-xxxhdpi/roles.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/propbank/src/main/res/drawable-xxxhdpi/roleset.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/propbank/src/main/res/drawable-xxxhdpi/sample.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/propbank/src/main/res/drawable-xxxhdpi/theta.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/propbank/src/main/res/drawable-xxxhdpi/trace.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/treeView/src/main/res/drawable-xxxhdpi/ic_collapsed.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/treeView/src/main/res/drawable-xxxhdpi/ic_expanded.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/treeView/src/main/res/drawable-xxxhdpi/ic_leaf.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/treeView/src/main/res/drawable-xxxhdpi/ic_link.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/verbNet/src/main/res/drawable-xxxhdpi/definition.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/verbNet/src/main/res/drawable-xxxhdpi/groupitem.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/verbNet/src/main/res/drawable-xxxhdpi/relation.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/verbNet/src/main/res/drawable-xxxhdpi/restr.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/verbNet/src/main/res/drawable-xxxhdpi/role.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/verbNet/src/main/res/drawable-xxxhdpi/role1.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/verbNet/src/main/res/drawable-xxxhdpi/role2.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/verbNet/src/main/res/drawable-xxxhdpi/roles.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/verbNet/src/main/res/drawable-xxxhdpi/sample.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/verbNet/src/main/res/drawable-xxxhdpi/semantics.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/verbNet/src/main/res/drawable-xxxhdpi/syntax.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/verbNet/src/main/res/drawable-xxxhdpi/verbnet.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/verbNet/src/main/res/drawable-xxxhdpi/vnclass.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/verbNet/src/main/res/drawable-xxxhdpi/vnframe.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/definition.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/error.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/flag.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_adjderived.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_also.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_antonym.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_attribute.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_cause.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_derivation.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_domain.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_domain_category.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_domain_member.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_domain_member_category.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_domain_member_region.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_domain_member_term.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_domain_member_usage.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_domain_region.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_domain_term.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_domain_usage.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_entail.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_holonym.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_hypernym.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_hyponym.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_instance_hypernym.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_instance_hyponym.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_member_holonym.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_member_meronym.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_meronym.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_other.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_part_holonym.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_part_meronym.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_participle.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_pertainym.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_pos.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_pos_a.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_pos_n.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_pos_r.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_pos_s.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_pos_v.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_similar.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_substance_holonym.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_substance_meronym.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_synonym.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_verb_group.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/info.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/lexdomain.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/member.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/pos.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/sample.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/sentence.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/synset.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/wordnet.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/xNet/src/main/res/drawable-xxxhdpi/ic_collapsed.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/xNet/src/main/res/drawable-xxxhdpi/ic_expanded.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/xNet/src/main/res/drawable-xxxhdpi/ic_leaf.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/xNet/src/main/res/drawable-xxxhdpi/ic_storage_auto.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/xNet/src/main/res/drawable-xxxhdpi/ic_storage_extern_primary.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/xNet/src/main/res/drawable-xxxhdpi/ic_storage_extern_public.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/xNet/src/main/res/drawable-xxxhdpi/ic_storage_extern_secondary.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/xNet/src/main/res/drawable-xxxhdpi/ic_storage_intern.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/browser/src/main/java/org/sqlunet/browser/AbstractTableFragment.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/browser/src/main/java/org/sqlunet/browser/TextSearchFragment.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/browser/src/main/res/layout/item_dbobject.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/browser/src/main/res/layout/spinner_item_selectors.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/browser/src/main/res/layout/spinner_item_selectors_dropdown.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/browser/src/main/res/layout/spinner_item_simple.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/browser/src/main/res/layout/spinner_item_textsearches.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/browser/src/main/res/layout/spinner_item_textsearches_dropdown.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/browser/src/main/res/xml/backup.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/expandableListFragment/.gitignore" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/expandableListFragment/build.gradle" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/expandableListFragment/expandableListFragment.iml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/expandableListFragment/lint.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/expandableListFragment/src/main/AndroidManifest.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/expandableListFragment/src/main/java/android/android/support/local/app/ExpandableListFragment.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/expandableListFragment/src/main/res/layout/expandable_list_fragment.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/expandableListFragment/src/main/res/values/strings.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/frameNet/src/main/java/org/sqlunet/framenet/sql/FnLexUnitFromWordQueryCommand.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/propbank/src/main/java/org/sqlunet/propbank/browser/PropBankFragment.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/propbank/src/main/java/org/sqlunet/propbank/provider/PropBankContract.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/propbank/src/main/java/org/sqlunet/propbank/provider/PropBankProvider.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/propbank/src/main/java/org/sqlunet/propbank/style/PropBankFactories.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/propbank/src/main/java/org/sqlunet/propbank/style/PropBankSpanner.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wordNet/src/main/java/org/sqlunet/wordnet/sql/LexDomainDef.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wordNet/src/main/java/org/sqlunet/wordnet/sql/LinkDef.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/xNet/src/main/res/values/colors.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/xNet/src/main/res/values/styles-app.xml" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bNC/bNC.iml" afterPath="$PROJECT_DIR$/bNC/bNC.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/browser/browser.iml" afterPath="$PROJECT_DIR$/browser/browser.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/browser/src/main/java/org/sqlunet/browser/AbstractTableFragment.java" afterPath="$PROJECT_DIR$/browser/src/main/java/org/sqlunet/browser/AbstractTableFragment.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/browser/src/main/java/org/sqlunet/browser/MainActivity.java" afterPath="$PROJECT_DIR$/browser/src/main/java/org/sqlunet/browser/MainActivity.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/browser/src/main/java/org/sqlunet/browser/TextSearchActivity.java" afterPath="$PROJECT_DIR$/browser/src/main/java/org/sqlunet/browser/TextSearchActivity.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/browser/src/main/java/org/sqlunet/browser/TextSearchFragment.java" afterPath="$PROJECT_DIR$/browser/src/main/java/org/sqlunet/browser/TextSearchFragment.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/browser/src/main/java/org/sqlunet/browser/config/TableActivity.java" afterPath="$PROJECT_DIR$/browser/src/main/java/org/sqlunet/browser/config/TableActivity.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/browser/src/main/java/org/sqlunet/browser/xselector/XLoader.java" afterPath="$PROJECT_DIR$/browser/src/main/java/org/sqlunet/browser/xselector/XLoader.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/browser/src/main/java/org/sqlunet/browser/xselector/XSelectorFragment.java" afterPath="$PROJECT_DIR$/browser/src/main/java/org/sqlunet/browser/xselector/XSelectorFragment.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/browser/src/main/java/org/sqlunet/settings/Settings.java" afterPath="$PROJECT_DIR$/browser/src/main/java/org/sqlunet/settings/Settings.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/browser/src/main/res/layout/item_dbobject.xml" afterPath="$PROJECT_DIR$/browser/src/main/res/layout/item_dbobject.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/browser/src/main/res/layout/item_table1.xml" afterPath="$PROJECT_DIR$/browser/src/main/res/layout/item_table1.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/browser/src/main/res/layout/item_table2.xml" afterPath="$PROJECT_DIR$/browser/src/main/res/layout/item_table2.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/browser/src/main/res/layout/item_table3.xml" afterPath="$PROJECT_DIR$/browser/src/main/res/layout/item_table3.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/browser/src/main/res/values/styles.xml" afterPath="$PROJECT_DIR$/browser/src/main/res/values/styles.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frameNet/frameNet.iml" afterPath="$PROJECT_DIR$/frameNet/frameNet.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/predicateMatrix/predicateMatrix.iml" afterPath="$PROJECT_DIR$/predicateMatrix/predicateMatrix.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/propbank/propbank.iml" afterPath="$PROJECT_DIR$/propbank/propbank.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/treeView/treeView.iml" afterPath="$PROJECT_DIR$/treeView/treeView.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/verbNet/verbNet.iml" afterPath="$PROJECT_DIR$/verbNet/verbNet.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordNet/wordNet.iml" afterPath="$PROJECT_DIR$/wordNet/wordNet.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/xNet/src/main/java/org/sqlunet/provider/SqlUNetContract.java" afterPath="$PROJECT_DIR$/xNet/src/main/java/org/sqlunet/provider/SqlUNetContract.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/xNet/xNet.iml" afterPath="$PROJECT_DIR$/xNet/xNet.iml" />
     </list>
     <ignored path="Browser.iws" />
@@ -277,24 +76,7 @@
     <favorites_list name="Browser" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="TextSearchFragment.java" pinned="false" current-in-tab="true">
-        <entry file="file:///mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/java/org/sqlunet/browser/TextSearchFragment.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="141">
-              <caret line="57" column="6" selection-start-line="57" selection-start-column="6" selection-end-line="57" selection-end-column="6" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#968#1190#0" expanded="true" />
-                <element signature="e#1189#1190#0" expanded="true" />
-                <element signature="e#2037#2900#0" expanded="true" />
-                <element signature="e#2899#2900#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -8504,9 +8286,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="/mnt/data2/devel/android-sqlunet-as/SqlUNet/frameNet/src/main/java/org/sqlunet/framenet/loaders/BasicModule.java" />
-        <option value="/mnt/data2/devel/android-sqlunet-as/SqlUNet/predicateMatrix/src/main/java/org/sqlunet/predicatematrix/PmRolePointer.java" />
-        <option value="/mnt/data2/devel/android-sqlunet-as/SqlUNet/verbNet/src/main/java/org/sqlunet/verbnet/provider/VerbNetProvider.java" />
         <option value="/mnt/data2/devel/android-sqlunet-as/SqlUNet/wordNet/src/main/java/org/sqlunet/wordnet/SensePointer.java" />
         <option value="/mnt/data2/devel/android-sqlunet-as/SqlUNet/wordNet/src/main/java/org/sqlunet/wordnet/SynsetPointer.java" />
         <option value="/mnt/data2/devel/android-sqlunet-as/SqlUNet/wordNet/src/main/resources/org/sqlunet/wordnet/dom/xsl/select_wordnet2html.xsl" />
@@ -8523,7 +8302,6 @@
         <option value="/mnt/data2/devel/android-sqlunet-as/SqlUNet/xNet/src/main/java/org/sqlunet/provider/XSqlUNetContract.java" />
         <option value="/mnt/data2/devel/android-sqlunet-as/SqlUNet/xNet/src/main/java/org/sqlunet/provider/XSqlUNetProvider.java" />
         <option value="/mnt/data2/devel/android-sqlunet-as/SqlUNet/xNet/src/main/res/values/colors.xml" />
-        <option value="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/java/org/sqlunet/browser/xselector/XSelectorFragment.java" />
         <option value="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/java/org/sqlunet/browser/selector/SelectorFragment.java" />
         <option value="/mnt/data2/devel/android-sqlunet-as/SqlUNet/xNet/src/main/res/drawable/listitem_background.xml" />
         <option value="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/values/styles-app.xml" />
@@ -8536,9 +8314,7 @@
         <option value="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/layout/item_table.xml" />
         <option value="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/layout/fragment_table.xml" />
         <option value="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/values/dimens.xml" />
-        <option value="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/values/styles.xml" />
         <option value="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/layout/item_manager.xml" />
-        <option value="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/layout/item_table1.xml" />
         <option value="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/layout/item_table2.xml" />
         <option value="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/layout/item_table3.xml" />
         <option value="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/assets/js/sarissa.js" />
@@ -8547,14 +8323,20 @@
         <option value="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/layout/spinner_item_selectors.xml" />
         <option value="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/layout/spinner_item_search_modes.xml" />
         <option value="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/layout/spinner_item_textsearches.xml" />
-        <option value="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/java/org/sqlunet/browser/MainActivity.java" />
         <option value="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/layout/spinner_item_textsearches_dropdown.xml" />
         <option value="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/values/strings.xml" />
-        <option value="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/java/org/sqlunet/browser/TextSearchActivity.java" />
         <option value="/mnt/data2/devel/android-sqlunet-as/SqlUNet/xNet/src/main/java/org/sqlunet/style/RegExprSpanner.java" />
         <option value="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/java/org/sqlunet/browser/config/TableFragment.java" />
-        <option value="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/java/org/sqlunet/browser/AbstractTableFragment.java" />
+        <option value="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/java/org/sqlunet/browser/config/TableActivity.java" />
+        <option value="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/layout/item_table1.xml" />
         <option value="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/java/org/sqlunet/browser/TextSearchFragment.java" />
+        <option value="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/java/org/sqlunet/browser/xselector/XSelectorFragment.java" />
+        <option value="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/java/org/sqlunet/browser/TextSearchActivity.java" />
+        <option value="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/java/org/sqlunet/browser/MainActivity.java" />
+        <option value="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/java/org/sqlunet/browser/xselector/XLoader.java" />
+        <option value="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/values/styles.xml" />
+        <option value="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/java/org/sqlunet/browser/AbstractTableFragment.java" />
+        <option value="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/java/org/sqlunet/settings/Settings.java" />
       </list>
     </option>
   </component>
@@ -8650,56 +8432,6 @@
             <PATH_ELEMENT>
               <option name="myItemId" value="SqlUNet" />
               <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="SqlUNet" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="browser" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="SqlUNet" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="browser" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidSourceTypeNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="sqlunet" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidPsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="SqlUNet" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="browser" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidSourceTypeNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="sqlunet" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidPsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="browser" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
@@ -9282,7 +9014,14 @@
       <option name="project" value="LOCAL" />
       <updated>1477369749248</updated>
     </task>
-    <option name="localTasksCounter" value="29" />
+    <task id="LOCAL-00029" summary="catch up">
+      <created>1477371280120</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1477371280120</updated>
+    </task>
+    <option name="localTasksCounter" value="30" />
     <servers />
   </component>
   <component name="TodoView" selected-index="2">
@@ -9298,29 +9037,32 @@
     <frame x="59" y="82" width="1861" height="1118" extended-state="0" />
     <editor active="false" />
     <layout>
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32848838" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Nl-Palette" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32735848" sideWeight="0.54565334" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.17987971" sideWeight="0.4226044" order="8" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25188679" sideWeight="0.4073264" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Android Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.35628742" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
+      <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.18086861" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Android Model" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.37425148" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32848838" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3273453" sideWeight="0.54565334" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25188679" sideWeight="0.4073264" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Android Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.35628742" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.251497" sideWeight="0.5926736" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32859486" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32848838" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32669324" sideWeight="0.4980864" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32830188" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Captures" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24986331" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="11" side_tool="true" content_ui="tabs" />
-      <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.15118197" sideWeight="0.57739556" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18801539" sideWeight="0.57739556" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3203593" sideWeight="0.51831603" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32968834" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.18086861" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Android Model" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="true" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.38622755" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.17987971" sideWeight="0.4226044" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -9331,9 +9073,6 @@
       <window_info id="Module Dependencies" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32968834" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Dynamic Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.251497" sideWeight="0.5926736" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32859486" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3203593" sideWeight="0.51831603" order="1" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -9405,97 +9144,45 @@
     <MESSAGE value="fixes list views" />
     <MESSAGE value="search result list views" />
     <MESSAGE value="search result list views 2" />
-    <option name="LAST_COMMIT_MESSAGE" value="search result list views 2" />
+    <MESSAGE value="catch up" />
+    <option name="LAST_COMMIT_MESSAGE" value="catch up" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file:///mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/java/org/sqlunet/browser/TextSearchFragment.java</url>
-          <line>64</line>
+          <line>130</line>
           <properties />
-          <option name="timeStamp" value="28" />
+          <option name="timeStamp" value="30" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file:///mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/java/org/sqlunet/browser/TextSearchFragment.java</url>
+          <line>138</line>
+          <properties />
+          <option name="timeStamp" value="32" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file:///mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/java/org/sqlunet/browser/AbstractTableFragment.java</url>
+          <line>206</line>
+          <properties />
+          <option name="timeStamp" value="34" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file:///mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/java/org/sqlunet/browser/AbstractTableFragment.java</url>
+          <line>251</line>
+          <properties />
+          <option name="timeStamp" value="36" />
         </line-breakpoint>
       </breakpoints>
       <breakpoints-dialog>
         <breakpoints-dialog />
       </breakpoints-dialog>
-      <option name="time" value="29" />
+      <option name="time" value="37" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file:///mnt/data2/devel/android-sqlunet-as/SqlUNet/xNet/src/main/res/drawable/listitem_selector.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/layout/item_selector.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="247">
-          <caret line="19" column="47" selection-start-line="19" selection-start-column="47" selection-end-line="19" selection-end-column="47" />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file:///mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/AndroidManifest.xml">
-      <provider editor-type-id="android-manifest">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="208">
-          <caret line="16" column="77" selection-start-line="16" selection-start-column="77" selection-end-line="16" selection-end-column="77" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///mnt/data2/devel/android-sqlunet-as/SqlUNet/xNet/src/main/res/values/styles.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/layout/activity_table.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file:///mnt/data2/devel/android-sqlunet-as/SqlUNet/xNet/src/main/java/org/sqlunet/sql/Utils.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="312">
-          <caret line="24" column="22" selection-start-line="24" selection-start-column="22" selection-end-line="24" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$PROJECT_DIR$/../../../androidstudio/sdk/platforms/android-24/android.jar!/android/util/ArrayMap.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="91">
-          <caret line="13" column="11" selection-start-line="13" selection-start-column="11" selection-end-line="13" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$PROJECT_DIR$/../../../androidstudio/sdk/platforms/android-24/android.jar!/android/app/Activity.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="241">
-          <caret line="854" column="0" selection-start-line="854" selection-start-column="0" selection-end-line="854" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/captures/org.sqlunet.browser_2016.10.23_18.38.li">
-      <provider selected="true" editor-type-id="capture-editor">
-        <state />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/captures/org.sqlunet.browser_2016.10.23_18.38-1.li">
       <provider selected="true" editor-type-id="capture-editor">
         <state />
@@ -9506,24 +9193,10 @@
         <state />
       </provider>
     </entry>
-    <entry file="file:///mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/java/org/sqlunet/browser/xselector/XLoader.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="532">
-          <caret line="307" column="0" selection-start-line="273" selection-start-column="0" selection-end-line="307" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file:///mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/build/generated/source/r/debug/org/sqlunet/browser/R.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="377">
           <caret line="223" column="0" selection-start-line="223" selection-start-column="0" selection-end-line="228" selection-end-column="49" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/java/org/sqlunet/browser/config/TableActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="117">
-          <caret line="16" column="13" selection-start-line="16" selection-start-column="13" selection-end-line="16" selection-end-column="13" />
         </state>
       </provider>
     </entry>
@@ -9560,34 +9233,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file:///mnt/data2/devel/android-sqlunet-as/SqlUNet/build/intermediates/dex-cache/cache.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="13">
-          <caret line="1" column="1" selection-start-line="1" selection-start-column="1" selection-end-line="1" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/values/styles.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="462">
-          <caret line="176" column="44" selection-start-line="176" selection-start-column="28" selection-end-line="176" selection-end-column="44" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file:///mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/layout/item_dbobject.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="221">
           <caret line="17" column="5" selection-start-line="17" selection-start-column="5" selection-end-line="17" selection-end-column="5" />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file:///mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/layout/item_table1.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="65">
-          <caret line="5" column="5" selection-start-line="5" selection-start-column="5" selection-end-line="5" selection-end-column="5" />
         </state>
       </provider>
       <provider editor-type-id="android-designer2">
@@ -9662,13 +9311,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="78">
           <caret line="19" column="13" selection-start-line="19" selection-start-column="13" selection-end-line="19" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/java/org/sqlunet/browser/MainActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="384">
-          <caret line="129" column="14" selection-start-line="129" selection-start-column="14" selection-end-line="129" selection-end-column="14" />
         </state>
       </provider>
     </entry>
@@ -9773,14 +9415,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file:///mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/java/org/sqlunet/browser/TextSearchActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="13">
-          <caret line="228" column="12" selection-start-line="228" selection-start-column="12" selection-end-line="228" selection-end-column="12" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file:///mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/assets/js/sarissa.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -9797,31 +9431,174 @@
     </entry>
     <entry file="file:///mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/java/org/sqlunet/browser/config/TableFragment.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="241">
-          <caret line="36" column="8" selection-start-line="36" selection-start-column="8" selection-end-line="36" selection-end-column="8" />
+        <state relative-caret-position="533">
+          <caret line="51" column="51" selection-start-line="51" selection-start-column="51" selection-end-line="51" selection-end-column="51" />
+          <folding>
+            <element signature="e#818#1577#0" expanded="false" />
+            <element signature="e#1576#1577#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file:///mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/java/org/sqlunet/browser/AbstractTableFragment.java">
+    <entry file="file:///mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/java/org/sqlunet/browser/config/TableActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="143">
-          <caret line="38" column="40" selection-start-line="38" selection-start-column="40" selection-end-line="38" selection-end-column="40" />
+        <state relative-caret-position="312">
+          <caret line="31" column="16" selection-start-line="31" selection-start-column="16" selection-end-line="31" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/../../../androidstudio/sdk/platforms/android-24/android.jar!/java/lang/Class.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="196">
+          <caret line="123" column="18" selection-start-line="123" selection-start-column="18" selection-end-line="123" selection-end-column="18" />
+          <folding>
+            <element signature="e#3182#3183#0" expanded="true" />
+            <element signature="e#3233#3234#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/../../../androidstudio/sdk/platforms/android-24/android.jar!/android/database/Cursor.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="24" column="8" selection-start-line="24" selection-start-column="8" selection-end-line="24" selection-end-column="8" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file:///mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/java/org/sqlunet/browser/TextSearchFragment.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="141">
-          <caret line="57" column="6" selection-start-line="57" selection-start-column="6" selection-end-line="57" selection-end-column="6" />
+        <state relative-caret-position="111">
+          <caret line="132" column="12" selection-start-line="132" selection-start-column="8" selection-end-line="132" selection-end-column="12" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#968#1190#0" expanded="true" />
-            <element signature="e#1189#1190#0" expanded="true" />
-            <element signature="e#2037#2900#0" expanded="true" />
-            <element signature="e#2899#2900#0" expanded="true" />
+            <element signature="e#4443#4481#0" expanded="true" />
           </folding>
         </state>
+      </provider>
+    </entry>
+    <entry file="file:///mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/java/org/sqlunet/browser/xselector/XSelectorFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="176">
+          <caret line="490" column="23" selection-start-line="490" selection-start-column="23" selection-end-line="490" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///mnt/data2/devel/android-sqlunet-as/SqlUNet/frameNet/src/main/java/org/sqlunet/framenet/FnSentencePointer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="403">
+          <caret line="38" column="11" selection-start-line="38" selection-start-column="11" selection-end-line="38" selection-end-column="11" />
+          <folding>
+            <element signature="e#814#815#0" expanded="true" />
+            <element signature="e#849#850#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///mnt/data2/devel/android-sqlunet-as/SqlUNet/frameNet/src/main/java/org/sqlunet/framenet/provider/FrameNetProvider.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-5480">
+          <caret line="39" column="13" selection-start-line="39" selection-start-column="13" selection-end-line="39" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///mnt/data2/devel/android-sqlunet-as/SqlUNet/frameNet/src/main/java/org/sqlunet/framenet/provider/FrameNetContract.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="643">
+          <caret line="353" column="46" selection-start-line="353" selection-start-column="35" selection-end-line="353" selection-end-column="46" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///mnt/data2/devel/android-sqlunet-as/SqlUNet/wordNet/src/main/java/org/sqlunet/wordnet/provider/WordNetContract.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-3803">
+          <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/java/org/sqlunet/browser/MainActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="244">
+          <caret line="493" column="17" selection-start-line="493" selection-start-column="17" selection-end-line="493" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/java/org/sqlunet/browser/TextSearchActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="49">
+          <caret line="206" column="60" selection-start-line="206" selection-start-column="60" selection-end-line="206" selection-end-column="60" />
+          <folding>
+            <element signature="e#4318#4319#0" expanded="true" />
+            <element signature="e#4390#4391#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///mnt/data2/devel/android-sqlunet-as/SqlUNet/build/intermediates/dex-cache/cache.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="13">
+          <caret line="1" column="1" selection-start-line="1" selection-start-column="1" selection-end-line="1" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/java/org/sqlunet/browser/xselector/XLoader.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="241">
+          <caret line="272" column="23" selection-start-line="272" selection-start-column="23" selection-end-line="272" selection-end-column="23" />
+          <folding>
+            <element signature="e#9668#9695#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///mnt/data2/devel/android-sqlunet-as/SqlUNet/xNet/src/main/java/org/sqlunet/provider/SqlUNetContract.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="494">
+          <caret line="38" column="35" selection-start-line="38" selection-start-column="35" selection-end-line="38" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/java/org/sqlunet/browser/AbstractTableFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="208">
+          <caret line="39" column="11" selection-start-line="39" selection-start-column="11" selection-end-line="39" selection-end-column="11" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/java/org/sqlunet/settings/Settings.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="449">
+          <caret line="351" column="89" selection-start-line="351" selection-start-column="89" selection-end-line="351" selection-end-column="89" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/values/styles.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="454">
+          <caret line="208" column="17" selection-start-line="208" selection-start-column="17" selection-end-line="208" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/layout/item_table1.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="15" column="1" selection-start-line="15" selection-start-column="1" selection-end-line="15" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer2">
+        <state />
       </provider>
     </entry>
   </component>

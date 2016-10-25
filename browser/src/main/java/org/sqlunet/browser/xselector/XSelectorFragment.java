@@ -383,7 +383,7 @@ public class XSelectorFragment extends ExpandableListFragment
 			{
 				if (cursor != null)
 				{
-					XLoader.dump(cursor);
+					// XLoader.dump(cursor);
 
 					// pass on to list adapter
 					((CursorTreeAdapter) getListAdapter()).setChildrenCursor(groupPosition, cursor);
@@ -418,7 +418,7 @@ public class XSelectorFragment extends ExpandableListFragment
 			{
 				if (cursor != null)
 				{
-					XLoader.dump(cursor);
+					// XLoader.dump(cursor);
 
 					// pass on to list adapter
 					((CursorTreeAdapter) getListAdapter()).setChildrenCursor(groupPosition, cursor);
@@ -453,7 +453,7 @@ public class XSelectorFragment extends ExpandableListFragment
 			{
 				if (cursor != null)
 				{
-					XLoader.dump(cursor);
+					// XLoader.dump(cursor);
 
 					// pass on to list adapter
 					((CursorTreeAdapter) getListAdapter()).setChildrenCursor(groupPosition, cursor);
@@ -488,7 +488,7 @@ public class XSelectorFragment extends ExpandableListFragment
 			{
 				if (cursor != null)
 				{
-					XLoader.dump(cursor);
+					// XLoader.dump(cursor);
 
 					// pass on to list adapter
 					((CursorTreeAdapter) getListAdapter()).setChildrenCursor(groupPosition, cursor);

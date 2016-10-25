@@ -2,7 +2,6 @@ package org.sqlunet.browser;
 
 import android.app.ListFragment;
 import android.app.LoaderManager.LoaderCallbacks;
-import android.content.ComponentName;
 import android.content.CursorLoader;
 import android.content.Intent;
 import android.content.Loader;
@@ -14,15 +13,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CursorAdapter;
-import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 import android.widget.SimpleCursorAdapter.ViewBinder;
 import android.widget.Toast;
 
-import org.sqlunet.framenet.FnSentencePointer;
 import org.sqlunet.provider.SqlUNetContract;
 import org.sqlunet.sql.Utils;
-import org.sqlunet.wordnet.SynsetPointer;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -36,12 +32,12 @@ import java.util.List;
  */
 public abstract class AbstractTableFragment extends ListFragment
 {
-	private static final String TAG = "ATableFragment"; //
+	private static final String TAG = "AbsTableFragment"; //
 
 	/**
 	 * Target intent
 	 */
-	private Intent targetIntent;
+	Intent targetIntent;
 
 	/**
 	 * View binder factory
@@ -68,17 +64,15 @@ public abstract class AbstractTableFragment extends ListFragment
 		final Uri uri = Uri.parse(uriString);
 		final String id = args.getString(SqlUNetContract.ARG_QUERYID);
 		final String[] items = args.getStringArray(SqlUNetContract.ARG_QUERYITEMS);
-		final String[] xItems = args.getStringArray(SqlUNetContract.ARG_QUERYXITEMS);
+		final String[] hiddenItems = args.getStringArray(SqlUNetContract.ARG_QUERYHIDDENITEMS);
 		final String sort = args.getString(SqlUNetContract.ARG_QUERYSORT);
 		final String selection = args.getString(SqlUNetContract.ARG_QUERYFILTER);
 		final String queryArg = args.getString(SqlUNetContract.ARG_QUERYARG);
 		final int layoutId = args.getInt(SqlUNetContract.ARG_QUERYLAYOUT);
 		this.targetIntent = args.getParcelable(SqlUNetContract.ARG_QUERYINTENT);
 
-		// view binder
-
-		// adapter
-		// from (database fields)
+		// adapter set up
+		// from (database column names)
 		final List<String> fromList = new ArrayList<>();
 		if (items != null)
 		{
@@ -95,9 +89,10 @@ public abstract class AbstractTableFragment extends ListFragment
 				fromList.add(col);
 			}
 		}
-		if (xItems != null)
+		/*
+		if (hiddenItems != null)
 		{
-			for (final String item : xItems)
+			for (final String item : hiddenItems)
 			{
 				String col = item;
 
@@ -110,13 +105,14 @@ public abstract class AbstractTableFragment extends ListFragment
 				fromList.add(col);
 			}
 		}
+		*/
 		final String[] from = fromList.toArray(new String[0]);
 		Log.d(AbstractTableFragment.TAG + "From", Utils.join(from));
 
 		// to (view ids)
 		final Collection<Integer> toList = new ArrayList<>();
 		int nItems = items == null ? 0 : items.length;
-		int nXItems = xItems == null ? 0 : xItems.length;
+		int nXItems = hiddenItems == null ? 0 : hiddenItems.length;
 		final int[] resIds = {R.id.item0, R.id.item1, R.id.item2};
 		for (int i = 0; i < (nItems + nXItems) && i < resIds.length; i++)
 		{
@@ -156,10 +152,10 @@ public abstract class AbstractTableFragment extends ListFragment
 					Collections.addAll(cols, items);
 				}
 
-				// add xitems
-				if (xItems != null)
+				// add hidden items
+				if (hiddenItems != null)
 				{
-					Collections.addAll(cols, xItems);
+					Collections.addAll(cols, hiddenItems);
 				}
 
 				final String[] projection = cols.toArray(new String[0]);
@@ -201,61 +197,12 @@ public abstract class AbstractTableFragment extends ListFragment
 		return inflater.inflate(R.layout.fragment_table, container, false);
 	}
 
-	// C L I C K
-
-	@SuppressWarnings("boxing")
-	@Override
-	public void onListItemClick(ListView l, View v, int position, long id)
-	{
-		// System.out.println("id=" + id + " pos=" + position);
-
-		final Object o = getListAdapter().getItem(position);
-		final Cursor cursor = (Cursor) o;
-		// dump(cursor);
-
-		if (this.targetIntent != null)
-		{
-			// target
-			long targetId = cursor.getLong(0);
-			Log.d(TAG, "targetid=" + targetId); //
-
-			// intent's classname
-			ComponentName componentName = this.targetIntent.getComponent();
-			String className = componentName.getClassName();
-			if ("org.sqlunet.framenet.browser.SentenceActivity".equals(className)) //
-			{
-				// build pointer
-				@SuppressWarnings("TypeMayBeWeakened") final FnSentencePointer sentencePointer = new FnSentencePointer(targetId);
-
-				// pass pointer
-				this.targetIntent.putExtra(SqlUNetContract.ARG_QUERYACTION, SqlUNetContract.ARG_QUERYACTION_FNSENTENCE);
-				this.targetIntent.putExtra(SqlUNetContract.ARG_QUERYPOINTER, sentencePointer);
-
-				// start
-				startActivity(this.targetIntent);
-			}
-			else if ("org.sqlunet.wordnet.browser.SynsetActivity".equals(className)) //
-			{
-				// build pointer
-				final SynsetPointer synsetPointer = new SynsetPointer();
-				synsetPointer.setSynset(targetId, null);
-
-				// pass pointer
-				this.targetIntent.putExtra(SqlUNetContract.ARG_QUERYACTION, SqlUNetContract.ARG_QUERYACTION_FNSENTENCE);
-				this.targetIntent.putExtra(SqlUNetContract.ARG_QUERYPOINTER, synsetPointer);
-
-				// start
-				startActivity(this.targetIntent);
-			}
-		}
-	}
-
 	/**
 	 * Dump cursor
 	 *
 	 * @param cursor cursor
 	 */
-	private void dump(final Cursor cursor)
+	void dump(final Cursor cursor)
 	{
 		if (cursor == null)
 		{
@@ -266,6 +213,7 @@ public abstract class AbstractTableFragment extends ListFragment
 		// column names
 		int n = cursor.getColumnCount();
 		String[] cols = cursor.getColumnNames();
+		int position = cursor.getPosition();
 		if (cursor.moveToFirst())
 		{
 			do
@@ -301,7 +249,7 @@ public abstract class AbstractTableFragment extends ListFragment
 			while (cursor.moveToNext());
 
 			// reset
-			cursor.moveToFirst();
+			cursor.moveToPosition(position);
 		}
 	}
 }
