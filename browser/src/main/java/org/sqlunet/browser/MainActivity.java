@@ -8,6 +8,7 @@ import android.app.SearchableInfo;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -536,8 +537,7 @@ public class MainActivity extends Activity
 			if (query.startsWith("#ws")) //
 			{
 				final long synsetId = Long.valueOf(query.substring(3));
-				final SynsetPointer synsetPointer = new SynsetPointer();
-				synsetPointer.setSynset(synsetId, null);
+				final Parcelable synsetPointer = new SynsetPointer(synsetId, null);
 				searchIntent = makeDetailIntent(SynsetActivity.class);
 				searchIntent.putExtra(SqlUNetContract.ARG_QUERYACTION, SqlUNetContract.ARG_QUERYACTION_SYNSET);
 				searchIntent.putExtra(SqlUNetContract.ARG_QUERYPOINTER, synsetPointer);
@@ -548,8 +548,7 @@ public class MainActivity extends Activity
 			else if (query.startsWith("#vc")) //
 			{
 				final long classId = Long.valueOf(query.substring(3));
-				final VnClassPointer framePointer = new VnClassPointer();
-				framePointer.classId = classId;
+				final Parcelable framePointer = new VnClassPointer(classId);
 				searchIntent = makeDetailIntent(VnClassActivity.class);
 				searchIntent.putExtra(SqlUNetContract.ARG_QUERYACTION, SqlUNetContract.ARG_QUERYACTION_VNCLASS);
 				searchIntent.putExtra(SqlUNetContract.ARG_QUERYPOINTER, framePointer);
@@ -559,8 +558,7 @@ public class MainActivity extends Activity
 			else if (query.startsWith("#pr")) //
 			{
 				final long roleSetId = Long.valueOf(query.substring(3));
-				final PbRoleSetPointer roleSetPointer = new PbRoleSetPointer();
-				roleSetPointer.roleSetId = roleSetId;
+				final Parcelable roleSetPointer = new PbRoleSetPointer(roleSetId);
 				searchIntent = makeDetailIntent(PbRoleSetActivity.class);
 				searchIntent.putExtra(SqlUNetContract.ARG_QUERYACTION, SqlUNetContract.ARG_QUERYACTION_PBROLESET);
 				searchIntent.putExtra(SqlUNetContract.ARG_QUERYPOINTER, roleSetPointer);
@@ -570,8 +568,7 @@ public class MainActivity extends Activity
 			else if (query.startsWith("#ff")) //
 			{
 				final long frameId = Long.valueOf(query.substring(3));
-				final FnFramePointer framePointer = new FnFramePointer();
-				framePointer.frameId = frameId;
+				final Parcelable framePointer = new FnFramePointer(frameId);
 				searchIntent = makeDetailIntent(FnFrameActivity.class);
 				searchIntent.putExtra(SqlUNetContract.ARG_QUERYACTION, SqlUNetContract.ARG_QUERYACTION_FNFRAME);
 				searchIntent.putExtra(SqlUNetContract.ARG_QUERYPOINTER, framePointer);
@@ -579,8 +576,7 @@ public class MainActivity extends Activity
 			else if (query.startsWith("#fl")) //
 			{
 				final long luId = Long.valueOf(query.substring(3));
-				final FnLexUnitPointer lexunitPointer = new FnLexUnitPointer();
-				lexunitPointer.luId = luId;
+				final Parcelable lexunitPointer = new FnLexUnitPointer(luId);
 				searchIntent = makeDetailIntent(FnLexUnitActivity.class);
 				searchIntent.putExtra(SqlUNetContract.ARG_QUERYACTION, SqlUNetContract.ARG_QUERYACTION_FNLEXUNIT);
 				searchIntent.putExtra(SqlUNetContract.ARG_QUERYPOINTER, lexunitPointer);
@@ -596,8 +592,7 @@ public class MainActivity extends Activity
 			else if (query.startsWith("#fa")) //
 			{
 				final long annoSetId = Long.valueOf(query.substring(3));
-				final FnAnnoSetPointer annoSetPointer = new FnAnnoSetPointer();
-				annoSetPointer.annoSetId = annoSetId;
+				final Parcelable annoSetPointer = new FnAnnoSetPointer(annoSetId);
 				searchIntent = makeDetailIntent(FnAnnoSetActivity.class);
 				searchIntent.putExtra(SqlUNetContract.ARG_QUERYACTION, SqlUNetContract.ARG_QUERYACTION_FNANNOSET);
 				searchIntent.putExtra(SqlUNetContract.ARG_QUERYPOINTER, annoSetPointer);
@@ -605,8 +600,7 @@ public class MainActivity extends Activity
 			else if (query.startsWith("#fp")) //
 			{
 				final long patternId = Long.valueOf(query.substring(3));
-				final FnPatternPointer patternPointer = new FnPatternPointer();
-				patternPointer.id = patternId;
+				final Parcelable patternPointer = new FnPatternPointer(patternId);
 				searchIntent = makeDetailIntent(FnAnnoSetActivity.class);
 				searchIntent.putExtra(SqlUNetContract.ARG_QUERYACTION, SqlUNetContract.ARG_QUERYACTION_FNPATTERN);
 				searchIntent.putExtra(SqlUNetContract.ARG_QUERYPOINTER, patternPointer);
@@ -614,8 +608,7 @@ public class MainActivity extends Activity
 			else if (query.startsWith("#fv")) //
 			{
 				final long valenceUnitId = Long.valueOf(query.substring(3));
-				final FnValenceUnitPointer valenceunitPointer = new FnValenceUnitPointer();
-				valenceunitPointer.id = valenceUnitId;
+				final Parcelable valenceunitPointer = new FnValenceUnitPointer(valenceUnitId);
 				searchIntent = makeDetailIntent(FnAnnoSetActivity.class);
 				searchIntent.putExtra(SqlUNetContract.ARG_QUERYACTION, SqlUNetContract.ARG_QUERYACTION_FNVALENCEUNIT);
 				searchIntent.putExtra(SqlUNetContract.ARG_QUERYPOINTER, valenceunitPointer);
@@ -625,8 +618,7 @@ public class MainActivity extends Activity
 			else if (query.startsWith("#mr")) //
 			{
 				final long pmRoleId = Long.valueOf(query.substring(3));
-				final PmRolePointer rolePointer = new PmRolePointer();
-				rolePointer.roleId = pmRoleId;
+				final Parcelable rolePointer = new PmRolePointer(pmRoleId);
 				searchIntent = makeDetailIntent(PredicateMatrixActivity.class);
 				searchIntent.putExtra(SqlUNetContract.ARG_QUERYACTION, SqlUNetContract.ARG_QUERYACTION_PMROLE);
 				searchIntent.putExtra(SqlUNetContract.ARG_QUERYPOINTER, rolePointer);

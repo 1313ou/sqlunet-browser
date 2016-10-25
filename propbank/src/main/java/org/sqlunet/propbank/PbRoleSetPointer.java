@@ -3,18 +3,15 @@ package org.sqlunet.propbank;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import org.sqlunet.Pointer;
+
 /**
  * Parcelable role set pointer
  *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
-public class PbRoleSetPointer implements Parcelable
+public class PbRoleSetPointer extends Pointer
 {
-	/**
-	 * Role set id
-	 */
-	public Long roleSetId;
-
 	/**
 	 * Static field used to regenerate object, individually or as arrays
 	 */
@@ -35,10 +32,12 @@ public class PbRoleSetPointer implements Parcelable
 
 	/**
 	 * Constructor
+	 *
+	 * @param roleSetId role set id
 	 */
-	public PbRoleSetPointer()
+	public PbRoleSetPointer(final long roleSetId)
 	{
-		this.roleSetId = null;
+		super(roleSetId);
 	}
 
 	/**
@@ -49,37 +48,6 @@ public class PbRoleSetPointer implements Parcelable
 	@SuppressWarnings("boxing")
 	private PbRoleSetPointer(final Parcel parcel)
 	{
-		this();
-		long parcelRoleSetId = parcel.readLong();
-		if (parcelRoleSetId != -1)
-		{
-			this.roleSetId = parcelRoleSetId;
-		}
-	}
-
-	/**
-	 * Get role set id
-	 *
-	 * @return role set id
-	 */
-	public Long getRoleSetId()
-	{
-		if (this.roleSetId != 0)
-		{
-			return this.roleSetId;
-		}
-		return null;
-	}
-
-	@Override
-	public void writeToParcel(final Parcel parcel, final int flags)
-	{
-		parcel.writeLong(this.roleSetId == null ? -1 : this.roleSetId);
-	}
-
-	@Override
-	public int describeContents()
-	{
-		return 0;
+		super(parcel);
 	}
 }

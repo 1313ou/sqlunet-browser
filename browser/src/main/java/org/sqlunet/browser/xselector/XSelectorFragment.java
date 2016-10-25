@@ -582,21 +582,16 @@ public class XSelectorFragment extends ExpandableListFragment
 			final long wordId = this.word.wordId;
 			final String lemma = this.word.lemma;
 			final String cased = this.word.lemma;
-			final Long synsetId = cursor.isNull(idSynsetId) ? null : cursor.getLong(idSynsetId);
+			final long synsetId = cursor.isNull(idSynsetId) ? 0 : cursor.getLong(idSynsetId);
 			final String pos = synsetIdToPos(synsetId);
 			final Long xId = cursor.isNull(idXId) ? null : cursor.getLong(idXId);
 			final Long xClassId = cursor.isNull(idXClassId) ? null : cursor.getLong(idXClassId);
 			final Long xInstanceId = cursor.isNull(idXInstanceId) ? null : cursor.getLong(idXInstanceId);
-			final String sources = cursor.getString(idXSources);
+			final String xSources = cursor.getString(idXSources);
+			final long xMask = XSelectorPointer.getMask(xSources);
 
 			// pointer
-			final XPointer pointer = new XPointer();
-			pointer.setWord(wordId, lemma, cased);
-			pointer.setSynset(synsetId, pos);
-			pointer.setXId(xId);
-			pointer.setXClassId(xClassId);
-			pointer.setXInstanceId(xInstanceId);
-			pointer.setXSources(sources);
+			final XSelectorPointer pointer = new XSelectorPointer(synsetId, pos, wordId, lemma, cased, xId, xClassId, xInstanceId, xSources, xMask);
 			Log.d(TAG, "pointer=" + pointer); //
 
 			// notify the active listener (the activity, if the fragment is attached to one) that an item has been selected
@@ -672,6 +667,6 @@ public class XSelectorFragment extends ExpandableListFragment
 		/**
 		 * Callback for when an item has been selected.
 		 */
-		void onItemSelected(XPointer pointer);
+		void onItemSelected(XSelectorPointer pointer);
 	}
 }

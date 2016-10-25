@@ -40,7 +40,7 @@ public class PredicateRoleModule extends BasicModule
 		if (query instanceof PmRolePointer)
 		{
 			final PmRolePointer pointer = (PmRolePointer) query;
-			this.pmRoleId = pointer.getRoleId();
+			this.pmRoleId = pointer.getId();
 		}
 	}
 

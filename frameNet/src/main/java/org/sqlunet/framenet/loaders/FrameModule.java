@@ -51,7 +51,7 @@ public class FrameModule extends BasicModule
 		if (query instanceof FnFramePointer)
 		{
 			final FnFramePointer pointer = (FnFramePointer) query;
-			this.frameId = pointer.frameId;
+			this.frameId = pointer.getId();
 			this.luId = null;
 		}
 		if (query instanceof HasXId)

@@ -73,4 +73,14 @@ public class PropBankContract
 		public static final String VOICENAME = "voicename"; //
 		public static final String PERSONNAME = "personname"; //
 	}
+
+	@SuppressWarnings("unused")
+	static public final class Lookup_PbExamples
+	{
+		static public final String TABLE = "fts_fnsentences"; //
+		static public final String CONTENT_URI = "content://" + PropBankContract.AUTHORITY + '/' + Lookup_PbExamples.TABLE; //
+		static public final String EXAMPLEID = "exampleid"; //
+		static public final String ROLESETID = "rolesetid"; //
+		static public final String TEXT = "text"; //
+	}
 }

@@ -5,24 +5,15 @@ import android.os.Parcelable;
 
 import org.sqlunet.HasPos;
 import org.sqlunet.HasSynsetId;
+import org.sqlunet.Pointer2;
 
 /**
  * Parcelable synset
  *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
-public class SynsetPointer implements Parcelable, HasSynsetId, HasPos
+public class SynsetPointer extends Pointer2 implements HasSynsetId, HasPos
 {
-	/**
-	 * Synset id : compulsory
-	 */
-	private long synsetId;
-
-	/**
-	 * Pos : optional/nullable (may be retrieved if need be)
-	 */
-	private String pos;
-
 	/**
 	 * Static field used to regenerate object, individually or as arrays
 	 */
@@ -46,17 +37,7 @@ public class SynsetPointer implements Parcelable, HasSynsetId, HasPos
 	 */
 	SynsetPointer(final Parcel parcel)
 	{
-		this.synsetId = parcel.readLong();
-		this.pos = parcel.readString();
-	}
-
-	/**
-	 * Constructor
-	 */
-	public SynsetPointer()
-	{
-		this.synsetId = -1;
-		this.pos = null;
+		super(parcel);
 	}
 
 	/**
@@ -65,19 +46,18 @@ public class SynsetPointer implements Parcelable, HasSynsetId, HasPos
 	 * @param synsetId synset id
 	 * @param pos      pos
 	 */
-	public void setSynset(final Long synsetId, final String pos)
+	public SynsetPointer(final Long synsetId, final String pos)
 	{
-		this.synsetId = synsetId == null ? -1 : synsetId;
-		this.pos = pos;
+		super(synsetId == null ? 0 : synsetId, pos);
 	}
 
 	@SuppressWarnings("boxing")
 	@Override
 	public Character getPos()
 	{
-		if (this.pos != null && !this.pos.isEmpty())
+		if (this.id2 != null && !this.id2.isEmpty())
 		{
-			return this.pos.charAt(0);
+			return this.id2.charAt(0);
 		}
 		return null;
 	}
@@ -86,33 +66,20 @@ public class SynsetPointer implements Parcelable, HasSynsetId, HasPos
 	@Override
 	public Long getSynsetId()
 	{
-		if (this.synsetId != -1)
+		if (this.id != 0)
 		{
-			return this.synsetId;
+			return this.id;
 		}
 		return null;
-	}
-
-	@Override
-	public void writeToParcel(final Parcel parcel, final int flags)
-	{
-		parcel.writeLong(this.synsetId);
-		parcel.writeString(this.pos);
-	}
-
-	@Override
-	public int describeContents()
-	{
-		return 0;
 	}
 
 	@Override
 	public String toString()
 	{
 		return "synsetid=" + //
-				this.synsetId +
+				this.id +
 				' ' +
 				"pos=" + //
-				this.pos;
+				this.id2;
 	}
 }

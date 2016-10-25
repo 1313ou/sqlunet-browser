@@ -96,7 +96,7 @@ public class XSelectorActivity extends Activity implements XSelectorFragment.Lis
 	 * Callback method from {@link XSelectorFragment.Listener} indicating that the item with the given ID was selected.
 	 */
 	@Override
-	public void onItemSelected(final XPointer pointer)
+	public void onItemSelected(final XSelectorPointer pointer)
 	{
 		if (this.isTwoPane)
 		{

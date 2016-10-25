@@ -15,17 +15,17 @@ public class SensePointer extends SynsetPointer implements HasWordId
 	/**
 	 * Word id : compulsory
 	 */
-	private Long wordId;
+	private final Long wordId;
 
 	/**
 	 * Lemma : optional/nullable (may be retrieved if need be)
 	 */
-	private String lemma;
+	private final String lemma;
 
 	/**
 	 * Cased : optional/nullable (may be retrieved if need be)
 	 */
-	private String cased;
+	private final String cased;
 
 	/**
 	 * Static field used to regenerate object, individually or as arrays
@@ -46,17 +46,6 @@ public class SensePointer extends SynsetPointer implements HasWordId
 	};
 
 	/**
-	 * Constructor
-	 */
-	public SensePointer()
-	{
-		super();
-		this.wordId = null;
-		this.lemma = null;
-		this.cased = null;
-	}
-
-	/**
 	 * Constructor from parcel, reads back fields IN THE ORDER they were written
 	 */
 	protected SensePointer(final Parcel parcel)
@@ -68,16 +57,18 @@ public class SensePointer extends SynsetPointer implements HasWordId
 	}
 
 	/**
-	 * Set word
+	 * Constructor
 	 *
-	 * @param wordId word id
-	 * @param lemma  lemma
-	 * @param cased  cased word
+	 * @param synsetId synset id
+	 * @param pos      pos
+	 * @param wordId   word id
+	 * @param lemma    lemma
+	 * @param cased    cased
 	 */
-	@SuppressWarnings("boxing")
-	public void setWord(final Long wordId, final String lemma, final String cased)
+	public SensePointer(final long synsetId, final String pos, final long wordId, final String lemma, final String cased)
 	{
-		this.wordId = wordId == null ? -1L : wordId;
+		super(synsetId, pos);
+		this.wordId = wordId;
 		this.lemma = lemma;
 		this.cased = cased;
 	}

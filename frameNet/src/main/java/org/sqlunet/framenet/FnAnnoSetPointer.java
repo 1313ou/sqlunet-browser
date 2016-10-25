@@ -3,18 +3,15 @@ package org.sqlunet.framenet;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import org.sqlunet.Pointer;
+
 /**
  * Parcelable annoSet
  *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
-public class FnAnnoSetPointer implements Parcelable
+public class FnAnnoSetPointer extends Pointer
 {
-	/**
-	 * AnnoSet id
-	 */
-	public long annoSetId;
-
 	/**
 	 * Static field used to regenerate object, individually or as arrays
 	 */
@@ -35,10 +32,12 @@ public class FnAnnoSetPointer implements Parcelable
 
 	/**
 	 * Constructor
+	 *
+	 * @param annoSetId annoSet id
 	 */
-	public FnAnnoSetPointer()
+	public FnAnnoSetPointer(final long annoSetId)
 	{
-		//
+		super(annoSetId);
 	}
 
 	/**
@@ -46,33 +45,6 @@ public class FnAnnoSetPointer implements Parcelable
 	 */
 	private FnAnnoSetPointer(final Parcel parcel)
 	{
-		this.annoSetId = parcel.readLong();
-	}
-
-	/**
-	 * Get annoSetId
-	 *
-	 * @return annoSetId
-	 */
-	@SuppressWarnings("boxing")
-	public Long getAnnoSetId()
-	{
-		if (this.annoSetId != 0)
-		{
-			return this.annoSetId;
-		}
-		return null;
-	}
-
-	@Override
-	public void writeToParcel(final Parcel parcel, final int flags)
-	{
-		parcel.writeLong(this.annoSetId);
-	}
-
-	@Override
-	public int describeContents()
-	{
-		return 0;
+		super(parcel);
 	}
 }

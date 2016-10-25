@@ -3,18 +3,15 @@ package org.sqlunet.predicatematrix;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import org.sqlunet.Pointer;
+
 /**
  * Parcelable PredicateMatrix role
  *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
-public class PmRolePointer implements Parcelable
+public class PmRolePointer extends Pointer
 {
-	/**
-	 * Role id
-	 */
-	public Long roleId;
-
 	/**
 	 * Static field used to regenerate object, individually or as arrays
 	 */
@@ -35,11 +32,14 @@ public class PmRolePointer implements Parcelable
 
 	/**
 	 * Constructor
+	 *
+	 * @param roleId role id
 	 */
-	public PmRolePointer()
+	public PmRolePointer(final long roleId)
 	{
-		this.roleId = null;
+		super(roleId);
 	}
+
 
 	/**
 	 * Constructor from parcel, reads back fields IN THE ORDER they were written
@@ -49,43 +49,6 @@ public class PmRolePointer implements Parcelable
 	@SuppressWarnings("boxing")
 	private PmRolePointer(final Parcel parcel)
 	{
-		this();
-		long parcelRoleId = parcel.readLong();
-		if (parcelRoleId != -1)
-		{
-			this.roleId = parcelRoleId;
-		}
-	}
-
-	/**
-	 * Get role id
-	 *
-	 * @return return role id
-	 */
-	public Long getRoleId()
-	{
-		if (this.roleId != 0)
-		{
-			return this.roleId;
-		}
-		return null;
-	}
-
-	@Override
-	public void writeToParcel(final Parcel parcel, final int flags)
-	{
-		parcel.writeLong(this.roleId == null ? -1 : this.roleId);
-	}
-
-	@Override
-	public int describeContents()
-	{
-		return 0;
-	}
-
-	@Override
-	public String toString()
-	{
-		return "roleid=" + this.roleId; //
+		super(parcel);
 	}
 }

@@ -1561,8 +1561,7 @@ abstract class BasicModule extends Module
 		@Override
 		public void process(final TreeNode node)
 		{
-			final VnClassPointer pointer = new VnClassPointer();
-			pointer.classId = this.id;
+			final Parcelable pointer = new VnClassPointer(this.id);
 			final Intent intent = new Intent(BasicModule.this.getContext(), VnClassActivity.class);
 			intent.putExtra(SqlUNetContract.ARG_QUERYACTION, SqlUNetContract.ARG_QUERYACTION_VNCLASS);
 			intent.putExtra(SqlUNetContract.ARG_QUERYPOINTER, pointer);
@@ -1592,8 +1591,7 @@ abstract class BasicModule extends Module
 		@Override
 		public void process(final TreeNode node)
 		{
-			final PbRoleSetPointer pointer = new PbRoleSetPointer();
-			pointer.roleSetId = this.id;
+			final Parcelable pointer = new PbRoleSetPointer(this.id);
 			final Intent intent = new Intent(BasicModule.this.getContext(), PbRoleSetActivity.class);
 			intent.putExtra(SqlUNetContract.ARG_QUERYACTION, SqlUNetContract.ARG_QUERYACTION_PBROLESET);
 			intent.putExtra(SqlUNetContract.ARG_QUERYPOINTER, pointer);
@@ -1623,8 +1621,7 @@ abstract class BasicModule extends Module
 		@Override
 		public void process(final TreeNode node)
 		{
-			final FnFramePointer pointer = new FnFramePointer();
-			pointer.frameId = this.id;
+			final Parcelable pointer = new FnFramePointer(this.id);
 			final Intent intent = new Intent(BasicModule.this.getContext(), FnFrameActivity.class);
 			intent.putExtra(SqlUNetContract.ARG_QUERYACTION, SqlUNetContract.ARG_QUERYACTION_FNFRAME);
 			intent.putExtra(SqlUNetContract.ARG_QUERYPOINTER, pointer);

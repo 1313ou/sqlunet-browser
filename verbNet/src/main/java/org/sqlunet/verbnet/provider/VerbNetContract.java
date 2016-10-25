@@ -93,4 +93,15 @@ public class VerbNetContract
 		public static final String EXAMPLE = "example"; //
 		public static final String EXAMPLES = "examples"; //
 	}
+
+	@SuppressWarnings("unused")
+	static public final class Lookup_VnExamples
+	{
+		static public final String TABLE = "fts_vnexamples"; //
+		static public final String CONTENT_URI = "content://" + VerbNetContract.AUTHORITY + '/' + Lookup_VnExamples.TABLE; //
+		static public final String EXAMPLEID = "exampleid"; //
+		static public final String FRAMEID = "frameid"; //
+		static public final String CLASSID = "classid"; //
+		static public final String EXAMPLE = "example"; //
+	}
 }

@@ -17,8 +17,10 @@
 	<string name="action_setup_import">Import SQL data</string>
 	<string name="action_setup_indexes">Setup indexes</string>
 	<string name="action_setup_predicatematrix">Setup PredicateMatrix</string>
-	<string name="action_setup_textsearch" tools:keep="@string/action_setup_textsearch">Setup text search</string>
-	<string name="action_setup_textsearchfn" tools:keep="@string/action_setup_textsearchfn">Setup text search for FrameNet</string>
+	<string name="action_setup_textsearchWn" tools:keep="@string/action_setup_textsearchWn">Setup text search for WordNet</string>
+	<string name="action_setup_textsearchVn" tools:keep="@string/action_setup_textsearchVn">Setup text search for VerbNet</string>
+	<string name="action_setup_textsearchPb" tools:keep="@string/action_setup_textsearchPb">Setup text search for PropBank</string>
+	<string name="action_setup_textsearchFn" tools:keep="@string/action_setup_textsearchFn">Setup text search for FrameNet</string>
 	<string name="action_download">Download</string>
 	<string name="action_downloadDb">Download DB </string>
 	<string name="action_downloadSql">Download SQL </string>
@@ -77,7 +79,9 @@
 	<string name="status_indexes">Indexes</string>
 	<string name="status_predicatematrix">Predicate Matrix</string>
 	<string name="status_textsearch">Text Search on WordNet</string>
-	<string name="status_textsearchfn">Text Search on FrameNet</string>
+	<string name="status_textsearchVn">Text Search on VerbNet</string>
+	<string name="status_textsearchPb">Text Search on PropBank</string>
+	<string name="status_textsearchFn">Text Search on FrameNet</string>
 	<string name="status_downloading">Downloading</string>
 	<string name="status_download_fail">Download failed!</string>
 	<string name="status_download_paused">Download paused!</string>
@@ -122,6 +126,8 @@
 		<item>Words</item>
 		<item>Definitions</item>
 		<item>Samples</item>
+		<item>VerbNet Examples</item>
+		<item>ProbBank Examples</item>
 		<item>FrameNet Sentences</item>
 	</string-array>
 

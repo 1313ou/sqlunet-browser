@@ -32,10 +32,12 @@ public class FnValenceUnitPointer extends Pointer
 
 	/**
 	 * Constructor
+	 *
+	 * @param vuId valence unit id
 	 */
-	public FnValenceUnitPointer()
+	public FnValenceUnitPointer(final long vuId)
 	{
-		super();
+		super(vuId);
 	}
 
 	/**

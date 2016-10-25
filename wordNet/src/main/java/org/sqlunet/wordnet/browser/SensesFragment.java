@@ -316,13 +316,15 @@ public class SensesFragment extends ListFragment
 		final Cursor cursor = adapter.getCursor();
 		if (cursor.moveToPosition(position))
 		{
-			final int synsetId = cursor.getColumnIndex(WordNetContract.Synsets.SYNSETID);
-			final int posId = cursor.getColumnIndex(WordNetContract.PosTypes.POSNAME);
-			final int casedId = cursor.getColumnIndex(WordNetContract.CasedWords.CASED);
+			final int idSynsetId = cursor.getColumnIndex(WordNetContract.Synsets.SYNSETID);
+			final int idPos = cursor.getColumnIndex(WordNetContract.PosTypes.POSNAME);
+			final int idCased = cursor.getColumnIndex(WordNetContract.CasedWords.CASED);
 
-			final SensePointer sense = new SensePointer();
-			sense.setSynset(cursor.isNull(synsetId) ? null : cursor.getLong(synsetId), cursor.getString(posId));
-			sense.setWord(this.word.wordId, this.word.lemma, cursor.getString(casedId));
+			final long synsetId = cursor.isNull(idSynsetId) ? 0 : cursor.getLong(idSynsetId);
+			final String pos = cursor.getString(idPos);
+			final String cased = cursor.getString(idCased);
+
+			final SensePointer sense = new SensePointer(synsetId, pos, this.word.wordId, this.word.lemma, cased);
 
 			// notify the active listener (the activity, if the fragment is attached to one) that an item has been selected
 			if (this.listener != null)

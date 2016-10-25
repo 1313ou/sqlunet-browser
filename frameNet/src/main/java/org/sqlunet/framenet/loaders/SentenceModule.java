@@ -53,7 +53,7 @@ public class SentenceModule extends BasicModule
 		if (query instanceof FnSentencePointer)
 		{
 			final FnSentencePointer sentenceQuery = (FnSentencePointer) query;
-			this.sentenceId = sentenceQuery.getSentenceId();
+			this.sentenceId = sentenceQuery.getId();
 		}
 	}
 

@@ -3,18 +3,15 @@ package org.sqlunet.framenet;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import org.sqlunet.Pointer;
+
 /**
  * Parcelable lex unit
  *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
-public class FnLexUnitPointer implements Parcelable
+public class FnLexUnitPointer extends Pointer
 {
-	/**
-	 * Lex unit id
-	 */
-	public long luId;
-
 	/**
 	 * Static field used to regenerate object, individually or as arrays
 	 */
@@ -35,10 +32,12 @@ public class FnLexUnitPointer implements Parcelable
 
 	/**
 	 * Constructor
+	 *
+	 * @param luId lex unit id
 	 */
-	public FnLexUnitPointer()
+	public FnLexUnitPointer(final long luId)
 	{
-		//
+		super(luId);
 	}
 
 	/**
@@ -46,34 +45,6 @@ public class FnLexUnitPointer implements Parcelable
 	 */
 	private FnLexUnitPointer(final Parcel parcel)
 	{
-		this.luId = parcel.readLong();
-	}
-
-	/**
-	 * Get lex unit id
-	 *
-	 * @return lex unit id
-	 */
-	@SuppressWarnings("boxing")
-	public Long getLuId()
-	{
-		if (this.luId != 0)
-		{
-			return this.luId;
-		}
-		return null;
-	}
-
-	@Override
-	public void writeToParcel(final Parcel parcel, final int flags)
-	{
-		parcel.writeLong(this.luId);
-	}
-
-
-	@Override
-	public int describeContents()
-	{
-		return 0;
+		super(parcel);
 	}
 }

@@ -35,6 +35,9 @@ public class VerbNetProvider extends SqlUNetProvider
 	private static final int VNCLASSES_VNROLES_X_BY_VNROLE = 110;
 	private static final int VNCLASSES_VNFRAMES_X_BY_VNFRAME = 120;
 
+	// text search codes
+	private static final int LOOKUP_FTS_EXAMPLES = 501;
+
 	static
 	{
 		uriMatcher = new UriMatcher(UriMatcher.NO_MATCH);
@@ -45,6 +48,8 @@ public class VerbNetProvider extends SqlUNetProvider
 		VerbNetProvider.uriMatcher.addURI(VerbNetContract.AUTHORITY, VerbNetContract.Words_VnClasses_VnGroupings.TABLE_BY_CLASS, VerbNetProvider.WORDS_VNCLASSES_VNGROUPING_BY_VNCLASS);
 		VerbNetProvider.uriMatcher.addURI(VerbNetContract.AUTHORITY, VerbNetContract.VnClasses_VnRoles_X.TABLE_BY_ROLE, VerbNetProvider.VNCLASSES_VNROLES_X_BY_VNROLE);
 		VerbNetProvider.uriMatcher.addURI(VerbNetContract.AUTHORITY, VerbNetContract.VnClasses_VnFrames_X.TABLE_BY_FRAME, VerbNetProvider.VNCLASSES_VNFRAMES_X_BY_VNFRAME);
+
+		VerbNetProvider.uriMatcher.addURI(VerbNetContract.AUTHORITY, VerbNetContract.Lookup_VnExamples.TABLE + "/", VerbNetProvider.LOOKUP_FTS_EXAMPLES); //
 	}
 
 	// C O N S T R U C T O R
@@ -86,6 +91,10 @@ public class VerbNetProvider extends SqlUNetProvider
 				return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + VerbNetContract.AUTHORITY + '.' + VerbNetContract.VnClasses_VnRoles_X.TABLE_BY_ROLE; //
 			case VNCLASSES_VNFRAMES_X_BY_VNFRAME:
 				return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + VerbNetContract.AUTHORITY + '.' + VerbNetContract.VnClasses_VnFrames_X.TABLE_BY_FRAME; //
+
+			// S E A R C H
+			case LOOKUP_FTS_EXAMPLES:
+				return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + VerbNetContract.AUTHORITY + '.' + VerbNetContract.Lookup_VnExamples.TABLE; //
 
 			default:
 				throw new UnsupportedOperationException("Illegal MIME type"); //
@@ -177,6 +186,10 @@ public class VerbNetProvider extends SqlUNetProvider
 						"LEFT JOIN vnsemantics USING (semanticsid) " + //
 						"LEFT JOIN vnexamplemaps USING (frameid) " + //
 						"LEFT JOIN vnexamples USING (exampleid)"; //
+				break;
+
+			case LOOKUP_FTS_EXAMPLES:
+				table = "vnexamples_example_fts4"; //
 				break;
 
 			default:

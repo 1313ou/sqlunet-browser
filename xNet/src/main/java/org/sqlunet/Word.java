@@ -1,19 +1,18 @@
 package org.sqlunet;
 
 import android.os.Parcel;
-import android.os.Parcelable;
 
 /**
  * Parcelable word
  *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
-public class Word implements Parcelable
+public class Word implements IPointer
 {
 	/**
 	 * Word
 	 */
-	public String word;
+	private final String word;
 
 	/**
 	 * Creator
@@ -35,9 +34,12 @@ public class Word implements Parcelable
 
 	/**
 	 * Constructor
+	 *
+	 * @param word word
 	 */
-	public Word()
+	public Word(final String word)
 	{
+		this.word = word;
 	}
 
 	/**

@@ -1,6 +1,7 @@
 <component name="ProjectDictionaryState">
   <dictionary name="bbou">
     <words>
+      <w>abfb</w>
       <w>abiss</w>
       <w>adefinition</w>
       <w>adjposition</w>
@@ -369,6 +370,7 @@
       <w>queryaction</w>
       <w>queryarg</w>
       <w>queryfilter</w>
+      <w>queryhiddenitems</w>
       <w>queryid</w>
       <w>queryintent</w>
       <w>queryitems</w>
@@ -592,6 +594,7 @@
       <w>xinstance</w>
       <w>xinstanceid</w>
       <w>xitems</w>
+      <w>xloader</w>
       <w>xmask</w>
       <w>xmatcher</w>
       <w>xmldom</w>

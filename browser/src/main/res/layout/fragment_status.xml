@@ -9,8 +9,8 @@
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
 		android:layout_gravity="center_horizontal"
-		android:layout_marginBottom="20dp"
-		android:layout_marginTop="20dp"
+		android:layout_marginBottom="15dp"
+		android:layout_marginTop="15dp"
 		android:contentDescription="@string/app_name"
 		android:src="@drawable/ic_launcher"/>
 
@@ -39,10 +39,10 @@
 			android:layout_columnWeight="2"
 			android:background="@color/light_yellow_color"
 			android:contentDescription="@string/status_database"
-			android:paddingBottom="20dp"
+			android:paddingBottom="15dp"
 			android:paddingEnd="20dp"
 			android:paddingStart="20dp"
-			android:paddingTop="20dp"
+			android:paddingTop="15dp"
 			android:src="@drawable/ic_unknown"
 			tools:targetApi="lollipop"/>
 
@@ -78,10 +78,10 @@
 			android:layout_columnWeight="2"
 			android:background="@color/light_yellow_color"
 			android:contentDescription="@string/status_predicatematrix"
-			android:paddingBottom="20dp"
+			android:paddingBottom="15dp"
 			android:paddingEnd="20dp"
 			android:paddingStart="20dp"
-			android:paddingTop="20dp"
+			android:paddingTop="15dp"
 			android:src="@drawable/ic_unknown"
 			tools:targetApi="lollipop"/>
 
@@ -117,10 +117,10 @@
 			android:layout_columnWeight="2"
 			android:background="@color/light_yellow_color"
 			android:contentDescription="@string/status_indexes"
-			android:paddingBottom="20dp"
+			android:paddingBottom="15dp"
 			android:paddingEnd="20dp"
 			android:paddingStart="20dp"
-			android:paddingTop="20dp"
+			android:paddingTop="15dp"
 			android:src="@drawable/ic_unknown"
 			tools:targetApi="lollipop"/>
 
@@ -137,7 +137,7 @@
 			android:visibility="gone"
 			tools:targetApi="lollipop"/>
 
-		<!-- textsearch -->
+		<!-- textsearch wordnet -->
 
 		<TextView
 			android:layout_width="wrap_content"
@@ -149,22 +149,22 @@
 			android:maxLines="1"/>
 
 		<ImageView
-			android:id="@+id/status_textsearch"
+			android:id="@+id/status_textsearchWn"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			android:layout_gravity="center"
 			android:layout_columnWeight="2"
 			android:background="@color/light_yellow_color"
 			android:contentDescription="@string/status_textsearch"
-			android:paddingBottom="20dp"
+			android:paddingBottom="15dp"
 			android:paddingEnd="20dp"
 			android:paddingStart="20dp"
-			android:paddingTop="20dp"
+			android:paddingTop="15dp"
 			android:src="@drawable/ic_unknown"
 			tools:targetApi="lollipop"/>
 
 		<ImageButton
-			android:id="@+id/textsearchButton"
+			android:id="@+id/textsearchWnButton"
 			style="?android:attr/buttonStyleSmall"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
@@ -176,6 +176,84 @@
 			android:visibility="gone"
 			tools:targetApi="lollipop"/>
 
+		<!-- textsearch verbnet -->
+
+		<TextView
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_gravity="center_vertical|end"
+			android:layout_columnWeight="5"
+			android:text="@string/status_textsearchVn"
+			tools:targetApi="lollipop"
+			android:maxLines="1"/>
+
+		<ImageView
+			android:id="@+id/status_textsearchVn"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_gravity="center"
+			android:layout_columnWeight="2"
+			android:background="@color/light_yellow_color"
+			android:contentDescription="@string/status_textsearchVn"
+			android:paddingBottom="15dp"
+			android:paddingEnd="20dp"
+			android:paddingStart="20dp"
+			android:paddingTop="15dp"
+			android:src="@drawable/ic_unknown"
+			tools:targetApi="lollipop"/>
+
+		<ImageButton
+			android:id="@+id/textsearchVnButton"
+			style="?android:attr/buttonStyleSmall"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_gravity="end|center_vertical"
+			android:layout_columnWeight="1"
+			android:background="@drawable/bg_button"
+			android:contentDescription="@string/status_textsearchVn"
+			android:src="@drawable/bn_setup"
+			android:visibility="gone"
+			tools:targetApi="lollipop"/>
+
+		<!-- textsearch propbank -->
+
+		<TextView
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_gravity="center_vertical|end"
+			android:layout_columnWeight="5"
+			android:text="@string/status_textsearchPb"
+			tools:targetApi="lollipop"
+			android:maxLines="1"/>
+
+		<ImageView
+			android:id="@+id/status_textsearchPb"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_gravity="center"
+			android:layout_columnWeight="2"
+			android:background="@color/light_yellow_color"
+			android:contentDescription="@string/status_textsearchPb"
+			android:paddingBottom="15dp"
+			android:paddingEnd="20dp"
+			android:paddingStart="20dp"
+			android:paddingTop="15dp"
+			android:src="@drawable/ic_unknown"
+			tools:targetApi="lollipop"/>
+
+		<ImageButton
+			android:id="@+id/textsearchPbButton"
+			style="?android:attr/buttonStyleSmall"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_gravity="end|center_vertical"
+			android:layout_columnWeight="1"
+			android:background="@drawable/bg_button"
+			android:contentDescription="@string/status_textsearchPb"
+			android:src="@drawable/bn_setup"
+			android:visibility="gone"
+			tools:targetApi="lollipop"/>
+
 		<!-- textsearch framenet -->
 
 		<TextView
@@ -183,34 +261,34 @@
 			android:layout_height="wrap_content"
 			android:layout_gravity="center_vertical|end"
 			android:layout_columnWeight="5"
-			android:text="@string/status_textsearchfn"
+			android:text="@string/status_textsearchFn"
 			tools:targetApi="lollipop"
 			android:maxLines="1"/>
 
 		<ImageView
-			android:id="@+id/status_textsearchfn"
+			android:id="@+id/status_textsearchFn"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			android:layout_gravity="center"
 			android:layout_columnWeight="2"
 			android:background="@color/light_yellow_color"
-			android:contentDescription="@string/status_textsearchfn"
-			android:paddingBottom="20dp"
+			android:contentDescription="@string/status_textsearchFn"
+			android:paddingBottom="15dp"
 			android:paddingEnd="20dp"
 			android:paddingStart="20dp"
-			android:paddingTop="20dp"
+			android:paddingTop="15dp"
 			android:src="@drawable/ic_unknown"
 			tools:targetApi="lollipop"/>
 
 		<ImageButton
-			android:id="@+id/textsearchfnButton"
+			android:id="@+id/textsearchFnButton"
 			style="?android:attr/buttonStyleSmall"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			android:layout_gravity="end|center_vertical"
 			android:layout_columnWeight="1"
 			android:background="@drawable/bg_button"
-			android:contentDescription="@string/status_textsearchfn"
+			android:contentDescription="@string/status_textsearchFn"
 			android:src="@drawable/bn_setup"
 			android:visibility="gone"
 			tools:targetApi="lollipop"/>

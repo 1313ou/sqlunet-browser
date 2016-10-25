@@ -34,6 +34,9 @@ public class PropBankProvider extends SqlUNetProvider
 	private static final int PBROLESETS_PBEXAMPLES = 120;
 	private static final int PBROLESETS_PBEXAMPLES_BY_EXAMPLE = 121;
 
+	// text search codes
+	private static final int LOOKUP_FTS_EXAMPLES = 501;
+
 	static
 	{
 		uriMatcher = new UriMatcher(UriMatcher.NO_MATCH);
@@ -43,6 +46,8 @@ public class PropBankProvider extends SqlUNetProvider
 		PropBankProvider.uriMatcher.addURI(PropBankContract.AUTHORITY, PropBankContract.PbRoleSets_PbRoles.TABLE, PropBankProvider.PBROLESETS_PBROLES);
 		PropBankProvider.uriMatcher.addURI(PropBankContract.AUTHORITY, PropBankContract.PbRoleSets_PbExamples.TABLE, PropBankProvider.PBROLESETS_PBEXAMPLES);
 		PropBankProvider.uriMatcher.addURI(PropBankContract.AUTHORITY, PropBankContract.PbRoleSets_PbExamples.TABLE_BY_EXAMPLE, PropBankProvider.PBROLESETS_PBEXAMPLES_BY_EXAMPLE);
+
+		PropBankProvider.uriMatcher.addURI(PropBankContract.AUTHORITY, PropBankContract.Lookup_PbExamples.TABLE + "/", PropBankProvider.LOOKUP_FTS_EXAMPLES); //
 	}
 
 	// C O N S T R U C T O R
@@ -74,6 +79,10 @@ public class PropBankProvider extends SqlUNetProvider
 				return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + PropBankContract.AUTHORITY + '.' + PropBankContract.PbRoleSets_PbExamples.TABLE; //
 			case PBROLESETS_PBEXAMPLES_BY_EXAMPLE:
 				return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + PropBankContract.AUTHORITY + '.' + PropBankContract.PbRoleSets_PbExamples.TABLE_BY_EXAMPLE; //
+
+			// S E A R C H
+			case LOOKUP_FTS_EXAMPLES:
+				return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + PropBankContract.AUTHORITY + '.' + PropBankContract.Lookup_PbExamples.TABLE; //
 
 			default:
 				throw new UnsupportedOperationException("Illegal MIME type"); //
@@ -156,6 +165,10 @@ public class PropBankProvider extends SqlUNetProvider
 						"LEFT JOIN pbroles USING (rolesetid,narg) " + //
 						"LEFT JOIN pbvnthetas USING (theta)"; //
 				actualSortOrder = PropBankContract.EXAMPLE + ".exampleid,narg"; //
+				break;
+
+			case LOOKUP_FTS_EXAMPLES:
+				table = "pbexamples_text_fts4"; //
 				break;
 
 			default:

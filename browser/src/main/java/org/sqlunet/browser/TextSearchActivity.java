@@ -22,9 +22,11 @@ import android.widget.Spinner;
 import android.widget.SpinnerAdapter;
 import android.widget.TextView;
 
-import org.sqlunet.framenet.provider.FrameNetContract.Lookup_FnSentences;
 import org.sqlunet.provider.SqlUNetContract;
 import org.sqlunet.settings.Settings;
+import org.sqlunet.verbnet.provider.VerbNetContract.Lookup_VnExamples;
+import org.sqlunet.propbank.provider.PropBankContract.Lookup_PbExamples;
+import org.sqlunet.framenet.provider.FrameNetContract.Lookup_FnSentences;
 import org.sqlunet.wordnet.provider.WordNetContract.Lookup_Definitions;
 import org.sqlunet.wordnet.provider.WordNetContract.Lookup_Samples;
 import org.sqlunet.wordnet.provider.WordNetContract.Lookup_Words;
@@ -123,6 +125,12 @@ public class TextSearchActivity extends Activity
 						resId = R.drawable.ic_search_wnsample;
 						break;
 					case 3:
+						resId = R.drawable.ic_search_vnexample;
+						break;
+					case 4:
+						resId = R.drawable.ic_search_pbexample;
+						break;
+					case 5:
 						resId = R.drawable.ic_search_fnsentence;
 						break;
 				}
@@ -322,6 +330,22 @@ public class TextSearchActivity extends Activity
 				intent = new Intent(this, org.sqlunet.wordnet.browser.SynsetActivity.class);
 				break;
 			case 3:
+				searchUri = Lookup_VnExamples.CONTENT_URI;
+				id = Lookup_VnExamples.EXAMPLEID;
+				target = Lookup_VnExamples.EXAMPLE;
+				columns = new String[]{Lookup_VnExamples.EXAMPLE};
+				hiddenColumns = new String[]{Lookup_VnExamples.CLASSID};
+				intent = new Intent(this, org.sqlunet.verbnet.browser.VnClassActivity.class);
+				break;
+			case 4:
+				searchUri = Lookup_PbExamples.CONTENT_URI;
+				id = Lookup_PbExamples.EXAMPLEID;
+				target = Lookup_PbExamples.TEXT;
+				columns = new String[]{Lookup_PbExamples.TEXT};
+				hiddenColumns = new String[]{Lookup_PbExamples.ROLESETID};
+				intent = new Intent(this, org.sqlunet.propbank.browser.PbRoleSetActivity.class);
+				break;
+			case 5:
 				searchUri = Lookup_FnSentences.CONTENT_URI;
 				id = Lookup_FnSentences.SENTENCEID;
 				target = Lookup_FnSentences.TEXT;

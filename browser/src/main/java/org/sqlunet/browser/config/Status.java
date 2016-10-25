@@ -22,19 +22,23 @@ import java.util.List;
  */
 public class Status
 {
-	static private final String TAG = "SqlUNet Status"; //
+	static private final String TAG = "SqlUNetStatus"; //
 
 	// status flags
 
 	private static final int EXISTS = 0x1;
 
-	static public final int EXISTS_IDX = 0x10;
+	static public final int EXISTS_INDEXES = 0x10;
 
 	static public final int EXISTS_PM = 0x20;
 
-	static public final int EXISTS_TS = 0x100;
+	static public final int EXISTS_TS_WN = 0x100;
 
-	static public final int EXISTS_TSFN = 0x200;
+	static public final int EXISTS_TS_VN = 0x1000;
+
+	static public final int EXISTS_TS_PB = 0x2000;
+
+	static public final int EXISTS_TS_FN = 0x4000;
 
 	/**
 	 * Get status
@@ -68,24 +72,34 @@ public class Status
 					"index_fnwords_wordid", "index_fnlexemes_fnwordid", "index_fnfes_frameid", "index_fnlayers_annosetid", "index_fnlabels_layerid", //
 					"index_pm_wordid", "index_pm_synsetid"); //
 			boolean existsPm = contains(existingTablesAndIndexes, "pmvn", "pmpb", "pmfn"); //
-			boolean existsTs = contains(existingTablesAndIndexes, "words_lemma_fts4", "synsets_definition_fts4", "samples_sample_fts4"); //
+			boolean existsTsWn = contains(existingTablesAndIndexes, "words_lemma_fts4", "synsets_definition_fts4", "samples_sample_fts4"); //
+			boolean existsTsVn = contains(existingTablesAndIndexes, "vnexamples_example_fts4"); //
+			boolean existsTsPb = contains(existingTablesAndIndexes, "pbexamples_text_fts4"); //
 			boolean existsTsFn = contains(existingTablesAndIndexes, "fnsentences_text_fts4"); //
 
 			if (existsIdx)
 			{
-				status |= EXISTS_IDX;
+				status |= EXISTS_INDEXES;
 			}
 			if (existsPm)
 			{
 				status |= EXISTS_PM;
 			}
-			if (existsTs)
+			if (existsTsWn)
 			{
-				status |= EXISTS_TS;
+				status |= EXISTS_TS_WN;
+			}
+			if (existsTsVn)
+			{
+				status |= EXISTS_TS_VN;
+			}
+			if (existsTsPb)
+			{
+				status |= EXISTS_TS_PB;
 			}
 			if (existsTsFn)
 			{
-				status |= EXISTS_TSFN;
+				status |= EXISTS_TS_FN;
 			}
 			return status;
 		}
@@ -101,7 +115,7 @@ public class Status
 	static public boolean canRun(final Context context)
 	{
 		final int status = status(context);
-		return (status & (EXISTS | EXISTS_IDX | EXISTS_PM)) == (EXISTS | EXISTS_IDX | EXISTS_PM);
+		return (status & (EXISTS | EXISTS_INDEXES | EXISTS_PM)) == (EXISTS | EXISTS_INDEXES | EXISTS_PM);
 	}
 
 	/**

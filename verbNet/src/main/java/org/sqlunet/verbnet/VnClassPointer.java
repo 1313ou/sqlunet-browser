@@ -3,18 +3,15 @@ package org.sqlunet.verbnet;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import org.sqlunet.Pointer;
+
 /**
  * Parcelable class
  *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
-public class VnClassPointer implements Parcelable
+public class VnClassPointer extends Pointer
 {
-	/**
-	 * Class od
-	 */
-	public Long classId;
-
 	/**
 	 * Static field used to regenerate object, individually or as arrays
 	 */
@@ -35,10 +32,12 @@ public class VnClassPointer implements Parcelable
 
 	/**
 	 * Constructor
+	 *
+	 * @param classId class id
 	 */
-	public VnClassPointer()
+	public VnClassPointer(final long classId)
 	{
-		this.classId = null;
+		super(classId);
 	}
 
 	/**
@@ -47,37 +46,6 @@ public class VnClassPointer implements Parcelable
 	@SuppressWarnings("boxing")
 	private VnClassPointer(final Parcel parcel)
 	{
-		this();
-		long parcelClassId = parcel.readLong();
-		if (parcelClassId != -1)
-		{
-			this.classId = parcelClassId;
-		}
-	}
-
-	/**
-	 * Get class id
-	 *
-	 * @return class id
-	 */
-	public Long getClassId()
-	{
-		if (this.classId != 0)
-		{
-			return this.classId;
-		}
-		return null;
-	}
-
-	@Override
-	public void writeToParcel(final Parcel parcel, final int flags)
-	{
-		parcel.writeLong(this.classId == null ? -1 : this.classId);
-	}
-
-	@Override
-	public int describeContents()
-	{
-		return 0;
+		super(parcel);
 	}
 }

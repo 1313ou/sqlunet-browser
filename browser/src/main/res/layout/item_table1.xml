@@ -17,4 +17,5 @@
           xmlns:tools="http://schemas.android.com/tools"
           android:id="@id/item0"
           style="@style/ListItem1"
+          android:textIsSelectable="false"
           tools:ignore="SelectableText"/>

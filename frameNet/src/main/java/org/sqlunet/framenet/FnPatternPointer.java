@@ -32,10 +32,12 @@ public class FnPatternPointer extends Pointer
 
 	/**
 	 * Constructor
+	 *
+	 * @param patternId pattern id
 	 */
-	public FnPatternPointer()
+	public FnPatternPointer(final long patternId)
 	{
-		super();
+		super(patternId);
 	}
 
 	/**

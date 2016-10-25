@@ -338,9 +338,10 @@ public class SelectorFragment extends ListFragment
 			final int idCased = cursor.getColumnIndex(Words_FnWords_PbWords_VnWords.CASED);
 
 			// sense pointer
-			final Pointer pointer = new Pointer();
-			pointer.setSynset(cursor.isNull(idSynsetId) ? null : cursor.getLong(idSynsetId), cursor.getString(idPos));
-			pointer.setWord(this.word.wordId, this.word.lemma, cursor.getString(idCased));
+			final long synsetId = cursor.isNull(idSynsetId) ? 0 : cursor.getLong(idSynsetId);
+			final String pos = cursor.getString(idPos);
+			final String cased = cursor.getString(idCased);
+			final SelectorPointer pointer = new SelectorPointer(synsetId, pos, this.word.wordId, this.word.lemma, cased);
 
 			// notify the active listener (the activity, if the fragment is attached to one) that an item has been selected
 			if (this.listener != null)

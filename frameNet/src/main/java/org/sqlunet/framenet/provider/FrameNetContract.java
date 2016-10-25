@@ -353,8 +353,9 @@ public class FrameNetContract
 		static public final String TABLE = "fts_fnsentences"; //
 		static public final String CONTENT_URI = "content://" + FrameNetContract.AUTHORITY + '/' + Lookup_FnSentences.TABLE; //
 		static public final String SENTENCEID = "sentenceid"; //
-		static public final String CORPUSID = "sentenceid"; //
-		static public final String DOCUMENTID = "documentid"; //
+		static public final String ANNOSETID = "annosetid"; //
+		static public final String FRAMEID = "frameid"; //
+		static public final String LUID = "luid"; //
 		static public final String TEXT = "text"; //
 	}
 }

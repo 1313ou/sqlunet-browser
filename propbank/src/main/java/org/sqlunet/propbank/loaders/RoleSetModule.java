@@ -36,7 +36,7 @@ public class RoleSetModule extends BasicModule
 		if (query instanceof PbRoleSetPointer)
 		{
 			final PbRoleSetPointer pointer = (PbRoleSetPointer) query;
-			this.roleSetId = pointer.roleSetId;
+			this.roleSetId = pointer.getId();
 		}
 		if (query instanceof HasXId)
 		{

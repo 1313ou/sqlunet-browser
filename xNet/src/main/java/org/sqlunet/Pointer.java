@@ -1,19 +1,18 @@
 package org.sqlunet;
 
 import android.os.Parcel;
-import android.os.Parcelable;
 
 /**
- * Parcelable pointer
+ * Id pointer
  *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
-public class Pointer implements Parcelable
+public class Pointer implements IPointer
 {
 	/**
 	 * Id of pointed-to object
 	 */
-	public long id;
+	protected final long id;
 
 	/**
 	 * Creator
@@ -35,9 +34,12 @@ public class Pointer implements Parcelable
 
 	/**
 	 * Constructor
+	 *
+	 * @param id id
 	 */
-	protected Pointer()
+	protected Pointer(final long id)
 	{
+		this.id = id;
 	}
 
 	/**

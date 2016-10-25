@@ -37,7 +37,7 @@ public class LexUnitModule extends FrameModule
 		if (query instanceof FnLexUnitPointer)
 		{
 			final FnLexUnitPointer lexUnitQuery = (FnLexUnitPointer) query;
-			this.luId = lexUnitQuery.getLuId();
+			this.luId = lexUnitQuery.getId();
 		}
 	}
 

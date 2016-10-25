@@ -380,15 +380,12 @@ public class PredicateMatrixActivity extends Activity
 		Parcelable pointer;
 		if (query.startsWith("#mr")) //
 		{
-			final PmRolePointer pointer1 = new PmRolePointer();
-			pointer1.roleId = Long.parseLong(query.substring(3));
-			pointer = pointer1;
+			final long roleId = Long.parseLong(query.substring(3));
+			pointer = new PmRolePointer(roleId);
 		}
 		else
 		{
-			final Word pointer1 = new Word();
-			pointer1.word = query;
-			pointer = pointer1;
+			pointer = new Word(query);
 		}
 
 		final Bundle args = new Bundle();

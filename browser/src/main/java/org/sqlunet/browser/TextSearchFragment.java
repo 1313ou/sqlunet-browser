@@ -5,6 +5,7 @@ import android.database.Cursor;
 import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.text.SpannableStringBuilder;
 import android.text.style.StyleSpan;
 import android.util.Log;
@@ -14,11 +15,17 @@ import android.widget.ListView;
 import android.widget.SimpleCursorAdapter.ViewBinder;
 import android.widget.TextView;
 
+import org.sqlunet.framenet.FnFramePointer;
 import org.sqlunet.framenet.FnSentencePointer;
+import org.sqlunet.framenet.browser.FnFrameActivity;
 import org.sqlunet.framenet.browser.FnSentenceActivity;
+import org.sqlunet.propbank.PbRoleSetPointer;
+import org.sqlunet.propbank.browser.PbRoleSetActivity;
 import org.sqlunet.provider.SqlUNetContract;
 import org.sqlunet.style.RegExprSpanner;
 import org.sqlunet.style.Spanner.SpanFactory;
+import org.sqlunet.verbnet.VnClassPointer;
+import org.sqlunet.verbnet.browser.VnClassActivity;
 import org.sqlunet.wordnet.SynsetPointer;
 import org.sqlunet.wordnet.browser.SynsetActivity;
 
@@ -142,15 +149,67 @@ public class TextSearchFragment extends AbstractTableFragment
 				// target
 				final int colIdx = cursor.getColumnIndex("synsetid");
 				final long targetId = cursor.getLong(colIdx);
-				Log.d(TAG, "CLICK targetid=" + targetId); //
+				Log.d(TAG, "CLICK wn synset synsetid=" + targetId); //
 
 				// build pointer
-				final SynsetPointer synsetPointer = new SynsetPointer();
-				synsetPointer.setSynset(targetId, null);
+				final Parcelable synsetPointer = new SynsetPointer(targetId, null);
 
 				// pass pointer
 				this.targetIntent.putExtra(SqlUNetContract.ARG_QUERYACTION, SqlUNetContract.ARG_QUERYACTION_FNSENTENCE);
 				this.targetIntent.putExtra(SqlUNetContract.ARG_QUERYPOINTER, synsetPointer);
+
+				// start
+				startActivity(this.targetIntent);
+			}
+			else if (VnClassActivity.class.getName().equals(className)) //
+			{
+				// target
+				final int colIdx = cursor.getColumnIndex("classid");
+				final long targetId = cursor.getLong(colIdx);
+				Log.d(TAG, "CLICK vn classid=" + targetId); //
+
+				// build pointer
+				final Parcelable classPointer = new VnClassPointer(targetId);
+
+				// pass pointer
+				this.targetIntent.putExtra(SqlUNetContract.ARG_QUERYACTION, SqlUNetContract.ARG_QUERYACTION_VNCLASS);
+				this.targetIntent.putExtra(SqlUNetContract.ARG_QUERYPOINTER, classPointer);
+
+				// start
+				startActivity(this.targetIntent);
+			}
+			else if (PbRoleSetActivity.class.getName().equals(className)) //
+			{
+				// target
+				final int colIdx = cursor.getColumnIndex("rolesetid");
+				final long targetId = cursor.getLong(colIdx);
+				Log.d(TAG, "CLICK pb rolesetid=" + targetId); //
+
+				// build pointer
+				@SuppressWarnings("TypeMayBeWeakened")
+				final PbRoleSetPointer roleSetPointer = new PbRoleSetPointer(targetId);
+
+				// pass pointer
+				this.targetIntent.putExtra(SqlUNetContract.ARG_QUERYACTION, SqlUNetContract.ARG_QUERYACTION_PBROLESET);
+				this.targetIntent.putExtra(SqlUNetContract.ARG_QUERYPOINTER, roleSetPointer);
+
+				// start
+				startActivity(this.targetIntent);
+			}
+			else if (FnFrameActivity.class.getName().equals(className)) //
+			{
+				// target
+				final int colIdx = cursor.getColumnIndex("frameid");
+				final long targetId = cursor.getLong(colIdx);
+				Log.d(TAG, "CLICK fn frameid=" + targetId); //
+
+				// build pointer
+				@SuppressWarnings("TypeMayBeWeakened")
+				final FnFramePointer framePointer = new FnFramePointer(targetId);
+
+				// pass pointer
+				this.targetIntent.putExtra(SqlUNetContract.ARG_QUERYACTION, SqlUNetContract.ARG_QUERYACTION_FNFRAME);
+				this.targetIntent.putExtra(SqlUNetContract.ARG_QUERYPOINTER, framePointer);
 
 				// start
 				startActivity(this.targetIntent);
@@ -160,10 +219,11 @@ public class TextSearchFragment extends AbstractTableFragment
 				// target
 				final int colIdx = cursor.getColumnIndex("sentenceid");
 				final long targetId = cursor.getLong(colIdx);
-				Log.d(TAG, "CLICK targetid=" + targetId); //
+				Log.d(TAG, "CLICK fn sentenceid=" + targetId); //
 
 				// build pointer
-				@SuppressWarnings("TypeMayBeWeakened") final FnSentencePointer sentencePointer = new FnSentencePointer(targetId);
+				@SuppressWarnings("TypeMayBeWeakened")
+				final FnSentencePointer sentencePointer = new FnSentencePointer(targetId);
 
 				// pass pointer
 				this.targetIntent.putExtra(SqlUNetContract.ARG_QUERYACTION, SqlUNetContract.ARG_QUERYACTION_FNSENTENCE);

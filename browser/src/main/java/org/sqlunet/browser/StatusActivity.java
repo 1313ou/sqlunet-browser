@@ -58,14 +58,16 @@ public class StatusActivity extends Activity
 
 		// status
 		final ImageView db = (ImageView) findViewById(R.id.status_database);
-		final ImageButton b_db = (ImageButton) findViewById(R.id.databaseButton);
-		final ImageButton b_idx = (ImageButton) findViewById(R.id.indexesButton);
-		final ImageButton b_pm = (ImageButton) findViewById(R.id.predicatematrixButton);
-		final ImageButton b_ts = (ImageButton) findViewById(R.id.textsearchButton);
-		final ImageButton b_tsfn = (ImageButton) findViewById(R.id.textsearchfnButton);
+		final ImageButton buttonDb = (ImageButton) findViewById(R.id.databaseButton);
+		final ImageButton buttonIndexes = (ImageButton) findViewById(R.id.indexesButton);
+		final ImageButton buttonPm = (ImageButton) findViewById(R.id.predicatematrixButton);
+		final ImageButton buttonTextSearchWn = (ImageButton) findViewById(R.id.textsearchWnButton);
+		final ImageButton buttonTextSearchVn = (ImageButton) findViewById(R.id.textsearchVnButton);
+		final ImageButton buttonTextSearchPb = (ImageButton) findViewById(R.id.textsearchPbButton);
+		final ImageButton buttonTextSearchFn = (ImageButton) findViewById(R.id.textsearchFnButton);
 
 		// click listeners
-		b_db.setOnClickListener(new OnClickListener()
+		buttonDb.setOnClickListener(new OnClickListener()
 		{
 			@Override
 			public void onClick(View v)
@@ -75,7 +77,7 @@ public class StatusActivity extends Activity
 			}
 		});
 
-		b_idx.setOnClickListener(new OnClickListener()
+		buttonIndexes.setOnClickListener(new OnClickListener()
 		{
 			@Override
 			public void onClick(View v)
@@ -86,7 +88,7 @@ public class StatusActivity extends Activity
 			}
 		});
 
-		b_pm.setOnClickListener(new OnClickListener()
+		buttonPm.setOnClickListener(new OnClickListener()
 		{
 			@Override
 			public void onClick(View v)
@@ -97,7 +99,7 @@ public class StatusActivity extends Activity
 			}
 		});
 
-		b_ts.setOnClickListener(new OnClickListener()
+		buttonTextSearchWn.setOnClickListener(new OnClickListener()
 		{
 			@Override
 			public void onClick(View v)
@@ -108,7 +110,7 @@ public class StatusActivity extends Activity
 			}
 		});
 
-		b_tsfn.setOnClickListener(new OnClickListener()
+		buttonTextSearchVn.setOnClickListener(new OnClickListener()
 		{
 			@Override
 			public void onClick(View v)
@@ -119,35 +121,65 @@ public class StatusActivity extends Activity
 			}
 		});
 
+		buttonTextSearchPb.setOnClickListener(new OnClickListener()
+		{
+			@Override
+			public void onClick(View v)
+			{
+				final Intent intent = new Intent(StatusActivity.this, ManagementActivity.class);
+				intent.putExtra(ManagementFragment.ARG, 4);
+				startActivityForResult(intent, StatusActivity.REQUEST_MANAGEMENT_CODE + 5);
+			}
+		});
+
+		buttonTextSearchFn.setOnClickListener(new OnClickListener()
+		{
+			@Override
+			public void onClick(View v)
+			{
+				final Intent intent = new Intent(StatusActivity.this, ManagementActivity.class);
+				intent.putExtra(ManagementFragment.ARG, 5);
+				startActivityForResult(intent, StatusActivity.REQUEST_MANAGEMENT_CODE + 6);
+			}
+		});
+
 		final int status = Status.status(getBaseContext());
 		if (status != 0)
 		{
 			db.setImageResource(R.drawable.ic_ok);
-			b_db.setVisibility(View.GONE);
+			buttonDb.setVisibility(View.GONE);
 
-			final boolean existsIdx = (status & Status.EXISTS_IDX) != 0;
+			final boolean existsIndexes = (status & Status.EXISTS_INDEXES) != 0;
 			final boolean existsPm = (status & Status.EXISTS_PM) != 0;
-			final boolean existsTs = (status & Status.EXISTS_TS) != 0;
-			final boolean existsTsFn = (status & Status.EXISTS_TSFN) != 0;
+			final boolean existsTsWn = (status & Status.EXISTS_TS_WN) != 0;
+			final boolean existsTsVn = (status & Status.EXISTS_TS_VN) != 0;
+			final boolean existsTsPb = (status & Status.EXISTS_TS_PB) != 0;
+			final boolean existsTsFn = (status & Status.EXISTS_TS_FN) != 0;
 
-			final ImageView idx = (ImageView) findViewById(R.id.status_indexes);
-			final ImageView pm = (ImageView) findViewById(R.id.status_predicatematrix);
-			final ImageView ts = (ImageView) findViewById(R.id.status_textsearch);
-			final ImageView tsfn = (ImageView) findViewById(R.id.status_textsearchfn);
-			idx.setImageResource(existsIdx ? R.drawable.ic_ok : R.drawable.ic_fail);
-			pm.setImageResource(existsPm ? R.drawable.ic_ok : R.drawable.ic_fail);
-			ts.setImageResource(existsTs ? R.drawable.ic_ok : R.drawable.ic_fail);
-			tsfn.setImageResource(existsTsFn ? R.drawable.ic_ok : R.drawable.ic_fail);
+			final ImageView imageIndexes = (ImageView) findViewById(R.id.status_indexes);
+			final ImageView imagePm = (ImageView) findViewById(R.id.status_predicatematrix);
+			final ImageView imageTextSearchWn = (ImageView) findViewById(R.id.status_textsearchWn);
+			final ImageView imageTextSearchVn = (ImageView) findViewById(R.id.status_textsearchVn);
+			final ImageView imageTextSearchPb = (ImageView) findViewById(R.id.status_textsearchPb);
+			final ImageView imageTextSearchFn = (ImageView) findViewById(R.id.status_textsearchFn);
+			imageIndexes.setImageResource(existsIndexes ? R.drawable.ic_ok : R.drawable.ic_fail);
+			imagePm.setImageResource(existsPm ? R.drawable.ic_ok : R.drawable.ic_fail);
+			imageTextSearchWn.setImageResource(existsTsWn ? R.drawable.ic_ok : R.drawable.ic_fail);
+			imageTextSearchVn.setImageResource(existsTsVn ? R.drawable.ic_ok : R.drawable.ic_fail);
+			imageTextSearchPb.setImageResource(existsTsPb ? R.drawable.ic_ok : R.drawable.ic_fail);
+			imageTextSearchFn.setImageResource(existsTsFn ? R.drawable.ic_ok : R.drawable.ic_fail);
 
-			b_idx.setVisibility(existsIdx ? View.GONE : View.VISIBLE);
-			b_pm.setVisibility(existsPm ? View.GONE : View.VISIBLE);
-			b_ts.setVisibility(existsTs ? View.GONE : View.VISIBLE);
-			b_tsfn.setVisibility(existsTsFn ? View.GONE : View.VISIBLE);
+			buttonIndexes.setVisibility(existsIndexes ? View.GONE : View.VISIBLE);
+			buttonPm.setVisibility(existsPm ? View.GONE : View.VISIBLE);
+			buttonTextSearchWn.setVisibility(existsTsWn ? View.GONE : View.VISIBLE);
+			buttonTextSearchVn.setVisibility(existsTsVn ? View.GONE : View.VISIBLE);
+			buttonTextSearchPb.setVisibility(existsTsPb ? View.GONE : View.VISIBLE);
+			buttonTextSearchFn.setVisibility(existsTsFn ? View.GONE : View.VISIBLE);
 		}
 		else
 		{
 			db.setImageResource(R.drawable.ic_fail);
-			b_db.setVisibility(View.VISIBLE);
+			buttonDb.setVisibility(View.VISIBLE);
 		}
 	}
 

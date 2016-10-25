@@ -3,18 +3,15 @@ package org.sqlunet.framenet;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import org.sqlunet.Pointer;
+
 /**
  * Parcelable sentence
  *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
-public class FnSentencePointer implements Parcelable
+public class FnSentencePointer extends Pointer
 {
-	/**
-	 * Sentence id
-	 */
-	private final long sentenceId;
-
 	/**
 	 * Static field used to regenerate object, individually or as arrays
 	 */
@@ -35,10 +32,12 @@ public class FnSentencePointer implements Parcelable
 
 	/**
 	 * Constructor
+	 *
+	 * @param sentenceId sentence id
 	 */
 	public FnSentencePointer(final long sentenceId)
 	{
-		this.sentenceId = sentenceId;
+		super(sentenceId);
 	}
 
 	/**
@@ -46,33 +45,6 @@ public class FnSentencePointer implements Parcelable
 	 */
 	private FnSentencePointer(final Parcel parcel)
 	{
-		this.sentenceId = parcel.readLong();
-	}
-
-	/**
-	 * Get sentence id
-	 *
-	 * @return sentence id
-	 */
-	@SuppressWarnings("boxing")
-	public Long getSentenceId()
-	{
-		if (this.sentenceId != 0)
-		{
-			return this.sentenceId;
-		}
-		return null;
-	}
-
-	@Override
-	public void writeToParcel(final Parcel parcel, final int flags)
-	{
-		parcel.writeLong(this.sentenceId);
-	}
-
-	@Override
-	public int describeContents()
-	{
-		return 0;
+		super(parcel);
 	}
 }

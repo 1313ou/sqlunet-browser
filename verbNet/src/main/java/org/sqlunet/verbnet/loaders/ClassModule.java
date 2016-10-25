@@ -35,7 +35,7 @@ public class ClassModule extends BasicModule
 		if (query instanceof VnClassPointer)
 		{
 			final VnClassPointer pointer = (VnClassPointer) query;
-			this.classId = pointer.classId;
+			this.classId = pointer.getId();
 		}
 		if (query instanceof HasXId)
 		{
