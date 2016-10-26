@@ -105,6 +105,13 @@
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			android:textIsSelectable="false"/>
+
+		<TextView
+			android:id="@+id/xmemberid"
+			style="@style/Data.XMemberId"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:textIsSelectable="false"/>
 	</LinearLayout>
 
 </LinearLayout>

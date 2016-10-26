@@ -105,7 +105,7 @@ public final class XSqlUNetContract
 		public static final String SYNSETID = "synsetid"; //
 		public static final String XID = "xid"; //
 		public static final String XCLASSID = "xclassid"; //
-		public static final String XINSTANCEID = "xinstanceid"; //
+		public static final String XMEMBERID = "xmemberid"; //
 		public static final String XNAME = "xname"; //
 		public static final String XHEADER = "xheader"; //
 		public static final String XINFO = "xinfo"; //

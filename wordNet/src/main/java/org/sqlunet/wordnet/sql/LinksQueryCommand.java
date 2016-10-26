@@ -40,7 +40,7 @@ class LinksQueryCommand extends DBQueryCommand
 	/**
 	 * Set source word parameter in prepared statement
 	 *
-	 * @param wordId word id or -1 if word is any in which case the query returns all lexical links whatever the word
+	 * @param wordId word id or 0 if word is any in which case the query returns all lexical links whatever the word
 	 */
 	public void setFromWord(final long wordId)
 	{

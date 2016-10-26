@@ -52,7 +52,7 @@ public class VnEntry
 			query = new VnQueryCommand(connection, word);
 			query.execute();
 
-			long wordId = -1L;
+			long wordId = 0;
 			List<VnSynset> synsets = null;
 
 			while (query.next())
@@ -65,7 +65,7 @@ public class VnEntry
 				synsets.add(new VnSynset(query));
 			}
 			//noinspection ConstantConditions
-			if (wordId != -1L && synsets != null)
+			if (wordId != 0 && synsets != null)
 			{
 				entry = new VnEntry(new BasicWord(word, wordId), synsets);
 			}

@@ -17,6 +17,7 @@ import org.sqlunet.browser.Module;
 import org.sqlunet.framenet.FnFramePointer;
 import org.sqlunet.framenet.browser.FnFrameActivity;
 import org.sqlunet.predicatematrix.R;
+import org.sqlunet.predicatematrix.provider.PredicateMatrixContract;
 import org.sqlunet.predicatematrix.provider.PredicateMatrixContract.Pm_X;
 import org.sqlunet.predicatematrix.provider.PredicateMatrixContract.PredicateMatrix;
 import org.sqlunet.predicatematrix.style.PredicateMatrixFactories;
@@ -262,9 +263,9 @@ abstract class BasicModule extends Module
 		public String toRoleString()
 		{
 			return (this.pmPos == null ? "null" : this.pmPos) + //
-					'-' + // $NON-NLS-1$
+					'-' + //
 					this.pmPredicate +
-					'-' + // $NON-NLS-1$
+					'-' + //
 					(this.pmRole == null ? "null" : this.pmRole) //
 					;
 		}
@@ -722,7 +723,7 @@ abstract class BasicModule extends Module
 					PredicateMatrix.PMPREDID, //
 					PredicateMatrix.PMPREDICATE, //
 					PredicateMatrix.PMROLE, //
-					"mr." + PredicateMatrix.PMPOS, //
+					PredicateMatrixContract.PBROLE + ' ' + PredicateMatrix.PMPOS, //
 
 					PredicateMatrix.WORD, //
 					PredicateMatrix.SYNSETID, //
@@ -730,7 +731,7 @@ abstract class BasicModule extends Module
 
 					PredicateMatrix.VNCLASSID, //
 					Pm_X.VNCLASS, //
-					"vt." + Pm_X.VNROLETYPEID, //
+					PredicateMatrixContract.VNROLETYPE + ' ' + Pm_X.VNROLETYPEID, //
 					Pm_X.VNROLETYPE, //
 
 					PredicateMatrix.PBROLESETID, //
@@ -739,7 +740,7 @@ abstract class BasicModule extends Module
 					Pm_X.PBROLESETHEAD, //
 					Pm_X.PBROLEID, //
 					Pm_X.PBROLEDESCR, //
-					"pt." + Pm_X.PBROLENARG, //
+					PredicateMatrixContract.PBARG + ' ' + Pm_X.PBROLENARG, //
 					Pm_X.PBROLENARGDESCR, //
 
 					PredicateMatrix.FRAMEID, //
@@ -748,7 +749,7 @@ abstract class BasicModule extends Module
 					Pm_X.LEXUNIT, //
 					Pm_X.LUDEFINITION, //
 					Pm_X.LUDICT, //
-					"ft." + Pm_X.FETYPEID, //
+					PredicateMatrixContract.FNFETYPE + ' ' + Pm_X.FETYPEID, //
 					Pm_X.FETYPE, //
 					Pm_X.FEABBREV, //
 					Pm_X.FEDEFINITION, //
@@ -932,7 +933,7 @@ abstract class BasicModule extends Module
 		public PmProcessGrouped(final TreeNode parent, final Displayer displayer)
 		{
 			super(parent, displayer);
-			this.pmRoleId = -1;
+			this.pmRoleId = 0;
 		}
 
 		@Override
@@ -1154,7 +1155,7 @@ abstract class BasicModule extends Module
 			if (pmRole.pmRole != null)
 			{
 				final String roleName = pmRole.toRoleString();
-				Spanner.append(pmsb, roleName, 0, PredicateMatrixFactories.groupFactory); // $NON-NLS-1$
+				Spanner.append(pmsb, roleName, 0, PredicateMatrixFactories.groupFactory);
 
 				pmsb.append(' ');
 				final String roleData = pmRole.toRoleData();
@@ -1179,7 +1180,7 @@ abstract class BasicModule extends Module
 			if (pmRow.pmRole != null)
 			{
 				final String rowName = pmRow.toRoleString();
-				Spanner.append(pmsb, rowName, 0, PredicateMatrixFactories.nameFactory); // $NON-NLS-1$
+				Spanner.append(pmsb, rowName, 0, PredicateMatrixFactories.nameFactory);
 			}
 
 			pmsb.append(' ');
@@ -1187,7 +1188,7 @@ abstract class BasicModule extends Module
 
 			if (wnData != null)
 			{
-				pmsb.append(' '); // $NON-NLS-1$
+				pmsb.append(' ');
 				Spanner.append(pmsb, wnData.definition, 0, PredicateMatrixFactories.definitionFactory);
 			}
 
@@ -1425,7 +1426,7 @@ abstract class BasicModule extends Module
 		/**
 		 * Grouping synset id
 		 */
-		private long synsetId = -1L;
+		private long synsetId = 0;
 
 		/**
 		 * Grouping node
@@ -1438,7 +1439,7 @@ abstract class BasicModule extends Module
 			if (this.synsetId != wnData.synsetId)
 			{
 				final SpannableStringBuilder synsetsb = new SpannableStringBuilder();
-				if (this.synsetId != -1)
+				if (this.synsetId != 0)
 				{
 					Spanner.append(synsetsb, wnData.definition, 0, PredicateMatrixFactories.definitionFactory);
 					synsetsb.append(' ');
@@ -1479,7 +1480,7 @@ abstract class BasicModule extends Module
 		/**
 		 * Grouping PredicateMatrix role id
 		 */
-		private long pmRoleId = -1L;
+		private long pmRoleId = 0;
 
 		/**
 		 * Grouping node

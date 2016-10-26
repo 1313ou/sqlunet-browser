@@ -76,7 +76,7 @@ public class SensePointer extends SynsetPointer implements HasWordId
 	@Override
 	public Long getWordId()
 	{
-		if (this.wordId != -1)
+		if (this.wordId != 0)
 		{
 			return this.wordId;
 		}

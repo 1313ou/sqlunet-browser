@@ -43,7 +43,7 @@ public class ClassModule extends BasicModule
 			if (pointer.getXSources().contains("vn")) //
 			{
 				this.classId = pointer.getXClassId();
-				// Long instanceId = pointer.getXInstanceId();
+				// Long instanceId = pointer.getXMemberId();
 				// String sources = pointer.getXSources();
 			}
 		}

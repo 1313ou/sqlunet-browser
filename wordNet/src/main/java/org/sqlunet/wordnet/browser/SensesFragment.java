@@ -27,9 +27,10 @@ import org.sqlunet.browser.Module;
 import org.sqlunet.provider.SqlUNetContract;
 import org.sqlunet.wordnet.R;
 import org.sqlunet.wordnet.SensePointer;
-import org.sqlunet.wordnet.WordPointer;
 import org.sqlunet.wordnet.provider.WordNetContract;
 import org.sqlunet.wordnet.provider.WordNetContract.Words_Senses_CasedWords_Synsets_PosTypes_LexDomains;
+
+import java.util.Locale;
 
 /**
  * A fragment representing senses
@@ -67,12 +68,12 @@ public class SensesFragment extends ListFragment
 	/**
 	 * Search query
 	 */
-	private String queryWord;
+	private String word;
 
 	/**
-	 * Search word
+	 * Word id
 	 */
-	private WordPointer word;
+	private long wordId;
 
 	/**
 	 * Mandatory empty constructor for the fragment manager to instantiate the fragment (e.g. upon screen orientation changes).
@@ -89,14 +90,21 @@ public class SensesFragment extends ListFragment
 	{
 		super.onCreate(savedInstanceState);
 
-		// get target passed as parameter
+		// arguments
 		Bundle args = getArguments();
 		if (args == null)
 		{
 			args = getActivity().getIntent().getExtras();
 		}
-		this.queryWord = args.getString(SqlUNetContract.ARG_QUERYSTRING);
-		this.word = null;
+
+		// target word
+		String query = args.getString(SqlUNetContract.ARG_QUERYSTRING);
+		if (query != null)
+		{
+			query = query.trim().toLowerCase(Locale.ENGLISH);
+		}
+		this.word = query;
+		this.wordId = 0;
 
 		// list adapter, with no data
 		final SimpleCursorAdapter adapter = new SimpleCursorAdapter(getActivity(), R.layout.item_sense, null, //
@@ -163,6 +171,15 @@ public class SensesFragment extends ListFragment
 		setListAdapter(adapter);
 
 		// load the contents
+		load();
+	}
+
+	/**
+	 * Load data from word
+	 */
+	private void load()
+	{
+		// load the contents
 		getLoaderManager().restartLoader(++Module.loaderId, null, new LoaderCallbacks<Cursor>()
 		{
 			@Override
@@ -183,7 +200,7 @@ public class SensesFragment extends ListFragment
 						WordNetContract.LexDomains.LEXDOMAIN, //
 						WordNetContract.CasedWords.CASED};
 				final String selection = Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.LEMMA + " = ?"; //
-				final String[] selectionArgs = {SensesFragment.this.queryWord};
+				final String[] selectionArgs = {SensesFragment.this.word};
 				final String sortOrder = Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.POS + ',' + Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.SENSENUM;
 				return new CursorLoader(getActivity(), uri, projection, selection, selectionArgs, sortOrder);
 			}
@@ -194,10 +211,8 @@ public class SensesFragment extends ListFragment
 				// store source result
 				if (cursor.moveToFirst())
 				{
-					SensesFragment.this.word = new WordPointer();
-					SensesFragment.this.word.lemma = SensesFragment.this.queryWord;
 					final int wordId = cursor.getColumnIndex(WordNetContract.Words.WORDID);
-					SensesFragment.this.word.wordId = cursor.getLong(wordId);
+					SensesFragment.this.wordId = cursor.getLong(wordId);
 				}
 
 				// pass on to list adapter
@@ -324,7 +339,7 @@ public class SensesFragment extends ListFragment
 			final String pos = cursor.getString(idPos);
 			final String cased = cursor.getString(idCased);
 
-			final SensePointer sense = new SensePointer(synsetId, pos, this.word.wordId, this.word.lemma, cased);
+			final SensePointer sense = new SensePointer(synsetId, pos, this.wordId, this.word, cased);
 
 			// notify the active listener (the activity, if the fragment is attached to one) that an item has been selected
 			if (this.listener != null)

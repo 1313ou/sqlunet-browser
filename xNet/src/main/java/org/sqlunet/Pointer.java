@@ -3,7 +3,7 @@ package org.sqlunet;
 import android.os.Parcel;
 
 /**
- * Id pointer
+ * Parcelable id pointer
  *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */

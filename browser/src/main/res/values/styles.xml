@@ -148,7 +148,12 @@
 	</style>
 
 	<style name="Data.XId">
-		<item name="android:textColor">#FF404040</item>
+		<item name="android:textColor">#FFD08080</item>
+		<item name="android:textSize">12sp</item>
+	</style>
+
+	<style name="Data.XMemberId">
+		<item name="android:textColor">#FF8080D0</item>
 		<item name="android:textSize">12sp</item>
 	</style>
 

@@ -26,9 +26,10 @@ import android.widget.TextView;
 import org.sqlunet.browser.Module;
 import org.sqlunet.browser.R;
 import org.sqlunet.provider.SqlUNetContract;
+import org.sqlunet.provider.XSqlUNetContract;
 import org.sqlunet.provider.XSqlUNetContract.Words_FnWords_PbWords_VnWords;
-import org.sqlunet.wordnet.SensePointer;
-import org.sqlunet.wordnet.WordPointer;
+
+import java.util.Locale;
 
 /**
  * Selector Fragment
@@ -57,7 +58,7 @@ public class SelectorFragment extends ListFragment
 		/**
 		 * Callback for when an item has been selected.
 		 */
-		void onItemSelected(SensePointer sense);
+		void onItemSelected(SelectorPointer pointer);
 	}
 
 	/**
@@ -68,12 +69,12 @@ public class SelectorFragment extends ListFragment
 	/**
 	 * Search query
 	 */
-	private String queryWord;
+	private String word;
 
 	/**
-	 * Search word
+	 * Word id
 	 */
-	private WordPointer word;
+	private long wordId;
 
 	/**
 	 * Mandatory empty constructor for the fragment manager to instantiate the fragment (e.g. upon screen orientation changes).
@@ -89,14 +90,21 @@ public class SelectorFragment extends ListFragment
 	{
 		super.onCreate(savedInstanceState);
 
-		// get target passed as parameter
+		// arguments
 		Bundle args = getArguments();
 		if (args == null)
 		{
 			args = getActivity().getIntent().getExtras();
 		}
-		this.queryWord = args.getString(SqlUNetContract.ARG_QUERYSTRING);
-		this.word = null;
+
+		// target word
+		String query = args.getString(SqlUNetContract.ARG_QUERYSTRING);
+		if (query != null)
+		{
+			query = query.trim().toLowerCase(Locale.ENGLISH);
+		}
+		this.word = query;
+		this.wordId = 0;
 
 		// list adapter, with no data
 		final SimpleCursorAdapter adapter = new SimpleCursorAdapter(getActivity(), R.layout.item_selector, null, //
@@ -169,6 +177,15 @@ public class SelectorFragment extends ListFragment
 		setListAdapter(adapter);
 
 		// load the contents
+		load();
+	}
+
+	/**
+	 * Load data from word
+	 */
+	private void load()
+	{
+		// load the contents
 		getLoaderManager().restartLoader(++Module.loaderId, null, new LoaderCallbacks<Cursor>()
 		{
 			@Override
@@ -185,7 +202,7 @@ public class SelectorFragment extends ListFragment
 						Words_FnWords_PbWords_VnWords.TAGCOUNT, //
 						Words_FnWords_PbWords_VnWords.SYNSETID, //
 						Words_FnWords_PbWords_VnWords.DEFINITION, //
-						"y." + Words_FnWords_PbWords_VnWords.POS, //
+						XSqlUNetContract.SYNSET + '.' + Words_FnWords_PbWords_VnWords.POS, //
 						Words_FnWords_PbWords_VnWords.POSNAME, //
 						Words_FnWords_PbWords_VnWords.LEXDOMAIN, //
 						Words_FnWords_PbWords_VnWords.CASED, //
@@ -193,9 +210,9 @@ public class SelectorFragment extends ListFragment
 						Words_FnWords_PbWords_VnWords.VNWORDID, //
 						Words_FnWords_PbWords_VnWords.PBWORDID, //
 				};
-				final String selection = "w." + Words_FnWords_PbWords_VnWords.LEMMA + " = ?"; ////
-				final String[] selectionArgs = {SelectorFragment.this.queryWord};
-				final String sortOrder = "y." + Words_FnWords_PbWords_VnWords.POS + ',' + Words_FnWords_PbWords_VnWords.SENSENUM; //
+				final String selection = XSqlUNetContract.WORD + '.' + Words_FnWords_PbWords_VnWords.LEMMA + " = ?"; ////
+				final String[] selectionArgs = {SelectorFragment.this.word};
+				final String sortOrder = XSqlUNetContract.SYNSET + '.' + Words_FnWords_PbWords_VnWords.POS + ',' + Words_FnWords_PbWords_VnWords.SENSENUM; //
 				return new CursorLoader(getActivity(), uri, projection, selection, selectionArgs, sortOrder);
 			}
 
@@ -205,10 +222,8 @@ public class SelectorFragment extends ListFragment
 				// store source result
 				if (cursor.moveToFirst())
 				{
-					SelectorFragment.this.word = new WordPointer();
-					SelectorFragment.this.word.lemma = SelectorFragment.this.queryWord;
 					final int idWordId = cursor.getColumnIndex(Words_FnWords_PbWords_VnWords.WORDID);
-					SelectorFragment.this.word.wordId = cursor.getLong(idWordId);
+					SelectorFragment.this.wordId = cursor.getLong(idWordId);
 				}
 
 				// pass on to list adapter
@@ -333,15 +348,18 @@ public class SelectorFragment extends ListFragment
 		final Cursor cursor = adapter.getCursor();
 		if (cursor.moveToPosition(position))
 		{
+			// column indexes
 			final int idSynsetId = cursor.getColumnIndex(Words_FnWords_PbWords_VnWords.SYNSETID);
 			final int idPos = cursor.getColumnIndex(Words_FnWords_PbWords_VnWords.POSNAME);
 			final int idCased = cursor.getColumnIndex(Words_FnWords_PbWords_VnWords.CASED);
 
-			// sense pointer
+			// retrieve
 			final long synsetId = cursor.isNull(idSynsetId) ? 0 : cursor.getLong(idSynsetId);
 			final String pos = cursor.getString(idPos);
 			final String cased = cursor.getString(idCased);
-			final SelectorPointer pointer = new SelectorPointer(synsetId, pos, this.word.wordId, this.word.lemma, cased);
+
+			// pointer
+			final SelectorPointer pointer = new SelectorPointer(synsetId, pos, this.wordId, this.word, cased);
 
 			// notify the active listener (the activity, if the fragment is attached to one) that an item has been selected
 			if (this.listener != null)

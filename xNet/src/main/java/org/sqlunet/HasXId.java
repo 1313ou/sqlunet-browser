@@ -8,18 +8,25 @@ package org.sqlunet;
 public interface HasXId
 {
 	/**
-	 * Get extended class id (class=vn:class,pb:rolesetid,fn:frame)
+	 * Get extended class id (class=vn:class id,pb:rolesetid,fn:frame id)
 	 *
 	 * @return extended class id (class=vn:class,pb:rolesetid,fn:frame)
+	 */
+	Long getXId();
+
+	/**
+	 * Get extended class id (class=vn:class id,pb:roleset id,fn:frame id)
+	 *
+	 * @return extended class id (class=vn:class id,pb:roleset id,fn:frame id)
 	 */
 	Long getXClassId();
 
 	/**
-	 * Get extended instance id (instance=vn:role,pb:role,fn:frame element)
+	 * Get extended member id (fn:lexunit)
 	 *
-	 * @return extended instance id (instance=vn:role,pb:role,fn:frame element)
+	 * @return extended member id (fn:lexunit)
 	 */
-	Long getXInstanceId();
+	Long getXMemberId();
 
 	/**
 	 * Get extended sources

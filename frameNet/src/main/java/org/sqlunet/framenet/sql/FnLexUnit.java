@@ -73,7 +73,7 @@ public class FnLexUnit
 		this.definition = definition;
 		this.dictionary = dictionary;
 		this.incorporatedFe = incorporatedFe;
-		this.frame = frameId == -1 ? null : new FnFrame(frameId, frame, frameDefinition, null, null);
+		this.frame = frameId == 0 ? null : new FnFrame(frameId, frame, frameDefinition, null, null);
 	}
 
 	/**
@@ -226,7 +226,7 @@ public class FnLexUnit
 				final String definition = query.getDefinition();
 				final String dictionary = query.getDictionary();
 				final String incorporatedFe = query.getIncorporatedFe();
-				result.add(new FnLexUnit(luId, lexUnit, pos, definition, dictionary, incorporatedFe, -1, null, null));
+				result.add(new FnLexUnit(luId, lexUnit, pos, definition, dictionary, incorporatedFe, 0, null, null));
 			}
 		}
 		finally

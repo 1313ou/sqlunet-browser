@@ -560,7 +560,7 @@ public class WordNetImplementation implements WordNetInterface
 			WordNetImplementation.walkSynset(connection, doc, senseNode, synset);
 
 			// links
-			WordNetImplementation.walkSynsetLinks(connection, doc, senseNode, synset, -1, true /* withLinks */, true /* recurse */, Mapping.ANYTYPE);
+			WordNetImplementation.walkSynsetLinks(connection, doc, senseNode, synset, 0, true /* withLinks */, true /* recurse */, Mapping.ANYTYPE);
 		}
 		return doc;
 	}
@@ -602,7 +602,7 @@ public class WordNetImplementation implements WordNetInterface
 			WordNetImplementation.walkSynset(connection, doc, rootNode, synset);
 
 			// links
-			WordNetImplementation.walkSynsetLinks(connection, doc, rootNode, synset, -1, true /* withLinks */, true /* recurse */, Mapping.ANYTYPE);
+			WordNetImplementation.walkSynsetLinks(connection, doc, rootNode, synset, 0, true /* withLinks */, true /* recurse */, Mapping.ANYTYPE);
 		}
 		return doc;
 	}

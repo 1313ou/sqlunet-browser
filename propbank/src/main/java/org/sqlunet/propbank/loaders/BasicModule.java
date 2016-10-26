@@ -27,6 +27,7 @@ import org.sqlunet.treeview.view.TreeView;
 import org.sqlunet.view.TreeFactory;
 
 import java.util.Arrays;
+import java.util.Locale;
 
 /**
  * Module for PropBank role sets
@@ -342,20 +343,20 @@ abstract class BasicModule extends Module
 						sb.append(cursor.getString(idNArg));
 						sb.append(' ');
 
+						// role
+						Spanner.appendImage(sb, BasicModule.this.roleDrawable);
+						sb.append(' ');
+						Spanner.append(sb, capitalize1(cursor.getString(idRoleDescr)), 0, PropBankFactories.roleFactory);
+
 						// theta
 						String theta = cursor.getString(idTheta);
 						if (theta != null && !theta.isEmpty())
 						{
+							sb.append(' ');
 							Spanner.appendImage(sb, BasicModule.this.thetaDrawable);
 							sb.append(' ');
 							Spanner.append(sb, theta, 0, PropBankFactories.thetaFactory);
-							sb.append(' ');
 						}
-
-						// role
-						Spanner.appendImage(sb, BasicModule.this.roleDrawable);
-						sb.append(' ');
-						Spanner.append(sb, cursor.getString(idRoleDescr), 0, PropBankFactories.roleFactory);
 
 						// func
 						if (!cursor.isNull(idFunc))
@@ -455,7 +456,7 @@ abstract class BasicModule extends Module
 					final int idArgs = cursor.getColumnIndex(PbRoleSets_PbExamples.ARGS);
 
 					// read cursor
-					do
+					while (true)
 					{
 						// text
 						String text = cursor.getString(idText);
@@ -488,19 +489,19 @@ abstract class BasicModule extends Module
 								sb.append('\t');
 
 								// n
-								// sb.append(fields[0]);
-								// sb.append(' ');
-
-								// theta
-								Spanner.appendImage(sb, BasicModule.this.thetaDrawable);
-								sb.append(' ');
-								Spanner.append(sb, fields[3], 0, PropBankFactories.thetaFactory);
+								sb.append(fields[0]);
 								sb.append(' ');
 
 								// role
 								Spanner.appendImage(sb, BasicModule.this.roleDrawable);
 								sb.append(' ');
-								Spanner.append(sb, fields[2], 0, PropBankFactories.roleFactory);
+								Spanner.append(sb, capitalize1(fields[2]), 0, PropBankFactories.roleFactory);
+								sb.append(' ');
+
+								// theta
+								Spanner.appendImage(sb, BasicModule.this.thetaDrawable);
+								sb.append(' ');
+								Spanner.append(sb, fields[3], 0, PropBankFactories.thetaFactory);
 
 								// func
 								if (!fields[1].isEmpty())
@@ -513,17 +514,26 @@ abstract class BasicModule extends Module
 								// subtext
 								sb.append(' ');
 								// sb.append("subtext=");
-								Spanner.append(sb, fields[4], 0, PropBankFactories.textFactory);
+								sb.append(fields[4]);
+								// Spanner.append(sb, fields[4], 0, PropBankFactories.textFactory);
 							}
 						}
+
+						if (!cursor.moveToNext())
+						{
+							break;
+						}
+
+						sb.append('\n');
 					}
-					while (cursor.moveToNext());
 
 					// extra format
 					BasicModule.this.spanner.setSpan(sb, 0, 0);
 
 					// attach result
 					TreeFactory.addTextNode(parent, sb, BasicModule.this.getContext());
+
+					System.out.println("DONE");
 
 					// expand
 					TreeView.expand(parent, false);
@@ -590,5 +600,18 @@ abstract class BasicModule extends Module
 		{
 			examples((int) this.id, node);
 		}
+	}
+
+	// H E L P E R S
+
+	/**
+	 * Utility to capitalize first character
+	 *
+	 * @param s string
+	 * @return string with capitalized first character
+	 */
+	private CharSequence capitalize1(final String s)
+	{
+		return s.substring(0, 1).toUpperCase(Locale.ENGLISH) + s.substring(1);
 	}
 }

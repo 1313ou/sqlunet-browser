@@ -76,7 +76,7 @@ class SqLiteDialect
 			"INNER JOIN synsets ON synset2id = synsetid " + //
 			"LEFT JOIN linktypes USING (linkid) " + //
 			"LEFT JOIN samples USING (synsetid) " + //
-			"WHERE synset1id = ? AND CASE ? WHEN -1 THEN word1id = ? ELSE 1 END " + //
+			"WHERE synset1id = ? AND CASE ? WHEN 0 THEN word1id = ? ELSE 1 END " + //
 			"GROUP BY synsetid " + //
 			"ORDER BY 5, 1;"; //
 
@@ -93,7 +93,7 @@ class SqLiteDialect
 			"INNER JOIN synsets ON synset2id = synsetid " + //
 			"LEFT JOIN linktypes USING (linkid) " + //
 			"LEFT JOIN samples USING (synsetid) " + //
-			"WHERE synset1id = ? AND linkid = ? AND CASE ? WHEN -1 THEN word1id = ? ELSE 1 END " + //
+			"WHERE synset1id = ? AND linkid = ? AND CASE ? WHEN 0 THEN word1id = ? ELSE 1 END " + //
 			"GROUP BY synsetid " + //
 			"ORDER BY 5, 1;"; //
 

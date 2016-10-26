@@ -34,7 +34,8 @@ import org.sqlunet.provider.SqlUNetContract;
 import org.sqlunet.provider.XSqlUNetContract;
 import org.sqlunet.provider.XSqlUNetContract.Words_FnWords_PbWords_VnWords;
 import org.sqlunet.provider.XSqlUNetContract.Words_XNet_U;
-import org.sqlunet.wordnet.WordPointer;
+
+import java.util.Locale;
 
 /**
  * X selector fragment
@@ -72,6 +73,7 @@ public class XSelectorFragment extends ExpandableListFragment
 			R.id.wordid, //
 			R.id.synsetid, //
 			R.id.xid, //
+			R.id.xmemberid, //
 			R.id.xname, //
 			R.id.xheader, //
 			R.id.xinfo, //
@@ -87,6 +89,7 @@ public class XSelectorFragment extends ExpandableListFragment
 	private static final String[] childFrom = {Words_XNet_U.WORDID, //
 			Words_XNet_U.SYNSETID, //
 			Words_XNet_U.XID, //
+			Words_XNet_U.XMEMBERID, //
 			Words_XNet_U.XNAME, //
 			Words_XNet_U.XHEADER, //
 			Words_XNet_U.XINFO, //
@@ -104,18 +107,21 @@ public class XSelectorFragment extends ExpandableListFragment
 	 * The current activated item position. Only used on tablets.
 	 */
 	private int activatedPosition = AdapterView.INVALID_POSITION;
+
 	/**
 	 * The fragment's current callback object, which is notified of list item clicks.
 	 */
 	private Listener listener;
+
 	/**
 	 * Search query
 	 */
-	private String queryWord;
+	private String word;
+
 	/**
-	 * Search word
+	 * Word id
 	 */
-	private WordPointer word;
+	private long wordId;
 
 	/**
 	 * Mandatory empty constructor for the fragment manager to instantiate the fragment (e.g. upon screen orientation changes).
@@ -130,6 +136,8 @@ public class XSelectorFragment extends ExpandableListFragment
 		this.xnCursor.addRow(new Object[]{3, "framenet", 4444}); //
 	}
 
+	// L I F E   C Y C L E
+
 	@Override
 	public void onCreate(final Bundle savedInstanceState)
 	{
@@ -141,17 +149,22 @@ public class XSelectorFragment extends ExpandableListFragment
 		{
 			args = getActivity().getIntent().getExtras();
 		}
-		this.queryWord = args.getString(SqlUNetContract.ARG_QUERYSTRING);
-		this.word = null;
+
+		// target word
+		String query = args.getString(SqlUNetContract.ARG_QUERYSTRING);
+		if (query != null)
+		{
+			query = query.trim().toLowerCase(Locale.ENGLISH);
+		}
+		this.word = query;
+		this.wordId = 0;
 
 		// load the contents
 		load();
 	}
 
-	// L I F E   C Y C L E
-
 	/**
-	 * Load data
+	 * Load data from word
 	 */
 	private void load()
 	{
@@ -170,7 +183,7 @@ public class XSelectorFragment extends ExpandableListFragment
 						Words_FnWords_PbWords_VnWords.PBWORDID, //
 				};
 				final String selection = XSqlUNetContract.WORD + '.' + Words_FnWords_PbWords_VnWords.LEMMA + " = ?"; //
-				final String[] selectionArgs = {XSelectorFragment.this.queryWord};
+				final String[] selectionArgs = {XSelectorFragment.this.word};
 				final String sortOrder = XSqlUNetContract.POS + '.' + Words_FnWords_PbWords_VnWords.POS + ',' + Words_FnWords_PbWords_VnWords.SENSENUM; //
 				return new CursorLoader(getActivity(), uri, projection, selection, selectionArgs, sortOrder);
 			}
@@ -181,12 +194,10 @@ public class XSelectorFragment extends ExpandableListFragment
 				// store source result
 				if (cursor.moveToFirst())
 				{
-					XSelectorFragment.this.word = new WordPointer();
-					XSelectorFragment.this.word.lemma = XSelectorFragment.this.queryWord;
 					final int idWordId = cursor.getColumnIndex(Words_FnWords_PbWords_VnWords.WORDID);
-					XSelectorFragment.this.word.wordId = cursor.getLong(idWordId);
+					XSelectorFragment.this.wordId = cursor.getLong(idWordId);
 
-					load(XSelectorFragment.this.word.wordId);
+					load(XSelectorFragment.this.wordId);
 				}
 			}
 
@@ -199,7 +210,7 @@ public class XSelectorFragment extends ExpandableListFragment
 	}
 
 	/**
-	 * Load data
+	 * Load data from word id
 	 *
 	 * @param wordId word id
 	 */
@@ -560,38 +571,39 @@ public class XSelectorFragment extends ExpandableListFragment
 	public boolean onChildClick(final ExpandableListView listView, final View view, final int groupPosition, final int childPosition, final long id)
 	{
 		super.onChildClick(listView, view, groupPosition, childPosition, id);
-		Log.d(TAG, "click on group=" + groupPosition + " child=" + childPosition + " id=" + id); //
+
+		//Log.d(TAG, "CLICK on group=" + groupPosition + " child=" + childPosition + " id=" + id); //
 		int index = listView.getFlatListPosition(ExpandableListView.getPackedPositionForChild(groupPosition, childPosition));
 		listView.setItemChecked(index, true);
 		// view.setSelected(true);
 		// view.setActivated(true);
 
-		@SuppressWarnings("TypeMayBeWeakened") final SimpleCursorTreeAdapter adapter1 = (SimpleCursorTreeAdapter) getListAdapter();
-		final Cursor cursor = adapter1.getChild(groupPosition, childPosition);
+		@SuppressWarnings("TypeMayBeWeakened") final SimpleCursorTreeAdapter adapter = (SimpleCursorTreeAdapter) getListAdapter();
+		final Cursor cursor = adapter.getChild(groupPosition, childPosition);
 		if (!cursor.isAfterLast())
 		{
 			// column indices
 			final int idSynsetId = cursor.getColumnIndex(Words_XNet_U.SYNSETID);
 			final int idXId = cursor.getColumnIndex(Words_XNet_U.XID);
 			final int idXClassId = cursor.getColumnIndex(Words_XNet_U.XCLASSID);
-			final int idXInstanceId = cursor.getColumnIndex(Words_XNet_U.XINSTANCEID);
+			final int idXMemberId = cursor.getColumnIndex(Words_XNet_U.XMEMBERID);
 			final int idXSources = cursor.getColumnIndex(Words_XNet_U.SOURCES);
 			// final int idWordId = cursor.getColumnIndex(Words_XNet_U.WORDID);
 
 			// data
-			final long wordId = this.word.wordId;
-			final String lemma = this.word.lemma;
-			final String cased = this.word.lemma;
+			final long wordId = this.wordId;
+			final String lemma = this.word;
+			final String cased = this.word;
 			final long synsetId = cursor.isNull(idSynsetId) ? 0 : cursor.getLong(idSynsetId);
 			final String pos = synsetIdToPos(synsetId);
-			final Long xId = cursor.isNull(idXId) ? null : cursor.getLong(idXId);
-			final Long xClassId = cursor.isNull(idXClassId) ? null : cursor.getLong(idXClassId);
-			final Long xInstanceId = cursor.isNull(idXInstanceId) ? null : cursor.getLong(idXInstanceId);
+			final long xId = cursor.isNull(idXId) ? 0 : cursor.getLong(idXId);
+			final long xClassId = cursor.isNull(idXClassId) ? 0 : cursor.getLong(idXClassId);
+			final long xMemberId = cursor.isNull(idXMemberId) ? 0 : cursor.getLong(idXMemberId);
 			final String xSources = cursor.getString(idXSources);
 			final long xMask = XSelectorPointer.getMask(xSources);
 
 			// pointer
-			final XSelectorPointer pointer = new XSelectorPointer(synsetId, pos, wordId, lemma, cased, xId, xClassId, xInstanceId, xSources, xMask);
+			final XSelectorPointer pointer = new XSelectorPointer(synsetId, pos, wordId, lemma, cased, xId, xClassId, xMemberId, xSources, xMask);
 			Log.d(TAG, "pointer=" + pointer); //
 
 			// notify the active listener (the activity, if the fragment is attached to one) that an item has been selected

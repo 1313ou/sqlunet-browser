@@ -294,8 +294,8 @@ public class WebFragment extends Fragment
 				{
 					final String query = URLDecoder.decode(uri.getQuery(), "UTF-8"); //
 					final String[] target = query.split("="); //
-					final String type = target[0]; // $NON-NLS-1$
-					final String data = target[1]; // $NON-NLS-1$
+					final String type = target[0]; //
+					final String data = target[1]; //
 					Log.d(WebFragment.TAG, "QUERY " + query + " type=" + type + " data=" + data); //
 
 					final Intent searchIntent = new Intent(getActivity(), WebActivity.class);
@@ -467,28 +467,28 @@ public class WebFragment extends Fragment
 										{
 											if (pointer instanceof XSelectorPointer)
 											{
-												final XSelectorPointer xpointer = (XSelectorPointer) pointer;
-												final String xSources = xpointer.getXSources();
-												final Long xclassId = xpointer.getXClassId();
-												// final Long xinstanceId = xpointer.getXInstanceId();
-												final Long wordId = xpointer.getWordId();
-												final Long synsetId = xpointer.getSynsetId();
-												final Character pos = xpointer.getPos();
+												final XSelectorPointer xPointer = (XSelectorPointer) pointer;
+												final String xSources = xPointer.getXSources();
+												final Long xClassId = xPointer.getXClassId();
+												// final Long xMemberId = xpointer.getXMemberId();
+												final Long wordId = xPointer.getWordId();
+												final Long synsetId = xPointer.getSynsetId();
+												final Character pos = xPointer.getPos();
 												if (xSources.contains("wn")) //
 												{
 													wnDomDoc = new WordNetImplementation().querySenseDoc(db, wordId, synsetId);
 												}
 												if (xSources.contains("vn")) //
 												{
-													vnDomDoc = new VerbNetImplementation().queryClassDoc(db, xclassId, pos);
+													vnDomDoc = new VerbNetImplementation().queryClassDoc(db, xClassId, pos);
 												}
 												if (xSources.contains("pb")) //
 												{
-													pbDomDoc = new PropBankImplementation().queryRoleSetDoc(db, xclassId, pos);
+													pbDomDoc = new PropBankImplementation().queryRoleSetDoc(db, xClassId, pos);
 												}
 												if (xSources.contains("fn")) //
 												{
-													fnDomDoc = new FrameNetImplementation().queryFrameDoc(db, xclassId, pos);
+													fnDomDoc = new FrameNetImplementation().queryFrameDoc(db, xClassId, pos);
 												}
 											}
 											else

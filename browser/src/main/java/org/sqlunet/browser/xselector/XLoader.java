@@ -63,7 +63,7 @@ class XLoader
 					Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.SYNSETID, //
 					Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.SYNSETID + " AS " + Words_XNet_U.XID, //
 					"NULL AS " + Words_XNet_U.XCLASSID, //
-					"NULL AS " + Words_XNet_U.XINSTANCEID, //
+					"NULL AS " + Words_XNet_U.XMEMBERID, //
 					Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.LEMMA + "|| '.' ||" + WordNetContract.POS + '.' + Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.POS + " AS " + Words_XNet_U.XNAME, //
 					Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.LEXDOMAIN + " AS " + Words_XNet_U.XHEADER, //
 					Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.SENSEKEY + " AS " + Words_XNet_U.XINFO, //
@@ -95,7 +95,7 @@ class XLoader
 					Words_VnWords_VnClasses_U.SYNSETID, //
 					Words_VnWords_VnClasses_U.CLASSID + " AS " + Words_XNet_U.XID, //
 					Words_VnWords_VnClasses_U.CLASSID + " AS " + Words_XNet_U.XCLASSID, //
-					Words_VnWords_VnClasses_U.WORDID + " AS " + Words_XNet_U.XINSTANCEID, //
+					"NULL AS " + Words_XNet_U.XMEMBERID, //
 					"TRIM(" + Words_VnWords_VnClasses_U.CLASS + ",'-.0123456789')" + " AS " + Words_XNet_U.XNAME, //
 					Words_VnWords_VnClasses_U.CLASS + " AS " + Words_XNet_U.XHEADER, //
 					Words_VnWords_VnClasses_U.CLASSTAG + " AS " + Words_XNet_U.XINFO, //
@@ -126,8 +126,8 @@ class XLoader
 					Words_PbWords_PbRolesets_U.WORDID, //
 					Words_PbWords_PbRolesets_U.SYNSETID, //
 					Words_PbWords_PbRolesets_U.ROLESETID + " AS " + Words_XNet_U.XID, //
-					"NULL AS " + Words_XNet_U.XCLASSID, //
-					Words_PbWords_PbRolesets_U.ROLESETID + " AS " + Words_XNet_U.XINSTANCEID, //
+					Words_PbWords_PbRolesets_U.ROLESETID + " AS " + Words_XNet_U.XCLASSID, //
+					"NULL AS " + Words_XNet_U.XMEMBERID, //
 					"TRIM(" + Words_PbWords_PbRolesets_U.ROLESETNAME + ",'.0123456789')" + " AS " + Words_XNet_U.XNAME, //
 					Words_PbWords_PbRolesets_U.ROLESETNAME + " AS " + Words_XNet_U.XHEADER, //
 					//Words_PbWords_PbRolesets_U.ROLESETHEAD + " AS " + Words_XNet_U.XHEADER, //
@@ -160,7 +160,7 @@ class XLoader
 					Words_FnWords_FnFrames_U.SYNSETID, //
 					Words_FnWords_FnFrames_U.FRAMEID + " AS " + Words_XNet_U.XID, //
 					Words_FnWords_FnFrames_U.FRAMEID + " AS " + Words_XNet_U.XCLASSID, //
-					Words_FnWords_FnFrames_U.LUID + " AS " + Words_XNet_U.XINSTANCEID, //
+					Words_FnWords_FnFrames_U.LUID + " AS " + Words_XNet_U.XMEMBERID, //
 					"GROUP_CONCAT(" + Words_FnWords_FnFrames_U.LEXUNIT + ",'\n')" + " AS " + Words_XNet_U.XNAME, //
 					Words_FnWords_FnFrames_U.FRAME + " AS " + Words_XNet_U.XHEADER, //
 					"GROUP_CONCAT(" + Words_FnWords_FnFrames_U.LUDEFINITION + ",'\n') AS " + Words_XNet_U.XINFO, //
@@ -286,8 +286,8 @@ class XLoader
 			do
 			{
 				long wordId = cursor.getLong(idWordId);
-				long synsetId = cursor.isNull(idSynsetId) ? -1 : cursor.getLong(idSynsetId);
-				long xId = cursor.isNull(idXId) ? -1 : cursor.getLong(idXId);
+				long synsetId = cursor.isNull(idSynsetId) ? 0 : cursor.getLong(idSynsetId);
+				long xId = cursor.isNull(idXId) ? 0 : cursor.getLong(idXId);
 				String xName = cursor.isNull(idXName) ? null : cursor.getString(idXName);
 				String xHeader = cursor.isNull(idXHeader) ? null : cursor.getString(idXHeader);
 				String xInfo = cursor.isNull(idXInfo) ? null : cursor.getString(idXInfo);

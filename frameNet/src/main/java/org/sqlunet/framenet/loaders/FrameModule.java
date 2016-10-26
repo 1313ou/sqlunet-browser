@@ -60,7 +60,7 @@ public class FrameModule extends BasicModule
 			if (pointer.getXSources().contains("fn")) //
 			{
 				this.frameId = pointer.getXClassId();
-				this.luId = pointer.getXInstanceId();
+				this.luId = pointer.getXMemberId();
 			}
 		}
 	}

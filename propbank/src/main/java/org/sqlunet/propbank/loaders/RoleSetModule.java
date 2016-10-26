@@ -43,9 +43,7 @@ public class RoleSetModule extends BasicModule
 			final HasXId pointer = (HasXId) query;
 			if (pointer.getXSources().contains("pb")) //
 			{
-				this.roleSetId = pointer.getXInstanceId();
-				// Long classId = pointer.getXClassId();
-				// String sources = pointer.getXSources();
+				this.roleSetId = pointer.getXClassId();
 			}
 		}
 	}
