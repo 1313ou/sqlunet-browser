@@ -150,6 +150,42 @@ public class TreeNode
 	}
 
 	/**
+	 * Prepend child node
+	 *
+	 * @param childNode child node
+	 * @return this node
+	 */
+	@SuppressWarnings("UnusedReturnValue")
+	public TreeNode prependChild(TreeNode childNode)
+	{
+		childNode.parent = this;
+		// TODO think about id generation
+		childNode.id = size();
+		this.children.add(0, childNode);
+		return this;
+	}
+
+	/**
+	 * Prepend children nodes
+	 *
+	 * @param nodes children nodes
+	 * @return this node
+	 */
+	@SuppressWarnings("UnusedReturnValue")
+	public TreeNode prependChildren(final TreeNode... nodes)
+	{
+		for (int i = nodes.length - 1; i >= 0; i--)
+		{
+			TreeNode node = nodes[i];
+			if (node != null)
+			{
+				prependChild(node);
+			}
+		}
+		return this;
+	}
+
+	/**
 	 * Delete child
 	 *
 	 * @param child child to delete

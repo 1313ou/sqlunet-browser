@@ -346,7 +346,6 @@ abstract public class BasicModule extends Module
 					}
 
 					// attach result
-					// TODO
 					if (add)
 					{
 						TreeFactory.addTextNode(parent, sb, BasicModule.this.getContext());
@@ -380,8 +379,9 @@ abstract public class BasicModule extends Module
 	 *
 	 * @param synsetId synset id
 	 * @param parent   parent node
+	 * @param add      whether to add to (or set) node
 	 */
-	void samples(final long synsetId, final TreeNode parent)
+	void samples(final long synsetId, final TreeNode parent, final boolean add)
 	{
 		getLoaderManager().restartLoader(++Module.loaderId, null, new LoaderCallbacks<Cursor>()
 		{
@@ -427,10 +427,17 @@ abstract public class BasicModule extends Module
 					while (cursor.moveToNext());
 
 					// attach result
-					TreeFactory.addTextNode(parent, sb, BasicModule.this.getContext());
+					if (add)
+					{
+						TreeFactory.addTextNode(parent, sb, BasicModule.this.getContext());
 
-					// expand
-					TreeView.expand(parent, false);
+						// expand
+						TreeView.expand(parent, false);
+					}
+					else
+					{
+						TreeFactory.setNodeValue(parent, sb);
+					}
 				}
 				else
 				{
@@ -511,7 +518,7 @@ abstract public class BasicModule extends Module
 
 						final Context context = BasicModule.this.getContext();
 						TreeNode linkNode = recurses == 0 ? TreeFactory.newLeafNode(sb, getLinkRes(linkId), context) : TreeFactory.newQueryNode(new SubLinksQuery(targetSynsetId, linkId, getLinkRes(linkId), sb), BasicModule.this.getContext());
-						parent.addChild(linkNode);
+						parent.prependChild(linkNode);
 					}
 					while (cursor.moveToNext());
 
@@ -1477,7 +1484,7 @@ abstract public class BasicModule extends Module
 		public void process(final TreeNode node)
 		{
 			// samples
-			samples(this.id, node);
+			samples(this.id, node, true);
 		}
 	}
 }

@@ -82,8 +82,8 @@ public class TextSearchFragment extends AbstractTableFragment
 		String queryArg = args.getString(SqlUNetContract.ARG_QUERYARG);
 		queryArg = queryArg != null ? queryArg.trim() : "";
 
-		// pattern
-		final String[] patterns = {'(' + queryArg + ')',};
+		// pattern (case-insensitive)
+		final String[] patterns = {'(' +"(?i)" + queryArg + ')',};
 
 		// spanner
 		final RegExprSpanner spanner = new RegExprSpanner(patterns, factories);

@@ -4,10 +4,10 @@
 	<string-array name="management_titles">
 		<item>Create all indexes</item>
 		<item>Prepare PredicateMatrix</item>
-		<item>Prepare WordNet textsearch</item>
-		<item>Prepare VerbNet textsearch</item>
-		<item>Prepare PropBank textsearch</item>
-		<item>Prepare FrameNet textsearch</item>
+		<item>Prepare WordNet text search</item>
+		<item>Prepare VerbNet text search</item>
+		<item>Prepare PropBank text search</item>
+		<item>Prepare FrameNet text search</item>
 		<item>Create WordNet indexes</item>
 		<item>Drop WordNet indexes</item>
 		<item>Create VerbNet indexes</item>
@@ -18,10 +18,10 @@
 		<item>Drop FrameNet indexes</item>
 		<item>Create PredicateMatrix indexes</item>
 		<item>Drop PredicateMatrix indexes</item>
-		<item>Drop WordNet textsearch</item>
-		<item>Drop VerbNet textsearch</item>
-		<item>Drop PropBank textsearch</item>
-		<item>Drop FrameNet textsearch</item>
+		<item>Drop WordNet text search</item>
+		<item>Drop VerbNet text search</item>
+		<item>Drop PropBank text search</item>
+		<item>Drop FrameNet text search</item>
 		<item>Drop PredicateMatrix</item>
 		<item>Drop PredicateMatrix extra tables</item>
 		<item>Short LexDomains</item>

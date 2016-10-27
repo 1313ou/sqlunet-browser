@@ -248,7 +248,9 @@ public class TreeView
 	 */
 	static public void expand(final TreeNode node, @SuppressWarnings("SameParameterValue") boolean includeSubnodes)
 	{
-		node.getRenderer().getTreeView().expandNode(node, includeSubnodes);
+		final TreeView treeView = node.getRenderer().getTreeView();
+		assert (treeView != null);
+		treeView.expandNode(node, includeSubnodes);
 	}
 
 	/**

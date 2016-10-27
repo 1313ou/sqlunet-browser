@@ -6,6 +6,9 @@ import android.os.Parcelable;
 import org.sqlunet.HasPos;
 import org.sqlunet.HasSynsetId;
 import org.sqlunet.treeview.model.TreeNode;
+import org.sqlunet.treeview.view.TreeView;
+import org.sqlunet.view.TreeFactory;
+import org.sqlunet.wordnet.R;
 
 /**
  * Module for WordNet synset
@@ -58,20 +61,29 @@ public class SynsetModule extends BasicModule
 	{
 		if (this.synsetId != null && this.synsetId != 0)
 		{
+			// sub nodes
+			final TreeNode dataNode = TreeFactory.newTextNode("data", SynsetModule.this.getContext()); //
+			final TreeNode membersNode = TreeFactory.newTextNode("members", SynsetModule.this.getContext()); //
+			final TreeNode samplesNode = TreeFactory.newTextNode("samples", SynsetModule.this.getContext()); // TreeFactory.newQueryNode(new SamplesQuery(this.synsetId, R.drawable.sample, "Samples"), SynsetModule.this.getContext()); //
+			final TreeNode linksNode = TreeFactory.newQueryNode(new LinksQuery(this.synsetId, 0, R.drawable.ic_other, "Links"), SynsetModule.this.getContext()); //
+
+			// attach result
+			node.addChildren(dataNode, membersNode, linksNode, samplesNode);
+
 			// synset
-			synset(this.synsetId, node, true);
+			synset(this.synsetId, dataNode, false);
 
 			// members
-			members(this.synsetId, node, true);
+			members(this.synsetId, membersNode, false);
 
 			// samples
-			samples(this.synsetId, node);
+			samples(this.synsetId, samplesNode, false);
 
 			// semLinks
-			semLinks(this.synsetId, node);
+			semLinks(this.synsetId, linksNode);
 
 			// lexLinks
-			this.lexLinks(this.synsetId, node);
+			lexLinks(this.synsetId, linksNode);
 
 			// special
 			if (this.pos != null)
@@ -88,6 +100,8 @@ public class SynsetModule extends BasicModule
 						break;
 				}
 			}
+
+			TreeView.expand(node, false);
 		}
 	}
 }
