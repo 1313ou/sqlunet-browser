@@ -54,17 +54,17 @@
 			CREATE INDEX IF NOT EXISTS index_pm_synsetid ON pm(synsetid);</item>
 		<item>
 			DROP TABLE IF EXISTS pmvn;
-			CREATE TABLE IF NOT EXISTS pmvn (pmvnid INTEGER primary key,wordid INTEGER,synsetid INTEGER,vnwordid INTEGER,classid INTEGER);
-			INSERT INTO pmvn (pmvnid,wordid,synsetid,vnwordid,classid) SELECT pmroleid,wordid,synsetid,vnwordid,vnclassid FROM pm WHERE vnclassid IS NOT NULL;
-			DELETE FROM pmvn WHERE pmvnid NOT IN (SELECT MIN(pmvnid) FROM pmvn GROUP BY wordid,synsetid,vnwordid,classid);
+			CREATE TABLE IF NOT EXISTS pmvn (pmid INTEGER primary key,wordid INTEGER,synsetid INTEGER,vnwordid INTEGER,classid INTEGER);
+			INSERT INTO pmvn (pmid,wordid,synsetid,vnwordid,classid) SELECT pmid,wordid,synsetid,vnwordid,vnclassid FROM pm WHERE vnclassid IS NOT NULL;
+			DELETE FROM pmvn WHERE pmid NOT IN (SELECT MIN(pmid) FROM pmvn GROUP BY wordid,synsetid,vnwordid,classid);
 			DROP TABLE IF EXISTS pmpb;
-			CREATE TABLE IF NOT EXISTS pmpb (pmpbid INTEGER primary key,wordid INTEGER,synsetid INTEGER,pbwordid INTEGER,rolesetid INTEGER);
-			INSERT INTO pmpb (pmpbid,wordid,synsetid,pbwordid,rolesetid) SELECT pmroleid,wordid,synsetid,pbwordid,pbrolesetid FROM pm WHERE pbrolesetid IS NOT NULL;
-			DELETE FROM pmpb WHERE pmpbid NOT IN (SELECT MIN(pmpbid) FROM pmpb GROUP BY wordid,synsetid,pbwordid,rolesetid));
+			CREATE TABLE IF NOT EXISTS pmpb (pmid INTEGER primary key,wordid INTEGER,synsetid INTEGER,pbwordid INTEGER,rolesetid INTEGER);
+			INSERT INTO pmpb (pmid,wordid,synsetid,pbwordid,rolesetid) SELECT pmid,wordid,synsetid,pbwordid,pbrolesetid FROM pm WHERE pbrolesetid IS NOT NULL;
+			DELETE FROM pmpb WHERE pmid NOT IN (SELECT MIN(pmid) FROM pmpb GROUP BY wordid,synsetid,pbwordid,rolesetid);
 			DROP TABLE IF EXISTS pmfn;
-			CREATE TABLE IF NOT EXISTS pmfn (pmfnid INTEGER primary key,wordid INTEGER,synsetid INTEGER,fnwordid INTEGER,fnluid INTEGER,frameid INTEGER);
-			INSERT INTO pmfn (pmfnid,wordid,synsetid,fnwordid,fnluid,frameid) SELECT pmroleid,wordid,synsetid,fnwordid,fnluid,fnframeid FROM pm WHERE fnframeid IS NOT NULL;
-			DELETE FROM pmfn WHERE pmfnid NOT IN (SELECT MIN(pmfnid) FROM pmfn GROUP BY wordid,synsetid,fnwordid,fnluid,frameid);</item>
+			CREATE TABLE IF NOT EXISTS pmfn (pmid INTEGER primary key,wordid INTEGER,synsetid INTEGER,fnwordid INTEGER,luid INTEGER,frameid INTEGER);
+			INSERT INTO pmfn (pmid,wordid,synsetid,fnwordid,luid,frameid) SELECT pmid,wordid,synsetid,fnwordid,fnluid,fnframeid FROM pm WHERE fnframeid IS NOT NULL;
+			DELETE FROM pmfn WHERE pmid NOT IN (SELECT MIN(pmid) FROM pmfn GROUP BY wordid,synsetid,fnwordid,luid,frameid);</item>
 		<item>
 			CREATE VIRTUAL TABLE IF NOT EXISTS words_lemma_fts4 USING fts4(wordid INTEGER not null, lemma);
 			INSERT INTO words_lemma_fts4 SELECT wordid, lemma from words;

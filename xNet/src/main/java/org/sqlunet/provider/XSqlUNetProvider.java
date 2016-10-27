@@ -169,8 +169,8 @@ public class XSqlUNetProvider extends SqlUNetProvider
 						"INNER JOIN vnclasses USING (classid)"; //
 				final String[] unionProjection = {"wordid", "synsetid", "classid", "class", "classtag", "definition"}; //
 				final String[] tableProjection = {"wordid", "synsetid", "classid", "class", "classtag"}; //
-				final String[] groupBy0 = {"wordid", "synsetid", "classid"}; //
-				final String query = makeQuery(table1, table2, tableProjection, unionProjection, projection, selection, groupBy0, sortOrder, "vn"); //
+				final String[] groupByArray = {"wordid", "synsetid", "classid"}; //
+				final String query = makeQuery(table1, table2, tableProjection, unionProjection, projection, selection, groupByArray, sortOrder, "vn"); //
 				Log.d(XSqlUNetProvider.TAG + "PM-VN", query); //
 
 				return raw(query, selectionArgs);
@@ -185,8 +185,8 @@ public class XSqlUNetProvider extends SqlUNetProvider
 						"INNER JOIN pbrolesets USING (pbwordid)"; //
 				final String[] unionProjection = {"wordid", "synsetid", "rolesetid", "rolesetname", "rolesethead", "rolesetdescr", "definition"}; //
 				final String[] tableProjection = {"wordid", "rolesetid", "rolesetname", "rolesethead", "rolesetdescr"}; //
-				final String[] groupBy0 = {"wordid", "synsetid", "rolesetid"}; //
-				final String query = makeQuery(table1, table2, tableProjection, unionProjection, projection, selection, groupBy0, sortOrder, "pb"); //
+				final String[] groupByArray = {"wordid", "synsetid", "rolesetid"}; //
+				final String query = makeQuery(table1, table2, tableProjection, unionProjection, projection, selection, groupByArray, sortOrder, "pb"); //
 				Log.d(XSqlUNetProvider.TAG + "PM-PB", query); //
 
 				return raw(query, selectionArgs);
@@ -195,18 +195,17 @@ public class XSqlUNetProvider extends SqlUNetProvider
 			case WORDS_FNWORDS_FNFRAMES_U:
 			{
 				final String table1 = "pmfn " + //
-						"INNER JOIN fnframes AS f USING (frameid) " + //
-						"LEFT JOIN fnlexemes USING (fnwordid) " + //
-						"LEFT JOIN fnlexunits USING (luid) " + //
+						"INNER JOIN fnframes USING (frameid) " + //
+						"LEFT JOIN fnlexunits USING (luid,frameid) " + //
 						"LEFT JOIN synsets USING (synsetid)"; //
 				final String table2 = "fnwords " + //
 						"INNER JOIN fnlexemes USING (fnwordid) " + //
 						"INNER JOIN fnlexunits USING (luid,posid) " + //
-						"INNER JOIN fnframes AS f USING (frameid)"; //
+						"INNER JOIN fnframes USING (frameid)"; //
 				final String[] unionProjection = {"wordid", "synsetid", "frameid", "frame", "framedefinition", "luid", "lexunit", "ludefinition", "definition"}; //
-				final String[] tableProjection = {"wordid", "frameid AS frameid", "frame", "framedefinition", "luid", "lexunit", "ludefinition"}; //
-				final String[] groupBy0 = {"wordid", "synsetid", "frameid"}; //
-				final String query = makeQuery(table1, table2, tableProjection, unionProjection, projection, selection, groupBy0, sortOrder, "fn"); //
+				final String[] tableProjection = {"wordid", "frameid", "frame", "framedefinition", "luid", "lexunit", "ludefinition"}; //
+				final String[] groupByArray = {"wordid", "synsetid", "frameid"}; //
+				final String query = makeQuery(table1, table2, tableProjection, unionProjection, projection, selection, groupByArray, sortOrder, "fn"); //
 				Log.d(XSqlUNetProvider.TAG + "PM-FN", query); //
 
 				return raw(query, selectionArgs);

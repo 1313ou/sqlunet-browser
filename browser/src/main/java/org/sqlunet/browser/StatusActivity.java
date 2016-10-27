@@ -116,7 +116,7 @@ public class StatusActivity extends Activity
 			public void onClick(View v)
 			{
 				final Intent intent = new Intent(StatusActivity.this, ManagementActivity.class);
-				intent.putExtra(ManagementFragment.ARG, Status.DO_TS_WN);
+				intent.putExtra(ManagementFragment.ARG, Status.DO_TS_VN);
 				startActivityForResult(intent, StatusActivity.REQUEST_MANAGEMENT_CODE + Status.DO_TS_WN);
 			}
 		});

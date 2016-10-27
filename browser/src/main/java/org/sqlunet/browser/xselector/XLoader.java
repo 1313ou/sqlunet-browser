@@ -103,7 +103,7 @@ class XLoader
 					"rowid AS _id",}; //
 			final String selection = Words_VnWords_VnClasses_U.WORDID + " = ?"; //
 			final String[] selectionArgs = {Long.toString(this.wordId)};
-			final String sortOrder = null;
+			final String sortOrder = Words_VnWords_VnClasses_U.CLASSID;
 			return new CursorLoader(this.context, uri, projection, selection, selectionArgs, sortOrder);
 		}
 	}
@@ -136,7 +136,7 @@ class XLoader
 					"rowid AS _id",}; //
 			final String selection = PredicateMatrix_PropBank.WORDID + " = ?"; //
 			final String[] selectionArgs = {Long.toString(this.wordId)};
-			final String sortOrder = null;
+			final String sortOrder = Words_PbWords_PbRolesets_U.ROLESETID;
 			return new CursorLoader(this.context, uri, projection, selection, selectionArgs, sortOrder);
 		}
 	}
@@ -168,7 +168,7 @@ class XLoader
 					"rowid AS _id",}; //
 			final String selection = Words_FnWords_FnFrames_U.WORDID + " = ?"; //
 			final String[] selectionArgs = {Long.toString(this.wordId)};
-			final String sortOrder = null;
+			final String sortOrder = Words_FnWords_FnFrames_U.FRAMEID + ',' + Words_FnWords_FnFrames_U.LUID;
 			return new CursorLoader(this.context, uri, projection, selection, selectionArgs, sortOrder);
 		}
 	}

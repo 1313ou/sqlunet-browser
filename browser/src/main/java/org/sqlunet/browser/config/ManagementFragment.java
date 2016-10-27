@@ -103,7 +103,7 @@ public class ManagementFragment extends Fragment implements Listener
 				case Status.DO_TS_VN: // tsvn 4
 				case Status.DO_TS_PB: // tspb 5
 				case Status.DO_TS_FN: // tsfn 6
-					this.spinner.setSelection(arg);
+					this.spinner.setSelection(arg - 1);
 					break;
 			}
 		}
