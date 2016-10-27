@@ -88,19 +88,21 @@ public class ManagementFragment extends Fragment implements Listener
 			}
 		});
 
-		// args
+		// args (relies on order of resources matching that of DO_)
 		Bundle args = getArguments();
 		if (args != null)
 		{
 			final int arg = args.getInt(ARG);
 			switch (arg)
 			{
-				case 0:
+				default:
 					break;
-				case 1: // index
-				case 2: // pm
-				case 3: // ts
-				case 4: // tsfn
+				case Status.DO_INDEXES: // index 1
+				case Status.DO_PM: // pm 2
+				case Status.DO_TS_WN:  // tswn 3
+				case Status.DO_TS_VN: // tsvn 4
+				case Status.DO_TS_PB: // tspb 5
+				case Status.DO_TS_FN: // tsfn 6
 					this.spinner.setSelection(arg);
 					break;
 			}

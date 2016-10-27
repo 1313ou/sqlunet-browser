@@ -109,7 +109,7 @@ public class PreparedStatement
 		}
 		catch (final Exception e)
 		{
-			Log.e(PreparedStatement.TAG, this.sql + " " + Utils.argsToString(args), e); //
+			Log.e(PreparedStatement.TAG, this.sql + ' ' + Utils.argsToString(args), e); //
 			return null;
 		}
 	}

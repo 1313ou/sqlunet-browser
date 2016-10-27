@@ -303,7 +303,7 @@ public class FrameNetProvider extends SqlUNetProvider
 
 			case LEXUNITS_X_BY_LEXUNIT:
 				groupBy = "luid"; //
-				table = "fnlexunits AS " + FrameNetContract.LU + " " + //
+				table = "fnlexunits AS " + FrameNetContract.LU + ' ' + //
 						"LEFT JOIN fnframes AS " + FrameNetContract.FRAME + " USING (frameid) " + //
 						"LEFT JOIN fnposes AS " + FrameNetContract.POS + " ON (" + FrameNetContract.LU + ".posid = " + FrameNetContract.POS + ".posid) " + //
 						"LEFT JOIN fnfetypes AS " + FrameNetContract.FETYPE + " ON (incorporatedfetypeid = " + FrameNetContract.FETYPE + ".fetypeid) " + //
@@ -421,7 +421,7 @@ public class FrameNetProvider extends SqlUNetProvider
 				//$FALL-THROUGH$
 				//noinspection fallthrough
 			case LEXUNITS_SENTENCES:
-				table = "fnlexunits AS " + FrameNetContract.LU + " " + //
+				table = "fnlexunits AS " + FrameNetContract.LU + ' ' + //
 						"LEFT JOIN fnsubcorpuses USING (luid) " + //
 						"LEFT JOIN fnsubcorpuses_sentences USING (subcorpusid) " + //
 						"INNER JOIN fnsentences AS " + FrameNetContract.SENTENCE + " USING (sentenceid)"; //
@@ -432,7 +432,7 @@ public class FrameNetProvider extends SqlUNetProvider
 				//$FALL-THROUGH$
 				//noinspection fallthrough
 			case LEXUNITS_SENTENCES_ANNOSETS_LAYERS_LABELS:
-				table = "fnlexunits AS " + FrameNetContract.LU + " " + //
+				table = "fnlexunits AS " + FrameNetContract.LU + ' ' + //
 						"LEFT JOIN fnsubcorpuses USING (luid) " + //
 						"LEFT JOIN fnsubcorpuses_sentences USING (subcorpusid) " + //
 						"INNER JOIN fnsentences AS " + FrameNetContract.SENTENCE + " USING (sentenceid) " + //

@@ -83,8 +83,8 @@ public class StatusActivity extends Activity
 			public void onClick(View v)
 			{
 				final Intent intent = new Intent(StatusActivity.this, ManagementActivity.class);
-				intent.putExtra(ManagementFragment.ARG, 0);
-				startActivityForResult(intent, StatusActivity.REQUEST_MANAGEMENT_CODE + 1);
+				intent.putExtra(ManagementFragment.ARG, Status.DO_INDEXES);
+				startActivityForResult(intent, StatusActivity.REQUEST_MANAGEMENT_CODE + Status.DO_INDEXES);
 			}
 		});
 
@@ -94,8 +94,8 @@ public class StatusActivity extends Activity
 			public void onClick(View v)
 			{
 				final Intent intent = new Intent(StatusActivity.this, ManagementActivity.class);
-				intent.putExtra(ManagementFragment.ARG, 1);
-				startActivityForResult(intent, StatusActivity.REQUEST_MANAGEMENT_CODE + 2);
+				intent.putExtra(ManagementFragment.ARG, Status.DO_PM);
+				startActivityForResult(intent, StatusActivity.REQUEST_MANAGEMENT_CODE + Status.DO_PM);
 			}
 		});
 
@@ -105,8 +105,8 @@ public class StatusActivity extends Activity
 			public void onClick(View v)
 			{
 				final Intent intent = new Intent(StatusActivity.this, ManagementActivity.class);
-				intent.putExtra(ManagementFragment.ARG, 2);
-				startActivityForResult(intent, StatusActivity.REQUEST_MANAGEMENT_CODE + 3);
+				intent.putExtra(ManagementFragment.ARG, Status.DO_TS_WN);
+				startActivityForResult(intent, StatusActivity.REQUEST_MANAGEMENT_CODE + Status.DO_TS_WN);
 			}
 		});
 
@@ -116,8 +116,8 @@ public class StatusActivity extends Activity
 			public void onClick(View v)
 			{
 				final Intent intent = new Intent(StatusActivity.this, ManagementActivity.class);
-				intent.putExtra(ManagementFragment.ARG, 3);
-				startActivityForResult(intent, StatusActivity.REQUEST_MANAGEMENT_CODE + 4);
+				intent.putExtra(ManagementFragment.ARG, Status.DO_TS_WN);
+				startActivityForResult(intent, StatusActivity.REQUEST_MANAGEMENT_CODE + Status.DO_TS_WN);
 			}
 		});
 
@@ -127,8 +127,8 @@ public class StatusActivity extends Activity
 			public void onClick(View v)
 			{
 				final Intent intent = new Intent(StatusActivity.this, ManagementActivity.class);
-				intent.putExtra(ManagementFragment.ARG, 4);
-				startActivityForResult(intent, StatusActivity.REQUEST_MANAGEMENT_CODE + 5);
+				intent.putExtra(ManagementFragment.ARG, Status.DO_TS_PB);
+				startActivityForResult(intent, StatusActivity.REQUEST_MANAGEMENT_CODE + Status.DO_TS_PB);
 			}
 		});
 
@@ -138,8 +138,8 @@ public class StatusActivity extends Activity
 			public void onClick(View v)
 			{
 				final Intent intent = new Intent(StatusActivity.this, ManagementActivity.class);
-				intent.putExtra(ManagementFragment.ARG, 5);
-				startActivityForResult(intent, StatusActivity.REQUEST_MANAGEMENT_CODE + 6);
+				intent.putExtra(ManagementFragment.ARG, Status.DO_TS_FN);
+				startActivityForResult(intent, StatusActivity.REQUEST_MANAGEMENT_CODE + Status.DO_TS_FN);
 			}
 		});
 

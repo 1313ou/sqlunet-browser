@@ -162,7 +162,7 @@ public class XSqlUNetProvider extends SqlUNetProvider
 			case WORDS_VNWORDS_VNCLASSES_U:
 			{
 				final String table1 = "pmvn " + //
-						"INNER JOIN vnclasses ON vnclassid = classid " + //
+						"INNER JOIN vnclasses USING (classid) " + //
 						"LEFT JOIN synsets USING (synsetid)"; //
 				final String table2 = "vnwords INNER JOIN " + //
 						"vnclassmembersenses USING (vnwordid) " + //
@@ -179,7 +179,7 @@ public class XSqlUNetProvider extends SqlUNetProvider
 			case WORDS_PBWORDS_PBROLESETS_U:
 			{
 				final String table1 = "pmpb " + //
-						"INNER JOIN pbrolesets ON pbrolesetid = rolesetid " + //
+						"INNER JOIN pbrolesets USING (rolesetid) " + //
 						"LEFT JOIN synsets USING (synsetid)"; //
 				final String table2 = "pbwords " + //
 						"INNER JOIN pbrolesets USING (pbwordid)"; //
@@ -195,17 +195,16 @@ public class XSqlUNetProvider extends SqlUNetProvider
 			case WORDS_FNWORDS_FNFRAMES_U:
 			{
 				final String table1 = "pmfn " + //
-						"INNER JOIN fnframes ON frameid = fnframeid " + //
+						"INNER JOIN fnframes AS f USING (frameid) " + //
 						"LEFT JOIN fnlexemes USING (fnwordid) " + //
-						"LEFT JOIN fnlexunits USING (luid,frameid) " + //
+						"LEFT JOIN fnlexunits USING (luid) " + //
 						"LEFT JOIN synsets USING (synsetid)"; //
 				final String table2 = "fnwords " + //
 						"INNER JOIN fnlexemes USING (fnwordid) " + //
 						"INNER JOIN fnlexunits USING (luid,posid) " + //
-						"INNER JOIN fnframes USING (frameid)"; //
-				final String[] unionProjection = {"wordid", "synsetid", "frameid", "frame", //
-						"framedefinition", "luid", "lexunit", "ludefinition", "definition"}; //
-				final String[] tableProjection = {"wordid", "frameid", "frame", "framedefinition", "luid", "lexunit", "ludefinition"}; //
+						"INNER JOIN fnframes AS f USING (frameid)"; //
+				final String[] unionProjection = {"wordid", "synsetid", "frameid", "frame", "framedefinition", "luid", "lexunit", "ludefinition", "definition"}; //
+				final String[] tableProjection = {"wordid", "frameid AS frameid", "frame", "framedefinition", "luid", "lexunit", "ludefinition"}; //
 				final String[] groupBy0 = {"wordid", "synsetid", "frameid"}; //
 				final String query = makeQuery(table1, table2, tableProjection, unionProjection, projection, selection, groupBy0, sortOrder, "fn"); //
 				Log.d(XSqlUNetProvider.TAG + "PM-FN", query); //

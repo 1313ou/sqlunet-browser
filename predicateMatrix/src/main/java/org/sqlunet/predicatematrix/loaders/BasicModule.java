@@ -723,7 +723,7 @@ abstract class BasicModule extends Module
 					PredicateMatrix.PMPREDID, //
 					PredicateMatrix.PMPREDICATE, //
 					PredicateMatrix.PMROLE, //
-					PredicateMatrixContract.PBROLE + ' ' + PredicateMatrix.PMPOS, //
+					PredicateMatrixContract.PMROLE + '.' + PredicateMatrix.PMPOS, //
 
 					PredicateMatrix.WORD, //
 					PredicateMatrix.SYNSETID, //
@@ -731,7 +731,7 @@ abstract class BasicModule extends Module
 
 					PredicateMatrix.VNCLASSID, //
 					Pm_X.VNCLASS, //
-					PredicateMatrixContract.VNROLETYPE + ' ' + Pm_X.VNROLETYPEID, //
+					PredicateMatrixContract.VNROLETYPE + '.' + Pm_X.VNROLETYPEID, //
 					Pm_X.VNROLETYPE, //
 
 					PredicateMatrix.PBROLESETID, //
@@ -740,7 +740,7 @@ abstract class BasicModule extends Module
 					Pm_X.PBROLESETHEAD, //
 					Pm_X.PBROLEID, //
 					Pm_X.PBROLEDESCR, //
-					PredicateMatrixContract.PBARG + ' ' + Pm_X.PBROLENARG, //
+					PredicateMatrixContract.PBARG + '.' + Pm_X.PBROLENARG, //
 					Pm_X.PBROLENARGDESCR, //
 
 					PredicateMatrix.FRAMEID, //
@@ -749,7 +749,7 @@ abstract class BasicModule extends Module
 					Pm_X.LEXUNIT, //
 					Pm_X.LUDEFINITION, //
 					Pm_X.LUDICT, //
-					PredicateMatrixContract.FNFETYPE + ' ' + Pm_X.FETYPEID, //
+					PredicateMatrixContract.FNFETYPE + '.' + Pm_X.FETYPEID, //
 					Pm_X.FETYPE, //
 					Pm_X.FEABBREV, //
 					Pm_X.FEDEFINITION, //

@@ -23,6 +23,7 @@
 		<item>Drop PropBank textsearch</item>
 		<item>Drop FrameNet textsearch</item>
 		<item>Drop PredicateMatrix</item>
+		<item>Drop PredicateMatrix extra tables</item>
 		<item>Short LexDomains</item>
 		<item>Create sampleset View</item>
 		<item>Drop sampleset View</item>
@@ -53,32 +54,32 @@
 			CREATE INDEX IF NOT EXISTS index_pm_synsetid ON pm(synsetid);</item>
 		<item>
 			DROP TABLE IF EXISTS pmvn;
-			CREATE TABLE IF NOT EXISTS pmvn (pmvnid integer primary key,wordid integer,synsetid integer,vnwordid integer,vnclassid integer);
-			INSERT INTO pmvn (pmvnid,wordid,synsetid,vnwordid,vnclassid) SELECT pmroleid,wordid,synsetid,vnwordid,vnclassid FROM pm WHERE vnclassid IS NOT NULL;
-			DELETE FROM pmvn WHERE pmvnid NOT IN (SELECT MIN(pmvnid) FROM pmvn GROUP BY wordid,synsetid,vnwordid,vnclassid);
+			CREATE TABLE IF NOT EXISTS pmvn (pmvnid INTEGER primary key,wordid INTEGER,synsetid INTEGER,vnwordid INTEGER,classid INTEGER);
+			INSERT INTO pmvn (pmvnid,wordid,synsetid,vnwordid,classid) SELECT pmroleid,wordid,synsetid,vnwordid,vnclassid FROM pm WHERE vnclassid IS NOT NULL;
+			DELETE FROM pmvn WHERE pmvnid NOT IN (SELECT MIN(pmvnid) FROM pmvn GROUP BY wordid,synsetid,vnwordid,classid);
 			DROP TABLE IF EXISTS pmpb;
-			CREATE TABLE IF NOT EXISTS pmpb (pmpbid integer primary key,wordid integer,synsetid integer,pbwordid integer,pbrolesetid integer);
-			INSERT INTO pmpb (pmpbid,wordid,synsetid,pbwordid,pbrolesetid) SELECT pmroleid,wordid,synsetid,pbwordid,pbrolesetid FROM pm WHERE pbrolesetid IS NOT NULL;
-			DELETE FROM pmpb WHERE pmpbid NOT IN (SELECT MIN(pmpbid) FROM pmpb GROUP BY wordid,synsetid,pbwordid,pbrolesetid));
+			CREATE TABLE IF NOT EXISTS pmpb (pmpbid INTEGER primary key,wordid INTEGER,synsetid INTEGER,pbwordid INTEGER,rolesetid INTEGER);
+			INSERT INTO pmpb (pmpbid,wordid,synsetid,pbwordid,rolesetid) SELECT pmroleid,wordid,synsetid,pbwordid,pbrolesetid FROM pm WHERE pbrolesetid IS NOT NULL;
+			DELETE FROM pmpb WHERE pmpbid NOT IN (SELECT MIN(pmpbid) FROM pmpb GROUP BY wordid,synsetid,pbwordid,rolesetid));
 			DROP TABLE IF EXISTS pmfn;
-			CREATE TABLE IF NOT EXISTS pmfn (pmfnid integer primary key,wordid integer,synsetid integer,fnwordid integer,fnluid integer,fnframeid integer);
-			INSERT INTO pmfn (pmfnid,wordid,synsetid,fnwordid,fnluid,fnframeid) SELECT pmroleid,wordid,synsetid,fnwordid,fnluid,fnframeid FROM pm WHERE fnframeid IS NOT NULL;
-			DELETE FROM pmfn WHERE pmfnid NOT IN (SELECT MIN(pmfnid) FROM pmfn GROUP BY wordid,synsetid,fnwordid,fnluid,fnframeid);</item>
+			CREATE TABLE IF NOT EXISTS pmfn (pmfnid INTEGER primary key,wordid INTEGER,synsetid INTEGER,fnwordid INTEGER,fnluid INTEGER,frameid INTEGER);
+			INSERT INTO pmfn (pmfnid,wordid,synsetid,fnwordid,fnluid,frameid) SELECT pmroleid,wordid,synsetid,fnwordid,fnluid,fnframeid FROM pm WHERE fnframeid IS NOT NULL;
+			DELETE FROM pmfn WHERE pmfnid NOT IN (SELECT MIN(pmfnid) FROM pmfn GROUP BY wordid,synsetid,fnwordid,fnluid,frameid);</item>
 		<item>
-			CREATE VIRTUAL TABLE IF NOT EXISTS words_lemma_fts4 USING fts4(wordid integer not null, lemma);
+			CREATE VIRTUAL TABLE IF NOT EXISTS words_lemma_fts4 USING fts4(wordid INTEGER not null, lemma);
 			INSERT INTO words_lemma_fts4 SELECT wordid, lemma from words;
-			CREATE VIRTUAL TABLE IF NOT EXISTS synsets_definition_fts4 USING fts4(synsetid integer not null, definition);
+			CREATE VIRTUAL TABLE IF NOT EXISTS synsets_definition_fts4 USING fts4(synsetid INTEGER not null, definition);
 			INSERT INTO synsets_definition_fts4 SELECT synsetid, definition from synsets;
-			CREATE VIRTUAL TABLE IF NOT EXISTS samples_sample_fts4 USING fts4(synsetid integer not null, sample);
+			CREATE VIRTUAL TABLE IF NOT EXISTS samples_sample_fts4 USING fts4(synsetid INTEGER not null, sample);
 			INSERT INTO samples_sample_fts4 SELECT synsetid, sample from samples;</item>
 		<item>
-			CREATE VIRTUAL TABLE IF NOT EXISTS vnexamples_example_fts4 USING fts4(exampleid integer not null, frameid integer, classid integer, example);
+			CREATE VIRTUAL TABLE IF NOT EXISTS vnexamples_example_fts4 USING fts4(exampleid INTEGER not null, frameid INTEGER, classid INTEGER, example);
 			INSERT INTO vnexamples_example_fts4 SELECT exampleid, frameid, classid, example FROM vnexamples INNER JOIN vnexamplemaps USING (exampleid) INNER JOIN vnframes USING (frameid) INNER JOIN vnframemaps USING (frameid) INNER JOIN vnclasses USING (classid);</item>
 		<item>
-			CREATE VIRTUAL TABLE IF NOT EXISTS pbexamples_text_fts4 USING fts4(exampleid integer not null, rolesetid integer not null, text);
+			CREATE VIRTUAL TABLE IF NOT EXISTS pbexamples_text_fts4 USING fts4(exampleid INTEGER not null, rolesetid INTEGER not null, text);
 			INSERT INTO pbexamples_text_fts4 SELECT exampleid, rolesetid, text from pbexamples;</item>
 		<item>
-			CREATE VIRTUAL TABLE IF NOT EXISTS fnsentences_text_fts4 USING fts4(sentenceid integer not null, annosetid integer, frameid integer, luid integer, text);
+			CREATE VIRTUAL TABLE IF NOT EXISTS fnsentences_text_fts4 USING fts4(sentenceid INTEGER not null, annosetid INTEGER, frameid INTEGER, luid INTEGER, text);
 			INSERT INTO fnsentences_text_fts4 SELECT sentenceid, annosetid, f.frameid, luid, text FROM fnsentences INNER JOIN fnannosets USING (sentenceid) LEFT JOIN fnframes AS f USING (frameid) LEFT JOIN fnlexunits AS l USING (luid) WHERE f.frameid IS NOT NULL;</item>
 		<item>
 			CREATE INDEX IF NOT EXISTS index_words_lemma ON words(lemma);
@@ -148,7 +149,8 @@
 		<item>
 			DROP TABLE IF EXISTS pm;
 			DROP TABLE IF EXISTS pmroles;
-			DROP TABLE IF EXISTS pmpredicates;
+			DROP TABLE IF EXISTS pmpredicates;</item>
+		<item>
 			DROP TABLE IF EXISTS pmvn;
 			DROP TABLE IF EXISTS pmpb;
 			DROP TABLE IF EXISTS pmfn;</item>
