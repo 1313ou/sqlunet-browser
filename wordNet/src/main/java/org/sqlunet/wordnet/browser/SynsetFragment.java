@@ -69,20 +69,21 @@ public class SynsetFragment extends Fragment
 
 		// query
 		final Bundle args = getArguments();
+		final int action = args.getInt(SqlUNetContract.ARG_QUERYACTION);
 		if (args.containsKey(SqlUNetContract.ARG_QUERYPOINTER))
 		{
-			final Parcelable parcelable = args.getParcelable(SqlUNetContract.ARG_QUERYPOINTER);
+			final Parcelable pointer = args.getParcelable(SqlUNetContract.ARG_QUERYPOINTER);
 			boolean isSense = false;
-			if (parcelable instanceof HasWordId)
+			if (pointer instanceof HasWordId)
 			{
-				final HasWordId query = (HasWordId) parcelable;
-				final Long id = query.getWordId();
+				final HasWordId wordId = (HasWordId) pointer;
+				final Long id = wordId.getWordId();
 				isSense = id != null;
 			}
 
 			// module
 			Module module = isSense ? new SenseModule(this) : new SynsetModule(this);
-			module.init(parcelable);
+			module.init(action, pointer);
 			module.process(queryNode);
 		}
 

@@ -49,25 +49,26 @@ public class BasicModule extends Module
 	public BasicModule(final Fragment fragment)
 	{
 		super(fragment);
-	}
 
-	@Override
-	public void init(final Parcelable query)
-	{
 		// drawables
 		this.domainDrawable = Spanner.getDrawable(getContext(), R.drawable.domain);
 		this.posDrawable = Spanner.getDrawable(getContext(), R.drawable.pos);
+	}
 
-		// get query
-		if (query instanceof HasWordId)
+	@Override
+	protected void unmarshal(final Parcelable pointer)
+	{
+		this.wordId = null;
+		this.pos = null;
+		if (pointer instanceof HasWordId)
 		{
-			final HasWordId wordQuery = (HasWordId) query;
-			this.wordId = wordQuery.getWordId();
+			final HasWordId wordPointer = (HasWordId) pointer;
+			this.wordId = wordPointer.getWordId();
 		}
-		if (query instanceof HasPos)
+		if (pointer instanceof HasPos)
 		{
-			final HasPos posQuery = (HasPos) query;
-			this.pos = posQuery.getPos();
+			final HasPos posPointer = (HasPos) pointer;
+			this.pos = posPointer.getPos();
 		}
 	}
 
@@ -89,7 +90,7 @@ public class BasicModule extends Module
 	 * Load BNC data
 	 *
 	 * @param wordId word id
-	 * @param pos pos
+	 * @param pos    pos
 	 * @param parent parent node
 	 */
 	private void bnc(final long wordId, final Character pos, final TreeNode parent)
@@ -279,7 +280,7 @@ public class BasicModule extends Module
 				}
 				else
 				{
-					parent.disable();
+					TreeView.disable(parent);
 				}
 
 				cursor.close();

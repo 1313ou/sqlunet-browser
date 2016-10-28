@@ -186,6 +186,20 @@ public class TreeNode
 	}
 
 	/**
+	 * Self-delete
+	 * @return true if deleted
+	 */
+	public boolean delete()
+	{
+		final TreeNode parent = getParent();
+		if (parent != null)
+		{
+			return parent.deleteChild(this) != -1;
+		}
+		return false;
+	}
+
+	/**
 	 * Delete child
 	 *
 	 * @param child child to delete
@@ -514,7 +528,6 @@ public class TreeNode
 	 */
 	public void disable()
 	{
-		this.renderer.disable();
 		this.enabled = false;
 	}
 

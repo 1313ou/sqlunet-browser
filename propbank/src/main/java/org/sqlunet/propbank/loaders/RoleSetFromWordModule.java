@@ -5,6 +5,7 @@ import android.os.Parcelable;
 
 import org.sqlunet.HasWordId;
 import org.sqlunet.treeview.model.TreeNode;
+import org.sqlunet.treeview.view.TreeView;
 
 /**
  * Module for PropBank role sets from word
@@ -29,10 +30,14 @@ public class RoleSetFromWordModule extends BasicModule
 	}
 
 	@Override
-	void unmarshal(final Parcelable query)
+	protected void unmarshal(final Parcelable pointer)
 	{
-		final HasWordId wordQuery = (HasWordId) query;
-		this.wordId = wordQuery.getWordId();
+		this.wordId = null;
+		if (pointer instanceof HasWordId)
+		{
+			final HasWordId wordPointer = (HasWordId) pointer;
+			this.wordId = wordPointer.getWordId();
+		}
 	}
 
 	@Override
@@ -45,7 +50,7 @@ public class RoleSetFromWordModule extends BasicModule
 		}
 		else
 		{
-			node.disable();
+			TreeView.disable(node);
 		}
 	}
 }

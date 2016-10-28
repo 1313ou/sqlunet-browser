@@ -89,7 +89,7 @@
 			android:name="org.sqlunet.browser.TextSearchActivity"
 			android:label="@string/title_activity_text_search"
 			android:launchMode="singleTop"
-			android:parentActivityName="org.sqlunet.browser.MainActivity"
+			android:parentActivityName="org.sqlunet.browser.TextSearchActivity"
 			tools:ignore="UnusedAttribute">
 			<intent-filter>
 				<action android:name="android.intent.action.SEARCH"/>
@@ -97,7 +97,7 @@
 
 			<meta-data
 				android:name="android.support.PARENT_ACTIVITY"
-				android:value="org.sqlunet.browser.MainActivity"/>
+				android:value="org.sqlunet.browser.TextSearchActivity"/>
 			<meta-data
 				android:name="android.app.searchable"
 				android:resource="@xml/searchable_text_search"/>
@@ -105,11 +105,11 @@
 		<activity
 			android:name="org.sqlunet.predicatematrix.browser.PredicateMatrixActivity"
 			android:label="@string/title_activity_predicatematrix"
-			android:parentActivityName="org.sqlunet.browser.MainActivity"
+			android:parentActivityName="org.sqlunet.predicatematrix.browser.PredicateMatrixActivity"
 			tools:ignore="UnusedAttribute">
 			<meta-data
 				android:name="android.support.PARENT_ACTIVITY"
-				android:value="org.sqlunet.browser.MainActivity"/>
+				android:value="org.sqlunet.predicatematrix.browser.PredicateMatrixActivity"/>
 		</activity>
 		<activity
 			android:name="org.sqlunet.wordnet.browser.SynsetActivity"

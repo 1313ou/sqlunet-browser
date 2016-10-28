@@ -34,13 +34,13 @@ public class PredicateRoleModule extends BasicModule
 	}
 
 	@Override
-	void unmarshal(final Parcelable query)
+	protected void unmarshal(final Parcelable pointer)
 	{
-		// get query
-		if (query instanceof PmRolePointer)
+		this.pmRoleId = null;
+		if (pointer instanceof PmRolePointer)
 		{
-			final PmRolePointer pointer = (PmRolePointer) query;
-			this.pmRoleId = pointer.getId();
+			final PmRolePointer rolePointer = (PmRolePointer) pointer;
+			this.pmRoleId = rolePointer.getId();
 		}
 	}
 

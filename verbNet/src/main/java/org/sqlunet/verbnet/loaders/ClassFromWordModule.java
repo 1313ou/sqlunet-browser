@@ -49,17 +49,19 @@ public class ClassFromWordModule extends BasicModule
 	}
 
 	@Override
-	void unmarshal(final Parcelable query)
+	protected void unmarshal(final Parcelable pointer)
 	{
-		if (query instanceof HasWordId)
+		this.wordId = null;
+		this.synsetId = null;
+		if (pointer instanceof HasWordId)
 		{
-			final HasWordId wordIdQuery = (HasWordId) query;
-			this.wordId = wordIdQuery.getWordId();
+			final HasWordId wordPointer = (HasWordId) pointer;
+			this.wordId = wordPointer.getWordId();
 		}
-		if (query instanceof HasSynsetId)
+		if (pointer instanceof HasSynsetId)
 		{
-			final HasSynsetId synsetQuery = (HasSynsetId) query;
-			this.synsetId = synsetQuery.getSynsetId();
+			final HasSynsetId synsetPointer = (HasSynsetId) pointer;
+			this.synsetId = synsetPointer.getSynsetId();
 		}
 	}
 
@@ -72,7 +74,7 @@ public class ClassFromWordModule extends BasicModule
 		}
 		else
 		{
-			node.disable();
+			TreeView.disable(node);
 		}
 	}
 
@@ -168,7 +170,7 @@ public class ClassFromWordModule extends BasicModule
 				}
 				else
 				{
-					parent.disable();
+					TreeView.disable(parent);
 				}
 
 				cursor.close();

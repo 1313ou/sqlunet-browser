@@ -20,9 +20,14 @@ public abstract class Module
 	static public int loaderId = 0;
 
 	/**
-	 * Android fragment
+	 * Fragment
 	 */
 	private final Fragment fragment;
+
+	/**
+	 * Action
+	 */
+	protected int action;
 
 	/**
 	 * Constructor
@@ -57,17 +62,26 @@ public abstract class Module
 	/**
 	 * Init
 	 *
-	 * @param arguments parceled arguments
+	 * @param action  action
+	 * @param pointer parceled pointer
 	 */
-	public void init(final Parcelable arguments)
+	public void init(final int action, final Parcelable pointer)
 	{
-		//
+		this.action = action;
+		unmarshal(pointer);
 	}
+
+	/**
+	 * Unmarshal
+	 *
+	 * @param pointer pointer
+	 */
+	abstract protected void unmarshal(final Parcelable pointer);
 
 	/**
 	 * Load and process data
 	 *
 	 * @param node tree node to attach results to
 	 */
-	public abstract void process(final TreeNode node);
+	abstract public void process(final TreeNode node);
 }

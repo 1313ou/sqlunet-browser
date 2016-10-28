@@ -101,7 +101,7 @@ public class FnAnnoSetFragment extends Fragment
 			default:
 				return rootView;
 		}
-		module.init(pointer);
+		module.init(action, pointer);
 		module.process(queryNode);
 
 		return rootView;

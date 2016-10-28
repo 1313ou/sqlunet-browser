@@ -103,18 +103,7 @@ abstract class BasicModule extends Module
 	BasicModule(final Fragment fragment)
 	{
 		super(fragment);
-	}
 
-	/**
-	 * Unmarshal parceled query
-	 *
-	 * @param query parceled query
-	 */
-	abstract void unmarshal(final Parcelable query);
-
-	@Override
-	public void init(final Parcelable query)
-	{
 		// context
 		final Context context = getContext();
 
@@ -132,9 +121,6 @@ abstract class BasicModule extends Module
 		this.semanticsProcessor = new VerbNetSemanticsProcessor();
 		this.syntaxSpanner = new VerbNetSyntaxSpanner();
 		this.semanticsSpanner = new VerbNetSemanticsSpanner();
-
-		// get query
-		unmarshal(query);
 	}
 
 	// L O A D E R S
@@ -217,7 +203,7 @@ abstract class BasicModule extends Module
 				}
 				else
 				{
-					parent.disable();
+					TreeView.disable(parent);
 				}
 
 				cursor.close();
@@ -309,7 +295,7 @@ abstract class BasicModule extends Module
 				}
 				else
 				{
-					parent.disable();
+					TreeView.disable(parent);
 				}
 				cursor.close();
 			}
@@ -426,7 +412,7 @@ abstract class BasicModule extends Module
 				}
 				else
 				{
-					parent.disable();
+					TreeView.disable(parent);
 				}
 
 				cursor.close();

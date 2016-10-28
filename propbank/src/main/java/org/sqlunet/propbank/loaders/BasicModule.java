@@ -8,7 +8,6 @@ import android.database.Cursor;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.text.SpannableStringBuilder;
 
 import org.sqlunet.browser.Module;
@@ -88,13 +87,6 @@ abstract class BasicModule extends Module
 	BasicModule(final Fragment fragment)
 	{
 		super(fragment);
-	}
-
-	@Override
-	public void init(final Parcelable query)
-	{
-		// spanner
-		this.spanner = new PropBankSpanner(getContext());
 
 		// drawables
 		this.roleSetDrawable = Spanner.getDrawable(getContext(), R.drawable.roleset);
@@ -105,16 +97,9 @@ abstract class BasicModule extends Module
 		this.definitionDrawable = Spanner.getDrawable(getContext(), R.drawable.definition);
 		this.sampleDrawable = Spanner.getDrawable(getContext(), R.drawable.sample);
 
-		// get query
-		unmarshal(query);
+		// spanner
+		this.spanner = new PropBankSpanner(getContext());
 	}
-
-	/**
-	 * Unmarshal parceled query
-	 *
-	 * @param query parceled query
-	 */
-	abstract void unmarshal(final Parcelable query);
 
 	// L O A D E R S
 
@@ -192,7 +177,7 @@ abstract class BasicModule extends Module
 				}
 				else
 				{
-					parent.disable();
+					TreeView.disable(parent);
 				}
 
 				cursor.close();
@@ -278,7 +263,7 @@ abstract class BasicModule extends Module
 				}
 				else
 				{
-					parent.disable();
+					TreeView.disable(parent);
 				}
 
 				cursor.close();
@@ -388,7 +373,7 @@ abstract class BasicModule extends Module
 				}
 				else
 				{
-					parent.disable();
+					TreeView.disable(parent);
 				}
 
 				cursor.close();
@@ -540,7 +525,7 @@ abstract class BasicModule extends Module
 				}
 				else
 				{
-					parent.disable();
+					TreeView.disable(parent);
 				}
 
 				cursor.close();

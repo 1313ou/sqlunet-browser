@@ -36,12 +36,13 @@ public class PredicateRoleFromWordModule extends BasicModule
 	}
 
 	@Override
-	void unmarshal(final Parcelable query)
+	protected void unmarshal(final Parcelable pointer)
 	{
-		if (query instanceof Word)
+		this.word = null;
+		if (pointer instanceof Word)
 		{
-			Word wordQuery = (Word) query;
-			this.word = wordQuery.getWord();
+			Word word = (Word) pointer;
+			this.word = word.getWord();
 		}
 	}
 

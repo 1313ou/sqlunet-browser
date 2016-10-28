@@ -26,8 +26,8 @@ public class SimpleRenderer extends TreeNode.Renderer<Object>
 	@Override
 	public View createNodeView(TreeNode node, Object value)
 	{
-		final TextView tv = new TextView(this.context);
-		tv.setText(String.valueOf(value));
-		return tv;
+		final TextView textView = new TextView(this.context);
+		textView.setText(String.valueOf(value));
+		return textView;
 	}
 }

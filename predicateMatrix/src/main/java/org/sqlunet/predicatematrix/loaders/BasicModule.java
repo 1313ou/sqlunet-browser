@@ -68,24 +68,10 @@ abstract class BasicModule extends Module
 	BasicModule(final Fragment fragment)
 	{
 		super(fragment);
-	}
 
-	/**
-	 * Unmarshal parceled query
-	 *
-	 * @param query parceled query
-	 */
-	abstract void unmarshal(final Parcelable query);
-
-	@Override
-	public void init(final Parcelable query)
-	{
 		// spanner
 		this.classDrawable = Spanner.getDrawable(getContext(), R.drawable.roles);
 		this.roleDrawable = Spanner.getDrawable(getContext(), R.drawable.role);
-
-		// get query
-		unmarshal(query);
 	}
 
 	// L O A D E R S

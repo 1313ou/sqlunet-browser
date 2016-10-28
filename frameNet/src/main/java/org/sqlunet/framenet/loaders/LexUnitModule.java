@@ -28,16 +28,15 @@ public class LexUnitModule extends FrameModule
 
 
 	@Override
-	public void init(final Parcelable query)
+	protected void unmarshal(final Parcelable pointer)
 	{
-		super.init(query);
+		super.unmarshal(pointer);
 
-		// get query
 		this.luId = null;
-		if (query instanceof FnLexUnitPointer)
+		if (pointer instanceof FnLexUnitPointer)
 		{
-			final FnLexUnitPointer lexUnitQuery = (FnLexUnitPointer) query;
-			this.luId = lexUnitQuery.getId();
+			final FnLexUnitPointer lexUnitPointer = (FnLexUnitPointer) pointer;
+			this.luId = lexUnitPointer.getId();
 		}
 	}
 

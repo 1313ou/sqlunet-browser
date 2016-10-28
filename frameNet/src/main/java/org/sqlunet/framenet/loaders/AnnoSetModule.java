@@ -29,15 +29,13 @@ public class AnnoSetModule extends BasicModule
 	}
 
 	@Override
-	public void init(final Parcelable query)
+	protected void unmarshal(final Parcelable pointer)
 	{
-		super.init(query);
-
-		// get query
-		if (query instanceof FnAnnoSetPointer)
+		this.annoSetId = null;
+		if (pointer instanceof FnAnnoSetPointer)
 		{
-			final FnAnnoSetPointer pointer = (FnAnnoSetPointer) query;
-			this.annoSetId = pointer.getId();
+			final FnAnnoSetPointer annoSetPointer = (FnAnnoSetPointer) pointer;
+			this.annoSetId = annoSetPointer.getId();
 		}
 	}
 

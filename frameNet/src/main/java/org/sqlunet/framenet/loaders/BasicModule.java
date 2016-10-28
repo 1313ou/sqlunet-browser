@@ -155,25 +155,6 @@ abstract public class BasicModule extends Module
 	BasicModule(final Fragment fragment)
 	{
 		super(fragment);
-	}
-
-	// C R E A T I O N
-
-	/**
-	 * Set always-simple-preferences flag
-	 *
-	 * @param verbose flag
-	 */
-	@SuppressWarnings("unused")
-	public static void setVerbose(boolean verbose)
-	{
-		VERBOSE = verbose;
-	}
-
-	@Override
-	public void init(final Parcelable arguments)
-	{
-		super.init(arguments);
 
 		// drawables
 		this.frameDrawable = Spanner.getDrawable(getContext(), R.drawable.fnframe);
@@ -189,10 +170,23 @@ abstract public class BasicModule extends Module
 		this.coresetDrawable = Spanner.getDrawable(getContext(), R.drawable.coreset);
 		this.layerDrawable = Spanner.getDrawable(getContext(), R.drawable.layer);
 
-		// create agents
+		// agents
 		this.processor = new FrameNetProcessor();
 		this.frameProcessor = new FrameNetFrameProcessor();
 		this.spanner = new FrameNetSpanner(getContext());
+	}
+
+	// C R E A T I O N
+
+	/**
+	 * Set always-simple-preferences flag
+	 *
+	 * @param verbose flag
+	 */
+	@SuppressWarnings("unused")
+	public static void setVerbose(boolean verbose)
+	{
+		VERBOSE = verbose;
 	}
 
 	// L O A D E R S
@@ -282,7 +276,7 @@ abstract public class BasicModule extends Module
 				}
 				else
 				{
-					parent.disable();
+					TreeView.disable(parent);
 				}
 
 				cursor.close();
@@ -429,7 +423,7 @@ abstract public class BasicModule extends Module
 				}
 				else
 				{
-					parent.disable();
+					TreeView.disable(parent);
 				}
 
 				cursor.close();
@@ -568,7 +562,7 @@ abstract public class BasicModule extends Module
 				}
 				else
 				{
-					parent.disable();
+					TreeView.disable(parent);
 				}
 
 				cursor.close();
@@ -720,7 +714,7 @@ abstract public class BasicModule extends Module
 				}
 				else
 				{
-					parent.disable();
+					TreeView.disable(parent);
 				}
 
 				cursor.close();
@@ -854,7 +848,7 @@ abstract public class BasicModule extends Module
 				}
 				else
 				{
-					parent.disable();
+					TreeView.disable(parent);
 				}
 
 				cursor.close();
@@ -984,7 +978,7 @@ abstract public class BasicModule extends Module
 				}
 				else
 				{
-					parent.disable();
+					TreeView.disable(parent);
 				}
 
 				cursor.close();
@@ -1072,7 +1066,7 @@ abstract public class BasicModule extends Module
 				}
 				else
 				{
-					parent.disable();
+					TreeView.disable(parent);
 				}
 
 				cursor.close();
@@ -1155,7 +1149,7 @@ abstract public class BasicModule extends Module
 				}
 				else
 				{
-					parent.disable();
+					TreeView.disable(parent);
 				}
 
 				cursor.close();
@@ -1282,7 +1276,7 @@ abstract public class BasicModule extends Module
 				}
 				else
 				{
-					parent.disable();
+					TreeView.disable(parent);
 				}
 
 				cursor.close();
@@ -1388,7 +1382,7 @@ abstract public class BasicModule extends Module
 				}
 				else
 				{
-					parent.disable();
+					TreeView.disable(parent);
 				}
 
 				cursor.close();
@@ -1570,7 +1564,7 @@ abstract public class BasicModule extends Module
 				}
 				else
 				{
-					parent.disable();
+					TreeView.disable(parent);
 				}
 
 				cursor.close();
@@ -1649,7 +1643,7 @@ abstract public class BasicModule extends Module
 				}
 				else
 				{
-					parent.disable();
+					TreeView.disable(parent);
 				}
 
 				cursor.close();
@@ -1728,7 +1722,7 @@ abstract public class BasicModule extends Module
 				}
 				else
 				{
-					parent.disable();
+					TreeView.disable(parent);
 				}
 
 				cursor.close();
@@ -1872,7 +1866,7 @@ abstract public class BasicModule extends Module
 				}
 				else
 				{
-					parent.disable();
+					TreeView.disable(parent);
 				}
 
 				cursor.close();
@@ -2007,7 +2001,7 @@ abstract public class BasicModule extends Module
 				}
 				else
 				{
-					parent.disable();
+					TreeView.disable(parent);
 				}
 
 				cursor.close();
@@ -2143,7 +2137,7 @@ abstract public class BasicModule extends Module
 				}
 				else
 				{
-					parent.disable();
+					TreeView.disable(parent);
 				}
 
 				cursor.close();
@@ -2266,7 +2260,7 @@ abstract public class BasicModule extends Module
 				}
 				else
 				{
-					parent.disable();
+					TreeView.disable(parent);
 				}
 
 				cursor.close();

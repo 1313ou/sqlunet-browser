@@ -6,6 +6,7 @@ import android.os.Parcelable;
 import org.sqlunet.HasXId;
 import org.sqlunet.propbank.PbRoleSetPointer;
 import org.sqlunet.treeview.model.TreeNode;
+import org.sqlunet.treeview.view.TreeView;
 
 /**
  * Module for PropBank role sets from id
@@ -30,20 +31,20 @@ public class RoleSetModule extends BasicModule
 	}
 
 	@Override
-	void unmarshal(final Parcelable query)
+	protected void unmarshal(final Parcelable pointer)
 	{
-		// get query
-		if (query instanceof PbRoleSetPointer)
+		this.roleSetId = null;
+		if (pointer instanceof PbRoleSetPointer)
 		{
-			final PbRoleSetPointer pointer = (PbRoleSetPointer) query;
-			this.roleSetId = pointer.getId();
+			final PbRoleSetPointer roleSetPointer = (PbRoleSetPointer) pointer;
+			this.roleSetId = roleSetPointer.getId();
 		}
-		if (query instanceof HasXId)
+		if (pointer instanceof HasXId)
 		{
-			final HasXId pointer = (HasXId) query;
-			if (pointer.getXSources().contains("pb")) //
+			final HasXId xIdPointer = (HasXId) pointer;
+			if (xIdPointer.getXSources().contains("pb")) //
 			{
-				this.roleSetId = pointer.getXClassId();
+				this.roleSetId = xIdPointer.getXClassId();
 			}
 		}
 	}
@@ -58,7 +59,7 @@ public class RoleSetModule extends BasicModule
 		}
 		else
 		{
-			node.disable();
+			TreeView.disable(node);
 		}
 	}
 }

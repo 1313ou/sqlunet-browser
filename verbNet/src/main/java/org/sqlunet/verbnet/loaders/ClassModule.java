@@ -5,6 +5,7 @@ import android.os.Parcelable;
 
 import org.sqlunet.HasXId;
 import org.sqlunet.treeview.model.TreeNode;
+import org.sqlunet.treeview.view.TreeView;
 import org.sqlunet.verbnet.VnClassPointer;
 
 /**
@@ -30,21 +31,22 @@ public class ClassModule extends BasicModule
 	}
 
 	@Override
-	void unmarshal(final Parcelable query)
+	protected void unmarshal(final Parcelable pointer)
 	{
-		if (query instanceof VnClassPointer)
+		this.classId = null;
+		if (pointer instanceof VnClassPointer)
 		{
-			final VnClassPointer pointer = (VnClassPointer) query;
-			this.classId = pointer.getId();
+			final VnClassPointer classPointer = (VnClassPointer) pointer;
+			this.classId = classPointer.getId();
 		}
-		if (query instanceof HasXId)
+		if (pointer instanceof HasXId)
 		{
-			final HasXId pointer = (HasXId) query;
-			if (pointer.getXSources().contains("vn")) //
+			final HasXId xIdPointer = (HasXId) pointer;
+			if (xIdPointer.getXSources().contains("vn")) //
 			{
-				this.classId = pointer.getXClassId();
-				// Long instanceId = pointer.getXMemberId();
-				// String sources = pointer.getXSources();
+				this.classId = xIdPointer.getXClassId();
+				// Long xMemberId = pointer.getXMemberId();
+				// String xSources = pointer.getXSources();
 			}
 		}
 	}
@@ -59,7 +61,7 @@ public class ClassModule extends BasicModule
 		}
 		else
 		{
-			node.disable();
+			TreeView.disable(node);
 		}
 	}
 }

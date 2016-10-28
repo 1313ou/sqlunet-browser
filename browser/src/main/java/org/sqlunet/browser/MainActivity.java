@@ -111,13 +111,15 @@ public class MainActivity extends Activity
 		// show the Up button in the action bar.
 		final ActionBar actionBar = getActionBar();
 		assert actionBar != null;
-		actionBar.setDisplayHomeAsUpEnabled(true);
 
 		// set up the action bar to show a custom layout
 		@SuppressLint("InflateParams") final View actionBarView = getLayoutInflater().inflate(R.layout.actionbar_custom, null);
 		actionBar.setCustomView(actionBarView);
-		actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM | ActionBar.DISPLAY_SHOW_HOME);
-		actionBar.setDisplayShowTitleEnabled(false);
+		actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM | ActionBar.DISPLAY_SHOW_HOME | ActionBar.DISPLAY_HOME_AS_UP);
+		// actionBar.setDisplayShowCustomEnabled(true);
+		// actionBar.setDisplayShowHomeEnabled(true);
+		// actionBar.setDisplayHomeAsUpEnabled(true);
+		// actionBar.setDisplayShowTitleEnabled(false);
 
 		// selector mode adapter data
 		final CharSequence[] modes = getResources().getTextArray(R.array.selectors_names);

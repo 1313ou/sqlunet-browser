@@ -391,6 +391,8 @@ public class WebFragment extends Fragment
 		{
 			args = getActivity().getIntent().getExtras();
 		}
+		// action
+		final int action = args.getInt(SqlUNetContract.ARG_QUERYACTION, SqlUNetContract.ARG_QUERYACTION_ALL);
 
 		// pointer
 		final Parcelable pointer = args.getParcelable(SqlUNetContract.ARG_QUERYPOINTER);
@@ -400,8 +402,6 @@ public class WebFragment extends Fragment
 		final String data = args.getString(SqlUNetContract.ARG_QUERYSTRING);
 		Log.d(WebFragment.TAG, "ARG data=" + data); //
 
-		// action
-		final int action = args.getInt(SqlUNetContract.ARG_QUERYACTION, SqlUNetContract.ARG_QUERYACTION_ALL);
 
 		// load the contents
 		getLoaderManager().restartLoader(++Module.loaderId, null, new LoaderCallbacks<String>()

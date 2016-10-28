@@ -29,15 +29,13 @@ public class AnnoSetFromPatternModule extends BasicModule
 	}
 
 	@Override
-	public void init(final Parcelable query)
+	protected void unmarshal(final Parcelable pointer)
 	{
-		super.init(query);
-
-		// get query
-		if (query instanceof FnPatternPointer)
+		this.patternId = null;
+		if (pointer instanceof FnPatternPointer)
 		{
-			final FnPatternPointer pointer = (FnPatternPointer) query;
-			this.patternId = pointer.getId();
+			final FnPatternPointer patternPointer = (FnPatternPointer) pointer;
+			this.patternId = patternPointer.getId();
 		}
 	}
 

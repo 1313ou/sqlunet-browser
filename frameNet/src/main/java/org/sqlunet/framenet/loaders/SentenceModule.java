@@ -45,15 +45,13 @@ public class SentenceModule extends BasicModule
 	}
 
 	@Override
-	public void init(final Parcelable query)
+	protected void unmarshal(final Parcelable pointer)
 	{
-		super.init(query);
-
-		// get query
-		if (query instanceof FnSentencePointer)
+		this.sentenceId = null;
+		if (pointer instanceof FnSentencePointer)
 		{
-			final FnSentencePointer sentenceQuery = (FnSentencePointer) query;
-			this.sentenceId = sentenceQuery.getId();
+			final FnSentencePointer sentencePointer = (FnSentencePointer) pointer;
+			this.sentenceId = sentencePointer.getId();
 		}
 	}
 
@@ -123,7 +121,7 @@ public class SentenceModule extends BasicModule
 				}
 				else
 				{
-					parent.disable();
+					TreeView.disable(parent);
 				}
 
 				cursor.close();

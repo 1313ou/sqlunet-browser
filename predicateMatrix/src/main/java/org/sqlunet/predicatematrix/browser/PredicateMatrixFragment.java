@@ -88,7 +88,7 @@ public class PredicateMatrixFragment extends Fragment
 
 			// module
 			Module module = (pointer instanceof PmRolePointer) ? new PredicateRoleModule(this, mode) : new PredicateRoleFromWordModule(this, mode);
-			module.init(pointer);
+			module.init(action, pointer);
 			module.process(queryNode);
 		}
 		return rootView;

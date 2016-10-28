@@ -6,6 +6,7 @@ import android.os.Parcelable;
 import org.sqlunet.HasPos;
 import org.sqlunet.HasWordId;
 import org.sqlunet.treeview.model.TreeNode;
+import org.sqlunet.treeview.view.TreeView;
 
 /**
  * Lex unit from word module
@@ -33,22 +34,21 @@ public class LexUnitFromWordModule extends LexUnitModule
 	}
 
 	@Override
-	public void init(final Parcelable query)
+	protected void unmarshal(final Parcelable pointer)
 	{
-		super.init(query);
+		super.unmarshal(pointer);
 
-		// get query
 		this.wordId = null;
 		this.pos = null;
-		if (query instanceof HasWordId)
+		if (pointer instanceof HasWordId)
 		{
-			final HasWordId wordQuery = (HasWordId) query;
-			this.wordId = wordQuery.getWordId();
+			final HasWordId wordPointer = (HasWordId) pointer;
+			this.wordId = wordPointer.getWordId();
 		}
-		if (query instanceof HasPos)
+		if (pointer instanceof HasPos)
 		{
-			final HasPos posQuery = (HasPos) query;
-			this.pos = posQuery.getPos();
+			final HasPos posPointer = (HasPos) pointer;
+			this.pos = posPointer.getPos();
 		}
 	}
 
@@ -62,7 +62,7 @@ public class LexUnitFromWordModule extends LexUnitModule
 		}
 		else
 		{
-			node.disable();
+			TreeView.disable(node);
 		}
 	}
 }

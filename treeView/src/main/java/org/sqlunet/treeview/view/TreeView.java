@@ -238,6 +238,32 @@ public class TreeView
 		}
 	}
 
+	/**
+	 * Remove
+	 *
+	 * @param node node
+	 */
+	static public void remove(final TreeNode node)
+	{
+		final TreeView treeView = node.getRenderer().getTreeView();
+		assert (treeView != null);
+		treeView.removeNode(node);
+	}
+
+	/**
+	 * Remove
+	 *
+	 * @param node node
+	 */
+	static public void disable(final TreeNode node)
+	{
+		node.disable();
+
+		final TreeNode.Renderer renderer = node.getRenderer();
+		assert (renderer != null);
+		renderer.disable();
+	}
+
 	// E X P A N D  /  C O L L A P S E
 
 	/**

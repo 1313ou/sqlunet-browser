@@ -6,6 +6,7 @@ import android.os.Parcelable;
 import org.sqlunet.HasXId;
 import org.sqlunet.framenet.FnFramePointer;
 import org.sqlunet.treeview.model.TreeNode;
+import org.sqlunet.treeview.view.TreeView;
 
 /**
  * Frame module
@@ -33,34 +34,22 @@ public class FrameModule extends BasicModule
 	}
 
 	@Override
-	public void init(final Parcelable query)
+	protected void unmarshal(final Parcelable pointer)
 	{
-		super.init(query);
-
-		unmarshal(query);
-	}
-
-	/**
-	 * Unmarshal parceled query
-	 *
-	 * @param query parceled query
-	 */
-	private void unmarshal(final Parcelable query)
-	{
-		// get query
-		if (query instanceof FnFramePointer)
+		this.frameId = null;
+		this.luId = null;
+		if (pointer instanceof FnFramePointer)
 		{
-			final FnFramePointer pointer = (FnFramePointer) query;
-			this.frameId = pointer.getId();
-			this.luId = null;
+			final FnFramePointer framePointer = (FnFramePointer) pointer;
+			this.frameId = framePointer.getId();
 		}
-		if (query instanceof HasXId)
+		if (pointer instanceof HasXId)
 		{
-			final HasXId pointer = (HasXId) query;
-			if (pointer.getXSources().contains("fn")) //
+			final HasXId xIdPointer = (HasXId) pointer;
+			if (xIdPointer.getXSources().contains("fn")) //
 			{
-				this.frameId = pointer.getXClassId();
-				this.luId = pointer.getXMemberId();
+				this.frameId = xIdPointer.getXClassId();
+				this.luId = xIdPointer.getXMemberId();
 			}
 		}
 	}
@@ -70,17 +59,15 @@ public class FrameModule extends BasicModule
 	{
 		if (this.luId != null)
 		{
-			// data
 			lexUnit(this.luId, node, true, false);
 		}
 		else if (this.frameId != null)
 		{
-			// data
 			frame(this.frameId, node);
 		}
 		else
 		{
-			node.disable();
+			TreeView.disable(node);
 		}
 	}
 }

@@ -12,6 +12,7 @@ import org.sqlunet.treeview.renderer.LinkHolder.Link;
 import org.sqlunet.treeview.renderer.QueryHolder;
 import org.sqlunet.treeview.renderer.QueryHolder.Query;
 import org.sqlunet.treeview.renderer.TextRenderer;
+import org.sqlunet.treeview.view.TreeView;
 
 /**
  * Tree factory
@@ -142,7 +143,14 @@ public class TreeFactory
 	 */
 	static public void setNodeValue(final TreeNode node, final CharSequence value)
 	{
-		// update view
+		// delete node from parent if null value
+		if (value == null || value.length() == 0)
+		{
+			TreeView.remove(node);
+			return;
+		}
+
+		// update value
 		node.setValue(value);
 
 		// update view

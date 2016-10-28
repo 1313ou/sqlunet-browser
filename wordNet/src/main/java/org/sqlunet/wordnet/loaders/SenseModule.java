@@ -33,15 +33,15 @@ public class SenseModule extends SynsetModule
 	}
 
 	@Override
-	public void init(final Parcelable parcelable)
+	protected void unmarshal(final Parcelable pointer)
 	{
-		super.init(parcelable);
+		super.unmarshal(pointer);
 
-		// get arguments
-		if (parcelable instanceof HasWordId)
+		this.wordId = null;
+		if (pointer instanceof HasWordId)
 		{
-			final HasWordId query = (HasWordId) parcelable;
-			this.wordId = query.getWordId();
+			final HasWordId wordPointer = (HasWordId) pointer;
+			this.wordId = wordPointer.getWordId();
 		}
 	}
 

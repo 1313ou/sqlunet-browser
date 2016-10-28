@@ -72,13 +72,15 @@ public class PredicateMatrixActivity extends Activity
 		// show the Up button in the action bar.
 		final ActionBar actionBar = getActionBar();
 		assert actionBar != null;
-		actionBar.setDisplayHomeAsUpEnabled(true);
 
 		// set up the action bar to show a custom layout
 		@SuppressLint("InflateParams") final View actionBarView = getLayoutInflater().inflate(R.layout.actionbar_custom, null);
 		actionBar.setCustomView(actionBarView);
-		actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM | ActionBar.DISPLAY_SHOW_HOME);
-		actionBar.setDisplayShowTitleEnabled(false);
+		actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM | ActionBar.DISPLAY_SHOW_HOME | ActionBar.DISPLAY_HOME_AS_UP);
+		// actionBar.setDisplayShowCustomEnabled(true);
+		// actionBar.setDisplayShowHomeEnabled(true);
+		// actionBar.setDisplayHomeAsUpEnabled(true);
+		// actionBar.setDisplayShowTitleEnabled(false);
 
 		// adapter range
 		final CharSequence[] modes = getResources().getTextArray(R.array.pmmodes);
@@ -305,9 +307,9 @@ public class PredicateMatrixActivity extends Activity
 	 */
 	private void handleIntent(final Intent intent)
 	{
-		// get the action and get the query
-		final String action = intent.getAction();
-		if (Intent.ACTION_SEARCH.equals(action))
+		// get the intent action and get the query
+		final String intentAction = intent.getAction();
+		if (Intent.ACTION_SEARCH.equals(intentAction))
 		{
 			// arguments
 			final String query = intent.getStringExtra(SearchManager.QUERY);
@@ -315,17 +317,17 @@ public class PredicateMatrixActivity extends Activity
 		}
 		else
 		{
-			final Bundle bundle = intent.getExtras();
-			if(bundle != null)
+			final Bundle args = intent.getExtras();
+			if (args != null)
 			{
-				final int actionCode = bundle.getInt(SqlUNetContract.ARG_QUERYACTION);
-				if (SqlUNetContract.ARG_QUERYACTION_PM == actionCode || SqlUNetContract.ARG_QUERYACTION_PMROLE == actionCode)
+				final int action = args.getInt(SqlUNetContract.ARG_QUERYACTION);
+				if (SqlUNetContract.ARG_QUERYACTION_PM == action || SqlUNetContract.ARG_QUERYACTION_PMROLE == action)
 				{
-					final Parcelable param = bundle.getParcelable(SqlUNetContract.ARG_QUERYPOINTER);
-					if (param instanceof PmRolePointer)
+					final Parcelable pointer = args.getParcelable(SqlUNetContract.ARG_QUERYPOINTER);
+					if (pointer instanceof PmRolePointer)
 					{
-						final PmRolePointer pointer = (PmRolePointer) param;
-						handleSearch(pointer);
+						final PmRolePointer rolePointer = (PmRolePointer) pointer;
+						handleSearch(rolePointer);
 					}
 				}
 			}

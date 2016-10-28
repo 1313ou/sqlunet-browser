@@ -39,20 +39,19 @@ public class SynsetModule extends BasicModule
 	}
 
 	@Override
-	public void init(final Parcelable parcelable)
+	protected void unmarshal(final Parcelable pointer)
 	{
-		super.init(parcelable);
-
-		// get arguments
-		if (parcelable instanceof HasSynsetId)
+		this.synsetId = null;
+		this.pos = null;
+		if (pointer instanceof HasSynsetId)
 		{
-			final HasSynsetId query = (HasSynsetId) parcelable;
-			this.synsetId = query.getSynsetId();
+			final HasSynsetId synsetPointer = (HasSynsetId) pointer;
+			this.synsetId = synsetPointer.getSynsetId();
 		}
-		if (parcelable instanceof HasPos)
+		if (pointer instanceof HasPos)
 		{
-			final HasPos query = (HasPos) parcelable;
-			this.pos = query.getPos();
+			final HasPos posPointer = (HasPos) pointer;
+			this.pos = posPointer.getPos();
 		}
 	}
 

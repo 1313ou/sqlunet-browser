@@ -176,7 +176,7 @@ abstract public class BasicModule extends Module
 				}
 				else
 				{
-					parent.disable();
+					TreeView.disable(parent);
 				}
 
 				cursor.close();
@@ -193,11 +193,11 @@ abstract public class BasicModule extends Module
 	/**
 	 * Synset
 	 *
-	 * @param synsetId synset id
-	 * @param parent   parent node
-	 * @param add      whether to add to (or set) node
+	 * @param synsetId   synset id
+	 * @param parent     parent node
+	 * @param addNewNode whether to add to (or set) node
 	 */
-	void synset(final long synsetId, final TreeNode parent, final boolean add)
+	void synset(final long synsetId, final TreeNode parent, final boolean addNewNode)
 	{
 		getLoaderManager().restartLoader(++Module.loaderId, null, new LoaderCallbacks<Cursor>()
 		{
@@ -251,7 +251,7 @@ abstract public class BasicModule extends Module
 					Spanner.append(sb, definition, 0, WordNetFactories.definitionFactory);
 
 					// attach result
-					if (add)
+					if (addNewNode)
 					{
 						TreeFactory.addTextNode(parent, sb, BasicModule.this.getContext());
 
@@ -265,7 +265,14 @@ abstract public class BasicModule extends Module
 				}
 				else
 				{
-					parent.disable();
+					if (addNewNode)
+					{
+						TreeView.disable(parent);
+					}
+					else
+					{
+						TreeView.remove(parent);
+					}
 				}
 
 				cursor.close();
@@ -282,15 +289,14 @@ abstract public class BasicModule extends Module
 	/**
 	 * Members
 	 *
-	 * @param synsetId synset
-	 * @param parent   parent node
-	 * @param add      whether to add to (or set) node
+	 * @param synsetId   synset
+	 * @param parent     parent node
+	 * @param addNewNode whether to add to (or set) node
 	 */
-	void members(final long synsetId, final TreeNode parent, final boolean add)
+	void members(final long synsetId, final TreeNode parent, final boolean addNewNode)
 	{
 		getLoaderManager().restartLoader(++Module.loaderId, null, new LoaderCallbacks<Cursor>()
 		{
-
 			@Override
 			public Loader<Cursor> onCreateLoader(final int loaderId, final Bundle loaderArgs)
 			{
@@ -346,7 +352,7 @@ abstract public class BasicModule extends Module
 					}
 
 					// attach result
-					if (add)
+					if (addNewNode)
 					{
 						TreeFactory.addTextNode(parent, sb, BasicModule.this.getContext());
 
@@ -360,7 +366,14 @@ abstract public class BasicModule extends Module
 				}
 				else
 				{
-					parent.disable();
+					if (addNewNode)
+					{
+						TreeView.disable(parent);
+					}
+					else
+					{
+						TreeView.remove(parent);
+					}
 				}
 
 				cursor.close();
@@ -377,15 +390,14 @@ abstract public class BasicModule extends Module
 	/**
 	 * Samples
 	 *
-	 * @param synsetId synset id
-	 * @param parent   parent node
-	 * @param add      whether to add to (or set) node
+	 * @param synsetId   synset id
+	 * @param parent     parent node
+	 * @param addNewNode whether to add to (or set) node
 	 */
-	void samples(final long synsetId, final TreeNode parent, final boolean add)
+	void samples(final long synsetId, final TreeNode parent, final boolean addNewNode)
 	{
 		getLoaderManager().restartLoader(++Module.loaderId, null, new LoaderCallbacks<Cursor>()
 		{
-
 			@Override
 			public Loader<Cursor> onCreateLoader(final int loaderId, final Bundle loaderArgs)
 			{
@@ -427,7 +439,7 @@ abstract public class BasicModule extends Module
 					while (cursor.moveToNext());
 
 					// attach result
-					if (add)
+					if (addNewNode)
 					{
 						TreeFactory.addTextNode(parent, sb, BasicModule.this.getContext());
 
@@ -441,7 +453,14 @@ abstract public class BasicModule extends Module
 				}
 				else
 				{
-					parent.disable();
+					if (addNewNode)
+					{
+						TreeView.disable(parent);
+					}
+					else
+					{
+						TreeView.remove(parent);
+					}
 				}
 
 				cursor.close();
@@ -609,7 +628,7 @@ abstract public class BasicModule extends Module
 				}
 				else
 				{
-					parent.disable();
+					TreeView.disable(parent);
 				}
 
 				cursor.close();
