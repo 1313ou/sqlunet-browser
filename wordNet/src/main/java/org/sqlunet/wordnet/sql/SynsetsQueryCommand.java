@@ -5,7 +5,7 @@ import android.database.sqlite.SQLiteDatabase;
 import org.sqlunet.sql.DBQueryCommand;
 
 /**
- * Query command for synsets containing a given word
+ * QueryData command for synsets containing a given word
  *
  * @author Bernard
  */

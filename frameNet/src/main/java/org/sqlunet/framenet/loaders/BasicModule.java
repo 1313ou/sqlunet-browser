@@ -8,7 +8,6 @@ import android.database.Cursor;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.text.Editable;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
@@ -44,7 +43,7 @@ import org.sqlunet.framenet.style.FrameNetProcessor;
 import org.sqlunet.framenet.style.FrameNetSpanner;
 import org.sqlunet.style.Spanner;
 import org.sqlunet.treeview.model.TreeNode;
-import org.sqlunet.treeview.renderer.QueryHolder;
+import org.sqlunet.treeview.renderer.Query;
 import org.sqlunet.treeview.view.TreeView;
 import org.sqlunet.view.TreeFactory;
 
@@ -2347,7 +2346,7 @@ abstract public class BasicModule extends Module
 	/**
 	 * Frame query
 	 */
-	class FrameQuery extends QueryHolder.Query
+	class FrameQuery extends Query.QueryData
 	{
 		public FrameQuery(final long frameId, final int icon, @SuppressWarnings("SameParameterValue") final CharSequence text)
 		{
@@ -2364,7 +2363,7 @@ abstract public class BasicModule extends Module
 	/**
 	 * Related frame query
 	 */
-	class RelatedQuery extends QueryHolder.Query
+	class RelatedQuery extends Query.QueryData
 	{
 		public RelatedQuery(final long frameId, final int icon, @SuppressWarnings("SameParameterValue") final CharSequence text)
 		{
@@ -2381,7 +2380,7 @@ abstract public class BasicModule extends Module
 	/**
 	 * Lex units query
 	 */
-	class LexUnitsQuery extends QueryHolder.Query
+	class LexUnitsQuery extends Query.QueryData
 	{
 		public LexUnitsQuery(final long frameId, final int icon, @SuppressWarnings("SameParameterValue") final CharSequence text)
 		{
@@ -2398,7 +2397,7 @@ abstract public class BasicModule extends Module
 	/**
 	 * Frame elements query
 	 */
-	class FEsQuery extends QueryHolder.Query
+	class FEsQuery extends Query.QueryData
 	{
 		public FEsQuery(final long frameId, final int icon, @SuppressWarnings("SameParameterValue") final CharSequence text)
 		{
@@ -2415,7 +2414,7 @@ abstract public class BasicModule extends Module
 	/**
 	 * Governors query
 	 */
-	class GovernorsQuery extends QueryHolder.Query
+	class GovernorsQuery extends Query.QueryData
 	{
 		public GovernorsQuery(final long luId, final int icon, @SuppressWarnings("SameParameterValue") final CharSequence text)
 		{
@@ -2432,7 +2431,7 @@ abstract public class BasicModule extends Module
 	/**
 	 * Realizations query
 	 */
-	class RealizationsQuery extends QueryHolder.Query
+	class RealizationsQuery extends Query.QueryData
 	{
 		public RealizationsQuery(final long luId, final int icon, @SuppressWarnings("SameParameterValue") final CharSequence text)
 		{
@@ -2449,7 +2448,7 @@ abstract public class BasicModule extends Module
 	/**
 	 * Group realizations query
 	 */
-	class GroupRealizationsQuery extends QueryHolder.Query
+	class GroupRealizationsQuery extends Query.QueryData
 	{
 		public GroupRealizationsQuery(final long luId, final int icon, @SuppressWarnings("SameParameterValue") final CharSequence text)
 		{
@@ -2466,7 +2465,7 @@ abstract public class BasicModule extends Module
 	/**
 	 * Sentences for pattern query
 	 */
-	class SentencesForPatternQuery extends QueryHolder.Query
+	class SentencesForPatternQuery extends Query.QueryData
 	{
 		public SentencesForPatternQuery(final long patternId, final int icon, final CharSequence text)
 		{
@@ -2483,7 +2482,7 @@ abstract public class BasicModule extends Module
 	/**
 	 * Sentences for valence unit query
 	 */
-	class SentencesForValenceUnitQuery extends QueryHolder.Query
+	class SentencesForValenceUnitQuery extends Query.QueryData
 	{
 		public SentencesForValenceUnitQuery(final long vuId, final int icon, final CharSequence text)
 		{
@@ -2500,7 +2499,7 @@ abstract public class BasicModule extends Module
 	/**
 	 * Sentences for lex unit query
 	 */
-	class SentencesForLexUnitQuery extends QueryHolder.Query
+	class SentencesForLexUnitQuery extends Query.QueryData
 	{
 		public SentencesForLexUnitQuery(final long luId, final int icon, @SuppressWarnings("SameParameterValue") final CharSequence text)
 		{
@@ -2517,7 +2516,7 @@ abstract public class BasicModule extends Module
 	/**
 	 * AnnoSet query
 	 */
-	class AnnoSetQuery extends QueryHolder.Query
+	class AnnoSetQuery extends Query.QueryData
 	{
 		private final boolean withSentence;
 
@@ -2537,7 +2536,7 @@ abstract public class BasicModule extends Module
 	/**
 	 * AnnoSets for governor query
 	 */
-	class AnnoSetsForGovernorQuery extends QueryHolder.Query
+	class AnnoSetsForGovernorQuery extends Query.QueryData
 	{
 		public AnnoSetsForGovernorQuery(final long governorId, final int icon, final CharSequence text)
 		{
@@ -2554,7 +2553,7 @@ abstract public class BasicModule extends Module
 	/**
 	 * Dummy query
 	 */
-	class DummyQuery extends QueryHolder.Query
+	class DummyQuery extends Query.QueryData
 	{
 		private static final String TAG = "DummyQuery"; //
 

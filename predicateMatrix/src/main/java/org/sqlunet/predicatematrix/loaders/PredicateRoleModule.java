@@ -15,7 +15,7 @@ import org.sqlunet.treeview.model.TreeNode;
 public class PredicateRoleModule extends BasicModule
 {
 	/**
-	 * Query id
+	 * QueryData id
 	 */
 	private Long pmRoleId;
 

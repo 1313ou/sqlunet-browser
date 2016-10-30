@@ -11,7 +11,7 @@ import org.sqlunet.treeview.model.TreeNode;
  *
  * @author Bogdan Melnychuk on 2/11/15.
  */
-public class SimpleRenderer extends TreeNode.Renderer<Object>
+public class SimpleRenderer extends Renderer<Object>
 {
 	/**
 	 * Constructor

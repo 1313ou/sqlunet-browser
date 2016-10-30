@@ -1,12 +1,6 @@
 package org.sqlunet.treeview.model;
 
-import android.content.Context;
-import android.view.View;
-import android.view.ViewGroup;
-
-import org.sqlunet.treeview.R;
-import org.sqlunet.treeview.view.TreeNodeWrapperView;
-import org.sqlunet.treeview.view.TreeView;
+import org.sqlunet.treeview.renderer.Renderer;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -187,6 +181,7 @@ public class TreeNode
 
 	/**
 	 * Self-delete
+	 *
 	 * @return true if deleted
 	 */
 	public boolean delete()
@@ -448,7 +443,7 @@ public class TreeNode
 	 *
 	 * @param selectable selectable flag
 	 */
-	private void setSelectable(@SuppressWarnings("SameParameterValue") boolean selectable)
+	public void setSelectable(@SuppressWarnings("SameParameterValue") boolean selectable)
 	{
 		this.selectable = selectable;
 	}
@@ -461,12 +456,14 @@ public class TreeNode
 	 * @param renderer renderer
 	 * @return this node
 	 */
-	public TreeNode setRenderer(Renderer<?> renderer)
+	public TreeNode setRenderer(final Renderer<?> renderer)
 	{
 		this.renderer = renderer;
+
+		// adjust attached node
 		if (renderer != null)
 		{
-			renderer.node = this;
+			renderer.attachNode(this);
 		}
 		return this;
 	}
@@ -540,196 +537,5 @@ public class TreeNode
 	public boolean isEnabled()
 	{
 		return this.enabled;
-	}
-
-	// B A S E R E N D E R E R
-
-	/**
-	 * Renderer interface
-	 *
-	 * @param <E> value type
-	 */
-	public static abstract class Renderer<E>
-	{
-		/**
-		 * Node
-		 */
-		protected TreeNode node;
-
-		/**
-		 * Tree view
-		 */
-		TreeView treeView;
-
-		/**
-		 * Node view
-		 */
-		private View nodeView;
-
-		/**
-		 * View
-		 */
-		private View view;
-
-		/**
-		 * Container style
-		 */
-		int containerStyle;
-
-		/**
-		 * Context
-		 */
-		protected final Context context;
-
-		/**
-		 * Constructor
-		 *
-		 * @param context context
-		 */
-		public Renderer(Context context)
-		{
-			this.context = context;
-		}
-
-		// V I E W
-
-		/**
-		 * Create node view
-		 *
-		 * @param node  node
-		 * @param value value
-		 * @return node view
-		 */
-		public abstract View createNodeView(@SuppressWarnings("UnusedParameters") final TreeNode node, final E value);
-
-		/**
-		 * Get node view
-		 *
-		 * @return node view
-		 */
-		@SuppressWarnings("unchecked")
-		public View getNodeView()
-		{
-			if (this.nodeView == null)
-			{
-				this.nodeView = createNodeView(this.node, (E) this.node.getValue());
-			}
-			return this.nodeView;
-		}
-
-		/**
-		 * Get view
-		 *
-		 * @return view
-		 */
-		public View getView()
-		{
-			// return cached value
-			if (this.view != null)
-			{
-				return this.view;
-			}
-
-			// make view
-			final View nodeView1 = getNodeView();
-
-			// wrapper
-			final TreeNodeWrapperView nodeWrapperView = new TreeNodeWrapperView(nodeView1.getContext(), getContainerStyle());
-			nodeWrapperView.insertNodeView(nodeView1);
-			this.view = nodeWrapperView;
-
-			return this.view;
-		}
-
-		/**
-		 * Get whether view is initialized
-		 *
-		 * @return whether view is initialized
-		 */
-		public boolean isInitialized()
-		{
-			return this.view != null;
-		}
-
-		/**
-		 * Get node items container view
-		 *
-		 * @return node items container view
-		 */
-		public ViewGroup getNodeItemsView()
-		{
-			return (ViewGroup) getView().findViewById(R.id.node_items);
-		}
-
-		/**
-		 * Set tree view
-		 *
-		 * @param treeView tree view
-		 */
-		public void setTreeView(TreeView treeView)
-		{
-			this.treeView = treeView;
-		}
-
-		/**
-		 * Get tree view
-		 *
-		 * @return tree view
-		 */
-		public TreeView getTreeView()
-		{
-			return this.treeView;
-		}
-
-		// S T Y L E
-
-		/**
-		 * Set container style
-		 *
-		 * @param style container style
-		 */
-		public void setContainerStyle(int style)
-		{
-			this.containerStyle = style;
-		}
-
-		/**
-		 * Get container style
-		 *
-		 * @return container style
-		 */
-		public int getContainerStyle()
-		{
-			return this.containerStyle;
-		}
-
-		// S T A T E
-
-		/**
-		 * Toggle
-		 *
-		 * @param active active state
-		 */
-		public void toggle(boolean active)
-		{
-			// empty
-		}
-
-		/**
-		 * Disable
-		 */
-		public void disable()
-		{
-			// empty
-		}
-
-		/**
-		 * Toggle selection model
-		 */
-		@SuppressWarnings("EmptyMethod")
-		public void toggleSelectionMode()
-		{
-			// empty
-		}
 	}
 }

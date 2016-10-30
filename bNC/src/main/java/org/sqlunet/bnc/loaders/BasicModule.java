@@ -25,7 +25,7 @@ import org.sqlunet.view.TreeFactory;
 public class BasicModule extends Module
 {
 	/**
-	 * Query
+	 * QueryData
 	 */
 	private Long wordId;
 

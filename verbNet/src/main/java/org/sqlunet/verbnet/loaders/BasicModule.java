@@ -9,13 +9,12 @@ import android.database.Cursor;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.text.SpannableStringBuilder;
 
 import org.sqlunet.browser.Module;
 import org.sqlunet.style.Spanner;
 import org.sqlunet.treeview.model.TreeNode;
-import org.sqlunet.treeview.renderer.QueryHolder;
+import org.sqlunet.treeview.renderer.Query;
 import org.sqlunet.treeview.view.TreeView;
 import org.sqlunet.verbnet.R;
 import org.sqlunet.verbnet.provider.VerbNetContract.VnClasses_VnFrames_X;
@@ -163,6 +162,7 @@ abstract class BasicModule extends Module
 				}
 				if (cursor.moveToFirst())
 				{
+					final Context context = BasicModule.this.getContext();
 					final SpannableStringBuilder sb = new SpannableStringBuilder();
 
 					// column indices
@@ -191,15 +191,15 @@ abstract class BasicModule extends Module
 					final TreeNode itemsNode = groupings(groupings);
 
 					// sub nodes
-					final TreeNode rolesNode = TreeFactory.newQueryNode(new RolesQuery(classId, R.drawable.role, "Roles"), BasicModule.this.getContext()); //
-					final TreeNode framesNode = TreeFactory.newQueryNode(new FramesQuery(classId, R.drawable.vnframe, "Frames"), //
-							BasicModule.this.getContext());
+					final TreeNode rolesNode = TreeFactory.newQueryNode(new RolesQuery(classId, R.drawable.role, "Roles"), context); //
+					final TreeNode framesNode = TreeFactory.newQueryNode(new FramesQuery(classId, R.drawable.vnframe, "Frames"), context);
 
 					// attach result
 					TreeFactory.addTextNode(parent, sb, BasicModule.this.getContext(), itemsNode, rolesNode, framesNode);
 
 					// expand
 					TreeView.expand(parent, false);
+					TreeView.expand(rolesNode, false);
 				}
 				else
 				{
@@ -471,7 +471,7 @@ abstract class BasicModule extends Module
 	/**
 	 * Roles query
 	 */
-	class RolesQuery extends QueryHolder.Query
+	class RolesQuery extends Query.QueryData
 	{
 		public RolesQuery(final long classId, final int icon, @SuppressWarnings("SameParameterValue") final CharSequence text)
 		{
@@ -488,7 +488,7 @@ abstract class BasicModule extends Module
 	/**
 	 * Frames query
 	 */
-	class FramesQuery extends QueryHolder.Query
+	class FramesQuery extends Query.QueryData
 	{
 		public FramesQuery(final long classId, final int icon, @SuppressWarnings("SameParameterValue") final CharSequence text)
 		{

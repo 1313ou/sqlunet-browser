@@ -5,7 +5,7 @@ import android.database.sqlite.SQLiteDatabase;
 import org.sqlunet.sql.DBQueryCommand;
 
 /**
- * Query command for VerbNet roles
+ * QueryData command for VerbNet roles
  *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */

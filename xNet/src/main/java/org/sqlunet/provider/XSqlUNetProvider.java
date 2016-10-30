@@ -99,7 +99,7 @@ public class XSqlUNetProvider extends SqlUNetProvider
 	// Q U E R Y
 
 	/**
-	 * Query
+	 * QueryData
 	 *
 	 * @param uri           uri
 	 * @param projection    projection

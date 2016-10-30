@@ -14,7 +14,7 @@ import android.text.SpannableStringBuilder;
 import org.sqlunet.browser.Module;
 import org.sqlunet.style.Spanner;
 import org.sqlunet.treeview.model.TreeNode;
-import org.sqlunet.treeview.renderer.QueryHolder;
+import org.sqlunet.treeview.renderer.Query;
 import org.sqlunet.treeview.view.TreeView;
 import org.sqlunet.view.TreeFactory;
 import org.sqlunet.wordnet.R;
@@ -98,17 +98,17 @@ abstract public class BasicModule extends Module
 
 	// L O A D E R S
 
-	// Synset
+	// Sense
 
 	/**
-	 * Full synset
+	 * Sense
 	 *
 	 * @param synsetId synset id
 	 * @param wordId   word id
 	 * @param parent   parent node
 	 */
 	@SuppressWarnings("unused")
-	public void synsetFull(final long synsetId, final long wordId, final TreeNode parent)
+	public void sense(final long synsetId, final long wordId, final TreeNode parent)
 	{
 		getLoaderManager().restartLoader(++Module.loaderId, null, new LoaderCallbacks<Cursor>()
 		{
@@ -189,6 +189,8 @@ abstract public class BasicModule extends Module
 			}
 		});
 	}
+
+	// Synset
 
 	/**
 	 * Synset
@@ -536,7 +538,9 @@ abstract public class BasicModule extends Module
 						Spanner.append(sb, targetDefinition, 0, WordNetFactories.definitionFactory);
 
 						final Context context = BasicModule.this.getContext();
-						TreeNode linkNode = recurses == 0 ? TreeFactory.newLeafNode(sb, getLinkRes(linkId), context) : TreeFactory.newQueryNode(new SubLinksQuery(targetSynsetId, linkId, getLinkRes(linkId), sb), BasicModule.this.getContext());
+						TreeNode linkNode = recurses == 0 ? //
+								TreeFactory.newLeafNode(sb, getLinkRes(linkId), context) : //
+								TreeFactory.newQueryNode(new SubLinksQuery(targetSynsetId, linkId, getLinkRes(linkId), sb), BasicModule.this.getContext());
 						parent.prependChild(linkNode);
 					}
 					while (cursor.moveToNext());
@@ -618,7 +622,9 @@ abstract public class BasicModule extends Module
 						Spanner.append(sb, targetDefinition, 0, WordNetFactories.definitionFactory);
 
 						final Context context = BasicModule.this.getContext();
-						TreeNode linkNode = recurses == 0 ? TreeFactory.newLeafNode(sb, getLinkRes(linkId), context) : TreeFactory.newQueryNode(new SubLinksQuery(targetSynsetId, linkId, getLinkRes(linkId), sb), context);
+						TreeNode linkNode = recurses == 0 ? //
+								TreeFactory.newLeafNode(sb, getLinkRes(linkId), context) : //
+								TreeFactory.newQueryNode(new SubLinksQuery(targetSynsetId, linkId, getLinkRes(linkId), sb), context);
 						parent.addChild(linkNode);
 					}
 					while (cursor.moveToNext());
@@ -1419,9 +1425,9 @@ abstract public class BasicModule extends Module
 	// Q U E R I E S
 
 	/**
-	 * Link query
+	 * LinkData query
 	 */
-	public class LinksQuery extends QueryHolder.Query
+	public class LinksQuery extends Query.QueryData
 	{
 		/**
 		 * Word id
@@ -1453,10 +1459,10 @@ abstract public class BasicModule extends Module
 		}
 	}
 
-	public class SubLinksQuery extends QueryHolder.Query
+	public class SubLinksQuery extends Query.QueryData
 	{
 		/**
-		 * Link id
+		 * LinkData id
 		 */
 		final int linkId;
 
@@ -1485,7 +1491,7 @@ abstract public class BasicModule extends Module
 	/**
 	 * Samples query
 	 */
-	public class SamplesQuery extends QueryHolder.Query
+	public class SamplesQuery extends Query.QueryData
 	{
 		/**
 		 * Constructor

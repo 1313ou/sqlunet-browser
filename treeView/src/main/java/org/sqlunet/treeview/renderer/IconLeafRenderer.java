@@ -14,7 +14,7 @@ import org.sqlunet.treeview.model.TreeNode;
  *
  * @author Bogdan Melnychuk on 2/12/15.
  */
-public class IconLeafRenderer extends TreeNode.Renderer<IconTreeItem>
+public class IconLeafRenderer extends Renderer<Value>
 {
 	/// private static final String TAG = "IconLeafRenderer";
 
@@ -34,7 +34,7 @@ public class IconLeafRenderer extends TreeNode.Renderer<IconTreeItem>
 	}
 
 	@Override
-	public View createNodeView(final TreeNode node, final IconTreeItem value)
+	public View createNodeView(final TreeNode node, final Value value)
 	{
 		final LayoutInflater inflater = LayoutInflater.from(this.context);
 		final View view = inflater.inflate(this.layoutRes, null, false);

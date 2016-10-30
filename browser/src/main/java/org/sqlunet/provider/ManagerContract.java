@@ -15,7 +15,7 @@ public class ManagerContract
 	static public final String AUTHORITY = "org.sqlunet.provider.manager"; //
 
 	/**
-	 * Query tables and indexes intent factory
+	 * QueryData tables and indexes intent factory
 	 *
 	 * @param context context
 	 * @return intent

@@ -12,6 +12,7 @@ import android.widget.LinearLayout;
 import android.widget.ScrollView;
 
 import org.sqlunet.treeview.R;
+import org.sqlunet.treeview.renderer.Renderer;
 import org.sqlunet.treeview.model.TreeNode;
 import org.sqlunet.treeview.renderer.SimpleRenderer;
 
@@ -48,7 +49,7 @@ public class TreeView
 	/**
 	 * Default renderer
 	 */
-	private Class<? extends TreeNode.Renderer<?>> defaultRendererClass = SimpleRenderer.class;
+	private Class<? extends Renderer<?>> defaultRendererClass = SimpleRenderer.class;
 
 	/**
 	 * Node click listener
@@ -63,7 +64,7 @@ public class TreeView
 	/**
 	 * Selection mode enabled
 	 */
-	private boolean enableSelectionMode;
+	private boolean selectable;
 
 	/**
 	 * Use default animation
@@ -121,7 +122,7 @@ public class TreeView
 		viewTreeItems.setOrientation(LinearLayout.VERTICAL);
 		view.addView(viewTreeItems);
 
-		this.root.setRenderer(new TreeNode.Renderer<Void>(this.context)
+		this.root.setRenderer(new Renderer<Void>(this.context)
 		{
 			@Override
 			public View createNodeView(TreeNode node, Void value)
@@ -160,14 +161,15 @@ public class TreeView
 	 */
 	private void addNode(final ViewGroup container, final TreeNode node)
 	{
-		final TreeNode.Renderer<?> viewHolder = getNodeRenderer(node);
-		final View nodeView = viewHolder.getView();
+		final Renderer<?> renderer = getNodeRenderer(node);
+		assert (renderer != null);
+		final View nodeView = renderer.getView();
 		container.addView(nodeView);
 
-		// selection
-		if (this.enableSelectionMode)
+		// inherit selection mode
+		if (this.selectable)
 		{
-			viewHolder.toggleSelectionMode();
+			node.setSelectable(this.selectable);
 		}
 
 		// listener
@@ -176,20 +178,24 @@ public class TreeView
 			@Override
 			public void onClick(View v)
 			{
-				// click disable
+				// if disabled
 				if (!node.isEnabled())
 				{
 					return;
 				}
 
+				// click node listener if node has one
 				if (node.getClickListener() != null)
 				{
 					node.getClickListener().onClick(node, node.getValue());
 				}
+				// else default
 				else if (TreeView.this.nodeClickListener != null)
 				{
 					TreeView.this.nodeClickListener.onClick(node, node.getValue());
 				}
+
+				// toggle node
 				toggleNode(node);
 			}
 		});
@@ -210,8 +216,8 @@ public class TreeView
 		// view
 		if (parent.isExpanded())
 		{
-			final TreeNode.Renderer<?> parentViewHolder = getNodeRenderer(parent);
-			addNode(parentViewHolder.getNodeItemsView(), node);
+			final Renderer<?> renderer = getNodeRenderer(parent);
+			addNode(renderer.getNodeItemsView(), node);
 		}
 	}
 
@@ -232,8 +238,8 @@ public class TreeView
 			// view
 			if (parent.isExpanded() && index >= 0)
 			{
-				final TreeNode.Renderer<?> parentViewHolder = getNodeRenderer(parent);
-				parentViewHolder.getNodeItemsView().removeViewAt(index);
+				final Renderer<?> renderer = getNodeRenderer(parent);
+				renderer.getNodeItemsView().removeViewAt(index);
 			}
 		}
 	}
@@ -245,13 +251,15 @@ public class TreeView
 	 */
 	static public void remove(final TreeNode node)
 	{
-		final TreeView treeView = node.getRenderer().getTreeView();
+		final Renderer renderer = node.getRenderer();
+		assert (renderer != null);
+		final TreeView treeView = renderer.getTreeView();
 		assert (treeView != null);
 		treeView.removeNode(node);
 	}
 
 	/**
-	 * Remove
+	 * Disable
 	 *
 	 * @param node node
 	 */
@@ -259,7 +267,7 @@ public class TreeView
 	{
 		node.disable();
 
-		final TreeNode.Renderer renderer = node.getRenderer();
+		final Renderer renderer = node.getRenderer();
 		assert (renderer != null);
 		renderer.disable();
 	}
@@ -274,7 +282,9 @@ public class TreeView
 	 */
 	static public void expand(final TreeNode node, @SuppressWarnings("SameParameterValue") boolean includeSubnodes)
 	{
-		final TreeView treeView = node.getRenderer().getTreeView();
+		final Renderer renderer = node.getRenderer();
+		assert (renderer != null);
+		final TreeView treeView = renderer.getTreeView();
 		assert (treeView != null);
 		treeView.expandNode(node, includeSubnodes);
 	}
@@ -287,7 +297,11 @@ public class TreeView
 	 */
 	static public void expand(final TreeNode node, int levels)
 	{
-		node.getRenderer().getTreeView().expandRelativeLevel(node, levels);
+		final Renderer renderer = node.getRenderer();
+		assert (renderer != null);
+		final TreeView treeView = renderer.getTreeView();
+		assert (treeView != null);
+		treeView.expandRelativeLevel(node, levels);
 	}
 
 	/**
@@ -299,7 +313,11 @@ public class TreeView
 	@SuppressWarnings("unused")
 	static public void collapse(final TreeNode node, boolean includeSubnodes)
 	{
-		node.getRenderer().getTreeView().collapseNode(node, includeSubnodes);
+		final Renderer renderer = node.getRenderer();
+		assert (renderer != null);
+		final TreeView treeView = renderer.getTreeView();
+		assert (treeView != null);
+		treeView.collapseNode(node, includeSubnodes);
 	}
 
 	/**
@@ -307,7 +325,7 @@ public class TreeView
 	 *
 	 * @param view view
 	 */
-	private static void expand(final View view)
+	static private void expand(final View view)
 	{
 		view.measure(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
 		final int targetHeight = view.getMeasuredHeight();
@@ -340,7 +358,7 @@ public class TreeView
 	 *
 	 * @param view view
 	 */
-	private static void collapse(final View view)
+	static private void collapse(final View view)
 	{
 		final int initialHeight = view.getMeasuredHeight();
 
@@ -492,17 +510,19 @@ public class TreeView
 	private void collapseNode(final TreeNode node, final boolean includeSubnodes)
 	{
 		node.setExpanded(false);
-		TreeNode.Renderer<?> nodeViewHolder = getNodeRenderer(node);
+		final Renderer<?> renderer = getNodeRenderer(node);
 
 		if (this.useDefaultAnimation)
 		{
-			collapse(nodeViewHolder.getNodeItemsView());
+			collapse(renderer.getNodeItemsView());
 		}
 		else
 		{
-			nodeViewHolder.getNodeItemsView().setVisibility(View.GONE);
+			renderer.getNodeItemsView().setVisibility(View.GONE);
 		}
-		nodeViewHolder.toggle(false);
+
+		renderer.onExpandEvent(false);
+
 		if (includeSubnodes)
 		{
 			for (TreeNode n : node.getChildren())
@@ -521,14 +541,15 @@ public class TreeView
 	private void expandNode(final TreeNode node, boolean includeSubnodes)
 	{
 		node.setExpanded(true);
-		final TreeNode.Renderer<?> parentViewHolder = getNodeRenderer(node);
-		parentViewHolder.getNodeItemsView().removeAllViews();
+		final Renderer<?> renderer = getNodeRenderer(node);
 
-		parentViewHolder.toggle(true);
+		renderer.getNodeItemsView().removeAllViews();
+
+		renderer.onExpandEvent(true);
 
 		for (final TreeNode n : node.getChildren())
 		{
-			addNode(parentViewHolder.getNodeItemsView(), n);
+			addNode(renderer.getNodeItemsView(), n);
 
 			if (n.isExpanded() || includeSubnodes)
 			{
@@ -537,11 +558,11 @@ public class TreeView
 		}
 		if (this.useDefaultAnimation)
 		{
-			expand(parentViewHolder.getNodeItemsView());
+			expand(renderer.getNodeItemsView());
 		}
 		else
 		{
-			parentViewHolder.getNodeItemsView().setVisibility(View.VISIBLE);
+			renderer.getNodeItemsView().setVisibility(View.VISIBLE);
 		}
 	}
 
@@ -606,7 +627,7 @@ public class TreeView
 	 *
 	 * @param renderer default renderer
 	 */
-	public void setDefaultRenderer(final Class<? extends TreeNode.Renderer<?>> renderer)
+	public void setDefaultRenderer(final Class<? extends Renderer<?>> renderer)
 	{
 		this.defaultRendererClass = renderer;
 	}
@@ -695,68 +716,73 @@ public class TreeView
 
 	// S E L E C T I O N
 
+	// mode
+
 	/**
 	 * Get whether selection mode is enabled
 	 *
 	 * @return whether selection mode is enabled
 	 */
 	@SuppressWarnings("unused")
-	public boolean isEnableSelectionMode()
+	public boolean isSelectable()
 	{
-		return this.enableSelectionMode;
+		return this.selectable;
 	}
 
 	/**
-	 * Set selection mode enabled
+	 * Set selection mode
 	 *
-	 * @param flag selection mode enabled flag
+	 * @param selectable selection mode enable flag
 	 */
 	@SuppressWarnings("unused")
-	public void setEnableSelectionMode(final boolean flag)
+	public void setSelectable(final boolean selectable)
 	{
-		if (!flag)
+		if (!selectable)
 		{
-			// TODO fix double iteration over tree
 			deselectAll();
 		}
 
-		this.enableSelectionMode = flag;
+		this.selectable = selectable;
 
+		// propagate from root
 		for (TreeNode node : this.root.getChildren())
 		{
-			toggleSelectionMode(node, flag);
+			setSelectable(node, selectable);
 		}
-
 	}
 
 	/**
-	 * Toggle selection mode
+	 * Set node selectable
 	 *
-	 * @param parent       parent
-	 * @param childrenFlag flag for children
+	 * @param node       node
+	 * @param selectable selectable flag
 	 */
-	private void toggleSelectionMode(final TreeNode parent, final boolean childrenFlag)
+	private void setSelectable(final TreeNode node, final boolean selectable)
 	{
-		toggleSelectionForNode(parent);
-		if (parent.isExpanded())
+		fireNodeSelected(node, selectable);
+
+		// propagate
+		if (node.isExpanded())
 		{
-			for (TreeNode node : parent.getChildren())
+			for (TreeNode child : node.getChildren())
 			{
-				toggleSelectionMode(node, childrenFlag);
+				setSelectable(child, selectable);
 			}
 		}
 	}
+
+	// selected nodes
 
 	/**
 	 * Get selected nodes
 	 *
 	 * @return selected nodes
 	 */
-	private List<TreeNode> getSelected()
+	private List<TreeNode> getAllSelected()
 	{
-		if (this.enableSelectionMode)
+		if (this.selectable)
 		{
-			return getSelected(this.root);
+			return getAllSelected(this.root);
 		}
 		else
 		{
@@ -765,22 +791,21 @@ public class TreeView
 	}
 
 	/**
-	 * Get selected nodes from parent
+	 * Get selected nodes from node
 	 *
-	 * @param parent parent
+	 * @param node node
 	 * @return selected nodes
 	 */
-	private List<TreeNode> getSelected(final TreeNode parent)
+	private List<TreeNode> getAllSelected(final TreeNode node)
 	{
-		// TODO Do we need to go through whole tree? Save references or consider collapsed nodes as not selected
 		List<TreeNode> result = new ArrayList<>();
-		for (TreeNode node : parent.getChildren())
+		for (TreeNode child : node.getChildren())
 		{
-			if (node.isSelected())
+			if (child.isSelected())
 			{
-				result.add(node);
+				result.add(child);
 			}
-			result.addAll(getSelected(node));
+			result.addAll(getAllSelected(child));
 		}
 		return result;
 	}
@@ -796,7 +821,7 @@ public class TreeView
 	public <E> List<E> getSelectedValues(final Class<E> valueClass)
 	{
 		List<E> result = new ArrayList<>();
-		List<TreeNode> selected = getSelected();
+		List<TreeNode> selected = getAllSelected();
 		for (TreeNode node : selected)
 		{
 			Object value = node.getValue();
@@ -808,6 +833,8 @@ public class TreeView
 		return result;
 	}
 
+	// select
+
 	/**
 	 * Select all
 	 *
@@ -816,26 +843,26 @@ public class TreeView
 	@SuppressWarnings("unused")
 	public void selectAll(final boolean skipCollapsed)
 	{
-		propagateSelection(true, skipCollapsed);
+		selectAll(true, skipCollapsed);
 	}
 
 	/**
 	 * Deselect all
 	 */
-	private void deselectAll()
+	public void deselectAll()
 	{
-		propagateSelection(false, false);
+		selectAll(false, false);
 	}
 
 	/**
-	 * Propagate selection
+	 * Select/deselect all
 	 *
 	 * @param selected      selected flag
 	 * @param skipCollapsed whether to skip collapsed node
 	 */
-	private void propagateSelection(final boolean selected, boolean skipCollapsed)
+	private void selectAll(final boolean selected, boolean skipCollapsed)
 	{
-		if (this.enableSelectionMode)
+		if (this.selectable)
 		{
 			for (TreeNode node : this.root.getChildren())
 			{
@@ -853,45 +880,48 @@ public class TreeView
 	@SuppressWarnings("unused")
 	public void selectNode(final TreeNode node, boolean selected)
 	{
-		if (this.enableSelectionMode)
+		if (this.selectable)
 		{
 			node.setSelected(selected);
-			toggleSelectionForNode(node);
+			fireNodeSelected(node, selected);
 		}
 	}
 
 	/**
 	 * Select node and children
 	 *
-	 * @param parent   parent node
+	 * @param node     node
 	 * @param selected selected flag
 	 */
-	private void selectNode(final TreeNode parent, final boolean selected, final boolean skipCollapsed)
+	private void selectNode(final TreeNode node, final boolean selected, final boolean skipCollapsed)
 	{
-		parent.setSelected(selected);
-		toggleSelectionForNode(parent);
+		node.setSelected(selected);
+		fireNodeSelected(node, selected);
 
-		boolean toContinue = !skipCollapsed || parent.isExpanded();
-		if (toContinue)
+		// propagation
+		boolean propagate = !skipCollapsed || node.isExpanded();
+		if (propagate)
 		{
-			for (TreeNode node : parent.getChildren())
+			for (TreeNode child : node.getChildren())
 			{
-				selectNode(node, selected, skipCollapsed);
+				selectNode(child, selected, skipCollapsed);
 			}
 		}
 	}
 
 	/**
-	 * Toggle selection for node
+	 * Fire node selection mode event
 	 *
-	 * @param node node
+	 * @param node     node
+	 * @param selected selection mode flag
 	 */
-	private void toggleSelectionForNode(final TreeNode node)
+	private void fireNodeSelected(final TreeNode node, final boolean selected)
 	{
-		TreeNode.Renderer<?> renderer = getNodeRenderer(node);
+		final Renderer<?> renderer = getNodeRenderer(node);
+		assert (renderer != null);
 		if (renderer.isInitialized())
 		{
-			getNodeRenderer(node).toggleSelectionMode();
+			renderer.onSelectedEvent(selected);
 		}
 	}
 
@@ -903,15 +933,15 @@ public class TreeView
 	 * @param node node
 	 * @return renderer
 	 */
-	private TreeNode.Renderer<?> getNodeRenderer(final TreeNode node)
+	private Renderer<?> getNodeRenderer(final TreeNode node)
 	{
-		TreeNode.Renderer<?> renderer = node.getRenderer();
+		Renderer<?> renderer = node.getRenderer();
 		if (renderer == null)
 		{
 			try
 			{
 				final Object object = this.defaultRendererClass.getConstructor(Context.class).newInstance(this.context);
-				renderer = (TreeNode.Renderer<?>) object;
+				renderer = (Renderer<?>) object;
 				node.setRenderer(renderer);
 			}
 			catch (Exception e)

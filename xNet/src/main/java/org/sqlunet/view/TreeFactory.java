@@ -5,12 +5,11 @@ import android.widget.TextView;
 
 import org.sqlunet.treeview.model.TreeNode;
 import org.sqlunet.treeview.renderer.IconLeafRenderer;
-import org.sqlunet.treeview.renderer.IconTreeItem;
+import org.sqlunet.treeview.renderer.Query;
+import org.sqlunet.treeview.renderer.Value;
 import org.sqlunet.treeview.renderer.IconTreeRenderer;
-import org.sqlunet.treeview.renderer.LinkHolder;
-import org.sqlunet.treeview.renderer.LinkHolder.Link;
-import org.sqlunet.treeview.renderer.QueryHolder;
-import org.sqlunet.treeview.renderer.QueryHolder.Query;
+import org.sqlunet.treeview.renderer.Link;
+import org.sqlunet.treeview.renderer.Link.LinkData;
 import org.sqlunet.treeview.renderer.TextRenderer;
 import org.sqlunet.treeview.view.TreeView;
 
@@ -40,9 +39,9 @@ public class TreeFactory
 	 * @param context context
 	 * @return created node
 	 */
-	static public TreeNode newLinkNode(final Link link, final Context context)
+	static public TreeNode newLinkNode(final LinkData link, final Context context)
 	{
-		return new TreeNode(link).setRenderer(new LinkHolder(context));
+		return new TreeNode(link).setRenderer(new Link(context));
 	}
 
 	/**
@@ -55,7 +54,7 @@ public class TreeFactory
 	 */
 	static public TreeNode newLeafNode(final CharSequence text, final int icon, final Context context)
 	{
-		return new TreeNode(new IconTreeItem(icon, text)).setRenderer(new IconLeafRenderer(context));
+		return new TreeNode(new Value(icon, text)).setRenderer(new IconLeafRenderer(context));
 	}
 
 	/**
@@ -68,7 +67,7 @@ public class TreeFactory
 	 */
 	static public TreeNode newTreeNode(final CharSequence text, final int icon, final Context context)
 	{
-		return new TreeNode(new IconTreeItem(icon, text)).setRenderer(new IconTreeRenderer(context));
+		return new TreeNode(new Value(icon, text)).setRenderer(new IconTreeRenderer(context));
 	}
 
 	/**
@@ -78,9 +77,9 @@ public class TreeFactory
 	 * @param context context
 	 * @return created node
 	 */
-	static public TreeNode newQueryNode(final Query query, final Context context)
+	static public TreeNode newQueryNode(final Query.QueryData query, final Context context)
 	{
-		return new TreeNode(query).setRenderer(new QueryHolder(context));
+		return new TreeNode(query).setRenderer(new Query(context));
 	}
 
 	/**

@@ -242,7 +242,7 @@ public class Spanner
 					// remove imagespan
 					sb1.removeSpan(span1);
 
-					// toggle text
+					// onExpandEvent text
 					final char c = sb1.charAt(from);
 					final boolean collapsed = c == COLLAPSEDCHAR;
 					sb1.replace(from, to, collapsed ? EXPANDEDSTRING : COLLAPSEDSTRING);
@@ -251,7 +251,7 @@ public class Spanner
 					final Object newimagespan = new ImageSpan(collapsed ? expandedDrawable : collapsedDrawable, DynamicDrawableSpan.ALIGN_BASELINE);
 					sb1.setSpan(newimagespan, from, to, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
 
-					// fire toggle
+					// fire onExpandEvent
 					Log.d(TAG, from + "->" + to); //
 					listener.onClickImage(sb1, to + caption.length() + 2, collapsed);
 				}

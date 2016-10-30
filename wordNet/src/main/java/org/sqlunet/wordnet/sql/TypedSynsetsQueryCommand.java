@@ -5,7 +5,7 @@ import android.database.sqlite.SQLiteDatabase;
 import org.sqlunet.sql.DBQueryCommand;
 
 /**
- * Query command for synsets of a given part-of-speech or lexdomain type and containing a given word
+ * QueryData command for synsets of a given part-of-speech or lexdomain type and containing a given word
  *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */

@@ -15,7 +15,7 @@ import org.sqlunet.treeview.model.TreeNode;
  *
  * @author Bogdan Melnychuk on 2/12/15.
  */
-public class IconTreeRenderer extends TreeNode.Renderer<IconTreeItem>
+public class IconTreeRenderer extends Renderer<Value>
 {
 	/// private static final String TAG = "IconTreeRenderer";
 
@@ -35,7 +35,7 @@ public class IconTreeRenderer extends TreeNode.Renderer<IconTreeItem>
 	}
 
 	@Override
-	public View createNodeView(final TreeNode node, final IconTreeItem value)
+	public View createNodeView(final TreeNode node, final Value value)
 	{
 		final LayoutInflater inflater = LayoutInflater.from(this.context);
 		@SuppressLint("InflateParams") final View view = inflater.inflate(R.layout.layout_tree, null, false);
@@ -65,9 +65,9 @@ public class IconTreeRenderer extends TreeNode.Renderer<IconTreeItem>
 	}
 
 	@Override
-	public void toggle(boolean active)
+	public void onExpandEvent(boolean expand)
 	{
-		this.junctionView.setImageResource(active ? R.drawable.ic_expanded : R.drawable.ic_collapsed);
+		this.junctionView.setImageResource(expand ? R.drawable.ic_expanded : R.drawable.ic_collapsed);
 	}
 
 	@Override

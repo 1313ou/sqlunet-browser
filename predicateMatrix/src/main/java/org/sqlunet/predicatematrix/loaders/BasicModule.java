@@ -26,7 +26,7 @@ import org.sqlunet.propbank.browser.PbRoleSetActivity;
 import org.sqlunet.provider.SqlUNetContract;
 import org.sqlunet.style.Spanner;
 import org.sqlunet.treeview.model.TreeNode;
-import org.sqlunet.treeview.renderer.LinkHolder;
+import org.sqlunet.treeview.renderer.Link;
 import org.sqlunet.treeview.view.TreeView;
 import org.sqlunet.verbnet.VnClassPointer;
 import org.sqlunet.verbnet.browser.VnClassActivity;
@@ -1530,7 +1530,7 @@ abstract class BasicModule extends Module
 	/**
 	 * VerbNet class query
 	 */
-	class VnClassQuery extends LinkHolder.Link
+	class VnClassQuery extends Link.LinkData
 	{
 		/**
 		 * Constructor
@@ -1560,7 +1560,7 @@ abstract class BasicModule extends Module
 	/**
 	 * PropBank role set query
 	 */
-	class PbRoleSetQuery extends LinkHolder.Link
+	class PbRoleSetQuery extends Link.LinkData
 	{
 		/**
 		 * Constructor
@@ -1590,7 +1590,7 @@ abstract class BasicModule extends Module
 	/**
 	 * FrameNet frame query
 	 */
-	class FnFrameQuery extends LinkHolder.Link
+	class FnFrameQuery extends Link.LinkData
 	{
 		/**
 		 * Constructor

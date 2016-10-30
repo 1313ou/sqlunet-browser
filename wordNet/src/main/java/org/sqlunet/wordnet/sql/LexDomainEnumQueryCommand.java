@@ -5,7 +5,7 @@ import android.database.sqlite.SQLiteDatabase;
 import org.sqlunet.sql.DBQueryCommand;
 
 /**
- * Query for lexdomain enumeration
+ * QueryData for lexdomain enumeration
  *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */

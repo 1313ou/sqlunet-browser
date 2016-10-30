@@ -8,13 +8,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Link, a linked synset
+ * LinkData, a linked synset
  *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
 class Link extends Synset
 {
-	private static final String TAG = "Link"; //
+	private static final String TAG = "LinkData"; //
 
 	/**
 	 * <code>linkType</code> relation type

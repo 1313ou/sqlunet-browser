@@ -16,7 +16,7 @@ import org.sqlunet.verbnet.VnClassPointer;
 public class ClassModule extends BasicModule
 {
 	/**
-	 * Query
+	 * QueryData
 	 */
 	private Long classId;
 

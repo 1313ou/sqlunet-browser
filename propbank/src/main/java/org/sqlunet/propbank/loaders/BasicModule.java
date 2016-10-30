@@ -21,7 +21,7 @@ import org.sqlunet.propbank.style.PropBankFactories;
 import org.sqlunet.propbank.style.PropBankSpanner;
 import org.sqlunet.style.Spanner;
 import org.sqlunet.treeview.model.TreeNode;
-import org.sqlunet.treeview.renderer.QueryHolder;
+import org.sqlunet.treeview.renderer.Query;
 import org.sqlunet.treeview.view.TreeView;
 import org.sqlunet.view.TreeFactory;
 
@@ -174,6 +174,7 @@ abstract class BasicModule extends Module
 
 					// expand
 					TreeView.expand(parent, false);
+					TreeView.expand(rolesNode, false);
 				}
 				else
 				{
@@ -542,7 +543,7 @@ abstract class BasicModule extends Module
 	/**
 	 * Role query
 	 */
-	class RolesQuery extends QueryHolder.Query
+	class RolesQuery extends Query.QueryData
 	{
 		/**
 		 * Constructor
@@ -566,7 +567,7 @@ abstract class BasicModule extends Module
 	/**
 	 * Examples query
 	 */
-	class ExamplesQuery extends QueryHolder.Query
+	class ExamplesQuery extends Query.QueryData
 	{
 		/**
 		 * Constructor
