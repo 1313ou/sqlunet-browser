@@ -152,7 +152,7 @@ public class Spanner
 	 * @param to        finish
 	 * @param factories span factories to call to get spans
 	 */
-	static public void setSpan(final SpannableStringBuilder sb, final int from, final int to, @SuppressWarnings("SameParameterValue") final int flags, final SpanFactory... factories)
+	static public void setSpan(final SpannableStringBuilder sb, final int from, final int to, final int flags, final SpanFactory... factories)
 	{
 		for (final SpanFactory spanFactory : factories)
 		{
@@ -300,7 +300,7 @@ public class Spanner
 	 * @param flags     flags
 	 * @param factories span factories
 	 */
-	static public void append(final SpannableStringBuilder sb, final CharSequence text, @SuppressWarnings("SameParameterValue") final long flags, final SpanFactory... factories)
+	static public void append(final SpannableStringBuilder sb, final CharSequence text, final long flags, final SpanFactory... factories)
 	{
 		if (text == null || text.length() == 0)
 		{
@@ -340,7 +340,7 @@ public class Spanner
 	 * @param delimiter delimiter
 	 * @return delimiter position or -1 if not found
 	 */
-	private static int find(@SuppressWarnings("TypeMayBeWeakened") final SpannableStringBuilder sb, final int start, @SuppressWarnings("SameParameterValue") final char delimiter)
+	private static int find(@SuppressWarnings("TypeMayBeWeakened") final SpannableStringBuilder sb, final int start, final char delimiter)
 	{
 		int i = start;
 		while (i < sb.length())

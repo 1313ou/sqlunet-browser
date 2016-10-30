@@ -61,6 +61,7 @@ public class PropBankFactories
 		}
 	};
 
+	@SuppressWarnings("unused")
 	static public final SpanFactory textFactory = new SpanFactory()
 	{
 		@Override

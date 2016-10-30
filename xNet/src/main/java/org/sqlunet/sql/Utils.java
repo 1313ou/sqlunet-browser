@@ -14,7 +14,7 @@ public class Utils
 	 * @return joined ids
 	 */
 	@SuppressWarnings("unused")
-	static public String join(final int[] ids)
+	static public String join(final int... ids)
 	{
 		if (ids == null)
 		{
@@ -44,7 +44,7 @@ public class Utils
 	 * @return joined ids
 	 */
 	@SuppressWarnings("unused")
-	static public String join(final long[] ids)
+	static public String join(final long... ids)
 	{
 		if (ids == null)
 		{
@@ -73,7 +73,7 @@ public class Utils
 	 * @param strings strings to join
 	 * @return joined strings
 	 */
-	static public String join(final String[] strings)
+	static public String join(final String... strings)
 	{
 		if (strings == null)
 		{
@@ -102,7 +102,7 @@ public class Utils
 	 * @param args arguments
 	 * @return arguments as string
 	 */
-	static public String argsToString(final String[] args)
+	static public String argsToString(final String... args)
 	{
 		final StringBuilder sb = new StringBuilder();
 		if (args != null && args.length > 0)
@@ -126,7 +126,7 @@ public class Utils
 	 * @param args arguments
 	 * @return expanded sql
 	 */
-	static public String replaceArgs(final String sql, final String[] args)
+	static public String replaceArgs(final String sql, final String... args)
 	{
 		String processedSql = sql;
 		if (args != null && args.length > 0)

@@ -44,7 +44,7 @@ public class DetailActivity extends Activity
 		super.onPostResume();
 
 		final Bundle args = getIntent().getExtras();
-		final int action = args.getInt(SqlUNetContract.ARG_QUERYACTION);
+		//final int action = args.getInt(SqlUNetContract.ARG_QUERYACTION);
 		final Parcelable pointer = args.getParcelable(SqlUNetContract.ARG_QUERYPOINTER);
 		final DetailFragment fragment = (DetailFragment) getFragmentManager().findFragmentById(R.id.fragment_detail);
 		fragment.search(pointer);

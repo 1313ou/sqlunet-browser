@@ -25,8 +25,14 @@ public abstract class Module
 	private final Fragment fragment;
 
 	/**
+	 * Context
+	 */
+	protected final Context context;
+
+	/**
 	 * Action
 	 */
+	@SuppressWarnings({"WeakerAccess", "unused"})
 	protected int action;
 
 	/**
@@ -37,16 +43,7 @@ public abstract class Module
 	protected Module(final Fragment fragment)
 	{
 		this.fragment = fragment;
-	}
-
-	/**
-	 * Get context
-	 *
-	 * @return context
-	 */
-	protected Context getContext()
-	{
-		return this.fragment.getActivity();
+		this.context = fragment.getActivity();
 	}
 
 	/**

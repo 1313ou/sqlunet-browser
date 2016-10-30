@@ -161,8 +161,8 @@ public abstract class AbstractTableFragment extends ListFragment
 				final String[] projection = cols.toArray(new String[0]);
 				// for (String p : projection)
 				// {
-				//	System.out.println(p);
-				//}
+				//  Log.d(TAG, p);
+				// }
 				final String[] selectionArgs = queryArg == null ? null : new String[]{queryArg};
 				return new CursorLoader(getActivity(), uri, projection, selection, selectionArgs, sort);
 			}

@@ -99,7 +99,6 @@ public class NodeFactory extends org.sqlunet.sql.NodeFactory
 	 * @param id     is the word id
 	 * @return newly created node
 	 */
-	@SuppressWarnings("UnusedReturnValue")
 	static public Node makeWordNode(final Document doc, final Node parent, final String word, final long id)
 	{
 		final Element element = org.sqlunet.sql.NodeFactory.makeNode(doc, parent, "word", word); //
@@ -135,7 +134,6 @@ public class NodeFactory extends org.sqlunet.sql.NodeFactory
 	 * @param level    is the recursion level
 	 * @return newly created node
 	 */
-	@SuppressWarnings("UnusedReturnValue")
 	static public Node makeMoreLinkNode(final Document doc, final Node parent, final String linkType, final int level)
 	{
 		final Element element = org.sqlunet.sql.NodeFactory.makeNode(doc, parent, linkType, null);

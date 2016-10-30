@@ -32,9 +32,9 @@ public class FnAnnoSetActivity extends Activity
 		if (savedInstanceState == null)
 		{
 			// create the sense fragment, transmit intent's extras as parameters and add it to the activity using a fragment transaction
-			final Bundle arguments = getIntent().getExtras();
+			final Bundle args = getIntent().getExtras();
 			final FnAnnoSetFragment fragment = new FnAnnoSetFragment();
-			fragment.setArguments(arguments);
+			fragment.setArguments(args);
 			getFragmentManager().beginTransaction().add(R.id.container_annoset, fragment).commit();
 		}
 	}

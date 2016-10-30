@@ -373,7 +373,7 @@ public class Settings
 	 * @param context context
 	 * @param pkgName package name
 	 */
-	static public void applicationSettings(final Context context, @SuppressWarnings("SameParameterValue") final String pkgName)
+	static public void applicationSettings(final Context context, final String pkgName)
 	{
 		final int apiLevel = Build.VERSION.SDK_INT;
 		final Intent intent = new Intent();

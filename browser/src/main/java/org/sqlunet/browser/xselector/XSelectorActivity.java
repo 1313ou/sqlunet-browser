@@ -19,6 +19,7 @@ import org.sqlunet.provider.SqlUNetContract;
 import org.sqlunet.settings.Settings;
 import org.sqlunet.verbnet.browser.VerbNetFragment;
 import org.sqlunet.wordnet.browser.SenseFragment;
+import org.sqlunet.wordnet.browser.SynsetFragment;
 
 /**
  * X selector activity
@@ -31,6 +32,21 @@ public class XSelectorActivity extends Activity implements XSelectorFragment.Lis
 	 * Whether or not the activity is in two-pane mode, i.e. running on a tablet device.
 	 */
 	private boolean isTwoPane = false;
+
+	/**
+	 * VerbNet fragment
+	 */
+	private Fragment verbnetFragment;
+
+	/**
+	 * PropBank fragment
+	 */
+	private Fragment propbankFragment;
+
+	/**
+	 * FrameNet fragment
+	 */
+	private Fragment framenetFragment;
 
 	// C R E A T I O N
 
@@ -78,21 +94,6 @@ public class XSelectorActivity extends Activity implements XSelectorFragment.Lis
 	// I T E M S E L E C T I O N H A N D L I N G
 
 	/**
-	 * VerbNet fragment
-	 */
-	private Fragment verbnetFragment;
-
-	/**
-	 * PropBank fragment
-	 */
-	private Fragment propbankFragment;
-
-	/**
-	 * FrameNet fragment
-	 */
-	private Fragment framenetFragment;
-
-	/**
 	 * Callback method from {@link XSelectorFragment.Listener} indicating that the item with the given ID was selected.
 	 */
 	@Override
@@ -101,14 +102,14 @@ public class XSelectorActivity extends Activity implements XSelectorFragment.Lis
 		if (this.isTwoPane)
 		{
 			// in two-pane mode, show the detail view in this activity by adding or replacing the detail fragment using a fragment transaction.
-			final Bundle arguments = new Bundle();
-			arguments.putParcelable(SqlUNetContract.ARG_QUERYPOINTER, pointer);
-			final Settings.DetailViewMode mode = Settings.getDetailViewModePref(this);
+			final Bundle args = new Bundle();
+			args.putParcelable(SqlUNetContract.ARG_QUERYPOINTER, pointer);
 
 			// transaction
 			final FragmentTransaction transaction = getFragmentManager().beginTransaction();
 
 			// detail fragment
+			final Settings.DetailViewMode mode = Settings.getDetailViewModePref(this);
 			switch (mode)
 			{
 				case VIEW:
@@ -116,8 +117,9 @@ public class XSelectorActivity extends Activity implements XSelectorFragment.Lis
 					{
 						// final View labelView = findViewById(R.id.label_wordnet);
 						// labelView.setVisibility(View.VISIBLE);
-						final Fragment senseFragment = new SenseFragment();
-						senseFragment.setArguments(arguments);
+						final SynsetFragment senseFragment = new SenseFragment();
+						senseFragment.setExpand(pointer.wordNetOnly());
+						senseFragment.setArguments(args);
 						transaction.replace(R.id.container_wordnet, senseFragment);
 					}
 
@@ -126,7 +128,7 @@ public class XSelectorActivity extends Activity implements XSelectorFragment.Lis
 						// final View labelView = findViewById(R.id.label_verbnet);
 						// labelView.setVisibility(View.VISIBLE);
 						this.verbnetFragment = new VerbNetFragment();
-						this.verbnetFragment.setArguments(arguments);
+						this.verbnetFragment.setArguments(args);
 						transaction.replace(R.id.container_verbnet, this.verbnetFragment);
 					}
 					else if (this.verbnetFragment != null)
@@ -140,7 +142,7 @@ public class XSelectorActivity extends Activity implements XSelectorFragment.Lis
 						// final View labelView = findViewById(R.id.label_propbank);
 						// labelView.setVisibility(View.VISIBLE);
 						this.propbankFragment = new PropBankFragment();
-						this.propbankFragment.setArguments(arguments);
+						this.propbankFragment.setArguments(args);
 						transaction.replace(R.id.container_propbank, this.propbankFragment);
 					}
 					else if (this.propbankFragment != null)
@@ -154,7 +156,7 @@ public class XSelectorActivity extends Activity implements XSelectorFragment.Lis
 						// final View labelView = findViewById(R.id.label_framenet);
 						// labelView.setVisibility(View.VISIBLE);
 						this.framenetFragment = new FrameNetFragment();
-						this.framenetFragment.setArguments(arguments);
+						this.framenetFragment.setArguments(args);
 						transaction.replace(R.id.container_framenet, this.framenetFragment);
 					}
 					else if (this.framenetFragment != null)
@@ -168,7 +170,7 @@ public class XSelectorActivity extends Activity implements XSelectorFragment.Lis
 						// final View labelView = findViewById(R.id.label_bnc);
 						// labelView.setVisibility(View.VISIBLE);
 						final Fragment bncFragment = new BNCFragment();
-						bncFragment.setArguments(arguments);
+						bncFragment.setArguments(args);
 						transaction.replace(R.id.container_bnc, bncFragment);
 					}
 					break;
@@ -177,7 +179,7 @@ public class XSelectorActivity extends Activity implements XSelectorFragment.Lis
 					final Fragment fragment = new WebFragment();
 
 					// arguments
-					fragment.setArguments(arguments);
+					fragment.setArguments(args);
 
 					// detail fragment replace
 					transaction.replace(R.id.container_main, fragment);

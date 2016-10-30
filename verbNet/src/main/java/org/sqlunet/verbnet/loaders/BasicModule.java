@@ -14,7 +14,7 @@ import android.text.SpannableStringBuilder;
 import org.sqlunet.browser.Module;
 import org.sqlunet.style.Spanner;
 import org.sqlunet.treeview.model.TreeNode;
-import org.sqlunet.treeview.renderer.Query;
+import org.sqlunet.treeview.renderer.QueryRenderer;
 import org.sqlunet.treeview.view.TreeView;
 import org.sqlunet.verbnet.R;
 import org.sqlunet.verbnet.provider.VerbNetContract.VnClasses_VnFrames_X;
@@ -39,17 +39,17 @@ abstract class BasicModule extends Module
 	/**
 	 * Processor
 	 */
-	private VerbNetSemanticsProcessor semanticsProcessor;
+	private final VerbNetSemanticsProcessor semanticsProcessor;
 
 	/**
 	 * Syntax spanner
 	 */
-	private VerbNetSyntaxSpanner syntaxSpanner;
+	private final VerbNetSyntaxSpanner syntaxSpanner;
 
 	/**
 	 * Semantics
 	 */
-	private VerbNetSemanticsSpanner semanticsSpanner;
+	private final VerbNetSemanticsSpanner semanticsSpanner;
 
 	// drawables
 
@@ -57,42 +57,42 @@ abstract class BasicModule extends Module
 	 * Drawable for role sets
 	 */
 	@SuppressWarnings("WeakerAccess")
-	protected Drawable drawableRoles;
+	protected final Drawable drawableRoles;
 
 	/**
 	 * Drawable for class
 	 */
-	private Drawable drawableClass;
+	private final Drawable drawableClass;
 
 	/**
 	 * Drawable for (group) item
 	 */
-	private Drawable drawableItem;
+	private final Drawable drawableItem;
 
 	/**
 	 * Drawable for role
 	 */
-	private Drawable drawableRole;
+	private final Drawable drawableRole;
 
 	/**
 	 * Drawable for frame
 	 */
-	private Drawable drawableFrame;
+	private final Drawable drawableFrame;
 
 	/**
 	 * Drawable for syntax
 	 */
-	private Drawable drawableSyntax;
+	private final Drawable drawableSyntax;
 
 	/**
 	 * Drawable for semantics
 	 */
-	private Drawable drawableSemantics;
+	private final Drawable drawableSemantics;
 
 	/**
 	 * Drawable for example
 	 */
-	private Drawable drawableExample;
+	private final Drawable drawableExample;
 
 	/**
 	 * Constructor
@@ -103,18 +103,15 @@ abstract class BasicModule extends Module
 	{
 		super(fragment);
 
-		// context
-		final Context context = getContext();
-
 		// drawable
-		this.drawableClass = Spanner.getDrawable(context, R.drawable.vnclass);
-		this.drawableItem = Spanner.getDrawable(context, R.drawable.groupitem);
-		this.drawableRoles = Spanner.getDrawable(context, R.drawable.roles);
-		this.drawableRole = Spanner.getDrawable(context, R.drawable.role);
-		this.drawableFrame = Spanner.getDrawable(context, R.drawable.vnframe);
-		this.drawableSyntax = Spanner.getDrawable(context, R.drawable.syntax);
-		this.drawableSemantics = Spanner.getDrawable(context, R.drawable.semantics);
-		this.drawableExample = Spanner.getDrawable(context, R.drawable.sample);
+		this.drawableClass = Spanner.getDrawable(this.context, R.drawable.vnclass);
+		this.drawableItem = Spanner.getDrawable(this.context, R.drawable.groupitem);
+		this.drawableRoles = Spanner.getDrawable(this.context, R.drawable.roles);
+		this.drawableRole = Spanner.getDrawable(this.context, R.drawable.role);
+		this.drawableFrame = Spanner.getDrawable(this.context, R.drawable.vnframe);
+		this.drawableSyntax = Spanner.getDrawable(this.context, R.drawable.syntax);
+		this.drawableSemantics = Spanner.getDrawable(this.context, R.drawable.semantics);
+		this.drawableExample = Spanner.getDrawable(this.context, R.drawable.sample);
 
 		// create processors and spanners
 		this.semanticsProcessor = new VerbNetSemanticsProcessor();
@@ -150,7 +147,7 @@ abstract class BasicModule extends Module
 				final String[] selectionArgs = { //
 						Long.toString(classId)};
 				final String sortOrder = null;
-				return new CursorLoader(BasicModule.this.getContext(), uri, projection, selection, selectionArgs, sortOrder);
+				return new CursorLoader(BasicModule.this.context, uri, projection, selection, selectionArgs, sortOrder);
 			}
 
 			@Override
@@ -162,7 +159,7 @@ abstract class BasicModule extends Module
 				}
 				if (cursor.moveToFirst())
 				{
-					final Context context = BasicModule.this.getContext();
+					final Context context = BasicModule.this.context;
 					final SpannableStringBuilder sb = new SpannableStringBuilder();
 
 					// column indices
@@ -191,15 +188,16 @@ abstract class BasicModule extends Module
 					final TreeNode itemsNode = groupings(groupings);
 
 					// sub nodes
-					final TreeNode rolesNode = TreeFactory.newQueryNode(new RolesQuery(classId, R.drawable.role, "Roles"), context); //
-					final TreeNode framesNode = TreeFactory.newQueryNode(new FramesQuery(classId, R.drawable.vnframe, "Frames"), context);
+					final TreeNode rolesNode = TreeFactory.newQueryNode(new RolesQueryData(classId, R.drawable.role, "Roles"), context); //
+					final TreeNode framesNode = TreeFactory.newQueryNode(new FramesQueryData(classId, R.drawable.vnframe, "Frames"), context);
 
 					// attach result
-					TreeFactory.addTextNode(parent, sb, BasicModule.this.getContext(), itemsNode, rolesNode, framesNode);
+					TreeFactory.addTextNode(parent, sb, BasicModule.this.context, itemsNode, rolesNode, framesNode);
 
 					// expand
 					TreeView.expand(parent, false);
 					TreeView.expand(rolesNode, false);
+					// TreeView.expand(frameNode, false);
 				}
 				else
 				{
@@ -242,7 +240,7 @@ abstract class BasicModule extends Module
 				final String selection = VnClasses_VnRoles_X.CLASSID + " = ?"; //
 				final String[] selectionArgs = {Long.toString(classId)};
 				final String sortOrder = null;
-				return new CursorLoader(BasicModule.this.getContext(), uri, projection, selection, selectionArgs, sortOrder);
+				return new CursorLoader(BasicModule.this.context, uri, projection, selection, selectionArgs, sortOrder);
 			}
 
 			@Override
@@ -288,7 +286,7 @@ abstract class BasicModule extends Module
 					}
 
 					// attach result
-					TreeFactory.addTextNode(parent, sb, BasicModule.this.getContext());
+					TreeFactory.addTextNode(parent, sb, BasicModule.this.context);
 
 					// expand
 					TreeView.expand(parent, false);
@@ -332,7 +330,7 @@ abstract class BasicModule extends Module
 				final String selection = VnClasses_VnFrames_X.CLASSID + " = ?"; //
 				final String[] selectionArgs = {Long.toString(classId)};
 				final String sortOrder = null;
-				return new CursorLoader(BasicModule.this.getContext(), uri, projection, selection, selectionArgs, sortOrder);
+				return new CursorLoader(BasicModule.this.context, uri, projection, selection, selectionArgs, sortOrder);
 			}
 
 			@Override
@@ -405,7 +403,7 @@ abstract class BasicModule extends Module
 					}
 
 					// attach result
-					TreeFactory.addTextNode(parent, sb, BasicModule.this.getContext());
+					TreeFactory.addTextNode(parent, sb, BasicModule.this.context);
 
 					// expand
 					TreeView.expand(parent, false);
@@ -446,7 +444,7 @@ abstract class BasicModule extends Module
 			}
 			else if (items.length > 1)
 			{
-				final TreeNode groupingsNode = TreeFactory.newTreeNode("Groupings", R.drawable.groupitem, this.getContext()); //
+				final TreeNode groupingsNode = TreeFactory.newTreeNode("Groupings", R.drawable.groupitem, this.context); //
 				boolean first = true;
 				for (final String item : items)
 				{
@@ -461,7 +459,7 @@ abstract class BasicModule extends Module
 					Spanner.appendImage(sb, BasicModule.this.drawableItem);
 					Spanner.append(sb, item, 0, VerbNetFactories.itemFactory);
 				}
-				groupingsNode.addChild(TreeFactory.newTextNode(sb, this.getContext()));
+				groupingsNode.addChild(TreeFactory.newTextNode(sb, this.context));
 				return groupingsNode;
 			}
 		}
@@ -469,11 +467,11 @@ abstract class BasicModule extends Module
 	}
 
 	/**
-	 * Roles query
+	 * Roles query data
 	 */
-	class RolesQuery extends Query.QueryData
+	class RolesQueryData extends QueryRenderer.QueryData
 	{
-		public RolesQuery(final long classId, final int icon, @SuppressWarnings("SameParameterValue") final CharSequence text)
+		public RolesQueryData(final long classId, final int icon, final CharSequence text)
 		{
 			super(classId, icon, text);
 		}
@@ -486,11 +484,11 @@ abstract class BasicModule extends Module
 	}
 
 	/**
-	 * Frames query
+	 * Frames query data
 	 */
-	class FramesQuery extends Query.QueryData
+	class FramesQueryData extends QueryRenderer.QueryData
 	{
-		public FramesQuery(final long classId, final int icon, @SuppressWarnings("SameParameterValue") final CharSequence text)
+		public FramesQueryData(final long classId, final int icon, final CharSequence text)
 		{
 			super(classId, icon, text);
 		}

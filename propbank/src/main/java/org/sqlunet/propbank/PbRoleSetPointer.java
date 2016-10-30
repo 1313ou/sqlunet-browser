@@ -45,7 +45,6 @@ public class PbRoleSetPointer extends Pointer
 	 *
 	 * @param parcel parcel
 	 */
-	@SuppressWarnings("boxing")
 	private PbRoleSetPointer(final Parcel parcel)
 	{
 		super(parcel);

@@ -54,10 +54,10 @@ public class SenseModule extends SynsetModule
 		}
 
 		// sub nodes
-		final TreeNode dataNode = TreeFactory.newTextNode("data", SenseModule.this.getContext()); //
-		final TreeNode membersNode = TreeFactory.newTextNode("members", SenseModule.this.getContext()); //
-		final TreeNode linksNode = TreeFactory.newQueryNode(new LinksQuery(this.synsetId, this.wordId, R.drawable.ic_other, "Links"), SenseModule.this.getContext()); //
-		final TreeNode samplesNode = TreeFactory.newQueryNode(new SamplesQuery(this.synsetId, R.drawable.sample, "Samples"), SenseModule.this.getContext()); //
+		final TreeNode dataNode = TreeFactory.newTextNode("data", this.context); //
+		final TreeNode membersNode = TreeFactory.newTextNode("members", this.context); //
+		final TreeNode linksNode = TreeFactory.newQueryNode(new LinksQueryData(this.synsetId, this.wordId, R.drawable.ic_other, "Links"), this.context); //
+		final TreeNode samplesNode = TreeFactory.newQueryNode(new SamplesQueryData(this.synsetId, R.drawable.sample, "Samples"), this.context); //
 
 		// attach result
 		node.addChildren(dataNode, membersNode, linksNode, samplesNode);
@@ -93,6 +93,12 @@ public class SenseModule extends SynsetModule
 			adjPosition(this.synsetId, this.wordId, node);
 		}
 
+		// expand
 		TreeView.expand(node, false);
+		if(this.expand)
+		{
+			TreeView.expand(linksNode, false);
+			TreeView.expand(samplesNode, false);
+		}
 	}
 }

@@ -100,7 +100,7 @@ public class PredicateMatrixActivity extends Activity
 				return getCustomView(position, convertView, parent, R.layout.actionbar_item_pmmodes_dropdown);
 			}
 
-			private View getCustomView(int position, @SuppressWarnings("UnusedParameters") View convertView, ViewGroup parent, int layoutId)
+			private View getCustomView(int position, @SuppressWarnings("UnusedParameters") final View convertView, ViewGroup parent, int layoutId)
 			{
 				final LayoutInflater inflater = getLayoutInflater();
 				final View row = inflater.inflate(layoutId, parent, false);
@@ -265,7 +265,6 @@ public class PredicateMatrixActivity extends Activity
 		// @Override
 		// public boolean onClose()
 		// {
-		// System.out.println("CLOSE");
 		// searchView.clearFocus();
 		// searchView.setFocusable(false);
 		// searchView.setQuery("", false);

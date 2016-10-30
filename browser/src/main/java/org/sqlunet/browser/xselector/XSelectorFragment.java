@@ -558,7 +558,7 @@ public class XSelectorFragment extends ExpandableListFragment
 	 *
 	 * @param activateOnItemClick true if activate
 	 */
-	public void setActivateOnItemClick(@SuppressWarnings("SameParameterValue") final boolean activateOnItemClick)
+	public void setActivateOnItemClick(final boolean activateOnItemClick)
 	{
 		// when setting CHOICE_MODE_SINGLE, ListView will automatically give items the 'activated' state when touched.
 		getListView().setChoiceMode(activateOnItemClick ? AbsListView.CHOICE_MODE_SINGLE : AbsListView.CHOICE_MODE_NONE);

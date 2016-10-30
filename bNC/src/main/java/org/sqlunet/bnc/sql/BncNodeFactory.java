@@ -42,7 +42,6 @@ class BncNodeFactory extends NodeFactory
 	 * @param data   is the BNC data
 	 * @param i      the ith BNC data
 	 */
-	@SuppressWarnings("UnusedReturnValue")
 	public static Node makeBncNode(final Document doc, final Node parent, final BncData data, final int i)
 	{
 		final Element element = NodeFactory.makeNode(doc, parent, "bncdata", null); //

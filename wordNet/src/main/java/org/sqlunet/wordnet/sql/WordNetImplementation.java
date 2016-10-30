@@ -170,7 +170,7 @@ public class WordNetImplementation implements WordNetInterface
 			final Node parent, //
 			final boolean withLinks,//
 			final boolean recurse, //
-			@SuppressWarnings("SameParameterValue") final int targetLinkType)
+			final int targetLinkType)
 	{
 		if (synsetId == null)
 		{

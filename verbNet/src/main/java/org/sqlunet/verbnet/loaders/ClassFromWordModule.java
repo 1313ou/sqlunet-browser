@@ -120,7 +120,7 @@ public class ClassFromWordModule extends BasicModule
 							Long.toString(wordId)};
 				}
 				final String sortOrder = null;
-				return new CursorLoader(ClassFromWordModule.this.getContext(), uri, projection, selection, selectionArgs, sortOrder);
+				return new CursorLoader(ClassFromWordModule.this.context, uri, projection, selection, selectionArgs, sortOrder);
 			}
 
 			@Override
@@ -157,11 +157,15 @@ public class ClassFromWordModule extends BasicModule
 						final TreeNode itemsNode = groupings(groupings);
 
 						// sub nodes
-						final TreeNode rolesNode = TreeFactory.newQueryNode(new RolesQuery(classId, R.drawable.role, "Roles"), ClassFromWordModule.this.getContext()); //
-						final TreeNode framesNode = TreeFactory.newQueryNode(new FramesQuery(classId, R.drawable.vnframe, "Frames"), ClassFromWordModule.this.getContext()); //
+						final TreeNode rolesNode = TreeFactory.newQueryNode(new RolesQueryData(classId, R.drawable.role, "Roles"), ClassFromWordModule.this.context); //
+						final TreeNode framesNode = TreeFactory.newQueryNode(new FramesQueryData(classId, R.drawable.vnframe, "Frames"), ClassFromWordModule.this.context); //
 
 						// attach result
-						TreeFactory.addTextNode(parent, sb, ClassFromWordModule.this.getContext(), itemsNode, rolesNode, framesNode);
+						TreeFactory.addTextNode(parent, sb, ClassFromWordModule.this.context, itemsNode, rolesNode, framesNode);
+
+						// expand
+						TreeView.expand(rolesNode, false);
+						// TreeView.expand(frameNode, false);
 					}
 					while (cursor.moveToNext());
 

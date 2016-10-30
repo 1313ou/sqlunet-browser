@@ -7,15 +7,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import org.sqlunet.HasWordId;
-import org.sqlunet.browser.Module;
 import org.sqlunet.provider.SqlUNetContract;
 import org.sqlunet.treeview.model.TreeNode;
 import org.sqlunet.treeview.renderer.IconTreeRenderer;
 import org.sqlunet.treeview.view.TreeView;
 import org.sqlunet.view.TreeFactory;
 import org.sqlunet.wordnet.R;
-import org.sqlunet.wordnet.loaders.SenseModule;
 import org.sqlunet.wordnet.loaders.SynsetModule;
 
 /**
@@ -31,11 +28,35 @@ public class SynsetFragment extends Fragment
 	private TreeView treeView;
 
 	/**
+	 * Whether to expand
+	 */
+	private boolean expand;
+
+	/**
 	 * Constructor
 	 */
 	public SynsetFragment()
 	{
-		//
+		this.expand = true;
+	}
+
+	/**
+	 * Set expand
+	 */
+	public void setExpand(final boolean expand)
+	{
+		this.expand = expand;
+	}
+
+	/**
+	 * Module factory
+	 *
+	 * @return module
+	 */
+	@SuppressWarnings("WeakerAccess")
+	protected SynsetModule makeModule()
+	{
+		return new SynsetModule(this);
 	}
 
 	@Override
@@ -72,17 +93,12 @@ public class SynsetFragment extends Fragment
 		final int action = args.getInt(SqlUNetContract.ARG_QUERYACTION);
 		if (args.containsKey(SqlUNetContract.ARG_QUERYPOINTER))
 		{
+			// pointer
 			final Parcelable pointer = args.getParcelable(SqlUNetContract.ARG_QUERYPOINTER);
-			boolean isSense = false;
-			if (pointer instanceof HasWordId)
-			{
-				final HasWordId wordId = (HasWordId) pointer;
-				final Long id = wordId.getWordId();
-				isSense = id != null;
-			}
 
 			// module
-			Module module = isSense ? new SenseModule(this) : new SynsetModule(this);
+			SynsetModule module = makeModule();
+			module.setExpand(SynsetFragment.this.expand);
 			module.init(action, pointer);
 			module.process(queryNode);
 		}

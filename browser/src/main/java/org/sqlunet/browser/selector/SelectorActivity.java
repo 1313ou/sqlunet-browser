@@ -11,7 +11,6 @@ import org.sqlunet.browser.DetailActivity;
 import org.sqlunet.browser.DetailFragment;
 import org.sqlunet.browser.R;
 import org.sqlunet.provider.SqlUNetContract;
-import org.sqlunet.wordnet.SensePointer;
 
 /**
  * Selector activity
@@ -85,11 +84,11 @@ public class SelectorActivity extends Activity implements SelectorFragment.Liste
 		else
 		{
 			// in single-pane mode, simply start the detail activity for the selected item ID.
-			final Bundle arguments = new Bundle();
-			arguments.putParcelable(SqlUNetContract.ARG_QUERYPOINTER, pointer);
+			final Bundle args = new Bundle();
+			args.putParcelable(SqlUNetContract.ARG_QUERYPOINTER, pointer);
 
 			final Intent intent = new Intent(this, DetailActivity.class);
-			intent.putExtras(arguments);
+			intent.putExtras(args);
 			startActivity(intent);
 		}
 	}

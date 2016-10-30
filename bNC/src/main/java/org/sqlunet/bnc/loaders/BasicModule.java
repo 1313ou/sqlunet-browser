@@ -36,12 +36,12 @@ public class BasicModule extends Module
 	/**
 	 * Drawable for domain
 	 */
-	private Drawable domainDrawable;
+	private final Drawable domainDrawable;
 
 	/**
 	 * Drawable for pos
 	 */
-	private Drawable posDrawable;
+	private final Drawable posDrawable;
 
 	/**
 	 * Constructor
@@ -51,8 +51,8 @@ public class BasicModule extends Module
 		super(fragment);
 
 		// drawables
-		this.domainDrawable = Spanner.getDrawable(getContext(), R.drawable.domain);
-		this.posDrawable = Spanner.getDrawable(getContext(), R.drawable.pos);
+		this.domainDrawable = Spanner.getDrawable(this.context, R.drawable.domain);
+		this.posDrawable = Spanner.getDrawable(this.context, R.drawable.pos);
 	}
 
 	@Override
@@ -126,7 +126,7 @@ public class BasicModule extends Module
 				final String selection = pos == null ? Words_BNCs.WORDID + " = ?" : Words_BNCs.WORDID + " = ? AND " + Words_BNCs.POS + "= ?"; //
 				final String[] selectionArgs = pos == null ? new String[]{Long.toString(wordId)} : new String[]{Long.toString(wordId), Character.toString(pos),};
 				final String sortOrder = null;
-				return new CursorLoader(getContext(), uri, projection, selection, selectionArgs, sortOrder);
+				return new CursorLoader(BasicModule.this.context, uri, projection, selection, selectionArgs, sortOrder);
 			}
 
 			@Override
@@ -273,7 +273,7 @@ public class BasicModule extends Module
 					while (cursor.moveToNext());
 
 					// attach result
-					TreeFactory.addTextNode(parent, sb, BasicModule.this.getContext());
+					TreeFactory.addTextNode(parent, sb, BasicModule.this.context);
 
 					// expand
 					TreeView.expand(parent, false);

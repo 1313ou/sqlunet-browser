@@ -43,7 +43,6 @@ public class VnClassPointer extends Pointer
 	/**
 	 * Constructor from parcel, reads back fields IN THE ORDER they were written
 	 */
-	@SuppressWarnings("boxing")
 	private VnClassPointer(final Parcel parcel)
 	{
 		super(parcel);

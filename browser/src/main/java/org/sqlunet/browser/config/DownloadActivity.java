@@ -220,7 +220,7 @@ public class DownloadActivity extends Activity implements View.OnClickListener
 	/**
 	 * Start download. Assume download url has been set by derived class
 	 */
-	private void start(@SuppressWarnings("SameParameterValue") final int titleRes)
+	private void start(final int titleRes)
 	{
 		final Uri downloadUri = Uri.parse(this.downloadUrl);
 		try

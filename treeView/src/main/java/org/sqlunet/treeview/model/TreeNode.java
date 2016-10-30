@@ -95,7 +95,6 @@ public class TreeNode
 	 * @param childNode child node
 	 * @return this node
 	 */
-	@SuppressWarnings("UnusedReturnValue")
 	public TreeNode addChild(TreeNode childNode)
 	{
 		childNode.parent = this;
@@ -111,7 +110,6 @@ public class TreeNode
 	 * @param nodes children nodes
 	 * @return this node
 	 */
-	@SuppressWarnings("UnusedReturnValue")
 	public TreeNode addChildren(final TreeNode... nodes)
 	{
 		for (TreeNode node : nodes)
@@ -149,7 +147,6 @@ public class TreeNode
 	 * @param childNode child node
 	 * @return this node
 	 */
-	@SuppressWarnings("UnusedReturnValue")
 	public TreeNode prependChild(TreeNode childNode)
 	{
 		childNode.parent = this;
@@ -165,7 +162,7 @@ public class TreeNode
 	 * @param nodes children nodes
 	 * @return this node
 	 */
-	@SuppressWarnings("UnusedReturnValue")
+	@SuppressWarnings({"unused"})
 	public TreeNode prependChildren(final TreeNode... nodes)
 	{
 		for (int i = nodes.length - 1; i >= 0; i--)
@@ -184,6 +181,7 @@ public class TreeNode
 	 *
 	 * @return true if deleted
 	 */
+	@SuppressWarnings("unused")
 	public boolean delete()
 	{
 		final TreeNode parent = getParent();
@@ -443,7 +441,7 @@ public class TreeNode
 	 *
 	 * @param selectable selectable flag
 	 */
-	public void setSelectable(@SuppressWarnings("SameParameterValue") boolean selectable)
+	public void setSelectable(boolean selectable)
 	{
 		this.selectable = selectable;
 	}

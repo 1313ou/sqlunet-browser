@@ -32,9 +32,9 @@ public class FnFrameActivity extends Activity
 		if (savedInstanceState == null)
 		{
 			// create the sense fragment, transmit intent's extras as parameters and add it to the activity using a fragment transaction
-			final Bundle arguments = getIntent().getExtras();
+			final Bundle args = getIntent().getExtras();
 			final FnFrameFragment fragment = new FnFrameFragment();
-			fragment.setArguments(arguments);
+			fragment.setArguments(args);
 			getFragmentManager().beginTransaction().add(R.id.container_frame, fragment).commit();
 		}
 	}

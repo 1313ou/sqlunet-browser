@@ -81,7 +81,6 @@ public class ExecuteManager
 	 *
 	 * @param sqls sql statements
 	 */
-	@SuppressWarnings("UnusedReturnValue")
 	public AsyncTask<String, Integer, Boolean> executeFromSql(final String... sqls)
 	{
 		final AsyncTask<String, Integer, Boolean> task = new AsyncTask<String, Integer, Boolean>()

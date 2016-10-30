@@ -12,6 +12,7 @@ public interface HasXId
 	 *
 	 * @return extended class id (class=vn:class,pb:rolesetid,fn:frame)
 	 */
+	@SuppressWarnings("unused")
 	Long getXId();
 
 	/**

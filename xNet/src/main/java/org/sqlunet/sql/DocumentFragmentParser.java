@@ -84,7 +84,7 @@ public class DocumentFragmentParser
 		// try
 		// {
 		// String xml = docToString(document);
-		// System.out.println(xml);
+		// Log.d(TAG, xml);
 		// }
 		// catch (Exception e)
 		// {
@@ -143,7 +143,7 @@ public class DocumentFragmentParser
 		// try
 		// {
 		// String xml = docToString(document);
-		// System.out.println(xml);
+		// Log.d(TAG, xml);
 		// }
 		// catch (Exception e)
 		// {

@@ -5,11 +5,11 @@ import android.widget.TextView;
 
 import org.sqlunet.treeview.model.TreeNode;
 import org.sqlunet.treeview.renderer.IconLeafRenderer;
-import org.sqlunet.treeview.renderer.Query;
+import org.sqlunet.treeview.renderer.QueryRenderer;
 import org.sqlunet.treeview.renderer.Value;
 import org.sqlunet.treeview.renderer.IconTreeRenderer;
-import org.sqlunet.treeview.renderer.Link;
-import org.sqlunet.treeview.renderer.Link.LinkData;
+import org.sqlunet.treeview.renderer.LinkRenderer;
+import org.sqlunet.treeview.renderer.LinkRenderer.LinkData;
 import org.sqlunet.treeview.renderer.TextRenderer;
 import org.sqlunet.treeview.view.TreeView;
 
@@ -41,7 +41,7 @@ public class TreeFactory
 	 */
 	static public TreeNode newLinkNode(final LinkData link, final Context context)
 	{
-		return new TreeNode(link).setRenderer(new Link(context));
+		return new TreeNode(link).setRenderer(new LinkRenderer(context));
 	}
 
 	/**
@@ -77,9 +77,9 @@ public class TreeFactory
 	 * @param context context
 	 * @return created node
 	 */
-	static public TreeNode newQueryNode(final Query.QueryData query, final Context context)
+	static public TreeNode newQueryNode(final QueryRenderer.QueryData query, final Context context)
 	{
-		return new TreeNode(query).setRenderer(new Query(context));
+		return new TreeNode(query).setRenderer(new QueryRenderer(context));
 	}
 
 	/**
@@ -90,7 +90,6 @@ public class TreeFactory
 	 * @param context  context
 	 * @param siblings sibling nodes to add
 	 */
-	@SuppressWarnings("UnusedReturnValue")
 	static public TreeNode addTextNode(final TreeNode parent, final CharSequence value, final Context context, final TreeNode... siblings)
 	{
 		final TreeNode result = TreeFactory.newTextNode(value, context);

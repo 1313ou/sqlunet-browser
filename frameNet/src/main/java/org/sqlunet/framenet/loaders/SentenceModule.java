@@ -88,7 +88,7 @@ public class SentenceModule extends BasicModule
 				final String selection = Sentences.SENTENCEID + " = ?"; //
 				final String[] selectionArgs = {Long.toString(sentenceId)};
 				final String sortOrder = null;
-				return new CursorLoader(SentenceModule.this.getContext(), uri, projection, selection, selectionArgs, sortOrder);
+				return new CursorLoader(SentenceModule.this.context, uri, projection, selection, selectionArgs, sortOrder);
 			}
 
 			@Override
@@ -111,7 +111,7 @@ public class SentenceModule extends BasicModule
 					Spanner.append(sb, SentenceModule.this.sentenceText, 0, FrameNetFactories.sentenceFactory);
 
 					// attach result
-					TreeFactory.addTextNode(parent, sb, SentenceModule.this.getContext());
+					TreeFactory.addTextNode(parent, sb, SentenceModule.this.context);
 
 					// layers
 					layersForSentence(id, SentenceModule.this.sentenceText, parent);

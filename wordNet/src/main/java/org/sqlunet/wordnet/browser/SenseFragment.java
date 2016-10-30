@@ -1,5 +1,8 @@
 package org.sqlunet.wordnet.browser;
 
+import org.sqlunet.wordnet.loaders.SenseModule;
+import org.sqlunet.wordnet.loaders.SynsetModule;
+
 /**
  * A fragment representing a sense
  *
@@ -12,6 +15,12 @@ public class SenseFragment extends SynsetFragment
 	 */
 	public SenseFragment()
 	{
-		//
+		super();
+	}
+
+	@Override
+	protected SynsetModule makeModule()
+	{
+		return new SenseModule(this);
 	}
 }

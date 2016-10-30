@@ -50,7 +50,7 @@ class VnFrame
 	 * @param semantics    is the semantic data
 	 * @param examples     examples
 	 */
-	VnFrame(final String number, final String xTag, final String description1, final String description2, final String syntax, final String semantics, final String[] examples)
+	VnFrame(final String number, final String xTag, final String description1, final String description2, final String syntax, final String semantics, final String... examples)
 	{
 		this.number = number;
 		this.xTag = xTag;

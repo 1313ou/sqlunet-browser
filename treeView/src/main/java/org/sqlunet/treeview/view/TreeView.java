@@ -12,8 +12,8 @@ import android.widget.LinearLayout;
 import android.widget.ScrollView;
 
 import org.sqlunet.treeview.R;
-import org.sqlunet.treeview.renderer.Renderer;
 import org.sqlunet.treeview.model.TreeNode;
+import org.sqlunet.treeview.renderer.Renderer;
 import org.sqlunet.treeview.renderer.SimpleRenderer;
 
 import java.util.ArrayList;
@@ -162,15 +162,12 @@ public class TreeView
 	private void addNode(final ViewGroup container, final TreeNode node)
 	{
 		final Renderer<?> renderer = getNodeRenderer(node);
-		assert (renderer != null);
+		assert renderer != null;
 		final View nodeView = renderer.getView();
 		container.addView(nodeView);
 
 		// inherit selection mode
-		if (this.selectable)
-		{
-			node.setSelectable(this.selectable);
-		}
+		node.setSelectable(this.selectable);
 
 		// listener
 		nodeView.setOnClickListener(new View.OnClickListener()
@@ -251,10 +248,10 @@ public class TreeView
 	 */
 	static public void remove(final TreeNode node)
 	{
-		final Renderer renderer = node.getRenderer();
-		assert (renderer != null);
+		final Renderer<?> renderer = node.getRenderer();
+		assert renderer != null;
 		final TreeView treeView = renderer.getTreeView();
-		assert (treeView != null);
+		assert treeView != null;
 		treeView.removeNode(node);
 	}
 
@@ -267,8 +264,8 @@ public class TreeView
 	{
 		node.disable();
 
-		final Renderer renderer = node.getRenderer();
-		assert (renderer != null);
+		final Renderer<?> renderer = node.getRenderer();
+		assert renderer != null;
 		renderer.disable();
 	}
 
@@ -280,12 +277,12 @@ public class TreeView
 	 * @param node            node
 	 * @param includeSubnodes whether to include subnodes
 	 */
-	static public void expand(final TreeNode node, @SuppressWarnings("SameParameterValue") boolean includeSubnodes)
+	static public void expand(final TreeNode node, boolean includeSubnodes)
 	{
-		final Renderer renderer = node.getRenderer();
-		assert (renderer != null);
+		final Renderer<?> renderer = node.getRenderer();
+		assert renderer != null;
 		final TreeView treeView = renderer.getTreeView();
-		assert (treeView != null);
+		assert treeView != null;
 		treeView.expandNode(node, includeSubnodes);
 	}
 
@@ -297,10 +294,10 @@ public class TreeView
 	 */
 	static public void expand(final TreeNode node, int levels)
 	{
-		final Renderer renderer = node.getRenderer();
-		assert (renderer != null);
+		final Renderer<?> renderer = node.getRenderer();
+		assert renderer != null;
 		final TreeView treeView = renderer.getTreeView();
-		assert (treeView != null);
+		assert treeView != null;
 		treeView.expandRelativeLevel(node, levels);
 	}
 
@@ -313,10 +310,10 @@ public class TreeView
 	@SuppressWarnings("unused")
 	static public void collapse(final TreeNode node, boolean includeSubnodes)
 	{
-		final Renderer renderer = node.getRenderer();
-		assert (renderer != null);
+		final Renderer<?> renderer = node.getRenderer();
+		assert renderer != null;
 		final TreeView treeView = renderer.getTreeView();
-		assert (treeView != null);
+		assert treeView != null;
 		treeView.collapseNode(node, includeSubnodes);
 	}
 
@@ -573,7 +570,7 @@ public class TreeView
 	 *
 	 * @param defaultAnimation default animation
 	 */
-	public void setDefaultAnimation(@SuppressWarnings("SameParameterValue") final boolean defaultAnimation)
+	public void setDefaultAnimation(final boolean defaultAnimation)
 	{
 		this.useDefaultAnimation = defaultAnimation;
 	}
@@ -594,7 +591,7 @@ public class TreeView
 	 * @param defaultStyle default container style
 	 * @param applyForRoot apply for root
 	 */
-	private void setDefaultContainerStyle(final int defaultStyle, @SuppressWarnings("SameParameterValue") boolean applyForRoot)
+	private void setDefaultContainerStyle(final int defaultStyle, boolean applyForRoot)
 	{
 		this.containerStyle = defaultStyle;
 		this.applyForRoot = applyForRoot;
@@ -849,6 +846,7 @@ public class TreeView
 	/**
 	 * Deselect all
 	 */
+	@SuppressWarnings("WeakerAccess")
 	public void deselectAll()
 	{
 		selectAll(false, false);
@@ -918,7 +916,7 @@ public class TreeView
 	private void fireNodeSelected(final TreeNode node, final boolean selected)
 	{
 		final Renderer<?> renderer = getNodeRenderer(node);
-		assert (renderer != null);
+		assert renderer != null;
 		if (renderer.isInitialized())
 		{
 			renderer.onSelectedEvent(selected);

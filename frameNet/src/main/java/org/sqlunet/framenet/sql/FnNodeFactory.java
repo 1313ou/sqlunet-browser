@@ -135,7 +135,6 @@ class FnNodeFactory extends NodeFactory
 	 * @param fe     FE
 	 * @return newly created node
 	 */
-	@SuppressWarnings("UnusedReturnValue")
 	public static Node makeFnFENode(final Document doc, final Node parent, final FnFrameElement fe)
 	{
 		final Element element = NodeFactory.makeNode(doc, parent, "fe", null); //
@@ -156,7 +155,6 @@ class FnNodeFactory extends NodeFactory
 	 * @param governor governor
 	 * @return newly created node
 	 */
-	@SuppressWarnings("UnusedReturnValue")
 	public static Node makeFnGovernorNode(final Document doc, final Node parent, final FnGovernor governor)
 	{
 		final Element element = NodeFactory.makeNode(doc, parent, "governor", null); //
@@ -220,7 +218,6 @@ class FnNodeFactory extends NodeFactory
 	 * @param layer target layer
 	 * @return layer node
 	 */
-	@SuppressWarnings("UnusedReturnValue")
 	public static Node makeFnLayerNode(final Document doc, final Node parent, final FnLayer layer)
 	{
 		final Element element = NodeFactory.makeNode(doc, parent, "layer", null); //

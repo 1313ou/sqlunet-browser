@@ -39,7 +39,7 @@ public class RegExprSpanner extends Spanner
 	 * @param sb    spannable string builder to append to
 	 * @param flags flags
 	 */
-	public void append(final CharSequence text, final SpannableStringBuilder sb, @SuppressWarnings("SameParameterValue") final long flags)
+	public void append(final CharSequence text, final SpannableStringBuilder sb, final long flags)
 	{
 		final int from = sb.length();
 		sb.append(text);

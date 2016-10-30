@@ -100,7 +100,7 @@ public class WebFragment extends Fragment
 	 * @param bncDomDoc  bnc document
 	 * @return string
 	 */
-	static private String docsToString(@SuppressWarnings({"SameParameterValue", "UnusedParameters"}) final String word,  //
+	static private String docsToString(@SuppressWarnings("UnusedParameters") final String word,  //
 			final boolean xml,  //
 			final boolean isSelector,  //
 			final Document wnDomDoc,  //

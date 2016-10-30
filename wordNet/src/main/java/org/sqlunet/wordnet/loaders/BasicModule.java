@@ -14,7 +14,7 @@ import android.text.SpannableStringBuilder;
 import org.sqlunet.browser.Module;
 import org.sqlunet.style.Spanner;
 import org.sqlunet.treeview.model.TreeNode;
-import org.sqlunet.treeview.renderer.Query;
+import org.sqlunet.treeview.renderer.QueryRenderer;
 import org.sqlunet.treeview.view.TreeView;
 import org.sqlunet.view.TreeFactory;
 import org.sqlunet.wordnet.R;
@@ -75,14 +75,13 @@ abstract public class BasicModule extends Module
 		super(fragment);
 
 		// drawables
-		final Context context = getContext();
-		this.memberDrawable = Spanner.getDrawable(context, R.drawable.member);
-		this.synsetDrawable = Spanner.getDrawable(context, R.drawable.synset);
-		this.definitionDrawable = Spanner.getDrawable(context, R.drawable.definition);
-		this.sampleDrawable = Spanner.getDrawable(context, R.drawable.sample);
-		this.posDrawable = Spanner.getDrawable(context, R.drawable.pos);
-		this.domainDrawable = Spanner.getDrawable(context, R.drawable.lexdomain);
-		this.flagDrawable = Spanner.getDrawable(context, R.drawable.flag);
+		this.memberDrawable = Spanner.getDrawable(this.context, R.drawable.member);
+		this.synsetDrawable = Spanner.getDrawable(this.context, R.drawable.synset);
+		this.definitionDrawable = Spanner.getDrawable(this.context, R.drawable.definition);
+		this.sampleDrawable = Spanner.getDrawable(this.context, R.drawable.sample);
+		this.posDrawable = Spanner.getDrawable(this.context, R.drawable.pos);
+		this.domainDrawable = Spanner.getDrawable(this.context, R.drawable.lexdomain);
+		this.flagDrawable = Spanner.getDrawable(this.context, R.drawable.flag);
 	}
 
 	/**
@@ -124,7 +123,7 @@ abstract public class BasicModule extends Module
 				final String selection = Synsets_PosTypes_LexDomains.SYNSETID + " = ?"; //
 				final String[] selectionArgs = {Long.toString(synsetId)};
 				final String sortOrder = null;
-				return new CursorLoader(getContext(), uri, projection, selection, selectionArgs, sortOrder);
+				return new CursorLoader(BasicModule.this.context, uri, projection, selection, selectionArgs, sortOrder);
 			}
 
 			@Override
@@ -164,15 +163,17 @@ abstract public class BasicModule extends Module
 					sbdef.append(definition);
 
 					// subnodes
-					final TreeNode linksNode = TreeFactory.newQueryNode(new LinksQuery(synsetId, wordId, R.drawable.ic_other, "Links"), BasicModule.this.getContext()); //
-					final TreeNode samplesNode = TreeFactory.newQueryNode(new SamplesQuery(synsetId, R.drawable.sample, "Samples"), BasicModule.this.getContext()); //
+					final TreeNode linksNode = TreeFactory.newQueryNode(new LinksQueryData(synsetId, wordId, R.drawable.ic_other, "Links"), BasicModule.this.context); //
+					final TreeNode samplesNode = TreeFactory.newQueryNode(new SamplesQueryData(synsetId, R.drawable.sample, "Samples"), BasicModule.this.context); //
 
 					// attach result
-					TreeFactory.addTextNode(parent, sb, BasicModule.this.getContext());
-					TreeFactory.addTextNode(parent, sbdef, BasicModule.this.getContext(), linksNode, samplesNode);
+					TreeFactory.addTextNode(parent, sb, BasicModule.this.context);
+					TreeFactory.addTextNode(parent, sbdef, BasicModule.this.context, linksNode, samplesNode);
 
 					// expand
 					TreeView.expand(parent, false);
+					TreeView.expand(linksNode, false);
+					TreeView.expand(samplesNode, false);
 				}
 				else
 				{
@@ -215,7 +216,7 @@ abstract public class BasicModule extends Module
 				final String selection = Synsets_PosTypes_LexDomains.SYNSETID + " = ?"; //
 				final String[] selectionArgs = {Long.toString(synsetId)};
 				final String sortOrder = null;
-				return new CursorLoader(getContext(), uri, projection, selection, selectionArgs, sortOrder);
+				return new CursorLoader(BasicModule.this.context, uri, projection, selection, selectionArgs, sortOrder);
 			}
 
 			@Override
@@ -255,7 +256,7 @@ abstract public class BasicModule extends Module
 					// attach result
 					if (addNewNode)
 					{
-						TreeFactory.addTextNode(parent, sb, BasicModule.this.getContext());
+						TreeFactory.addTextNode(parent, sb, BasicModule.this.context);
 
 						// expand
 						TreeView.expand(parent, false);
@@ -308,7 +309,7 @@ abstract public class BasicModule extends Module
 				final String selection = Senses_Words.SYNSETID + " = ?"; //
 				final String[] selectionArgs = {Long.toString(synsetId)};
 				final String sortOrder = Words.LEMMA;
-				return new CursorLoader(getContext(), uri, projection, selection, selectionArgs, sortOrder);
+				return new CursorLoader(BasicModule.this.context, uri, projection, selection, selectionArgs, sortOrder);
 			}
 
 			@Override
@@ -356,7 +357,7 @@ abstract public class BasicModule extends Module
 					// attach result
 					if (addNewNode)
 					{
-						TreeFactory.addTextNode(parent, sb, BasicModule.this.getContext());
+						TreeFactory.addTextNode(parent, sb, BasicModule.this.context);
 
 						// expand
 						TreeView.expand(parent, false);
@@ -411,7 +412,7 @@ abstract public class BasicModule extends Module
 				final String selection = Samples.SYNSETID + " = ?"; //
 				final String[] selectionArgs = {Long.toString(synsetId)};
 				final String sortOrder = Samples.SAMPLEID;
-				return new CursorLoader(getContext(), uri, projection, selection, selectionArgs, sortOrder);
+				return new CursorLoader(BasicModule.this.context, uri, projection, selection, selectionArgs, sortOrder);
 			}
 
 			@Override
@@ -419,6 +420,8 @@ abstract public class BasicModule extends Module
 			{
 				if (cursor.moveToFirst())
 				{
+					final Context context = BasicModule.this.context;
+
 					final int idSample = cursor.getColumnIndex(Samples.SAMPLE);
 
 					final SpannableStringBuilder sb = new SpannableStringBuilder();
@@ -443,7 +446,7 @@ abstract public class BasicModule extends Module
 					// attach result
 					if (addNewNode)
 					{
-						TreeFactory.addTextNode(parent, sb, BasicModule.this.getContext());
+						TreeFactory.addTextNode(parent, sb, context);
 
 						// expand
 						TreeView.expand(parent, false);
@@ -487,7 +490,7 @@ abstract public class BasicModule extends Module
 	 * @param synsetId synset id
 	 * @param parent   parent node
 	 */
-	void semLinks(final long synsetId, final TreeNode parent)
+	private void semLinks(final long synsetId, final TreeNode parent)
 	{
 		getLoaderManager().restartLoader(++Module.loaderId, null, new LoaderCallbacks<Cursor>()
 		{
@@ -505,7 +508,7 @@ abstract public class BasicModule extends Module
 				final String selection = WordNetContract.LINK + '.' + SemLinks_Synsets_Words_X.SYNSET1ID + " = ?";  ////
 				final String[] selectionArgs = {Long.toString(synsetId)};
 				final String sortOrder = LinkTypes.LINKID;
-				return new CursorLoader(getContext(), uri, projection, selection, selectionArgs, sortOrder);
+				return new CursorLoader(BasicModule.this.context, uri, projection, selection, selectionArgs, sortOrder);
 			}
 
 			@Override
@@ -514,6 +517,8 @@ abstract public class BasicModule extends Module
 				// noinspection StatementWithEmptyBody
 				if (cursor.moveToFirst())
 				{
+					final Context context = BasicModule.this.context;
+
 					final int idLinkId = cursor.getColumnIndex(LinkTypes.LINKID);
 					// final int idLink = cursor.getColumnIndex(LinkTypes.LINK);
 					final int idTargetSynsetId = cursor.getColumnIndex(BasicModule.TARGET_SYNSETID);
@@ -537,11 +542,14 @@ abstract public class BasicModule extends Module
 						sb.append(' ');
 						Spanner.append(sb, targetDefinition, 0, WordNetFactories.definitionFactory);
 
-						final Context context = BasicModule.this.getContext();
-						TreeNode linkNode = recurses == 0 ? //
+						final TreeNode linksNode = recurses == 0 ? //
 								TreeFactory.newLeafNode(sb, getLinkRes(linkId), context) : //
-								TreeFactory.newQueryNode(new SubLinksQuery(targetSynsetId, linkId, getLinkRes(linkId), sb), BasicModule.this.getContext());
-						parent.prependChild(linkNode);
+								TreeFactory.newQueryNode(new SubLinksQueryData(targetSynsetId, linkId, getLinkRes(linkId), sb), context);
+						parent.prependChild(linksNode);
+
+						// expand
+						// if(recurses == 0)
+						//	TreeView.expand(linksNode, false);
 					}
 					while (cursor.moveToNext());
 
@@ -589,7 +597,7 @@ abstract public class BasicModule extends Module
 				final String selection = WordNetContract.LINK + '.' + SemLinks_Synsets_Words_X.SYNSET1ID + " = ? AND " + LinkTypes.LINKID + " = ?"; //
 				final String[] selectionArgs = {Long.toString(synsetId), Integer.toString(linkId)};
 				final String sortOrder = null;
-				return new CursorLoader(getContext(), uri, projection, selection, selectionArgs, sortOrder);
+				return new CursorLoader(BasicModule.this.context, uri, projection, selection, selectionArgs, sortOrder);
 			}
 
 			@Override
@@ -597,9 +605,10 @@ abstract public class BasicModule extends Module
 			{
 				if (cursor.moveToFirst())
 				{
+					final Context context = BasicModule.this.context;
+
 					// final int idLinkId = cursor.getColumnIndex(LinkTypes.LINKID);
 					// final int idLink = cursor.getColumnIndex(LinkTypes.LINK);
-
 					final int idTargetSynsetId = cursor.getColumnIndex(BasicModule.TARGET_SYNSETID);
 					final int idTargetDefinition = cursor.getColumnIndex(BasicModule.TARGET_DEFINITION);
 					final int idTargetMembers = cursor.getColumnIndex(SemLinks_Synsets_Words_X.MEMBERS2);
@@ -621,11 +630,14 @@ abstract public class BasicModule extends Module
 						sb.append(' ');
 						Spanner.append(sb, targetDefinition, 0, WordNetFactories.definitionFactory);
 
-						final Context context = BasicModule.this.getContext();
-						TreeNode linkNode = recurses == 0 ? //
+						final TreeNode linksNode = recurses == 0 ? //
 								TreeFactory.newLeafNode(sb, getLinkRes(linkId), context) : //
-								TreeFactory.newQueryNode(new SubLinksQuery(targetSynsetId, linkId, getLinkRes(linkId), sb), context);
-						parent.addChild(linkNode);
+								TreeFactory.newQueryNode(new SubLinksQueryData(targetSynsetId, linkId, getLinkRes(linkId), sb), context);
+						parent.addChild(linksNode);
+
+						// expand
+						// if(recurses == 0)
+						//	TreeView.expand(linksNode, false);
 					}
 					while (cursor.moveToNext());
 
@@ -654,6 +666,7 @@ abstract public class BasicModule extends Module
 	 * @param synsetId synset id
 	 * @param parent   parent
 	 */
+	@SuppressWarnings("unused")
 	void lexLinks(final long synsetId, final TreeNode parent)
 	{
 		getLoaderManager().restartLoader(++Module.loaderId, null, new LoaderCallbacks<Cursor>()
@@ -672,7 +685,7 @@ abstract public class BasicModule extends Module
 				final String selection = WordNetContract.LINK + '.' + LexLinks_Senses_Words_X.SYNSET1ID + " = ?";  ////
 				final String[] selectionArgs = {Long.toString(synsetId)};
 				final String sortOrder = null;
-				return new CursorLoader(getContext(), uri, projection, selection, selectionArgs, sortOrder);
+				return new CursorLoader(BasicModule.this.context, uri, projection, selection, selectionArgs, sortOrder);
 			}
 
 			@Override
@@ -681,6 +694,8 @@ abstract public class BasicModule extends Module
 				// noinspection StatementWithEmptyBody
 				if (cursor.moveToFirst())
 				{
+					final Context context = BasicModule.this.context;
+
 					final int idLinkId = cursor.getColumnIndex(LinkTypes.LINKID);
 					// final int idLink = cursor.getColumnIndex(LinkTypes.LINK);
 
@@ -723,12 +738,12 @@ abstract public class BasicModule extends Module
 						Spanner.append(sb, targetDefinition, 0, WordNetFactories.definitionFactory);
 
 						// attach result
-						TreeFactory.newLeafNode(sb, getLinkRes(linkId), BasicModule.this.getContext());
+						TreeFactory.newLeafNode(sb, getLinkRes(linkId), context);
 					}
 					while (cursor.moveToNext());
 
 					// attach result
-					TreeFactory.addTextNode(parent, sb, BasicModule.this.getContext());
+					TreeFactory.addTextNode(parent, sb, context);
 
 					// expand
 					TreeView.expand(parent, false);
@@ -773,7 +788,7 @@ abstract public class BasicModule extends Module
 				final String selection = WordNetContract.LINK + ".synset1id = ? AND " + WordNetContract.LINK + ".word1id = ?"; //
 				final String[] selectionArgs = {Long.toString(synsetId), Long.toString(wordId)};
 				final String sortOrder = LinkTypes.LINKID;
-				return new CursorLoader(getContext(), uri, projection, selection, selectionArgs, sortOrder);
+				return new CursorLoader(BasicModule.this.context, uri, projection, selection, selectionArgs, sortOrder);
 			}
 
 			@Override
@@ -782,6 +797,8 @@ abstract public class BasicModule extends Module
 				//noinspection StatementWithEmptyBody
 				if (cursor.moveToFirst())
 				{
+					final Context context = BasicModule.this.context;
+
 					final int idLinkId = cursor.getColumnIndex(LinkTypes.LINKID);
 					// final int idLink = cursor.getColumnIndex(LinkTypes.LINK);
 
@@ -824,12 +841,12 @@ abstract public class BasicModule extends Module
 						Spanner.append(sb, targetDefinition, 0, WordNetFactories.definitionFactory);
 
 						// attach result
-						TreeFactory.newLeafNode(sb, getLinkRes(linkId), BasicModule.this.getContext());
+						TreeFactory.newLeafNode(sb, getLinkRes(linkId), context);
 					}
 					while (cursor.moveToNext());
 
 					// attach result
-					// TreeFactory.addTextNode(parent, sb, BasicModule.this.getContext());
+					// TreeFactory.addTextNode(parent, sb, context);
 
 					// expand
 					TreeView.expand(parent, false);
@@ -869,7 +886,7 @@ abstract public class BasicModule extends Module
 				final String selection = VerbFrameMaps_VerbFrames.SYNSETID + " = ?"; //
 				final String[] selectionArgs = {Long.toString(synsetId)};
 				final String sortOrder = null;
-				return new CursorLoader(getContext(), uri, projection, selection, selectionArgs, sortOrder);
+				return new CursorLoader(BasicModule.this.context, uri, projection, selection, selectionArgs, sortOrder);
 			}
 
 			@Override
@@ -878,6 +895,8 @@ abstract public class BasicModule extends Module
 				//noinspection StatementWithEmptyBody
 				if (cursor.moveToFirst())
 				{
+					final Context context = BasicModule.this.context;
+
 					final int vframeId = cursor.getColumnIndex(VerbFrameMaps_VerbFrames.FRAME);
 
 					final SpannableStringBuilder sb = new SpannableStringBuilder();
@@ -896,7 +915,7 @@ abstract public class BasicModule extends Module
 					while (cursor.moveToNext());
 
 					// attach result
-					TreeFactory.addTextNode(parent, sb, BasicModule.this.getContext());
+					TreeFactory.addTextNode(parent, sb, context);
 
 					// expand
 					TreeView.expand(parent, false);
@@ -937,7 +956,7 @@ abstract public class BasicModule extends Module
 				final String selection = VerbFrameMaps_VerbFrames.SYNSETID + " = ? AND " + VerbFrameMaps_VerbFrames.WORDID + " = ?"; //
 				final String[] selectionArgs = {Long.toString(synsetId), Long.toString(wordId)};
 				final String sortOrder = null;
-				return new CursorLoader(getContext(), uri, projection, selection, selectionArgs, sortOrder);
+				return new CursorLoader(BasicModule.this.context, uri, projection, selection, selectionArgs, sortOrder);
 			}
 
 			@Override
@@ -946,6 +965,8 @@ abstract public class BasicModule extends Module
 				//noinspection StatementWithEmptyBody
 				if (cursor.moveToFirst())
 				{
+					final Context context = BasicModule.this.context;
+
 					final int vframeId = cursor.getColumnIndex(VerbFrameMaps_VerbFrames.FRAME);
 
 					final SpannableStringBuilder sb = new SpannableStringBuilder();
@@ -964,7 +985,7 @@ abstract public class BasicModule extends Module
 					while (cursor.moveToNext());
 
 					// attach result
-					TreeFactory.addTextNode(parent, sb, BasicModule.this.getContext());
+					TreeFactory.addTextNode(parent, sb, context);
 
 					// expand
 					TreeView.expand(parent, false);
@@ -1004,7 +1025,7 @@ abstract public class BasicModule extends Module
 				final String selection = VerbFrameSentenceMaps_VerbFrameSentences.SYNSETID + " = ?"; //
 				final String[] selectionArgs = {Long.toString(synsetId)};
 				final String sortOrder = null;
-				return new CursorLoader(BasicModule.this.getContext(), uri, projection, selection, selectionArgs, sortOrder);
+				return new CursorLoader(BasicModule.this.context, uri, projection, selection, selectionArgs, sortOrder);
 			}
 
 			@Override
@@ -1013,6 +1034,8 @@ abstract public class BasicModule extends Module
 				//noinspection StatementWithEmptyBody
 				if (cursor.moveToFirst())
 				{
+					final Context context = BasicModule.this.context;
+
 					final int vframeId = cursor.getColumnIndex(VerbFrameSentenceMaps_VerbFrameSentences.SENTENCE);
 
 					final SpannableStringBuilder sb = new SpannableStringBuilder();
@@ -1031,7 +1054,7 @@ abstract public class BasicModule extends Module
 					while (cursor.moveToNext());
 
 					// attach result
-					TreeFactory.addTextNode(parent, sb, BasicModule.this.getContext());
+					TreeFactory.addTextNode(parent, sb, context);
 
 					// expand
 					TreeView.expand(parent, false);
@@ -1073,7 +1096,7 @@ abstract public class BasicModule extends Module
 				final String selection = VerbFrameSentenceMaps_VerbFrameSentences.SYNSETID + " = ? AND " + VerbFrameSentenceMaps_VerbFrameSentences.WORDID + " = ?"; //
 				final String[] selectionArgs = {Long.toString(synsetId), Long.toString(wordId)};
 				final String sortOrder = null;
-				return new CursorLoader(getContext(), uri, projection, selection, selectionArgs, sortOrder);
+				return new CursorLoader(BasicModule.this.context, uri, projection, selection, selectionArgs, sortOrder);
 			}
 
 			@Override
@@ -1082,6 +1105,8 @@ abstract public class BasicModule extends Module
 				// noinspection StatementWithEmptyBody
 				if (cursor.moveToFirst())
 				{
+					final Context context = BasicModule.this.context;
+
 					final int vframeId = cursor.getColumnIndex(VerbFrameSentenceMaps_VerbFrameSentences.SENTENCE);
 
 					final SpannableStringBuilder sb = new SpannableStringBuilder();
@@ -1100,7 +1125,7 @@ abstract public class BasicModule extends Module
 					while (cursor.moveToNext());
 
 					// attach result
-					TreeFactory.addTextNode(parent, sb, BasicModule.this.getContext());
+					TreeFactory.addTextNode(parent, sb, context);
 
 					// expand
 					TreeView.expand(parent, false);
@@ -1140,7 +1165,7 @@ abstract public class BasicModule extends Module
 				final String selection = AdjPositions_AdjPositionTypes.SYNSETID + " = ?"; //
 				final String[] selectionArgs = {Long.toString(synsetId)};
 				final String sortOrder = null;
-				return new CursorLoader(BasicModule.this.getContext(), uri, projection, selection, selectionArgs, sortOrder);
+				return new CursorLoader(BasicModule.this.context, uri, projection, selection, selectionArgs, sortOrder);
 			}
 
 			@Override
@@ -1149,6 +1174,8 @@ abstract public class BasicModule extends Module
 				//noinspection StatementWithEmptyBody
 				if (cursor.moveToFirst())
 				{
+					final Context context = BasicModule.this.context;
+
 					final int positionId = cursor.getColumnIndex(AdjPositions_AdjPositionTypes.POSITIONNAME);
 
 					final SpannableStringBuilder sb = new SpannableStringBuilder();
@@ -1167,7 +1194,7 @@ abstract public class BasicModule extends Module
 					while (cursor.moveToNext());
 
 					// attach result
-					TreeFactory.addTextNode(parent, sb, BasicModule.this.getContext());
+					TreeFactory.addTextNode(parent, sb, context);
 
 					// expand
 					TreeView.expand(parent, false);
@@ -1208,7 +1235,7 @@ abstract public class BasicModule extends Module
 				final String selection = AdjPositions_AdjPositionTypes.SYNSETID + " = ? AND " + AdjPositions_AdjPositionTypes.WORDID + " = ?"; //
 				final String[] selectionArgs = {Long.toString(synsetId), Long.toString(wordId)};
 				final String sortOrder = null;
-				return new CursorLoader(getContext(), uri, projection, selection, selectionArgs, sortOrder);
+				return new CursorLoader(BasicModule.this.context, uri, projection, selection, selectionArgs, sortOrder);
 			}
 
 			@Override
@@ -1217,6 +1244,8 @@ abstract public class BasicModule extends Module
 				//noinspection StatementWithEmptyBody
 				if (cursor.moveToFirst())
 				{
+					final Context context = BasicModule.this.context;
+
 					final int positionId = cursor.getColumnIndex(AdjPositions_AdjPositionTypes.POSITIONNAME);
 
 					final SpannableStringBuilder sb = new SpannableStringBuilder();
@@ -1235,7 +1264,7 @@ abstract public class BasicModule extends Module
 					while (cursor.moveToNext());
 
 					// attach result
-					TreeFactory.addTextNode(parent, sb, BasicModule.this.getContext());
+					TreeFactory.addTextNode(parent, sb, context);
 
 					// expand
 					TreeView.expand(parent, false);
@@ -1274,7 +1303,7 @@ abstract public class BasicModule extends Module
 				final String selection = MorphMaps_Morphs.WORDID + " = ?"; //
 				final String[] selectionArgs = {Long.toString(wordId)};
 				final String sortOrder = null;
-				return new CursorLoader(BasicModule.this.getContext(), uri, projection, selection, selectionArgs, sortOrder);
+				return new CursorLoader(BasicModule.this.context, uri, projection, selection, selectionArgs, sortOrder);
 			}
 
 			@Override
@@ -1283,6 +1312,8 @@ abstract public class BasicModule extends Module
 				//noinspection StatementWithEmptyBody
 				if (cursor.moveToFirst())
 				{
+					final Context context = BasicModule.this.context;
+
 					final int morphId = cursor.getColumnIndex(MorphMaps_Morphs.MORPH);
 					final int posId = cursor.getColumnIndex(MorphMaps_Morphs.POS);
 
@@ -1303,7 +1334,7 @@ abstract public class BasicModule extends Module
 					while (cursor.moveToNext());
 
 					// attach result
-					TreeFactory.addTextNode(parent, sb, BasicModule.this.getContext());
+					TreeFactory.addTextNode(parent, sb, context);
 
 					// expand
 					TreeView.expand(parent, false);
@@ -1405,7 +1436,7 @@ abstract public class BasicModule extends Module
 	 */
 	private Drawable getLinkDrawable(final int linkId)
 	{
-		final Context context = getContext();
+		final Context context = BasicModule.this.context;
 		return getLinkDrawable(context, linkId);
 	}
 
@@ -1427,7 +1458,7 @@ abstract public class BasicModule extends Module
 	/**
 	 * LinkData query
 	 */
-	public class LinksQuery extends Query.QueryData
+	public class LinksQueryData extends QueryRenderer.QueryData
 	{
 		/**
 		 * Word id
@@ -1442,7 +1473,7 @@ abstract public class BasicModule extends Module
 		 * @param icon     icon
 		 * @param text     label text
 		 */
-		public LinksQuery(final long synsetId, final long wordId, final int icon, @SuppressWarnings("SameParameterValue") final CharSequence text)
+		public LinksQueryData(final long synsetId, final long wordId, final int icon, final CharSequence text)
 		{
 			super(synsetId, icon, text);
 			this.wordId = wordId;
@@ -1459,10 +1490,10 @@ abstract public class BasicModule extends Module
 		}
 	}
 
-	public class SubLinksQuery extends Query.QueryData
+	public class SubLinksQueryData extends QueryRenderer.QueryData
 	{
 		/**
-		 * LinkData id
+		 * Link id
 		 */
 		final int linkId;
 
@@ -1474,7 +1505,7 @@ abstract public class BasicModule extends Module
 		 * @param icon     icon
 		 * @param text     label text
 		 */
-		public SubLinksQuery(final long synsetId, final int linkId, final int icon, final CharSequence text)
+		public SubLinksQueryData(final long synsetId, final int linkId, final int icon, final CharSequence text)
 		{
 			super(synsetId, icon, text);
 			this.linkId = linkId;
@@ -1491,7 +1522,7 @@ abstract public class BasicModule extends Module
 	/**
 	 * Samples query
 	 */
-	public class SamplesQuery extends Query.QueryData
+	public class SamplesQueryData extends QueryRenderer.QueryData
 	{
 		/**
 		 * Constructor
@@ -1500,7 +1531,7 @@ abstract public class BasicModule extends Module
 		 * @param icon     icon
 		 * @param text     label text
 		 */
-		public SamplesQuery(final long synsetId, final int icon, @SuppressWarnings("SameParameterValue") final CharSequence text)
+		public SamplesQueryData(final long synsetId, final int icon, final CharSequence text)
 		{
 			super(synsetId, icon, text);
 		}

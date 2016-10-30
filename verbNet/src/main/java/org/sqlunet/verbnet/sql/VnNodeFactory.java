@@ -120,7 +120,6 @@ class VnNodeFactory extends NodeFactory
 	 * @param i      is the index
 	 * @return newly created node
 	 */
-	@SuppressWarnings("UnusedReturnValue")
 	static public Node makeVnRoleNode(final Document doc, final Node parent, final VnRole role, final int i)
 	{
 		final Element element = org.sqlunet.sql.NodeFactory.makeNode(doc, parent, "themrole", null); //
@@ -157,7 +156,6 @@ class VnNodeFactory extends NodeFactory
 	 * @param i      is the rank
 	 * @return newly created node
 	 */
-	@SuppressWarnings("UnusedReturnValue")
 	static public Node makeVnFrameNode(final Document doc, final Node parent, final VnFrame frame, final int i)
 	{
 		final Element element = org.sqlunet.sql.NodeFactory.makeNode(doc, parent, "frame", null); //
@@ -246,7 +244,6 @@ class VnNodeFactory extends NodeFactory
 	 * @param statement statement
 	 * @return node
 	 */
-	@SuppressWarnings("UnusedReturnValue")
 	private static Node makeVnSyntaxNodes(final Document doc, final Node parent, final CharSequence statement)
 	{
 		final String[] fields = VnNodeFactory.parse(statement, VnNodeFactory.syntaxPattern);
@@ -291,7 +288,6 @@ class VnNodeFactory extends NodeFactory
 	 * @param statement statement
 	 * @return node
 	 */
-	@SuppressWarnings("UnusedReturnValue")
 	private static Node makeVnSemanticNodes(final Document doc, final Node parent, final CharSequence statement)
 	{
 		final String[] relArgs = VnNodeFactory.parse(statement, VnNodeFactory.semanticsPattern);

@@ -76,7 +76,7 @@ public abstract class SqlUNetProvider extends ContentProvider
 	 * @param flags database name
 	 * @return opened database
 	 */
-	private SQLiteDatabase open(final String path, @SuppressWarnings("SameParameterValue") final int flags)
+	private SQLiteDatabase open(final String path, final int flags)
 	{
 		this.db = SQLiteDatabase.openDatabase(path, null, flags);
 		return this.db;
@@ -169,7 +169,7 @@ public abstract class SqlUNetProvider extends ContentProvider
 	 * @param items      items to add to projection
 	 * @return augmented projection
 	 */
-	static String[] prependProjection(final String[] projection, @SuppressWarnings("SameParameterValue") final String... items)
+	static String[] prependProjection(final String[] projection, final String... items)
 	{
 		String[] projection2;
 		if (projection == null)
@@ -205,7 +205,7 @@ public abstract class SqlUNetProvider extends ContentProvider
 	 * @param args args
 	 * @return string
 	 */
-	protected static String argsToString(final String[] args)
+	protected static String argsToString(final String... args)
 	{
 		final StringBuilder sb = new StringBuilder();
 		if (args != null && args.length > 0)

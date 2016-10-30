@@ -148,7 +148,7 @@ public class MainActivity extends Activity
 			 * @param layoutId      layout id
 			 * @return view
 			 */
-			private View getCustomView(int position, @SuppressWarnings("UnusedParameters") View convertView, ViewGroup parent, int layoutId)
+			private View getCustomView(int position, @SuppressWarnings("UnusedParameters") final View convertView, ViewGroup parent, int layoutId)
 			{
 				final LayoutInflater inflater = getLayoutInflater();
 				final View row = inflater.inflate(layoutId, parent, false);

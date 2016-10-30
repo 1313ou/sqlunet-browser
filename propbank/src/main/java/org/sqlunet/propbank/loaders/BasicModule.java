@@ -21,7 +21,7 @@ import org.sqlunet.propbank.style.PropBankFactories;
 import org.sqlunet.propbank.style.PropBankSpanner;
 import org.sqlunet.style.Spanner;
 import org.sqlunet.treeview.model.TreeNode;
-import org.sqlunet.treeview.renderer.Query;
+import org.sqlunet.treeview.renderer.QueryRenderer;
 import org.sqlunet.treeview.view.TreeView;
 import org.sqlunet.view.TreeFactory;
 
@@ -40,44 +40,44 @@ abstract class BasicModule extends Module
 	/**
 	 * Drawable for roleSets
 	 */
-	private Drawable roleSetDrawable;
+	private final Drawable roleSetDrawable;
 
 	/**
 	 * Drawable for roles
 	 */
-	private Drawable rolesDrawable;
+	private final Drawable rolesDrawable;
 
 	/**
 	 * Drawable for relation
 	 */
-	private Drawable relationDrawable;
+	private final Drawable relationDrawable;
 
 	/**
 	 * Drawable for role
 	 */
-	private Drawable roleDrawable;
+	private final Drawable roleDrawable;
 
 	/**
 	 * Drawable for theta role
 	 */
-	private Drawable thetaDrawable;
+	private final Drawable thetaDrawable;
 
 	/**
 	 * Drawable for definition
 	 */
-	private Drawable definitionDrawable;
+	private final Drawable definitionDrawable;
 
 	/**
 	 * Drawable for sample
 	 */
-	private Drawable sampleDrawable;
+	private final Drawable sampleDrawable;
 
 	// agents
 
 	/**
 	 * Spanner
 	 */
-	private PropBankSpanner spanner;
+	private final PropBankSpanner spanner;
 
 	/**
 	 * Constructor
@@ -89,16 +89,16 @@ abstract class BasicModule extends Module
 		super(fragment);
 
 		// drawables
-		this.roleSetDrawable = Spanner.getDrawable(getContext(), R.drawable.roleset);
-		this.rolesDrawable = Spanner.getDrawable(getContext(), R.drawable.roles);
-		this.relationDrawable = Spanner.getDrawable(getContext(), R.drawable.relation);
-		this.roleDrawable = Spanner.getDrawable(getContext(), R.drawable.role);
-		this.thetaDrawable = Spanner.getDrawable(getContext(), R.drawable.theta);
-		this.definitionDrawable = Spanner.getDrawable(getContext(), R.drawable.definition);
-		this.sampleDrawable = Spanner.getDrawable(getContext(), R.drawable.sample);
+		this.roleSetDrawable = Spanner.getDrawable(this.context, R.drawable.roleset);
+		this.rolesDrawable = Spanner.getDrawable(this.context, R.drawable.roles);
+		this.relationDrawable = Spanner.getDrawable(this.context, R.drawable.relation);
+		this.roleDrawable = Spanner.getDrawable(this.context, R.drawable.role);
+		this.thetaDrawable = Spanner.getDrawable(this.context, R.drawable.theta);
+		this.definitionDrawable = Spanner.getDrawable(this.context, R.drawable.definition);
+		this.sampleDrawable = Spanner.getDrawable(this.context, R.drawable.sample);
 
 		// spanner
-		this.spanner = new PropBankSpanner(getContext());
+		this.spanner = new PropBankSpanner(this.context);
 	}
 
 	// L O A D E R S
@@ -128,7 +128,7 @@ abstract class BasicModule extends Module
 				final String selection = PropBankContract.PbRoleSets.ROLESETID + " = ?"; //
 				final String[] selectionArgs = {Long.toString(roleSetId)};
 				final String sortOrder = null;
-				return new CursorLoader(getContext(), uri, projection, selection, selectionArgs, sortOrder);
+				return new CursorLoader(BasicModule.this.context, uri, projection, selection, selectionArgs, sortOrder);
 			}
 
 			@Override
@@ -166,15 +166,16 @@ abstract class BasicModule extends Module
 					Spanner.append(sb, cursor.getString(idRolesetDesc), 0, PropBankFactories.definitionFactory);
 
 					// sub nodes
-					final TreeNode rolesNode = TreeFactory.newQueryNode(new RolesQuery(roleSetId, R.drawable.roles, "Roles"), BasicModule.this.getContext()); //
-					final TreeNode examplesNode = TreeFactory.newQueryNode(new ExamplesQuery(roleSetId, R.drawable.sample, "Examples"), BasicModule.this.getContext()); //
+					final TreeNode rolesNode = TreeFactory.newQueryNode(new RolesQueryData(roleSetId, R.drawable.roles, "Roles"), BasicModule.this.context); //
+					final TreeNode examplesNode = TreeFactory.newQueryNode(new ExamplesQueryData(roleSetId, R.drawable.sample, "Examples"), BasicModule.this.context); //
 
 					// attach result
-					TreeFactory.addTextNode(parent, sb, BasicModule.this.getContext(), rolesNode, examplesNode);
+					TreeFactory.addTextNode(parent, sb, BasicModule.this.context, rolesNode, examplesNode);
 
 					// expand
 					TreeView.expand(parent, false);
 					TreeView.expand(rolesNode, false);
+					// TreeView.expand(examplesNode, false);
 				}
 				else
 				{
@@ -215,7 +216,7 @@ abstract class BasicModule extends Module
 				final String selection = Words_PbRoleSets.WORDID + " = ?"; //
 				final String[] selectionArgs = {Long.toString(wordId)};
 				final String sortOrder = null;
-				return new CursorLoader(BasicModule.this.getContext(), uri, projection, selection, selectionArgs, sortOrder);
+				return new CursorLoader(BasicModule.this.context, uri, projection, selection, selectionArgs, sortOrder);
 			}
 
 			@Override
@@ -251,11 +252,15 @@ abstract class BasicModule extends Module
 						Spanner.append(sb, cursor.getString(idRoleSetDesc), 0, PropBankFactories.definitionFactory);
 
 						// sub nodes
-						final TreeNode rolesNode = TreeFactory.newQueryNode(new RolesQuery(roleSetId, R.drawable.roles, "Roles"), BasicModule.this.getContext()); //
-						final TreeNode examplesNode = TreeFactory.newQueryNode(new ExamplesQuery(roleSetId, R.drawable.sample, "Examples"), BasicModule.this.getContext()); //
+						final TreeNode rolesNode = TreeFactory.newQueryNode(new RolesQueryData(roleSetId, R.drawable.roles, "Roles"), BasicModule.this.context); //
+						final TreeNode examplesNode = TreeFactory.newQueryNode(new ExamplesQueryData(roleSetId, R.drawable.sample, "Examples"), BasicModule.this.context); //
 
 						// attach result
-						TreeFactory.addTextNode(parent, sb, getContext(), rolesNode, examplesNode);
+						TreeFactory.addTextNode(parent, sb, BasicModule.this.context, rolesNode, examplesNode);
+
+						// expand
+						TreeView.expand(rolesNode, false);
+						// TreeView.expand(examplesNode, false);
 					}
 					while (cursor.moveToNext());
 
@@ -304,7 +309,7 @@ abstract class BasicModule extends Module
 				final String selection = PbRoleSets_PbRoles.ROLESETID + "= ?"; //
 				final String[] selectionArgs = {Long.toString(roleSetId)};
 				final String sortOrder = null;
-				return new CursorLoader(getContext(), uri, projection, selection, selectionArgs, sortOrder);
+				return new CursorLoader(BasicModule.this.context, uri, projection, selection, selectionArgs, sortOrder);
 			}
 
 			@Override
@@ -367,7 +372,7 @@ abstract class BasicModule extends Module
 					}
 
 					// attach result
-					TreeFactory.addTextNode(parent, sb, BasicModule.this.getContext());
+					TreeFactory.addTextNode(parent, sb, BasicModule.this.context);
 
 					// expand
 					TreeView.expand(parent, false);
@@ -426,9 +431,10 @@ abstract class BasicModule extends Module
 				final String selection = PbRoleSets_PbExamples.ROLESETID + "= ?"; //
 				final String[] selectionArgs = {Long.toString(roleSetId)};
 				final String sortOrder = PbRoleSets_PbExamples.EXAMPLEID + ',' + PbRoleSets_PbExamples.NARG; //
-				return new CursorLoader(getContext(), uri, projection, selection, selectionArgs, sortOrder);
+				return new CursorLoader(BasicModule.this.context, uri, projection, selection, selectionArgs, sortOrder);
 			}
 
+			@SuppressWarnings("BreakStatement")
 			@Override
 			public void onLoadFinished(final Loader<Cursor> loader, final Cursor cursor)
 			{
@@ -517,9 +523,7 @@ abstract class BasicModule extends Module
 					BasicModule.this.spanner.setSpan(sb, 0, 0);
 
 					// attach result
-					TreeFactory.addTextNode(parent, sb, BasicModule.this.getContext());
-
-					System.out.println("DONE");
+					TreeFactory.addTextNode(parent, sb, BasicModule.this.context);
 
 					// expand
 					TreeView.expand(parent, false);
@@ -541,9 +545,9 @@ abstract class BasicModule extends Module
 	}
 
 	/**
-	 * Role query
+	 * Role query data
 	 */
-	class RolesQuery extends Query.QueryData
+	class RolesQueryData extends QueryRenderer.QueryData
 	{
 		/**
 		 * Constructor
@@ -552,7 +556,7 @@ abstract class BasicModule extends Module
 		 * @param icon      icon
 		 * @param text      label text
 		 */
-		public RolesQuery(final long roleSetId, final int icon, @SuppressWarnings("SameParameterValue") final CharSequence text)
+		public RolesQueryData(final long roleSetId, final int icon, final CharSequence text)
 		{
 			super(roleSetId, icon, text);
 		}
@@ -565,9 +569,9 @@ abstract class BasicModule extends Module
 	}
 
 	/**
-	 * Examples query
+	 * Examples query data
 	 */
-	class ExamplesQuery extends Query.QueryData
+	class ExamplesQueryData extends QueryRenderer.QueryData
 	{
 		/**
 		 * Constructor
@@ -576,7 +580,7 @@ abstract class BasicModule extends Module
 		 * @param icon      icon
 		 * @param text      label text
 		 */
-		public ExamplesQuery(final long roleSetId, final int icon, @SuppressWarnings("SameParameterValue") final CharSequence text)
+		public ExamplesQueryData(final long roleSetId, final int icon, final CharSequence text)
 		{
 			super(roleSetId, icon, text);
 		}

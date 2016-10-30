@@ -321,7 +321,6 @@ public class SensesFragment extends ListFragment
 		getListView().setChoiceMode(activateOnItemClick ? AbsListView.CHOICE_MODE_SINGLE : AbsListView.CHOICE_MODE_NONE);
 	}
 
-	@SuppressWarnings("boxing")
 	@Override
 	public void onListItemClick(final ListView listView, final View view, final int position, final long id)
 	{

@@ -26,7 +26,7 @@ import org.sqlunet.propbank.browser.PbRoleSetActivity;
 import org.sqlunet.provider.SqlUNetContract;
 import org.sqlunet.style.Spanner;
 import org.sqlunet.treeview.model.TreeNode;
-import org.sqlunet.treeview.renderer.Link;
+import org.sqlunet.treeview.renderer.LinkRenderer;
 import org.sqlunet.treeview.view.TreeView;
 import org.sqlunet.verbnet.VnClassPointer;
 import org.sqlunet.verbnet.browser.VnClassActivity;
@@ -55,12 +55,12 @@ abstract class BasicModule extends Module
 	/**
 	 * Drawable for roles
 	 */
-	private Drawable classDrawable;
+	private final Drawable classDrawable;
 
 	/**
 	 * Drawable for role
 	 */
-	private Drawable roleDrawable;
+	private final Drawable roleDrawable;
 
 	/**
 	 * Constructor
@@ -70,8 +70,8 @@ abstract class BasicModule extends Module
 		super(fragment);
 
 		// spanner
-		this.classDrawable = Spanner.getDrawable(getContext(), R.drawable.roles);
-		this.roleDrawable = Spanner.getDrawable(getContext(), R.drawable.role);
+		this.classDrawable = Spanner.getDrawable(this.context, R.drawable.roles);
+		this.roleDrawable = Spanner.getDrawable(this.context, R.drawable.role);
 	}
 
 	// L O A D E R S
@@ -743,7 +743,7 @@ abstract class BasicModule extends Module
 			final String selection = getSelection();
 			final String[] selectionArgs = getSelectionArgs();
 			final String sortOrder = this.displayer.getRequiredOrder();
-			return new CursorLoader(BasicModule.this.getContext(), uri, projection, selection, selectionArgs, sortOrder);
+			return new CursorLoader(BasicModule.this.context, uri, projection, selection, selectionArgs, sortOrder);
 		}
 
 		@Override
@@ -832,7 +832,7 @@ abstract class BasicModule extends Module
 				}
 				while (cursor.moveToNext());
 
-				endProcess(this.parent);
+				endProcess();
 
 				// expand
 				TreeView.expand(this.parent, this.displayer.getExpandLevels());
@@ -861,10 +861,8 @@ abstract class BasicModule extends Module
 
 		/**
 		 * End of processing
-		 *
-		 * @param parent parent node
 		 */
-		void endProcess(@SuppressWarnings("UnusedParameters") final TreeNode parent)
+		void endProcess()
 		{
 			//
 		}
@@ -994,7 +992,7 @@ abstract class BasicModule extends Module
 		}
 
 		@Override
-		protected void endProcess(TreeNode parent2)
+		protected void endProcess()
 		{
 			for (int pmRoleId : this.pmRoleIds)
 			{
@@ -1111,7 +1109,7 @@ abstract class BasicModule extends Module
 		 * @param wnDataOnRow   whether to display WordNet data on label
 		 * @param wnDataOnXData whether to display WordNet data on extended data
 		 */
-		void displayRow(final TreeNode parentNode, final WnData wnData, final PmRow pmRow, final VnData vnData, final PbData pbData, final FnData fnData, final boolean wnDataOnRow, @SuppressWarnings("SameParameterValue") final boolean wnDataOnXData)
+		void displayRow(final TreeNode parentNode, final WnData wnData, final PmRow pmRow, final VnData vnData, final PbData pbData, final FnData fnData, final boolean wnDataOnRow, final boolean wnDataOnXData)
 		{
 			// vn
 			final TreeNode vnNode = wnDataOnXData ? makeVnNode(vnData, wnData) : makeVnNode(vnData);
@@ -1148,7 +1146,7 @@ abstract class BasicModule extends Module
 				Spanner.append(pmsb, roleData, 0, PredicateMatrixFactories.dataFactory);
 			}
 
-			return TreeFactory.addTreeItemNode(parentNode, pmsb, R.drawable.role, BasicModule.this.getContext());
+			return TreeFactory.addTreeItemNode(parentNode, pmsb, R.drawable.role, BasicModule.this.context);
 		}
 
 		/**
@@ -1178,7 +1176,7 @@ abstract class BasicModule extends Module
 				Spanner.append(pmsb, wnData.definition, 0, PredicateMatrixFactories.definitionFactory);
 			}
 
-			return TreeFactory.addTreeItemNode(parentNode, pmsb, R.drawable.predicatematrix, BasicModule.this.getContext());
+			return TreeFactory.addTreeItemNode(parentNode, pmsb, R.drawable.predicatematrix, BasicModule.this.context);
 		}
 
 		/**
@@ -1229,7 +1227,7 @@ abstract class BasicModule extends Module
 				Spanner.append(vnsb, wnData.definition, 0, PredicateMatrixFactories.definitionFactory);
 			}
 
-			return vnData.vnClassId == 0L ? TreeFactory.newLeafNode(vnsb, R.drawable.verbnet, BasicModule.this.getContext()) : TreeFactory.newLinkNode(new VnClassQuery(vnData.vnClassId, R.drawable.verbnet, vnsb), BasicModule.this.getContext());
+			return vnData.vnClassId == 0L ? TreeFactory.newLeafNode(vnsb, R.drawable.verbnet, BasicModule.this.context) : TreeFactory.newLinkNode(new VnClassLinkData(vnData.vnClassId, R.drawable.verbnet, vnsb), BasicModule.this.context);
 		}
 
 		/**
@@ -1294,7 +1292,7 @@ abstract class BasicModule extends Module
 				Spanner.append(pbsb, wnData.definition, 0, PredicateMatrixFactories.definitionFactory);
 			}
 
-			return pbData.pbRoleSetId == 0L ? TreeFactory.newLeafNode(pbsb, R.drawable.propbank, BasicModule.this.getContext()) : TreeFactory.newLinkNode(new PbRoleSetQuery(pbData.pbRoleSetId, R.drawable.propbank, pbsb), BasicModule.this.getContext());
+			return pbData.pbRoleSetId == 0L ? TreeFactory.newLeafNode(pbsb, R.drawable.propbank, BasicModule.this.context) : TreeFactory.newLinkNode(new PbRoleSetLinkData(pbData.pbRoleSetId, R.drawable.propbank, pbsb), BasicModule.this.context);
 		}
 
 		/**
@@ -1346,7 +1344,7 @@ abstract class BasicModule extends Module
 				Spanner.append(fnsb, wnData.definition, 0, PredicateMatrixFactories.definitionFactory);
 			}
 
-			return fnData.fnFrameId == 0L ? TreeFactory.newLeafNode(fnsb, R.drawable.framenet, BasicModule.this.getContext()) : TreeFactory.newLinkNode(new FnFrameQuery(fnData.fnFrameId, R.drawable.framenet, fnsb), BasicModule.this.getContext());
+			return fnData.fnFrameId == 0L ? TreeFactory.newLeafNode(fnsb, R.drawable.framenet, BasicModule.this.context) : TreeFactory.newLinkNode(new FnFrameLinkData(fnData.fnFrameId, R.drawable.framenet, fnsb), BasicModule.this.context);
 		}
 	}
 
@@ -1437,7 +1435,7 @@ abstract class BasicModule extends Module
 				}
 
 				// attach synset
-				this.synsetNode = TreeFactory.addTreeItemNode(parentNode, synsetsb, R.drawable.synset, BasicModule.this.getContext());
+				this.synsetNode = TreeFactory.addTreeItemNode(parentNode, synsetsb, R.drawable.synset, BasicModule.this.context);
 
 				// record
 				this.synsetId = wnData.synsetId;
@@ -1528,9 +1526,9 @@ abstract class BasicModule extends Module
 	// R O L E S
 
 	/**
-	 * VerbNet class query
+	 * VerbNet class link data
 	 */
-	class VnClassQuery extends Link.LinkData
+	class VnClassLinkData extends LinkRenderer.LinkData
 	{
 		/**
 		 * Constructor
@@ -1539,28 +1537,28 @@ abstract class BasicModule extends Module
 		 * @param icon    icon
 		 * @param text    label text
 		 */
-		public VnClassQuery(final long classId, final int icon, final CharSequence text)
+		public VnClassLinkData(final long classId, final int icon, final CharSequence text)
 		{
 			super(classId, icon, text);
 		}
 
 		@SuppressWarnings("boxing")
 		@Override
-		public void process(final TreeNode node)
+		public void process()
 		{
 			final Parcelable pointer = new VnClassPointer(this.id);
-			final Intent intent = new Intent(BasicModule.this.getContext(), VnClassActivity.class);
+			final Intent intent = new Intent(BasicModule.this.context, VnClassActivity.class);
 			intent.putExtra(SqlUNetContract.ARG_QUERYACTION, SqlUNetContract.ARG_QUERYACTION_VNCLASS);
 			intent.putExtra(SqlUNetContract.ARG_QUERYPOINTER, pointer);
 
-			BasicModule.this.getContext().startActivity(intent);
+			BasicModule.this.context.startActivity(intent);
 		}
 	}
 
 	/**
-	 * PropBank role set query
+	 * PropBank role set link data
 	 */
-	class PbRoleSetQuery extends Link.LinkData
+	class PbRoleSetLinkData extends LinkRenderer.LinkData
 	{
 		/**
 		 * Constructor
@@ -1569,28 +1567,28 @@ abstract class BasicModule extends Module
 		 * @param icon      icon
 		 * @param text      label text
 		 */
-		public PbRoleSetQuery(final long roleSetId, final int icon, final CharSequence text)
+		public PbRoleSetLinkData(final long roleSetId, final int icon, final CharSequence text)
 		{
 			super(roleSetId, icon, text);
 		}
 
 		@SuppressWarnings("boxing")
 		@Override
-		public void process(final TreeNode node)
+		public void process()
 		{
 			final Parcelable pointer = new PbRoleSetPointer(this.id);
-			final Intent intent = new Intent(BasicModule.this.getContext(), PbRoleSetActivity.class);
+			final Intent intent = new Intent(BasicModule.this.context, PbRoleSetActivity.class);
 			intent.putExtra(SqlUNetContract.ARG_QUERYACTION, SqlUNetContract.ARG_QUERYACTION_PBROLESET);
 			intent.putExtra(SqlUNetContract.ARG_QUERYPOINTER, pointer);
 
-			BasicModule.this.getContext().startActivity(intent);
+			BasicModule.this.context.startActivity(intent);
 		}
 	}
 
 	/**
-	 * FrameNet frame query
+	 * FrameNet frame link data
 	 */
-	class FnFrameQuery extends Link.LinkData
+	class FnFrameLinkData extends LinkRenderer.LinkData
 	{
 		/**
 		 * Constructor
@@ -1599,21 +1597,21 @@ abstract class BasicModule extends Module
 		 * @param icon    icon
 		 * @param text    label text
 		 */
-		public FnFrameQuery(final long frameId, final int icon, final CharSequence text)
+		public FnFrameLinkData(final long frameId, final int icon, final CharSequence text)
 		{
 			super(frameId, icon, text);
 		}
 
 		@SuppressWarnings("boxing")
 		@Override
-		public void process(final TreeNode node)
+		public void process()
 		{
 			final Parcelable pointer = new FnFramePointer(this.id);
-			final Intent intent = new Intent(BasicModule.this.getContext(), FnFrameActivity.class);
+			final Intent intent = new Intent(BasicModule.this.context, FnFrameActivity.class);
 			intent.putExtra(SqlUNetContract.ARG_QUERYACTION, SqlUNetContract.ARG_QUERYACTION_FNFRAME);
 			intent.putExtra(SqlUNetContract.ARG_QUERYPOINTER, pointer);
 
-			BasicModule.this.getContext().startActivity(intent);
+			BasicModule.this.context.startActivity(intent);
 		}
 	}
 }

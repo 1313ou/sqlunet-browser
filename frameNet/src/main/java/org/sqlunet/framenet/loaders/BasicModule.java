@@ -43,7 +43,7 @@ import org.sqlunet.framenet.style.FrameNetProcessor;
 import org.sqlunet.framenet.style.FrameNetSpanner;
 import org.sqlunet.style.Spanner;
 import org.sqlunet.treeview.model.TreeNode;
-import org.sqlunet.treeview.renderer.Query;
+import org.sqlunet.treeview.renderer.QueryRenderer;
 import org.sqlunet.treeview.view.TreeView;
 import org.sqlunet.view.TreeFactory;
 
@@ -74,79 +74,79 @@ abstract public class BasicModule extends Module
 	/**
 	 * Processor
 	 */
-	private FrameNetProcessor processor;
+	private final FrameNetProcessor processor;
 
 	/**
 	 * Frame Processor
 	 */
-	private FrameNetFrameProcessor frameProcessor;
+	private final FrameNetFrameProcessor frameProcessor;
 
 	/**
 	 * Spanner
 	 */
-	private FrameNetSpanner spanner;
+	private final FrameNetSpanner spanner;
 
 	// resources
 
 	/**
 	 * Drawable for frame
 	 */
-	private Drawable frameDrawable;
+	private final Drawable frameDrawable;
 
 	/**
 	 * Drawable for FE
 	 */
-	private Drawable topFeDrawable;
+	private final Drawable topFeDrawable;
 
 	/**
 	 * Drawable for FE
 	 */
-	private Drawable feDrawable;
+	private final Drawable feDrawable;
 
 	/**
 	 * Drawable for core FE
 	 */
-	private Drawable corefeDrawable;
+	private final Drawable corefeDrawable;
 
 	/**
 	 * Drawable for lexUnit
 	 */
-	private Drawable lexunitDrawable;
+	private final Drawable lexunitDrawable;
 
 	/**
 	 * Drawable for definition
 	 */
-	private Drawable definitionDrawable;
+	private final Drawable definitionDrawable;
 
 	/**
 	 * Drawable for meta definition
 	 */
-	private Drawable metadefinitionDrawable;
+	private final Drawable metadefinitionDrawable;
 
 	/**
 	 * Drawable for realization
 	 */
-	private Drawable realizationDrawable;
+	private final Drawable realizationDrawable;
 
 	/**
 	 * Drawable for sentence
 	 */
-	private Drawable sentenceDrawable;
+	private final Drawable sentenceDrawable;
 
 	/**
 	 * Drawable for semtype
 	 */
-	private Drawable semtypeDrawable;
+	private final Drawable semtypeDrawable;
 
 	/**
 	 * Drawable for coreset
 	 */
-	private Drawable coresetDrawable;
+	private final Drawable coresetDrawable;
 
 	/**
 	 * Drawable for layer
 	 */
-	private Drawable layerDrawable;
+	private final Drawable layerDrawable;
 
 	/**
 	 * Constructor
@@ -156,23 +156,23 @@ abstract public class BasicModule extends Module
 		super(fragment);
 
 		// drawables
-		this.frameDrawable = Spanner.getDrawable(getContext(), R.drawable.fnframe);
-		this.topFeDrawable = Spanner.getDrawable(getContext(), R.drawable.toprole);
-		this.feDrawable = Spanner.getDrawable(getContext(), R.drawable.rolealt);
-		this.corefeDrawable = Spanner.getDrawable(getContext(), R.drawable.corerole);
-		this.lexunitDrawable = Spanner.getDrawable(getContext(), R.drawable.lexunit);
-		this.definitionDrawable = Spanner.getDrawable(getContext(), R.drawable.definition);
-		this.metadefinitionDrawable = Spanner.getDrawable(getContext(), R.drawable.metadefinition);
-		this.sentenceDrawable = Spanner.getDrawable(getContext(), R.drawable.sentence);
-		this.realizationDrawable = Spanner.getDrawable(getContext(), R.drawable.realization);
-		this.semtypeDrawable = Spanner.getDrawable(getContext(), R.drawable.semtype);
-		this.coresetDrawable = Spanner.getDrawable(getContext(), R.drawable.coreset);
-		this.layerDrawable = Spanner.getDrawable(getContext(), R.drawable.layer);
+		this.frameDrawable = Spanner.getDrawable(this.context, R.drawable.fnframe);
+		this.topFeDrawable = Spanner.getDrawable(this.context, R.drawable.toprole);
+		this.feDrawable = Spanner.getDrawable(this.context, R.drawable.rolealt);
+		this.corefeDrawable = Spanner.getDrawable(this.context, R.drawable.corerole);
+		this.lexunitDrawable = Spanner.getDrawable(this.context, R.drawable.lexunit);
+		this.definitionDrawable = Spanner.getDrawable(this.context, R.drawable.definition);
+		this.metadefinitionDrawable = Spanner.getDrawable(this.context, R.drawable.metadefinition);
+		this.sentenceDrawable = Spanner.getDrawable(this.context, R.drawable.sentence);
+		this.realizationDrawable = Spanner.getDrawable(this.context, R.drawable.realization);
+		this.semtypeDrawable = Spanner.getDrawable(this.context, R.drawable.semtype);
+		this.coresetDrawable = Spanner.getDrawable(this.context, R.drawable.coreset);
+		this.layerDrawable = Spanner.getDrawable(this.context, R.drawable.layer);
 
 		// agents
 		this.processor = new FrameNetProcessor();
 		this.frameProcessor = new FrameNetFrameProcessor();
-		this.spanner = new FrameNetSpanner(getContext());
+		this.spanner = new FrameNetSpanner(this.context);
 	}
 
 	// C R E A T I O N
@@ -217,7 +217,7 @@ abstract public class BasicModule extends Module
 				final String selection = Frames_X.FRAMEID + " = ?"; //
 				final String[] selectionArgs = {Long.toString(frameId)};
 				final String sortOrder = Frames_X.FRAME;
-				return new CursorLoader(BasicModule.this.getContext(), uri, projection, selection, selectionArgs, sortOrder);
+				return new CursorLoader(BasicModule.this.context, uri, projection, selection, selectionArgs, sortOrder);
 			}
 
 			@Override
@@ -263,15 +263,18 @@ abstract public class BasicModule extends Module
 					}
 
 					// sub nodes
-					final TreeNode fesNode = TreeFactory.newQueryNode(new FEsQuery(frameId, R.drawable.roles, "Frame Elements"), BasicModule.this.getContext()); //
-					final TreeNode sentencesNode = TreeFactory.newQueryNode(new LexUnitsQuery(frameId, R.drawable.lexunit, "Lex Units"), BasicModule.this.getContext()); //
-					final TreeNode relatedNode = TreeFactory.newQueryNode(new RelatedQuery(frameId, R.drawable.fnframe, "Related"), BasicModule.this.getContext()); //
+					final TreeNode fesNode = TreeFactory.newQueryNode(new FEsQueryData(frameId, R.drawable.roles, "Frame Elements"), BasicModule.this.context); //
+					final TreeNode lexUnitsNode = TreeFactory.newQueryNode(new LexUnitsQueryData(frameId, R.drawable.lexunit, "Lex Units"), BasicModule.this.context); //
+					final TreeNode relatedNode = TreeFactory.newQueryNode(new RelatedQueryData(frameId, R.drawable.fnframe, "Related"), BasicModule.this.context); //
 
 					// attach result
-					TreeFactory.addTextNode(parent, sb, BasicModule.this.getContext(), fesNode, sentencesNode, relatedNode);
+					TreeFactory.addTextNode(parent, sb, BasicModule.this.context, fesNode, lexUnitsNode, relatedNode);
 
 					// expand
 					TreeView.expand(parent, false);
+					TreeView.expand(fesNode, false);
+					// TreeView.expand(lexUnitsNode, false);
+					// TreeView.expand(relatedNode, false);
 				}
 				else
 				{
@@ -314,7 +317,7 @@ abstract public class BasicModule extends Module
 				final String selection = FrameNetContract.SRC + '.' + Frames_Related.FRAMEID + " = ?" + " OR " + FrameNetContract.DEST + '.' + Frames_Related.FRAME2ID + " = ?"; //
 				final String[] selectionArgs = {Long.toString(frameId), Long.toString(frameId)};
 				final String sortOrder = FrameNetContract.SRC + '.' + Frames_Related.FRAME;
-				return new CursorLoader(BasicModule.this.getContext(), uri, projection, selection, selectionArgs, sortOrder);
+				return new CursorLoader(BasicModule.this.context, uri, projection, selection, selectionArgs, sortOrder);
 			}
 
 			@Override
@@ -415,7 +418,7 @@ abstract public class BasicModule extends Module
 					while (cursor.moveToNext());
 
 					// attach result
-					TreeFactory.addTextNode(parent, sb, BasicModule.this.getContext());
+					TreeFactory.addTextNode(parent, sb, BasicModule.this.context);
 
 					// expand
 					TreeView.expand(parent, false);
@@ -465,7 +468,7 @@ abstract public class BasicModule extends Module
 				final String selection = Frames_FEs.FRAMEID + " = ? "; //
 				final String[] selectionArgs = {Integer.toString(frameId)};
 				final String sortOrder = Frames_FEs.CORETYPEID + ',' + Frames_FEs.FETYPE;
-				return new CursorLoader(BasicModule.this.getContext(), uri, projection, selection, selectionArgs, sortOrder);
+				return new CursorLoader(BasicModule.this.context, uri, projection, selection, selectionArgs, sortOrder);
 			}
 
 			@Override
@@ -554,7 +557,7 @@ abstract public class BasicModule extends Module
 					}
 
 					// attach result
-					TreeFactory.addTextNode(parent, sb, BasicModule.this.getContext());
+					TreeFactory.addTextNode(parent, sb, BasicModule.this.context);
 
 					// expand
 					TreeView.expand(parent, false);
@@ -585,7 +588,7 @@ abstract public class BasicModule extends Module
 	 * @param withFrame whether to include frames
 	 * @param withFes   whether to include frame elements
 	 */
-	void lexUnit(final long luId, final TreeNode parent, @SuppressWarnings("SameParameterValue") final boolean withFrame, @SuppressWarnings("SameParameterValue") final boolean withFes)
+	void lexUnit(final long luId, final TreeNode parent, final boolean withFrame, final boolean withFes)
 	{
 		getLoaderManager().restartLoader(++Module.loaderId, null, new LoaderCallbacks<Cursor>()
 		{
@@ -606,7 +609,7 @@ abstract public class BasicModule extends Module
 				final String selection = LexUnits_X.LUID + " = ?"; //
 				final String[] selectionArgs = {Long.toString(luId)};
 				final String sortOrder = null;
-				return new CursorLoader(BasicModule.this.getContext(), uri, projection, selection, selectionArgs, sortOrder);
+				return new CursorLoader(BasicModule.this.context, uri, projection, selection, selectionArgs, sortOrder);
 			}
 
 			@Override
@@ -683,33 +686,37 @@ abstract public class BasicModule extends Module
 					}
 
 					// sub nodes
-					final TreeNode governorsNode = TreeFactory.newQueryNode(new GovernorsQuery(luId, R.drawable.governor, "Governors"), BasicModule.this.getContext()); //
-					final TreeNode realizationsNode = TreeFactory.newQueryNode(new RealizationsQuery(luId, R.drawable.realization, "Realizations"), BasicModule.this.getContext()); //
-					final TreeNode groupRealizationsNode = TreeFactory.newQueryNode(new GroupRealizationsQuery(luId, R.drawable.grouprealization, "Group realizations"), BasicModule.this.getContext()); //
-					final TreeNode sentencesNode = TreeFactory.newQueryNode(new SentencesForLexUnitQuery(luId, R.drawable.sentence, "Sentences"), BasicModule.this.getContext()); //
+					final TreeNode governorsNode = TreeFactory.newQueryNode(new GovernorsQueryData(luId, R.drawable.governor, "Governors"), BasicModule.this.context); //
+					final TreeNode realizationsNode = TreeFactory.newQueryNode(new RealizationsQueryData(luId, R.drawable.realization, "Realizations"), BasicModule.this.context); //
+					final TreeNode groupRealizationsNode = TreeFactory.newQueryNode(new GroupRealizationsQueryData(luId, R.drawable.grouprealization, "Group realizations"), BasicModule.this.context); //
+					final TreeNode sentencesNode = TreeFactory.newQueryNode(new SentencesForLexUnitQueryData(luId, R.drawable.sentence, "Sentences"), BasicModule.this.context); //
 
 					// attach result
 					if (withFrame)
 					{
-						final TreeNode frameNode = TreeFactory.newQueryNode(new FrameQuery(frameId, R.drawable.fnframe, "Frame"), BasicModule.this.getContext()); //
+						final TreeNode frameNode = TreeFactory.newQueryNode(new FrameQueryData(frameId, R.drawable.fnframe, "Frame"), BasicModule.this.context); //
 						if (withFes)
 						{
-							final TreeNode fesNode = TreeFactory.newQueryNode(new FEsQuery(frameId, R.drawable.roles, "Frame Elements"), BasicModule.this.getContext()); //
-							TreeFactory.addTextNode(parent, sb, BasicModule.this.getContext(), frameNode, fesNode, governorsNode, realizationsNode, groupRealizationsNode, sentencesNode);
+							final TreeNode fesNode = TreeFactory.newQueryNode(new FEsQueryData(frameId, R.drawable.roles, "Frame Elements"), BasicModule.this.context); //
+							TreeFactory.addTextNode(parent, sb, BasicModule.this.context, frameNode, fesNode, governorsNode, realizationsNode, groupRealizationsNode, sentencesNode);
 						}
 						else
 						{
-							TreeFactory.addTextNode(parent, sb, BasicModule.this.getContext(), frameNode, governorsNode, realizationsNode, groupRealizationsNode, sentencesNode);
+							TreeFactory.addTextNode(parent, sb, BasicModule.this.context, frameNode, governorsNode, realizationsNode, groupRealizationsNode, sentencesNode);
 						}
 
 					}
 					else
 					{
-						TreeFactory.addTextNode(parent, sb, BasicModule.this.getContext(), governorsNode, realizationsNode, groupRealizationsNode, sentencesNode);
+						TreeFactory.addTextNode(parent, sb, BasicModule.this.context, governorsNode, realizationsNode, groupRealizationsNode, sentencesNode);
 					}
 
 					// expand
 					TreeView.expand(parent, false);
+					// TreeView.expand(governorNode, false);
+					// TreeView.expand(realizationsNode, false);
+					// TreeView.expand(groupRealizationsNode, false);
+					// TreeView.expand(sentencesNode, false);
 				}
 				else
 				{
@@ -734,7 +741,7 @@ abstract public class BasicModule extends Module
 	 * @param parent    parent node
 	 * @param withFrame whether to include frame
 	 */
-	private void lexUnitsForFrame(final long frameId, final TreeNode parent, @SuppressWarnings("SameParameterValue") final boolean withFrame)
+	private void lexUnitsForFrame(final long frameId, final TreeNode parent, final boolean withFrame)
 	{
 		getLoaderManager().restartLoader(++Module.loaderId, null, new LoaderCallbacks<Cursor>()
 		{
@@ -755,7 +762,7 @@ abstract public class BasicModule extends Module
 				final String selection = FrameNetContract.FRAME + '.' + LexUnits_X.FRAMEID + " = ?"; //
 				final String[] selectionArgs = {Long.toString(frameId)};
 				final String sortOrder = LexUnits_X.LEXUNIT;
-				return new CursorLoader(BasicModule.this.getContext(), uri, projection, selection, selectionArgs, sortOrder);
+				return new CursorLoader(BasicModule.this.context, uri, projection, selection, selectionArgs, sortOrder);
 			}
 
 			@Override
@@ -823,22 +830,32 @@ abstract public class BasicModule extends Module
 						}
 
 						// sub nodes
-						final TreeNode governorsNode = TreeFactory.newQueryNode(new GovernorsQuery(luId, R.drawable.governor, "Governors"), BasicModule.this.getContext()); //
-						final TreeNode realizationsNode = TreeFactory.newQueryNode(new RealizationsQuery(luId, R.drawable.realization, "Realizations"), BasicModule.this.getContext()); //
-						final TreeNode groupRealizationsNode = TreeFactory.newQueryNode(new GroupRealizationsQuery(luId, R.drawable.grouprealization, "Group realizations"), BasicModule.this.getContext()); //
-						final TreeNode sentencesNode = TreeFactory.newQueryNode(new SentencesForLexUnitQuery(luId, R.drawable.sentence, "Sentences"), BasicModule.this.getContext()); //
+						final TreeNode governorsNode = TreeFactory.newQueryNode(new GovernorsQueryData(luId, R.drawable.governor, "Governors"), BasicModule.this.context); //
+						final TreeNode realizationsNode = TreeFactory.newQueryNode(new RealizationsQueryData(luId, R.drawable.realization, "Realizations"), BasicModule.this.context); //
+						final TreeNode groupRealizationsNode = TreeFactory.newQueryNode(new GroupRealizationsQueryData(luId, R.drawable.grouprealization, "Group realizations"), BasicModule.this.context); //
+						final TreeNode sentencesNode = TreeFactory.newQueryNode(new SentencesForLexUnitQueryData(luId, R.drawable.sentence, "Sentences"), BasicModule.this.context); //
 
 						// attach result
 						if (withFrame)
 						{
-							final TreeNode frameNode = TreeFactory.newQueryNode(new FrameQuery(frameId, R.drawable.fnframe, "Frame"), BasicModule.this.getContext()); //
-							final TreeNode fesNode = TreeFactory.newQueryNode(new FEsQuery(frameId, R.drawable.roles, "Frame Elements"), BasicModule.this.getContext()); //
-							TreeFactory.addTextNode(parent, sb, BasicModule.this.getContext(), frameNode, fesNode, governorsNode, realizationsNode, groupRealizationsNode, sentencesNode);
+							final TreeNode frameNode = TreeFactory.newQueryNode(new FrameQueryData(frameId, R.drawable.fnframe, "Frame"), BasicModule.this.context); //
+							final TreeNode fesNode = TreeFactory.newQueryNode(new FEsQueryData(frameId, R.drawable.roles, "Frame Elements"), BasicModule.this.context); //
+							TreeFactory.addTextNode(parent, sb, BasicModule.this.context, frameNode, fesNode, governorsNode, realizationsNode, groupRealizationsNode, sentencesNode);
+
+							// expand
+							// TreeView.expand(frameNode, false);
+							// TreeView.expand(fesNode, false);
 						}
 						else
 						{
-							TreeFactory.addTextNode(parent, sb, BasicModule.this.getContext(), governorsNode, realizationsNode, groupRealizationsNode, sentencesNode);
+							TreeFactory.addTextNode(parent, sb, BasicModule.this.context, governorsNode, realizationsNode, groupRealizationsNode, sentencesNode);
 						}
+
+						// expand
+						// TreeView.expand(governorNode, false);
+						// TreeView.expand(realizationsNode, false);
+						// TreeView.expand(groupRealizationsNode, false);
+						// TreeView.expand(sentencesNode, false);
 					}
 					while (cursor.moveToNext());
 
@@ -891,7 +908,7 @@ abstract public class BasicModule extends Module
 						Words_LexUnits_Frames.WORDID + " = ? AND " + FrameNetContract.LU + '.' + Words_LexUnits_Frames.POSID + " = ?"; //
 				final String[] selectionArgs = pos == null ? new String[]{Long.toString(wordId)} : new String[]{Long.toString(wordId), Integer.toString(Utils.posToPosId(pos))};
 				final String sortOrder = Words_LexUnits_Frames.FRAME + ',' + Words_LexUnits_Frames.LUID;
-				return new CursorLoader(BasicModule.this.getContext(), uri, projection, selection, selectionArgs, sortOrder);
+				return new CursorLoader(BasicModule.this.context, uri, projection, selection, selectionArgs, sortOrder);
 			}
 
 			@Override
@@ -960,15 +977,23 @@ abstract public class BasicModule extends Module
 						}
 
 						// sub nodes
-						final TreeNode frameNode = TreeFactory.newQueryNode(new FrameQuery(frameId, R.drawable.fnframe, "Frame"), BasicModule.this.getContext()); //
-						final TreeNode fesNode = TreeFactory.newQueryNode(new FEsQuery(frameId, R.drawable.roles, "Frame Elements"), BasicModule.this.getContext()); //
-						final TreeNode governorsNode = TreeFactory.newQueryNode(new GovernorsQuery(luId, R.drawable.governor, "Governors"), BasicModule.this.getContext()); //
-						final TreeNode realizationsNode = TreeFactory.newQueryNode(new RealizationsQuery(luId, R.drawable.realization, "Realizations"), BasicModule.this.getContext()); //
-						final TreeNode groupRealizationsNode = TreeFactory.newQueryNode(new GroupRealizationsQuery(luId, R.drawable.grouprealization, "Group realizations"), BasicModule.this.getContext()); //
-						final TreeNode sentencesNode = TreeFactory.newQueryNode(new SentencesForLexUnitQuery(luId, R.drawable.sentence, "Sentences"), BasicModule.this.getContext()); //
+						final TreeNode frameNode = TreeFactory.newQueryNode(new FrameQueryData(frameId, R.drawable.fnframe, "Frame"), BasicModule.this.context); //
+						final TreeNode fesNode = TreeFactory.newQueryNode(new FEsQueryData(frameId, R.drawable.roles, "Frame Elements"), BasicModule.this.context); //
+						final TreeNode governorsNode = TreeFactory.newQueryNode(new GovernorsQueryData(luId, R.drawable.governor, "Governors"), BasicModule.this.context); //
+						final TreeNode realizationsNode = TreeFactory.newQueryNode(new RealizationsQueryData(luId, R.drawable.realization, "Realizations"), BasicModule.this.context); //
+						final TreeNode groupRealizationsNode = TreeFactory.newQueryNode(new GroupRealizationsQueryData(luId, R.drawable.grouprealization, "Group realizations"), BasicModule.this.context); //
+						final TreeNode sentencesNode = TreeFactory.newQueryNode(new SentencesForLexUnitQueryData(luId, R.drawable.sentence, "Sentences"), BasicModule.this.context); //
 
 						// attach result
-						TreeFactory.addTextNode(parent, sb, BasicModule.this.getContext(), frameNode, fesNode, governorsNode, realizationsNode, groupRealizationsNode, sentencesNode);
+						TreeFactory.addTextNode(parent, sb, BasicModule.this.context, frameNode, fesNode, governorsNode, realizationsNode, groupRealizationsNode, sentencesNode);
+
+						// expand
+						// TreeView.expand(frameNode, false);
+						// TreeView.expand(fesNode, false);
+						// TreeView.expand(governorNode, false);
+						// TreeView.expand(realizationsNode, false);
+						// TreeView.expand(groupRealizationsNode, false);
+						// TreeView.expand(sentencesNode, false);
 					}
 					while (cursor.moveToNext());
 
@@ -1017,7 +1042,7 @@ abstract public class BasicModule extends Module
 				final String selection = LexUnits_Governors.LUID + " = ?"; //
 				final String[] selectionArgs = {Long.toString(luId)};
 				final String sortOrder = LexUnits_Governors.GOVERNORID;
-				return new CursorLoader(BasicModule.this.getContext(), uri, projection, selection, selectionArgs, sortOrder);
+				return new CursorLoader(BasicModule.this.context, uri, projection, selection, selectionArgs, sortOrder);
 			}
 
 			@Override
@@ -1054,9 +1079,12 @@ abstract public class BasicModule extends Module
 						sb.append(' ');
 						Spanner.append(sb, word, 0, FrameNetFactories.governorFactory);
 
-						// governor
-						final TreeNode governorNode = TreeFactory.newQueryNode(new AnnoSetsForGovernorQuery(governorId, R.drawable.governor, sb), BasicModule.this.getContext());
-						parent.addChild(governorNode);
+						// attach annoSets node
+						final TreeNode annoSetsNode = TreeFactory.newQueryNode(new AnnoSetsForGovernorQueryData(governorId, R.drawable.governor, sb), BasicModule.this.context);
+						parent.addChild(annoSetsNode);
+
+						// expand
+						// TreeView.expand(annoSetsNode, false);
 					}
 					while (cursor.moveToNext());
 
@@ -1102,7 +1130,7 @@ abstract public class BasicModule extends Module
 				final String selection = Governors_AnnoSets_Sentences.GOVERNORID + " = ?"; //
 				final String[] selectionArgs = {Long.toString(governorId)};
 				final String sortOrder = null;
-				return new CursorLoader(BasicModule.this.getContext(), uri, projection, selection, selectionArgs, sortOrder);
+				return new CursorLoader(BasicModule.this.context, uri, projection, selection, selectionArgs, sortOrder);
 			}
 
 			@Override
@@ -1137,9 +1165,12 @@ abstract public class BasicModule extends Module
 							sb.append(Long.toString(annoSetId));
 						}
 
-						// attach sentence node
-						final TreeNode sentenceNode = TreeFactory.newQueryNode(new AnnoSetQuery(annoSetId, R.drawable.annoset, sb, false), BasicModule.this.getContext());
-						parent.addChild(sentenceNode);
+						// attach annoSet node
+						final TreeNode annoSetNode = TreeFactory.newQueryNode(new AnnoSetQuery(annoSetId, R.drawable.annoset, sb, false), BasicModule.this.context);
+						parent.addChild(annoSetNode);
+
+						// expand
+						// TreeView.expand(annoSetNode, false);
 					}
 					while (cursor.moveToNext());
 
@@ -1195,7 +1226,7 @@ abstract public class BasicModule extends Module
 				final String selection = LexUnits_FERealizations_ValenceUnits.LUID + " = ?"; //
 				final String[] selectionArgs = {Long.toString(luId)};
 				final String sortOrder = LexUnits_FERealizations_ValenceUnits.FERID;
-				return new CursorLoader(BasicModule.this.getContext(), uri, projection, selection, selectionArgs, sortOrder);
+				return new CursorLoader(BasicModule.this.context, uri, projection, selection, selectionArgs, sortOrder);
 			}
 
 			@Override
@@ -1226,7 +1257,7 @@ abstract public class BasicModule extends Module
 						}
 
 						// fe
-						final TreeNode feNode = TreeFactory.addTreeItemNode(parent, sb, R.drawable.toprole, BasicModule.this.getContext());
+						final TreeNode feNode = TreeFactory.addTreeItemNode(parent, sb, R.drawable.toprole, BasicModule.this.context);
 
 						// fe realizations
 						final String fers = cursor.getString(idFers);
@@ -1264,8 +1295,11 @@ abstract public class BasicModule extends Module
 							}
 
 							// attach fer node
-							final TreeNode ferNode = TreeFactory.newQueryNode(new SentencesForValenceUnitQuery(vuId, R.drawable.realization, sb1), BasicModule.this.getContext());
+							final TreeNode ferNode = TreeFactory.newQueryNode(new SentencesForValenceUnitQueryData(vuId, R.drawable.realization, sb1), BasicModule.this.context);
 							feNode.addChild(ferNode);
+
+							// expand
+							// TreeView.expand(ferNode, false);
 						}
 					}
 					while (cursor.moveToNext());
@@ -1317,7 +1351,7 @@ abstract public class BasicModule extends Module
 				final String selection = LexUnits_FEGroupRealizations_Patterns_ValenceUnits.LUID + " = ?"; //
 				final String[] selectionArgs = {Long.toString(luId)};
 				final String sortOrder = null; // LexUnits_FEGroupRealizations_Patterns_ValenceUnits.FEGRID;
-				return new CursorLoader(BasicModule.this.getContext(), uri, projection, selection, selectionArgs, sortOrder);
+				return new CursorLoader(BasicModule.this.context, uri, projection, selection, selectionArgs, sortOrder);
 			}
 
 			@Override
@@ -1342,7 +1376,7 @@ abstract public class BasicModule extends Module
 						long feGroupId = cursor.getLong(idFEGRId);
 						final String groupRealizations = cursor.getString(idGroupRealizations);
 						final int patternId = cursor.getInt(idPatternId);
-						// System.out.println("GROUP REALIZATIONS " + feGroupId + ' ' + groupRealizations + ' ' + patternId); //
+						// Log.d(TAG, "GROUP REALIZATIONS " + feGroupId + ' ' + groupRealizations + ' ' + patternId); //
 						if (groupRealizations == null)
 						{
 							continue;
@@ -1363,16 +1397,19 @@ abstract public class BasicModule extends Module
 							}
 
 							groupId = feGroupId;
-							groupNode = TreeFactory.addTreeItemNode(parent, sb1, R.drawable.grouprealization, BasicModule.this.getContext());
+							groupNode = TreeFactory.addTreeItemNode(parent, sb1, R.drawable.grouprealization, BasicModule.this.context);
 						}
 
 						// group realization
 						parseGroupRealizations(groupRealizations, sb);
 
-						// node
-						final TreeNode patternNode = TreeFactory.newQueryNode(new SentencesForPatternQuery(patternId, R.drawable.grouprealization, sb), BasicModule.this.getContext());
+						// attach sentences node
+						final TreeNode sentencesNode = TreeFactory.newQueryNode(new SentencesForPatternQueryData(patternId, R.drawable.grouprealization, sb), BasicModule.this.context);
 						assert groupNode != null;
-						groupNode.addChild(patternNode);
+						groupNode.addChild(sentencesNode);
+
+						// expand
+						// TreeView.expand(sentencesNode, false);
 					}
 					while (cursor.moveToNext());
 
@@ -1402,7 +1439,6 @@ abstract public class BasicModule extends Module
 	 * @param sb        builder to host result
 	 * @return builder
 	 */
-	@SuppressWarnings("UnusedReturnValue")
 	private CharSequence parseGroupRealizations(final String aggregate, final SpannableStringBuilder sb)
 	{
 		// fe.pt.gf,fe.pt.gf,...
@@ -1480,16 +1516,16 @@ abstract public class BasicModule extends Module
 						LexUnits_Sentences_AnnoSets_Layers_Labels.DOCUMENTID + ',' + //
 						LexUnits_Sentences_AnnoSets_Layers_Labels.PARAGNO + ',' + //
 						LexUnits_Sentences_AnnoSets_Layers_Labels.SENTNO; //
-				return new CursorLoader(BasicModule.this.getContext(), uri, projection, selection, selectionArgs, sortOrder);
+				return new CursorLoader(BasicModule.this.context, uri, projection, selection, selectionArgs, sortOrder);
 			}
 
 			@Override
 			public void onLoadFinished(final Loader<Cursor> loader, final Cursor cursor)
 			{
-				final SpannableStringBuilder sb = new SpannableStringBuilder();
-
 				if (cursor.moveToFirst())
 				{
+					final SpannableStringBuilder sb = new SpannableStringBuilder();
+
 					// column indices
 					final int idText = cursor.getColumnIndex(LexUnits_Sentences_AnnoSets_Layers_Labels.TEXT);
 					final int idLayerType = cursor.getColumnIndex(LexUnits_Sentences_AnnoSets_Layers_Labels.LAYERTYPE);
@@ -1556,7 +1592,7 @@ abstract public class BasicModule extends Module
 					while (cursor.moveToNext());
 
 					// attach result
-					TreeFactory.addTextNode(parent, sb, BasicModule.this.getContext());
+					TreeFactory.addTextNode(parent, sb, BasicModule.this.context);
 
 					// expand
 					TreeView.expand(parent, false);
@@ -1599,7 +1635,7 @@ abstract public class BasicModule extends Module
 				final String selection = Patterns_Sentences.PATTERNID + " = ?"; //
 				final String[] selectionArgs = {Long.toString(patternId)};
 				final String sortOrder = Patterns_Sentences.SENTENCEID;
-				return new CursorLoader(BasicModule.this.getContext(), uri, projection, selection, selectionArgs, sortOrder);
+				return new CursorLoader(BasicModule.this.context, uri, projection, selection, selectionArgs, sortOrder);
 			}
 
 			@Override
@@ -1631,9 +1667,12 @@ abstract public class BasicModule extends Module
 							sb.append(Long.toString(annotationId));
 						}
 
-						// attach sentence
-						final TreeNode sentenceNode = TreeFactory.newQueryNode(new AnnoSetQuery(annotationId, R.drawable.sentence, sb, false), BasicModule.this.getContext());
-						parent.addChild(sentenceNode);
+						// attach annoSet node
+						final TreeNode annoSetNode = TreeFactory.newQueryNode(new AnnoSetQuery(annotationId, R.drawable.sentence, sb, false), BasicModule.this.context);
+						parent.addChild(annoSetNode);
+
+						// expand
+						// TreeView.expand(annoSetNode, false);
 					}
 					while (cursor.moveToNext());
 
@@ -1678,7 +1717,7 @@ abstract public class BasicModule extends Module
 				final String selection = ValenceUnits_Sentences.VUID + " = ?"; //
 				final String[] selectionArgs = {Long.toString(vuId)};
 				final String sortOrder = ValenceUnits_Sentences.SENTENCEID;
-				return new CursorLoader(BasicModule.this.getContext(), uri, projection, selection, selectionArgs, sortOrder);
+				return new CursorLoader(BasicModule.this.context, uri, projection, selection, selectionArgs, sortOrder);
 			}
 
 			@Override
@@ -1711,8 +1750,11 @@ abstract public class BasicModule extends Module
 						}
 
 						// pattern
-						final TreeNode sentenceNode = TreeFactory.newQueryNode(new AnnoSetQuery(annotationId, R.drawable.sentence, sb, false), BasicModule.this.getContext());
-						parent.addChild(sentenceNode);
+						final TreeNode annoSetNode = TreeFactory.newQueryNode(new AnnoSetQuery(annotationId, R.drawable.sentence, sb, false), BasicModule.this.context);
+						parent.addChild(annoSetNode);
+
+						// expand
+						// TreeView.expand(annoSetNode, false);
 					}
 					while (cursor.moveToNext());
 
@@ -1763,7 +1805,7 @@ abstract public class BasicModule extends Module
 				final String selection = null; // embedded selection
 				final String[] selectionArgs = {Long.toString(annoSetId)};
 				final String sortOrder = null;
-				return new CursorLoader(BasicModule.this.getContext(), uri, projection, selection, selectionArgs, sortOrder);
+				return new CursorLoader(BasicModule.this.context, uri, projection, selection, selectionArgs, sortOrder);
 			}
 
 			@Override
@@ -1858,7 +1900,7 @@ abstract public class BasicModule extends Module
 					}
 
 					// attach result
-					TreeFactory.addTextNode(parent, sb, BasicModule.this.getContext());
+					TreeFactory.addTextNode(parent, sb, BasicModule.this.context);
 
 					// expand
 					TreeView.expand(parent, false);
@@ -1904,7 +1946,7 @@ abstract public class BasicModule extends Module
 				final String selection = null; // embedded selection
 				final String[] selectionArgs = {Long.toString(patternId)};
 				final String sortOrder = null;
-				return new CursorLoader(BasicModule.this.getContext(), uri, projection, selection, selectionArgs, sortOrder);
+				return new CursorLoader(BasicModule.this.context, uri, projection, selection, selectionArgs, sortOrder);
 			}
 
 			@Override
@@ -1993,7 +2035,7 @@ abstract public class BasicModule extends Module
 					while (cursor.moveToNext());
 
 					// attach result
-					TreeFactory.addTextNode(parent, sb, BasicModule.this.getContext());
+					TreeFactory.addTextNode(parent, sb, BasicModule.this.context);
 
 					// expand
 					TreeView.expand(parent, false);
@@ -2039,7 +2081,7 @@ abstract public class BasicModule extends Module
 				final String selection = null; // embedded selection
 				final String[] selectionArgs = {Long.toString(vuId)};
 				final String sortOrder = null;
-				return new CursorLoader(BasicModule.this.getContext(), uri, projection, selection, selectionArgs, sortOrder);
+				return new CursorLoader(BasicModule.this.context, uri, projection, selection, selectionArgs, sortOrder);
 			}
 
 			@Override
@@ -2129,7 +2171,7 @@ abstract public class BasicModule extends Module
 					while (cursor.moveToNext());
 
 					// attach result
-					TreeFactory.addTextNode(parent, sb, BasicModule.this.getContext());
+					TreeFactory.addTextNode(parent, sb, BasicModule.this.context);
 
 					// expand
 					TreeView.expand(parent, false);
@@ -2176,7 +2218,7 @@ abstract public class BasicModule extends Module
 				final String selection = null; // embedded selection
 				final String[] selectionArgs = {Long.toString(sentenceId)};
 				final String sortOrder = null;
-				return new CursorLoader(BasicModule.this.getContext(), uri, projection, selection, selectionArgs, sortOrder);
+				return new CursorLoader(BasicModule.this.context, uri, projection, selection, selectionArgs, sortOrder);
 			}
 
 			@Override
@@ -2252,7 +2294,7 @@ abstract public class BasicModule extends Module
 					}
 
 					// attach result
-					TreeFactory.addTextNode(parent, sb, BasicModule.this.getContext());
+					TreeFactory.addTextNode(parent, sb, BasicModule.this.context);
 
 					// expand
 					TreeView.expand(parent, false);
@@ -2344,11 +2386,11 @@ abstract public class BasicModule extends Module
 	// Q U E R I E S
 
 	/**
-	 * Frame query
+	 * Frame query data
 	 */
-	class FrameQuery extends Query.QueryData
+	class FrameQueryData extends QueryRenderer.QueryData
 	{
-		public FrameQuery(final long frameId, final int icon, @SuppressWarnings("SameParameterValue") final CharSequence text)
+		public FrameQueryData(final long frameId, final int icon, final CharSequence text)
 		{
 			super(frameId, icon, text);
 		}
@@ -2361,11 +2403,11 @@ abstract public class BasicModule extends Module
 	}
 
 	/**
-	 * Related frame query
+	 * Related frame query data
 	 */
-	class RelatedQuery extends Query.QueryData
+	class RelatedQueryData extends QueryRenderer.QueryData
 	{
-		public RelatedQuery(final long frameId, final int icon, @SuppressWarnings("SameParameterValue") final CharSequence text)
+		public RelatedQueryData(final long frameId, final int icon, final CharSequence text)
 		{
 			super(frameId, icon, text);
 		}
@@ -2378,11 +2420,11 @@ abstract public class BasicModule extends Module
 	}
 
 	/**
-	 * Lex units query
+	 * Lex units query data
 	 */
-	class LexUnitsQuery extends Query.QueryData
+	class LexUnitsQueryData extends QueryRenderer.QueryData
 	{
-		public LexUnitsQuery(final long frameId, final int icon, @SuppressWarnings("SameParameterValue") final CharSequence text)
+		public LexUnitsQueryData(final long frameId, final int icon, final CharSequence text)
 		{
 			super(frameId, icon, text);
 		}
@@ -2395,11 +2437,11 @@ abstract public class BasicModule extends Module
 	}
 
 	/**
-	 * Frame elements query
+	 * Frame elements query data
 	 */
-	class FEsQuery extends Query.QueryData
+	class FEsQueryData extends QueryRenderer.QueryData
 	{
-		public FEsQuery(final long frameId, final int icon, @SuppressWarnings("SameParameterValue") final CharSequence text)
+		public FEsQueryData(final long frameId, final int icon, final CharSequence text)
 		{
 			super(frameId, icon, text);
 		}
@@ -2412,11 +2454,11 @@ abstract public class BasicModule extends Module
 	}
 
 	/**
-	 * Governors query
+	 * Governors query data
 	 */
-	class GovernorsQuery extends Query.QueryData
+	class GovernorsQueryData extends QueryRenderer.QueryData
 	{
-		public GovernorsQuery(final long luId, final int icon, @SuppressWarnings("SameParameterValue") final CharSequence text)
+		public GovernorsQueryData(final long luId, final int icon, final CharSequence text)
 		{
 			super(luId, icon, text);
 		}
@@ -2429,11 +2471,11 @@ abstract public class BasicModule extends Module
 	}
 
 	/**
-	 * Realizations query
+	 * Realizations query data
 	 */
-	class RealizationsQuery extends Query.QueryData
+	class RealizationsQueryData extends QueryRenderer.QueryData
 	{
-		public RealizationsQuery(final long luId, final int icon, @SuppressWarnings("SameParameterValue") final CharSequence text)
+		public RealizationsQueryData(final long luId, final int icon, final CharSequence text)
 		{
 			super(luId, icon, text);
 		}
@@ -2446,11 +2488,11 @@ abstract public class BasicModule extends Module
 	}
 
 	/**
-	 * Group realizations query
+	 * Group realizations query data
 	 */
-	class GroupRealizationsQuery extends Query.QueryData
+	class GroupRealizationsQueryData extends QueryRenderer.QueryData
 	{
-		public GroupRealizationsQuery(final long luId, final int icon, @SuppressWarnings("SameParameterValue") final CharSequence text)
+		public GroupRealizationsQueryData(final long luId, final int icon, final CharSequence text)
 		{
 			super(luId, icon, text);
 		}
@@ -2463,11 +2505,11 @@ abstract public class BasicModule extends Module
 	}
 
 	/**
-	 * Sentences for pattern query
+	 * Sentences for pattern query data
 	 */
-	class SentencesForPatternQuery extends Query.QueryData
+	class SentencesForPatternQueryData extends QueryRenderer.QueryData
 	{
-		public SentencesForPatternQuery(final long patternId, final int icon, final CharSequence text)
+		public SentencesForPatternQueryData(final long patternId, final int icon, final CharSequence text)
 		{
 			super(patternId, icon, text);
 		}
@@ -2480,11 +2522,11 @@ abstract public class BasicModule extends Module
 	}
 
 	/**
-	 * Sentences for valence unit query
+	 * Sentences for valence unit query data
 	 */
-	class SentencesForValenceUnitQuery extends Query.QueryData
+	class SentencesForValenceUnitQueryData extends QueryRenderer.QueryData
 	{
-		public SentencesForValenceUnitQuery(final long vuId, final int icon, final CharSequence text)
+		public SentencesForValenceUnitQueryData(final long vuId, final int icon, final CharSequence text)
 		{
 			super(vuId, icon, text);
 		}
@@ -2499,9 +2541,9 @@ abstract public class BasicModule extends Module
 	/**
 	 * Sentences for lex unit query
 	 */
-	class SentencesForLexUnitQuery extends Query.QueryData
+	class SentencesForLexUnitQueryData extends QueryRenderer.QueryData
 	{
-		public SentencesForLexUnitQuery(final long luId, final int icon, @SuppressWarnings("SameParameterValue") final CharSequence text)
+		public SentencesForLexUnitQueryData(final long luId, final int icon, final CharSequence text)
 		{
 			super(luId, icon, text);
 		}
@@ -2514,13 +2556,13 @@ abstract public class BasicModule extends Module
 	}
 
 	/**
-	 * AnnoSet query
+	 * AnnoSet query data
 	 */
-	class AnnoSetQuery extends Query.QueryData
+	class AnnoSetQuery extends QueryRenderer.QueryData
 	{
 		private final boolean withSentence;
 
-		public AnnoSetQuery(final long annoSetId, final int icon, final CharSequence text, @SuppressWarnings("SameParameterValue") final boolean withSentence)
+		public AnnoSetQuery(final long annoSetId, final int icon, final CharSequence text, final boolean withSentence)
 		{
 			super(annoSetId, icon, text);
 			this.withSentence = withSentence;
@@ -2534,11 +2576,11 @@ abstract public class BasicModule extends Module
 	}
 
 	/**
-	 * AnnoSets for governor query
+	 * AnnoSets for governor query data
 	 */
-	class AnnoSetsForGovernorQuery extends Query.QueryData
+	class AnnoSetsForGovernorQueryData extends QueryRenderer.QueryData
 	{
-		public AnnoSetsForGovernorQuery(final long governorId, final int icon, final CharSequence text)
+		public AnnoSetsForGovernorQueryData(final long governorId, final int icon, final CharSequence text)
 		{
 			super(governorId, icon, text);
 		}
@@ -2551,14 +2593,14 @@ abstract public class BasicModule extends Module
 	}
 
 	/**
-	 * Dummy query
+	 * Dummy query data
 	 */
-	class DummyQuery extends Query.QueryData
+	class DummyQueryData extends QueryRenderer.QueryData
 	{
-		private static final String TAG = "DummyQuery"; //
+		private static final String TAG = "DummyQueryData"; //
 
 		@SuppressWarnings("unused")
-		public DummyQuery(final long annoSetId, final int icon, final CharSequence text)
+		public DummyQueryData(final long annoSetId, final int icon, final CharSequence text)
 		{
 			super(annoSetId, icon, text);
 		}

@@ -43,7 +43,6 @@ public class FnFramePointer extends Pointer
 	/**
 	 * Constructor from parcel, reads back fields IN THE ORDER they were written
 	 */
-	@SuppressWarnings("boxing")
 	private FnFramePointer(final Parcel parcel)
 	{
 		super(parcel);

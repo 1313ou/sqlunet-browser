@@ -316,7 +316,7 @@ public class XSqlUNetProvider extends SqlUNetProvider
 	 * @param selectionArgs selection arguments
 	 * @return cursor
 	 */
-	private Cursor raw(final String sql, final String[] selectionArgs)
+	private Cursor raw(final String sql, final String... selectionArgs)
 	{
 		final String[] selectionArgs2 = new String[2 * selectionArgs.length];
 		for (int i = 0; i < selectionArgs.length; i++)
