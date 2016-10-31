@@ -94,11 +94,8 @@ public class SenseModule extends SynsetModule
 		}
 
 		// expand
+		linksNode.setExpanded(this.expand);
+		samplesNode.setExpanded(this.expand);
 		TreeView.expand(node, false);
-		if(this.expand)
-		{
-			TreeView.expand(linksNode, false);
-			TreeView.expand(samplesNode, false);
-		}
 	}
 }

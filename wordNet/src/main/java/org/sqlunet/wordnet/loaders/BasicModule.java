@@ -171,9 +171,9 @@ abstract public class BasicModule extends Module
 					TreeFactory.addTextNode(parent, sbdef, BasicModule.this.context, linksNode, samplesNode);
 
 					// expand
+					linksNode.setExpanded(true);
+					samplesNode.setExpanded(true);
 					TreeView.expand(parent, false);
-					TreeView.expand(linksNode, false);
-					TreeView.expand(samplesNode, false);
 				}
 				else
 				{

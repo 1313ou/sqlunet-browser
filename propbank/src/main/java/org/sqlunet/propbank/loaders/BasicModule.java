@@ -173,9 +173,9 @@ abstract class BasicModule extends Module
 					TreeFactory.addTextNode(parent, sb, BasicModule.this.context, rolesNode, examplesNode);
 
 					// expand
+					rolesNode.setExpanded(true);
+					examplesNode.setExpanded(false);
 					TreeView.expand(parent, false);
-					TreeView.expand(rolesNode, false);
-					// TreeView.expand(examplesNode, false);
 				}
 				else
 				{
@@ -259,8 +259,8 @@ abstract class BasicModule extends Module
 						TreeFactory.addTextNode(parent, sb, BasicModule.this.context, rolesNode, examplesNode);
 
 						// expand
-						TreeView.expand(rolesNode, false);
-						// TreeView.expand(examplesNode, false);
+						rolesNode.setExpanded(true);
+						examplesNode.setExpanded(false);
 					}
 					while (cursor.moveToNext());
 

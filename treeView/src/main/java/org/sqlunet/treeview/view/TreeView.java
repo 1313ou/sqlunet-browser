@@ -522,9 +522,9 @@ public class TreeView
 
 		if (includeSubnodes)
 		{
-			for (TreeNode n : node.getChildren())
+			for (TreeNode child : node.getChildren())
 			{
-				collapseNode(n, true);
+				collapseNode(child, true);
 			}
 		}
 	}
@@ -544,13 +544,13 @@ public class TreeView
 
 		renderer.onExpandEvent(true);
 
-		for (final TreeNode n : node.getChildren())
+		for (final TreeNode child : node.getChildren())
 		{
-			addNode(renderer.getNodeItemsView(), n);
+			addNode(renderer.getNodeItemsView(), child);
 
-			if (n.isExpanded() || includeSubnodes)
+			if (child.isExpanded() || includeSubnodes)
 			{
-				expandNode(n, includeSubnodes);
+				expandNode(child, includeSubnodes);
 			}
 		}
 		if (this.useDefaultAnimation)

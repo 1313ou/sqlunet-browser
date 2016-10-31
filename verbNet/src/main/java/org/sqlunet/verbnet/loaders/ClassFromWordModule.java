@@ -164,8 +164,8 @@ public class ClassFromWordModule extends BasicModule
 						TreeFactory.addTextNode(parent, sb, ClassFromWordModule.this.context, itemsNode, rolesNode, framesNode);
 
 						// expand
-						TreeView.expand(rolesNode, false);
-						// TreeView.expand(frameNode, false);
+						rolesNode.setExpanded(true);
+						framesNode.setExpanded(false);
 					}
 					while (cursor.moveToNext());
 
