@@ -96,17 +96,7 @@ abstract public class BasicModule extends Module
 	/**
 	 * Drawable for FE
 	 */
-	private final Drawable topFeDrawable;
-
-	/**
-	 * Drawable for FE
-	 */
 	private final Drawable feDrawable;
-
-	/**
-	 * Drawable for core FE
-	 */
-	private final Drawable corefeDrawable;
 
 	/**
 	 * Drawable for lexUnit
@@ -157,9 +147,7 @@ abstract public class BasicModule extends Module
 
 		// drawables
 		this.frameDrawable = Spanner.getDrawable(this.context, R.drawable.fnframe);
-		this.topFeDrawable = Spanner.getDrawable(this.context, R.drawable.toprole);
 		this.feDrawable = Spanner.getDrawable(this.context, R.drawable.rolealt);
-		this.corefeDrawable = Spanner.getDrawable(this.context, R.drawable.corerole);
 		this.lexunitDrawable = Spanner.getDrawable(this.context, R.drawable.lexunit);
 		this.definitionDrawable = Spanner.getDrawable(this.context, R.drawable.definition);
 		this.metadefinitionDrawable = Spanner.getDrawable(this.context, R.drawable.metadefinition);
@@ -256,10 +244,12 @@ abstract public class BasicModule extends Module
 					final String frameDefinition = cursor.getString(idFrameDefinition);
 					final CharSequence[] frameDefinitionFields = processDefinition(frameDefinition, 0);
 					Spanner.append(sb, frameDefinitionFields[0], 0, FrameNetFactories.metadefinitionFactory);
-					if (frameDefinitionFields.length > 1)
+
+					// examples in definition
+					for (int i = 1; i < frameDefinitionFields.length; i++)
 					{
 						sb.append('\n');
-						sb.append(frameDefinitionFields[1]);
+						sb.append(frameDefinitionFields[i]);
 					}
 
 					// sub nodes
@@ -273,7 +263,7 @@ abstract public class BasicModule extends Module
 					// expand
 					TreeView.expand(parent, false);
 					TreeView.expand(fesNode, false);
-					// TreeView.expand(lexUnitsNode, false);
+					TreeView.expand(lexUnitsNode, false);
 					// TreeView.expand(relatedNode, false);
 				}
 				else
@@ -474,8 +464,6 @@ abstract public class BasicModule extends Module
 			@Override
 			public void onLoadFinished(final Loader<Cursor> loader, final Cursor cursor)
 			{
-				final SpannableStringBuilder sb = new SpannableStringBuilder();
-
 				if (cursor.moveToFirst())
 				{
 					// column indices
@@ -488,8 +476,10 @@ abstract public class BasicModule extends Module
 					final int idCoreType = cursor.getColumnIndex(Frames_FEs.CORETYPE);
 
 					// read cursor
-					while (true)
+					do
 					{
+						final SpannableStringBuilder sb = new SpannableStringBuilder();
+
 						final String feType = cursor.getString(idFeType);
 						final String feAbbrev = cursor.getString(idFeAbbrev);
 						final String feDefinition = cursor.getString(idDefinition).trim().replaceAll("\n+", "\n").replaceAll("\n$", ""); //
@@ -499,65 +489,61 @@ abstract public class BasicModule extends Module
 						final String coreType = cursor.getString(idCoreType);
 
 						// fe
-						Spanner.appendImage(sb, coreTypeId == 1 ? BasicModule.this.corefeDrawable : BasicModule.this.topFeDrawable);
-						sb.append(' ');
 						Spanner.append(sb, feType, 0, FrameNetFactories.feFactory);
 						sb.append(' ');
 						Spanner.append(sb, feAbbrev, 0, FrameNetFactories.feAbbrevFactory);
 
+						// attach fe
+						final TreeNode feNode = TreeFactory.addTreeItemNode(parent, sb, coreTypeId == 1 ? R.drawable.corerole : R.drawable.role, BasicModule.this.context);
+
+						// more info
+						final SpannableStringBuilder sb2 = new SpannableStringBuilder();
+
 						// fe definition
-						sb.append('\n');
 						final CharSequence[] frameDefinitionFields = processDefinition(feDefinition, FrameNetMarkupFactory.FEDEF);
-						sb.append('\t');
-						Spanner.appendImage(sb, BasicModule.this.metadefinitionDrawable);
-						sb.append(' ');
-						Spanner.append(sb, frameDefinitionFields[0], 0, FrameNetFactories.metadefinitionFactory);
+						sb2.append('\t');
+						Spanner.appendImage(sb2, BasicModule.this.metadefinitionDrawable);
+						sb2.append(' ');
+						Spanner.append(sb2, frameDefinitionFields[0], 0, FrameNetFactories.metadefinitionFactory);
 						if (frameDefinitionFields.length > 1)
 						{
-							sb.append('\n');
-							sb.append('\t');
-							sb.append(frameDefinitionFields[1]);
+							sb2.append('\n');
+							sb2.append('\t');
+							sb2.append(frameDefinitionFields[1]);
 						}
 
 						// core type
-						sb.append('\n');
-						sb.append('\t');
-						Spanner.appendImage(sb, BasicModule.this.coresetDrawable);
-						sb.append(' ');
-						sb.append(coreType);
+						sb2.append('\n');
+						sb2.append('\t');
+						Spanner.appendImage(sb2, BasicModule.this.coresetDrawable);
+						sb2.append(' ');
+						sb2.append(coreType);
 
 						// coreset
 						if (isInCoreSet)
 						{
 							final int coreset = cursor.getInt(idCoreset);
-							sb.append('\n');
-							sb.append('\t');
-							Spanner.appendImage(sb, BasicModule.this.coresetDrawable);
-							sb.append("[coreset] "); //
-							sb.append(Integer.toString(coreset));
+							sb2.append('\n');
+							sb2.append('\t');
+							Spanner.appendImage(sb2, BasicModule.this.coresetDrawable);
+							sb2.append("[coreset] "); //
+							sb2.append(Integer.toString(coreset));
 						}
 
 						// sem types
 						if (feSemTypes != null)
 						{
-							sb.append('\n');
-							sb.append('\t');
-							Spanner.appendImage(sb, BasicModule.this.semtypeDrawable);
-							sb.append(' ');
-							sb.append(feSemTypes);
+							sb2.append('\n');
+							sb2.append('\t');
+							Spanner.appendImage(sb2, BasicModule.this.semtypeDrawable);
+							sb2.append(' ');
+							sb2.append(feSemTypes);
 						}
 
-						if (!cursor.moveToNext())
-						{
-							//noinspection BreakStatement
-							break;
-						}
-
-						sb.append('\n');
+						// attach more info to fe node
+						TreeFactory.addTextNode(feNode, sb2, BasicModule.this.context);
 					}
-
-					// attach result
-					TreeFactory.addTextNode(parent, sb, BasicModule.this.context);
+					while (cursor.moveToNext());
 
 					// expand
 					TreeView.expand(parent, false);
@@ -789,9 +775,7 @@ abstract public class BasicModule extends Module
 						final String incorporatedFEType = cursor.getString(idIncorporatedFEType);
 						final String incorporatedFEDefinition = cursor.getString(idIncorporatedFEDefinition);
 
-						// lexUnit
-						Spanner.appendImage(sb, BasicModule.this.lexunitDrawable);
-						sb.append(' ');
+						// lex unit
 						Spanner.append(sb, lexUnit, 0, FrameNetFactories.lexunitFactory);
 						if (VERBOSE)
 						{
@@ -799,27 +783,33 @@ abstract public class BasicModule extends Module
 							sb.append(Long.toString(luId));
 						}
 
-						// definition
-						sb.append('\n');
-						Spanner.appendImage(sb, BasicModule.this.definitionDrawable);
-						sb.append(' ');
-						Spanner.append(sb, cursor.getString(idDefinition).trim(), 0, FrameNetFactories.definitionFactory);
+						// attach fe
+						final TreeNode luNode = TreeFactory.addTreeItemNode(parent, sb, R.drawable.lexunit, BasicModule.this.context);
 
+						// more info
+						final SpannableStringBuilder sb2 = new SpannableStringBuilder();
+
+						// definition
+						Spanner.appendImage(sb2, BasicModule.this.definitionDrawable);
+						sb2.append(' ');
+						Spanner.append(sb2, cursor.getString(idDefinition).trim(), 0, FrameNetFactories.definitionFactory);
+
+						// incorporated fe
 						if (incorporatedFEType != null)
 						{
-							sb.append('\n');
-							Spanner.appendImage(sb, BasicModule.this.feDrawable);
-							sb.append(' ');
-							sb.append("Incorporated"); //
-							sb.append(' ');
-							Spanner.append(sb, incorporatedFEType, 0, FrameNetFactories.fe2Factory);
+							sb2.append('\n');
+							Spanner.appendImage(sb2, BasicModule.this.feDrawable);
+							sb2.append(' ');
+							sb2.append("Incorporated"); //
+							sb2.append(' ');
+							Spanner.append(sb2, incorporatedFEType, 0, FrameNetFactories.fe2Factory);
 							if (incorporatedFEDefinition != null)
 							{
-								sb.append(' ');
-								sb.append('-');
-								sb.append(' ');
+								sb2.append(' ');
+								sb2.append('-');
+								sb2.append(' ');
 								final CharSequence[] definitionFields = processDefinition(incorporatedFEDefinition, FrameNetMarkupFactory.FEDEF);
-								Spanner.append(sb, definitionFields[0], 0, FrameNetFactories.definitionFactory);
+								Spanner.append(sb2, definitionFields[0], 0, FrameNetFactories.definitionFactory);
 								// if (definitionFields.length > 1)
 								// {
 								// sb.append('\n');
@@ -840,7 +830,7 @@ abstract public class BasicModule extends Module
 						{
 							final TreeNode frameNode = TreeFactory.newQueryNode(new FrameQueryData(frameId, R.drawable.fnframe, "Frame"), BasicModule.this.context); //
 							final TreeNode fesNode = TreeFactory.newQueryNode(new FEsQueryData(frameId, R.drawable.roles, "Frame Elements"), BasicModule.this.context); //
-							TreeFactory.addTextNode(parent, sb, BasicModule.this.context, frameNode, fesNode, governorsNode, realizationsNode, groupRealizationsNode, sentencesNode);
+							TreeFactory.addTextNode(luNode, sb2, BasicModule.this.context, frameNode, fesNode, governorsNode, realizationsNode, groupRealizationsNode, sentencesNode);
 
 							// expand
 							// TreeView.expand(frameNode, false);
@@ -848,7 +838,7 @@ abstract public class BasicModule extends Module
 						}
 						else
 						{
-							TreeFactory.addTextNode(parent, sb, BasicModule.this.context, governorsNode, realizationsNode, groupRealizationsNode, sentencesNode);
+							TreeFactory.addTextNode(luNode, sb2, BasicModule.this.context, governorsNode, realizationsNode, groupRealizationsNode, sentencesNode);
 						}
 
 						// expand

@@ -8,6 +8,7 @@ import android.text.style.DynamicDrawableSpan;
 import android.text.style.ForegroundColorSpan;
 import android.text.style.ImageSpan;
 import android.text.style.StyleSpan;
+import android.text.style.UnderlineSpan;
 
 import org.sqlunet.framenet.R;
 import org.sqlunet.style.Colors;
@@ -31,56 +32,50 @@ public class FrameNetMarkupFactory implements MarkupSpanner.SpanFactory
 	static public final int FEDEF = 0x10000;
 
 	/**
-	 * Background factory
+	 * Text factory
 	 */
-	private static final MarkupSpanner.SpanFactory backgroundFactory = new MarkupSpanner.SpanFactory()
+	private static final MarkupSpanner.SpanFactory textFactory = new MarkupSpanner.SpanFactory()
 	{
 		@Override
 		public Object makeSpans(final String selector, final long flags)
 		{
 			if ("fe".equals(selector)) //
 			{
-				return new BackgroundColorSpan(Color.MAGENTA);
+				return new Object[]{new BackgroundColorSpan(Color.MAGENTA), new ForegroundColorSpan(Color.WHITE)};
 			}
-			if ("t".equals(selector)) //
+			if ("t".equals(selector)) // target
 			{
-				return new BackgroundColorSpan(Color.BLACK);
+				return new Object[]{new BackgroundColorSpan(Color.GRAY), new ForegroundColorSpan(Color.WHITE)};
 			}
 			if ("fen".equals(selector)) //
 			{
-				return new BackgroundColorSpan((flags & FrameNetMarkupFactory.FEDEF) == 0 ? Color.MAGENTA : Color.LTGRAY);
+				if ((flags & FrameNetMarkupFactory.FEDEF) != 0)
+				{
+					return new ForegroundColorSpan(Color.MAGENTA);
+				}
+				else
+				{
+					return new Object[]{new BackgroundColorSpan(Color.MAGENTA), new ForegroundColorSpan(Color.WHITE)};
+				}
 			}
 			if (selector.matches("fex.*")) //
 			{
-				return new BackgroundColorSpan((flags & FrameNetMarkupFactory.FEDEF) == 0 ? Colors.pink : Colors.ltmagenta);
+				if ((flags & FrameNetMarkupFactory.FEDEF) == 0)
+				{
+					return new Object[]{new ForegroundColorSpan(Color.GRAY), new UnderlineSpan()};
+				}
+				else
+				{
+					return new Object[]{new BackgroundColorSpan(Colors.ltmagenta), new ForegroundColorSpan(Color.WHITE)};
+				}
 			}
-			if (selector.matches("xfen")) //
+			if ("xfen".equals(selector)) //
 			{
-				return new BackgroundColorSpan(Colors.ltyellow);
+				return new ForegroundColorSpan(Color.MAGENTA);// new BackgroundColorSpan(Color.WHITE);
 			}
 			if ("ex".equals(selector)) //
 			{
-				return new StyleSpan(android.graphics.Typeface.ITALIC); // new BackgroundColorSpan(Color.LTGRAY);
-			}
-			return null;
-		}
-	};
-
-	/**
-	 * Foreground factory
-	 */
-	private static final MarkupSpanner.SpanFactory foregroundFactory = new MarkupSpanner.SpanFactory()
-	{
-		@Override
-		public Object makeSpans(final String selector, final long flags)
-		{
-			if ("t".equals(selector)) //
-			{
-				return new ForegroundColorSpan(Color.WHITE);
-			}
-			if ("fe".equals(selector)) //
-			{
-				return new ForegroundColorSpan(Color.WHITE);
+				return new Object[]{new ForegroundColorSpan(Color.GRAY), new StyleSpan(android.graphics.Typeface.ITALIC)};
 			}
 			return null;
 		}
@@ -186,21 +181,7 @@ public class FrameNetMarkupFactory implements MarkupSpanner.SpanFactory
 				return new BackgroundColorSpan(Color.GREEN);
 
 			case TEXT:
-				final Object backgroundSpan = FrameNetMarkupFactory.backgroundFactory.makeSpans(selector, flags);
-				final Object foregroundSpan = FrameNetMarkupFactory.foregroundFactory.makeSpans(selector, flags);
-				if (backgroundSpan != null && foregroundSpan != null)
-				{
-					return new Object[]{backgroundSpan, foregroundSpan};
-				}
-				if (backgroundSpan != null)
-				{
-					return backgroundSpan;
-				}
-				if (foregroundSpan != null)
-				{
-					return foregroundSpan;
-				}
-				return new BackgroundColorSpan(Color.GREEN);
+				return FrameNetMarkupFactory.textFactory.makeSpans(selector, flags);
 		}
 		return null;
 	}
