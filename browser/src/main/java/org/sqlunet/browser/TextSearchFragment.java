@@ -46,7 +46,7 @@ public class TextSearchFragment extends AbstractTableFragment
 		@Override
 		public Object makeSpans(final long flags)
 		{
-			return new Object[]{/*new BackgroundColorSpan(Colors.dkred), new ForegroundColorSpan(Color.WHITE), */new StyleSpan(Typeface.BOLD)};
+			return new Object[]{/*new BackgroundColorSpan(Colors.dk_red), new ForegroundColorSpan(Color.WHITE), */new StyleSpan(Typeface.BOLD)};
 		}
 	};
 

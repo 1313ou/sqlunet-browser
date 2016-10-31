@@ -243,7 +243,7 @@ abstract public class BasicModule extends Module
 					sb.append(' ');
 					final String frameDefinition = cursor.getString(idFrameDefinition);
 					final CharSequence[] frameDefinitionFields = processDefinition(frameDefinition, 0);
-					Spanner.append(sb, frameDefinitionFields[0], 0, FrameNetFactories.metadefinitionFactory);
+					Spanner.append(sb, frameDefinitionFields[0], 0, FrameNetFactories.metaDefinitionFactory);
 
 					// examples in definition
 					for (int i = 1; i < frameDefinitionFields.length; i++)
@@ -504,7 +504,7 @@ abstract public class BasicModule extends Module
 						sb2.append('\t');
 						Spanner.appendImage(sb2, BasicModule.this.metadefinitionDrawable);
 						sb2.append(' ');
-						Spanner.append(sb2, frameDefinitionFields[0], 0, FrameNetFactories.metadefinitionFactory);
+						Spanner.append(sb2, frameDefinitionFields[0], 0, FrameNetFactories.metaDefinitionFactory);
 						if (frameDefinitionFields.length > 1)
 						{
 							sb2.append('\n');
@@ -664,7 +664,7 @@ abstract public class BasicModule extends Module
 							sb.append('-');
 							sb.append(' ');
 							final CharSequence[] definitionFields = processDefinition(incorporatedFEDefinition, FrameNetMarkupFactory.FEDEF);
-							Spanner.append(sb, definitionFields[0], 0, FrameNetFactories.metadefinitionFactory);
+							Spanner.append(sb, definitionFields[0], 0, FrameNetFactories.metaDefinitionFactory);
 							// if (definitionFields.length > 1)
 							// {
 							// sb.append('\n');
@@ -768,6 +768,7 @@ abstract public class BasicModule extends Module
 					final int idLuId = cursor.getColumnIndex(LexUnits_X.LUID);
 					final int idLexUnit = cursor.getColumnIndex(LexUnits_X.LEXUNIT);
 					final int idDefinition = cursor.getColumnIndex(LexUnits_X.LUDEFINITION);
+					final int idDictionary = cursor.getColumnIndex(LexUnits_X.LUDICT);
 					final int idIncorporatedFEType = cursor.getColumnIndex(LexUnits_X.INCORPORATEDFETYPE);
 					final int idIncorporatedFEDefinition = cursor.getColumnIndex(LexUnits_X.INCORPORATEDFEDEFINITION);
 
@@ -779,6 +780,8 @@ abstract public class BasicModule extends Module
 						// final int frameId = cursor.getInt(idFrameId);
 						final long luId = cursor.getLong(idLuId);
 						final String lexUnit = cursor.getString(idLexUnit);
+						final String definition = cursor.getString(idDefinition);
+						final String dictionary = cursor.getString(idDictionary);
 						final String incorporatedFEType = cursor.getString(idIncorporatedFEType);
 						final String incorporatedFEDefinition = cursor.getString(idIncorporatedFEDefinition);
 
@@ -799,7 +802,11 @@ abstract public class BasicModule extends Module
 						// definition
 						Spanner.appendImage(sb2, BasicModule.this.definitionDrawable);
 						sb2.append(' ');
-						Spanner.append(sb2, cursor.getString(idDefinition).trim(), 0, FrameNetFactories.definitionFactory);
+						Spanner.append(sb2, definition.trim(), 0, FrameNetFactories.definitionFactory);
+						sb.append(' ');
+						sb.append('[');
+						sb.append(dictionary);
+						sb.append(']');
 
 						// incorporated fe
 						if (incorporatedFEType != null)
@@ -917,6 +924,7 @@ abstract public class BasicModule extends Module
 					final int idLuId = cursor.getColumnIndex(Words_LexUnits_Frames.LUID);
 					final int idLexUnit = cursor.getColumnIndex(Words_LexUnits_Frames.LEXUNIT);
 					final int idDefinition = cursor.getColumnIndex(Words_LexUnits_Frames.LUDEFINITION);
+					final int idDictionary = cursor.getColumnIndex(Words_LexUnits_Frames.LUDICT);
 					final int idFrameId = cursor.getColumnIndex(Words_LexUnits_Frames.FRAMEID);
 					final int idIncorporatedFEType = cursor.getColumnIndex(Words_LexUnits_Frames.INCORPORATEDFETYPE);
 					final int idIncorporatedFEDefinition = cursor.getColumnIndex(Words_LexUnits_Frames.INCORPORATEDFEDEFINITION);
@@ -929,10 +937,11 @@ abstract public class BasicModule extends Module
 						final int luId = cursor.getInt(idLuId);
 						final int frameId = cursor.getInt(idFrameId);
 						final String definition = cursor.getString(idDefinition);
+						final String dictionary = cursor.getString(idDictionary);
 						final String incorporatedFEType = cursor.getString(idIncorporatedFEType);
 						final String incorporatedFEDefinition = cursor.getString(idIncorporatedFEDefinition);
 
-						// lexUnit
+						// lex unit
 						Spanner.appendImage(sb, BasicModule.this.lexunitDrawable);
 						sb.append(' ');
 						Spanner.append(sb, cursor.getString(idLexUnit), 0, FrameNetFactories.lexunitFactory);
@@ -947,6 +956,10 @@ abstract public class BasicModule extends Module
 						Spanner.appendImage(sb, BasicModule.this.definitionDrawable);
 						sb.append(' ');
 						Spanner.append(sb, definition.trim(), 0, FrameNetFactories.definitionFactory);
+						sb.append(' ');
+						sb.append('[');
+						sb.append(dictionary);
+						sb.append(']');
 
 						// incorporated FE
 						if (incorporatedFEType != null)
@@ -963,7 +976,7 @@ abstract public class BasicModule extends Module
 								sb.append('-');
 								sb.append(' ');
 								final CharSequence[] definitionFields = processDefinition(incorporatedFEDefinition, FrameNetMarkupFactory.FEDEF);
-								Spanner.append(sb, definitionFields[0], 0, FrameNetFactories.metadefinitionFactory);
+								Spanner.append(sb, definitionFields[0], 0, FrameNetFactories.metaDefinitionFactory);
 								// if (definitionFields.length > 1)
 								// {
 								// sb.append('\n');

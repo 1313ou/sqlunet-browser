@@ -7,6 +7,7 @@ import android.text.style.ForegroundColorSpan;
 import android.text.style.StyleSpan;
 
 import org.sqlunet.style.Colors;
+import org.sqlunet.style.Factories;
 import org.sqlunet.style.Spanner.SpanFactory;
 
 /**
@@ -16,32 +17,25 @@ import org.sqlunet.style.Spanner.SpanFactory;
  */
 public class FrameNetFactories
 {
-	static public final SpanFactory frameFactory = new SpanFactory()
+	// frame
+	static public final SpanFactory frameFactory = Factories.classFactory;
+
+	static public final SpanFactory metaDefinitionFactory = new SpanFactory()
 	{
 		@Override
 		public Object makeSpans(final long flags)
 		{
-			return new Object[]{new BackgroundColorSpan(Colors.dkred), new ForegroundColorSpan(Color.WHITE), new StyleSpan(Typeface.BOLD)};
+			return new Object[]{new ForegroundColorSpan(Color.DKGRAY), new StyleSpan(Typeface.ITALIC)};
 		}
 	};
 
-	static public final SpanFactory lexunitFactory = new SpanFactory()
-	{
-		@Override
-		public Object makeSpans(final long flags)
-		{
-			return new Object[]{new BackgroundColorSpan(Color.RED), new ForegroundColorSpan(Color.WHITE), new StyleSpan(Typeface.BOLD)};
-		}
-	};
+	// lex unit
+	static public final SpanFactory lexunitFactory = Factories.memberFactory;
 
-	static public final SpanFactory feFactory = new SpanFactory()
-	{
-		@Override
-		public Object makeSpans(final long flags)
-		{
-			return new Object[]{new BackgroundColorSpan(Color.MAGENTA), new ForegroundColorSpan(Color.WHITE), new StyleSpan(Typeface.BOLD)};
-		}
-	};
+	static public final SpanFactory definitionFactory = Factories.definitionFactory;
+
+	// fe
+	static public final SpanFactory feFactory = Factories.roleFactory;
 
 	static public final SpanFactory fe2Factory = new SpanFactory()
 	{
@@ -61,21 +55,16 @@ public class FrameNetFactories
 		}
 	};
 
-	static public final SpanFactory sentenceFactory = new SpanFactory()
-	{
-		@Override
-		public Object makeSpans(final long flags)
-		{
-			return new Object[]{new BackgroundColorSpan(Colors.ltyellow), new StyleSpan(Typeface.ITALIC)};
-		}
-	};
+	// sentence
+	static public final SpanFactory sentenceFactory = Factories.exampleFactory;
 
+	// annotations
 	static public final SpanFactory layerTypeFactory = new SpanFactory()
 	{
 		@Override
 		public Object makeSpans(final long flags)
 		{
-			return new Object[]{new BackgroundColorSpan(Colors.dkred), new ForegroundColorSpan(Color.WHITE), new StyleSpan(Typeface.BOLD)};
+			return new Object[]{new BackgroundColorSpan(Colors.dk_red), new ForegroundColorSpan(Color.WHITE), new StyleSpan(Typeface.BOLD)};
 		}
 	};
 
@@ -93,25 +82,7 @@ public class FrameNetFactories
 		@Override
 		public Object makeSpans(final long flags)
 		{
-			return new Object[]{new BackgroundColorSpan(Colors.ltyellowhighlight), new ForegroundColorSpan(Color.BLACK), new StyleSpan(Typeface.NORMAL)};
-		}
-	};
-
-	static public final SpanFactory definitionFactory = new SpanFactory()
-	{
-		@Override
-		public Object makeSpans(final long flags)
-		{
-			return new Object[]{new ForegroundColorSpan(Color.BLUE), new StyleSpan(Typeface.ITALIC)};
-		}
-	};
-
-	static public final SpanFactory metadefinitionFactory = new SpanFactory()
-	{
-		@Override
-		public Object makeSpans(final long flags)
-		{
-			return new Object[]{new ForegroundColorSpan(Color.DKGRAY), new StyleSpan(Typeface.ITALIC)};
+			return new Object[]{new BackgroundColorSpan(Colors.yellow), new ForegroundColorSpan(Color.BLACK), new StyleSpan(Typeface.NORMAL)};
 		}
 	};
 
@@ -156,7 +127,7 @@ public class FrameNetFactories
 		@Override
 		public Object makeSpans(final long flags)
 		{
-			return new Object[]{new ForegroundColorSpan(Colors.dkred), new StyleSpan(Typeface.BOLD)};
+			return new Object[]{new ForegroundColorSpan(Colors.dk_red), new StyleSpan(Typeface.BOLD)};
 		}
 	};
 

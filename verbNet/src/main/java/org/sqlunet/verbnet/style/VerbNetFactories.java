@@ -7,6 +7,7 @@ import android.text.style.ForegroundColorSpan;
 import android.text.style.StyleSpan;
 
 import org.sqlunet.style.Colors;
+import org.sqlunet.style.Factories;
 import org.sqlunet.style.Spanner.SpanFactory;
 
 /**
@@ -18,43 +19,22 @@ public class VerbNetFactories
 {
 	// class
 
-	static public final SpanFactory classFactory = new SpanFactory()
-	{
-		@Override
-		public Object makeSpans(final long flags)
-		{
-			return new Object[]{new BackgroundColorSpan(Colors.dkred), new ForegroundColorSpan(Color.WHITE), new StyleSpan(Typeface.BOLD)};
-		}
-	};
+	static public final SpanFactory classFactory = Factories.classFactory;
 
-	// item
+	// member
 
-	static public final SpanFactory itemFactory = new SpanFactory()
-	{
-		@Override
-		public Object makeSpans(final long flags)
-		{
-			return new Object[]{new BackgroundColorSpan(Color.RED), new ForegroundColorSpan(Color.WHITE), new StyleSpan(Typeface.BOLD)};
-		}
-	};
+	static public final SpanFactory memberFactory = Factories.memberFactory;
 
 	// role
 
-	public static final SpanFactory roleFactory = new SpanFactory()
-	{
-		@Override
-		public Object makeSpans(final long flags)
-		{
-			return new Object[]{new BackgroundColorSpan(Color.MAGENTA), new ForegroundColorSpan(Color.WHITE)};
-		}
-	};
+	public static final SpanFactory roleFactory = Factories.roleFactory;
 
 	static final SpanFactory themroleFactory = new SpanFactory()
 	{
 		@Override
 		public Object makeSpans(final long flags)
 		{
-			return new BackgroundColorSpan(Colors.ltmagenta);
+			return new BackgroundColorSpan(Colors.lt_magenta);
 		}
 	};
 
@@ -83,7 +63,7 @@ public class VerbNetFactories
 		@Override
 		public Object makeSpans(final long flags)
 		{
-			return new Object[]{new BackgroundColorSpan(Colors.ltbrown), new ForegroundColorSpan(Color.DKGRAY)};
+			return new Object[]{new BackgroundColorSpan(Colors.lt_brown), new ForegroundColorSpan(Color.DKGRAY)};
 		}
 	};
 
@@ -92,7 +72,7 @@ public class VerbNetFactories
 		@Override
 		public Object makeSpans(final long flags)
 		{
-			return new Object[]{new BackgroundColorSpan(Colors.ltmagenta)};
+			return new Object[]{new BackgroundColorSpan(Colors.lt_magenta)};
 		}
 	};
 
@@ -141,18 +121,11 @@ public class VerbNetFactories
 		@Override
 		public Object makeSpans(final long flags)
 		{
-			return new BackgroundColorSpan(Colors.ltyellow);
+			return new BackgroundColorSpan(Colors.lt_brown);
 		}
 	};
 
 	// example
 
-	public static final SpanFactory exampleFactory = new SpanFactory()
-	{
-		@Override
-		public Object makeSpans(final long flags)
-		{
-			return new BackgroundColorSpan(Colors.ltyellow);
-		}
-	};
+	public static final SpanFactory exampleFactory = Factories.exampleFactory;
 }

@@ -78,22 +78,19 @@ public class SynsetModule extends BasicModule
 		if (this.synsetId != null && this.synsetId != 0)
 		{
 			// sub nodes
-			final TreeNode dataNode = TreeFactory.newTextNode("data", this.context); //
-			final TreeNode membersNode = TreeFactory.newTextNode("members", this.context); //
+			final TreeNode synsetNode = TreeFactory.newTextNode("Data", this.context); //
+			final TreeNode membersNode = TreeFactory.newTextNode("Members", this.context); //
 			final TreeNode linksNode = TreeFactory.newQueryNode(new LinksQueryData(this.synsetId, 0, R.drawable.ic_other, "Links"), this.context); //
 			final TreeNode samplesNode = TreeFactory.newQueryNode(new SamplesQueryData(this.synsetId, R.drawable.sample, "Samples"), this.context); //
 
 			// attach result
-			node.addChildren(dataNode, membersNode, linksNode, samplesNode);
+			node.addChildren(synsetNode, membersNode, linksNode, samplesNode);
 
 			// synset
-			synset(this.synsetId, dataNode, false);
+			synset(this.synsetId, synsetNode, false);
 
 			// members
 			members(this.synsetId, membersNode, false);
-
-			// samples
-			samples(this.synsetId, samplesNode, false);
 
 			// special
 			if (this.pos != null)

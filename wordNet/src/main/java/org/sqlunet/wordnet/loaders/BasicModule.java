@@ -397,6 +397,7 @@ abstract public class BasicModule extends Module
 	 * @param parent     parent node
 	 * @param addNewNode whether to add to (or set) node
 	 */
+	@SuppressWarnings("WeakerAccess")
 	void samples(final long synsetId, final TreeNode parent, final boolean addNewNode)
 	{
 		getLoaderManager().restartLoader(++Module.loaderId, null, new LoaderCallbacks<Cursor>()

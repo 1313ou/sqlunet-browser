@@ -2,11 +2,10 @@ package org.sqlunet.wordnet.style;
 
 import android.graphics.Color;
 import android.graphics.Typeface;
-import android.text.style.BackgroundColorSpan;
 import android.text.style.ForegroundColorSpan;
 import android.text.style.StyleSpan;
 
-import org.sqlunet.style.Colors;
+import org.sqlunet.style.Factories;
 import org.sqlunet.style.Spanner.SpanFactory;
 
 /**
@@ -16,15 +15,6 @@ import org.sqlunet.style.Spanner.SpanFactory;
  */
 public class WordNetFactories
 {
-	public static final SpanFactory membersFactory = new SpanFactory()
-	{
-		@Override
-		public Object makeSpans(final long flags)
-		{
-			return new Object[]{new ForegroundColorSpan(Color.DKGRAY), new StyleSpan(Typeface.BOLD)};
-		}
-	};
-
 	public static final SpanFactory lemmaFactory = new SpanFactory()
 	{
 		@Override
@@ -34,21 +24,16 @@ public class WordNetFactories
 		}
 	};
 
-	public static final SpanFactory definitionFactory = new SpanFactory()
+	public static final SpanFactory membersFactory = new SpanFactory()
 	{
 		@Override
 		public Object makeSpans(final long flags)
 		{
-			return new Object[]{new ForegroundColorSpan(Color.BLUE), new StyleSpan(Typeface.ITALIC)};
+			return new Object[]{new ForegroundColorSpan(Color.DKGRAY), new StyleSpan(Typeface.BOLD)};
 		}
 	};
 
-	public static final SpanFactory sampleFactory = new SpanFactory()
-	{
-		@Override
-		public Object makeSpans(final long flags)
-		{
-			return new BackgroundColorSpan(Colors.ltyellow);
-		}
-	};
+	public static final SpanFactory definitionFactory = Factories.definitionFactory;
+
+	public static final SpanFactory sampleFactory = Factories.exampleFactory;
 }

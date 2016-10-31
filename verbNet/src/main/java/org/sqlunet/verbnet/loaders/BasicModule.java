@@ -440,7 +440,7 @@ abstract class BasicModule extends Module
 			if (items.length == 1)
 			{
 				Spanner.appendImage(sb, BasicModule.this.drawableItem);
-				Spanner.append(sb, items[0], 0, VerbNetFactories.itemFactory);
+				Spanner.append(sb, items[0], 0, VerbNetFactories.memberFactory);
 			}
 			else if (items.length > 1)
 			{
@@ -457,7 +457,7 @@ abstract class BasicModule extends Module
 						sb.append('\n');
 					}
 					Spanner.appendImage(sb, BasicModule.this.drawableItem);
-					Spanner.append(sb, item, 0, VerbNetFactories.itemFactory);
+					Spanner.append(sb, item, 0, VerbNetFactories.memberFactory);
 				}
 				groupingsNode.addChild(TreeFactory.newTextNode(sb, this.context));
 				return groupingsNode;

@@ -66,7 +66,7 @@ public class FrameNetMarkupFactory implements MarkupSpanner.SpanFactory
 				}
 				else
 				{
-					return new Object[]{new BackgroundColorSpan(Colors.ltmagenta), new ForegroundColorSpan(Color.WHITE)};
+					return new Object[]{new BackgroundColorSpan(Colors.lt_magenta), new ForegroundColorSpan(Color.WHITE)};
 				}
 			}
 			if ("xfen".equals(selector)) //

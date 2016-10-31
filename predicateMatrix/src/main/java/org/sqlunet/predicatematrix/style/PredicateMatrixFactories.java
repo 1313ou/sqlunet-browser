@@ -7,23 +7,22 @@ import android.text.style.ForegroundColorSpan;
 import android.text.style.StyleSpan;
 
 import org.sqlunet.style.Colors;
+import org.sqlunet.style.Factories;
 import org.sqlunet.style.Spanner.SpanFactory;
 
 public class PredicateMatrixFactories
 {
 	// name
-
 	static public final SpanFactory nameFactory = new SpanFactory()
 	{
 		@Override
 		public Object makeSpans(final long flags)
 		{
-			return new Object[]{new BackgroundColorSpan(Colors.ltyellow), new ForegroundColorSpan(Color.BLACK), new StyleSpan(Typeface.BOLD)};
+			return new Object[]{new BackgroundColorSpan(Colors.lt_yellow), new ForegroundColorSpan(Color.BLACK), new StyleSpan(Typeface.BOLD)};
 		}
 	};
 
 	// group
-
 	static public final SpanFactory groupFactory = new SpanFactory()
 	{
 		@Override
@@ -34,7 +33,6 @@ public class PredicateMatrixFactories
 	};
 
 	// word
-
 	static public final SpanFactory wordFactory = new SpanFactory()
 	{
 		@Override
@@ -45,46 +43,14 @@ public class PredicateMatrixFactories
 	};
 
 	// definition
-
-	static public final SpanFactory definitionFactory = new SpanFactory()
-	{
-		@Override
-		public Object makeSpans(final long flags)
-		{
-			return new Object[]{new ForegroundColorSpan(Color.BLUE)};
-		}
-	};
+	static public final SpanFactory definitionFactory = Factories.definitionFactory;
 
 	// class
-
-	static public final SpanFactory classFactory = new SpanFactory()
-	{
-		@Override
-		public Object makeSpans(final long flags)
-		{
-			return new Object[]{new BackgroundColorSpan(Colors.dkred), new ForegroundColorSpan(Color.WHITE), new StyleSpan(Typeface.BOLD)};
-		}
-	};
+	static public final SpanFactory classFactory = Factories.classFactory;
 
 	// role
-
-	public static final SpanFactory roleFactory = new SpanFactory()
-	{
-		@Override
-		public Object makeSpans(final long flags)
-		{
-			return new Object[]{new BackgroundColorSpan(Color.MAGENTA), new ForegroundColorSpan(Color.WHITE)};
-		}
-	};
+	public static final SpanFactory roleFactory = Factories.roleFactory;
 
 	// data
-
-	static public final SpanFactory dataFactory = new SpanFactory()
-	{
-		@Override
-		public Object makeSpans(final long flags)
-		{
-			return new Object[]{new ForegroundColorSpan(Color.GRAY), new StyleSpan(Typeface.ITALIC)};
-		}
-	};
+	static public final SpanFactory dataFactory = Factories.dataFactory;
 }

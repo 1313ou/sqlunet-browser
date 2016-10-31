@@ -52,7 +52,7 @@ public class IconTreeRenderer extends Renderer<Value>
 		valueView.setText(value.text);
 
 		// listener
-		view.findViewById(R.id.btn_more).setOnClickListener(new View.OnClickListener()
+		view.findViewById(R.id.node_more).setOnClickListener(new View.OnClickListener()
 		{
 			@Override
 			public void onClick(View v)

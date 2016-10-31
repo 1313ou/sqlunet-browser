@@ -1,17 +1,20 @@
 package org.sqlunet.view;
 
 import android.content.Context;
+import android.view.View;
 import android.widget.TextView;
 
 import org.sqlunet.treeview.model.TreeNode;
 import org.sqlunet.treeview.renderer.IconLeafRenderer;
-import org.sqlunet.treeview.renderer.QueryRenderer;
-import org.sqlunet.treeview.renderer.Value;
 import org.sqlunet.treeview.renderer.IconTreeRenderer;
 import org.sqlunet.treeview.renderer.LinkRenderer;
 import org.sqlunet.treeview.renderer.LinkRenderer.LinkData;
+import org.sqlunet.treeview.renderer.QueryRenderer;
+import org.sqlunet.treeview.renderer.Renderer;
 import org.sqlunet.treeview.renderer.TextRenderer;
+import org.sqlunet.treeview.renderer.Value;
 import org.sqlunet.treeview.view.TreeView;
+import org.sqlunet.xnet.R;
 
 /**
  * Tree factory
@@ -152,11 +155,23 @@ public class TreeFactory
 		node.setValue(value);
 
 		// update view
-		final TextRenderer renderer = (TextRenderer) node.getRenderer();
-		final TextView textView = (TextView) renderer.getNodeView();
-		if (textView != null)
+		final Renderer<?> renderer = node.getRenderer();
+		final View view = renderer.getNodeView();
+		if (view != null)
 		{
-			textView.setText(value);
+			if (view instanceof TextView)
+			{
+				final TextView textView = (TextView) view;
+				textView.setText(value);
+			}
+			else
+			{
+				final TextView textView = (TextView) view.findViewById(R.id.node_value);
+				if (textView != null)
+				{
+					textView.setText(value);
+				}
+			}
 		}
 	}
 }
