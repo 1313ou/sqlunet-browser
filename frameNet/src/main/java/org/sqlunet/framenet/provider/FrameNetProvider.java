@@ -295,7 +295,7 @@ public class FrameNetProvider extends SqlUNetProvider
 				break;
 
 			case FRAMES_RELATED:
-				table = "fnframes_related " + //
+				table = "fnframes_related AS " + FrameNetContract.RELATED + ' ' + //
 						"LEFT JOIN fnframes AS " + FrameNetContract.SRC + " USING (frameid) " + //
 						"LEFT JOIN fnframes AS " + FrameNetContract.DEST + " ON (frame2id = " + FrameNetContract.DEST + ".frameid) " + //  //  //
 						"LEFT JOIN fnframerelations USING (relationid)"; //

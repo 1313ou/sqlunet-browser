@@ -58,7 +58,7 @@ public class FnLexUnit
 	 * @param lexUnit         lex unit string
 	 * @param pos             pos
 	 * @param definition      definition
-	 * @param dictionary      source dictionary
+	 * @param dictionary      definition dictionary
 	 * @param incorporatedFe  incorporated frame element
 	 * @param frameId         frame id
 	 * @param frame           frame

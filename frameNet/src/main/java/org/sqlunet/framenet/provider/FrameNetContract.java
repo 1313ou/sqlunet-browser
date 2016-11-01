@@ -15,6 +15,7 @@ public class FrameNetContract
 	static public final String DEST = "d";
 	static public final String POS = "p";
 	static public final String FRAME = "f";
+	static public final String RELATED = "r";
 	static public final String LU = "u";
 	static public final String FE = "e";
 	static public final String FETYPE = "t";
@@ -82,8 +83,7 @@ public class FrameNetContract
 		static public final String CONTENT_URI = "content://" + FrameNetContract.AUTHORITY + '/' + Frames_Related.TABLE; //
 		public static final String FRAMEID = "frameid"; //
 		public static final String FRAME = "frame"; //
-		public static final String FRAME2ID = "frameid"; //
-		public static final String FRAME2 = "frame"; //
+		public static final String FRAME2ID = "frame2id"; //
 		public static final String RELATIONID = "relationid"; //
 		public static final String RELATION = "relation"; //
 	}

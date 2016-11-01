@@ -299,14 +299,14 @@ abstract public class BasicModule extends Module
 				final String[] projection = { //
 						FrameNetContract.SRC + '.' + Frames_Related.FRAMEID + " AS " + "i1", //
 						FrameNetContract.SRC + '.' + Frames_Related.FRAME + " AS " + "f1", //
-						FrameNetContract.DEST + '.' + Frames_Related.FRAME2ID + " AS " + "i2", //
-						FrameNetContract.DEST + '.' + Frames_Related.FRAME2 + " AS " + "f2", //
+						FrameNetContract.DEST + '.' + Frames_Related.FRAMEID + " AS " + "i2", //
+						FrameNetContract.DEST + '.' + Frames_Related.FRAME + " AS " + "f2", //
 						Frames_Related.RELATIONID, //
 						Frames_Related.RELATION, //
 				};
-				final String selection = FrameNetContract.SRC + '.' + Frames_Related.FRAMEID + " = ?" + " OR " + FrameNetContract.DEST + '.' + Frames_Related.FRAME2ID + " = ?"; //
+				final String selection = FrameNetContract.RELATED + '.' + Frames_Related.FRAMEID + " = ?" + " OR " + FrameNetContract.RELATED + '.' + Frames_Related.FRAME2ID + " = ?"; //
 				final String[] selectionArgs = {Long.toString(frameId), Long.toString(frameId)};
-				final String sortOrder = FrameNetContract.SRC + '.' + Frames_Related.FRAME;
+				final String sortOrder = FrameNetContract.SRC + '.' + Frames_Related.FRAME + ',' + FrameNetContract.DEST + '.' + Frames_Related.FRAME;
 				return new CursorLoader(BasicModule.this.context, uri, projection, selection, selectionArgs, sortOrder);
 			}
 
@@ -382,6 +382,12 @@ abstract public class BasicModule extends Module
 						{
 							relation = "is subframe of"; //
 						}
+						boolean isHasSubframe = "has subframe(s)".equals(relation);
+						if (isHasSubframe)
+						{
+							relation = "has it as subframe"; //
+						}
+
 						sb.append(relation);
 						if (VERBOSE)
 						{
@@ -393,7 +399,10 @@ abstract public class BasicModule extends Module
 						// 2
 						if (frame2Id == frameId)
 						{
-							sb.append("it"); //
+							if (!isHasSubframe)
+							{
+								sb.append("it"); //
+							}
 						}
 						else
 						{
@@ -803,10 +812,10 @@ abstract public class BasicModule extends Module
 						Spanner.appendImage(sb2, BasicModule.this.definitionDrawable);
 						sb2.append(' ');
 						Spanner.append(sb2, definition.trim(), 0, FrameNetFactories.definitionFactory);
-						sb.append(' ');
-						sb.append('[');
-						sb.append(dictionary);
-						sb.append(']');
+						sb2.append(' ');
+						sb2.append('[');
+						sb2.append(dictionary);
+						sb2.append(']');
 
 						// incorporated fe
 						if (incorporatedFEType != null)
@@ -1543,14 +1552,14 @@ abstract public class BasicModule extends Module
 					final int idSentenceId = cursor.getColumnIndex(LexUnits_Sentences_AnnoSets_Layers_Labels.SENTENCEID);
 
 					// read cursor
-					do
+					while (true)
 					{
 						final String text = cursor.getString(idText);
 						final String layerType = cursor.getString(idLayerType);
 						final String annotations = cursor.getString(idAnnotations);
 						final long sentenceId = cursor.getLong(idSentenceId);
 
-						// sentence
+						// sentence text
 						Spanner.appendImage(sb, BasicModule.this.sentenceDrawable);
 						sb.append(' ');
 						final int sentenceStart = sb.length();
@@ -1560,7 +1569,6 @@ abstract public class BasicModule extends Module
 							sb.append(Long.toString(sentenceId));
 							sb.append(' ');
 						}
-						sb.append('\n');
 
 						// labels
 						final List<FnLabel> labels = Utils.parseLabels(annotations);
@@ -1568,6 +1576,8 @@ abstract public class BasicModule extends Module
 						{
 							for (final FnLabel label : labels)
 							{
+								sb.append('\n');
+
 								// segment
 								final int from = Integer.parseInt(label.from);
 								final int to = Integer.parseInt(label.to) + 1;
@@ -1594,12 +1604,16 @@ abstract public class BasicModule extends Module
 									final int color = Integer.parseInt(label.fgColor, 16);
 									sb.setSpan(new ForegroundColorSpan(color), p, p + subtext.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
 								}
-
-								sb.append('\n');
 							}
 						}
+
+						if (!cursor.moveToNext())
+						{
+							break;
+						}
+
+						sb.append('\n');
 					}
-					while (cursor.moveToNext());
 
 					// attach result
 					TreeFactory.addTextNode(parent, sb, BasicModule.this.context);
