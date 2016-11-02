@@ -86,6 +86,8 @@ public class FrameNetContract
 		public static final String FRAME2ID = "frame2id"; //
 		public static final String RELATIONID = "relationid"; //
 		public static final String RELATION = "relation"; //
+		public static final String RELATIONTYPE = "type"; //
+		public static final String RELATIONGLOSS = "gloss"; //
 	}
 
 	static public final class Sentences

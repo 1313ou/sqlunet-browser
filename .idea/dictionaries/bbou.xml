@@ -194,6 +194,7 @@
       <w>imagespan</w>
       <w>imagfreq</w>
       <w>imagrange</w>
+      <w>inchoative</w>
       <w>incoporated</w>
       <w>incorporatedfe</w>
       <w>incorporatedfecoreset</w>
@@ -327,6 +328,8 @@
       <w>pbwords</w>
       <w>perpectivizes</w>
       <w>personname</w>
+      <w>perspectivized</w>
+      <w>perspectivizes</w>
       <w>pertainym</w>
       <w>pframe</w>
       <w>pmdata</w>
@@ -389,8 +392,10 @@
       <w>recursiveness</w>
       <w>regexpr</w>
       <w>regexprs</w>
+      <w>relationgloss</w>
       <w>relationid</w>
       <w>relationsetid</w>
+      <w>relationtype</w>
       <w>replacers</w>
       <w>restr</w>
       <w>restrs</w>

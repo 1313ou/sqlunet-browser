@@ -48,7 +48,6 @@ import org.sqlunet.treeview.view.TreeView;
 import org.sqlunet.view.TreeFactory;
 
 import java.util.List;
-import java.util.Locale;
 
 /**
  * Basic frame module
@@ -303,10 +302,11 @@ abstract public class BasicModule extends Module
 						FrameNetContract.DEST + '.' + Frames_Related.FRAME + " AS " + "f2", //
 						Frames_Related.RELATIONID, //
 						Frames_Related.RELATION, //
+						Frames_Related.RELATIONGLOSS, //
 				};
 				final String selection = FrameNetContract.RELATED + '.' + Frames_Related.FRAMEID + " = ?" + " OR " + FrameNetContract.RELATED + '.' + Frames_Related.FRAME2ID + " = ?"; //
 				final String[] selectionArgs = {Long.toString(frameId), Long.toString(frameId)};
-				final String sortOrder = FrameNetContract.SRC + '.' + Frames_Related.FRAME + ',' + FrameNetContract.DEST + '.' + Frames_Related.FRAME;
+				final String sortOrder = Frames_Related.RELATIONTYPE;
 				return new CursorLoader(BasicModule.this.context, uri, projection, selection, selectionArgs, sortOrder);
 			}
 
@@ -326,8 +326,9 @@ abstract public class BasicModule extends Module
 					final int idFrame = cursor.getColumnIndex("f1"); //
 					final int idFrame2Id = cursor.getColumnIndex("i2"); //
 					final int idFrame2 = cursor.getColumnIndex("f2"); //
-					final int idRelation = cursor.getColumnIndex(Frames_Related.RELATION);
+					// final int idRelation = cursor.getColumnIndex(Frames_Related.RELATION);
 					final int idRelationId = cursor.getColumnIndex(Frames_Related.RELATIONID);
+					final int idRelationGloss = cursor.getColumnIndex(Frames_Related.RELATIONGLOSS);
 
 					boolean first = true;
 					do
@@ -347,72 +348,61 @@ abstract public class BasicModule extends Module
 						final int relationId = cursor.getInt(idRelationId);
 						final String frame1 = cursor.getString(idFrame);
 						final String frame2 = cursor.getString(idFrame2);
-						String relation = cursor.getString(idRelation).toLowerCase(Locale.ENGLISH);
+						// String relation = cursor.getString(idRelation).toLowerCase(Locale.ENGLISH);
+						final String gloss = cursor.getString(idRelationGloss);
 
 						// related
 						Spanner.appendImage(sb, BasicModule.this.frameDrawable);
 						sb.append(' ');
-
-						// 1
-						if (frame1Id == frameId)
+						if (VERBOSE)
 						{
-							sb.append("it"); //
+							sb.append(Integer.toString(relationId));
+							sb.append(' ');
+						}
+
+						// slots
+						boolean slot1 = frame1Id == frameId;
+						boolean slot2 = frame2Id == frameId;
+
+						// arg 1
+						final SpannableStringBuilder sb1 = new SpannableStringBuilder();
+						if (slot1)
+						{
+							sb1.append("it"); //
 						}
 						else
 						{
-							Spanner.append(sb, frame1, 0, FrameNetFactories.frameFactory);
+							Spanner.append(sb1, frame1, 0, FrameNetFactories.frameFactory);
 							if (VERBOSE)
 							{
-								sb.append(' ');
-								sb.append(Integer.toString(frame1Id));
+								sb1.append(' ');
+								sb1.append(Integer.toString(frame1Id));
+							}
+						}
+
+						// arg 2
+						final SpannableStringBuilder sb2 = new SpannableStringBuilder();
+						if (slot2)
+						{
+							sb2.append("it");
+						}
+						else
+						{
+							Spanner.append(sb2, frame2, 0, FrameNetFactories.frameFactory);
+							if (VERBOSE)
+							{
+								sb2.append(' ');
+								sb2.append(Integer.toString(frame2Id));
 							}
 						}
 
 						// relation
-						sb.append(' ');
-						if ("see also".equals(relation)) //
-						{
-							relation = "has see-also relation to"; //
-						}
-						if ("perspective on".equals(relation)) //
-						{
-							relation = "perpectivizes"; //
-						}
-						if ("subframe of".equals(relation)) //
-						{
-							relation = "is subframe of"; //
-						}
-						boolean isHasSubframe = "has subframe(s)".equals(relation);
-						if (isHasSubframe)
-						{
-							relation = "has it as subframe"; //
-						}
-
-						sb.append(relation);
-						if (VERBOSE)
-						{
-							sb.append(' ');
-							sb.append(Integer.toString(relationId));
-						}
-						sb.append(' ');
-
-						// 2
-						if (frame2Id == frameId)
-						{
-							if (!isHasSubframe)
-							{
-								sb.append("it"); //
-							}
-						}
-						else
-						{
-							Spanner.append(sb, frame2, 0, FrameNetFactories.frameFactory);
-							if (VERBOSE)
-							{
-								sb.append(' ');
-								sb.append(Integer.toString(frame2Id));
-							}
-						}
+						int position = gloss.indexOf("%s");
+						final SpannableStringBuilder sbr = new SpannableStringBuilder(gloss);
+						sbr.replace(position, position + 2, sb1);
+						position = sbr.toString().indexOf("%s");
+						sbr.replace(position, position + 2, sb2);
+						sb.append(sbr);
 					}
 					while (cursor.moveToNext());
 
@@ -1538,6 +1528,7 @@ abstract public class BasicModule extends Module
 				return new CursorLoader(BasicModule.this.context, uri, projection, selection, selectionArgs, sortOrder);
 			}
 
+			@SuppressWarnings("BreakStatement")
 			@Override
 			public void onLoadFinished(final Loader<Cursor> loader, final Cursor cursor)
 			{

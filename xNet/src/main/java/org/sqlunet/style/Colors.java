@@ -1,7 +1,5 @@
 package org.sqlunet.style;
 
-import android.graphics.Color;
-
 /**
  * Color values
  *

@@ -27,8 +27,9 @@
 		<item>Short LexDomains</item>
 		<item>Create sampleset View</item>
 		<item>Drop sampleset View</item>
+		<item>Frame relations</item>
 	</string-array>
-	<string-array name="management_values">
+	<string-array name="management_values" formatted="false">
 		<item>
 			CREATE INDEX IF NOT EXISTS index_words_lemma ON words(lemma);
 			CREATE INDEX IF NOT EXISTS index_senses_wordid ON senses(wordid);
@@ -194,6 +195,35 @@
 			CREATE VIEW IF NOT EXISTS samplesets AS SELECT synsetid, GROUP_CONCAT(samples.sample, \'|\' ) AS sampleset FROM samples GROUP BY synsetid;</item>
 		<item>
 			DROP VIEW IF EXISTS samplesets;</item>
+		<item>
+			ALTER TABLE fnframerelations ADD COLUMN type INTEGER;
+			UPDATE fnframerelations SET type = 10 WHERE relation = \'Is Inherited by\';
+			UPDATE fnframerelations SET type = 11 WHERE relation = \'Inherits from\';
+			UPDATE fnframerelations SET type = 20 WHERE relation = \'Has Subframe(s)\';
+			UPDATE fnframerelations SET type = 21 WHERE relation = \'Subframe of\';
+			UPDATE fnframerelations SET type = 30 WHERE relation = \'Uses\';
+			UPDATE fnframerelations SET type = 31 WHERE relation = \'Is Used by\';
+			UPDATE fnframerelations SET type = 40 WHERE relation = \'Precedes\';
+			UPDATE fnframerelations SET type = 41 WHERE relation = \'Is Preceded by\';
+			UPDATE fnframerelations SET type = 50 WHERE relation = \'Perspective on\';
+			UPDATE fnframerelations SET type = 51 WHERE relation = \'Is Perspectivized in\';
+			UPDATE fnframerelations SET type = 60 WHERE relation = \'Is Causative of\';
+			UPDATE fnframerelations SET type = 70 WHERE relation = \'Is Inchoative of\';
+			UPDATE fnframerelations SET type = 80 WHERE relation = \'See also\';
+			ALTER TABLE fnframerelations ADD COLUMN gloss TEXT;
+			UPDATE fnframerelations SET gloss = \'%s is inherited by %s\'  WHERE relation = \'Is Inherited by\';
+			UPDATE fnframerelations SET gloss = \'%s inherits %s\'  WHERE relation = \'Is Inherited by\';
+			UPDATE fnframerelations SET gloss = \'%s has %s as subframe\' WHERE relation = \'Has Subframe(s)\';
+			UPDATE fnframerelations SET gloss = \'%s is subframe of %s\' WHERE relation = \'Subframe of\';
+			UPDATE fnframerelations SET gloss = \'%s uses %s\' WHERE relation = \'Uses\';
+			UPDATE fnframerelations SET gloss = \'%s is used by %s\' WHERE relation = \'Is Used by\';
+			UPDATE fnframerelations SET gloss = \'%s precedes %s\' WHERE relation = \'Precedes\';
+			UPDATE fnframerelations SET gloss = \'%s is preceded by %s\' WHERE relation = \'Is Preceded by\';
+			UPDATE fnframerelations SET gloss = \'%s perspectivizes %s\' WHERE relation = \'Perspective on\';
+			UPDATE fnframerelations SET gloss = \'%s is perspectivized in %s\' WHERE relation = \'Is Perspectivized in\';
+			UPDATE fnframerelations SET gloss = \'%s is causative of %s\' WHERE relation = \'Is Causative of\';
+			UPDATE fnframerelations SET gloss = \'%s is inchoative of %s\' WHERE relation = \'Is Inchoative of\';
+			UPDATE fnframerelations SET gloss = \'%s has see-also relation to %s\' WHERE relation = \'See also\';</item>
 	</string-array>
 
 </resources>
