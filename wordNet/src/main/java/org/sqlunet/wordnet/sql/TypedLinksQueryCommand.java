@@ -5,7 +5,7 @@ import android.database.sqlite.SQLiteDatabase;
 import org.sqlunet.sql.DBQueryCommand;
 
 /**
- * QueryData command for synsets linked through a given relation type
+ * Query command for synsets linked through a given relation type
  *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */

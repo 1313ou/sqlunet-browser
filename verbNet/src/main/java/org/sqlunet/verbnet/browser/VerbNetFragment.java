@@ -47,7 +47,7 @@ public class VerbNetFragment extends Fragment
 
 		// root node
 		final TreeNode root = TreeNode.makeRoot();
-		final TreeNode queryNode = TreeFactory.addTreeItemNode(root, "VerbNet", R.drawable.verbnet, getActivity()); //
+		final TreeNode queryNode = TreeFactory.addTreeNode(root, "VerbNet", R.drawable.verbnet, getActivity()); //
 
 		// tree
 		this.treeView = new TreeView(getActivity(), root);

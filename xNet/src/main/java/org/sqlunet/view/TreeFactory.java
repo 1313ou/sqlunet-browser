@@ -1,8 +1,6 @@
 package org.sqlunet.view;
 
 import android.content.Context;
-import android.view.View;
-import android.widget.TextView;
 
 import org.sqlunet.treeview.model.TreeNode;
 import org.sqlunet.treeview.renderer.IconLeafRenderer;
@@ -10,11 +8,8 @@ import org.sqlunet.treeview.renderer.IconTreeRenderer;
 import org.sqlunet.treeview.renderer.LinkRenderer;
 import org.sqlunet.treeview.renderer.LinkRenderer.LinkData;
 import org.sqlunet.treeview.renderer.QueryRenderer;
-import org.sqlunet.treeview.renderer.Renderer;
 import org.sqlunet.treeview.renderer.TextRenderer;
 import org.sqlunet.treeview.renderer.Value;
-import org.sqlunet.treeview.view.TreeView;
-import org.sqlunet.xnet.R;
 
 /**
  * Tree factory
@@ -76,13 +71,14 @@ public class TreeFactory
 	/**
 	 * Make query node
 	 *
-	 * @param query   query
-	 * @param context context
+	 * @param query      query
+	 * @param triggerNow whether to triggger query immediately
+	 * @param context    context
 	 * @return created node
 	 */
-	static public TreeNode newQueryNode(final QueryRenderer.QueryData query, final Context context)
+	static public TreeNode newQueryNode(final QueryRenderer.Query query, final boolean triggerNow, final Context context)
 	{
-		return new TreeNode(query).setRenderer(new QueryRenderer(context));
+		return new TreeNode(query).setRenderer(new QueryRenderer(context, triggerNow));
 	}
 
 	/**
@@ -128,50 +124,11 @@ public class TreeFactory
 	 * @param context  context
 	 * @param siblings sibling nodes to add
 	 */
-	static public TreeNode addTreeItemNode(final TreeNode parent, final CharSequence value, final int icon, final Context context, final TreeNode... siblings)
+	static public TreeNode addTreeNode(final TreeNode parent, final CharSequence value, final int icon, final Context context, final TreeNode... siblings)
 	{
 		final TreeNode result = TreeFactory.newTreeNode(value, icon, context);
 		parent.addChild(result);
 		parent.addChildren(siblings);
 		return result;
-	}
-
-	/**
-	 * Set node text
-	 *
-	 * @param node  node
-	 * @param value character sequence
-	 */
-	static public void setNodeValue(final TreeNode node, final CharSequence value)
-	{
-		// delete node from parent if null value
-		if (value == null || value.length() == 0)
-		{
-			TreeView.remove(node);
-			return;
-		}
-
-		// update value
-		node.setValue(value);
-
-		// update view
-		final Renderer<?> renderer = node.getRenderer();
-		final View view = renderer.getNodeView();
-		if (view != null)
-		{
-			if (view instanceof TextView)
-			{
-				final TextView textView = (TextView) view;
-				textView.setText(value);
-			}
-			else
-			{
-				final TextView textView = (TextView) view.findViewById(R.id.node_value);
-				if (textView != null)
-				{
-					textView.setText(value);
-				}
-			}
-		}
 	}
 }

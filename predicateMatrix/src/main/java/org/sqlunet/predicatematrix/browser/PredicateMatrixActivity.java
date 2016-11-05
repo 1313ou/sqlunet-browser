@@ -47,7 +47,7 @@ public class PredicateMatrixActivity extends Activity
 	private Spinner spinner;
 
 	/**
-	 * QueryData
+	 * Query
 	 */
 	private String query;
 

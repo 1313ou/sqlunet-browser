@@ -15,8 +15,8 @@ import org.sqlunet.browser.Module;
 import org.sqlunet.style.Spanner;
 import org.sqlunet.treeview.model.TreeNode;
 import org.sqlunet.treeview.renderer.QueryRenderer;
-import org.sqlunet.treeview.view.TreeView;
 import org.sqlunet.view.TreeFactory;
+import org.sqlunet.view.Update;
 import org.sqlunet.wordnet.R;
 import org.sqlunet.wordnet.provider.WordNetContract;
 import org.sqlunet.wordnet.provider.WordNetContract.AdjPositions_AdjPositionTypes;
@@ -162,22 +162,22 @@ abstract public class BasicModule extends Module
 					sbdef.append(' ');
 					sbdef.append(definition);
 
-					// subnodes
-					final TreeNode linksNode = TreeFactory.newQueryNode(new LinksQueryData(synsetId, wordId, R.drawable.ic_other, "Links"), BasicModule.this.context); //
-					final TreeNode samplesNode = TreeFactory.newQueryNode(new SamplesQueryData(synsetId, R.drawable.sample, "Samples"), BasicModule.this.context); //
-
 					// attach result
 					TreeFactory.addTextNode(parent, sb, BasicModule.this.context);
-					TreeFactory.addTextNode(parent, sbdef, BasicModule.this.context, linksNode, samplesNode);
+					TreeFactory.addTextNode(parent, sbdef, BasicModule.this.context);
 
-					// expand
-					linksNode.setExpanded(true);
-					samplesNode.setExpanded(true);
-					TreeView.expand(parent, false);
+					// subnodes
+					final TreeNode linksNode = TreeFactory.newQueryNode(new LinksQuery(synsetId, wordId, R.drawable.ic_other, "Links"), true, BasicModule.this.context).addTo(parent); //
+					final TreeNode samplesNode = TreeFactory.newQueryNode(new SamplesQuery(synsetId, R.drawable.sample, "Samples"), true, BasicModule.this.context).addTo(parent); //
+
+					// fire event
+					Update.onQueryReady(linksNode);
+					Update.onQueryReady(samplesNode);
+					Update.onResults(parent);
 				}
 				else
 				{
-					TreeView.disable(parent);
+					Update.onNoResult(parent, true);
 				}
 
 				cursor.close();
@@ -258,24 +258,17 @@ abstract public class BasicModule extends Module
 					{
 						TreeFactory.addTextNode(parent, sb, BasicModule.this.context);
 
-						// expand
-						TreeView.expand(parent, false);
+						// fire event
+						Update.onResults(parent);
 					}
 					else
 					{
-						TreeFactory.setNodeValue(parent, sb);
+						Update.setNodeValue(parent, sb);
 					}
 				}
 				else
 				{
-					if (addNewNode)
-					{
-						TreeView.disable(parent);
-					}
-					else
-					{
-						TreeView.remove(parent);
-					}
+					Update.onNoResult(parent, addNewNode);
 				}
 
 				cursor.close();
@@ -359,24 +352,17 @@ abstract public class BasicModule extends Module
 					{
 						TreeFactory.addTextNode(parent, sb, BasicModule.this.context);
 
-						// expand
-						TreeView.expand(parent, false);
+						// fire event
+						Update.onResults(parent);
 					}
 					else
 					{
-						TreeFactory.setNodeValue(parent, sb);
+						Update.setNodeValue(parent, sb);
 					}
 				}
 				else
 				{
-					if (addNewNode)
-					{
-						TreeView.disable(parent);
-					}
-					else
-					{
-						TreeView.remove(parent);
-					}
+					Update.onNoResult(parent, addNewNode);
 				}
 
 				cursor.close();
@@ -449,24 +435,17 @@ abstract public class BasicModule extends Module
 					{
 						TreeFactory.addTextNode(parent, sb, context);
 
-						// expand
-						TreeView.expand(parent, false);
+						// fire event
+						Update.onResults(parent);
 					}
 					else
 					{
-						TreeFactory.setNodeValue(parent, sb);
+						Update.setNodeValue(parent, sb);
 					}
 				}
 				else
 				{
-					if (addNewNode)
-					{
-						TreeView.disable(parent);
-					}
-					else
-					{
-						TreeView.remove(parent);
-					}
+					Update.onNoResult(parent, addNewNode);
 				}
 
 				cursor.close();
@@ -543,23 +522,26 @@ abstract public class BasicModule extends Module
 						sb.append(' ');
 						Spanner.append(sb, targetDefinition, 0, WordNetFactories.definitionFactory);
 
-						final TreeNode linksNode = recurses == 0 ? //
-								TreeFactory.newLeafNode(sb, getLinkRes(linkId), context) : //
-								TreeFactory.newQueryNode(new SubLinksQueryData(targetSynsetId, linkId, getLinkRes(linkId), sb), context);
-						parent.prependChild(linksNode);
+						if (recurses == 0)
+						{
+							TreeFactory.newLeafNode(sb, getLinkRes(linkId), context).prependTo(parent);
+						}
+						else
+						{
+							final TreeNode linksNode = TreeFactory.newQueryNode(new SubLinksQuery(targetSynsetId, linkId, getLinkRes(linkId), sb), false, context).prependTo(parent);
 
-						// expand
-						// if(recurses == 0)
-						//	TreeView.expand(linksNode, false);
+							// fire event
+							Update.onQueryReady(linksNode);
+						}
 					}
 					while (cursor.moveToNext());
 
-					// expand
-					TreeView.expand(parent, false);
+					// fire event
+					Update.onResults(parent);
 				}
 				else
 				{
-					// parent.disable();
+					// Update.onNoResult(parent, true)
 				}
 
 				cursor.close();
@@ -631,23 +613,26 @@ abstract public class BasicModule extends Module
 						sb.append(' ');
 						Spanner.append(sb, targetDefinition, 0, WordNetFactories.definitionFactory);
 
-						final TreeNode linksNode = recurses == 0 ? //
-								TreeFactory.newLeafNode(sb, getLinkRes(linkId), context) : //
-								TreeFactory.newQueryNode(new SubLinksQueryData(targetSynsetId, linkId, getLinkRes(linkId), sb), context);
-						parent.addChild(linksNode);
+						if (recurses == 0)
+						{
+							TreeFactory.newLeafNode(sb, getLinkRes(linkId), context).addTo(parent);
+						}
+						else
+						{
+							final TreeNode linksNode = TreeFactory.newQueryNode(new SubLinksQuery(targetSynsetId, linkId, getLinkRes(linkId), sb), false, context).addTo(parent);
 
-						// expand
-						// if(recurses == 0)
-						//	TreeView.expand(linksNode, false);
+							// fire event
+							Update.onQueryReady(linksNode);
+						}
 					}
 					while (cursor.moveToNext());
 
-					// expand
-					TreeView.expand(parent, false);
+					// fire event
+					Update.onResults(parent);
 				}
 				else
 				{
-					TreeView.disable(parent);
+					Update.onNoResult(parent, true);
 				}
 
 				cursor.close();
@@ -746,12 +731,12 @@ abstract public class BasicModule extends Module
 					// attach result
 					TreeFactory.addTextNode(parent, sb, context);
 
-					// expand
-					TreeView.expand(parent, false);
+					// fire event
+					Update.onResults(parent);
 				}
 				else
 				{
-					// parent.disable();
+					// Update.onNoResult(parent, true)
 				}
 
 				cursor.close();
@@ -849,12 +834,12 @@ abstract public class BasicModule extends Module
 					// attach result
 					// TreeFactory.addTextNode(parent, sb, context);
 
-					// expand
-					TreeView.expand(parent, false);
+					// fire event
+					Update.onResults(parent);
 				}
 				else
 				{
-					// parent.disable();
+					// Update.onNoResult(parent, true)
 				}
 
 				cursor.close();
@@ -918,12 +903,12 @@ abstract public class BasicModule extends Module
 					// attach result
 					TreeFactory.addTextNode(parent, sb, context);
 
-					// expand
-					TreeView.expand(parent, false);
+					// fire event
+					Update.onResults(parent);
 				}
 				else
 				{
-					// parent.disable();
+					// Update.onNoResult(parent, true)
 				}
 
 				cursor.close();
@@ -988,12 +973,12 @@ abstract public class BasicModule extends Module
 					// attach result
 					TreeFactory.addTextNode(parent, sb, context);
 
-					// expand
-					TreeView.expand(parent, false);
+					// fire event
+					Update.onResults(parent);
 				}
 				else
 				{
-					// parent.disable();
+					// Update.onNoResult(parent, true)
 				}
 
 				cursor.close();
@@ -1057,12 +1042,12 @@ abstract public class BasicModule extends Module
 					// attach result
 					TreeFactory.addTextNode(parent, sb, context);
 
-					// expand
-					TreeView.expand(parent, false);
+					// fire event
+					Update.onResults(parent);
 				}
 				else
 				{
-					// parent.disable();
+					// Update.onNoResult(parent, true)
 				}
 
 				cursor.close();
@@ -1128,12 +1113,12 @@ abstract public class BasicModule extends Module
 					// attach result
 					TreeFactory.addTextNode(parent, sb, context);
 
-					// expand
-					TreeView.expand(parent, false);
+					// fire event
+					Update.onResults(parent);
 				}
 				else
 				{
-					// parent.disable();
+					// Update.onNoResult(parent, true)
 				}
 
 				cursor.close();
@@ -1197,12 +1182,12 @@ abstract public class BasicModule extends Module
 					// attach result
 					TreeFactory.addTextNode(parent, sb, context);
 
-					// expand
-					TreeView.expand(parent, false);
+					// fire event
+					Update.onResults(parent);
 				}
 				else
 				{
-					// parent.disable();
+					// Update.onNoResult(parent, true)
 				}
 
 				cursor.close();
@@ -1267,12 +1252,12 @@ abstract public class BasicModule extends Module
 					// attach result
 					TreeFactory.addTextNode(parent, sb, context);
 
-					// expand
-					TreeView.expand(parent, false);
+					// fire event
+					Update.onResults(parent);
 				}
 				else
 				{
-					// parent.disable();
+					// Update.onNoResult(parent, true)
 				}
 
 				cursor.close();
@@ -1337,12 +1322,12 @@ abstract public class BasicModule extends Module
 					// attach result
 					TreeFactory.addTextNode(parent, sb, context);
 
-					// expand
-					TreeView.expand(parent, false);
+					// fire event
+					Update.onResults(parent);
 				}
 				else
 				{
-					// parent.disable();
+					// Update.onNoResult(parent, true)
 				}
 
 				cursor.close();
@@ -1457,9 +1442,9 @@ abstract public class BasicModule extends Module
 	// Q U E R I E S
 
 	/**
-	 * LinkData query
+	 * Link query
 	 */
-	public class LinksQueryData extends QueryRenderer.QueryData
+	public class LinksQuery extends QueryRenderer.Query
 	{
 		/**
 		 * Word id
@@ -1474,7 +1459,7 @@ abstract public class BasicModule extends Module
 		 * @param icon     icon
 		 * @param text     label text
 		 */
-		public LinksQueryData(final long synsetId, final long wordId, final int icon, final CharSequence text)
+		public LinksQuery(final long synsetId, final long wordId, final int icon, final CharSequence text)
 		{
 			super(synsetId, icon, text);
 			this.wordId = wordId;
@@ -1491,7 +1476,10 @@ abstract public class BasicModule extends Module
 		}
 	}
 
-	public class SubLinksQueryData extends QueryRenderer.QueryData
+	/**
+	 * Sub links of give type query
+	 */
+	public class SubLinksQuery extends QueryRenderer.Query
 	{
 		/**
 		 * Link id
@@ -1506,7 +1494,7 @@ abstract public class BasicModule extends Module
 		 * @param icon     icon
 		 * @param text     label text
 		 */
-		public SubLinksQueryData(final long synsetId, final int linkId, final int icon, final CharSequence text)
+		public SubLinksQuery(final long synsetId, final int linkId, final int icon, final CharSequence text)
 		{
 			super(synsetId, icon, text);
 			this.linkId = linkId;
@@ -1523,7 +1511,7 @@ abstract public class BasicModule extends Module
 	/**
 	 * Samples query
 	 */
-	public class SamplesQueryData extends QueryRenderer.QueryData
+	public class SamplesQuery extends QueryRenderer.Query
 	{
 		/**
 		 * Constructor
@@ -1532,7 +1520,7 @@ abstract public class BasicModule extends Module
 		 * @param icon     icon
 		 * @param text     label text
 		 */
-		public SamplesQueryData(final long synsetId, final int icon, final CharSequence text)
+		public SamplesQuery(final long synsetId, final int icon, final CharSequence text)
 		{
 			super(synsetId, icon, text);
 		}

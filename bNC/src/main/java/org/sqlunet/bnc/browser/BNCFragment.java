@@ -37,7 +37,7 @@ public class BNCFragment extends Fragment
 
 		// root node
 		final TreeNode root = TreeNode.makeRoot();
-		final TreeNode queryNode = TreeFactory.addTreeItemNode(root, "BNC", R.drawable.bnc, getActivity()); //
+		final TreeNode queryNode = TreeFactory.addTreeNode(root, "BNC", R.drawable.bnc, getActivity()); //
 
 		// tree
 		this.treeView = new TreeView(getActivity(), root);

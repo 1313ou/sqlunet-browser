@@ -107,7 +107,7 @@ public class PropBankImplementation implements PropBankInterface
 	}
 
 	/**
-	 * QueryData PropBank data from role sets
+	 * Query PropBank data from role sets
 	 *
 	 * @param connection data source
 	 * @param doc        org.w3c.dom.Document being built

@@ -19,13 +19,13 @@ import org.sqlunet.bnc.style.BNCFactories;
 import org.sqlunet.browser.Module;
 import org.sqlunet.style.Spanner;
 import org.sqlunet.treeview.model.TreeNode;
-import org.sqlunet.treeview.view.TreeView;
 import org.sqlunet.view.TreeFactory;
+import org.sqlunet.view.Update;
 
 public class BasicModule extends Module
 {
 	/**
-	 * QueryData
+	 * Query
 	 */
 	private Long wordId;
 
@@ -275,12 +275,12 @@ public class BasicModule extends Module
 					// attach result
 					TreeFactory.addTextNode(parent, sb, BasicModule.this.context);
 
-					// expand
-					TreeView.expand(parent, false);
+					// fire event
+					Update.onResults(parent);
 				}
 				else
 				{
-					TreeView.disable(parent);
+					Update.onNoResult(parent, true);
 				}
 
 				cursor.close();

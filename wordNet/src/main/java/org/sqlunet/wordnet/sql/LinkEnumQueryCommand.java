@@ -5,7 +5,7 @@ import android.database.sqlite.SQLiteDatabase;
 import org.sqlunet.sql.DBQueryCommand;
 
 /**
- * QueryData for a link enumeration
+ * Query for a link enumeration
  *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */

@@ -13,42 +13,51 @@ public class QueryRenderer extends IconTreeRenderer
 {
 	// private static final String TAG = "QueryRenderer"; //
 
+	public final boolean triggerNow;
+
+	public boolean processed = false;
+
 	/**
 	 * Constructor
 	 *
 	 * @param context context
 	 */
-	public QueryRenderer(final Context context)
+	public QueryRenderer(final Context context, final boolean triggerNow)
 	{
 		super(context);
+		this.triggerNow = triggerNow;
 	}
 
 	@Override
 	public void onExpandEvent(boolean expand)
 	{
 		super.onExpandEvent(expand);
-		if (expand && this.node.isLeaf())
+
+		if (expand && !this.triggerNow && this.node.isLeaf())
 		{
-			// Log.d(TAG, "size=" + this.node.size());
-			addData();
+			processQuery();
 		}
 	}
 
 	/**
 	 * Add data to tree by launching the query
 	 */
-	private void addData()
+	synchronized public void processQuery()
 	{
-		final QueryData query = (QueryData) this.node.getValue();
-		query.process(this.node);
+		if(!processed)
+		{
+			processed = true;
+			final Query query = (Query) this.node.getValue();
+			query.process(this.node);
+		}
 	}
 
 	// D A T A
 
 	/**
-	 * QueryData data
+	 * Query data
 	 */
-	public static abstract class QueryData extends Value
+	public static abstract class Query extends Value
 	{
 		/**
 		 * Id used in query
@@ -62,7 +71,7 @@ public class QueryRenderer extends IconTreeRenderer
 		 * @param icon extra icon
 		 * @param text label text
 		 */
-		public QueryData(long id, int icon, CharSequence text)
+		public Query(long id, int icon, CharSequence text)
 		{
 			super(icon, text);
 			this.id = id;

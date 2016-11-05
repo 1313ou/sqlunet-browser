@@ -233,16 +233,16 @@ public class Spanner
 				final int clickableStart = textView.getSelectionStart();
 				final int clickableEnd = textView.getSelectionEnd();
 				final Object[] spans = sb1.getSpans(clickableStart, clickableEnd, ImageSpan.class);
-				for (final Object span1 : spans)
+				for (final Object span : spans)
 				{
 					// get imagespan
-					int from = sb1.getSpanStart(span1);
-					int to = sb1.getSpanEnd(span1);
+					int from = sb1.getSpanStart(span);
+					int to = sb1.getSpanEnd(span);
 
 					// remove imagespan
-					sb1.removeSpan(span1);
+					sb1.removeSpan(span);
 
-					// onExpandEvent text
+					// text
 					final char c = sb1.charAt(from);
 					final boolean collapsed = c == COLLAPSEDCHAR;
 					sb1.replace(from, to, collapsed ? EXPANDEDSTRING : COLLAPSEDSTRING);
@@ -251,7 +251,7 @@ public class Spanner
 					final Object newimagespan = new ImageSpan(collapsed ? expandedDrawable : collapsedDrawable, DynamicDrawableSpan.ALIGN_BASELINE);
 					sb1.setSpan(newimagespan, from, to, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
 
-					// fire onExpandEvent
+					// fire click
 					Log.d(TAG, from + "->" + to); //
 					listener.onClickImage(sb1, to + caption.length() + 2, collapsed);
 				}

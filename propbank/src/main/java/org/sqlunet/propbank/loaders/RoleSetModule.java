@@ -7,6 +7,7 @@ import org.sqlunet.HasXId;
 import org.sqlunet.propbank.PbRoleSetPointer;
 import org.sqlunet.treeview.model.TreeNode;
 import org.sqlunet.treeview.view.TreeView;
+import org.sqlunet.view.Update;
 
 /**
  * Module for PropBank role sets from id
@@ -59,7 +60,7 @@ public class RoleSetModule extends BasicModule
 		}
 		else
 		{
-			TreeView.disable(node);
+			Update.onNoResult(node, true);
 		}
 	}
 }

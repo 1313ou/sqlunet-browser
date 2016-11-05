@@ -5,8 +5,8 @@ import android.os.Parcelable;
 
 import org.sqlunet.HasWordId;
 import org.sqlunet.treeview.model.TreeNode;
-import org.sqlunet.treeview.view.TreeView;
 import org.sqlunet.view.TreeFactory;
+import org.sqlunet.view.Update;
 import org.sqlunet.wordnet.R;
 
 /**
@@ -46,7 +46,7 @@ public class SenseModule extends SynsetModule
 	}
 
 	@Override
-	public void process(final TreeNode node)
+	public void process(final TreeNode parent)
 	{
 		if (this.wordId == null || this.synsetId == null)
 		{
@@ -56,11 +56,9 @@ public class SenseModule extends SynsetModule
 		// sub nodes
 		final TreeNode synsetNode = TreeFactory.newTextNode("Synset", this.context); //
 		final TreeNode membersNode = TreeFactory.newTextNode("Members", this.context); //
-		final TreeNode linksNode = TreeFactory.newQueryNode(new LinksQueryData(this.synsetId, this.wordId, R.drawable.ic_other, "Links"), this.context); //
-		final TreeNode samplesNode = TreeFactory.newQueryNode(new SamplesQueryData(this.synsetId, R.drawable.sample, "Samples"), this.context); //
 
 		// attach result
-		node.addChildren(synsetNode, membersNode, linksNode, samplesNode);
+		parent.addChildren(synsetNode, membersNode);
 
 		// synset
 		synset(this.synsetId, synsetNode, false);
@@ -69,7 +67,7 @@ public class SenseModule extends SynsetModule
 		members(this.synsetId, membersNode, false);
 
 		// morph
-		morphs(this.wordId, node);
+		morphs(this.wordId, parent);
 
 		// special
 		if (this.pos != null)
@@ -77,25 +75,29 @@ public class SenseModule extends SynsetModule
 			switch (this.pos)
 			{
 				case 'v':
-					vFrames(this.synsetId, this.wordId, node);
-					vFrameSentences(this.synsetId, this.wordId, node);
+					vFrames(this.synsetId, this.wordId, parent);
+					vFrameSentences(this.synsetId, this.wordId, parent);
 					break;
 
 				case 'a':
-					adjPosition(this.synsetId, this.wordId, node);
+					adjPosition(this.synsetId, this.wordId, parent);
 					break;
 			}
 		}
 		else
 		{
-			vFrames(this.synsetId, this.wordId, node);
-			vFrameSentences(this.synsetId, this.wordId, node);
-			adjPosition(this.synsetId, this.wordId, node);
+			vFrames(this.synsetId, this.wordId, parent);
+			vFrameSentences(this.synsetId, this.wordId, parent);
+			adjPosition(this.synsetId, this.wordId, parent);
 		}
 
-		// expand
-		linksNode.setExpanded(this.expand);
-		samplesNode.setExpanded(this.expand);
-		TreeView.expand(node, false);
+		// links and samples
+		final TreeNode linksNode = TreeFactory.newQueryNode(new LinksQuery(this.synsetId, this.wordId, R.drawable.ic_other, "Links"), this.expand, this.context).addTo(parent);
+		final TreeNode samplesNode = TreeFactory.newQueryNode(new SamplesQuery(this.synsetId, R.drawable.sample, "Samples"), this.expand, this.context).addTo(parent);
+
+		// fire event
+		Update.onQueryReady(linksNode);
+		Update.onQueryReady(samplesNode);
+		Update.onResults(parent);
 	}
 }

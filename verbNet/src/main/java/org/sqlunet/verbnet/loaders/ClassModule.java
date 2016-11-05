@@ -7,6 +7,7 @@ import org.sqlunet.HasXId;
 import org.sqlunet.treeview.model.TreeNode;
 import org.sqlunet.treeview.view.TreeView;
 import org.sqlunet.verbnet.VnClassPointer;
+import org.sqlunet.view.Update;
 
 /**
  * VerbNet class module
@@ -16,7 +17,7 @@ import org.sqlunet.verbnet.VnClassPointer;
 public class ClassModule extends BasicModule
 {
 	/**
-	 * QueryData
+	 * Query
 	 */
 	private Long classId;
 
@@ -61,7 +62,7 @@ public class ClassModule extends BasicModule
 		}
 		else
 		{
-			TreeView.disable(node);
+			Update.onNoResult(node, true);
 		}
 	}
 }

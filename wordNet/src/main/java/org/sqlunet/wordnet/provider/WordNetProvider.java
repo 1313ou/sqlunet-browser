@@ -282,7 +282,7 @@ public class WordNetProvider extends SqlUNetProvider
 	// Q U E R Y
 
 	/**
-	 * QueryData
+	 * Query
 	 *
 	 * @param uri uri
 	 * @param projection projection

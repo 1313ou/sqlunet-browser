@@ -6,7 +6,7 @@ import android.view.ViewGroup;
 
 import org.sqlunet.treeview.R;
 import org.sqlunet.treeview.model.TreeNode;
-import org.sqlunet.treeview.view.TreeNodeWrapperView;
+import org.sqlunet.treeview.view.SubtreeView;
 import org.sqlunet.treeview.view.TreeView;
 
 /**
@@ -24,19 +24,19 @@ public abstract class Renderer<E>
 	protected TreeNode node;
 
 	/**
-	 * Tree view
+	 * Tree view (whole tree view it is part of)
 	 */
 	private TreeView treeView;
 
 	/**
-	 * Node view
-	 */
-	private View nodeView;
-
-	/**
-	 * View
+	 * View (wrapper view that includes label and subtreechildren)
 	 */
 	private View view;
+
+	/**
+	 * Node view (node label)
+	 */
+	private View nodeView;
 
 	/**
 	 * Container style
@@ -58,7 +58,65 @@ public abstract class Renderer<E>
 		this.context = context;
 	}
 
+	// T R E E V I E W
+
+	/**
+	 * Set tree view
+	 *
+	 * @param treeView tree view
+	 */
+	public void setTreeView(TreeView treeView)
+	{
+		this.treeView = treeView;
+	}
+
+	/**
+	 * Get tree view
+	 *
+	 * @return tree view
+	 */
+	public TreeView getTreeView()
+	{
+		return this.treeView;
+	}
+
 	// V I E W
+
+	/**
+	 * Get (wrapper) view
+	 *
+	 * @return view
+	 */
+	public View getView()
+	{
+		// return cached value
+		if (this.view != null)
+		{
+			return this.view;
+		}
+
+		// make view
+		final View nodeView = getNodeView();
+
+		// wrapper
+		final SubtreeView nodeWrapperView = new SubtreeView(nodeView.getContext(), getContainerStyle());
+		nodeWrapperView.insertNodeView(nodeView);
+		this.view = nodeWrapperView;
+
+		return this.view;
+	}
+
+	/**
+	 * Get children nodes' container view
+	 *
+	 * @return children nodes' container view
+	 */
+	public ViewGroup getChildrenContainerView()
+	{
+		return (ViewGroup) getView().findViewById(R.id.node_children);
+	}
+
+	// N O D E V I E W
 
 	/**
 	 * Create node view
@@ -84,29 +142,7 @@ public abstract class Renderer<E>
 		return this.nodeView;
 	}
 
-	/**
-	 * Get view
-	 *
-	 * @return view
-	 */
-	public View getView()
-	{
-		// return cached value
-		if (this.view != null)
-		{
-			return this.view;
-		}
-
-		// make view
-		final View nodeView1 = getNodeView();
-
-		// wrapper
-		final TreeNodeWrapperView nodeWrapperView = new TreeNodeWrapperView(nodeView1.getContext(), getContainerStyle());
-		nodeWrapperView.insertNodeView(nodeView1);
-		this.view = nodeWrapperView;
-
-		return this.view;
-	}
+	// I N I T
 
 	/**
 	 * Get whether view is initialized
@@ -118,34 +154,26 @@ public abstract class Renderer<E>
 		return this.view != null;
 	}
 
-	/**
-	 * Get node items container view
-	 *
-	 * @return node items container view
-	 */
-	public ViewGroup getNodeItemsView()
-	{
-		return (ViewGroup) getView().findViewById(R.id.node_items);
-	}
+	// A T T A C H
 
 	/**
-	 * Set tree view
+	 * Attach/Set node
 	 *
-	 * @param treeView tree view
+	 * @param node node
 	 */
-	public void setTreeView(TreeView treeView)
+	public void attachNode(final TreeNode node)
 	{
-		this.treeView = treeView;
+		this.node = node;
 	}
 
+	// S T A T E
+
 	/**
-	 * Get tree view
-	 *
-	 * @return tree view
+	 * Disable
 	 */
-	public TreeView getTreeView()
+	public void disable()
 	{
-		return this.treeView;
+		// empty
 	}
 
 	// S T Y L E
@@ -168,26 +196,6 @@ public abstract class Renderer<E>
 	public int getContainerStyle()
 	{
 		return this.containerStyle;
-	}
-
-	/**
-	 * Set node
-	 *
-	 * @param node node
-	 */
-	public void attachNode(final TreeNode node)
-	{
-		this.node = node;
-	}
-
-	// S T A T E
-
-	/**
-	 * Disable
-	 */
-	public void disable()
-	{
-		// empty
 	}
 
 	// E V E N T   L I S T E N E R

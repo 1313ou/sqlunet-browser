@@ -67,12 +67,14 @@ public class TreeNode
 
 	// C O N S T R U C T O R
 
-	public TreeNode(Object value)
+	public TreeNode(final Object value)
 	{
 		this.children = new ArrayList<>();
 		this.value = value;
-		this.selectable = true;
 		this.enabled = true;
+		this.selected = false;
+		this.selectable = false;
+		this.expanded = false;
 	}
 
 	/**
@@ -90,12 +92,24 @@ public class TreeNode
 	// T R E E
 
 	/**
+	 * Add this node to parent node
+	 *
+	 * @param parentNode parent node
+	 * @return this node
+	 */
+	public TreeNode addTo(final TreeNode parentNode)
+	{
+		parentNode.addChild(this);
+		return this;
+	}
+
+	/**
 	 * Add child node
 	 *
 	 * @param childNode child node
 	 * @return this node
 	 */
-	public TreeNode addChild(TreeNode childNode)
+	public TreeNode addChild(final TreeNode childNode)
 	{
 		childNode.parent = this;
 		// TODO think about id generation
@@ -138,6 +152,18 @@ public class TreeNode
 				addChild(node);
 			}
 		}
+		return this;
+	}
+
+	/**
+	 * Prepend this node to parent node
+	 *
+	 * @param parentNode parent node
+	 * @return this node
+	 */
+	public TreeNode prependTo(final TreeNode parentNode)
+	{
+		parentNode.prependChild(this);
 		return this;
 	}
 
@@ -352,7 +378,7 @@ public class TreeNode
 		return false;
 	}
 
-	// A T T R I B U T E S
+	// I D
 
 	/**
 	 * Get id
@@ -363,6 +389,8 @@ public class TreeNode
 	{
 		return this.id;
 	}
+
+	// V A L U E
 
 	/**
 	 * Get value
@@ -383,6 +411,8 @@ public class TreeNode
 	{
 		this.value = value;
 	}
+
+	// A T T R I B U T E S
 
 	/**
 	 * Get whether node is expanded
@@ -414,7 +444,6 @@ public class TreeNode
 		return this.selectable && this.selected;
 	}
 
-
 	/**
 	 * Set this node selected
 	 *
@@ -444,6 +473,28 @@ public class TreeNode
 	public void setSelectable(boolean selectable)
 	{
 		this.selectable = selectable;
+	}
+
+
+	// E N A B L E / D I S A B L E
+
+	/**
+	 * Disable node
+	 */
+	public void disable()
+	{
+		this.enabled = false;
+	}
+
+	/**
+	 * Get whether this node is enabled
+	 *
+	 * @return whether this node is enabled
+	 */
+	@SuppressWarnings("BooleanMethodIsAlwaysInverted")
+	public boolean isEnabled()
+	{
+		return this.enabled;
 	}
 
 	// R E N D E R E R
@@ -514,26 +565,5 @@ public class TreeNode
 		 * @param value value
 		 */
 		void onClick(TreeNode node, Object value);
-	}
-
-	// S T A T E
-
-	/**
-	 * Disable node
-	 */
-	public void disable()
-	{
-		this.enabled = false;
-	}
-
-	/**
-	 * Get whether this node is enabled
-	 *
-	 * @return whether this node is enabled
-	 */
-	@SuppressWarnings("BooleanMethodIsAlwaysInverted")
-	public boolean isEnabled()
-	{
-		return this.enabled;
 	}
 }

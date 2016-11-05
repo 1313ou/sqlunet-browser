@@ -15,7 +15,7 @@ import org.sqlunet.treeview.model.TreeNode;
 public class PredicateRoleFromWordModule extends BasicModule
 {
 	/**
-	 * QueryData
+	 * Query
 	 */
 	private String word;
 

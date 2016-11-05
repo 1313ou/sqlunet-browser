@@ -15,11 +15,11 @@ import org.sqlunet.HasWordId;
 import org.sqlunet.browser.Module;
 import org.sqlunet.style.Spanner;
 import org.sqlunet.treeview.model.TreeNode;
-import org.sqlunet.treeview.view.TreeView;
 import org.sqlunet.verbnet.R;
 import org.sqlunet.verbnet.provider.VerbNetContract.Words_VnClasses_VnGroupings;
 import org.sqlunet.verbnet.style.VerbNetFactories;
 import org.sqlunet.view.TreeFactory;
+import org.sqlunet.view.Update;
 
 /**
  * VerbNet class from word/sense module
@@ -74,7 +74,7 @@ public class ClassFromWordModule extends BasicModule
 		}
 		else
 		{
-			TreeView.disable(node);
+			Update.onNoResult(node, true);
 		}
 	}
 
@@ -153,28 +153,29 @@ public class ClassFromWordModule extends BasicModule
 						sb.append(" id="); //
 						sb.append(Integer.toString(classId));
 
+						// attach result
+						TreeFactory.addTextNode(parent, sb, ClassFromWordModule.this.context);
+
 						// groupings
 						final TreeNode itemsNode = groupings(groupings);
+						itemsNode.addTo(parent);
 
 						// sub nodes
-						final TreeNode rolesNode = TreeFactory.newQueryNode(new RolesQueryData(classId, R.drawable.role, "Roles"), ClassFromWordModule.this.context); //
-						final TreeNode framesNode = TreeFactory.newQueryNode(new FramesQueryData(classId, R.drawable.vnframe, "Frames"), ClassFromWordModule.this.context); //
+						final TreeNode rolesNode = TreeFactory.newQueryNode(new RolesQuery(classId, R.drawable.role, "Roles"), true, ClassFromWordModule.this.context).addTo(parent);
+						final TreeNode framesNode = TreeFactory.newQueryNode(new FramesQuery(classId, R.drawable.vnframe, "Frames"), false, ClassFromWordModule.this.context).addTo(parent);
 
-						// attach result
-						TreeFactory.addTextNode(parent, sb, ClassFromWordModule.this.context, itemsNode, rolesNode, framesNode);
-
-						// expand
-						rolesNode.setExpanded(true);
-						framesNode.setExpanded(false);
+						// fire event
+						Update.onQueryReady(rolesNode);
+						Update.onQueryReady(framesNode);
 					}
 					while (cursor.moveToNext());
 
-					// expand
-					TreeView.expand(parent, false);
+					// fire event
+					Update.onResults(parent);
 				}
 				else
 				{
-					TreeView.disable(parent);
+					Update.onNoResult(parent, true);
 				}
 
 				cursor.close();

@@ -22,8 +22,8 @@ import org.sqlunet.propbank.style.PropBankSpanner;
 import org.sqlunet.style.Spanner;
 import org.sqlunet.treeview.model.TreeNode;
 import org.sqlunet.treeview.renderer.QueryRenderer;
-import org.sqlunet.treeview.view.TreeView;
 import org.sqlunet.view.TreeFactory;
+import org.sqlunet.view.Update;
 
 import java.util.Arrays;
 import java.util.Locale;
@@ -165,21 +165,21 @@ abstract class BasicModule extends Module
 					Spanner.appendImage(sb, BasicModule.this.definitionDrawable);
 					Spanner.append(sb, cursor.getString(idRolesetDesc), 0, PropBankFactories.definitionFactory);
 
-					// sub nodes
-					final TreeNode rolesNode = TreeFactory.newQueryNode(new RolesQueryData(roleSetId, R.drawable.roles, "Roles"), BasicModule.this.context); //
-					final TreeNode examplesNode = TreeFactory.newQueryNode(new ExamplesQueryData(roleSetId, R.drawable.sample, "Examples"), BasicModule.this.context); //
-
 					// attach result
-					TreeFactory.addTextNode(parent, sb, BasicModule.this.context, rolesNode, examplesNode);
+					TreeFactory.addTextNode(parent, sb, BasicModule.this.context);
 
-					// expand
-					rolesNode.setExpanded(true);
-					examplesNode.setExpanded(false);
-					TreeView.expand(parent, false);
+					// sub nodes
+					final TreeNode rolesNode = TreeFactory.newQueryNode(new RolesQuery(roleSetId, R.drawable.roles, "Roles"), true, BasicModule.this.context).addTo(parent);
+					final TreeNode examplesNode = TreeFactory.newQueryNode(new ExamplesQuery(roleSetId, R.drawable.sample, "Examples"), false, BasicModule.this.context).addTo(parent);
+
+					// fire event
+					Update.onQueryReady(rolesNode);
+					Update.onQueryReady(examplesNode);
+					Update.onResults(parent);
 				}
 				else
 				{
-					TreeView.disable(parent);
+					Update.onNoResult(parent, true);
 				}
 
 				cursor.close();
@@ -251,25 +251,25 @@ abstract class BasicModule extends Module
 						Spanner.appendImage(sb, BasicModule.this.definitionDrawable);
 						Spanner.append(sb, cursor.getString(idRoleSetDesc), 0, PropBankFactories.definitionFactory);
 
-						// sub nodes
-						final TreeNode rolesNode = TreeFactory.newQueryNode(new RolesQueryData(roleSetId, R.drawable.roles, "Roles"), BasicModule.this.context); //
-						final TreeNode examplesNode = TreeFactory.newQueryNode(new ExamplesQueryData(roleSetId, R.drawable.sample, "Examples"), BasicModule.this.context); //
-
 						// attach result
-						TreeFactory.addTextNode(parent, sb, BasicModule.this.context, rolesNode, examplesNode);
+						TreeFactory.addTextNode(parent, sb, BasicModule.this.context);
 
-						// expand
-						rolesNode.setExpanded(true);
-						examplesNode.setExpanded(false);
+						// sub nodes
+						final TreeNode rolesNode = TreeFactory.newQueryNode(new RolesQuery(roleSetId, R.drawable.roles, "Roles"), true, BasicModule.this.context).addTo(parent);
+						final TreeNode examplesNode = TreeFactory.newQueryNode(new ExamplesQuery(roleSetId, R.drawable.sample, "Examples"), false, BasicModule.this.context).addTo(parent);
+
+						// fire event
+						Update.onQueryReady(rolesNode);
+						Update.onQueryReady(examplesNode);
 					}
 					while (cursor.moveToNext());
 
-					// expand
-					TreeView.expand(parent, false);
+					// fire event
+					Update.onResults(parent);
 				}
 				else
 				{
-					TreeView.disable(parent);
+					Update.onNoResult(parent, true);
 				}
 
 				cursor.close();
@@ -374,12 +374,12 @@ abstract class BasicModule extends Module
 					// attach result
 					TreeFactory.addTextNode(parent, sb, BasicModule.this.context);
 
-					// expand
-					TreeView.expand(parent, false);
+					// fire event
+					Update.onResults(parent);
 				}
 				else
 				{
-					TreeView.disable(parent);
+					Update.onNoResult(parent, true);
 				}
 
 				cursor.close();
@@ -525,12 +525,12 @@ abstract class BasicModule extends Module
 					// attach result
 					TreeFactory.addTextNode(parent, sb, BasicModule.this.context);
 
-					// expand
-					TreeView.expand(parent, false);
+					// fire event
+					Update.onResults(parent);
 				}
 				else
 				{
-					TreeView.disable(parent);
+					Update.onNoResult(parent, true);
 				}
 
 				cursor.close();
@@ -545,9 +545,9 @@ abstract class BasicModule extends Module
 	}
 
 	/**
-	 * Role query data
+	 * Role query
 	 */
-	class RolesQueryData extends QueryRenderer.QueryData
+	class RolesQuery extends QueryRenderer.Query
 	{
 		/**
 		 * Constructor
@@ -556,7 +556,7 @@ abstract class BasicModule extends Module
 		 * @param icon      icon
 		 * @param text      label text
 		 */
-		public RolesQueryData(final long roleSetId, final int icon, final CharSequence text)
+		public RolesQuery(final long roleSetId, final int icon, final CharSequence text)
 		{
 			super(roleSetId, icon, text);
 		}
@@ -569,9 +569,9 @@ abstract class BasicModule extends Module
 	}
 
 	/**
-	 * Examples query data
+	 * Examples query
 	 */
-	class ExamplesQueryData extends QueryRenderer.QueryData
+	class ExamplesQuery extends QueryRenderer.Query
 	{
 		/**
 		 * Constructor
@@ -580,7 +580,7 @@ abstract class BasicModule extends Module
 		 * @param icon      icon
 		 * @param text      label text
 		 */
-		public ExamplesQueryData(final long roleSetId, final int icon, final CharSequence text)
+		public ExamplesQuery(final long roleSetId, final int icon, final CharSequence text)
 		{
 			super(roleSetId, icon, text);
 		}

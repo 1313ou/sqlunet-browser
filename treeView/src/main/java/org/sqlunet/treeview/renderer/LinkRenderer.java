@@ -23,7 +23,7 @@ public class LinkRenderer extends IconLeafRenderer
 	public void onExpandEvent(boolean expand)
 	{
 		super.onExpandEvent(expand);
-		if (expand && this.node.isLeaf())
+		if (expand)
 		{
 			followLink();
 		}

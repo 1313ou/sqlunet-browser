@@ -7,6 +7,7 @@ import org.sqlunet.HasXId;
 import org.sqlunet.framenet.FnFramePointer;
 import org.sqlunet.treeview.model.TreeNode;
 import org.sqlunet.treeview.view.TreeView;
+import org.sqlunet.view.Update;
 
 /**
  * Frame module
@@ -67,7 +68,7 @@ public class FrameModule extends BasicModule
 		}
 		else
 		{
-			TreeView.disable(node);
+			Update.onNoResult(node, true);
 		}
 	}
 }

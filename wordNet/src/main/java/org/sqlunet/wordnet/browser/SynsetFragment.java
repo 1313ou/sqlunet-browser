@@ -68,7 +68,7 @@ public class SynsetFragment extends Fragment
 
 		// root node
 		final TreeNode root = TreeNode.makeRoot();
-		final TreeNode queryNode = TreeFactory.addTreeItemNode(root, "WordNet", R.drawable.wordnet, getActivity()); //
+		final TreeNode queryNode = TreeFactory.addTreeNode(root, "WordNet", R.drawable.wordnet, getActivity()); //
 
 		// tree
 		this.treeView = new TreeView(getActivity(), root);

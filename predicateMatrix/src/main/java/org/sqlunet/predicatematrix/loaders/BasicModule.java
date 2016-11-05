@@ -27,10 +27,10 @@ import org.sqlunet.provider.SqlUNetContract;
 import org.sqlunet.style.Spanner;
 import org.sqlunet.treeview.model.TreeNode;
 import org.sqlunet.treeview.renderer.LinkRenderer;
-import org.sqlunet.treeview.view.TreeView;
 import org.sqlunet.verbnet.VnClassPointer;
 import org.sqlunet.verbnet.browser.VnClassActivity;
 import org.sqlunet.view.TreeFactory;
+import org.sqlunet.view.Update;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -834,8 +834,8 @@ abstract class BasicModule extends Module
 
 				endProcess();
 
-				// expand
-				TreeView.expand(this.parent, this.displayer.getExpandLevels());
+				// fire event
+				Update.onResults(this.parent, this.displayer.getExpandLevels());
 			}
 
 			cursor.close();
@@ -1146,7 +1146,7 @@ abstract class BasicModule extends Module
 				Spanner.append(pmsb, roleData, 0, PredicateMatrixFactories.dataFactory);
 			}
 
-			return TreeFactory.addTreeItemNode(parentNode, pmsb, R.drawable.role, BasicModule.this.context);
+			return TreeFactory.addTreeNode(parentNode, pmsb, R.drawable.role, BasicModule.this.context);
 		}
 
 		/**
@@ -1176,7 +1176,7 @@ abstract class BasicModule extends Module
 				Spanner.append(pmsb, wnData.definition, 0, PredicateMatrixFactories.definitionFactory);
 			}
 
-			return TreeFactory.addTreeItemNode(parentNode, pmsb, R.drawable.predicatematrix, BasicModule.this.context);
+			return TreeFactory.addTreeNode(parentNode, pmsb, R.drawable.predicatematrix, BasicModule.this.context);
 		}
 
 		/**
@@ -1435,7 +1435,7 @@ abstract class BasicModule extends Module
 				}
 
 				// attach synset
-				this.synsetNode = TreeFactory.addTreeItemNode(parentNode, synsetsb, R.drawable.synset, BasicModule.this.context);
+				this.synsetNode = TreeFactory.addTreeNode(parentNode, synsetsb, R.drawable.synset, BasicModule.this.context);
 
 				// record
 				this.synsetId = wnData.synsetId;

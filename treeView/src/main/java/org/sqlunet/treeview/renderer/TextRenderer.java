@@ -26,8 +26,8 @@ public class TextRenderer extends Renderer<Object>
 	@Override
 	public View createNodeView(TreeNode node, Object value)
 	{
-		final TextView tv = new TextView(this.context);
-		tv.setText((CharSequence) value);
-		return tv;
+		final TextView textView = new TextView(this.context);
+		textView.setText((CharSequence) value);
+		return textView;
 	}
 }

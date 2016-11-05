@@ -65,7 +65,7 @@ public class FnAnnoSetFragment extends Fragment
 
 		// root node
 		final TreeNode root = TreeNode.makeRoot();
-		final TreeNode queryNode = TreeFactory.addTreeItemNode(root, header, R.drawable.annoset, getActivity());
+		final TreeNode queryNode = TreeFactory.addTreeNode(root, header, R.drawable.annoset, getActivity());
 
 		// tree
 		this.treeView = new TreeView(getActivity(), root);

@@ -7,7 +7,7 @@ import org.sqlunet.sql.DBQueryCommand;
 import java.sql.Types;
 
 /**
- * QueryData command for VerbNet roles from sense
+ * Query command for VerbNet roles from sense
  *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */

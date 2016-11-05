@@ -45,7 +45,7 @@ public class PbRoleSetFragment extends Fragment
 
 		// root node
 		final TreeNode root = TreeNode.makeRoot();
-		final TreeNode queryNode = TreeFactory.addTreeItemNode(root, "RoleSet", R.drawable.propbank, getActivity()); //
+		final TreeNode queryNode = TreeFactory.addTreeNode(root, "RoleSet", R.drawable.propbank, getActivity()); //
 
 		// tree
 		this.treeView = new TreeView(getActivity(), root);

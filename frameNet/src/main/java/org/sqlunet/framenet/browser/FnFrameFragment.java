@@ -45,7 +45,7 @@ public class FnFrameFragment extends Fragment
 
 		// root node
 		final TreeNode root = TreeNode.makeRoot();
-		final TreeNode queryNode = TreeFactory.addTreeItemNode(root, "Frame", R.drawable.fnframe, getActivity()); //
+		final TreeNode queryNode = TreeFactory.addTreeNode(root, "Frame", R.drawable.fnframe, getActivity()); //
 
 		// tree
 		this.treeView = new TreeView(getActivity(), root);

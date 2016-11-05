@@ -45,7 +45,7 @@ public class FnLexUnitFragment extends Fragment
 
 		// root node
 		final TreeNode root = TreeNode.makeRoot();
-		final TreeNode queryNode = TreeFactory.addTreeItemNode(root, "LexUnit", R.drawable.lexunit, getActivity()); //
+		final TreeNode queryNode = TreeFactory.addTreeNode(root, "LexUnit", R.drawable.lexunit, getActivity()); //
 
 		// tree
 		this.treeView = new TreeView(getActivity(), root);

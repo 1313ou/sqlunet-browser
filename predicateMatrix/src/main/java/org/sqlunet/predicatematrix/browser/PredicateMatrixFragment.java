@@ -63,7 +63,7 @@ public class PredicateMatrixFragment extends Fragment
 
 			// root node
 			final TreeNode root = TreeNode.makeRoot();
-			final TreeNode queryNode = TreeFactory.addTreeItemNode(root, hsb, R.drawable.predicatematrix, getActivity());
+			final TreeNode queryNode = TreeFactory.addTreeNode(root, hsb, R.drawable.predicatematrix, getActivity());
 
 			// tree
 			this.treeView = new TreeView(getActivity(), root);

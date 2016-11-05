@@ -15,7 +15,6 @@ import org.sqlunet.browser.Module;
 import org.sqlunet.style.Spanner;
 import org.sqlunet.treeview.model.TreeNode;
 import org.sqlunet.treeview.renderer.QueryRenderer;
-import org.sqlunet.treeview.view.TreeView;
 import org.sqlunet.verbnet.R;
 import org.sqlunet.verbnet.provider.VerbNetContract.VnClasses_VnFrames_X;
 import org.sqlunet.verbnet.provider.VerbNetContract.VnClasses_VnRoles_X;
@@ -25,6 +24,7 @@ import org.sqlunet.verbnet.style.VerbNetSemanticsProcessor;
 import org.sqlunet.verbnet.style.VerbNetSemanticsSpanner;
 import org.sqlunet.verbnet.style.VerbNetSyntaxSpanner;
 import org.sqlunet.view.TreeFactory;
+import org.sqlunet.view.Update;
 
 /**
  * VerbNet basic module
@@ -187,21 +187,21 @@ abstract class BasicModule extends Module
 					// groupings
 					final TreeNode itemsNode = groupings(groupings);
 
-					// sub nodes
-					final TreeNode rolesNode = TreeFactory.newQueryNode(new RolesQueryData(classId, R.drawable.role, "Roles"), context); //
-					final TreeNode framesNode = TreeFactory.newQueryNode(new FramesQueryData(classId, R.drawable.vnframe, "Frames"), context);
-
 					// attach result
-					TreeFactory.addTextNode(parent, sb, BasicModule.this.context, itemsNode, rolesNode, framesNode);
+					TreeFactory.addTextNode(parent, sb, BasicModule.this.context, itemsNode);
 
-					// expand
-					rolesNode.setExpanded(true);
-					framesNode.setExpanded(false);
-					TreeView.expand(parent, false);
+					// sub nodes
+					final TreeNode rolesNode = TreeFactory.newQueryNode(new RolesQuery(classId, R.drawable.role, "Roles"), true, context).addTo(parent);
+					final TreeNode framesNode = TreeFactory.newQueryNode(new FramesQuery(classId, R.drawable.vnframe, "Frames"), false, context).addTo(parent);
+
+					// fire event
+					Update.onQueryReady(rolesNode);
+					Update.onQueryReady(framesNode);
+					Update.onResults(parent);
 				}
 				else
 				{
-					TreeView.disable(parent);
+					Update.onNoResult(parent, true);
 				}
 
 				cursor.close();
@@ -288,12 +288,12 @@ abstract class BasicModule extends Module
 					// attach result
 					TreeFactory.addTextNode(parent, sb, BasicModule.this.context);
 
-					// expand
-					TreeView.expand(parent, false);
+					// fire event
+					Update.onResults(parent);
 				}
 				else
 				{
-					TreeView.disable(parent);
+					Update.onNoResult(parent, true);
 				}
 				cursor.close();
 			}
@@ -405,12 +405,12 @@ abstract class BasicModule extends Module
 					// attach result
 					TreeFactory.addTextNode(parent, sb, BasicModule.this.context);
 
-					// expand
-					TreeView.expand(parent, false);
+					// fire event
+					Update.onResults(parent);
 				}
 				else
 				{
-					TreeView.disable(parent);
+					Update.onNoResult(parent, true);
 				}
 
 				cursor.close();
@@ -467,11 +467,11 @@ abstract class BasicModule extends Module
 	}
 
 	/**
-	 * Roles query data
+	 * Roles query
 	 */
-	class RolesQueryData extends QueryRenderer.QueryData
+	class RolesQuery extends QueryRenderer.Query
 	{
-		public RolesQueryData(final long classId, final int icon, final CharSequence text)
+		public RolesQuery(final long classId, final int icon, final CharSequence text)
 		{
 			super(classId, icon, text);
 		}
@@ -484,11 +484,11 @@ abstract class BasicModule extends Module
 	}
 
 	/**
-	 * Frames query data
+	 * Frames query
 	 */
-	class FramesQueryData extends QueryRenderer.QueryData
+	class FramesQuery extends QueryRenderer.Query
 	{
-		public FramesQueryData(final long classId, final int icon, final CharSequence text)
+		public FramesQuery(final long classId, final int icon, final CharSequence text)
 		{
 			super(classId, icon, text);
 		}

@@ -6,8 +6,8 @@ import android.os.Parcelable;
 import org.sqlunet.HasPos;
 import org.sqlunet.HasSynsetId;
 import org.sqlunet.treeview.model.TreeNode;
-import org.sqlunet.treeview.view.TreeView;
 import org.sqlunet.view.TreeFactory;
+import org.sqlunet.view.Update;
 import org.sqlunet.wordnet.R;
 
 /**
@@ -73,18 +73,16 @@ public class SynsetModule extends BasicModule
 	}
 
 	@Override
-	public void process(final TreeNode node)
+	public void process(final TreeNode parent)
 	{
 		if (this.synsetId != null && this.synsetId != 0)
 		{
 			// sub nodes
 			final TreeNode synsetNode = TreeFactory.newTextNode("Data", this.context); //
 			final TreeNode membersNode = TreeFactory.newTextNode("Members", this.context); //
-			final TreeNode linksNode = TreeFactory.newQueryNode(new LinksQueryData(this.synsetId, 0, R.drawable.ic_other, "Links"), this.context); //
-			final TreeNode samplesNode = TreeFactory.newQueryNode(new SamplesQueryData(this.synsetId, R.drawable.sample, "Samples"), this.context); //
 
 			// attach result
-			node.addChildren(synsetNode, membersNode, linksNode, samplesNode);
+			parent.addChildren(synsetNode, membersNode);
 
 			// synset
 			synset(this.synsetId, synsetNode, false);
@@ -98,20 +96,24 @@ public class SynsetModule extends BasicModule
 				switch (this.pos)
 				{
 					case 'v':
-						this.vFrames(this.synsetId, node);
-						this.vFrameSentences(this.synsetId, node);
+						this.vFrames(this.synsetId, parent);
+						this.vFrameSentences(this.synsetId, parent);
 						break;
 
 					case 'a':
-						this.adjPosition(this.synsetId, node);
+						this.adjPosition(this.synsetId, parent);
 						break;
 				}
 			}
 
-			// expand
-			linksNode.setExpanded(this.expand);
-			samplesNode.setExpanded(this.expand);
-			TreeView.expand(node, false);
+			// links and samples
+			final TreeNode linksNode = TreeFactory.newQueryNode(new LinksQuery(this.synsetId, 0, R.drawable.ic_other, "Links"), this.expand, this.context).addTo(parent);
+			final TreeNode samplesNode = TreeFactory.newQueryNode(new SamplesQuery(this.synsetId, R.drawable.sample, "Samples"), this.expand, this.context).addTo(parent);
+
+			// fire event
+			Update.onQueryReady(linksNode);
+			Update.onQueryReady(samplesNode);
+			Update.onResults(parent);
 		}
 	}
 }

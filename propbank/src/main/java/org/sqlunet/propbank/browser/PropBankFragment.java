@@ -47,7 +47,7 @@ public class PropBankFragment extends Fragment
 
 		// root node
 		final TreeNode root = TreeNode.makeRoot();
-		final TreeNode queryNode = TreeFactory.addTreeItemNode(root, "PropBank", R.drawable.propbank, getActivity()); //
+		final TreeNode queryNode = TreeFactory.addTreeNode(root, "PropBank", R.drawable.propbank, getActivity()); //
 
 		// tree
 		this.treeView = new TreeView(getActivity(), root);
