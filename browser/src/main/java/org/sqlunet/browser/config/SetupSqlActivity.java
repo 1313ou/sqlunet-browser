@@ -21,8 +21,7 @@ import java.io.File;
  */
 public class SetupSqlActivity extends SetupBaseActivity
 {
-	private static final String TAG = "SetupSqlActivity"; //
-
+	private static final String TAG = "SetupSqlActivity";
 	// download sql button
 	private Button downloadSqlButton;
 
@@ -120,7 +119,7 @@ public class SetupSqlActivity extends SetupBaseActivity
 				}
 				catch (final Exception e)
 				{
-					Log.e(TAG, "While importing", e); //
+					Log.e(TAG, "While importing", e);
 				}
 			}
 		});
@@ -138,7 +137,7 @@ public class SetupSqlActivity extends SetupBaseActivity
 				}
 				catch (final Exception e)
 				{
-					Log.e(TAG, "While indexing", e); //
+					Log.e(TAG, "While indexing", e);
 				}
 			}
 		});
@@ -156,7 +155,7 @@ public class SetupSqlActivity extends SetupBaseActivity
 				}
 				catch (final Exception e)
 				{
-					Log.e(TAG, "While preparing predicatematrix", e); //
+					Log.e(TAG, "While preparing predicatematrix", e);
 				}
 			}
 		});

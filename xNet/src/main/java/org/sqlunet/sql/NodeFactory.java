@@ -61,8 +61,7 @@ public class NodeFactory
 	 */
 	static public Element makeTargetNode(final Document document, final Node parent, final String... args)
 	{
-		final Element element = document.createElement("target"); //
-
+		final Element element = document.createElement("target");
 		// attach
 		if (parent != null)
 		{

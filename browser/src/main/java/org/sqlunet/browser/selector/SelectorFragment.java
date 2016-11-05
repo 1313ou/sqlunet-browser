@@ -38,13 +38,11 @@ import java.util.Locale;
  */
 public class SelectorFragment extends ListFragment
 {
-	// protected static final String TAG = "SelectorFragment"; //
-
+	// protected static final String TAG = "SelectorFragment";
 	/**
 	 * The serialization (saved instance state) Bundle key representing the activated item position. Only used on tablets.
 	 */
-	private static final String ACTIVATED_POSITION_NAME = "activated_position"; //
-
+	private static final String ACTIVATED_POSITION_NAME = "activated_position";
 	/**
 	 * The current activated item position. Only used on tablets.
 	 */
@@ -149,7 +147,7 @@ public class SelectorFragment extends ListFragment
 				String text = cursor.getString(columnIndex);
 				if (text == null)
 				{
-					text = ""; //
+					text = "";
 				}
 
 				if (view instanceof TextView)
@@ -169,7 +167,7 @@ public class SelectorFragment extends ListFragment
 				}
 				else
 				{
-					throw new IllegalStateException(view.getClass().getName() + " is not a view that can be bound by this SimpleCursorAdapter"); //
+					throw new IllegalStateException(view.getClass().getName() + " is not a view that can be bound by this SimpleCursorAdapter");
 				}
 				return false;
 			}
@@ -212,7 +210,7 @@ public class SelectorFragment extends ListFragment
 				};
 				final String selection = XSqlUNetContract.WORD + '.' + Words_FnWords_PbWords_VnWords.LEMMA + " = ?"; ////
 				final String[] selectionArgs = {SelectorFragment.this.word};
-				final String sortOrder = XSqlUNetContract.SYNSET + '.' + Words_FnWords_PbWords_VnWords.POS + ',' + Words_FnWords_PbWords_VnWords.SENSENUM; //
+				final String sortOrder = XSqlUNetContract.SYNSET + '.' + Words_FnWords_PbWords_VnWords.POS + ',' + Words_FnWords_PbWords_VnWords.SENSENUM;
 				return new CursorLoader(getActivity(), uri, projection, selection, selectionArgs, sortOrder);
 			}
 
@@ -264,7 +262,7 @@ public class SelectorFragment extends ListFragment
 		// activities containing this fragment must implement its listener
 		if (!(context instanceof Listener))
 		{
-			throw new IllegalStateException("Activity must implement fragment's listener."); //
+			throw new IllegalStateException("Activity must implement fragment's listener.");
 		}
 		this.listener = (Listener) context;
 	}

@@ -16,8 +16,7 @@ import org.sqlunet.settings.StorageSettings;
  */
 public class SetupActivity extends SetupBaseActivity
 {
-	// private static final String TAG = "SetupActivity"; //
-
+	// private static final String TAG = "SetupActivity";
 	// download db button
 	private Button downloadDbButton;
 

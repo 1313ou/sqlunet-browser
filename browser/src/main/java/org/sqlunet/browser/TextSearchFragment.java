@@ -36,8 +36,7 @@ import org.sqlunet.wordnet.browser.SynsetActivity;
  */
 public class TextSearchFragment extends AbstractTableFragment
 {
-	private static final String TAG = "TextSearchFragment"; //
-
+	private static final String TAG = "TextSearchFragment";
 	/**
 	 * Bold style factory
 	 */
@@ -97,7 +96,7 @@ public class TextSearchFragment extends AbstractTableFragment
 				String value = cursor.getString(columnIndex);
 				if (value == null)
 				{
-					value = ""; //
+					value = "";
 				}
 
 				if (view instanceof TextView)
@@ -119,7 +118,7 @@ public class TextSearchFragment extends AbstractTableFragment
 				}
 				else
 				{
-					throw new IllegalStateException(view.getClass().getName() + " is not a view that can be bound by this SimpleCursorAdapter"); //
+					throw new IllegalStateException(view.getClass().getName() + " is not a view that can be bound by this SimpleCursorAdapter");
 				}
 				return true;
 			}
@@ -149,8 +148,7 @@ public class TextSearchFragment extends AbstractTableFragment
 				// target
 				final int colIdx = cursor.getColumnIndex("synsetid");
 				final long targetId = cursor.getLong(colIdx);
-				Log.d(TAG, "CLICK wn synset synsetid=" + targetId); //
-
+				Log.d(TAG, "CLICK wn synset synsetid=" + targetId);
 				// build pointer
 				final Parcelable synsetPointer = new SynsetPointer(targetId, null);
 
@@ -166,8 +164,7 @@ public class TextSearchFragment extends AbstractTableFragment
 				// target
 				final int colIdx = cursor.getColumnIndex("classid");
 				final long targetId = cursor.getLong(colIdx);
-				Log.d(TAG, "CLICK vn classid=" + targetId); //
-
+				Log.d(TAG, "CLICK vn classid=" + targetId);
 				// build pointer
 				final Parcelable classPointer = new VnClassPointer(targetId);
 
@@ -183,8 +180,7 @@ public class TextSearchFragment extends AbstractTableFragment
 				// target
 				final int colIdx = cursor.getColumnIndex("rolesetid");
 				final long targetId = cursor.getLong(colIdx);
-				Log.d(TAG, "CLICK pb rolesetid=" + targetId); //
-
+				Log.d(TAG, "CLICK pb rolesetid=" + targetId);
 				// build pointer
 				@SuppressWarnings("TypeMayBeWeakened")
 				final PbRoleSetPointer roleSetPointer = new PbRoleSetPointer(targetId);
@@ -201,8 +197,7 @@ public class TextSearchFragment extends AbstractTableFragment
 				// target
 				final int colIdx = cursor.getColumnIndex("frameid");
 				final long targetId = cursor.getLong(colIdx);
-				Log.d(TAG, "CLICK fn frameid=" + targetId); //
-
+				Log.d(TAG, "CLICK fn frameid=" + targetId);
 				// build pointer
 				@SuppressWarnings("TypeMayBeWeakened")
 				final FnFramePointer framePointer = new FnFramePointer(targetId);
@@ -219,8 +214,7 @@ public class TextSearchFragment extends AbstractTableFragment
 				// target
 				final int colIdx = cursor.getColumnIndex("sentenceid");
 				final long targetId = cursor.getLong(colIdx);
-				Log.d(TAG, "CLICK fn sentenceid=" + targetId); //
-
+				Log.d(TAG, "CLICK fn sentenceid=" + targetId);
 				// build pointer
 				@SuppressWarnings("TypeMayBeWeakened")
 				final FnSentencePointer sentencePointer = new FnSentencePointer(targetId);

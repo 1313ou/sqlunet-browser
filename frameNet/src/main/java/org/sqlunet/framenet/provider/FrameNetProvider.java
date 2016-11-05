@@ -39,8 +39,7 @@ import org.sqlunet.provider.SqlUNetProvider;
  */
 public class FrameNetProvider extends SqlUNetProvider
 {
-	static private final String TAG = "FrameNetProvider"; //
-
+	static private final String TAG = "FrameNetProvider";
 	// U R I M A T C H E R
 
 	// table codes
@@ -115,7 +114,7 @@ public class FrameNetProvider extends SqlUNetProvider
 		FrameNetProvider.uriMatcher.addURI(FrameNetContract.AUTHORITY, ValenceUnits_Sentences.TABLE, FrameNetProvider.VALENCEUNITS_SENTENCES);
 		FrameNetProvider.uriMatcher.addURI(FrameNetContract.AUTHORITY, Governors_AnnoSets_Sentences.TABLE, FrameNetProvider.GOVERNORS_ANNOSETS);
 
-		FrameNetProvider.uriMatcher.addURI(FrameNetContract.AUTHORITY, Lookup_FnSentences.TABLE + "/", FrameNetProvider.LOOKUP_FTS_SENTENCES); //
+		FrameNetProvider.uriMatcher.addURI(FrameNetContract.AUTHORITY, Lookup_FnSentences.TABLE + "/", FrameNetProvider.LOOKUP_FTS_SENTENCES);
 	}
 
 	// C O N S T R U C T O R
@@ -137,64 +136,62 @@ public class FrameNetProvider extends SqlUNetProvider
 			// TABLES
 
 			case LEXUNIT:
-				return SqlUNetContract.VENDOR + ".android.cursor.item/" + SqlUNetContract.VENDOR + '.' + FrameNetContract.AUTHORITY + '.' + LexUnits.TABLE; //
+				return SqlUNetContract.VENDOR + ".android.cursor.item/" + SqlUNetContract.VENDOR + '.' + FrameNetContract.AUTHORITY + '.' + LexUnits.TABLE;
 			case LEXUNITS:
-				return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + FrameNetContract.AUTHORITY + '.' + LexUnits.TABLE; //
+				return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + FrameNetContract.AUTHORITY + '.' + LexUnits.TABLE;
 			case LEXUNITS_X_BY_LEXUNIT:
-				return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + FrameNetContract.AUTHORITY + '.' + LexUnits_X.TABLE_BY_LEXUNIT; //
+				return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + FrameNetContract.AUTHORITY + '.' + LexUnits_X.TABLE_BY_LEXUNIT;
 			case FRAME:
-				return SqlUNetContract.VENDOR + ".android.cursor.item/" + SqlUNetContract.VENDOR + '.' + FrameNetContract.AUTHORITY + '.' + Frames.TABLE; //
+				return SqlUNetContract.VENDOR + ".android.cursor.item/" + SqlUNetContract.VENDOR + '.' + FrameNetContract.AUTHORITY + '.' + Frames.TABLE;
 			case FRAMES:
-				return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + FrameNetContract.AUTHORITY + '.' + Frames.TABLE; //
+				return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + FrameNetContract.AUTHORITY + '.' + Frames.TABLE;
 			case FRAMES_X_BY_FRAME:
-				return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + FrameNetContract.AUTHORITY + '.' + Frames_X.TABLE_BY_FRAME; //
+				return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + FrameNetContract.AUTHORITY + '.' + Frames_X.TABLE_BY_FRAME;
 			case FRAMES_RELATED:
-				return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + FrameNetContract.AUTHORITY + '.' + Frames_Related.TABLE; //
+				return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + FrameNetContract.AUTHORITY + '.' + Frames_Related.TABLE;
 			case SENTENCE:
-				return SqlUNetContract.VENDOR + ".android.cursor.item/" + SqlUNetContract.VENDOR + '.' + FrameNetContract.AUTHORITY + '.' + Sentences.TABLE; //
+				return SqlUNetContract.VENDOR + ".android.cursor.item/" + SqlUNetContract.VENDOR + '.' + FrameNetContract.AUTHORITY + '.' + Sentences.TABLE;
 			case SENTENCES:
-				return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + FrameNetContract.AUTHORITY + '.' + Sentences.TABLE; //
+				return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + FrameNetContract.AUTHORITY + '.' + Sentences.TABLE;
 			case ANNOSET:
-				return SqlUNetContract.VENDOR + ".android.cursor.item/" + SqlUNetContract.VENDOR + '.' + FrameNetContract.AUTHORITY + '.' + AnnoSets.TABLE; //
+				return SqlUNetContract.VENDOR + ".android.cursor.item/" + SqlUNetContract.VENDOR + '.' + FrameNetContract.AUTHORITY + '.' + AnnoSets.TABLE;
 			case ANNOSETS:
-				return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + FrameNetContract.AUTHORITY + '.' + AnnoSets.TABLE; //
+				return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + FrameNetContract.AUTHORITY + '.' + AnnoSets.TABLE;
 			case SENTENCES_LAYERS_X:
-				return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + FrameNetContract.AUTHORITY + '.' + Sentences_Layers_X.TABLE; //
+				return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + FrameNetContract.AUTHORITY + '.' + Sentences_Layers_X.TABLE;
 			case ANNOSETS_LAYERS_X:
-				return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + FrameNetContract.AUTHORITY + '.' + AnnoSets_Layers_X.TABLE; //
+				return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + FrameNetContract.AUTHORITY + '.' + AnnoSets_Layers_X.TABLE;
 			case PATTERNS_LAYERS_X:
-				return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + FrameNetContract.AUTHORITY + '.' + Patterns_Layers_X.TABLE; //
+				return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + FrameNetContract.AUTHORITY + '.' + Patterns_Layers_X.TABLE;
 			case VALENCEUNITS_LAYERS_X:
-				return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + FrameNetContract.AUTHORITY + '.' + ValenceUnits_Layers_X.TABLE; //
+				return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + FrameNetContract.AUTHORITY + '.' + ValenceUnits_Layers_X.TABLE;
 			case WORDS_LEXUNITS_FRAMES:
-				return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + FrameNetContract.AUTHORITY + '.' + Words_LexUnits_Frames.TABLE; //
+				return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + FrameNetContract.AUTHORITY + '.' + Words_LexUnits_Frames.TABLE;
 			case FRAMES_FES:
-				return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + FrameNetContract.AUTHORITY + '.' + Frames_FEs.TABLE; //
+				return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + FrameNetContract.AUTHORITY + '.' + Frames_FEs.TABLE;
 			case LEXUNITS_SENTENCES:
-				return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + FrameNetContract.AUTHORITY + '.' + LexUnits_Sentences.TABLE; //
+				return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + FrameNetContract.AUTHORITY + '.' + LexUnits_Sentences.TABLE;
 			case LEXUNITS_GOVERNORS:
-				return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + FrameNetContract.AUTHORITY + '.' + LexUnits_Governors.TABLE; //
+				return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + FrameNetContract.AUTHORITY + '.' + LexUnits_Governors.TABLE;
 			case LEXUNITS_REALIZATIONS:
-				return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + FrameNetContract.AUTHORITY + '.' + LexUnits_FERealizations_ValenceUnits.TABLE; //
+				return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + FrameNetContract.AUTHORITY + '.' + LexUnits_FERealizations_ValenceUnits.TABLE;
 			case LEXUNITS_REALIZATIONS_BY_REALIZATION:
-				return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + FrameNetContract.AUTHORITY + '.' + LexUnits_FERealizations_ValenceUnits.TABLE_BY_REALIZATION; //
+				return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + FrameNetContract.AUTHORITY + '.' + LexUnits_FERealizations_ValenceUnits.TABLE_BY_REALIZATION;
 			case LEXUNITS_GROUPREALIZATIONS:
-				return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + FrameNetContract.AUTHORITY + '.' + LexUnits_FEGroupRealizations_Patterns_ValenceUnits.TABLE; //
+				return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + FrameNetContract.AUTHORITY + '.' + LexUnits_FEGroupRealizations_Patterns_ValenceUnits.TABLE;
 			case LEXUNITS_GROUPREALIZATIONS_BY_PATTERN:
-				return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + FrameNetContract.AUTHORITY + '.' + LexUnits_FEGroupRealizations_Patterns_ValenceUnits.TABLE_BY_PATTERN; //
+				return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + FrameNetContract.AUTHORITY + '.' + LexUnits_FEGroupRealizations_Patterns_ValenceUnits.TABLE_BY_PATTERN;
 			case PATTERNS_SENTENCES:
-				return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + FrameNetContract.AUTHORITY + '.' + Patterns_Sentences.TABLE; //
+				return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + FrameNetContract.AUTHORITY + '.' + Patterns_Sentences.TABLE;
 			case VALENCEUNITS_SENTENCES:
-				return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + FrameNetContract.AUTHORITY + '.' + ValenceUnits_Sentences.TABLE; //
+				return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + FrameNetContract.AUTHORITY + '.' + ValenceUnits_Sentences.TABLE;
 			case GOVERNORS_ANNOSETS:
-				return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + FrameNetContract.AUTHORITY + '.' + Governors_AnnoSets_Sentences.TABLE; //
-
+				return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + FrameNetContract.AUTHORITY + '.' + Governors_AnnoSets_Sentences.TABLE;
 			// S E A R C H
 			case LOOKUP_FTS_SENTENCES:
-				return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + FrameNetContract.AUTHORITY + '.' + Lookup_FnSentences.TABLE; //
-
+				return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + FrameNetContract.AUTHORITY + '.' + Lookup_FnSentences.TABLE;
 			default:
-				throw new UnsupportedOperationException("Illegal MIME type"); //
+				throw new UnsupportedOperationException("Illegal MIME type");
 		}
 	}
 
@@ -212,8 +209,7 @@ public class FrameNetProvider extends SqlUNetProvider
 		// choose the table to query and a sort order based on the code returned for the incoming URI
 		String actualSelection = selection;
 		final int code = FrameNetProvider.uriMatcher.match(uri);
-		Log.d(FrameNetProvider.TAG + "URI", String.format("%s (code %s)", uri, code)); //
-
+		Log.d(FrameNetProvider.TAG + "URI", String.format("%s (code %s)", uri, code));
 		String groupBy = null;
 		String table;
 		switch (code)
@@ -237,77 +233,77 @@ public class FrameNetProvider extends SqlUNetProvider
 				table = LexUnits.TABLE;
 				if (actualSelection != null)
 				{
-					actualSelection += " AND "; //
+					actualSelection += " AND ";
 				}
 				else
 				{
-					actualSelection = ""; //
+					actualSelection = "";
 				}
-				actualSelection += LexUnits.LUID + " = " + uri.getLastPathSegment(); //
+				actualSelection += LexUnits.LUID + " = " + uri.getLastPathSegment();
 				break;
 
 			case FRAME:
 				table = Frames.TABLE;
 				if (actualSelection != null)
 				{
-					actualSelection += " AND "; //
+					actualSelection += " AND ";
 				}
 				else
 				{
-					actualSelection = ""; //
+					actualSelection = "";
 				}
-				actualSelection += Frames.FRAMEID + " = " + uri.getLastPathSegment(); //
+				actualSelection += Frames.FRAMEID + " = " + uri.getLastPathSegment();
 				break;
 
 			case SENTENCE:
 				table = uri.getLastPathSegment();
 				if (actualSelection != null)
 				{
-					actualSelection += " AND "; //
+					actualSelection += " AND ";
 				}
 				else
 				{
-					actualSelection = ""; //
+					actualSelection = "";
 				}
-				actualSelection += Sentences.SENTENCEID + " = " + uri.getLastPathSegment(); //
+				actualSelection += Sentences.SENTENCEID + " = " + uri.getLastPathSegment();
 				break;
 
 			case ANNOSET:
 				table = uri.getLastPathSegment();
 				if (actualSelection != null)
 				{
-					actualSelection += " AND "; //
+					actualSelection += " AND ";
 				}
 				else
 				{
-					actualSelection = ""; //
+					actualSelection = "";
 				}
-				actualSelection += AnnoSets.ANNOSETID + " = " + uri.getLastPathSegment(); //
+				actualSelection += AnnoSets.ANNOSETID + " = " + uri.getLastPathSegment();
 				break;
 
 			// J O I N S
 
 			case FRAMES_X_BY_FRAME:
-				groupBy = "frameid"; //
+				groupBy = "frameid";
 				table = "fnframes " + //
 						"LEFT JOIN fnframes_semtypes USING (frameid) " + //
-						"LEFT JOIN fnsemtypes USING (semtypeid)"; //
+						"LEFT JOIN fnsemtypes USING (semtypeid)";
 				break;
 
 			case FRAMES_RELATED:
 				table = "fnframes_related AS " + FrameNetContract.RELATED + ' ' + //
 						"LEFT JOIN fnframes AS " + FrameNetContract.SRC + " USING (frameid) " + //
 						"LEFT JOIN fnframes AS " + FrameNetContract.DEST + " ON (frame2id = " + FrameNetContract.DEST + ".frameid) " + //  //  //
-						"LEFT JOIN fnframerelations USING (relationid)"; //
+						"LEFT JOIN fnframerelations USING (relationid)";
 				break;
 
 			case LEXUNITS_X_BY_LEXUNIT:
-				groupBy = "luid"; //
+				groupBy = "luid";
 				table = "fnlexunits AS " + FrameNetContract.LU + ' ' + //
 						"LEFT JOIN fnframes AS " + FrameNetContract.FRAME + " USING (frameid) " + //
 						"LEFT JOIN fnposes AS " + FrameNetContract.POS + " ON (" + FrameNetContract.LU + ".posid = " + FrameNetContract.POS + ".posid) " + //
 						"LEFT JOIN fnfetypes AS " + FrameNetContract.FETYPE + " ON (incorporatedfetypeid = " + FrameNetContract.FETYPE + ".fetypeid) " + //
-						"LEFT JOIN fnfes AS " + FrameNetContract.FE + " ON (incorporatedfeid = " + FrameNetContract.FE + ".feid)"; //
+						"LEFT JOIN fnfes AS " + FrameNetContract.FE + " ON (incorporatedfeid = " + FrameNetContract.FE + ".feid)";
 				break;
 
 			case SENTENCES_LAYERS_X:
@@ -327,7 +323,7 @@ public class FrameNetProvider extends SqlUNetProvider
 						"LEFT JOIN fnlabelitypes USING (labelitypeid) " + //
 						"WHERE sentenceid = ? AND labeltypeid IS NOT NULL " + //
 						"GROUP BY layerid " + //
-						"ORDER BY rank,layerid,start,end)"; //
+						"ORDER BY rank,layerid,start,end)";
 				break;
 
 			case ANNOSETS_LAYERS_X:
@@ -347,7 +343,7 @@ public class FrameNetProvider extends SqlUNetProvider
 						"LEFT JOIN fnlabelitypes USING (labelitypeid) " + //
 						"WHERE annosetid = ? AND labeltypeid IS NOT NULL " + //
 						"GROUP BY layerid " + //
-						"ORDER BY rank,layerid,start,end)"; //
+						"ORDER BY rank,layerid,start,end)";
 				break;
 
 			case PATTERNS_LAYERS_X:
@@ -368,7 +364,7 @@ public class FrameNetProvider extends SqlUNetProvider
 						"LEFT JOIN fnlabelitypes USING (labelitypeid) " + //
 						"WHERE patternid = ? AND labeltypeid IS NOT NULL " + //
 						"GROUP BY layerid " + //
-						"ORDER BY rank,layerid,start,end)"; //
+						"ORDER BY rank,layerid,start,end)";
 				break;
 
 			case VALENCEUNITS_LAYERS_X:
@@ -389,7 +385,7 @@ public class FrameNetProvider extends SqlUNetProvider
 						"LEFT JOIN fnlabelitypes USING (labelitypeid) " + //
 						"WHERE vuid = ? AND labeltypeid IS NOT NULL " + //
 						"GROUP BY layerid " + //
-						"ORDER BY rank,layerid,start,end)"; //
+						"ORDER BY rank,layerid,start,end)";
 				break;
 
 			case WORDS_LEXUNITS_FRAMES:
@@ -400,11 +396,11 @@ public class FrameNetProvider extends SqlUNetProvider
 						"LEFT JOIN fnframes USING (frameid) " + //
 						"LEFT JOIN fnposes AS " + FrameNetContract.POS + " ON (" + FrameNetContract.LU + ".posid = " + FrameNetContract.POS + ".posid) " + //
 						"LEFT JOIN fnfes AS " + FrameNetContract.FE + " ON (incorporatedfeid = feid) " + //
-						"LEFT JOIN fnfetypes AS " + FrameNetContract.FETYPE + " ON (incorporatedfetypeid = " + FrameNetContract.FE + ".fetypeid)"; //
+						"LEFT JOIN fnfetypes AS " + FrameNetContract.FETYPE + " ON (incorporatedfetypeid = " + FrameNetContract.FE + ".fetypeid)";
 				break;
 
 			case FRAMES_FES_BY_FE:
-				groupBy = "feid"; //
+				groupBy = "feid";
 				//$FALL-THROUGH$
 				//noinspection fallthrough
 			case FRAMES_FES:
@@ -413,22 +409,22 @@ public class FrameNetProvider extends SqlUNetProvider
 						"LEFT JOIN fnfetypes USING (fetypeid) " + //
 						"LEFT JOIN fncoretypes USING (coretypeid) " + //
 						"LEFT JOIN fnfes_semtypes USING (feid) " + //
-						"LEFT JOIN fnsemtypes USING (semtypeid)"; //
+						"LEFT JOIN fnsemtypes USING (semtypeid)";
 				break;
 
 			case LEXUNITS_SENTENCES_BY_SENTENCE:
-				groupBy = FrameNetContract.SENTENCE + ".sentenceid"; //
+				groupBy = FrameNetContract.SENTENCE + ".sentenceid";
 				//$FALL-THROUGH$
 				//noinspection fallthrough
 			case LEXUNITS_SENTENCES:
 				table = "fnlexunits AS " + FrameNetContract.LU + ' ' + //
 						"LEFT JOIN fnsubcorpuses USING (luid) " + //
 						"LEFT JOIN fnsubcorpuses_sentences USING (subcorpusid) " + //
-						"INNER JOIN fnsentences AS " + FrameNetContract.SENTENCE + " USING (sentenceid)"; //
+						"INNER JOIN fnsentences AS " + FrameNetContract.SENTENCE + " USING (sentenceid)";
 				break;
 
 			case LEXUNITS_SENTENCES_ANNOSETS_LAYERS_LABELS_BY_SENTENCE:
-				groupBy = FrameNetContract.SENTENCE + ".sentenceid"; //
+				groupBy = FrameNetContract.SENTENCE + ".sentenceid";
 				//$FALL-THROUGH$
 				//noinspection fallthrough
 			case LEXUNITS_SENTENCES_ANNOSETS_LAYERS_LABELS:
@@ -441,24 +437,24 @@ public class FrameNetProvider extends SqlUNetProvider
 						"LEFT JOIN fnlayertypes USING (layertypeid) " + //
 						"LEFT JOIN fnlabels USING (layerid) " + //
 						"LEFT JOIN fnlabeltypes USING (labeltypeid) " + //
-						"LEFT JOIN fnlabelitypes USING (labelitypeid)"; //
+						"LEFT JOIN fnlabelitypes USING (labelitypeid)";
 				break;
 
 			case LEXUNITS_GOVERNORS:
 				table = "fnlexunits " + //
 						"INNER JOIN fnlexunits_governors USING (luid) " + //
 						"INNER JOIN fngovernors USING (governorid) " + //
-						"LEFT JOIN fnwords USING (fnwordid)"; //
+						"LEFT JOIN fnwords USING (fnwordid)";
 				break;
 
 			case GOVERNORS_ANNOSETS:
 				table = "fngovernors_annosets " + //
 						"LEFT JOIN fnannosets USING (annosetid) " + //
-						"LEFT JOIN fnsentences USING (sentenceid)"; //
+						"LEFT JOIN fnsentences USING (sentenceid)";
 				break;
 
 			case LEXUNITS_REALIZATIONS_BY_REALIZATION:
-				groupBy = "ferid"; //
+				groupBy = "ferid";
 				//$FALL-THROUGH$
 				//noinspection fallthrough
 			case LEXUNITS_REALIZATIONS:
@@ -467,11 +463,11 @@ public class FrameNetProvider extends SqlUNetProvider
 						"LEFT JOIN fnvalenceunits USING (ferid) " + //
 						"LEFT JOIN fnfetypes USING (fetypeid) " + //
 						"LEFT JOIN fngftypes USING (gfid) " + //
-						"LEFT JOIN fnpttypes USING (ptid)"; //
+						"LEFT JOIN fnpttypes USING (ptid)";
 				break;
 
 			case LEXUNITS_GROUPREALIZATIONS_BY_PATTERN:
-				groupBy = "patternid"; //
+				groupBy = "patternid";
 				//$FALL-THROUGH$
 				//noinspection fallthrough
 			case LEXUNITS_GROUPREALIZATIONS:
@@ -482,35 +478,35 @@ public class FrameNetProvider extends SqlUNetProvider
 						"LEFT JOIN fnvalenceunits USING (vuid) " + //
 						"LEFT JOIN fnfetypes USING (fetypeid) " + //
 						"LEFT JOIN fngftypes USING (gfid) " + //
-						"LEFT JOIN fnpttypes USING (ptid)"; //
+						"LEFT JOIN fnpttypes USING (ptid)";
 				break;
 
 			case PATTERNS_SENTENCES:
 				table = "fnpatterns_annosets " + //
 						"LEFT JOIN fnannosets AS " + FrameNetContract.ANNOSET + " USING (annosetid) " + //
-						"LEFT JOIN fnsentences AS " + FrameNetContract.SENTENCE + " USING (sentenceid)"; //
+						"LEFT JOIN fnsentences AS " + FrameNetContract.SENTENCE + " USING (sentenceid)";
 				break;
 
 			case VALENCEUNITS_SENTENCES:
 				table = "fnvalenceunits_annosets " + //
 						"LEFT JOIN fnannosets AS " + FrameNetContract.ANNOSET + " USING (annosetid) " + //
-						"LEFT JOIN fnsentences AS " + FrameNetContract.SENTENCE + " USING (sentenceid)"; //
+						"LEFT JOIN fnsentences AS " + FrameNetContract.SENTENCE + " USING (sentenceid)";
 				break;
 
 			case LOOKUP_FTS_SENTENCES:
-				table = "fnsentences_text_fts4"; //
+				table = "fnsentences_text_fts4";
 				break;
 
 			default:
 			case UriMatcher.NO_MATCH:
-				throw new RuntimeException("Malformed URI " + uri); //
+				throw new RuntimeException("Malformed URI " + uri);
 		}
 
 		if (SqlUNetProvider.debugSql)
 		{
 			final String sql = SQLiteQueryBuilder.buildQueryString(false, table, projection, actualSelection, groupBy, null, sortOrder, null);
-			Log.d(FrameNetProvider.TAG + "SQL", sql); //
-			Log.d(FrameNetProvider.TAG + "ARGS", SqlUNetProvider.argsToString(selectionArgs)); //
+			Log.d(FrameNetProvider.TAG + "SQL", sql);
+			Log.d(FrameNetProvider.TAG + "ARGS", SqlUNetProvider.argsToString(selectionArgs));
 		}
 
 		// do query
@@ -521,8 +517,8 @@ public class FrameNetProvider extends SqlUNetProvider
 		catch (SQLiteException e)
 		{
 			final String sql = SQLiteQueryBuilder.buildQueryString(false, table, projection, actualSelection, groupBy, null, sortOrder, null);
-			Log.d(TAG + "SQL", sql); //
-			Log.e(TAG, "FrameNet provider query failed", e); //
+			Log.d(TAG + "SQL", sql);
+			Log.e(TAG, "FrameNet provider query failed", e);
 			return null;
 		}
 	}

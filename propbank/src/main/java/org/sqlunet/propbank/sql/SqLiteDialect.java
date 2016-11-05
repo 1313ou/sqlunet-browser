@@ -10,24 +10,21 @@ class SqLiteDialect
 	static final String PropBankRoleset = //
 			"SELECT rolesetid, rolesetname, rolesethead, rolesetdescr " + //
 					"FROM pbrolesets " + //
-					"WHERE rolesetid = ? ;"; //
-
+					"WHERE rolesetid = ? ;";
 	// query for role set  from word
 	static final String PropBankRolesetFromWord = //
 			"SELECT wordid, rolesetid, rolesetname, rolesethead, rolesetdescr " + //
 					"FROM words AS w " + //
 					"INNER JOIN pbwords USING (wordid) " + //
 					"LEFT JOIN pbrolesets USING (pbwordid) " + //
-					"WHERE w.lemma = ? "; //
-
+					"WHERE w.lemma = ? ";
 	// query for role set  from word id
 	static final String PropBankRolesetFromWordId = //
 			"SELECT rolesetid, rolesetname, rolesethead, rolesetdescr " + //
 					"FROM words " + //
 					"INNER JOIN pbwords USING (wordid) " + //
 					"INNER JOIN pbrolesets USING (pbwordid) " + //
-					"WHERE wordid = ? ;"; //
-
+					"WHERE wordid = ? ;";
 	// query for roles
 	static final String PropBankRolesQuery = //
 			"SELECT roleid,roledescr,narg,funcname,thetaname " + //
@@ -36,8 +33,7 @@ class SqLiteDialect
 					"LEFT JOIN pbfuncs USING (func) " + //
 					"LEFT JOIN pbvnthetas USING (theta) " + //
 					"WHERE rolesetid = ? " + //
-					"ORDER BY narg;"; //
-
+					"ORDER BY narg;";
 	// query for examples rel(n~arg|n~arg|..)
 	static final String PropBankExamplesShortQuery = //
 			"SELECT exampleid,text,rel,GROUP_CONCAT(narg||'~'||" +
@@ -56,8 +52,7 @@ class SqLiteDialect
 					"LEFT JOIN pbpersons USING (person) " + //
 					"WHERE rolesetid = ? " + //
 					"GROUP BY e.exampleid " + //
-					"ORDER BY e.exampleid,narg;"; //
-
+					"ORDER BY e.exampleid,narg;";
 	// query for examples rel(n~arg|n~arg|..)
 	static final String PropBankExamplesQuery = //
 			"SELECT exampleid,text,rel,GROUP_CONCAT(narg||'~'||" + //
@@ -80,5 +75,5 @@ class SqLiteDialect
 					"LEFT JOIN pbvnthetas USING (theta) " + //
 					"WHERE rolesetid = ? " + //
 					"GROUP BY e.exampleid " + //
-					"ORDER BY e.exampleid,narg;"; //
+					"ORDER BY e.exampleid,narg;";
 }

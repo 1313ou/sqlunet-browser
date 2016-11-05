@@ -22,8 +22,7 @@ import java.util.List;
  */
 public class Status
 {
-	static private final String TAG = "SqlUNetStatus"; //
-
+	static private final String TAG = "SqlUNetStatus";
 	// status flags
 
 	private static final int EXISTS = 0x1;
@@ -71,7 +70,7 @@ public class Status
 			}
 			catch (Exception e)
 			{
-				Log.e(TAG, "While getting status", e); //
+				Log.e(TAG, "While getting status", e);
 				return status;
 			}
 
@@ -84,13 +83,12 @@ public class Status
 					"index_fnwords_wordid", "index_fnframes_related_frameid", "index_fnframes_related_frame2id", "index_fnlexemes_fnwordid", "index_fnfes_frameid", //
 					"index_fnferealizations_luid", "index_fnvalenceunits_ferid", "index_fnfegrouprealizations_luid", "index_fnpatterns_valenceunits_patternid", "index_fnpatterns_fegrid", //
 					"index_fnsubcorpuses_luid", "index_fnannosets_sentenceid", "index_fnlayers_annosetid", "index_fnlabels_layerid", //
-					"index_pm_wordid", "index_pm_synsetid"); //
-			boolean existsPm = contains(existingTablesAndIndexes, "pmvn", "pmpb", "pmfn"); //
-			boolean existsTsWn = contains(existingTablesAndIndexes, "words_lemma_fts4", "synsets_definition_fts4", "samples_sample_fts4"); //
-			boolean existsTsVn = contains(existingTablesAndIndexes, "vnexamples_example_fts4"); //
-			boolean existsTsPb = contains(existingTablesAndIndexes, "pbexamples_text_fts4"); //
-			boolean existsTsFn = contains(existingTablesAndIndexes, "fnsentences_text_fts4"); //
-
+					"index_pm_wordid", "index_pm_synsetid");
+			boolean existsPm = contains(existingTablesAndIndexes, "pmvn", "pmpb", "pmfn");
+			boolean existsTsWn = contains(existingTablesAndIndexes, "words_lemma_fts4", "synsets_definition_fts4", "samples_sample_fts4");
+			boolean existsTsVn = contains(existingTablesAndIndexes, "vnexamples_example_fts4");
+			boolean existsTsPb = contains(existingTablesAndIndexes, "pbexamples_text_fts4");
+			boolean existsTsFn = contains(existingTablesAndIndexes, "fnsentences_text_fts4");
 			if (existsIdx)
 			{
 				status |= EXISTS_INDEXES;
@@ -158,8 +156,7 @@ public class Status
 				+ "WHEN " + ManagerContract.TablesAndIndices.TYPE + " = 'view' THEN '2' " //
 				+ "WHEN " + ManagerContract.TablesAndIndices.TYPE + " = 'index' THEN '3' " //
 				+ "ELSE " + ManagerContract.TablesAndIndices.TYPE + " END ASC," //
-				+ ManagerContract.TablesAndIndices.NAME + " ASC"; //
-
+				+ ManagerContract.TablesAndIndices.NAME + " ASC";
 		final Cursor cursor = context.getContentResolver().query( //
 				Uri.parse(TablesAndIndices.CONTENT_URI), //
 				new String[]{TablesAndIndices.TYPE, TablesAndIndices.NAME}, // projection

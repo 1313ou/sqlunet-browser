@@ -20,8 +20,7 @@ import java.util.zip.ZipInputStream;
 @SuppressWarnings("unused")
 class FileUtils
 {
-	// private static final String TAG = "FileUtils"; //
-
+	// private static final String TAG = "FileUtils";
 	// C O P Y A S S E T
 
 	/**

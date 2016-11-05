@@ -47,8 +47,7 @@ public class PropBankFragment extends Fragment
 
 		// root node
 		final TreeNode root = TreeNode.makeRoot();
-		final TreeNode queryNode = TreeFactory.addTreeNode(root, "PropBank", R.drawable.propbank, getActivity()); //
-
+		final TreeNode queryNode = TreeFactory.addTreeNode(root, "PropBank", R.drawable.propbank, getActivity());
 		// tree
 		this.treeView = new TreeView(getActivity(), root);
 		this.treeView.setDefaultAnimation(true);
@@ -59,7 +58,7 @@ public class PropBankFragment extends Fragment
 		// saved state
 		if (savedInstanceState != null)
 		{
-			final String state = savedInstanceState.getString("treeViewState"); //
+			final String state = savedInstanceState.getString("treeViewState");
 			if (state != null && !state.isEmpty())
 			{
 				this.treeView.restoreState(state);
@@ -84,6 +83,6 @@ public class PropBankFragment extends Fragment
 	public void onSaveInstanceState(final Bundle outState)
 	{
 		super.onSaveInstanceState(outState);
-		outState.putString("treeViewState", this.treeView.getSaveState()); //
+		outState.putString("treeViewState", this.treeView.getSaveState());
 	}
 }

@@ -26,8 +26,7 @@ public class HelpActivity extends Activity
 	/**
 	 * Log tag
 	 */
-	private static final String TAG = "Help activity"; //
-
+	private static final String TAG = "Help activity";
 	/**
 	 * Show help
 	 */
@@ -87,12 +86,12 @@ public class HelpActivity extends Activity
 		});
 
 		final String lang = getString(R.string.lang_tag);
-		String url = "file:///android_asset/help/"; //
+		String url = "file:///android_asset/help/";
 		if (!lang.isEmpty())
 		{
 			url += lang + '-';
 		}
-		url += "index.html"; //
+		url += "index.html";
 		webview.loadUrl(url);
 	}
 

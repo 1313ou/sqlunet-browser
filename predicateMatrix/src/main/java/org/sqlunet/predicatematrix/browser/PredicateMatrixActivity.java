@@ -39,8 +39,7 @@ import org.sqlunet.provider.SqlUNetContract;
  */
 public class PredicateMatrixActivity extends Activity
 {
-	private static final String TAG = "PredicateMatrixActivity"; //
-
+	private static final String TAG = "PredicateMatrixActivity";
 	/**
 	 * PredicateMatrix mode spinner
 	 */
@@ -59,8 +58,7 @@ public class PredicateMatrixActivity extends Activity
 	/**
 	 * Selector mode state
 	 */
-	private static final String STATE_SELECTED_PM_MODE = "org.sqlunet.browser.predicatematrix.mode.selected"; //
-
+	private static final String STATE_SELECTED_PM_MODE = "org.sqlunet.browser.predicatematrix.mode.selected";
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
 	{
@@ -244,7 +242,7 @@ public class PredicateMatrixActivity extends Activity
 			{
 				searchView.clearFocus();
 				searchView.setFocusable(false);
-				searchView.setQuery("", false); //
+				searchView.setQuery("", false);
 				closeKeyboard();
 				searchMenuItem.collapseActionView();
 
@@ -346,7 +344,7 @@ public class PredicateMatrixActivity extends Activity
 		}
 
 		// status
-		Log.d(PredicateMatrixActivity.TAG, "PredicateMatrix search " + pointer); //
+		Log.d(PredicateMatrixActivity.TAG, "PredicateMatrix search " + pointer);
 		this.pointer = pointer;
 		this.query = null;
 
@@ -373,7 +371,7 @@ public class PredicateMatrixActivity extends Activity
 		}
 
 		// status
-		Log.d(PredicateMatrixActivity.TAG, "PredicateMatrix search " + query); //
+		Log.d(PredicateMatrixActivity.TAG, "PredicateMatrix search " + query);
 		this.query = query;
 		this.pointer = null;
 

@@ -67,13 +67,11 @@ import org.sqlunet.wordnet.provider.WordNetContract.PosTypes;
  */
 public class MainActivity extends Activity
 {
-	static private final String TAG = "SqlUNet Main"; //
-
+	static private final String TAG = "SqlUNet Main";
 	/**
 	 * Selector mode state
 	 */
-	private static final String STATE_SELECTED_SELECTOR_MODE = "org.sqlunet.browser.selector.selected"; //
-
+	private static final String STATE_SELECTED_SELECTOR_MODE = "org.sqlunet.browser.selector.selected";
 	/**
 	 * Search view
 	 */
@@ -100,8 +98,7 @@ public class MainActivity extends Activity
 		Settings.initialize(this);
 
 		// info
-		Log.d(MainActivity.TAG, "DATABASE=" + StorageSettings.getDatabasePath(getBaseContext())); //
-
+		Log.d(MainActivity.TAG, "DATABASE=" + StorageSettings.getDatabasePath(getBaseContext()));
 		// layout
 		setContentView(R.layout.activity_main);
 
@@ -253,7 +250,7 @@ public class MainActivity extends Activity
 	@Override
 	protected void onNewIntent(final Intent intent)
 	{
-		Log.d(MainActivity.TAG, "NewIntent " + intent); //
+		Log.d(MainActivity.TAG, "NewIntent " + intent);
 		handleIntent(intent);
 	}
 
@@ -270,14 +267,14 @@ public class MainActivity extends Activity
 		// search action
 		if (Intent.ACTION_SEARCH.equals(action))
 		{
-			this.statusView.setText("search: '" + query + "'"); //
+			this.statusView.setText("search: '" + query + "'");
 			handleSearch(query);
 		}
 
 		// view action
 		else if (Intent.ACTION_VIEW.equals(action))
 		{
-			this.statusView.setText("query: '" + query + "'"); //
+			this.statusView.setText("query: '" + query + "'");
 			this.searchView.setQuery(query, true); // submit
 		}
 	}
@@ -417,7 +414,7 @@ public class MainActivity extends Activity
 				intent.putExtra(SqlUNetContract.ARG_QUERYURI, LinkTypes.CONTENT_URI);
 				intent.putExtra(SqlUNetContract.ARG_QUERYID, LinkTypes.LINKID);
 				intent.putExtra(SqlUNetContract.ARG_QUERYITEMS, new String[]{LinkTypes.LINKID, LinkTypes.LINK, LinkTypes.RECURSESSELECT});
-				intent.putExtra(SqlUNetContract.ARG_QUERYSORT, LinkTypes.LINKID + " ASC"); //
+				intent.putExtra(SqlUNetContract.ARG_QUERYSORT, LinkTypes.LINKID + " ASC");
 				intent.putExtra(SqlUNetContract.ARG_QUERYLAYOUT, R.layout.item_table3);
 				break;
 
@@ -475,7 +472,7 @@ public class MainActivity extends Activity
 				return true;
 
 			case R.id.action_appsettings:
-				Settings.applicationSettings(this, "org.sqlunet.browser"); //
+				Settings.applicationSettings(this, "org.sqlunet.browser");
 				return true;
 
 			default:
@@ -505,7 +502,7 @@ public class MainActivity extends Activity
 			public boolean onQueryTextSubmit(final String query)
 			{
 				searchView.clearFocus();
-				searchView.setQuery("", false); //
+				searchView.setQuery("", false);
 				handleSearch(query);
 				return true;
 			}
@@ -637,7 +634,7 @@ public class MainActivity extends Activity
 			searchIntent.putExtra(SqlUNetContract.ARG_QUERYSTRING, query);
 			searchIntent.putExtra(SqlUNetContract.ARG_QUERYRECURSE, recurse);
 		}
-		Log.d(MainActivity.TAG, "SEARCH " + searchIntent); //
+		Log.d(MainActivity.TAG, "SEARCH " + searchIntent);
 		startActivity(searchIntent);
 	}
 

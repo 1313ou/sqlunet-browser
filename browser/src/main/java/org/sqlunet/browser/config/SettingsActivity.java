@@ -53,7 +53,7 @@ public class SettingsActivity extends PreferenceActivity
 			else
 			{
 				// For all other preferences, set the summary to the value's simple string representation.
-				final String stringValue = value != null ? value.toString() : "<default>"; //
+				final String stringValue = value != null ? value.toString() : "<default>";
 				preference.setSummary(stringValue);
 			}
 			return true;
@@ -158,9 +158,9 @@ public class SettingsActivity extends PreferenceActivity
 		Object defaultValue;
 		if (entries == null || entries.length == 0 || entryValues == null || entryValues.length == 0)
 		{
-			entries = new CharSequence[]{"auto"}; //
-			entryValues = new CharSequence[]{"auto"}; //
-			defaultValue = "auto"; //
+			entries = new CharSequence[]{"auto"};
+			entryValues = new CharSequence[]{"auto"};
+			defaultValue = "auto";
 		}
 		else
 		{

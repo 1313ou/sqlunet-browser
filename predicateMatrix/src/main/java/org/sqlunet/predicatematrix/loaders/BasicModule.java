@@ -48,8 +48,7 @@ import java.util.TreeSet;
  */
 abstract class BasicModule extends Module
 {
-	// private static final String LOG = "PredicateMatrix"; //
-
+	// private static final String LOG = "PredicateMatrix";
 	// resources
 
 	/**
@@ -90,7 +89,7 @@ abstract class BasicModule extends Module
 			@Override
 			protected String getSelection()
 			{
-				return PredicateMatrix.WORD + "= ?"; //
+				return PredicateMatrix.WORD + "= ?";
 			}
 
 			@Override
@@ -114,7 +113,7 @@ abstract class BasicModule extends Module
 			@Override
 			protected String getSelection()
 			{
-				return PredicateMatrix.WORD + "= ?"; //
+				return PredicateMatrix.WORD + "= ?";
 			}
 
 			@Override
@@ -139,7 +138,7 @@ abstract class BasicModule extends Module
 			@Override
 			protected String getSelection()
 			{
-				return PredicateMatrix.PMROLEID + "= ?"; //
+				return PredicateMatrix.PMROLEID + "= ?";
 			}
 
 			@Override
@@ -1135,7 +1134,7 @@ abstract class BasicModule extends Module
 		TreeNode displayPmRole(final TreeNode parentNode, final PmRole pmRole)
 		{
 			final SpannableStringBuilder pmsb = new SpannableStringBuilder();
-			// rolesb.append("predicate role "); //
+			// rolesb.append("predicate role ");
 			if (pmRole.pmRole != null)
 			{
 				final String roleName = pmRole.toRoleString();
@@ -1160,7 +1159,7 @@ abstract class BasicModule extends Module
 		TreeNode displayPmRow(final TreeNode parentNode, final PmRow pmRow, final WnData wnData)
 		{
 			final SpannableStringBuilder pmsb = new SpannableStringBuilder();
-			// rolesb.append("predicate role "); //
+			// rolesb.append("predicate role ");
 			if (pmRow.pmRole != null)
 			{
 				final String rowName = pmRow.toRoleString();
@@ -1374,26 +1373,25 @@ abstract class BasicModule extends Module
 	static void parsePmSources(final SpannableStringBuilder sb, final int sources)
 	{
 		if ((sources & SEMLINK) != 0)
-			Spanner.append(sb, "SEMLINK ", 0, PredicateMatrixFactories.dataFactory); //
+			Spanner.append(sb, "SEMLINK ", 0, PredicateMatrixFactories.dataFactory);
 		if ((sources & SYNONYMS) != 0)
-			Spanner.append(sb, "SYNONYMS ", 0, PredicateMatrixFactories.dataFactory); //
+			Spanner.append(sb, "SYNONYMS ", 0, PredicateMatrixFactories.dataFactory);
 		if ((sources & FRAME) != 0)
-			Spanner.append(sb, "FRAME ", 0, PredicateMatrixFactories.dataFactory); //
+			Spanner.append(sb, "FRAME ", 0, PredicateMatrixFactories.dataFactory);
 		if ((sources & FN_FE) != 0)
-			Spanner.append(sb, "FN_FE", 0, PredicateMatrixFactories.dataFactory); //
+			Spanner.append(sb, "FN_FE", 0, PredicateMatrixFactories.dataFactory);
 		if ((sources & ADDED_FRAME_FN_ROLE) != 0)
-			Spanner.append(sb, "ADDED_FRAME-FN_ROLE ", 0, PredicateMatrixFactories.dataFactory); //
+			Spanner.append(sb, "ADDED_FRAME-FN_ROLE ", 0, PredicateMatrixFactories.dataFactory);
 		if ((sources & FN_MAPPING) != 0)
-			Spanner.append(sb, "FN_MAPPING ", 0, PredicateMatrixFactories.dataFactory); //
+			Spanner.append(sb, "FN_MAPPING ", 0, PredicateMatrixFactories.dataFactory);
 		if ((sources & VN_MAPPING) != 0)
-			Spanner.append(sb, "VN_MAPPING ", 0, PredicateMatrixFactories.dataFactory); //
+			Spanner.append(sb, "VN_MAPPING ", 0, PredicateMatrixFactories.dataFactory);
 		if ((sources & PREDICATE_MAPPING) != 0)
-			Spanner.append(sb, "PREDICATE_MAPPING ", 0, PredicateMatrixFactories.dataFactory); //
+			Spanner.append(sb, "PREDICATE_MAPPING ", 0, PredicateMatrixFactories.dataFactory);
 		if ((sources & ROLE_MAPPING) != 0)
-			Spanner.append(sb, "ROLE_MAPPING ", 0, PredicateMatrixFactories.dataFactory); //
+			Spanner.append(sb, "ROLE_MAPPING ", 0, PredicateMatrixFactories.dataFactory);
 		if ((sources & WN_MISSING) != 0)
-			Spanner.append(sb, "WN_MISSING ", 0, PredicateMatrixFactories.dataFactory); //
-
+			Spanner.append(sb, "WN_MISSING ", 0, PredicateMatrixFactories.dataFactory);
 		Spanner.append(sb, Long.toString(sources), 0, PredicateMatrixFactories.dataFactory);
 	}
 	
@@ -1446,7 +1444,7 @@ abstract class BasicModule extends Module
 		@Override
 		protected String getRequiredOrder()
 		{
-			return "synsetid"; //
+			return "synsetid";
 		}
 
 		@Override
@@ -1489,7 +1487,7 @@ abstract class BasicModule extends Module
 		@Override
 		protected String getRequiredOrder()
 		{
-			return "pmroleid"; //
+			return "pmroleid";
 		}
 
 		@Override
@@ -1513,7 +1511,7 @@ abstract class BasicModule extends Module
 		@Override
 		protected String getRequiredOrder()
 		{
-			return "pmid"; //
+			return "pmid";
 		}
 
 		@Override

@@ -74,7 +74,7 @@ public class StorageStyle
 	{
 		final SpannableStringBuilder sb = new SpannableStringBuilder();
 		final boolean fitsIn = candidate.fitsIn();
-		append(sb, fitsIn ? "Fits in" : "Does not fit in", new ForegroundColorSpan(fitsIn ? dkgreen : dkred)); //
+		append(sb, fitsIn ? "Fits in" : "Does not fit in", new ForegroundColorSpan(fitsIn ? dkgreen : dkred));
 		return sb;
 	}
 
@@ -88,7 +88,7 @@ public class StorageStyle
 	{
 		final SpannableStringBuilder sb = new SpannableStringBuilder();
 		final CharSequence status = candidate.status();
-		final boolean isOk = "Ok".equals(status.toString()); //
+		final boolean isOk = "Ok".equals(status.toString());
 		append(sb, status, new ForegroundColorSpan(isOk ? dkgreen : dkred));
 		return sb;
 	}
@@ -157,7 +157,7 @@ public class StorageStyle
 	 */
 	static private void appendImage(final Context context, final SpannableStringBuilder sb, final int resId)
 	{
-		append(sb, "\u0000", makeImageSpan(context, resId)); //
+		append(sb, "\u0000", makeImageSpan(context, resId));
 	}
 
 	/**
@@ -203,7 +203,7 @@ public class StorageStyle
 			names.add(toStyledString(context, candidate));
 			if (candidate.dir.type == DirType.APP_INTERNAL_POSSIBLY_ADOPTED)
 			{
-				values.add("auto"); //
+				values.add("auto");
 			}
 			else
 			{
@@ -258,7 +258,7 @@ public class StorageStyle
 		{
 			appendImage(context, sb, R.drawable.ic_storage_intern);
 			sb.append(' ');
-			append(sb, " primary physical ", new RelativeSizeSpan(1.5F), new BackgroundColorSpan(pink), new ForegroundColorSpan(Color.BLACK)); //
+			append(sb, " primary physical ", new RelativeSizeSpan(1.5F), new BackgroundColorSpan(pink), new ForegroundColorSpan(Color.BLACK));
 			sb.append('\n');
 			for (File f : physical)
 			{
@@ -269,7 +269,7 @@ public class StorageStyle
 				sb.append(' ');
 				try
 				{
-					sb.append(Environment.isExternalStorageEmulated(f) ? "emulated" : "not-emulated"); //
+					sb.append(Environment.isExternalStorageEmulated(f) ? "emulated" : "not-emulated");
 				}
 				catch (Throwable e)
 				{ //
@@ -281,7 +281,7 @@ public class StorageStyle
 		{
 			appendImage(context, sb, R.drawable.ic_storage_extern_primary);
 			sb.append(' ');
-			append(sb, " primary emulated ", new RelativeSizeSpan(1.5F), new BackgroundColorSpan(pink), new ForegroundColorSpan(Color.BLACK)); //
+			append(sb, " primary emulated ", new RelativeSizeSpan(1.5F), new BackgroundColorSpan(pink), new ForegroundColorSpan(Color.BLACK));
 			sb.append('\n');
 			for (File f : emulated)
 			{
@@ -292,7 +292,7 @@ public class StorageStyle
 				sb.append(' ');
 				try
 				{
-					sb.append(Environment.isExternalStorageEmulated(f) ? "emulated" : "not-emulated"); //
+					sb.append(Environment.isExternalStorageEmulated(f) ? "emulated" : "not-emulated");
 				}
 				catch (Throwable e)
 				{ //
@@ -305,7 +305,7 @@ public class StorageStyle
 			appendImage(context, sb, R.drawable.ic_storage_extern_secondary);
 			sb.append(' ');
 			sb.append(' ');
-			append(sb, " secondary ", new RelativeSizeSpan(1.5F), new BackgroundColorSpan(pink), new ForegroundColorSpan(Color.BLACK)); //
+			append(sb, " secondary ", new RelativeSizeSpan(1.5F), new BackgroundColorSpan(pink), new ForegroundColorSpan(Color.BLACK));
 			sb.append('\n');
 			for (File f : secondary)
 			{
@@ -316,7 +316,7 @@ public class StorageStyle
 				sb.append(' ');
 				try
 				{
-					sb.append(Environment.isExternalStorageEmulated(f) ? "emulated" : "not-emulated"); //
+					sb.append(Environment.isExternalStorageEmulated(f) ? "emulated" : "not-emulated");
 				}
 				catch (Throwable e)
 				{ //

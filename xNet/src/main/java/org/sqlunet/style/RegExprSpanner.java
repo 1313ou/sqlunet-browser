@@ -135,7 +135,7 @@ public class RegExprSpanner extends Spanner
 		public String toString()
 		{
 			final StringBuilder sb = new StringBuilder();
-			sb.append(this.pattern).append(" ->"); //
+			sb.append(this.pattern).append(" ->");
 			for (SpanFactory factory : this.spanFactories)
 			{
 				sb.append(' ').append(factory);

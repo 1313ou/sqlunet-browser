@@ -9,14 +9,12 @@ import org.sqlunet.style.Preprocessor;
  */
 public class FrameNetFrameProcessor extends Preprocessor
 {
-	// static final String TAG = "FrameNetProcessor"; //
-
+	// static final String TAG = "FrameNetProcessor";
 	/**
 	 * Replacers for preprocessor
 	 */
 	private static final String[] replacers = { //
-			"<fex name=[\"\']([^\"\']+)[\"\']>([^<]*)</fex>", "<fex>$2</fex> <xfen>[$1]</xfen>",}; //
-
+			"<fex name=[\"\']([^\"\']+)[\"\']>([^<]*)</fex>", "<fex>$2</fex> <xfen>[$1]</xfen>",};
 	/**
 	 * Constructor
 	 */

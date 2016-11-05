@@ -38,13 +38,11 @@ import org.sqlunet.wordnet.provider.WordNetContract.Lookup_Words;
  */
 public class TextSearchActivity extends Activity
 {
-	private static final String TAG = "TextSearchActivity"; //
-
+	private static final String TAG = "TextSearchActivity";
 	/**
 	 * State
 	 */
-	private static final String STATE_SELECTED_TEXTSEARCH = "org.sqlunet.browser.textsearch.selected"; //
-
+	private static final String STATE_SELECTED_TEXTSEARCH = "org.sqlunet.browser.textsearch.selected";
 	/**
 	 * Search view
 	 */
@@ -241,7 +239,7 @@ public class TextSearchActivity extends Activity
 			public boolean onQueryTextSubmit(final String query)
 			{
 				searchView.clearFocus();
-				searchView.setQuery("", false); //
+				searchView.setQuery("", false);
 				handleSearch(query);
 				return true;
 			}
@@ -282,7 +280,7 @@ public class TextSearchActivity extends Activity
 			final String query = intent.getStringExtra(SearchManager.QUERY);
 
 			// suggestion selection (when a suggested item is selected)
-			this.statusView.setText("view: '" + query + "'"); //
+			this.statusView.setText("view: '" + query + "'");
 			this.searchView.setQuery(query, true); // submit
 		}
 	}
@@ -297,9 +295,8 @@ public class TextSearchActivity extends Activity
 		final int itemPosition = this.spinner.getSelectedItemPosition();
 
 		// status
-		Log.d(TextSearchActivity.TAG, "TEXT SEARCH " + query); //
-		this.statusView.setText("search: '" + query + "' " + this.textSearches[itemPosition]); //
-
+		Log.d(TextSearchActivity.TAG, "TEXT SEARCH " + query);
+		this.statusView.setText("search: '" + query + "' " + this.textSearches[itemPosition]);
 		// as per selected mode
 		String searchUri;
 		String id;
@@ -366,7 +363,7 @@ public class TextSearchActivity extends Activity
 		args.putString(SqlUNetContract.ARG_QUERYID, id);
 		args.putStringArray(SqlUNetContract.ARG_QUERYITEMS, columns);
 		args.putStringArray(SqlUNetContract.ARG_QUERYHIDDENITEMS, hiddenColumns);
-		args.putString(SqlUNetContract.ARG_QUERYFILTER, target + " MATCH ?"); //
+		args.putString(SqlUNetContract.ARG_QUERYFILTER, target + " MATCH ?");
 		args.putString(SqlUNetContract.ARG_QUERYARG, query);
 		args.putInt(SqlUNetContract.ARG_QUERYLAYOUT, R.layout.item_table1);
 		if (intent != null)

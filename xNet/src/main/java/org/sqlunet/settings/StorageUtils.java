@@ -23,8 +23,7 @@ import java.util.Map;
  */
 public class StorageUtils
 {
-	private static final String TAG = "StorageUtils"; //
-
+	private static final String TAG = "StorageUtils";
 	/**
 	 * Database size
 	 */
@@ -66,17 +65,17 @@ public class StorageUtils
 			switch (this)
 			{
 				case APP_INTERNAL_POSSIBLY_ADOPTED:
-					return "auto"; //
+					return "auto";
 				case APP_EXTERNAL_SECONDARY:
-					return "secondary"; //
+					return "secondary";
 				case APP_EXTERNAL_PRIMARY:
-					return "primary"; //
+					return "primary";
 				case PUBLIC_EXTERNAL_PRIMARY:
-					return "public primary"; //
+					return "public primary";
 				case PUBLIC_EXTERNAL_SECONDARY:
-					return "public secondary"; //
+					return "public secondary";
 				case APP_INTERNAL:
-					return "internal"; //
+					return "internal";
 			}
 			return null;
 		}
@@ -175,7 +174,7 @@ public class StorageUtils
 		 */
 		public CharSequence toShortString()
 		{
-			return String.format(Locale.ENGLISH, "%s %s %s free", this.dir.type.toString(), this.dir.file.getAbsolutePath(), mbToString(this.free)); //
+			return String.format(Locale.ENGLISH, "%s %s %s free", this.dir.type.toString(), this.dir.file.getAbsolutePath(), mbToString(this.free));
 		}
 
 		/**
@@ -185,13 +184,13 @@ public class StorageUtils
 		 */
 		public String toLongString()
 		{
-			return String.format(Locale.ENGLISH, "%s\n%s\n%s free %.1f%% occupancy\n%s", this.dir.type.toString(), this.dir.file.getAbsolutePath(), mbToString(this.free), this.occupancy, this.status()); //
+			return String.format(Locale.ENGLISH, "%s\n%s\n%s free %.1f%% occupancy\n%s", this.dir.type.toString(), this.dir.file.getAbsolutePath(), mbToString(this.free), this.occupancy, this.status());
 		}
 
 		@Override
 		public String toString()
 		{
-			return String.format(Locale.ENGLISH, "%s %s %s %.1f%% %s", this.dir.type.toString(), this.dir.file.getAbsolutePath(), mbToString(this.free), this.occupancy, this.status()); //
+			return String.format(Locale.ENGLISH, "%s %s %s %.1f%% %s", this.dir.type.toString(), this.dir.file.getAbsolutePath(), mbToString(this.free), this.occupancy, this.status());
 		}
 
 		/**
@@ -239,49 +238,49 @@ public class StorageUtils
 		{
 			if (this.status == 0)
 			{
-				return "Ok"; //
+				return "Ok";
 			}
 			StringBuilder status = new StringBuilder();
 			boolean first = true;
 			if ((this.status & NULL_DIR) != 0)
 			{
-				status.append("Is null dir"); //
+				status.append("Is null dir");
 				first = false;
 			}
 			if ((this.status & NOT_MOUNTED) != 0)
 			{
 				if (!first)
 				{
-					status.append(" | "); //
+					status.append(" | ");
 				}
-				status.append("Is not mounted"); //
+				status.append("Is not mounted");
 				first = false;
 			}
 			if ((this.status & NOT_EXISTS) != 0)
 			{
 				if (!first)
 				{
-					status.append(" | "); //
+					status.append(" | ");
 				}
-				status.append("Does not exist"); //
+				status.append("Does not exist");
 				first = false;
 			}
 			if ((this.status & NOT_DIR) != 0)
 			{
 				if (!first)
 				{
-					status.append(" | "); //
+					status.append(" | ");
 				}
-				status.append("Is not a dir"); //
+				status.append("Is not a dir");
 				first = false;
 			}
 			if ((this.status & NOT_WRITABLE) != 0)
 			{
 				if (!first)
 				{
-					status.append(" | "); //
+					status.append(" | ");
 				}
-				status.append("Is not writable"); //
+				status.append("Is not writable");
 			}
 			return status;
 		}
@@ -327,7 +326,7 @@ public class StorageUtils
 					final String state = Environment.getExternalStorageState(dir);
 					if (!Environment.MEDIA_MOUNTED.equals(state))
 					{
-						Log.d(StorageUtils.TAG, "storage state of " + dir + ": " + state); //
+						Log.d(StorageUtils.TAG, "storage state of " + dir + ": " + state);
 						status |= CandidateStorage.NOT_MOUNTED;
 					}
 				}
@@ -601,7 +600,7 @@ public class StorageUtils
 	private static File discoverPrimaryEmulatedExternalStorage()
 	{
 		// primary emulated sdcard
-		final String emulatedStorageTarget = System.getenv("EMULATED_STORAGE_TARGET"); //
+		final String emulatedStorageTarget = System.getenv("EMULATED_STORAGE_TARGET");
 		if (emulatedStorageTarget != null && !emulatedStorageTarget.isEmpty())
 		{
 			// device has emulated extStorage
@@ -628,8 +627,7 @@ public class StorageUtils
 	 */
 	private static File discoverPrimaryPhysicalExternalStorage()
 	{
-		final String externalStorage = System.getenv("EXTERNAL_STORAGE"); //
-
+		final String externalStorage = System.getenv("EXTERNAL_STORAGE");
 		// device has physical external extStorage; use plain paths.
 		if (externalStorage != null && !externalStorage.isEmpty())
 		{
@@ -647,10 +645,10 @@ public class StorageUtils
 	private static File[] discoverSecondaryExternalStorage()
 	{
 		// all secondary sdcards (all except primary) separated by ":"
-		String secondaryStoragesEnv = System.getenv("SECONDARY_STORAGE"); //
+		String secondaryStoragesEnv = System.getenv("SECONDARY_STORAGE");
 		if ((secondaryStoragesEnv == null) || secondaryStoragesEnv.isEmpty())
 		{
-			secondaryStoragesEnv = System.getenv("EXTERNAL_SDCARD_STORAGE"); //
+			secondaryStoragesEnv = System.getenv("EXTERNAL_SDCARD_STORAGE");
 		}
 
 		// add all secondary storages
@@ -683,7 +681,7 @@ public class StorageUtils
 	{
 		if (Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN_MR1)
 		{
-			return ""; //
+			return "";
 		}
 
 		final String path = Environment.getExternalStorageDirectory().getAbsolutePath();
@@ -700,7 +698,7 @@ public class StorageUtils
 		{
 			//
 		}
-		return isDigit ? lastFolder : ""; //
+		return isDigit ? lastFolder : "";
 	}
 
 	// C A P A C I T Y
@@ -787,15 +785,15 @@ public class StorageUtils
 	{
 		if (Float.isNaN(mb))
 		{
-			return "[N/A size]"; //
+			return "[N/A size]";
 		}
 		if (mb > 1000F)
 		{
-			return String.format(Locale.ENGLISH, "%.1f GB", mb / 1024F); //
+			return String.format(Locale.ENGLISH, "%.1f GB", mb / 1024F);
 		}
 		else
 		{
-			return String.format(Locale.ENGLISH, "%.1f MB", mb); //
+			return String.format(Locale.ENGLISH, "%.1f MB", mb);
 		}
 	}
 
@@ -820,7 +818,7 @@ public class StorageUtils
 			names.add(candidate.toShortString());
 			if (candidate.dir.type == DirType.APP_INTERNAL_POSSIBLY_ADOPTED)
 			{
-				values.add("auto"); //
+				values.add("auto");
 			}
 			else
 			{
@@ -846,7 +844,7 @@ public class StorageUtils
 			sb.append(' ');
 			sb.append(candidate.toLongString());
 			sb.append(' ');
-			sb.append(candidate.fitsIn() ? "Fits in" : "Does not fit in"); //
+			sb.append(candidate.fitsIn() ? "Fits in" : "Does not fit in");
 			sb.append('\n');
 			sb.append('\n');
 		}
@@ -869,7 +867,7 @@ public class StorageUtils
 		final StringBuilder sb = new StringBuilder();
 		if (physical != null)
 		{
-			sb.append("primary physical:\n"); //
+			sb.append("primary physical:\n");
 			for (File f : physical)
 			{
 				final String s = f.getAbsolutePath();
@@ -879,7 +877,7 @@ public class StorageUtils
 				sb.append(' ');
 				try
 				{
-					sb.append(Environment.isExternalStorageEmulated(f) ? "emulated" : "not-emulated"); //
+					sb.append(Environment.isExternalStorageEmulated(f) ? "emulated" : "not-emulated");
 				}
 				catch (Throwable e)
 				{ //
@@ -889,7 +887,7 @@ public class StorageUtils
 		}
 		if (emulated != null)
 		{
-			sb.append("primary emulated:\n"); //
+			sb.append("primary emulated:\n");
 			for (File f : emulated)
 			{
 				final String s = f.getAbsolutePath();
@@ -899,7 +897,7 @@ public class StorageUtils
 				sb.append(' ');
 				try
 				{
-					sb.append(Environment.isExternalStorageEmulated(f) ? "emulated" : "not-emulated"); //
+					sb.append(Environment.isExternalStorageEmulated(f) ? "emulated" : "not-emulated");
 				}
 				catch (Throwable e)
 				{ //
@@ -909,7 +907,7 @@ public class StorageUtils
 		}
 		if (secondary != null)
 		{
-			sb.append("secondary:\n"); //
+			sb.append("secondary:\n");
 			for (File f : secondary)
 			{
 				final String s = f.getAbsolutePath();
@@ -919,7 +917,7 @@ public class StorageUtils
 				sb.append(' ');
 				try
 				{
-					sb.append(Environment.isExternalStorageEmulated(f) ? "emulated" : "not-emulated"); //
+					sb.append(Environment.isExternalStorageEmulated(f) ? "emulated" : "not-emulated");
 				}
 				catch (Throwable e)
 				{ //

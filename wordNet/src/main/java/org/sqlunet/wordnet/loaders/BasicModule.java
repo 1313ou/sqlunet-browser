@@ -120,7 +120,7 @@ abstract public class BasicModule extends Module
 						PosTypes.POSNAME, //
 						LexDomains.LEXDOMAIN, //
 				};
-				final String selection = Synsets_PosTypes_LexDomains.SYNSETID + " = ?"; //
+				final String selection = Synsets_PosTypes_LexDomains.SYNSETID + " = ?";
 				final String[] selectionArgs = {Long.toString(synsetId)};
 				final String sortOrder = null;
 				return new CursorLoader(BasicModule.this.context, uri, projection, selection, selectionArgs, sortOrder);
@@ -131,7 +131,7 @@ abstract public class BasicModule extends Module
 			{
 				if (cursor.getCount() > 1)
 				{
-					throw new RuntimeException("Unexpected number of rows"); //
+					throw new RuntimeException("Unexpected number of rows");
 				}
 				if (cursor.moveToFirst())
 				{
@@ -167,9 +167,8 @@ abstract public class BasicModule extends Module
 					TreeFactory.addTextNode(parent, sbdef, BasicModule.this.context);
 
 					// subnodes
-					final TreeNode linksNode = TreeFactory.newQueryNode(new LinksQuery(synsetId, wordId, R.drawable.ic_other, "Links"), true, BasicModule.this.context).addTo(parent); //
-					final TreeNode samplesNode = TreeFactory.newQueryNode(new SamplesQuery(synsetId, R.drawable.sample, "Samples"), true, BasicModule.this.context).addTo(parent); //
-
+					final TreeNode linksNode = TreeFactory.newQueryNode(new LinksQuery(synsetId, wordId, R.drawable.ic_other, "Links"), true, BasicModule.this.context).addTo(parent);
+					final TreeNode samplesNode = TreeFactory.newQueryNode(new SamplesQuery(synsetId, R.drawable.sample, "Samples"), true, BasicModule.this.context).addTo(parent);
 					// fire event
 					FireEvent.onQueryReady(linksNode);
 					FireEvent.onQueryReady(samplesNode);
@@ -213,7 +212,7 @@ abstract public class BasicModule extends Module
 						PosTypes.POSNAME, //
 						LexDomains.LEXDOMAIN, //
 				};
-				final String selection = Synsets_PosTypes_LexDomains.SYNSETID + " = ?"; //
+				final String selection = Synsets_PosTypes_LexDomains.SYNSETID + " = ?";
 				final String[] selectionArgs = {Long.toString(synsetId)};
 				final String sortOrder = null;
 				return new CursorLoader(BasicModule.this.context, uri, projection, selection, selectionArgs, sortOrder);
@@ -224,7 +223,7 @@ abstract public class BasicModule extends Module
 			{
 				if (cursor.getCount() > 1)
 				{
-					throw new RuntimeException("Unexpected number of rows"); //
+					throw new RuntimeException("Unexpected number of rows");
 				}
 				if (cursor.moveToFirst())
 				{
@@ -297,7 +296,7 @@ abstract public class BasicModule extends Module
 				final Uri uri = Uri.parse(BasicModule.this.membersGrouped ? Senses_Words.CONTENT_URI_BY_SYNSET : Senses_Words.CONTENT_URI);
 				final String[] projection = BasicModule.this.membersGrouped ? //
 						new String[]{Senses_Words.MEMBERS} : new String[]{Words.LEMMA};
-				final String selection = Senses_Words.SYNSETID + " = ?"; //
+				final String selection = Senses_Words.SYNSETID + " = ?";
 				final String[] selectionArgs = {Long.toString(synsetId)};
 				final String sortOrder = Words.LEMMA;
 				return new CursorLoader(BasicModule.this.context, uri, projection, selection, selectionArgs, sortOrder);
@@ -310,7 +309,7 @@ abstract public class BasicModule extends Module
 				{
 					if (cursor.getCount() > 1)
 					{
-						throw new RuntimeException("Unexpected number of rows"); //
+						throw new RuntimeException("Unexpected number of rows");
 					}
 				}
 
@@ -392,7 +391,7 @@ abstract public class BasicModule extends Module
 						Samples.SAMPLEID, //
 						Samples.SAMPLE, //
 				};
-				final String selection = Samples.SYNSETID + " = ?"; //
+				final String selection = Samples.SYNSETID + " = ?";
 				final String[] selectionArgs = {Long.toString(synsetId)};
 				final String sortOrder = Samples.SAMPLEID;
 				return new CursorLoader(BasicModule.this.context, uri, projection, selection, selectionArgs, sortOrder);
@@ -453,11 +452,10 @@ abstract public class BasicModule extends Module
 		});
 	}
 
-	static private final String TARGET_SYNSETID = "d_synsetid"; //
-	static private final String TARGET_DEFINITION = "d_definition"; //
-	static private final String TARGET_LEMMA = "w_lemma"; //
-	static private final String TARGET_WORDID = "w_wordid"; //
-
+	static private final String TARGET_SYNSETID = "d_synsetid";
+	static private final String TARGET_DEFINITION = "d_definition";
+	static private final String TARGET_LEMMA = "w_lemma";
+	static private final String TARGET_WORDID = "w_wordid";
 	/**
 	 * Semantic links
 	 *
@@ -571,7 +569,7 @@ abstract public class BasicModule extends Module
 						LinkTypes.LINKID, //
 						LinkTypes.RECURSES, //
 				};
-				final String selection = WordNetContract.LINK + '.' + SemLinks_Synsets_Words_X.SYNSET1ID + " = ? AND " + LinkTypes.LINKID + " = ?"; //
+				final String selection = WordNetContract.LINK + '.' + SemLinks_Synsets_Words_X.SYNSET1ID + " = ? AND " + LinkTypes.LINKID + " = ?";
 				final String[] selectionArgs = {Long.toString(synsetId), Integer.toString(linkId)};
 				final String sortOrder = null;
 				return new CursorLoader(BasicModule.this.context, uri, projection, selection, selectionArgs, sortOrder);
@@ -709,7 +707,7 @@ abstract public class BasicModule extends Module
 						// sb.append(record);
 						sb.append(' ');
 						Spanner.append(sb, targetLemma, 0, WordNetFactories.lemmaFactory);
-						sb.append(" in "); //
+						sb.append(" in ");
 						sb.append(' ');
 						sb.append('{');
 						Spanner.append(sb, targetMembers, 0, WordNetFactories.membersFactory);
@@ -765,7 +763,7 @@ abstract public class BasicModule extends Module
 						WordNetContract.WORD + '.' + Words.LEMMA + " AS " + BasicModule.TARGET_LEMMA, //
 						WordNetContract.WORD + '.' + Words.WORDID + " AS " + BasicModule.TARGET_WORDID, //
 						LinkTypes.LINK, LinkTypes.LINKID,};
-				final String selection = WordNetContract.LINK + ".synset1id = ? AND " + WordNetContract.LINK + ".word1id = ?"; //
+				final String selection = WordNetContract.LINK + ".synset1id = ? AND " + WordNetContract.LINK + ".word1id = ?";
 				final String[] selectionArgs = {Long.toString(synsetId), Long.toString(wordId)};
 				final String sortOrder = LinkTypes.LINKID;
 				return new CursorLoader(BasicModule.this.context, uri, projection, selection, selectionArgs, sortOrder);
@@ -863,7 +861,7 @@ abstract public class BasicModule extends Module
 			{
 				final Uri uri = Uri.parse(VerbFrameMaps_VerbFrames.CONTENT_URI);
 				final String[] projection = {VerbFrameMaps_VerbFrames.FRAME};
-				final String selection = VerbFrameMaps_VerbFrames.SYNSETID + " = ?"; //
+				final String selection = VerbFrameMaps_VerbFrames.SYNSETID + " = ?";
 				final String[] selectionArgs = {Long.toString(synsetId)};
 				final String sortOrder = null;
 				return new CursorLoader(BasicModule.this.context, uri, projection, selection, selectionArgs, sortOrder);
@@ -883,7 +881,7 @@ abstract public class BasicModule extends Module
 					do
 					{
 						final String vframe = cursor.getString(vframeId);
-						final String record = String.format(Locale.ENGLISH, "%s", vframe); //
+						final String record = String.format(Locale.ENGLISH, "%s", vframe);
 						if (sb.length() != 0)
 						{
 							sb.append('\n');
@@ -933,7 +931,7 @@ abstract public class BasicModule extends Module
 			{
 				final Uri uri = Uri.parse(VerbFrameMaps_VerbFrames.CONTENT_URI);
 				final String[] projection = {VerbFrameMaps_VerbFrames.FRAME};
-				final String selection = VerbFrameMaps_VerbFrames.SYNSETID + " = ? AND " + VerbFrameMaps_VerbFrames.WORDID + " = ?"; //
+				final String selection = VerbFrameMaps_VerbFrames.SYNSETID + " = ? AND " + VerbFrameMaps_VerbFrames.WORDID + " = ?";
 				final String[] selectionArgs = {Long.toString(synsetId), Long.toString(wordId)};
 				final String sortOrder = null;
 				return new CursorLoader(BasicModule.this.context, uri, projection, selection, selectionArgs, sortOrder);
@@ -953,7 +951,7 @@ abstract public class BasicModule extends Module
 					do
 					{
 						final String vframe = cursor.getString(vframeId);
-						final String record = String.format(Locale.ENGLISH, "%s", vframe); //
+						final String record = String.format(Locale.ENGLISH, "%s", vframe);
 						if (sb.length() != 0)
 						{
 							sb.append('\n');
@@ -1002,7 +1000,7 @@ abstract public class BasicModule extends Module
 			{
 				final Uri uri = Uri.parse(VerbFrameSentenceMaps_VerbFrameSentences.CONTENT_URI);
 				final String[] projection = {VerbFrameSentenceMaps_VerbFrameSentences.SENTENCE};
-				final String selection = VerbFrameSentenceMaps_VerbFrameSentences.SYNSETID + " = ?"; //
+				final String selection = VerbFrameSentenceMaps_VerbFrameSentences.SYNSETID + " = ?";
 				final String[] selectionArgs = {Long.toString(synsetId)};
 				final String sortOrder = null;
 				return new CursorLoader(BasicModule.this.context, uri, projection, selection, selectionArgs, sortOrder);
@@ -1022,7 +1020,7 @@ abstract public class BasicModule extends Module
 					do
 					{
 						final String vframesentence = cursor.getString(vframeId);
-						final String record = String.format(Locale.ENGLISH, vframesentence, "[-]"); //
+						final String record = String.format(Locale.ENGLISH, vframesentence, "[-]");
 						if (sb.length() != 0)
 						{
 							sb.append('\n');
@@ -1064,7 +1062,7 @@ abstract public class BasicModule extends Module
 	 */
 	void vFrameSentences(final long synsetId, final long wordId, final TreeNode parent)
 	{
-		final String lemma = "---"; //
+		final String lemma = "---";
 		getLoaderManager().restartLoader(++Module.loaderId, null, new LoaderCallbacks<Cursor>()
 		{
 
@@ -1073,7 +1071,7 @@ abstract public class BasicModule extends Module
 			{
 				final Uri uri = Uri.parse(VerbFrameSentenceMaps_VerbFrameSentences.CONTENT_URI);
 				final String[] projection = {VerbFrameSentenceMaps_VerbFrameSentences.SENTENCE};
-				final String selection = VerbFrameSentenceMaps_VerbFrameSentences.SYNSETID + " = ? AND " + VerbFrameSentenceMaps_VerbFrameSentences.WORDID + " = ?"; //
+				final String selection = VerbFrameSentenceMaps_VerbFrameSentences.SYNSETID + " = ? AND " + VerbFrameSentenceMaps_VerbFrameSentences.WORDID + " = ?";
 				final String[] selectionArgs = {Long.toString(synsetId), Long.toString(wordId)};
 				final String sortOrder = null;
 				return new CursorLoader(BasicModule.this.context, uri, projection, selection, selectionArgs, sortOrder);
@@ -1142,7 +1140,7 @@ abstract public class BasicModule extends Module
 			{
 				final Uri uri = Uri.parse(AdjPositions_AdjPositionTypes.CONTENT_URI);
 				final String[] projection = {AdjPositions_AdjPositionTypes.POSITIONNAME};
-				final String selection = AdjPositions_AdjPositionTypes.SYNSETID + " = ?"; //
+				final String selection = AdjPositions_AdjPositionTypes.SYNSETID + " = ?";
 				final String[] selectionArgs = {Long.toString(synsetId)};
 				final String sortOrder = null;
 				return new CursorLoader(BasicModule.this.context, uri, projection, selection, selectionArgs, sortOrder);
@@ -1162,7 +1160,7 @@ abstract public class BasicModule extends Module
 					do
 					{
 						final String position = cursor.getString(positionId);
-						final String record = String.format(Locale.ENGLISH, "%s", position); //
+						final String record = String.format(Locale.ENGLISH, "%s", position);
 						if (sb.length() != 0)
 						{
 							sb.append('\n');
@@ -1212,7 +1210,7 @@ abstract public class BasicModule extends Module
 			{
 				final Uri uri = Uri.parse(AdjPositions_AdjPositionTypes.CONTENT_URI);
 				final String[] projection = {AdjPositions_AdjPositionTypes.POSITIONNAME};
-				final String selection = AdjPositions_AdjPositionTypes.SYNSETID + " = ? AND " + AdjPositions_AdjPositionTypes.WORDID + " = ?"; //
+				final String selection = AdjPositions_AdjPositionTypes.SYNSETID + " = ? AND " + AdjPositions_AdjPositionTypes.WORDID + " = ?";
 				final String[] selectionArgs = {Long.toString(synsetId), Long.toString(wordId)};
 				final String sortOrder = null;
 				return new CursorLoader(BasicModule.this.context, uri, projection, selection, selectionArgs, sortOrder);
@@ -1232,7 +1230,7 @@ abstract public class BasicModule extends Module
 					do
 					{
 						final String position = cursor.getString(positionId);
-						final String record = String.format(Locale.ENGLISH, "%s", position); //
+						final String record = String.format(Locale.ENGLISH, "%s", position);
 						if (sb.length() != 0)
 						{
 							sb.append('\n');
@@ -1280,7 +1278,7 @@ abstract public class BasicModule extends Module
 			{
 				final Uri uri = Uri.parse(MorphMaps_Morphs.CONTENT_URI);
 				final String[] projection = {MorphMaps_Morphs.POS, MorphMaps_Morphs.MORPH};
-				final String selection = MorphMaps_Morphs.WORDID + " = ?"; //
+				final String selection = MorphMaps_Morphs.WORDID + " = ?";
 				final String[] selectionArgs = {Long.toString(wordId)};
 				final String sortOrder = null;
 				return new CursorLoader(BasicModule.this.context, uri, projection, selection, selectionArgs, sortOrder);
@@ -1302,7 +1300,7 @@ abstract public class BasicModule extends Module
 					{
 						final String morph1 = cursor.getString(morphId);
 						final String pos1 = cursor.getString(posId);
-						final String record = String.format(Locale.ENGLISH, "(%s) %s", pos1, morph1); //
+						final String record = String.format(Locale.ENGLISH, "(%s) %s", pos1, morph1);
 						if (sb.length() != 0)
 						{
 							sb.append('\n');

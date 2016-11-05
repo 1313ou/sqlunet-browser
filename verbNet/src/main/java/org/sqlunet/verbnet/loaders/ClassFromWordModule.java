@@ -104,11 +104,11 @@ public class ClassFromWordModule extends BasicModule
 						Words_VnClasses.SENSEKEY, //
 						Words_VnClasses.QUALITY, //
 				};
-				String selection = Words_VnClasses.WORDID + " = ?"; //
+				String selection = Words_VnClasses.WORDID + " = ?";
 				String[] selectionArgs;
 				if (synsetId != null && synsetId != 0)
 				{
-					selection += " AND (" + Words_VnClasses.SYNSETID + " = ? OR " + Words_VnClasses.SYNSETID + " IS NULL)"; //
+					selection += " AND (" + Words_VnClasses.SYNSETID + " = ? OR " + Words_VnClasses.SYNSETID + " IS NULL)";
 					selectionArgs = new String[]{ //
 							Long.toString(wordId), //
 							Long.toString(synsetId)};
@@ -147,7 +147,7 @@ public class ClassFromWordModule extends BasicModule
 						Spanner.append(sb, vnClass, 0, VerbNetFactories.classFactory);
 						// sb.append(" tag=");
 						// sb.append(cursor.getString(idClassTag));
-						sb.append(" id="); //
+						sb.append(" id=");
 						sb.append(Integer.toString(classId));
 
 						// attach result

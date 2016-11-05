@@ -32,8 +32,7 @@ import java.util.List;
  */
 public abstract class AbstractTableFragment extends ListFragment
 {
-	private static final String TAG = "AbsTableFragment"; //
-
+	private static final String TAG = "AbsTableFragment";
 	/**
 	 * Target intent
 	 */
@@ -81,7 +80,7 @@ public abstract class AbstractTableFragment extends ListFragment
 				String col = item;
 
 				// remove alias
-				final int asIndex = col.lastIndexOf(" AS "); //
+				final int asIndex = col.lastIndexOf(" AS ");
 				if (asIndex != -1)
 				{
 					col = col.substring(asIndex + 4);
@@ -97,7 +96,7 @@ public abstract class AbstractTableFragment extends ListFragment
 				String col = item;
 
 				// remove alias
-				final int asIndex = col.lastIndexOf(" AS "); //
+				final int asIndex = col.lastIndexOf(" AS ");
 				if (asIndex != -1)
 				{
 					col = col.substring(asIndex + 4);
@@ -130,7 +129,7 @@ public abstract class AbstractTableFragment extends ListFragment
 		// make cursor adapter
 		final SimpleCursorAdapter adapter = new SimpleCursorAdapter(getActivity(), layoutId, null, //
 				from, //
-				to, 0); //
+				to, 0);
 		adapter.setViewBinder(makeViewBinder());
 		setListAdapter(adapter);
 
@@ -144,8 +143,7 @@ public abstract class AbstractTableFragment extends ListFragment
 				final List<String> cols = new ArrayList<>();
 
 				// add _id alias for first column
-				cols.add(id + " AS _id"); //
-
+				cols.add(id + " AS _id");
 				// add items
 				if (items != null)
 				{
@@ -225,7 +223,7 @@ public abstract class AbstractTableFragment extends ListFragment
 					switch (cursor.getType(i))
 					{
 						case Cursor.FIELD_TYPE_NULL:
-							val = "null"; //
+							val = "null";
 							break;
 						case Cursor.FIELD_TYPE_INTEGER:
 							val = Integer.toString(cursor.getInt(i));
@@ -237,13 +235,13 @@ public abstract class AbstractTableFragment extends ListFragment
 							val = cursor.getString(i);
 							break;
 						case Cursor.FIELD_TYPE_BLOB:
-							val = "blob"; //
+							val = "blob";
 							break;
 						default:
-							val = "NA"; //
+							val = "NA";
 							break;
 					}
-					Log.d(TAG, "column " + i + " " + cols[i] + "=" + val); //
+					Log.d(TAG, "column " + i + " " + cols[i] + "=" + val);
 				}
 			}
 			while (cursor.moveToNext());

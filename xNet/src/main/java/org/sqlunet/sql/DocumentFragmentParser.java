@@ -73,8 +73,7 @@ public class DocumentFragmentParser
 	 */
 	private DocumentFragment parse(final String text) throws SAXException, IOException
 	{
-		final InputSource input = new InputSource(new StringReader("<dummy>" + text + "</dummy>")); //
-
+		final InputSource input = new InputSource(new StringReader("<dummy>" + text + "</dummy>"));
 		// parser
 		final DocumentBuilder builder = makeDocumentBuilder();
 		assert builder != null;
@@ -119,7 +118,7 @@ public class DocumentFragmentParser
 		final InputSource input = new InputSource(new StringReader(text));
 
 		// wrap the input with a root
-		final Reader reader = new StringReader("<!DOCTYPE RooT [<!ENTITY in SYSTEM \"in\">]><RooT>&in;</RooT>"); //
+		final Reader reader = new StringReader("<!DOCTYPE RooT [<!ENTITY in SYSTEM \"in\">]><RooT>&in;</RooT>");
 		final InputSource inputSource = new InputSource(reader);
 		inputSource.setPublicId(input.getPublicId());
 		inputSource.setSystemId(input.getSystemId());
@@ -180,12 +179,12 @@ public class DocumentFragmentParser
 		final DocumentFragmentParser parser = new DocumentFragmentParser();
 		try
 		{
-			final DocumentFragment fragment = parser.parse('<' + tag + '>' + xml + "</" + tag + '>'); //
+			final DocumentFragment fragment = parser.parse('<' + tag + '>' + xml + "</" + tag + '>');
 			element.appendChild(document.importNode(fragment, true));
 		}
 		catch (final SAXException e)
 		{
-			element.appendChild(document.createTextNode("XML:" + xml + ":" + e.getMessage())); //
+			element.appendChild(document.createTextNode("XML:" + xml + ":" + e.getMessage()));
 		}
 		catch (final IOException e)
 		{

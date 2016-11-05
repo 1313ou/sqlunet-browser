@@ -54,7 +54,7 @@ public class Preprocessor
 		@Override
 		public String toString()
 		{
-			return this.pattern + " -> " + this.replacement; //
+			return this.pattern + " -> " + this.replacement;
 		}
 	}
 

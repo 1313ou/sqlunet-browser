@@ -16,8 +16,7 @@ import org.sqlunet.browser.AbstractTableFragment;
  */
 public class TableFragment extends AbstractTableFragment
 {
-	// private static final String TAG = "TableFragment"; //
-
+	// private static final String TAG = "TableFragment";
 	/**
 	 * Mandatory empty constructor for the fragment manager to instantiate the fragment (e.g. upon screen orientation changes).
 	 */
@@ -42,7 +41,7 @@ public class TableFragment extends AbstractTableFragment
 				String value = cursor.getString(columnIndex);
 				if (value == null)
 				{
-					value = ""; //
+					value = "";
 				}
 
 				if (view instanceof TextView)
@@ -62,7 +61,7 @@ public class TableFragment extends AbstractTableFragment
 				}
 				else
 				{
-					throw new IllegalStateException(view.getClass().getName() + " is not a view that can be bound by this SimpleCursorAdapter"); //
+					throw new IllegalStateException(view.getClass().getName() + " is not a view that can be bound by this SimpleCursorAdapter");
 				}
 				return true;
 			}

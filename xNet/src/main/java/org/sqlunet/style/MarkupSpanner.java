@@ -122,7 +122,7 @@ public class MarkupSpanner extends Spanner
 					final int tag2End = xmatcher.end(3) + 1;
 					Spanner.setSpan(sb, tag2Start, tag2End, endSpans);
 
-					sb.replace(xmatcher.start(1), xmatcher.start(1), ""); //
+					sb.replace(xmatcher.start(1), xmatcher.start(1), "");
 				}
 			}
 		}

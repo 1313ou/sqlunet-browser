@@ -21,8 +21,7 @@ import java.util.Set;
 
 class Mapping
 {
-	private static final String TAG = "LexDomain"; //
-
+	private static final String TAG = "LexDomain";
 	/**
 	 * <code>lexDomains</code> is an array of lexdomains
 	 */
@@ -96,7 +95,7 @@ class Mapping
 		}
 		catch (final SQLException e)
 		{
-			Log.e(TAG, "While initializing lexdomains", e); //
+			Log.e(TAG, "While initializing lexdomains", e);
 			throw new RuntimeException(e);
 		}
 		finally
@@ -155,7 +154,7 @@ class Mapping
 	 */
 	static public String[] getPosNames()
 	{
-		return new String[]{"noun", "verb", "adj", "adv"}; //
+		return new String[]{"noun", "verb", "adj", "adv"};
 	}
 
 	/**
@@ -195,7 +194,7 @@ class Mapping
 		}
 		catch (final IndexOutOfBoundsException e)
 		{
-			return "lexdomainid." + Integer.toString(lexDomainId); //
+			return "lexdomainid." + Integer.toString(lexDomainId);
 		}
 	}
 
@@ -214,7 +213,7 @@ class Mapping
 		}
 		catch (final IndexOutOfBoundsException e)
 		{
-			return "lexdomainid." + Integer.toString(lexDomainId); //
+			return "lexdomainid." + Integer.toString(lexDomainId);
 		}
 	}
 
@@ -289,7 +288,7 @@ class Mapping
 		}
 		catch (final NullPointerException e)
 		{
-			return "linktype." + Integer.toString(linkType); //
+			return "linktype." + Integer.toString(linkType);
 		}
 	}
 

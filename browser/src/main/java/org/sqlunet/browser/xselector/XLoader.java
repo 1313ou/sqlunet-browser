@@ -68,8 +68,8 @@ class XLoader
 					Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.LEXDOMAIN + " AS " + Words_XNet_U.XHEADER, //
 					Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.SENSEKEY + " AS " + Words_XNet_U.XINFO, //
 					Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.DEFINITION + " AS " + Words_XNet_U.XDEFINITION, //
-					Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.SYNSETID + " AS _id"}; //
-			final String selection = Words_VnWords_VnClasses_U.WORDID + " = ?"; //
+					Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.SYNSETID + " AS _id"};
+			final String selection = Words_VnWords_VnClasses_U.WORDID + " = ?";
 			final String[] selectionArgs = {Long.toString(this.wordId)};
 			final String sortOrder = null;
 			return new CursorLoader(this.context, uri, projection, selection, selectionArgs, sortOrder);
@@ -100,8 +100,8 @@ class XLoader
 					Words_VnWords_VnClasses_U.CLASS + " AS " + Words_XNet_U.XHEADER, //
 					Words_VnWords_VnClasses_U.CLASSTAG + " AS " + Words_XNet_U.XINFO, //
 					Words_VnWords_VnClasses_U.DEFINITION + " AS " + Words_XNet_U.XDEFINITION, //
-					"rowid AS _id",}; //
-			final String selection = Words_VnWords_VnClasses_U.WORDID + " = ?"; //
+					"rowid AS _id",};
+			final String selection = Words_VnWords_VnClasses_U.WORDID + " = ?";
 			final String[] selectionArgs = {Long.toString(this.wordId)};
 			final String sortOrder = Words_VnWords_VnClasses_U.CLASSID;
 			return new CursorLoader(this.context, uri, projection, selection, selectionArgs, sortOrder);
@@ -133,8 +133,8 @@ class XLoader
 					//Words_PbWords_PbRolesets_U.ROLESETHEAD + " AS " + Words_XNet_U.XHEADER, //
 					Words_PbWords_PbRolesets_U.ROLESETDESCR + " AS " + Words_XNet_U.XINFO, //
 					Words_PbWords_PbRolesets_U.DEFINITION + " AS " + Words_XNet_U.XDEFINITION, //
-					"rowid AS _id",}; //
-			final String selection = PredicateMatrix_PropBank.WORDID + " = ?"; //
+					"rowid AS _id",};
+			final String selection = PredicateMatrix_PropBank.WORDID + " = ?";
 			final String[] selectionArgs = {Long.toString(this.wordId)};
 			final String sortOrder = Words_PbWords_PbRolesets_U.ROLESETID;
 			return new CursorLoader(this.context, uri, projection, selection, selectionArgs, sortOrder);
@@ -165,8 +165,8 @@ class XLoader
 					Words_FnWords_FnFrames_U.FRAME + " AS " + Words_XNet_U.XHEADER, //
 					"GROUP_CONCAT(" + Words_FnWords_FnFrames_U.LUDEFINITION + ",'\n') AS " + Words_XNet_U.XINFO, //
 					Words_FnWords_FnFrames_U.DEFINITION + " AS " + Words_XNet_U.XDEFINITION, //
-					"rowid AS _id",}; //
-			final String selection = Words_FnWords_FnFrames_U.WORDID + " = ?"; //
+					"rowid AS _id",};
+			final String selection = Words_FnWords_FnFrames_U.WORDID + " = ?";
 			final String[] selectionArgs = {Long.toString(this.wordId)};
 			final String sortOrder = Words_FnWords_FnFrames_U.FRAMEID + ',' + Words_FnWords_FnFrames_U.LUID;
 			return new CursorLoader(this.context, uri, projection, selection, selectionArgs, sortOrder);
@@ -301,7 +301,7 @@ class XLoader
 						" name=" + xName +  //
 						" header=" + xHeader +  //
 						" info=" + xInfo +  //
-						" definition=" + definition); //
+						" definition=" + definition);
 			}
 			while (cursor.moveToNext());
 			cursor.moveToFirst();

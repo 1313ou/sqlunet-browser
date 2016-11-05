@@ -54,9 +54,8 @@ public class SenseModule extends SynsetModule
 		}
 
 		// sub nodes
-		final TreeNode synsetNode = TreeFactory.newTextNode("Synset", this.context); //
-		final TreeNode membersNode = TreeFactory.newTextNode("Members", this.context); //
-
+		final TreeNode synsetNode = TreeFactory.newTextNode("Synset", this.context);
+		final TreeNode membersNode = TreeFactory.newTextNode("Members", this.context);
 		// attach result
 		parent.addChildren(synsetNode, membersNode);
 

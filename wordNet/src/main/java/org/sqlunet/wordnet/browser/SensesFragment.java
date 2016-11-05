@@ -42,8 +42,7 @@ public class SensesFragment extends ListFragment
 	/**
 	 * The serialization (saved instance state) Bundle key representing the activated item position. Only used on tablets.
 	 */
-	private static final String ACTIVATED_POSITION_NAME = "activated_position"; //
-
+	private static final String ACTIVATED_POSITION_NAME = "activated_position";
 	/**
 	 * The current activated item position. Only used on tablets.
 	 */
@@ -143,7 +142,7 @@ public class SensesFragment extends ListFragment
 				String text = cursor.getString(columnIndex);
 				if (text == null)
 				{
-					text = ""; //
+					text = "";
 				}
 
 				if (view instanceof TextView)
@@ -163,7 +162,7 @@ public class SensesFragment extends ListFragment
 				}
 				else
 				{
-					throw new IllegalStateException(view.getClass().getName() + " is not a view that can be bound by this SimpleCursorAdapter"); //
+					throw new IllegalStateException(view.getClass().getName() + " is not a view that can be bound by this SimpleCursorAdapter");
 				}
 				return false;
 			}
@@ -199,7 +198,7 @@ public class SensesFragment extends ListFragment
 						WordNetContract.PosTypes.POSNAME, //
 						WordNetContract.LexDomains.LEXDOMAIN, //
 						WordNetContract.CasedWords.CASED};
-				final String selection = Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.LEMMA + " = ?"; //
+				final String selection = Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.LEMMA + " = ?";
 				final String[] selectionArgs = {SensesFragment.this.word};
 				final String sortOrder = Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.POS + ',' + Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.SENSENUM;
 				return new CursorLoader(getActivity(), uri, projection, selection, selectionArgs, sortOrder);
@@ -267,7 +266,7 @@ public class SensesFragment extends ListFragment
 			this.listener = (Listener) context;
 			return;
 		}
-		throw new IllegalStateException("Activity must implement fragment's listener."); //
+		throw new IllegalStateException("Activity must implement fragment's listener.");
 	}
 
 	@Override

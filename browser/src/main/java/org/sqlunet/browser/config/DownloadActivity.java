@@ -33,13 +33,11 @@ public class DownloadActivity extends Activity implements View.OnClickListener
 	/**
 	 * Log tag
 	 */
-	private static final String TAG = "Download"; //
-
+	private static final String TAG = "Download";
 	/**
 	 * Result extra
 	 */
-	private static final String RESULT_DOWNLOAD_DATA_AVAILABLE = "download_data_available"; //
-
+	private static final String RESULT_DOWNLOAD_DATA_AVAILABLE = "download_data_available";
 	/**
 	 * Download id
 	 */
@@ -154,8 +152,7 @@ public class DownloadActivity extends Activity implements View.OnClickListener
 		super.onPostCreate(savedInstanceState);
 
 		this.src.setText(this.downloadUrl);
-		this.target.setText(this.destDir != null ? this.destDir.getAbsolutePath() : ""); //
-
+		this.target.setText(this.destDir != null ? this.destDir.getAbsolutePath() : "");
 		// TODO
 		// this.src.setSingleLine(true);
 		// this.src.setEllipsize(TextUtils.TruncateAt.MARQUEE);
@@ -324,7 +321,7 @@ public class DownloadActivity extends Activity implements View.OnClickListener
 					// local uri
 					final String uriString = cursor.getString(cursor.getColumnIndex(DownloadManager.COLUMN_LOCAL_URI));
 					final Uri uri = Uri.parse(uriString);
-					Log.d(TAG, "Local Uri " + uri.toString()); //
+					Log.d(TAG, "Local Uri " + uri.toString());
 					return true;
 				}
 			}
@@ -376,7 +373,7 @@ public class DownloadActivity extends Activity implements View.OnClickListener
 
 						// update UI
 						final int resStatus = DownloadActivity.status2ResourceId(status);
-						Log.d(DownloadActivity.TAG, getResources().getString(resStatus) + " at " + progress); //
+						Log.d(DownloadActivity.TAG, getResources().getString(resStatus) + " at " + progress);
 						runOnUiThread(new Runnable()
 						{
 							@Override

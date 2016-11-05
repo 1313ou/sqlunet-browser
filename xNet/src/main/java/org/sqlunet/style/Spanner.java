@@ -24,8 +24,7 @@ import org.sqlunet.xnet.R;
  */
 public class Spanner
 {
-	private static final String TAG = "Spanner"; //
-
+	private static final String TAG = "Spanner";
 	/**
 	 * Collapsed marker
 	 */
@@ -39,8 +38,7 @@ public class Spanner
 	/**
 	 * Expanded marker
 	 */
-	static private final String EXPANDEDSTRING = "~"; //
-
+	static private final String EXPANDEDSTRING = "~";
 	/**
 	 * End of expanded string marker
 	 */
@@ -227,7 +225,7 @@ public class Spanner
 			@Override
 			synchronized public void onClick(final View view)
 			{
-				// Log.d(TAG, "Click image"); //
+				// Log.d(TAG, "Click image");
 				final TextView textView = (TextView) view;
 				final SpannableStringBuilder sb1 = (SpannableStringBuilder) textView.getText();
 				final int clickableStart = textView.getSelectionStart();
@@ -252,7 +250,7 @@ public class Spanner
 					sb1.setSpan(newimagespan, from, to, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
 
 					// fire click
-					Log.d(TAG, from + "->" + to); //
+					Log.d(TAG, from + "->" + to);
 					listener.onClickImage(sb1, to + caption.length() + 2, collapsed);
 				}
 				textView.setText(sb1);

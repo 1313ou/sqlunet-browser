@@ -18,8 +18,7 @@ import org.sqlunet.provider.SqlUNetProvider;
  */
 public class PredicateMatrixProvider extends SqlUNetProvider
 {
-	static private final String TAG = "PMProvider"; //
-
+	static private final String TAG = "PMProvider";
 	// U R I M A T C H E R
 
 	// uri matcher
@@ -55,12 +54,11 @@ public class PredicateMatrixProvider extends SqlUNetProvider
 		switch (PredicateMatrixProvider.uriMatcher.match(uri))
 		{
 			case PM:
-				return SqlUNetContract.VENDOR + ".android.cursor.item/" + SqlUNetContract.VENDOR + '.' + PredicateMatrixContract.AUTHORITY + '.' + PredicateMatrixContract.Pm.TABLE; //
+				return SqlUNetContract.VENDOR + ".android.cursor.item/" + SqlUNetContract.VENDOR + '.' + PredicateMatrixContract.AUTHORITY + '.' + PredicateMatrixContract.Pm.TABLE;
 			case PM_X:
-				return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + PredicateMatrixContract.AUTHORITY + '.' + PredicateMatrixContract.Pm_X.TABLE; //
-
+				return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + PredicateMatrixContract.AUTHORITY + '.' + PredicateMatrixContract.Pm_X.TABLE;
 			default:
-				throw new UnsupportedOperationException("Illegal MIME type"); //
+				throw new UnsupportedOperationException("Illegal MIME type");
 		}
 	}
 
@@ -77,7 +75,7 @@ public class PredicateMatrixProvider extends SqlUNetProvider
 
 		// choose the table to query and a sort order based on the code returned for the incoming URI
 		final int code = PredicateMatrixProvider.uriMatcher.match(uri);
-		Log.d(PredicateMatrixProvider.TAG + "URI", String.format("%s (code %s)\n", uri, code)); //
+		Log.d(PredicateMatrixProvider.TAG + "URI", String.format("%s (code %s)\n", uri, code));
 		String table;
 		switch (code)
 		{
@@ -106,19 +104,19 @@ public class PredicateMatrixProvider extends SqlUNetProvider
 						"LEFT JOIN fnframes AS " + PredicateMatrixContract.FNFRAME + " ON fnframeid = " + PredicateMatrixContract.FNFRAME + ".frameid " + //
 						"LEFT JOIN fnfes AS " + PredicateMatrixContract.FNFE + " ON fnfeid = " + PredicateMatrixContract.FNFE + ".feid " + //
 						"LEFT JOIN fnfetypes AS " + PredicateMatrixContract.FNFETYPE + " ON " + PredicateMatrixContract.FNFE + ".fetypeid = " + PredicateMatrixContract.FNFETYPE + ".fetypeid " + //
-						"LEFT JOIN fnlexunits AS " + PredicateMatrixContract.FNLU + " ON fnluid = " + PredicateMatrixContract.FNLU + ".luid"; //
+						"LEFT JOIN fnlexunits AS " + PredicateMatrixContract.FNLU + " ON fnluid = " + PredicateMatrixContract.FNLU + ".luid";
 				break;
 
 			default:
 			case UriMatcher.NO_MATCH:
-				throw new RuntimeException("Malformed URI " + uri); //
+				throw new RuntimeException("Malformed URI " + uri);
 		}
 
 		if (SqlUNetProvider.debugSql)
 		{
 			final String sql = SQLiteQueryBuilder.buildQueryString(false, table, projection, selection, null, null, sortOrder, null);
-			Log.d(PredicateMatrixProvider.TAG + "SQL", sql); //
-			Log.d(PredicateMatrixProvider.TAG + "ARGS", SqlUNetProvider.argsToString(selectionArgs)); //
+			Log.d(PredicateMatrixProvider.TAG + "SQL", sql);
+			Log.d(PredicateMatrixProvider.TAG + "ARGS", SqlUNetProvider.argsToString(selectionArgs));
 		}
 
 		// do query
@@ -129,8 +127,8 @@ public class PredicateMatrixProvider extends SqlUNetProvider
 		catch (SQLiteException e)
 		{
 			final String sql = SQLiteQueryBuilder.buildQueryString(false, table, projection, selection, null, null, sortOrder, null);
-			Log.d(TAG + "SQL", sql); //
-			Log.e(TAG, "PropBank provider query failed", e); //
+			Log.d(TAG + "SQL", sql);
+			Log.e(TAG, "PropBank provider query failed", e);
 			return null;
 		}
 	}

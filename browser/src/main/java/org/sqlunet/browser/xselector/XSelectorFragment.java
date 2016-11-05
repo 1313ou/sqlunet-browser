@@ -44,23 +44,19 @@ import java.util.Locale;
  */
 public class XSelectorFragment extends ExpandableListFragment
 {
-	private static final String TAG = "XSelectorFragment"; //
-
+	private static final String TAG = "XSelectorFragment";
 	/**
 	 * The serialization (saved instance state) Bundle key representing the activated item position. Only used on tablets.
 	 */
-	private static final String ACTIVATED_POSITION_NAME = "activated_position"; //
-
+	private static final String ACTIVATED_POSITION_NAME = "activated_position";
 	/**
 	 * Database column
 	 */
-	private static final String DBCOLUMN = "xb"; //
-
+	private static final String DBCOLUMN = "xb";
 	/**
 	 * Source fields for groups
 	 */
-	private static final String[] groupFrom = {DBCOLUMN,}; //
-
+	private static final String[] groupFrom = {DBCOLUMN,};
 	/**
 	 * Target resource for groups
 	 */
@@ -129,11 +125,11 @@ public class XSelectorFragment extends ExpandableListFragment
 	@SuppressWarnings("boxing")
 	public XSelectorFragment()
 	{
-		this.xnCursor = new MatrixCursor(new String[]{"_id", DBCOLUMN, "loader"}); //
-		this.xnCursor.addRow(new Object[]{0, "wordnet", 1111}); //
-		this.xnCursor.addRow(new Object[]{1, "verbnet", 2222}); //
-		this.xnCursor.addRow(new Object[]{2, "propbank", 3333}); //
-		this.xnCursor.addRow(new Object[]{3, "framenet", 4444}); //
+		this.xnCursor = new MatrixCursor(new String[]{"_id", DBCOLUMN, "loader"});
+		this.xnCursor.addRow(new Object[]{0, "wordnet", 1111});
+		this.xnCursor.addRow(new Object[]{1, "verbnet", 2222});
+		this.xnCursor.addRow(new Object[]{2, "propbank", 3333});
+		this.xnCursor.addRow(new Object[]{3, "framenet", 4444});
 	}
 
 	// L I F E   C Y C L E
@@ -182,9 +178,9 @@ public class XSelectorFragment extends ExpandableListFragment
 						Words_FnWords_PbWords_VnWords.VNWORDID, //
 						Words_FnWords_PbWords_VnWords.PBWORDID, //
 				};
-				final String selection = XSqlUNetContract.WORD + '.' + Words_FnWords_PbWords_VnWords.LEMMA + " = ?"; //
+				final String selection = XSqlUNetContract.WORD + '.' + Words_FnWords_PbWords_VnWords.LEMMA + " = ?";
 				final String[] selectionArgs = {XSelectorFragment.this.word};
-				final String sortOrder = XSqlUNetContract.POS + '.' + Words_FnWords_PbWords_VnWords.POS + ',' + Words_FnWords_PbWords_VnWords.SENSENUM; //
+				final String sortOrder = XSqlUNetContract.POS + '.' + Words_FnWords_PbWords_VnWords.POS + ',' + Words_FnWords_PbWords_VnWords.SENSENUM;
 				return new CursorLoader(getActivity(), uri, projection, selection, selectionArgs, sortOrder);
 			}
 
@@ -225,7 +221,7 @@ public class XSelectorFragment extends ExpandableListFragment
 				switch (v.getId())
 				{
 					case R.id.xsources:
-						final String[] fields = value.split(","); //
+						final String[] fields = value.split(",");
 						for (String field : fields)
 						{
 							switch (field)
@@ -249,7 +245,7 @@ public class XSelectorFragment extends ExpandableListFragment
 						break;
 
 					case R.id.pm:
-						final String[] fields2 = value.split(","); //
+						final String[] fields2 = value.split(",");
 						for (String field2 : fields2)
 						{
 							if (field2.startsWith("pm")) //
@@ -276,10 +272,9 @@ public class XSelectorFragment extends ExpandableListFragment
 
 				// given the group, we return a cursor for all the children within that group
 				int groupPos = groupCursor.getPosition();
-				String groupName = groupCursor.getString(groupCursor.getColumnIndex(DBCOLUMN)); //
-				int loaderId = groupCursor.getInt(groupCursor.getColumnIndex("loader")); //
-				Log.d(TAG, "group " + groupPos + ' ' + groupName + " loader=" + loaderId); //
-
+				String groupName = groupCursor.getString(groupCursor.getColumnIndex(DBCOLUMN));
+				int loaderId = groupCursor.getInt(groupCursor.getColumnIndex("loader"));
+				Log.d(TAG, "group " + groupPos + ' ' + groupName + " loader=" + loaderId);
 				LoaderCallbacks<Cursor> callbacks = null;
 				switch (groupPos)
 				{
@@ -353,7 +348,7 @@ public class XSelectorFragment extends ExpandableListFragment
 		// activities containing this fragment must implement its listener
 		if (!(context instanceof Listener))
 		{
-			throw new IllegalStateException("Activity must implement fragment's listener."); //
+			throw new IllegalStateException("Activity must implement fragment's listener.");
 		}
 		this.listener = (Listener) context;
 	}
@@ -401,7 +396,7 @@ public class XSelectorFragment extends ExpandableListFragment
 				}
 				else
 				{
-					Log.i(TAG, "WN none"); //
+					Log.i(TAG, "WN none");
 				}
 			}
 
@@ -436,7 +431,7 @@ public class XSelectorFragment extends ExpandableListFragment
 				}
 				else
 				{
-					Log.i(TAG, "VN none"); //
+					Log.i(TAG, "VN none");
 				}
 			}
 
@@ -471,7 +466,7 @@ public class XSelectorFragment extends ExpandableListFragment
 				}
 				else
 				{
-					Log.i(TAG, "PB none"); //
+					Log.i(TAG, "PB none");
 				}
 			}
 
@@ -506,7 +501,7 @@ public class XSelectorFragment extends ExpandableListFragment
 				}
 				else
 				{
-					Log.i(TAG, "FN none"); //
+					Log.i(TAG, "FN none");
 				}
 			}
 
@@ -572,7 +567,7 @@ public class XSelectorFragment extends ExpandableListFragment
 	{
 		super.onChildClick(listView, view, groupPosition, childPosition, id);
 
-		//Log.d(TAG, "CLICK on group=" + groupPosition + " child=" + childPosition + " id=" + id); //
+		//Log.d(TAG, "CLICK on group=" + groupPosition + " child=" + childPosition + " id=" + id);
 		int index = listView.getFlatListPosition(ExpandableListView.getPackedPositionForChild(groupPosition, childPosition));
 		listView.setItemChecked(index, true);
 		// view.setSelected(true);
@@ -604,8 +599,7 @@ public class XSelectorFragment extends ExpandableListFragment
 
 			// pointer
 			final XSelectorPointer pointer = new XSelectorPointer(synsetId, pos, wordId, lemma, cased, xId, xClassId, xMemberId, xSources, xMask);
-			Log.d(TAG, "pointer=" + pointer); //
-
+			Log.d(TAG, "pointer=" + pointer);
 			// notify the active listener (the activity, if the fragment is attached to one) that an item has been selected
 			if (this.listener != null)
 			{
@@ -657,13 +651,13 @@ public class XSelectorFragment extends ExpandableListFragment
 		switch (p)
 		{
 			case 1:
-				return "n"; //
+				return "n";
 			case 2:
-				return "v"; //
+				return "v";
 			case 3:
-				return "a"; //
+				return "a";
 			case 4:
-				return "r"; //
+				return "r";
 			default:
 				return null;
 		}

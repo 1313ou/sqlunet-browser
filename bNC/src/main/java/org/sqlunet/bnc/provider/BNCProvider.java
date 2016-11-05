@@ -17,7 +17,7 @@ import org.sqlunet.provider.SqlUNetProvider;
  */
 public class BNCProvider extends SqlUNetProvider
 {
-	static private final String TAG = "BNCProvider"; //
+	static private final String TAG = "BNCProvider";
 
 	// U R I M A T C H E R
 
@@ -57,15 +57,15 @@ public class BNCProvider extends SqlUNetProvider
 			// TABLES
 
 			case BNC:
-				return SqlUNetContract.VENDOR + ".android.cursor.item/" + SqlUNetContract.VENDOR + '.' + BNCContract.AUTHORITY + '.' + BNCContract.BNCs.TABLE; //
+				return SqlUNetContract.VENDOR + ".android.cursor.item/" + SqlUNetContract.VENDOR + '.' + BNCContract.AUTHORITY + '.' + BNCContract.BNCs.TABLE;
 
 			// JOINS
 
 			case WORDS_BNC:
-				return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + BNCContract.AUTHORITY + '.' + BNCContract.Words_BNCs.TABLE; //
+				return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + BNCContract.AUTHORITY + '.' + BNCContract.Words_BNCs.TABLE;
 
 			default:
-				throw new UnsupportedOperationException("Illegal MIME type"); //
+				throw new UnsupportedOperationException("Illegal MIME type");
 		}
 	}
 
@@ -84,7 +84,7 @@ public class BNCProvider extends SqlUNetProvider
 
 		// choose the table to query and a sort order based on the code returned for the incoming URI
 		final int code = BNCProvider.uriMatcher.match(uri);
-		Log.d(BNCProvider.TAG + "URI", String.format("%s (code %s)", uri, code)); //
+		Log.d(BNCProvider.TAG + "URI", String.format("%s (code %s)", uri, code));
 
 		String table;
 		switch (code)
@@ -98,13 +98,13 @@ public class BNCProvider extends SqlUNetProvider
 				table = BNCContract.BNCs.TABLE;
 				if (actualSelection != null)
 				{
-					actualSelection += " AND "; //
+					actualSelection += " AND ";
 				}
 				else
 				{
-					actualSelection = ""; //
+					actualSelection = "";
 				}
-				actualSelection += BNCContract.BNCs.POS + " = ?"; //
+				actualSelection += BNCContract.BNCs.POS + " = ?";
 				break;
 
 			// J O I N S
@@ -113,20 +113,20 @@ public class BNCProvider extends SqlUNetProvider
 				table = "bncs " + //
 						"LEFT JOIN bncspwrs USING (wordid, pos) " + //
 						"LEFT JOIN bncconvtasks USING (wordid, pos) " + //
-						"LEFT JOIN bncimaginfs USING (wordid, pos) "; //
+						"LEFT JOIN bncimaginfs USING (wordid, pos) ";
 				break;
 
 			default:
 			case UriMatcher.NO_MATCH:
-				throw new RuntimeException("Malformed URI " + uri); //
+				throw new RuntimeException("Malformed URI " + uri);
 		}
 
 		final String groupBy = null;
 		if (SqlUNetProvider.debugSql)
 		{
 			final String sql = SQLiteQueryBuilder.buildQueryString(false, table, projection, actualSelection, groupBy, null, sortOrder, null);
-			Log.d(BNCProvider.TAG + "SQL", sql); //
-			Log.d(BNCProvider.TAG + "ARGS", SqlUNetProvider.argsToString(selectionArgs)); //
+			Log.d(BNCProvider.TAG + "SQL", sql);
+			Log.d(BNCProvider.TAG + "ARGS", SqlUNetProvider.argsToString(selectionArgs));
 		}
 
 		// do query
@@ -137,8 +137,8 @@ public class BNCProvider extends SqlUNetProvider
 		catch (SQLiteException e)
 		{
 			final String sql = SQLiteQueryBuilder.buildQueryString(false, table, projection, actualSelection, groupBy, null, sortOrder, null);
-			Log.d(TAG + "SQL", sql); //
-			Log.e(TAG, "Bnc provider query failed", e); //
+			Log.d(TAG + "SQL", sql);
+			Log.e(TAG, "Bnc provider query failed", e);
 			return null;
 		}
 	}

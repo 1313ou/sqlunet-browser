@@ -9,8 +9,7 @@ import org.sqlunet.style.Preprocessor;
  */
 public class FrameNetProcessor extends Preprocessor
 {
-	// static final String TAG = "FrameNetProcessor"; //
-
+	// static final String TAG = "FrameNetProcessor";
 	/**
 	 * Replacers for preprocessor
 	 */

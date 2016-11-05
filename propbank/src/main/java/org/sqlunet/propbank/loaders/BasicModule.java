@@ -125,7 +125,7 @@ abstract class BasicModule extends Module
 						PropBankContract.PbRoleSets.ROLESETHEAD, //
 						PropBankContract.PbRoleSets.ROLESETDESC, //
 				};
-				final String selection = PropBankContract.PbRoleSets.ROLESETID + " = ?"; //
+				final String selection = PropBankContract.PbRoleSets.ROLESETID + " = ?";
 				final String[] selectionArgs = {Long.toString(roleSetId)};
 				final String sortOrder = null;
 				return new CursorLoader(BasicModule.this.context, uri, projection, selection, selectionArgs, sortOrder);
@@ -136,7 +136,7 @@ abstract class BasicModule extends Module
 			{
 				if (cursor.getCount() > 1)
 				{
-					throw new RuntimeException("Unexpected number of rows"); //
+					throw new RuntimeException("Unexpected number of rows");
 				}
 				if (cursor.moveToFirst())
 				{
@@ -157,7 +157,7 @@ abstract class BasicModule extends Module
 					sb.append(' ');
 					Spanner.append(sb, cursor.getString(idRolesetName), 0, PropBankFactories.roleSetFactory);
 					sb.append(' ');
-					sb.append("head="); //
+					sb.append("head=");
 					sb.append(cursor.getString(idRolesetHead));
 					sb.append('\n');
 
@@ -213,7 +213,7 @@ abstract class BasicModule extends Module
 						Words_PbRoleSets.ROLESETHEAD, //
 						Words_PbRoleSets.ROLESETDESC, //
 				};
-				final String selection = Words_PbRoleSets.WORDID + " = ?"; //
+				final String selection = Words_PbRoleSets.WORDID + " = ?";
 				final String[] selectionArgs = {Long.toString(wordId)};
 				final String sortOrder = null;
 				return new CursorLoader(BasicModule.this.context, uri, projection, selection, selectionArgs, sortOrder);
@@ -243,7 +243,7 @@ abstract class BasicModule extends Module
 						sb.append(' ');
 						Spanner.append(sb, cursor.getString(idRoleSetName), 0, PropBankFactories.roleSetFactory);
 						sb.append(' ');
-						sb.append("head="); //
+						sb.append("head=");
 						sb.append(cursor.getString(idRoleSetHead));
 						sb.append('\n');
 
@@ -306,7 +306,7 @@ abstract class BasicModule extends Module
 						PbRoleSets_PbRoles.FUNCNAME, //
 						PbRoleSets_PbRoles.THETANAME, //
 				};
-				final String selection = PbRoleSets_PbRoles.ROLESETID + "= ?"; //
+				final String selection = PbRoleSets_PbRoles.ROLESETID + "= ?";
 				final String[] selectionArgs = {Long.toString(roleSetId)};
 				final String sortOrder = null;
 				return new CursorLoader(BasicModule.this.context, uri, projection, selection, selectionArgs, sortOrder);
@@ -353,7 +353,7 @@ abstract class BasicModule extends Module
 						if (!cursor.isNull(idFunc))
 						{
 							sb.append(' ');
-							sb.append("func="); //
+							sb.append("func=");
 							sb.append(Integer.toString(cursor.getInt(idFunc)));
 						}
 
@@ -428,9 +428,9 @@ abstract class BasicModule extends Module
 						PbRoleSets_PbExamples.VOICENAME, //
 						PbRoleSets_PbExamples.PERSONNAME, //
 				};
-				final String selection = PbRoleSets_PbExamples.ROLESETID + "= ?"; //
+				final String selection = PbRoleSets_PbExamples.ROLESETID + "= ?";
 				final String[] selectionArgs = {Long.toString(roleSetId)};
-				final String sortOrder = PbRoleSets_PbExamples.EXAMPLEID + ',' + PbRoleSets_PbExamples.NARG; //
+				final String sortOrder = PbRoleSets_PbExamples.EXAMPLEID + ',' + PbRoleSets_PbExamples.NARG;
 				return new CursorLoader(BasicModule.this.context, uri, projection, selection, selectionArgs, sortOrder);
 			}
 
@@ -466,11 +466,11 @@ abstract class BasicModule extends Module
 						final String argspack = cursor.getString(idArgs);
 						if (argspack != null)
 						{
-							final String[] args = argspack.split("\\|"); //
+							final String[] args = argspack.split("\\|");
 							Arrays.sort(args);
 							for (final String arg : args)
 							{
-								final String[] fields = arg.split("~"); //
+								final String[] fields = arg.split("~");
 								if (fields.length < 5)
 								{
 									sb.append(arg);

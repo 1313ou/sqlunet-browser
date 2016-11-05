@@ -21,8 +21,8 @@ class PbNodeFactory extends NodeFactory
 	 */
 	static public Node makePbRootNode(final Document doc, final long wordId)
 	{
-		final Element rootNode = NodeFactory.makeNode(doc, doc, "propbank", null); //
-		org.sqlunet.sql.NodeFactory.makeTargetNode(doc, rootNode, "word-id", Long.toString(wordId)); //
+		final Element rootNode = NodeFactory.makeNode(doc, doc, "propbank", null);
+		org.sqlunet.sql.NodeFactory.makeTargetNode(doc, rootNode, "word-id", Long.toString(wordId));
 		return rootNode;
 	}
 
@@ -35,8 +35,8 @@ class PbNodeFactory extends NodeFactory
 	 */
 	public static Node makePbRootRoleSetNode(final Document doc, long roleSetId)
 	{
-		final Element rootNode = NodeFactory.makeNode(doc, doc, "propbank", null); //
-		org.sqlunet.sql.NodeFactory.makeTargetNode(doc, rootNode, "roleset-id", Long.toString(roleSetId)); //
+		final Element rootNode = NodeFactory.makeNode(doc, doc, "propbank", null);
+		org.sqlunet.sql.NodeFactory.makeTargetNode(doc, rootNode, "roleset-id", Long.toString(roleSetId));
 		return rootNode;
 	}
 
@@ -50,11 +50,11 @@ class PbNodeFactory extends NodeFactory
 	 */
 	public static Node makePbRoleSetNode(final Document doc, final Node parent, final PbRoleSet roleSet, final int i)
 	{
-		final Element element = NodeFactory.makeNode(doc, parent, "roleset", null); //
-		NodeFactory.makeAttribute(element, "num", Integer.toString(i)); //
-		NodeFactory.makeAttribute(element, "name", roleSet.roleSetName); //
-		NodeFactory.makeAttribute(element, "rolesetid", Long.toString(roleSet.roleSetId)); //
-		NodeFactory.makeAttribute(element, "head", roleSet.roleSetHead); //
+		final Element element = NodeFactory.makeNode(doc, parent, "roleset", null);
+		NodeFactory.makeAttribute(element, "num", Integer.toString(i));
+		NodeFactory.makeAttribute(element, "name", roleSet.roleSetName);
+		NodeFactory.makeAttribute(element, "rolesetid", Long.toString(roleSet.roleSetId));
+		NodeFactory.makeAttribute(element, "head", roleSet.roleSetHead);
 		NodeFactory.makeText(doc, element, roleSet.roleSetDescr);
 		return element;
 	}
@@ -68,59 +68,59 @@ class PbNodeFactory extends NodeFactory
 	 */
 	public static Node makePbRoleNode(final Document doc, final Node parent, final PbRole role)
 	{
-		final Element element = NodeFactory.makeNode(doc, parent, "role", null); //
-		NodeFactory.makeAttribute(element, "roleid", Long.toString(role.roleId)); //
-		NodeFactory.makeAttribute(element, "narg", role.nArg); //
-		NodeFactory.makeAttribute(element, "theta", role.roleTheta); //
-		NodeFactory.makeAttribute(element, "func", role.roleFunc); //
+		final Element element = NodeFactory.makeNode(doc, parent, "role", null);
+		NodeFactory.makeAttribute(element, "roleid", Long.toString(role.roleId));
+		NodeFactory.makeAttribute(element, "narg", role.nArg);
+		NodeFactory.makeAttribute(element, "theta", role.roleTheta);
+		NodeFactory.makeAttribute(element, "func", role.roleFunc);
 		NodeFactory.makeText(doc, element, role.roleDescr);
 		return element;
 	}
 
 	public static Node makePbExampleNode(final Document doc, final Node parent, final PbExample example)
 	{
-		final Element element = NodeFactory.makeNode(doc, parent, "example", null); //
-		NodeFactory.makeAttribute(element, "exampleid", Long.toString(example.exampleId)); //
+		final Element element = NodeFactory.makeNode(doc, parent, "example", null);
+		NodeFactory.makeAttribute(element, "exampleid", Long.toString(example.exampleId));
 		if (example.aspect != null)
 		{
-			NodeFactory.makeAttribute(element, "aspect", example.aspect); //
+			NodeFactory.makeAttribute(element, "aspect", example.aspect);
 		}
 		if (example.form != null)
 		{
-			NodeFactory.makeAttribute(element, "form", example.form); //
+			NodeFactory.makeAttribute(element, "form", example.form);
 		}
 		if (example.tense != null)
 		{
-			NodeFactory.makeAttribute(element, "tense", example.tense); //
+			NodeFactory.makeAttribute(element, "tense", example.tense);
 		}
 		if (example.voice != null)
 		{
-			NodeFactory.makeAttribute(element, "voice", example.voice); //
+			NodeFactory.makeAttribute(element, "voice", example.voice);
 		}
 		if (example.person != null)
 		{
-			NodeFactory.makeAttribute(element, "person", example.person); //
+			NodeFactory.makeAttribute(element, "person", example.person);
 		}
 
 		NodeFactory.makeText(doc, element, example.text);
-		NodeFactory.makeNode(doc, element, "rel", example.rel); //
+		NodeFactory.makeNode(doc, element, "rel", example.rel);
 		if (example.args != null)
 		{
 			for (final PbArg arg : example.args)
 			{
-				final Element element3 = NodeFactory.makeNode(doc, element, "arg", null); //
-				NodeFactory.makeAttribute(element3, "narg", arg.nArg); //
+				final Element element3 = NodeFactory.makeNode(doc, element, "arg", null);
+				NodeFactory.makeAttribute(element3, "narg", arg.nArg);
 				if (arg.f != null)
 				{
-					NodeFactory.makeAttribute(element3, "f", arg.f); //
+					NodeFactory.makeAttribute(element3, "f", arg.f);
 				}
 				if (arg.description != null)
 				{
-					NodeFactory.makeAttribute(element3, "descr", arg.description); //
+					NodeFactory.makeAttribute(element3, "descr", arg.description);
 				}
 				if (arg.vnTheta != null)
 				{
-					NodeFactory.makeAttribute(element3, "theta", arg.vnTheta); //
+					NodeFactory.makeAttribute(element3, "theta", arg.vnTheta);
 				}
 				NodeFactory.makeText(doc, element3, arg.subText);
 			}

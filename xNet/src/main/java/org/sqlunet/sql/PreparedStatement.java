@@ -12,8 +12,7 @@ import android.util.SparseArray;
  */
 public class PreparedStatement
 {
-	static private final String TAG = "PreparedStatement"; //
-
+	static private final String TAG = "PreparedStatement";
 	// TODO
 	/**
 	 * Whether to output SQL statements
@@ -103,13 +102,13 @@ public class PreparedStatement
 		{
 			if (PreparedStatement.debugSql)
 			{
-				Log.d(PreparedStatement.TAG + "SQL", Utils.replaceArgs(this.sql, args)); //
+				Log.d(PreparedStatement.TAG + "SQL", Utils.replaceArgs(this.sql, args));
 			}
 			return this.db.rawQuery(this.sql, args);
 		}
 		catch (final Exception e)
 		{
-			Log.e(PreparedStatement.TAG, this.sql + ' ' + Utils.argsToString(args), e); //
+			Log.e(PreparedStatement.TAG, this.sql + ' ' + Utils.argsToString(args), e);
 			return null;
 		}
 	}

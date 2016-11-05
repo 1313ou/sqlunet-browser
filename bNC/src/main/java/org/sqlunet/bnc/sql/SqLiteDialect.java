@@ -16,13 +16,13 @@ class SqLiteDialect
 			"LEFT JOIN bncs USING (wordid) " + //
 			"LEFT JOIN bncspwrs USING (wordid, pos) " + //
 			"LEFT JOIN bncconvtasks USING (wordid, pos) " + //
-			"LEFT JOIN bncimaginfs USING (wordid, pos) "; //
+			"LEFT JOIN bncimaginfs USING (wordid, pos) ";
 
 	static String BNCWordPosQuery = SqLiteDialect.BNCBaseWordQuery + //
-			"WHERE lemma = ? AND pos = ?;"; //
+			"WHERE lemma = ? AND pos = ?;";
 
 	static String BNCWordQuery = SqLiteDialect.BNCBaseWordQuery + //
-			"WHERE lemma = ?;"; //
+			"WHERE lemma = ?;";
 
 	private static final String BNCBaseQuery = "SELECT " + //
 			"pos, freq, range, disp, " + //
@@ -35,11 +35,11 @@ class SqLiteDialect
 			"FROM bncs " + //
 			"LEFT JOIN bncspwrs USING (wordid, pos) " + //
 			"LEFT JOIN bncconvtasks USING (wordid, pos) " + //
-			"LEFT JOIN bncimaginfs USING (wordid, pos) "; //
+			"LEFT JOIN bncimaginfs USING (wordid, pos) ";
 
 	static final String BNCPosQuery = SqLiteDialect.BNCBaseQuery + //
-			"WHERE wordid = ? AND pos = ?;"; //
+			"WHERE wordid = ? AND pos = ?;";
 
 	static final String BNCQuery = SqLiteDialect.BNCBaseQuery + //
-			"WHERE wordid = ?;"; //
+			"WHERE wordid = ?;";
 }

@@ -18,8 +18,7 @@ import java.util.TreeSet;
  */
 public class Word extends BasicWord
 {
-	private static final String TAG = "Word"; //
-
+	private static final String TAG = "Word";
 	/**
 	 * Word
 	 *

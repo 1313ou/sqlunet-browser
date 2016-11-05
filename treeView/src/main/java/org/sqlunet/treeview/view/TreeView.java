@@ -30,8 +30,7 @@ import java.util.Set;
  */
 public class TreeView
 {
-	private static final String NODES_PATH_SEPARATOR = ";"; //
-
+	private static final String NODES_PATH_SEPARATOR = ";";
 	/**
 	 * Root node
 	 */
@@ -1004,7 +1003,7 @@ public class TreeView
 			}
 			catch (Exception e)
 			{
-				throw new RuntimeException("Could not instantiate class " + this.defaultControlerClass); //
+				throw new RuntimeException("Could not instantiate class " + this.defaultControlerClass);
 			}
 		}
 		if (controller.getContainerStyle() <= 0)

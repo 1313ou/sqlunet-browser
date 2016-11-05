@@ -124,7 +124,7 @@ abstract class BasicModule extends Module
 		this.drawableSemantics = Spanner.getDrawable(this.context, R.drawable.semantics);
 		this.drawableExample = Spanner.getDrawable(this.context, R.drawable.sample);
 		this.drawableDefinition = Spanner.getDrawable(this.context, R.drawable.definition);
-		this.drawableGrouping = Spanner.getDrawable(this.context, R.drawable.sample);
+		this.drawableGrouping = Spanner.getDrawable(this.context, R.drawable.ic_collapsed);
 
 		// create processors and spanners
 		this.semanticsProcessor = new VerbNetSemanticsProcessor();
@@ -155,7 +155,7 @@ abstract class BasicModule extends Module
 						VnClasses.CLASS, //
 						VnClasses.CLASSTAG, //
 				};
-				final String selection = VnClasses.CLASSID + " = ?"; //
+				final String selection = VnClasses.CLASSID + " = ?";
 				final String[] selectionArgs = { //
 						Long.toString(classId)};
 				final String sortOrder = null;
@@ -167,7 +167,7 @@ abstract class BasicModule extends Module
 			{
 				if (cursor.getCount() > 1)
 				{
-					throw new RuntimeException("Unexpected number of rows"); //
+					throw new RuntimeException("Unexpected number of rows");
 				}
 				if (cursor.moveToFirst())
 				{
@@ -191,7 +191,7 @@ abstract class BasicModule extends Module
 					Spanner.append(sb, vnClass, 0, VerbNetFactories.classFactory);
 					// sb.append(" tag=");
 					// sb.append(cursor.getString(idClassTag));
-					sb.append(" id="); //
+					sb.append(" id=");
 					sb.append(Long.toString(classId));
 
 					// attach result
@@ -248,7 +248,7 @@ abstract class BasicModule extends Module
 						"GROUP_CONCAT(DISTINCT " + VnClasses_VnMembers_X.GROUPING + ") AS " + VnClasses_VnMembers_X.GROUPINGS, //
 						VnClasses_VnMembers_X.CLASSID, //
 				};
-				final String selection = VnClasses_VnRoles_X.CLASSID + " = ?"; //
+				final String selection = VnClasses_VnRoles_X.CLASSID + " = ?";
 				final String[] selectionArgs = {Long.toString(classId)};
 				final String sortOrder = VnClasses_VnMembers_X.LEMMA;
 				return new CursorLoader(BasicModule.this.context, uri, projection, selection, selectionArgs, sortOrder);
@@ -356,7 +356,7 @@ abstract class BasicModule extends Module
 						VnClasses_VnRoles_X.RESTRS, //
 						VnClasses_VnRoles_X.CLASSID, //
 				};
-				final String selection = VnClasses_VnRoles_X.CLASSID + " = ?"; //
+				final String selection = VnClasses_VnRoles_X.CLASSID + " = ?";
 				final String[] selectionArgs = {Long.toString(classId)};
 				final String sortOrder = null;
 				return new CursorLoader(BasicModule.this.context, uri, projection, selection, selectionArgs, sortOrder);
@@ -446,7 +446,7 @@ abstract class BasicModule extends Module
 						"GROUP_CONCAT(" + VnClasses_VnFrames_X.EXAMPLE + " , '|') AS " + VnClasses_VnFrames_X.EXAMPLES, //
 						VnClasses_VnFrames_X.CLASSID, //
 				};
-				final String selection = VnClasses_VnFrames_X.CLASSID + " = ?"; //
+				final String selection = VnClasses_VnFrames_X.CLASSID + " = ?";
 				final String[] selectionArgs = {Long.toString(classId)};
 				final String sortOrder = null;
 				return new CursorLoader(BasicModule.this.context, uri, projection, selection, selectionArgs, sortOrder);
@@ -504,7 +504,7 @@ abstract class BasicModule extends Module
 
 						// examples
 						final String examplesConcat = cursor.getString(idExamples);
-						final String[] examples = examplesConcat.split("\\|"); //
+						final String[] examples = examplesConcat.split("\\|");
 						for (final String example : examples)
 						{
 							sb.append('\n');
@@ -555,7 +555,7 @@ abstract class BasicModule extends Module
 		if (group != null)
 		{
 			final SpannableStringBuilder sb = new SpannableStringBuilder();
-			final String[] items = group.split("\\|"); //
+			final String[] items = group.split("\\|");
 			if (items.length == 1)
 			{
 				Spanner.appendImage(sb, BasicModule.this.drawableMember);
@@ -563,7 +563,7 @@ abstract class BasicModule extends Module
 			}
 			else if (items.length > 1)
 			{
-				final TreeNode groupingsNode = TreeFactory.newTreeNode("Groups", R.drawable.member, this.context); //
+				final TreeNode groupingsNode = TreeFactory.newTreeNode("Groups", R.drawable.member, this.context);
 				boolean first = true;
 				for (final String item : items)
 				{

@@ -59,10 +59,10 @@ public class Utils
 			return null;
 		}
 		List<FnLabel> result = null;
-		final String[] labels = labelsString.split("\\|"); //
+		final String[] labels = labelsString.split("\\|");
 		for (final String label : labels)
 		{
-			final String[] fields = label.split(":"); //
+			final String[] fields = label.split(":");
 			final String from = fields[0];
 			final String to = fields[1];
 			final String value = fields[2];

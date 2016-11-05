@@ -32,8 +32,7 @@ import java.io.File;
 @SuppressLint("Registered")
 public class SetupBaseActivity extends Activity implements Downloader.Listener, ExecuteManager.Listener
 {
-	private static final String TAG = "SetupBaseActivity"; //
-
+	private static final String TAG = "SetupBaseActivity";
 	// task
 	AsyncTask<?, Integer, Boolean> task;
 
@@ -103,7 +102,7 @@ public class SetupBaseActivity extends Activity implements Downloader.Listener, 
 				intent = new Intent(this, ManagementActivity.class);
 				break;
 			case R.id.action_appsettings:
-				Settings.applicationSettings(this, "org.sqlunet.browser"); //
+				Settings.applicationSettings(this, "org.sqlunet.browser");
 				return true;
 
 			default:
@@ -126,7 +125,7 @@ public class SetupBaseActivity extends Activity implements Downloader.Listener, 
 	{
 		final ProgressDialog progressDialog = new ProgressDialog(this);
 		progressDialog.setTitle(messageId);
-		progressDialog.setMessage(""); //
+		progressDialog.setMessage("");
 		progressDialog.setIndeterminate(true);
 		progressDialog.setMax(100);
 		progressDialog.setProgressStyle(style);
@@ -139,7 +138,7 @@ public class SetupBaseActivity extends Activity implements Downloader.Listener, 
 				if (which == DialogInterface.BUTTON_NEGATIVE)
 				{
 					boolean result = SetupBaseActivity.this.task.cancel(true);
-					Log.d(TAG, "Cancel task " + SetupBaseActivity.this.task + ' ' + result); //
+					Log.d(TAG, "Cancel task " + SetupBaseActivity.this.task + ' ' + result);
 					dialog.dismiss();
 				}
 			}
@@ -188,7 +187,7 @@ public class SetupBaseActivity extends Activity implements Downloader.Listener, 
 	{
 		this.progressDialog.setIndeterminate(progress == -1);
 		this.progressDialog.setProgress(progress);
-		this.progressDialog.setMessage(bytes / (1024 * 1024) + " MBytes"); //
+		this.progressDialog.setMessage(bytes / (1024 * 1024) + " MBytes");
 	}
 
 	// E X E C U T E L I S T E N E R
@@ -214,6 +213,6 @@ public class SetupBaseActivity extends Activity implements Downloader.Listener, 
 	{
 		this.progressDialog.setIndeterminate(progress == -1);
 		this.progressDialog.setProgress(progress);
-		this.progressDialog.setMessage(progress + " statements"); //
+		this.progressDialog.setMessage(progress + " statements");
 	}
 }

@@ -81,7 +81,7 @@ class FnFrameElement
 		this.feAbbrev = feAbbrev;
 		this.feDefinition = feDefinition;
 		this.coreType = coreType;
-		this.semTypes = semTypes != null ? semTypes.split("\\|") : null; //
+		this.semTypes = semTypes != null ? semTypes.split("\\|") : null;
 		this.isCore = isCore;
 		this.coreSet = coreSet;
 	}

@@ -123,7 +123,7 @@ public class BasicModule extends Module
 						Words_BNCs.BNCSPWRS + '.' + Words_BNCs.RANGE2 + " AS " + Words_BNCs.BNCSPWRS + Words_BNCs.RANGE2, //
 						Words_BNCs.BNCSPWRS + '.' + Words_BNCs.DISP2 + " AS " + Words_BNCs.BNCSPWRS + Words_BNCs.DISP2, //
 				};
-				final String selection = pos == null ? Words_BNCs.WORDID + " = ?" : Words_BNCs.WORDID + " = ? AND " + Words_BNCs.POS + "= ?"; //
+				final String selection = pos == null ? Words_BNCs.WORDID + " = ?" : Words_BNCs.WORDID + " = ? AND " + Words_BNCs.POS + "= ?";
 				final String[] selectionArgs = pos == null ? new String[]{Long.toString(wordId)} : new String[]{Long.toString(wordId), Character.toString(pos),};
 				final String sortOrder = null;
 				return new CursorLoader(BasicModule.this.context, uri, projection, selection, selectionArgs, sortOrder);
@@ -178,15 +178,15 @@ public class BasicModule extends Module
 						String value1;
 						if ((value1 = cursor.getString(idFreq)) != null)
 						{
-							sb.append("freq=").append(value1).append(' '); //
+							sb.append("freq=").append(value1).append(' ');
 						}
 						if ((value1 = cursor.getString(idRange)) != null)
 						{
-							sb.append("range=").append(value1).append(' '); //
+							sb.append("range=").append(value1).append(' ');
 						}
 						if ((value1 = cursor.getString(idDisp)) != null)
 						{
-							sb.append("disp=").append(value1); //
+							sb.append("disp=").append(value1);
 						}
 						sb.append('\n');
 
@@ -200,18 +200,18 @@ public class BasicModule extends Module
 						{
 							Spanner.appendImage(sb, BasicModule.this.domainDrawable);
 							sb.append(' ');
-							Spanner.append(sb, "conversation / task\n", 0, BNCFactories.headerFactory); //
+							Spanner.append(sb, "conversation / task\n", 0, BNCFactories.headerFactory);
 							if (fvalue != null && fvalue2 != null)
 							{
-								sb.append("freq=").append(fvalue).append(" / ").append(fvalue2).append(' '); //
+								sb.append("freq=").append(fvalue).append(" / ").append(fvalue2).append(' ');
 							}
 							if (rvalue != null && rvalue2 != null)
 							{
-								sb.append("range=").append(rvalue).append(" / ").append(rvalue2).append(' '); //
+								sb.append("range=").append(rvalue).append(" / ").append(rvalue2).append(' ');
 							}
 							if (dvalue != null && dvalue2 != null)
 							{
-								sb.append("disp=").append(dvalue).append(" / ").append(dvalue2); //
+								sb.append("disp=").append(dvalue).append(" / ").append(dvalue2);
 							}
 							sb.append('\n');
 						}
@@ -226,18 +226,18 @@ public class BasicModule extends Module
 						{
 							Spanner.appendImage(sb, BasicModule.this.domainDrawable);
 							sb.append(' ');
-							Spanner.append(sb, "imagination / information\n", 0, BNCFactories.headerFactory); //
+							Spanner.append(sb, "imagination / information\n", 0, BNCFactories.headerFactory);
 							if (fvalue != null && fvalue2 != null)
 							{
-								sb.append("freq=").append(fvalue).append(" / ").append(fvalue2).append(' '); //
+								sb.append("freq=").append(fvalue).append(" / ").append(fvalue2).append(' ');
 							}
 							if (rvalue != null && rvalue2 != null)
 							{
-								sb.append("range=").append(rvalue).append(" / ").append(rvalue2).append(' '); //
+								sb.append("range=").append(rvalue).append(" / ").append(rvalue2).append(' ');
 							}
 							if (dvalue != null && dvalue2 != null)
 							{
-								sb.append("disp=").append(dvalue).append(" / ").append(dvalue2); //
+								sb.append("disp=").append(dvalue).append(" / ").append(dvalue2);
 							}
 							sb.append('\n');
 
@@ -253,18 +253,18 @@ public class BasicModule extends Module
 						{
 							Spanner.appendImage(sb, BasicModule.this.domainDrawable);
 							sb.append(' ');
-							Spanner.append(sb, "spoken / written\n", 0, BNCFactories.headerFactory); //
+							Spanner.append(sb, "spoken / written\n", 0, BNCFactories.headerFactory);
 							if (fvalue != null && fvalue2 != null)
 							{
-								sb.append("freq=").append(fvalue).append(" / ").append(fvalue2).append(' '); //
+								sb.append("freq=").append(fvalue).append(" / ").append(fvalue2).append(' ');
 							}
 							if (rvalue != null && rvalue2 != null)
 							{
-								sb.append("range=").append(rvalue).append(" / ").append(rvalue2).append(' '); //
+								sb.append("range=").append(rvalue).append(" / ").append(rvalue2).append(' ');
 							}
 							if (dvalue != null && dvalue2 != null)
 							{
-								sb.append("disp=").append(dvalue).append(" / ").append(dvalue2); //
+								sb.append("disp=").append(dvalue).append(" / ").append(dvalue2);
 							}
 							sb.append('\n');
 

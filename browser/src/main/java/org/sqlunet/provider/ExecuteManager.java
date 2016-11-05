@@ -20,8 +20,7 @@ import java.util.zip.ZipFile;
 @SuppressWarnings("RedundantSuppression")
 public class ExecuteManager
 {
-	private static final String TAG = "ExecuteManager"; //
-
+	private static final String TAG = "ExecuteManager";
 	/**
 	 * Manager listener
 	 */
@@ -102,7 +101,7 @@ public class ExecuteManager
 							continue;
 						}
 						db.execSQL(sql);
-						Log.d(ExecuteManager.TAG, "SQL " + sql); //
+						Log.d(ExecuteManager.TAG, "SQL " + sql);
 						if (count % ExecuteManager.this.publishRate == 0)
 						{
 							publishProgress((int) (i / (float) count * 1000));
@@ -170,7 +169,7 @@ public class ExecuteManager
 			{
 				String archiveArg = params[0];
 				String entryArg = params[1];
-				Log.d(ExecuteManager.TAG, archiveArg + " entry " + entryArg); //
+				Log.d(ExecuteManager.TAG, archiveArg + " entry " + entryArg);
 				ZipFile zipFile = null;
 				SQLiteDatabase db = null;
 				BufferedReader reader = null;
@@ -182,7 +181,7 @@ public class ExecuteManager
 					final ZipEntry zipEntry = zipFile.getEntry(entryArg);
 					if (zipEntry == null)
 					{
-						throw new IOException("Zip entry not found " + entryArg); //
+						throw new IOException("Zip entry not found " + entryArg);
 					}
 
 					is = zipFile.getInputStream(zipEntry);
@@ -222,7 +221,7 @@ public class ExecuteManager
 						}
 						catch (final SQLiteException e)
 						{
-							Log.e(TAG, "SQL update failed: " + e.getMessage()); //
+							Log.e(TAG, "SQL update failed: " + e.getMessage());
 						}
 
 						// accounting

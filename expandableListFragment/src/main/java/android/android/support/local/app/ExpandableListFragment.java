@@ -192,7 +192,7 @@ public class ExpandableListFragment extends Fragment implements ExpandableListVi
 		ensureList();
 		if (this.mStandardEmptyView == null)
 		{
-			throw new IllegalStateException("Can't be used with a custom content view"); //
+			throw new IllegalStateException("Can't be used with a custom content view");
 		}
 		this.mStandardEmptyView.setText(text);
 		if (this.mEmptyText == null)
@@ -237,7 +237,7 @@ public class ExpandableListFragment extends Fragment implements ExpandableListVi
 		ensureList();
 		if (this.mProgressContainer == null)
 		{
-			throw new IllegalStateException("Can't be used with a custom content view"); //
+			throw new IllegalStateException("Can't be used with a custom content view");
 		}
 		if (this.mExpandableListShown == shown)
 		{
@@ -315,7 +315,7 @@ public class ExpandableListFragment extends Fragment implements ExpandableListVi
 		View root = getView();
 		if (root == null)
 		{
-			throw new IllegalStateException("Content view not yet created"); //
+			throw new IllegalStateException("Content view not yet created");
 		}
 		if (root instanceof ExpandableListView)
 		{
@@ -339,9 +339,9 @@ public class ExpandableListFragment extends Fragment implements ExpandableListVi
 			{
 				if (rawExpandableListView == null)
 				{
-					throw new RuntimeException("Your content must have a ListView whose id attribute is " + "'android.R.id.list'"); //
+					throw new RuntimeException("Your content must have a ListView whose id attribute is " + "'android.R.id.list'");
 				}
-				throw new RuntimeException("Content has view with id attribute 'android.R.id.list' " + "that is not a ListView class"); //
+				throw new RuntimeException("Content has view with id attribute 'android.R.id.list' " + "that is not a ListView class");
 			}
 			this.mExpandableList = (ExpandableListView) rawExpandableListView;
 			if (this.mEmptyView != null)
@@ -447,7 +447,7 @@ public class ExpandableListFragment extends Fragment implements ExpandableListVi
 		this.mExpandableList = (ExpandableListView) view.findViewById(android.R.id.list);
 		if (this.mExpandableList == null)
 		{
-			throw new RuntimeException("Your content must have a ExpandableListView whose id attribute is " + "'android.R.id.list'"); //
+			throw new RuntimeException("Your content must have a ExpandableListView whose id attribute is " + "'android.R.id.list'");
 		}
 		final View emptyView = view.findViewById(android.R.id.empty);
 		if (emptyView != null)

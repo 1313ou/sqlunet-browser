@@ -52,14 +52,14 @@ class FnRelatedFrame
 			return null;
 		}
 		List<FnRelatedFrame> result = null;
-		final String[] relatedFrames = relatedFramesString.split("\\|"); //
+		final String[] relatedFrames = relatedFramesString.split("\\|");
 		for (final String relatedFrame : relatedFrames)
 		{
 			if (result == null)
 			{
 				result = new ArrayList<>();
 			}
-			final String[] fields = relatedFrame.split(":"); //
+			final String[] fields = relatedFrame.split(":");
 			final long frameId = Long.parseLong(fields[0]);
 			final String frameName = fields[1];
 			final String relation = fields[2];

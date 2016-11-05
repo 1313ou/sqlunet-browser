@@ -17,8 +17,7 @@ import org.sqlunet.provider.SqlUNetProvider;
  */
 public class PropBankProvider extends SqlUNetProvider
 {
-	static private final String TAG = "PropBankProvider"; //
-
+	static private final String TAG = "PropBankProvider";
 	// U R I M A T C H E R
 
 	// uri matcher
@@ -47,7 +46,7 @@ public class PropBankProvider extends SqlUNetProvider
 		PropBankProvider.uriMatcher.addURI(PropBankContract.AUTHORITY, PropBankContract.PbRoleSets_PbExamples.TABLE, PropBankProvider.PBROLESETS_PBEXAMPLES);
 		PropBankProvider.uriMatcher.addURI(PropBankContract.AUTHORITY, PropBankContract.PbRoleSets_PbExamples.TABLE_BY_EXAMPLE, PropBankProvider.PBROLESETS_PBEXAMPLES_BY_EXAMPLE);
 
-		PropBankProvider.uriMatcher.addURI(PropBankContract.AUTHORITY, PropBankContract.Lookup_PbExamples.TABLE + "/", PropBankProvider.LOOKUP_FTS_EXAMPLES); //
+		PropBankProvider.uriMatcher.addURI(PropBankContract.AUTHORITY, PropBankContract.Lookup_PbExamples.TABLE + "/", PropBankProvider.LOOKUP_FTS_EXAMPLES);
 	}
 
 	// C O N S T R U C T O R
@@ -68,24 +67,22 @@ public class PropBankProvider extends SqlUNetProvider
 		switch (PropBankProvider.uriMatcher.match(uri))
 		{
 			case PBROLESET:
-				return SqlUNetContract.VENDOR + ".android.cursor.item/" + SqlUNetContract.VENDOR + '.' + PropBankContract.AUTHORITY + '.' + PropBankContract.PbRoleSets.TABLE; //
+				return SqlUNetContract.VENDOR + ".android.cursor.item/" + SqlUNetContract.VENDOR + '.' + PropBankContract.AUTHORITY + '.' + PropBankContract.PbRoleSets.TABLE;
 			case PBROLESETS:
-				return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + PropBankContract.AUTHORITY + '.' + PropBankContract.PbRoleSets.TABLE; //
+				return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + PropBankContract.AUTHORITY + '.' + PropBankContract.PbRoleSets.TABLE;
 			case WORDS_PBROLESETS:
-				return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + PropBankContract.AUTHORITY + '.' + PropBankContract.Words_PbRoleSets.TABLE; //
+				return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + PropBankContract.AUTHORITY + '.' + PropBankContract.Words_PbRoleSets.TABLE;
 			case PBROLESETS_PBROLES:
-				return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + PropBankContract.AUTHORITY + '.' + PropBankContract.PbRoleSets_PbRoles.TABLE; //
+				return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + PropBankContract.AUTHORITY + '.' + PropBankContract.PbRoleSets_PbRoles.TABLE;
 			case PBROLESETS_PBEXAMPLES:
-				return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + PropBankContract.AUTHORITY + '.' + PropBankContract.PbRoleSets_PbExamples.TABLE; //
+				return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + PropBankContract.AUTHORITY + '.' + PropBankContract.PbRoleSets_PbExamples.TABLE;
 			case PBROLESETS_PBEXAMPLES_BY_EXAMPLE:
-				return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + PropBankContract.AUTHORITY + '.' + PropBankContract.PbRoleSets_PbExamples.TABLE_BY_EXAMPLE; //
-
+				return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + PropBankContract.AUTHORITY + '.' + PropBankContract.PbRoleSets_PbExamples.TABLE_BY_EXAMPLE;
 			// S E A R C H
 			case LOOKUP_FTS_EXAMPLES:
-				return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + PropBankContract.AUTHORITY + '.' + PropBankContract.Lookup_PbExamples.TABLE; //
-
+				return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + PropBankContract.AUTHORITY + '.' + PropBankContract.Lookup_PbExamples.TABLE;
 			default:
-				throw new UnsupportedOperationException("Illegal MIME type"); //
+				throw new UnsupportedOperationException("Illegal MIME type");
 		}
 	}
 
@@ -104,7 +101,7 @@ public class PropBankProvider extends SqlUNetProvider
 		String actualSelection = selection;
 		String actualSortOrder = sortOrder;
 		final int code = PropBankProvider.uriMatcher.match(uri);
-		Log.d(PropBankProvider.TAG + "URI", String.format("%s (code %s)\n", uri, code)); //
+		Log.d(PropBankProvider.TAG + "URI", String.format("%s (code %s)\n", uri, code));
 		String groupBy = null;
 		String table;
 		switch (code)
@@ -118,13 +115,13 @@ public class PropBankProvider extends SqlUNetProvider
 				table = PropBankContract.PbRoleSets.TABLE;
 				if (actualSelection != null)
 				{
-					actualSelection += " AND "; //
+					actualSelection += " AND ";
 				}
 				else
 				{
-					actualSelection = ""; //
+					actualSelection = "";
 				}
-				actualSelection += PropBankContract.PbRoleSets.ROLESETID + " = ?"; //
+				actualSelection += PropBankContract.PbRoleSets.ROLESETID + " = ?";
 				break;
 
 			case PBROLESETS:
@@ -136,19 +133,19 @@ public class PropBankProvider extends SqlUNetProvider
 			case WORDS_PBROLESETS:
 				table = "words " + //
 						"INNER JOIN pbwords USING (wordid) " + //
-						"INNER JOIN pbrolesets USING (pbwordid)"; //
+						"INNER JOIN pbrolesets USING (pbwordid)";
 				break;
 
 			case PBROLESETS_PBROLES:
 				table = "pbrolesets " + //
 						"INNER JOIN pbroles USING (rolesetid) " + //
 						"LEFT JOIN pbfuncs USING (func) " + //
-						"LEFT JOIN pbvnthetas USING (theta)"; //
-				actualSortOrder = "narg"; //
+						"LEFT JOIN pbvnthetas USING (theta)";
+				actualSortOrder = "narg";
 				break;
 
 			case PBROLESETS_PBEXAMPLES_BY_EXAMPLE:
-				groupBy = PropBankContract.EXAMPLE + ".exampleid"; //
+				groupBy = PropBankContract.EXAMPLE + ".exampleid";
 				//$FALL-THROUGH$
 				//noinspection fallthrough
 			case PBROLESETS_PBEXAMPLES:
@@ -163,24 +160,24 @@ public class PropBankProvider extends SqlUNetProvider
 						"LEFT JOIN pbvoices USING (voice) " + //
 						"LEFT JOIN pbpersons USING (person) " + //
 						"LEFT JOIN pbroles USING (rolesetid,narg) " + //
-						"LEFT JOIN pbvnthetas USING (theta)"; //
-				actualSortOrder = PropBankContract.EXAMPLE + ".exampleid,narg"; //
+						"LEFT JOIN pbvnthetas USING (theta)";
+				actualSortOrder = PropBankContract.EXAMPLE + ".exampleid,narg";
 				break;
 
 			case LOOKUP_FTS_EXAMPLES:
-				table = "pbexamples_text_fts4"; //
+				table = "pbexamples_text_fts4";
 				break;
 
 			default:
 			case UriMatcher.NO_MATCH:
-				throw new RuntimeException("Malformed URI " + uri); //
+				throw new RuntimeException("Malformed URI " + uri);
 		}
 
 		if (SqlUNetProvider.debugSql)
 		{
 			final String sql = SQLiteQueryBuilder.buildQueryString(false, table, projection, actualSelection, groupBy, null, actualSortOrder, null);
-			Log.d(PropBankProvider.TAG + "SQL", sql); //
-			Log.d(PropBankProvider.TAG + "ARGS", SqlUNetProvider.argsToString(selectionArgs)); //
+			Log.d(PropBankProvider.TAG + "SQL", sql);
+			Log.d(PropBankProvider.TAG + "ARGS", SqlUNetProvider.argsToString(selectionArgs));
 		}
 
 		// do query
@@ -191,8 +188,8 @@ public class PropBankProvider extends SqlUNetProvider
 		catch (SQLiteException e)
 		{
 			final String sql = SQLiteQueryBuilder.buildQueryString(false, table, projection, actualSelection, groupBy, null, actualSortOrder, null);
-			Log.d(TAG + "SQL", sql); //
-			Log.e(TAG, "PropBank provider query failed", e); //
+			Log.d(TAG + "SQL", sql);
+			Log.e(TAG, "PropBank provider query failed", e);
 			return null;
 		}
 	}

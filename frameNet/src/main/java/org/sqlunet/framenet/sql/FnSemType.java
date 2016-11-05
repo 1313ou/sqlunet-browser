@@ -52,14 +52,14 @@ class FnSemType
 			return null;
 		}
 		List<FnSemType> result = null;
-		final String[] semTypes = semTypesString.split("\\|"); //
+		final String[] semTypes = semTypesString.split("\\|");
 		for (final String semType : semTypes)
 		{
 			if (result == null)
 			{
 				result = new ArrayList<>();
 			}
-			final String[] fields = semType.split(":"); //
+			final String[] fields = semType.split(":");
 			final long semTypeId = Long.parseLong(fields[0]);
 			final String semTypeName = fields[1];
 			final String semTypeDefinition = fields[2];
