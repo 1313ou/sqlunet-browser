@@ -1408,7 +1408,7 @@ abstract class BasicModule extends Module
 		/**
 		 * Grouping synset id
 		 */
-		private long synsetId = 0;
+		private long synsetId = -1;
 
 		/**
 		 * Grouping node
@@ -1420,6 +1420,9 @@ abstract class BasicModule extends Module
 		{
 			if (this.synsetId != wnData.synsetId)
 			{
+				// record
+				this.synsetId = wnData.synsetId;
+
 				final SpannableStringBuilder synsetsb = new SpannableStringBuilder();
 				if (this.synsetId != 0)
 				{
@@ -1434,9 +1437,6 @@ abstract class BasicModule extends Module
 
 				// attach synset
 				this.synsetNode = TreeFactory.addTreeNode(parentNode, synsetsb, R.drawable.synset, BasicModule.this.context);
-
-				// record
-				this.synsetId = wnData.synsetId;
 			}
 			super.displayRow(this.synsetNode, wnData, pmRole, vnData, pbData, fnData, false, false);
 		}

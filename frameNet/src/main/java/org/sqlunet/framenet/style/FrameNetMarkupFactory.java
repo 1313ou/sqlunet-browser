@@ -84,7 +84,7 @@ public class FrameNetMarkupFactory implements MarkupSpanner.SpanFactory
 	/**
 	 * Top role drawable
 	 */
-	private final Drawable topRoleDrawable;
+	private final Drawable role2Drawable;
 
 	/**
 	 * Role drawable
@@ -109,8 +109,8 @@ public class FrameNetMarkupFactory implements MarkupSpanner.SpanFactory
 	FrameNetMarkupFactory(final Context context)
 	{
 		super();
-		this.topRoleDrawable = Spanner.getDrawable(context, R.drawable.toprole);
 		this.roleDrawable = Spanner.getDrawable(context, R.drawable.role);
+		this.role2Drawable = Spanner.getDrawable(context, R.drawable.role1);
 		this.relationDrawable = Spanner.getDrawable(context, R.drawable.relation);
 		this.sampleDrawable = Spanner.getDrawable(context, R.drawable.sample);
 	}
@@ -134,17 +134,17 @@ public class FrameNetMarkupFactory implements MarkupSpanner.SpanFactory
 				{
 					return new ImageSpan(this.relationDrawable, DynamicDrawableSpan.ALIGN_BASELINE);
 				}
-				if ("fe".equals(selector)) //
-				{
-					return new ImageSpan(this.topRoleDrawable, DynamicDrawableSpan.ALIGN_BASELINE);
-				}
 				if ("fen".equals(selector)) //
 				{
 					return new ImageSpan(this.roleDrawable, DynamicDrawableSpan.ALIGN_BASELINE);
 				}
+				if ("fe".equals(selector)) //
+				{
+					return new ImageSpan(this.role2Drawable, DynamicDrawableSpan.ALIGN_BASELINE);
+				}
 				if (selector.matches("fex.*")) //
 				{
-					return new ImageSpan(this.topRoleDrawable, DynamicDrawableSpan.ALIGN_BASELINE);
+					return new ImageSpan(this.role2Drawable, DynamicDrawableSpan.ALIGN_BASELINE);
 				}
 				if (selector.matches("xfen")) //
 				{

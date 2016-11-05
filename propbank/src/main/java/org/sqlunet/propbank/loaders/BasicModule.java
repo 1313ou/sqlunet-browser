@@ -89,7 +89,7 @@ abstract class BasicModule extends Module
 		super(fragment);
 
 		// drawables
-		this.roleSetDrawable = Spanner.getDrawable(this.context, R.drawable.roleset);
+		this.roleSetDrawable = Spanner.getDrawable(this.context, R.drawable.roleclass);
 		this.rolesDrawable = Spanner.getDrawable(this.context, R.drawable.roles);
 		this.relationDrawable = Spanner.getDrawable(this.context, R.drawable.relation);
 		this.roleDrawable = Spanner.getDrawable(this.context, R.drawable.role);

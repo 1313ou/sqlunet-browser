@@ -56,6 +56,7 @@ public class SenseModule extends SynsetModule
 		// sub nodes
 		final TreeNode synsetNode = TreeFactory.newTextNode("Synset", this.context);
 		final TreeNode membersNode = TreeFactory.newTextNode("Members", this.context);
+
 		// attach result
 		parent.addChildren(synsetNode, membersNode);
 
@@ -91,7 +92,7 @@ public class SenseModule extends SynsetModule
 		}
 
 		// links and samples
-		final TreeNode linksNode = TreeFactory.newQueryNode(new LinksQuery(this.synsetId, this.wordId, R.drawable.ic_other, "Links"), this.expand, this.context).addTo(parent);
+		final TreeNode linksNode = TreeFactory.newQueryNode(new LinksQuery(this.synsetId, this.wordId, R.drawable.ic_links, "Links"), this.expand, this.context).addTo(parent);
 		final TreeNode samplesNode = TreeFactory.newQueryNode(new SamplesQuery(this.synsetId, R.drawable.sample, "Samples"), this.expand, this.context).addTo(parent);
 
 		// fire event

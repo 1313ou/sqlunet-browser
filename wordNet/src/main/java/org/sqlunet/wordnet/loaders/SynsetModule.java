@@ -80,6 +80,7 @@ public class SynsetModule extends BasicModule
 			// sub nodes
 			final TreeNode synsetNode = TreeFactory.newTextNode("Data", this.context);
 			final TreeNode membersNode = TreeFactory.newTextNode("Members", this.context);
+
 			// attach result
 			parent.addChildren(synsetNode, membersNode);
 
@@ -106,7 +107,7 @@ public class SynsetModule extends BasicModule
 			}
 
 			// links and samples
-			final TreeNode linksNode = TreeFactory.newQueryNode(new LinksQuery(this.synsetId, 0, R.drawable.ic_other, "Links"), this.expand, this.context).addTo(parent);
+			final TreeNode linksNode = TreeFactory.newQueryNode(new LinksQuery(this.synsetId, 0, R.drawable.ic_links, "Links"), this.expand, this.context).addTo(parent);
 			final TreeNode samplesNode = TreeFactory.newQueryNode(new SamplesQuery(this.synsetId, R.drawable.sample, "Samples"), this.expand, this.context).addTo(parent);
 
 			// fire event

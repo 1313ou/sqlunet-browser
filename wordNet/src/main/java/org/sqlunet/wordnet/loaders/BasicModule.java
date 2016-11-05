@@ -46,9 +46,9 @@ abstract public class BasicModule extends Module
 {
 	// Resources
 
-	private final Drawable memberDrawable;
-
 	private final Drawable synsetDrawable;
+
+	private final Drawable memberDrawable;
 
 	private final Drawable definitionDrawable;
 
@@ -56,9 +56,9 @@ abstract public class BasicModule extends Module
 
 	private final Drawable posDrawable;
 
-	private final Drawable domainDrawable;
+	private final Drawable lexdomainDrawable;
 
-	private final Drawable flagDrawable;
+	private final Drawable verbframeDrawable;
 
 	/**
 	 * Whether members are grouped
@@ -75,13 +75,13 @@ abstract public class BasicModule extends Module
 		super(fragment);
 
 		// drawables
-		this.memberDrawable = Spanner.getDrawable(this.context, R.drawable.member);
 		this.synsetDrawable = Spanner.getDrawable(this.context, R.drawable.synset);
+		this.memberDrawable = Spanner.getDrawable(this.context, R.drawable.synsetmember);
 		this.definitionDrawable = Spanner.getDrawable(this.context, R.drawable.definition);
 		this.sampleDrawable = Spanner.getDrawable(this.context, R.drawable.sample);
 		this.posDrawable = Spanner.getDrawable(this.context, R.drawable.pos);
-		this.domainDrawable = Spanner.getDrawable(this.context, R.drawable.lexdomain);
-		this.flagDrawable = Spanner.getDrawable(this.context, R.drawable.flag);
+		this.lexdomainDrawable = Spanner.getDrawable(this.context, R.drawable.domain);
+		this.verbframeDrawable = Spanner.getDrawable(this.context, R.drawable.verbframe);
 	}
 
 	/**
@@ -153,7 +153,7 @@ abstract public class BasicModule extends Module
 					sb.append(posName);
 					sb.append('\n');
 					sb.append('\t');
-					Spanner.appendImage(sb, BasicModule.this.domainDrawable);
+					Spanner.appendImage(sb, BasicModule.this.lexdomainDrawable);
 					sb.append(' ');
 					sb.append(lexDomain);
 					sb.append(' ');
@@ -167,7 +167,7 @@ abstract public class BasicModule extends Module
 					TreeFactory.addTextNode(parent, sbdef, BasicModule.this.context);
 
 					// subnodes
-					final TreeNode linksNode = TreeFactory.newQueryNode(new LinksQuery(synsetId, wordId, R.drawable.ic_other, "Links"), true, BasicModule.this.context).addTo(parent);
+					final TreeNode linksNode = TreeFactory.newQueryNode(new LinksQuery(synsetId, wordId, R.drawable.ic_links, "Links"), true, BasicModule.this.context).addTo(parent);
 					final TreeNode samplesNode = TreeFactory.newQueryNode(new SamplesQuery(synsetId, R.drawable.sample, "Samples"), true, BasicModule.this.context).addTo(parent);
 					// fire event
 					FireEvent.onQueryReady(linksNode);
@@ -243,7 +243,7 @@ abstract public class BasicModule extends Module
 					sb.append(' ');
 					sb.append(posName);
 					sb.append(' ');
-					Spanner.appendImage(sb, BasicModule.this.domainDrawable);
+					Spanner.appendImage(sb, BasicModule.this.lexdomainDrawable);
 					sb.append(' ');
 					sb.append(lexDomain);
 					sb.append('\n');
@@ -886,7 +886,7 @@ abstract public class BasicModule extends Module
 						{
 							sb.append('\n');
 						}
-						Spanner.appendImage(sb, BasicModule.this.flagDrawable);
+						Spanner.appendImage(sb, BasicModule.this.verbframeDrawable);
 						sb.append(' ');
 						sb.append(record);
 					}
@@ -956,7 +956,7 @@ abstract public class BasicModule extends Module
 						{
 							sb.append('\n');
 						}
-						Spanner.appendImage(sb, BasicModule.this.flagDrawable);
+						Spanner.appendImage(sb, BasicModule.this.verbframeDrawable);
 						sb.append(' ');
 						sb.append(record);
 					}
@@ -1025,7 +1025,7 @@ abstract public class BasicModule extends Module
 						{
 							sb.append('\n');
 						}
-						Spanner.appendImage(sb, BasicModule.this.flagDrawable);
+						Spanner.appendImage(sb, BasicModule.this.verbframeDrawable);
 						sb.append(' ');
 						sb.append(record);
 					}
@@ -1096,7 +1096,7 @@ abstract public class BasicModule extends Module
 						{
 							sb.append('\n');
 						}
-						Spanner.appendImage(sb, BasicModule.this.flagDrawable);
+						Spanner.appendImage(sb, BasicModule.this.verbframeDrawable);
 						sb.append(' ');
 						sb.append(record);
 					}
@@ -1165,7 +1165,7 @@ abstract public class BasicModule extends Module
 						{
 							sb.append('\n');
 						}
-						Spanner.appendImage(sb, BasicModule.this.flagDrawable);
+						Spanner.appendImage(sb, BasicModule.this.verbframeDrawable);
 						sb.append(' ');
 						sb.append(record);
 					}
@@ -1235,7 +1235,7 @@ abstract public class BasicModule extends Module
 						{
 							sb.append('\n');
 						}
-						Spanner.appendImage(sb, BasicModule.this.flagDrawable);
+						Spanner.appendImage(sb, BasicModule.this.verbframeDrawable);
 						sb.append(' ');
 						sb.append(record);
 					}
@@ -1305,7 +1305,7 @@ abstract public class BasicModule extends Module
 						{
 							sb.append('\n');
 						}
-						Spanner.appendImage(sb, BasicModule.this.flagDrawable);
+						Spanner.appendImage(sb, BasicModule.this.verbframeDrawable);
 						sb.append(' ');
 						sb.append(record);
 					}

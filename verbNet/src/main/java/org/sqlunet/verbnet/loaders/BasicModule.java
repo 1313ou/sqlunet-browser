@@ -115,7 +115,7 @@ abstract class BasicModule extends Module
 		super(fragment);
 
 		// drawable
-		this.drawableClass = Spanner.getDrawable(this.context, R.drawable.vnclass);
+		this.drawableClass = Spanner.getDrawable(this.context, R.drawable.roleclass);
 		this.drawableMember = Spanner.getDrawable(this.context, R.drawable.member);
 		this.drawableRoles = Spanner.getDrawable(this.context, R.drawable.roles);
 		this.drawableRole = Spanner.getDrawable(this.context, R.drawable.role);
@@ -124,7 +124,7 @@ abstract class BasicModule extends Module
 		this.drawableSemantics = Spanner.getDrawable(this.context, R.drawable.semantics);
 		this.drawableExample = Spanner.getDrawable(this.context, R.drawable.sample);
 		this.drawableDefinition = Spanner.getDrawable(this.context, R.drawable.definition);
-		this.drawableGrouping = Spanner.getDrawable(this.context, R.drawable.ic_collapsed);
+		this.drawableGrouping = Spanner.getDrawable(this.context, R.drawable.info);
 
 		// create processors and spanners
 		this.semanticsProcessor = new VerbNetSemanticsProcessor();
@@ -198,7 +198,7 @@ abstract class BasicModule extends Module
 					TreeFactory.addTextNode(parent, sb, BasicModule.this.context);
 
 					// sub nodes
-					final TreeNode membersNode = TreeFactory.newQueryNode(new MembersQuery(classId, R.drawable.member, "Members"), true, context).addTo(parent);
+					final TreeNode membersNode = TreeFactory.newQueryNode(new MembersQuery(classId, R.drawable.members, "Members"), true, context).addTo(parent);
 					final TreeNode rolesNode = TreeFactory.newQueryNode(new RolesQuery(classId, R.drawable.roles, "Roles"), true, context).addTo(parent);
 					final TreeNode framesNode = TreeFactory.newQueryNode(new FramesQuery(classId, R.drawable.vnframe, "Frames"), false, context).addTo(parent);
 
