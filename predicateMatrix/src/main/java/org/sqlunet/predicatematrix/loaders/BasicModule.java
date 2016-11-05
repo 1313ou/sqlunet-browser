@@ -25,12 +25,12 @@ import org.sqlunet.propbank.PbRoleSetPointer;
 import org.sqlunet.propbank.browser.PbRoleSetActivity;
 import org.sqlunet.provider.SqlUNetContract;
 import org.sqlunet.style.Spanner;
+import org.sqlunet.treeview.control.LinkController;
 import org.sqlunet.treeview.model.TreeNode;
-import org.sqlunet.treeview.renderer.LinkRenderer;
 import org.sqlunet.verbnet.VnClassPointer;
 import org.sqlunet.verbnet.browser.VnClassActivity;
+import org.sqlunet.view.FireEvent;
 import org.sqlunet.view.TreeFactory;
-import org.sqlunet.view.Update;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -835,7 +835,7 @@ abstract class BasicModule extends Module
 				endProcess();
 
 				// fire event
-				Update.onResults(this.parent, this.displayer.getExpandLevels());
+				FireEvent.onResults(this.parent, this.displayer.getExpandLevels());
 			}
 
 			cursor.close();
@@ -1528,7 +1528,7 @@ abstract class BasicModule extends Module
 	/**
 	 * VerbNet class link data
 	 */
-	class VnClassLinkData extends LinkRenderer.LinkData
+	class VnClassLinkData extends LinkController.LinkData
 	{
 		/**
 		 * Constructor
@@ -1558,7 +1558,7 @@ abstract class BasicModule extends Module
 	/**
 	 * PropBank role set link data
 	 */
-	class PbRoleSetLinkData extends LinkRenderer.LinkData
+	class PbRoleSetLinkData extends LinkController.LinkData
 	{
 		/**
 		 * Constructor
@@ -1588,7 +1588,7 @@ abstract class BasicModule extends Module
 	/**
 	 * FrameNet frame link data
 	 */
-	class FnFrameLinkData extends LinkRenderer.LinkData
+	class FnFrameLinkData extends LinkController.LinkData
 	{
 		/**
 		 * Constructor

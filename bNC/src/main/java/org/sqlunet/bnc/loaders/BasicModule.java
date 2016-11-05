@@ -20,7 +20,7 @@ import org.sqlunet.browser.Module;
 import org.sqlunet.style.Spanner;
 import org.sqlunet.treeview.model.TreeNode;
 import org.sqlunet.view.TreeFactory;
-import org.sqlunet.view.Update;
+import org.sqlunet.view.FireEvent;
 
 public class BasicModule extends Module
 {
@@ -276,11 +276,11 @@ public class BasicModule extends Module
 					TreeFactory.addTextNode(parent, sb, BasicModule.this.context);
 
 					// fire event
-					Update.onResults(parent);
+					FireEvent.onResults(parent);
 				}
 				else
 				{
-					Update.onNoResult(parent, true);
+					FireEvent.onNoResult(parent, true);
 				}
 
 				cursor.close();

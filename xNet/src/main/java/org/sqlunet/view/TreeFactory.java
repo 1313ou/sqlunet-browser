@@ -2,14 +2,14 @@ package org.sqlunet.view;
 
 import android.content.Context;
 
+import org.sqlunet.treeview.control.IconLeafController;
+import org.sqlunet.treeview.control.TextController;
 import org.sqlunet.treeview.model.TreeNode;
-import org.sqlunet.treeview.renderer.IconLeafRenderer;
-import org.sqlunet.treeview.renderer.IconTreeRenderer;
-import org.sqlunet.treeview.renderer.LinkRenderer;
-import org.sqlunet.treeview.renderer.LinkRenderer.LinkData;
-import org.sqlunet.treeview.renderer.QueryRenderer;
-import org.sqlunet.treeview.renderer.TextRenderer;
-import org.sqlunet.treeview.renderer.Value;
+import org.sqlunet.treeview.control.IconTreeController;
+import org.sqlunet.treeview.control.LinkController;
+import org.sqlunet.treeview.control.LinkController.LinkData;
+import org.sqlunet.treeview.control.QueryController;
+import org.sqlunet.treeview.control.Value;
 
 /**
  * Tree factory
@@ -27,7 +27,7 @@ public class TreeFactory
 	 */
 	static public TreeNode newTextNode(final CharSequence text, final Context context)
 	{
-		return new TreeNode(text).setRenderer(new TextRenderer(context));
+		return new TreeNode(text).setController(new TextController(context));
 	}
 
 	/**
@@ -39,7 +39,7 @@ public class TreeFactory
 	 */
 	static public TreeNode newLinkNode(final LinkData link, final Context context)
 	{
-		return new TreeNode(link).setRenderer(new LinkRenderer(context));
+		return new TreeNode(link).setController(new LinkController(context));
 	}
 
 	/**
@@ -52,7 +52,7 @@ public class TreeFactory
 	 */
 	static public TreeNode newLeafNode(final CharSequence text, final int icon, final Context context)
 	{
-		return new TreeNode(new Value(icon, text)).setRenderer(new IconLeafRenderer(context));
+		return new TreeNode(new Value(icon, text)).setController(new IconLeafController(context));
 	}
 
 	/**
@@ -65,7 +65,7 @@ public class TreeFactory
 	 */
 	static public TreeNode newTreeNode(final CharSequence text, final int icon, final Context context)
 	{
-		return new TreeNode(new Value(icon, text)).setRenderer(new IconTreeRenderer(context));
+		return new TreeNode(new Value(icon, text)).setController(new IconTreeController(context));
 	}
 
 	/**
@@ -76,9 +76,9 @@ public class TreeFactory
 	 * @param context    context
 	 * @return created node
 	 */
-	static public TreeNode newQueryNode(final QueryRenderer.Query query, final boolean triggerNow, final Context context)
+	static public TreeNode newQueryNode(final QueryController.Query query, final boolean triggerNow, final Context context)
 	{
-		return new TreeNode(query).setRenderer(new QueryRenderer(context, triggerNow));
+		return new TreeNode(query).setController(new QueryController(context, triggerNow));
 	}
 
 	/**
@@ -87,13 +87,11 @@ public class TreeFactory
 	 * @param parent   parent node
 	 * @param value    character sequence
 	 * @param context  context
-	 * @param siblings sibling nodes to add
 	 */
-	static public TreeNode addTextNode(final TreeNode parent, final CharSequence value, final Context context, final TreeNode... siblings)
+	static public TreeNode addTextNode(final TreeNode parent, final CharSequence value, final Context context)
 	{
 		final TreeNode result = TreeFactory.newTextNode(value, context);
 		parent.addChild(result);
-		parent.addChildren(siblings);
 		return result;
 	}
 
@@ -104,14 +102,12 @@ public class TreeFactory
 	 * @param value    character sequence
 	 * @param icon     icon resource id
 	 * @param context  context
-	 * @param siblings sibling nodes to add
 	 */
 	@SuppressWarnings("unused")
-	static public TreeNode addLeafNode(final TreeNode parent, final CharSequence value, final int icon, final Context context, final TreeNode... siblings)
+	static public TreeNode addLeafNode(final TreeNode parent, final CharSequence value, final int icon, final Context context)
 	{
 		final TreeNode result = TreeFactory.newLeafNode(value, icon, context);
 		parent.addChild(result);
-		parent.addChildren(siblings);
 		return result;
 	}
 
@@ -122,13 +118,11 @@ public class TreeFactory
 	 * @param value    character sequence
 	 * @param icon     icon resource id
 	 * @param context  context
-	 * @param siblings sibling nodes to add
 	 */
-	static public TreeNode addTreeNode(final TreeNode parent, final CharSequence value, final int icon, final Context context, final TreeNode... siblings)
+	static public TreeNode addTreeNode(final TreeNode parent, final CharSequence value, final int icon, final Context context)
 	{
 		final TreeNode result = TreeFactory.newTreeNode(value, icon, context);
 		parent.addChild(result);
-		parent.addChildren(siblings);
 		return result;
 	}
 }

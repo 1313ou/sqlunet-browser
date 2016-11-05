@@ -6,8 +6,7 @@ import android.os.Parcelable;
 import org.sqlunet.HasPos;
 import org.sqlunet.HasWordId;
 import org.sqlunet.treeview.model.TreeNode;
-import org.sqlunet.treeview.view.TreeView;
-import org.sqlunet.view.Update;
+import org.sqlunet.view.FireEvent;
 
 /**
  * Lex unit from word module
@@ -63,7 +62,7 @@ public class LexUnitFromWordModule extends LexUnitModule
 		}
 		else
 		{
-			Update.onNoResult(node, true);
+			FireEvent.onNoResult(node, true);
 		}
 	}
 }

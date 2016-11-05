@@ -6,8 +6,7 @@ import android.os.Parcelable;
 import org.sqlunet.HasXId;
 import org.sqlunet.framenet.FnFramePointer;
 import org.sqlunet.treeview.model.TreeNode;
-import org.sqlunet.treeview.view.TreeView;
-import org.sqlunet.view.Update;
+import org.sqlunet.view.FireEvent;
 
 /**
  * Frame module
@@ -68,7 +67,7 @@ public class FrameModule extends BasicModule
 		}
 		else
 		{
-			Update.onNoResult(node, true);
+			FireEvent.onNoResult(node, true);
 		}
 	}
 }

@@ -13,10 +13,10 @@ import android.text.SpannableStringBuilder;
 
 import org.sqlunet.browser.Module;
 import org.sqlunet.style.Spanner;
+import org.sqlunet.treeview.control.QueryController;
 import org.sqlunet.treeview.model.TreeNode;
-import org.sqlunet.treeview.renderer.QueryRenderer;
+import org.sqlunet.view.FireEvent;
 import org.sqlunet.view.TreeFactory;
-import org.sqlunet.view.Update;
 import org.sqlunet.wordnet.R;
 import org.sqlunet.wordnet.provider.WordNetContract;
 import org.sqlunet.wordnet.provider.WordNetContract.AdjPositions_AdjPositionTypes;
@@ -171,13 +171,13 @@ abstract public class BasicModule extends Module
 					final TreeNode samplesNode = TreeFactory.newQueryNode(new SamplesQuery(synsetId, R.drawable.sample, "Samples"), true, BasicModule.this.context).addTo(parent); //
 
 					// fire event
-					Update.onQueryReady(linksNode);
-					Update.onQueryReady(samplesNode);
-					Update.onResults(parent);
+					FireEvent.onQueryReady(linksNode);
+					FireEvent.onQueryReady(samplesNode);
+					FireEvent.onResults(parent);
 				}
 				else
 				{
-					Update.onNoResult(parent, true);
+					FireEvent.onNoResult(parent, true);
 				}
 
 				cursor.close();
@@ -253,22 +253,20 @@ abstract public class BasicModule extends Module
 					sb.append(' ');
 					Spanner.append(sb, definition, 0, WordNetFactories.definitionFactory);
 
-					// attach result
+					// result
 					if (addNewNode)
 					{
 						TreeFactory.addTextNode(parent, sb, BasicModule.this.context);
-
-						// fire event
-						Update.onResults(parent);
+						FireEvent.onResults(parent);
 					}
 					else
 					{
-						Update.setNodeValue(parent, sb);
+						FireEvent.onResults(parent, sb);
 					}
 				}
 				else
 				{
-					Update.onNoResult(parent, addNewNode);
+					FireEvent.onNoResult(parent, addNewNode);
 				}
 
 				cursor.close();
@@ -347,22 +345,20 @@ abstract public class BasicModule extends Module
 						while (cursor.moveToNext());
 					}
 
-					// attach result
+					// result
 					if (addNewNode)
 					{
 						TreeFactory.addTextNode(parent, sb, BasicModule.this.context);
-
-						// fire event
-						Update.onResults(parent);
+						FireEvent.onResults(parent);
 					}
 					else
 					{
-						Update.setNodeValue(parent, sb);
+						FireEvent.onResults(parent, sb);
 					}
 				}
 				else
 				{
-					Update.onNoResult(parent, addNewNode);
+					FireEvent.onNoResult(parent, addNewNode);
 				}
 
 				cursor.close();
@@ -430,22 +426,20 @@ abstract public class BasicModule extends Module
 					}
 					while (cursor.moveToNext());
 
-					// attach result
+					// result
 					if (addNewNode)
 					{
 						TreeFactory.addTextNode(parent, sb, context);
-
-						// fire event
-						Update.onResults(parent);
+						FireEvent.onResults(parent);
 					}
 					else
 					{
-						Update.setNodeValue(parent, sb);
+						FireEvent.onResults(parent, sb);
 					}
 				}
 				else
 				{
-					Update.onNoResult(parent, addNewNode);
+					FireEvent.onNoResult(parent, addNewNode);
 				}
 
 				cursor.close();
@@ -531,17 +525,17 @@ abstract public class BasicModule extends Module
 							final TreeNode linksNode = TreeFactory.newQueryNode(new SubLinksQuery(targetSynsetId, linkId, getLinkRes(linkId), sb), false, context).prependTo(parent);
 
 							// fire event
-							Update.onQueryReady(linksNode);
+							FireEvent.onQueryReady(linksNode);
 						}
 					}
 					while (cursor.moveToNext());
 
 					// fire event
-					Update.onResults(parent);
+					FireEvent.onResults(parent);
 				}
 				else
 				{
-					// Update.onNoResult(parent, true)
+					// FireEvent.onNoResult(parent, true)
 				}
 
 				cursor.close();
@@ -622,17 +616,17 @@ abstract public class BasicModule extends Module
 							final TreeNode linksNode = TreeFactory.newQueryNode(new SubLinksQuery(targetSynsetId, linkId, getLinkRes(linkId), sb), false, context).addTo(parent);
 
 							// fire event
-							Update.onQueryReady(linksNode);
+							FireEvent.onQueryReady(linksNode);
 						}
 					}
 					while (cursor.moveToNext());
 
 					// fire event
-					Update.onResults(parent);
+					FireEvent.onResults(parent);
 				}
 				else
 				{
-					Update.onNoResult(parent, true);
+					FireEvent.onNoResult(parent, true);
 				}
 
 				cursor.close();
@@ -732,11 +726,11 @@ abstract public class BasicModule extends Module
 					TreeFactory.addTextNode(parent, sb, context);
 
 					// fire event
-					Update.onResults(parent);
+					FireEvent.onResults(parent);
 				}
 				else
 				{
-					// Update.onNoResult(parent, true)
+					// FireEvent.onNoResult(parent, true)
 				}
 
 				cursor.close();
@@ -835,11 +829,11 @@ abstract public class BasicModule extends Module
 					// TreeFactory.addTextNode(parent, sb, context);
 
 					// fire event
-					Update.onResults(parent);
+					FireEvent.onResults(parent);
 				}
 				else
 				{
-					// Update.onNoResult(parent, true)
+					// FireEvent.onNoResult(parent, true)
 				}
 
 				cursor.close();
@@ -904,11 +898,11 @@ abstract public class BasicModule extends Module
 					TreeFactory.addTextNode(parent, sb, context);
 
 					// fire event
-					Update.onResults(parent);
+					FireEvent.onResults(parent);
 				}
 				else
 				{
-					// Update.onNoResult(parent, true)
+					// FireEvent.onNoResult(parent, true)
 				}
 
 				cursor.close();
@@ -974,11 +968,11 @@ abstract public class BasicModule extends Module
 					TreeFactory.addTextNode(parent, sb, context);
 
 					// fire event
-					Update.onResults(parent);
+					FireEvent.onResults(parent);
 				}
 				else
 				{
-					// Update.onNoResult(parent, true)
+					// FireEvent.onNoResult(parent, true)
 				}
 
 				cursor.close();
@@ -1043,11 +1037,11 @@ abstract public class BasicModule extends Module
 					TreeFactory.addTextNode(parent, sb, context);
 
 					// fire event
-					Update.onResults(parent);
+					FireEvent.onResults(parent);
 				}
 				else
 				{
-					// Update.onNoResult(parent, true)
+					// FireEvent.onNoResult(parent, true)
 				}
 
 				cursor.close();
@@ -1114,11 +1108,11 @@ abstract public class BasicModule extends Module
 					TreeFactory.addTextNode(parent, sb, context);
 
 					// fire event
-					Update.onResults(parent);
+					FireEvent.onResults(parent);
 				}
 				else
 				{
-					// Update.onNoResult(parent, true)
+					// FireEvent.onNoResult(parent, true)
 				}
 
 				cursor.close();
@@ -1183,11 +1177,11 @@ abstract public class BasicModule extends Module
 					TreeFactory.addTextNode(parent, sb, context);
 
 					// fire event
-					Update.onResults(parent);
+					FireEvent.onResults(parent);
 				}
 				else
 				{
-					// Update.onNoResult(parent, true)
+					// FireEvent.onNoResult(parent, true)
 				}
 
 				cursor.close();
@@ -1253,11 +1247,11 @@ abstract public class BasicModule extends Module
 					TreeFactory.addTextNode(parent, sb, context);
 
 					// fire event
-					Update.onResults(parent);
+					FireEvent.onResults(parent);
 				}
 				else
 				{
-					// Update.onNoResult(parent, true)
+					// FireEvent.onNoResult(parent, true)
 				}
 
 				cursor.close();
@@ -1323,11 +1317,11 @@ abstract public class BasicModule extends Module
 					TreeFactory.addTextNode(parent, sb, context);
 
 					// fire event
-					Update.onResults(parent);
+					FireEvent.onResults(parent);
 				}
 				else
 				{
-					// Update.onNoResult(parent, true)
+					// FireEvent.onNoResult(parent, true)
 				}
 
 				cursor.close();
@@ -1444,7 +1438,7 @@ abstract public class BasicModule extends Module
 	/**
 	 * Link query
 	 */
-	public class LinksQuery extends QueryRenderer.Query
+	public class LinksQuery extends QueryController.Query
 	{
 		/**
 		 * Word id
@@ -1479,7 +1473,7 @@ abstract public class BasicModule extends Module
 	/**
 	 * Sub links of give type query
 	 */
-	public class SubLinksQuery extends QueryRenderer.Query
+	public class SubLinksQuery extends QueryController.Query
 	{
 		/**
 		 * Link id
@@ -1511,7 +1505,7 @@ abstract public class BasicModule extends Module
 	/**
 	 * Samples query
 	 */
-	public class SamplesQuery extends QueryRenderer.Query
+	public class SamplesQuery extends QueryController.Query
 	{
 		/**
 		 * Constructor

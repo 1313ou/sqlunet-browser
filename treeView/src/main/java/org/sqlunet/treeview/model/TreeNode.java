@@ -1,6 +1,6 @@
 package org.sqlunet.treeview.model;
 
-import org.sqlunet.treeview.renderer.Renderer;
+import org.sqlunet.treeview.control.Controller;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -36,9 +36,9 @@ public class TreeNode
 	private final List<TreeNode> children;
 
 	/**
-	 * Renderer
+	 * Controller
 	 */
-	private Renderer<?> renderer;
+	private Controller<?> controller;
 
 	/**
 	 * Click listener
@@ -500,31 +500,31 @@ public class TreeNode
 	// R E N D E R E R
 
 	/**
-	 * Set renderer
+	 * Set controller
 	 *
-	 * @param renderer renderer
+	 * @param controller controller
 	 * @return this node
 	 */
-	public TreeNode setRenderer(final Renderer<?> renderer)
+	public TreeNode setController(final Controller<?> controller)
 	{
-		this.renderer = renderer;
+		this.controller = controller;
 
 		// adjust attached node
-		if (renderer != null)
+		if (controller != null)
 		{
-			renderer.attachNode(this);
+			controller.attachNode(this);
 		}
 		return this;
 	}
 
 	/**
-	 * Get renderer
+	 * Get controller
 	 *
-	 * @return renderer
+	 * @return controller
 	 */
-	public Renderer<?> getRenderer()
+	public Controller<?> getController()
 	{
-		return this.renderer;
+		return this.controller;
 	}
 
 	// C L I C K L I S T E N E R

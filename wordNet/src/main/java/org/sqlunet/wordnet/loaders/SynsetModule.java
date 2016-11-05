@@ -6,8 +6,8 @@ import android.os.Parcelable;
 import org.sqlunet.HasPos;
 import org.sqlunet.HasSynsetId;
 import org.sqlunet.treeview.model.TreeNode;
+import org.sqlunet.view.FireEvent;
 import org.sqlunet.view.TreeFactory;
-import org.sqlunet.view.Update;
 import org.sqlunet.wordnet.R;
 
 /**
@@ -111,9 +111,9 @@ public class SynsetModule extends BasicModule
 			final TreeNode samplesNode = TreeFactory.newQueryNode(new SamplesQuery(this.synsetId, R.drawable.sample, "Samples"), this.expand, this.context).addTo(parent);
 
 			// fire event
-			Update.onQueryReady(linksNode);
-			Update.onQueryReady(samplesNode);
-			Update.onResults(parent);
+			FireEvent.onQueryReady(linksNode);
+			FireEvent.onQueryReady(samplesNode);
+			FireEvent.onResults(parent);
 		}
 	}
 }

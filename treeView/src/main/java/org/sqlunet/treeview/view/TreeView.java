@@ -10,11 +10,12 @@ import android.view.animation.Animation;
 import android.view.animation.Transformation;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
+import android.widget.TextView;
 
 import org.sqlunet.treeview.R;
+import org.sqlunet.treeview.control.Controller;
+import org.sqlunet.treeview.control.SimpleController;
 import org.sqlunet.treeview.model.TreeNode;
-import org.sqlunet.treeview.renderer.Renderer;
-import org.sqlunet.treeview.renderer.SimpleRenderer;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -47,9 +48,9 @@ public class TreeView
 	private int containerStyle = 0;
 
 	/**
-	 * Default renderer
+	 * Default controller
 	 */
-	private Class<? extends Renderer<?>> defaultRendererClass = SimpleRenderer.class;
+	private Class<? extends Controller<?>> defaultControlerClass = SimpleController.class;
 
 	/**
 	 * Node click listener
@@ -115,11 +116,11 @@ public class TreeView
 		if (style > 0)
 		{
 			final ContextThemeWrapper newContext = new ContextThemeWrapper(this.context, style);
-			view = this.use2dScroll ? new TwoDScrollView(newContext) : new ScrollView(newContext);
+			view = this.use2dScroll ? new ScrollView2D(newContext) : new ScrollView(newContext);
 		}
 		else
 		{
-			view = this.use2dScroll ? new TwoDScrollView(this.context) : new ScrollView(this.context);
+			view = this.use2dScroll ? new ScrollView2D(this.context) : new ScrollView(this.context);
 		}
 
 		// context
@@ -136,7 +137,7 @@ public class TreeView
 		view.addView(contentView);
 
 		// root
-		this.root.setRenderer(new Renderer<Void>(this.context)
+		this.root.setController(new Controller<Void>(this.context)
 		{
 			@Override
 			public View createNodeView(TreeNode node, Void value)
@@ -172,8 +173,8 @@ public class TreeView
 		// view
 		if (parent.isExpanded())
 		{
-			final Renderer<?> renderer = getNodeRenderer(parent);
-			addNode(renderer.getChildrenContainerView(), node);
+			final Controller<?> controller = getNodeController(parent);
+			addNode(controller.getChildrenContainerView(), node);
 		}
 	}
 
@@ -185,9 +186,9 @@ public class TreeView
 	 */
 	private void addNode(final ViewGroup container, final TreeNode node)
 	{
-		final Renderer<?> renderer = getNodeRenderer(node);
-		assert renderer != null;
-		final View nodeView = renderer.getView();
+		final Controller<?> controller = getNodeController(node);
+		assert controller != null;
+		final View nodeView = controller.getView();
 
 		// add to container
 		container.addView(nodeView);
@@ -231,9 +232,9 @@ public class TreeView
 	 */
 	static public void remove(final TreeNode node)
 	{
-		final Renderer<?> renderer = node.getRenderer();
-		assert renderer != null;
-		final TreeView treeView = renderer.getTreeView();
+		final Controller<?> controller = node.getController();
+		assert controller != null;
+		final TreeView treeView = controller.getTreeView();
 		assert treeView != null;
 		treeView.removeNode(node);
 	}
@@ -255,8 +256,8 @@ public class TreeView
 			// view
 			if (parent.isExpanded() && index >= 0)
 			{
-				final Renderer<?> renderer = getNodeRenderer(parent);
-				renderer.getChildrenContainerView().removeViewAt(index);
+				final Controller<?> controller = getNodeController(parent);
+				controller.getChildrenContainerView().removeViewAt(index);
 			}
 		}
 	}
@@ -270,9 +271,48 @@ public class TreeView
 	{
 		node.disable();
 
-		final Renderer<?> renderer = node.getRenderer();
-		assert renderer != null;
-		renderer.disable();
+		final Controller<?> controller = node.getController();
+		assert controller != null;
+		controller.disable();
+	}
+
+	/**
+	 * Set node text
+	 *
+	 * @param node  node
+	 * @param value character sequence
+	 */
+	static public void setNodeValue(final TreeNode node, final CharSequence value)
+	{
+		// delete node from parent if null value
+		if (value == null || value.length() == 0)
+		{
+			TreeView.remove(node);
+			return;
+		}
+
+		// update value
+		node.setValue(value);
+
+		// update view
+		final Controller<?> controller = node.getController();
+		final View view = controller.getNodeView();
+		if (view != null)
+		{
+			if (view instanceof TextView)
+			{
+				final TextView textView = (TextView) view;
+				textView.setText(value);
+			}
+			else
+			{
+				final TextView textView = (TextView) view.findViewById(R.id.node_value);
+				if (textView != null)
+				{
+					textView.setText(value);
+				}
+			}
+		}
 	}
 
 	// E X P A N D  /  C O L L A P S E
@@ -285,9 +325,9 @@ public class TreeView
 	 */
 	static public void expand(final TreeNode node, boolean includeSubnodes)
 	{
-		final Renderer<?> renderer = node.getRenderer();
-		assert renderer != null;
-		final TreeView treeView = renderer.getTreeView();
+		final Controller<?> controller = node.getController();
+		assert controller != null;
+		final TreeView treeView = controller.getTreeView();
 		assert treeView != null;
 		treeView.expandNode(node, includeSubnodes);
 	}
@@ -300,9 +340,9 @@ public class TreeView
 	 */
 	static public void expand(final TreeNode node, int levels)
 	{
-		final Renderer<?> renderer = node.getRenderer();
-		assert renderer != null;
-		final TreeView treeView = renderer.getTreeView();
+		final Controller<?> controller = node.getController();
+		assert controller != null;
+		final TreeView treeView = controller.getTreeView();
 		assert treeView != null;
 		treeView.expandRelativeLevel(node, levels);
 	}
@@ -316,9 +356,9 @@ public class TreeView
 	@SuppressWarnings("unused")
 	static public void collapse(final TreeNode node, boolean includeSubnodes)
 	{
-		final Renderer<?> renderer = node.getRenderer();
-		assert renderer != null;
-		final TreeView treeView = renderer.getTreeView();
+		final Controller<?> controller = node.getController();
+		assert controller != null;
+		final TreeView treeView = controller.getTreeView();
 		assert treeView != null;
 		treeView.collapseNode(node, includeSubnodes);
 	}
@@ -515,20 +555,20 @@ public class TreeView
 		// flag
 		node.setExpanded(false);
 
-		final Renderer<?> renderer = getNodeRenderer(node);
+		final Controller<?> controller = getNodeController(node);
 
 		// display
 		if (this.useDefaultAnimation)
 		{
-			collapse(renderer.getChildrenContainerView());
+			collapse(controller.getChildrenContainerView());
 		}
 		else
 		{
-			renderer.getChildrenContainerView().setVisibility(View.GONE);
+			controller.getChildrenContainerView().setVisibility(View.GONE);
 		}
 
 		// fire collapse event
-		renderer.onExpandEvent(false);
+		controller.onExpandEvent(false);
 
 		// subnodes
 		if (includeSubnodes)
@@ -551,19 +591,19 @@ public class TreeView
 		// flag
 		node.setExpanded(true);
 
-		final Renderer<?> renderer = getNodeRenderer(node);
+		final Controller<?> controller = getNodeController(node);
 
 		// clear all views
-		renderer.getChildrenContainerView().removeAllViews();
+		controller.getChildrenContainerView().removeAllViews();
 
 		// fire expand event
-		renderer.onExpandEvent(true);
+		controller.onExpandEvent(true);
 
 		// children
 		for (final TreeNode child : node.getChildren())
 		{
 			// add children node to container view
-			addNode(renderer.getChildrenContainerView(), child);
+			addNode(controller.getChildrenContainerView(), child);
 
 			// recurse
 			if (child.isExpanded() || includeSubnodes)
@@ -575,11 +615,11 @@ public class TreeView
 		// display
 		if (this.useDefaultAnimation)
 		{
-			expand(renderer.getChildrenContainerView());
+			expand(controller.getChildrenContainerView());
 		}
 		else
 		{
-			renderer.getChildrenContainerView().setVisibility(View.VISIBLE);
+			controller.getChildrenContainerView().setVisibility(View.VISIBLE);
 		}
 	}
 
@@ -640,13 +680,13 @@ public class TreeView
 	}
 
 	/**
-	 * Set default renderer
+	 * Set default controller class
 	 *
-	 * @param renderer default renderer
+	 * @param controllerClass default controllerClass
 	 */
-	public void setDefaultRenderer(final Class<? extends Renderer<?>> renderer)
+	public void setDefaultController(final Class<? extends Controller<?>> controllerClass)
 	{
-		this.defaultRendererClass = renderer;
+		this.defaultControlerClass = controllerClass;
 	}
 
 	/**
@@ -935,46 +975,46 @@ public class TreeView
 	 */
 	private void fireNodeSelected(final TreeNode node, final boolean selected)
 	{
-		final Renderer<?> renderer = getNodeRenderer(node);
-		assert renderer != null;
-		if (renderer.isInitialized())
+		final Controller<?> controller = getNodeController(node);
+		assert controller != null;
+		if (controller.isInitialized())
 		{
-			renderer.onSelectedEvent(selected);
+			controller.onSelectedEvent(selected);
 		}
 	}
 
-	// R E N D E R E R
+	// C O N T R O L L E R
 
 	/**
-	 * Get renderer for node
+	 * Get controller for node
 	 *
 	 * @param node node
-	 * @return renderer
+	 * @return controller
 	 */
-	private Renderer<?> getNodeRenderer(final TreeNode node)
+	private Controller<?> getNodeController(final TreeNode node)
 	{
-		Renderer<?> renderer = node.getRenderer();
-		if (renderer == null)
+		Controller<?> controller = node.getController();
+		if (controller == null)
 		{
 			try
 			{
-				final Object object = this.defaultRendererClass.getConstructor(Context.class).newInstance(this.context);
-				renderer = (Renderer<?>) object;
-				node.setRenderer(renderer);
+				final Object object = this.defaultControlerClass.getConstructor(Context.class).newInstance(this.context);
+				controller = (Controller<?>) object;
+				node.setController(controller);
 			}
 			catch (Exception e)
 			{
-				throw new RuntimeException("Could not instantiate class " + this.defaultRendererClass); //
+				throw new RuntimeException("Could not instantiate class " + this.defaultControlerClass); //
 			}
 		}
-		if (renderer.getContainerStyle() <= 0)
+		if (controller.getContainerStyle() <= 0)
 		{
-			renderer.setContainerStyle(this.containerStyle);
+			controller.setContainerStyle(this.containerStyle);
 		}
-		if (renderer.getTreeView() == null)
+		if (controller.getTreeView() == null)
 		{
-			renderer.setTreeView(this);
+			controller.setTreeView(this);
 		}
-		return renderer;
+		return controller;
 	}
 }

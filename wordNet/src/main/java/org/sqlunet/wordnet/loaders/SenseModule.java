@@ -5,8 +5,8 @@ import android.os.Parcelable;
 
 import org.sqlunet.HasWordId;
 import org.sqlunet.treeview.model.TreeNode;
+import org.sqlunet.view.FireEvent;
 import org.sqlunet.view.TreeFactory;
-import org.sqlunet.view.Update;
 import org.sqlunet.wordnet.R;
 
 /**
@@ -96,8 +96,8 @@ public class SenseModule extends SynsetModule
 		final TreeNode samplesNode = TreeFactory.newQueryNode(new SamplesQuery(this.synsetId, R.drawable.sample, "Samples"), this.expand, this.context).addTo(parent);
 
 		// fire event
-		Update.onQueryReady(linksNode);
-		Update.onQueryReady(samplesNode);
-		Update.onResults(parent);
+		FireEvent.onQueryReady(linksNode);
+		FireEvent.onQueryReady(samplesNode);
+		FireEvent.onResults(parent);
 	}
 }

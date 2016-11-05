@@ -25,6 +25,21 @@ public class VerbNetFactories
 
 	static public final SpanFactory memberFactory = Factories.memberFactory;
 
+	// definition
+
+	static public final SpanFactory definitionFactory = Factories.definitionFactory;
+
+	// groupings
+
+	static public final SpanFactory groupingFactory = new SpanFactory()
+	{
+		@Override
+		public Object makeSpans(final long flags)
+		{
+			return new ForegroundColorSpan(Color.LTGRAY);
+		}
+	};
+
 	// role
 
 	public static final SpanFactory roleFactory = Factories.roleFactory;

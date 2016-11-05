@@ -17,7 +17,7 @@ import org.sqlunet.provider.SqlUNetProvider;
  */
 public class VerbNetProvider extends SqlUNetProvider
 {
-	static private final String TAG = "VerbNetProvider"; //
+	static private final String TAG = "VerbNetProvider";
 
 	// U R I M A T C H E R
 
@@ -31,9 +31,9 @@ public class VerbNetProvider extends SqlUNetProvider
 
 	// join codes
 	private static final int WORDS_VNCLASSES = 100;
-	private static final int WORDS_VNCLASSES_VNGROUPING_BY_VNCLASS = 101;
-	private static final int VNCLASSES_VNROLES_X_BY_VNROLE = 110;
-	private static final int VNCLASSES_VNFRAMES_X_BY_VNFRAME = 120;
+	private static final int VNCLASSES_VNMEMBERS_X_BY_WORD = 110;
+	private static final int VNCLASSES_VNROLES_X_BY_VNROLE = 120;
+	private static final int VNCLASSES_VNFRAMES_X_BY_VNFRAME = 130;
 
 	// text search codes
 	private static final int LOOKUP_FTS_EXAMPLES = 501;
@@ -43,13 +43,12 @@ public class VerbNetProvider extends SqlUNetProvider
 		uriMatcher = new UriMatcher(UriMatcher.NO_MATCH);
 		VerbNetProvider.uriMatcher.addURI(VerbNetContract.AUTHORITY, VerbNetContract.VnClasses.TABLE, VerbNetProvider.VNCLASS);
 		VerbNetProvider.uriMatcher.addURI(VerbNetContract.AUTHORITY, VerbNetContract.VnClasses.TABLE, VerbNetProvider.VNCLASSES);
-		VerbNetProvider.uriMatcher.addURI(VerbNetContract.AUTHORITY, VerbNetContract.VnClasses_X.TABLE_BY_VNCLASS, VerbNetProvider.VNCLASSES_X_BY_VNCLASS);
 		VerbNetProvider.uriMatcher.addURI(VerbNetContract.AUTHORITY, VerbNetContract.Words_VnClasses.TABLE, VerbNetProvider.WORDS_VNCLASSES);
-		VerbNetProvider.uriMatcher.addURI(VerbNetContract.AUTHORITY, VerbNetContract.Words_VnClasses_VnGroupings.TABLE_BY_CLASS, VerbNetProvider.WORDS_VNCLASSES_VNGROUPING_BY_VNCLASS);
+		VerbNetProvider.uriMatcher.addURI(VerbNetContract.AUTHORITY, VerbNetContract.VnClasses_VnMembers_X.TABLE_BY_WORD, VerbNetProvider.VNCLASSES_VNMEMBERS_X_BY_WORD);
 		VerbNetProvider.uriMatcher.addURI(VerbNetContract.AUTHORITY, VerbNetContract.VnClasses_VnRoles_X.TABLE_BY_ROLE, VerbNetProvider.VNCLASSES_VNROLES_X_BY_VNROLE);
 		VerbNetProvider.uriMatcher.addURI(VerbNetContract.AUTHORITY, VerbNetContract.VnClasses_VnFrames_X.TABLE_BY_FRAME, VerbNetProvider.VNCLASSES_VNFRAMES_X_BY_VNFRAME);
 
-		VerbNetProvider.uriMatcher.addURI(VerbNetContract.AUTHORITY, VerbNetContract.Lookup_VnExamples.TABLE + "/", VerbNetProvider.LOOKUP_FTS_EXAMPLES); //
+		VerbNetProvider.uriMatcher.addURI(VerbNetContract.AUTHORITY, VerbNetContract.Lookup_VnExamples.TABLE + "/", VerbNetProvider.LOOKUP_FTS_EXAMPLES);
 	}
 
 	// C O N S T R U C T O R
@@ -72,32 +71,30 @@ public class VerbNetProvider extends SqlUNetProvider
 			// I T E M S
 
 			case VNCLASS:
-				return SqlUNetContract.VENDOR + ".android.cursor.item/" + SqlUNetContract.VENDOR + '.' + VerbNetContract.AUTHORITY + '.' + VerbNetContract.VnClasses.TABLE; //
+				return SqlUNetContract.VENDOR + ".android.cursor.item/" + SqlUNetContract.VENDOR + '.' + VerbNetContract.AUTHORITY + '.' + VerbNetContract.VnClasses.TABLE;
 
 			// T A B L E S
 
 			case VNCLASSES:
-				return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + VerbNetContract.AUTHORITY + '.' + VerbNetContract.VnClasses.TABLE; //
+				return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + VerbNetContract.AUTHORITY + '.' + VerbNetContract.VnClasses.TABLE;
 
 			// J O I N S
 
-			case VNCLASSES_X_BY_VNCLASS:
-				return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + VerbNetContract.AUTHORITY + '.' + VerbNetContract.VnClasses_X.TABLE_BY_VNCLASS; //
 			case WORDS_VNCLASSES:
-				return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + VerbNetContract.AUTHORITY + '.' + VerbNetContract.Words_VnClasses.TABLE; //
-			case WORDS_VNCLASSES_VNGROUPING_BY_VNCLASS:
-				return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + VerbNetContract.AUTHORITY + '.' + VerbNetContract.Words_VnClasses_VnGroupings.TABLE_BY_CLASS; //
+				return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + VerbNetContract.AUTHORITY + '.' + VerbNetContract.Words_VnClasses.TABLE;
+			case VNCLASSES_VNMEMBERS_X_BY_WORD:
+				return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + VerbNetContract.AUTHORITY + '.' + VerbNetContract.VnClasses_VnMembers_X.TABLE_BY_WORD;
 			case VNCLASSES_VNROLES_X_BY_VNROLE:
-				return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + VerbNetContract.AUTHORITY + '.' + VerbNetContract.VnClasses_VnRoles_X.TABLE_BY_ROLE; //
+				return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + VerbNetContract.AUTHORITY + '.' + VerbNetContract.VnClasses_VnRoles_X.TABLE_BY_ROLE;
 			case VNCLASSES_VNFRAMES_X_BY_VNFRAME:
-				return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + VerbNetContract.AUTHORITY + '.' + VerbNetContract.VnClasses_VnFrames_X.TABLE_BY_FRAME; //
+				return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + VerbNetContract.AUTHORITY + '.' + VerbNetContract.VnClasses_VnFrames_X.TABLE_BY_FRAME;
 
 			// S E A R C H
 			case LOOKUP_FTS_EXAMPLES:
-				return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + VerbNetContract.AUTHORITY + '.' + VerbNetContract.Lookup_VnExamples.TABLE; //
+				return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + VerbNetContract.AUTHORITY + '.' + VerbNetContract.Lookup_VnExamples.TABLE;
 
 			default:
-				throw new UnsupportedOperationException("Illegal MIME type"); //
+				throw new UnsupportedOperationException("Illegal MIME type");
 		}
 	}
 
@@ -115,7 +112,7 @@ public class VerbNetProvider extends SqlUNetProvider
 		// choose the table to query and a sort order based on the code returned for the incoming URI
 		String actualSelection = selection;
 		final int code = VerbNetProvider.uriMatcher.match(uri);
-		Log.d(VerbNetProvider.TAG + "URI", String.format("%s (code %s)\n", uri, code)); //
+		Log.d(VerbNetProvider.TAG + "URI", String.format("%s (code %s)\n", uri, code));
 		String groupBy = null;
 		String table;
 		switch (code)
@@ -129,13 +126,13 @@ public class VerbNetProvider extends SqlUNetProvider
 				table = VerbNetContract.VnClasses.TABLE;
 				if (actualSelection != null)
 				{
-					actualSelection += " AND "; //
+					actualSelection += " AND ";
 				}
 				else
 				{
-					actualSelection = ""; //
+					actualSelection = "";
 				}
-				actualSelection += VerbNetContract.VnClasses.CLASSID + " = " + uri.getLastPathSegment(); //
+				actualSelection += VerbNetContract.VnClasses.CLASSID + " = " + uri.getLastPathSegment();
 				break;
 
 			case VNCLASSES:
@@ -143,10 +140,10 @@ public class VerbNetProvider extends SqlUNetProvider
 				break;
 
 			case VNCLASSES_X_BY_VNCLASS:
-				groupBy = "classid"; //
+				groupBy = "classid";
 				table = "vnclasses " + //
 						"LEFT JOIN vngroupingmaps USING (classid) " + //
-						"LEFT JOIN vngroupings USING (groupingid)"; //
+						"LEFT JOIN vngroupings USING (groupingid)";
 				break;
 
 			// J O I N S
@@ -155,29 +152,28 @@ public class VerbNetProvider extends SqlUNetProvider
 				table = "words " + //
 						"INNER JOIN vnwords USING (wordid) " + //
 						"INNER JOIN vnclassmembersenses USING (vnwordid) " + //
-						"LEFT JOIN vnclasses USING (classid)"; //
+						"LEFT JOIN vnclasses USING (classid)";
 				break;
 
-			case WORDS_VNCLASSES_VNGROUPING_BY_VNCLASS:
-				groupBy = "classid"; //
-				table = "words " + //
-						"INNER JOIN vnwords USING (wordid) " + //
-						"INNER JOIN vnclassmembersenses USING (vnwordid) " + //
-						"LEFT JOIN vnclasses USING (classid) " + //
+			case VNCLASSES_VNMEMBERS_X_BY_WORD:
+				groupBy = "vnwordid";
+				table = "vnclassmembersenses " + //
+						"LEFT JOIN vnwords USING (vnwordid) " + //
 						"LEFT JOIN vngroupingmaps USING (classid, vnwordid) " + //
-						"LEFT JOIN vngroupings USING (groupingid)"; //
+						"LEFT JOIN vngroupings USING (groupingid) " + //
+						"LEFT JOIN synsets USING (synsetid)";
 				break;
 
 			case VNCLASSES_VNROLES_X_BY_VNROLE:
-				groupBy = "roleid"; //
+				groupBy = "roleid";
 				table = "vnrolemaps " + //
 						"INNER JOIN vnroles USING (roleid) " + //
 						"INNER JOIN vnroletypes USING (roletypeid) " + //
-						"LEFT JOIN vnrestrs USING (restrsid)"; //
+						"LEFT JOIN vnrestrs USING (restrsid)";
 				break;
 
 			case VNCLASSES_VNFRAMES_X_BY_VNFRAME:
-				groupBy = "frameid"; //
+				groupBy = "frameid";
 				table = "vnframemaps " + //
 						"INNER JOIN vnframes USING (frameid) " + //
 						"LEFT JOIN vnframenames USING (nameid) " + //
@@ -185,23 +181,23 @@ public class VerbNetProvider extends SqlUNetProvider
 						"LEFT JOIN vnsyntaxes USING (syntaxid) " + //
 						"LEFT JOIN vnsemantics USING (semanticsid) " + //
 						"LEFT JOIN vnexamplemaps USING (frameid) " + //
-						"LEFT JOIN vnexamples USING (exampleid)"; //
+						"LEFT JOIN vnexamples USING (exampleid)";
 				break;
 
 			case LOOKUP_FTS_EXAMPLES:
-				table = "vnexamples_example_fts4"; //
+				table = "vnexamples_example_fts4";
 				break;
 
 			default:
 			case UriMatcher.NO_MATCH:
-				throw new RuntimeException("Malformed URI " + uri); //
+				throw new RuntimeException("Malformed URI " + uri);
 		}
 
 		if (SqlUNetProvider.debugSql)
 		{
 			final String sql = SQLiteQueryBuilder.buildQueryString(false, table, projection, actualSelection, groupBy, null, sortOrder, null);
-			Log.d(VerbNetProvider.TAG + "SQL", sql); //
-			Log.d(VerbNetProvider.TAG + "ARGS", SqlUNetProvider.argsToString(selectionArgs)); //
+			Log.d(VerbNetProvider.TAG + "SQL", sql);
+			Log.d(VerbNetProvider.TAG + "ARGS", SqlUNetProvider.argsToString(selectionArgs));
 		}
 
 		// do query
@@ -212,8 +208,8 @@ public class VerbNetProvider extends SqlUNetProvider
 		catch (final SQLiteException e)
 		{
 			final String sql = SQLiteQueryBuilder.buildQueryString(false, table, projection, actualSelection, groupBy, null, sortOrder, null);
-			Log.d(TAG + "SQL", sql); //
-			Log.e(VerbNetProvider.TAG, "VerbNet provider query failed", e); //
+			Log.d(TAG + "SQL", sql);
+			Log.e(VerbNetProvider.TAG, "VerbNet provider query failed", e);
 			return null;
 		}
 	}

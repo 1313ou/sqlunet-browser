@@ -16,8 +16,8 @@ import org.sqlunet.framenet.provider.FrameNetContract.Sentences;
 import org.sqlunet.framenet.style.FrameNetFactories;
 import org.sqlunet.style.Spanner;
 import org.sqlunet.treeview.model.TreeNode;
+import org.sqlunet.view.FireEvent;
 import org.sqlunet.view.TreeFactory;
-import org.sqlunet.view.Update;
 
 /**
  * Sentence module
@@ -117,11 +117,11 @@ public class SentenceModule extends BasicModule
 					layersForSentence(id, SentenceModule.this.sentenceText, parent);
 
 					// fire event
-					Update.onResults(parent);
+					FireEvent.onResults(parent);
 				}
 				else
 				{
-					Update.onNoResult(parent, true);
+					FireEvent.onNoResult(parent, true);
 				}
 
 				cursor.close();

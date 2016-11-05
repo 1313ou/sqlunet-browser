@@ -16,10 +16,10 @@ import org.sqlunet.browser.Module;
 import org.sqlunet.style.Spanner;
 import org.sqlunet.treeview.model.TreeNode;
 import org.sqlunet.verbnet.R;
-import org.sqlunet.verbnet.provider.VerbNetContract.Words_VnClasses_VnGroupings;
+import org.sqlunet.verbnet.provider.VerbNetContract.Words_VnClasses;
 import org.sqlunet.verbnet.style.VerbNetFactories;
+import org.sqlunet.view.FireEvent;
 import org.sqlunet.view.TreeFactory;
-import org.sqlunet.view.Update;
 
 /**
  * VerbNet class from word/sense module
@@ -74,7 +74,7 @@ public class ClassFromWordModule extends BasicModule
 		}
 		else
 		{
-			Update.onNoResult(node, true);
+			FireEvent.onNoResult(node, true);
 		}
 	}
 
@@ -94,22 +94,21 @@ public class ClassFromWordModule extends BasicModule
 			@Override
 			public Loader<Cursor> onCreateLoader(final int loaderId, final Bundle loaderArgs)
 			{
-				final Uri uri = Uri.parse(Words_VnClasses_VnGroupings.CONTENT_URI);
+				final Uri uri = Uri.parse(Words_VnClasses.CONTENT_URI);
 				final String[] projection = { //
-						Words_VnClasses_VnGroupings.CLASSID, //
-						Words_VnClasses_VnGroupings.CLASS, //
-						Words_VnClasses_VnGroupings.CLASSTAG, //
-						"(" + Words_VnClasses_VnGroupings.SYNSETID + " IS NULL) AS " + Words_VnClasses_VnGroupings.NULLSYNSET, //
-						Words_VnClasses_VnGroupings.SENSENUM, //
-						Words_VnClasses_VnGroupings.SENSEKEY, //
-						Words_VnClasses_VnGroupings.QUALITY, //
-						"GROUP_CONCAT(" + Words_VnClasses_VnGroupings.GROUPING + ", '|') AS " + Words_VnClasses_VnGroupings.GROUPINGS, //
+						Words_VnClasses.CLASSID, //
+						Words_VnClasses.CLASS, //
+						Words_VnClasses.CLASSTAG, //
+						"(" + Words_VnClasses.SYNSETID + " IS NULL) AS " + Words_VnClasses.NULLSYNSET, //
+						Words_VnClasses.SENSENUM, //
+						Words_VnClasses.SENSEKEY, //
+						Words_VnClasses.QUALITY, //
 				};
-				String selection = Words_VnClasses_VnGroupings.WORDID + " = ?"; //
+				String selection = Words_VnClasses.WORDID + " = ?"; //
 				String[] selectionArgs;
 				if (synsetId != null && synsetId != 0)
 				{
-					selection += " AND (" + Words_VnClasses_VnGroupings.SYNSETID + " = ? OR " + Words_VnClasses_VnGroupings.SYNSETID + " IS NULL)"; //
+					selection += " AND (" + Words_VnClasses.SYNSETID + " = ? OR " + Words_VnClasses.SYNSETID + " IS NULL)"; //
 					selectionArgs = new String[]{ //
 							Long.toString(wordId), //
 							Long.toString(synsetId)};
@@ -129,9 +128,8 @@ public class ClassFromWordModule extends BasicModule
 				if (cursor.moveToFirst())
 				{
 					// column indices
-					final int idClassId = cursor.getColumnIndex(Words_VnClasses_VnGroupings.CLASSID);
-					final int idClass = cursor.getColumnIndex(Words_VnClasses_VnGroupings.CLASS);
-					final int idGroupings = cursor.getColumnIndex(Words_VnClasses_VnGroupings.GROUPINGS);
+					final int idClassId = cursor.getColumnIndex(Words_VnClasses.CLASSID);
+					final int idClass = cursor.getColumnIndex(Words_VnClasses.CLASS);
 					// final int idClassTag = cursor.getColumnIndex(Words_VnClasses.CLASSTAG);
 
 					// read cursor
@@ -142,7 +140,6 @@ public class ClassFromWordModule extends BasicModule
 						// data
 						final int classId = cursor.getInt(idClassId);
 						final String vnClass = cursor.getString(idClass);
-						final String groupings = cursor.getString(idGroupings);
 
 						// sb.append("[class]");
 						Spanner.appendImage(sb, ClassFromWordModule.this.drawableRoles);
@@ -156,26 +153,24 @@ public class ClassFromWordModule extends BasicModule
 						// attach result
 						TreeFactory.addTextNode(parent, sb, ClassFromWordModule.this.context);
 
-						// groupings
-						final TreeNode itemsNode = groupings(groupings);
-						itemsNode.addTo(parent);
-
 						// sub nodes
+						final TreeNode membersNode = TreeFactory.newQueryNode(new MembersQuery(classId, R.drawable.member, "Members"), true, ClassFromWordModule.this.context).addTo(parent);
 						final TreeNode rolesNode = TreeFactory.newQueryNode(new RolesQuery(classId, R.drawable.role, "Roles"), true, ClassFromWordModule.this.context).addTo(parent);
 						final TreeNode framesNode = TreeFactory.newQueryNode(new FramesQuery(classId, R.drawable.vnframe, "Frames"), false, ClassFromWordModule.this.context).addTo(parent);
 
 						// fire event
-						Update.onQueryReady(rolesNode);
-						Update.onQueryReady(framesNode);
+						FireEvent.onQueryReady(membersNode);
+						FireEvent.onQueryReady(rolesNode);
+						FireEvent.onQueryReady(framesNode);
 					}
 					while (cursor.moveToNext());
 
 					// fire event
-					Update.onResults(parent);
+					FireEvent.onResults(parent);
 				}
 				else
 				{
-					Update.onNoResult(parent, true);
+					FireEvent.onNoResult(parent, true);
 				}
 
 				cursor.close();

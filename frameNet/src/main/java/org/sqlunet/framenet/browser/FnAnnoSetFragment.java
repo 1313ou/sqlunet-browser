@@ -13,8 +13,8 @@ import org.sqlunet.framenet.loaders.AnnoSetFromPatternModule;
 import org.sqlunet.framenet.loaders.AnnoSetFromValenceUnitModule;
 import org.sqlunet.framenet.loaders.AnnoSetModule;
 import org.sqlunet.provider.SqlUNetContract;
+import org.sqlunet.treeview.control.IconTreeController;
 import org.sqlunet.treeview.model.TreeNode;
-import org.sqlunet.treeview.renderer.IconTreeRenderer;
 import org.sqlunet.treeview.view.TreeView;
 import org.sqlunet.view.TreeFactory;
 
@@ -71,7 +71,7 @@ public class FnAnnoSetFragment extends Fragment
 		this.treeView = new TreeView(getActivity(), root);
 		this.treeView.setDefaultAnimation(true);
 		this.treeView.setDefaultContainerStyle(R.style.TreeNodeStyleCustom); // R.style.TreeNodeStyleDivided
-		this.treeView.setDefaultRenderer(IconTreeRenderer.class);
+		this.treeView.setDefaultController(IconTreeController.class);
 		containerView.addView(this.treeView.getView());
 
 		// saved state

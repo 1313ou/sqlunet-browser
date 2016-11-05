@@ -20,10 +20,10 @@ import org.sqlunet.propbank.provider.PropBankContract.Words_PbRoleSets;
 import org.sqlunet.propbank.style.PropBankFactories;
 import org.sqlunet.propbank.style.PropBankSpanner;
 import org.sqlunet.style.Spanner;
+import org.sqlunet.treeview.control.QueryController;
 import org.sqlunet.treeview.model.TreeNode;
-import org.sqlunet.treeview.renderer.QueryRenderer;
+import org.sqlunet.view.FireEvent;
 import org.sqlunet.view.TreeFactory;
-import org.sqlunet.view.Update;
 
 import java.util.Arrays;
 import java.util.Locale;
@@ -173,13 +173,13 @@ abstract class BasicModule extends Module
 					final TreeNode examplesNode = TreeFactory.newQueryNode(new ExamplesQuery(roleSetId, R.drawable.sample, "Examples"), false, BasicModule.this.context).addTo(parent);
 
 					// fire event
-					Update.onQueryReady(rolesNode);
-					Update.onQueryReady(examplesNode);
-					Update.onResults(parent);
+					FireEvent.onQueryReady(rolesNode);
+					FireEvent.onQueryReady(examplesNode);
+					FireEvent.onResults(parent);
 				}
 				else
 				{
-					Update.onNoResult(parent, true);
+					FireEvent.onNoResult(parent, true);
 				}
 
 				cursor.close();
@@ -259,17 +259,17 @@ abstract class BasicModule extends Module
 						final TreeNode examplesNode = TreeFactory.newQueryNode(new ExamplesQuery(roleSetId, R.drawable.sample, "Examples"), false, BasicModule.this.context).addTo(parent);
 
 						// fire event
-						Update.onQueryReady(rolesNode);
-						Update.onQueryReady(examplesNode);
+						FireEvent.onQueryReady(rolesNode);
+						FireEvent.onQueryReady(examplesNode);
 					}
 					while (cursor.moveToNext());
 
 					// fire event
-					Update.onResults(parent);
+					FireEvent.onResults(parent);
 				}
 				else
 				{
-					Update.onNoResult(parent, true);
+					FireEvent.onNoResult(parent, true);
 				}
 
 				cursor.close();
@@ -375,11 +375,11 @@ abstract class BasicModule extends Module
 					TreeFactory.addTextNode(parent, sb, BasicModule.this.context);
 
 					// fire event
-					Update.onResults(parent);
+					FireEvent.onResults(parent);
 				}
 				else
 				{
-					Update.onNoResult(parent, true);
+					FireEvent.onNoResult(parent, true);
 				}
 
 				cursor.close();
@@ -526,11 +526,11 @@ abstract class BasicModule extends Module
 					TreeFactory.addTextNode(parent, sb, BasicModule.this.context);
 
 					// fire event
-					Update.onResults(parent);
+					FireEvent.onResults(parent);
 				}
 				else
 				{
-					Update.onNoResult(parent, true);
+					FireEvent.onNoResult(parent, true);
 				}
 
 				cursor.close();
@@ -547,7 +547,7 @@ abstract class BasicModule extends Module
 	/**
 	 * Role query
 	 */
-	class RolesQuery extends QueryRenderer.Query
+	class RolesQuery extends QueryController.Query
 	{
 		/**
 		 * Constructor
@@ -571,7 +571,7 @@ abstract class BasicModule extends Module
 	/**
 	 * Examples query
 	 */
-	class ExamplesQuery extends QueryRenderer.Query
+	class ExamplesQuery extends QueryController.Query
 	{
 		/**
 		 * Constructor

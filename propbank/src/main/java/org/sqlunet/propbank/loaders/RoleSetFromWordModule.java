@@ -5,8 +5,7 @@ import android.os.Parcelable;
 
 import org.sqlunet.HasWordId;
 import org.sqlunet.treeview.model.TreeNode;
-import org.sqlunet.treeview.view.TreeView;
-import org.sqlunet.view.Update;
+import org.sqlunet.view.FireEvent;
 
 /**
  * Module for PropBank role sets from word
@@ -51,7 +50,7 @@ public class RoleSetFromWordModule extends BasicModule
 		}
 		else
 		{
-			Update.onNoResult(node, true);
+			FireEvent.onNoResult(node, true);
 		}
 	}
 }

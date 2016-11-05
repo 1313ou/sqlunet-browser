@@ -5,9 +5,8 @@ import android.os.Parcelable;
 
 import org.sqlunet.HasXId;
 import org.sqlunet.treeview.model.TreeNode;
-import org.sqlunet.treeview.view.TreeView;
 import org.sqlunet.verbnet.VnClassPointer;
-import org.sqlunet.view.Update;
+import org.sqlunet.view.FireEvent;
 
 /**
  * VerbNet class module
@@ -62,7 +61,7 @@ public class ClassModule extends BasicModule
 		}
 		else
 		{
-			Update.onNoResult(node, true);
+			FireEvent.onNoResult(node, true);
 		}
 	}
 }

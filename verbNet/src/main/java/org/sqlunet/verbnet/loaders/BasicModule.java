@@ -13,18 +13,19 @@ import android.text.SpannableStringBuilder;
 
 import org.sqlunet.browser.Module;
 import org.sqlunet.style.Spanner;
+import org.sqlunet.treeview.control.QueryController;
 import org.sqlunet.treeview.model.TreeNode;
-import org.sqlunet.treeview.renderer.QueryRenderer;
 import org.sqlunet.verbnet.R;
+import org.sqlunet.verbnet.provider.VerbNetContract.VnClasses;
 import org.sqlunet.verbnet.provider.VerbNetContract.VnClasses_VnFrames_X;
+import org.sqlunet.verbnet.provider.VerbNetContract.VnClasses_VnMembers_X;
 import org.sqlunet.verbnet.provider.VerbNetContract.VnClasses_VnRoles_X;
-import org.sqlunet.verbnet.provider.VerbNetContract.VnClasses_X;
 import org.sqlunet.verbnet.style.VerbNetFactories;
 import org.sqlunet.verbnet.style.VerbNetSemanticsProcessor;
 import org.sqlunet.verbnet.style.VerbNetSemanticsSpanner;
 import org.sqlunet.verbnet.style.VerbNetSyntaxSpanner;
+import org.sqlunet.view.FireEvent;
 import org.sqlunet.view.TreeFactory;
-import org.sqlunet.view.Update;
 
 /**
  * VerbNet basic module
@@ -54,20 +55,20 @@ abstract class BasicModule extends Module
 	// drawables
 
 	/**
-	 * Drawable for role sets
-	 */
-	@SuppressWarnings("WeakerAccess")
-	protected final Drawable drawableRoles;
-
-	/**
 	 * Drawable for class
 	 */
 	private final Drawable drawableClass;
 
 	/**
-	 * Drawable for (group) item
+	 * Drawable for member
 	 */
-	private final Drawable drawableItem;
+	private final Drawable drawableMember;
+
+	/**
+	 * Drawable for role sets
+	 */
+	@SuppressWarnings("WeakerAccess")
+	protected final Drawable drawableRoles;
 
 	/**
 	 * Drawable for role
@@ -95,6 +96,16 @@ abstract class BasicModule extends Module
 	private final Drawable drawableExample;
 
 	/**
+	 * Drawable for definition
+	 */
+	private final Drawable drawableDefinition;
+
+	/**
+	 * Drawable for grouping
+	 */
+	private final Drawable drawableGrouping;
+
+	/**
 	 * Constructor
 	 *
 	 * @param fragment fragment
@@ -105,13 +116,15 @@ abstract class BasicModule extends Module
 
 		// drawable
 		this.drawableClass = Spanner.getDrawable(this.context, R.drawable.vnclass);
-		this.drawableItem = Spanner.getDrawable(this.context, R.drawable.groupitem);
+		this.drawableMember = Spanner.getDrawable(this.context, R.drawable.member);
 		this.drawableRoles = Spanner.getDrawable(this.context, R.drawable.roles);
 		this.drawableRole = Spanner.getDrawable(this.context, R.drawable.role);
 		this.drawableFrame = Spanner.getDrawable(this.context, R.drawable.vnframe);
 		this.drawableSyntax = Spanner.getDrawable(this.context, R.drawable.syntax);
 		this.drawableSemantics = Spanner.getDrawable(this.context, R.drawable.semantics);
 		this.drawableExample = Spanner.getDrawable(this.context, R.drawable.sample);
+		this.drawableDefinition = Spanner.getDrawable(this.context, R.drawable.definition);
+		this.drawableGrouping = Spanner.getDrawable(this.context, R.drawable.sample);
 
 		// create processors and spanners
 		this.semanticsProcessor = new VerbNetSemanticsProcessor();
@@ -136,14 +149,13 @@ abstract class BasicModule extends Module
 			@Override
 			public Loader<Cursor> onCreateLoader(final int loaderId, final Bundle loaderArgs)
 			{
-				final Uri uri = Uri.parse(VnClasses_X.CONTENT_URI);
+				final Uri uri = Uri.parse(VnClasses.CONTENT_URI);
 				final String[] projection = { //
-						VnClasses_X.CLASSID, //
-						VnClasses_X.CLASS, //
-						VnClasses_X.CLASSTAG, //
-						"GROUP_CONCAT(" + VnClasses_X.GROUPING + ", '|') AS " + VnClasses_X.GROUPINGS, //
+						VnClasses.CLASSID, //
+						VnClasses.CLASS, //
+						VnClasses.CLASSTAG, //
 				};
-				final String selection = VnClasses_X.CLASSID + " = ?"; //
+				final String selection = VnClasses.CLASSID + " = ?"; //
 				final String[] selectionArgs = { //
 						Long.toString(classId)};
 				final String sortOrder = null;
@@ -164,8 +176,7 @@ abstract class BasicModule extends Module
 
 					// column indices
 					// final int idClassId = cursor.getColumnIndex(VnClasses_X.CLASSID);
-					final int idClass = cursor.getColumnIndex(VnClasses_X.CLASS);
-					final int idGroupings = cursor.getColumnIndex(VnClasses_X.GROUPINGS);
+					final int idClass = cursor.getColumnIndex(VnClasses.CLASS);
 					// final int idClassTag = cursor.getColumnIndex(VnClasses.CLASSTAG);
 
 					// read cursor
@@ -173,7 +184,6 @@ abstract class BasicModule extends Module
 					// data
 					// final int classId = cursor.getInt(idClassId);
 					final String vnClass = cursor.getString(idClass);
-					final String groupings = cursor.getString(idGroupings);
 
 					// sb.append("[class]");
 					Spanner.appendImage(sb, BasicModule.this.drawableClass);
@@ -184,26 +194,135 @@ abstract class BasicModule extends Module
 					sb.append(" id="); //
 					sb.append(Long.toString(classId));
 
-					// groupings
-					final TreeNode itemsNode = groupings(groupings);
-
 					// attach result
-					TreeFactory.addTextNode(parent, sb, BasicModule.this.context, itemsNode);
+					TreeFactory.addTextNode(parent, sb, BasicModule.this.context);
 
 					// sub nodes
-					final TreeNode rolesNode = TreeFactory.newQueryNode(new RolesQuery(classId, R.drawable.role, "Roles"), true, context).addTo(parent);
+					final TreeNode membersNode = TreeFactory.newQueryNode(new MembersQuery(classId, R.drawable.member, "Members"), true, context).addTo(parent);
+					final TreeNode rolesNode = TreeFactory.newQueryNode(new RolesQuery(classId, R.drawable.roles, "Roles"), true, context).addTo(parent);
 					final TreeNode framesNode = TreeFactory.newQueryNode(new FramesQuery(classId, R.drawable.vnframe, "Frames"), false, context).addTo(parent);
 
 					// fire event
-					Update.onQueryReady(rolesNode);
-					Update.onQueryReady(framesNode);
-					Update.onResults(parent);
+					FireEvent.onQueryReady(membersNode);
+					FireEvent.onQueryReady(rolesNode);
+					FireEvent.onQueryReady(framesNode);
+					FireEvent.onResults(parent);
 				}
 				else
 				{
-					Update.onNoResult(parent, true);
+					FireEvent.onNoResult(parent, true);
 				}
 
+				cursor.close();
+			}
+
+			@Override
+			public void onLoaderReset(final Loader<Cursor> loader)
+			{
+				//
+			}
+		});
+	}
+
+	// vnMembers
+
+	/**
+	 * VerbNet members
+	 *
+	 * @param classId class id
+	 * @param parent  parent node
+	 */
+	private void vnMembers(final int classId, final TreeNode parent)
+	{
+		getLoaderManager().restartLoader(++Module.loaderId, null, new LoaderCallbacks<Cursor>()
+		{
+			@Override
+			public Loader<Cursor> onCreateLoader(final int loaderId, final Bundle loaderArgs)
+			{
+				final Uri uri = Uri.parse(VnClasses_VnMembers_X.CONTENT_URI);
+				final String[] projection = { //
+						VnClasses_VnMembers_X.WORDID, //
+						VnClasses_VnMembers_X.VNWORDID, //
+						VnClasses_VnMembers_X.LEMMA, //
+						"GROUP_CONCAT(DISTINCT " + VnClasses_VnMembers_X.DEFINITION + ") AS " + VnClasses_VnMembers_X.DEFINITIONS, //
+						"GROUP_CONCAT(DISTINCT " + VnClasses_VnMembers_X.GROUPING + ") AS " + VnClasses_VnMembers_X.GROUPINGS, //
+						VnClasses_VnMembers_X.CLASSID, //
+				};
+				final String selection = VnClasses_VnRoles_X.CLASSID + " = ?"; //
+				final String[] selectionArgs = {Long.toString(classId)};
+				final String sortOrder = VnClasses_VnMembers_X.LEMMA;
+				return new CursorLoader(BasicModule.this.context, uri, projection, selection, selectionArgs, sortOrder);
+			}
+
+			@Override
+			public void onLoadFinished(final Loader<Cursor> loader, final Cursor cursor)
+			{
+				if (cursor.moveToFirst())
+				{
+					final SpannableStringBuilder sb = new SpannableStringBuilder();
+
+					// column indices
+					// final int idWordId = cursor.getColumnIndex(VnClasses_VnMembers_X.WORDID);
+					// final int idVnWordId = cursor.getColumnIndex(VnClasses_VnMembers_X.VNWORDID);
+					final int idLemma = cursor.getColumnIndex(VnClasses_VnMembers_X.LEMMA);
+					final int idGroupings = cursor.getColumnIndex(VnClasses_VnMembers_X.GROUPINGS);
+					final int idDefinitions = cursor.getColumnIndex(VnClasses_VnMembers_X.DEFINITIONS);
+
+					// read cursor
+					while (true)
+					{
+						// member
+						Spanner.appendImage(sb, BasicModule.this.drawableMember);
+						sb.append(' ');
+						Spanner.append(sb, cursor.getString(idLemma), 0, VerbNetFactories.memberFactory);
+
+						// definitions
+						final String definitions = cursor.getString(idDefinitions);
+						if (definitions != null)
+						{
+							for (String definition : definitions.split(","))
+							{
+								sb.append('\n');
+								sb.append('\t');
+								Spanner.appendImage(sb, BasicModule.this.drawableDefinition);
+								sb.append(' ');
+								Spanner.append(sb, definition.trim(), 0, VerbNetFactories.definitionFactory);
+							}
+						}
+
+						// groupings
+						final String groupings = cursor.getString(idGroupings);
+						if (groupings != null)
+						{
+							for (String grouping : groupings.split(","))
+							{
+								sb.append('\n');
+								sb.append('\t');
+								Spanner.appendImage(sb, BasicModule.this.drawableGrouping);
+								sb.append(' ');
+								Spanner.append(sb, grouping.trim(), 0, VerbNetFactories.groupingFactory);
+							}
+						}
+
+						if (!cursor.moveToNext())
+						{
+							//noinspection BreakStatement
+							break;
+						}
+
+						sb.append('\n');
+					}
+
+					// attach result
+					TreeFactory.addTextNode(parent, sb, BasicModule.this.context);
+
+					// fire event
+					FireEvent.onResults(parent);
+				}
+				else
+				{
+					FireEvent.onNoResult(parent, true);
+				}
 				cursor.close();
 			}
 
@@ -289,11 +408,11 @@ abstract class BasicModule extends Module
 					TreeFactory.addTextNode(parent, sb, BasicModule.this.context);
 
 					// fire event
-					Update.onResults(parent);
+					FireEvent.onResults(parent);
 				}
 				else
 				{
-					Update.onNoResult(parent, true);
+					FireEvent.onNoResult(parent, true);
 				}
 				cursor.close();
 			}
@@ -406,11 +525,11 @@ abstract class BasicModule extends Module
 					TreeFactory.addTextNode(parent, sb, BasicModule.this.context);
 
 					// fire event
-					Update.onResults(parent);
+					FireEvent.onResults(parent);
 				}
 				else
 				{
-					Update.onNoResult(parent, true);
+					FireEvent.onNoResult(parent, true);
 				}
 
 				cursor.close();
@@ -425,26 +544,26 @@ abstract class BasicModule extends Module
 	}
 
 	/**
-	 * Groupings
+	 * Groups
 	 *
-	 * @param itemGroup item groups
+	 * @param group items concat with '|'
 	 * @return node
 	 */
 	@SuppressWarnings("WeakerAccess")
-	protected TreeNode groupings(final String itemGroup)
+	protected TreeNode items(final String group)
 	{
-		if (itemGroup != null)
+		if (group != null)
 		{
 			final SpannableStringBuilder sb = new SpannableStringBuilder();
-			final String[] items = itemGroup.split("\\|"); //
+			final String[] items = group.split("\\|"); //
 			if (items.length == 1)
 			{
-				Spanner.appendImage(sb, BasicModule.this.drawableItem);
+				Spanner.appendImage(sb, BasicModule.this.drawableMember);
 				Spanner.append(sb, items[0], 0, VerbNetFactories.memberFactory);
 			}
 			else if (items.length > 1)
 			{
-				final TreeNode groupingsNode = TreeFactory.newTreeNode("Groupings", R.drawable.groupitem, this.context); //
+				final TreeNode groupingsNode = TreeFactory.newTreeNode("Groups", R.drawable.member, this.context); //
 				boolean first = true;
 				for (final String item : items)
 				{
@@ -456,7 +575,7 @@ abstract class BasicModule extends Module
 					{
 						sb.append('\n');
 					}
-					Spanner.appendImage(sb, BasicModule.this.drawableItem);
+					Spanner.appendImage(sb, BasicModule.this.drawableMember);
 					Spanner.append(sb, item, 0, VerbNetFactories.memberFactory);
 				}
 				groupingsNode.addChild(TreeFactory.newTextNode(sb, this.context));
@@ -467,9 +586,26 @@ abstract class BasicModule extends Module
 	}
 
 	/**
+	 * Members query
+	 */
+	class MembersQuery extends QueryController.Query
+	{
+		public MembersQuery(final long classId, final int icon, final CharSequence text)
+		{
+			super(classId, icon, text);
+		}
+
+		@Override
+		public void process(final TreeNode node)
+		{
+			vnMembers((int) this.id, node);
+		}
+	}
+
+	/**
 	 * Roles query
 	 */
-	class RolesQuery extends QueryRenderer.Query
+	class RolesQuery extends QueryController.Query
 	{
 		public RolesQuery(final long classId, final int icon, final CharSequence text)
 		{
@@ -486,7 +622,7 @@ abstract class BasicModule extends Module
 	/**
 	 * Frames query
 	 */
-	class FramesQuery extends QueryRenderer.Query
+	class FramesQuery extends QueryController.Query
 	{
 		public FramesQuery(final long classId, final int icon, final CharSequence text)
 		{

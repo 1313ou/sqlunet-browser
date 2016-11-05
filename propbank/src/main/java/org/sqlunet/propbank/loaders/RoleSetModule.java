@@ -6,8 +6,7 @@ import android.os.Parcelable;
 import org.sqlunet.HasXId;
 import org.sqlunet.propbank.PbRoleSetPointer;
 import org.sqlunet.treeview.model.TreeNode;
-import org.sqlunet.treeview.view.TreeView;
-import org.sqlunet.view.Update;
+import org.sqlunet.view.FireEvent;
 
 /**
  * Module for PropBank role sets from id
@@ -60,7 +59,7 @@ public class RoleSetModule extends BasicModule
 		}
 		else
 		{
-			Update.onNoResult(node, true);
+			FireEvent.onNoResult(node, true);
 		}
 	}
 }

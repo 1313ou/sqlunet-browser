@@ -22,20 +22,6 @@ public class VerbNetContract
 	}
 
 	@SuppressWarnings("unused")
-	static public final class VnClasses_X
-	{
-		static public final String TABLE_BY_VNCLASS = "vnclasses_x_by_class"; //
-		static public final String CONTENT_URI = "content://" + VerbNetContract.AUTHORITY + '/' + VnClasses_X.TABLE_BY_VNCLASS; //
-		public static final String WORDID = "wordid"; //
-		public static final String POS = "pos"; //
-		public static final String CLASSID = "classid"; //
-		public static final String CLASS = "class"; //
-		public static final String CLASSTAG = "classtag"; //
-		public static final String GROUPING = "grouping"; //
-		public static final String GROUPINGS = "groupings"; //
-	}
-
-	@SuppressWarnings("unused")
 	static public final class Words_VnClasses
 	{
 		static public final String TABLE = "words_vnclasses"; //
@@ -51,21 +37,18 @@ public class VerbNetContract
 		public static final String NULLSYNSET = "nullsynset"; //
 	}
 
-	static public final class Words_VnClasses_VnGroupings
+	static public final class VnClasses_VnMembers_X
 	{
-		static public final String TABLE_BY_CLASS = "words_vnclasses_vngroupings_by_vnclass"; //
-		static public final String CONTENT_URI = "content://" + VerbNetContract.AUTHORITY + '/' + Words_VnClasses_VnGroupings.TABLE_BY_CLASS; //
-		public static final String WORDID = "wordid"; //
-		public static final String SYNSETID = "synsetid"; //
+		static public final String TABLE_BY_WORD = "vnclasses_vnmembers_x_by_word"; //
+		static public final String CONTENT_URI = "content://" + VerbNetContract.AUTHORITY + '/' + VnClasses_VnMembers_X.TABLE_BY_WORD; //
 		public static final String CLASSID = "classid"; //
-		public static final String CLASS = "class"; //
-		public static final String CLASSTAG = "classtag"; //
-		public static final String SENSENUM = "sensenum"; //
-		public static final String SENSEKEY = "sensekey"; //
-		public static final String QUALITY = "quality"; //
-		public static final String GROUPING = "grouping"; //
+		public static final String VNWORDID = "vnwordid"; //
+		public static final String WORDID = "wordid"; //
+		public static final String LEMMA = "lemma"; //
+		public static final String DEFINITIONS = "definitions"; //
 		public static final String GROUPINGS = "groupings"; //
-		public static final String NULLSYNSET = "nullsynset"; //
+		public static final String DEFINITION = "definition"; //
+		public static final String GROUPING = "grouping"; //
 	}
 
 	static public final class VnClasses_VnRoles_X
