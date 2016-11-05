@@ -18,7 +18,7 @@ public class FireEvent
 	 * No results have been attached to this node
 	 *
 	 * @param node       node
-	 * @param addNewNode whether results were supposed to be new subnodes or relace query node
+	 * @param addNewNode whether results were supposed to be new subnodes or replace query node
 	 */
 	static public void onNoResult(final TreeNode node, boolean addNewNode)
 	{

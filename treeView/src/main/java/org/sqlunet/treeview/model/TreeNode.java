@@ -172,6 +172,7 @@ public class TreeNode
 	 * @param childNode child node
 	 * @return this node
 	 */
+	@SuppressWarnings("WeakerAccess")
 	public TreeNode prependChild(TreeNode childNode)
 	{
 		childNode.parent = this;

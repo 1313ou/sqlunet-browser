@@ -72,7 +72,7 @@ public class TreeFactory
 	 * Make query node
 	 *
 	 * @param query      query
-	 * @param triggerNow whether to triggger query immediately
+	 * @param triggerNow whether to trigger query immediately
 	 * @param context    context
 	 * @return created node
 	 */

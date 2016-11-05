@@ -67,7 +67,7 @@ public class IconTreeController extends Controller<Value>
 	@Override
 	public void onExpandEvent(boolean expand)
 	{
-		this.junctionView.setImageResource(!this.node.isEnabled() ? R.drawable.ic_leaf : (expand ? R.drawable.ic_expanded : R.drawable.ic_collapsed));
+		this.junctionView.setImageResource(this.node.isEnabled() ? (expand ? R.drawable.ic_expanded : R.drawable.ic_collapsed) : R.drawable.ic_leaf);
 	}
 
 	@Override

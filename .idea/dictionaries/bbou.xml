@@ -503,6 +503,7 @@
       <w>valenceunit</w>
       <w>valenceunitid</w>
       <w>valenceunits</w>
+      <w>verbframe</w>
       <w>verbnet</w>
       <w>verbnetsource</w>
       <w>vframe</w>
@@ -546,6 +547,7 @@
       <w>vngroupingmaps</w>
       <w>vngroupings</w>
       <w>vnloader</w>
+      <w>vnmembers</w>
       <w>vnrel</w>
       <w>vnrestrs</w>
       <w>vnrole</w>

@@ -549,7 +549,7 @@ abstract class BasicModule extends Module
 	 * @param group items concat with '|'
 	 * @return node
 	 */
-	@SuppressWarnings("WeakerAccess")
+	@SuppressWarnings({"WeakerAccess", "unused"})
 	protected TreeNode items(final String group)
 	{
 		if (group != null)
@@ -563,7 +563,7 @@ abstract class BasicModule extends Module
 			}
 			else if (items.length > 1)
 			{
-				final TreeNode groupingsNode = TreeFactory.newTreeNode("Groups", R.drawable.member, this.context);
+				final TreeNode groupingsNode = TreeFactory.newTreeNode("Group", R.drawable.member, this.context);
 				boolean first = true;
 				for (final String item : items)
 				{

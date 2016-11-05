@@ -49,7 +49,7 @@ public class TreeView
 	/**
 	 * Default controller
 	 */
-	private Class<? extends Controller<?>> defaultControlerClass = SimpleController.class;
+	private Class<? extends Controller<?>> defaultControllerClass = SimpleController.class;
 
 	/**
 	 * Node click listener
@@ -685,7 +685,7 @@ public class TreeView
 	 */
 	public void setDefaultController(final Class<? extends Controller<?>> controllerClass)
 	{
-		this.defaultControlerClass = controllerClass;
+		this.defaultControllerClass = controllerClass;
 	}
 
 	/**
@@ -997,13 +997,13 @@ public class TreeView
 		{
 			try
 			{
-				final Object object = this.defaultControlerClass.getConstructor(Context.class).newInstance(this.context);
+				final Object object = this.defaultControllerClass.getConstructor(Context.class).newInstance(this.context);
 				controller = (Controller<?>) object;
 				node.setController(controller);
 			}
 			catch (Exception e)
 			{
-				throw new RuntimeException("Could not instantiate class " + this.defaultControlerClass);
+				throw new RuntimeException("Could not instantiate class " + this.defaultControllerClass);
 			}
 		}
 		if (controller.getContainerStyle() <= 0)

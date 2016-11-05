@@ -231,14 +231,14 @@ public class Spanner
 				final int clickableStart = textView.getSelectionStart();
 				final int clickableEnd = textView.getSelectionEnd();
 				final Object[] spans = sb1.getSpans(clickableStart, clickableEnd, ImageSpan.class);
-				for (final Object span : spans)
+				for (final Object span3 : spans)
 				{
 					// get imagespan
-					int from = sb1.getSpanStart(span);
-					int to = sb1.getSpanEnd(span);
+					int from = sb1.getSpanStart(span3);
+					int to = sb1.getSpanEnd(span3);
 
 					// remove imagespan
-					sb1.removeSpan(span);
+					sb1.removeSpan(span3);
 
 					// text
 					final char c = sb1.charAt(from);

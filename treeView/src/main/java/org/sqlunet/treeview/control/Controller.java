@@ -33,7 +33,7 @@ public abstract class Controller<E>
 	private TreeView treeView;
 
 	/**
-	 * View (wrapper view that includes label and subtreechildren)
+	 * View (wrapper view that includes label and subtree children)
 	 */
 	private View view;
 

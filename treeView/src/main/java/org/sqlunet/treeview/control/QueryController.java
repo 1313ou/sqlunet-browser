@@ -14,7 +14,7 @@ public class QueryController extends IconTreeController
 	// private static final String TAG = "QueryController";
 	public final boolean triggerNow;
 
-	public boolean processed = false;
+	private boolean processed = false;
 
 	/**
 	 * Constructor
@@ -43,9 +43,9 @@ public class QueryController extends IconTreeController
 	 */
 	synchronized public void processQuery()
 	{
-		if(!processed)
+		if(!this.processed)
 		{
-			processed = true;
+			this.processed = true;
 			final Query query = (Query) this.node.getValue();
 			query.process(this.node);
 		}
