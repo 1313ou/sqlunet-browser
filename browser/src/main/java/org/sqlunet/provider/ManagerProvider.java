@@ -18,7 +18,7 @@ import java.util.Collection;
  *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
-public class ManagerProvider extends SqlUNetProvider
+public class ManagerProvider extends BaseProvider
 {
 	static private final String TAG = "ManagerProvider";
 	// U R I M A T C H E R
@@ -52,7 +52,7 @@ public class ManagerProvider extends SqlUNetProvider
 		switch (ManagerProvider.uriMatcher.match(uri))
 		{
 			case TABLES_AND_INDICES:
-				return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + ManagerContract.AUTHORITY + '.' + TablesAndIndices.TABLE;
+				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + ManagerContract.AUTHORITY + '.' + TablesAndIndices.TABLE;
 			default:
 				throw new UnsupportedOperationException("Illegal MIME type");
 		}
@@ -85,11 +85,11 @@ public class ManagerProvider extends SqlUNetProvider
 		}
 
 		final String groupBy = null;
-		if (SqlUNetProvider.debugSql)
+		if (BaseProvider.debugSql)
 		{
 			final String sql = SQLiteQueryBuilder.buildQueryString(false, table, projection, selection, groupBy, null, sortOrder, null);
 			Log.d(ManagerProvider.TAG + "SQL", sql);
-			Log.d(ManagerProvider.TAG + "ARGS", SqlUNetProvider.argsToString(selectionArgs));
+			Log.d(ManagerProvider.TAG + "ARGS", BaseProvider.argsToString(selectionArgs));
 		}
 
 		// do query

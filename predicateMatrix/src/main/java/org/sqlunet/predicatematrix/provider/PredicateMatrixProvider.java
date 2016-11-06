@@ -8,15 +8,14 @@ import android.net.Uri;
 import android.util.Log;
 
 import org.sqlunet.predicatematrix.provider.PredicateMatrixContract.Pm;
-import org.sqlunet.provider.SqlUNetContract;
-import org.sqlunet.provider.SqlUNetProvider;
+import org.sqlunet.provider.BaseProvider;
 
 /**
  * PredicateMatrix provider
  *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
-public class PredicateMatrixProvider extends SqlUNetProvider
+public class PredicateMatrixProvider extends BaseProvider
 {
 	static private final String TAG = "PMProvider";
 	// U R I M A T C H E R
@@ -54,9 +53,9 @@ public class PredicateMatrixProvider extends SqlUNetProvider
 		switch (PredicateMatrixProvider.uriMatcher.match(uri))
 		{
 			case PM:
-				return SqlUNetContract.VENDOR + ".android.cursor.item/" + SqlUNetContract.VENDOR + '.' + PredicateMatrixContract.AUTHORITY + '.' + PredicateMatrixContract.Pm.TABLE;
+				return BaseProvider.VENDOR + ".android.cursor.item/" + BaseProvider.VENDOR + '.' + PredicateMatrixContract.AUTHORITY + '.' + PredicateMatrixContract.Pm.TABLE;
 			case PM_X:
-				return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + PredicateMatrixContract.AUTHORITY + '.' + PredicateMatrixContract.Pm_X.TABLE;
+				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + PredicateMatrixContract.AUTHORITY + '.' + PredicateMatrixContract.Pm_X.TABLE;
 			default:
 				throw new UnsupportedOperationException("Illegal MIME type");
 		}
@@ -112,11 +111,11 @@ public class PredicateMatrixProvider extends SqlUNetProvider
 				throw new RuntimeException("Malformed URI " + uri);
 		}
 
-		if (SqlUNetProvider.debugSql)
+		if (BaseProvider.debugSql)
 		{
 			final String sql = SQLiteQueryBuilder.buildQueryString(false, table, projection, selection, null, null, sortOrder, null);
 			Log.d(PredicateMatrixProvider.TAG + "SQL", sql);
-			Log.d(PredicateMatrixProvider.TAG + "ARGS", SqlUNetProvider.argsToString(selectionArgs));
+			Log.d(PredicateMatrixProvider.TAG + "ARGS", BaseProvider.argsToString(selectionArgs));
 		}
 
 		// do query

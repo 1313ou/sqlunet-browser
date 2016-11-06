@@ -13,7 +13,7 @@ import org.sqlunet.browser.web.WebFragment;
 import org.sqlunet.browser.xselector.XSelectorPointer;
 import org.sqlunet.framenet.browser.FrameNetFragment;
 import org.sqlunet.propbank.browser.PropBankFragment;
-import org.sqlunet.provider.SqlUNetContract;
+import org.sqlunet.provider.ProviderArgs;
 import org.sqlunet.settings.Settings;
 import org.sqlunet.verbnet.browser.VerbNetFragment;
 import org.sqlunet.wordnet.browser.SenseFragment;
@@ -66,7 +66,7 @@ public class DetailFragment extends Fragment
 
 		// args
 		final Bundle args = new Bundle();
-		args.putParcelable(SqlUNetContract.ARG_QUERYPOINTER, pointer);
+		args.putParcelable(ProviderArgs.ARG_QUERYPOINTER, pointer);
 
 		// detail fragment
 		final Settings.DetailViewMode mode = Settings.getDetailViewModePref(context);

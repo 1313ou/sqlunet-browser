@@ -1,5 +1,7 @@
 package org.sqlunet.bnc.provider;
 
+import org.sqlunet.provider.BaseProvider;
+
 public class BNCContract
 {
 	static public final String AUTHORITY = "org.sqlunet.bnc.provider";
@@ -8,7 +10,7 @@ public class BNCContract
 	static public final class BNCs
 	{
 		static public final String TABLE = "bncs";
-		static public final String CONTENT_URI = "content://" + BNCContract.AUTHORITY + '/' + BNCs.TABLE;
+		static public final String CONTENT_URI = BaseProvider.SCHEME + BNCContract.AUTHORITY + '/' + BNCs.TABLE;
 		public static final String WORDID = "wordid";
 		public static final String POS = "pos";
 		public static final String CONTENTS = "contents";
@@ -19,7 +21,7 @@ public class BNCContract
 	static public final class Words_BNCs
 	{
 		static public final String TABLE = "words_bncs";
-		static public final String CONTENT_URI = "content://" + BNCContract.AUTHORITY + '/' + Words_BNCs.TABLE;
+		static public final String CONTENT_URI = BaseProvider.SCHEME + BNCContract.AUTHORITY + '/' + Words_BNCs.TABLE;
 		public static final String LEMMA = "lemma";
 		public static final String WORDID = "wordid";
 		public static final String POS = "pos";

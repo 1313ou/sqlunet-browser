@@ -35,7 +35,7 @@ import org.sqlunet.framenet.FnSentencePointer;
 import org.sqlunet.framenet.sql.FrameNetImplementation;
 import org.sqlunet.propbank.PbRoleSetPointer;
 import org.sqlunet.propbank.sql.PropBankImplementation;
-import org.sqlunet.provider.SqlUNetContract;
+import org.sqlunet.provider.ProviderArgs;
 import org.sqlunet.settings.Settings;
 import org.sqlunet.settings.StorageSettings;
 import org.sqlunet.sql.DataSource;
@@ -298,7 +298,7 @@ public class WebFragment extends Fragment
 					final Intent searchIntent = new Intent(getActivity(), WebActivity.class);
 					if ("word".equals(type)) //
 					{
-						searchIntent.putExtra(SqlUNetContract.ARG_QUERYSTRING, data);
+						searchIntent.putExtra(ProviderArgs.ARG_QUERYSTRING, data);
 					}
 					else
 					{
@@ -321,27 +321,27 @@ public class WebFragment extends Fragment
 
 						if ("synsetid".equals(type)) //
 						{
-							action = SqlUNetContract.ARG_QUERYACTION_SYNSET;
+							action = ProviderArgs.ARG_QUERYACTION_SYNSET;
 							pointer = new SynsetPointer(id, null);
 						}
 						else if ("vnclassid".equals(type)) //
 						{
-							action = SqlUNetContract.ARG_QUERYACTION_VNCLASS;
+							action = ProviderArgs.ARG_QUERYACTION_VNCLASS;
 							pointer = new VnClassPointer(id);
 						}
 						else if ("fnframeid".equals(type)) //
 						{
-							action = SqlUNetContract.ARG_QUERYACTION_PBROLESET;
+							action = ProviderArgs.ARG_QUERYACTION_PBROLESET;
 							pointer = new PbRoleSetPointer(id);
 						}
 						else if ("fnluid".equals(type)) //
 						{
-							action = SqlUNetContract.ARG_QUERYACTION_FNLEXUNIT;
+							action = ProviderArgs.ARG_QUERYACTION_FNLEXUNIT;
 							pointer = new FnLexUnitPointer(id);
 						}
 
-						searchIntent.putExtra(SqlUNetContract.ARG_QUERYACTION, action);
-						searchIntent.putExtra(SqlUNetContract.ARG_QUERYPOINTER, pointer);
+						searchIntent.putExtra(ProviderArgs.ARG_QUERYACTION, action);
+						searchIntent.putExtra(ProviderArgs.ARG_QUERYPOINTER, pointer);
 					}
 					startActivity(searchIntent);
 					return true;
@@ -389,13 +389,13 @@ public class WebFragment extends Fragment
 			args = getActivity().getIntent().getExtras();
 		}
 		// action
-		final int action = args.getInt(SqlUNetContract.ARG_QUERYACTION, SqlUNetContract.ARG_QUERYACTION_ALL);
+		final int action = args.getInt(ProviderArgs.ARG_QUERYACTION, ProviderArgs.ARG_QUERYACTION_ALL);
 
 		// pointer
-		final Parcelable pointer = args.getParcelable(SqlUNetContract.ARG_QUERYPOINTER);
+		final Parcelable pointer = args.getParcelable(ProviderArgs.ARG_QUERYPOINTER);
 		Log.d(WebFragment.TAG, "ARG query=" + pointer);
 		// text
-		final String data = args.getString(SqlUNetContract.ARG_QUERYSTRING);
+		final String data = args.getString(ProviderArgs.ARG_QUERYSTRING);
 		Log.d(WebFragment.TAG, "ARG data=" + data);
 		// load the contents
 		getLoaderManager().restartLoader(++Module.loaderId, null, new LoaderCallbacks<String>()
@@ -456,7 +456,7 @@ public class WebFragment extends Fragment
 								// this is a detail query
 								switch (action)
 								{
-									case SqlUNetContract.ARG_QUERYACTION_ALL:
+									case ProviderArgs.ARG_QUERYACTION_ALL:
 										if (pointer != null)
 										{
 											if (pointer instanceof XSelectorPointer)
@@ -516,7 +516,7 @@ public class WebFragment extends Fragment
 										}
 										break;
 
-									case SqlUNetContract.ARG_QUERYACTION_SYNSET:
+									case ProviderArgs.ARG_QUERYACTION_SYNSET:
 										@SuppressWarnings("TypeMayBeWeakened") final SynsetPointer synsetPointer = (SynsetPointer) pointer;
 										Log.d(WebFragment.TAG, "ARG synset=" + synsetPointer);
 										if (synsetPointer != null && Settings.Source.WORDNET.test(sources))
@@ -525,7 +525,7 @@ public class WebFragment extends Fragment
 										}
 										break;
 
-									case SqlUNetContract.ARG_QUERYACTION_VNCLASS:
+									case ProviderArgs.ARG_QUERYACTION_VNCLASS:
 										final VnClassPointer vnclassPointer = (VnClassPointer) pointer;
 										Log.d(WebFragment.TAG, "ARG vnclass=" + vnclassPointer);
 										if (vnclassPointer != null && Settings.Source.VERBNET.test(sources))
@@ -534,7 +534,7 @@ public class WebFragment extends Fragment
 										}
 										break;
 
-									case SqlUNetContract.ARG_QUERYACTION_PBROLESET:
+									case ProviderArgs.ARG_QUERYACTION_PBROLESET:
 										final PbRoleSetPointer pbroleSetPointer = (PbRoleSetPointer) pointer;
 										Log.d(WebFragment.TAG, "ARG fnframe=" + pbroleSetPointer);
 										if (pbroleSetPointer != null && Settings.Source.PROPBANK.test(sources))
@@ -543,7 +543,7 @@ public class WebFragment extends Fragment
 										}
 										break;
 
-									case SqlUNetContract.ARG_QUERYACTION_FNLEXUNIT:
+									case ProviderArgs.ARG_QUERYACTION_FNLEXUNIT:
 										final FnLexUnitPointer lexunitPointer = (FnLexUnitPointer) pointer;
 										Log.d(WebFragment.TAG, "ARG fnlexunit=" + lexunitPointer);
 										if (lexunitPointer != null && Settings.Source.FRAMENET.test(sources))
@@ -552,7 +552,7 @@ public class WebFragment extends Fragment
 										}
 										break;
 
-									case SqlUNetContract.ARG_QUERYACTION_FNFRAME:
+									case ProviderArgs.ARG_QUERYACTION_FNFRAME:
 										final FnFramePointer framePointer = (FnFramePointer) pointer;
 										Log.d(WebFragment.TAG, "ARG fnframe=" + framePointer);
 										if (framePointer != null && Settings.Source.FRAMENET.test(sources))
@@ -561,7 +561,7 @@ public class WebFragment extends Fragment
 										}
 										break;
 
-									case SqlUNetContract.ARG_QUERYACTION_FNSENTENCE:
+									case ProviderArgs.ARG_QUERYACTION_FNSENTENCE:
 										final FnSentencePointer sentencePointer = (FnSentencePointer) pointer;
 										Log.d(WebFragment.TAG, "ARG fnsentence=" + sentencePointer);
 										if (sentencePointer != null && Settings.Source.FRAMENET.test(sources))
@@ -570,7 +570,7 @@ public class WebFragment extends Fragment
 										}
 										break;
 
-									case SqlUNetContract.ARG_QUERYACTION_FNANNOSET:
+									case ProviderArgs.ARG_QUERYACTION_FNANNOSET:
 										final FnAnnoSetPointer annoSetPointer = (FnAnnoSetPointer) pointer;
 										Log.d(WebFragment.TAG, "ARG fnannoset=" + annoSetPointer);
 										if (annoSetPointer != null && Settings.Source.FRAMENET.test(sources))

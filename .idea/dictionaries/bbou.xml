@@ -187,6 +187,7 @@
       <w>hypernym</w>
       <w>hyponym</w>
       <w>idnum</w>
+      <w>idsource</w>
       <w>ieprefix</w>
       <w>ifnull</w>
       <w>imag</w>
@@ -316,6 +317,7 @@
       <w>pbrolesethead</w>
       <w>pbrolesetid</w>
       <w>pbrolesetlabel</w>
+      <w>pbrolesetmembers</w>
       <w>pbrolesetname</w>
       <w>pbrolesets</w>
       <w>pbrolesettext</w>

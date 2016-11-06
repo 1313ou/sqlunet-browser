@@ -23,7 +23,7 @@ public final class XSqlUNetContract
 	static public final class Words_FnWords_PbWords_VnWords
 	{
 		static public final String TABLE = "words_fnwords_pbwords_vnwords";
-		static public final String CONTENT_URI = "content://" + XSqlUNetContract.AUTHORITY + '/' + Words_FnWords_PbWords_VnWords.TABLE;
+		static public final String CONTENT_URI = BaseProvider.SCHEME + XSqlUNetContract.AUTHORITY + '/' + Words_FnWords_PbWords_VnWords.TABLE;
 		public static final String WORDID = "wordid";
 		public static final String FNWORDID = "fnwordid";
 		public static final String PBWORDID = "pbwordid";
@@ -43,13 +43,27 @@ public final class XSqlUNetContract
 		static public final String SOURCES = "sources";
 	}
 
+	// Sources
+
+	static public final class Sources
+	{
+		static public final String TABLE = "sources";
+		static public final String CONTENT_URI = BaseProvider.SCHEME + XSqlUNetContract.AUTHORITY + '/' + Sources.TABLE;
+		public static final String ID = "idsource";
+		public static final String NAME = "name";
+		public static final String VERSION = "version";
+		public static final String URL = "url";
+		public static final String PROVIDER = "provider";
+		public static final String REFERENCE = "reference";
+	}
+
 	// PredicateMatrix
 
 	@SuppressWarnings("unused")
 	static public final class PredicateMatrix
 	{
 		static public final String TABLE = "pm";
-		static public final String CONTENT_URI = "content://" + XSqlUNetContract.AUTHORITY + '/' + PredicateMatrix.TABLE;
+		static public final String CONTENT_URI = BaseProvider.SCHEME + XSqlUNetContract.AUTHORITY + '/' + PredicateMatrix.TABLE;
 		public static final String WORDID = "wordid";
 		public static final String SYNSETID = "synsetid";
 		public static final String VNWORDID = "vnwordid";
@@ -65,7 +79,7 @@ public final class XSqlUNetContract
 	static public final class PredicateMatrix_VerbNet
 	{
 		static public final String TABLE = "predicatematrix_verbnet";
-		static public final String CONTENT_URI = "content://" + XSqlUNetContract.AUTHORITY + '/' + PredicateMatrix_VerbNet.TABLE;
+		static public final String CONTENT_URI = BaseProvider.SCHEME + XSqlUNetContract.AUTHORITY + '/' + PredicateMatrix_VerbNet.TABLE;
 		public static final String WORDID = "wordid";
 		public static final String SYNSETID = "synsetid";
 		public static final String VNWORDID = "vnwordid";
@@ -76,7 +90,7 @@ public final class XSqlUNetContract
 	static public final class PredicateMatrix_PropBank
 	{
 		static public final String TABLE = "predicatematrix_propbank";
-		static public final String CONTENT_URI = "content://" + XSqlUNetContract.AUTHORITY + '/' + PredicateMatrix_PropBank.TABLE;
+		static public final String CONTENT_URI = BaseProvider.SCHEME + XSqlUNetContract.AUTHORITY + '/' + PredicateMatrix_PropBank.TABLE;
 		public static final String WORDID = "wordid";
 		public static final String SYNSETID = "synsetid";
 		public static final String PBWORDID = "pbwordid";
@@ -87,7 +101,7 @@ public final class XSqlUNetContract
 	static public final class PredicateMatrix_FrameNet
 	{
 		static public final String TABLE = "predicatematrix_framenet";
-		static public final String CONTENT_URI = "content://" + XSqlUNetContract.AUTHORITY + '/' + PredicateMatrix_FrameNet.TABLE;
+		static public final String CONTENT_URI = BaseProvider.SCHEME + XSqlUNetContract.AUTHORITY + '/' + PredicateMatrix_FrameNet.TABLE;
 		public static final String WORDID = "wordid";
 		public static final String SYNSETID = "synsetid";
 		public static final String FNWORDID = "fnwordid";
@@ -117,7 +131,7 @@ public final class XSqlUNetContract
 	static public final class Words_VnWords_VnClasses_U
 	{
 		static public final String TABLE = "U_words_vnwords_vnclasses";
-		static public final String CONTENT_URI = "content://" + XSqlUNetContract.AUTHORITY + '/' + Words_VnWords_VnClasses_U.TABLE;
+		static public final String CONTENT_URI = BaseProvider.SCHEME + XSqlUNetContract.AUTHORITY + '/' + Words_VnWords_VnClasses_U.TABLE;
 		public static final String WORDID = "wordid";
 		public static final String SYNSETID = "synsetid";
 		public static final String VNWORDID = "vnwordid";
@@ -133,7 +147,7 @@ public final class XSqlUNetContract
 	static public final class Words_PbWords_PbRolesets_U
 	{
 		static public final String TABLE = "U_words_pbwords_pbrolesets";
-		static public final String CONTENT_URI = "content://" + XSqlUNetContract.AUTHORITY + '/' + Words_PbWords_PbRolesets_U.TABLE;
+		static public final String CONTENT_URI = BaseProvider.SCHEME + XSqlUNetContract.AUTHORITY + '/' + Words_PbWords_PbRolesets_U.TABLE;
 		public static final String WORDID = "wordid";
 		public static final String SYNSETID = "synsetid";
 		public static final String ROLESETID = "rolesetid";
@@ -149,7 +163,7 @@ public final class XSqlUNetContract
 	static public final class Words_FnWords_FnFrames_U
 	{
 		static public final String TABLE = "U_words_fnwords_fnframes";
-		static public final String CONTENT_URI = "content://" + XSqlUNetContract.AUTHORITY + '/' + Words_FnWords_FnFrames_U.TABLE;
+		static public final String CONTENT_URI = BaseProvider.SCHEME + XSqlUNetContract.AUTHORITY + '/' + Words_FnWords_FnFrames_U.TABLE;
 		public static final String WORDID = "wordid";
 		public static final String SYNSETID = "synsetid";
 		public static final String FNWORDID = "fnwordid";

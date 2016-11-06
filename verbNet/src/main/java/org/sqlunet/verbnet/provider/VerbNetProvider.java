@@ -7,15 +7,14 @@ import android.database.sqlite.SQLiteQueryBuilder;
 import android.net.Uri;
 import android.util.Log;
 
-import org.sqlunet.provider.SqlUNetContract;
-import org.sqlunet.provider.SqlUNetProvider;
+import org.sqlunet.provider.BaseProvider;
 
 /**
  * VerbNet provider
  *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
-public class VerbNetProvider extends SqlUNetProvider
+public class VerbNetProvider extends BaseProvider
 {
 	static private final String TAG = "VerbNetProvider";
 
@@ -71,27 +70,27 @@ public class VerbNetProvider extends SqlUNetProvider
 			// I T E M S
 
 			case VNCLASS:
-				return SqlUNetContract.VENDOR + ".android.cursor.item/" + SqlUNetContract.VENDOR + '.' + VerbNetContract.AUTHORITY + '.' + VerbNetContract.VnClasses.TABLE;
+				return BaseProvider.VENDOR + ".android.cursor.item/" + BaseProvider.VENDOR + '.' + VerbNetContract.AUTHORITY + '.' + VerbNetContract.VnClasses.TABLE;
 
 			// T A B L E S
 
 			case VNCLASSES:
-				return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + VerbNetContract.AUTHORITY + '.' + VerbNetContract.VnClasses.TABLE;
+				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + VerbNetContract.AUTHORITY + '.' + VerbNetContract.VnClasses.TABLE;
 
 			// J O I N S
 
 			case WORDS_VNCLASSES:
-				return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + VerbNetContract.AUTHORITY + '.' + VerbNetContract.Words_VnClasses.TABLE;
+				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + VerbNetContract.AUTHORITY + '.' + VerbNetContract.Words_VnClasses.TABLE;
 			case VNCLASSES_VNMEMBERS_X_BY_WORD:
-				return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + VerbNetContract.AUTHORITY + '.' + VerbNetContract.VnClasses_VnMembers_X.TABLE_BY_WORD;
+				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + VerbNetContract.AUTHORITY + '.' + VerbNetContract.VnClasses_VnMembers_X.TABLE_BY_WORD;
 			case VNCLASSES_VNROLES_X_BY_VNROLE:
-				return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + VerbNetContract.AUTHORITY + '.' + VerbNetContract.VnClasses_VnRoles_X.TABLE_BY_ROLE;
+				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + VerbNetContract.AUTHORITY + '.' + VerbNetContract.VnClasses_VnRoles_X.TABLE_BY_ROLE;
 			case VNCLASSES_VNFRAMES_X_BY_VNFRAME:
-				return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + VerbNetContract.AUTHORITY + '.' + VerbNetContract.VnClasses_VnFrames_X.TABLE_BY_FRAME;
+				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + VerbNetContract.AUTHORITY + '.' + VerbNetContract.VnClasses_VnFrames_X.TABLE_BY_FRAME;
 
 			// S E A R C H
 			case LOOKUP_FTS_EXAMPLES:
-				return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + VerbNetContract.AUTHORITY + '.' + VerbNetContract.Lookup_VnExamples.TABLE;
+				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + VerbNetContract.AUTHORITY + '.' + VerbNetContract.Lookup_VnExamples.TABLE;
 
 			default:
 				throw new UnsupportedOperationException("Illegal MIME type");
@@ -193,11 +192,11 @@ public class VerbNetProvider extends SqlUNetProvider
 				throw new RuntimeException("Malformed URI " + uri);
 		}
 
-		if (SqlUNetProvider.debugSql)
+		if (BaseProvider.debugSql)
 		{
 			final String sql = SQLiteQueryBuilder.buildQueryString(false, table, projection, actualSelection, groupBy, null, sortOrder, null);
 			Log.d(VerbNetProvider.TAG + "SQL", sql);
-			Log.d(VerbNetProvider.TAG + "ARGS", SqlUNetProvider.argsToString(selectionArgs));
+			Log.d(VerbNetProvider.TAG + "ARGS", BaseProvider.argsToString(selectionArgs));
 		}
 
 		// do query

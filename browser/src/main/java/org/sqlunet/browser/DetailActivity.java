@@ -5,7 +5,7 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.os.Parcelable;
 
-import org.sqlunet.provider.SqlUNetContract;
+import org.sqlunet.provider.ProviderArgs;
 
 /**
  * Detail activity
@@ -44,8 +44,8 @@ public class DetailActivity extends Activity
 		super.onPostResume();
 
 		final Bundle args = getIntent().getExtras();
-		//final int action = args.getInt(SqlUNetContract.ARG_QUERYACTION);
-		final Parcelable pointer = args.getParcelable(SqlUNetContract.ARG_QUERYPOINTER);
+		//final int action = args.getInt(ProviderArgs.ARG_QUERYACTION);
+		final Parcelable pointer = args.getParcelable(ProviderArgs.ARG_QUERYPOINTER);
 		final DetailFragment fragment = (DetailFragment) getFragmentManager().findFragmentById(R.id.fragment_detail);
 		fragment.search(pointer);
 	}

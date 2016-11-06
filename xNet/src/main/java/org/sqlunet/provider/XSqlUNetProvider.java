@@ -16,6 +16,7 @@ import org.sqlunet.provider.XSqlUNetContract.Words_FnWords_FnFrames_U;
 import org.sqlunet.provider.XSqlUNetContract.Words_FnWords_PbWords_VnWords;
 import org.sqlunet.provider.XSqlUNetContract.Words_PbWords_PbRolesets_U;
 import org.sqlunet.provider.XSqlUNetContract.Words_VnWords_VnClasses_U;
+import org.sqlunet.provider.XSqlUNetContract.Sources;
 
 import java.util.Arrays;
 import java.util.HashSet;
@@ -26,7 +27,7 @@ import java.util.List;
  *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
-public class XSqlUNetProvider extends SqlUNetProvider
+public class XSqlUNetProvider extends BaseProvider
 {
 	static private final String TAG = "XSqlUNetProvider";
 	// U R I M A T C H E R
@@ -43,6 +44,7 @@ public class XSqlUNetProvider extends SqlUNetProvider
 	private static final int WORDS_VNWORDS_VNCLASSES_U = 310;
 	private static final int WORDS_PBWORDS_PBROLESETS_U = 320;
 	private static final int WORDS_FNWORDS_FNFRAMES_U = 330;
+	private static final int SOURCES = 400;
 
 	static
 	{
@@ -55,6 +57,7 @@ public class XSqlUNetProvider extends SqlUNetProvider
 		XSqlUNetProvider.uriMatcher.addURI(XSqlUNetContract.AUTHORITY, Words_VnWords_VnClasses_U.TABLE, XSqlUNetProvider.WORDS_VNWORDS_VNCLASSES_U);
 		XSqlUNetProvider.uriMatcher.addURI(XSqlUNetContract.AUTHORITY, Words_PbWords_PbRolesets_U.TABLE, XSqlUNetProvider.WORDS_PBWORDS_PBROLESETS_U);
 		XSqlUNetProvider.uriMatcher.addURI(XSqlUNetContract.AUTHORITY, Words_FnWords_FnFrames_U.TABLE, XSqlUNetProvider.WORDS_FNWORDS_FNFRAMES_U);
+		XSqlUNetProvider.uriMatcher.addURI(XSqlUNetContract.AUTHORITY, XSqlUNetContract.Sources.TABLE, XSqlUNetProvider.SOURCES);
 	}
 
 	// C O N S T R U C T O R
@@ -74,21 +77,23 @@ public class XSqlUNetProvider extends SqlUNetProvider
 		switch (XSqlUNetProvider.uriMatcher.match(uri))
 		{
 			case WORDS_FNWORDS_PBWORDS_VNWORDS:
-				return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + XSqlUNetContract.AUTHORITY + '.' + Words_FnWords_PbWords_VnWords.TABLE;
+				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + XSqlUNetContract.AUTHORITY + '.' + Words_FnWords_PbWords_VnWords.TABLE;
 			case PREDICATEMATRIX:
-				return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + XSqlUNetContract.AUTHORITY + '.' + PredicateMatrix.TABLE;
+				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + XSqlUNetContract.AUTHORITY + '.' + PredicateMatrix.TABLE;
 			case PREDICATEMATRIX_VERBNET:
-				return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + XSqlUNetContract.AUTHORITY + '.' + PredicateMatrix_VerbNet.TABLE;
+				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + XSqlUNetContract.AUTHORITY + '.' + PredicateMatrix_VerbNet.TABLE;
 			case PREDICATEMATRIX_PROPBANK:
-				return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + XSqlUNetContract.AUTHORITY + '.' + PredicateMatrix_PropBank.TABLE;
+				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + XSqlUNetContract.AUTHORITY + '.' + PredicateMatrix_PropBank.TABLE;
 			case PREDICATEMATRIX_FRAMENET:
-				return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + XSqlUNetContract.AUTHORITY + '.' + PredicateMatrix_FrameNet.TABLE;
+				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + XSqlUNetContract.AUTHORITY + '.' + PredicateMatrix_FrameNet.TABLE;
 			case WORDS_VNWORDS_VNCLASSES_U:
-				return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + XSqlUNetContract.AUTHORITY + '.' + Words_VnWords_VnClasses_U.TABLE;
+				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + XSqlUNetContract.AUTHORITY + '.' + Words_VnWords_VnClasses_U.TABLE;
 			case WORDS_PBWORDS_PBROLESETS_U:
-				return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + XSqlUNetContract.AUTHORITY + '.' + Words_PbWords_PbRolesets_U.TABLE;
+				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + XSqlUNetContract.AUTHORITY + '.' + Words_PbWords_PbRolesets_U.TABLE;
 			case WORDS_FNWORDS_FNFRAMES_U:
-				return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + XSqlUNetContract.AUTHORITY + '.' + Words_FnWords_FnFrames_U.TABLE;
+				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + XSqlUNetContract.AUTHORITY + '.' + Words_FnWords_FnFrames_U.TABLE;
+			case SOURCES:
+				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + XSqlUNetContract.AUTHORITY + '.' + Sources.TABLE;
 			default:
 				throw new UnsupportedOperationException("Illegal MIME type");
 		}
@@ -140,6 +145,10 @@ public class XSqlUNetProvider extends SqlUNetProvider
 
 			case PREDICATEMATRIX_FRAMENET:
 				table = "pmfn";
+				break;
+
+			case SOURCES:
+				table = "sources";
 				break;
 
 			// J O I N S
@@ -211,11 +220,11 @@ public class XSqlUNetProvider extends SqlUNetProvider
 				throw new RuntimeException("Malformed URI " + uri);
 		}
 
-		if (SqlUNetProvider.debugSql)
+		if (BaseProvider.debugSql)
 		{
 			final String sql = SQLiteQueryBuilder.buildQueryString(false, table, projection, selection, groupBy, null, sortOrder, null);
 			Log.d(XSqlUNetProvider.TAG + "SQL", sql);
-			Log.d(XSqlUNetProvider.TAG + "ARGS", SqlUNetProvider.argsToString(selectionArgs));
+			Log.d(XSqlUNetProvider.TAG + "ARGS", BaseProvider.argsToString(selectionArgs));
 		}
 
 		// do query
@@ -251,7 +260,7 @@ public class XSqlUNetProvider extends SqlUNetProvider
 			final String selection, //
 			final String[] groupBys, final String sortOrder, final String tag)
 	{
-		final String[] actualUnionProjection = SqlUNetProvider.appendProjection(unionProjection0, "source");
+		final String[] actualUnionProjection = BaseProvider.appendProjection(unionProjection0, "source");
 		final List<String> table1ProjectionList = Arrays.asList(unionProjection0);
 		final List<String> table2ProjectionList = Arrays.asList(tableProjection);
 
@@ -287,7 +296,7 @@ public class XSqlUNetProvider extends SqlUNetProvider
 		// embed
 		final SQLiteQueryBuilder embeddingQueryBuilder = new SQLiteQueryBuilder();
 		embeddingQueryBuilder.setTables('(' + uQuery + ')');
-		final String[] resultProjection = SqlUNetProvider.prependProjection(projection, "GROUP_CONCAT(DISTINCT source) AS sources");
+		final String[] resultProjection = BaseProvider.prependProjection(projection, "GROUP_CONCAT(DISTINCT source) AS sources");
 		// group by
 		String[] actualGroupBys = groupBys;
 		if (actualGroupBys == null)
@@ -317,10 +326,10 @@ public class XSqlUNetProvider extends SqlUNetProvider
 			selectionArgs2[2 * i] = selectionArgs2[2 * i + 1] = selectionArgs[i];
 		}
 
-		if (SqlUNetProvider.debugSql)
+		if (BaseProvider.debugSql)
 		{
 			Log.d(XSqlUNetProvider.TAG + "SQL", sql);
-			Log.d(XSqlUNetProvider.TAG + "ARGS", SqlUNetProvider.argsToString(selectionArgs2));
+			Log.d(XSqlUNetProvider.TAG + "ARGS", BaseProvider.argsToString(selectionArgs2));
 		}
 
 		// do query

@@ -22,17 +22,17 @@ public class ManagerContract
 	static public Intent makeTablesAndIndexesIntent(final Context context)
 	{
 		final Intent intent = new Intent(context, TableActivity.class);
-		intent.putExtra(SqlUNetContract.ARG_QUERYURI, TablesAndIndices.CONTENT_URI);
-		intent.putExtra(SqlUNetContract.ARG_QUERYID, "rowid");
-		intent.putExtra(SqlUNetContract.ARG_QUERYITEMS, new String[]{"rowid", TablesAndIndices.TYPE, TablesAndIndices.NAME});
+		intent.putExtra(ProviderArgs.ARG_QUERYURI, TablesAndIndices.CONTENT_URI);
+		intent.putExtra(ProviderArgs.ARG_QUERYID, "rowid");
+		intent.putExtra(ProviderArgs.ARG_QUERYITEMS, new String[]{"rowid", TablesAndIndices.TYPE, TablesAndIndices.NAME});
 		final String order = "CASE " //
 				+ "WHEN " + TablesAndIndices.TYPE + " = 'table' THEN '1' " //
 				+ "WHEN " + TablesAndIndices.TYPE + " = 'view' THEN '2' " //
 				+ "WHEN " + TablesAndIndices.TYPE + " = 'index' THEN '3' " //
 				+ "ELSE " + TablesAndIndices.TYPE + " END ASC," //
 				+ TablesAndIndices.NAME + " ASC";
-		intent.putExtra(SqlUNetContract.ARG_QUERYSORT, order);
-		intent.putExtra(SqlUNetContract.ARG_QUERYFILTER, "name NOT LIKE 'sqlite_%' AND name NOT LIKE 'android_%'");
+		intent.putExtra(ProviderArgs.ARG_QUERYSORT, order);
+		intent.putExtra(ProviderArgs.ARG_QUERYFILTER, "name NOT LIKE 'sqlite_%' AND name NOT LIKE 'android_%'");
 		return intent;
 	}
 
@@ -42,7 +42,7 @@ public class ManagerContract
 	static public final class TablesAndIndices
 	{
 		static public final String TABLE = "sqlite_master";
-		static public final String CONTENT_URI = "content://" + ManagerContract.AUTHORITY + '/' + TablesAndIndices.TABLE;
+		static public final String CONTENT_URI = BaseProvider.SCHEME + ManagerContract.AUTHORITY + '/' + TablesAndIndices.TABLE;
 		static public final String NAME = "name";
 		static public final String TYPE = "type";
 	}

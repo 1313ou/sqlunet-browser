@@ -1472,6 +1472,7 @@ abstract public class BasicModule extends Module
 	/**
 	 * Semantic Link query
 	 */
+	@SuppressWarnings("unused")
 	public class SemLinksQuery extends QueryController.Query
 	{
 		/**
@@ -1496,6 +1497,7 @@ abstract public class BasicModule extends Module
 	/**
 	 * Lexical Link query
 	 */
+	@SuppressWarnings("unused")
 	public class LexLinksQuery extends QueryController.Query
 	{
 		/**

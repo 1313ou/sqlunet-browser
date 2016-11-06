@@ -22,7 +22,7 @@ import android.widget.Spinner;
 import android.widget.SpinnerAdapter;
 import android.widget.TextView;
 
-import org.sqlunet.provider.SqlUNetContract;
+import org.sqlunet.provider.ProviderArgs;
 import org.sqlunet.settings.Settings;
 import org.sqlunet.verbnet.provider.VerbNetContract.Lookup_VnExamples;
 import org.sqlunet.propbank.provider.PropBankContract.Lookup_PbExamples;
@@ -359,16 +359,16 @@ public class TextSearchActivity extends Activity
 
 		// parameters
 		final Bundle args = new Bundle();
-		args.putString(SqlUNetContract.ARG_QUERYURI, searchUri);
-		args.putString(SqlUNetContract.ARG_QUERYID, id);
-		args.putStringArray(SqlUNetContract.ARG_QUERYITEMS, columns);
-		args.putStringArray(SqlUNetContract.ARG_QUERYHIDDENITEMS, hiddenColumns);
-		args.putString(SqlUNetContract.ARG_QUERYFILTER, target + " MATCH ?");
-		args.putString(SqlUNetContract.ARG_QUERYARG, query);
-		args.putInt(SqlUNetContract.ARG_QUERYLAYOUT, R.layout.item_table1);
+		args.putString(ProviderArgs.ARG_QUERYURI, searchUri);
+		args.putString(ProviderArgs.ARG_QUERYID, id);
+		args.putStringArray(ProviderArgs.ARG_QUERYITEMS, columns);
+		args.putStringArray(ProviderArgs.ARG_QUERYHIDDENITEMS, hiddenColumns);
+		args.putString(ProviderArgs.ARG_QUERYFILTER, target + " MATCH ?");
+		args.putString(ProviderArgs.ARG_QUERYARG, query);
+		args.putInt(ProviderArgs.ARG_QUERYLAYOUT, R.layout.item_table1);
 		if (intent != null)
 		{
-			args.putParcelable(SqlUNetContract.ARG_QUERYINTENT, intent);
+			args.putParcelable(ProviderArgs.ARG_QUERYINTENT, intent);
 		}
 
 		// for fragment to handle

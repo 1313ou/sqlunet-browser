@@ -7,15 +7,14 @@ import android.database.sqlite.SQLiteQueryBuilder;
 import android.net.Uri;
 import android.util.Log;
 
-import org.sqlunet.provider.SqlUNetContract;
-import org.sqlunet.provider.SqlUNetProvider;
+import org.sqlunet.provider.BaseProvider;
 
 /**
  * PropBank provider
  *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
-public class PropBankProvider extends SqlUNetProvider
+public class PropBankProvider extends BaseProvider
 {
 	static private final String TAG = "PropBankProvider";
 	// U R I M A T C H E R
@@ -71,24 +70,24 @@ public class PropBankProvider extends SqlUNetProvider
 		switch (PropBankProvider.uriMatcher.match(uri))
 		{
 			case PBROLESET:
-				return SqlUNetContract.VENDOR + ".android.cursor.item/" + SqlUNetContract.VENDOR + '.' + PropBankContract.AUTHORITY + '.' + PropBankContract.PbRoleSets.TABLE;
+				return BaseProvider.VENDOR + ".android.cursor.item/" + BaseProvider.VENDOR + '.' + PropBankContract.AUTHORITY + '.' + PropBankContract.PbRoleSets.TABLE;
 			case PBROLESETS:
-				return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + PropBankContract.AUTHORITY + '.' + PropBankContract.PbRoleSets.TABLE;
+				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + PropBankContract.AUTHORITY + '.' + PropBankContract.PbRoleSets.TABLE;
 			case PBROLESETS_X:
-				return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + PropBankContract.AUTHORITY + '.' + PropBankContract.PbRoleSets_X.TABLE;
+				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + PropBankContract.AUTHORITY + '.' + PropBankContract.PbRoleSets_X.TABLE;
 			case PBROLESETS_X_BY_ROLESET:
-				return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + PropBankContract.AUTHORITY + '.' + PropBankContract.PbRoleSets_X.TABLE_BY_ROLESET;
+				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + PropBankContract.AUTHORITY + '.' + PropBankContract.PbRoleSets_X.TABLE_BY_ROLESET;
 			case WORDS_PBROLESETS:
-				return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + PropBankContract.AUTHORITY + '.' + PropBankContract.Words_PbRoleSets.TABLE;
+				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + PropBankContract.AUTHORITY + '.' + PropBankContract.Words_PbRoleSets.TABLE;
 			case PBROLESETS_PBROLES:
-				return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + PropBankContract.AUTHORITY + '.' + PropBankContract.PbRoleSets_PbRoles.TABLE;
+				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + PropBankContract.AUTHORITY + '.' + PropBankContract.PbRoleSets_PbRoles.TABLE;
 			case PBROLESETS_PBEXAMPLES:
-				return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + PropBankContract.AUTHORITY + '.' + PropBankContract.PbRoleSets_PbExamples.TABLE;
+				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + PropBankContract.AUTHORITY + '.' + PropBankContract.PbRoleSets_PbExamples.TABLE;
 			case PBROLESETS_PBEXAMPLES_BY_EXAMPLE:
-				return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + PropBankContract.AUTHORITY + '.' + PropBankContract.PbRoleSets_PbExamples.TABLE_BY_EXAMPLE;
+				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + PropBankContract.AUTHORITY + '.' + PropBankContract.PbRoleSets_PbExamples.TABLE_BY_EXAMPLE;
 			// S E A R C H
 			case LOOKUP_FTS_EXAMPLES:
-				return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + PropBankContract.AUTHORITY + '.' + PropBankContract.Lookup_PbExamples.TABLE;
+				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + PropBankContract.AUTHORITY + '.' + PropBankContract.Lookup_PbExamples.TABLE;
 			default:
 				throw new UnsupportedOperationException("Illegal MIME type");
 		}
@@ -142,7 +141,6 @@ public class PropBankProvider extends SqlUNetProvider
 				groupBy = PropBankContract.PbRoleSets_X.ROLESETID;
 				//$FALL-THROUGH$
 				//noinspection fallthrough
-
 			case PBROLESETS_X:
 				table = "pbrolesets " + //
 						"LEFT JOIN pbrolesetmembers AS " + PropBankContract.MEMBER + " USING (rolesetid) " + //
@@ -192,11 +190,11 @@ public class PropBankProvider extends SqlUNetProvider
 				throw new RuntimeException("Malformed URI " + uri);
 		}
 
-		if (SqlUNetProvider.debugSql)
+		if (BaseProvider.debugSql)
 		{
 			final String sql = SQLiteQueryBuilder.buildQueryString(false, table, projection, actualSelection, groupBy, null, actualSortOrder, null);
 			Log.d(PropBankProvider.TAG + "SQL", sql);
-			Log.d(PropBankProvider.TAG + "ARGS", SqlUNetProvider.argsToString(selectionArgs));
+			Log.d(PropBankProvider.TAG + "ARGS", BaseProvider.argsToString(selectionArgs));
 		}
 
 		// do query

@@ -10,7 +10,7 @@ import android.widget.TextView;
 import org.sqlunet.browser.DetailActivity;
 import org.sqlunet.browser.DetailFragment;
 import org.sqlunet.browser.R;
-import org.sqlunet.provider.SqlUNetContract;
+import org.sqlunet.provider.ProviderArgs;
 
 /**
  * Selector activity
@@ -41,7 +41,7 @@ public class SelectorActivity extends Activity implements SelectorFragment.Liste
 
 		// query
 		final Intent intent = getIntent();
-		final String query = intent.getStringExtra(SqlUNetContract.ARG_QUERYSTRING);
+		final String query = intent.getStringExtra(ProviderArgs.ARG_QUERYSTRING);
 
 		// copy to query view
 		final TextView queryView = (TextView) findViewById(R.id.queryView);
@@ -85,7 +85,7 @@ public class SelectorActivity extends Activity implements SelectorFragment.Liste
 		{
 			// in single-pane mode, simply start the detail activity for the selected item ID.
 			final Bundle args = new Bundle();
-			args.putParcelable(SqlUNetContract.ARG_QUERYPOINTER, pointer);
+			args.putParcelable(ProviderArgs.ARG_QUERYPOINTER, pointer);
 
 			final Intent intent = new Intent(this, DetailActivity.class);
 			intent.putExtras(args);

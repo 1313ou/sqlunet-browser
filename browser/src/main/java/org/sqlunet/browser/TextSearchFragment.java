@@ -21,7 +21,7 @@ import org.sqlunet.framenet.browser.FnFrameActivity;
 import org.sqlunet.framenet.browser.FnSentenceActivity;
 import org.sqlunet.propbank.PbRoleSetPointer;
 import org.sqlunet.propbank.browser.PbRoleSetActivity;
-import org.sqlunet.provider.SqlUNetContract;
+import org.sqlunet.provider.ProviderArgs;
 import org.sqlunet.style.RegExprSpanner;
 import org.sqlunet.style.Spanner.SpanFactory;
 import org.sqlunet.verbnet.VnClassPointer;
@@ -78,7 +78,7 @@ public class TextSearchFragment extends AbstractTableFragment
 		}
 
 		// search target
-		String queryArg = args.getString(SqlUNetContract.ARG_QUERYARG);
+		String queryArg = args.getString(ProviderArgs.ARG_QUERYARG);
 		queryArg = queryArg != null ? queryArg.trim() : "";
 
 		// pattern (case-insensitive)
@@ -153,8 +153,8 @@ public class TextSearchFragment extends AbstractTableFragment
 				final Parcelable synsetPointer = new SynsetPointer(targetId, null);
 
 				// pass pointer
-				this.targetIntent.putExtra(SqlUNetContract.ARG_QUERYACTION, SqlUNetContract.ARG_QUERYACTION_FNSENTENCE);
-				this.targetIntent.putExtra(SqlUNetContract.ARG_QUERYPOINTER, synsetPointer);
+				this.targetIntent.putExtra(ProviderArgs.ARG_QUERYACTION, ProviderArgs.ARG_QUERYACTION_FNSENTENCE);
+				this.targetIntent.putExtra(ProviderArgs.ARG_QUERYPOINTER, synsetPointer);
 
 				// start
 				startActivity(this.targetIntent);
@@ -169,8 +169,8 @@ public class TextSearchFragment extends AbstractTableFragment
 				final Parcelable classPointer = new VnClassPointer(targetId);
 
 				// pass pointer
-				this.targetIntent.putExtra(SqlUNetContract.ARG_QUERYACTION, SqlUNetContract.ARG_QUERYACTION_VNCLASS);
-				this.targetIntent.putExtra(SqlUNetContract.ARG_QUERYPOINTER, classPointer);
+				this.targetIntent.putExtra(ProviderArgs.ARG_QUERYACTION, ProviderArgs.ARG_QUERYACTION_VNCLASS);
+				this.targetIntent.putExtra(ProviderArgs.ARG_QUERYPOINTER, classPointer);
 
 				// start
 				startActivity(this.targetIntent);
@@ -186,8 +186,8 @@ public class TextSearchFragment extends AbstractTableFragment
 				final PbRoleSetPointer roleSetPointer = new PbRoleSetPointer(targetId);
 
 				// pass pointer
-				this.targetIntent.putExtra(SqlUNetContract.ARG_QUERYACTION, SqlUNetContract.ARG_QUERYACTION_PBROLESET);
-				this.targetIntent.putExtra(SqlUNetContract.ARG_QUERYPOINTER, roleSetPointer);
+				this.targetIntent.putExtra(ProviderArgs.ARG_QUERYACTION, ProviderArgs.ARG_QUERYACTION_PBROLESET);
+				this.targetIntent.putExtra(ProviderArgs.ARG_QUERYPOINTER, roleSetPointer);
 
 				// start
 				startActivity(this.targetIntent);
@@ -203,8 +203,8 @@ public class TextSearchFragment extends AbstractTableFragment
 				final FnFramePointer framePointer = new FnFramePointer(targetId);
 
 				// pass pointer
-				this.targetIntent.putExtra(SqlUNetContract.ARG_QUERYACTION, SqlUNetContract.ARG_QUERYACTION_FNFRAME);
-				this.targetIntent.putExtra(SqlUNetContract.ARG_QUERYPOINTER, framePointer);
+				this.targetIntent.putExtra(ProviderArgs.ARG_QUERYACTION, ProviderArgs.ARG_QUERYACTION_FNFRAME);
+				this.targetIntent.putExtra(ProviderArgs.ARG_QUERYPOINTER, framePointer);
 
 				// start
 				startActivity(this.targetIntent);
@@ -220,8 +220,8 @@ public class TextSearchFragment extends AbstractTableFragment
 				final FnSentencePointer sentencePointer = new FnSentencePointer(targetId);
 
 				// pass pointer
-				this.targetIntent.putExtra(SqlUNetContract.ARG_QUERYACTION, SqlUNetContract.ARG_QUERYACTION_FNSENTENCE);
-				this.targetIntent.putExtra(SqlUNetContract.ARG_QUERYPOINTER, sentencePointer);
+				this.targetIntent.putExtra(ProviderArgs.ARG_QUERYACTION, ProviderArgs.ARG_QUERYACTION_FNSENTENCE);
+				this.targetIntent.putExtra(ProviderArgs.ARG_QUERYPOINTER, sentencePointer);
 
 				// start
 				startActivity(this.targetIntent);

@@ -1,6 +1,8 @@
 package org.sqlunet.propbank.provider;
 
 
+import org.sqlunet.provider.BaseProvider;
+
 /**
  * PropBank provider contract
  *
@@ -9,6 +11,7 @@ package org.sqlunet.propbank.provider;
 public class PropBankContract
 {
 	static public final String AUTHORITY = "org.sqlunet.propbank.provider";
+
 	// A L I A S E S
 
 	static public final String EXAMPLE = "e";
@@ -18,10 +21,11 @@ public class PropBankContract
 	static public final String WORD = "w";
 	static public final String MEMBER = "m";
 
+	@SuppressWarnings("unused")
 	static public final class PbRoleSets
 	{
 		static public final String TABLE = "pbrolesets";
-		static public final String CONTENT_URI = "content://" + PropBankContract.AUTHORITY + '/' + PbRoleSets.TABLE;
+		static public final String CONTENT_URI = BaseProvider.SCHEME + PropBankContract.AUTHORITY + '/' + PbRoleSets.TABLE;
 		public static final String ROLESETID = "rolesetid";
 		public static final String ROLESETNAME = "rolesetname";
 		public static final String ROLESETDESC = "rolesetdescr";
@@ -32,7 +36,7 @@ public class PropBankContract
 	{
 		static public final String TABLE = "pbrolesets_x";
 		static public final String TABLE_BY_ROLESET = "pbrolesets_x_by_roleset";
-		static public final String CONTENT_URI = "content://" + PropBankContract.AUTHORITY + '/' + PbRoleSets_X.TABLE_BY_ROLESET;
+		static public final String CONTENT_URI = BaseProvider.SCHEME + PropBankContract.AUTHORITY + '/' + PbRoleSets_X.TABLE_BY_ROLESET;
 		public static final String ROLESETID = "rolesetid";
 		public static final String ROLESETNAME = "rolesetname";
 		public static final String ROLESETDESC = "rolesetdescr";
@@ -45,7 +49,7 @@ public class PropBankContract
 	static public final class Words_PbRoleSets
 	{
 		static public final String TABLE = "words_pbrolesets";
-		static public final String CONTENT_URI = "content://" + PropBankContract.AUTHORITY + '/' + Words_PbRoleSets.TABLE;
+		static public final String CONTENT_URI = BaseProvider.SCHEME + PropBankContract.AUTHORITY + '/' + Words_PbRoleSets.TABLE;
 		public static final String WORDID = "wordid";
 		public static final String POS = "pos";
 		public static final String ROLESETID = "rolesetid";
@@ -57,7 +61,7 @@ public class PropBankContract
 	static public final class PbRoleSets_PbRoles
 	{
 		static public final String TABLE = "pbrolesets_pbroles";
-		static public final String CONTENT_URI = "content://" + PropBankContract.AUTHORITY + '/' + PbRoleSets_PbRoles.TABLE;
+		static public final String CONTENT_URI = BaseProvider.SCHEME + PropBankContract.AUTHORITY + '/' + PbRoleSets_PbRoles.TABLE;
 		public static final String ROLESETID = "rolesetid";
 		public static final String ROLEID = "roleid";
 		public static final String ROLEDESCR = "roledescr";
@@ -70,7 +74,7 @@ public class PropBankContract
 	{
 		static public final String TABLE = "pbrolesets_pbexamples";
 		static public final String TABLE_BY_EXAMPLE = "pbrolesets_pbexamples_by_example";
-		static public final String CONTENT_URI = "content://" + PropBankContract.AUTHORITY + '/' + PbRoleSets_PbExamples.TABLE_BY_EXAMPLE;
+		static public final String CONTENT_URI = BaseProvider.SCHEME + PropBankContract.AUTHORITY + '/' + PbRoleSets_PbExamples.TABLE_BY_EXAMPLE;
 		public static final String ROLESETID = "rolesetid";
 		public static final String TEXT = "text";
 		public static final String REL = "rel";
@@ -92,7 +96,7 @@ public class PropBankContract
 	static public final class Lookup_PbExamples
 	{
 		static public final String TABLE = "fts_fnsentences";
-		static public final String CONTENT_URI = "content://" + PropBankContract.AUTHORITY + '/' + Lookup_PbExamples.TABLE;
+		static public final String CONTENT_URI = BaseProvider.SCHEME + PropBankContract.AUTHORITY + '/' + Lookup_PbExamples.TABLE;
 		static public final String EXAMPLEID = "exampleid";
 		static public final String ROLESETID = "rolesetid";
 		static public final String TEXT = "text";

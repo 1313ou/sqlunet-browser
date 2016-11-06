@@ -12,7 +12,7 @@ import org.sqlunet.framenet.R;
 import org.sqlunet.framenet.loaders.AnnoSetFromPatternModule;
 import org.sqlunet.framenet.loaders.AnnoSetFromValenceUnitModule;
 import org.sqlunet.framenet.loaders.AnnoSetModule;
-import org.sqlunet.provider.SqlUNetContract;
+import org.sqlunet.provider.ProviderArgs;
 import org.sqlunet.treeview.control.IconTreeController;
 import org.sqlunet.treeview.model.TreeNode;
 import org.sqlunet.treeview.view.TreeView;
@@ -43,17 +43,17 @@ public class FnAnnoSetFragment extends Fragment
 	{
 		// query
 		final Bundle args = getArguments();
-		final int action = args.getInt(SqlUNetContract.ARG_QUERYACTION);
-		final Parcelable pointer = args.getParcelable(SqlUNetContract.ARG_QUERYPOINTER);
+		final int action = args.getInt(ProviderArgs.ARG_QUERYACTION);
+		final Parcelable pointer = args.getParcelable(ProviderArgs.ARG_QUERYPOINTER);
 
 		// module
 		String header = "AnnoSet";
 		switch (action)
 		{
-			case SqlUNetContract.ARG_QUERYACTION_FNPATTERN:
+			case ProviderArgs.ARG_QUERYACTION_FNPATTERN:
 				header = "AnnoSets for Pattern";
 				break;
-			case SqlUNetContract.ARG_QUERYACTION_FNVALENCEUNIT:
+			case ProviderArgs.ARG_QUERYACTION_FNVALENCEUNIT:
 				header = "AnnoSets for Valence Unit";
 				break;
 			default:
@@ -89,13 +89,13 @@ public class FnAnnoSetFragment extends Fragment
 		Module module;
 		switch (action)
 		{
-			case SqlUNetContract.ARG_QUERYACTION_FNANNOSET:
+			case ProviderArgs.ARG_QUERYACTION_FNANNOSET:
 				module = new AnnoSetModule(this);
 				break;
-			case SqlUNetContract.ARG_QUERYACTION_FNPATTERN:
+			case ProviderArgs.ARG_QUERYACTION_FNPATTERN:
 				module = new AnnoSetFromPatternModule(this);
 				break;
-			case SqlUNetContract.ARG_QUERYACTION_FNVALENCEUNIT:
+			case ProviderArgs.ARG_QUERYACTION_FNVALENCEUNIT:
 				module = new AnnoSetFromValenceUnitModule(this);
 				break;
 			default:

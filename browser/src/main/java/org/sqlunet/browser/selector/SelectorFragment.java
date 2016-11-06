@@ -25,7 +25,7 @@ import android.widget.TextView;
 
 import org.sqlunet.browser.Module;
 import org.sqlunet.browser.R;
-import org.sqlunet.provider.SqlUNetContract;
+import org.sqlunet.provider.ProviderArgs;
 import org.sqlunet.provider.XSqlUNetContract;
 import org.sqlunet.provider.XSqlUNetContract.Words_FnWords_PbWords_VnWords;
 
@@ -96,7 +96,7 @@ public class SelectorFragment extends ListFragment
 		}
 
 		// target word
-		String query = args.getString(SqlUNetContract.ARG_QUERYSTRING);
+		String query = args.getString(ProviderArgs.ARG_QUERYSTRING);
 		if (query != null)
 		{
 			query = query.trim().toLowerCase(Locale.ENGLISH);

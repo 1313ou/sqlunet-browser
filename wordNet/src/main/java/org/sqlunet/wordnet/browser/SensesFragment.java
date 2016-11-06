@@ -24,7 +24,7 @@ import android.widget.SimpleCursorAdapter.ViewBinder;
 import android.widget.TextView;
 
 import org.sqlunet.browser.Module;
-import org.sqlunet.provider.SqlUNetContract;
+import org.sqlunet.provider.ProviderArgs;
 import org.sqlunet.wordnet.R;
 import org.sqlunet.wordnet.SensePointer;
 import org.sqlunet.wordnet.provider.WordNetContract;
@@ -97,7 +97,7 @@ public class SensesFragment extends ListFragment
 		}
 
 		// target word
-		String query = args.getString(SqlUNetContract.ARG_QUERYSTRING);
+		String query = args.getString(ProviderArgs.ARG_QUERYSTRING);
 		if (query != null)
 		{
 			query = query.trim().toLowerCase(Locale.ENGLISH);

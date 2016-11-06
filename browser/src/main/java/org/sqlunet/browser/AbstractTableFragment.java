@@ -17,7 +17,7 @@ import android.widget.SimpleCursorAdapter;
 import android.widget.SimpleCursorAdapter.ViewBinder;
 import android.widget.Toast;
 
-import org.sqlunet.provider.SqlUNetContract;
+import org.sqlunet.provider.ProviderArgs;
 import org.sqlunet.sql.Utils;
 
 import java.util.ArrayList;
@@ -59,16 +59,16 @@ public abstract class AbstractTableFragment extends ListFragment
 		}
 
 		// query params
-		final String uriString = args.getString(SqlUNetContract.ARG_QUERYURI);
+		final String uriString = args.getString(ProviderArgs.ARG_QUERYURI);
 		final Uri uri = Uri.parse(uriString);
-		final String id = args.getString(SqlUNetContract.ARG_QUERYID);
-		final String[] items = args.getStringArray(SqlUNetContract.ARG_QUERYITEMS);
-		final String[] hiddenItems = args.getStringArray(SqlUNetContract.ARG_QUERYHIDDENITEMS);
-		final String sort = args.getString(SqlUNetContract.ARG_QUERYSORT);
-		final String selection = args.getString(SqlUNetContract.ARG_QUERYFILTER);
-		final String queryArg = args.getString(SqlUNetContract.ARG_QUERYARG);
-		final int layoutId = args.getInt(SqlUNetContract.ARG_QUERYLAYOUT);
-		this.targetIntent = args.getParcelable(SqlUNetContract.ARG_QUERYINTENT);
+		final String id = args.getString(ProviderArgs.ARG_QUERYID);
+		final String[] items = args.getStringArray(ProviderArgs.ARG_QUERYITEMS);
+		final String[] hiddenItems = args.getStringArray(ProviderArgs.ARG_QUERYHIDDENITEMS);
+		final String sort = args.getString(ProviderArgs.ARG_QUERYSORT);
+		final String selection = args.getString(ProviderArgs.ARG_QUERYFILTER);
+		final String queryArg = args.getString(ProviderArgs.ARG_QUERYARG);
+		final int layoutId = args.getInt(ProviderArgs.ARG_QUERYLAYOUT);
+		this.targetIntent = args.getParcelable(ProviderArgs.ARG_QUERYINTENT);
 
 		// adapter set up
 		// from (database column names)
@@ -144,6 +144,7 @@ public abstract class AbstractTableFragment extends ListFragment
 
 				// add _id alias for first column
 				cols.add(id + " AS _id");
+
 				// add items
 				if (items != null)
 				{
@@ -168,7 +169,7 @@ public abstract class AbstractTableFragment extends ListFragment
 			@Override
 			public void onLoadFinished(final Loader<Cursor> loader, final Cursor cursor)
 			{
-				dump(cursor);
+				// dump(cursor);
 
 				if (cursor == null)
 				{

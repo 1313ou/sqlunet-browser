@@ -30,7 +30,7 @@ import org.sqlunet.Word;
 import org.sqlunet.predicatematrix.PmRolePointer;
 import org.sqlunet.predicatematrix.R;
 import org.sqlunet.predicatematrix.settings.Settings;
-import org.sqlunet.provider.SqlUNetContract;
+import org.sqlunet.provider.ProviderArgs;
 
 /**
  * Predicate Matrix activity
@@ -317,10 +317,10 @@ public class PredicateMatrixActivity extends Activity
 			final Bundle args = intent.getExtras();
 			if (args != null)
 			{
-				final int action = args.getInt(SqlUNetContract.ARG_QUERYACTION);
-				if (SqlUNetContract.ARG_QUERYACTION_PM == action || SqlUNetContract.ARG_QUERYACTION_PMROLE == action)
+				final int action = args.getInt(ProviderArgs.ARG_QUERYACTION);
+				if (ProviderArgs.ARG_QUERYACTION_PM == action || ProviderArgs.ARG_QUERYACTION_PMROLE == action)
 				{
-					final Parcelable pointer = args.getParcelable(SqlUNetContract.ARG_QUERYPOINTER);
+					final Parcelable pointer = args.getParcelable(ProviderArgs.ARG_QUERYPOINTER);
 					if (pointer instanceof PmRolePointer)
 					{
 						final PmRolePointer rolePointer = (PmRolePointer) pointer;
@@ -349,8 +349,8 @@ public class PredicateMatrixActivity extends Activity
 		this.query = null;
 
 		final Bundle args = new Bundle();
-		args.putParcelable(SqlUNetContract.ARG_QUERYPOINTER, pointer);
-		args.putInt(SqlUNetContract.ARG_QUERYACTION, SqlUNetContract.ARG_QUERYACTION_PM);
+		args.putParcelable(ProviderArgs.ARG_QUERYPOINTER, pointer);
+		args.putInt(ProviderArgs.ARG_QUERYACTION, ProviderArgs.ARG_QUERYACTION_PM);
 
 		// fragment
 		final Fragment fragment = new PredicateMatrixFragment();
@@ -388,8 +388,8 @@ public class PredicateMatrixActivity extends Activity
 		}
 
 		final Bundle args = new Bundle();
-		args.putParcelable(SqlUNetContract.ARG_QUERYPOINTER, pointer);
-		args.putInt(SqlUNetContract.ARG_QUERYACTION, SqlUNetContract.ARG_QUERYACTION_PM);
+		args.putParcelable(ProviderArgs.ARG_QUERYPOINTER, pointer);
+		args.putInt(ProviderArgs.ARG_QUERYACTION, ProviderArgs.ARG_QUERYACTION_PM);
 
 		// fragment
 		final Fragment fragment = new PredicateMatrixFragment();

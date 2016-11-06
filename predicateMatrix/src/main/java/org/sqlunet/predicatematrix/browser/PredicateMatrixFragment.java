@@ -15,7 +15,7 @@ import org.sqlunet.predicatematrix.loaders.PredicateRoleFromWordModule;
 import org.sqlunet.predicatematrix.loaders.PredicateRoleModule;
 import org.sqlunet.predicatematrix.settings.Settings;
 import org.sqlunet.predicatematrix.style.PredicateMatrixFactories;
-import org.sqlunet.provider.SqlUNetContract;
+import org.sqlunet.provider.ProviderArgs;
 import org.sqlunet.style.Spanner;
 import org.sqlunet.treeview.control.IconTreeController;
 import org.sqlunet.treeview.model.TreeNode;
@@ -46,8 +46,8 @@ public class PredicateMatrixFragment extends Fragment
 	{
 		// query
 		final Bundle args = getArguments();
-		final int action = args.getInt(SqlUNetContract.ARG_QUERYACTION);
-		final Parcelable pointer = args.getParcelable(SqlUNetContract.ARG_QUERYPOINTER);
+		final int action = args.getInt(ProviderArgs.ARG_QUERYACTION);
+		final Parcelable pointer = args.getParcelable(ProviderArgs.ARG_QUERYPOINTER);
 		assert pointer != null;
 
 		// module
@@ -57,7 +57,7 @@ public class PredicateMatrixFragment extends Fragment
 
 		// views
 		final View rootView = inflater.inflate(R.layout.fragment_predicatematrix, container, false);
-		if (action == SqlUNetContract.ARG_QUERYACTION_PM || action == SqlUNetContract.ARG_QUERYACTION_PMROLE)
+		if (action == ProviderArgs.ARG_QUERYACTION_PM || action == ProviderArgs.ARG_QUERYACTION_PMROLE)
 		{
 			final ViewGroup containerView = (ViewGroup) rootView.findViewById(R.id.data_contents);
 

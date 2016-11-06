@@ -15,7 +15,7 @@ import org.sqlunet.browser.R;
 import org.sqlunet.browser.web.WebFragment;
 import org.sqlunet.framenet.browser.FrameNetFragment;
 import org.sqlunet.propbank.browser.PropBankFragment;
-import org.sqlunet.provider.SqlUNetContract;
+import org.sqlunet.provider.ProviderArgs;
 import org.sqlunet.settings.Settings;
 import org.sqlunet.verbnet.browser.VerbNetFragment;
 import org.sqlunet.wordnet.browser.SenseFragment;
@@ -65,7 +65,7 @@ public class XSelectorActivity extends Activity implements XSelectorFragment.Lis
 
 		// query
 		final Intent intent = getIntent();
-		final String data = intent.getStringExtra(SqlUNetContract.ARG_QUERYSTRING);
+		final String data = intent.getStringExtra(ProviderArgs.ARG_QUERYSTRING);
 
 		// copy to query view
 		final TextView queryView = (TextView) findViewById(R.id.queryView);
@@ -103,7 +103,7 @@ public class XSelectorActivity extends Activity implements XSelectorFragment.Lis
 		{
 			// in two-pane mode, show the detail view in this activity by adding or replacing the detail fragment using a fragment transaction.
 			final Bundle args = new Bundle();
-			args.putParcelable(SqlUNetContract.ARG_QUERYPOINTER, pointer);
+			args.putParcelable(ProviderArgs.ARG_QUERYPOINTER, pointer);
 
 			// transaction
 			final FragmentTransaction transaction = getFragmentManager().beginTransaction();
@@ -191,7 +191,7 @@ public class XSelectorActivity extends Activity implements XSelectorFragment.Lis
 		{
 			// in single-pane mode, simply start the detail activity for the selected item ID.
 			final Intent intent = new Intent(this, DetailActivity.class);
-			intent.putExtra(SqlUNetContract.ARG_QUERYPOINTER, pointer);
+			intent.putExtra(ProviderArgs.ARG_QUERYPOINTER, pointer);
 			startActivity(intent);
 		}
 	}

@@ -8,8 +8,7 @@ import android.database.sqlite.SQLiteQueryBuilder;
 import android.net.Uri;
 import android.util.Log;
 
-import org.sqlunet.provider.SqlUNetContract;
-import org.sqlunet.provider.SqlUNetProvider;
+import org.sqlunet.provider.BaseProvider;
 import org.sqlunet.wordnet.provider.WordNetContract.AdjPositionTypes;
 import org.sqlunet.wordnet.provider.WordNetContract.AdjPositions_AdjPositionTypes;
 import org.sqlunet.wordnet.provider.WordNetContract.Dict;
@@ -49,7 +48,7 @@ import org.sqlunet.wordnet.provider.WordNetContract.Words_Senses_Synsets;
  *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
-public class WordNetProvider extends SqlUNetProvider
+public class WordNetProvider extends BaseProvider
 {
 	static private final String TAG = "WordNetProvider";
 	// U R I M A T C H E R
@@ -181,89 +180,89 @@ public class WordNetProvider extends SqlUNetProvider
 			// T A B L E S
 
 			case WORDS:
-				return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + WordNetContract.AUTHORITY + '.' + Words.TABLE;
+				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + WordNetContract.AUTHORITY + '.' + Words.TABLE;
 			case WORD:
-				return SqlUNetContract.VENDOR + ".android.cursor.item/" + SqlUNetContract.VENDOR + '.' + WordNetContract.AUTHORITY + '.' + Words.TABLE;
+				return BaseProvider.VENDOR + ".android.cursor.item/" + BaseProvider.VENDOR + '.' + WordNetContract.AUTHORITY + '.' + Words.TABLE;
 			case WORD_BY_LEMMA:
-				return SqlUNetContract.VENDOR + ".android.cursor.item/" + SqlUNetContract.VENDOR + '.' + WordNetContract.AUTHORITY + '.' + Words.TABLE;
+				return BaseProvider.VENDOR + ".android.cursor.item/" + BaseProvider.VENDOR + '.' + WordNetContract.AUTHORITY + '.' + Words.TABLE;
 			case SENSES:
-				return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + WordNetContract.AUTHORITY + '.' + Senses.TABLE;
+				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + WordNetContract.AUTHORITY + '.' + Senses.TABLE;
 			case SENSE:
-				return SqlUNetContract.VENDOR + ".android.cursor.item/" + SqlUNetContract.VENDOR + '.' + WordNetContract.AUTHORITY + '.' + Senses.TABLE;
+				return BaseProvider.VENDOR + ".android.cursor.item/" + BaseProvider.VENDOR + '.' + WordNetContract.AUTHORITY + '.' + Senses.TABLE;
 			case SYNSETS:
-				return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + WordNetContract.AUTHORITY + '.' + Synsets.TABLE;
+				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + WordNetContract.AUTHORITY + '.' + Synsets.TABLE;
 			case SYNSET:
-				return SqlUNetContract.VENDOR + ".android.cursor.item/" + SqlUNetContract.VENDOR + '.' + WordNetContract.AUTHORITY + '.' + Synsets.TABLE;
+				return BaseProvider.VENDOR + ".android.cursor.item/" + BaseProvider.VENDOR + '.' + WordNetContract.AUTHORITY + '.' + Synsets.TABLE;
 			case SEMLINKS:
-				return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + WordNetContract.AUTHORITY + '.' + SemLinks.TABLE;
+				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + WordNetContract.AUTHORITY + '.' + SemLinks.TABLE;
 			case LEXLINKS:
-				return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + WordNetContract.AUTHORITY + '.' + LexLinks.TABLE;
+				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + WordNetContract.AUTHORITY + '.' + LexLinks.TABLE;
 			case LINKTYPES:
-				return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + WordNetContract.AUTHORITY + '.' + LinkTypes.TABLE;
+				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + WordNetContract.AUTHORITY + '.' + LinkTypes.TABLE;
 			case POSTYPES:
-				return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + WordNetContract.AUTHORITY + '.' + PosTypes.TABLE;
+				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + WordNetContract.AUTHORITY + '.' + PosTypes.TABLE;
 			case ADJPOSITIONTYPES:
-				return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + WordNetContract.AUTHORITY + '.' + AdjPositionTypes.TABLE;
+				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + WordNetContract.AUTHORITY + '.' + AdjPositionTypes.TABLE;
 			case LEXDOMAINS:
-				return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + WordNetContract.AUTHORITY + '.' + LexDomains.TABLE;
+				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + WordNetContract.AUTHORITY + '.' + LexDomains.TABLE;
 			case SAMPLES:
-				return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + WordNetContract.AUTHORITY + '.' + Samples.TABLE;
+				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + WordNetContract.AUTHORITY + '.' + Samples.TABLE;
 			// V I E W S
 
 			case DICT:
-				return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + WordNetContract.AUTHORITY + '.' + Dict.TABLE;
+				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + WordNetContract.AUTHORITY + '.' + Dict.TABLE;
 			case WORDS_SENSES_SYNSETS:
-				return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + WordNetContract.AUTHORITY + '.' + Words_Senses_Synsets.TABLE;
+				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + WordNetContract.AUTHORITY + '.' + Words_Senses_Synsets.TABLE;
 			case WORDS_SENSES_CASEDWORDS_SYNSETS:
-				return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + WordNetContract.AUTHORITY + '.' + Words_Senses_CasedWords_Synsets.TABLE;
+				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + WordNetContract.AUTHORITY + '.' + Words_Senses_CasedWords_Synsets.TABLE;
 			case WORDS_SENSES_CASEDWORDS_SYNSETS_POSTYPES_LEXDOMAINS:
-				return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + WordNetContract.AUTHORITY + '.' + Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.TABLE;
+				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + WordNetContract.AUTHORITY + '.' + Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.TABLE;
 			// J O I N S
 
 			case SENSES_WORDS:
-				return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + WordNetContract.AUTHORITY + '.' + Senses_Words.TABLE;
+				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + WordNetContract.AUTHORITY + '.' + Senses_Words.TABLE;
 			case SENSES_WORDS_BY_SYNSET:
-				return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + WordNetContract.AUTHORITY + '.' + Senses_Words.TABLE_BY_SYNSET;
+				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + WordNetContract.AUTHORITY + '.' + Senses_Words.TABLE_BY_SYNSET;
 			case SENSES_SYNSETS_POSTYPES_LEXDOMAINS:
-				return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + WordNetContract.AUTHORITY + '.' + Senses_Synsets_PosTypes_LexDomains.TABLE;
+				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + WordNetContract.AUTHORITY + '.' + Senses_Synsets_PosTypes_LexDomains.TABLE;
 			case SYNSETS_POSTYPES_LEXDOMAINS:
-				return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + WordNetContract.AUTHORITY + '.' + Synsets_PosTypes_LexDomains.TABLE;
+				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + WordNetContract.AUTHORITY + '.' + Synsets_PosTypes_LexDomains.TABLE;
 			case SEMLINKS_SYNSETS:
-				return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + WordNetContract.AUTHORITY + '.' + SemLinks_Synsets.TABLE;
+				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + WordNetContract.AUTHORITY + '.' + SemLinks_Synsets.TABLE;
 			case SEMLINKS_SYNSETS_X:
-				return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + WordNetContract.AUTHORITY + '.' + SemLinks_Synsets_X.TABLE;
+				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + WordNetContract.AUTHORITY + '.' + SemLinks_Synsets_X.TABLE;
 			case SEMLINKS_SYNSETS_WORDS_X_BY_SYNSET:
-				return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + WordNetContract.AUTHORITY + '.' + SemLinks_Synsets_Words_X.TABLE_BY_SYNSET;
+				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + WordNetContract.AUTHORITY + '.' + SemLinks_Synsets_Words_X.TABLE_BY_SYNSET;
 			case LEXLINKS_SENSES:
-				return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + WordNetContract.AUTHORITY + '.' + LexLinks_Senses.TABLE;
+				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + WordNetContract.AUTHORITY + '.' + LexLinks_Senses.TABLE;
 			case LEXLINKS_SENSES_X:
-				return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + WordNetContract.AUTHORITY + '.' + LexLinks_Senses_X.TABLE;
+				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + WordNetContract.AUTHORITY + '.' + LexLinks_Senses_X.TABLE;
 			case LEXLINKS_SENSES_WORDS_X_BY_SYNSET:
-				return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + WordNetContract.AUTHORITY + '.' + LexLinks_Senses_Words_X.TABLE_BY_SYNSET;
+				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + WordNetContract.AUTHORITY + '.' + LexLinks_Senses_Words_X.TABLE_BY_SYNSET;
 			case VFRAMEMAPS_VFRAMES:
-				return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + WordNetContract.AUTHORITY + '.' + VerbFrameMaps_VerbFrames.TABLE;
+				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + WordNetContract.AUTHORITY + '.' + VerbFrameMaps_VerbFrames.TABLE;
 			case VFRAMESENTENCEMAPS_VFRAMESENTENCES:
-				return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + WordNetContract.AUTHORITY + '.' + VerbFrameSentenceMaps_VerbFrameSentences.TABLE;
+				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + WordNetContract.AUTHORITY + '.' + VerbFrameSentenceMaps_VerbFrameSentences.TABLE;
 			case ADJPOSITIONS_ADJPOSITIONTYPES:
-				return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + WordNetContract.AUTHORITY + '.' + AdjPositions_AdjPositionTypes.TABLE;
+				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + WordNetContract.AUTHORITY + '.' + AdjPositions_AdjPositionTypes.TABLE;
 			case MORPHMAPS_MORPHS:
-				return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + WordNetContract.AUTHORITY + '.' + MorphMaps_Morphs.TABLE;
+				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + WordNetContract.AUTHORITY + '.' + MorphMaps_Morphs.TABLE;
 			// TEXT LOOKUPS
 
 			case LOOKUP_FTS_WORDS:
-				return SqlUNetContract.VENDOR + ".android.cursor.item/" + SqlUNetContract.VENDOR + '.' + WordNetContract.AUTHORITY + '.' + Words.TABLE;
+				return BaseProvider.VENDOR + ".android.cursor.item/" + BaseProvider.VENDOR + '.' + WordNetContract.AUTHORITY + '.' + Words.TABLE;
 			case LOOKUP_FTS_DEFINITIONS:
-				return SqlUNetContract.VENDOR + ".android.cursor.item/" + SqlUNetContract.VENDOR + '.' + WordNetContract.AUTHORITY + '.' + Synsets.TABLE;
+				return BaseProvider.VENDOR + ".android.cursor.item/" + BaseProvider.VENDOR + '.' + WordNetContract.AUTHORITY + '.' + Synsets.TABLE;
 			case LOOKUP_FTS_SAMPLES:
-				return SqlUNetContract.VENDOR + ".android.cursor.item/" + SqlUNetContract.VENDOR + '.' + WordNetContract.AUTHORITY + '.' + Samples.TABLE;
+				return BaseProvider.VENDOR + ".android.cursor.item/" + BaseProvider.VENDOR + '.' + WordNetContract.AUTHORITY + '.' + Samples.TABLE;
 			// S E A R C H
 
 			case LOOKUP_WORDS:
-				return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + WordNetContract.AUTHORITY + '.' + Words.TABLE;
+				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + WordNetContract.AUTHORITY + '.' + Words.TABLE;
 			case LOOKUP_DEFINITIONS:
-				return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + WordNetContract.AUTHORITY + '.' + Synsets.TABLE;
+				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + WordNetContract.AUTHORITY + '.' + Synsets.TABLE;
 			case LOOKUP_SAMPLES:
-				return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + WordNetContract.AUTHORITY + '.' + Samples.TABLE;
+				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + WordNetContract.AUTHORITY + '.' + Samples.TABLE;
 			default:
 				throw new UnsupportedOperationException("Illegal MIME type");
 		}
@@ -397,7 +396,7 @@ public class WordNetProvider extends SqlUNetProvider
 				groupBy = "synsetid";
 				table = "senses " + //
 						"LEFT JOIN words USING(wordid)";
-				actualProjection = SqlUNetProvider.appendProjection(actualProjection, "GROUP_CONCAT(words.lemma, ', ' ) AS " + Senses_Words.MEMBERS);
+				actualProjection = BaseProvider.appendProjection(actualProjection, "GROUP_CONCAT(words.lemma, ', ' ) AS " + Senses_Words.MEMBERS);
 				break;
 
 			case SENSES_SYNSETS_POSTYPES_LEXDOMAINS:
@@ -431,7 +430,7 @@ public class WordNetProvider extends SqlUNetProvider
 						"LEFT JOIN linktypes USING (linkid) " + //
 						"LEFT JOIN senses ON " + WordNetContract.DEST + ".synsetid = senses.synsetid " + //
 						"LEFT JOIN words USING (wordid)";
-				actualProjection = SqlUNetProvider.appendProjection(actualProjection, "GROUP_CONCAT(words.lemma, ', ' ) AS " + SemLinks_Synsets_Words_X.MEMBERS2);
+				actualProjection = BaseProvider.appendProjection(actualProjection, "GROUP_CONCAT(words.lemma, ', ' ) AS " + SemLinks_Synsets_Words_X.MEMBERS2);
 				break;
 
 			case LEXLINKS_SENSES:
@@ -449,7 +448,7 @@ public class WordNetProvider extends SqlUNetProvider
 
 			case LEXLINKS_SENSES_WORDS_X_BY_SYNSET:
 				groupBy = WordNetContract.DEST + ".synsetid";
-				actualProjection = SqlUNetProvider.appendProjection(actualProjection, "GROUP_CONCAT(DISTINCT " + WordNetContract.WORD2 + ".lemma) AS " + LexLinks_Senses_Words_X.MEMBERS2);
+				actualProjection = BaseProvider.appendProjection(actualProjection, "GROUP_CONCAT(DISTINCT " + WordNetContract.WORD2 + ".lemma) AS " + LexLinks_Senses_Words_X.MEMBERS2);
 				table = "lexlinks AS " + WordNetContract.LINK +  ' ' + //
 						"INNER JOIN synsets AS " + WordNetContract.DEST + " ON " + WordNetContract.LINK + ".synset2id = " + WordNetContract.DEST + ".synsetid " + //
 						"INNER JOIN words AS " + WordNetContract.WORD + " ON " + WordNetContract.LINK + ".word2id = " + WordNetContract.WORD + ".wordid " + //
@@ -539,11 +538,11 @@ public class WordNetProvider extends SqlUNetProvider
 				throw new RuntimeException("Malformed URI " + uri);
 		}
 
-		if (SqlUNetProvider.debugSql)
+		if (BaseProvider.debugSql)
 		{
 			final String sql = SQLiteQueryBuilder.buildQueryString(false, table, actualProjection, actualSelection, groupBy, null, sortOrder, null);
 			Log.d(WordNetProvider.TAG + "SQL", sql);
-			Log.d(WordNetProvider.TAG + "ARG", SqlUNetProvider.argsToString(selectionArgs));
+			Log.d(WordNetProvider.TAG + "ARG", BaseProvider.argsToString(selectionArgs));
 		}
 
 		// do query

@@ -23,7 +23,7 @@ import org.sqlunet.predicatematrix.provider.PredicateMatrixContract.PredicateMat
 import org.sqlunet.predicatematrix.style.PredicateMatrixFactories;
 import org.sqlunet.propbank.PbRoleSetPointer;
 import org.sqlunet.propbank.browser.PbRoleSetActivity;
-import org.sqlunet.provider.SqlUNetContract;
+import org.sqlunet.provider.ProviderArgs;
 import org.sqlunet.style.Spanner;
 import org.sqlunet.treeview.control.LinkController;
 import org.sqlunet.treeview.model.TreeNode;
@@ -1546,8 +1546,8 @@ abstract class BasicModule extends Module
 		{
 			final Parcelable pointer = new VnClassPointer(this.id);
 			final Intent intent = new Intent(BasicModule.this.context, VnClassActivity.class);
-			intent.putExtra(SqlUNetContract.ARG_QUERYACTION, SqlUNetContract.ARG_QUERYACTION_VNCLASS);
-			intent.putExtra(SqlUNetContract.ARG_QUERYPOINTER, pointer);
+			intent.putExtra(ProviderArgs.ARG_QUERYACTION, ProviderArgs.ARG_QUERYACTION_VNCLASS);
+			intent.putExtra(ProviderArgs.ARG_QUERYPOINTER, pointer);
 
 			BasicModule.this.context.startActivity(intent);
 		}
@@ -1576,8 +1576,8 @@ abstract class BasicModule extends Module
 		{
 			final Parcelable pointer = new PbRoleSetPointer(this.id);
 			final Intent intent = new Intent(BasicModule.this.context, PbRoleSetActivity.class);
-			intent.putExtra(SqlUNetContract.ARG_QUERYACTION, SqlUNetContract.ARG_QUERYACTION_PBROLESET);
-			intent.putExtra(SqlUNetContract.ARG_QUERYPOINTER, pointer);
+			intent.putExtra(ProviderArgs.ARG_QUERYACTION, ProviderArgs.ARG_QUERYACTION_PBROLESET);
+			intent.putExtra(ProviderArgs.ARG_QUERYPOINTER, pointer);
 
 			BasicModule.this.context.startActivity(intent);
 		}
@@ -1606,8 +1606,8 @@ abstract class BasicModule extends Module
 		{
 			final Parcelable pointer = new FnFramePointer(this.id);
 			final Intent intent = new Intent(BasicModule.this.context, FnFrameActivity.class);
-			intent.putExtra(SqlUNetContract.ARG_QUERYACTION, SqlUNetContract.ARG_QUERYACTION_FNFRAME);
-			intent.putExtra(SqlUNetContract.ARG_QUERYPOINTER, pointer);
+			intent.putExtra(ProviderArgs.ARG_QUERYACTION, ProviderArgs.ARG_QUERYACTION_FNFRAME);
+			intent.putExtra(ProviderArgs.ARG_QUERYPOINTER, pointer);
 
 			BasicModule.this.context.startActivity(intent);
 		}

@@ -7,7 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import org.sqlunet.provider.SqlUNetContract;
+import org.sqlunet.provider.ProviderArgs;
 import org.sqlunet.treeview.control.IconTreeController;
 import org.sqlunet.treeview.model.TreeNode;
 import org.sqlunet.treeview.view.TreeView;
@@ -89,11 +89,11 @@ public class SynsetFragment extends Fragment
 
 		// query
 		final Bundle args = getArguments();
-		final int action = args.getInt(SqlUNetContract.ARG_QUERYACTION);
-		if (args.containsKey(SqlUNetContract.ARG_QUERYPOINTER))
+		final int action = args.getInt(ProviderArgs.ARG_QUERYACTION);
+		if (args.containsKey(ProviderArgs.ARG_QUERYPOINTER))
 		{
 			// pointer
-			final Parcelable pointer = args.getParcelable(SqlUNetContract.ARG_QUERYPOINTER);
+			final Parcelable pointer = args.getParcelable(ProviderArgs.ARG_QUERYPOINTER);
 
 			// module
 			SynsetModule module = makeModule();

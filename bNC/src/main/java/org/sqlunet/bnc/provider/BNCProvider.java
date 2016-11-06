@@ -7,15 +7,14 @@ import android.database.sqlite.SQLiteQueryBuilder;
 import android.net.Uri;
 import android.util.Log;
 
-import org.sqlunet.provider.SqlUNetContract;
-import org.sqlunet.provider.SqlUNetProvider;
+import org.sqlunet.provider.BaseProvider;
 
 /**
  * WordNet provider
  *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
-public class BNCProvider extends SqlUNetProvider
+public class BNCProvider extends BaseProvider
 {
 	static private final String TAG = "BNCProvider";
 
@@ -57,12 +56,12 @@ public class BNCProvider extends SqlUNetProvider
 			// TABLES
 
 			case BNC:
-				return SqlUNetContract.VENDOR + ".android.cursor.item/" + SqlUNetContract.VENDOR + '.' + BNCContract.AUTHORITY + '.' + BNCContract.BNCs.TABLE;
+				return BaseProvider.VENDOR + ".android.cursor.item/" + BaseProvider.VENDOR + '.' + BNCContract.AUTHORITY + '.' + BNCContract.BNCs.TABLE;
 
 			// JOINS
 
 			case WORDS_BNC:
-				return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + BNCContract.AUTHORITY + '.' + BNCContract.Words_BNCs.TABLE;
+				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + BNCContract.AUTHORITY + '.' + BNCContract.Words_BNCs.TABLE;
 
 			default:
 				throw new UnsupportedOperationException("Illegal MIME type");
@@ -122,11 +121,11 @@ public class BNCProvider extends SqlUNetProvider
 		}
 
 		final String groupBy = null;
-		if (SqlUNetProvider.debugSql)
+		if (BaseProvider.debugSql)
 		{
 			final String sql = SQLiteQueryBuilder.buildQueryString(false, table, projection, actualSelection, groupBy, null, sortOrder, null);
 			Log.d(BNCProvider.TAG + "SQL", sql);
-			Log.d(BNCProvider.TAG + "ARGS", SqlUNetProvider.argsToString(selectionArgs));
+			Log.d(BNCProvider.TAG + "ARGS", BaseProvider.argsToString(selectionArgs));
 		}
 
 		// do query

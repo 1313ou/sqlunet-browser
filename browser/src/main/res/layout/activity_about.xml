@@ -1,52 +1,56 @@
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-            xmlns:tools="http://schemas.android.com/tools"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            tools:context="org.sqlunet.browser.AboutActivity">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical"
+              android:paddingBottom="16dp"
+              android:paddingLeft="16dp"
+              android:paddingRight="16dp"
+              android:paddingTop="16dp"
+              android:weightSum="1"
+              tools:context="org.sqlunet.browser.AboutActivity">
 
-	<LinearLayout
-		android:layout_width="match_parent"
+	<ImageView
+		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
-		android:orientation="vertical"
-		android:paddingBottom="16dp"
-		android:paddingLeft="16dp"
-		android:paddingRight="16dp"
-		android:paddingTop="16dp">
+		android:layout_gravity="center_horizontal"
+		android:contentDescription="@string/about_sqlunet_label"
+		android:src="@drawable/ic_launcher"/>
 
-		<ImageView
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:layout_gravity="center_horizontal"
-			android:contentDescription="@string/about_sqlunet_label"
-			android:src="@drawable/ic_launcher"/>
+	<TextView
+		style="@android:style/TextAppearance.Large"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_gravity="center_horizontal"
+		android:text="@string/about_sqlunet_label"
+		android:textStyle="bold"/>
 
-		<TextView
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:layout_gravity="center_horizontal"
-			android:text="@string/about_sqlunet_label"
-			android:textSize="20sp"
-			android:textStyle="bold"/>
+	<TextView
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_gravity="center_horizontal"
+		android:gravity="center"
+		android:text="@string/about_sqlunet_text"/>
 
-		<TextView
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:layout_gravity="center_horizontal"
-			android:gravity="center"
-			android:text="@string/about_sqlunet_text"/>
+	<TextView
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_gravity="center_horizontal"
+		android:text="@string/about_sqlunet_author"
+		android:textStyle="italic"/>
 
-		<TextView
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:layout_gravity="center_horizontal"
-			android:text="@string/about_sqlunet_author"
-			android:textStyle="italic"/>
+	<TextView
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_gravity="center_horizontal"
+		android:text="@string/about_sqlunet_copyright"/>
 
-		<TextView
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:layout_gravity="center_horizontal"
-			android:text="@string/about_sqlunet_copyright"/>
-	</LinearLayout>
+	<fragment
+		android:id="@+id/source"
+		android:name="org.sqlunet.browser.SourceFragment"
+		class="org.sqlunet.browser.SourceFragment"
+		android:layout_width="match_parent"
+		android:layout_height="0dp"
+		android:layout_weight="1"/>
 
-</ScrollView>
+</LinearLayout>

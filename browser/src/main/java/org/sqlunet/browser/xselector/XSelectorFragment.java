@@ -30,7 +30,7 @@ import org.sqlunet.browser.xselector.XLoader.FnLoaderCallbacks;
 import org.sqlunet.browser.xselector.XLoader.PbLoaderCallbacks;
 import org.sqlunet.browser.xselector.XLoader.VnLoaderCallbacks;
 import org.sqlunet.browser.xselector.XLoader.WnLoaderCallbacks;
-import org.sqlunet.provider.SqlUNetContract;
+import org.sqlunet.provider.ProviderArgs;
 import org.sqlunet.provider.XSqlUNetContract;
 import org.sqlunet.provider.XSqlUNetContract.Words_FnWords_PbWords_VnWords;
 import org.sqlunet.provider.XSqlUNetContract.Words_XNet_U;
@@ -147,7 +147,7 @@ public class XSelectorFragment extends ExpandableListFragment
 		}
 
 		// target word
-		String query = args.getString(SqlUNetContract.ARG_QUERYSTRING);
+		String query = args.getString(ProviderArgs.ARG_QUERYSTRING);
 		if (query != null)
 		{
 			query = query.trim().toLowerCase(Locale.ENGLISH);

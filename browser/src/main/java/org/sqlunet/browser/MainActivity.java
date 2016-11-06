@@ -48,7 +48,7 @@ import org.sqlunet.predicatematrix.PmRolePointer;
 import org.sqlunet.predicatematrix.browser.PredicateMatrixActivity;
 import org.sqlunet.propbank.PbRoleSetPointer;
 import org.sqlunet.propbank.browser.PbRoleSetActivity;
-import org.sqlunet.provider.SqlUNetContract;
+import org.sqlunet.provider.ProviderArgs;
 import org.sqlunet.settings.Settings;
 import org.sqlunet.settings.StorageSettings;
 import org.sqlunet.verbnet.VnClassPointer;
@@ -387,35 +387,35 @@ public class MainActivity extends Activity
 
 			case R.id.action_table_lexdomains:
 				intent = new Intent(this, TableActivity.class);
-				intent.putExtra(SqlUNetContract.ARG_QUERYURI, LexDomains.CONTENT_URI);
-				intent.putExtra(SqlUNetContract.ARG_QUERYID, LexDomains.LEXDOMAINID);
-				intent.putExtra(SqlUNetContract.ARG_QUERYITEMS, new String[]{LexDomains.LEXDOMAINID, LexDomains.LEXDOMAIN, LexDomains.POS});
-				intent.putExtra(SqlUNetContract.ARG_QUERYLAYOUT, R.layout.item_table3);
+				intent.putExtra(ProviderArgs.ARG_QUERYURI, LexDomains.CONTENT_URI);
+				intent.putExtra(ProviderArgs.ARG_QUERYID, LexDomains.LEXDOMAINID);
+				intent.putExtra(ProviderArgs.ARG_QUERYITEMS, new String[]{LexDomains.LEXDOMAINID, LexDomains.LEXDOMAIN, LexDomains.POS});
+				intent.putExtra(ProviderArgs.ARG_QUERYLAYOUT, R.layout.item_table3);
 				break;
 
 			case R.id.action_table_postypes:
 				intent = new Intent(this, TableActivity.class);
-				intent.putExtra(SqlUNetContract.ARG_QUERYURI, PosTypes.CONTENT_URI);
-				intent.putExtra(SqlUNetContract.ARG_QUERYID, PosTypes.POS);
-				intent.putExtra(SqlUNetContract.ARG_QUERYITEMS, new String[]{PosTypes.POS, PosTypes.POSNAME});
-				intent.putExtra(SqlUNetContract.ARG_QUERYLAYOUT, R.layout.item_table2);
+				intent.putExtra(ProviderArgs.ARG_QUERYURI, PosTypes.CONTENT_URI);
+				intent.putExtra(ProviderArgs.ARG_QUERYID, PosTypes.POS);
+				intent.putExtra(ProviderArgs.ARG_QUERYITEMS, new String[]{PosTypes.POS, PosTypes.POSNAME});
+				intent.putExtra(ProviderArgs.ARG_QUERYLAYOUT, R.layout.item_table2);
 				break;
 
 			case R.id.action_table_adjpositiontypes:
 				intent = new Intent(this, TableActivity.class);
-				intent.putExtra(SqlUNetContract.ARG_QUERYURI, AdjPositionTypes.CONTENT_URI);
-				intent.putExtra(SqlUNetContract.ARG_QUERYID, AdjPositionTypes.POSITION);
-				intent.putExtra(SqlUNetContract.ARG_QUERYITEMS, new String[]{AdjPositionTypes.POSITION, AdjPositionTypes.POSITIONNAME});
-				intent.putExtra(SqlUNetContract.ARG_QUERYLAYOUT, R.layout.item_table2);
+				intent.putExtra(ProviderArgs.ARG_QUERYURI, AdjPositionTypes.CONTENT_URI);
+				intent.putExtra(ProviderArgs.ARG_QUERYID, AdjPositionTypes.POSITION);
+				intent.putExtra(ProviderArgs.ARG_QUERYITEMS, new String[]{AdjPositionTypes.POSITION, AdjPositionTypes.POSITIONNAME});
+				intent.putExtra(ProviderArgs.ARG_QUERYLAYOUT, R.layout.item_table2);
 				break;
 
 			case R.id.action_table_linktypes:
 				intent = new Intent(this, TableActivity.class);
-				intent.putExtra(SqlUNetContract.ARG_QUERYURI, LinkTypes.CONTENT_URI);
-				intent.putExtra(SqlUNetContract.ARG_QUERYID, LinkTypes.LINKID);
-				intent.putExtra(SqlUNetContract.ARG_QUERYITEMS, new String[]{LinkTypes.LINKID, LinkTypes.LINK, LinkTypes.RECURSESSELECT});
-				intent.putExtra(SqlUNetContract.ARG_QUERYSORT, LinkTypes.LINKID + " ASC");
-				intent.putExtra(SqlUNetContract.ARG_QUERYLAYOUT, R.layout.item_table3);
+				intent.putExtra(ProviderArgs.ARG_QUERYURI, LinkTypes.CONTENT_URI);
+				intent.putExtra(ProviderArgs.ARG_QUERYID, LinkTypes.LINKID);
+				intent.putExtra(ProviderArgs.ARG_QUERYITEMS, new String[]{LinkTypes.LINKID, LinkTypes.LINK, LinkTypes.RECURSESSELECT});
+				intent.putExtra(ProviderArgs.ARG_QUERYSORT, LinkTypes.LINKID + " ASC");
+				intent.putExtra(ProviderArgs.ARG_QUERYLAYOUT, R.layout.item_table3);
 				break;
 
 			// search
@@ -538,9 +538,9 @@ public class MainActivity extends Activity
 				final long synsetId = Long.valueOf(query.substring(3));
 				final Parcelable synsetPointer = new SynsetPointer(synsetId, null);
 				searchIntent = makeDetailIntent(SynsetActivity.class);
-				searchIntent.putExtra(SqlUNetContract.ARG_QUERYACTION, SqlUNetContract.ARG_QUERYACTION_SYNSET);
-				searchIntent.putExtra(SqlUNetContract.ARG_QUERYPOINTER, synsetPointer);
-				searchIntent.putExtra(SqlUNetContract.ARG_QUERYRECURSE, recurse);
+				searchIntent.putExtra(ProviderArgs.ARG_QUERYACTION, ProviderArgs.ARG_QUERYACTION_SYNSET);
+				searchIntent.putExtra(ProviderArgs.ARG_QUERYPOINTER, synsetPointer);
+				searchIntent.putExtra(ProviderArgs.ARG_QUERYRECURSE, recurse);
 			}
 
 			// verbnet
@@ -549,8 +549,8 @@ public class MainActivity extends Activity
 				final long classId = Long.valueOf(query.substring(3));
 				final Parcelable framePointer = new VnClassPointer(classId);
 				searchIntent = makeDetailIntent(VnClassActivity.class);
-				searchIntent.putExtra(SqlUNetContract.ARG_QUERYACTION, SqlUNetContract.ARG_QUERYACTION_VNCLASS);
-				searchIntent.putExtra(SqlUNetContract.ARG_QUERYPOINTER, framePointer);
+				searchIntent.putExtra(ProviderArgs.ARG_QUERYACTION, ProviderArgs.ARG_QUERYACTION_VNCLASS);
+				searchIntent.putExtra(ProviderArgs.ARG_QUERYPOINTER, framePointer);
 			}
 
 			// propbank
@@ -559,8 +559,8 @@ public class MainActivity extends Activity
 				final long roleSetId = Long.valueOf(query.substring(3));
 				final Parcelable roleSetPointer = new PbRoleSetPointer(roleSetId);
 				searchIntent = makeDetailIntent(PbRoleSetActivity.class);
-				searchIntent.putExtra(SqlUNetContract.ARG_QUERYACTION, SqlUNetContract.ARG_QUERYACTION_PBROLESET);
-				searchIntent.putExtra(SqlUNetContract.ARG_QUERYPOINTER, roleSetPointer);
+				searchIntent.putExtra(ProviderArgs.ARG_QUERYACTION, ProviderArgs.ARG_QUERYACTION_PBROLESET);
+				searchIntent.putExtra(ProviderArgs.ARG_QUERYPOINTER, roleSetPointer);
 			}
 
 			// framenet
@@ -569,48 +569,48 @@ public class MainActivity extends Activity
 				final long frameId = Long.valueOf(query.substring(3));
 				final Parcelable framePointer = new FnFramePointer(frameId);
 				searchIntent = makeDetailIntent(FnFrameActivity.class);
-				searchIntent.putExtra(SqlUNetContract.ARG_QUERYACTION, SqlUNetContract.ARG_QUERYACTION_FNFRAME);
-				searchIntent.putExtra(SqlUNetContract.ARG_QUERYPOINTER, framePointer);
+				searchIntent.putExtra(ProviderArgs.ARG_QUERYACTION, ProviderArgs.ARG_QUERYACTION_FNFRAME);
+				searchIntent.putExtra(ProviderArgs.ARG_QUERYPOINTER, framePointer);
 			}
 			else if (query.startsWith("#fl")) //
 			{
 				final long luId = Long.valueOf(query.substring(3));
 				final Parcelable lexunitPointer = new FnLexUnitPointer(luId);
 				searchIntent = makeDetailIntent(FnLexUnitActivity.class);
-				searchIntent.putExtra(SqlUNetContract.ARG_QUERYACTION, SqlUNetContract.ARG_QUERYACTION_FNLEXUNIT);
-				searchIntent.putExtra(SqlUNetContract.ARG_QUERYPOINTER, lexunitPointer);
+				searchIntent.putExtra(ProviderArgs.ARG_QUERYACTION, ProviderArgs.ARG_QUERYACTION_FNLEXUNIT);
+				searchIntent.putExtra(ProviderArgs.ARG_QUERYPOINTER, lexunitPointer);
 			}
 			else if (query.startsWith("#fs")) //
 			{
 				final long sentenceId = Long.valueOf(query.substring(3));
 				@SuppressWarnings("TypeMayBeWeakened") final FnSentencePointer sentencePointer = new FnSentencePointer(sentenceId);
 				searchIntent = makeDetailIntent(FnSentenceActivity.class);
-				searchIntent.putExtra(SqlUNetContract.ARG_QUERYACTION, SqlUNetContract.ARG_QUERYACTION_FNSENTENCE);
-				searchIntent.putExtra(SqlUNetContract.ARG_QUERYPOINTER, sentencePointer);
+				searchIntent.putExtra(ProviderArgs.ARG_QUERYACTION, ProviderArgs.ARG_QUERYACTION_FNSENTENCE);
+				searchIntent.putExtra(ProviderArgs.ARG_QUERYPOINTER, sentencePointer);
 			}
 			else if (query.startsWith("#fa")) //
 			{
 				final long annoSetId = Long.valueOf(query.substring(3));
 				final Parcelable annoSetPointer = new FnAnnoSetPointer(annoSetId);
 				searchIntent = makeDetailIntent(FnAnnoSetActivity.class);
-				searchIntent.putExtra(SqlUNetContract.ARG_QUERYACTION, SqlUNetContract.ARG_QUERYACTION_FNANNOSET);
-				searchIntent.putExtra(SqlUNetContract.ARG_QUERYPOINTER, annoSetPointer);
+				searchIntent.putExtra(ProviderArgs.ARG_QUERYACTION, ProviderArgs.ARG_QUERYACTION_FNANNOSET);
+				searchIntent.putExtra(ProviderArgs.ARG_QUERYPOINTER, annoSetPointer);
 			}
 			else if (query.startsWith("#fp")) //
 			{
 				final long patternId = Long.valueOf(query.substring(3));
 				final Parcelable patternPointer = new FnPatternPointer(patternId);
 				searchIntent = makeDetailIntent(FnAnnoSetActivity.class);
-				searchIntent.putExtra(SqlUNetContract.ARG_QUERYACTION, SqlUNetContract.ARG_QUERYACTION_FNPATTERN);
-				searchIntent.putExtra(SqlUNetContract.ARG_QUERYPOINTER, patternPointer);
+				searchIntent.putExtra(ProviderArgs.ARG_QUERYACTION, ProviderArgs.ARG_QUERYACTION_FNPATTERN);
+				searchIntent.putExtra(ProviderArgs.ARG_QUERYPOINTER, patternPointer);
 			}
 			else if (query.startsWith("#fv")) //
 			{
 				final long valenceUnitId = Long.valueOf(query.substring(3));
 				final Parcelable valenceunitPointer = new FnValenceUnitPointer(valenceUnitId);
 				searchIntent = makeDetailIntent(FnAnnoSetActivity.class);
-				searchIntent.putExtra(SqlUNetContract.ARG_QUERYACTION, SqlUNetContract.ARG_QUERYACTION_FNVALENCEUNIT);
-				searchIntent.putExtra(SqlUNetContract.ARG_QUERYPOINTER, valenceunitPointer);
+				searchIntent.putExtra(ProviderArgs.ARG_QUERYACTION, ProviderArgs.ARG_QUERYACTION_FNVALENCEUNIT);
+				searchIntent.putExtra(ProviderArgs.ARG_QUERYPOINTER, valenceunitPointer);
 			}
 
 			// predicate matrix
@@ -619,8 +619,8 @@ public class MainActivity extends Activity
 				final long pmRoleId = Long.valueOf(query.substring(3));
 				final Parcelable rolePointer = new PmRolePointer(pmRoleId);
 				searchIntent = makeDetailIntent(PredicateMatrixActivity.class);
-				searchIntent.putExtra(SqlUNetContract.ARG_QUERYACTION, SqlUNetContract.ARG_QUERYACTION_PMROLE);
-				searchIntent.putExtra(SqlUNetContract.ARG_QUERYPOINTER, rolePointer);
+				searchIntent.putExtra(ProviderArgs.ARG_QUERYACTION, ProviderArgs.ARG_QUERYACTION_PMROLE);
+				searchIntent.putExtra(ProviderArgs.ARG_QUERYPOINTER, rolePointer);
 			}
 			else
 			{
@@ -631,8 +631,8 @@ public class MainActivity extends Activity
 		{
 			// search for string
 			searchIntent = makeSelectorIntent();
-			searchIntent.putExtra(SqlUNetContract.ARG_QUERYSTRING, query);
-			searchIntent.putExtra(SqlUNetContract.ARG_QUERYRECURSE, recurse);
+			searchIntent.putExtra(ProviderArgs.ARG_QUERYSTRING, query);
+			searchIntent.putExtra(ProviderArgs.ARG_QUERYRECURSE, recurse);
 		}
 		Log.d(MainActivity.TAG, "SEARCH " + searchIntent);
 		startActivity(searchIntent);

@@ -12,7 +12,7 @@ import org.sqlunet.browser.R;
 import org.sqlunet.browser.StatusActivity;
 import org.sqlunet.provider.ManagerContract;
 import org.sqlunet.provider.ManagerProvider;
-import org.sqlunet.provider.SqlUNetContract;
+import org.sqlunet.provider.ProviderArgs;
 import org.sqlunet.settings.StorageSettings;
 
 /**
@@ -86,7 +86,7 @@ public class ManagementActivity extends Activity
 
 			case R.id.action_tables_and_indices:
 				intent = ManagerContract.makeTablesAndIndexesIntent(this);
-				intent.putExtra(SqlUNetContract.ARG_QUERYLAYOUT, R.layout.item_dbobject);
+				intent.putExtra(ProviderArgs.ARG_QUERYLAYOUT, R.layout.item_dbobject);
 				break;
 
 			case R.id.action_create_database:

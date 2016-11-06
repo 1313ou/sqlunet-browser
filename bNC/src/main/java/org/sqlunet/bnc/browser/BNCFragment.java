@@ -10,7 +10,7 @@ import android.view.ViewGroup;
 import org.sqlunet.bnc.R;
 import org.sqlunet.bnc.loaders.BasicModule;
 import org.sqlunet.browser.Module;
-import org.sqlunet.provider.SqlUNetContract;
+import org.sqlunet.provider.ProviderArgs;
 import org.sqlunet.treeview.control.IconTreeController;
 import org.sqlunet.treeview.model.TreeNode;
 import org.sqlunet.treeview.view.TreeView;
@@ -59,8 +59,8 @@ public class BNCFragment extends Fragment
 
 		// query
 		final Bundle args = getArguments();
-		final int action = args.getInt(SqlUNetContract.ARG_QUERYACTION);
-		final Parcelable pointer = args.getParcelable(SqlUNetContract.ARG_QUERYPOINTER);
+		final int action = args.getInt(ProviderArgs.ARG_QUERYACTION);
+		final Parcelable pointer = args.getParcelable(ProviderArgs.ARG_QUERYPOINTER);
 
 		// module
 		Module module = new BasicModule(this);
