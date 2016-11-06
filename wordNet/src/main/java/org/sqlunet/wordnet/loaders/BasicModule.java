@@ -456,6 +456,7 @@ abstract public class BasicModule extends Module
 	static private final String TARGET_DEFINITION = "d_definition";
 	static private final String TARGET_LEMMA = "w_lemma";
 	static private final String TARGET_WORDID = "w_wordid";
+
 	/**
 	 * Semantic links
 	 *
@@ -824,7 +825,7 @@ abstract public class BasicModule extends Module
 					while (cursor.moveToNext());
 
 					// attach result
-					// TreeFactory.addTextNode(parent, sb, context);
+					TreeFactory.addTextNode(parent, sb, context);
 
 					// fire event
 					FireEvent.onResults(parent);
@@ -1464,6 +1465,61 @@ abstract public class BasicModule extends Module
 			semLinks(this.id, node);
 
 			// lex links
+			lexLinks(this.id, this.wordId, node);
+		}
+	}
+
+	/**
+	 * Semantic Link query
+	 */
+	public class SemLinksQuery extends QueryController.Query
+	{
+		/**
+		 * Constructor
+		 *
+		 * @param synsetId synset id
+		 * @param icon     icon
+		 * @param text     label text
+		 */
+		public SemLinksQuery(final long synsetId, final int icon, final CharSequence text)
+		{
+			super(synsetId, icon, text);
+		}
+
+		@Override
+		public void process(final TreeNode node)
+		{
+			semLinks(this.id, node);
+		}
+	}
+
+	/**
+	 * Lexical Link query
+	 */
+	public class LexLinksQuery extends QueryController.Query
+	{
+		/**
+		 * Word id
+		 */
+		final long wordId;
+
+		/**
+		 * Constructor
+		 *
+		 * @param synsetId synset id
+		 * @param wordId   word id
+		 * @param icon     icon
+		 * @param text     label text
+		 */
+		public LexLinksQuery(final long synsetId, final long wordId, final int icon, final CharSequence text)
+		{
+			super(synsetId, icon, text);
+			this.wordId = wordId;
+		}
+
+		@Override
+		public void process(final TreeNode node)
+		{
 			lexLinks(this.id, this.wordId, node);
 		}
 	}
