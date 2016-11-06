@@ -15,6 +15,8 @@ public class PropBankContract
 	static public final String REL = "r";
 	static public final String FUNC = "f";
 	static public final String ARG = "a";
+	static public final String WORD = "w";
+	static public final String MEMBER = "m";
 
 	static public final class PbRoleSets
 	{
@@ -24,6 +26,19 @@ public class PropBankContract
 		public static final String ROLESETNAME = "rolesetname";
 		public static final String ROLESETDESC = "rolesetdescr";
 		public static final String ROLESETHEAD = "rolesethead";
+	}
+
+	static public final class PbRoleSets_X
+	{
+		static public final String TABLE = "pbrolesets_x";
+		static public final String TABLE_BY_ROLESET = "pbrolesets_x_by_roleset";
+		static public final String CONTENT_URI = "content://" + PropBankContract.AUTHORITY + '/' + PbRoleSets_X.TABLE_BY_ROLESET;
+		public static final String ROLESETID = "rolesetid";
+		public static final String ROLESETNAME = "rolesetname";
+		public static final String ROLESETDESC = "rolesetdescr";
+		public static final String ROLESETHEAD = "rolesethead";
+		public static final String LEMMA = "lemma";
+		public static final String ALIASES = "aliases";
 	}
 
 	@SuppressWarnings("unused")

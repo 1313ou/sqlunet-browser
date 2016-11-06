@@ -13,9 +13,9 @@ import android.text.SpannableStringBuilder;
 import org.sqlunet.browser.Module;
 import org.sqlunet.propbank.R;
 import org.sqlunet.propbank.provider.PropBankContract;
-import org.sqlunet.propbank.provider.PropBankContract.PbRoleSets;
 import org.sqlunet.propbank.provider.PropBankContract.PbRoleSets_PbExamples;
 import org.sqlunet.propbank.provider.PropBankContract.PbRoleSets_PbRoles;
+import org.sqlunet.propbank.provider.PropBankContract.PbRoleSets_X;
 import org.sqlunet.propbank.provider.PropBankContract.Words_PbRoleSets;
 import org.sqlunet.propbank.style.PropBankFactories;
 import org.sqlunet.propbank.style.PropBankSpanner;
@@ -118,14 +118,14 @@ abstract class BasicModule extends Module
 			@Override
 			public Loader<Cursor> onCreateLoader(final int loaderId, final Bundle loaderArgs)
 			{
-				final Uri uri = Uri.parse(PropBankContract.PbRoleSets.CONTENT_URI);
+				final Uri uri = Uri.parse(PbRoleSets_X.CONTENT_URI);
 				final String[] projection = { //
-						PropBankContract.PbRoleSets.ROLESETID, //
-						PropBankContract.PbRoleSets.ROLESETNAME, //
-						PropBankContract.PbRoleSets.ROLESETHEAD, //
-						PropBankContract.PbRoleSets.ROLESETDESC, //
-				};
-				final String selection = PropBankContract.PbRoleSets.ROLESETID + " = ?";
+						PbRoleSets_X.ROLESETID, //
+						PbRoleSets_X.ROLESETNAME, //
+						PbRoleSets_X.ROLESETHEAD, //
+						PbRoleSets_X.ROLESETDESC, //
+						"GROUP_CONCAT(" + PbRoleSets_X.LEMMA + ") AS " + PbRoleSets_X.ALIASES};
+				final String selection = PbRoleSets_X.ROLESETID + " = ?";
 				final String[] selectionArgs = {Long.toString(roleSetId)};
 				final String sortOrder = null;
 				return new CursorLoader(BasicModule.this.context, uri, projection, selection, selectionArgs, sortOrder);
@@ -141,10 +141,11 @@ abstract class BasicModule extends Module
 				if (cursor.moveToFirst())
 				{
 					// column indices
-					// final int idRolesetId = cursor.getColumnIndex(PbRoleSets.ROLESETID);
-					final int idRolesetName = cursor.getColumnIndex(PbRoleSets.ROLESETNAME);
-					final int idRolesetDesc = cursor.getColumnIndex(PropBankContract.PbRoleSets.ROLESETDESC);
-					final int idRolesetHead = cursor.getColumnIndex(PropBankContract.PbRoleSets.ROLESETHEAD);
+					// final int idRolesetId = cursor.getColumnIndex(PbRoleSets_X.ROLESETID);
+					final int idRolesetName = cursor.getColumnIndex(PbRoleSets_X.ROLESETNAME);
+					final int idRolesetDesc = cursor.getColumnIndex(PbRoleSets_X.ROLESETDESC);
+					final int idRolesetHead = cursor.getColumnIndex(PbRoleSets_X.ROLESETHEAD);
+					final int idAliases = cursor.getColumnIndex(PbRoleSets_X.ALIASES);
 
 					// read cursor
 					final SpannableStringBuilder sb = new SpannableStringBuilder();
@@ -159,6 +160,9 @@ abstract class BasicModule extends Module
 					sb.append(' ');
 					sb.append("head=");
 					sb.append(cursor.getString(idRolesetHead));
+					sb.append(' ');
+					sb.append("aliases=");
+					sb.append(cursor.getString(idAliases));
 					sb.append('\n');
 
 					// description

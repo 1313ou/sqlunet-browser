@@ -28,10 +28,12 @@ public class PropBankProvider extends SqlUNetProvider
 	private static final int PBROLESETS = 11;
 
 	// join codes
-	private static final int WORDS_PBROLESETS = 100;
-	private static final int PBROLESETS_PBROLES = 110;
-	private static final int PBROLESETS_PBEXAMPLES = 120;
-	private static final int PBROLESETS_PBEXAMPLES_BY_EXAMPLE = 121;
+	private static final int PBROLESETS_X = 100;
+	private static final int PBROLESETS_X_BY_ROLESET = 101;
+	private static final int WORDS_PBROLESETS = 110;
+	private static final int PBROLESETS_PBROLES = 120;
+	private static final int PBROLESETS_PBEXAMPLES = 130;
+	private static final int PBROLESETS_PBEXAMPLES_BY_EXAMPLE = 131;
 
 	// text search codes
 	private static final int LOOKUP_FTS_EXAMPLES = 501;
@@ -41,6 +43,8 @@ public class PropBankProvider extends SqlUNetProvider
 		uriMatcher = new UriMatcher(UriMatcher.NO_MATCH);
 		PropBankProvider.uriMatcher.addURI(PropBankContract.AUTHORITY, PropBankContract.PbRoleSets.TABLE, PropBankProvider.PBROLESET);
 		PropBankProvider.uriMatcher.addURI(PropBankContract.AUTHORITY, PropBankContract.PbRoleSets.TABLE, PropBankProvider.PBROLESETS);
+		PropBankProvider.uriMatcher.addURI(PropBankContract.AUTHORITY, PropBankContract.PbRoleSets_X.TABLE, PropBankProvider.PBROLESETS_X);
+		PropBankProvider.uriMatcher.addURI(PropBankContract.AUTHORITY, PropBankContract.PbRoleSets_X.TABLE_BY_ROLESET, PropBankProvider.PBROLESETS_X_BY_ROLESET);
 		PropBankProvider.uriMatcher.addURI(PropBankContract.AUTHORITY, PropBankContract.Words_PbRoleSets.TABLE, PropBankProvider.WORDS_PBROLESETS);
 		PropBankProvider.uriMatcher.addURI(PropBankContract.AUTHORITY, PropBankContract.PbRoleSets_PbRoles.TABLE, PropBankProvider.PBROLESETS_PBROLES);
 		PropBankProvider.uriMatcher.addURI(PropBankContract.AUTHORITY, PropBankContract.PbRoleSets_PbExamples.TABLE, PropBankProvider.PBROLESETS_PBEXAMPLES);
@@ -70,6 +74,10 @@ public class PropBankProvider extends SqlUNetProvider
 				return SqlUNetContract.VENDOR + ".android.cursor.item/" + SqlUNetContract.VENDOR + '.' + PropBankContract.AUTHORITY + '.' + PropBankContract.PbRoleSets.TABLE;
 			case PBROLESETS:
 				return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + PropBankContract.AUTHORITY + '.' + PropBankContract.PbRoleSets.TABLE;
+			case PBROLESETS_X:
+				return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + PropBankContract.AUTHORITY + '.' + PropBankContract.PbRoleSets_X.TABLE;
+			case PBROLESETS_X_BY_ROLESET:
+				return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + PropBankContract.AUTHORITY + '.' + PropBankContract.PbRoleSets_X.TABLE_BY_ROLESET;
 			case WORDS_PBROLESETS:
 				return SqlUNetContract.VENDOR + ".android.cursor.dir/" + SqlUNetContract.VENDOR + '.' + PropBankContract.AUTHORITY + '.' + PropBankContract.Words_PbRoleSets.TABLE;
 			case PBROLESETS_PBROLES:
@@ -129,6 +137,17 @@ public class PropBankProvider extends SqlUNetProvider
 				break;
 
 			// J O I N S
+
+			case PBROLESETS_X_BY_ROLESET:
+				groupBy = PropBankContract.PbRoleSets_X.ROLESETID;
+				//$FALL-THROUGH$
+				//noinspection fallthrough
+
+			case PBROLESETS_X:
+				table = "pbrolesets " + //
+						"LEFT JOIN pbrolesetmembers AS " + PropBankContract.MEMBER + " USING (rolesetid) " + //
+						"LEFT JOIN pbwords AS " + PropBankContract.WORD + " ON " + PropBankContract.MEMBER + ".pbwordid = " + PropBankContract.WORD + ".pbwordid";
+				break;
 
 			case WORDS_PBROLESETS:
 				table = "words " + //
