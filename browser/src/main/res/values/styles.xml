@@ -133,7 +133,7 @@
 	</style>
 
 	<style name="Data.XDefinition">
-		<item name="android:textColor">#FF4040FF</item>
+		<item name="android:textColor">#FF4682B4</item>
 		<item name="android:textSize">15sp</item>
 	</style>
 

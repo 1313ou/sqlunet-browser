@@ -29,8 +29,11 @@ import org.sqlunet.settings.Settings;
  */
 public class StatusActivity extends Activity
 {
-	static private final String TAG = "SqlUNet Status";
+	static private final String TAG = "StatusActivity";
+
 	// codes
+
+	public static final String CANTRUN = "status.cant.run";
 
 	private static final int REQUEST_DOWNLOAD_CODE = 0xDDDD;
 
@@ -202,6 +205,15 @@ public class StatusActivity extends Activity
 		// handle item selection
 		switch (item.getItemId())
 		{
+			case android.R.id.home:
+				boolean cantRun= getIntent().getBooleanExtra(CANTRUN, false);
+				if(!cantRun)
+				{
+					return super.onOptionsItemSelected(item);
+				}
+				intent = getIntent();
+				break;
+
 			case R.id.action_settings:
 				intent = new Intent(this, SettingsActivity.class);
 				break;

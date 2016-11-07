@@ -32,7 +32,7 @@ import java.util.List;
  */
 public abstract class AbstractTableFragment extends ListFragment
 {
-	private static final String TAG = "AbsTableFragment";
+	private static final String TAG = "AbstractTableFrag";
 	/**
 	 * Target intent
 	 */

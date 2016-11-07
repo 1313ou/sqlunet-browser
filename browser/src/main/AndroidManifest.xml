@@ -23,22 +23,21 @@
 		android:label="@string/app_name"
 		android:supportsRtl="true"
 		android:theme="@style/AppTheme">
+
 		<activity
 			android:name="org.sqlunet.browser.MainActivity"
 			android:label="@string/app_name"
 			android:launchMode="singleTop">
 			<intent-filter>
 				<action android:name="android.intent.action.MAIN"/>
-
 				<category android:name="android.intent.category.LAUNCHER"/>
-
 				<action android:name="android.intent.action.SEARCH"/>
 			</intent-filter>
-
 			<meta-data
 				android:name="android.app.searchable"
 				android:resource="@xml/searchable"/>
 		</activity>
+
 		<activity
 			android:name="org.sqlunet.browser.selector.SelectorActivity"
 			android:label="@string/title_activity_selector"
@@ -48,11 +47,11 @@
 			<intent-filter>
 				<action android:name="android.intent.action.SEARCH"/>
 			</intent-filter>
-
 			<meta-data
 				android:name="android.support.PARENT_ACTIVITY"
 				android:value=".MainActivity"/>
 		</activity>
+
 		<activity
 			android:name="org.sqlunet.browser.xselector.XSelectorActivity"
 			android:label="@string/title_activity_xselector"
@@ -62,11 +61,11 @@
 			<intent-filter>
 				<action android:name="android.intent.action.SEARCH"/>
 			</intent-filter>
-
 			<meta-data
 				android:name="android.support.PARENT_ACTIVITY"
 				android:value=".MainActivity"/>
 		</activity>
+
 		<activity
 			android:name="org.sqlunet.browser.DetailActivity"
 			android:label="@string/title_activity_sense"
@@ -76,6 +75,7 @@
 				android:name="android.support.PARENT_ACTIVITY"
 				android:value="org.sqlunet.browser.MainActivity"/>
 		</activity>
+
 		<activity
 			android:name="org.sqlunet.browser.web.WebActivity"
 			android:label="@string/title_activity_web"
@@ -85,6 +85,7 @@
 				android:name="android.support.PARENT_ACTIVITY"
 				android:value="org.sqlunet.browser.MainActivity"/>
 		</activity>
+
 		<activity
 			android:name="org.sqlunet.browser.TextSearchActivity"
 			android:label="@string/title_activity_text_search"
@@ -94,7 +95,6 @@
 			<intent-filter>
 				<action android:name="android.intent.action.SEARCH"/>
 			</intent-filter>
-
 			<meta-data
 				android:name="android.support.PARENT_ACTIVITY"
 				android:value="org.sqlunet.browser.TextSearchActivity"/>
@@ -102,6 +102,7 @@
 				android:name="android.app.searchable"
 				android:resource="@xml/searchable_text_search"/>
 		</activity>
+
 		<activity
 			android:name="org.sqlunet.predicatematrix.browser.PredicateMatrixActivity"
 			android:label="@string/title_activity_predicatematrix"
@@ -111,6 +112,7 @@
 				android:name="android.support.PARENT_ACTIVITY"
 				android:value="org.sqlunet.predicatematrix.browser.PredicateMatrixActivity"/>
 		</activity>
+
 		<activity
 			android:name="org.sqlunet.wordnet.browser.SynsetActivity"
 			android:label="@string/title_activity_synset"
@@ -120,6 +122,7 @@
 				android:name="android.support.PARENT_ACTIVITY"
 				android:value="org.sqlunet.browser.MainActivity"/>
 		</activity>
+
 		<activity
 			android:name="org.sqlunet.verbnet.browser.VnClassActivity"
 			android:label="@string/title_activity_vnclass"
@@ -129,6 +132,7 @@
 				android:name="android.support.PARENT_ACTIVITY"
 				android:value="org.sqlunet.browser.MainActivity"/>
 		</activity>
+
 		<activity
 			android:name="org.sqlunet.propbank.browser.PbRoleSetActivity"
 			android:label="@string/title_activity_pbroleset"
@@ -138,6 +142,7 @@
 				android:name="android.support.PARENT_ACTIVITY"
 				android:value="org.sqlunet.browser.MainActivity"/>
 		</activity>
+
 		<activity
 			android:name="org.sqlunet.framenet.browser.FnFrameActivity"
 			android:label="@string/title_activity_fnframe"
@@ -147,6 +152,7 @@
 				android:name="android.support.PARENT_ACTIVITY"
 				android:value="org.sqlunet.browser.MainActivity"/>
 		</activity>
+
 		<activity
 			android:name="org.sqlunet.framenet.browser.FnLexUnitActivity"
 			android:label="@string/title_activity_fnlexunit"
@@ -156,6 +162,7 @@
 				android:name="android.support.PARENT_ACTIVITY"
 				android:value="org.sqlunet.browser.MainActivity"/>
 		</activity>
+
 		<activity
 			android:name="org.sqlunet.framenet.browser.FnSentenceActivity"
 			android:label="@string/title_activity_fnsentence"
@@ -165,6 +172,7 @@
 				android:name="android.support.PARENT_ACTIVITY"
 				android:value="org.sqlunet.browser.MainActivity"/>
 		</activity>
+
 		<activity
 			android:name="org.sqlunet.framenet.browser.FnAnnoSetActivity"
 			android:label="@string/title_activity_fnannoset"
@@ -174,6 +182,7 @@
 				android:name="android.support.PARENT_ACTIVITY"
 				android:value="org.sqlunet.browser.MainActivity"/>
 		</activity>
+
 		<activity
 			android:name="org.sqlunet.browser.config.SettingsActivity"
 			android:label="@string/title_activity_settings"
@@ -183,6 +192,7 @@
 				android:name="android.support.PARENT_ACTIVITY"
 				android:value="org.sqlunet.browser.MainActivity"/>
 		</activity>
+
 		<activity
 			android:name="org.sqlunet.browser.StatusActivity"
 			android:label="@string/title_activity_status"
@@ -192,6 +202,7 @@
 				android:name="android.support.PARENT_ACTIVITY"
 				android:value="org.sqlunet.browser.MainActivity"/>
 		</activity>
+
 		<activity
 			android:name="org.sqlunet.browser.config.SetupActivity"
 			android:label="@string/title_activity_setup"
@@ -201,6 +212,7 @@
 				android:name="android.support.PARENT_ACTIVITY"
 				android:value="org.sqlunet.browser.MainActivity"/>
 		</activity>
+
 		<activity
 			android:name="org.sqlunet.browser.config.StorageActivity"
 			android:label="@string/title_activity_storage"
@@ -210,6 +222,7 @@
 				android:name="android.support.PARENT_ACTIVITY"
 				android:value="org.sqlunet.browser.MainActivity"/>
 		</activity>
+
 		<activity
 			android:name="org.sqlunet.browser.config.SetupSqlActivity"
 			android:label="@string/title_activity_setup"
@@ -219,6 +232,7 @@
 				android:name="android.support.PARENT_ACTIVITY"
 				android:value="org.sqlunet.browser.MainActivity"/>
 		</activity>
+
 		<activity
 			android:name="org.sqlunet.browser.config.DownloadActivity"
 			android:label="@string/title_activity_download"
@@ -228,6 +242,7 @@
 				android:name="android.support.PARENT_ACTIVITY"
 				android:value="org.sqlunet.browser.MainActivity"/>
 		</activity>
+
 		<activity
 			android:name="org.sqlunet.browser.config.TableActivity"
 			android:label="@string/title_activity_table"
@@ -237,6 +252,7 @@
 				android:name="android.support.PARENT_ACTIVITY"
 				android:value="org.sqlunet.browser.MainActivity"/>
 		</activity>
+
 		<activity
 			android:name="org.sqlunet.browser.config.ManagementActivity"
 			android:label="@string/title_activity_management"
@@ -246,6 +262,7 @@
 				android:name="android.support.PARENT_ACTIVITY"
 				android:value="org.sqlunet.browser.MainActivity"/>
 		</activity>
+
 		<activity
 			android:name=".AboutActivity"
 			android:label="@string/title_activity_about"
@@ -256,6 +273,7 @@
 				android:name="android.support.PARENT_ACTIVITY"
 				android:value=".MainActivity"/>
 		</activity>
+
 		<activity
 			android:name=".HelpActivity"
 			android:label="@string/title_activity_help"
@@ -274,6 +292,7 @@
 			android:exported="true"
 			tools:ignore="ExportedContentProvider">
 		</provider>
+
 		<provider
 			android:name="org.sqlunet.provider.XSqlUNetProvider"
 			android:authorities="org.sqlunet.cross.provider"
@@ -281,6 +300,7 @@
 			android:exported="true"
 			tools:ignore="ExportedContentProvider">
 		</provider>
+
 		<provider
 			android:name="org.sqlunet.wordnet.provider.WordNetProvider"
 			android:authorities="org.sqlunet.wordnet.provider"
@@ -288,6 +308,7 @@
 			android:exported="true"
 			tools:ignore="ExportedContentProvider">
 		</provider>
+
 		<provider
 			android:name="org.sqlunet.framenet.provider.FrameNetProvider"
 			android:authorities="org.sqlunet.framenet.provider"
@@ -295,6 +316,7 @@
 			android:exported="true"
 			tools:ignore="ExportedContentProvider">
 		</provider>
+
 		<provider
 			android:name="org.sqlunet.propbank.provider.PropBankProvider"
 			android:authorities="org.sqlunet.propbank.provider"
@@ -302,6 +324,7 @@
 			android:exported="true"
 			tools:ignore="ExportedContentProvider">
 		</provider>
+
 		<provider
 			android:name="org.sqlunet.verbnet.provider.VerbNetProvider"
 			android:authorities="org.sqlunet.verbnet.provider"
@@ -309,6 +332,7 @@
 			android:exported="true"
 			tools:ignore="ExportedContentProvider">
 		</provider>
+
 		<provider
 			android:name="org.sqlunet.bnc.provider.BNCProvider"
 			android:authorities="org.sqlunet.bnc.provider"
@@ -316,6 +340,7 @@
 			android:exported="true"
 			tools:ignore="ExportedContentProvider">
 		</provider>
+
 		<provider
 			android:name="org.sqlunet.predicatematrix.provider.PredicateMatrixProvider"
 			android:authorities="org.sqlunet.predicatematrix.provider"
@@ -323,6 +348,7 @@
 			android:exported="true"
 			tools:ignore="ExportedContentProvider">
 		</provider>
+
 	</application>
 
 </manifest>

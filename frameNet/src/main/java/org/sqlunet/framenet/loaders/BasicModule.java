@@ -678,9 +678,10 @@ abstract public class BasicModule extends Module
 					if (withFrame)
 					{
 						final SpannableStringBuilder sb2 = new SpannableStringBuilder();
-						sb2.append("Frame ");
+						sb2.append("Frame");
+						sb2.append(' ');
 						Spanner.append(sb2, frame, 0, FrameNetFactories.frameFactory);
-						final TreeNode frameNode = TreeFactory.newQueryNode(new FrameQuery(frameId, R.drawable.roleclass, sb2), false, BasicModule.this.context).addTo(parent);
+						final TreeNode frameNode = TreeFactory.newQueryNode(new FrameQuery(frameId, R.drawable.roleclass, sb2), true, BasicModule.this.context).addTo(parent);
 
 						// fire event
 						FireEvent.onQueryReady(frameNode);
@@ -988,7 +989,7 @@ abstract public class BasicModule extends Module
 						TreeFactory.addTextNode(parent, sb, BasicModule.this.context);
 
 						// sub nodes
-						final TreeNode frameNode = TreeFactory.newQueryNode(new FrameQuery(frameId, R.drawable.roleclass, "Frame"), false, BasicModule.this.context).addTo(parent);
+						final TreeNode frameNode = TreeFactory.newQueryNode(new FrameQuery(frameId, R.drawable.roleclass, "Frame"), true, BasicModule.this.context).addTo(parent);
 						final TreeNode fesNode = TreeFactory.newQueryNode(new FEsQuery(frameId, R.drawable.roles, "Frame Elements"), false, BasicModule.this.context).addTo(parent);
 						final TreeNode realizationsNode = TreeFactory.newQueryNode(new RealizationsQuery(luId, R.drawable.realization, "Realizations"), false, BasicModule.this.context).addTo(parent);
 						final TreeNode groupRealizationsNode = TreeFactory.newQueryNode(new GroupRealizationsQuery(luId, R.drawable.grouprealization, "Group realizations"), false, BasicModule.this.context).addTo(parent);

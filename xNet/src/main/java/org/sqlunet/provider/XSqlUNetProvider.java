@@ -297,6 +297,7 @@ public class XSqlUNetProvider extends BaseProvider
 		final SQLiteQueryBuilder embeddingQueryBuilder = new SQLiteQueryBuilder();
 		embeddingQueryBuilder.setTables('(' + uQuery + ')');
 		final String[] resultProjection = BaseProvider.prependProjection(projection, "GROUP_CONCAT(DISTINCT source) AS sources");
+
 		// group by
 		String[] actualGroupBys = groupBys;
 		if (actualGroupBys == null)

@@ -67,7 +67,7 @@ import org.sqlunet.wordnet.provider.WordNetContract.PosTypes;
  */
 public class MainActivity extends Activity
 {
-	static private final String TAG = "SqlUNet Main";
+	static private final String TAG = "MainActivity";
 	/**
 	 * Selector mode state
 	 */
@@ -112,7 +112,7 @@ public class MainActivity extends Activity
 		// set up the action bar to show a custom layout
 		@SuppressLint("InflateParams") final View actionBarView = getLayoutInflater().inflate(R.layout.actionbar_custom, null);
 		actionBar.setCustomView(actionBarView);
-		actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM | ActionBar.DISPLAY_SHOW_HOME | ActionBar.DISPLAY_HOME_AS_UP);
+		actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM | ActionBar.DISPLAY_SHOW_HOME /*| ActionBar.DISPLAY_HOME_AS_UP */);
 		// actionBar.setDisplayShowCustomEnabled(true);
 		// actionBar.setDisplayShowHomeEnabled(true);
 		// actionBar.setDisplayHomeAsUpEnabled(true);
@@ -238,6 +238,7 @@ public class MainActivity extends Activity
 		if (!canRun)
 		{
 			final Intent intent = new Intent(this, StatusActivity.class);
+			intent.putExtra(StatusActivity.CANTRUN, true);
 			intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 			// intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_TASK_ON_HOME);
 			startActivity(intent);
@@ -530,13 +531,14 @@ public class MainActivity extends Activity
 
 		// dispatch as per query prefix
 		Intent searchIntent;
-		if (query.startsWith("#")) //
+		if (query.matches("#\\p{Lower}\\p{Lower}\\d+"))
 		{
+			final long id = Long.valueOf(query.substring(3));
+
 			// wordnet
-			if (query.startsWith("#ws")) //
+			if (query.startsWith("#ws"))
 			{
-				final long synsetId = Long.valueOf(query.substring(3));
-				final Parcelable synsetPointer = new SynsetPointer(synsetId, null);
+				final Parcelable synsetPointer = new SynsetPointer(id, null);
 				searchIntent = makeDetailIntent(SynsetActivity.class);
 				searchIntent.putExtra(ProviderArgs.ARG_QUERYACTION, ProviderArgs.ARG_QUERYACTION_SYNSET);
 				searchIntent.putExtra(ProviderArgs.ARG_QUERYPOINTER, synsetPointer);
@@ -544,80 +546,71 @@ public class MainActivity extends Activity
 			}
 
 			// verbnet
-			else if (query.startsWith("#vc")) //
+			else if (query.startsWith("#vc"))
 			{
-				final long classId = Long.valueOf(query.substring(3));
-				final Parcelable framePointer = new VnClassPointer(classId);
+				final Parcelable framePointer = new VnClassPointer(id);
 				searchIntent = makeDetailIntent(VnClassActivity.class);
 				searchIntent.putExtra(ProviderArgs.ARG_QUERYACTION, ProviderArgs.ARG_QUERYACTION_VNCLASS);
 				searchIntent.putExtra(ProviderArgs.ARG_QUERYPOINTER, framePointer);
 			}
 
 			// propbank
-			else if (query.startsWith("#pr")) //
+			else if (query.startsWith("#pr"))
 			{
-				final long roleSetId = Long.valueOf(query.substring(3));
-				final Parcelable roleSetPointer = new PbRoleSetPointer(roleSetId);
+				final Parcelable roleSetPointer = new PbRoleSetPointer(id);
 				searchIntent = makeDetailIntent(PbRoleSetActivity.class);
 				searchIntent.putExtra(ProviderArgs.ARG_QUERYACTION, ProviderArgs.ARG_QUERYACTION_PBROLESET);
 				searchIntent.putExtra(ProviderArgs.ARG_QUERYPOINTER, roleSetPointer);
 			}
 
 			// framenet
-			else if (query.startsWith("#ff")) //
+			else if (query.startsWith("#ff"))
 			{
-				final long frameId = Long.valueOf(query.substring(3));
-				final Parcelable framePointer = new FnFramePointer(frameId);
+				final Parcelable framePointer = new FnFramePointer(id);
 				searchIntent = makeDetailIntent(FnFrameActivity.class);
 				searchIntent.putExtra(ProviderArgs.ARG_QUERYACTION, ProviderArgs.ARG_QUERYACTION_FNFRAME);
 				searchIntent.putExtra(ProviderArgs.ARG_QUERYPOINTER, framePointer);
 			}
-			else if (query.startsWith("#fl")) //
+			else if (query.startsWith("#fl"))
 			{
-				final long luId = Long.valueOf(query.substring(3));
-				final Parcelable lexunitPointer = new FnLexUnitPointer(luId);
+				final Parcelable lexunitPointer = new FnLexUnitPointer(id);
 				searchIntent = makeDetailIntent(FnLexUnitActivity.class);
 				searchIntent.putExtra(ProviderArgs.ARG_QUERYACTION, ProviderArgs.ARG_QUERYACTION_FNLEXUNIT);
 				searchIntent.putExtra(ProviderArgs.ARG_QUERYPOINTER, lexunitPointer);
 			}
-			else if (query.startsWith("#fs")) //
+			else if (query.startsWith("#fs"))
 			{
-				final long sentenceId = Long.valueOf(query.substring(3));
-				@SuppressWarnings("TypeMayBeWeakened") final FnSentencePointer sentencePointer = new FnSentencePointer(sentenceId);
+				final Parcelable sentencePointer = new FnSentencePointer(id);
 				searchIntent = makeDetailIntent(FnSentenceActivity.class);
 				searchIntent.putExtra(ProviderArgs.ARG_QUERYACTION, ProviderArgs.ARG_QUERYACTION_FNSENTENCE);
 				searchIntent.putExtra(ProviderArgs.ARG_QUERYPOINTER, sentencePointer);
 			}
-			else if (query.startsWith("#fa")) //
+			else if (query.startsWith("#fa"))
 			{
-				final long annoSetId = Long.valueOf(query.substring(3));
-				final Parcelable annoSetPointer = new FnAnnoSetPointer(annoSetId);
+				final Parcelable annoSetPointer = new FnAnnoSetPointer(id);
 				searchIntent = makeDetailIntent(FnAnnoSetActivity.class);
 				searchIntent.putExtra(ProviderArgs.ARG_QUERYACTION, ProviderArgs.ARG_QUERYACTION_FNANNOSET);
 				searchIntent.putExtra(ProviderArgs.ARG_QUERYPOINTER, annoSetPointer);
 			}
-			else if (query.startsWith("#fp")) //
+			else if (query.startsWith("#fp"))
 			{
-				final long patternId = Long.valueOf(query.substring(3));
-				final Parcelable patternPointer = new FnPatternPointer(patternId);
+				final Parcelable patternPointer = new FnPatternPointer(id);
 				searchIntent = makeDetailIntent(FnAnnoSetActivity.class);
 				searchIntent.putExtra(ProviderArgs.ARG_QUERYACTION, ProviderArgs.ARG_QUERYACTION_FNPATTERN);
 				searchIntent.putExtra(ProviderArgs.ARG_QUERYPOINTER, patternPointer);
 			}
-			else if (query.startsWith("#fv")) //
+			else if (query.startsWith("#fv"))
 			{
-				final long valenceUnitId = Long.valueOf(query.substring(3));
-				final Parcelable valenceunitPointer = new FnValenceUnitPointer(valenceUnitId);
+				final Parcelable valenceunitPointer = new FnValenceUnitPointer(id);
 				searchIntent = makeDetailIntent(FnAnnoSetActivity.class);
 				searchIntent.putExtra(ProviderArgs.ARG_QUERYACTION, ProviderArgs.ARG_QUERYACTION_FNVALENCEUNIT);
 				searchIntent.putExtra(ProviderArgs.ARG_QUERYPOINTER, valenceunitPointer);
 			}
 
 			// predicate matrix
-			else if (query.startsWith("#mr")) //
+			else if (query.startsWith("#mr"))
 			{
-				final long pmRoleId = Long.valueOf(query.substring(3));
-				final Parcelable rolePointer = new PmRolePointer(pmRoleId);
+				final Parcelable rolePointer = new PmRolePointer(id);
 				searchIntent = makeDetailIntent(PredicateMatrixActivity.class);
 				searchIntent.putExtra(ProviderArgs.ARG_QUERYACTION, ProviderArgs.ARG_QUERYACTION_PMROLE);
 				searchIntent.putExtra(ProviderArgs.ARG_QUERYPOINTER, rolePointer);

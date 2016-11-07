@@ -22,7 +22,7 @@ import java.util.List;
  */
 public class Status
 {
-	static private final String TAG = "SqlUNetStatus";
+	static private final String TAG = "Status";
 	// status flags
 
 	private static final int EXISTS = 0x1;

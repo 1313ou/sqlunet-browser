@@ -25,5 +25,5 @@ public class Colors
 
 	static public final int lt_brown = 0xFFFFE5B4;
 
-	static public final int blue = 0xFF425269;
+	static public final int blue = 0xFF4682B4;
 }

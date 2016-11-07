@@ -26,7 +26,7 @@ public class HelpActivity extends Activity
 	/**
 	 * Log tag
 	 */
-	private static final String TAG = "Help activity";
+	private static final String TAG = "HelpActivity";
 	/**
 	 * Show help
 	 */

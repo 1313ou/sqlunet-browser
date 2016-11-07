@@ -17,7 +17,7 @@ import java.util.Collection;
  */
 class ManagementTasks
 {
-	private static final String TAG = "Management Tasks";
+	private static final String TAG = "ManagementTasks";
 	/**
 	 * Create database
 	 *
