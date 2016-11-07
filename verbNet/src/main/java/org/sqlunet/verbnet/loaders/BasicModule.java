@@ -244,7 +244,7 @@ abstract class BasicModule extends Module
 						VnClasses_VnMembers_X.WORDID, //
 						VnClasses_VnMembers_X.VNWORDID, //
 						VnClasses_VnMembers_X.LEMMA, //
-						"GROUP_CONCAT(DISTINCT " + VnClasses_VnMembers_X.DEFINITION + ") AS " + VnClasses_VnMembers_X.DEFINITIONS, //
+						"REPLACE(REPLACE(GROUP_CONCAT(DISTINCT REPLACE(" + VnClasses_VnMembers_X.DEFINITION + ",',','#')),',','|'),'#',',') AS " + VnClasses_VnMembers_X.DEFINITIONS, //
 						"GROUP_CONCAT(DISTINCT " + VnClasses_VnMembers_X.GROUPING + ") AS " + VnClasses_VnMembers_X.GROUPINGS, //
 						VnClasses_VnMembers_X.CLASSID, //
 				};
@@ -280,7 +280,7 @@ abstract class BasicModule extends Module
 						final String definitions = cursor.getString(idDefinitions);
 						if (definitions != null)
 						{
-							for (String definition : definitions.split(","))
+							for (String definition : definitions.split("\\|"))
 							{
 								sb.append('\n');
 								sb.append('\t');

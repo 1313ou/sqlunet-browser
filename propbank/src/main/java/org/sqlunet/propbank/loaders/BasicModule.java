@@ -58,6 +58,11 @@ abstract class BasicModule extends Module
 	private final Drawable roleDrawable;
 
 	/**
+	 * Drawable for alias
+	 */
+	private final Drawable aliasDrawable;
+
+	/**
 	 * Drawable for theta role
 	 */
 	private final Drawable thetaDrawable;
@@ -94,6 +99,7 @@ abstract class BasicModule extends Module
 		this.relationDrawable = Spanner.getDrawable(this.context, R.drawable.relation);
 		this.roleDrawable = Spanner.getDrawable(this.context, R.drawable.role);
 		this.thetaDrawable = Spanner.getDrawable(this.context, R.drawable.theta);
+		this.aliasDrawable = Spanner.getDrawable(this.context, R.drawable.alias);
 		this.definitionDrawable = Spanner.getDrawable(this.context, R.drawable.definition);
 		this.sampleDrawable = Spanner.getDrawable(this.context, R.drawable.sample);
 
@@ -160,8 +166,8 @@ abstract class BasicModule extends Module
 					sb.append(' ');
 					sb.append("head=");
 					sb.append(cursor.getString(idRolesetHead));
-					sb.append(' ');
-					sb.append("aliases=");
+					sb.append('\n');
+					Spanner.appendImage(sb, BasicModule.this.aliasDrawable);
 					sb.append(cursor.getString(idAliases));
 					sb.append('\n');
 
