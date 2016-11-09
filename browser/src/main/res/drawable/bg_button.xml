@@ -4,6 +4,10 @@
 
 	<solid android:color="@color/button_color"/>
 
+	<size
+		android:width="50dp"
+		android:height="50dp"/>
+
 	<!--     <stroke -->
 	<!--         android:width="2dip" -->
 	<!--         android:color="@color/button_border_color" /> -->

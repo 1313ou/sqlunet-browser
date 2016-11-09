@@ -168,7 +168,7 @@ class XLoader
 					"rowid AS _id",};
 			final String selection = Words_FnWords_FnFrames_U.WORDID + " = ?";
 			final String[] selectionArgs = {Long.toString(this.wordId)};
-			final String sortOrder = Words_FnWords_FnFrames_U.FRAMEID + ',' + Words_FnWords_FnFrames_U.LUID;
+			final String sortOrder = Words_FnWords_FnFrames_U.LUID + ' ' + "IS NULL" + ',' + Words_FnWords_FnFrames_U.SOURCES + ',' + Words_FnWords_FnFrames_U.FRAMEID;
 			return new CursorLoader(this.context, uri, projection, selection, selectionArgs, sortOrder);
 		}
 	}
