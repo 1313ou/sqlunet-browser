@@ -84,18 +84,18 @@ public class PredicateMatrixActivity extends Activity
 		final CharSequence[] modes = getResources().getTextArray(R.array.pmmodes);
 
 		// adapter
-		SpinnerAdapter adapter = new ArrayAdapter<CharSequence>(this, R.layout.actionbar_item_pmmodes, modes)
+		SpinnerAdapter adapter = new ArrayAdapter<CharSequence>(this, R.layout.spinner_item_pmmodes, modes)
 		{
 			@Override
 			public View getView(int position, View convertView, ViewGroup parent)
 			{
-				return getCustomView(position, convertView, parent, R.layout.actionbar_item_pmmodes);
+				return getCustomView(position, convertView, parent, R.layout.spinner_item_pmmodes);
 			}
 
 			@Override
 			public View getDropDownView(int position, View convertView, ViewGroup parent)
 			{
-				return getCustomView(position, convertView, parent, R.layout.actionbar_item_pmmodes_dropdown);
+				return getCustomView(position, convertView, parent, R.layout.spinner_item_pmmodes_dropdown);
 			}
 
 			private View getCustomView(int position, @SuppressWarnings("UnusedParameters") final View convertView, ViewGroup parent, int layoutId)
@@ -352,6 +352,10 @@ public class PredicateMatrixActivity extends Activity
 		args.putParcelable(ProviderArgs.ARG_QUERYPOINTER, pointer);
 		args.putInt(ProviderArgs.ARG_QUERYACTION, ProviderArgs.ARG_QUERYACTION_PM);
 
+		// clear
+		final ViewGroup container = (ViewGroup)findViewById(R.id.container_predicatematrix);
+		container.removeAllViews();
+
 		// fragment
 		final Fragment fragment = new PredicateMatrixFragment();
 		fragment.setArguments(args);
@@ -390,6 +394,10 @@ public class PredicateMatrixActivity extends Activity
 		final Bundle args = new Bundle();
 		args.putParcelable(ProviderArgs.ARG_QUERYPOINTER, pointer);
 		args.putInt(ProviderArgs.ARG_QUERYACTION, ProviderArgs.ARG_QUERYACTION_PM);
+
+		// clear
+		final ViewGroup container = (ViewGroup)findViewById(R.id.container_predicatematrix);
+		container.removeAllViews();
 
 		// fragment
 		final Fragment fragment = new PredicateMatrixFragment();

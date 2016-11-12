@@ -3,7 +3,6 @@ package org.sqlunet.browser;
 import android.app.ListFragment;
 import android.app.LoaderManager.LoaderCallbacks;
 import android.content.CursorLoader;
-import android.content.Intent;
 import android.content.Loader;
 import android.database.Cursor;
 import android.net.Uri;
@@ -33,10 +32,6 @@ import java.util.List;
 public abstract class AbstractTableFragment extends ListFragment
 {
 	private static final String TAG = "AbstractTableFrag";
-	/**
-	 * Target intent
-	 */
-	Intent targetIntent;
 
 	/**
 	 * View binder factory
@@ -68,7 +63,7 @@ public abstract class AbstractTableFragment extends ListFragment
 		final String selection = args.getString(ProviderArgs.ARG_QUERYFILTER);
 		final String queryArg = args.getString(ProviderArgs.ARG_QUERYARG);
 		final int layoutId = args.getInt(ProviderArgs.ARG_QUERYLAYOUT);
-		this.targetIntent = args.getParcelable(ProviderArgs.ARG_QUERYINTENT);
+		//final String database = args.getString(ProviderArgs.ARG_QUERYDATABASE);
 
 		// adapter set up
 		// from (database column names)

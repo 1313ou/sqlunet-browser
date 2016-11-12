@@ -101,7 +101,8 @@
 	<!-- misc -->
 	<string name="hint_search">Search WordNet</string>
 	<string name="hint_search_text">Text Search WordNet</string>
-	<string name="hint_splash">Exploring Semantic Roles</string>
+	<string name="hint_splash_main">Exploring Semantic Roles</string>
+	<string name="hint_splash_textsearch">Text Search</string>
 	<string name="tip_textsearch">Search Mode</string>
 	<string name="tip_selector">Selector Mode</string>
 

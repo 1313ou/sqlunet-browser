@@ -1570,25 +1570,28 @@ abstract public class BasicModule extends Module
 								final int to = Integer.parseInt(label.to) + 1;
 
 								// span text
-								Spanner.setSpan(sb, sentenceStart + from, sentenceStart + to, 0, "Target".equals(layerType) ? FrameNetFactories.targetFactory : FrameNetFactories.highlightTextFactory);
+								Spanner.setSpan(sb, sentenceStart + from, sentenceStart + to, 0, "Target".equals(layerType) ? FrameNetFactories.targetHighlightTextFactory : FrameNetFactories.highlightTextFactory);
+
 								// label
 								sb.append('\t');
 								Spanner.append(sb, label.label, 0, "FE".equals(layerType) ? FrameNetFactories.feFactory : FrameNetFactories.labelFactory);
 								sb.append(' ');
 
-								// value (subtext)
+								// subtext value
 								final String subtext = text.substring(from, to);
 								final int p = sb.length();
 								Spanner.append(sb, subtext, 0, FrameNetFactories.subtextFactory);
+
+								// value colors
 								if (label.bgColor != null)
 								{
 									final int color = Integer.parseInt(label.bgColor, 16);
-									sb.setSpan(new BackgroundColorSpan(color), p, p + subtext.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+									sb.setSpan(new BackgroundColorSpan(color | 0xFF000000), p, p + subtext.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
 								}
 								if (label.fgColor != null)
 								{
 									final int color = Integer.parseInt(label.fgColor, 16);
-									sb.setSpan(new ForegroundColorSpan(color), p, p + subtext.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+									sb.setSpan(new ForegroundColorSpan(color | 0xFF000000), p, p + subtext.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
 								}
 							}
 						}
@@ -1837,6 +1840,8 @@ abstract public class BasicModule extends Module
 						final String layerType = cursor.getString(idLayerType);
 						final String annotations = cursor.getString(idAnnotations);
 						final String sentenceText = cursor.getString(idSentenceText);
+						final boolean isTarget = "Target".equals(layerType);
+						final boolean isFE = "FE".equals(layerType);
 
 						// sentence
 						if (withSentence && first)
@@ -1857,7 +1862,7 @@ abstract public class BasicModule extends Module
 						// layer
 						Spanner.appendImage(sb, BasicModule.this.layerDrawable);
 						sb.append(' ');
-						Spanner.append(sb, processLayer(layerType), 0, FrameNetFactories.layerTypeFactory);
+						Spanner.append(sb, processLayer(layerType), 0, isTarget ? FrameNetFactories.layerTypeFactory : FrameNetFactories.layerTypeFactory);
 						if (VERBOSE)
 						{
 							final String rank = cursor.getString(idRank);
@@ -1878,7 +1883,7 @@ abstract public class BasicModule extends Module
 								sb.append('\t');
 
 								// label
-								Spanner.append(sb, label.label, 0, "FE".equals(layerType) ? FrameNetFactories.feFactory : FrameNetFactories.labelFactory);
+								Spanner.append(sb, label.label, 0, isFE ? FrameNetFactories.feFactory : FrameNetFactories.labelFactory);
 								sb.append(' ');
 
 								// subtext value
@@ -1887,15 +1892,17 @@ abstract public class BasicModule extends Module
 								final String subtext = sentenceText.substring(from, to);
 								final int p = sb.length();
 								Spanner.append(sb, subtext, 0, FrameNetFactories.subtextFactory);
+
+								// value color
 								if (label.bgColor != null)
 								{
 									final int color = Integer.parseInt(label.bgColor, 16);
-									sb.setSpan(new BackgroundColorSpan(color), p, p + subtext.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+									sb.setSpan(new BackgroundColorSpan(color | 0xFF000000), p, p + subtext.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
 								}
 								if (label.fgColor != null)
 								{
 									final int color = Integer.parseInt(label.fgColor, 16);
-									sb.setSpan(new ForegroundColorSpan(color), p, p + subtext.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+									sb.setSpan(new ForegroundColorSpan(color | 0xFF000000), p, p + subtext.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
 								}
 							}
 						}
@@ -1944,6 +1951,7 @@ abstract public class BasicModule extends Module
 			{
 				final Uri uri = Uri.parse(Patterns_Layers_X.CONTENT_URI);
 				final String[] projection = { //
+						Patterns_Layers_X.ANNOSETID, //
 						Patterns_Layers_X.SENTENCEID, //
 						Patterns_Layers_X.SENTENCETEXT, //
 						Patterns_Layers_X.LAYERID, //
@@ -1960,100 +1968,14 @@ abstract public class BasicModule extends Module
 			@Override
 			public void onLoadFinished(final Loader<Cursor> loader, final Cursor cursor)
 			{
-				final SpannableStringBuilder sb = new SpannableStringBuilder();
+				// column indices
+				final int idLayerType = cursor.getColumnIndex(Patterns_Layers_X.LAYERTYPE);
+				final int idRank = cursor.getColumnIndex(Patterns_Layers_X.RANK);
+				final int idAnnotations = cursor.getColumnIndex(Patterns_Layers_X.LAYERANNOTATIONS);
+				final int idAnnoSetId = cursor.getColumnIndex(Patterns_Layers_X.ANNOSETID);
+				final int idSentenceText = cursor.getColumnIndex(Patterns_Layers_X.SENTENCETEXT);
 
-				if (cursor.moveToFirst())
-				{
-					// column indices
-					final int idLayerType = cursor.getColumnIndex(Patterns_Layers_X.LAYERTYPE);
-					final int idRank = cursor.getColumnIndex(Patterns_Layers_X.RANK);
-					final int idAnnotations = cursor.getColumnIndex(Patterns_Layers_X.LAYERANNOTATIONS);
-					final int idSentenceId = cursor.getColumnIndex(Patterns_Layers_X.SENTENCEID);
-					final int idSentenceText = cursor.getColumnIndex(Patterns_Layers_X.SENTENCETEXT);
-
-					// read cursor
-					long focusSentenceId = -1;
-					do
-					{
-						final String layerType = cursor.getString(idLayerType);
-						final String annotations = cursor.getString(idAnnotations);
-						final String rank = cursor.getString(idRank);
-						final long sentenceId = cursor.getLong(idSentenceId);
-						final String sentenceText = cursor.getString(idSentenceText);
-
-						// sentence
-						if (sentenceId != focusSentenceId)
-						{
-							Spanner.appendImage(sb, BasicModule.this.sentenceDrawable);
-							sb.append(' ');
-							Spanner.append(sb, sentenceText, 0, FrameNetFactories.sentenceFactory);
-							sb.append('\n');
-							focusSentenceId = sentenceId;
-						}
-
-						// layer
-						sb.append('\t');
-						Spanner.appendImage(sb, BasicModule.this.layerDrawable);
-						sb.append(' ');
-						Spanner.append(sb, processLayer(layerType), 0, FrameNetFactories.layerTypeFactory);
-						if (VERBOSE)
-						{
-							sb.append(' ');
-							sb.append('[');
-							sb.append(rank);
-							sb.append(']');
-						}
-
-						// annotations
-						if (annotations != null)
-						{
-							final List<FnLabel> labels = Utils.parseLabels(annotations);
-							if (labels != null)
-							{
-								for (final FnLabel label : labels)
-								{
-									sb.append('\n');
-									sb.append('\t');
-									sb.append('\t');
-									sb.append('\t');
-
-									Spanner.append(sb, label.label, 0, "FE".equals(layerType) ? FrameNetFactories.feFactory : FrameNetFactories.labelFactory);
-									sb.append(' ');
-
-									final int from = Integer.parseInt(label.from);
-									final int to = Integer.parseInt(label.to) + 1;
-									final String subtext = sentenceText.substring(from, to);
-									final int p = sb.length();
-									Spanner.append(sb, subtext, 0, FrameNetFactories.subtextFactory);
-									if (label.bgColor != null)
-									{
-										final int color = Integer.parseInt(label.bgColor, 16);
-										sb.setSpan(new BackgroundColorSpan(color), p, p + subtext.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-									}
-									if (label.fgColor != null)
-									{
-										final int color = Integer.parseInt(label.fgColor, 16);
-										sb.setSpan(new ForegroundColorSpan(color), p, p + subtext.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-									}
-								}
-							}
-						}
-						sb.append('\n');
-					}
-					while (cursor.moveToNext());
-
-					// attach result
-					TreeFactory.addTextNode(parent, sb, BasicModule.this.context);
-
-					// fire event
-					FireEvent.onResults(parent);
-				}
-				else
-				{
-					FireEvent.onNoResult(parent, true);
-				}
-
-				cursor.close();
+				onAnnoSetsLoadFinished(parent, loader, cursor, null, idSentenceText, idLayerType, idRank, idAnnotations, idAnnoSetId);
 			}
 
 			@Override
@@ -2079,6 +2001,7 @@ abstract public class BasicModule extends Module
 			{
 				final Uri uri = Uri.parse(ValenceUnits_Layers_X.CONTENT_URI);
 				final String[] projection = { //
+						ValenceUnits_Layers_X.ANNOSETID, //
 						ValenceUnits_Layers_X.SENTENCEID, //
 						ValenceUnits_Layers_X.SENTENCETEXT, //
 						ValenceUnits_Layers_X.LAYERID, //
@@ -2095,101 +2018,14 @@ abstract public class BasicModule extends Module
 			@Override
 			public void onLoadFinished(final Loader<Cursor> loader, final Cursor cursor)
 			{
-				final SpannableStringBuilder sb = new SpannableStringBuilder();
+				// column indices
+				final int idLayerType = cursor.getColumnIndex(ValenceUnits_Layers_X.LAYERTYPE);
+				final int idRank = cursor.getColumnIndex(ValenceUnits_Layers_X.RANK);
+				final int idAnnotations = cursor.getColumnIndex(ValenceUnits_Layers_X.LAYERANNOTATIONS);
+				final int idAnnoSetId = cursor.getColumnIndex(ValenceUnits_Layers_X.ANNOSETID);
+				final int idSentenceText = cursor.getColumnIndex(ValenceUnits_Layers_X.SENTENCETEXT);
 
-				if (cursor.moveToFirst())
-				{
-					// column indices
-					final int idLayerType = cursor.getColumnIndex(ValenceUnits_Layers_X.LAYERTYPE);
-					final int idRank = cursor.getColumnIndex(ValenceUnits_Layers_X.RANK);
-					final int idAnnotations = cursor.getColumnIndex(ValenceUnits_Layers_X.LAYERANNOTATIONS);
-					final int idSentenceId = cursor.getColumnIndex(ValenceUnits_Layers_X.SENTENCEID);
-					final int idSentenceText = cursor.getColumnIndex(ValenceUnits_Layers_X.SENTENCETEXT);
-
-					// read cursor
-					long focusSentenceId = -1;
-					do
-					{
-						final String layerType = cursor.getString(idLayerType);
-						final String annotations = cursor.getString(idAnnotations);
-						final String rank = cursor.getString(idRank);
-						final long sentenceId = cursor.getLong(idSentenceId);
-						final String sentenceText = cursor.getString(idSentenceText);
-
-						// sentence
-						if (sentenceId != focusSentenceId)
-						{
-							Spanner.appendImage(sb, BasicModule.this.sentenceDrawable);
-							sb.append(' ');
-							Spanner.append(sb, sentenceText, 0, FrameNetFactories.sentenceFactory);
-							sb.append('\n');
-							focusSentenceId = sentenceId;
-						}
-
-						// layer
-						sb.append('\t');
-						Spanner.appendImage(sb, BasicModule.this.layerDrawable);
-						sb.append(' ');
-						Spanner.append(sb, processLayer(layerType), 0, FrameNetFactories.layerTypeFactory);
-						if (VERBOSE)
-						{
-							sb.append(' ');
-							sb.append('[');
-							sb.append(rank);
-							sb.append(']');
-						}
-						// annotations
-						if (annotations != null)
-						{
-							final List<FnLabel> labels = Utils.parseLabels(annotations);
-							if (labels != null)
-							{
-								for (final FnLabel label : labels)
-								{
-									sb.append('\n');
-									sb.append('\t');
-									sb.append('\t');
-									sb.append('\t');
-
-									// label
-									Spanner.append(sb, label.label, 0, "FE".equals(layerType) ? FrameNetFactories.feFactory : FrameNetFactories.labelFactory);
-									sb.append(' ');
-
-									// subtext
-									final int from = Integer.parseInt(label.from);
-									final int to = Integer.parseInt(label.to) + 1;
-									final String subtext = sentenceText.substring(from, to);
-									final int p = sb.length();
-									Spanner.append(sb, subtext, 0, FrameNetFactories.subtextFactory);
-									if (label.bgColor != null)
-									{
-										final int color = Integer.parseInt(label.bgColor, 16);
-										sb.setSpan(new BackgroundColorSpan(color), p, p + subtext.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-									}
-									if (label.fgColor != null)
-									{
-										final int color = Integer.parseInt(label.fgColor, 16);
-										sb.setSpan(new ForegroundColorSpan(color), p, p + subtext.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-									}
-								}
-							}
-						}
-						sb.append('\n');
-					}
-					while (cursor.moveToNext());
-
-					// attach result
-					TreeFactory.addTextNode(parent, sb, BasicModule.this.context);
-
-					// fire event
-					FireEvent.onResults(parent);
-				}
-				else
-				{
-					FireEvent.onNoResult(parent, true);
-				}
-
-				cursor.close();
+				onAnnoSetsLoadFinished(parent, loader, cursor, null, idSentenceText, idLayerType, idRank, idAnnotations, idAnnoSetId);
 			}
 
 			@Override
@@ -2218,6 +2054,7 @@ abstract public class BasicModule extends Module
 			{
 				final Uri uri = Uri.parse(Sentences_Layers_X.CONTENT_URI);
 				final String[] projection = { //
+						Sentences_Layers_X.ANNOSETID, //
 						Sentences_Layers_X.LAYERID, //
 						Sentences_Layers_X.LAYERTYPE, //
 						Sentences_Layers_X.RANK, //
@@ -2232,87 +2069,13 @@ abstract public class BasicModule extends Module
 			@Override
 			public void onLoadFinished(final Loader<Cursor> loader, final Cursor cursor)
 			{
-				final SpannableStringBuilder sb = new SpannableStringBuilder();
+				// column indices
+				final int idLayerType = cursor.getColumnIndex(Sentences_Layers_X.LAYERTYPE);
+				final int idRank = cursor.getColumnIndex(Sentences_Layers_X.RANK);
+				final int idAnnotations = cursor.getColumnIndex(Sentences_Layers_X.LAYERANNOTATIONS);
+				final int idAnnoSetId = cursor.getColumnIndex(Sentences_Layers_X.ANNOSETID);
 
-				if (cursor.moveToFirst())
-				{
-					// column indices
-					final int idLayerType = cursor.getColumnIndex(Sentences_Layers_X.LAYERTYPE);
-					final int idRank = cursor.getColumnIndex(Sentences_Layers_X.RANK);
-					final int idAnnotations = cursor.getColumnIndex(Sentences_Layers_X.LAYERANNOTATIONS);
-
-					// read cursor
-					while (true)
-					{
-						final String layerType = cursor.getString(idLayerType);
-						final String annotations = cursor.getString(idAnnotations);
-						final String rank = cursor.getString(idRank);
-
-						// sentence
-						Spanner.appendImage(sb, BasicModule.this.layerDrawable);
-						sb.append(' ');
-						Spanner.append(sb, processLayer(layerType), 0, FrameNetFactories.layerTypeFactory);
-						if (VERBOSE)
-						{
-							sb.append(' ');
-							sb.append('[');
-							sb.append(rank);
-							sb.append(']');
-							sb.append('\n');
-						}
-
-						// annotations
-						final List<FnLabel> labels = Utils.parseLabels(annotations);
-						if (labels != null)
-						{
-							for (final FnLabel label : labels)
-							{
-								sb.append('\n');
-								sb.append('\t');
-								sb.append('\t');
-
-								// label
-								Spanner.append(sb, label.label, 0, "FE".equals(layerType) ? FrameNetFactories.feFactory : FrameNetFactories.labelFactory);
-								sb.append(' ');
-
-								// subtext value
-								final int from = Integer.parseInt(label.from);
-								final int to = Integer.parseInt(label.to) + 1;
-								final String subtext = text.substring(from, to);
-								final int p = sb.length();
-								Spanner.append(sb, subtext, 0, FrameNetFactories.subtextFactory);
-								if (label.bgColor != null)
-								{
-									final int color = Integer.parseInt(label.bgColor, 16);
-									sb.setSpan(new BackgroundColorSpan(color), p, p + subtext.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-								}
-								if (label.fgColor != null)
-								{
-									final int color = Integer.parseInt(label.fgColor, 16);
-									sb.setSpan(new ForegroundColorSpan(color), p, p + subtext.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-								}
-							}
-						}
-						if (!cursor.moveToNext())
-						{
-							//noinspection BreakStatement
-							break;
-						}
-						sb.append('\n');
-					}
-
-					// attach result
-					TreeFactory.addTextNode(parent, sb, BasicModule.this.context);
-
-					// fire event
-					FireEvent.onResults(parent);
-				}
-				else
-				{
-					FireEvent.onNoResult(parent, true);
-				}
-
-				cursor.close();
+				onAnnoSetsLoadFinished(parent, loader, cursor, text, -1, idLayerType, idRank, idAnnotations, idAnnoSetId);
 			}
 
 			@Override
@@ -2321,6 +2084,128 @@ abstract public class BasicModule extends Module
 				//
 			}
 		});
+	}
+
+	private void onAnnoSetsLoadFinished(final TreeNode parent, final Loader<Cursor> loader, final Cursor cursor, final String sentenceText, final int idSentenceText, final int idLayerType, final int idRank, final int idAnnotations, final int idAnnoSetId)
+	{
+		if (cursor.moveToFirst())
+		{
+			long currentAnnoSetId = -1;
+			TreeNode annoSetNode = null;
+			SpannableStringBuilder sb = null;
+			SpannableStringBuilder sba = null;
+
+			// read cursor
+			do
+			{
+				final String layerType = cursor.getString(idLayerType);
+				final String annotations = cursor.getString(idAnnotations);
+				final long annoSetId = cursor.getLong(idAnnoSetId);
+				final String rank = cursor.getString(idRank);
+				final boolean isTarget = "Target".equals(layerType);
+				final boolean isFE = "FE".equals(layerType);
+				final String text = sentenceText != null ? sentenceText : cursor.getString(idSentenceText);
+
+				// annoSet grouping
+				if (currentAnnoSetId != annoSetId)
+				{
+					if (sb != null)
+					{
+						// attach result
+						TreeFactory.addTextNode(annoSetNode, sb, BasicModule.this.context);
+					}
+					sb = new SpannableStringBuilder();
+
+					sba = new SpannableStringBuilder();
+					Spanner.append(sba, "AnnoSet", 0, FrameNetFactories.annoSetFactory);
+					sba.append(' ');
+					Spanner.append(sba, Long.toString(annoSetId), 0, FrameNetFactories.dataFactory);
+					annoSetNode = TreeFactory.addTreeNode(parent, sba, R.drawable.annoset, BasicModule.this.context);
+					currentAnnoSetId = annoSetId;
+				}
+
+				if (sb.length() > 0)
+				{
+					sb.append('\n');
+				}
+
+				// layer
+				Spanner.appendImage(sb, BasicModule.this.layerDrawable);
+				sb.append(' ');
+				Spanner.append(sb, processLayer(layerType), 0, FrameNetFactories.layerTypeFactory);
+				if (VERBOSE)
+				{
+					sb.append(' ');
+					sb.append('[');
+					sb.append(rank);
+					sb.append(']');
+					sb.append('\n');
+				}
+
+				// annotations
+				final List<FnLabel> labels = Utils.parseLabels(annotations);
+				if (labels != null)
+				{
+					for (final FnLabel label : labels)
+					{
+						sb.append('\n');
+						sb.append('\t');
+						sb.append('\t');
+
+						// label
+						Spanner.append(sb, label.label, 0, isFE ? //
+								FrameNetFactories.feFactory :  //
+								FrameNetFactories.labelFactory);
+						sb.append(' ');
+
+						// subtext value
+						final int from = Integer.parseInt(label.from);
+						final int to = Integer.parseInt(label.to) + 1;
+						final String subtext = text.substring(from, to);
+						final int p = sb.length();
+						Spanner.append(sb, subtext, 0, (isTarget ?  //
+								FrameNetFactories.targetFactory :  //
+								FrameNetFactories.subtextFactory));
+
+						// target
+						if (isTarget)
+						{
+							sba.append(' ');
+							Spanner.append(sba, subtext, 0, FrameNetFactories.targetFactory);
+						}
+
+						// value colors
+						if (label.bgColor != null)
+						{
+							final int color = Integer.parseInt(label.bgColor, 16);
+							sb.setSpan(new BackgroundColorSpan(color | 0xFF000000), p, p + subtext.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+						}
+						if (label.fgColor != null)
+						{
+							final int color = Integer.parseInt(label.fgColor, 16);
+							sb.setSpan(new ForegroundColorSpan(color | 0xFF000000), p, p + subtext.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+						}
+					}
+				}
+			}
+			while (cursor.moveToNext());
+
+			// attach remaining result
+			if (sb.length() > 0)
+			{
+				// attach result
+				TreeFactory.addTextNode(annoSetNode, sb, BasicModule.this.context);
+			}
+
+			// fire event
+			FireEvent.onResults(parent, 2);
+		}
+		else
+		{
+			FireEvent.onNoResult(parent, true);
+		}
+
+		cursor.close();
 	}
 
 	// agents
@@ -2606,6 +2491,7 @@ abstract public class BasicModule extends Module
 	class DummyQuery extends QueryController.Query
 	{
 		private static final String TAG = "DummyQuery";
+
 		@SuppressWarnings("unused")
 		public DummyQuery(final long annoSetId, final int icon, final CharSequence text)
 		{

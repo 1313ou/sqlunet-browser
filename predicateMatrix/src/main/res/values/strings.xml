@@ -2,7 +2,8 @@
 <resources>
 
 	<string name="title_activity_predicatematrix">PredicateMatrix</string>
-	<string name="hint_search_predicatematrix">Search PredicateMatrix</string>
+	<string name="hint_splash_predicatematrix">Exploring Predicate Matrix</string>
+	<string name="hint_search_predicatematrix">Search Predicate Matrix</string>
 	<string name="tip_pmmode">PredicateMatrix Mode</string>
 
 	<!-- ROLES_GROUPED, ROLES_GROUPED_BY_INDEX, ROLES_GROUPED_BY_SYNSET, ROLES_FLAT, ROLE; -->

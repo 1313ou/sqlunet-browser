@@ -22,11 +22,11 @@ import android.widget.Spinner;
 import android.widget.SpinnerAdapter;
 import android.widget.TextView;
 
+import org.sqlunet.framenet.provider.FrameNetContract.Lookup_FnSentences_X;
+import org.sqlunet.propbank.provider.PropBankContract.Lookup_PbExamples_X;
 import org.sqlunet.provider.ProviderArgs;
 import org.sqlunet.settings.Settings;
-import org.sqlunet.verbnet.provider.VerbNetContract.Lookup_VnExamples;
-import org.sqlunet.propbank.provider.PropBankContract.Lookup_PbExamples;
-import org.sqlunet.framenet.provider.FrameNetContract.Lookup_FnSentences;
+import org.sqlunet.verbnet.provider.VerbNetContract.Lookup_VnExamples_X;
 import org.sqlunet.wordnet.provider.WordNetContract.Lookup_Definitions;
 import org.sqlunet.wordnet.provider.WordNetContract.Lookup_Samples;
 import org.sqlunet.wordnet.provider.WordNetContract.Lookup_Words;
@@ -297,13 +297,14 @@ public class TextSearchActivity extends Activity
 		// status
 		Log.d(TextSearchActivity.TAG, "TEXT SEARCH " + query);
 		this.statusView.setText("search: '" + query + "' " + this.textSearches[itemPosition]);
+
 		// as per selected mode
 		String searchUri;
 		String id;
 		String target;
 		String[] columns;
 		String[] hiddenColumns;
-		Intent intent = null;
+		String database = null;
 		switch (itemPosition)
 		{
 			case 0:
@@ -319,7 +320,7 @@ public class TextSearchActivity extends Activity
 				target = Lookup_Definitions.DEFINITION;
 				columns = new String[]{Lookup_Definitions.DEFINITION};
 				hiddenColumns = new String[]{Lookup_Definitions.SYNSETID};
-				intent = new Intent(this, org.sqlunet.wordnet.browser.SynsetActivity.class);
+				database = "wn";
 				break;
 			case 2:
 				searchUri = Lookup_Samples.CONTENT_URI;
@@ -327,31 +328,35 @@ public class TextSearchActivity extends Activity
 				target = Lookup_Samples.SAMPLE;
 				columns = new String[]{Lookup_Samples.SAMPLE};
 				hiddenColumns = new String[]{Lookup_Samples.SYNSETID};
-				intent = new Intent(this, org.sqlunet.wordnet.browser.SynsetActivity.class);
+				database = "wn";
 				break;
 			case 3:
-				searchUri = Lookup_VnExamples.CONTENT_URI;
-				id = Lookup_VnExamples.EXAMPLEID;
-				target = Lookup_VnExamples.EXAMPLE;
-				columns = new String[]{Lookup_VnExamples.EXAMPLE};
-				hiddenColumns = new String[]{Lookup_VnExamples.CLASSID};
-				intent = new Intent(this, org.sqlunet.verbnet.browser.VnClassActivity.class);
+				searchUri = Lookup_VnExamples_X.CONTENT_URI;
+				id = Lookup_VnExamples_X.EXAMPLEID;
+				target = Lookup_VnExamples_X.EXAMPLE;
+				columns = new String[]{Lookup_VnExamples_X.EXAMPLE};
+				hiddenColumns = new String[]{ //
+						"GROUP_CONCAT(class || '@' || classid) AS " + Lookup_VnExamples_X.CLASSES};
+				database = "vn";
 				break;
 			case 4:
-				searchUri = Lookup_PbExamples.CONTENT_URI;
-				id = Lookup_PbExamples.EXAMPLEID;
-				target = Lookup_PbExamples.TEXT;
-				columns = new String[]{Lookup_PbExamples.TEXT};
-				hiddenColumns = new String[]{Lookup_PbExamples.ROLESETID};
-				intent = new Intent(this, org.sqlunet.propbank.browser.PbRoleSetActivity.class);
+				searchUri = Lookup_PbExamples_X.CONTENT_URI;
+				id = Lookup_PbExamples_X.EXAMPLEID;
+				target = Lookup_PbExamples_X.TEXT;
+				columns = new String[]{Lookup_PbExamples_X.TEXT};
+				hiddenColumns = new String[]{ //
+						"GROUP_CONCAT(rolesetname ||'@'||rolesetid) AS " + Lookup_PbExamples_X.ROLESETS};
+				database = "pb";
 				break;
 			case 5:
-				searchUri = Lookup_FnSentences.CONTENT_URI;
-				id = Lookup_FnSentences.SENTENCEID;
-				target = Lookup_FnSentences.TEXT;
-				columns = new String[]{Lookup_FnSentences.TEXT};
-				hiddenColumns = new String[]{Lookup_FnSentences.SENTENCEID};
-				intent = new Intent(this, org.sqlunet.framenet.browser.FnSentenceActivity.class);
+				searchUri = Lookup_FnSentences_X.CONTENT_URI;
+				id = Lookup_FnSentences_X.SENTENCEID;
+				target = Lookup_FnSentences_X.TEXT;
+				columns = new String[]{Lookup_FnSentences_X.TEXT};
+				hiddenColumns = new String[]{Lookup_FnSentences_X.SENTENCEID, //
+						"GROUP_CONCAT(DISTINCT  frame || '@' || frameid) AS " + Lookup_FnSentences_X.FRAMES, //
+						"GROUP_CONCAT(DISTINCT  lexunit || '@' || luid) AS " + Lookup_FnSentences_X.LEXUNITS};
+				database = "fn";
 				break;
 			default:
 				return;
@@ -366,10 +371,14 @@ public class TextSearchActivity extends Activity
 		args.putString(ProviderArgs.ARG_QUERYFILTER, target + " MATCH ?");
 		args.putString(ProviderArgs.ARG_QUERYARG, query);
 		args.putInt(ProviderArgs.ARG_QUERYLAYOUT, R.layout.item_table1);
-		if (intent != null)
+		if (database != null)
 		{
-			args.putParcelable(ProviderArgs.ARG_QUERYINTENT, intent);
+			args.putString(ProviderArgs.ARG_QUERYDATABASE, database);
 		}
+
+		// clear splash
+		final ViewGroup container = (ViewGroup) findViewById(R.id.container_textsearch);
+		container.removeAllViews();
 
 		// for fragment to handle
 		final Fragment fragment = new TextSearchFragment();

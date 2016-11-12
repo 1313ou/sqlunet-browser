@@ -36,6 +36,8 @@ public class PropBankProvider extends BaseProvider
 
 	// text search codes
 	private static final int LOOKUP_FTS_EXAMPLES = 501;
+	private static final int LOOKUP_FTS_EXAMPLES_X = 511;
+	private static final int LOOKUP_FTS_EXAMPLES_X_BY_EXAMPLE = 512;
 
 	static
 	{
@@ -50,6 +52,8 @@ public class PropBankProvider extends BaseProvider
 		PropBankProvider.uriMatcher.addURI(PropBankContract.AUTHORITY, PropBankContract.PbRoleSets_PbExamples.TABLE_BY_EXAMPLE, PropBankProvider.PBROLESETS_PBEXAMPLES_BY_EXAMPLE);
 
 		PropBankProvider.uriMatcher.addURI(PropBankContract.AUTHORITY, PropBankContract.Lookup_PbExamples.TABLE + "/", PropBankProvider.LOOKUP_FTS_EXAMPLES);
+		PropBankProvider.uriMatcher.addURI(PropBankContract.AUTHORITY, PropBankContract.Lookup_PbExamples_X.TABLE + "/", PropBankProvider.LOOKUP_FTS_EXAMPLES_X);
+		PropBankProvider.uriMatcher.addURI(PropBankContract.AUTHORITY, PropBankContract.Lookup_PbExamples_X.TABLE_BY_EXAMPLE + "/", PropBankProvider.LOOKUP_FTS_EXAMPLES_X_BY_EXAMPLE);
 	}
 
 	// C O N S T R U C T O R
@@ -85,9 +89,14 @@ public class PropBankProvider extends BaseProvider
 				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + PropBankContract.AUTHORITY + '.' + PropBankContract.PbRoleSets_PbExamples.TABLE;
 			case PBROLESETS_PBEXAMPLES_BY_EXAMPLE:
 				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + PropBankContract.AUTHORITY + '.' + PropBankContract.PbRoleSets_PbExamples.TABLE_BY_EXAMPLE;
+
 			// S E A R C H
 			case LOOKUP_FTS_EXAMPLES:
 				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + PropBankContract.AUTHORITY + '.' + PropBankContract.Lookup_PbExamples.TABLE;
+			case LOOKUP_FTS_EXAMPLES_X:
+				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + PropBankContract.AUTHORITY + '.' + PropBankContract.Lookup_PbExamples_X.TABLE;
+			case LOOKUP_FTS_EXAMPLES_X_BY_EXAMPLE:
+				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + PropBankContract.AUTHORITY + '.' + PropBankContract.Lookup_PbExamples_X.TABLE_BY_EXAMPLE;
 			default:
 				throw new UnsupportedOperationException("Illegal MIME type");
 		}
@@ -183,6 +192,15 @@ public class PropBankProvider extends BaseProvider
 
 			case LOOKUP_FTS_EXAMPLES:
 				table = "pbexamples_text_fts4";
+				break;
+			case LOOKUP_FTS_EXAMPLES_X_BY_EXAMPLE:
+				groupBy = "exampleid";
+				//addProjection(projection, "GROUP_CONCAT(rolesetname ||'@'||rolesetid)");
+				//$FALL-THROUGH$
+				//noinspection fallthrough
+			case LOOKUP_FTS_EXAMPLES_X:
+				table = "pbexamples_text_fts4 " + //
+						"LEFT JOIN pbrolesets USING (rolesetid)";
 				break;
 
 			default:

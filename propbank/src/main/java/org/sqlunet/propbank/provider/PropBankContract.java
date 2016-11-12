@@ -95,10 +95,23 @@ public class PropBankContract
 	@SuppressWarnings("unused")
 	static public final class Lookup_PbExamples
 	{
-		static public final String TABLE = "fts_fnsentences";
+		static public final String TABLE = "fts_pbexamples";
 		static public final String CONTENT_URI = BaseProvider.SCHEME + PropBankContract.AUTHORITY + '/' + Lookup_PbExamples.TABLE;
 		static public final String EXAMPLEID = "exampleid";
-		static public final String ROLESETID = "rolesetid";
 		static public final String TEXT = "text";
+		static public final String ROLESETID = "rolesetid";
+	}
+
+	@SuppressWarnings("unused")
+	static public final class Lookup_PbExamples_X
+	{
+		static public final String TABLE = "fts_pbexamples_x";
+		static public final String TABLE_BY_EXAMPLE = "fts_pbexamples_x_by_examples";
+		static public final String CONTENT_URI = BaseProvider.SCHEME + PropBankContract.AUTHORITY + '/' + Lookup_PbExamples_X.TABLE_BY_EXAMPLE;
+		static public final String EXAMPLEID = "exampleid";
+		static public final String TEXT = "text";
+		static public final String ROLESETID = "rolesetid";
+		static public final String ROLESET = "rolesetname";
+		static public final String ROLESETS = "rolesets";
 	}
 }

@@ -30,6 +30,7 @@ public final class ProviderArgs
 
 	// tables
 	public static final String ARG_QUERYURI = "QUERYURI";
+	public static final String ARG_QUERYDATABASE = "QUERYDATABASE";
 	public static final String ARG_QUERYID = "QUERYID";
 	public static final String ARG_QUERYITEMS = "QUERYITEMS";
 	public static final String ARG_QUERYHIDDENITEMS = "QUERYXITEMS";
@@ -37,5 +38,4 @@ public final class ProviderArgs
 	public static final String ARG_QUERYLAYOUT = "QUERYLAYOUT";
 	public static final String ARG_QUERYSORT = "QUERYSORT";
 	public static final String ARG_QUERYFILTER = "QUERYFILTER";
-	public static final String ARG_QUERYINTENT = "QUERYINTENT";
 }

@@ -17,6 +17,8 @@ import org.sqlunet.style.Spanner.SpanFactory;
  */
 public class FrameNetFactories
 {
+	static public final SpanFactory dataFactory = Factories.dataFactory;
+
 	// frame
 	static public final SpanFactory frameFactory = Factories.classFactory;
 
@@ -59,12 +61,30 @@ public class FrameNetFactories
 	static public final SpanFactory sentenceFactory = Factories.exampleFactory;
 
 	// annotations
+	static public final SpanFactory annoSetFactory = new SpanFactory()
+	{
+		@Override
+		public Object makeSpans(final long flags)
+		{
+			return new Object[]{new StyleSpan(Typeface.BOLD)};
+		}
+	};
+
 	static public final SpanFactory layerTypeFactory = new SpanFactory()
 	{
 		@Override
 		public Object makeSpans(final long flags)
 		{
-			return new Object[]{new BackgroundColorSpan(Colors.dk_red), new ForegroundColorSpan(Color.WHITE), new StyleSpan(Typeface.BOLD)};
+			return new Object[]{new BackgroundColorSpan(Colors.yellow), new StyleSpan(Typeface.BOLD)};
+		}
+	};
+
+	static public final SpanFactory labelFactory = new SpanFactory()
+	{
+		@Override
+		public Object makeSpans(final long flags)
+		{
+			return new Object[]{new BackgroundColorSpan(Colors.pink), new ForegroundColorSpan(Color.WHITE), new StyleSpan(Typeface.BOLD)};
 		}
 	};
 
@@ -77,6 +97,15 @@ public class FrameNetFactories
 		}
 	};
 
+	static public final SpanFactory targetFactory = new SpanFactory()
+	{
+		@Override
+		public Object makeSpans(final long flags)
+		{
+			return new Object[]{new BackgroundColorSpan(Color.RED), new ForegroundColorSpan(Color.WHITE), new StyleSpan(Typeface.BOLD)};
+		}
+	};
+
 	static public final SpanFactory highlightTextFactory = new SpanFactory()
 	{
 		@Override
@@ -86,16 +115,7 @@ public class FrameNetFactories
 		}
 	};
 
-	static public final SpanFactory labelFactory = new SpanFactory()
-	{
-		@Override
-		public Object makeSpans(final long flags)
-		{
-			return new Object[]{new BackgroundColorSpan(Colors.pink), new StyleSpan(Typeface.BOLD)};
-		}
-	};
-
-	static public final SpanFactory targetFactory = new SpanFactory()
+	static public final SpanFactory targetHighlightTextFactory = new SpanFactory()
 	{
 		@Override
 		public Object makeSpans(final long flags)

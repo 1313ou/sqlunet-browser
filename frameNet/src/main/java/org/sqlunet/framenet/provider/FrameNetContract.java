@@ -356,9 +356,27 @@ public class FrameNetContract
 		static public final String TABLE = "fts_fnsentences";
 		static public final String CONTENT_URI = BaseProvider.SCHEME + FrameNetContract.AUTHORITY + '/' + Lookup_FnSentences.TABLE;
 		static public final String SENTENCEID = "sentenceid";
-		static public final String ANNOSETID = "annosetid";
+		static public final String TEXT = "text";
 		static public final String FRAMEID = "frameid";
 		static public final String LUID = "luid";
+		static public final String ANNOSETID = "annosetid";
+	}
+
+	@SuppressWarnings("unused")
+	static public final class Lookup_FnSentences_X
+	{
+		static public final String TABLE = "fts_fnsentences_x";
+		static public final String TABLE_BY_SENTENCE = "fts_fnsentences_x_by_sentence";
+		static public final String CONTENT_URI = BaseProvider.SCHEME + FrameNetContract.AUTHORITY + '/' + Lookup_FnSentences_X.TABLE_BY_SENTENCE;
+		static public final String SENTENCEID = "sentenceid";
 		static public final String TEXT = "text";
+		static public final String FRAMEID = "frameid";
+		static public final String FRAME = "frame";
+		static public final String FRAMES = "frames";
+		static public final String LUID = "luid";
+		static public final String LEXUNIT = "lexunit";
+		static public final String LEXUNITS = "lexunits";
+		static public final String ANNOSETID = "annosetid";
+		static public final String ANNOSETS = "annosets";
 	}
 }

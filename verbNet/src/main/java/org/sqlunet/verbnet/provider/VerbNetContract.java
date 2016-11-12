@@ -84,8 +84,23 @@ public class VerbNetContract
 		static public final String TABLE = "fts_vnexamples";
 		static public final String CONTENT_URI = BaseProvider.SCHEME + VerbNetContract.AUTHORITY + '/' + Lookup_VnExamples.TABLE;
 		static public final String EXAMPLEID = "exampleid";
-		static public final String FRAMEID = "frameid";
-		static public final String CLASSID = "classid";
 		static public final String EXAMPLE = "example";
+		static public final String CLASSID = "classid";
+		static public final String FRAMEID = "frameid";
+	}
+
+	@SuppressWarnings("unused")
+	static public final class Lookup_VnExamples_X
+	{
+		static public final String TABLE = "fts_vnexamples_x";
+		static public final String TABLE_BY_EXAMPLE = "fts_vnexamples_x_by_example";
+		static public final String CONTENT_URI = BaseProvider.SCHEME + VerbNetContract.AUTHORITY + '/' + Lookup_VnExamples_X.TABLE_BY_EXAMPLE;
+		static public final String EXAMPLEID = "exampleid";
+		static public final String EXAMPLE = "example";
+		static public final String CLASSID = "classid";
+		static public final String CLASS = "class";
+		static public final String FRAMEID = "frameid";
+		static public final String CLASSES = "classes";
+		static public final String FRAMES = "frames";
 	}
 }

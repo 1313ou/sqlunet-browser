@@ -78,6 +78,8 @@ public class FrameNetProvider extends BaseProvider
 
 	// text search codes
 	private static final int LOOKUP_FTS_SENTENCES = 501;
+	private static final int LOOKUP_FTS_SENTENCES_X = 511;
+	private static final int LOOKUP_FTS_SENTENCES_X_BY_SENTENCE = 512;
 
 	static
 	{
@@ -114,6 +116,8 @@ public class FrameNetProvider extends BaseProvider
 		FrameNetProvider.uriMatcher.addURI(FrameNetContract.AUTHORITY, Governors_AnnoSets_Sentences.TABLE, FrameNetProvider.GOVERNORS_ANNOSETS);
 
 		FrameNetProvider.uriMatcher.addURI(FrameNetContract.AUTHORITY, Lookup_FnSentences.TABLE + "/", FrameNetProvider.LOOKUP_FTS_SENTENCES);
+		FrameNetProvider.uriMatcher.addURI(FrameNetContract.AUTHORITY, FrameNetContract.Lookup_FnSentences_X.TABLE + "/", FrameNetProvider.LOOKUP_FTS_SENTENCES_X);
+		FrameNetProvider.uriMatcher.addURI(FrameNetContract.AUTHORITY, FrameNetContract.Lookup_FnSentences_X.TABLE_BY_SENTENCE + "/", FrameNetProvider.LOOKUP_FTS_SENTENCES_X_BY_SENTENCE);
 	}
 
 	// C O N S T R U C T O R
@@ -186,9 +190,15 @@ public class FrameNetProvider extends BaseProvider
 				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + FrameNetContract.AUTHORITY + '.' + ValenceUnits_Sentences.TABLE;
 			case GOVERNORS_ANNOSETS:
 				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + FrameNetContract.AUTHORITY + '.' + Governors_AnnoSets_Sentences.TABLE;
+
 			// S E A R C H
 			case LOOKUP_FTS_SENTENCES:
 				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + FrameNetContract.AUTHORITY + '.' + Lookup_FnSentences.TABLE;
+			case LOOKUP_FTS_SENTENCES_X:
+				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + FrameNetContract.AUTHORITY + '.' + FrameNetContract.Lookup_FnSentences_X.TABLE;
+			case LOOKUP_FTS_SENTENCES_X_BY_SENTENCE:
+				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + FrameNetContract.AUTHORITY + '.' + FrameNetContract.Lookup_FnSentences_X.TABLE_BY_SENTENCE;
+
 			default:
 				throw new UnsupportedOperationException("Illegal MIME type");
 		}
@@ -306,7 +316,7 @@ public class FrameNetProvider extends BaseProvider
 				break;
 
 			case SENTENCES_LAYERS_X:
-				table = "(SELECT sentenceid,layerid,layertype,rank," + //
+				table = "(SELECT annosetid,sentenceid,layerid,layertype,rank," + //
 						"GROUP_CONCAT(start||':'||" + //
 						"end||':'||" + //
 						"labeltype||':'||" + //
@@ -494,6 +504,16 @@ public class FrameNetProvider extends BaseProvider
 
 			case LOOKUP_FTS_SENTENCES:
 				table = "fnsentences_text_fts4";
+				break;
+			case LOOKUP_FTS_SENTENCES_X_BY_SENTENCE:
+				groupBy = "sentenceid";
+				//addProjection(projection, "GROUP_CONCAT(DISTINCT  frame || '@' || frameid)", "GROUP_CONCAT(DISTINCT  lexunit || '@' || luid)");
+				//$FALL-THROUGH$
+				//noinspection fallthrough
+			case LOOKUP_FTS_SENTENCES_X:
+				table = "fnsentences_text_fts4 " + //
+						"LEFT JOIN fnframes USING (frameid) " + //
+						"LEFT JOIN fnlexunits USING (frameid,luid)";
 				break;
 
 			default:
