@@ -375,6 +375,7 @@
       <w>ptid</w>
       <w>queryaction</w>
       <w>queryarg</w>
+      <w>querydatabase</w>
       <w>queryfilter</w>
       <w>queryhiddenitems</w>
       <w>queryid</w>

@@ -83,7 +83,7 @@ public class TextSearchFragment extends AbstractTableFragment
 		}
 
 		// search target
-		final String database = args.getString(ProviderArgs.ARG_QUERYDATABASE);
+		// final String database = args.getString(ProviderArgs.ARG_QUERYDATABASE);
 		String queryArg = args.getString(ProviderArgs.ARG_QUERYARG);
 		queryArg = queryArg != null ? queryArg.trim() : "";
 
@@ -185,6 +185,7 @@ public class TextSearchFragment extends AbstractTableFragment
 				{
 					final DialogInterface.OnClickListener listener = new DialogInterface.OnClickListener()
 					{
+						@Override
 						public void onClick(final DialogInterface dialog, int which)
 						{
 							// which argument contains the index position of the selected item
@@ -213,6 +214,7 @@ public class TextSearchFragment extends AbstractTableFragment
 				{
 					final DialogInterface.OnClickListener listener = new DialogInterface.OnClickListener()
 					{
+						@Override
 						public void onClick(final DialogInterface dialog, int which)
 						{
 							// which argument contains the index position of the selected item
@@ -247,6 +249,7 @@ public class TextSearchFragment extends AbstractTableFragment
 				{
 					final DialogInterface.OnClickListener listener = new DialogInterface.OnClickListener()
 					{
+						@Override
 						public void onClick(final DialogInterface dialog, int which)
 						{
 							// which argument contains the index position of the selected item
@@ -284,6 +287,7 @@ public class TextSearchFragment extends AbstractTableFragment
 		}
 
 		// pass pointer
+		assert targetIntent != null;
 		targetIntent.putExtra(ProviderArgs.ARG_QUERYPOINTER, pointer);
 
 		// start
@@ -307,6 +311,7 @@ public class TextSearchFragment extends AbstractTableFragment
 		}
 
 		// pass pointer
+		assert targetIntent != null;
 		targetIntent.putExtra(ProviderArgs.ARG_QUERYPOINTER, pointer);
 
 		// start
@@ -340,6 +345,7 @@ public class TextSearchFragment extends AbstractTableFragment
 		}
 
 		// pass pointer
+		assert targetIntent != null;
 		targetIntent.putExtra(ProviderArgs.ARG_QUERYPOINTER, pointer);
 
 		// start
@@ -389,8 +395,7 @@ public class TextSearchFragment extends AbstractTableFragment
 		// data and listener
 		builder.setItems(choices, listener);
 
-		// get the AlertDialog from create()
-		AlertDialog dialog = builder.create();
-		return dialog;
+		// get the dialog
+		return builder.create();
 	}
 }

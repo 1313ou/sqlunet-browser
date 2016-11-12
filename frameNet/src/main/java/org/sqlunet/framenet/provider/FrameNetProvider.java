@@ -356,7 +356,7 @@ public class FrameNetProvider extends BaseProvider
 				break;
 
 			case PATTERNS_LAYERS_X:
-				table = "(SELECT sentenceid,text,layerid,layertype,rank," + //
+				table = "(SELECT annosetid,sentenceid,text,layerid,layertype,rank," + //
 						"GROUP_CONCAT(start||':'||" + //
 						"end||':'||" + //
 						"labeltype||':'||" + //
@@ -377,7 +377,7 @@ public class FrameNetProvider extends BaseProvider
 				break;
 
 			case VALENCEUNITS_LAYERS_X:
-				table = "(SELECT sentenceid,text,layerid,layertype,rank," + //
+				table = "(SELECT annosetid,sentenceid,text,layerid,layertype,rank," + //
 						"GROUP_CONCAT(start||':'||" + //
 						"end||':'||" + //
 						"labeltype||':'||" + //

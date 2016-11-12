@@ -1862,7 +1862,7 @@ abstract public class BasicModule extends Module
 						// layer
 						Spanner.appendImage(sb, BasicModule.this.layerDrawable);
 						sb.append(' ');
-						Spanner.append(sb, processLayer(layerType), 0, isTarget ? FrameNetFactories.layerTypeFactory : FrameNetFactories.layerTypeFactory);
+						Spanner.append(sb, processLayer(layerType), 0, isTarget ? FrameNetFactories.targetFactory : FrameNetFactories.layerTypeFactory);
 						if (VERBOSE)
 						{
 							final String rank = cursor.getString(idRank);
@@ -2086,7 +2086,7 @@ abstract public class BasicModule extends Module
 		});
 	}
 
-	private void onAnnoSetsLoadFinished(final TreeNode parent, final Loader<Cursor> loader, final Cursor cursor, final String sentenceText, final int idSentenceText, final int idLayerType, final int idRank, final int idAnnotations, final int idAnnoSetId)
+	private void onAnnoSetsLoadFinished(final TreeNode parent, @SuppressWarnings("UnusedParameters") final Loader<Cursor> loader, final Cursor cursor, final String sentenceText, final int idSentenceText, final int idLayerType, final int idRank, final int idAnnotations, final int idAnnoSetId)
 	{
 		if (cursor.moveToFirst())
 		{
@@ -2124,6 +2124,7 @@ abstract public class BasicModule extends Module
 					currentAnnoSetId = annoSetId;
 				}
 
+				assert sb != null;
 				if (sb.length() > 0)
 				{
 					sb.append('\n');
@@ -2139,7 +2140,6 @@ abstract public class BasicModule extends Module
 					sb.append('[');
 					sb.append(rank);
 					sb.append(']');
-					sb.append('\n');
 				}
 
 				// annotations
@@ -2170,6 +2170,7 @@ abstract public class BasicModule extends Module
 						// target
 						if (isTarget)
 						{
+							assert sba != null;
 							sba.append(' ');
 							Spanner.append(sba, subtext, 0, FrameNetFactories.targetFactory);
 						}
