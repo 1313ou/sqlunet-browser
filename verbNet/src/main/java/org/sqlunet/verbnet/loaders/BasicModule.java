@@ -169,6 +169,8 @@ abstract class BasicModule extends Module
 				{
 					throw new RuntimeException("Unexpected number of rows");
 				}
+
+				// read cursor
 				if (cursor.moveToFirst())
 				{
 					final Context context = BasicModule.this.context;
@@ -178,8 +180,6 @@ abstract class BasicModule extends Module
 					// final int idClassId = cursor.getColumnIndex(VnClasses_X.CLASSID);
 					final int idClass = cursor.getColumnIndex(VnClasses.CLASS);
 					// final int idClassTag = cursor.getColumnIndex(VnClasses.CLASSTAG);
-
-					// read cursor
 
 					// data
 					// final int classId = cursor.getInt(idClassId);
@@ -259,8 +259,6 @@ abstract class BasicModule extends Module
 			{
 				if (cursor.moveToFirst())
 				{
-					final SpannableStringBuilder sb = new SpannableStringBuilder();
-
 					// column indices
 					// final int idWordId = cursor.getColumnIndex(VnClasses_VnMembers_X.WORDID);
 					// final int idVnWordId = cursor.getColumnIndex(VnClasses_VnMembers_X.VNWORDID);
@@ -268,53 +266,58 @@ abstract class BasicModule extends Module
 					final int idGroupings = cursor.getColumnIndex(VnClasses_VnMembers_X.GROUPINGS);
 					final int idDefinitions = cursor.getColumnIndex(VnClasses_VnMembers_X.DEFINITIONS);
 
-					// read cursor
-					while (true)
+					do
 					{
+						final SpannableStringBuilder sb = new SpannableStringBuilder();
+
 						// member
-						Spanner.appendImage(sb, BasicModule.this.drawableMember);
-						sb.append(' ');
+						// Spanner.appendImage(sb, BasicModule.this.drawableMember);
+						// sb.append(' ');
 						Spanner.append(sb, cursor.getString(idLemma), 0, VerbNetFactories.memberFactory);
 
-						// definitions
 						final String definitions = cursor.getString(idDefinitions);
-						if (definitions != null)
-						{
-							for (String definition : definitions.split("\\|"))
-							{
-								sb.append('\n');
-								sb.append('\t');
-								Spanner.appendImage(sb, BasicModule.this.drawableDefinition);
-								sb.append(' ');
-								Spanner.append(sb, definition.trim(), 0, VerbNetFactories.definitionFactory);
-							}
-						}
-
-						// groupings
 						final String groupings = cursor.getString(idGroupings);
-						if (groupings != null)
+						if (definitions != null || groupings != null)
 						{
-							for (String grouping : groupings.split(","))
+							final TreeNode memberNode = TreeFactory.addTreeNode(parent, sb, R.drawable.member, BasicModule.this.context);
+
+							final SpannableStringBuilder sb2 = new SpannableStringBuilder();
+
+							// definitions
+							if (definitions != null)
 							{
-								sb.append('\n');
-								sb.append('\t');
-								Spanner.appendImage(sb, BasicModule.this.drawableGrouping);
-								sb.append(' ');
-								Spanner.append(sb, grouping.trim(), 0, VerbNetFactories.groupingFactory);
+								for (String definition : definitions.split("\\|"))
+								{
+									Spanner.appendImage(sb2, BasicModule.this.drawableDefinition);
+									sb2.append(' ');
+									Spanner.append(sb2, definition.trim(), 0, VerbNetFactories.definitionFactory);
+								}
 							}
-						}
 
-						if (!cursor.moveToNext())
+							// groupings
+							if (groupings != null)
+							{
+								for (String grouping : groupings.split(","))
+								{
+									if (sb2.length() > 0)
+									{
+										sb2.append('\n');
+									}
+									Spanner.appendImage(sb2, BasicModule.this.drawableGrouping);
+									sb2.append(' ');
+									Spanner.append(sb2, grouping.trim(), 0, VerbNetFactories.groupingFactory);
+								}
+							}
+
+							// attach defintion and groupings result
+							TreeFactory.addTextNode(memberNode, sb2, BasicModule.this.context);
+						}
+						else
 						{
-							//noinspection BreakStatement
-							break;
+							TreeFactory.addLeafNode(parent, sb, R.drawable.member, BasicModule.this.context);
 						}
-
-						sb.append('\n');
 					}
-
-					// attach result
-					TreeFactory.addTextNode(parent, sb, BasicModule.this.context);
+					while (cursor.moveToNext());
 
 					// fire event
 					FireEvent.onResults(parent);
