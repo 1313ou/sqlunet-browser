@@ -1,5 +1,6 @@
 package org.sqlunet.browser;
 
+import android.annotation.TargetApi;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -493,6 +494,7 @@ public class TextSearchFragment extends AbstractTableFragment
 	 * @param resId   res id
 	 * @return image span
 	 */
+	@TargetApi(Build.VERSION_CODES.LOLLIPOP)
 	@SuppressWarnings("deprecation")
 	static private Object makeImageSpan(final Context context, final int resId)
 	{

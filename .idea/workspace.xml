@@ -4,7 +4,6 @@
     <option name="AUTOSCROLL_TO_SOURCE" value="true" />
     <option name="SPLITTER_PROPORTION" value="0.5911914" />
     <option name="GROUP_BY_SEVERITY" value="true" />
-    <option name="SCOPE_TYPE" value="8" />
     <option name="CUSTOM_SCOPE_NAME" value="ProjectFiles" />
     <option name="ANALYSIS_IN_BACKGROUND" value="true" />
   </component>
@@ -19,17 +18,9 @@
     <option name="TOOL_WINDOW_REGEXP_FILTER" value="false" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e66c28dc-5afe-443a-8883-1d8123a0e6a1" name="Default" comment="">
+    <list default="true" id="e66c28dc-5afe-443a-8883-1d8123a0e6a1" name="Default" comment="cosmetic fixes from eclipse 2&#10;">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bNC/bNC.iml" afterPath="$PROJECT_DIR$/bNC/bNC.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/browser/browser.iml" afterPath="$PROJECT_DIR$/browser/browser.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/browser/src/main/java/org/sqlunet/browser/TextSearchFragment.java" afterPath="$PROJECT_DIR$/browser/src/main/java/org/sqlunet/browser/TextSearchFragment.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frameNet/src/main/java/org/sqlunet/framenet/sql/FrameNetImplementation.java" afterPath="$PROJECT_DIR$/frameNet/src/main/java/org/sqlunet/framenet/sql/FrameNetImplementation.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/propbank/propbank.iml" afterPath="$PROJECT_DIR$/propbank/propbank.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/verbNet/verbNet.iml" afterPath="$PROJECT_DIR$/verbNet/verbNet.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordNet/wordNet.iml" afterPath="$PROJECT_DIR$/wordNet/wordNet.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/xNet/src/main/java/org/sqlunet/settings/StorageStyle.java" afterPath="$PROJECT_DIR$/xNet/src/main/java/org/sqlunet/settings/StorageStyle.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/xNet/xNet.iml" afterPath="$PROJECT_DIR$/xNet/xNet.iml" />
     </list>
     <ignored path="Browser.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -71,18 +62,7 @@
     <favorites_list name="Browser" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file leaf-file-name="TextSearchFragment.java" pinned="false" current-in-tab="true">
-        <entry file="file:///mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/java/org/sqlunet/browser/TextSearchFragment.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="143">
-              <caret line="11" column="24" selection-start-line="11" selection-start-column="24" selection-end-line="11" selection-end-column="24" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -8438,9 +8418,9 @@
     <scope name="ProjectFiles" pattern="lib:*..*||src:*..*||test:*..*" />
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="59" />
+    <option name="x" value="61" />
     <option name="y" value="82" />
-    <option name="width" value="1861" />
+    <option name="width" value="1859" />
     <option name="height" value="1118" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
@@ -8950,13 +8930,6 @@
       <option name="presentableId" value="Default" />
       <updated>1476373639609</updated>
     </task>
-    <task id="LOCAL-00015" summary="normalization">
-      <created>1476970026664</created>
-      <option name="number" value="00015" />
-      <option name="presentableId" value="LOCAL-00015" />
-      <option name="project" value="LOCAL" />
-      <updated>1476970026664</updated>
-    </task>
     <task id="LOCAL-00016" summary="normalization">
       <created>1476985068806</created>
       <option name="number" value="00016" />
@@ -9293,7 +9266,14 @@
       <option name="project" value="LOCAL" />
       <updated>1479058832782</updated>
     </task>
-    <option name="localTasksCounter" value="64" />
+    <task id="LOCAL-00064" summary="cosmetic fixes from eclipse&#10;">
+      <created>1479064595886</created>
+      <option name="number" value="00064" />
+      <option name="presentableId" value="LOCAL-00064" />
+      <option name="project" value="LOCAL" />
+      <updated>1479064595887</updated>
+    </task>
+    <option name="localTasksCounter" value="65" />
     <servers />
   </component>
   <component name="TodoView" selected-index="2">
@@ -9306,8 +9286,8 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="59" y="82" width="1861" height="1118" extended-state="0" />
-    <editor active="true" />
+    <frame x="61" y="82" width="1859" height="1118" extended-state="0" />
+    <editor active="false" />
     <layout>
       <window_info id="Nl-Palette" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.1831602" sideWeight="0.42837077" order="8" side_tool="true" content_ui="tabs" />
@@ -9316,21 +9296,21 @@
       <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.20448333" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Android Model" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3293018" sideWeight="0.5" order="9" side_tool="true" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.20418271" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Android Model" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1496973" sideWeight="0.5" order="9" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39433962" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3273453" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.16792452" sideWeight="0.33679608" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.43013972" sideWeight="0.58993983" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.43013972" sideWeight="0.58993983" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3264151" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.31237525" sideWeight="0.4980864" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.31237525" sideWeight="0.4980864" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3264151" sideWeight="0.4980864" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Captures" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24986331" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.17075472" sideWeight="0.66320395" order="11" side_tool="true" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16987355" sideWeight="0.5716292" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16951019" sideWeight="0.5716292" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.29528302" sideWeight="0.51831603" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32968834" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
@@ -9399,7 +9379,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="link expand issue&#10;lint" />
     <MESSAGE value="fe expand&#10;lu expand" />
     <MESSAGE value="expand control&#10;extra files that were mistakenly not staged" />
     <MESSAGE value="factoring styles" />
@@ -9424,7 +9403,8 @@
     <MESSAGE value="guard against null dictionary" />
     <MESSAGE value="textsearch styled dialog&#10;guard against null label value in fn layers&#10;" />
     <MESSAGE value="guard against null dir in storage discovery&#10;" />
-    <option name="LAST_COMMIT_MESSAGE" value="guard against null dir in storage discovery&#10;" />
+    <MESSAGE value="cosmetic fixes from eclipse&#10;" />
+    <option name="LAST_COMMIT_MESSAGE" value="cosmetic fixes from eclipse&#10;" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -9777,9 +9757,9 @@
         <state relative-caret-position="543">
           <caret line="463" column="32" selection-start-line="463" selection-start-column="32" selection-end-line="463" selection-end-column="32" />
           <folding>
-            <element signature="e#12461#12488#0" expanded="true" />
-            <element signature="e#17982#18009#0" expanded="true" />
-            <element signature="e#18759#18786#0" expanded="true" />
+            <element signature="e#12461#12488#0" expanded="false" />
+            <element signature="e#17982#18009#0" expanded="false" />
+            <element signature="e#18759#18786#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -9793,9 +9773,11 @@
     </entry>
     <entry file="file:///mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/java/org/sqlunet/browser/TextSearchFragment.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="143">
-          <caret line="11" column="24" selection-start-line="11" selection-start-column="24" selection-end-line="11" selection-end-column="24" />
-          <folding />
+        <state relative-caret-position="130">
+          <caret line="382" column="46" selection-start-line="382" selection-start-column="46" selection-end-line="382" selection-end-column="46" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
