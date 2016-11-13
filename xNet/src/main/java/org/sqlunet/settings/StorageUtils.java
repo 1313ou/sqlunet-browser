@@ -199,8 +199,10 @@ public class StorageUtils
 		@Override
 		public boolean equals(Object another)
 		{
-			if(!(another instanceof CandidateStorage))
+			if (!(another instanceof CandidateStorage))
+			{
 				return false;
+			}
 			final CandidateStorage storage2 = (CandidateStorage) another;
 			return this.dir.equals(storage2.dir);
 		}
@@ -437,11 +439,18 @@ public class StorageUtils
 				for (int i = 1; i < dirs.length; i++)
 				{
 					dir = dirs[i];
-					storages.add(new Directory(dir, DirType.APP_EXTERNAL_SECONDARY));
+					if (dir != null)
+					{
+						storages.add(new Directory(dir, DirType.APP_EXTERNAL_SECONDARY));
+					}
 				}
 
 				// primary storage
-				storages.add(new Directory(dirs[0], DirType.APP_EXTERNAL_PRIMARY));
+				dir = dirs[0];
+				if (dir != null)
+				{
+					storages.add(new Directory(dir, DirType.APP_EXTERNAL_PRIMARY));
+				}
 			}
 		}
 		catch (final Throwable e)
