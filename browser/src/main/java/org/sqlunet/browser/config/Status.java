@@ -25,7 +25,7 @@ public class Status
 	static private final String TAG = "Status";
 	// status flags
 
-	private static final int EXISTS = 0x1;
+	static private final int EXISTS = 0x1;
 
 	static public final int EXISTS_INDEXES = 0x10;
 
@@ -136,7 +136,7 @@ public class Status
 	 * @param context context
 	 * @return true if database exists
 	 */
-	private static boolean existsDatabase(final Context context)
+	static private boolean existsDatabase(final Context context)
 	{
 		final String databasePath = StorageSettings.getDatabasePath(context);
 		final File db = new File(databasePath);
@@ -149,7 +149,7 @@ public class Status
 	 * @param context context
 	 * @return list of tables and indexes
 	 */
-	private static List<String> tablesAndIndexes(final Context context)
+	static private List<String> tablesAndIndexes(final Context context)
 	{
 		final String order = "CASE " //
 				+ "WHEN " + ManagerContract.TablesAndIndices.TYPE + " = 'table' THEN '1' " //

@@ -14,7 +14,7 @@ class LinksQueryCommand extends DBQueryCommand
 	/**
 	 * <code>QUERY</code> SQL statement
 	 */
-	private static final String QUERY = SqLiteDialect.LinksQuery; // ;
+	static private final String QUERY = SqLiteDialect.LinksQuery; // ;
 
 	/**
 	 * Constructor

@@ -16,7 +16,7 @@ import org.sqlunet.treeview.model.TreeNode;
  */
 public class IconLeafController extends Controller<Value>
 {
-	/// private static final String TAG = "IconLeafController";
+	/// static private final String TAG = "IconLeafController";
 
 	/**
 	 * Resource used (changed by derived classes)

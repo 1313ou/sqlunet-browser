@@ -20,24 +20,24 @@ public class PropBankProvider extends BaseProvider
 	// U R I M A T C H E R
 
 	// uri matcher
-	private static final UriMatcher uriMatcher;
+	static private final UriMatcher uriMatcher;
 
 	// table codes
-	private static final int PBROLESET = 10;
-	private static final int PBROLESETS = 11;
+	static private final int PBROLESET = 10;
+	static private final int PBROLESETS = 11;
 
 	// join codes
-	private static final int PBROLESETS_X = 100;
-	private static final int PBROLESETS_X_BY_ROLESET = 101;
-	private static final int WORDS_PBROLESETS = 110;
-	private static final int PBROLESETS_PBROLES = 120;
-	private static final int PBROLESETS_PBEXAMPLES = 130;
-	private static final int PBROLESETS_PBEXAMPLES_BY_EXAMPLE = 131;
+	static private final int PBROLESETS_X = 100;
+	static private final int PBROLESETS_X_BY_ROLESET = 101;
+	static private final int WORDS_PBROLESETS = 110;
+	static private final int PBROLESETS_PBROLES = 120;
+	static private final int PBROLESETS_PBEXAMPLES = 130;
+	static private final int PBROLESETS_PBEXAMPLES_BY_EXAMPLE = 131;
 
 	// text search codes
-	private static final int LOOKUP_FTS_EXAMPLES = 501;
-	private static final int LOOKUP_FTS_EXAMPLES_X = 511;
-	private static final int LOOKUP_FTS_EXAMPLES_X_BY_EXAMPLE = 512;
+	static private final int LOOKUP_FTS_EXAMPLES = 501;
+	static private final int LOOKUP_FTS_EXAMPLES_X = 511;
+	static private final int LOOKUP_FTS_EXAMPLES_X_BY_EXAMPLE = 512;
 
 	static
 	{

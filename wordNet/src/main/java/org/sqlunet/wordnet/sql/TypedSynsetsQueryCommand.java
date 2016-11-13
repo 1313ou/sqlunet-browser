@@ -14,12 +14,12 @@ class TypedSynsetsQueryCommand extends DBQueryCommand
 	/**
 	 * <code>QUERYWITHPOS</code> is the (part-of-speech based) SQL statement
 	 */
-	private static String QUERYWITHPOS;
+	static private String QUERYWITHPOS;
 
 	/**
 	 * <code>QUERYWITHLEXDOMAIN</code> is the (lexdomain based) SQL statement
 	 */
-	private static String QUERYWITHLEXDOMAIN;
+	static private String QUERYWITHLEXDOMAIN;
 
 	/**
 	 * Init data (resources, ...)

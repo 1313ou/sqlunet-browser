@@ -19,7 +19,7 @@ import java.util.List;
  */
 public class Storage
 {
-	private static final String TAG = "Storage";
+	static private final String TAG = "Storage";
 	/**
 	 * SqlUnet DB filename
 	 */

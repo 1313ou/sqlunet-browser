@@ -14,7 +14,7 @@ class TypedLinksQueryCommand extends DBQueryCommand
 	/**
 	 * <code>QUERY</code> is the SQL statement
 	 */
-	private static final String QUERY = SqLiteDialect.TypedLinksQuery;
+	static private final String QUERY = SqLiteDialect.TypedLinksQuery;
 
 	/**
 	 * Constructor

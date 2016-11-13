@@ -17,7 +17,7 @@ abstract class XmlProcessor
 	/**
 	 * Builder factory
 	 */
-	private static final DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+	static private final DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
 
 	/**
 	 * Constructor

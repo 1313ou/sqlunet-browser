@@ -14,7 +14,7 @@ class FnGovernorQueryCommand extends DBQueryCommand
 	/**
 	 * <code>QUERY</code> is the SQL statement
 	 */
-	private static final String QUERY = SqLiteDialect.FrameNetGovernorQuery;
+	static private final String QUERY = SqLiteDialect.FrameNetGovernorQuery;
 
 	/**
 	 * Constructor

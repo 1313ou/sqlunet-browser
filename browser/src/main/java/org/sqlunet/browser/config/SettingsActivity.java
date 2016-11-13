@@ -35,7 +35,7 @@ public class SettingsActivity extends PreferenceActivity
 	/**
 	 * A preference value change listener that updates the preference's summary to reflect its new value.
 	 */
-	private static final Preference.OnPreferenceChangeListener listener = new Preference.OnPreferenceChangeListener()
+	static private final Preference.OnPreferenceChangeListener listener = new Preference.OnPreferenceChangeListener()
 	{
 		@Override
 		public boolean onPreferenceChange(final Preference preference, final Object value)
@@ -63,7 +63,7 @@ public class SettingsActivity extends PreferenceActivity
 	 * Determines whether to always show the simplified settings UI, where settings are presented in a single list. When false, settings are shown as a
 	 * master/detail two-pane view on tablets. When true, a single pane is shown on tablets.
 	 */
-	private static boolean ALWAYS_SIMPLE_PREFS = false;
+	static private boolean ALWAYS_SIMPLE_PREFS = false;
 
 	/**
 	 * Set always-simple-preferences flag
@@ -81,7 +81,7 @@ public class SettingsActivity extends PreferenceActivity
 	/**
 	 * Helper method to determine if the device has an large screen.
 	 */
-	private static boolean isLargeTablet(final Context context)
+	static private boolean isLargeTablet(final Context context)
 	{
 		return (context.getResources().getConfiguration().screenLayout & Configuration.SCREENLAYOUT_SIZE_MASK) >= Configuration.SCREENLAYOUT_SIZE_LARGE;
 	}
@@ -91,7 +91,7 @@ public class SettingsActivity extends PreferenceActivity
 	 * have newer APIs like {@link PreferenceFragment}, or the device doesn't have an extra-large screen. In these cases, a single-pane "simplified" settings UI
 	 * should be shown.
 	 */
-	private static boolean isSimplePreferences(final Context context)
+	static private boolean isSimplePreferences(final Context context)
 	{
 		return SettingsActivity.ALWAYS_SIMPLE_PREFS || Build.VERSION.SDK_INT < Build.VERSION_CODES.HONEYCOMB || !SettingsActivity.isLargeTablet(context);
 	}
@@ -105,7 +105,7 @@ public class SettingsActivity extends PreferenceActivity
 	 *
 	 * @see #listener
 	 */
-	private static void bind(final Preference preference)
+	static private void bind(final Preference preference)
 	{
 		// set the listener to watch for value changes.
 		preference.setOnPreferenceChangeListener(SettingsActivity.listener);
@@ -128,7 +128,7 @@ public class SettingsActivity extends PreferenceActivity
 	 * @param context context
 	 * @param pref    preference
 	 */
-	private static void setStoragePreference(final Context context, final Preference pref)
+	static private void setStoragePreference(final Context context, final Preference pref)
 	{
 		final ListPreference listPreference = (ListPreference) pref;
 		setStoragePreferenceData(context, listPreference);
@@ -149,7 +149,7 @@ public class SettingsActivity extends PreferenceActivity
 	 * @param context  context
 	 * @param listPref pref
 	 */
-	private static void setStoragePreferenceData(final Context context, final ListPreference listPref)
+	static private void setStoragePreferenceData(final Context context, final ListPreference listPref)
 	{
 		final Pair<CharSequence[], CharSequence[]> candidateNamesValues = StorageStyle.getCandidateNamesValues(context);
 

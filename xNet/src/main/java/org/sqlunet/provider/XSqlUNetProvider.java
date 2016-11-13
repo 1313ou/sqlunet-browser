@@ -33,18 +33,18 @@ public class XSqlUNetProvider extends BaseProvider
 	// U R I M A T C H E R
 
 	// uri matcher
-	private static final UriMatcher uriMatcher;
+	static private final UriMatcher uriMatcher;
 
 	// join codes
-	private static final int WORDS_FNWORDS_PBWORDS_VNWORDS = 100;
-	private static final int PREDICATEMATRIX = 200;
-	private static final int PREDICATEMATRIX_VERBNET = 210;
-	private static final int PREDICATEMATRIX_PROPBANK = 220;
-	private static final int PREDICATEMATRIX_FRAMENET = 230;
-	private static final int WORDS_VNWORDS_VNCLASSES_U = 310;
-	private static final int WORDS_PBWORDS_PBROLESETS_U = 320;
-	private static final int WORDS_FNWORDS_FNFRAMES_U = 330;
-	private static final int SOURCES = 400;
+	static private final int WORDS_FNWORDS_PBWORDS_VNWORDS = 100;
+	static private final int PREDICATEMATRIX = 200;
+	static private final int PREDICATEMATRIX_VERBNET = 210;
+	static private final int PREDICATEMATRIX_PROPBANK = 220;
+	static private final int PREDICATEMATRIX_FRAMENET = 230;
+	static private final int WORDS_VNWORDS_VNCLASSES_U = 310;
+	static private final int WORDS_PBWORDS_PBROLESETS_U = 320;
+	static private final int WORDS_FNWORDS_FNFRAMES_U = 330;
+	static private final int SOURCES = 400;
 
 	static
 	{

@@ -14,7 +14,7 @@ class VnFrameQueryCommand extends DBQueryCommand
 	/**
 	 * <code>QUERY</code> is the SQL statement
 	 */
-	private static final String QUERY = SqLiteDialect.VerbNetFramesQuery;
+	static private final String QUERY = SqLiteDialect.VerbNetFramesQuery;
 
 	/**
 	 * Constructor

@@ -417,7 +417,7 @@ public class FrameNetImplementation implements FrameNetInterface
 	 * @param parent     the org.w3c.dom.Node the walk will attach results to
 	 * @param luId       the target lexunit id
 	 */
-	private static void walkLexUnit(final SQLiteDatabase connection, final Document doc, final Node parent, final long luId)
+	static private void walkLexUnit(final SQLiteDatabase connection, final Document doc, final Node parent, final long luId)
 	{
 		// lexunit
 		final FnLexUnit lexUnit = FnLexUnit.makeFromId(connection, luId);
@@ -447,7 +447,7 @@ public class FrameNetImplementation implements FrameNetInterface
 	 * @param parent     the org.w3c.dom.Node the walk will attach results to
 	 * @param sentenceId the target sentence id
 	 */
-	private static void walkSentence(final SQLiteDatabase connection, final Document doc, final Node parent, final long sentenceId)
+	static private void walkSentence(final SQLiteDatabase connection, final Document doc, final Node parent, final long sentenceId)
 	{
 		// sentence
 		final FnSentence sentence = FnSentence.make(connection, sentenceId);
@@ -465,7 +465,7 @@ public class FrameNetImplementation implements FrameNetInterface
 	 * @param parent     the org.w3c.dom.Node the walk will attach results to
 	 * @param annoSetId  the target annoSet id
 	 */
-	private static void walkAnnoSet(final SQLiteDatabase connection, final Document doc, final Node parent, final long annoSetId)
+	static private void walkAnnoSet(final SQLiteDatabase connection, final Document doc, final Node parent, final long annoSetId)
 	{
 		// annoSet
 		final FnAnnoSet annoSet = FnAnnoSet.make(connection, annoSetId);
@@ -483,7 +483,7 @@ public class FrameNetImplementation implements FrameNetInterface
 	 * @param parent     the org.w3c.dom.Node the walk will attach results to
 	 * @param annoSetId  the target annoSet id
 	 */
-	private static void walkLayersFromAnnoSet(final SQLiteDatabase connection, final Document doc, final Node parent, final long annoSetId)
+	static private void walkLayersFromAnnoSet(final SQLiteDatabase connection, final Document doc, final Node parent, final long annoSetId)
 	{
 		// layers
 		final List<FnLayer> layers = FnLayer.makeFromAnnoSet(connection, annoSetId);
@@ -502,7 +502,7 @@ public class FrameNetImplementation implements FrameNetInterface
 	 * @param parent     the org.w3c.dom.Node the walk will attach results to
 	 * @param sentenceId the target sentence id
 	 */
-	private static void walkLayersFromSentence(final SQLiteDatabase connection, final Document doc, final Node parent, final long sentenceId)
+	static private void walkLayersFromSentence(final SQLiteDatabase connection, final Document doc, final Node parent, final long sentenceId)
 	{
 		// layers
 		final List<FnLayer> layers = FnLayer.makeFromSentence(connection, sentenceId);
@@ -523,7 +523,7 @@ public class FrameNetImplementation implements FrameNetInterface
 	 * @param lexUnits lexunits
 	 * @param doFrame  whether to include frame data
 	 */
-	private static void makeSelector(final Document doc, final Node parent, final Iterable<FnLexUnit> lexUnits, final boolean doFrame)
+	static private void makeSelector(final Document doc, final Node parent, final Iterable<FnLexUnit> lexUnits, final boolean doFrame)
 	{
 		// lexunits
 		for (final FnLexUnit lexUnit : lexUnits)

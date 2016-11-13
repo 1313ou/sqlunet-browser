@@ -32,7 +32,7 @@ import java.io.File;
 @SuppressLint("Registered")
 public class SetupBaseActivity extends Activity implements Downloader.Listener, ExecuteManager.Listener
 {
-	private static final String TAG = "SetupBaseActivity";
+	static private final String TAG = "SetupBaseActivity";
 	// task
 	AsyncTask<?, Integer, Boolean> task;
 

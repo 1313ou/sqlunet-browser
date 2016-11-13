@@ -23,11 +23,11 @@ import java.util.Map;
  */
 public class StorageUtils
 {
-	private static final String TAG = "StorageUtils";
+	static private final String TAG = "StorageUtils";
 	/**
 	 * Database size
 	 */
-	private static final float DATABASEMB = 512F;
+	static private final float DATABASEMB = 512F;
 
 	/**
 	 * Storage types
@@ -303,7 +303,7 @@ public class StorageUtils
 	 * @return true if it qualifies
 	 */
 	@TargetApi(Build.VERSION_CODES.LOLLIPOP)
-	private static int qualifies(final File dir, final DirType type)
+	static private int qualifies(final File dir, final DirType type)
 	{
 		int status = 0;
 
@@ -369,7 +369,7 @@ public class StorageUtils
 	 * @param dirs list of directories
 	 * @return list of candidate storages
 	 */
-	private static List<CandidateStorage> makeCandidateStorages(final Iterable<Directory> dirs)
+	static private List<CandidateStorage> makeCandidateStorages(final Iterable<Directory> dirs)
 	{
 		final List<CandidateStorage> storages = new ArrayList<>();
 		for (final Directory dir : dirs)
@@ -387,7 +387,7 @@ public class StorageUtils
 	 * @param context context
 	 * @return list of candidate storages
 	 */
-	private static List<CandidateStorage> getCandidateStorages(final Context context)
+	static private List<CandidateStorage> getCandidateStorages(final Context context)
 	{
 		final List<Directory> dirs = getDirectories(context);
 		return makeCandidateStorages(dirs);
@@ -413,7 +413,7 @@ public class StorageUtils
 	 * @return list of storage directories
 	 */
 	@TargetApi(Build.VERSION_CODES.KITKAT)
-	private static List<Directory> getDirectories(final Context context)
+	static private List<Directory> getDirectories(final Context context)
 	{
 		final List<Directory> storages = new ArrayList<>();
 
@@ -597,7 +597,7 @@ public class StorageUtils
 	 *
 	 * @return primary emulated external storage directory
 	 */
-	private static File discoverPrimaryEmulatedExternalStorage()
+	static private File discoverPrimaryEmulatedExternalStorage()
 	{
 		// primary emulated sdcard
 		final String emulatedStorageTarget = System.getenv("EMULATED_STORAGE_TARGET");
@@ -625,7 +625,7 @@ public class StorageUtils
 	 *
 	 * @return primary physical external storage directory
 	 */
-	private static File discoverPrimaryPhysicalExternalStorage()
+	static private File discoverPrimaryPhysicalExternalStorage()
 	{
 		final String externalStorage = System.getenv("EXTERNAL_STORAGE");
 		// device has physical external extStorage; use plain paths.
@@ -642,7 +642,7 @@ public class StorageUtils
 	 *
 	 * @return secondary external storage directories
 	 */
-	private static File[] discoverSecondaryExternalStorage()
+	static private File[] discoverSecondaryExternalStorage()
 	{
 		// all secondary sdcards (all except primary) separated by ":"
 		String secondaryStoragesEnv = System.getenv("SECONDARY_STORAGE");
@@ -677,7 +677,7 @@ public class StorageUtils
 	 *
 	 * @return user id
 	 */
-	private static String getUserId()
+	static private String getUserId()
 	{
 		if (Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN_MR1)
 		{
@@ -740,7 +740,7 @@ public class StorageUtils
 	 * @return free storage in megabytes
 	 */
 	@TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR2)
-	private static float storageFree(final String path)
+	static private float storageFree(final String path)
 	{
 		try
 		{

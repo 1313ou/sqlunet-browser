@@ -16,7 +16,7 @@ import org.sqlunet.browser.AbstractTableFragment;
  */
 public class TableFragment extends AbstractTableFragment
 {
-	// private static final String TAG = "TableFragment";
+	// static private final String TAG = "TableFragment";
 	/**
 	 * Mandatory empty constructor for the fragment manager to instantiate the fragment (e.g. upon screen orientation changes).
 	 */

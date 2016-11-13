@@ -27,7 +27,7 @@ import org.sqlunet.settings.StorageSettings;
  */
 public class ManagementFragment extends Fragment implements Listener
 {
-	private static final String TAG = "ManagementFragment";
+	static private final String TAG = "ManagementFragment";
 	public static final String ARG = "statement";
 	/**
 	 * Action spinner

@@ -36,13 +36,13 @@ public class StorageStyle
 {
 	// Colors
 
-	private static final int dkgreen = 0xFF008B00;
+	static private final int dkgreen = 0xFF008B00;
 
-	private static final int dkred = 0xFF8B0000;
+	static private final int dkred = 0xFF8B0000;
 
-	private static final int ltyellow = 0xFFFFFF99;
+	static private final int ltyellow = 0xFFFFFF99;
 
-	private static final int pink = 0xFFE9967A;
+	static private final int pink = 0xFFE9967A;
 
 	/**
 	 * Styled string
@@ -50,7 +50,7 @@ public class StorageStyle
 	 * @param candidate candidate storage
 	 * @return styled string
 	 */
-	private static CharSequence toStyledString(final Context context, final CandidateStorage candidate)
+	static private CharSequence toStyledString(final Context context, final CandidateStorage candidate)
 	{
 		final SpannableStringBuilder sb = new SpannableStringBuilder();
 		appendImage(context, sb, toResId(candidate.dir.type));
@@ -70,7 +70,7 @@ public class StorageStyle
 	 * @param candidate candidate storage
 	 * @return styled string
 	 */
-	private static CharSequence styledFitsIn(final CandidateStorage candidate)
+	static private CharSequence styledFitsIn(final CandidateStorage candidate)
 	{
 		final SpannableStringBuilder sb = new SpannableStringBuilder();
 		final boolean fitsIn = candidate.fitsIn();
@@ -84,7 +84,7 @@ public class StorageStyle
 	 * @param candidate candidate storage
 	 * @return styled string
 	 */
-	private static CharSequence styledStatus(final CandidateStorage candidate)
+	static private CharSequence styledStatus(final CandidateStorage candidate)
 	{
 		final SpannableStringBuilder sb = new SpannableStringBuilder();
 		final CharSequence status = candidate.status();

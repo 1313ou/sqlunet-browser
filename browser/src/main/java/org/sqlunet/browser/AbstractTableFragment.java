@@ -31,7 +31,7 @@ import java.util.List;
  */
 public abstract class AbstractTableFragment extends ListFragment
 {
-	private static final String TAG = "AbstractTableFrag";
+	static private final String TAG = "AbstractTableFrag";
 
 	/**
 	 * View binder factory

@@ -13,7 +13,7 @@ import java.util.List;
  */
 public class TreeNode
 {
-	private static final String NODES_ID_SEPARATOR = ":";
+	static private final String NODES_ID_SEPARATOR = ":";
 	/**
 	 * Id
 	 */

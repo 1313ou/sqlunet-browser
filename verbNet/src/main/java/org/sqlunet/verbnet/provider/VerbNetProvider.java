@@ -21,23 +21,23 @@ public class VerbNetProvider extends BaseProvider
 	// U R I M A T C H E R
 
 	// uri matcher
-	private static final UriMatcher uriMatcher;
+	static private final UriMatcher uriMatcher;
 
 	// table codes
-	private static final int VNCLASS = 10;
-	private static final int VNCLASSES = 11;
-	private static final int VNCLASSES_X_BY_VNCLASS = 20;
+	static private final int VNCLASS = 10;
+	static private final int VNCLASSES = 11;
+	static private final int VNCLASSES_X_BY_VNCLASS = 20;
 
 	// join codes
-	private static final int WORDS_VNCLASSES = 100;
-	private static final int VNCLASSES_VNMEMBERS_X_BY_WORD = 110;
-	private static final int VNCLASSES_VNROLES_X_BY_VNROLE = 120;
-	private static final int VNCLASSES_VNFRAMES_X_BY_VNFRAME = 130;
+	static private final int WORDS_VNCLASSES = 100;
+	static private final int VNCLASSES_VNMEMBERS_X_BY_WORD = 110;
+	static private final int VNCLASSES_VNROLES_X_BY_VNROLE = 120;
+	static private final int VNCLASSES_VNFRAMES_X_BY_VNFRAME = 130;
 
 	// text search codes
-	private static final int LOOKUP_FTS_EXAMPLES = 501;
-	private static final int LOOKUP_FTS_EXAMPLES_X = 511;
-	private static final int LOOKUP_FTS_EXAMPLES_X_BY_EXAMPLE = 512;
+	static private final int LOOKUP_FTS_EXAMPLES = 501;
+	static private final int LOOKUP_FTS_EXAMPLES_X = 511;
+	static private final int LOOKUP_FTS_EXAMPLES_X_BY_EXAMPLE = 512;
 
 	static
 	{

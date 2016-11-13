@@ -42,44 +42,44 @@ public class FrameNetProvider extends BaseProvider
 	// U R I M A T C H E R
 
 	// table codes
-	private static final UriMatcher uriMatcher;
-	private static final int LEXUNIT = 10;
-	private static final int LEXUNITS = 11;
-	private static final int LEXUNITS_X_BY_LEXUNIT = 12;
-	private static final int FRAME = 20;
-	private static final int FRAMES = 21;
-	private static final int FRAMES_X_BY_FRAME = 23;
-	private static final int FRAMES_RELATED = 25;
-	private static final int SENTENCE = 30;
-	private static final int SENTENCES = 31;
-	private static final int ANNOSET = 40;
-	private static final int ANNOSETS = 41;
-	private static final int SENTENCES_LAYERS_X = 50;
-	private static final int ANNOSETS_LAYERS_X = 51;
-	private static final int PATTERNS_LAYERS_X = 52;
-	private static final int VALENCEUNITS_LAYERS_X = 53;
-	private static final int PATTERNS_SENTENCES = 61;
-	private static final int VALENCEUNITS_SENTENCES = 62;
-	private static final int GOVERNORS_ANNOSETS = 70;
+	static private final UriMatcher uriMatcher;
+	static private final int LEXUNIT = 10;
+	static private final int LEXUNITS = 11;
+	static private final int LEXUNITS_X_BY_LEXUNIT = 12;
+	static private final int FRAME = 20;
+	static private final int FRAMES = 21;
+	static private final int FRAMES_X_BY_FRAME = 23;
+	static private final int FRAMES_RELATED = 25;
+	static private final int SENTENCE = 30;
+	static private final int SENTENCES = 31;
+	static private final int ANNOSET = 40;
+	static private final int ANNOSETS = 41;
+	static private final int SENTENCES_LAYERS_X = 50;
+	static private final int ANNOSETS_LAYERS_X = 51;
+	static private final int PATTERNS_LAYERS_X = 52;
+	static private final int VALENCEUNITS_LAYERS_X = 53;
+	static private final int PATTERNS_SENTENCES = 61;
+	static private final int VALENCEUNITS_SENTENCES = 62;
+	static private final int GOVERNORS_ANNOSETS = 70;
 
 	// join codes
-	private static final int WORDS_LEXUNITS_FRAMES = 100;
-	private static final int FRAMES_FES = 200;
-	private static final int FRAMES_FES_BY_FE = 201;
-	private static final int LEXUNITS_SENTENCES = 300;
-	private static final int LEXUNITS_SENTENCES_BY_SENTENCE = 301;
-	private static final int LEXUNITS_SENTENCES_ANNOSETS_LAYERS_LABELS = 310;
-	private static final int LEXUNITS_SENTENCES_ANNOSETS_LAYERS_LABELS_BY_SENTENCE = 311;
-	private static final int LEXUNITS_GOVERNORS = 410;
-	private static final int LEXUNITS_REALIZATIONS = 420;
-	private static final int LEXUNITS_REALIZATIONS_BY_REALIZATION = 421;
-	private static final int LEXUNITS_GROUPREALIZATIONS = 430;
-	private static final int LEXUNITS_GROUPREALIZATIONS_BY_PATTERN = 431;
+	static private final int WORDS_LEXUNITS_FRAMES = 100;
+	static private final int FRAMES_FES = 200;
+	static private final int FRAMES_FES_BY_FE = 201;
+	static private final int LEXUNITS_SENTENCES = 300;
+	static private final int LEXUNITS_SENTENCES_BY_SENTENCE = 301;
+	static private final int LEXUNITS_SENTENCES_ANNOSETS_LAYERS_LABELS = 310;
+	static private final int LEXUNITS_SENTENCES_ANNOSETS_LAYERS_LABELS_BY_SENTENCE = 311;
+	static private final int LEXUNITS_GOVERNORS = 410;
+	static private final int LEXUNITS_REALIZATIONS = 420;
+	static private final int LEXUNITS_REALIZATIONS_BY_REALIZATION = 421;
+	static private final int LEXUNITS_GROUPREALIZATIONS = 430;
+	static private final int LEXUNITS_GROUPREALIZATIONS_BY_PATTERN = 431;
 
 	// text search codes
-	private static final int LOOKUP_FTS_SENTENCES = 501;
-	private static final int LOOKUP_FTS_SENTENCES_X = 511;
-	private static final int LOOKUP_FTS_SENTENCES_X_BY_SENTENCE = 512;
+	static private final int LOOKUP_FTS_SENTENCES = 501;
+	static private final int LOOKUP_FTS_SENTENCES_X = 511;
+	static private final int LOOKUP_FTS_SENTENCES_X_BY_SENTENCE = 512;
 
 	static
 	{

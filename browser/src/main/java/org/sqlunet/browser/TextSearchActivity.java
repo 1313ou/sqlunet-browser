@@ -38,11 +38,11 @@ import org.sqlunet.wordnet.provider.WordNetContract.Lookup_Words;
  */
 public class TextSearchActivity extends Activity
 {
-	private static final String TAG = "TextSearchActivity";
+	static private final String TAG = "TextSearchActivity";
 	/**
 	 * State
 	 */
-	private static final String STATE_SELECTED_TEXTSEARCH = "org.sqlunet.browser.textsearch.selected";
+	static private final String STATE_SELECTED_TEXTSEARCH = "org.sqlunet.browser.textsearch.selected";
 	/**
 	 * Search view
 	 */

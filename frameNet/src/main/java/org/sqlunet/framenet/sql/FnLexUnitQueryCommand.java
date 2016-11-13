@@ -14,7 +14,7 @@ class FnLexUnitQueryCommand extends DBQueryCommand
 	/**
 	 * <code>QUERY</code> is the SQL statement
 	 */
-	private static final String QUERY = SqLiteDialect.FrameNetLexUnitQuery;
+	static private final String QUERY = SqLiteDialect.FrameNetLexUnitQuery;
 
 	/**
 	 * Constructor

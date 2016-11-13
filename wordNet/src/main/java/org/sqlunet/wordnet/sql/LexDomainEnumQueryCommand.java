@@ -14,7 +14,7 @@ class LexDomainEnumQueryCommand extends DBQueryCommand
 	/**
 	 * <code>QUERY</code> is the SQL statement
 	 */
-	private static final String QUERY = SqLiteDialect.LexDomainEnumQuery; // ;
+	static private final String QUERY = SqLiteDialect.LexDomainEnumQuery; // ;
 
 	/**
 	 * Constructor

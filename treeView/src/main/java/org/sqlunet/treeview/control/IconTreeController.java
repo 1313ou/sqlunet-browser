@@ -17,7 +17,7 @@ import org.sqlunet.treeview.model.TreeNode;
  */
 public class IconTreeController extends Controller<Value>
 {
-	/// private static final String TAG = "IconTreeController";
+	/// static private final String TAG = "IconTreeController";
 
 	/**
 	 * Junction view

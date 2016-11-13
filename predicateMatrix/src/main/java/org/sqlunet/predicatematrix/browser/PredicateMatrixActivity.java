@@ -39,7 +39,7 @@ import org.sqlunet.provider.ProviderArgs;
  */
 public class PredicateMatrixActivity extends Activity
 {
-	private static final String TAG = "PredicateMatrixActivity";
+	static private final String TAG = "PredicateMatrixActivity";
 	/**
 	 * PredicateMatrix mode spinner
 	 */
@@ -58,7 +58,7 @@ public class PredicateMatrixActivity extends Activity
 	/**
 	 * Selector mode state
 	 */
-	private static final String STATE_SELECTED_PM_MODE = "org.sqlunet.browser.predicatematrix.mode.selected";
+	static private final String STATE_SELECTED_PM_MODE = "org.sqlunet.browser.predicatematrix.mode.selected";
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
 	{

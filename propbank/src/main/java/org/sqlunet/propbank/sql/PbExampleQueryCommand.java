@@ -17,7 +17,7 @@ class PbExampleQueryCommand extends DBQueryCommand
 	/**
 	 * <code>QUERY</code> is the SQL statement
 	 */
-	private static final String QUERY = SqLiteDialect.PropBankExamplesQuery;
+	static private final String QUERY = SqLiteDialect.PropBankExamplesQuery;
 
 	/**
 	 * Constructor

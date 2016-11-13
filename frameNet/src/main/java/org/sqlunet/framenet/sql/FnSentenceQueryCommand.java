@@ -14,7 +14,7 @@ class FnSentenceQueryCommand extends DBQueryCommand
 	/**
 	 * <code>QUERY</code> is the SQL statement
 	 */
-	private static final String QUERY = SqLiteDialect.FrameNetSentenceQuery;
+	static private final String QUERY = SqLiteDialect.FrameNetSentenceQuery;
 
 	/**
 	 * Constructor

@@ -32,7 +32,7 @@ public class WordNetImplementation implements WordNetInterface
 	 * @param parent     org.w3c.dom.Node walk will attach results to
 	 * @param targetWord target word
 	 */
-	private static void walkSelector(final SQLiteDatabase connection, final Document doc, final Node parent, final String targetWord)
+	static private void walkSelector(final SQLiteDatabase connection, final Document doc, final Node parent, final String targetWord)
 	{
 		// word
 		final Word word = Word.make(connection, targetWord);
@@ -95,7 +95,7 @@ public class WordNetImplementation implements WordNetInterface
 	 * @param targetLexDomainType target lexdomain type (ANYTYPE for all types)
 	 * @param targetLinkType      target link type (ANYTYPE for all types)
 	 */
-	private static void walk(final SQLiteDatabase connection, final String targetWord, final Document doc, final Node parent, final boolean withLinks, final boolean recurse, final int targetPosType, final int targetLexDomainType, final int targetLinkType)
+	static private void walk(final SQLiteDatabase connection, final String targetWord, final Document doc, final Node parent, final boolean withLinks, final boolean recurse, final int targetPosType, final int targetLexDomainType, final int targetLinkType)
 	{
 		// word
 		final Word word = Word.make(connection, targetWord);
@@ -163,7 +163,7 @@ public class WordNetImplementation implements WordNetInterface
 	 * @param recurse        determines if queries are to follow links recursively
 	 * @param targetLinkType target link type
 	 */
-	private static void walkSense(final SQLiteDatabase connection, //
+	static private void walkSense(final SQLiteDatabase connection, //
 			final long wordId,  //
 			final Long synsetId,  //
 			final Document doc, //
@@ -247,7 +247,7 @@ public class WordNetImplementation implements WordNetInterface
 	 * @param parent     org.w3c.dom.Node walk will attach results to
 	 * @param synset     synset whose data are to be processed
 	 */
-	private static void walkSynset(final SQLiteDatabase connection, final Document doc, final Node parent, final Synset synset)
+	static private void walkSynset(final SQLiteDatabase connection, final Document doc, final Node parent, final Synset synset)
 	{
 		// synset words
 		final List<Word> words = synset.getSynsetWords(connection);
@@ -286,7 +286,7 @@ public class WordNetImplementation implements WordNetInterface
 	 * @param recurse        determines if queries are to follow links recursively
 	 * @param targetLinkType target link type
 	 */
-	private static void walkSynsetLinks(final SQLiteDatabase connection, final Document doc, final Node parent, final Synset synset, final long wordId, final boolean withLinks, final boolean recurse, final int targetLinkType)
+	static private void walkSynsetLinks(final SQLiteDatabase connection, final Document doc, final Node parent, final Synset synset, final long wordId, final boolean withLinks, final boolean recurse, final int targetLinkType)
 	{
 		if (withLinks)
 		{

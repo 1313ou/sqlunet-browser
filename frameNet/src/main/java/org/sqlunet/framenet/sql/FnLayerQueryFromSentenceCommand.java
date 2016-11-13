@@ -12,7 +12,7 @@ class FnLayerQueryFromSentenceCommand extends FnLayerQueryCommand
 	/**
 	 * <code>QUERY</code> is the SQL statement
 	 */
-	private static final String QUERY = SqLiteDialect.FrameNetLayerQueryFromSentence;
+	static private final String QUERY = SqLiteDialect.FrameNetLayerQueryFromSentence;
 
 	/**
 	 * Constructor

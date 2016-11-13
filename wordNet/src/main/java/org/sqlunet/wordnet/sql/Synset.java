@@ -14,7 +14,7 @@ import java.util.List;
  */
 class Synset extends BasicSynset
 {
-	private static final String TAG = "Synset";
+	static private final String TAG = "Synset";
 	/**
 	 * Constructor from data
 	 *

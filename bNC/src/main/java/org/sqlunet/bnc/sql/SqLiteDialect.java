@@ -3,7 +3,7 @@ package org.sqlunet.bnc.sql;
 @SuppressWarnings("unused")
 class SqLiteDialect
 {
-	private static final String BNCBaseWordQuery = "SELECT " + //
+	static private final String BNCBaseWordQuery = "SELECT " + //
 			"pos, freq, range, disp, " + //
 			"bncconvtasks.freq1, bncconvtasks.range1, bncconvtasks.disp1, " + //
 			"bncconvtasks.freq2, bncconvtasks.range2, bncconvtasks.disp2, " + //
@@ -24,7 +24,7 @@ class SqLiteDialect
 	static String BNCWordQuery = SqLiteDialect.BNCBaseWordQuery + //
 			"WHERE lemma = ?;";
 
-	private static final String BNCBaseQuery = "SELECT " + //
+	static private final String BNCBaseQuery = "SELECT " + //
 			"pos, freq, range, disp, " + //
 			"bncconvtasks.freq1, bncconvtasks.range1, bncconvtasks.disp1, " + //
 			"bncconvtasks.freq2, bncconvtasks.range2, bncconvtasks.disp2, " + //

@@ -14,7 +14,7 @@ class WordQueryCommand extends DBQueryCommand
 	/**
 	 * <code>QUERY</code> is the SQL statement
 	 */
-	private static final String QUERY = SqLiteDialect.WordQuery;
+	static private final String QUERY = SqLiteDialect.WordQuery;
 
 	/**
 	 * Constructor

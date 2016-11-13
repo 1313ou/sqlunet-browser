@@ -11,7 +11,7 @@ import org.sqlunet.treeview.model.TreeNode;
  */
 public class QueryController extends IconTreeController
 {
-	// private static final String TAG = "QueryController";
+	// static private final String TAG = "QueryController";
 	public final boolean triggerNow;
 
 	private boolean processed = false;

@@ -34,6 +34,7 @@ public class StorageSettings
 	static public final String PREF_ENTRY_IMPORT = "pref_entry_import";
 	static public final String PREF_ENTRY_PM = "pref_entry_pm";
 	static public final String PREF_ENTRY_INDEX = "pref_entry_index";
+
 	// D A T A B A S E
 
 	/**
@@ -85,7 +86,7 @@ public class StorageSettings
 	 * @param context context
 	 * @return download site
 	 */
-	private static String getDownloadSite(final Context context)
+	static private String getDownloadSite(final Context context)
 	{
 		// test if already in preferences
 		final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
@@ -112,7 +113,7 @@ public class StorageSettings
 	 * @param context context
 	 * @return download db file
 	 */
-	private static String getDbDownloadFile(final Context context)
+	static private String getDbDownloadFile(final Context context)
 	{
 		// test if already already in preferences
 		final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
@@ -161,7 +162,7 @@ public class StorageSettings
 	 * @param context context
 	 * @return download sql file
 	 */
-	private static String getSqlDownloadFile(final Context context)
+	static private String getSqlDownloadFile(final Context context)
 	{
 		// test if already already in preferences
 		final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);

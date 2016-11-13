@@ -35,9 +35,9 @@ public class StatusActivity extends Activity
 
 	public static final String CANTRUN = "status.cant.run";
 
-	private static final int REQUEST_DOWNLOAD_CODE = 0xDDDD;
+	static private final int REQUEST_DOWNLOAD_CODE = 0xDDDD;
 
-	private static final int REQUEST_MANAGEMENT_CODE = 0xAAA0;
+	static private final int REQUEST_MANAGEMENT_CODE = 0xAAA0;
 
 	@Override
 	protected void onCreate(final Bundle savedInstanceState)

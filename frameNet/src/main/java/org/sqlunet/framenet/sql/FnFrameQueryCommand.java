@@ -14,7 +14,7 @@ class FnFrameQueryCommand extends DBQueryCommand
 	/**
 	 * <code>QUERY</code> is the SQL statement
 	 */
-	private static final String QUERY = SqLiteDialect.FrameNetFrameQuery;
+	static private final String QUERY = SqLiteDialect.FrameNetFrameQuery;
 
 	/**
 	 * Constructor

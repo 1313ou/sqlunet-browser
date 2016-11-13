@@ -284,10 +284,20 @@ abstract class BasicModule extends Module
 							final SpannableStringBuilder sb2 = new SpannableStringBuilder();
 
 							// definitions
+							boolean first = true;
 							if (definitions != null)
 							{
 								for (String definition : definitions.split("\\|"))
 								{
+									if (first)
+									{
+										first = false;
+									}
+									else
+									{
+										sb2.append('\n');
+									}
+
 									Spanner.appendImage(sb2, BasicModule.this.drawableDefinition);
 									sb2.append(' ');
 									Spanner.append(sb2, definition.trim(), 0, VerbNetFactories.definitionFactory);
@@ -295,21 +305,31 @@ abstract class BasicModule extends Module
 							}
 
 							// groupings
+							first = true;
 							if (groupings != null)
 							{
 								for (String grouping : groupings.split(","))
 								{
-									if (sb2.length() > 0)
+									if (first)
+									{
+										if (sb2.length() > 0)
+										{
+											sb2.append('\n');
+										}
+										first = false;
+									}
+									else
 									{
 										sb2.append('\n');
 									}
+
 									Spanner.appendImage(sb2, BasicModule.this.drawableGrouping);
 									sb2.append(' ');
 									Spanner.append(sb2, grouping.trim(), 0, VerbNetFactories.groupingFactory);
 								}
 							}
 
-							// attach defintion and groupings result
+							// attach definition and groupings result
 							TreeFactory.addTextNode(memberNode, sb2, BasicModule.this.context);
 						}
 						else

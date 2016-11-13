@@ -16,7 +16,7 @@ import org.sqlunet.settings.StorageSettings;
  */
 public abstract class BaseProvider extends ContentProvider
 {
-	private static final String TAG = "BaseProvider";
+	static private final String TAG = "BaseProvider";
 
 	/**
 	 * Debug generated SQL
@@ -28,7 +28,7 @@ public abstract class BaseProvider extends ContentProvider
 	static public final String SCHEME = "content://";
 
 /*
-	private static final class DatabaseHelper extends SQLiteOpenHelper
+	static private final class DatabaseHelper extends SQLiteOpenHelper
 	{
 		// constructor
 		DatabaseHelper(final Context context)

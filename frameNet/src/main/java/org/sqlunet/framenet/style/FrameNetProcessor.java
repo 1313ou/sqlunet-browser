@@ -13,7 +13,7 @@ public class FrameNetProcessor extends Preprocessor
 	/**
 	 * Replacers for preprocessor
 	 */
-	private static final String[] replacers = { //
+	static private final String[] replacers = { //
 			"<ex>", "\n<ex>", //
 	};
 

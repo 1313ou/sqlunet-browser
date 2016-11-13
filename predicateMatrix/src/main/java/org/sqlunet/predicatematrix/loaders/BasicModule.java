@@ -48,7 +48,7 @@ import java.util.TreeSet;
  */
 abstract class BasicModule extends Module
 {
-	// private static final String LOG = "PredicateMatrix";
+	// static private final String LOG = "PredicateMatrix";
 	// resources
 
 	/**

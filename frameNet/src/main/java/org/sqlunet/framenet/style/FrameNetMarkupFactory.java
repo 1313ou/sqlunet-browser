@@ -34,7 +34,7 @@ public class FrameNetMarkupFactory implements MarkupSpanner.SpanFactory
 	/**
 	 * Text factory
 	 */
-	private static final MarkupSpanner.SpanFactory textFactory = new MarkupSpanner.SpanFactory()
+	static private final MarkupSpanner.SpanFactory textFactory = new MarkupSpanner.SpanFactory()
 	{
 		@Override
 		public Object makeSpans(final String selector, final long flags)

@@ -17,7 +17,7 @@ public class PreparedStatement
 	/**
 	 * Whether to output SQL statements
 	 */
-	private static final boolean debugSql = true;
+	static private final boolean debugSql = true;
 
 	/**
 	 * Database

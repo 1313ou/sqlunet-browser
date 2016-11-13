@@ -24,10 +24,10 @@ public class ManagerProvider extends BaseProvider
 	// U R I M A T C H E R
 
 	// uri matcher
-	private static final UriMatcher uriMatcher;
+	static private final UriMatcher uriMatcher;
 
 	// join codes
-	private static final int TABLES_AND_INDICES = 100;
+	static private final int TABLES_AND_INDICES = 100;
 
 	static
 	{

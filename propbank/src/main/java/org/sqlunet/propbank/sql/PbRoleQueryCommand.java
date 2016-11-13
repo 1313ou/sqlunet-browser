@@ -16,7 +16,7 @@ class PbRoleQueryCommand extends DBQueryCommand
 	/**
 	 * <code>QUERY</code> is the SQL statement
 	 */
-	private static final String QUERY = SqLiteDialect.PropBankRolesQuery;
+	static private final String QUERY = SqLiteDialect.PropBankRolesQuery;
 
 	/**
 	 * Constructor

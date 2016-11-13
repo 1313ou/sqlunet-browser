@@ -60,18 +60,18 @@ public class WebFragment extends Fragment
 	/**
 	 * HTML stuff
 	 */
-	private static final String BODY1 = "<html><head>";
-	private static final String BODY2 = "</head><body>";
-	private static final String BODY3 = "</body></html>";
-	private static final String TOP = "<DIV class='titlesection'><IMG class='titleimg' src='images/logo.png'/></DIV>";
-	private static final String STYLESHEET1 = "<link rel='stylesheet' type='text/css' href='";
-	private static final String STYLESHEET2 = "' />";
-	private static final String SCRIPT1 = "<script type='text/javascript' src='";
-	private static final String SCRIPT2 = "'></script>";
-	private static final String LIST1 = "<OL style='display: block;'>";
-	private static final String LIST2 = "</OL>";
-	private static final String ITEM1 = "<LI class='treeitem treepanel'>";
-	private static final String ITEM2 = "</LI>";
+	static private final String BODY1 = "<html><head>";
+	static private final String BODY2 = "</head><body>";
+	static private final String BODY3 = "</body></html>";
+	static private final String TOP = "<DIV class='titlesection'><IMG class='titleimg' src='images/logo.png'/></DIV>";
+	static private final String STYLESHEET1 = "<link rel='stylesheet' type='text/css' href='";
+	static private final String STYLESHEET2 = "' />";
+	static private final String SCRIPT1 = "<script type='text/javascript' src='";
+	static private final String SCRIPT2 = "'></script>";
+	static private final String LIST1 = "<OL style='display: block;'>";
+	static private final String LIST2 = "</OL>";
+	static private final String ITEM1 = "<LI class='treeitem treepanel'>";
+	static private final String ITEM2 = "</LI>";
 	/**
 	 * WebView
 	 */

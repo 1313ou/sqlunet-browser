@@ -30,7 +30,7 @@ import java.util.Set;
  */
 public class TreeView
 {
-	private static final String NODES_PATH_SEPARATOR = ";";
+	static private final String NODES_PATH_SEPARATOR = ";";
 	/**
 	 * Root node
 	 */

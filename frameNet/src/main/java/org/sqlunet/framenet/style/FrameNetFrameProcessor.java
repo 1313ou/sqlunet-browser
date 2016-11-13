@@ -13,7 +13,7 @@ public class FrameNetFrameProcessor extends Preprocessor
 	/**
 	 * Replacers for preprocessor
 	 */
-	private static final String[] replacers = { //
+	static private final String[] replacers = { //
 			"<fex name=[\"\']([^\"\']+)[\"\']>([^<]*)</fex>", "<fex>$2</fex> <xfen>[$1]</xfen>",};
 	/**
 	 * Constructor

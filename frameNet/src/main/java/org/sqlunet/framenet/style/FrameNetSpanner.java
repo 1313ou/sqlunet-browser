@@ -15,8 +15,8 @@ import java.util.regex.Pattern;
  */
 public class FrameNetSpanner
 {
-	private static final Pattern pattern = Pattern.compile("<([^>]*)>([^<]*)</([^>]*)>");
-	private static final Pattern pattern1 = Pattern.compile("<(ex)>(.*)</(ex)>");
+	static private final Pattern pattern = Pattern.compile("<([^>]*)>([^<]*)</([^>]*)>");
+	static private final Pattern pattern1 = Pattern.compile("<(ex)>(.*)</(ex)>");
 	/**
 	 * Span factory
 	 */

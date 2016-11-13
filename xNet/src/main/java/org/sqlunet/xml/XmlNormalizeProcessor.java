@@ -16,7 +16,7 @@ import org.w3c.dom.ls.LSSerializer;
 @SuppressWarnings("unused")
 public class XmlNormalizeProcessor extends XmlProcessor
 {
-	private static final String TAG = "XmlNormalizeProcessor";
+	static private final String TAG = "XmlNormalizeProcessor";
 	@Override
 	public String process(final String xml) throws Exception
 	{
@@ -38,7 +38,7 @@ public class XmlNormalizeProcessor extends XmlProcessor
 	 * @param node element
 	 * @return string
 	 */
-	private static String elementToString(final Node node)
+	static private String elementToString(final Node node)
 	{
 		final Document document = node.getOwnerDocument();
 		final DOMImplementationLS domImplLS = (DOMImplementationLS) document.getImplementation();

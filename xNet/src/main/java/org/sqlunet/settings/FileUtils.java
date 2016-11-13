@@ -20,7 +20,7 @@ import java.util.zip.ZipInputStream;
 @SuppressWarnings("unused")
 class FileUtils
 {
-	// private static final String TAG = "FileUtils";
+	// static private final String TAG = "FileUtils";
 	// C O P Y A S S E T
 
 	/**
@@ -61,7 +61,7 @@ class FileUtils
 	 * @param toPath       destination path
 	 * @return destination path
 	 */
-	private static boolean copyAsset(final AssetManager assetManager, final String assetPath, final String toPath)
+	static private boolean copyAsset(final AssetManager assetManager, final String assetPath, final String toPath)
 	{
 		InputStream in = null;
 		OutputStream out = null;
@@ -115,7 +115,7 @@ class FileUtils
 	 * @param out outstream
 	 * @throws IOException
 	 */
-	private static void copyFile(final InputStream in, final OutputStream out) throws IOException
+	static private void copyFile(final InputStream in, final OutputStream out) throws IOException
 	{
 		final byte[] buffer = new byte[1024];
 		int read;
@@ -167,7 +167,7 @@ class FileUtils
 	 * @param toPath       destination path
 	 * @return true if successful
 	 */
-	private static boolean expandZipAsset(final AssetManager assetManager, final String assetPath, final String toPath)
+	static private boolean expandZipAsset(final AssetManager assetManager, final String assetPath, final String toPath)
 	{
 		InputStream in = null;
 		try

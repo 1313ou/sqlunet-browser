@@ -25,7 +25,7 @@ import javax.xml.transform.stream.StreamSource;
  */
 class XSLTransformer
 {
-	private static final String TAG = "XSLTransformer";
+	static private final String TAG = "XSLTransformer";
 	/**
 	 * Transform Document to HTML
 	 *

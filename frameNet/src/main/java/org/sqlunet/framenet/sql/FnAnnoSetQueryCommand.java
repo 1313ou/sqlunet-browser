@@ -15,7 +15,7 @@ class FnAnnoSetQueryCommand extends DBQueryCommand
 	/**
 	 * <code>QUERY</code> is the SQL statement
 	 */
-	private static final String QUERY = SqLiteDialect.FrameNetAnnoSetQuery;
+	static private final String QUERY = SqLiteDialect.FrameNetAnnoSetQuery;
 
 	/**
 	 * Constructor

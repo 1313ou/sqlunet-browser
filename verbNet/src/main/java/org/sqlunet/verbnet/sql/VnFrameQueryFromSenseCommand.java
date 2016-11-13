@@ -16,7 +16,7 @@ class VnFrameQueryFromSenseCommand extends DBQueryCommand
 	/**
 	 * <code>QUERY</code> is the SQL statement
 	 */
-	private static final String QUERY = SqLiteDialect.VerbNetFramesFromClassAndSenseQuery;
+	static private final String QUERY = SqLiteDialect.VerbNetFramesFromClassAndSenseQuery;
 
 	/**
 	 * Constructor

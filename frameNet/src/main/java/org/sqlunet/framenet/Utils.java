@@ -63,9 +63,9 @@ public class Utils
 		for (final String label : labels)
 		{
 			final String[] fields = label.split(":");
-			final String from = fields[0];
-			final String to = fields[1];
-			final String value = fields[2];
+			final String from = fields.length < 1 ? null : fields[0];
+			final String to = fields.length < 2 ? null : fields[1];
+			final String value = fields.length < 3 ? null : fields[2];
 			final String iType = fields.length < 4 ? null : fields[3];
 			final String bgColor = fields.length < 5 ? null : fields[4];
 			final String fgColor = fields.length < 6 ? null : fields[5];

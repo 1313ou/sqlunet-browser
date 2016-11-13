@@ -11,7 +11,7 @@ import android.preference.PreferenceManager;
  */
 public class Settings
 {
-	private static final String PREF_PM_MODE = "pref_pm_mode";
+	static private final String PREF_PM_MODE = "pref_pm_mode";
 	/**
 	 * Modes
 	 */

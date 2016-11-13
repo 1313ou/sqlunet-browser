@@ -44,28 +44,28 @@ import java.util.Locale;
  */
 public class XSelectorFragment extends ExpandableListFragment
 {
-	private static final String TAG = "XSelectorFragment";
+	static private final String TAG = "XSelectorFragment";
 	/**
 	 * The serialization (saved instance state) Bundle key representing the activated item position. Only used on tablets.
 	 */
-	private static final String ACTIVATED_POSITION_NAME = "activated_position";
+	static private final String ACTIVATED_POSITION_NAME = "activated_position";
 	/**
 	 * Database column
 	 */
-	private static final String DBCOLUMN = "xb";
+	static private final String DBCOLUMN = "xb";
 	/**
 	 * Source fields for groups
 	 */
-	private static final String[] groupFrom = {DBCOLUMN,};
+	static private final String[] groupFrom = {DBCOLUMN,};
 	/**
 	 * Target resource for groups
 	 */
-	private static final int[] groupTo = {R.id.xn,};
+	static private final int[] groupTo = {R.id.xn,};
 
 	/**
 	 * Source fields
 	 */
-	private static final int[] childTo = { //
+	static private final int[] childTo = { //
 			R.id.wordid, //
 			R.id.synsetid, //
 			R.id.xid, //
@@ -82,7 +82,7 @@ public class XSelectorFragment extends ExpandableListFragment
 	/**
 	 * Target resource
 	 */
-	private static final String[] childFrom = {Words_XNet_U.WORDID, //
+	static private final String[] childFrom = {Words_XNet_U.WORDID, //
 			Words_XNet_U.SYNSETID, //
 			Words_XNet_U.XID, //
 			Words_XNet_U.XMEMBERID, //

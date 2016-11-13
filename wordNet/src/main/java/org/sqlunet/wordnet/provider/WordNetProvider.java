@@ -54,53 +54,53 @@ public class WordNetProvider extends BaseProvider
 	// U R I M A T C H E R
 
 	// uri matcher
-	private static final UriMatcher uriMatcher;
+	static private final UriMatcher uriMatcher;
 
 	// table codes
-	private static final int WORDS = 10;
-	private static final int WORD = 11;
-	private static final int WORD_BY_LEMMA = 12;
-	private static final int SENSES = 20;
-	private static final int SENSE = 21;
-	private static final int SYNSETS = 30;
-	private static final int SYNSET = 31;
-	private static final int SEMLINKS = 40;
-	private static final int LEXLINKS = 50;
-	private static final int LINKTYPES = 60;
-	private static final int POSTYPES = 70;
-	private static final int LEXDOMAINS = 80;
-	private static final int ADJPOSITIONTYPES = 90;
-	private static final int SAMPLES = 100;
+	static private final int WORDS = 10;
+	static private final int WORD = 11;
+	static private final int WORD_BY_LEMMA = 12;
+	static private final int SENSES = 20;
+	static private final int SENSE = 21;
+	static private final int SYNSETS = 30;
+	static private final int SYNSET = 31;
+	static private final int SEMLINKS = 40;
+	static private final int LEXLINKS = 50;
+	static private final int LINKTYPES = 60;
+	static private final int POSTYPES = 70;
+	static private final int LEXDOMAINS = 80;
+	static private final int ADJPOSITIONTYPES = 90;
+	static private final int SAMPLES = 100;
 
 	// view codes
-	private static final int DICT = 300;
+	static private final int DICT = 300;
 
 	// join codes
-	private static final int WORDS_SENSES_SYNSETS = 310;
-	private static final int WORDS_SENSES_CASEDWORDS_SYNSETS = 311;
-	private static final int WORDS_SENSES_CASEDWORDS_SYNSETS_POSTYPES_LEXDOMAINS = 312;
-	private static final int SENSES_WORDS = 320;
-	private static final int SENSES_WORDS_BY_SYNSET = 321;
-	private static final int SENSES_SYNSETS_POSTYPES_LEXDOMAINS = 330;
-	private static final int SYNSETS_POSTYPES_LEXDOMAINS = 340;
-	private static final int SEMLINKS_SYNSETS = 350;
-	private static final int SEMLINKS_SYNSETS_X = 351;
-	private static final int SEMLINKS_SYNSETS_WORDS_X_BY_SYNSET = 352;
-	private static final int LEXLINKS_SENSES = 360;
-	private static final int LEXLINKS_SENSES_X = 361;
-	private static final int LEXLINKS_SENSES_WORDS_X_BY_SYNSET = 362;
-	private static final int VFRAMEMAPS_VFRAMES = 370;
-	private static final int VFRAMESENTENCEMAPS_VFRAMESENTENCES = 371;
-	private static final int ADJPOSITIONS_ADJPOSITIONTYPES = 380;
-	private static final int MORPHMAPS_MORPHS = 390;
+	static private final int WORDS_SENSES_SYNSETS = 310;
+	static private final int WORDS_SENSES_CASEDWORDS_SYNSETS = 311;
+	static private final int WORDS_SENSES_CASEDWORDS_SYNSETS_POSTYPES_LEXDOMAINS = 312;
+	static private final int SENSES_WORDS = 320;
+	static private final int SENSES_WORDS_BY_SYNSET = 321;
+	static private final int SENSES_SYNSETS_POSTYPES_LEXDOMAINS = 330;
+	static private final int SYNSETS_POSTYPES_LEXDOMAINS = 340;
+	static private final int SEMLINKS_SYNSETS = 350;
+	static private final int SEMLINKS_SYNSETS_X = 351;
+	static private final int SEMLINKS_SYNSETS_WORDS_X_BY_SYNSET = 352;
+	static private final int LEXLINKS_SENSES = 360;
+	static private final int LEXLINKS_SENSES_X = 361;
+	static private final int LEXLINKS_SENSES_WORDS_X_BY_SYNSET = 362;
+	static private final int VFRAMEMAPS_VFRAMES = 370;
+	static private final int VFRAMESENTENCEMAPS_VFRAMESENTENCES = 371;
+	static private final int ADJPOSITIONS_ADJPOSITIONTYPES = 380;
+	static private final int MORPHMAPS_MORPHS = 390;
 
 	// text search codes
-	private static final int LOOKUP_WORDS = 510;
-	private static final int LOOKUP_FTS_WORDS = 511;
-	private static final int LOOKUP_DEFINITIONS = 520;
-	private static final int LOOKUP_FTS_DEFINITIONS = 521;
-	private static final int LOOKUP_SAMPLES = 530;
-	private static final int LOOKUP_FTS_SAMPLES = 531;
+	static private final int LOOKUP_WORDS = 510;
+	static private final int LOOKUP_FTS_WORDS = 511;
+	static private final int LOOKUP_DEFINITIONS = 520;
+	static private final int LOOKUP_FTS_DEFINITIONS = 521;
+	static private final int LOOKUP_SAMPLES = 530;
+	static private final int LOOKUP_FTS_SAMPLES = 531;
 
 	static
 	{

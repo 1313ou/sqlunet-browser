@@ -21,7 +21,7 @@ import java.util.Set;
 
 class Mapping
 {
-	private static final String TAG = "LexDomain";
+	static private final String TAG = "LexDomain";
 	/**
 	 * <code>lexDomains</code> is an array of lexdomains
 	 */

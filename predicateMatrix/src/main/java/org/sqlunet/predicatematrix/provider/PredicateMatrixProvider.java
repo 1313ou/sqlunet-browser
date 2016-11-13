@@ -21,13 +21,13 @@ public class PredicateMatrixProvider extends BaseProvider
 	// U R I M A T C H E R
 
 	// uri matcher
-	private static final UriMatcher uriMatcher;
+	static private final UriMatcher uriMatcher;
 
 	// table codes
-	private static final int PM = 10;
+	static private final int PM = 10;
 
 	// join codes
-	private static final int PM_X = 11;
+	static private final int PM_X = 11;
 
 	static
 	{

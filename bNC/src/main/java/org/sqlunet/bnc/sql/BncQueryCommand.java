@@ -14,12 +14,12 @@ class BncQueryCommand extends DBQueryCommand
 	/**
 	 * <code>QUERY</code> is the SQL statement
 	 */
-	private static final String QUERY = SqLiteDialect.BNCQuery;
+	static private final String QUERY = SqLiteDialect.BNCQuery;
 
 	/**
 	 * <code>QUERYWITHPOS</code> is the SQL statement
 	 */
-	private static final String QUERYWITHPOS = SqLiteDialect.BNCPosQuery;
+	static private final String QUERYWITHPOS = SqLiteDialect.BNCPosQuery;
 
 	/**
 	 * Constructor

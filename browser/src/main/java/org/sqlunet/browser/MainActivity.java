@@ -71,7 +71,7 @@ public class MainActivity extends Activity
 	/**
 	 * Selector mode state
 	 */
-	private static final String STATE_SELECTED_SELECTOR_MODE = "org.sqlunet.browser.selector.selected";
+	static private final String STATE_SELECTED_SELECTOR_MODE = "org.sqlunet.browser.selector.selected";
 	/**
 	 * Search view
 	 */

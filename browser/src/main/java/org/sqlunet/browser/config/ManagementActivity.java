@@ -22,7 +22,7 @@ import org.sqlunet.settings.StorageSettings;
  */
 public class ManagementActivity extends Activity
 {
-	// private static final String TAG = "ManagementActivity";
+	// static private final String TAG = "ManagementActivity";
 
 	@Override
 	protected void onCreate(final Bundle savedInstanceState)

@@ -1,14 +1,22 @@
 package org.sqlunet.browser;
 
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
+import android.graphics.Color;
 import android.graphics.Typeface;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.text.SpannableStringBuilder;
+import android.text.Spanned;
+import android.text.style.DynamicDrawableSpan;
+import android.text.style.ForegroundColorSpan;
+import android.text.style.ImageSpan;
 import android.text.style.StyleSpan;
 import android.util.Log;
 import android.util.Pair;
@@ -32,7 +40,10 @@ import org.sqlunet.verbnet.provider.VerbNetContract;
 import org.sqlunet.wordnet.SynsetPointer;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
+import java.util.regex.Pattern;
 
 /**
  * TextSearch fragment
@@ -41,11 +52,12 @@ import java.util.List;
  */
 public class TextSearchFragment extends AbstractTableFragment
 {
-	private static final String TAG = "TextSearchFragment";
+	static private final String TAG = "TextSearchFragment";
+
 	/**
 	 * Bold style factory
 	 */
-	private static final SpanFactory boldFactory = new SpanFactory()
+	static private final SpanFactory boldFactory = new SpanFactory()
 	{
 		@Override
 		public Object makeSpans(final long flags)
@@ -60,6 +72,11 @@ public class TextSearchFragment extends AbstractTableFragment
 	static private final SpanFactory[][] factories = {new SpanFactory[]{boldFactory,}};
 
 	/**
+	 * Query argument
+	 */
+	private String query;
+
+	/**
 	 * Mandatory empty constructor for the fragment manager to instantiate the fragment (e.g. upon screen orientation changes).
 	 */
 	public TextSearchFragment()
@@ -67,13 +84,8 @@ public class TextSearchFragment extends AbstractTableFragment
 		super();
 	}
 
-	/**
-	 * Make view binder
-	 *
-	 * @return ViewBinder
-	 */
 	@Override
-	protected ViewBinder makeViewBinder()
+	public void onCreate(Bundle savedInstanceState)
 	{
 		// args
 		Bundle args = getArguments();
@@ -85,10 +97,21 @@ public class TextSearchFragment extends AbstractTableFragment
 		// search target
 		// final String database = args.getString(ProviderArgs.ARG_QUERYDATABASE);
 		String queryArg = args.getString(ProviderArgs.ARG_QUERYARG);
-		queryArg = queryArg != null ? queryArg.trim() : "";
+		this.query = queryArg != null ? queryArg.trim() : "";
 
+		super.onCreate(savedInstanceState);
+	}
+
+	/**
+	 * Make view binder
+	 *
+	 * @return ViewBinder
+	 */
+	@Override
+	protected ViewBinder makeViewBinder()
+	{
 		// pattern (case-insensitive)
-		final String[] patterns = {'(' + "(?i)" + queryArg + ')',};
+		final String[] patterns = {'(' + "(?i)" + this.query + ')',};
 
 		// spanner
 		final RegExprSpanner spanner = new RegExprSpanner(patterns, factories);
@@ -142,7 +165,6 @@ public class TextSearchFragment extends AbstractTableFragment
 		// cursor
 		final Object item = getListAdapter().getItem(position);
 		final Cursor cursor = (Cursor) item;
-
 
 		// args
 		Bundle args = getArguments();
@@ -368,14 +390,43 @@ public class TextSearchFragment extends AbstractTableFragment
 	{
 		final List<TypedPointer> typedPointers = new ArrayList<>();
 		final List<CharSequence> labels = new ArrayList<>();
+		final Pattern pattern = Pattern.compile('(' + "(?i)" + this.query + ')');
 
 		int type = 0;
 		for (String choices : concatChoices)
 		{
-			for (String choice : choices.split(","))
+			final List<String> choiceList = Arrays.asList(choices.split(","));
+			Collections.sort(choiceList);
+			for (String choice : choiceList)
 			{
 				final String[] fields = choice.split("@");
-				labels.add(fields[0]);
+				final String label = fields[0];
+				int resId = -1;
+				switch (type)
+				{
+					case 0:
+						resId = R.drawable.roles;
+						break;
+					case 1:
+						resId = R.drawable.role;
+						break;
+					case 2:
+						resId = R.drawable.sentence;
+						break;
+				}
+				final SpannableStringBuilder sb = new SpannableStringBuilder();
+				appendImage(getActivity(), sb, resId);
+				sb.append(' ');
+				if (pattern.matcher(label).find())
+				{
+					append(sb, label, new ForegroundColorSpan(Color.BLACK), new StyleSpan(Typeface.BOLD));
+				}
+				else
+				{
+					append(sb, label, new ForegroundColorSpan(Color.GRAY));
+				}
+
+				labels.add(sb);
 				typedPointers.add(new TypedPointer(type, Long.parseLong(fields[1])));
 			}
 			type++;
@@ -397,5 +448,64 @@ public class TextSearchFragment extends AbstractTableFragment
 
 		// get the dialog
 		return builder.create();
+	}
+
+	/**
+	 * Append text
+	 *
+	 * @param sb    spannable string builder
+	 * @param text  text
+	 * @param spans spans to apply
+	 */
+	static private void append(final SpannableStringBuilder sb, final CharSequence text, final Object... spans)
+	{
+		if (text == null || text.length() == 0)
+		{
+			return;
+		}
+
+		final int from = sb.length();
+		sb.append(text);
+		final int to = sb.length();
+
+		for (final Object span : spans)
+		{
+			sb.setSpan(span, from, to, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+		}
+	}
+
+	/**
+	 * Append Image
+	 *
+	 * @param context context
+	 * @param sb      spannable string builder
+	 * @param resId   resource id
+	 */
+	static private void appendImage(final Context context, final SpannableStringBuilder sb, final int resId)
+	{
+		append(sb, "\u0000", makeImageSpan(context, resId));
+	}
+
+	/**
+	 * Make image span
+	 *
+	 * @param context context
+	 * @param resId   res id
+	 * @return image span
+	 */
+	@SuppressWarnings("deprecation")
+	static private Object makeImageSpan(final Context context, final int resId)
+	{
+		Drawable drawable;
+		if (Build.VERSION.SDK_INT < Build.VERSION_CODES.N)
+		{
+			drawable = context.getResources().getDrawable(resId);
+		}
+		else
+		{
+			drawable = context.getResources().getDrawable(resId, null);
+		}
+		drawable.setBounds(0, 0, drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight());
+		return new ImageSpan(drawable, DynamicDrawableSpan.ALIGN_BOTTOM);
 	}
 }

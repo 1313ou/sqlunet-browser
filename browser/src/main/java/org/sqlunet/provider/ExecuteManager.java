@@ -20,7 +20,7 @@ import java.util.zip.ZipFile;
 @SuppressWarnings("RedundantSuppression")
 public class ExecuteManager
 {
-	private static final String TAG = "ExecuteManager";
+	static private final String TAG = "ExecuteManager";
 	/**
 	 * Manager listener
 	 */

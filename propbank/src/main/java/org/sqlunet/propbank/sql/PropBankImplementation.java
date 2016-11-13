@@ -99,7 +99,7 @@ public class PropBankImplementation implements PropBankInterface
 	 * @param parent     org.w3c.dom.Node the walk will attach results to
 	 * @param roleSetId  role set id
 	 */
-	private static void walkRoleSet(final SQLiteDatabase connection, final Document doc, final Node parent, final long roleSetId)
+	static private void walkRoleSet(final SQLiteDatabase connection, final Document doc, final Node parent, final long roleSetId)
 	{
 		// role sets
 		final List<PbRoleSet> roleSets = PbRoleSet.make(connection, roleSetId);

@@ -19,7 +19,7 @@ import java.net.URLConnection;
  */
 public class Downloader extends AsyncTask<Void, Integer, Boolean>
 {
-	private static final String TAG = "Downloader";
+	static private final String TAG = "Downloader";
 	/**
 	 * From URL
 	 */

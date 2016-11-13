@@ -42,7 +42,7 @@ public class SensesFragment extends ListFragment
 	/**
 	 * The serialization (saved instance state) Bundle key representing the activated item position. Only used on tablets.
 	 */
-	private static final String ACTIVATED_POSITION_NAME = "activated_position";
+	static private final String ACTIVATED_POSITION_NAME = "activated_position";
 	/**
 	 * The current activated item position. Only used on tablets.
 	 */

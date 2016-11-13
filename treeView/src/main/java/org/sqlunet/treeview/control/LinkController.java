@@ -11,7 +11,7 @@ import org.sqlunet.treeview.R;
  */
 public class LinkController extends IconLeafController
 {
-	// private static final String TAG = "LinkController";
+	// static private final String TAG = "LinkController";
 	public LinkController(final Context context)
 	{
 		super(context);

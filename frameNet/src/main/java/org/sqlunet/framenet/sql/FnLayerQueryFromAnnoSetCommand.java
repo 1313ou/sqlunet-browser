@@ -12,7 +12,7 @@ class FnLayerQueryFromAnnoSetCommand extends FnLayerQueryCommand
 	/**
 	 * <code>QUERY</code> is the SQL statement
 	 */
-	private static final String QUERY = SqLiteDialect.FrameNetLayerQueryFromAnnoSet;
+	static private final String QUERY = SqLiteDialect.FrameNetLayerQueryFromAnnoSet;
 
 	/**
 	 * Constructor

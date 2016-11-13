@@ -33,11 +33,11 @@ public class DownloadActivity extends Activity implements View.OnClickListener
 	/**
 	 * Log tag
 	 */
-	private static final String TAG = "Download";
+	static private final String TAG = "Download";
 	/**
 	 * Result extra
 	 */
-	private static final String RESULT_DOWNLOAD_DATA_AVAILABLE = "download_data_available";
+	static private final String RESULT_DOWNLOAD_DATA_AVAILABLE = "download_data_available";
 	/**
 	 * Download id
 	 */
@@ -406,7 +406,7 @@ public class DownloadActivity extends Activity implements View.OnClickListener
 	 * @param status status
 	 * @return string resource id
 	 */
-	private static int status2ResourceId(final int status)
+	static private int status2ResourceId(final int status)
 	{
 		switch (status)
 		{

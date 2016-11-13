@@ -14,7 +14,7 @@ class PbRoleSetQueryFromWordIdCommand extends DBQueryCommand
 	/**
 	 * <code>QUERY</code> is the SQL statement
 	 */
-	private static final String QUERY = SqLiteDialect.PropBankRolesetFromWordId;
+	static private final String QUERY = SqLiteDialect.PropBankRolesetFromWordId;
 
 	/**
 	 * Constructor

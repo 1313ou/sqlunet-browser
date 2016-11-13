@@ -21,13 +21,13 @@ public class BNCProvider extends BaseProvider
 	// U R I M A T C H E R
 
 	// uri matcher
-	private static final UriMatcher uriMatcher;
+	static private final UriMatcher uriMatcher;
 
 	// table codes
-	private static final int BNC = 11;
+	static private final int BNC = 11;
 
 	// join tables
-	private static final int WORDS_BNC = 100;
+	static private final int WORDS_BNC = 100;
 
 	static
 	{

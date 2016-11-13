@@ -14,7 +14,7 @@ class FnSentenceQueryFromLexicalUnitCommand extends DBQueryCommand
 	/**
 	 * <code>QUERY</code> is the SQL statement
 	 */
-	private static final String QUERY = SqLiteDialect.FrameNetSentencesFromLexicalUnitQuery;
+	static private final String QUERY = SqLiteDialect.FrameNetSentencesFromLexicalUnitQuery;
 
 	/**
 	 * Constructor

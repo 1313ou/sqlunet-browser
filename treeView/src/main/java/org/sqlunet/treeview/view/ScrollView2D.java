@@ -31,8 +31,8 @@ import java.util.List;
  */
 public class ScrollView2D extends FrameLayout
 {
-	private static final int ANIMATED_SCROLL_GAP = 250;
-	private static final float MAX_SCROLL_FACTOR = 0.5f;
+	static private final int ANIMATED_SCROLL_GAP = 250;
+	static private final float MAX_SCROLL_FACTOR = 0.5f;
 
 	private long mLastScroll;
 

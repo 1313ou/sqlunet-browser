@@ -69,7 +69,7 @@ public class RegExprSpanner extends Spanner
 	 */
 	static class SpanReplacer
 	{
-		// private static final String TAG = "RegExpSpanner";
+		// static private final String TAG = "RegExpSpanner";
 
 		/**
 		 * Pattern

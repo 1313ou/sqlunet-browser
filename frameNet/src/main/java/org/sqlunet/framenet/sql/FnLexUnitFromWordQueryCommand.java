@@ -14,12 +14,12 @@ class FnLexUnitFromWordQueryCommand extends DBQueryCommand
 	/**
 	 * <code>QUERY</code> is the SQL statement
 	 */
-	private static final String QUERY = SqLiteDialect.FrameNetWordLexUnitQueryFromWordId;
+	static private final String QUERY = SqLiteDialect.FrameNetWordLexUnitQueryFromWordId;
 
 	/**
 	 * <code>QUERYWITHPOS</code> is the SQL statement with Pos input
 	 */
-	private static final String QUERYWITHPOS = SqLiteDialect.FrameNetWordLexUnitWithPosQuery;
+	static private final String QUERYWITHPOS = SqLiteDialect.FrameNetWordLexUnitWithPosQuery;
 
 	/**
 	 * Constructor
@@ -132,7 +132,7 @@ class FnLexUnitFromWordQueryCommand extends DBQueryCommand
 	 * @return pos code
 	 */
 	@SuppressWarnings("boxing")
-	private static Integer mapPos(final Character pos)
+	static private Integer mapPos(final Character pos)
 	{
 		if (pos == null)
 		{

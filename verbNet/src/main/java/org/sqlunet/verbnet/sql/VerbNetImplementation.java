@@ -315,7 +315,7 @@ public class VerbNetImplementation implements VerbNetInterface
 	 * @param parent     org.w3c.dom.Node walk will attach results to
 	 * @param classId    target class id
 	 */
-	private static void walkClass(final SQLiteDatabase connection, final Document doc, final Node parent, final long classId)
+	static private void walkClass(final SQLiteDatabase connection, final Document doc, final Node parent, final long classId)
 	{
 		// class
 		final VnClass clazz = VnClass.make(connection, classId);

@@ -79,7 +79,7 @@ class VnNodeFactory extends NodeFactory
 	 * @param className is the class
 	 * @return newly created node
 	 */
-	private static Node makeVnClassNode(final Document doc, final Node parent, final String className)
+	static private Node makeVnClassNode(final Document doc, final Node parent, final String className)
 	{
 		final Element element = org.sqlunet.sql.NodeFactory.makeNode(doc, parent, "vnclass", null);
 		org.sqlunet.sql.NodeFactory.makeAttribute(element, "name", className);
@@ -208,7 +208,7 @@ class VnNodeFactory extends NodeFactory
 	 * @param pattern delimiter pattern
 	 * @return segments
 	 */
-	private static String[] parse(final CharSequence text, final Pattern pattern)
+	static private String[] parse(final CharSequence text, final Pattern pattern)
 	{
 		// general pattern
 		final Matcher matcher = pattern.matcher(text);
@@ -241,7 +241,7 @@ class VnNodeFactory extends NodeFactory
 	 * @param statement statement
 	 * @return node
 	 */
-	private static Node makeVnSyntaxNodes(final Document doc, final Node parent, final CharSequence statement)
+	static private Node makeVnSyntaxNodes(final Document doc, final Node parent, final CharSequence statement)
 	{
 		final String[] fields = VnNodeFactory.parse(statement, VnNodeFactory.syntaxPattern);
 		if (fields != null && fields.length == 3)
@@ -270,11 +270,11 @@ class VnNodeFactory extends NodeFactory
 	/**
 	 * Semantics pattern
 	 */
-	private static final Pattern semanticsPattern = Pattern.compile("([^\\(]+)\\((.*)\\)");
+	static private final Pattern semanticsPattern = Pattern.compile("([^\\(]+)\\((.*)\\)");
 	/**
 	 * Arguments pattern
 	 */
-	private static final String argsPattern = "[\\s,]+";
+	static private final String argsPattern = "[\\s,]+";
 	/**
 	 * Make semantics nodes
 	 *
@@ -283,7 +283,7 @@ class VnNodeFactory extends NodeFactory
 	 * @param statement statement
 	 * @return node
 	 */
-	private static Node makeVnSemanticNodes(final Document doc, final Node parent, final CharSequence statement)
+	static private Node makeVnSemanticNodes(final Document doc, final Node parent, final CharSequence statement)
 	{
 		final String[] relArgs = VnNodeFactory.parse(statement, VnNodeFactory.semanticsPattern);
 		if (relArgs != null && relArgs.length == 2)

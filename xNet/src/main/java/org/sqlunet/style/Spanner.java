@@ -24,7 +24,7 @@ import org.sqlunet.xnet.R;
  */
 public class Spanner
 {
-	private static final String TAG = "Spanner";
+	static private final String TAG = "Spanner";
 	/**
 	 * Collapsed marker
 	 */
@@ -42,7 +42,7 @@ public class Spanner
 	/**
 	 * End of expanded string marker
 	 */
-	private static final char EOEXPANDEDSTRING = '~';
+	static private final char EOEXPANDEDSTRING = '~';
 
 	// I N T E R F A C E S
 
@@ -217,7 +217,7 @@ public class Spanner
 	 * @param caption           caption
 	 * @param listener          click listener
 	 */
-	private static void appendClickableImage(final SpannableStringBuilder sb, final Drawable collapsedDrawable, final Drawable expandedDrawable, final CharSequence caption, final OnClickImage listener)
+	static private void appendClickableImage(final SpannableStringBuilder sb, final Drawable collapsedDrawable, final Drawable expandedDrawable, final CharSequence caption, final OnClickImage listener)
 	{
 		final ImageSpan span = new ImageSpan(collapsedDrawable, DynamicDrawableSpan.ALIGN_BASELINE);
 		final ClickableSpan span2 = new ClickableSpan()
@@ -338,7 +338,7 @@ public class Spanner
 	 * @param delimiter delimiter
 	 * @return delimiter position or -1 if not found
 	 */
-	private static int find(@SuppressWarnings("TypeMayBeWeakened") final SpannableStringBuilder sb, final int start, final char delimiter)
+	static private int find(@SuppressWarnings("TypeMayBeWeakened") final SpannableStringBuilder sb, final int start, final char delimiter)
 	{
 		int i = start;
 		while (i < sb.length())

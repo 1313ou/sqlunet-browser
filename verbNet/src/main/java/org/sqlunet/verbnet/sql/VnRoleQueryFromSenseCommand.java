@@ -16,7 +16,7 @@ class VnRoleQueryFromSenseCommand extends DBQueryCommand
 	/**
 	 * <code>QUERY</code> is the SQL statement
 	 */
-	private static final String QUERY = SqLiteDialect.VerbNetThematicRolesFromClassAndSenseQuery;
+	static private final String QUERY = SqLiteDialect.VerbNetThematicRolesFromClassAndSenseQuery;
 
 	/**
 	 * Constructor

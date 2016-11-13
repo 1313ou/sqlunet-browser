@@ -56,17 +56,17 @@ import java.util.List;
  */
 abstract public class BasicModule extends Module
 {
-	// private static final String TAG = "BasicModule";
+	// static private final String TAG = "BasicModule";
 
 	/**
 	 * Verbose flag
 	 */
-	private static boolean VERBOSE = false;
+	static private boolean VERBOSE = false;
 
 	/**
 	 * Focused layer name
 	 */
-	private static final String FOCUSLAYER = "FE"; // "Target";
+	static private final String FOCUSLAYER = "FE"; // "Target";
 	// agents
 
 	/**
@@ -804,10 +804,13 @@ abstract public class BasicModule extends Module
 						Spanner.appendImage(sb2, BasicModule.this.definitionDrawable);
 						sb2.append(' ');
 						Spanner.append(sb2, definition.trim(), 0, FrameNetFactories.definitionFactory);
-						sb2.append(' ');
-						sb2.append('[');
-						sb2.append(dictionary);
-						sb2.append(']');
+						if (dictionary != null)
+						{
+							sb2.append(' ');
+							sb2.append('[');
+							sb2.append(dictionary);
+							sb2.append(']');
+						}
 
 						// incorporated fe
 						if (incorporatedFEType != null)
@@ -956,10 +959,13 @@ abstract public class BasicModule extends Module
 						Spanner.appendImage(sb, BasicModule.this.definitionDrawable);
 						sb.append(' ');
 						Spanner.append(sb, definition.trim(), 0, FrameNetFactories.definitionFactory);
-						sb.append(' ');
-						sb.append('[');
-						sb.append(dictionary);
-						sb.append(']');
+						if (dictionary != null)
+						{
+							sb.append(' ');
+							sb.append('[');
+							sb.append(dictionary);
+							sb.append(']');
+						}
 
 						// incorporated FE
 						if (incorporatedFEType != null)
@@ -2170,7 +2176,6 @@ abstract public class BasicModule extends Module
 						// target
 						if (isTarget)
 						{
-							assert sba != null;
 							sba.append(' ');
 							Spanner.append(sba, subtext, 0, FrameNetFactories.targetFactory);
 						}
@@ -2491,7 +2496,7 @@ abstract public class BasicModule extends Module
 	 */
 	class DummyQuery extends QueryController.Query
 	{
-		private static final String TAG = "DummyQuery";
+		static private final String TAG = "DummyQuery";
 
 		@SuppressWarnings("unused")
 		public DummyQuery(final long annoSetId, final int icon, final CharSequence text)
