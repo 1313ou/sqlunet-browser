@@ -334,11 +334,9 @@ public class FrameNetImplementation implements FrameNetInterface
 			final List<FnFrameElement> fes = FnFrameElement.make(connection, lexUnit.frame.frameId);
 			if (fes != null)
 			{
-				int j = 1;
 				for (final FnFrameElement fe : fes)
 				{
 					FnNodeFactory.makeFnFENode(doc, frameNode, fe);
-					j++;
 				}
 			}
 
@@ -346,11 +344,9 @@ public class FrameNetImplementation implements FrameNetInterface
 			final List<FnGovernor> governors = FnGovernor.make(connection, lexUnit.luId);
 			if (governors != null)
 			{
-				int j = 1;
 				for (final FnGovernor governor : governors)
 				{
 					FnNodeFactory.makeFnGovernorNode(doc, lexUnitNode, governor);
-					j++;
 				}
 			}
 
@@ -400,11 +396,9 @@ public class FrameNetImplementation implements FrameNetInterface
 		final List<FnFrameElement> fes = FnFrameElement.make(connection, frame.frameId);
 		if (fes != null)
 		{
-			int j = 1;
 			for (final FnFrameElement fe : fes)
 			{
 				FnNodeFactory.makeFnFENode(doc, frameNode, fe);
-				j++;
 			}
 		}
 	}

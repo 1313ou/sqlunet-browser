@@ -156,7 +156,7 @@ public class TextSearchFragment extends AbstractTableFragment
 
 	// C L I C K
 
-	@SuppressWarnings("boxing")
+	@SuppressWarnings({ "boxing", "resource" })
 	@Override
 	public void onListItemClick(ListView l, View v, int position, long id)
 	{

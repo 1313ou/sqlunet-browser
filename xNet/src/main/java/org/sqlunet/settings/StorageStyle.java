@@ -167,6 +167,7 @@ public class StorageStyle
 	 * @param resId   res id
 	 * @return image span
 	 */
+	@TargetApi(Build.VERSION_CODES.LOLLIPOP)
 	@SuppressWarnings("deprecation")
 	static private Object makeImageSpan(final Context context, final int resId)
 	{
