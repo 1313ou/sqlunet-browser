@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-	<string-array name="management_titles">
+	<string-array name="manage_titles">
 		<item>Create all indexes</item>
 		<item>Prepare PredicateMatrix</item>
 		<item>Prepare WordNet text search</item>
@@ -29,7 +29,7 @@
 		<item>Drop sampleset View</item>
 		<item>Frame relations</item>
 	</string-array>
-	<string-array name="management_values" formatted="false">
+	<string-array name="manage_values" formatted="false">
 		<item>
 			CREATE INDEX IF NOT EXISTS index_words_lemma ON words(lemma);
 			CREATE INDEX IF NOT EXISTS index_senses_wordid ON senses(wordid);

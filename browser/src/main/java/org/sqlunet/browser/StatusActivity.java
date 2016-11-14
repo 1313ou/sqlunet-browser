@@ -13,8 +13,8 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 
 import org.sqlunet.browser.config.DownloadActivity;
-import org.sqlunet.browser.config.ManagementActivity;
-import org.sqlunet.browser.config.ManagementFragment;
+import org.sqlunet.browser.config.ManageFragment;
+import org.sqlunet.browser.config.ManageActivity;
 import org.sqlunet.browser.config.SettingsActivity;
 import org.sqlunet.browser.config.SetupActivity;
 import org.sqlunet.browser.config.SetupSqlActivity;
@@ -37,7 +37,7 @@ public class StatusActivity extends Activity
 
 	static private final int REQUEST_DOWNLOAD_CODE = 0xDDDD;
 
-	static private final int REQUEST_MANAGEMENT_CODE = 0xAAA0;
+	static private final int REQUEST_MANAGE_CODE = 0xAAA0;
 
 	@Override
 	protected void onCreate(final Bundle savedInstanceState)
@@ -50,7 +50,11 @@ public class StatusActivity extends Activity
 		// show the Up button in the action bar.
 		final ActionBar actionBar = getActionBar();
 		assert actionBar != null;
-		actionBar.setDisplayHomeAsUpEnabled(true);
+		actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_HOME | ActionBar.DISPLAY_HOME_AS_UP);
+		// actionBar.setDisplayShowCustomEnabled(false);
+		// actionBar.setDisplayShowHomeEnabled(true);
+		// actionBar.setDisplayHomeAsUpEnabled(true);
+		// actionBar.setDisplayShowTitleEnabled(false);
 	}
 
 	@Override
@@ -84,9 +88,9 @@ public class StatusActivity extends Activity
 			@Override
 			public void onClick(View v)
 			{
-				final Intent intent = new Intent(StatusActivity.this, ManagementActivity.class);
-				intent.putExtra(ManagementFragment.ARG, Status.DO_INDEXES);
-				startActivityForResult(intent, StatusActivity.REQUEST_MANAGEMENT_CODE + Status.DO_INDEXES);
+				final Intent intent = new Intent(StatusActivity.this, ManageActivity.class);
+				intent.putExtra(ManageFragment.ARG, Status.DO_INDEXES);
+				startActivityForResult(intent, StatusActivity.REQUEST_MANAGE_CODE + Status.DO_INDEXES);
 			}
 		});
 
@@ -95,9 +99,9 @@ public class StatusActivity extends Activity
 			@Override
 			public void onClick(View v)
 			{
-				final Intent intent = new Intent(StatusActivity.this, ManagementActivity.class);
-				intent.putExtra(ManagementFragment.ARG, Status.DO_PM);
-				startActivityForResult(intent, StatusActivity.REQUEST_MANAGEMENT_CODE + Status.DO_PM);
+				final Intent intent = new Intent(StatusActivity.this, ManageActivity.class);
+				intent.putExtra(ManageFragment.ARG, Status.DO_PM);
+				startActivityForResult(intent, StatusActivity.REQUEST_MANAGE_CODE + Status.DO_PM);
 			}
 		});
 
@@ -106,9 +110,9 @@ public class StatusActivity extends Activity
 			@Override
 			public void onClick(View v)
 			{
-				final Intent intent = new Intent(StatusActivity.this, ManagementActivity.class);
-				intent.putExtra(ManagementFragment.ARG, Status.DO_TS_WN);
-				startActivityForResult(intent, StatusActivity.REQUEST_MANAGEMENT_CODE + Status.DO_TS_WN);
+				final Intent intent = new Intent(StatusActivity.this, ManageActivity.class);
+				intent.putExtra(ManageFragment.ARG, Status.DO_TS_WN);
+				startActivityForResult(intent, StatusActivity.REQUEST_MANAGE_CODE + Status.DO_TS_WN);
 			}
 		});
 
@@ -117,9 +121,9 @@ public class StatusActivity extends Activity
 			@Override
 			public void onClick(View v)
 			{
-				final Intent intent = new Intent(StatusActivity.this, ManagementActivity.class);
-				intent.putExtra(ManagementFragment.ARG, Status.DO_TS_VN);
-				startActivityForResult(intent, StatusActivity.REQUEST_MANAGEMENT_CODE + Status.DO_TS_WN);
+				final Intent intent = new Intent(StatusActivity.this, ManageActivity.class);
+				intent.putExtra(ManageFragment.ARG, Status.DO_TS_VN);
+				startActivityForResult(intent, StatusActivity.REQUEST_MANAGE_CODE + Status.DO_TS_WN);
 			}
 		});
 
@@ -128,9 +132,9 @@ public class StatusActivity extends Activity
 			@Override
 			public void onClick(View v)
 			{
-				final Intent intent = new Intent(StatusActivity.this, ManagementActivity.class);
-				intent.putExtra(ManagementFragment.ARG, Status.DO_TS_PB);
-				startActivityForResult(intent, StatusActivity.REQUEST_MANAGEMENT_CODE + Status.DO_TS_PB);
+				final Intent intent = new Intent(StatusActivity.this, ManageActivity.class);
+				intent.putExtra(ManageFragment.ARG, Status.DO_TS_PB);
+				startActivityForResult(intent, StatusActivity.REQUEST_MANAGE_CODE + Status.DO_TS_PB);
 			}
 		});
 
@@ -139,9 +143,9 @@ public class StatusActivity extends Activity
 			@Override
 			public void onClick(View v)
 			{
-				final Intent intent = new Intent(StatusActivity.this, ManagementActivity.class);
-				intent.putExtra(ManagementFragment.ARG, Status.DO_TS_FN);
-				startActivityForResult(intent, StatusActivity.REQUEST_MANAGEMENT_CODE + Status.DO_TS_FN);
+				final Intent intent = new Intent(StatusActivity.this, ManageActivity.class);
+				intent.putExtra(ManageFragment.ARG, Status.DO_TS_FN);
+				startActivityForResult(intent, StatusActivity.REQUEST_MANAGE_CODE + Status.DO_TS_FN);
 			}
 		});
 
@@ -229,8 +233,8 @@ public class StatusActivity extends Activity
 			case R.id.action_storage:
 				intent = new Intent(this, StorageActivity.class);
 				break;
-			case R.id.action_management:
-				intent = new Intent(this, ManagementActivity.class);
+			case R.id.action_manage:
+				intent = new Intent(this, ManageActivity.class);
 				break;
 			case R.id.action_appsettings:
 				Settings.applicationSettings(this, "org.sqlunet.browser");

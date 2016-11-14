@@ -29,4 +29,5 @@ dependencies {
     compile project(':verbNet')
     compile project(':wordNet')
     compile project(':xNet')
+    compile 'com.android.support:support-v4:24.2.1'
 }

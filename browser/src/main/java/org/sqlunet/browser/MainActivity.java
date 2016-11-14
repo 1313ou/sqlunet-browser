@@ -1,93 +1,42 @@
 package org.sqlunet.browser;
 
-import android.annotation.SuppressLint;
 import android.app.ActionBar;
 import android.app.Activity;
-import android.app.SearchManager;
-import android.app.SearchableInfo;
-import android.content.Context;
+import android.app.Fragment;
+import android.app.FragmentManager;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Parcelable;
+import android.support.v4.widget.DrawerLayout;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemSelectedListener;
-import android.widget.ArrayAdapter;
-import android.widget.ImageView;
-import android.widget.SearchView;
-import android.widget.Spinner;
-import android.widget.SpinnerAdapter;
-import android.widget.TextView;
 
-import org.sqlunet.browser.config.ManagementActivity;
+import org.sqlunet.browser.config.ManageActivity;
 import org.sqlunet.browser.config.SettingsActivity;
 import org.sqlunet.browser.config.SetupActivity;
 import org.sqlunet.browser.config.SetupSqlActivity;
 import org.sqlunet.browser.config.Status;
 import org.sqlunet.browser.config.StorageActivity;
-import org.sqlunet.browser.config.TableActivity;
-import org.sqlunet.browser.selector.SelectorActivity;
-import org.sqlunet.browser.web.WebActivity;
-import org.sqlunet.browser.xselector.XSelectorActivity;
-import org.sqlunet.framenet.FnAnnoSetPointer;
-import org.sqlunet.framenet.FnFramePointer;
-import org.sqlunet.framenet.FnLexUnitPointer;
-import org.sqlunet.framenet.FnPatternPointer;
-import org.sqlunet.framenet.FnSentencePointer;
-import org.sqlunet.framenet.FnValenceUnitPointer;
-import org.sqlunet.framenet.browser.FnAnnoSetActivity;
-import org.sqlunet.framenet.browser.FnFrameActivity;
-import org.sqlunet.framenet.browser.FnLexUnitActivity;
-import org.sqlunet.framenet.browser.FnSentenceActivity;
-import org.sqlunet.predicatematrix.PmRolePointer;
 import org.sqlunet.predicatematrix.browser.PredicateMatrixActivity;
-import org.sqlunet.propbank.PbRoleSetPointer;
-import org.sqlunet.propbank.browser.PbRoleSetActivity;
-import org.sqlunet.provider.ProviderArgs;
 import org.sqlunet.settings.Settings;
 import org.sqlunet.settings.StorageSettings;
-import org.sqlunet.verbnet.VnClassPointer;
-import org.sqlunet.verbnet.browser.VnClassActivity;
-import org.sqlunet.wordnet.SynsetPointer;
-import org.sqlunet.wordnet.browser.SynsetActivity;
-import org.sqlunet.wordnet.provider.WordNetContract.AdjPositionTypes;
-import org.sqlunet.wordnet.provider.WordNetContract.LexDomains;
-import org.sqlunet.wordnet.provider.WordNetContract.LinkTypes;
-import org.sqlunet.wordnet.provider.WordNetContract.PosTypes;
 
-/**
- * Main activity
- *
- * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
- */
-public class MainActivity extends Activity
+public class MainActivity extends Activity implements NavigationDrawerFragment.NavigationDrawerCallbacks
 {
 	static private final String TAG = "MainActivity";
-	/**
-	 * Selector mode state
-	 */
-	static private final String STATE_SELECTED_SELECTOR_MODE = "org.sqlunet.browser.selector.selected";
-	/**
-	 * Search view
-	 */
-	private SearchView searchView;
 
 	/**
-	 * Status view
+	 * Fragment managing the behaviors, interactions and presentation of the navigation drawer.
 	 */
-	private TextView statusView;
+	private NavigationDrawerFragment navigationDrawerFragment;
 
 	/**
-	 * Selector mode spinner
+	 * Used to store the last screen title. For use in {@link #restoreActionBar()}.
 	 */
-	private Spinner spinner;
-
-	// C R E A T I O N
+	private CharSequence title;
 
 	@Override
 	protected void onCreate(final Bundle savedInstanceState)
@@ -99,133 +48,18 @@ public class MainActivity extends Activity
 
 		// info
 		Log.d(MainActivity.TAG, "DATABASE=" + StorageSettings.getDatabasePath(getBaseContext()));
-		// layout
+
+		// content view
 		setContentView(R.layout.activity_main);
 
-		// get views from ids
-		this.statusView = (TextView) findViewById(R.id.statusView);
+		// get fragment
+		this.navigationDrawerFragment = (NavigationDrawerFragment) getFragmentManager().findFragmentById(R.id.navigation_drawer);
 
-		// show the Up button in the action bar.
-		final ActionBar actionBar = getActionBar();
-		assert actionBar != null;
+		// get title for use in restoreActionBar
+		this.title = getTitle();
 
-		// set up the action bar to show a custom layout
-		@SuppressLint("InflateParams") final View actionBarView = getLayoutInflater().inflate(R.layout.actionbar_custom, null);
-		actionBar.setCustomView(actionBarView);
-		actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM | ActionBar.DISPLAY_SHOW_HOME /*| ActionBar.DISPLAY_HOME_AS_UP */);
-		// actionBar.setDisplayShowCustomEnabled(true);
-		// actionBar.setDisplayShowHomeEnabled(true);
-		// actionBar.setDisplayHomeAsUpEnabled(true);
-		// actionBar.setDisplayShowTitleEnabled(false);
-
-		// selector mode adapter data
-		final CharSequence[] modes = getResources().getTextArray(R.array.selectors_names);
-
-		// selector mode adapter
-		final SpinnerAdapter adapter = new ArrayAdapter<CharSequence>(this, R.layout.spinner_item_selectors, modes)
-		{
-			@Override
-			public View getView(int position, View convertView, ViewGroup parent)
-			{
-				return getCustomView(position, convertView, parent, R.layout.spinner_item_selectors);
-			}
-
-			@Override
-			public View getDropDownView(int position, View convertView, ViewGroup parent)
-			{
-				return getCustomView(position, convertView, parent, R.layout.spinner_item_selectors_dropdown);
-			}
-
-			/**
-			 * Get custom view
-			 *
-			 * @param position      position
-			 * @param convertView   convert view
-			 * @param parent        parent
-			 * @param layoutId      layout id
-			 * @return view
-			 */
-			private View getCustomView(int position, @SuppressWarnings("UnusedParameters") final View convertView, ViewGroup parent, int layoutId)
-			{
-				final LayoutInflater inflater = getLayoutInflater();
-				final View row = inflater.inflate(layoutId, parent, false);
-				final ImageView icon = (ImageView) row.findViewById(R.id.icon);
-				icon.setImageResource(position == 0 ? R.drawable.ic_selector : R.drawable.ic_xselector);
-
-				final TextView label = (TextView) row.findViewById(R.id.selector);
-				if (label != null)
-				{
-					label.setText(modes[position]);
-				}
-				return row;
-			}
-		};
-
-		// spinner
-		this.spinner = (Spinner) actionBarView.findViewById(R.id.spinner);
-
-		// spinner listener
-		this.spinner.setOnItemSelectedListener(new OnItemSelectedListener()
-		{
-			@Override
-			public void onItemSelected(final AdapterView<?> parentView, final View selectedItemView, final int position, final long id)
-			{
-				final Settings.Selector selectorMode = Settings.Selector.values()[position];
-				selectorMode.setPref(MainActivity.this);
-
-				// Log.d(MainActivity.TAG, selectorMode.name());
-			}
-
-			@Override
-			public void onNothingSelected(final AdapterView<?> parentView)
-			{
-				//
-			}
-		});
-
-		// apply spinner adapter
-		this.spinner.setAdapter(adapter);
-
-		// saved selector mode
-		final Settings.Selector selectorMode = Settings.Selector.getPref(this);
-		if (selectorMode != null)
-		{
-			this.spinner.setSelection(selectorMode.ordinal());
-		}
-	}
-
-	@Override
-	public void onSaveInstanceState(final Bundle savedInstanceState)
-	{
-		if (this.spinner == null)
-		{
-			return;
-		}
-
-		// serialize the current dropdown position
-		final int position = this.spinner.getSelectedItemPosition();
-		savedInstanceState.putInt(MainActivity.STATE_SELECTED_SELECTOR_MODE, position);
-
-		// always call the superclass so it can save the view hierarchy state
-		super.onSaveInstanceState(savedInstanceState);
-	}
-
-	@Override
-	public void onRestoreInstanceState(final Bundle savedInstanceState)
-	{
-		if (this.spinner == null)
-		{
-			return;
-		}
-
-		// always call the superclass so it can restore the view hierarchy
-		super.onRestoreInstanceState(savedInstanceState);
-
-		// restore the previously serialized current dropdown position.
-		if (savedInstanceState.containsKey(MainActivity.STATE_SELECTED_SELECTOR_MODE))
-		{
-			this.spinner.setSelection(savedInstanceState.getInt(MainActivity.STATE_SELECTED_SELECTOR_MODE));
-		}
+		// set up the drawer
+		this.navigationDrawerFragment.setUp(R.id.navigation_drawer, (DrawerLayout) findViewById(R.id.drawer_layout));
 	}
 
 	@Override
@@ -246,114 +80,75 @@ public class MainActivity extends Activity
 		}
 	}
 
-	// I N T E N T H A N D L I N G
-
 	@Override
-	protected void onNewIntent(final Intent intent)
+	public void onNavigationDrawerItemSelected(final int position)
 	{
-		Log.d(MainActivity.TAG, "NewIntent " + intent);
-		handleIntent(intent);
+		// update the browse content by replacing fragments
+		FragmentManager fragmentManager = getFragmentManager();
+		fragmentManager.beginTransaction().replace(R.id.container, PlaceholderFragment.newInstance(position + 1)).commit();
+	}
+
+	public void restoreActionBar()
+	{
+		ActionBar actionBar = getActionBar();
+		actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
+		actionBar.setDisplayShowTitleEnabled(true);
+		actionBar.setTitle(this.title);
 	}
 
 	/**
-	 * Handle intent
+	 * Called on drawer selection
 	 *
-	 * @param intent intent
+	 * @param number selected item number
 	 */
-	private void handleIntent(final Intent intent)
+	public void onSectionAttached(final int number)
 	{
-		final String action = intent.getAction();
-		final String query = intent.getStringExtra(SearchManager.QUERY);
-
-		// search action
-		if (Intent.ACTION_SEARCH.equals(action))
-		{
-			this.statusView.setText("search: '" + query + "'");
-			handleSearch(query);
-		}
-
-		// view action
-		else if (Intent.ACTION_VIEW.equals(action))
-		{
-			this.statusView.setText("query: '" + query + "'");
-			this.searchView.setQuery(query, true); // submit
-		}
-	}
-
-	// I N T E N T F A C T O R Y
-
-	/**
-	 * Make selector intent as per settings
-	 *
-	 * @return intent
-	 */
-	private Intent makeSelectorIntent()
-	{
-		Class<?> intentClass = null;
-
-		// type
-		final Settings.Selector selectorType = Settings.getSelectorPref(this);
-		switch (selectorType)
-		{
-			case SELECTOR:
-				intentClass = SelectorActivity.class;
-				break;
-			case XSELECTOR:
-				intentClass = XSelectorActivity.class;
-				break;
-		}
-
-		// mode
-		final Settings.SelectorViewMode selectorMode = Settings.getSelectorViewModePref(this);
+		final String[] options = getResources().getStringArray(R.array.title_sections);
 		Intent intent = null;
-		switch (selectorMode)
+		switch (number)
 		{
-			case VIEW:
-				intent = new Intent(this, intentClass);
+			/*
+			<item>@string/title_browse_section</item>
+			<item>@string/title_ts_section</item>
+			<item>@string/title_pm_section</item>
+			<item>@string/title_status_section</item>
+			<item>@string/title_manage_section</item>
+			<item>@string/title_storage_section</item>
+			<item>@string/title_settings_section</item>
+			*/
+			case 1:
+				this.title = getString(R.string.title_browse_section);
+				intent = new Intent(this, BrowseActivity.class);
 				break;
-
-			case WEB:
-				intent = new Intent(this, WebActivity.class);
+			case 2:
+				this.title = getString(R.string.title_ts_section);
+				intent = new Intent(this, TextSearchActivity.class);
+				break;
+			case 3:
+				this.title = getString(R.string.title_pm_section);
+				intent = new Intent(this, PredicateMatrixActivity.class);
+				break;
+			case 4:
+				this.title = getString(R.string.title_status_section);
+				intent = new Intent(this, StatusActivity.class);
+				break;
+			case 5:
+				this.title = getString(R.string.title_manage_section);
+				intent = new Intent(this, ManageActivity.class);
+				break;
+			case 6:
+				this.title = getString(R.string.title_storage_section);
+				intent = new Intent(this, StorageActivity.class);
+				break;
+			case 7:
+				this.title = getString(R.string.title_settings_section);
+				intent = new Intent(this, SettingsActivity.class);
 				break;
 		}
-		return intent;
-	}
-
-	/**
-	 * Make detail intent as per settings
-	 *
-	 * @param intentClass if WebActivity is not to be used
-	 * @return intent
-	 */
-	private Intent makeDetailIntent(final Class<?> intentClass)
-	{
-		Intent intent = null;
-
-		// mode
-		final Settings.DetailViewMode detailMode = Settings.getDetailViewModePref(this);
-		switch (detailMode)
+		if (intent != null)
 		{
-			case VIEW:
-				intent = new Intent(this, intentClass);
-				break;
-
-			case WEB:
-				intent = new Intent(this, WebActivity.class);
-				break;
+			startActivity(intent);
 		}
-		return intent;
-	}
-
-	/**
-	 * Make restart intent
-	 *
-	 * @return restart intent
-	 */
-	private Intent makeRestartIntent()
-	{
-		final Intent intent = getBaseContext().getPackageManager().getLaunchIntentForPackage(getBaseContext().getPackageName());
-		intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-		return intent;
 	}
 
 	// M E N U
@@ -363,10 +158,6 @@ public class MainActivity extends Activity
 	{
 		// inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.main, menu);
-
-		// set up search view
-		this.searchView = (SearchView) menu.findItem(R.id.searchView).getActionView();
-		setupSearchView(this.searchView);
 		return true;
 	}
 
@@ -384,55 +175,18 @@ public class MainActivity extends Activity
 				intent = new Intent(this, SettingsActivity.class);
 				break;
 
-			// tables
-
-			case R.id.action_table_lexdomains:
-				intent = new Intent(this, TableActivity.class);
-				intent.putExtra(ProviderArgs.ARG_QUERYURI, LexDomains.CONTENT_URI);
-				intent.putExtra(ProviderArgs.ARG_QUERYID, LexDomains.LEXDOMAINID);
-				intent.putExtra(ProviderArgs.ARG_QUERYITEMS, new String[]{LexDomains.LEXDOMAINID, LexDomains.LEXDOMAIN, LexDomains.POS});
-				intent.putExtra(ProviderArgs.ARG_QUERYLAYOUT, R.layout.item_table3);
-				break;
-
-			case R.id.action_table_postypes:
-				intent = new Intent(this, TableActivity.class);
-				intent.putExtra(ProviderArgs.ARG_QUERYURI, PosTypes.CONTENT_URI);
-				intent.putExtra(ProviderArgs.ARG_QUERYID, PosTypes.POS);
-				intent.putExtra(ProviderArgs.ARG_QUERYITEMS, new String[]{PosTypes.POS, PosTypes.POSNAME});
-				intent.putExtra(ProviderArgs.ARG_QUERYLAYOUT, R.layout.item_table2);
-				break;
-
-			case R.id.action_table_adjpositiontypes:
-				intent = new Intent(this, TableActivity.class);
-				intent.putExtra(ProviderArgs.ARG_QUERYURI, AdjPositionTypes.CONTENT_URI);
-				intent.putExtra(ProviderArgs.ARG_QUERYID, AdjPositionTypes.POSITION);
-				intent.putExtra(ProviderArgs.ARG_QUERYITEMS, new String[]{AdjPositionTypes.POSITION, AdjPositionTypes.POSITIONNAME});
-				intent.putExtra(ProviderArgs.ARG_QUERYLAYOUT, R.layout.item_table2);
-				break;
-
-			case R.id.action_table_linktypes:
-				intent = new Intent(this, TableActivity.class);
-				intent.putExtra(ProviderArgs.ARG_QUERYURI, LinkTypes.CONTENT_URI);
-				intent.putExtra(ProviderArgs.ARG_QUERYID, LinkTypes.LINKID);
-				intent.putExtra(ProviderArgs.ARG_QUERYITEMS, new String[]{LinkTypes.LINKID, LinkTypes.LINK, LinkTypes.RECURSESSELECT});
-				intent.putExtra(ProviderArgs.ARG_QUERYSORT, LinkTypes.LINKID + " ASC");
-				intent.putExtra(ProviderArgs.ARG_QUERYLAYOUT, R.layout.item_table3);
-				break;
-
-			// search
-
-			case R.id.action_text_search:
-				intent = new Intent(this, TextSearchActivity.class);
-				break;
-
-			case R.id.action_pm_search:
-				intent = new Intent(this, PredicateMatrixActivity.class);
-				break;
-
 			// database
 
 			case R.id.action_storage:
 				intent = new Intent(this, StorageActivity.class);
+				break;
+
+			case R.id.action_status:
+				intent = new Intent(this, StatusActivity.class);
+				break;
+
+			case R.id.action_manage:
+				intent = new Intent(this, ManageActivity.class);
 				break;
 
 			case R.id.action_setup:
@@ -441,14 +195,6 @@ public class MainActivity extends Activity
 
 			case R.id.action_setup_sql:
 				intent = new Intent(this, SetupSqlActivity.class);
-				break;
-
-			case R.id.action_status:
-				intent = new Intent(this, StatusActivity.class);
-				break;
-
-			case R.id.action_management:
-				intent = new Intent(this, ManagementActivity.class);
 				break;
 
 			// guide
@@ -463,13 +209,8 @@ public class MainActivity extends Activity
 
 			// lifecycle
 
-			case R.id.action_restart:
-				finish();
-				intent = makeRestartIntent();
-				break;
-
 			case R.id.action_quit:
-				quit();
+				finish();
 				return true;
 
 			case R.id.action_appsettings:
@@ -485,160 +226,49 @@ public class MainActivity extends Activity
 		return true;
 	}
 
-	// S E A R C H V I E W
+	// P L A C E H O L D E R
 
 	/**
-	 * Associate the searchable configuration with the searchView (associate the searchable configuration with the searchView)
-	 *
-	 * @param searchView searchView
+	 * A placeholder fragment containing a simple view.
 	 */
-	private void setupSearchView(final SearchView searchView)
+	public static class PlaceholderFragment extends Fragment
 	{
-		final SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
-		final SearchableInfo searchableInfo = searchManager.getSearchableInfo(getComponentName());
-		searchView.setSearchableInfo(searchableInfo);
-		searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener()
+		/**
+		 * The fragment argument representing the section number for this fragment.
+		 */
+		private static final String ARG_SECTION_NUMBER = "section_number";
+
+		/**
+		 * Constructor
+		 */
+		public PlaceholderFragment()
 		{
-			@Override
-			public boolean onQueryTextSubmit(final String query)
-			{
-				searchView.clearFocus();
-				searchView.setQuery("", false);
-				handleSearch(query);
-				return true;
-			}
-
-			@Override
-			public boolean onQueryTextChange(final String newText)
-			{
-				return false;
-			}
-		});
-	}
-
-	// S E A R C H
-
-	/**
-	 * Handle search
-	 *
-	 * @param query query
-	 */
-	@SuppressWarnings("boxing")
-	private void handleSearch(final String query)
-	{
-		// recurse
-		final boolean recurse = Settings.getRecursePref(this);
-
-		// dispatch as per query prefix
-		Intent searchIntent;
-		if (query.matches("#\\p{Lower}\\p{Lower}\\d+"))
-		{
-			final long id = Long.valueOf(query.substring(3));
-
-			// wordnet
-			if (query.startsWith("#ws"))
-			{
-				final Parcelable synsetPointer = new SynsetPointer(id, null);
-				searchIntent = makeDetailIntent(SynsetActivity.class);
-				searchIntent.putExtra(ProviderArgs.ARG_QUERYACTION, ProviderArgs.ARG_QUERYACTION_SYNSET);
-				searchIntent.putExtra(ProviderArgs.ARG_QUERYPOINTER, synsetPointer);
-				searchIntent.putExtra(ProviderArgs.ARG_QUERYRECURSE, recurse);
-			}
-
-			// verbnet
-			else if (query.startsWith("#vc"))
-			{
-				final Parcelable framePointer = new VnClassPointer(id);
-				searchIntent = makeDetailIntent(VnClassActivity.class);
-				searchIntent.putExtra(ProviderArgs.ARG_QUERYACTION, ProviderArgs.ARG_QUERYACTION_VNCLASS);
-				searchIntent.putExtra(ProviderArgs.ARG_QUERYPOINTER, framePointer);
-			}
-
-			// propbank
-			else if (query.startsWith("#pr"))
-			{
-				final Parcelable roleSetPointer = new PbRoleSetPointer(id);
-				searchIntent = makeDetailIntent(PbRoleSetActivity.class);
-				searchIntent.putExtra(ProviderArgs.ARG_QUERYACTION, ProviderArgs.ARG_QUERYACTION_PBROLESET);
-				searchIntent.putExtra(ProviderArgs.ARG_QUERYPOINTER, roleSetPointer);
-			}
-
-			// framenet
-			else if (query.startsWith("#ff"))
-			{
-				final Parcelable framePointer = new FnFramePointer(id);
-				searchIntent = makeDetailIntent(FnFrameActivity.class);
-				searchIntent.putExtra(ProviderArgs.ARG_QUERYACTION, ProviderArgs.ARG_QUERYACTION_FNFRAME);
-				searchIntent.putExtra(ProviderArgs.ARG_QUERYPOINTER, framePointer);
-			}
-			else if (query.startsWith("#fl"))
-			{
-				final Parcelable lexunitPointer = new FnLexUnitPointer(id);
-				searchIntent = makeDetailIntent(FnLexUnitActivity.class);
-				searchIntent.putExtra(ProviderArgs.ARG_QUERYACTION, ProviderArgs.ARG_QUERYACTION_FNLEXUNIT);
-				searchIntent.putExtra(ProviderArgs.ARG_QUERYPOINTER, lexunitPointer);
-			}
-			else if (query.startsWith("#fs"))
-			{
-				final Parcelable sentencePointer = new FnSentencePointer(id);
-				searchIntent = makeDetailIntent(FnSentenceActivity.class);
-				searchIntent.putExtra(ProviderArgs.ARG_QUERYACTION, ProviderArgs.ARG_QUERYACTION_FNSENTENCE);
-				searchIntent.putExtra(ProviderArgs.ARG_QUERYPOINTER, sentencePointer);
-			}
-			else if (query.startsWith("#fa"))
-			{
-				final Parcelable annoSetPointer = new FnAnnoSetPointer(id);
-				searchIntent = makeDetailIntent(FnAnnoSetActivity.class);
-				searchIntent.putExtra(ProviderArgs.ARG_QUERYACTION, ProviderArgs.ARG_QUERYACTION_FNANNOSET);
-				searchIntent.putExtra(ProviderArgs.ARG_QUERYPOINTER, annoSetPointer);
-			}
-			else if (query.startsWith("#fp"))
-			{
-				final Parcelable patternPointer = new FnPatternPointer(id);
-				searchIntent = makeDetailIntent(FnAnnoSetActivity.class);
-				searchIntent.putExtra(ProviderArgs.ARG_QUERYACTION, ProviderArgs.ARG_QUERYACTION_FNPATTERN);
-				searchIntent.putExtra(ProviderArgs.ARG_QUERYPOINTER, patternPointer);
-			}
-			else if (query.startsWith("#fv"))
-			{
-				final Parcelable valenceunitPointer = new FnValenceUnitPointer(id);
-				searchIntent = makeDetailIntent(FnAnnoSetActivity.class);
-				searchIntent.putExtra(ProviderArgs.ARG_QUERYACTION, ProviderArgs.ARG_QUERYACTION_FNVALENCEUNIT);
-				searchIntent.putExtra(ProviderArgs.ARG_QUERYPOINTER, valenceunitPointer);
-			}
-
-			// predicate matrix
-			else if (query.startsWith("#mr"))
-			{
-				final Parcelable rolePointer = new PmRolePointer(id);
-				searchIntent = makeDetailIntent(PredicateMatrixActivity.class);
-				searchIntent.putExtra(ProviderArgs.ARG_QUERYACTION, ProviderArgs.ARG_QUERYACTION_PMROLE);
-				searchIntent.putExtra(ProviderArgs.ARG_QUERYPOINTER, rolePointer);
-			}
-			else
-			{
-				return;
-			}
 		}
-		else
+
+		/**
+		 * Returns a new instance of this fragment for the given section number.
+		 */
+		public static PlaceholderFragment newInstance(final int sectionNumber)
 		{
-			// search for string
-			searchIntent = makeSelectorIntent();
-			searchIntent.putExtra(ProviderArgs.ARG_QUERYSTRING, query);
-			searchIntent.putExtra(ProviderArgs.ARG_QUERYRECURSE, recurse);
+			final PlaceholderFragment fragment = new PlaceholderFragment();
+			final Bundle args = new Bundle();
+			args.putInt(ARG_SECTION_NUMBER, sectionNumber);
+			fragment.setArguments(args);
+			return fragment;
 		}
-		Log.d(MainActivity.TAG, "SEARCH " + searchIntent);
-		startActivity(searchIntent);
-	}
 
-	// H E L P E R S
+		@Override
+		public View onCreateView(final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState)
+		{
+			final View rootView = inflater.inflate(R.layout.fragment_main, container, false);
+			return rootView;
+		}
 
-	/**
-	 * Quit
-	 */
-	private void quit()
-	{
-		finish();
-		android.os.Process.killProcess(android.os.Process.myPid());
+		@Override
+		public void onAttach(final Activity activity)
+		{
+			super.onAttach(activity);
+			((MainActivity) activity).onSectionAttached(getArguments().getInt(ARG_SECTION_NUMBER));
+		}
 	}
 }

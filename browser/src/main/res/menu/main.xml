@@ -1,10 +1,6 @@
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
-
-	<item
-		android:id="@+id/searchView"
-		android:actionViewClass="android.widget.SearchView"
-		android:showAsAction="ifRoom"
-		android:title="@string/hint_search"/>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+      xmlns:tools="http://schemas.android.com/tools"
+      tools:context="org.sqlunet.browser.MainActivity">
 	<item
 		android:id="@+id/action_settings"
 		android:showAsAction="never"
@@ -14,6 +10,10 @@
 		android:showAsAction="never"
 		android:title="@string/action_status"/>
 	<item
+		android:id="@+id/action_storage"
+		android:showAsAction="never"
+		android:title="@string/action_storage"/>
+	<item
 		android:id="@+id/action_setup"
 		android:showAsAction="never"
 		android:title="@string/action_setup"/>
@@ -22,37 +22,9 @@
 		android:showAsAction="never"
 		android:title="@string/action_setup_sql"/>
 	<item
-		android:id="@+id/action_storage"
+		android:id="@+id/action_manage"
 		android:showAsAction="never"
-		android:title="@string/action_storage"/>
-	<item
-		android:id="@+id/action_management"
-		android:showAsAction="never"
-		android:title="@string/action_management"/>
-	<item
-		android:id="@+id/action_text_search"
-		android:showAsAction="never"
-		android:title="@string/action_text_search"/>
-	<item
-		android:id="@+id/action_pm_search"
-		android:showAsAction="never"
-		android:title="@string/action_pm_search"/>
-	<item
-		android:id="@+id/action_table_lexdomains"
-		android:showAsAction="never"
-		android:title="@string/action_table_lexdomains"/>
-	<item
-		android:id="@+id/action_table_linktypes"
-		android:showAsAction="never"
-		android:title="@string/action_table_linktypes"/>
-	<item
-		android:id="@+id/action_table_postypes"
-		android:showAsAction="never"
-		android:title="@string/action_table_postypes"/>
-	<item
-		android:id="@+id/action_table_adjpositiontypes"
-		android:showAsAction="never"
-		android:title="@string/action_table_adjpositiontypes"/>
+		android:title="@string/action_manage"/>
 	<item
 		android:id="@+id/action_help"
 		android:showAsAction="never"
@@ -65,10 +37,6 @@
 		android:id="@+id/action_appsettings"
 		android:showAsAction="never"
 		android:title="@string/action_appsettings"/>
-	<item
-		android:id="@+id/action_restart"
-		android:showAsAction="never"
-		android:title="@string/action_restart"/>
 	<item
 		android:id="@+id/action_quit"
 		android:showAsAction="never"

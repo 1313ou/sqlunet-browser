@@ -25,7 +25,7 @@
 		android:theme="@style/AppTheme">
 
 		<activity
-			android:name="org.sqlunet.browser.MainActivity"
+			android:name=".MainActivity"
 			android:label="@string/app_name"
 			android:launchMode="singleTop">
 			<intent-filter>
@@ -39,10 +39,21 @@
 		</activity>
 
 		<activity
-			android:name="org.sqlunet.browser.selector.SelectorActivity"
+			android:name=".BrowseActivity"
+			android:label="@string/title_activity_main"
+			android:launchMode="singleTop"
+			android:parentActivityName=".MainActivity"
+			tools:ignore="UnusedAttribute">
+			<meta-data
+				android:name="android.support.PARENT_ACTIVITY"
+				android:value=".MainActivity"/>
+		</activity>
+
+		<activity
+			android:name=".selector.SelectorActivity"
 			android:label="@string/title_activity_selector"
 			android:launchMode="singleTop"
-			android:parentActivityName="org.sqlunet.browser.MainActivity"
+			android:parentActivityName=".MainActivity"
 			tools:ignore="UnusedAttribute">
 			<intent-filter>
 				<action android:name="android.intent.action.SEARCH"/>
@@ -53,23 +64,24 @@
 		</activity>
 
 		<activity
-			android:name="org.sqlunet.browser.xselector.XSelectorActivity"
+			android:name=".xselector.XSelectorActivity"
 			android:label="@string/title_activity_xselector"
 			android:launchMode="singleTop"
-			android:parentActivityName="org.sqlunet.browser.MainActivity"
+			android:parentActivityName=".MainActivity"
 			tools:ignore="UnusedAttribute">
 			<intent-filter>
 				<action android:name="android.intent.action.SEARCH"/>
 			</intent-filter>
+
 			<meta-data
 				android:name="android.support.PARENT_ACTIVITY"
 				android:value=".MainActivity"/>
 		</activity>
 
 		<activity
-			android:name="org.sqlunet.browser.DetailActivity"
+			android:name=".DetailActivity"
 			android:label="@string/title_activity_sense"
-			android:parentActivityName="org.sqlunet.browser.selector.SelectorActivity"
+			android:parentActivityName=".selector.SelectorActivity"
 			tools:ignore="UnusedAttribute">
 			<meta-data
 				android:name="android.support.PARENT_ACTIVITY"
@@ -77,9 +89,9 @@
 		</activity>
 
 		<activity
-			android:name="org.sqlunet.browser.web.WebActivity"
+			android:name=".web.WebActivity"
 			android:label="@string/title_activity_web"
-			android:parentActivityName="org.sqlunet.browser.MainActivity"
+			android:parentActivityName=".MainActivity"
 			tools:ignore="UnusedAttribute">
 			<meta-data
 				android:name="android.support.PARENT_ACTIVITY"
@@ -87,10 +99,10 @@
 		</activity>
 
 		<activity
-			android:name="org.sqlunet.browser.TextSearchActivity"
+			android:name=".TextSearchActivity"
 			android:label="@string/title_activity_text_search"
 			android:launchMode="singleTop"
-			android:parentActivityName="org.sqlunet.browser.TextSearchActivity"
+			android:parentActivityName=".TextSearchActivity"
 			tools:ignore="UnusedAttribute">
 			<intent-filter>
 				<action android:name="android.intent.action.SEARCH"/>
@@ -116,7 +128,7 @@
 		<activity
 			android:name="org.sqlunet.wordnet.browser.SynsetActivity"
 			android:label="@string/title_activity_synset"
-			android:parentActivityName="org.sqlunet.browser.MainActivity"
+			android:parentActivityName=".MainActivity"
 			tools:ignore="UnusedAttribute">
 			<meta-data
 				android:name="android.support.PARENT_ACTIVITY"
@@ -126,7 +138,7 @@
 		<activity
 			android:name="org.sqlunet.verbnet.browser.VnClassActivity"
 			android:label="@string/title_activity_vnclass"
-			android:parentActivityName="org.sqlunet.browser.MainActivity"
+			android:parentActivityName=".MainActivity"
 			tools:ignore="UnusedAttribute">
 			<meta-data
 				android:name="android.support.PARENT_ACTIVITY"
@@ -136,7 +148,7 @@
 		<activity
 			android:name="org.sqlunet.propbank.browser.PbRoleSetActivity"
 			android:label="@string/title_activity_pbroleset"
-			android:parentActivityName="org.sqlunet.browser.MainActivity"
+			android:parentActivityName=".MainActivity"
 			tools:ignore="UnusedAttribute">
 			<meta-data
 				android:name="android.support.PARENT_ACTIVITY"
@@ -146,7 +158,7 @@
 		<activity
 			android:name="org.sqlunet.framenet.browser.FnFrameActivity"
 			android:label="@string/title_activity_fnframe"
-			android:parentActivityName="org.sqlunet.browser.MainActivity"
+			android:parentActivityName=".MainActivity"
 			tools:ignore="UnusedAttribute">
 			<meta-data
 				android:name="android.support.PARENT_ACTIVITY"
@@ -156,7 +168,7 @@
 		<activity
 			android:name="org.sqlunet.framenet.browser.FnLexUnitActivity"
 			android:label="@string/title_activity_fnlexunit"
-			android:parentActivityName="org.sqlunet.browser.MainActivity"
+			android:parentActivityName=".MainActivity"
 			tools:ignore="UnusedAttribute">
 			<meta-data
 				android:name="android.support.PARENT_ACTIVITY"
@@ -166,7 +178,7 @@
 		<activity
 			android:name="org.sqlunet.framenet.browser.FnSentenceActivity"
 			android:label="@string/title_activity_fnsentence"
-			android:parentActivityName="org.sqlunet.browser.MainActivity"
+			android:parentActivityName=".MainActivity"
 			tools:ignore="UnusedAttribute">
 			<meta-data
 				android:name="android.support.PARENT_ACTIVITY"
@@ -176,7 +188,7 @@
 		<activity
 			android:name="org.sqlunet.framenet.browser.FnAnnoSetActivity"
 			android:label="@string/title_activity_fnannoset"
-			android:parentActivityName="org.sqlunet.browser.MainActivity"
+			android:parentActivityName=".MainActivity"
 			tools:ignore="UnusedAttribute">
 			<meta-data
 				android:name="android.support.PARENT_ACTIVITY"
@@ -184,9 +196,9 @@
 		</activity>
 
 		<activity
-			android:name="org.sqlunet.browser.config.SettingsActivity"
+			android:name=".config.SettingsActivity"
 			android:label="@string/title_activity_settings"
-			android:parentActivityName="org.sqlunet.browser.MainActivity"
+			android:parentActivityName=".MainActivity"
 			tools:ignore="UnusedAttribute">
 			<meta-data
 				android:name="android.support.PARENT_ACTIVITY"
@@ -194,9 +206,9 @@
 		</activity>
 
 		<activity
-			android:name="org.sqlunet.browser.StatusActivity"
+			android:name=".StatusActivity"
 			android:label="@string/title_activity_status"
-			android:parentActivityName="org.sqlunet.browser.MainActivity"
+			android:parentActivityName=".MainActivity"
 			tools:ignore="UnusedAttribute">
 			<meta-data
 				android:name="android.support.PARENT_ACTIVITY"
@@ -204,9 +216,9 @@
 		</activity>
 
 		<activity
-			android:name="org.sqlunet.browser.config.SetupActivity"
+			android:name=".config.SetupActivity"
 			android:label="@string/title_activity_setup"
-			android:parentActivityName="org.sqlunet.browser.MainActivity"
+			android:parentActivityName=".MainActivity"
 			tools:ignore="UnusedAttribute">
 			<meta-data
 				android:name="android.support.PARENT_ACTIVITY"
@@ -214,9 +226,9 @@
 		</activity>
 
 		<activity
-			android:name="org.sqlunet.browser.config.StorageActivity"
+			android:name=".config.StorageActivity"
 			android:label="@string/title_activity_storage"
-			android:parentActivityName="org.sqlunet.browser.MainActivity"
+			android:parentActivityName=".MainActivity"
 			tools:ignore="UnusedAttribute">
 			<meta-data
 				android:name="android.support.PARENT_ACTIVITY"
@@ -224,9 +236,9 @@
 		</activity>
 
 		<activity
-			android:name="org.sqlunet.browser.config.SetupSqlActivity"
+			android:name=".config.SetupSqlActivity"
 			android:label="@string/title_activity_setup"
-			android:parentActivityName="org.sqlunet.browser.MainActivity"
+			android:parentActivityName=".MainActivity"
 			tools:ignore="UnusedAttribute">
 			<meta-data
 				android:name="android.support.PARENT_ACTIVITY"
@@ -234,9 +246,9 @@
 		</activity>
 
 		<activity
-			android:name="org.sqlunet.browser.config.DownloadActivity"
+			android:name=".config.DownloadActivity"
 			android:label="@string/title_activity_download"
-			android:parentActivityName="org.sqlunet.browser.MainActivity"
+			android:parentActivityName=".MainActivity"
 			tools:ignore="UnusedAttribute">
 			<meta-data
 				android:name="android.support.PARENT_ACTIVITY"
@@ -244,9 +256,9 @@
 		</activity>
 
 		<activity
-			android:name="org.sqlunet.browser.config.TableActivity"
+			android:name=".config.TableActivity"
 			android:label="@string/title_activity_table"
-			android:parentActivityName="org.sqlunet.browser.MainActivity"
+			android:parentActivityName=".MainActivity"
 			tools:ignore="UnusedAttribute">
 			<meta-data
 				android:name="android.support.PARENT_ACTIVITY"
@@ -254,9 +266,9 @@
 		</activity>
 
 		<activity
-			android:name="org.sqlunet.browser.config.ManagementActivity"
-			android:label="@string/title_activity_management"
-			android:parentActivityName="org.sqlunet.browser.MainActivity"
+			android:name=".config.ManageActivity"
+			android:label="@string/title_activity_manage"
+			android:parentActivityName=".MainActivity"
 			tools:ignore="UnusedAttribute">
 			<meta-data
 				android:name="android.support.PARENT_ACTIVITY"
@@ -292,7 +304,6 @@
 			android:exported="true"
 			tools:ignore="ExportedContentProvider">
 		</provider>
-
 		<provider
 			android:name="org.sqlunet.provider.XSqlUNetProvider"
 			android:authorities="org.sqlunet.cross.provider"
@@ -300,7 +311,6 @@
 			android:exported="true"
 			tools:ignore="ExportedContentProvider">
 		</provider>
-
 		<provider
 			android:name="org.sqlunet.wordnet.provider.WordNetProvider"
 			android:authorities="org.sqlunet.wordnet.provider"
@@ -308,7 +318,6 @@
 			android:exported="true"
 			tools:ignore="ExportedContentProvider">
 		</provider>
-
 		<provider
 			android:name="org.sqlunet.framenet.provider.FrameNetProvider"
 			android:authorities="org.sqlunet.framenet.provider"
@@ -316,7 +325,6 @@
 			android:exported="true"
 			tools:ignore="ExportedContentProvider">
 		</provider>
-
 		<provider
 			android:name="org.sqlunet.propbank.provider.PropBankProvider"
 			android:authorities="org.sqlunet.propbank.provider"
@@ -324,7 +332,6 @@
 			android:exported="true"
 			tools:ignore="ExportedContentProvider">
 		</provider>
-
 		<provider
 			android:name="org.sqlunet.verbnet.provider.VerbNetProvider"
 			android:authorities="org.sqlunet.verbnet.provider"
@@ -332,7 +339,6 @@
 			android:exported="true"
 			tools:ignore="ExportedContentProvider">
 		</provider>
-
 		<provider
 			android:name="org.sqlunet.bnc.provider.BNCProvider"
 			android:authorities="org.sqlunet.bnc.provider"
@@ -340,7 +346,6 @@
 			android:exported="true"
 			tools:ignore="ExportedContentProvider">
 		</provider>
-
 		<provider
 			android:name="org.sqlunet.predicatematrix.provider.PredicateMatrixProvider"
 			android:authorities="org.sqlunet.predicatematrix.provider"
@@ -348,7 +353,6 @@
 			android:exported="true"
 			tools:ignore="ExportedContentProvider">
 		</provider>
-
 	</application>
 
 </manifest>

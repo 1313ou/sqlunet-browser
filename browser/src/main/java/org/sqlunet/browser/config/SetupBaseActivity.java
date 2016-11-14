@@ -98,8 +98,8 @@ public class SetupBaseActivity extends Activity implements Downloader.Listener, 
 			case R.id.action_storage:
 				intent = new Intent(this, StorageActivity.class);
 				break;
-			case R.id.action_management:
-				intent = new Intent(this, ManagementActivity.class);
+			case R.id.action_manage:
+				intent = new Intent(this, ManageActivity.class);
 				break;
 			case R.id.action_appsettings:
 				Settings.applicationSettings(this, "org.sqlunet.browser");
