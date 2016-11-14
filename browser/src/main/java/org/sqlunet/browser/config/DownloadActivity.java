@@ -93,6 +93,7 @@ public class DownloadActivity extends Activity implements View.OnClickListener
 	{
 		super.onCreate(savedInstanceState);
 
+		// content view
 		setContentView(R.layout.activity_download);
 
 		// download data

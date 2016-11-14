@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                tools:context="org.sqlunet.browser.config.ManageFragment">
+
+	<Spinner
+		android:id="@+id/manage_actions"
+		android:gravity="center"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_centerHorizontal="true"
+		android:layout_centerVertical="true"
+		android:layout_margin="10dp"/>
+
+	<ImageButton
+		android:id="@+id/manage_run"
+		style="?android:attr/buttonStyle"
+		android:layout_width="64dp"
+		android:layout_height="64dp"
+		android:layout_below="@+id/manage_actions"
+		android:layout_centerHorizontal="true"
+		android:layout_centerVertical="true"
+		android:background="@drawable/bg_button"
+		android:contentDescription="@string/action_download"
+		android:src="@drawable/ic_run"
+		android:text="@string/action_run"/>
+
+	<TextView
+		android:id="@+id/manage_status"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_below="@+id/manage_run"
+		android:layout_centerHorizontal="true"
+		android:textIsSelectable="true"/>
+
+</RelativeLayout>

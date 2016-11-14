@@ -30,6 +30,7 @@
 		<fragment
 			android:id="@+id/xselector"
 			android:name="org.sqlunet.browser.xselector.XSelectorFragment"
+			class="org.sqlunet.browser.xselector.XSelectorFragment"
 			android:layout_width="0dp"
 			android:layout_height="match_parent"
 			android:layout_weight="1"

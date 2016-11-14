@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 import android.widget.CursorAdapter;
 import android.widget.SimpleCursorAdapter;
 import android.widget.SimpleCursorAdapter.ViewBinder;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import org.sqlunet.provider.ProviderArgs;
@@ -47,11 +48,7 @@ public abstract class AbstractTableFragment extends ListFragment
 		super.onCreate(savedInstanceState);
 
 		// args
-		Bundle args = getArguments();
-		if (args == null)
-		{
-			args = getActivity().getIntent().getExtras();
-		}
+		final Bundle args = getArguments();
 
 		// query params
 		final String uriString = args.getString(ProviderArgs.ARG_QUERYURI);
@@ -83,23 +80,7 @@ public abstract class AbstractTableFragment extends ListFragment
 				fromList.add(col);
 			}
 		}
-		/*
-		if (hiddenItems != null)
-		{
-			for (final String item : hiddenItems)
-			{
-				String col = item;
 
-				// remove alias
-				final int asIndex = col.lastIndexOf(" AS ");
-				if (asIndex != -1)
-				{
-					col = col.substring(asIndex + 4);
-				}
-				fromList.add(col);
-			}
-		}
-		*/
 		final String[] from = fromList.toArray(new String[0]);
 		Log.d(AbstractTableFragment.TAG + "From", Utils.join(from));
 
@@ -188,7 +169,20 @@ public abstract class AbstractTableFragment extends ListFragment
 	public View onCreateView(final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState)
 	{
 		// layout
-		return inflater.inflate(R.layout.fragment_table, container, false);
+		final View view = inflater.inflate(R.layout.fragment_table, container, false);
+
+		// query view
+		final TextView queryView = (TextView) view.findViewById(R.id.queryView);
+
+		// args
+		final Bundle args = getArguments();
+
+		// query
+		final String uriString = args.getString(ProviderArgs.ARG_QUERYURI);
+		final String selection = args.getString(ProviderArgs.ARG_QUERYFILTER);
+		queryView.setText(String.format("%s (filter: %s)", uriString, selection));
+
+		return view;
 	}
 
 	/**

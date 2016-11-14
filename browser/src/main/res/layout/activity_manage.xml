@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             xmlns:tools="http://schemas.android.com/tools"
+             android:id="@+id/container_manage"
+             android:layout_width="match_parent"
+             android:layout_height="match_parent"
+             tools:context="org.sqlunet.browser.config.ManageActivity"
+             tools:ignore="MergeRootFrame">
+
+	<fragment
+		android:id="@+id/fragment_manage"
+		android:name="org.sqlunet.browser.config.ManageFragment"
+		class="org.sqlunet.browser.config.ManageFragment"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		tools:layout="@layout/fragment_manage"/>
+
+</FrameLayout>

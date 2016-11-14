@@ -3,15 +3,16 @@
              xmlns:tools="http://schemas.android.com/tools"
              android:layout_width="match_parent"
              android:layout_height="match_parent"
-             android:paddingBottom="@dimen/activity_vertical_margin"
-             android:paddingLeft="@dimen/activity_horizontal_margin"
-             android:paddingRight="@dimen/activity_horizontal_margin"
-             android:paddingTop="@dimen/activity_vertical_margin"
+             android:paddingBottom="@dimen/activity_vertical_padding"
+             android:paddingLeft="@dimen/activity_horizontal_padding"
+             android:paddingRight="@dimen/activity_horizontal_padding"
+             android:paddingTop="@dimen/activity_vertical_padding"
              tools:context=".StatusActivity">
 
 	<fragment
-		android:id="@+id/status"
+		android:id="@+id/fragment_status"
 		android:name="org.sqlunet.browser.StatusFragment"
+		class="org.sqlunet.browser.StatusFragment"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
 		tools:context=".StatusActivity"

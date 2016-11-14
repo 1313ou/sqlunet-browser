@@ -90,11 +90,7 @@ public class SensesFragment extends ListFragment
 		super.onCreate(savedInstanceState);
 
 		// arguments
-		Bundle args = getArguments();
-		if (args == null)
-		{
-			args = getActivity().getIntent().getExtras();
-		}
+		final Bundle args = getArguments();
 
 		// target word
 		String query = args.getString(ProviderArgs.ARG_QUERYSTRING);

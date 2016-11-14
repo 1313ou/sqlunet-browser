@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 xmlns:tools="http://schemas.android.com/tools"
                 android:layout_width="match_parent"
@@ -7,15 +6,11 @@
                 android:paddingLeft="@dimen/activity_horizontal_padding"
                 android:paddingRight="@dimen/activity_horizontal_padding"
                 android:paddingTop="@dimen/activity_vertical_padding"
-                tools:context="org.sqlunet.browser.web.WebActivity">
+                tools:context="org.sqlunet.browser.MainActivity$PlaceholderFragment">
 
-	<fragment
-		android:id="@+id/web"
-		android:name="org.sqlunet.browser.web.WebFragment"
-		class="org.sqlunet.browser.web.WebFragment"
-		android:layout_width="match_parent"
-		android:layout_height="match_parent"
-		tools:context=".WebActivity"
-		tools:layout="@layout/fragment_web"/>
+	<TextView
+		android:id="@+id/section_label"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"/>
 
 </RelativeLayout>

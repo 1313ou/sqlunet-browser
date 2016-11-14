@@ -23,22 +23,4 @@ public class StorageActivity extends Activity
 		// layout
 		setContentView(R.layout.activity_storage);
 	}
-
-	@Override
-	protected void onResume()
-	{
-		super.onResume();
-
-		// db
-		final TextView db = (TextView) findViewById(R.id.database);
-		db.setText(Storage.getSqlUNetStorage(getBaseContext()).getAbsolutePath());
-
-		// storage
-		final TextView storage = (TextView) findViewById(R.id.storage);
-		storage.setText(StorageStyle.reportStyledCandidateStorage(getBaseContext()));
-
-		// storage devices
-		final TextView storageDevices = (TextView) findViewById(R.id.storage_devices);
-		storageDevices.setText(StorageStyle.reportExternalStorage(getBaseContext()));
-	}
 }

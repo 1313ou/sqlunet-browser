@@ -72,7 +72,7 @@ public class MainActivity extends Activity implements NavigationDrawerFragment.N
 		if (!canRun)
 		{
 			final Intent intent = new Intent(this, StatusActivity.class);
-			intent.putExtra(StatusActivity.CANTRUN, true);
+			intent.putExtra(Status.CANTRUN, true);
 			intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 			// intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_TASK_ON_HOME);
 			startActivity(intent);
@@ -85,7 +85,7 @@ public class MainActivity extends Activity implements NavigationDrawerFragment.N
 	{
 		// update the browse content by replacing fragments
 		FragmentManager fragmentManager = getFragmentManager();
-		fragmentManager.beginTransaction().replace(R.id.container, PlaceholderFragment.newInstance(position + 1)).commit();
+		fragmentManager.beginTransaction().replace(R.id.container_content, PlaceholderFragment.newInstance(position + 1)).commit();
 	}
 
 	public void restoreActionBar()
