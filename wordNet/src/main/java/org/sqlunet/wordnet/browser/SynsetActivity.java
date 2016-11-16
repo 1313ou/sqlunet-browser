@@ -18,7 +18,7 @@ public class SynsetActivity extends Activity
 	{
 		super.onCreate(savedInstanceState);
 
-		// content layout
+		// content
 		setContentView(R.layout.activity_synset);
 
 		// show the Up button in the action bar.
@@ -34,8 +34,8 @@ public class SynsetActivity extends Activity
 			// create the sense fragment, transmit intent's extras as parameters and add it to the activity using a fragment transaction
 			final Bundle args = getIntent().getExtras();
 			final SynsetFragment fragment = new SynsetFragment();
-			fragment.setExpand(true);
 			fragment.setArguments(args);
+			fragment.setExpand(true);
 			getFragmentManager().beginTransaction().add(R.id.container_synset, fragment).commit();
 		}
 	}

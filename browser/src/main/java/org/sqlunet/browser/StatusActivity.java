@@ -34,7 +34,7 @@ public class StatusActivity extends Activity
 	{
 		super.onCreate(savedInstanceState);
 
-		// layout
+		// content
 		setContentView(R.layout.activity_status);
 
 		// show the Up button in the action bar.

@@ -18,7 +18,7 @@ public class FnLexUnitActivity extends Activity
 	{
 		super.onCreate(savedInstanceState);
 
-		// content layout
+		// content
 		setContentView(R.layout.activity_fnlexunit);
 
 		// show the Up button in the action bar.

@@ -168,7 +168,7 @@ public abstract class AbstractTableFragment extends ListFragment
 	@Override
 	public View onCreateView(final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState)
 	{
-		// layout
+		// view
 		final View view = inflater.inflate(R.layout.fragment_table, container, false);
 
 		// query view

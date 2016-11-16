@@ -29,12 +29,20 @@ public class ManageActivity extends Activity
 	{
 		super.onCreate(savedInstanceState);
 
-		// layout
+		// content
 		setContentView(R.layout.activity_manage);
 
 		// show the Up button in the action bar.
 		final ActionBar actionBar = getActionBar();
 		assert actionBar != null;
 		actionBar.setDisplayHomeAsUpEnabled(true);
+
+		// fragment
+		final Fragment fragment = new ManageFragment();
+		fragment.setArguments(getIntent().getExtras());
+		getFragmentManager() //
+				.beginTransaction() //
+				.replace(R.id.container_manage, fragment) //
+				.commit();
 	}
 }

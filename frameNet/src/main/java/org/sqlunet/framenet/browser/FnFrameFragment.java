@@ -39,9 +39,11 @@ public class FnFrameFragment extends Fragment
 	@Override
 	public View onCreateView(final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState)
 	{
-		// views
-		final View rootView = inflater.inflate(R.layout.fragment_fnframe, container, false);
-		final ViewGroup containerView = (ViewGroup) rootView.findViewById(R.id.data_contents);
+		// view
+		final View view = inflater.inflate(R.layout.fragment_fnframe, container, false);
+
+		// container
+		final ViewGroup containerView = (ViewGroup) view.findViewById(R.id.data_contents);
 
 		// root node
 		final TreeNode root = TreeNode.makeRoot();
@@ -61,21 +63,24 @@ public class FnFrameFragment extends Fragment
 			if (state != null && !state.isEmpty())
 			{
 				this.treeView.restoreState(state);
-				return rootView;
+				return view;
 			}
 		}
 
 		// query
 		final Bundle args = getArguments();
 		final int action = args.getInt(ProviderArgs.ARG_QUERYACTION);
-		final Parcelable pointer = args.getParcelable(ProviderArgs.ARG_QUERYPOINTER);
+		if (args.containsKey(ProviderArgs.ARG_QUERYPOINTER))
+		{
+			// pointer
+			final Parcelable pointer = args.getParcelable(ProviderArgs.ARG_QUERYPOINTER);
 
-		// module
-		Module module = new FrameModule(this);
-		module.init(action, pointer);
-		module.process(frameNode);
-
-		return rootView;
+			// module
+			final Module module = new FrameModule(this);
+			module.init(action, pointer);
+			module.process(frameNode);
+		}
+		return view;
 	}
 
 	@Override

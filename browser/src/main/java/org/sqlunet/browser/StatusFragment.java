@@ -49,7 +49,7 @@ public class StatusFragment extends Fragment
 	@Override
 	public View onCreateView(final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState)
 	{
-		// layout
+		setHasOptionsMenu(true);
 		return inflater.inflate(R.layout.fragment_status, container, false);
 	}
 
@@ -213,6 +213,7 @@ public class StatusFragment extends Fragment
 	public void onCreateOptionsMenu(final Menu menu, final MenuInflater inflater)
 	{
 		inflater.inflate(R.menu.status, menu);
+		super.onCreateOptionsMenu(menu,inflater);
 	}
 
 	// A C T I O N H A N D L I N G

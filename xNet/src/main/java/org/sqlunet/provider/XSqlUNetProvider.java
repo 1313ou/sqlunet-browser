@@ -2,6 +2,7 @@ package org.sqlunet.provider;
 
 import android.content.UriMatcher;
 import android.database.Cursor;
+import android.database.sqlite.SQLiteCantOpenDatabaseException;
 import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteQueryBuilder;
 import android.net.Uri;
@@ -117,7 +118,14 @@ public class XSqlUNetProvider extends BaseProvider
 	{
 		if (this.db == null)
 		{
-			open();
+			try
+			{
+				open();
+			}
+			catch (SQLiteCantOpenDatabaseException e)
+			{
+				return null;
+			}
 		}
 
 		// choose the table to query and a sort order based on the code returned for the incoming URI

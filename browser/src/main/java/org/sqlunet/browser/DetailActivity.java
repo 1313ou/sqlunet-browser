@@ -19,7 +19,7 @@ public class DetailActivity extends Activity
 	{
 		super.onCreate(savedInstanceState);
 
-		// layout
+		// content
 		setContentView(R.layout.activity_detail);
 
 		// show the Up button in the action bar.

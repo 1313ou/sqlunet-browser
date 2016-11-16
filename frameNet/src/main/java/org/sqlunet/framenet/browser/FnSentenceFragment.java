@@ -39,13 +39,16 @@ public class FnSentenceFragment extends Fragment
 	@Override
 	public View onCreateView(final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState)
 	{
-		// views
-		final View rootView = inflater.inflate(R.layout.fragment_fnsentence, container, false);
-		final ViewGroup containerView = (ViewGroup) rootView.findViewById(R.id.data_contents);
+		// view
+		final View view = inflater.inflate(R.layout.fragment_fnsentence, container, false);
+
+		// container
+		final ViewGroup containerView = (ViewGroup) view.findViewById(R.id.data_contents);
 
 		// root node
 		final TreeNode root = TreeNode.makeRoot();
 		final TreeNode queryNode = TreeFactory.addTreeNode(root, "Sentence", R.drawable.sentence, getActivity());
+
 		// tree
 		this.treeView = new TreeView(getActivity(), root);
 		this.treeView.setDefaultAnimation(true);
@@ -60,21 +63,25 @@ public class FnSentenceFragment extends Fragment
 			if (state != null && !state.isEmpty())
 			{
 				this.treeView.restoreState(state);
-				return rootView;
+				return view;
 			}
 		}
 
 		// query
 		final Bundle args = getArguments();
 		final int action = args.getInt(ProviderArgs.ARG_QUERYACTION);
-		final Parcelable pointer = args.getParcelable(ProviderArgs.ARG_QUERYPOINTER);
+		if (args.containsKey(ProviderArgs.ARG_QUERYPOINTER))
+		{
+			// pointer
+			final Parcelable pointer = args.getParcelable(ProviderArgs.ARG_QUERYPOINTER);
 
-		// module
-		Module module = new SentenceModule(this);
-		module.init(action, pointer);
-		module.process(queryNode);
+			// module
+			final Module module = new SentenceModule(this);
+			module.init(action, pointer);
+			module.process(queryNode);
+		}
 
-		return rootView;
+		return view;
 	}
 
 	@Override

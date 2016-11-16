@@ -238,16 +238,16 @@ public class WebFragment extends Fragment
 	@Override
 	public View onCreateView(final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState)
 	{
-		// inflate the layout for this fragment
-		final View rootView = inflater.inflate(R.layout.fragment_web, container, false);
+		// view
+		final View view = inflater.inflate(R.layout.fragment_web, container, false);
 
 		// webview
-		this.webview = (WebView) rootView.findViewById(R.id.webView);
+		this.webview = (WebView) view.findViewById(R.id.webView);
 
 		// load view
 		load();
 
-		return rootView;
+		return view;
 	}
 
 	/**

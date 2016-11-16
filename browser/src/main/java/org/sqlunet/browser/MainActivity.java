@@ -15,12 +15,15 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import org.sqlunet.browser.config.ManageActivity;
+import org.sqlunet.browser.config.ManageFragment;
 import org.sqlunet.browser.config.SettingsActivity;
 import org.sqlunet.browser.config.SetupActivity;
 import org.sqlunet.browser.config.SetupSqlActivity;
 import org.sqlunet.browser.config.Status;
 import org.sqlunet.browser.config.StorageActivity;
+import org.sqlunet.browser.config.StorageFragment;
 import org.sqlunet.predicatematrix.browser.PredicateMatrixActivity;
+import org.sqlunet.predicatematrix.browser.PredicateMatrixFragment;
 import org.sqlunet.settings.Settings;
 import org.sqlunet.settings.StorageSettings;
 
@@ -105,45 +108,52 @@ public class MainActivity extends Activity implements NavigationDrawerFragment.N
 	{
 		final String[] options = getResources().getStringArray(R.array.title_sections);
 		Intent intent = null;
+		Fragment fragment = null;
 		switch (number)
 		{
-			/*
-			<item>@string/title_browse_section</item>
-			<item>@string/title_ts_section</item>
-			<item>@string/title_pm_section</item>
-			<item>@string/title_status_section</item>
-			<item>@string/title_manage_section</item>
-			<item>@string/title_storage_section</item>
-			<item>@string/title_settings_section</item>
-			*/
 			case 1:
-				this.title = getString(R.string.title_browse_section);
-				intent = new Intent(this, BrowseActivity.class);
+				this.title = getString(R.string.title_home_section);
+				fragment = new HomeFragment();
 				break;
 			case 2:
-				this.title = getString(R.string.title_ts_section);
-				intent = new Intent(this, TextSearchActivity.class);
+				this.title = getString(R.string.title_browse_section);
+				intent = new Intent(this, BrowseActivity.class);
+				//fragment = new BrowseFragment();
 				break;
 			case 3:
-				this.title = getString(R.string.title_pm_section);
-				intent = new Intent(this, PredicateMatrixActivity.class);
+				this.title = getString(R.string.title_ts_section);
+				intent = new Intent(this, TextSearchActivity.class);
+				//fragment = new TextSearchFragment();
 				break;
 			case 4:
-				this.title = getString(R.string.title_status_section);
-				intent = new Intent(this, StatusActivity.class);
+				this.title = getString(R.string.title_pm_section);
+				intent = new Intent(this, PredicateMatrixActivity.class);
+				//fragment = new PredicateMatrixFragment();
 				break;
 			case 5:
-				this.title = getString(R.string.title_manage_section);
-				intent = new Intent(this, ManageActivity.class);
+				this.title = getString(R.string.title_status_section);
+				//intent = new Intent(this, StatusActivity.class);
+				fragment = new StatusFragment();
 				break;
 			case 6:
-				this.title = getString(R.string.title_storage_section);
-				intent = new Intent(this, StorageActivity.class);
+				this.title = getString(R.string.title_manage_section);
+				//intent = new Intent(this, ManageActivity.class);
+				fragment = new ManageFragment();
 				break;
 			case 7:
+				this.title = getString(R.string.title_storage_section);
+				//intent = new Intent(this, StorageActivity.class);
+				fragment = new StorageFragment();
+				break;
+			case 8:
 				this.title = getString(R.string.title_settings_section);
 				intent = new Intent(this, SettingsActivity.class);
 				break;
+		}
+		if (fragment != null)
+		{
+			getFragmentManager().beginTransaction().add(R.id.container_content, fragment).commit();
+			return;
 		}
 		if (intent != null)
 		{
@@ -260,8 +270,7 @@ public class MainActivity extends Activity implements NavigationDrawerFragment.N
 		@Override
 		public View onCreateView(final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState)
 		{
-			final View rootView = inflater.inflate(R.layout.fragment_main, container, false);
-			return rootView;
+			return inflater.inflate(R.layout.fragment_main, container, false);
 		}
 
 		@Override

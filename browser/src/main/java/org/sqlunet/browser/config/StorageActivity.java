@@ -20,7 +20,7 @@ public class StorageActivity extends Activity
 	{
 		super.onCreate(savedInstanceState);
 
-		// layout
+		// content
 		setContentView(R.layout.activity_storage);
 	}
 }

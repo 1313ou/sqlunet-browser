@@ -40,35 +40,19 @@ public class SynsetFragment extends Fragment
 		this.expand = true;
 	}
 
-	/**
-	 * Set expand
-	 */
-	public void setExpand(final boolean expand)
-	{
-		this.expand = expand;
-	}
-
-	/**
-	 * Module factory
-	 *
-	 * @return module
-	 */
-	@SuppressWarnings("WeakerAccess")
-	protected SynsetModule makeModule()
-	{
-		return new SynsetModule(this);
-	}
-
 	@Override
 	public View onCreateView(final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState)
 	{
-		// layout
-		final View rootView = inflater.inflate(R.layout.fragment_sense, container, false);
-		final ViewGroup containerView = (ViewGroup) rootView.findViewById(R.id.data_contents);
+		// view
+		final View view = inflater.inflate(R.layout.fragment_sense, container, false);
+
+		// container
+		final ViewGroup containerView = (ViewGroup) view.findViewById(R.id.data_contents);
 
 		// root node
 		final TreeNode root = TreeNode.makeRoot();
 		final TreeNode queryNode = TreeFactory.addTreeNode(root, "WordNet", R.drawable.wordnet, getActivity());
+
 		// tree
 		this.treeView = new TreeView(getActivity(), root);
 		this.treeView.setDefaultAnimation(true);
@@ -83,7 +67,7 @@ public class SynsetFragment extends Fragment
 			if (state != null && !state.isEmpty())
 			{
 				this.treeView.restoreState(state);
-				return rootView;
+				return view;
 			}
 		}
 
@@ -96,13 +80,13 @@ public class SynsetFragment extends Fragment
 			final Parcelable pointer = args.getParcelable(ProviderArgs.ARG_QUERYPOINTER);
 
 			// module
-			SynsetModule module = makeModule();
+			final SynsetModule module = makeModule();
 			module.setExpand(SynsetFragment.this.expand);
 			module.init(action, pointer);
 			module.process(queryNode);
 		}
 
-		return rootView;
+		return view;
 	}
 
 	@Override
@@ -110,5 +94,24 @@ public class SynsetFragment extends Fragment
 	{
 		super.onSaveInstanceState(outState);
 		outState.putString("treeViewState", this.treeView.getSaveState());
+	}
+
+	/**
+	 * Module factory
+	 *
+	 * @return module
+	 */
+	@SuppressWarnings("WeakerAccess")
+	protected SynsetModule makeModule()
+	{
+		return new SynsetModule(this);
+	}
+
+	/**
+	 * Set expand
+	 */
+	public void setExpand(final boolean expand)
+	{
+		this.expand = expand;
 	}
 }

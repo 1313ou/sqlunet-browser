@@ -69,7 +69,8 @@ public abstract class BaseProvider extends ContentProvider
 		}
 		catch (final SQLiteCantOpenDatabaseException e)
 		{
-			Log.e(BaseProvider.TAG, "Open failed by " + this.getClass() + " content provider: " + this.db.getPath(), e);
+			Log.e(BaseProvider.TAG, "Open failed by " + this.getClass() + " content provider: " + path, e);
+			throw e;
 		}
 	}
 
@@ -99,12 +100,13 @@ public abstract class BaseProvider extends ContentProvider
 	{
 		if (this.db != null)
 		{
+			final String path = this.db.getPath();
 			synchronized (this)
 			{
 				this.db.close();
 				this.db = null;
 			}
-			Log.d(BaseProvider.TAG, "Closed by " + this.getClass() + " content provider: " + this.db.getPath());
+			Log.d(BaseProvider.TAG, "Closed by " + this.getClass() + " content provider: " + path);
 		}
 		super.shutdown();
 	}

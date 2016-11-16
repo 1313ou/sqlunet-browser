@@ -87,7 +87,7 @@ public class NavigationDrawerFragment extends Fragment
 	}
 
 	@Override
-	public void onCreate(Bundle savedInstanceState)
+	public void onCreate(final Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
 
@@ -107,7 +107,7 @@ public class NavigationDrawerFragment extends Fragment
 	}
 
 	@Override
-	public void onActivityCreated(Bundle savedInstanceState)
+	public void onActivityCreated(final Bundle savedInstanceState)
 	{
 		super.onActivityCreated(savedInstanceState);
 
@@ -116,7 +116,7 @@ public class NavigationDrawerFragment extends Fragment
 	}
 
 	@Override
-	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
+	public View onCreateView(final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState)
 	{
 		// sections
 		final String[] options = getResources().getStringArray(R.array.title_sections);
@@ -222,7 +222,7 @@ public class NavigationDrawerFragment extends Fragment
 	 *
 	 * @param position position of selected item
 	 */
-	private void selectItem(int position)
+	private void selectItem(final int position)
 	{
 		this.selectedPosition = position;
 		if (this.drawerListView != null)
@@ -240,7 +240,7 @@ public class NavigationDrawerFragment extends Fragment
 	}
 
 	@Override
-	public void onAttach(Activity activity)
+	public void onAttach(final Activity activity)
 	{
 		super.onAttach(activity);
 		try
@@ -261,14 +261,14 @@ public class NavigationDrawerFragment extends Fragment
 	}
 
 	@Override
-	public void onSaveInstanceState(Bundle outState)
+	public void onSaveInstanceState(final Bundle outState)
 	{
 		super.onSaveInstanceState(outState);
 		outState.putInt(STATE_SELECTED_POSITION, selectedPosition);
 	}
 
 	@Override
-	public void onConfigurationChanged(Configuration newConfig)
+	public void onConfigurationChanged(final Configuration newConfig)
 	{
 		super.onConfigurationChanged(newConfig);
 
@@ -277,7 +277,7 @@ public class NavigationDrawerFragment extends Fragment
 	}
 
 	@Override
-	public void onCreateOptionsMenu(Menu menu, MenuInflater inflater)
+	public void onCreateOptionsMenu(final Menu menu, final MenuInflater inflater)
 	{
 		// if the drawer is open, show the global app actions in the action bar. See also showGlobalContextActionBar, which controls the top-left area of the action bar.
 		if (this.drawerLayout != null && isDrawerOpen())

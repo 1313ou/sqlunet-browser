@@ -18,7 +18,7 @@ public class FnFrameActivity extends Activity
 	{
 		super.onCreate(savedInstanceState);
 
-		// content layout
+		// content
 		setContentView(R.layout.activity_fnframe);
 
 		// show the Up button in the action bar.

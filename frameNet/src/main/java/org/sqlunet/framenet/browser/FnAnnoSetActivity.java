@@ -18,7 +18,7 @@ public class FnAnnoSetActivity extends Activity
 	{
 		super.onCreate(savedInstanceState);
 
-		// content layout
+		// content
 		setContentView(R.layout.activity_fnannoset);
 
 		// show the Up button in the action bar.

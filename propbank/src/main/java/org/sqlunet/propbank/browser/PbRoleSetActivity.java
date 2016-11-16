@@ -18,7 +18,7 @@ public class PbRoleSetActivity extends Activity
 	{
 		super.onCreate(savedInstanceState);
 
-		// content layout
+		// content
 		setContentView(R.layout.activity_pbroleset);
 
 		// show the Up button in the action bar.

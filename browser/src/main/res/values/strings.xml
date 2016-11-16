@@ -138,6 +138,7 @@
 		<item>per base</item>
 	</string-array>
 
+	<string name="title_home_section">Home</string>
 	<string name="title_browse_section">Browse semantic roles</string>
 	<string name="title_ts_section">Text search</string>
 	<string name="title_pm_section">Predicate Matrix</string>
@@ -147,6 +148,7 @@
 	<string name="title_settings_section">Settings</string>
 
 	<string-array name="title_sections">
+		<item>@string/title_home_section</item>
 		<item>@string/title_browse_section</item>
 		<item>@string/title_ts_section</item>
 		<item>@string/title_pm_section</item>

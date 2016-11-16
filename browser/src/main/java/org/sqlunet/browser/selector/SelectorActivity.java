@@ -31,7 +31,7 @@ public class SelectorActivity extends Activity implements SelectorFragment.Liste
 	{
 		super.onCreate(savedInstanceState);
 
-		// layout
+		// content
 		setContentView(R.layout.activity_selector);
 
 		// show the Up button in the action bar.

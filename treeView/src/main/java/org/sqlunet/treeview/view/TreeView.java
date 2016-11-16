@@ -129,7 +129,7 @@ public class TreeView
 			containerContext = new ContextThemeWrapper(this.context, this.containerStyle);
 		}
 
-		// content view
+		// content
 		final LinearLayout contentView = new LinearLayout(containerContext, null, this.containerStyle);
 		contentView.setId(R.id.tree_view);
 		contentView.setOrientation(LinearLayout.VERTICAL);

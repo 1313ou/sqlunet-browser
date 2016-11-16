@@ -1,12 +1,23 @@
 package org.sqlunet.browser.config;
 
+import android.annotation.TargetApi;
+import android.content.ContentProviderClient;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.util.Log;
 import android.widget.Toast;
 
+import org.sqlunet.bnc.provider.BNCContract;
 import org.sqlunet.browser.R;
+import org.sqlunet.framenet.provider.FrameNetContract;
+import org.sqlunet.predicatematrix.provider.PredicateMatrixContract;
+import org.sqlunet.propbank.provider.PropBankContract;
+import org.sqlunet.provider.ManagerContract;
+import org.sqlunet.provider.XSqlUNetContract;
+import org.sqlunet.verbnet.provider.VerbNetContract;
+import org.sqlunet.wordnet.provider.WordNetContract;
 
 import java.util.Collection;
 
@@ -18,6 +29,7 @@ import java.util.Collection;
 class ManageTasks
 {
 	static private final String TAG = "ManageTasks";
+
 	/**
 	 * Create database
 	 *
@@ -46,6 +58,22 @@ class ManageTasks
 	static public void deleteDatabase(final Context context, final String databasePath)
 	{
 		// make sure you close all connections before deleting
+		final String[] authorities = {ManagerContract.AUTHORITY, XSqlUNetContract.AUTHORITY, WordNetContract.AUTHORITY, VerbNetContract.AUTHORITY, PropBankContract.AUTHORITY, FrameNetContract.AUTHORITY, PredicateMatrixContract.AUTHORITY, BNCContract.AUTHORITY,};
+		for (String authority : authorities)
+		{
+			final ContentProviderClient client = context.getContentResolver().acquireContentProviderClient(authority);
+			client.getLocalContentProvider().shutdown();
+			if (Build.VERSION.SDK_INT < Build.VERSION_CODES.N)
+			{
+				client.release();
+			}
+			else
+			{
+				client.close();
+			}
+		}
+
+		// delete
 		boolean result = context.deleteDatabase(databasePath);
 		Log.d(TAG, "While dropping database: " + result);
 	}

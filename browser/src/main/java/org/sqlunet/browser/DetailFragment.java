@@ -41,18 +41,18 @@ public class DetailFragment extends Fragment
 	{
 		final Settings.DetailViewMode mode = Settings.getDetailViewModePref(this.getActivity());
 
-		// layout
-		View rootView = null;
+		// view
+		View view = null;
 		switch (mode)
 		{
 			case VIEW:
-				rootView = inflater.inflate(R.layout.fragment_details, container, false);
+				view = inflater.inflate(R.layout.fragment_details, container, false);
 				break;
 			case WEB:
-				rootView = inflater.inflate(R.layout.fragment_detail, container, false);
+				view = inflater.inflate(R.layout.fragment_detail, container, false);
 				break;
 		}
-		return rootView;
+		return view;
 	}
 
 	/**

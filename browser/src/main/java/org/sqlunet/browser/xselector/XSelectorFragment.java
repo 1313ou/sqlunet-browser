@@ -367,7 +367,6 @@ public class XSelectorFragment extends ExpandableListFragment
 	@Override
 	public View onCreateView(final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState)
 	{
-		// layout
 		return inflater.inflate(R.layout.fragment_xselector, container);
 	}
 

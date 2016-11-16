@@ -19,7 +19,7 @@ public class TableActivity extends Activity
 	{
 		super.onCreate(savedInstanceState);
 
-		// layout
+		// content
 		setContentView(R.layout.activity_table);
 
 		// show the Up button in the action bar.

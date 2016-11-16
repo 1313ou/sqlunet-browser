@@ -1,513 +1,403 @@
 package org.sqlunet.browser;
 
-import android.annotation.TargetApi;
-import android.app.AlertDialog;
+import android.annotation.SuppressLint;
+import android.app.ActionBar;
+import android.app.Activity;
+import android.app.Fragment;
+import android.app.SearchManager;
+import android.app.SearchableInfo;
 import android.content.Context;
-import android.content.DialogInterface;
-import android.content.Intent;
-import android.database.Cursor;
-import android.graphics.Color;
-import android.graphics.Typeface;
-import android.graphics.drawable.Drawable;
-import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
-import android.os.Parcelable;
-import android.text.SpannableStringBuilder;
-import android.text.Spanned;
-import android.text.style.DynamicDrawableSpan;
-import android.text.style.ForegroundColorSpan;
-import android.text.style.ImageSpan;
-import android.text.style.StyleSpan;
 import android.util.Log;
-import android.util.Pair;
+import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.ImageView;
-import android.widget.ListView;
-import android.widget.SimpleCursorAdapter.ViewBinder;
+import android.widget.SearchView;
+import android.widget.Spinner;
+import android.widget.SpinnerAdapter;
 import android.widget.TextView;
 
-import org.sqlunet.framenet.FnFramePointer;
-import org.sqlunet.framenet.FnLexUnitPointer;
-import org.sqlunet.framenet.FnSentencePointer;
-import org.sqlunet.framenet.provider.FrameNetContract;
-import org.sqlunet.propbank.PbRoleSetPointer;
-import org.sqlunet.propbank.provider.PropBankContract;
+import org.sqlunet.framenet.provider.FrameNetContract.Lookup_FnSentences_X;
+import org.sqlunet.propbank.provider.PropBankContract.Lookup_PbExamples_X;
 import org.sqlunet.provider.ProviderArgs;
-import org.sqlunet.style.RegExprSpanner;
-import org.sqlunet.style.Spanner.SpanFactory;
-import org.sqlunet.verbnet.VnClassPointer;
-import org.sqlunet.verbnet.provider.VerbNetContract;
-import org.sqlunet.wordnet.SynsetPointer;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
-import java.util.regex.Pattern;
+import org.sqlunet.settings.Settings;
+import org.sqlunet.verbnet.provider.VerbNetContract.Lookup_VnExamples_X;
+import org.sqlunet.wordnet.provider.WordNetContract.Lookup_Definitions;
+import org.sqlunet.wordnet.provider.WordNetContract.Lookup_Samples;
+import org.sqlunet.wordnet.provider.WordNetContract.Lookup_Words;
 
 /**
- * TextSearch fragment
+ * Text search activity
  *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
-public class TextSearchFragment extends AbstractTableFragment
+public class TextSearchFragment extends Fragment
 {
-	static private final String TAG = "TextSearchFragment";
+	static private final String TAG = "TextSearchActivity";
 
 	/**
-	 * Bold style factory
+	 * State of spinner
 	 */
-	static private final SpanFactory boldFactory = new SpanFactory()
+	static private final String STATE_SPINNER = "org.sqlunet.browser.textsearch.selected";
+
+	/**
+	 * Status view
+	 */
+	private TextView statusView;
+
+	/**
+	 * Search view
+	 */
+	private SearchView searchView;
+
+	/**
+	 * Spinner
+	 */
+	private Spinner spinner;
+
+	// C R E A T I O N
+
+	@Override
+	public View onCreateView(final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState)
 	{
-		@Override
-		public Object makeSpans(final long flags)
+		setHasOptionsMenu(true);
+
+		// content
+		final View view = inflater.inflate(R.layout.fragment_textsearch, container, false);
+
+		// get views from ids
+		this.statusView = (TextView) view.findViewById(R.id.statusView);
+
+		// show the Up button in the action bar.
+		final ActionBar actionBar = getActivity().getActionBar();
+		assert actionBar != null;
+
+		// set up the action bar to show a custom layout
+		@SuppressLint("InflateParams") //
+		final View actionBarView = inflater.inflate(R.layout.actionbar_custom, null);
+		actionBar.setCustomView(actionBarView);
+		actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM | ActionBar.DISPLAY_SHOW_HOME | ActionBar.DISPLAY_HOME_AS_UP);
+		// actionBar.setDisplayShowCustomEnabled(true);
+		// actionBar.setDisplayShowHomeEnabled(true);
+		// actionBar.setDisplayHomeAsUpEnabled(true);
+		// actionBar.setDisplayShowTitleEnabled(false);
+
+		// spinner
+		this.spinner = (Spinner) actionBarView.findViewById(R.id.spinner);
+		setupSpinner(this.spinner);
+		if (savedInstanceState != null)
 		{
-			return new Object[]{/*new BackgroundColorSpan(Colors.dk_red), new ForegroundColorSpan(Color.WHITE), */new StyleSpan(Typeface.BOLD)};
+			final int selected = savedInstanceState.getInt(STATE_SPINNER);
+			this.spinner.setSelection(selected);
 		}
-	};
 
-	/**
-	 * Factories
-	 */
-	static private final SpanFactory[][] factories = {new SpanFactory[]{boldFactory,}};
-
-	/**
-	 * Query argument
-	 */
-	private String query;
-
-	/**
-	 * Mandatory empty constructor for the fragment manager to instantiate the fragment (e.g. upon screen orientation changes).
-	 */
-	public TextSearchFragment()
-	{
-		super();
+		return view;
 	}
 
 	@Override
-	public void onCreate(Bundle savedInstanceState)
+	public void onSaveInstanceState(final Bundle savedInstanceState)
 	{
-		// args
-		Bundle args = getArguments();
-		if (args == null)
+		// always call the superclass so it can save the view hierarchy state
+		super.onSaveInstanceState(savedInstanceState);
+
+		// spinner
+		if (this.spinner != null)
 		{
-			args = getActivity().getIntent().getExtras();
+			// serialize the current dropdown position
+			final int position = this.spinner.getSelectedItemPosition();
+			savedInstanceState.putInt(TextSearchFragment.STATE_SPINNER, position);
 		}
-
-		// search target
-		// final String database = args.getString(ProviderArgs.ARG_QUERYDATABASE);
-		String queryArg = args.getString(ProviderArgs.ARG_QUERYARG);
-		this.query = queryArg != null ? queryArg.trim() : "";
-
-		super.onCreate(savedInstanceState);
 	}
 
+	// M E N U
+
+	@Override
+	public void onCreateOptionsMenu(final Menu menu, final MenuInflater inflater)
+	{
+		// inflate the menu; this adds items to the action bar if it is present.
+		inflater.inflate(R.menu.text_search, menu);
+
+		// set up search view
+		final MenuItem searchMenuItem = (MenuItem) menu.findItem(R.id.searchView);
+		setupSearch(searchMenuItem);
+	}
+
+	// S E A R C H V I E W
+
 	/**
-	 * Make view binder
+	 * Set up searchView
 	 *
-	 * @return ViewBinder
+	 * @param searchMenuItem search menu item
 	 */
-	@Override
-	protected ViewBinder makeViewBinder()
+
+	private void setupSearch(final MenuItem searchMenuItem)
 	{
-		// pattern (case-insensitive)
-		final String[] patterns = {'(' + "(?i)" + this.query + ')',};
+		// activity
+		final Activity activity = getActivity();
 
-		// spanner
-		final RegExprSpanner spanner = new RegExprSpanner(patterns, factories);
-
-		// view binder
-		return new ViewBinder()
+		// search view
+		this.searchView = (SearchView) searchMenuItem.getActionView();
+		final SearchManager searchManager = (SearchManager) activity.getSystemService(Context.SEARCH_SERVICE);
+		final SearchableInfo searchableInfo = searchManager.getSearchableInfo(activity.getComponentName());
+		this.searchView.setSearchableInfo(searchableInfo);
+		// TODO
+		this.searchView.setIconifiedByDefault(true);
+		this.searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener()
 		{
 			@Override
-			public boolean setViewValue(final View view, final Cursor cursor, final int columnIndex)
+			public boolean onQueryTextSubmit(final String query)
 			{
-				String value = cursor.getString(columnIndex);
-				if (value == null)
-				{
-					value = "";
-				}
+				TextSearchFragment.this.searchView.clearFocus();
+				TextSearchFragment.this.searchView.setFocusable(false);
+				TextSearchFragment.this.searchView.setQuery("", false);
+				closeKeyboard();
+				searchMenuItem.collapseActionView();
 
-				if (view instanceof TextView)
-				{
-					final SpannableStringBuilder sb = new SpannableStringBuilder(value);
-					spanner.setSpan(sb, 0, 0);
-					((TextView) view).setText(sb);
-				}
-				else if (view instanceof ImageView)
-				{
-					try
-					{
-						((ImageView) view).setImageResource(Integer.parseInt(value));
-					}
-					catch (final NumberFormatException nfe)
-					{
-						((ImageView) view).setImageURI(Uri.parse(value));
-					}
-				}
-				else
-				{
-					throw new IllegalStateException(view.getClass().getName() + " is not a view that can be bound by this SimpleCursorAdapter");
-				}
+				search(query);
 				return true;
 			}
-		};
-	}
 
-	// C L I C K
-
-	@SuppressWarnings({ "boxing", "resource" })
-	@Override
-	public void onListItemClick(ListView l, View v, int position, long id)
-	{
-		Log.d(TAG, "CLICK id=" + id + " pos=" + position);
-
-		// cursor
-		final Object item = getListAdapter().getItem(position);
-		final Cursor cursor = (Cursor) item;
-
-		// args
-		Bundle args = getArguments();
-		if (args == null)
-		{
-			args = getActivity().getIntent().getExtras();
-		}
-
-		// search target
-		final String database = args.getString(ProviderArgs.ARG_QUERYDATABASE);
-		if (database != null)
-		{
-			// wordnet
-			if ("wn".equals(database))
+			@Override
+			public boolean onQueryTextChange(final String newText)
 			{
-				// target
-				final int colIdx = cursor.getColumnIndex("synsetid");
-				final long targetId = cursor.getLong(colIdx);
-				Log.d(TAG, "CLICK wn synset=" + targetId);
-
-				// build pointer
-				final Parcelable synsetPointer = new SynsetPointer(targetId, null);
-
-				// intent
-				final Intent targetIntent = new Intent(this.getActivity(), org.sqlunet.wordnet.browser.SynsetActivity.class);
-				targetIntent.putExtra(ProviderArgs.ARG_QUERYACTION, ProviderArgs.ARG_QUERYACTION_SYNSET);
-				targetIntent.putExtra(ProviderArgs.ARG_QUERYPOINTER, synsetPointer);
-
-				// start
-				startActivity(targetIntent);
+				return false;
 			}
-			else if ("vn".equals(database)) //
+		});
+	}
+
+	private void closeKeyboard()
+	{
+		// activity
+		final Activity activity = getActivity();
+
+		// view
+		final View view = activity.getCurrentFocus();
+		if (view != null)
+		{
+			final InputMethodManager imm = (InputMethodManager) activity.getSystemService(Context.INPUT_METHOD_SERVICE);
+			imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+		}
+	}
+
+	// S P I N N E R
+
+	/**
+	 * Set up action bar spinner
+	 *
+	 * @param spinner spinner
+	 */
+	private void setupSpinner(final Spinner spinner)
+	{
+		// activity
+		final Activity activity = getActivity();
+
+		// spinner adapter data
+		final CharSequence[] textSearches = activity.getResources().getTextArray(R.array.textsearches_names);
+
+		// spinner adapter
+		final SpinnerAdapter adapter = new ArrayAdapter<CharSequence>(activity, R.layout.spinner_item_textsearches, textSearches)
+		{
+			@Override
+			public View getView(final int position, final View convertView, final ViewGroup parent)
 			{
-				final int idClasses = cursor.getColumnIndex(VerbNetContract.Lookup_VnExamples_X.CLASSES);
-				final String classes = cursor.getString(idClasses);
-				Log.d(TAG, "CLICK vn classes=" + classes);
-
-				final Pair<TypedPointer[], CharSequence[]> result = makeData(classes);
-				if (result.first.length > 1)
-				{
-					final DialogInterface.OnClickListener listener = new DialogInterface.OnClickListener()
-					{
-						@Override
-						public void onClick(final DialogInterface dialog, int which)
-						{
-							// which argument contains the index position of the selected item
-							final TypedPointer typedPointer = result.first[which];
-							startVn(typedPointer);
-						}
-					};
-
-					final AlertDialog dialog = makeDialog(listener, result.second);
-					dialog.show();
-				}
-				else if (result.first.length == 1)
-				{
-					final TypedPointer typedPointer = result.first[0];
-					startVn(typedPointer);
-				}
+				return getCustomView(position, convertView, parent, R.layout.spinner_item_textsearches);
 			}
-			else if ("pb".equals(database)) //
+
+			@Override
+			public View getDropDownView(final int position, final View convertView, final ViewGroup parent)
 			{
-				final int idRolesets = cursor.getColumnIndex(PropBankContract.Lookup_PbExamples_X.ROLESETS);
-				final String roleSets = cursor.getString(idRolesets);
-				Log.d(TAG, "CLICK pb rolesets=" + roleSets);
-
-				final Pair<TypedPointer[], CharSequence[]> result = makeData(roleSets);
-				if (result.first.length > 1)
-				{
-					final DialogInterface.OnClickListener listener = new DialogInterface.OnClickListener()
-					{
-						@Override
-						public void onClick(final DialogInterface dialog, int which)
-						{
-							// which argument contains the index position of the selected item
-							final TypedPointer typedPointer = result.first[which];
-							startPb(typedPointer);
-						}
-					};
-
-					final AlertDialog dialog = makeDialog(listener, result.second);
-					dialog.show();
-				}
-				else if (result.first.length == 1)
-				{
-					final TypedPointer typedPointer = result.first[0];
-					startPb(typedPointer);
-				}
+				return getCustomView(position, convertView, parent, R.layout.spinner_item_textsearches_dropdown);
 			}
-			else if ("fn".equals(database)) //
+
+			private View getCustomView(final int position, @SuppressWarnings("UnusedParameters") final View convertView, final ViewGroup parent, final int layoutId)
 			{
-				final int idFrames = cursor.getColumnIndex(FrameNetContract.Lookup_FnSentences_X.FRAMES);
-				final int idLexUnits = cursor.getColumnIndex(FrameNetContract.Lookup_FnSentences_X.LEXUNITS);
-				final int idSentenceId = cursor.getColumnIndex(FrameNetContract.Lookup_FnSentences_X.SENTENCEID);
-				final String frames = cursor.getString(idFrames);
-				final String lexUnits = cursor.getString(idLexUnits);
-				final String sentence = "sentence@" + cursor.getString(idSentenceId);
-				Log.d(TAG, "CLICK fn frames=" + frames);
-				Log.d(TAG, "CLICK fn lexunits=" + lexUnits);
-				Log.d(TAG, "CLICK fn sentence=" + sentence);
-
-				final Pair<TypedPointer[], CharSequence[]> result = makeData(frames, lexUnits, sentence);
-				if (result.first.length > 1)
-				{
-					final DialogInterface.OnClickListener listener = new DialogInterface.OnClickListener()
-					{
-						@Override
-						public void onClick(final DialogInterface dialog, int which)
-						{
-							// which argument contains the index position of the selected item
-							final TypedPointer typedPointer = result.first[which];
-							startFn(typedPointer);
-						}
-					};
-
-					final AlertDialog dialog = makeDialog(listener, result.second);
-					dialog.show();
-				}
-				else if (result.first.length == 1)
-				{
-					final TypedPointer typedPointer = result.first[0];
-					startFn(typedPointer);
-				}
-			}
-		}
-	}
-
-	private void startVn(final TypedPointer typedPointer)
-	{
-		final long targetId = typedPointer.id;
-		Intent targetIntent = null;
-		Parcelable pointer = null;
-
-		// intent, action, pointer
-		switch (typedPointer.type)
-		{
-			case 0:
-				pointer = new VnClassPointer(targetId);
-				targetIntent = new Intent(TextSearchFragment.this.getActivity(), org.sqlunet.verbnet.browser.VnClassActivity.class);
-				targetIntent.putExtra(ProviderArgs.ARG_QUERYACTION, ProviderArgs.ARG_QUERYACTION_VNCLASS);
-				break;
-		}
-
-		// pass pointer
-		assert targetIntent != null;
-		targetIntent.putExtra(ProviderArgs.ARG_QUERYPOINTER, pointer);
-
-		// start
-		startActivity(targetIntent);
-	}
-
-	private void startPb(final TypedPointer typedPointer)
-	{
-		final long targetId = typedPointer.id;
-		Intent targetIntent = null;
-		Parcelable pointer = null;
-
-		// intent, action, pointer
-		switch (typedPointer.type)
-		{
-			case 0:
-				pointer = new PbRoleSetPointer(targetId);
-				targetIntent = new Intent(TextSearchFragment.this.getActivity(), org.sqlunet.propbank.browser.PbRoleSetActivity.class);
-				targetIntent.putExtra(ProviderArgs.ARG_QUERYACTION, ProviderArgs.ARG_QUERYACTION_PBROLESET);
-				break;
-		}
-
-		// pass pointer
-		assert targetIntent != null;
-		targetIntent.putExtra(ProviderArgs.ARG_QUERYPOINTER, pointer);
-
-		// start
-		startActivity(targetIntent);
-	}
-
-	private void startFn(final TypedPointer typedPointer)
-	{
-		final long targetId = typedPointer.id;
-		Intent targetIntent = null;
-		Parcelable pointer = null;
-
-		// intent, action, pointer
-		switch (typedPointer.type)
-		{
-			case 0:
-				pointer = new FnFramePointer(targetId);
-				targetIntent = new Intent(TextSearchFragment.this.getActivity(), org.sqlunet.framenet.browser.FnFrameActivity.class);
-				targetIntent.putExtra(ProviderArgs.ARG_QUERYACTION, ProviderArgs.ARG_QUERYACTION_FNFRAME);
-				break;
-			case 1:
-				pointer = new FnLexUnitPointer(targetId);
-				targetIntent = new Intent(TextSearchFragment.this.getActivity(), org.sqlunet.framenet.browser.FnLexUnitActivity.class);
-				targetIntent.putExtra(ProviderArgs.ARG_QUERYACTION, ProviderArgs.ARG_QUERYACTION_FNLEXUNIT);
-				break;
-			case 2:
-				pointer = new FnSentencePointer(targetId);
-				targetIntent = new Intent(TextSearchFragment.this.getActivity(), org.sqlunet.framenet.browser.FnSentenceActivity.class);
-				targetIntent.putExtra(ProviderArgs.ARG_QUERYACTION, ProviderArgs.ARG_QUERYACTION_FNSENTENCE);
-				break;
-		}
-
-		// pass pointer
-		assert targetIntent != null;
-		targetIntent.putExtra(ProviderArgs.ARG_QUERYPOINTER, pointer);
-
-		// start
-		startActivity(targetIntent);
-	}
-
-	private class TypedPointer
-	{
-		public final int type;
-		public final long id;
-
-		public TypedPointer(int type, long id)
-		{
-			this.type = type;
-			this.id = id;
-		}
-	}
-
-	private Pair<TypedPointer[], CharSequence[]> makeData(final String... concatChoices)
-	{
-		final List<TypedPointer> typedPointers = new ArrayList<>();
-		final List<CharSequence> labels = new ArrayList<>();
-		final Pattern pattern = Pattern.compile('(' + "(?i)" + this.query + ')');
-
-		int type = 0;
-		for (String choices : concatChoices)
-		{
-			final List<String> choiceList = Arrays.asList(choices.split(","));
-			Collections.sort(choiceList);
-			for (String choice : choiceList)
-			{
-				final String[] fields = choice.split("@");
-				final String label = fields[0];
-				int resId = -1;
-				switch (type)
+				final LayoutInflater inflater = activity.getLayoutInflater();
+				final View row = inflater.inflate(layoutId, parent, false);
+				final ImageView icon = (ImageView) row.findViewById(R.id.icon);
+				int resId = 0;
+				switch (position)
 				{
 					case 0:
-						resId = R.drawable.roles;
+						resId = R.drawable.ic_search_wnword;
 						break;
 					case 1:
-						resId = R.drawable.role;
+						resId = R.drawable.ic_search_wndefinition;
 						break;
 					case 2:
-						resId = R.drawable.sentence;
+						resId = R.drawable.ic_search_wnsample;
+						break;
+					case 3:
+						resId = R.drawable.ic_search_vnexample;
+						break;
+					case 4:
+						resId = R.drawable.ic_search_pbexample;
+						break;
+					case 5:
+						resId = R.drawable.ic_search_fnsentence;
 						break;
 				}
-				final SpannableStringBuilder sb = new SpannableStringBuilder();
-				appendImage(getActivity(), sb, resId);
-				sb.append(' ');
-				if (pattern.matcher(label).find())
-				{
-					append(sb, label, new ForegroundColorSpan(Color.BLACK), new StyleSpan(Typeface.BOLD));
-				}
-				else
-				{
-					append(sb, label, new ForegroundColorSpan(Color.GRAY));
-				}
+				icon.setImageResource(resId);
 
-				labels.add(sb);
-				typedPointers.add(new TypedPointer(type, Long.parseLong(fields[1])));
+				final TextView label = (TextView) row.findViewById(R.id.textsearch);
+				if (label != null)
+				{
+					label.setText(textSearches[position]);
+				}
+				return row;
 			}
-			type++;
-		}
-		final TypedPointer[] typedPointersArray = typedPointers.toArray(new TypedPointer[0]);
-		final CharSequence[] labelsArray = labels.toArray(new CharSequence[0]);
-		return new Pair<>(typedPointersArray, labelsArray);
+		};
+
+		// spinner listener
+		spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener()
+		{
+			@Override
+			public void onItemSelected(final AdapterView<?> parentView, final View selectedItemView, final int position, final long id)
+			{
+				Settings.setSearchModePref(activity, position);
+			}
+
+			@Override
+			public void onNothingSelected(final AdapterView<?> parentView)
+			{
+				//
+			}
+		});
+
+		// spinner adapter applied
+		spinner.setAdapter(adapter);
+
+		// spinner position
+		final int position = Settings.getSearchModePref(activity);
+		spinner.setSelection(position);
 	}
 
-	private AlertDialog makeDialog(final DialogInterface.OnClickListener listener, final CharSequence... choices)
-	{
-		AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-
-		// set the dialog characteristics
-		builder.setTitle(R.string.title_activity_text_search);
-
-		// data and listener
-		builder.setItems(choices, listener);
-
-		// get the dialog
-		return builder.create();
-	}
+	// S U G G E S T
 
 	/**
-	 * Append text
+	 * Handle suggestion
 	 *
-	 * @param sb    spannable string builder
-	 * @param text  text
-	 * @param spans spans to apply
+	 * @param query query
 	 */
-	static private void append(final SpannableStringBuilder sb, final CharSequence text, final Object... spans)
+	public void suggest(final String query)
 	{
-		if (text == null || text.length() == 0)
-		{
-			return;
-		}
-
-		final int from = sb.length();
-		sb.append(text);
-		final int to = sb.length();
-
-		for (final Object span : spans)
-		{
-			sb.setSpan(span, from, to, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-		}
+		Log.d(TAG, "SUGGEST " + query);
+		this.statusView.setText("view: '" + query + "'");
+		this.searchView.setQuery(query, true); // true=submit
 	}
 
-	/**
-	 * Append Image
-	 *
-	 * @param context context
-	 * @param sb      spannable string builder
-	 * @param resId   resource id
-	 */
-	static private void appendImage(final Context context, final SpannableStringBuilder sb, final int resId)
-	{
-		append(sb, "\u0000", makeImageSpan(context, resId));
-	}
+	// S E A R C H
 
 	/**
-	 * Make image span
+	 * Handle query
 	 *
-	 * @param context context
-	 * @param resId   res id
-	 * @return image span
+	 * @param query query
 	 */
-	@TargetApi(Build.VERSION_CODES.LOLLIPOP)
-	@SuppressWarnings("deprecation")
-	static private Object makeImageSpan(final Context context, final int resId)
+	public void search(final String query)
 	{
-		Drawable drawable;
-		if (Build.VERSION.SDK_INT < Build.VERSION_CODES.N)
+		final int itemPosition = this.spinner.getSelectedItemPosition();
+
+		// log
+		Log.d(TextSearchFragment.TAG, "TEXT SEARCH " + query);
+
+		// status
+		final CharSequence[] textSearches = getResources().getTextArray(R.array.textsearches_names);
+		this.statusView.setText("search: '" + query + "' " + textSearches[itemPosition]);
+
+		// as per selected mode
+		String searchUri;
+		String id;
+		String target;
+		String[] columns;
+		String[] hiddenColumns;
+		String database = null;
+		switch (itemPosition)
 		{
-			drawable = context.getResources().getDrawable(resId);
+			case 0:
+				searchUri = Lookup_Words.CONTENT_URI;
+				id = Lookup_Words.WORDID;
+				target = Lookup_Words.LEMMA;
+				columns = new String[]{Lookup_Words.LEMMA};
+				hiddenColumns = new String[]{Lookup_Words.WORDID};
+				break;
+			case 1:
+				searchUri = Lookup_Definitions.CONTENT_URI;
+				id = Lookup_Definitions.SYNSETID;
+				target = Lookup_Definitions.DEFINITION;
+				columns = new String[]{Lookup_Definitions.DEFINITION};
+				hiddenColumns = new String[]{Lookup_Definitions.SYNSETID};
+				database = "wn";
+				break;
+			case 2:
+				searchUri = Lookup_Samples.CONTENT_URI;
+				id = Lookup_Samples.SYNSETID;
+				target = Lookup_Samples.SAMPLE;
+				columns = new String[]{Lookup_Samples.SAMPLE};
+				hiddenColumns = new String[]{Lookup_Samples.SYNSETID};
+				database = "wn";
+				break;
+			case 3:
+				searchUri = Lookup_VnExamples_X.CONTENT_URI;
+				id = Lookup_VnExamples_X.EXAMPLEID;
+				target = Lookup_VnExamples_X.EXAMPLE;
+				columns = new String[]{Lookup_VnExamples_X.EXAMPLE};
+				hiddenColumns = new String[]{ //
+						"GROUP_CONCAT(class || '@' || classid) AS " + Lookup_VnExamples_X.CLASSES};
+				database = "vn";
+				break;
+			case 4:
+				searchUri = Lookup_PbExamples_X.CONTENT_URI;
+				id = Lookup_PbExamples_X.EXAMPLEID;
+				target = Lookup_PbExamples_X.TEXT;
+				columns = new String[]{Lookup_PbExamples_X.TEXT};
+				hiddenColumns = new String[]{ //
+						"GROUP_CONCAT(rolesetname ||'@'||rolesetid) AS " + Lookup_PbExamples_X.ROLESETS};
+				database = "pb";
+				break;
+			case 5:
+				searchUri = Lookup_FnSentences_X.CONTENT_URI;
+				id = Lookup_FnSentences_X.SENTENCEID;
+				target = Lookup_FnSentences_X.TEXT;
+				columns = new String[]{Lookup_FnSentences_X.TEXT};
+				hiddenColumns = new String[]{Lookup_FnSentences_X.SENTENCEID, //
+						"GROUP_CONCAT(DISTINCT  frame || '@' || frameid) AS " + Lookup_FnSentences_X.FRAMES, //
+						"GROUP_CONCAT(DISTINCT  lexunit || '@' || luid) AS " + Lookup_FnSentences_X.LEXUNITS};
+				database = "fn";
+				break;
+			default:
+				return;
 		}
-		else
+
+		// parameters
+		final Bundle args = new Bundle();
+		args.putString(ProviderArgs.ARG_QUERYURI, searchUri);
+		args.putString(ProviderArgs.ARG_QUERYID, id);
+		args.putStringArray(ProviderArgs.ARG_QUERYITEMS, columns);
+		args.putStringArray(ProviderArgs.ARG_QUERYHIDDENITEMS, hiddenColumns);
+		args.putString(ProviderArgs.ARG_QUERYFILTER, target + " MATCH ?");
+		args.putString(ProviderArgs.ARG_QUERYARG, query);
+		args.putInt(ProviderArgs.ARG_QUERYLAYOUT, R.layout.item_table1);
+		if (database != null)
 		{
-			drawable = context.getResources().getDrawable(resId, null);
+			args.putString(ProviderArgs.ARG_QUERYDATABASE, database);
 		}
-		drawable.setBounds(0, 0, drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight());
-		return new ImageSpan(drawable, DynamicDrawableSpan.ALIGN_BOTTOM);
+
+		// view
+		final View view = getView();
+
+		// clear splash
+		final ViewGroup container = (ViewGroup) view.findViewById(R.id.container_textsearch);
+		container.removeAllViews();
+
+		// for fragment to handle
+		final Fragment fragment = new TextSearchResultFragment();
+		fragment.setArguments(args);
+		getFragmentManager().beginTransaction().replace(R.id.container_textsearch, fragment).commit();
 	}
 }

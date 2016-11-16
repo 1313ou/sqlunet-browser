@@ -37,7 +37,9 @@ import org.sqlunet.settings.StorageSettings;
 public class ManageFragment extends Fragment implements Listener
 {
 	static private final String TAG = "ManageFragment";
+
 	public static final String ARG = "statement";
+
 	/**
 	 * Action spinner
 	 */
@@ -59,17 +61,19 @@ public class ManageFragment extends Fragment implements Listener
 	@Override
 	public View onCreateView(final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState)
 	{
+		setHasOptionsMenu(true);
+
+		// view
+		final View view = inflater.inflate(R.layout.fragment_manage, container, false);
+
 		// database path
 		final String databasePath = StorageSettings.getDatabasePath(getActivity().getBaseContext());
 
 		// sqls
 		final CharSequence[] sqls = getActivity().getResources().getTextArray(R.array.manage_values);
 
-		// inflate the layout for this fragment
-		final View rootView = inflater.inflate(R.layout.fragment_manage, container, false);
-
 		// action spinner
-		this.spinner = (Spinner) rootView.findViewById(R.id.manage_actions);
+		this.spinner = (Spinner) view.findViewById(R.id.manage_actions);
 
 		// create an ArrayAdapter using the string array and a default spinner layout
 		final ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getActivity(), R.array.manage_titles, R.layout.spinner_item_simple);
@@ -116,10 +120,10 @@ public class ManageFragment extends Fragment implements Listener
 		}
 
 		// action status
-		this.status = (TextView) rootView.findViewById(R.id.manage_status);
+		this.status = (TextView) view.findViewById(R.id.manage_status);
 
 		// run button
-		ImageButton run = (ImageButton) rootView.findViewById(R.id.manage_run);
+		ImageButton run = (ImageButton) view.findViewById(R.id.manage_run);
 		run.setOnClickListener(new OnClickListener()
 		{
 			@Override
@@ -132,7 +136,7 @@ public class ManageFragment extends Fragment implements Listener
 				new ExecuteManager(databasePath, ManageFragment.this, 1).executeFromSql(sqls1);
 			}
 		});
-		return rootView;
+		return view;
 	}
 
 	@Override
@@ -159,9 +163,10 @@ public class ManageFragment extends Fragment implements Listener
 	}
 
 	@Override
-	public void onCreateOptionsMenu(Menu menu, MenuInflater inflater)
+	public void onCreateOptionsMenu(final Menu menu, final MenuInflater inflater)
 	{
 		inflater.inflate(R.menu.manage, menu);
+		super.onCreateOptionsMenu(menu,inflater);
 	}
 
 	@Override

@@ -18,7 +18,7 @@ public class FnSentenceActivity extends Activity
 	{
 		super.onCreate(savedInstanceState);
 
-		// content layout
+		// content
 		setContentView(R.layout.activity_fnsentence);
 
 		// show the Up button in the action bar.

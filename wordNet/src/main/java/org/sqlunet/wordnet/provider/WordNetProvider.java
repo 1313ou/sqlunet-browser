@@ -3,6 +3,7 @@ package org.sqlunet.wordnet.provider;
 import android.app.SearchManager;
 import android.content.UriMatcher;
 import android.database.Cursor;
+import android.database.sqlite.SQLiteCantOpenDatabaseException;
 import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteQueryBuilder;
 import android.net.Uri;
@@ -51,7 +52,6 @@ import org.sqlunet.wordnet.provider.WordNetContract.Words_Senses_Synsets;
 public class WordNetProvider extends BaseProvider
 {
 	static private final String TAG = "WordNetProvider";
-	// U R I M A T C H E R
 
 	// uri matcher
 	static private final UriMatcher uriMatcher;
@@ -101,6 +101,8 @@ public class WordNetProvider extends BaseProvider
 	static private final int LOOKUP_FTS_DEFINITIONS = 521;
 	static private final int LOOKUP_SAMPLES = 530;
 	static private final int LOOKUP_FTS_SAMPLES = 531;
+
+	// U R I M A T C H E R
 
 	static
 	{
@@ -286,7 +288,14 @@ public class WordNetProvider extends BaseProvider
 	{
 		if (this.db == null)
 		{
-			open();
+			try
+			{
+				open();
+			}
+			catch (SQLiteCantOpenDatabaseException e)
+			{
+				return null;
+			}
 		}
 
 		String[] actualProjection = projection;

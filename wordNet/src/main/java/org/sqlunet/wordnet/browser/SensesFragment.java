@@ -279,7 +279,6 @@ public class SensesFragment extends ListFragment
 	@Override
 	public View onCreateView(final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState)
 	{
-		// layout
 		return inflater.inflate(R.layout.fragment_senses, container);
 	}
 

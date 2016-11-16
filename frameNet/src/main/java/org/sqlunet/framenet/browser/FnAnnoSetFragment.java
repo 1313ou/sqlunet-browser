@@ -41,12 +41,17 @@ public class FnAnnoSetFragment extends Fragment
 	@Override
 	public View onCreateView(final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState)
 	{
+		// view
+		final View view = inflater.inflate(R.layout.fragment_fnannoset, container, false);
+
+		// container
+		final ViewGroup containerView = (ViewGroup) view.findViewById(R.id.data_contents);
+
 		// query
 		final Bundle args = getArguments();
 		final int action = args.getInt(ProviderArgs.ARG_QUERYACTION);
-		final Parcelable pointer = args.getParcelable(ProviderArgs.ARG_QUERYPOINTER);
 
-		// module
+		// header
 		String header = "AnnoSet";
 		switch (action)
 		{
@@ -58,10 +63,6 @@ public class FnAnnoSetFragment extends Fragment
 				break;
 			default:
 		}
-
-		// views
-		final View rootView = inflater.inflate(R.layout.fragment_fnannoset, container, false);
-		final ViewGroup containerView = (ViewGroup) rootView.findViewById(R.id.data_contents);
 
 		// root node
 		final TreeNode root = TreeNode.makeRoot();
@@ -81,30 +82,35 @@ public class FnAnnoSetFragment extends Fragment
 			if (state != null && !state.isEmpty())
 			{
 				this.treeView.restoreState(state);
-				return rootView;
+				return view;
 			}
 		}
 
 		// module
-		Module module;
-		switch (action)
+		if (args.containsKey(ProviderArgs.ARG_QUERYPOINTER))
 		{
-			case ProviderArgs.ARG_QUERYACTION_FNANNOSET:
-				module = new AnnoSetModule(this);
-				break;
-			case ProviderArgs.ARG_QUERYACTION_FNPATTERN:
-				module = new AnnoSetFromPatternModule(this);
-				break;
-			case ProviderArgs.ARG_QUERYACTION_FNVALENCEUNIT:
-				module = new AnnoSetFromValenceUnitModule(this);
-				break;
-			default:
-				return rootView;
+			// pointer
+			final Parcelable pointer = args.getParcelable(ProviderArgs.ARG_QUERYPOINTER);
+			Module module;
+			switch (action)
+			{
+				case ProviderArgs.ARG_QUERYACTION_FNANNOSET:
+					module = new AnnoSetModule(this);
+					break;
+				case ProviderArgs.ARG_QUERYACTION_FNPATTERN:
+					module = new AnnoSetFromPatternModule(this);
+					break;
+				case ProviderArgs.ARG_QUERYACTION_FNVALENCEUNIT:
+					module = new AnnoSetFromValenceUnitModule(this);
+					break;
+				default:
+					return view;
+			}
+			module.init(action, pointer);
+			module.process(queryNode);
 		}
-		module.init(action, pointer);
-		module.process(queryNode);
 
-		return rootView;
+		return view;
 	}
 
 	@Override

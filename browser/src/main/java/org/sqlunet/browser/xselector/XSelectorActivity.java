@@ -55,7 +55,7 @@ public class XSelectorActivity extends Activity implements XSelectorFragment.Lis
 	{
 		super.onCreate(savedInstanceState);
 
-		// layout
+		// content
 		setContentView(R.layout.activity_xselector);
 
 		// show the Up button in the action bar.

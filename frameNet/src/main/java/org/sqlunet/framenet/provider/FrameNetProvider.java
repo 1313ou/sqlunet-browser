@@ -2,6 +2,7 @@ package org.sqlunet.framenet.provider;
 
 import android.content.UriMatcher;
 import android.database.Cursor;
+import android.database.sqlite.SQLiteCantOpenDatabaseException;
 import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteQueryBuilder;
 import android.net.Uri;
@@ -212,7 +213,14 @@ public class FrameNetProvider extends BaseProvider
 	{
 		if (this.db == null)
 		{
-			open();
+			try
+			{
+				open();
+			}
+			catch (SQLiteCantOpenDatabaseException e)
+			{
+				return null;
+			}
 		}
 
 		// choose the table to query and a sort order based on the code returned for the incoming URI
@@ -222,6 +230,7 @@ public class FrameNetProvider extends BaseProvider
 		String groupBy = null;
 		String table;
 		switch (code)
+
 		{
 
 			// T A B L E
@@ -522,6 +531,7 @@ public class FrameNetProvider extends BaseProvider
 		}
 
 		if (BaseProvider.debugSql)
+
 		{
 			final String sql = SQLiteQueryBuilder.buildQueryString(false, table, projection, actualSelection, groupBy, null, sortOrder, null);
 			Log.d(FrameNetProvider.TAG + "SQL", sql);
@@ -530,10 +540,13 @@ public class FrameNetProvider extends BaseProvider
 
 		// do query
 		try
+
 		{
 			return this.db.query(table, projection, actualSelection, selectionArgs, groupBy, null, sortOrder);
 		}
+
 		catch (SQLiteException e)
+
 		{
 			final String sql = SQLiteQueryBuilder.buildQueryString(false, table, projection, actualSelection, groupBy, null, sortOrder, null);
 			Log.d(TAG + "SQL", sql);

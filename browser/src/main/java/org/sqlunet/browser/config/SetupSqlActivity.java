@@ -40,7 +40,7 @@ public class SetupSqlActivity extends SetupBaseActivity
 	{
 		super.onCreate(savedInstanceState);
 
-		// layout
+		// content
 		setContentView(R.layout.activity_setup_sql);
 	}
 

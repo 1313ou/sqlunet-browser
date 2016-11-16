@@ -64,7 +64,7 @@ public class ExpandableListFragment extends Fragment implements ExpandableListVi
 	{
 	/*
 		final Context context = getActivity();
-		FrameLayout root = new FrameLayout(context);
+		FrameLayout view = new FrameLayout(context);
 
 		// ------------------------------------------------------------------
 
@@ -77,7 +77,7 @@ public class ExpandableListFragment extends Fragment implements ExpandableListVi
 		ProgressBar progress = new ProgressBar(context, null, android.R.attr.progressBarStyleLarge);
 		pframe.addView(progress, new FrameLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
 
-		root.addView(pframe, new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+		view.addView(pframe, new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
 
 		// ------------------------------------------------------------------
 
@@ -94,13 +94,13 @@ public class ExpandableListFragment extends Fragment implements ExpandableListVi
 		lv.setDrawSelectorOnTop(false);
 		lframe.addView(lv, new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
 
-		root.addView(lframe, new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+		view.addView(lframe, new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
 
 		// ------------------------------------------------------------------
 
-		root.setLayoutParams(new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+		view.setLayoutParams(new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
 
-		return root;
+		return view;
 		*/
 
 		return inflater.inflate(R.layout.expandable_list_fragment, container, false);
@@ -312,29 +312,29 @@ public class ExpandableListFragment extends Fragment implements ExpandableListVi
 		{
 			return;
 		}
-		View root = getView();
-		if (root == null)
+		final View view = getView();
+		if (view == null)
 		{
 			throw new IllegalStateException("Content view not yet created");
 		}
-		if (root instanceof ExpandableListView)
+		if (view instanceof ExpandableListView)
 		{
-			this.mExpandableList = (ExpandableListView) root;
+			this.mExpandableList = (ExpandableListView) view;
 		}
 		else
 		{
-			this.mStandardEmptyView = (TextView) root.findViewById(R.id.empty);
+			this.mStandardEmptyView = (TextView) view.findViewById(R.id.empty);
 			if (this.mStandardEmptyView == null)
 			{
-				this.mEmptyView = root.findViewById(android.R.id.empty);
+				this.mEmptyView = view.findViewById(android.R.id.empty);
 			}
 			else
 			{
 				this.mStandardEmptyView.setVisibility(View.GONE);
 			}
-			this.mProgressContainer = root.findViewById(R.id.container_progress);
-			this.mExpandableListContainer = root.findViewById(R.id.container_list);
-			View rawExpandableListView = root.findViewById(android.R.id.list);
+			this.mProgressContainer = view.findViewById(R.id.container_progress);
+			this.mExpandableListContainer = view.findViewById(R.id.container_list);
+			View rawExpandableListView = view.findViewById(android.R.id.list);
 			if (!(rawExpandableListView instanceof ExpandableListView))
 			{
 				if (rawExpandableListView == null)

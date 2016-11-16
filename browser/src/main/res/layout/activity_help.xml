@@ -1,12 +1,17 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                xmlns:tools="http://schemas.android.com/tools"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                tools:context="org.sqlunet.browser.HelpActivity">
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             xmlns:tools="http://schemas.android.com/tools"
+             android:id="@+id/container_help"
+             android:layout_width="match_parent"
+             android:layout_height="match_parent"
+             tools:context="org.sqlunet.browser.HelpActivity"
+             tools:ignore="MergeRootFrame">
 
-	<WebView
-		android:id="@+id/webView"
+	<fragment
+		android:id="@+id/fragment_help"
+		android:name="org.sqlunet.browser.HelpFragment"
+		class="org.sqlunet.browser.HelpFragment"
 		android:layout_width="match_parent"
-		android:layout_height="match_parent"/>
+		android:layout_height="match_parent"
+		tools:layout="@layout/fragment_help"/>
 
-</RelativeLayout>
+</FrameLayout>

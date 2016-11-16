@@ -25,7 +25,7 @@ public class SetupActivity extends SetupBaseActivity
 	{
 		super.onCreate(savedInstanceState);
 
-		// layout
+		// content
 		setContentView(R.layout.activity_setup);
 	}
 
