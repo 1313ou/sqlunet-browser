@@ -52,7 +52,10 @@ public class TextSearchActivity extends Activity
 		setContentView(R.layout.activity_textsearch);
 
 		// fragment
-		this.fragment = (TextSearchFragment) getFragmentManager().findFragmentById(R.id.fragment_textsearch);
+		if (savedInstanceState == null)
+		{
+			this.fragment = (TextSearchFragment) getFragmentManager().findFragmentById(R.id.fragment_textsearch);
+		}
 	}
 
 	@Override

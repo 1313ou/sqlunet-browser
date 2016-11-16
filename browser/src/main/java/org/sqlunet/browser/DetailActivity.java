@@ -26,16 +26,6 @@ public class DetailActivity extends Activity
 		final ActionBar actionBar = getActionBar();
 		assert actionBar != null;
 		actionBar.setDisplayHomeAsUpEnabled(true);
-
-		// savedInstanceState is non-null when there is fragment state saved from previous configurations of this activity (e.g. when rotating the screen from
-		// portrait to landscape). In this case, the fragment will automatically be re-added to its container so we don't need to manually add it.
-		// @see http://developer.android.com/guide/components/fragments.html
-		//		if (savedInstanceState == null)
-		//		{
-		//			// create the sense fragment, transmit intents as parameters and add it to the activity using a fragment transaction
-		//			final DetailFragment fragment = new DetailFragment();
-		//			getFragmentManager().beginTransaction().replace(R.id.container_main, fragment).commit();
-		//		}
 	}
 
 	@Override

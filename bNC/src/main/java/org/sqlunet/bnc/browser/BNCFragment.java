@@ -24,6 +24,11 @@ import org.sqlunet.view.TreeFactory;
 public class BNCFragment extends Fragment
 {
 	/**
+	 * State of tree
+	 */
+	static private final String STATE_TREEVIEW = "state_treeview";
+
+	/**
 	 * Tree view
 	 */
 	private TreeView treeView;
@@ -51,7 +56,7 @@ public class BNCFragment extends Fragment
 		// saved state
 		if (savedInstanceState != null)
 		{
-			final String state = savedInstanceState.getString("treeViewState");
+			final String state = savedInstanceState.getString(STATE_TREEVIEW);
 			if (state != null && !state.isEmpty())
 			{
 				this.treeView.restoreState(state);
@@ -80,7 +85,7 @@ public class BNCFragment extends Fragment
 	public void onSaveInstanceState(final Bundle outState)
 	{
 		super.onSaveInstanceState(outState);
-		outState.putString("treeViewState", this.treeView.getSaveState());
+		outState.putString(STATE_TREEVIEW, this.treeView.getSaveState());
 	}
 
 	// C R E A T I O N

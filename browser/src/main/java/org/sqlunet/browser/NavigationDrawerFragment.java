@@ -31,7 +31,7 @@ public class NavigationDrawerFragment extends Fragment
 	/**
 	 * Remember the position of the selected item.
 	 */
-	private static final String STATE_SELECTED_POSITION = "selected_navigation_drawer_position";
+	private static final String STATE_SELECTED_SECTION = "selected_section";
 
 	/**
 	 * Per the design guidelines, you should show the drawer on launch until the user manually
@@ -98,7 +98,7 @@ public class NavigationDrawerFragment extends Fragment
 		// read saved instance data
 		if (savedInstanceState != null)
 		{
-			this.selectedPosition = savedInstanceState.getInt(STATE_SELECTED_POSITION);
+			this.selectedPosition = savedInstanceState.getInt(STATE_SELECTED_SECTION);
 			this.fromSavedInstanceState = true;
 		}
 
@@ -264,7 +264,7 @@ public class NavigationDrawerFragment extends Fragment
 	public void onSaveInstanceState(final Bundle outState)
 	{
 		super.onSaveInstanceState(outState);
-		outState.putInt(STATE_SELECTED_POSITION, selectedPosition);
+		outState.putInt(STATE_SELECTED_SECTION, selectedPosition);
 	}
 
 	@Override

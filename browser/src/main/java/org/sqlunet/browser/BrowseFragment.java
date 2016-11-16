@@ -68,7 +68,7 @@ public class BrowseFragment extends Fragment
 	/**
 	 * Selector mode state
 	 */
-	static private final String STATE_SPINNER = "org.sqlunet.browser.selector.selected";
+	static private final String STATE_SPINNER = "selected_selector_mode";
 
 	/**
 	 * Search view

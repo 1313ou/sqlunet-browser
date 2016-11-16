@@ -53,7 +53,7 @@ public class PredicateMatrixFragment extends Fragment
 	/**
 	 * State of spinner
 	 */
-	static private final String STATE_SPINNER = "org.sqlunet.browser.predicatematrix.mode.selected";
+	static private final String STATE_SPINNER = "selected_mode";
 
 	/**
 	 * Query

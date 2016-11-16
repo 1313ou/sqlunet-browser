@@ -32,7 +32,7 @@ public class PredicateMatrixResultFragment extends Fragment
 	/**
 	 * State of tree
 	 */
-	static private final String STATE_TREEVIEW = "org.sqlunet.browser.predicatematrix.treeViewState";
+	static private final String STATE_TREEVIEW = "state_treeview";
 
 	/**
 	 * Tree view

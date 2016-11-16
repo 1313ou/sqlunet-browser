@@ -1,10 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ListView xmlns:android="http://schemas.android.com/apk/res/android"
-          xmlns:tools="http://schemas.android.com/tools"
-          android:id="@+id/android:list"
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:layout_centerHorizontal="true"
-          android:choiceMode="singleChoice"
-          android:listSelector="@drawable/listitem_selector"
-          tools:listitem="@layout/item_selector"/>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                tools:context="org.sqlunet.browser.selector.SelectorActivity">
+
+	<TextView
+		android:id="@+id/queryView"
+		style="@style/Query"
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+		android:textIsSelectable="false"/>
+
+	<fragment
+		android:id="@+id/selector"
+		android:name="org.sqlunet.browser.selector.SelectorResultFragment"
+		class="org.sqlunet.browser.selector.SelectorResultFragment"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:layout_below="@+id/queryView"
+		tools:context=".SelectorActivity"
+		tools:layout="@layout/fragment_selector_result"/>
+
+</RelativeLayout>

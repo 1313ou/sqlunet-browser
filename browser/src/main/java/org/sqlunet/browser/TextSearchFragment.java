@@ -45,7 +45,7 @@ public class TextSearchFragment extends Fragment
 	/**
 	 * State of spinner
 	 */
-	static private final String STATE_SPINNER = "org.sqlunet.browser.textsearch.selected";
+	static private final String STATE_SPINNER = "selected_textsearch_mode";
 
 	/**
 	 * Status view

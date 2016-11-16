@@ -6,7 +6,7 @@
                 android:divider="?android:attr/dividerHorizontal"
                 android:orientation="horizontal"
                 android:showDividers="middle"
-                tools:context="org.sqlunet.browser.xselector.XSelectorActivity">
+                tools:context="org.sqlunet.browser.selector.SelectorActivity">
 
 	<TextView
 		android:id="@+id/queryView"
@@ -24,17 +24,16 @@
 		android:baselineAligned="false"
 		android:divider="?android:attr/dividerHorizontal"
 		android:orientation="horizontal"
-		android:showDividers="middle"
-		tools:context=".XSelectorActivity">
+		android:showDividers="middle">
 
 		<fragment
-			android:id="@+id/xselector"
-			android:name="org.sqlunet.browser.xselector.XSelectorFragment"
-			class="org.sqlunet.browser.xselector.XSelectorFragment"
+			android:id="@+id/selector"
+			android:name="org.sqlunet.browser.selector.SelectorResultFragment"
+			class="org.sqlunet.browser.selector.SelectorResultFragment"
 			android:layout_width="0dp"
 			android:layout_height="match_parent"
 			android:layout_weight="1"
-			tools:layout="@layout/fragment_xselector"/>
+			tools:layout="@layout/fragment_selector_result"/>
 
 		<ScrollView
 			android:layout_width="0dp"
