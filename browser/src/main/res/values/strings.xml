@@ -26,8 +26,6 @@
 	<string name="action_downloadSql">Download SQL </string>
 
 	<!-- search -->
-	<string name="action_text_search">Text search</string>
-	<string name="action_pm_search">PredicateMatrix search</string>
 
 	<!-- manage -->
 	<string name="action_manage">Manage database</string>

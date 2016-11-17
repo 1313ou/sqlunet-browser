@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
+
+	<!--     <TextView -->
+	<!--         android:id="@+id/label_wordnet" -->
+	<!--         android:layout_width="match_parent" -->
+	<!--         android:layout_height="wrap_content" -->
+	<!--         android:text="@string/wordnet" -->
+	<!--         android:textSize="30sp" -->
+	<!--         android:visibility="visible" /> -->
+
+	<FrameLayout
+		android:id="@+id/container_wordnet"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"/>
+
+	<!--     <TextView -->
+	<!--         android:id="@+id/label_verbnet" -->
+	<!--         android:layout_width="match_parent" -->
+	<!--         android:layout_height="wrap_content" -->
+	<!--         android:text="@string/verbnet" -->
+	<!--         android:textSize="30sp" -->
+	<!--         android:visibility="visible" /> -->
+
+	<FrameLayout
+		android:id="@+id/container_verbnet"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"/>
+
+	<!--     <TextView -->
+	<!--         android:id="@+id/label_propbank" -->
+	<!--         android:layout_width="match_parent" -->
+	<!--         android:layout_height="wrap_content" -->
+	<!--         android:text="@string/propbank" -->
+	<!--         android:textSize="30sp" -->
+	<!--         android:visibility="visible" /> -->
+
+	<FrameLayout
+		android:id="@+id/container_propbank"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"/>
+
+	<!--     <TextView -->
+	<!--         android:id="@+id/label_framenet" -->
+	<!--         android:layout_width="match_parent" -->
+	<!--         android:layout_height="wrap_content" -->
+	<!--         android:text="@string/framenet" -->
+	<!--         android:textSize="30sp" -->
+	<!--         android:visibility="visible" /> -->
+
+	<FrameLayout
+		android:id="@+id/container_framenet"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"/>
+
+	<!--     <TextView -->
+	<!--         android:id="@+id/label_bnc" -->
+	<!--         android:layout_width="match_parent" -->
+	<!--         android:layout_height="wrap_content" -->
+	<!--         android:text="@string/bnc" -->
+	<!--         android:textSize="30sp" -->
+	<!--         android:visibility="visible" /> -->
+
+	<FrameLayout
+		android:id="@+id/container_bnc"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"/>
+
+</LinearLayout>
