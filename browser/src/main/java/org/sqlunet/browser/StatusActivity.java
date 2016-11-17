@@ -2,25 +2,7 @@ package org.sqlunet.browser;
 
 import android.app.ActionBar;
 import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.view.View;
-import android.view.View.OnClickListener;
-import android.widget.ImageButton;
-import android.widget.ImageView;
-
-import org.sqlunet.browser.config.DownloadActivity;
-import org.sqlunet.browser.config.ManageFragment;
-import org.sqlunet.browser.config.ManageActivity;
-import org.sqlunet.browser.config.SettingsActivity;
-import org.sqlunet.browser.config.SetupActivity;
-import org.sqlunet.browser.config.SetupSqlActivity;
-import org.sqlunet.browser.config.Status;
-import org.sqlunet.browser.config.StorageActivity;
-import org.sqlunet.settings.Settings;
 
 /**
  * Status activity

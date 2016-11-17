@@ -63,6 +63,7 @@ public class StatusFragment extends Fragment
 		final View view = getView();
 
 		// status
+		assert view != null;
 		final ImageView db = (ImageView) view.findViewById(R.id.status_database);
 		final ImageButton buttonDb = (ImageButton) view.findViewById(R.id.databaseButton);
 		final ImageButton buttonIndexes = (ImageButton) view.findViewById(R.id.indexesButton);

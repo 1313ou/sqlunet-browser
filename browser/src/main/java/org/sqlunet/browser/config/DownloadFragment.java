@@ -41,7 +41,7 @@ public class DownloadFragment extends Fragment implements View.OnClickListener
 	/**
 	 * Download listener (typically implemented by activity)
 	 */
-	static interface DownloadListener
+	interface DownloadListener
 	{
 		void onDone(boolean result);
 	}
@@ -119,7 +119,7 @@ public class DownloadFragment extends Fragment implements View.OnClickListener
 		this.receiver = new BroadcastReceiver()
 		{
 			@Override
-			public void onReceive(final Context context, final Intent intent)
+			public void onReceive(final Context context0, final Intent intent)
 			{
 				final String action = intent.getAction();
 				if (DownloadManager.ACTION_DOWNLOAD_COMPLETE.equals(action))
@@ -140,7 +140,7 @@ public class DownloadFragment extends Fragment implements View.OnClickListener
 						}
 
 						// toast
-						Toast.makeText(context, success ? R.string.status_data_ok : R.string.status_data_fail, Toast.LENGTH_SHORT).show();
+						Toast.makeText(context0, success ? R.string.status_data_ok : R.string.status_data_fail, Toast.LENGTH_SHORT).show();
 
 						// fire done
 						if (DownloadFragment.this.listener != null)

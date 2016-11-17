@@ -44,34 +44,34 @@ public class HelpFragment extends Fragment
 		{
 			@TargetApi(Build.VERSION_CODES.N)
 			@Override
-			public void onReceivedError(final WebView view, final WebResourceRequest request, WebResourceError error)
+			public void onReceivedError(final WebView webView, final WebResourceRequest request, WebResourceError error)
 			{
-				super.onReceivedError(view, request, error);
+				super.onReceivedError(webView, request, error);
 				Log.e(HelpFragment.TAG, error.toString());
 			}
 
 			@SuppressWarnings("deprecation")
 			@Override
-			public void onReceivedError(final WebView view, final int errorCode, final String description, final String failingUrl)
+			public void onReceivedError(final WebView webView, final int errorCode, final String description, final String failingUrl)
 			{
-				super.onReceivedError(view, errorCode, description, failingUrl);
+				super.onReceivedError(webView, errorCode, description, failingUrl);
 				Log.e(HelpFragment.TAG, failingUrl + ':' + description + ',' + errorCode);
 			}
 
 			@TargetApi(Build.VERSION_CODES.N)
 			@Override
-			public boolean shouldOverrideUrlLoading(final WebView view, final WebResourceRequest request)
+			public boolean shouldOverrideUrlLoading(final WebView webView, final WebResourceRequest request)
 			{
 				final Uri uri = request.getUrl();
-				view.loadUrl(uri.toString());
+				webView.loadUrl(uri.toString());
 				return false;
 			}
 
 			@SuppressWarnings("deprecation")
 			@Override
-			public boolean shouldOverrideUrlLoading(final WebView view, final String url)
+			public boolean shouldOverrideUrlLoading(final WebView webView, final String url)
 			{
-				view.loadUrl(url);
+				webView.loadUrl(url);
 				return false;
 			}
 		});

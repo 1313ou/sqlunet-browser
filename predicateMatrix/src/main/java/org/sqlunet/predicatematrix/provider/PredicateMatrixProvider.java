@@ -6,6 +6,7 @@ import android.database.sqlite.SQLiteCantOpenDatabaseException;
 import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteQueryBuilder;
 import android.net.Uri;
+import android.support.annotation.NonNull;
 import android.util.Log;
 
 import org.sqlunet.predicatematrix.provider.PredicateMatrixContract.Pm;
@@ -49,7 +50,7 @@ public class PredicateMatrixProvider extends BaseProvider
 	// M I M E
 
 	@Override
-	public String getType(final Uri uri)
+	public String getType(@NonNull final Uri uri)
 	{
 		switch (PredicateMatrixProvider.uriMatcher.match(uri))
 		{
@@ -66,7 +67,7 @@ public class PredicateMatrixProvider extends BaseProvider
 
 	@SuppressWarnings("boxing")
 	@Override
-	public Cursor query(final Uri uri, final String[] projection, final String selection, final String[] selectionArgs, final String sortOrder)
+	public Cursor query(@NonNull final Uri uri, final String[] projection, final String selection, final String[] selectionArgs, final String sortOrder)
 	{
 		if (this.db == null)
 		{

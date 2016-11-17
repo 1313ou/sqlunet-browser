@@ -2,11 +2,8 @@ package org.sqlunet.browser.config;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.widget.TextView;
 
 import org.sqlunet.browser.R;
-import org.sqlunet.settings.Storage;
-import org.sqlunet.settings.StorageStyle;
 
 /**
  * Storage activity

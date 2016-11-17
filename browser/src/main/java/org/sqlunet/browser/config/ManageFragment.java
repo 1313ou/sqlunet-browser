@@ -87,13 +87,13 @@ public class ManageFragment extends Fragment implements Listener
 		{
 
 			@Override
-			public void onItemSelected(AdapterView<?> parent, View view, int position, long id)
+			public void onItemSelected(final AdapterView<?> parent, final View view0, final int position, final long id)
 			{
 				ManageFragment.this.status.setText("");
 			}
 
 			@Override
-			public void onNothingSelected(AdapterView<?> parent)
+			public void onNothingSelected(final AdapterView<?> parent)
 			{
 				ManageFragment.this.status.setText("");
 			}

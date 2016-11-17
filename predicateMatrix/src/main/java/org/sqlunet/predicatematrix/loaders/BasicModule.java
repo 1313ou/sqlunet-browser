@@ -10,6 +10,7 @@ import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Parcelable;
+import android.support.annotation.NonNull;
 import android.text.SpannableStringBuilder;
 import android.util.SparseArray;
 
@@ -200,7 +201,7 @@ abstract class BasicModule extends Module
 		}
 
 		@Override
-		public int compareTo(final PmRole another)
+		public int compareTo(@NonNull final PmRole another)
 		{
 			if (this.pmPos.charAt(0) != another.pmPos.charAt(0))
 			{
@@ -343,7 +344,7 @@ abstract class BasicModule extends Module
 		}
 
 		@Override
-		public int compareTo(final WnData another)
+		public int compareTo(@NonNull final WnData another)
 		{
 			if (this.synsetId != another.synsetId)
 			{
@@ -418,7 +419,7 @@ abstract class BasicModule extends Module
 		}
 
 		@Override
-		public int compareTo(final VnData another)
+		public int compareTo(@NonNull final VnData another)
 		{
 			if (this.vnClassId != another.vnClassId)
 			{
@@ -519,7 +520,7 @@ abstract class BasicModule extends Module
 		}
 
 		@Override
-		public int compareTo(final PbData another)
+		public int compareTo(@NonNull final PbData another)
 		{
 			if (this.pbRoleSetId != another.pbRoleSetId)
 			{
@@ -608,7 +609,7 @@ abstract class BasicModule extends Module
 		}
 
 		@Override
-		public int compareTo(final FnData another)
+		public int compareTo(@NonNull final FnData another)
 		{
 			if (this.fnFrameId != another.fnFrameId)
 			{

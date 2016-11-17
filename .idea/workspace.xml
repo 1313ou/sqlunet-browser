@@ -4,6 +4,7 @@
     <option name="AUTOSCROLL_TO_SOURCE" value="true" />
     <option name="SPLITTER_PROPORTION" value="0.5911914" />
     <option name="GROUP_BY_SEVERITY" value="true" />
+    <option name="SCOPE_TYPE" value="8" />
     <option name="CUSTOM_SCOPE_NAME" value="ProjectFiles" />
     <option name="ANALYSIS_IN_BACKGROUND" value="true" />
   </component>
@@ -18,56 +19,114 @@
     <option name="TOOL_WINDOW_REGEXP_FILTER" value="false" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e66c28dc-5afe-443a-8883-1d8123a0e6a1" name="Default" comment="convert activities to fragments&#10;">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/browser/src/main/java/org/sqlunet/browser/selector/SelectorResultFragment.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/browser/src/main/java/org/sqlunet/browser/xselector/XSelectorResultFragment.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/browser/src/main/res/layout/fragment_selector_detail.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/browser/src/main/res/layout/fragment_selector_result.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/browser/src/main/res/layout/fragment_xselector_detail.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/browser/src/main/res/layout/fragment_xselector_result.xml" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/browser/src/main/res/layout/activity_selector_detail.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/browser/src/main/res/layout/activity_xselector_detail.xml" afterPath="" />
+    <list default="true" id="e66c28dc-5afe-443a-8883-1d8123a0e6a1" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/animated_vector_drawable_25_0_1.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/appcompat_v7_25_0_1.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/support_annotations_25_0_1.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/support_compat_25_0_1.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/support_core_ui_25_0_1.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/support_core_utils_25_0_1.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/support_fragment_25_0_1.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/support_media_compat_25_0_1.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/support_v4_25_0_1.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/support_vector_drawable_25_0_1.xml" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/browser/src/main/java/org/sqlunet/browser/DetailActivity.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/browser/src/main/java/org/sqlunet/browser/DetailFragment.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/browser/src/main/java/org/sqlunet/browser/selector/SelectorActivity.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/browser/src/main/java/org/sqlunet/browser/selector/SelectorFragment.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/browser/src/main/java/org/sqlunet/browser/selector/SelectorResultFragment.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/browser/src/main/java/org/sqlunet/browser/xselector/XSelectorActivity.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/browser/src/main/java/org/sqlunet/browser/xselector/XSelectorFragment.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/browser/src/main/java/org/sqlunet/browser/xselector/XSelectorResultFragment.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/browser/src/main/res/layout/activity_detail.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/browser/src/main/res/layout/activity_selector.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/browser/src/main/res/layout/activity_xselector.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/browser/src/main/res/layout/fragment_detail.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/browser/src/main/res/layout/fragment_details.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/browser/src/main/res/layout/fragment_selector.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/browser/src/main/res/layout/fragment_selector_detail.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/browser/src/main/res/layout/fragment_selector_result.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/browser/src/main/res/layout/fragment_xselector.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/browser/src/main/res/layout/fragment_xselector_detail.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/browser/src/main/res/layout/fragment_xselector_result.xml" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dictionaries/bbou.xml" afterPath="$PROJECT_DIR$/.idea/dictionaries/bbou.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bNC/src/main/java/org/sqlunet/bnc/browser/BNCFragment.java" afterPath="$PROJECT_DIR$/bNC/src/main/java/org/sqlunet/bnc/browser/BNCFragment.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bNC/bNC.iml" afterPath="$PROJECT_DIR$/bNC/bNC.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bNC/build.gradle" afterPath="$PROJECT_DIR$/bNC/build.gradle" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bNC/src/main/AndroidManifest.xml" afterPath="$PROJECT_DIR$/bNC/src/main/AndroidManifest.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bNC/src/main/java/org/sqlunet/bnc/provider/BNCProvider.java" afterPath="$PROJECT_DIR$/bNC/src/main/java/org/sqlunet/bnc/provider/BNCProvider.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/browser/browser.iml" afterPath="$PROJECT_DIR$/browser/browser.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/browser/build.gradle" afterPath="$PROJECT_DIR$/browser/build.gradle" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/browser/src/main/AndroidManifest.xml" afterPath="$PROJECT_DIR$/browser/src/main/AndroidManifest.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/browser/src/main/java/org/sqlunet/browser/AboutActivity.java" afterPath="$PROJECT_DIR$/browser/src/main/java/org/sqlunet/browser/AboutActivity.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/browser/src/main/java/org/sqlunet/browser/BrowseFragment.java" afterPath="$PROJECT_DIR$/browser/src/main/java/org/sqlunet/browser/BrowseFragment.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/browser/src/main/java/org/sqlunet/browser/DetailActivity.java" afterPath="$PROJECT_DIR$/browser/src/main/java/org/sqlunet/browser/DetailActivity.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/browser/src/main/java/org/sqlunet/browser/HelpActivity.java" afterPath="$PROJECT_DIR$/browser/src/main/java/org/sqlunet/browser/HelpActivity.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/browser/src/main/java/org/sqlunet/browser/HelpFragment.java" afterPath="$PROJECT_DIR$/browser/src/main/java/org/sqlunet/browser/HelpFragment.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/browser/src/main/java/org/sqlunet/browser/MainActivity.java" afterPath="$PROJECT_DIR$/browser/src/main/java/org/sqlunet/browser/MainActivity.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/browser/src/main/java/org/sqlunet/browser/NavigationDrawerFragment.java" afterPath="$PROJECT_DIR$/browser/src/main/java/org/sqlunet/browser/NavigationDrawerFragment.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/browser/src/main/java/org/sqlunet/browser/StatusActivity.java" afterPath="$PROJECT_DIR$/browser/src/main/java/org/sqlunet/browser/StatusActivity.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/browser/src/main/java/org/sqlunet/browser/StatusFragment.java" afterPath="$PROJECT_DIR$/browser/src/main/java/org/sqlunet/browser/StatusFragment.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/browser/src/main/java/org/sqlunet/browser/TextSearchActivity.java" afterPath="$PROJECT_DIR$/browser/src/main/java/org/sqlunet/browser/TextSearchActivity.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/browser/src/main/java/org/sqlunet/browser/TextSearchFragment.java" afterPath="$PROJECT_DIR$/browser/src/main/java/org/sqlunet/browser/TextSearchFragment.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/browser/src/main/java/org/sqlunet/browser/selector/SelectorActivity.java" afterPath="$PROJECT_DIR$/browser/src/main/java/org/sqlunet/browser/selector/SelectorActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/browser/src/main/java/org/sqlunet/browser/selector/SelectorFragment.java" afterPath="$PROJECT_DIR$/browser/src/main/java/org/sqlunet/browser/selector/SelectorFragment.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/browser/src/main/java/org/sqlunet/browser/xselector/XSelectorActivity.java" afterPath="$PROJECT_DIR$/browser/src/main/java/org/sqlunet/browser/xselector/XSelectorActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/browser/src/main/java/org/sqlunet/browser/xselector/XSelectorFragment.java" afterPath="$PROJECT_DIR$/browser/src/main/java/org/sqlunet/browser/xselector/XSelectorFragment.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/browser/src/main/res/layout/activity_selector.xml" afterPath="$PROJECT_DIR$/browser/src/main/res/layout/activity_selector.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/browser/src/main/res/layout/activity_xselector.xml" afterPath="$PROJECT_DIR$/browser/src/main/res/layout/activity_xselector.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/browser/src/main/res/layout/fragment_selector.xml" afterPath="$PROJECT_DIR$/browser/src/main/res/layout/fragment_selector.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/browser/src/main/res/layout/fragment_xselector.xml" afterPath="$PROJECT_DIR$/browser/src/main/res/layout/fragment_xselector.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/browser/src/main/java/org/sqlunet/browser/TextSearchResultFragment.java" afterPath="$PROJECT_DIR$/browser/src/main/java/org/sqlunet/browser/TextSearchResultFragment.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/browser/src/main/java/org/sqlunet/browser/config/DownloadActivity.java" afterPath="$PROJECT_DIR$/browser/src/main/java/org/sqlunet/browser/config/DownloadActivity.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/browser/src/main/java/org/sqlunet/browser/config/DownloadFragment.java" afterPath="$PROJECT_DIR$/browser/src/main/java/org/sqlunet/browser/config/DownloadFragment.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/browser/src/main/java/org/sqlunet/browser/config/ManageActivity.java" afterPath="$PROJECT_DIR$/browser/src/main/java/org/sqlunet/browser/config/ManageActivity.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/browser/src/main/java/org/sqlunet/browser/config/ManageFragment.java" afterPath="$PROJECT_DIR$/browser/src/main/java/org/sqlunet/browser/config/ManageFragment.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/browser/src/main/java/org/sqlunet/browser/config/ManageTasks.java" afterPath="$PROJECT_DIR$/browser/src/main/java/org/sqlunet/browser/config/ManageTasks.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/browser/src/main/java/org/sqlunet/browser/config/StorageActivity.java" afterPath="$PROJECT_DIR$/browser/src/main/java/org/sqlunet/browser/config/StorageActivity.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/browser/src/main/java/org/sqlunet/browser/config/StorageFragment.java" afterPath="$PROJECT_DIR$/browser/src/main/java/org/sqlunet/browser/config/StorageFragment.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/browser/src/main/java/org/sqlunet/provider/ManagerProvider.java" afterPath="$PROJECT_DIR$/browser/src/main/java/org/sqlunet/provider/ManagerProvider.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/browser/src/main/res/layout/activity_about.xml" afterPath="$PROJECT_DIR$/browser/src/main/res/layout/activity_about.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/browser/src/main/res/layout/activity_download.xml" afterPath="$PROJECT_DIR$/browser/src/main/res/layout/activity_download.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/browser/src/main/res/layout/activity_help.xml" afterPath="$PROJECT_DIR$/browser/src/main/res/layout/activity_help.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/browser/src/main/res/layout/activity_main.xml" afterPath="$PROJECT_DIR$/browser/src/main/res/layout/activity_main.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/browser/src/main/res/layout/fragment_home.xml" afterPath="$PROJECT_DIR$/browser/src/main/res/layout/fragment_home.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/browser/src/main/res/layout/fragment_main.xml" afterPath="$PROJECT_DIR$/browser/src/main/res/layout/fragment_main.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/browser/src/main/res/layout/fragment_textsearch_result.xml" afterPath="$PROJECT_DIR$/browser/src/main/res/layout/fragment_textsearch_result.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/browser/src/main/res/layout/item_selector.xml" afterPath="$PROJECT_DIR$/browser/src/main/res/layout/item_selector.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/browser/src/main/res/layout/item_xselector.xml" afterPath="$PROJECT_DIR$/browser/src/main/res/layout/item_xselector.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/browser/src/main/res/values-large/refs.xml" afterPath="$PROJECT_DIR$/browser/src/main/res/values-large/refs.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/browser/src/main/res/values-sw600dp/refs.xml" afterPath="$PROJECT_DIR$/browser/src/main/res/values-sw600dp/refs.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/browser/src/main/res/values-sw720dp-land/refs.xml" afterPath="$PROJECT_DIR$/browser/src/main/res/values-sw720dp-land/refs.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/browser/src/main/res/values-w820dp/dimens.xml" afterPath="$PROJECT_DIR$/browser/src/main/res/values-w820dp/dimens.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/browser/src/main/res/values/dimens.xml" afterPath="$PROJECT_DIR$/browser/src/main/res/values/dimens.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/expandableListFragment/build.gradle" afterPath="$PROJECT_DIR$/expandableListFragment/build.gradle" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/expandableListFragment/expandableListFragment.iml" afterPath="$PROJECT_DIR$/expandableListFragment/expandableListFragment.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frameNet/src/main/java/org/sqlunet/framenet/browser/FnAnnoSetActivity.java" afterPath="$PROJECT_DIR$/frameNet/src/main/java/org/sqlunet/framenet/browser/FnAnnoSetActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frameNet/src/main/java/org/sqlunet/framenet/browser/FnAnnoSetFragment.java" afterPath="$PROJECT_DIR$/frameNet/src/main/java/org/sqlunet/framenet/browser/FnAnnoSetFragment.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frameNet/src/main/java/org/sqlunet/framenet/browser/FnFrameActivity.java" afterPath="$PROJECT_DIR$/frameNet/src/main/java/org/sqlunet/framenet/browser/FnFrameActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frameNet/src/main/java/org/sqlunet/framenet/browser/FnFrameFragment.java" afterPath="$PROJECT_DIR$/frameNet/src/main/java/org/sqlunet/framenet/browser/FnFrameFragment.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frameNet/src/main/java/org/sqlunet/framenet/browser/FnLexUnitActivity.java" afterPath="$PROJECT_DIR$/frameNet/src/main/java/org/sqlunet/framenet/browser/FnLexUnitActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frameNet/src/main/java/org/sqlunet/framenet/browser/FnLexUnitFragment.java" afterPath="$PROJECT_DIR$/frameNet/src/main/java/org/sqlunet/framenet/browser/FnLexUnitFragment.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frameNet/src/main/java/org/sqlunet/framenet/browser/FnSentenceActivity.java" afterPath="$PROJECT_DIR$/frameNet/src/main/java/org/sqlunet/framenet/browser/FnSentenceActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frameNet/src/main/java/org/sqlunet/framenet/browser/FnSentenceFragment.java" afterPath="$PROJECT_DIR$/frameNet/src/main/java/org/sqlunet/framenet/browser/FnSentenceFragment.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frameNet/src/main/java/org/sqlunet/framenet/browser/FrameNetFragment.java" afterPath="$PROJECT_DIR$/frameNet/src/main/java/org/sqlunet/framenet/browser/FrameNetFragment.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frameNet/build.gradle" afterPath="$PROJECT_DIR$/frameNet/build.gradle" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frameNet/frameNet.iml" afterPath="$PROJECT_DIR$/frameNet/frameNet.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frameNet/src/main/AndroidManifest.xml" afterPath="$PROJECT_DIR$/frameNet/src/main/AndroidManifest.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frameNet/src/main/java/org/sqlunet/framenet/provider/FrameNetProvider.java" afterPath="$PROJECT_DIR$/frameNet/src/main/java/org/sqlunet/framenet/provider/FrameNetProvider.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/predicateMatrix/build.gradle" afterPath="$PROJECT_DIR$/predicateMatrix/build.gradle" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/predicateMatrix/predicateMatrix.iml" afterPath="$PROJECT_DIR$/predicateMatrix/predicateMatrix.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/predicateMatrix/src/main/AndroidManifest.xml" afterPath="$PROJECT_DIR$/predicateMatrix/src/main/AndroidManifest.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/predicateMatrix/src/main/java/org/sqlunet/predicatematrix/browser/PredicateMatrixFragment.java" afterPath="$PROJECT_DIR$/predicateMatrix/src/main/java/org/sqlunet/predicatematrix/browser/PredicateMatrixFragment.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/predicateMatrix/src/main/java/org/sqlunet/predicatematrix/browser/PredicateMatrixResultFragment.java" afterPath="$PROJECT_DIR$/predicateMatrix/src/main/java/org/sqlunet/predicatematrix/browser/PredicateMatrixResultFragment.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/propbank/src/main/java/org/sqlunet/propbank/browser/PbRoleSetActivity.java" afterPath="$PROJECT_DIR$/propbank/src/main/java/org/sqlunet/propbank/browser/PbRoleSetActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/propbank/src/main/java/org/sqlunet/propbank/browser/PbRoleSetFragment.java" afterPath="$PROJECT_DIR$/propbank/src/main/java/org/sqlunet/propbank/browser/PbRoleSetFragment.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/propbank/src/main/java/org/sqlunet/propbank/browser/PropBankFragment.java" afterPath="$PROJECT_DIR$/propbank/src/main/java/org/sqlunet/propbank/browser/PropBankFragment.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/predicateMatrix/src/main/java/org/sqlunet/predicatematrix/loaders/BasicModule.java" afterPath="$PROJECT_DIR$/predicateMatrix/src/main/java/org/sqlunet/predicatematrix/loaders/BasicModule.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/predicateMatrix/src/main/java/org/sqlunet/predicatematrix/provider/PredicateMatrixProvider.java" afterPath="$PROJECT_DIR$/predicateMatrix/src/main/java/org/sqlunet/predicatematrix/provider/PredicateMatrixProvider.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/predicateMatrix/src/main/res/layout/fragment_predicatematrix.xml" afterPath="$PROJECT_DIR$/predicateMatrix/src/main/res/layout/fragment_predicatematrix.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/propbank/build.gradle" afterPath="$PROJECT_DIR$/propbank/build.gradle" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/propbank/propbank.iml" afterPath="$PROJECT_DIR$/propbank/propbank.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/propbank/src/main/AndroidManifest.xml" afterPath="$PROJECT_DIR$/propbank/src/main/AndroidManifest.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/propbank/src/main/java/org/sqlunet/propbank/provider/PropBankProvider.java" afterPath="$PROJECT_DIR$/propbank/src/main/java/org/sqlunet/propbank/provider/PropBankProvider.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/treeView/build.gradle" afterPath="$PROJECT_DIR$/treeView/build.gradle" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/treeView/src/main/AndroidManifest.xml" afterPath="$PROJECT_DIR$/treeView/src/main/AndroidManifest.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/treeView/treeView.iml" afterPath="$PROJECT_DIR$/treeView/treeView.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/verbNet/src/main/java/org/sqlunet/verbnet/browser/VerbNetFragment.java" afterPath="$PROJECT_DIR$/verbNet/src/main/java/org/sqlunet/verbnet/browser/VerbNetFragment.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/verbNet/src/main/java/org/sqlunet/verbnet/browser/VnClassActivity.java" afterPath="$PROJECT_DIR$/verbNet/src/main/java/org/sqlunet/verbnet/browser/VnClassActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/verbNet/src/main/java/org/sqlunet/verbnet/browser/VnClassFragment.java" afterPath="$PROJECT_DIR$/verbNet/src/main/java/org/sqlunet/verbnet/browser/VnClassFragment.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/verbNet/build.gradle" afterPath="$PROJECT_DIR$/verbNet/build.gradle" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/verbNet/src/main/AndroidManifest.xml" afterPath="$PROJECT_DIR$/verbNet/src/main/AndroidManifest.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/verbNet/src/main/java/org/sqlunet/verbnet/provider/VerbNetProvider.java" afterPath="$PROJECT_DIR$/verbNet/src/main/java/org/sqlunet/verbnet/provider/VerbNetProvider.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/verbNet/verbNet.iml" afterPath="$PROJECT_DIR$/verbNet/verbNet.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordNet/src/main/java/org/sqlunet/wordnet/browser/SynsetActivity.java" afterPath="$PROJECT_DIR$/wordNet/src/main/java/org/sqlunet/wordnet/browser/SynsetActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordNet/src/main/java/org/sqlunet/wordnet/browser/SynsetFragment.java" afterPath="$PROJECT_DIR$/wordNet/src/main/java/org/sqlunet/wordnet/browser/SynsetFragment.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordNet/build.gradle" afterPath="$PROJECT_DIR$/wordNet/build.gradle" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordNet/src/main/AndroidManifest.xml" afterPath="$PROJECT_DIR$/wordNet/src/main/AndroidManifest.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordNet/src/main/java/org/sqlunet/wordnet/browser/SensesFragment.java" afterPath="$PROJECT_DIR$/wordNet/src/main/java/org/sqlunet/wordnet/browser/SensesFragment.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordNet/src/main/java/org/sqlunet/wordnet/provider/WordNetProvider.java" afterPath="$PROJECT_DIR$/wordNet/src/main/java/org/sqlunet/wordnet/provider/WordNetProvider.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordNet/wordNet.iml" afterPath="$PROJECT_DIR$/wordNet/wordNet.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/xNet/build.gradle" afterPath="$PROJECT_DIR$/xNet/build.gradle" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/xNet/src/main/AndroidManifest.xml" afterPath="$PROJECT_DIR$/xNet/src/main/AndroidManifest.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/xNet/src/main/java/org/sqlunet/provider/BaseProvider.java" afterPath="$PROJECT_DIR$/xNet/src/main/java/org/sqlunet/provider/BaseProvider.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/xNet/src/main/java/org/sqlunet/provider/XSqlUNetProvider.java" afterPath="$PROJECT_DIR$/xNet/src/main/java/org/sqlunet/provider/XSqlUNetProvider.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/xNet/src/main/java/org/sqlunet/settings/StorageUtils.java" afterPath="$PROJECT_DIR$/xNet/src/main/java/org/sqlunet/settings/StorageUtils.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/xNet/src/main/java/org/sqlunet/style/Spanner.java" afterPath="$PROJECT_DIR$/xNet/src/main/java/org/sqlunet/style/Spanner.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/xNet/xNet.iml" afterPath="$PROJECT_DIR$/xNet/xNet.iml" />
     </list>
     <ignored path="Browser.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -110,17 +169,31 @@
     <favorites_list name="Browser" />
   </component>
   <component name="FileEditorManager">
-    <leaf />
+    <leaf>
+      <file leaf-file-name="global.xml" pinned="false" current-in-tab="true">
+        <entry file="file:///mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/menu/global.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="91">
+              <caret line="7" column="0" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+          <provider editor-type-id="android-designer2">
+            <state />
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="layoutResourceFile" />
-        <option value="valueResourceFile" />
         <option value="ASInterface" />
         <option value="Class" />
         <option value="ASClass" />
         <option value="layoutResourceFile_vertical" />
+        <option value="valueResourceFile" />
       </list>
     </option>
   </component>
@@ -212,6 +285,11 @@
               <ExternalTaskPojo>
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
                 <option name="name" value="packageReleaseResources" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Prepare com.android.support:support-v4:25.0.1" />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="prepareComAndroidSupportSupportV42501Library" />
               </ExternalTaskPojo>
               <ExternalTaskPojo>
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
@@ -324,11 +402,6 @@
                 <option name="name" value="generateDebugResources" />
               </ExternalTaskPojo>
               <ExternalTaskPojo>
-                <option name="description" value="Prepare com.android.support:support-core-utils:24.2.1" />
-                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
-                <option name="name" value="prepareComAndroidSupportSupportCoreUtils2421Library" />
-              </ExternalTaskPojo>
-              <ExternalTaskPojo>
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
                 <option name="name" value="compileDebugJavaWithJavac" />
               </ExternalTaskPojo>
@@ -409,6 +482,11 @@
                 <option name="name" value="preDebugAndroidTestBuild" />
               </ExternalTaskPojo>
               <ExternalTaskPojo>
+                <option name="description" value="Extracts Android annotations for the debug variant into the archive file" />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="extractDebugAnnotations" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
                 <option name="name" value="processDebugAndroidTestJavaRes" />
               </ExternalTaskPojo>
@@ -419,6 +497,11 @@
               <ExternalTaskPojo>
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
                 <option name="name" value="transformClassesAndResourcesWithSyncLibJarsForRelease" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Prepare com.android.support:support-core-ui:25.0.1" />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="prepareComAndroidSupportSupportCoreUi2501Library" />
               </ExternalTaskPojo>
               <ExternalTaskPojo>
                 <option name="description" value="Uninstalls the Release build." />
@@ -462,6 +545,11 @@
                 <option name="name" value="compileDebugAndroidTestSources" />
               </ExternalTaskPojo>
               <ExternalTaskPojo>
+                <option name="description" value="Prepare com.android.support:support-vector-drawable:25.0.1" />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="prepareComAndroidSupportSupportVectorDrawable2501Library" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
                 <option name="name" value="mergeReleaseJniLibFolders" />
               </ExternalTaskPojo>
@@ -485,6 +573,11 @@
               <ExternalTaskPojo>
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
                 <option name="name" value="processReleaseManifest" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Prepare com.android.support:support-media-compat:25.0.1" />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="prepareComAndroidSupportSupportMediaCompat2501Library" />
               </ExternalTaskPojo>
               <ExternalTaskPojo>
                 <option name="description" value="Prepare SqlUNet:xNet:unspecified" />
@@ -550,11 +643,6 @@
                 <option name="name" value="mergeDebugAssets" />
               </ExternalTaskPojo>
               <ExternalTaskPojo>
-                <option name="description" value="Prepare com.android.support:support-compat:24.2.1" />
-                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
-                <option name="name" value="prepareComAndroidSupportSupportCompat2421Library" />
-              </ExternalTaskPojo>
-              <ExternalTaskPojo>
                 <option name="description" value="Runs all device checks on currently connected devices." />
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
                 <option name="name" value="connectedCheck" />
@@ -583,9 +671,19 @@
                 <option name="name" value="transformNative_libsWithMergeJniLibsForDebug" />
               </ExternalTaskPojo>
               <ExternalTaskPojo>
+                <option name="description" value="Prepare com.android.support:animated-vector-drawable:25.0.1" />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="prepareComAndroidSupportAnimatedVectorDrawable2501Library" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
                 <option name="description" value="Prepare SqlUNet:frameNet:unspecified" />
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
                 <option name="name" value="prepareSqlUNetFrameNetUnspecifiedLibrary" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Extracts Android annotations for the release variant into the archive file" />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="extractReleaseAnnotations" />
               </ExternalTaskPojo>
               <ExternalTaskPojo>
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
@@ -602,11 +700,6 @@
               <ExternalTaskPojo>
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
                 <option name="name" value="mergeDebugResources" />
-              </ExternalTaskPojo>
-              <ExternalTaskPojo>
-                <option name="description" value="Prepare com.android.support:support-media-compat:24.2.1" />
-                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
-                <option name="name" value="prepareComAndroidSupportSupportMediaCompat2421Library" />
               </ExternalTaskPojo>
               <ExternalTaskPojo>
                 <option name="description" value="Generates Gradle wrapper files. [incubating]" />
@@ -633,6 +726,11 @@
                 <option name="description" value="Prepare SqlUNet:bNC:unspecified" />
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
                 <option name="name" value="prepareSqlUNetBNCUnspecifiedLibrary" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Prepare com.android.support:support-core-utils:25.0.1" />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="prepareComAndroidSupportSupportCoreUtils2501Library" />
               </ExternalTaskPojo>
               <ExternalTaskPojo>
                 <option name="description" value="Displays the Android dependencies of the project." />
@@ -689,6 +787,11 @@
                 <option name="name" value="compileReleaseJavaWithJavac" />
               </ExternalTaskPojo>
               <ExternalTaskPojo>
+                <option name="description" value="Prepare com.android.support:support-compat:25.0.1" />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="prepareComAndroidSupportSupportCompat2501Library" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
                 <option name="name" value="jarReleaseClasses" />
               </ExternalTaskPojo>
@@ -720,11 +823,6 @@
               <ExternalTaskPojo>
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
                 <option name="name" value="preReleaseUnitTestBuild" />
-              </ExternalTaskPojo>
-              <ExternalTaskPojo>
-                <option name="description" value="Prepare com.android.support:support-core-ui:24.2.1" />
-                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
-                <option name="name" value="prepareComAndroidSupportSupportCoreUi2421Library" />
               </ExternalTaskPojo>
               <ExternalTaskPojo>
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
@@ -858,16 +956,6 @@
                 <option name="name" value="prepareDebugUnitTestDependencies" />
               </ExternalTaskPojo>
               <ExternalTaskPojo>
-                <option name="description" value="Prepare com.android.support:support-v4:24.2.1" />
-                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
-                <option name="name" value="prepareComAndroidSupportSupportV42421Library" />
-              </ExternalTaskPojo>
-              <ExternalTaskPojo>
-                <option name="description" value="Prepare com.android.support:support-fragment:24.2.1" />
-                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
-                <option name="name" value="prepareComAndroidSupportSupportFragment2421Library" />
-              </ExternalTaskPojo>
-              <ExternalTaskPojo>
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
                 <option name="name" value="generateReleaseResources" />
               </ExternalTaskPojo>
@@ -917,6 +1005,11 @@
                 <option name="name" value="generateDebugBuildConfig" />
               </ExternalTaskPojo>
               <ExternalTaskPojo>
+                <option name="description" value="Prepare com.android.support:appcompat-v7:25.0.1" />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="prepareComAndroidSupportAppcompatV72501Library" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
                 <option name="description" value="Assembles and tests this project." />
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
                 <option name="name" value="build" />
@@ -945,6 +1038,11 @@
               <ExternalTaskPojo>
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
                 <option name="name" value="generateReleaseResValues" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Prepare com.android.support:support-fragment:25.0.1" />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="prepareComAndroidSupportSupportFragment2501Library" />
               </ExternalTaskPojo>
               <ExternalTaskPojo>
                 <option name="description" value="Displays the properties of root project 'SqlUNet'." />
@@ -1148,6 +1246,11 @@
                 <option name="name" value=":bNC:preDebugAndroidTestBuild" />
               </ExternalTaskPojo>
               <ExternalTaskPojo>
+                <option name="description" value="Extracts Android annotations for the debug variant into the archive file" />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value=":bNC:extractDebugAnnotations" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
                 <option name="name" value=":bNC:processDebugAndroidTestJavaRes" />
               </ExternalTaskPojo>
@@ -1301,6 +1404,11 @@
               <ExternalTaskPojo>
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
                 <option name="name" value=":bNC:transformNative_libsWithMergeJniLibsForDebug" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Extracts Android annotations for the release variant into the archive file" />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value=":bNC:extractReleaseAnnotations" />
               </ExternalTaskPojo>
               <ExternalTaskPojo>
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
@@ -1589,6 +1697,11 @@
                 <option name="name" value=":browser:projects" />
               </ExternalTaskPojo>
               <ExternalTaskPojo>
+                <option name="description" value="Prepare com.android.support:support-v4:25.0.1" />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value=":browser:prepareComAndroidSupportSupportV42501Library" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
                 <option name="name" value=":browser:validateSigningDebugAndroidTest" />
               </ExternalTaskPojo>
@@ -1672,11 +1785,6 @@
                 <option name="name" value=":browser:generateDebugResources" />
               </ExternalTaskPojo>
               <ExternalTaskPojo>
-                <option name="description" value="Prepare com.android.support:support-core-utils:24.2.1" />
-                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
-                <option name="name" value=":browser:prepareComAndroidSupportSupportCoreUtils2421Library" />
-              </ExternalTaskPojo>
-              <ExternalTaskPojo>
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
                 <option name="name" value=":browser:compileDebugJavaWithJavac" />
               </ExternalTaskPojo>
@@ -1757,6 +1865,11 @@
                 <option name="name" value=":browser:processReleaseUnitTestJavaRes" />
               </ExternalTaskPojo>
               <ExternalTaskPojo>
+                <option name="description" value="Prepare com.android.support:support-core-ui:25.0.1" />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value=":browser:prepareComAndroidSupportSupportCoreUi2501Library" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
                 <option name="description" value="Uninstalls the Release build." />
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
                 <option name="name" value=":browser:uninstallRelease" />
@@ -1790,6 +1903,11 @@
                 <option name="name" value=":browser:compileDebugAndroidTestSources" />
               </ExternalTaskPojo>
               <ExternalTaskPojo>
+                <option name="description" value="Prepare com.android.support:support-vector-drawable:25.0.1" />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value=":browser:prepareComAndroidSupportSupportVectorDrawable2501Library" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
                 <option name="name" value=":browser:mergeReleaseJniLibFolders" />
               </ExternalTaskPojo>
@@ -1809,6 +1927,11 @@
               <ExternalTaskPojo>
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
                 <option name="name" value=":browser:mergeDebugAndroidTestAssets" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Prepare com.android.support:support-media-compat:25.0.1" />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value=":browser:prepareComAndroidSupportSupportMediaCompat2501Library" />
               </ExternalTaskPojo>
               <ExternalTaskPojo>
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
@@ -1878,11 +2001,6 @@
                 <option name="name" value=":browser:mergeDebugAssets" />
               </ExternalTaskPojo>
               <ExternalTaskPojo>
-                <option name="description" value="Prepare com.android.support:support-compat:24.2.1" />
-                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
-                <option name="name" value=":browser:prepareComAndroidSupportSupportCompat2421Library" />
-              </ExternalTaskPojo>
-              <ExternalTaskPojo>
                 <option name="description" value="Runs all device checks on currently connected devices." />
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
                 <option name="name" value=":browser:connectedCheck" />
@@ -1911,6 +2029,11 @@
                 <option name="name" value=":browser:transformNative_libsWithMergeJniLibsForDebug" />
               </ExternalTaskPojo>
               <ExternalTaskPojo>
+                <option name="description" value="Prepare com.android.support:animated-vector-drawable:25.0.1" />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value=":browser:prepareComAndroidSupportAnimatedVectorDrawable2501Library" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
                 <option name="description" value="Prepare SqlUNet:frameNet:unspecified" />
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
                 <option name="name" value=":browser:prepareSqlUNetFrameNetUnspecifiedLibrary" />
@@ -1932,11 +2055,6 @@
                 <option name="name" value=":browser:mergeDebugResources" />
               </ExternalTaskPojo>
               <ExternalTaskPojo>
-                <option name="description" value="Prepare com.android.support:support-media-compat:24.2.1" />
-                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
-                <option name="name" value=":browser:prepareComAndroidSupportSupportMediaCompat2421Library" />
-              </ExternalTaskPojo>
-              <ExternalTaskPojo>
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
                 <option name="name" value=":browser:preDebugUnitTestBuild" />
               </ExternalTaskPojo>
@@ -1956,6 +2074,11 @@
                 <option name="description" value="Prepare SqlUNet:bNC:unspecified" />
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
                 <option name="name" value=":browser:prepareSqlUNetBNCUnspecifiedLibrary" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Prepare com.android.support:support-core-utils:25.0.1" />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value=":browser:prepareComAndroidSupportSupportCoreUtils2501Library" />
               </ExternalTaskPojo>
               <ExternalTaskPojo>
                 <option name="description" value="Displays the Android dependencies of the project." />
@@ -2008,6 +2131,11 @@
                 <option name="name" value=":browser:compileReleaseJavaWithJavac" />
               </ExternalTaskPojo>
               <ExternalTaskPojo>
+                <option name="description" value="Prepare com.android.support:support-compat:25.0.1" />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value=":browser:prepareComAndroidSupportSupportCompat2501Library" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
                 <option name="name" value=":browser:jarReleaseClasses" />
               </ExternalTaskPojo>
@@ -2039,11 +2167,6 @@
               <ExternalTaskPojo>
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
                 <option name="name" value=":browser:preReleaseUnitTestBuild" />
-              </ExternalTaskPojo>
-              <ExternalTaskPojo>
-                <option name="description" value="Prepare com.android.support:support-core-ui:24.2.1" />
-                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
-                <option name="name" value=":browser:prepareComAndroidSupportSupportCoreUi2421Library" />
               </ExternalTaskPojo>
               <ExternalTaskPojo>
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
@@ -2173,16 +2296,6 @@
                 <option name="name" value=":browser:prepareDebugUnitTestDependencies" />
               </ExternalTaskPojo>
               <ExternalTaskPojo>
-                <option name="description" value="Prepare com.android.support:support-v4:24.2.1" />
-                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
-                <option name="name" value=":browser:prepareComAndroidSupportSupportV42421Library" />
-              </ExternalTaskPojo>
-              <ExternalTaskPojo>
-                <option name="description" value="Prepare com.android.support:support-fragment:24.2.1" />
-                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
-                <option name="name" value=":browser:prepareComAndroidSupportSupportFragment2421Library" />
-              </ExternalTaskPojo>
-              <ExternalTaskPojo>
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
                 <option name="name" value=":browser:generateReleaseResources" />
               </ExternalTaskPojo>
@@ -2228,6 +2341,11 @@
                 <option name="name" value=":browser:generateDebugBuildConfig" />
               </ExternalTaskPojo>
               <ExternalTaskPojo>
+                <option name="description" value="Prepare com.android.support:appcompat-v7:25.0.1" />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value=":browser:prepareComAndroidSupportAppcompatV72501Library" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
                 <option name="description" value="Assembles and tests this project." />
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
                 <option name="name" value=":browser:build" />
@@ -2256,6 +2374,11 @@
               <ExternalTaskPojo>
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
                 <option name="name" value=":browser:generateReleaseResValues" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Prepare com.android.support:support-fragment:25.0.1" />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value=":browser:prepareComAndroidSupportSupportFragment2501Library" />
               </ExternalTaskPojo>
               <ExternalTaskPojo>
                 <option name="description" value="Displays the properties of project ':browser'." />
@@ -3075,6 +3198,11 @@
                 <option name="name" value=":frameNet:preDebugAndroidTestBuild" />
               </ExternalTaskPojo>
               <ExternalTaskPojo>
+                <option name="description" value="Extracts Android annotations for the debug variant into the archive file" />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value=":frameNet:extractDebugAnnotations" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
                 <option name="name" value=":frameNet:processDebugAndroidTestJavaRes" />
               </ExternalTaskPojo>
@@ -3228,6 +3356,11 @@
               <ExternalTaskPojo>
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
                 <option name="name" value=":frameNet:transformNative_libsWithMergeJniLibsForDebug" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Extracts Android annotations for the release variant into the archive file" />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value=":frameNet:extractReleaseAnnotations" />
               </ExternalTaskPojo>
               <ExternalTaskPojo>
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
@@ -3701,6 +3834,11 @@
                 <option name="name" value=":predicateMatrix:preDebugAndroidTestBuild" />
               </ExternalTaskPojo>
               <ExternalTaskPojo>
+                <option name="description" value="Extracts Android annotations for the debug variant into the archive file" />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value=":predicateMatrix:extractDebugAnnotations" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
                 <option name="name" value=":predicateMatrix:processDebugAndroidTestJavaRes" />
               </ExternalTaskPojo>
@@ -3864,6 +4002,11 @@
                 <option name="description" value="Prepare SqlUNet:frameNet:unspecified" />
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
                 <option name="name" value=":predicateMatrix:prepareSqlUNetFrameNetUnspecifiedLibrary" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Extracts Android annotations for the release variant into the archive file" />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value=":predicateMatrix:extractReleaseAnnotations" />
               </ExternalTaskPojo>
               <ExternalTaskPojo>
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
@@ -4342,6 +4485,11 @@
                 <option name="name" value=":propbank:preDebugAndroidTestBuild" />
               </ExternalTaskPojo>
               <ExternalTaskPojo>
+                <option name="description" value="Extracts Android annotations for the debug variant into the archive file" />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value=":propbank:extractDebugAnnotations" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
                 <option name="name" value=":propbank:processDebugAndroidTestJavaRes" />
               </ExternalTaskPojo>
@@ -4495,6 +4643,11 @@
               <ExternalTaskPojo>
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
                 <option name="name" value=":propbank:transformNative_libsWithMergeJniLibsForDebug" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Extracts Android annotations for the release variant into the archive file" />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value=":propbank:extractReleaseAnnotations" />
               </ExternalTaskPojo>
               <ExternalTaskPojo>
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
@@ -5584,6 +5737,11 @@
                 <option name="name" value=":verbNet:preDebugAndroidTestBuild" />
               </ExternalTaskPojo>
               <ExternalTaskPojo>
+                <option name="description" value="Extracts Android annotations for the debug variant into the archive file" />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value=":verbNet:extractDebugAnnotations" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
                 <option name="name" value=":verbNet:processDebugAndroidTestJavaRes" />
               </ExternalTaskPojo>
@@ -5737,6 +5895,11 @@
               <ExternalTaskPojo>
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
                 <option name="name" value=":verbNet:transformNative_libsWithMergeJniLibsForDebug" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Extracts Android annotations for the release variant into the archive file" />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value=":verbNet:extractReleaseAnnotations" />
               </ExternalTaskPojo>
               <ExternalTaskPojo>
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
@@ -6210,6 +6373,11 @@
                 <option name="name" value=":wordNet:preDebugAndroidTestBuild" />
               </ExternalTaskPojo>
               <ExternalTaskPojo>
+                <option name="description" value="Extracts Android annotations for the debug variant into the archive file" />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value=":wordNet:extractDebugAnnotations" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
                 <option name="name" value=":wordNet:processDebugAndroidTestJavaRes" />
               </ExternalTaskPojo>
@@ -6363,6 +6531,11 @@
               <ExternalTaskPojo>
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
                 <option name="name" value=":wordNet:transformNative_libsWithMergeJniLibsForDebug" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Extracts Android annotations for the release variant into the archive file" />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value=":wordNet:extractReleaseAnnotations" />
               </ExternalTaskPojo>
               <ExternalTaskPojo>
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
@@ -6836,6 +7009,11 @@
                 <option name="name" value=":xNet:preDebugAndroidTestBuild" />
               </ExternalTaskPojo>
               <ExternalTaskPojo>
+                <option name="description" value="Extracts Android annotations for the debug variant into the archive file" />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value=":xNet:extractDebugAnnotations" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
                 <option name="name" value=":xNet:processDebugAndroidTestJavaRes" />
               </ExternalTaskPojo>
@@ -6984,6 +7162,11 @@
               <ExternalTaskPojo>
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
                 <option name="name" value=":xNet:transformNative_libsWithMergeJniLibsForDebug" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Extracts Android annotations for the release variant into the archive file" />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value=":xNet:extractReleaseAnnotations" />
               </ExternalTaskPojo>
               <ExternalTaskPojo>
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
@@ -7267,7 +7450,7 @@
     </option>
     <option name="modificationStamps">
       <map>
-        <entry key="$PROJECT_DIR$" value="17723719795270" />
+        <entry key="$PROJECT_DIR$" value="17749833275325" />
       </map>
     </option>
     <option name="projectBuildClasspath">
@@ -8468,57 +8651,57 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/values/strings.xml" />
-        <option value="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/layout/activity_main.xml" />
-        <option value="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/layout/fragment_textsearch.xml" />
+        <option value="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/java/org/sqlunet/browser/config/DownloadFragment.java" />
+        <option value="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/java/org/sqlunet/browser/HelpFragment.java" />
+        <option value="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/java/org/sqlunet/browser/config/ManageFragment.java" />
+        <option value="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/java/org/sqlunet/browser/selector/Browse1Fragment.java" />
+        <option value="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/layout/activity_about.xml" />
+        <option value="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/layout/activity_download.xml" />
+        <option value="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/layout/activity_help.xml" />
+        <option value="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/layout/fragment_home.xml" />
+        <option value="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/layout/fragment_textsearch_result.xml" />
         <option value="/mnt/data2/devel/android-sqlunet-as/SqlUNet/predicateMatrix/src/main/res/layout/fragment_predicatematrix.xml" />
-        <option value="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/java/org/sqlunet/browser/TextSearchResultFragment.java" />
-        <option value="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/layout/fragment_browse.xml" />
-        <option value="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/layout/activity_textsearch.xml" />
-        <option value="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/layout/activity_browse.xml" />
-        <option value="/mnt/data2/devel/android-sqlunet-as/SqlUNet/predicateMatrix/src/main/res/layout/activity_predicatematrix.xml" />
-        <option value="/mnt/data2/devel/android-sqlunet-as/SqlUNet/predicateMatrix/src/main/java/org/sqlunet/predicatematrix/browser/PredicateMatrixActivity.java" />
-        <option value="/mnt/data2/devel/android-sqlunet-as/SqlUNet/wordNet/src/main/java/org/sqlunet/wordnet/provider/WordNetProvider.java" />
-        <option value="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/java/org/sqlunet/browser/BrowseActivity.java" />
-        <option value="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/java/org/sqlunet/browser/MainActivity.java" />
-        <option value="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/AndroidManifest.xml" />
-        <option value="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/java/org/sqlunet/browser/NavigationDrawerFragment.java" />
+        <option value="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/values-w820dp/dimens.xml" />
+        <option value="/mnt/data2/devel/android-sqlunet-as/SqlUNet/wordNet/src/main/AndroidManifest.xml" />
+        <option value="/mnt/data2/devel/android-sqlunet-as/SqlUNet/wordNet/build.gradle" />
+        <option value="/mnt/data2/devel/android-sqlunet-as/SqlUNet/expandableListFragment/build.gradle" />
+        <option value="/mnt/data2/devel/android-sqlunet-as/SqlUNet/frameNet/src/main/AndroidManifest.xml" />
+        <option value="/mnt/data2/devel/android-sqlunet-as/SqlUNet/frameNet/build.gradle" />
+        <option value="/mnt/data2/devel/android-sqlunet-as/SqlUNet/treeView/src/main/AndroidManifest.xml" />
+        <option value="/mnt/data2/devel/android-sqlunet-as/SqlUNet/treeView/build.gradle" />
+        <option value="/mnt/data2/devel/android-sqlunet-as/SqlUNet/xNet/src/main/AndroidManifest.xml" />
+        <option value="/mnt/data2/devel/android-sqlunet-as/SqlUNet/predicateMatrix/src/main/AndroidManifest.xml" />
+        <option value="/mnt/data2/devel/android-sqlunet-as/SqlUNet/predicateMatrix/build.gradle" />
+        <option value="/mnt/data2/devel/android-sqlunet-as/SqlUNet/bNC/src/main/AndroidManifest.xml" />
+        <option value="/mnt/data2/devel/android-sqlunet-as/SqlUNet/propbank/src/main/AndroidManifest.xml" />
+        <option value="/mnt/data2/devel/android-sqlunet-as/SqlUNet/propbank/build.gradle" />
+        <option value="/mnt/data2/devel/android-sqlunet-as/SqlUNet/verbNet/src/main/AndroidManifest.xml" />
+        <option value="/mnt/data2/devel/android-sqlunet-as/SqlUNet/verbNet/build.gradle" />
+        <option value="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/java/org/sqlunet/browser/config/ManageTasks.java" />
+        <option value="/mnt/data2/devel/android-sqlunet-as/SqlUNet/xNet/src/main/java/org/sqlunet/provider/BaseProvider.java" />
+        <option value="/mnt/data2/devel/android-sqlunet-as/SqlUNet/predicateMatrix/src/main/java/org/sqlunet/predicatematrix/loaders/BasicModule.java" />
+        <option value="/mnt/data2/devel/android-sqlunet-as/SqlUNet/bNC/src/main/java/org/sqlunet/bnc/provider/BNCProvider.java" />
         <option value="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/java/org/sqlunet/browser/BrowseFragment.java" />
-        <option value="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/java/org/sqlunet/browser/TextSearchFragment.java" />
+        <option value="/mnt/data2/devel/android-sqlunet-as/SqlUNet/frameNet/src/main/java/org/sqlunet/framenet/provider/FrameNetProvider.java" />
+        <option value="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/java/org/sqlunet/provider/ManagerProvider.java" />
         <option value="/mnt/data2/devel/android-sqlunet-as/SqlUNet/predicateMatrix/src/main/java/org/sqlunet/predicatematrix/browser/PredicateMatrixFragment.java" />
-        <option value="/mnt/data2/devel/android-sqlunet-as/SqlUNet/predicateMatrix/src/main/java/org/sqlunet/predicatematrix/browser/PredicateMatrixResultFragment.java" />
-        <option value="/mnt/data2/devel/android-sqlunet-as/SqlUNet/bNC/src/main/java/org/sqlunet/bnc/browser/BNCFragment.java" />
-        <option value="/mnt/data2/devel/android-sqlunet-as/SqlUNet/frameNet/src/main/java/org/sqlunet/framenet/browser/FnFrameFragment.java" />
-        <option value="/mnt/data2/devel/android-sqlunet-as/SqlUNet/frameNet/src/main/java/org/sqlunet/framenet/browser/FnLexUnitFragment.java" />
-        <option value="/mnt/data2/devel/android-sqlunet-as/SqlUNet/frameNet/src/main/java/org/sqlunet/framenet/browser/FrameNetFragment.java" />
-        <option value="/mnt/data2/devel/android-sqlunet-as/SqlUNet/frameNet/src/main/java/org/sqlunet/framenet/browser/FnSentenceFragment.java" />
-        <option value="/mnt/data2/devel/android-sqlunet-as/SqlUNet/frameNet/src/main/java/org/sqlunet/framenet/browser/FnAnnoSetFragment.java" />
-        <option value="/mnt/data2/devel/android-sqlunet-as/SqlUNet/propbank/src/main/java/org/sqlunet/propbank/browser/PbRoleSetFragment.java" />
-        <option value="/mnt/data2/devel/android-sqlunet-as/SqlUNet/propbank/src/main/java/org/sqlunet/propbank/browser/PropBankFragment.java" />
-        <option value="/mnt/data2/devel/android-sqlunet-as/SqlUNet/verbNet/src/main/java/org/sqlunet/verbnet/browser/VerbNetFragment.java" />
-        <option value="/mnt/data2/devel/android-sqlunet-as/SqlUNet/verbNet/src/main/java/org/sqlunet/verbnet/browser/VnClassFragment.java" />
-        <option value="/mnt/data2/devel/android-sqlunet-as/SqlUNet/wordNet/src/main/java/org/sqlunet/wordnet/browser/SynsetFragment.java" />
-        <option value="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/layout/fragment_selector.xml" />
-        <option value="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/java/org/sqlunet/browser/selector/SelectorResultFragment.java" />
-        <option value="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/java/org/sqlunet/browser/xselector/XSelectorResultFragment.java" />
-        <option value="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/values-large/refs.xml" />
-        <option value="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/values-sw600dp/refs.xml" />
-        <option value="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/values-sw720dp-land/refs.xml" />
-        <option value="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/java/org/sqlunet/browser/selector/SelectorFragment.java" />
-        <option value="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/java/org/sqlunet/browser/xselector/XSelectorFragment.java" />
-        <option value="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/layout/activity_xselector.xml" />
-        <option value="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/layout/activity_selector.xml" />
-        <option value="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/java/org/sqlunet/browser/TextSearchActivity.java" />
-        <option value="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/java/org/sqlunet/browser/selector/SelectorActivity.java" />
-        <option value="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/java/org/sqlunet/browser/xselector/XSelectorActivity.java" />
-        <option value="/mnt/data2/devel/android-sqlunet-as/SqlUNet/frameNet/src/main/java/org/sqlunet/framenet/browser/FnAnnoSetActivity.java" />
-        <option value="/mnt/data2/devel/android-sqlunet-as/SqlUNet/frameNet/src/main/java/org/sqlunet/framenet/browser/FnFrameActivity.java" />
-        <option value="/mnt/data2/devel/android-sqlunet-as/SqlUNet/frameNet/src/main/java/org/sqlunet/framenet/browser/FnLexUnitActivity.java" />
-        <option value="/mnt/data2/devel/android-sqlunet-as/SqlUNet/frameNet/src/main/java/org/sqlunet/framenet/browser/FnSentenceActivity.java" />
-        <option value="/mnt/data2/devel/android-sqlunet-as/SqlUNet/propbank/src/main/java/org/sqlunet/propbank/browser/PbRoleSetActivity.java" />
-        <option value="/mnt/data2/devel/android-sqlunet-as/SqlUNet/verbNet/src/main/java/org/sqlunet/verbnet/browser/VnClassActivity.java" />
-        <option value="/mnt/data2/devel/android-sqlunet-as/SqlUNet/wordNet/src/main/java/org/sqlunet/wordnet/browser/SynsetActivity.java" />
-        <option value="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/java/org/sqlunet/browser/DetailActivity.java" />
+        <option value="/mnt/data2/devel/android-sqlunet-as/SqlUNet/predicateMatrix/src/main/java/org/sqlunet/predicatematrix/provider/PredicateMatrixProvider.java" />
+        <option value="/mnt/data2/devel/android-sqlunet-as/SqlUNet/propbank/src/main/java/org/sqlunet/propbank/provider/PropBankProvider.java" />
+        <option value="/mnt/data2/devel/android-sqlunet-as/SqlUNet/xNet/src/main/java/org/sqlunet/settings/StorageUtils.java" />
+        <option value="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/java/org/sqlunet/browser/TextSearchFragment.java" />
+        <option value="/mnt/data2/devel/android-sqlunet-as/SqlUNet/verbNet/src/main/java/org/sqlunet/verbnet/provider/VerbNetProvider.java" />
+        <option value="/mnt/data2/devel/android-sqlunet-as/SqlUNet/wordNet/src/main/java/org/sqlunet/wordnet/provider/WordNetProvider.java" />
+        <option value="/mnt/data2/devel/android-sqlunet-as/SqlUNet/xNet/src/main/java/org/sqlunet/provider/XSqlUNetProvider.java" />
+        <option value="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/java/org/sqlunet/browser/MainActivity.java" />
+        <option value="/mnt/data2/devel/android-sqlunet-as/SqlUNet/bNC/build.gradle" />
+        <option value="/mnt/data2/devel/android-sqlunet-as/SqlUNet/xNet/build.gradle" />
+        <option value="/mnt/data2/devel/android-sqlunet-as/SqlUNet/xNet/src/main/java/org/sqlunet/style/Spanner.java" />
+        <option value="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/build.gradle" />
+        <option value="$PROJECT_DIR$/../../../androidstudio/sdk/extras/android/m2repository/com/android/support/appcompat-v7/25.0.1/appcompat-v7-25.0.1-sources.jar!/android/support/v7/app/ActionBarDrawerToggle.java" />
+        <option value="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/java/org/sqlunet/browser/NavigationDrawerFragment.java" />
+        <option value="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/java/org/sqlunet/browser/xselector/XSelectorsFragment.java" />
+        <option value="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/java/org/sqlunet/browser/selector/SelectorsFragment.java" />
+        <option value="/mnt/data2/devel/android-sqlunet-as/SqlUNet/wordNet/src/main/java/org/sqlunet/wordnet/browser/SensesFragment.java" />
       </list>
     </option>
   </component>
@@ -8542,67 +8725,43 @@
             <id>Abstraction issuesJava</id>
           </State>
           <State>
-            <id>Android &gt; Lint &gt; Accessibility</id>
+            <id>Android</id>
           </State>
           <State>
             <id>Android &gt; Lint &gt; Correctness</id>
           </State>
           <State>
-            <id>Android &gt; Lint &gt; Correctness &gt; Messages</id>
-          </State>
-          <State>
-            <id>Android &gt; Lint &gt; Internationalization</id>
-          </State>
-          <State>
-            <id>Android &gt; Lint &gt; Internationalization &gt; Bidirectional Text</id>
-          </State>
-          <State>
-            <id>Android &gt; Lint &gt; Performance</id>
-          </State>
-          <State>
             <id>Android &gt; Lint &gt; Security</id>
           </State>
           <State>
-            <id>Android &gt; Lint &gt; Usability</id>
+            <id>Class metricsJava</id>
           </State>
           <State>
-            <id>Android &gt; Lint &gt; Usability &gt; Icons</id>
+            <id>Code style issuesJava</id>
           </State>
           <State>
             <id>Declaration redundancyJava</id>
           </State>
           <State>
-            <id>Encapsulation issuesJava</id>
-          </State>
-          <State>
             <id>Error handlingJava</id>
           </State>
           <State>
-            <id>General</id>
-          </State>
-          <State>
-            <id>Gradle</id>
-          </State>
-          <State>
-            <id>Internationalization issues</id>
-          </State>
-          <State>
-            <id>Internationalization issuesJava</id>
-          </State>
-          <State>
-            <id>J2ME issuesJava</id>
+            <id>Groovy</id>
           </State>
           <State>
             <id>Java</id>
           </State>
           <State>
-            <id>Java language level migration aidsJava</id>
+            <id>Method MetricsGroovy</id>
           </State>
           <State>
-            <id>Numeric issuesJava</id>
+            <id>Method metricsJava</id>
           </State>
           <State>
-            <id>Probable bugsGradle</id>
+            <id>Naming ConventionsGroovy</id>
+          </State>
+          <State>
+            <id>Naming conventionsJava</id>
           </State>
           <State>
             <id>Security issuesJava</id>
@@ -8610,7 +8769,7 @@
         </expanded-state>
         <selected-state>
           <State>
-            <id>UnusedReturnValue</id>
+            <id>Android</id>
           </State>
         </selected-state>
       </profile-state>
@@ -8641,9 +8800,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="ProjectPane">
-        <subPane />
-      </pane>
+      <pane id="Scratches" />
+      <pane id="PackagesPane" />
       <pane id="AndroidView">
         <subPane>
           <PATH>
@@ -8652,10 +8810,123 @@
               <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="SqlUNet" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="wordNet" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="SqlUNet" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="browser" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="SqlUNet" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="browser" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidSourceTypeNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="sqlunet" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="SqlUNet" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="browser" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidSourceTypeNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="sqlunet" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="browser" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="SqlUNet" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="browser" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidSourceTypeNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="sqlunet" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="browser" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="xselector" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="SqlUNet" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="browser" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidSourceTypeNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="sqlunet" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="browser" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="selector" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
-      <pane id="Scratches" />
+      <pane id="ProjectPane">
+        <subPane />
+      </pane>
       <pane id="Scope">
         <subPane subId="Project Files">
           <PATH>
@@ -8703,9 +8974,9 @@
   </component>
   <component name="PropertiesComponent">
     <property name="android.sdk.path" value="$PROJECT_DIR$/../../../androidstudio/sdk" />
-    <property name="settings.editor.selected.configurable" value="editor.preferences.completion" />
+    <property name="settings.editor.selected.configurable" value="preferences.keymap" />
     <property name="settings.editor.splitter.proportion" value="0.2" />
-    <property name="android.project.structure.last.selected" value="xNet" />
+    <property name="android.project.structure.last.selected" value="browser" />
     <property name="android.project.structure.proportion" value="0.15" />
     <property name="UI_DESIGNER_EDITOR_MODE.NlPaletteManager-NlPreviewForm.SHOW" value="false" />
     <property name="device.picker.selection" value="410326156afd500f" />
@@ -9065,13 +9336,6 @@
       <option name="presentableId" value="Default" />
       <updated>1476373639609</updated>
     </task>
-    <task id="LOCAL-00020" summary="normalization">
-      <created>1477043567360</created>
-      <option name="number" value="00020" />
-      <option name="presentableId" value="LOCAL-00020" />
-      <option name="project" value="LOCAL" />
-      <updated>1477043567360</updated>
-    </task>
     <task id="LOCAL-00021" summary="normalization">
       <created>1477054983950</created>
       <option name="number" value="00021" />
@@ -9408,7 +9672,14 @@
       <option name="project" value="LOCAL" />
       <updated>1479309503024</updated>
     </task>
-    <option name="localTasksCounter" value="69" />
+    <task id="LOCAL-00069" summary="convert activities to fragments (selectors)&#10;">
+      <created>1479319147988</created>
+      <option name="number" value="00069" />
+      <option name="presentableId" value="LOCAL-00069" />
+      <option name="project" value="LOCAL" />
+      <updated>1479319147988</updated>
+    </task>
+    <option name="localTasksCounter" value="70" />
     <servers />
   </component>
   <component name="TodoView" selected-index="2">
@@ -9422,45 +9693,83 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="60" y="82" width="1860" height="1118" extended-state="0" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3273453" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Nl-Palette" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.16666667" sideWeight="0.32361034" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.16949153" sideWeight="0.4357035" order="8" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33133733" sideWeight="0.53575355" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Android Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3043912" sideWeight="0.81027883" order="12" side_tool="false" content_ui="tabs" />
+      <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.21507151" sideWeight="0.49333334" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.28712872" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Android Model" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.21507151" sideWeight="0.50666666" order="9" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.43013972" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3273453" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.45309383" sideWeight="0.32361034" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.16766468" sideWeight="0.6747386" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Android Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3043912" sideWeight="0.81027883" order="12" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33133733" sideWeight="0.46424642" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32859486" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3263473" sideWeight="0.49587232" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.31037924" sideWeight="0.510732" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.31037924" sideWeight="0.510732" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3263473" sideWeight="0.4980864" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Captures" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24986331" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3764151" sideWeight="0.42646256" order="11" side_tool="true" content_ui="tabs" />
-      <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1710671" sideWeight="0.56429654" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.14686468" sideWeight="0.56429654" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4011976" sideWeight="0.57353747" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32968834" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2029703" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Android Model" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.1496973" sideWeight="0.5" order="9" side_tool="true" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.249501" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.16949153" sideWeight="0.4357035" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Dependency Viewer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32945737" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.21541826" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Find Sample Code" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32830188" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="Module Dependencies" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32968834" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Dynamic Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+    </layout>
+    <layout-to-restore>
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Nl-Palette" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.16949153" sideWeight="0.4357035" order="8" side_tool="true" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.16766468" sideWeight="0.6747386" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Android Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3043912" sideWeight="0.81027883" order="12" side_tool="false" content_ui="tabs" />
+      <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Dependency Viewer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32945737" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
+      <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.21541826" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Find Sample Code" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32830188" sideWeight="0.5" order="14" side_tool="false" content_ui="tabs" />
+      <window_info id="Module Dependencies" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32968834" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Dynamic Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2029703" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Android Model" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.1496973" sideWeight="0.5" order="9" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.249501" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3273453" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.16666667" sideWeight="0.32361034" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.43013972" sideWeight="0.58993983" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32859486" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3263473" sideWeight="0.49587232" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.31037924" sideWeight="0.510732" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3263473" sideWeight="0.4980864" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Captures" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24986331" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3764151" sideWeight="0.42646256" order="11" side_tool="true" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1710671" sideWeight="0.56429654" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.4011976" sideWeight="0.57353747" order="1" side_tool="false" content_ui="tabs" />
-    </layout>
+      <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32968834" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.16949153" sideWeight="0.4357035" order="7" side_tool="true" content_ui="tabs" />
+    </layout-to-restore>
   </component>
   <component name="Vcs.Log.UiProperties">
     <option name="RECENTLY_FILTERED_USER_GROUPS">
@@ -9476,7 +9785,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="indexing" />
     <MESSAGE value="frame relations&#10;factoring span factories" />
     <MESSAGE value="update scheme&#10;" />
     <MESSAGE value="update scheme (renames)&#10;" />
@@ -9501,559 +9809,428 @@
     <MESSAGE value="cosmetic fixes from eclipse 2&#10;" />
     <MESSAGE value="drawer navigation&#10;" />
     <MESSAGE value="convert activities to fragments&#10;" />
-    <option name="LAST_COMMIT_MESSAGE" value="convert activities to fragments&#10;" />
+    <MESSAGE value="convert activities to fragments (selectors)&#10;" />
+    <option name="LAST_COMMIT_MESSAGE" value="convert activities to fragments (selectors)&#10;" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file:///mnt/data2/devel/android-sqlunet-as/SqlUNet/predicateMatrix/src/main/java/org/sqlunet/predicatematrix/browser/PredicateMatrixFragment.java</url>
-          <line>87</line>
-          <properties />
-          <option name="timeStamp" value="88" />
-        </line-breakpoint>
-      </breakpoints>
       <breakpoints-dialog>
         <breakpoints-dialog />
       </breakpoints-dialog>
-      <option name="time" value="91" />
+      <default-breakpoints>
+        <breakpoint enabled="true" log-message="true" type="java-exception">
+          <properties />
+        </breakpoint>
+      </default-breakpoints>
+      <option name="time" value="94" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file:///mnt/data2/devel/android-sqlunet-as/SqlUNet/predicateMatrix/src/main/res/layout/fragment_predicatematrix.xml">
+    <entry file="file:///mnt/data2/devel/android-sqlunet-as/SqlUNet/verbNet/build.gradle">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="299">
-          <caret line="23" column="50" selection-start-line="23" selection-start-column="50" selection-end-line="23" selection-end-column="50" />
+        <state relative-caret-position="65">
+          <caret line="5" column="25" selection-start-line="5" selection-start-column="25" selection-end-line="5" selection-end-column="25" />
           <folding />
         </state>
       </provider>
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
     </entry>
-    <entry file="file:///mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/menu/browse.xml">
+    <entry file="file:///mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/layout/fragment_main.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
+        <state relative-caret-position="143">
+          <caret line="11" column="8" selection-start-line="11" selection-start-column="8" selection-end-line="11" selection-end-column="8" />
         </state>
       </provider>
       <provider editor-type-id="android-designer2">
         <state />
       </provider>
     </entry>
-    <entry file="file:///mnt/data2/devel/android-sqlunet-as/SqlUNet/predicateMatrix/src/main/res/menu/predicate_matrix.xml">
+    <entry file="file:///mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/layout/fragment_xbrowse1_browse2.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
+        <state relative-caret-position="191">
+          <caret line="30" column="12" selection-start-line="30" selection-start-column="12" selection-end-line="30" selection-end-column="12" />
         </state>
       </provider>
       <provider editor-type-id="android-designer2">
         <state />
       </provider>
     </entry>
-    <entry file="jar://$PROJECT_DIR$/../../../androidstudio/sdk/platforms/android-24/android.jar!/android/app/Fragment.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="481">
-          <caret line="99" column="41" selection-start-line="99" selection-start-column="41" selection-end-line="99" selection-end-column="41" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///mnt/data2/devel/android-sqlunet-as/SqlUNet/predicateMatrix/src/main/res/layout/activity_predicatematrix.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="182">
-          <caret line="14" column="14" selection-start-line="14" selection-start-column="14" selection-end-line="14" selection-end-column="14" />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
-    </entry>
-    <entry file="jar://$PROJECT_DIR$/../../../androidstudio/sdk/platforms/android-24/android.jar!/android/app/Activity.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="193">
-          <caret line="976" column="93" selection-start-line="976" selection-start-column="93" selection-end-line="976" selection-end-column="93" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///mnt/data2/devel/android-sqlunet-as/SqlUNet/predicateMatrix/src/main/java/org/sqlunet/predicatematrix/browser/PredicateMatrixActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="193">
-          <caret line="30" column="0" selection-start-line="30" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/AndroidManifest.xml">
+    <entry file="file:///mnt/data2/devel/android-sqlunet-as/SqlUNet/verbNet/build/intermediates/manifest/androidTest/debug/AndroidManifest.xml">
       <provider editor-type-id="android-manifest">
         <state />
       </provider>
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="182">
-          <caret line="116" column="64" selection-start-line="116" selection-start-column="64" selection-end-line="116" selection-end-column="64" />
+        <state relative-caret-position="169">
+          <caret line="13" column="31" selection-start-line="13" selection-start-column="31" selection-end-line="13" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///mnt/data2/devel/android-sqlunet-as/SqlUNet/wordNet/build/intermediates/manifest/androidTest/debug/AndroidManifest.xml">
+      <provider editor-type-id="android-manifest">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="169">
+          <caret line="13" column="31" selection-start-line="13" selection-start-column="31" selection-end-line="13" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/java/org/sqlunet/browser/config/ManageTasks.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="117">
+          <caret line="28" column="6" selection-start-line="28" selection-start-column="6" selection-end-line="28" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../../androidstudio/sdk/sources/android-24/android/app/ActionBar.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="214">
+          <caret line="597" column="25" selection-start-line="597" selection-start-column="25" selection-end-line="597" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/java/org/sqlunet/browser/config/DownloadFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1924">
+          <caret line="171" column="11" selection-start-line="171" selection-start-column="11" selection-end-line="171" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/java/org/sqlunet/browser/web/DocumentLoader.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="481">
+          <caret line="46" column="15" selection-start-line="46" selection-start-column="15" selection-end-line="46" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/java/org/sqlunet/browser/web/DocumentStringLoader.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="468">
+          <caret line="43" column="15" selection-start-line="43" selection-start-column="15" selection-end-line="43" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/xml/searchable.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="143">
+          <caret line="11" column="15" selection-start-line="11" selection-start-column="15" selection-end-line="11" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/xml/searchable_text_search.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="143">
+          <caret line="11" column="15" selection-start-line="11" selection-start-column="15" selection-end-line="11" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///mnt/data2/devel/android-sqlunet-as/SqlUNet/frameNet/src/main/java/org/sqlunet/framenet/sql/SqLiteDialect.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1105">
+          <caret line="85" column="6" selection-start-line="85" selection-start-column="6" selection-end-line="85" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///mnt/data2/devel/android-sqlunet-as/SqlUNet/xNet/src/main/java/org/sqlunet/provider/BaseProvider.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="428">
+          <caret line="118" column="26" selection-start-line="118" selection-start-column="26" selection-end-line="118" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///mnt/data2/devel/android-sqlunet-as/SqlUNet/predicateMatrix/src/main/java/org/sqlunet/predicatematrix/loaders/BasicModule.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="214">
+          <caret line="203" column="33" selection-start-line="203" selection-start-column="33" selection-end-line="203" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///mnt/data2/devel/android-sqlunet-as/SqlUNet/bNC/src/main/java/org/sqlunet/bnc/provider/BNCProvider.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="214">
+          <caret line="52" column="29" selection-start-line="52" selection-start-column="29" selection-end-line="52" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/java/org/sqlunet/browser/BrowseFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="188">
+          <caret line="270" column="17" selection-start-line="270" selection-start-column="17" selection-end-line="270" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///mnt/data2/devel/android-sqlunet-as/SqlUNet/frameNet/src/main/java/org/sqlunet/framenet/provider/FrameNetProvider.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="214">
+          <caret line="212" column="43" selection-start-line="212" selection-start-column="43" selection-end-line="212" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/java/org/sqlunet/provider/ManagerProvider.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="214">
+          <caret line="51" column="29" selection-start-line="51" selection-start-column="29" selection-end-line="51" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///mnt/data2/devel/android-sqlunet-as/SqlUNet/predicateMatrix/src/main/java/org/sqlunet/predicatematrix/browser/PredicateMatrixFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="214">
+          <caret line="224" column="24" selection-start-line="224" selection-start-column="24" selection-end-line="224" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///mnt/data2/devel/android-sqlunet-as/SqlUNet/predicateMatrix/src/main/java/org/sqlunet/predicatematrix/provider/PredicateMatrixProvider.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="214">
+          <caret line="69" column="43" selection-start-line="69" selection-start-column="43" selection-end-line="69" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///mnt/data2/devel/android-sqlunet-as/SqlUNet/xNet/src/main/java/org/sqlunet/settings/StorageUtils.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="214">
+          <caret line="216" column="34" selection-start-line="216" selection-start-column="34" selection-end-line="216" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/java/org/sqlunet/browser/TextSearchFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="71">
+          <caret line="207" column="18" selection-start-line="207" selection-start-column="18" selection-end-line="207" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///mnt/data2/devel/android-sqlunet-as/SqlUNet/verbNet/src/main/java/org/sqlunet/verbnet/provider/VerbNetProvider.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="214">
+          <caret line="70" column="31" selection-start-line="70" selection-start-column="31" selection-end-line="70" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///mnt/data2/devel/android-sqlunet-as/SqlUNet/wordNet/src/main/java/org/sqlunet/wordnet/provider/WordNetProvider.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="214">
+          <caret line="178" column="30" selection-start-line="178" selection-start-column="30" selection-end-line="178" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/layout/fragment_xbrowse1.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="208">
+          <caret line="16" column="8" selection-start-line="16" selection-start-column="8" selection-end-line="16" selection-end-column="8" />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file:///mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/layout/fragment_textsearch.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file:///mnt/data2/devel/android-sqlunet-as/SqlUNet/xNet/src/main/java/org/sqlunet/provider/XSqlUNetProvider.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="117">
+          <caret line="31" column="13" selection-start-line="31" selection-start-column="13" selection-end-line="31" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/layout/fragment_textsearch_result.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="13">
+          <caret line="1" column="1" selection-start-line="1" selection-start-column="1" selection-end-line="1" selection-end-column="1" />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file:///mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/values/strings.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="214">
+          <caret line="28" column="12" selection-start-line="28" selection-start-column="12" selection-end-line="28" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///mnt/data2/devel/android-sqlunet-as/SqlUNet/propbank/src/main/java/org/sqlunet/propbank/provider/PropBankProvider.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="214">
+          <caret line="110" column="43" selection-start-line="110" selection-start-column="43" selection-end-line="110" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/layout/drawer_main.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="52">
+          <caret line="4" column="10" selection-start-line="4" selection-start-column="10" selection-end-line="4" selection-end-column="10" />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/../../../androidstudio/sdk/extras/android/m2repository/com/android/support/support-core-ui/25.0.1/support-core-ui-25.0.1-sources.jar!/android/support/v4/app/ActionBarDrawerToggle.java" />
+    <entry file="file:///mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/java/org/sqlunet/browser/MainActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="191">
+          <caret line="58" column="63" selection-start-line="58" selection-start-column="63" selection-end-line="58" selection-end-column="63" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///mnt/data2/devel/android-sqlunet-as/SqlUNet/build.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///mnt/data2/devel/android-sqlunet-as/SqlUNet/settings.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///mnt/data2/devel/android-sqlunet-as/SqlUNet/bNC/build.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="286">
+          <caret line="22" column="28" selection-start-line="22" selection-start-column="28" selection-end-line="22" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///mnt/data2/devel/android-sqlunet-as/SqlUNet/xNet/build.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="299">
+          <caret line="23" column="59" selection-start-line="23" selection-start-column="59" selection-end-line="23" selection-end-column="59" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///mnt/data2/devel/android-sqlunet-as/SqlUNet/xNet/src/main/java/org/sqlunet/style/Spanner.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="173">
+          <caret line="87" column="29" selection-start-line="87" selection-start-column="29" selection-end-line="87" selection-end-column="29" />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/build.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="52">
+          <caret line="4" column="24" selection-start-line="4" selection-start-column="24" selection-end-line="4" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/../../../androidstudio/sdk/extras/android/m2repository/com/android/support/appcompat-v7/25.0.1/appcompat-v7-25.0.1-sources.jar!/android/support/v7/app/ActionBarDrawerToggle.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="173">
+          <caret line="178" column="11" selection-start-line="178" selection-start-column="11" selection-end-line="178" selection-end-column="11" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/../../../androidstudio/sdk/extras/android/m2repository/com/android/support/appcompat-v7/25.0.1/appcompat-v7-25.0.1-sources.jar!/android/support/v7/app/ActionBarDrawerToggle.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="173">
+          <caret line="147" column="11" selection-start-line="147" selection-start-column="11" selection-end-line="147" selection-end-column="11" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/java/org/sqlunet/browser/selector/Browse1Fragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="429">
+          <caret line="83" column="57" selection-start-line="83" selection-start-column="35" selection-end-line="83" selection-end-column="57" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file:///mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/java/org/sqlunet/browser/NavigationDrawerFragment.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="191">
-          <caret line="33" column="54" selection-start-line="33" selection-start-column="54" selection-end-line="33" selection-end-column="54" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/java/org/sqlunet/browser/BrowseFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="191">
-          <caret line="70" column="60" selection-start-line="70" selection-start-column="60" selection-end-line="70" selection-end-column="60" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/java/org/sqlunet/browser/TextSearchFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="191">
-          <caret line="47" column="73" selection-start-line="47" selection-start-column="73" selection-end-line="47" selection-end-column="73" />
+        <state relative-caret-position="316">
+          <caret line="171" column="31" selection-start-line="171" selection-start-column="31" selection-end-line="171" selection-end-column="31" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file:///mnt/data2/devel/android-sqlunet-as/SqlUNet/predicateMatrix/src/main/java/org/sqlunet/predicatematrix/browser/PredicateMatrixFragment.java">
+    <entry file="file:///mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/java/org/sqlunet/browser/selector/SelectorsFragment.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="191">
-          <caret line="55" column="62" selection-start-line="55" selection-start-column="62" selection-end-line="55" selection-end-column="62" />
+        <state relative-caret-position="1660">
+          <caret line="226" column="0" selection-start-line="199" selection-start-column="0" selection-end-line="226" selection-end-column="0" />
+          <folding>
+            <element signature="e#5018#5019#0" expanded="true" />
+            <element signature="e#5095#5096#0" expanded="true" />
+            <element signature="e#8833#8834#0" expanded="true" />
+            <element signature="e#8886#8887#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/java/org/sqlunet/browser/xselector/XSelectorsFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-4902">
+          <caret line="50" column="11" selection-start-line="50" selection-start-column="11" selection-end-line="50" selection-end-column="11" />
+          <folding>
+            <element signature="e#4808#4809#0" expanded="true" />
+            <element signature="e#4886#4887#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///mnt/data2/devel/android-sqlunet-as/SqlUNet/wordNet/src/main/java/org/sqlunet/wordnet/browser/SenseFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="117">
+          <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///mnt/data2/devel/android-sqlunet-as/SqlUNet/predicateMatrix/src/main/java/org/sqlunet/predicatematrix/browser/PredicateMatrixResultFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="143">
-          <caret line="31" column="0" selection-start-line="31" selection-start-column="0" selection-end-line="34" selection-end-column="66" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///mnt/data2/devel/android-sqlunet-as/SqlUNet/bNC/src/main/java/org/sqlunet/bnc/browser/BNCFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="208">
-          <caret line="30" column="0" selection-start-line="25" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///mnt/data2/devel/android-sqlunet-as/SqlUNet/frameNet/src/main/java/org/sqlunet/framenet/browser/FnFrameFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="208">
-          <caret line="30" column="0" selection-start-line="30" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///mnt/data2/devel/android-sqlunet-as/SqlUNet/frameNet/src/main/java/org/sqlunet/framenet/browser/FnLexUnitFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="208">
-          <caret line="30" column="0" selection-start-line="30" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///mnt/data2/devel/android-sqlunet-as/SqlUNet/frameNet/src/main/java/org/sqlunet/framenet/browser/FrameNetFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="208">
-          <caret line="32" column="0" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///mnt/data2/devel/android-sqlunet-as/SqlUNet/frameNet/src/main/java/org/sqlunet/framenet/browser/FnSentenceFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="208">
-          <caret line="30" column="0" selection-start-line="30" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///mnt/data2/devel/android-sqlunet-as/SqlUNet/frameNet/src/main/java/org/sqlunet/framenet/browser/FnAnnoSetFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="152">
-          <caret line="32" column="0" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///mnt/data2/devel/android-sqlunet-as/SqlUNet/propbank/src/main/java/org/sqlunet/propbank/browser/PbRoleSetFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="208">
-          <caret line="30" column="0" selection-start-line="30" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///mnt/data2/devel/android-sqlunet-as/SqlUNet/propbank/src/main/java/org/sqlunet/propbank/browser/PropBankFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="208">
-          <caret line="32" column="0" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///mnt/data2/devel/android-sqlunet-as/SqlUNet/verbNet/src/main/java/org/sqlunet/verbnet/browser/VerbNetFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="208">
-          <caret line="32" column="0" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///mnt/data2/devel/android-sqlunet-as/SqlUNet/verbNet/src/main/java/org/sqlunet/verbnet/browser/VnClassFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="208">
-          <caret line="30" column="0" selection-start-line="30" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
         </state>
       </provider>
     </entry>
     <entry file="file:///mnt/data2/devel/android-sqlunet-as/SqlUNet/wordNet/src/main/java/org/sqlunet/wordnet/browser/SynsetFragment.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="208">
-          <caret line="29" column="0" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/java/org/sqlunet/browser/xselector/XLoader.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2314">
-          <caret line="28" column="6" selection-start-line="28" selection-start-column="6" selection-end-line="28" selection-end-column="6" />
+        <state relative-caret-position="-688">
+          <caret line="22" column="13" selection-start-line="22" selection-start-column="13" selection-end-line="22" selection-end-column="13" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file:///mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/layout/fragment_selector_detail.xml">
+    <entry file="file:///mnt/data2/devel/android-sqlunet-as/SqlUNet/wordNet/src/main/java/org/sqlunet/wordnet/browser/SensesFragment.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file:///mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/layout/fragment_xselector.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file:///mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/layout/fragment_xselector_detail.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file:///mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/layout/fragment_selector.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="286">
-          <caret line="22" column="54" selection-start-line="22" selection-start-column="47" selection-end-line="22" selection-end-column="54" />
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file:///mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/java/org/sqlunet/browser/xselector/XSelectorResultFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="805">
-          <caret line="245" column="0" selection-start-line="245" selection-start-column="0" selection-end-line="245" selection-end-column="0" />
+        <state relative-caret-position="247">
+          <caret line="81" column="25" selection-start-line="81" selection-start-column="11" selection-end-line="81" selection-end-column="25" />
           <folding>
-            <element signature="docComment;class#XSelectorResultFragment#0" expanded="false" />
-            <element signature="docComment;class#Listener#0;class#XSelectorResultFragment#0" expanded="false" />
-            <element signature="class#Listener#0;class#XSelectorResultFragment#0" expanded="false" />
-            <element signature="docComment;method#onItemSelected#0;class#Listener#0;class#XSelectorResultFragment#0" expanded="false" />
-            <element signature="docComment;field#STATE_ACTIVATED_SELECTOR#0;class#XSelectorResultFragment#0" expanded="false" />
-            <element signature="docComment;field#DBCOLUMN#0;class#XSelectorResultFragment#0" expanded="false" />
-            <element signature="docComment;field#groupFrom#0;class#XSelectorResultFragment#0" expanded="false" />
-            <element signature="docComment;field#groupTo#0;class#XSelectorResultFragment#0" expanded="false" />
-            <element signature="docComment;field#childTo#0;class#XSelectorResultFragment#0" expanded="false" />
-            <element signature="docComment;field#childFrom#0;class#XSelectorResultFragment#0" expanded="false" />
-            <element signature="docComment;field#xnCursor#0;class#XSelectorResultFragment#0" expanded="false" />
-            <element signature="docComment;field#activatedPosition#0;class#XSelectorResultFragment#0" expanded="false" />
-            <element signature="docComment;field#listener#0;class#XSelectorResultFragment#0" expanded="false" />
-            <element signature="docComment;field#word#0;class#XSelectorResultFragment#0" expanded="false" />
-            <element signature="docComment;field#wordId#0;class#XSelectorResultFragment#0" expanded="false" />
-            <element signature="docComment;method#XSelectorResultFragment#0;class#XSelectorResultFragment#0" expanded="false" />
-            <element signature="method#XSelectorResultFragment#0;class#XSelectorResultFragment#0" expanded="false" />
-            <element signature="e#4565#4597#0" expanded="false" />
-            <element signature="e#4565#4597#0" expanded="false" />
-            <element signature="method#onAttach#0;class#XSelectorResultFragment#0" expanded="false" />
-            <element signature="e#4785#4825#0" expanded="false" />
-            <element signature="method#onAttach#1;class#XSelectorResultFragment#0" expanded="false" />
-            <element signature="docComment;method#onAttachToContext#0;class#XSelectorResultFragment#0" expanded="false" />
-            <element signature="method#onAttachToContext#0;class#XSelectorResultFragment#0" expanded="false" />
-            <element signature="method#onDetach#0;class#XSelectorResultFragment#0" expanded="false" />
-            <element signature="e#5623#5624#0" expanded="true" />
-            <element signature="e#5700#5701#0" expanded="true" />
-            <element signature="method#onSaveInstanceState#0;class#XSelectorResultFragment#0" expanded="false" />
-            <element signature="docComment;method#load#0;class#XSelectorResultFragment#0" expanded="false" />
-            <element signature="method#load#0;class#XSelectorResultFragment#0" expanded="false" />
-            <element signature="class#6903:8287" expanded="false" />
-            <element signature="method#onCreateLoader#0;class#6903:8287" expanded="false" />
-            <element signature="method#onLoadFinished#0;class#6903:8287" expanded="false" />
-            <element signature="method#onLoaderReset#0;class#6903:8287" expanded="false" />
-            <element signature="docComment;method#load#1;class#XSelectorResultFragment#0" expanded="false" />
-            <element signature="method#load#1;class#XSelectorResultFragment#0" expanded="false" />
-            <element signature="class#8459:11076" expanded="false" />
-            <element signature="method#setViewImage#0;class#8459:11076" expanded="false" />
-            <element signature="method#getChildrenCursor#0;class#8459:11076" expanded="false" />
-            <element signature="docComment;method#getWnCallbacks#0;class#XSelectorResultFragment#0" expanded="false" />
-            <element signature="method#getWnCallbacks#0;class#XSelectorResultFragment#0" expanded="false" />
-            <element signature="class#11455:12005" expanded="false" />
-            <element signature="method#onLoadFinished#0;class#11455:12005" expanded="false" />
-            <element signature="e#11633#11657#0" expanded="false" />
-            <element signature="docComment;method#getVnCallbacks#0;class#XSelectorResultFragment#0" expanded="false" />
-            <element signature="method#getVnCallbacks#0;class#XSelectorResultFragment#0" expanded="false" />
-            <element signature="class#12265:12815" expanded="false" />
-            <element signature="method#onLoadFinished#0;class#12265:12815" expanded="false" />
-            <element signature="e#12443#12467#0" expanded="false" />
-            <element signature="docComment;method#getPbCallbacks#0;class#XSelectorResultFragment#0" expanded="false" />
-            <element signature="method#getPbCallbacks#0;class#XSelectorResultFragment#0" expanded="false" />
-            <element signature="class#13077:13627" expanded="false" />
-            <element signature="method#onLoadFinished#0;class#13077:13627" expanded="false" />
-            <element signature="e#13255#13279#0" expanded="false" />
-            <element signature="docComment;method#getFnCallbacks#0;class#XSelectorResultFragment#0" expanded="false" />
-            <element signature="method#getFnCallbacks#0;class#XSelectorResultFragment#0" expanded="false" />
-            <element signature="class#13889:14439" expanded="false" />
-            <element signature="method#onLoadFinished#0;class#13889:14439" expanded="false" />
-            <element signature="e#14067#14091#0" expanded="false" />
-            <element signature="docComment;method#setActivateOnItemClick#0;class#XSelectorResultFragment#0" expanded="false" />
-            <element signature="method#setActivateOnItemClick#0;class#XSelectorResultFragment#0" expanded="false" />
-            <element signature="e#14950#14977#0" expanded="false" />
-            <element signature="e#14950#14977#0" expanded="false" />
-            <element signature="method#onChildClick#0;class#XSelectorResultFragment#0" expanded="false" />
-            <element signature="e#15466#15492#0" expanded="false" />
-            <element signature="e#16129#16196#0" expanded="false" />
-            <element signature="docComment;method#expandWordNet#0;class#XSelectorResultFragment#0" expanded="false" />
-            <element signature="method#expandWordNet#0;class#XSelectorResultFragment#0" expanded="false" />
-            <element signature="docComment;method#expandAll#0;class#XSelectorResultFragment#0" expanded="false" />
-            <element signature="method#expandAll#0;class#XSelectorResultFragment#0" expanded="false" />
-            <element signature="docComment;method#synsetIdToPos#0;class#XSelectorResultFragment#0" expanded="false" />
-            <element signature="method#synsetIdToPos#0;class#XSelectorResultFragment#0" expanded="false" />
+            <element signature="e#8173#8174#0" expanded="true" />
+            <element signature="e#8226#8227#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file:///mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/java/org/sqlunet/browser/selector/SelectorResultFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="611">
-          <caret line="224" column="76" selection-start-line="224" selection-start-column="67" selection-end-line="224" selection-end-column="76" />
-          <folding>
-            <element signature="docComment;class#SelectorResultFragment#0" expanded="false" />
-            <element signature="docComment;class#Listener#0;class#SelectorResultFragment#0" expanded="false" />
-            <element signature="class#Listener#0;class#SelectorResultFragment#0" expanded="false" />
-            <element signature="docComment;method#onItemSelected#0;class#Listener#0;class#SelectorResultFragment#0" expanded="false" />
-            <element signature="docComment;field#STATE_ACTIVATED_SELECTOR#0;class#SelectorResultFragment#0" expanded="false" />
-            <element signature="docComment;field#activatedPosition#0;class#SelectorResultFragment#0" expanded="false" />
-            <element signature="docComment;field#listener#0;class#SelectorResultFragment#0" expanded="false" />
-            <element signature="docComment;field#word#0;class#SelectorResultFragment#0" expanded="false" />
-            <element signature="docComment;field#wordId#0;class#SelectorResultFragment#0" expanded="false" />
-            <element signature="docComment;method#SelectorResultFragment#0;class#SelectorResultFragment#0" expanded="false" />
-            <element signature="e#4805#4837#0" expanded="false" />
-            <element signature="method#onAttach#0;class#SelectorResultFragment#0" expanded="false" />
-            <element signature="e#5025#5058#0" expanded="false" />
-            <element signature="method#onAttach#1;class#SelectorResultFragment#0" expanded="false" />
-            <element signature="method#onAttachToContext#0;class#SelectorResultFragment#0" expanded="false" />
-            <element signature="method#onDetach#0;class#SelectorResultFragment#0" expanded="false" />
-            <element signature="e#5777#5778#0" expanded="true" />
-            <element signature="e#5853#5854#0" expanded="true" />
-            <element signature="method#onSaveInstanceState#0;class#SelectorResultFragment#0" expanded="false" />
-            <element signature="docComment;method#load#0;class#SelectorResultFragment#0" expanded="false" />
-            <element signature="method#load#0;class#SelectorResultFragment#0" expanded="false" />
-            <element signature="class#7053:9105" expanded="false" />
-            <element signature="method#onCreateLoader#0;class#7053:9105" expanded="false" />
-            <element signature="method#onLoadFinished#0;class#7053:9105" expanded="false" />
-            <element signature="docComment;method#setActivateOnItemClick#0;class#SelectorResultFragment#0" expanded="false" />
-            <element signature="method#setActivateOnItemClick#0;class#SelectorResultFragment#0" expanded="false" />
-            <element signature="method#onListItemClick#0;class#SelectorResultFragment#0" expanded="false" />
-            <element signature="e#9836#9862#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/values-large/refs.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="143">
-          <caret line="11" column="0" selection-start-line="9" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/values-sw600dp/refs.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="143">
-          <caret line="11" column="0" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/values-sw720dp-land/refs.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="130">
-          <caret line="10" column="0" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/layout/activity_textsearch.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="13">
-          <caret line="1" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer2">
+    <entry file="file:///mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/drawable-xhdpi/ic_drawer.png">
+      <provider selected="true" editor-type-id="images">
         <state />
       </provider>
     </entry>
-    <entry file="file:///mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/java/org/sqlunet/browser/xselector/XSelectorFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="819">
-          <caret line="193" column="53" selection-start-line="193" selection-start-column="53" selection-end-line="193" selection-end-column="53" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/layout/activity_xselector.xml">
+    <entry file="file:///mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/menu/global.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="91">
-          <caret line="7" column="14" selection-start-line="0" selection-start-column="0" selection-end-line="7" selection-end-column="14" />
+          <caret line="7" column="0" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
           <folding />
         </state>
       </provider>
       <provider editor-type-id="android-designer2">
         <state />
-      </provider>
-    </entry>
-    <entry file="file:///mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/layout/activity_selector.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="78">
-          <caret line="6" column="29" selection-start-line="6" selection-start-column="29" selection-end-line="6" selection-end-column="29" />
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file:///mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/java/org/sqlunet/browser/selector/SelectorFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="182">
-          <caret line="38" column="0" selection-start-line="29" selection-start-column="0" selection-end-line="38" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/java/org/sqlunet/browser/TextSearchActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="338">
-          <caret line="55" column="9" selection-start-line="54" selection-start-column="8" selection-end-line="55" selection-end-column="9" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/java/org/sqlunet/browser/selector/SelectorActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="442">
-          <caret line="38" column="12" selection-start-line="38" selection-start-column="12" selection-end-line="38" selection-end-column="12" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="docComment;class#SelectorActivity#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/java/org/sqlunet/browser/xselector/XSelectorActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="390">
-          <caret line="39" column="12" selection-start-line="39" selection-start-column="12" selection-end-line="39" selection-end-column="12" />
-          <folding>
-            <element signature="docComment;class#XSelectorActivity#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///mnt/data2/devel/android-sqlunet-as/SqlUNet/frameNet/src/main/java/org/sqlunet/framenet/browser/FnAnnoSetActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="312">
-          <caret line="28" column="19" selection-start-line="28" selection-start-column="19" selection-end-line="28" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///mnt/data2/devel/android-sqlunet-as/SqlUNet/frameNet/src/main/java/org/sqlunet/framenet/browser/FnFrameActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="312">
-          <caret line="28" column="13" selection-start-line="28" selection-start-column="13" selection-end-line="28" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///mnt/data2/devel/android-sqlunet-as/SqlUNet/frameNet/src/main/java/org/sqlunet/framenet/browser/FnLexUnitActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="312">
-          <caret line="28" column="19" selection-start-line="28" selection-start-column="19" selection-end-line="28" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///mnt/data2/devel/android-sqlunet-as/SqlUNet/frameNet/src/main/java/org/sqlunet/framenet/browser/FnSentenceActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="312">
-          <caret line="28" column="19" selection-start-line="28" selection-start-column="19" selection-end-line="28" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///mnt/data2/devel/android-sqlunet-as/SqlUNet/propbank/src/main/java/org/sqlunet/propbank/browser/PbRoleSetActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="312">
-          <caret line="28" column="19" selection-start-line="28" selection-start-column="19" selection-end-line="28" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///mnt/data2/devel/android-sqlunet-as/SqlUNet/verbNet/src/main/java/org/sqlunet/verbnet/browser/VnClassActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="312">
-          <caret line="28" column="19" selection-start-line="28" selection-start-column="19" selection-end-line="28" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///mnt/data2/devel/android-sqlunet-as/SqlUNet/wordNet/src/main/java/org/sqlunet/wordnet/browser/SynsetActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="312">
-          <caret line="28" column="19" selection-start-line="28" selection-start-column="19" selection-end-line="28" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/layout/activity_detail.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file:///mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/java/org/sqlunet/browser/DetailActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="299">
-          <caret line="28" column="0" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
-          <folding />
-        </state>
       </provider>
     </entry>
   </component>

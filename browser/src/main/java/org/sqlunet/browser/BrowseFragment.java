@@ -10,6 +10,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Parcelable;
+import android.support.annotation.NonNull;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -28,9 +29,9 @@ import android.widget.SpinnerAdapter;
 import android.widget.TextView;
 
 import org.sqlunet.browser.config.TableActivity;
-import org.sqlunet.browser.selector.SelectorActivity;
+import org.sqlunet.browser.selector.Browse1Activity;
 import org.sqlunet.browser.web.WebActivity;
-import org.sqlunet.browser.xselector.XSelectorActivity;
+import org.sqlunet.browser.xselector.XBrowse1Activity;
 import org.sqlunet.framenet.FnAnnoSetPointer;
 import org.sqlunet.framenet.FnFramePointer;
 import org.sqlunet.framenet.FnLexUnitPointer;
@@ -63,7 +64,7 @@ import org.sqlunet.wordnet.provider.WordNetContract.PosTypes;
  */
 public class BrowseFragment extends Fragment
 {
-	static private final String TAG = "BrowseFragment";
+	static private final String TAG = "Browse1Fragment";
 
 	/**
 	 * Selector mode state
@@ -267,14 +268,15 @@ public class BrowseFragment extends Fragment
 		// selector mode adapter
 		final SpinnerAdapter adapter = new ArrayAdapter<CharSequence>(activity, R.layout.spinner_item_selectors, modes)
 		{
+			@NonNull
 			@Override
-			public View getView(final int position, final View convertView, final ViewGroup parent)
+			public View getView(final int position, final View convertView, @NonNull final ViewGroup parent)
 			{
 				return getCustomView(position, convertView, parent, R.layout.spinner_item_selectors);
 			}
 
 			@Override
-			public View getDropDownView(final int position, final View convertView, final ViewGroup parent)
+			public View getDropDownView(final int position, final View convertView, @NonNull final ViewGroup parent)
 			{
 				return getCustomView(position, convertView, parent, R.layout.spinner_item_selectors_dropdown);
 			}
@@ -314,7 +316,7 @@ public class BrowseFragment extends Fragment
 						final Settings.Selector selectorMode = Settings.Selector.values()[position];
 						selectorMode.setPref(activity);
 
-						// Log.d(BrowseFragment.TAG, selectorMode.name());
+						// Log.d(Browse1Fragment.TAG, selectorMode.name());
 					}
 
 					@Override
@@ -342,7 +344,7 @@ public class BrowseFragment extends Fragment
 		super.onSaveInstanceState(savedInstanceState);
 
 		// spinner
-		if (this.spinner == null)
+		if (this.spinner != null)
 		{
 			// serialize the current dropdown position
 			final int position = this.spinner.getSelectedItemPosition();
@@ -499,10 +501,10 @@ public class BrowseFragment extends Fragment
 		switch (selectorType)
 		{
 			case SELECTOR:
-				intentClass = SelectorActivity.class;
+				intentClass = Browse1Activity.class;
 				break;
 			case XSELECTOR:
-				intentClass = XSelectorActivity.class;
+				intentClass = XBrowse1Activity.class;
 				break;
 		}
 

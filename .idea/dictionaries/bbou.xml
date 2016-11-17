@@ -594,6 +594,7 @@
       <w>writtenfreq</w>
       <w>writtenrange</w>
       <w>wsource</w>
+      <w>xbrowse</w>
       <w>xclass</w>
       <w>xclassid</w>
       <w>xcolumns</w>
@@ -618,6 +619,7 @@
       <w>xpattern</w>
       <w>xpointer</w>
       <w>xselector</w>
+      <w>xselectors</w>
       <w>xslparam</w>
       <w>xsltemplate</w>
       <w>xsltproc</w>

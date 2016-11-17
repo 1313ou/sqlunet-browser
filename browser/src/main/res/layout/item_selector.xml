@@ -5,7 +5,7 @@
               android:layout_height="wrap_content"
               android:background="?android:attr/activatedBackgroundIndicator"
               android:orientation="vertical"
-              tools:context="org.sqlunet.browser.selector.SelectorActivity"
+              tools:context="org.sqlunet.browser.selector.Browse1Activity"
               tools:ignore="Overdraw">
 
 	<View style="@style/Separator"/>

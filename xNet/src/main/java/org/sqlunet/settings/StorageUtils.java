@@ -5,6 +5,7 @@ import android.content.Context;
 import android.os.Build;
 import android.os.Environment;
 import android.os.StatFs;
+import android.support.annotation.NonNull;
 import android.util.Log;
 import android.util.Pair;
 
@@ -213,7 +214,7 @@ public class StorageUtils
 		 * @see java.lang.Comparable#compareTo(java.lang.Object)
 		 */
 		@Override
-		public int compareTo(CandidateStorage another)
+		public int compareTo(@NonNull CandidateStorage another)
 		{
 			if (this.status != another.status)
 			{

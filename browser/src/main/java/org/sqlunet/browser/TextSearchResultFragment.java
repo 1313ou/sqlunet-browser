@@ -409,7 +409,7 @@ public class TextSearchResultFragment extends AbstractTableFragment
 	 * Make choice data
 	 *
 	 * @param concatChoices concatenated choices
-	 * @return array of typed pointers and a rray of labels
+	 * @return array of typed pointers and array of labels
 	 */
 	private Pair<TypedPointer[], CharSequence[]> makeData(final String... concatChoices)
 	{

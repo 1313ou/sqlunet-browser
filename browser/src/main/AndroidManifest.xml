@@ -56,7 +56,7 @@
 		</activity>
 
 		<activity
-			android:name=".selector.SelectorActivity"
+			android:name=".selector.Browse1Activity"
 			android:label="@string/title_activity_selector"
 			android:launchMode="singleTop"
 			android:parentActivityName=".MainActivity"
@@ -70,7 +70,7 @@
 		</activity>
 
 		<activity
-			android:name=".xselector.XSelectorActivity"
+			android:name=".xselector.XBrowse1Activity"
 			android:label="@string/title_activity_xselector"
 			android:launchMode="singleTop"
 			android:parentActivityName=".MainActivity"
@@ -84,9 +84,9 @@
 		</activity>
 
 		<activity
-			android:name=".DetailActivity"
+			android:name=".Browse2Activity"
 			android:label="@string/title_activity_sense"
-			android:parentActivityName=".selector.SelectorActivity"
+			android:parentActivityName=".selector.Browse1Activity"
 			tools:ignore="UnusedAttribute">
 			<meta-data
 				android:name="android.support.PARENT_ACTIVITY"

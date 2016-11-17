@@ -5,6 +5,7 @@ import android.content.ContentValues;
 import android.database.sqlite.SQLiteCantOpenDatabaseException;
 import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
+import android.support.annotation.NonNull;
 import android.util.Log;
 
 import org.sqlunet.settings.StorageSettings;
@@ -115,21 +116,21 @@ public abstract class BaseProvider extends ContentProvider
 
 
 	@Override
-	public int delete(final Uri uri, final String selection, final String[] selectionArgs)
+	public int delete(@NonNull final Uri uri, final String selection, final String[] selectionArgs)
 	{
 		throw new UnsupportedOperationException("Read-only");
 	}
 
 
 	@Override
-	public Uri insert(final Uri uri, final ContentValues values)
+	public Uri insert(@NonNull final Uri uri, final ContentValues values)
 	{
 		throw new UnsupportedOperationException("Read-only");
 	}
 
 
 	@Override
-	public int update(final Uri uri, final ContentValues values, final String selection, final String[] selectionArgs)
+	public int update(@NonNull final Uri uri, final ContentValues values, final String selection, final String[] selectionArgs)
 	{
 		throw new UnsupportedOperationException("Read-only");
 	}

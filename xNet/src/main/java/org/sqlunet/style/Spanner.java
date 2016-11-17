@@ -5,6 +5,7 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Paint.FontMetricsInt;
 import android.graphics.drawable.Drawable;
+import android.support.annotation.NonNull;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
 import android.text.style.ClickableSpan;
@@ -84,13 +85,13 @@ public class Spanner
 		}
 
 		@Override
-		public void draw(final Canvas canvas, final CharSequence arg1, final int arg2, final int arg3, final float arg4, final int arg5, final int arg6, final int arg7, final Paint arg8)
+		public void draw(@NonNull final Canvas canvas, final CharSequence arg1, final int arg2, final int arg3, final float arg4, final int arg5, final int arg6, final int arg7, @NonNull final Paint arg8)
 		{
 			//
 		}
 
 		@Override
-		public int getSize(final Paint paint, final CharSequence text, final int from, final int to, final FontMetricsInt fm)
+		public int getSize(@NonNull final Paint paint, final CharSequence text, final int from, final int to, final FontMetricsInt fm)
 		{
 			return 0;
 		}

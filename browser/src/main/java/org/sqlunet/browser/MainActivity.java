@@ -23,18 +23,12 @@ import org.sqlunet.browser.config.Status;
 import org.sqlunet.browser.config.StorageActivity;
 import org.sqlunet.browser.config.StorageFragment;
 import org.sqlunet.predicatematrix.browser.PredicateMatrixActivity;
-import org.sqlunet.predicatematrix.browser.PredicateMatrixFragment;
 import org.sqlunet.settings.Settings;
 import org.sqlunet.settings.StorageSettings;
 
 public class MainActivity extends Activity implements NavigationDrawerFragment.NavigationDrawerCallbacks
 {
 	static private final String TAG = "MainActivity";
-
-	/**
-	 * Fragment managing the behaviors, interactions and presentation of the navigation drawer.
-	 */
-	private NavigationDrawerFragment navigationDrawerFragment;
 
 	/**
 	 * Used to store the last screen title. For use in {@link #restoreActionBar()}.
@@ -56,13 +50,13 @@ public class MainActivity extends Activity implements NavigationDrawerFragment.N
 		setContentView(R.layout.activity_main);
 
 		// get fragment
-		this.navigationDrawerFragment = (NavigationDrawerFragment) getFragmentManager().findFragmentById(R.id.navigation_drawer);
+		final NavigationDrawerFragment navigationDrawerFragment = (NavigationDrawerFragment) getFragmentManager().findFragmentById(R.id.navigation_drawer);
 
 		// get title for use in restoreActionBar
 		this.title = getTitle();
 
 		// set up the drawer
-		this.navigationDrawerFragment.setUp(R.id.navigation_drawer, (DrawerLayout) findViewById(R.id.drawer_layout));
+		navigationDrawerFragment.setUp(R.id.navigation_drawer, (DrawerLayout) findViewById(R.id.drawer_layout));
 	}
 
 	@Override
@@ -94,6 +88,7 @@ public class MainActivity extends Activity implements NavigationDrawerFragment.N
 	public void restoreActionBar()
 	{
 		ActionBar actionBar = getActionBar();
+		assert actionBar != null;
 		actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
 		actionBar.setDisplayShowTitleEnabled(true);
 		actionBar.setTitle(this.title);
@@ -104,9 +99,10 @@ public class MainActivity extends Activity implements NavigationDrawerFragment.N
 	 *
 	 * @param number selected item number
 	 */
-	public void onSectionAttached(final int number)
+	private void onSectionAttached(final int number)
 	{
-		final String[] options = getResources().getStringArray(R.array.title_sections);
+		// final String[] options = getResources().getStringArray(R.array.title_sections);
+		// this.title = options[number];
 		Intent intent = null;
 		Fragment fragment = null;
 		switch (number)
@@ -118,7 +114,7 @@ public class MainActivity extends Activity implements NavigationDrawerFragment.N
 			case 2:
 				this.title = getString(R.string.title_browse_section);
 				intent = new Intent(this, BrowseActivity.class);
-				//fragment = new BrowseFragment();
+				//fragment = new Browse1Fragment();
 				break;
 			case 3:
 				this.title = getString(R.string.title_ts_section);
@@ -152,7 +148,9 @@ public class MainActivity extends Activity implements NavigationDrawerFragment.N
 		}
 		if (fragment != null)
 		{
-			getFragmentManager().beginTransaction().add(R.id.container_content, fragment).commit();
+			getFragmentManager().beginTransaction() //
+					.add(R.id.container_content, fragment) //
+					.commit();
 			return;
 		}
 		if (intent != null)
@@ -273,6 +271,7 @@ public class MainActivity extends Activity implements NavigationDrawerFragment.N
 			return inflater.inflate(R.layout.fragment_main, container, false);
 		}
 
+		@SuppressWarnings("deprecation")
 		@Override
 		public void onAttach(final Activity activity)
 		{

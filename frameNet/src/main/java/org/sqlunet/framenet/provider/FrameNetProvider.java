@@ -6,6 +6,7 @@ import android.database.sqlite.SQLiteCantOpenDatabaseException;
 import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteQueryBuilder;
 import android.net.Uri;
+import android.support.annotation.NonNull;
 import android.util.Log;
 
 import org.sqlunet.framenet.provider.FrameNetContract.AnnoSets;
@@ -133,7 +134,7 @@ public class FrameNetProvider extends BaseProvider
 	// M I M E
 
 	@Override
-	public String getType(final Uri uri)
+	public String getType(@NonNull final Uri uri)
 	{
 		switch (FrameNetProvider.uriMatcher.match(uri))
 		{
@@ -209,7 +210,7 @@ public class FrameNetProvider extends BaseProvider
 
 	@SuppressWarnings("boxing")
 	@Override
-	public Cursor query(final Uri uri, final String[] projection, final String selection, final String[] selectionArgs, String sortOrder)
+	public Cursor query(@NonNull final Uri uri, final String[] projection, final String selection, final String[] selectionArgs, String sortOrder)
 	{
 		if (this.db == null)
 		{

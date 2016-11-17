@@ -1,15 +1,11 @@
 package org.sqlunet.wordnet.browser;
 
-import android.annotation.TargetApi;
-import android.app.Activity;
 import android.app.ListFragment;
 import android.app.LoaderManager.LoaderCallbacks;
-import android.content.Context;
 import android.content.CursorLoader;
 import android.content.Loader;
 import android.database.Cursor;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -40,15 +36,6 @@ import java.util.Locale;
 public class SensesFragment extends ListFragment
 {
 	/**
-	 * The serialization (saved instance state) Bundle key representing the activated item position. Only used on tablets.
-	 */
-	static private final String ACTIVATED_POSITION_NAME = "activated_position";
-	/**
-	 * The current activated item position. Only used on tablets.
-	 */
-	private int activatedPosition = AdapterView.INVALID_POSITION;
-
-	/**
 	 * A callback interface that all activities containing this fragment must implement. This mechanism allows activities to be notified of item selections.
 	 */
 	public interface Listener
@@ -58,6 +45,21 @@ public class SensesFragment extends ListFragment
 		 */
 		void onItemSelected(SensePointer sense);
 	}
+
+	/**
+	 * The serialization (saved instance state) Bundle key representing the activated item position. Only used on tablets.
+	 */
+	static private final String STATE_ACTIVATED_SELECTOR = "activated_selector";
+
+	/**
+	 * Activate on click flag
+	 */
+	boolean activateOnItemClick = false;
+
+	/**
+	 * The current activated item position. Only used on tablets.
+	 */
+	private int activatedPosition = AdapterView.INVALID_POSITION;
 
 	/**
 	 * The fragment's current callback object, which is notified of list item clicks.
@@ -164,10 +166,68 @@ public class SensesFragment extends ListFragment
 			}
 		});
 		setListAdapter(adapter);
+	}
+
+	// L I S T E N E R
+
+	/**
+	 * Set listener
+	 *
+	 * @param listener listener
+	 */
+	public void setListener(final Listener listener)
+	{
+		this.listener = listener;
+	}
+
+	// V I E W
+
+	@Override
+	public View onCreateView(final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState)
+	{
+		return inflater.inflate(R.layout.fragment_senses, container, false);
+	}
+
+	@Override
+	public void onViewCreated(final View view, final Bundle savedInstanceState)
+	{
+		super.onViewCreated(view, savedInstanceState);
+
+		// when setting CHOICE_MODE_SINGLE, ListView will automatically give items the 'activated' state when touched.
+		getListView().setChoiceMode(this.activateOnItemClick ? AbsListView.CHOICE_MODE_SINGLE : AbsListView.CHOICE_MODE_NONE);
+
+		// restore the previously serialized activated item position, if any
+		if (savedInstanceState != null && savedInstanceState.containsKey(SensesFragment.STATE_ACTIVATED_SELECTOR))
+		{
+			final int position = savedInstanceState.getInt(SensesFragment.STATE_ACTIVATED_SELECTOR);
+			if (position == AdapterView.INVALID_POSITION)
+			{
+				getListView().setItemChecked(this.activatedPosition, false);
+			}
+			else
+			{
+				getListView().setItemChecked(position, true);
+			}
+			this.activatedPosition = position;
+		}
 
 		// load the contents
 		load();
 	}
+
+	@Override
+	public void onSaveInstanceState(final Bundle outState)
+	{
+		super.onSaveInstanceState(outState);
+
+		if (this.activatedPosition != AdapterView.INVALID_POSITION)
+		{
+			// serialize and persist the activated item position.
+			outState.putInt(SensesFragment.STATE_ACTIVATED_SELECTOR, this.activatedPosition);
+		}
+	}
+
+	// L O A D
 
 	/**
 	 * Load data from word
@@ -222,88 +282,7 @@ public class SensesFragment extends ListFragment
 		});
 	}
 
-	@Override
-	public void onSaveInstanceState(final Bundle outState)
-	{
-		super.onSaveInstanceState(outState);
-
-		if (this.activatedPosition != AdapterView.INVALID_POSITION)
-		{
-			// serialize and persist the activated item position.
-			outState.putInt(SensesFragment.ACTIVATED_POSITION_NAME, this.activatedPosition);
-		}
-	}
-
-	@TargetApi(Build.VERSION_CODES.LOLLIPOP)
-	@Override
-	public void onAttach(final Context context)
-	{
-		super.onAttach(context);
-		onAttachToContext(context);
-	}
-
-	@SuppressWarnings("deprecation")
-	@Override
-	public void onAttach(final Activity activity)
-	{
-		super.onAttach(activity);
-		if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M)
-		{
-			onAttachToContext(activity);
-		}
-	}
-
-	private void onAttachToContext(final Context context)
-	{
-		// activities containing this fragment must implement its listener
-		if (context instanceof Listener)
-		{
-			//noinspection CastToIncompatibleInterface
-			this.listener = (Listener) context;
-			return;
-		}
-		throw new IllegalStateException("Activity must implement fragment's listener.");
-	}
-
-	@Override
-	public void onDetach()
-	{
-		super.onDetach();
-
-		// reset the active listener interface to the dummy implementation.
-		this.listener = null;
-	}
-
-	// V I E W
-
-	@Override
-	public View onCreateView(final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState)
-	{
-		return inflater.inflate(R.layout.fragment_senses, container);
-	}
-
-	@Override
-	public void onViewCreated(final View view, final Bundle savedInstanceState)
-	{
-		super.onViewCreated(view, savedInstanceState);
-
-		// restore the previously serialized activated item position, if any
-		if (savedInstanceState != null && savedInstanceState.containsKey(SensesFragment.ACTIVATED_POSITION_NAME))
-		{
-			final int position = savedInstanceState.getInt(SensesFragment.ACTIVATED_POSITION_NAME);
-			if (position == AdapterView.INVALID_POSITION)
-			{
-				getListView().setItemChecked(this.activatedPosition, false);
-			}
-			else
-			{
-				getListView().setItemChecked(position, true);
-			}
-			this.activatedPosition = position;
-		}
-	}
-
-	// C L I C K E V E N T L I S T E N
+	// C L I C K
 
 	/**
 	 * Turns on activate-on-click mode. When this mode is on, list items will be given the 'activated' state when touched.
@@ -311,8 +290,7 @@ public class SensesFragment extends ListFragment
 	@SuppressWarnings("unused")
 	public void setActivateOnItemClick(final boolean activateOnItemClick)
 	{
-		// when setting CHOICE_MODE_SINGLE, ListView will automatically give items the 'activated' state when touched.
-		getListView().setChoiceMode(activateOnItemClick ? AbsListView.CHOICE_MODE_SINGLE : AbsListView.CHOICE_MODE_NONE);
+		this.activateOnItemClick = activateOnItemClick;
 	}
 
 	@Override

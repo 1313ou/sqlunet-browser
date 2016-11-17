@@ -3,17 +3,9 @@ package org.sqlunet.browser.config;
 import android.app.ActionBar;
 import android.app.Activity;
 import android.app.Fragment;
-import android.content.Intent;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
 
 import org.sqlunet.browser.R;
-import org.sqlunet.browser.StatusActivity;
-import org.sqlunet.provider.ManagerContract;
-import org.sqlunet.provider.ManagerProvider;
-import org.sqlunet.provider.ProviderArgs;
-import org.sqlunet.settings.StorageSettings;
 
 /**
  * Manage activity

@@ -9,7 +9,7 @@ import android.app.SearchableInfo;
 import android.content.Context;
 import android.os.Bundle;
 import android.os.Parcelable;
-import android.text.SpannableStringBuilder;
+import android.support.annotation.NonNull;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -27,19 +27,10 @@ import android.widget.SpinnerAdapter;
 import android.widget.TextView;
 
 import org.sqlunet.Word;
-import org.sqlunet.browser.Module;
 import org.sqlunet.predicatematrix.PmRolePointer;
 import org.sqlunet.predicatematrix.R;
-import org.sqlunet.predicatematrix.loaders.PredicateRoleFromWordModule;
-import org.sqlunet.predicatematrix.loaders.PredicateRoleModule;
 import org.sqlunet.predicatematrix.settings.Settings;
-import org.sqlunet.predicatematrix.style.PredicateMatrixFactories;
 import org.sqlunet.provider.ProviderArgs;
-import org.sqlunet.style.Spanner;
-import org.sqlunet.treeview.control.IconTreeController;
-import org.sqlunet.treeview.model.TreeNode;
-import org.sqlunet.treeview.view.TreeView;
-import org.sqlunet.view.TreeFactory;
 
 /**
  * PredicateMatrix fragment
@@ -229,19 +220,20 @@ public class PredicateMatrixFragment extends Fragment
 		// adapter
 		SpinnerAdapter adapter = new ArrayAdapter<CharSequence>(activity, R.layout.spinner_item_pmmodes, modes)
 		{
+			@NonNull
 			@Override
-			public View getView(final int position, final View convertView, final ViewGroup parent)
+			public View getView(final int position, final View convertView, @NonNull final ViewGroup parent)
 			{
 				return getCustomView(position, convertView, parent, R.layout.spinner_item_pmmodes);
 			}
 
 			@Override
-			public View getDropDownView(final int position, final View convertView, final ViewGroup parent)
+			public View getDropDownView(final int position, final View convertView, @NonNull final ViewGroup parent)
 			{
 				return getCustomView(position, convertView, parent, R.layout.spinner_item_pmmodes_dropdown);
 			}
 
-			private View getCustomView(final int position, @SuppressWarnings("UnusedParameters") final View convertView, ViewGroup parent, int layoutId)
+			private View getCustomView(final int position, @SuppressWarnings("UnusedParameters") final View convertView, final ViewGroup parent, int layoutId)
 			{
 				final LayoutInflater inflater = activity.getLayoutInflater();
 				final View row = inflater.inflate(layoutId, parent, false);
@@ -371,6 +363,7 @@ public class PredicateMatrixFragment extends Fragment
 		final View view = getView();
 
 		// clear
+		assert view != null;
 		final ViewGroup container = (ViewGroup) view.findViewById(R.id.container_predicatematrix);
 		container.removeAllViews();
 
@@ -418,6 +411,7 @@ public class PredicateMatrixFragment extends Fragment
 		final View view = getView();
 
 		// clear
+		assert view != null;
 		final ViewGroup container = (ViewGroup) view.findViewById(R.id.container_predicatematrix);
 		assert container != null;
 		container.removeAllViews();

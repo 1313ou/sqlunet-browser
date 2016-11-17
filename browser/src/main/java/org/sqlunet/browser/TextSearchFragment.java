@@ -8,6 +8,7 @@ import android.app.SearchManager;
 import android.app.SearchableInfo;
 import android.content.Context;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -125,7 +126,7 @@ public class TextSearchFragment extends Fragment
 		inflater.inflate(R.menu.text_search, menu);
 
 		// set up search view
-		final MenuItem searchMenuItem = (MenuItem) menu.findItem(R.id.searchView);
+		final MenuItem searchMenuItem = menu.findItem(R.id.searchView);
 		setupSearch(searchMenuItem);
 	}
 
@@ -204,14 +205,15 @@ public class TextSearchFragment extends Fragment
 		// spinner adapter
 		final SpinnerAdapter adapter = new ArrayAdapter<CharSequence>(activity, R.layout.spinner_item_textsearches, textSearches)
 		{
+			@NonNull
 			@Override
-			public View getView(final int position, final View convertView, final ViewGroup parent)
+			public View getView(final int position, final View convertView, @NonNull final ViewGroup parent)
 			{
 				return getCustomView(position, convertView, parent, R.layout.spinner_item_textsearches);
 			}
 
 			@Override
-			public View getDropDownView(final int position, final View convertView, final ViewGroup parent)
+			public View getDropDownView(final int position, final View convertView, @NonNull final ViewGroup parent)
 			{
 				return getCustomView(position, convertView, parent, R.layout.spinner_item_textsearches_dropdown);
 			}
@@ -392,6 +394,7 @@ public class TextSearchFragment extends Fragment
 		final View view = getView();
 
 		// clear splash
+		assert view != null;
 		final ViewGroup container = (ViewGroup) view.findViewById(R.id.container_textsearch);
 		container.removeAllViews();
 

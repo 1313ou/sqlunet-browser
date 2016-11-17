@@ -33,6 +33,7 @@ public class StorageFragment extends Fragment
 		final View view = getView();
 
 		// db
+		assert view != null;
 		final TextView db = (TextView) view.findViewById(R.id.database);
 		db.setText(Storage.getSqlUNetStorage(getActivity()).getAbsolutePath());
 

@@ -1,44 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-             xmlns:tools="http://schemas.android.com/tools"
-             android:layout_width="match_parent"
-             android:layout_height="match_parent"
-             tools:context="browser.PredicateMatrixFragment">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                tools:context="browser.PredicateMatrixFragment">
+
+	<TextView
+		android:id="@+id/statusView"
+		style="@style/Search"
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+		android:layout_centerHorizontal="true"
+		android:textIsSelectable="false"/>
 
 	<RelativeLayout
+		android:id="@+id/container_predicatematrix"
 		android:layout_width="match_parent"
-		android:layout_height="match_parent">
+		android:layout_height="match_parent"
+		android:layout_below="@+id/statusView">
+
+		<ImageView
+			android:id="@+id/splash"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_centerInParent="true"
+			android:contentDescription="@string/title_activity_predicatematrix"
+			android:src="@drawable/ic_splash"/>
 
 		<TextView
-			android:id="@+id/statusView"
-			style="@style/Search"
+			android:id="@+id/splash_hint"
 			android:layout_width="fill_parent"
 			android:layout_height="wrap_content"
+			android:layout_below="@+id/splash"
 			android:layout_centerHorizontal="true"
-			android:textIsSelectable="false"/>
-
-		<RelativeLayout
-			android:id="@+id/container_predicatematrix"
-			android:layout_width="match_parent"
-			android:layout_height="match_parent"
-			android:layout_below="@+id/statusView">
-
-			<ImageView
-				android:id="@+id/splash"
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:layout_centerInParent="true"
-				android:contentDescription="@string/title_activity_predicatematrix"
-				android:src="@drawable/ic_splash"/>
-
-			<TextView
-				android:id="@+id/splash_hint"
-				android:layout_width="fill_parent"
-				android:layout_height="wrap_content"
-				android:layout_below="@+id/splash"
-				android:layout_centerHorizontal="true"
-				android:gravity="center"
-				android:text="@string/hint_splash_predicatematrix"/>
-		</RelativeLayout>
+			android:gravity="center"
+			android:text="@string/hint_splash_predicatematrix"/>
 	</RelativeLayout>
-</FrameLayout>
+</RelativeLayout>

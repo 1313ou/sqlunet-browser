@@ -1,6 +1,6 @@
 package org.sqlunet.browser.config;
 
-import android.annotation.TargetApi;
+import android.content.ContentProvider;
 import android.content.ContentProviderClient;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
@@ -62,9 +62,13 @@ class ManageTasks
 		for (String authority : authorities)
 		{
 			final ContentProviderClient client = context.getContentResolver().acquireContentProviderClient(authority);
-			client.getLocalContentProvider().shutdown();
+			assert client != null;
+			final ContentProvider provider = client.getLocalContentProvider();
+			assert provider != null;
+			provider.shutdown();
 			if (Build.VERSION.SDK_INT < Build.VERSION_CODES.N)
 			{
+				//noinspection deprecation
 				client.release();
 			}
 			else

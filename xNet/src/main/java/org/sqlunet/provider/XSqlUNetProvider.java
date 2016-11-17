@@ -6,6 +6,7 @@ import android.database.sqlite.SQLiteCantOpenDatabaseException;
 import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteQueryBuilder;
 import android.net.Uri;
+import android.support.annotation.NonNull;
 import android.text.TextUtils;
 import android.util.Log;
 
@@ -73,7 +74,7 @@ public class XSqlUNetProvider extends BaseProvider
 	// M I M E
 
 	@Override
-	public String getType(final Uri uri)
+	public String getType(@NonNull final Uri uri)
 	{
 		switch (XSqlUNetProvider.uriMatcher.match(uri))
 		{
@@ -114,7 +115,7 @@ public class XSqlUNetProvider extends BaseProvider
 	 */
 	@SuppressWarnings("boxing")
 	@Override
-	public Cursor query(final Uri uri, final String[] projection, final String selection, final String[] selectionArgs, final String sortOrder)
+	public Cursor query(@NonNull final Uri uri, final String[] projection, final String selection, final String[] selectionArgs, final String sortOrder)
 	{
 		if (this.db == null)
 		{

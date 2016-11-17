@@ -4,11 +4,12 @@ package org.sqlunet.browser;
 import android.app.ActionBar;
 import android.app.Activity;
 import android.app.Fragment;
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.support.v4.app.ActionBarDrawerToggle;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.view.LayoutInflater;
@@ -131,7 +132,7 @@ public class NavigationDrawerFragment extends Fragment
 				selectItem(position);
 			}
 		});
-		this.drawerListView.setAdapter(new ArrayAdapter<String>(getActionBar().getThemedContext(), android.R.layout.simple_list_item_activated_1, android.R.id.text1, options));
+		this.drawerListView.setAdapter(new ArrayAdapter<>(getActionBar().getThemedContext(), android.R.layout.simple_list_item_activated_1, android.R.id.text1, options));
 		this.drawerListView.setItemChecked(this.selectedPosition, true);
 		return this.drawerListView;
 	}
@@ -152,7 +153,7 @@ public class NavigationDrawerFragment extends Fragment
 		// set a custom shadow that overlays the browse content when the drawer opens
 		this.drawerLayout.setDrawerShadow(R.drawable.drawer_shadow, GravityCompat.START);
 
-
+		// action bar
 		ActionBar actionBar = getActionBar();
 		actionBar.setDisplayHomeAsUpEnabled(true);
 		actionBar.setHomeButtonEnabled(true);
@@ -160,7 +161,7 @@ public class NavigationDrawerFragment extends Fragment
 		// ActionBarDrawerToggle ties together the the proper interactions between the navigation drawer and the action bar app icon.
 		this.drawerToggle = new ActionBarDrawerToggle(getActivity(), // host Activity
 				NavigationDrawerFragment.this.drawerLayout, // DrawerLayout object
-				R.drawable.ic_drawer, // nav drawer image to replace 'Up' caret
+				// R.drawable.ic_drawer, // nav drawer image to replace 'Up' caret
 				R.string.hint_navigation_drawer_open,  // "open drawer" description for accessibility
 				R.string.hint_navigation_drawer_close) // "close drawer" description for accessibility
 		{
@@ -198,9 +199,9 @@ public class NavigationDrawerFragment extends Fragment
 		};
 
 		// if the user hasn't 'learned' about the drawer, open it to introduce them to the drawer, per the navigation drawer design guidelines.
-		if (!this.userLearnedDrawer && !fromSavedInstanceState)
+		if (!this.userLearnedDrawer && !this.fromSavedInstanceState)
 		{
-			this.drawerLayout.openDrawer(containerView);
+			this.drawerLayout.openDrawer(this.containerView);
 		}
 
 		// defer code dependent on restoration of previous instance state.
@@ -231,7 +232,7 @@ public class NavigationDrawerFragment extends Fragment
 		}
 		if (this.drawerLayout != null)
 		{
-			this.drawerLayout.closeDrawer(containerView);
+			this.drawerLayout.closeDrawer(this.containerView);
 		}
 		if (this.callbacks != null)
 		{
@@ -239,6 +240,7 @@ public class NavigationDrawerFragment extends Fragment
 		}
 	}
 
+	@SuppressWarnings("deprecation")
 	@Override
 	public void onAttach(final Activity activity)
 	{
@@ -246,6 +248,21 @@ public class NavigationDrawerFragment extends Fragment
 		try
 		{
 			this.callbacks = (NavigationDrawerCallbacks) activity;
+		}
+		catch (ClassCastException e)
+		{
+			throw new ClassCastException("Activity must implement NavigationDrawerCallbacks.");
+		}
+	}
+
+	@SuppressWarnings("deprecation")
+	@Override
+	public void onAttach(final Context context)
+	{
+		super.onAttach(context);
+		try
+		{
+			this.callbacks = (NavigationDrawerCallbacks) context;
 		}
 		catch (ClassCastException e)
 		{
@@ -264,7 +281,7 @@ public class NavigationDrawerFragment extends Fragment
 	public void onSaveInstanceState(final Bundle outState)
 	{
 		super.onSaveInstanceState(outState);
-		outState.putInt(STATE_SELECTED_SECTION, selectedPosition);
+		outState.putInt(STATE_SELECTED_SECTION, this.selectedPosition);
 	}
 
 	@Override
@@ -332,7 +349,7 @@ public class NavigationDrawerFragment extends Fragment
 	/**
 	 * Callbacks interface that all activities using this fragment must implement.
 	 */
-	public static interface NavigationDrawerCallbacks
+	public interface NavigationDrawerCallbacks
 	{
 		/**
 		 * Called when an item in the navigation drawer is selected.
