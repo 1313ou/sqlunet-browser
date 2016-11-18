@@ -1,6 +1,5 @@
 package org.sqlunet.browser;
 
-
 import android.app.ActionBar;
 import android.app.Activity;
 import android.app.Fragment;

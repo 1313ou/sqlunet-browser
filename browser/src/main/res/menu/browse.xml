@@ -1,25 +1,27 @@
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
-
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+      xmlns:app="http://schemas.android.com/apk/res-auto">
 	<item
 		android:id="@+id/searchView"
 		android:actionViewClass="android.widget.SearchView"
-		android:showAsAction="ifRoom"
-		android:title="@string/hint_search"/>
+		android:icon="@android:drawable/ic_menu_search"
+		android:showAsAction="collapseActionView|ifRoom"
+		android:title="@string/hint_search"
+		app:showAsAction="collapseActionView|ifRoom"/>
 	<item
 		android:id="@+id/action_table_lexdomains"
-		android:showAsAction="never"
-		android:title="@string/action_table_lexdomains"/>
+		android:title="@string/action_table_lexdomains"
+		app:showAsAction="never"/>
 	<item
 		android:id="@+id/action_table_linktypes"
-		android:showAsAction="never"
-		android:title="@string/action_table_linktypes"/>
+		android:title="@string/action_table_linktypes"
+		app:showAsAction="never"/>
 	<item
 		android:id="@+id/action_table_postypes"
-		android:showAsAction="never"
-		android:title="@string/action_table_postypes"/>
+		android:title="@string/action_table_postypes"
+		app:showAsAction="never"/>
 	<item
 		android:id="@+id/action_table_adjpositiontypes"
-		android:showAsAction="never"
-		android:title="@string/action_table_adjpositiontypes"/>
-
+		android:title="@string/action_table_adjpositiontypes"
+		app:showAsAction="never"/>
 </menu>

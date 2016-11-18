@@ -1,44 +1,46 @@
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+      xmlns:app="http://schemas.android.com/apk/res-auto">
 
 	<item
 		android:id="@+id/action_settings"
-		android:showAsAction="never"
-		android:title="@string/action_settings"/>
+		android:title="@string/action_settings"
+		app:showAsAction="never"/>
 	<item
 		android:id="@+id/action_status"
-		android:showAsAction="never"
-		android:title="@string/action_status"/>
+		android:title="@string/action_status"
+		app:showAsAction="never"/>
 	<item
 		android:id="@+id/action_setup"
-		android:showAsAction="never"
-		android:title="@string/action_setup"/>
+		android:title="@string/action_setup"
+		app:showAsAction="never"/>
 	<item
 		android:id="@+id/action_setup_sql"
-		android:showAsAction="never"
-		android:title="@string/action_setup_sql"/>
+		android:title="@string/action_setup_sql"
+		app:showAsAction="never"/>
 	<item
 		android:id="@+id/action_tables_and_indices"
-		android:showAsAction="never"
-		android:title="@string/action_tables_and_indices"/>
+		android:title="@string/action_tables_and_indices"
+		app:showAsAction="never"/>
 	<item
 		android:id="@+id/action_create_database"
-		android:showAsAction="never"
-		android:title="@string/action_create_database"/>
+		android:title="@string/action_create_database"
+		app:showAsAction="never"/>
 	<item
 		android:id="@+id/action_drop_database"
-		android:showAsAction="never"
-		android:title="@string/action_drop_database"/>
+		android:title="@string/action_drop_database"
+		app:showAsAction="never"/>
 	<item
 		android:id="@+id/action_vacuum"
-		android:showAsAction="never"
-		android:title="@string/action_vacuum"/>
+		android:title="@string/action_vacuum"
+		app:showAsAction="never"/>
 	<item
 		android:id="@+id/action_drop_tables"
-		android:showAsAction="never"
-		android:title="@string/action_drop_tables"/>
+		android:title="@string/action_drop_tables"
+		app:showAsAction="never"/>
 	<item
 		android:id="@+id/action_flush_tables"
-		android:showAsAction="never"
-		android:title="@string/action_flush_tables"/>
+		android:title="@string/action_flush_tables"
+		app:showAsAction="never"/>
 
 </menu>

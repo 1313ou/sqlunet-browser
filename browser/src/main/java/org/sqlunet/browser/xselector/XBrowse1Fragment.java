@@ -77,7 +77,7 @@ public class XBrowse1Fragment extends Fragment implements XSelectorsFragment.Lis
 		this.selectorsFragment.setListener(this);
 		getFragmentManager() //
 				.beginTransaction() //
-				.replace(R.id.container_selectors, this.selectorsFragment) //
+				.replace(R.id.container_xselectors, this.selectorsFragment) //
 				.commit();
 
 		// two-pane specific set up
