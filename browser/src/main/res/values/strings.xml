@@ -96,7 +96,7 @@
 	<string name="status_provider_query_failed">Could not perform query, cause is logged</string>
 
 	<!-- misc -->
-	<string name="hint_search">Search WordNet</string>
+	<string name="hint_search">Search</string>
 	<string name="hint_search_text">Text Search WordNet</string>
 	<string name="hint_splash_main">Exploring Semantic Roles</string>
 	<string name="hint_splash_textsearch">Text Search</string>
