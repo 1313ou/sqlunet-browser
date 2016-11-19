@@ -55,7 +55,7 @@ public class SelectorsFragment extends ListFragment
 	/**
 	 * Activate on click flag
 	 */
-	boolean activateOnItemClick = false;
+	private boolean activateOnItemClick = false;
 	/**
 	 * The current activated item position. Only used on tablets.
 	 */
@@ -92,10 +92,7 @@ public class SelectorsFragment extends ListFragment
 
 		// arguments
 		Bundle args = getArguments();
-		if (args == null)
-		{
-			args = getActivity().getIntent().getExtras();
-		}
+		assert args != null;
 
 		// target word
 		String query = args.getString(ProviderArgs.ARG_QUERYSTRING);

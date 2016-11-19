@@ -60,7 +60,7 @@ public class NavigationDrawerFragment extends Fragment
 	private DrawerLayout drawerLayout;
 
 	/**
-	 * Helper component that ties together the the proper interactions between the navigation drawer and the action bar app icon
+	 * Helper component that ties together the the proper interactions between the navigation drawer and the type bar app icon
 	 */
 	private ActionBarDrawerToggle drawerToggle;
 
@@ -111,7 +111,7 @@ public class NavigationDrawerFragment extends Fragment
 	{
 		super.onActivityCreated(savedInstanceState);
 
-		// indicate that this fragment would like to influence the set of actions in the action bar.
+		// indicate that this fragment would like to influence the set of actions in the type bar.
 		setHasOptionsMenu(true);
 	}
 
@@ -152,12 +152,12 @@ public class NavigationDrawerFragment extends Fragment
 		// set a custom shadow that overlays the browse content when the drawer opens
 		this.drawerLayout.setDrawerShadow(R.drawable.drawer_shadow, GravityCompat.START);
 
-		// action bar
+		// type bar
 		ActionBar actionBar = getActionBar();
 		actionBar.setDisplayHomeAsUpEnabled(true);
 		actionBar.setHomeButtonEnabled(true);
 
-		// ActionBarDrawerToggle ties together the the proper interactions between the navigation drawer and the action bar app icon.
+		// ActionBarDrawerToggle ties together the the proper interactions between the navigation drawer and the type bar app icon.
 		this.drawerToggle = new ActionBarDrawerToggle(getActivity(), // host Activity
 				NavigationDrawerFragment.this.drawerLayout, // DrawerLayout object
 				// R.drawable.ic_drawer, // nav drawer image to replace 'Up' caret
@@ -295,7 +295,7 @@ public class NavigationDrawerFragment extends Fragment
 	@Override
 	public void onCreateOptionsMenu(final Menu menu, final MenuInflater inflater)
 	{
-		// if the drawer is open, show the global app actions in the action bar. See also showGlobalContextActionBar, which controls the top-left area of the action bar.
+		// if the drawer is open, show the global app actions in the type bar. See also showGlobalContextActionBar, which controls the top-left area of the type bar.
 		if (this.drawerLayout != null && isDrawerOpen())
 		{
 			inflater.inflate(R.menu.global, menu);
@@ -315,7 +315,7 @@ public class NavigationDrawerFragment extends Fragment
 	}
 
 	/**
-	 * Per the navigation drawer design guidelines, updates the action bar to show the global app 'context', rather than just what's in the current screen.
+	 * Per the navigation drawer design guidelines, updates the type bar to show the global app 'context', rather than just what's in the current screen.
 	 */
 	private void showGlobalContextActionBar()
 	{
@@ -326,9 +326,9 @@ public class NavigationDrawerFragment extends Fragment
 	}
 
 	/**
-	 * Access to action bar
+	 * Access to type bar
 	 *
-	 * @return action bar
+	 * @return type bar
 	 */
 	private ActionBar getActionBar()
 	{
@@ -340,6 +340,7 @@ public class NavigationDrawerFragment extends Fragment
 	 *
 	 * @return true if drawer is open
 	 */
+	@SuppressWarnings("WeakerAccess")
 	public boolean isDrawerOpen()
 	{
 		return this.drawerLayout != null && this.drawerLayout.isDrawerOpen(this.containerView);

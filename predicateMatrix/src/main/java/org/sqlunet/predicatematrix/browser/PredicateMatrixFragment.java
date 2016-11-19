@@ -6,6 +6,7 @@ import android.app.Activity;
 import android.app.Fragment;
 import android.app.SearchManager;
 import android.app.SearchableInfo;
+import android.content.ComponentName;
 import android.content.Context;
 import android.os.Bundle;
 import android.os.Parcelable;
@@ -27,6 +28,7 @@ import android.widget.SpinnerAdapter;
 import android.widget.TextView;
 
 import org.sqlunet.Word;
+import org.sqlunet.browser.SearchListener;
 import org.sqlunet.predicatematrix.PmRolePointer;
 import org.sqlunet.predicatematrix.R;
 import org.sqlunet.predicatematrix.settings.Settings;
@@ -37,7 +39,7 @@ import org.sqlunet.provider.ProviderArgs;
  *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
-public class PredicateMatrixFragment extends Fragment
+public class PredicateMatrixFragment extends Fragment implements SearchListener
 {
 	static private final String TAG = "PredicateMatrixFragment";
 
@@ -76,7 +78,6 @@ public class PredicateMatrixFragment extends Fragment
 	 */
 	public PredicateMatrixFragment()
 	{
-		Log.d(TAG,"CREATE");
 	}
 
 	@Override
@@ -93,11 +94,11 @@ public class PredicateMatrixFragment extends Fragment
 		// status view
 		this.statusView = (TextView) view.findViewById(R.id.statusView);
 
-		// show the Up button in the action bar.
+		// show the Up button in the type bar.
 		final ActionBar actionBar = activity.getActionBar();
 		assert actionBar != null;
 
-		// set up the action bar to show a custom layout
+		// set up the type bar to show a custom layout
 		@SuppressLint("InflateParams") //
 		final View actionBarView = inflater.inflate(R.layout.actionbar_custom, null);
 		actionBar.setCustomView(actionBarView);
@@ -124,7 +125,7 @@ public class PredicateMatrixFragment extends Fragment
 	@Override
 	public void onCreateOptionsMenu(final Menu menu, final MenuInflater inflater)
 	{
-		// Inflate the menu; this adds items to the action bar if it is present.
+		// Inflate the menu; this adds items to the type bar if it is present.
 		inflater.inflate(R.menu.predicate_matrix, menu);
 
 		// set up search
@@ -144,12 +145,14 @@ public class PredicateMatrixFragment extends Fragment
 		// activity
 		final Activity activity = getActivity();
 
+		// search info
+		final ComponentName componentName = new ComponentName(activity, PredicateMatrixActivity.class);
+		final SearchManager searchManager = (SearchManager) activity.getSystemService(Context.SEARCH_SERVICE);
+		final SearchableInfo searchableInfo = searchManager.getSearchableInfo(componentName);
+
 		// search view
 		this.searchView = (SearchView) searchMenuItem.getActionView();
-		final SearchManager searchManager = (SearchManager) activity.getSystemService(Context.SEARCH_SERVICE);
-		final SearchableInfo searchableInfo = searchManager.getSearchableInfo(activity.getComponentName());
 		this.searchView.setSearchableInfo(searchableInfo);
-		// TODO
 		this.searchView.setIconifiedByDefault(true);
 		this.searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener()
 		{
@@ -205,7 +208,7 @@ public class PredicateMatrixFragment extends Fragment
 	// S P I N N E R
 
 	/**
-	 * Set up action bar spinner
+	 * Set up type bar spinner
 	 *
 	 * @param spinner spinner
 	 */
@@ -329,9 +332,9 @@ public class PredicateMatrixFragment extends Fragment
 	 *
 	 * @param query query
 	 */
+	@Override
 	public void suggest(final String query)
 	{
-		Log.d(TAG, "SUGGEST " + query);
 		this.statusView.setText("view: '" + query + "'");
 		this.searchView.setQuery(query, true); // true=submit
 	}
@@ -357,7 +360,7 @@ public class PredicateMatrixFragment extends Fragment
 
 		final Bundle args = new Bundle();
 		args.putParcelable(ProviderArgs.ARG_QUERYPOINTER, pointer);
-		args.putInt(ProviderArgs.ARG_QUERYACTION, ProviderArgs.ARG_QUERYACTION_PM);
+		args.putInt(ProviderArgs.ARG_QUERYTYPE, ProviderArgs.ARG_QUERYTYPE_PM);
 
 		// view
 		final View view = getView();
@@ -370,7 +373,10 @@ public class PredicateMatrixFragment extends Fragment
 		// fragment
 		final Fragment fragment = new PredicateMatrixResultFragment();
 		fragment.setArguments(args);
-		getFragmentManager().beginTransaction().replace(R.id.container_predicatematrix, fragment).commit();
+		getFragmentManager() //
+				.beginTransaction() //
+				.replace(R.id.container_predicatematrix, fragment) //
+				.commit();
 	}
 
 	/**
@@ -378,6 +384,7 @@ public class PredicateMatrixFragment extends Fragment
 	 *
 	 * @param query query string
 	 */
+	@Override
 	public void search(final String query)
 	{
 		if (query == null || query.isEmpty())
@@ -405,7 +412,7 @@ public class PredicateMatrixFragment extends Fragment
 		// arguments
 		final Bundle args = new Bundle();
 		args.putParcelable(ProviderArgs.ARG_QUERYPOINTER, pointer);
-		args.putInt(ProviderArgs.ARG_QUERYACTION, ProviderArgs.ARG_QUERYACTION_PM);
+		args.putInt(ProviderArgs.ARG_QUERYTYPE, ProviderArgs.ARG_QUERYTYPE_PM);
 
 		// view
 		final View view = getView();
@@ -419,6 +426,9 @@ public class PredicateMatrixFragment extends Fragment
 		// fragment
 		final Fragment fragment = new PredicateMatrixResultFragment();
 		fragment.setArguments(args);
-		getFragmentManager().beginTransaction().replace(R.id.container_predicatematrix, fragment).commit();
+		getFragmentManager() //
+				.beginTransaction() //
+				.replace(R.id.container_predicatematrix, fragment) //
+				.commit();
 	}
 }

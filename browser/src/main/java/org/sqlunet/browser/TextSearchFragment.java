@@ -6,6 +6,7 @@ import android.app.Activity;
 import android.app.Fragment;
 import android.app.SearchManager;
 import android.app.SearchableInfo;
+import android.content.ComponentName;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -39,7 +40,7 @@ import org.sqlunet.wordnet.provider.WordNetContract.Lookup_Words;
  *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
-public class TextSearchFragment extends Fragment
+public class TextSearchFragment extends Fragment implements SearchListener
 {
 	static private final String TAG = "TextSearchActivity";
 
@@ -76,11 +77,11 @@ public class TextSearchFragment extends Fragment
 		// get views from ids
 		this.statusView = (TextView) view.findViewById(R.id.statusView);
 
-		// show the Up button in the action bar.
+		// show the Up button in the type bar.
 		final ActionBar actionBar = getActivity().getActionBar();
 		assert actionBar != null;
 
-		// set up the action bar to show a custom layout
+		// set up the type bar to show a custom layout
 		@SuppressLint("InflateParams") //
 		final View actionBarView = inflater.inflate(R.layout.actionbar_custom, null);
 		actionBar.setCustomView(actionBarView);
@@ -122,7 +123,7 @@ public class TextSearchFragment extends Fragment
 	@Override
 	public void onCreateOptionsMenu(final Menu menu, final MenuInflater inflater)
 	{
-		// inflate the menu; this adds items to the action bar if it is present.
+		// inflate the menu; this adds items to the type bar if it is present.
 		inflater.inflate(R.menu.text_search, menu);
 
 		// set up search view
@@ -143,12 +144,14 @@ public class TextSearchFragment extends Fragment
 		// activity
 		final Activity activity = getActivity();
 
+		// search info
+		final ComponentName componentName = new ComponentName(activity, MainActivity.class);
+		final SearchManager searchManager = (SearchManager) activity.getSystemService(Context.SEARCH_SERVICE);
+		final SearchableInfo searchableInfo = searchManager.getSearchableInfo(componentName);
+
 		// search view
 		this.searchView = (SearchView) searchMenuItem.getActionView();
-		final SearchManager searchManager = (SearchManager) activity.getSystemService(Context.SEARCH_SERVICE);
-		final SearchableInfo searchableInfo = searchManager.getSearchableInfo(activity.getComponentName());
 		this.searchView.setSearchableInfo(searchableInfo);
-		// TODO
 		this.searchView.setIconifiedByDefault(true);
 		this.searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener()
 		{
@@ -190,7 +193,7 @@ public class TextSearchFragment extends Fragment
 	// S P I N N E R
 
 	/**
-	 * Set up action bar spinner
+	 * Set up type bar spinner
 	 *
 	 * @param spinner spinner
 	 */
@@ -287,9 +290,9 @@ public class TextSearchFragment extends Fragment
 	 *
 	 * @param query query
 	 */
+	@Override
 	public void suggest(final String query)
 	{
-		Log.d(TAG, "SUGGEST " + query);
 		this.statusView.setText("view: '" + query + "'");
 		this.searchView.setQuery(query, true); // true=submit
 	}
@@ -301,6 +304,7 @@ public class TextSearchFragment extends Fragment
 	 *
 	 * @param query query
 	 */
+	@Override
 	public void search(final String query)
 	{
 		final int itemPosition = this.spinner.getSelectedItemPosition();
@@ -398,9 +402,12 @@ public class TextSearchFragment extends Fragment
 		final ViewGroup container = (ViewGroup) view.findViewById(R.id.container_textsearch);
 		container.removeAllViews();
 
-		// for fragment to handle
+		// fragment
 		final Fragment fragment = new TextSearchResultFragment();
 		fragment.setArguments(args);
-		getFragmentManager().beginTransaction().replace(R.id.container_textsearch, fragment).commit();
+		getFragmentManager() //
+				.beginTransaction() //
+				.replace(R.id.container_textsearch, fragment) //
+				.commit();
 	}
 }

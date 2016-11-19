@@ -6,6 +6,7 @@ import android.app.Activity;
 import android.app.Fragment;
 import android.app.SearchManager;
 import android.app.SearchableInfo;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -62,7 +63,7 @@ import org.sqlunet.wordnet.provider.WordNetContract.PosTypes;
  *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
-public class BrowseFragment extends Fragment
+public class BrowseFragment extends Fragment implements SearchListener
 {
 	static private final String TAG = "Browse1Fragment";
 
@@ -102,11 +103,11 @@ public class BrowseFragment extends Fragment
 		// status view
 		this.statusView = (TextView) view.findViewById(R.id.statusView);
 
-		// show the Up button in the action bar.
+		// show the Up button in the type bar.
 		final ActionBar actionBar = activity.getActionBar();
 		assert actionBar != null;
 
-		// set up the action bar to show a custom layout
+		// set up the type bar to show a custom layout
 		@SuppressLint("InflateParams") final View actionBarView = inflater.inflate(R.layout.actionbar_custom, null);
 		actionBar.setCustomView(actionBarView);
 		actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM | ActionBar.DISPLAY_SHOW_HOME | ActionBar.DISPLAY_HOME_AS_UP);
@@ -132,7 +133,7 @@ public class BrowseFragment extends Fragment
 	@Override
 	public void onCreateOptionsMenu(final Menu menu, final MenuInflater inflater)
 	{
-		// inflate the menu; this adds items to the action bar if it is present.
+		// inflate the menu; this adds items to the type bar if it is present.
 		inflater.inflate(R.menu.browse, menu);
 
 		// set up search view
@@ -206,12 +207,14 @@ public class BrowseFragment extends Fragment
 		// activity
 		final Activity activity = getActivity();
 
+		// search info
+		final ComponentName componentName = new ComponentName(activity, MainActivity.class);
+		final SearchManager searchManager = (SearchManager) activity.getSystemService(Context.SEARCH_SERVICE);
+		final SearchableInfo searchableInfo = searchManager.getSearchableInfo(componentName);
+
 		// search view
 		this.searchView = (SearchView) searchMenuItem.getActionView();
-		final SearchManager searchManager = (SearchManager) activity.getSystemService(Context.SEARCH_SERVICE);
-		final SearchableInfo searchableInfo = searchManager.getSearchableInfo(activity.getComponentName());
 		this.searchView.setSearchableInfo(searchableInfo);
-		// TODO
 		this.searchView.setIconifiedByDefault(true);
 		this.searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener()
 		{
@@ -253,7 +256,7 @@ public class BrowseFragment extends Fragment
 	// S P I N N E R
 
 	/**
-	 * Set up action bar spinner
+	 * Set up type bar spinner
 	 *
 	 * @param spinner spinner
 	 */
@@ -359,9 +362,9 @@ public class BrowseFragment extends Fragment
 	 *
 	 * @param query query
 	 */
+	@Override
 	public void suggest(final String query)
 	{
-		Log.d(TAG, "SUGGEST " + query);
 		this.statusView.setText("view: '" + query + "'");
 		this.searchView.setQuery(query, true); // true=submit
 	}
@@ -373,6 +376,7 @@ public class BrowseFragment extends Fragment
 	 *
 	 * @param query query
 	 */
+	@Override
 	@SuppressWarnings("boxing")
 	public void search(final String query)
 	{
@@ -380,7 +384,7 @@ public class BrowseFragment extends Fragment
 		final boolean recurse = Settings.getRecursePref(getActivity());
 
 		// dispatch as per query prefix
-		Intent searchIntent;
+		Intent targetIntent;
 		if (query.matches("#\\p{Lower}\\p{Lower}\\d+"))
 		{
 			final long id = Long.valueOf(query.substring(3));
@@ -389,81 +393,81 @@ public class BrowseFragment extends Fragment
 			if (query.startsWith("#ws"))
 			{
 				final Parcelable synsetPointer = new SynsetPointer(id, null);
-				searchIntent = makeDetailIntent(SynsetActivity.class);
-				searchIntent.putExtra(ProviderArgs.ARG_QUERYACTION, ProviderArgs.ARG_QUERYACTION_SYNSET);
-				searchIntent.putExtra(ProviderArgs.ARG_QUERYPOINTER, synsetPointer);
-				searchIntent.putExtra(ProviderArgs.ARG_QUERYRECURSE, recurse);
+				targetIntent = makeDetailIntent(SynsetActivity.class);
+				targetIntent.putExtra(ProviderArgs.ARG_QUERYTYPE, ProviderArgs.ARG_QUERYTYPE_SYNSET);
+				targetIntent.putExtra(ProviderArgs.ARG_QUERYPOINTER, synsetPointer);
+				targetIntent.putExtra(ProviderArgs.ARG_QUERYRECURSE, recurse);
 			}
 
 			// verbnet
 			else if (query.startsWith("#vc"))
 			{
 				final Parcelable framePointer = new VnClassPointer(id);
-				searchIntent = makeDetailIntent(VnClassActivity.class);
-				searchIntent.putExtra(ProviderArgs.ARG_QUERYACTION, ProviderArgs.ARG_QUERYACTION_VNCLASS);
-				searchIntent.putExtra(ProviderArgs.ARG_QUERYPOINTER, framePointer);
+				targetIntent = makeDetailIntent(VnClassActivity.class);
+				targetIntent.putExtra(ProviderArgs.ARG_QUERYTYPE, ProviderArgs.ARG_QUERYTYPE_VNCLASS);
+				targetIntent.putExtra(ProviderArgs.ARG_QUERYPOINTER, framePointer);
 			}
 
 			// propbank
 			else if (query.startsWith("#pr"))
 			{
 				final Parcelable roleSetPointer = new PbRoleSetPointer(id);
-				searchIntent = makeDetailIntent(PbRoleSetActivity.class);
-				searchIntent.putExtra(ProviderArgs.ARG_QUERYACTION, ProviderArgs.ARG_QUERYACTION_PBROLESET);
-				searchIntent.putExtra(ProviderArgs.ARG_QUERYPOINTER, roleSetPointer);
+				targetIntent = makeDetailIntent(PbRoleSetActivity.class);
+				targetIntent.putExtra(ProviderArgs.ARG_QUERYTYPE, ProviderArgs.ARG_QUERYTYPE_PBROLESET);
+				targetIntent.putExtra(ProviderArgs.ARG_QUERYPOINTER, roleSetPointer);
 			}
 
 			// framenet
 			else if (query.startsWith("#ff"))
 			{
 				final Parcelable framePointer = new FnFramePointer(id);
-				searchIntent = makeDetailIntent(FnFrameActivity.class);
-				searchIntent.putExtra(ProviderArgs.ARG_QUERYACTION, ProviderArgs.ARG_QUERYACTION_FNFRAME);
-				searchIntent.putExtra(ProviderArgs.ARG_QUERYPOINTER, framePointer);
+				targetIntent = makeDetailIntent(FnFrameActivity.class);
+				targetIntent.putExtra(ProviderArgs.ARG_QUERYTYPE, ProviderArgs.ARG_QUERYTYPE_FNFRAME);
+				targetIntent.putExtra(ProviderArgs.ARG_QUERYPOINTER, framePointer);
 			}
 			else if (query.startsWith("#fl"))
 			{
 				final Parcelable lexunitPointer = new FnLexUnitPointer(id);
-				searchIntent = makeDetailIntent(FnLexUnitActivity.class);
-				searchIntent.putExtra(ProviderArgs.ARG_QUERYACTION, ProviderArgs.ARG_QUERYACTION_FNLEXUNIT);
-				searchIntent.putExtra(ProviderArgs.ARG_QUERYPOINTER, lexunitPointer);
+				targetIntent = makeDetailIntent(FnLexUnitActivity.class);
+				targetIntent.putExtra(ProviderArgs.ARG_QUERYTYPE, ProviderArgs.ARG_QUERYTYPE_FNLEXUNIT);
+				targetIntent.putExtra(ProviderArgs.ARG_QUERYPOINTER, lexunitPointer);
 			}
 			else if (query.startsWith("#fs"))
 			{
 				final Parcelable sentencePointer = new FnSentencePointer(id);
-				searchIntent = makeDetailIntent(FnSentenceActivity.class);
-				searchIntent.putExtra(ProviderArgs.ARG_QUERYACTION, ProviderArgs.ARG_QUERYACTION_FNSENTENCE);
-				searchIntent.putExtra(ProviderArgs.ARG_QUERYPOINTER, sentencePointer);
+				targetIntent = makeDetailIntent(FnSentenceActivity.class);
+				targetIntent.putExtra(ProviderArgs.ARG_QUERYTYPE, ProviderArgs.ARG_QUERYTYPE_FNSENTENCE);
+				targetIntent.putExtra(ProviderArgs.ARG_QUERYPOINTER, sentencePointer);
 			}
 			else if (query.startsWith("#fa"))
 			{
 				final Parcelable annoSetPointer = new FnAnnoSetPointer(id);
-				searchIntent = makeDetailIntent(FnAnnoSetActivity.class);
-				searchIntent.putExtra(ProviderArgs.ARG_QUERYACTION, ProviderArgs.ARG_QUERYACTION_FNANNOSET);
-				searchIntent.putExtra(ProviderArgs.ARG_QUERYPOINTER, annoSetPointer);
+				targetIntent = makeDetailIntent(FnAnnoSetActivity.class);
+				targetIntent.putExtra(ProviderArgs.ARG_QUERYTYPE, ProviderArgs.ARG_QUERYTYPE_FNANNOSET);
+				targetIntent.putExtra(ProviderArgs.ARG_QUERYPOINTER, annoSetPointer);
 			}
 			else if (query.startsWith("#fp"))
 			{
 				final Parcelable patternPointer = new FnPatternPointer(id);
-				searchIntent = makeDetailIntent(FnAnnoSetActivity.class);
-				searchIntent.putExtra(ProviderArgs.ARG_QUERYACTION, ProviderArgs.ARG_QUERYACTION_FNPATTERN);
-				searchIntent.putExtra(ProviderArgs.ARG_QUERYPOINTER, patternPointer);
+				targetIntent = makeDetailIntent(FnAnnoSetActivity.class);
+				targetIntent.putExtra(ProviderArgs.ARG_QUERYTYPE, ProviderArgs.ARG_QUERYTYPE_FNPATTERN);
+				targetIntent.putExtra(ProviderArgs.ARG_QUERYPOINTER, patternPointer);
 			}
 			else if (query.startsWith("#fv"))
 			{
 				final Parcelable valenceunitPointer = new FnValenceUnitPointer(id);
-				searchIntent = makeDetailIntent(FnAnnoSetActivity.class);
-				searchIntent.putExtra(ProviderArgs.ARG_QUERYACTION, ProviderArgs.ARG_QUERYACTION_FNVALENCEUNIT);
-				searchIntent.putExtra(ProviderArgs.ARG_QUERYPOINTER, valenceunitPointer);
+				targetIntent = makeDetailIntent(FnAnnoSetActivity.class);
+				targetIntent.putExtra(ProviderArgs.ARG_QUERYTYPE, ProviderArgs.ARG_QUERYTYPE_FNVALENCEUNIT);
+				targetIntent.putExtra(ProviderArgs.ARG_QUERYPOINTER, valenceunitPointer);
 			}
 
 			// predicate matrix
 			else if (query.startsWith("#mr"))
 			{
 				final Parcelable rolePointer = new PmRolePointer(id);
-				searchIntent = makeDetailIntent(PredicateMatrixActivity.class);
-				searchIntent.putExtra(ProviderArgs.ARG_QUERYACTION, ProviderArgs.ARG_QUERYACTION_PMROLE);
-				searchIntent.putExtra(ProviderArgs.ARG_QUERYPOINTER, rolePointer);
+				targetIntent = makeDetailIntent(PredicateMatrixActivity.class);
+				targetIntent.putExtra(ProviderArgs.ARG_QUERYTYPE, ProviderArgs.ARG_QUERYTYPE_PMROLE);
+				targetIntent.putExtra(ProviderArgs.ARG_QUERYPOINTER, rolePointer);
 			}
 			else
 			{
@@ -473,12 +477,12 @@ public class BrowseFragment extends Fragment
 		else
 		{
 			// search for string
-			searchIntent = makeSelectorIntent();
-			searchIntent.putExtra(ProviderArgs.ARG_QUERYSTRING, query);
-			searchIntent.putExtra(ProviderArgs.ARG_QUERYRECURSE, recurse);
+			targetIntent = makeSelectorIntent();
+			targetIntent.putExtra(ProviderArgs.ARG_QUERYSTRING, query);
+			targetIntent.putExtra(ProviderArgs.ARG_QUERYRECURSE, recurse);
 		}
-		Log.d(BrowseFragment.TAG, "SEARCH " + searchIntent);
-		startActivity(searchIntent);
+		Log.d(BrowseFragment.TAG, "SEARCH " + targetIntent);
+		startActivity(targetIntent);
 	}
 
 	// I N T E N T F A C T O R Y
@@ -521,6 +525,8 @@ public class BrowseFragment extends Fragment
 				intent = new Intent(getActivity(), WebActivity.class);
 				break;
 		}
+		intent.setAction(ProviderArgs.ACTION_QUERY);
+
 		return intent;
 	}
 
@@ -550,6 +556,8 @@ public class BrowseFragment extends Fragment
 				intent = new Intent(getActivity(), WebActivity.class);
 				break;
 		}
+		intent.setAction(ProviderArgs.ACTION_QUERY);
+
 		return intent;
 	}
 }

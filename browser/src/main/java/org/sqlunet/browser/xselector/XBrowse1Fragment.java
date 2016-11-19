@@ -38,7 +38,7 @@ public class XBrowse1Fragment extends Fragment implements XSelectorsFragment.Lis
 	/**
 	 * Selectors fragment
 	 */
-	private XSelectorsFragment selectorsFragment;
+	private XSelectorsFragment xSelectorsFragment;
 
 	/**
 	 * VerbNet fragment
@@ -72,12 +72,12 @@ public class XBrowse1Fragment extends Fragment implements XSelectorsFragment.Lis
 		queryView.setText(query);
 
 		// selector fragment
-		this.selectorsFragment = new XSelectorsFragment();
-		this.selectorsFragment.setArguments(args);
-		this.selectorsFragment.setListener(this);
+		this.xSelectorsFragment = new XSelectorsFragment();
+		this.xSelectorsFragment.setArguments(args);
+		this.xSelectorsFragment.setListener(this);
 		getFragmentManager() //
 				.beginTransaction() //
-				.replace(R.id.container_xselectors, this.selectorsFragment) //
+				.replace(R.id.container_xselectors, this.xSelectorsFragment) //
 				.commit();
 
 		// two-pane specific set up
@@ -88,10 +88,10 @@ public class XBrowse1Fragment extends Fragment implements XSelectorsFragment.Lis
 			this.isTwoPane = true;
 
 			// detail fragment
-			final Fragment detailFragment = new Browse2Fragment();
+			final Fragment browse2Fragment = new Browse2Fragment();
 			getFragmentManager() //
 					.beginTransaction() //
-					.replace(R.id.container_browse2, detailFragment) //
+					.replace(R.id.container_browse2, browse2Fragment) //
 					.commit();
 		}
 
@@ -106,7 +106,7 @@ public class XBrowse1Fragment extends Fragment implements XSelectorsFragment.Lis
 		if (this.isTwoPane)
 		{
 			// in two-pane mode, list items should be given the 'activated' state when touched.
-			this.selectorsFragment.setActivateOnItemClick(true);
+			this.xSelectorsFragment.setActivateOnItemClick(true);
 		}
 	}
 
@@ -140,11 +140,12 @@ public class XBrowse1Fragment extends Fragment implements XSelectorsFragment.Lis
 						// final View labelView = findViewById(R.id.label_wordnet);
 						// labelView.setVisibility(View.VISIBLE);
 						final SynsetFragment senseFragment = new SenseFragment();
-						senseFragment.setExpand(pointer.wordNetOnly());
 						senseFragment.setArguments(args);
+						senseFragment.setExpand(pointer.wordNetOnly());
 						transaction.replace(R.id.container_wordnet, senseFragment);
 					}
 
+					// verbnet
 					if (Settings.getVerbNetPref(activity) && pointer.getXSources().contains("vn")) //
 					{
 						// final View labelView = findViewById(R.id.label_verbnet);
@@ -159,6 +160,7 @@ public class XBrowse1Fragment extends Fragment implements XSelectorsFragment.Lis
 						this.verbnetFragment = null;
 					}
 
+					// propbank
 					if (Settings.getPropBankPref(activity) && pointer.getXSources().contains("pb")) //
 					{
 						// final View labelView = findViewById(R.id.label_propbank);
@@ -173,6 +175,7 @@ public class XBrowse1Fragment extends Fragment implements XSelectorsFragment.Lis
 						this.propbankFragment = null;
 					}
 
+					// framenet
 					if (Settings.getFrameNetPref(activity) && pointer.getXSources().contains("fn")) //
 					{
 						// final View labelView = findViewById(R.id.label_framenet);
@@ -187,6 +190,7 @@ public class XBrowse1Fragment extends Fragment implements XSelectorsFragment.Lis
 						this.framenetFragment = null;
 					}
 
+					// bnc
 					if (Settings.getBncPref(activity))
 					{
 						// final View labelView = findViewById(R.id.label_bnc);
@@ -199,8 +203,6 @@ public class XBrowse1Fragment extends Fragment implements XSelectorsFragment.Lis
 
 				case WEB:
 					final Fragment fragment = new WebFragment();
-
-					// arguments
 					fragment.setArguments(args);
 
 					// detail fragment replace

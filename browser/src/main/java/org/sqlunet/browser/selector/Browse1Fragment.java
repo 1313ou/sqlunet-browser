@@ -40,7 +40,7 @@ public class Browse1Fragment extends Fragment implements SelectorsFragment.Liste
 
 		// query
 		final Bundle args = getArguments();
-		final String query = args.getString(ProviderArgs.ARG_QUERYSTRING);
+		final String query = args == null ? null : args.getString(ProviderArgs.ARG_QUERYSTRING);
 
 		// copy to query view
 		final TextView queryView = (TextView) view.findViewById(R.id.queryView);
@@ -69,6 +69,7 @@ public class Browse1Fragment extends Fragment implements SelectorsFragment.Liste
 					.replace(R.id.container_browse2, browse2Fragment) //
 					.commit();
 		}
+
 		return view;
 	}
 

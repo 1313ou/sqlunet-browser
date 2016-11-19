@@ -21,7 +21,7 @@ public class FnSentenceActivity extends Activity
 		// content
 		setContentView(R.layout.activity_fnsentence);
 
-		// show the Up button in the action bar.
+		// show the Up button in the type bar.
 		final ActionBar actionBar = getActionBar();
 		assert actionBar != null;
 		actionBar.setDisplayHomeAsUpEnabled(true);
@@ -33,10 +33,12 @@ public class FnSentenceActivity extends Activity
 		if (savedInstanceState == null)
 		{
 			// create the sense fragment, transmit intent's extras as parameters and add it to the activity using a fragment transaction
-			final Bundle args = getIntent().getExtras();
 			final FnSentenceFragment fragment = new FnSentenceFragment();
-			fragment.setArguments(args);
-			getFragmentManager().beginTransaction().add(R.id.container_sentence, fragment).commit();
+			fragment.setArguments(getIntent().getExtras());
+			getFragmentManager() //
+					.beginTransaction() //
+					.replace(R.id.container_sentence, fragment) //
+					.commit();
 		}
 	}
 }

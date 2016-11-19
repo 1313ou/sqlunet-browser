@@ -21,7 +21,7 @@ public class PbRoleSetActivity extends Activity
 		// content
 		setContentView(R.layout.activity_pbroleset);
 
-		// show the Up button in the action bar.
+		// show the Up button in the type bar.
 		final ActionBar actionBar = getActionBar();
 		assert actionBar != null;
 		actionBar.setDisplayHomeAsUpEnabled(true);
@@ -36,7 +36,10 @@ public class PbRoleSetActivity extends Activity
 			final Bundle args = getIntent().getExtras();
 			final PbRoleSetFragment fragment = new PbRoleSetFragment();
 			fragment.setArguments(args);
-			getFragmentManager().beginTransaction().add(R.id.container_pbroleset, fragment).commit();
+			getFragmentManager() //
+					.beginTransaction() //
+					.replace(R.id.container_pbroleset, fragment) //
+					.commit();
 		}
 	}
 }

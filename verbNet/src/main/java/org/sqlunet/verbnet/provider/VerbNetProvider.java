@@ -205,7 +205,6 @@ public class VerbNetProvider extends BaseProvider
 				break;
 			case LOOKUP_FTS_EXAMPLES_X_BY_EXAMPLE:
 				groupBy="exampleid";
-				//addProjection(projection, "GROUP_CONCAT(class || '@' || classid)");
 				//$FALL-THROUGH$
 				//noinspection fallthrough
 			case LOOKUP_FTS_EXAMPLES_X:

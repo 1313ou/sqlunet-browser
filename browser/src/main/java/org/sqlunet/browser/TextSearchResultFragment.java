@@ -82,7 +82,6 @@ public class TextSearchResultFragment extends AbstractTableFragment
 	 */
 	public TextSearchResultFragment()
 	{
-		super();
 	}
 
 	@Override
@@ -90,10 +89,7 @@ public class TextSearchResultFragment extends AbstractTableFragment
 	{
 		// args
 		Bundle args = getArguments();
-		if (args == null)
-		{
-			args = getActivity().getIntent().getExtras();
-		}
+		assert args !=null;
 
 		// search target
 		// final String database = args.getString(ProviderArgs.ARG_QUERYDATABASE);
@@ -159,7 +155,7 @@ public class TextSearchResultFragment extends AbstractTableFragment
 
 	@SuppressWarnings({"boxing", "resource"})
 	@Override
-	public void onListItemClick(ListView l, View v, int position, long id)
+	public void onListItemClick(final ListView listView, final View view, final int position, final long id)
 	{
 		Log.d(TAG, "CLICK id=" + id + " pos=" + position);
 
@@ -169,10 +165,7 @@ public class TextSearchResultFragment extends AbstractTableFragment
 
 		// args
 		Bundle args = getArguments();
-		if (args == null)
-		{
-			args = getActivity().getIntent().getExtras();
-		}
+		assert args != null;
 
 		// search target
 		final String database = args.getString(ProviderArgs.ARG_QUERYDATABASE);
@@ -191,7 +184,8 @@ public class TextSearchResultFragment extends AbstractTableFragment
 
 				// intent
 				final Intent targetIntent = new Intent(this.getActivity(), org.sqlunet.wordnet.browser.SynsetActivity.class);
-				targetIntent.putExtra(ProviderArgs.ARG_QUERYACTION, ProviderArgs.ARG_QUERYACTION_SYNSET);
+				targetIntent.setAction(ProviderArgs.ACTION_QUERY);
+				targetIntent.putExtra(ProviderArgs.ARG_QUERYTYPE, ProviderArgs.ARG_QUERYTYPE_SYNSET);
 				targetIntent.putExtra(ProviderArgs.ARG_QUERYPOINTER, synsetPointer);
 
 				// start
@@ -304,19 +298,20 @@ public class TextSearchResultFragment extends AbstractTableFragment
 		Intent targetIntent = null;
 		Parcelable pointer = null;
 
-		// intent, action, pointer
+		// intent, type, pointer
 		switch (typedPointer.type)
 		{
 			case 0:
 				pointer = new VnClassPointer(targetId);
 				targetIntent = new Intent(TextSearchResultFragment.this.getActivity(), org.sqlunet.verbnet.browser.VnClassActivity.class);
-				targetIntent.putExtra(ProviderArgs.ARG_QUERYACTION, ProviderArgs.ARG_QUERYACTION_VNCLASS);
+				targetIntent.putExtra(ProviderArgs.ARG_QUERYTYPE, ProviderArgs.ARG_QUERYTYPE_VNCLASS);
 				break;
 		}
 
 		// pass pointer
 		assert targetIntent != null;
 		targetIntent.putExtra(ProviderArgs.ARG_QUERYPOINTER, pointer);
+		targetIntent.setAction(ProviderArgs.ACTION_QUERY);
 
 		// start
 		startActivity(targetIntent);
@@ -333,19 +328,20 @@ public class TextSearchResultFragment extends AbstractTableFragment
 		Intent targetIntent = null;
 		Parcelable pointer = null;
 
-		// intent, action, pointer
+		// intent, type, pointer
 		switch (typedPointer.type)
 		{
 			case 0:
 				pointer = new PbRoleSetPointer(targetId);
 				targetIntent = new Intent(TextSearchResultFragment.this.getActivity(), org.sqlunet.propbank.browser.PbRoleSetActivity.class);
-				targetIntent.putExtra(ProviderArgs.ARG_QUERYACTION, ProviderArgs.ARG_QUERYACTION_PBROLESET);
+				targetIntent.putExtra(ProviderArgs.ARG_QUERYTYPE, ProviderArgs.ARG_QUERYTYPE_PBROLESET);
 				break;
 		}
 
 		// pass pointer
 		assert targetIntent != null;
 		targetIntent.putExtra(ProviderArgs.ARG_QUERYPOINTER, pointer);
+		targetIntent.setAction(ProviderArgs.ACTION_QUERY);
 
 		// start
 		startActivity(targetIntent);
@@ -362,29 +358,30 @@ public class TextSearchResultFragment extends AbstractTableFragment
 		Intent targetIntent = null;
 		Parcelable pointer = null;
 
-		// intent, action, pointer
+		// intent, type, pointer
 		switch (typedPointer.type)
 		{
 			case 0:
 				pointer = new FnFramePointer(targetId);
 				targetIntent = new Intent(TextSearchResultFragment.this.getActivity(), org.sqlunet.framenet.browser.FnFrameActivity.class);
-				targetIntent.putExtra(ProviderArgs.ARG_QUERYACTION, ProviderArgs.ARG_QUERYACTION_FNFRAME);
+				targetIntent.putExtra(ProviderArgs.ARG_QUERYTYPE, ProviderArgs.ARG_QUERYTYPE_FNFRAME);
 				break;
 			case 1:
 				pointer = new FnLexUnitPointer(targetId);
 				targetIntent = new Intent(TextSearchResultFragment.this.getActivity(), org.sqlunet.framenet.browser.FnLexUnitActivity.class);
-				targetIntent.putExtra(ProviderArgs.ARG_QUERYACTION, ProviderArgs.ARG_QUERYACTION_FNLEXUNIT);
+				targetIntent.putExtra(ProviderArgs.ARG_QUERYTYPE, ProviderArgs.ARG_QUERYTYPE_FNLEXUNIT);
 				break;
 			case 2:
 				pointer = new FnSentencePointer(targetId);
 				targetIntent = new Intent(TextSearchResultFragment.this.getActivity(), org.sqlunet.framenet.browser.FnSentenceActivity.class);
-				targetIntent.putExtra(ProviderArgs.ARG_QUERYACTION, ProviderArgs.ARG_QUERYACTION_FNSENTENCE);
+				targetIntent.putExtra(ProviderArgs.ARG_QUERYTYPE, ProviderArgs.ARG_QUERYTYPE_FNSENTENCE);
 				break;
 		}
 
 		// pass pointer
 		assert targetIntent != null;
 		targetIntent.putExtra(ProviderArgs.ARG_QUERYPOINTER, pointer);
+		targetIntent.setAction(ProviderArgs.ACTION_QUERY);
 
 		// start
 		startActivity(targetIntent);

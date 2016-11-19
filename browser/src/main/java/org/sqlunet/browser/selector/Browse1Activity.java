@@ -22,7 +22,7 @@ public class Browse1Activity extends Activity
 		// content
 		setContentView(R.layout.activity_browse1);
 
-		// show the Up button in the action bar.
+		// show the Up button in the type bar.
 		final ActionBar actionBar = getActionBar();
 		assert actionBar != null;
 		actionBar.setDisplayHomeAsUpEnabled(true);
@@ -35,7 +35,10 @@ public class Browse1Activity extends Activity
 		{
 			final Fragment fragment = new Browse1Fragment();
 			fragment.setArguments(getIntent().getExtras());
-			getFragmentManager().beginTransaction().replace(R.id.container_browse1, fragment).commit();
+			getFragmentManager() //
+					.beginTransaction() //
+					.replace(R.id.container_browse1, fragment) //
+					.commit();
 		}
 	}
 }

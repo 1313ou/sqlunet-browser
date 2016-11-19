@@ -21,7 +21,7 @@ public class SynsetActivity extends Activity
 		// content
 		setContentView(R.layout.activity_synset);
 
-		// show the Up button in the action bar.
+		// show the Up button in the type bar.
 		final ActionBar actionBar = getActionBar();
 		assert actionBar != null;
 		actionBar.setDisplayHomeAsUpEnabled(true);
@@ -37,7 +37,10 @@ public class SynsetActivity extends Activity
 			final SynsetFragment fragment = new SynsetFragment();
 			fragment.setArguments(args);
 			fragment.setExpand(true);
-			getFragmentManager().beginTransaction().add(R.id.container_synset, fragment).commit();
+			getFragmentManager() //
+					.beginTransaction() //
+					.replace(R.id.container_synset, fragment) //
+					.commit();
 		}
 	}
 }

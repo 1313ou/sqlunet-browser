@@ -82,7 +82,6 @@ public class WebFragment extends Fragment
 	 */
 	public WebFragment()
 	{
-		//
 	}
 
 	/**
@@ -292,17 +291,17 @@ public class WebFragment extends Fragment
 				{
 					final String query = URLDecoder.decode(uri.getQuery(), "UTF-8");
 					final String[] target = query.split("=");
-					final String type = target[0];
-					final String data = target[1];
-					Log.d(WebFragment.TAG, "QUERY " + query + " type=" + type + " data=" + data);
-					final Intent searchIntent = new Intent(getActivity(), WebActivity.class);
-					if ("word".equals(type)) //
+					final String name = target[0];
+					final String value = target[1];
+					Log.d(WebFragment.TAG, "QUERY " + query + " name=" + name + " value=" + value);
+					final Intent targetIntent = new Intent(getActivity(), WebActivity.class);
+					if ("word".equals(name)) //
 					{
-						searchIntent.putExtra(ProviderArgs.ARG_QUERYSTRING, data);
+						targetIntent.putExtra(ProviderArgs.ARG_QUERYSTRING, value);
 					}
 					else
 					{
-						final long id = Long.valueOf(data);
+						final long id = Long.valueOf(value);
 
 						// toast with id
 						final Activity activity = WebFragment.this.getActivity();
@@ -316,34 +315,36 @@ public class WebFragment extends Fragment
 						});
 
 						// prepare data
-						int action = 0;
+						int type = 0;
 						Pointer pointer = null;
 
-						if ("synsetid".equals(type)) //
+						if ("synsetid".equals(name)) //
 						{
-							action = ProviderArgs.ARG_QUERYACTION_SYNSET;
+							type = ProviderArgs.ARG_QUERYTYPE_SYNSET;
 							pointer = new SynsetPointer(id, null);
 						}
-						else if ("vnclassid".equals(type)) //
+						else if ("vnclassid".equals(name)) //
 						{
-							action = ProviderArgs.ARG_QUERYACTION_VNCLASS;
+							type = ProviderArgs.ARG_QUERYTYPE_VNCLASS;
 							pointer = new VnClassPointer(id);
 						}
-						else if ("fnframeid".equals(type)) //
+						else if ("fnframeid".equals(name)) //
 						{
-							action = ProviderArgs.ARG_QUERYACTION_PBROLESET;
+							type = ProviderArgs.ARG_QUERYTYPE_PBROLESET;
 							pointer = new PbRoleSetPointer(id);
 						}
-						else if ("fnluid".equals(type)) //
+						else if ("fnluid".equals(name)) //
 						{
-							action = ProviderArgs.ARG_QUERYACTION_FNLEXUNIT;
+							type = ProviderArgs.ARG_QUERYTYPE_FNLEXUNIT;
 							pointer = new FnLexUnitPointer(id);
 						}
 
-						searchIntent.putExtra(ProviderArgs.ARG_QUERYACTION, action);
-						searchIntent.putExtra(ProviderArgs.ARG_QUERYPOINTER, pointer);
+						targetIntent.putExtra(ProviderArgs.ARG_QUERYTYPE, type);
+						targetIntent.putExtra(ProviderArgs.ARG_QUERYPOINTER, pointer);
 					}
-					startActivity(searchIntent);
+
+					targetIntent.setAction(ProviderArgs.ACTION_QUERY);
+					startActivity(targetIntent);
 					return true;
 				}
 				catch (final Exception e)
@@ -384,19 +385,19 @@ public class WebFragment extends Fragment
 
 		// unmarshal arguments
 		Bundle args = getArguments();
-		if (args == null)
-		{
-			args = getActivity().getIntent().getExtras();
-		}
-		// action
-		final int action = args.getInt(ProviderArgs.ARG_QUERYACTION, ProviderArgs.ARG_QUERYACTION_ALL);
+		assert args != null;
+
+		// type
+		final int type = args.getInt(ProviderArgs.ARG_QUERYTYPE, ProviderArgs.ARG_QUERYTYPE_ALL);
 
 		// pointer
 		final Parcelable pointer = args.getParcelable(ProviderArgs.ARG_QUERYPOINTER);
 		Log.d(WebFragment.TAG, "ARG query=" + pointer);
+
 		// text
 		final String data = args.getString(ProviderArgs.ARG_QUERYSTRING);
 		Log.d(WebFragment.TAG, "ARG data=" + data);
+
 		// load the contents
 		getLoaderManager().restartLoader(++Module.loaderId, null, new LoaderCallbacks<String>()
 		{
@@ -454,9 +455,9 @@ public class WebFragment extends Fragment
 							else
 							{
 								// this is a detail query
-								switch (action)
+								switch (type)
 								{
-									case ProviderArgs.ARG_QUERYACTION_ALL:
+									case ProviderArgs.ARG_QUERYTYPE_ALL:
 										if (pointer != null)
 										{
 											if (pointer instanceof XSelectorPointer)
@@ -516,7 +517,7 @@ public class WebFragment extends Fragment
 										}
 										break;
 
-									case ProviderArgs.ARG_QUERYACTION_SYNSET:
+									case ProviderArgs.ARG_QUERYTYPE_SYNSET:
 										@SuppressWarnings("TypeMayBeWeakened") final SynsetPointer synsetPointer = (SynsetPointer) pointer;
 										Log.d(WebFragment.TAG, "ARG synset=" + synsetPointer);
 										if (synsetPointer != null && Settings.Source.WORDNET.test(sources))
@@ -525,7 +526,7 @@ public class WebFragment extends Fragment
 										}
 										break;
 
-									case ProviderArgs.ARG_QUERYACTION_VNCLASS:
+									case ProviderArgs.ARG_QUERYTYPE_VNCLASS:
 										final VnClassPointer vnclassPointer = (VnClassPointer) pointer;
 										Log.d(WebFragment.TAG, "ARG vnclass=" + vnclassPointer);
 										if (vnclassPointer != null && Settings.Source.VERBNET.test(sources))
@@ -534,7 +535,7 @@ public class WebFragment extends Fragment
 										}
 										break;
 
-									case ProviderArgs.ARG_QUERYACTION_PBROLESET:
+									case ProviderArgs.ARG_QUERYTYPE_PBROLESET:
 										final PbRoleSetPointer pbroleSetPointer = (PbRoleSetPointer) pointer;
 										Log.d(WebFragment.TAG, "ARG fnframe=" + pbroleSetPointer);
 										if (pbroleSetPointer != null && Settings.Source.PROPBANK.test(sources))
@@ -543,7 +544,7 @@ public class WebFragment extends Fragment
 										}
 										break;
 
-									case ProviderArgs.ARG_QUERYACTION_FNLEXUNIT:
+									case ProviderArgs.ARG_QUERYTYPE_FNLEXUNIT:
 										final FnLexUnitPointer lexunitPointer = (FnLexUnitPointer) pointer;
 										Log.d(WebFragment.TAG, "ARG fnlexunit=" + lexunitPointer);
 										if (lexunitPointer != null && Settings.Source.FRAMENET.test(sources))
@@ -552,7 +553,7 @@ public class WebFragment extends Fragment
 										}
 										break;
 
-									case ProviderArgs.ARG_QUERYACTION_FNFRAME:
+									case ProviderArgs.ARG_QUERYTYPE_FNFRAME:
 										final FnFramePointer framePointer = (FnFramePointer) pointer;
 										Log.d(WebFragment.TAG, "ARG fnframe=" + framePointer);
 										if (framePointer != null && Settings.Source.FRAMENET.test(sources))
@@ -561,7 +562,7 @@ public class WebFragment extends Fragment
 										}
 										break;
 
-									case ProviderArgs.ARG_QUERYACTION_FNSENTENCE:
+									case ProviderArgs.ARG_QUERYTYPE_FNSENTENCE:
 										final FnSentencePointer sentencePointer = (FnSentencePointer) pointer;
 										Log.d(WebFragment.TAG, "ARG fnsentence=" + sentencePointer);
 										if (sentencePointer != null && Settings.Source.FRAMENET.test(sources))
@@ -570,7 +571,7 @@ public class WebFragment extends Fragment
 										}
 										break;
 
-									case ProviderArgs.ARG_QUERYACTION_FNANNOSET:
+									case ProviderArgs.ARG_QUERYTYPE_FNANNOSET:
 										final FnAnnoSetPointer annoSetPointer = (FnAnnoSetPointer) pointer;
 										Log.d(WebFragment.TAG, "ARG fnannoset=" + annoSetPointer);
 										if (annoSetPointer != null && Settings.Source.FRAMENET.test(sources))

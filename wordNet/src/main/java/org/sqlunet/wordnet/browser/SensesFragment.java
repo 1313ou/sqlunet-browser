@@ -38,6 +38,7 @@ public class SensesFragment extends ListFragment
 	/**
 	 * A callback interface that all activities containing this fragment must implement. This mechanism allows activities to be notified of item selections.
 	 */
+	@SuppressWarnings("unused")
 	public interface Listener
 	{
 		/**
@@ -54,7 +55,7 @@ public class SensesFragment extends ListFragment
 	/**
 	 * Activate on click flag
 	 */
-	boolean activateOnItemClick = false;
+	private boolean activateOnItemClick = false;
 
 	/**
 	 * The current activated item position. Only used on tablets.
@@ -175,6 +176,7 @@ public class SensesFragment extends ListFragment
 	 *
 	 * @param listener listener
 	 */
+	@SuppressWarnings("unused")
 	public void setListener(final Listener listener)
 	{
 		this.listener = listener;

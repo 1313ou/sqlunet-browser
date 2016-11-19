@@ -1,7 +1,6 @@
 package org.sqlunet.predicatematrix.browser;
 
 import android.app.Activity;
-import android.app.SearchManager;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Parcelable;
@@ -38,28 +37,29 @@ public class PredicateMatrixActivity extends Activity
 	protected void onResume()
 	{
 		super.onResume();
-		handleIntent(getIntent());
+		handleSearchIntent(getIntent());
 	}
 
 	@Override
 	protected void onNewIntent(final Intent intent)
 	{
-		handleIntent(intent);
+		handleSearchIntent(intent);
 	}
 
-	// I N T E N T
+	// S E A R C H
 
 	/**
-	 * Handle intent (either onCreate or if activity is single top)
+	 * Handle intent dispatched by search view (either onCreate or onNewIntent if activity is single top)
 	 *
 	 * @param intent intent
 	 */
-	private void handleIntent(final Intent intent)
+	private void handleSearchIntent(final Intent intent)
 	{
 		final String action = intent.getAction();
-		final String query = intent.getStringExtra(SearchManager.QUERY);
+		//final String query = intent.getStringExtra(SearchManager.QUERY);
+		final String query = intent.getDataString();
 
-		// view action
+		// suggestion from search view
 		if (Intent.ACTION_VIEW.equals(action))
 		{
 			// suggestion selection (when a suggested item is selected)
@@ -67,18 +67,21 @@ public class PredicateMatrixActivity extends Activity
 			return;
 		}
 
-		// search
+		// search query from search view
 		if (Intent.ACTION_SEARCH.equals(action))
 		{
 			this.fragment.search(query);
+			return;
 		}
-		else
+
+		// search query from other source
+		if(ProviderArgs.ACTION_QUERY.equals(action))
 		{
 			final Bundle args = intent.getExtras();
 			if (args != null)
 			{
-				final int queryAction = args.getInt(ProviderArgs.ARG_QUERYACTION);
-				if (ProviderArgs.ARG_QUERYACTION_PM == queryAction || ProviderArgs.ARG_QUERYACTION_PMROLE == queryAction)
+				final int type = args.getInt(ProviderArgs.ARG_QUERYTYPE);
+				if (ProviderArgs.ARG_QUERYTYPE_PM == type || ProviderArgs.ARG_QUERYTYPE_PMROLE == type)
 				{
 					final Parcelable pointer = args.getParcelable(ProviderArgs.ARG_QUERYPOINTER);
 					if (pointer instanceof PmRolePointer)

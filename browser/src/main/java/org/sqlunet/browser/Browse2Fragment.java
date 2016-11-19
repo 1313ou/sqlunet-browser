@@ -1,6 +1,7 @@
 package org.sqlunet.browser;
 
 import android.app.Fragment;
+import android.app.FragmentTransaction;
 import android.content.Context;
 import android.os.Bundle;
 import android.os.Parcelable;
@@ -73,17 +74,15 @@ public class Browse2Fragment extends Fragment
 		switch (mode)
 		{
 			case VIEW:
+				final FragmentTransaction transaction = getFragmentManager().beginTransaction();
 				if (Settings.getWordNetPref(context))
 				{
 					// final View labelView = findViewById(R.id.label_wordnet);
 					// labelView.setVisibility(View.VISIBLE);
 					final SynsetFragment senseFragment = new SenseFragment();
-					senseFragment.setExpand(wordNetOnly(pointer));
 					senseFragment.setArguments(args);
-					getFragmentManager() //
-							.beginTransaction() //
-							.replace(R.id.container_wordnet, senseFragment) //
-							.commit();
+					senseFragment.setExpand(wordNetOnly(pointer));
+					transaction.replace(R.id.container_wordnet, senseFragment);
 				}
 
 				if (Settings.getVerbNetPref(context))
@@ -92,10 +91,7 @@ public class Browse2Fragment extends Fragment
 					// labelView.setVisibility(View.VISIBLE);
 					final Fragment verbnetFragment = new VerbNetFragment();
 					verbnetFragment.setArguments(args);
-					getFragmentManager() //
-							.beginTransaction() //
-							.replace(R.id.container_verbnet, verbnetFragment) //
-							.commit();
+					transaction.replace(R.id.container_verbnet, verbnetFragment);
 				}
 
 				if (Settings.getPropBankPref(context))
@@ -104,10 +100,7 @@ public class Browse2Fragment extends Fragment
 					// labelView.setVisibility(View.VISIBLE);
 					final Fragment propbankFragment = new PropBankFragment();
 					propbankFragment.setArguments(args);
-					getFragmentManager() //
-							.beginTransaction() //
-							.replace(R.id.container_propbank, propbankFragment) //
-							.commit();
+					transaction.replace(R.id.container_propbank, propbankFragment);
 				}
 
 				if (Settings.getFrameNetPref(context))
@@ -116,10 +109,7 @@ public class Browse2Fragment extends Fragment
 					// labelView.setVisibility(View.VISIBLE);
 					final Fragment framenetFragment = new FrameNetFragment();
 					framenetFragment.setArguments(args);
-					getFragmentManager() //
-							.beginTransaction() //
-							.replace(R.id.container_framenet, framenetFragment) //
-							.commit();
+					transaction.replace(R.id.container_framenet, framenetFragment);
 				}
 
 				if (Settings.getBncPref(context))
@@ -128,22 +118,21 @@ public class Browse2Fragment extends Fragment
 					// labelView.setVisibility(View.VISIBLE);
 					final Fragment bncFragment = new BNCFragment();
 					bncFragment.setArguments(args);
-					getFragmentManager() //
-							.beginTransaction() //
-							.replace(R.id.container_bnc, bncFragment) //
-							.commit();
+					transaction.replace(R.id.container_bnc, bncFragment);
 				}
+				transaction.commit();
 				break;
 
 			case WEB:
 				// fragment
 				final Fragment fragment = new WebFragment();
-
-				// arguments
 				fragment.setArguments(args);
 
 				// detail fragment replace
-				getFragmentManager().beginTransaction().replace(R.id.container_web, fragment).commit();
+				getFragmentManager() //
+						.beginTransaction() //
+						.replace(R.id.container_web, fragment) //
+						.commit();
 				break;
 		}
 	}

@@ -58,7 +58,8 @@ class ManageTasks
 	static public void deleteDatabase(final Context context, final String databasePath)
 	{
 		// make sure you close all connections before deleting
-		final String[] authorities = {ManagerContract.AUTHORITY, XSqlUNetContract.AUTHORITY, WordNetContract.AUTHORITY, VerbNetContract.AUTHORITY, PropBankContract.AUTHORITY, FrameNetContract.AUTHORITY, PredicateMatrixContract.AUTHORITY, BNCContract.AUTHORITY,};
+		final String[] authorities = {ManagerContract.AUTHORITY, XSqlUNetContract.AUTHORITY, WordNetContract.AUTHORITY, VerbNetContract.AUTHORITY, PropBankContract.AUTHORITY, FrameNetContract.AUTHORITY, //
+				PredicateMatrixContract.AUTHORITY, BNCContract.AUTHORITY,};
 		for (String authority : authorities)
 		{
 			final ContentProviderClient client = context.getContentResolver().acquireContentProviderClient(authority);

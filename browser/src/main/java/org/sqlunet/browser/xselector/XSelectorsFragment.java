@@ -62,7 +62,7 @@ public class XSelectorsFragment extends ExpandableListFragment
 	/**
 	 * Activate on click flag
 	 */
-	boolean activateOnItemClick = false;
+	private boolean activateOnItemClick = false;
 
 	/**
 	 * Database column
@@ -156,12 +156,9 @@ public class XSelectorsFragment extends ExpandableListFragment
 	{
 		super.onCreate(savedInstanceState);
 
-		// get target passed as parameter
+		// args
 		Bundle args = getArguments();
-		if (args == null)
-		{
-			args = getActivity().getIntent().getExtras();
-		}
+		assert args != null;
 
 		// target word
 		String query = args.getString(ProviderArgs.ARG_QUERYSTRING);
