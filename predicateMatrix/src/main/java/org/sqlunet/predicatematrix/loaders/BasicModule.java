@@ -1547,8 +1547,9 @@ abstract class BasicModule extends Module
 		{
 			final Parcelable pointer = new VnClassPointer(this.id);
 			final Intent intent = new Intent(BasicModule.this.context, VnClassActivity.class);
-			intent.putExtra(ProviderArgs.ARG_QUERYACTION, ProviderArgs.ARG_QUERYACTION_VNCLASS);
+			intent.putExtra(ProviderArgs.ARG_QUERYTYPE, ProviderArgs.ARG_QUERYTYPE_VNCLASS);
 			intent.putExtra(ProviderArgs.ARG_QUERYPOINTER, pointer);
+			intent.setAction(ProviderArgs.ACTION_QUERY);
 
 			BasicModule.this.context.startActivity(intent);
 		}
@@ -1577,8 +1578,9 @@ abstract class BasicModule extends Module
 		{
 			final Parcelable pointer = new PbRoleSetPointer(this.id);
 			final Intent intent = new Intent(BasicModule.this.context, PbRoleSetActivity.class);
-			intent.putExtra(ProviderArgs.ARG_QUERYACTION, ProviderArgs.ARG_QUERYACTION_PBROLESET);
+			intent.putExtra(ProviderArgs.ARG_QUERYTYPE, ProviderArgs.ARG_QUERYTYPE_PBROLESET);
 			intent.putExtra(ProviderArgs.ARG_QUERYPOINTER, pointer);
+			intent.setAction(ProviderArgs.ACTION_QUERY);
 
 			BasicModule.this.context.startActivity(intent);
 		}
@@ -1607,8 +1609,9 @@ abstract class BasicModule extends Module
 		{
 			final Parcelable pointer = new FnFramePointer(this.id);
 			final Intent intent = new Intent(BasicModule.this.context, FnFrameActivity.class);
-			intent.putExtra(ProviderArgs.ARG_QUERYACTION, ProviderArgs.ARG_QUERYACTION_FNFRAME);
+			intent.putExtra(ProviderArgs.ARG_QUERYTYPE, ProviderArgs.ARG_QUERYTYPE_FNFRAME);
 			intent.putExtra(ProviderArgs.ARG_QUERYPOINTER, pointer);
+			intent.setAction(ProviderArgs.ACTION_QUERY);
 
 			BasicModule.this.context.startActivity(intent);
 		}

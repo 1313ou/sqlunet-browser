@@ -72,7 +72,7 @@ public class ManageFragment extends Fragment implements Listener
 		// sqls
 		final CharSequence[] sqls = getActivity().getResources().getTextArray(R.array.manage_values);
 
-		// action spinner
+		// type spinner
 		this.spinner = (Spinner) view.findViewById(R.id.manage_actions);
 
 		// create an ArrayAdapter using the string array and a default spinner layout
@@ -119,7 +119,7 @@ public class ManageFragment extends Fragment implements Listener
 			}
 		}
 
-		// action status
+		// type status
 		this.status = (TextView) view.findViewById(R.id.manage_status);
 
 		// run button

@@ -13,7 +13,7 @@
 	<!--     android:searchSuggestIntentData="content://org.sqlunet.provider/lookup_word/search_suggest_query" > -->
 	<!--     android:searchSuggestSelection="lemma MATCH ?" > -->
 
-	<!-- allow green action key for search-bar and per-suggestion clicks -->
+	<!-- allow green type key for search-bar and per-suggestion clicks -->
 	<actionkey
 		android:keycode="KEYCODE_CALL"
 		android:queryActionMsg="call"

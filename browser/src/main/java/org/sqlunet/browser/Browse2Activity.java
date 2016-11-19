@@ -22,7 +22,7 @@ public class Browse2Activity extends Activity
 		// content
 		setContentView(R.layout.activity_browse2);
 
-		// show the Up button in the action bar.
+		// show the Up button in the type bar.
 		final ActionBar actionBar = getActionBar();
 		assert actionBar != null;
 		actionBar.setDisplayHomeAsUpEnabled(true);
@@ -34,7 +34,7 @@ public class Browse2Activity extends Activity
 		super.onPostResume();
 
 		final Bundle args = getIntent().getExtras();
-		//final int action = args.getInt(ProviderArgs.ARG_QUERYACTION);
+		//final int type = args.getInt(ProviderArgs.ARG_QUERYTYPE);
 		final Parcelable pointer = args.getParcelable(ProviderArgs.ARG_QUERYPOINTER);
 		final Browse2Fragment fragment = (Browse2Fragment) getFragmentManager().findFragmentById(R.id.fragment_detail);
 		fragment.search(pointer);

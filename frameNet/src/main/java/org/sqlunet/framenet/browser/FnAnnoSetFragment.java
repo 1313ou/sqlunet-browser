@@ -54,16 +54,16 @@ public class FnAnnoSetFragment extends Fragment
 
 		// query
 		final Bundle args = getArguments();
-		final int action = args.getInt(ProviderArgs.ARG_QUERYACTION);
+		final int type = args.getInt(ProviderArgs.ARG_QUERYTYPE);
 
 		// header
 		String header = "AnnoSet";
-		switch (action)
+		switch (type)
 		{
-			case ProviderArgs.ARG_QUERYACTION_FNPATTERN:
+			case ProviderArgs.ARG_QUERYTYPE_FNPATTERN:
 				header = "AnnoSets for Pattern";
 				break;
-			case ProviderArgs.ARG_QUERYACTION_FNVALENCEUNIT:
+			case ProviderArgs.ARG_QUERYTYPE_FNVALENCEUNIT:
 				header = "AnnoSets for Valence Unit";
 				break;
 			default:
@@ -97,21 +97,21 @@ public class FnAnnoSetFragment extends Fragment
 			// pointer
 			final Parcelable pointer = args.getParcelable(ProviderArgs.ARG_QUERYPOINTER);
 			Module module;
-			switch (action)
+			switch (type)
 			{
-				case ProviderArgs.ARG_QUERYACTION_FNANNOSET:
+				case ProviderArgs.ARG_QUERYTYPE_FNANNOSET:
 					module = new AnnoSetModule(this);
 					break;
-				case ProviderArgs.ARG_QUERYACTION_FNPATTERN:
+				case ProviderArgs.ARG_QUERYTYPE_FNPATTERN:
 					module = new AnnoSetFromPatternModule(this);
 					break;
-				case ProviderArgs.ARG_QUERYACTION_FNVALENCEUNIT:
+				case ProviderArgs.ARG_QUERYTYPE_FNVALENCEUNIT:
 					module = new AnnoSetFromValenceUnitModule(this);
 					break;
 				default:
 					return view;
 			}
-			module.init(action, pointer);
+			module.init(type, pointer);
 			module.process(queryNode);
 		}
 

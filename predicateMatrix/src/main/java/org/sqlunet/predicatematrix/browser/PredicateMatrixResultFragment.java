@@ -54,7 +54,7 @@ public class PredicateMatrixResultFragment extends Fragment
 
 		// query
 		final Bundle args = getArguments();
-		final int action = args.getInt(ProviderArgs.ARG_QUERYACTION);
+		final int type = args.getInt(ProviderArgs.ARG_QUERYTYPE);
 		final Parcelable pointer = args.getParcelable(ProviderArgs.ARG_QUERYPOINTER);
 		assert pointer != null;
 
@@ -63,7 +63,7 @@ public class PredicateMatrixResultFragment extends Fragment
 		hsb.append("PredicateMatrix ");
 		Spanner.append(hsb, pointer.toString(), 0, PredicateMatrixFactories.wordFactory);
 
-		if (action == ProviderArgs.ARG_QUERYACTION_PM || action == ProviderArgs.ARG_QUERYACTION_PMROLE)
+		if (type == ProviderArgs.ARG_QUERYTYPE_PM || type == ProviderArgs.ARG_QUERYTYPE_PMROLE)
 		{
 			final ViewGroup containerView = (ViewGroup) view.findViewById(R.id.data_contents);
 
@@ -94,7 +94,7 @@ public class PredicateMatrixResultFragment extends Fragment
 
 			// module
 			Module module = (pointer instanceof PmRolePointer) ? new PredicateRoleModule(this, mode) : new PredicateRoleFromWordModule(this, mode);
-			module.init(action, pointer);
+			module.init(type, pointer);
 			module.process(queryNode);
 		}
 		return view;

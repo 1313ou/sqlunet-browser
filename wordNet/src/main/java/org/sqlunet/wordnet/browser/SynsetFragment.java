@@ -78,7 +78,7 @@ public class SynsetFragment extends Fragment
 
 		// query
 		final Bundle args = getArguments();
-		final int action = args.getInt(ProviderArgs.ARG_QUERYACTION);
+		final int type = args.getInt(ProviderArgs.ARG_QUERYTYPE);
 		if (args.containsKey(ProviderArgs.ARG_QUERYPOINTER))
 		{
 			// pointer
@@ -87,7 +87,7 @@ public class SynsetFragment extends Fragment
 			// module
 			final SynsetModule module = makeModule();
 			module.setExpand(SynsetFragment.this.expand);
-			module.init(action, pointer);
+			module.init(type, pointer);
 			module.process(queryNode);
 		}
 

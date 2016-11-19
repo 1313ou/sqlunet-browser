@@ -177,7 +177,7 @@ public class SettingsActivity extends PreferenceActivity
 	{
 		super.onCreate(savedInstanceState);
 
-		// show the Up button in the action bar.
+		// show the Up button in the type bar.
 		final ActionBar actionBar = getActionBar();
 		assert actionBar != null;
 		actionBar.setDisplayHomeAsUpEnabled(true);

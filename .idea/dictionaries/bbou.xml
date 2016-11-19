@@ -386,6 +386,7 @@
       <w>queryrecurse</w>
       <w>querysort</w>
       <w>querystring</w>
+      <w>querytype</w>
       <w>queryuri</w>
       <w>querywithlexdomain</w>
       <w>queryxitems</w>

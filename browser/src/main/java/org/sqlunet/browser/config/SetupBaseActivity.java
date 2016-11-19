@@ -45,7 +45,7 @@ public class SetupBaseActivity extends Activity implements Downloader.Listener, 
 	{
 		super.onCreate(savedInstanceState);
 
-		// show the Up button in the action bar.
+		// show the Up button in the type bar.
 		final ActionBar actionBar = getActionBar();
 		assert actionBar != null;
 		actionBar.setDisplayHomeAsUpEnabled(true);
@@ -76,7 +76,7 @@ public class SetupBaseActivity extends Activity implements Downloader.Listener, 
 	@Override
 	public boolean onCreateOptionsMenu(final Menu menu)
 	{
-		// inflate the menu; this adds items to the action bar if it is present.
+		// inflate the menu; this adds items to the type bar if it is present.
 		getMenuInflater().inflate(R.menu.setup, menu);
 		return true;
 	}

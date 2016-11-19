@@ -1,7 +1,6 @@
 package org.sqlunet.browser;
 
 import android.app.Activity;
-import android.app.SearchManager;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -33,28 +32,29 @@ public class BrowseActivity extends Activity
 	protected void onResume()
 	{
 		super.onResume();
-		handleIntent(getIntent());
+		handleSearchIntent(getIntent());
 	}
 
 	@Override
 	protected void onNewIntent(final Intent intent)
 	{
-		handleIntent(intent);
+		handleSearchIntent(intent);
 	}
 
-	// I N T E N T
+	// S E A R C H
 
 	/**
-	 * Handle intent (either onCreate or if activity is single top)
+	 * Handle intent dispatched by search view (either onCreate or onNewIntent if activity is single top)
 	 *
 	 * @param intent intent
 	 */
-	private void handleIntent(final Intent intent)
+	private void handleSearchIntent(final Intent intent)
 	{
 		final String action = intent.getAction();
-		final String query = intent.getStringExtra(SearchManager.QUERY);
+		//final String query = intent.getStringExtra(SearchManager.QUERY);
+		final String query = intent.getDataString();
 
-		// view action
+		// view type
 		if (Intent.ACTION_VIEW.equals(action))
 		{
 			// suggestion selection (when a suggested item is selected)
@@ -62,7 +62,7 @@ public class BrowseActivity extends Activity
 			return;
 		}
 
-		// search action
+		// search type
 		if (Intent.ACTION_SEARCH.equals(action))
 		{
 			this.fragment.search(query);

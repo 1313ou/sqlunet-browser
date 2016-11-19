@@ -30,10 +30,10 @@ public abstract class Module
 	protected final Context context;
 
 	/**
-	 * Action
+	 * Type of query (expected result)
 	 */
 	@SuppressWarnings({"WeakerAccess", "unused"})
-	protected int action;
+	protected int type;
 
 	/**
 	 * Constructor
@@ -59,12 +59,12 @@ public abstract class Module
 	/**
 	 * Init
 	 *
-	 * @param action  action
+	 * @param type    type
 	 * @param pointer parceled pointer
 	 */
-	public void init(final int action, final Parcelable pointer)
+	public void init(final int type, final Parcelable pointer)
 	{
-		this.action = action;
+		this.type = type;
 		unmarshal(pointer);
 	}
 

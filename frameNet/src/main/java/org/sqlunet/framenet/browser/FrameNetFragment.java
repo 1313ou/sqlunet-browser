@@ -76,7 +76,7 @@ public class FrameNetFragment extends Fragment
 
 		// query
 		final Bundle args = getArguments();
-		final int action = args.getInt(ProviderArgs.ARG_QUERYACTION);
+		final int type = args.getInt(ProviderArgs.ARG_QUERYTYPE);
 		if (args.containsKey(ProviderArgs.ARG_QUERYPOINTER))
 		{
 			// pointer
@@ -84,7 +84,7 @@ public class FrameNetFragment extends Fragment
 
 			// module
 			Module module = pointer instanceof HasXId ? new FrameModule(this) : new LexUnitFromWordModule(this);
-			module.init(action, pointer);
+			module.init(type, pointer);
 			module.process(queryNode);
 		}
 

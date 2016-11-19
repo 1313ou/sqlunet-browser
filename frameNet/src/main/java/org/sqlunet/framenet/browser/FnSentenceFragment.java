@@ -74,7 +74,7 @@ public class FnSentenceFragment extends Fragment
 
 		// query
 		final Bundle args = getArguments();
-		final int action = args.getInt(ProviderArgs.ARG_QUERYACTION);
+		final int type = args.getInt(ProviderArgs.ARG_QUERYTYPE);
 		if (args.containsKey(ProviderArgs.ARG_QUERYPOINTER))
 		{
 			// pointer
@@ -82,7 +82,7 @@ public class FnSentenceFragment extends Fragment
 
 			// module
 			final Module module = new SentenceModule(this);
-			module.init(action, pointer);
+			module.init(type, pointer);
 			module.process(queryNode);
 		}
 
