@@ -1,6 +1,7 @@
-package org.sqlunet.predicatematrix.browser;
+package org.sqlunet.browser;
 
 import android.app.Activity;
+import android.app.SearchManager;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Parcelable;
@@ -56,8 +57,7 @@ public class PredicateMatrixActivity extends Activity
 	private void handleSearchIntent(final Intent intent)
 	{
 		final String action = intent.getAction();
-		//final String query = intent.getStringExtra(SearchManager.QUERY);
-		final String query = intent.getDataString();
+		final String query = intent.getStringExtra(SearchManager.QUERY);
 
 		// suggestion from search view
 		if (Intent.ACTION_VIEW.equals(action))
@@ -75,7 +75,7 @@ public class PredicateMatrixActivity extends Activity
 		}
 
 		// search query from other source
-		if(ProviderArgs.ACTION_QUERY.equals(action))
+		if (ProviderArgs.ACTION_QUERY.equals(action))
 		{
 			final Bundle args = intent.getExtras();
 			if (args != null)

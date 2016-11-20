@@ -3,6 +3,7 @@ package org.sqlunet.browser;
 import android.app.ActionBar;
 import android.app.Activity;
 import android.app.Fragment;
+import android.app.SearchManager;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
@@ -21,7 +22,6 @@ import org.sqlunet.browser.config.SetupSqlActivity;
 import org.sqlunet.browser.config.Status;
 import org.sqlunet.browser.config.StorageActivity;
 import org.sqlunet.browser.config.StorageFragment;
-import org.sqlunet.predicatematrix.browser.PredicateMatrixFragment;
 import org.sqlunet.settings.Settings;
 import org.sqlunet.settings.StorageSettings;
 
@@ -99,12 +99,11 @@ public class MainActivity extends Activity implements NavigationDrawerFragment.N
 	 */
 	private void handleSearchIntent(final Intent intent)
 	{
-		if(this.fragment instanceof SearchListener)
+		if (this.fragment instanceof SearchListener)
 		{
 			final SearchListener listener = (SearchListener) this.fragment;
 			final String action = intent.getAction();
-			//final String query = intent.getStringExtra(SearchManager.QUERY);
-			final String query = intent.getDataString();
+			final String query = intent.getStringExtra(SearchManager.QUERY);
 
 			// view type
 			if (Intent.ACTION_VIEW.equals(action))

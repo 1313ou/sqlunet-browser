@@ -50,7 +50,6 @@ import org.sqlunet.framenet.browser.FnFrameActivity;
 import org.sqlunet.framenet.browser.FnLexUnitActivity;
 import org.sqlunet.framenet.browser.FnSentenceActivity;
 import org.sqlunet.predicatematrix.PmRolePointer;
-import org.sqlunet.predicatematrix.browser.PredicateMatrixActivity;
 import org.sqlunet.propbank.PbRoleSetPointer;
 import org.sqlunet.propbank.browser.PbRoleSetActivity;
 import org.sqlunet.provider.ProviderArgs;
@@ -289,7 +288,7 @@ public class BrowseFragment extends Fragment implements SearchListener
 		final Activity activity = getActivity();
 
 		// search info
-		final ComponentName componentName = new ComponentName(activity, MainActivity.class);
+		final ComponentName componentName = activity.getComponentName();
 		final SearchManager searchManager = (SearchManager) activity.getSystemService(Context.SEARCH_SERVICE);
 		final SearchableInfo searchableInfo = searchManager.getSearchableInfo(componentName);
 

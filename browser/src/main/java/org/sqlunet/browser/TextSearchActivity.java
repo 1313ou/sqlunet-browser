@@ -1,6 +1,7 @@
 package org.sqlunet.browser;
 
 import android.app.Activity;
+import android.app.SearchManager;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -54,8 +55,7 @@ public class TextSearchActivity extends Activity
 	private void handleSearchIntent(final Intent intent)
 	{
 		final String action = intent.getAction();
-		//final String query = intent.getStringExtra(SearchManager.QUERY);
-		final String query = intent.getDataString();
+		final String query = intent.getStringExtra(SearchManager.QUERY);
 
 		// view type
 		if (Intent.ACTION_VIEW.equals(action))

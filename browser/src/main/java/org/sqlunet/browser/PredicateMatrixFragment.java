@@ -1,4 +1,4 @@
-package org.sqlunet.predicatematrix.browser;
+package org.sqlunet.browser;
 
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
@@ -35,7 +35,6 @@ import android.widget.SpinnerAdapter;
 import android.widget.TextView;
 
 import org.sqlunet.Word;
-import org.sqlunet.browser.SearchListener;
 import org.sqlunet.predicatematrix.PmRolePointer;
 import org.sqlunet.predicatematrix.R;
 import org.sqlunet.predicatematrix.settings.Settings;
@@ -85,6 +84,7 @@ public class PredicateMatrixFragment extends Fragment implements SearchListener
 	 */
 	public PredicateMatrixFragment()
 	{
+		//
 	}
 
 	@Override
@@ -227,7 +227,7 @@ public class PredicateMatrixFragment extends Fragment implements SearchListener
 		final Activity activity = getActivity();
 
 		// search info
-		final ComponentName componentName = new ComponentName(activity, PredicateMatrixActivity.class);
+		final ComponentName componentName = activity.getComponentName();
 		final SearchManager searchManager = (SearchManager) activity.getSystemService(Context.SEARCH_SERVICE);
 		final SearchableInfo searchableInfo = searchManager.getSearchableInfo(componentName);
 

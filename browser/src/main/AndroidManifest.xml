@@ -121,10 +121,10 @@
 		</activity>
 
 		<activity
-			android:name="org.sqlunet.predicatematrix.browser.PredicateMatrixActivity"
+			android:name=".PredicateMatrixActivity"
 			android:label="@string/title_activity_predicatematrix"
 			android:launchMode="singleTop"
-			android:parentActivityName="org.sqlunet.predicatematrix.browser.PredicateMatrixActivity"
+			android:parentActivityName=".PredicateMatrixActivity"
 			tools:ignore="UnusedAttribute">
 			<intent-filter>
 				<action android:name="android.intent.action.SEARCH"/>

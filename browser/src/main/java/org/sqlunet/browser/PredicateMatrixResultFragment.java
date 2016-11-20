@@ -1,4 +1,4 @@
-package org.sqlunet.predicatematrix.browser;
+package org.sqlunet.browser;
 
 import android.app.Fragment;
 import android.os.Bundle;

@@ -1,6 +1,6 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
       xmlns:tools="http://schemas.android.com/tools"
-      tools:context="org.sqlunet.predicatematrix.browser.PredicateMatrixActivity">
+      tools:context="org.sqlunet.predicatematrix.org.sqlunet.browser.PredicateMatrixActivity">
 	<item
 		android:id="@+id/searchView"
 		android:actionViewClass="android.widget.SearchView"

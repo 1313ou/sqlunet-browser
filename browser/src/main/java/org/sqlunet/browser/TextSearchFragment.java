@@ -227,7 +227,7 @@ public class TextSearchFragment extends Fragment implements SearchListener
 		final Activity activity = getActivity();
 
 		// search info
-		final ComponentName componentName = new ComponentName(activity, MainActivity.class);
+		final ComponentName componentName = activity.getComponentName();
 		final SearchManager searchManager = (SearchManager) activity.getSystemService(Context.SEARCH_SERVICE);
 		final SearchableInfo searchableInfo = searchManager.getSearchableInfo(componentName);
 
