@@ -2,16 +2,20 @@
 <resources>
 
 	<!-- orange -->
-	<item name="button_color" type="color">#ffffa500</item>
+	<item name="button_color" type="color">#FFffa500</item>
 
 	<!-- grays -->
-	<item name="light_gray_color" type="color">#ffe0e0e0</item>
+	<item name="light_gray_color" type="color">#FFe0e0e0</item>
 
-	<item name="middle_gray_color" type="color">#ff707070</item>
+	<item name="middle_gray_color" type="color">#FF707070</item>
 
-	<item name="dark_gray_color" type="color">#ff303030</item>
+	<item name="dark_gray_color" type="color">#FF303030</item>
 
 	<!-- light yellow -->
-	<item name="light_yellow_color" type="color">#ffffff99</item>
+	<item name="light_yellow_color" type="color">#FFffff99</item>
+
+	<!-- action bar -->
+	<item name="browse_action_bar_color" type="color">#FF990073</item>
+	<item name="textsearch_action_bar_color" type="color">#FFb32400</item>
 
 </resources>

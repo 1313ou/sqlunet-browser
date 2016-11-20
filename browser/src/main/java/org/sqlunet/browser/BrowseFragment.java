@@ -9,10 +9,16 @@ import android.app.SearchableInfo;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Resources;
+import android.content.res.TypedArray;
+import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.support.annotation.NonNull;
 import android.util.Log;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -103,22 +109,10 @@ public class BrowseFragment extends Fragment implements SearchListener
 		// status view
 		this.statusView = (TextView) view.findViewById(R.id.statusView);
 
-		// show the Up button in the type bar.
-		final ActionBar actionBar = activity.getActionBar();
-		assert actionBar != null;
+		// action bar
+		this.spinner = setupActionBar(inflater);
 
-		// set up the type bar to show a custom layout
-		@SuppressLint("InflateParams") final View actionBarView = inflater.inflate(R.layout.actionbar_custom, null);
-		actionBar.setCustomView(actionBarView);
-		actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM | ActionBar.DISPLAY_SHOW_HOME | ActionBar.DISPLAY_HOME_AS_UP);
-		// actionBar.setDisplayShowCustomEnabled(true);
-		// actionBar.setDisplayShowHomeEnabled(true);
-		// actionBar.setDisplayHomeAsUpEnabled(true);
-		// actionBar.setDisplayShowTitleEnabled(false);
-
-		// spinner
-		this.spinner = (Spinner) actionBarView.findViewById(R.id.spinner);
-		setupSpinner(this.spinner);
+		// spinner update
 		if (savedInstanceState != null)
 		{
 			final int selected = savedInstanceState.getInt(STATE_SPINNER);
@@ -126,6 +120,13 @@ public class BrowseFragment extends Fragment implements SearchListener
 		}
 
 		return view;
+	}
+
+	@Override
+	public void onDetach()
+	{
+		restoreActionBar();
+		super.onDetach();
 	}
 
 	// M E N U
@@ -137,8 +138,7 @@ public class BrowseFragment extends Fragment implements SearchListener
 		inflater.inflate(R.menu.browse, menu);
 
 		// set up search view
-		final MenuItem searchMenuItem = menu.findItem(R.id.searchView);
-		setupSearch(searchMenuItem);
+		setupSearch(menu);
 	}
 
 	@Override
@@ -195,15 +195,96 @@ public class BrowseFragment extends Fragment implements SearchListener
 		return true;
 	}
 
+	// A C T I O N B A R
+
+	/**
+	 * Set up action bar
+	 *
+	 * @return spinner
+	 */
+	private Spinner setupActionBar(final LayoutInflater inflater)
+	{
+		// activity
+		final Activity activity = getActivity();
+
+		// action bar
+		final ActionBar actionBar = activity.getActionBar();
+		assert actionBar != null;
+
+		// color
+		// color
+		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M)
+		{
+			actionBar.setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.browse_action_bar_color, activity.getTheme())));
+		}
+		else
+		{
+			actionBar.setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.browse_action_bar_color)));
+		}
+
+		// set up the type bar to show a custom layout
+		@SuppressLint("InflateParams") //
+		final View actionBarView = inflater.inflate(R.layout.actionbar_custom, null);
+		actionBar.setCustomView(actionBarView);
+		actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM | ActionBar.DISPLAY_SHOW_HOME | ActionBar.DISPLAY_HOME_AS_UP);
+		// actionBar.setDisplayShowCustomEnabled(true);
+		// actionBar.setDisplayShowHomeEnabled(true);
+		// actionBar.setDisplayHomeAsUpEnabled(true);
+		// actionBar.setDisplayShowTitleEnabled(false);
+
+		// spinner
+		final Spinner spinner = (Spinner) actionBarView.findViewById(R.id.spinner);
+		setupSpinner(spinner);
+
+		return spinner;
+	}
+
+	/**
+	 * Restore action bar
+	 */
+	private void restoreActionBar()
+	{
+		// activity
+		final Activity activity = getActivity();
+
+		// action bar
+		final ActionBar actionBar = activity.getActionBar();
+		assert actionBar != null;
+		actionBar.setDisplayShowCustomEnabled(false);
+
+		// theme
+		final Resources.Theme theme = activity.getTheme();
+
+		// res id of style pointed to from actionBarStyle
+		final TypedValue typedValue = new TypedValue();
+		theme.resolveAttribute(android.R.attr.actionBarStyle, typedValue, true);
+		int resId = typedValue.resourceId;
+
+		// now get action bar style values
+		final TypedArray style = theme.obtainStyledAttributes(resId, new int[]{android.R.attr.background});
+		try
+		{
+			final Drawable drawable = style.getDrawable(0);
+			actionBar.setBackgroundDrawable(drawable);
+		}
+		finally
+		{
+			style.recycle();
+		}
+	}
+
 	// S E A R C H V I E W
 
 	/**
-	 * Set up searchView
+	 * Set up search view
 	 *
-	 * @param searchMenuItem search menu item
+	 * @param menu menu
 	 */
-	private void setupSearch(final MenuItem searchMenuItem)
+	private void setupSearch(final Menu menu)
 	{
+		// menu item
+		final MenuItem searchMenuItem = menu.findItem(R.id.searchView);
+
 		// activity
 		final Activity activity = getActivity();
 
