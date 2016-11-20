@@ -7,5 +7,5 @@
 		android:icon="@android:drawable/ic_menu_search"
 		android:showAsAction="collapseActionView|ifRoom"
 		android:title="@string/hint_search_text"
-		app:showAsAction="ifRoom"/>
+		app:showAsAction="collapseActionView|ifRoom"/>
 </menu>

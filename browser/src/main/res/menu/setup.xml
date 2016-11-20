@@ -4,22 +4,27 @@
 
 	<item
 		android:id="@+id/action_settings"
+		android:showAsAction="never"
 		android:title="@string/action_settings"
 		app:showAsAction="never"/>
 	<item
 		android:id="@+id/action_status"
+		android:showAsAction="never"
 		android:title="@string/action_status"
 		app:showAsAction="never"/>
 	<item
 		android:id="@+id/action_storage"
+		android:showAsAction="never"
 		android:title="@string/action_storage"
 		app:showAsAction="never"/>
 	<item
 		android:id="@+id/action_manage"
+		android:showAsAction="never"
 		android:title="@string/action_manage"
 		app:showAsAction="never"/>
 	<item
 		android:id="@+id/action_appsettings"
+		android:showAsAction="never"
 		android:title="@string/action_appsettings"
 		app:showAsAction="never"/>
 

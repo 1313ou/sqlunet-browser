@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+		<integer-array name="drawer_icons">
+			<item>@android:drawable/ic_menu_info_details</item>
+			<item>@android:drawable/ic_menu_search</item>
+			<item>@android:drawable/ic_menu_search</item>
+			<item>@android:drawable/ic_menu_search</item>
+			<item>@android:drawable/ic_menu_info_details</item>
+			<item>@android:drawable/ic_menu_manage</item>
+			<item>@android:drawable/ic_menu_info_details</item>
+			<item>@android:drawable/ic_menu_preferences</item>
+			<item>@android:drawable/ic_menu_help</item>
+			<item>@android:drawable/ic_menu_info_details</item>
+		</integer-array>
+
+	<!--
+	<item>@string/title_home_section</item>
+	<item>@string/title_browse_section</item>
+	<item>@string/title_ts_section</item>
+	<item>@string/title_pm_section</item>
+	<item>@string/title_status_section</item>
+	<item>@string/title_manage_section</item>
+	<item>@string/title_storage_section</item>
+	<item>@string/title_settings_section</item>
+	<item>@string/title_help_section</item>
+	<item>@string/title_about_section</item>
+	-->
+
+</resources>

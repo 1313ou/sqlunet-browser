@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.os.Parcelable;
 
 import org.sqlunet.predicatematrix.PmRolePointer;
-import org.sqlunet.predicatematrix.R;
 import org.sqlunet.provider.ProviderArgs;
 
 /**

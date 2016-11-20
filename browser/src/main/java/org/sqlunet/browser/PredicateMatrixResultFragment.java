@@ -8,9 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import org.sqlunet.browser.Module;
 import org.sqlunet.predicatematrix.PmRolePointer;
-import org.sqlunet.predicatematrix.R;
 import org.sqlunet.predicatematrix.loaders.PredicateRoleFromWordModule;
 import org.sqlunet.predicatematrix.loaders.PredicateRoleModule;
 import org.sqlunet.predicatematrix.settings.Settings;

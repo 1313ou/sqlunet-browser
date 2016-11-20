@@ -150,6 +150,7 @@ public class MainActivity extends Activity implements NavigationDrawerFragment.N
 	{
 		// final String[] options = getResources().getStringArray(R.array.title_sections);
 		// this.title = options[number];
+		this.fragment = null;
 		Intent intent = null;
 		switch (number)
 		{

@@ -4,7 +4,7 @@ package org.sqlunet.browser;
  * Search interface for fragments
  */
 
-public interface SearchListener
+interface SearchListener
 {
 	void suggest(final String query);
 

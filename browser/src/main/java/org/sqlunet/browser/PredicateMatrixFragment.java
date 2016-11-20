@@ -36,7 +36,6 @@ import android.widget.TextView;
 
 import org.sqlunet.Word;
 import org.sqlunet.predicatematrix.PmRolePointer;
-import org.sqlunet.predicatematrix.R;
 import org.sqlunet.predicatematrix.settings.Settings;
 import org.sqlunet.provider.ProviderArgs;
 
@@ -94,9 +93,6 @@ public class PredicateMatrixFragment extends Fragment implements SearchListener
 
 		// view
 		final View view = inflater.inflate(R.layout.fragment_predicatematrix, container, false);
-
-		// activity
-		final Activity activity = getActivity();
 
 		// status view
 		this.statusView = (TextView) view.findViewById(R.id.statusView);
@@ -157,6 +153,7 @@ public class PredicateMatrixFragment extends Fragment implements SearchListener
 		}
 		else
 		{
+			//noinspection deprecation
 			actionBar.setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.predicatematrix_action_bar_color)));
 		}
 

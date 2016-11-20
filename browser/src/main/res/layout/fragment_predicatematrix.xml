@@ -28,7 +28,6 @@
 			android:src="@drawable/ic_splash"/>
 
 		<TextView
-			android:id="@+id/splash_hint"
 			android:layout_width="fill_parent"
 			android:layout_height="wrap_content"
 			android:layout_below="@+id/splash"

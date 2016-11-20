@@ -1,16 +1,19 @@
 package org.sqlunet.browser;
 
+import android.annotation.SuppressLint;
 import android.app.ActionBar;
 import android.app.Activity;
 import android.app.Fragment;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
+import android.content.res.TypedArray;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.annotation.NonNull;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -19,7 +22,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
+import android.widget.ListAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 
 /**
  * Fragment used for managing interactions for and presentation of a navigation drawer.
@@ -28,14 +34,83 @@ import android.widget.ListView;
  */
 public class NavigationDrawerFragment extends Fragment
 {
+	class RowItem
+	{
+		public final int iconId;
+
+		public final String title;
+
+		public RowItem(final int iconId, final String title)
+		{
+			this.iconId = iconId;
+			this.title = title;
+		}
+	}
+
+	class CustomListViewAdapter extends ArrayAdapter<NavigationDrawerFragment.RowItem>
+	{
+		private final Context context;
+
+		/**
+		 * Constructor
+		 *
+		 * @param context    context
+		 * @param resourceId layout id
+		 * @param items      items
+		 */
+		public CustomListViewAdapter(final Context context, final int resourceId, final NavigationDrawerFragment.RowItem... items)
+		{
+			super(context, resourceId, items);
+			this.context = context;
+		}
+
+		/**
+		 * View holder
+		 */
+		private class ViewHolder
+		{
+			ImageView imageView;
+			TextView titleView;
+		}
+
+		@NonNull
+		@SuppressLint("InflateParams")
+		@Override
+		public View getView(final int position, final View convertView0, @NonNull final ViewGroup parent)
+		{
+			ViewHolder holder;
+			NavigationDrawerFragment.RowItem rowItem = getItem(position);
+
+			View convertView = convertView0;
+			if (convertView == null)
+			{
+				final LayoutInflater inflater = (LayoutInflater) this.context.getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
+				convertView = inflater.inflate(R.layout.item_drawer, null);
+				holder = new ViewHolder();
+				holder.titleView = (TextView) convertView.findViewById(R.id.title);
+				holder.imageView = (ImageView) convertView.findViewById(R.id.icon);
+				convertView.setTag(holder);
+			}
+			else
+			{
+				holder = (ViewHolder) convertView.getTag();
+			}
+
+			assert rowItem != null;
+			holder.titleView.setText(rowItem.title);
+			holder.imageView.setImageResource(rowItem.iconId);
+
+			return convertView;
+		}
+	}
+
 	/**
 	 * Remember the position of the selected item.
 	 */
 	private static final String STATE_SELECTED_SECTION = "selected_section";
 
 	/**
-	 * Per the design guidelines, you should show the drawer on launch until the user manually
-	 * expands it. This shared preference tracks this.
+	 * Per the design guidelines, you should show the drawer on launch until the user manually expands it. This shared preference tracks this.
 	 */
 	private static final String PREF_USER_LEARNED_DRAWER = "navigation_drawer_learned";
 
@@ -120,6 +195,17 @@ public class NavigationDrawerFragment extends Fragment
 	{
 		// sections
 		final String[] options = getResources().getStringArray(R.array.title_sections);
+		final RowItem[] items = new RowItem[options.length];
+		final TypedArray icons = getResources().obtainTypedArray(R.array.drawer_icons);
+		for (int i = 0; i < options.length; i++)
+		{
+			items[i] = new RowItem(icons.getResourceId(i, -1), options[i]);
+		}
+		icons.recycle();
+
+		// adapter
+		//final ListAdapter adapter = new ArrayAdapter<>(getActionBar().getThemedContext(), android.R.layout.simple_list_item_activated_1, android.R.id.text1, options);
+		final ListAdapter adapter = new CustomListViewAdapter(getActionBar().getThemedContext(), R.layout.item_drawer, items);
 
 		// set up the drawer's list view with items and click listener
 		this.drawerListView = (ListView) inflater.inflate(R.layout.drawer_main, container, false);
@@ -131,7 +217,7 @@ public class NavigationDrawerFragment extends Fragment
 				selectItem(position);
 			}
 		});
-		this.drawerListView.setAdapter(new ArrayAdapter<>(getActionBar().getThemedContext(), android.R.layout.simple_list_item_activated_1, android.R.id.text1, options));
+		this.drawerListView.setAdapter(adapter);
 		this.drawerListView.setItemChecked(this.selectedPosition, true);
 		return this.drawerListView;
 	}

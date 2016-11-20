@@ -80,9 +80,6 @@ public class TextSearchFragment extends Fragment implements SearchListener
 		// content
 		final View view = inflater.inflate(R.layout.fragment_textsearch, container, false);
 
-		// activity
-		final Activity activity = getActivity();
-
 		// status view
 		this.statusView = (TextView) view.findViewById(R.id.statusView);
 
@@ -157,6 +154,7 @@ public class TextSearchFragment extends Fragment implements SearchListener
 		}
 		else
 		{
+			//noinspection deprecation
 			actionBar.setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.textsearch_action_bar_color)));
 		}
 

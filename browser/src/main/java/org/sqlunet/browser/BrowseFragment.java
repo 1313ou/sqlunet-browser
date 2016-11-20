@@ -102,9 +102,6 @@ public class BrowseFragment extends Fragment implements SearchListener
 		// view
 		final View view = inflater.inflate(R.layout.fragment_browse, container, false);
 
-		// activity
-		final Activity activity = getActivity();
-
 		// status view
 		this.statusView = (TextView) view.findViewById(R.id.statusView);
 
