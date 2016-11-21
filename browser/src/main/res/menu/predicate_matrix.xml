@@ -1,0 +1,12 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+      xmlns:app="http://schemas.android.com/apk/res-auto"
+      xmlns:tools="http://schemas.android.com/tools"
+      tools:context="org.sqlunet.predicatematrix.org.sqlunet.browser.PredicateMatrixActivity">
+	<item
+		android:id="@+id/searchView"
+		android:actionViewClass="android.widget.SearchView"
+		android:icon="@android:drawable/ic_menu_search"
+		android:showAsAction="collapseActionView|ifRoom"
+		android:title="@string/hint_search_predicatematrix"
+		app:showAsAction="collapseActionView|ifRoom"/>
+</menu>

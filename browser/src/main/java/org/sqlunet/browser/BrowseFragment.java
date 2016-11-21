@@ -370,7 +370,7 @@ public class BrowseFragment extends Fragment implements SearchListener
 			 * @param layoutId      layout id
 			 * @return view
 			 */
-			private View getCustomView(final int position, @SuppressWarnings("UnusedParameters") final View convertView, final ViewGroup parent, final int layoutId)
+			private View getCustomView(final int position, final View convertView, final ViewGroup parent, final int layoutId)
 			{
 				final LayoutInflater inflater = activity.getLayoutInflater();
 				final View row = inflater.inflate(layoutId, parent, false);

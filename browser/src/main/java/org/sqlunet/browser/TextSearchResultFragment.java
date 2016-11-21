@@ -153,7 +153,6 @@ public class TextSearchResultFragment extends AbstractTableFragment
 
 	// C L I C K
 
-	@SuppressWarnings({"boxing", "resource"})
 	@Override
 	public void onListItemClick(final ListView listView, final View view, final int position, final long id)
 	{

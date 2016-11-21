@@ -2092,7 +2092,7 @@ abstract public class BasicModule extends Module
 		});
 	}
 
-	private void onAnnoSetsLoadFinished(final TreeNode parent, @SuppressWarnings("UnusedParameters") final Loader<Cursor> loader, final Cursor cursor, //
+	private void onAnnoSetsLoadFinished(final TreeNode parent, final Loader<Cursor> loader, final Cursor cursor, //
 			final String sentenceText, final int idSentenceText, final int idLayerType, final int idRank, final int idAnnotations, final int idAnnoSetId)
 	{
 		if (cursor.moveToFirst())

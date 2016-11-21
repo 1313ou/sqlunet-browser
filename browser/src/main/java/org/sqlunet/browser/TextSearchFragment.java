@@ -301,7 +301,7 @@ public class TextSearchFragment extends Fragment implements SearchListener
 				return getCustomView(position, convertView, parent, R.layout.spinner_item_textsearches_dropdown);
 			}
 
-			private View getCustomView(final int position, @SuppressWarnings("UnusedParameters") final View convertView, final ViewGroup parent, final int layoutId)
+			private View getCustomView(final int position, final View convertView, final ViewGroup parent, final int layoutId)
 			{
 				final LayoutInflater inflater = activity.getLayoutInflater();
 				final View row = inflater.inflate(layoutId, parent, false);
