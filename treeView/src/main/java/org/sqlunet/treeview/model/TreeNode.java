@@ -111,7 +111,6 @@ public class TreeNode
 	public TreeNode addChild(final TreeNode childNode)
 	{
 		childNode.parent = this;
-		// TODO think about id generation
 		childNode.id = size();
 		this.children.add(childNode);
 		return this;
@@ -176,7 +175,6 @@ public class TreeNode
 	public TreeNode prependChild(TreeNode childNode)
 	{
 		childNode.parent = this;
-		// TODO think about id generation
 		childNode.id = size();
 		this.children.add(0, childNode);
 		return this;

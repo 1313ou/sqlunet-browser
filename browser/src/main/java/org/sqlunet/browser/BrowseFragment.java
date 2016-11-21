@@ -214,6 +214,7 @@ public class BrowseFragment extends Fragment implements SearchListener
 		}
 		else
 		{
+			//noinspection deprecation
 			actionBar.setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.browse_action_bar_color)));
 		}
 

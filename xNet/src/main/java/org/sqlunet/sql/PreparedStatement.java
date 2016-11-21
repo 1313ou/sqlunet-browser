@@ -13,10 +13,11 @@ import android.util.SparseArray;
 public class PreparedStatement
 {
 	static private final String TAG = "PreparedStatement";
-	// TODO
+
 	/**
 	 * Whether to output SQL statements
 	 */
+	// TODO
 	static private final boolean debugSql = true;
 
 	/**
