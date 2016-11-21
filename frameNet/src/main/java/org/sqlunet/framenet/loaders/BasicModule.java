@@ -1981,7 +1981,7 @@ abstract public class BasicModule extends Module
 				final int idAnnoSetId = cursor.getColumnIndex(Patterns_Layers_X.ANNOSETID);
 				final int idSentenceText = cursor.getColumnIndex(Patterns_Layers_X.SENTENCETEXT);
 
-				onAnnoSetsLoadFinished(parent, loader, cursor, null, idSentenceText, idLayerType, idRank, idAnnotations, idAnnoSetId);
+				annoSets(parent, cursor, null, idSentenceText, idLayerType, idRank, idAnnotations, idAnnoSetId);
 			}
 
 			@Override
@@ -2031,7 +2031,7 @@ abstract public class BasicModule extends Module
 				final int idAnnoSetId = cursor.getColumnIndex(ValenceUnits_Layers_X.ANNOSETID);
 				final int idSentenceText = cursor.getColumnIndex(ValenceUnits_Layers_X.SENTENCETEXT);
 
-				onAnnoSetsLoadFinished(parent, loader, cursor, null, idSentenceText, idLayerType, idRank, idAnnotations, idAnnoSetId);
+				annoSets(parent, cursor, null, idSentenceText, idLayerType, idRank, idAnnotations, idAnnoSetId);
 			}
 
 			@Override
@@ -2081,7 +2081,7 @@ abstract public class BasicModule extends Module
 				final int idAnnotations = cursor.getColumnIndex(Sentences_Layers_X.LAYERANNOTATIONS);
 				final int idAnnoSetId = cursor.getColumnIndex(Sentences_Layers_X.ANNOSETID);
 
-				onAnnoSetsLoadFinished(parent, loader, cursor, text, -1, idLayerType, idRank, idAnnotations, idAnnoSetId);
+				annoSets(parent, cursor, text, -1, idLayerType, idRank, idAnnotations, idAnnoSetId);
 			}
 
 			@Override
@@ -2092,7 +2092,19 @@ abstract public class BasicModule extends Module
 		});
 	}
 
-	private void onAnnoSetsLoadFinished(final TreeNode parent, final Loader<Cursor> loader, final Cursor cursor, //
+	/**
+	 * AnnoSets helper function
+	 *
+	 * @param parent         parent node
+	 * @param cursor         cursor
+	 * @param sentenceText   sentence text
+	 * @param idSentenceText id of sentence column
+	 * @param idLayerType    id of layer type column
+	 * @param idRank         id of rank column
+	 * @param idAnnotations  id of annotations column
+	 * @param idAnnoSetId    id of annoSet i column
+	 */
+	private void annoSets(final TreeNode parent, final Cursor cursor, //
 			final String sentenceText, final int idSentenceText, final int idLayerType, final int idRank, final int idAnnotations, final int idAnnoSetId)
 	{
 		if (cursor.moveToFirst())

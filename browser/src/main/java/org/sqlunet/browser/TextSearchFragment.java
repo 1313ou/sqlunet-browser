@@ -26,7 +26,6 @@ import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.ImageView;
 import android.widget.SearchView;
 import android.widget.Spinner;
 import android.widget.SpinnerAdapter;
@@ -282,30 +281,45 @@ public class TextSearchFragment extends Fragment implements SearchListener
 		// activity
 		final Activity activity = getActivity();
 
-		// spinner adapter data
+		// adapter values
 		final CharSequence[] textSearches = activity.getResources().getTextArray(R.array.textsearches_names);
 
-		// spinner adapter
-		final SpinnerAdapter adapter = new ArrayAdapter<CharSequence>(activity, R.layout.spinner_item_textsearches, textSearches)
+		// adapter
+		final SpinnerAdapter adapter = new ArrayAdapter<CharSequence>(activity, android.R.layout.simple_list_item_activated_1, android.R.id.text1, textSearches)
 		{
 			@NonNull
 			@Override
 			public View getView(final int position, final View convertView, @NonNull final ViewGroup parent)
 			{
-				return getCustomView(position, convertView, parent, R.layout.spinner_item_textsearches);
+				final CharSequence rowItem = getItem(position);
+				assert rowItem != null;
+
+				final View view = super.getView(position, convertView, parent);
+				final TextView textView = (TextView) view.findViewById(android.R.id.text1);
+				textView.setText("");
+				int resId = posToResId(position);
+				textView.setCompoundDrawablesWithIntrinsicBounds(0, resId, 0, 0);
+
+				return view;
 			}
 
 			@Override
 			public View getDropDownView(final int position, final View convertView, @NonNull final ViewGroup parent)
 			{
-				return getCustomView(position, convertView, parent, R.layout.spinner_item_textsearches_dropdown);
+				final CharSequence rowItem = getItem(position);
+				assert rowItem != null;
+
+				final View view = super.getDropDownView(position, convertView, parent);
+				final TextView textView = (TextView) view.findViewById(android.R.id.text1);
+				textView.setText(rowItem);
+				int resId = posToResId(position);
+				textView.setCompoundDrawablesWithIntrinsicBounds(resId, 0, 0, 0);
+
+				return view;
 			}
 
-			private View getCustomView(final int position, final View convertView, final ViewGroup parent, final int layoutId)
+			private int posToResId(final int position)
 			{
-				final LayoutInflater inflater = activity.getLayoutInflater();
-				final View row = inflater.inflate(layoutId, parent, false);
-				final ImageView icon = (ImageView) row.findViewById(R.id.icon);
 				int resId = 0;
 				switch (position)
 				{
@@ -328,14 +342,7 @@ public class TextSearchFragment extends Fragment implements SearchListener
 						resId = R.drawable.ic_search_fnsentence;
 						break;
 				}
-				icon.setImageResource(resId);
-
-				final TextView label = (TextView) row.findViewById(R.id.textsearch);
-				if (label != null)
-				{
-					label.setText(textSearches[position]);
-				}
-				return row;
+				return resId;
 			}
 		};
 

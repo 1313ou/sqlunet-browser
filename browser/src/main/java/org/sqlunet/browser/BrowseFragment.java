@@ -29,7 +29,6 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
-import android.widget.ImageView;
 import android.widget.SearchView;
 import android.widget.Spinner;
 import android.widget.SpinnerAdapter;
@@ -346,43 +345,35 @@ public class BrowseFragment extends Fragment implements SearchListener
 		final CharSequence[] modes = activity.getResources().getTextArray(R.array.selectors_names);
 
 		// selector mode adapter
-		final SpinnerAdapter adapter = new ArrayAdapter<CharSequence>(activity, R.layout.spinner_item_selectors, modes)
+		final SpinnerAdapter adapter = new ArrayAdapter<CharSequence>(activity, android.R.layout.simple_list_item_activated_1, android.R.id.text1, modes)
 		{
 			@NonNull
 			@Override
 			public View getView(final int position, final View convertView, @NonNull final ViewGroup parent)
 			{
-				return getCustomView(position, convertView, parent, R.layout.spinner_item_selectors);
+				final CharSequence rowItem = getItem(position);
+				assert rowItem != null;
+
+				final View view = super.getView(position, convertView, parent);
+				final TextView textView = (TextView) view.findViewById(android.R.id.text1);
+				textView.setText("");
+				textView.setCompoundDrawablesWithIntrinsicBounds(0, position == 0 ? R.drawable.ic_selector : R.drawable.ic_xselector, 0, 0);
+
+				return view;
 			}
 
 			@Override
 			public View getDropDownView(final int position, final View convertView, @NonNull final ViewGroup parent)
 			{
-				return getCustomView(position, convertView, parent, R.layout.spinner_item_selectors_dropdown);
-			}
+				final CharSequence rowItem = getItem(position);
+				assert rowItem != null;
 
-			/**
-			 * Get custom view
-			 *
-			 * @param position      position
-			 * @param convertView   convert view
-			 * @param parent        parent
-			 * @param layoutId      layout id
-			 * @return view
-			 */
-			private View getCustomView(final int position, final View convertView, final ViewGroup parent, final int layoutId)
-			{
-				final LayoutInflater inflater = activity.getLayoutInflater();
-				final View row = inflater.inflate(layoutId, parent, false);
-				final ImageView icon = (ImageView) row.findViewById(R.id.icon);
-				icon.setImageResource(position == 0 ? R.drawable.ic_selector : R.drawable.ic_xselector);
+				final View view = super.getDropDownView(position, convertView, parent);
+				final TextView textView = (TextView) view.findViewById(android.R.id.text1);
+				textView.setText(rowItem);
+				textView.setCompoundDrawablesWithIntrinsicBounds(position == 0 ? R.drawable.ic_selector : R.drawable.ic_xselector, 0, 0, 0);
 
-				final TextView label = (TextView) row.findViewById(R.id.selector);
-				if (label != null)
-				{
-					label.setText(modes[position]);
-				}
-				return row;
+				return view;
 			}
 		};
 
