@@ -1,6 +1,5 @@
 package org.sqlunet.browser;
 
-import android.annotation.SuppressLint;
 import android.app.ActionBar;
 import android.app.Activity;
 import android.app.Fragment;
@@ -22,7 +21,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.ImageView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -44,64 +42,6 @@ public class NavigationDrawerFragment extends Fragment
 		{
 			this.iconId = iconId;
 			this.title = title;
-		}
-	}
-
-	class CustomListViewAdapter extends ArrayAdapter<NavigationDrawerFragment.RowItem>
-	{
-		private final Context context;
-
-		/**
-		 * Constructor
-		 *
-		 * @param context    context
-		 * @param resourceId layout id
-		 * @param items      items
-		 */
-		public CustomListViewAdapter(final Context context, final int resourceId, int textViewResourceId, final NavigationDrawerFragment.RowItem... items)
-		{
-			super(context, resourceId, textViewResourceId, items);
-			this.context = context;
-		}
-
-		/**
-		 * View holder
-		 */
-		private class ViewHolder
-		{
-			ImageView imageView;
-			TextView titleView;
-		}
-
-		@NonNull
-		@SuppressLint("InflateParams")
-		@Override
-		public View getView(final int position, final View convertView0, @NonNull final ViewGroup parent)
-		{
-			ViewHolder holder;
-			NavigationDrawerFragment.RowItem rowItem = getItem(position);
-
-			View convertView = convertView0;
-			if (convertView == null)
-			{
-				final LayoutInflater inflater = (LayoutInflater) this.context.getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
-				convertView = inflater.inflate(R.layout.item_drawer, null);
-				holder = new ViewHolder();
-				holder.titleView = (TextView) convertView.findViewById(android.R.id.text1);
-				holder.imageView = (ImageView) convertView.findViewById(R.id.icon);
-				convertView.setTag(holder);
-			}
-			else
-			{
-				holder = (ViewHolder) convertView.getTag();
-			}
-
-			assert rowItem != null;
-			holder.titleView.setText(rowItem.title);
-			holder.titleView.setCompoundDrawablesWithIntrinsicBounds(rowItem.iconId,0,0,0);
-			//holder.imageView.setImageResource(rowItem.iconId);
-
-			return convertView;
 		}
 	}
 
@@ -205,8 +145,23 @@ public class NavigationDrawerFragment extends Fragment
 		icons.recycle();
 
 		// adapter
-		//final ListAdapter adapter = new ArrayAdapter<>(getActionBar().getThemedContext(), android.R.layout.simple_list_item_activated_1, android.R.id.text1, options);
-		final ListAdapter adapter = new CustomListViewAdapter(getActionBar().getThemedContext(), R.layout.item_drawer, android.R.id.text1, items);
+		final ListAdapter adapter = new ArrayAdapter<RowItem>(getActionBar().getThemedContext(), android.R.layout.simple_list_item_activated_1, android.R.id.text1, items)
+		{
+			@NonNull
+			@Override
+			public View getView(final int position, final View convertView, @NonNull final ViewGroup parent)
+			{
+				final RowItem rowItem = getItem(position);
+				assert rowItem != null;
+
+				final View view = super.getView(position, convertView, parent);
+				final TextView textView = (TextView) view.findViewById(android.R.id.text1);
+				textView.setText(rowItem.title);
+				textView.setCompoundDrawablesWithIntrinsicBounds(rowItem.iconId, 0, 0, 0);
+
+				return view;
+			}
+		};
 
 		// set up the drawer's list view with items and click listener
 		this.drawerListView = (ListView) inflater.inflate(R.layout.drawer_main, container, false);
@@ -402,7 +357,7 @@ public class NavigationDrawerFragment extends Fragment
 	}
 
 	/**
-	 * Per the navigation drawer design guidelines, updates the type bar to show the global app 'context', rather than just what's in the current screen.
+	 * Per the navigation drawer design guidelines, updates the type bar to show the global app 'textViewId', rather than just what's in the current screen.
 	 */
 	private void showGlobalContextActionBar()
 	{
