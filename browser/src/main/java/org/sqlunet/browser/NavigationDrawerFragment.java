@@ -58,9 +58,9 @@ public class NavigationDrawerFragment extends Fragment
 		 * @param resourceId layout id
 		 * @param items      items
 		 */
-		public CustomListViewAdapter(final Context context, final int resourceId, final NavigationDrawerFragment.RowItem... items)
+		public CustomListViewAdapter(final Context context, final int resourceId, int textViewResourceId, final NavigationDrawerFragment.RowItem... items)
 		{
-			super(context, resourceId, items);
+			super(context, resourceId, textViewResourceId, items);
 			this.context = context;
 		}
 
@@ -87,7 +87,7 @@ public class NavigationDrawerFragment extends Fragment
 				final LayoutInflater inflater = (LayoutInflater) this.context.getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
 				convertView = inflater.inflate(R.layout.item_drawer, null);
 				holder = new ViewHolder();
-				holder.titleView = (TextView) convertView.findViewById(R.id.title);
+				holder.titleView = (TextView) convertView.findViewById(android.R.id.text1);
 				holder.imageView = (ImageView) convertView.findViewById(R.id.icon);
 				convertView.setTag(holder);
 			}
@@ -98,7 +98,8 @@ public class NavigationDrawerFragment extends Fragment
 
 			assert rowItem != null;
 			holder.titleView.setText(rowItem.title);
-			holder.imageView.setImageResource(rowItem.iconId);
+			holder.titleView.setCompoundDrawablesWithIntrinsicBounds(rowItem.iconId,0,0,0);
+			//holder.imageView.setImageResource(rowItem.iconId);
 
 			return convertView;
 		}
@@ -205,7 +206,7 @@ public class NavigationDrawerFragment extends Fragment
 
 		// adapter
 		//final ListAdapter adapter = new ArrayAdapter<>(getActionBar().getThemedContext(), android.R.layout.simple_list_item_activated_1, android.R.id.text1, options);
-		final ListAdapter adapter = new CustomListViewAdapter(getActionBar().getThemedContext(), R.layout.item_drawer, items);
+		final ListAdapter adapter = new CustomListViewAdapter(getActionBar().getThemedContext(), R.layout.item_drawer, android.R.id.text1, items);
 
 		// set up the drawer's list view with items and click listener
 		this.drawerListView = (ListView) inflater.inflate(R.layout.drawer_main, container, false);
