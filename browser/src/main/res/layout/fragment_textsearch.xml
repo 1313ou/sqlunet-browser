@@ -3,8 +3,7 @@
                 xmlns:tools="http://schemas.android.com/tools"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                tools:context="org.sqlunet.browser.TextSearchActivity"
-                tools:ignore="MergeRootFrame">
+                tools:context=".TextSearchActivity">
 
 	<TextView
 		android:id="@+id/statusView"
@@ -36,5 +35,4 @@
 			android:gravity="center"
 			android:text="@string/hint_splash_textsearch"/>
 	</RelativeLayout>
-
 </RelativeLayout>

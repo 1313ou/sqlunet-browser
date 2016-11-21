@@ -5,13 +5,6 @@
                 android:layout_height="match_parent"
                 tools:context=".BrowseFragment">
 
-	<!-- <SearchView -->
-	<!-- android:id="@+id/searchView" -->
-	<!-- android:layout_width="match_parent" -->
-	<!-- android:layout_height="wrap_content" -->
-	<!-- android:layout_centerHorizontal="true" > -->
-	<!-- </SearchView> -->
-
 	<TextView
 		android:id="@+id/statusView"
 		style="@style/Search"
@@ -20,20 +13,26 @@
 		android:layout_centerHorizontal="true"
 		android:textIsSelectable="false"/>
 
-	<ImageView
-		android:id="@+id/splash"
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
-		android:layout_centerInParent="true"
-		android:contentDescription="@string/app_name"
-		android:src="@drawable/ic_splash"/>
+	<RelativeLayout
+		android:id="@+id/container_browse"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:layout_below="@+id/statusView">
 
-	<TextView
-		android:layout_width="fill_parent"
-		android:layout_height="wrap_content"
-		android:layout_below="@+id/splash"
-		android:layout_centerHorizontal="true"
-		android:gravity="center"
-		android:text="@string/hint_splash_main"/>
+		<ImageView
+			android:id="@+id/splash"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_centerInParent="true"
+			android:contentDescription="@string/app_name"
+			android:src="@drawable/ic_splash"/>
 
+		<TextView
+			android:layout_width="fill_parent"
+			android:layout_height="wrap_content"
+			android:layout_below="@+id/splash"
+			android:layout_centerHorizontal="true"
+			android:gravity="center"
+			android:text="@string/hint_splash_main"/>
+	</RelativeLayout>
 </RelativeLayout>

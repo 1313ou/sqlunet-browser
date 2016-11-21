@@ -424,11 +424,17 @@ public class PredicateMatrixFragment extends Fragment implements SearchListener
 			return;
 		}
 
+		// log
+		Log.d(PredicateMatrixFragment.TAG, "PM SEARCH " + pointer);
+
 		// status
-		Log.d(PredicateMatrixFragment.TAG, "Search " + pointer);
+		this.statusView.setText("search: '" + pointer + "'");
+
+		// reset
 		this.pointer = pointer;
 		this.query = null;
 
+		// arguments
 		final Bundle args = new Bundle();
 		args.putParcelable(ProviderArgs.ARG_QUERYPOINTER, pointer);
 		args.putInt(ProviderArgs.ARG_QUERYTYPE, ProviderArgs.ARG_QUERYTYPE_PM);
@@ -463,8 +469,13 @@ public class PredicateMatrixFragment extends Fragment implements SearchListener
 			return;
 		}
 
+		// log
+		Log.d(PredicateMatrixFragment.TAG, "PM SEARCH " + query);
+
 		// status
-		Log.d(PredicateMatrixFragment.TAG, "Search " + query);
+		this.statusView.setText("search: '" + query + "'");
+
+		// reset
 		this.query = query;
 		this.pointer = null;
 

@@ -20,7 +20,7 @@ public class XBrowse1Activity extends Activity
 		super.onCreate(savedInstanceState);
 
 		// content
-		setContentView(R.layout.activity_xbrowse1);
+		setContentView(R.layout.activity_browse1);
 
 		// show the Up button in the type bar.
 		final ActionBar actionBar = getActionBar();
@@ -37,7 +37,7 @@ public class XBrowse1Activity extends Activity
 			fragment.setArguments(getIntent().getExtras());
 			getFragmentManager() //
 					.beginTransaction() //
-					.replace(R.id.container_xbrowse1, fragment) //
+					.replace(R.id.container_browse, fragment) //
 					.commit();
 		}
 	}

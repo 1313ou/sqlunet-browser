@@ -37,7 +37,7 @@ public class Browse1Activity extends Activity
 			fragment.setArguments(getIntent().getExtras());
 			getFragmentManager() //
 					.beginTransaction() //
-					.replace(R.id.container_browse1, fragment) //
+					.replace(R.id.container_browse, fragment) //
 					.commit();
 		}
 	}
