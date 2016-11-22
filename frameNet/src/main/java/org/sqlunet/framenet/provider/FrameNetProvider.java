@@ -491,7 +491,7 @@ public class FrameNetProvider extends BaseProvider
 				//noinspection fallthrough
 			case LEXUNITS_GROUPREALIZATIONS:
 				table = "fnlexunits " + //
-						"LEFT JOIN fnfegrouprealizations USING (luid) " + //
+						"INNER JOIN fnfegrouprealizations USING (luid) " + //
 						"LEFT JOIN fnpatterns USING (fegrid) " + //
 						"LEFT JOIN fnpatterns_valenceunits USING (patternid) " + //
 						"LEFT JOIN fnvalenceunits USING (vuid) " + //
