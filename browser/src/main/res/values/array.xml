@@ -9,6 +9,7 @@
 			<item>@android:drawable/ic_menu_manage</item>
 			<item>@android:drawable/ic_menu_info_details</item>
 			<item>@android:drawable/ic_menu_preferences</item>
+			<item>@android:drawable/ic_menu_info_details</item>
 			<item>@android:drawable/ic_menu_help</item>
 			<item>@android:drawable/ic_menu_info_details</item>
 		</integer-array>

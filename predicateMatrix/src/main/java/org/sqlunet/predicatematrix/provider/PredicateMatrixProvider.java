@@ -11,6 +11,7 @@ import android.util.Log;
 
 import org.sqlunet.predicatematrix.provider.PredicateMatrixContract.Pm;
 import org.sqlunet.provider.BaseProvider;
+import org.sqlunet.sql.SqlFormatter;
 
 /**
  * PredicateMatrix provider
@@ -123,7 +124,8 @@ public class PredicateMatrixProvider extends BaseProvider
 		if (BaseProvider.debugSql)
 		{
 			final String sql = SQLiteQueryBuilder.buildQueryString(false, table, projection, selection, null, null, sortOrder, null);
-			Log.d(PredicateMatrixProvider.TAG + "SQL", sql);
+			buffer.addItem(sql);
+			Log.d(PredicateMatrixProvider.TAG + "SQL", SqlFormatter.format(sql).toString());
 			Log.d(PredicateMatrixProvider.TAG + "ARGS", BaseProvider.argsToString(selectionArgs));
 		}
 

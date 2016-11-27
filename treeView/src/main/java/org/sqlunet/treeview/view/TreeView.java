@@ -618,7 +618,11 @@ public class TreeView
 		}
 		else
 		{
-			controller.getChildrenContainerView().setVisibility(View.VISIBLE);
+			final View container = controller.getChildrenContainerView();
+			container.setVisibility(View.VISIBLE);
+			// LucasJue
+			container.getLayoutParams().height = LinearLayout.LayoutParams.WRAP_CONTENT;
+			container.requestLayout();
 		}
 	}
 

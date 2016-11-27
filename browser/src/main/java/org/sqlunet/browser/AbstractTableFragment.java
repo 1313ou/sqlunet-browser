@@ -118,16 +118,16 @@ public abstract class AbstractTableFragment extends ListFragment
 				// make projection
 				final List<String> cols = new ArrayList<>();
 
-				// add _id alias for first column
+				// addItem _id alias for first column
 				cols.add(id + " AS _id");
 
-				// add items
+				// addItem items
 				if (items != null)
 				{
 					Collections.addAll(cols, items);
 				}
 
-				// add hidden items
+				// addItem hidden items
 				if (hiddenItems != null)
 				{
 					Collections.addAll(cols, hiddenItems);

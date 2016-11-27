@@ -193,11 +193,15 @@ public class MainActivity extends Activity implements NavigationDrawerFragment.N
 				intent = new Intent(this, SettingsActivity.class);
 				break;
 			case 9:
+				this.title = getString(R.string.title_sql_section);
+				this.fragment = new SqlFragment();
+				break;
+			case 10:
 				this.title = getString(R.string.title_help_section);
 				//intent = new Intent(this, HelpActivity.class);
 				this.fragment = new HelpFragment();
 				break;
-			case 10:
+			case 11:
 				this.title = getString(R.string.title_about_section);
 				//intent = new Intent(this, SettingsActivity.class);
 				this.fragment = new AboutFragment();

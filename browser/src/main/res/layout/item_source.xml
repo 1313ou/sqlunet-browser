@@ -44,7 +44,7 @@
 		style="@android:style/TextAppearance.Small"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
-		android:textColor="@color/light_gray_color"
+		android:textColor="@color/dark_gray_color"
 		android:textIsSelectable="true"/>
 
 </LinearLayout>

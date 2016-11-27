@@ -142,6 +142,7 @@
 	<string name="title_manage_section">Manage</string>
 	<string name="title_storage_section">Storage</string>
 	<string name="title_settings_section">Settings</string>
+	<string name="title_sql_section">SQL</string>
 	<string name="title_help_section">Help</string>
 	<string name="title_about_section">About</string>
 
@@ -154,6 +155,7 @@
 		<item>@string/title_manage_section</item>
 		<item>@string/title_storage_section</item>
 		<item>@string/title_settings_section</item>
+		<item>@string/title_sql_section</item>
 		<item>@string/title_help_section</item>
 		<item>@string/title_about_section</item>
 	</string-array>

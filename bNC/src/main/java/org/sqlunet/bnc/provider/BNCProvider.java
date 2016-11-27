@@ -10,6 +10,7 @@ import android.support.annotation.NonNull;
 import android.util.Log;
 
 import org.sqlunet.provider.BaseProvider;
+import org.sqlunet.sql.SqlFormatter;
 
 /**
  * WordNet provider
@@ -133,7 +134,8 @@ public class BNCProvider extends BaseProvider
 		if (BaseProvider.debugSql)
 		{
 			final String sql = SQLiteQueryBuilder.buildQueryString(false, table, projection, actualSelection, groupBy, null, sortOrder, null);
-			Log.d(BNCProvider.TAG + "SQL", sql);
+			buffer.addItem(sql);
+			Log.d(BNCProvider.TAG + "SQL", SqlFormatter.format(sql).toString());
 			Log.d(BNCProvider.TAG + "ARGS", BaseProvider.argsToString(selectionArgs));
 		}
 

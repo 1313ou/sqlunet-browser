@@ -32,6 +32,7 @@ import org.sqlunet.framenet.provider.FrameNetContract.ValenceUnits_Layers_X;
 import org.sqlunet.framenet.provider.FrameNetContract.ValenceUnits_Sentences;
 import org.sqlunet.framenet.provider.FrameNetContract.Words_LexUnits_Frames;
 import org.sqlunet.provider.BaseProvider;
+import org.sqlunet.sql.SqlFormatter;
 
 /**
  * FrameNet provider
@@ -532,10 +533,10 @@ public class FrameNetProvider extends BaseProvider
 		}
 
 		if (BaseProvider.debugSql)
-
 		{
 			final String sql = SQLiteQueryBuilder.buildQueryString(false, table, projection, actualSelection, groupBy, null, sortOrder, null);
-			Log.d(FrameNetProvider.TAG + "SQL", sql);
+			buffer.addItem(sql);
+			Log.d(FrameNetProvider.TAG + "SQL", SqlFormatter.format(sql).toString());
 			Log.d(FrameNetProvider.TAG + "ARGS", BaseProvider.argsToString(selectionArgs));
 		}
 

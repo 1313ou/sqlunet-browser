@@ -10,6 +10,7 @@ import android.support.annotation.NonNull;
 import android.util.Log;
 
 import org.sqlunet.provider.BaseProvider;
+import org.sqlunet.sql.SqlFormatter;
 
 /**
  * PropBank provider
@@ -219,7 +220,8 @@ public class PropBankProvider extends BaseProvider
 		if (BaseProvider.debugSql)
 		{
 			final String sql = SQLiteQueryBuilder.buildQueryString(false, table, projection, actualSelection, groupBy, null, actualSortOrder, null);
-			Log.d(PropBankProvider.TAG + "SQL", sql);
+			buffer.addItem(sql);
+			Log.d(PropBankProvider.TAG + "SQL", SqlFormatter.format(sql).toString());
 			Log.d(PropBankProvider.TAG + "ARGS", BaseProvider.argsToString(selectionArgs));
 		}
 

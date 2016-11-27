@@ -235,31 +235,31 @@ public class SettingsActivity extends PreferenceActivity
 		addPreferencesFromResource(R.xml.pref_container);
 		final PreferenceScreen prefScreen = getPreferenceScreen();
 
-		// add 'general' header
+		// addItem 'general' header
 		final PreferenceCategory generalHeader = new PreferenceCategory(this);
 		generalHeader.setTitle(R.string.pref_header_general);
 		prefScreen.addPreference(generalHeader);
 
-		// add 'general' preferences.
+		// addItem 'general' preferences.
 		addPreferencesFromResource(R.xml.pref_general);
 
-		// add 'filter' header
+		// addItem 'filter' header
 		final PreferenceCategory filterHeader = new PreferenceCategory(this);
 		filterHeader.setTitle(R.string.pref_header_filter);
 		prefScreen.addPreference(filterHeader);
 
-		// add 'filter' header
+		// addItem 'filter' header
 		addPreferencesFromResource(R.xml.pref_filter);
 
-		// add 'database' header
+		// addItem 'database' header
 		final PreferenceCategory databaseHeader = new PreferenceCategory(this);
 		databaseHeader.setTitle(R.string.pref_header_database);
 		prefScreen.addPreference(databaseHeader);
 
-		// add 'download'
+		// addItem 'download'
 		addPreferencesFromResource(R.xml.pref_download);
 
-		// add 'database'
+		// addItem 'database'
 		addPreferencesFromResource(R.xml.pref_database);
 		setStoragePreference(this, findPreference(Settings.PREF_STORAGE));
 

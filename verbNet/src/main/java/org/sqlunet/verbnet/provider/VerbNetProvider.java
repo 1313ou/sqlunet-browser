@@ -10,6 +10,7 @@ import android.support.annotation.NonNull;
 import android.util.Log;
 
 import org.sqlunet.provider.BaseProvider;
+import org.sqlunet.sql.SqlFormatter;
 
 /**
  * VerbNet provider
@@ -220,7 +221,8 @@ public class VerbNetProvider extends BaseProvider
 		if (BaseProvider.debugSql)
 		{
 			final String sql = SQLiteQueryBuilder.buildQueryString(false, table, projection, actualSelection, groupBy, null, sortOrder, null);
-			Log.d(VerbNetProvider.TAG + "SQL", sql);
+			buffer.addItem(sql);
+			Log.d(VerbNetProvider.TAG + "SQL", SqlFormatter.format(sql).toString());
 			Log.d(VerbNetProvider.TAG + "ARGS", BaseProvider.argsToString(selectionArgs));
 		}
 

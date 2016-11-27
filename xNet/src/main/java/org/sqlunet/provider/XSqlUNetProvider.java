@@ -19,6 +19,7 @@ import org.sqlunet.provider.XSqlUNetContract.Words_FnWords_PbWords_VnWords;
 import org.sqlunet.provider.XSqlUNetContract.Words_PbWords_PbRolesets_U;
 import org.sqlunet.provider.XSqlUNetContract.Words_VnWords_VnClasses_U;
 import org.sqlunet.provider.XSqlUNetContract.Sources;
+import org.sqlunet.sql.SqlFormatter;
 
 import java.util.Arrays;
 import java.util.HashSet;
@@ -232,7 +233,7 @@ public class XSqlUNetProvider extends BaseProvider
 		if (BaseProvider.debugSql)
 		{
 			final String sql = SQLiteQueryBuilder.buildQueryString(false, table, projection, selection, groupBy, null, sortOrder, null);
-			Log.d(XSqlUNetProvider.TAG + "SQL", sql);
+			Log.d(XSqlUNetProvider.TAG + "SQL", SqlFormatter.format(sql).toString());
 			Log.d(XSqlUNetProvider.TAG + "ARGS", BaseProvider.argsToString(selectionArgs));
 		}
 
@@ -244,6 +245,7 @@ public class XSqlUNetProvider extends BaseProvider
 		catch (final SQLiteException e)
 		{
 			final String sql = SQLiteQueryBuilder.buildQueryString(false, table, projection, selection, groupBy, null, sortOrder, null);
+			buffer.addItem(sql);
 			Log.d(TAG + "SQL", sql);
 			Log.e(XSqlUNetProvider.TAG, "XSqlUNet provider query failed", e);
 			return null;
@@ -338,7 +340,8 @@ public class XSqlUNetProvider extends BaseProvider
 
 		if (BaseProvider.debugSql)
 		{
-			Log.d(XSqlUNetProvider.TAG + "SQL", sql);
+			buffer.addItem(sql);
+			Log.d(XSqlUNetProvider.TAG + "SQL", SqlFormatter.format(sql).toString());
 			Log.d(XSqlUNetProvider.TAG + "ARGS", BaseProvider.argsToString(selectionArgs2));
 		}
 

@@ -11,6 +11,7 @@ import android.support.annotation.NonNull;
 import android.util.Log;
 
 import org.sqlunet.provider.ManagerContract.TablesAndIndices;
+import org.sqlunet.sql.SqlFormatter;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -97,7 +98,8 @@ public class ManagerProvider extends BaseProvider
 		if (BaseProvider.debugSql)
 		{
 			final String sql = SQLiteQueryBuilder.buildQueryString(false, table, projection, selection, groupBy, null, sortOrder, null);
-			Log.d(ManagerProvider.TAG + "SQL", sql);
+			buffer.addItem(sql);
+			Log.d(ManagerProvider.TAG + "SQL", SqlFormatter.format(sql).toString());
 			Log.d(ManagerProvider.TAG + "ARGS", BaseProvider.argsToString(selectionArgs));
 		}
 

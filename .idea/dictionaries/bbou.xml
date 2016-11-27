@@ -215,6 +215,7 @@
       <w>itype</w>
       <w>javascripts</w>
       <w>jdbc</w>
+      <w>keyw</w>
       <w>konqueror</w>
       <w>labelitype</w>
       <w>labelitypeid</w>
@@ -282,6 +283,7 @@
       <w>orangered</w>
       <w>outstream</w>
       <w>paragno</w>
+      <w>parens</w>
       <w>parsererror</w>
       <w>patternid</w>
       <w>pbarg</w>

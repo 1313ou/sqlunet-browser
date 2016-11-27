@@ -10,6 +10,8 @@ import android.util.Log;
 
 import org.sqlunet.settings.StorageSettings;
 
+import java.util.LinkedList;
+
 /**
  * SqlUNet provider
  *
@@ -18,6 +20,48 @@ import org.sqlunet.settings.StorageSettings;
 public abstract class BaseProvider extends ContentProvider
 {
 	static private final String TAG = "BaseProvider";
+
+	static public class CircularBuffer extends LinkedList<CharSequence>
+	{
+		private int limit;
+
+		public CircularBuffer(final int number)
+		{
+			this.limit = number;
+		}
+
+		public void addItem(final CharSequence value)
+		{
+			addLast(value);
+			if (size() > this.limit)
+			{
+				removeFirst();
+			}
+		}
+
+		public CharSequence[] items()
+		{
+			return toArray(new CharSequence[size()]);
+		}
+
+		@SuppressWarnings("unused")
+		public int getLimit()
+		{
+			return this.limit;
+		}
+
+		@SuppressWarnings("unused")
+		public void setLimit(int limit)
+		{
+			this.limit = limit;
+		}
+	}
+
+	/**
+	 * SQL statement buffer
+	 */
+	@SuppressWarnings("StaticVariableOfConcreteClass")
+	static public final CircularBuffer buffer = new CircularBuffer(15);
 
 	/**
 	 * Debug generated SQL
@@ -141,7 +185,7 @@ public abstract class BaseProvider extends ContentProvider
 	 * Append items to projection
 	 *
 	 * @param projection original projection
-	 * @param items      items to add to projection
+	 * @param items      items to addItem to projection
 	 * @return augmented projection
 	 */
 	protected static String[] appendProjection(final String[] projection, final String... items)
@@ -173,7 +217,7 @@ public abstract class BaseProvider extends ContentProvider
 	 * Add items to projection
 	 *
 	 * @param projection original projection
-	 * @param items      items to add to projection
+	 * @param items      items to addItem to projection
 	 * @return augmented projection
 	 */
 	static String[] prependProjection(final String[] projection, final String... items)

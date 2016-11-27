@@ -58,7 +58,7 @@ public class VnRoleSet
 					roleSet = new VnRoleSet(new ArrayList<VnRole>());
 				}
 
-				// add role to role set
+				// addItem role to role set
 				roleSet.roles.add(role);
 			}
 		}
@@ -105,7 +105,7 @@ public class VnRoleSet
 					roleSet = new VnRoleSet(new ArrayList<VnRole>());
 				}
 
-				// add role to role set
+				// addItem role to role set
 				roleSet.roles.add(role);
 			}
 		}

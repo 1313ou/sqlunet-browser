@@ -70,7 +70,7 @@ public class VnFrameSet
 					frameSet = new VnFrameSet(new ArrayList<VnFrame>());
 				}
 
-				// if same class, add role to frame set
+				// if same class, addItem role to frame set
 				frameSet.frames.add(frame);
 			}
 		}
@@ -122,7 +122,7 @@ public class VnFrameSet
 					frameSet = new VnFrameSet(new ArrayList<VnFrame>());
 				}
 
-				// if same class, add role to frame set
+				// if same class, addItem role to frame set
 				frameSet.frames.add(frame);
 			}
 		}

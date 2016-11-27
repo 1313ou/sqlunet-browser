@@ -11,6 +11,7 @@ import android.support.annotation.NonNull;
 import android.util.Log;
 
 import org.sqlunet.provider.BaseProvider;
+import org.sqlunet.sql.SqlFormatter;
 import org.sqlunet.wordnet.provider.WordNetContract.AdjPositionTypes;
 import org.sqlunet.wordnet.provider.WordNetContract.AdjPositions_AdjPositionTypes;
 import org.sqlunet.wordnet.provider.WordNetContract.Dict;
@@ -551,7 +552,8 @@ public class WordNetProvider extends BaseProvider
 		if (BaseProvider.debugSql)
 		{
 			final String sql = SQLiteQueryBuilder.buildQueryString(false, table, actualProjection, actualSelection, groupBy, null, sortOrder, null);
-			Log.d(WordNetProvider.TAG + "SQL", sql);
+			buffer.addItem(sql);
+			Log.d(WordNetProvider.TAG + "SQL", SqlFormatter.format(sql).toString());
 			Log.d(WordNetProvider.TAG + "ARG", BaseProvider.argsToString(selectionArgs));
 		}
 

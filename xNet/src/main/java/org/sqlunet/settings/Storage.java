@@ -51,7 +51,7 @@ public class Storage
 			final File prefStorage = new File(pref);
 			if (Storage.build(prefStorage))
 			{
-				Log.d(TAG, "Saved " + prefStorage.getAbsolutePath());
+				Log.d(TAG, "Using pref " + prefStorage.getAbsolutePath());
 				return prefStorage;
 			}
 		}

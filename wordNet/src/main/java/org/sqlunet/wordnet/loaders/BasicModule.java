@@ -197,7 +197,7 @@ abstract public class BasicModule extends Module
 	 *
 	 * @param synsetId   synset id
 	 * @param parent     parent node
-	 * @param addNewNode whether to add to (or set) node
+	 * @param addNewNode whether to addItem to (or set) node
 	 */
 	void synset(final long synsetId, final TreeNode parent, final boolean addNewNode)
 	{
@@ -284,7 +284,7 @@ abstract public class BasicModule extends Module
 	 *
 	 * @param synsetId   synset
 	 * @param parent     parent node
-	 * @param addNewNode whether to add to (or set) node
+	 * @param addNewNode whether to addItem to (or set) node
 	 */
 	void members(final long synsetId, final TreeNode parent, final boolean addNewNode)
 	{
@@ -376,7 +376,7 @@ abstract public class BasicModule extends Module
 	 *
 	 * @param synsetId   synset id
 	 * @param parent     parent node
-	 * @param addNewNode whether to add to (or set) node
+	 * @param addNewNode whether to addItem to (or set) node
 	 */
 	@SuppressWarnings("WeakerAccess")
 	void samples(final long synsetId, final TreeNode parent, final boolean addNewNode)

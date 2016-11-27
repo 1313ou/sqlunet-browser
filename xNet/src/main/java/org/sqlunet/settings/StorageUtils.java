@@ -513,7 +513,7 @@ public class StorageUtils
 			for (File secondaryStorage : secondaryStorages)
 			{
 				dir = new File(secondaryStorage, Storage.SQLUNETDIR);
-				storages.add(new Directory(dir, DirType.PUBLIC_EXTERNAL_SECONDARY));
+				storages.addItem(new Directory(dir, DirType.PUBLIC_EXTERNAL_SECONDARY));
 			}
 		}
 		*/
@@ -661,7 +661,7 @@ public class StorageUtils
 			secondaryStoragesEnv = System.getenv("EXTERNAL_SDCARD_STORAGE");
 		}
 
-		// add all secondary storages
+		// addItem all secondary storages
 		if (secondaryStoragesEnv != null && !secondaryStoragesEnv.isEmpty())
 		{
 			// all secondary sdcards split into array
