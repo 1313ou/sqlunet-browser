@@ -493,7 +493,7 @@ public class SqlFormatter
 		{
 			if (this.style)
 			{
-				append(this.result, this.token, new ForegroundColorSpan(Color.MAGENTA), new StyleSpan(Typeface.BOLD));
+				append(this.result, this.token, new ForegroundColorSpan(0xFF800080), new StyleSpan(Typeface.BOLD));
 			}
 			else
 			{
@@ -505,16 +505,18 @@ public class SqlFormatter
 		{
 			if (this.style)
 			{
-				if (this.token.charAt(0) == '?')
-				{
-					append(this.result, this.token, new ForegroundColorSpan(Color.RED));
-				}
-				else if (this.token.charAt(0) == '\'')
+				if (this.token.charAt(0) == '\'')
 				{
 					append(this.result, this.token, new ForegroundColorSpan(0xFF008000));
 				}
+				else if (this.token.charAt(0) == '?')
+				{
+					append(this.result, this.token, new ForegroundColorSpan(Color.RED));
+				}
 				else
+				{
 					out();
+				}
 			}
 			else
 			{
