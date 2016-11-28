@@ -9,7 +9,9 @@ import android.support.annotation.NonNull;
 import android.util.Log;
 
 import org.sqlunet.settings.StorageSettings;
+import org.sqlunet.sql.Utils;
 
+import java.util.Iterator;
 import java.util.LinkedList;
 
 /**
@@ -42,6 +44,17 @@ public abstract class BaseProvider extends ContentProvider
 		public CharSequence[] items()
 		{
 			return toArray(new CharSequence[size()]);
+		}
+
+		public CharSequence[] reverseItems()
+		{
+			final CharSequence[] array = new CharSequence[size()];
+			Iterator<CharSequence> iter = descendingIterator();
+			for (int i = 0; iter.hasNext(); i++)
+			{
+				array[i] = iter.next();
+			}
+			return array;
 		}
 
 		@SuppressWarnings("unused")
@@ -271,5 +284,17 @@ public abstract class BaseProvider extends ContentProvider
 			}
 		}
 		return sb.toString();
+	}
+
+	/**
+	 * Log query
+	 *
+	 * @param sql  sql
+	 * @param args parameters
+	 */
+	protected void logSql(final String sql, String... args)
+	{
+		final String sql2 = Utils.replaceArgs(sql, Utils.toArgs(args));
+		buffer.addItem(sql2);
 	}
 }

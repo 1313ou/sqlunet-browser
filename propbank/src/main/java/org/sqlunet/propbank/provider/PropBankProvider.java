@@ -220,7 +220,7 @@ public class PropBankProvider extends BaseProvider
 		if (BaseProvider.debugSql)
 		{
 			final String sql = SQLiteQueryBuilder.buildQueryString(false, table, projection, actualSelection, groupBy, null, actualSortOrder, null);
-			buffer.addItem(sql);
+			logSql(sql, selectionArgs);
 			Log.d(PropBankProvider.TAG + "SQL", SqlFormatter.format(sql).toString());
 			Log.d(PropBankProvider.TAG + "ARGS", BaseProvider.argsToString(selectionArgs));
 		}

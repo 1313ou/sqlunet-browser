@@ -98,7 +98,7 @@ public class ManagerProvider extends BaseProvider
 		if (BaseProvider.debugSql)
 		{
 			final String sql = SQLiteQueryBuilder.buildQueryString(false, table, projection, selection, groupBy, null, sortOrder, null);
-			buffer.addItem(sql);
+			// logSql(sql, selectionArgs);
 			Log.d(ManagerProvider.TAG + "SQL", SqlFormatter.format(sql).toString());
 			Log.d(ManagerProvider.TAG + "ARGS", BaseProvider.argsToString(selectionArgs));
 		}

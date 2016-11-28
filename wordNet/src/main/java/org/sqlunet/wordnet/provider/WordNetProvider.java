@@ -552,7 +552,7 @@ public class WordNetProvider extends BaseProvider
 		if (BaseProvider.debugSql)
 		{
 			final String sql = SQLiteQueryBuilder.buildQueryString(false, table, actualProjection, actualSelection, groupBy, null, sortOrder, null);
-			buffer.addItem(sql);
+			logSql(sql, selectionArgs);
 			Log.d(WordNetProvider.TAG + "SQL", SqlFormatter.format(sql).toString());
 			Log.d(WordNetProvider.TAG + "ARG", BaseProvider.argsToString(selectionArgs));
 		}

@@ -221,7 +221,7 @@ public class VerbNetProvider extends BaseProvider
 		if (BaseProvider.debugSql)
 		{
 			final String sql = SQLiteQueryBuilder.buildQueryString(false, table, projection, actualSelection, groupBy, null, sortOrder, null);
-			buffer.addItem(sql);
+			logSql(sql, selectionArgs);
 			Log.d(VerbNetProvider.TAG + "SQL", SqlFormatter.format(sql).toString());
 			Log.d(VerbNetProvider.TAG + "ARGS", BaseProvider.argsToString(selectionArgs));
 		}

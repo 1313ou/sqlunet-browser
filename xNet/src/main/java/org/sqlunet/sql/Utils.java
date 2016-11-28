@@ -122,7 +122,7 @@ public class Utils
 	/**
 	 * Replace argument placeholders with argument values
 	 *
-	 * @param sql sql
+	 * @param sql  sql
 	 * @param args arguments
 	 * @return expanded sql
 	 */
@@ -139,6 +139,22 @@ public class Utils
 		return processedSql;
 	}
 
+	static public String[] toArgs(final String... args)
+	{
+		final String[] result = new String[args.length];
+		for (int i = 0; i < args.length; i++)
+		{
+			if (args[i].matches("-?\\d+(\\.\\d+)?"))
+			{
+				result[i] = args[i];
+			}
+			else
+			{
+				result[i] = '\'' + args[i] + '\'';
+			}
+		}
+		return result;
+	}
 
 	/**
 	 * Convert to ids

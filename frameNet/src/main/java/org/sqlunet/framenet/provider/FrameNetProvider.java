@@ -535,7 +535,7 @@ public class FrameNetProvider extends BaseProvider
 		if (BaseProvider.debugSql)
 		{
 			final String sql = SQLiteQueryBuilder.buildQueryString(false, table, projection, actualSelection, groupBy, null, sortOrder, null);
-			buffer.addItem(sql);
+			logSql(sql, selectionArgs);
 			Log.d(FrameNetProvider.TAG + "SQL", SqlFormatter.format(sql).toString());
 			Log.d(FrameNetProvider.TAG + "ARGS", BaseProvider.argsToString(selectionArgs));
 		}

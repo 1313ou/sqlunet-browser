@@ -124,7 +124,7 @@ public class PredicateMatrixProvider extends BaseProvider
 		if (BaseProvider.debugSql)
 		{
 			final String sql = SQLiteQueryBuilder.buildQueryString(false, table, projection, selection, null, null, sortOrder, null);
-			buffer.addItem(sql);
+			logSql(sql, selectionArgs);
 			Log.d(PredicateMatrixProvider.TAG + "SQL", SqlFormatter.format(sql).toString());
 			Log.d(PredicateMatrixProvider.TAG + "ARGS", BaseProvider.argsToString(selectionArgs));
 		}

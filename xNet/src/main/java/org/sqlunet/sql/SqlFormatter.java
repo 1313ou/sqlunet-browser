@@ -493,7 +493,7 @@ public class SqlFormatter
 		{
 			if (this.style)
 			{
-				append(this.result, this.token, new ForegroundColorSpan(Color.BLUE), new StyleSpan(Typeface.BOLD));
+				append(this.result, this.token, new ForegroundColorSpan(Color.MAGENTA), new StyleSpan(Typeface.BOLD));
 			}
 			else
 			{
@@ -511,7 +511,7 @@ public class SqlFormatter
 				}
 				else if (this.token.charAt(0) == '\'')
 				{
-					append(this.result, this.token, new ForegroundColorSpan(Color.GREEN));
+					append(this.result, this.token, new ForegroundColorSpan(0xFF008000));
 				}
 				else
 					out();

@@ -638,6 +638,7 @@ public class BrowseFragment extends Fragment implements SearchListener
 	 *
 	 * @return intent
 	 */
+	@SuppressWarnings("unused")
 	private Intent makeSelectorIntent()
 	{
 		// activity

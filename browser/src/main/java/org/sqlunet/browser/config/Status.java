@@ -192,6 +192,8 @@ public class Status
 	 */
 	static private boolean contains(final Collection<String> tablesAndIndexes, final String... targets)
 	{
+		if(tablesAndIndexes == null)
+			return false;
 		return tablesAndIndexes.containsAll(Arrays.asList(targets));
 	}
 }

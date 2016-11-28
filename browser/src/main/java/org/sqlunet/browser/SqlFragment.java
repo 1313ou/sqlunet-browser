@@ -19,7 +19,7 @@ public class SqlFragment extends ListFragment
 	{
 		super.onResume();
 
-		final CharSequence[] sqls = BaseProvider.buffer.items();
+		final CharSequence[] sqls = BaseProvider.buffer.reverseItems();
 		for (int i = 0; i < sqls.length; i++)
 		{
 			sqls[i] = SqlFormatter.styledFormat(sqls[i]);
