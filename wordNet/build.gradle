@@ -7,7 +7,7 @@ android {
 
     //noinspection GroovyMissingReturnStatement
     defaultConfig {
-        minSdkVersion 14
+        minSdkVersion 17
         targetSdkVersion 25
     }
 

@@ -74,7 +74,7 @@ public class Browse2Fragment extends Fragment
 		switch (mode)
 		{
 			case VIEW:
-				final FragmentTransaction transaction = getFragmentManager().beginTransaction();
+				final FragmentTransaction transaction = getChildFragmentManager().beginTransaction();
 				if (Settings.getWordNetPref(context))
 				{
 					// final View labelView = findViewById(R.id.label_wordnet);
@@ -129,7 +129,7 @@ public class Browse2Fragment extends Fragment
 				fragment.setArguments(args);
 
 				// detail fragment replace
-				getFragmentManager() //
+				getChildFragmentManager() //
 						.beginTransaction() //
 						.replace(R.id.container_web, fragment) //
 						.commit();

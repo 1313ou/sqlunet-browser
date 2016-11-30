@@ -8,7 +8,7 @@ android {
     //noinspection GroovyMissingReturnStatement
     defaultConfig {
         applicationId "org.sqlunet.browser"
-        minSdkVersion 14
+        minSdkVersion 17
         targetSdkVersion 25
     }
 

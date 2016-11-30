@@ -41,6 +41,7 @@ public abstract class BaseProvider extends ContentProvider
 			}
 		}
 
+		@SuppressWarnings("unused")
 		public CharSequence[] items()
 		{
 			return toArray(new CharSequence[size()]);

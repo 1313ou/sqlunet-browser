@@ -492,7 +492,7 @@ public class TextSearchFragment extends Fragment implements SearchListener
 		// fragment
 		final Fragment fragment = new TextSearchResultFragment();
 		fragment.setArguments(args);
-		getFragmentManager() //
+		getChildFragmentManager() //
 				.beginTransaction() //
 				.replace(R.id.container_textsearch, fragment) //
 				.commit();

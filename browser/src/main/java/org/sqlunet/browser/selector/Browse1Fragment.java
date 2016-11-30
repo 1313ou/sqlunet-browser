@@ -50,7 +50,7 @@ public class Browse1Fragment extends Fragment implements SelectorsFragment.Liste
 		this.selectorsFragment = new SelectorsFragment();
 		this.selectorsFragment.setArguments(args);
 		this.selectorsFragment.setListener(this);
-		getFragmentManager() //
+		getChildFragmentManager() //
 				.beginTransaction() //
 				.replace(R.id.container_selectors, this.selectorsFragment) //
 				.commit();
@@ -64,7 +64,7 @@ public class Browse1Fragment extends Fragment implements SelectorsFragment.Liste
 
 			// detail fragment
 			final Fragment browse2Fragment = new Browse2Fragment();
-			getFragmentManager() //
+			getChildFragmentManager() //
 					.beginTransaction() //
 					.replace(R.id.container_browse2, browse2Fragment) //
 					.commit();
@@ -97,7 +97,7 @@ public class Browse1Fragment extends Fragment implements SelectorsFragment.Liste
 		if (this.isTwoPane)
 		{
 			// in two-pane mode, show the detail view in this activity by adding or replacing the detail fragment using a fragment transaction.
-			final Browse2Fragment fragment = (Browse2Fragment) getFragmentManager().findFragmentById(R.id.container_browse2);
+			final Browse2Fragment fragment = (Browse2Fragment) getChildFragmentManager().findFragmentById(R.id.container_browse2);
 			fragment.search(pointer);
 		}
 		else

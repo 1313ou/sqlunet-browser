@@ -124,6 +124,12 @@ public class MainActivity extends Activity implements NavigationDrawerFragment.N
 	@Override
 	public void onNavigationDrawerItemSelected(final int position)
 	{
+		if(position == 8)
+		{
+				SqlDialogFragment.show(this);
+				return;
+		}
+
 		// update the browse content by replacing fragments
 		getFragmentManager() //
 				.beginTransaction() //
@@ -193,8 +199,8 @@ public class MainActivity extends Activity implements NavigationDrawerFragment.N
 				intent = new Intent(this, SettingsActivity.class);
 				break;
 			case 9:
-				this.title = getString(R.string.title_sql_section);
-				this.fragment = new SqlFragment();
+				//this.title = getString(R.string.title_sql_section);
+				//this.fragment = new SqlFragment();
 				break;
 			case 10:
 				this.title = getString(R.string.title_help_section);

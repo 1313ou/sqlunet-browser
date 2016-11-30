@@ -593,7 +593,7 @@ public class BrowseFragment extends Fragment implements SearchListener
 
 			// fragment
 			fragment.setArguments(args);
-			getFragmentManager() //
+			getChildFragmentManager() //
 					.beginTransaction() //
 					.replace(R.id.container_browse, fragment) //
 					.commit();

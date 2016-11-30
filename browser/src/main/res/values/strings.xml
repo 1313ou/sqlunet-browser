@@ -68,6 +68,7 @@
 	<string name="title_activity_download">Download</string>
 	<string name="title_activity_manage">Manage</string>
 	<string name="title_activity_text_search">Text Search</string>
+	<string name="title_dialog_sql">SQL</string>
 
 	<!-- status -->
 	<string name="status_data_ok">Data is available</string>
@@ -102,6 +103,7 @@
 	<string name="hint_splash_textsearch">Text Search</string>
 	<string name="hint_navigation_drawer_open">Open navigation drawer</string>
 	<string name="hint_navigation_drawer_close">Close navigation drawer</string>
+	<string name="hint_sql">SQL statements stack</string>
 
 	<!-- items -->
 	<string name="download_source">source</string>

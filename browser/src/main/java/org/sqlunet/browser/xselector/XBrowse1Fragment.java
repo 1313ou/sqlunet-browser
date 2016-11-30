@@ -75,7 +75,7 @@ public class XBrowse1Fragment extends Fragment implements XSelectorsFragment.Lis
 		this.xSelectorsFragment = new XSelectorsFragment();
 		this.xSelectorsFragment.setArguments(args);
 		this.xSelectorsFragment.setListener(this);
-		getFragmentManager() //
+		getChildFragmentManager() //
 				.beginTransaction() //
 				.replace(R.id.container_xselectors, this.xSelectorsFragment) //
 				.commit();
@@ -89,7 +89,7 @@ public class XBrowse1Fragment extends Fragment implements XSelectorsFragment.Lis
 
 			// detail fragment
 			final Fragment browse2Fragment = new Browse2Fragment();
-			getFragmentManager() //
+			getChildFragmentManager() //
 					.beginTransaction() //
 					.replace(R.id.container_browse2, browse2Fragment) //
 					.commit();
@@ -128,7 +128,7 @@ public class XBrowse1Fragment extends Fragment implements XSelectorsFragment.Lis
 			args.putParcelable(ProviderArgs.ARG_QUERYPOINTER, pointer);
 
 			// transaction
-			final FragmentTransaction transaction = getFragmentManager().beginTransaction();
+			final FragmentTransaction transaction = getChildFragmentManager().beginTransaction();
 
 			// detail fragment
 			final Settings.DetailViewMode mode = Settings.getDetailViewModePref(activity);

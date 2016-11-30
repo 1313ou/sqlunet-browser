@@ -450,7 +450,7 @@ public class PredicateMatrixFragment extends Fragment implements SearchListener
 		// fragment
 		final Fragment fragment = new PredicateMatrixResultFragment();
 		fragment.setArguments(args);
-		getFragmentManager() //
+		getChildFragmentManager() //
 				.beginTransaction() //
 				.replace(R.id.container_predicatematrix, fragment) //
 				.commit();
@@ -508,7 +508,7 @@ public class PredicateMatrixFragment extends Fragment implements SearchListener
 		// fragment
 		final Fragment fragment = new PredicateMatrixResultFragment();
 		fragment.setArguments(args);
-		getFragmentManager() //
+		getChildFragmentManager() //
 				.beginTransaction() //
 				.replace(R.id.container_predicatematrix, fragment) //
 				.commit();
