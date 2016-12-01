@@ -124,16 +124,16 @@ public class MainActivity extends Activity implements NavigationDrawerFragment.N
 	@Override
 	public void onNavigationDrawerItemSelected(final int position)
 	{
-		if(position == 8)
+		if (position == 8)
 		{
-				SqlDialogFragment.show(this);
-				return;
+			SqlDialogFragment.show(this);
+			return;
 		}
 
 		// update the browse content by replacing fragments
 		getFragmentManager() //
 				.beginTransaction() //
-				.replace(R.id.container_content, PlaceholderFragment.newInstance(position + 1)) //
+				.replace(R.id.container_content, PlaceholderFragment.newInstance(position)) //
 				.commit();
 	}
 
@@ -160,54 +160,54 @@ public class MainActivity extends Activity implements NavigationDrawerFragment.N
 		Intent intent = null;
 		switch (number)
 		{
-			case 1:
+			case 0:
 				this.title = getString(R.string.title_home_section);
 				this.fragment = new HomeFragment();
 				break;
-			case 2:
+			case 1:
 				this.title = getString(R.string.title_browse_section);
 				//intent = new Intent(this, BrowseActivity.class);
 				this.fragment = new BrowseFragment();
 				break;
-			case 3:
+			case 2:
 				this.title = getString(R.string.title_ts_section);
 				//intent = new Intent(this, TextSearchActivity.class);
 				this.fragment = new TextSearchFragment();
 				break;
-			case 4:
+			case 3:
 				this.title = getString(R.string.title_pm_section);
 				//intent = new Intent(this, PredicateMatrixActivity.class);
 				this.fragment = new PredicateMatrixFragment();
 				break;
-			case 5:
+			case 4:
 				this.title = getString(R.string.title_status_section);
 				//intent = new Intent(this, StatusActivity.class);
 				this.fragment = new StatusFragment();
 				break;
-			case 6:
+			case 5:
 				this.title = getString(R.string.title_manage_section);
 				//intent = new Intent(this, ManageActivity.class);
 				this.fragment = new ManageFragment();
 				break;
-			case 7:
+			case 6:
 				this.title = getString(R.string.title_storage_section);
 				//intent = new Intent(this, StorageActivity.class);
 				this.fragment = new StorageFragment();
 				break;
-			case 8:
+			case 7:
 				this.title = getString(R.string.title_settings_section);
 				intent = new Intent(this, SettingsActivity.class);
 				break;
-			case 9:
+			case 8:
 				//this.title = getString(R.string.title_sql_section);
 				//this.fragment = new SqlFragment();
 				break;
-			case 10:
+			case 9:
 				this.title = getString(R.string.title_help_section);
 				//intent = new Intent(this, HelpActivity.class);
 				this.fragment = new HelpFragment();
 				break;
-			case 11:
+			case 10:
 				this.title = getString(R.string.title_about_section);
 				//intent = new Intent(this, SettingsActivity.class);
 				this.fragment = new AboutFragment();
@@ -240,6 +240,18 @@ public class MainActivity extends Activity implements NavigationDrawerFragment.N
 	@Override
 	public boolean onOptionsItemSelected(final MenuItem item)
 	{
+		return dispatch(this, item);
+	}
+
+	/**
+	 * Dispatch menu item action
+	 *
+	 * @param activity activity
+	 * @param item     menu item
+	 * @return true if processed/consumed
+	 */
+	static public boolean dispatch(final Activity activity, final MenuItem item)
+	{
 		Intent intent;
 
 		// handle item selection
@@ -248,57 +260,57 @@ public class MainActivity extends Activity implements NavigationDrawerFragment.N
 			// settings
 
 			case R.id.action_settings:
-				intent = new Intent(this, SettingsActivity.class);
+				intent = new Intent(activity, SettingsActivity.class);
 				break;
 
 			// database
 
 			case R.id.action_storage:
-				intent = new Intent(this, StorageActivity.class);
+				intent = new Intent(activity, StorageActivity.class);
 				break;
 
 			case R.id.action_status:
-				intent = new Intent(this, StatusActivity.class);
+				intent = new Intent(activity, StatusActivity.class);
 				break;
 
 			case R.id.action_manage:
-				intent = new Intent(this, ManageActivity.class);
+				intent = new Intent(activity, ManageActivity.class);
 				break;
 
 			case R.id.action_setup:
-				intent = new Intent(this, SetupActivity.class);
+				intent = new Intent(activity, SetupActivity.class);
 				break;
 
 			case R.id.action_setup_sql:
-				intent = new Intent(this, SetupSqlActivity.class);
+				intent = new Intent(activity, SetupSqlActivity.class);
 				break;
 
 			// guide
 
 			case R.id.action_help:
-				intent = new Intent(this, HelpActivity.class);
+				intent = new Intent(activity, HelpActivity.class);
 				break;
 
 			case R.id.action_about:
-				intent = new Intent(this, AboutActivity.class);
+				intent = new Intent(activity, AboutActivity.class);
 				break;
 
 			// lifecycle
 
 			case R.id.action_quit:
-				finish();
+				activity.finish();
 				return true;
 
 			case R.id.action_appsettings:
-				Settings.applicationSettings(this, "org.sqlunet.browser");
+				Settings.applicationSettings(activity, "org.sqlunet.browser");
 				return true;
 
 			default:
-				return super.onOptionsItemSelected(item);
+				return false;
 		}
 
 		// start activity
-		startActivity(intent);
+		activity.startActivity(intent);
 		return true;
 	}
 

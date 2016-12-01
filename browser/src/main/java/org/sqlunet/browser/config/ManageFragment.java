@@ -21,7 +21,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import org.sqlunet.browser.R;
-import org.sqlunet.browser.StatusActivity;
 import org.sqlunet.provider.ExecuteManager;
 import org.sqlunet.provider.ExecuteManager.Listener;
 import org.sqlunet.provider.ManagerContract;
@@ -119,7 +118,7 @@ public class ManageFragment extends Fragment implements Listener
 			}
 		}
 
-		// type status
+		// type _status
 		this.status = (TextView) view.findViewById(R.id.manage_status);
 
 		// run button
@@ -178,14 +177,6 @@ public class ManageFragment extends Fragment implements Listener
 		// handle item selection
 		switch (item.getItemId())
 		{
-			case R.id.action_settings:
-				intent = new Intent(context, SettingsActivity.class);
-				break;
-
-			case R.id.action_status:
-				intent = new Intent(context, StatusActivity.class);
-				break;
-
 			case R.id.action_setup:
 				intent = new Intent(context, SetupActivity.class);
 				break;
@@ -220,7 +211,7 @@ public class ManageFragment extends Fragment implements Listener
 				break;
 
 			default:
-				return super.onOptionsItemSelected(item);
+				return false;
 		}
 
 		if (intent != null)

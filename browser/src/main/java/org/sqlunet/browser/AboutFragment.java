@@ -1,12 +1,8 @@
 package org.sqlunet.browser;
 
 import android.app.Fragment;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -30,25 +26,5 @@ public class AboutFragment extends Fragment
 	{
 		setHasOptionsMenu(true);
 		return inflater.inflate(R.layout.fragment_about, container, false);
-	}
-
-	@Override
-	public void onCreateOptionsMenu(final Menu menu, final MenuInflater inflater)
-	{
-		inflater.inflate(R.menu.about, menu);
-		super.onCreateOptionsMenu(menu,inflater);
-	}
-
-	@Override
-	public boolean onOptionsItemSelected(final MenuItem item)
-	{
-		if (item.getItemId() == R.id.action_help)
-		{
-			final Intent intent = new Intent(this.getActivity(), HelpActivity.class);
-			getActivity().startActivity(intent);
-			return true;
-		}
-
-		return super.onOptionsItemSelected(item);
 	}
 }

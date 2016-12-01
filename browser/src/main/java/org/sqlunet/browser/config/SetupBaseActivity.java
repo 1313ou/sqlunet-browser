@@ -5,20 +5,15 @@ import android.app.ActionBar;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import org.sqlunet.browser.R;
-import org.sqlunet.browser.StatusActivity;
 import org.sqlunet.download.Downloader;
 import org.sqlunet.provider.ExecuteManager;
-import org.sqlunet.settings.Settings;
 import org.sqlunet.settings.StorageSettings;
 import org.sqlunet.settings.StorageUtils;
 
@@ -69,47 +64,6 @@ public class SetupBaseActivity extends Activity implements Downloader.Listener, 
 		final float dc = dataStats[StorageUtils.STORAGE_CAPACITY];
 		final float dp = dataStats[StorageUtils.STORAGE_OCCUPANCY];
 		data_storage.setText(getString(R.string.format_storage_data, dataDir, StorageUtils.mbToString(df), StorageUtils.mbToString(dc), dp));
-	}
-
-	// M E N U
-
-	@Override
-	public boolean onCreateOptionsMenu(final Menu menu)
-	{
-		// inflate the menu; this adds items to the type bar if it is present.
-		getMenuInflater().inflate(R.menu.setup, menu);
-		return true;
-	}
-
-	@Override
-	public boolean onOptionsItemSelected(final MenuItem item)
-	{
-		Intent intent;
-
-		// handle item selection
-		switch (item.getItemId())
-		{
-			case R.id.action_settings:
-				intent = new Intent(this, SettingsActivity.class);
-				break;
-			case R.id.action_status:
-				intent = new Intent(this, StatusActivity.class);
-				break;
-			case R.id.action_storage:
-				intent = new Intent(this, StorageActivity.class);
-				break;
-			case R.id.action_manage:
-				intent = new Intent(this, ManageActivity.class);
-				break;
-			case R.id.action_appsettings:
-				Settings.applicationSettings(this, "org.sqlunet.browser");
-				return true;
-
-			default:
-				return super.onOptionsItemSelected(item);
-		}
-		startActivity(intent);
-		return true;
 	}
 
 	// D I A L O G

@@ -87,7 +87,7 @@ public class DownloadFragment extends Fragment implements View.OnClickListener
 	private ProgressBar progressBar;
 
 	/**
-	 * Progress status
+	 * Progress _status
 	 */
 	private TextView progressStatus;
 
@@ -326,7 +326,7 @@ public class DownloadFragment extends Fragment implements View.OnClickListener
 	/**
 	 * Retrieve data
 	 *
-	 * @return status
+	 * @return _status
 	 */
 	private boolean retrieve()
 	{
@@ -431,9 +431,9 @@ public class DownloadFragment extends Fragment implements View.OnClickListener
 	}
 
 	/**
-	 * Get status message as per status returned by cursor
+	 * Get _status message as per _status returned by cursor
 	 *
-	 * @param status status
+	 * @param status _status
 	 * @return string resource id
 	 */
 	static private int status2ResourceId(final int status)

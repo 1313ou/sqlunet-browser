@@ -22,6 +22,7 @@ import java.io.File;
 public class SetupSqlActivity extends SetupBaseActivity
 {
 	static private final String TAG = "SetupSqlActivity";
+
 	// download sql button
 	private Button downloadSqlButton;
 

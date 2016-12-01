@@ -104,7 +104,7 @@ public class BrowseFragment extends Fragment implements SearchListener
 		// view
 		final View view = inflater.inflate(R.layout.fragment_browse, container, false);
 
-		// status view
+		// _status view
 		this.statusView = (TextView) view.findViewById(R.id.statusView);
 
 		// action bar
@@ -185,7 +185,7 @@ public class BrowseFragment extends Fragment implements SearchListener
 				break;
 
 			default:
-				return super.onOptionsItemSelected(item);
+				return false;
 		}
 
 		// start activity

@@ -2,15 +2,11 @@ package org.sqlunet.browser;
 
 import android.annotation.TargetApi;
 import android.app.Fragment;
-import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.WebResourceError;
@@ -86,27 +82,5 @@ public class HelpFragment extends Fragment
 		webview.loadUrl(url);
 
 		return view;
-	}
-
-	// M E N U
-
-	@Override
-	public void onCreateOptionsMenu(final Menu menu, final MenuInflater inflater)
-	{
-		inflater.inflate(R.menu.help, menu);
-		super.onCreateOptionsMenu(menu,inflater);
-	}
-
-	@Override
-	public boolean onOptionsItemSelected(final MenuItem item)
-	{
-		if (item.getItemId() == R.id.action_about)
-		{
-			Intent intent = new Intent(getActivity(), AboutActivity.class);
-			startActivity(intent);
-			return true;
-		}
-
-		return super.onOptionsItemSelected(item);
 	}
 }

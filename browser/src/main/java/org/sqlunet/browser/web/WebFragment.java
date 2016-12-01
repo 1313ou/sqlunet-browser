@@ -614,7 +614,7 @@ public class WebFragment extends Fragment
 			@Override
 			public void onLoaderReset(final Loader<String> loader)
 			{
-				WebFragment.this.webview.loadUrl("about:blank");
+				WebFragment.this.webview.loadUrl("_about:blank");
 			}
 		});
 	}

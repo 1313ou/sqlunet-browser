@@ -16,7 +16,7 @@ import java.util.Collection;
 import java.util.List;
 
 /**
- * Database status
+ * Database _status
  *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
@@ -24,9 +24,9 @@ public class Status
 {
 	static private final String TAG = "Status";
 
-	static public final String CANTRUN = "status.cant.run";
+	static public final String CANTRUN = "_status.cant.run";
 
-	// status flags
+	// _status flags
 
 	static private final int EXISTS = 0x1;
 
@@ -55,10 +55,10 @@ public class Status
 	static public final int DO_TS_FN = 6;
 
 	/**
-	 * Get status
+	 * Get _status
 	 *
 	 * @param context context
-	 * @return status
+	 * @return _status
 	 */
 	static public int status(final Context context)
 	{
@@ -73,7 +73,7 @@ public class Status
 			}
 			catch (Exception e)
 			{
-				Log.e(TAG, "While getting status", e);
+				Log.e(TAG, "While getting _status", e);
 				return status;
 			}
 
@@ -122,7 +122,7 @@ public class Status
 	}
 
 	/**
-	 * Can run status
+	 * Can run _status
 	 *
 	 * @param context context
 	 * @return true if app is ready to run

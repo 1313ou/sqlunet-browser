@@ -93,7 +93,7 @@ public class PredicateMatrixFragment extends Fragment implements SearchListener
 		// view
 		final View view = inflater.inflate(R.layout.fragment_predicatematrix, container, false);
 
-		// status view
+		// _status view
 		this.statusView = (TextView) view.findViewById(R.id.statusView);
 
 		// action bar
@@ -427,7 +427,7 @@ public class PredicateMatrixFragment extends Fragment implements SearchListener
 		// log
 		Log.d(PredicateMatrixFragment.TAG, "PM SEARCH " + pointer);
 
-		// status
+		// _status
 		this.statusView.setText("search: '" + pointer + "'");
 
 		// reset
@@ -472,7 +472,7 @@ public class PredicateMatrixFragment extends Fragment implements SearchListener
 		// log
 		Log.d(PredicateMatrixFragment.TAG, "PM SEARCH " + query);
 
-		// status
+		// _status
 		this.statusView.setText("search: '" + query + "'");
 
 		// reset

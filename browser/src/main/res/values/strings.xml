@@ -10,7 +10,7 @@
 	<string name="action_status">Status</string>
 	<string name="action_run">Run</string>
 
-	<!-- setup -->
+	<!-- _setup -->
 	<string name="action_setup">Set up</string>
 	<string name="action_storage">Storage</string>
 	<string name="action_setup_sql">Set up with SQL</string>
@@ -70,7 +70,7 @@
 	<string name="title_activity_text_search">Text Search</string>
 	<string name="title_dialog_sql">SQL</string>
 
-	<!-- status -->
+	<!-- _status -->
 	<string name="status_data_ok">Data is available</string>
 	<string name="status_data_fail">Data is unavailable</string>
 	<string name="status_database">Database</string>

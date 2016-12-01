@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.app.SearchManager;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 
 /**
  * Browse activity
@@ -40,6 +42,20 @@ public class BrowseActivity extends Activity
 	protected void onNewIntent(final Intent intent)
 	{
 		handleSearchIntent(intent);
+	}
+
+	@Override
+	public boolean onCreateOptionsMenu(final Menu menu)
+	{
+		// inflate the menu; this adds items to the type bar if it is present.
+		getMenuInflater().inflate(R.menu.main, menu);
+		return true;
+	}
+
+	@Override
+	public boolean onOptionsItemSelected(final MenuItem item)
+	{
+		return MainActivity.dispatch(this, item);
 	}
 
 	// S E A R C H

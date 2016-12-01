@@ -2,7 +2,12 @@ package org.sqlunet.browser;
 
 import android.app.ActionBar;
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
+
+import org.sqlunet.browser.config.Status;
 
 /**
  * Status activity
@@ -27,5 +32,32 @@ public class StatusActivity extends Activity
 		// actionBar.setDisplayShowHomeEnabled(true);
 		// actionBar.setDisplayHomeAsUpEnabled(true);
 		// actionBar.setDisplayShowTitleEnabled(false);
+	}
+
+	@Override
+	public boolean onCreateOptionsMenu(final Menu menu)
+	{
+		// inflate the menu; this adds items to the type bar if it is present.
+		getMenuInflater().inflate(R.menu.main, menu);
+		return true;
+	}
+
+	@Override
+	public boolean onOptionsItemSelected(final MenuItem item)
+	{
+		// handle item selection
+		switch (item.getItemId())
+		{
+			case android.R.id.home:
+				final Intent intent = getIntent();
+				boolean cantRun = intent.getBooleanExtra(Status.CANTRUN, false);
+				if (!cantRun)
+				{
+					return super.onOptionsItemSelected(item);
+				}
+				break;
+		}
+
+		return MainActivity.dispatch(this, item);
 	}
 }

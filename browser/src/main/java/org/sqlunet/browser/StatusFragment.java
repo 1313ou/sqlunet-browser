@@ -5,9 +5,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
@@ -16,12 +13,7 @@ import android.widget.ImageView;
 import org.sqlunet.browser.config.DownloadActivity;
 import org.sqlunet.browser.config.ManageActivity;
 import org.sqlunet.browser.config.ManageFragment;
-import org.sqlunet.browser.config.SettingsActivity;
-import org.sqlunet.browser.config.SetupActivity;
-import org.sqlunet.browser.config.SetupSqlActivity;
 import org.sqlunet.browser.config.Status;
-import org.sqlunet.browser.config.StorageActivity;
-import org.sqlunet.settings.Settings;
 
 /**
  * Status fragment
@@ -62,7 +54,7 @@ public class StatusFragment extends Fragment
 		// view
 		final View view = getView();
 
-		// status
+		// _status
 		assert view != null;
 		final ImageView db = (ImageView) view.findViewById(R.id.status_database);
 		final ImageButton buttonDb = (ImageButton) view.findViewById(R.id.databaseButton);
@@ -205,64 +197,5 @@ public class StatusFragment extends Fragment
 				break;
 		}
 		super.onActivityResult(requestCode, resultCode, returnIntent);
-	}
-
-
-	// M E N U
-
-	@Override
-	public void onCreateOptionsMenu(final Menu menu, final MenuInflater inflater)
-	{
-		inflater.inflate(R.menu.status, menu);
-		super.onCreateOptionsMenu(menu,inflater);
-	}
-
-	// A C T I O N H A N D L I N G
-
-	@Override
-	public boolean onOptionsItemSelected(final MenuItem item)
-	{
-		Intent intent;
-
-		// handle item selection
-		switch (item.getItemId())
-		{
-			case android.R.id.home:
-				intent = StatusFragment.this.getActivity().getIntent();
-				boolean cantRun = intent.getBooleanExtra(Status.CANTRUN, false);
-				if (!cantRun)
-				{
-					return super.onOptionsItemSelected(item);
-				}
-				break;
-
-			case R.id.action_settings:
-				intent = new Intent(StatusFragment.this.getActivity(), SettingsActivity.class);
-				break;
-			case R.id.action_status:
-				intent = new Intent(StatusFragment.this.getActivity(), StatusActivity.class);
-				break;
-			case R.id.action_setup:
-				intent = new Intent(StatusFragment.this.getActivity(), SetupActivity.class);
-				break;
-			case R.id.action_setup_sql:
-				intent = new Intent(StatusFragment.this.getActivity(), SetupSqlActivity.class);
-				break;
-			case R.id.action_storage:
-				intent = new Intent(StatusFragment.this.getActivity(), StorageActivity.class);
-				break;
-			case R.id.action_manage:
-				intent = new Intent(StatusFragment.this.getActivity(), ManageActivity.class);
-				break;
-			case R.id.action_appsettings:
-				Settings.applicationSettings(StatusFragment.this.getActivity(), "org.sqlunet.browser");
-				return true;
-			default:
-				return super.onOptionsItemSelected(item);
-		}
-
-		// start activity
-		startActivity(intent);
-		return true;
 	}
 }

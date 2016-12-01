@@ -79,7 +79,7 @@ public class TextSearchFragment extends Fragment implements SearchListener
 		// content
 		final View view = inflater.inflate(R.layout.fragment_textsearch, container, false);
 
-		// status view
+		// _status view
 		this.statusView = (TextView) view.findViewById(R.id.statusView);
 
 		// action bar
@@ -399,7 +399,7 @@ public class TextSearchFragment extends Fragment implements SearchListener
 		// log
 		Log.d(TextSearchFragment.TAG, "TEXT SEARCH " + query);
 
-		// status
+		// _status
 		final CharSequence[] textSearches = getResources().getTextArray(R.array.textsearches_names);
 		this.statusView.setText("search: '" + query + "' " + textSearches[itemPosition]);
 

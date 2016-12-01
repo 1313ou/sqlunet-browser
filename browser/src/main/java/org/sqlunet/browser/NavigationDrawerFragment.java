@@ -145,7 +145,7 @@ public class NavigationDrawerFragment extends Fragment
 		icons.recycle();
 
 		// adapter
-		final ListAdapter adapter = new ArrayAdapter<RowItem>(getActionBar().getThemedContext(), android.R.layout.simple_list_item_activated_1, android.R.id.text1, items)
+		final ListAdapter adapter = new ArrayAdapter<RowItem>(getActionBar().getThemedContext(), android.R.layout.simple_list_item_1, android.R.id.text1, items) //simple_list_item_activated_1
 		{
 			@NonNull
 			@Override
@@ -239,7 +239,7 @@ public class NavigationDrawerFragment extends Fragment
 			}
 		};
 
-		// if the user hasn't 'learned' about the drawer, open it to introduce them to the drawer, per the navigation drawer design guidelines.
+		// if the user hasn't 'learned' _about the drawer, open it to introduce them to the drawer, per the navigation drawer design guidelines.
 		if (!this.userLearnedDrawer && !this.fromSavedInstanceState)
 		{
 			this.drawerLayout.openDrawer(this.containerView);
@@ -266,10 +266,13 @@ public class NavigationDrawerFragment extends Fragment
 	 */
 	private void selectItem(final int position)
 	{
-		this.selectedPosition = position;
-		if (this.drawerListView != null)
+		if (position != 8)
 		{
-			this.drawerListView.setItemChecked(position, true);
+			this.selectedPosition = position;
+			if (this.drawerListView != null)
+			{
+				this.drawerListView.setItemChecked(position, true);
+			}
 		}
 		if (this.drawerLayout != null)
 		{

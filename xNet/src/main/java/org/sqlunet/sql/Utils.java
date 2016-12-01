@@ -141,6 +141,10 @@ public class Utils
 
 	static public String[] toArgs(final String... args)
 	{
+		if (args == null)
+		{
+			return null;
+		}
 		final String[] result = new String[args.length];
 		for (int i = 0; i < args.length; i++)
 		{

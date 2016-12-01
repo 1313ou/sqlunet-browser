@@ -22,18 +22,6 @@
 		app:showAsAction="never"
 		tools:ignore="AppCompatResource"/>
 	<item
-		android:id="@+id/action_setup"
-		android:showAsAction="never"
-		android:title="@string/action_setup"
-		app:showAsAction="never"
-		tools:ignore="AppCompatResource"/>
-	<item
-		android:id="@+id/action_setup_sql"
-		android:showAsAction="never"
-		android:title="@string/action_setup_sql"
-		app:showAsAction="never"
-		tools:ignore="AppCompatResource"/>
-	<item
 		android:id="@+id/action_manage"
 		android:showAsAction="never"
 		android:title="@string/action_manage"
