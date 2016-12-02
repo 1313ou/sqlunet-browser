@@ -1,37 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                tools:context=".PredicateMatrixFragment">
 
-	<LinearLayout
-		android:layout_width="fill_parent"
+	<TextView
+		android:id="@+id/queryView"
+		style="@style/Query"
+		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
-		android:orientation="vertical">
+		android:textIsSelectable="false"/>
 
-		<TextView
-			style="@style/Label.Info"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:text="@string/label_info"/>
+	<ScrollView
+		android:layout_width="fill_parent"
+		android:layout_height="fill_parent"
+		android:layout_below="@+id/queryView">
 
-		<TextView
-			android:id="@+id/data_info"
-			style="@style/Data.Info"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:textIsSelectable="true"/>
-
-		<TextView
-			style="@style/Label.Contents"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:text="@string/label_contents"/>
-
-		<RelativeLayout
+		<FrameLayout
 			android:id="@+id/data_contents"
 			style="@style/Data.Contents"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"/>
-	</LinearLayout>
 
-</ScrollView>
+	</ScrollView>
+</RelativeLayout>

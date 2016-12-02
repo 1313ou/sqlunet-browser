@@ -7,6 +7,7 @@ import android.text.SpannableStringBuilder;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import org.sqlunet.predicatematrix.PmRolePointer;
 import org.sqlunet.predicatematrix.loaders.PredicateRoleFromWordModule;
@@ -56,6 +57,10 @@ public class PredicateMatrixResultFragment extends Fragment
 		final Parcelable pointer = args.getParcelable(ProviderArgs.ARG_QUERYPOINTER);
 		assert pointer != null;
 
+		// query view
+		final TextView queryView = (TextView) view.findViewById(R.id.queryView);
+		queryView.setText(pointer.toString());
+
 		// header
 		final SpannableStringBuilder hsb = new SpannableStringBuilder();
 		hsb.append("PredicateMatrix ");
@@ -63,6 +68,7 @@ public class PredicateMatrixResultFragment extends Fragment
 
 		if (type == ProviderArgs.ARG_QUERYTYPE_PM || type == ProviderArgs.ARG_QUERYTYPE_PMROLE)
 		{
+			// container insert point
 			final ViewGroup containerView = (ViewGroup) view.findViewById(R.id.data_contents);
 
 			// root node

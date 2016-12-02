@@ -68,11 +68,6 @@ public class PredicateMatrixFragment extends Fragment implements SearchListener
 	private SearchView searchView;
 
 	/**
-	 * Status view
-	 */
-	private TextView statusView;
-
-	/**
 	 * Action bar mode spinner
 	 */
 	private Spinner spinner;
@@ -92,9 +87,6 @@ public class PredicateMatrixFragment extends Fragment implements SearchListener
 
 		// view
 		final View view = inflater.inflate(R.layout.fragment_predicatematrix, container, false);
-
-		// _status view
-		this.statusView = (TextView) view.findViewById(R.id.statusView);
 
 		// action bar
 		this.spinner = setupActionBar(inflater);
@@ -406,7 +398,6 @@ public class PredicateMatrixFragment extends Fragment implements SearchListener
 	@Override
 	public void suggest(final String query)
 	{
-		this.statusView.setText("view: '" + query + "'");
 		this.searchView.setQuery(query, true); // true=submit
 	}
 
@@ -426,9 +417,6 @@ public class PredicateMatrixFragment extends Fragment implements SearchListener
 
 		// log
 		Log.d(PredicateMatrixFragment.TAG, "PM SEARCH " + pointer);
-
-		// _status
-		this.statusView.setText("search: '" + pointer + "'");
 
 		// reset
 		this.pointer = pointer;
@@ -471,9 +459,6 @@ public class PredicateMatrixFragment extends Fragment implements SearchListener
 
 		// log
 		Log.d(PredicateMatrixFragment.TAG, "PM SEARCH " + query);
-
-		// _status
-		this.statusView.setText("search: '" + query + "'");
 
 		// reset
 		this.query = query;

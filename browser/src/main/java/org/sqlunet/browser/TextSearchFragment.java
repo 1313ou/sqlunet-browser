@@ -55,11 +55,6 @@ public class TextSearchFragment extends Fragment implements SearchListener
 	static private final String STATE_SPINNER = "selected_textsearch_mode";
 
 	/**
-	 * Status view
-	 */
-	private TextView statusView;
-
-	/**
 	 * Search view
 	 */
 	private SearchView searchView;
@@ -78,9 +73,6 @@ public class TextSearchFragment extends Fragment implements SearchListener
 
 		// content
 		final View view = inflater.inflate(R.layout.fragment_textsearch, container, false);
-
-		// _status view
-		this.statusView = (TextView) view.findViewById(R.id.statusView);
 
 		// action bar
 		this.spinner = setupActionBar(inflater);
@@ -380,7 +372,6 @@ public class TextSearchFragment extends Fragment implements SearchListener
 	@Override
 	public void suggest(final String query)
 	{
-		this.statusView.setText("view: '" + query + "'");
 		this.searchView.setQuery(query, true); // true=submit
 	}
 
@@ -401,7 +392,6 @@ public class TextSearchFragment extends Fragment implements SearchListener
 
 		// _status
 		final CharSequence[] textSearches = getResources().getTextArray(R.array.textsearches_names);
-		this.statusView.setText("search: '" + query + "' " + textSearches[itemPosition]);
 
 		// as per selected mode
 		String searchUri;

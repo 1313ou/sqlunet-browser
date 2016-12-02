@@ -85,11 +85,6 @@ public class BrowseFragment extends Fragment implements SearchListener
 	private SearchView searchView;
 
 	/**
-	 * Status view
-	 */
-	private TextView statusView;
-
-	/**
 	 * Selector mode spinner
 	 */
 	private Spinner spinner;
@@ -103,9 +98,6 @@ public class BrowseFragment extends Fragment implements SearchListener
 
 		// view
 		final View view = inflater.inflate(R.layout.fragment_browse, container, false);
-
-		// _status view
-		this.statusView = (TextView) view.findViewById(R.id.statusView);
 
 		// action bar
 		this.spinner = setupActionBar(inflater);
@@ -437,7 +429,6 @@ public class BrowseFragment extends Fragment implements SearchListener
 	@Override
 	public void suggest(final String query)
 	{
-		this.statusView.setText("view: '" + query + "'");
 		this.searchView.setQuery(query, true); // true=submit
 	}
 
@@ -452,8 +443,6 @@ public class BrowseFragment extends Fragment implements SearchListener
 	@SuppressWarnings("boxing")
 	public void search(final String query)
 	{
-		this.statusView.setText("search: '" + query + "'");
-
 		// recurse
 		final boolean recurse = Settings.getRecursePref(getActivity());
 

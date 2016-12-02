@@ -34,6 +34,8 @@ public abstract class AbstractTableFragment extends ListFragment
 {
 	static private final String TAG = "AbstractTableFrag";
 
+	static private final boolean VERBOSE = false;
+
 	/**
 	 * View binder factory
 	 *
@@ -178,9 +180,17 @@ public abstract class AbstractTableFragment extends ListFragment
 		final Bundle args = getArguments();
 
 		// query
-		final String uriString = args.getString(ProviderArgs.ARG_QUERYURI);
-		final String selection = args.getString(ProviderArgs.ARG_QUERYFILTER);
-		queryView.setText(String.format("%s (filter: %s)", uriString, selection));
+		final String queryArg = args.getString(ProviderArgs.ARG_QUERYARG);
+		if (VERBOSE)
+		{
+			final String uriString = args.getString(ProviderArgs.ARG_QUERYURI);
+			final String selection = args.getString(ProviderArgs.ARG_QUERYFILTER);
+			queryView.setText(String.format("%s (filter: %s)(arg=%s)", uriString, selection, queryArg));
+		}
+		else
+		{
+			queryView.setText(queryArg);
+		}
 
 		return view;
 	}
