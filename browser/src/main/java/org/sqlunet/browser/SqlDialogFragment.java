@@ -1,5 +1,6 @@
 package org.sqlunet.browser;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.DialogFragment;
 import android.app.Fragment;
@@ -22,7 +23,7 @@ public class SqlDialogFragment extends DialogFragment
 	{
 		getDialog().setTitle(R.string.title_dialog_sql);
 
-		final View view = inflater.inflate(R.layout.fragment_sql, null);
+		@SuppressLint("InflateParams") final View view = inflater.inflate(R.layout.fragment_sql, null);
 
 		final Fragment sqlFragment = new SqlFragment();
 		getChildFragmentManager() //
