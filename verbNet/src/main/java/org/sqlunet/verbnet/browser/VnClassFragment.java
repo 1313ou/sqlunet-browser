@@ -9,7 +9,7 @@ import android.view.ViewGroup;
 
 import org.sqlunet.browser.Module;
 import org.sqlunet.provider.ProviderArgs;
-import org.sqlunet.treeview.control.IconTreeController;
+import org.sqlunet.treeview.control.TreeController;
 import org.sqlunet.treeview.model.TreeNode;
 import org.sqlunet.treeview.view.TreeView;
 import org.sqlunet.verbnet.R;
@@ -58,7 +58,7 @@ public class VnClassFragment extends Fragment
 		this.treeView = new TreeView(getActivity(), root);
 		this.treeView.setDefaultAnimation(true);
 		this.treeView.setDefaultContainerStyle(R.style.TreeNodeStyleCustom); // R.style.TreeNodeStyleDivided
-		this.treeView.setDefaultController(IconTreeController.class);
+		this.treeView.setDefaultController(TreeController.class);
 		containerView.addView(this.treeView.getView());
 
 		// saved state

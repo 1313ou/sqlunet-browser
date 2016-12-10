@@ -20,7 +20,7 @@ import org.sqlunet.propbank.provider.PropBankContract.Words_PbRoleSets;
 import org.sqlunet.propbank.style.PropBankFactories;
 import org.sqlunet.propbank.style.PropBankSpanner;
 import org.sqlunet.style.Spanner;
-import org.sqlunet.treeview.control.QueryController;
+import org.sqlunet.treeview.control.Query;
 import org.sqlunet.treeview.model.TreeNode;
 import org.sqlunet.view.FireEvent;
 import org.sqlunet.view.TreeFactory;
@@ -179,8 +179,8 @@ abstract class BasicModule extends Module
 					TreeFactory.addTextNode(parent, sb, BasicModule.this.context);
 
 					// sub nodes
-					final TreeNode rolesNode = TreeFactory.newQueryNode(new RolesQuery(roleSetId, R.drawable.roles, "Roles"), true, BasicModule.this.context).addTo(parent);
-					final TreeNode examplesNode = TreeFactory.newQueryNode(new ExamplesQuery(roleSetId, R.drawable.sample, "Examples"), false, BasicModule.this.context).addTo(parent);
+					final TreeNode rolesNode = TreeFactory.newQueryNode("Roles", R.drawable.roles, new RolesQuery(roleSetId), true, BasicModule.this.context).addTo(parent);
+					final TreeNode examplesNode = TreeFactory.newQueryNode("Examples", R.drawable.sample, new ExamplesQuery(roleSetId), false, BasicModule.this.context).addTo(parent);
 
 					// fire event
 					FireEvent.onQueryReady(rolesNode);
@@ -265,8 +265,8 @@ abstract class BasicModule extends Module
 						TreeFactory.addTextNode(parent, sb, BasicModule.this.context);
 
 						// sub nodes
-						final TreeNode rolesNode = TreeFactory.newQueryNode(new RolesQuery(roleSetId, R.drawable.roles, "Roles"), true, BasicModule.this.context).addTo(parent);
-						final TreeNode examplesNode = TreeFactory.newQueryNode(new ExamplesQuery(roleSetId, R.drawable.sample, "Examples"), false, BasicModule.this.context).addTo(parent);
+						final TreeNode rolesNode = TreeFactory.newQueryNode("Roles", R.drawable.roles, new RolesQuery(roleSetId), true, BasicModule.this.context).addTo(parent);
+						final TreeNode examplesNode = TreeFactory.newQueryNode("Examples", R.drawable.sample, new ExamplesQuery(roleSetId), false, BasicModule.this.context).addTo(parent);
 
 						// fire event
 						FireEvent.onQueryReady(rolesNode);
@@ -557,18 +557,16 @@ abstract class BasicModule extends Module
 	/**
 	 * Role query
 	 */
-	class RolesQuery extends QueryController.Query
+	private class RolesQuery extends Query
 	{
 		/**
 		 * Constructor
 		 *
 		 * @param roleSetId role set id
-		 * @param icon      icon
-		 * @param text      label text
 		 */
-		public RolesQuery(final long roleSetId, final int icon, final CharSequence text)
+		RolesQuery(final long roleSetId)
 		{
-			super(roleSetId, icon, text);
+			super(roleSetId);
 		}
 
 		@Override
@@ -581,18 +579,16 @@ abstract class BasicModule extends Module
 	/**
 	 * Examples query
 	 */
-	class ExamplesQuery extends QueryController.Query
+	private class ExamplesQuery extends Query
 	{
 		/**
 		 * Constructor
 		 *
 		 * @param roleSetId role set id
-		 * @param icon      icon
-		 * @param text      label text
 		 */
-		public ExamplesQuery(final long roleSetId, final int icon, final CharSequence text)
+		ExamplesQuery(final long roleSetId)
 		{
-			super(roleSetId, icon, text);
+			super(roleSetId);
 		}
 
 		@Override

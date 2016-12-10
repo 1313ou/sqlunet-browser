@@ -19,6 +19,7 @@ public class WordNetContract
 	static public final String WORD2 = "t";
 	static public final String LINK = "l";
 	static public final String SENSE = "s";
+	static public final String SYNSET = "y";
 	static public final String POS = "p";
 
 	// T A B L E S
@@ -30,6 +31,7 @@ public class WordNetContract
 		static public final String CONTENT_URI = BaseProvider.SCHEME + WordNetContract.AUTHORITY + '/' + Words.TABLE;
 		static public final String WORDID = "wordid";
 		static public final String LEMMA = "lemma";
+		static public final String MEMBER = "lemma";
 	}
 
 	@SuppressWarnings("unused")
@@ -162,12 +164,17 @@ public class WordNetContract
 		static public final String CONTENT_URI = BaseProvider.SCHEME + WordNetContract.AUTHORITY + '/' + Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.TABLE;
 		static public final String LEMMA = "lemma";
 		static public final String CASED = "cased";
+		static public final String WORDID = "wordid";
 		static public final String SYNSETID = "synsetid";
+		static public final String SENSEID = "senseid";
 		static public final String SENSENUM = "sensenum";
 		static public final String SENSEKEY = "sensekey";
 		static public final String DEFINITION = "definition";
+		static public final String LEXID = "lexid";
 		static public final String LEXDOMAIN = "lexdomain";
+		static public final String POSNAME = "posname";
 		static public final String POS = "pos";
+		static public final String TAGCOUNT = "tagcount";
 		// words LEFT JOIN senses LEFT JOIN casedwords LEFT JOIN synsets
 	}
 
@@ -178,6 +185,8 @@ public class WordNetContract
 		static public final String CONTENT_URI = BaseProvider.SCHEME + WordNetContract.AUTHORITY + '/' + Senses_Words.TABLE;
 		static public final String CONTENT_URI_BY_SYNSET = BaseProvider.SCHEME + WordNetContract.AUTHORITY + '/' + Senses_Words.TABLE_BY_SYNSET;
 		static public final String SYNSETID = "synsetid";
+		static public final String WORDID = "wordid";
+		static public final String MEMBER = "lemma";
 		static public final String MEMBERS = "members";
 		// synsets LEFT JOIN senses LEFT JOIN words
 	}

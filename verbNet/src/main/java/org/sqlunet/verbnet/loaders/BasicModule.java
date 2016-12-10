@@ -13,7 +13,7 @@ import android.text.SpannableStringBuilder;
 
 import org.sqlunet.browser.Module;
 import org.sqlunet.style.Spanner;
-import org.sqlunet.treeview.control.QueryController;
+import org.sqlunet.treeview.control.Query;
 import org.sqlunet.treeview.model.TreeNode;
 import org.sqlunet.verbnet.R;
 import org.sqlunet.verbnet.provider.VerbNetContract.VnClasses;
@@ -198,9 +198,9 @@ abstract class BasicModule extends Module
 					TreeFactory.addTextNode(parent, sb, BasicModule.this.context);
 
 					// sub nodes
-					final TreeNode membersNode = TreeFactory.newQueryNode(new MembersQuery(classId, R.drawable.members, "Members"), true, context).addTo(parent);
-					final TreeNode rolesNode = TreeFactory.newQueryNode(new RolesQuery(classId, R.drawable.roles, "Roles"), true, context).addTo(parent);
-					final TreeNode framesNode = TreeFactory.newQueryNode(new FramesQuery(classId, R.drawable.vnframe, "Frames"), false, context).addTo(parent);
+					final TreeNode membersNode = TreeFactory.newQueryNode("Members", R.drawable.members, new MembersQuery(classId), true, context).addTo(parent);
+					final TreeNode rolesNode = TreeFactory.newQueryNode("Roles", R.drawable.roles, new RolesQuery(classId), true, context).addTo(parent);
+					final TreeNode framesNode = TreeFactory.newQueryNode("Frames", R.drawable.vnframe, new FramesQuery(classId), false, context).addTo(parent);
 
 					// fire event
 					FireEvent.onQueryReady(membersNode);
@@ -611,11 +611,16 @@ abstract class BasicModule extends Module
 	/**
 	 * Members query
 	 */
-	class MembersQuery extends QueryController.Query
+	class MembersQuery extends Query
 	{
-		public MembersQuery(final long classId, final int icon, final CharSequence text)
+		/**
+		 * Constructor
+		 *
+		 * @param classId class id
+		 */
+		MembersQuery(final long classId)
 		{
-			super(classId, icon, text);
+			super(classId);
 		}
 
 		@Override
@@ -628,11 +633,16 @@ abstract class BasicModule extends Module
 	/**
 	 * Roles query
 	 */
-	class RolesQuery extends QueryController.Query
+	class RolesQuery extends Query
 	{
-		public RolesQuery(final long classId, final int icon, final CharSequence text)
+		/**
+		 * Constructor
+		 *
+		 * @param classId class id
+		 */
+		RolesQuery(final long classId)
 		{
-			super(classId, icon, text);
+			super(classId);
 		}
 
 		@Override
@@ -645,11 +655,16 @@ abstract class BasicModule extends Module
 	/**
 	 * Frames query
 	 */
-	class FramesQuery extends QueryController.Query
+	class FramesQuery extends Query
 	{
-		public FramesQuery(final long classId, final int icon, final CharSequence text)
+		/**
+		 * Constructor
+		 *
+		 * @param classId class id
+		 */
+		FramesQuery(final long classId)
 		{
-			super(classId, icon, text);
+			super(classId);
 		}
 
 		@Override

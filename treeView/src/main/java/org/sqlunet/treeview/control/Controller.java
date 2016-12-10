@@ -59,7 +59,7 @@ public abstract class Controller<E>
 	 *
 	 * @param context context
 	 */
-	public Controller(final Context context)
+	protected Controller(final Context context)
 	{
 		this.context = context;
 	}
@@ -127,8 +127,8 @@ public abstract class Controller<E>
 	/**
 	 * Create node view
 	 *
-	 * @param node  node
-	 * @param value value
+	 * @param node      node
+	 * @param value     value
 	 * @return node view
 	 */
 	public abstract View createNodeView(@SuppressWarnings("UnusedParameters") final TreeNode node, final E value);

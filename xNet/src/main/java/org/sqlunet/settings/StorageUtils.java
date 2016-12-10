@@ -343,9 +343,11 @@ public class StorageUtils
 				break;
 		}
 
+		// make path
+		// true if and only if the directory was created
+		final boolean wasCreated = dir.mkdirs();
+
 		// exists
-		//noinspection ResultOfMethodCallIgnored
-		dir.mkdirs();
 		if (!dir.exists())
 		{
 			status |= CandidateStorage.NOT_EXISTS;
@@ -361,6 +363,13 @@ public class StorageUtils
 		if (!dir.canWrite())
 		{
 			status |= CandidateStorage.NOT_WRITABLE;
+		}
+
+		// restore
+		if (wasCreated && dir.exists())
+		{
+			//noinspection ResultOfMethodCallIgnored
+			dir.delete();
 		}
 
 		return status;

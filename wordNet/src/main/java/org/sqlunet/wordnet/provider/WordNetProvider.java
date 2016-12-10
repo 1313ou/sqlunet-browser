@@ -277,11 +277,11 @@ public class WordNetProvider extends BaseProvider
 	/**
 	 * Query
 	 *
-	 * @param uri uri
-	 * @param projection projection
-	 * @param selection selection
+	 * @param uri           uri
+	 * @param projection    projection
+	 * @param selection     selection
 	 * @param selectionArgs selection arguments
-	 * @param sortOrder sort order
+	 * @param sortOrder     sort order
 	 * @return cursor
 	 */
 	@SuppressWarnings("boxing")
@@ -391,9 +391,9 @@ public class WordNetProvider extends BaseProvider
 
 			case WORDS_SENSES_CASEDWORDS_SYNSETS_POSTYPES_LEXDOMAINS:
 				table = "words " + //
-						"LEFT JOIN senses USING (wordid) " + //
+						"LEFT JOIN senses AS " + WordNetContract.SENSE + " USING (wordid) " + //
 						"LEFT JOIN casedwords USING (wordid,casedwordid) " + //
-						"LEFT JOIN synsets USING (synsetid) " + //
+						"LEFT JOIN synsets AS " + WordNetContract.SYNSET + " USING (synsetid) " + //
 						"LEFT JOIN postypes AS " + WordNetContract.POS + " USING (pos) " + //
 						"LEFT JOIN lexdomains USING (lexdomainid)";
 				break;
@@ -460,7 +460,7 @@ public class WordNetProvider extends BaseProvider
 			case LEXLINKS_SENSES_WORDS_X_BY_SYNSET:
 				groupBy = WordNetContract.DEST + ".synsetid";
 				actualProjection = BaseProvider.appendProjection(actualProjection, "GROUP_CONCAT(DISTINCT " + WordNetContract.WORD2 + ".lemma) AS " + LexLinks_Senses_Words_X.MEMBERS2);
-				table = "lexlinks AS " + WordNetContract.LINK +  ' ' + //
+				table = "lexlinks AS " + WordNetContract.LINK + ' ' + //
 						"INNER JOIN synsets AS " + WordNetContract.DEST + " ON " + WordNetContract.LINK + ".synset2id = " + WordNetContract.DEST + ".synsetid " + //
 						"INNER JOIN words AS " + WordNetContract.WORD + " ON " + WordNetContract.LINK + ".word2id = " + WordNetContract.WORD + ".wordid " + //
 						"LEFT JOIN linktypes USING (linkid) " + //

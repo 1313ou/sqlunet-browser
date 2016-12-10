@@ -246,16 +246,16 @@ public class SensesFragment extends ListFragment
 				final String[] projection = { //
 						WordNetContract.Synsets.SYNSETID + " AS _id", //
 						WordNetContract.Words.WORDID, //
-						WordNetContract.Senses.SENSEID, //
-						WordNetContract.Senses.SENSENUM, //
-						WordNetContract.Senses.SENSEKEY, //
-						WordNetContract.Senses.LEXID, //
-						WordNetContract.Senses.TAGCOUNT, //
-						WordNetContract.Synsets.SYNSETID, //
-						WordNetContract.Synsets.DEFINITION, //
-						WordNetContract.PosTypes.POSNAME, //
-						WordNetContract.LexDomains.LEXDOMAIN, //
-						WordNetContract.CasedWords.CASED};
+						Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.SENSEID, //
+						Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.SENSENUM, //
+						Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.SENSEKEY, //
+						Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.LEXID, //
+						Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.TAGCOUNT, //
+						Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.SYNSETID, //
+						Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.DEFINITION, //
+						Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.POSNAME, //
+						Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.LEXDOMAIN, //
+						Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.CASED};
 				final String selection = Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.LEMMA + " = ?";
 				final String[] selectionArgs = {SensesFragment.this.word};
 				final String sortOrder = Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.POS + ',' + Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.SENSENUM;

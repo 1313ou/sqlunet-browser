@@ -154,9 +154,9 @@ public class ClassFromWordModule extends BasicModule
 						TreeFactory.addTextNode(parent, sb, ClassFromWordModule.this.context);
 
 						// sub nodes
-						final TreeNode membersNode = TreeFactory.newQueryNode(new MembersQuery(classId, R.drawable.members, "Members"), true, ClassFromWordModule.this.context).addTo(parent);
-						final TreeNode rolesNode = TreeFactory.newQueryNode(new RolesQuery(classId, R.drawable.roles, "Roles"), true, ClassFromWordModule.this.context).addTo(parent);
-						final TreeNode framesNode = TreeFactory.newQueryNode(new FramesQuery(classId, R.drawable.vnframe, "Frames"), false, ClassFromWordModule.this.context).addTo(parent);
+						final TreeNode membersNode = TreeFactory.newQueryNode("Members", R.drawable.members, new MembersQuery(classId), true, ClassFromWordModule.this.context).addTo(parent);
+						final TreeNode rolesNode = TreeFactory.newQueryNode("Roles", R.drawable.roles, new RolesQuery(classId), true, ClassFromWordModule.this.context).addTo(parent);
+						final TreeNode framesNode = TreeFactory.newQueryNode("Frames", R.drawable.vnframe, new FramesQuery(classId), false, ClassFromWordModule.this.context).addTo(parent);
 
 						// fire event
 						FireEvent.onQueryReady(membersNode);

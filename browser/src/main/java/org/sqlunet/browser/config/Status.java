@@ -86,7 +86,7 @@ public class Status
 					"index_fnwords_wordid", "index_fnframes_related_frameid", "index_fnframes_related_frame2id", "index_fnlexemes_fnwordid", "index_fnfes_frameid", //
 					"index_fnferealizations_luid", "index_fnvalenceunits_ferid", "index_fnfegrouprealizations_luid", "index_fnpatterns_valenceunits_patternid", "index_fnpatterns_fegrid", //
 					"index_fnsubcorpuses_luid", "index_fnannosets_sentenceid", "index_fnlayers_annosetid", "index_fnlabels_layerid", //
-					"index_pm_wordid", "index_pm_synsetid");
+					"index_pm_wordid", "index_pm_synsetid", "index_pm_lemma");
 			boolean existsPm = contains(existingTablesAndIndexes, "pmvn", "pmpb", "pmfn");
 			boolean existsTsWn = contains(existingTablesAndIndexes, "words_lemma_fts4", "synsets_definition_fts4", "samples_sample_fts4");
 			boolean existsTsVn = contains(existingTablesAndIndexes, "vnexamples_example_fts4");

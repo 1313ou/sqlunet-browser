@@ -54,6 +54,7 @@
 	<string name="title_activity_xselector">Senses per base</string>
 	<string name="title_activity_sense">Sense</string>
 	<string name="title_activity_table">Table</string>
+	<string name="title_activity_word">Word</string>
 	<string name="title_activity_synset">Synset</string>
 	<string name="title_activity_vnclass">VerbNet Class</string>
 	<string name="title_activity_pbroleset">PropBank RoleSet</string>

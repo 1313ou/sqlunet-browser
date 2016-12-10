@@ -19,18 +19,19 @@ public final class ProviderArgs
 	// type
 	public static final String ARG_QUERYTYPE = "QUERYTYPE";
 	public static final int ARG_QUERYTYPE_ALL = 0;
-	public static final int ARG_QUERYTYPE_SYNSET = 1;
-	public static final int ARG_QUERYTYPE_VNCLASS = 2;
-	public static final int ARG_QUERYTYPE_PBROLESET = 3;
-	public static final int ARG_QUERYTYPE_FNFRAME = 4;
-	public static final int ARG_QUERYTYPE_FNLEXUNIT = 5;
-	public static final int ARG_QUERYTYPE_FNSENTENCE = 6;
-	public static final int ARG_QUERYTYPE_FNANNOSET = 7;
-	public static final int ARG_QUERYTYPE_FNPATTERN = 8;
-	public static final int ARG_QUERYTYPE_FNVALENCEUNIT = 9;
-	public static final int ARG_QUERYTYPE_FNPREDICATE = 10;
-	public static final int ARG_QUERYTYPE_PM = 11;
-	public static final int ARG_QUERYTYPE_PMROLE = 12;
+	public static final int ARG_QUERYTYPE_WORD = 1;
+	public static final int ARG_QUERYTYPE_SYNSET = 2;
+	public static final int ARG_QUERYTYPE_VNCLASS = 10;
+	public static final int ARG_QUERYTYPE_PBROLESET = 20;
+	public static final int ARG_QUERYTYPE_FNFRAME = 31;
+	public static final int ARG_QUERYTYPE_FNLEXUNIT = 32;
+	public static final int ARG_QUERYTYPE_FNSENTENCE = 33;
+	public static final int ARG_QUERYTYPE_FNANNOSET = 34;
+	public static final int ARG_QUERYTYPE_FNPATTERN = 35;
+	public static final int ARG_QUERYTYPE_FNVALENCEUNIT = 36;
+	public static final int ARG_QUERYTYPE_FNPREDICATE = 37;
+	public static final int ARG_QUERYTYPE_PM = 40;
+	public static final int ARG_QUERYTYPE_PMROLE = 41;
 
 	// tables
 	public static final String ARG_QUERYURI = "QUERYURI";

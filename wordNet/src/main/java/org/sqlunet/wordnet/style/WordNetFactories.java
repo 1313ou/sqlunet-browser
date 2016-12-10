@@ -36,4 +36,6 @@ public class WordNetFactories
 	public static final SpanFactory definitionFactory = Factories.definitionFactory;
 
 	public static final SpanFactory sampleFactory = Factories.exampleFactory;
+
+	public static final SpanFactory dataFactory = Factories.dataFactory;
 }

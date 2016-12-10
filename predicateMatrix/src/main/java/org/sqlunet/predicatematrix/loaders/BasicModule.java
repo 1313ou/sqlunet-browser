@@ -26,7 +26,7 @@ import org.sqlunet.propbank.PbRoleSetPointer;
 import org.sqlunet.propbank.browser.PbRoleSetActivity;
 import org.sqlunet.provider.ProviderArgs;
 import org.sqlunet.style.Spanner;
-import org.sqlunet.treeview.control.LinkController;
+import org.sqlunet.treeview.control.Link;
 import org.sqlunet.treeview.model.TreeNode;
 import org.sqlunet.verbnet.VnClassPointer;
 import org.sqlunet.verbnet.browser.VnClassActivity;
@@ -191,7 +191,7 @@ abstract class BasicModule extends Module
 		 * @param pmRole      PredicateMatrix role
 		 * @param pmPos       PredicateMatrix pos
 		 */
-		public PmRole(final long pmPredId, final long pmRoleId, final String pmPredicate, final String pmRole, final String pmPos)
+		PmRole(final long pmPredId, final long pmRoleId, final String pmPredicate, final String pmRole, final String pmPos)
 		{
 			this.pmPredId = pmPredId;
 			this.pmRoleId = pmRoleId;
@@ -246,7 +246,7 @@ abstract class BasicModule extends Module
 		 *
 		 * @return role data as string
 		 */
-		public String toRoleString()
+		String toRoleString()
 		{
 			return (this.pmPos == null ? "null" : this.pmPos) + //
 					'-' + //
@@ -271,7 +271,7 @@ abstract class BasicModule extends Module
 		 *
 		 * @return role data as string
 		 */
-		public String toRoleData()
+		String toRoleData()
 		{
 			return this.pmPos + '-' + Long.toString(this.pmRoleId) + '-' + Long.toString(this.pmPredId);
 		}
@@ -280,12 +280,12 @@ abstract class BasicModule extends Module
 	/**
 	 * PredicateMatrix row
 	 */
-	static class PmRow extends PmRole
+	static private class PmRow extends PmRole
 	{
 		/**
 		 * PredicateMatrix row id
 		 */
-		public final long pmId;
+		private final long pmId;
 
 		/**
 		 * Constructor
@@ -297,7 +297,7 @@ abstract class BasicModule extends Module
 		 * @param pmRole      PredicateMatrix role
 		 * @param pmPos       PredicateMatrix pos
 		 */
-		public PmRow(final long pmId, final long pmPredId, final long pmRoleId, final String pmPredicate, final String pmRole, final String pmPos)
+		PmRow(final long pmId, final long pmPredId, final long pmRoleId, final String pmPredicate, final String pmRole, final String pmPos)
 		{
 			super(pmPredId, pmRoleId, pmPredicate, pmRole, pmPos);
 			this.pmId = pmId;
@@ -337,7 +337,7 @@ abstract class BasicModule extends Module
 		 * @param synsetId   synset id
 		 * @param definition definition
 		 */
-		public WnData(final long synsetId, final String definition)
+		WnData(final long synsetId, final String definition)
 		{
 			this.synsetId = synsetId;
 			this.definition = definition;
@@ -410,7 +410,7 @@ abstract class BasicModule extends Module
 		 * @param vnClass   class
 		 * @param vnRole    role
 		 */
-		public VnData(final long vnClassId, final long vnRoleId, final String vnClass, final String vnRole)
+		VnData(final long vnClassId, final long vnRoleId, final String vnClass, final String vnRole)
 		{
 			this.vnClassId = vnClassId;
 			this.vnRoleId = vnRoleId;
@@ -460,7 +460,7 @@ abstract class BasicModule extends Module
 		 *
 		 * @return string
 		 */
-		public CharSequence toData()
+		CharSequence toData()
 		{
 			return Long.toString(this.vnClassId) + '-' + Long.toString(this.vnRoleId);
 		}
@@ -509,7 +509,7 @@ abstract class BasicModule extends Module
 		 * @param pbRole         role
 		 * @param pbRoleDescr    role description
 		 */
-		public PbData(final long pbRoleSetId, final long pbRoleId, final String pbRoleSet, final String pbRoleSetDescr, final String pbRole, final String pbRoleDescr)
+		PbData(final long pbRoleSetId, final long pbRoleId, final String pbRoleSet, final String pbRoleSetDescr, final String pbRole, final String pbRoleDescr)
 		{
 			this.pbRoleSetId = pbRoleSetId;
 			this.pbRoleId = pbRoleId;
@@ -561,7 +561,7 @@ abstract class BasicModule extends Module
 		 *
 		 * @return string
 		 */
-		public CharSequence toData()
+		CharSequence toData()
 		{
 			return Long.toString(this.pbRoleSetId) + '-' + Long.toString(this.pbRoleId);
 		}
@@ -600,7 +600,7 @@ abstract class BasicModule extends Module
 		 * @param fnFrame   Frame
 		 * @param fnFe      Frame element
 		 */
-		public FnData(final long fnFrameId, final long fnFeId, final String fnFrame, final String fnFe)
+		FnData(final long fnFrameId, final long fnFeId, final String fnFrame, final String fnFe)
 		{
 			this.fnFrameId = fnFrameId;
 			this.fnFeId = fnFeId;
@@ -650,7 +650,7 @@ abstract class BasicModule extends Module
 		 *
 		 * @return string
 		 */
-		public CharSequence toData()
+		CharSequence toData()
 		{
 			return Long.toString(this.fnFrameId) + '-' + Long.toString(this.fnFeId);
 		}
@@ -679,7 +679,7 @@ abstract class BasicModule extends Module
 		 * @param parent    parent node
 		 * @param displayer displayer
 		 */
-		public PmCallbacks(final TreeNode parent, final Displayer displayer)
+		PmCallbacks(final TreeNode parent, final Displayer displayer)
 		{
 			this.parent = parent;
 			this.displayer = displayer;
@@ -914,7 +914,7 @@ abstract class BasicModule extends Module
 		 * @param parent    parent
 		 * @param displayer displayer
 		 */
-		public PmProcessGrouped(final TreeNode parent, final Displayer displayer)
+		PmProcessGrouped(final TreeNode parent, final Displayer displayer)
 		{
 			super(parent, displayer);
 			this.pmRoleId = 0;
@@ -1043,7 +1043,7 @@ abstract class BasicModule extends Module
 		 * @param parent    parent
 		 * @param displayer displayer to use
 		 */
-		public PmProcessOnIteration(final TreeNode parent, final Displayer displayer)
+		PmProcessOnIteration(final TreeNode parent, final Displayer displayer)
 		{
 			super(parent, displayer);
 		}
@@ -1227,7 +1227,7 @@ abstract class BasicModule extends Module
 				Spanner.append(vnsb, wnData.definition, 0, PredicateMatrixFactories.definitionFactory);
 			}
 
-			return vnData.vnClassId == 0L ? TreeFactory.newLeafNode(vnsb, R.drawable.verbnet, BasicModule.this.context) : TreeFactory.newLinkNode(new VnClassLinkData(vnData.vnClassId, R.drawable.verbnet, vnsb), BasicModule.this.context);
+			return vnData.vnClassId == 0L ? TreeFactory.newLeafNode(vnsb, R.drawable.verbnet, BasicModule.this.context) : TreeFactory.newLinkNode(vnsb, R.drawable.verbnet, new VnClassLink(vnData.vnClassId), BasicModule.this.context);
 		}
 
 		/**
@@ -1292,7 +1292,7 @@ abstract class BasicModule extends Module
 				Spanner.append(pbsb, wnData.definition, 0, PredicateMatrixFactories.definitionFactory);
 			}
 
-			return pbData.pbRoleSetId == 0L ? TreeFactory.newLeafNode(pbsb, R.drawable.propbank, BasicModule.this.context) : TreeFactory.newLinkNode(new PbRoleSetLinkData(pbData.pbRoleSetId, R.drawable.propbank, pbsb), BasicModule.this.context);
+			return pbData.pbRoleSetId == 0L ? TreeFactory.newLeafNode(pbsb, R.drawable.propbank, BasicModule.this.context) : TreeFactory.newLinkNode(pbsb, R.drawable.propbank, new PbRoleSetLink(pbData.pbRoleSetId), BasicModule.this.context);
 		}
 
 		/**
@@ -1344,7 +1344,7 @@ abstract class BasicModule extends Module
 				Spanner.append(fnsb, wnData.definition, 0, PredicateMatrixFactories.definitionFactory);
 			}
 
-			return fnData.fnFrameId == 0L ? TreeFactory.newLeafNode(fnsb, R.drawable.framenet, BasicModule.this.context) : TreeFactory.newLinkNode(new FnFrameLinkData(fnData.fnFrameId, R.drawable.framenet, fnsb), BasicModule.this.context);
+			return fnData.fnFrameId == 0L ? TreeFactory.newLeafNode(fnsb, R.drawable.framenet, BasicModule.this.context) : TreeFactory.newLinkNode(fnsb, R.drawable.framenet, new FnFrameLink(fnData.fnFrameId), BasicModule.this.context);
 		}
 	}
 
@@ -1527,18 +1527,16 @@ abstract class BasicModule extends Module
 	/**
 	 * VerbNet class link data
 	 */
-	class VnClassLinkData extends LinkController.LinkData
+	private class VnClassLink extends Link
 	{
 		/**
 		 * Constructor
 		 *
 		 * @param classId class id
-		 * @param icon    icon
-		 * @param text    label text
 		 */
-		public VnClassLinkData(final long classId, final int icon, final CharSequence text)
+		VnClassLink(final long classId)
 		{
-			super(classId, icon, text);
+			super(classId);
 		}
 
 		@SuppressWarnings("boxing")
@@ -1558,18 +1556,16 @@ abstract class BasicModule extends Module
 	/**
 	 * PropBank role set link data
 	 */
-	class PbRoleSetLinkData extends LinkController.LinkData
+	private class PbRoleSetLink extends Link
 	{
 		/**
 		 * Constructor
 		 *
 		 * @param roleSetId role set id
-		 * @param icon      icon
-		 * @param text      label text
 		 */
-		public PbRoleSetLinkData(final long roleSetId, final int icon, final CharSequence text)
+		PbRoleSetLink(final long roleSetId)
 		{
-			super(roleSetId, icon, text);
+			super(roleSetId);
 		}
 
 		@SuppressWarnings("boxing")
@@ -1589,18 +1585,16 @@ abstract class BasicModule extends Module
 	/**
 	 * FrameNet frame link data
 	 */
-	class FnFrameLinkData extends LinkController.LinkData
+	private class FnFrameLink extends Link
 	{
 		/**
 		 * Constructor
 		 *
 		 * @param frameId frame id
-		 * @param icon    icon
-		 * @param text    label text
 		 */
-		public FnFrameLinkData(final long frameId, final int icon, final CharSequence text)
+		FnFrameLink(final long frameId)
 		{
-			super(frameId, icon, text);
+			super(frameId);
 		}
 
 		@SuppressWarnings("boxing")

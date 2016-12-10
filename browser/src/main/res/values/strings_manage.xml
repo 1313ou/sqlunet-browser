@@ -62,7 +62,8 @@
 			CREATE INDEX IF NOT EXISTS index_fnlayers_annosetid ON fnlayers (annosetid);
 			CREATE INDEX IF NOT EXISTS index_fnlabels_layerid ON fnlabels(layerid);
 			CREATE INDEX IF NOT EXISTS index_pm_wordid ON pm(wordid);
-			CREATE INDEX IF NOT EXISTS index_pm_synsetid ON pm(synsetid);</item>
+			CREATE INDEX IF NOT EXISTS index_pm_synsetid ON pm(synsetid);
+			CREATE INDEX IF NOT EXISTS index_pm_lemma ON pm(lemma);</item>
 		<item>
 			DROP TABLE IF EXISTS pmvn;
 			CREATE TABLE IF NOT EXISTS pmvn (pmid INTEGER primary key,wordid INTEGER,synsetid INTEGER,vnwordid INTEGER,classid INTEGER);
@@ -165,10 +166,12 @@
 			DROP INDEX IF EXISTS index_fnlabels_layerid;</item>
 		<item>
 			CREATE INDEX IF NOT EXISTS index_pm_wordid ON pm(wordid);
-			CREATE INDEX IF NOT EXISTS index_pm_synsetid ON pm(synsetid);</item>
+			CREATE INDEX IF NOT EXISTS index_pm_synsetid ON pm(synsetid);
+			CREATE INDEX IF NOT EXISTS index_pm_lemma ON pm(lemma);</item>
 		<item>
 			DROP INDEX IF EXISTS index_pm_wordid;
-			DROP INDEX IF EXISTS index_pm_synsetid;</item>
+			DROP INDEX IF EXISTS index_pm_synsetid;
+			DROP INDEX IF EXISTS index_pm_lemma;</item>
 		<item>
 			DROP TABLE IF EXISTS words_lemma_fts4;
 			DROP TABLE IF EXISTS synsets_definition_fts4;

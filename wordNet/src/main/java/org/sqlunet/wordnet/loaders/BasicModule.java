@@ -4,20 +4,29 @@ import android.app.Fragment;
 import android.app.LoaderManager.LoaderCallbacks;
 import android.content.Context;
 import android.content.CursorLoader;
+import android.content.Intent;
 import android.content.Loader;
 import android.database.Cursor;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.text.SpannableStringBuilder;
 
 import org.sqlunet.browser.Module;
+import org.sqlunet.provider.ProviderArgs;
 import org.sqlunet.style.Spanner;
-import org.sqlunet.treeview.control.QueryController;
+import org.sqlunet.treeview.control.Link;
+import org.sqlunet.treeview.control.Query;
 import org.sqlunet.treeview.model.TreeNode;
 import org.sqlunet.view.FireEvent;
 import org.sqlunet.view.TreeFactory;
 import org.sqlunet.wordnet.R;
+import org.sqlunet.wordnet.SensePointer;
+import org.sqlunet.wordnet.SynsetPointer;
+import org.sqlunet.wordnet.WordPointer;
+import org.sqlunet.wordnet.browser.SynsetActivity;
+import org.sqlunet.wordnet.browser.WordActivity;
 import org.sqlunet.wordnet.provider.WordNetContract;
 import org.sqlunet.wordnet.provider.WordNetContract.AdjPositions_AdjPositionTypes;
 import org.sqlunet.wordnet.provider.WordNetContract.LexDomains;
@@ -33,6 +42,7 @@ import org.sqlunet.wordnet.provider.WordNetContract.Synsets_PosTypes_LexDomains;
 import org.sqlunet.wordnet.provider.WordNetContract.VerbFrameMaps_VerbFrames;
 import org.sqlunet.wordnet.provider.WordNetContract.VerbFrameSentenceMaps_VerbFrameSentences;
 import org.sqlunet.wordnet.provider.WordNetContract.Words;
+import org.sqlunet.wordnet.provider.WordNetContract.Words_Senses_CasedWords_Synsets_PosTypes_LexDomains;
 import org.sqlunet.wordnet.style.WordNetFactories;
 
 import java.util.Locale;
@@ -100,6 +110,177 @@ abstract public class BasicModule extends Module
 	// Sense
 
 	/**
+	 * Senses from word
+	 *
+	 * @param word   word
+	 * @param parent tree parent node
+	 */
+	protected void senses(final String word, final TreeNode parent)
+	{
+		// load the contents
+		getLoaderManager().restartLoader(++Module.loaderId, null, new LoaderCallbacks<Cursor>()
+		{
+			@Override
+			public Loader<Cursor> onCreateLoader(final int loaderId, final Bundle loaderArgs)
+			{
+				final Uri uri = Uri.parse(Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.CONTENT_URI);
+				final String[] projection = { //
+						Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.SYNSETID + " AS _id", //
+						Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.WORDID, //
+						Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.SENSEID, //
+						Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.SENSENUM, //
+						Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.SENSEKEY, //
+						Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.LEXID, //
+						Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.TAGCOUNT, //
+						Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.SYNSETID, //
+						Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.DEFINITION, //
+						Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.POSNAME, //
+						Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.LEXDOMAIN, //
+						Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.CASED};
+				final String selection = Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.LEMMA + " = ?";
+				final String[] selectionArgs = {word};
+				final String sortOrder = Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.POS + ',' + Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.SENSENUM;
+				return new CursorLoader(BasicModule.this.context, uri, projection, selection, selectionArgs, sortOrder);
+			}
+
+			@Override
+			public void onLoadFinished(final Loader<Cursor> loader, final Cursor cursor)
+			{
+				// store source result
+				if (cursor.moveToFirst())
+				{
+					final int idWordId = cursor.getColumnIndex(Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.WORDID);
+					final int idSynsetId = cursor.getColumnIndex(Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.SYNSETID);
+					final int idPosName = cursor.getColumnIndex(Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.POSNAME);
+					final int idLexDomain = cursor.getColumnIndex(Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.LEXDOMAIN);
+					final int idDefinition = cursor.getColumnIndex(Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.DEFINITION);
+					final int idTagCount = cursor.getColumnIndex(Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.TAGCOUNT);
+					final int idCased = cursor.getColumnIndex(Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.CASED);
+
+					senses(cursor, idWordId, idSynsetId, idPosName, idLexDomain, idDefinition, idTagCount, idCased, parent);
+
+					FireEvent.onResults(parent);
+				}
+				else
+				{
+					FireEvent.onNoResult(parent, true);
+				}
+
+				cursor.close();
+			}
+
+			@Override
+			public void onLoaderReset(final Loader<Cursor> loader)
+			{
+				//
+			}
+		});
+	}
+
+	/**
+	 * Senses from word id
+	 *
+	 * @param wordId word id
+	 * @param parent tree parent node
+	 */
+	protected void senses(final long wordId, final TreeNode parent)
+	{
+		// load the contents
+		getLoaderManager().restartLoader(++Module.loaderId, null, new LoaderCallbacks<Cursor>()
+		{
+			@Override
+			public Loader<Cursor> onCreateLoader(final int loaderId, final Bundle loaderArgs)
+			{
+				final Uri uri = Uri.parse(Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.CONTENT_URI);
+				final String[] projection = { //
+						Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.SYNSETID + " AS _id", //
+						Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.WORDID, //
+						Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.SENSEID, //
+						Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.SENSENUM, //
+						Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.SENSEKEY, //
+						Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.LEXID, //
+						Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.TAGCOUNT, //
+						Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.SYNSETID, //
+						Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.DEFINITION, //
+						Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.POSNAME, //
+						Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.LEXDOMAIN, //
+						Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.CASED};
+				final String selection = Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.WORDID + " = ?";
+				final String[] selectionArgs = {Long.toString(wordId)};
+				final String sortOrder = WordNetContract.POS + '.' + Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.POS + ',' + Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.SENSENUM;
+				return new CursorLoader(BasicModule.this.context, uri, projection, selection, selectionArgs, sortOrder);
+			}
+
+			@Override
+			public void onLoadFinished(final Loader<Cursor> loader, final Cursor cursor)
+			{
+				// store source result
+				if (cursor.moveToFirst())
+				{
+					final int idWordId = cursor.getColumnIndex(Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.WORDID);
+					final int idSynsetId = cursor.getColumnIndex(Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.SYNSETID);
+					final int idPosName = cursor.getColumnIndex(Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.POSNAME);
+					final int idLexDomain = cursor.getColumnIndex(Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.LEXDOMAIN);
+					final int idDefinition = cursor.getColumnIndex(Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.DEFINITION);
+					final int idTagCount = cursor.getColumnIndex(Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.TAGCOUNT);
+					final int idCased = cursor.getColumnIndex(Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.CASED);
+
+					senses(cursor, idWordId, idSynsetId, idPosName, idLexDomain, idDefinition, idTagCount, idCased, parent);
+
+					FireEvent.onResults(parent);
+				}
+				else
+				{
+					FireEvent.onNoResult(parent, true);
+				}
+
+				cursor.close();
+			}
+
+			@Override
+			public void onLoaderReset(final Loader<Cursor> loader)
+			{
+				//
+			}
+		});
+	}
+
+	/**
+	 * Senses
+	 *
+	 * @param cursor       cursor
+	 * @param idWordId     column id of wordid
+	 * @param idSynsetId   column id of synset id
+	 * @param idPosName    column id of  pos name
+	 * @param idLexDomain  column id of lex domain
+	 * @param idDefinition column id of  definition
+	 * @param idTagCount   column id of  tag count
+	 * @param idCased      column id of cased word
+	 * @param parent       tree parent node
+	 */
+	private void senses(final Cursor cursor, final int idWordId, final int idSynsetId, final int idPosName, final int idLexDomain, final int idDefinition, final int idTagCount, final int idCased, final TreeNode parent)
+	{
+		do
+		{
+			final long wordId = cursor.getLong(idWordId);
+			final long synsetId = cursor.getLong(idSynsetId);
+			final String posName = cursor.getString(idPosName);
+			final String lexDomain = cursor.getString(idLexDomain);
+			final String definition = cursor.getString(idDefinition);
+			final String cased = cursor.getString(idCased);
+			final int tagCount = cursor.getInt(idTagCount);
+
+			final SpannableStringBuilder sb = new SpannableStringBuilder();
+			synset(sb, synsetId, posName, lexDomain, definition);
+
+			// result
+			final TreeNode synsetNode = TreeFactory.newLinkNode(sb, R.drawable.synset, new SenseLink(synsetId, wordId), BasicModule.this.context);
+			parent.addChild(synsetNode);
+		}
+		while (cursor.moveToNext());
+	}
+
+	/**
 	 * Sense
 	 *
 	 * @param synsetId synset id
@@ -137,38 +318,26 @@ abstract public class BasicModule extends Module
 				{
 					final SpannableStringBuilder sb = new SpannableStringBuilder();
 					final SpannableStringBuilder sbdef = new SpannableStringBuilder();
-					final int idDefinition = cursor.getColumnIndex(Synsets.DEFINITION);
 					final int idPosName = cursor.getColumnIndex(PosTypes.POSNAME);
 					final int idLexDomain = cursor.getColumnIndex(LexDomains.LEXDOMAIN);
-					final String definition = cursor.getString(idDefinition);
+					final int idDefinition = cursor.getColumnIndex(Synsets.DEFINITION);
 					final String posName = cursor.getString(idPosName);
 					final String lexDomain = cursor.getString(idLexDomain);
+					final String definition = cursor.getString(idDefinition);
 
 					sb.append('\n');
 					Spanner.appendImage(sb, BasicModule.this.synsetDrawable);
-					sb.append('\n');
-					sb.append('\t');
-					Spanner.appendImage(sb, BasicModule.this.posDrawable);
 					sb.append(' ');
-					sb.append(posName);
-					sb.append('\n');
-					sb.append('\t');
-					Spanner.appendImage(sb, BasicModule.this.lexdomainDrawable);
-					sb.append(' ');
-					sb.append(lexDomain);
-					sb.append(' ');
-
-					Spanner.appendImage(sbdef, BasicModule.this.definitionDrawable);
-					sbdef.append(' ');
-					sbdef.append(definition);
+					synset(sb, synsetId, posName, lexDomain, definition);
 
 					// attach result
 					TreeFactory.addTextNode(parent, sb, BasicModule.this.context);
 					TreeFactory.addTextNode(parent, sbdef, BasicModule.this.context);
 
 					// subnodes
-					final TreeNode linksNode = TreeFactory.newQueryNode(new LinksQuery(synsetId, wordId, R.drawable.ic_links, "Links"), true, BasicModule.this.context).addTo(parent);
-					final TreeNode samplesNode = TreeFactory.newQueryNode(new SamplesQuery(synsetId, R.drawable.sample, "Samples"), true, BasicModule.this.context).addTo(parent);
+					final TreeNode linksNode = TreeFactory.newQueryNode("Links", R.drawable.ic_links, new LinksQuery(synsetId, wordId), true, BasicModule.this.context).addTo(parent);
+					final TreeNode samplesNode = TreeFactory.newQueryNode("Samples", R.drawable.sample, new SamplesQuery(synsetId), true, BasicModule.this.context).addTo(parent);
+
 					// fire event
 					FireEvent.onQueryReady(linksNode);
 					FireEvent.onQueryReady(samplesNode);
@@ -228,29 +397,16 @@ abstract public class BasicModule extends Module
 				if (cursor.moveToFirst())
 				{
 					final SpannableStringBuilder sb = new SpannableStringBuilder();
-					final int idDefinition = cursor.getColumnIndex(Synsets.DEFINITION);
 					final int idPosName = cursor.getColumnIndex(PosTypes.POSNAME);
 					final int idLexDomain = cursor.getColumnIndex(LexDomains.LEXDOMAIN);
-					final String definition = cursor.getString(idDefinition);
+					final int idDefinition = cursor.getColumnIndex(Synsets.DEFINITION);
 					final String posName = cursor.getString(idPosName);
 					final String lexDomain = cursor.getString(idLexDomain);
+					final String definition = cursor.getString(idDefinition);
 
 					Spanner.appendImage(sb, BasicModule.this.synsetDrawable);
 					sb.append(' ');
-					sb.append(Long.toString(synsetId));
-					sb.append(' ');
-					Spanner.appendImage(sb, BasicModule.this.posDrawable);
-					sb.append(' ');
-					sb.append(posName);
-					sb.append(' ');
-					Spanner.appendImage(sb, BasicModule.this.lexdomainDrawable);
-					sb.append(' ');
-					sb.append(lexDomain);
-					sb.append('\n');
-
-					Spanner.appendImage(sb, BasicModule.this.definitionDrawable);
-					sb.append(' ');
-					Spanner.append(sb, definition, 0, WordNetFactories.definitionFactory);
+					synset(sb, synsetId, posName, lexDomain, definition);
 
 					// result
 					if (addNewNode)
@@ -277,6 +433,34 @@ abstract public class BasicModule extends Module
 				//
 			}
 		});
+	}
+
+	/**
+	 * Synset to string builder
+	 *
+	 * @param sb         string builder
+	 * @param synsetId   synset id
+	 * @param posName    pos
+	 * @param lexDomain  lex domain
+	 * @param definition definition
+	 * @return string builder
+	 */
+	private SpannableStringBuilder synset(final SpannableStringBuilder sb, final long synsetId, final String posName, final String lexDomain, final String definition)
+	{
+		Spanner.appendImage(sb, BasicModule.this.posDrawable);
+		sb.append(' ');
+		sb.append(posName);
+		sb.append(' ');
+		Spanner.appendImage(sb, BasicModule.this.lexdomainDrawable);
+		sb.append(' ');
+		sb.append(lexDomain);
+		sb.append(' ');
+		Spanner.append(sb, Long.toString(synsetId), 0, WordNetFactories.dataFactory);
+		sb.append('\n');
+		Spanner.appendImage(sb, BasicModule.this.definitionDrawable);
+		sb.append(' ');
+		Spanner.append(sb, definition, 0, WordNetFactories.definitionFactory);
+		return sb;
 	}
 
 	/**
@@ -358,6 +542,80 @@ abstract public class BasicModule extends Module
 				else
 				{
 					FireEvent.onNoResult(parent, addNewNode);
+				}
+
+				cursor.close();
+			}
+
+			@Override
+			public void onLoaderReset(final Loader<Cursor> loader)
+			{
+				//
+			}
+		});
+	}
+
+	/**
+	 * Members
+	 *
+	 * @param synsetId synset
+	 * @param parent   parent node
+	 */
+	void members(final long synsetId, final TreeNode parent)
+	{
+		getLoaderManager().restartLoader(++Module.loaderId, null, new LoaderCallbacks<Cursor>()
+		{
+			@Override
+			public Loader<Cursor> onCreateLoader(final int loaderId, final Bundle loaderArgs)
+			{
+				final Uri uri = Uri.parse(Senses_Words.CONTENT_URI);
+				final String[] projection = {Senses_Words.WORDID, Senses_Words.MEMBER};
+				final String selection = Senses_Words.SYNSETID + " = ?";
+				final String[] selectionArgs = {Long.toString(synsetId)};
+				final String sortOrder = Senses_Words.MEMBER;
+				return new CursorLoader(BasicModule.this.context, uri, projection, selection, selectionArgs, sortOrder);
+			}
+
+			@Override
+			public void onLoadFinished(final Loader<Cursor> loader, final Cursor cursor)
+			{
+				if (BasicModule.this.membersGrouped)
+				{
+					if (cursor.getCount() > 1)
+					{
+						throw new RuntimeException("Unexpected number of rows");
+					}
+				}
+
+				if (cursor.moveToFirst())
+				{
+					final int idWordId = cursor.getColumnIndex(Senses_Words.WORDID);
+					final int idMember = cursor.getColumnIndex(Senses_Words.MEMBER);
+					// int i = 1;
+					do
+					{
+						final long wordId = cursor.getLong(idWordId);
+						final String member = cursor.getString(idMember);
+
+						final SpannableStringBuilder sb = new SpannableStringBuilder();
+						// final String record = String.format(Locale.ENGLISH, "[%d] %s", i++, lemma);
+						// sb.append(record);
+						// sb.append(Integer.toString(i++));
+						// sb.append('-');
+						// sb.append(lemma);
+						Spanner.append(sb, member, 0, WordNetFactories.membersFactory);
+
+						// result
+						final TreeNode memberNode = TreeFactory.newLinkNode(sb, R.drawable.member, new WordLink(wordId), BasicModule.this.context);
+						parent.addChild(memberNode);
+					}
+					while (cursor.moveToNext());
+
+					FireEvent.onResults(parent);
+				}
+				else
+				{
+					FireEvent.onNoResult(parent, true);
 				}
 
 				cursor.close();
@@ -521,7 +779,7 @@ abstract public class BasicModule extends Module
 						}
 						else
 						{
-							final TreeNode linksNode = TreeFactory.newQueryNode(new SubLinksQuery(targetSynsetId, linkId, getLinkRes(linkId), sb), false, context).prependTo(parent);
+							final TreeNode linksNode = TreeFactory.newLinkQueryNode(sb, getLinkRes(linkId), new SubLinksQuery(targetSynsetId, linkId), new SynsetLink(synsetId), false, context).prependTo(parent);
 
 							// fire event
 							FireEvent.onQueryReady(linksNode);
@@ -612,7 +870,7 @@ abstract public class BasicModule extends Module
 						}
 						else
 						{
-							final TreeNode linksNode = TreeFactory.newQueryNode(new SubLinksQuery(targetSynsetId, linkId, getLinkRes(linkId), sb), false, context).addTo(parent);
+							final TreeNode linksNode = TreeFactory.newLinkQueryNode(sb, getLinkRes(linkId), new SubLinksQuery(targetSynsetId, linkId), new SynsetLink(synsetId), false, context).addTo(parent);
 
 							// fire event
 							FireEvent.onQueryReady(linksNode);
@@ -781,25 +1039,26 @@ abstract public class BasicModule extends Module
 					final int idLinkId = cursor.getColumnIndex(LinkTypes.LINKID);
 					// final int idLink = cursor.getColumnIndex(LinkTypes.LINK);
 
-					// final int idTargetSynsetId = cursor.getColumnIndex(BasicModule.TARGET_SYNSETID);
+					final int idTargetSynsetId = cursor.getColumnIndex(BasicModule.TARGET_SYNSETID);
 					final int idTargetDefinition = cursor.getColumnIndex(BasicModule.TARGET_DEFINITION);
 					// final int idTargetMembers = cursor.getColumnIndex(LexLinks_Senses_Words_X.MEMBERS2);
 
-					// final int idTargetWordId = cursor.getColumnIndex(BasicModule.TARGET_WORDID);
+					final int idTargetWordId = cursor.getColumnIndex(BasicModule.TARGET_WORDID);
 					final int idTargetLemma = cursor.getColumnIndex(BasicModule.TARGET_LEMMA);
 
-					final SpannableStringBuilder sb = new SpannableStringBuilder();
 					do
 					{
+						final SpannableStringBuilder sb = new SpannableStringBuilder();
+
 						final int linkId = cursor.getInt(idLinkId);
 						// final String link = cursor.getString(idLink);
 
-						// final String targetSynsetId = cursor.getString(idTargetSynsetId);
+						final long targetSynsetId = cursor.getLong(idTargetSynsetId);
 						final String targetDefinition = cursor.getString(idTargetDefinition);
 						// final String targetMembers = cursor.getString(idTargetMembers);
 
 						final String targetLemma = cursor.getString(idTargetLemma);
-						// final String targetWordId = cursor.getString(idTargetWordId);
+						final String targetWordId = cursor.getString(idTargetWordId);
 
 						// final String record = String.format(Locale.ENGLISH, "[%s] %s (%s)\n\t%s (synset %s) {%s}", link, targetLemma, targetWordId,targetDefinition, targetSynsetId, targetMembers);
 
@@ -820,12 +1079,10 @@ abstract public class BasicModule extends Module
 						Spanner.append(sb, targetDefinition, 0, WordNetFactories.definitionFactory);
 
 						// attach result
-						TreeFactory.newLeafNode(sb, getLinkRes(linkId), context);
+						final TreeNode linkNode = TreeFactory.newLinkNode(sb, getLinkRes(linkId), new SenseLink(targetSynsetId, idTargetWordId), BasicModule.this.context);
+						parent.addChild(linkNode);
 					}
 					while (cursor.moveToNext());
-
-					// attach result
-					TreeFactory.addTextNode(parent, sb, context);
 
 					// fire event
 					FireEvent.onResults(parent);
@@ -1437,7 +1694,7 @@ abstract public class BasicModule extends Module
 	/**
 	 * Link query
 	 */
-	public class LinksQuery extends QueryController.Query
+	class LinksQuery extends Query
 	{
 		/**
 		 * Word id
@@ -1449,12 +1706,10 @@ abstract public class BasicModule extends Module
 		 *
 		 * @param synsetId synset id
 		 * @param wordId   word id
-		 * @param icon     icon
-		 * @param text     label text
 		 */
-		public LinksQuery(final long synsetId, final long wordId, final int icon, final CharSequence text)
+		LinksQuery(final long synsetId, final long wordId)
 		{
-			super(synsetId, icon, text);
+			super(synsetId);
 			this.wordId = wordId;
 		}
 
@@ -1473,18 +1728,16 @@ abstract public class BasicModule extends Module
 	 * Semantic Link query
 	 */
 	@SuppressWarnings("unused")
-	public class SemLinksQuery extends QueryController.Query
+	class SemLinksQuery extends Query
 	{
 		/**
 		 * Constructor
 		 *
 		 * @param synsetId synset id
-		 * @param icon     icon
-		 * @param text     label text
 		 */
-		public SemLinksQuery(final long synsetId, final int icon, final CharSequence text)
+		public SemLinksQuery(final long synsetId)
 		{
-			super(synsetId, icon, text);
+			super(synsetId);
 		}
 
 		@Override
@@ -1498,7 +1751,7 @@ abstract public class BasicModule extends Module
 	 * Lexical Link query
 	 */
 	@SuppressWarnings("unused")
-	public class LexLinksQuery extends QueryController.Query
+	class LexLinksQuery extends Query
 	{
 		/**
 		 * Word id
@@ -1510,12 +1763,10 @@ abstract public class BasicModule extends Module
 		 *
 		 * @param synsetId synset id
 		 * @param wordId   word id
-		 * @param icon     icon
-		 * @param text     label text
 		 */
-		public LexLinksQuery(final long synsetId, final long wordId, final int icon, final CharSequence text)
+		public LexLinksQuery(final long synsetId, final long wordId)
 		{
-			super(synsetId, icon, text);
+			super(synsetId);
 			this.wordId = wordId;
 		}
 
@@ -1529,7 +1780,7 @@ abstract public class BasicModule extends Module
 	/**
 	 * Sub links of give type query
 	 */
-	public class SubLinksQuery extends QueryController.Query
+	class SubLinksQuery extends Query
 	{
 		/**
 		 * Link id
@@ -1541,12 +1792,10 @@ abstract public class BasicModule extends Module
 		 *
 		 * @param synsetId synset id
 		 * @param linkId   link id
-		 * @param icon     icon
-		 * @param text     label text
 		 */
-		public SubLinksQuery(final long synsetId, final int linkId, final int icon, final CharSequence text)
+		public SubLinksQuery(final long synsetId, final int linkId)
 		{
-			super(synsetId, icon, text);
+			super(synsetId);
 			this.linkId = linkId;
 		}
 
@@ -1561,18 +1810,16 @@ abstract public class BasicModule extends Module
 	/**
 	 * Samples query
 	 */
-	public class SamplesQuery extends QueryController.Query
+	class SamplesQuery extends Query
 	{
 		/**
 		 * Constructor
 		 *
 		 * @param synsetId synset id
-		 * @param icon     icon
-		 * @param text     label text
 		 */
-		public SamplesQuery(final long synsetId, final int icon, final CharSequence text)
+		public SamplesQuery(final long synsetId)
 		{
-			super(synsetId, icon, text);
+			super(synsetId);
 		}
 
 		@Override
@@ -1580,6 +1827,97 @@ abstract public class BasicModule extends Module
 		{
 			// samples
 			samples(this.id, node, true);
+		}
+	}
+
+	/**
+	 * Word link data
+	 */
+	class WordLink extends Link
+	{
+		/**
+		 * Constructor
+		 *
+		 * @param wordId word id
+		 */
+		public WordLink(final long wordId)
+		{
+			super(wordId);
+		}
+
+		@SuppressWarnings("boxing")
+		@Override
+		public void process()
+		{
+			final Parcelable pointer = new WordPointer(this.id);
+			final Intent intent = new Intent(BasicModule.this.context, WordActivity.class);
+			intent.putExtra(ProviderArgs.ARG_QUERYTYPE, ProviderArgs.ARG_QUERYTYPE_WORD);
+			intent.putExtra(ProviderArgs.ARG_QUERYPOINTER, pointer);
+			intent.setAction(ProviderArgs.ACTION_QUERY);
+
+			BasicModule.this.context.startActivity(intent);
+		}
+	}
+
+	/**
+	 * Synset link data
+	 */
+	class SynsetLink extends Link
+	{
+		/**
+		 * Constructor
+		 *
+		 * @param synsetId synset id
+		 */
+		public SynsetLink(final long synsetId)
+		{
+			super(synsetId);
+		}
+
+		@SuppressWarnings("boxing")
+		@Override
+		public void process()
+		{
+			final Parcelable pointer = new SynsetPointer(this.id, null);
+			final Intent intent = new Intent(BasicModule.this.context, SynsetActivity.class);
+			intent.putExtra(ProviderArgs.ARG_QUERYTYPE, ProviderArgs.ARG_QUERYTYPE_SYNSET);
+			intent.putExtra(ProviderArgs.ARG_QUERYPOINTER, pointer);
+			intent.setAction(ProviderArgs.ACTION_QUERY);
+
+			BasicModule.this.context.startActivity(intent);
+		}
+	}
+
+	/**
+	 * Sense link data
+	 */
+	class SenseLink extends SynsetLink
+	{
+		final private long wordId;
+
+		/**
+		 * Constructor
+		 *
+		 * @param synsetId synset id
+		 * @param wordId   word id
+		 */
+		public SenseLink(final long synsetId, final long wordId)
+		{
+			super(synsetId);
+			this.wordId = wordId;
+		}
+
+		@SuppressWarnings("boxing")
+		@Override
+		public void process()
+		{
+			final Parcelable pointer = new SensePointer(this.id, null, this.wordId, null, null);
+			final Intent intent = new Intent(BasicModule.this.context, SynsetActivity.class);
+			intent.putExtra(ProviderArgs.ARG_QUERYTYPE, ProviderArgs.ARG_QUERYTYPE_SYNSET);
+			intent.putExtra(ProviderArgs.ARG_QUERYPOINTER, pointer);
+			intent.setAction(ProviderArgs.ACTION_QUERY);
+
+			BasicModule.this.context.startActivity(intent);
 		}
 	}
 }

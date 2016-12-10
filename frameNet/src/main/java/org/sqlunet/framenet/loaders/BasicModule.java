@@ -42,7 +42,7 @@ import org.sqlunet.framenet.style.FrameNetMarkupFactory;
 import org.sqlunet.framenet.style.FrameNetProcessor;
 import org.sqlunet.framenet.style.FrameNetSpanner;
 import org.sqlunet.style.Spanner;
-import org.sqlunet.treeview.control.QueryController;
+import org.sqlunet.treeview.control.Query;
 import org.sqlunet.treeview.model.TreeNode;
 import org.sqlunet.view.FireEvent;
 import org.sqlunet.view.TreeFactory;
@@ -254,9 +254,9 @@ abstract public class BasicModule extends Module
 					TreeFactory.addTextNode(parent, sb, BasicModule.this.context);
 
 					// sub nodes
-					final TreeNode fesNode = TreeFactory.newQueryNode(new FEsQuery(frameId, R.drawable.roles, "Frame Elements"), true, BasicModule.this.context).addTo(parent);
-					final TreeNode lexUnitsNode = TreeFactory.newQueryNode(new LexUnitsQuery(frameId, R.drawable.members, "Lex Units"), true, BasicModule.this.context).addTo(parent);
-					final TreeNode relatedNode = TreeFactory.newQueryNode(new RelatedQuery(frameId, R.drawable.roleclass, "Related"), false, BasicModule.this.context).addTo(parent);
+					final TreeNode fesNode = TreeFactory.newQueryNode("Frame Elements", R.drawable.roles, new FEsQuery(frameId), true, BasicModule.this.context).addTo(parent);
+					final TreeNode lexUnitsNode = TreeFactory.newQueryNode("Lex Units", R.drawable.members, new LexUnitsQuery(frameId), true, BasicModule.this.context).addTo(parent);
+					final TreeNode relatedNode = TreeFactory.newQueryNode("Related", R.drawable.roleclass, new RelatedQuery(frameId), false, BasicModule.this.context).addTo(parent);
 
 					// fire events
 					FireEvent.onQueryReady(fesNode);
@@ -681,14 +681,14 @@ abstract public class BasicModule extends Module
 						sb2.append("Frame");
 						sb2.append(' ');
 						Spanner.append(sb2, frame, 0, FrameNetFactories.frameFactory);
-						final TreeNode frameNode = TreeFactory.newQueryNode(new FrameQuery(frameId, R.drawable.roleclass, sb2), true, BasicModule.this.context).addTo(parent);
+						final TreeNode frameNode = TreeFactory.newQueryNode(sb2, R.drawable.roleclass, new FrameQuery(frameId), true, BasicModule.this.context).addTo(parent);
 
 						// fire event
 						FireEvent.onQueryReady(frameNode);
 
 						if (withFes)
 						{
-							final TreeNode fesNode = TreeFactory.newQueryNode(new FEsQuery(frameId, R.drawable.roles, "Frame Elements"), false, BasicModule.this.context).addTo(parent);
+							final TreeNode fesNode = TreeFactory.newQueryNode("Frame Elements", R.drawable.roles, new FEsQuery(frameId), false, BasicModule.this.context).addTo(parent);
 
 							// fire event
 							FireEvent.onQueryReady(fesNode);
@@ -700,10 +700,10 @@ abstract public class BasicModule extends Module
 					}
 
 					// sub nodes
-					final TreeNode realizationsNode = TreeFactory.newQueryNode(new RealizationsQuery(luId, R.drawable.realization, "Realizations"), false, BasicModule.this.context).addTo(parent);
-					final TreeNode groupRealizationsNode = TreeFactory.newQueryNode(new GroupRealizationsQuery(luId, R.drawable.grouprealization, "Group realizations"), false, BasicModule.this.context).addTo(parent);
-					final TreeNode governorsNode = TreeFactory.newQueryNode(new GovernorsQuery(luId, R.drawable.governor, "Governors"), false, BasicModule.this.context).addTo(parent);
-					final TreeNode sentencesNode = TreeFactory.newQueryNode(new SentencesForLexUnitQuery(luId, R.drawable.sentence, "Sentences"), false, BasicModule.this.context).addTo(parent);
+					final TreeNode realizationsNode = TreeFactory.newQueryNode("Realizations", R.drawable.realization, new RealizationsQuery(luId), false, BasicModule.this.context).addTo(parent);
+					final TreeNode groupRealizationsNode = TreeFactory.newQueryNode("Group realizations", R.drawable.grouprealization, new GroupRealizationsQuery(luId), false, BasicModule.this.context).addTo(parent);
+					final TreeNode governorsNode = TreeFactory.newQueryNode("Governors", R.drawable.governor, new GovernorsQuery(luId), false, BasicModule.this.context).addTo(parent);
+					final TreeNode sentencesNode = TreeFactory.newQueryNode("Sentences", R.drawable.sentence, new SentencesForLexUnitQuery(luId), false, BasicModule.this.context).addTo(parent);
 
 					// fire event
 					FireEvent.onQueryReady(realizationsNode);
@@ -840,8 +840,8 @@ abstract public class BasicModule extends Module
 						// attach result
 						if (withFrame)
 						{
-							final TreeNode frameNode = TreeFactory.newQueryNode(new FrameQuery(frameId, R.drawable.roleclass, "Frame"), false, BasicModule.this.context).addTo(luNode);
-							final TreeNode fesNode = TreeFactory.newQueryNode(new FEsQuery(frameId, R.drawable.roles, "Frame Elements"), false, BasicModule.this.context).addTo(luNode);
+							final TreeNode frameNode = TreeFactory.newQueryNode("Frame", R.drawable.roleclass, new FrameQuery(frameId), false, BasicModule.this.context).addTo(luNode);
+							final TreeNode fesNode = TreeFactory.newQueryNode("Frame Elements", R.drawable.roles, new FEsQuery(frameId), false, BasicModule.this.context).addTo(luNode);
 
 							// fire event
 							FireEvent.onQueryReady(frameNode);
@@ -853,10 +853,10 @@ abstract public class BasicModule extends Module
 						}
 
 						// sub nodes
-						final TreeNode realizationsNode = TreeFactory.newQueryNode(new RealizationsQuery(luId, R.drawable.realization, "Realizations"), false, BasicModule.this.context).addTo(luNode);
-						final TreeNode groupRealizationsNode = TreeFactory.newQueryNode(new GroupRealizationsQuery(luId, R.drawable.grouprealization, "Group realizations"), false, BasicModule.this.context).addTo(luNode);
-						final TreeNode governorsNode = TreeFactory.newQueryNode(new GovernorsQuery(luId, R.drawable.governor, "Governors"), false, BasicModule.this.context).addTo(luNode);
-						final TreeNode sentencesNode = TreeFactory.newQueryNode(new SentencesForLexUnitQuery(luId, R.drawable.sentence, "Sentences"), false, BasicModule.this.context).addTo(luNode);
+						final TreeNode realizationsNode = TreeFactory.newQueryNode("Realizations", R.drawable.realization, new RealizationsQuery(luId), false, BasicModule.this.context).addTo(luNode);
+						final TreeNode groupRealizationsNode = TreeFactory.newQueryNode("Group realizations", R.drawable.grouprealization, new GroupRealizationsQuery(luId), false, BasicModule.this.context).addTo(luNode);
+						final TreeNode governorsNode = TreeFactory.newQueryNode("Governors", R.drawable.governor, new GovernorsQuery(luId), false, BasicModule.this.context).addTo(luNode);
+						final TreeNode sentencesNode = TreeFactory.newQueryNode("Sentences", R.drawable.sentence, new SentencesForLexUnitQuery(luId), false, BasicModule.this.context).addTo(luNode);
 
 						// fire events
 						FireEvent.onQueryReady(realizationsNode);
@@ -995,12 +995,12 @@ abstract public class BasicModule extends Module
 						TreeFactory.addTextNode(parent, sb, BasicModule.this.context);
 
 						// sub nodes
-						final TreeNode frameNode = TreeFactory.newQueryNode(new FrameQuery(frameId, R.drawable.roleclass, "Frame"), true, BasicModule.this.context).addTo(parent);
-						final TreeNode fesNode = TreeFactory.newQueryNode(new FEsQuery(frameId, R.drawable.roles, "Frame Elements"), false, BasicModule.this.context).addTo(parent);
-						final TreeNode realizationsNode = TreeFactory.newQueryNode(new RealizationsQuery(luId, R.drawable.realization, "Realizations"), false, BasicModule.this.context).addTo(parent);
-						final TreeNode groupRealizationsNode = TreeFactory.newQueryNode(new GroupRealizationsQuery(luId, R.drawable.grouprealization, "Group realizations"), false, BasicModule.this.context).addTo(parent);
-						final TreeNode governorsNode = TreeFactory.newQueryNode(new GovernorsQuery(luId, R.drawable.governor, "Governors"), false, BasicModule.this.context).addTo(parent);
-						final TreeNode sentencesNode = TreeFactory.newQueryNode(new SentencesForLexUnitQuery(luId, R.drawable.sentence, "Sentences"), false, BasicModule.this.context).addTo(parent);
+						final TreeNode frameNode = TreeFactory.newQueryNode("Frame", R.drawable.roleclass, new FrameQuery(frameId), true, BasicModule.this.context).addTo(parent);
+						final TreeNode fesNode = TreeFactory.newQueryNode("Frame Elements", R.drawable.roles, new FEsQuery(frameId), false, BasicModule.this.context).addTo(parent);
+						final TreeNode realizationsNode = TreeFactory.newQueryNode("Realizations", R.drawable.realization, new RealizationsQuery(luId), false, BasicModule.this.context).addTo(parent);
+						final TreeNode groupRealizationsNode = TreeFactory.newQueryNode("Group realizations", R.drawable.grouprealization, new GroupRealizationsQuery(luId), false, BasicModule.this.context).addTo(parent);
+						final TreeNode governorsNode = TreeFactory.newQueryNode("Governors", R.drawable.governor, new GovernorsQuery(luId), false, BasicModule.this.context).addTo(parent);
+						final TreeNode sentencesNode = TreeFactory.newQueryNode("Sentences", R.drawable.sentence, new SentencesForLexUnitQuery(luId), false, BasicModule.this.context).addTo(parent);
 
 						// fire event
 						FireEvent.onQueryReady(frameNode);
@@ -1095,7 +1095,7 @@ abstract public class BasicModule extends Module
 						Spanner.append(sb, word, 0, FrameNetFactories.governorFactory);
 
 						// attach annoSets node
-						final TreeNode annoSetsNode = TreeFactory.newQueryNode(new AnnoSetsForGovernorQuery(governorId, R.drawable.governor, sb), false, BasicModule.this.context).addTo(parent);
+						final TreeNode annoSetsNode = TreeFactory.newQueryNode(sb, R.drawable.governor, new AnnoSetsForGovernorQuery(governorId), false, BasicModule.this.context).addTo(parent);
 
 						// fire event
 						FireEvent.onQueryReady(annoSetsNode);
@@ -1180,7 +1180,7 @@ abstract public class BasicModule extends Module
 						}
 
 						// attach annoSet node
-						final TreeNode annoSetNode = TreeFactory.newQueryNode(new AnnoSetQuery(annoSetId, R.drawable.annoset, sb, false), false, BasicModule.this.context).addTo(parent);
+						final TreeNode annoSetNode = TreeFactory.newQueryNode(sb, R.drawable.annoset, new AnnoSetQuery(annoSetId, false), false, BasicModule.this.context).addTo(parent);
 
 						// fire event
 						FireEvent.onQueryReady(annoSetNode);
@@ -1308,7 +1308,7 @@ abstract public class BasicModule extends Module
 							}
 
 							// attach fer node
-							final TreeNode ferNode = TreeFactory.newQueryNode(new SentencesForValenceUnitQuery(vuId, R.drawable.realization, sb1), false, BasicModule.this.context).addTo(feNode);
+							final TreeNode ferNode = TreeFactory.newQueryNode(sb1, R.drawable.realization, new SentencesForValenceUnitQuery(vuId), false, BasicModule.this.context).addTo(feNode);
 
 							// fire event
 							FireEvent.onQueryReady(ferNode);
@@ -1417,7 +1417,7 @@ abstract public class BasicModule extends Module
 						parseGroupRealizations(groupRealizations, sb);
 
 						// attach sentences node
-						final TreeNode sentencesNode = TreeFactory.newQueryNode(new SentencesForPatternQuery(patternId, R.drawable.grouprealization, sb), false, BasicModule.this.context).addTo(groupNode);
+						final TreeNode sentencesNode = TreeFactory.newQueryNode(sb, R.drawable.grouprealization, new SentencesForPatternQuery(patternId), false, BasicModule.this.context).addTo(groupNode);
 
 						// fire event
 						FireEvent.onQueryReady(sentencesNode);
@@ -1687,7 +1687,7 @@ abstract public class BasicModule extends Module
 						}
 
 						// attach annoSet node
-						final TreeNode annoSetNode = TreeFactory.newQueryNode(new AnnoSetQuery(annotationId, R.drawable.sentence, sb, false), false, BasicModule.this.context).addTo(parent);
+						final TreeNode annoSetNode = TreeFactory.newQueryNode(sb, R.drawable.sentence, new AnnoSetQuery(annotationId, false), false, BasicModule.this.context).addTo(parent);
 
 						// fire event
 						FireEvent.onQueryReady(annoSetNode);
@@ -1768,7 +1768,7 @@ abstract public class BasicModule extends Module
 						}
 
 						// pattern
-						final TreeNode annoSetNode = TreeFactory.newQueryNode(new AnnoSetQuery(annotationId, R.drawable.sentence, sb, false), false, BasicModule.this.context).addTo(parent);
+						final TreeNode annoSetNode = TreeFactory.newQueryNode(sb, R.drawable.sentence, new AnnoSetQuery(annotationId, false), false, BasicModule.this.context).addTo(parent);
 
 						// fire event
 						FireEvent.onQueryReady(annoSetNode);
@@ -2300,11 +2300,16 @@ abstract public class BasicModule extends Module
 	/**
 	 * Frame query
 	 */
-	class FrameQuery extends QueryController.Query
+	class FrameQuery extends Query
 	{
-		public FrameQuery(final long frameId, final int icon, final CharSequence text)
+		/**
+		 * Constructor
+		 *
+		 * @param frameId frame id
+		 */
+		public FrameQuery(final long frameId)
 		{
-			super(frameId, icon, text);
+			super(frameId);
 		}
 
 		@Override
@@ -2317,11 +2322,16 @@ abstract public class BasicModule extends Module
 	/**
 	 * Related frame query
 	 */
-	class RelatedQuery extends QueryController.Query
+	class RelatedQuery extends Query
 	{
-		public RelatedQuery(final long frameId, final int icon, final CharSequence text)
+		/**
+		 * Constructor
+		 *
+		 * @param frameId frame id
+		 */
+		public RelatedQuery(final long frameId)
 		{
-			super(frameId, icon, text);
+			super(frameId);
 		}
 
 		@Override
@@ -2334,11 +2344,16 @@ abstract public class BasicModule extends Module
 	/**
 	 * Lex units query
 	 */
-	class LexUnitsQuery extends QueryController.Query
+	class LexUnitsQuery extends Query
 	{
-		public LexUnitsQuery(final long frameId, final int icon, final CharSequence text)
+		/**
+		 * Constructor
+		 *
+		 * @param frameId frame id
+		 */
+		public LexUnitsQuery(final long frameId)
 		{
-			super(frameId, icon, text);
+			super(frameId);
 		}
 
 		@Override
@@ -2351,11 +2366,16 @@ abstract public class BasicModule extends Module
 	/**
 	 * Frame elements query
 	 */
-	class FEsQuery extends QueryController.Query
+	class FEsQuery extends Query
 	{
-		public FEsQuery(final long frameId, final int icon, final CharSequence text)
+		/**
+		 * Constructor
+		 *
+		 * @param frameId frame id
+		 */
+		public FEsQuery(final long frameId)
 		{
-			super(frameId, icon, text);
+			super(frameId);
 		}
 
 		@Override
@@ -2368,11 +2388,16 @@ abstract public class BasicModule extends Module
 	/**
 	 * Governors query
 	 */
-	class GovernorsQuery extends QueryController.Query
+	class GovernorsQuery extends Query
 	{
-		public GovernorsQuery(final long luId, final int icon, final CharSequence text)
+		/**
+		 * Constructor
+		 *
+		 * @param luId lex unit id
+		 */
+		public GovernorsQuery(final long luId)
 		{
-			super(luId, icon, text);
+			super(luId);
 		}
 
 		@Override
@@ -2385,11 +2410,16 @@ abstract public class BasicModule extends Module
 	/**
 	 * Realizations query
 	 */
-	class RealizationsQuery extends QueryController.Query
+	class RealizationsQuery extends Query
 	{
-		public RealizationsQuery(final long luId, final int icon, final CharSequence text)
+		/**
+		 * Constructor
+		 *
+		 * @param luId lex unit id
+		 */
+		public RealizationsQuery(final long luId)
 		{
-			super(luId, icon, text);
+			super(luId);
 		}
 
 		@Override
@@ -2402,11 +2432,16 @@ abstract public class BasicModule extends Module
 	/**
 	 * Group realizations query
 	 */
-	class GroupRealizationsQuery extends QueryController.Query
+	class GroupRealizationsQuery extends Query
 	{
-		public GroupRealizationsQuery(final long luId, final int icon, final CharSequence text)
+		/**
+		 * Constructor
+		 *
+		 * @param luId lex unit id
+		 */
+		public GroupRealizationsQuery(final long luId)
 		{
-			super(luId, icon, text);
+			super(luId);
 		}
 
 		@Override
@@ -2419,11 +2454,16 @@ abstract public class BasicModule extends Module
 	/**
 	 * Sentences for pattern query
 	 */
-	class SentencesForPatternQuery extends QueryController.Query
+	class SentencesForPatternQuery extends Query
 	{
-		public SentencesForPatternQuery(final long patternId, final int icon, final CharSequence text)
+		/**
+		 * Constructor
+		 *
+		 * @param patternId pattern id
+		 */
+		public SentencesForPatternQuery(final long patternId)
 		{
-			super(patternId, icon, text);
+			super(patternId);
 		}
 
 		@Override
@@ -2436,11 +2476,16 @@ abstract public class BasicModule extends Module
 	/**
 	 * Sentences for valence unit query
 	 */
-	class SentencesForValenceUnitQuery extends QueryController.Query
+	class SentencesForValenceUnitQuery extends Query
 	{
-		public SentencesForValenceUnitQuery(final long vuId, final int icon, final CharSequence text)
+		/**
+		 * Constructor
+		 *
+		 * @param vuId valence unit id
+		 */
+		public SentencesForValenceUnitQuery(final long vuId)
 		{
-			super(vuId, icon, text);
+			super(vuId);
 		}
 
 		@Override
@@ -2453,11 +2498,16 @@ abstract public class BasicModule extends Module
 	/**
 	 * Sentences for lex unit query
 	 */
-	class SentencesForLexUnitQuery extends QueryController.Query
+	class SentencesForLexUnitQuery extends Query
 	{
-		public SentencesForLexUnitQuery(final long luId, final int icon, final CharSequence text)
+		/**
+		 * Constructor
+		 *
+		 * @param luId lex unit id
+		 */
+		public SentencesForLexUnitQuery(final long luId)
 		{
-			super(luId, icon, text);
+			super(luId);
 		}
 
 		@Override
@@ -2470,13 +2520,18 @@ abstract public class BasicModule extends Module
 	/**
 	 * AnnoSet query
 	 */
-	class AnnoSetQuery extends QueryController.Query
+	class AnnoSetQuery extends Query
 	{
 		private final boolean withSentence;
 
-		public AnnoSetQuery(final long annoSetId, final int icon, final CharSequence text, final boolean withSentence)
+		/**
+		 * Constructor
+		 *
+		 * @param annoSetId annoSet id
+		 */
+		public AnnoSetQuery(final long annoSetId, final boolean withSentence)
 		{
-			super(annoSetId, icon, text);
+			super(annoSetId);
 			this.withSentence = withSentence;
 		}
 
@@ -2490,11 +2545,16 @@ abstract public class BasicModule extends Module
 	/**
 	 * AnnoSets for governor query
 	 */
-	class AnnoSetsForGovernorQuery extends QueryController.Query
+	class AnnoSetsForGovernorQuery extends Query
 	{
-		public AnnoSetsForGovernorQuery(final long governorId, final int icon, final CharSequence text)
+		/**
+		 * Constructor
+		 *
+		 * @param governorId governor id
+		 */
+		public AnnoSetsForGovernorQuery(final long governorId)
 		{
-			super(governorId, icon, text);
+			super(governorId);
 		}
 
 		@Override
@@ -2507,14 +2567,14 @@ abstract public class BasicModule extends Module
 	/**
 	 * Dummy query
 	 */
-	class DummyQuery extends QueryController.Query
+	class DummyQuery extends Query
 	{
 		static private final String TAG = "DummyQuery";
 
 		@SuppressWarnings("unused")
-		public DummyQuery(final long annoSetId, final int icon, final CharSequence text)
+		public DummyQuery(final long annoSetId)
 		{
-			super(annoSetId, icon, text);
+			super(annoSetId);
 		}
 
 		@Override

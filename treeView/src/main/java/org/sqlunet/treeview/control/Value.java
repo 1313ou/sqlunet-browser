@@ -8,24 +8,44 @@ package org.sqlunet.treeview.control;
 public class Value
 {
 	/**
-	 * Extra icon
-	 */
-	public final int icon;
-
-	/**
 	 * Label text
 	 */
 	public final CharSequence text;
 
 	/**
+	 * Extra icon
+	 */
+	public final int icon;
+
+	/**
+	 * Payload
+	 */
+	public final Object[] payload;
+
+	/**
 	 * Constructor
 	 *
-	 * @param icon extra icon
-	 * @param text label text
+	 * @param text    label text
+	 * @param icon    extra icon
+	 * @param payload payload
 	 */
-	public Value(final int icon, final CharSequence text)
+	public Value(final CharSequence text, final int icon, final Object... payload)
 	{
-		this.icon = icon;
 		this.text = text;
+		this.icon = icon;
+		this.payload = payload;
+	}
+
+	/**
+	 * Constructor
+	 *
+	 * @param text label text
+	 * @param icon extra icon
+	 */
+	public Value(final CharSequence text, final int icon)
+	{
+		this.text = text;
+		this.icon = icon;
+		this.payload = null;
 	}
 }

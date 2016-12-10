@@ -50,6 +50,10 @@ public class StorageSettings
 		{
 			//noinspection ResultOfMethodCallIgnored
 			dir.mkdirs();
+			if (!dir.exists())
+			{
+				return null;
+			}
 		}
 		return dir.getAbsolutePath();
 	}

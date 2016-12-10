@@ -64,7 +64,7 @@ public class SenseModule extends SynsetModule
 		synset(this.synsetId, synsetNode, false);
 
 		// members
-		members(this.synsetId, membersNode, false);
+		members(this.synsetId, membersNode);
 
 		// morph
 		morphs(this.wordId, parent);
@@ -92,8 +92,8 @@ public class SenseModule extends SynsetModule
 		}
 
 		// links and samples
-		final TreeNode linksNode = TreeFactory.newQueryNode(new LinksQuery(this.synsetId, this.wordId, R.drawable.ic_links, "Links"), this.expand, this.context).addTo(parent);
-		final TreeNode samplesNode = TreeFactory.newQueryNode(new SamplesQuery(this.synsetId, R.drawable.sample, "Samples"), this.expand, this.context).addTo(parent);
+		final TreeNode linksNode = TreeFactory.newQueryNode("Links", R.drawable.ic_links, new LinksQuery(this.synsetId, this.wordId), this.expand, this.context).addTo(parent);
+		final TreeNode samplesNode = TreeFactory.newQueryNode("Samples", R.drawable.sample, new SamplesQuery(this.synsetId), this.expand, this.context).addTo(parent);
 
 		// fire event
 		FireEvent.onQueryReady(linksNode);

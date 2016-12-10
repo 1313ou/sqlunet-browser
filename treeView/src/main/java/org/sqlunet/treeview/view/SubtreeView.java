@@ -129,13 +129,13 @@ public class SubtreeView extends LinearLayout
 
 		// node container for node label
 		this.nodeContainer = new RelativeLayout(getContext());
-		this.nodeContainer.setLayoutParams(new LayoutParams(android.view.ViewGroup.LayoutParams.MATCH_PARENT, android.view.ViewGroup.LayoutParams.WRAP_CONTENT));
+		this.nodeContainer.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
 		this.nodeContainer.setId(R.id.node_label);
 
 		// node container for children
 		ContextThemeWrapper newContext = new ContextThemeWrapper(getContext(), this.containerStyle);
 		LinearLayout nodeChildrenContainer = new LinearLayout(newContext, null, this.containerStyle);
-		nodeChildrenContainer.setLayoutParams(new LayoutParams(android.view.ViewGroup.LayoutParams.MATCH_PARENT, android.view.ViewGroup.LayoutParams.WRAP_CONTENT));
+		nodeChildrenContainer.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
 		nodeChildrenContainer.setId(R.id.node_children);
 		nodeChildrenContainer.setOrientation(LinearLayout.VERTICAL);
 		nodeChildrenContainer.setVisibility(View.GONE);
@@ -151,6 +151,7 @@ public class SubtreeView extends LinearLayout
 	 */
 	public void insertNodeView(final View nodeView)
 	{
-		this.nodeContainer.addView(nodeView);
+		this.nodeContainer.addView(nodeView, new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
+		// this.nodeContainer.addView(nodeView);
 	}
 }

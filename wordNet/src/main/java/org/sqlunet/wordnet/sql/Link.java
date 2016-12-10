@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * LinkData, a linked synset
+ * Link, a linked synset
  *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
