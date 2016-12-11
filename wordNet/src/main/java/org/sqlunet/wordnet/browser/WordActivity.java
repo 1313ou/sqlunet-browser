@@ -36,7 +36,6 @@ public class WordActivity extends Activity
 			final Bundle args = getIntent().getExtras();
 			final WordFragment fragment = new WordFragment();
 			fragment.setArguments(args);
-			fragment.setExpand(true);
 			getFragmentManager() //
 					.beginTransaction() //
 					.replace(R.id.container_word, fragment) //

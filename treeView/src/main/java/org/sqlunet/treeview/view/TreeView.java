@@ -551,6 +551,12 @@ public class TreeView
 	 */
 	private void collapseNode(final TreeNode node, final boolean includeSubnodes)
 	{
+		// collapsibility
+		if (!node.isCollapsible())
+		{
+			return;
+		}
+
 		// flag
 		node.setExpanded(false);
 

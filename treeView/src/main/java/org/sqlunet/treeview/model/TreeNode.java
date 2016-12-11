@@ -14,6 +14,7 @@ import java.util.List;
 public class TreeNode
 {
 	static private final String NODES_ID_SEPARATOR = ":";
+
 	/**
 	 * Id
 	 */
@@ -64,6 +65,11 @@ public class TreeNode
 	 */
 	private boolean expanded;
 
+	/**
+	 * Collapsible
+	 */
+	private boolean collapsible;
+
 	// C O N S T R U C T O R
 
 	public TreeNode(final Object value)
@@ -74,6 +80,18 @@ public class TreeNode
 		this.selected = false;
 		this.selectable = false;
 		this.expanded = false;
+		this.collapsible = true;
+	}
+
+	public TreeNode(final Object value, final boolean collapsible)
+	{
+		this.children = new ArrayList<>();
+		this.value = value;
+		this.enabled = true;
+		this.selected = false;
+		this.selectable = false;
+		this.expanded = false;
+		this.collapsible = collapsible;
 	}
 
 	/**
@@ -473,6 +491,28 @@ public class TreeNode
 		this.selectable = selectable;
 	}
 
+
+	/**
+	 * Get whether this node is collapsible
+	 *
+	 * @return whether this node is collapsible
+	 */
+	@SuppressWarnings("unused")
+	public boolean isCollapsible()
+	{
+		return this.collapsible;
+	}
+
+	/**
+	 * Set node collapsible
+	 *
+	 * @param collapsible collapsible flag
+	 */
+	@SuppressWarnings("unused")
+	public void setCollapsible(boolean collapsible)
+	{
+		this.collapsible = collapsible;
+	}
 
 	// E N A B L E / D I S A B L E
 

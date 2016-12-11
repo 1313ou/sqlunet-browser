@@ -27,6 +27,7 @@ public class TreeController extends Controller<Value>
 	/**
 	 * Resource used (changed by derived classes)
 	 */
+	@SuppressWarnings("WeakerAccess")
 	protected int layoutRes = R.layout.layout_tree;
 
 	/**
@@ -49,10 +50,10 @@ public class TreeController extends Controller<Value>
 		this.junctionView = (ImageView) view.findViewById(R.id.junction_icon);
 
 		// icon
-		final ImageView iconView = (ImageView) view.findViewById(R.id.icon);
+		final ImageView iconView = (ImageView) view.findViewById(R.id.node_icon);
 		iconView.setImageResource(value.icon);
 
-		// value (label)
+		// text
 		TextView valueView = (TextView) view.findViewById(R.id.node_value);
 		valueView.setText(value.text);
 

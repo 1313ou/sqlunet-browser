@@ -33,6 +33,15 @@ public class WordNetFactories
 		}
 	};
 
+	public static final SpanFactory wordFactory = new SpanFactory()
+	{
+		@Override
+		public Object makeSpans(final long flags)
+		{
+			return new Object[]{new ForegroundColorSpan(Color.BLACK), new StyleSpan(Typeface.BOLD)};
+		}
+	};
+
 	public static final SpanFactory definitionFactory = Factories.definitionFactory;
 
 	public static final SpanFactory sampleFactory = Factories.exampleFactory;

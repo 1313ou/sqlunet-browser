@@ -78,8 +78,8 @@ public class SynsetModule extends BasicModule
 		if (this.synsetId != null && this.synsetId != 0)
 		{
 			// sub nodes
-			final TreeNode synsetNode = TreeFactory.newTextNode("Data", this.context);
-			final TreeNode membersNode = TreeFactory.newTextNode("Members", this.context);
+			final TreeNode synsetNode = TreeFactory.newTextNode("Synset", this.context);
+			final TreeNode membersNode = TreeFactory.newNode("Members", R.drawable.members, this.context);
 
 			// attach result
 			parent.addChildren(synsetNode, membersNode);

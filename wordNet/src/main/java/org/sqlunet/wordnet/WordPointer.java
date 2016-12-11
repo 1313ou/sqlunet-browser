@@ -33,7 +33,7 @@ public class WordPointer extends Pointer implements HasWordId
 	/**
 	 * Constructor from parcel, reads back fields IN THE ORDER they were written
 	 */
-	WordPointer(final Parcel parcel)
+	private WordPointer(final Parcel parcel)
 	{
 		super(parcel);
 	}

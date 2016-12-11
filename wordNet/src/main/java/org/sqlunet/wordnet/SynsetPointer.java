@@ -35,7 +35,7 @@ public class SynsetPointer extends Pointer2 implements HasSynsetId, HasPos
 	/**
 	 * Constructor from parcel, reads back fields IN THE ORDER they were written
 	 */
-	public SynsetPointer(final Parcel parcel)
+	SynsetPointer(final Parcel parcel)
 	{
 		super(parcel);
 	}

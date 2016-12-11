@@ -24,7 +24,7 @@ public class TextController extends Controller<Object>
 	}
 
 	@Override
-	public View createNodeView(TreeNode node, Object value)
+	public View createNodeView(final TreeNode node, final Object value)
 	{
 		final TextView textView = new TextView(this.context);
 		textView.setText((CharSequence) value);

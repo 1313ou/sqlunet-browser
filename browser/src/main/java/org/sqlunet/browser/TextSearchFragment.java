@@ -390,8 +390,8 @@ public class TextSearchFragment extends Fragment implements SearchListener
 		// log
 		Log.d(TextSearchFragment.TAG, "TEXT SEARCH " + query);
 
-		// _status
-		final CharSequence[] textSearches = getResources().getTextArray(R.array.textsearches_names);
+		// status
+		// final CharSequence[] textSearches = getResources().getTextArray(R.array.textsearches_names);
 
 		// as per selected mode
 		String searchUri;

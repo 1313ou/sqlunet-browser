@@ -33,16 +33,10 @@ public class WordFragment extends Fragment
 	private TreeView treeView;
 
 	/**
-	 * Whether to expand
-	 */
-	private boolean expand;
-
-	/**
 	 * Constructor
 	 */
 	public WordFragment()
 	{
-		this.expand = true;
 	}
 
 	@Override
@@ -86,7 +80,6 @@ public class WordFragment extends Fragment
 
 			// module
 			final WordModule module = makeModule();
-			module.setExpand(WordFragment.this.expand);
 			module.init(type, pointer);
 			module.process(queryNode);
 		}
@@ -110,13 +103,5 @@ public class WordFragment extends Fragment
 	protected WordModule makeModule()
 	{
 		return new WordModule(this);
-	}
-
-	/**
-	 * Set expand
-	 */
-	public void setExpand(final boolean expand)
-	{
-		this.expand = expand;
 	}
 }

@@ -183,6 +183,7 @@ abstract public class BasicModule extends Module
 	 * @param wordId word id
 	 * @param parent tree parent node
 	 */
+	@SuppressWarnings("WeakerAccess")
 	protected void senses(final long wordId, final TreeNode parent)
 	{
 		// load the contents
@@ -271,7 +272,7 @@ abstract public class BasicModule extends Module
 			final int tagCount = cursor.getInt(idTagCount);
 
 			final SpannableStringBuilder sb = new SpannableStringBuilder();
-			synset(sb, synsetId, posName, lexDomain, definition);
+			sense(sb, synsetId, posName, lexDomain, definition, tagCount, cased);
 
 			// result
 			final TreeNode synsetNode = TreeFactory.newLinkNode(sb, R.drawable.synset, new SenseLink(synsetId, wordId), BasicModule.this.context);
@@ -317,7 +318,6 @@ abstract public class BasicModule extends Module
 				if (cursor.moveToFirst())
 				{
 					final SpannableStringBuilder sb = new SpannableStringBuilder();
-					final SpannableStringBuilder sbdef = new SpannableStringBuilder();
 					final int idPosName = cursor.getColumnIndex(PosTypes.POSNAME);
 					final int idLexDomain = cursor.getColumnIndex(LexDomains.LEXDOMAIN);
 					final int idDefinition = cursor.getColumnIndex(Synsets.DEFINITION);
@@ -332,7 +332,6 @@ abstract public class BasicModule extends Module
 
 					// attach result
 					TreeFactory.addTextNode(parent, sb, BasicModule.this.context);
-					TreeFactory.addTextNode(parent, sbdef, BasicModule.this.context);
 
 					// subnodes
 					final TreeNode linksNode = TreeFactory.newQueryNode("Links", R.drawable.ic_links, new LinksQuery(synsetId, wordId), true, BasicModule.this.context).addTo(parent);
@@ -436,6 +435,41 @@ abstract public class BasicModule extends Module
 	}
 
 	/**
+	 * Sense to string builder
+	 *
+	 * @param sb         string builder
+	 * @param synsetId   synset id
+	 * @param posName    pos
+	 * @param lexDomain  lex domain
+	 * @param definition definition
+	 * @param tagCount   tag count
+	 * @param cased      cased
+	 * @return string builder
+	 */
+	private SpannableStringBuilder sense(final SpannableStringBuilder sb, final long synsetId, final CharSequence posName, final CharSequence lexDomain, final CharSequence definition, final int tagCount, final CharSequence cased)
+	{
+		synset_head(sb, synsetId, posName, lexDomain);
+
+		if (cased != null && cased.length() > 0)
+		{
+			Spanner.appendImage(sb, BasicModule.this.memberDrawable);
+			sb.append(' ');
+			Spanner.append(sb, cased, 0, WordNetFactories.wordFactory);
+			sb.append(' ');
+		}
+		if (tagCount > 0)
+		{
+			sb.append(" count=");
+			Spanner.append(sb, Integer.toString(tagCount), 0, WordNetFactories.dataFactory);
+		}
+
+		sb.append('\n');
+		synset_definition(sb, definition);
+
+		return sb;
+	}
+
+	/**
 	 * Synset to string builder
 	 *
 	 * @param sb         string builder
@@ -445,7 +479,24 @@ abstract public class BasicModule extends Module
 	 * @param definition definition
 	 * @return string builder
 	 */
-	private SpannableStringBuilder synset(final SpannableStringBuilder sb, final long synsetId, final String posName, final String lexDomain, final String definition)
+	private SpannableStringBuilder synset(final SpannableStringBuilder sb, final long synsetId, final CharSequence posName, final CharSequence lexDomain, final CharSequence definition)
+	{
+		synset_head(sb, synsetId, posName, lexDomain);
+		sb.append('\n');
+		synset_definition(sb, definition);
+		return sb;
+	}
+
+	/**
+	 * Synset head to string builder
+	 *
+	 * @param sb        string builder
+	 * @param synsetId  synset id
+	 * @param posName   pos
+	 * @param lexDomain lex domain
+	 * @return string builder
+	 */
+	private SpannableStringBuilder synset_head(final SpannableStringBuilder sb, final long synsetId, final CharSequence posName, final CharSequence lexDomain)
 	{
 		Spanner.appendImage(sb, BasicModule.this.posDrawable);
 		sb.append(' ');
@@ -456,7 +507,18 @@ abstract public class BasicModule extends Module
 		sb.append(lexDomain);
 		sb.append(' ');
 		Spanner.append(sb, Long.toString(synsetId), 0, WordNetFactories.dataFactory);
-		sb.append('\n');
+		return sb;
+	}
+
+	/**
+	 * Synset definition to string builder
+	 *
+	 * @param sb         string builder
+	 * @param definition definition
+	 * @return string builder
+	 */
+	private SpannableStringBuilder synset_definition(final SpannableStringBuilder sb, final CharSequence definition)
+	{
 		Spanner.appendImage(sb, BasicModule.this.definitionDrawable);
 		sb.append(' ');
 		Spanner.append(sb, definition, 0, WordNetFactories.definitionFactory);
@@ -779,7 +841,7 @@ abstract public class BasicModule extends Module
 						}
 						else
 						{
-							final TreeNode linksNode = TreeFactory.newLinkQueryNode(sb, getLinkRes(linkId), new SubLinksQuery(targetSynsetId, linkId), new SynsetLink(synsetId), false, context).prependTo(parent);
+							final TreeNode linksNode = TreeFactory.newLinkQueryNode(sb, getLinkRes(linkId), new SubLinksQuery(targetSynsetId, linkId), new SynsetLink(targetSynsetId), false, context).prependTo(parent);
 
 							// fire event
 							FireEvent.onQueryReady(linksNode);
@@ -870,7 +932,7 @@ abstract public class BasicModule extends Module
 						}
 						else
 						{
-							final TreeNode linksNode = TreeFactory.newLinkQueryNode(sb, getLinkRes(linkId), new SubLinksQuery(targetSynsetId, linkId), new SynsetLink(synsetId), false, context).addTo(parent);
+							final TreeNode linksNode = TreeFactory.newLinkQueryNode(sb, getLinkRes(linkId), new SubLinksQuery(targetSynsetId, linkId), new SynsetLink(targetSynsetId), false, context).addTo(parent);
 
 							// fire event
 							FireEvent.onQueryReady(linksNode);
@@ -962,9 +1024,9 @@ abstract public class BasicModule extends Module
 						{
 							sb.append('\n');
 						}
-						Spanner.appendImage(sb, getLinkDrawable(linkId));
+						// Spanner.appendImage(sb, getLinkDrawable(linkId));
 						// sb.append(record);
-						sb.append(' ');
+						// sb.append(' ');
 						Spanner.append(sb, targetLemma, 0, WordNetFactories.lemmaFactory);
 						sb.append(" in ");
 						sb.append(' ');
@@ -1034,8 +1096,6 @@ abstract public class BasicModule extends Module
 				//noinspection StatementWithEmptyBody
 				if (cursor.moveToFirst())
 				{
-					final Context context = BasicModule.this.context;
-
 					final int idLinkId = cursor.getColumnIndex(LinkTypes.LINKID);
 					// final int idLink = cursor.getColumnIndex(LinkTypes.LINK);
 
@@ -1052,13 +1112,11 @@ abstract public class BasicModule extends Module
 
 						final int linkId = cursor.getInt(idLinkId);
 						// final String link = cursor.getString(idLink);
-
 						final long targetSynsetId = cursor.getLong(idTargetSynsetId);
 						final String targetDefinition = cursor.getString(idTargetDefinition);
 						// final String targetMembers = cursor.getString(idTargetMembers);
-
 						final String targetLemma = cursor.getString(idTargetLemma);
-						final String targetWordId = cursor.getString(idTargetWordId);
+						// final String targetWordId = cursor.getString(idTargetWordId);
 
 						// final String record = String.format(Locale.ENGLISH, "[%s] %s (%s)\n\t%s (synset %s) {%s}", link, targetLemma, targetWordId,targetDefinition, targetSynsetId, targetMembers);
 
@@ -1066,9 +1124,9 @@ abstract public class BasicModule extends Module
 						{
 							sb.append('\n');
 						}
-						Spanner.appendImage(sb, getLinkDrawable(linkId));
+						// Spanner.appendImage(sb, getLinkDrawable(linkId));
 						// sb.append(record);
-						sb.append(' ');
+						// sb.append(' ');
 						Spanner.append(sb, targetLemma, 0, WordNetFactories.lemmaFactory);
 						// sb.append(" in ");
 						// sb.append(' ');
@@ -1079,7 +1137,7 @@ abstract public class BasicModule extends Module
 						Spanner.append(sb, targetDefinition, 0, WordNetFactories.definitionFactory);
 
 						// attach result
-						final TreeNode linkNode = TreeFactory.newLinkNode(sb, getLinkRes(linkId), new SenseLink(targetSynsetId, idTargetWordId), BasicModule.this.context);
+						final TreeNode linkNode = TreeFactory.newLinkLeafNode(sb, getLinkRes(linkId), new SenseLink(targetSynsetId, idTargetWordId), BasicModule.this.context);
 						parent.addChild(linkNode);
 					}
 					while (cursor.moveToNext());

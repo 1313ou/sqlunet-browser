@@ -1227,7 +1227,7 @@ abstract class BasicModule extends Module
 				Spanner.append(vnsb, wnData.definition, 0, PredicateMatrixFactories.definitionFactory);
 			}
 
-			return vnData.vnClassId == 0L ? TreeFactory.newLeafNode(vnsb, R.drawable.verbnet, BasicModule.this.context) : TreeFactory.newLinkNode(vnsb, R.drawable.verbnet, new VnClassLink(vnData.vnClassId), BasicModule.this.context);
+			return vnData.vnClassId == 0L ? TreeFactory.newLeafNode(vnsb, R.drawable.verbnet, BasicModule.this.context) : TreeFactory.newLinkLeafNode(vnsb, R.drawable.verbnet, new VnClassLink(vnData.vnClassId), BasicModule.this.context);
 		}
 
 		/**
@@ -1292,7 +1292,7 @@ abstract class BasicModule extends Module
 				Spanner.append(pbsb, wnData.definition, 0, PredicateMatrixFactories.definitionFactory);
 			}
 
-			return pbData.pbRoleSetId == 0L ? TreeFactory.newLeafNode(pbsb, R.drawable.propbank, BasicModule.this.context) : TreeFactory.newLinkNode(pbsb, R.drawable.propbank, new PbRoleSetLink(pbData.pbRoleSetId), BasicModule.this.context);
+			return pbData.pbRoleSetId == 0L ? TreeFactory.newLeafNode(pbsb, R.drawable.propbank, BasicModule.this.context) : TreeFactory.newLinkLeafNode(pbsb, R.drawable.propbank, new PbRoleSetLink(pbData.pbRoleSetId), BasicModule.this.context);
 		}
 
 		/**
@@ -1344,7 +1344,7 @@ abstract class BasicModule extends Module
 				Spanner.append(fnsb, wnData.definition, 0, PredicateMatrixFactories.definitionFactory);
 			}
 
-			return fnData.fnFrameId == 0L ? TreeFactory.newLeafNode(fnsb, R.drawable.framenet, BasicModule.this.context) : TreeFactory.newLinkNode(fnsb, R.drawable.framenet, new FnFrameLink(fnData.fnFrameId), BasicModule.this.context);
+			return fnData.fnFrameId == 0L ? TreeFactory.newLeafNode(fnsb, R.drawable.framenet, BasicModule.this.context) : TreeFactory.newLinkLeafNode(fnsb, R.drawable.framenet, new FnFrameLink(fnData.fnFrameId), BasicModule.this.context);
 		}
 	}
 

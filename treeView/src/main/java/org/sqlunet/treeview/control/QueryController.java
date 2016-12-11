@@ -53,12 +53,9 @@ public class QueryController extends TreeController
 	/**
 	 * Get query
 	 */
-	protected Query getQuery()
+	private Query getQuery()
 	{
 		final Value value = (Value) this.node.getValue();
 		return (Query) value.payload[0];
 	}
-
-	// D A T A
-
 }

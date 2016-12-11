@@ -2,9 +2,11 @@ package org.sqlunet.view;
 
 import android.content.Context;
 
+import org.sqlunet.treeview.control.NodeController;
 import org.sqlunet.treeview.control.LeafController;
 import org.sqlunet.treeview.control.Link;
 import org.sqlunet.treeview.control.LinkLeafController;
+import org.sqlunet.treeview.control.LinkNodeController;
 import org.sqlunet.treeview.control.LinkQueryController;
 import org.sqlunet.treeview.control.LinkTreeController;
 import org.sqlunet.treeview.control.Query;
@@ -21,6 +23,8 @@ import org.sqlunet.treeview.model.TreeNode;
  */
 public class TreeFactory
 {
+	// NON-TREE (without tree junction icon)
+
 	/**
 	 * Make text node
 	 *
@@ -34,6 +38,35 @@ public class TreeFactory
 	}
 
 	/**
+	 * Make icon-text node
+	 *
+	 * @param text    text
+	 * @param icon    icon
+	 * @param context context
+	 * @return created node
+	 */
+	static public TreeNode newNode(final CharSequence text, final int icon, final Context context)
+	{
+		return new TreeNode(new Value(text, icon), false).setController(new NodeController(context));
+	}
+
+	/**
+	 * Make icon-text-link node
+	 *
+	 * @param text    text
+	 * @param icon    icon
+	 * @param link    link
+	 * @param context context
+	 * @return created node
+	 */
+	static public TreeNode newLinkNode(final CharSequence text, final int icon, final Link link, final Context context)
+	{
+		return new TreeNode(new Value(text, icon, link), false).setController(new LinkNodeController(context));
+	}
+
+	// TREE
+
+	/**
 	 * Make leaf node
 	 *
 	 * @param text    text
@@ -43,19 +76,19 @@ public class TreeFactory
 	 */
 	static public TreeNode newLeafNode(final CharSequence text, final int icon, final Context context)
 	{
-		return new TreeNode(new Value(text, icon)).setController(new LeafController(context));
+		return new TreeNode(new Value(text, icon), false).setController(new LeafController(context));
 	}
 
 	/**
 	 * Make link leaf node
 	 *
 	 * @param text    text
-	 * @param icon       icon
+	 * @param icon    icon
 	 * @param link    link
 	 * @param context context
 	 * @return created node
 	 */
-	static public TreeNode newLinkNode(final CharSequence text, final int icon, final Link link, final Context context)
+	static public TreeNode newLinkLeafNode(final CharSequence text, final int icon, final Link link, final Context context)
 	{
 		return new TreeNode(new Value(text, icon, link)).setController(new LinkLeafController(context));
 	}
@@ -64,7 +97,7 @@ public class TreeFactory
 	 * Make tree node
 	 *
 	 * @param text    text
-	 * @param icon       icon
+	 * @param icon    icon
 	 * @param context context
 	 * @return created node
 	 */
@@ -77,7 +110,7 @@ public class TreeFactory
 	 * Make link tree node
 	 *
 	 * @param text    text
-	 * @param icon       icon
+	 * @param icon    icon
 	 * @param link    link
 	 * @param context context
 	 * @return created node

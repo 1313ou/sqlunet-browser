@@ -31,7 +31,7 @@ public class LinkLeafController extends LeafController
 	{
 		final View view = super.createNodeView(node, value);
 
-		// listener
+		// link listener
 		final View hotLink = view.findViewById(R.id.node_link);
 		if (hotLink != null)
 		{

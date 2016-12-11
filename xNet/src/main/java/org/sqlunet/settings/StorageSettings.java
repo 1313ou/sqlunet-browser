@@ -52,7 +52,7 @@ public class StorageSettings
 			dir.mkdirs();
 			if (!dir.exists())
 			{
-				return null;
+				throw new IllegalStateException("Can't make directory " + dir.getAbsolutePath());
 			}
 		}
 		return dir.getAbsolutePath();

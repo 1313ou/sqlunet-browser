@@ -19,13 +19,7 @@ public class WordModule extends BasicModule
 	/**
 	 * Word id
 	 */
-	Long wordId;
-
-	/**
-	 * Expand flag
-	 */
-	@SuppressWarnings("WeakerAccess")
-	protected boolean expand;
+	private Long wordId;
 
 	/**
 	 * Constructor
@@ -35,17 +29,6 @@ public class WordModule extends BasicModule
 	public WordModule(final Fragment fragment)
 	{
 		super(fragment);
-		this.expand = true;
-	}
-
-	/**
-	 * Set expand
-	 *
-	 * @param expand expand flag
-	 */
-	public void setExpand(final boolean expand)
-	{
-		this.expand = expand;
 	}
 
 	@Override
