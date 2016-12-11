@@ -304,6 +304,19 @@ public class WordNetContract
 		// morphmaps LEFT JOIN morphs
 	}
 
+	static public final class Words_MorphMaps_Morphs
+	{
+		static public final String TABLE = "words_morphmaps_morphs";
+		static public final String TABLE_BY_WORD = "words_morphmaps_morphs_by_word";
+		static public final String CONTENT_URI = BaseProvider.SCHEME + WordNetContract.AUTHORITY + '/' + Words_MorphMaps_Morphs.TABLE;
+		static public final String CONTENT_URI_BY_WORD = BaseProvider.SCHEME + WordNetContract.AUTHORITY + '/' + Words_MorphMaps_Morphs.TABLE_BY_WORD;
+		static public final String LEMMA = "lemma";
+		static public final String WORDID = "wordid";
+		static public final String MORPH = "morph";
+		static public final String POS = "pos";
+		// words LEFT JOIN morphmaps LEFT JOIN morphs
+	}
+
 	// V I E W S
 
 	@SuppressWarnings("unused")

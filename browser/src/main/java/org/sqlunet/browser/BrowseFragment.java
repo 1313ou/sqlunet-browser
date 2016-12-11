@@ -59,7 +59,9 @@ import org.sqlunet.settings.Settings;
 import org.sqlunet.verbnet.VnClassPointer;
 import org.sqlunet.verbnet.browser.VnClassActivity;
 import org.sqlunet.wordnet.SynsetPointer;
+import org.sqlunet.wordnet.WordPointer;
 import org.sqlunet.wordnet.browser.SynsetActivity;
+import org.sqlunet.wordnet.browser.WordActivity;
 import org.sqlunet.wordnet.provider.WordNetContract.AdjPositionTypes;
 import org.sqlunet.wordnet.provider.WordNetContract.LexDomains;
 import org.sqlunet.wordnet.provider.WordNetContract.LinkTypes;
@@ -463,6 +465,16 @@ public class BrowseFragment extends Fragment implements SearchListener
 				args.putBoolean(ProviderArgs.ARG_QUERYRECURSE, recurse);
 
 				targetIntent = makeDetailIntent(SynsetActivity.class);
+			}
+
+			if (query.startsWith("#ww"))
+			{
+				final Parcelable wordPointer = new WordPointer(id);
+				args.putInt(ProviderArgs.ARG_QUERYTYPE, ProviderArgs.ARG_QUERYTYPE_WORD);
+				args.putParcelable(ProviderArgs.ARG_QUERYPOINTER, wordPointer);
+				args.putBoolean(ProviderArgs.ARG_QUERYRECURSE, recurse);
+
+				targetIntent = makeDetailIntent(WordActivity.class);
 			}
 
 			// verbnet

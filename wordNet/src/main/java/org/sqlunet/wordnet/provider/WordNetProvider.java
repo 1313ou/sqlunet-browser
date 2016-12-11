@@ -42,6 +42,7 @@ import org.sqlunet.wordnet.provider.WordNetContract.Synsets_PosTypes_LexDomains;
 import org.sqlunet.wordnet.provider.WordNetContract.VerbFrameMaps_VerbFrames;
 import org.sqlunet.wordnet.provider.WordNetContract.VerbFrameSentenceMaps_VerbFrameSentences;
 import org.sqlunet.wordnet.provider.WordNetContract.Words;
+import org.sqlunet.wordnet.provider.WordNetContract.Words_MorphMaps_Morphs;
 import org.sqlunet.wordnet.provider.WordNetContract.Words_Senses_CasedWords_Synsets;
 import org.sqlunet.wordnet.provider.WordNetContract.Words_Senses_CasedWords_Synsets_PosTypes_LexDomains;
 import org.sqlunet.wordnet.provider.WordNetContract.Words_Senses_Synsets;
@@ -95,6 +96,8 @@ public class WordNetProvider extends BaseProvider
 	static private final int VFRAMESENTENCEMAPS_VFRAMESENTENCES = 371;
 	static private final int ADJPOSITIONS_ADJPOSITIONTYPES = 380;
 	static private final int MORPHMAPS_MORPHS = 390;
+	static private final int WORDS_MORPHMAPS_MORPHS = 391;
+	static private final int WORDS_MORPHMAPS_MORPHS_BY_WORD = 392;
 
 	// text search codes
 	static private final int LOOKUP_WORDS = 510;
@@ -150,6 +153,8 @@ public class WordNetProvider extends BaseProvider
 		WordNetProvider.uriMatcher.addURI(WordNetContract.AUTHORITY, AdjPositions_AdjPositionTypes.TABLE, WordNetProvider.ADJPOSITIONS_ADJPOSITIONTYPES);
 
 		WordNetProvider.uriMatcher.addURI(WordNetContract.AUTHORITY, MorphMaps_Morphs.TABLE, WordNetProvider.MORPHMAPS_MORPHS);
+		WordNetProvider.uriMatcher.addURI(WordNetContract.AUTHORITY, Words_MorphMaps_Morphs.TABLE, WordNetProvider.WORDS_MORPHMAPS_MORPHS);
+		WordNetProvider.uriMatcher.addURI(WordNetContract.AUTHORITY, WordNetContract.Words_MorphMaps_Morphs.TABLE_BY_WORD, WordNetProvider.WORDS_MORPHMAPS_MORPHS_BY_WORD);
 
 		// text search
 		WordNetProvider.uriMatcher.addURI(WordNetContract.AUTHORITY, Lookup_Words.TABLE, WordNetProvider.LOOKUP_FTS_WORDS);
@@ -251,6 +256,11 @@ public class WordNetProvider extends BaseProvider
 				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + WordNetContract.AUTHORITY + '.' + AdjPositions_AdjPositionTypes.TABLE;
 			case MORPHMAPS_MORPHS:
 				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + WordNetContract.AUTHORITY + '.' + MorphMaps_Morphs.TABLE;
+			case WORDS_MORPHMAPS_MORPHS:
+				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + WordNetContract.AUTHORITY + '.' + Words_MorphMaps_Morphs.TABLE;
+			case WORDS_MORPHMAPS_MORPHS_BY_WORD:
+				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + WordNetContract.AUTHORITY + '.' + Words_MorphMaps_Morphs.TABLE_BY_WORD;
+
 			// TEXT LOOKUPS
 
 			case LOOKUP_FTS_WORDS:
@@ -485,6 +495,16 @@ public class WordNetProvider extends BaseProvider
 
 			case MORPHMAPS_MORPHS:
 				table = "morphmaps " + //
+						"LEFT JOIN morphs USING (morphid)";
+				break;
+
+			case WORDS_MORPHMAPS_MORPHS_BY_WORD:
+				groupBy = "wordid";
+				//$FALL-THROUGH$
+				//noinspection fallthrough
+			case WORDS_MORPHMAPS_MORPHS:
+				table = "words " + //
+						"LEFT JOIN morphmaps USING (wordid) " +
 						"LEFT JOIN morphs USING (morphid)";
 				break;
 

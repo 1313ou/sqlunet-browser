@@ -42,6 +42,7 @@ import org.sqlunet.wordnet.provider.WordNetContract.Synsets_PosTypes_LexDomains;
 import org.sqlunet.wordnet.provider.WordNetContract.VerbFrameMaps_VerbFrames;
 import org.sqlunet.wordnet.provider.WordNetContract.VerbFrameSentenceMaps_VerbFrameSentences;
 import org.sqlunet.wordnet.provider.WordNetContract.Words;
+import org.sqlunet.wordnet.provider.WordNetContract.Words_MorphMaps_Morphs;
 import org.sqlunet.wordnet.provider.WordNetContract.Words_Senses_CasedWords_Synsets_PosTypes_LexDomains;
 import org.sqlunet.wordnet.style.WordNetFactories;
 
@@ -70,6 +71,8 @@ abstract public class BasicModule extends Module
 
 	private final Drawable verbframeDrawable;
 
+	private final Drawable morphDrawable;
+
 	/**
 	 * Whether members are grouped
 	 */
@@ -92,6 +95,7 @@ abstract public class BasicModule extends Module
 		this.posDrawable = Spanner.getDrawable(this.context, R.drawable.pos);
 		this.lexdomainDrawable = Spanner.getDrawable(this.context, R.drawable.domain);
 		this.verbframeDrawable = Spanner.getDrawable(this.context, R.drawable.verbframe);
+		this.morphDrawable = this.verbframeDrawable;
 	}
 
 	/**
@@ -106,6 +110,90 @@ abstract public class BasicModule extends Module
 	}
 
 	// L O A D E R S
+
+	// Word
+
+	static public final String ALLMORPHS = "allmorphs";
+
+	/**
+	 * Word
+	 *
+	 * @param wordId     word id
+	 * @param parent     tree parent node
+	 * @param addNewNode whether to addItem to (or set) node
+	 */
+	protected void word(final long wordId, final TreeNode parent, final boolean addNewNode)
+	{
+		// load the contents
+		getLoaderManager().restartLoader(++Module.loaderId, null, new LoaderCallbacks<Cursor>()
+		{
+			@Override
+			public Loader<Cursor> onCreateLoader(final int loaderId, final Bundle loaderArgs)
+			{
+				final Uri uri = Uri.parse(Words_MorphMaps_Morphs.CONTENT_URI_BY_WORD);
+				final String[] projection = { //
+						Words_MorphMaps_Morphs.LEMMA, //
+						Words_MorphMaps_Morphs.WORDID, //
+						"GROUP_CONCAT(" + Words_MorphMaps_Morphs.MORPH + "||'-'||" + Words_MorphMaps_Morphs.POS + ") AS " + BasicModule.ALLMORPHS};
+				final String selection = Words.WORDID + " = ?";
+				final String[] selectionArgs = {Long.toString(wordId)};
+				final String sortOrder = null;
+				return new CursorLoader(BasicModule.this.context, uri, projection, selection, selectionArgs, sortOrder);
+			}
+
+			@Override
+			public void onLoadFinished(final Loader<Cursor> loader, final Cursor cursor)
+			{
+				if (cursor.getCount() > 1)
+				{
+					throw new RuntimeException("Unexpected number of rows");
+				}
+
+				// store source result
+				if (cursor.moveToFirst())
+				{
+					final SpannableStringBuilder sb = new SpannableStringBuilder();
+
+					// final int idWordId = cursor.getColumnIndex(Words.WORDID);
+					final int idLemma = cursor.getColumnIndex(Words_MorphMaps_Morphs.LEMMA);
+					final int idMorphs = cursor.getColumnIndex(BasicModule.ALLMORPHS);
+					final String lemma = cursor.getString(idLemma);
+					final String morphs = cursor.getString(idMorphs);
+					Spanner.appendImage(sb, BasicModule.this.memberDrawable);
+					sb.append(' ');
+					if (morphs != null && !morphs.isEmpty())
+					{
+						Spanner.append(sb, lemma, 0, WordNetFactories.wordFactory);
+						sb.append(' ');
+						sb.append(morphs);
+					}
+
+					// result
+					if (addNewNode)
+					{
+						TreeFactory.addTextNode(parent, sb, BasicModule.this.context);
+						FireEvent.onResults(parent);
+					}
+					else
+					{
+						FireEvent.onResults(parent, sb);
+					}
+				}
+				else
+				{
+					FireEvent.onNoResult(parent, true);
+				}
+
+				cursor.close();
+			}
+
+			@Override
+			public void onLoaderReset(final Loader<Cursor> loader)
+			{
+				//
+			}
+		});
+	}
 
 	// Sense
 
@@ -1621,7 +1709,7 @@ abstract public class BasicModule extends Module
 						{
 							sb.append('\n');
 						}
-						Spanner.appendImage(sb, BasicModule.this.verbframeDrawable);
+						Spanner.appendImage(sb, BasicModule.this.morphDrawable);
 						sb.append(' ');
 						sb.append(record);
 					}

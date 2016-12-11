@@ -48,23 +48,19 @@ public class WordModule extends BasicModule
 		if (this.wordId != null && this.wordId != 0)
 		{
 			// sub nodes
-			final TreeNode sensesNode = TreeFactory.newTextNode("Senses", this.context);
+			final TreeNode wordNode = TreeFactory.newTextNode("Word", this.context);
+			parent.addChild(wordNode);
 
-			// attach node
-			parent.addChild(sensesNode);
+			// word
+			word(this.wordId, wordNode, false);
 
-			// synset
-			senses(this.wordId, sensesNode);
+			// senses sub node
+			//final TreeNode sensesNode = TreeFactory.newTextNode("Senses", this.context);
+			//parent.addChild(sensesNode);
 
-			/*
-			// links and samples
-			final TreeNode linksNode = TreeFactory.newQueryNode(new LinksQuery(this.wordId, 0, R.drawable.ic_links, "Links"), this.expand, this.context).addTo(parent);
-			final TreeNode samplesNode = TreeFactory.newQueryNode(new SamplesQuery(this.wordId, R.drawable.sample, "Samples"), this.expand, this.context).addTo(parent);
-
-			// fire event
-			FireEvent.onQueryReady(linksNode);
-			FireEvent.onQueryReady(samplesNode);
-			*/
+			// senses
+			// senses(this.wordId, sensesNode);
+			senses(this.wordId, wordNode);
 
 			FireEvent.onResults(parent);
 		}
