@@ -18,7 +18,7 @@ import org.sqlunet.wordnet.R;
 public class SenseModule extends SynsetModule
 {
 	/**
-	 * WordId
+	 * Word id
 	 */
 	private Long wordId;
 
@@ -98,6 +98,7 @@ public class SenseModule extends SynsetModule
 		// fire event
 		FireEvent.onQueryReady(linksNode);
 		FireEvent.onQueryReady(samplesNode);
+
 		FireEvent.onResults(parent);
 	}
 }

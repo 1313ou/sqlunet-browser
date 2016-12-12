@@ -21,6 +21,7 @@ public final class ProviderArgs
 	public static final int ARG_QUERYTYPE_ALL = 0;
 	public static final int ARG_QUERYTYPE_WORD = 1;
 	public static final int ARG_QUERYTYPE_SYNSET = 2;
+	public static final int ARG_QUERYTYPE_SENSE = 3;
 	public static final int ARG_QUERYTYPE_VNCLASS = 10;
 	public static final int ARG_QUERYTYPE_PBROLESET = 20;
 	public static final int ARG_QUERYTYPE_FNFRAME = 31;

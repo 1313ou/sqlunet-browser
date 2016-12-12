@@ -113,6 +113,7 @@ public class SynsetModule extends BasicModule
 			// fire event
 			FireEvent.onQueryReady(linksNode);
 			FireEvent.onQueryReady(samplesNode);
+
 			FireEvent.onResults(parent);
 		}
 	}

@@ -1,19 +1,19 @@
 package org.sqlunet.wordnet.browser;
 
 import org.sqlunet.browser.Module;
-import org.sqlunet.wordnet.loaders.SenseModule;
+import org.sqlunet.wordnet.loaders.SenseKeyModule;
 
 /**
- * A fragment representing a sense
+ * A fragment representing a sense (from sensekey)
  *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
-public class SenseFragment extends SynsetFragment
+public class SenseKeyFragment extends SynsetFragment
 {
 	/**
 	 * Constructor
 	 */
-	public SenseFragment()
+	public SenseKeyFragment()
 	{
 		super();
 	}
@@ -21,6 +21,6 @@ public class SenseFragment extends SynsetFragment
 	@Override
 	protected Module makeModule()
 	{
-		return new SenseModule(this);
+		return new SenseKeyModule(this);
 	}
 }

@@ -36,6 +36,7 @@ import org.sqlunet.wordnet.provider.WordNetContract.MorphMaps_Morphs;
 import org.sqlunet.wordnet.provider.WordNetContract.PosTypes;
 import org.sqlunet.wordnet.provider.WordNetContract.Samples;
 import org.sqlunet.wordnet.provider.WordNetContract.SemLinks_Synsets_Words_X;
+import org.sqlunet.wordnet.provider.WordNetContract.Senses;
 import org.sqlunet.wordnet.provider.WordNetContract.Senses_Words;
 import org.sqlunet.wordnet.provider.WordNetContract.Synsets;
 import org.sqlunet.wordnet.provider.WordNetContract.Synsets_PosTypes_LexDomains;
@@ -374,11 +375,131 @@ abstract public class BasicModule extends Module
 	/**
 	 * Sense
 	 *
+	 * @param senseId sense id
+	 * @param parent  parent node
+	 */
+	public void sense(final long senseId, final TreeNode parent)
+	{
+		getLoaderManager().restartLoader(++Module.loaderId, null, new LoaderCallbacks<Cursor>()
+		{
+			@Override
+			public Loader<Cursor> onCreateLoader(final int loaderId, final Bundle loaderArgs)
+			{
+				final Uri uri = Uri.parse(Senses.CONTENT_URI);
+				final String[] projection = { //
+						Senses.WORDID, //
+						Senses.SYNSETID, //
+				};
+				final String selection = Senses.SENSEID + " = ?";
+				final String[] selectionArgs = {Long.toString(senseId)};
+				final String sortOrder = null;
+				return new CursorLoader(BasicModule.this.context, uri, projection, selection, selectionArgs, sortOrder);
+			}
+
+			@Override
+			public void onLoadFinished(final Loader<Cursor> loader, final Cursor cursor)
+			{
+				if (cursor.getCount() > 1)
+				{
+					throw new RuntimeException("Unexpected number of rows");
+				}
+				if (cursor.moveToFirst())
+				{
+					final SpannableStringBuilder sb = new SpannableStringBuilder();
+					final int idWordId = cursor.getColumnIndex(PosTypes.POSNAME);
+					final int idSynsetId = cursor.getColumnIndex(Synsets.DEFINITION);
+					final long wordId = cursor.getLong(idWordId);
+					final long synsetId = cursor.getLong(idSynsetId);
+
+					sense(synsetId, wordId, parent);
+				}
+				else
+				{
+					FireEvent.onNoResult(parent, true);
+				}
+
+				cursor.close();
+			}
+
+			@Override
+			public void onLoaderReset(final Loader<Cursor> loader)
+			{
+				//
+			}
+		});
+	}
+
+	/**
+	 * Sense
+	 *
+	 * @param senseKey sense key
+	 * @param parent   parent node
+	 */
+	public void sense(final String senseKey, final TreeNode parent)
+	{
+		getLoaderManager().restartLoader(++Module.loaderId, null, new LoaderCallbacks<Cursor>()
+		{
+			@Override
+			public Loader<Cursor> onCreateLoader(final int loaderId, final Bundle loaderArgs)
+			{
+				final Uri uri = Uri.parse(Senses.CONTENT_URI);
+				final String[] projection = { //
+						Senses.WORDID, //
+						Senses.SYNSETID, //
+				};
+				final String selection = Senses.SENSEKEY + " = ?";
+				final String[] selectionArgs = {senseKey};
+				final String sortOrder = null;
+				return new CursorLoader(BasicModule.this.context, uri, projection, selection, selectionArgs, sortOrder);
+			}
+
+			@Override
+			public void onLoadFinished(final Loader<Cursor> loader, final Cursor cursor)
+			{
+				if (cursor.getCount() > 1)
+				{
+					throw new RuntimeException("Unexpected number of rows");
+				}
+				if (cursor.moveToFirst())
+				{
+					final SpannableStringBuilder sb = new SpannableStringBuilder();
+					final int idWordId = cursor.getColumnIndex(Senses.WORDID);
+					final int idSynsetId = cursor.getColumnIndex(Senses.SYNSETID);
+					final long wordId = cursor.getLong(idWordId);
+					final long synsetId = cursor.getLong(idSynsetId);
+
+					// sub nodes
+					final TreeNode wordNode = TreeFactory.newTextNode("Word", BasicModule.this.context);
+					parent.addChild(wordNode);
+					FireEvent.onResults(parent);
+
+					// word
+					word(wordId, wordNode, false);
+					sense(synsetId, wordId, wordNode);
+				}
+				else
+				{
+					FireEvent.onNoResult(parent, true);
+				}
+
+				cursor.close();
+			}
+
+			@Override
+			public void onLoaderReset(final Loader<Cursor> loader)
+			{
+				//
+			}
+		});
+	}
+
+	/**
+	 * Sense
+	 *
 	 * @param synsetId synset id
 	 * @param wordId   word id
 	 * @param parent   parent node
 	 */
-	@SuppressWarnings("unused")
 	public void sense(final long synsetId, final long wordId, final TreeNode parent)
 	{
 		getLoaderManager().restartLoader(++Module.loaderId, null, new LoaderCallbacks<Cursor>()
@@ -415,7 +536,6 @@ abstract public class BasicModule extends Module
 					final String lexDomain = cursor.getString(idLexDomain);
 					final String definition = cursor.getString(idDefinition);
 
-					sb.append('\n');
 					Spanner.appendImage(sb, BasicModule.this.synsetDrawable);
 					sb.append(' ');
 					synset(sb, synsetId, posName, lexDomain, definition);

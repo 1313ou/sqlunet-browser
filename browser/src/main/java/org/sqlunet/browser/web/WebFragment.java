@@ -488,10 +488,10 @@ public class WebFragment extends Fragment
 											}
 											else
 											{
-												final SensePointer sensePointer = (SensePointer) pointer;
-												final Long wordId = sensePointer.getWordId();
-												final Long synsetId = sensePointer.getSynsetId();
-												final Character pos = sensePointer.getPos();
+												final SensePointer sense2Pointer = (SensePointer) pointer;
+												final Long wordId = sense2Pointer.getWordId();
+												final Long synsetId = sense2Pointer.getSynsetId();
+												final Character pos = sense2Pointer.getPos();
 												if (Settings.Source.WORDNET.test(sources))
 												{
 													wnDomDoc = new WordNetImplementation().queryDoc(db, wordId, synsetId, true, false);

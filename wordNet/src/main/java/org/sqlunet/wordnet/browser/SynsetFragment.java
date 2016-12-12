@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import org.sqlunet.browser.Module;
 import org.sqlunet.provider.ProviderArgs;
 import org.sqlunet.treeview.control.TreeController;
 import org.sqlunet.treeview.model.TreeNode;
@@ -85,8 +86,7 @@ public class SynsetFragment extends Fragment
 			final Parcelable pointer = args.getParcelable(ProviderArgs.ARG_QUERYPOINTER);
 
 			// module
-			final SynsetModule module = makeModule();
-			module.setExpand(SynsetFragment.this.expand);
+			final Module module = makeModule();
 			module.init(type, pointer);
 			module.process(queryNode);
 		}
@@ -106,10 +106,11 @@ public class SynsetFragment extends Fragment
 	 *
 	 * @return module
 	 */
-	@SuppressWarnings("WeakerAccess")
-	protected SynsetModule makeModule()
+	protected Module makeModule()
 	{
-		return new SynsetModule(this);
+		final SynsetModule module = new SynsetModule(this);
+		module.setExpand(SynsetFragment.this.expand);
+		return module;
 	}
 
 	/**

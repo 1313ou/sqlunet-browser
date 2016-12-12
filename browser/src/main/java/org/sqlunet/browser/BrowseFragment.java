@@ -58,8 +58,10 @@ import org.sqlunet.provider.ProviderArgs;
 import org.sqlunet.settings.Settings;
 import org.sqlunet.verbnet.VnClassPointer;
 import org.sqlunet.verbnet.browser.VnClassActivity;
+import org.sqlunet.wordnet.SenseKeyPointer;
 import org.sqlunet.wordnet.SynsetPointer;
 import org.sqlunet.wordnet.WordPointer;
+import org.sqlunet.wordnet.browser.SenseKeyActivity;
 import org.sqlunet.wordnet.browser.SynsetActivity;
 import org.sqlunet.wordnet.browser.WordActivity;
 import org.sqlunet.wordnet.provider.WordNetContract.AdjPositionTypes;
@@ -466,8 +468,7 @@ public class BrowseFragment extends Fragment implements SearchListener
 
 				targetIntent = makeDetailIntent(SynsetActivity.class);
 			}
-
-			if (query.startsWith("#ww"))
+			else if (query.startsWith("#ww"))
 			{
 				final Parcelable wordPointer = new WordPointer(id);
 				args.putInt(ProviderArgs.ARG_QUERYTYPE, ProviderArgs.ARG_QUERYTYPE_WORD);
@@ -559,6 +560,19 @@ public class BrowseFragment extends Fragment implements SearchListener
 			else
 			{
 				return;
+			}
+		}
+		if (query.matches("#\\p{Lower}\\p{Lower}[\\w:%]+"))
+		{
+			final String id = query.substring(3);
+			if (query.startsWith("#wk"))
+			{
+				final Parcelable senseKeyPointer = new SenseKeyPointer(id);
+				args.putInt(ProviderArgs.ARG_QUERYTYPE, ProviderArgs.ARG_QUERYTYPE_SENSE);
+				args.putParcelable(ProviderArgs.ARG_QUERYPOINTER, senseKeyPointer);
+				args.putBoolean(ProviderArgs.ARG_QUERYRECURSE, recurse);
+
+				targetIntent = makeDetailIntent(SenseKeyActivity.class);
 			}
 		}
 		else
