@@ -159,13 +159,15 @@ abstract public class BasicModule extends Module
 					final int idMorphs = cursor.getColumnIndex(BasicModule.ALLMORPHS);
 					final String lemma = cursor.getString(idLemma);
 					final String morphs = cursor.getString(idMorphs);
+
 					Spanner.appendImage(sb, BasicModule.this.memberDrawable);
 					sb.append(' ');
+					Spanner.append(sb, lemma, 0, WordNetFactories.wordFactory);
+
 					if (morphs != null && !morphs.isEmpty())
 					{
-						Spanner.append(sb, lemma, 0, WordNetFactories.wordFactory);
 						sb.append(' ');
-						sb.append(morphs);
+						Spanner.append(sb, morphs, 0, WordNetFactories.dataFactory);
 					}
 
 					// result
@@ -547,8 +549,8 @@ abstract public class BasicModule extends Module
 		}
 		if (tagCount > 0)
 		{
-			sb.append(" count=");
-			Spanner.append(sb, Integer.toString(tagCount), 0, WordNetFactories.dataFactory);
+			sb.append(' ');
+			Spanner.append(sb, "tagcount:" + Integer.toString(tagCount), 0, WordNetFactories.dataFactory);
 		}
 
 		sb.append('\n');

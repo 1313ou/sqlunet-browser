@@ -17,5 +17,9 @@
 	<!-- action bar -->
 	<item name="browse_action_bar_color" type="color">#FF990073</item>
 	<item name="textsearch_action_bar_color" type="color">#FFb32400</item>
+	<item name="predicatematrix_action_bar_color" type="color">#FF262673</item>
+
+	<!-- home -->
+	<item name="home_color" type="color">#FF400020</item>
 
 </resources>
