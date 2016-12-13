@@ -61,7 +61,6 @@ public class SynsetFragment extends Fragment
 
 		// tree
 		this.treeView = new TreeView(getActivity(), root);
-		this.treeView.setDefaultAnimation(true);
 		this.treeView.setDefaultContainerStyle(R.style.TreeNodeStyleCustom); // R.style.TreeNodeStyleDivided
 		this.treeView.setDefaultController(TreeController.class);
 		containerView.addView(this.treeView.getView());

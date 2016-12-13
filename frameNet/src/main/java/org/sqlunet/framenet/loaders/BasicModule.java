@@ -3,11 +3,13 @@ package org.sqlunet.framenet.loaders;
 import android.app.Fragment;
 import android.app.LoaderManager.LoaderCallbacks;
 import android.content.CursorLoader;
+import android.content.Intent;
 import android.content.Loader;
 import android.database.Cursor;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.text.Editable;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
@@ -16,8 +18,12 @@ import android.text.style.ForegroundColorSpan;
 import android.util.Log;
 
 import org.sqlunet.browser.Module;
+import org.sqlunet.framenet.FnFramePointer;
+import org.sqlunet.framenet.FnLexUnitPointer;
 import org.sqlunet.framenet.R;
 import org.sqlunet.framenet.Utils;
+import org.sqlunet.framenet.browser.FnFrameActivity;
+import org.sqlunet.framenet.browser.FnLexUnitActivity;
 import org.sqlunet.framenet.provider.FrameNetContract;
 import org.sqlunet.framenet.provider.FrameNetContract.AnnoSets_Layers_X;
 import org.sqlunet.framenet.provider.FrameNetContract.Frames_FEs;
@@ -41,7 +47,9 @@ import org.sqlunet.framenet.style.FrameNetFrameProcessor;
 import org.sqlunet.framenet.style.FrameNetMarkupFactory;
 import org.sqlunet.framenet.style.FrameNetProcessor;
 import org.sqlunet.framenet.style.FrameNetSpanner;
+import org.sqlunet.provider.ProviderArgs;
 import org.sqlunet.style.Spanner;
+import org.sqlunet.treeview.control.Link;
 import org.sqlunet.treeview.control.Query;
 import org.sqlunet.treeview.model.TreeNode;
 import org.sqlunet.view.FireEvent;
@@ -314,8 +322,6 @@ abstract public class BasicModule extends Module
 			{
 				if (cursor.moveToFirst())
 				{
-					final SpannableStringBuilder sb = new SpannableStringBuilder();
-
 					// column indices
 					// final int idFrameId = cursor.getColumnIndex(Frames_Related.FRAMEID);
 					// final int idFrame = cursor.getColumnIndex(Frames_Related.FRAME);
@@ -329,17 +335,9 @@ abstract public class BasicModule extends Module
 					final int idRelationId = cursor.getColumnIndex(Frames_Related.RELATIONID);
 					final int idRelationGloss = cursor.getColumnIndex(Frames_Related.RELATIONGLOSS);
 
-					boolean first = true;
 					do
 					{
-						if (!first)
-						{
-							sb.append('\n');
-						}
-						else
-						{
-							first = false;
-						}
+						final SpannableStringBuilder sb = new SpannableStringBuilder();
 
 						// data
 						final int frame1Id = cursor.getInt(idFrameId);
@@ -351,8 +349,6 @@ abstract public class BasicModule extends Module
 						final String gloss = cursor.getString(idRelationGloss);
 
 						// related
-						Spanner.appendImage(sb, BasicModule.this.frameDrawable);
-						sb.append(' ');
 						if (VERBOSE)
 						{
 							sb.append(Integer.toString(relationId));
@@ -402,11 +398,13 @@ abstract public class BasicModule extends Module
 						position = sbr.toString().indexOf("%s");
 						sbr.replace(position, position + 2, sb2);
 						sb.append(sbr);
+
+						// result
+						long targetFrameId = slot1 ? frame2Id : frame1Id;
+						final TreeNode memberNode = TreeFactory.newLinkNode(sb, R.drawable.roleclass, new FnFrameLink(targetFrameId), BasicModule.this.context);
+						parent.addChild(memberNode);
 					}
 					while (cursor.moveToNext());
-
-					// attach result
-					TreeFactory.addTextNode(parent, sb, BasicModule.this.context);
 
 					// fire event
 					FireEvent.onResults(parent);
@@ -794,8 +792,9 @@ abstract public class BasicModule extends Module
 							sb.append(Long.toString(luId));
 						}
 
-						// attach fe
-						final TreeNode luNode = TreeFactory.addTreeNode(parent, sb, R.drawable.member, BasicModule.this.context);
+						// attach lex unit
+						final TreeNode luNode = TreeFactory.newLinkTreeNode(sb, R.drawable.member, new FnLexUnitLink(luId), BasicModule.this.context);
+						parent.addChild(luNode);
 
 						// more info
 						final SpannableStringBuilder sb2 = new SpannableStringBuilder();
@@ -2581,6 +2580,66 @@ abstract public class BasicModule extends Module
 		public void process(final TreeNode node)
 		{
 			Log.d(TAG, "QUERY " + this.id);
+		}
+	}
+
+	// L I N K S
+
+	/**
+	 * Fn frame link data
+	 */
+	class FnFrameLink extends Link
+	{
+		/**
+		 * Constructor
+		 *
+		 * @param frameId frame id
+		 */
+		public FnFrameLink(final long frameId)
+		{
+			super(frameId);
+		}
+
+		@SuppressWarnings("boxing")
+		@Override
+		public void process()
+		{
+			final Parcelable pointer = new FnFramePointer(this.id);
+			final Intent intent = new Intent(BasicModule.this.context, FnFrameActivity.class);
+			intent.putExtra(ProviderArgs.ARG_QUERYTYPE, ProviderArgs.ARG_QUERYTYPE_FNFRAME);
+			intent.putExtra(ProviderArgs.ARG_QUERYPOINTER, pointer);
+			intent.setAction(ProviderArgs.ACTION_QUERY);
+
+			BasicModule.this.context.startActivity(intent);
+		}
+	}
+
+	/**
+	 * Fn lex unit link data
+	 */
+	class FnLexUnitLink extends Link
+	{
+		/**
+		 * Constructor
+		 *
+		 * @param luId lex unit id
+		 */
+		public FnLexUnitLink(final long luId)
+		{
+			super(luId);
+		}
+
+		@SuppressWarnings("boxing")
+		@Override
+		public void process()
+		{
+			final Parcelable pointer = new FnLexUnitPointer(this.id);
+			final Intent intent = new Intent(BasicModule.this.context, FnLexUnitActivity.class);
+			intent.putExtra(ProviderArgs.ARG_QUERYTYPE, ProviderArgs.ARG_QUERYTYPE_FNLEXUNIT);
+			intent.putExtra(ProviderArgs.ARG_QUERYPOINTER, pointer);
+			intent.setAction(ProviderArgs.ACTION_QUERY);
+
+			BasicModule.this.context.startActivity(intent);
 		}
 	}
 }

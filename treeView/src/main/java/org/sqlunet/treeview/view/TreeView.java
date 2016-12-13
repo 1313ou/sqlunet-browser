@@ -1,5 +1,7 @@
 package org.sqlunet.treeview.view;
 
+import android.animation.Animator;
+import android.animation.ValueAnimator;
 import android.content.Context;
 import android.text.TextUtils;
 import android.view.ContextThemeWrapper;
@@ -7,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewGroup.LayoutParams;
 import android.view.animation.Animation;
+import android.view.animation.LinearInterpolator;
 import android.view.animation.Transformation;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
@@ -31,6 +34,9 @@ import java.util.Set;
 public class TreeView
 {
 	static private final String NODES_PATH_SEPARATOR = ";";
+
+	static private final float ANIMATION_DP_PER_MS = 3.f;
+
 	/**
 	 * Root node
 	 */
@@ -69,7 +75,7 @@ public class TreeView
 	/**
 	 * Use default animation
 	 */
-	private boolean useDefaultAnimation = false;
+	private boolean useAnimation = true;
 
 	/**
 	 * Use 2D scrolling
@@ -363,76 +369,6 @@ public class TreeView
 	}
 
 	/**
-	 * Expand view
-	 *
-	 * @param view view
-	 */
-	static private void expand(final View view)
-	{
-		view.measure(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
-		final int targetHeight = view.getMeasuredHeight();
-
-		view.getLayoutParams().height = 0;
-		view.setVisibility(View.VISIBLE);
-		Animation animation = new Animation()
-		{
-			@Override
-			protected void applyTransformation(float interpolatedTime, Transformation t)
-			{
-				view.getLayoutParams().height = interpolatedTime == 1 ? LayoutParams.WRAP_CONTENT : (int) (targetHeight * interpolatedTime);
-				view.requestLayout();
-			}
-
-			@Override
-			public boolean willChangeBounds()
-			{
-				return true;
-			}
-		};
-
-		// 1dp/ms
-		animation.setDuration((int) (targetHeight / view.getContext().getResources().getDisplayMetrics().density));
-		view.startAnimation(animation);
-	}
-
-	/**
-	 * Collapse view
-	 *
-	 * @param view view
-	 */
-	static private void collapse(final View view)
-	{
-		final int initialHeight = view.getMeasuredHeight();
-
-		final Animation animation = new Animation()
-		{
-			@Override
-			protected void applyTransformation(float interpolatedTime, Transformation t)
-			{
-				if (interpolatedTime == 1)
-				{
-					view.setVisibility(View.GONE);
-				}
-				else
-				{
-					view.getLayoutParams().height = initialHeight - (int) (initialHeight * interpolatedTime);
-					view.requestLayout();
-				}
-			}
-
-			@Override
-			public boolean willChangeBounds()
-			{
-				return true;
-			}
-		};
-
-		// 1dp/ms
-		animation.setDuration((int) (initialHeight / view.getContext().getResources().getDisplayMetrics().density));
-		view.startAnimation(animation);
-	}
-
-	/**
 	 * Expand all
 	 */
 	@SuppressWarnings("unused")
@@ -563,13 +499,14 @@ public class TreeView
 		final Controller<?> controller = getNodeController(node);
 
 		// display
-		if (this.useDefaultAnimation)
+		final View container = controller.getChildrenContainerView();
+		if (this.useAnimation)
 		{
-			collapse(controller.getChildrenContainerView());
+			animatedCollapse(container);
 		}
 		else
 		{
-			controller.getChildrenContainerView().setVisibility(View.GONE);
+			collapse(container);
 		}
 
 		// fire collapse event
@@ -618,30 +555,269 @@ public class TreeView
 		}
 
 		// display
-		if (this.useDefaultAnimation)
+		final View container = controller.getChildrenContainerView();
+		if (this.useAnimation)
 		{
-			expand(controller.getChildrenContainerView());
+			animatedExpand(container);
 		}
 		else
 		{
-			final View container = controller.getChildrenContainerView();
-			container.setVisibility(View.VISIBLE);
-			// LucasJue
-			container.getLayoutParams().height = LinearLayout.LayoutParams.WRAP_CONTENT;
-			container.requestLayout();
+			expand(container);
 		}
+	}
+
+	// E X P A N D / C O L L A P S E   I M P L E M E N T A T I O N
+
+	/**
+	 * Expand view (child container)
+	 *
+	 * @param view view
+	 */
+	static private void expand(final View view)
+	{
+		view.getLayoutParams().height = LayoutParams.WRAP_CONTENT;
+		view.requestLayout();
+		view.setVisibility(View.VISIBLE);
+	}
+
+	/**
+	 * Collapse view (child container)
+	 *
+	 * @param view view
+	 */
+	static private void collapse(final View view)
+	{
+		view.setVisibility(View.GONE);
+	}
+
+	/**
+	 * Animated expand view animated (child container)
+	 *
+	 * @param view view
+	 */
+	static private void animatedExpand_initial(final View view)
+	{
+		view.measure(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
+		final int targetHeight = view.getMeasuredHeight();
+
+		view.getLayoutParams().height = 0;
+		view.setVisibility(View.VISIBLE);
+		final Animation animation = new Animation()
+		{
+			@Override
+			protected void applyTransformation(float interpolatedTime, Transformation t)
+			{
+				view.getLayoutParams().height = interpolatedTime == 1 ? LayoutParams.WRAP_CONTENT : (int) (targetHeight * interpolatedTime);
+				view.requestLayout();
+			}
+
+			@Override
+			public boolean willChangeBounds()
+			{
+				return true;
+			}
+		};
+		animation.setAnimationListener(new Animation.AnimationListener()
+		{
+			@Override
+			public void onAnimationStart(Animation animation)
+			{
+			}
+
+			@Override
+			public void onAnimationEnd(Animation animation)
+			{
+				view.getLayoutParams().height = LayoutParams.WRAP_CONTENT;
+				view.requestLayout();
+			}
+
+			@Override
+			public void onAnimationRepeat(Animation animation)
+			{
+			}
+		});
+
+		// factor x 1dp/ms
+		animation.setDuration((int) (ANIMATION_DP_PER_MS * targetHeight / view.getContext().getResources().getDisplayMetrics().density));
+		view.startAnimation(animation);
+	}
+
+	/**
+	 * Animated expand view animated (child container)
+	 *
+	 * @param view view
+	 */
+	static private void animatedExpand(final View view)
+	{
+		view.measure(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
+		final int targetHeight = view.getMeasuredHeight();
+		int duration = (int) (ANIMATION_DP_PER_MS * targetHeight / view.getContext().getResources().getDisplayMetrics().density);
+
+		ValueAnimator.setFrameDelay(250);
+		final ValueAnimator animator = ValueAnimator.ofFloat(0, 1);
+		animator.setRepeatCount(0);
+		animator.setDuration(duration);
+		animator.setStartDelay(0);
+		animator.setInterpolator(new LinearInterpolator());
+		animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener()
+		{
+			@Override
+			public void onAnimationUpdate(ValueAnimator valueAnimator)
+			{
+				float value = (float) valueAnimator.getAnimatedValue();
+				view.getLayoutParams().height = value == 1 ? LayoutParams.WRAP_CONTENT : (int) (targetHeight * value);
+				view.requestLayout();
+			}
+		});
+		animator.addListener(new Animator.AnimatorListener()
+		{
+			@Override
+			public void onAnimationStart(Animator animator)
+			{
+				view.getLayoutParams().height = 0;
+				view.setVisibility(View.VISIBLE);
+			}
+
+			@Override
+			public void onAnimationEnd(Animator animator)
+			{
+				view.getLayoutParams().height = LayoutParams.WRAP_CONTENT;
+				view.requestLayout();
+			}
+
+			@Override
+			public void onAnimationCancel(Animator animator)
+			{
+				view.getLayoutParams().height = LayoutParams.WRAP_CONTENT;
+				view.requestLayout();
+			}
+
+			@Override
+			public void onAnimationRepeat(Animator animator)
+			{
+			}
+		});
+		animator.start();
+	}
+
+	/**
+	 * Animated collapse view (child container)
+	 *
+	 * @param view view
+	 */
+	static private void animatedCollapse_initial(final View view)
+	{
+		final int initialHeight = view.getMeasuredHeight();
+
+		final Animation animation = new Animation()
+		{
+			@Override
+			protected void applyTransformation(float interpolatedTime, Transformation t)
+			{
+				if (interpolatedTime == 1)
+				{
+					view.setVisibility(View.GONE);
+				}
+				else
+				{
+					view.getLayoutParams().height = initialHeight - (int) (initialHeight * interpolatedTime);
+					view.requestLayout();
+				}
+			}
+
+			@Override
+			public boolean willChangeBounds()
+			{
+				return true;
+			}
+		};
+		animation.setAnimationListener(new Animation.AnimationListener()
+		{
+			@Override
+			public void onAnimationStart(Animation animation)
+			{
+			}
+
+			@Override
+			public void onAnimationEnd(Animation animation)
+			{
+				view.setVisibility(View.GONE);
+			}
+
+			@Override
+			public void onAnimationRepeat(Animation animation)
+			{
+			}
+		});
+
+		// factor x 1dp/ms
+		animation.setDuration((int) (ANIMATION_DP_PER_MS * initialHeight / view.getContext().getResources().getDisplayMetrics().density));
+		view.startAnimation(animation);
+	}
+
+	/**
+	 * Animated collapse view (child container)
+	 *
+	 * @param view view
+	 */
+	static private void animatedCollapse(final View view)
+	{
+		final int initialHeight = view.getMeasuredHeight();
+		int duration = (int) (ANIMATION_DP_PER_MS * initialHeight / view.getContext().getResources().getDisplayMetrics().density);
+
+		ValueAnimator.setFrameDelay(250);
+		final ValueAnimator animator = ValueAnimator.ofFloat(0, 1);
+		animator.setRepeatCount(0);
+		animator.setDuration(duration);
+		animator.setStartDelay(0);
+		animator.setInterpolator(new LinearInterpolator());
+		animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener()
+		{
+			@Override
+			public void onAnimationUpdate(ValueAnimator valueAnimator)
+			{
+				float value = (float) valueAnimator.getAnimatedValue();
+				view.getLayoutParams().height = initialHeight - (int) (initialHeight * value);
+				view.requestLayout();
+			}
+		});
+		animator.addListener(new Animator.AnimatorListener()
+		{
+			@Override
+			public void onAnimationStart(Animator animator)
+			{
+			}
+
+			@Override
+			public void onAnimationEnd(Animator animator)
+			{
+				view.setVisibility(View.GONE);
+			}
+
+			@Override
+			public void onAnimationCancel(Animator animator)
+			{
+				view.setVisibility(View.GONE);
+			}
+
+			@Override
+			public void onAnimationRepeat(Animator animator)
+			{
+			}
+		});
+		animator.start();
 	}
 
 	// P R O P E R T I E S
 
 	/**
-	 * Set default animation
+	 * Set animation use
 	 *
-	 * @param defaultAnimation default animation
+	 * @param useAnimation use animation for expand/collapse
 	 */
-	public void setDefaultAnimation(final boolean defaultAnimation)
+	public void setAnimation(final boolean useAnimation)
 	{
-		this.useDefaultAnimation = defaultAnimation;
+		this.useAnimation = useAnimation;
 	}
 
 	/**
