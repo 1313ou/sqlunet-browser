@@ -80,7 +80,7 @@ public abstract class BaseProvider extends ContentProvider
 	/**
 	 * Debug generated SQL
 	 */
-	static protected final boolean debugSql = true;
+	static public boolean logSql = false;
 
 	static protected final String VENDOR = "sqlunet";
 

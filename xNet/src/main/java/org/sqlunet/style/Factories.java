@@ -68,4 +68,22 @@ public class Factories
 			return new Object[]{new ForegroundColorSpan(Color.GRAY), new StyleSpan(Typeface.ITALIC)};
 		}
 	};
+
+	static public final SpanFactory boldFactory = new SpanFactory()
+	{
+		@Override
+		public Object makeSpans(final long flags)
+		{
+			return new Object[]{new StyleSpan(Typeface.BOLD)};
+		}
+	};
+
+	static public final SpanFactory italicFactory = new SpanFactory()
+	{
+		@Override
+		public Object makeSpans(final long flags)
+		{
+			return new Object[]{new StyleSpan(Typeface.ITALIC)};
+		}
+	};
 }

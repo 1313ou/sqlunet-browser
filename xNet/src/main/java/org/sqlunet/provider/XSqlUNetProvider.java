@@ -230,7 +230,7 @@ public class XSqlUNetProvider extends BaseProvider
 				throw new RuntimeException("Malformed URI " + uri);
 		}
 
-		if (BaseProvider.debugSql)
+		if (BaseProvider.logSql)
 		{
 			final String sql = SQLiteQueryBuilder.buildQueryString(false, table, projection, selection, groupBy, null, sortOrder, null);
 			logSql(sql, selectionArgs);
@@ -339,7 +339,7 @@ public class XSqlUNetProvider extends BaseProvider
 			selectionArgs2[2 * i] = selectionArgs2[2 * i + 1] = selectionArgs[i];
 		}
 
-		if (BaseProvider.debugSql)
+		if (BaseProvider.logSql)
 		{
 			logSql(sql, selectionArgs);
 			Log.d(XSqlUNetProvider.TAG + "SQL", SqlFormatter.format(sql).toString());

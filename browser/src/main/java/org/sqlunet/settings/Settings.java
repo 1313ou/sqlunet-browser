@@ -9,6 +9,9 @@ import android.net.Uri;
 import android.os.Build;
 import android.preference.PreferenceManager;
 
+import org.sqlunet.provider.BaseProvider;
+import org.sqlunet.sql.PreparedStatement;
+
 /**
  * Settings
  *
@@ -22,6 +25,7 @@ public class Settings
 	static private final String PREF_SELECTOR = "pref_selector_mode";
 	static public final String PREF_DETAIL_MODE = "pref_detail_mode";
 	static private final String PREF_XML = "pref_xml";
+	static private final String PREF_SQL_LOG = "pref_sql_log";
 	static private final String PREF_ENABLE_LINKS = "pref_enable_links";
 	static private final String PREF_ENABLE_WORDNET = "pref_enable_wordnet";
 	static private final String PREF_ENABLE_VERBNET = "pref_enable_verbnet";
@@ -336,6 +340,18 @@ public class Settings
 	}
 
 	/**
+	 * Get preferred XML output flag when view mode is WEB
+	 *
+	 * @param context context
+	 * @return preferred XML output flag when view mode is WEB
+	 */
+	static public boolean getSqlLogPref(final Context context)
+	{
+		final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
+		return sharedPref.getBoolean(Settings.PREF_SQL_LOG, false);
+	}
+
+	/**
 	 * Initialize preferences
 	 *
 	 * @param context context
@@ -365,6 +381,12 @@ public class Settings
 		}
 
 		editor.commit();
+
+		// globals
+
+		final boolean logSql = sharedPref.getBoolean(Settings.PREF_SQL_LOG, false);
+		PreparedStatement.logSql = logSql;
+		BaseProvider.logSql = logSql;
 	}
 
 	/**

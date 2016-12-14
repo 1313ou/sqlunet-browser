@@ -51,7 +51,8 @@
 	<!-- labels -->
 	<string name="title_activity_main">Home</string>
 	<string name="title_activity_selector">Senses</string>
-	<string name="title_activity_xselector">Senses per base</string>
+	<string name="title_activity_xselector">Sources
+	</string>
 	<string name="title_activity_sense">Sense</string>
 	<string name="title_activity_table">Table</string>
 	<string name="title_activity_word">Word</string>
@@ -138,8 +139,8 @@
 	</string-array>
 
 	<string name="title_home_section">Home</string>
-	<string name="title_browse_section">Browse semantic roles</string>
-	<string name="title_ts_section">Text search</string>
+	<string name="title_browse_section">Browse</string>
+	<string name="title_ts_section">Text</string>
 	<string name="title_pm_section">Predicate Matrix</string>
 	<string name="title_status_section">Status</string>
 	<string name="title_manage_section">Manage</string>

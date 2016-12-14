@@ -17,8 +17,7 @@ public class PreparedStatement
 	/**
 	 * Whether to output SQL statements
 	 */
-	// TODO
-	static private final boolean debugSql = true;
+	static public boolean logSql = false;
 
 	/**
 	 * Database
@@ -99,12 +98,12 @@ public class PreparedStatement
 	public Cursor executeQuery()
 	{
 		final String[] args = toSelectionArgs();
+		if (PreparedStatement.logSql)
+		{
+			Log.d(PreparedStatement.TAG + "SQL", Utils.replaceArgs(this.sql, args));
+		}
 		try
 		{
-			if (PreparedStatement.debugSql)
-			{
-				Log.d(PreparedStatement.TAG + "SQL", Utils.replaceArgs(this.sql, args));
-			}
 			return this.db.rawQuery(this.sql, args);
 		}
 		catch (final Exception e)

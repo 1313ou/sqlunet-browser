@@ -569,7 +569,7 @@ public class WordNetProvider extends BaseProvider
 				throw new RuntimeException("Malformed URI " + uri);
 		}
 
-		if (BaseProvider.debugSql)
+		if (BaseProvider.logSql)
 		{
 			final String sql = SQLiteQueryBuilder.buildQueryString(false, table, actualProjection, actualSelection, groupBy, null, sortOrder, null);
 			logSql(sql, selectionArgs);

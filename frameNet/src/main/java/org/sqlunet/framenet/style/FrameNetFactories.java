@@ -17,6 +17,8 @@ import org.sqlunet.style.Spanner.SpanFactory;
  */
 public class FrameNetFactories
 {
+	static public final SpanFactory boldFactory = Factories.boldFactory;
+
 	static public final SpanFactory dataFactory = Factories.dataFactory;
 
 	// frame

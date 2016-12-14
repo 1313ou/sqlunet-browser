@@ -217,7 +217,7 @@ public class PropBankProvider extends BaseProvider
 				throw new RuntimeException("Malformed URI " + uri);
 		}
 
-		if (BaseProvider.debugSql)
+		if (BaseProvider.logSql)
 		{
 			final String sql = SQLiteQueryBuilder.buildQueryString(false, table, projection, actualSelection, groupBy, null, actualSortOrder, null);
 			logSql(sql, selectionArgs);

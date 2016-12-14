@@ -121,7 +121,7 @@ public class PredicateMatrixProvider extends BaseProvider
 				throw new RuntimeException("Malformed URI " + uri);
 		}
 
-		if (BaseProvider.debugSql)
+		if (BaseProvider.logSql)
 		{
 			final String sql = SQLiteQueryBuilder.buildQueryString(false, table, projection, selection, null, null, sortOrder, null);
 			logSql(sql, selectionArgs);

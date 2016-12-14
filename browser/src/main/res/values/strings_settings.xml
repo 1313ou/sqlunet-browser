@@ -34,6 +34,9 @@
 	<string name="pref_title_xml">XML output</string>
 	<string name="pref_description_xml">Out data in XML format</string>
 
+	<string name="pref_title_sql_log">Log SQL</string>
+	<string name="pref_description_sql_log">Log SQL statements to logs</string>
+
 	<!-- Filter -->
 	<string name="pref_header_filter">Filter</string>
 	<string name="pref_title_enable_links">Enable links</string>

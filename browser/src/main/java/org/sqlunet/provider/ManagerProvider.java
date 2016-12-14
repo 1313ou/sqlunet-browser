@@ -95,7 +95,7 @@ public class ManagerProvider extends BaseProvider
 		}
 
 		final String groupBy = null;
-		if (BaseProvider.debugSql)
+		if (BaseProvider.logSql)
 		{
 			final String sql = SQLiteQueryBuilder.buildQueryString(false, table, projection, selection, groupBy, null, sortOrder, null);
 			// logSql(sql, selectionArgs);

@@ -678,7 +678,7 @@ abstract public class BasicModule extends Module
 						final SpannableStringBuilder sb2 = new SpannableStringBuilder();
 						sb2.append("Frame");
 						sb2.append(' ');
-						Spanner.append(sb2, frame, 0, FrameNetFactories.frameFactory);
+						Spanner.append(sb2, frame, 0, FrameNetFactories.boldFactory);
 						final TreeNode frameNode = TreeFactory.newQueryNode(sb2, R.drawable.roleclass, new FrameQuery(frameId), true, BasicModule.this.context).addTo(parent);
 
 						// fire event
