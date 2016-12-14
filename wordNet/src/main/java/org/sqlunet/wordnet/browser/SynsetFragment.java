@@ -105,6 +105,7 @@ public class SynsetFragment extends Fragment
 	 *
 	 * @return module
 	 */
+	@SuppressWarnings("WeakerAccess")
 	protected Module makeModule()
 	{
 		final SynsetModule module = new SynsetModule(this);

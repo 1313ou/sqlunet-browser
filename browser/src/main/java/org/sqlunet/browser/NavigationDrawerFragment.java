@@ -299,7 +299,6 @@ public class NavigationDrawerFragment extends Fragment
 		}
 	}
 
-	@SuppressWarnings("deprecation")
 	@Override
 	public void onAttach(final Context context)
 	{

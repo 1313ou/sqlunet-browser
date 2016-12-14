@@ -304,6 +304,7 @@ public class WordNetContract
 		// morphmaps LEFT JOIN morphs
 	}
 
+	@SuppressWarnings("unused")
 	static public final class Words_MorphMaps_Morphs
 	{
 		static public final String TABLE = "words_morphmaps_morphs";

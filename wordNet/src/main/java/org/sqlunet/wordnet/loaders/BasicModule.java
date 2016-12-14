@@ -114,7 +114,7 @@ abstract public class BasicModule extends Module
 
 	// Word
 
-	static public final String ALLMORPHS = "allmorphs";
+	private static final String ALLMORPHS = "allmorphs";
 
 	/**
 	 * Word
@@ -123,6 +123,7 @@ abstract public class BasicModule extends Module
 	 * @param parent     tree parent node
 	 * @param addNewNode whether to addItem to (or set) node
 	 */
+	@SuppressWarnings("WeakerAccess")
 	protected void word(final long wordId, final TreeNode parent, final boolean addNewNode)
 	{
 		// load the contents
@@ -206,6 +207,7 @@ abstract public class BasicModule extends Module
 	 * @param word   word
 	 * @param parent tree parent node
 	 */
+	@SuppressWarnings("unused")
 	protected void senses(final String word, final TreeNode parent)
 	{
 		// load the contents
@@ -378,6 +380,7 @@ abstract public class BasicModule extends Module
 	 * @param senseId sense id
 	 * @param parent  parent node
 	 */
+	@SuppressWarnings("unused")
 	public void sense(final long senseId, final TreeNode parent)
 	{
 		getLoaderManager().restartLoader(++Module.loaderId, null, new LoaderCallbacks<Cursor>()
@@ -405,7 +408,6 @@ abstract public class BasicModule extends Module
 				}
 				if (cursor.moveToFirst())
 				{
-					final SpannableStringBuilder sb = new SpannableStringBuilder();
 					final int idWordId = cursor.getColumnIndex(PosTypes.POSNAME);
 					final int idSynsetId = cursor.getColumnIndex(Synsets.DEFINITION);
 					final long wordId = cursor.getLong(idWordId);
@@ -435,6 +437,7 @@ abstract public class BasicModule extends Module
 	 * @param senseKey sense key
 	 * @param parent   parent node
 	 */
+	@SuppressWarnings("WeakerAccess")
 	public void sense(final String senseKey, final TreeNode parent)
 	{
 		getLoaderManager().restartLoader(++Module.loaderId, null, new LoaderCallbacks<Cursor>()
@@ -462,7 +465,6 @@ abstract public class BasicModule extends Module
 				}
 				if (cursor.moveToFirst())
 				{
-					final SpannableStringBuilder sb = new SpannableStringBuilder();
 					final int idWordId = cursor.getColumnIndex(Senses.WORDID);
 					final int idSynsetId = cursor.getColumnIndex(Senses.SYNSETID);
 					final long wordId = cursor.getLong(idWordId);
@@ -500,6 +502,7 @@ abstract public class BasicModule extends Module
 	 * @param wordId   word id
 	 * @param parent   parent node
 	 */
+	@SuppressWarnings("WeakerAccess")
 	public void sense(final long synsetId, final long wordId, final TreeNode parent)
 	{
 		getLoaderManager().restartLoader(++Module.loaderId, null, new LoaderCallbacks<Cursor>()
@@ -742,6 +745,7 @@ abstract public class BasicModule extends Module
 	 * @param parent     parent node
 	 * @param addNewNode whether to addItem to (or set) node
 	 */
+	@SuppressWarnings("unused")
 	void members(final long synsetId, final TreeNode parent, final boolean addNewNode)
 	{
 		getLoaderManager().restartLoader(++Module.loaderId, null, new LoaderCallbacks<Cursor>()
@@ -1932,31 +1936,6 @@ abstract public class BasicModule extends Module
 		}
 	}
 
-	/**
-	 * Match link id to drawable
-	 *
-	 * @param linkId link id
-	 * @return drawable
-	 */
-	private Drawable getLinkDrawable(final int linkId)
-	{
-		final Context context = BasicModule.this.context;
-		return getLinkDrawable(context, linkId);
-	}
-
-	/**
-	 * Match link id to drawable
-	 *
-	 * @param context context
-	 * @param linkId  link id
-	 * @return drawable
-	 */
-	private Drawable getLinkDrawable(final Context context, final int linkId)
-	{
-		int resId = getLinkRes(linkId);
-		return Spanner.getDrawable(context, resId);
-	}
-
 	// Q U E R I E S
 
 	/**
@@ -2113,7 +2092,6 @@ abstract public class BasicModule extends Module
 			super(wordId);
 		}
 
-		@SuppressWarnings("boxing")
 		@Override
 		public void process()
 		{
@@ -2175,7 +2153,6 @@ abstract public class BasicModule extends Module
 			this.wordId = wordId;
 		}
 
-		@SuppressWarnings("boxing")
 		@Override
 		public void process()
 		{

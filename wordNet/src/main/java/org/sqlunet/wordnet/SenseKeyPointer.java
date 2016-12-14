@@ -12,7 +12,7 @@ import org.sqlunet.HasSenseKey;
  */
 public class SenseKeyPointer implements Parcelable, HasSenseKey
 {
-	private String senseKey;
+	private final String senseKey;
 
 	/**
 	 * Static field used to regenerate object, individually or as arrays
@@ -35,7 +35,7 @@ public class SenseKeyPointer implements Parcelable, HasSenseKey
 	/**
 	 * Constructor from parcel, reads back fields IN THE ORDER they were written
 	 */
-	SenseKeyPointer(final Parcel parcel)
+	private SenseKeyPointer(final Parcel parcel)
 	{
 		this.senseKey = parcel.readString();
 	}
@@ -50,7 +50,6 @@ public class SenseKeyPointer implements Parcelable, HasSenseKey
 		this.senseKey = senseKey;
 	}
 
-	@SuppressWarnings("boxing")
 	@Override
 	public String getSenseKey()
 	{

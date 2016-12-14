@@ -352,10 +352,9 @@ public class TreeNode
 	 *
 	 * @return Whether node is root
 	 */
-	@SuppressWarnings("BooleanMethodIsAlwaysInverted")
-	private boolean isRoot()
+	private boolean isNotRoot()
 	{
-		return this.parent == null;
+		return this.parent != null;
 	}
 
 	/**
@@ -366,7 +365,7 @@ public class TreeNode
 	@SuppressWarnings("unused")
 	public boolean isFirstChild()
 	{
-		if (!isRoot())
+		if (isNotRoot())
 		{
 			List<TreeNode> parentChildren = this.parent.children;
 			return parentChildren.get(0).id == this.id;
@@ -382,7 +381,7 @@ public class TreeNode
 	@SuppressWarnings("unused")
 	public boolean isLastChild()
 	{
-		if (!isRoot())
+		if (isNotRoot())
 		{
 			int parentSize = this.parent.children.size();
 			if (parentSize > 0)
@@ -529,7 +528,6 @@ public class TreeNode
 	 *
 	 * @return whether this node is enabled
 	 */
-	@SuppressWarnings("BooleanMethodIsAlwaysInverted")
 	public boolean isEnabled()
 	{
 		return this.enabled;

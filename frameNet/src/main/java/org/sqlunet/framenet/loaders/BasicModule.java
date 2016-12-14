@@ -337,7 +337,7 @@ abstract public class BasicModule extends Module
 
 					do
 					{
-						final SpannableStringBuilder sb = new SpannableStringBuilder();
+						final Editable sb = new SpannableStringBuilder();
 
 						// data
 						final int frame1Id = cursor.getInt(idFrameId);
@@ -2600,7 +2600,6 @@ abstract public class BasicModule extends Module
 			super(frameId);
 		}
 
-		@SuppressWarnings("boxing")
 		@Override
 		public void process()
 		{
@@ -2629,7 +2628,6 @@ abstract public class BasicModule extends Module
 			super(luId);
 		}
 
-		@SuppressWarnings("boxing")
 		@Override
 		public void process()
 		{

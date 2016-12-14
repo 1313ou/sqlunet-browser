@@ -451,7 +451,7 @@ public class BrowseFragment extends Fragment implements SearchListener
 		final boolean recurse = Settings.getRecursePref(getActivity());
 
 		// dispatch as per query prefix
-		Fragment fragment = null;
+		@SuppressWarnings("TooBroadScope") Fragment fragment = null;
 		Intent targetIntent = null;
 		Bundle args = new Bundle();
 		if (query.matches("#\\p{Lower}\\p{Lower}\\d+"))

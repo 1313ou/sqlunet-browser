@@ -43,7 +43,7 @@ public class SenseKeyModule extends BasicModule
 	@Override
 	public void process(final TreeNode parent)
 	{
-		if (this.senseKey == null || this.senseKey == null)
+		if (this.senseKey == null || this.senseKey.isEmpty())
 		{
 			return;
 		}

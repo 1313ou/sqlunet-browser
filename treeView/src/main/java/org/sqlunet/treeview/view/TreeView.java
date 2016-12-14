@@ -8,9 +8,7 @@ import android.view.ContextThemeWrapper;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewGroup.LayoutParams;
-import android.view.animation.Animation;
 import android.view.animation.LinearInterpolator;
-import android.view.animation.Transformation;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
@@ -595,58 +593,6 @@ public class TreeView
 	 *
 	 * @param view view
 	 */
-	static private void animatedExpand_initial(final View view)
-	{
-		view.measure(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
-		final int targetHeight = view.getMeasuredHeight();
-
-		view.getLayoutParams().height = 0;
-		view.setVisibility(View.VISIBLE);
-		final Animation animation = new Animation()
-		{
-			@Override
-			protected void applyTransformation(float interpolatedTime, Transformation t)
-			{
-				view.getLayoutParams().height = interpolatedTime == 1 ? LayoutParams.WRAP_CONTENT : (int) (targetHeight * interpolatedTime);
-				view.requestLayout();
-			}
-
-			@Override
-			public boolean willChangeBounds()
-			{
-				return true;
-			}
-		};
-		animation.setAnimationListener(new Animation.AnimationListener()
-		{
-			@Override
-			public void onAnimationStart(Animation animation)
-			{
-			}
-
-			@Override
-			public void onAnimationEnd(Animation animation)
-			{
-				view.getLayoutParams().height = LayoutParams.WRAP_CONTENT;
-				view.requestLayout();
-			}
-
-			@Override
-			public void onAnimationRepeat(Animation animation)
-			{
-			}
-		});
-
-		// factor x 1dp/ms
-		animation.setDuration((int) (ANIMATION_DP_PER_MS * targetHeight / view.getContext().getResources().getDisplayMetrics().density));
-		view.startAnimation(animation);
-	}
-
-	/**
-	 * Animated expand view animated (child container)
-	 *
-	 * @param view view
-	 */
 	static private void animatedExpand(final View view)
 	{
 		view.measure(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
@@ -672,87 +618,32 @@ public class TreeView
 		animator.addListener(new Animator.AnimatorListener()
 		{
 			@Override
-			public void onAnimationStart(Animator animator)
+			public void onAnimationStart(final Animator animator0)
 			{
 				view.getLayoutParams().height = 0;
 				view.setVisibility(View.VISIBLE);
 			}
 
 			@Override
-			public void onAnimationEnd(Animator animator)
+			public void onAnimationEnd(final Animator animator0)
 			{
 				view.getLayoutParams().height = LayoutParams.WRAP_CONTENT;
 				view.requestLayout();
 			}
 
 			@Override
-			public void onAnimationCancel(Animator animator)
+			public void onAnimationCancel(final Animator animator0)
 			{
 				view.getLayoutParams().height = LayoutParams.WRAP_CONTENT;
 				view.requestLayout();
 			}
 
 			@Override
-			public void onAnimationRepeat(Animator animator)
+			public void onAnimationRepeat(final Animator animator0)
 			{
 			}
 		});
 		animator.start();
-	}
-
-	/**
-	 * Animated collapse view (child container)
-	 *
-	 * @param view view
-	 */
-	static private void animatedCollapse_initial(final View view)
-	{
-		final int initialHeight = view.getMeasuredHeight();
-
-		final Animation animation = new Animation()
-		{
-			@Override
-			protected void applyTransformation(float interpolatedTime, Transformation t)
-			{
-				if (interpolatedTime == 1)
-				{
-					view.setVisibility(View.GONE);
-				}
-				else
-				{
-					view.getLayoutParams().height = initialHeight - (int) (initialHeight * interpolatedTime);
-					view.requestLayout();
-				}
-			}
-
-			@Override
-			public boolean willChangeBounds()
-			{
-				return true;
-			}
-		};
-		animation.setAnimationListener(new Animation.AnimationListener()
-		{
-			@Override
-			public void onAnimationStart(Animation animation)
-			{
-			}
-
-			@Override
-			public void onAnimationEnd(Animation animation)
-			{
-				view.setVisibility(View.GONE);
-			}
-
-			@Override
-			public void onAnimationRepeat(Animation animation)
-			{
-			}
-		});
-
-		// factor x 1dp/ms
-		animation.setDuration((int) (ANIMATION_DP_PER_MS * initialHeight / view.getContext().getResources().getDisplayMetrics().density));
-		view.startAnimation(animation);
 	}
 
 	/**
@@ -784,24 +675,24 @@ public class TreeView
 		animator.addListener(new Animator.AnimatorListener()
 		{
 			@Override
-			public void onAnimationStart(Animator animator)
+			public void onAnimationStart(final Animator animator0)
 			{
 			}
 
 			@Override
-			public void onAnimationEnd(Animator animator)
-			{
-				view.setVisibility(View.GONE);
-			}
-
-			@Override
-			public void onAnimationCancel(Animator animator)
+			public void onAnimationEnd(final Animator animator0)
 			{
 				view.setVisibility(View.GONE);
 			}
 
 			@Override
-			public void onAnimationRepeat(Animator animator)
+			public void onAnimationCancel(final Animator animator0)
+			{
+				view.setVisibility(View.GONE);
+			}
+
+			@Override
+			public void onAnimationRepeat(final Animator animator0)
 			{
 			}
 		});
@@ -815,6 +706,7 @@ public class TreeView
 	 *
 	 * @param useAnimation use animation for expand/collapse
 	 */
+	@SuppressWarnings("unused")
 	public void setAnimation(final boolean useAnimation)
 	{
 		this.useAnimation = useAnimation;
