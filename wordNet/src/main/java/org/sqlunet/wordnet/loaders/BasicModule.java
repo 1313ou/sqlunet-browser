@@ -2120,7 +2120,6 @@ abstract public class BasicModule extends Module
 			super(synsetId);
 		}
 
-		@SuppressWarnings("boxing")
 		@Override
 		public void process()
 		{

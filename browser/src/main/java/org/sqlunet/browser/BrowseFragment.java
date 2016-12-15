@@ -444,7 +444,6 @@ public class BrowseFragment extends Fragment implements SearchListener
 	 * @param query query
 	 */
 	@Override
-	@SuppressWarnings("boxing")
 	public void search(final String query)
 	{
 		// recurse

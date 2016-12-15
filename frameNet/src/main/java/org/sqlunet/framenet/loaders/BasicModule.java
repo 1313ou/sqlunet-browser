@@ -1531,7 +1531,6 @@ abstract public class BasicModule extends Module
 				return new CursorLoader(BasicModule.this.context, uri, projection, selection, selectionArgs, sortOrder);
 			}
 
-			@SuppressWarnings("BreakStatement")
 			@Override
 			public void onLoadFinished(final Loader<Cursor> loader, final Cursor cursor)
 			{
@@ -1606,7 +1605,6 @@ abstract public class BasicModule extends Module
 						parent.addChild(sentenceNode);
 					}
 					while (cursor.moveToNext());
-
 
 					// fire event
 					FireEvent.onResults(parent);

@@ -345,6 +345,7 @@ public class Settings
 	 * @param context context
 	 * @return preferred XML output flag when view mode is WEB
 	 */
+	@SuppressWarnings("unused")
 	static public boolean getSqlLogPref(final Context context)
 	{
 		final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
