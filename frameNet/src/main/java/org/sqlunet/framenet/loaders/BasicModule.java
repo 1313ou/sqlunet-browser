@@ -20,10 +20,12 @@ import android.util.Log;
 import org.sqlunet.browser.Module;
 import org.sqlunet.framenet.FnFramePointer;
 import org.sqlunet.framenet.FnLexUnitPointer;
+import org.sqlunet.framenet.FnSentencePointer;
 import org.sqlunet.framenet.R;
 import org.sqlunet.framenet.Utils;
 import org.sqlunet.framenet.browser.FnFrameActivity;
 import org.sqlunet.framenet.browser.FnLexUnitActivity;
+import org.sqlunet.framenet.browser.FnSentenceActivity;
 import org.sqlunet.framenet.provider.FrameNetContract;
 import org.sqlunet.framenet.provider.FrameNetContract.AnnoSets_Layers_X;
 import org.sqlunet.framenet.provider.FrameNetContract.Frames_FEs;
@@ -1535,8 +1537,6 @@ abstract public class BasicModule extends Module
 			{
 				if (cursor.moveToFirst())
 				{
-					final SpannableStringBuilder sb = new SpannableStringBuilder();
-
 					// column indices
 					final int idText = cursor.getColumnIndex(LexUnits_Sentences_AnnoSets_Layers_Labels.TEXT);
 					final int idLayerType = cursor.getColumnIndex(LexUnits_Sentences_AnnoSets_Layers_Labels.LAYERTYPE);
@@ -1544,16 +1544,16 @@ abstract public class BasicModule extends Module
 					final int idSentenceId = cursor.getColumnIndex(LexUnits_Sentences_AnnoSets_Layers_Labels.SENTENCEID);
 
 					// read cursor
-					while (true)
+					do
 					{
+						final SpannableStringBuilder sb = new SpannableStringBuilder();
+
 						final String text = cursor.getString(idText);
 						final String layerType = cursor.getString(idLayerType);
 						final String annotations = cursor.getString(idAnnotations);
 						final long sentenceId = cursor.getLong(idSentenceId);
 
 						// sentence text
-						Spanner.appendImage(sb, BasicModule.this.sentenceDrawable);
-						sb.append(' ');
 						final int sentenceStart = sb.length();
 						Spanner.append(sb, text, 0, FrameNetFactories.sentenceFactory);
 						if (VERBOSE)
@@ -1601,16 +1601,12 @@ abstract public class BasicModule extends Module
 							}
 						}
 
-						if (!cursor.moveToNext())
-						{
-							break;
-						}
-
-						sb.append('\n');
+						// attach result
+						final TreeNode sentenceNode = TreeFactory.newLinkNode(sb, R.drawable.sentence, new FnSentenceLink(sentenceId), BasicModule.this.context);
+						parent.addChild(sentenceNode);
 					}
+					while (cursor.moveToNext());
 
-					// attach result
-					TreeFactory.addTextNode(parent, sb, BasicModule.this.context);
 
 					// fire event
 					FireEvent.onResults(parent);
@@ -2634,6 +2630,34 @@ abstract public class BasicModule extends Module
 			final Parcelable pointer = new FnLexUnitPointer(this.id);
 			final Intent intent = new Intent(BasicModule.this.context, FnLexUnitActivity.class);
 			intent.putExtra(ProviderArgs.ARG_QUERYTYPE, ProviderArgs.ARG_QUERYTYPE_FNLEXUNIT);
+			intent.putExtra(ProviderArgs.ARG_QUERYPOINTER, pointer);
+			intent.setAction(ProviderArgs.ACTION_QUERY);
+
+			BasicModule.this.context.startActivity(intent);
+		}
+	}
+
+	/**
+	 * Fn sentence link data
+	 */
+	class FnSentenceLink extends Link
+	{
+		/**
+		 * Constructor
+		 *
+		 * @param sentenceId sentence id
+		 */
+		public FnSentenceLink(final long sentenceId)
+		{
+			super(sentenceId);
+		}
+
+		@Override
+		public void process()
+		{
+			final Parcelable pointer = new FnSentencePointer(this.id);
+			final Intent intent = new Intent(BasicModule.this.context, FnSentenceActivity.class);
+			intent.putExtra(ProviderArgs.ARG_QUERYTYPE, ProviderArgs.ARG_QUERYTYPE_FNSENTENCE);
 			intent.putExtra(ProviderArgs.ARG_QUERYPOINTER, pointer);
 			intent.setAction(ProviderArgs.ACTION_QUERY);
 
