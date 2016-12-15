@@ -13,19 +13,9 @@ import org.sqlunet.HasWordId;
 public class SensePointer extends SynsetPointer implements HasWordId
 {
 	/**
-	 * Word id : compulsory
+	 * Word id
 	 */
-	private final Long wordId;
-
-	/**
-	 * Lemma : optional/nullable (may be retrieved if need be)
-	 */
-	private final String lemma;
-
-	/**
-	 * Cased : optional/nullable (may be retrieved if need be)
-	 */
-	private final String cased;
+	private final long wordId;
 
 	/**
 	 * Static field used to regenerate object, individually or as arrays
@@ -51,68 +41,32 @@ public class SensePointer extends SynsetPointer implements HasWordId
 	protected SensePointer(final Parcel parcel)
 	{
 		super(parcel);
-		this.wordId = (Long) parcel.readValue(getClass().getClassLoader());
-		this.lemma = parcel.readString();
-		this.cased = parcel.readString();
+		this.wordId = parcel.readLong();
 	}
 
 	/**
 	 * Constructor
 	 *
 	 * @param synsetId synset id
-	 * @param pos      pos
 	 * @param wordId   word id
-	 * @param lemma    lemma
-	 * @param cased    cased
 	 */
-	public SensePointer(final long synsetId, final String pos, final long wordId, final String lemma, final String cased)
+	public SensePointer(final long synsetId, final long wordId)
 	{
-		super(synsetId, pos);
+		super(synsetId);
 		this.wordId = wordId;
-		this.lemma = lemma;
-		this.cased = cased;
 	}
 
 	@Override
-	public Long getWordId()
+	public long getWordId()
 	{
-		if (this.wordId != 0)
-		{
-			return this.wordId;
-		}
-		return null;
-	}
-
-	/**
-	 * Get lemma
-	 *
-	 * @return lemma
-	 */
-	@SuppressWarnings("unused")
-	public String getLemma()
-	{
-		return this.lemma;
-	}
-
-	/**
-	 * Get cased word
-	 *
-	 * @return cased word
-	 */
-	@SuppressWarnings("unused")
-	public String getCased()
-	{
-		return this.cased;
+		return this.wordId;
 	}
 
 	@Override
 	public void writeToParcel(final Parcel parcel, final int flags)
 	{
 		super.writeToParcel(parcel, flags);
-
-		parcel.writeValue(this.wordId);
-		parcel.writeString(this.lemma);
-		parcel.writeString(this.cased);
+		parcel.writeLong(this.wordId);
 	}
 
 	@Override
@@ -124,15 +78,6 @@ public class SensePointer extends SynsetPointer implements HasWordId
 	@Override
 	public String toString()
 	{
-		return super.toString() +
-				' ' +
-				"wordid=" + //
-				this.wordId +
-				' ' +
-				"lemma=" + //
-				this.lemma +
-				' ' +
-				"cased=" + //
-				this.cased;
+		return super.toString() + ' ' + "wordid=" + Long.toString(this.wordId);
 	}
 }

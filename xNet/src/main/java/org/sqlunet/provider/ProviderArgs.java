@@ -15,6 +15,10 @@ public final class ProviderArgs
 	public static final String ARG_QUERYPOINTER = "QUERYPOINTER";
 	public static final String ARG_QUERYSTRING = "QUERYSTRING";
 	public static final String ARG_QUERYRECURSE = "QUERYRECURSE";
+	public static final String ARG_HINTWORD = "HINTWORD";
+	public static final String ARG_HINTCASED = "HINTCASED";
+	public static final String ARG_HINTNAME = "HINTNAME";
+	public static final String ARG_HINTPOS = "HINTPOS";
 
 	// type
 	public static final String ARG_QUERYTYPE = "QUERYTYPE";

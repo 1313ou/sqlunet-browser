@@ -12,5 +12,5 @@ public interface HasSynsetId
 	 *
 	 * @return synset id
 	 */
-	Long getSynsetId();
+	long getSynsetId();
 }

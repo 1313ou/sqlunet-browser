@@ -81,19 +81,16 @@ public class XSelectorPointer extends SelectorPointer implements HasXId
 	 * Constructor
 	 *
 	 * @param synsetId  synset id
-	 * @param pos       pos
 	 * @param wordId    word id
-	 * @param lemma     lemma
-	 * @param cased     cased
 	 * @param xId       x id
 	 * @param xClassId  x class id
 	 * @param xMemberId x member id
 	 * @param xSources  x sources
 	 * @param xMask     x mask
 	 */
-	public XSelectorPointer(final long synsetId, final String pos, final long wordId, final String lemma, final String cased, final long xId, final long xClassId, final long xMemberId, final String xSources, final long xMask)
+	public XSelectorPointer(final long synsetId, final long wordId, final long xId, final long xClassId, final long xMemberId, final String xSources, final long xMask)
 	{
-		super(synsetId, pos, wordId, lemma, cased);
+		super(synsetId, wordId);
 		this.xId = xId;
 		this.xClassId = xClassId;
 		this.xMemberId = xMemberId;

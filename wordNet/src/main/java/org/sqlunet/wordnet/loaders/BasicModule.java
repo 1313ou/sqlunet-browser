@@ -2124,7 +2124,7 @@ abstract public class BasicModule extends Module
 		@Override
 		public void process()
 		{
-			final Parcelable pointer = new SynsetPointer(this.id, null);
+			final Parcelable pointer = new SynsetPointer(this.id);
 			final Intent intent = new Intent(BasicModule.this.context, SynsetActivity.class);
 			intent.putExtra(ProviderArgs.ARG_QUERYTYPE, ProviderArgs.ARG_QUERYTYPE_SYNSET);
 			intent.putExtra(ProviderArgs.ARG_QUERYPOINTER, pointer);
@@ -2156,7 +2156,7 @@ abstract public class BasicModule extends Module
 		@Override
 		public void process()
 		{
-			final Parcelable pointer = new SensePointer(this.id, null, this.wordId, null, null);
+			final Parcelable pointer = new SensePointer(this.id, this.wordId);
 			final Intent intent = new Intent(BasicModule.this.context, SynsetActivity.class);
 			intent.putExtra(ProviderArgs.ARG_QUERYTYPE, ProviderArgs.ARG_QUERYTYPE_SYNSET);
 			intent.putExtra(ProviderArgs.ARG_QUERYPOINTER, pointer);

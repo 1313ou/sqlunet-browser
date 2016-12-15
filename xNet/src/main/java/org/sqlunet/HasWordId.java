@@ -12,5 +12,5 @@ public interface HasWordId
 	 *
 	 * @return word id
 	 */
-	Long getWordId();
+	long getWordId();
 }

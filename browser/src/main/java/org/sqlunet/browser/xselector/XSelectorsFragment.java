@@ -51,7 +51,7 @@ public class XSelectorsFragment extends ExpandableListFragment
 		/**
 		 * Callback for when an item has been selected.
 		 */
-		void onItemSelected(XSelectorPointer pointer);
+		void onItemSelected(XSelectorPointer pointer, String word, String cased, String pos);
 	}
 
 	/**
@@ -549,43 +549,41 @@ public class XSelectorsFragment extends ExpandableListFragment
 	{
 		super.onChildClick(listView, view, groupPosition, childPosition, id);
 
-		//Log.d(TAG, "CLICK on group=" + groupPosition + " child=" + childPosition + " id=" + id);
-		int index = listView.getFlatListPosition(ExpandableListView.getPackedPositionForChild(groupPosition, childPosition));
-		listView.setItemChecked(index, true);
-		// view.setSelected(true);
-		// view.setActivated(true);
-
-		@SuppressWarnings("TypeMayBeWeakened") final SimpleCursorTreeAdapter adapter = (SimpleCursorTreeAdapter) getListAdapter();
-		final Cursor cursor = adapter.getChild(groupPosition, childPosition);
-		if (!cursor.isAfterLast())
+		if (this.listener != null)
 		{
-			// column indices
-			final int idSynsetId = cursor.getColumnIndex(Words_XNet_U.SYNSETID);
-			final int idXId = cursor.getColumnIndex(Words_XNet_U.XID);
-			final int idXClassId = cursor.getColumnIndex(Words_XNet_U.XCLASSID);
-			final int idXMemberId = cursor.getColumnIndex(Words_XNet_U.XMEMBERID);
-			final int idXSources = cursor.getColumnIndex(Words_XNet_U.SOURCES);
-			// final int idWordId = cursor.getColumnIndex(Words_XNet_U.WORDID);
+			//Log.d(TAG, "CLICK on group=" + groupPosition + " child=" + childPosition + " id=" + id);
+			int index = listView.getFlatListPosition(ExpandableListView.getPackedPositionForChild(groupPosition, childPosition));
+			listView.setItemChecked(index, true);
 
-			// data
-			final long wordId = this.wordId;
-			final String lemma = this.word;
-			final String cased = this.word;
-			final long synsetId = cursor.isNull(idSynsetId) ? 0 : cursor.getLong(idSynsetId);
-			final String pos = synsetIdToPos(synsetId);
-			final long xId = cursor.isNull(idXId) ? 0 : cursor.getLong(idXId);
-			final long xClassId = cursor.isNull(idXClassId) ? 0 : cursor.getLong(idXClassId);
-			final long xMemberId = cursor.isNull(idXMemberId) ? 0 : cursor.getLong(idXMemberId);
-			final String xSources = cursor.getString(idXSources);
-			final long xMask = XSelectorPointer.getMask(xSources);
-
-			// pointer
-			final XSelectorPointer pointer = new XSelectorPointer(synsetId, pos, wordId, lemma, cased, xId, xClassId, xMemberId, xSources, xMask);
-			Log.d(TAG, "pointer=" + pointer);
-			// notify the active listener (the activity, if the fragment is attached to one) that an item has been selected
-			if (this.listener != null)
+			final SimpleCursorTreeAdapter adapter = (SimpleCursorTreeAdapter) getListAdapter();
+			final Cursor cursor = adapter.getChild(groupPosition, childPosition);
+			if (!cursor.isAfterLast())
 			{
-				this.listener.onItemSelected(pointer);
+				// column indices
+				final int idSynsetId = cursor.getColumnIndex(Words_XNet_U.SYNSETID);
+				final int idXId = cursor.getColumnIndex(Words_XNet_U.XID);
+				final int idXClassId = cursor.getColumnIndex(Words_XNet_U.XCLASSID);
+				final int idXMemberId = cursor.getColumnIndex(Words_XNet_U.XMEMBERID);
+				final int idXSources = cursor.getColumnIndex(Words_XNet_U.SOURCES);
+				// final int idWordId = cursor.getColumnIndex(Words_XNet_U.WORDID);
+
+				// data
+				final long wordId = this.wordId;
+				final String lemma = this.word;
+				final String cased = this.word;
+				final long synsetId = cursor.isNull(idSynsetId) ? 0 : cursor.getLong(idSynsetId);
+				final String pos = synsetIdToPos(synsetId);
+				final long xId = cursor.isNull(idXId) ? 0 : cursor.getLong(idXId);
+				final long xClassId = cursor.isNull(idXClassId) ? 0 : cursor.getLong(idXClassId);
+				final long xMemberId = cursor.isNull(idXMemberId) ? 0 : cursor.getLong(idXMemberId);
+				final String xSources = cursor.getString(idXSources);
+				final long xMask = XSelectorPointer.getMask(xSources);
+
+				// pointer
+				final XSelectorPointer pointer = new XSelectorPointer(synsetId, wordId, xId, xClassId, xMemberId, xSources, xMask);
+				Log.d(TAG, "pointer=" + pointer);
+				// notify the active listener (the activity, if the fragment is attached to one) that an item has been selected
+				this.listener.onItemSelected(pointer, lemma, cased, pos);
 			}
 		}
 		// cursor.close();

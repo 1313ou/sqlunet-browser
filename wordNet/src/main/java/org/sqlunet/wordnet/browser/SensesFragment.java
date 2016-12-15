@@ -44,7 +44,7 @@ public class SensesFragment extends ListFragment
 		/**
 		 * Callback for when an item has been selected.
 		 */
-		void onItemSelected(SensePointer sense);
+		void onItemSelected(SensePointer sense, String word, String cased, String pos);
 	}
 
 	/**
@@ -300,27 +300,27 @@ public class SensesFragment extends ListFragment
 	{
 		super.onListItemClick(listView, view, position, id);
 
-		final SimpleCursorAdapter adapter = (SimpleCursorAdapter) getListAdapter();
-		final Cursor cursor = adapter.getCursor();
-		if (cursor.moveToPosition(position))
+		// notify the active listener (the activity, if the fragment is attached to one) that an item has been selected
+		if (this.listener != null)
 		{
-			final int idSynsetId = cursor.getColumnIndex(WordNetContract.Synsets.SYNSETID);
-			final int idPos = cursor.getColumnIndex(WordNetContract.PosTypes.POSNAME);
-			final int idCased = cursor.getColumnIndex(WordNetContract.CasedWords.CASED);
-
-			final long synsetId = cursor.isNull(idSynsetId) ? 0 : cursor.getLong(idSynsetId);
-			final String pos = cursor.getString(idPos);
-			final String cased = cursor.getString(idCased);
-
-			final SensePointer sense = new SensePointer(synsetId, pos, this.wordId, this.word, cased);
-
-			// notify the active listener (the activity, if the fragment is attached to one) that an item has been selected
-			if (this.listener != null)
+			final SimpleCursorAdapter adapter = (SimpleCursorAdapter) getListAdapter();
+			final Cursor cursor = adapter.getCursor();
+			if (cursor.moveToPosition(position))
 			{
-				this.listener.onItemSelected(sense);
-			}
-		}
+				final int idSynsetId = cursor.getColumnIndex(WordNetContract.Synsets.SYNSETID);
+				final int idPos = cursor.getColumnIndex(WordNetContract.PosTypes.POSNAME);
+				final int idCased = cursor.getColumnIndex(WordNetContract.CasedWords.CASED);
 
-		cursor.close();
+				final long synsetId = cursor.isNull(idSynsetId) ? 0 : cursor.getLong(idSynsetId);
+				final String pos = cursor.getString(idPos);
+				final String cased = cursor.getString(idCased);
+
+				final SensePointer sense = new SensePointer(synsetId, this.wordId);
+
+				this.listener.onItemSelected(sense, this.word, cased, pos);
+			}
+
+			cursor.close();
+		}
 	}
 }

@@ -55,14 +55,9 @@ public class Pointer implements IPointer
 	 *
 	 * @return id
 	 */
-	@SuppressWarnings("boxing")
-	public Long getId()
+	public long getId()
 	{
-		if (this.id != 0)
-		{
-			return this.id;
-		}
-		return null;
+		return this.id;
 	}
 
 	@Override

@@ -461,7 +461,7 @@ public class BrowseFragment extends Fragment implements SearchListener
 			// wordnet
 			if (query.startsWith("#ws"))
 			{
-				final Parcelable synsetPointer = new SynsetPointer(id, null);
+				final Parcelable synsetPointer = new SynsetPointer(id);
 				args.putInt(ProviderArgs.ARG_QUERYTYPE, ProviderArgs.ARG_QUERYTYPE_SYNSET);
 				args.putParcelable(ProviderArgs.ARG_QUERYPOINTER, synsetPointer);
 				args.putBoolean(ProviderArgs.ARG_QUERYRECURSE, recurse);

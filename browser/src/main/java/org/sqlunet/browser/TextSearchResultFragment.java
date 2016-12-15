@@ -179,7 +179,7 @@ public class TextSearchResultFragment extends AbstractTableFragment
 				Log.d(TAG, "CLICK wn synset=" + targetId);
 
 				// build pointer
-				final Parcelable synsetPointer = new SynsetPointer(targetId, null);
+				final Parcelable synsetPointer = new SynsetPointer(targetId);
 
 				// intent
 				final Intent targetIntent = new Intent(this.getActivity(), org.sqlunet.wordnet.browser.SynsetActivity.class);

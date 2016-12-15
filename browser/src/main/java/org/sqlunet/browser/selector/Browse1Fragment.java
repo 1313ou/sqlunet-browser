@@ -92,7 +92,7 @@ public class Browse1Fragment extends Fragment implements SelectorsFragment.Liste
 	 * Callback method from {@link SelectorsFragment.Listener} indicating that the item with the given ID was selected.
 	 */
 	@Override
-	public void onItemSelected(final SelectorPointer pointer)
+	public void onItemSelected(final SelectorPointer pointer, final String word, final String cased, final String pos)
 	{
 		if (this.isTwoPane)
 		{
@@ -105,6 +105,9 @@ public class Browse1Fragment extends Fragment implements SelectorsFragment.Liste
 			// in single-pane mode, simply start the detail activity for the selected item ID.
 			final Bundle args = new Bundle();
 			args.putParcelable(ProviderArgs.ARG_QUERYPOINTER, pointer);
+			args.putString(ProviderArgs.ARG_HINTWORD, word);
+			args.putString(ProviderArgs.ARG_HINTCASED, cased);
+			args.putString(ProviderArgs.ARG_HINTPOS, pos);
 
 			final Intent intent = new Intent(getActivity(), Browse2Activity.class);
 			intent.putExtras(args);

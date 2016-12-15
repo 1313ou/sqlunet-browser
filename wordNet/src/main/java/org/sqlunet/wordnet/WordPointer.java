@@ -49,7 +49,7 @@ public class WordPointer extends Pointer implements HasWordId
 	}
 
 	@Override
-	public Long getWordId()
+	public long getWordId()
 	{
 		return this.id;
 	}
@@ -57,7 +57,6 @@ public class WordPointer extends Pointer implements HasWordId
 	@Override
 	public String toString()
 	{
-		return "wordid=" + //
-				this.id;
+		return "wordid=" + this.id;
 	}
 }

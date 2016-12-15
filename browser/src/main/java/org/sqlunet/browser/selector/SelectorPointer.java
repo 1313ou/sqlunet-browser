@@ -15,14 +15,11 @@ public class SelectorPointer extends SensePointer
 	 * Constructor
 	 *
 	 * @param synsetId synset id
-	 * @param pos      pos
 	 * @param wordId   word id
-	 * @param lemma    lemma
-	 * @param cased    cased
 	 */
-	public SelectorPointer(final long synsetId, final String pos, final long wordId, final String lemma, final String cased)
+	public SelectorPointer(final long synsetId, final long wordId)
 	{
-		super(synsetId, pos, wordId, lemma, cased);
+		super(synsetId, wordId);
 	}
 
 	/**

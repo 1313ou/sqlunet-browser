@@ -44,7 +44,7 @@ public class SelectorsFragment extends ListFragment
 		/**
 		 * Callback for when an item has been selected.
 		 */
-		void onItemSelected(SelectorPointer pointer);
+		void onItemSelected(SelectorPointer pointer, String word, String cased, String pos);
 	}
 
 	/**
@@ -310,30 +310,28 @@ public class SelectorsFragment extends ListFragment
 	{
 		super.onListItemClick(listView, view, position, id);
 		listView.setItemChecked(position, true);
-		// view.setSelected(true);
-		// view.setActivated(true);
 
-		final SimpleCursorAdapter adapter = (SimpleCursorAdapter) getListAdapter();
-		final Cursor cursor = adapter.getCursor();
-		if (cursor.moveToPosition(position))
+		if (this.listener != null)
 		{
-			// column indexes
-			final int idSynsetId = cursor.getColumnIndex(Words_FnWords_PbWords_VnWords.SYNSETID);
-			final int idPos = cursor.getColumnIndex(Words_FnWords_PbWords_VnWords.POSNAME);
-			final int idCased = cursor.getColumnIndex(Words_FnWords_PbWords_VnWords.CASED);
-
-			// retrieve
-			final long synsetId = cursor.isNull(idSynsetId) ? 0 : cursor.getLong(idSynsetId);
-			final String pos = cursor.getString(idPos);
-			final String cased = cursor.getString(idCased);
-
-			// pointer
-			final SelectorPointer pointer = new SelectorPointer(synsetId, pos, this.wordId, this.word, cased);
-
-			// notify the active listener (the activity, if the fragment is attached to one) that an item has been selected
-			if (this.listener != null)
+			final SimpleCursorAdapter adapter = (SimpleCursorAdapter) getListAdapter();
+			final Cursor cursor = adapter.getCursor();
+			if (cursor.moveToPosition(position))
 			{
-				this.listener.onItemSelected(pointer);
+				// column indexes
+				final int idSynsetId = cursor.getColumnIndex(Words_FnWords_PbWords_VnWords.SYNSETID);
+				final int idPos = cursor.getColumnIndex(Words_FnWords_PbWords_VnWords.POSNAME);
+				final int idCased = cursor.getColumnIndex(Words_FnWords_PbWords_VnWords.CASED);
+
+				// retrieve
+				final long synsetId = cursor.isNull(idSynsetId) ? 0 : cursor.getLong(idSynsetId);
+				final String pos = cursor.getString(idPos);
+				final String cased = cursor.getString(idCased);
+
+				// pointer
+				final SelectorPointer pointer = new SelectorPointer(synsetId, this.wordId);
+
+				// notify the active listener (the activity, if the fragment is attached to one) that an item has been selected
+				this.listener.onItemSelected(pointer, this.word, cased, pos);
 			}
 		}
 	}

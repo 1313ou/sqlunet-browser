@@ -321,7 +321,7 @@ public class WebFragment extends Fragment
 						if ("synsetid".equals(name)) //
 						{
 							type = ProviderArgs.ARG_QUERYTYPE_SYNSET;
-							pointer = new SynsetPointer(id, null);
+							pointer = new SynsetPointer(id);
 						}
 						else if ("vnclassid".equals(name)) //
 						{
@@ -393,6 +393,10 @@ public class WebFragment extends Fragment
 		// pointer
 		final Parcelable pointer = args.getParcelable(ProviderArgs.ARG_QUERYPOINTER);
 		Log.d(WebFragment.TAG, "ARG query=" + pointer);
+
+		// hint
+		final String posString = args.getString(ProviderArgs.ARG_HINTPOS);
+		final Character pos = posString == null ? null : posString.charAt(0);
 
 		// text
 		final String data = args.getString(ProviderArgs.ARG_QUERYSTRING);
@@ -468,7 +472,6 @@ public class WebFragment extends Fragment
 												// final Long xMemberId = xpointer.getXMemberId();
 												final Long wordId = xPointer.getWordId();
 												final Long synsetId = xPointer.getSynsetId();
-												final Character pos = xPointer.getPos();
 												if (xSources.contains("wn")) //
 												{
 													wnDomDoc = new WordNetImplementation().querySenseDoc(db, wordId, synsetId);
@@ -491,7 +494,6 @@ public class WebFragment extends Fragment
 												final SensePointer sense2Pointer = (SensePointer) pointer;
 												final Long wordId = sense2Pointer.getWordId();
 												final Long synsetId = sense2Pointer.getSynsetId();
-												final Character pos = sense2Pointer.getPos();
 												if (Settings.Source.WORDNET.test(sources))
 												{
 													wnDomDoc = new WordNetImplementation().queryDoc(db, wordId, synsetId, true, false);

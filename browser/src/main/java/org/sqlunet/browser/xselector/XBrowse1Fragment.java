@@ -116,7 +116,7 @@ public class XBrowse1Fragment extends Fragment implements XSelectorsFragment.Lis
 	 * Callback method from {@link XSelectorsFragment.Listener} indicating that the item with the given ID was selected.
 	 */
 	@Override
-	public void onItemSelected(final XSelectorPointer pointer)
+	public void onItemSelected(final XSelectorPointer pointer, final String word, final String cased, final String pos)
 	{
 		// activity
 		final Activity activity = getActivity();
@@ -126,6 +126,9 @@ public class XBrowse1Fragment extends Fragment implements XSelectorsFragment.Lis
 			// in two-pane mode, show the detail view in this activity by adding or replacing the detail fragment using a fragment transaction.
 			final Bundle args = new Bundle();
 			args.putParcelable(ProviderArgs.ARG_QUERYPOINTER, pointer);
+			args.putString(ProviderArgs.ARG_HINTWORD, word);
+			args.putString(ProviderArgs.ARG_HINTCASED, cased);
+			args.putString(ProviderArgs.ARG_HINTPOS, pos);
 
 			// transaction
 			final FragmentTransaction transaction = getChildFragmentManager().beginTransaction();
