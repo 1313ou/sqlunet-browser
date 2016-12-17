@@ -37,9 +37,9 @@
 					</xsl:when>
 					<xsl:otherwise>
 						<xsl:text>(</xsl:text>
-						<xsl:apply-templates select="./@word-id"/>
+						<xsl:apply-templates select="./@wordid"/>
 						<xsl:text>,</xsl:text>
-						<xsl:apply-templates select="./@synset-id"/>
+						<xsl:apply-templates select="./@synsetid"/>
 						<xsl:text>)</xsl:text>
 					</xsl:otherwise>
 				</xsl:choose>

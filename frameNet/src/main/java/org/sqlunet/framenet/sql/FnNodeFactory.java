@@ -25,7 +25,7 @@ class FnNodeFactory extends NodeFactory
 	 */
 	static public Node makeFnRootNode(final Document doc, final long wordId, final Character pos)
 	{
-		final Element rootNode = NodeFactory.makeNode(doc, doc, "framenet", null);
+		final Element rootNode = NodeFactory.makeTopNode(doc, doc, "framenet", null, FrameNetImplementation.FNNS);
 		if (pos == null)
 		{
 			NodeFactory.makeTargetNode(doc, rootNode, "wordid", Long.toString(wordId));
@@ -47,7 +47,7 @@ class FnNodeFactory extends NodeFactory
 	 */
 	static public Node makeFnRootNode(final Document doc, final String word, final Character pos)
 	{
-		final Element rootNode = NodeFactory.makeNode(doc, doc, "framenet", null);
+		final Element rootNode = NodeFactory.makeTopNode(doc, doc, "framenet", null, FrameNetImplementation.FNNS);
 		if (pos == null)
 		{
 			NodeFactory.makeTargetNode(doc, rootNode, "word", word);
@@ -68,7 +68,7 @@ class FnNodeFactory extends NodeFactory
 	 */
 	public static Node makeFnLexunitNode(final Document doc, final Node parent, final FnLexUnit lexUnit)
 	{
-		final Element element = NodeFactory.makeNode(doc, parent, "lexunit", null);
+		final Element element = NodeFactory.makeTopNode(doc, parent, "lexunit", null);
 		NodeFactory.makeAttribute(element, "name", lexUnit.lexUnit);
 		NodeFactory.makeAttribute(element, "luid", Long.toString(lexUnit.luId));
 		NodeFactory.makeText(doc, element, lexUnit.definition);
@@ -86,7 +86,7 @@ class FnNodeFactory extends NodeFactory
 	 */
 	public static Node makeFnFrameNode(final Document doc, final Node parent, final FnFrame frame, final boolean removeEx)
 	{
-		final Element element = NodeFactory.makeNode(doc, parent, "frame", null);
+		final Element element = NodeFactory.makeTopNode(doc, parent, "frame", null);
 		NodeFactory.makeAttribute(element, "name", frame.frameName);
 		NodeFactory.makeAttribute(element, "frameid", Long.toString(frame.frameId));
 		DocumentFragmentParser.mount(doc, element, frame.frameDefinition, "framedefinition");
@@ -106,7 +106,7 @@ class FnNodeFactory extends NodeFactory
 		{
 			for (final FnSemType semType : frame.semTypes)
 			{
-				final Element element2 = NodeFactory.makeNode(doc, element, "semtype", null);
+				final Element element2 = NodeFactory.makeTopNode(doc, element, "semtype", null);
 				NodeFactory.makeAttribute(element2, "semtypeid", Long.toString(semType.semTypeId));
 				NodeFactory.makeAttribute(element2, "semtype", semType.semTypeName);
 				NodeFactory.makeText(doc, element, semType.semTypeDefinition);
@@ -116,7 +116,7 @@ class FnNodeFactory extends NodeFactory
 		{
 			for (final FnRelatedFrame relatedFrame : frame.relatedFrames)
 			{
-				final Element element2 = NodeFactory.makeNode(doc, element, "related", null);
+				final Element element2 = NodeFactory.makeTopNode(doc, element, "related", null);
 				NodeFactory.makeAttribute(element2, "frameid", Long.toString(relatedFrame.frameId));
 				NodeFactory.makeAttribute(element2, "frame", relatedFrame.frameName);
 				NodeFactory.makeAttribute(element2, "relation", relatedFrame.relation);
@@ -136,7 +136,7 @@ class FnNodeFactory extends NodeFactory
 	 */
 	public static Node makeFnFENode(final Document doc, final Node parent, final FnFrameElement fe)
 	{
-		final Element element = NodeFactory.makeNode(doc, parent, "fe", null);
+		final Element element = NodeFactory.makeTopNode(doc, parent, "fe", null);
 		NodeFactory.makeAttribute(element, "name", fe.feType);
 		NodeFactory.makeAttribute(element, "feid", Long.toString(fe.feId));
 		NodeFactory.makeAttribute(element, "coreset", Integer.toString(fe.coreSet));
@@ -156,7 +156,7 @@ class FnNodeFactory extends NodeFactory
 	 */
 	public static Node makeFnGovernorNode(final Document doc, final Node parent, final FnGovernor governor)
 	{
-		final Element element = NodeFactory.makeNode(doc, parent, "governor", null);
+		final Element element = NodeFactory.makeTopNode(doc, parent, "governor", null);
 		NodeFactory.makeAttribute(element, "governorid", Long.toString(governor.governorId));
 		NodeFactory.makeAttribute(element, "wordid", Long.toString(governor.wordId));
 		NodeFactory.makeText(doc, element, governor.governor);
@@ -172,7 +172,7 @@ class FnNodeFactory extends NodeFactory
 	 */
 	public static Node makeFnSentencesNode(final Document doc, final Node parent)
 	{
-		return NodeFactory.makeNode(doc, parent, "sentences", null);
+		return NodeFactory.makeTopNode(doc, parent, "sentences", null);
 	}
 
 	/**
@@ -184,7 +184,7 @@ class FnNodeFactory extends NodeFactory
 	 */
 	public static Node makeFnSentenceNode(final Document doc, final Node parent, final FnSentence sentence, final int i)
 	{
-		final Element element = NodeFactory.makeNode(doc, parent, "sentence", null);
+		final Element element = NodeFactory.makeTopNode(doc, parent, "sentence", null);
 		if (i != -1)
 		{
 			NodeFactory.makeAttribute(element, "num", Integer.toString(i));
@@ -204,7 +204,7 @@ class FnNodeFactory extends NodeFactory
 	 */
 	public static Node makeFnAnnoSetNode(final Document doc, final Node parent, final FnAnnoSet annoSet)
 	{
-		final Element element = NodeFactory.makeNode(doc, parent, "annoset", null);
+		final Element element = NodeFactory.makeTopNode(doc, parent, "annoset", null);
 		NodeFactory.makeAttribute(element, "annosetid", Long.toString(annoSet.annoSetId));
 		FnNodeFactory.makeFnSentenceNode(doc, element, annoSet.sentence, -1);
 		return element;
@@ -219,7 +219,7 @@ class FnNodeFactory extends NodeFactory
 	 */
 	public static Node makeFnLayerNode(final Document doc, final Node parent, final FnLayer layer)
 	{
-		final Element element = NodeFactory.makeNode(doc, parent, "layer", null);
+		final Element element = NodeFactory.makeTopNode(doc, parent, "layer", null);
 		NodeFactory.makeAttribute(element, "rank", Long.toString(layer.rank));
 		NodeFactory.makeAttribute(element, "layerid", Long.toString(layer.layerId));
 		NodeFactory.makeAttribute(element, "type", layer.layerType);
@@ -227,7 +227,7 @@ class FnNodeFactory extends NodeFactory
 		{
 			for (final FnLabel label : layer.labels)
 			{
-				final Element element2 = NodeFactory.makeNode(doc, element, "label", null);
+				final Element element2 = NodeFactory.makeTopNode(doc, element, "label", null);
 				if (!"0".equals(label.from) || !"0".equals(label.to)) //
 				{
 					NodeFactory.makeAttribute(element2, "from", label.from);
@@ -252,7 +252,7 @@ class FnNodeFactory extends NodeFactory
 	 */
 	public static Node makeFnRootFrameNode(final Document doc, final long frameId)
 	{
-		final Element rootNode = NodeFactory.makeNode(doc, doc, "framenet", null);
+		final Element rootNode = NodeFactory.makeTopNode(doc, doc, "framenet", null, FrameNetImplementation.FNNS);
 		NodeFactory.makeTargetNode(doc, rootNode, "frameid", Long.toString(frameId));
 		return rootNode;
 	}
@@ -266,7 +266,7 @@ class FnNodeFactory extends NodeFactory
 	 */
 	public static Node makeFnRootLexUnitNode(final Document doc, final long luId)
 	{
-		final Element rootNode = NodeFactory.makeNode(doc, doc, "framenet", null);
+		final Element rootNode = NodeFactory.makeTopNode(doc, doc, "framenet", null, FrameNetImplementation.FNNS);
 		NodeFactory.makeTargetNode(doc, rootNode, "luid", Long.toString(luId));
 		return rootNode;
 	}
@@ -280,7 +280,7 @@ class FnNodeFactory extends NodeFactory
 	 */
 	public static Node makeFnRootSentenceNode(final Document doc, final long sentenceId)
 	{
-		final Element rootNode = NodeFactory.makeNode(doc, doc, "framenet", null);
+		final Element rootNode = NodeFactory.makeTopNode(doc, doc, "framenet", null, FrameNetImplementation.FNNS);
 		NodeFactory.makeTargetNode(doc, rootNode, "sentenceid", Long.toString(sentenceId));
 		return rootNode;
 	}
@@ -294,7 +294,7 @@ class FnNodeFactory extends NodeFactory
 	 */
 	public static Node makeFnRootAnnoSetNode(final Document doc, final long annoSetId)
 	{
-		final Element rootNode = NodeFactory.makeNode(doc, doc, "framenet", null);
+		final Element rootNode = NodeFactory.makeTopNode(doc, doc, "framenet", null, FrameNetImplementation.FNNS);
 		NodeFactory.makeTargetNode(doc, rootNode, "annosetid", Long.toString(annoSetId));
 		return rootNode;
 	}

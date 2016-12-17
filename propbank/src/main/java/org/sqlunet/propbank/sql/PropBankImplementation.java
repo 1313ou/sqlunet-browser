@@ -17,6 +17,8 @@ import java.util.List;
  */
 public class PropBankImplementation implements PropBankInterface
 {
+	static public final String PBNS = "http://org.sqlunet/pb";
+
 	// S E L E C T O R
 
 	/**
@@ -169,8 +171,8 @@ public class PropBankImplementation implements PropBankInterface
 	public Document querySelectorDoc(final SQLiteDatabase connection, final String word)
 	{
 		final Document doc = Factory.makeDocument();
-		final Node wordNode = org.sqlunet.sql.NodeFactory.makeNode(doc, doc, "propbank", word);
-		PropBankImplementation.walkSelector(connection, doc, wordNode, word);
+		final Node rootNode = org.sqlunet.sql.NodeFactory.makeTopNode(doc, doc, "propbank", word, PropBankImplementation.PBNS);
+		PropBankImplementation.walkSelector(connection, doc, rootNode, word);
 		return doc;
 	}
 
@@ -185,7 +187,7 @@ public class PropBankImplementation implements PropBankInterface
 	public String querySelectorXML(final SQLiteDatabase connection, final String word)
 	{
 		final Document doc = querySelectorDoc(connection, word);
-		return Factory.docToString(doc, "PropBank_select.dtd");
+		return Factory.docToString(doc);
 	}
 
 	// W A L K
@@ -201,8 +203,8 @@ public class PropBankImplementation implements PropBankInterface
 	public Document queryDoc(final SQLiteDatabase connection, final String word)
 	{
 		final Document doc = Factory.makeDocument();
-		final Node wordNode = org.sqlunet.sql.NodeFactory.makeNode(doc, doc, "propbank", word);
-		PropBankImplementation.walk(connection, doc, wordNode, word);
+		final Node rootNode = org.sqlunet.sql.NodeFactory.makeTopNode(doc, doc, "propbank", word, PropBankImplementation.PBNS);
+		PropBankImplementation.walk(connection, doc, rootNode, word);
 		return doc;
 	}
 
@@ -217,7 +219,7 @@ public class PropBankImplementation implements PropBankInterface
 	public String queryXML(final SQLiteDatabase connection, final String word)
 	{
 		final Document doc = queryDoc(connection, word);
-		return Factory.docToString(doc, "PropBank.dtd");
+		return Factory.docToString(doc);
 	}
 
 	/**
@@ -249,7 +251,7 @@ public class PropBankImplementation implements PropBankInterface
 	public String queryXML(final SQLiteDatabase connection, final long wordId, final Character pos)
 	{
 		final Document doc = queryDoc(connection, wordId, pos);
-		return Factory.docToString(doc, "PropBank.dtd");
+		return Factory.docToString(doc);
 	}
 
 	/**
@@ -283,6 +285,6 @@ public class PropBankImplementation implements PropBankInterface
 	public String queryRoleSetXML(final SQLiteDatabase connection, final long roleSetId, final Character pos)
 	{
 		final Document doc = queryRoleSetDoc(connection, roleSetId, pos);
-		return Factory.docToString(doc, "PropBank.dtd");
+		return Factory.docToString(doc);
 	}
 }

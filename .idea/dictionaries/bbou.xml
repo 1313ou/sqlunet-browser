@@ -186,6 +186,10 @@
       <w>groupingid</w>
       <w>grouprealization</w>
       <w>grouprealizations</w>
+      <w>hintcased</w>
+      <w>hintname</w>
+      <w>hintpos</w>
+      <w>hintword</w>
       <w>holonym</w>
       <w>hypernym</w>
       <w>hyponym</w>

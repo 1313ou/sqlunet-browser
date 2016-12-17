@@ -78,6 +78,7 @@ public class Factories
 		}
 	};
 
+	@SuppressWarnings("unused")
 	static public final SpanFactory italicFactory = new SpanFactory()
 	{
 		@Override

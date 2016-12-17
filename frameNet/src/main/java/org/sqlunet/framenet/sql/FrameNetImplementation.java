@@ -17,6 +17,8 @@ import java.util.List;
  */
 public class FrameNetImplementation implements FrameNetInterface
 {
+	static public final String FNNS = "http://org.sqlunet/fn";
+
 	// S E L E C T O R
 
 	/**
@@ -48,7 +50,7 @@ public class FrameNetImplementation implements FrameNetInterface
 	public String querySelectorXML(final SQLiteDatabase connection, final String word, final Character pos)
 	{
 		final Document doc = querySelectorDoc(connection, word, pos);
-		return Factory.docToString(doc, "FrameNet_select.dtd");
+		return Factory.docToString(doc);
 	}
 
 	// D E T A I L
@@ -82,7 +84,7 @@ public class FrameNetImplementation implements FrameNetInterface
 	public String queryXML(final SQLiteDatabase connection, final String word, final Character pos)
 	{
 		final Document doc = queryDoc(connection, word, pos);
-		return Factory.docToString(doc, "FrameNet.dtd");
+		return Factory.docToString(doc);
 	}
 
 	// I T E M S
@@ -118,7 +120,7 @@ public class FrameNetImplementation implements FrameNetInterface
 	public String queryXML(final SQLiteDatabase connection, final long wordId, final Character pos)
 	{
 		final Document doc = queryDoc(connection, wordId, pos);
-		return Factory.docToString(doc, "FrameNet.dtd");
+		return Factory.docToString(doc);
 	}
 
 	// frame
@@ -152,7 +154,7 @@ public class FrameNetImplementation implements FrameNetInterface
 	public String queryFrameXML(final SQLiteDatabase connection, final long frameId, final Character pos)
 	{
 		final Document doc = queryFrameDoc(connection, frameId, pos);
-		return Factory.docToString(doc, "FrameNet.dtd");
+		return Factory.docToString(doc);
 	}
 
 	// lexunit
@@ -184,7 +186,7 @@ public class FrameNetImplementation implements FrameNetInterface
 	public String queryLexUnitXML(final SQLiteDatabase connection, final long luId)
 	{
 		final Document doc = queryLexUnitDoc(connection, luId);
-		return Factory.docToString(doc, "FrameNet.dtd");
+		return Factory.docToString(doc);
 	}
 
 	// sentence
@@ -215,7 +217,7 @@ public class FrameNetImplementation implements FrameNetInterface
 	public String querySentenceXML(final SQLiteDatabase connection, final long sentenceId)
 	{
 		final Document doc = querySentenceDoc(connection, sentenceId);
-		return Factory.docToString(doc, "FrameNet.dtd");
+		return Factory.docToString(doc);
 	}
 
 	// annoSet
@@ -246,7 +248,7 @@ public class FrameNetImplementation implements FrameNetInterface
 	public String queryAnnoSetXML(final SQLiteDatabase connection, final long annoSetId)
 	{
 		final Document doc = queryAnnoSetDoc(connection, annoSetId);
-		return Factory.docToString(doc, "FrameNet.dtd");
+		return Factory.docToString(doc);
 	}
 
 	// W A L K

@@ -6,6 +6,8 @@ import android.content.Context;
 import android.os.Build;
 import android.os.CancellationSignal;
 
+import org.sqlunet.browser.BuildConfig;
+import org.sqlunet.xml.Validate;
 import org.w3c.dom.Document;
 
 /**
@@ -53,7 +55,14 @@ abstract public class DocumentLoader extends AsyncTaskLoader<Document>
 		}
 		try
 		{
-			return getDoc();
+			final Document result = getDoc();
+			if (BuildConfig.DEBUG)
+			{
+				final String xml = XSLTransformer.docToXml(result);
+				final String log = XSLTransformer.writeLog(xml, false);
+				Validate.validateDocs(XSLTransformer.class.getResource("/org/sqlunet/dom/SqlUNet.xsd"), result);
+			}
+			return result;
 		}
 		finally
 		{

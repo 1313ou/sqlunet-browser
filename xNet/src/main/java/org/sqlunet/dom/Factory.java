@@ -7,6 +7,7 @@ import java.io.StringWriter;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.OutputKeys;
 import javax.xml.transform.Result;
 import javax.xml.transform.Source;
 import javax.xml.transform.Transformer;
@@ -34,6 +35,7 @@ public class Factory
 		try
 		{
 			final DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+			factory.setNamespaceAware(true);
 			final DocumentBuilder builder = factory.newDocumentBuilder();
 			return builder.newDocument();
 		}
@@ -45,14 +47,14 @@ public class Factory
 
 	// O U T P U T
 
+
 	/**
 	 * Transform Document to XML form
 	 *
 	 * @param document org.w3.dom.Document to convert to XML form
-	 * @param dtd      name of DTD
 	 * @return XML string for Document
 	 */
-	static public String docToString(final Document document, final String dtd)
+	static public String docToString(final Document document)
 	{
 		try
 		{
@@ -65,7 +67,7 @@ public class Factory
 			// use a Transformer for output
 			final TransformerFactory factory = TransformerFactory.newInstance();
 			final Transformer transformer = factory.newTransformer();
-			transformer.setOutputProperty(javax.xml.transform.OutputKeys.DOCTYPE_SYSTEM, dtd);
+			transformer.setOutputProperty(OutputKeys.OMIT_XML_DECLARATION, "no");
 			transformer.transform(source, result);
 			return writer.toString();
 		}

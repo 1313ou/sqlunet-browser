@@ -6,6 +6,9 @@ import android.content.Context;
 import android.os.Build;
 import android.os.CancellationSignal;
 
+import org.sqlunet.browser.BuildConfig;
+import org.sqlunet.xml.Validate;
+
 /**
  * Document string loader
  *
@@ -50,7 +53,13 @@ abstract class DocumentStringLoader extends AsyncTaskLoader<String>
 		}
 		try
 		{
-			return getDoc();
+			final String result = getDoc();
+			if (BuildConfig.DEBUG)
+			{
+				final String log = XSLTransformer.writeLog(result, false);
+				Validate.validateStrings(XSLTransformer.class.getResource("/org/sqlunet/dom/SqlUNet.xsd"), result);
+			}
+			return result;
 		}
 		finally
 		{

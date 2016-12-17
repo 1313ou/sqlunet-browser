@@ -16,6 +16,8 @@ import java.util.List;
  */
 public class BncImplementation implements BncInterface
 {
+	static public final String BNCNS = "http://org.sqlunet/bc";
+
 	/**
 	 * Business method that returns BNC data as DOM document from word
 	 *
@@ -27,7 +29,7 @@ public class BncImplementation implements BncInterface
 	public Document queryDoc(final SQLiteDatabase connection, final String word)
 	{
 		final Document doc = Factory.makeDocument();
-		final Node rootNode = NodeFactory.makeNode(doc, doc, "bnc", word);
+		final Node rootNode = NodeFactory.makeTopNode(doc, doc, "bnc", word, BncImplementation.BNCNS);
 		BncImplementation.walk(connection, doc, rootNode, word);
 		return doc;
 	}
@@ -43,7 +45,7 @@ public class BncImplementation implements BncInterface
 	public String queryXML(final SQLiteDatabase connection, final String word)
 	{
 		final Document doc = queryDoc(connection, word);
-		return Factory.docToString(doc, "Bnc.dtd");
+		return Factory.docToString(doc);
 	}
 
 	/**
@@ -75,7 +77,7 @@ public class BncImplementation implements BncInterface
 	public String queryXML(final SQLiteDatabase connection, final long wordId, final Character pos)
 	{
 		final Document doc = queryDoc(connection, wordId, pos);
-		return Factory.docToString(doc, "BNC.dtd");
+		return Factory.docToString(doc);
 	}
 
 	// B N C

@@ -57,6 +57,9 @@ import java.net.URLDecoder;
 public class WebFragment extends Fragment
 {
 	static private final String TAG = "WebFragment";
+
+	static public final String SQLUNETNS = "http://org.sqlunet";
+
 	/**
 	 * HTML stuff
 	 */
@@ -110,7 +113,7 @@ public class WebFragment extends Fragment
 		if (xml)
 		{
 			final Document rootDomDoc = Factory.makeDocument();
-			NodeFactory.makeNode(rootDomDoc, rootDomDoc, "sqlunet", null);
+			NodeFactory.makeRootNode(rootDomDoc, rootDomDoc, "sqlunet", null, WebFragment.SQLUNETNS);
 			if (wnDomDoc != null)
 			{
 				rootDomDoc.getDocumentElement().appendChild(rootDomDoc.importNode(wnDomDoc.getFirstChild(), true));
@@ -133,7 +136,7 @@ public class WebFragment extends Fragment
 			}
 
 			data = XSLTransformer.docToXml(rootDomDoc);
-			// Log.d(TAG, "xml=" + data);
+			// Log.d(TAG, "xml=\n" + data);
 		}
 		else
 		{

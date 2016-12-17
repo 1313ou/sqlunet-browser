@@ -21,8 +21,8 @@ class PbNodeFactory extends NodeFactory
 	 */
 	static public Node makePbRootNode(final Document doc, final long wordId)
 	{
-		final Element rootNode = NodeFactory.makeNode(doc, doc, "propbank", null);
-		org.sqlunet.sql.NodeFactory.makeTargetNode(doc, rootNode, "word-id", Long.toString(wordId));
+		final Element rootNode = NodeFactory.makeTopNode(doc, doc, "propbank", null, PropBankImplementation.PBNS);
+		org.sqlunet.sql.NodeFactory.makeTargetNode(doc, rootNode, "wordid", Long.toString(wordId));
 		return rootNode;
 	}
 
@@ -35,8 +35,8 @@ class PbNodeFactory extends NodeFactory
 	 */
 	public static Node makePbRootRoleSetNode(final Document doc, long roleSetId)
 	{
-		final Element rootNode = NodeFactory.makeNode(doc, doc, "propbank", null);
-		org.sqlunet.sql.NodeFactory.makeTargetNode(doc, rootNode, "roleset-id", Long.toString(roleSetId));
+		final Element rootNode = NodeFactory.makeTopNode(doc, doc, "propbank", null, PropBankImplementation.PBNS);
+		org.sqlunet.sql.NodeFactory.makeTargetNode(doc, rootNode, "rolesetid", Long.toString(roleSetId));
 		return rootNode;
 	}
 
@@ -50,7 +50,7 @@ class PbNodeFactory extends NodeFactory
 	 */
 	public static Node makePbRoleSetNode(final Document doc, final Node parent, final PbRoleSet roleSet, final int i)
 	{
-		final Element element = NodeFactory.makeNode(doc, parent, "roleset", null);
+		final Element element = NodeFactory.makeTopNode(doc, parent, "roleset", null);
 		NodeFactory.makeAttribute(element, "num", Integer.toString(i));
 		NodeFactory.makeAttribute(element, "name", roleSet.roleSetName);
 		NodeFactory.makeAttribute(element, "rolesetid", Long.toString(roleSet.roleSetId));
@@ -68,7 +68,7 @@ class PbNodeFactory extends NodeFactory
 	 */
 	public static Node makePbRoleNode(final Document doc, final Node parent, final PbRole role)
 	{
-		final Element element = NodeFactory.makeNode(doc, parent, "role", null);
+		final Element element = NodeFactory.makeTopNode(doc, parent, "role", null);
 		NodeFactory.makeAttribute(element, "roleid", Long.toString(role.roleId));
 		NodeFactory.makeAttribute(element, "narg", role.nArg);
 		NodeFactory.makeAttribute(element, "theta", role.roleTheta);
@@ -79,7 +79,7 @@ class PbNodeFactory extends NodeFactory
 
 	public static Node makePbExampleNode(final Document doc, final Node parent, final PbExample example)
 	{
-		final Element element = NodeFactory.makeNode(doc, parent, "example", null);
+		final Element element = NodeFactory.makeTopNode(doc, parent, "example", null);
 		NodeFactory.makeAttribute(element, "exampleid", Long.toString(example.exampleId));
 		if (example.aspect != null)
 		{
@@ -103,12 +103,12 @@ class PbNodeFactory extends NodeFactory
 		}
 
 		NodeFactory.makeText(doc, element, example.text);
-		NodeFactory.makeNode(doc, element, "rel", example.rel);
+		NodeFactory.makeTopNode(doc, element, "rel", example.rel);
 		if (example.args != null)
 		{
 			for (final PbArg arg : example.args)
 			{
-				final Element element3 = NodeFactory.makeNode(doc, element, "arg", null);
+				final Element element3 = NodeFactory.makeTopNode(doc, element, "arg", null);
 				NodeFactory.makeAttribute(element3, "narg", arg.nArg);
 				if (arg.f != null)
 				{

@@ -16,6 +16,8 @@ import java.util.List;
  */
 public class VerbNetImplementation implements VerbNetInterface
 {
+	static public final String VNNS = "http://org.sqlunet/vn";
+
 	// S E L E C T O R
 
 	/**
@@ -29,7 +31,7 @@ public class VerbNetImplementation implements VerbNetInterface
 	public Document querySelectorDoc(final SQLiteDatabase connection, final String word)
 	{
 		final Document doc = Factory.makeDocument();
-		final Node rootNode = org.sqlunet.sql.NodeFactory.makeNode(doc, doc, "verbnet", word);
+		final Node rootNode = org.sqlunet.sql.NodeFactory.makeTopNode(doc, doc, "verbnet", word, VerbNetImplementation.VNNS);
 		VerbNetImplementation.walkSelector(connection, doc, rootNode, word);
 		return doc;
 	}
@@ -45,7 +47,7 @@ public class VerbNetImplementation implements VerbNetInterface
 	public String querySelectorXML(final SQLiteDatabase connection, final String word)
 	{
 		final Document doc = querySelectorDoc(connection, word);
-		return Factory.docToString(doc, "VerbNet_select.dtd");
+		return Factory.docToString(doc);
 	}
 
 	// D E T A I L
@@ -61,7 +63,7 @@ public class VerbNetImplementation implements VerbNetInterface
 	public Document queryDoc(final SQLiteDatabase connection, final String word)
 	{
 		final Document doc = Factory.makeDocument();
-		final Node rootNode = org.sqlunet.sql.NodeFactory.makeNode(doc, doc, "verbnet", word);
+		final Node rootNode = org.sqlunet.sql.NodeFactory.makeTopNode(doc, doc, "verbnet", word, VerbNetImplementation.VNNS);
 		VerbNetImplementation.walk(connection, doc, rootNode, word);
 		return doc;
 	}
@@ -77,7 +79,7 @@ public class VerbNetImplementation implements VerbNetInterface
 	public String queryXML(final SQLiteDatabase connection, final String word)
 	{
 		final Document doc = queryDoc(connection, word);
-		return Factory.docToString(doc, "VerbNet_select.dtd");
+		return Factory.docToString(doc);
 	}
 
 	/**
@@ -111,7 +113,7 @@ public class VerbNetImplementation implements VerbNetInterface
 	public String queryXML(final SQLiteDatabase connection, final long wordId, final Long synsetId, final Character pos)
 	{
 		final Document doc = queryDoc(connection, wordId, synsetId, pos);
-		return Factory.docToString(doc, "VerbNet.dtd");
+		return Factory.docToString(doc);
 	}
 
 	// class
@@ -137,7 +139,7 @@ public class VerbNetImplementation implements VerbNetInterface
 	public String queryClassXML(final SQLiteDatabase connection, final long classId, final Character pos)
 	{
 		final Document doc = queryClassDoc(connection, classId, pos);
-		return Factory.docToString(doc, "VerbNet.dtd");
+		return Factory.docToString(doc);
 	}
 
 	// W A L K

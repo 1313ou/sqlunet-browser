@@ -77,7 +77,7 @@
 		<LI class="treeitem treepanel block2">
 			<!-- link -->
 			<xsl:variable name="ref">
-				<xsl:value-of select="./synset/@synset-id"/>
+				<xsl:value-of select="./synset/@synsetid"/>
 			</xsl:variable>
 			<A class="pointer">
 				<xsl:attribute name="href">
@@ -97,9 +97,9 @@
 					</xsl:when>
 					<xsl:otherwise>
 						<xsl:text>(</xsl:text>
-						<xsl:apply-templates select="./@word-id"/>
+						<xsl:apply-templates select="./@wordid"/>
 						<xsl:text>,</xsl:text>
-						<xsl:apply-templates select="./@synset-id"/>
+						<xsl:apply-templates select="./@synsetid"/>
 						<xsl:text>)</xsl:text>
 					</xsl:otherwise>
 				</xsl:choose>

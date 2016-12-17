@@ -555,7 +555,7 @@ public class XSelectorsFragment extends ExpandableListFragment
 			int index = listView.getFlatListPosition(ExpandableListView.getPackedPositionForChild(groupPosition, childPosition));
 			listView.setItemChecked(index, true);
 
-			final SimpleCursorTreeAdapter adapter = (SimpleCursorTreeAdapter) getListAdapter();
+			@SuppressWarnings("TypeMayBeWeakened") final SimpleCursorTreeAdapter adapter = (SimpleCursorTreeAdapter) getListAdapter();
 			final Cursor cursor = adapter.getChild(groupPosition, childPosition);
 			if (!cursor.isAfterLast())
 			{

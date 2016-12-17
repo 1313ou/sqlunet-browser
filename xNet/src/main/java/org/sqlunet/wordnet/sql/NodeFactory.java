@@ -21,7 +21,7 @@ public class NodeFactory extends org.sqlunet.sql.NodeFactory
 	 */
 	static public Node makePosNode(final Document doc, final Node parent, final String value)
 	{
-		final Element element = org.sqlunet.sql.NodeFactory.makeNode(doc, parent, "pos", null);
+		final Element element = org.sqlunet.sql.NodeFactory.makeTopNode(doc, parent, "pos", null);
 		org.sqlunet.sql.NodeFactory.makeAttribute(element, "name", value);
 		return element;
 	}
@@ -36,7 +36,7 @@ public class NodeFactory extends org.sqlunet.sql.NodeFactory
 	 */
 	static public Node makeLexDomainNode(final Document doc, final Node parent, final String value)
 	{
-		final Element element = org.sqlunet.sql.NodeFactory.makeNode(doc, parent, "lexdomain", null);
+		final Element element = org.sqlunet.sql.NodeFactory.makeTopNode(doc, parent, "lexdomain", null);
 		org.sqlunet.sql.NodeFactory.makeAttribute(element, "name", value);
 		return element;
 	}
@@ -51,7 +51,7 @@ public class NodeFactory extends org.sqlunet.sql.NodeFactory
 	 */
 	static public Node makeSenseNode(final Document doc, final Node parent, final int senseIdx)
 	{
-		final Element element = org.sqlunet.sql.NodeFactory.makeNode(doc, parent, "sense", null);
+		final Element element = org.sqlunet.sql.NodeFactory.makeTopNode(doc, parent, "sense", null);
 		org.sqlunet.sql.NodeFactory.makeAttribute(element, "number", Integer.toString(senseIdx));
 		return element;
 	}
@@ -67,9 +67,9 @@ public class NodeFactory extends org.sqlunet.sql.NodeFactory
 	 */
 	static public Node makeSenseNode(final Document doc, final Node parent, final long wordId, final long synsetId)
 	{
-		final Element element = org.sqlunet.sql.NodeFactory.makeNode(doc, parent, "sense", null);
-		org.sqlunet.sql.NodeFactory.makeAttribute(element, "word-id", Long.toString(wordId));
-		org.sqlunet.sql.NodeFactory.makeAttribute(element, "synset-id", Long.toString(synsetId));
+		final Element element = org.sqlunet.sql.NodeFactory.makeTopNode(doc, parent, "sense", null);
+		org.sqlunet.sql.NodeFactory.makeAttribute(element, "wordid", Long.toString(wordId));
+		org.sqlunet.sql.NodeFactory.makeAttribute(element, "synsetid", Long.toString(synsetId));
 		return element;
 	}
 
@@ -84,9 +84,9 @@ public class NodeFactory extends org.sqlunet.sql.NodeFactory
 	 */
 	static public Element makeSynsetNode(final Document doc, final Node parent, final int size, final long synsetId)
 	{
-		final Element element = org.sqlunet.sql.NodeFactory.makeNode(doc, parent, "synset", null);
+		final Element element = org.sqlunet.sql.NodeFactory.makeTopNode(doc, parent, "synset", null);
 		org.sqlunet.sql.NodeFactory.makeAttribute(element, "size", Integer.toString(size));
-		org.sqlunet.sql.NodeFactory.makeAttribute(element, "synset-id", Long.toString(synsetId));
+		org.sqlunet.sql.NodeFactory.makeAttribute(element, "synsetid", Long.toString(synsetId));
 		return element;
 	}
 
@@ -101,8 +101,8 @@ public class NodeFactory extends org.sqlunet.sql.NodeFactory
 	 */
 	static public Node makeWordNode(final Document doc, final Node parent, final String word, final long id)
 	{
-		final Element element = org.sqlunet.sql.NodeFactory.makeNode(doc, parent, "word", word);
-		org.sqlunet.sql.NodeFactory.makeAttribute(element, "word-id", Long.toString(id));
+		final Element element = org.sqlunet.sql.NodeFactory.makeTopNode(doc, parent, "word", word);
+		org.sqlunet.sql.NodeFactory.makeAttribute(element, "wordid", Long.toString(id));
 		return element;
 	}
 
@@ -117,7 +117,7 @@ public class NodeFactory extends org.sqlunet.sql.NodeFactory
 	 */
 	static public Node makeLinkNode(final Document doc, final Node parent, final String linkType, final int level)
 	{
-		final Element element = org.sqlunet.sql.NodeFactory.makeNode(doc, parent, linkType, null);
+		final Element element = org.sqlunet.sql.NodeFactory.makeTopNode(doc, parent, linkType, null);
 		if (level > 0)
 		{
 			org.sqlunet.sql.NodeFactory.makeAttribute(element, "level", Integer.toString(level));
@@ -136,7 +136,7 @@ public class NodeFactory extends org.sqlunet.sql.NodeFactory
 	 */
 	static public Node makeMoreLinkNode(final Document doc, final Node parent, final String linkType, final int level)
 	{
-		final Element element = org.sqlunet.sql.NodeFactory.makeNode(doc, parent, linkType, null);
+		final Element element = org.sqlunet.sql.NodeFactory.makeTopNode(doc, parent, linkType, null);
 		org.sqlunet.sql.NodeFactory.makeAttribute(element, "level", Integer.toString(level));
 		org.sqlunet.sql.NodeFactory.makeAttribute(element, "more", "true");
 		return element;

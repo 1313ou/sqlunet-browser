@@ -32,7 +32,7 @@ class LexDomainDef
 	 * Constructor
 	 *
 	 * @param id   lexdomain id
-	 * @param pos  part-of-speech-id
+	 * @param pos  part-of-speech id
 	 * @param name lexdomain name
 	 */
 	public LexDomainDef(final int id, final int pos, final String name)

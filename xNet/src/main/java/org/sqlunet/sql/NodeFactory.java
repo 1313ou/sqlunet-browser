@@ -11,6 +11,10 @@ import org.w3c.dom.Node;
  */
 public class NodeFactory
 {
+	static String NS_URL = "http://org.sqlunet";
+
+	static String NS_XSD = "SqlUNet.xsd";
+
 	/**
 	 * Make versatile node
 	 *
@@ -20,7 +24,7 @@ public class NodeFactory
 	 * @param text     is the node's text content
 	 * @return newly created node
 	 */
-	static public Element makeNode(final Document document, final Node parent, final String name, final String text)
+	static public Element makeTopNode(final Document document, final Node parent, final String name, final String text)
 	{
 		final Element element = document.createElement(name);
 
@@ -34,6 +38,38 @@ public class NodeFactory
 		NodeFactory.makeText(document, element, text);
 
 		return element;
+	}
+
+	/**
+	 * Make top node
+	 *
+	 * @param document is the DOM Document being built
+	 * @param parent   is the parent node to attach this node to
+	 * @param name     is the node's tag name
+	 * @param text     is the node's text content
+	 * @return newly created node
+	 */
+	static public Element makeTopNode(final Document document, final Node parent, final String name, final String text, final String ns)
+	{
+		final Element node = makeTopNode(document, parent, name, text);
+		node.setAttributeNS("http://www.w3.org/2000/xmlns/", "xmlns", ns);
+		return node;
+	}
+
+	/**
+	 * Make root node
+	 *
+	 * @param document is the DOM Document being built
+	 * @param parent   is the parent node to attach this node to
+	 * @param name     is the node's tag name
+	 * @param text     is the node's text content
+	 * @return newly created node
+	 */
+	static public Element makeRootNode(final Document document, final Node parent, final String name, final String text, final String ns)
+	{
+		final Element node = makeTopNode(document, parent, name, text, ns);
+		node.setAttributeNS("http://www.w3.org/2001/XMLSchema-instance", "xs:schemaLocation", NS_URL + ' ' + NS_XSD);
+		return node;
 	}
 
 	/**
