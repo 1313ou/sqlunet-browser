@@ -1,0 +1,362 @@
+<?xml version="1.0"?>
+<xs:schema xmlns:xs='http://www.w3.org/2001/XMLSchema'
+  targetNamespace='http://org.sqlunet/wn'
+  xmlns='http://org.sqlunet/wn'>
+
+ <xs:element name='wordnet'>
+  <xs:complexType mixed='true'>
+   <xs:choice minOccurs='0' maxOccurs='unbounded'>
+    <xs:element ref='target'/>
+    <xs:element ref='word'/>
+    <xs:element ref='pos'/>
+    <xs:element ref='sense'/>
+   </xs:choice>
+   <xs:attribute name='wordid' type='xs:long' use='optional'/>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='target'>
+  <xs:complexType mixed='true'>
+    <xs:attribute name='word' type='xs:string' use='optional'/>
+   <xs:attribute name='wordid' type='xs:long' use='optional'/>
+   <xs:attribute name='synsetid' type='xs:long' use='optional'/>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='word'>
+  <xs:complexType mixed='true'>
+    <xs:attribute name='wordid' type='xs:long' use='optional'/>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='pos'>
+  <xs:complexType>
+   <xs:sequence>
+    <xs:element ref='lexdomain' minOccurs='0' maxOccurs='unbounded'/>
+   </xs:sequence>
+   <xs:attribute name='name' use='required'>
+    <xs:simpleType>
+     <xs:restriction base='xs:string'>
+      <xs:enumeration value='noun'/>
+      <xs:enumeration value='verb'/>
+      <xs:enumeration value='adj'/>
+      <xs:enumeration value='adv'/>
+     </xs:restriction>
+    </xs:simpleType>
+   </xs:attribute>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='lexdomain'>
+  <xs:complexType>
+   <xs:sequence>
+    <xs:element ref='sense' minOccurs='0' maxOccurs='unbounded'/>
+   </xs:sequence>
+   <xs:attribute name='name' type='xs:string' use='required'/>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='sense'>
+  <xs:complexType>
+   <xs:sequence>
+    <xs:element ref='synset' minOccurs='1' maxOccurs='1'/>
+    <xs:element ref='links' minOccurs='0' maxOccurs='unbounded'/>
+   </xs:sequence>
+   <xs:attribute name='number' type='xs:integer' use='optional'/>
+   <xs:attribute name='wordid' type='xs:long' use='optional'/>
+   <xs:attribute name='synsetid' type='xs:long' use='optional'/>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='synset'>
+  <xs:complexType>
+   <xs:sequence>
+    <xs:element ref='word' minOccurs='0' maxOccurs='unbounded'/>
+    <xs:element ref='definition'/>
+    <xs:element ref='sample' minOccurs='0' maxOccurs='1'/>
+   </xs:sequence>
+   <xs:attribute name='size' type='xs:string' use='optional'/>
+   <xs:attribute name='synsetid' type='xs:long' use='optional'/>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='definition'>
+  <xs:complexType mixed='true'>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='sample'>
+  <xs:complexType mixed='true'>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='hypernym'>
+  <xs:complexType>
+   <xs:sequence>
+    <xs:element ref='synset' minOccurs='1' maxOccurs='unbounded'/>
+    <xs:element ref='hypernym' minOccurs='0' maxOccurs='unbounded'/>
+   </xs:sequence>
+   <xs:attribute name='level' type='xs:string' use='optional'/>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='hyponym'>
+  <xs:complexType>
+   <xs:sequence>
+    <xs:element ref='synset' maxOccurs='unbounded'/>
+    <xs:element ref='hyponym' minOccurs='0' maxOccurs='unbounded'/>
+   </xs:sequence>
+   <xs:attribute name='level' type='xs:string' use='optional'/>
+   <xs:attribute name='more' use='optional'>
+    <xs:simpleType>
+     <xs:restriction base='xs:string'>
+      <xs:enumeration value='true'/>
+      <xs:enumeration value='false'/>
+     </xs:restriction>
+    </xs:simpleType>
+   </xs:attribute>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='member.holonym'>
+  <xs:complexType>
+   <xs:sequence>
+    <xs:element ref='synset' maxOccurs='unbounded'/>
+    <xs:element ref='member.holonym' minOccurs='0' maxOccurs='unbounded'/>
+   </xs:sequence>
+   <xs:attribute name='level' type='xs:string' use='optional'/>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='substance.holonym'>
+  <xs:complexType>
+   <xs:sequence>
+    <xs:element ref='synset' maxOccurs='unbounded'/>
+    <xs:element ref='substance.holonym' minOccurs='0' maxOccurs='unbounded'/>
+   </xs:sequence>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='part.holonym'>
+  <xs:complexType>
+   <xs:sequence>
+    <xs:element ref='synset' maxOccurs='unbounded'/>
+    <xs:element ref='part.holonym' minOccurs='0' maxOccurs='unbounded'/>
+   </xs:sequence>
+   <xs:attribute name='level' type='xs:string' use='optional'/>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='holonym'>
+  <xs:complexType>
+   <xs:sequence>
+    <xs:element ref='synset' maxOccurs='unbounded'/>
+    <xs:element ref='holonym' minOccurs='0' maxOccurs='unbounded'/>
+   </xs:sequence>
+   <xs:attribute name='level' type='xs:string' use='optional'/>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='member.meronym'>
+  <xs:complexType>
+   <xs:sequence>
+    <xs:element ref='synset' maxOccurs='unbounded'/>
+    <xs:element ref='member.meronym' minOccurs='0' maxOccurs='unbounded'/>
+   </xs:sequence>
+   <xs:attribute name='level' type='xs:string' use='optional'/>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='substance.meronym'>
+  <xs:complexType>
+   <xs:sequence>
+    <xs:element ref='synset' maxOccurs='unbounded'/>
+    <xs:element ref='substance.meronym' minOccurs='0' maxOccurs='unbounded'/>
+   </xs:sequence>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='part.meronym'>
+  <xs:complexType>
+   <xs:sequence>
+    <xs:element ref='synset' maxOccurs='unbounded'/>
+    <xs:element ref='part.meronym' minOccurs='0' maxOccurs='unbounded'/>
+   </xs:sequence>
+   <xs:attribute name='level' type='xs:string' use='optional'/>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='meronym'>
+  <xs:complexType>
+   <xs:sequence>
+    <xs:element ref='synset' maxOccurs='unbounded'/>
+    <xs:element ref='meronym' minOccurs='0' maxOccurs='unbounded'/>
+   </xs:sequence>
+   <xs:attribute name='level' type='xs:string' use='optional'/>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='cause'>
+  <xs:complexType>
+   <xs:sequence>
+    <xs:element ref='synset' maxOccurs='unbounded'/>
+    <xs:element ref='cause' minOccurs='0' maxOccurs='unbounded'/>
+   </xs:sequence>
+   <xs:attribute name='level' type='xs:string' use='optional'/>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='entail'>
+  <xs:complexType>
+   <xs:sequence>
+    <xs:element ref='synset' maxOccurs='unbounded'/>
+    <xs:element ref='entail' minOccurs='0' maxOccurs='unbounded'/>
+   </xs:sequence>
+   <xs:attribute name='level' type='xs:string' use='optional'/>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='antonym'>
+  <xs:complexType>
+   <xs:sequence>
+    <xs:element ref='synset' maxOccurs='unbounded'/>
+   </xs:sequence>
+   <xs:attribute name='level' type='xs:string' use='optional'/>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='similar'>
+  <xs:complexType>
+   <xs:sequence>
+    <xs:element ref='synset' maxOccurs='unbounded'/>
+   </xs:sequence>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='also'>
+  <xs:complexType>
+   <xs:sequence>
+    <xs:element ref='synset' maxOccurs='unbounded'/>
+   </xs:sequence>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='attribute'>
+  <xs:complexType>
+   <xs:sequence>
+    <xs:element ref='synset' maxOccurs='unbounded'/>
+   </xs:sequence>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='verb.group'>
+  <xs:complexType>
+   <xs:sequence>
+    <xs:element ref='synset' maxOccurs='unbounded'/>
+   </xs:sequence>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='participle'>
+  <xs:complexType>
+   <xs:sequence>
+    <xs:element ref='synset' maxOccurs='unbounded'/>
+   </xs:sequence>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='pertainym'>
+  <xs:complexType>
+   <xs:sequence>
+    <xs:element ref='synset' maxOccurs='unbounded'/>
+   </xs:sequence>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='derivation'>
+  <xs:complexType>
+   <xs:sequence>
+    <xs:element ref='synset' maxOccurs='unbounded'/>
+   </xs:sequence>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='domain.category'>
+  <xs:complexType>
+   <xs:sequence>
+    <xs:element ref='synset' maxOccurs='unbounded'/>
+   </xs:sequence>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='domain.member.category'>
+  <xs:complexType>
+   <xs:sequence>
+    <xs:element ref='synset' maxOccurs='unbounded'/>
+   </xs:sequence>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='domain.region'>
+  <xs:complexType>
+   <xs:sequence>
+    <xs:element ref='synset' maxOccurs='unbounded'/>
+   </xs:sequence>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='domain.member.region'>
+  <xs:complexType>
+   <xs:sequence>
+    <xs:element ref='synset' maxOccurs='unbounded'/>
+   </xs:sequence>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='domain.usage'>
+  <xs:complexType>
+   <xs:sequence>
+    <xs:element ref='synset' maxOccurs='unbounded'/>
+   </xs:sequence>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='domain.member.usage'>
+  <xs:complexType>
+   <xs:sequence>
+    <xs:element ref='synset' maxOccurs='unbounded'/>
+   </xs:sequence>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='links'>
+  <xs:complexType>
+   <xs:sequence>
+    <xs:element ref='hypernym' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='hyponym' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='part.holonym' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='part.meronym' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='member.holonym' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='member.meronym' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='substance.holonym' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='substance.meronym' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='entail' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='cause' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='antonym' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='similar' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='also' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='attribute' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='verb.group' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='participle' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='pertainym' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='derivation' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='domain.category' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='domain.member.category' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='domain.region' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='domain.member.region' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='domain.usage' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='domain.member.usage' minOccurs='0' maxOccurs='1'/>
+   </xs:sequence>
+  </xs:complexType>
+ </xs:element>
+</xs:schema>

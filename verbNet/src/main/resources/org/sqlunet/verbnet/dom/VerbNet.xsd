@@ -1,0 +1,175 @@
+<?xml version="1.0"?>
+<xs:schema xmlns:xs='http://www.w3.org/2001/XMLSchema'
+  targetNamespace='http://org.sqlunet/vn'
+  xmlns='http://org.sqlunet/vn'>
+
+ <xs:element name='verbnet'>
+  <xs:complexType>
+   <xs:sequence>
+    <xs:element ref='target' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='vnclass'/>
+   </xs:sequence>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='target'>
+  <xs:complexType mixed='true'>
+  <xs:attribute name='wordid' type='xs:long' use='optional'/>
+  <xs:attribute name='synsetid' type='xs:long' use='optional'/>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='vnclass'>
+  <xs:complexType>
+   <xs:sequence>
+    <xs:element ref='themroles' minOccurs='1' maxOccurs='1'/>
+    <xs:element ref='frames' minOccurs='1' maxOccurs='1'/>
+   </xs:sequence>
+   <xs:attribute name='name' type='xs:string' use='optional'/>
+   <xs:attribute name='classid' type='xs:string' use='optional'/>
+   <xs:attribute name='synsetid' type='xs:long' use='optional'/>
+   <xs:attribute name='wordid' type='xs:long' use='optional'/>
+   <xs:attribute name='sensenum' type='xs:int' use='optional'/>
+   <xs:attribute name='sensekey' type='xs:string' use='optional'/>
+   <xs:attribute name='groupings' type='xs:string' use='optional'/>
+   <xs:attribute name='quality' type='xs:float' use='optional'/>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='themroles'>
+  <xs:complexType>
+   <xs:sequence>
+    <xs:element ref='themrole' minOccurs='0' maxOccurs='unbounded'/>
+   </xs:sequence>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='themrole'>
+  <xs:complexType>
+   <xs:sequence>
+    <xs:element ref='restrs' minOccurs='0' maxOccurs='unbounded'/>
+   </xs:sequence>
+   <xs:attribute name='type' type='xs:string' use='required'/>
+   <xs:attribute name='id' type='xs:int' use='required'/>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='frames'>
+  <xs:complexType>
+   <xs:sequence>
+    <xs:element ref='frame' minOccurs='0' maxOccurs='unbounded'/>
+   </xs:sequence>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='frame'>
+  <xs:complexType>
+   <xs:sequence>
+    <xs:element ref='description'/>
+    <xs:element ref='syntax'/>
+    <xs:element ref='semantics'/>
+    <xs:element ref='examples'/>
+   </xs:sequence>
+   <xs:attribute name='id' type='xs:int' use='required'/>
+   <xs:attribute name='description' type='xs:string' use='optional'/>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='description'>
+  <xs:complexType>
+   <xs:attribute name='primary' type='xs:string' use='required'/>
+   <xs:attribute name='secondary' type='xs:string' use='optional'/>
+   <xs:attribute name='descriptionNumber' type='xs:string' use='required'/>
+   <xs:attribute name='xtag' type='xs:string' use='required'/>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='examples'>
+  <xs:complexType>
+   <xs:sequence>
+    <xs:element ref='example' minOccurs='0' maxOccurs='unbounded'/>
+   </xs:sequence>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='example'>
+  <xs:complexType mixed='true'>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='syntax'>
+  <xs:complexType>
+   <xs:sequence>
+    <xs:element ref='synitem' minOccurs='0' maxOccurs='unbounded'/>
+   </xs:sequence>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='synitem'>
+  <xs:complexType>
+   <xs:sequence maxOccurs='unbounded'>
+    <xs:element ref='cat' minOccurs='1' maxOccurs='1'/>
+    <xs:element ref='value' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='restrs' minOccurs='0' maxOccurs='1'/>
+   </xs:sequence>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='cat'>
+  <xs:complexType>
+   <xs:attribute name='value' type='xs:string' use='required'/>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='value'>
+  <xs:complexType>
+   <xs:attribute name='value' type='xs:string' use='required'/>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='semantics'>
+  <xs:complexType mixed='true'>
+   <xs:sequence>
+    <xs:element ref='semitem' minOccurs='0' maxOccurs='unbounded'/>
+   </xs:sequence>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='semitem'>
+  <xs:complexType>
+   <xs:sequence maxOccurs='unbounded'>
+    <xs:element ref='rel' minOccurs='1' maxOccurs='1'/>
+    <xs:element ref='arg' minOccurs='0' maxOccurs='unbounded'/>
+   </xs:sequence>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='rel'>
+  <xs:complexType>
+   <xs:attribute name='value' type='xs:string' use='required'/>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='arg'>
+  <xs:complexType>
+   <xs:attribute name='value' type='xs:string' use='required'/>
+   <xs:attribute name='narg' type='xs:string' use='required'/>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='restr'>
+  <xs:complexType mixed='true'>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='restrs'>
+  <xs:complexType mixed='true'>
+   <xs:attribute name='value' type='xs:string' use='required'/>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='selrestrs'>
+  <xs:complexType mixed='true'>
+  </xs:complexType>
+ </xs:element>
+</xs:schema>
