@@ -178,11 +178,10 @@ public class VerbNetImplementation implements VerbNetInterface
 		for (final VnSynset synset : synsets)
 		{
 			// select
-			final long synsetId = synset.synsetId;
 			final boolean isFlagged = synset.flag;
-			final boolean isSame = currentId == synsetId;
+			final boolean isSame = currentId == synset.synsetId;
 			final boolean wasFlagged = currentFlag;
-			currentId = synsetId;
+			currentId = synset.synsetId;
 			currentFlag = isFlagged;
 			if (isSame && !isFlagged && wasFlagged)
 			{
@@ -190,7 +189,7 @@ public class VerbNetImplementation implements VerbNetInterface
 			}
 
 			// sense node
-			final Node senseNode = NodeFactory.makeSenseNode(doc, parent, i++);
+			final Node senseNode = NodeFactory.makeSenseNode(doc, parent, entry.word.id, synset.synsetId, i++);
 
 			// synset nodes
 			// VerbNetImplementation.walkSynset(connection, doc, senseNode, synset);
@@ -234,11 +233,10 @@ public class VerbNetImplementation implements VerbNetInterface
 		for (final VnSynset synset : synsets)
 		{
 			// select
-			final long synsetId = synset.synsetId;
 			final boolean isFlagged = synset.flag;
-			final boolean isSame = currentId == synsetId;
+			final boolean isSame = currentId == synset.synsetId;
 			final boolean wasFlagged = currentFlag;
-			currentId = synsetId;
+			currentId = synset.synsetId;
 			currentFlag = isFlagged;
 			if (isSame && !isFlagged && wasFlagged)
 			{
@@ -246,7 +244,7 @@ public class VerbNetImplementation implements VerbNetInterface
 			}
 
 			// sense node
-			final Node senseNode = NodeFactory.makeSenseNode(doc, parent, i++);
+			final Node senseNode = NodeFactory.makeSenseNode(doc, parent, entry.word.id, synset.synsetId, i++);
 
 			// verbnet nodes
 			VerbNetImplementation.walk(connection, doc, senseNode, entry.word.id, synset.synsetId, true, true);

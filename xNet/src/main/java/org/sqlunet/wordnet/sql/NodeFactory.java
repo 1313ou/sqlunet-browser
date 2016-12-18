@@ -46,30 +46,25 @@ public class NodeFactory extends org.sqlunet.sql.NodeFactory
 	 *
 	 * @param doc      is the DOM Document being built
 	 * @param parent   is the parent node to attach this node to
-	 * @param senseIdx is the sense index
-	 * @return newly created node
-	 */
-	static public Node makeSenseNode(final Document doc, final Node parent, final int senseIdx)
-	{
-		final Element element = NodeFactory.makeNode(doc, parent, "sense", null);
-		NodeFactory.makeAttribute(element, "number", Integer.toString(senseIdx));
-		return element;
-	}
-
-	/**
-	 * Make sense node
-	 *
-	 * @param doc      is the DOM Document being built
-	 * @param parent   is the parent node to attach this node to
 	 * @param wordId   is the word id
 	 * @param synsetId is the synset id
 	 * @return newly created node
 	 */
-	static public Node makeSenseNode(final Document doc, final Node parent, final long wordId, final long synsetId)
+	static public Node makeSenseNode(final Document doc, final Node parent, final long wordId, final long synsetId, final int senseIdx)
 	{
 		final Element element = NodeFactory.makeNode(doc, parent, "sense", null);
-		NodeFactory.makeAttribute(element, "wordid", Long.toString(wordId));
-		NodeFactory.makeAttribute(element, "synsetid", Long.toString(synsetId));
+		if (wordId != 0)
+		{
+			NodeFactory.makeAttribute(element, "wordid", Long.toString(wordId));
+		}
+		if (synsetId != 0)
+		{
+			NodeFactory.makeAttribute(element, "synsetid", Long.toString(synsetId));
+		}
+		if (senseIdx != 0)
+		{
+			NodeFactory.makeAttribute(element, "number", Integer.toString(senseIdx));
+		}
 		return element;
 	}
 
