@@ -24,7 +24,7 @@ public class NodeFactory
 	 * @param text     is the node's text content
 	 * @return newly created node
 	 */
-	static public Element makeTopNode(final Document document, final Node parent, final String name, final String text)
+	static public Element makeNode(final Document document, final Node parent, final String name, final String text)
 	{
 		final Element element = document.createElement(name);
 
@@ -49,9 +49,9 @@ public class NodeFactory
 	 * @param text     is the node's text content
 	 * @return newly created node
 	 */
-	static public Element makeTopNode(final Document document, final Node parent, final String name, final String text, final String ns)
+	static public Element makeNode(final Document document, final Node parent, final String name, final String text, final String ns)
 	{
-		final Element node = makeTopNode(document, parent, name, text);
+		final Element node = makeNode(document, parent, name, text);
 		node.setAttributeNS("http://www.w3.org/2000/xmlns/", "xmlns", ns);
 		return node;
 	}
@@ -67,7 +67,7 @@ public class NodeFactory
 	 */
 	static public Element makeRootNode(final Document document, final Node parent, final String name, final String text, final String ns)
 	{
-		final Element node = makeTopNode(document, parent, name, text, ns);
+		final Element node = makeNode(document, parent, name, text, ns);
 		node.setAttributeNS("http://www.w3.org/2001/XMLSchema-instance", "xs:schemaLocation", NS_URL + ' ' + NS_XSD);
 		return node;
 	}
@@ -88,29 +88,18 @@ public class NodeFactory
 	}
 
 	/**
-	 * Make target node
+	 * Add attributes to element
 	 *
-	 * @param document is the DOM Document being built
-	 * @param parent   is the parent node to attach this node to
-	 * @param args     name-value pairs
+	 * @param element DOM element to attach attributes to	 * @param args     name-value pairs
 	 * @return newly created node
 	 */
-	static public Element makeTargetNode(final Document document, final Node parent, final String... args)
+	static public void addAttributes(final Element element, final String... args)
 	{
-		final Element element = document.createElement("target");
-		// attach
-		if (parent != null)
-		{
-			parent.appendChild(element);
-		}
-
 		// attributes
 		for (int i = 0; i < args.length; i += 2)
 		{
 			NodeFactory.makeAttribute(element, args[i], args[i + 1]);
 		}
-
-		return element;
 	}
 
 	/**

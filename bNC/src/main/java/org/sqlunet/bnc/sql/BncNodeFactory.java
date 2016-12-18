@@ -22,14 +22,14 @@ class BncNodeFactory extends NodeFactory
 	 */
 	static public Node makeBncRootNode(final Document doc, final long wordId, final Character pos)
 	{
-		final Element rootNode = NodeFactory.makeTopNode(doc, doc, "bnc", null, BncImplementation.BNCNS);
+		final Element rootNode = NodeFactory.makeNode(doc, doc, "bnc", null, BncImplementation.BNCNS);
 		if (pos == null)
 		{
-			org.sqlunet.sql.NodeFactory.makeTargetNode(doc, rootNode, "wordid", Long.toString(wordId));
+			NodeFactory.addAttributes(rootNode, "wordid", Long.toString(wordId));
 		}
 		else
 		{
-			org.sqlunet.sql.NodeFactory.makeTargetNode(doc, rootNode, "wordid", Long.toString(wordId), "pos", Character.toString(pos));
+			NodeFactory.addAttributes(rootNode, "wordid", Long.toString(wordId), "pos", Character.toString(pos));
 		}
 		return rootNode;
 	}
@@ -44,7 +44,7 @@ class BncNodeFactory extends NodeFactory
 	 */
 	public static Node makeBncNode(final Document doc, final Node parent, final BncData data, final int i)
 	{
-		final Element element = NodeFactory.makeTopNode(doc, parent, "bncdata", null);
+		final Element element = NodeFactory.makeNode(doc, parent, "bncdata", null);
 		NodeFactory.makeAttribute(element, "id", Integer.toString(i));
 		NodeFactory.makeAttribute(element, "pos", data.pos);
 
@@ -84,6 +84,6 @@ class BncNodeFactory extends NodeFactory
 		{
 			return;
 		}
-		NodeFactory.makeTopNode(doc, parent, name, object.toString());
+		NodeFactory.makeNode(doc, parent, name, object.toString());
 	}
 }

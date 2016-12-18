@@ -145,10 +145,10 @@ public class WordNetImplementation implements WordNetInterface
 			final Node senseNode = NodeFactory.makeSenseNode(doc, lexDomainNode, i + 1);
 
 			// synset nodes
-			WordNetImplementation.walkSynset(connection, doc, senseNode, synset);
+			final Node synsetNode = WordNetImplementation.walkSynset(connection, doc, senseNode, synset);
 
 			// links
-			WordNetImplementation.walkSynsetLinks(connection, doc, senseNode, synset, word.id, withLinks, recurse, targetLinkType);
+			WordNetImplementation.walkSynsetLinks(connection, doc, synsetNode, synset, word.id, withLinks, recurse, targetLinkType);
 		}
 	}
 
@@ -209,10 +209,10 @@ public class WordNetImplementation implements WordNetInterface
 				final Node senseNode = NodeFactory.makeSenseNode(doc, lexDomainNode, ++i);
 
 				// synset
-				WordNetImplementation.walkSynset(connection, doc, senseNode, synset);
+				final Node synsetNode = WordNetImplementation.walkSynset(connection, doc, senseNode, synset);
 
 				// links
-				WordNetImplementation.walkSynsetLinks(connection, doc, senseNode, synset, wordId, withLinks, recurse, targetLinkType);
+				WordNetImplementation.walkSynsetLinks(connection, doc, synsetNode, synset, wordId, withLinks, recurse, targetLinkType);
 			}
 			return;
 		}
@@ -235,10 +235,10 @@ public class WordNetImplementation implements WordNetInterface
 			final Node senseNode = NodeFactory.makeSenseNode(doc, lexDomainNode, 1);
 
 			// synset
-			WordNetImplementation.walkSynset(connection, doc, senseNode, synset);
+			final Node synsetNode = WordNetImplementation.walkSynset(connection, doc, senseNode, synset);
 
 			// links
-			WordNetImplementation.walkSynsetLinks(connection, doc, senseNode, synset, wordId, withLinks, recurse, targetLinkType);
+			WordNetImplementation.walkSynsetLinks(connection, doc, synsetNode, synset, wordId, withLinks, recurse, targetLinkType);
 		}
 	}
 
@@ -250,7 +250,7 @@ public class WordNetImplementation implements WordNetInterface
 	 * @param parent     org.w3c.dom.Node walk will attach results to
 	 * @param synset     synset whose data are to be processed
 	 */
-	static private void walkSynset(final SQLiteDatabase connection, final Document doc, final Node parent, final Synset synset)
+	static private Node walkSynset(final SQLiteDatabase connection, final Document doc, final Node parent, final Synset synset)
 	{
 		// synset words
 		final List<Word> words = synset.getSynsetWords(connection);
@@ -269,12 +269,15 @@ public class WordNetImplementation implements WordNetInterface
 		}
 
 		// gloss
-		org.sqlunet.sql.NodeFactory.makeTopNode(doc, synsetNode, "definition", synset.definition);
+		org.sqlunet.sql.NodeFactory.makeNode(doc, synsetNode, "definition", synset.definition);
+
 		// sample
 		if (synset.sample != null)
 		{
-			org.sqlunet.sql.NodeFactory.makeTopNode(doc, synsetNode, "sample", synset.sample);
+			org.sqlunet.sql.NodeFactory.makeNode(doc, synsetNode, "sample", synset.sample);
 		}
+
+		return synsetNode;
 	}
 
 	/**
@@ -294,7 +297,8 @@ public class WordNetImplementation implements WordNetInterface
 		if (withLinks)
 		{
 			// link node
-			final Node linkNode = org.sqlunet.sql.NodeFactory.makeTopNode(doc, parent, "links", null);
+			final Node linkNode = org.sqlunet.sql.NodeFactory.makeNode(doc, parent, "links", null);
+
 			// get links
 			final List<Link> links = targetLinkType == Mapping.ANYTYPE ? synset.getLinks(connection, wordId) : synset.getTypedLinks(connection, wordId, targetLinkType);
 			if (links == null)
@@ -331,14 +335,24 @@ public class WordNetImplementation implements WordNetInterface
 	 *
 	 * @param connection     connection
 	 * @param doc            org.w3c.dom.Document being built
-	 * @param parent         org.w3c.dom.Node walk will attach results to
+	 * @param parent0        org.w3c.dom.Node walk will attach results to
 	 * @param link           synset to start walk from
 	 * @param wordId         word id to start walk from
 	 * @param recurseLevel   recursion level
 	 * @param targetLinkType target link type (cannot be ANYTYPE for all types)
 	 */
-	static private void walkLink(final SQLiteDatabase connection, final Document doc, final Node parent, final Link link, final long wordId, final int recurseLevel, final int targetLinkType)
+	static private void walkLink(final SQLiteDatabase connection, final Document doc, final Node parent0, final Link link, final long wordId, final int recurseLevel, final int targetLinkType)
 	{
+		Node parent = parent0;
+
+		// word in lex links
+		if (link.wordId != 0)
+		{
+			final long synset2Id = link.synsetId;
+			parent = NodeFactory.makeSenseNode(doc, parent0, link.wordId, link.synsetId);
+			NodeFactory.makeWordNode(doc, parent, link.word, link.wordId);
+		}
+
 		// synset
 		WordNetImplementation.walkSynset(connection, doc, parent, link);
 
@@ -403,8 +417,8 @@ public class WordNetImplementation implements WordNetInterface
 	public Document querySelectorDoc(final SQLiteDatabase connection, final String word)
 	{
 		final Document doc = Factory.makeDocument();
-		final Node rootNode = org.sqlunet.sql.NodeFactory.makeTopNode(doc, doc, "wordnet", word, WordNetImplementation.WNNS);
-		org.sqlunet.sql.NodeFactory.makeTargetNode(doc, rootNode, "word", word);
+		final Element rootNode = org.sqlunet.sql.NodeFactory.makeNode(doc, doc, "wordnet", word, WordNetImplementation.WNNS);
+		NodeFactory.addAttributes(rootNode, "word", word);
 		WordNetImplementation.walkSelector(connection, doc, rootNode, word);
 		return doc;
 	}
@@ -436,8 +450,11 @@ public class WordNetImplementation implements WordNetInterface
 	public Document queryDoc(final SQLiteDatabase connection, final String word, final boolean withLinks, final boolean recurse)
 	{
 		final Document doc = Factory.makeDocument();
-		final Node rootNode = org.sqlunet.sql.NodeFactory.makeTopNode(doc, doc, "wordnet", null, WordNetImplementation.WNNS);
-		org.sqlunet.sql.NodeFactory.makeTargetNode(doc, rootNode, "lemma", word);
+		final Element rootNode = org.sqlunet.sql.NodeFactory.makeNode(doc, doc, "wordnet", null, WordNetImplementation.WNNS);
+		NodeFactory.addAttributes(rootNode, //
+				"word", word, //
+				"withlinks", Boolean.toString(withLinks), //
+				"recurse", Boolean.toString(recurse));
 		WordNetImplementation.walk(connection, word, doc, rootNode, withLinks, recurse, Mapping.ANYTYPE, Mapping.ANYTYPE, Mapping.ANYTYPE);
 		return doc;
 	}
@@ -456,8 +473,12 @@ public class WordNetImplementation implements WordNetInterface
 	public Document queryDoc(final SQLiteDatabase connection, final long wordId, final Long synsetId, final boolean withLinks, final boolean recurse)
 	{
 		final Document doc = Factory.makeDocument();
-		final Node rootNode = org.sqlunet.sql.NodeFactory.makeTopNode(doc, doc, "wordnet", null, WordNetImplementation.WNNS);
-		org.sqlunet.sql.NodeFactory.makeTargetNode(doc, rootNode, "wordid", Long.toString(wordId), "synsetid", synsetId == null ? null : Long.toString(synsetId));
+		final Element rootNode = org.sqlunet.sql.NodeFactory.makeNode(doc, doc, "wordnet", null, WordNetImplementation.WNNS);
+		NodeFactory.addAttributes(rootNode, //
+				"wordid", Long.toString(wordId), //
+				"synsetid", synsetId == null ? null : Long.toString(synsetId), //
+				"withlinks", Boolean.toString(withLinks), //
+				"recurse", Boolean.toString(recurse));
 		WordNetImplementation.walkSense(connection, wordId, synsetId, doc, rootNode, withLinks, recurse, Mapping.ANYTYPE);
 		return doc;
 	}
@@ -501,8 +522,8 @@ public class WordNetImplementation implements WordNetInterface
 		final int linkType = Mapping.getLinkType(linkName);
 
 		// fill document
-		final Node rootNode = org.sqlunet.sql.NodeFactory.makeTopNode(doc, doc, "wordnet", null, WordNetImplementation.WNNS);
-		org.sqlunet.sql.NodeFactory.makeTargetNode(doc, rootNode, //
+		final Element rootNode = org.sqlunet.sql.NodeFactory.makeNode(doc, doc, "wordnet", null, WordNetImplementation.WNNS);
+		NodeFactory.addAttributes(rootNode, //
 				"word", word,  //
 				"pos", posName,  //
 				"lexdomain", lexDomainName, //
@@ -547,8 +568,10 @@ public class WordNetImplementation implements WordNetInterface
 	public Document querySenseDoc(final SQLiteDatabase connection, final long wordId, final long synsetId)
 	{
 		final Document doc = Factory.makeDocument();
-		final Node rootNode = org.sqlunet.sql.NodeFactory.makeTopNode(doc, doc, "wordnet", null, WordNetImplementation.WNNS);
-		org.sqlunet.sql.NodeFactory.makeTargetNode(doc, rootNode, "synsetid", Long.toString(synsetId));
+		final Element rootNode = org.sqlunet.sql.NodeFactory.makeNode(doc, doc, "wordnet", null, WordNetImplementation.WNNS);
+		NodeFactory.addAttributes(rootNode, //
+				"wordid", Long.toString(wordId), //
+				"synsetid", Long.toString(synsetId));
 		final Node senseNode = NodeFactory.makeSenseNode(doc, rootNode, wordId, synsetId);
 
 		final SynsetQueryCommand query = new SynsetQueryCommand(connection, synsetId);
@@ -557,10 +580,10 @@ public class WordNetImplementation implements WordNetInterface
 		{
 			// synset
 			final Synset synset = new Synset(query);
-			WordNetImplementation.walkSynset(connection, doc, senseNode, synset);
+			final Node synsetNode = WordNetImplementation.walkSynset(connection, doc, senseNode, synset);
 
 			// links
-			WordNetImplementation.walkSynsetLinks(connection, doc, senseNode, synset, 0, true /* withLinks */, true /* recurse */, Mapping.ANYTYPE);
+			WordNetImplementation.walkSynsetLinks(connection, doc, synsetNode, synset, 0, true /* withLinks */, true /* recurse */, Mapping.ANYTYPE);
 		}
 		return doc;
 	}
@@ -591,18 +614,18 @@ public class WordNetImplementation implements WordNetInterface
 	public Document querySynsetDoc(final SQLiteDatabase connection, final long synsetId)
 	{
 		final Document doc = Factory.makeDocument();
-		final Element rootNode = org.sqlunet.sql.NodeFactory.makeTopNode(doc, doc, "wordnet", null, WordNetImplementation.WNNS);
-		org.sqlunet.sql.NodeFactory.makeTargetNode(doc, rootNode, "synsetid", Long.toString(synsetId));
+		final Element rootNode = org.sqlunet.sql.NodeFactory.makeNode(doc, doc, "wordnet", null, WordNetImplementation.WNNS);
+		NodeFactory.addAttributes(rootNode, "synsetid", Long.toString(synsetId));
 		final SynsetQueryCommand query = new SynsetQueryCommand(connection, synsetId);
 		query.execute();
 		if (query.next())
 		{
 			// synset
 			final Synset synset = new Synset(query);
-			WordNetImplementation.walkSynset(connection, doc, rootNode, synset);
+			final Node synsetNode = WordNetImplementation.walkSynset(connection, doc, rootNode, synset);
 
 			// links
-			WordNetImplementation.walkSynsetLinks(connection, doc, rootNode, synset, 0, true /* withLinks */, true /* recurse */, Mapping.ANYTYPE);
+			WordNetImplementation.walkSynsetLinks(connection, doc, synsetNode, synset, 0, true /* withLinks */, true /* recurse */, Mapping.ANYTYPE);
 		}
 		return doc;
 	}

@@ -38,21 +38,21 @@ class LinkTypesQueryCommand extends DBQueryCommand
 	}
 
 	/**
-	 * Get lexdomain id
-	 *
-	 * @return lexdomain id
-	 */
-	public int getLexDomainId()
-	{
-		return this.cursor.getInt(0);
-	}
-
-	/**
 	 * Get link type
 	 *
 	 * @return link type
 	 */
 	public int getLinkType()
+	{
+		return this.cursor.getInt(0);
+	}
+
+	/**
+	 * Get lexdomain id
+	 *
+	 * @return lexdomain id
+	 */
+	public int getLexDomainId()
 	{
 		return this.cursor.getInt(1);
 	}

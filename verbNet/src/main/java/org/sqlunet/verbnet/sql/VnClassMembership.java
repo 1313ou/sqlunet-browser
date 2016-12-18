@@ -46,7 +46,7 @@ class VnClassMembership
 	/**
 	 * Quality
 	 */
-	public final int quality;
+	public final float quality;
 
 	/**
 	 * Groupings
@@ -65,7 +65,7 @@ class VnClassMembership
 	 * @param quality   quality
 	 * @param groupings groupings
 	 */
-	private VnClassMembership(final String className, final long classId, final Long wordId, final Long synsetId, final Integer senseNum, final String senseKey, final int quality, final String groupings)
+	private VnClassMembership(final String className, final long classId, final Long wordId, final Long synsetId, final Integer senseNum, final String senseKey, final float quality, final String groupings)
 	{
 		super();
 		this.className = className;
@@ -102,7 +102,7 @@ class VnClassMembership
 				final boolean synsetSpecificFlag = query.getSynsetSpecific();
 				final String sensekey = query.getSenseKey();
 				final int sensenum = query.getSenseNum();
-				final int quality = query.getQuality();
+				final float quality = query.getQuality();
 				final String groupings = query.getGroupings();
 
 				result.add(new VnClassMembership(className, classId, wordId, synsetSpecificFlag ? synsetId : null, sensenum, sensekey, quality, groupings));

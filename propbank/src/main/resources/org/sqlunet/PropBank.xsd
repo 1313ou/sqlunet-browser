@@ -1,71 +1,97 @@
 <?xml version="1.0"?>
 <xs:schema xmlns:xs='http://www.w3.org/2001/XMLSchema'
-  targetNamespace='http://org.sqlunet/pb'
-  xmlns='http://org.sqlunet/pb'>
+           targetNamespace='http://org.sqlunet/pb'
+           xmlns='http://org.sqlunet/pb'>
 
- <xs:element name='propbank'>
-  <xs:complexType>
-   <xs:sequence>
-    <xs:element ref='target' minOccurs='0' maxOccurs='unbounded'/>
-    <xs:element ref='roleset' minOccurs='0' maxOccurs='unbounded'/>
-   </xs:sequence>
-  </xs:complexType>
- </xs:element>
+	<xs:simpleType name="formType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value='full'/>
+			<xs:enumeration value='gerund'/>
+			<xs:enumeration value='infinitive'/>
+			<xs:enumeration value='participle'/>
+		</xs:restriction>
+	</xs:simpleType>
 
- <xs:element name='target'>
-  <xs:complexType mixed='true'>
-   <xs:attribute name='rolesetid' type='xs:string' use='optional'/>
-   <xs:attribute name='wordid' type='xs:long' use='optional'/>
-   <xs:attribute name='synsetid' type='xs:long' use='optional'/>
-  </xs:complexType>
- </xs:element>
+	<xs:simpleType name="tenseType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value='past'/>
+			<xs:enumeration value='present'/>
+			<xs:enumeration value='future'/>
+		</xs:restriction>
+	</xs:simpleType>
 
- <xs:element name='roleset'>
-  <xs:complexType mixed='true'>
-   <xs:sequence>
-    <xs:element ref='role' minOccurs='1' maxOccurs='unbounded'/>
-    <xs:element ref='example' minOccurs='0' maxOccurs='unbounded'/>
-   </xs:sequence>
-   <xs:attribute name='rolesetid' type='xs:long' use='required'/>
-   <xs:attribute name='num' type='xs:string' use='required'/>
-   <xs:attribute name='name' type='xs:string' use='required'/>
-   <xs:attribute name='head' type='xs:string' use='required'/>
-  </xs:complexType>
- </xs:element>
+	<xs:simpleType name="personType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value='third'/>
+			<xs:enumeration value='other'/>
+		</xs:restriction>
+	</xs:simpleType>
 
- <xs:element name='role'>
-  <xs:complexType mixed='true'>
-   <xs:attribute name='roleid' type='xs:int' use='required'/>
-   <xs:attribute name='narg' type='xs:string' use='required'/>
-   <xs:attribute name='theta' type='xs:string' use='optional'/>
-   <xs:attribute name='func' type='xs:string' use='required'/>
-  </xs:complexType>
- </xs:element>
+	<xs:simpleType name="voiceType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value='active'/>
+			<xs:enumeration value='passive'/>
+		</xs:restriction>
+	</xs:simpleType>
 
- <xs:element name='example'>
-  <xs:complexType mixed='true'>
-   <xs:sequence>
-    <xs:element ref='rel'/>
-    <xs:element ref='arg' minOccurs='0' maxOccurs='unbounded'/>
-   </xs:sequence>
-   <xs:attribute name='exampleid' type='xs:int' use='required'/>
-   <xs:attribute name='form' type='xs:string' use='optional'/>
-   <xs:attribute name='voice' type='xs:string' use='optional'/>
-   <xs:attribute name='tense' type='xs:string' use='optional'/>
-  </xs:complexType>
- </xs:element>
+	<xs:element name='propbank'>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element maxOccurs='unbounded' minOccurs='0' ref='roleset'/>
+			</xs:sequence>
+			<xs:attribute name='rolesetid' type='xs:string' use='optional'/>
+			<xs:attribute name='wordid' type='xs:long' use='optional'/>
+			<xs:attribute name='synsetid' type='xs:long' use='optional'/>
+		</xs:complexType>
+	</xs:element>
 
- <xs:element name='rel'>
-  <xs:complexType mixed='true'>
-   <xs:attribute name='value' type='xs:string' use='optional'/>
-  </xs:complexType>
- </xs:element>
+	<xs:element name='roleset'>
+		<xs:complexType mixed='true'>
+			<xs:sequence>
+				<xs:element maxOccurs='unbounded' minOccurs='1' ref='role'/>
+				<xs:element maxOccurs='unbounded' minOccurs='0' ref='example'/>
+			</xs:sequence>
+			<xs:attribute name='rolesetid' type='xs:long' use='required'/>
+			<xs:attribute name='num' type='xs:string' use='required'/>
+			<xs:attribute name='name' type='xs:string' use='required'/>
+			<xs:attribute name='head' type='xs:string' use='required'/>
+		</xs:complexType>
+	</xs:element>
 
- <xs:element name='arg'>
-  <xs:complexType mixed='true'>
-   <xs:attribute name='narg' type='xs:string' use='required'/>
-   <xs:attribute name='descr' type='xs:string' use='required'/>
-   <xs:attribute name='theta' type='xs:string' use='optional'/>
-  </xs:complexType>
- </xs:element>
+	<xs:element name='role'>
+		<xs:complexType mixed='true'>
+			<xs:attribute name='roleid' type='xs:int' use='required'/>
+			<xs:attribute name='narg' type='xs:string' use='required'/>
+			<xs:attribute name='theta' type='xs:string' use='optional'/>
+			<xs:attribute name='func' type='xs:string' use='required'/>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name='example'>
+		<xs:complexType mixed='true'>
+			<xs:sequence>
+				<xs:element ref='rel'/>
+				<xs:element maxOccurs='unbounded' minOccurs='0' ref='arg'/>
+			</xs:sequence>
+			<xs:attribute name='exampleid' type='xs:int' use='required'/>
+			<xs:attribute name='form' type='formType' use='optional' />
+			<xs:attribute name='tense' type='tenseType' use='optional' />
+			<xs:attribute name='voice' type='voiceType' use='optional' />
+			<xs:attribute name='person' type='personType' use='optional' />
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name='rel'>
+		<xs:complexType mixed='true'>
+			<xs:attribute name='value' type='xs:string' use='optional'/>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name='arg'>
+		<xs:complexType mixed='true'>
+			<xs:attribute name='narg' type='xs:string' use='required'/>
+			<xs:attribute name='descr' type='xs:string' use='required'/>
+			<xs:attribute name='theta' type='xs:string' use='optional'/>
+		</xs:complexType>
+	</xs:element>
 </xs:schema>

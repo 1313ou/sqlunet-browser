@@ -14,7 +14,7 @@ class LinksQueryCommand extends DBQueryCommand
 	/**
 	 * <code>QUERY</code> SQL statement
 	 */
-	static private final String QUERY = SqLiteDialect.LinksQuery; // ;
+	static private final String QUERY = SqLiteDialect.LinksQuery;
 
 	/**
 	 * Constructor
@@ -48,6 +48,18 @@ class LinksQueryCommand extends DBQueryCommand
 		this.statement.setLong(3, wordId);
 	}
 
+	// linkid, synsetid, definition, lexdomainid, sampleset, word2id, lemma, synset1id, word1id
+
+	/**
+	 * Get link type
+	 *
+	 * @return link type
+	 */
+	public int getLinkType()
+	{
+		return this.cursor.getInt(0);
+	}
+
 	/**
 	 * Get synset id
 	 *
@@ -55,7 +67,7 @@ class LinksQueryCommand extends DBQueryCommand
 	 */
 	public long getSynsetId()
 	{
-		return this.cursor.getLong(0);
+		return this.cursor.getLong(1);
 	}
 
 	/**
@@ -65,7 +77,7 @@ class LinksQueryCommand extends DBQueryCommand
 	 */
 	public String getDefinition()
 	{
-		return this.cursor.getString(1);
+		return this.cursor.getString(2);
 	}
 
 	/**
@@ -75,7 +87,7 @@ class LinksQueryCommand extends DBQueryCommand
 	 */
 	public int getLexDomainId()
 	{
-		return this.cursor.getInt(2);
+		return this.cursor.getInt(3);
 	}
 
 	/**
@@ -83,19 +95,29 @@ class LinksQueryCommand extends DBQueryCommand
 	 *
 	 * @return samples in a bar-separated string
 	 */
-	public String getSample()
+	public String getSamples()
 	{
-		return this.cursor.getString(3);
+		return this.cursor.getString(4);
 	}
 
 	/**
-	 * Get link type
+	 * Get target word id
 	 *
-	 * @return link type
+	 * @return source synset id
 	 */
-	public int getLinkType()
+	public long getWordId()
 	{
-		return this.cursor.getInt(4);
+		return this.cursor.getLong(5);
+	}
+
+	/**
+	 * Get target word
+	 *
+	 * @return source synset id
+	 */
+	public String getWord()
+	{
+		return this.cursor.getString(6);
 	}
 
 	/**
@@ -105,6 +127,16 @@ class LinksQueryCommand extends DBQueryCommand
 	 */
 	public long getFromSynset()
 	{
-		return this.cursor.getLong(5);
+		return this.cursor.getLong(7);
+	}
+
+	/**
+	 * Get source synset id
+	 *
+	 * @return source synset id
+	 */
+	public long getFromWord()
+	{
+		return this.cursor.getLong(8);
 	}
 }

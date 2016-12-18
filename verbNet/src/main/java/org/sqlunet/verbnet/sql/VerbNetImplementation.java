@@ -31,7 +31,7 @@ public class VerbNetImplementation implements VerbNetInterface
 	public Document querySelectorDoc(final SQLiteDatabase connection, final String word)
 	{
 		final Document doc = Factory.makeDocument();
-		final Node rootNode = org.sqlunet.sql.NodeFactory.makeTopNode(doc, doc, "verbnet", word, VerbNetImplementation.VNNS);
+		final Node rootNode = org.sqlunet.sql.NodeFactory.makeNode(doc, doc, "verbnet", word, VerbNetImplementation.VNNS);
 		VerbNetImplementation.walkSelector(connection, doc, rootNode, word);
 		return doc;
 	}
@@ -63,7 +63,7 @@ public class VerbNetImplementation implements VerbNetInterface
 	public Document queryDoc(final SQLiteDatabase connection, final String word)
 	{
 		final Document doc = Factory.makeDocument();
-		final Node rootNode = org.sqlunet.sql.NodeFactory.makeTopNode(doc, doc, "verbnet", word, VerbNetImplementation.VNNS);
+		final Node rootNode = org.sqlunet.sql.NodeFactory.makeNode(doc, doc, "verbnet", word, VerbNetImplementation.VNNS);
 		VerbNetImplementation.walk(connection, doc, rootNode, word);
 		return doc;
 	}

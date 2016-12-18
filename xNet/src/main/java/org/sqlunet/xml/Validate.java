@@ -31,7 +31,6 @@ public class Validate
 	 */
 	private static void validate(final Validator validator, final Source source)
 	{
-		Log.i(TAG, "validating " + source.toString());
 		try
 		{
 			validator.validate(source);

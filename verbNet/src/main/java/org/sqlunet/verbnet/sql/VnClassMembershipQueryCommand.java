@@ -85,9 +85,9 @@ class VnClassMembershipQueryCommand extends DBQueryCommand
 	 *
 	 * @return the quality from the result set
 	 */
-	public int getQuality()
+	public float getQuality()
 	{
-		return this.cursor.getInt(5);
+		return this.cursor.getFloat(5);
 	}
 
 	/**

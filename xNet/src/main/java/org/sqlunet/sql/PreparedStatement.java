@@ -2,6 +2,7 @@ package org.sqlunet.sql;
 
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.text.TextUtils;
 import android.util.Log;
 import android.util.SparseArray;
 
@@ -100,7 +101,8 @@ public class PreparedStatement
 		final String[] args = toSelectionArgs();
 		if (PreparedStatement.logSql)
 		{
-			Log.d(PreparedStatement.TAG + "SQL", Utils.replaceArgs(this.sql, args));
+			Log.d(PreparedStatement.TAG + "SQL", SqlFormatter.format(this.sql).toString());
+			Log.d(PreparedStatement.TAG + "ARGS", TextUtils.join(",", args));
 		}
 		try
 		{

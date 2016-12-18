@@ -1,161 +1,157 @@
 <?xml version="1.0"?>
 <xs:schema xmlns:xs='http://www.w3.org/2001/XMLSchema'
-  targetNamespace='http://org.sqlunet/bc'
-  xmlns='http://org.sqlunet/bc'>
+           targetNamespace='http://org.sqlunet/bc'
+           xmlns='http://org.sqlunet/bc'>
 
- <xs:element name='bnc'>
-  <xs:complexType>
-   <xs:sequence>
-    <xs:element ref='target' minOccurs='0' maxOccurs='1'/>
-    <xs:element ref='word' minOccurs='0' maxOccurs='1'/>
-    <xs:element ref='bncdata' minOccurs='0' maxOccurs='unbounded'/>
-   </xs:sequence>
-  </xs:complexType>
- </xs:element>
+	<xs:element name='bnc'>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element maxOccurs='1' minOccurs='0' ref='word'/>
+				<xs:element maxOccurs='unbounded' minOccurs='0' ref='bncdata'/>
+			</xs:sequence>
+			<xs:attribute name='wordid' type='xs:long' use='optional'/>
+			<xs:attribute name='word' type='xs:string' use='optional'/>
+			<xs:attribute name='pos' type='xs:string' use='optional'/>
+		</xs:complexType>
+	</xs:element>
 
- <xs:element name='target'>
-  <xs:complexType mixed='true'>
-   <xs:attribute name='wordid' type='xs:long' use='optional'/>
-  </xs:complexType>
- </xs:element>
+	<xs:element name='word'>
+		<xs:complexType mixed='true'>
+			<xs:attribute name='pos' type='xs:string' use='optional'/>
+		</xs:complexType>
+	</xs:element>
 
- <xs:element name='word'>
-  <xs:complexType mixed='true'>
-   <xs:attribute name='pos' type='xs:string' use='optional'/>
-  </xs:complexType>
- </xs:element>
+	<xs:element name='bncdata'>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element maxOccurs='1' minOccurs='0' ref='freq'/>
+				<xs:element maxOccurs='1' minOccurs='0' ref='range'/>
+				<xs:element maxOccurs='1' minOccurs='0' ref='disp'/>
+				<xs:element maxOccurs='1' minOccurs='0' ref='convfreq'/>
+				<xs:element maxOccurs='1' minOccurs='0' ref='convrange'/>
+				<xs:element maxOccurs='1' minOccurs='0' ref='convdisp'/>
+				<xs:element maxOccurs='1' minOccurs='0' ref='taskfreq'/>
+				<xs:element maxOccurs='1' minOccurs='0' ref='taskrange'/>
+				<xs:element maxOccurs='1' minOccurs='0' ref='taskdisp'/>
+				<xs:element maxOccurs='1' minOccurs='0' ref='imagfreq'/>
+				<xs:element maxOccurs='1' minOccurs='0' ref='imagrange'/>
+				<xs:element maxOccurs='1' minOccurs='0' ref='imagdisp'/>
+				<xs:element maxOccurs='1' minOccurs='0' ref='inffreq'/>
+				<xs:element maxOccurs='1' minOccurs='0' ref='infrange'/>
+				<xs:element maxOccurs='1' minOccurs='0' ref='infdisp'/>
+				<xs:element maxOccurs='1' minOccurs='0' ref='spokenfreq'/>
+				<xs:element maxOccurs='1' minOccurs='0' ref='spokenrange'/>
+				<xs:element maxOccurs='1' minOccurs='0' ref='spokendisp'/>
+				<xs:element maxOccurs='1' minOccurs='0' ref='writtenfreq'/>
+				<xs:element maxOccurs='1' minOccurs='0' ref='writtenrange'/>
+				<xs:element maxOccurs='1' minOccurs='0' ref='writtendisp'/>
+			</xs:sequence>
+			<xs:attribute name='pos' type='xs:string' use='optional'/>
+		</xs:complexType>
+	</xs:element>
 
- <xs:element name='bncdata'>
-  <xs:complexType>
-   <xs:sequence>
-    <xs:element ref='freq' minOccurs='0' maxOccurs='1'/>
-    <xs:element ref='range' minOccurs='0' maxOccurs='1'/>
-    <xs:element ref='disp' minOccurs='0' maxOccurs='1'/>
-    <xs:element ref='convfreq' minOccurs='0' maxOccurs='1'/>
-    <xs:element ref='convrange' minOccurs='0' maxOccurs='1'/>
-    <xs:element ref='convdisp' minOccurs='0' maxOccurs='1'/>
-    <xs:element ref='taskfreq' minOccurs='0' maxOccurs='1'/>
-    <xs:element ref='taskrange' minOccurs='0' maxOccurs='1'/>
-    <xs:element ref='taskdisp' minOccurs='0' maxOccurs='1'/>
-    <xs:element ref='imagfreq' minOccurs='0' maxOccurs='1'/>
-    <xs:element ref='imagrange' minOccurs='0' maxOccurs='1'/>
-    <xs:element ref='imagdisp' minOccurs='0' maxOccurs='1'/>
-    <xs:element ref='inffreq' minOccurs='0' maxOccurs='1'/>
-    <xs:element ref='infrange' minOccurs='0' maxOccurs='1'/>
-    <xs:element ref='infdisp' minOccurs='0' maxOccurs='1'/>
-    <xs:element ref='spokenfreq' minOccurs='0' maxOccurs='1'/>
-    <xs:element ref='spokenrange' minOccurs='0' maxOccurs='1'/>
-    <xs:element ref='spokendisp' minOccurs='0' maxOccurs='1'/>
-    <xs:element ref='writtenfreq' minOccurs='0' maxOccurs='1'/>
-    <xs:element ref='writtenrange' minOccurs='0' maxOccurs='1'/>
-    <xs:element ref='writtendisp' minOccurs='0' maxOccurs='1'/>
-   </xs:sequence>
-   <xs:attribute name='pos' type='xs:string' use='optional'/>
-  </xs:complexType>
- </xs:element>
+	<xs:element name='freq'>
+		<xs:complexType mixed='true'>
+		</xs:complexType>
+	</xs:element>
 
- <xs:element name='freq'>
-  <xs:complexType mixed='true'>
-  </xs:complexType>
- </xs:element>
+	<xs:element name='range'>
+		<xs:complexType mixed='true'>
+		</xs:complexType>
+	</xs:element>
 
- <xs:element name='range'>
-  <xs:complexType mixed='true'>
-  </xs:complexType>
- </xs:element>
+	<xs:element name='disp'>
+		<xs:complexType mixed='true'>
+		</xs:complexType>
+	</xs:element>
 
- <xs:element name='disp'>
-  <xs:complexType mixed='true'>
-  </xs:complexType>
- </xs:element>
+	<xs:element name='convfreq'>
+		<xs:complexType mixed='true'>
+		</xs:complexType>
+	</xs:element>
 
- <xs:element name='convfreq'>
-  <xs:complexType mixed='true'>
-  </xs:complexType>
- </xs:element>
+	<xs:element name='convrange'>
+		<xs:complexType mixed='true'>
+		</xs:complexType>
+	</xs:element>
 
- <xs:element name='convrange'>
-  <xs:complexType mixed='true'>
-  </xs:complexType>
- </xs:element>
+	<xs:element name='convdisp'>
+		<xs:complexType mixed='true'>
+		</xs:complexType>
+	</xs:element>
 
- <xs:element name='convdisp'>
-  <xs:complexType mixed='true'>
-  </xs:complexType>
- </xs:element>
+	<xs:element name='taskfreq'>
+		<xs:complexType mixed='true'>
+		</xs:complexType>
+	</xs:element>
 
- <xs:element name='taskfreq'>
-  <xs:complexType mixed='true'>
-  </xs:complexType>
- </xs:element>
+	<xs:element name='taskrange'>
+		<xs:complexType mixed='true'>
+		</xs:complexType>
+	</xs:element>
 
- <xs:element name='taskrange'>
-  <xs:complexType mixed='true'>
-  </xs:complexType>
- </xs:element>
+	<xs:element name='taskdisp'>
+		<xs:complexType mixed='true'>
+		</xs:complexType>
+	</xs:element>
 
- <xs:element name='taskdisp'>
-  <xs:complexType mixed='true'>
-  </xs:complexType>
- </xs:element>
+	<xs:element name='imagfreq'>
+		<xs:complexType mixed='true'>
+		</xs:complexType>
+	</xs:element>
 
- <xs:element name='imagfreq'>
-  <xs:complexType mixed='true'>
-  </xs:complexType>
- </xs:element>
+	<xs:element name='imagrange'>
+		<xs:complexType mixed='true'>
+		</xs:complexType>
+	</xs:element>
 
- <xs:element name='imagrange'>
-  <xs:complexType mixed='true'>
-  </xs:complexType>
- </xs:element>
+	<xs:element name='imagdisp'>
+		<xs:complexType mixed='true'>
+		</xs:complexType>
+	</xs:element>
 
- <xs:element name='imagdisp'>
-  <xs:complexType mixed='true'>
-  </xs:complexType>
- </xs:element>
+	<xs:element name='inffreq'>
+		<xs:complexType mixed='true'>
+		</xs:complexType>
+	</xs:element>
 
- <xs:element name='inffreq'>
-  <xs:complexType mixed='true'>
-  </xs:complexType>
- </xs:element>
+	<xs:element name='infrange'>
+		<xs:complexType mixed='true'>
+		</xs:complexType>
+	</xs:element>
 
- <xs:element name='infrange'>
-  <xs:complexType mixed='true'>
-  </xs:complexType>
- </xs:element>
+	<xs:element name='infdisp'>
+		<xs:complexType mixed='true'>
+		</xs:complexType>
+	</xs:element>
 
- <xs:element name='infdisp'>
-  <xs:complexType mixed='true'>
-  </xs:complexType>
- </xs:element>
+	<xs:element name='spokenfreq'>
+		<xs:complexType mixed='true'>
+		</xs:complexType>
+	</xs:element>
 
- <xs:element name='spokenfreq'>
-  <xs:complexType mixed='true'>
-  </xs:complexType>
- </xs:element>
+	<xs:element name='spokenrange'>
+		<xs:complexType mixed='true'>
+		</xs:complexType>
+	</xs:element>
 
- <xs:element name='spokenrange'>
-  <xs:complexType mixed='true'>
-  </xs:complexType>
- </xs:element>
+	<xs:element name='spokendisp'>
+		<xs:complexType mixed='true'>
+		</xs:complexType>
+	</xs:element>
 
- <xs:element name='spokendisp'>
-  <xs:complexType mixed='true'>
-  </xs:complexType>
- </xs:element>
+	<xs:element name='writtenfreq'>
+		<xs:complexType mixed='true'>
+		</xs:complexType>
+	</xs:element>
 
- <xs:element name='writtenfreq'>
-  <xs:complexType mixed='true'>
-  </xs:complexType>
- </xs:element>
+	<xs:element name='writtenrange'>
+		<xs:complexType mixed='true'>
+		</xs:complexType>
+	</xs:element>
 
- <xs:element name='writtenrange'>
-  <xs:complexType mixed='true'>
-  </xs:complexType>
- </xs:element>
-
- <xs:element name='writtendisp'>
-  <xs:complexType mixed='true'>
-  </xs:complexType>
- </xs:element>
+	<xs:element name='writtendisp'>
+		<xs:complexType mixed='true'>
+		</xs:complexType>
+	</xs:element>
 </xs:schema>

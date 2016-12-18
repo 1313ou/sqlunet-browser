@@ -15,16 +15,33 @@ import java.util.List;
 class Link extends Synset
 {
 	static private final String TAG = "Link";
+
 	/**
 	 * <code>linkType</code> relation type
 	 */
-	private final int linkType;
+	public final int linkType;
+
+	/**
+	 * <code>word</code> related word (lexlinks)
+	 */
+	public final String word;
+
+	/**
+	 * <code>wordId</code> related word id (lexlinks)
+	 */
+	public final long wordId;
 
 	/**
 	 * <code>fromSynsetId</code> source synset id
 	 */
 	@SuppressWarnings("unused")
-	private final long fromSynsetId;
+	public final long fromSynsetId;
+
+	/**
+	 * <code>fromWordId</code> source synset id
+	 */
+	@SuppressWarnings("unused")
+	public final long fromWordId;
 
 	/**
 	 * Constructor from query for synsets linked to a given synset
@@ -38,7 +55,10 @@ class Link extends Synset
 
 		// link data
 		this.linkType = query.getLinkType();
+		this.word = query.getWord();
+		this.wordId = query.getWordId();
 		this.fromSynsetId = query.getFromSynset();
+		this.fromWordId = query.getFromWord();
 	}
 
 	/**
@@ -53,7 +73,10 @@ class Link extends Synset
 
 		// link data
 		this.linkType = query.getLinkType();
+		this.word = query.getWord();
+		this.wordId = query.getWordId();
 		this.fromSynsetId = query.getFromSynset();
+		this.fromWordId = query.getFromWord();
 	}
 
 	/**

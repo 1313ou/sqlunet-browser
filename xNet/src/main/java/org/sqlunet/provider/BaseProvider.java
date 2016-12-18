@@ -105,7 +105,7 @@ public abstract class BaseProvider extends ContentProvider
 		public void onUpgrade(final SQLiteDatabase db, final int oldVersion, final int newVersion)
 		{
 			// do nothing
-			System.err.println("Upgrade");
+			Log.d(BaseProvider.TAG, "Upgrade");
 		}
 	}
 */

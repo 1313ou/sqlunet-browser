@@ -104,7 +104,6 @@
 					<xsl:apply-templates select="./synset"/>
 				</OL>
 			</xsl:if>
-			<xsl:apply-templates select="./links"/>
 		</LI>
 	</xsl:template>
 
@@ -129,6 +128,7 @@
 				</OL>
 			</xsl:if>
 			<xsl:apply-templates select="text()"/>
+			<xsl:apply-templates select="./links"/>
 		</LI>
 	</xsl:template>
 

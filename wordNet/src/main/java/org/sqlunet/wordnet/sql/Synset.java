@@ -66,7 +66,7 @@ class Synset extends BasicSynset
 	 */
 	Synset(final LinksQueryCommand query)
 	{
-		super(query.getSynsetId(), query.getDefinition(), query.getLexDomainId(), query.getSample());
+		super(query.getSynsetId(), query.getDefinition(), query.getLexDomainId(), query.getSamples());
 	}
 
 	/**
@@ -76,7 +76,7 @@ class Synset extends BasicSynset
 	 */
 	Synset(final TypedLinksQueryCommand query)
 	{
-		super(query.getSynsetId(), query.getDefinition(), query.getLexDomainId(), query.getSample());
+		super(query.getSynsetId(), query.getDefinition(), query.getLexDomainId(), query.getSamples());
 	}
 
 	/**
