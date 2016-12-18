@@ -60,7 +60,7 @@ abstract public class DocumentLoader extends AsyncTaskLoader<Document>
 			{
 				final String xml = XSLTransformer.docToXml(result);
 				final String log = XSLTransformer.writeLog(xml, false);
-				Validate.validateDocs(XSLTransformer.class.getResource("/org/sqlunet/dom/SqlUNet.xsd"), result);
+				Validate.validateStrings(XSLTransformer.class.getResource("/org/sqlunet/SqlUNet.xsd"), xml);
 			}
 			return result;
 		}

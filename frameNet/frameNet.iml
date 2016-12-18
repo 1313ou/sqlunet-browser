@@ -107,5 +107,6 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module" module-name="xNet" exported="" />
     <orderEntry type="library" exported="" name="support-annotations-25.0.1" level="project" />
+    <orderEntry type="library" exported="" name="xerces-for-android" level="project" />
   </component>
 </module>

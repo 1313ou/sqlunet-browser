@@ -118,30 +118,30 @@
   </xs:complexType>
  </xs:element>
 
- <xs:element name='member.holonym'>
+ <xs:element name='member_holonym'>
   <xs:complexType>
    <xs:sequence>
     <xs:element ref='synset' maxOccurs='unbounded'/>
-    <xs:element ref='member.holonym' minOccurs='0' maxOccurs='unbounded'/>
+    <xs:element ref='member_holonym' minOccurs='0' maxOccurs='unbounded'/>
    </xs:sequence>
    <xs:attribute name='level' type='xs:string' use='optional'/>
   </xs:complexType>
  </xs:element>
 
- <xs:element name='substance.holonym'>
+ <xs:element name='substance_holonym'>
   <xs:complexType>
    <xs:sequence>
     <xs:element ref='synset' maxOccurs='unbounded'/>
-    <xs:element ref='substance.holonym' minOccurs='0' maxOccurs='unbounded'/>
+    <xs:element ref='substance_holonym' minOccurs='0' maxOccurs='unbounded'/>
    </xs:sequence>
   </xs:complexType>
  </xs:element>
 
- <xs:element name='part.holonym'>
+ <xs:element name='part_holonym'>
   <xs:complexType>
    <xs:sequence>
     <xs:element ref='synset' maxOccurs='unbounded'/>
-    <xs:element ref='part.holonym' minOccurs='0' maxOccurs='unbounded'/>
+    <xs:element ref='part_holonym' minOccurs='0' maxOccurs='unbounded'/>
    </xs:sequence>
    <xs:attribute name='level' type='xs:string' use='optional'/>
   </xs:complexType>
@@ -157,30 +157,30 @@
   </xs:complexType>
  </xs:element>
 
- <xs:element name='member.meronym'>
+ <xs:element name='member_meronym'>
   <xs:complexType>
    <xs:sequence>
     <xs:element ref='synset' maxOccurs='unbounded'/>
-    <xs:element ref='member.meronym' minOccurs='0' maxOccurs='unbounded'/>
+    <xs:element ref='member_meronym' minOccurs='0' maxOccurs='unbounded'/>
    </xs:sequence>
    <xs:attribute name='level' type='xs:string' use='optional'/>
   </xs:complexType>
  </xs:element>
 
- <xs:element name='substance.meronym'>
+ <xs:element name='substance_meronym'>
   <xs:complexType>
    <xs:sequence>
     <xs:element ref='synset' maxOccurs='unbounded'/>
-    <xs:element ref='substance.meronym' minOccurs='0' maxOccurs='unbounded'/>
+    <xs:element ref='substance_meronym' minOccurs='0' maxOccurs='unbounded'/>
    </xs:sequence>
   </xs:complexType>
  </xs:element>
 
- <xs:element name='part.meronym'>
+ <xs:element name='part_meronym'>
   <xs:complexType>
    <xs:sequence>
     <xs:element ref='synset' maxOccurs='unbounded'/>
-    <xs:element ref='part.meronym' minOccurs='0' maxOccurs='unbounded'/>
+    <xs:element ref='part_meronym' minOccurs='0' maxOccurs='unbounded'/>
    </xs:sequence>
    <xs:attribute name='level' type='xs:string' use='optional'/>
   </xs:complexType>
@@ -249,7 +249,7 @@
   </xs:complexType>
  </xs:element>
 
- <xs:element name='verb.group'>
+ <xs:element name='verb_group'>
   <xs:complexType>
    <xs:sequence>
     <xs:element ref='synset' maxOccurs='unbounded'/>
@@ -281,7 +281,7 @@
   </xs:complexType>
  </xs:element>
 
- <xs:element name='domain.category'>
+ <xs:element name='domain_category'>
   <xs:complexType>
    <xs:sequence>
     <xs:element ref='synset' maxOccurs='unbounded'/>
@@ -289,7 +289,7 @@
   </xs:complexType>
  </xs:element>
 
- <xs:element name='domain.member.category'>
+ <xs:element name='domain_member_category'>
   <xs:complexType>
    <xs:sequence>
     <xs:element ref='synset' maxOccurs='unbounded'/>
@@ -297,7 +297,7 @@
   </xs:complexType>
  </xs:element>
 
- <xs:element name='domain.region'>
+ <xs:element name='domain_region'>
   <xs:complexType>
    <xs:sequence>
     <xs:element ref='synset' maxOccurs='unbounded'/>
@@ -305,7 +305,7 @@
   </xs:complexType>
  </xs:element>
 
- <xs:element name='domain.member.region'>
+ <xs:element name='domain_member_region'>
   <xs:complexType>
    <xs:sequence>
     <xs:element ref='synset' maxOccurs='unbounded'/>
@@ -313,7 +313,7 @@
   </xs:complexType>
  </xs:element>
 
- <xs:element name='domain.usage'>
+ <xs:element name='domain_usage'>
   <xs:complexType>
    <xs:sequence>
     <xs:element ref='synset' maxOccurs='unbounded'/>
@@ -321,7 +321,7 @@
   </xs:complexType>
  </xs:element>
 
- <xs:element name='domain.member.usage'>
+ <xs:element name='domain_member_usage'>
   <xs:complexType>
    <xs:sequence>
     <xs:element ref='synset' maxOccurs='unbounded'/>
@@ -334,28 +334,28 @@
    <xs:sequence>
     <xs:element ref='hypernym' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='hyponym' minOccurs='0' maxOccurs='1'/>
-    <xs:element ref='part.holonym' minOccurs='0' maxOccurs='1'/>
-    <xs:element ref='part.meronym' minOccurs='0' maxOccurs='1'/>
-    <xs:element ref='member.holonym' minOccurs='0' maxOccurs='1'/>
-    <xs:element ref='member.meronym' minOccurs='0' maxOccurs='1'/>
-    <xs:element ref='substance.holonym' minOccurs='0' maxOccurs='1'/>
-    <xs:element ref='substance.meronym' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='part_holonym' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='part_meronym' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='member_holonym' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='member_meronym' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='substance_holonym' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='substance_meronym' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='entail' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='cause' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='antonym' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='similar' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='also' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='attribute' minOccurs='0' maxOccurs='1'/>
-    <xs:element ref='verb.group' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='verb_group' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='participle' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='pertainym' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='derivation' minOccurs='0' maxOccurs='1'/>
-    <xs:element ref='domain.category' minOccurs='0' maxOccurs='1'/>
-    <xs:element ref='domain.member.category' minOccurs='0' maxOccurs='1'/>
-    <xs:element ref='domain.region' minOccurs='0' maxOccurs='1'/>
-    <xs:element ref='domain.member.region' minOccurs='0' maxOccurs='1'/>
-    <xs:element ref='domain.usage' minOccurs='0' maxOccurs='1'/>
-    <xs:element ref='domain.member.usage' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='domain_category' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='domain_member_category' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='domain_region' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='domain_member_region' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='domain_usage' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='domain_member_usage' minOccurs='0' maxOccurs='1'/>
    </xs:sequence>
   </xs:complexType>
  </xs:element>

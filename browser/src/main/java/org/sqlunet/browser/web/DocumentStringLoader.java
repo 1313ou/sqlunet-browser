@@ -57,7 +57,7 @@ abstract class DocumentStringLoader extends AsyncTaskLoader<String>
 			if (BuildConfig.DEBUG)
 			{
 				final String log = XSLTransformer.writeLog(result, false);
-				Validate.validateStrings(XSLTransformer.class.getResource("/org/sqlunet/dom/SqlUNet.xsd"), result);
+				Validate.validateStrings(XSLTransformer.class.getResource("/org/sqlunet/SqlUNet.xsd"), result);
 			}
 			return result;
 		}

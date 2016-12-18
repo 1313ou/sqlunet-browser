@@ -2,7 +2,6 @@ package org.sqlunet.xml;
 
 import android.util.Log;
 
-import org.w3c.dom.Document;
 import org.xml.sax.SAXException;
 
 import java.io.File;
@@ -10,14 +9,12 @@ import java.io.IOException;
 import java.io.StringReader;
 import java.net.URL;
 
-import javax.xml.XMLConstants;
-import javax.xml.transform.Source;
-import javax.xml.transform.TransformerException;
-import javax.xml.transform.dom.DOMSource;
-import javax.xml.transform.stream.StreamSource;
-import javax.xml.validation.Schema;
-import javax.xml.validation.SchemaFactory;
-import javax.xml.validation.Validator;
+import mf.javax.xml.transform.Source;
+import mf.javax.xml.transform.TransformerException;
+import mf.javax.xml.transform.stream.StreamSource;
+import mf.javax.xml.validation.Schema;
+import mf.javax.xml.validation.SchemaFactory;
+import mf.javax.xml.validation.Validator;
 
 public class Validate
 {
@@ -74,28 +71,28 @@ public class Validate
 	}
 
 
-	/**
-	 * Validate docs
-	 *
-	 * @param xsdUrl    xsd url
-	 * @param documents documents
-	 * @throws SAXException exception
-	 */
-	public static void validateDocs(final URL xsdUrl, final Document... documents)
-	{
-		try
-		{
-			final Validator validator = Validate.makeValidator(xsdUrl);
-			for (final Document document : documents)
-			{
-				Validate.validate(validator, new DOMSource(document));
-			}
-		}
-		catch (final SAXException e)
-		{
-			Log.e(TAG, "xsd", e);
-		}
-	}
+//	/**
+//	 * Validate docs
+//	 *
+//	 * @param xsdUrl    xsd url
+//	 * @param documents documents
+//	 * @throws SAXException exception
+//	 */
+//	public static void validateDocs(final URL xsdUrl, final Document... documents)
+//	{
+//		try
+//		{
+//			final Validator validator = Validate.makeValidator(xsdUrl);
+//			for (final Document document : documents)
+//			{
+//				Validate.validate(validator, new DOMSource(document));
+//			}
+//		}
+//		catch (final SAXException e)
+//		{
+//			Log.e(TAG, "xsd", e);
+//		}
+//	}
 
 	/**
 	 * Validate
@@ -129,7 +126,8 @@ public class Validate
 	 */
 	private static Validator makeValidator(final URL xsdUrl) throws SAXException
 	{
-		final SchemaFactory schemaFactory = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
+		//final SchemaFactory schemaFactory = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
+		final SchemaFactory schemaFactory = new mf.org.apache.xerces.jaxp.validation.XMLSchemaFactory();
 		final Schema schema = schemaFactory.newSchema(xsdUrl);
 		final Validator validator = schema.newValidator();
 		Log.i(TAG, "validator " + xsdUrl.toString());

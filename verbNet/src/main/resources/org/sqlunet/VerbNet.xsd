@@ -7,7 +7,7 @@
   <xs:complexType>
    <xs:sequence>
     <xs:element ref='target' minOccurs='0' maxOccurs='1'/>
-    <xs:element ref='vnclass'/>
+    <xs:element ref='vnclass' minOccurs='0' maxOccurs='unbounded'/>
    </xs:sequence>
   </xs:complexType>
  </xs:element>
@@ -79,8 +79,8 @@
   <xs:complexType>
    <xs:attribute name='primary' type='xs:string' use='required'/>
    <xs:attribute name='secondary' type='xs:string' use='optional'/>
-   <xs:attribute name='descriptionNumber' type='xs:string' use='required'/>
-   <xs:attribute name='xtag' type='xs:string' use='required'/>
+   <xs:attribute name='descriptionNumber' type='xs:string' use='optional'/>
+   <xs:attribute name='xtag' type='xs:string' use='optional'/>
   </xs:complexType>
  </xs:element>
 

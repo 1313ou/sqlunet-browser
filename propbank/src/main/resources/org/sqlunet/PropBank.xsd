@@ -6,7 +6,7 @@
  <xs:element name='propbank'>
   <xs:complexType>
    <xs:sequence>
-    <xs:element ref='target'/>
+    <xs:element ref='target' minOccurs='0' maxOccurs='unbounded'/>
     <xs:element ref='roleset' minOccurs='0' maxOccurs='unbounded'/>
    </xs:sequence>
   </xs:complexType>
