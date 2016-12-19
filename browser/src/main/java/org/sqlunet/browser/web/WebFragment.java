@@ -71,8 +71,8 @@ public class WebFragment extends Fragment
 	static private final String STYLESHEET2 = "' />";
 	static private final String SCRIPT1 = "<script type='text/javascript' src='";
 	static private final String SCRIPT2 = "'></script>";
-	static private final String LIST1 = "<OL style='display: block;'>";
-	static private final String LIST2 = "</OL>";
+	static private final String LIST1 = "<UL style='display: block;'>";
+	static private final String LIST2 = "</UL>";
 	static private final String ITEM1 = "<LI class='treeitem treepanel'>";
 	static private final String ITEM2 = "</LI>";
 	/**

@@ -127,11 +127,9 @@
 	</xs:complexType>
 
 	<xs:element name='wordnet'>
-		<xs:complexType mixed='true'>
+		<xs:complexType>
 			<xs:choice maxOccurs='unbounded' minOccurs='0'>
-				<!--<xs:element ref='word'/>-->
-				<xs:element ref='pos'/>
-				<xs:element ref='sense'/>
+				<xs:element maxOccurs='unbounded' minOccurs='0' ref='sense'/>
 			</xs:choice>
 			<xs:attribute name='synsetid' type='xs:long' use='optional'/>
 			<xs:attribute name='wordid' type='xs:long' use='optional'/>
@@ -183,7 +181,7 @@
 				<xs:element maxOccurs='1' minOccurs='0' ref='sample'/>
 				<xs:element maxOccurs='1' minOccurs='0' ref='links'/>
 			</xs:sequence>
-			<xs:attribute name='size' type='xs:string' use='optional'/>
+			<xs:attribute name='size' type='xs:integer' use='optional'/>
 			<xs:attribute name='synsetid' type='xs:long' use='optional'/>
 		</xs:complexType>
 	</xs:element>

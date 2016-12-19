@@ -1,20 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- WordNet to HTML Client-side 2015/05/15 (C) 2015 Author: Bernard Bou -->
-
 <xsl:transform version="1.0"
-               xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+               xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+               xmlns:un="http://org.sqlunet"
+               xmlns:wn="http://org.sqlunet/wn">
 	<xsl:output method="xml" indent="yes" encoding="UTF-8"/>
 	<xsl:strip-space elements="label"/>
 
 	<xsl:template match="/">
 		<DIV id="wordnet">
-			<xsl:apply-templates select=".//wordnet"/>
+			<xsl:apply-templates select=".//wn:wordnet"/>
 		</DIV>
 	</xsl:template>
 
-	<xsl:template match="wordnet">
+	<xsl:template match="wn:wordnet">
 		<xsl:choose>
-			<xsl:when test="count(.//synset)=0 and count(.//frame)=0">
+			<!-- no synset -->
+			<xsl:when test="count(.//wn:synset)=0">
 				<SPAN class="treejunction">
 					<IMG class="treepix" src="images/closed.png"/>
 				</SPAN>
@@ -25,6 +26,7 @@
 					<xsl:text>∅ data</xsl:text>
 				</SPAN>
 			</xsl:when>
+			<!-- one of more synset -->
 			<xsl:otherwise>
 				<SPAN class="treejunction" onclick="javascript:Tree.toggle(this);">
 					<IMG class="treepix" src="images/open.png"/>
@@ -32,9 +34,9 @@
 				<SPAN class="domain">
 					<xsl:text>wordnet</xsl:text>
 				</SPAN>
-				<OL style="display: block;">
-					<xsl:apply-templates select="./pos"/>
-				</OL>
+				<UL style="display: block;">
+					<xsl:apply-templates select="./wn:sense"/>
+				</UL>
 			</xsl:otherwise>
 		</xsl:choose>
 	</xsl:template>
@@ -49,10 +51,10 @@
 			<SPAN class="wnpos">
 				<xsl:apply-templates select="./@name"/>
 			</SPAN>
-			<xsl:if test="count(./lexdomain)&gt;0">
-				<OL style="display: block;">
-					<xsl:apply-templates select="./lexdomain"/>
-				</OL>
+			<xsl:if test="count(./wn:lexdomain)&gt;0">
+				<UL style="display: block;">
+					<xsl:apply-templates select="./wn:lexdomain"/>
+				</UL>
 			</xsl:if>
 		</LI>
 	</xsl:template>
@@ -67,15 +69,15 @@
 			<SPAN class="wnlexdomain">
 				<xsl:apply-templates select="./@name"/>
 			</SPAN>
-			<xsl:if test="count(./sense)&gt;0">
-				<OL style="display: block;">
-					<xsl:apply-templates select="./sense"/>
-				</OL>
+			<xsl:if test="count(./wn:sense)&gt;0">
+				<UL style="display: block;">
+					<xsl:apply-templates select="./wn:sense"/>
+				</UL>
 			</xsl:if>
 		</LI>
 	</xsl:template>
 
-	<xsl:template match="sense">
+	<xsl:template match="wn:sense">
 		<LI class="treeitem treepanel block2">
 			<SPAN class="treejunction" onclick="javascript:Tree.toggle(this);">
 				<IMG class="treepix" src="images/open.png"/>
@@ -99,15 +101,15 @@
 					</xsl:otherwise>
 				</xsl:choose>
 			</SPAN>
-			<xsl:if test="count(./synset)&gt;0">
-				<OL style="display: block;">
-					<xsl:apply-templates select="./synset"/>
-				</OL>
+			<xsl:if test="count(./wn:synset)&gt;0">
+				<UL style="display: block;">
+					<xsl:apply-templates select="./wn:synset"/>
+				</UL>
 			</xsl:if>
 		</LI>
 	</xsl:template>
 
-	<xsl:template match="synset">
+	<xsl:template match="wn:synset">
 		<LI class="treeitem treepanel block3">
 			<SPAN class="treejunction" onclick="javascript:Tree.toggle(this);">
 				<IMG class="treepix" src="images/open.png"/>
@@ -115,34 +117,23 @@
 			<IMG src="images/wordnet/definition.png"/>
 			<xsl:text><![CDATA[ ]]></xsl:text>
 			<SPAN class="wndefinition">
-				<xsl:apply-templates select="./definition"/>
+				<xsl:apply-templates select="./wn:definition"/>
 			</SPAN>
-			<xsl:if test="count(./word)&gt;0">
-				<OL style="display: block;">
-					<xsl:apply-templates select="./word"/>
-				</OL>
+			<xsl:if test="count(./wn:word)&gt;0">
+				<UL style="display: block;">
+					<xsl:apply-templates select="./wn:word"/>
+				</UL>
 			</xsl:if>
-			<xsl:if test="count(./sample)&gt;0">
-				<OL style="display: block;">
-					<xsl:apply-templates select="./sample"/>
-				</OL>
+			<xsl:if test="count(./wn:sample)&gt;0">
+				<UL style="display: block;">
+					<xsl:apply-templates select="./wn:sample"/>
+				</UL>
 			</xsl:if>
-			<xsl:apply-templates select="text()"/>
-			<xsl:apply-templates select="./links"/>
+			<xsl:apply-templates select="./wn:links"/>
 		</LI>
 	</xsl:template>
 
-	<xsl:template match="sample">
-		<LI class="treeitem">
-			<IMG src="images/wordnet/sample.png"/>
-			<xsl:text><![CDATA[ ]]></xsl:text>
-			<SPAN class="wnsample">
-				<xsl:apply-templates select="./text()"/>
-			</SPAN>
-		</LI>
-	</xsl:template>
-
-	<xsl:template match="word">
+	<xsl:template match="wn:word">
 		<xsl:variable name="word">
 			<xsl:value-of select="text()"/>
 		</xsl:variable>
@@ -160,30 +151,54 @@
 		</LI>
 	</xsl:template>
 
-	<xsl:template match="links">
-		<xsl:if test="count(./*)&gt;0">
-			<OL style="display: block;">
-				<xsl:apply-templates select="./*"/>
-			</OL>
+	<xsl:template match="wn:sample">
+		<LI class="treeitem">
+			<IMG src="images/wordnet/sample.png"/>
+			<xsl:text><![CDATA[ ]]></xsl:text>
+			<SPAN class="wnsample">
+				<xsl:apply-templates select="./text()"/>
+			</SPAN>
+		</LI>
+	</xsl:template>
+
+	<xsl:template match="wn:links">
+		<xsl:if test="count(./wn:*)&gt;0">
+			<UL style="display: block;">
+				<xsl:apply-templates select="./wn:*"/>
+			</UL>
 		</xsl:if>
 	</xsl:template>
 
+	<!-- semantic -->
 	<xsl:template
-		match="hypernym|hyponym|instance_hypernym|instance_hyponym|part_meronym|part_holonym|substance_meronym|substance_holonym|member_meronym|member_holonym|antonym|entail|cause">
+		match="wn:hypernym|wn:hyponym|wn:instance_hypernym|wn:instance_hyponym|wn:part_meronym|wn:part_holonym|wn:substance_meronym|wn:substance_holonym|wn:member_meronym|wn:member_holonym|wn:entail|wn:cause|wn:similar|wn:attribute">
 		<xsl:call-template name="_link">
 			<xsl:with-param name="type" select="name()"/>
+			<xsl:with-param name="linkclass" select="'[sem]'"/>
 		</xsl:call-template>
 	</xsl:template>
 
+	<!-- lexical -->
 	<xsl:template
-		match="similar|derivation|pertainym|also|attribute|verb_group|pertainym|domain_category|domain_member_category|domain_region|domain_member_region|domain_usage|domain_member_usage">
+		match="wn:antonym|wn:participle|wn:pertainym|wn:derivation">
 		<xsl:call-template name="_link">
 			<xsl:with-param name="type" select="name()"/>
+			<xsl:with-param name="linkclass" select="'[lex]'"/>
+		</xsl:call-template>
+	</xsl:template>
+
+	<!-- both -->
+	<xsl:template
+		match="wn:also|wn:verb_group|wn:domain_category|wn:domain_member_category|wn:domain_region|wn:domain_member_region|wn:domain_usage|wn:domain_member_usage">
+		<xsl:call-template name="_link">
+			<xsl:with-param name="type" select="name()"/>
+			<xsl:with-param name="linkclass" select="'[both]'"/>
 		</xsl:call-template>
 	</xsl:template>
 
 	<xsl:template name="_link">
 		<xsl:param name="type"/>
+		<xsl:param name="linkclass"/>
 		<LI class="treeitem">
 			<SPAN class="treejunction" onclick="javascript:Tree.toggle(this);">
 				<IMG src="images/open.png"/>
@@ -196,16 +211,18 @@
 			<xsl:text><![CDATA[ ]]></xsl:text>
 			<SPAN class="wnlink">
 				<xsl:value-of select="name()"/>
+				<xsl:text><![CDATA[ ]]></xsl:text>
+				<xsl:value-of select="concat('* ',$linkclass)"/>
 			</SPAN>
-			<xsl:if test="count(./synset)&gt;0">
-				<OL style="display: block;">
-					<xsl:apply-templates select="./synset"/>
-				</OL>
+			<xsl:if test="count(./wn:synset)&gt;0">
+				<UL style="display: block;">
+					<xsl:apply-templates select="./wn:synset"/>
+				</UL>
 			</xsl:if>
-			<xsl:if test="count(./*[name() = $type])&gt;0">
-				<OL style="display: block;">
-					<xsl:apply-templates select="./*[name() = $type]"/>
-				</OL>
+			<xsl:if test="count(./wn:sense)&gt;0">
+				<UL style="display: block;">
+					<xsl:apply-templates select="./wn:sense"/>
+				</UL>
 			</xsl:if>
 		</LI>
 	</xsl:template>
