@@ -354,16 +354,19 @@ public class WordNetImplementation implements WordNetInterface
 		}
 
 		// synset
-		WordNetImplementation.walkSynset(connection, doc, parent, link);
+		final Node synsetNode = WordNetImplementation.walkSynset(connection, doc, parent, link);
 
 		// recurse
 		if (recurseLevel != Mapping.NONRECURSIVE && link.canRecurse())
 		{
+			// link node
+			final Node linksNode = org.sqlunet.sql.NodeFactory.makeNode(doc, synsetNode, "links", null);
+
 			// stop recursion in case maximum level is reached and
 			// hyponym/all links and source synset lexdomain is tops
 			if ((targetLinkType == Mapping.hyponymId || targetLinkType == Mapping.instanceHyponymId) && recurseLevel >= WordNetImplementation.MAX_RECURSE_LEVEL)
 			{
-				NodeFactory.makeMoreLinkNode(doc, parent, link.getLinkName(), recurseLevel);
+				NodeFactory.makeMoreLinkNode(doc, linksNode, link.getLinkName(), recurseLevel);
 			}
 			else
 			{
@@ -377,13 +380,14 @@ public class WordNetImplementation implements WordNetInterface
 				// iterate sublinks
 				Node subLinkTypeNode = null;
 				String subLinkType = null;
+
 				for (final Link subLink : subLinks)
 				{
 					// anchor node
 					final String type = subLink.getLinkName();
 					if (!type.equals(subLinkType))
 					{
-						subLinkTypeNode = NodeFactory.makeLinkNode(doc, parent, type, recurseLevel);
+						subLinkTypeNode = NodeFactory.makeLinkNode(doc, linksNode, type, recurseLevel);
 						subLinkType = type;
 					}
 					WordNetImplementation.walkLink(connection, doc, subLinkTypeNode, subLink, wordId, recurseLevel + 1, targetLinkType);
@@ -583,7 +587,7 @@ public class WordNetImplementation implements WordNetInterface
 			final Node synsetNode = WordNetImplementation.walkSynset(connection, doc, senseNode, synset);
 
 			// links
-			WordNetImplementation.walkSynsetLinks(connection, doc, synsetNode, synset, 0, true /* withLinks */, true /* recurse */, Mapping.ANYTYPE);
+			WordNetImplementation.walkSynsetLinks(connection, doc, synsetNode, synset, wordId, true /* withLinks */, true /* recurse */, Mapping.ANYTYPE);
 		}
 		return doc;
 	}

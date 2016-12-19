@@ -54,9 +54,12 @@ class Link extends Synset
 		super(query);
 
 		// link data
+		final String[] words = query.getWords();
+		final long[] wordIds = query.getWordIds();
+
 		this.linkType = query.getLinkType();
-		this.word = query.getWord();
-		this.wordId = query.getWordId();
+		this.word = words == null ? null : (words.length == 1 ? words[0] : null);
+		this.wordId = words == null ? 0 : (words.length == 1 ? wordIds[0] : 0);
 		this.fromSynsetId = query.getFromSynset();
 		this.fromWordId = query.getFromWord();
 	}
@@ -72,9 +75,12 @@ class Link extends Synset
 		super(query);
 
 		// link data
+		final String[] words = query.getWords();
+		final long[] wordIds = query.getWordIds();
+
 		this.linkType = query.getLinkType();
-		this.word = query.getWord();
-		this.wordId = query.getWordId();
+		this.word = words == null ? null : (words.length == 1 ? words[0] : null);
+		this.wordId = words == null ? 0 : (words.length == 1 ? wordIds[0] : 0);
 		this.fromSynsetId = query.getFromSynset();
 		this.fromWordId = query.getFromWord();
 	}

@@ -71,13 +71,13 @@ class SqLiteDialect
 			"WHERE synset1id = ? " + //
 			"GROUP BY synsetid " + //
 			"UNION " + //
-			"SELECT linkid, synsetid, definition, lexdomainid, GROUP_CONCAT(sample, '|' ) AS sampleset, word2id, lemma AS word2, synset1id, word1id " + //
+			"SELECT linkid, synsetid, definition, lexdomainid, GROUP_CONCAT(sample, '|' ) AS sampleset, GROUP_CONCAT(DISTINCT word2id), GROUP_CONCAT(DISTINCT lemma) AS word2, synset1id, word1id " + //
 			"FROM lexlinks " + //
 			"INNER JOIN synsets ON synset2id = synsetid " + //
 			"LEFT JOIN words ON word2id = wordid " + //
 			"LEFT JOIN linktypes USING (linkid) " + //
 			"LEFT JOIN samples USING (synsetid) " + //
-			"WHERE synset1id = ? AND CASE ? WHEN 0 THEN word1id = ? ELSE 1 END " + //
+			"WHERE synset1id = ? AND CASE ? WHEN 0 THEN 1 ELSE word1id = ? END " + //
 			"GROUP BY synsetid " + //
 			"ORDER BY 1, 2;";
 
@@ -89,13 +89,13 @@ class SqLiteDialect
 			"WHERE synset1id = ? AND linkid = ? " + //
 			"GROUP BY synsetid " + //
 			"UNION " + //
-			"SELECT linkid, synsetid, definition, lexdomainid, GROUP_CONCAT(sample, '|' ) AS samples, word2id, lemma AS word2, synset1id, word1id " + //
+			"SELECT linkid, synsetid, definition, lexdomainid, GROUP_CONCAT(sample, '|' ) AS samples, GROUP_CONCAT(DISTINCT word2id), GROUP_CONCAT(DISTINCT lemma) AS word2, synset1id, word1id " + //
 			"FROM lexlinks " + //
 			"INNER JOIN synsets ON synset2id = synsetid " + //
 			"LEFT JOIN words ON word2id = wordid " + //
 			"LEFT JOIN linktypes USING (linkid) " + //
 			"LEFT JOIN samples USING (synsetid) " + //
-			"WHERE synset1id = ? AND linkid = ? AND CASE ? WHEN 0 THEN word1id = ? ELSE 1 END " + //
+			"WHERE synset1id = ? AND linkid = ? AND CASE ? WHEN 0 THEN 1 ELSE word1id = ? END " + //
 			"GROUP BY synsetid " + //
 			"ORDER BY 1, 2;";
 

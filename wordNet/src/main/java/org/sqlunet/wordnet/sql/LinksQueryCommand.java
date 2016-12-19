@@ -101,23 +101,40 @@ class LinksQueryCommand extends DBQueryCommand
 	}
 
 	/**
-	 * Get target word id
+	 * Get target word ids
 	 *
 	 * @return source synset id
 	 */
-	public long getWordId()
+	public long[] getWordIds()
 	{
-		return this.cursor.getLong(5);
+		final String resultString = this.cursor.getString(5);
+		if (resultString == null)
+		{
+			return null;
+		}
+		final String[] resultStrings = resultString.split(",");
+		final long[] result = new long[resultStrings.length];
+		for (int i = 0; i < result.length; i++)
+		{
+			result[i] = Long.parseLong(resultStrings[i]);
+		}
+		return result;
 	}
 
 	/**
-	 * Get target word
+	 * Get target words
 	 *
 	 * @return source synset id
 	 */
-	public String getWord()
+	public String[] getWords()
 	{
-		return this.cursor.getString(6);
+		final String results = this.cursor.getString(6);
+		if (results == null)
+		{
+			return null;
+		}
+		final String[] result = results.split(",");
+		return result;
 	}
 
 	/**
