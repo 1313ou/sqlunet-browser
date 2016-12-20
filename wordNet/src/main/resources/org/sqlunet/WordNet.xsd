@@ -130,6 +130,7 @@
 		<xs:complexType>
 			<xs:choice maxOccurs='unbounded' minOccurs='0'>
 				<xs:element maxOccurs='unbounded' minOccurs='0' ref='sense'/>
+				<xs:element maxOccurs='unbounded' minOccurs='0' ref='pos'/>
 			</xs:choice>
 			<xs:attribute name='synsetid' type='xs:long' use='optional'/>
 			<xs:attribute name='wordid' type='xs:long' use='optional'/>

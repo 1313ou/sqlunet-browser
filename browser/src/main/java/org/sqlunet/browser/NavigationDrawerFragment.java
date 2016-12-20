@@ -117,6 +117,12 @@ public class NavigationDrawerFragment extends Fragment
 			this.selectedPosition = savedInstanceState.getInt(STATE_SELECTED_SECTION);
 			this.fromSavedInstanceState = true;
 		}
+	}
+
+	@Override
+	public void onResume()
+	{
+		super.onResume();
 
 		// select either the default item (0) or the last selected item.
 		selectItem(this.selectedPosition);
@@ -266,7 +272,8 @@ public class NavigationDrawerFragment extends Fragment
 	 */
 	private void selectItem(final int position)
 	{
-		if (position != 8)
+		// dialog
+		if (position != 8 && position != 7)
 		{
 			this.selectedPosition = position;
 			if (this.drawerListView != null)

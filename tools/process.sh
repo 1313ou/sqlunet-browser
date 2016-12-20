@@ -11,9 +11,8 @@ if [ -z "$t" ]; then
 fi
 tp=$t.xml
 
-#echo "$sp -> $tp"
+echo "$sp -> $tp"
 
-adb pull $sp
-rm $tp
-mv $s $tp
-tidy -i -m -xml $tp 2> /dev/null
+./get.sh $t
+./tohtml-wordnet2html.sh $t
+./embed.sh $t

@@ -34,6 +34,7 @@
 					<xsl:text>wordnet</xsl:text>
 				</SPAN>
 				<UL style="display: block;">
+					<xsl:apply-templates select="./pos"/>
 					<xsl:apply-templates select="./sense"/>
 				</UL>
 			</xsl:otherwise>
