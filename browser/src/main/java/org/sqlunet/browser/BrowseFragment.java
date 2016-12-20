@@ -206,7 +206,6 @@ public class BrowseFragment extends Fragment implements SearchListener
 		assert actionBar != null;
 
 		// color
-		// color
 		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M)
 		{
 			actionBar.setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.browse_action_bar_color, activity.getTheme())));
