@@ -24,10 +24,10 @@ import android.widget.Toast;
 
 import org.sqlunet.Pointer;
 import org.sqlunet.bnc.sql.BncImplementation;
+import org.sqlunet.browser.BuildConfig;
 import org.sqlunet.browser.Module;
 import org.sqlunet.browser.R;
 import org.sqlunet.browser.xselector.XSelectorPointer;
-import org.sqlunet.dom.Factory;
 import org.sqlunet.framenet.FnAnnoSetPointer;
 import org.sqlunet.framenet.FnFramePointer;
 import org.sqlunet.framenet.FnLexUnitPointer;
@@ -36,6 +36,7 @@ import org.sqlunet.framenet.sql.FrameNetImplementation;
 import org.sqlunet.propbank.PbRoleSetPointer;
 import org.sqlunet.propbank.sql.PropBankImplementation;
 import org.sqlunet.provider.ProviderArgs;
+import org.sqlunet.settings.LogUtils;
 import org.sqlunet.settings.Settings;
 import org.sqlunet.settings.StorageSettings;
 import org.sqlunet.sql.DataSource;
@@ -45,6 +46,9 @@ import org.sqlunet.verbnet.sql.VerbNetImplementation;
 import org.sqlunet.wordnet.SensePointer;
 import org.sqlunet.wordnet.SynsetPointer;
 import org.sqlunet.wordnet.sql.WordNetImplementation;
+import org.sqlunet.dom.DomTransformer;
+import org.sqlunet.dom.DomValidator;
+import org.sqlunet.dom.DomFactory;
 import org.w3c.dom.Document;
 
 import java.net.URLDecoder;
@@ -63,14 +67,14 @@ public class WebFragment extends Fragment
 	/**
 	 * HTML stuff
 	 */
-	static private final String BODY1 = "<html><head>";
-	static private final String BODY2 = "</head><body>";
-	static private final String BODY3 = "</body></html>";
+	static private final String BODY1 = "<HTML><HEAD>";
+	static private final String BODY2 = "</HEAD><BODY>";
+	static private final String BODY3 = "</BODY></HTML>";
 	static private final String TOP = "<DIV class='titlesection'><IMG class='titleimg' src='images/logo.png'/></DIV>";
-	static private final String STYLESHEET1 = "<link rel='stylesheet' type='text/css' href='";
+	static private final String STYLESHEET1 = "<LINK rel='stylesheet' type='text/css' href='";
 	static private final String STYLESHEET2 = "' />";
-	static private final String SCRIPT1 = "<script type='text/javascript' src='";
-	static private final String SCRIPT2 = "'></script>";
+	static private final String SCRIPT1 = "<SCRIPT type='text/javascript' src='";
+	static private final String SCRIPT2 = "'></SCRIPT>";
 	static private final String LIST1 = "<UL style='display: block;'>";
 	static private final String LIST2 = "</UL>";
 	static private final String ITEM1 = "<LI class='treeitem treepanel'>";
@@ -112,7 +116,8 @@ public class WebFragment extends Fragment
 		String data;
 		if (xml)
 		{
-			final Document rootDomDoc = Factory.makeDocument();
+			// merge all into one
+			final Document rootDomDoc = DomFactory.makeDocument();
 			NodeFactory.makeRootNode(rootDomDoc, rootDomDoc, "sqlunet", null, WebFragment.SQLUNETNS);
 			if (wnDomDoc != null)
 			{
@@ -135,11 +140,23 @@ public class WebFragment extends Fragment
 				rootDomDoc.getDocumentElement().appendChild(rootDomDoc.importNode(bncDomDoc.getFirstChild(), true));
 			}
 
-			data = XSLTransformer.docToXml(rootDomDoc);
+			data = DomTransformer.docToXml(rootDomDoc);
+			if (BuildConfig.DEBUG)
+			{
+				LogUtils.writeLog(data, false);
+				DomValidator.validateStrings(DocumentTransformer.class.getResource("/org/sqlunet/SqlUNet.xsd"), data);
+			}
+
+
 			// Log.d(TAG, "xml=\n" + data);
 		}
 		else
 		{
+			if (BuildConfig.DEBUG)
+			{
+				DomValidator.validateDocs(DocumentTransformer.class.getResource("/org/sqlunet/SqlUNet.xsd"), wnDomDoc, vnDomDoc, pbDomDoc, fnDomDoc, bncDomDoc);
+			}
+
 			final StringBuilder sb = new StringBuilder();
 
 			// header
@@ -199,31 +216,31 @@ public class WebFragment extends Fragment
 			if (wnDomDoc != null)
 			{
 				sb.append(ITEM1);
-				sb.append(XSLTransformer.docToHtml(wnDomDoc, Settings.Source.WORDNET, isSelector));
+				sb.append(DocumentTransformer.docToHtml(wnDomDoc, Settings.Source.WORDNET, isSelector));
 				sb.append(ITEM2);
 			}
 			if (vnDomDoc != null)
 			{
 				sb.append(ITEM1);
-				sb.append(XSLTransformer.docToHtml(vnDomDoc, Settings.Source.VERBNET, isSelector));
+				sb.append(DocumentTransformer.docToHtml(vnDomDoc, Settings.Source.VERBNET, isSelector));
 				sb.append(ITEM2);
 			}
 			if (pbDomDoc != null)
 			{
 				sb.append(ITEM1);
-				sb.append(XSLTransformer.docToHtml(pbDomDoc, Settings.Source.PROPBANK, isSelector));
+				sb.append(DocumentTransformer.docToHtml(pbDomDoc, Settings.Source.PROPBANK, isSelector));
 				sb.append(ITEM2);
 			}
 			if (fnDomDoc != null)
 			{
 				sb.append(ITEM1);
-				sb.append(XSLTransformer.docToHtml(fnDomDoc, Settings.Source.FRAMENET, isSelector));
+				sb.append(DocumentTransformer.docToHtml(fnDomDoc, Settings.Source.FRAMENET, isSelector));
 				sb.append(ITEM2);
 			}
 			if (bncDomDoc != null)
 			{
 				sb.append(ITEM1);
-				sb.append(XSLTransformer.docToHtml(bncDomDoc, Settings.Source.BNC, isSelector));
+				sb.append(DocumentTransformer.docToHtml(bncDomDoc, Settings.Source.BNC, isSelector));
 				sb.append(ITEM2);
 			}
 			sb.append(LIST2);
@@ -232,6 +249,11 @@ public class WebFragment extends Fragment
 			sb.append(BODY3);
 
 			data = sb.toString();
+
+			if (BuildConfig.DEBUG)
+			{
+				LogUtils.writeLog(data, false);
+			}
 		}
 		return data;
 	}

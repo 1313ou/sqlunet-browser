@@ -2,8 +2,9 @@ package org.sqlunet.bnc.sql;
 
 import android.database.sqlite.SQLiteDatabase;
 
-import org.sqlunet.dom.Factory;
 import org.sqlunet.sql.NodeFactory;
+import org.sqlunet.dom.DomFactory;
+import org.sqlunet.dom.DomTransformer;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 
@@ -28,7 +29,7 @@ public class BncImplementation implements BncInterface
 	@Override
 	public Document queryDoc(final SQLiteDatabase connection, final String word)
 	{
-		final Document doc = Factory.makeDocument();
+		final Document doc = DomFactory.makeDocument();
 		final Node rootNode = NodeFactory.makeNode(doc, doc, "bnc", word, BncImplementation.BNCNS);
 		BncImplementation.walk(connection, doc, rootNode, word);
 		return doc;
@@ -45,7 +46,7 @@ public class BncImplementation implements BncInterface
 	public String queryXML(final SQLiteDatabase connection, final String word)
 	{
 		final Document doc = queryDoc(connection, word);
-		return Factory.docToString(doc);
+		return DomTransformer.docToString(doc);
 	}
 
 	/**
@@ -59,7 +60,7 @@ public class BncImplementation implements BncInterface
 	@Override
 	public Document queryDoc(final SQLiteDatabase connection, final long wordId, final Character pos)
 	{
-		final Document doc = Factory.makeDocument();
+		final Document doc = DomFactory.makeDocument();
 		final Node rootNode = BncNodeFactory.makeBncRootNode(doc, wordId, pos);
 		BncImplementation.walk(connection, doc, rootNode, wordId, pos);
 		return doc;
@@ -77,7 +78,7 @@ public class BncImplementation implements BncInterface
 	public String queryXML(final SQLiteDatabase connection, final long wordId, final Character pos)
 	{
 		final Document doc = queryDoc(connection, wordId, pos);
-		return Factory.docToString(doc);
+		return DomTransformer.docToString(doc);
 	}
 
 	// B N C

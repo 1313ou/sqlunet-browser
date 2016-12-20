@@ -6,12 +6,12 @@ a {
 	text-decoration: none;
 }
 
-ol,li {
+ul,ol,li {
 	padding: 0;
 	margin: 0;
 }
 
-ol {
+ul,ol {
 	list-style: none;
 }
 

@@ -3,8 +3,9 @@ package org.sqlunet.propbank.sql;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Pair;
 
-import org.sqlunet.dom.Factory;
+import org.sqlunet.dom.DomFactory;
 import org.sqlunet.wordnet.sql.NodeFactory;
+import org.sqlunet.dom.DomTransformer;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 
@@ -170,7 +171,7 @@ public class PropBankImplementation implements PropBankInterface
 	@Override
 	public Document querySelectorDoc(final SQLiteDatabase connection, final String word)
 	{
-		final Document doc = Factory.makeDocument();
+		final Document doc = DomFactory.makeDocument();
 		final Node rootNode = org.sqlunet.sql.NodeFactory.makeNode(doc, doc, "propbank", word, PropBankImplementation.PBNS);
 		PropBankImplementation.walkSelector(connection, doc, rootNode, word);
 		return doc;
@@ -187,7 +188,7 @@ public class PropBankImplementation implements PropBankInterface
 	public String querySelectorXML(final SQLiteDatabase connection, final String word)
 	{
 		final Document doc = querySelectorDoc(connection, word);
-		return Factory.docToString(doc);
+		return DomTransformer.docToString(doc);
 	}
 
 	// W A L K
@@ -202,7 +203,7 @@ public class PropBankImplementation implements PropBankInterface
 	@Override
 	public Document queryDoc(final SQLiteDatabase connection, final String word)
 	{
-		final Document doc = Factory.makeDocument();
+		final Document doc = DomFactory.makeDocument();
 		final Node rootNode = org.sqlunet.sql.NodeFactory.makeNode(doc, doc, "propbank", word, PropBankImplementation.PBNS);
 		PropBankImplementation.walk(connection, doc, rootNode, word);
 		return doc;
@@ -219,7 +220,7 @@ public class PropBankImplementation implements PropBankInterface
 	public String queryXML(final SQLiteDatabase connection, final String word)
 	{
 		final Document doc = queryDoc(connection, word);
-		return Factory.docToString(doc);
+		return DomTransformer.docToString(doc);
 	}
 
 	/**
@@ -233,7 +234,7 @@ public class PropBankImplementation implements PropBankInterface
 	@Override
 	public Document queryDoc(final SQLiteDatabase connection, final long wordId, final Character pos)
 	{
-		final Document doc = Factory.makeDocument();
+		final Document doc = DomFactory.makeDocument();
 		final Node wordNode = PbNodeFactory.makePbRootNode(doc, wordId);
 		PropBankImplementation.walk(connection, doc, wordNode, wordId);
 		return doc;
@@ -251,7 +252,7 @@ public class PropBankImplementation implements PropBankInterface
 	public String queryXML(final SQLiteDatabase connection, final long wordId, final Character pos)
 	{
 		final Document doc = queryDoc(connection, wordId, pos);
-		return Factory.docToString(doc);
+		return DomTransformer.docToString(doc);
 	}
 
 	/**
@@ -265,7 +266,7 @@ public class PropBankImplementation implements PropBankInterface
 	@Override
 	public Document queryRoleSetDoc(final SQLiteDatabase connection, final long roleSetId, final Character pos)
 	{
-		final Document doc = Factory.makeDocument();
+		final Document doc = DomFactory.makeDocument();
 		final Node rootNode = PbNodeFactory.makePbRootRoleSetNode(doc, roleSetId);
 		PropBankImplementation.walkRoleSet(connection, doc, rootNode, roleSetId);
 		return doc;
@@ -285,6 +286,6 @@ public class PropBankImplementation implements PropBankInterface
 	public String queryRoleSetXML(final SQLiteDatabase connection, final long roleSetId, final Character pos)
 	{
 		final Document doc = queryRoleSetDoc(connection, roleSetId, pos);
-		return Factory.docToString(doc);
+		return DomTransformer.docToString(doc);
 	}
 }

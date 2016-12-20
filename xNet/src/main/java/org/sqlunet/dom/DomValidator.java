@@ -1,4 +1,4 @@
-package org.sqlunet.xml;
+package org.sqlunet.dom;
 
 import android.util.Log;
 
@@ -16,12 +16,12 @@ import mf.javax.xml.validation.Schema;
 import mf.javax.xml.validation.SchemaFactory;
 import mf.javax.xml.validation.Validator;
 
-public class Validate
+public class DomValidator
 {
 	static final String TAG = "XMLValidator";
 
 	/**
-	 * Validate
+	 * DomValidator
 	 *
 	 * @param validator validator
 	 * @param source    source to validate
@@ -47,7 +47,7 @@ public class Validate
 	}
 
 	/**
-	 * Validate strings
+	 * DomValidator strings
 	 *
 	 * @param xsdUrl  xsd url
 	 * @param strings files
@@ -57,10 +57,13 @@ public class Validate
 	{
 		try
 		{
-			final Validator validator = Validate.makeValidator(xsdUrl);
+			final Validator validator = DomValidator.makeValidator(xsdUrl);
 			for (final String string : strings)
 			{
-				Validate.validate(validator, new StreamSource(new StringReader(string)));
+				if (string != null)
+				{
+					DomValidator.validate(validator, new StreamSource(new StringReader(string)));
+				}
 			}
 		}
 		catch (final SAXException e)
@@ -69,32 +72,37 @@ public class Validate
 		}
 	}
 
-
-//	/**
-//	 * Validate docs
-//	 *
-//	 * @param xsdUrl    xsd url
-//	 * @param documents documents
-//	 * @throws SAXException exception
-//	 */
-//	public static void validateDocs(final URL xsdUrl, final Document... documents)
-//	{
-//		try
-//		{
-//			final Validator validator = Validate.makeValidator(xsdUrl);
-//			for (final Document document : documents)
-//			{
-//				Validate.validate(validator, new DOMSource(document));
-//			}
-//		}
-//		catch (final SAXException e)
-//		{
-//			Log.e(TAG, "xsd", e);
-//		}
-//	}
+	/**
+	 * DomValidator docs
+	 *
+	 * @param xsdUrl    xsd url
+	 * @param documents documents
+	 * @throws SAXException exception
+	 */
+	public static void validateDocs(final URL xsdUrl, final org.w3c.dom.Document... documents)
+	{
+		try
+		{
+			final Validator validator = DomValidator.makeValidator(xsdUrl);
+			for (final org.w3c.dom.Document document : documents)
+			{
+				if(document!=null)
+				{
+					// cannot make org.w3c.dom.Documnet and mf.org.w3c.dom.Document compatible
+					// DomValidator.validate(validator, new DOMSource(document));
+					final String string = DomTransformer.docToXml(document);
+					DomValidator.validate(validator, new StreamSource(new StringReader(string)));
+				}
+			}
+		}
+		catch (final SAXException e)
+		{
+			Log.e(TAG, "xsd", e);
+		}
+	}
 
 	/**
-	 * Validate
+	 * DomValidator
 	 *
 	 * @param xsdUrl    xsd url
 	 * @param filePaths files
@@ -104,10 +112,10 @@ public class Validate
 	{
 		try
 		{
-			final Validator validator = Validate.makeValidator(xsdUrl);
+			final Validator validator = DomValidator.makeValidator(xsdUrl);
 			for (final String filePath : filePaths)
 			{
-				Validate.validate(validator, new StreamSource(filePath));
+				DomValidator.validate(validator, new StreamSource(filePath));
 			}
 		}
 		catch (final SAXException e)
@@ -144,7 +152,7 @@ public class Validate
 		URL xsdUrl;
 		try
 		{
-			xsdUrl = Validate.class.getResource(xsdPath);
+			xsdUrl = DomValidator.class.getResource(xsdPath);
 			if (xsdUrl == null)
 			{
 				throw new RuntimeException("Null XSD resource file");

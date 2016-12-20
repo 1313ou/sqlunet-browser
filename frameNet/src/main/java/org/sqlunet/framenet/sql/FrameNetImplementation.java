@@ -3,8 +3,9 @@ package org.sqlunet.framenet.sql;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Pair;
 
-import org.sqlunet.dom.Factory;
+import org.sqlunet.dom.DomFactory;
 import org.sqlunet.wordnet.sql.NodeFactory;
+import org.sqlunet.dom.DomTransformer;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 
@@ -32,7 +33,7 @@ public class FrameNetImplementation implements FrameNetInterface
 	@Override
 	public Document querySelectorDoc(final SQLiteDatabase connection, final String word, final Character pos)
 	{
-		final Document doc = Factory.makeDocument();
+		final Document doc = DomFactory.makeDocument();
 		final Node rootNode = FnNodeFactory.makeFnRootNode(doc, word, pos);
 		FrameNetImplementation.walkSelector(connection, doc, rootNode, word);
 		return doc;
@@ -50,7 +51,7 @@ public class FrameNetImplementation implements FrameNetInterface
 	public String querySelectorXML(final SQLiteDatabase connection, final String word, final Character pos)
 	{
 		final Document doc = querySelectorDoc(connection, word, pos);
-		return Factory.docToString(doc);
+		return DomTransformer.docToString(doc);
 	}
 
 	// D E T A I L
@@ -66,7 +67,7 @@ public class FrameNetImplementation implements FrameNetInterface
 	@Override
 	public Document queryDoc(final SQLiteDatabase connection, final String word, final Character pos)
 	{
-		final Document doc = Factory.makeDocument();
+		final Document doc = DomFactory.makeDocument();
 		final Node rootNode = FnNodeFactory.makeFnRootNode(doc, word, pos);
 		FrameNetImplementation.walk(connection, doc, rootNode, word);
 		return doc;
@@ -84,7 +85,7 @@ public class FrameNetImplementation implements FrameNetInterface
 	public String queryXML(final SQLiteDatabase connection, final String word, final Character pos)
 	{
 		final Document doc = queryDoc(connection, word, pos);
-		return Factory.docToString(doc);
+		return DomTransformer.docToString(doc);
 	}
 
 	// I T E M S
@@ -102,7 +103,7 @@ public class FrameNetImplementation implements FrameNetInterface
 	@Override
 	public Document queryDoc(final SQLiteDatabase connection, final long wordId, final Character pos)
 	{
-		final Document doc = Factory.makeDocument();
+		final Document doc = DomFactory.makeDocument();
 		final Node rootNode = FnNodeFactory.makeFnRootNode(doc, wordId, pos);
 		FrameNetImplementation.walkWord(connection, doc, rootNode, wordId, pos);
 		return doc;
@@ -120,7 +121,7 @@ public class FrameNetImplementation implements FrameNetInterface
 	public String queryXML(final SQLiteDatabase connection, final long wordId, final Character pos)
 	{
 		final Document doc = queryDoc(connection, wordId, pos);
-		return Factory.docToString(doc);
+		return DomTransformer.docToString(doc);
 	}
 
 	// frame
@@ -136,7 +137,7 @@ public class FrameNetImplementation implements FrameNetInterface
 	@Override
 	public Document queryFrameDoc(final SQLiteDatabase connection, final long frameId, final Character pos)
 	{
-		final Document doc = Factory.makeDocument();
+		final Document doc = DomFactory.makeDocument();
 		final Node rootNode = FnNodeFactory.makeFnRootFrameNode(doc, frameId);
 		FrameNetImplementation.walkFrame(connection, doc, rootNode, frameId);
 		return doc;
@@ -154,7 +155,7 @@ public class FrameNetImplementation implements FrameNetInterface
 	public String queryFrameXML(final SQLiteDatabase connection, final long frameId, final Character pos)
 	{
 		final Document doc = queryFrameDoc(connection, frameId, pos);
-		return Factory.docToString(doc);
+		return DomTransformer.docToString(doc);
 	}
 
 	// lexunit
@@ -169,7 +170,7 @@ public class FrameNetImplementation implements FrameNetInterface
 	@Override
 	public Document queryLexUnitDoc(final SQLiteDatabase connection, final long luId)
 	{
-		final Document doc = Factory.makeDocument();
+		final Document doc = DomFactory.makeDocument();
 		final Node rootNode = FnNodeFactory.makeFnRootLexUnitNode(doc, luId);
 		FrameNetImplementation.walkLexUnit(connection, doc, rootNode, luId);
 		return doc;
@@ -186,7 +187,7 @@ public class FrameNetImplementation implements FrameNetInterface
 	public String queryLexUnitXML(final SQLiteDatabase connection, final long luId)
 	{
 		final Document doc = queryLexUnitDoc(connection, luId);
-		return Factory.docToString(doc);
+		return DomTransformer.docToString(doc);
 	}
 
 	// sentence
@@ -200,7 +201,7 @@ public class FrameNetImplementation implements FrameNetInterface
 	 */
 	public Document querySentenceDoc(final SQLiteDatabase connection, final long sentenceId)
 	{
-		final Document doc = Factory.makeDocument();
+		final Document doc = DomFactory.makeDocument();
 		final Node rootNode = FnNodeFactory.makeFnRootSentenceNode(doc, sentenceId);
 		FrameNetImplementation.walkSentence(connection, doc, rootNode, sentenceId);
 		return doc;
@@ -217,7 +218,7 @@ public class FrameNetImplementation implements FrameNetInterface
 	public String querySentenceXML(final SQLiteDatabase connection, final long sentenceId)
 	{
 		final Document doc = querySentenceDoc(connection, sentenceId);
-		return Factory.docToString(doc);
+		return DomTransformer.docToString(doc);
 	}
 
 	// annoSet
@@ -231,7 +232,7 @@ public class FrameNetImplementation implements FrameNetInterface
 	 */
 	public Document queryAnnoSetDoc(final SQLiteDatabase connection, final long annoSetId)
 	{
-		final Document doc = Factory.makeDocument();
+		final Document doc = DomFactory.makeDocument();
 		final Node rootNode = FnNodeFactory.makeFnRootAnnoSetNode(doc, annoSetId);
 		FrameNetImplementation.walkAnnoSet(connection, doc, rootNode, annoSetId);
 		return doc;
@@ -248,7 +249,7 @@ public class FrameNetImplementation implements FrameNetInterface
 	public String queryAnnoSetXML(final SQLiteDatabase connection, final long annoSetId)
 	{
 		final Document doc = queryAnnoSetDoc(connection, annoSetId);
-		return Factory.docToString(doc);
+		return DomTransformer.docToString(doc);
 	}
 
 	// W A L K

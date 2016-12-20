@@ -2,8 +2,9 @@ package org.sqlunet.verbnet.sql;
 
 import android.database.sqlite.SQLiteDatabase;
 
-import org.sqlunet.dom.Factory;
+import org.sqlunet.dom.DomFactory;
 import org.sqlunet.wordnet.sql.NodeFactory;
+import org.sqlunet.dom.DomTransformer;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 
@@ -30,7 +31,7 @@ public class VerbNetImplementation implements VerbNetInterface
 	@Override
 	public Document querySelectorDoc(final SQLiteDatabase connection, final String word)
 	{
-		final Document doc = Factory.makeDocument();
+		final Document doc = DomFactory.makeDocument();
 		final Node rootNode = org.sqlunet.sql.NodeFactory.makeNode(doc, doc, "verbnet", word, VerbNetImplementation.VNNS);
 		VerbNetImplementation.walkSelector(connection, doc, rootNode, word);
 		return doc;
@@ -47,7 +48,7 @@ public class VerbNetImplementation implements VerbNetInterface
 	public String querySelectorXML(final SQLiteDatabase connection, final String word)
 	{
 		final Document doc = querySelectorDoc(connection, word);
-		return Factory.docToString(doc);
+		return DomTransformer.docToString(doc);
 	}
 
 	// D E T A I L
@@ -62,7 +63,7 @@ public class VerbNetImplementation implements VerbNetInterface
 	@Override
 	public Document queryDoc(final SQLiteDatabase connection, final String word)
 	{
-		final Document doc = Factory.makeDocument();
+		final Document doc = DomFactory.makeDocument();
 		final Node rootNode = org.sqlunet.sql.NodeFactory.makeNode(doc, doc, "verbnet", word, VerbNetImplementation.VNNS);
 		VerbNetImplementation.walk(connection, doc, rootNode, word);
 		return doc;
@@ -79,7 +80,7 @@ public class VerbNetImplementation implements VerbNetInterface
 	public String queryXML(final SQLiteDatabase connection, final String word)
 	{
 		final Document doc = queryDoc(connection, word);
-		return Factory.docToString(doc);
+		return DomTransformer.docToString(doc);
 	}
 
 	/**
@@ -94,7 +95,7 @@ public class VerbNetImplementation implements VerbNetInterface
 	@Override
 	public Document queryDoc(final SQLiteDatabase connection, final long wordId, final Long synsetId, final Character pos)
 	{
-		final Document doc = Factory.makeDocument();
+		final Document doc = DomFactory.makeDocument();
 		final Node rootNode = VnNodeFactory.makeVnRootNode(doc, wordId, synsetId);
 		VerbNetImplementation.walk(connection, doc, rootNode, wordId, synsetId, true, true);
 		return doc;
@@ -113,7 +114,7 @@ public class VerbNetImplementation implements VerbNetInterface
 	public String queryXML(final SQLiteDatabase connection, final long wordId, final Long synsetId, final Character pos)
 	{
 		final Document doc = queryDoc(connection, wordId, synsetId, pos);
-		return Factory.docToString(doc);
+		return DomTransformer.docToString(doc);
 	}
 
 	// class
@@ -121,7 +122,7 @@ public class VerbNetImplementation implements VerbNetInterface
 	@Override
 	public Document queryClassDoc(final SQLiteDatabase connection, final long classId, final Character pos)
 	{
-		final Document doc = Factory.makeDocument();
+		final Document doc = DomFactory.makeDocument();
 		final Node rootNode = VnNodeFactory.makeVnRootClassNode(doc, classId);
 		VerbNetImplementation.walkClass(connection, doc, rootNode, classId);
 		return doc;
@@ -139,7 +140,7 @@ public class VerbNetImplementation implements VerbNetInterface
 	public String queryClassXML(final SQLiteDatabase connection, final long classId, final Character pos)
 	{
 		final Document doc = queryClassDoc(connection, classId, pos);
-		return Factory.docToString(doc);
+		return DomTransformer.docToString(doc);
 	}
 
 	// W A L K

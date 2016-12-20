@@ -23,7 +23,7 @@ function Tree()
  * @type method
  * @param {Element}
  *            element
- *            <OL>/<TABLE>
+ *            <UL>/<TABLE>
  *            element to expand
  */
 Tree.toggle = function(element)
@@ -34,7 +34,7 @@ Tree.toggle = function(element)
 	// peep first subelement to see state
 	while (subElement != null)
 	{
-		if (subElement.nodeName == "OL" || subElement.nodeName == "ol")
+		if (subElement.nodeName == "UL" || subElement.nodeName == "ul" || subElement.nodeName == "OL" || subElement.nodeName == "ol")
 		{
 			if (Tree.isVisible(subElement))
 			{
@@ -54,7 +54,7 @@ Tree.toggle = function(element)
 	// hide/show this subelement and next
 	while (subElement != null)
 	{
-		if (subElement.nodeName == "OL" || subElement.nodeName == "ol")
+		if (subElement.nodeName == "UL" || subElement.nodeName == "ul" || subElement.nodeName == "OL" || subElement.nodeName == "ol")
 		{
 			Tree.display(subElement, display);
 		}
@@ -69,7 +69,7 @@ Tree.toggle = function(element)
  * @type method
  * @param {String}
  *            elementId id of
- *            <OL>/<TABLE>
+ *            <UL>/<TABLE>
  *            element to expand
  */
 Tree.expand = function(elementId)
@@ -77,11 +77,11 @@ Tree.expand = function(elementId)
 	var element = document.getElementById(elementId);
 	Tree.setImage(element, 'images/open.png');
 
-	// show this OL subelement and next
+	// show this UL subelement and next
 	subElement = element.nextSibling;
 	while (subElement != null)
 	{
-		if (subElement.nodeName == "OL" || subElement.nodeName == "ol" ||
+		if (subElement.nodeName == "UL" || subElement.nodeName == "ul" || subElement.nodeName == "OL" || subElement.nodeName == "ol" ||
 			subElement.nodeName == "TABLE" || subElement.nodeName == "table")
 		{
 			Tree.display(subElement, true);

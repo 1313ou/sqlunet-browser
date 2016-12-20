@@ -2,7 +2,8 @@ package org.sqlunet.wordnet.sql;
 
 import android.database.sqlite.SQLiteDatabase;
 
-import org.sqlunet.dom.Factory;
+import org.sqlunet.dom.DomFactory;
+import org.sqlunet.dom.DomTransformer;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -420,7 +421,7 @@ public class WordNetImplementation implements WordNetInterface
 	@Override
 	public Document querySelectorDoc(final SQLiteDatabase connection, final String word)
 	{
-		final Document doc = Factory.makeDocument();
+		final Document doc = DomFactory.makeDocument();
 		final Element rootNode = org.sqlunet.sql.NodeFactory.makeNode(doc, doc, "wordnet", word, WordNetImplementation.WNNS);
 		NodeFactory.addAttributes(rootNode, "word", word);
 		WordNetImplementation.walkSelector(connection, doc, rootNode, word);
@@ -438,7 +439,7 @@ public class WordNetImplementation implements WordNetInterface
 	public String querySelectorXML(final SQLiteDatabase connection, final String word)
 	{
 		final Document doc = querySelectorDoc(connection, word);
-		return Factory.docToString(doc);
+		return DomTransformer.docToString(doc);
 	}
 
 	/**
@@ -453,7 +454,7 @@ public class WordNetImplementation implements WordNetInterface
 	@Override
 	public Document queryDoc(final SQLiteDatabase connection, final String word, final boolean withLinks, final boolean recurse)
 	{
-		final Document doc = Factory.makeDocument();
+		final Document doc = DomFactory.makeDocument();
 		final Element rootNode = org.sqlunet.sql.NodeFactory.makeNode(doc, doc, "wordnet", null, WordNetImplementation.WNNS);
 		NodeFactory.addAttributes(rootNode, //
 				"word", word, //
@@ -476,7 +477,7 @@ public class WordNetImplementation implements WordNetInterface
 	@Override
 	public Document queryDoc(final SQLiteDatabase connection, final long wordId, final Long synsetId, final boolean withLinks, final boolean recurse)
 	{
-		final Document doc = Factory.makeDocument();
+		final Document doc = DomFactory.makeDocument();
 		final Element rootNode = org.sqlunet.sql.NodeFactory.makeNode(doc, doc, "wordnet", null, WordNetImplementation.WNNS);
 		NodeFactory.addAttributes(rootNode, //
 				"wordid", Long.toString(wordId), //
@@ -500,7 +501,7 @@ public class WordNetImplementation implements WordNetInterface
 	public String queryXML(final SQLiteDatabase connection, final String word, final boolean withLinks, final boolean recurse)
 	{
 		final Document doc = queryDoc(connection, word, withLinks, recurse);
-		return Factory.docToString(doc);
+		return DomTransformer.docToString(doc);
 	}
 
 	/**
@@ -518,7 +519,7 @@ public class WordNetImplementation implements WordNetInterface
 	@Override
 	public Document queryDoc(final SQLiteDatabase connection, final String word, final String posName, final String lexDomainName, final String linkName, final boolean withLinks, final boolean recurse)
 	{
-		final Document doc = Factory.makeDocument();
+		final Document doc = DomFactory.makeDocument();
 
 		// parameters
 		final int posType = Mapping.getPosId(posName);
@@ -555,7 +556,7 @@ public class WordNetImplementation implements WordNetInterface
 	public String queryXML(final SQLiteDatabase connection, final String word, final String posName, final String lexDomainName, final String linkName, final boolean withLinks, final boolean recurse)
 	{
 		final Document doc = queryDoc(connection, word, posName, lexDomainName, linkName, withLinks, recurse);
-		return Factory.docToString(doc);
+		return DomTransformer.docToString(doc);
 	}
 
 	// W A L K
@@ -571,7 +572,7 @@ public class WordNetImplementation implements WordNetInterface
 	@Override
 	public Document querySenseDoc(final SQLiteDatabase connection, final long wordId, final long synsetId)
 	{
-		final Document doc = Factory.makeDocument();
+		final Document doc = DomFactory.makeDocument();
 		final Element rootNode = org.sqlunet.sql.NodeFactory.makeNode(doc, doc, "wordnet", null, WordNetImplementation.WNNS);
 		NodeFactory.addAttributes(rootNode, //
 				"wordid", Long.toString(wordId), //
@@ -604,7 +605,7 @@ public class WordNetImplementation implements WordNetInterface
 	public String querySenseXML(final SQLiteDatabase connection, final long wordId, final long synsetId)
 	{
 		final Document doc = querySenseDoc(connection, wordId, synsetId);
-		return Factory.docToString(doc);
+		return DomTransformer.docToString(doc);
 	}
 
 	/**
@@ -617,7 +618,7 @@ public class WordNetImplementation implements WordNetInterface
 	@Override
 	public Document querySynsetDoc(final SQLiteDatabase connection, final long synsetId)
 	{
-		final Document doc = Factory.makeDocument();
+		final Document doc = DomFactory.makeDocument();
 		final Element rootNode = org.sqlunet.sql.NodeFactory.makeNode(doc, doc, "wordnet", null, WordNetImplementation.WNNS);
 		NodeFactory.addAttributes(rootNode, "synsetid", Long.toString(synsetId));
 		final SynsetQueryCommand query = new SynsetQueryCommand(connection, synsetId);
@@ -645,7 +646,7 @@ public class WordNetImplementation implements WordNetInterface
 	public String querySynsetXML(final SQLiteDatabase connection, final long synsetId)
 	{
 		final Document doc = querySynsetDoc(connection, synsetId);
-		return Factory.docToString(doc);
+		return DomTransformer.docToString(doc);
 	}
 
 	/**
