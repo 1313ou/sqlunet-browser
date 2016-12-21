@@ -16251,13 +16251,6 @@
       <option name="presentableId" value="Default" />
       <updated>1476373639609</updated>
     </task>
-    <task id="LOCAL-00071" summary="lint 2&#10;">
-      <created>1479411360801</created>
-      <option name="number" value="00071" />
-      <option name="presentableId" value="LOCAL-00071" />
-      <option name="project" value="LOCAL" />
-      <updated>1479411360801</updated>
-    </task>
     <task id="LOCAL-00072" summary="lint 3&#10;">
       <created>1479448892216</created>
       <option name="number" value="00072" />
@@ -16594,7 +16587,14 @@
       <option name="project" value="LOCAL" />
       <updated>1482317269290</updated>
     </task>
-    <option name="localTasksCounter" value="120" />
+    <task id="LOCAL-00120" summary="fix search view">
+      <created>1482317294020</created>
+      <option name="number" value="00120" />
+      <option name="presentableId" value="LOCAL-00120" />
+      <option name="project" value="LOCAL" />
+      <updated>1482317294020</updated>
+    </task>
+    <option name="localTasksCounter" value="121" />
     <servers />
   </component>
   <component name="TodoView" selected-index="2">
