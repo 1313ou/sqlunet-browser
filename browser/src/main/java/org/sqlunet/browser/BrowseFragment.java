@@ -76,7 +76,7 @@ import org.sqlunet.wordnet.provider.WordNetContract.PosTypes;
  */
 public class BrowseFragment extends Fragment implements SearchListener
 {
-	static private final String TAG = "Browse1Fragment";
+	static private final String TAG = "BrowseFragment";
 
 	/**
 	 * Selector mode state
@@ -277,7 +277,7 @@ public class BrowseFragment extends Fragment implements SearchListener
 	private void setupSearch(final Menu menu)
 	{
 		// menu item
-		final MenuItem searchMenuItem = menu.findItem(R.id.searchView);
+		final MenuItem searchMenuItem = menu.findItem(R.id.search);
 
 		// activity
 		final Activity activity = getActivity();
@@ -301,9 +301,7 @@ public class BrowseFragment extends Fragment implements SearchListener
 				BrowseFragment.this.searchView.setQuery("", false);
 				closeKeyboard();
 				searchMenuItem.collapseActionView();
-
-				search(query);
-				return true;
+				return false;
 			}
 
 			@Override
@@ -420,19 +418,6 @@ public class BrowseFragment extends Fragment implements SearchListener
 			final int position = this.spinner.getSelectedItemPosition();
 			savedInstanceState.putInt(BrowseFragment.STATE_SPINNER, position);
 		}
-	}
-
-	// S U G G E S T
-
-	/**
-	 * Handle suggestion
-	 *
-	 * @param query query
-	 */
-	@Override
-	public void suggest(final String query)
-	{
-		this.searchView.setQuery(query, true); // true=submit
 	}
 
 	// S E A R C H
@@ -581,6 +566,7 @@ public class BrowseFragment extends Fragment implements SearchListener
 
 			//targetIntent = makeSelectorIntent();
 			fragment = makeSelectorFragment();
+			//fragment = new Test1Fragment();
 		}
 
 		// dispatch

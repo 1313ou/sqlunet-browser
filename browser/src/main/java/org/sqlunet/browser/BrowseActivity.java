@@ -68,20 +68,12 @@ public class BrowseActivity extends Activity
 	private void handleSearchIntent(final Intent intent)
 	{
 		final String action = intent.getAction();
-		final String query = intent.getStringExtra(SearchManager.QUERY);
-
-		// view type
-		if (Intent.ACTION_VIEW.equals(action))
+		if (Intent.ACTION_VIEW.equals(action) || Intent.ACTION_SEARCH.equals(action))
 		{
-			// suggestion selection (when a suggested item is selected)
-			this.fragment.suggest(query);
-			return;
-		}
-
-		// search type
-		if (Intent.ACTION_SEARCH.equals(action))
-		{
+			// search query submit or suggestion selection (when a suggested item is selected)
+			final String query = intent.getStringExtra(SearchManager.QUERY);
 			this.fragment.search(query);
+			return;
 		}
 	}
 }
