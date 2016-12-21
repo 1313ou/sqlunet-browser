@@ -23,17 +23,9 @@
     <list default="true" id="e66c28dc-5afe-443a-8883-1d8123a0e6a1" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bNC/bNC.iml" afterPath="$PROJECT_DIR$/bNC/bNC.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/browser/src/main/java/org/sqlunet/browser/MainActivity.java" afterPath="$PROJECT_DIR$/browser/src/main/java/org/sqlunet/browser/MainActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/browser/src/main/java/org/sqlunet/browser/NavigationDrawerFragment.java" afterPath="$PROJECT_DIR$/browser/src/main/java/org/sqlunet/browser/NavigationDrawerFragment.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/browser/src/main/java/org/sqlunet/browser/PredicateMatrixActivity.java" afterPath="$PROJECT_DIR$/browser/src/main/java/org/sqlunet/browser/PredicateMatrixActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/browser/src/main/java/org/sqlunet/browser/PredicateMatrixFragment.java" afterPath="$PROJECT_DIR$/browser/src/main/java/org/sqlunet/browser/PredicateMatrixFragment.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/browser/src/main/java/org/sqlunet/browser/TextSearchActivity.java" afterPath="$PROJECT_DIR$/browser/src/main/java/org/sqlunet/browser/TextSearchActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/browser/src/main/java/org/sqlunet/browser/TextSearchFragment.java" afterPath="$PROJECT_DIR$/browser/src/main/java/org/sqlunet/browser/TextSearchFragment.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/browser/src/main/res/menu/browse.xml" afterPath="$PROJECT_DIR$/browser/src/main/res/menu/browse.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/browser/src/main/res/menu/predicate_matrix.xml" afterPath="$PROJECT_DIR$/browser/src/main/res/menu/predicate_matrix.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/browser/src/main/res/menu/text_search.xml" afterPath="$PROJECT_DIR$/browser/src/main/res/menu/text_search.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/propbank/propbank.iml" afterPath="$PROJECT_DIR$/propbank/propbank.iml" />
     </list>
     <ignored path="Browser.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -7243,8 +7235,8 @@
   <component name="Git.Settings">
     <option name="PREVIOUS_COMMIT_AUTHORS">
       <list>
-        <option value="bb" />
         <option value="bbou" />
+        <option value="bb" />
         <option value="xsl" />
         <option value="b" />
       </list>
@@ -16259,13 +16251,6 @@
       <option name="presentableId" value="Default" />
       <updated>1476373639609</updated>
     </task>
-    <task id="LOCAL-00070" summary="lint&#10;">
-      <created>1479411294771</created>
-      <option name="number" value="00070" />
-      <option name="presentableId" value="LOCAL-00070" />
-      <option name="project" value="LOCAL" />
-      <updated>1479411294772</updated>
-    </task>
     <task id="LOCAL-00071" summary="lint 2&#10;">
       <created>1479411360801</created>
       <option name="number" value="00071" />
@@ -16602,7 +16587,14 @@
       <option name="project" value="LOCAL" />
       <updated>1482316345016</updated>
     </task>
-    <option name="localTasksCounter" value="119" />
+    <task id="LOCAL-00119" summary="fix search view">
+      <created>1482317269290</created>
+      <option name="number" value="00119" />
+      <option name="presentableId" value="LOCAL-00119" />
+      <option name="project" value="LOCAL" />
+      <updated>1482317269290</updated>
+    </task>
+    <option name="localTasksCounter" value="120" />
     <servers />
   </component>
   <component name="TodoView" selected-index="2">
@@ -17085,6 +17077,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
