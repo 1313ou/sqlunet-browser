@@ -3,7 +3,7 @@
       xmlns:tools="http://schemas.android.com/tools"
       tools:context="org.sqlunet.predicatematrix.org.sqlunet.browser.PredicateMatrixActivity">
 	<item
-		android:id="@+id/searchView"
+		android:id="@+id/search"
 		android:actionViewClass="android.widget.SearchView"
 		android:icon="@android:drawable/ic_menu_search"
 		android:showAsAction="collapseActionView|ifRoom"

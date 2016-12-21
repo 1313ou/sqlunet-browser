@@ -101,22 +101,16 @@ public class MainActivity extends Activity implements NavigationDrawerFragment.N
 	{
 		if (this.fragment instanceof SearchListener)
 		{
-			final SearchListener listener = (SearchListener) this.fragment;
 			final String action = intent.getAction();
-			final String query = intent.getStringExtra(SearchManager.QUERY);
-
-			// view type
-			if (Intent.ACTION_VIEW.equals(action))
+			if (Intent.ACTION_VIEW.equals(action) || Intent.ACTION_SEARCH.equals(action))
 			{
-				// suggestion selection (when a suggested item is selected)
-				listener.suggest(query);
-				return;
-			}
+				final SearchListener listener = (SearchListener) this.fragment;
+				final String query = intent.getStringExtra(SearchManager.QUERY);
 
-			// search type
-			if (Intent.ACTION_SEARCH.equals(action))
-			{
+				// search query submit or suggestion selection (when a suggested item is selected)
+				Log.d(TAG, "search " + query);
 				listener.search(query);
+				return;
 			}
 		}
 	}
@@ -338,9 +332,9 @@ public class MainActivity extends Activity implements NavigationDrawerFragment.N
 		 */
 		public static PlaceholderFragment newInstance(final int sectionNumber)
 		{
+			final PlaceholderFragment fragment = new PlaceholderFragment();
 			final Bundle args = new Bundle();
 			args.putInt(ARG_SECTION_NUMBER, sectionNumber);
-			final PlaceholderFragment fragment = new PlaceholderFragment();
 			fragment.setArguments(args);
 			return fragment;
 		}
@@ -356,7 +350,8 @@ public class MainActivity extends Activity implements NavigationDrawerFragment.N
 		public void onAttach(final Activity activity)
 		{
 			super.onAttach(activity);
-			((MainActivity) activity).onSectionAttached(getArguments().getInt(ARG_SECTION_NUMBER));
+			int sectionNumber = getArguments().getInt(ARG_SECTION_NUMBER);
+			((MainActivity) activity).onSectionAttached(sectionNumber);
 		}
 	}
 }

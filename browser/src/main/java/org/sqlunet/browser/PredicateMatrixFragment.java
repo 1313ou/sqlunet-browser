@@ -209,7 +209,7 @@ public class PredicateMatrixFragment extends Fragment implements SearchListener
 	private void setupSearch(final Menu menu)
 	{
 		// menu item
-		final MenuItem searchMenuItem = menu.findItem(R.id.searchView);
+		final MenuItem searchMenuItem = menu.findItem(R.id.search);
 
 		// activity
 		final Activity activity = getActivity();
@@ -233,9 +233,7 @@ public class PredicateMatrixFragment extends Fragment implements SearchListener
 				PredicateMatrixFragment.this.searchView.setQuery("", false);
 				closeKeyboard();
 				searchMenuItem.collapseActionView();
-
-				search(query);
-				return true;
+				return false;
 			}
 
 			@Override
@@ -386,19 +384,6 @@ public class PredicateMatrixFragment extends Fragment implements SearchListener
 			final int position = this.spinner.getSelectedItemPosition();
 			outState.putInt(PredicateMatrixFragment.STATE_SPINNER, position);
 		}
-	}
-
-	// S U G G E S T
-
-	/**
-	 * Handle suggestion
-	 *
-	 * @param query query
-	 */
-	@Override
-	public void suggest(final String query)
-	{
-		this.searchView.setQuery(query, true); // true=submit
 	}
 
 	// S E A R C H

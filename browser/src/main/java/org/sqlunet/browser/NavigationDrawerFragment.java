@@ -117,14 +117,6 @@ public class NavigationDrawerFragment extends Fragment
 			this.selectedPosition = savedInstanceState.getInt(STATE_SELECTED_SECTION);
 			this.fromSavedInstanceState = true;
 		}
-	}
-
-	@Override
-	public void onResume()
-	{
-		super.onResume();
-
-		// select either the default item (0) or the last selected item.
 		selectItem(this.selectedPosition);
 	}
 

@@ -210,7 +210,7 @@ public class TextSearchFragment extends Fragment implements SearchListener
 	private void setupSearch(final Menu menu)
 	{
 		// menu item
-		final MenuItem searchMenuItem = menu.findItem(R.id.searchView);
+		final MenuItem searchMenuItem = menu.findItem(R.id.search);
 
 		// activity
 		final Activity activity = getActivity();
@@ -234,9 +234,7 @@ public class TextSearchFragment extends Fragment implements SearchListener
 				TextSearchFragment.this.searchView.setQuery("", false);
 				closeKeyboard();
 				searchMenuItem.collapseActionView();
-
-				search(query);
-				return true;
+				return false;
 			}
 
 			@Override
@@ -360,19 +358,6 @@ public class TextSearchFragment extends Fragment implements SearchListener
 		// spinner position
 		final int position = Settings.getSearchModePref(activity);
 		spinner.setSelection(position);
-	}
-
-	// S U G G E S T
-
-	/**
-	 * Handle suggestion
-	 *
-	 * @param query query
-	 */
-	@Override
-	public void suggest(final String query)
-	{
-		this.searchView.setQuery(query, true); // true=submit
 	}
 
 	// S E A R C H
