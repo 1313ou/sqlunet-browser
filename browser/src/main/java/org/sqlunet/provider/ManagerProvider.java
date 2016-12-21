@@ -11,7 +11,6 @@ import android.support.annotation.NonNull;
 import android.util.Log;
 
 import org.sqlunet.provider.ManagerContract.TablesAndIndices;
-import org.sqlunet.sql.SqlFormatter;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -81,7 +80,7 @@ public class ManagerProvider extends BaseProvider
 
 		// choose the table to query and a sort order based on the code returned for the incoming URI
 		final int code = ManagerProvider.uriMatcher.match(uri);
-		Log.d(ManagerProvider.TAG + "URI", String.format("%s (code %s)\n", uri, code));
+		// Log.d(ManagerProvider.TAG + "URI", String.format("%s (code %s)\n", uri, code));
 		String table;
 		switch (code)
 		{
@@ -99,8 +98,8 @@ public class ManagerProvider extends BaseProvider
 		{
 			final String sql = SQLiteQueryBuilder.buildQueryString(false, table, projection, selection, groupBy, null, sortOrder, null);
 			// logSql(sql, selectionArgs);
-			Log.d(ManagerProvider.TAG + "SQL", SqlFormatter.format(sql).toString());
-			Log.d(ManagerProvider.TAG + "ARGS", BaseProvider.argsToString(selectionArgs));
+			// Log.d(ManagerProvider.TAG + "SQL", SqlFormatter.format(sql).toString());
+			// Log.d(ManagerProvider.TAG + "ARGS", BaseProvider.argsToString(selectionArgs));
 		}
 
 		// do query

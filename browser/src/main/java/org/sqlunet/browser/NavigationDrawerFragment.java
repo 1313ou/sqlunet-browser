@@ -117,6 +117,15 @@ public class NavigationDrawerFragment extends Fragment
 			this.selectedPosition = savedInstanceState.getInt(STATE_SELECTED_SECTION);
 			this.fromSavedInstanceState = true;
 		}
+	}
+
+	// create/start/resume
+	// (settings)->pause/stop/start/resume
+	// (search new intent VIEW/SEARCH)->pause/resume
+	@Override
+	public void onStart()
+	{
+		super.onStart();
 		selectItem(this.selectedPosition);
 	}
 
