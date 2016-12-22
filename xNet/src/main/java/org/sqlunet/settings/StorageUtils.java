@@ -698,11 +698,6 @@ public class StorageUtils
 	 */
 	static private String getUserId()
 	{
-		if (Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN_MR1)
-		{
-			return "";
-		}
-
 		final String path = Environment.getExternalStorageDirectory().getAbsolutePath();
 		final String[] folders = path.split(File.separator);
 		final String lastFolder = folders[folders.length - 1];
