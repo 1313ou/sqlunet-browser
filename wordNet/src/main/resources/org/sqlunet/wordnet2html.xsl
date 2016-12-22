@@ -46,7 +46,7 @@
 			<SPAN class="treejunction" onclick="javascript:Tree.toggle(this);">
 				<IMG class="treepix" src="images/open.png"/>
 			</SPAN>
-			<IMG src="images/wordnet/pos.png"/>
+			<IMG src="images/xnet/pos.png"/>
 			<xsl:text><![CDATA[ ]]></xsl:text>
 			<SPAN class="wnpos">
 				<xsl:apply-templates select="./@name"/>
@@ -64,7 +64,7 @@
 			<SPAN class="treejunction" onclick="javascript:Tree.toggle(this);">
 				<IMG class="treepix" src="images/open.png"/>
 			</SPAN>
-			<IMG src="images/wordnet/lexdomain.png"/>
+			<IMG src="images/xnet/domain.png"/>
 			<xsl:text><![CDATA[ ]]></xsl:text>
 			<SPAN class="wnlexdomain">
 				<xsl:apply-templates select="./@name"/>
@@ -82,7 +82,7 @@
 			<SPAN class="treejunction" onclick="javascript:Tree.toggle(this);">
 				<IMG class="treepix" src="images/open.png"/>
 			</SPAN>
-			<IMG src="images/wordnet/synset.png"/>
+			<IMG src="images/xnet/synset.png"/>
 			<xsl:text><![CDATA[ ]]></xsl:text>
 			<SPAN class="wnsense">
 				<xsl:text>sense</xsl:text>
@@ -117,7 +117,7 @@
 			<SPAN class="treejunction" onclick="javascript:Tree.toggle(this);">
 				<IMG class="treepix" src="images/open.png"/>
 			</SPAN>
-			<IMG src="images/wordnet/definition.png"/>
+			<IMG src="images/xnet/definition.png"/>
 			<xsl:text><![CDATA[ ]]></xsl:text>
 			<SPAN class="wndefinition">
 				<xsl:apply-templates select="./definition"/>
@@ -142,7 +142,7 @@
 		</xsl:variable>
 		<LI class="treeitem">
 			<xsl:element name="img">
-				<xsl:attribute name="src">images/wordnet/member.png</xsl:attribute>
+				<xsl:attribute name="src">images/xnet/member.png</xsl:attribute>
 			</xsl:element>
 			<xsl:text><![CDATA[ ]]></xsl:text>
 			<A class="wnword">
@@ -156,7 +156,7 @@
 
 	<xsl:template match="sample">
 		<LI class="treeitem">
-			<IMG src="images/wordnet/sample.png"/>
+			<IMG src="images/xnet/sample.png"/>
 			<xsl:text><![CDATA[ ]]></xsl:text>
 			<SPAN class="wnsample">
 				<xsl:apply-templates select="./text()"/>

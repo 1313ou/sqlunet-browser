@@ -13,6 +13,6 @@ tp=$t.xml
 
 echo "$sp -> $tp"
 
-./get.sh $t
+#./get.sh $t
 ./tohtml-wordnet2html.sh $t
 ./embed.sh $t
