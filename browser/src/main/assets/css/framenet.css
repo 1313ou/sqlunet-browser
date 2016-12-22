@@ -116,10 +116,12 @@
 
 .fnfetext {
 	color: magenta;
-}}
+}
 
 .fnfen {
-	color: magenta;
+	color: black;
+	margin-left: 2px;
+	margin-right: 2px;
 }
 
 .fnfex {
@@ -131,16 +133,16 @@
 }
 
 .fnm {
-	font-weight: italic;
+	font-style: italic;
 }
 
 .fngov {
-	font-weight: italic;
+	font-style: italic;
 	color: black;
 }
 
 .fnx {
-	font-weight: italic;
+	font-style: italic;
 	color: black;
 }
 

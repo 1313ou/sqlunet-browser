@@ -10,7 +10,7 @@ xmlns='http://www.w3.org/1999/xhtml'
 		<HTML>
 		<HEAD>
 		<LINK rel='stylesheet' type='text/css' href='css/style.css' />
-		<LINK rel='stylesheet' type='text/css' href='css/tree.css"' />
+		<LINK rel='stylesheet' type='text/css' href='css/tree.css' />
 		<LINK rel='stylesheet' type='text/css' href='css/wordnet.css' />
 		<LINK rel='stylesheet' type='text/css' href='css/verbnet.css' />
 		<LINK rel='stylesheet' type='text/css' href='css/propbank.css' />

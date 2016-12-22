@@ -25,7 +25,7 @@
 					<xsl:text>∅ data</xsl:text>
 				</SPAN>
 			</xsl:when>
-			<!-- one of more synset -->
+			<!-- one or more synset -->
 			<xsl:otherwise>
 				<SPAN class="treejunction" onclick="javascript:Tree.toggle(this);">
 					<IMG class="treepix" src="images/open.png"/>
