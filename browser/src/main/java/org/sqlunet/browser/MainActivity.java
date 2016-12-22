@@ -110,7 +110,6 @@ public class MainActivity extends Activity implements NavigationDrawerFragment.N
 				// search query submit or suggestion selection (when a suggested item is selected)
 				Log.d(TAG, "search " + query);
 				listener.search(query);
-				return;
 			}
 		}
 	}

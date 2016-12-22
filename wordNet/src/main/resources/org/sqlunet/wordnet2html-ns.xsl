@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xsl:transform xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                version="1.0"
-               xmlns:un="http://org.sqlunet"
                xmlns:wn="http://org.sqlunet/wn">
 	<xsl:output encoding="UTF-8" indent="yes" method="xml"/>
 	<xsl:strip-space elements="label"/>

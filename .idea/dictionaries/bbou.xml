@@ -41,6 +41,7 @@
       <w>bnctablecell</w>
       <w>bncunit</w>
       <w>bogdan</w>
+      <w>bothlink</w>
       <w>cantrun</w>
       <w>casedwordid</w>
       <w>casedwords</w>
@@ -224,6 +225,7 @@
       <w>jdbc</w>
       <w>keyw</w>
       <w>konqueror</w>
+      <w>labelid</w>
       <w>labelitype</w>
       <w>labelitypeid</w>
       <w>labeltype</w>
@@ -241,6 +243,7 @@
       <w>lexdomains</w>
       <w>lexicalunit</w>
       <w>lexid</w>
+      <w>lexlink</w>
       <w>lexlinks</w>
       <w>lexunit</w>
       <w>lexunits</w>
@@ -249,6 +252,8 @@
       <w>lightsalmon</w>
       <w>lightyellow</w>
       <w>linepos</w>
+      <w>linkclass</w>
+      <w>linkdef</w>
       <w>linkid</w>
       <w>linknames</w>
       <w>linktype</w>
@@ -440,6 +445,7 @@
       <w>sectionhead</w>
       <w>sectionheader</w>
       <w>selectional</w>
+      <w>selrestrs</w>
       <w>semanticsid</w>
       <w>semitem</w>
       <w>semlink</w>
@@ -468,6 +474,7 @@
       <w>sqlunet</w>
       <w>sqlunetdir</w>
       <w>sqlupdate</w>
+      <w>stative</w>
       <w>storages</w>
       <w>subcorpusid</w>
       <w>subelement</w>

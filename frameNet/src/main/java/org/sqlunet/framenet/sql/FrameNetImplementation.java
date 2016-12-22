@@ -18,7 +18,7 @@ import java.util.List;
  */
 public class FrameNetImplementation implements FrameNetInterface
 {
-	static public final String FNNS = "http://org.sqlunet/fn";
+	static public final String FN_NS = "http://org.sqlunet/fn";
 
 	// S E L E C T O R
 

@@ -44,7 +44,7 @@ abstract public class DocumentLoader extends AsyncTaskLoader<Document>
 		{
 			if (isLoadInBackgroundCanceled())
 			{
-				throw new OperationCanceledException();
+				throw new OperationCanceledException("Canceled");
 			}
 			this.cancellationSignal = new CancellationSignal();
 		}

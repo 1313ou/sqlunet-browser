@@ -144,8 +144,7 @@ class LinksQueryFromSynsetIdAndLinkType extends DBQuery
 		{
 			return null;
 		}
-		final String[] result = results.split(",");
-		return result;
+		return results.split(",");
 	}
 
 	/**

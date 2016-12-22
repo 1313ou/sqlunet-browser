@@ -21,7 +21,7 @@ class PbNodeFactory extends NodeFactory
 	 */
 	static public Node makePbRootNode(final Document doc, final long wordId)
 	{
-		final Element rootNode = NodeFactory.makeNode(doc, doc, "propbank", null, PropBankImplementation.PBNS);
+		final Element rootNode = NodeFactory.makeNode(doc, doc, "propbank", null, PropBankImplementation.PB_NS);
 		NodeFactory.addAttributes(rootNode, "wordid", Long.toString(wordId));
 		return rootNode;
 	}
@@ -35,7 +35,7 @@ class PbNodeFactory extends NodeFactory
 	 */
 	public static Node makePbRootRoleSetNode(final Document doc, long roleSetId)
 	{
-		final Element rootNode = NodeFactory.makeNode(doc, doc, "propbank", null, PropBankImplementation.PBNS);
+		final Element rootNode = NodeFactory.makeNode(doc, doc, "propbank", null, PropBankImplementation.PB_NS);
 		NodeFactory.addAttributes(rootNode, "rolesetid", Long.toString(roleSetId));
 		return rootNode;
 	}

@@ -19,7 +19,7 @@ class Link extends Synset
 	/**
 	 * <code>linkType</code> relation type
 	 */
-	public final int linkType;
+	private final int linkType;
 
 	/**
 	 * <code>word</code> related word (lexlinks)

@@ -18,7 +18,7 @@ import java.util.List;
  */
 public class PropBankImplementation implements PropBankInterface
 {
-	static public final String PBNS = "http://org.sqlunet/pb";
+	static public final String PB_NS = "http://org.sqlunet/pb";
 
 	// S E L E C T O R
 
@@ -172,7 +172,7 @@ public class PropBankImplementation implements PropBankInterface
 	public Document querySelectorDoc(final SQLiteDatabase connection, final String word)
 	{
 		final Document doc = DomFactory.makeDocument();
-		final Node rootNode = NodeFactory.makeNode(doc, doc, "propbank", word, PropBankImplementation.PBNS);
+		final Node rootNode = NodeFactory.makeNode(doc, doc, "propbank", word, PropBankImplementation.PB_NS);
 		PropBankImplementation.walkSelector(connection, doc, rootNode, word);
 		return doc;
 	}
@@ -204,7 +204,7 @@ public class PropBankImplementation implements PropBankInterface
 	public Document queryDoc(final SQLiteDatabase connection, final String word)
 	{
 		final Document doc = DomFactory.makeDocument();
-		final Node rootNode = NodeFactory.makeNode(doc, doc, "propbank", word, PropBankImplementation.PBNS);
+		final Node rootNode = NodeFactory.makeNode(doc, doc, "propbank", word, PropBankImplementation.PB_NS);
 		PropBankImplementation.walk(connection, doc, rootNode, word);
 		return doc;
 	}

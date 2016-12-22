@@ -62,7 +62,7 @@ public class WebFragment extends Fragment
 {
 	static private final String TAG = "WebFragment";
 
-	static public final String SQLUNETNS = "http://org.sqlunet";
+	private static final String SQLUNET_NS = "http://org.sqlunet";
 
 	/**
 	 * HTML stuff
@@ -118,7 +118,7 @@ public class WebFragment extends Fragment
 		{
 			// merge all into one
 			final Document rootDomDoc = DomFactory.makeDocument();
-			NodeFactory.makeRootNode(rootDomDoc, rootDomDoc, "sqlunet", null, WebFragment.SQLUNETNS);
+			NodeFactory.makeRootNode(rootDomDoc, rootDomDoc, "sqlunet", null, WebFragment.SQLUNET_NS);
 			if (wnDomDoc != null)
 			{
 				rootDomDoc.getDocumentElement().appendChild(rootDomDoc.importNode(wnDomDoc.getFirstChild(), true));

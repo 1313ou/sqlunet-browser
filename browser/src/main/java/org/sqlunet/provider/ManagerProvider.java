@@ -94,13 +94,13 @@ public class ManagerProvider extends BaseProvider
 		}
 
 		final String groupBy = null;
-		if (BaseProvider.logSql)
-		{
-			final String sql = SQLiteQueryBuilder.buildQueryString(false, table, projection, selection, groupBy, null, sortOrder, null);
+		//if (BaseProvider.logSql)
+		//{
+			// final String sql = SQLiteQueryBuilder.buildQueryString(false, table, projection, selection, groupBy, null, sortOrder, null);
 			// logSql(sql, selectionArgs);
 			// Log.d(ManagerProvider.TAG + "SQL", SqlFormatter.format(sql).toString());
 			// Log.d(ManagerProvider.TAG + "ARGS", BaseProvider.argsToString(selectionArgs));
-		}
+		//}
 
 		// do query
 		try

@@ -25,7 +25,7 @@ class FnNodeFactory extends NodeFactory
 	 */
 	static public Node makeFnRootNode(final Document doc, final long wordId, final Character pos)
 	{
-		final Element rootNode = NodeFactory.makeNode(doc, doc, "framenet", null, FrameNetImplementation.FNNS);
+		final Element rootNode = NodeFactory.makeNode(doc, doc, "framenet", null, FrameNetImplementation.FN_NS);
 		if (pos == null)
 		{
 			NodeFactory.addAttributes(rootNode, "wordid", Long.toString(wordId));
@@ -47,7 +47,7 @@ class FnNodeFactory extends NodeFactory
 	 */
 	static public Node makeFnRootNode(final Document doc, final String word, final Character pos)
 	{
-		final Element rootNode = NodeFactory.makeNode(doc, doc, "framenet", null, FrameNetImplementation.FNNS);
+		final Element rootNode = NodeFactory.makeNode(doc, doc, "framenet", null, FrameNetImplementation.FN_NS);
 		if (pos == null)
 		{
 			NodeFactory.addAttributes(rootNode, "word", word);
@@ -252,7 +252,7 @@ class FnNodeFactory extends NodeFactory
 	 */
 	public static Node makeFnRootFrameNode(final Document doc, final long frameId)
 	{
-		final Element rootNode = NodeFactory.makeNode(doc, doc, "framenet", null, FrameNetImplementation.FNNS);
+		final Element rootNode = NodeFactory.makeNode(doc, doc, "framenet", null, FrameNetImplementation.FN_NS);
 		NodeFactory.addAttributes(rootNode, "frameid", Long.toString(frameId));
 		return rootNode;
 	}
@@ -266,7 +266,7 @@ class FnNodeFactory extends NodeFactory
 	 */
 	public static Node makeFnRootLexUnitNode(final Document doc, final long luId)
 	{
-		final Element rootNode = NodeFactory.makeNode(doc, doc, "framenet", null, FrameNetImplementation.FNNS);
+		final Element rootNode = NodeFactory.makeNode(doc, doc, "framenet", null, FrameNetImplementation.FN_NS);
 		NodeFactory.addAttributes(rootNode, "luid", Long.toString(luId));
 		return rootNode;
 	}
@@ -280,7 +280,7 @@ class FnNodeFactory extends NodeFactory
 	 */
 	public static Node makeFnRootSentenceNode(final Document doc, final long sentenceId)
 	{
-		final Element rootNode = NodeFactory.makeNode(doc, doc, "framenet", null, FrameNetImplementation.FNNS);
+		final Element rootNode = NodeFactory.makeNode(doc, doc, "framenet", null, FrameNetImplementation.FN_NS);
 		NodeFactory.addAttributes(rootNode, "sentenceid", Long.toString(sentenceId));
 		return rootNode;
 	}
@@ -294,7 +294,7 @@ class FnNodeFactory extends NodeFactory
 	 */
 	public static Node makeFnRootAnnoSetNode(final Document doc, final long annoSetId)
 	{
-		final Element rootNode = NodeFactory.makeNode(doc, doc, "framenet", null, FrameNetImplementation.FNNS);
+		final Element rootNode = NodeFactory.makeNode(doc, doc, "framenet", null, FrameNetImplementation.FN_NS);
 		NodeFactory.addAttributes(rootNode, "annosetid", Long.toString(annoSetId));
 		return rootNode;
 	}

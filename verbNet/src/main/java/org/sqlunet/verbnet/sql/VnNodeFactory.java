@@ -25,7 +25,7 @@ class VnNodeFactory extends NodeFactory
 	 */
 	static public Node makeVnRootNode(final Document doc, final long wordId, final Long synsetId)
 	{
-		final Element rootNode = NodeFactory.makeNode(doc, doc, "verbnet", null, VerbNetImplementation.VNNS);
+		final Element rootNode = NodeFactory.makeNode(doc, doc, "verbnet", null, VerbNetImplementation.VN_NS);
 		if (synsetId == null || synsetId == 0)
 		{
 			NodeFactory.addAttributes(rootNode, "wordid", Long.toString(wordId));
@@ -46,7 +46,7 @@ class VnNodeFactory extends NodeFactory
 	 */
 	public static Node makeVnRootClassNode(final Document doc, final long classId)
 	{
-		final Element rootNode = NodeFactory.makeNode(doc, doc, "verbnet", null, VerbNetImplementation.VNNS);
+		final Element rootNode = NodeFactory.makeNode(doc, doc, "verbnet", null, VerbNetImplementation.VN_NS);
 		NodeFactory.addAttributes(rootNode, "classid", Long.toString(classId));
 		return rootNode;
 	}

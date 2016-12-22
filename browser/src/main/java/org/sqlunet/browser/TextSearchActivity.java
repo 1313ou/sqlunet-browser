@@ -60,7 +60,6 @@ public class TextSearchActivity extends Activity
 			// search query submit or suggestion selection (when a suggested item is selected)
 			final String query = intent.getStringExtra(SearchManager.QUERY);
 			this.fragment.search(query);
-			return;
 		}
 	}
 }

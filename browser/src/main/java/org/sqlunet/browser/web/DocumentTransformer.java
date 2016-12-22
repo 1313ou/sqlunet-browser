@@ -17,7 +17,7 @@ class DocumentTransformer
 {
 	static private final String TAG = "DocumentTransformer";
 
-	static private final String XSLDIR = "/org/sqlunet/";
+	static private final String XSL_DIR = "/org/sqlunet/";
 
 	/**
 	 * Transform Document to HTML
@@ -53,19 +53,19 @@ class DocumentTransformer
 		switch (from)
 		{
 			case WORDNET:
-				xsl = DocumentTransformer.XSLDIR + (isSelector ? "select_wordnet2html.xsl" : "wordnet2html.xsl");
+				xsl = DocumentTransformer.XSL_DIR + (isSelector ? "select_wordnet2html.xsl" : "wordnet2html.xsl");
 				break;
 			case VERBNET:
-				xsl = DocumentTransformer.XSLDIR + (isSelector ? "select_verbnet2html.xsl" : "verbnet2html.xsl");
+				xsl = DocumentTransformer.XSL_DIR + (isSelector ? "select_verbnet2html.xsl" : "verbnet2html.xsl");
 				break;
 			case PROPBANK:
-				xsl = DocumentTransformer.XSLDIR + (isSelector ? "select_propbank2html.xsl" : "propbank2html.xsl");
+				xsl = DocumentTransformer.XSL_DIR + (isSelector ? "select_propbank2html.xsl" : "propbank2html.xsl");
 				break;
 			case FRAMENET:
-				xsl = DocumentTransformer.XSLDIR + (isSelector ? "select_framenet2html.xsl" : "framenet2html.xsl");
+				xsl = DocumentTransformer.XSL_DIR + (isSelector ? "select_framenet2html.xsl" : "framenet2html.xsl");
 				break;
 			case BNC:
-				xsl = DocumentTransformer.XSLDIR + (isSelector ? "select_bnc2html.xsl" : "bnc2html.xsl");
+				xsl = DocumentTransformer.XSL_DIR + (isSelector ? "select_bnc2html.xsl" : "bnc2html.xsl");
 				break;
 		}
 		return DocumentTransformer.class.getResourceAsStream(xsl);

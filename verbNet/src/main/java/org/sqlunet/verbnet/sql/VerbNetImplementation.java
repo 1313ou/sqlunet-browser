@@ -17,7 +17,7 @@ import java.util.List;
  */
 public class VerbNetImplementation implements VerbNetInterface
 {
-	static public final String VNNS = "http://org.sqlunet/vn";
+	static public final String VN_NS = "http://org.sqlunet/vn";
 
 	// S E L E C T O R
 
@@ -32,7 +32,7 @@ public class VerbNetImplementation implements VerbNetInterface
 	public Document querySelectorDoc(final SQLiteDatabase connection, final String word)
 	{
 		final Document doc = DomFactory.makeDocument();
-		final Node rootNode = NodeFactory.makeNode(doc, doc, "verbnet", word, VerbNetImplementation.VNNS);
+		final Node rootNode = NodeFactory.makeNode(doc, doc, "verbnet", word, VerbNetImplementation.VN_NS);
 		VerbNetImplementation.walkSelector(connection, doc, rootNode, word);
 		return doc;
 	}
@@ -64,7 +64,7 @@ public class VerbNetImplementation implements VerbNetInterface
 	public Document queryDoc(final SQLiteDatabase connection, final String word)
 	{
 		final Document doc = DomFactory.makeDocument();
-		final Node rootNode = NodeFactory.makeNode(doc, doc, "verbnet", word, VerbNetImplementation.VNNS);
+		final Node rootNode = NodeFactory.makeNode(doc, doc, "verbnet", word, VerbNetImplementation.VN_NS);
 		VerbNetImplementation.walk(connection, doc, rootNode, word);
 		return doc;
 	}

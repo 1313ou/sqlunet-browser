@@ -10,7 +10,6 @@ import java.io.StringReader;
 import java.net.URL;
 
 import mf.javax.xml.transform.Source;
-import mf.javax.xml.transform.TransformerException;
 import mf.javax.xml.transform.stream.StreamSource;
 import mf.javax.xml.validation.Schema;
 import mf.javax.xml.validation.SchemaFactory;
@@ -18,16 +17,13 @@ import mf.javax.xml.validation.Validator;
 
 public class DomValidator
 {
-	static final String TAG = "XMLValidator";
+	private static final String TAG = "XMLValidator";
 
 	/**
 	 * DomValidator
 	 *
 	 * @param validator validator
 	 * @param source    source to validate
-	 * @throws SAXException         exception
-	 * @throws IOException          exception
-	 * @throws TransformerException exception
 	 */
 	private static void validate(final Validator validator, final Source source)
 	{
@@ -51,7 +47,6 @@ public class DomValidator
 	 *
 	 * @param xsdUrl  xsd url
 	 * @param strings files
-	 * @throws SAXException exception
 	 */
 	public static void validateStrings(final URL xsdUrl, final String... strings)
 	{
@@ -77,7 +72,6 @@ public class DomValidator
 	 *
 	 * @param xsdUrl    xsd url
 	 * @param documents documents
-	 * @throws SAXException exception
 	 */
 	public static void validateDocs(final URL xsdUrl, final org.w3c.dom.Document... documents)
 	{
@@ -88,7 +82,7 @@ public class DomValidator
 			{
 				if(document!=null)
 				{
-					// cannot make org.w3c.dom.Documnet and mf.org.w3c.dom.Document compatible
+					// cannot make org.w3c.dom.Document and mf.org.w3c.dom.Document compatible
 					// DomValidator.validate(validator, new DOMSource(document));
 					final String string = DomTransformer.docToXml(document);
 					DomValidator.validate(validator, new StreamSource(new StringReader(string)));
@@ -106,8 +100,8 @@ public class DomValidator
 	 *
 	 * @param xsdUrl    xsd url
 	 * @param filePaths files
-	 * @throws SAXException exception
 	 */
+	@SuppressWarnings("unused")
 	public static void validateFiles(final URL xsdUrl, final String... filePaths)
 	{
 		try
@@ -147,7 +141,8 @@ public class DomValidator
 	 * @param xsdPath xsd file
 	 * @return xsdUrl
 	 */
-	public static URL path2Url(final String xsdPath) throws SAXException
+	@SuppressWarnings("unused")
+	public static URL path2Url(final String xsdPath)
 	{
 		URL xsdUrl;
 		try

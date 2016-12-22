@@ -22,7 +22,7 @@ class BncNodeFactory extends NodeFactory
 	 */
 	static public Node makeBncRootNode(final Document doc, final long wordId, final Character pos)
 	{
-		final Element rootNode = NodeFactory.makeNode(doc, doc, "bnc", null, BncImplementation.BNCNS);
+		final Element rootNode = NodeFactory.makeNode(doc, doc, "bnc", null, BncImplementation.BNC_NS);
 		if (pos == null)
 		{
 			NodeFactory.addAttributes(rootNode, "wordid", Long.toString(wordId));

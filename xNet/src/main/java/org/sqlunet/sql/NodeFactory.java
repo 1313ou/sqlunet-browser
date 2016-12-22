@@ -11,9 +11,9 @@ import org.w3c.dom.Node;
  */
 public class NodeFactory
 {
-	static String NS_URL = "http://org.sqlunet";
+	private static final String NS_URL = "http://org.sqlunet";
 
-	static String NS_XSD = "SqlUNet.xsd";
+	private static final String NS_XSD = "SqlUNet.xsd";
 
 	/**
 	 * Make versatile node
@@ -91,7 +91,6 @@ public class NodeFactory
 	 * Add attributes to element
 	 *
 	 * @param element DOM element to attach attributes to	 * @param args     name-value pairs
-	 * @return newly created node
 	 */
 	static public void addAttributes(final Element element, final String... args)
 	{

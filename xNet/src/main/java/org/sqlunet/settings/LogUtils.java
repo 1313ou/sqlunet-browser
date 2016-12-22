@@ -15,26 +15,27 @@ import java.io.IOException;
  */
 public class LogUtils
 {
+	static private final String TAG = "";
+
 	/**
 	 * Write long text to log file
 	 *
 	 * @param text   text to write
 	 * @param append whether to append to file
 	 */
-	static public String writeLog(final String text, final boolean append)
+	static public String writeLog(final CharSequence text, final boolean append)
 	{
 		final File storage = Environment.getExternalStorageDirectory();
 		final File logFile = new File(storage, "sqlunet.log");
-		if (!logFile.exists())
+		try
 		{
-			try
-			{
-				logFile.createNewFile();
-			}
-			catch (IOException e)
-			{
-				e.printStackTrace();
-			}
+			//noinspection ResultOfMethodCallIgnored
+			logFile.createNewFile();
+		}
+		catch (IOException e)
+		{
+			Log.e(TAG, "Cannot create file", e);
+			return null;
 		}
 		try
 		{
@@ -46,7 +47,7 @@ public class LogUtils
 		}
 		catch (IOException e)
 		{
-			e.printStackTrace();
+			Log.e(TAG, "Cannot write", e);
 		}
 		final String logFilePath = logFile.getAbsolutePath();
 		Log.d("LOG", logFilePath);
