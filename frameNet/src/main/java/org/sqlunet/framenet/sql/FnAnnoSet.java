@@ -41,10 +41,10 @@ public class FnAnnoSet
 	public static FnAnnoSet make(final SQLiteDatabase connection, final long annoSetId)
 	{
 		FnAnnoSet result = null;
-		FnAnnoSetQueryCommand query = null;
+		FnAnnoSetQuery query = null;
 		try
 		{
-			query = new FnAnnoSetQueryCommand(connection, annoSetId);
+			query = new FnAnnoSetQuery(connection, annoSetId);
 			query.execute();
 
 			if (query.next())

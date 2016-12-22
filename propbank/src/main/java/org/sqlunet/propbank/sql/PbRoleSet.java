@@ -60,10 +60,10 @@ class PbRoleSet
 	static public Pair<Long, List<PbRoleSet>> makeFromWord(final SQLiteDatabase connection, final String word)
 	{
 		final List<PbRoleSet> result = new ArrayList<>();
-		PbRoleSetQueryFromWordCommand query = null;
+		PbRoleSetQueryFromWord query = null;
 		try
 		{
-			query = new PbRoleSetQueryFromWordCommand(connection, word);
+			query = new PbRoleSetQueryFromWord(connection, word);
 			query.execute();
 
 			long wordId = 0;
@@ -97,10 +97,10 @@ class PbRoleSet
 	static public List<PbRoleSet> makeFromWordId(final SQLiteDatabase connection, final long wordId)
 	{
 		final List<PbRoleSet> result = new ArrayList<>();
-		PbRoleSetQueryFromWordIdCommand query = null;
+		PbRoleSetQueryFromWordId query = null;
 		try
 		{
-			query = new PbRoleSetQueryFromWordIdCommand(connection, wordId);
+			query = new PbRoleSetQueryFromWordId(connection, wordId);
 			query.execute();
 
 			while (query.next())
@@ -132,10 +132,10 @@ class PbRoleSet
 	static public List<PbRoleSet> make(final SQLiteDatabase connection, final long roleSetId)
 	{
 		final List<PbRoleSet> result = new ArrayList<>();
-		PbRoleSetQueryCommand query = null;
+		PbRoleSetQuery query = null;
 		try
 		{
-			query = new PbRoleSetQueryCommand(connection, roleSetId);
+			query = new PbRoleSetQuery(connection, roleSetId);
 			query.execute();
 
 			while (query.next())

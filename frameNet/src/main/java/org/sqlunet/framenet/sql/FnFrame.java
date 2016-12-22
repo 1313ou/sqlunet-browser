@@ -64,10 +64,10 @@ public class FnFrame
 	public static FnFrame make(final SQLiteDatabase connection, final long frameId)
 	{
 		FnFrame result = null;
-		FnFrameQueryCommand query = null;
+		FnFrameQuery query = null;
 		try
 		{
-			query = new FnFrameQueryCommand(connection, frameId);
+			query = new FnFrameQuery(connection, frameId);
 			query.execute();
 
 			if (query.next())

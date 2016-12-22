@@ -35,7 +35,7 @@ public class Word extends BasicWord
 	 *
 	 * @param query database query
 	 */
-	private Word(final WordQueryCommand query)
+	private Word(final WordQuery query)
 	{
 		super(query.getLemma(), query.getId());
 	}
@@ -50,10 +50,10 @@ public class Word extends BasicWord
 	static public Word make(final SQLiteDatabase connection, final String lemma)
 	{
 		Word word = null;
-		WordQueryCommand query = null;
+		WordQuery query = null;
 		try
 		{
-			query = new WordQueryCommand(connection, lemma);
+			query = new WordQuery(connection, lemma);
 			query.execute();
 
 			if (query.next())
@@ -84,11 +84,11 @@ public class Word extends BasicWord
 	 */
 	public List<Synset> getSynsets(final SQLiteDatabase connection)
 	{
-		SynsetsQueryCommand query = null;
+		SynsetsQueryFromWordId query = null;
 		List<Synset> synsets = new ArrayList<>();
 		try
 		{
-			query = new SynsetsQueryCommand(connection, this.id);
+			query = new SynsetsQueryFromWordId(connection, this.id);
 			query.execute();
 
 			while (query.next())
@@ -122,11 +122,11 @@ public class Word extends BasicWord
 	 */
 	public List<Synset> getTypedSynsets(final SQLiteDatabase connection, final int targetType, final boolean lexDomainBased)
 	{
-		TypedSynsetsQueryCommand query = null;
+		SynsetsQueryFromWordIdAndCondition query = null;
 		List<Synset> synsets = new ArrayList<>();
 		try
 		{
-			query = new TypedSynsetsQueryCommand(connection, lexDomainBased);
+			query = new SynsetsQueryFromWordIdAndCondition(connection, lexDomainBased);
 			query.setWordId(this.id);
 			if (lexDomainBased)
 			{
@@ -169,11 +169,11 @@ public class Word extends BasicWord
 	@SuppressWarnings("unused")
 	public static Map<Integer, Set<Integer>> getLinkTypes(final SQLiteDatabase connection, final String word)
 	{
-		LinkTypesQueryCommand query = null;
+		LinkTypesQueryFromWord query = null;
 		Map<Integer, Set<Integer>> map = new TreeMap<>();
 		try
 		{
-			query = new LinkTypesQueryCommand(connection);
+			query = new LinkTypesQueryFromWord(connection);
 			query.setWord(word);
 			query.execute();
 

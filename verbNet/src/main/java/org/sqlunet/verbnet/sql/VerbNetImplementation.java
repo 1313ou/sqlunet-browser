@@ -32,7 +32,7 @@ public class VerbNetImplementation implements VerbNetInterface
 	public Document querySelectorDoc(final SQLiteDatabase connection, final String word)
 	{
 		final Document doc = DomFactory.makeDocument();
-		final Node rootNode = org.sqlunet.sql.NodeFactory.makeNode(doc, doc, "verbnet", word, VerbNetImplementation.VNNS);
+		final Node rootNode = NodeFactory.makeNode(doc, doc, "verbnet", word, VerbNetImplementation.VNNS);
 		VerbNetImplementation.walkSelector(connection, doc, rootNode, word);
 		return doc;
 	}
@@ -64,7 +64,7 @@ public class VerbNetImplementation implements VerbNetInterface
 	public Document queryDoc(final SQLiteDatabase connection, final String word)
 	{
 		final Document doc = DomFactory.makeDocument();
-		final Node rootNode = org.sqlunet.sql.NodeFactory.makeNode(doc, doc, "verbnet", word, VerbNetImplementation.VNNS);
+		final Node rootNode = NodeFactory.makeNode(doc, doc, "verbnet", word, VerbNetImplementation.VNNS);
 		VerbNetImplementation.walk(connection, doc, rootNode, word);
 		return doc;
 	}
@@ -266,8 +266,8 @@ public class VerbNetImplementation implements VerbNetInterface
 	static private void walk(final SQLiteDatabase connection, final Document doc, final Node parent, final long targetWordId, final Long targetSynsetId, final boolean roles, final boolean frames)
 	{
 		// class memberships
-		final List<VnClassMembership> classMemberships = VnClassMembership.make(connection, targetWordId, targetSynsetId);
-		for (final VnClassMembership classMembership : classMemberships)
+		final List<VnClassSenseMap> classMemberships = VnClassSenseMap.make(connection, targetWordId, targetSynsetId);
+		for (final VnClassSenseMap classMembership : classMemberships)
 		{
 			// membership
 			final Node membershipNode = VnNodeFactory.makeVnClassMembershipNode(doc, parent, classMembership);

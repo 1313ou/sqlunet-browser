@@ -86,10 +86,10 @@ public class FnLexUnit
 	public static FnLexUnit makeFromId(final SQLiteDatabase connection, final long luId)
 	{
 		FnLexUnit result = null;
-		FnLexUnitQueryCommand query = null;
+		FnLexUnitQuery query = null;
 		try
 		{
-			query = new FnLexUnitQueryCommand(connection, luId);
+			query = new FnLexUnitQuery(connection, luId);
 			query.execute();
 
 			if (query.next())
@@ -126,10 +126,10 @@ public class FnLexUnit
 	static public Pair<Long, List<FnLexUnit>> makeFromWord(final SQLiteDatabase connection, final String word)
 	{
 		final List<FnLexUnit> result = new ArrayList<>();
-		FnLexUnitQueryCommandFromWord query = null;
+		FnLexUnitQueryFromWord query = null;
 		try
 		{
-			query = new FnLexUnitQueryCommandFromWord(connection, word);
+			query = new FnLexUnitQueryFromWord(connection, word);
 			query.execute();
 
 			long wordId = 0;
@@ -171,10 +171,10 @@ public class FnLexUnit
 	static public List<FnLexUnit> makeFromWordId(final SQLiteDatabase connection, final long wordId, final Character pos)
 	{
 		final List<FnLexUnit> result = new ArrayList<>();
-		FnLexUnitFromWordQueryCommand query = null;
+		FnLexUnitQueryFromWordId query = null;
 		try
 		{
-			query = new FnLexUnitFromWordQueryCommand(connection, wordId, pos);
+			query = new FnLexUnitQueryFromWordId(connection, wordId, pos);
 			query.execute();
 
 			while (query.next())
@@ -212,10 +212,10 @@ public class FnLexUnit
 	public static List<FnLexUnit> makeFromFrame(final SQLiteDatabase connection, final long frameId)
 	{
 		final List<FnLexUnit> result = new ArrayList<>();
-		FnFrameLexUnitQueryCommand query = null;
+		FnLexUnitQueryFromFrameId query = null;
 		try
 		{
-			query = new FnFrameLexUnitQueryCommand(connection, frameId);
+			query = new FnLexUnitQueryFromFrameId(connection, frameId);
 			query.execute();
 
 			while (query.next())

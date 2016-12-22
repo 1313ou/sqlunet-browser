@@ -59,10 +59,10 @@ class FnLayer
 	public static List<FnLayer> makeFromSentence(final SQLiteDatabase connection, final long sentenceId)
 	{
 		List<FnLayer> result = null;
-		FnLayerQueryFromSentenceCommand query = null;
+		FnLayerQueryFromSentenceId query = null;
 		try
 		{
-			query = new FnLayerQueryFromSentenceCommand(connection, sentenceId);
+			query = new FnLayerQueryFromSentenceId(connection, sentenceId);
 			query.execute();
 
 			while (query.next())
@@ -98,10 +98,10 @@ class FnLayer
 	public static List<FnLayer> makeFromAnnoSet(final SQLiteDatabase connection, final long annoSetId)
 	{
 		List<FnLayer> result = null;
-		FnLayerQueryFromAnnoSetCommand query = null;
+		FnLayerQueryFromAnnoSetId query = null;
 		try
 		{
-			query = new FnLayerQueryFromAnnoSetCommand(connection, annoSetId);
+			query = new FnLayerQueryFromAnnoSetId(connection, annoSetId);
 			query.execute();
 
 			while (query.next())

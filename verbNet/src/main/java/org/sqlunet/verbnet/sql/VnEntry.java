@@ -46,10 +46,10 @@ public class VnEntry
 	static public VnEntry make(final SQLiteDatabase connection, final String word)
 	{
 		VnEntry entry = null;
-		VnQueryCommand query = null;
+		VnClassQueryFromWordAndPos query = null;
 		try
 		{
-			query = new VnQueryCommand(connection, word);
+			query = new VnClassQueryFromWordAndPos(connection, word);
 			query.execute();
 
 			long wordId = 0;

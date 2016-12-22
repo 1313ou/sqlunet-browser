@@ -87,11 +87,11 @@ class PbExample
 	static public List<PbExample> make(final SQLiteDatabase connection, final long roleSetId)
 	{
 		final List<PbExample> result = new ArrayList<>();
-		PbExampleQueryCommand query = null;
+		PbExampleQueryFromRoleSetId query = null;
 
 		try
 		{
-			query = new PbExampleQueryCommand(connection, roleSetId);
+			query = new PbExampleQueryFromRoleSetId(connection, roleSetId);
 			query.execute();
 
 			while (query.next())

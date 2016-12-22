@@ -44,10 +44,10 @@ public class FnSentence
 	public static FnSentence make(final SQLiteDatabase connection, final long sentenceId)
 	{
 		FnSentence result = null;
-		FnSentenceQueryCommand query = null;
+		FnSentenceQuery query = null;
 		try
 		{
-			query = new FnSentenceQueryCommand(connection, sentenceId);
+			query = new FnSentenceQuery(connection, sentenceId);
 			query.execute();
 
 			if (query.next())
@@ -78,10 +78,10 @@ public class FnSentence
 	public static List<FnSentence> makeFromLexicalUnit(final SQLiteDatabase connection, final long luId)
 	{
 		final List<FnSentence> result = new ArrayList<>();
-		FnSentenceQueryFromLexicalUnitCommand query = null;
+		FnSentenceQueryFromLexUnitId query = null;
 		try
 		{
-			query = new FnSentenceQueryFromLexicalUnitCommand(connection, luId);
+			query = new FnSentenceQueryFromLexUnitId(connection, luId);
 			query.execute();
 
 			while (query.next())

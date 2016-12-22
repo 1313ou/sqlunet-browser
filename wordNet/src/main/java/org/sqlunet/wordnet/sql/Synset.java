@@ -34,7 +34,7 @@ class Synset extends BasicSynset
 	 *
 	 * @param query query for synsets
 	 */
-	Synset(final SynsetsQueryCommand query)
+	Synset(final SynsetsQueryFromWordId query)
 	{
 		super(query.getSynsetId(), query.getDefinition(), query.getLexDomainId(), query.getSample());
 	}
@@ -44,7 +44,7 @@ class Synset extends BasicSynset
 	 *
 	 * @param query query for synset
 	 */
-	Synset(final SynsetQueryCommand query)
+	Synset(final SynsetQuery query)
 	{
 		super(query.getSynsetId(), query.getDefinition(), query.getLexDomainId(), query.getSample());
 	}
@@ -54,7 +54,7 @@ class Synset extends BasicSynset
 	 *
 	 * @param query query for synsets of a given type
 	 */
-	Synset(final TypedSynsetsQueryCommand query)
+	Synset(final SynsetsQueryFromWordIdAndCondition query)
 	{
 		super(query.getSynsetId(), query.getDefinition(), query.getLexDomainId(), query.getSample());
 	}
@@ -64,7 +64,7 @@ class Synset extends BasicSynset
 	 *
 	 * @param query query for linked synsets
 	 */
-	Synset(final LinksQueryCommand query)
+	Synset(final LinksQueryFromSynsetId query)
 	{
 		super(query.getSynsetId(), query.getDefinition(), query.getLexDomainId(), query.getSamples());
 	}
@@ -74,7 +74,7 @@ class Synset extends BasicSynset
 	 *
 	 * @param query query for synsets linked through a given relation type
 	 */
-	Synset(final TypedLinksQueryCommand query)
+	Synset(final LinksQueryFromSynsetIdAndLinkType query)
 	{
 		super(query.getSynsetId(), query.getDefinition(), query.getLexDomainId(), query.getSamples());
 	}
@@ -87,11 +87,11 @@ class Synset extends BasicSynset
 	 */
 	public List<Word> getSynsetWords(final SQLiteDatabase connection)
 	{
-		SynsetWordsQueryCommand query = null;
+		SynsetWordsQuery query = null;
 		List<Word> words = new ArrayList<>();
 		try
 		{
-			query = new SynsetWordsQueryCommand(connection, this.synsetId);
+			query = new SynsetWordsQuery(connection, this.synsetId);
 			query.execute();
 
 			while (query.next())
@@ -173,11 +173,11 @@ class Synset extends BasicSynset
 	 */
 	public List<Link> getLinks(final SQLiteDatabase connection, final long wordId)
 	{
-		LinksQueryCommand query = null;
+		LinksQueryFromSynsetId query = null;
 		List<Link> links = new ArrayList<>();
 		try
 		{
-			query = new LinksQueryCommand(connection);
+			query = new LinksQueryFromSynsetId(connection);
 			query.setFromSynset(this.synsetId);
 			query.setFromWord(wordId);
 			query.execute();
@@ -213,11 +213,11 @@ class Synset extends BasicSynset
 	 */
 	public List<Link> getTypedLinks(final SQLiteDatabase connection, final long wordId, final int linkType)
 	{
-		TypedLinksQueryCommand query = null;
+		LinksQueryFromSynsetIdAndLinkType query = null;
 		List<Link> links = new ArrayList<>();
 		try
 		{
-			query = new TypedLinksQueryCommand(connection);
+			query = new LinksQueryFromSynsetIdAndLinkType(connection);
 			query.setFromSynset(this.synsetId);
 			query.setFromWord(wordId);
 			query.setLinkType(linkType);

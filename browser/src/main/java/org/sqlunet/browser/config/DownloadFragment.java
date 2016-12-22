@@ -11,6 +11,7 @@ import android.content.IntentFilter;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -164,16 +165,16 @@ public class DownloadFragment extends Fragment implements View.OnClickListener
 		this.downloadButton.setOnClickListener(this);
 		this.progressBar = (ProgressBar) view.findViewById(R.id.progressBar);
 		this.progressStatus = (TextView) view.findViewById(R.id.progressStatus);
+
 		final TextView srcView = (TextView) view.findViewById(R.id.src);
 		srcView.setText(this.downloadUrl);
+		srcView.setSingleLine(true);
+		srcView.setEllipsize(TextUtils.TruncateAt.MARQUEE);
+
 		final TextView targetView = (TextView) view.findViewById(R.id.target);
 		targetView.setText(this.destDir != null ? this.destDir.getAbsolutePath() : "");
-
-		// TODO
-		// srcView.setSingleLine(true);
-		// srcView.setEllipsize(TextUtils.TruncateAt.MARQUEE);
-		// targetView.setSingleLine(true);
-		// targetView.setEllipsize(TextUtils.TruncateAt.MARQUEE);
+		targetView.setSingleLine(true);
+		targetView.setEllipsize(TextUtils.TruncateAt.MARQUEE);
 
 		return view;
 	}
@@ -259,17 +260,9 @@ public class DownloadFragment extends Fragment implements View.OnClickListener
 				request.setDestinationUri(destUri);
 			}
 
-			// @formatter: off
-			// if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN)
-			// {
-			//      request.setAllowedOverMetered(false);
-			// }
-			// else
-			// {
-			//      request.setAllowedNetworkTypes(Request.NETWORK_WIFI);
-			// }
+			// request.setAllowedOverMetered(false);
+			// request.setAllowedNetworkTypes(Request.NETWORK_WIFI);
 			// request.setAllowedOverRoaming(false);
-			// @formatter: on
 
 			request.setNotificationVisibility(Request.VISIBILITY_VISIBLE);
 			this.downloadId = this.downloadManager.enqueue(request);

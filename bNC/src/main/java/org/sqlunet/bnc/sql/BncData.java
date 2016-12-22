@@ -40,10 +40,10 @@ public class BncData
 	public static List<BncData> makeData(final SQLiteDatabase connection, final String targetWord)
 	{
 		final List<BncData> result = new ArrayList<>();
-		BncQueryCommand query = null;
+		BncQuery query = null;
 		try
 		{
-			query = new BncQueryCommand(connection, targetWord);
+			query = new BncQuery(connection, targetWord);
 			query.execute();
 
 			while (query.next())
@@ -66,10 +66,10 @@ public class BncData
 	public static List<BncData> makeData(final SQLiteDatabase connection, final long targetWordId, final Character targetPos)
 	{
 		final List<BncData> result = new ArrayList<>();
-		BncQueryCommand query = null;
+		BncQuery query = null;
 		try
 		{
-			query = new BncQueryCommand(connection, targetWordId, targetPos);
+			query = new BncQuery(connection, targetWordId, targetPos);
 			query.execute();
 
 			while (query.next())

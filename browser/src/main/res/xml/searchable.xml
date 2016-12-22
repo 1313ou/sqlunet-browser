@@ -9,7 +9,6 @@
             android:searchSuggestIntentAction="android.intent.action.VIEW"
 	>
 
-	<!--     //TODO -->
 	<!--     android:searchSuggestIntentData="content://org.sqlunet.provider/lookup_word/search_suggest_query" > -->
 	<!--     android:searchSuggestSelection="lemma MATCH ?" > -->
 

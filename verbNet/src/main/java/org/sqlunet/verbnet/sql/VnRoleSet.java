@@ -36,12 +36,12 @@ public class VnRoleSet
 	 */
 	static public VnRoleSet make(final SQLiteDatabase connection, final long classId)
 	{
-		VnRoleQueryCommand query = null;
+		VnRoleQueryFromClassId query = null;
 		VnRoleSet roleSet = null;
 
 		try
 		{
-			query = new VnRoleQueryCommand(connection, classId);
+			query = new VnRoleQueryFromClassId(connection, classId);
 			query.execute();
 
 			while (query.next())
@@ -83,12 +83,12 @@ public class VnRoleSet
 	 */
 	static public VnRoleSet make(final SQLiteDatabase connection, final long classId, final long wordId, final Long synsetId)
 	{
-		VnRoleQueryFromSenseCommand query = null;
+		VnRoleQueryFromClassIdAndSense query = null;
 		VnRoleSet roleSet = null;
 
 		try
 		{
-			query = new VnRoleQueryFromSenseCommand(connection, classId, wordId, synsetId);
+			query = new VnRoleQueryFromClassIdAndSense(connection, classId, wordId, synsetId);
 			query.execute();
 
 			while (query.next())

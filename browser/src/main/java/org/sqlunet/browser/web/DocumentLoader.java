@@ -1,10 +1,9 @@
 package org.sqlunet.browser.web;
 
-import android.annotation.TargetApi;
 import android.content.AsyncTaskLoader;
 import android.content.Context;
-import android.os.Build;
 import android.os.CancellationSignal;
+import android.os.OperationCanceledException;
 
 import org.w3c.dom.Document;
 
@@ -38,17 +37,15 @@ abstract public class DocumentLoader extends AsyncTaskLoader<Document>
 	}
 
 	/* Runs on a worker thread */
-	@TargetApi(Build.VERSION_CODES.JELLY_BEAN)
 	@Override
 	public Document loadInBackground()
 	{
 		synchronized (this)
 		{
-			// TODO
-			// if (isLoadInBackgroundCanceled())
-			// {
-			// throw new OperationCanceledException();
-			// }
+			if (isLoadInBackgroundCanceled())
+			{
+				throw new OperationCanceledException();
+			}
 			this.cancellationSignal = new CancellationSignal();
 		}
 		try
@@ -71,7 +68,6 @@ abstract public class DocumentLoader extends AsyncTaskLoader<Document>
 	 */
 	abstract protected Document getDoc();
 
-	@TargetApi(Build.VERSION_CODES.JELLY_BEAN)
 	@Override
 	public boolean cancelLoad()
 	{

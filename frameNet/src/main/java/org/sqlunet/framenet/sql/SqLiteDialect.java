@@ -8,6 +8,17 @@ package org.sqlunet.framenet.sql;
 @SuppressWarnings("unused")
 class SqLiteDialect
 {
+	// LEXUNITS
+	// lex unit from lex unit id
+	static public final String FrameNetLexUnitQuery = //
+			"SELECT luid,lexunit,pos,ludefinition,ludict,fetype AS incorporatedfe,frameid,frame,framedefinition " + //
+					"FROM fnlexunits AS lu " + //
+					"LEFT JOIN fnframes USING (frameid) " + //
+					"LEFT JOIN fnposes AS p ON (lu.posid = p.posid) " + //
+					"LEFT JOIN fnfetypes ON (incorporatedfetypeid = fetypeid) " + //
+					"WHERE luid = ? " + //
+					"ORDER BY frame;";
+	// lex units from word
 	public static final String FrameNetLexUnitQueryFromWord = //
 			"SELECT wordid,luid,lexunit,pos,ludefinition,ludict,fetype AS incorporatedfe,frameid,frame,framedefinition " + //
 					"FROM words AS w " + //
@@ -18,7 +29,8 @@ class SqLiteDialect
 					"LEFT JOIN fnposes AS p ON (lu.posid = p.posid) " + //
 					"LEFT JOIN fnfetypes ON (incorporatedfetypeid = fetypeid) " + //
 					"WHERE w.lemma = ?";
-	static public final String FrameNetWordLexUnitQueryFromWordId = //
+	// lex units from word id
+	static public final String FrameNetLexUnitQueryFromWordId = //
 			"SELECT luid,lexunit,pos,ludefinition,ludict,fetype AS incorporatedfe,frameid,frame,framedefinition " + //
 					"FROM words " + //
 					"INNER JOIN fnwords USING (wordid) " + //
@@ -29,15 +41,8 @@ class SqLiteDialect
 					"LEFT JOIN fnfetypes ON (incorporatedfetypeid = fetypeid) " + //
 					"WHERE wordid = ? " + //
 					"ORDER BY frame;";
-	static public final String FrameNetLexUnitQuery = //
-			"SELECT luid,lexunit,pos,ludefinition,ludict,fetype AS incorporatedfe,frameid,frame,framedefinition " + //
-					"FROM fnlexunits AS lu " + //
-					"LEFT JOIN fnframes USING (frameid) " + //
-					"LEFT JOIN fnposes AS p ON (lu.posid = p.posid) " + //
-					"LEFT JOIN fnfetypes ON (incorporatedfetypeid = fetypeid) " + //
-					"WHERE luid = ? " + //
-					"ORDER BY frame;";
-	static public final String FrameNetWordLexUnitWithPosQuery = //
+	// lex units from word id and pos
+	static public final String FrameNetLexUnitQueryFromWordIdAndPos = //
 			"SELECT luid,lexunit,pos,ludefinition,ludict,fetype AS incorporatedfe,frameid,frame,framedefinition " + //
 					"FROM words " + //
 					"INNER JOIN fnwords USING (wordid) " + //
@@ -48,7 +53,8 @@ class SqLiteDialect
 					"LEFT JOIN fnfetypes ON (incorporatedfetypeid = fetypeid) " + //
 					"WHERE wordid = ? AND lu.posid = ? " + //
 					"ORDER BY frame;";
-	static public final String FrameNetFrameLexUnitQuery = //
+	// lex units from frame id
+	static public final String FrameNetLexUnitQueryFromFrameId = //
 			"SELECT luid,lexunit,pos,ludefinition,ludict,fetype AS incorporatedfe,frameid,frame " + //
 					"FROM fnframes " + //
 					"INNER JOIN fnlexunits AS lu USING (frameid) " + //
@@ -56,7 +62,9 @@ class SqLiteDialect
 					"LEFT JOIN fnfetypes ON (incorporatedfetypeid = fetypeid) " + //
 					"WHERE frameid = ? " + //
 					"ORDER BY frame;";
-	// query for framenet frame
+
+	// FRAMES
+	// frame from frame id
 	static public final String FrameNetFrameQuery = //
 			"SELECT f.frameid,f.frame,f.framedefinition, " + //
 					"(SELECT GROUP_CONCAT(semtypeid||':'||semtype||':'||semtypedefinition,'|') " + //
@@ -70,8 +78,10 @@ class SqLiteDialect
 					"	WHERE r.frameid = f.frameid) " + //
 					"FROM fnframes AS f " + //
 					"WHERE f.frameid = ? ;";
-	// query for fe from frame
-	static public final String FrameNetFrameFEQuery = //
+
+	// FRAME ELEMENTS
+	// fes from frame id
+	static public final String FrameNetFEQueryFromFrameId = //
 			"SELECT fetypeid,fetype,feid,fedefinition,feabbrev,coretype,GROUP_CONCAT(semtype,'|') AS semtypes,coretypeid = 1 AS iscorefe,coreset " + //
 					"FROM fnframes " + //
 					"INNER JOIN fnfes USING (frameid) " + //
@@ -82,17 +92,15 @@ class SqLiteDialect
 					"WHERE frameid = ? " + //
 					"GROUP BY feid " + //
 					"ORDER BY iscorefe DESC,coreset,fetype;";
-	// query for framenet annotations
-	//TODO
-	static public final String FrameNetAnnotationsQuery = //
-			"";
-	// query for framenet sentence
+
+	// SENTENCES
+	// sentence from sentence id
 	static public final String FrameNetSentenceQuery = //
 			"SELECT sentenceid,`text` " + //
 					"FROM fnsentences " + //
 					"WHERE sentenceid = ?;";
-	// query for framenet sentences from luid
-	static public final String FrameNetSentencesFromLexicalUnitQuery = //
+	// sentences from lexunit id
+	static public final String FrameNetSentencesQueryFromLexUnitId = //
 			"SELECT sentenceid,`text` " + //
 					"FROM fnlexunits AS u " + //
 					"LEFT JOIN fnsubcorpuses USING (luid) " + //
@@ -100,8 +108,10 @@ class SqLiteDialect
 					"LEFT JOIN fnsentences AS s USING (sentenceid) " + //
 					"WHERE u.luid = ? AND s.sentenceid IS NOT NULL " + //
 					"ORDER BY corpusid,documentid,paragno,sentno;";
-	// query for governors from frame id
-	static public final String FrameNetGovernorQuery = //
+
+	// GOVERNORS
+	// governors from frame id
+	static public final String FrameNetGovernorQueryFromLexUnitId = //
 			"SELECT governorid, wordid, word AS governor " + //
 					"FROM fngovernors " + //
 					"LEFT JOIN fnlexunits_governors USING (governorid) " + //
@@ -110,7 +120,9 @@ class SqLiteDialect
 					"LEFT JOIN words USING (wordid) " + //
 					"WHERE luid = ? " + //
 					"ORDER BY governor;";
-	// query for annoSet from annoSet id
+
+	// ANNOSETS
+	// annoSet from annoSet id
 	public static final String FrameNetAnnoSetQuery = //
 			"SELECT s.sentenceid,`text`,GROUP_CONCAT(o.annosetid) " + //
 					"FROM fnannosets AS a " + //
@@ -118,8 +130,10 @@ class SqLiteDialect
 					"LEFT JOIN fnannosets AS o ON (s.sentenceid = o.sentenceid) " + //
 					"WHERE a.annosetid = ? " + //
 					"GROUP BY a.annosetid;";
-	// query for layers from annoSet id
-	public static final String FrameNetLayerQueryFromAnnoSet = //
+
+	// LAYERS
+	// layers from annoSet id
+	public static final String FrameNetLayerQueryFromAnnoSetId = //
 			"SELECT layerid,layertype,rank,GROUP_CONCAT(start||':'||end||':'||labeltype||':'||CASE WHEN labelitype IS NULL THEN '' ELSE labelitype END,'|') " + //
 					"FROM " + //
 					"(SELECT layerid,layertype,rank,start,end,labeltype,labelitype " + //
@@ -131,8 +145,8 @@ class SqLiteDialect
 					"WHERE annosetid = ? AND labeltypeid IS NOT NULL " + //
 					"ORDER BY rank,layerid,start,end) " + //
 					"GROUP BY layerid;";
-	// query for layers from sentence id
-	public static final String FrameNetLayerQueryFromSentence = //
+	// layers from sentence id
+	public static final String FrameNetLayerQueryFromSentenceId = //
 			"SELECT layerid,layertype,rank,GROUP_CONCAT(start||':'||end||':'||labeltype||':'||CASE WHEN labelitype IS NULL THEN '' ELSE labelitype END,'|') " + //
 					"FROM " + //
 					"(SELECT layerid,layertype,rank,start,end,labeltype,labelitype " + //

@@ -48,7 +48,7 @@ class Link extends Synset
 	 *
 	 * @param query query for synsets linked to a given synset
 	 */
-	public Link(final LinksQueryCommand query)
+	public Link(final LinksQueryFromSynsetId query)
 	{
 		// construct synset
 		super(query);
@@ -69,7 +69,7 @@ class Link extends Synset
 	 *
 	 * @param query is a query for synsets linked to a given synset through a given relation type
 	 */
-	Link(final TypedLinksQueryCommand query)
+	Link(final LinksQueryFromSynsetIdAndLinkType query)
 	{
 		// construct synset
 		super(query);
@@ -111,11 +111,11 @@ class Link extends Synset
 	@Override
 	public List<Link> getLinks(final SQLiteDatabase connection, final long wordId)
 	{
-		TypedLinksQueryCommand query = null;
+		LinksQueryFromSynsetIdAndLinkType query = null;
 		List<Link> links = new ArrayList<>();
 		try
 		{
-			query = new TypedLinksQueryCommand(connection);
+			query = new LinksQueryFromSynsetIdAndLinkType(connection);
 			query.setFromSynset(this.synsetId);
 			query.setFromWord(wordId);
 			query.setLinkType(this.linkType);

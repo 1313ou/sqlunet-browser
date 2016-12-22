@@ -96,10 +96,10 @@ class FnFrameElement
 	public static List<FnFrameElement> make(final SQLiteDatabase connection, final long frameId)
 	{
 		final List<FnFrameElement> result = new ArrayList<>();
-		FnFrameElementQueryCommand query = null;
+		FnFrameElementQueryFromFrameId query = null;
 		try
 		{
-			query = new FnFrameElementQueryCommand(connection, frameId);
+			query = new FnFrameElementQueryFromFrameId(connection, frameId);
 			query.execute();
 
 			while (query.next())

@@ -172,7 +172,7 @@ public class PropBankImplementation implements PropBankInterface
 	public Document querySelectorDoc(final SQLiteDatabase connection, final String word)
 	{
 		final Document doc = DomFactory.makeDocument();
-		final Node rootNode = org.sqlunet.sql.NodeFactory.makeNode(doc, doc, "propbank", word, PropBankImplementation.PBNS);
+		final Node rootNode = NodeFactory.makeNode(doc, doc, "propbank", word, PropBankImplementation.PBNS);
 		PropBankImplementation.walkSelector(connection, doc, rootNode, word);
 		return doc;
 	}
@@ -204,7 +204,7 @@ public class PropBankImplementation implements PropBankInterface
 	public Document queryDoc(final SQLiteDatabase connection, final String word)
 	{
 		final Document doc = DomFactory.makeDocument();
-		final Node rootNode = org.sqlunet.sql.NodeFactory.makeNode(doc, doc, "propbank", word, PropBankImplementation.PBNS);
+		final Node rootNode = NodeFactory.makeNode(doc, doc, "propbank", word, PropBankImplementation.PBNS);
 		PropBankImplementation.walk(connection, doc, rootNode, word);
 		return doc;
 	}

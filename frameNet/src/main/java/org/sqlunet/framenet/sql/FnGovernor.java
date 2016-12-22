@@ -51,10 +51,10 @@ class FnGovernor
 	public static List<FnGovernor> make(final SQLiteDatabase connection, final long luId)
 	{
 		final List<FnGovernor> result = new ArrayList<>();
-		FnGovernorQueryCommand query = null;
+		FnGovernorQueryFromLexUnitId query = null;
 		try
 		{
-			query = new FnGovernorQueryCommand(connection, luId);
+			query = new FnGovernorQueryFromLexUnitId(connection, luId);
 			query.execute();
 
 			while (query.next())

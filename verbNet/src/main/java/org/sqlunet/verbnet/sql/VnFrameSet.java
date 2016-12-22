@@ -38,12 +38,12 @@ public class VnFrameSet
 	 */
 	static public VnFrameSet make(final SQLiteDatabase connection, final long classId, final long wordId, final Long synsetId)
 	{
-		VnFrameQueryFromSenseCommand query = null;
+		VnFrameQueryFromClassIdAndSense query = null;
 		VnFrameSet frameSet = null;
 
 		try
 		{
-			query = new VnFrameQueryFromSenseCommand(connection, classId, wordId, synsetId);
+			query = new VnFrameQueryFromClassIdAndSense(connection, classId, wordId, synsetId);
 			query.execute();
 
 			while (query.next())
@@ -93,12 +93,12 @@ public class VnFrameSet
 	 */
 	public static VnFrameSet make(final SQLiteDatabase connection, final long classId)
 	{
-		VnFrameQueryCommand query = null;
+		VnFrameQueryFromClassId query = null;
 		VnFrameSet frameSet = null;
 
 		try
 		{
-			query = new VnFrameQueryCommand(connection, classId);
+			query = new VnFrameQueryFromClassId(connection, classId);
 			query.execute();
 
 			while (query.next())

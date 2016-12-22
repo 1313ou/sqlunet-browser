@@ -77,10 +77,10 @@ class Mapping
 		// lexdomain
 		Mapping.lexDomains = new ArrayList<>();
 		Mapping.lexDomainsByName = new HashMap<>();
-		LexDomainEnumQueryCommand query = null;
+		LexDomainsQuery query = null;
 		try
 		{
-			query = new LexDomainEnumQueryCommand(connection);
+			query = new LexDomainsQuery(connection);
 			query.execute();
 
 			while (query.next())
@@ -117,10 +117,10 @@ class Mapping
 	{
 		Mapping.linksById = new SparseArray<>();
 		Mapping.linksByName = new HashMap<>();
-		LinkEnumQueryCommand query = null;
+		LinksQuery query = null;
 		try
 		{
-			query = new LinkEnumQueryCommand(connection);
+			query = new LinksQuery(connection);
 			query.execute();
 
 			while (query.next())

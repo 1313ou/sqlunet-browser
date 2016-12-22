@@ -49,10 +49,10 @@ public class VnClass
 	 */
 	static public VnClass make(final SQLiteDatabase connection, final long classId)
 	{
-		VnClassQueryCommand query = null;
+		VnClassQuery query = null;
 		try
 		{
-			query = new VnClassQueryCommand(connection, classId);
+			query = new VnClassQuery(connection, classId);
 			query.execute();
 
 			if (query.next())

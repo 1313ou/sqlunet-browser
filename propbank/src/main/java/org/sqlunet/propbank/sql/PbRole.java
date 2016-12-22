@@ -66,10 +66,10 @@ class PbRole
 	public static List<PbRole> make(final SQLiteDatabase connection, final long roleSetId)
 	{
 		final List<PbRole> result = new ArrayList<>();
-		PbRoleQueryCommand query = null;
+		PbRoleQueryFromRoleSetId query = null;
 		try
 		{
-			query = new PbRoleQueryCommand(connection, roleSetId);
+			query = new PbRoleQueryFromRoleSetId(connection, roleSetId);
 			query.execute();
 
 			while (query.next())
