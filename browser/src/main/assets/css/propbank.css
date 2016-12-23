@@ -10,7 +10,7 @@
 }
 
 .pbrolesetname {
-	background-color: red;
+	background-color: darkred;
 	color: white;
 	font-weight: bold;
 	font-size: large;
@@ -19,7 +19,8 @@
 }
 
 .pbrolesettext {
-	color: blue;
+	color: #336699;
+	font-style: italic;
 }
 
 .pbrole {

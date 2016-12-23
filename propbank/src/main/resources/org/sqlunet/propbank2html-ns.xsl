@@ -17,6 +17,8 @@
 				<SPAN class="treejunction">
 					<IMG class="treepix" src="images/closed.png"/>
 				</SPAN>
+				<!-- data image -->
+				<IMG class="dataimg" src="images/xnet/propbank.png"/>
 				<SPAN class="domain">
 					<xsl:text>propbank</xsl:text>
 				</SPAN>
@@ -28,6 +30,8 @@
 				<SPAN class="treejunction" onclick="javascript:Tree.toggle(this);">
 					<IMG class="treepix" src="images/open.png"/>
 				</SPAN>
+				<!-- data image -->
+				<IMG class="dataimg" src="images/xnet/propbank.png"/>
 				<SPAN class="domain">
 					<xsl:text>propbank</xsl:text>
 				</SPAN>
@@ -52,6 +56,10 @@
 				<SPAN class="pbrolesetname">
 					<xsl:value-of select="./@name"/>
 				</SPAN>
+				<IMG class="dataimg" src="images/xnet/definition.png"/>
+				<SPAN class="pbrolesettext">
+					<xsl:value-of select="./text()"/>
+				</SPAN>
 				<xsl:text> rolesetid=</xsl:text>
 				<xsl:value-of select="./@rolesetid"/>
 				<xsl:text> num=</xsl:text>
@@ -62,11 +70,6 @@
 			<!-- collapsible content -->
 			<UL style="display: block;">
 				<!-- non indented -->
-				<IMG class="dataimg" src="images/xnet/definition.png"/>
-				<SPAN class="pbrolesettext">
-					<xsl:value-of select="./text()"/>
-				</SPAN>
-
 				<xsl:apply-templates select="./pb:role"/>
 				<xsl:apply-templates select="./pb:example"/>
 			</UL>
@@ -114,13 +117,13 @@
 			</SPAN>
 			<!-- collapsible content -->
 			<UL style="display: block;">
-				<!-- non indented -->
-				<DIV class="pbexampletext">
-					<xsl:value-of select="./text()"/>
-				</DIV>
-
-				<xsl:apply-templates select="./pb:rel"/>
-				<xsl:apply-templates select="./pb:arg"/>
+				<LI>
+					<DIV class="pbexampletext">
+						<xsl:value-of select="./text()"/>
+					</DIV>
+					<xsl:apply-templates select="./pb:rel"/>
+					<xsl:apply-templates select="./pb:arg"/>
+				</LI>
 			</UL>
 		</LI>
 	</xsl:template>

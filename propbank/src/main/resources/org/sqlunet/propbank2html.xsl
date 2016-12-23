@@ -60,14 +60,12 @@
 				<xsl:text>head=</xsl:text>
 				<xsl:value-of select="./@head"/>
 			</SPAN>
+			<IMG class="dataimg" src="images/propbank/definition.png"/>
+			<SPAN class="pbrolesettext">
+				<xsl:value-of select="./text()"/>
+			</SPAN>
 			<!-- collapsible content -->
 			<OL style="display: block;">
-				<!-- non indented -->
-				<IMG class="dataimg" src="images/propbank/definition.png"/>
-				<SPAN class="pbrolesettext">
-					<xsl:value-of select="./text()"/>
-				</SPAN>
-
 				<xsl:apply-templates select="./role"/>
 				<xsl:apply-templates select="./example"/>
 			</OL>

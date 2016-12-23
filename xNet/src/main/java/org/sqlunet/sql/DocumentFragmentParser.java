@@ -74,21 +74,24 @@ public class DocumentFragmentParser
 	private DocumentFragment parse(final String text) throws SAXException, IOException
 	{
 		final InputSource input = new InputSource(new StringReader("<dummy>" + text + "</dummy>"));
+
 		// parser
 		final DocumentBuilder builder = makeDocumentBuilder();
 		assert builder != null;
 
 		// parse
 		final Document document = builder.parse(input);
-		// try
-		// {
-		// String xml = docToString(document);
-		// Log.d(TAG, xml);
-		// }
-		// catch (Exception e)
-		// {
-		// e.printStackTrace();
-		// }
+		/*
+		try
+		{
+			final String xml = docToString(document);
+			Log.d("FRAGMENT", xml);
+		}
+		catch (Exception e)
+		{
+			e.printStackTrace();
+		}
+		*/
 
 		// fragment
 		final DocumentFragment fragment = document.createDocumentFragment();

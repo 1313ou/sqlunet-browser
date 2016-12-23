@@ -17,6 +17,8 @@
 				<SPAN class="treejunction">
 					<IMG class="treepix" src="images/closed.png"/>
 				</SPAN>
+				<!-- data image -->
+				<IMG class="dataimg" src="images/xnet/framenet.png"/>
 				<SPAN class="domain">
 					<xsl:text>framenet</xsl:text>
 				</SPAN>
@@ -28,6 +30,8 @@
 				<SPAN class="treejunction" onclick="javascript:Tree.toggle(this);">
 					<IMG class="treepix" src="images/open.png"/>
 				</SPAN>
+				<!-- data image -->
+				<IMG class="dataimg" src="images/xnet/framenet.png"/>
 				<SPAN class="domain">
 					<xsl:text>framenet</xsl:text>
 				</SPAN>
@@ -53,6 +57,8 @@
 				<SPAN class="fnlexunitname">
 					<xsl:value-of select="./@name"/>
 				</SPAN>
+				<!-- data image -->
+				<IMG class="dataimg" src="images/xnet/definition.png"/>
 				<SPAN class="fnlexunitdefinition">
 					<xsl:value-of select="./text()"/>
 				</SPAN>
@@ -82,14 +88,16 @@
 			</SPAN>
 			<!-- collapsible content -->
 			<UL style="display: block;">
-				<SPAN class="fnframetext">
-					<xsl:apply-templates select="./fn:framedefinition"/>
-				</SPAN>
-				<UL style="display: block;">
-					<xsl:apply-templates select="./fn:related"/>
-					<xsl:apply-templates select="./fn:lexunit"/>
-					<xsl:apply-templates select="./fn:fe"/>
-				</UL>
+				<LI>
+					<DIV class="fnframetext">
+						<xsl:apply-templates select="./fn:framedefinition"/>
+					</DIV>
+					<UL style="display: block;">
+						<xsl:apply-templates select="./fn:related"/>
+						<xsl:apply-templates select="./fn:lexunit"/>
+						<xsl:apply-templates select="./fn:fe"/>
+					</UL>
+				</LI>
 			</UL>
 		</LI>
 	</xsl:template>
@@ -135,10 +143,11 @@
 			</SPAN>
 			<!-- collapsible content -->
 			<UL style="display: block;">
-				<!-- non-indented -->
-				<SPAN class="fnfetext">
-					<xsl:apply-templates select="./fn:fedefinition"/>
-				</SPAN>
+				<LI>
+					<DIV class="fnfetext">
+						<xsl:apply-templates select="./fn:fedefinition"/>
+					</DIV>
+				</LI>
 			</UL>
 		</LI>
 	</xsl:template>
@@ -156,9 +165,11 @@
 
 	<xsl:template match="fn:sentences">
 		<!-- collapsible content -->
-		<UL style="display: block;">
-			<xsl:apply-templates select="./fn:sentence"/>
-		</UL>
+		<LI>
+			<UL style="display: block;">
+				<xsl:apply-templates select="./fn:sentence"/>
+			</UL>
+		</LI>
 	</xsl:template>
 
 	<xsl:template match="fn:sentence">
@@ -181,25 +192,27 @@
 			</SPAN>
 			<!-- collapsible content -->
 			<UL style="display: block;">
-				<SPAN class="fnsentencetext">
-					<xsl:value-of select="./text()"/>
-				</SPAN>
+				<LI>
+					<SPAN class="fnsentencetext">
+						<xsl:value-of select="./text()"/>
+					</SPAN>
+				</LI>
 			</UL>
 		</LI>
 	</xsl:template>
 
 	<xsl:template match="fn:framedefinition">
 		<!-- non-indent -->
-		<SPAN class="fnframedefinition">
+		<DIV class="fnframedefinition">
 			<xsl:apply-templates select="./child::node()"/>
-		</SPAN>
+		</DIV>
 	</xsl:template>
 
 	<xsl:template match="fn:fedefinition">
 		<!-- non-indent -->
-		<SPAN class="fnfedefinition">
+		<DIV class="fnfedefinition">
 			<xsl:apply-templates select="./child::node()"/>
-		</SPAN>
+		</DIV>
 	</xsl:template>
 
 	<!-- fen|t|ment|em|ex - outside <ex> -->

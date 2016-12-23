@@ -25,8 +25,15 @@ for d in wn vn pb fn; do
 		fn) xsl=framenet2html;;
 	esac
 	xout="$d-$t"
-	echo $xsl $xin $xout
-	./xsl-transform.sh $xin.xml $xout-fragment.html $xsl-ns.xsl html
+
+	echo TRANSFORM $xin.xml TO $xout-fragment.html WITH $xsl-ns.xsl
+	./xsl-transform.sh $xin.xml $xout-fragment.html $xsl-ns.xsl xml
+
+	echo EMBED $xout-fragment.html TO $xout.html
 	./embed.sh $xout
+
+	echo TIDY $xout.html
+	#tidy -i -o /dev/null -ashtml $xout.html
+	tidy -i -m -ashtml $xout.html
 	#read -p 'done '
 done

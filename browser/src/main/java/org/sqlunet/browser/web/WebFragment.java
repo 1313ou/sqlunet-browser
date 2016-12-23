@@ -28,6 +28,9 @@ import org.sqlunet.browser.BuildConfig;
 import org.sqlunet.browser.Module;
 import org.sqlunet.browser.R;
 import org.sqlunet.browser.xselector.XSelectorPointer;
+import org.sqlunet.dom.DomFactory;
+import org.sqlunet.dom.DomTransformer;
+import org.sqlunet.dom.DomValidator;
 import org.sqlunet.framenet.FnAnnoSetPointer;
 import org.sqlunet.framenet.FnFramePointer;
 import org.sqlunet.framenet.FnLexUnitPointer;
@@ -46,9 +49,6 @@ import org.sqlunet.verbnet.sql.VerbNetImplementation;
 import org.sqlunet.wordnet.SensePointer;
 import org.sqlunet.wordnet.SynsetPointer;
 import org.sqlunet.wordnet.sql.WordNetImplementation;
-import org.sqlunet.dom.DomTransformer;
-import org.sqlunet.dom.DomValidator;
-import org.sqlunet.dom.DomFactory;
 import org.w3c.dom.Document;
 
 import java.net.URLDecoder;
@@ -113,6 +113,12 @@ public class WebFragment extends Fragment
 			final Document fnDomDoc,  //
 			final Document bncDomDoc)
 	{
+		// LogUtils.writeLog(DomTransformer.docToXml(wnDomDoc), false, "wnsqlunet.log");
+		// LogUtils.writeLog(DomTransformer.docToXml(vnDomDoc), false, "vnsqlunet.log");
+		// LogUtils.writeLog(DomTransformer.docToXml(pbDomDoc), false, "pbslunet.log");
+		LogUtils.writeLog(DomTransformer.docToXml(fnDomDoc), false, "fnsqlunet.log");
+		// LogUtils.writeLog(DomTransformer.docToXml(bncDomDoc), false, "bncsqlunet.log");
+
 		String data;
 		if (xml)
 		{
@@ -143,7 +149,7 @@ public class WebFragment extends Fragment
 			data = DomTransformer.docToXml(rootDomDoc);
 			if (BuildConfig.DEBUG)
 			{
-				LogUtils.writeLog(data, false);
+				LogUtils.writeLog(data, false, null);
 				DomValidator.validateStrings(DocumentTransformer.class.getResource("/org/sqlunet/SqlUNet.xsd"), data);
 			}
 
@@ -252,7 +258,7 @@ public class WebFragment extends Fragment
 
 			if (BuildConfig.DEBUG)
 			{
-				LogUtils.writeLog(data, false);
+				LogUtils.writeLog(data, false, null);
 			}
 		}
 		return data;

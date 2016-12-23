@@ -20,13 +20,14 @@ public class LogUtils
 	/**
 	 * Write long text to log file
 	 *
-	 * @param text   text to write
-	 * @param append whether to append to file
+	 * @param text     text to write
+	 * @param append   whether to append to file
+	 * @param fileName file name
 	 */
-	static public String writeLog(final CharSequence text, final boolean append)
+	static public String writeLog(final CharSequence text, final boolean append, final String fileName)
 	{
 		final File storage = Environment.getExternalStorageDirectory();
-		final File logFile = new File(storage, "sqlunet.log");
+		final File logFile = new File(storage, fileName != null ? fileName : "sqlunet.log");
 		try
 		{
 			//noinspection ResultOfMethodCallIgnored

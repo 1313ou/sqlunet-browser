@@ -19,10 +19,8 @@
 }
 
 .fnlexunitdefinition {
-	color: darkgray;
-	margin-left: 5px;
-	padding-left: 2px;
-	padding-right: 2px;
+	color: #336699;
+	font-style: italic;
 }
 
 .fnlexunittext {
