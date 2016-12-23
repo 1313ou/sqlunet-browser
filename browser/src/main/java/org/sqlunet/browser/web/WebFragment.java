@@ -113,11 +113,11 @@ public class WebFragment extends Fragment
 			final Document fnDomDoc,  //
 			final Document bncDomDoc)
 	{
-		// LogUtils.writeLog(DomTransformer.docToXml(wnDomDoc), false, "wnsqlunet.log");
-		// LogUtils.writeLog(DomTransformer.docToXml(vnDomDoc), false, "vnsqlunet.log");
-		// LogUtils.writeLog(DomTransformer.docToXml(pbDomDoc), false, "pbslunet.log");
-		LogUtils.writeLog(DomTransformer.docToXml(fnDomDoc), false, "fnsqlunet.log");
-		// LogUtils.writeLog(DomTransformer.docToXml(bncDomDoc), false, "bncsqlunet.log");
+		// LogUtils.writeLog(DomTransformer.docToXml(wnDomDoc), false, "wn_sqlunet.log");
+		// LogUtils.writeLog(DomTransformer.docToXml(vnDomDoc), false, "vn_sqlunet.log");
+		// LogUtils.writeLog(DomTransformer.docToXml(pbDomDoc), false, "pb_sqlunet.log");
+		// LogUtils.writeLog(DomTransformer.docToXml(fnDomDoc), false, "fn_sqlunet.log");
+		// LogUtils.writeLog(DomTransformer.docToXml(bncDomDoc), false, "bnc_sqlunet.log");
 
 		String data;
 		if (xml)

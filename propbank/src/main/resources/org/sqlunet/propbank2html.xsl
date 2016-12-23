@@ -1,14 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- PropBank to HTML Client-side 2015/05/15 (C) 2015 Author: Bernard Bou -->
-
-<xsl:transform version="1.0"
-               xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+<xsl:transform xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+               version="1.0">
 	<xsl:output method="xml" indent="yes" encoding="UTF-8"/>
 	<xsl:strip-space elements="label"/>
 
 	<xsl:template match="/">
 		<DIV id="propbank">
-			<xsl:apply-templates select=".//propbank"/>
+			<xsl:apply-templates select="//propbank"/>
 		</DIV>
 	</xsl:template>
 
@@ -18,6 +16,8 @@
 				<SPAN class="treejunction">
 					<IMG class="treepix" src="images/closed.png"/>
 				</SPAN>
+				<!-- data image -->
+				<IMG class="dataimg" src="images/xnet/propbank.png"/>
 				<SPAN class="domain">
 					<xsl:text>propbank</xsl:text>
 				</SPAN>
@@ -29,12 +29,14 @@
 				<SPAN class="treejunction" onclick="javascript:Tree.toggle(this);">
 					<IMG class="treepix" src="images/open.png"/>
 				</SPAN>
+				<!-- data image -->
+				<IMG class="dataimg" src="images/xnet/propbank.png"/>
 				<SPAN class="domain">
 					<xsl:text>propbank</xsl:text>
 				</SPAN>
-				<OL style="display: block;">
+				<UL style="display: block;">
 					<xsl:apply-templates select="./roleset"/>
-				</OL>
+				</UL>
 			</xsl:otherwise>
 		</xsl:choose>
 	</xsl:template>
@@ -47,28 +49,29 @@
 				<IMG class="treepix" src="images/open.png"/>
 			</SPAN>
 			<!-- data image -->
-			<IMG class="dataimg" src="images/propbank/roles.png"/>
+			<IMG class="dataimg" src="images/xnet/roleclass.png"/>
 			<!-- label -->
 			<SPAN class="pbrolesetlabel">
 				<SPAN class="pbrolesetname">
 					<xsl:value-of select="./@name"/>
 				</SPAN>
-				<xsl:text>rolesetid=</xsl:text>
+				<IMG class="dataimg" src="images/xnet/definition.png"/>
+				<SPAN class="pbrolesettext">
+					<xsl:value-of select="./text()"/>
+				</SPAN>
+				<xsl:text> rolesetid=</xsl:text>
 				<xsl:value-of select="./@rolesetid"/>
-				<xsl:text>num=</xsl:text>
+				<xsl:text> num=</xsl:text>
 				<xsl:value-of select="./@num"/>
-				<xsl:text>head=</xsl:text>
+				<xsl:text> head=</xsl:text>
 				<xsl:value-of select="./@head"/>
 			</SPAN>
-			<IMG class="dataimg" src="images/propbank/definition.png"/>
-			<SPAN class="pbrolesettext">
-				<xsl:value-of select="./text()"/>
-			</SPAN>
 			<!-- collapsible content -->
-			<OL style="display: block;">
+			<UL style="display: block;">
+				<!-- non indented -->
 				<xsl:apply-templates select="./role"/>
 				<xsl:apply-templates select="./example"/>
-			</OL>
+			</UL>
 		</LI>
 	</xsl:template>
 
@@ -76,7 +79,7 @@
 		<!-- indented -->
 		<LI class="treeitem treepanel pbrole">
 			<!-- data image -->
-			<IMG class="dataimg" src="images/propbank/role.png"/>
+			<IMG class="dataimg" src="images/xnet/role.png"/>
 			<!-- label -->
 			<SPAN class="pbrolelabel">
 				<!-- <xsl:text>role</xsl:text> -->
@@ -104,23 +107,23 @@
 				<IMG class="treepix" src="images/open.png"/>
 			</SPAN>
 			<!-- data image -->
-			<IMG class="dataimg" src="images/propbank/sample.png"/>
+			<IMG class="dataimg" src="images/xnet/sample.png"/>
 			<!-- label -->
 			<SPAN class="pbexamplelabel">
 				<xsl:text>example</xsl:text>
-				<xsl:text>id=</xsl:text>
+				<xsl:text> id=</xsl:text>
 				<xsl:value-of select="./@exampleid"/>
 			</SPAN>
 			<!-- collapsible content -->
-			<OL style="display: block;">
-				<!-- non indented -->
-				<DIV class="pbexampletext">
-					<xsl:value-of select="./text()"/>
-				</DIV>
-
-				<xsl:apply-templates select="./rel"/>
-				<xsl:apply-templates select="./arg"/>
-			</OL>
+			<UL style="display: block;">
+				<LI>
+					<DIV class="pbexampletext">
+						<xsl:value-of select="./text()"/>
+					</DIV>
+					<xsl:apply-templates select="./rel"/>
+					<xsl:apply-templates select="./arg"/>
+				</LI>
+			</UL>
 		</LI>
 	</xsl:template>
 
@@ -128,7 +131,7 @@
 		<!-- non indented -->
 		<DIV class="pbrel">
 			<!-- data image -->
-			<IMG class="dataimg" src="images/propbank/relation.png"/>
+			<IMG class="dataimg" src="images/xnet/relation.png"/>
 			<!-- label -->
 			<SPAN class="pbrellabel">
 				<SPAN class="pbrelname">
@@ -142,7 +145,7 @@
 		<!-- non indented -->
 		<DIV class="pbarg">
 			<!-- data image -->
-			<IMG class="dataimg" src="images/propbank/role.png"/>
+			<IMG class="dataimg" src="images/xnet/role.png"/>
 			<!-- label -->
 			<SPAN class="pbarglabel">
 				<SPAN class="pbargname">
@@ -163,4 +166,3 @@
 	</xsl:template>
 
 </xsl:transform>
-	

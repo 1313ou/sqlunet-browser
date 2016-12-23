@@ -1,23 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- VerbNet to HTML Client-side 2015/05/15 (C) 2015 Author: Bernard Bou -->
-
-<xsl:transform version="1.0"
-               xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+<xsl:transform xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+               version="1.0">
 	<xsl:output method="xml" indent="yes" encoding="UTF-8"/>
 	<xsl:strip-space elements="label"/>
 
 	<xsl:template match="/">
 		<DIV id="verbnet">
-			<xsl:apply-templates select=".//verbnet"/>
+			<xsl:apply-templates select="//verbnet"/>
 		</DIV>
 	</xsl:template>
 
 	<xsl:template match="verbnet">
 		<xsl:choose>
+			<!-- no role or frame -->
 			<xsl:when test="count(.//themrole)=0 and count(.//frame)=0">
 				<SPAN class="treejunction">
 					<IMG class="treepix" src="images/closed.png"/>
 				</SPAN>
+				<!-- data image -->
+				<IMG class="dataimg" src="images/xnet/verbnet.png"/>
 				<SPAN class="domain">
 					<xsl:text>verbnet</xsl:text>
 				</SPAN>
@@ -25,16 +26,19 @@
 					<xsl:text>∅ data</xsl:text>
 				</SPAN>
 			</xsl:when>
+			<!-- one or more role or frame -->
 			<xsl:otherwise>
 				<SPAN class="treejunction" onclick="javascript:Tree.toggle(this);">
 					<IMG class="treepix" src="images/open.png"/>
 				</SPAN>
+				<!-- data image -->
+				<IMG class="dataimg" src="images/xnet/verbnet.png"/>
 				<SPAN class="domain">
 					<xsl:text>verbnet</xsl:text>
 				</SPAN>
-				<OL style="display: block;">
+				<UL style="display: block;">
 					<xsl:apply-templates select="./vnclass"/>
-				</OL>
+				</UL>
 			</xsl:otherwise>
 		</xsl:choose>
 	</xsl:template>
@@ -47,7 +51,7 @@
 				<IMG class="treepix" src="images/open.png"/>
 			</SPAN>
 			<!-- data image -->
-			<IMG class="dataimg" src="images/verbnet/vnclass.png"/>
+			<IMG class="dataimg" src="images/xnet/roleclass.png"/>
 			<!-- label -->
 			<SPAN class="vnclasslabel">
 				<SPAN class="vnclassname">
@@ -55,10 +59,10 @@
 				</SPAN>
 			</SPAN>
 			<!-- collapsible content -->
-			<OL style="display: block;">
+			<UL style="display: block;">
 				<xsl:apply-templates select="./themroles"/>
 				<xsl:apply-templates select="./frames"/>
-			</OL>
+			</UL>
 		</LI>
 	</xsl:template>
 
@@ -70,16 +74,16 @@
 				<IMG class="treepix" src="images/open.png"/>
 			</SPAN>
 			<!-- data image -->
-			<IMG class="dataimg" src="images/verbnet/roles.png"/>
+			<IMG class="dataimg" src="images/xnet/roles.png"/>
 			<!-- label -->
 			<SPAN class="vnthemrolesetlabel">
 				<xsl:value-of select="count(./themrole)"/>
-				<xsl:text>thematic roles</xsl:text>
+				<xsl:text> thematic roles</xsl:text>
 			</SPAN>
 			<!-- collapsible content -->
-			<OL style="display: block;">
+			<UL style="display: block;">
 				<xsl:apply-templates select="./themrole"/>
-			</OL>
+			</UL>
 		</LI>
 	</xsl:template>
 
@@ -87,7 +91,7 @@
 		<!-- indented -->
 		<LI class="treeitem treepanel vnthemrole">
 			<!-- data image -->
-			<IMG class="dataimg" src="images/verbnet/role.png"/>
+			<IMG class="dataimg" src="images/xnet/role.png"/>
 			<!-- label -->
 			<SPAN class="vnthemrolelabel">
 				<SPAN class="vnthemrolename">
@@ -113,12 +117,12 @@
 			<!-- label -->
 			<SPAN class="vnframesetlabel">
 				<xsl:value-of select="count(./frame)"/>
-				<xsl:text>frames</xsl:text>
+				<xsl:text> frames</xsl:text>
 			</SPAN>
 			<!-- collapsible content -->
-			<OL style="display: block;">
+			<UL style="display: block;">
 				<xsl:apply-templates select="./frame"/>
-			</OL>
+			</UL>
 		</LI>
 	</xsl:template>
 
@@ -133,7 +137,7 @@
 			<IMG class="dataimg" src="images/verbnet/vnframe.png"/>
 			<!-- label -->
 			<SPAN class="vnframelabel">
-				<xsl:apply-templates select="description"/>
+				<xsl:apply-templates select="./description"/>
 				<!-- <xsl:text>#</xsl:text> -->
 				<!-- <xsl:apply-templates select="./@id" /> -->
 				<xsl:if test="./@synset='true'">
@@ -141,7 +145,7 @@
 				</xsl:if>
 			</SPAN>
 			<!-- collapsible content -->
-			<OL>
+			<UL>
 				<!-- indented -->
 				<LI class="vnframesynsem">
 					<!-- tree handle -->
@@ -155,9 +159,9 @@
 						<xsl:text>syntax</xsl:text>
 					</SPAN>
 					<!-- collapsible content -->
-					<OL style="display: block;">
-						<xsl:apply-templates select="syntax"/>
-					</OL>
+					<UL style="display: block;">
+						<xsl:apply-templates select="./syntax"/>
+					</UL>
 				</LI>
 				<!-- indented -->
 				<LI class="vnframesynsem">
@@ -172,12 +176,12 @@
 						<xsl:text>semantics</xsl:text>
 					</SPAN>
 					<!-- collapsible content -->
-					<OL style="display: block;">
-						<xsl:apply-templates select="semantics"/>
-					</OL>
+					<UL style="display: block;">
+						<xsl:apply-templates select="./semantics"/>
+					</UL>
 				</LI>
-				<xsl:apply-templates select="examples"/>
-			</OL>
+				<xsl:apply-templates select="./examples"/>
+			</UL>
 		</LI>
 	</xsl:template>
 
@@ -217,7 +221,7 @@
 		<!-- not indented -->
 		<!-- data image -->
 		<DIV>
-			<IMG class="dataimg" src="images/verbnet/item.png"/>
+			<IMG class="dataimg" src="images/verbnet/syntax.png"/>
 			<xsl:apply-templates select="cat"/>
 			<xsl:text/>
 			<xsl:apply-templates select="value"/>
@@ -248,7 +252,7 @@
 
 	<xsl:template match="semitem">
 		<DIV>
-			<IMG class="dataimg" src="images/verbnet/item.png"/>
+			<IMG class="dataimg" src="images/verbnet/semantics.png"/>
 			<xsl:text/>
 			<xsl:apply-templates select="rel"/>
 			<xsl:text>(</xsl:text>
@@ -285,12 +289,12 @@
 	</xsl:template>
 
 	<xsl:template match="examples">
-		<xsl:apply-templates select="example"/>
+		<xsl:apply-templates select="./example"/>
 	</xsl:template>
 
 	<xsl:template match="example">
 		<LI class="treeitem treepanel vnexample">
-			<IMG class="dataimg" src="images/verbnet/sample.png"/>
+			<IMG class="dataimg" src="images/xnet/sample.png"/>
 			<SPAN class="vnexampletext">
 				<xsl:apply-templates select="./text()"/>
 			</SPAN>

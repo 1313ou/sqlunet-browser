@@ -420,6 +420,7 @@
       <w>restrs</w>
       <w>restrsid</w>
       <w>resultset</w>
+      <w>roleclass</w>
       <w>roledescr</w>
       <w>roleid</w>
       <w>rolesb</w>
@@ -603,6 +604,7 @@
       <w>wnpos</w>
       <w>wnsample</w>
       <w>wnsense</w>
+      <w>wnsqlunet</w>
       <w>wnword</w>
       <w>wordid</w>
       <w>wordnet</w>

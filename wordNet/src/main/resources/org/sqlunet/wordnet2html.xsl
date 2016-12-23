@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xsl:transform xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-               version="1.0"
-               xmlns="http://org.sqlunet/wn">
+               version="1.0">
 	<xsl:output encoding="UTF-8" indent="yes" method="xml"/>
 	<xsl:strip-space elements="label"/>
 
@@ -18,6 +17,8 @@
 				<SPAN class="treejunction">
 					<IMG class="treepix" src="images/closed.png"/>
 				</SPAN>
+				<!-- data image -->
+				<IMG class="dataimg" src="images/xnet/wordnet.png"/>
 				<SPAN class="domain">
 					<xsl:text>wordnet</xsl:text>
 				</SPAN>
@@ -25,11 +26,13 @@
 					<xsl:text>∅ data</xsl:text>
 				</SPAN>
 			</xsl:when>
-			<!-- one of more synset -->
+			<!-- one or more synset -->
 			<xsl:otherwise>
 				<SPAN class="treejunction" onclick="javascript:Tree.toggle(this);">
 					<IMG class="treepix" src="images/open.png"/>
 				</SPAN>
+				<!-- data image -->
+				<IMG class="dataimg" src="images/xnet/wordnet.png"/>
 				<SPAN class="domain">
 					<xsl:text>wordnet</xsl:text>
 				</SPAN>
@@ -46,7 +49,7 @@
 			<SPAN class="treejunction" onclick="javascript:Tree.toggle(this);">
 				<IMG class="treepix" src="images/open.png"/>
 			</SPAN>
-			<IMG src="images/xnet/pos.png"/>
+			<IMG class="dataimg" src="images/xnet/pos.png"/>
 			<xsl:text><![CDATA[ ]]></xsl:text>
 			<SPAN class="wnpos">
 				<xsl:apply-templates select="./@name"/>
@@ -64,7 +67,7 @@
 			<SPAN class="treejunction" onclick="javascript:Tree.toggle(this);">
 				<IMG class="treepix" src="images/open.png"/>
 			</SPAN>
-			<IMG src="images/xnet/domain.png"/>
+			<IMG class="dataimg" src="images/xnet/domain.png"/>
 			<xsl:text><![CDATA[ ]]></xsl:text>
 			<SPAN class="wnlexdomain">
 				<xsl:apply-templates select="./@name"/>
@@ -82,7 +85,7 @@
 			<SPAN class="treejunction" onclick="javascript:Tree.toggle(this);">
 				<IMG class="treepix" src="images/open.png"/>
 			</SPAN>
-			<IMG src="images/xnet/synset.png"/>
+			<IMG class="dataimg" src="images/xnet/synset.png"/>
 			<xsl:text><![CDATA[ ]]></xsl:text>
 			<SPAN class="wnsense">
 				<xsl:text>sense</xsl:text>
@@ -117,7 +120,7 @@
 			<SPAN class="treejunction" onclick="javascript:Tree.toggle(this);">
 				<IMG class="treepix" src="images/open.png"/>
 			</SPAN>
-			<IMG src="images/xnet/definition.png"/>
+			<IMG class="dataimg" src="images/xnet/definition.png"/>
 			<xsl:text><![CDATA[ ]]></xsl:text>
 			<SPAN class="wndefinition">
 				<xsl:apply-templates select="./definition"/>
@@ -141,9 +144,7 @@
 			<xsl:value-of select="text()"/>
 		</xsl:variable>
 		<LI class="treeitem">
-			<xsl:element name="img">
-				<xsl:attribute name="src">images/xnet/member.png</xsl:attribute>
-			</xsl:element>
+			<IMG class="dataimg" src="images/xnet/member.png"/>
 			<xsl:text><![CDATA[ ]]></xsl:text>
 			<A class="wnword">
 				<xsl:attribute name="href">
@@ -156,7 +157,7 @@
 
 	<xsl:template match="sample">
 		<LI class="treeitem">
-			<IMG src="images/xnet/sample.png"/>
+			<IMG class="dataimg" src="images/xnet/sample.png"/>
 			<xsl:text><![CDATA[ ]]></xsl:text>
 			<SPAN class="wnsample">
 				<xsl:apply-templates select="./text()"/>
@@ -204,9 +205,12 @@
 		<xsl:param name="linkclass"/>
 		<LI class="treeitem">
 			<SPAN class="treejunction" onclick="javascript:Tree.toggle(this);">
-				<IMG src="images/open.png"/>
+				<IMG class="treepix" src="images/open.png"/>
 			</SPAN>
 			<xsl:element name="img">
+				<xsl:attribute name="class">
+					<xsl:value-of select="'dataimg'" />
+				</xsl:attribute>
 				<xsl:attribute name="src">
 					<xsl:value-of select="concat('images/wordnet/',name(),'.png')"/>
 				</xsl:attribute>
