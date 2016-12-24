@@ -9,6 +9,7 @@
 				<xs:element maxOccurs='unbounded' minOccurs='0' ref='vnclass'/>
 			</xs:sequence>
 			<xs:attribute name='wordid' type='xs:long' use='optional'/>
+			<xs:attribute name='word' type='xs:string' use='optional'/>
 			<xs:attribute name='synsetid' type='xs:long' use='optional'/>
 			<xs:attribute name='classid' type='xs:long' use='optional'/>
 		</xs:complexType>
@@ -17,8 +18,8 @@
 	<xs:element name='vnclass'>
 		<xs:complexType>
 			<xs:sequence>
-				<xs:element maxOccurs='1' minOccurs='1' ref='themroles'/>
-				<xs:element maxOccurs='1' minOccurs='1' ref='frames'/>
+				<xs:element maxOccurs='1' minOccurs='0' ref='themroles'/>
+				<xs:element maxOccurs='1' minOccurs='0' ref='frames'/>
 			</xs:sequence>
 			<xs:attribute name='name' type='xs:string' use='optional'/>
 			<xs:attribute name='classid' type='xs:string' use='optional'/>

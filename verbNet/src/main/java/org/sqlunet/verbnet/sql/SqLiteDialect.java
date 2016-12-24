@@ -28,13 +28,14 @@ class SqLiteDialect
 					"ORDER BY lexdomainid,synsetid,nullsynset ASC;";
 	// query for verbnet class from sense
 	static final String VerbNetClassQueryFromSense = //
-			"SELECT classid, class, (synsetid IS NULL) AS nullsynset, sensenum, sensekey, quality, GROUP_CONCAT(grouping, '|') AS groupings " + //
+			"SELECT classid, class, (synsetid IS NULL) AS nullsynset, definition, sensenum, sensekey, quality, GROUP_CONCAT(grouping, '|') AS groupings " + //
 					"FROM words " + //
 					"INNER JOIN vnwords USING (wordid) " + //
 					"INNER JOIN vnclassmembersenses USING (vnwordid) " + //
 					"LEFT JOIN vnclasses USING (classid) " + //
 					"LEFT JOIN vngroupingmaps USING (classid, vnwordid) " + //
 					"LEFT JOIN vngroupings USING (groupingid) " + //
+					"LEFT JOIN synsets USING (synsetid) " + //
 					"WHERE wordid = ? AND (synsetid = ? OR synsetid IS NULL) " + //
 					"GROUP BY classid;";
 

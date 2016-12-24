@@ -73,15 +73,18 @@ public class NodeFactory extends org.sqlunet.sql.NodeFactory
 	 *
 	 * @param doc      is the DOM Document being built
 	 * @param parent   is the parent node to attach this node to
-	 * @param size     is the synset's size (the number of words in the synset)
 	 * @param synsetId is the synset's id in the database
+	 * @param size     is the synset's size (the number of words in the synset)
 	 * @return newly created element
 	 */
-	static public Element makeSynsetNode(final Document doc, final Node parent, final int size, final long synsetId)
+	static public Element makeSynsetNode(final Document doc, final Node parent, final long synsetId, final int size)
 	{
 		final Element element = NodeFactory.makeNode(doc, parent, "synset", null);
-		NodeFactory.makeAttribute(element, "size", Integer.toString(size));
 		NodeFactory.makeAttribute(element, "synsetid", Long.toString(synsetId));
+		if (size != 0)
+		{
+			NodeFactory.makeAttribute(element, "size", Integer.toString(size));
+		}
 		return element;
 	}
 

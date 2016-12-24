@@ -5,7 +5,7 @@ import android.database.sqlite.SQLiteDatabase;
 import org.sqlunet.sql.DBQuery;
 
 /**
- * VerbNet class membership query
+ * VerbNet class-with-sense query
  *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
@@ -61,13 +61,23 @@ class VnClassQueryFromSense extends DBQuery
 	}
 
 	/**
+	 * Get the definition from the result set
+	 *
+	 * @return the definition from the result set
+	 */
+	public String getDefinition()
+	{
+		return this.cursor.getString(3);
+	}
+
+	/**
 	 * Get the sensenum from the result set
 	 *
 	 * @return the sensenum from the result set
 	 */
 	public int getSenseNum()
 	{
-		return this.cursor.getInt(3);
+		return this.cursor.getInt(4);
 	}
 
 	/**
@@ -77,7 +87,7 @@ class VnClassQueryFromSense extends DBQuery
 	 */
 	public String getSenseKey()
 	{
-		return this.cursor.getString(4);
+		return this.cursor.getString(5);
 	}
 
 	/**
@@ -87,7 +97,7 @@ class VnClassQueryFromSense extends DBQuery
 	 */
 	public float getQuality()
 	{
-		return this.cursor.getFloat(5);
+		return this.cursor.getFloat(6);
 	}
 
 	/**
@@ -97,6 +107,6 @@ class VnClassQueryFromSense extends DBQuery
 	 */
 	public String getGroupings()
 	{
-		return this.cursor.getString(6);
+		return this.cursor.getString(7);
 	}
 }

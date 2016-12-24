@@ -1,7 +1,6 @@
 package org.sqlunet.propbank.sql;
 
 import android.database.sqlite.SQLiteDatabase;
-import android.util.Pair;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,9 +28,14 @@ class PbRoleSet
 	public final String roleSetDescr;
 
 	/**
-	 * Id
+	 * Roseset id
 	 */
 	public final long roleSetId;
+
+	/**
+	 * Word Id
+	 */
+	public final long wordId;
 
 	/**
 	 * Constructor
@@ -41,13 +45,14 @@ class PbRoleSet
 	 * @param roleSetDescr description
 	 * @param roleSetId    role set id
 	 */
-	private PbRoleSet(final String roleSetName, final String roleSetHead, final String roleSetDescr, final long roleSetId)
+	private PbRoleSet(final String roleSetName, final String roleSetHead, final String roleSetDescr, final long roleSetId, final long wordId)
 	{
 		super();
 		this.roleSetName = roleSetName;
 		this.roleSetHead = roleSetHead;
 		this.roleSetDescr = roleSetDescr;
 		this.roleSetId = roleSetId;
+		this.wordId = wordId;
 	}
 
 	/**
@@ -57,7 +62,7 @@ class PbRoleSet
 	 * @param word       is the word to build query from
 	 * @return list of PropBank roleSets
 	 */
-	static public Pair<Long, List<PbRoleSet>> makeFromWord(final SQLiteDatabase connection, final String word)
+	static public List<PbRoleSet> makeFromWord(final SQLiteDatabase connection, final String word)
 	{
 		final List<PbRoleSet> result = new ArrayList<>();
 		PbRoleSetQueryFromWord query = null;
@@ -66,17 +71,16 @@ class PbRoleSet
 			query = new PbRoleSetQueryFromWord(connection, word);
 			query.execute();
 
-			long wordId = 0;
 			while (query.next())
 			{
-				wordId = query.getWordId();
 				final String roleSetName = query.getRoleSetName();
 				final String roleSetHead = query.getRoleSetHead();
 				final String roleSetDescr = query.getRoleSetDescr();
 				final long roleSetId = query.getRoleSetId();
-				result.add(new PbRoleSet(roleSetName, roleSetHead, roleSetDescr, roleSetId));
+				final long wordId = query.getWordId();
+				result.add(new PbRoleSet(roleSetName, roleSetHead, roleSetDescr, roleSetId, wordId));
 			}
-			return new Pair<>(wordId, result);
+			return result;
 		}
 		finally
 		{
@@ -109,7 +113,7 @@ class PbRoleSet
 				final String roleSetHead = query.getRoleSetHead();
 				final String roleSetDescr = query.getRoleSetDescr();
 				final long roleSetId = query.getRoleSetId();
-				result.add(new PbRoleSet(roleSetName, roleSetHead, roleSetDescr, roleSetId));
+				result.add(new PbRoleSet(roleSetName, roleSetHead, roleSetDescr, roleSetId, wordId));
 			}
 		}
 		finally
@@ -123,7 +127,7 @@ class PbRoleSet
 	}
 
 	/**
-	 * Make sets of PropBank roleSets from query built from word id
+	 * Make sets of PropBank roleSets from query built from roleSet id
 	 *
 	 * @param connection connection
 	 * @param roleSetId  is the role set id to build query from
@@ -143,7 +147,7 @@ class PbRoleSet
 				final String roleSetName = query.getRoleSetName();
 				final String roleSetHead = query.getRoleSetHead();
 				final String roleSetDescr = query.getRoleSetDescr();
-				result.add(new PbRoleSet(roleSetName, roleSetHead, roleSetDescr, roleSetId));
+				result.add(new PbRoleSet(roleSetName, roleSetHead, roleSetDescr, roleSetId, 0));
 			}
 		}
 		finally

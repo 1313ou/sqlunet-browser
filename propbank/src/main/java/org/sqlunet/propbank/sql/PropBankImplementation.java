@@ -1,10 +1,8 @@
 package org.sqlunet.propbank.sql;
 
 import android.database.sqlite.SQLiteDatabase;
-import android.util.Pair;
 
 import org.sqlunet.dom.DomFactory;
-import org.sqlunet.wordnet.sql.NodeFactory;
 import org.sqlunet.dom.DomTransformer;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
@@ -32,16 +30,14 @@ public class PropBankImplementation implements PropBankInterface
 	 */
 	static private void walkSelector(final SQLiteDatabase connection, final Document doc, final Node parent, final String targetWord)
 	{
-		final Pair<Long, List<PbRoleSet>> result = PbRoleSet.makeFromWord(connection, targetWord);
-		final Long wordId = result.first;
-		final List<PbRoleSet> roleSets = result.second;
+		final List<PbRoleSet> roleSets = PbRoleSet.makeFromWord(connection, targetWord);
 		if (roleSets == null)
 		{
 			return;
 		}
 
 		// word
-		NodeFactory.makeWordNode(doc, parent, targetWord, wordId);
+		// NodeFactory.makeWordNode(doc, parent, targetWord, wordId);
 
 		// propbank nodes
 		PropBankImplementation.makeSelector(doc, parent, roleSets);
@@ -57,16 +53,14 @@ public class PropBankImplementation implements PropBankInterface
 	 */
 	static private void walk(final SQLiteDatabase connection, final Document doc, final Node parent, final String targetWord)
 	{
-		final Pair<Long, List<PbRoleSet>> result = PbRoleSet.makeFromWord(connection, targetWord);
-		final Long wordId = result.first;
-		final List<PbRoleSet> roleSets = result.second;
+		final List<PbRoleSet> roleSets = PbRoleSet.makeFromWord(connection, targetWord);
 		if (roleSets == null)
 		{
 			return;
 		}
 
 		// word
-		NodeFactory.makeWordNode(doc, parent, targetWord, wordId);
+		// NodeFactory.makeWordNode(doc, parent, targetWord, wordId);
 
 		// role sets
 		int i = 1;
@@ -172,7 +166,7 @@ public class PropBankImplementation implements PropBankInterface
 	public Document querySelectorDoc(final SQLiteDatabase connection, final String word)
 	{
 		final Document doc = DomFactory.makeDocument();
-		final Node rootNode = NodeFactory.makeNode(doc, doc, "propbank", word, PropBankImplementation.PB_NS);
+		final Node rootNode = PbNodeFactory.makePbRootNode(doc, word);
 		PropBankImplementation.walkSelector(connection, doc, rootNode, word);
 		return doc;
 	}
@@ -204,7 +198,7 @@ public class PropBankImplementation implements PropBankInterface
 	public Document queryDoc(final SQLiteDatabase connection, final String word)
 	{
 		final Document doc = DomFactory.makeDocument();
-		final Node rootNode = NodeFactory.makeNode(doc, doc, "propbank", word, PropBankImplementation.PB_NS);
+		final Node rootNode = PbNodeFactory.makePbRootNode(doc, word);
 		PropBankImplementation.walk(connection, doc, rootNode, word);
 		return doc;
 	}

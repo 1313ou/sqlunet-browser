@@ -44,10 +44,8 @@ public class WordNetImplementation implements WordNetInterface
 		{
 			return;
 		}
-		NodeFactory.makeWordNode(doc, parent, word.lemma, word.id);
 
 		// iterate synsets
-
 		final List<Synset> synsets = word.getSynsets(connection);
 		if (synsets == null)
 		{
@@ -81,7 +79,10 @@ public class WordNetImplementation implements WordNetInterface
 			// sense node
 			final Node senseNode = NodeFactory.makeSenseNode(doc, lexDomainNode, word.id, synset.synsetId, i + 1);
 
-			// synset nodes
+			// word node
+			NodeFactory.makeWordNode(doc, senseNode, word.lemma, word.id);
+
+			// synset node
 			WordNetImplementation.walkSynset(connection, doc, senseNode, synset);
 		}
 	}
@@ -257,7 +258,7 @@ public class WordNetImplementation implements WordNetInterface
 		final List<Word> words = synset.getSynsetWords(connection);
 
 		// anchor node
-		final Node synsetNode = NodeFactory.makeSynsetNode(doc, parent, words != null ? words.size() : 0, synset.synsetId);
+		final Node synsetNode = NodeFactory.makeSynsetNode(doc, parent, synset.synsetId, words != null ? words.size() : 0);
 
 		// words
 		if (words != null)
@@ -421,7 +422,7 @@ public class WordNetImplementation implements WordNetInterface
 	public Document querySelectorDoc(final SQLiteDatabase connection, final String word)
 	{
 		final Document doc = DomFactory.makeDocument();
-		final Element rootNode = NodeFactory.makeNode(doc, doc, "wordnet", word, WordNetImplementation.WN_NS);
+		final Element rootNode = NodeFactory.makeNode(doc, doc, "wordnet", null, WordNetImplementation.WN_NS);
 		NodeFactory.addAttributes(rootNode, "word", word);
 		WordNetImplementation.walkSelector(connection, doc, rootNode, word);
 		return doc;

@@ -9,20 +9,18 @@ t=$1
 if [ -z "$t" ]; then
 	read -p 'item >' t
 fi
-tp=$t.xml
+tp=select-$t.xml
 
-echo "$sp -> $tp"
-
+#echo "$sp -> $tp"
 #./get.sh $t
-#./tohtml-wordnet2html.sh $t
 
-xin=$t
+xin=select-$t
 for d in wn vn pb fn; do
 	case $d in
-		wn) xsl=wordnet2html;;
-		vn) xsl=verbnet2html;;
-		pb) xsl=propbank2html;;
-		fn) xsl=framenet2html;;
+		wn) xsl=wordnet2html-select;;
+		vn) xsl=verbnet2html-select;;
+		pb) xsl=propbank2html-select;;
+		fn) xsl=framenet2html-select;;
 	esac
 	xout="$d-$t"
 

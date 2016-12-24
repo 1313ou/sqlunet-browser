@@ -18,6 +18,20 @@ class VnNodeFactory extends NodeFactory
 	/**
 	 * Make VerbNet root node
 	 *
+	 * @param doc     is the DOM Document being built
+	 * @param classId target class id
+	 * @return newly created node
+	 */
+	public static Node makeVnRootClassNode(final Document doc, final long classId)
+	{
+		final Element rootNode = NodeFactory.makeNode(doc, doc, "verbnet", null, VerbNetImplementation.VN_NS);
+		NodeFactory.addAttributes(rootNode, "classid", Long.toString(classId));
+		return rootNode;
+	}
+
+	/**
+	 * Make VerbNet root node
+	 *
 	 * @param doc      is the DOM Document being built
 	 * @param wordId   target word id
 	 * @param synsetId target synset id (0 for all)
@@ -40,64 +54,52 @@ class VnNodeFactory extends NodeFactory
 	/**
 	 * Make VerbNet root node
 	 *
-	 * @param doc     is the DOM Document being built
-	 * @param classId target class id
+	 * @param doc  is the DOM Document being built
+	 * @param word target word
 	 * @return newly created node
 	 */
-	public static Node makeVnRootClassNode(final Document doc, final long classId)
+	static public Node makeVnRootNode(final Document doc, final String word)
 	{
 		final Element rootNode = NodeFactory.makeNode(doc, doc, "verbnet", null, VerbNetImplementation.VN_NS);
-		NodeFactory.addAttributes(rootNode, "classid", Long.toString(classId));
+		NodeFactory.addAttributes(rootNode, "word", word);
 		return rootNode;
 	}
 
 	/**
-	 * Make the class membership node
+	 * Make class node
 	 *
-	 * @param doc             is the DOM Document being built
-	 * @param parent          is the parent node to attach this node to
-	 * @param classMembership is the class membership information
+	 * @param doc     is the DOM Document being built
+	 * @param parent  is the parent node to attach this node to
+	 * @param vnClass is the class
+	 * @return newly created node
 	 */
-	public static Node makeVnClassMembershipNode(final Document doc, final Node parent, final VnClassSenseMap classMembership)
+	public static Node makeVnClassNode(final Document doc, final Node parent, final VnClass vnClass)
+	{
+		final Element element = NodeFactory.makeNode(doc, parent, "vnclass", null);
+		NodeFactory.makeAttribute(element, "name", vnClass.className);
+		return element;
+	}
+
+	/**
+	 * Make the class-with-sense node
+	 *
+	 * @param doc     is the DOM Document being built
+	 * @param parent  is the parent node to attach this node to
+	 * @param vnClass is the vn class with sense
+	 */
+	public static Node makeVnClassWithSenseNode(final Document doc, final Node parent, final VnClassWithSense vnClass)
 	{
 		final Element element = NodeFactory.makeNode(doc, parent, "vnclass", null);
 		NodeFactory.addAttributes(element, //
-				"name", classMembership.className, //
-				"classid", Long.toString(classMembership.classId), //
-				"synsetid", Long.toString(classMembership.synsetId), //
-				"sensenum", Integer.toString(classMembership.senseNum), //
-				"sensekey", classMembership.senseKey, //
-				"groupings", classMembership.groupings, //
-				"quality", Float.toString(classMembership.quality));
+				"name", vnClass.className, //
+				"classid", Long.toString(vnClass.classId), //
+				"wordid", Long.toString(vnClass.wordId), //
+				"synsetid", Long.toString(vnClass.synsetId), //
+				"sensenum", Integer.toString(vnClass.senseNum), //
+				"sensekey", vnClass.senseKey, //
+				"groupings", vnClass.groupings, //
+				"quality", Float.toString(vnClass.quality));
 		return element;
-	}
-
-	/**
-	 * Make VerbNet class node
-	 *
-	 * @param doc       is the DOM Document being built
-	 * @param parent    is the parent node to attach this node to
-	 * @param className is the class
-	 * @return newly created node
-	 */
-	static private Node makeVnClassNode(final Document doc, final Node parent, final String className)
-	{
-		final Element element = NodeFactory.makeNode(doc, parent, "vnclass", null);
-		NodeFactory.makeAttribute(element, "name", className);
-		return element;
-	}
-
-	/**
-	 * Make VerbNet class node
-	 *
-	 * @param doc    is the DOM Document being built
-	 * @param parent is the parent node to attach this node to
-	 * @param clazz  is the class
-	 * @return newly created node
-	 */
-	public static Node makeVnClassNode(final Document doc, final Node parent, final VnClass clazz)
-	{
-		return VnNodeFactory.makeVnClassNode(doc, parent, clazz.className);
 	}
 
 	/**
@@ -321,7 +323,7 @@ class VnNodeFactory extends NodeFactory
 	@SuppressWarnings("unused")
 	static public Node makeSynsetNodeFlagged(final Document doc, final Node parent, final int size, final long id, final boolean flag)
 	{
-		final Element element = NodeFactory.makeSynsetNode(doc, parent, size, id);
+		final Element element = NodeFactory.makeSynsetNode(doc, parent, id, size);
 		if (flag)
 		{
 			NodeFactory.makeAttribute(element, "flagged", "true");

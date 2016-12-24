@@ -7,5 +7,6 @@ else
 fi
 
 for f in $what; do
-	tidy -i -m -xml -config tidy.conf $f
+	echo tidy $f
+	tidy -quiet -errors -i -m -xml -config tidy.conf $f
 done

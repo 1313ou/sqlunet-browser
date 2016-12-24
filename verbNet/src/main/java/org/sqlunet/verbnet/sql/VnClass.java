@@ -41,7 +41,7 @@ public class VnClass
 	}
 
 	/**
-	 * Make sets of VerbNet memberships from query built from classId
+	 * Make sets of VerbNet class from query built from classId
 	 *
 	 * @param connection connection
 	 * @param classId    is the class id to build the query from

@@ -152,9 +152,6 @@ public class WebFragment extends Fragment
 				LogUtils.writeLog(data, false, null);
 				DomValidator.validateStrings(DocumentTransformer.class.getResource("/org/sqlunet/SqlUNet.xsd"), data);
 			}
-
-
-			// Log.d(TAG, "xml=\n" + data);
 		}
 		else
 		{
@@ -255,11 +252,11 @@ public class WebFragment extends Fragment
 			sb.append(BODY3);
 
 			data = sb.toString();
-
-			if (BuildConfig.DEBUG)
-			{
-				LogUtils.writeLog(data, false, null);
-			}
+		}
+		if (BuildConfig.DEBUG)
+		{
+			Log.d(TAG, "xml=\n" + data);
+			LogUtils.writeLog(data, false, null);
 		}
 		return data;
 	}

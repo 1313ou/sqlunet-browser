@@ -53,19 +53,19 @@ class DocumentTransformer
 		switch (from)
 		{
 			case WORDNET:
-				xsl = DocumentTransformer.XSL_DIR + (isSelector ? "select_wordnet2html.xsl" : "wordnet2html.xsl");
+				xsl = DocumentTransformer.XSL_DIR + (isSelector ? "wordnet2html-select.xsl" : "wordnet2html.xsl");
 				break;
 			case VERBNET:
-				xsl = DocumentTransformer.XSL_DIR + (isSelector ? "select_verbnet2html.xsl" : "verbnet2html.xsl");
+				xsl = DocumentTransformer.XSL_DIR + (isSelector ? "verbnet2html-select.xsl" : "verbnet2html.xsl");
 				break;
 			case PROPBANK:
-				xsl = DocumentTransformer.XSL_DIR + (isSelector ? "select_propbank2html.xsl" : "propbank2html.xsl");
+				xsl = DocumentTransformer.XSL_DIR + (isSelector ? "propbank2html-select.xsl" : "propbank2html.xsl");
 				break;
 			case FRAMENET:
-				xsl = DocumentTransformer.XSL_DIR + (isSelector ? "select_framenet2html.xsl" : "framenet2html.xsl");
+				xsl = DocumentTransformer.XSL_DIR + (isSelector ? "framenet2html-select.xsl" : "framenet2html.xsl");
 				break;
 			case BNC:
-				xsl = DocumentTransformer.XSL_DIR + (isSelector ? "select_bnc2html.xsl" : "bnc2html.xsl");
+				xsl = DocumentTransformer.XSL_DIR + (isSelector ? "bnc2html-select.xsl" : "bnc2html.xsl");
 				break;
 		}
 		return DocumentTransformer.class.getResourceAsStream(xsl);

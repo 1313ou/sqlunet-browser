@@ -3,8 +3,8 @@ package org.sqlunet.verbnet.sql;
 import android.database.sqlite.SQLiteDatabase;
 
 import org.sqlunet.dom.DomFactory;
-import org.sqlunet.wordnet.sql.NodeFactory;
 import org.sqlunet.dom.DomTransformer;
+import org.sqlunet.wordnet.sql.NodeFactory;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 
@@ -32,7 +32,7 @@ public class VerbNetImplementation implements VerbNetInterface
 	public Document querySelectorDoc(final SQLiteDatabase connection, final String word)
 	{
 		final Document doc = DomFactory.makeDocument();
-		final Node rootNode = NodeFactory.makeNode(doc, doc, "verbnet", word, VerbNetImplementation.VN_NS);
+		final Node rootNode = VnNodeFactory.makeVnRootNode(doc, word);
 		VerbNetImplementation.walkSelector(connection, doc, rootNode, word);
 		return doc;
 	}
@@ -64,7 +64,7 @@ public class VerbNetImplementation implements VerbNetInterface
 	public Document queryDoc(final SQLiteDatabase connection, final String word)
 	{
 		final Document doc = DomFactory.makeDocument();
-		final Node rootNode = NodeFactory.makeNode(doc, doc, "verbnet", word, VerbNetImplementation.VN_NS);
+		final Node rootNode = VnNodeFactory.makeVnRootNode(doc, word);
 		VerbNetImplementation.walk(connection, doc, rootNode, word);
 		return doc;
 	}
@@ -164,7 +164,7 @@ public class VerbNetImplementation implements VerbNetInterface
 		}
 
 		// word
-		NodeFactory.makeWordNode(doc, parent, entry.word.lemma, entry.word.id);
+		// NodeFactory.makeWordNode(doc, parent, entry.word.lemma, entry.word.id);
 
 		// iterate synsets
 		final List<VnSynset> synsets = entry.synsets;
@@ -189,14 +189,8 @@ public class VerbNetImplementation implements VerbNetInterface
 				continue;
 			}
 
-			// sense node
-			final Node senseNode = NodeFactory.makeSenseNode(doc, parent, entry.word.id, synset.synsetId, i++);
-
-			// synset nodes
-			// VerbNetImplementation.walkSynset(connection, doc, senseNode, synset);
-
 			// verbnet nodes
-			VerbNetImplementation.walk(connection, doc, senseNode, entry.word.id, synset.synsetId, false, false);
+			VerbNetImplementation.walk(connection, doc, parent, entry.word.id, synset.synsetId, false, false);
 		}
 	}
 
@@ -265,18 +259,30 @@ public class VerbNetImplementation implements VerbNetInterface
 	 */
 	static private void walk(final SQLiteDatabase connection, final Document doc, final Node parent, final long targetWordId, final Long targetSynsetId, final boolean roles, final boolean frames)
 	{
-		// class memberships
-		final List<VnClassSenseMap> classMemberships = VnClassSenseMap.make(connection, targetWordId, targetSynsetId);
-		for (final VnClassSenseMap classMembership : classMemberships)
+		// classes
+		final List<VnClassWithSense> vnClasses = VnClassWithSense.make(connection, targetWordId, targetSynsetId);
+		for (final VnClassWithSense vnClass : vnClasses)
 		{
-			// membership
-			final Node membershipNode = VnNodeFactory.makeVnClassMembershipNode(doc, parent, classMembership);
+			// class
+			final Node classNode = VnNodeFactory.makeVnClassWithSenseNode(doc, parent, vnClass);
+
+			if (vnClass.synsetId != 0)
+			{
+				// sense node
+				final Node senseNode = NodeFactory.makeSenseNode(doc, classNode, vnClass.wordId, vnClass.synsetId, vnClass.senseNum);
+
+				// synset nodes
+				final Node synsetNode = NodeFactory.makeSynsetNode(doc, senseNode, vnClass.synsetId, 0);
+
+				// gloss
+				NodeFactory.makeNode(doc, synsetNode, "definition", vnClass.definition);
+			}
 
 			// roles
 			if (roles)
 			{
-				final Node rolesNode = VnNodeFactory.makeVnRolesNode(doc, membershipNode);
-				final VnRoleSet roleSet = VnRoleSet.make(connection, classMembership.classId, targetWordId, targetSynsetId);
+				final Node rolesNode = VnNodeFactory.makeVnRolesNode(doc, classNode);
+				final VnRoleSet roleSet = VnRoleSet.make(connection, vnClass.classId, targetWordId, targetSynsetId);
 				if (roleSet != null)
 				{
 					int j = 1;
@@ -291,8 +297,8 @@ public class VerbNetImplementation implements VerbNetInterface
 			// frames
 			if (frames)
 			{
-				final Node framesNode = VnNodeFactory.makeVnFramesNode(doc, membershipNode);
-				final VnFrameSet frameSet = VnFrameSet.make(connection, classMembership.classId, targetWordId, targetSynsetId);
+				final Node framesNode = VnNodeFactory.makeVnFramesNode(doc, classNode);
+				final VnFrameSet frameSet = VnFrameSet.make(connection, vnClass.classId, targetWordId, targetSynsetId);
 				if (frameSet != null)
 				{
 					int j = 1;

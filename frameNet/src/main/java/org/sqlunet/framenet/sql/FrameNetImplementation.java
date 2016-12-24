@@ -273,7 +273,7 @@ public class FrameNetImplementation implements FrameNetInterface
 		}
 
 		// word
-		NodeFactory.makeWordNode(doc, parent, targetWord, wordId);
+		// NodeFactory.makeWordNode(doc, parent, targetWord, wordId);
 
 		// framenet nodes
 		FrameNetImplementation.makeSelector(doc, parent, lexUnits, true);
