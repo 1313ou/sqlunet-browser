@@ -21,47 +21,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e66c28dc-5afe-443a-8883-1d8123a0e6a1" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/framenet2html-select-ns.xsl" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/framenet2html-select.xsl" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/process-select.sh" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/propbank2html-select-ns.xsl" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/propbank2html-select.xsl" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/tidy.conf" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/verbnet2html-select-ns.xsl" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/verbnet2html-select.xsl" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/wordnet2html-select-ns.xsl" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/wordnet2html-select.xsl" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/bNC/src/main/resources/org/sqlunet/select_bnc2html.xsl" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/frameNet/src/main/resources/org/sqlunet/select_framenet2html.xsl" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/propbank/src/main/resources/org/sqlunet/select_propbank2html.xsl" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/verbNet/src/main/java/org/sqlunet/verbnet/sql/VnClassSenseMap.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/verbNet/src/main/resources/org/sqlunet/select_verbnet2html.xsl" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/wordNet/src/main/resources/org/sqlunet/select_wordnet2html.xsl" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bNC/bNC.iml" afterPath="$PROJECT_DIR$/bNC/bNC.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/browser/src/main/java/org/sqlunet/browser/web/DocumentTransformer.java" afterPath="$PROJECT_DIR$/browser/src/main/java/org/sqlunet/browser/web/DocumentTransformer.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/browser/src/main/java/org/sqlunet/browser/web/WebFragment.java" afterPath="$PROJECT_DIR$/browser/src/main/java/org/sqlunet/browser/web/WebFragment.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/expandableListFragment/expandableListFragment.iml" afterPath="$PROJECT_DIR$/expandableListFragment/expandableListFragment.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frameNet/frameNet.iml" afterPath="$PROJECT_DIR$/frameNet/frameNet.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frameNet/src/main/java/org/sqlunet/framenet/sql/FrameNetImplementation.java" afterPath="$PROJECT_DIR$/frameNet/src/main/java/org/sqlunet/framenet/sql/FrameNetImplementation.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/propbank/propbank.iml" afterPath="$PROJECT_DIR$/propbank/propbank.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/propbank/src/main/java/org/sqlunet/propbank/sql/PbNodeFactory.java" afterPath="$PROJECT_DIR$/propbank/src/main/java/org/sqlunet/propbank/sql/PbNodeFactory.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/propbank/src/main/java/org/sqlunet/propbank/sql/PbRoleSet.java" afterPath="$PROJECT_DIR$/propbank/src/main/java/org/sqlunet/propbank/sql/PbRoleSet.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/propbank/src/main/java/org/sqlunet/propbank/sql/PropBankImplementation.java" afterPath="$PROJECT_DIR$/propbank/src/main/java/org/sqlunet/propbank/sql/PropBankImplementation.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/propbank/src/main/resources/org/sqlunet/PropBank.xsd" afterPath="$PROJECT_DIR$/propbank/src/main/resources/org/sqlunet/PropBank.xsd" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tools/process.sh" afterPath="$PROJECT_DIR$/tools/process.sh" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tools/tidy.sh" afterPath="$PROJECT_DIR$/tools/tidy.sh" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/verbNet/src/main/java/org/sqlunet/verbnet/sql/SqLiteDialect.java" afterPath="$PROJECT_DIR$/verbNet/src/main/java/org/sqlunet/verbnet/sql/SqLiteDialect.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/verbNet/src/main/java/org/sqlunet/verbnet/sql/VerbNetImplementation.java" afterPath="$PROJECT_DIR$/verbNet/src/main/java/org/sqlunet/verbnet/sql/VerbNetImplementation.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/verbNet/src/main/java/org/sqlunet/verbnet/sql/VnClass.java" afterPath="$PROJECT_DIR$/verbNet/src/main/java/org/sqlunet/verbnet/sql/VnClass.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/verbNet/src/main/java/org/sqlunet/verbnet/sql/VnClassQueryFromSense.java" afterPath="$PROJECT_DIR$/verbNet/src/main/java/org/sqlunet/verbnet/sql/VnClassQueryFromSense.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/verbNet/src/main/java/org/sqlunet/verbnet/sql/VnNodeFactory.java" afterPath="$PROJECT_DIR$/verbNet/src/main/java/org/sqlunet/verbnet/sql/VnNodeFactory.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/verbNet/src/main/resources/org/sqlunet/VerbNet.xsd" afterPath="$PROJECT_DIR$/verbNet/src/main/resources/org/sqlunet/VerbNet.xsd" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/verbNet/verbNet.iml" afterPath="$PROJECT_DIR$/verbNet/verbNet.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordNet/src/main/java/org/sqlunet/wordnet/sql/WordNetImplementation.java" afterPath="$PROJECT_DIR$/wordNet/src/main/java/org/sqlunet/wordnet/sql/WordNetImplementation.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/xNet/src/main/java/org/sqlunet/wordnet/sql/NodeFactory.java" afterPath="$PROJECT_DIR$/xNet/src/main/java/org/sqlunet/wordnet/sql/NodeFactory.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/xNet/xNet.iml" afterPath="$PROJECT_DIR$/xNet/xNet.iml" />
     </list>
     <ignored path="Browser.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -7271,8 +7234,8 @@
   <component name="Git.Settings">
     <option name="PREVIOUS_COMMIT_AUTHORS">
       <list>
-        <option value="bbou" />
         <option value="bb" />
+        <option value="bbou" />
         <option value="xsl" />
         <option value="b" />
       </list>
@@ -16290,13 +16253,6 @@
       <option name="presentableId" value="Default" />
       <updated>1476373639609</updated>
     </task>
-    <task id="LOCAL-00082" summary="freeze">
-      <created>1479735686656</created>
-      <option name="number" value="00082" />
-      <option name="presentableId" value="LOCAL-00082" />
-      <option name="project" value="LOCAL" />
-      <updated>1479735686656</updated>
-    </task>
     <task id="LOCAL-00083" summary="small fixes">
       <created>1479740359321</created>
       <option name="number" value="00083" />
@@ -16633,7 +16589,14 @@
       <option name="project" value="LOCAL" />
       <updated>1482506679523</updated>
     </task>
-    <option name="localTasksCounter" value="131" />
+    <task id="LOCAL-00131" summary="xsl">
+      <created>1482574738930</created>
+      <option name="number" value="00131" />
+      <option name="presentableId" value="LOCAL-00131" />
+      <option name="project" value="LOCAL" />
+      <updated>1482574738931</updated>
+    </task>
+    <option name="localTasksCounter" value="132" />
     <servers />
   </component>
   <component name="TodoView" selected-index="2">
