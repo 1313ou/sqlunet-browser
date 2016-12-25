@@ -356,28 +356,47 @@ public class WebFragment extends Fragment
 							type = ProviderArgs.ARG_QUERYTYPE_VNCLASS;
 							pointer = new VnClassPointer(id);
 						}
-						else if ("fnframeid".equals(name)) //
+						else if ("pbrolesetid".equals(name)) //
 						{
 							type = ProviderArgs.ARG_QUERYTYPE_PBROLESET;
 							pointer = new PbRoleSetPointer(id);
+						}
+						else if ("fnframeid".equals(name)) //
+						{
+							type = ProviderArgs.ARG_QUERYTYPE_FNFRAME;
+							pointer = new FnFramePointer(id);
 						}
 						else if ("fnluid".equals(name)) //
 						{
 							type = ProviderArgs.ARG_QUERYTYPE_FNLEXUNIT;
 							pointer = new FnLexUnitPointer(id);
 						}
+						else if ("fnsentenceid".equals(name)) //
+						{
+							type = ProviderArgs.ARG_QUERYTYPE_FNSENTENCE;
+							pointer = new FnSentencePointer(id);
+						}
+						else if ("fnannosetid".equals(name)) //
+						{
+							type = ProviderArgs.ARG_QUERYTYPE_FNANNOSET;
+							pointer = new FnAnnoSetPointer(id);
+						}
+						else
+						{
+							Log.e(WebFragment.TAG, "Ill-formed Uri: " + uri);
+							return false;
+						}
 
 						targetIntent.putExtra(ProviderArgs.ARG_QUERYTYPE, type);
 						targetIntent.putExtra(ProviderArgs.ARG_QUERYPOINTER, pointer);
 					}
-
 					targetIntent.setAction(ProviderArgs.ACTION_QUERY);
 					startActivity(targetIntent);
 					return true;
 				}
 				catch (final Exception e)
 				{
-					Log.e(WebFragment.TAG, "URL loading ", e);
+					Log.e(WebFragment.TAG, "Error while loading Uri: " + uri, e);
 				}
 				return false;
 			}

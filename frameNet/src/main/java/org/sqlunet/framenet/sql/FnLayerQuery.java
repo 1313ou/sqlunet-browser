@@ -48,13 +48,23 @@ class FnLayerQuery extends DBQuery
 	}
 
 	/**
+	 * Get the layer annoSet id from the result set
+	 *
+	 * @return the layer annoSet id from the result set
+	 */
+	public long getAnnoSetId()
+	{
+		return this.cursor.getLong(2);
+	}
+
+	/**
 	 * Get the layer rank from the result set
 	 *
 	 * @return the layer rank from the result set
 	 */
 	public int getRank()
 	{
-		return this.cursor.getInt(2);
+		return this.cursor.getInt(3);
 	}
 
 	/**
@@ -64,6 +74,6 @@ class FnLayerQuery extends DBQuery
 	 */
 	public List<FnLabel> getLabels()
 	{
-		return Utils.parseLabels(this.cursor.getString(3));
+		return Utils.parseLabels(this.cursor.getString(4));
 	}
 }

@@ -184,13 +184,40 @@ class FnNodeFactory extends NodeFactory
 	 */
 	public static Node makeFnSentenceNode(final Document doc, final Node parent, final FnSentence sentence, final int i)
 	{
+		return FnNodeFactory.makeFnSentenceNode(doc, parent, sentence.text, sentence.sentenceId, i);
+	}
+
+	/**
+	 * Make sentence node
+	 *
+	 * @param doc    DOM Document being built
+	 * @param parent parent node to attach this node to
+	 * @param i      the ith
+	 */
+	public static Node makeFnSentenceNode(final Document doc, final Node parent, final String text, final long sentenceId, final int i)
+	{
 		final Element element = NodeFactory.makeNode(doc, parent, "sentence", null);
-		if (i != -1)
+		if (i != 0)
 		{
 			NodeFactory.makeAttribute(element, "num", Integer.toString(i));
 		}
-		NodeFactory.makeAttribute(element, "sentenceid", Long.toString(sentence.sentenceId));
-		NodeFactory.makeText(doc, element, sentence.text);
+		NodeFactory.makeAttribute(element, "sentenceid", Long.toString(sentenceId));
+		NodeFactory.makeText(doc, element, text);
+		return element;
+	}
+
+	/**
+	 * Make annoSet node
+	 *
+	 * @param doc       DOM Document being built
+	 * @param parent    parent node to attach this node to
+	 * @param annoSetId annoSetId
+	 * @return annoSet node
+	 */
+	public static Node makeFnAnnoSetNode(final Document doc, final Node parent, final long annoSetId)
+	{
+		final Element element = NodeFactory.makeNode(doc, parent, "annoset", null);
+		NodeFactory.makeAttribute(element, "annosetid", Long.toString(annoSetId));
 		return element;
 	}
 
@@ -204,10 +231,7 @@ class FnNodeFactory extends NodeFactory
 	 */
 	public static Node makeFnAnnoSetNode(final Document doc, final Node parent, final FnAnnoSet annoSet)
 	{
-		final Element element = NodeFactory.makeNode(doc, parent, "annoset", null);
-		NodeFactory.makeAttribute(element, "annosetid", Long.toString(annoSet.annoSetId));
-		FnNodeFactory.makeFnSentenceNode(doc, element, annoSet.sentence, -1);
-		return element;
+		return FnNodeFactory.makeFnAnnoSetNode(doc, parent, annoSet.annoSetId);
 	}
 
 	/**

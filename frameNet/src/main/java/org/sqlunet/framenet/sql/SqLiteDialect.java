@@ -134,9 +134,9 @@ class SqLiteDialect
 	// LAYERS
 	// layers from annoSet id
 	public static final String FrameNetLayerQueryFromAnnoSetId = //
-			"SELECT layerid,layertype,rank,GROUP_CONCAT(start||':'||end||':'||labeltype||':'||CASE WHEN labelitype IS NULL THEN '' ELSE labelitype END,'|') " + //
+			"SELECT layerid,layertype,annosetid,rank,GROUP_CONCAT(start||':'||end||':'||labeltype||':'||CASE WHEN labelitype IS NULL THEN '' ELSE labelitype END,'|') " + //
 					"FROM " + //
-					"(SELECT layerid,layertype,rank,start,end,labeltype,labelitype " + //
+					"(SELECT layerid,layertype,annosetid,rank,start,end,labeltype,labelitype " + //
 					"FROM fnlayers " + //
 					"LEFT JOIN fnlayertypes USING (layertypeid) " + //
 					"LEFT JOIN fnlabels USING (layerid) " + //
@@ -147,9 +147,9 @@ class SqLiteDialect
 					"GROUP BY layerid;";
 	// layers from sentence id
 	public static final String FrameNetLayerQueryFromSentenceId = //
-			"SELECT layerid,layertype,rank,GROUP_CONCAT(start||':'||end||':'||labeltype||':'||CASE WHEN labelitype IS NULL THEN '' ELSE labelitype END,'|') " + //
+			"SELECT layerid,layertype,annosetid,rank,GROUP_CONCAT(start||':'||end||':'||labeltype||':'||CASE WHEN labelitype IS NULL THEN '' ELSE labelitype END,'|') " + //
 					"FROM " + //
-					"(SELECT layerid,layertype,rank,start,end,labeltype,labelitype " + //
+					"(SELECT layerid,layertype,annosetid,rank,start,end,labeltype,labelitype " + //
 					"FROM fnsentences " + //
 					"LEFT JOIN fnannosets USING (sentenceid) " + //
 					"LEFT JOIN fnlayers USING (annosetid) " + //
@@ -158,6 +158,6 @@ class SqLiteDialect
 					"LEFT JOIN fnlabeltypes USING (labeltypeid) " + //
 					"LEFT JOIN fnlabelitypes USING (labelitypeid) " + //
 					"WHERE sentenceid = ? AND labeltypeid IS NOT NULL " + //
-					"ORDER BY rank,layerid,start,end) " + //
+					"ORDER BY annosetid,rank,layerid,start,end) " + //
 					"GROUP BY layerid;";
 }

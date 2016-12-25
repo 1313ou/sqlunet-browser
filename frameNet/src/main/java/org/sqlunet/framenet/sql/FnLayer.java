@@ -28,6 +28,11 @@ class FnLayer
 	public final int rank;
 
 	/**
+	 * AnnoSet id
+	 */
+	public final long annoSetId;
+
+	/**
 	 * Labels
 	 */
 	public final List<FnLabel> labels;
@@ -37,14 +42,16 @@ class FnLayer
 	 *
 	 * @param layerId   layer id
 	 * @param layerType layer type
+	 * @param annoSetId annoSetId
 	 * @param rank      layer rank
 	 * @param labels    labels
 	 */
-	private FnLayer(final long layerId, final String layerType, final int rank, final List<FnLabel> labels)
+	private FnLayer(final long layerId, final String layerType, final long annoSetId, final int rank, final List<FnLabel> labels)
 	{
 		super();
 		this.layerId = layerId;
 		this.layerType = layerType;
+		this.annoSetId = annoSetId;
 		this.rank = rank;
 		this.labels = labels;
 	}
@@ -70,12 +77,13 @@ class FnLayer
 				final long layerId = query.getLayerId();
 				final String layerType = query.getLayerType();
 				final int rank = query.getRank();
+				final long annoSetId = query.getAnnoSetId();
 				final List<FnLabel> labels = query.getLabels();
 				if (result == null)
 				{
 					result = new ArrayList<>();
 				}
-				result.add(new FnLayer(layerId, layerType, rank, labels));
+				result.add(new FnLayer(layerId, layerType, annoSetId, rank, labels));
 			}
 		}
 		finally
@@ -114,7 +122,7 @@ class FnLayer
 				{
 					result = new ArrayList<>();
 				}
-				result.add(new FnLayer(layerId, layerType, rank, labels));
+				result.add(new FnLayer(layerId, layerType, annoSetId, rank, labels));
 			}
 		}
 		finally

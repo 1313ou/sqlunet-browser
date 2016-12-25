@@ -34,6 +34,6 @@ for d in wn vn pb fn; do
 
 	echo TIDY $xout.html
 	#tidy -i -o /dev/null -ashtml $xout.html
-	tidy -quiet -errors -i -m -ashtml $xout.html
+	tidy -quiet -i -m -ashtml $xout.html
 	#read -p 'done '
 done

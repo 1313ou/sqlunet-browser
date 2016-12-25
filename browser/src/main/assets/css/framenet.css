@@ -149,3 +149,26 @@
 	color: gray;
 	font-style: italic;
 }
+
+.fnlayer {
+}
+
+.fnlayertype {
+	background-color: orange;
+	color: black;
+	font-weight: bold;
+}
+
+.fnlabel {
+}
+
+.fnlabelname {
+	background-color: yellow;
+	color: gray;
+	font-weight: bold;
+}
+
+.fnlabelvalue {
+	color: gray;
+	font-style: italic;
+}

@@ -13,7 +13,7 @@
 
 	<xsl:template match="fn:framenet">
 		<xsl:choose>
-			<xsl:when test="count(./fn:lexunit)=0 and count(./fn:frame)=0">
+			<xsl:when test="count(./fn:lexunit)=0 and count(./fn:frame)=0 and count(./fn:sentence)=0">
 				<SPAN class="treejunction">
 					<IMG class="treepix" src="images/closed.png"/>
 				</SPAN>
@@ -38,6 +38,7 @@
 				<UL style="display: block;">
 					<xsl:apply-templates select="./fn:frame"/>
 					<xsl:apply-templates select="./fn:lexunit"/>
+					<xsl:apply-templates select="./fn:sentence"/>
 				</UL>
 			</xsl:otherwise>
 		</xsl:choose>
@@ -163,44 +164,6 @@
 		</DIV>
 	</xsl:template>
 
-	<xsl:template match="fn:sentences">
-		<!-- collapsible content -->
-		<LI>
-			<UL style="display: block;">
-				<xsl:apply-templates select="./fn:sentence"/>
-			</UL>
-		</LI>
-	</xsl:template>
-
-	<xsl:template match="fn:sentence">
-		<!-- indent -->
-		<LI class="treeitem treepanel fnsentence">
-			<!-- tree handle -->
-			<SPAN class="treejunction" onclick="javascript:Tree.toggle(this);">
-				<IMG class="treepix" src="images/open.png"/>
-			</SPAN>
-			<!-- data image -->
-			<IMG class="dataimg" src="images/xnet/sentence.png"/>
-			<!-- label -->
-			<SPAN class="fnsentencelabel">
-				<xsl:text>sentence #</xsl:text>
-				<xsl:value-of select="./@num"/>
-				<xsl:text> id=</xsl:text>
-				<xsl:value-of select="./@sentenceid"/>
-				<!-- <xsl:text> anno=</xsl:text> -->
-				<!-- <xsl:value-of select="./@annosetids" /> -->
-			</SPAN>
-			<!-- collapsible content -->
-			<UL style="display: block;">
-				<LI>
-					<SPAN class="fnsentencetext">
-						<xsl:value-of select="./text()"/>
-					</SPAN>
-				</LI>
-			</UL>
-		</LI>
-	</xsl:template>
-
 	<xsl:template match="fn:framedefinition">
 		<!-- non-indent -->
 		<DIV class="fnframedefinition">
@@ -265,6 +228,76 @@
 		<SPAN class="fnm">
 			<xsl:value-of select="./text()"/>
 		</SPAN>
+	</xsl:template>
+
+	<xsl:template match="fn:sentences">
+		<!-- collapsible content -->
+		<LI>
+			<UL style="display: block;">
+				<xsl:apply-templates select="./fn:sentence"/>
+			</UL>
+		</LI>
+	</xsl:template>
+
+	<xsl:template match="fn:sentence">
+		<!-- indent -->
+		<LI class="treeitem treepanel fnsentence">
+			<!-- tree handle -->
+			<SPAN class="treejunction" onclick="javascript:Tree.toggle(this);">
+				<IMG class="treepix" src="images/open.png"/>
+			</SPAN>
+			<!-- data image -->
+			<IMG class="dataimg" src="images/xnet/sentence.png"/>
+			<!-- label -->
+			<SPAN class="fnsentencelabel">
+				<xsl:text>sentence #</xsl:text>
+				<xsl:value-of select="./@num"/>
+				<xsl:text> id=</xsl:text>
+				<xsl:value-of select="./@sentenceid"/>
+				<!-- <xsl:text> anno=</xsl:text> -->
+				<!-- <xsl:value-of select="./@annosetids" /> -->
+			</SPAN>
+			<!-- collapsible content -->
+			<UL style="display: block;">
+				<LI>
+					<SPAN class="fnsentencetext">
+						<xsl:value-of select="./text()"/>
+					</SPAN>			
+					<UL style="display: block;">
+						<xsl:apply-templates select=".//fn:layer"/>
+					</UL>
+				</LI>
+			</UL>
+		</LI>
+	</xsl:template>
+
+	<xsl:template match="fn:layer">
+		<xsl:variable name="senttext">
+			<xsl:value-of select="../../text()"/>
+		</xsl:variable>
+		<LI class="treeitem treepanel fnlayer">
+			<SPAN class="fnlayertype"><xsl:value-of select="./@type"/></SPAN>	
+			<UL style="display: block;">
+				<xsl:apply-templates select=".//fn:label"/>
+			</UL>
+		</LI>
+	</xsl:template>
+
+	<xsl:template match="fn:label">
+		<xsl:variable name="senttext">
+			<xsl:value-of select="../../../text()"/>
+		</xsl:variable>
+		<xsl:variable name="start">
+			<xsl:value-of select="./@from + 1"/>
+		</xsl:variable>
+		<xsl:variable name="len">
+			<xsl:value-of select="./@to - ./@from + 1"/>
+		</xsl:variable>
+		<LI class="treeitem treepanel fnlabel">
+			<SPAN class="fnlabelname"><xsl:value-of select="./@label"/></SPAN>
+			<xsl:text> </xsl:text>
+			<SPAN class="fnlabelvalue"><xsl:value-of select="substring($senttext, $start, $len)"/></SPAN>	
+		</LI>
 	</xsl:template>
 
 </xsl:transform>

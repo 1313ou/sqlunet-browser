@@ -39,6 +39,7 @@
 				<UL style="display: block;">
 					<xsl:apply-templates select="./pos"/>
 					<xsl:apply-templates select="./sense"/>
+					<xsl:apply-templates select="./synset"/>
 				</UL>
 			</xsl:otherwise>
 		</xsl:choose>
@@ -50,7 +51,6 @@
 				<IMG class="treepix" src="images/open.png"/>
 			</SPAN>
 			<IMG class="dataimg" src="images/xnet/pos.png"/>
-			<xsl:text><![CDATA[ ]]></xsl:text>
 			<SPAN class="wnpos">
 				<xsl:apply-templates select="./@name"/>
 			</SPAN>
@@ -68,7 +68,6 @@
 				<IMG class="treepix" src="images/open.png"/>
 			</SPAN>
 			<IMG class="dataimg" src="images/xnet/domain.png"/>
-			<xsl:text><![CDATA[ ]]></xsl:text>
 			<SPAN class="wnlexdomain">
 				<xsl:apply-templates select="./@name"/>
 			</SPAN>
@@ -86,7 +85,6 @@
 				<IMG class="treepix" src="images/open.png"/>
 			</SPAN>
 			<IMG class="dataimg" src="images/xnet/synset.png"/>
-			<xsl:text><![CDATA[ ]]></xsl:text>
 			<SPAN class="wnsense">
 				<xsl:text>sense</xsl:text>
 				<xsl:choose>
@@ -120,8 +118,8 @@
 			<SPAN class="treejunction" onclick="javascript:Tree.toggle(this);">
 				<IMG class="treepix" src="images/open.png"/>
 			</SPAN>
+			<IMG class="dataimg" src="images/xnet/synset.png"/>
 			<IMG class="dataimg" src="images/xnet/definition.png"/>
-			<xsl:text><![CDATA[ ]]></xsl:text>
 			<SPAN class="wndefinition">
 				<xsl:apply-templates select="./definition"/>
 			</SPAN>
@@ -145,7 +143,6 @@
 		</xsl:variable>
 		<LI class="treeitem">
 			<IMG class="dataimg" src="images/xnet/member.png"/>
-			<xsl:text><![CDATA[ ]]></xsl:text>
 			<A class="wnword">
 				<xsl:attribute name="href">
 					<xsl:value-of select="concat('query?word=',$word)"/>
@@ -158,7 +155,6 @@
 	<xsl:template match="sample">
 		<LI class="treeitem">
 			<IMG class="dataimg" src="images/xnet/sample.png"/>
-			<xsl:text><![CDATA[ ]]></xsl:text>
 			<SPAN class="wnsample">
 				<xsl:apply-templates select="./text()"/>
 			</SPAN>
@@ -215,10 +211,8 @@
 					<xsl:value-of select="concat('images/wordnet/',name(),'.png')"/>
 				</xsl:attribute>
 			</xsl:element>
-			<xsl:text><![CDATA[ ]]></xsl:text>
 			<SPAN class="wnlink">
 				<xsl:value-of select="name()"/>
-				<xsl:text><![CDATA[ ]]></xsl:text>
 				<xsl:value-of select="concat('* ',$linkclass)"/>
 			</SPAN>
 			<xsl:if test="count(./synset)&gt;0">

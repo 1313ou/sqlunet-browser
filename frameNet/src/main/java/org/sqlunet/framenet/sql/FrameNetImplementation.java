@@ -4,8 +4,8 @@ import android.database.sqlite.SQLiteDatabase;
 import android.util.Pair;
 
 import org.sqlunet.dom.DomFactory;
-import org.sqlunet.wordnet.sql.NodeFactory;
 import org.sqlunet.dom.DomTransformer;
+import org.sqlunet.wordnet.sql.NodeFactory;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 
@@ -448,7 +448,7 @@ public class FrameNetImplementation implements FrameNetInterface
 	{
 		// sentence
 		final FnSentence sentence = FnSentence.make(connection, sentenceId);
-		final Node sentenceNode = FnNodeFactory.makeFnSentenceNode(doc, parent, sentence, -1);
+		final Node sentenceNode = FnNodeFactory.makeFnSentenceNode(doc, parent, sentence, 0);
 
 		// layers
 		walkLayersFromSentence(connection, doc, sentenceNode, sentenceId);
@@ -466,7 +466,12 @@ public class FrameNetImplementation implements FrameNetInterface
 	{
 		// annoSet
 		final FnAnnoSet annoSet = FnAnnoSet.make(connection, annoSetId);
-		final Node annoSetNode = FnNodeFactory.makeFnAnnoSetNode(doc, parent, annoSet);
+
+		// sentence node
+		final Node sentenceNode = FnNodeFactory.makeFnSentenceNode(doc, parent, annoSet.sentence, 0);
+
+		// annoSet node
+		final Node annoSetNode = FnNodeFactory.makeFnAnnoSetNode(doc, sentenceNode, annoSet);
 
 		// layers
 		walkLayersFromAnnoSet(connection, doc, annoSetNode, annoSetId);
@@ -503,10 +508,18 @@ public class FrameNetImplementation implements FrameNetInterface
 	{
 		// layers
 		final List<FnLayer> layers = FnLayer.makeFromSentence(connection, sentenceId);
+		long annoSetId = -1;
+		Node annoSetNode = null;
 		for (final FnLayer layer : layers)
 		{
+			if (annoSetId != layer.annoSetId)
+			{
+				annoSetNode = FnNodeFactory.makeFnAnnoSetNode(doc, parent, layer.annoSetId);
+				annoSetId = layer.annoSetId;
+			}
+
 			// layer
-			FnNodeFactory.makeFnLayerNode(doc, parent, layer);
+			FnNodeFactory.makeFnLayerNode(doc, annoSetNode, layer);
 		}
 	}
 
