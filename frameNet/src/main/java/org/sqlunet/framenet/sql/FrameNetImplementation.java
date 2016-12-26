@@ -265,15 +265,11 @@ public class FrameNetImplementation implements FrameNetInterface
 	static private void walkSelector(final SQLiteDatabase connection, final Document doc, final Node parent, final String targetWord)
 	{
 		final Pair<Long, List<FnLexUnit>> result = FnLexUnit.makeFromWord(connection, targetWord);
-		final Long wordId = result.first;
 		final List<FnLexUnit> lexUnits = result.second;
 		if (lexUnits == null)
 		{
 			return;
 		}
-
-		// word
-		// NodeFactory.makeWordNode(doc, parent, targetWord, wordId);
 
 		// framenet nodes
 		FrameNetImplementation.makeSelector(doc, parent, lexUnits, true);

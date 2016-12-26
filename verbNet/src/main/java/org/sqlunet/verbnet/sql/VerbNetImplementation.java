@@ -173,7 +173,6 @@ public class VerbNetImplementation implements VerbNetInterface
 			return;
 		}
 
-		int i = 1;
 		long currentId = -1L;
 		boolean currentFlag = false;
 		for (final VnSynset synset : synsets)

@@ -62,7 +62,6 @@ public class ManagerProvider extends BaseProvider
 
 	// Q U E R Y
 
-	@SuppressWarnings("boxing")
 	@Override
 	public Cursor query(@NonNull final Uri uri, final String[] projection, final String selection, final String[] selectionArgs, final String sortOrder)
 	{

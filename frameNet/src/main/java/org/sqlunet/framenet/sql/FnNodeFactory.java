@@ -194,7 +194,7 @@ class FnNodeFactory extends NodeFactory
 	 * @param parent parent node to attach this node to
 	 * @param i      the ith
 	 */
-	public static Node makeFnSentenceNode(final Document doc, final Node parent, final String text, final long sentenceId, final int i)
+	private static Node makeFnSentenceNode(final Document doc, final Node parent, final String text, final long sentenceId, final int i)
 	{
 		final Element element = NodeFactory.makeNode(doc, parent, "sentence", null);
 		if (i != 0)

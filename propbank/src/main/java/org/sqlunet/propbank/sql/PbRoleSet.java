@@ -28,7 +28,7 @@ class PbRoleSet
 	public final String roleSetDescr;
 
 	/**
-	 * Roseset id
+	 * RoleSet id
 	 */
 	public final long roleSetId;
 

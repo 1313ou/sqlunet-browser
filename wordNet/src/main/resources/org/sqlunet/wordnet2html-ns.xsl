@@ -263,7 +263,7 @@
 			<SPAN class="wnlink">
 				<xsl:value-of select="name()"/>
 			</SPAN>
-			<xsl:text></xsl:text>
+			<xsl:text> </xsl:text>
 			<xsl:value-of select="$linkclass"/>
 			<xsl:if test="count(./wn:synset)&gt;0">
 				<UL style="display: block;">

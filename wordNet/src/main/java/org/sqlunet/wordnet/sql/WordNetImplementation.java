@@ -211,7 +211,7 @@ public class WordNetImplementation implements WordNetInterface
 					"lexdomain", synset.getLexDomainName());
 
 			// synset node
-			WordNetImplementation.walkSynsetHeader(connection, doc, senseElement, synset);
+			WordNetImplementation.walkSynsetHeader(doc, senseElement, synset);
 		}
 		return doc;
 	}
@@ -537,12 +537,11 @@ public class WordNetImplementation implements WordNetInterface
 	/**
 	 * Process synset data (summary)
 	 *
-	 * @param connection connection
-	 * @param doc        org.w3c.dom.Document being built
-	 * @param parent     org.w3c.dom.Node walk will attach results to
-	 * @param synset     synset whose data are to be processed
+	 * @param doc    org.w3c.dom.Document being built
+	 * @param parent org.w3c.dom.Node walk will attach results to
+	 * @param synset synset whose data are to be processed
 	 */
-	static private Node walkSynsetHeader(final SQLiteDatabase connection, final Document doc, final Node parent, final Synset synset)
+	static private Node walkSynsetHeader(final Document doc, final Node parent, final Synset synset)
 	{
 		// anchor node
 		final Node synsetNode = NodeFactory.makeSynsetNode(doc, parent, synset.synsetId, 0);

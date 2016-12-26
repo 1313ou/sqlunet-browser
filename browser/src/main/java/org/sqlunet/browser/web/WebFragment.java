@@ -174,8 +174,8 @@ public class WebFragment extends Fragment
 						});
 
 						// prepare data
-						int type = 0;
-						Pointer pointer = null;
+						int type;
+						Pointer pointer;
 
 						if ("synsetid".equals(name)) //
 						{

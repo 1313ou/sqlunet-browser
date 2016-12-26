@@ -101,6 +101,7 @@
       <w>ffffff</w>
       <w>fgcolor</w>
       <w>fnannoset</w>
+      <w>fnannosetid</w>
       <w>fnannosets</w>
       <w>fnannosoets</w>
       <w>fncoretypes</w>
@@ -131,10 +132,15 @@
       <w>fngftypes</w>
       <w>fngov</w>
       <w>fngovernors</w>
+      <w>fnlabel</w>
       <w>fnlabelitypes</w>
+      <w>fnlabelname</w>
       <w>fnlabels</w>
       <w>fnlabeltypes</w>
+      <w>fnlabelvalue</w>
+      <w>fnlayer</w>
       <w>fnlayers</w>
+      <w>fnlayertype</w>
       <w>fnlayertypes</w>
       <w>fnlexemes</w>
       <w>fnlexunit</w>
@@ -158,6 +164,7 @@
       <w>fnsb</w>
       <w>fnsemtypes</w>
       <w>fnsentence</w>
+      <w>fnsentenceid</w>
       <w>fnsentencelabel</w>
       <w>fnsentences</w>
       <w>fnsentencetext</w>
@@ -462,6 +469,7 @@
       <w>sentenceid</w>
       <w>sentencetext</w>
       <w>sentno</w>
+      <w>senttext</w>
       <w>slategray</w>
       <w>spokendisp</w>
       <w>spokenfreq</w>
