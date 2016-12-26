@@ -78,7 +78,7 @@
 			<!-- label -->
 			<SPAN class="vnthemrolesetlabel">
 				<xsl:value-of select="count(./themrole)"/>
-				<xsl:text> thematic roles</xsl:text>
+				<xsl:text> thematic role(s)</xsl:text>
 			</SPAN>
 			<!-- collapsible content -->
 			<UL style="display: block;">
@@ -95,7 +95,7 @@
 			<!-- label -->
 			<SPAN class="vnthemrolelabel">
 				<SPAN class="vnthemrolename">
-					<xsl:apply-templates select="./@type"/>
+					<xsl:value-of select="./@type"/>
 				</SPAN>
 				<xsl:if test="./@synset='true'">
 					<IMG class="dataimg" src="images/verbnet/synsetspecific.png"/>
@@ -117,7 +117,7 @@
 			<!-- label -->
 			<SPAN class="vnframesetlabel">
 				<xsl:value-of select="count(./frame)"/>
-				<xsl:text> frames</xsl:text>
+				<xsl:text> frame(s)</xsl:text>
 			</SPAN>
 			<!-- collapsible content -->
 			<UL style="display: block;">
@@ -139,7 +139,7 @@
 			<SPAN class="vnframelabel">
 				<xsl:apply-templates select="./description"/>
 				<!-- <xsl:text>#</xsl:text> -->
-				<!-- <xsl:apply-templates select="./@id" /> -->
+				<!-- <xsl:value-of select="./@id" /> -->
 				<xsl:if test="./@synset='true'">
 					<IMG class="dataimg" src="images/verbnet/synsetspecific.png"/>
 				</xsl:if>
@@ -189,18 +189,18 @@
 		<!-- not indented -->
 		<!-- label -->
 		<SPAN class="vnframename">
-			<xsl:apply-templates select="./@primary"/>
+			<xsl:value-of select="./@primary"/>
 		</SPAN>
 		<xsl:text>/</xsl:text>
 		<SPAN class="vnframename2">
-			<xsl:apply-templates select="./@secondary"/>
+			<xsl:value-of select="./@secondary"/>
 		</SPAN>
 		<!-- <xsl:text><![CDATA[ ]]></xsl:text> -->
-		<!-- <xsl:apply-templates select="./@descriptionNumber" /> -->
+		<!-- <xsl:value-of select="./@descriptionNumber" /> -->
 		<!-- <xsl:text><![CDATA[ ]]></xsl:text> -->
-		<!-- <xsl:apply-templates select="./@xtag" /> -->
+		<!-- <xsl:value-of select="./@xtag" /> -->
 		<!-- <xsl:text><![CDATA[ ]]></xsl:text> -->
-		<!-- <xsl:apply-templates select="./@vnclass" /> -->
+		<!-- <xsl:value-of select="./@vnclass" /> -->
 	</xsl:template>
 
 	<xsl:template match="syntax">
@@ -254,9 +254,9 @@
 		<DIV>
 			<IMG class="dataimg" src="images/verbnet/semantics.png"/>
 			<xsl:text/>
-			<xsl:apply-templates select="rel"/>
+			<xsl:value-of select="rel"/>
 			<xsl:text>(</xsl:text>
-			<xsl:apply-templates select="arg"/>
+			<xsl:value-of select="arg"/>
 			<xsl:text>)</xsl:text>
 		</DIV>
 	</xsl:template>
