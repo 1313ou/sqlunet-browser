@@ -50,13 +50,23 @@ class SynsetsQueryFromWordId extends DBQuery
 	}
 
 	/**
+	 * Get synset pos id
+	 *
+	 * @return pos
+	 */
+	public String getPos()
+	{
+		return this.cursor.getString(2);
+	}
+
+	/**
 	 * Get synset lexdomain id
 	 *
 	 * @return synset lexdomain id
 	 */
 	public int getLexDomainId()
 	{
-		return this.cursor.getInt(2);
+		return this.cursor.getInt(3);
 	}
 
 	/**
@@ -66,6 +76,6 @@ class SynsetsQueryFromWordId extends DBQuery
 	 */
 	public String getSample()
 	{
-		return this.cursor.getString(3);
+		return this.cursor.getString(4);
 	}
 }

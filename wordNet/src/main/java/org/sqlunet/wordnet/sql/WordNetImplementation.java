@@ -29,6 +29,298 @@ public class WordNetImplementation implements WordNetInterface
 	// S E L E C T O R
 
 	/**
+	 * Business method that returns WordNet selector data as DOM document
+	 *
+	 * @param connection connection
+	 * @param word       target word
+	 * @return WordNet selector data as DOM document
+	 */
+	@Override
+	public Document querySelectorDoc(final SQLiteDatabase connection, final String word)
+	{
+		final Document doc = DomFactory.makeDocument();
+		final Element rootNode = NodeFactory.makeNode(doc, doc, "wordnet", null, WordNetImplementation.WN_NS);
+		NodeFactory.addAttributes(rootNode, "word", word);
+		WordNetImplementation.walkSelector(connection, doc, rootNode, word);
+		return doc;
+	}
+
+	/**
+	 * Business method that returns WordNet selector data as XML
+	 *
+	 * @param connection connection
+	 * @param word       target word
+	 * @return WordNet selector data as XML
+	 */
+	@Override
+	public String querySelectorXML(final SQLiteDatabase connection, final String word)
+	{
+		final Document doc = querySelectorDoc(connection, word);
+		return DomTransformer.docToString(doc);
+	}
+
+	// D E T A I L
+
+	/**
+	 * Business method that returns WordNet data as a Document
+	 *
+	 * @param connection connection
+	 * @param word       target word
+	 * @param withLinks  determines if queries are to include links
+	 * @param recurse    determines if queries are to follow links recursively
+	 * @return WordNet data as a DOM Document
+	 */
+	@Override
+	public Document queryDoc(final SQLiteDatabase connection, final String word, final boolean withLinks, final boolean recurse)
+	{
+		final Document doc = DomFactory.makeDocument();
+		final Element rootNode = NodeFactory.makeNode(doc, doc, "wordnet", null, WordNetImplementation.WN_NS);
+		NodeFactory.addAttributes(rootNode, //
+				"word", word, //
+				"withlinks", Boolean.toString(withLinks), //
+				"recurse", Boolean.toString(recurse));
+		WordNetImplementation.walk(connection, word, doc, rootNode, withLinks, recurse, Mapping.ANYTYPE, Mapping.ANYTYPE, Mapping.ANYTYPE);
+		return doc;
+	}
+
+	/**
+	 * Business method that returns WordNet data as a Document
+	 *
+	 * @param connection connection
+	 * @param wordId     target word id
+	 * @param synsetId   target synset id
+	 * @param withLinks  determines if queries are to include links
+	 * @param recurse    determines if queries are to follow links recursively
+	 * @return WordNet data as a DOM Document
+	 */
+	@Override
+	public Document queryDoc(final SQLiteDatabase connection, final long wordId, final Long synsetId, final boolean withLinks, final boolean recurse)
+	{
+		final Document doc = DomFactory.makeDocument();
+		final Element rootNode = NodeFactory.makeNode(doc, doc, "wordnet", null, WordNetImplementation.WN_NS);
+		NodeFactory.addAttributes(rootNode, //
+				"wordid", Long.toString(wordId), //
+				"synsetid", synsetId == null ? null : Long.toString(synsetId), //
+				"withlinks", Boolean.toString(withLinks), //
+				"recurse", Boolean.toString(recurse));
+		WordNetImplementation.walkSense(connection, wordId, synsetId, doc, rootNode, withLinks, recurse, Mapping.ANYTYPE);
+		return doc;
+	}
+
+	/**
+	 * Business method that returns complete data as XML
+	 *
+	 * @param connection connection
+	 * @param word       target word
+	 * @param withLinks  determines if queries are to include links
+	 * @param recurse    determines if queries are to follow links recursively
+	 * @return WordNet data as XML
+	 */
+	@Override
+	public String queryXML(final SQLiteDatabase connection, final String word, final boolean withLinks, final boolean recurse)
+	{
+		final Document doc = queryDoc(connection, word, withLinks, recurse);
+		return DomTransformer.docToString(doc);
+	}
+
+	/**
+	 * Business method that returns WordNet data as DOM document
+	 *
+	 * @param connection    connection
+	 * @param word          target word
+	 * @param posName       target part-of-speech
+	 * @param lexDomainName target lexdomain
+	 * @param linkName      target link type
+	 * @param withLinks     determines if queries are to include links
+	 * @param recurse       determines if queries are to follow links recursively
+	 * @return WordNet data as DOM document
+	 */
+	@Override
+	public Document queryDoc(final SQLiteDatabase connection, final String word, final String posName, final String lexDomainName, final String linkName, final boolean withLinks, final boolean recurse)
+	{
+		final Document doc = DomFactory.makeDocument();
+
+		// parameters
+		final int posType = Mapping.getPosId(posName);
+		final int lexDomainType = Mapping.getLexDomainId(posName, lexDomainName);
+		final int linkType = Mapping.getLinkType(linkName);
+
+		// fill document
+		final Element rootNode = NodeFactory.makeNode(doc, doc, "wordnet", null, WordNetImplementation.WN_NS);
+		NodeFactory.addAttributes(rootNode, //
+				"word", word,  //
+				"pos", posName,  //
+				"lexdomain", lexDomainName, //
+				"link", linkName, //
+				"withlinks", Boolean.toString(withLinks), //
+				"recurse", Boolean.toString(recurse));
+		WordNetImplementation.walk(connection, word, doc, rootNode, withLinks, recurse, posType, lexDomainType, linkType);
+
+		return doc;
+	}
+
+	/**
+	 * Business method that returns WordNet data as XML
+	 *
+	 * @param connection    connection
+	 * @param word          target word
+	 * @param posName       target part-of-speech
+	 * @param lexDomainName target lexdomain
+	 * @param linkName      target link type
+	 * @param withLinks     determines if queries are to include links
+	 * @param recurse       determines if queries are to follow links recursively
+	 * @return WordNet data as XML data
+	 */
+	@Override
+	public String queryXML(final SQLiteDatabase connection, final String word, final String posName, final String lexDomainName, final String linkName, final boolean withLinks, final boolean recurse)
+	{
+		final Document doc = queryDoc(connection, word, posName, lexDomainName, linkName, withLinks, recurse);
+		return DomTransformer.docToString(doc);
+	}
+
+	/**
+	 * Business method that returns WordNet word data as DOM document
+	 *
+	 * @param connection connection
+	 * @param wordId     target word id
+	 * @return WordNet word data as DOM document
+	 */
+	@Override
+	public Document queryWordDoc(final SQLiteDatabase connection, final long wordId)
+	{
+		final Document doc = DomFactory.makeDocument();
+		final Element rootNode = NodeFactory.makeNode(doc, doc, "wordnet", null, WordNetImplementation.WN_NS);
+		NodeFactory.addAttributes(rootNode, //
+				"wordid", Long.toString(wordId));
+
+		// word
+		final Word word = Word.make(connection, wordId);
+		final Node wordNode = NodeFactory.makeWordNode(doc, rootNode, word.lemma, word.id);
+
+		final SynsetsQueryFromWordId query = new SynsetsQueryFromWordId(connection, wordId);
+		query.execute();
+		while (query.next())
+		{
+			// synset
+			final Synset synset = new Synset(query);
+
+			// sense node
+			final Element senseElement = NodeFactory.makeSenseNode(doc, wordNode, wordId, synset.synsetId, 0);
+			NodeFactory.addAttributes(senseElement, //
+					"pos", synset.getPosName(), //
+					"lexdomain", synset.getLexDomainName());
+
+			// synset node
+			WordNetImplementation.walkSynsetHeader(connection, doc, senseElement, synset);
+		}
+		return doc;
+	}
+
+	/**
+	 * Business method that returns WordNet word data as XML
+	 *
+	 * @param connection connection
+	 * @param wordId     target word id
+	 * @return WordNet word data as XML
+	 */
+	@Override
+	public String queryWordXML(final SQLiteDatabase connection, final long wordId)
+	{
+		final Document doc = queryWordDoc(connection, wordId);
+		return DomTransformer.docToString(doc);
+	}
+
+	/**
+	 * Business method that returns WordNet sense data as DOM document
+	 *
+	 * @param connection connection
+	 * @param wordId     target word id
+	 * @param synsetId   target synset id
+	 * @return WordNet synset data as DOM document
+	 */
+	@Override
+	public Document querySenseDoc(final SQLiteDatabase connection, final long wordId, final long synsetId)
+	{
+		final Document doc = DomFactory.makeDocument();
+		final Element rootNode = NodeFactory.makeNode(doc, doc, "wordnet", null, WordNetImplementation.WN_NS);
+		NodeFactory.addAttributes(rootNode, //
+				"wordid", Long.toString(wordId), //
+				"synsetid", Long.toString(synsetId));
+		final Node senseNode = NodeFactory.makeSenseNode(doc, rootNode, wordId, synsetId, 0);
+
+		final SynsetQuery query = new SynsetQuery(connection, synsetId);
+		query.execute();
+		if (query.next())
+		{
+			// synset
+			final Synset synset = new Synset(query);
+			final Node synsetNode = WordNetImplementation.walkSynset(connection, doc, senseNode, synset);
+
+			// links
+			WordNetImplementation.walkSynsetLinks(connection, doc, synsetNode, synset, wordId, true /* withLinks */, true /* recurse */, Mapping.ANYTYPE);
+		}
+		return doc;
+	}
+
+	/**
+	 * Business method that returns WordNet sense data as XML
+	 *
+	 * @param connection connection
+	 * @param wordId     target word id
+	 * @param synsetId   target synset id
+	 * @return WordNet synset data as XML
+	 */
+	@Override
+	public String querySenseXML(final SQLiteDatabase connection, final long wordId, final long synsetId)
+	{
+		final Document doc = querySenseDoc(connection, wordId, synsetId);
+		return DomTransformer.docToString(doc);
+	}
+
+	/**
+	 * Business method that returns WordNet synset data as DOM document
+	 *
+	 * @param connection connection
+	 * @param synsetId   target synset id
+	 * @return WordNet synset data as DOM document
+	 */
+	@Override
+	public Document querySynsetDoc(final SQLiteDatabase connection, final long synsetId)
+	{
+		final Document doc = DomFactory.makeDocument();
+		final Element rootNode = NodeFactory.makeNode(doc, doc, "wordnet", null, WordNetImplementation.WN_NS);
+		NodeFactory.addAttributes(rootNode, "synsetid", Long.toString(synsetId));
+		final SynsetQuery query = new SynsetQuery(connection, synsetId);
+		query.execute();
+		if (query.next())
+		{
+			// synset
+			final Synset synset = new Synset(query);
+			final Node synsetNode = WordNetImplementation.walkSynset(connection, doc, rootNode, synset);
+
+			// links
+			WordNetImplementation.walkSynsetLinks(connection, doc, synsetNode, synset, 0, true /* withLinks */, true /* recurse */, Mapping.ANYTYPE);
+		}
+		return doc;
+	}
+
+	/**
+	 * Business method that returns WordNet synset data as XML
+	 *
+	 * @param connection connection
+	 * @param synsetId   target synset id
+	 * @return WordNet synset data as XML
+	 */
+	@Override
+	public String querySynsetXML(final SQLiteDatabase connection, final long synsetId)
+	{
+		final Document doc = querySynsetDoc(connection, synsetId);
+		return DomTransformer.docToString(doc);
+	}
+
+	// W A L K
+
+	/**
 	 * Perform queries for WordNet selector
 	 *
 	 * @param connection connection
@@ -154,8 +446,6 @@ public class WordNetImplementation implements WordNetInterface
 		}
 	}
 
-	// D E T A I L
-
 	/**
 	 * Perform queries for WordNet data from word id and synset id
 	 *
@@ -242,6 +532,25 @@ public class WordNetImplementation implements WordNetInterface
 			// links
 			WordNetImplementation.walkSynsetLinks(connection, doc, synsetNode, synset, wordId, withLinks, recurse, targetLinkType);
 		}
+	}
+
+	/**
+	 * Process synset data (summary)
+	 *
+	 * @param connection connection
+	 * @param doc        org.w3c.dom.Document being built
+	 * @param parent     org.w3c.dom.Node walk will attach results to
+	 * @param synset     synset whose data are to be processed
+	 */
+	static private Node walkSynsetHeader(final SQLiteDatabase connection, final Document doc, final Node parent, final Synset synset)
+	{
+		// anchor node
+		final Node synsetNode = NodeFactory.makeSynsetNode(doc, parent, synset.synsetId, 0);
+
+		// gloss
+		NodeFactory.makeNode(doc, synsetNode, "definition", synset.definition);
+
+		return synsetNode;
 	}
 
 	/**
@@ -410,244 +719,6 @@ public class WordNetImplementation implements WordNetInterface
 	}
 
 	// I T E M S
-
-	/**
-	 * Business method that returns WordNet selector data as DOM document
-	 *
-	 * @param connection connection
-	 * @param word       target word
-	 * @return WordNet selector data as DOM document <!-- end-user-doc -->
-	 */
-	@Override
-	public Document querySelectorDoc(final SQLiteDatabase connection, final String word)
-	{
-		final Document doc = DomFactory.makeDocument();
-		final Element rootNode = NodeFactory.makeNode(doc, doc, "wordnet", null, WordNetImplementation.WN_NS);
-		NodeFactory.addAttributes(rootNode, "word", word);
-		WordNetImplementation.walkSelector(connection, doc, rootNode, word);
-		return doc;
-	}
-
-	/**
-	 * Business method that returns WordNet selector data as XML
-	 *
-	 * @param connection connection
-	 * @param word       target word
-	 * @return WordNet selector data as XML
-	 */
-	@Override
-	public String querySelectorXML(final SQLiteDatabase connection, final String word)
-	{
-		final Document doc = querySelectorDoc(connection, word);
-		return DomTransformer.docToString(doc);
-	}
-
-	/**
-	 * Business method that returns WordNet data as a Document
-	 *
-	 * @param connection connection
-	 * @param word       target word
-	 * @param withLinks  determines if queries are to include links
-	 * @param recurse    determines if queries are to follow links recursively
-	 * @return WordNet data as a DOM Document <!-- end-user-doc -->
-	 */
-	@Override
-	public Document queryDoc(final SQLiteDatabase connection, final String word, final boolean withLinks, final boolean recurse)
-	{
-		final Document doc = DomFactory.makeDocument();
-		final Element rootNode = NodeFactory.makeNode(doc, doc, "wordnet", null, WordNetImplementation.WN_NS);
-		NodeFactory.addAttributes(rootNode, //
-				"word", word, //
-				"withlinks", Boolean.toString(withLinks), //
-				"recurse", Boolean.toString(recurse));
-		WordNetImplementation.walk(connection, word, doc, rootNode, withLinks, recurse, Mapping.ANYTYPE, Mapping.ANYTYPE, Mapping.ANYTYPE);
-		return doc;
-	}
-
-	/**
-	 * Business method that returns WordNet data as a Document
-	 *
-	 * @param connection connection
-	 * @param wordId     target word id
-	 * @param synsetId   target synset id
-	 * @param withLinks  determines if queries are to include links
-	 * @param recurse    determines if queries are to follow links recursively
-	 * @return WordNet data as a DOM Document <!-- end-user-doc -->
-	 */
-	@Override
-	public Document queryDoc(final SQLiteDatabase connection, final long wordId, final Long synsetId, final boolean withLinks, final boolean recurse)
-	{
-		final Document doc = DomFactory.makeDocument();
-		final Element rootNode = NodeFactory.makeNode(doc, doc, "wordnet", null, WordNetImplementation.WN_NS);
-		NodeFactory.addAttributes(rootNode, //
-				"wordid", Long.toString(wordId), //
-				"synsetid", synsetId == null ? null : Long.toString(synsetId), //
-				"withlinks", Boolean.toString(withLinks), //
-				"recurse", Boolean.toString(recurse));
-		WordNetImplementation.walkSense(connection, wordId, synsetId, doc, rootNode, withLinks, recurse, Mapping.ANYTYPE);
-		return doc;
-	}
-
-	/**
-	 * Business method that returns complete data as XML
-	 *
-	 * @param connection connection
-	 * @param word       target word
-	 * @param withLinks  determines if queries are to include links
-	 * @param recurse    determines if queries are to follow links recursively
-	 * @return WordNet data as XML <!-- end-user-doc -->
-	 */
-	@Override
-	public String queryXML(final SQLiteDatabase connection, final String word, final boolean withLinks, final boolean recurse)
-	{
-		final Document doc = queryDoc(connection, word, withLinks, recurse);
-		return DomTransformer.docToString(doc);
-	}
-
-	/**
-	 * Business method that returns WordNet data as DOM document
-	 *
-	 * @param connection    connection
-	 * @param word          target word
-	 * @param posName       target part-of-speech
-	 * @param lexDomainName target lexdomain
-	 * @param linkName      target link type
-	 * @param withLinks     determines if queries are to include links
-	 * @param recurse       determines if queries are to follow links recursively
-	 * @return WordNet data as DOM document <!-- end-user-doc -->
-	 */
-	@Override
-	public Document queryDoc(final SQLiteDatabase connection, final String word, final String posName, final String lexDomainName, final String linkName, final boolean withLinks, final boolean recurse)
-	{
-		final Document doc = DomFactory.makeDocument();
-
-		// parameters
-		final int posType = Mapping.getPosId(posName);
-		final int lexDomainType = Mapping.getLexDomainId(posName, lexDomainName);
-		final int linkType = Mapping.getLinkType(linkName);
-
-		// fill document
-		final Element rootNode = NodeFactory.makeNode(doc, doc, "wordnet", null, WordNetImplementation.WN_NS);
-		NodeFactory.addAttributes(rootNode, //
-				"word", word,  //
-				"pos", posName,  //
-				"lexdomain", lexDomainName, //
-				"link", linkName, //
-				"withlinks", Boolean.toString(withLinks), //
-				"recurse", Boolean.toString(recurse));
-		WordNetImplementation.walk(connection, word, doc, rootNode, withLinks, recurse, posType, lexDomainType, linkType);
-
-		return doc;
-	}
-
-	/**
-	 * Business method that returns WordNet data as XML
-	 *
-	 * @param connection    connection
-	 * @param word          target word
-	 * @param posName       target part-of-speech
-	 * @param lexDomainName target lexdomain
-	 * @param linkName      target link type
-	 * @param withLinks     determines if queries are to include links
-	 * @param recurse       determines if queries are to follow links recursively
-	 * @return WordNet data as XML data <!-- end-user-doc -->
-	 */
-	@Override
-	public String queryXML(final SQLiteDatabase connection, final String word, final String posName, final String lexDomainName, final String linkName, final boolean withLinks, final boolean recurse)
-	{
-		final Document doc = queryDoc(connection, word, posName, lexDomainName, linkName, withLinks, recurse);
-		return DomTransformer.docToString(doc);
-	}
-
-	// W A L K
-
-	/**
-	 * Business method that returns WordNet sense data as DOM document
-	 *
-	 * @param connection connection
-	 * @param wordId     target word id
-	 * @param synsetId   target synset id
-	 * @return WordNet synset data as DOM document <!-- end-user-doc -->
-	 */
-	@Override
-	public Document querySenseDoc(final SQLiteDatabase connection, final long wordId, final long synsetId)
-	{
-		final Document doc = DomFactory.makeDocument();
-		final Element rootNode = NodeFactory.makeNode(doc, doc, "wordnet", null, WordNetImplementation.WN_NS);
-		NodeFactory.addAttributes(rootNode, //
-				"wordid", Long.toString(wordId), //
-				"synsetid", Long.toString(synsetId));
-		final Node senseNode = NodeFactory.makeSenseNode(doc, rootNode, wordId, synsetId, 0);
-
-		final SynsetQuery query = new SynsetQuery(connection, synsetId);
-		query.execute();
-		if (query.next())
-		{
-			// synset
-			final Synset synset = new Synset(query);
-			final Node synsetNode = WordNetImplementation.walkSynset(connection, doc, senseNode, synset);
-
-			// links
-			WordNetImplementation.walkSynsetLinks(connection, doc, synsetNode, synset, wordId, true /* withLinks */, true /* recurse */, Mapping.ANYTYPE);
-		}
-		return doc;
-	}
-
-	/**
-	 * Business method that returns WordNet sense data as XML
-	 *
-	 * @param connection connection
-	 * @param wordId     target word id
-	 * @param synsetId   target synset id
-	 * @return WordNet synset data as XML
-	 */
-	@Override
-	public String querySenseXML(final SQLiteDatabase connection, final long wordId, final long synsetId)
-	{
-		final Document doc = querySenseDoc(connection, wordId, synsetId);
-		return DomTransformer.docToString(doc);
-	}
-
-	/**
-	 * Business method that returns WordNet synset data as DOM document
-	 *
-	 * @param connection connection
-	 * @param synsetId   target synset id
-	 * @return WordNet synset data as DOM document <!-- end-user-doc -->
-	 */
-	@Override
-	public Document querySynsetDoc(final SQLiteDatabase connection, final long synsetId)
-	{
-		final Document doc = DomFactory.makeDocument();
-		final Element rootNode = NodeFactory.makeNode(doc, doc, "wordnet", null, WordNetImplementation.WN_NS);
-		NodeFactory.addAttributes(rootNode, "synsetid", Long.toString(synsetId));
-		final SynsetQuery query = new SynsetQuery(connection, synsetId);
-		query.execute();
-		if (query.next())
-		{
-			// synset
-			final Synset synset = new Synset(query);
-			final Node synsetNode = WordNetImplementation.walkSynset(connection, doc, rootNode, synset);
-
-			// links
-			WordNetImplementation.walkSynsetLinks(connection, doc, synsetNode, synset, 0, true /* withLinks */, true /* recurse */, Mapping.ANYTYPE);
-		}
-		return doc;
-	}
-
-	/**
-	 * Business method that returns WordNet synset data as XML
-	 *
-	 * @param connection connection
-	 * @param synsetId   target synset id
-	 * @return WordNet synset data as XML
-	 */
-	@Override
-	public String querySynsetXML(final SQLiteDatabase connection, final long synsetId)
-	{
-		final Document doc = querySynsetDoc(connection, synsetId);
-		return DomTransformer.docToString(doc);
-	}
 
 	/**
 	 * Business method that returns WordNet parts-of-speech as array of strings

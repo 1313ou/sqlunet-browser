@@ -129,9 +129,10 @@
 	<xs:element name='wordnet'>
 		<xs:complexType>
 			<xs:choice maxOccurs='unbounded' minOccurs='0'>
+				<xs:element maxOccurs='unbounded' minOccurs='0' ref='word'/>
+				<xs:element maxOccurs='unbounded' minOccurs='0' ref='pos'/>
 				<xs:element maxOccurs='unbounded' minOccurs='0' ref='sense'/>
 				<xs:element maxOccurs='unbounded' minOccurs='0' ref='synset'/>
-				<xs:element maxOccurs='unbounded' minOccurs='0' ref='pos'/>
 			</xs:choice>
 			<xs:attribute name='synsetid' type='xs:long' use='optional'/>
 			<xs:attribute name='wordid' type='xs:long' use='optional'/>
@@ -162,6 +163,15 @@
 		</xs:complexType>
 	</xs:element>
 
+	<xs:element name='word'>
+		<xs:complexType mixed='true'>
+			<xs:sequence>
+				<xs:element maxOccurs='unbounded' minOccurs='0' ref='sense'/>
+			</xs:sequence>
+			<xs:attribute name='wordid' type='xs:long' use='optional'/>
+		</xs:complexType>
+	</xs:element>
+
 	<xs:element name='sense'>
 		<xs:complexType>
 			<xs:sequence>
@@ -172,25 +182,21 @@
 			<xs:attribute name='wordid' type='xs:long' use='optional'/>
 			<xs:attribute name='synsetid' type='xs:long' use='optional'/>
 			<xs:attribute name='sensekey' type='sensekeyType' use='optional'/>
+			<xs:attribute name='pos' type='posType' use='optional'/>
+			<xs:attribute name='lexdomain' type='lexdomainType' use='optional'/>
 		</xs:complexType>
 	</xs:element>
 
 	<xs:element name='synset'>
 		<xs:complexType>
 			<xs:sequence>
-				<xs:element maxOccurs='unbounded' minOccurs='1' ref='word'/>
+				<xs:element maxOccurs='unbounded' minOccurs='0' ref='word'/>
 				<xs:element maxOccurs='1' minOccurs='1' ref='definition'/>
 				<xs:element maxOccurs='1' minOccurs='0' ref='sample'/>
 				<xs:element maxOccurs='1' minOccurs='0' ref='links'/>
 			</xs:sequence>
 			<xs:attribute name='size' type='xs:integer' use='optional'/>
 			<xs:attribute name='synsetid' type='xs:long' use='optional'/>
-		</xs:complexType>
-	</xs:element>
-
-	<xs:element name='word'>
-		<xs:complexType mixed='true'>
-			<xs:attribute name='wordid' type='xs:long' use='optional'/>
 		</xs:complexType>
 	</xs:element>
 

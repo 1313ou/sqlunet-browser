@@ -51,6 +51,13 @@
 			<SPAN class="treejunction" onclick="javascript:Tree.toggle(this);">
 				<IMG class="treepix" src="images/open.png"/>
 			</SPAN>
+			<!-- pointer -->
+			<A class="pointer">
+				<xsl:attribute name="href">
+					<xsl:value-of select="concat('query?fnluid='./@luid)"/>
+				</xsl:attribute>
+				<IMG class="dataimg" src="images/pointer.png"/>
+			</A>
 			<!-- data image -->
 			<IMG class="dataimg" src="images/xnet/member.png"/>
 			<!-- label -->
@@ -246,6 +253,13 @@
 			<SPAN class="treejunction" onclick="javascript:Tree.toggle(this);">
 				<IMG class="treepix" src="images/open.png"/>
 			</SPAN>
+			<!-- pointer -->
+			<A class="pointer">
+				<xsl:attribute name="href">
+					<xsl:value-of select="concat('query?fnsentenceid=',./@sentenceid)"/>
+				</xsl:attribute>
+				<IMG class="dataimg" src="images/pointer.png"/>
+			</A>
 			<!-- data image -->
 			<IMG class="dataimg" src="images/xnet/sentence.png"/>
 			<!-- label -->
@@ -262,7 +276,7 @@
 				<LI>
 					<SPAN class="fnsentencetext">
 						<xsl:value-of select="./text()"/>
-					</SPAN>			
+					</SPAN>
 					<UL style="display: block;">
 						<xsl:apply-templates select=".//fn:layer"/>
 					</UL>
@@ -276,7 +290,7 @@
 			<xsl:value-of select="../../text()"/>
 		</xsl:variable>
 		<LI class="treeitem treepanel fnlayer">
-			<SPAN class="fnlayertype"><xsl:value-of select="./@type"/></SPAN>	
+			<SPAN class="fnlayertype"><xsl:value-of select="./@type"/></SPAN>
 			<UL style="display: block;">
 				<xsl:apply-templates select=".//fn:label"/>
 			</UL>
@@ -296,7 +310,7 @@
 		<LI class="treeitem treepanel fnlabel">
 			<SPAN class="fnlabelname"><xsl:value-of select="./@label"/></SPAN>
 			<xsl:text> </xsl:text>
-			<SPAN class="fnlabelvalue"><xsl:value-of select="substring($senttext, $start, $len)"/></SPAN>	
+			<SPAN class="fnlabelvalue"><xsl:value-of select="substring($senttext, $start, $len)"/></SPAN>
 		</LI>
 	</xsl:template>
 

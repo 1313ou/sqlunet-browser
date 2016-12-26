@@ -20,12 +20,12 @@ class WordQuery extends DBQuery
 	 * Constructor
 	 *
 	 * @param connection connection
-	 * @param word      is the word lemma
+	 * @param wordId      is the word lemma
 	 */
-	public WordQuery(final SQLiteDatabase connection, final String word)
+	public WordQuery(final SQLiteDatabase connection, final long wordId)
 	{
 		super(connection, WordQuery.QUERY);
-		setParams(word);
+		setParams(wordId);
 	}
 
 	/**

@@ -19,6 +19,7 @@ import java.util.TreeSet;
 public class Word extends BasicWord
 {
 	static private final String TAG = "Word";
+
 	/**
 	 * Word
 	 *
@@ -41,6 +42,16 @@ public class Word extends BasicWord
 	}
 
 	/**
+	 * Constructor
+	 *
+	 * @param query database query
+	 */
+	private Word(final WordQueryFromLemma query)
+	{
+		super(query.getLemma(), query.getId());
+	}
+
+	/**
 	 * Make word
 	 *
 	 * @param connection connection
@@ -50,10 +61,46 @@ public class Word extends BasicWord
 	static public Word make(final SQLiteDatabase connection, final String lemma)
 	{
 		Word word = null;
+		WordQueryFromLemma query = null;
+		try
+		{
+			query = new WordQueryFromLemma(connection, lemma);
+			query.execute();
+
+			if (query.next())
+			{
+				word = new Word(query);
+			}
+		}
+		catch (final SQLException e)
+		{
+			Log.e(TAG, "While querying word", e);
+			// word can only be null here
+		}
+		finally
+		{
+			if (query != null)
+			{
+				query.release();
+			}
+		}
+		return word;
+	}
+
+	/**
+	 * Make word
+	 *
+	 * @param connection connection
+	 * @param wordId     target id
+	 * @return Word or null
+	 */
+	static public Word make(final SQLiteDatabase connection, final long wordId)
+	{
+		Word word = null;
 		WordQuery query = null;
 		try
 		{
-			query = new WordQuery(connection, lemma);
+			query = new WordQuery(connection, wordId);
 			query.execute();
 
 			if (query.next())

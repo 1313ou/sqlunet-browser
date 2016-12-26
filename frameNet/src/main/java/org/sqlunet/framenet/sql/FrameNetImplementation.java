@@ -420,20 +420,33 @@ public class FrameNetImplementation implements FrameNetInterface
 		final FnLexUnit lexUnit = FnLexUnit.makeFromId(connection, luId);
 		final Node lexUnitNode = FnNodeFactory.makeFnLexunitNode(doc, parent, lexUnit);
 
-		//			// frame FEs
-		//			final List<FnFrameElement> fes = FnFrameElement.make(connection, lexUnit.frame.frameId);
-		//			if (fes != null)
-		//			{
-		//				int j = 1;
-		//				for (final FnFrameElement fe : fes)
-		//				{
-		//					FnNodeFactory.makeFnFENode(doc, lexUnitNode, fe, j);
-		//					j++;
-		//				}
-		//			}
+		// frame FEs
+		/*
+		final List<FnFrameElement> fes = FnFrameElement.make(connection, lexUnit.frame.frameId);
+		if (fes != null)
+		{
+			for (final FnFrameElement fe : fes)
+			{
+				FnNodeFactory.makeFnFENode(doc, lexUnitNode, fe);
+			}
+		}
+		*/
 
 		// frame
 		walkFrame(connection, doc, lexUnitNode, lexUnit.frame.frameId);
+
+		// sentences
+		final Node sentencesNode = FnNodeFactory.makeFnSentencesNode(doc, lexUnitNode);
+		final List<FnSentence> sentences = FnSentence.makeFromLexicalUnit(connection, lexUnit.luId);
+		if (sentences != null)
+		{
+			int j = 1;
+			for (final FnSentence sentence : sentences)
+			{
+				FnNodeFactory.makeFnSentenceNode(doc, sentencesNode, sentence, j);
+				j++;
+			}
+		}
 	}
 
 	/**

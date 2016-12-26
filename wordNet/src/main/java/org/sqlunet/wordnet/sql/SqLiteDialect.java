@@ -20,6 +20,10 @@ class SqLiteDialect
 	// query for word id
 	static final String WordQuery = "SELECT wordid, lemma " +
 			"FROM words " +
+			"WHERE wordid = ?;";
+	// query for word
+	static final String WordQueryFromLemma = "SELECT wordid, lemma " +
+			"FROM words " +
 			"WHERE lemma = ?;";
 
 	// SYNSET
@@ -35,7 +39,7 @@ class SqLiteDialect
 			"INNER JOIN words USING (wordid) " +
 			"WHERE synsetid = ?;";
 	// query for synsets from word id
-	static final String SynsetsQueryFromWordId = "SELECT synsetid, definition, lexdomainid, GROUP_CONCAT(sample, '|' ) AS sampleset " +
+	static final String SynsetsQueryFromWordId = "SELECT synsetid, definition, pos, lexdomainid, GROUP_CONCAT(sample, '|' ) AS sampleset " +
 			"FROM senses " +
 			"INNER JOIN synsets USING (synsetid) " +
 			"LEFT JOIN samples USING (synsetid) " +

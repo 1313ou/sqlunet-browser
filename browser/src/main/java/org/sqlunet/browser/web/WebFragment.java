@@ -48,6 +48,7 @@ import org.sqlunet.verbnet.VnClassPointer;
 import org.sqlunet.verbnet.sql.VerbNetImplementation;
 import org.sqlunet.wordnet.SensePointer;
 import org.sqlunet.wordnet.SynsetPointer;
+import org.sqlunet.wordnet.WordPointer;
 import org.sqlunet.wordnet.sql.WordNetImplementation;
 import org.w3c.dom.Document;
 
@@ -79,6 +80,7 @@ public class WebFragment extends Fragment
 	static private final String LIST2 = "</UL>";
 	static private final String ITEM1 = "<LI class='treeitem treepanel'>";
 	static private final String ITEM2 = "</LI>";
+
 	/**
 	 * WebView
 	 */
@@ -90,177 +92,6 @@ public class WebFragment extends Fragment
 	public WebFragment()
 	{
 	}
-
-	/**
-	 * Assemble result
-	 *
-	 * @param word       query word
-	 * @param xml        assemble as xml (or document to be xslt-transformed if false)
-	 * @param isSelector is selector source
-	 * @param wnDomDoc   wordnet document
-	 * @param vnDomDoc   verbnet document
-	 * @param pbDomDoc   propbank document
-	 * @param fnDomDoc   framenet document
-	 * @param bncDomDoc  bnc document
-	 * @return string
-	 */
-	static private String docsToString(@SuppressWarnings("UnusedParameters") final String word,  //
-			final boolean xml,  //
-			final boolean isSelector,  //
-			final Document wnDomDoc,  //
-			final Document vnDomDoc,  //
-			final Document pbDomDoc,  //
-			final Document fnDomDoc,  //
-			final Document bncDomDoc)
-	{
-		// LogUtils.writeLog(DomTransformer.docToXml(wnDomDoc), false, "wn_sqlunet.log");
-		// LogUtils.writeLog(DomTransformer.docToXml(vnDomDoc), false, "vn_sqlunet.log");
-		// LogUtils.writeLog(DomTransformer.docToXml(pbDomDoc), false, "pb_sqlunet.log");
-		// LogUtils.writeLog(DomTransformer.docToXml(fnDomDoc), false, "fn_sqlunet.log");
-		// LogUtils.writeLog(DomTransformer.docToXml(bncDomDoc), false, "bnc_sqlunet.log");
-
-		String data;
-		if (xml)
-		{
-			// merge all into one
-			final Document rootDomDoc = DomFactory.makeDocument();
-			NodeFactory.makeRootNode(rootDomDoc, rootDomDoc, "sqlunet", null, WebFragment.SQLUNET_NS);
-			if (wnDomDoc != null)
-			{
-				rootDomDoc.getDocumentElement().appendChild(rootDomDoc.importNode(wnDomDoc.getFirstChild(), true));
-			}
-			if (vnDomDoc != null)
-			{
-				rootDomDoc.getDocumentElement().appendChild(rootDomDoc.importNode(vnDomDoc.getFirstChild(), true));
-			}
-			if (pbDomDoc != null)
-			{
-				rootDomDoc.getDocumentElement().appendChild(rootDomDoc.importNode(pbDomDoc.getFirstChild(), true));
-			}
-			if (fnDomDoc != null)
-			{
-				rootDomDoc.getDocumentElement().appendChild(rootDomDoc.importNode(fnDomDoc.getFirstChild(), true));
-			}
-			if (bncDomDoc != null)
-			{
-				rootDomDoc.getDocumentElement().appendChild(rootDomDoc.importNode(bncDomDoc.getFirstChild(), true));
-			}
-
-			data = DomTransformer.docToXml(rootDomDoc);
-			if (BuildConfig.DEBUG)
-			{
-				LogUtils.writeLog(data, false, null);
-				DomValidator.validateStrings(DocumentTransformer.class.getResource("/org/sqlunet/SqlUNet.xsd"), data);
-			}
-		}
-		else
-		{
-			if (BuildConfig.DEBUG)
-			{
-				DomValidator.validateDocs(DocumentTransformer.class.getResource("/org/sqlunet/SqlUNet.xsd"), wnDomDoc, vnDomDoc, pbDomDoc, fnDomDoc, bncDomDoc);
-			}
-
-			final StringBuilder sb = new StringBuilder();
-
-			// header
-			sb.append(BODY1);
-
-			// css style sheet
-			sb.append(STYLESHEET1).append("css/style.css").append(STYLESHEET2);
-			sb.append(STYLESHEET1).append("css/tree.css").append(STYLESHEET2);
-			sb.append(STYLESHEET1).append("css/wordnet.css").append(STYLESHEET2);
-			if (vnDomDoc != null)
-			{
-				sb.append(STYLESHEET1).append("css/verbnet.css").append(STYLESHEET2);
-			}
-			if (pbDomDoc != null)
-			{
-				sb.append(STYLESHEET1).append("css/propbank.css").append(STYLESHEET2);
-			}
-			if (fnDomDoc != null)
-			{
-				sb.append(STYLESHEET1).append("css/framenet.css").append(STYLESHEET2);
-			}
-			if (bncDomDoc != null)
-			{
-				sb.append(STYLESHEET1).append("css/bnc.css").append(STYLESHEET2);
-			}
-
-			// javascripts
-			sb.append(SCRIPT1).append("js/tree.js").append(SCRIPT2);
-			sb.append(SCRIPT1).append("js/sarissa.js").append(SCRIPT2);
-			sb.append(SCRIPT1).append("js/ajax.js").append(SCRIPT2);
-			sb.append(SCRIPT1).append("js/wordnet.js").append(SCRIPT2);
-			if (vnDomDoc != null)
-			{
-				sb.append(SCRIPT1).append("js/verbnet.js'></script>");
-			}
-			if (pbDomDoc != null)
-			{
-				sb.append(SCRIPT1).append("js/propbank.js").append(SCRIPT2);
-			}
-			if (fnDomDoc != null)
-			{
-				sb.append(SCRIPT1).append("js/framenet.js").append(SCRIPT2);
-			}
-			if (bncDomDoc != null)
-			{
-				sb.append(SCRIPT1).append("js/bnc.js").append(SCRIPT2);
-			}
-
-			// body
-			sb.append(BODY2);
-
-			// top
-			sb.append(TOP);
-
-			// xslt-transformed data
-			sb.append(LIST1);
-			if (wnDomDoc != null)
-			{
-				sb.append(ITEM1);
-				sb.append(DocumentTransformer.docToHtml(wnDomDoc, Settings.Source.WORDNET, isSelector));
-				sb.append(ITEM2);
-			}
-			if (vnDomDoc != null)
-			{
-				sb.append(ITEM1);
-				sb.append(DocumentTransformer.docToHtml(vnDomDoc, Settings.Source.VERBNET, isSelector));
-				sb.append(ITEM2);
-			}
-			if (pbDomDoc != null)
-			{
-				sb.append(ITEM1);
-				sb.append(DocumentTransformer.docToHtml(pbDomDoc, Settings.Source.PROPBANK, isSelector));
-				sb.append(ITEM2);
-			}
-			if (fnDomDoc != null)
-			{
-				sb.append(ITEM1);
-				sb.append(DocumentTransformer.docToHtml(fnDomDoc, Settings.Source.FRAMENET, isSelector));
-				sb.append(ITEM2);
-			}
-			if (bncDomDoc != null)
-			{
-				sb.append(ITEM1);
-				sb.append(DocumentTransformer.docToHtml(bncDomDoc, Settings.Source.BNC, isSelector));
-				sb.append(ITEM2);
-			}
-			sb.append(LIST2);
-
-			// tail
-			sb.append(BODY3);
-
-			data = sb.toString();
-		}
-		if (BuildConfig.DEBUG)
-		{
-			Log.d(TAG, "xml=\n" + data);
-			LogUtils.writeLog(data, false, null);
-		}
-		return data;
-	}
-
 
 	@Override
 	public View onCreateView(final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState)
@@ -566,6 +397,15 @@ public class WebFragment extends Fragment
 										}
 										break;
 
+									case ProviderArgs.ARG_QUERYTYPE_WORD:
+										@SuppressWarnings("TypeMayBeWeakened") final WordPointer wordPointer = (WordPointer) pointer;
+										Log.d(WebFragment.TAG, "ARG word=" + wordPointer);
+										if (wordPointer != null && Settings.Source.WORDNET.test(sources))
+										{
+											wnDomDoc = new WordNetImplementation().queryWordDoc(db, wordPointer.getWordId());
+										}
+										break;
+
 									case ProviderArgs.ARG_QUERYTYPE_SYNSET:
 										@SuppressWarnings("TypeMayBeWeakened") final SynsetPointer synsetPointer = (SynsetPointer) pointer;
 										Log.d(WebFragment.TAG, "ARG synset=" + synsetPointer);
@@ -666,5 +506,175 @@ public class WebFragment extends Fragment
 				WebFragment.this.webview.loadUrl("_about:blank");
 			}
 		});
+	}
+
+	/**
+	 * Assemble result
+	 *
+	 * @param word       query word
+	 * @param xml        assemble as xml (or document to be xslt-transformed if false)
+	 * @param isSelector is selector source
+	 * @param wnDomDoc   wordnet document
+	 * @param vnDomDoc   verbnet document
+	 * @param pbDomDoc   propbank document
+	 * @param fnDomDoc   framenet document
+	 * @param bncDomDoc  bnc document
+	 * @return string
+	 */
+	static private String docsToString(@SuppressWarnings("UnusedParameters") final String word,  //
+			final boolean xml,  //
+			final boolean isSelector,  //
+			final Document wnDomDoc,  //
+			final Document vnDomDoc,  //
+			final Document pbDomDoc,  //
+			final Document fnDomDoc,  //
+			final Document bncDomDoc)
+	{
+		// LogUtils.writeLog(DomTransformer.docToXml(wnDomDoc), false, "wn_sqlunet.log");
+		// LogUtils.writeLog(DomTransformer.docToXml(vnDomDoc), false, "vn_sqlunet.log");
+		// LogUtils.writeLog(DomTransformer.docToXml(pbDomDoc), false, "pb_sqlunet.log");
+		// LogUtils.writeLog(DomTransformer.docToXml(fnDomDoc), false, "fn_sqlunet.log");
+		// LogUtils.writeLog(DomTransformer.docToXml(bncDomDoc), false, "bnc_sqlunet.log");
+
+		String data;
+		if (xml)
+		{
+			// merge all into one
+			final Document rootDomDoc = DomFactory.makeDocument();
+			NodeFactory.makeRootNode(rootDomDoc, rootDomDoc, "sqlunet", null, WebFragment.SQLUNET_NS);
+			if (wnDomDoc != null)
+			{
+				rootDomDoc.getDocumentElement().appendChild(rootDomDoc.importNode(wnDomDoc.getFirstChild(), true));
+			}
+			if (vnDomDoc != null)
+			{
+				rootDomDoc.getDocumentElement().appendChild(rootDomDoc.importNode(vnDomDoc.getFirstChild(), true));
+			}
+			if (pbDomDoc != null)
+			{
+				rootDomDoc.getDocumentElement().appendChild(rootDomDoc.importNode(pbDomDoc.getFirstChild(), true));
+			}
+			if (fnDomDoc != null)
+			{
+				rootDomDoc.getDocumentElement().appendChild(rootDomDoc.importNode(fnDomDoc.getFirstChild(), true));
+			}
+			if (bncDomDoc != null)
+			{
+				rootDomDoc.getDocumentElement().appendChild(rootDomDoc.importNode(bncDomDoc.getFirstChild(), true));
+			}
+
+			data = DomTransformer.docToXml(rootDomDoc);
+			if (BuildConfig.DEBUG)
+			{
+				LogUtils.writeLog(data, false, null);
+				DomValidator.validateStrings(DocumentTransformer.class.getResource("/org/sqlunet/SqlUNet.xsd"), data);
+			}
+		}
+		else
+		{
+			if (BuildConfig.DEBUG)
+			{
+				DomValidator.validateDocs(DocumentTransformer.class.getResource("/org/sqlunet/SqlUNet.xsd"), wnDomDoc, vnDomDoc, pbDomDoc, fnDomDoc, bncDomDoc);
+			}
+
+			final StringBuilder sb = new StringBuilder();
+
+			// header
+			sb.append(BODY1);
+
+			// css style sheet
+			sb.append(STYLESHEET1).append("css/style.css").append(STYLESHEET2);
+			sb.append(STYLESHEET1).append("css/tree.css").append(STYLESHEET2);
+			sb.append(STYLESHEET1).append("css/wordnet.css").append(STYLESHEET2);
+			if (vnDomDoc != null)
+			{
+				sb.append(STYLESHEET1).append("css/verbnet.css").append(STYLESHEET2);
+			}
+			if (pbDomDoc != null)
+			{
+				sb.append(STYLESHEET1).append("css/propbank.css").append(STYLESHEET2);
+			}
+			if (fnDomDoc != null)
+			{
+				sb.append(STYLESHEET1).append("css/framenet.css").append(STYLESHEET2);
+			}
+			if (bncDomDoc != null)
+			{
+				sb.append(STYLESHEET1).append("css/bnc.css").append(STYLESHEET2);
+			}
+
+			// javascripts
+			sb.append(SCRIPT1).append("js/tree.js").append(SCRIPT2);
+			sb.append(SCRIPT1).append("js/sarissa.js").append(SCRIPT2);
+			sb.append(SCRIPT1).append("js/ajax.js").append(SCRIPT2);
+			sb.append(SCRIPT1).append("js/wordnet.js").append(SCRIPT2);
+			if (vnDomDoc != null)
+			{
+				sb.append(SCRIPT1).append("js/verbnet.js'></script>");
+			}
+			if (pbDomDoc != null)
+			{
+				sb.append(SCRIPT1).append("js/propbank.js").append(SCRIPT2);
+			}
+			if (fnDomDoc != null)
+			{
+				sb.append(SCRIPT1).append("js/framenet.js").append(SCRIPT2);
+			}
+			if (bncDomDoc != null)
+			{
+				sb.append(SCRIPT1).append("js/bnc.js").append(SCRIPT2);
+			}
+
+			// body
+			sb.append(BODY2);
+
+			// top
+			sb.append(TOP);
+
+			// xslt-transformed data
+			sb.append(LIST1);
+			if (wnDomDoc != null)
+			{
+				sb.append(ITEM1);
+				sb.append(DocumentTransformer.docToHtml(wnDomDoc, Settings.Source.WORDNET, isSelector));
+				sb.append(ITEM2);
+			}
+			if (vnDomDoc != null)
+			{
+				sb.append(ITEM1);
+				sb.append(DocumentTransformer.docToHtml(vnDomDoc, Settings.Source.VERBNET, isSelector));
+				sb.append(ITEM2);
+			}
+			if (pbDomDoc != null)
+			{
+				sb.append(ITEM1);
+				sb.append(DocumentTransformer.docToHtml(pbDomDoc, Settings.Source.PROPBANK, isSelector));
+				sb.append(ITEM2);
+			}
+			if (fnDomDoc != null)
+			{
+				sb.append(ITEM1);
+				sb.append(DocumentTransformer.docToHtml(fnDomDoc, Settings.Source.FRAMENET, isSelector));
+				sb.append(ITEM2);
+			}
+			if (bncDomDoc != null)
+			{
+				sb.append(ITEM1);
+				sb.append(DocumentTransformer.docToHtml(bncDomDoc, Settings.Source.BNC, isSelector));
+				sb.append(ITEM2);
+			}
+			sb.append(LIST2);
+
+			// tail
+			sb.append(BODY3);
+
+			data = sb.toString();
+		}
+		if (BuildConfig.DEBUG)
+		{
+			Log.d(TAG, "output=\n" + data);
+			LogUtils.writeLog(data, false, null);
+		}
+		return data;
 	}
 }

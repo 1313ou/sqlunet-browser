@@ -50,7 +50,7 @@ public class NodeFactory extends org.sqlunet.sql.NodeFactory
 	 * @param synsetId is the synset id
 	 * @return newly created node
 	 */
-	static public Node makeSenseNode(final Document doc, final Node parent, final long wordId, final long synsetId, final int senseIdx)
+	static public Element makeSenseNode(final Document doc, final Node parent, final long wordId, final long synsetId, final int senseIdx)
 	{
 		final Element element = NodeFactory.makeNode(doc, parent, "sense", null);
 		if (wordId != 0)

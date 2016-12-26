@@ -7,7 +7,7 @@
 }
 
 body {
-	background-color: #F3F1E2;
+	background-color: white;
 	font-size: medium;
 	margin: 0px;
 	padding: 0px;
@@ -76,17 +76,17 @@ a:hover {
 }
 
 .block1 {
-	background-color: #FFFFFF;
+	background-color: white;
 	}
 
 .block2 {
-	background-color: #FFFFD2;
+	background-color: white;
 	}
 
 .block3 {
-	background-color: #FFF2C2;
-	padding-bottom: 2px;
-	border-bottom: 1px solid #999;
+	background-color: white;
+/*	padding-bottom: 2px; */
+/*	border-bottom: 1px solid #999; */
 /*	border-top: 1px solid #999; */
 }
 

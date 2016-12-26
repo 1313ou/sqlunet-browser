@@ -47,7 +47,7 @@
 			</SPAN>
 			<IMG class="dataimg" src="images/xnet/pos.png"/>
 			<SPAN class="wnpos">
-				<xsl:apply-templates select="./@name"/>
+				<xsl:value-of select="./@name"/>
 			</SPAN>
 			<xsl:if test="count(./wn:lexdomain)&gt;0">
 				<OL style="display: block;">
@@ -64,7 +64,7 @@
 			</SPAN>
 			<IMG class="dataimg" src="images/xnet/domain.png"/>
 			<SPAN class="wnlexdomain">
-				<xsl:apply-templates select="./@name"/>
+				<xsl:value-of select="./@name"/>
 			</SPAN>
 			<xsl:if test="count(./wn:sense)&gt;0">
 				<OL style="display: block;">
@@ -92,14 +92,14 @@
 				<xsl:choose>
 					<xsl:when test='./@number'>
 						<xsl:text>[</xsl:text>
-						<xsl:apply-templates select="./@number"/>
+						<xsl:value-of select="./@number"/>
 						<xsl:text>]</xsl:text>
 					</xsl:when>
 					<xsl:otherwise>
 						<xsl:text>(</xsl:text>
-						<xsl:apply-templates select="./@wordid"/>
+						<xsl:value-of select="./@wordid"/>
 						<xsl:text>,</xsl:text>
-						<xsl:apply-templates select="./@synsetid"/>
+						<xsl:value-of select="./@synsetid"/>
 						<xsl:text>)</xsl:text>
 					</xsl:otherwise>
 				</xsl:choose>

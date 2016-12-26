@@ -19,7 +19,7 @@ interface WordNetInterface
 	 *
 	 * @param connection connection
 	 * @param word       target word
-	 * @return WordNet selector data as DOM document <!-- end-user-doc -->
+	 * @return WordNet selector data as DOM document
 	 */
 	Document querySelectorDoc(final SQLiteDatabase connection, final String word);
 
@@ -41,7 +41,7 @@ interface WordNetInterface
 	 * @param word       target word
 	 * @param withLinks  determines if queries are to include links
 	 * @param recurse    determines if queries are to follow links recursively
-	 * @return WordNet data as a DOM Document <!-- end-user-doc -->
+	 * @return WordNet data as a DOM Document
 	 */
 	Document queryDoc(final SQLiteDatabase connection, final String word, final boolean withLinks, final boolean recurse);
 
@@ -52,7 +52,7 @@ interface WordNetInterface
 	 * @param word       target word
 	 * @param withLinks  determines if queries are to include links
 	 * @param recurse    determines if queries are to follow links recursively
-	 * @return WordNet data as XML <!-- end-user-doc -->
+	 * @return WordNet data as XML
 	 */
 	String queryXML(final SQLiteDatabase connection, final String word, final boolean withLinks, final boolean recurse);
 
@@ -66,7 +66,7 @@ interface WordNetInterface
 	 * @param linkName      target link type
 	 * @param withLinks     determines if queries are to include links
 	 * @param recurse       determines if queries are to follow links recursively
-	 * @return WordNet data as DOM document <!-- end-user-doc -->
+	 * @return WordNet data as DOM document
 	 */
 	Document queryDoc(final SQLiteDatabase connection, final String word, final String posName, final String lexDomainName, final String linkName, final boolean withLinks, final boolean recurse);
 
@@ -80,7 +80,7 @@ interface WordNetInterface
 	 * @param linkName      target link type
 	 * @param withLinks     determines if queries are to include links
 	 * @param recurse       determines if queries are to follow links recursively
-	 * @return WordNet data as XML data <!-- end-user-doc -->
+	 * @return WordNet data as XML data
 	 */
 	String queryXML(final SQLiteDatabase connection, final String word, final String posName, final String lexDomainName, final String linkName, final boolean withLinks, final boolean recurse);
 
@@ -92,11 +92,29 @@ interface WordNetInterface
 	 * @param synsetId   target synset id
 	 * @param withLinks  determines if queries are to include links
 	 * @param recurse    determines if queries are to follow links recursively
-	 * @return WordNet data as a DOM Document <!-- end-user-doc -->
+	 * @return WordNet data as a DOM Document
 	 */
 	Document queryDoc(final SQLiteDatabase connection, final long wordId, final Long synsetId, final boolean withLinks, final boolean recurse);
 
 	// I T E M S
+
+	/**
+	 * Business method that returns WordNet word data as DOM document
+	 *
+	 * @param connection connection
+	 * @param wordId     target word id
+	 * @return WordNet word data as DOM document
+	 */
+	Document queryWordDoc(final SQLiteDatabase connection, final long wordId);
+
+	/**
+	 * Business method that returns WordNet word data as XML
+	 *
+	 * @param connection connection
+	 * @param wordId     target word id
+	 * @return WordNet word data as XML
+	 */
+	String queryWordXML(final SQLiteDatabase connection, final long wordId);
 
 	/**
 	 * Business method that returns WordNet sense data as DOM document
@@ -104,7 +122,7 @@ interface WordNetInterface
 	 * @param connection connection
 	 * @param wordId     target word id
 	 * @param synsetId   target synset id
-	 * @return WordNet synset data as DOM document <!-- end-user-doc -->
+	 * @return WordNet synset data as DOM document
 	 */
 	Document querySenseDoc(final SQLiteDatabase connection, final long wordId, final long synsetId);
 
@@ -123,7 +141,7 @@ interface WordNetInterface
 	 *
 	 * @param connection connection
 	 * @param synsetId   target synset id
-	 * @return WordNet synset data as DOM document <!-- end-user-doc -->
+	 * @return WordNet synset data as DOM document
 	 */
 	Document querySynsetDoc(final SQLiteDatabase connection, final long synsetId);
 

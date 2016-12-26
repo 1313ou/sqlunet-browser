@@ -50,6 +50,13 @@
 			<SPAN class="treejunction" onclick="javascript:Tree.toggle(this);">
 				<IMG class="treepix" src="images/open.png"/>
 			</SPAN>
+			<!-- pointer -->
+			<A class="pointer">
+				<xsl:attribute name="href">
+					<xsl:value-of select="concat('query?fnluid='./@luid)"/>
+				</xsl:attribute>
+				<IMG class="dataimg" src="images/pointer.png"/>
+			</A>
 			<!-- data image -->
 			<IMG class="dataimg" src="images/xnet/member.png"/>
 			<!-- label -->
@@ -245,6 +252,13 @@
 			<SPAN class="treejunction" onclick="javascript:Tree.toggle(this);">
 				<IMG class="treepix" src="images/open.png"/>
 			</SPAN>
+			<!-- pointer -->
+			<A class="pointer">
+				<xsl:attribute name="href">
+					<xsl:value-of select="concat('query?fnsentenceid=',./@sentenceid)"/>
+				</xsl:attribute>
+				<IMG class="dataimg" src="images/pointer.png"/>
+			</A>
 			<!-- data image -->
 			<IMG class="dataimg" src="images/xnet/sentence.png"/>
 			<!-- label -->

@@ -37,6 +37,7 @@
 					<xsl:text>wordnet</xsl:text>
 				</SPAN>
 				<UL style="display: block;">
+					<xsl:apply-templates select="./word"/>
 					<xsl:apply-templates select="./pos"/>
 					<xsl:apply-templates select="./sense"/>
 					<xsl:apply-templates select="./synset"/>
@@ -45,14 +46,38 @@
 		</xsl:choose>
 	</xsl:template>
 
+	<xsl:template match="word">
+		<xsl:variable name="word">
+			<xsl:value-of select="text()"/>
+		</xsl:variable>
+		<LI class="treeitem">
+			<IMG class="dataimg" src="images/xnet/member.png"/>
+			<A class="pointer">
+				<xsl:attribute name="href">
+					<xsl:value-of select="concat('query?word=',$word)"/>
+				</xsl:attribute>
+				<IMG class="dataimg" src="images/pointer.png"/>
+			</A>
+			<SPAN class="wnword">
+				<xsl:value-of select="$word"/>
+			</SPAN>
+		</LI>
+		<xsl:if test="count(./sense)&gt;0">
+			<UL style="display: block;">
+				<xsl:apply-templates select="./sense"/>
+			</UL>
+		</xsl:if>
+	</xsl:template>
+
 	<xsl:template match="pos">
 		<LI class="treeitem treepanel block1">
 			<SPAN class="treejunction" onclick="javascript:Tree.toggle(this);">
 				<IMG class="treepix" src="images/open.png"/>
 			</SPAN>
 			<IMG class="dataimg" src="images/xnet/pos.png"/>
+			<xsl:text><![CDATA[ ]]></xsl:text>
 			<SPAN class="wnpos">
-				<xsl:apply-templates select="./@name"/>
+				<xsl:value-of select="./@name"/>
 			</SPAN>
 			<xsl:if test="count(./lexdomain)&gt;0">
 				<UL style="display: block;">
@@ -69,7 +94,7 @@
 			</SPAN>
 			<IMG class="dataimg" src="images/xnet/domain.png"/>
 			<SPAN class="wnlexdomain">
-				<xsl:apply-templates select="./@name"/>
+				<xsl:value-of select="./@name"/>
 			</SPAN>
 			<xsl:if test="count(./sense)&gt;0">
 				<UL style="display: block;">
@@ -87,28 +112,60 @@
 			<IMG class="dataimg" src="images/xnet/synset.png"/>
 			<SPAN class="wnsense">
 				<xsl:text>sense</xsl:text>
-				<xsl:choose>
-					<xsl:when test='./@number'>
-						<xsl:text>[</xsl:text>
-						<xsl:apply-templates select="./@number"/>
-						<xsl:text>]</xsl:text>
-					</xsl:when>
-					<xsl:otherwise>
-						<xsl:text>(</xsl:text>
-						<xsl:apply-templates select="./@wordid"/>
-						<xsl:text>,</xsl:text>
-						<xsl:apply-templates select="./@synsetid"/>
-						<xsl:text>)</xsl:text>
-					</xsl:otherwise>
-				</xsl:choose>
+				<xsl:if test='./@number'>
+					<xsl:text>[</xsl:text>
+					<xsl:value-of select="./@number"/>
+					<xsl:text>]</xsl:text>
+				</xsl:if>
+				<!--
+				<xsl:if test='./@wordid and ./@synsetid'>
+					<xsl:text>(</xsl:text>
+					<xsl:value-of select="./@wordid"/>
+					<xsl:text>,</xsl:text>
+					<xsl:value-of select="./@synsetid"/>
+					<xsl:text>)</xsl:text>
+				</xsl:if>
+				-->
 			</SPAN>
-			<xsl:if test="count(./synset)&gt;0">
+			<xsl:if test='./@pos'>
+				<IMG class="dataimg" src="images/xnet/pos.png"/>
+				<SPAN class="wnpos">
+					<xsl:value-of select="./@pos"/>
+				</SPAN>
+			</xsl:if>
+			<xsl:if test='./@lexdomain'>
+				<IMG class="dataimg" src="images/xnet/domain.png"/>
+				<SPAN class="wnlexdomain">
+					<xsl:value-of select="./@lexdomain"/>
+				</SPAN>
+			</xsl:if>
+			<xsl:if test="count(./word)&gt;0">
 				<UL style="display: block;">
 					<xsl:apply-templates select="./word"/>
 				</UL>
-				<UL style="display: block;">
-					<xsl:apply-templates select="./synset"/>
-				</UL>
+			</xsl:if>
+			<xsl:if test="count(./synset)&gt;0">
+				<xsl:choose>
+					<xsl:when test="count(./synset/word)&gt;0 or count(./synset/sample)&gt;0 or count(./synset/links)&gt;0">
+						<UL style="display: block;">
+							<xsl:apply-templates select="./synset"/>
+						</UL>
+					</xsl:when>
+					<xsl:otherwise>
+						<DIV>
+							<A class="pointer">
+								<xsl:attribute name="href">
+									<xsl:value-of select="concat('query?synsetid=',./@synsetid)"/>
+								</xsl:attribute>
+								<IMG class="dataimg" src="images/pointer.png"/>
+							</A>
+							<IMG class="dataimg" src="images/xnet/definition.png"/>
+							<SPAN class="wndefinition">
+								<xsl:apply-templates select="./synset/definition"/>
+							</SPAN>
+						</DIV>
+					</xsl:otherwise>
+				</xsl:choose>
 			</xsl:if>
 		</LI>
 	</xsl:template>
@@ -118,6 +175,12 @@
 			<SPAN class="treejunction" onclick="javascript:Tree.toggle(this);">
 				<IMG class="treepix" src="images/open.png"/>
 			</SPAN>
+			<A class="pointer">
+				<xsl:attribute name="href">
+					<xsl:value-of select="concat('query?synsetid=',./@synsetid)"/>
+				</xsl:attribute>
+				<IMG class="dataimg" src="images/pointer.png"/>
+			</A>
 			<IMG class="dataimg" src="images/xnet/synset.png"/>
 			<IMG class="dataimg" src="images/xnet/definition.png"/>
 			<SPAN class="wndefinition">
@@ -134,21 +197,6 @@
 				</UL>
 			</xsl:if>
 			<xsl:apply-templates select="./links"/>
-		</LI>
-	</xsl:template>
-
-	<xsl:template match="word">
-		<xsl:variable name="word">
-			<xsl:value-of select="text()"/>
-		</xsl:variable>
-		<LI class="treeitem">
-			<IMG class="dataimg" src="images/xnet/member.png"/>
-			<A class="wnword">
-				<xsl:attribute name="href">
-					<xsl:value-of select="concat('query?word=',$word)"/>
-				</xsl:attribute>
-				<xsl:value-of select="$word"/>
-			</A>
 		</LI>
 	</xsl:template>
 
@@ -205,7 +253,7 @@
 			</SPAN>
 			<xsl:element name="img">
 				<xsl:attribute name="class">
-					<xsl:value-of select="'dataimg'" />
+					<xsl:value-of select="'dataimg'"/>
 				</xsl:attribute>
 				<xsl:attribute name="src">
 					<xsl:value-of select="concat('images/wordnet/',name(),'.png')"/>
@@ -213,8 +261,9 @@
 			</xsl:element>
 			<SPAN class="wnlink">
 				<xsl:value-of select="name()"/>
-				<xsl:value-of select="concat('* ',$linkclass)"/>
 			</SPAN>
+			<xsl:text></xsl:text>
+			<xsl:value-of select="$linkclass"/>
 			<xsl:if test="count(./synset)&gt;0">
 				<UL style="display: block;">
 					<xsl:apply-templates select="./synset"/>
