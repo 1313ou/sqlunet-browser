@@ -21,19 +21,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e66c28dc-5afe-443a-8883-1d8123a0e6a1" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bNC/src/main/resources/org/sqlunet/bnc2html-ns.xsl" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bNC/src/main/java/org/sqlunet/bnc/sql/BncData.java" afterPath="$PROJECT_DIR$/bNC/src/main/java/org/sqlunet/bnc/sql/BncData.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bNC/src/main/java/org/sqlunet/bnc/sql/BncNodeFactory.java" afterPath="$PROJECT_DIR$/bNC/src/main/java/org/sqlunet/bnc/sql/BncNodeFactory.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bNC/src/main/java/org/sqlunet/bnc/sql/BncQuery.java" afterPath="$PROJECT_DIR$/bNC/src/main/java/org/sqlunet/bnc/sql/BncQuery.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bNC/src/main/java/org/sqlunet/bnc/sql/SqLiteDialect.java" afterPath="$PROJECT_DIR$/bNC/src/main/java/org/sqlunet/bnc/sql/SqLiteDialect.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bNC/src/main/resources/org/sqlunet/bnc2html.xsl" afterPath="$PROJECT_DIR$/bNC/src/main/resources/org/sqlunet/bnc2html.xsl" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/browser/browser.iml" afterPath="$PROJECT_DIR$/browser/browser.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/browser/src/main/assets/css/style.css" afterPath="$PROJECT_DIR$/browser/src/main/assets/css/style.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/browser/src/main/java/org/sqlunet/browser/web/WebFragment.java" afterPath="$PROJECT_DIR$/browser/src/main/java/org/sqlunet/browser/web/WebFragment.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/expandableListFragment/expandableListFragment.iml" afterPath="$PROJECT_DIR$/expandableListFragment/expandableListFragment.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/predicateMatrix/predicateMatrix.iml" afterPath="$PROJECT_DIR$/predicateMatrix/predicateMatrix.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/verbNet/verbNet.iml" afterPath="$PROJECT_DIR$/verbNet/verbNet.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/xNet/xNet.iml" afterPath="$PROJECT_DIR$/xNet/xNet.iml" />
     </list>
     <ignored path="Browser.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -16343,13 +16332,6 @@
       <option name="presentableId" value="Default" />
       <updated>1476373639609</updated>
     </task>
-    <task id="LOCAL-00091" summary="sql dialog&#10;SDK14-&gt;SDK17&#10;getChildFragmentManager">
-      <created>1480502117540</created>
-      <option name="number" value="00091" />
-      <option name="presentableId" value="LOCAL-00091" />
-      <option name="project" value="LOCAL" />
-      <updated>1480502117541</updated>
-    </task>
     <task id="LOCAL-00092" summary="menu optimize">
       <created>1480572499439</created>
       <option name="number" value="00092" />
@@ -16686,7 +16668,14 @@
       <option name="project" value="LOCAL" />
       <updated>1482837302545</updated>
     </task>
-    <option name="localTasksCounter" value="140" />
+    <task id="LOCAL-00140" summary="bnc">
+      <created>1482867038426</created>
+      <option name="number" value="00140" />
+      <option name="presentableId" value="LOCAL-00140" />
+      <option name="project" value="LOCAL" />
+      <updated>1482867038426</updated>
+    </task>
+    <option name="localTasksCounter" value="141" />
     <servers />
   </component>
   <component name="TodoView" selected-index="2">
@@ -16718,12 +16707,12 @@
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.30754718" sideWeight="0.49587232" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.38773584" sideWeight="0.5041006" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.38773584" sideWeight="0.5041006" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3254717" sideWeight="0.5462001" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Captures" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24931657" sideWeight="0.49436393" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.41415095" sideWeight="0.38545653" order="11" side_tool="true" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16457081" sideWeight="0.6831832" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23962264" sideWeight="0.55330783" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.23962264" sideWeight="0.55330783" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32968834" sideWeight="0.49622643" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.19190815" sideWeight="0.55716586" order="6" side_tool="true" content_ui="tabs" />
@@ -16755,7 +16744,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="sql dialog&#10;SDK14-&gt;SDK17&#10;getChildFragmentManager" />
     <MESSAGE value="menu optimize" />
     <MESSAGE value="status view removed" />
     <MESSAGE value="links" />
@@ -16780,7 +16768,8 @@
     <MESSAGE value="xsl pointers" />
     <MESSAGE value="lint" />
     <MESSAGE value="xsl" />
-    <option name="LAST_COMMIT_MESSAGE" value="xsl" />
+    <MESSAGE value="bnc" />
+    <option name="LAST_COMMIT_MESSAGE" value="bnc" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
