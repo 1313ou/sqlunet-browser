@@ -4,7 +4,7 @@ package org.sqlunet.bnc.sql;
 class SqLiteDialect
 {
 	static private final String BNCBaseWordQuery = "SELECT " + //
-			"pos, freq, range, disp, " + //
+			"pos, posname, freq, range, disp, " + //
 			"bncconvtasks.freq1, bncconvtasks.range1, bncconvtasks.disp1, " + //
 			"bncconvtasks.freq2, bncconvtasks.range2, bncconvtasks.disp2, " + //
 			"bncimaginfs.freq1, bncimaginfs.range1, bncimaginfs.disp1, " + //
@@ -16,7 +16,8 @@ class SqLiteDialect
 			"LEFT JOIN bncs USING (wordid) " + //
 			"LEFT JOIN bncspwrs USING (wordid, pos) " + //
 			"LEFT JOIN bncconvtasks USING (wordid, pos) " + //
-			"LEFT JOIN bncimaginfs USING (wordid, pos) ";
+			"LEFT JOIN bncimaginfs USING (wordid, pos) " + //
+			"LEFT JOIN postypes USING (pos) ";
 
 	static String BNCWordPosQuery = SqLiteDialect.BNCBaseWordQuery + //
 			"WHERE lemma = ? AND pos = ?;";
@@ -25,7 +26,7 @@ class SqLiteDialect
 			"WHERE lemma = ?;";
 
 	static private final String BNCBaseQuery = "SELECT " + //
-			"pos, freq, range, disp, " + //
+			"pos, posname, freq, range, disp, " + //
 			"bncconvtasks.freq1, bncconvtasks.range1, bncconvtasks.disp1, " + //
 			"bncconvtasks.freq2, bncconvtasks.range2, bncconvtasks.disp2, " + //
 			"bncimaginfs.freq1, bncimaginfs.range1, bncimaginfs.disp1, " + //
@@ -35,7 +36,8 @@ class SqLiteDialect
 			"FROM bncs " + //
 			"LEFT JOIN bncspwrs USING (wordid, pos) " + //
 			"LEFT JOIN bncconvtasks USING (wordid, pos) " + //
-			"LEFT JOIN bncimaginfs USING (wordid, pos) ";
+			"LEFT JOIN bncimaginfs USING (wordid, pos) " + //
+			"LEFT JOIN postypes USING (pos) ";
 
 	static final String BNCQueryFromWordIdAndPos = SqLiteDialect.BNCBaseQuery + //
 			"WHERE wordid = ? AND pos = ?;";

@@ -8,6 +8,7 @@ import java.util.List;
 public class BncData
 {
 	public String pos;
+	public String posName;
 
 	public Integer freq;
 	public Integer range;

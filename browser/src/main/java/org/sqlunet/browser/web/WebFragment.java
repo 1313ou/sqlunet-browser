@@ -371,6 +371,10 @@ public class WebFragment extends Fragment
 												{
 													fnDomDoc = new FrameNetImplementation().queryFrameDoc(db, xClassId, pos);
 												}
+												if (Settings.Source.BNC.test(sources))
+												{
+													bncDomDoc = new BncImplementation().queryDoc(db, wordId, pos);
+												}
 											}
 											else
 											{

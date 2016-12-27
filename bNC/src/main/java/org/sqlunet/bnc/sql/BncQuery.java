@@ -44,6 +44,16 @@ class BncQuery extends DBQuery
 	}
 
 	/**
+	 * Get the part-of-speech from the result set
+	 *
+	 * @return the part-of-speech from the result set
+	 */
+	private String getPosName()
+	{
+		return this.cursor.getString(1);
+	}
+
+	/**
 	 * Get the frequency from the result set
 	 *
 	 * @return the frequency from the result set
@@ -51,11 +61,11 @@ class BncQuery extends DBQuery
 	@SuppressWarnings("boxing")
 	private Integer getFreq()
 	{
-		if (this.cursor.isNull(1))
+		if (this.cursor.isNull(2))
 		{
 			return null;
 		}
-		return this.cursor.getInt(1);
+		return this.cursor.getInt(2);
 	}
 
 	/**
@@ -66,11 +76,11 @@ class BncQuery extends DBQuery
 	@SuppressWarnings("boxing")
 	private Integer getRange()
 	{
-		if (this.cursor.isNull(2))
+		if (this.cursor.isNull(3))
 		{
 			return null;
 		}
-		return this.cursor.getInt(2);
+		return this.cursor.getInt(3);
 	}
 
 	/**
@@ -81,11 +91,11 @@ class BncQuery extends DBQuery
 	@SuppressWarnings("boxing")
 	private Float getDisp()
 	{
-		if (this.cursor.isNull(3))
+		if (this.cursor.isNull(4))
 		{
 			return null;
 		}
-		return this.cursor.getFloat(3);
+		return this.cursor.getFloat(4);
 	}
 
 	// conversation / task
@@ -98,11 +108,11 @@ class BncQuery extends DBQuery
 	@SuppressWarnings("boxing")
 	private Integer getConvFreq()
 	{
-		if (this.cursor.isNull(4))
+		if (this.cursor.isNull(5))
 		{
 			return null;
 		}
-		return this.cursor.getInt(4);
+		return this.cursor.getInt(5);
 	}
 
 	/**
@@ -113,11 +123,11 @@ class BncQuery extends DBQuery
 	@SuppressWarnings("boxing")
 	private Integer getConvRange()
 	{
-		if (this.cursor.isNull(5))
+		if (this.cursor.isNull(6))
 		{
 			return null;
 		}
-		return this.cursor.getInt(5);
+		return this.cursor.getInt(6);
 	}
 
 	/**
@@ -128,11 +138,11 @@ class BncQuery extends DBQuery
 	@SuppressWarnings("boxing")
 	private Float getConvDisp()
 	{
-		if (this.cursor.isNull(6))
+		if (this.cursor.isNull(7))
 		{
 			return null;
 		}
-		return this.cursor.getFloat(6);
+		return this.cursor.getFloat(7);
 	}
 
 	/**
@@ -143,11 +153,11 @@ class BncQuery extends DBQuery
 	@SuppressWarnings("boxing")
 	private Integer getTaskFreq()
 	{
-		if (this.cursor.isNull(7))
+		if (this.cursor.isNull(8))
 		{
 			return null;
 		}
-		return this.cursor.getInt(7);
+		return this.cursor.getInt(8);
 	}
 
 	/**
@@ -158,11 +168,11 @@ class BncQuery extends DBQuery
 	@SuppressWarnings("boxing")
 	private Integer getTaskRange()
 	{
-		if (this.cursor.isNull(8))
+		if (this.cursor.isNull(9))
 		{
 			return null;
 		}
-		return this.cursor.getInt(8);
+		return this.cursor.getInt(9);
 	}
 
 	/**
@@ -173,11 +183,11 @@ class BncQuery extends DBQuery
 	@SuppressWarnings("boxing")
 	private Float getTaskDisp()
 	{
-		if (this.cursor.isNull(9))
+		if (this.cursor.isNull(10))
 		{
 			return null;
 		}
-		return this.cursor.getFloat(9);
+		return this.cursor.getFloat(10);
 	}
 
 	// imagination / information
@@ -190,11 +200,11 @@ class BncQuery extends DBQuery
 	@SuppressWarnings("boxing")
 	private Integer getImagFreq()
 	{
-		if (this.cursor.isNull(10))
+		if (this.cursor.isNull(11))
 		{
 			return null;
 		}
-		return this.cursor.getInt(10);
+		return this.cursor.getInt(11);
 	}
 
 	/**
@@ -205,11 +215,11 @@ class BncQuery extends DBQuery
 	@SuppressWarnings("boxing")
 	private Integer getImagRange()
 	{
-		if (this.cursor.isNull(11))
+		if (this.cursor.isNull(12))
 		{
 			return null;
 		}
-		return this.cursor.getInt(11);
+		return this.cursor.getInt(12);
 	}
 
 	/**
@@ -220,11 +230,11 @@ class BncQuery extends DBQuery
 	@SuppressWarnings("boxing")
 	private Float getImagDisp()
 	{
-		if (this.cursor.isNull(12))
+		if (this.cursor.isNull(13))
 		{
 			return null;
 		}
-		return this.cursor.getFloat(12);
+		return this.cursor.getFloat(13);
 	}
 
 	/**
@@ -235,11 +245,11 @@ class BncQuery extends DBQuery
 	@SuppressWarnings("boxing")
 	private Integer getInfFreq()
 	{
-		if (this.cursor.isNull(13))
+		if (this.cursor.isNull(14))
 		{
 			return null;
 		}
-		return this.cursor.getInt(13);
+		return this.cursor.getInt(14);
 	}
 
 	/**
@@ -250,11 +260,11 @@ class BncQuery extends DBQuery
 	@SuppressWarnings("boxing")
 	private Integer getInfRange()
 	{
-		if (this.cursor.isNull(14))
+		if (this.cursor.isNull(15))
 		{
 			return null;
 		}
-		return this.cursor.getInt(14);
+		return this.cursor.getInt(15);
 	}
 
 	/**
@@ -265,11 +275,11 @@ class BncQuery extends DBQuery
 	@SuppressWarnings("boxing")
 	private Float getInfDisp()
 	{
-		if (this.cursor.isNull(15))
+		if (this.cursor.isNull(16))
 		{
 			return null;
 		}
-		return this.cursor.getFloat(15);
+		return this.cursor.getFloat(16);
 	}
 
 	// spoken / written
@@ -282,11 +292,11 @@ class BncQuery extends DBQuery
 	@SuppressWarnings("boxing")
 	private Integer getSpokenFreq()
 	{
-		if (this.cursor.isNull(16))
+		if (this.cursor.isNull(17))
 		{
 			return null;
 		}
-		return this.cursor.getInt(16);
+		return this.cursor.getInt(17);
 	}
 
 	/**
@@ -297,11 +307,11 @@ class BncQuery extends DBQuery
 	@SuppressWarnings("boxing")
 	private Integer getSpokenRange()
 	{
-		if (this.cursor.isNull(17))
+		if (this.cursor.isNull(18))
 		{
 			return null;
 		}
-		return this.cursor.getInt(17);
+		return this.cursor.getInt(18);
 	}
 
 	/**
@@ -312,11 +322,11 @@ class BncQuery extends DBQuery
 	@SuppressWarnings("boxing")
 	private Float getSpokenDisp()
 	{
-		if (this.cursor.isNull(18))
+		if (this.cursor.isNull(19))
 		{
 			return null;
 		}
-		return this.cursor.getFloat(18);
+		return this.cursor.getFloat(19);
 	}
 
 	/**
@@ -327,11 +337,11 @@ class BncQuery extends DBQuery
 	@SuppressWarnings("boxing")
 	private Integer getWrittenFreq()
 	{
-		if (this.cursor.isNull(19))
+		if (this.cursor.isNull(20))
 		{
 			return null;
 		}
-		return this.cursor.getInt(19);
+		return this.cursor.getInt(20);
 	}
 
 	/**
@@ -342,11 +352,11 @@ class BncQuery extends DBQuery
 	@SuppressWarnings("boxing")
 	private Integer getWrittenRange()
 	{
-		if (this.cursor.isNull(20))
+		if (this.cursor.isNull(21))
 		{
 			return null;
 		}
-		return this.cursor.getInt(20);
+		return this.cursor.getInt(21);
 	}
 
 	/**
@@ -357,11 +367,11 @@ class BncQuery extends DBQuery
 	@SuppressWarnings("boxing")
 	private Float getWrittenDisp()
 	{
-		if (this.cursor.isNull(21))
+		if (this.cursor.isNull(22))
 		{
 			return null;
 		}
-		return this.cursor.getFloat(21);
+		return this.cursor.getFloat(22);
 	}
 
 	/**
@@ -373,6 +383,7 @@ class BncQuery extends DBQuery
 	{
 		final BncData data = new BncData();
 		data.pos = getPos();
+		data.posName = getPosName();
 		data.freq = getFreq();
 		data.range = getRange();
 		data.disp = getDisp();
