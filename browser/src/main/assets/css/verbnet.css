@@ -109,10 +109,14 @@
 .vnargval {
 	background-color: magenta;
 	color: white;
+	padding-left: 2px;
+	padding-right: 2px;
 }
 
 .vnargevent {
 	color: blue;
+	padding-left: 2px;
+	padding-right: 2px;
 }
 
 .vnargspecific {
@@ -122,7 +126,9 @@
 
 .vnargconst {
 	background-color: yellow;
-	color: white;
+	color: gray;
+	padding-left: 2px;
+	padding-right: 2px;
 }
 
 .vnrestrs {

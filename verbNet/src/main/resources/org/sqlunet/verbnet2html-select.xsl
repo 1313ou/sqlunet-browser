@@ -18,10 +18,10 @@
 				</SPAN>
 				<IMG class="dataimg" src="images/xnet/verbnet.png"/>
 				<SPAN class="domain">
-					<xsl:text>verbnet</xsl:text>
+					<xsl:text><![CDATA[verbnet]]></xsl:text>
 				</SPAN>
 				<SPAN class="error" id="default">
-					<xsl:text>∅ data</xsl:text>
+					<xsl:text><![CDATA[∅ data]]></xsl:text>
 				</SPAN>
 			</xsl:when>
 			<xsl:otherwise>
@@ -30,7 +30,7 @@
 				</SPAN>
 				<IMG class="dataimg" src="images/xnet/verbnet.png"/>
 				<SPAN class="domain">
-					<xsl:text>verbnet</xsl:text>
+					<xsl:text><![CDATA[verbnet]]></xsl:text>
 				</SPAN>
 				<OL style="display: block;">
 					<xsl:apply-templates select="./vnclass"/>

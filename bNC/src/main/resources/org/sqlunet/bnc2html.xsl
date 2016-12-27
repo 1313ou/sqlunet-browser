@@ -19,10 +19,10 @@
 					<IMG class="treepix" src="images/closed.png"/>
 				</SPAN>
 				<SPAN class="domain">
-					<xsl:text>bnc</xsl:text>
+					<xsl:text><![CDATA[bnc]]></xsl:text>
 				</SPAN>
 				<SPAN class="error" id="default">
-					<xsl:text>∅ data</xsl:text>
+					<xsl:text><![CDATA[∅ data]]></xsl:text>
 				</SPAN>
 			</xsl:when>
 			<xsl:otherwise>
@@ -30,7 +30,7 @@
 					<IMG class="treepix" src="images/open.png"/>
 				</SPAN>
 				<SPAN class="domain">
-					<xsl:text>bnc</xsl:text>
+					<xsl:text><![CDATA[bnc]]></xsl:text>
 				</SPAN>
 				<OL style="display: block;">
 					<xsl:apply-templates select="./bncdata"/>

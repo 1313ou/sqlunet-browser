@@ -177,7 +177,12 @@ public class WebFragment extends Fragment
 						int type;
 						Pointer pointer;
 
-						if ("synsetid".equals(name)) //
+						if ("wordid".equals(name)) //
+						{
+							type = ProviderArgs.ARG_QUERYTYPE_WORD;
+							pointer = new WordPointer(id);
+						}
+						else if ("synsetid".equals(name)) //
 						{
 							type = ProviderArgs.ARG_QUERYTYPE_SYNSET;
 							pointer = new SynsetPointer(id);
@@ -568,15 +573,11 @@ public class WebFragment extends Fragment
 			{
 				LogUtils.writeLog(data, false, null);
 				DomValidator.validateStrings(DocumentTransformer.class.getResource("/org/sqlunet/SqlUNet.xsd"), data);
+				Log.d(TAG, "output=\n" + data);
 			}
 		}
 		else
 		{
-			if (BuildConfig.DEBUG)
-			{
-				DomValidator.validateDocs(DocumentTransformer.class.getResource("/org/sqlunet/SqlUNet.xsd"), wnDomDoc, vnDomDoc, pbDomDoc, fnDomDoc, bncDomDoc);
-			}
-
 			final StringBuilder sb = new StringBuilder();
 
 			// header
@@ -669,11 +670,14 @@ public class WebFragment extends Fragment
 			sb.append(BODY3);
 
 			data = sb.toString();
-		}
-		if (BuildConfig.DEBUG)
-		{
-			Log.d(TAG, "output=\n" + data);
-			LogUtils.writeLog(data, false, null);
+
+			if (BuildConfig.DEBUG)
+			{
+				DomValidator.validateDocs(DocumentTransformer.class.getResource("/org/sqlunet/SqlUNet.xsd"), wnDomDoc, vnDomDoc, pbDomDoc, fnDomDoc, bncDomDoc);
+				LogUtils.writeLog(false, null, wnDomDoc, vnDomDoc, pbDomDoc, fnDomDoc, bncDomDoc);
+				LogUtils.writeLog(data, false, null);
+				Log.d(TAG, "output=\n" + data);
+			}
 		}
 		return data;
 	}

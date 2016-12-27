@@ -1,8 +1,10 @@
 #!/bin/bash
 
-#source
-s=sqlunet.log
-sp=/storage/emulated/legacy/$s
+#domains
+domains="wn vn pb fn"
+if [ ! -z "$2" ];then
+	domains=$2
+fi
 
 #target
 t=$1
@@ -11,13 +13,8 @@ if [ -z "$t" ]; then
 fi
 tp=$t.xml
 
-echo "$sp -> $tp"
-
-#./get.sh $t
-#./tohtml-wordnet2html.sh $t
-
 xin=$t
-for d in wn vn pb fn; do
+for d in $domains; do
 	case $d in
 		wn) xsl=wordnet2html;;
 		vn) xsl=verbnet2html;;

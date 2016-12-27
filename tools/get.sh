@@ -1,21 +1,24 @@
 #!/bin/bash
 
-#source
-s=sqlunet.log
-
-#target
+# target
 t=$1
 if [ -z "$t" ]; then
 	read -p 'item >' t
 fi
-b=$2
-tp=$b$t.xml
 
-sp=/storage/emulated/legacy/$b$s
+# destination
+dp=$t.xml
 
-echo "$sp -> $tp"
+# source
+s=$2
+if [ -z "$s" ]; then
+	s=sqlunet.log
+fi
+sp=/storage/emulated/legacy/$s
+
+echo "$sp -> $dp"
 
 adb pull $sp
-rm $tp
-mv $b$s $tp
-#tidy -i -m -xml $tp 2> /dev/null
+rm $dp
+mv $s $dp
+#tidy -i -m -xml $dp 2> /dev/null

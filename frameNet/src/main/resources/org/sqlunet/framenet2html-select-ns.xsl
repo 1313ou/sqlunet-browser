@@ -19,10 +19,10 @@
 				</SPAN>
 				<IMG class="dataimg" src="images/xnet/framenet.png"/>
 				<SPAN class="domain">
-					<xsl:text>framenet</xsl:text>
+					<xsl:text><![CDATA[framenet]]></xsl:text>
 				</SPAN>
 				<SPAN class="error" id="default">
-					<xsl:text>∅ data</xsl:text>
+					<xsl:text><![CDATA[∅ data]]></xsl:text>
 				</SPAN>
 			</xsl:when>
 			<xsl:otherwise>
@@ -31,7 +31,7 @@
 				</SPAN>
 				<IMG class="dataimg" src="images/xnet/framenet.png"/>
 				<SPAN class="domain">
-					<xsl:text>framenet</xsl:text>
+					<xsl:text><![CDATA[framenet]]></xsl:text>
 				</SPAN>
 				<OL style="display: block;">
 					<xsl:apply-templates select="./fn:lexunit"/>

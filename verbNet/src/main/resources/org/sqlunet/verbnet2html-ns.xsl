@@ -21,10 +21,10 @@
 				<!-- data image -->
 				<IMG class="dataimg" src="images/xnet/verbnet.png"/>
 				<SPAN class="domain">
-					<xsl:text>verbnet</xsl:text>
+					<xsl:text><![CDATA[verbnet]]></xsl:text>
 				</SPAN>
 				<SPAN class="error" id="default">
-					<xsl:text>∅ data</xsl:text>
+					<xsl:text><![CDATA[∅ data]]></xsl:text>
 				</SPAN>
 			</xsl:when>
 			<!-- one or more role or frame -->
@@ -35,7 +35,7 @@
 				<!-- data image -->
 				<IMG class="dataimg" src="images/xnet/verbnet.png"/>
 				<SPAN class="domain">
-					<xsl:text>verbnet</xsl:text>
+					<xsl:text><![CDATA[verbnet]]></xsl:text>
 				</SPAN>
 				<UL style="display: block;">
 					<xsl:apply-templates select="./vn:vnclass"/>
@@ -79,7 +79,7 @@
 			<!-- label -->
 			<SPAN class="vnthemrolesetlabel">
 				<xsl:value-of select="count(./vn:themrole)"/>
-				<xsl:text> thematic role(s)</xsl:text>
+				<xsl:text><![CDATA[ thematic role(s)]]></xsl:text>
 			</SPAN>
 			<!-- collapsible content -->
 			<UL style="display: block;">
@@ -118,7 +118,7 @@
 			<!-- label -->
 			<SPAN class="vnframesetlabel">
 				<xsl:value-of select="count(./vn:frame)"/>
-				<xsl:text> frame(s)</xsl:text>
+				<xsl:text><![CDATA[ frame(s)]]></xsl:text>
 			</SPAN>
 			<!-- collapsible content -->
 			<UL style="display: block;">
@@ -139,7 +139,7 @@
 			<!-- label -->
 			<SPAN class="vnframelabel">
 				<xsl:apply-templates select="./vn:description"/>
-				<!-- <xsl:text>#</xsl:text> -->
+				<!-- <xsl:text><![CDATA[#]]></xsl:text> -->
 				<!-- <xsl:value-of select="./@id" /> -->
 				<xsl:if test="./@synset='true'">
 					<IMG class="dataimg" src="images/verbnet/synsetspecific.png"/>
@@ -157,7 +157,7 @@
 					<IMG class="dataimg" src="images/verbnet/syntax.png"/>
 					<!-- label -->
 					<SPAN class="vnframesynsemlabel">
-						<xsl:text>syntax</xsl:text>
+						<xsl:text><![CDATA[syntax]]></xsl:text>
 					</SPAN>
 					<!-- collapsible content -->
 					<UL style="display: block;">
@@ -174,7 +174,7 @@
 					<IMG class="dataimg" src="images/verbnet/semantics.png"/>
 					<!-- label -->
 					<SPAN class="vnframesynsemlabel">
-						<xsl:text>semantics</xsl:text>
+						<xsl:text><![CDATA[semantics]]></xsl:text>
 					</SPAN>
 					<!-- collapsible content -->
 					<UL style="display: block;">
@@ -192,16 +192,10 @@
 		<SPAN class="vnframename">
 			<xsl:value-of select="./@primary"/>
 		</SPAN>
-		<xsl:text>/</xsl:text>
+		<xsl:text><![CDATA[/]]></xsl:text>
 		<SPAN class="vnframename2">
 			<xsl:value-of select="./@secondary"/>
 		</SPAN>
-		<!-- <xsl:text><![CDATA[ ]]></xsl:text> -->
-		<!-- <xsl:value-of select="./@descriptionNumber" /> -->
-		<!-- <xsl:text><![CDATA[ ]]></xsl:text> -->
-		<!-- <xsl:value-of select="./@xtag" /> -->
-		<!-- <xsl:text><![CDATA[ ]]></xsl:text> -->
-		<!-- <xsl:value-of select="./@vnclass" /> -->
 	</xsl:template>
 
 	<xsl:template match="vn:syntax">
@@ -224,9 +218,9 @@
 		<DIV>
 			<IMG class="dataimg" src="images/verbnet/syntax.png"/>
 			<xsl:apply-templates select="vn:cat"/>
-			<xsl:text/>
+			<xsl:text><![CDATA[ ]]></xsl:text>
 			<xsl:apply-templates select="vn:value"/>
-			<xsl:text/>
+			<xsl:text><![CDATA[ ]]></xsl:text>
 			<xsl:apply-templates select="vn:restrs"/>
 		</DIV>
 	</xsl:template>
@@ -244,7 +238,6 @@
 	</xsl:template>
 
 	<xsl:template match="vn:restrs">
-		<xsl:text><![CDATA[ ]]></xsl:text>
 		<IMG class="dataimg" src="images/verbnet/restr.png"/>
 		<SPAN class="vnrestrs">
 			<xsl:value-of select="./@value"/>
@@ -254,11 +247,11 @@
 	<xsl:template match="vn:semitem">
 		<DIV>
 			<IMG class="dataimg" src="images/verbnet/semantics.png"/>
-			<xsl:text/>
-			<xsl:value-of select="rel"/>
-			<xsl:text>(</xsl:text>
-			<xsl:value-of select="arg"/>
-			<xsl:text>)</xsl:text>
+			<xsl:apply-templates select="rel"/>
+			<xsl:text><![CDATA[ ]]></xsl:text>
+			<xsl:text><![CDATA[(]]></xsl:text>
+			<xsl:apply-templates select="arg"/>
+			<xsl:text><![CDATA[)]]></xsl:text>
 		</DIV>
 	</xsl:template>
 
@@ -272,9 +265,9 @@
 		<!-- <SPAN class="vnarg"> -->
 		<!-- <xsl:value-of select="./@narg" /> -->
 		<!-- </SPAN> -->
-		<!-- <xsl:text> </xsl:text> -->
+		<!-- <xsl:text><![CDATA[ ]]></xsl:text> -->
 		<xsl:if test="./@narg &gt; 1">
-			<xsl:text>,</xsl:text>
+			<xsl:text><![CDATA[, ]]></xsl:text>
 		</xsl:if>
 		<xsl:element name="span">
 			<xsl:attribute name="class">

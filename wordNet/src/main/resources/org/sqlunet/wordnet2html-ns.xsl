@@ -21,10 +21,10 @@
 				<!-- data image -->
 				<IMG class="dataimg" src="images/xnet/wordnet.png"/>
 				<SPAN class="domain">
-					<xsl:text>wordnet</xsl:text>
+					<xsl:text><![CDATA[wordnet]]></xsl:text>
 				</SPAN>
 				<SPAN class="error" id="default">
-					<xsl:text>∅ data</xsl:text>
+					<xsl:text><![CDATA[∅ data]]></xsl:text>
 				</SPAN>
 			</xsl:when>
 			<!-- one or more synset -->
@@ -35,7 +35,7 @@
 				<!-- data image -->
 				<IMG class="dataimg" src="images/xnet/wordnet.png"/>
 				<SPAN class="domain">
-					<xsl:text>wordnet</xsl:text>
+					<xsl:text><![CDATA[wordnet]]></xsl:text>
 				</SPAN>
 				<UL style="display: block;">
 					<xsl:apply-templates select="./wn:word"/>
@@ -55,10 +55,18 @@
 			<IMG class="dataimg" src="images/xnet/member.png"/>
 			<A class="pointer">
 				<xsl:attribute name="href">
+					<xsl:value-of select="concat('query?wordid=',./@wordid)"/>
+				</xsl:attribute>
+				<IMG class="dataimg" src="images/pointer.png"/>
+			</A>
+			<!--
+			<A class="pointer">
+				<xsl:attribute name="href">
 					<xsl:value-of select="concat('query?word=',$word)"/>
 				</xsl:attribute>
 				<IMG class="dataimg" src="images/pointer.png"/>
 			</A>
+			-->
 			<SPAN class="wnword">
 				<xsl:value-of select="$word"/>
 			</SPAN>
@@ -76,7 +84,6 @@
 				<IMG class="treepix" src="images/open.png"/>
 			</SPAN>
 			<IMG class="dataimg" src="images/xnet/pos.png"/>
-			<xsl:text><![CDATA[ ]]></xsl:text>
 			<SPAN class="wnpos">
 				<xsl:value-of select="./@name"/>
 			</SPAN>
@@ -112,19 +119,19 @@
 			</SPAN>
 			<IMG class="dataimg" src="images/xnet/synset.png"/>
 			<SPAN class="wnsense">
-				<xsl:text>sense</xsl:text>
+				<xsl:text><![CDATA[sense]]></xsl:text>
 				<xsl:if test='./@number'>
-					<xsl:text>[</xsl:text>
+					<xsl:text><![CDATA[[]]></xsl:text>
 					<xsl:value-of select="./@number"/>
-					<xsl:text>]</xsl:text>
+					<xsl:text><![CDATA[]]]></xsl:text>
 				</xsl:if>
 				<!--
 				<xsl:if test='./@wordid and ./@synsetid'>
-					<xsl:text>(</xsl:text>
+					<xsl:text><![CDATA[(]]></xsl:text>
 					<xsl:value-of select="./@wordid"/>
-					<xsl:text>,</xsl:text>
+					<xsl:text><![CDATA[,]]></xsl:text>
 					<xsl:value-of select="./@synsetid"/>
-					<xsl:text>)</xsl:text>
+					<xsl:text><![CDATA[)]]></xsl:text>
 				</xsl:if>
 				-->
 			</SPAN>
@@ -263,7 +270,7 @@
 			<SPAN class="wnlink">
 				<xsl:value-of select="name()"/>
 			</SPAN>
-			<xsl:text> </xsl:text>
+			<![CDATA[ ]]>
 			<xsl:value-of select="$linkclass"/>
 			<xsl:if test="count(./wn:synset)&gt;0">
 				<UL style="display: block;">

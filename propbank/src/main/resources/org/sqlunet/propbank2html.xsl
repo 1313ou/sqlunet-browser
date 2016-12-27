@@ -19,10 +19,10 @@
 				<!-- data image -->
 				<IMG class="dataimg" src="images/xnet/propbank.png"/>
 				<SPAN class="domain">
-					<xsl:text>propbank</xsl:text>
+					<xsl:text><![CDATA[propbank]]></xsl:text>
 				</SPAN>
 				<SPAN class="error" id="default">
-					<xsl:text>∅ data</xsl:text>
+					<xsl:text><![CDATA[∅ data]]></xsl:text>
 				</SPAN>
 			</xsl:when>
 			<xsl:otherwise>
@@ -32,7 +32,7 @@
 				<!-- data image -->
 				<IMG class="dataimg" src="images/xnet/propbank.png"/>
 				<SPAN class="domain">
-					<xsl:text>propbank</xsl:text>
+					<xsl:text><![CDATA[propbank]]></xsl:text>
 				</SPAN>
 				<UL style="display: block;">
 					<xsl:apply-templates select="./roleset"/>
@@ -59,11 +59,13 @@
 				<SPAN class="pbrolesettext">
 					<xsl:value-of select="./text()"/>
 				</SPAN>
-				<xsl:text> rolesetid=</xsl:text>
+				<!--
+				<xsl:text><![CDATA[ rolesetid=]]></xsl:text>
 				<xsl:value-of select="./@rolesetid"/>
-				<xsl:text> num=</xsl:text>
+				-->
+				<xsl:text><![CDATA[ num=]]></xsl:text>
 				<xsl:value-of select="./@num"/>
-				<xsl:text> head=</xsl:text>
+				<xsl:text><![CDATA[ head=]]></xsl:text>
 				<xsl:value-of select="./@head"/>
 			</SPAN>
 			<!-- collapsible content -->
@@ -82,15 +84,15 @@
 			<IMG class="dataimg" src="images/xnet/role.png"/>
 			<!-- label -->
 			<SPAN class="pbrolelabel">
-				<!-- <xsl:text>role</xsl:text> -->
-				<!-- <xsl:text> #</xsl:text> -->
+				<!-- <xsl:text><![CDATA[role]]></xsl:text> -->
+				<!-- <xsl:text><![CDATA[ #]]></xsl:text> -->
 				<!-- <xsl:value-of select="./@narg" /> -->
-				<!-- <xsl:text> </xsl:text> -->
+				<!-- <![CDATA[ ]]> -->
 				<SPAN class="pbrolename">
 					<xsl:value-of select="./text()"/>
 				</SPAN>
 				<xsl:if test="./@theta != ''">
-					<xsl:text>-</xsl:text>
+					<xsl:text><![CDATA[-]]></xsl:text>
 					<SPAN class="pbthetaname">
 						<xsl:value-of select="./@theta"/>
 					</SPAN>
@@ -110,8 +112,8 @@
 			<IMG class="dataimg" src="images/xnet/sample.png"/>
 			<!-- label -->
 			<SPAN class="pbexamplelabel">
-				<xsl:text>example</xsl:text>
-				<xsl:text> id=</xsl:text>
+				<xsl:text><![CDATA[example]]></xsl:text>
+				<xsl:text><![CDATA[ id=]]></xsl:text>
 				<xsl:value-of select="./@exampleid"/>
 			</SPAN>
 			<!-- collapsible content -->
@@ -152,13 +154,13 @@
 					<xsl:value-of select="./@descr"/>
 				</SPAN>
 				<xsl:if test="./@theta != ''">
-					<xsl:text>-</xsl:text>
+					<xsl:text><![CDATA[-]]></xsl:text>
 					<SPAN class="pbargtheta">
 						<xsl:value-of select="./@theta"/>
 					</SPAN>
 				</xsl:if>
-				<xsl:text/>
 			</SPAN>
+			<xsl:text><![CDATA[ ]]></xsl:text>
 			<SPAN class="pbargtext">
 				<xsl:value-of select="./text()"/>
 			</SPAN>

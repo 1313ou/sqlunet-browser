@@ -346,7 +346,7 @@ public class XSelectorsFragment extends ExpandableListFragment
 				int groupPos = groupCursor.getPosition();
 				String groupName = groupCursor.getString(groupCursor.getColumnIndex(DBCOLUMN));
 				int loaderId = groupCursor.getInt(groupCursor.getColumnIndex("loader"));
-				Log.d(TAG, "group " + groupPos + ' ' + groupName + " loader=" + loaderId);
+				// Log.d(TAG, "group " + groupPos + ' ' + groupName + " loader=" + loaderId);
 				LoaderCallbacks<Cursor> callbacks = null;
 				switch (groupPos)
 				{

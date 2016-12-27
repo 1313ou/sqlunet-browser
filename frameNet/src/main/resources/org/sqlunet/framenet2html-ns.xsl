@@ -20,10 +20,10 @@
 				<!-- data image -->
 				<IMG class="dataimg" src="images/xnet/framenet.png"/>
 				<SPAN class="domain">
-					<xsl:text>framenet</xsl:text>
+					<xsl:text><![CDATA[framenet]]></xsl:text>
 				</SPAN>
 				<SPAN class="error" id="default">
-					<xsl:text>∅ data</xsl:text>
+					<xsl:text><![CDATA[∅ data]]></xsl:text>
 				</SPAN>
 			</xsl:when>
 			<xsl:otherwise>
@@ -33,7 +33,7 @@
 				<!-- data image -->
 				<IMG class="dataimg" src="images/xnet/framenet.png"/>
 				<SPAN class="domain">
-					<xsl:text>framenet</xsl:text>
+					<xsl:text><![CDATA[framenet]]></xsl:text>
 				</SPAN>
 				<UL style="display: block;">
 					<xsl:apply-templates select="./fn:frame"/>
@@ -54,7 +54,7 @@
 			<!-- pointer -->
 			<A class="pointer">
 				<xsl:attribute name="href">
-					<xsl:value-of select="concat('query?fnluid='./@luid)"/>
+					<xsl:value-of select="concat('query?fnluid=',./@luid)"/>
 				</xsl:attribute>
 				<IMG class="dataimg" src="images/pointer.png"/>
 			</A>
@@ -133,19 +133,19 @@
 				<SPAN class="fnfename">
 					<xsl:value-of select="./@name"/>
 				</SPAN>
-				<xsl:text> </xsl:text>
+				<![CDATA[ ]]>
 				<xsl:if test="./@semtype != ''">
 					<SPAN class="fnfesemtype">
 						<xsl:value-of select="./@semtype"/>
 					</SPAN>
-					<xsl:text> </xsl:text>
+					<![CDATA[ ]]>
 				</xsl:if>
 				<xsl:if test="./@type != ''">
-					<xsl:text> type=</xsl:text>
+					<xsl:text><![CDATA[ type=]]></xsl:text>
 					<xsl:value-of select="./@type"/>
 				</xsl:if>
 				<xsl:if test="./@coreset != ''">
-					<xsl:text> coreset=</xsl:text>
+					<xsl:text><![CDATA[ coreset=]]></xsl:text>
 					<xsl:value-of select="./@coreset"/>
 				</xsl:if>
 			</SPAN>
@@ -264,11 +264,11 @@
 			<IMG class="dataimg" src="images/xnet/sentence.png"/>
 			<!-- label -->
 			<SPAN class="fnsentencelabel">
-				<xsl:text>sentence #</xsl:text>
+				<xsl:text><![CDATA[sentence #]]></xsl:text>
 				<xsl:value-of select="./@num"/>
-				<xsl:text> id=</xsl:text>
+				<xsl:text><![CDATA[ id=]]></xsl:text>
 				<xsl:value-of select="./@sentenceid"/>
-				<!-- <xsl:text> anno=</xsl:text> -->
+				<!-- <xsl:text><![CDATA[ anno=]]></xsl:text> -->
 				<!-- <xsl:value-of select="./@annosetids" /> -->
 			</SPAN>
 			<!-- collapsible content -->
@@ -309,7 +309,7 @@
 		</xsl:variable>
 		<LI class="treeitem treepanel fnlabel">
 			<SPAN class="fnlabelname"><xsl:value-of select="./@label"/></SPAN>
-			<xsl:text> </xsl:text>
+			<![CDATA[ ]]>
 			<SPAN class="fnlabelvalue"><xsl:value-of select="substring($senttext, $start, $len)"/></SPAN>
 		</LI>
 	</xsl:template>

@@ -3,6 +3,9 @@ package org.sqlunet.settings;
 import android.os.Environment;
 import android.util.Log;
 
+import org.sqlunet.dom.DomTransformer;
+import org.w3c.dom.Document;
+
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
@@ -53,5 +56,26 @@ public class LogUtils
 		final String logFilePath = logFile.getAbsolutePath();
 		Log.d("LOG", logFilePath);
 		return logFilePath;
+	}
+
+	/**
+	 * Write long text to log file
+	 *
+	 * @param append    whether to append to file
+	 * @param fileName0 file name
+	 */
+	static public String writeLog(final boolean append, final String fileName0, final Document... docs)
+	{
+		final String fileName = fileName0 != null ? fileName0 : "sqlunetx.log";
+		final StringBuilder sb = new StringBuilder();
+		for (Document doc : docs)
+		{
+			if (doc != null)
+			{
+				sb.append(DomTransformer.docToXml(doc));
+			}
+		}
+		final String data = sb.toString();
+		return writeLog(data, append, fileName);
 	}
 }

@@ -19,10 +19,10 @@
 				</SPAN>
 				<IMG class="dataimg" src="images/xnet/wordnet.png"/>
 				<SPAN class="domain">
-					<xsl:text>wordnet</xsl:text>
+					<xsl:text><![CDATA[wordnet]]></xsl:text>
 				</SPAN>
 				<SPAN class="error" id="default">
-					<xsl:text>∅ data</xsl:text>
+					<xsl:text><![CDATA[∅ data]]></xsl:text>
 				</SPAN>
 			</xsl:when>
 			<xsl:otherwise>
@@ -31,7 +31,7 @@
 				</SPAN>
 				<IMG class="dataimg" src="images/xnet/wordnet.png"/>
 				<SPAN class="domain">
-					<xsl:text>wordnet</xsl:text>
+					<xsl:text><![CDATA[wordnet]]></xsl:text>
 				</SPAN>
 				<OL style="display: block;">
 					<xsl:apply-templates select="./wn:pos"/>
@@ -88,19 +88,19 @@
 			</A>
 			<IMG class="dataimg" src="images/xnet/synset.png"/>
 			<SPAN class="wnsense">
-				<xsl:text>sense</xsl:text>
+				<xsl:text><![CDATA[sense]]></xsl:text>
 				<xsl:choose>
 					<xsl:when test='./@number'>
-						<xsl:text>[</xsl:text>
+						<xsl:text><![CDATA[[]]></xsl:text>
 						<xsl:value-of select="./@number"/>
-						<xsl:text>]</xsl:text>
+						<xsl:text><![CDATA[]]]></xsl:text>
 					</xsl:when>
 					<xsl:otherwise>
-						<xsl:text>(</xsl:text>
+						<xsl:text><![CDATA[(]]></xsl:text>
 						<xsl:value-of select="./@wordid"/>
-						<xsl:text>,</xsl:text>
+						<xsl:text><![CDATA[,]]></xsl:text>
 						<xsl:value-of select="./@synsetid"/>
-						<xsl:text>)</xsl:text>
+						<xsl:text><![CDATA[)]]></xsl:text>
 					</xsl:otherwise>
 				</xsl:choose>
 			</SPAN>
