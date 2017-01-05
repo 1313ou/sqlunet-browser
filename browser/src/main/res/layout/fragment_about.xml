@@ -45,12 +45,11 @@
 		android:layout_gravity="center_horizontal"
 		android:text="@string/about_sqlunet_copyright"/>
 
-	<fragment
-		android:id="@+id/source"
-		android:name="org.sqlunet.browser.SourceFragment"
-		class="org.sqlunet.browser.SourceFragment"
+	<RelativeLayout
+		android:id="@+id/container_source"
 		android:layout_width="match_parent"
 		android:layout_height="0dp"
-		android:layout_weight="1"/>
+		android:layout_weight="1">
+	</RelativeLayout>
 
 </LinearLayout>

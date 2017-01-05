@@ -25,6 +25,15 @@ public class AboutFragment extends Fragment
 	public View onCreateView(final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState)
 	{
 		setHasOptionsMenu(true);
-		return inflater.inflate(R.layout.fragment_about, container, false);
+		final View view = inflater.inflate(R.layout.fragment_about, container, false);
+
+		// fragment
+		final Fragment fragment = new SourceFragment();
+		getChildFragmentManager() //
+				.beginTransaction() //
+				.replace(R.id.container_source, fragment) //
+				.commit();
+
+		return view;
 	}
 }
