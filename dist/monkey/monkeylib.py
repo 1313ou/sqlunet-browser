@@ -19,8 +19,6 @@ class MonkeyLib:
 		self.bundle=bundle
 		self.main=self.component(package,mainActivity)
 		self.run=self.component(package,runActivity)
-		self.hv=self.device.getHierarchyViewer()
-		#print('HVIEWER ' + str(hv) + ' ' + str(dir(hv)))
 
 	def component(self,package, activity):
 		return package + '/' + activity
@@ -101,7 +99,7 @@ class MonkeyLib:
 
 	def touchView(self,vn):
 		print('TOUCH ' + str(vn))
-		p = self.hv.getAbsoluteCenterOfView(vn);
+		p = self.device.getHierarchyViewer().getAbsoluteCenterOfView(vn);
 		self.device.touch(p.x, p.y, MonkeyDevice.DOWN_AND_UP)
 
 	def touchout(self):
@@ -115,11 +113,17 @@ class MonkeyLib:
 
 	# T R A V E R S A L
 
-	def traverse(self,start,process):
-		f(start)
+	def traverseFrom(self,start,process):
+		process(start)
 		if start.children != None:
 			for node in start.children:
-				self.traverse(node,process)
+				self.traverseFrom(node,process)
+
+	def rtraverseFrom(self,start,process):
+		process(start)
+		if start.children != None:
+			for node in reversed(start.children):
+				self.rtraverseFrom(node,process)
 
 	def ytraverse(self,node):
 		yield node
@@ -133,13 +137,25 @@ class MonkeyLib:
 			if process(node):
 				break
 
+	def yrtraverse(self,node):
+		yield node
+		if node.children != None:
+			for child in reversed(node.children):
+				for node2 in self.yrtraverse(child):
+					yield node2
+
+	def	yrtraverseFrom(self,start,process): 
+		for node in self.yrtraverse(start):
+			if process(node):
+				break
+
 	# V I E W S
 
 	def	findViewById(self,id): 
-		return self.hv.findViewById(id)
+		return self.device.getHierarchyViewer().findViewById(id)
 
 	#def findViewById2(self,id):
-	#	By.id(id).findView(self.hv)
+	#	By.id(id).findView(self.device.getHierarchyViewer())
 
 	def	getViewIds(self): 
 		return self.device.getViewIdList()

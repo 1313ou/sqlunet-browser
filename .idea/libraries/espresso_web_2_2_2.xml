@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="espresso-web-2.2.2">
+    <CLASSES>
+      <root url="file:///mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/build/intermediates/exploded-aar/com.android.support.test.espresso/espresso-web/2.2.2/res" />
+      <root url="jar:///mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/build/intermediates/exploded-aar/com.android.support.test.espresso/espresso-web/2.2.2/jars/classes.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$PROJECT_DIR$/../../../androidstudio/sdk/extras/android/m2repository/com/android/support/test/espresso/espresso-web/2.2.2/espresso-web-2.2.2-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

@@ -133,14 +133,25 @@ def searches():
 	for w in ('inveigle', 'absorb', 'foist', 'foster'):
 		m.search(w)
 
-def traverseView(v):
-	print("NODE",v.class,v.id,v.toString())
+def firstGroup(v):
+	#print("NODE",v.class,v.id,v.toString(),v.namedProperties['text:mText'] if v.name == 'android.widget.TextView' else '-')
 	if v.id == "id/xselector":
 		print("SELECTOR",v.id,v.toString())
 	elif v.id == "id/xgroup":
-		print("GROUP",v.id,v.toString())
+		print("GROUP",v.id,v.toString(),v.children[0].namedProperties['text:mText'])
+		#dumpView(v)
 		m.touchView(v)
 		m.sleep(3)
+		return True
+	return False
+
+def visitNode(v):
+	#print("NODE",v.class,v.id,v.toString(),v.namedProperties['text:mText'] if v.name == 'android.widget.TextView' else '-')
+	if v.id == "id/xselector":
+		print("SELECTOR",v.id,v.toString())
+	elif v.id == "id/xgroup":
+		print("GROUP",v.id,v.toString(),v.children[0].namedProperties['text:mText'])
+		#dumpView(v)
 	return False
 
 def	emptyTraverse(parent): 
@@ -151,6 +162,7 @@ def	launch():
 	m.activity()
 
 def	dumpView(vn): 
+	print("view name " + vn.name)
 	print("view type " + str(type(vn)))
 	print("view dir  " + str(dir(vn)))
 	print("view class " + str(vn.class))
@@ -158,6 +170,10 @@ def	dumpView(vn):
 	print("view window " + str(vn.window))
 	print("view window type " + str(type(vn.window)))
 	print("view window dir " + str(dir(vn.window)))
+	print("view namedProperties ")
+	print(dir(vn.namedProperties))
+	print(vn.namedProperties)
+	print("view text " + str(vn.namedProperties['text:mText']))
 
 def dumpId(bi):
 	print(type(bi))
@@ -167,16 +183,21 @@ def dumpIds():
 	vs=monkey.getViewIds()
 	print('VIEWS ' + str(vs))
 
-launch()
-m.search('abandon')
+#launch()
+#m.search('abandon')
 bi=m.waitVisible('id/content')
 
 myid='id/container_browse'
+myid='id/list'
 vn=m.findViewById(myid)
-dumpView(vn)
+#dumpView(vn)
 
 #m.traverse(vn,printNodeView)
-m.ytraverseFrom(vn, traverseView)
+m.ytraverseFrom(vn, firstGroup)
+m.sleep(5)
+print("now expand")
+vn=m.findViewById(myid)
+m.rtraverseFrom(vn, visitNode)
 
 #m.sleep(10)
 #m.kill()
