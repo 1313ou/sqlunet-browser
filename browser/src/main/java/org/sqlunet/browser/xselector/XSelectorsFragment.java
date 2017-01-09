@@ -288,6 +288,57 @@ public class XSelectorsFragment extends ExpandableListFragment
 		final ExpandableListAdapter adapter = new SimpleCursorTreeAdapter(getActivity(), this.xnCursor, R.layout.item_group_xselector, groupFrom, groupTo, R.layout.item_xselector, childFrom, childTo)
 		{
 			@Override
+			protected Cursor getChildrenCursor(Cursor groupCursor)
+			{
+				Activity activity = getActivity();
+				if (activity == null)
+				{
+					return null;
+				}
+
+				// given the group, we return a cursor for all the children within that group
+				int groupPos = groupCursor.getPosition();
+				// String groupName = groupCursor.getString(groupCursor.getColumnIndex(DBCOLUMN));
+
+				int loaderId = groupCursor.getInt(groupCursor.getColumnIndex("loader"));
+				// Log.d(TAG, "group " + groupPos + ' ' + groupName + " loader=" + loaderId);
+				LoaderCallbacks<Cursor> callbacks = null;
+				switch (groupPos)
+				{
+					case 0:
+						callbacks = getWnCallbacks(wordId, groupPos);
+						break;
+					case 1:
+						callbacks = getVnCallbacks(wordId, groupPos);
+						break;
+					case 2:
+						callbacks = getPbCallbacks(wordId, groupPos);
+						break;
+					case 3:
+						callbacks = getFnCallbacks(wordId, groupPos);
+						break;
+				}
+
+				Loader<Cursor> loader1 = activity.getLoaderManager().getLoader(loaderId);
+				if (loader1 != null && !loader1.isReset())
+				{
+					activity.getLoaderManager().restartLoader(loaderId, null, callbacks);
+				}
+				else
+				{
+					activity.getLoaderManager().initLoader(loaderId, null, callbacks);
+				}
+
+				return null;
+			}
+
+			@Override
+			public boolean isChildSelectable(int groupPosition, int childPosition)
+			{
+				return true;
+			}
+
+			@Override
 			protected void setViewImage(ImageView v, String value)
 			{
 				switch (v.getId())
@@ -331,56 +382,6 @@ public class XSelectorsFragment extends ExpandableListFragment
 						v.setVisibility(View.GONE);
 						break;
 				}
-			}
-
-			@Override
-			protected Cursor getChildrenCursor(Cursor groupCursor)
-			{
-				Activity activity = getActivity();
-				if (activity == null)
-				{
-					return null;
-				}
-
-				// given the group, we return a cursor for all the children within that group
-				int groupPos = groupCursor.getPosition();
-				// String groupName = groupCursor.getString(groupCursor.getColumnIndex(DBCOLUMN));
-				int loaderId = groupCursor.getInt(groupCursor.getColumnIndex("loader"));
-				// Log.d(TAG, "group " + groupPos + ' ' + groupName + " loader=" + loaderId);
-				LoaderCallbacks<Cursor> callbacks = null;
-				switch (groupPos)
-				{
-					case 0:
-						callbacks = getWnCallbacks(wordId, groupPos);
-						break;
-					case 1:
-						callbacks = getVnCallbacks(wordId, groupPos);
-						break;
-					case 2:
-						callbacks = getPbCallbacks(wordId, groupPos);
-						break;
-					case 3:
-						callbacks = getFnCallbacks(wordId, groupPos);
-						break;
-				}
-
-				Loader<Cursor> loader1 = activity.getLoaderManager().getLoader(loaderId);
-				if (loader1 != null && !loader1.isReset())
-				{
-					activity.getLoaderManager().restartLoader(loaderId, null, callbacks);
-				}
-				else
-				{
-					activity.getLoaderManager().initLoader(loaderId, null, callbacks);
-				}
-
-				return null;
-			}
-
-			@Override
-			public boolean isChildSelectable(int groupPosition, int childPosition)
-			{
-				return true;
 			}
 		};
 		setListAdapter(adapter);
