@@ -91,7 +91,7 @@ public class TestRuns extends TestCase
 							.inAdapterView(list) //
 							.atPosition(k++) //
 							//.usingAdapterViewProtocol(android.support.test.espresso.action.AdapterViewProtocols.standardProtocol())
-							.usingAdapterViewProtocol(ExpandableListViewProtocol.elvProtocol())
+							.usingAdapterViewProtocol(ExpandableListViewProtocol.expandableListViewProtocol())
 							.perform(  //
 									click() //
 							);
