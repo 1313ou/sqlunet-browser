@@ -153,5 +153,6 @@
     <orderEntry type="module" module-name="expandableListFragment" exported="" />
     <orderEntry type="module" module-name="frameNet" exported="" />
     <orderEntry type="library" exported="" name="xerces-for-android" level="project" />
+    <orderEntry type="library" exported="" scope="TEST" name="support-annotations-23.1.1" level="project" />
   </component>
 </module>
