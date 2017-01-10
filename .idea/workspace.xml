@@ -141,7 +141,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="RunBrowseFlat.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="RunBrowseFlat.java" pinned="false" current-in-tab="true">
         <entry file="file:///mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/androidTest/java/org/sqlunet/browser/RunBrowseFlat.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="351">
@@ -152,16 +152,6 @@
                 <element signature="e#676#677#0" expanded="true" />
                 <element signature="e#704#705#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="vcs.xml" pinned="false" current-in-tab="true">
-        <entry file="file:///mnt/data2/devel/android-sqlunet-as/SqlUNet/.idea/vcs.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -9660,13 +9650,6 @@
       <option name="presentableId" value="Default" />
       <updated>1476373639609</updated>
     </task>
-    <task id="LOCAL-00106" summary="sentence link in fn">
-      <created>1481779966964</created>
-      <option name="number" value="00106" />
-      <option name="presentableId" value="LOCAL-00106" />
-      <option name="project" value="LOCAL" />
-      <updated>1481779966964</updated>
-    </task>
     <task id="LOCAL-00107" summary="lint">
       <created>1481780501825</created>
       <option name="number" value="00107" />
@@ -10003,7 +9986,14 @@
       <option name="project" value="LOCAL" />
       <updated>1484033067118</updated>
     </task>
-    <option name="localTasksCounter" value="155" />
+    <task id="LOCAL-00155" summary="test">
+      <created>1484033151447</created>
+      <option name="number" value="00155" />
+      <option name="presentableId" value="LOCAL-00155" />
+      <option name="project" value="LOCAL" />
+      <updated>1484033151448</updated>
+    </task>
+    <option name="localTasksCounter" value="156" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -10554,6 +10544,14 @@
         </state>
       </provider>
     </entry>
+    <entry file="file:///mnt/data2/devel/android-sqlunet-as/SqlUNet/.idea/vcs.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file:///mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/androidTest/java/org/sqlunet/browser/RunBrowseFlat.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="351">
@@ -10564,14 +10562,6 @@
             <element signature="e#676#677#0" expanded="true" />
             <element signature="e#704#705#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///mnt/data2/devel/android-sqlunet-as/SqlUNet/.idea/vcs.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
