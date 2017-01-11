@@ -1,6 +1,7 @@
 package org.sqlunet.browser;
 
 import android.os.Environment;
+import android.support.test.espresso.Espresso;
 import android.support.test.espresso.UiController;
 import android.support.test.espresso.ViewAction;
 import android.util.Log;
@@ -18,11 +19,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import static android.support.test.espresso.Espresso.onView;
-
-public class TestUtils
+class TestUtils
 {
-	static final int PAUSE_MS = 5000;
+	private static final int PAUSE_MS = 5000;
 
 	private static final String LISTFILE = "sqlunet.list";
 
@@ -30,12 +29,12 @@ public class TestUtils
 	 * Count of children views in the view group/container
 	 *
 	 * @param matcher matcher for parent
-	 * @returnthe number of children in the group
+	 * @return the number of children in the group
 	 */
 	static public int getViewCount(final Matcher<View> matcher)
 	{
 		final int[] count = {0}; // has to be final
-		onView(matcher).perform(new ViewAction()
+		Espresso.onView(matcher).perform(new ViewAction()
 		{
 			@Override
 			public Matcher<View> getConstraints()
@@ -52,7 +51,7 @@ public class TestUtils
 			@Override
 			public void perform(UiController uiController, View view)
 			{
-				AdapterView adapterView = (AdapterView) view;
+				AdapterView<?> adapterView = (AdapterView<?>) view;
 				count[0] = adapterView.getChildCount();
 			}
 		});
@@ -68,7 +67,7 @@ public class TestUtils
 	static public int getItemCount(final Matcher<View> matcher)
 	{
 		final int[] count = {0}; // has to be final
-		onView(matcher).perform(new ViewAction()
+		Espresso.onView(matcher).perform(new ViewAction()
 		{
 			@Override
 			public Matcher<View> getConstraints()
@@ -85,7 +84,7 @@ public class TestUtils
 			@Override
 			public void perform(UiController uiController, View view)
 			{
-				AdapterView adapterView = (AdapterView) view;
+				AdapterView<?> adapterView = (AdapterView<?>) view;
 				count[0] = adapterView.getAdapter().getCount();
 			}
 		});
@@ -101,7 +100,7 @@ public class TestUtils
 	static public int[] getExpandableListViewItemCounts(final Matcher<View> matcher)
 	{
 		final int[][] result = {new int[0]}; // has to be final
-		onView(matcher).perform(new ViewAction()
+		Espresso.onView(matcher).perform(new ViewAction()
 		{
 			@Override
 			public Matcher<View> getConstraints()
@@ -156,7 +155,7 @@ public class TestUtils
 		};
 	}
 
-	static public String arrayToString(int[] a)
+	static public String arrayToString(int... a)
 	{
 		final StringBuilder sb = new StringBuilder();
 		sb.append('{');
@@ -196,7 +195,7 @@ public class TestUtils
 		return readWordList();
 	}
 
-	public static String[] readWordList()
+	private static String[] readWordList()
 	{
 		final List<String> list = new ArrayList<>();
 		final File dataFile = new File(Environment.getExternalStorageDirectory(), TestUtils.LISTFILE);

@@ -155,6 +155,7 @@ public class DownloadFragment extends Fragment implements View.OnClickListener
 							final File targetFile = new File(DownloadFragment.this.destDir, Storage.DBFILE);
 							if (targetFile.exists())
 							{
+								//noinspection ResultOfMethodCallIgnored
 								targetFile.delete();
 							}
 						}
@@ -456,6 +457,7 @@ public class DownloadFragment extends Fragment implements View.OnClickListener
 								warn(makeStatusString(status2ResourceId(status), reasonResId));
 								cancelDownload();
 								//$FALL-THROUGH
+								//noinspection fallthrough
 							case DownloadManager.STATUS_SUCCESSFUL:
 								downloading = false;
 								break;
@@ -501,7 +503,6 @@ public class DownloadFragment extends Fragment implements View.OnClickListener
 		int columnStatus = cursor.getColumnIndex(DownloadManager.COLUMN_STATUS);
 		int status = cursor.getInt(columnStatus);
 
-		int statusResId = -1;
 		int reasonResId = -1;
 		switch (status)
 		{
@@ -512,7 +513,7 @@ public class DownloadFragment extends Fragment implements View.OnClickListener
 			case DownloadManager.STATUS_PAUSED:
 				reasonResId = getReasonResId(cursor);
 				// $FALL-THROUGH
-
+				//noinspection fallthrough
 			case DownloadManager.STATUS_PENDING:
 			case DownloadManager.STATUS_RUNNING:
 				break;
@@ -637,7 +638,7 @@ public class DownloadFragment extends Fragment implements View.OnClickListener
 		return message;
 	}
 
-	public void warn(final String message)
+	private void warn(final String message)
 	{
 		this.result = message;
 		final Activity activity = getActivity();
@@ -654,7 +655,7 @@ public class DownloadFragment extends Fragment implements View.OnClickListener
 	/**
 	 * Cancel download
 	 */
-	public void cancelDownload()
+	private void cancelDownload()
 	{
 		this.downloadManager.remove(DownloadFragment.this.downloadId);
 	}
@@ -662,7 +663,7 @@ public class DownloadFragment extends Fragment implements View.OnClickListener
 	/**
 	 * Show downloads
 	 */
-	public void showDownloads()
+	private void showDownloads()
 	{
 		final Intent intent = new Intent();
 		intent.setAction(DownloadManager.ACTION_VIEW_DOWNLOADS);

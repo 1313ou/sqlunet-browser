@@ -266,6 +266,7 @@
       <w>linknames</w>
       <w>linktype</w>
       <w>linktypes</w>
+      <w>listfile</w>
       <w>listitem</w>
       <w>loaderid</w>
       <w>ltbrown</w>
@@ -278,6 +279,7 @@
       <w>luid</w>
       <w>mailto</w>
       <w>manos</w>
+      <w>matchers</w>
       <w>melnychuk</w>
       <w>ment</w>
       <w>meronym</w>
@@ -617,6 +619,7 @@
       <w>wnsqlunet</w>
       <w>wnword</w>
       <w>wordid</w>
+      <w>wordlist</w>
       <w>wordnet</w>
       <w>wordnetsource</w>
       <w>writtendisp</w>
@@ -629,6 +632,7 @@
       <w>xcolumns</w>
       <w>xdefinition</w>
       <w>xfen</w>
+      <w>xgroup</w>
       <w>xheader</w>
       <w>xicon</w>
       <w>xinfo</w>

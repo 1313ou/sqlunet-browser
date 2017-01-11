@@ -22,6 +22,7 @@ import android.support.test.espresso.IdlingResource;
 import android.support.test.espresso.PerformException;
 import android.support.test.espresso.UiController;
 import android.support.test.espresso.ViewAction;
+import android.support.test.espresso.matcher.ViewMatchers;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v4.widget.DrawerLayout.DrawerListener;
@@ -31,18 +32,13 @@ import org.hamcrest.Matcher;
 
 import java.lang.reflect.Field;
 
-import static android.support.test.espresso.Espresso.onView;
-import static android.support.test.espresso.contrib.DrawerMatchers.isClosed;
-import static android.support.test.espresso.contrib.DrawerMatchers.isOpen;
-import static android.support.test.espresso.matcher.ViewMatchers.isAssignableFrom;
-import static android.support.test.espresso.matcher.ViewMatchers.withId;
-
 /**
  * Espresso actions for using a {@link DrawerLayout}.
  *
  * @see <a href="http://developer.android.com/design/patterns/navigation-drawer.html">Navigation
  * drawer design guide</a>
  */
+@SuppressWarnings("ALL")
 public final class DrawerActions
 {
 
@@ -59,7 +55,7 @@ public final class DrawerActions
 		@Override
 		public final Matcher<View> getConstraints()
 		{
-			return isAssignableFrom(DrawerLayout.class);
+			return ViewMatchers.isAssignableFrom(DrawerLayout.class);
 		}
 
 		@Override
@@ -115,7 +111,7 @@ public final class DrawerActions
 	@Deprecated
 	public static void openDrawer(int drawerLayoutId, int gravity)
 	{
-		onView(withId(drawerLayoutId)).perform(open(gravity));
+		Espresso.onView(ViewMatchers.withId(drawerLayoutId)).perform(open(gravity));
 	}
 
 	/**
@@ -146,7 +142,7 @@ public final class DrawerActions
 			@Override
 			protected Matcher<View> checkAction()
 			{
-				return isClosed(gravity);
+				return DrawerMatchers.isClosed(gravity);
 			}
 
 			@Override
@@ -174,7 +170,7 @@ public final class DrawerActions
 	@Deprecated
 	public static void closeDrawer(int drawerLayoutId, int gravity)
 	{
-		onView(withId(drawerLayoutId)).perform(close(gravity));
+		Espresso.onView(ViewMatchers.withId(drawerLayoutId)).perform(close(gravity));
 	}
 
 	/**
@@ -205,7 +201,7 @@ public final class DrawerActions
 			@Override
 			protected Matcher<View> checkAction()
 			{
-				return isOpen(gravity);
+				return DrawerMatchers.isOpen(gravity);
 			}
 
 			@Override
@@ -239,21 +235,9 @@ public final class DrawerActions
 			}
 			return (DrawerListener) listenerField.get(drawer);
 		}
-		catch (IllegalArgumentException ex)
+		catch (IllegalArgumentException | IllegalAccessException | NoSuchFieldException | SecurityException ex)
 		{
 			// Pity we can't use Java 7 multi-catch for all of these.
-			throw new PerformException.Builder().withCause(ex).build();
-		}
-		catch (IllegalAccessException ex)
-		{
-			throw new PerformException.Builder().withCause(ex).build();
-		}
-		catch (NoSuchFieldException ex)
-		{
-			throw new PerformException.Builder().withCause(ex).build();
-		}
-		catch (SecurityException ex)
-		{
 			throw new PerformException.Builder().withCause(ex).build();
 		}
 	}
@@ -264,7 +248,6 @@ public final class DrawerActions
 	 */
 	private static class IdlingDrawerListener implements DrawerListener, IdlingResource
 	{
-
 		private static IdlingDrawerListener instance;
 
 		private static IdlingDrawerListener getInstance(DrawerListener parentListener)
@@ -291,27 +274,27 @@ public final class DrawerActions
 		@Override
 		public void onDrawerClosed(View drawer)
 		{
-			if (parentListener != null)
+			if (this.parentListener != null)
 			{
-				parentListener.onDrawerClosed(drawer);
+				this.parentListener.onDrawerClosed(drawer);
 			}
 		}
 
 		@Override
 		public void onDrawerOpened(View drawer)
 		{
-			if (parentListener != null)
+			if (this.parentListener != null)
 			{
-				parentListener.onDrawerOpened(drawer);
+				this.parentListener.onDrawerOpened(drawer);
 			}
 		}
 
 		@Override
 		public void onDrawerSlide(View drawer, float slideOffset)
 		{
-			if (parentListener != null)
+			if (this.parentListener != null)
 			{
-				parentListener.onDrawerSlide(drawer, slideOffset);
+				this.parentListener.onDrawerSlide(drawer, slideOffset);
 			}
 		}
 
@@ -320,19 +303,19 @@ public final class DrawerActions
 		{
 			if (newState == DrawerLayout.STATE_IDLE)
 			{
-				idle = true;
-				if (callback != null)
+				this.idle = true;
+				if (this.callback != null)
 				{
-					callback.onTransitionToIdle();
+					this.callback.onTransitionToIdle();
 				}
 			}
 			else
 			{
-				idle = false;
+				this.idle = false;
 			}
-			if (parentListener != null)
+			if (this.parentListener != null)
 			{
-				parentListener.onDrawerStateChanged(newState);
+				this.parentListener.onDrawerStateChanged(newState);
 			}
 		}
 
@@ -345,7 +328,7 @@ public final class DrawerActions
 		@Override
 		public boolean isIdleNow()
 		{
-			return idle;
+			return this.idle;
 		}
 
 		@Override

@@ -27,6 +27,7 @@ import org.hamcrest.Matcher;
 /**
  * Hamcrest matchers for a {@link DrawerLayout}.
  */
+@SuppressWarnings("ALL")
 public final class DrawerMatchers
 {
 
