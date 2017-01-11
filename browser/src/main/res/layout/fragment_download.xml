@@ -39,9 +39,9 @@
 		android:layout_marginRight="10dp"
 		android:drawablePadding="5dp"
 		android:drawableTop="@drawable/ic_download_source"
+		android:ellipsize="marquee"
+		android:maxLines="1"
 		android:text="@string/download_source"/>
-	<!-- android:singleLine="true" -->
-	<!-- android:ellipsize="marquee" -->
 
 	<TextView
 		android:id="@+id/target"
@@ -54,9 +54,9 @@
 		android:layout_marginTop="10dp"
 		android:drawableBottom="@drawable/ic_download_dest"
 		android:drawablePadding="5dp"
+		android:ellipsize="marquee"
+		android:maxLines="1"
 		android:text="@string/download_dest"/>
-	<!-- android:singleLine="true" -->
-	<!-- android:ellipsize="marquee" -->
 
 	<TextView
 		android:id="@+id/progressStatus"
@@ -67,5 +67,40 @@
 		android:text="@string/action_download"
 		android:textAppearance="?android:attr/textAppearanceSmall"
 		android:visibility="invisible"/>
+
+	<TextView
+		android:id="@+id/status"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_below="@+id/target"
+		android:layout_centerHorizontal="true"
+		android:layout_marginTop="50dp"
+		android:gravity="center"
+		android:textAppearance="?android:attr/textAppearanceSmall"
+		android:visibility="invisible"/>
+
+	<LinearLayout
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_alignParentBottom="true"
+		android:layout_centerHorizontal="true"
+		android:orientation="horizontal">
+
+		<Button
+			android:id="@+id/cancelButton"
+			style="?android:attr/buttonBarButtonStyle"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:text="@string/action_cancel"
+			android:visibility="invisible"/>
+
+		<Button
+			android:id="@+id/showButton"
+			style="?android:attr/buttonBarButtonStyle"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:text="@string/action_show"
+			android:visibility="invisible"/>
+	</LinearLayout>
 
 </RelativeLayout>

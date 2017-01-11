@@ -162,7 +162,7 @@ public class WebFragment extends Fragment
 					{
 						final long id = Long.valueOf(value);
 
-						// toast with id
+						// warn with id
 						final Activity activity = WebFragment.this.getActivity();
 						activity.runOnUiThread(new Runnable()
 						{

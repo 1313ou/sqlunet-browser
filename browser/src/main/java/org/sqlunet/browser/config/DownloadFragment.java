@@ -1,5 +1,6 @@
 package org.sqlunet.browser.config;
 
+import android.app.Activity;
 import android.app.DownloadManager;
 import android.app.DownloadManager.Query;
 import android.app.DownloadManager.Request;
@@ -8,20 +9,24 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.res.Resources;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import org.sqlunet.browser.R;
+import org.sqlunet.settings.Storage;
 import org.sqlunet.settings.StorageSettings;
 
 import java.io.File;
@@ -88,10 +93,29 @@ public class DownloadFragment extends Fragment implements View.OnClickListener
 	private ProgressBar progressBar;
 
 	/**
-	 * Progress _status
+	 * Progress status
 	 */
 	private TextView progressStatus;
 
+	/**
+	 * Result status
+	 */
+	private TextView status;
+
+	/**
+	 * Cancel downloads button
+	 */
+	private Button cancelButton;
+
+	/**
+	 * Show downloads button
+	 */
+	private Button showButton;
+
+	/**
+	 * Result message
+	 */
+	private String result;
 
 	@Override
 	public void onCreate(final Bundle savedInstanceState)
@@ -107,13 +131,10 @@ public class DownloadFragment extends Fragment implements View.OnClickListener
 		this.downloadUrl = StorageSettings.getDbDownloadSource(context);
 		if (this.downloadUrl == null || this.downloadUrl.isEmpty())
 		{
-			Toast.makeText(context, R.string.status_error_null_download_url, Toast.LENGTH_SHORT).show();
+			warn(getActivity().getString(R.string.status_error_null_download_url));
 
 			// fire done
-			if (this.listener != null)
-			{
-				this.listener.onDone(false);
-			}
+			fireDone(false);
 		}
 
 		// receiver
@@ -129,25 +150,52 @@ public class DownloadFragment extends Fragment implements View.OnClickListener
 					if (id == DownloadFragment.this.downloadId)
 					{
 						final boolean success = retrieve();
+						if (!success)
+						{
+							final File targetFile = new File(DownloadFragment.this.destDir, Storage.DBFILE);
+							if (targetFile.exists())
+							{
+								targetFile.delete();
+							}
+						}
 
 						// progress
 						if (DownloadFragment.this.progressBar != null)
 						{
-							DownloadFragment.this.progressBar.setVisibility(View.GONE);
+							DownloadFragment.this.progressBar.setVisibility(View.INVISIBLE);
 						}
 						if (DownloadFragment.this.progressStatus != null)
 						{
-							DownloadFragment.this.progressStatus.setText(success ? R.string.status_download_successful : R.string.status_download_fail);
+							DownloadFragment.this.progressStatus.setVisibility(View.INVISIBLE);
+						}
+						if (DownloadFragment.this.status != null)
+						{
+							DownloadFragment.this.status.setText(success ? getActivity().getString(R.string.status_download_successful) : DownloadFragment.this.result);
+							DownloadFragment.this.status.setVisibility(View.VISIBLE);
 						}
 
-						// toast
-						Toast.makeText(context0, success ? R.string.status_data_ok : R.string.status_data_fail, Toast.LENGTH_SHORT).show();
+						// buttons
+						if (DownloadFragment.this.downloadButton != null)
+						{
+							DownloadFragment.this.downloadButton.setBackgroundResource(success ? R.drawable.bg_button_ok : R.drawable.bg_button_err);
+							DownloadFragment.this.downloadButton.setEnabled(false);
+							DownloadFragment.this.downloadButton.setVisibility(View.VISIBLE);
+						}
+
+						if (DownloadFragment.this.cancelButton != null)
+						{
+							DownloadFragment.this.cancelButton.setVisibility(View.GONE);
+						}
+						if (DownloadFragment.this.showButton != null)
+						{
+							if (success)
+							{
+								DownloadFragment.this.showButton.setVisibility(View.GONE);
+							}
+						}
 
 						// fire done
-						if (DownloadFragment.this.listener != null)
-						{
-							DownloadFragment.this.listener.onDone(success);
-						}
+						fireDone(success);
 					}
 				}
 			}
@@ -165,6 +213,30 @@ public class DownloadFragment extends Fragment implements View.OnClickListener
 		this.downloadButton.setOnClickListener(this);
 		this.progressBar = (ProgressBar) view.findViewById(R.id.progressBar);
 		this.progressStatus = (TextView) view.findViewById(R.id.progressStatus);
+		this.status = (TextView) view.findViewById(R.id.status);
+
+		// buttons
+		this.cancelButton = (Button) view.findViewById(R.id.cancelButton);
+		this.cancelButton.setOnClickListener(new View.OnClickListener()
+		{
+			@Override
+			public void onClick(View v)
+			{
+				if (DownloadFragment.this.downloadId != 0)
+				{
+					cancelDownload();
+				}
+			}
+		});
+		this.showButton = (Button) view.findViewById(R.id.showButton);
+		this.showButton.setOnClickListener(new View.OnClickListener()
+		{
+			@Override
+			public void onClick(View v)
+			{
+				showDownloads();
+			}
+		});
 
 		final TextView srcView = (TextView) view.findViewById(R.id.src);
 		srcView.setText(this.downloadUrl);
@@ -195,26 +267,22 @@ public class DownloadFragment extends Fragment implements View.OnClickListener
 		super.onStart();
 
 		// register receiver
+		Log.d(TAG, "Register listener");
 		getActivity().registerReceiver(this.receiver, new IntentFilter(DownloadManager.ACTION_DOWNLOAD_COMPLETE));
 
 		// finish
 		if (finished())
 		{
-			// toast
-			Toast.makeText(getActivity(), R.string.status_data_ok, Toast.LENGTH_SHORT).show();
-
 			// fire done
-			if (DownloadFragment.this.listener != null)
-			{
-				DownloadFragment.this.listener.onDone(true);
-			}
+			fireDone(true);
 		}
 	}
 
 	@Override
 	public void onStop()
 	{
-		// register receiver
+		// unregister receiver
+		Log.d(TAG, "Unregister listener");
 		getActivity().unregisterReceiver(DownloadFragment.this.receiver);
 		super.onStop();
 	}
@@ -228,8 +296,9 @@ public class DownloadFragment extends Fragment implements View.OnClickListener
 			this.downloadButton.setVisibility(View.INVISIBLE);
 			this.progressBar.setVisibility(View.VISIBLE);
 			this.progressStatus.setVisibility(View.VISIBLE);
+			this.cancelButton.setVisibility(View.VISIBLE);
+			this.showButton.setVisibility(View.VISIBLE);
 
-			// start download
 			start();
 		}
 	}
@@ -272,7 +341,7 @@ public class DownloadFragment extends Fragment implements View.OnClickListener
 		}
 		catch (Exception e)
 		{
-			Toast.makeText(getActivity(), e.getLocalizedMessage(), Toast.LENGTH_LONG).show();
+			warn(e.getLocalizedMessage());
 		}
 	}
 
@@ -335,8 +404,7 @@ public class DownloadFragment extends Fragment implements View.OnClickListener
 		{
 			if (cursor.moveToFirst())
 			{
-				final int columnIndex = cursor.getColumnIndex(DownloadManager.COLUMN_STATUS);
-				if (DownloadManager.STATUS_SUCCESSFUL == cursor.getInt(columnIndex))
+				if (downloadStatus(cursor))
 				{
 					// local uri
 					final String uriString = cursor.getString(cursor.getColumnIndex(DownloadManager.COLUMN_LOCAL_URI));
@@ -377,13 +445,17 @@ public class DownloadFragment extends Fragment implements View.OnClickListener
 						// size info
 						final int downloaded = cursor.getInt(cursor.getColumnIndex(DownloadManager.COLUMN_BYTES_DOWNLOADED_SO_FAR));
 						final int total = cursor.getInt(cursor.getColumnIndex(DownloadManager.COLUMN_TOTAL_SIZE_BYTES));
-						final int progress = (int) (downloaded * 100L / total);
+						final int progress = total == 0 ? 0 : (int) (downloaded * 100L / total);
 
 						// exit loop condition
 						final int status = cursor.getInt(cursor.getColumnIndex(DownloadManager.COLUMN_STATUS));
 						switch (status)
 						{
 							case DownloadManager.STATUS_FAILED:
+								int reasonResId = getReasonResId(cursor);
+								warn(makeStatusString(status2ResourceId(status), reasonResId));
+								cancelDownload();
+								//$FALL-THROUGH
 							case DownloadManager.STATUS_SUCCESSFUL:
 								downloading = false;
 								break;
@@ -423,6 +495,51 @@ public class DownloadFragment extends Fragment implements View.OnClickListener
 		}).start();
 	}
 
+	private boolean downloadStatus(final Cursor cursor)
+	{
+		// column for download  status
+		int columnStatus = cursor.getColumnIndex(DownloadManager.COLUMN_STATUS);
+		int status = cursor.getInt(columnStatus);
+
+		int statusResId = -1;
+		int reasonResId = -1;
+		switch (status)
+		{
+			case DownloadManager.STATUS_SUCCESSFUL:
+				return true;
+
+			case DownloadManager.STATUS_FAILED:
+			case DownloadManager.STATUS_PAUSED:
+				reasonResId = getReasonResId(cursor);
+				// $FALL-THROUGH
+
+			case DownloadManager.STATUS_PENDING:
+			case DownloadManager.STATUS_RUNNING:
+				break;
+		}
+
+		// message
+		final String message = makeStatusString(status2ResourceId(status), reasonResId);
+
+		// warn
+		warn(message);
+		return false;
+	}
+
+	/**
+	 * Reason for fail or pause
+	 *
+	 * @param cursor download manager cursor
+	 * @return resId
+	 */
+	private int getReasonResId(final Cursor cursor)
+	{
+		// column for reason code if the download failed or paused
+		int columnReason = cursor.getColumnIndex(DownloadManager.COLUMN_REASON);
+		int reason = cursor.getInt(columnReason);
+		return reason2ResourceId(reason);
+	}
+
 	/**
 	 * Get _status message as per _status returned by cursor
 	 *
@@ -449,13 +566,124 @@ public class DownloadFragment extends Fragment implements View.OnClickListener
 	}
 
 	/**
+	 * Get _status message as per _status returned by cursor
+	 *
+	 * @param reason _status
+	 * @return string resource id
+	 */
+	static private int reason2ResourceId(final int reason)
+	{
+		switch (reason)
+		{
+			case DownloadManager.ERROR_CANNOT_RESUME:
+				return R.string.status_download_error_cannot_resume;
+
+			case DownloadManager.ERROR_DEVICE_NOT_FOUND:
+				return R.string.status_download_error_device_not_found;
+
+			case DownloadManager.ERROR_FILE_ALREADY_EXISTS:
+				return R.string.status_download_error_file_already_exists;
+
+			case DownloadManager.ERROR_FILE_ERROR:
+				return R.string.status_download_error_file_error;
+
+			case DownloadManager.ERROR_HTTP_DATA_ERROR:
+				return R.string.status_download_error_http_data_error;
+
+			case DownloadManager.ERROR_INSUFFICIENT_SPACE:
+				return R.string.status_download_error_insufficient_space;
+
+			case DownloadManager.ERROR_TOO_MANY_REDIRECTS:
+				return R.string.status_download_error_too_many_redirects;
+
+			case DownloadManager.ERROR_UNHANDLED_HTTP_CODE:
+				return R.string.status_download_error_unhandled_http_code;
+
+			case DownloadManager.ERROR_UNKNOWN:
+				return R.string.status_download_error_unknown;
+
+			case DownloadManager.PAUSED_QUEUED_FOR_WIFI:
+				return R.string.status_download_paused_queued_for_wifi;
+
+			case DownloadManager.PAUSED_UNKNOWN:
+				return R.string.status_download_paused_unknown;
+
+			case DownloadManager.PAUSED_WAITING_FOR_NETWORK:
+				return R.string.status_download_paused_waiting_for_network;
+
+			case DownloadManager.PAUSED_WAITING_TO_RETRY:
+				return R.string.status_download_paused_waiting_to_retry;
+
+			default:
+				return -1;
+		}
+	}
+
+	/**
+	 * Make status string
+	 *
+	 * @param statusResId status resource id
+	 * @param reasonResId reason res id
+	 * @return string
+	 */
+	private String makeStatusString(int statusResId, int reasonResId)
+	{
+		final Resources res = getActivity().getResources();
+		String message = res.getString(statusResId);
+		if (reasonResId != -1)
+		{
+			message += '\n' + res.getString(reasonResId);
+		}
+		return message;
+	}
+
+	public void warn(final String message)
+	{
+		this.result = message;
+		final Activity activity = getActivity();
+		activity.runOnUiThread(new Runnable()
+		{
+			@Override
+			public void run()
+			{
+				Toast.makeText(activity, message, Toast.LENGTH_LONG).show();
+			}
+		});
+	}
+
+	/**
+	 * Cancel download
+	 */
+	public void cancelDownload()
+	{
+		this.downloadManager.remove(DownloadFragment.this.downloadId);
+	}
+
+	/**
 	 * Show downloads
 	 */
-	@SuppressWarnings("unused")
-	public void showDownload()
+	public void showDownloads()
 	{
 		final Intent intent = new Intent();
 		intent.setAction(DownloadManager.ACTION_VIEW_DOWNLOADS);
 		startActivity(intent);
+	}
+
+	private void fireDone(final boolean status)
+	{
+		if (this.listener == null)
+		{
+			return;
+		}
+
+		final Handler handler = new Handler();
+		handler.postDelayed(new Runnable()
+		{
+			@Override
+			public void run()
+			{
+				DownloadFragment.this.listener.onDone(status);
+			}
+		}, 1000);
 	}
 }

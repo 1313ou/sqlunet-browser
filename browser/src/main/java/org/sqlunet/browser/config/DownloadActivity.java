@@ -43,6 +43,6 @@ public class DownloadActivity extends Activity implements DownloadFragment.Downl
 		final Intent resultIntent = new Intent();
 		resultIntent.putExtra(DownloadActivity.RESULT_DOWNLOAD_DATA_AVAILABLE, result);
 		setResult(Activity.RESULT_OK, resultIntent);
-		finish();
+		//TODO finish();
 	}
 }

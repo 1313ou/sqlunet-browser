@@ -1,7 +1,9 @@
 package org.sqlunet.browser;
 
+import android.os.Environment;
 import android.support.test.espresso.UiController;
 import android.support.test.espresso.ViewAction;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ExpandableListAdapter;
@@ -9,11 +11,20 @@ import android.widget.ExpandableListView;
 
 import org.hamcrest.Matcher;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
 import static android.support.test.espresso.Espresso.onView;
 
 public class TestUtils
 {
 	static final int PAUSE_MS = 5000;
+
+	private static final String LISTFILE = "sqlunet.list";
 
 	/**
 	 * Count of children views in the view group/container
@@ -178,8 +189,32 @@ public class TestUtils
 		}
 	}
 
+	public static String[] WORDLIST = {"abandon", "leave", "inveigle", "foist", "flounder", "flout"};
+
 	public static String[] getWordList()
 	{
-		return new String[]{"abandon", "leave", "inveigle", "foist", "flounder", "flout"};
+		return readWordList();
+	}
+
+	public static String[] readWordList()
+	{
+		final List<String> list = new ArrayList<>();
+		final File dataFile = new File(Environment.getExternalStorageDirectory(), TestUtils.LISTFILE);
+		try
+		{
+			final FileReader reader = new FileReader(dataFile);
+			final BufferedReader br = new BufferedReader(reader);
+			String line;
+			while ((line = br.readLine()) != null)
+			{
+				list.add(line.trim());
+			}
+			br.close();
+		}
+		catch (final IOException e)
+		{
+			Log.d("READ", "Error "+ dataFile.getAbsolutePath(), e);
+		}
+		return list.toArray(new String[0]);
 	}
 }

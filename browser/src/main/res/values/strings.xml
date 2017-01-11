@@ -47,6 +47,8 @@
 	<string name="action_quit">Quit</string>
 	<string name="action_abort">Abort</string>
 	<string name="action_dismiss">Dismiss</string>
+	<string name="action_cancel">Cancel</string>
+	<string name="action_show">Show</string>
 
 	<!-- labels -->
 	<string name="title_activity_main">Home</string>
@@ -88,6 +90,19 @@
 	<string name="status_download_pending">Download pending!</string>
 	<string name="status_download_running">Download in progress!</string>
 	<string name="status_download_successful">Download complete!</string>
+	<string name="status_download_error_cannot_resume">cannot resume</string>
+	<string name="status_download_error_device_not_found">device not found</string>
+	<string name="status_download_error_file_already_exists">file already exists</string>
+	<string name="status_download_error_file_error">file error</string>
+	<string name="status_download_error_http_data_error">http data error</string>
+	<string name="status_download_error_insufficient_space">insufficient space</string>
+	<string name="status_download_error_too_many_redirects">too many redirects</string>
+	<string name="status_download_error_unhandled_http_code">unhandled http code</string>
+	<string name="status_download_error_unknown">error unknown</string>
+	<string name="status_download_paused_queued_for_wifi">paused queued for wifi</string>
+	<string name="status_download_paused_unknown">paused unknown</string>
+	<string name="status_download_paused_waiting_for_network">paused waiting for network</string>
+	<string name="status_download_paused_waiting_to_retry">paused waiting to retry</string>
 	<string name="status_managing">Managing</string>
 	<string name="status_op_running">running</string>
 	<string name="status_op_done">done</string>
