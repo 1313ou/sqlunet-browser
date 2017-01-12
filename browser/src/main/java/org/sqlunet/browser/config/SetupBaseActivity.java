@@ -12,7 +12,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import org.sqlunet.browser.R;
-import org.sqlunet.download.Downloader;
 import org.sqlunet.provider.ExecuteManager;
 import org.sqlunet.settings.StorageSettings;
 import org.sqlunet.settings.StorageUtils;
@@ -25,11 +24,12 @@ import java.io.File;
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
 @SuppressLint("Registered")
-public class SetupBaseActivity extends Activity implements Downloader.Listener, ExecuteManager.Listener
+public class SetupBaseActivity extends Activity implements BasicDownloader.Listener, ExecuteManager.Listener
 {
 	static private final String TAG = "SetupBaseActivity";
+
 	// task
-	AsyncTask<?, Integer, Boolean> task;
+	protected AsyncTask<?, Integer, Boolean> task;
 
 	// progress dialog
 	private ProgressDialog progressDialog;
@@ -114,14 +114,14 @@ public class SetupBaseActivity extends Activity implements Downloader.Listener, 
 	// D O W N L O A D L I S T E N E R
 
 	@Override
-	public void downloadStart()
+	public void onDownloadStart()
 	{
 		this.progressDialog = makeDialog(R.string.status_downloading, ProgressDialog.STYLE_HORIZONTAL);
 		this.progressDialog.show();
 	}
 
 	@Override
-	public void downloadFinish(final int code, final boolean result)
+	public void onDownloadFinish(final int code, final boolean result)
 	{
 		this.progressDialog.dismiss();
 		Log.d(TAG, "Download " + (result ? "succeeded" : "failed")); ////
@@ -137,7 +137,7 @@ public class SetupBaseActivity extends Activity implements Downloader.Listener, 
 	}
 
 	@Override
-	public void downloadUpdate(final int progress, final int bytes)
+	public void onDownloadUpdate(final int progress, final int bytes)
 	{
 		this.progressDialog.setIndeterminate(progress == -1);
 		this.progressDialog.setProgress(progress);

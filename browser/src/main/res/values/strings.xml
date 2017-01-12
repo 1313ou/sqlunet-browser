@@ -73,6 +73,7 @@
 	<string name="title_activity_manage">Manage</string>
 	<string name="title_activity_text_search">Text Search</string>
 	<string name="title_dialog_sql">SQL</string>
+	<string name="title_download_id">SqlUNet download</string>
 
 	<!-- _status -->
 	<string name="status_data_ok">Data is available</string>

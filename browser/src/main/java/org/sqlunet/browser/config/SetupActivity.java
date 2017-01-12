@@ -6,7 +6,6 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import org.sqlunet.browser.R;
-import org.sqlunet.download.Downloader;
 import org.sqlunet.settings.StorageSettings;
 
 /**
@@ -50,7 +49,7 @@ public class SetupActivity extends SetupBaseActivity
 				// starting download
 				final String from = StorageSettings.getDbDownloadSource(getBaseContext());
 				final String to = StorageSettings.getDbDownloadTarget(getBaseContext());
-				SetupActivity.this.task = new Downloader(from, to, 0, SetupActivity.this).execute();
+				SetupActivity.this.task = new BasicDownloader(from, to, 0, SetupActivity.this).execute();
 			}
 		});
 	}

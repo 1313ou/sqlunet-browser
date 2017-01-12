@@ -7,7 +7,6 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import org.sqlunet.browser.R;
-import org.sqlunet.download.Downloader;
 import org.sqlunet.provider.ExecuteManager;
 import org.sqlunet.settings.StorageSettings;
 import org.sqlunet.settings.StorageUtils;
@@ -103,7 +102,7 @@ public class SetupSqlActivity extends SetupBaseActivity
 				// starting download
 				final String from = StorageSettings.getSqlDownloadSource(getBaseContext());
 				final String to = StorageSettings.getSqlDownloadTarget(getBaseContext());
-				SetupSqlActivity.this.task = new Downloader(from, to, 1, SetupSqlActivity.this).execute();
+				SetupSqlActivity.this.task = new BasicDownloader(from, to, 1, SetupSqlActivity.this).execute();
 			}
 		});
 
@@ -172,9 +171,9 @@ public class SetupSqlActivity extends SetupBaseActivity
 	// D O W N L O A D L I S T E N E R
 
 	@Override
-	public void downloadFinish(final int code, final boolean result)
+	public void onDownloadFinish(final int code, final boolean result)
 	{
-		super.downloadFinish(code, result);
+		super.onDownloadFinish(code, result);
 
 		// delete sql file
 		// if (!result)

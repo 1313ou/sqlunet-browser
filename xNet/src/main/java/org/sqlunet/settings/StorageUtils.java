@@ -818,7 +818,7 @@ public class StorageUtils
 	 * @return pair of names and values
 	 */
 	@SuppressWarnings("unused")
-	static public Pair<CharSequence[], CharSequence[]> getCandidateNamesValues0(final Context context)
+	static public Pair<CharSequence[], CharSequence[]> getCandidateNamesValues(final Context context)
 	{
 		final List<CharSequence> names = new ArrayList<>();
 		final List<CharSequence> values = new ArrayList<>();
