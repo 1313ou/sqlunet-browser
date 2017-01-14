@@ -102,11 +102,11 @@
 	<string name="status_download_error_unhandled_http_code">unhandled http code</string>
 	<string name="status_download_error_blocked">blocked</string>
 	<string name="status_download_error_unknown">error unknown</string>
-	<string name="status_download_paused_queued_for_wifi">paused queued for wifi</string>
-	<string name="status_download_paused_unknown">paused unknown</string>
-	<string name="status_download_paused_waiting_for_network">paused waiting for network</string>
-	<string name="status_download_paused_waiting_to_retry">paused waiting to retry</string>
-	<string name="status_state_unknown">n/a</string>
+	<string name="status_download_paused_queued_for_wifi">queued for wifi</string>
+	<string name="status_download_paused_unknown">unknown</string>
+	<string name="status_download_paused_waiting_for_network">waiting for network</string>
+	<string name="status_download_paused_waiting_to_retry">waiting to retry</string>
+	<string name="status_state_unknown"></string>
 	<string name="status_reason_unknown"></string>
 	<string name="status_managing">Managing</string>
 	<string name="status_op_running">running</string>

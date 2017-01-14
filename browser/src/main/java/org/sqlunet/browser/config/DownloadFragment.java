@@ -11,6 +11,10 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
 
 import org.sqlunet.browser.R;
 
@@ -27,6 +31,70 @@ public class DownloadFragment extends BaseDownloadFragment
 	static private final String TAG = "DownloadFragment";
 
 	/**
+	 * Reason
+	 */
+	enum Reason
+	{
+		PAUSED_WAITING_TO_RETRY(1, R.string.status_download_paused_waiting_to_retry),
+		PAUSED_WAITING_FOR_NETWORK(2, R.string.status_download_paused_waiting_for_network),
+		PAUSED_QUEUED_FOR_WIFI(3, R.string.status_download_paused_queued_for_wifi),
+		PAUSED_UNKNOWN(4, R.string.status_download_paused_unknown),
+
+		ERROR_UNKNOWN(1000, R.string.status_download_error_unknown),
+		ERROR_FILE_ERROR(1001, R.string.status_download_error_file_error),
+		ERROR_UNHANDLED_HTTP_CODE(1002, R.string.status_download_error_unhandled_http_code),
+		ERROR_HTTP_DATA_ERROR(1004, R.string.status_download_error_http_data_error),
+		ERROR_TOO_MANY_REDIRECTS(1005, R.string.status_download_error_too_many_redirects),
+		ERROR_INSUFFICIENT_SPACE(1006, R.string.status_download_error_insufficient_space),
+		ERROR_DEVICE_NOT_FOUND(1007, R.string.status_download_error_device_not_found),
+		ERROR_CANNOT_RESUME(1008, R.string.status_download_error_cannot_resume),
+		ERROR_FILE_ALREADY_EXISTS(1009, R.string.status_download_error_file_already_exists),
+		ERROR_BLOCKED(1010, R.string.status_download_error_blocked);
+
+		final public int code;
+
+		final private int res;
+
+		Reason(int code, int res)
+		{
+			this.code = code;
+			this.res = res;
+		}
+
+		static int toRes(final Reason reason)
+		{
+			return reason == null ? R.string.status_reason_unknown : reason.res;
+		}
+
+		static Reason valueOf(int code)
+		{
+			for (Reason reason : values())
+			{
+				if (reason.code == code)
+				{
+					return reason;
+				}
+			}
+			return null;
+		}
+	}
+
+	static long pack(int status, int reason)
+	{
+		return ((long) status) | (((long) reason) << 32);
+	}
+
+	static private int unpackStatus(long status)
+	{
+		return (int) (status & 0x00000000FFFFFFFFL);
+	}
+
+	static private int unpackReason(long status)
+	{
+		return (int) ((status & 0xFFFFFFFF00000000L) >> 32);
+	}
+
+	/**
 	 * Download manager
 	 */
 	private DownloadManager downloadManager;
@@ -40,6 +108,16 @@ public class DownloadFragment extends BaseDownloadFragment
 	 * Download id
 	 */
 	private long downloadId = -1;
+
+	/**
+	 * Download extended status
+	 */
+	private long xStatus = 0;
+
+	/**
+	 * Show downloads button
+	 */
+	protected Button showButton;
 
 	@Override
 	public void onCreate(final Bundle savedInstanceState)
@@ -66,9 +144,11 @@ public class DownloadFragment extends BaseDownloadFragment
 					if (id == DownloadFragment.this.downloadId)
 					{
 						// status
-						long status = getStatus(null);
-						if(status != 0) // not cancelled
-							DownloadFragment.this.status = status;
+						long status = getXStatus(null);
+						if (status != 0) // not cancelled
+						{
+							DownloadFragment.this.xStatus = status;
+						}
 
 						// cleanup if fail
 						boolean success = Status.STATUS_SUCCESSFUL.test(status);
@@ -87,6 +167,33 @@ public class DownloadFragment extends BaseDownloadFragment
 				}
 			}
 		};
+	}
+
+	@Override
+	public View onCreateView(final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState)
+	{
+		final View view = super.onCreateView(inflater, container, savedInstanceState);
+		this.showButton = (Button) view.findViewById(R.id.showButton);
+		this.showButton.setOnClickListener(new View.OnClickListener()
+		{
+			@Override
+			public void onClick(View v)
+			{
+				showDownloads();
+			}
+		});
+		return view;
+	}
+
+	@Override
+	public void onClick(final View view)
+	{
+		final int id = view.getId();
+		if (id == R.id.downloadButton)
+		{
+			this.showButton.setVisibility(View.VISIBLE);
+		}
+		super.onClick(view);
 	}
 
 	@Override
@@ -135,23 +242,22 @@ public class DownloadFragment extends BaseDownloadFragment
 	/**
 	 * Download status
 	 */
-	@Override
-	protected long getStatus(final Progress progress)
+	synchronized private long getXStatus(final Progress progress)
 	{
-		int status = 0;
-		int reason = 0;
-
 		// query
 		final Query query = new Query();
 		query.setFilterById(DownloadFragment.this.downloadId);
 
 		// cursor
+		int statusCode = 0;
+		int reasonCode = 0;
 		final Cursor cursor = DownloadFragment.this.downloadManager.query(query);
 		if (cursor.moveToFirst())
 		{
 			// status
 			final int dmStatus = cursor.getInt(cursor.getColumnIndex(DownloadManager.COLUMN_STATUS));
-			status = dmStatus2Status(dmStatus).mask;
+			final Status status = dmStatus2Status(dmStatus);
+			statusCode = status == null ? 0 : status.mask;
 			switch (dmStatus)
 			{
 				case DownloadManager.STATUS_PENDING:
@@ -161,7 +267,8 @@ public class DownloadFragment extends BaseDownloadFragment
 				case DownloadManager.STATUS_FAILED:
 				case DownloadManager.STATUS_PAUSED:
 					final int dmReason = cursor.getInt(cursor.getColumnIndex(DownloadManager.COLUMN_REASON));
-					reason = dmReason2Reason(dmReason).code;
+					final Reason reason = dmReason2Reason(dmReason);
+					reasonCode = reason == null ? 0 : reason.code;
 					break;
 
 				default:
@@ -176,8 +283,36 @@ public class DownloadFragment extends BaseDownloadFragment
 			}
 		}
 		cursor.close();
-		Log.d(TAG, "READ STATUS status=" + status + " reason=" + reason);
-		return pack(status, reason);
+		Log.d(TAG, "READ STATUS status=" + statusCode + " reason=" + reasonCode);
+		return pack(statusCode, reasonCode);
+	}
+
+	/**
+	 * Download status
+	 */
+	@Override
+	protected int getStatus(final Progress progress)
+	{
+		this.xStatus = getXStatus(progress);
+		return unpackStatus(this.xStatus);
+	}
+
+	/**
+	 * Download reason
+	 */
+	@Override
+	protected String getReason()
+	{
+		int reasonCode = unpackReason(this.xStatus);
+		if (reasonCode == 0)
+		{
+			return null;
+		}
+
+		final Reason reason = Reason.valueOf(reasonCode);
+		final int reasonResId = Reason.toRes(reason);
+
+		return makeString(reasonResId);
 	}
 
 	/**
@@ -190,20 +325,6 @@ public class DownloadFragment extends BaseDownloadFragment
 		{
 			this.downloadManager.remove(DownloadFragment.this.downloadId);
 		}
-	}
-
-	/**
-	 * Reason for fail or pause
-	 *
-	 * @param cursor download manager cursor
-	 * @return resId
-	 */
-	private Reason getReason(final Cursor cursor)
-	{
-		// column for reason code if the download failed or paused
-		int columnReason = cursor.getColumnIndex(DownloadManager.COLUMN_REASON);
-		int reason = cursor.getInt(columnReason);
-		return dmReason2Reason(reason);
 	}
 
 	/**
@@ -283,5 +404,29 @@ public class DownloadFragment extends BaseDownloadFragment
 			default:
 				return null;
 		}
+	}
+
+	/**
+	 * Show downloads
+	 */
+	private void showDownloads()
+	{
+		final Intent intent = new Intent();
+		intent.setAction(DownloadManager.ACTION_VIEW_DOWNLOADS);
+		startActivity(intent);
+	}
+
+	@Override
+	protected void onDone(boolean success)
+	{
+		if (DownloadFragment.this.showButton != null)
+		{
+			if (success)
+			{
+				DownloadFragment.this.showButton.setVisibility(View.GONE);
+			}
+		}
+
+		super.onDone(success);
 	}
 }

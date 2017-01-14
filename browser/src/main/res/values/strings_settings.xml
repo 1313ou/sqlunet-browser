@@ -59,10 +59,19 @@
 
 	<!-- Download -->
 	<string name="pref_header_download">Download</string>
+	<string name="pref_title_downloader">Downloader</string>
+	<string name="pref_default_downloader">DOWNLOADMANAGER</string>
+	<string-array name="pref_downloader_titles">
+		<item>Android Download Manager</item>
+		<item>Basic download manager</item>
+	</string-array>
+	<string-array name="pref_downloader_values">
+		<item>@string/pref_default_downloader</item>
+		<item>BASIC</item>
+	</string-array>
+	<string name="pref_description_downloader">Downloader</string>
 	<string name="pref_title_download_site">Download site</string>
 	<string name="pref_description_download_site">Download site for data</string>
-
-	<!-- Download -->
 	<!--
 		<string-array name="pref_download_sites_titles">
 			<item>SourceForge</item>

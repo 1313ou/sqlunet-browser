@@ -35,6 +35,7 @@ public class Settings
 	static private final String PREF_TEXTSEARCH_MODE = "pref_textsearch_mode";
 	static public final String PREF_STORAGE = StorageSettings.PREF_STORAGE;
 	static public final String PREF_DOWNLOAD_SITE = StorageSettings.PREF_DOWNLOAD_SITE;
+	static public final String PREF_DOWNLOADER = StorageSettings.PREF_DOWNLOADER;
 	static public final String PREF_DOWNLOAD_DBFILE = StorageSettings.PREF_DOWNLOAD_DBFILE;
 	static public final String PREF_DOWNLOAD_SQLFILE = StorageSettings.PREF_DOWNLOAD_SQLFILE;
 	static public final String PREF_ENTRY_IMPORT = StorageSettings.PREF_ENTRY_IMPORT;
@@ -351,6 +352,19 @@ public class Settings
 		final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
 		return sharedPref.getBoolean(Settings.PREF_SQL_LOG, false);
 	}
+
+	/**
+	 * Get preferred downloader
+	 *
+	 * @param context context
+	 * @return preferred downloader
+	 */
+	static public String getDownloaderPref(final Context context)
+	{
+		final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
+		return sharedPref.getString(Settings.PREF_DOWNLOADER, null);
+	}
+
 
 	/**
 	 * Initialize preferences

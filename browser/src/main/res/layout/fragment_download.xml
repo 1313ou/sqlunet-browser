@@ -75,7 +75,7 @@
 		android:layout_marginLeft="10dp"
 		android:layout_marginRight="10dp"
 		android:drawablePadding="5dp"
-		android:drawableTop="@drawable/ic_download_source"
+		android:drawableBottom="@drawable/ic_download_source"
 		android:ellipsize="marquee"
 		android:maxLines="1"
 		android:text="@string/download_source"/>
@@ -89,7 +89,7 @@
 		android:layout_marginLeft="10dp"
 		android:layout_marginRight="10dp"
 		android:layout_marginTop="10dp"
-		android:drawableBottom="@drawable/ic_download_dest"
+		android:drawableTop="@drawable/ic_download_dest"
 		android:drawablePadding="5dp"
 		android:ellipsize="marquee"
 		android:maxLines="1"
@@ -127,7 +127,7 @@
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			android:text="@string/action_show"
-			android:visibility="invisible"/>
+			android:visibility="gone"/>
 	</LinearLayout>
 
 </RelativeLayout>

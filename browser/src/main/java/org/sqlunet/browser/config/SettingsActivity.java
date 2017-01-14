@@ -268,6 +268,7 @@ public class SettingsActivity extends PreferenceActivity
 		SettingsActivity.bind(findPreference(Settings.PREF_DETAIL_MODE));
 		SettingsActivity.bind(findPreference(Settings.PREF_STORAGE));
 		SettingsActivity.bind(findPreference(Settings.PREF_DOWNLOAD_SITE));
+		SettingsActivity.bind(findPreference(Settings.PREF_DOWNLOADER));
 	}
 
 	/**
@@ -362,6 +363,7 @@ public class SettingsActivity extends PreferenceActivity
 
 			// bind the summaries to their values.
 			SettingsActivity.bind(findPreference(Settings.PREF_DOWNLOAD_SITE));
+			SettingsActivity.bind(findPreference(Settings.PREF_DOWNLOADER));
 			SettingsActivity.bind(findPreference(Settings.PREF_DOWNLOAD_DBFILE));
 			SettingsActivity.bind(findPreference(Settings.PREF_DOWNLOAD_SQLFILE));
 			SettingsActivity.bind(findPreference(Settings.PREF_ENTRY_IMPORT));

@@ -4,38 +4,48 @@
 	<!-- NOTE: ListPreference's summary should be set to its value by the activity code. -->
 
 	<EditTextPreference
-		android:key="pref_download_site"
 		android:defaultValue="@string/pref_default_download_site"
+		android:key="pref_download_site"
 		android:summary="@string/pref_description_download_site"
 		android:title="@string/pref_title_download_site"/>
 
+	<ListPreference
+		android:defaultValue="@string/pref_default_downloader"
+		android:entries="@array/pref_downloader_titles"
+		android:entryValues="@array/pref_downloader_values"
+		android:key="pref_downloader"
+		android:negativeButtonText="@null"
+		android:positiveButtonText="@null"
+		android:summary="@string/pref_description_downloader"
+		android:title="@string/pref_title_downloader"/>
+
 	<EditTextPreference
-		android:key="pref_download_dbfile"
 		android:defaultValue="@string/pref_default_download_dbfile"
+		android:key="pref_download_dbfile"
 		android:summary="@string/pref_description_download_dbfile"
 		android:title="@string/pref_title_download_dbfile"/>
 
 	<EditTextPreference
-		android:key="pref_download_sqlfile"
 		android:defaultValue="@string/pref_default_download_sqlfile"
+		android:key="pref_download_sqlfile"
 		android:summary="@string/pref_description_download_sqlfile"
 		android:title="@string/pref_title_download_sqlfile"/>
 
 	<EditTextPreference
-		android:key="pref_entry_import"
 		android:defaultValue="@string/pref_default_entry_import"
+		android:key="pref_entry_import"
 		android:summary="@string/pref_description_entry_import"
 		android:title="@string/pref_title_entry_import"/>
 
 	<EditTextPreference
-		android:key="pref_entry_pm"
 		android:defaultValue="@string/pref_default_entry_pm"
+		android:key="pref_entry_pm"
 		android:summary="@string/pref_description_entry_pm"
 		android:title="@string/pref_title_entry_pm"/>
 
 	<EditTextPreference
-		android:key="pref_entry_index"
 		android:defaultValue="@string/pref_default_entry_index"
+		android:key="pref_entry_index"
 		android:summary="@string/pref_description_entry_index"
 		android:title="@string/pref_title_entry_index"/>
 
