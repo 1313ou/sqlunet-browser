@@ -91,7 +91,6 @@
 	<string name="status_download_paused">paused</string>
 	<string name="status_download_successful">successful</string>
 	<string name="status_download_fail">failed</string>
-	<string name="status_download_finished">finished</string>
 	<string name="status_download_error_cannot_resume">cannot resume</string>
 	<string name="status_download_error_device_not_found">device not found</string>
 	<string name="status_download_error_file_already_exists">file already exists</string>

@@ -79,6 +79,7 @@
       <w>doctype</w>
       <w>documentid</w>
       <w>downloaddbfrom</w>
+      <w>downloadmanager</w>
       <w>downloadsqlfrom</w>
       <w>downloadsqlto</w>
       <w>dvalue</w>
@@ -222,6 +223,7 @@
       <w>infdisp</w>
       <w>inffreq</w>
       <w>infrange</w>
+      <w>inits</w>
       <w>inputstream</w>
       <w>instanceid</w>
       <w>instream</w>
