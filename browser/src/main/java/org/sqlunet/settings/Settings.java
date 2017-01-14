@@ -69,7 +69,7 @@ public class Settings
 		 * Set this source in sources
 		 *
 		 * @param sources sources to set
-		 * @return result
+		 * @return progressMessage
 		 */
 		public int set(final int sources)
 		{

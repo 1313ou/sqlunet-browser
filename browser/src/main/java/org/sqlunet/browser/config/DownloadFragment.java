@@ -7,7 +7,6 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.content.res.Resources;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
@@ -62,15 +61,18 @@ public class DownloadFragment extends BaseDownloadFragment
 				final String action = intent.getAction();
 				if (DownloadManager.ACTION_DOWNLOAD_COMPLETE.equals(action))
 				{
+					Log.d(TAG, "Download complete");
 					final long id = intent.getLongExtra(DownloadManager.EXTRA_DOWNLOAD_ID, 0);
 					if (id == DownloadFragment.this.downloadId)
 					{
 						// status
-						final Status status = new Status();
-						getStatus(status);
+						long status = getStatus(null);
+						if(status != 0) // not cancelled
+							DownloadFragment.this.status = status;
 
 						// cleanup if fail
-						if (!status.success)
+						boolean success = Status.STATUS_SUCCESSFUL.test(status);
+						if (!success)
 						{
 							if (DownloadFragment.this.destFile.exists())
 							{
@@ -80,7 +82,7 @@ public class DownloadFragment extends BaseDownloadFragment
 						}
 
 						// fire on done
-						onDone(status.success);
+						onDone(success);
 					}
 				}
 			}
@@ -134,11 +136,10 @@ public class DownloadFragment extends BaseDownloadFragment
 	 * Download status
 	 */
 	@Override
-	protected boolean getStatus(final Status result)
+	protected long getStatus(final Progress progress)
 	{
-		result.finished = true;
-		result.success = false;
-		result.cancel = true;
+		int status = 0;
+		int reason = 0;
 
 		// query
 		final Query query = new Query();
@@ -149,36 +150,18 @@ public class DownloadFragment extends BaseDownloadFragment
 		if (cursor.moveToFirst())
 		{
 			// status
-			final int status = cursor.getInt(cursor.getColumnIndex(DownloadManager.COLUMN_STATUS));
-			result.localUri = cursor.getString(cursor.getColumnIndex(DownloadManager.COLUMN_LOCAL_URI));
-			switch (status)
+			final int dmStatus = cursor.getInt(cursor.getColumnIndex(DownloadManager.COLUMN_STATUS));
+			status = dmStatus2Status(dmStatus).mask;
+			switch (dmStatus)
 			{
+				case DownloadManager.STATUS_PENDING:
 				case DownloadManager.STATUS_SUCCESSFUL:
-					result.finished = true;
-					result.success = true;
-					result.cancel = false;
-					result.message = makeStatusString(status2ResourceId(DownloadManager.STATUS_SUCCESSFUL), -1);
 					break;
 
 				case DownloadManager.STATUS_FAILED:
-					result.finished = true;
-					result.success = false;
-					result.cancel = true;
-					result.message = makeStatusString(status2ResourceId(status), getReasonResId(cursor));
-					break;
-
 				case DownloadManager.STATUS_PAUSED:
-					result.finished = false;
-					result.success = false;
-					result.cancel = false;
-					result.message = makeStatusString(status2ResourceId(DownloadManager.STATUS_PAUSED), getReasonResId(cursor));
-					break;
-
-				case DownloadManager.STATUS_PENDING:
-					result.finished = false;
-					result.success = false;
-					result.cancel = false;
-					result.message = makeStatusString(status2ResourceId(DownloadManager.STATUS_PENDING), -1);
+					final int dmReason = cursor.getInt(cursor.getColumnIndex(DownloadManager.COLUMN_REASON));
+					reason = dmReason2Reason(dmReason).code;
 					break;
 
 				default:
@@ -186,13 +169,15 @@ public class DownloadFragment extends BaseDownloadFragment
 			}
 
 			// size info
-			final int downloaded = cursor.getInt(cursor.getColumnIndex(DownloadManager.COLUMN_BYTES_DOWNLOADED_SO_FAR));
-			final int total = cursor.getInt(cursor.getColumnIndex(DownloadManager.COLUMN_TOTAL_SIZE_BYTES));
-			result.progress100 = total == 0 ? 0 : (int) (downloaded * 100L / total);
+			if (progress != null)
+			{
+				progress.total = cursor.getLong(cursor.getColumnIndex(DownloadManager.COLUMN_TOTAL_SIZE_BYTES));
+				progress.downloaded = cursor.getLong(cursor.getColumnIndex(DownloadManager.COLUMN_BYTES_DOWNLOADED_SO_FAR));
+			}
 		}
 		cursor.close();
-
-		return result.finished;
+		Log.d(TAG, "READ STATUS status=" + status + " reason=" + reason);
+		return pack(status, reason);
 	}
 
 	/**
@@ -213,108 +198,90 @@ public class DownloadFragment extends BaseDownloadFragment
 	 * @param cursor download manager cursor
 	 * @return resId
 	 */
-	private int getReasonResId(final Cursor cursor)
+	private Reason getReason(final Cursor cursor)
 	{
 		// column for reason code if the download failed or paused
 		int columnReason = cursor.getColumnIndex(DownloadManager.COLUMN_REASON);
 		int reason = cursor.getInt(columnReason);
-		return reason2ResourceId(reason);
+		return dmReason2Reason(reason);
 	}
 
 	/**
-	 * Get _status message as per _status returned by cursor
+	 * Get _status progressMessage as per _status returned by cursor
 	 *
 	 * @param status _status
 	 * @return string resource id
 	 */
-	static private int status2ResourceId(final int status)
+	static private Status dmStatus2Status(final int status)
 	{
 		switch (status)
 		{
 			case DownloadManager.STATUS_FAILED:
-				return R.string.status_download_fail;
+				return Status.STATUS_FAILED;
 			case DownloadManager.STATUS_PAUSED:
-				return R.string.status_download_paused;
+				return Status.STATUS_PAUSED;
 			case DownloadManager.STATUS_PENDING:
-				return R.string.status_download_pending;
+				return Status.STATUS_PENDING;
 			case DownloadManager.STATUS_RUNNING:
-				return R.string.status_download_running;
+				return Status.STATUS_RUNNING;
 			case DownloadManager.STATUS_SUCCESSFUL:
-				return R.string.status_download_successful;
+				return Status.STATUS_SUCCESSFUL;
 			default:
-				return -1;
+				return null;
 		}
 	}
 
 	/**
-	 * Get _status message as per _status returned by cursor
+	 * Get _status reason as per _status returned by cursor
 	 *
-	 * @param reason _status
-	 * @return string resource id
+	 * @param reason _Download Manager reason
+	 * @return Status reason
 	 */
-	static private int reason2ResourceId(final int reason)
+	static private Reason dmReason2Reason(final int reason)
 	{
 		switch (reason)
 		{
 			case DownloadManager.ERROR_CANNOT_RESUME:
-				return R.string.status_download_error_cannot_resume;
+				return Reason.ERROR_CANNOT_RESUME;
 
 			case DownloadManager.ERROR_DEVICE_NOT_FOUND:
-				return R.string.status_download_error_device_not_found;
+				return Reason.ERROR_DEVICE_NOT_FOUND;
 
 			case DownloadManager.ERROR_FILE_ALREADY_EXISTS:
-				return R.string.status_download_error_file_already_exists;
+				return Reason.ERROR_FILE_ALREADY_EXISTS;
 
 			case DownloadManager.ERROR_FILE_ERROR:
-				return R.string.status_download_error_file_error;
+				return Reason.ERROR_FILE_ERROR;
 
 			case DownloadManager.ERROR_HTTP_DATA_ERROR:
-				return R.string.status_download_error_http_data_error;
+				return Reason.ERROR_HTTP_DATA_ERROR;
 
 			case DownloadManager.ERROR_INSUFFICIENT_SPACE:
-				return R.string.status_download_error_insufficient_space;
+				return Reason.ERROR_INSUFFICIENT_SPACE;
 
 			case DownloadManager.ERROR_TOO_MANY_REDIRECTS:
-				return R.string.status_download_error_too_many_redirects;
+				return Reason.ERROR_TOO_MANY_REDIRECTS;
 
 			case DownloadManager.ERROR_UNHANDLED_HTTP_CODE:
-				return R.string.status_download_error_unhandled_http_code;
+				return Reason.ERROR_UNHANDLED_HTTP_CODE;
 
 			case DownloadManager.ERROR_UNKNOWN:
-				return R.string.status_download_error_unknown;
+				return Reason.ERROR_UNKNOWN;
 
 			case DownloadManager.PAUSED_QUEUED_FOR_WIFI:
-				return R.string.status_download_paused_queued_for_wifi;
+				return Reason.PAUSED_QUEUED_FOR_WIFI;
 
 			case DownloadManager.PAUSED_UNKNOWN:
-				return R.string.status_download_paused_unknown;
+				return Reason.PAUSED_UNKNOWN;
 
 			case DownloadManager.PAUSED_WAITING_FOR_NETWORK:
-				return R.string.status_download_paused_waiting_for_network;
+				return Reason.PAUSED_WAITING_FOR_NETWORK;
 
 			case DownloadManager.PAUSED_WAITING_TO_RETRY:
-				return R.string.status_download_paused_waiting_to_retry;
+				return Reason.PAUSED_WAITING_TO_RETRY;
 
 			default:
-				return -1;
+				return null;
 		}
-	}
-
-	/**
-	 * Make status string
-	 *
-	 * @param statusResId status resource id
-	 * @param reasonResId reason res id
-	 * @return string
-	 */
-	private String makeStatusString(int statusResId, int reasonResId)
-	{
-		final Resources res = getActivity().getResources();
-		String message = res.getString(statusResId);
-		if (reasonResId != -1)
-		{
-			message += '\n' + res.getString(reasonResId);
-		}
-		return message;
 	}
 }

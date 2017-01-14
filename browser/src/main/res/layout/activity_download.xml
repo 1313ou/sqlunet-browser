@@ -8,8 +8,8 @@
 
 	<fragment
 		android:id="@+id/fragment_download"
-		android:name="org.sqlunet.browser.config.DownloadFragment"
-		class="org.sqlunet.browser.config.DownloadFragment"
+		android:name="org.sqlunet.browser.config.BasicDownloadFragment"
+		class="org.sqlunet.browser.config.BasicDownloadFragment"
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
 		tools:layout="@layout/fragment_download"/>

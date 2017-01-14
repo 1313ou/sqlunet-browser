@@ -4,35 +4,72 @@
                 android:layout_height="match_parent"
                 tools:context="org.sqlunet.browser.config.DownloadActivity">
 
-	<ProgressBar
-		android:id="@+id/progressBar"
-		style="@android:style/Widget.ProgressBar.Horizontal"
-		android:layout_width="wrap_content"
+	<LinearLayout
+		android:id="@+id/middle"
+		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
 		android:layout_centerHorizontal="true"
 		android:layout_centerVertical="true"
-		android:indeterminate="false"
-		android:max="100"
-		android:progress="0"
-		android:visibility="invisible"/>
+		android:orientation="horizontal">
 
-	<ImageButton
-		android:id="@+id/downloadButton"
-		style="?android:attr/buttonStyle"
-		android:layout_width="64dp"
-		android:layout_height="64dp"
-		android:layout_centerHorizontal="true"
-		android:layout_centerVertical="true"
-		android:background="@drawable/bg_button"
-		android:contentDescription="@string/action_download"
-		android:src="@drawable/bn_download"
-		android:text="@string/action_download"/>
+		<View
+			android:layout_width="0dip"
+			android:layout_height="match_parent"
+			android:layout_weight="0.15">
+		</View>
+
+		<FrameLayout
+			android:layout_width="0dip"
+			android:layout_height="wrap_content"
+			android:layout_weight="0.7">
+
+			<ImageButton
+				android:id="@+id/downloadButton"
+				style="?android:attr/buttonStyle"
+				android:layout_width="64dp"
+				android:layout_height="64dp"
+				android:layout_gravity="center_vertical|center_horizontal"
+				android:background="@drawable/bg_button"
+				android:contentDescription="@string/action_download"
+				android:src="@drawable/bn_download"
+				android:text="@string/action_download"/>
+
+			<ProgressBar
+				android:id="@+id/progressBar"
+				style="@android:style/Widget.ProgressBar.Horizontal"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_gravity="center_vertical|center_horizontal"
+				android:indeterminate="false"
+				android:max="100"
+				android:progress="0"
+				android:visibility="invisible"/>
+
+			<TextView
+				android:id="@+id/progressStatus"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_gravity="center_vertical|center_horizontal"
+				android:text="@string/action_download"
+				android:textAppearance="?android:attr/textAppearanceSmall"
+				android:visibility="invisible"
+				android:textColor="@android:color/white"/>
+
+		</FrameLayout>
+
+		<View
+			android:layout_width="0dip"
+			android:layout_height="match_parent"
+			android:layout_weight="0.15">
+		</View>
+	</LinearLayout>
+
 
 	<TextView
 		android:id="@+id/src"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
-		android:layout_above="@+id/downloadButton"
+		android:layout_above="@+id/middle"
 		android:layout_centerHorizontal="true"
 		android:layout_marginBottom="10dp"
 		android:layout_marginLeft="10dp"
@@ -47,7 +84,7 @@
 		android:id="@+id/target"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
-		android:layout_below="@+id/downloadButton"
+		android:layout_below="@+id/middle"
 		android:layout_centerHorizontal="true"
 		android:layout_marginLeft="10dp"
 		android:layout_marginRight="10dp"
@@ -59,16 +96,6 @@
 		android:text="@string/download_dest"/>
 
 	<TextView
-		android:id="@+id/progressStatus"
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
-		android:layout_below="@+id/progressBar"
-		android:layout_centerHorizontal="true"
-		android:text="@string/action_download"
-		android:textAppearance="?android:attr/textAppearanceSmall"
-		android:visibility="invisible"/>
-
-	<TextView
 		android:id="@+id/status"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
@@ -77,7 +104,7 @@
 		android:layout_marginTop="50dp"
 		android:gravity="center"
 		android:textAppearance="?android:attr/textAppearanceSmall"
-		android:visibility="invisible"/>
+		android:visibility="visible"/>
 
 	<LinearLayout
 		android:layout_width="wrap_content"

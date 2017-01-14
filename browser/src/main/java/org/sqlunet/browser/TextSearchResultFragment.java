@@ -47,7 +47,7 @@ import java.util.List;
 import java.util.regex.Pattern;
 
 /**
- * TextSearch result fragment
+ * TextSearch progressMessage fragment
  *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */

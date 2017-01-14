@@ -32,14 +32,14 @@ public class DownloadActivity extends Activity implements DownloadFragment.Downl
 		setContentView(R.layout.activity_download);
 
 		// set this as listener
-		DownloadFragment downloadFragment = (DownloadFragment) getFragmentManager().findFragmentById(R.id.fragment_download);
+		BaseDownloadFragment downloadFragment = (BaseDownloadFragment) getFragmentManager().findFragmentById(R.id.fragment_download);
 		downloadFragment.setListener(this);
 	}
 
 	@Override
 	public void onDone(boolean result)
 	{
-		// return result
+		// return progressMessage
 		final Intent resultIntent = new Intent();
 		resultIntent.putExtra(DownloadActivity.RESULT_DOWNLOAD_DATA_AVAILABLE, result);
 		setResult(Activity.RESULT_OK, resultIntent);

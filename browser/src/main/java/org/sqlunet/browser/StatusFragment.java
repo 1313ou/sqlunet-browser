@@ -191,7 +191,7 @@ public class StatusFragment extends Fragment
 		switch (requestCode)
 		{
 			case REQUEST_DOWNLOAD_CODE:
-				Log.d(TAG, "result=" + resultCode);
+				Log.d(TAG, "progressMessage=" + resultCode);
 				break;
 			default:
 				break;

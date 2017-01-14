@@ -21,7 +21,7 @@ class Tests
 		{
 			TestActions.typeSearch(word, R.id.search);
 
-			// result list
+			// progressMessage list
 			final Matcher<View> list = CoreMatchers.allOf(ViewMatchers.withId(android.R.id.list), CoreMatchers.instanceOf(ListView.class));
 			Espresso.onView(list).check(ViewAssertions.matches(ViewMatchers.isDisplayed()));
 
@@ -51,7 +51,7 @@ class Tests
 		{
 			TestActions.typeSearch(word, R.id.search);
 
-			// result list
+			// progressMessage list
 			final Matcher<View> list = CoreMatchers.allOf(ViewMatchers.withId(android.R.id.list), CoreMatchers.instanceOf(ListView.class));
 			Espresso.onView(list).check(ViewAssertions.matches(ViewMatchers.isDisplayed()));
 

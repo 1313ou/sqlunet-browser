@@ -176,7 +176,7 @@ public class SetupSqlActivity extends SetupBaseActivity
 		super.onDownloadFinish(code, result);
 
 		// delete sql file
-		// if (!result)
+		// if (!progressMessage)
 		// {
 		// String to = StorageSettings.getSqlDownloadTarget(this);
 		// new File(to).delete();

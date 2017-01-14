@@ -518,7 +518,7 @@ public class WebFragment extends Fragment
 	}
 
 	/**
-	 * Assemble result
+	 * Assemble progressMessage
 	 *
 	 * @param word       query word
 	 * @param xml        assemble as xml (or document to be xslt-transformed if false)

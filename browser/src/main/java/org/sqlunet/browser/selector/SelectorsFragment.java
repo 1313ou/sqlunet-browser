@@ -274,7 +274,7 @@ public class SelectorsFragment extends ListFragment
 			@Override
 			public void onLoadFinished(final Loader<Cursor> loader, final Cursor cursor)
 			{
-				// store source result
+				// store source progressMessage
 				if (cursor.moveToFirst())
 				{
 					final int idWordId = cursor.getColumnIndex(Words_FnWords_PbWords_VnWords.WORDID);

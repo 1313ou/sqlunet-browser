@@ -21,6 +21,7 @@ import java.util.zip.ZipFile;
 public class ExecuteManager
 {
 	static private final String TAG = "ExecuteManager";
+
 	/**
 	 * Manager listener
 	 */
@@ -34,7 +35,7 @@ public class ExecuteManager
 		/**
 		 * Finish event
 		 *
-		 * @param result result
+		 * @param result progressMessage
 		 */
 		void managerFinish(boolean result);
 
@@ -80,9 +81,9 @@ public class ExecuteManager
 	 *
 	 * @param sqls sql statements
 	 */
-	public AsyncTask<String, Integer, Boolean> executeFromSql(final String... sqls)
+	public AsyncTask<String, Long, Boolean> executeFromSql(final String... sqls)
 	{
-		final AsyncTask<String, Integer, Boolean> task = new AsyncTask<String, Integer, Boolean>()
+		final AsyncTask<String, Long, Boolean> task = new AsyncTask<String, Long, Boolean>()
 		{
 			@SuppressWarnings("boxing")
 			@Override
@@ -104,7 +105,7 @@ public class ExecuteManager
 						Log.d(ExecuteManager.TAG, "SQL " + sql);
 						if (count % ExecuteManager.this.publishRate == 0)
 						{
-							publishProgress((int) (i / (float) count * 1000));
+							publishProgress((long) (i / (float) count * 1000));
 						}
 						if (isCancelled())
 						{
@@ -136,10 +137,10 @@ public class ExecuteManager
 			}
 
 			@Override
-			protected void onProgressUpdate(final Integer... progress)
+			protected void onProgressUpdate(final Long... progress)
 			{
 				super.onProgressUpdate(progress);
-				ExecuteManager.this.listener.managerUpdate(progress[0]);
+				ExecuteManager.this.listener.managerUpdate(progress[0].intValue());
 			}
 
 			@Override
@@ -159,9 +160,9 @@ public class ExecuteManager
 	 * @param archive zip file path with sql statements
 	 * @param entry   entry
 	 */
-	public AsyncTask<String, Integer, Boolean> executeFromArchive(final String archive, final String entry)
+	public AsyncTask<String, Long, Boolean> executeFromArchive(final String archive, final String entry)
 	{
-		final AsyncTask<String, Integer, Boolean> task = new AsyncTask<String, Integer, Boolean>()
+		final AsyncTask<String, Long, Boolean> task = new AsyncTask<String, Long, Boolean>()
 		{
 			@Override
 			@SuppressWarnings("boxing")
@@ -193,7 +194,7 @@ public class ExecuteManager
 					reader = new BufferedReader(isr);
 
 					// iterate through lines (assuming each insert has its own line and there's no other stuff)
-					int count = 0;
+					long count = 0;
 					String sql = null;
 					String line;
 					while ((line = reader.readLine()) != null)
@@ -296,9 +297,9 @@ public class ExecuteManager
 			}
 
 			@Override
-			protected void onProgressUpdate(final Integer... progress)
+			protected void onProgressUpdate(final Long... progress)
 			{
-				ExecuteManager.this.listener.managerUpdate(progress[0]);
+				ExecuteManager.this.listener.managerUpdate(progress[0].intValue());
 			}
 
 			@Override

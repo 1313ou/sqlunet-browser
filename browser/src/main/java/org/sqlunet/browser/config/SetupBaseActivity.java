@@ -29,7 +29,7 @@ public class SetupBaseActivity extends Activity implements BasicDownloader.Liste
 	static private final String TAG = "SetupBaseActivity";
 
 	// task
-	protected AsyncTask<?, Integer, Boolean> task;
+	protected AsyncTask<?, Long, Boolean> task;
 
 	// progress dialog
 	private ProgressDialog progressDialog;
@@ -71,7 +71,7 @@ public class SetupBaseActivity extends Activity implements BasicDownloader.Liste
 	/**
 	 * Make dialog
 	 *
-	 * @param messageId message resource
+	 * @param messageId progressMessage resource
 	 * @param style     style
 	 * @return dialog
 	 */
@@ -137,11 +137,11 @@ public class SetupBaseActivity extends Activity implements BasicDownloader.Liste
 	}
 
 	@Override
-	public void onDownloadUpdate(final int progress, final int bytes)
+	public void onDownloadUpdate(final long total, final long downloaded)
 	{
-		this.progressDialog.setIndeterminate(progress == -1);
-		this.progressDialog.setProgress(progress);
-		this.progressDialog.setMessage(bytes / (1024 * 1024) + " MBytes");
+		this.progressDialog.setIndeterminate(total == -1);
+		this.progressDialog.setProgress((int) (100 * (downloaded / total)));
+		this.progressDialog.setMessage(downloaded / (1024 * 1024) + " MBytes");
 	}
 
 	// E X E C U T E L I S T E N E R

@@ -22,7 +22,7 @@ import org.sqlunet.treeview.view.TreeView;
 import org.sqlunet.view.TreeFactory;
 
 /**
- * PredicateMatrix result fragment
+ * PredicateMatrix progressMessage fragment
  *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
