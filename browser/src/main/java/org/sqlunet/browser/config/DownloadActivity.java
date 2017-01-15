@@ -23,7 +23,7 @@ public class DownloadActivity extends Activity implements DownloadFragment.Downl
 	private enum Downloader
 	{
 		DOWNLOADMANAGER(R.layout.activity_download),
-		BASIC(R.layout.activity_download_basic);
+		SIMPLE(R.layout.activity_download_simple);
 
 		final private int res;
 

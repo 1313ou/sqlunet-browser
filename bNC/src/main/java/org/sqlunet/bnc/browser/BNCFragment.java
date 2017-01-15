@@ -8,7 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import org.sqlunet.bnc.R;
-import org.sqlunet.bnc.loaders.BasicModule;
+import org.sqlunet.bnc.loaders.BaseModule;
 import org.sqlunet.browser.Module;
 import org.sqlunet.provider.ProviderArgs;
 import org.sqlunet.treeview.control.TreeController;
@@ -72,7 +72,7 @@ public class BNCFragment extends Fragment
 			final Parcelable pointer = args.getParcelable(ProviderArgs.ARG_QUERYPOINTER);
 
 			// module
-			Module module = new BasicModule(this);
+			Module module = new BaseModule(this);
 			module.init(type, pointer);
 			module.process(queryNode);
 		}

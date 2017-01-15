@@ -26,7 +26,7 @@ import org.sqlunet.view.TreeFactory;
  *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
-public class ClassFromWordModule extends BasicModule
+public class ClassFromWordModule extends BaseModule
 {
 	/**
 	 * Word id

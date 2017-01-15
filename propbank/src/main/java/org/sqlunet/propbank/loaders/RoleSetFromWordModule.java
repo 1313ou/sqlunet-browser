@@ -12,7 +12,7 @@ import org.sqlunet.view.FireEvent;
  *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
-public class RoleSetFromWordModule extends BasicModule
+public class RoleSetFromWordModule extends BaseModule
 {
 	/**
 	 * Word id

@@ -13,7 +13,7 @@ import org.sqlunet.view.FireEvent;
  *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
-public class ClassModule extends BasicModule
+public class ClassModule extends BaseModule
 {
 	/**
 	 * Query

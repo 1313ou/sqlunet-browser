@@ -11,7 +11,7 @@ import org.sqlunet.treeview.model.TreeNode;
  *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
-public class AnnoSetModule extends BasicModule
+public class AnnoSetModule extends BaseModule
 {
 	/**
 	 * AnnoSet id

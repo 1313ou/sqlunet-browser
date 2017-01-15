@@ -12,7 +12,7 @@ import org.sqlunet.treeview.model.TreeNode;
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
 
-public class SenseKeyModule extends BasicModule
+public class SenseKeyModule extends BaseModule
 {
 	/**
 	 * Sense key

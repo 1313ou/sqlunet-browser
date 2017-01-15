@@ -102,7 +102,7 @@ public class SetupSqlActivity extends SetupBaseActivity
 				// starting download
 				final String from = StorageSettings.getSqlDownloadSource(getBaseContext());
 				final String to = StorageSettings.getSqlDownloadTarget(getBaseContext());
-				SetupSqlActivity.this.task = new BasicDownloader(from, to, 1, SetupSqlActivity.this).execute();
+				SetupSqlActivity.this.task = new SimpleDownloader(from, to, 1, SetupSqlActivity.this).execute();
 			}
 		});
 

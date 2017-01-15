@@ -16,7 +16,7 @@ import org.sqlunet.wordnet.R;
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
 
-public class SynsetModule extends BasicModule
+public class SynsetModule extends BaseModule
 {
 	/**
 	 * Synset id

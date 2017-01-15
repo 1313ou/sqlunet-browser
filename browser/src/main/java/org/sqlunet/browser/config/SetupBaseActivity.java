@@ -24,7 +24,7 @@ import java.io.File;
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
 @SuppressLint("Registered")
-public class SetupBaseActivity extends Activity implements BasicDownloader.Listener, ExecuteManager.Listener
+public class SetupBaseActivity extends Activity implements SimpleDownloader.Listener, ExecuteManager.Listener
 {
 	static private final String TAG = "SetupBaseActivity";
 

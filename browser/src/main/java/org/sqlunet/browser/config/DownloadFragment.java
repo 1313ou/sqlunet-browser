@@ -49,7 +49,9 @@ public class DownloadFragment extends BaseDownloadFragment
 		ERROR_DEVICE_NOT_FOUND(1007, R.string.status_download_error_device_not_found),
 		ERROR_CANNOT_RESUME(1008, R.string.status_download_error_cannot_resume),
 		ERROR_FILE_ALREADY_EXISTS(1009, R.string.status_download_error_file_already_exists),
-		ERROR_BLOCKED(1010, R.string.status_download_error_blocked);
+		ERROR_BLOCKED(1010, R.string.status_download_error_blocked),
+
+		EXCEPTION(10000, R.string.status_download_exception);
 
 		final public int code;
 
@@ -113,6 +115,16 @@ public class DownloadFragment extends BaseDownloadFragment
 	 * Download extended status
 	 */
 	private long xStatus = 0;
+
+	/**
+	 * Exception flag
+	 */
+	private boolean exceptionHasOccurred = false;
+
+	/**
+	 * Exception exception message
+	 */
+	private String exceptionMessage;
 
 	/**
 	 * Show downloads button
@@ -222,22 +234,40 @@ public class DownloadFragment extends BaseDownloadFragment
 	@Override
 	protected void start()
 	{
-		final Uri downloadUri = Uri.parse(this.downloadUrl);
-		final Request request = new Request(downloadUri);
-		if (this.destFile != null)
+		this.exceptionHasOccurred = false;
+		this.exceptionMessage = null;
+
+		try
 		{
-			Uri destUri = Uri.fromFile(this.destFile);
-			request.setDestinationUri(destUri);
+			final Uri downloadUri = Uri.parse(this.downloadUrl);
+			final Request request = new Request(downloadUri);
+			if (this.destFile != null)
+			{
+				Uri destUri = Uri.fromFile(this.destFile);
+				request.setDestinationUri(destUri);
+			}
+			request.setTitle(getActivity().getResources().getText(R.string.title_download_id));
+			request.setDescription(downloadUri.getLastPathSegment());
+			request.setNotificationVisibility(Request.VISIBILITY_VISIBLE);
+
+			// request.setAllowedOverMetered(false);
+			// request.setAllowedNetworkTypes(Request.NETWORK_WIFI);
+			// request.setAllowedOverRoaming(false);
+
+			this.downloadId = this.downloadManager.enqueue(request);
 		}
-		request.setTitle(getActivity().getResources().getText(R.string.title_download_id));
-		request.setDescription(downloadUri.getLastPathSegment());
+		catch (SecurityException e)
+		{
+			flagException(e);
+			throw e;
+		}
+	}
 
-		// request.setAllowedOverMetered(false);
-		// request.setAllowedNetworkTypes(Request.NETWORK_WIFI);
-		// request.setAllowedOverRoaming(false);
-
-		request.setNotificationVisibility(Request.VISIBILITY_VISIBLE);
-		this.downloadId = this.downloadManager.enqueue(request);
+	private void flagException(final Exception e)
+	{
+		this.xStatus = pack(Status.STATUS_FAILED.mask, Reason.EXCEPTION.code);
+		this.exceptionHasOccurred = true;
+		this.exceptionMessage = e.getMessage();
 	}
 
 	/**
@@ -294,7 +324,10 @@ public class DownloadFragment extends BaseDownloadFragment
 	@Override
 	protected int getStatus(final Progress progress)
 	{
-		this.xStatus = getXStatus(progress);
+		if (!this.exceptionHasOccurred)
+		{
+			this.xStatus = getXStatus(progress);
+		}
 		return unpackStatus(this.xStatus);
 	}
 
@@ -313,7 +346,12 @@ public class DownloadFragment extends BaseDownloadFragment
 		final Reason reason = Reason.valueOf(reasonCode);
 		final int reasonResId = Reason.toRes(reason);
 
-		return makeString(reasonResId);
+		String result = makeString(reasonResId);
+		if (reason == Reason.EXCEPTION)
+		{
+			result += '\n' + this.exceptionMessage;
+		}
+		return result;
 	}
 
 	/**

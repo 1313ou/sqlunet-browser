@@ -12,7 +12,7 @@ import org.sqlunet.treeview.model.TreeNode;
  *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
-public class PredicateRoleModule extends BasicModule
+public class PredicateRoleModule extends BaseModule
 {
 	/**
 	 * Query id
