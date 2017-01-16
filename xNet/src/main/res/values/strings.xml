@@ -5,8 +5,9 @@
 	<string name="label_contents">Contents</string>
 	<string name="open_success">Opened</string>
 	<string name="open_fail">Failed to open</string>
-	<string name="pref_default_download_site">http://sqlunet.sourceforge.net/sqlunet</string>
+	<string name="pref_default_download_site">https://sourceforge.net/projects/sqlunet/files/4.0.0/android</string>
 	<string name="pref_default_download_dbfile">sqlunet.db</string>
+	<string name="pref_default_download_dbfile_zipped">sqlunet.db.zip</string>
 	<string name="pref_default_download_sqlfile">sqlunet.sql.zip</string>
 	<string name="pref_default_entry_import">sqlunet.sql</string>
 	<string name="pref_default_entry_pm">sqlunet-pm-classes.sql</string>

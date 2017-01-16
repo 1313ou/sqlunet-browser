@@ -138,7 +138,7 @@ public class ManageFragment extends Fragment implements TaskObserver.Listener
 	}
 
 	@Override
-	public void taskStart(final AsyncTask<?,?,?> task)
+	public void taskStart(final AsyncTask<?, ?, ?> task)
 	{
 		Log.d(TAG, "Update start");
 		Toast.makeText(getActivity(), R.string.status_update_start, Toast.LENGTH_SHORT).show();
@@ -164,7 +164,7 @@ public class ManageFragment extends Fragment implements TaskObserver.Listener
 	public void onCreateOptionsMenu(final Menu menu, final MenuInflater inflater)
 	{
 		inflater.inflate(R.menu.manage, menu);
-		super.onCreateOptionsMenu(menu,inflater);
+		super.onCreateOptionsMenu(menu, inflater);
 	}
 
 	@Override
@@ -210,11 +210,17 @@ public class ManageFragment extends Fragment implements TaskObserver.Listener
 				break;
 
 			case R.id.action_copy_from_database:
-				FileAsyncTask.copyFromFile(context, StorageSettings.getDatabasePath(context));
+				if (Permissions.check(getActivity()))
+				{
+					FileAsyncTask.copyFromFile(context, StorageSettings.getDatabasePath(context));
+				}
 				break;
 
 			case R.id.action_unzip_from_database:
-				FileAsyncTask.unzipFromArchive(context, StorageSettings.getDatabasePath(context));
+				if (Permissions.check(getActivity()))
+				{
+					FileAsyncTask.unzipFromArchive(context, StorageSettings.getDatabasePath(context));
+				}
 				break;
 
 			default:
