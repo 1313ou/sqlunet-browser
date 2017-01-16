@@ -34,6 +34,18 @@
 		app:showAsAction="never"
 		tools:ignore="AppCompatResource"/>
 	<item
+		android:id="@+id/action_copy_from_database"
+		android:showAsAction="never"
+		android:title="@string/action_copy_from_file"
+		app:showAsAction="never"
+		tools:ignore="AppCompatResource"/>
+	<item
+		android:id="@+id/action_unzip_from_database"
+		android:showAsAction="never"
+		android:title="@string/action_unzip_from_archive"
+		app:showAsAction="never"
+		tools:ignore="AppCompatResource"/>
+	<item
 		android:id="@+id/action_drop_tables"
 		android:showAsAction="never"
 		android:title="@string/action_drop_tables"

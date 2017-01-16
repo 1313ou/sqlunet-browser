@@ -3,6 +3,7 @@ package org.sqlunet.browser.config;
 import android.app.Fragment;
 import android.content.Context;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -21,8 +22,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import org.sqlunet.browser.R;
-import org.sqlunet.provider.ExecuteManager;
-import org.sqlunet.provider.ExecuteManager.Listener;
 import org.sqlunet.provider.ManagerContract;
 import org.sqlunet.provider.ManagerProvider;
 import org.sqlunet.provider.ProviderArgs;
@@ -33,7 +32,7 @@ import org.sqlunet.settings.StorageSettings;
  *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
-public class ManageFragment extends Fragment implements Listener
+public class ManageFragment extends Fragment implements TaskObserver.Listener
 {
 	static private final String TAG = "ManageFragment";
 
@@ -132,14 +131,14 @@ public class ManageFragment extends Fragment implements Listener
 				final CharSequence sql = sqls[(int) id];
 				final String[] sqls1 = sql.toString().split(";");
 				ManageFragment.this.status.setText(R.string.status_op_running);
-				new ExecuteManager(databasePath, ManageFragment.this, 1).executeFromSql(sqls1);
+				new ManageAsyncTask(ManageFragment.this, 1).executeFromSql(databasePath, sqls1);
 			}
 		});
 		return view;
 	}
 
 	@Override
-	public void managerStart()
+	public void taskStart(final AsyncTask<?,?,?> task)
 	{
 		Log.d(TAG, "Update start");
 		Toast.makeText(getActivity(), R.string.status_update_start, Toast.LENGTH_SHORT).show();
@@ -147,7 +146,7 @@ public class ManageFragment extends Fragment implements Listener
 	}
 
 	@Override
-	public void managerFinish(final boolean result)
+	public void taskFinish(final boolean result)
 	{
 		Log.d(TAG, "Update " + (result ? "succeeded" : "failed"));
 		Toast.makeText(getActivity(), result ? R.string.status_update_success : R.string.status_update_failure, Toast.LENGTH_SHORT).show();
@@ -155,7 +154,7 @@ public class ManageFragment extends Fragment implements Listener
 	}
 
 	@Override
-	public void managerUpdate(final int progress)
+	public void taskUpdate(final int progress)
 	{
 		Log.d(TAG, "Update " + progress);
 		// Toast.makeText(getActivity(), "Update ", Toast.LENGTH_SHORT).show();
@@ -208,6 +207,14 @@ public class ManageFragment extends Fragment implements Listener
 
 			case R.id.action_drop_tables:
 				ManageTasks.dropAll(context, StorageSettings.getDatabasePath(context), ManagerProvider.getTables(context));
+				break;
+
+			case R.id.action_copy_from_database:
+				FileAsyncTask.copyFromFile(context, StorageSettings.getDatabasePath(context));
+				break;
+
+			case R.id.action_unzip_from_database:
+				FileAsyncTask.unzipFromArchive(context, StorageSettings.getDatabasePath(context));
 				break;
 
 			default:

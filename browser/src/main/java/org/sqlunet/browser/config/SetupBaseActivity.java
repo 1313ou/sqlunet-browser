@@ -12,7 +12,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import org.sqlunet.browser.R;
-import org.sqlunet.provider.ExecuteManager;
 import org.sqlunet.settings.StorageSettings;
 import org.sqlunet.settings.StorageUtils;
 
@@ -24,7 +23,7 @@ import java.io.File;
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
 @SuppressLint("Registered")
-public class SetupBaseActivity extends Activity implements SimpleDownloader.Listener, ExecuteManager.Listener
+public class SetupBaseActivity extends Activity implements SimpleDownloader.Listener
 {
 	static private final String TAG = "SetupBaseActivity";
 
@@ -142,31 +141,5 @@ public class SetupBaseActivity extends Activity implements SimpleDownloader.List
 		this.progressDialog.setIndeterminate(total == -1);
 		this.progressDialog.setProgress((int) (100 * (downloaded / total)));
 		this.progressDialog.setMessage(downloaded / (1024 * 1024) + " MBytes");
-	}
-
-	// E X E C U T E L I S T E N E R
-
-	@Override
-	public void managerStart()
-	{
-		this.progressDialog = makeDialog(R.string.status_managing, ProgressDialog.STYLE_SPINNER);
-		this.progressDialog.setIndeterminate(false);
-		this.progressDialog.show();
-	}
-
-	@Override
-	public void managerFinish(final boolean result)
-	{
-		this.progressDialog.dismiss();
-		Log.d(TAG, "SQL update " + (result ? "succeeded" : "failed")); ////
-		Toast.makeText(this, result ? R.string.title_sqlupdate_complete : R.string.title_sqlupdate_failed, Toast.LENGTH_SHORT).show();
-	}
-
-	@Override
-	public void managerUpdate(final int progress)
-	{
-		this.progressDialog.setIndeterminate(progress == -1);
-		this.progressDialog.setProgress(progress);
-		this.progressDialog.setMessage(progress + " statements");
 	}
 }

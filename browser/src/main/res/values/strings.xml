@@ -31,6 +31,8 @@
 	<string name="action_manage">Manage database</string>
 	<string name="action_create_database">Create database</string>
 	<string name="action_drop_database">Drop database</string>
+	<string name="action_copy_from_file">Copy database from &#8230;</string>
+	<string name="action_unzip_from_archive">Unzip database from &#8230;</string>
 	<string name="action_drop_tables">Drop tables</string>
 	<string name="action_flush_tables">Flush tables</string>
 	<string name="action_vacuum">Compact</string>
@@ -48,13 +50,13 @@
 	<string name="action_abort">Abort</string>
 	<string name="action_dismiss">Dismiss</string>
 	<string name="action_cancel">Cancel</string>
+	<string name="action_ok">Ok</string>
 	<string name="action_show">Show</string>
 
 	<!-- labels -->
 	<string name="title_activity_main">Home</string>
 	<string name="title_activity_selector">Senses</string>
-	<string name="title_activity_xselector">Sources
-	</string>
+	<string name="title_activity_xselector">Sources</string>
 	<string name="title_activity_sense">Sense</string>
 	<string name="title_activity_table">Table</string>
 	<string name="title_activity_word">Word</string>
@@ -126,6 +128,8 @@
 	<string name="hint_navigation_drawer_open">Open navigation drawer</string>
 	<string name="hint_navigation_drawer_close">Close navigation drawer</string>
 	<string name="hint_sql">SQL statements stack</string>
+	<string name="hint_unzip_from_archive">Select the zip archive to unzip from</string>
+	<string name="hint_copy_from_file">Select the database to copy from</string>
 
 	<!-- items -->
 	<string name="download_source">source</string>

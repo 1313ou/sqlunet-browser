@@ -7,7 +7,6 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import org.sqlunet.browser.R;
-import org.sqlunet.provider.ExecuteManager;
 import org.sqlunet.settings.StorageSettings;
 import org.sqlunet.settings.StorageUtils;
 
@@ -115,7 +114,8 @@ public class SetupSqlActivity extends SetupBaseActivity
 				// starting create task
 				try
 				{
-					SetupSqlActivity.this.task = new ExecuteManager(StorageSettings.getDatabasePath(getBaseContext()), SetupSqlActivity.this, 1000).executeFromArchive(StorageSettings.getSqlSource(getBaseContext()), StorageSettings.getImportEntry(getBaseContext()));
+					final TaskObserver.Listener listener = TaskObserver.makeListener(SetupSqlActivity.this, R.string.status_managing);
+					SetupSqlActivity.this.task = new ManageAsyncTask(listener, 1000).executeFromArchive(StorageSettings.getDatabasePath(getBaseContext()), StorageSettings.getSqlSource(getBaseContext()), StorageSettings.getImportEntry(getBaseContext()));
 				}
 				catch (final Exception e)
 				{
@@ -133,7 +133,8 @@ public class SetupSqlActivity extends SetupBaseActivity
 				// starting indexing task
 				try
 				{
-					SetupSqlActivity.this.task = new ExecuteManager(StorageSettings.getDatabasePath(getBaseContext()), SetupSqlActivity.this, 1).executeFromArchive(StorageSettings.getSqlSource(getBaseContext()), StorageSettings.getIndexEntry(getBaseContext()));
+					final TaskObserver.Listener listener = TaskObserver.makeListener(SetupSqlActivity.this, R.string.status_managing);
+					SetupSqlActivity.this.task = new ManageAsyncTask(listener, 1).executeFromArchive(StorageSettings.getDatabasePath(getBaseContext()), StorageSettings.getSqlSource(getBaseContext()), StorageSettings.getIndexEntry(getBaseContext()));
 				}
 				catch (final Exception e)
 				{
@@ -151,7 +152,8 @@ public class SetupSqlActivity extends SetupBaseActivity
 				// starting pm task
 				try
 				{
-					SetupSqlActivity.this.task = new ExecuteManager(StorageSettings.getDatabasePath(getBaseContext()), SetupSqlActivity.this, 1).executeFromArchive(StorageSettings.getSqlSource(getBaseContext()), StorageSettings.getPmEntry(getBaseContext()));
+					final TaskObserver.Listener listener = TaskObserver.makeListener(SetupSqlActivity.this, R.string.status_managing);
+					SetupSqlActivity.this.task = new ManageAsyncTask(listener, 1).executeFromArchive(StorageSettings.getDatabasePath(getBaseContext()), StorageSettings.getSqlSource(getBaseContext()), StorageSettings.getPmEntry(getBaseContext()));
 				}
 				catch (final Exception e)
 				{
