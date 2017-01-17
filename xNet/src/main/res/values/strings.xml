@@ -12,5 +12,6 @@
 	<string name="pref_default_entry_import">sqlunet.sql</string>
 	<string name="pref_default_entry_pm">sqlunet-pm-classes.sql</string>
 	<string name="pref_default_entry_index">sqlunet-index.sql</string>
+	<string name="pref_default_cache"></string>
 
 </resources>

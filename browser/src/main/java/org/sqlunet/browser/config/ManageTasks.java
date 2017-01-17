@@ -113,7 +113,7 @@ class ManageTasks
 			@Override
 			protected void onPostExecute(Void result)
 			{
-				Toast.makeText(context, R.string.status_op_done, Toast.LENGTH_SHORT).show();
+				Toast.makeText(context, R.string.status_task_done, Toast.LENGTH_SHORT).show();
 			}
 
 			@Override

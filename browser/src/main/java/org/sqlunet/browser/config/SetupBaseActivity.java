@@ -28,7 +28,7 @@ public class SetupBaseActivity extends Activity implements SimpleDownloader.List
 	static private final String TAG = "SetupBaseActivity";
 
 	// task
-	protected AsyncTask<?, Long, Boolean> task;
+	protected AsyncTask<?, Integer, Boolean> task;
 
 	// progress dialog
 	private ProgressDialog progressDialog;

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-	<string-array name="manage_titles">
+	<string-array name="update_titles">
 		<item>Create all indexes</item>
 		<item>Prepare PredicateMatrix</item>
 		<item>Prepare WordNet text search</item>
@@ -28,7 +28,7 @@
 		<item>Create sampleset View</item>
 		<item>Drop sampleset View</item>
 	</string-array>
-	<string-array name="manage_values" formatted="false">
+	<string-array name="update_values" formatted="false">
 		<item>
 			CREATE INDEX IF NOT EXISTS index_words_lemma ON words(lemma);
 			CREATE INDEX IF NOT EXISTS index_senses_wordid ON senses(wordid);
@@ -199,4 +199,18 @@
 			DROP VIEW IF EXISTS samplesets;</item>
 	</string-array>
 
+	<string-array name="database_titles">
+		<item>Create database</item>
+		<item>Drop database</item>
+		<item>Copy database from file &#8230;</item>
+		<item>Unzip database from file &#8230;</item>
+		<item>Setup from SQL &#8230;</item>
+	</string-array>
+	<string-array name="database_values" formatted="false">
+		<item>CREATE</item>
+		<item>DROP</item>
+		<item>COPY</item>
+		<item>UNZIP</item>
+		<item>SETUPSQL</item>
+	</string-array>
 </resources>

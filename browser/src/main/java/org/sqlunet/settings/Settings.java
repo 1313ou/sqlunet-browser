@@ -41,6 +41,7 @@ public class Settings
 	static public final String PREF_ENTRY_IMPORT = StorageSettings.PREF_ENTRY_IMPORT;
 	static public final String PREF_ENTRY_PM = StorageSettings.PREF_ENTRY_PM;
 	static public final String PREF_ENTRY_INDEX = StorageSettings.PREF_ENTRY_INDEX;
+	static public final String PREF_CACHE = StorageSettings.PREF_CACHE;
 
 	// D A T A
 
@@ -365,6 +366,18 @@ public class Settings
 		return sharedPref.getString(Settings.PREF_DOWNLOADER, null);
 	}
 
+
+	/**
+	 * Get preferred cache
+	 *
+	 * @param context context
+	 * @return preferred cache
+	 */
+	static public String getCachePref(final Context context)
+	{
+		final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
+		return sharedPref.getString(Settings.PREF_CACHE, null);
+	}
 
 	/**
 	 * Initialize preferences

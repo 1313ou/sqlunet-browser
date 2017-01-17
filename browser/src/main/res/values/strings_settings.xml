@@ -95,5 +95,7 @@
 	<string name="pref_description_entry_pm">Zip file entry for SQL predicatematrix code</string>
 	<string name="pref_title_entry_index">Index entry</string>
 	<string name="pref_description_entry_index">Zip file entry for SQL indexing code</string>
+	<string name="pref_title_cache">Cache</string>
+	<string name="pref_description_cache">Cache used for download/copy/unzip</string>
 
 </resources>

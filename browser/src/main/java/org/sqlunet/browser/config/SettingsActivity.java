@@ -269,6 +269,7 @@ public class SettingsActivity extends PreferenceActivity
 		SettingsActivity.bind(findPreference(Settings.PREF_STORAGE));
 		SettingsActivity.bind(findPreference(Settings.PREF_DOWNLOAD_SITE));
 		SettingsActivity.bind(findPreference(Settings.PREF_DOWNLOADER));
+		SettingsActivity.bind(findPreference(Settings.PREF_CACHE));
 	}
 
 	/**
@@ -369,6 +370,7 @@ public class SettingsActivity extends PreferenceActivity
 			SettingsActivity.bind(findPreference(Settings.PREF_ENTRY_IMPORT));
 			SettingsActivity.bind(findPreference(Settings.PREF_ENTRY_PM));
 			SettingsActivity.bind(findPreference(Settings.PREF_ENTRY_INDEX));
+			SettingsActivity.bind(findPreference(Settings.PREF_CACHE));
 		}
 	}
 }

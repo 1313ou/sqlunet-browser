@@ -111,12 +111,12 @@
 	<string name="status_state_unknown"></string>
 	<string name="status_reason_unknown"></string>
 	<string name="status_managing">Managing</string>
-	<string name="status_op_running">running</string>
-	<string name="status_op_done">done</string>
-	<string name="status_op_failed">failed</string>
-	<string name="status_update_start">Start update</string>
-	<string name="status_update_success">Update succeeded</string>
-	<string name="status_update_failure">Update failed</string>
+	<string name="status_task_running">running</string>
+	<string name="status_task_done">done</string>
+	<string name="status_task_failed">failed</string>
+	<string name="status_task_start">Start task</string>
+	<string name="status_task_success">Task succeeded</string>
+	<string name="status_task_failure">Task failed</string>
 	<string name="status_error_null_download_url">Null download URL (see Settings)</string>
 	<string name="status_provider_query_failed">Could not perform query, cause is logged</string>
 
