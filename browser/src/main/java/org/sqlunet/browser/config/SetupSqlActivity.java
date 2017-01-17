@@ -115,7 +115,7 @@ public class SetupSqlActivity extends SetupBaseActivity
 				try
 				{
 					final TaskObserver.Listener listener = TaskObserver.makeListener(SetupSqlActivity.this, R.string.status_managing);
-					SetupSqlActivity.this.task = new ManageAsyncTask(listener, 1000).executeFromArchive(StorageSettings.getDatabasePath(getBaseContext()), StorageSettings.getSqlSource(getBaseContext()), StorageSettings.getImportEntry(getBaseContext()));
+					SetupSqlActivity.this.task = new ExecAsyncTask(listener, 1000).executeFromArchive(StorageSettings.getDatabasePath(getBaseContext()), StorageSettings.getSqlSource(getBaseContext()), StorageSettings.getImportEntry(getBaseContext()));
 				}
 				catch (final Exception e)
 				{
@@ -134,7 +134,7 @@ public class SetupSqlActivity extends SetupBaseActivity
 				try
 				{
 					final TaskObserver.Listener listener = TaskObserver.makeListener(SetupSqlActivity.this, R.string.status_managing);
-					SetupSqlActivity.this.task = new ManageAsyncTask(listener, 1).executeFromArchive(StorageSettings.getDatabasePath(getBaseContext()), StorageSettings.getSqlSource(getBaseContext()), StorageSettings.getIndexEntry(getBaseContext()));
+					SetupSqlActivity.this.task = new ExecAsyncTask(listener, 1).executeFromArchive(StorageSettings.getDatabasePath(getBaseContext()), StorageSettings.getSqlSource(getBaseContext()), StorageSettings.getIndexEntry(getBaseContext()));
 				}
 				catch (final Exception e)
 				{
@@ -153,7 +153,7 @@ public class SetupSqlActivity extends SetupBaseActivity
 				try
 				{
 					final TaskObserver.Listener listener = TaskObserver.makeListener(SetupSqlActivity.this, R.string.status_managing);
-					SetupSqlActivity.this.task = new ManageAsyncTask(listener, 1).executeFromArchive(StorageSettings.getDatabasePath(getBaseContext()), StorageSettings.getSqlSource(getBaseContext()), StorageSettings.getPmEntry(getBaseContext()));
+					SetupSqlActivity.this.task = new ExecAsyncTask(listener, 1).executeFromArchive(StorageSettings.getDatabasePath(getBaseContext()), StorageSettings.getSqlSource(getBaseContext()), StorageSettings.getPmEntry(getBaseContext()));
 				}
 				catch (final Exception e)
 				{

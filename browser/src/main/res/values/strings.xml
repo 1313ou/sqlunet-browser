@@ -29,6 +29,7 @@
 
 	<!-- manage -->
 	<string name="action_manage">Manage database</string>
+	<string name="action_manage_update">Update database</string>
 	<string name="action_create_database">Create database</string>
 	<string name="action_drop_database">Drop database</string>
 	<string name="action_copy_from_file">Copy database from &#8230;</string>
@@ -73,6 +74,7 @@
 	<string name="title_activity_status">Status</string>
 	<string name="title_activity_download">Download</string>
 	<string name="title_activity_manage">Manage</string>
+	<string name="title_activity_manage_update">Update</string>
 	<string name="title_activity_text_search">Text Search</string>
 	<string name="title_dialog_sql">SQL</string>
 	<string name="title_download_id">SqlUNet download</string>

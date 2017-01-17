@@ -17,11 +17,6 @@ public class StorageSettings
 {
 	// database
 
-	/**
-	 * DB file
-	 */
-	static private final String DBFILE = Storage.DBFILE;
-
 	// storage preferences
 
 	static public final String PREF_STORAGE = Storage.PREF_SQLUNET_STORAGE;
@@ -68,7 +63,7 @@ public class StorageSettings
 	 */
 	static public String getDatabasePath(final Context context)
 	{
-		return getDataDir(context) + File.separator + StorageSettings.DBFILE;
+		return getDataDir(context) + File.separatorChar + Storage.DBFILE;
 	}
 
 	// C A C H E
@@ -157,7 +152,7 @@ public class StorageSettings
 	 */
 	static public String getDbDownloadTarget(final Context context)
 	{
-		return StorageSettings.getDataDir(context) + File.separator + StorageSettings.DBFILE;
+		return StorageSettings.getDataDir(context) + File.separatorChar + Storage.DBFILE;
 	}
 
 	// S Q L

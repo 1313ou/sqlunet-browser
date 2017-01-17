@@ -205,6 +205,7 @@
 		<item>Copy database from file &#8230;</item>
 		<item>Unzip database from file &#8230;</item>
 		<item>Setup from SQL &#8230;</item>
+		<item>MD5 checksum &#8230;</item>
 	</string-array>
 	<string-array name="database_values" formatted="false">
 		<item>CREATE</item>
@@ -212,5 +213,6 @@
 		<item>COPY</item>
 		<item>UNZIP</item>
 		<item>SETUPSQL</item>
+		<item>MD5</item>
 	</string-array>
 </resources>

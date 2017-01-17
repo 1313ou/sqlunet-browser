@@ -25,7 +25,7 @@ public class ManageFragment extends BaseManageFragment
 
 	private enum Operation
 	{
-		CREATE, DROP, COPY, UNZIP, SETUPSQL
+		CREATE, DROP, COPY, UNZIP, MD5, SETUPSQL
 	}
 
 	/**
@@ -104,7 +104,13 @@ public class ManageFragment extends BaseManageFragment
 						{
 							FileAsyncTask.unzipFromArchive(context, StorageSettings.getDatabasePath(context));
 						}
+						break;
 
+					case MD5:
+						if (Permissions.check(getActivity()))
+						{
+							FileTask.md5(context);
+						}
 						break;
 
 					case SETUPSQL:

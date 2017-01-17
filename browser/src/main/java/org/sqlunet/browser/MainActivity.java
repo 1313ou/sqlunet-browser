@@ -16,6 +16,7 @@ import android.view.ViewGroup;
 
 import org.sqlunet.browser.config.ManageActivity;
 import org.sqlunet.browser.config.ManageFragment;
+import org.sqlunet.browser.config.ManageUpdateActivity;
 import org.sqlunet.browser.config.SettingsActivity;
 import org.sqlunet.browser.config.SetupActivity;
 import org.sqlunet.browser.config.SetupSqlActivity;
@@ -268,6 +269,10 @@ public class MainActivity extends Activity implements NavigationDrawerFragment.N
 
 			case R.id.action_manage:
 				intent = new Intent(activity, ManageActivity.class);
+				break;
+
+			case R.id.action_manage_update:
+				intent = new Intent(activity, ManageUpdateActivity.class);
 				break;
 
 			case R.id.action_setup:

@@ -84,6 +84,48 @@ class ManageTasks
 	}
 
 	/**
+	 * Drop tables
+	 *
+	 * @param context      context
+	 * @param databasePath path
+	 * @param tables       tables to drop
+	 */
+	static public void dropAll(final Context context, final String databasePath, final Collection<String> tables)
+	{
+		if (tables != null && !tables.isEmpty())
+		{
+			final SQLiteDatabase db = context.openOrCreateDatabase(databasePath, Context.MODE_PRIVATE, null);
+			for (final String table : tables)
+			{
+				db.execSQL("DROP TABLE IF EXISTS " + table);
+				Log.d(TAG, table + ": dropped");
+			}
+			db.close();
+		}
+	}
+
+	/**
+	 * Flush tables
+	 *
+	 * @param context      context
+	 * @param databasePath path
+	 * @param tables       tables to flush
+	 */
+	static public void flushAll(final Context context, final String databasePath, final Collection<String> tables)
+	{
+		if (tables != null && !tables.isEmpty())
+		{
+			final SQLiteDatabase db = context.openOrCreateDatabase(databasePath, Context.MODE_PRIVATE, null);
+			for (final String table : tables)
+			{
+				int deletedRows = db.delete(table, null, null);
+				Log.d(TAG, table + ": deleted " + deletedRows + " rows");
+			}
+			db.close();
+		}
+	}
+
+	/**
 	 * Vacuum database
 	 *
 	 * @param context      context
@@ -126,47 +168,5 @@ class ManageTasks
 			{ /* */
 			}
 		}.execute();
-	}
-
-	/**
-	 * Flush tables
-	 *
-	 * @param context      context
-	 * @param databasePath path
-	 * @param tables       tables to flush
-	 */
-	static public void flushAll(final Context context, final String databasePath, final Collection<String> tables)
-	{
-		if (tables != null && !tables.isEmpty())
-		{
-			final SQLiteDatabase db = context.openOrCreateDatabase(databasePath, Context.MODE_PRIVATE, null);
-			for (final String table : tables)
-			{
-				int deletedRows = db.delete(table, null, null);
-				Log.d(TAG, table + ": deleted " + deletedRows + " rows");
-			}
-			db.close();
-		}
-	}
-
-	/**
-	 * Drop tables
-	 *
-	 * @param context      context
-	 * @param databasePath path
-	 * @param tables       tables to drop
-	 */
-	static public void dropAll(final Context context, final String databasePath, final Collection<String> tables)
-	{
-		if (tables != null && !tables.isEmpty())
-		{
-			final SQLiteDatabase db = context.openOrCreateDatabase(databasePath, Context.MODE_PRIVATE, null);
-			for (final String table : tables)
-			{
-				db.execSQL("DROP TABLE IF EXISTS " + table);
-				Log.d(TAG, table + ": dropped");
-			}
-			db.close();
-		}
 	}
 }
