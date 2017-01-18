@@ -23,6 +23,8 @@ import org.sqlunet.settings.StorageReports;
 
 import java.util.List;
 
+import static org.sqlunet.settings.StorageUtils.DirType.AUTO;
+
 /**
  * A {@link PreferenceActivity} that presents a set of application settings. On handset devices, settings are presented as a single list. On tablets, settings
  * are split by category, with category headers shown to the left of the list of settings.
@@ -131,13 +133,13 @@ public class SettingsActivity extends PreferenceActivity
 	static private void setStoragePreference(final Context context, final Preference pref)
 	{
 		final ListPreference listPreference = (ListPreference) pref;
-		setStoragePreferenceData(context, listPreference);
+		populateStoragePreference(context, listPreference);
 		listPreference.setOnPreferenceClickListener(new OnPreferenceClickListener()
 		{
 			@Override
 			public boolean onPreferenceClick(Preference preference)
 			{
-				setStoragePreferenceData(context, listPreference);
+				populateStoragePreference(context, listPreference);
 				return false;
 			}
 		});
@@ -149,18 +151,18 @@ public class SettingsActivity extends PreferenceActivity
 	 * @param context  context
 	 * @param listPref pref
 	 */
-	static private void setStoragePreferenceData(final Context context, final ListPreference listPref)
+	static private void populateStoragePreference(final Context context, final ListPreference listPref)
 	{
-		final Pair<CharSequence[], CharSequence[]> candidateNamesValues = StorageReports.getCandidateNamesValues(context);
+		final Pair<CharSequence[], CharSequence[]> namesValues = StorageReports.getStorageDirectoriesNamesValues(context);
 
-		CharSequence[] entries = candidateNamesValues.first;
-		CharSequence[] entryValues = candidateNamesValues.second;
-		Object defaultValue;
+		CharSequence[] entries = namesValues.first;
+		CharSequence[] entryValues = namesValues.second;
+		CharSequence defaultValue;
 		if (entries == null || entries.length == 0 || entryValues == null || entryValues.length == 0)
 		{
-			entries = new CharSequence[]{"internal_or_adopted"};
-			entryValues = new CharSequence[]{"internal_or_adopted"};
-			defaultValue = "internal_or_adopted";
+			defaultValue = AUTO.toString();
+			entryValues = new CharSequence[]{defaultValue};
+			entries = new CharSequence[]{AUTO.toDisplay()};
 		}
 		else
 		{

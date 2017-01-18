@@ -21,30 +21,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e66c28dc-5afe-443a-8883-1d8123a0e6a1" name="Default" comment="">
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/xNet/src/main/java/org/sqlunet/settings/StorageStyle.java" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/xNet/src/main/res/drawable-hdpi/ic_storage_auto.png" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/xNet/src/main/res/drawable-mdpi/ic_storage_auto.png" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/xNet/src/main/res/drawable-xhdpi/ic_storage_auto.png" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/xNet/src/main/res/drawable-xxhdpi/ic_storage_auto.png" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/xNet/src/main/res/drawable-xxxhdpi/ic_storage_auto.png" afterPath="" />
       <change type="MODIFICATION" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/.idea/workspace.xml" afterPath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/java/org/sqlunet/browser/Browse2Activity.java" afterPath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/java/org/sqlunet/browser/Browse2Activity.java" />
-      <change type="MODIFICATION" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/java/org/sqlunet/browser/BrowseActivity.java" afterPath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/java/org/sqlunet/browser/BrowseActivity.java" />
-      <change type="MODIFICATION" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/java/org/sqlunet/browser/HelpActivity.java" afterPath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/java/org/sqlunet/browser/HelpActivity.java" />
-      <change type="MODIFICATION" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/java/org/sqlunet/browser/PredicateMatrixActivity.java" afterPath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/java/org/sqlunet/browser/PredicateMatrixActivity.java" />
-      <change type="MODIFICATION" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/java/org/sqlunet/browser/PredicateMatrixFragment.java" afterPath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/java/org/sqlunet/browser/PredicateMatrixFragment.java" />
-      <change type="MODIFICATION" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/java/org/sqlunet/browser/StatusActivity.java" afterPath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/java/org/sqlunet/browser/StatusActivity.java" />
-      <change type="MODIFICATION" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/java/org/sqlunet/browser/config/ManageFragment.java" afterPath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/java/org/sqlunet/browser/config/ManageFragment.java" />
-      <change type="MODIFICATION" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/java/org/sqlunet/browser/config/ManageTasks.java" afterPath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/java/org/sqlunet/browser/config/ManageTasks.java" />
       <change type="MODIFICATION" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/java/org/sqlunet/browser/config/SettingsActivity.java" afterPath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/java/org/sqlunet/browser/config/SettingsActivity.java" />
-      <change type="MODIFICATION" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/java/org/sqlunet/browser/config/SetupSqlActivity.java" afterPath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/java/org/sqlunet/browser/config/SetupSqlActivity.java" />
-      <change type="MODIFICATION" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/java/org/sqlunet/browser/config/StorageActivity.java" afterPath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/java/org/sqlunet/browser/config/StorageActivity.java" />
       <change type="MODIFICATION" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/java/org/sqlunet/browser/config/StorageFragment.java" afterPath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/java/org/sqlunet/browser/config/StorageFragment.java" />
-      <change type="MODIFICATION" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/menu/manage.xml" afterPath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/menu/manage.xml" />
-      <change type="MODIFICATION" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/values/strings.xml" afterPath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/values/strings.xml" />
-      <change type="MODIFICATION" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/verbNet/verbNet.iml" afterPath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/verbNet/verbNet.iml" />
+      <change type="MODIFICATION" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/expandableListFragment/expandableListFragment.iml" afterPath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/expandableListFragment/expandableListFragment.iml" />
+      <change type="MODIFICATION" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/frameNet/frameNet.iml" afterPath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/frameNet/frameNet.iml" />
+      <change type="MODIFICATION" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/predicateMatrix/predicateMatrix.iml" afterPath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/predicateMatrix/predicateMatrix.iml" />
+      <change type="MODIFICATION" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/wordNet/wordNet.iml" afterPath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/wordNet/wordNet.iml" />
       <change type="MODIFICATION" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/xNet/src/main/java/org/sqlunet/settings/Storage.java" afterPath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/xNet/src/main/java/org/sqlunet/settings/Storage.java" />
       <change type="MODIFICATION" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/xNet/src/main/java/org/sqlunet/settings/StorageUtils.java" afterPath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/xNet/src/main/java/org/sqlunet/settings/StorageUtils.java" />
+      <change type="MODIFICATION" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/xNet/xNet.iml" afterPath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/xNet/xNet.iml" />
     </list>
     <ignored path="captures/" />
     <ignored path="build/" />
@@ -123,116 +109,7 @@
     <favorites_list name="Browser" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Storage.java" pinned="false" current-in-tab="false">
-        <entry file="file:///mnt/data2/devel/android-sqlunet-as/SqlUNet/xNet/src/main/java/org/sqlunet/settings/Storage.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1365">
-              <caret line="129" column="0" selection-start-line="129" selection-start-column="0" selection-end-line="129" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="StorageReports.java" pinned="false" current-in-tab="true">
-        <entry file="file:///mnt/data2/devel/android-sqlunet-as/SqlUNet/xNet/src/main/java/org/sqlunet/settings/StorageReports.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="211">
-              <caret line="371" column="25" selection-start-line="371" selection-start-column="25" selection-end-line="371" selection-end-column="25" />
-              <folding>
-                <element signature="e#4731#4732#0" expanded="true" />
-                <element signature="e#4825#4826#0" expanded="true" />
-                <element signature="e#10126#10127#0" expanded="true" />
-                <element signature="e#10212#10213#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="StorageFragment.java" pinned="false" current-in-tab="false">
-        <entry file="file:///mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/java/org/sqlunet/browser/config/StorageFragment.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="349">
-              <caret line="65" column="55" selection-start-line="65" selection-start-column="55" selection-end-line="65" selection-end-column="55" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="StorageUtils.java" pinned="false" current-in-tab="false">
-        <entry file="file:///mnt/data2/devel/android-sqlunet-as/SqlUNet/xNet/src/main/java/org/sqlunet/settings/StorageUtils.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="238">
-              <caret line="756" column="17" selection-start-line="756" selection-start-column="17" selection-end-line="756" selection-end-column="17" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="SetupBaseActivity.java" pinned="false" current-in-tab="false">
-        <entry file="file:///mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/java/org/sqlunet/browser/config/SetupBaseActivity.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="290">
-              <caret line="64" column="105" selection-start-line="64" selection-start-column="78" selection-end-line="64" selection-end-column="105" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="strings.xml" pinned="false" current-in-tab="false">
-        <entry file="file:///mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/values/strings.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1582">
-              <caret line="26" column="34" selection-start-line="26" selection-start-column="34" selection-end-line="26" selection-end-column="34" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="SettingsActivity.java" pinned="false" current-in-tab="false">
-        <entry file="file:///mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/java/org/sqlunet/browser/config/SettingsActivity.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="251">
-              <caret line="161" column="65" selection-start-line="161" selection-start-column="65" selection-end-line="161" selection-end-column="65" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="StorageSettings.java" pinned="false" current-in-tab="false">
-        <entry file="file:///mnt/data2/devel/android-sqlunet-as/SqlUNet/xNet/src/main/java/org/sqlunet/settings/StorageSettings.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="689">
-              <caret line="78" column="34" selection-start-line="78" selection-start-column="23" selection-end-line="78" selection-end-column="34" />
-              <folding>
-                <element signature="e#1863#1864#0" expanded="true" />
-                <element signature="e#1905#1906#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="styles-app.xml" pinned="false" current-in-tab="false">
-        <entry file="file:///mnt/data2/devel/android-sqlunet-as/SqlUNet/xNet/src/main/res/values/styles-app.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="221">
-              <caret line="17" column="12" selection-start-line="17" selection-start-column="12" selection-end-line="17" selection-end-column="12" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="styles.xml" pinned="false" current-in-tab="false">
-        <entry file="file:///mnt/data2/devel/android-sqlunet-as/SqlUNet/xNet/src/main/res/values/styles.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -8852,12 +8729,12 @@
         <option value="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/java/org/sqlunet/browser/PredicateMatrixActivity.java" />
         <option value="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/java/org/sqlunet/browser/config/ManageUpdateActivity.java" />
         <option value="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/java/org/sqlunet/browser/config/StorageActivity.java" />
+        <option value="/mnt/data2/devel/android-sqlunet-as/SqlUNet/xNet/src/main/java/org/sqlunet/settings/StorageStyle.java" />
         <option value="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/java/org/sqlunet/browser/config/SettingsActivity.java" />
         <option value="/mnt/data2/devel/android-sqlunet-as/SqlUNet/xNet/src/main/java/org/sqlunet/settings/Storage.java" />
         <option value="/mnt/data2/devel/android-sqlunet-as/SqlUNet/xNet/src/main/java/org/sqlunet/settings/StorageUtils.java" />
-        <option value="/mnt/data2/devel/android-sqlunet-as/SqlUNet/xNet/src/main/java/org/sqlunet/settings/StorageStyle.java" />
-        <option value="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/java/org/sqlunet/browser/config/StorageFragment.java" />
         <option value="/mnt/data2/devel/android-sqlunet-as/SqlUNet/xNet/src/main/java/org/sqlunet/settings/StorageReports.java" />
+        <option value="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/java/org/sqlunet/browser/config/StorageFragment.java" />
       </list>
     </option>
   </component>
@@ -8956,6 +8833,9 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="ProjectPane">
+        <subPane />
+      </pane>
       <pane id="AndroidView">
         <subPane />
       </pane>
@@ -9047,11 +8927,8 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scratches">
-        <subPane />
-      </pane>
       <pane id="PackagesPane" />
-      <pane id="ProjectPane">
+      <pane id="Scratches">
         <subPane />
       </pane>
     </panes>
@@ -9624,7 +9501,7 @@
     <replaceConfiguration name="user defined" created="1476956255698" text="roleset" recursive="false" caseInsensitive="true" type="JAVA" reformatAccordingToStyle="true" shortenFQN="true" useStaticImport="true" replacement="roleSet" history="1" />
   </component>
   <component name="StructureViewFactory">
-    <option name="ACTIVE_ACTIONS" value=",ALPHA_COMPARATOR" />
+    <option name="ACTIVE_ACTIONS" value=",ALPHA_COMPARATOR,SHOW_FIELDS,VISIBILITY_SORTER" />
   </component>
   <component name="SvnConfiguration">
     <configuration>$USER_HOME$/.subversion</configuration>
@@ -9636,13 +9513,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1476373639609</updated>
-    </task>
-    <task id="LOCAL-00121" summary="fix search view">
-      <created>1482317332604</created>
-      <option name="number" value="00121" />
-      <option name="presentableId" value="LOCAL-00121" />
-      <option name="project" value="LOCAL" />
-      <updated>1482317332604</updated>
     </task>
     <task id="LOCAL-00122" summary="fixed search view">
       <created>1482327969432</created>
@@ -9980,7 +9850,14 @@
       <option name="project" value="LOCAL" />
       <updated>1484667745928</updated>
     </task>
-    <option name="localTasksCounter" value="170" />
+    <task id="LOCAL-00170" summary="observer&#10;storage">
+      <created>1484733365568</created>
+      <option name="number" value="00170" />
+      <option name="presentableId" value="LOCAL-00170" />
+      <option name="project" value="LOCAL" />
+      <updated>1484733365569</updated>
+    </task>
+    <option name="localTasksCounter" value="171" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -10026,7 +9903,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="49" y="24" width="1871" height="1176" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Nl-Palette" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.16675779" sideWeight="0.3168168" order="7" side_tool="true" content_ui="tabs" />
@@ -10035,7 +9912,7 @@
       <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23291416" sideWeight="0.43843845" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23291416" sideWeight="0.43843845" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Android Model" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32968834" sideWeight="0.5056361" order="12" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.34716982" sideWeight="0.6480206" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3245283" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -10049,8 +9926,8 @@
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3254717" sideWeight="0.5462001" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Captures" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.18753417" sideWeight="0.49436393" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.26320755" sideWeight="0.47566977" order="10" side_tool="true" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.16511755" sideWeight="0.6831832" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3" sideWeight="0.5399061" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.20448333" sideWeight="0.6831832" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.33867925" sideWeight="0.5399061" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.15472937" sideWeight="0.49622643" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.19190815" sideWeight="0.55716586" order="6" side_tool="true" content_ui="tabs" />
@@ -10083,12 +9960,12 @@
       <window_info id="Assistant" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32968834" sideWeight="0.49436393" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Module Dependencies" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.30071077" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Dynamic Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.16183707" sideWeight="0.43843845" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23291416" sideWeight="0.43843845" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Android Model" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32968834" sideWeight="0.5056361" order="12" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.34716982" sideWeight="0.6480206" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3245283" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3018868" sideWeight="0.32656515" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3018868" sideWeight="0.32656515" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -10097,11 +9974,11 @@
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.28301886" sideWeight="0.58003443" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.19905661" sideWeight="0.52433026" order="14" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3254717" sideWeight="0.5462001" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Captures" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.18760331" sideWeight="0.49436393" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Captures" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.18753417" sideWeight="0.49436393" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.26320755" sideWeight="0.47566977" order="10" side_tool="true" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16511755" sideWeight="0.6831832" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3" sideWeight="0.5399061" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.15472937" sideWeight="0.49622643" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.20448333" sideWeight="0.6831832" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33867925" sideWeight="0.5399061" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.15472937" sideWeight="0.49622643" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.19190815" sideWeight="0.55716586" order="6" side_tool="true" content_ui="tabs" />
     </layout-to-restore>
@@ -10123,7 +10000,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$" />
     </ignored-roots>
-    <MESSAGE value="simplified args passing" />
     <MESSAGE value="sentence link in fn" />
     <MESSAGE value="xml validation" />
     <MESSAGE value="xml" />
@@ -10148,7 +10024,8 @@
     <MESSAGE value="renames&#10;handle security exception on download to app private storage" />
     <MESSAGE value="async tasks" />
     <MESSAGE value="manage" />
-    <option name="LAST_COMMIT_MESSAGE" value="manage" />
+    <MESSAGE value="observer&#10;storage" />
+    <option name="LAST_COMMIT_MESSAGE" value="observer&#10;storage" />
     <option name="FILE_HISTORY_SPLITTER_PROPORTION" value="0.68442625" />
   </component>
   <component name="XDebuggerManager">
@@ -10175,27 +10052,11 @@
           <properties />
         </breakpoint>
       </default-breakpoints>
-      <option name="time" value="254" />
+      <option name="time" value="255" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file:///mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/java/org/sqlunet/browser/config/BaseDownloadFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="179" column="54" selection-start-line="179" selection-start-column="54" selection-end-line="179" selection-end-column="54" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../../../androidstudio/sdk/sources/android-25/java/io/File.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="206" column="31" selection-start-line="206" selection-start-column="31" selection-end-line="206" selection-end-column="31" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file:///mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/values/strings_manage.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="656">
@@ -10208,7 +10069,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="117">
           <caret line="17" column="13" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -10216,7 +10076,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="238">
           <caret line="1606" column="16" selection-start-line="1606" selection-start-column="16" selection-end-line="1606" selection-end-column="16" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -10224,10 +10083,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1495">
           <caret line="143" column="122" selection-start-line="143" selection-start-column="122" selection-end-line="143" selection-end-column="122" />
-          <folding>
-            <element signature="e#7311#7312#0" expanded="true" />
-            <element signature="e#7366#7367#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -10235,7 +10090,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="942">
           <caret line="123" column="0" selection-start-line="123" selection-start-column="0" selection-end-line="123" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -10253,7 +10107,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="238">
           <caret line="66" column="13" selection-start-line="66" selection-start-column="13" selection-end-line="66" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -10323,14 +10176,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../../../androidstudio/sdk/sources/android-25/android/content/Context.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="344">
-          <caret line="976" column="25" selection-start-line="976" selection-start-column="25" selection-end-line="976" selection-end-column="25" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../../../androidstudio/sdk/sources/android-25/android/os/Build.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1397">
@@ -10348,14 +10193,13 @@
       </provider>
     </entry>
     <entry file="file:///mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/menu/manage.xml">
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="234">
           <caret line="18" column="0" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
-          <folding />
         </state>
-      </provider>
-      <provider editor-type-id="android-designer2">
-        <state />
       </provider>
     </entry>
     <entry file="file:///mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/java/org/sqlunet/browser/config/FileTask.java">
@@ -10378,7 +10222,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-74">
           <caret line="130" column="11" selection-start-line="130" selection-start-column="11" selection-end-line="130" selection-end-column="11" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -10386,7 +10229,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="364">
           <caret line="32" column="11" selection-start-line="32" selection-start-column="11" selection-end-line="32" selection-end-column="11" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -10394,7 +10236,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="507">
           <caret line="46" column="0" selection-start-line="46" selection-start-column="0" selection-end-line="46" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -10402,38 +10243,35 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="351">
           <caret line="31" column="0" selection-start-line="31" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file:///mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/menu/storage.xml">
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="104">
           <caret line="8" column="47" selection-start-line="8" selection-start-column="47" selection-end-line="8" selection-end-column="47" />
-          <folding />
         </state>
-      </provider>
-      <provider editor-type-id="android-designer2">
-        <state />
       </provider>
     </entry>
     <entry file="file:///mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/java/org/sqlunet/browser/BrowseActivity.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="286">
           <caret line="49" column="0" selection-start-line="49" selection-start-column="0" selection-end-line="49" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file:///mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/layout/activity_storage.xml">
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="182">
           <caret line="14" column="46" selection-start-line="14" selection-start-column="30" selection-end-line="14" selection-end-column="46" />
           <folding />
         </state>
-      </provider>
-      <provider editor-type-id="android-designer2">
-        <state />
       </provider>
     </entry>
     <entry file="file:///mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/java/org/sqlunet/browser/config/StorageActivity.java">
@@ -10456,7 +10294,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="520">
           <caret line="52" column="0" selection-start-line="52" selection-start-column="0" selection-end-line="52" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -10464,19 +10301,18 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="481">
           <caret line="45" column="0" selection-start-line="45" selection-start-column="0" selection-end-line="45" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file:///mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/layout/fragment_storage.xml">
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
-      </provider>
-      <provider editor-type-id="android-designer2">
-        <state />
       </provider>
     </entry>
     <entry file="file:///mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/java/org/sqlunet/browser/TextSearchFragment.java">
@@ -10491,7 +10327,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="715">
           <caret line="115" column="12" selection-start-line="115" selection-start-column="12" selection-end-line="115" selection-end-column="12" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -10507,7 +10342,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="299">
           <caret line="76" column="60" selection-start-line="76" selection-start-column="32" selection-end-line="76" selection-end-column="60" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -10536,25 +10370,23 @@
       </provider>
     </entry>
     <entry file="file:///mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/menu/main.xml">
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="26">
           <caret line="2" column="52" selection-start-line="2" selection-start-column="52" selection-end-line="2" selection-end-column="52" />
-          <folding />
         </state>
-      </provider>
-      <provider editor-type-id="android-designer2">
-        <state />
       </provider>
     </entry>
     <entry file="file:///mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/menu/manage_update.xml">
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="39">
           <caret line="3" column="52" selection-start-line="3" selection-start-column="52" selection-end-line="3" selection-end-column="52" />
-          <folding />
         </state>
-      </provider>
-      <provider editor-type-id="android-designer2">
-        <state />
       </provider>
     </entry>
     <entry file="file:///mnt/data2/devel/android-sqlunet-as/SqlUNet/xNet/src/main/res/values/strings.xml">
@@ -10583,35 +10415,19 @@
     </entry>
     <entry file="file:///mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/values/strings.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1582">
+        <state relative-caret-position="338">
           <caret line="26" column="34" selection-start-line="26" selection-start-column="34" selection-end-line="26" selection-end-column="34" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/java/org/sqlunet/browser/config/SettingsActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="251">
-          <caret line="161" column="65" selection-start-line="161" selection-start-column="65" selection-end-line="161" selection-end-column="65" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///mnt/data2/devel/android-sqlunet-as/SqlUNet/xNet/src/main/java/org/sqlunet/settings/Storage.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1365">
-          <caret line="129" column="0" selection-start-line="129" selection-start-column="0" selection-end-line="129" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file:///mnt/data2/devel/android-sqlunet-as/SqlUNet/xNet/src/main/java/org/sqlunet/settings/StorageSettings.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="689">
+        <state relative-caret-position="819">
           <caret line="78" column="34" selection-start-line="78" selection-start-column="23" selection-end-line="78" selection-end-column="34" />
           <folding>
-            <element signature="e#1863#1864#0" expanded="true" />
-            <element signature="e#1905#1906#0" expanded="true" />
+            <element signature="e#1863#1864#0" expanded="false" />
+            <element signature="e#1905#1906#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -10624,31 +10440,198 @@
         </state>
       </provider>
     </entry>
-    <entry file="file:///mnt/data2/devel/android-sqlunet-as/SqlUNet/xNet/src/main/java/org/sqlunet/settings/StorageUtils.java">
+    <entry file="file://$PROJECT_DIR$/../../../androidstudio/sdk/sources/android-25/android/content/Context.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="756" column="17" selection-start-line="756" selection-start-column="17" selection-end-line="756" selection-end-column="17" />
+        <state relative-caret-position="224">
+          <caret line="1224" column="25" selection-start-line="1224" selection-start-column="25" selection-end-line="1224" selection-end-column="25" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file:///mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/java/org/sqlunet/browser/config/StorageFragment.java">
+    <entry file="file:///mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/java/org/sqlunet/browser/config/SettingsActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="349">
-          <caret line="65" column="55" selection-start-line="65" selection-start-column="55" selection-end-line="65" selection-end-column="55" />
-          <folding />
+        <state relative-caret-position="224">
+          <caret line="155" column="52" selection-start-line="155" selection-start-column="52" selection-end-line="155" selection-end-column="52" />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file:///mnt/data2/devel/android-sqlunet-as/SqlUNet/xNet/src/main/java/org/sqlunet/settings/StorageReports.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="211">
-          <caret line="371" column="25" selection-start-line="371" selection-start-column="25" selection-end-line="371" selection-end-column="25" />
+        <state relative-caret-position="916">
+          <caret line="359" column="41" selection-start-line="359" selection-start-column="31" selection-end-line="359" selection-end-column="41" />
           <folding>
-            <element signature="e#4731#4732#0" expanded="true" />
-            <element signature="e#4825#4826#0" expanded="true" />
-            <element signature="e#10126#10127#0" expanded="true" />
-            <element signature="e#10212#10213#0" expanded="true" />
+            <element signature="docComment;class#StorageReports#0" expanded="false" />
+            <element signature="docComment;method#toStyledString#0;class#StorageReports#0" expanded="false" />
+            <element signature="method#toStyledString#0;class#StorageReports#0" expanded="false" />
+            <element signature="docComment;method#styledFitsIn#0;class#StorageReports#0" expanded="false" />
+            <element signature="method#styledFitsIn#0;class#StorageReports#0" expanded="false" />
+            <element signature="docComment;method#styledStatus#0;class#StorageReports#0" expanded="false" />
+            <element signature="method#styledStatus#0;class#StorageReports#0" expanded="false" />
+            <element signature="docComment;method#append#0;class#StorageReports#0" expanded="false" />
+            <element signature="method#append#0;class#StorageReports#0" expanded="false" />
+            <element signature="docComment;method#appendHeader#0;class#StorageReports#0" expanded="false" />
+            <element signature="docComment;method#appendImage#0;class#StorageReports#0" expanded="false" />
+            <element signature="docComment;method#makeImageSpan#0;class#StorageReports#0" expanded="false" />
+            <element signature="e#4081#4121#0" expanded="false" />
+            <element signature="method#makeImageSpan#0;class#StorageReports#0" expanded="false" />
+            <element signature="docComment;method#toIconId#0;class#StorageReports#0" expanded="false" />
+            <element signature="method#toIconId#0;class#StorageReports#0" expanded="false" />
+            <element signature="docComment;method#getStorageDirectoriesNamesValues#0;class#StorageReports#0" expanded="false" />
+            <element signature="method#getStorageDirectoriesNamesValues#0;class#StorageReports#0" expanded="false" />
+            <element signature="method#appendDir#0;class#StorageReports#0" expanded="false" />
+            <element signature="docComment;method#reportStorageDirectories#0;class#StorageReports#0" expanded="false" />
+            <element signature="method#reportStorageDirectories#0;class#StorageReports#0" expanded="false" />
+            <element signature="e#6817#6848#0" expanded="false" />
+            <element signature="e#6908#6925#0" expanded="false" />
+            <element signature="docComment;method#reportExternalStorage#0;class#StorageReports#0" expanded="false" />
+            <element signature="method#reportExternalStorage#0;class#StorageReports#0" expanded="false" />
+            <element signature="docComment;method#reportDirs#0;class#StorageReports#0" expanded="false" />
+            <element signature="method#reportDirs#0;class#StorageReports#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/layout/fragment_browse1.xml">
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="156">
+          <caret line="12" column="32" selection-start-line="12" selection-start-column="16" selection-end-line="12" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../../androidstudio/sdk/sources/android-25/android/app/AlertDialog.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2093">
+          <caret line="69" column="64" selection-start-line="69" selection-start-column="64" selection-end-line="69" selection-end-column="64" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/java/org/sqlunet/browser/config/StorageFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="453">
+          <caret line="76" column="0" selection-start-line="76" selection-start-column="0" selection-end-line="76" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///mnt/data2/devel/android-sqlunet-as/SqlUNet/xNet/src/main/java/org/sqlunet/settings/Storage.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="39" column="0" selection-start-line="39" selection-start-column="0" selection-end-line="39" selection-end-column="0" />
+          <folding>
+            <element signature="docComment;class#Storage#0" expanded="false" />
+            <element signature="docComment;field#DBFILE#0;class#Storage#0" expanded="false" />
+            <element signature="docComment;field#SQLUNETDIR#0;class#Storage#0" expanded="false" />
+            <element signature="docComment;field#PREF_SQLUNET_STORAGE#0;class#Storage#0" expanded="false" />
+            <element signature="docComment;method#getSqlUNetStorage#0;class#Storage#0" expanded="false" />
+            <element signature="method#getSqlUNetStorage#0;class#Storage#0" expanded="false" />
+            <element signature="e#1693#1713#0" expanded="false" />
+            <element signature="docComment;method#discover#0;class#Storage#0" expanded="false" />
+            <element signature="method#discover#0;class#Storage#0" expanded="false" />
+            <element signature="docComment;method#build#0;class#Storage#0" expanded="false" />
+            <element signature="method#build#0;class#Storage#0" expanded="false" />
+            <element signature="docComment;method#getCacheDir#0;class#Storage#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///mnt/data2/devel/android-sqlunet-as/SqlUNet/xNet/src/main/java/org/sqlunet/settings/StorageUtils.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="224">
+          <caret line="468" column="42" selection-start-line="468" selection-start-column="42" selection-end-line="468" selection-end-column="42" />
+          <folding>
+            <element signature="docComment;class#StorageUtils#0" expanded="false" />
+            <element signature="docComment;field#DATABASEMB#0;class#StorageUtils#0" expanded="false" />
+            <element signature="docComment;class#StorageType#0;class#StorageUtils#0" expanded="false" />
+            <element signature="class#StorageType#0;class#StorageUtils#0" expanded="false" />
+            <element signature="docComment;class#DirType#0;class#StorageUtils#0" expanded="false" />
+            <element signature="class#DirType#0;class#StorageUtils#0" expanded="false" />
+            <element signature="docComment;method#compare#0;class#DirType#0;class#StorageUtils#0" expanded="false" />
+            <element signature="method#compare#0;class#DirType#0;class#StorageUtils#0" expanded="false" />
+            <element signature="method#toDisplay#0;class#DirType#0;class#StorageUtils#0" expanded="false" />
+            <element signature="docComment;class#Directory#0;class#StorageUtils#0" expanded="false" />
+            <element signature="class#Directory#0;class#StorageUtils#0" expanded="false" />
+            <element signature="method#Directory#0;class#Directory#0;class#StorageUtils#0" expanded="false" />
+            <element signature="method#getValue#0;class#Directory#0;class#StorageUtils#0" expanded="false" />
+            <element signature="docComment;class#StorageDirectory#0;class#StorageUtils#0" expanded="false" />
+            <element signature="class#StorageDirectory#0;class#StorageUtils#0" expanded="false" />
+            <element signature="docComment;field#NULL_DIR#0;class#StorageDirectory#0;class#StorageUtils#0" expanded="false" />
+            <element signature="docComment;field#NOT_MOUNTED#0;class#StorageDirectory#0;class#StorageUtils#0" expanded="false" />
+            <element signature="docComment;field#NOT_EXISTS#0;class#StorageDirectory#0;class#StorageUtils#0" expanded="false" />
+            <element signature="docComment;field#NOT_DIR#0;class#StorageDirectory#0;class#StorageUtils#0" expanded="false" />
+            <element signature="docComment;field#NOT_WRITABLE#0;class#StorageDirectory#0;class#StorageUtils#0" expanded="false" />
+            <element signature="docComment;field#dir#0;class#StorageDirectory#0;class#StorageUtils#0" expanded="false" />
+            <element signature="docComment;field#free#0;class#StorageDirectory#0;class#StorageUtils#0" expanded="false" />
+            <element signature="docComment;field#occupancy#0;class#StorageDirectory#0;class#StorageUtils#0" expanded="false" />
+            <element signature="docComment;field#status#0;class#StorageDirectory#0;class#StorageUtils#0" expanded="false" />
+            <element signature="docComment;method#StorageDirectory#0;class#StorageDirectory#0;class#StorageUtils#0" expanded="false" />
+            <element signature="method#StorageDirectory#0;class#StorageDirectory#0;class#StorageUtils#0" expanded="false" />
+            <element signature="docComment;method#toShortString#0;class#StorageDirectory#0;class#StorageUtils#0" expanded="false" />
+            <element signature="docComment;method#toLongString#0;class#StorageDirectory#0;class#StorageUtils#0" expanded="false" />
+            <element signature="docComment;method#equals#0;class#StorageDirectory#0;class#StorageUtils#0" expanded="false" />
+            <element signature="method#equals#0;class#StorageDirectory#0;class#StorageUtils#0" expanded="false" />
+            <element signature="docComment;method#compareTo#0;class#StorageDirectory#0;class#StorageUtils#0" expanded="false" />
+            <element signature="method#compareTo#0;class#StorageDirectory#0;class#StorageUtils#0" expanded="false" />
+            <element signature="docComment;method#status#0;class#StorageDirectory#0;class#StorageUtils#0" expanded="false" />
+            <element signature="method#status#0;class#StorageDirectory#0;class#StorageUtils#0" expanded="false" />
+            <element signature="docComment;method#fitsIn#0;class#StorageDirectory#0;class#StorageUtils#0" expanded="false" />
+            <element signature="docComment;method#getDirectories#0;class#StorageUtils#0" expanded="false" />
+            <element signature="method#getDirectories#0;class#StorageUtils#0" expanded="false" />
+            <element signature="e#6822#6848#0" expanded="false" />
+            <element signature="e#7920#7934#0" expanded="false" />
+            <element signature="e#8506#8586#0" expanded="false" />
+            <element signature="e#8928#8944#0" expanded="false" />
+            <element signature="docComment;method#directories2StorageDirectories#0;class#StorageUtils#0" expanded="false" />
+            <element signature="docComment;method#getStorageDirectories#0;class#StorageUtils#0" expanded="false" />
+            <element signature="method#getStorageDirectories#0;class#StorageUtils#0" expanded="false" />
+            <element signature="docComment;method#getSortedStorageDirectories#0;class#StorageUtils#0" expanded="false" />
+            <element signature="method#getSortedStorageDirectories#0;class#StorageUtils#0" expanded="false" />
+            <element signature="docComment;method#getExternalStorages#0;class#StorageUtils#0" expanded="false" />
+            <element signature="e#10718#10734#0" expanded="false" />
+            <element signature="docComment;method#selectExternalStorage#0;class#StorageUtils#0" expanded="false" />
+            <element signature="method#selectExternalStorage#0;class#StorageUtils#0" expanded="false" />
+            <element signature="e#11557#11577#0" expanded="false" />
+            <element signature="e#11796#11812#0" expanded="false" />
+            <element signature="docComment;method#discoverPrimaryEmulatedExternalStorage#0;class#StorageUtils#0" expanded="false" />
+            <element signature="method#discoverPrimaryEmulatedExternalStorage#0;class#StorageUtils#0" expanded="false" />
+            <element signature="e#12560#12593#0" expanded="false" />
+            <element signature="docComment;method#discoverPrimaryPhysicalExternalStorage#0;class#StorageUtils#0" expanded="false" />
+            <element signature="method#discoverPrimaryPhysicalExternalStorage#0;class#StorageUtils#0" expanded="false" />
+            <element signature="docComment;method#discoverSecondaryExternalStorage#0;class#StorageUtils#0" expanded="false" />
+            <element signature="method#discoverSecondaryExternalStorage#0;class#StorageUtils#0" expanded="false" />
+            <element signature="docComment;method#qualifies#0;class#StorageUtils#0" expanded="false" />
+            <element signature="method#qualifies#0;class#StorageUtils#0" expanded="false" />
+            <element signature="e#15256#15268#0" expanded="false" />
+            <element signature="docComment;method#getUserId#0;class#StorageUtils#0" expanded="false" />
+            <element signature="method#getUserId#0;class#StorageUtils#0" expanded="false" />
+            <element signature="docComment;field#STORAGE_FREE#0;class#StorageUtils#0" expanded="false" />
+            <element signature="docComment;field#STORAGE_CAPACITY#0;class#StorageUtils#0" expanded="false" />
+            <element signature="docComment;field#STORAGE_OCCUPANCY#0;class#StorageUtils#0" expanded="false" />
+            <element signature="docComment;method#storageStats#0;class#StorageUtils#0" expanded="false" />
+            <element signature="method#storageStats#0;class#StorageUtils#0" expanded="false" />
+            <element signature="docComment;method#storageFree#0;class#StorageUtils#0" expanded="false" />
+            <element signature="method#storageFree#0;class#StorageUtils#0" expanded="false" />
+            <element signature="docComment;method#storageFreeAsString#0;class#StorageUtils#0" expanded="false" />
+            <element signature="docComment;method#storageCapacity#0;class#StorageUtils#0" expanded="false" />
+            <element signature="method#storageCapacity#0;class#StorageUtils#0" expanded="false" />
+            <element signature="docComment;method#mbToString#0;class#StorageUtils#0" expanded="false" />
+            <element signature="method#mbToString#0;class#StorageUtils#0" expanded="false" />
+            <element signature="docComment;method#getStorageDirectoriesNamesValues#0;class#StorageUtils#0" expanded="false" />
+            <element signature="method#getStorageDirectoriesNamesValues#0;class#StorageUtils#0" expanded="false" />
+            <element signature="method#reportStorageDirectories#0;class#StorageUtils#0" expanded="false" />
+            <element signature="docComment;method#reportExternalStorage#0;class#StorageUtils#0" expanded="false" />
+            <element signature="method#reportExternalStorage#0;class#StorageUtils#0" expanded="false" />
+            <marker date="1484759782766" expanded="false" signature="9411:9758" ph="{...}" />
+            <marker date="1484759782766" expanded="false" signature="10614:11394" ph="{...}" />
           </folding>
         </state>
       </provider>

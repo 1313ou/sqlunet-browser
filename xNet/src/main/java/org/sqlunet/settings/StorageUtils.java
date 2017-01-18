@@ -25,6 +25,7 @@ import java.util.Map;
 public class StorageUtils
 {
 	static private final String TAG = "StorageUtils";
+
 	/**
 	 * Database size
 	 */
@@ -45,7 +46,7 @@ public class StorageUtils
 	 */
 	public enum DirType
 	{
-		APP_INTERNAL_POSSIBLY_ADOPTED, APP_EXTERNAL_SECONDARY, APP_EXTERNAL_PRIMARY, PUBLIC_EXTERNAL_SECONDARY, PUBLIC_EXTERNAL_PRIMARY, APP_INTERNAL;
+		AUTO, APP_EXTERNAL_SECONDARY, APP_EXTERNAL_PRIMARY, PUBLIC_EXTERNAL_SECONDARY, PUBLIC_EXTERNAL_PRIMARY, APP_INTERNAL;
 
 		/**
 		 * Compare (sort by preference)
@@ -54,19 +55,19 @@ public class StorageUtils
 		 * @param type2 type 2
 		 * @return order
 		 */
-		public static int compare(DirType type1, DirType type2)
+		public static int compare(final DirType type1, final DirType type2)
 		{
 			int i1 = type1.ordinal();
 			int i2 = type2.ordinal();
 			return i1 < i2 ? -1 : (i1 == i2 ? 0 : 1);
 		}
 
-		public String toString()
+		public String toDisplay()
 		{
 			switch (this)
 			{
-				case APP_INTERNAL_POSSIBLY_ADOPTED:
-					return "internal_or_adopted";
+				case AUTO:
+					return "auto (internal or adopted)";
 				case APP_EXTERNAL_SECONDARY:
 					return "secondary";
 				case APP_EXTERNAL_PRIMARY:
@@ -89,23 +90,42 @@ public class StorageUtils
 	 */
 	static public class Directory
 	{
-		public final File file;
+		private final File file;
 
-		public final DirType type;
+		private final DirType type;
 
 		public Directory(final File file, final DirType type)
 		{
 			this.file = file;
 			this.type = type;
 		}
+
+		public final DirType getType()
+		{
+			return this.type;
+		}
+
+		public String getValue()
+		{
+			if (DirType.AUTO == this.type)
+			{
+				return DirType.AUTO.toString();
+			}
+			return this.file.getAbsolutePath();
+		}
+
+		public File getFile()
+		{
+			return this.file;
+		}
 	}
 
 	/**
-	 * Candidate storage
+	 * Storage directory
 	 *
 	 * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
 	 */
-	static public class CandidateStorage implements Comparable<CandidateStorage>
+	static public class StorageDirectory implements Comparable<StorageDirectory>
 	{
 		/**
 		 * Status flag: null dir
@@ -160,7 +180,7 @@ public class StorageUtils
 		 * @param occupancy occupancy percentage
 		 * @param status    status
 		 */
-		public CandidateStorage(final Directory dir, final float free, final float occupancy, final int status)
+		public StorageDirectory(final Directory dir, final float free, final float occupancy, final int status)
 		{
 			this.dir = dir;
 			this.free = free;
@@ -175,7 +195,7 @@ public class StorageUtils
 		 */
 		public CharSequence toShortString()
 		{
-			return String.format(Locale.ENGLISH, "%s %s %s free", this.dir.type.toString(), this.dir.file.getAbsolutePath(), mbToString(this.free));
+			return String.format(Locale.ENGLISH, "%s %s %s free", this.dir.type.toDisplay(), this.dir.file.getAbsolutePath(), mbToString(this.free));
 		}
 
 		/**
@@ -185,13 +205,13 @@ public class StorageUtils
 		 */
 		public String toLongString()
 		{
-			return String.format(Locale.ENGLISH, "%s\n%s\n%s free %.1f%% occupancy\n%s", this.dir.type.toString(), this.dir.file.getAbsolutePath(), mbToString(this.free), this.occupancy, this.status());
+			return String.format(Locale.ENGLISH, "%s\n%s\n%s free %.1f%% occupancy\n%s", this.dir.type.toDisplay(), this.dir.file.getAbsolutePath(), mbToString(this.free), this.occupancy, this.status());
 		}
 
 		@Override
 		public String toString()
 		{
-			return String.format(Locale.ENGLISH, "%s %s %s %.1f%% %s", this.dir.type.toString(), this.dir.file.getAbsolutePath(), mbToString(this.free), this.occupancy, this.status());
+			return String.format(Locale.ENGLISH, "%s %s %s %.1f%% %s", this.dir.type.toDisplay(), this.dir.file.getAbsolutePath(), mbToString(this.free), this.occupancy, this.status());
 		}
 
 		/**
@@ -200,11 +220,11 @@ public class StorageUtils
 		@Override
 		public boolean equals(Object another)
 		{
-			if (!(another instanceof CandidateStorage))
+			if (!(another instanceof StorageDirectory))
 			{
 				return false;
 			}
-			final CandidateStorage storage2 = (CandidateStorage) another;
+			final StorageDirectory storage2 = (StorageDirectory) another;
 			return this.dir.equals(storage2.dir);
 		}
 
@@ -214,7 +234,7 @@ public class StorageUtils
 		 * @see java.lang.Comparable#compareTo(java.lang.Object)
 		 */
 		@Override
-		public int compareTo(@NonNull CandidateStorage another)
+		public int compareTo(@NonNull StorageDirectory another)
 		{
 			if (this.status != another.status)
 			{
@@ -299,124 +319,7 @@ public class StorageUtils
 		}
 	}
 
-	/**
-	 * Whether the dir qualifies as sqlunet storage
-	 *
-	 * @param dir candidate dir
-	 * @return true if it qualifies
-	 */
-	@TargetApi(Build.VERSION_CODES.LOLLIPOP)
-	static private int qualifies(final File dir, final DirType type)
-	{
-		int status = 0;
-
-		// dir
-		if (dir == null)
-		{
-			status |= CandidateStorage.NULL_DIR;
-			return status;
-		}
-
-		// state
-		switch (type)
-		{
-			case APP_EXTERNAL_SECONDARY:
-			case APP_EXTERNAL_PRIMARY:
-			case PUBLIC_EXTERNAL_PRIMARY:
-			case PUBLIC_EXTERNAL_SECONDARY:
-				try
-				{
-					final String state = Environment.getExternalStorageState(dir);
-					if (!Environment.MEDIA_MOUNTED.equals(state))
-					{
-						Log.d(StorageUtils.TAG, "storage state of " + dir + ": " + state);
-						status |= CandidateStorage.NOT_MOUNTED;
-					}
-				}
-				catch (final Throwable e)
-				{
-					//
-				}
-				break;
-			case APP_INTERNAL:
-			case APP_INTERNAL_POSSIBLY_ADOPTED:
-				break;
-		}
-
-		// make path
-		// true if and only if the directory was created
-		final boolean wasCreated = dir.mkdirs();
-
-		// exists
-		if (!dir.exists())
-		{
-			status |= CandidateStorage.NOT_EXISTS;
-		}
-
-		// make sure it is a directory
-		if (!dir.isDirectory())
-		{
-			status |= CandidateStorage.NOT_DIR;
-		}
-
-		// make sure it is a directory
-		if (!dir.canWrite())
-		{
-			status |= CandidateStorage.NOT_WRITABLE;
-		}
-
-		// restore
-		if (wasCreated && dir.exists())
-		{
-			//noinspection ResultOfMethodCallIgnored
-			dir.delete();
-		}
-
-		return status;
-	}
-
-	/**
-	 * Make list of candidate storages
-	 *
-	 * @param dirs list of directories
-	 * @return list of candidate storages
-	 */
-	static private List<CandidateStorage> makeCandidateStorages(final Iterable<Directory> dirs)
-	{
-		final List<CandidateStorage> storages = new ArrayList<>();
-		for (final Directory dir : dirs)
-		{
-			int status = StorageUtils.qualifies(dir.file, dir.type);
-			float[] stats = storageStats(dir.file.getAbsolutePath());
-			storages.add(new CandidateStorage(dir, stats[STORAGE_FREE], stats[STORAGE_OCCUPANCY], status));
-		}
-		return storages;
-	}
-
-	/**
-	 * Get list of candidate storages
-	 *
-	 * @param context context
-	 * @return list of candidate storages
-	 */
-	static private List<CandidateStorage> getCandidateStorages(final Context context)
-	{
-		final List<Directory> dirs = getDirectories(context);
-		return makeCandidateStorages(dirs);
-	}
-
-	/**
-	 * Get sorted list of directories
-	 *
-	 * @param context context
-	 * @return list of storage directories (desc-) sorted by size and type
-	 */
-	public static List<CandidateStorage> getSortedCandidateStorages(final Context context)
-	{
-		final List<CandidateStorage> candidateStorages = getCandidateStorages(context);
-		Collections.sort(candidateStorages);
-		return candidateStorages;
-	}
+	// C O L L E C T
 
 	/**
 	 * Get list of directories
@@ -427,13 +330,13 @@ public class StorageUtils
 	@TargetApi(Build.VERSION_CODES.KITKAT)
 	static private List<Directory> getDirectories(final Context context)
 	{
-		final List<Directory> storages = new ArrayList<>();
+		final List<Directory> result = new ArrayList<>();
 
-		// A P P - S P E C I F I C - P O S S I B L Y A D O P T E D
+		// A P P - S P E C I F I C - P O S S I B L Y   A D O P T E D
 
 		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) //
 		{
-			storages.add(new Directory(context.getFilesDir(), DirType.APP_INTERNAL_POSSIBLY_ADOPTED));
+			result.add(new Directory(context.getFilesDir(), DirType.AUTO));
 		}
 
 		// A P P - S P E C I F I C
@@ -451,7 +354,7 @@ public class StorageUtils
 					dir = dirs[i];
 					if (dir != null)
 					{
-						storages.add(new Directory(dir, DirType.APP_EXTERNAL_SECONDARY));
+						result.add(new Directory(dir, DirType.APP_EXTERNAL_SECONDARY));
 					}
 				}
 
@@ -459,7 +362,7 @@ public class StorageUtils
 				dir = dirs[0];
 				if (dir != null)
 				{
-					storages.add(new Directory(dir, DirType.APP_EXTERNAL_PRIMARY));
+					result.add(new Directory(dir, DirType.APP_EXTERNAL_PRIMARY));
 				}
 			}
 		}
@@ -469,7 +372,7 @@ public class StorageUtils
 			try
 			{
 				dir = context.getExternalFilesDir(null);
-				storages.add(new Directory(dir, DirType.APP_EXTERNAL_PRIMARY));
+				result.add(new Directory(dir, DirType.APP_EXTERNAL_PRIMARY));
 			}
 			catch (Exception e2)
 			{
@@ -477,7 +380,7 @@ public class StorageUtils
 				try
 				{
 					dir = context.getExternalFilesDir(Storage.SQLUNETDIR);
-					storages.add(new Directory(dir, DirType.APP_EXTERNAL_PRIMARY));
+					result.add(new Directory(dir, DirType.APP_EXTERNAL_PRIMARY));
 				}
 				catch (final NoSuchFieldError e3)
 				{
@@ -492,7 +395,7 @@ public class StorageUtils
 		try
 		{
 			dir = Environment.getExternalStoragePublicDirectory(Storage.SQLUNETDIR);
-			storages.add(new Directory(dir, DirType.PUBLIC_EXTERNAL_PRIMARY));
+			result.add(new Directory(dir, DirType.PUBLIC_EXTERNAL_PRIMARY));
 		}
 		catch (final Throwable e)
 		{
@@ -503,7 +406,7 @@ public class StorageUtils
 				if (storage != null)
 				{
 					dir = new File(storage, Storage.SQLUNETDIR);
-					storages.add(new Directory(dir, DirType.PUBLIC_EXTERNAL_PRIMARY));
+					result.add(new Directory(dir, DirType.PUBLIC_EXTERNAL_PRIMARY));
 				}
 			}
 			catch (final Throwable e2)
@@ -533,18 +436,63 @@ public class StorageUtils
 		// internal private storage
 		if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) //
 		{
-			storages.add(new Directory(context.getFilesDir(), DirType.APP_INTERNAL));
+			result.add(new Directory(context.getFilesDir(), DirType.APP_INTERNAL));
 		}
 
+		return result;
+	}
+
+	/**
+	 * Make list of storage directories from list of directories
+	 *
+	 * @param dirs list of directories
+	 * @return list of storage storages
+	 */
+	static private List<StorageDirectory> directories2StorageDirectories(final Iterable<Directory> dirs)
+	{
+		final List<StorageDirectory> storages = new ArrayList<>();
+		for (final Directory dir : dirs)
+		{
+			int status = StorageUtils.qualifies(dir.file, dir.type);
+			float[] stats = storageStats(dir.file.getAbsolutePath());
+			storages.add(new StorageDirectory(dir, stats[STORAGE_FREE], stats[STORAGE_OCCUPANCY], status));
+		}
 		return storages;
 	}
 
 	/**
-	 * Get external storage directories
+	 * Get list of storage storages
 	 *
-	 * @return map per type of external storage directories
+	 * @param context context
+	 * @return list of storage storages
 	 */
-	static public Map<StorageType, File[]> getStorageDirectories()
+	static private List<StorageDirectory> getStorageDirectories(final Context context)
+	{
+		final List<Directory> dirs = getDirectories(context);
+		return directories2StorageDirectories(dirs);
+	}
+
+	/**
+	 * Get sorted list of storage directories
+	 *
+	 * @param context context
+	 * @return list of storage directories (desc-) sorted by size and type
+	 */
+	static public List<StorageDirectory> getSortedStorageDirectories(final Context context)
+	{
+		final List<StorageDirectory> sdirs = getStorageDirectories(context);
+		Collections.sort(sdirs);
+		return sdirs;
+	}
+
+	// D I S C O V E R  S T O R A G E
+
+	/**
+	 * Get external storage
+	 *
+	 * @return map per type of external storage
+	 */
+	static public Map<StorageType, File[]> getExternalStorages()
 	{
 		// result set of paths
 		final Map<StorageType, File[]> dirs = new EnumMap<>(StorageType.class);
@@ -689,6 +637,84 @@ public class StorageUtils
 		return null;
 	}
 
+	// Q U A L I F I E S
+
+	/**
+	 * Whether the dir qualifies as sqlunet storage
+	 *
+	 * @param dir directory
+	 * @return true if it qualifies
+	 */
+	@TargetApi(Build.VERSION_CODES.LOLLIPOP)
+	static private int qualifies(final File dir, final DirType type)
+	{
+		int status = 0;
+
+		// dir
+		if (dir == null)
+		{
+			status |= StorageDirectory.NULL_DIR;
+			return status;
+		}
+
+		// state
+		switch (type)
+		{
+			case APP_EXTERNAL_SECONDARY:
+			case APP_EXTERNAL_PRIMARY:
+			case PUBLIC_EXTERNAL_PRIMARY:
+			case PUBLIC_EXTERNAL_SECONDARY:
+				try
+				{
+					final String state = Environment.getExternalStorageState(dir);
+					if (!Environment.MEDIA_MOUNTED.equals(state))
+					{
+						Log.d(StorageUtils.TAG, "storage state of " + dir + ": " + state);
+						status |= StorageDirectory.NOT_MOUNTED;
+					}
+				}
+				catch (final Throwable e)
+				{
+					//
+				}
+				break;
+			case APP_INTERNAL:
+			case AUTO:
+				break;
+		}
+
+		// make path
+		// true if and only if the directory was created
+		final boolean wasCreated = dir.mkdirs();
+
+		// exists
+		if (!dir.exists())
+		{
+			status |= StorageDirectory.NOT_EXISTS;
+		}
+
+		// make sure it is a directory
+		if (!dir.isDirectory())
+		{
+			status |= StorageDirectory.NOT_DIR;
+		}
+
+		// make sure it is a directory
+		if (!dir.canWrite())
+		{
+			status |= StorageDirectory.NOT_WRITABLE;
+		}
+
+		// restore
+		if (wasCreated && dir.exists())
+		{
+			//noinspection ResultOfMethodCallIgnored
+			dir.delete();
+		}
+
+		return status;
+	}
+
 	// U S E R I D
 
 	/**
@@ -769,6 +795,17 @@ public class StorageUtils
 	}
 
 	/**
+	 * Free space for dir
+	 *
+	 * @param dir dir
+	 * @return free soace as string
+	 */
+	static public CharSequence storageFreeAsString(final File dir)
+	{
+		return StorageUtils.mbToString(storageFree(dir.getAbsolutePath()));
+	}
+
+	/**
 	 * Storage capacity at path
 	 *
 	 * @param path path
@@ -812,53 +849,48 @@ public class StorageUtils
 	}
 
 	/**
-	 * Get candidate names and values
+	 * Get storage dirs names and values
 	 *
 	 * @param context context
 	 * @return pair of names and values
 	 */
 	@SuppressWarnings("unused")
-	static public Pair<CharSequence[], CharSequence[]> getCandidateNamesValues(final Context context)
+	static public Pair<CharSequence[], CharSequence[]> getStorageDirectoriesNamesValues(final Context context)
 	{
 		final List<CharSequence> names = new ArrayList<>();
 		final List<CharSequence> values = new ArrayList<>();
-		final List<CandidateStorage> candidates = StorageUtils.getSortedCandidateStorages(context);
-		for (CandidateStorage candidate : candidates)
+		final List<StorageDirectory> dirs = StorageUtils.getSortedStorageDirectories(context);
+		for (StorageDirectory dir : dirs)
 		{
-			if (candidate.status != 0)
+			if (dir.status != 0)
 			{
 				continue;
 			}
-			names.add(candidate.toShortString());
-			if (candidate.dir.type == DirType.APP_INTERNAL_POSSIBLY_ADOPTED)
-			{
-				values.add("internal_or_adopted");
-			}
-			else
-			{
-				values.add(candidate.dir.file.getAbsolutePath());
-			}
+			// name
+			names.add(dir.toShortString());
+
+			// value
+			values.add(dir.dir.getValue());
 		}
 		return new Pair<>(names.toArray(new CharSequence[0]), values.toArray(new CharSequence[0]));
 	}
 
 	// R E P O R T S
 
-	@SuppressWarnings("unused")
-	static public CharSequence reportCandidateStorage(final Context context)
+	static public CharSequence reportStorageDirectories(final Context context)
 	{
 		final StringBuilder sb = new StringBuilder();
 		int i = 1;
-		final List<CandidateStorage> candidates = StorageUtils.getSortedCandidateStorages(context);
-		for (CandidateStorage candidate : candidates)
+		final List<StorageDirectory> dirs = StorageUtils.getSortedStorageDirectories(context);
+		for (StorageDirectory dir : dirs)
 		{
 			sb.append(i++);
 			sb.append(' ');
 			sb.append('-');
 			sb.append(' ');
-			sb.append(candidate.toLongString());
+			sb.append(dir.toLongString());
 			sb.append(' ');
-			sb.append(candidate.fitsIn() ? "Fits in" : "Does not fit in");
+			sb.append(dir.fitsIn() ? "Fits in" : "Does not fit in");
 			sb.append('\n');
 			sb.append('\n');
 		}
@@ -873,7 +905,7 @@ public class StorageUtils
 	@TargetApi(Build.VERSION_CODES.LOLLIPOP)
 	static public CharSequence reportExternalStorage()
 	{
-		final Map<StorageType, File[]> storages = StorageUtils.getStorageDirectories();
+		final Map<StorageType, File[]> storages = StorageUtils.getExternalStorages();
 		final File[] physical = storages.get(StorageType.PRIMARY_PHYSICAL);
 		final File[] emulated = storages.get(StorageType.PRIMARY_EMULATED);
 		final File[] secondary = storages.get(StorageType.SECONDARY);

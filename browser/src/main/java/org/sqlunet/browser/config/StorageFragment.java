@@ -46,7 +46,7 @@ public class StorageFragment extends Fragment
 
 		// storage
 		final TextView storage = (TextView) view.findViewById(R.id.storage);
-		storage.setText(StorageReports.reportStyledCandidateStorage(getActivity()));
+		storage.setText(StorageReports.reportStorageDirectories(getActivity()));
 
 		// storage devices
 		final TextView storageDevices = (TextView) view.findViewById(R.id.storage_devices);

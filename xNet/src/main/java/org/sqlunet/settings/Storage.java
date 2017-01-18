@@ -7,10 +7,12 @@ import android.os.Build;
 import android.preference.PreferenceManager;
 import android.util.Log;
 
-import org.sqlunet.settings.StorageUtils.CandidateStorage;
+import org.sqlunet.settings.StorageUtils.StorageDirectory;
 
 import java.io.File;
 import java.util.List;
+
+import static org.sqlunet.settings.StorageUtils.DirType.AUTO;
 
 /**
  * Storage
@@ -20,18 +22,22 @@ import java.util.List;
 public class Storage
 {
 	static private final String TAG = "Storage";
+
 	/**
 	 * SqlUnet DB filename
 	 */
 	public static final String DBFILE = "sqlunet.db";
+
 	/**
 	 * SqlUnet sub directory when external public
 	 */
 	static final String SQLUNETDIR = "sqlunet" + '/';
+
 	/**
 	 * SqlUnet storage preference name
 	 */
 	public static final String PREF_SQLUNET_STORAGE = "pref_storage";
+
 	// D A T A B A S E
 
 	/**
@@ -45,26 +51,34 @@ public class Storage
 	{
 		// test if set in preference
 		final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
-		final String pref = sharedPref.getString(Storage.PREF_SQLUNET_STORAGE, null);
-		if (pref != null && !pref.isEmpty() && !"internal_or_adopted".equals(pref)) //
+		final String prefValue = sharedPref.getString(Storage.PREF_SQLUNET_STORAGE, null);
+		if (prefValue != null && !prefValue.isEmpty()) //
 		{
-			final File prefStorage = new File(pref);
-			if (Storage.build(prefStorage))
+			// pref defined
+			if (!AUTO.toString().equals(prefValue))
 			{
-				Log.d(TAG, "Using pref " + prefStorage.getAbsolutePath());
-				return prefStorage;
+				final File prefStorage = new File(prefValue);
+				if (Storage.build(prefStorage))
+				{
+					Log.d(TAG, "Using pref " + prefStorage.getAbsolutePath());
+					return prefStorage;
+				}
+				//  pref defined as invalid value
 			}
+			//  pref defined as auto
 		}
+		//  pref not defined
+		//  pref not defined || defined as auto || defined as invalid value
 
-		// internal or adopted
-		if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M || "internal_or_adopted".equals(pref)) //
+		// auto (as of marshmallow which allows for adopted storage)
+		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && AUTO.toString().equals(prefValue)) //
 		{
-			final File internalOrAdoptedStorage = context.getFilesDir();
-			Log.d(TAG, "Internal or adopted " + internalOrAdoptedStorage.getAbsolutePath());
-			return internalOrAdoptedStorage; // context.getDatabasePath(DBFILE).getParentFile();
+			final File autoStorage = context.getFilesDir();
+			Log.d(TAG, AUTO.toDisplay() + ' ' + autoStorage.getAbsolutePath());
+			return autoStorage; // context.getDatabasePath(DBFILE).getParentFile();
 		}
 
-		// discover if (pref==null ||pref.isEmpty())
+		// discover pref not defined || defined as auto but not marshmallow || defined as invalid value
 		final File discoveredStorage = Storage.discover(context);
 
 		// record as discovered
@@ -81,23 +95,23 @@ public class Storage
 	 */
 	static private File discover(final Context context)
 	{
-		final List<CandidateStorage> candidates = StorageUtils.getSortedCandidateStorages(context);
-		for (CandidateStorage candidate : candidates)
+		final List<StorageDirectory> dirs = StorageUtils.getSortedStorageDirectories(context);
+		for (StorageDirectory dir : dirs)
 		{
-			if (candidate.status == 0)
+			if (dir.status == 0)
 			{
-				Log.d(TAG, "Select " + candidate.toString());
-				return candidate.dir.file;
+				Log.d(TAG, "Select " + dir.toString());
+				return dir.dir.getFile();
 			}
 		}
-		Log.e(TAG, "Error while looking for candidate storage. External storage is " + StorageUtils.reportExternalStorage());
-		throw new RuntimeException("Cannot find suitable storage " + StorageReports.reportStyledCandidateStorage(context) + ' ' + StorageUtils.reportExternalStorage());
+		Log.e(TAG, "Error while looking for storage directories. External storage is " + StorageUtils.reportExternalStorage());
+		throw new RuntimeException("Cannot find suitable storage directory " + StorageUtils.reportStorageDirectories(context) + ' ' + StorageUtils.reportExternalStorage());
 	}
 
 	/**
-	 * Build the dir and tests if it qualifies as sqlunet storage
+	 * Build the dir and tests
 	 *
-	 * @param dir candidate dir
+	 * @param dir directory
 	 * @return true if it qualifies
 	 */
 	static private boolean build(final File dir)
@@ -121,10 +135,7 @@ public class Storage
 	 */
 	static public String getCacheDir(final Context context)
 	{
-		final File cache = Build.VERSION.SDK_INT < Build.VERSION_CODES.M ? //
-				context.getExternalCacheDir() : //
-				context.getCacheDir();
-		assert cache != null;
+		final File cache = context.getExternalCacheDir();
 		return cache.getAbsolutePath();
 	}
 }
