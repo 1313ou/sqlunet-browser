@@ -66,7 +66,7 @@ public class StorageUtils
 			switch (this)
 			{
 				case APP_INTERNAL_POSSIBLY_ADOPTED:
-					return "auto";
+					return "internal_or_adopted";
 				case APP_EXTERNAL_SECONDARY:
 					return "secondary";
 				case APP_EXTERNAL_PRIMARY:
@@ -754,7 +754,7 @@ public class StorageUtils
 	 * @return free storage in megabytes
 	 */
 	@TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR2)
-	static private float storageFree(final String path)
+	static public float storageFree(final String path)
 	{
 		try
 		{
@@ -832,7 +832,7 @@ public class StorageUtils
 			names.add(candidate.toShortString());
 			if (candidate.dir.type == DirType.APP_INTERNAL_POSSIBLY_ADOPTED)
 			{
-				values.add("auto");
+				values.add("internal_or_adopted");
 			}
 			else
 			{

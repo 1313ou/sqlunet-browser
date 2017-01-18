@@ -45,6 +45,8 @@ public class BrowseActivity extends Activity
 		handleSearchIntent(intent);
 	}
 
+	// M E N U
+
 	@Override
 	public boolean onCreateOptionsMenu(final Menu menu)
 	{

@@ -24,6 +24,7 @@
 	<string name="action_download">Download</string>
 	<string name="action_downloadDb">Download DB </string>
 	<string name="action_downloadSql">Download SQL </string>
+	<string name="action_storage_dirs">Storage dirs</string>
 
 	<!-- search -->
 

@@ -4,13 +4,10 @@ import android.content.ContentProvider;
 import android.content.ContentProviderClient;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
-import android.os.AsyncTask;
 import android.os.Build;
 import android.util.Log;
-import android.widget.Toast;
 
 import org.sqlunet.bnc.provider.BNCContract;
-import org.sqlunet.browser.R;
 import org.sqlunet.framenet.provider.FrameNetContract;
 import org.sqlunet.predicatematrix.provider.PredicateMatrixContract;
 import org.sqlunet.propbank.provider.PropBankContract;
@@ -123,50 +120,5 @@ class ManageTasks
 			}
 			db.close();
 		}
-	}
-
-	/**
-	 * Vacuum database
-	 *
-	 * @param context      context
-	 * @param databasePath path
-	 * @param tempDir      temp directory
-	 */
-	static public void vacuum(final Context context, final String databasePath, final String tempDir)
-	{
-		new AsyncTask<Void, Void, Void>()
-		{
-			@Override
-			protected Void doInBackground(Void... params)
-			{
-				final SQLiteDatabase db = context.openOrCreateDatabase(databasePath, Context.MODE_PRIVATE, null);
-
-				// set parameters
-				// db.execSQL("PRAGMA journal_mode = PERSIST;");
-				db.execSQL("PRAGMA temp_store = FILE;");
-				db.execSQL("PRAGMA temp_store_directory = '" + tempDir + "';");
-				Log.d(TAG, "vacuuming in " + tempDir);
-				db.execSQL("VACUUM");
-				Log.d(TAG, "vacuumed in " + tempDir);
-				db.close();
-				return null;
-			}
-
-			@Override
-			protected void onPostExecute(Void result)
-			{
-				Toast.makeText(context, R.string.status_task_done, Toast.LENGTH_SHORT).show();
-			}
-
-			@Override
-			protected void onPreExecute()
-			{ /* */
-			}
-
-			@Override
-			protected void onProgressUpdate(Void... values)
-			{ /* */
-			}
-		}.execute();
 	}
 }

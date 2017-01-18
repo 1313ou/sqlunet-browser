@@ -113,7 +113,7 @@ public class PredicateMatrixFragment extends Fragment implements SearchListener
 	@Override
 	public void onCreateOptionsMenu(final Menu menu, final MenuInflater inflater)
 	{
-		// Inflate the menu; this adds items to the type bar if it is present.
+		// inflate the menu; this adds items to the type bar if it is present.
 		inflater.inflate(R.menu.predicate_matrix, menu);
 
 		// set up search

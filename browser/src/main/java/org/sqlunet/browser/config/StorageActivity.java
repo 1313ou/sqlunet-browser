@@ -2,7 +2,10 @@ package org.sqlunet.browser.config;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 
+import org.sqlunet.browser.MainActivity;
 import org.sqlunet.browser.R;
 
 /**
@@ -19,5 +22,21 @@ public class StorageActivity extends Activity
 
 		// content
 		setContentView(R.layout.activity_storage);
+	}
+
+	// M E N U
+
+	@Override
+	public boolean onCreateOptionsMenu(final Menu menu)
+	{
+		// inflate the menu; this adds items to the type bar if it is present.
+		getMenuInflater().inflate(R.menu.main, menu);
+		return true;
+	}
+
+	@Override
+	public boolean onOptionsItemSelected(final MenuItem item)
+	{
+		return MainActivity.dispatch(this, item);
 	}
 }

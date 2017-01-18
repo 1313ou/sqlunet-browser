@@ -19,7 +19,7 @@ import android.util.Pair;
 
 import org.sqlunet.browser.R;
 import org.sqlunet.settings.Settings;
-import org.sqlunet.settings.StorageStyle;
+import org.sqlunet.settings.StorageReports;
 
 import java.util.List;
 
@@ -151,16 +151,16 @@ public class SettingsActivity extends PreferenceActivity
 	 */
 	static private void setStoragePreferenceData(final Context context, final ListPreference listPref)
 	{
-		final Pair<CharSequence[], CharSequence[]> candidateNamesValues = StorageStyle.getCandidateNamesValues(context);
+		final Pair<CharSequence[], CharSequence[]> candidateNamesValues = StorageReports.getCandidateNamesValues(context);
 
 		CharSequence[] entries = candidateNamesValues.first;
 		CharSequence[] entryValues = candidateNamesValues.second;
 		Object defaultValue;
 		if (entries == null || entries.length == 0 || entryValues == null || entryValues.length == 0)
 		{
-			entries = new CharSequence[]{"auto"};
-			entryValues = new CharSequence[]{"auto"};
-			defaultValue = "auto";
+			entries = new CharSequence[]{"internal_or_adopted"};
+			entryValues = new CharSequence[]{"internal_or_adopted"};
+			defaultValue = "internal_or_adopted";
 		}
 		else
 		{

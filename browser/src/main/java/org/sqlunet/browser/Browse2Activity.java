@@ -42,6 +42,8 @@ public class Browse2Activity extends Activity
 		fragment.search(pointer);
 	}
 
+	// M E N U
+
 	@Override
 	public boolean onCreateOptionsMenu(final Menu menu)
 	{

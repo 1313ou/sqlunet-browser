@@ -1,5 +1,6 @@
 package org.sqlunet.browser.config;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -48,15 +49,18 @@ public class SetupSqlActivity extends SetupBaseActivity
 	{
 		super.onResume();
 
+		// context
+		final Context context = getBaseContext();
+
 		// cache
 		TextView cache_storage = (TextView) findViewById(R.id.cache_storage);
 
 		// sql
-		final String sql = StorageSettings.getSqlSource(getBaseContext());
+		final String sql = StorageSettings.getSqlSource(context);
 
 		// source
 		TextView source = (TextView) findViewById(R.id.source);
-		source.setText(StorageSettings.getSqlDownloadSource(getBaseContext()));
+		source.setText(StorageSettings.getSqlDownloadSource(context));
 
 		// target
 		TextView target = (TextView) findViewById(R.id.target);
@@ -64,15 +68,15 @@ public class SetupSqlActivity extends SetupBaseActivity
 
 		// sql import
 		TextView sqlImport = (TextView) findViewById(R.id.sql_import);
-		sqlImport.setText(sql + '!' + StorageSettings.getImportEntry(getBaseContext()));
+		sqlImport.setText(sql + '!' + StorageSettings.getImportEntry(context));
 
 		// sql import
 		TextView sqlPm = (TextView) findViewById(R.id.sql_pm);
-		sqlPm.setText(sql + '!' + StorageSettings.getPmEntry(getBaseContext()));
+		sqlPm.setText(sql + '!' + StorageSettings.getPmEntry(context));
 
 		// sql index
 		TextView sqlIndex = (TextView) findViewById(R.id.sql_index);
-		sqlIndex.setText(sql + '!' + StorageSettings.getIndexEntry(getBaseContext()));
+		sqlIndex.setText(sql + '!' + StorageSettings.getIndexEntry(context));
 
 		// cache
 		final String cacheDir = StorageSettings.getCacheDir(this);
@@ -99,8 +103,8 @@ public class SetupSqlActivity extends SetupBaseActivity
 				SetupSqlActivity.this.indexButton.setEnabled(false);
 
 				// starting download
-				final String from = StorageSettings.getSqlDownloadSource(getBaseContext());
-				final String to = StorageSettings.getSqlDownloadTarget(getBaseContext());
+				final String from = StorageSettings.getSqlDownloadSource(context);
+				final String to = StorageSettings.getSqlDownloadTarget(context);
 				SetupSqlActivity.this.task = new SimpleDownloader(from, to, 1, SetupSqlActivity.this).execute();
 			}
 		});
@@ -114,8 +118,11 @@ public class SetupSqlActivity extends SetupBaseActivity
 				// starting create task
 				try
 				{
-					final TaskObserver.Listener listener = TaskObserver.makeListener(SetupSqlActivity.this, R.string.status_managing);
-					SetupSqlActivity.this.task = new ExecAsyncTask(listener, 1000).executeFromArchive(StorageSettings.getDatabasePath(getBaseContext()), StorageSettings.getSqlSource(getBaseContext()), StorageSettings.getImportEntry(getBaseContext()));
+					final String database = StorageSettings.getDatabasePath(context);
+					final String source = StorageSettings.getSqlSource(context);
+					final String entry = StorageSettings.getImportEntry(context);
+					final TaskObserver.Listener listener = new TaskObserver.DialogListener(SetupSqlActivity.this, R.string.status_managing, source + '@' + entry);
+					SetupSqlActivity.this.task = new ExecAsyncTask(listener, 1000).executeFromArchive(database, source, entry);
 				}
 				catch (final Exception e)
 				{
@@ -133,8 +140,11 @@ public class SetupSqlActivity extends SetupBaseActivity
 				// starting indexing task
 				try
 				{
-					final TaskObserver.Listener listener = TaskObserver.makeListener(SetupSqlActivity.this, R.string.status_managing);
-					SetupSqlActivity.this.task = new ExecAsyncTask(listener, 1).executeFromArchive(StorageSettings.getDatabasePath(getBaseContext()), StorageSettings.getSqlSource(getBaseContext()), StorageSettings.getIndexEntry(getBaseContext()));
+					final String database = StorageSettings.getDatabasePath(context);
+					final String source = StorageSettings.getSqlSource(context);
+					final String entry = StorageSettings.getIndexEntry(context);
+					final TaskObserver.Listener listener = new TaskObserver.DialogListener(SetupSqlActivity.this, R.string.status_managing, source + '@' + entry);
+					SetupSqlActivity.this.task = new ExecAsyncTask(listener, 1).executeFromArchive(database, source, entry);
 				}
 				catch (final Exception e)
 				{
@@ -152,8 +162,11 @@ public class SetupSqlActivity extends SetupBaseActivity
 				// starting pm task
 				try
 				{
-					final TaskObserver.Listener listener = TaskObserver.makeListener(SetupSqlActivity.this, R.string.status_managing);
-					SetupSqlActivity.this.task = new ExecAsyncTask(listener, 1).executeFromArchive(StorageSettings.getDatabasePath(getBaseContext()), StorageSettings.getSqlSource(getBaseContext()), StorageSettings.getPmEntry(getBaseContext()));
+					final String database = StorageSettings.getDatabasePath(context);
+					final String source = StorageSettings.getSqlSource(context);
+					final String entry = StorageSettings.getPmEntry(context);
+					final TaskObserver.Listener listener = new TaskObserver.DialogListener(SetupSqlActivity.this, R.string.status_managing, source + '@' + entry);
+					SetupSqlActivity.this.task = new ExecAsyncTask(listener, 1).executeFromArchive(database, source, entry);
 				}
 				catch (final Exception e)
 				{

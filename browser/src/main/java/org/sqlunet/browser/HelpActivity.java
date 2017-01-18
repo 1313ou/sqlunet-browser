@@ -27,6 +27,8 @@ public class HelpActivity extends Activity
 		actionBar.setDisplayHomeAsUpEnabled(true);
 	}
 
+	// M E N U
+
 	@Override
 	public boolean onCreateOptionsMenu(final Menu menu)
 	{

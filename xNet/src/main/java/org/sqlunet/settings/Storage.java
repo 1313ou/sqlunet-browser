@@ -46,7 +46,7 @@ public class Storage
 		// test if set in preference
 		final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
 		final String pref = sharedPref.getString(Storage.PREF_SQLUNET_STORAGE, null);
-		if (pref != null && !pref.isEmpty() && !"auto".equals(pref)) //
+		if (pref != null && !pref.isEmpty() && !"internal_or_adopted".equals(pref)) //
 		{
 			final File prefStorage = new File(pref);
 			if (Storage.build(prefStorage))
@@ -56,12 +56,12 @@ public class Storage
 			}
 		}
 
-		// auto
-		if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M || "auto".equals(pref)) //
+		// internal or adopted
+		if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M || "internal_or_adopted".equals(pref)) //
 		{
-			final File autoStorage = context.getFilesDir();
-			Log.d(TAG, "Auto " + autoStorage.getAbsolutePath());
-			return autoStorage; // context.getDatabasePath(DBFILE).getParentFile();
+			final File internalOrAdoptedStorage = context.getFilesDir();
+			Log.d(TAG, "Internal or adopted " + internalOrAdoptedStorage.getAbsolutePath());
+			return internalOrAdoptedStorage; // context.getDatabasePath(DBFILE).getParentFile();
 		}
 
 		// discover if (pref==null ||pref.isEmpty())
@@ -91,7 +91,7 @@ public class Storage
 			}
 		}
 		Log.e(TAG, "Error while looking for candidate storage. External storage is " + StorageUtils.reportExternalStorage());
-		throw new RuntimeException("Cannot find suitable storage " + StorageStyle.reportStyledCandidateStorage(context) + ' ' + StorageUtils.reportExternalStorage());
+		throw new RuntimeException("Cannot find suitable storage " + StorageReports.reportStyledCandidateStorage(context) + ' ' + StorageUtils.reportExternalStorage());
 	}
 
 	/**

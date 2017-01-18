@@ -34,6 +34,8 @@ public class StatusActivity extends Activity
 		// actionBar.setDisplayShowTitleEnabled(false);
 	}
 
+	// M E N U
+
 	@Override
 	public boolean onCreateOptionsMenu(final Menu menu)
 	{

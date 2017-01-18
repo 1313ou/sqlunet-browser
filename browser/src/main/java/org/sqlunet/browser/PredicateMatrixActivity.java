@@ -48,6 +48,8 @@ public class PredicateMatrixActivity extends Activity
 		handleSearchIntent(intent);
 	}
 
+	// M E N U
+
 	@Override
 	public boolean onCreateOptionsMenu(final Menu menu)
 	{

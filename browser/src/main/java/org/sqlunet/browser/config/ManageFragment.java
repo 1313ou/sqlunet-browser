@@ -4,6 +4,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
@@ -23,6 +26,9 @@ public class ManageFragment extends BaseManageFragment
 
 	public static final String ARG = "operation";
 
+	/**
+	 * Operations
+	 */
 	private enum Operation
 	{
 		CREATE, DROP, COPY, UNZIP, MD5, SETUPSQL
@@ -34,18 +40,6 @@ public class ManageFragment extends BaseManageFragment
 	public ManageFragment()
 	{
 		// Required empty public constructor
-	}
-
-	@Override
-	protected SpinnerAdapter makeAdapter()
-	{
-		// create an ArrayAdapter using the string array and a default spinner layout
-		final ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getActivity(), R.array.database_titles, R.layout.spinner_item_simple);
-
-		// specify the layout to use when the list of choices appears
-		adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
-		return adapter;
 	}
 
 	@Override
@@ -123,4 +117,56 @@ public class ManageFragment extends BaseManageFragment
 
 		return view;
 	}
+
+	@Override
+	protected SpinnerAdapter makeAdapter()
+	{
+		// create an ArrayAdapter using the string array and a default spinner layout
+		final ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getActivity(), R.array.database_titles, R.layout.spinner_item_simple);
+
+		// specify the layout to use when the list of choices appears
+		adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+		return adapter;
+	}
+
+	@Override
+	public void onCreateOptionsMenu(final Menu menu, final MenuInflater inflater)
+	{
+		inflater.inflate(R.menu.manage, menu);
+		super.onCreateOptionsMenu(menu, inflater);
+	}
+
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item)
+	{
+		final Context context = getActivity();
+		Intent intent = null;
+
+		// handle item selection
+		switch (item.getItemId())
+		{
+			case R.id.action_setup:
+				intent = new Intent(context, SetupActivity.class);
+				break;
+
+			case R.id.action_setup_sql:
+				intent = new Intent(context, SetupSqlActivity.class);
+				break;
+
+			case R.id.action_manage_update:
+				intent = new Intent(context, ManageUpdateActivity.class);
+				break;
+
+			default:
+				return false;
+		}
+
+		if (intent != null)
+		{
+			startActivity(intent);
+		}
+		return true;
+	}
+
 }
