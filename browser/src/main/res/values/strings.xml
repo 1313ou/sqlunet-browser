@@ -35,6 +35,7 @@
 	<string name="action_drop_database">Drop database</string>
 	<string name="action_copy_from_file">Copy database from &#8230;</string>
 	<string name="action_unzip_from_archive">Unzip database from &#8230;</string>
+	<string name="action_md5">MD5-Checksum &#8230;</string>
 	<string name="action_drop_tables">Drop tables</string>
 	<string name="action_flush_tables">Flush tables</string>
 	<string name="action_vacuum">Compact</string>
@@ -133,6 +134,7 @@
 	<string name="hint_sql">SQL statements stack</string>
 	<string name="hint_unzip_from_archive">Select the zip archive to unzip from</string>
 	<string name="hint_copy_from_file">Select the database to copy from</string>
+	<string name="hint_md5">Select the file to md5-checksum</string>
 
 	<!-- items -->
 	<string name="download_source">source</string>

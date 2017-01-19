@@ -49,10 +49,12 @@
 		android:summary="@string/pref_description_entry_index"
 		android:title="@string/pref_title_entry_index"/>
 
-	<EditTextPreference
+	<ListPreference
 		android:defaultValue="@string/pref_default_cache"
 		android:key="pref_cache"
 		android:summary="@string/pref_description_cache"
+		android:negativeButtonText="@null"
+		android:positiveButtonText="@null"
 		android:title="@string/pref_title_cache"/>
 
 </PreferenceScreen>

@@ -122,7 +122,7 @@ public class SettingsActivity extends PreferenceActivity
 		}
 	}
 
-	// D E T E C T I O N
+	// P O P U L A T E    L I S T S
 
 	/**
 	 * Set storage preference
@@ -130,16 +130,37 @@ public class SettingsActivity extends PreferenceActivity
 	 * @param context context
 	 * @param pref    preference
 	 */
-	static private void setStoragePreference(final Context context, final Preference pref)
+	static private void populateStoragePreference(final Context context, final Preference pref)
 	{
 		final ListPreference listPreference = (ListPreference) pref;
-		populateStoragePreference(context, listPreference);
+		populateStorageListPreference(context, listPreference);
 		listPreference.setOnPreferenceClickListener(new OnPreferenceClickListener()
 		{
 			@Override
 			public boolean onPreferenceClick(Preference preference)
 			{
-				populateStoragePreference(context, listPreference);
+				populateStorageListPreference(context, listPreference);
+				return false;
+			}
+		});
+	}
+
+	/**
+	 * Set cache preference
+	 *
+	 * @param context context
+	 * @param pref    preference
+	 */
+	static private void populateCachePreference(final Context context, final Preference pref)
+	{
+		final ListPreference listPreference = (ListPreference) pref;
+		populateCacheListPreference(context, listPreference);
+		listPreference.setOnPreferenceClickListener(new OnPreferenceClickListener()
+		{
+			@Override
+			public boolean onPreferenceClick(Preference preference)
+			{
+				populateCacheListPreference(context, listPreference);
 				return false;
 			}
 		});
@@ -151,7 +172,7 @@ public class SettingsActivity extends PreferenceActivity
 	 * @param context  context
 	 * @param listPref pref
 	 */
-	static private void populateStoragePreference(final Context context, final ListPreference listPref)
+	static private void populateStorageListPreference(final Context context, final ListPreference listPref)
 	{
 		final Pair<CharSequence[], CharSequence[]> namesValues = StorageReports.getStorageDirectoriesNamesValues(context);
 
@@ -173,6 +194,25 @@ public class SettingsActivity extends PreferenceActivity
 		listPref.setDefaultValue(defaultValue);
 		listPref.setEntryValues(entryValues);
 	}
+
+	/**
+	 * Set cache preference data
+	 *
+	 * @param context  context
+	 * @param listPref pref
+	 */
+	static private void populateCacheListPreference(final Context context, final ListPreference listPref)
+	{
+		final Pair<CharSequence[], CharSequence[]> result = StorageReports.getCachesNamesValues(context);
+		final CharSequence[] names = result.first;
+		final CharSequence[] values = result.second;
+
+		listPref.setEntries(names);
+		listPref.setEntryValues(values);
+		listPref.setDefaultValue(values[0]);
+	}
+
+	// L I F E C Y C L E
 
 	@Override
 	protected void onCreate(final Bundle savedInstanceState)
@@ -260,10 +300,13 @@ public class SettingsActivity extends PreferenceActivity
 
 		// addItem 'download'
 		addPreferencesFromResource(R.xml.pref_download);
+		populateCachePreference(this, findPreference(Settings.PREF_CACHE));
 
 		// addItem 'database'
 		addPreferencesFromResource(R.xml.pref_database);
-		setStoragePreference(this, findPreference(Settings.PREF_STORAGE));
+		populateStoragePreference(this, findPreference(Settings.PREF_STORAGE));
+
+		// addItem 'database'
 
 		// bind the summaries of preferences to their values.
 		SettingsActivity.bind(findPreference(Settings.PREF_SELECTOR_MODE));
@@ -333,20 +376,14 @@ public class SettingsActivity extends PreferenceActivity
 			super.onCreate(savedInstanceState);
 
 			// inflate
-			try
-			{
-				addPreferencesFromResource(R.xml.pref_database);
-			}
-			catch (Exception ignored)
-			{
-			}
+			addPreferencesFromResource(R.xml.pref_database);
 
 			// required if no 'entries' and 'entryValues' in XML
-			final Preference listPreference = findPreference(Settings.PREF_STORAGE);
-			setStoragePreference(getActivity(), listPreference);
+			final Preference storagePreference = findPreference(Settings.PREF_STORAGE);
+			populateStoragePreference(getActivity(), storagePreference);
 
 			// bind the summaries to their values.
-			SettingsActivity.bind(listPreference);
+			SettingsActivity.bind(storagePreference);
 		}
 	}
 
@@ -364,6 +401,10 @@ public class SettingsActivity extends PreferenceActivity
 			// inflate
 			addPreferencesFromResource(R.xml.pref_download);
 
+			// required if no 'entries' and 'entryValues' in XML
+			final Preference cachePreference = findPreference(Settings.PREF_CACHE);
+			populateCachePreference(getActivity(), cachePreference);
+
 			// bind the summaries to their values.
 			SettingsActivity.bind(findPreference(Settings.PREF_DOWNLOAD_SITE));
 			SettingsActivity.bind(findPreference(Settings.PREF_DOWNLOADER));
@@ -372,7 +413,7 @@ public class SettingsActivity extends PreferenceActivity
 			SettingsActivity.bind(findPreference(Settings.PREF_ENTRY_IMPORT));
 			SettingsActivity.bind(findPreference(Settings.PREF_ENTRY_PM));
 			SettingsActivity.bind(findPreference(Settings.PREF_ENTRY_INDEX));
-			SettingsActivity.bind(findPreference(Settings.PREF_CACHE));
+			SettingsActivity.bind(cachePreference);
 		}
 	}
 }

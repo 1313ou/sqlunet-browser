@@ -798,11 +798,22 @@ public class StorageUtils
 	 * Free space for dir
 	 *
 	 * @param dir dir
-	 * @return free soace as string
+	 * @return free space as string
 	 */
 	static public CharSequence storageFreeAsString(final File dir)
 	{
-		return StorageUtils.mbToString(storageFree(dir.getAbsolutePath()));
+		return storageFreeAsString(dir.getAbsolutePath());
+	}
+
+	/**
+	 * Free space for dir
+	 *
+	 * @param dir dir
+	 * @return free space as string
+	 */
+	static public CharSequence storageFreeAsString(final String dir)
+	{
+		return StorageUtils.mbToString(storageFree(dir));
 	}
 
 	/**
