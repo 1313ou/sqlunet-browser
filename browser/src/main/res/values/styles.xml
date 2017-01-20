@@ -230,7 +230,7 @@
 		<item name="android:layout_marginRight">20dp</item>
 		<item name="android:paddingTop">2dp</item>
 		<item name="android:paddingBottom">2dp</item>
-		<item name="android:background">@drawable/bg_button</item>
+		<item name="android:background">@drawable/bg_button_action</item>
 		<item name="android:gravity">end|center_vertical</item>
 		<item name="android:visibility">gone</item>
 	</style>
@@ -261,5 +261,32 @@
 		<item name="android:paddingLeft">20dp</item>
 		<item name="android:paddingRight">20dp</item>Z
 	</style>
+
+	<style name="ActionButton">
+		<item name="android:layout_width">wrap_content</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="android:layout_gravity">center</item>
+		<item name="android:layout_marginLeft">20dp</item>
+		<item name="android:layout_marginRight">10dp</item>
+		<item name="android:paddingTop">2dp</item>
+		<item name="android:paddingBottom">2dp</item>
+		<item name="android:background">@drawable/bg_button_action</item>
+		<item name="android:gravity">center</item>
+		<item name="android:visibility">visible</item>
+	</style>
+
+	<style name="InfoButton">
+		<item name="android:layout_width">wrap_content</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="android:layout_gravity">center</item>
+		<item name="android:layout_marginLeft">10dp</item>
+		<item name="android:layout_marginRight">20dp</item>
+		<item name="android:paddingTop">2dp</item>
+		<item name="android:paddingBottom">2dp</item>
+		<item name="android:background">@drawable/bg_button_info</item>
+		<item name="android:gravity">end|center_vertical</item>
+		<item name="android:visibility">visible</item>
+	</style>
+
 
 </resources>

@@ -174,7 +174,7 @@ public class SettingsActivity extends PreferenceActivity
 	 */
 	static private void populateStorageListPreference(final Context context, final ListPreference listPref)
 	{
-		final Pair<CharSequence[], CharSequence[]> namesValues = StorageReports.getStorageDirectoriesNamesValues(context);
+		final Pair<CharSequence[], CharSequence[]> namesValues = StorageReports.getStyledStorageDirectoriesNamesValues(context);
 
 		CharSequence[] entries = namesValues.first;
 		CharSequence[] entryValues = namesValues.second;

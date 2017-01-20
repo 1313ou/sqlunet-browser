@@ -15,11 +15,16 @@ import org.sqlunet.settings.Settings;
  */
 public class DownloadActivity extends Activity implements DownloadFragment.DownloadListener
 {
-	/**
-	 * Log tag
-	 */
 	// static private final String TAG = "DownloadActivity";
 
+	/**
+	 * Result extra
+	 */
+	static private final String RESULT_DOWNLOAD_DATA_AVAILABLE = "download_data_available";
+
+	/**
+	 * Downloaders
+	 */
 	private enum Downloader
 	{
 		DOWNLOADMANAGER(R.layout.activity_download),
@@ -43,15 +48,11 @@ public class DownloadActivity extends Activity implements DownloadFragment.Downl
 		}
 	}
 
-	/**
-	 * Result extra
-	 */
-	static private final String RESULT_DOWNLOAD_DATA_AVAILABLE = "download_data_available";
-
 	@Override
 	protected void onCreate(final Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
+
 
 		final Downloader downloader = Downloader.getFromPref(this);
 
@@ -59,8 +60,25 @@ public class DownloadActivity extends Activity implements DownloadFragment.Downl
 		setContentView(downloader.res);
 
 		// set this as listener
-		BaseDownloadFragment downloadFragment = (BaseDownloadFragment) getFragmentManager().findFragmentById(R.id.fragment_download);
+		BaseDownloadFragment downloadFragment = null;
+		switch (downloader)
+		{
+			case DOWNLOADMANAGER:
+				downloadFragment = new DownloadFragment();
+				break;
+
+			case SIMPLE:
+				downloadFragment = new SimpleDownloadFragment();
+				break;
+		}
+		downloadFragment.setArguments(getIntent().getExtras());
 		downloadFragment.setListener(this);
+
+		getFragmentManager() //
+				.beginTransaction() //
+				.replace(R.id.container_download, downloadFragment) //
+				.commit();
+
 	}
 
 	@Override

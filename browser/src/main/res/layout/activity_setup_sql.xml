@@ -1,146 +1,134 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-            xmlns:tools="http://schemas.android.com/tools"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            tools:context="org.sqlunet.browser.config.SetupSqlActivity">
+            android:orientation="vertical">
 
 	<LinearLayout
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
-		android:orientation="vertical"
-		android:paddingBottom="@dimen/activity_vertical_padding"
-		android:paddingLeft="@dimen/activity_horizontal_padding"
-		android:paddingRight="@dimen/activity_horizontal_padding"
-		android:paddingTop="@dimen/activity_vertical_padding">
+		android:orientation="vertical">
 
-		<TextView
+		<ImageView
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_gravity="center_horizontal"
+			android:layout_marginBottom="12dp"
+			android:layout_marginTop="12dp"
+			android:contentDescription="@string/app_name"
+			android:src="@drawable/ic_launcher"/>
+
+		<GridLayout
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
-			android:text="@string/title_cache_storage"
-			android:textStyle="bold"/>
+			android:columnCount="2"
+			android:orientation="horizontal">
 
-		<TextView
-			android:id="@+id/cache_storage"
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:textIsSelectable="true"/>
+			<!-- sql zip -->
 
-		<TextView
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:text="@string/title_data_storage"
-			android:textStyle="bold"/>
+			<TextView
+				style="@style/StatusText"
+				android:text="@string/title_sqlzip"/>
 
-		<TextView
-			android:id="@+id/data_storage"
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:textIsSelectable="true"/>
+			<LinearLayout style="@style/StatusRow">
 
-		<TextView
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:text="@string/title_download_sqlsource"
-			android:textStyle="bold"/>
+				<ImageView
+					android:id="@+id/status_sqlzip"
+					style="@style/StatusImage"
+					android:contentDescription="@string/status_sqlzip"/>
 
-		<TextView
-			android:id="@+id/source"
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:textIsSelectable="true"/>
+				<ImageButton
+					android:id="@+id/download_sqlzip"
+					style="@style/ActionButton"
+					android:contentDescription="@string/download_sqlzip"
+					android:src="@drawable/bn_download"/>
 
-		<TextView
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:text="@string/title_download_sqltarget"
-			android:textStyle="bold"/>
+				<ImageButton
+					android:id="@+id/info_sqlzip"
+					style="@style/InfoButton"
+					android:contentDescription="@string/info_sqlzip"
+					android:src="@drawable/bn_info"/>
+			</LinearLayout>
 
-		<TextView
-			android:id="@+id/target"
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:textIsSelectable="true"/>
+			<!-- import -->
 
-		<TextView
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:text="@string/title_sql_import"
-			android:textStyle="bold"/>
+			<TextView
+				style="@style/StatusText"
+				android:text="@string/title_import"/>
 
-		<TextView
-			android:id="@+id/sql_import"
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:textIsSelectable="true"/>
+			<LinearLayout style="@style/StatusRow">
 
-		<TextView
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:text="@string/title_sql_pm"
-			android:textStyle="bold"/>
+				<ImageView
+					android:id="@+id/status_import"
+					style="@style/StatusImage"
+					android:contentDescription="@string/status_import"/>
 
-		<TextView
-			android:id="@+id/sql_pm"
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:textIsSelectable="true"/>
+				<ImageButton
+					android:id="@+id/execute_import"
+					style="@style/ActionButton"
+					android:contentDescription="@string/execute_import"
+					android:src="@drawable/bn_setup"/>
 
-		<TextView
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:text="@string/title_sql_index"
-			android:textStyle="bold"/>
+				<ImageButton
+					android:id="@+id/info_import"
+					style="@style/InfoButton"
+					android:contentDescription="@string/info_import"
+					android:src="@drawable/bn_info"/>
+			</LinearLayout>
 
-		<TextView
-			android:id="@+id/sql_index"
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:textIsSelectable="true"/>
+			<!-- PM -->
 
-		<TextView
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:text="@string/title_database"
-			android:textStyle="bold"/>
+			<TextView
+				style="@style/StatusText"
+				android:text="@string/title_predicatematrix"/>
 
-		<TextView
-			android:id="@+id/database"
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:textIsSelectable="true"/>
+			<LinearLayout style="@style/StatusRow">
 
-		<TextView
-			android:layout_width="match_parent"
-			android:layout_height="0dp"
-			android:layout_weight="0.20"/>
+				<ImageView
+					android:id="@+id/status_pm"
+					style="@style/StatusImage"
+					android:contentDescription="@string/status_predicatematrix"/>
 
-		<Button
-			android:id="@+id/downloadSql"
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:text="@string/action_downloadSql"/>
+				<ImageButton
+					android:id="@+id/execute_predicatematrix"
+					style="@style/ActionButton"
+					android:contentDescription="@string/execute_predicatematrix"
+					android:src="@drawable/bn_setup"/>
 
-		<Button
-			android:id="@+id/importButton"
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:text="@string/action_setup_import"
-			android:visibility="gone"/>
+				<ImageButton
+					android:id="@+id/info_pm"
+					style="@style/InfoButton"
+					android:contentDescription="@string/info_predicatematrix"
+					android:src="@drawable/bn_info"/>
+			</LinearLayout>
 
-		<Button
-			android:id="@+id/pmButton"
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:text="@string/action_setup_predicatematrix"
-			android:visibility="gone"/>
+			<!-- indexes -->
 
-		<Button
-			android:id="@+id/indexButton"
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:text="@string/action_setup_indexes"
-			android:visibility="gone"/>
+			<TextView
+				style="@style/StatusText"
+				android:text="@string/title_indexes"/>
+
+			<LinearLayout style="@style/StatusRow">
+
+				<ImageView
+					android:id="@+id/status_indexes"
+					style="@style/StatusImage"
+					android:contentDescription="@string/status_indexes"/>
+
+				<ImageButton
+					android:id="@+id/execute_indexes"
+					style="@style/ActionButton"
+					android:contentDescription="@string/execute_indexes"
+					android:src="@drawable/bn_setup"/>
+
+				<ImageButton
+					android:id="@+id/info_indexes"
+					style="@style/InfoButton"
+					android:contentDescription="@string/info_indexes"
+					android:src="@drawable/bn_info"/>
+			</LinearLayout>
+
+		</GridLayout>
 	</LinearLayout>
 
 </ScrollView>

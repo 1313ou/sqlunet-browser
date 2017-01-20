@@ -18,7 +18,6 @@ import org.sqlunet.browser.config.ManageActivity;
 import org.sqlunet.browser.config.ManageFragment;
 import org.sqlunet.browser.config.ManageUpdateActivity;
 import org.sqlunet.browser.config.SettingsActivity;
-import org.sqlunet.browser.config.SetupActivity;
 import org.sqlunet.browser.config.SetupSqlActivity;
 import org.sqlunet.browser.config.Status;
 import org.sqlunet.browser.config.StorageActivity;
@@ -273,10 +272,6 @@ public class MainActivity extends Activity implements NavigationDrawerFragment.N
 
 			case R.id.action_manage_update:
 				intent = new Intent(activity, ManageUpdateActivity.class);
-				break;
-
-			case R.id.action_setup:
-				intent = new Intent(activity, SetupActivity.class);
 				break;
 
 			case R.id.action_setup_sql:

@@ -3,6 +3,12 @@
 
 	<!-- Strings related to Setup -->
 	<string name="title_database">Database</string>
+	<string name="title_from">From</string>
+	<string name="title_to">To</string>
+	<string name="title_archive">Archive</string>
+	<string name="title_entry">Entry</string>
+	<string name="title_free">Free space</string>
+
 	<string name="title_data_storage">Data storage</string>
 	<string name="title_cache_storage">Cache storage</string>
 	<string name="title_storage">Storage</string>
@@ -19,5 +25,25 @@
 	<string name="title_sqlupdate_failed">SQL update failed</string>
 
 	<string name="format_storage_data" formatted="true">%1$s\nfree: %2$s capacity: %3$s (%4$.1f percent)</string>
+
+	<string name="status_sqlzip">SQL archive status</string>
+	<string name="title_sqlzip">SQL archive</string>
+	<string name="download_sqlzip">Download SQL archive</string>
+	<string name="info_sqlzip">Info about SQL archive</string>
+
+	<string name="status_import">Import status</string>
+	<string name="title_import">Import</string>
+	<string name="execute_import">Import</string>
+	<string name="info_import">Info about import</string>
+
+	<string name="title_predicatematrix">PredicateMatrix</string>
+	<string name="execute_predicatematrix">Import PredicateMatrix</string>
+	<string name="info_predicatematrix">Info about PredicateMatrix</string>
+
+	<string name="title_indexes">Indexes</string>
+	<string name="execute_indexes">Make indexes</string>
+	<string name="info_indexes">Info about indexes</string>
+
+	<string name="action_info">Info</string>
 
 </resources>

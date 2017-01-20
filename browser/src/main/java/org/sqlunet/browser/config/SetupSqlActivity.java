@@ -1,15 +1,25 @@
 package org.sqlunet.browser.config;
 
-import android.content.Context;
+import android.app.ActionBar;
+import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.ProgressDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.text.SpannableStringBuilder;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.sqlunet.browser.R;
 import org.sqlunet.settings.StorageSettings;
 import org.sqlunet.settings.StorageUtils;
+import org.sqlunet.style.Report;
 
 import java.io.File;
 
@@ -18,21 +28,38 @@ import java.io.File;
  *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
-public class SetupSqlActivity extends SetupBaseActivity
+public class SetupSqlActivity extends Activity
 {
 	static private final String TAG = "SetupSqlActivity";
 
+	static private final int DOWNLOAD_CODE = 555;
+
+	// task
+	protected AsyncTask<?, Integer, Boolean> task;
+
 	// download sql button
-	private Button downloadSqlButton;
+	private ImageButton downloadSqlZipButton;
 
 	// import button
-	private Button importButton;
+	private ImageButton importButton;
 
 	// pm button
-	private Button pmButton;
+	private ImageButton predicateMatrixButton;
 
 	// index button
-	private Button indexButton;
+	private ImageButton indexesButton;
+
+	// download sql view
+	private ImageView downloadSqlZipStatus;
+
+	// import view
+	private ImageView importStatus;
+
+	// pm view
+	private ImageView predicatematrixStatus;
+
+	// index view
+	private ImageView indexesStatus;
 
 	@SuppressWarnings("boxing")
 	@Override
@@ -42,85 +69,71 @@ public class SetupSqlActivity extends SetupBaseActivity
 
 		// content
 		setContentView(R.layout.activity_setup_sql);
-	}
 
-	@Override
-	protected void onResume()
-	{
-		super.onResume();
+		// show the Up button in the type bar.
+		final ActionBar actionBar = getActionBar();
+		assert actionBar != null;
+		actionBar.setDisplayHomeAsUpEnabled(true);
 
-		// context
-		final Context context = getBaseContext();
-
-		// cache
-		TextView cache_storage = (TextView) findViewById(R.id.cache_storage);
-
-		// sql
-		final String sql = StorageSettings.getSqlSource(context);
-
-		// source
-		TextView source = (TextView) findViewById(R.id.source);
-		source.setText(StorageSettings.getSqlDownloadSource(context));
-
-		// target
-		TextView target = (TextView) findViewById(R.id.target);
-		target.setText(StorageSettings.getSqlDownloadTarget(this));
-
-		// sql import
-		TextView sqlImport = (TextView) findViewById(R.id.sql_import);
-		sqlImport.setText(sql + '!' + StorageSettings.getImportEntry(context));
-
-		// sql import
-		TextView sqlPm = (TextView) findViewById(R.id.sql_pm);
-		sqlPm.setText(sql + '!' + StorageSettings.getPmEntry(context));
-
-		// sql index
-		TextView sqlIndex = (TextView) findViewById(R.id.sql_index);
-		sqlIndex.setText(sql + '!' + StorageSettings.getIndexEntry(context));
-
-		// cache
-		final String cacheDir = StorageSettings.getCacheDir(this);
-		final float[] cacheStats = StorageUtils.storageStats(cacheDir);
-		final float ca = cacheStats[0];
-		final float cc = cacheStats[1];
-		final float cp = cacheStats[2];
-		cache_storage.setText(getString(R.string.format_storage_data, cacheDir, StorageUtils.mbToString(ca), StorageUtils.mbToString(cc), cp));
+		// statuses
+		this.downloadSqlZipStatus = (ImageView) findViewById(R.id.status_sqlzip);
+		this.importStatus = (ImageView) findViewById(R.id.status_import);
+		this.indexesStatus = (ImageView) findViewById(R.id.status_indexes);
+		this.predicatematrixStatus = (ImageView) findViewById(R.id.status_pm);
 
 		// buttons
-		this.downloadSqlButton = (Button) findViewById(R.id.downloadSql);
-		this.importButton = (Button) findViewById(R.id.importButton);
-		this.pmButton = (Button) findViewById(R.id.pmButton);
-		this.indexButton = (Button) findViewById(R.id.indexButton);
+		this.downloadSqlZipButton = (ImageButton) findViewById(R.id.download_sqlzip);
+		this.importButton = (ImageButton) findViewById(R.id.execute_import);
+		this.indexesButton = (ImageButton) findViewById(R.id.execute_indexes);
+		this.predicateMatrixButton = (ImageButton) findViewById(R.id.execute_predicatematrix);
+		ImageButton infoSqlZipButton = (ImageButton) findViewById(R.id.info_sqlzip);
+		ImageButton infoImportButton = (ImageButton) findViewById(R.id.info_import);
+		ImageButton infoIndexesButton = (ImageButton) findViewById(R.id.info_indexes);
+		ImageButton infoPmButton = (ImageButton) findViewById(R.id.info_pm);
 
-		// download sql button
-		this.downloadSqlButton.setOnClickListener(new View.OnClickListener()
+		// sql zip
+		this.downloadSqlZipButton.setOnClickListener(new View.OnClickListener()
 		{
 			@Override
 			public void onClick(final View v)
 			{
-				SetupSqlActivity.this.downloadSqlButton.setEnabled(false);
+				SetupSqlActivity.this.downloadSqlZipButton.setEnabled(false);
 				SetupSqlActivity.this.importButton.setEnabled(false);
-				SetupSqlActivity.this.indexButton.setEnabled(false);
+				SetupSqlActivity.this.indexesButton.setEnabled(false);
 
 				// starting download
-				final String from = StorageSettings.getSqlDownloadSource(context);
-				final String to = StorageSettings.getSqlDownloadTarget(context);
-				SetupSqlActivity.this.task = new SimpleDownloader(from, to, 1, SetupSqlActivity.this).execute();
+				final String from = StorageSettings.getSqlDownloadSource(SetupSqlActivity.this);
+				final String to = StorageSettings.getSqlDownloadTarget(SetupSqlActivity.this);
+				final Intent intent = new Intent(SetupSqlActivity.this, DownloadActivity.class);
+				intent.putExtra(BaseDownloadFragment.DOWNLOAD_FROM_ARG, from);
+				intent.putExtra(BaseDownloadFragment.DOWNLOAD_TO_ARG, to);
+				startActivityForResult(intent, DOWNLOAD_CODE);
+
+			}
+		});
+		infoSqlZipButton.setOnClickListener(new View.OnClickListener()
+		{
+			@Override
+			public void onClick(final View v)
+			{
+				final String from = StorageSettings.getSqlDownloadSource(SetupSqlActivity.this);
+				final String to = StorageSettings.getSqlDownloadTarget(SetupSqlActivity.this);
+				final String free = getFree(to);
+				info(R.string.title_sqlzip, getString(R.string.title_from), from, getString(R.string.title_to), to, getString(R.string.title_free), free);
 			}
 		});
 
-		// import button
+		// import
 		this.importButton.setOnClickListener(new View.OnClickListener()
 		{
 			@Override
 			public void onClick(final View v)
 			{
-				// starting create task
 				try
 				{
-					final String database = StorageSettings.getDatabasePath(context);
-					final String source = StorageSettings.getSqlSource(context);
-					final String entry = StorageSettings.getImportEntry(context);
+					final String database = StorageSettings.getDatabasePath(SetupSqlActivity.this);
+					final String source = StorageSettings.getSqlSource(SetupSqlActivity.this);
+					final String entry = StorageSettings.getImportEntry(SetupSqlActivity.this);
 					final TaskObserver.Listener listener = new TaskObserver.DialogListener(SetupSqlActivity.this, R.string.status_managing, source + '@' + entry);
 					SetupSqlActivity.this.task = new ExecAsyncTask(listener, 1000).executeFromArchive(database, source, entry);
 				}
@@ -130,9 +143,21 @@ public class SetupSqlActivity extends SetupBaseActivity
 				}
 			}
 		});
+		infoImportButton.setOnClickListener(new View.OnClickListener()
+		{
+			@Override
+			public void onClick(final View v)
+			{
+				final String database = StorageSettings.getDatabasePath(SetupSqlActivity.this);
+				final String source = StorageSettings.getSqlSource(SetupSqlActivity.this);
+				final String entry = StorageSettings.getImportEntry(SetupSqlActivity.this);
+				final String free = getFree(database);
+				info(R.string.title_import, getString(R.string.title_database), database, getString(R.string.title_archive), source, getString(R.string.title_entry), entry, getString(R.string.title_free), free);
+			}
+		});
 
 		// index button
-		this.indexButton.setOnClickListener(new View.OnClickListener()
+		this.indexesButton.setOnClickListener(new View.OnClickListener()
 		{
 			@Override
 			public void onClick(final View v)
@@ -140,9 +165,9 @@ public class SetupSqlActivity extends SetupBaseActivity
 				// starting indexing task
 				try
 				{
-					final String database = StorageSettings.getDatabasePath(context);
-					final String source = StorageSettings.getSqlSource(context);
-					final String entry = StorageSettings.getIndexEntry(context);
+					final String database = StorageSettings.getDatabasePath(SetupSqlActivity.this);
+					final String source = StorageSettings.getSqlSource(SetupSqlActivity.this);
+					final String entry = StorageSettings.getIndexEntry(SetupSqlActivity.this);
 					final TaskObserver.Listener listener = new TaskObserver.DialogListener(SetupSqlActivity.this, R.string.status_managing, source + '@' + entry);
 					SetupSqlActivity.this.task = new ExecAsyncTask(listener, 1).executeFromArchive(database, source, entry);
 				}
@@ -152,9 +177,21 @@ public class SetupSqlActivity extends SetupBaseActivity
 				}
 			}
 		});
+		infoIndexesButton.setOnClickListener(new View.OnClickListener()
+		{
+			@Override
+			public void onClick(final View v)
+			{
+				final String database = StorageSettings.getDatabasePath(SetupSqlActivity.this);
+				final String source = StorageSettings.getSqlSource(SetupSqlActivity.this);
+				final String entry = StorageSettings.getIndexEntry(SetupSqlActivity.this);
+				final String free = getFree(database);
+				info(R.string.title_indexes, getString(R.string.title_database), database, getString(R.string.title_archive), source, getString(R.string.title_entry), entry, getString(R.string.title_free), free);
+			}
+		});
 
 		// pm button
-		this.pmButton.setOnClickListener(new View.OnClickListener()
+		this.predicateMatrixButton.setOnClickListener(new View.OnClickListener()
 		{
 			@Override
 			public void onClick(final View v)
@@ -162,9 +199,9 @@ public class SetupSqlActivity extends SetupBaseActivity
 				// starting pm task
 				try
 				{
-					final String database = StorageSettings.getDatabasePath(context);
-					final String source = StorageSettings.getSqlSource(context);
-					final String entry = StorageSettings.getPmEntry(context);
+					final String database = StorageSettings.getDatabasePath(SetupSqlActivity.this);
+					final String source = StorageSettings.getSqlSource(SetupSqlActivity.this);
+					final String entry = StorageSettings.getPmEntry(SetupSqlActivity.this);
 					final TaskObserver.Listener listener = new TaskObserver.DialogListener(SetupSqlActivity.this, R.string.status_managing, source + '@' + entry);
 					SetupSqlActivity.this.task = new ExecAsyncTask(listener, 1).executeFromArchive(database, source, entry);
 				}
@@ -174,21 +211,167 @@ public class SetupSqlActivity extends SetupBaseActivity
 				}
 			}
 		});
-
-		if (new File(sql).exists())
+		infoPmButton.setOnClickListener(new View.OnClickListener()
 		{
-			this.importButton.setVisibility(View.VISIBLE);
-			this.pmButton.setVisibility(View.VISIBLE);
-			this.indexButton.setVisibility(View.VISIBLE);
+			@Override
+			public void onClick(final View v)
+			{
+				final String database = StorageSettings.getDatabasePath(SetupSqlActivity.this);
+				final String source = StorageSettings.getSqlSource(SetupSqlActivity.this);
+				final String entry = StorageSettings.getPmEntry(SetupSqlActivity.this);
+				final String free = getFree(database);
+				info(R.string.title_predicatematrix, getString(R.string.title_database), database, getString(R.string.title_archive), source, getString(R.string.title_entry), entry, getString(R.string.title_free), free);
+			}
+		});
+
+	}
+
+	@Override
+	protected void onResume()
+	{
+		super.onResume();
+		updateStatus();
+	}
+
+	void updateStatus()
+	{
+		// sql zip
+		final String sqlZip = StorageSettings.getSqlSource(this);
+		boolean sqlZipExists = new File(sqlZip).exists();
+		this.downloadSqlZipButton.setVisibility(sqlZipExists ? View.INVISIBLE : View.VISIBLE);
+		this.downloadSqlZipStatus.setImageResource(sqlZipExists ? R.drawable.ic_ok : R.drawable.ic_fail);
+
+		this.importButton.setVisibility(sqlZipExists ? View.VISIBLE : View.INVISIBLE);
+		this.predicateMatrixButton.setVisibility(sqlZipExists ? View.VISIBLE : View.INVISIBLE);
+		this.indexesButton.setVisibility(sqlZipExists ? View.VISIBLE : View.INVISIBLE);
+
+		final int status = Status.status(this);
+		final boolean existsData = (status & Status.EXISTS) != 0;
+		final boolean existsIndexes = (status & Status.EXISTS_INDEXES) != 0;
+		final boolean existsPredicateMatrix = (status & Status.EXISTS_PREDICATEMATRIX) != 0;
+		this.importStatus.setImageResource(existsData ? R.drawable.ic_ok : R.drawable.ic_fail);
+		this.indexesStatus.setImageResource(existsIndexes ? R.drawable.ic_ok : R.drawable.ic_fail);
+		this.predicatematrixStatus.setImageResource(existsPredicateMatrix ? R.drawable.ic_ok : R.drawable.ic_fail);
+	}
+
+	private String getFree(final String target)
+	{
+		final File file = new File(target);
+		final String dir = file.isDirectory() ? file.getAbsolutePath() : file.getParent();
+		final float[] dataStats = StorageUtils.storageStats(dir);
+		final float df = dataStats[StorageUtils.STORAGE_FREE];
+		final float dc = dataStats[StorageUtils.STORAGE_CAPACITY];
+		final float dp = dataStats[StorageUtils.STORAGE_OCCUPANCY];
+		return getString(R.string.format_storage_data, dir, StorageUtils.mbToString(df), StorageUtils.mbToString(dc), dp);
+	}
+
+	// I N F O
+
+	private void info(final int messageId, final CharSequence... lines)
+	{
+		final AlertDialog.Builder alert = new AlertDialog.Builder(this);
+		alert.setTitle(R.string.action_info);
+		alert.setMessage(messageId);
+		alert.setNegativeButton(R.string.action_dismiss, new DialogInterface.OnClickListener()
+		{
+			@Override
+			public void onClick(DialogInterface dialog, int whichButton)
+			{
+				// canceled.
+			}
+		});
+		/*
+		final ArrayAdapter<CharSequence> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, messages);
+		final ListView extra = new ListView(this);
+		input.setAdapter(adapter);
+		*/
+		final SpannableStringBuilder sb = new SpannableStringBuilder();
+		int i = 0;
+		for (CharSequence line : lines)
+		{
+			if ((i++ % 2) == 0)
+			{
+				Report.appendHeader(sb, line);
+			}
+			else
+			{
+				sb.append(line);
+			}
+			sb.append('\n');
 		}
+
+		final TextView extra = new TextView(this);
+		extra.setPadding(20, 0, 20, 0);
+		extra.setText(sb);
+		alert.setView(extra);
+		alert.show();
+	}
+
+	// D I A L O G
+
+	// progress dialog
+	private ProgressDialog progressDialog;
+
+	/**
+	 * Make dialog
+	 *
+	 * @param messageId progressMessage resource
+	 * @param style     style
+	 * @return dialog
+	 */
+	private ProgressDialog makeDialog(final int messageId, final int style)
+	{
+		final ProgressDialog progressDialog = new ProgressDialog(this);
+		progressDialog.setTitle(messageId);
+		progressDialog.setMessage("");
+		progressDialog.setIndeterminate(true);
+		progressDialog.setMax(100);
+		progressDialog.setProgressStyle(style);
+		progressDialog.setCancelable(true);
+		progressDialog.setButton(DialogInterface.BUTTON_NEGATIVE, getString(R.string.action_abort), new DialogInterface.OnClickListener()
+		{
+			@Override
+			public void onClick(final DialogInterface dialog, final int which)
+			{
+				if (which == DialogInterface.BUTTON_NEGATIVE)
+				{
+					boolean result = SetupSqlActivity.this.task.cancel(true);
+					Log.d(TAG, "Cancel task " + SetupSqlActivity.this.task + ' ' + result);
+					dialog.dismiss();
+				}
+			}
+		});
+		progressDialog.setButton(DialogInterface.BUTTON_POSITIVE, getString(R.string.action_dismiss), new DialogInterface.OnClickListener()
+		{
+			@Override
+			public void onClick(final DialogInterface dialog, final int which)
+			{
+				if (which == DialogInterface.BUTTON_POSITIVE)
+				{
+					dialog.dismiss();
+				}
+			}
+		});
+		return progressDialog;
 	}
 
 	// D O W N L O A D L I S T E N E R
 
-	@Override
+	public void onDownloadStart()
+	{
+		this.progressDialog = makeDialog(R.string.status_downloading, ProgressDialog.STYLE_HORIZONTAL);
+		this.progressDialog.show();
+	}
+
+	public void onDownloadUpdate(final long total, final long downloaded)
+	{
+		this.progressDialog.setIndeterminate(total == -1);
+		this.progressDialog.setProgress((int) (100 * (downloaded / total)));
+		this.progressDialog.setMessage(downloaded / (1024 * 1024) + " MBytes");
+	}
+
 	public void onDownloadFinish(final int code, final boolean result)
 	{
-		super.onDownloadFinish(code, result);
 
 		// delete sql file
 		// if (!progressMessage)
@@ -198,11 +381,23 @@ public class SetupSqlActivity extends SetupBaseActivity
 		// }
 
 		this.importButton.setVisibility(result ? View.VISIBLE : View.GONE);
-		this.pmButton.setVisibility(result ? View.VISIBLE : View.GONE);
-		this.indexButton.setVisibility(result ? View.VISIBLE : View.GONE);
+		this.predicateMatrixButton.setVisibility(result ? View.VISIBLE : View.GONE);
+		this.indexesButton.setVisibility(result ? View.VISIBLE : View.GONE);
 
 		this.importButton.setEnabled(code != 0);
-		this.pmButton.setEnabled(code != 0);
-		this.indexButton.setEnabled(code != 0);
+		this.predicateMatrixButton.setEnabled(code != 0);
+		this.indexesButton.setEnabled(code != 0);
+
+		this.progressDialog.dismiss();
+		Log.d(TAG, "Download " + (result ? "succeeded" : "failed")); ////
+		Toast.makeText(this, result ? R.string.title_download_complete : R.string.title_download_failed, Toast.LENGTH_SHORT).show();
+
+		// delete file if failed
+		if (!result)
+		{
+			String to = StorageSettings.getSqlDownloadTarget(this);
+			//noinspection ResultOfMethodCallIgnored
+			new File(to).delete();
+		}
 	}
 }

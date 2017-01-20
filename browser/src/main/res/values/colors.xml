@@ -2,9 +2,10 @@
 <resources>
 
 	<!-- orange -->
-	<item name="button_color" type="color">#FFffa500</item>
+	<item name="button_color_action" type="color">#FFffa500</item>
 	<item name="button_color_ok" type="color">#FF008000</item>
 	<item name="button_color_err" type="color">#FF800000</item>
+	<item name="button_info_color" type="color">#FF0000ff</item>
 
 	<!-- grays -->
 	<item name="light_gray_color" type="color">#FFe0e0e0</item>

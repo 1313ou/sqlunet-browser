@@ -28,11 +28,11 @@ public class Status
 
 	// _status flags
 
-	static private final int EXISTS = 0x1;
+	static public final int EXISTS = 0x1;
 
 	static public final int EXISTS_INDEXES = 0x10;
 
-	static public final int EXISTS_PM = 0x20;
+	static public final int EXISTS_PREDICATEMATRIX = 0x20;
 
 	static public final int EXISTS_TS_WN = 0x100;
 
@@ -98,7 +98,7 @@ public class Status
 			}
 			if (existsPm)
 			{
-				status |= EXISTS_PM;
+				status |= EXISTS_PREDICATEMATRIX;
 			}
 			if (existsTsWn)
 			{
@@ -130,7 +130,7 @@ public class Status
 	static public boolean canRun(final Context context)
 	{
 		final int status = status(context);
-		return (status & (EXISTS | EXISTS_INDEXES | EXISTS_PM)) == (EXISTS | EXISTS_INDEXES | EXISTS_PM);
+		return (status & (EXISTS | EXISTS_INDEXES | EXISTS_PREDICATEMATRIX)) == (EXISTS | EXISTS_INDEXES | EXISTS_PREDICATEMATRIX);
 	}
 
 	/**

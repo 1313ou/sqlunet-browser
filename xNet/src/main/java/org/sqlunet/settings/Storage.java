@@ -24,9 +24,29 @@ public class Storage
 	static private final String TAG = "Storage";
 
 	/**
+	 * SqlUnet DB basename
+	 */
+	public static final String DBNAME = "sqlunet";
+
+	/**
 	 * SqlUnet DB filename
 	 */
-	public static final String DBFILE = "sqlunet.db";
+	public static final String DBFILE = DBNAME + ".db";
+
+	/**
+	 * SqlUnet DB zipped filename
+	 */
+	public static final String DBFILEZIP = DBFILE + ".zip";
+
+	/**
+	 * SqlUnet DB sql filename
+	 */
+	public static final String DBSQL = DBNAME + ".sql";
+
+	/**
+	 * SqlUnet DB zipped sql filename
+	 */
+	public static final String DBSQLZIP = DBSQL + ".zip";
 
 	/**
 	 * SqlUnet sub directory when external public
@@ -34,9 +54,14 @@ public class Storage
 	static final String SQLUNETDIR = "sqlunet" + '/';
 
 	/**
-	 * SqlUnet storage preference name
+	 * SqlUNet storage preference name
 	 */
 	public static final String PREF_SQLUNET_STORAGE = "pref_storage";
+
+	/**
+	 * SqlUNet cache preference name
+	 */
+	public static final String PREF_SQLUNET_CACHE = "pref_cache";
 
 	// D A T A B A S E
 
@@ -135,7 +160,18 @@ public class Storage
 	 */
 	static public String getCacheDir(final Context context)
 	{
-		final File cache = context.getExternalCacheDir();
-		return cache.getAbsolutePath();
+		// test if set in preference
+		final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
+		String prefValue = sharedPref.getString(Storage.PREF_SQLUNET_CACHE, null);
+		if (prefValue == null || prefValue.isEmpty())
+		{
+			final File cache = context.getExternalCacheDir();
+			prefValue = cache.getAbsolutePath();
+
+			// record as discovered
+			sharedPref.edit().putString(Storage.PREF_SQLUNET_CACHE, prefValue).commit();
+		}
+
+		return prefValue;
 	}
 }

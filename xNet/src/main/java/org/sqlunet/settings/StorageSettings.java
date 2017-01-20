@@ -20,6 +20,7 @@ public class StorageSettings
 	// storage preferences
 
 	static public final String PREF_STORAGE = Storage.PREF_SQLUNET_STORAGE;
+	static public final String PREF_CACHE = Storage.PREF_SQLUNET_CACHE;
 
 	// download preferences
 
@@ -30,7 +31,6 @@ public class StorageSettings
 	static public final String PREF_ENTRY_IMPORT = "pref_entry_import";
 	static public final String PREF_ENTRY_PM = "pref_entry_pm";
 	static public final String PREF_ENTRY_INDEX = "pref_entry_index";
-	static public final String PREF_CACHE = "pref_cache";
 
 	// D A T A B A S E
 

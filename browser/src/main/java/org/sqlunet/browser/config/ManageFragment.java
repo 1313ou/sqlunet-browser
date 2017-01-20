@@ -146,10 +146,6 @@ public class ManageFragment extends BaseManageFragment
 		// handle item selection
 		switch (item.getItemId())
 		{
-			case R.id.action_setup:
-				intent = new Intent(context, SetupActivity.class);
-				break;
-
 			case R.id.action_setup_sql:
 				intent = new Intent(context, SetupSqlActivity.class);
 				break;

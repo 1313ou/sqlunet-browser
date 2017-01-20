@@ -29,7 +29,7 @@
 				android:layout_width="64dp"
 				android:layout_height="64dp"
 				android:layout_gravity="center_vertical|center_horizontal"
-				android:background="@drawable/bg_button"
+				android:background="@drawable/bg_button_action"
 				android:contentDescription="@string/action_download"
 				android:src="@drawable/bn_download"
 				android:text="@string/action_download"/>

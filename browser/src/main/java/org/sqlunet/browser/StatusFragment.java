@@ -149,7 +149,7 @@ public class StatusFragment extends Fragment
 			buttonDb.setVisibility(View.GONE);
 
 			final boolean existsIndexes = (status & Status.EXISTS_INDEXES) != 0;
-			final boolean existsPm = (status & Status.EXISTS_PM) != 0;
+			final boolean existsPm = (status & Status.EXISTS_PREDICATEMATRIX) != 0;
 			final boolean existsTsWn = (status & Status.EXISTS_TS_WN) != 0;
 			final boolean existsTsVn = (status & Status.EXISTS_TS_VN) != 0;
 			final boolean existsTsPb = (status & Status.EXISTS_TS_PB) != 0;

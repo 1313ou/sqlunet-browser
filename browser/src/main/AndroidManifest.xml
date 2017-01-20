@@ -261,16 +261,6 @@
 		</activity>
 
 		<activity
-			android:name=".config.SetupActivity"
-			android:label="@string/title_activity_setup"
-			android:parentActivityName=".MainActivity"
-			tools:ignore="UnusedAttribute">
-			<meta-data
-				android:name="android.support.PARENT_ACTIVITY"
-				android:value="org.sqlunet.browser.MainActivity"/>
-		</activity>
-
-		<activity
 			android:name=".config.StorageActivity"
 			android:label="@string/title_activity_storage"
 			android:parentActivityName=".MainActivity"
