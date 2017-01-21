@@ -11,8 +11,8 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 
 import org.sqlunet.browser.config.DownloadActivity;
-import org.sqlunet.browser.config.ManageUpdateActivity;
-import org.sqlunet.browser.config.ManageUpdateFragment;
+import org.sqlunet.browser.config.ManageActivity;
+import org.sqlunet.browser.config.ManageFragment;
 import org.sqlunet.browser.config.Status;
 
 /**
@@ -81,8 +81,8 @@ public class StatusFragment extends Fragment
 			@Override
 			public void onClick(View v)
 			{
-				final Intent intent = new Intent(StatusFragment.this.getActivity(), ManageUpdateActivity.class);
-				intent.putExtra(ManageUpdateFragment.ARG, Status.DO_INDEXES);
+				final Intent intent = new Intent(StatusFragment.this.getActivity(), ManageActivity.class);
+				intent.putExtra(ManageFragment.ARG, Status.DO_INDEXES);
 				startActivityForResult(intent, StatusFragment.REQUEST_MANAGE_CODE + Status.DO_INDEXES);
 			}
 		});
@@ -92,8 +92,8 @@ public class StatusFragment extends Fragment
 			@Override
 			public void onClick(View v)
 			{
-				final Intent intent = new Intent(StatusFragment.this.getActivity(), ManageUpdateActivity.class);
-				intent.putExtra(ManageUpdateFragment.ARG, Status.DO_PM);
+				final Intent intent = new Intent(StatusFragment.this.getActivity(), ManageActivity.class);
+				intent.putExtra(ManageFragment.ARG, Status.DO_PM);
 				startActivityForResult(intent, StatusFragment.REQUEST_MANAGE_CODE + Status.DO_PM);
 			}
 		});
@@ -103,8 +103,8 @@ public class StatusFragment extends Fragment
 			@Override
 			public void onClick(View v)
 			{
-				final Intent intent = new Intent(StatusFragment.this.getActivity(), ManageUpdateActivity.class);
-				intent.putExtra(ManageUpdateFragment.ARG, Status.DO_TS_WN);
+				final Intent intent = new Intent(StatusFragment.this.getActivity(), ManageActivity.class);
+				intent.putExtra(ManageFragment.ARG, Status.DO_TS_WN);
 				startActivityForResult(intent, StatusFragment.REQUEST_MANAGE_CODE + Status.DO_TS_WN);
 			}
 		});
@@ -114,8 +114,8 @@ public class StatusFragment extends Fragment
 			@Override
 			public void onClick(View v)
 			{
-				final Intent intent = new Intent(StatusFragment.this.getActivity(), ManageUpdateActivity.class);
-				intent.putExtra(ManageUpdateFragment.ARG, Status.DO_TS_VN);
+				final Intent intent = new Intent(StatusFragment.this.getActivity(), ManageActivity.class);
+				intent.putExtra(ManageFragment.ARG, Status.DO_TS_VN);
 				startActivityForResult(intent, StatusFragment.REQUEST_MANAGE_CODE + Status.DO_TS_WN);
 			}
 		});
@@ -125,8 +125,8 @@ public class StatusFragment extends Fragment
 			@Override
 			public void onClick(View v)
 			{
-				final Intent intent = new Intent(StatusFragment.this.getActivity(), ManageUpdateActivity.class);
-				intent.putExtra(ManageUpdateFragment.ARG, Status.DO_TS_PB);
+				final Intent intent = new Intent(StatusFragment.this.getActivity(), ManageActivity.class);
+				intent.putExtra(ManageFragment.ARG, Status.DO_TS_PB);
 				startActivityForResult(intent, StatusFragment.REQUEST_MANAGE_CODE + Status.DO_TS_PB);
 			}
 		});
@@ -136,8 +136,8 @@ public class StatusFragment extends Fragment
 			@Override
 			public void onClick(View v)
 			{
-				final Intent intent = new Intent(StatusFragment.this.getActivity(), ManageUpdateActivity.class);
-				intent.putExtra(ManageUpdateFragment.ARG, Status.DO_TS_FN);
+				final Intent intent = new Intent(StatusFragment.this.getActivity(), ManageActivity.class);
+				intent.putExtra(ManageFragment.ARG, Status.DO_TS_FN);
 				startActivityForResult(intent, StatusFragment.REQUEST_MANAGE_CODE + Status.DO_TS_FN);
 			}
 		});

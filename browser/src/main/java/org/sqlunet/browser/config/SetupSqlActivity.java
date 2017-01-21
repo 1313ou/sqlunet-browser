@@ -3,7 +3,6 @@ package org.sqlunet.browser.config;
 import android.app.ActionBar;
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
@@ -307,88 +306,12 @@ public class SetupSqlActivity extends Activity
 		alert.show();
 	}
 
-	// D I A L O G
-
-	// progress dialog
-	private ProgressDialog progressDialog;
-
-	/**
-	 * Make dialog
-	 *
-	 * @param messageId progressMessage resource
-	 * @param style     style
-	 * @return dialog
-	 */
-	private ProgressDialog makeDialog(final int messageId, final int style)
+	protected void onDownloadFinish(final boolean result)
 	{
-		final ProgressDialog progressDialog = new ProgressDialog(this);
-		progressDialog.setTitle(messageId);
-		progressDialog.setMessage("");
-		progressDialog.setIndeterminate(true);
-		progressDialog.setMax(100);
-		progressDialog.setProgressStyle(style);
-		progressDialog.setCancelable(true);
-		progressDialog.setButton(DialogInterface.BUTTON_NEGATIVE, getString(R.string.action_abort), new DialogInterface.OnClickListener()
-		{
-			@Override
-			public void onClick(final DialogInterface dialog, final int which)
-			{
-				if (which == DialogInterface.BUTTON_NEGATIVE)
-				{
-					boolean result = SetupSqlActivity.this.task.cancel(true);
-					Log.d(TAG, "Cancel task " + SetupSqlActivity.this.task + ' ' + result);
-					dialog.dismiss();
-				}
-			}
-		});
-		progressDialog.setButton(DialogInterface.BUTTON_POSITIVE, getString(R.string.action_dismiss), new DialogInterface.OnClickListener()
-		{
-			@Override
-			public void onClick(final DialogInterface dialog, final int which)
-			{
-				if (which == DialogInterface.BUTTON_POSITIVE)
-				{
-					dialog.dismiss();
-				}
-			}
-		});
-		return progressDialog;
-	}
-
-	// D O W N L O A D L I S T E N E R
-
-	public void onDownloadStart()
-	{
-		this.progressDialog = makeDialog(R.string.status_downloading, ProgressDialog.STYLE_HORIZONTAL);
-		this.progressDialog.show();
-	}
-
-	public void onDownloadUpdate(final long total, final long downloaded)
-	{
-		this.progressDialog.setIndeterminate(total == -1);
-		this.progressDialog.setProgress((int) (100 * (downloaded / total)));
-		this.progressDialog.setMessage(downloaded / (1024 * 1024) + " MBytes");
-	}
-
-	public void onDownloadFinish(final int code, final boolean result)
-	{
-
-		// delete sql file
-		// if (!progressMessage)
-		// {
-		// String to = StorageSettings.getSqlDownloadTarget(this);
-		// new File(to).delete();
-		// }
-
 		this.importButton.setVisibility(result ? View.VISIBLE : View.GONE);
 		this.predicateMatrixButton.setVisibility(result ? View.VISIBLE : View.GONE);
 		this.indexesButton.setVisibility(result ? View.VISIBLE : View.GONE);
 
-		this.importButton.setEnabled(code != 0);
-		this.predicateMatrixButton.setEnabled(code != 0);
-		this.indexesButton.setEnabled(code != 0);
-
-		this.progressDialog.dismiss();
 		Log.d(TAG, "Download " + (result ? "succeeded" : "failed")); ////
 		Toast.makeText(this, result ? R.string.title_download_complete : R.string.title_download_failed, Toast.LENGTH_SHORT).show();
 

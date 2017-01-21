@@ -246,7 +246,7 @@ public class DownloadFragment extends BaseDownloadFragment
 				Uri destUri = Uri.fromFile(this.destFile);
 				request.setDestinationUri(destUri);
 			}
-			request.setTitle(getActivity().getResources().getText(R.string.title_download_id));
+			request.setTitle(getActivity().getResources().getText(R.string.title_download));
 			request.setDescription(downloadUri.getLastPathSegment());
 			request.setNotificationVisibility(Request.VISIBILITY_VISIBLE);
 
@@ -466,7 +466,6 @@ public class DownloadFragment extends BaseDownloadFragment
 				DownloadFragment.this.showButton.setVisibility(View.GONE);
 			}
 		}
-
 		super.onDone(success);
 	}
 }

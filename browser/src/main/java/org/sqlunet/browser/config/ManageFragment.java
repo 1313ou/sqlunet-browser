@@ -13,6 +13,9 @@ import android.widget.ArrayAdapter;
 import android.widget.SpinnerAdapter;
 
 import org.sqlunet.browser.R;
+import org.sqlunet.provider.ManagerContract;
+import org.sqlunet.provider.ManagerProvider;
+import org.sqlunet.provider.ProviderArgs;
 import org.sqlunet.settings.StorageSettings;
 
 /**
@@ -20,19 +23,14 @@ import org.sqlunet.settings.StorageSettings;
  *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
-public class ManageFragment extends BaseManageFragment
+public class ManageFragment extends BaseTaskFragment
 {
-	//static private final String TAG = "ManageFragment";
-
-	public static final String ARG = "operation";
+	// static private final String TAG = "ManageFragment";
 
 	/**
-	 * Operations
+	 * Initial spinner position
 	 */
-	private enum Operation
-	{
-		CREATE, DROP, COPY, UNZIP, MD5, SETUPSQL
-	}
+	public static final String ARG = "position";
 
 	/**
 	 * Constructor
@@ -51,11 +49,19 @@ public class ManageFragment extends BaseManageFragment
 		Bundle args = getArguments();
 		if (args != null)
 		{
-			final String arg = args.getString(ARG);
-			if (arg != null)
+			final int arg = args.getInt(ARG);
+			switch (arg)
 			{
-				final Operation op = Operation.valueOf(arg);
-				this.spinner.setSelection(op.ordinal());
+				default:
+					break;
+				case Status.DO_INDEXES: // index 1
+				case Status.DO_PM:      // pm 2
+				case Status.DO_TS_WN:   // ts_wn 3
+				case Status.DO_TS_VN:   // ts_vn 4
+				case Status.DO_TS_PB:   // ts_pb 5
+				case Status.DO_TS_FN:   // ts_fn 6
+					this.spinner.setSelection(arg - 1);
+					break;
 			}
 		}
 
@@ -64,54 +70,19 @@ public class ManageFragment extends BaseManageFragment
 			@Override
 			public void onClick(final View v)
 			{
-				// operations
-				final CharSequence[] operations = getActivity().getResources().getTextArray(R.array.database_values);
+				ManageFragment.this.status.setText(R.string.status_task_running);
+
+				// database path
+				final String databasePath = StorageSettings.getDatabasePath(getActivity().getBaseContext());
+
+				// sqls
+				final CharSequence[] sqls = getActivity().getResources().getTextArray(R.array.manage_values);
 
 				// execute
-				final Context context = getActivity();
 				final long id = ManageFragment.this.spinner.getSelectedItemId();
-				final CharSequence operation = operations[(int) id];
-				final Operation op = Operation.valueOf(operation.toString());
-				switch (op)
-				{
-					case CREATE:
-						ManageFragment.this.status.setText(R.string.status_task_running);
-						ManageTasks.createDatabase(context, StorageSettings.getDatabasePath(context));
-						ManageFragment.this.status.setText(R.string.status_task_done);
-						break;
-
-					case DROP:
-						ManageFragment.this.status.setText(R.string.status_task_running);
-						ManageTasks.deleteDatabase(context, StorageSettings.getDatabasePath(context));
-						ManageFragment.this.status.setText(R.string.status_task_done);
-						break;
-
-					case COPY:
-						if (Permissions.check(getActivity()))
-						{
-							FileAsyncTask.copyFromFile(context, StorageSettings.getDatabasePath(context));
-						}
-						break;
-
-					case UNZIP:
-						if (Permissions.check(getActivity()))
-						{
-							FileAsyncTask.unzipFromArchive(context, StorageSettings.getDatabasePath(context));
-						}
-						break;
-
-					case MD5:
-						if (Permissions.check(getActivity()))
-						{
-							FileTask.md5(context);
-						}
-						break;
-
-					case SETUPSQL:
-						final Intent intent = new Intent(context, SetupSqlActivity.class);
-						context.startActivity(intent);
-						break;
-				}
+				final CharSequence sql = sqls[(int) id];
+				final String[] sqlStatements = sql.toString().split(";");
+				new ExecAsyncTask(new TaskObserver.ToastWithStatusListener(getActivity(), ManageFragment.this.status), 1).executeFromSql(databasePath, sqlStatements);
 			}
 		});
 
@@ -122,7 +93,7 @@ public class ManageFragment extends BaseManageFragment
 	protected SpinnerAdapter makeAdapter()
 	{
 		// create an ArrayAdapter using the string array and a default spinner layout
-		final ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getActivity(), R.array.database_titles, R.layout.spinner_item_simple);
+		final ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getActivity(), R.array.manage_titles, R.layout.spinner_item_simple);
 
 		// specify the layout to use when the list of choices appears
 		adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -146,12 +117,25 @@ public class ManageFragment extends BaseManageFragment
 		// handle item selection
 		switch (item.getItemId())
 		{
-			case R.id.action_setup_sql:
-				intent = new Intent(context, SetupSqlActivity.class);
+			case R.id.action_tables_and_indices:
+				intent = ManagerContract.makeTablesAndIndexesIntent(context);
+				intent.putExtra(ProviderArgs.ARG_QUERYLAYOUT, R.layout.item_dbobject);
 				break;
 
-			case R.id.action_manage_update:
-				intent = new Intent(context, ManageUpdateActivity.class);
+			case R.id.action_drop_tables:
+				SetupTasks.dropAll(context, StorageSettings.getDatabasePath(context), ManagerProvider.getTables(context));
+				break;
+
+			case R.id.action_flush_tables:
+				SetupTasks.flushAll(context, StorageSettings.getDatabasePath(context), ManagerProvider.getTables(context));
+				break;
+
+			case R.id.action_vacuum:
+				new ExecAsyncTask(new TaskObserver.ToastListener(getActivity()), 1).vacuum(StorageSettings.getDatabasePath(context), StorageSettings.getDataDir(context));
+				break;
+
+			case R.id.action_setup:
+				intent = new Intent(context, SetupActivity.class);
 				break;
 
 			default:
@@ -164,5 +148,4 @@ public class ManageFragment extends BaseManageFragment
 		}
 		return true;
 	}
-
 }

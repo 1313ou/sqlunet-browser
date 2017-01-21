@@ -17,7 +17,7 @@ import org.sqlunet.browser.R;
  */
 public class ManageActivity extends Activity
 {
-	// static private final String TAG = "ManageActivity";
+	// static private final String TAG = "SetupActivity";
 
 	@Override
 	protected void onCreate(final Bundle savedInstanceState)
@@ -40,6 +40,8 @@ public class ManageActivity extends Activity
 				.replace(R.id.container_manage, fragment) //
 				.commit();
 	}
+
+	// M E N U
 
 	@Override
 	public boolean onCreateOptionsMenu(final Menu menu)

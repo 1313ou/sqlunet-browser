@@ -301,8 +301,8 @@
 		</activity>
 
 		<activity
-			android:name=".config.ManageActivity"
-			android:label="@string/title_activity_manage"
+			android:name=".config.SetupActivity"
+			android:label="@string/title_activity_setup"
 			android:parentActivityName=".MainActivity"
 			tools:ignore="UnusedAttribute">
 			<meta-data
@@ -311,8 +311,8 @@
 		</activity>
 
 		<activity
-			android:name=".config.ManageUpdateActivity"
-			android:label="@string/title_activity_manage_update"
+			android:name=".config.ManageActivity"
+			android:label="@string/title_activity_manage"
 			android:parentActivityName=".MainActivity"
 			tools:ignore="UnusedAttribute">
 			<meta-data

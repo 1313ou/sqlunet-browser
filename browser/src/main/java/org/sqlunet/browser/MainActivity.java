@@ -14,9 +14,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
+import org.sqlunet.browser.config.SetupActivity;
+import org.sqlunet.browser.config.SetupFragment;
 import org.sqlunet.browser.config.ManageActivity;
-import org.sqlunet.browser.config.ManageFragment;
-import org.sqlunet.browser.config.ManageUpdateActivity;
 import org.sqlunet.browser.config.SettingsActivity;
 import org.sqlunet.browser.config.SetupSqlActivity;
 import org.sqlunet.browser.config.Status;
@@ -179,8 +179,8 @@ public class MainActivity extends Activity implements NavigationDrawerFragment.N
 				break;
 			case 5:
 				this.title = getString(R.string.title_manage_section);
-				//intent = new Intent(this, ManageActivity.class);
-				this.fragment = new ManageFragment();
+				//intent = new Intent(this, SetupActivity.class);
+				this.fragment = new SetupFragment();
 				break;
 			case 6:
 				this.title = getString(R.string.title_storage_section);
@@ -266,12 +266,12 @@ public class MainActivity extends Activity implements NavigationDrawerFragment.N
 				intent = new Intent(activity, StatusActivity.class);
 				break;
 
-			case R.id.action_manage:
-				intent = new Intent(activity, ManageActivity.class);
+			case R.id.action_setup:
+				intent = new Intent(activity, SetupActivity.class);
 				break;
 
-			case R.id.action_manage_update:
-				intent = new Intent(activity, ManageUpdateActivity.class);
+			case R.id.action_manage:
+				intent = new Intent(activity, ManageActivity.class);
 				break;
 
 			case R.id.action_setup_sql:
