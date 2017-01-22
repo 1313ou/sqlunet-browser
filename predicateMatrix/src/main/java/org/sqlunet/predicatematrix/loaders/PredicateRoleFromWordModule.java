@@ -1,6 +1,6 @@
 package org.sqlunet.predicatematrix.loaders;
 
-import android.app.Fragment;
+import android.support.v4.app.Fragment;
 import android.os.Parcelable;
 
 import org.sqlunet.Word;

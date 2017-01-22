@@ -3,7 +3,7 @@ package org.sqlunet.browser;
 import android.annotation.SuppressLint;
 import android.app.ActionBar;
 import android.app.Activity;
-import android.app.Fragment;
+import android.support.v4.app.Fragment;
 import android.app.SearchManager;
 import android.app.SearchableInfo;
 import android.content.ComponentName;

@@ -1,9 +1,9 @@
 package org.sqlunet.browser;
 
-import android.app.Fragment;
-import android.app.LoaderManager;
 import android.content.Context;
 import android.os.Parcelable;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.LoaderManager;
 
 import org.sqlunet.treeview.model.TreeNode;
 

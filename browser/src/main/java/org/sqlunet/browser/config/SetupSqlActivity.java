@@ -1,37 +1,21 @@
 package org.sqlunet.browser.config;
 
 import android.app.ActionBar;
-import android.app.Activity;
-import android.app.AlertDialog;
-import android.app.Fragment;
-import android.content.DialogInterface;
-import android.content.Intent;
-import android.os.AsyncTask;
 import android.os.Bundle;
-import android.text.SpannableStringBuilder;
-import android.util.Log;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.ImageButton;
-import android.widget.ImageView;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import org.sqlunet.browser.MainActivity;
 import org.sqlunet.browser.R;
-import org.sqlunet.settings.StorageSettings;
-import org.sqlunet.settings.StorageUtils;
-import org.sqlunet.style.Report;
-
-import java.io.File;
 
 /**
  * Set up with SQL activity
  *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
-public class SetupSqlActivity extends Activity
+public class SetupSqlActivity extends FragmentActivity
 {
 	static private final String TAG = "SetupSqlActivity";
 
@@ -51,7 +35,7 @@ public class SetupSqlActivity extends Activity
 		// fragment
 		final Fragment fragment = new SetupSqlFragment();
 		fragment.setArguments(getIntent().getExtras());
-		getFragmentManager() //
+		getSupportFragmentManager() //
 				.beginTransaction() //
 				.replace(R.id.container_setup, fragment) //
 				.commit();

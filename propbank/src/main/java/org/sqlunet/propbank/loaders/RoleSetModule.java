@@ -1,6 +1,6 @@
 package org.sqlunet.propbank.loaders;
 
-import android.app.Fragment;
+import android.support.v4.app.Fragment;
 import android.os.Parcelable;
 
 import org.sqlunet.HasXId;

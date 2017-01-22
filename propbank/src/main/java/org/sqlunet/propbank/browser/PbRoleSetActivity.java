@@ -1,8 +1,8 @@
 package org.sqlunet.propbank.browser;
 
 import android.app.ActionBar;
-import android.app.Activity;
 import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
 
 import org.sqlunet.propbank.R;
 
@@ -11,7 +11,7 @@ import org.sqlunet.propbank.R;
  *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
-public class PbRoleSetActivity extends Activity
+public class PbRoleSetActivity extends FragmentActivity
 {
 	@Override
 	protected void onCreate(final Bundle savedInstanceState)
@@ -36,7 +36,7 @@ public class PbRoleSetActivity extends Activity
 			final Bundle args = getIntent().getExtras();
 			final PbRoleSetFragment fragment = new PbRoleSetFragment();
 			fragment.setArguments(args);
-			getFragmentManager() //
+			getSupportFragmentManager() //
 					.beginTransaction() //
 					.replace(R.id.container_pbroleset, fragment) //
 					.commit();

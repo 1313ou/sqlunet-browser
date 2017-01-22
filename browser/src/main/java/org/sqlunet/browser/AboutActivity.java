@@ -1,8 +1,8 @@
 package org.sqlunet.browser;
 
 import android.app.ActionBar;
-import android.app.Activity;
 import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -11,7 +11,7 @@ import android.view.MenuItem;
  *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
-public class AboutActivity extends Activity
+public class AboutActivity extends FragmentActivity
 {
 	@Override
 	protected void onCreate(final Bundle savedInstanceState)

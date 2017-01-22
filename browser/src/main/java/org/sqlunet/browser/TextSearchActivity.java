@@ -1,16 +1,16 @@
 package org.sqlunet.browser;
 
-import android.app.Activity;
 import android.app.SearchManager;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
 
 /**
  * Text search activity
  *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
-public class TextSearchActivity extends Activity
+public class TextSearchActivity extends FragmentActivity
 {
 	/**
 	 * Fragment
@@ -28,7 +28,7 @@ public class TextSearchActivity extends Activity
 		// fragment
 		if (savedInstanceState == null)
 		{
-			this.fragment = (TextSearchFragment) getFragmentManager().findFragmentById(R.id.fragment_textsearch);
+			this.fragment = (TextSearchFragment) getSupportFragmentManager().findFragmentById(R.id.fragment_textsearch);
 		}
 	}
 

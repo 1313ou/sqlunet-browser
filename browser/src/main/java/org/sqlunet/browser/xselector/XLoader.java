@@ -1,14 +1,14 @@
 package org.sqlunet.browser.xselector;
 
-import android.app.Activity;
-import android.app.LoaderManager.LoaderCallbacks;
 import android.content.Context;
-import android.content.CursorLoader;
-import android.content.Loader;
-import android.content.Loader.OnLoadCompleteListener;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.LoaderManager.LoaderCallbacks;
+import android.support.v4.content.CursorLoader;
+import android.support.v4.content.Loader;
+import android.support.v4.content.Loader.OnLoadCompleteListener;
 import android.util.Log;
 import android.util.SparseArray;
 
@@ -178,13 +178,13 @@ class XLoader
 	 */
 	abstract static class FullLoaderCallbacks implements LoaderCallbacks<Cursor>
 	{
-		final Activity activity;
+		final FragmentActivity activity;
 		final long wordId;
 		final Loader<Cursor> loader;
 		final SparseArray<Cursor> cursors;
 
 		@SuppressWarnings("unused")
-		public FullLoaderCallbacks(Activity activity, long wordId, final Loader<Cursor> loader)
+		public FullLoaderCallbacks(final FragmentActivity activity, final long wordId, final Loader<Cursor> loader)
 		{
 			this.activity = activity;
 			this.wordId = wordId;
@@ -215,7 +215,7 @@ class XLoader
 		@Override
 		public Loader<Cursor> onCreateLoader(int id, Bundle args)
 		{
-			final Loader<Cursor> vnloader = this.activity.getLoaderManager().restartLoader(++Module.loaderId, null, new VnLoaderCallbacks(this.activity, this.wordId)
+			final Loader<Cursor> vnloader = this.activity.getSupportLoaderManager().restartLoader(++Module.loaderId, null, new VnLoaderCallbacks(this.activity, this.wordId)
 			{
 				@Override
 				public void onLoadFinished(Loader<Cursor> loader, Cursor data)
@@ -231,7 +231,7 @@ class XLoader
 			});
 			vnloader.registerListener(1, this.listener);
 
-			final Loader<Cursor> pbloader = this.activity.getLoaderManager().restartLoader(++Module.loaderId, null, new PbLoaderCallbacks(this.activity, this.wordId)
+			final Loader<Cursor> pbloader = this.activity.getSupportLoaderManager().restartLoader(++Module.loaderId, null, new PbLoaderCallbacks(this.activity, this.wordId)
 			{
 				@Override
 				public void onLoadFinished(Loader<Cursor> loader, Cursor data)
@@ -247,7 +247,7 @@ class XLoader
 			});
 			pbloader.registerListener(2, this.listener);
 
-			final Loader<Cursor> fnloader = this.activity.getLoaderManager().restartLoader(++Module.loaderId, null, new FnLoaderCallbacks(this.activity, this.wordId)
+			final Loader<Cursor> fnloader = this.activity.getSupportLoaderManager().restartLoader(++Module.loaderId, null, new FnLoaderCallbacks(this.activity, this.wordId)
 			{
 				@Override
 				public void onLoadFinished(Loader<Cursor> loader, Cursor data)

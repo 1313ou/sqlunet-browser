@@ -1,10 +1,10 @@
 package org.sqlunet.browser;
 
-import android.app.Activity;
 import android.app.SearchManager;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Parcelable;
+import android.support.v4.app.FragmentActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -16,7 +16,7 @@ import org.sqlunet.provider.ProviderArgs;
  *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
-public class PredicateMatrixActivity extends Activity
+public class PredicateMatrixActivity extends FragmentActivity
 {
 	/**
 	 * Fragment
@@ -32,7 +32,7 @@ public class PredicateMatrixActivity extends Activity
 		setContentView(R.layout.activity_predicatematrix);
 
 		// fragment
-		this.fragment = (PredicateMatrixFragment) getFragmentManager().findFragmentById(R.id.fragment_predicatematrix);
+		this.fragment = (PredicateMatrixFragment) getSupportFragmentManager().findFragmentById(R.id.fragment_predicatematrix);
 	}
 
 	@Override

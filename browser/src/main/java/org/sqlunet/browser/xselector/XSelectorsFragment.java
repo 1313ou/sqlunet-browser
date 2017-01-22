@@ -1,14 +1,14 @@
 package org.sqlunet.browser.xselector;
 
 import android.android.support.local.app.ExpandableListFragment;
-import android.app.Activity;
-import android.app.LoaderManager.LoaderCallbacks;
-import android.content.CursorLoader;
-import android.content.Loader;
 import android.database.Cursor;
 import android.database.MatrixCursor;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.LoaderManager.LoaderCallbacks;
+import android.support.v4.content.CursorLoader;
+import android.support.v4.content.Loader;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -290,7 +290,7 @@ public class XSelectorsFragment extends ExpandableListFragment
 			@Override
 			protected Cursor getChildrenCursor(Cursor groupCursor)
 			{
-				Activity activity = getActivity();
+				FragmentActivity activity = getActivity();
 				if (activity == null)
 				{
 					return null;
@@ -319,14 +319,14 @@ public class XSelectorsFragment extends ExpandableListFragment
 						break;
 				}
 
-				Loader<Cursor> loader1 = activity.getLoaderManager().getLoader(loaderId);
+				Loader<Cursor> loader1 = activity.getSupportLoaderManager().getLoader(loaderId);
 				if (loader1 != null && !loader1.isReset())
 				{
-					activity.getLoaderManager().restartLoader(loaderId, null, callbacks);
+					activity.getSupportLoaderManager().restartLoader(loaderId, null, callbacks);
 				}
 				else
 				{
-					activity.getLoaderManager().initLoader(loaderId, null, callbacks);
+					activity.getSupportLoaderManager().initLoader(loaderId, null, callbacks);
 				}
 
 				return null;

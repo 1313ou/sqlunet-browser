@@ -1,9 +1,9 @@
 package org.sqlunet.browser;
 
-import android.app.Activity;
 import android.app.SearchManager;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -13,7 +13,7 @@ import android.view.MenuItem;
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
 @SuppressWarnings("ElementOnlyUsedFromTestCode")
-public class BrowseActivity extends Activity
+public class BrowseActivity extends FragmentActivity
 {
 	/**
 	 * Fragment
@@ -29,7 +29,7 @@ public class BrowseActivity extends Activity
 		setContentView(R.layout.activity_browse);
 
 		// fragment
-		this.fragment = (BrowseFragment) getFragmentManager().findFragmentById(R.id.fragment_browse);
+		this.fragment = (BrowseFragment) getSupportFragmentManager().findFragmentById(R.id.fragment_browse);
 	}
 
 	@Override

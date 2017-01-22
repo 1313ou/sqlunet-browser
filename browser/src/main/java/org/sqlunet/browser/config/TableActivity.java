@@ -2,8 +2,9 @@ package org.sqlunet.browser.config;
 
 import android.app.ActionBar;
 import android.app.Activity;
-import android.app.Fragment;
+import android.support.v4.app.Fragment;
 import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
 
 import org.sqlunet.browser.R;
 
@@ -12,7 +13,7 @@ import org.sqlunet.browser.R;
  *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
-public class TableActivity extends Activity
+public class TableActivity extends FragmentActivity
 {
 	@Override
 	protected void onCreate(final Bundle savedInstanceState)
@@ -30,7 +31,7 @@ public class TableActivity extends Activity
 		// fragment
 		final Fragment fragment = new TableFragment();
 		fragment.setArguments(getIntent().getExtras());
-		getFragmentManager() //
+		getSupportFragmentManager() //
 				.beginTransaction() //
 				.replace(R.id.container_table, fragment) //
 				.commit();

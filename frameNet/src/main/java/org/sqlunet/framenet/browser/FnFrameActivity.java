@@ -1,8 +1,8 @@
 package org.sqlunet.framenet.browser;
 
 import android.app.ActionBar;
-import android.app.Activity;
 import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
 
 import org.sqlunet.framenet.R;
 
@@ -11,7 +11,7 @@ import org.sqlunet.framenet.R;
  *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
-public class FnFrameActivity extends Activity
+public class FnFrameActivity extends FragmentActivity
 {
 	@Override
 	protected void onCreate(final Bundle savedInstanceState)
@@ -35,9 +35,9 @@ public class FnFrameActivity extends Activity
 			// create the sense fragment, transmit intent's extras as parameters and addItem it to the activity using a fragment transaction
 			final FnFrameFragment fragment = new FnFrameFragment();
 			fragment.setArguments(getIntent().getExtras());
-			getFragmentManager()
-					.beginTransaction()
-					.replace(R.id.container_frame, fragment)
+			getSupportFragmentManager() //
+					.beginTransaction() //
+					.replace(R.id.container_frame, fragment) //
 					.commit();
 		}
 	}

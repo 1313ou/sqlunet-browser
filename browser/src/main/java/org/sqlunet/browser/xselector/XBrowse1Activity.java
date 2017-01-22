@@ -1,9 +1,9 @@
 package org.sqlunet.browser.xselector;
 
 import android.app.ActionBar;
-import android.app.Activity;
-import android.app.Fragment;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
 
 import org.sqlunet.browser.R;
 
@@ -12,7 +12,7 @@ import org.sqlunet.browser.R;
  *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
-public class XBrowse1Activity extends Activity
+public class XBrowse1Activity extends FragmentActivity
 {
 	@Override
 	protected void onCreate(final Bundle savedInstanceState)
@@ -35,7 +35,7 @@ public class XBrowse1Activity extends Activity
 		{
 			final Fragment fragment = new XBrowse1Fragment();
 			fragment.setArguments(getIntent().getExtras());
-			getFragmentManager() //
+			getSupportFragmentManager() //
 					.beginTransaction() //
 					.replace(R.id.container_browse, fragment) //
 					.commit();

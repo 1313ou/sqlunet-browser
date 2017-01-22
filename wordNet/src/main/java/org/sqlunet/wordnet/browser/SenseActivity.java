@@ -36,7 +36,7 @@ public class SenseActivity extends SynsetActivity
 			final SenseFragment fragment = new SenseFragment();
 			fragment.setArguments(args);
 			fragment.setExpand(true);
-			getFragmentManager() //
+			getSupportFragmentManager() //
 					.beginTransaction() //
 					.replace(R.id.container_synset, fragment) //
 					.commit();

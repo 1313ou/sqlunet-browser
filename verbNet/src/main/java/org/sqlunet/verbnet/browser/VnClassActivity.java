@@ -1,8 +1,8 @@
 package org.sqlunet.verbnet.browser;
 
 import android.app.ActionBar;
-import android.app.Activity;
 import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
 
 import org.sqlunet.verbnet.R;
 
@@ -11,7 +11,7 @@ import org.sqlunet.verbnet.R;
  *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
-public class VnClassActivity extends Activity
+public class VnClassActivity extends FragmentActivity
 {
 	@Override
 	protected void onCreate(final Bundle savedInstanceState)
@@ -36,7 +36,7 @@ public class VnClassActivity extends Activity
 			final Bundle args = getIntent().getExtras();
 			final VnClassFragment fragment = new VnClassFragment();
 			fragment.setArguments(args);
-			getFragmentManager() //
+			getSupportFragmentManager() //
 					.beginTransaction() //
 					.replace(R.id.container_vnclass, fragment) //
 					.commit();

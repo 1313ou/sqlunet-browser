@@ -1,8 +1,8 @@
 package org.sqlunet.wordnet.browser;
 
 import android.app.ActionBar;
-import android.app.Activity;
 import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
 
 import org.sqlunet.wordnet.R;
 
@@ -11,7 +11,7 @@ import org.sqlunet.wordnet.R;
  *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
-public class SynsetActivity extends Activity
+public class SynsetActivity extends FragmentActivity
 {
 	@Override
 	protected void onCreate(final Bundle savedInstanceState)
@@ -37,7 +37,7 @@ public class SynsetActivity extends Activity
 			final SynsetFragment fragment = new SynsetFragment();
 			fragment.setArguments(args);
 			fragment.setExpand(true);
-			getFragmentManager() //
+			getSupportFragmentManager() //
 					.beginTransaction() //
 					.replace(R.id.container_synset, fragment) //
 					.commit();

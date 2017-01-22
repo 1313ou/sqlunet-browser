@@ -2,10 +2,11 @@ package org.sqlunet.browser;
 
 import android.app.ActionBar;
 import android.app.Activity;
-import android.app.Fragment;
 import android.app.SearchManager;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
 import android.support.v4.widget.DrawerLayout;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -14,10 +15,10 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
-import org.sqlunet.browser.config.SetupActivity;
-import org.sqlunet.browser.config.SetupFragment;
 import org.sqlunet.browser.config.ManageActivity;
 import org.sqlunet.browser.config.SettingsActivity;
+import org.sqlunet.browser.config.SetupActivity;
+import org.sqlunet.browser.config.SetupFragment;
 import org.sqlunet.browser.config.SetupSqlActivity;
 import org.sqlunet.browser.config.Status;
 import org.sqlunet.browser.config.StorageActivity;
@@ -25,7 +26,7 @@ import org.sqlunet.browser.config.StorageFragment;
 import org.sqlunet.settings.Settings;
 import org.sqlunet.settings.StorageSettings;
 
-public class MainActivity extends Activity implements NavigationDrawerFragment.NavigationDrawerCallbacks
+public class MainActivity extends FragmentActivity implements NavigationDrawerFragment.NavigationDrawerCallbacks
 {
 	static private final String TAG = "MainActivity";
 
@@ -54,7 +55,7 @@ public class MainActivity extends Activity implements NavigationDrawerFragment.N
 		setContentView(R.layout.activity_main);
 
 		// get fragment
-		final NavigationDrawerFragment navigationDrawerFragment = (NavigationDrawerFragment) getFragmentManager().findFragmentById(R.id.navigation_drawer);
+		final NavigationDrawerFragment navigationDrawerFragment = (NavigationDrawerFragment) getSupportFragmentManager().findFragmentById(R.id.navigation_drawer);
 
 		// get title for use in restoreActionBar
 		this.title = getTitle();
@@ -119,12 +120,12 @@ public class MainActivity extends Activity implements NavigationDrawerFragment.N
 	{
 		if (position == 8)
 		{
-			SqlDialogFragment.show(this);
+			SqlDialogFragment.show(getSupportFragmentManager());
 			return;
 		}
 
 		// update the browse content by replacing fragments
-		getFragmentManager() //
+		getSupportFragmentManager() //
 				.beginTransaction() //
 				.replace(R.id.container_content, PlaceholderFragment.newInstance(position)) //
 				.commit();
@@ -208,7 +209,7 @@ public class MainActivity extends Activity implements NavigationDrawerFragment.N
 		}
 		if (this.fragment != null)
 		{
-			getFragmentManager() //
+			getSupportFragmentManager() //
 					.beginTransaction() //
 					.replace(R.id.container_content, this.fragment) //
 					.commit();

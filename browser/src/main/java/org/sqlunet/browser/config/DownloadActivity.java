@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
 
 import org.sqlunet.browser.R;
 import org.sqlunet.settings.Settings;
@@ -13,7 +14,7 @@ import org.sqlunet.settings.Settings;
  *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
-public class DownloadActivity extends Activity implements DownloadFragment.DownloadListener
+public class DownloadActivity extends FragmentActivity implements DownloadFragment.DownloadListener
 {
 	// static private final String TAG = "DownloadActivity";
 
@@ -74,7 +75,7 @@ public class DownloadActivity extends Activity implements DownloadFragment.Downl
 		downloadFragment.setArguments(getIntent().getExtras());
 		downloadFragment.setListener(this);
 
-		getFragmentManager() //
+		getSupportFragmentManager() //
 				.beginTransaction() //
 				.replace(R.id.container_download, downloadFragment) //
 				.commit();

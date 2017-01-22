@@ -1,9 +1,9 @@
 package org.sqlunet.browser.config;
 
 import android.app.ActionBar;
-import android.app.Activity;
-import android.app.Fragment;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -15,7 +15,7 @@ import org.sqlunet.browser.R;
  *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
-public class ManageActivity extends Activity
+public class ManageActivity extends FragmentActivity
 {
 	// static private final String TAG = "SetupActivity";
 
@@ -35,7 +35,7 @@ public class ManageActivity extends Activity
 		// fragment
 		final Fragment fragment = new ManageFragment();
 		fragment.setArguments(getIntent().getExtras());
-		getFragmentManager() //
+		getSupportFragmentManager() //
 				.beginTransaction() //
 				.replace(R.id.container_manage, fragment) //
 				.commit();

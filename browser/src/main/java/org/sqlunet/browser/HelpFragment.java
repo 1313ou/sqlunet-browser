@@ -1,7 +1,7 @@
 package org.sqlunet.browser;
 
 import android.annotation.TargetApi;
-import android.app.Fragment;
+import android.support.v4.app.Fragment;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;

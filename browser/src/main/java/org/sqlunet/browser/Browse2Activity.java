@@ -1,9 +1,9 @@
 package org.sqlunet.browser;
 
 import android.app.ActionBar;
-import android.app.Activity;
 import android.os.Bundle;
 import android.os.Parcelable;
+import android.support.v4.app.FragmentActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -14,7 +14,7 @@ import org.sqlunet.provider.ProviderArgs;
  *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
-public class Browse2Activity extends Activity
+public class Browse2Activity extends FragmentActivity
 {
 	@Override
 	protected void onCreate(final Bundle savedInstanceState)
@@ -38,7 +38,7 @@ public class Browse2Activity extends Activity
 		final Bundle args = getIntent().getExtras();
 		//final int type = args.getInt(ProviderArgs.ARG_QUERYTYPE);
 		final Parcelable pointer = args.getParcelable(ProviderArgs.ARG_QUERYPOINTER);
-		final Browse2Fragment fragment = (Browse2Fragment) getFragmentManager().findFragmentById(R.id.fragment_detail);
+		final Browse2Fragment fragment = (Browse2Fragment) getSupportFragmentManager().findFragmentById(R.id.fragment_detail);
 		fragment.search(pointer);
 	}
 
