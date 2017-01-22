@@ -15,11 +15,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
-import org.sqlunet.browser.config.ManageActivity;
 import org.sqlunet.browser.config.SettingsActivity;
 import org.sqlunet.browser.config.SetupActivity;
-import org.sqlunet.browser.config.SetupFragment;
-import org.sqlunet.browser.config.SetupSqlActivity;
 import org.sqlunet.browser.config.Status;
 import org.sqlunet.browser.config.StorageActivity;
 import org.sqlunet.browser.config.StorageFragment;
@@ -180,8 +177,7 @@ public class MainActivity extends FragmentActivity implements NavigationDrawerFr
 				break;
 			case 5:
 				this.title = getString(R.string.title_manage_section);
-				//intent = new Intent(this, SetupActivity.class);
-				this.fragment = new SetupFragment();
+				intent = new Intent(this, SetupActivity.class);
 				break;
 			case 6:
 				this.title = getString(R.string.title_storage_section);
@@ -269,14 +265,6 @@ public class MainActivity extends FragmentActivity implements NavigationDrawerFr
 
 			case R.id.action_setup:
 				intent = new Intent(activity, SetupActivity.class);
-				break;
-
-			case R.id.action_manage:
-				intent = new Intent(activity, ManageActivity.class);
-				break;
-
-			case R.id.action_setup_sql:
-				intent = new Intent(activity, SetupSqlActivity.class);
 				break;
 
 			// guide

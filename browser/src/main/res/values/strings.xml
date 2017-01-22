@@ -3,6 +3,12 @@
 
 	<string name="app_name">SqlUNet Browser</string>
 
+	<!-- SETUP PAGES -->
+	<string name="page_setup">Set up</string>
+	<string name="page_setup_file">File</string>
+	<string name="page_setup_manage">Database</string>
+	<string name="page_setup_sql">SQL</string>
+
 	<!-- ACTIONS -->
 
 	<!-- status -->
@@ -223,7 +229,6 @@
 		<item>@string/title_setup_copy</item>
 		<item>@string/title_setup_unzip</item>
 		<item>@string/title_setup_download</item>
-		<item>@string/title_setup_sql</item>
 		<item>@string/title_setup_md5</item>
 	</string-array>
 	<string-array name="setup_values" formatted="false">
@@ -233,7 +238,6 @@
 		<item>COPY</item>
 		<item>UNZIP</item>
 		<item>DOWNLOAD</item>
-		<item>SETUPSQL</item>
 		<item>MD5</item>
 	</string-array>
 	<string name="title_activity_setup0">Setups</string>

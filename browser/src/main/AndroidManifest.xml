@@ -16,8 +16,6 @@
 	<uses-permission android:name="android.permission.INTERNET"/>
 	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
 
-	<android:uses-permission android:name="android.permission.READ_PHONE_STATE"/>
-
 	<application
 		android:allowBackup="true"
 		android:fullBackupContent="@xml/backup"
@@ -31,15 +29,17 @@
 			android:launchMode="singleTop">
 			<intent-filter>
 				<action android:name="android.intent.action.MAIN"/>
-
 				<category android:name="android.intent.category.LAUNCHER"/>
-
 				<action android:name="android.intent.action.SEARCH"/>
 			</intent-filter>
-
 			<meta-data
 				android:name="android.app.searchable"
 				android:resource="@xml/searchable"/>
+		</activity>
+		<activity
+			android:name=".config.SetupActivity"
+			android:theme="@style/Theme.AppCompat.Light.DarkActionBar"
+			android:label="@string/title_activity_setup0">
 		</activity>
 		<activity
 			android:name=".BrowseActivity"
@@ -50,7 +50,6 @@
 			<intent-filter>
 				<action android:name="android.intent.action.SEARCH"/>
 			</intent-filter>
-
 			<meta-data
 				android:name="android.support.PARENT_ACTIVITY"
 				android:value=".MainActivity"/>
@@ -81,7 +80,6 @@
 			<intent-filter>
 				<action android:name="android.intent.action.SEARCH"/>
 			</intent-filter>
-
 			<meta-data
 				android:name="android.support.PARENT_ACTIVITY"
 				android:value=".MainActivity"/>
@@ -95,7 +93,6 @@
 			<intent-filter>
 				<action android:name="android.intent.action.SEARCH"/>
 			</intent-filter>
-
 			<meta-data
 				android:name="android.support.PARENT_ACTIVITY"
 				android:value=".MainActivity"/>
@@ -112,7 +109,6 @@
 			<intent-filter>
 				<action android:name="android.intent.action.SEARCH"/>
 			</intent-filter>
-
 			<meta-data
 				android:name="android.support.PARENT_ACTIVITY"
 				android:value=".MainActivity"/>
@@ -283,7 +279,7 @@
 				android:value="org.sqlunet.browser.MainActivity"/>
 		</activity>
 		<activity
-			android:name=".config.SetupActivity"
+			android:name=".config.SetupFileActivity"
 			android:label="@string/title_activity_setup"
 			android:parentActivityName=".MainActivity"
 			tools:ignore="UnusedAttribute">
@@ -292,7 +288,7 @@
 				android:value="org.sqlunet.browser.MainActivity"/>
 		</activity>
 		<activity
-			android:name=".config.ManageActivity"
+			android:name=".config.SetupDatabaseActivity"
 			android:label="@string/title_activity_manage"
 			android:parentActivityName=".MainActivity"
 			tools:ignore="UnusedAttribute">

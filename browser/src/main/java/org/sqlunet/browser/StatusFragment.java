@@ -12,8 +12,8 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 
 import org.sqlunet.browser.config.DownloadActivity;
-import org.sqlunet.browser.config.ManageActivity;
-import org.sqlunet.browser.config.ManageFragment;
+import org.sqlunet.browser.config.SetupDatabaseActivity;
+import org.sqlunet.browser.config.SetupDatabaseFragment;
 import org.sqlunet.browser.config.Status;
 import org.sqlunet.settings.StorageSettings;
 
@@ -87,8 +87,8 @@ public class StatusFragment extends Fragment
 			@Override
 			public void onClick(View v)
 			{
-				final Intent intent = new Intent(activity, ManageActivity.class);
-				intent.putExtra(ManageFragment.ARG, Status.DO_INDEXES);
+				final Intent intent = new Intent(activity, SetupDatabaseActivity.class);
+				intent.putExtra(SetupDatabaseFragment.ARG, Status.DO_INDEXES);
 				startActivityForResult(intent, StatusFragment.REQUEST_MANAGE_CODE + Status.DO_INDEXES);
 			}
 		});
@@ -98,8 +98,8 @@ public class StatusFragment extends Fragment
 			@Override
 			public void onClick(View v)
 			{
-				final Intent intent = new Intent(activity, ManageActivity.class);
-				intent.putExtra(ManageFragment.ARG, Status.DO_PM);
+				final Intent intent = new Intent(activity, SetupDatabaseActivity.class);
+				intent.putExtra(SetupDatabaseFragment.ARG, Status.DO_PM);
 				startActivityForResult(intent, StatusFragment.REQUEST_MANAGE_CODE + Status.DO_PM);
 			}
 		});
@@ -109,8 +109,8 @@ public class StatusFragment extends Fragment
 			@Override
 			public void onClick(View v)
 			{
-				final Intent intent = new Intent(activity, ManageActivity.class);
-				intent.putExtra(ManageFragment.ARG, Status.DO_TS_WN);
+				final Intent intent = new Intent(activity, SetupDatabaseActivity.class);
+				intent.putExtra(SetupDatabaseFragment.ARG, Status.DO_TS_WN);
 				startActivityForResult(intent, StatusFragment.REQUEST_MANAGE_CODE + Status.DO_TS_WN);
 			}
 		});
@@ -120,8 +120,8 @@ public class StatusFragment extends Fragment
 			@Override
 			public void onClick(View v)
 			{
-				final Intent intent = new Intent(activity, ManageActivity.class);
-				intent.putExtra(ManageFragment.ARG, Status.DO_TS_VN);
+				final Intent intent = new Intent(activity, SetupDatabaseActivity.class);
+				intent.putExtra(SetupDatabaseFragment.ARG, Status.DO_TS_VN);
 				startActivityForResult(intent, StatusFragment.REQUEST_MANAGE_CODE + Status.DO_TS_WN);
 			}
 		});
@@ -131,8 +131,8 @@ public class StatusFragment extends Fragment
 			@Override
 			public void onClick(View v)
 			{
-				final Intent intent = new Intent(activity, ManageActivity.class);
-				intent.putExtra(ManageFragment.ARG, Status.DO_TS_PB);
+				final Intent intent = new Intent(activity, SetupDatabaseActivity.class);
+				intent.putExtra(SetupDatabaseFragment.ARG, Status.DO_TS_PB);
 				startActivityForResult(intent, StatusFragment.REQUEST_MANAGE_CODE + Status.DO_TS_PB);
 			}
 		});
@@ -142,8 +142,8 @@ public class StatusFragment extends Fragment
 			@Override
 			public void onClick(View v)
 			{
-				final Intent intent = new Intent(activity, ManageActivity.class);
-				intent.putExtra(ManageFragment.ARG, Status.DO_TS_FN);
+				final Intent intent = new Intent(activity, SetupDatabaseActivity.class);
+				intent.putExtra(SetupDatabaseFragment.ARG, Status.DO_TS_FN);
 				startActivityForResult(intent, StatusFragment.REQUEST_MANAGE_CODE + Status.DO_TS_FN);
 			}
 		});
