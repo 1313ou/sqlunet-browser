@@ -127,6 +127,7 @@
 	<string name="status_error_null_download_url">Null download URL (see Settings)</string>
 	<string name="status_provider_query_failed">Could not perform query, cause is logged</string>
 
+
 	<!-- misc -->
 	<string name="hint_search">Search</string>
 	<string name="hint_search_text">Text Search WordNet</string>
@@ -138,6 +139,7 @@
 	<string name="hint_unzip_from_archive">Select the zip archive to unzip from</string>
 	<string name="hint_copy_from_file">Select the database to copy from</string>
 	<string name="hint_md5">Select the file to md5-checksum</string>
+	<string name="hint_database">Info about Database</string>
 
 	<string name="title_dialog_sql">SQL</string>
 	<string name="title_download">SqlUNet download</string>
@@ -234,5 +236,7 @@
 		<item>SETUPSQL</item>
 		<item>MD5</item>
 	</string-array>
+	<string name="title_activity_setup0">Setups</string>
+	<string name="section_format">Hello World from section: %1$d</string>
 
 </resources>

@@ -14,4 +14,7 @@
 	<string name="pref_default_entry_index">sqlunet-index.sql</string>
 	<string name="pref_default_cache"></string>
 
+	<string name="action_info">Information</string>
+	<string name="action_dismiss">Dismiss</string>
+
 </resources>

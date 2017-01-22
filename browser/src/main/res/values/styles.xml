@@ -222,7 +222,35 @@
 		<item name="android:minHeight">?android:attr/listPreferredItemHeightSmall</item>
 	</style>
 
-	<style name="StatusButton">
+	<style name="GridLabel">
+		<item name="android:layout_width">wrap_content</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="android:layout_gravity">center_vertical|end</item>
+		<item name="android:layout_marginLeft">20dp</item>
+		<item name="android:maxLines">1</item>
+	</style>
+
+	<style name="GridData">
+		<item name="android:layout_width">wrap_content</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="android:orientation">horizontal</item>
+		<item name="android:paddingLeft">20dp</item>
+		<item name="android:paddingRight">20dp</item>Z
+	</style>
+
+	<style name="GridStatusImage">
+		<item name="android:layout_width">wrap_content</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="android:layout_gravity">center</item>
+		<item name="android:background">@color/light_yellow_color</item>
+		<item name="android:paddingBottom">12dp</item>
+		<item name="android:paddingTop">12dp</item>
+		<item name="android:paddingLeft">20dp</item>
+		<item name="android:paddingRight">20dp</item>
+		<item name="android:src">@drawable/ic_unknown</item>
+	</style>
+
+	<style name="GridActionButton1">
 		<item name="android:layout_width">wrap_content</item>
 		<item name="android:layout_height">wrap_content</item>
 		<item name="android:layout_gravity">center</item>
@@ -235,34 +263,7 @@
 		<item name="android:visibility">gone</item>
 	</style>
 
-	<style name="StatusImage">
-		<item name="android:layout_width">wrap_content</item>
-		<item name="android:layout_height">wrap_content</item>
-		<item name="android:layout_gravity">center</item>
-		<item name="android:background">@color/light_yellow_color</item>
-		<item name="android:paddingBottom">12dp</item>
-		<item name="android:paddingTop">12dp</item>
-		<item name="android:paddingLeft">20dp</item>
-		<item name="android:paddingRight">20dp</item>
-		<item name="android:src">@drawable/ic_unknown</item>
-	</style>
-
-	<style name="StatusText">
-		<item name="android:layout_width">wrap_content</item>
-		<item name="android:layout_height">wrap_content</item>
-		<item name="android:layout_gravity">center_vertical|end</item>
-		<item name="android:maxLines">1</item>
-	</style>
-
-	<style name="StatusRow">
-		<item name="android:layout_width">wrap_content</item>
-		<item name="android:layout_height">wrap_content</item>
-		<item name="android:orientation">horizontal</item>
-		<item name="android:paddingLeft">20dp</item>
-		<item name="android:paddingRight">20dp</item>Z
-	</style>
-
-	<style name="ActionButton">
+	<style name="GridActionButton">
 		<item name="android:layout_width">wrap_content</item>
 		<item name="android:layout_height">wrap_content</item>
 		<item name="android:layout_gravity">center</item>
@@ -275,7 +276,7 @@
 		<item name="android:visibility">visible</item>
 	</style>
 
-	<style name="InfoButton">
+	<style name="GridInfoButton">
 		<item name="android:layout_width">wrap_content</item>
 		<item name="android:layout_height">wrap_content</item>
 		<item name="android:layout_gravity">center</item>

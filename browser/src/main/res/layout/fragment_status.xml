@@ -1,66 +1,77 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
 
-	<LinearLayout
-		android:layout_width="match_parent"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical"
+              android:weightSum="1">
+
+	<ImageView
+		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
-		android:orientation="vertical">
+		android:layout_gravity="center_horizontal"
+		android:layout_marginBottom="12dp"
+		android:layout_marginTop="12dp"
+		android:contentDescription="@string/app_name"
+		android:src="@drawable/ic_launcher"/>
 
-		<ImageView
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:layout_gravity="center_horizontal"
-			android:layout_marginBottom="12dp"
-			android:layout_marginTop="12dp"
-			android:contentDescription="@string/app_name"
-			android:src="@drawable/ic_launcher"/>
+	<ScrollView
+		android:layout_width="match_parent"
+		android:layout_height="0dp"
+		android:orientation="vertical"
+		android:layout_weight=".9">
 
 		<GridLayout
-			android:layout_width="match_parent"
+			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
+			android:layout_gravity="center_horizontal|center_vertical"
 			android:columnCount="2"
 			android:orientation="horizontal">
 
 			<!-- database -->
 
 			<TextView
-				style="@style/StatusText"
+				style="@style/GridLabel"
 				android:text="@string/status_database"/>
 
-			<LinearLayout style="@style/StatusRow">
+			<LinearLayout style="@style/GridData">
 
 				<ImageView
 					android:id="@+id/status_database"
-					style="@style/StatusImage"
+					style="@style/GridStatusImage"
 					android:contentDescription="@string/status_database"/>
 
 				<ImageButton
 					android:id="@+id/databaseButton"
-					style="@style/StatusButton"
+					style="@style/GridActionButton1"
 					android:contentDescription="@string/status_database"
 					android:src="@drawable/bn_download"/>
+
+				<ImageButton
+					android:id="@+id/info_database"
+					style="@style/GridInfoButton"
+					android:contentDescription="@string/hint_database"
+					android:src="@drawable/bn_info"/>
 			</LinearLayout>
+
 
 			<!-- predicatematrix -->
 
 			<TextView
-				style="@style/StatusText"
+				style="@style/GridLabel"
 				android:text="@string/status_predicatematrix"
 				/>
 
-			<LinearLayout style="@style/StatusRow">
+			<LinearLayout style="@style/GridData">
 
 				<ImageView
 					android:id="@+id/status_predicatematrix"
-					style="@style/StatusImage"
+					style="@style/GridStatusImage"
 					android:contentDescription="@string/status_predicatematrix"/>
 
 				<ImageButton
 					android:id="@+id/predicatematrixButton"
-					style="@style/StatusButton"
+					style="@style/GridActionButton1"
 					android:contentDescription="@string/status_predicatematrix"
 					android:src="@drawable/bn_setup"/>
 			</LinearLayout>
@@ -68,20 +79,20 @@
 			<!-- indexes -->
 
 			<TextView
-				style="@style/StatusText"
+				style="@style/GridLabel"
 				android:text="@string/status_indexes"
 				/>
 
-			<LinearLayout style="@style/StatusRow">
+			<LinearLayout style="@style/GridData">
 
 				<ImageView
 					android:id="@+id/status_indexes"
-					style="@style/StatusImage"
+					style="@style/GridStatusImage"
 					android:contentDescription="@string/status_indexes"/>
 
 				<ImageButton
 					android:id="@+id/indexesButton"
-					style="@style/StatusButton"
+					style="@style/GridActionButton1"
 					android:contentDescription="@string/status_indexes"
 					android:src="@drawable/bn_setup"/>
 			</LinearLayout>
@@ -89,20 +100,20 @@
 			<!-- textsearch wordnet -->
 
 			<TextView
-				style="@style/StatusText"
+				style="@style/GridLabel"
 				android:text="@string/status_textsearch"
 				/>
 
-			<LinearLayout style="@style/StatusRow">
+			<LinearLayout style="@style/GridData">
 
 				<ImageView
 					android:id="@+id/status_textsearchWn"
-					style="@style/StatusImage"
+					style="@style/GridStatusImage"
 					android:contentDescription="@string/status_textsearch"/>
 
 				<ImageButton
 					android:id="@+id/textsearchWnButton"
-					style="@style/StatusButton"
+					style="@style/GridActionButton1"
 					android:contentDescription="@string/status_textsearch"
 					android:src="@drawable/bn_setup"/>
 			</LinearLayout>
@@ -110,19 +121,19 @@
 			<!-- textsearch verbnet -->
 
 			<TextView
-				style="@style/StatusText"
+				style="@style/GridLabel"
 				android:text="@string/status_textsearchVn"/>
 
-			<LinearLayout style="@style/StatusRow">
+			<LinearLayout style="@style/GridData">
 
 				<ImageView
 					android:id="@+id/status_textsearchVn"
-					style="@style/StatusImage"
+					style="@style/GridStatusImage"
 					android:contentDescription="@string/status_textsearchVn"/>
 
 				<ImageButton
 					android:id="@+id/textsearchVnButton"
-					style="@style/StatusButton"
+					style="@style/GridActionButton1"
 					android:contentDescription="@string/status_textsearchVn"
 					android:src="@drawable/bn_setup"/>
 			</LinearLayout>
@@ -130,19 +141,19 @@
 			<!-- textsearch propbank -->
 
 			<TextView
-				style="@style/StatusText"
+				style="@style/GridLabel"
 				android:text="@string/status_textsearchPb"/>
 
-			<LinearLayout style="@style/StatusRow">
+			<LinearLayout style="@style/GridData">
 
 				<ImageView
 					android:id="@+id/status_textsearchPb"
-					style="@style/StatusImage"
+					style="@style/GridStatusImage"
 					android:contentDescription="@string/status_textsearchPb"/>
 
 				<ImageButton
 					android:id="@+id/textsearchPbButton"
-					style="@style/StatusButton"
+					style="@style/GridActionButton1"
 					android:contentDescription="@string/status_textsearchPb"
 					android:src="@drawable/bn_setup"/>
 			</LinearLayout>
@@ -150,23 +161,23 @@
 			<!-- textsearch framenet -->
 
 			<TextView
-				style="@style/StatusText"
+				style="@style/GridLabel"
 				android:text="@string/status_textsearchFn"/>
 
-			<LinearLayout style="@style/StatusRow">
+			<LinearLayout style="@style/GridData">
 
 				<ImageView
 					android:id="@+id/status_textsearchFn"
-					style="@style/StatusImage"
+					style="@style/GridStatusImage"
 					android:contentDescription="@string/status_textsearchFn"/>
 
 				<ImageButton
 					android:id="@+id/textsearchFnButton"
-					style="@style/StatusButton"
+					style="@style/GridActionButton1"
 					android:contentDescription="@string/status_textsearchFn"
 					android:src="@drawable/bn_setup"/>
 			</LinearLayout>
 		</GridLayout>
-	</LinearLayout>
 
-</ScrollView>
+	</ScrollView>
+</LinearLayout>

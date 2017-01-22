@@ -1,5 +1,6 @@
 package org.sqlunet.browser;
 
+import android.app.Activity;
 import android.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
@@ -14,6 +15,7 @@ import org.sqlunet.browser.config.DownloadActivity;
 import org.sqlunet.browser.config.ManageActivity;
 import org.sqlunet.browser.config.ManageFragment;
 import org.sqlunet.browser.config.Status;
+import org.sqlunet.settings.StorageSettings;
 
 /**
  * Status fragment
@@ -53,9 +55,12 @@ public class StatusFragment extends Fragment
 
 		// view
 		final View view = getView();
-
-		// _status
 		assert view != null;
+
+		// activity
+		final Activity activity = getActivity();
+
+		// status
 		final ImageView db = (ImageView) view.findViewById(R.id.status_database);
 		final ImageButton buttonDb = (ImageButton) view.findViewById(R.id.databaseButton);
 		final ImageButton buttonIndexes = (ImageButton) view.findViewById(R.id.indexesButton);
@@ -64,6 +69,7 @@ public class StatusFragment extends Fragment
 		final ImageButton buttonTextSearchVn = (ImageButton) view.findViewById(R.id.textsearchVnButton);
 		final ImageButton buttonTextSearchPb = (ImageButton) view.findViewById(R.id.textsearchPbButton);
 		final ImageButton buttonTextSearchFn = (ImageButton) view.findViewById(R.id.textsearchFnButton);
+		final ImageButton infoDatabaseButton = (ImageButton) view.findViewById(R.id.info_database);
 
 		// click listeners
 		buttonDb.setOnClickListener(new View.OnClickListener()
@@ -71,7 +77,7 @@ public class StatusFragment extends Fragment
 			@Override
 			public void onClick(View v)
 			{
-				final Intent intent = new Intent(StatusFragment.this.getActivity(), DownloadActivity.class);
+				final Intent intent = new Intent(activity, DownloadActivity.class);
 				startActivityForResult(intent, StatusFragment.REQUEST_DOWNLOAD_CODE);
 			}
 		});
@@ -81,7 +87,7 @@ public class StatusFragment extends Fragment
 			@Override
 			public void onClick(View v)
 			{
-				final Intent intent = new Intent(StatusFragment.this.getActivity(), ManageActivity.class);
+				final Intent intent = new Intent(activity, ManageActivity.class);
 				intent.putExtra(ManageFragment.ARG, Status.DO_INDEXES);
 				startActivityForResult(intent, StatusFragment.REQUEST_MANAGE_CODE + Status.DO_INDEXES);
 			}
@@ -92,7 +98,7 @@ public class StatusFragment extends Fragment
 			@Override
 			public void onClick(View v)
 			{
-				final Intent intent = new Intent(StatusFragment.this.getActivity(), ManageActivity.class);
+				final Intent intent = new Intent(activity, ManageActivity.class);
 				intent.putExtra(ManageFragment.ARG, Status.DO_PM);
 				startActivityForResult(intent, StatusFragment.REQUEST_MANAGE_CODE + Status.DO_PM);
 			}
@@ -103,7 +109,7 @@ public class StatusFragment extends Fragment
 			@Override
 			public void onClick(View v)
 			{
-				final Intent intent = new Intent(StatusFragment.this.getActivity(), ManageActivity.class);
+				final Intent intent = new Intent(activity, ManageActivity.class);
 				intent.putExtra(ManageFragment.ARG, Status.DO_TS_WN);
 				startActivityForResult(intent, StatusFragment.REQUEST_MANAGE_CODE + Status.DO_TS_WN);
 			}
@@ -114,7 +120,7 @@ public class StatusFragment extends Fragment
 			@Override
 			public void onClick(View v)
 			{
-				final Intent intent = new Intent(StatusFragment.this.getActivity(), ManageActivity.class);
+				final Intent intent = new Intent(activity, ManageActivity.class);
 				intent.putExtra(ManageFragment.ARG, Status.DO_TS_VN);
 				startActivityForResult(intent, StatusFragment.REQUEST_MANAGE_CODE + Status.DO_TS_WN);
 			}
@@ -125,7 +131,7 @@ public class StatusFragment extends Fragment
 			@Override
 			public void onClick(View v)
 			{
-				final Intent intent = new Intent(StatusFragment.this.getActivity(), ManageActivity.class);
+				final Intent intent = new Intent(activity, ManageActivity.class);
 				intent.putExtra(ManageFragment.ARG, Status.DO_TS_PB);
 				startActivityForResult(intent, StatusFragment.REQUEST_MANAGE_CODE + Status.DO_TS_PB);
 			}
@@ -136,13 +142,25 @@ public class StatusFragment extends Fragment
 			@Override
 			public void onClick(View v)
 			{
-				final Intent intent = new Intent(StatusFragment.this.getActivity(), ManageActivity.class);
+				final Intent intent = new Intent(activity, ManageActivity.class);
 				intent.putExtra(ManageFragment.ARG, Status.DO_TS_FN);
 				startActivityForResult(intent, StatusFragment.REQUEST_MANAGE_CODE + Status.DO_TS_FN);
 			}
 		});
 
-		final int status = Status.status(StatusFragment.this.getActivity());
+		infoDatabaseButton.setOnClickListener(new View.OnClickListener()
+		{
+			@Override
+			public void onClick(final View v)
+			{
+				final String database = StorageSettings.getDatabasePath(activity);
+				//final String free = getFree(database);
+				final String source = StorageSettings.getDbDownloadSource(activity);
+				Info.info(activity, R.string.title_import, getString(R.string.title_database), database, getString(R.string.title_free));
+			}
+		});
+
+		final int status = Status.status(activity);
 		if (status != 0)
 		{
 			db.setImageResource(R.drawable.ic_ok);
