@@ -28,8 +28,8 @@ public class DownloadActivity extends FragmentActivity implements DownloadFragme
 	 */
 	private enum Downloader
 	{
-		DOWNLOADMANAGER(R.layout.activity_download),
-		SIMPLE(R.layout.activity_download_simple);
+		SIMPLE(R.layout.activity_download_simple),
+		DOWNLOADMANAGER(R.layout.activity_download);
 
 		final private int res;
 
@@ -43,7 +43,7 @@ public class DownloadActivity extends FragmentActivity implements DownloadFragme
 			final String preferredDownloader = Settings.getDownloaderPref(context);
 			if (preferredDownloader == null)
 			{
-				return DOWNLOADMANAGER;
+				return SIMPLE;
 			}
 			return Downloader.valueOf(preferredDownloader);
 		}
@@ -64,12 +64,12 @@ public class DownloadActivity extends FragmentActivity implements DownloadFragme
 		BaseDownloadFragment downloadFragment = null;
 		switch (downloader)
 		{
-			case DOWNLOADMANAGER:
-				downloadFragment = new DownloadFragment();
-				break;
-
 			case SIMPLE:
 				downloadFragment = new SimpleDownloadFragment();
+				break;
+
+			case DOWNLOADMANAGER:
+				downloadFragment = new DownloadFragment();
 				break;
 		}
 		downloadFragment.setArguments(getIntent().getExtras());

@@ -197,6 +197,19 @@
 		<item>@string/title_help_section</item>
 		<item>@string/title_about_section</item>
 	</string-array>
+	<integer-array name="flags_sections">
+		<item>1</item>
+		<item>1</item>
+		<item>1</item>
+		<item>1</item>
+		<item>1</item>
+		<item>0</item>
+		<item>1</item>
+		<item>0</item>
+		<item>0</item>
+		<item>1</item>
+		<item>1</item>
+	</integer-array>
 
 	<!-- setup spinner -->
 	<string name="title_select">[SELECT]</string>

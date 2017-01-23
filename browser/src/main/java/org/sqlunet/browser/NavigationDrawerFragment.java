@@ -2,14 +2,15 @@ package org.sqlunet.browser;
 
 import android.app.ActionBar;
 import android.app.Activity;
-import android.support.v4.app.Fragment;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.content.res.TypedArray;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
+import android.support.v4.app.Fragment;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -32,6 +33,17 @@ import android.widget.TextView;
  */
 public class NavigationDrawerFragment extends Fragment
 {
+	/**
+	 * Listener interface that all activities using this fragment must implement
+	 */
+	public interface Listener
+	{
+		/**
+		 * Called when an item in the navigation drawer is selected.
+		 */
+		void onItemSelected(int position);
+	}
+
 	class RowItem
 	{
 		public final int iconId;
@@ -56,9 +68,9 @@ public class NavigationDrawerFragment extends Fragment
 	private static final String PREF_USER_LEARNED_DRAWER = "navigation_drawer_learned";
 
 	/**
-	 * A pointer to the current callbacks instance (the Activity).
+	 * Listener instance
 	 */
-	private NavigationDrawerCallbacks callbacks;
+	private Listener listener;
 
 	/**
 	 * Fragment container view
@@ -96,6 +108,11 @@ public class NavigationDrawerFragment extends Fragment
 	private boolean userLearnedDrawer;
 
 	/**
+	 * Section flags
+	 */
+	private int[] flags;
+
+	/**
 	 * Constructor
 	 */
 	public NavigationDrawerFragment()
@@ -119,32 +136,16 @@ public class NavigationDrawerFragment extends Fragment
 		}
 	}
 
-	// create/start/resume
-	// (settings)->pause/stop/start/resume
-	// (search new intent VIEW/SEARCH)->pause/resume
-	@Override
-	public void onStart()
-	{
-		super.onStart();
-		selectItem(this.selectedPosition);
-	}
-
-	@Override
-	public void onActivityCreated(final Bundle savedInstanceState)
-	{
-		super.onActivityCreated(savedInstanceState);
-
-		// indicate that this fragment would like to influence the set of actions in the type bar.
-		setHasOptionsMenu(true);
-	}
-
 	@Override
 	public View onCreateView(final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState)
 	{
+		final Resources res = getResources();
+
 		// sections
-		final String[] options = getResources().getStringArray(R.array.title_sections);
+		this.flags = res.getIntArray(R.array.flags_sections);
+		final String[] options = res.getStringArray(R.array.title_sections);
 		final RowItem[] items = new RowItem[options.length];
-		final TypedArray icons = getResources().obtainTypedArray(R.array.drawer_icons);
+		final TypedArray icons = res.obtainTypedArray(R.array.drawer_icons);
 		for (int i = 0; i < options.length; i++)
 		{
 			items[i] = new RowItem(icons.getResourceId(i, -1), options[i]);
@@ -183,6 +184,99 @@ public class NavigationDrawerFragment extends Fragment
 		this.drawerListView.setAdapter(adapter);
 		this.drawerListView.setItemChecked(this.selectedPosition, true);
 		return this.drawerListView;
+	}
+
+	// create/start/resume
+	// (settings)->pause/stop/start/resume
+	// (search new intent VIEW/SEARCH)->pause/resume
+	@Override
+	public void onStart()
+	{
+		super.onStart();
+		selectItem(this.selectedPosition);
+	}
+
+	@Override
+	public void onActivityCreated(final Bundle savedInstanceState)
+	{
+		super.onActivityCreated(savedInstanceState);
+
+		// indicate that this fragment would like to influence the set of actions in the type bar.
+		setHasOptionsMenu(true);
+	}
+
+	@SuppressWarnings("deprecation")
+	@Override
+	public void onAttach(final Activity activity)
+	{
+		super.onAttach(activity);
+		try
+		{
+			this.listener = (Listener) activity;
+		}
+		catch (ClassCastException e)
+		{
+			throw new ClassCastException("Activity must implement Listener.");
+		}
+	}
+
+	@Override
+	public void onAttach(final Context context)
+	{
+		super.onAttach(context);
+		try
+		{
+			this.listener = (Listener) context;
+		}
+		catch (ClassCastException e)
+		{
+			throw new ClassCastException("Activity must implement Listener.");
+		}
+	}
+
+	@Override
+	public void onDetach()
+	{
+		super.onDetach();
+		this.listener = null;
+	}
+
+	@Override
+	public void onSaveInstanceState(final Bundle outState)
+	{
+		super.onSaveInstanceState(outState);
+		outState.putInt(STATE_SELECTED_SECTION, this.selectedPosition);
+	}
+
+	@Override
+	public void onConfigurationChanged(final Configuration newConfig)
+	{
+		super.onConfigurationChanged(newConfig);
+
+		// forward the new configuration the drawer toggle component.
+		this.drawerToggle.onConfigurationChanged(newConfig);
+	}
+
+	@Override
+	public void onCreateOptionsMenu(final Menu menu, final MenuInflater inflater)
+	{
+		// if the drawer is open, show the global app actions in the type bar. See also showGlobalContextActionBar, which controls the top-left area of the type bar.
+		if (this.drawerLayout != null && isDrawerOpen())
+		{
+			inflater.inflate(R.menu.global, menu);
+			showGlobalContextActionBar();
+		}
+		super.onCreateOptionsMenu(menu, inflater);
+	}
+
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item)
+	{
+		if (this.drawerToggle.onOptionsItemSelected(item))
+		{
+			return true;
+		}
+		return super.onOptionsItemSelected(item);
 	}
 
 	/**
@@ -273,8 +367,8 @@ public class NavigationDrawerFragment extends Fragment
 	 */
 	private void selectItem(final int position)
 	{
-		// dialog
-		if (position != 8 && position != 7 && position != 5)
+		// saved position
+		if (this.flags[position] != 0)
 		{
 			this.selectedPosition = position;
 			if (this.drawerListView != null)
@@ -282,88 +376,18 @@ public class NavigationDrawerFragment extends Fragment
 				this.drawerListView.setItemChecked(position, true);
 			}
 		}
+
+		// close
 		if (this.drawerLayout != null)
 		{
 			this.drawerLayout.closeDrawer(this.containerView);
 		}
-		if (this.callbacks != null)
+
+		// fire event
+		if (this.listener != null)
 		{
-			this.callbacks.onNavigationDrawerItemSelected(position);
+			this.listener.onItemSelected(position);
 		}
-	}
-
-	@SuppressWarnings("deprecation")
-	@Override
-	public void onAttach(final Activity activity)
-	{
-		super.onAttach(activity);
-		try
-		{
-			this.callbacks = (NavigationDrawerCallbacks) activity;
-		}
-		catch (ClassCastException e)
-		{
-			throw new ClassCastException("Activity must implement NavigationDrawerCallbacks.");
-		}
-	}
-
-	@Override
-	public void onAttach(final Context context)
-	{
-		super.onAttach(context);
-		try
-		{
-			this.callbacks = (NavigationDrawerCallbacks) context;
-		}
-		catch (ClassCastException e)
-		{
-			throw new ClassCastException("Activity must implement NavigationDrawerCallbacks.");
-		}
-	}
-
-	@Override
-	public void onDetach()
-	{
-		super.onDetach();
-		this.callbacks = null;
-	}
-
-	@Override
-	public void onSaveInstanceState(final Bundle outState)
-	{
-		super.onSaveInstanceState(outState);
-		outState.putInt(STATE_SELECTED_SECTION, this.selectedPosition);
-	}
-
-	@Override
-	public void onConfigurationChanged(final Configuration newConfig)
-	{
-		super.onConfigurationChanged(newConfig);
-
-		// forward the new configuration the drawer toggle component.
-		this.drawerToggle.onConfigurationChanged(newConfig);
-	}
-
-	@Override
-	public void onCreateOptionsMenu(final Menu menu, final MenuInflater inflater)
-	{
-		// if the drawer is open, show the global app actions in the type bar. See also showGlobalContextActionBar, which controls the top-left area of the type bar.
-		if (this.drawerLayout != null && isDrawerOpen())
-		{
-			inflater.inflate(R.menu.global, menu);
-			showGlobalContextActionBar();
-		}
-		super.onCreateOptionsMenu(menu, inflater);
-	}
-
-	@Override
-	public boolean onOptionsItemSelected(MenuItem item)
-	{
-		if (this.drawerToggle.onOptionsItemSelected(item))
-		{
-			return true;
-		}
-		return super.onOptionsItemSelected(item);
 	}
 
 	/**
@@ -371,7 +395,7 @@ public class NavigationDrawerFragment extends Fragment
 	 */
 	private void showGlobalContextActionBar()
 	{
-		ActionBar actionBar = getActionBar();
+		final ActionBar actionBar = getActionBar();
 		actionBar.setDisplayShowTitleEnabled(true);
 		actionBar.setTitle(R.string.app_name);
 		// actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
@@ -396,16 +420,5 @@ public class NavigationDrawerFragment extends Fragment
 	public boolean isDrawerOpen()
 	{
 		return this.drawerLayout != null && this.drawerLayout.isDrawerOpen(this.containerView);
-	}
-
-	/**
-	 * Callbacks interface that all activities using this fragment must implement.
-	 */
-	public interface NavigationDrawerCallbacks
-	{
-		/**
-		 * Called when an item in the navigation drawer is selected.
-		 */
-		void onNavigationDrawerItemSelected(int position);
 	}
 }

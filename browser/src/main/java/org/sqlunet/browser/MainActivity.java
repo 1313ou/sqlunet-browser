@@ -23,7 +23,7 @@ import org.sqlunet.browser.config.StorageFragment;
 import org.sqlunet.settings.Settings;
 import org.sqlunet.settings.StorageSettings;
 
-public class MainActivity extends FragmentActivity implements NavigationDrawerFragment.NavigationDrawerCallbacks
+public class MainActivity extends FragmentActivity implements NavigationDrawerFragment.Listener
 {
 	static private final String TAG = "MainActivity";
 
@@ -113,7 +113,7 @@ public class MainActivity extends FragmentActivity implements NavigationDrawerFr
 	}
 
 	@Override
-	public void onNavigationDrawerItemSelected(final int position)
+	public void onItemSelected(final int position)
 	{
 		if (position == 8)
 		{

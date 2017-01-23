@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 		<integer-array name="drawer_icons">
-			<item>@android:drawable/ic_menu_info_details</item>
+			<item>@drawable/ic_home</item>
 			<item>@android:drawable/ic_menu_search</item>
 			<item>@android:drawable/ic_menu_search</item>
 			<item>@android:drawable/ic_menu_search</item>
 			<item>@android:drawable/ic_menu_info_details</item>
-			<item>@android:drawable/ic_menu_manage</item>
+			<item>@drawable/ic_setup</item> <!--<item>@android:drawable/ic_menu_manage</item>-->
 			<item>@android:drawable/ic_menu_info_details</item>
 			<item>@android:drawable/ic_menu_preferences</item>
 			<item>@android:drawable/ic_menu_info_details</item>
@@ -20,7 +20,7 @@
 	<item>@string/title_ts_section</item>
 	<item>@string/title_pm_section</item>
 	<item>@string/title_status_section</item>
-	<item>@string/title_manage_section</item>
+	<item>@string/title_setup_section</item>
 	<item>@string/title_storage_section</item>
 	<item>@string/title_settings_section</item>
 	<item>@string/title_help_section</item>
