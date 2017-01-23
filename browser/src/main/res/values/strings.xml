@@ -30,8 +30,8 @@
 	<!-- file info -->
 	<string name="action_storage_dirs">Storage dirs</string>
 	<string name="action_storage">Storage</string>
-	<string name="action_md5">MD5-Checksum</string>
-	<string name="action_md5_ask">MD5-Checksum &#8230;</string>
+	<string name="action_md5">MD5</string>
+	<string name="action_md5_ask">MD5 &#8230;</string>
 
 	<!-- misc -->
 	<string name="action_download">Download</string>
