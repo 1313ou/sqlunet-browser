@@ -20,10 +20,9 @@ import android.util.Pair;
 import org.sqlunet.browser.R;
 import org.sqlunet.settings.Settings;
 import org.sqlunet.settings.StorageReports;
+import org.sqlunet.settings.StorageUtils;
 
 import java.util.List;
-
-import static org.sqlunet.settings.StorageUtils.DirType.AUTO;
 
 /**
  * A {@link PreferenceActivity} that presents a set of application settings. On handset devices, settings are presented as a single list. On tablets, settings
@@ -181,9 +180,9 @@ public class SettingsActivity extends PreferenceActivity
 		CharSequence defaultValue;
 		if (entries == null || entries.length == 0 || entryValues == null || entryValues.length == 0)
 		{
-			defaultValue = AUTO.toString();
+			defaultValue = StorageUtils.DirType.AUTO.toString();
 			entryValues = new CharSequence[]{defaultValue};
-			entries = new CharSequence[]{AUTO.toDisplay()};
+			entries = new CharSequence[]{StorageUtils.DirType.AUTO.toDisplay()};
 		}
 		else
 		{

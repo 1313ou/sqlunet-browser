@@ -9,22 +9,10 @@
 	<string name="title_entry">Entry</string>
 	<string name="title_free">Free space</string>
 
-	<string name="title_data_storage">Data storage</string>
-	<string name="title_cache_storage">Cache storage</string>
 	<string name="title_storage">Storage</string>
 	<string name="title_storage_devices">Storage devices</string>
-	<string name="title_download_db">Download DB source</string>
-	<string name="title_download_sqlsource">Download SQL source</string>
-	<string name="title_download_sqltarget">Download SQL target</string>
 	<string name="title_download_complete">Download completed</string>
 	<string name="title_download_failed">Download failed</string>
-	<string name="title_sql_import">SQL import statements</string>
-	<string name="title_sql_pm">SQL predicatematrix statements</string>
-	<string name="title_sql_index">SQL index statements</string>
-	<string name="title_sqlupdate_complete">SQL update completed</string>
-	<string name="title_sqlupdate_failed">SQL update failed</string>
-
-	<string name="format_storage_data" formatted="true">%1$s\nfree: %2$s capacity: %3$s (%4$.1f percent)</string>
 
 	<string name="status_sqlzip">SQL archive status</string>
 	<string name="title_sqlzip">SQL archive</string>

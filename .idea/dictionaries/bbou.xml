@@ -69,6 +69,10 @@
       <w>datas</w>
       <w>dbcolumn</w>
       <w>dbfile</w>
+      <w>dbfilezip</w>
+      <w>dbname</w>
+      <w>dbsql</w>
+      <w>dbsqlzip</w>
       <w>descr</w>
       <w>devel</w>
       <w>dexed</w>
@@ -79,6 +83,7 @@
       <w>doctype</w>
       <w>documentid</w>
       <w>downloaddbfrom</w>
+      <w>downloaders</w>
       <w>downloadmanager</w>
       <w>downloadsqlfrom</w>
       <w>downloadsqlto</w>
@@ -299,6 +304,7 @@
       <w>noninfringement</w>
       <w>nonrecursive</w>
       <w>nullsynset</w>
+      <w>obbs</w>
       <w>oldage</w>
       <w>oldh</w>
       <w>oldw</w>
@@ -475,6 +481,7 @@
       <w>sentencetext</w>
       <w>sentno</w>
       <w>senttext</w>
+      <w>setupsql</w>
       <w>slategray</w>
       <w>spokendisp</w>
       <w>spokenfreq</w>
@@ -489,6 +496,7 @@
       <w>sqlunetdir</w>
       <w>sqlunetx</w>
       <w>sqlupdate</w>
+      <w>sqlzip</w>
       <w>stative</w>
       <w>storages</w>
       <w>subcorpusid</w>

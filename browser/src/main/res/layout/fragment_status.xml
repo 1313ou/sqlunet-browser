@@ -19,12 +19,14 @@
 		android:layout_width="match_parent"
 		android:layout_height="0dp"
 		android:orientation="vertical"
-		android:layout_weight=".9">
+		android:layout_weight="1">
 
 		<GridLayout
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			android:layout_gravity="center_horizontal|center_vertical"
+			android:paddingTop="20dp"
+			android:paddingBottom="20dp"
 			android:columnCount="2"
 			android:orientation="horizontal">
 
@@ -43,13 +45,13 @@
 
 				<ImageButton
 					android:id="@+id/databaseButton"
-					style="@style/GridActionButton1"
+					style="@style/GridStatusActionButton"
 					android:contentDescription="@string/status_database"
 					android:src="@drawable/bn_download"/>
 
 				<ImageButton
 					android:id="@+id/info_database"
-					style="@style/GridInfoButton"
+					style="@style/GridStatusInfoButton"
 					android:contentDescription="@string/hint_database"
 					android:src="@drawable/bn_info"/>
 			</LinearLayout>
@@ -71,7 +73,7 @@
 
 				<ImageButton
 					android:id="@+id/predicatematrixButton"
-					style="@style/GridActionButton1"
+					style="@style/GridStatusActionButton"
 					android:contentDescription="@string/status_predicatematrix"
 					android:src="@drawable/bn_setup"/>
 			</LinearLayout>
@@ -92,7 +94,7 @@
 
 				<ImageButton
 					android:id="@+id/indexesButton"
-					style="@style/GridActionButton1"
+					style="@style/GridStatusActionButton"
 					android:contentDescription="@string/status_indexes"
 					android:src="@drawable/bn_setup"/>
 			</LinearLayout>
@@ -113,7 +115,7 @@
 
 				<ImageButton
 					android:id="@+id/textsearchWnButton"
-					style="@style/GridActionButton1"
+					style="@style/GridStatusActionButton"
 					android:contentDescription="@string/status_textsearch"
 					android:src="@drawable/bn_setup"/>
 			</LinearLayout>
@@ -133,7 +135,7 @@
 
 				<ImageButton
 					android:id="@+id/textsearchVnButton"
-					style="@style/GridActionButton1"
+					style="@style/GridStatusActionButton"
 					android:contentDescription="@string/status_textsearchVn"
 					android:src="@drawable/bn_setup"/>
 			</LinearLayout>
@@ -153,7 +155,7 @@
 
 				<ImageButton
 					android:id="@+id/textsearchPbButton"
-					style="@style/GridActionButton1"
+					style="@style/GridStatusActionButton"
 					android:contentDescription="@string/status_textsearchPb"
 					android:src="@drawable/bn_setup"/>
 			</LinearLayout>
@@ -173,7 +175,7 @@
 
 				<ImageButton
 					android:id="@+id/textsearchFnButton"
-					style="@style/GridActionButton1"
+					style="@style/GridStatusActionButton"
 					android:contentDescription="@string/status_textsearchFn"
 					android:src="@drawable/bn_setup"/>
 			</LinearLayout>

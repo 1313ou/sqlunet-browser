@@ -1,9 +1,9 @@
 package org.sqlunet.browser;
 
 import android.app.Activity;
-import android.support.v4.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,6 +16,7 @@ import org.sqlunet.browser.config.SetupDatabaseActivity;
 import org.sqlunet.browser.config.SetupDatabaseFragment;
 import org.sqlunet.browser.config.Status;
 import org.sqlunet.settings.StorageSettings;
+import org.sqlunet.settings.StorageUtils;
 
 /**
  * Status fragment
@@ -154,9 +155,12 @@ public class StatusFragment extends Fragment
 			public void onClick(final View v)
 			{
 				final String database = StorageSettings.getDatabasePath(activity);
-				//final String free = getFree(database);
+				final String free = StorageUtils.getFree(getActivity(), database);
 				final String source = StorageSettings.getDbDownloadSource(activity);
-				Info.info(activity, R.string.title_import, getString(R.string.title_database), database, getString(R.string.title_free));
+				Info.info(activity, R.string.title_download, //
+						getString(R.string.title_from), source, //
+						getString(R.string.title_database), database, //
+						getString(R.string.title_free), free);
 			}
 		});
 

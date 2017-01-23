@@ -12,8 +12,6 @@ import org.sqlunet.settings.StorageUtils.StorageDirectory;
 import java.io.File;
 import java.util.List;
 
-import static org.sqlunet.settings.StorageUtils.DirType.AUTO;
-
 /**
  * Storage
  *
@@ -26,7 +24,7 @@ public class Storage
 	/**
 	 * SqlUnet DB basename
 	 */
-	public static final String DBNAME = "sqlunet";
+	private static final String DBNAME = "sqlunet";
 
 	/**
 	 * SqlUnet DB filename
@@ -41,7 +39,7 @@ public class Storage
 	/**
 	 * SqlUnet DB sql filename
 	 */
-	public static final String DBSQL = DBNAME + ".sql";
+	private static final String DBSQL = DBNAME + ".sql";
 
 	/**
 	 * SqlUnet DB zipped sql filename
@@ -80,7 +78,7 @@ public class Storage
 		if (prefValue != null && !prefValue.isEmpty()) //
 		{
 			// pref defined
-			if (!AUTO.toString().equals(prefValue))
+			if (!StorageUtils.DirType.AUTO.toString().equals(prefValue))
 			{
 				final File prefStorage = new File(prefValue);
 				if (Storage.build(prefStorage))
@@ -96,10 +94,10 @@ public class Storage
 		//  pref not defined || defined as auto || defined as invalid value
 
 		// auto (as of marshmallow which allows for adopted storage)
-		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && AUTO.toString().equals(prefValue)) //
+		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && StorageUtils.DirType.AUTO.toString().equals(prefValue)) //
 		{
 			final File autoStorage = context.getFilesDir();
-			Log.d(TAG, AUTO.toDisplay() + ' ' + autoStorage.getAbsolutePath());
+			Log.d(TAG, StorageUtils.DirType.AUTO.toDisplay() + ' ' + autoStorage.getAbsolutePath());
 			return autoStorage; // context.getDatabasePath(DBFILE).getParentFile();
 		}
 
@@ -158,6 +156,7 @@ public class Storage
 	 * @param context context
 	 * @return data cache
 	 */
+	@SuppressLint("CommitPrefEdits")
 	static public String getCacheDir(final Context context)
 	{
 		// test if set in preference
@@ -166,6 +165,7 @@ public class Storage
 		if (prefValue == null || prefValue.isEmpty())
 		{
 			final File cache = context.getExternalCacheDir();
+			assert cache != null;
 			prefValue = cache.getAbsolutePath();
 
 			// record as discovered

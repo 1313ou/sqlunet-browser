@@ -74,7 +74,7 @@ public class StorageSettings
 	 * @param context context
 	 * @return data cache
 	 */
-	static public String getCacheDir(final Context context)
+	private static String getCacheDir(final Context context)
 	{
 		return Storage.getCacheDir(context);
 	}

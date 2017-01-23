@@ -42,17 +42,17 @@ public class Status
 
 	static public final int EXISTS_TS_FN = 0x4000;
 
-	static public final int DO_INDEXES = 1;
+	static public final int DO_INDEXES = 2;
 
-	static public final int DO_PM = 2;
+	static public final int DO_PM = 3;
 
-	static public final int DO_TS_WN = 3;
+	static public final int DO_TS_WN = 4;
 
-	static public final int DO_TS_VN = 4;
+	static public final int DO_TS_VN = 5;
 
-	static public final int DO_TS_PB = 5;
+	static public final int DO_TS_PB = 6;
 
-	static public final int DO_TS_FN = 6;
+	static public final int DO_TS_FN = 7;
 
 	/**
 	 * Get _status

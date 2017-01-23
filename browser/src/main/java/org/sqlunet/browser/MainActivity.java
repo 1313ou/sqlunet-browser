@@ -176,7 +176,7 @@ public class MainActivity extends FragmentActivity implements NavigationDrawerFr
 				this.fragment = new StatusFragment();
 				break;
 			case 5:
-				this.title = getString(R.string.title_manage_section);
+				this.title = getString(R.string.title_setup_section);
 				intent = new Intent(this, SetupActivity.class);
 				break;
 			case 6:
@@ -189,8 +189,8 @@ public class MainActivity extends FragmentActivity implements NavigationDrawerFr
 				intent = new Intent(this, SettingsActivity.class);
 				break;
 			case 8:
-				//this.title = getString(R.string.title_sql_section);
-				//this.fragment = new SqlFragment();
+				this.title = getString(R.string.title_sql_section);
+				this.fragment = new SqlFragment();
 				break;
 			case 9:
 				this.title = getString(R.string.title_help_section);

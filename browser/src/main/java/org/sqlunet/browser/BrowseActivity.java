@@ -12,7 +12,6 @@ import android.view.MenuItem;
  *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
-@SuppressWarnings("ElementOnlyUsedFromTestCode")
 public class BrowseActivity extends FragmentActivity
 {
 	/**

@@ -9,6 +9,8 @@ import android.support.annotation.NonNull;
 import android.util.Log;
 import android.util.Pair;
 
+import org.sqlunet.xnet.R;
+
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -105,7 +107,7 @@ public class StorageUtils
 			return this.type;
 		}
 
-		public String getValue()
+		public CharSequence getValue()
 		{
 			if (DirType.AUTO == this.type)
 			{
@@ -480,9 +482,9 @@ public class StorageUtils
 	 */
 	static public List<StorageDirectory> getSortedStorageDirectories(final Context context)
 	{
-		final List<StorageDirectory> sdirs = getStorageDirectories(context);
-		Collections.sort(sdirs);
-		return sdirs;
+		final List<StorageDirectory> storageDirectories = getStorageDirectories(context);
+		Collections.sort(storageDirectories);
+		return storageDirectories;
 	}
 
 	// D I S C O V E R  S T O R A G E
@@ -773,6 +775,17 @@ public class StorageUtils
 		return stats;
 	}
 
+	static public String getFree(final Context context, final String target)
+	{
+		final File file = new File(target);
+		final String dir = file.isDirectory() ? file.getAbsolutePath() : file.getParent();
+		final float[] dataStats = StorageUtils.storageStats(dir);
+		final float df = dataStats[StorageUtils.STORAGE_FREE];
+		final float dc = dataStats[StorageUtils.STORAGE_CAPACITY];
+		final float dp = dataStats[StorageUtils.STORAGE_OCCUPANCY];
+		return context.getString(R.string.format_storage_data, dir, StorageUtils.mbToString(df), StorageUtils.mbToString(dc), dp);
+	}
+
 	/**
 	 * Free storage at path
 	 *
@@ -780,7 +793,7 @@ public class StorageUtils
 	 * @return free storage in megabytes
 	 */
 	@TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR2)
-	static public float storageFree(final String path)
+	private static float storageFree(final String path)
 	{
 		try
 		{

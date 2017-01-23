@@ -274,7 +274,7 @@ public class NavigationDrawerFragment extends Fragment
 	private void selectItem(final int position)
 	{
 		// dialog
-		if (position != 8 && position != 7)
+		if (position != 8 && position != 7 && position != 5)
 		{
 			this.selectedPosition = position;
 			if (this.drawerListView != null)

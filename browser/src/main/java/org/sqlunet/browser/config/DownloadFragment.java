@@ -81,7 +81,7 @@ public class DownloadFragment extends BaseDownloadFragment
 		}
 	}
 
-	static long pack(int status, int reason)
+	private static long pack(int status, int reason)
 	{
 		return ((long) status) | (((long) reason) << 32);
 	}
@@ -129,7 +129,7 @@ public class DownloadFragment extends BaseDownloadFragment
 	/**
 	 * Show downloads button
 	 */
-	protected Button showButton;
+	private Button showButton;
 
 	@Override
 	public void onCreate(final Bundle savedInstanceState)
@@ -246,7 +246,7 @@ public class DownloadFragment extends BaseDownloadFragment
 				Uri destUri = Uri.fromFile(this.destFile);
 				request.setDestinationUri(destUri);
 			}
-			request.setTitle(getActivity().getResources().getText(R.string.title_download));
+			request.setTitle(getString(R.string.title_download));
 			request.setDescription(downloadUri.getLastPathSegment());
 			request.setNotificationVisibility(Request.VISIBILITY_VISIBLE);
 

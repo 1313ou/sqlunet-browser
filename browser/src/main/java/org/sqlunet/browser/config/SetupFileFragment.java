@@ -21,7 +21,7 @@ public class SetupFileFragment extends BaseTaskFragment
 {
 	//static private final String TAG = "SetupFileFragment";
 
-	public static final String ARG = "operation";
+	private static final String ARG = "operation";
 
 	/**
 	 * Operations
@@ -61,25 +61,29 @@ public class SetupFileFragment extends BaseTaskFragment
 			@Override
 			public void onClick(final View v)
 			{
+				// skip first
+				final long id = SetupFileFragment.this.spinner.getSelectedItemId();
+				if (id == 0)
+					return;
+
 				// operations
 				final CharSequence[] operations = getActivity().getResources().getTextArray(R.array.setup_values);
 
 				// execute
 				final Context context = getActivity();
-				final long id = SetupFileFragment.this.spinner.getSelectedItemId();
 				final CharSequence operation = operations[(int) id];
 				final Operation op = Operation.valueOf(operation.toString());
 				switch (op)
 				{
 					case CREATE:
 						SetupFileFragment.this.status.setText(R.string.status_task_running);
-						SetupTasks.createDatabase(context, StorageSettings.getDatabasePath(context));
+						SetupDatabaseTasks.createDatabase(context, StorageSettings.getDatabasePath(context));
 						SetupFileFragment.this.status.setText(R.string.status_task_done);
 						break;
 
 					case DROP:
 						SetupFileFragment.this.status.setText(R.string.status_task_running);
-						SetupTasks.deleteDatabase(context, StorageSettings.getDatabasePath(context));
+						SetupDatabaseTasks.deleteDatabase(context, StorageSettings.getDatabasePath(context));
 						SetupFileFragment.this.status.setText(R.string.status_task_done);
 						break;
 

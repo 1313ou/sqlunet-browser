@@ -17,4 +17,6 @@
 	<string name="action_info">Information</string>
 	<string name="action_dismiss">Dismiss</string>
 
+	<string name="format_storage_data" formatted="true">%1$s\nfree: %2$s capacity: %3$s (%4$.1f percent)</string>
+
 </resources>

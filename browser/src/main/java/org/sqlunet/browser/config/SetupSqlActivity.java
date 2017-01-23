@@ -25,7 +25,7 @@ public class SetupSqlActivity extends FragmentActivity
 		super.onCreate(savedInstanceState);
 
 		// content
-		setContentView(R.layout.activity_setup);
+		setContentView(R.layout.activity_setup_actions);
 
 		// show the Up button in the type bar.
 		final ActionBar actionBar = getActionBar();

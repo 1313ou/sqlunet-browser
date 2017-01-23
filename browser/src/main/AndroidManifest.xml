@@ -37,11 +37,6 @@
 				android:resource="@xml/searchable"/>
 		</activity>
 		<activity
-			android:name=".config.SetupActivity"
-			android:theme="@style/Theme.AppCompat.Light.DarkActionBar"
-			android:label="@string/title_activity_setup0">
-		</activity>
-		<activity
 			android:name=".BrowseActivity"
 			android:label="@string/title_activity_main"
 			android:launchMode="singleTop"
@@ -243,6 +238,14 @@
 				android:value="org.sqlunet.browser.MainActivity"/>
 		</activity>
 		<activity
+			android:name=".config.SetupActivity"
+			android:theme="@style/CompatAppTheme"
+			android:label="@string/title_activity_setup">
+			<meta-data
+				android:name="android.support.PARENT_ACTIVITY"
+				android:value=".MainActivity"/>
+		</activity>
+		<activity
 			android:name=".config.StorageActivity"
 			android:label="@string/title_activity_storage"
 			android:parentActivityName=".MainActivity"
@@ -289,7 +292,7 @@
 		</activity>
 		<activity
 			android:name=".config.SetupDatabaseActivity"
-			android:label="@string/title_activity_manage"
+			android:label="@string/title_activity_setup_database"
 			android:parentActivityName=".MainActivity"
 			tools:ignore="UnusedAttribute">
 			<meta-data
