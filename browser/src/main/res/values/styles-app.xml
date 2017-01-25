@@ -1,24 +1,313 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-	<!-- Base application theme, dependent on API level. This theme is replaced by AppBaseTheme from res/values-vXX/styles.xml on newer devices. -->
-	<style name="AppBaseTheme" parent="android:Theme.Light">
-		<!--
-			Theme customizations available in newer API levels can go in res/values-vXX/styles.xml,
-			while customizations related to backward-compatibility can go here.
-		-->
+	<!--S E L E C T O R S -->
+
+	<style name="Label.Members"/>
+
+	<style name="Label.Definition"/>
+
+	<style name="Label.Samples"/>
+
+	<style name="Label.SemLinks"/>
+
+	<style name="Label.LexLinks"/>
+
+	<style name="Label.VerbFrames"/>
+
+	<style name="Label.VerbSentenceFrames"/>
+
+	<style name="Label.Morphology"/>
+
+	<style name="Label.AdjPosition"/>
+
+	<style name="Label.Source"/>
+
+	<style name="Label.Group">
+		<item name="android:padding">8dp</item>
+		<item name="android:background">#FF33b5e5</item>
 	</style>
 
-	<style name="CompatAppBaseTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+	<style name="Label.GroupName">
+		<item name="android:textSize">20sp</item>
+		<item name="android:textColor">#FFffffff</item>
+		<item name="android:paddingLeft">20dp</item>
 	</style>
 
-	<!-- Application theme. -->
-	<style name="AppTheme" parent="AppBaseTheme">
-		<!-- All customizations that are NOT specific to a particular API-level can go here. -->
-		<item name="android:activatedBackgroundIndicator">@drawable/listitem_background</item>
+	<style name="Data.Pos">
+		<item name="android:maxLines">1</item>
+		<item name="android:textSize">22sp</item>
 	</style>
 
-	<style name="CompatAppTheme" parent="CompatAppBaseTheme">
+	<style name="Data.SenseNum">
+		<item name="android:maxLines">1</item>
+		<item name="android:textColor">#808080</item>
+		<item name="android:textSize">10sp</item>
+	</style>
+
+	<style name="Data.LexDomain">
+		<item name="android:maxLines">1</item>
+		<item name="android:textColor">#909090</item>
+		<item name="android:textSize">18sp</item>
+	</style>
+
+	<style name="Data.Cased">
+		<item name="android:textColor">#0000FF</item>
+		<item name="android:textSize">12sp</item>
+	</style>
+
+	<style name="Data.TagCount">
+		<item name="android:textColor">#808080</item>
+		<item name="android:textSize">12sp</item>
+	</style>
+
+	<style name="Data.SenseKey">
+		<item name="android:textColor">#808080</item>
+		<item name="android:textSize">10sp</item>
+	</style>
+
+	<style name="Data.LexId">
+		<item name="android:textColor">#808080</item>
+		<item name="android:textSize">10sp</item>
+	</style>
+
+	<style name="Data.WordId">
+		<item name="android:textColor">#808080</item>
+		<item name="android:textSize">10sp</item>
+	</style>
+
+	<style name="Data.SenseId">
+		<item name="android:textColor">#808080</item>
+		<item name="android:textSize">10sp</item>
+	</style>
+
+	<style name="Data.SynsetId">
+		<item name="android:textColor">#808080</item>
+		<item name="android:textSize">10sp</item>
+	</style>
+
+	<style name="Data.Members">
+		<item name="android:textColor">#0000FF</item>
+	</style>
+
+	<style name="Data.Definition"/>
+
+	<style name="Data.Samples"/>
+
+	<style name="Data.SemLinks"/>
+
+	<style name="Data.LexLinks"/>
+
+	<style name="Data.VerbFrames"/>
+
+	<style name="Data.VerbSentenceFrames"/>
+
+	<style name="Data.Morphology"/>
+
+	<style name="Data.AdjPosition"/>
+
+	<style name="Data.XSources">
+		<item name="android:textColor">#FF202020</item>
+		<item name="android:textSize">12sp</item>
+		<item name="android:layout_width">match_parent</item>
+		<item name="android:layout_gravity">end</item>
+		<item name="android:gravity">end</item>
+	</style>
+
+	<style name="Data.XIcon">
+	</style>
+
+	<style name="Data.XName">
+		<item name="android:textColor">#FF000000</item>
+		<item name="android:textSize">20sp</item>
+		<item name="android:textStyle">bold</item>
+	</style>
+
+	<style name="Data.XHeader">
+		<item name="android:textColor">#FF808080</item>
+		<item name="android:textSize">15sp</item>
+		<item name="android:textStyle">bold</item>
+	</style>
+
+	<style name="Data.XInfo">
+		<item name="android:textColor">#FF404040</item>
+		<item name="android:textSize">15sp</item>
+	</style>
+
+	<style name="Data.XDefinition">
+		<item name="android:textColor">#FF4682B4</item>
+		<item name="android:textSize">15sp</item>
+	</style>
+
+	<style name="Data.XWordId">
+		<item name="android:textColor">#FF404040</item>
+		<item name="android:textSize">12sp</item>
+	</style>
+
+	<style name="Data.XSynsetId">
+		<item name="android:textColor">#FF404040</item>
+		<item name="android:textSize">12sp</item>
+	</style>
+
+	<style name="Data.XId">
+		<item name="android:textColor">#FFD08080</item>
+		<item name="android:textSize">12sp</item>
+	</style>
+
+	<style name="Data.XMemberId">
+		<item name="android:textColor">#FF8080D0</item>
+		<item name="android:textSize">12sp</item>
+	</style>
+
+	<style name="Data.FnWordId">
+		<item name="android:textColor">#FF404040</item>
+		<item name="android:textSize">12sp</item>
+	</style>
+
+	<style name="Data.VnWordId">
+		<item name="android:textColor">#FF404040</item>
+		<item name="android:textSize">12sp</item>
+	</style>
+
+	<style name="Data.PbWordId">
+		<item name="android:textColor">#FF404040</item>
+		<item name="android:textSize">12sp</item>
+	</style>
+
+	<!-- L I S T -->
+
+	<style name="ListItemColumn">
+		<item name="android:layout_width">0dp</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="android:paddingLeft">@dimen/listitem_horizontal_padding</item>
+		<item name="android:paddingRight">@dimen/listitem_horizontal_padding</item>
+		<item name="android:paddingTop">@dimen/listitem_vertical_padding</item>
+		<item name="android:paddingBottom">@dimen/listitem_vertical_padding</item>
+		<item name="android:gravity">center_vertical</item>
+		<item name="android:textIsSelectable">true</item>
+		<item name="android:textColor">@color/dark_gray_color</item>
+		<item name="android:textAppearance">?android:attr/textAppearanceMedium</item>
+		<item name="android:ellipsize">end</item>
+	</style>
+
+	<style name="ListItemColumn.Small">
+		<item name="android:textAppearance">?android:attr/textAppearanceListItemSmall</item>
+		<item name="android:textColor">@color/middle_gray_color</item>
+	</style>
+
+	<style name="ListItemColumn.Enhanced">
+		<item name="android:background">@color/light_gray_color</item>
+	</style>
+
+	<style name="ListItem">
+		<item name="android:layout_width">match_parent</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="android:layout_marginBottom">@dimen/list_vertical_margin</item>
+		<item name="android:layout_marginTop">@dimen/list_vertical_margin</item>
+		<item name="android:layout_marginLeft">@dimen/list_horizontal_margin</item>
+		<item name="android:layout_marginRight">@dimen/list_horizontal_margin</item>
+		<item name="android:background">@drawable/rounded_corners_white</item>
+		<item name="android:gravity">center_vertical</item>
+		<item name="android:paddingTop">@dimen/list_vertical_padding</item>
+		<item name="android:paddingBottom">@dimen/list_vertical_padding</item>
+		<item name="android:paddingLeft">@dimen/list_horizontal_padding</item>
+		<item name="android:paddingRight">@dimen/list_horizontal_padding</item>
+		<item name="android:descendantFocusability">blocksDescendants</item>
+	</style>
+
+	<style name="ListItem1">
+		<item name="android:layout_width">match_parent</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="android:textAppearance">?android:attr/textAppearanceListItemSmall</item>
+		<item name="android:gravity">center_vertical</item>
+		<item name="android:paddingLeft">?android:attr/listPreferredItemPaddingStart</item>
+		<item name="android:paddingRight">?android:attr/listPreferredItemPaddingEnd</item>
+		<item name="android:textIsSelectable">false</item>
+		<item name="android:minHeight">?android:attr/listPreferredItemHeightSmall</item>
+	</style>
+
+	<!-- S T A T U S   /   S E T U P  -->
+
+	<style name="GridLabel">
+		<item name="android:layout_width">wrap_content</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="android:layout_gravity">center_vertical|end</item>
+		<item name="android:layout_marginLeft">20dp</item>
+		<item name="android:gravity">end</item>
+		<item name="android:maxLines">2</item>
+	</style>
+
+	<style name="GridData">
+		<item name="android:layout_width">wrap_content</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="android:orientation">horizontal</item>
+		<item name="android:paddingLeft">20dp</item>
+		<item name="android:paddingRight">20dp</item>Z
+	</style>
+
+	<style name="GridStatusImage">
+		<item name="android:layout_width">wrap_content</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="android:layout_gravity">center</item>
+		<item name="android:layout_marginRight">10dp</item>
+		<item name="android:background">@color/light_yellow_color</item>
+		<item name="android:paddingBottom">12dp</item>
+		<item name="android:paddingTop">12dp</item>
+		<item name="android:paddingLeft">20dp</item>
+		<item name="android:paddingRight">20dp</item>
+		<item name="android:src">@drawable/ic_unknown</item>
+	</style>
+
+	<style name="GridStatusActionButton">
+		<item name="android:layout_width">wrap_content</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="android:layout_gravity">center</item>
+		<item name="android:layout_marginLeft">8dp</item>
+		<item name="android:layout_marginRight">8dp</item>
+		<item name="android:paddingTop">2dp</item>
+		<item name="android:paddingBottom">2dp</item>
+		<item name="android:background">@drawable/bg_button_action</item>
+		<item name="android:gravity">end|center_vertical</item>
+		<item name="android:visibility">gone</item>
+	</style>
+
+	<style name="GridStatusInfoButton">
+		<item name="android:layout_width">wrap_content</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="android:layout_gravity">center</item>
+		<item name="android:layout_marginLeft">8dp</item>
+		<item name="android:layout_marginRight">8dp</item>
+		<item name="android:paddingTop">2dp</item>
+		<item name="android:paddingBottom">2dp</item>
+		<item name="android:background">@drawable/bg_button_info</item>
+		<item name="android:gravity">end|center_vertical</item>
+		<item name="android:visibility">visible</item>
+	</style>
+
+	<style name="GridActionButton">
+		<item name="android:layout_width">wrap_content</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="android:layout_gravity">center</item>
+		<item name="android:layout_marginLeft">8dp</item>
+		<item name="android:layout_marginRight">8dp</item>
+		<item name="android:paddingTop">2dp</item>
+		<item name="android:paddingBottom">2dp</item>
+		<item name="android:background">@drawable/bg_button_action</item>
+		<item name="android:gravity">center</item>
+		<item name="android:visibility">visible</item>
+	</style>
+
+	<style name="GridInfoButton">
+		<item name="android:layout_width">wrap_content</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="android:layout_gravity">center</item>
+		<item name="android:layout_marginLeft">8dp</item>
+		<item name="android:layout_marginRight">8dp</item>
+		<item name="android:paddingTop">2dp</item>
+		<item name="android:paddingBottom">2dp</item>
+		<item name="android:background">@drawable/bg_button_info</item>
+		<item name="android:gravity">end|center_vertical</item>
+		<item name="android:visibility">visible</item>
 	</style>
 
 </resources>

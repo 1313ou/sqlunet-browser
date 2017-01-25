@@ -1,7 +1,6 @@
 package org.sqlunet.browser.config;
 
 import android.annotation.TargetApi;
-import android.app.ActionBar;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
@@ -15,6 +14,8 @@ import android.preference.PreferenceCategory;
 import android.preference.PreferenceFragment;
 import android.preference.PreferenceManager;
 import android.preference.PreferenceScreen;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.contrib.AppCompatPreferenceActivity;
 import android.util.Pair;
 
 import org.sqlunet.browser.R;
@@ -31,7 +32,7 @@ import java.util.List;
  * See <a href="http://developer.android.com/design/patterns/settings.html"> Android Design: Settings</a> for design guidelines and the
  * <a href="http://developer.android.com/guide/topics/ui/settings.html">Settings API Guide</a> for more information on developing a Settings UI.
  */
-public class SettingsActivity extends PreferenceActivity
+public class SettingsActivity extends AppCompatPreferenceActivity
 {
 	/**
 	 * A preference value change listener that updates the preference's summary to reflect its new value.
@@ -218,8 +219,8 @@ public class SettingsActivity extends PreferenceActivity
 	{
 		super.onCreate(savedInstanceState);
 
-		// show the Up button in the type bar.
-		final ActionBar actionBar = getActionBar();
+		// action bar
+		final ActionBar actionBar = getSupportActionBar();
 		assert actionBar != null;
 		actionBar.setDisplayHomeAsUpEnabled(true);
 	}

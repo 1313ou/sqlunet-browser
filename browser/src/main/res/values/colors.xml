@@ -15,7 +15,7 @@
 	<item name="dark_gray_color" type="color">#FF303030</item>
 
 	<!-- light yellow -->
-	<item name="light_yellow_color" type="color">#FFffff99</item>
+	<item name="light_yellow_color" type="color">#ffff99</item>
 
 	<!-- action bar -->
 	<item name="browse_action_bar_color" type="color">#FF990073</item>

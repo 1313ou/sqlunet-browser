@@ -24,7 +24,7 @@
 	<string name="execute_import">Import</string>
 	<string name="info_import">Info about import</string>
 
-	<string name="title_predicatematrix">PredicateMatrix</string>
+	<string name="title_predicatematrix">Predicate\nMatrix</string>
 	<string name="execute_predicatematrix">Import PredicateMatrix</string>
 	<string name="info_predicatematrix">Info about PredicateMatrix</string>
 

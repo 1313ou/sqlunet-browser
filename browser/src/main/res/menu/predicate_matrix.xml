@@ -4,10 +4,10 @@
       tools:context="org.sqlunet.predicatematrix.org.sqlunet.browser.PredicateMatrixActivity">
 	<item
 		android:id="@+id/search"
-		android:actionViewClass="android.widget.SearchView"
 		android:icon="@android:drawable/ic_menu_search"
 		android:showAsAction="collapseActionView|ifRoom"
 		android:title="@string/hint_search_predicatematrix"
+		app:actionViewClass="android.support.v7.widget.SearchView"
 		app:showAsAction="collapseActionView|ifRoom"
 		tools:ignore="AppCompatResource"/>
 </menu>

@@ -1,9 +1,9 @@
 package org.sqlunet.browser;
 
-import android.app.ActionBar;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.FragmentActivity;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -14,7 +14,7 @@ import org.sqlunet.browser.config.Status;
  *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
-public class StatusActivity extends FragmentActivity
+public class StatusActivity extends AppCompatActivity
 {
 	@Override
 	protected void onCreate(final Bundle savedInstanceState)
@@ -25,7 +25,7 @@ public class StatusActivity extends FragmentActivity
 		setContentView(R.layout.activity_status);
 
 		// show the Up button in the type bar.
-		final ActionBar actionBar = getActionBar();
+		final ActionBar actionBar = getSupportActionBar();
 		assert actionBar != null;
 		actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_HOME | ActionBar.DISPLAY_HOME_AS_UP);
 		// actionBar.setDisplayShowCustomEnabled(false);

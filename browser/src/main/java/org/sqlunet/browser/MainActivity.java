@@ -1,13 +1,13 @@
 package org.sqlunet.browser;
 
-import android.app.ActionBar;
 import android.app.Activity;
 import android.app.SearchManager;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -23,7 +23,7 @@ import org.sqlunet.browser.config.StorageFragment;
 import org.sqlunet.settings.Settings;
 import org.sqlunet.settings.StorageSettings;
 
-public class MainActivity extends FragmentActivity implements NavigationDrawerFragment.Listener
+public class MainActivity extends AppCompatActivity implements NavigationDrawerFragment.Listener
 {
 	static private final String TAG = "MainActivity";
 
@@ -131,7 +131,7 @@ public class MainActivity extends FragmentActivity implements NavigationDrawerFr
 	@SuppressWarnings("unused")
 	public void restoreActionBar()
 	{
-		ActionBar actionBar = getActionBar();
+		ActionBar actionBar = getSupportActionBar();
 		assert actionBar != null;
 		actionBar.setDisplayShowTitleEnabled(true);
 		actionBar.setTitle(this.title);

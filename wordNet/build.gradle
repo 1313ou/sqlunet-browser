@@ -3,7 +3,7 @@ apply plugin: 'com.android.library'
 //noinspection GroovyMissingReturnStatement
 android {
     compileSdkVersion 25
-    buildToolsVersion "25.0.0"
+    buildToolsVersion "25.0.2"
 
     //noinspection GroovyMissingReturnStatement
     defaultConfig {
@@ -22,4 +22,5 @@ android {
 dependencies {
     compile project(':xNet')
     compile project(':treeView')
+    compile 'com.android.support:appcompat-v7:25.1.0'
 }

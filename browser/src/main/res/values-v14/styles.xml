@@ -9,4 +9,7 @@
 		<!-- API 14 theme customizations can go here. -->
 	</style>
 
+	<style name="CompatAppBaseTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+	</style>
+
 </resources>

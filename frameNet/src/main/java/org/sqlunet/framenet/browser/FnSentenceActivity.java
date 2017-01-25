@@ -1,8 +1,8 @@
 package org.sqlunet.framenet.browser;
 
-import android.app.ActionBar;
 import android.os.Bundle;
-import android.support.v4.app.FragmentActivity;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.AppCompatActivity;
 
 import org.sqlunet.framenet.R;
 
@@ -11,7 +11,7 @@ import org.sqlunet.framenet.R;
  *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
-public class FnSentenceActivity extends FragmentActivity
+public class FnSentenceActivity extends AppCompatActivity
 {
 	@Override
 	protected void onCreate(final Bundle savedInstanceState)
@@ -22,7 +22,7 @@ public class FnSentenceActivity extends FragmentActivity
 		setContentView(R.layout.activity_fnsentence);
 
 		// show the Up button in the type bar.
-		final ActionBar actionBar = getActionBar();
+		final ActionBar actionBar = getSupportActionBar();
 		assert actionBar != null;
 		actionBar.setDisplayHomeAsUpEnabled(true);
 

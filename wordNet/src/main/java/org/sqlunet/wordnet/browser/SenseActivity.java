@@ -1,7 +1,7 @@
 package org.sqlunet.wordnet.browser;
 
-import android.app.ActionBar;
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
 
 import org.sqlunet.wordnet.R;
 
@@ -21,7 +21,7 @@ public class SenseActivity extends SynsetActivity
 		setContentView(R.layout.activity_synset);
 
 		// show the Up button in the type bar.
-		final ActionBar actionBar = getActionBar();
+		final ActionBar actionBar = getSupportActionBar();
 		assert actionBar != null;
 		actionBar.setDisplayHomeAsUpEnabled(true);
 

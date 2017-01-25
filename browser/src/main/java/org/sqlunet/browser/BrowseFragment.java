@@ -1,9 +1,7 @@
 package org.sqlunet.browser;
 
 import android.annotation.SuppressLint;
-import android.app.ActionBar;
 import android.app.Activity;
-import android.support.v4.app.Fragment;
 import android.app.SearchManager;
 import android.app.SearchableInfo;
 import android.content.ComponentName;
@@ -17,6 +15,11 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.support.annotation.NonNull;
+import android.support.v4.app.Fragment;
+import android.support.v4.view.MenuItemCompat;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.SearchView;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
@@ -29,7 +32,6 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
-import android.widget.SearchView;
 import android.widget.Spinner;
 import android.widget.SpinnerAdapter;
 import android.widget.TextView;
@@ -199,10 +201,10 @@ public class BrowseFragment extends Fragment implements SearchListener
 	private Spinner setupActionBar(final LayoutInflater inflater)
 	{
 		// activity
-		final Activity activity = getActivity();
+		final AppCompatActivity activity = (AppCompatActivity) getActivity();
 
 		// action bar
-		final ActionBar actionBar = activity.getActionBar();
+		final ActionBar actionBar = activity.getSupportActionBar();
 		assert actionBar != null;
 
 		// color
@@ -241,10 +243,10 @@ public class BrowseFragment extends Fragment implements SearchListener
 	private void restoreActionBar()
 	{
 		// activity
-		final Activity activity = getActivity();
+		final AppCompatActivity activity = (AppCompatActivity) getActivity();
 
 		// action bar
-		final ActionBar actionBar = activity.getActionBar();
+		final ActionBar actionBar = activity.getSupportActionBar();
 		assert actionBar != null;
 		actionBar.setDisplayShowCustomEnabled(false);
 
@@ -282,7 +284,7 @@ public class BrowseFragment extends Fragment implements SearchListener
 		final MenuItem searchMenuItem = menu.findItem(R.id.search);
 
 		// activity
-		final Activity activity = getActivity();
+		final AppCompatActivity activity = (AppCompatActivity) getActivity();
 
 		// search info
 		final ComponentName componentName = activity.getComponentName();
@@ -290,7 +292,7 @@ public class BrowseFragment extends Fragment implements SearchListener
 		final SearchableInfo searchableInfo = searchManager.getSearchableInfo(componentName);
 
 		// search view
-		this.searchView = (SearchView) searchMenuItem.getActionView();
+		this.searchView = (SearchView) MenuItemCompat.getActionView(searchMenuItem);
 		this.searchView.setSearchableInfo(searchableInfo);
 		this.searchView.setIconifiedByDefault(true);
 		this.searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener()

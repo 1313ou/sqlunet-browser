@@ -290,7 +290,7 @@ public class XSelectorsFragment extends ExpandableListFragment
 			@Override
 			protected Cursor getChildrenCursor(Cursor groupCursor)
 			{
-				FragmentActivity activity = getActivity();
+				final FragmentActivity activity = getActivity();
 				if (activity == null)
 				{
 					return null;

@@ -1,8 +1,8 @@
 package org.sqlunet.browser;
 
-import android.app.ActionBar;
 import android.os.Bundle;
-import android.support.v4.app.FragmentActivity;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -11,7 +11,7 @@ import android.view.MenuItem;
  *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
-public class HelpActivity extends FragmentActivity
+public class HelpActivity extends AppCompatActivity
 {
 	@Override
 	protected void onCreate(final Bundle savedInstanceState)
@@ -22,7 +22,7 @@ public class HelpActivity extends FragmentActivity
 		setContentView(R.layout.activity_help);
 
 		// show the Up button in the type bar.
-		final ActionBar actionBar = getActionBar();
+		final ActionBar actionBar = getSupportActionBar();
 		assert actionBar != null;
 		actionBar.setDisplayHomeAsUpEnabled(true);
 	}

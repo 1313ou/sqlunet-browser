@@ -3,7 +3,7 @@ package org.sqlunet.browser;
 import android.app.SearchManager;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.FragmentActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -12,7 +12,7 @@ import android.view.MenuItem;
  *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
-public class BrowseActivity extends FragmentActivity
+public class BrowseActivity extends AppCompatActivity
 {
 	/**
 	 * Fragment

@@ -22,7 +22,7 @@
 		android:icon="@drawable/ic_launcher"
 		android:label="@string/app_name"
 		android:supportsRtl="true"
-		android:theme="@style/AppTheme">
+		android:theme="@style/CompatAppTheme">
 		<activity
 			android:name=".MainActivity"
 			android:label="@string/app_name"
@@ -239,7 +239,6 @@
 		</activity>
 		<activity
 			android:name=".config.SetupActivity"
-			android:theme="@style/CompatAppTheme"
 			android:label="@string/title_activity_setup">
 			<meta-data
 				android:name="android.support.PARENT_ACTIVITY"

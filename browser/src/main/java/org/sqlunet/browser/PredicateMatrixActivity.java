@@ -4,7 +4,7 @@ import android.app.SearchManager;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Parcelable;
-import android.support.v4.app.FragmentActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -16,7 +16,7 @@ import org.sqlunet.provider.ProviderArgs;
  *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
-public class PredicateMatrixActivity extends FragmentActivity
+public class PredicateMatrixActivity extends AppCompatActivity
 {
 	/**
 	 * Fragment

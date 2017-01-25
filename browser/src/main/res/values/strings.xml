@@ -31,6 +31,7 @@
 	<string name="action_storage_dirs">Storage dirs</string>
 	<string name="action_storage">Storage</string>
 	<string name="action_md5">MD5</string>
+	<string name="action_md5_of">MD5 of</string>
 	<string name="action_md5_ask">MD5 &#8230;</string>
 
 	<!-- misc -->
@@ -83,11 +84,11 @@
 	<string name="status_data_fail">Data is unavailable</string>
 	<string name="status_database">Database</string>
 	<string name="status_indexes">Indexes</string>
-	<string name="status_predicatematrix">Predicate Matrix</string>
-	<string name="status_textsearch">Text Search on WordNet</string>
-	<string name="status_textsearchVn">Text Search on VerbNet</string>
-	<string name="status_textsearchPb">Text Search on PropBank</string>
-	<string name="status_textsearchFn">Text Search on FrameNet</string>
+	<string name="status_predicatematrix">Predicate\nMatrix</string>
+	<string name="status_textsearch">Text Search\non WordNet</string>
+	<string name="status_textsearchVn">Text Search\non VerbNet</string>
+	<string name="status_textsearchPb">Text Search\non PropBank</string>
+	<string name="status_textsearchFn">Text Search\non FrameNet</string>
 	<string name="status_download_pending">pending</string>
 	<string name="status_download_running">running</string>
 	<string name="status_download_paused">paused</string>
