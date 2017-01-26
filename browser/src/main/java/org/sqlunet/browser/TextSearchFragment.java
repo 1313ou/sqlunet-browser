@@ -180,7 +180,7 @@ public class TextSearchFragment extends Fragment implements SearchListener
 		// action bar
 		final ActionBar actionBar = activity.getSupportActionBar();
 		assert actionBar != null;
-		actionBar.setDisplayShowCustomEnabled(false);
+		actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_HOME | ActionBar.DISPLAY_HOME_AS_UP);
 
 		// theme
 		final Resources.Theme theme = activity.getTheme();

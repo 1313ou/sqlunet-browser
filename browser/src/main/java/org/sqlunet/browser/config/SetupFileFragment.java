@@ -64,7 +64,9 @@ public class SetupFileFragment extends BaseTaskFragment
 				// skip first
 				final long id = SetupFileFragment.this.spinner.getSelectedItemId();
 				if (id == 0)
+				{
 					return;
+				}
 
 				// operations
 				final CharSequence[] operations = getActivity().getResources().getTextArray(R.array.setup_values);
@@ -104,7 +106,7 @@ public class SetupFileFragment extends BaseTaskFragment
 					case MD5:
 						if (Permissions.check(getActivity()))
 						{
-							FileTask.md5(context);
+							FileAsyncTask.md5(context);
 						}
 						break;
 

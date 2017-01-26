@@ -358,7 +358,7 @@ public class BrowseFragment extends Fragment implements SearchListener
 				final View view = super.getView(position, convertView, parent);
 				final TextView textView = (TextView) view.findViewById(android.R.id.text1);
 				textView.setText("");
-				textView.setCompoundDrawablesWithIntrinsicBounds(0, position == 0 ? R.drawable.ic_selector : R.drawable.ic_xselector, 0, 0);
+				textView.setCompoundDrawablesWithIntrinsicBounds(0, 0, position == 0 ? R.drawable.ic_selector : R.drawable.ic_xselector, 0);
 
 				return view;
 			}

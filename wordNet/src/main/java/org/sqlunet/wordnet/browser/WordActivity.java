@@ -24,7 +24,7 @@ public class WordActivity extends AppCompatActivity
 		// show the Up button in the type bar.
 		final ActionBar actionBar = getSupportActionBar();
 		assert actionBar != null;
-		actionBar.setDisplayHomeAsUpEnabled(true);
+		actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_HOME | ActionBar.DISPLAY_HOME_AS_UP);
 
 		// fragment
 		// savedInstanceState is non-null when there is fragment state saved from previous configurations of this activity (e.g. when rotating the screen from

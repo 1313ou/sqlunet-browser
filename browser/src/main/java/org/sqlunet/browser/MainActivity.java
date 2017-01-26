@@ -133,7 +133,7 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawerF
 	{
 		ActionBar actionBar = getSupportActionBar();
 		assert actionBar != null;
-		actionBar.setDisplayShowTitleEnabled(true);
+		actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_HOME | ActionBar.DISPLAY_HOME_AS_UP);
 		actionBar.setTitle(this.title);
 		// actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
 	}

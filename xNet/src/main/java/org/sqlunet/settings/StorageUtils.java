@@ -748,17 +748,17 @@ public class StorageUtils
 	/**
 	 * Index of free storage value
 	 */
-	static public final int STORAGE_FREE = 0;
+	private static final int STORAGE_FREE = 0;
 
 	/**
 	 * Index of capacity value
 	 */
-	static public final int STORAGE_CAPACITY = 1;
+	private static final int STORAGE_CAPACITY = 1;
 
 	/**
 	 * Index of occupancy value
 	 */
-	static public final int STORAGE_OCCUPANCY = 2;
+	private static final int STORAGE_OCCUPANCY = 2;
 
 	/**
 	 * Storage data at path
@@ -766,7 +766,7 @@ public class StorageUtils
 	 * @param path path
 	 * @return data
 	 */
-	static public float[] storageStats(final String path)
+	private static float[] storageStats(final String path)
 	{
 		float[] stats = new float[3];
 		stats[STORAGE_FREE] = storageFree(path);

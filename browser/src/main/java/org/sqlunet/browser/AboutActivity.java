@@ -24,7 +24,7 @@ public class AboutActivity extends AppCompatActivity
 		// show the Up button in the type bar.
 		final ActionBar actionBar = getSupportActionBar();
 		assert actionBar != null;
-		actionBar.setDisplayHomeAsUpEnabled(true);
+		actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_HOME | ActionBar.DISPLAY_HOME_AS_UP);
 	}
 
 	@Override
