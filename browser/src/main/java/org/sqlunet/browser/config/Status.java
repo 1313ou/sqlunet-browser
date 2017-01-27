@@ -3,6 +3,7 @@ package org.sqlunet.browser.config;
 import android.content.Context;
 import android.database.Cursor;
 import android.net.Uri;
+import android.text.SpannableStringBuilder;
 import android.util.Log;
 
 import org.sqlunet.provider.ManagerContract;
@@ -29,6 +30,8 @@ public class Status
 	// _status flags
 
 	static public final int EXISTS = 0x1;
+
+	static public final int EXISTS_TABLES = 0x2;
 
 	static public final int EXISTS_INDEXES = 0x10;
 
@@ -77,6 +80,22 @@ public class Status
 				return status;
 			}
 
+			boolean existsTables = contains(existingTablesAndIndexes,
+					// wordnet
+					"words", "senses", "synsets", "adjpositions", "adjpositiontypes", "casedwords", "lexdomains", "lexlinks", "linktypes", "morphmaps", "morphs", "postypes", "samples", "semlinks", "vframemaps", "vframes", "vframesentencemaps", "vframesentences",
+					// verbnet
+					"vnclasses", "vnclassmembers", "vnclassmembersenses", "vnexamplemaps", "vnexamples", "vnframemaps", "vnframenames", "vnframes", "vnframesubnames", "vngroupingmaps", "vngroupings", "vnpredicatemaps", "vnpredicates", "vnrestrs", "vnrestrtypes", "vnrolemaps", "vnroles", "vnroletypes", "vnsemantics", "vnsyntaxes", "vnwords",
+					// framenet
+					"fnannosets", "fncoretypes", "fncorpuses", "fncxns", "fndocuments", "fnfegrouprealizations", "fnfegrouprealizations_fes", "fnferealizations", "fnfes", "fnfes_excluded", "fnfes_required", "fnfes_semtypes", "fnfetypes", "fnframerelations", "fnframes", "fnframes_related", "fnframes_semtypes", "fngftypes", "fngovernors", "fngovernors_annosets", "fnlabelitypes", "fnlabels", "fnlabeltypes", "fnlayers", "fnlayertypes", "fnlexemes", "fnlexunits", "fnlexunits_governors", "fnlexunits_semtypes", "fnpatterns", "fnpatterns_annosets", "fnpatterns_valenceunits", "fnposes", "fnpttypes", "fnsemtypes", "fnsemtypes_supers", "fnsentences", "fnstatuses", "fnsubcorpuses", "fnsubcorpuses_sentences", "fnvalenceunits", "fnvalenceunits_annosets", "fnwords",
+					// propbank
+					"pbargns", "pbargs", "pbaspects", "pbexamples", "pbfnframemaps", "pbforms", "pbfuncs", "pbpersons", "pbrels", "pbroles", "pbrolesetmembers", "pbrolesets", "pbtenses", "pbvnclassmaps", "pbvnrolemaps", "pbvnthetas", "pbvoices", "pbwords",
+					// predicate matrix
+					"pm", "pmpredicates", "pmroles",
+					// "pmvn","pmpb","pmfn", // DERIVED
+					// bnc
+					"bncconvtasks", "bncimaginfs", "bncs", "bncspwrs",
+					// sources
+					"sources");
 			boolean existsIdx = contains(existingTablesAndIndexes, "index_words_lemma", "index_senses_wordid", "index_senses_synsetid", "index_synsets_synsetid", //
 					"index_casedwords_wordid_casedwordid", //
 					"index_semlinks_synset1id", "index_semlinks_linkid", //
@@ -92,6 +111,11 @@ public class Status
 			boolean existsTsVn = contains(existingTablesAndIndexes, "vnexamples_example_fts4");
 			boolean existsTsPb = contains(existingTablesAndIndexes, "pbexamples_text_fts4");
 			boolean existsTsFn = contains(existingTablesAndIndexes, "fnsentences_text_fts4");
+
+			if (existsTables)
+			{
+				status |= EXISTS_TABLES;
+			}
 			if (existsIdx)
 			{
 				status |= EXISTS_INDEXES;
@@ -130,7 +154,7 @@ public class Status
 	static public boolean canRun(final Context context)
 	{
 		final int status = status(context);
-		return (status & (EXISTS | EXISTS_INDEXES | EXISTS_PREDICATEMATRIX)) == (EXISTS | EXISTS_INDEXES | EXISTS_PREDICATEMATRIX);
+		return (status & (EXISTS | EXISTS_TABLES | EXISTS_INDEXES | EXISTS_PREDICATEMATRIX)) == (EXISTS | EXISTS_TABLES | EXISTS_INDEXES | EXISTS_PREDICATEMATRIX);
 	}
 
 	/**
@@ -192,8 +216,58 @@ public class Status
 	 */
 	static private boolean contains(final Collection<String> tablesAndIndexes, final String... targets)
 	{
-		if(tablesAndIndexes == null)
+		if (tablesAndIndexes == null)
+		{
 			return false;
+		}
+		/*
+		for (String target : targets)
+		{
+			if (!tablesAndIndexes.contains(target))
+			{
+				Log.d(TAG, "ABSENT " + target);
+			}
+		}
+		*/
 		return tablesAndIndexes.containsAll(Arrays.asList(targets));
+	}
+
+	static public CharSequence toString(int status)
+	{
+		final SpannableStringBuilder sb = new SpannableStringBuilder();
+		sb.append(Integer.toHexString(status));
+		if ((status & EXISTS) != 0)
+		{
+			sb.append(" file");
+		}
+		if ((status & EXISTS_TABLES) != 0)
+		{
+			sb.append(" tables");
+		}
+		if ((status & EXISTS_INDEXES) != 0)
+		{
+			sb.append(" indexes");
+		}
+		if ((status & EXISTS_PREDICATEMATRIX) != 0)
+		{
+			sb.append(" pm");
+		}
+		if ((status & EXISTS_TS_WN) != 0)
+		{
+			sb.append(" tswn");
+		}
+		if ((status & EXISTS_TS_VN) != 0)
+		{
+			sb.append(" tsvn");
+		}
+		if ((status & EXISTS_TS_PB) != 0)
+		{
+			sb.append(" tspb");
+		}
+		if ((status & EXISTS_TS_FN) != 0)
+		{
+			sb.append(" tsfn");
+		}
+		return sb;
 	}
 }

@@ -33,6 +33,38 @@ public class StatusFragment extends Fragment
 
 	static private final int REQUEST_MANAGE_CODE = 0xAAA0;
 
+	// components
+
+	private ImageView imageDb;
+
+	private ImageView imageIndexes;
+
+	private ImageView imagePm;
+
+	private ImageView imageTextSearchWn;
+
+	private ImageView imageTextSearchVn;
+
+	private ImageView imageTextSearchPb;
+
+	private ImageView imageTextSearchFn;
+
+	private ImageButton buttonDb;
+
+	private ImageButton buttonIndexes;
+
+	private ImageButton buttonPm;
+
+	private ImageButton buttonTextSearchWn;
+
+	private ImageButton buttonTextSearchVn;
+
+	private ImageButton buttonTextSearchPb;
+
+	private ImageButton buttonTextSearchFn;
+
+	private ImageButton infoDatabaseButton;
+
 	/**
 	 * Mandatory empty constructor for the fragment manager to instantiate the fragment (e.g. upon screen orientation changes).
 	 */
@@ -45,35 +77,34 @@ public class StatusFragment extends Fragment
 	public View onCreateView(final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState)
 	{
 		setHasOptionsMenu(true);
-		return inflater.inflate(R.layout.fragment_status, container, false);
-	}
-
-
-	@Override
-	public void onResume()
-	{
-		super.onResume();
 
 		// view
-		final View view = getView();
-		assert view != null;
+		final View view = inflater.inflate(R.layout.fragment_status, container, false);
+
+		// images
+		this.imageDb = (ImageView) view.findViewById(R.id.status_database);
+		this.imageIndexes = (ImageView) view.findViewById(R.id.status_indexes);
+		this.imagePm = (ImageView) view.findViewById(R.id.status_predicatematrix);
+		this.imageTextSearchWn = (ImageView) view.findViewById(R.id.status_textsearchWn);
+		this.imageTextSearchVn = (ImageView) view.findViewById(R.id.status_textsearchVn);
+		this.imageTextSearchPb = (ImageView) view.findViewById(R.id.status_textsearchPb);
+		this.imageTextSearchFn = (ImageView) view.findViewById(R.id.status_textsearchFn);
+
+		// buttons
+		this.buttonDb = (ImageButton) view.findViewById(R.id.databaseButton);
+		this.buttonIndexes = (ImageButton) view.findViewById(R.id.indexesButton);
+		this.buttonPm = (ImageButton) view.findViewById(R.id.predicatematrixButton);
+		this.buttonTextSearchWn = (ImageButton) view.findViewById(R.id.textsearchWnButton);
+		this.buttonTextSearchVn = (ImageButton) view.findViewById(R.id.textsearchVnButton);
+		this.buttonTextSearchPb = (ImageButton) view.findViewById(R.id.textsearchPbButton);
+		this.buttonTextSearchFn = (ImageButton) view.findViewById(R.id.textsearchFnButton);
+		this.infoDatabaseButton = (ImageButton) view.findViewById(R.id.info_database);
 
 		// activity
 		final Activity activity = getActivity();
 
-		// status
-		final ImageView db = (ImageView) view.findViewById(R.id.status_database);
-		final ImageButton buttonDb = (ImageButton) view.findViewById(R.id.databaseButton);
-		final ImageButton buttonIndexes = (ImageButton) view.findViewById(R.id.indexesButton);
-		final ImageButton buttonPm = (ImageButton) view.findViewById(R.id.predicatematrixButton);
-		final ImageButton buttonTextSearchWn = (ImageButton) view.findViewById(R.id.textsearchWnButton);
-		final ImageButton buttonTextSearchVn = (ImageButton) view.findViewById(R.id.textsearchVnButton);
-		final ImageButton buttonTextSearchPb = (ImageButton) view.findViewById(R.id.textsearchPbButton);
-		final ImageButton buttonTextSearchFn = (ImageButton) view.findViewById(R.id.textsearchFnButton);
-		final ImageButton infoDatabaseButton = (ImageButton) view.findViewById(R.id.info_database);
-
 		// click listeners
-		buttonDb.setOnClickListener(new View.OnClickListener()
+		this.buttonDb.setOnClickListener(new View.OnClickListener()
 		{
 			@Override
 			public void onClick(View v)
@@ -83,7 +114,7 @@ public class StatusFragment extends Fragment
 			}
 		});
 
-		buttonIndexes.setOnClickListener(new View.OnClickListener()
+		this.buttonIndexes.setOnClickListener(new View.OnClickListener()
 		{
 			@Override
 			public void onClick(View v)
@@ -94,7 +125,7 @@ public class StatusFragment extends Fragment
 			}
 		});
 
-		buttonPm.setOnClickListener(new View.OnClickListener()
+		this.buttonPm.setOnClickListener(new View.OnClickListener()
 		{
 			@Override
 			public void onClick(View v)
@@ -105,7 +136,7 @@ public class StatusFragment extends Fragment
 			}
 		});
 
-		buttonTextSearchWn.setOnClickListener(new View.OnClickListener()
+		this.buttonTextSearchWn.setOnClickListener(new View.OnClickListener()
 		{
 			@Override
 			public void onClick(View v)
@@ -116,7 +147,7 @@ public class StatusFragment extends Fragment
 			}
 		});
 
-		buttonTextSearchVn.setOnClickListener(new View.OnClickListener()
+		this.buttonTextSearchVn.setOnClickListener(new View.OnClickListener()
 		{
 			@Override
 			public void onClick(View v)
@@ -127,7 +158,7 @@ public class StatusFragment extends Fragment
 			}
 		});
 
-		buttonTextSearchPb.setOnClickListener(new View.OnClickListener()
+		this.buttonTextSearchPb.setOnClickListener(new View.OnClickListener()
 		{
 			@Override
 			public void onClick(View v)
@@ -138,7 +169,7 @@ public class StatusFragment extends Fragment
 			}
 		});
 
-		buttonTextSearchFn.setOnClickListener(new View.OnClickListener()
+		this.buttonTextSearchFn.setOnClickListener(new View.OnClickListener()
 		{
 			@Override
 			public void onClick(View v)
@@ -149,7 +180,7 @@ public class StatusFragment extends Fragment
 			}
 		});
 
-		infoDatabaseButton.setOnClickListener(new View.OnClickListener()
+		this.infoDatabaseButton.setOnClickListener(new View.OnClickListener()
 		{
 			@Override
 			public void onClick(final View v)
@@ -164,11 +195,44 @@ public class StatusFragment extends Fragment
 			}
 		});
 
-		final int status = Status.status(activity);
-		if (status != 0)
+		final ImageButton refreshButton = (ImageButton) view.findViewById(R.id.status_update);
+		refreshButton.setOnClickListener(new View.OnClickListener()
 		{
-			db.setImageResource(R.drawable.ic_ok);
-			buttonDb.setVisibility(View.GONE);
+			@Override
+			public void onClick(final View v)
+			{
+				update();
+			}
+		});
+
+		return view;
+	}
+
+
+	@Override
+	public void onResume()
+	{
+		super.onResume();
+
+		// activity
+		final Activity activity = getActivity();
+
+		update();
+	}
+
+	public void update()
+	{
+		// activity
+		final Activity activity = getActivity();
+
+		final int status = Status.status(activity);
+		Log.d(TAG, "STATUS " + Status.toString(status));
+		final boolean existsDb = (status & Status.EXISTS) != 0;
+		final boolean existsTables = (status & Status.EXISTS_TABLES) != 0;
+		if (existsTables)
+		{
+			this.imageDb.setImageResource(R.drawable.ic_ok);
+			this.buttonDb.setVisibility(View.GONE);
 
 			final boolean existsIndexes = (status & Status.EXISTS_INDEXES) != 0;
 			final boolean existsPm = (status & Status.EXISTS_PREDICATEMATRIX) != 0;
@@ -177,30 +241,38 @@ public class StatusFragment extends Fragment
 			final boolean existsTsPb = (status & Status.EXISTS_TS_PB) != 0;
 			final boolean existsTsFn = (status & Status.EXISTS_TS_FN) != 0;
 
-			final ImageView imageIndexes = (ImageView) view.findViewById(R.id.status_indexes);
-			final ImageView imagePm = (ImageView) view.findViewById(R.id.status_predicatematrix);
-			final ImageView imageTextSearchWn = (ImageView) view.findViewById(R.id.status_textsearchWn);
-			final ImageView imageTextSearchVn = (ImageView) view.findViewById(R.id.status_textsearchVn);
-			final ImageView imageTextSearchPb = (ImageView) view.findViewById(R.id.status_textsearchPb);
-			final ImageView imageTextSearchFn = (ImageView) view.findViewById(R.id.status_textsearchFn);
-			imageIndexes.setImageResource(existsIndexes ? R.drawable.ic_ok : R.drawable.ic_fail);
-			imagePm.setImageResource(existsPm ? R.drawable.ic_ok : R.drawable.ic_fail);
-			imageTextSearchWn.setImageResource(existsTsWn ? R.drawable.ic_ok : R.drawable.ic_fail);
-			imageTextSearchVn.setImageResource(existsTsVn ? R.drawable.ic_ok : R.drawable.ic_fail);
-			imageTextSearchPb.setImageResource(existsTsPb ? R.drawable.ic_ok : R.drawable.ic_fail);
-			imageTextSearchFn.setImageResource(existsTsFn ? R.drawable.ic_ok : R.drawable.ic_fail);
+			this.imageIndexes.setImageResource(existsIndexes ? R.drawable.ic_ok : R.drawable.ic_fail);
+			this.imagePm.setImageResource(existsPm ? R.drawable.ic_ok : R.drawable.ic_fail);
+			this.imageTextSearchWn.setImageResource(existsTsWn ? R.drawable.ic_ok : R.drawable.ic_fail);
+			this.imageTextSearchVn.setImageResource(existsTsVn ? R.drawable.ic_ok : R.drawable.ic_fail);
+			this.imageTextSearchPb.setImageResource(existsTsPb ? R.drawable.ic_ok : R.drawable.ic_fail);
+			this.imageTextSearchFn.setImageResource(existsTsFn ? R.drawable.ic_ok : R.drawable.ic_fail);
 
-			buttonIndexes.setVisibility(existsIndexes ? View.GONE : View.VISIBLE);
-			buttonPm.setVisibility(existsPm ? View.GONE : View.VISIBLE);
-			buttonTextSearchWn.setVisibility(existsTsWn ? View.GONE : View.VISIBLE);
-			buttonTextSearchVn.setVisibility(existsTsVn ? View.GONE : View.VISIBLE);
-			buttonTextSearchPb.setVisibility(existsTsPb ? View.GONE : View.VISIBLE);
-			buttonTextSearchFn.setVisibility(existsTsFn ? View.GONE : View.VISIBLE);
+			this.buttonIndexes.setVisibility(existsIndexes ? View.GONE : View.VISIBLE);
+			this.buttonPm.setVisibility(existsPm ? View.GONE : View.VISIBLE);
+			this.buttonTextSearchWn.setVisibility(existsTsWn ? View.GONE : View.VISIBLE);
+			this.buttonTextSearchVn.setVisibility(existsTsVn ? View.GONE : View.VISIBLE);
+			this.buttonTextSearchPb.setVisibility(existsTsPb ? View.GONE : View.VISIBLE);
+			this.buttonTextSearchFn.setVisibility(existsTsFn ? View.GONE : View.VISIBLE);
 		}
 		else
 		{
-			db.setImageResource(R.drawable.ic_fail);
-			buttonDb.setVisibility(View.VISIBLE);
+			this.imageDb.setImageResource(R.drawable.ic_fail);
+			this.buttonDb.setVisibility(View.VISIBLE);
+
+			this.buttonIndexes.setVisibility(View.GONE);
+			this.buttonPm.setVisibility(View.GONE);
+			this.buttonTextSearchWn.setVisibility(View.GONE);
+			this.buttonTextSearchVn.setVisibility(View.GONE);
+			this.buttonTextSearchPb.setVisibility(View.GONE);
+			this.buttonTextSearchFn.setVisibility(View.GONE);
+
+			this.imageIndexes.setImageResource(R.drawable.ic_unknown);
+			this.imagePm.setImageResource(R.drawable.ic_unknown);
+			this.imageTextSearchWn.setImageResource(R.drawable.ic_unknown);
+			this.imageTextSearchVn.setImageResource(R.drawable.ic_unknown);
+			this.imageTextSearchPb.setImageResource(R.drawable.ic_unknown);
+			this.imageTextSearchFn.setImageResource(R.drawable.ic_unknown);
 		}
 	}
 
@@ -213,7 +285,7 @@ public class StatusFragment extends Fragment
 		switch (requestCode)
 		{
 			case REQUEST_DOWNLOAD_CODE:
-				Log.d(TAG, "progressMessage=" + resultCode);
+				Log.d(TAG, "result=" + resultCode);
 				break;
 			default:
 				break;

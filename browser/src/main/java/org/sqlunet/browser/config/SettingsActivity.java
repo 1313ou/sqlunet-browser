@@ -14,9 +14,11 @@ import android.preference.PreferenceCategory;
 import android.preference.PreferenceFragment;
 import android.preference.PreferenceManager;
 import android.preference.PreferenceScreen;
+import android.support.v4.app.NavUtils;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.contrib.AppCompatPreferenceActivity;
 import android.util.Pair;
+import android.view.MenuItem;
 
 import org.sqlunet.browser.R;
 import org.sqlunet.settings.Settings;
@@ -415,5 +417,18 @@ public class SettingsActivity extends AppCompatPreferenceActivity
 			SettingsActivity.bind(findPreference(Settings.PREF_ENTRY_INDEX));
 			SettingsActivity.bind(cachePreference);
 		}
+	}
+
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item)
+	{
+		switch (item.getItemId())
+		{
+			// Respond to the action bar's Up/Home button
+			case android.R.id.home:
+				NavUtils.navigateUpFromSameTask(this);
+				return true;
+		}
+		return super.onOptionsItemSelected(item);
 	}
 }

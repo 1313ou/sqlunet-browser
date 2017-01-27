@@ -18,17 +18,20 @@
 	<ScrollView
 		android:layout_width="match_parent"
 		android:layout_height="0dp"
+		android:layout_weight="1"
 		android:orientation="vertical"
-		android:layout_weight="1">
+		android:fillViewport="false"
+		android:clipToPadding="false">
 
 		<GridLayout
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
-			android:layout_gravity="center_horizontal|center_vertical"
-			android:paddingTop="20dp"
-			android:paddingBottom="20dp"
+			android:layout_gravity="center_horizontal"
+			android:gravity="center_vertical"
 			android:columnCount="2"
-			android:orientation="horizontal">
+			android:orientation="horizontal"
+			android:paddingBottom="20dp"
+			android:paddingTop="20dp">
 
 			<!-- database -->
 
@@ -180,6 +183,20 @@
 					android:src="@drawable/bn_setup"/>
 			</LinearLayout>
 		</GridLayout>
-
 	</ScrollView>
+
+	<ImageButton
+		android:id="@+id/status_update"
+		style="?android:attr/buttonBarButtonStyle"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_gravity="bottom|right"
+		android:layout_marginBottom="20dp"
+		android:layout_marginRight="20dp"
+		android:contentDescription="@string/status_database"
+		android:gravity="end|center_vertical"
+		android:paddingBottom="5dp"
+		android:paddingTop="5dp"
+		android:src="@drawable/ic_refresh"/>
+
 </LinearLayout>
