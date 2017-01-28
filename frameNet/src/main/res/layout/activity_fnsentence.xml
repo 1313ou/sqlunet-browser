@@ -4,5 +4,5 @@
              android:id="@+id/container_sentence"
              android:layout_width="match_parent"
              android:layout_height="match_parent"
-             tools:context="org.sqlunet.framenet.browser.FnSentenceActivity"
+             tools:context="org.sqlunet.framenet.browser.FnSentenceFragment"
              tools:ignore="MergeRootFrame"/>

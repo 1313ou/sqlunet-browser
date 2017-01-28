@@ -4,5 +4,5 @@
              android:id="@+id/container_annoset"
              android:layout_width="match_parent"
              android:layout_height="match_parent"
-             tools:context="org.sqlunet.framenet.browser.FnAnnoSetActivity"
+             tools:context="org.sqlunet.framenet.browser.FnAnnoSetFragment"
              tools:ignore="MergeRootFrame"/>

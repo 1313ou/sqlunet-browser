@@ -1,7 +1,7 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
       xmlns:app="http://schemas.android.com/apk/res-auto"
       xmlns:tools="http://schemas.android.com/tools"
-      tools:context="org.sqlunet.predicatematrix.org.sqlunet.browser.PredicateMatrixActivity">
+      tools:context="org.sqlunet.browser.PredicateMatrixFragment">
 	<item
 		android:id="@+id/search"
 		android:icon="@android:drawable/ic_menu_search"

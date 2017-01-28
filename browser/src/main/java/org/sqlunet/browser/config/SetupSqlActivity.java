@@ -25,7 +25,7 @@ public class SetupSqlActivity extends AppCompatActivity
 		super.onCreate(savedInstanceState);
 
 		// content
-		setContentView(R.layout.activity_setup_actions);
+		setContentView(R.layout.activity_setup_file);
 
 		// show the Up button in the type bar.
 		final ActionBar actionBar = getSupportActionBar();

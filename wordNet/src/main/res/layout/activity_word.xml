@@ -4,5 +4,5 @@
              android:id="@+id/container_word"
              android:layout_width="match_parent"
              android:layout_height="match_parent"
-             tools:context="org.sqlunet.wordnet.browser.WordActivity"
+             tools:context="org.sqlunet.wordnet.browser.WordFragment"
              tools:ignore="MergeRootFrame"/>

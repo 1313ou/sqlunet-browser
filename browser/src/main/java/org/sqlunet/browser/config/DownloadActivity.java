@@ -79,7 +79,6 @@ public class DownloadActivity extends AppCompatActivity implements DownloadFragm
 				.beginTransaction() //
 				.replace(R.id.container_download, downloadFragment) //
 				.commit();
-
 	}
 
 	@Override
@@ -88,7 +87,7 @@ public class DownloadActivity extends AppCompatActivity implements DownloadFragm
 		// return progressMessage
 		final Intent resultIntent = new Intent();
 		resultIntent.putExtra(DownloadActivity.RESULT_DOWNLOAD_DATA_AVAILABLE, result);
-		setResult(Activity.RESULT_OK, resultIntent);
+		setResult(result ? Activity.RESULT_OK : Activity.RESULT_CANCELED, resultIntent);
 		//TODO finish();
 	}
 }

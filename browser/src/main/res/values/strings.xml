@@ -8,6 +8,7 @@
 	<!-- settings and status -->
 	<string name="action_settings">Settings</string>
 	<string name="action_status">Status</string>
+	<string name="action_refresh">Refresh</string>
 
 	<!-- setup -->
 	<string name="action_setup">Set up</string>

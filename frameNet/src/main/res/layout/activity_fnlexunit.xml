@@ -4,5 +4,5 @@
              android:id="@+id/container_lexunit"
              android:layout_width="match_parent"
              android:layout_height="match_parent"
-             tools:context="org.sqlunet.framenet.browser.FnLexUnitActivity"
+             tools:context="org.sqlunet.framenet.browser.FnLexUnitFragment"
              tools:ignore="MergeRootFrame"/>

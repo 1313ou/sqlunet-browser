@@ -3,7 +3,7 @@
              xmlns:tools="http://schemas.android.com/tools"
              android:layout_width="match_parent"
              android:layout_height="match_parent"
-             tools:context=".config.StorageActivity">
+             tools:context="org.sqlunet.browser.config.StorageActivity">
 
 	<fragment
 		android:id="@+id/fragment_storage"
@@ -11,7 +11,7 @@
 		class="org.sqlunet.browser.config.StorageFragment"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
-		tools:context="config.StorageActivity"
+		tools:context="org.sqlunet.browser.config.StorageActivity"
 		tools:layout="@layout/fragment_storage"/>
 
 </FrameLayout>

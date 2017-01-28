@@ -4,5 +4,5 @@
              android:id="@+id/container_vnclass"
              android:layout_width="match_parent"
              android:layout_height="match_parent"
-             tools:context="org.sqlunet.verbnet.browser.VnClassActivity"
+             tools:context="org.sqlunet.verbnet.browser.VnClassFragment"
              tools:ignore="MergeRootFrame"/>

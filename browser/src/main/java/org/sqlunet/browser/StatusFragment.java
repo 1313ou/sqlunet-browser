@@ -1,15 +1,21 @@
 package org.sqlunet.browser;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import org.sqlunet.browser.config.DownloadActivity;
 import org.sqlunet.browser.config.SetupDatabaseActivity;
@@ -64,6 +70,11 @@ public class StatusFragment extends Fragment
 	private ImageButton buttonTextSearchFn;
 
 	private ImageButton infoDatabaseButton;
+
+	/**
+	 * Swipe refresh layout
+	 */
+	private SwipeRefreshLayout swipeRefreshLayout;
 
 	/**
 	 * Mandatory empty constructor for the fragment manager to instantiate the fragment (e.g. upon screen orientation changes).
@@ -195,19 +206,22 @@ public class StatusFragment extends Fragment
 			}
 		});
 
-		final ImageButton refreshButton = (ImageButton) view.findViewById(R.id.status_update);
-		refreshButton.setOnClickListener(new View.OnClickListener()
+		// swipe refresh layout
+		this.swipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.swiperefresh);
+		this.swipeRefreshLayout.setColorSchemeResources(R.color.swipedown1_color, R.color.swipedown2_color);
+		this.swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener()
 		{
 			@Override
-			public void onClick(final View v)
+			public void onRefresh()
 			{
 				update();
+
+				// stop the refreshing indicator
+				StatusFragment.this.swipeRefreshLayout.setRefreshing(false);
 			}
 		});
-
 		return view;
 	}
-
 
 	@Override
 	public void onResume()
@@ -220,7 +234,12 @@ public class StatusFragment extends Fragment
 		update();
 	}
 
-	public void update()
+	// U P D A T E
+
+	/**
+	 * Update status
+	 */
+	private void update()
 	{
 		// activity
 		final Activity activity = getActivity();
@@ -276,7 +295,7 @@ public class StatusFragment extends Fragment
 		}
 	}
 
-	// S P E C I F I C R E T U R N S
+	// R E T U R N S
 
 	@Override
 	public void onActivityResult(final int requestCode, final int resultCode, final Intent returnIntent)
@@ -285,11 +304,49 @@ public class StatusFragment extends Fragment
 		switch (requestCode)
 		{
 			case REQUEST_DOWNLOAD_CODE:
-				Log.d(TAG, "result=" + resultCode);
+				boolean success = resultCode == Activity.RESULT_OK;
+				Log.d(TAG, "Download " + (success ? "succeeded" : "failed")); ////
+				Toast.makeText(getActivity(), success ? R.string.title_download_complete : R.string.title_download_failed, Toast.LENGTH_SHORT).show();
+				update();
 				break;
 			default:
 				break;
 		}
 		super.onActivityResult(requestCode, resultCode, returnIntent);
+	}
+
+	// M E N U
+
+	@Override
+	public void onCreateOptionsMenu(final Menu menu, final MenuInflater inflater)
+	{
+		// inflate the menu; this adds items to the type bar if it is present.
+		inflater.inflate(R.menu.status, menu);
+	}
+
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item)
+	{
+		final Context context = getActivity();
+
+		// handle item selection
+		switch (item.getItemId())
+		{
+			case R.id.action_refresh:
+				/// make sure that the SwipeRefreshLayout is displaying its refreshing indicator
+				if (!this.swipeRefreshLayout.isRefreshing())
+				{
+					this.swipeRefreshLayout.setRefreshing(true);
+				}
+				update();
+
+				// stop the refreshing indicator
+				this.swipeRefreshLayout.setRefreshing(false);
+				break;
+
+			default:
+				return false;
+		}
+		return true;
 	}
 }

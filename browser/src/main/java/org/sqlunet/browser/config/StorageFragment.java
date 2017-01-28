@@ -1,10 +1,11 @@
 package org.sqlunet.browser.config;
 
 import android.app.AlertDialog;
-import android.support.v4.app.Fragment;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -24,18 +25,48 @@ import org.sqlunet.settings.StorageReports;
  */
 public class StorageFragment extends Fragment
 {
+	/**
+	 * Swipe refresh layout
+	 */
+	private SwipeRefreshLayout swipeRefreshLayout;
+
 	@Override
 	public View onCreateView(final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState)
 	{
 		setHasOptionsMenu(true);
-		return inflater.inflate(R.layout.fragment_storage, container, false);
+
+		// inflate
+		final View view = inflater.inflate(R.layout.fragment_storage, container, false);
+
+		// swipe refresh layout
+		this.swipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.swiperefresh);
+		this.swipeRefreshLayout.setColorSchemeResources(R.color.swipedown1_color, R.color.swipedown2_color);
+		this.swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener()
+		{
+			@Override
+			public void onRefresh()
+			{
+				update();
+
+				// stop the refreshing indicator
+				StorageFragment.this.swipeRefreshLayout.setRefreshing(false);
+			}
+		});
+		return view;
 	}
 
 	@Override
 	public void onResume()
 	{
 		super.onResume();
+		update();
+	}
 
+	/**
+	 * Update status
+	 */
+	private void update()
+	{
 		// view
 		final View view = getView();
 
@@ -84,6 +115,18 @@ public class StorageFragment extends Fragment
 					}
 				});
 				alert.show();
+				break;
+
+			case R.id.action_refresh:
+				/// make sure that the SwipeRefreshLayout is displaying its refreshing indicator
+				if (!this.swipeRefreshLayout.isRefreshing())
+				{
+					this.swipeRefreshLayout.setRefreshing(true);
+				}
+				update();
+
+				// stop the refreshing indicator
+				this.swipeRefreshLayout.setRefreshing(false);
 				break;
 
 			default:

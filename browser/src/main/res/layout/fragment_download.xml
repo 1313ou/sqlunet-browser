@@ -2,7 +2,7 @@
                 xmlns:tools="http://schemas.android.com/tools"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                tools:context="org.sqlunet.browser.config.DownloadActivity">
+                tools:context="org.sqlunet.browser.config.DownloadFragment">
 
 	<LinearLayout
 		android:id="@+id/middle"

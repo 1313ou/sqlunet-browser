@@ -1,202 +1,195 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:orientation="vertical"
-              android:weightSum="1">
+<android.support.v4.widget.SwipeRefreshLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:id="@+id/swiperefresh"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent">
 
-	<ImageView
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
-		android:layout_gravity="center_horizontal"
-		android:layout_marginBottom="12dp"
-		android:layout_marginTop="12dp"
-		android:contentDescription="@string/app_name"
-		android:src="@drawable/ic_launcher"/>
-
-	<ScrollView
+	<LinearLayout
 		android:layout_width="match_parent"
-		android:layout_height="0dp"
-		android:layout_weight="1"
+		android:layout_height="match_parent"
 		android:orientation="vertical"
-		android:fillViewport="false"
-		android:clipToPadding="false">
+		android:weightSum="1">
 
-		<GridLayout
+		<ImageView
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			android:layout_gravity="center_horizontal"
-			android:gravity="center_vertical"
-			android:columnCount="2"
-			android:orientation="horizontal"
-			android:paddingBottom="20dp"
-			android:paddingTop="20dp">
+			android:layout_marginBottom="12dp"
+			android:layout_marginTop="12dp"
+			android:contentDescription="@string/app_name"
+			android:src="@drawable/ic_launcher"/>
 
-			<!-- database -->
+		<ScrollView
+			android:layout_width="match_parent"
+			android:layout_height="0dp"
+			android:layout_weight="1"
+			android:clipToPadding="false"
+			android:fillViewport="false"
+			android:orientation="vertical">
 
-			<TextView
-				style="@style/GridLabel"
-				android:text="@string/status_database"/>
+			<GridLayout
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_gravity="center_horizontal"
+				android:columnCount="2"
+				android:gravity="center_vertical"
+				android:orientation="horizontal"
+				android:paddingBottom="20dp"
+				android:paddingTop="20dp">
 
-			<LinearLayout style="@style/GridData">
+				<!-- database -->
 
-				<ImageView
-					android:id="@+id/status_database"
-					style="@style/GridStatusImage"
-					android:contentDescription="@string/status_database"/>
+				<TextView
+					style="@style/GridLabel"
+					android:text="@string/status_database"/>
 
-				<ImageButton
-					android:id="@+id/databaseButton"
-					style="@style/GridStatusActionButton"
-					android:contentDescription="@string/status_database"
-					android:src="@drawable/bn_download"/>
+				<LinearLayout style="@style/GridData">
 
-				<ImageButton
-					android:id="@+id/info_database"
-					style="@style/GridStatusInfoButton"
-					android:contentDescription="@string/hint_database"
-					android:src="@drawable/bn_info"/>
-			</LinearLayout>
+					<ImageView
+						android:id="@+id/status_database"
+						style="@style/GridStatusImage"
+						android:contentDescription="@string/status_database"/>
+
+					<ImageButton
+						android:id="@+id/databaseButton"
+						style="@style/GridStatusActionButton"
+						android:contentDescription="@string/status_database"
+						android:src="@drawable/bn_download"/>
+
+					<ImageButton
+						android:id="@+id/info_database"
+						style="@style/GridStatusInfoButton"
+						android:contentDescription="@string/hint_database"
+						android:src="@drawable/bn_info"/>
+				</LinearLayout>
 
 
-			<!-- predicatematrix -->
+				<!-- predicatematrix -->
 
-			<TextView
-				style="@style/GridLabel"
-				android:text="@string/status_predicatematrix"
-				/>
+				<TextView
+					style="@style/GridLabel"
+					android:text="@string/status_predicatematrix"
+					/>
 
-			<LinearLayout style="@style/GridData">
+				<LinearLayout style="@style/GridData">
 
-				<ImageView
-					android:id="@+id/status_predicatematrix"
-					style="@style/GridStatusImage"
-					android:contentDescription="@string/status_predicatematrix"/>
+					<ImageView
+						android:id="@+id/status_predicatematrix"
+						style="@style/GridStatusImage"
+						android:contentDescription="@string/status_predicatematrix"/>
 
-				<ImageButton
-					android:id="@+id/predicatematrixButton"
-					style="@style/GridStatusActionButton"
-					android:contentDescription="@string/status_predicatematrix"
-					android:src="@drawable/bn_setup"/>
-			</LinearLayout>
+					<ImageButton
+						android:id="@+id/predicatematrixButton"
+						style="@style/GridStatusActionButton"
+						android:contentDescription="@string/status_predicatematrix"
+						android:src="@drawable/bn_setup"/>
+				</LinearLayout>
 
-			<!-- indexes -->
+				<!-- indexes -->
 
-			<TextView
-				style="@style/GridLabel"
-				android:text="@string/status_indexes"
-				/>
+				<TextView
+					style="@style/GridLabel"
+					android:text="@string/status_indexes"
+					/>
 
-			<LinearLayout style="@style/GridData">
+				<LinearLayout style="@style/GridData">
 
-				<ImageView
-					android:id="@+id/status_indexes"
-					style="@style/GridStatusImage"
-					android:contentDescription="@string/status_indexes"/>
+					<ImageView
+						android:id="@+id/status_indexes"
+						style="@style/GridStatusImage"
+						android:contentDescription="@string/status_indexes"/>
 
-				<ImageButton
-					android:id="@+id/indexesButton"
-					style="@style/GridStatusActionButton"
-					android:contentDescription="@string/status_indexes"
-					android:src="@drawable/bn_setup"/>
-			</LinearLayout>
+					<ImageButton
+						android:id="@+id/indexesButton"
+						style="@style/GridStatusActionButton"
+						android:contentDescription="@string/status_indexes"
+						android:src="@drawable/bn_setup"/>
+				</LinearLayout>
 
-			<!-- textsearch wordnet -->
+				<!-- textsearch wordnet -->
 
-			<TextView
-				style="@style/GridLabel"
-				android:text="@string/status_textsearch"
-				/>
+				<TextView
+					style="@style/GridLabel"
+					android:text="@string/status_textsearch"
+					/>
 
-			<LinearLayout style="@style/GridData">
+				<LinearLayout style="@style/GridData">
 
-				<ImageView
-					android:id="@+id/status_textsearchWn"
-					style="@style/GridStatusImage"
-					android:contentDescription="@string/status_textsearch"/>
+					<ImageView
+						android:id="@+id/status_textsearchWn"
+						style="@style/GridStatusImage"
+						android:contentDescription="@string/status_textsearch"/>
 
-				<ImageButton
-					android:id="@+id/textsearchWnButton"
-					style="@style/GridStatusActionButton"
-					android:contentDescription="@string/status_textsearch"
-					android:src="@drawable/bn_setup"/>
-			</LinearLayout>
+					<ImageButton
+						android:id="@+id/textsearchWnButton"
+						style="@style/GridStatusActionButton"
+						android:contentDescription="@string/status_textsearch"
+						android:src="@drawable/bn_setup"/>
+				</LinearLayout>
 
-			<!-- textsearch verbnet -->
+				<!-- textsearch verbnet -->
 
-			<TextView
-				style="@style/GridLabel"
-				android:text="@string/status_textsearchVn"/>
+				<TextView
+					style="@style/GridLabel"
+					android:text="@string/status_textsearchVn"/>
 
-			<LinearLayout style="@style/GridData">
+				<LinearLayout style="@style/GridData">
 
-				<ImageView
-					android:id="@+id/status_textsearchVn"
-					style="@style/GridStatusImage"
-					android:contentDescription="@string/status_textsearchVn"/>
+					<ImageView
+						android:id="@+id/status_textsearchVn"
+						style="@style/GridStatusImage"
+						android:contentDescription="@string/status_textsearchVn"/>
 
-				<ImageButton
-					android:id="@+id/textsearchVnButton"
-					style="@style/GridStatusActionButton"
-					android:contentDescription="@string/status_textsearchVn"
-					android:src="@drawable/bn_setup"/>
-			</LinearLayout>
+					<ImageButton
+						android:id="@+id/textsearchVnButton"
+						style="@style/GridStatusActionButton"
+						android:contentDescription="@string/status_textsearchVn"
+						android:src="@drawable/bn_setup"/>
+				</LinearLayout>
 
-			<!-- textsearch propbank -->
+				<!-- textsearch propbank -->
 
-			<TextView
-				style="@style/GridLabel"
-				android:text="@string/status_textsearchPb"/>
+				<TextView
+					style="@style/GridLabel"
+					android:text="@string/status_textsearchPb"/>
 
-			<LinearLayout style="@style/GridData">
+				<LinearLayout style="@style/GridData">
 
-				<ImageView
-					android:id="@+id/status_textsearchPb"
-					style="@style/GridStatusImage"
-					android:contentDescription="@string/status_textsearchPb"/>
+					<ImageView
+						android:id="@+id/status_textsearchPb"
+						style="@style/GridStatusImage"
+						android:contentDescription="@string/status_textsearchPb"/>
 
-				<ImageButton
-					android:id="@+id/textsearchPbButton"
-					style="@style/GridStatusActionButton"
-					android:contentDescription="@string/status_textsearchPb"
-					android:src="@drawable/bn_setup"/>
-			</LinearLayout>
+					<ImageButton
+						android:id="@+id/textsearchPbButton"
+						style="@style/GridStatusActionButton"
+						android:contentDescription="@string/status_textsearchPb"
+						android:src="@drawable/bn_setup"/>
+				</LinearLayout>
 
-			<!-- textsearch framenet -->
+				<!-- textsearch framenet -->
 
-			<TextView
-				style="@style/GridLabel"
-				android:text="@string/status_textsearchFn"/>
+				<TextView
+					style="@style/GridLabel"
+					android:text="@string/status_textsearchFn"/>
 
-			<LinearLayout style="@style/GridData">
+				<LinearLayout style="@style/GridData">
 
-				<ImageView
-					android:id="@+id/status_textsearchFn"
-					style="@style/GridStatusImage"
-					android:contentDescription="@string/status_textsearchFn"/>
+					<ImageView
+						android:id="@+id/status_textsearchFn"
+						style="@style/GridStatusImage"
+						android:contentDescription="@string/status_textsearchFn"/>
 
-				<ImageButton
-					android:id="@+id/textsearchFnButton"
-					style="@style/GridStatusActionButton"
-					android:contentDescription="@string/status_textsearchFn"
-					android:src="@drawable/bn_setup"/>
-			</LinearLayout>
-		</GridLayout>
-	</ScrollView>
+					<ImageButton
+						android:id="@+id/textsearchFnButton"
+						style="@style/GridStatusActionButton"
+						android:contentDescription="@string/status_textsearchFn"
+						android:src="@drawable/bn_setup"/>
+				</LinearLayout>
+			</GridLayout>
+		</ScrollView>
 
-	<ImageButton
-		android:id="@+id/status_update"
-		style="?android:attr/buttonBarButtonStyle"
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
-		android:layout_gravity="bottom|right"
-		android:layout_marginBottom="20dp"
-		android:layout_marginRight="20dp"
-		android:contentDescription="@string/status_database"
-		android:gravity="end|center_vertical"
-		android:paddingBottom="5dp"
-		android:paddingTop="5dp"
-		android:src="@drawable/ic_refresh"/>
-
-</LinearLayout>
+	</LinearLayout>
+</android.support.v4.widget.SwipeRefreshLayout>

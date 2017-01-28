@@ -6,7 +6,7 @@
                 android:divider="?android:attr/dividerHorizontal"
                 android:orientation="horizontal"
                 android:showDividers="middle"
-                tools:context="org.sqlunet.browser.config.TableActivity">
+                tools:context="org.sqlunet.browser.config.TableFragment">
 
 	<TextView
 		android:id="@+id/queryView"

@@ -4,5 +4,5 @@
              android:id="@+id/container_pbroleset"
              android:layout_width="match_parent"
              android:layout_height="match_parent"
-             tools:context="org.sqlunet.propbank.browser.PbRoleSetActivity"
+             tools:context="org.sqlunet.propbank.browser.PbRoleSetFragment"
              tools:ignore="MergeRootFrame"/>

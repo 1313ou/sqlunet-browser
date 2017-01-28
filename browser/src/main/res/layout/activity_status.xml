@@ -3,7 +3,7 @@
              xmlns:tools="http://schemas.android.com/tools"
              android:layout_width="match_parent"
              android:layout_height="match_parent"
-             tools:context=".StatusActivity">
+             tools:context="org.sqlunet.browser.StatusActivity">
 
 	<fragment
 		android:id="@+id/fragment_status"
@@ -11,7 +11,7 @@
 		class="org.sqlunet.browser.StatusFragment"
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
-		tools:context=".StatusActivity"
+		tools:context="org.sqlunet.browser.StatusActivity"
 		tools:layout="@layout/fragment_status"/>
 
 </FrameLayout>
