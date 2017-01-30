@@ -42,14 +42,14 @@ import java.util.List;
  */
 public final class ExpandableListViewProtocol implements AdapterViewProtocol
 {
-	private static final String TAG = "ELVProtocol";
+	static private final String TAG = "ELVProtocol";
 
-	private static final AdapterViewProtocol EXPANDABLELISTVIEW_PROTOCOL = new ExpandableListViewProtocol();
+	static private final AdapterViewProtocol EXPANDABLELISTVIEW_PROTOCOL = new ExpandableListViewProtocol();
 
 	/**
 	 * Creates an implementation of AdapterViewProtocol that can work with ExpandableListViews.
 	 */
-	public static AdapterViewProtocol expandableListViewProtocol()
+	static public AdapterViewProtocol expandableListViewProtocol()
 	{
 		return EXPANDABLELISTVIEW_PROTOCOL;
 	}
@@ -58,9 +58,9 @@ public final class ExpandableListViewProtocol implements AdapterViewProtocol
 	 * Consider views which have over this percentage of their area visible to the user
 	 * to be fully rendered.
 	 */
-	private static final int FULLY_RENDERED_PERCENTAGE_CUTOFF = 90;
+	static private final int FULLY_RENDERED_PERCENTAGE_CUTOFF = 90;
 
-	private static final class ExpandableDataFunction implements DataFunction
+	static private final class ExpandableDataFunction implements DataFunction
 	{
 		private final Object dataAtPosition;
 

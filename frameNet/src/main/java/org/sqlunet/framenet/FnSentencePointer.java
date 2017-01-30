@@ -15,7 +15,7 @@ public class FnSentencePointer extends Pointer
 	/**
 	 * Static field used to regenerate object, individually or as arrays
 	 */
-	public static final Parcelable.Creator<FnSentencePointer> CREATOR = new Parcelable.Creator<FnSentencePointer>()
+	static public final Parcelable.Creator<FnSentencePointer> CREATOR = new Parcelable.Creator<FnSentencePointer>()
 	{
 		@Override
 		public FnSentencePointer createFromParcel(final Parcel parcel)

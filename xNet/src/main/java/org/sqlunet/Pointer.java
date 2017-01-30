@@ -17,7 +17,7 @@ public class Pointer implements IPointer
 	/**
 	 * Creator
 	 */
-	public static final Creator<Pointer> CREATOR = new Creator<Pointer>()
+	static public final Creator<Pointer> CREATOR = new Creator<Pointer>()
 	{
 		@Override
 		public Pointer createFromParcel(Parcel in)

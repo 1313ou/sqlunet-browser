@@ -63,7 +63,7 @@ class PbRole
 	 * @param roleSetId  role set id to build query from
 	 * @return list of PropBank roles
 	 */
-	public static List<PbRole> make(final SQLiteDatabase connection, final long roleSetId)
+	static public List<PbRole> make(final SQLiteDatabase connection, final long roleSetId)
 	{
 		final List<PbRole> result = new ArrayList<>();
 		PbRoleQueryFromRoleSetId query = null;

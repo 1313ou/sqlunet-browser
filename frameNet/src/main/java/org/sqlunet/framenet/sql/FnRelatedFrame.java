@@ -45,7 +45,7 @@ class FnRelatedFrame
 	 * @param relatedFramesString (id:rel|id:rel...)
 	 * @return list of related frames
 	 */
-	public static List<FnRelatedFrame> make(final String relatedFramesString)
+	static public List<FnRelatedFrame> make(final String relatedFramesString)
 	{
 		if (relatedFramesString == null)
 		{

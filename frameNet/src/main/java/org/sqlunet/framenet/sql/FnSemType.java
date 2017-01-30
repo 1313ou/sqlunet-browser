@@ -45,7 +45,7 @@ class FnSemType
 	 * @param semTypesString (id:def|id:def...)
 	 * @return list of semtypes
 	 */
-	public static List<FnSemType> make(final String semTypesString)
+	static public List<FnSemType> make(final String semTypesString)
 	{
 		if (semTypesString == null)
 		{

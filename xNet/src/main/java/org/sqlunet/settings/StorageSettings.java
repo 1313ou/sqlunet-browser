@@ -74,7 +74,7 @@ public class StorageSettings
 	 * @param context context
 	 * @return data cache
 	 */
-	private static String getCacheDir(final Context context)
+	static private String getCacheDir(final Context context)
 	{
 		return Storage.getCacheDir(context);
 	}
@@ -222,7 +222,7 @@ public class StorageSettings
 	 * @param context context
 	 * @return import archive entry
 	 */
-	public static String getImportEntry(final Context context)
+	static public String getImportEntry(final Context context)
 	{
 		// test if already in preferences
 		final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
@@ -247,7 +247,7 @@ public class StorageSettings
 	 * @param context context
 	 * @return pm archive entry
 	 */
-	public static String getPmEntry(final Context context)
+	static public String getPmEntry(final Context context)
 	{
 		// test if already in preferences
 		final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
@@ -272,7 +272,7 @@ public class StorageSettings
 	 * @param context context
 	 * @return index archive entry
 	 */
-	public static String getIndexEntry(final Context context)
+	static public String getIndexEntry(final Context context)
 	{
 		// test if already in preferences
 		final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);

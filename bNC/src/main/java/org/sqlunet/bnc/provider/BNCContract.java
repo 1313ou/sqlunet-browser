@@ -11,10 +11,10 @@ public class BNCContract
 	{
 		static public final String TABLE = "bncs";
 		static public final String CONTENT_URI = BaseProvider.SCHEME + BNCContract.AUTHORITY + '/' + BNCs.TABLE;
-		public static final String WORDID = "wordid";
-		public static final String POS = "pos";
-		public static final String CONTENTS = "contents";
-		public static final String FREQ = "freq";
+		static public final String WORDID = "wordid";
+		static public final String POS = "pos";
+		static public final String CONTENTS = "contents";
+		static public final String FREQ = "freq";
 	}
 
 	@SuppressWarnings("unused")
@@ -22,20 +22,20 @@ public class BNCContract
 	{
 		static public final String TABLE = "words_bncs";
 		static public final String CONTENT_URI = BaseProvider.SCHEME + BNCContract.AUTHORITY + '/' + Words_BNCs.TABLE;
-		public static final String LEMMA = "lemma";
-		public static final String WORDID = "wordid";
-		public static final String POS = "pos";
-		public static final String FREQ = "freq";
-		public static final String RANGE = "range";
-		public static final String DISP = "disp";
-		public static final String FREQ1 = "freq1";
-		public static final String RANGE1 = "range1";
-		public static final String DISP1 = "disp1";
-		public static final String FREQ2 = "freq2";
-		public static final String RANGE2 = "range2";
-		public static final String DISP2 = "disp2";
-		public static final String BNCCONVTASKS = "bncconvtasks";
-		public static final String BNCIMAGINFS = "bncimaginfs";
-		public static final String BNCSPWRS = "bncspwrs";
+		static public final String LEMMA = "lemma";
+		static public final String WORDID = "wordid";
+		static public final String POS = "pos";
+		static public final String FREQ = "freq";
+		static public final String RANGE = "range";
+		static public final String DISP = "disp";
+		static public final String FREQ1 = "freq1";
+		static public final String RANGE1 = "range1";
+		static public final String DISP1 = "disp1";
+		static public final String FREQ2 = "freq2";
+		static public final String RANGE2 = "range2";
+		static public final String DISP2 = "disp2";
+		static public final String BNCCONVTASKS = "bncconvtasks";
+		static public final String BNCIMAGINFS = "bncimaginfs";
+		static public final String BNCSPWRS = "bncspwrs";
 	}
 }

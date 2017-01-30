@@ -2,6 +2,7 @@
   <library name="rules-0.5">
     <ANNOTATIONS>
       <root url="jar:///mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/build/intermediates/exploded-aar/com.android.support.test/rules/0.5/annotations.zip!/" />
+      <root url="jar:///mnt/data2/devel/android-sqlunet-as/SqlUNet/expandableListFragment/build/intermediates/exploded-aar/com.android.support.test/rules/0.5/annotations.zip!/" />
     </ANNOTATIONS>
     <CLASSES>
       <root url="file:///mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/build/intermediates/exploded-aar/com.android.support.test/rules/0.5/res" />

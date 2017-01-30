@@ -15,7 +15,7 @@ public class WordPointer extends Pointer implements HasWordId
 	/**
 	 * Static field used to regenerate object, individually or as arrays
 	 */
-	public static final Creator<WordPointer> CREATOR = new Creator<WordPointer>()
+	static public final Creator<WordPointer> CREATOR = new Creator<WordPointer>()
 	{
 		@Override
 		public WordPointer createFromParcel(final Parcel parcel)

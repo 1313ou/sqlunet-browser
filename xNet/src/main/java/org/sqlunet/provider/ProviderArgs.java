@@ -9,43 +9,43 @@ package org.sqlunet.provider;
 public final class ProviderArgs
 {
 	// intent type
-	public static final String ACTION_QUERY = "org.sqlunet.browser.QUERY";
+	static public final String ACTION_QUERY = "org.sqlunet.browser.QUERY";
 
 	// global
-	public static final String ARG_QUERYPOINTER = "QUERYPOINTER";
-	public static final String ARG_QUERYSTRING = "QUERYSTRING";
-	public static final String ARG_QUERYRECURSE = "QUERYRECURSE";
-	public static final String ARG_HINTWORD = "HINTWORD";
-	public static final String ARG_HINTCASED = "HINTCASED";
-	public static final String ARG_HINTNAME = "HINTNAME";
-	public static final String ARG_HINTPOS = "HINTPOS";
+	static public final String ARG_QUERYPOINTER = "QUERYPOINTER";
+	static public final String ARG_QUERYSTRING = "QUERYSTRING";
+	static public final String ARG_QUERYRECURSE = "QUERYRECURSE";
+	static public final String ARG_HINTWORD = "HINTWORD";
+	static public final String ARG_HINTCASED = "HINTCASED";
+	static public final String ARG_HINTNAME = "HINTNAME";
+	static public final String ARG_HINTPOS = "HINTPOS";
 
 	// type
-	public static final String ARG_QUERYTYPE = "QUERYTYPE";
-	public static final int ARG_QUERYTYPE_ALL = 0;
-	public static final int ARG_QUERYTYPE_WORD = 1;
-	public static final int ARG_QUERYTYPE_SYNSET = 2;
-	public static final int ARG_QUERYTYPE_SENSE = 3;
-	public static final int ARG_QUERYTYPE_VNCLASS = 10;
-	public static final int ARG_QUERYTYPE_PBROLESET = 20;
-	public static final int ARG_QUERYTYPE_FNFRAME = 31;
-	public static final int ARG_QUERYTYPE_FNLEXUNIT = 32;
-	public static final int ARG_QUERYTYPE_FNSENTENCE = 33;
-	public static final int ARG_QUERYTYPE_FNANNOSET = 34;
-	public static final int ARG_QUERYTYPE_FNPATTERN = 35;
-	public static final int ARG_QUERYTYPE_FNVALENCEUNIT = 36;
-	public static final int ARG_QUERYTYPE_FNPREDICATE = 37;
-	public static final int ARG_QUERYTYPE_PM = 40;
-	public static final int ARG_QUERYTYPE_PMROLE = 41;
+	static public final String ARG_QUERYTYPE = "QUERYTYPE";
+	static public final int ARG_QUERYTYPE_ALL = 0;
+	static public final int ARG_QUERYTYPE_WORD = 1;
+	static public final int ARG_QUERYTYPE_SYNSET = 2;
+	static public final int ARG_QUERYTYPE_SENSE = 3;
+	static public final int ARG_QUERYTYPE_VNCLASS = 10;
+	static public final int ARG_QUERYTYPE_PBROLESET = 20;
+	static public final int ARG_QUERYTYPE_FNFRAME = 31;
+	static public final int ARG_QUERYTYPE_FNLEXUNIT = 32;
+	static public final int ARG_QUERYTYPE_FNSENTENCE = 33;
+	static public final int ARG_QUERYTYPE_FNANNOSET = 34;
+	static public final int ARG_QUERYTYPE_FNPATTERN = 35;
+	static public final int ARG_QUERYTYPE_FNVALENCEUNIT = 36;
+	static public final int ARG_QUERYTYPE_FNPREDICATE = 37;
+	static public final int ARG_QUERYTYPE_PM = 40;
+	static public final int ARG_QUERYTYPE_PMROLE = 41;
 
 	// tables
-	public static final String ARG_QUERYURI = "QUERYURI";
-	public static final String ARG_QUERYDATABASE = "QUERYDATABASE";
-	public static final String ARG_QUERYID = "QUERYID";
-	public static final String ARG_QUERYITEMS = "QUERYITEMS";
-	public static final String ARG_QUERYHIDDENITEMS = "QUERYXITEMS";
-	public static final String ARG_QUERYARG = "QUERYARG";
-	public static final String ARG_QUERYLAYOUT = "QUERYLAYOUT";
-	public static final String ARG_QUERYSORT = "QUERYSORT";
-	public static final String ARG_QUERYFILTER = "QUERYFILTER";
+	static public final String ARG_QUERYURI = "QUERYURI";
+	static public final String ARG_QUERYDATABASE = "QUERYDATABASE";
+	static public final String ARG_QUERYID = "QUERYID";
+	static public final String ARG_QUERYITEMS = "QUERYITEMS";
+	static public final String ARG_QUERYHIDDENITEMS = "QUERYXITEMS";
+	static public final String ARG_QUERYARG = "QUERYARG";
+	static public final String ARG_QUERYLAYOUT = "QUERYLAYOUT";
+	static public final String ARG_QUERYSORT = "QUERYSORT";
+	static public final String ARG_QUERYFILTER = "QUERYFILTER";
 }

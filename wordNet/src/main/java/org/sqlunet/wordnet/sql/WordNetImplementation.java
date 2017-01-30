@@ -19,7 +19,7 @@ public class WordNetImplementation implements WordNetInterface
 {
 	// S E T T I N  G S
 
-	private static final String WN_NS = "http://org.sqlunet/wn";
+	static private final String WN_NS = "http://org.sqlunet/wn";
 
 	/**
 	 * The maximum recursion level defined for down-tree queries
@@ -710,7 +710,7 @@ public class WordNetImplementation implements WordNetInterface
 	 *
 	 * @throws RuntimeException
 	 */
-	public static void init(final SQLiteDatabase connection)
+	static public void init(final SQLiteDatabase connection)
 	{
 		// do queries for static maps
 		Mapping.initLexDomains(connection);

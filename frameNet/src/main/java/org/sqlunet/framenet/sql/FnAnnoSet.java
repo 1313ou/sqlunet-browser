@@ -38,7 +38,7 @@ public class FnAnnoSet
 	 * @param annoSetId  annoSet id
 	 * @return annoSet
 	 */
-	public static FnAnnoSet make(final SQLiteDatabase connection, final long annoSetId)
+	static public FnAnnoSet make(final SQLiteDatabase connection, final long annoSetId)
 	{
 		FnAnnoSet result = null;
 		FnAnnoSetQuery query = null;

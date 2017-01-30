@@ -1,37 +1,12 @@
 package org.sqlunet.browser;
 
-import android.annotation.SuppressLint;
-import android.app.Activity;
-import android.app.SearchManager;
-import android.app.SearchableInfo;
-import android.content.ComponentName;
-import android.content.Context;
-import android.content.res.Resources;
-import android.content.res.TypedArray;
-import android.graphics.drawable.ColorDrawable;
-import android.graphics.drawable.Drawable;
-import android.os.Build;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
-import android.support.v4.view.MenuItemCompat;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.app.ActionBar;
-import android.support.v7.widget.SearchView;
 import android.util.Log;
-import android.util.TypedValue;
-import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Spinner;
-import android.widget.SpinnerAdapter;
-import android.widget.TextView;
 
 import org.sqlunet.framenet.provider.FrameNetContract.Lookup_FnSentences_X;
 import org.sqlunet.propbank.provider.PropBankContract.Lookup_PbExamples_X;
@@ -47,297 +22,30 @@ import org.sqlunet.wordnet.provider.WordNetContract.Lookup_Words;
  *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
-public class TextSearchFragment extends Fragment implements SearchListener
+public class TextSearchFragment extends BaseSearchFragment
 {
 	static private final String TAG = "TextSearchActivity";
 
-	/**
-	 * State of spinner
-	 */
-	static private final String STATE_SPINNER = "selected_textsearch_mode";
-
-	/**
-	 * Search view
-	 */
-	private SearchView searchView;
-
-	/**
-	 * Spinner
-	 */
-	private Spinner spinner;
-
 	// C R E A T I O N
 
-	@Override
-	public View onCreateView(final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState)
-	{
-		setHasOptionsMenu(true);
-
-		// content
-		final View view = inflater.inflate(R.layout.fragment_textsearch, container, false);
-
-		// action bar
-		this.spinner = setupActionBar(inflater);
-
-		// spinner update
-		if (savedInstanceState != null)
-		{
-			final int selected = savedInstanceState.getInt(STATE_SPINNER);
-			this.spinner.setSelection(selected);
-		}
-
-		return view;
-	}
-
-	@Override
-	public void onDetach()
-	{
-		restoreActionBar();
-		super.onDetach();
-	}
-
-	@Override
-	public void onSaveInstanceState(final Bundle savedInstanceState)
-	{
-		// always call the superclass so it can save the view hierarchy state
-		super.onSaveInstanceState(savedInstanceState);
-
-		// spinner
-		if (this.spinner != null)
-		{
-			// serialize the current dropdown position
-			final int position = this.spinner.getSelectedItemPosition();
-			savedInstanceState.putInt(TextSearchFragment.STATE_SPINNER, position);
-		}
-	}
-
-	// M E N U
-
-	@Override
-	public void onCreateOptionsMenu(final Menu menu, final MenuInflater inflater)
-	{
-		// inflate the menu; this adds items to the type bar if it is present.
-		inflater.inflate(R.menu.text_search, menu);
-
-		// set up search view
-		setupSearch(menu);
-	}
-
-	// A C T I O N B A R
-
 	/**
-	 * Set up action bar
-	 *
-	 * @return spinner
+	 * Constructor
 	 */
-	private Spinner setupActionBar(final LayoutInflater inflater)
+	public TextSearchFragment()
 	{
-		// activity
-		final AppCompatActivity activity = (AppCompatActivity) getActivity();
-
-		// action bar
-		final ActionBar actionBar = activity.getSupportActionBar();
-		assert actionBar != null;
-
-		// color
-		int color;
-		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M)
-		{
-			color = getResources().getColor(R.color.textsearch_action_bar_color, activity.getTheme());
-		}
-		else
-		{
-			//noinspection deprecation
-			color = getResources().getColor(R.color.textsearch_action_bar_color);
-		}
-		actionBar.setBackgroundDrawable(new ColorDrawable(color));
-
-		// set up the type bar to show a custom layout
-		@SuppressLint("InflateParams") //
-		final View actionBarView = inflater.inflate(R.layout.actionbar_custom, null);
-		actionBar.setCustomView(actionBarView);
-		actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM | ActionBar.DISPLAY_SHOW_HOME | ActionBar.DISPLAY_HOME_AS_UP);
-		// actionBar.setDisplayShowCustomEnabled(true);
-		// actionBar.setDisplayShowHomeEnabled(true);
-		// actionBar.setDisplayHomeAsUpEnabled(true);
-		// actionBar.setDisplayShowTitleEnabled(false);
-
-		// spinner
-		final Spinner spinner = (Spinner) actionBarView.findViewById(R.id.spinner);
-		setupSpinner(spinner);
-
-		return spinner;
-	}
-
-	/**
-	 * Restore action bar
-	 */
-	private void restoreActionBar()
-	{
-		// activity
-		final AppCompatActivity activity = (AppCompatActivity) getActivity();
-
-		// action bar
-		final ActionBar actionBar = activity.getSupportActionBar();
-		assert actionBar != null;
-		actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_HOME | ActionBar.DISPLAY_HOME_AS_UP);
-
-		// theme
-		final Resources.Theme theme = activity.getTheme();
-
-		// res id of style pointed to from actionBarStyle
-		final TypedValue typedValue = new TypedValue();
-		theme.resolveAttribute(android.R.attr.actionBarStyle, typedValue, true);
-		int resId = typedValue.resourceId;
-
-		// now get action bar style values
-		final TypedArray style = theme.obtainStyledAttributes(resId, new int[]{android.R.attr.background});
-		try
-		{
-			final Drawable drawable = style.getDrawable(0);
-			actionBar.setBackgroundDrawable(drawable);
-		}
-		finally
-		{
-			style.recycle();
-		}
-	}
-
-	// S E A R C H V I E W
-
-	/**
-	 * Set up search view
-	 *
-	 * @param menu menu
-	 */
-	private void setupSearch(final Menu menu)
-	{
-		// menu item
-		final MenuItem searchMenuItem = menu.findItem(R.id.search);
-
-		// activity
-		final AppCompatActivity activity = (AppCompatActivity) getActivity();
-
-		// search info
-		final ComponentName componentName = activity.getComponentName();
-		final SearchManager searchManager = (SearchManager) activity.getSystemService(Context.SEARCH_SERVICE);
-		final SearchableInfo searchableInfo = searchManager.getSearchableInfo(componentName);
-
-		// search view
-		this.searchView = (SearchView) MenuItemCompat.getActionView(searchMenuItem);
-		this.searchView.setSearchableInfo(searchableInfo);
-		this.searchView.setIconifiedByDefault(true);
-		this.searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener()
-		{
-			@Override
-			public boolean onQueryTextSubmit(final String query)
-			{
-				TextSearchFragment.this.searchView.clearFocus();
-				TextSearchFragment.this.searchView.setFocusable(false);
-				TextSearchFragment.this.searchView.setQuery("", false);
-				closeKeyboard();
-				searchMenuItem.collapseActionView();
-				return false;
-			}
-
-			@Override
-			public boolean onQueryTextChange(final String newText)
-			{
-				return false;
-			}
-		});
-	}
-
-	private void closeKeyboard()
-	{
-		// activity
-		final Activity activity = getActivity();
-
-		// view
-		final View view = activity.getCurrentFocus();
-		if (view != null)
-		{
-			final InputMethodManager imm = (InputMethodManager) activity.getSystemService(Context.INPUT_METHOD_SERVICE);
-			imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
-		}
+		this.layoutId = R.layout.fragment_textsearch;
+		this.menuId = R.menu.text_search;
+		this.colorId = R.color.textsearch_action_bar_color;
+		this.spinnerLabels = R.array.textsearch_modes;
+		this.spinnerIcons = R.array.textsearch_icons;
 	}
 
 	// S P I N N E R
 
-	/**
-	 * Set up type bar spinner
-	 *
-	 * @param spinner spinner
-	 */
-	private void setupSpinner(final Spinner spinner)
+	@Override
+	protected void setupSpinner(final Spinner spinner)
 	{
-		// activity
-		final Activity activity = getActivity();
-
-		// adapter values
-		final CharSequence[] textSearches = activity.getResources().getTextArray(R.array.textsearches_names);
-
-		// adapter
-		final SpinnerAdapter adapter = new ArrayAdapter<CharSequence>(activity, android.R.layout.simple_list_item_activated_1, android.R.id.text1, textSearches)
-		{
-			@NonNull
-			@Override
-			public View getView(final int position, final View convertView, @NonNull final ViewGroup parent)
-			{
-				final CharSequence rowItem = getItem(position);
-				assert rowItem != null;
-
-				final View view = super.getView(position, convertView, parent);
-				final TextView textView = (TextView) view.findViewById(android.R.id.text1);
-				textView.setText("");
-				int resId = posToResId(position);
-				textView.setCompoundDrawablesWithIntrinsicBounds(0, resId, 0, 0);
-
-				return view;
-			}
-
-			@Override
-			public View getDropDownView(final int position, final View convertView, @NonNull final ViewGroup parent)
-			{
-				final CharSequence rowItem = getItem(position);
-				assert rowItem != null;
-
-				final View view = super.getDropDownView(position, convertView, parent);
-				final TextView textView = (TextView) view.findViewById(android.R.id.text1);
-				textView.setText(rowItem);
-				int resId = posToResId(position);
-				textView.setCompoundDrawablesWithIntrinsicBounds(resId, 0, 0, 0);
-
-				return view;
-			}
-
-			private int posToResId(final int position)
-			{
-				int resId = 0;
-				switch (position)
-				{
-					case 0:
-						resId = R.drawable.ic_search_wnword;
-						break;
-					case 1:
-						resId = R.drawable.ic_search_wndefinition;
-						break;
-					case 2:
-						resId = R.drawable.ic_search_wnsample;
-						break;
-					case 3:
-						resId = R.drawable.ic_search_vnexample;
-						break;
-					case 4:
-						resId = R.drawable.ic_search_pbexample;
-						break;
-					case 5:
-						resId = R.drawable.ic_search_fnsentence;
-						break;
-				}
-				return resId;
-			}
-		};
+		super.setupSpinner(spinner);
 
 		// spinner listener
 		spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener()
@@ -345,7 +53,7 @@ public class TextSearchFragment extends Fragment implements SearchListener
 			@Override
 			public void onItemSelected(final AdapterView<?> parentView, final View selectedItemView, final int position, final long id)
 			{
-				Settings.setSearchModePref(activity, position);
+				Settings.setSearchModePref(TextSearchFragment.this.getActivity(), position);
 			}
 
 			@Override
@@ -355,11 +63,8 @@ public class TextSearchFragment extends Fragment implements SearchListener
 			}
 		});
 
-		// spinner adapter applied
-		spinner.setAdapter(adapter);
-
 		// spinner position
-		final int position = Settings.getSearchModePref(activity);
+		final int position = Settings.getSearchModePref(getActivity());
 		spinner.setSelection(position);
 	}
 
@@ -373,13 +78,17 @@ public class TextSearchFragment extends Fragment implements SearchListener
 	@Override
 	public void search(final String query)
 	{
-		final int itemPosition = this.spinner.getSelectedItemPosition();
-
 		// log
 		Log.d(TextSearchFragment.TAG, "TEXT SEARCH " + query);
 
+		// set
+		this.query = query;
+
+		// type
+		final int typePosition = this.spinner.getSelectedItemPosition();
+
 		// status
-		// final CharSequence[] textSearches = getResources().getTextArray(R.array.textsearches_names);
+		// final CharSequence[] textSearches = getResources().getTextArray(R.array.textsearch_modes);
 
 		// as per selected mode
 		String searchUri;
@@ -388,7 +97,7 @@ public class TextSearchFragment extends Fragment implements SearchListener
 		String[] columns;
 		String[] hiddenColumns;
 		String database = null;
-		switch (itemPosition)
+		switch (typePosition)
 		{
 			case 0:
 				searchUri = Lookup_Words.CONTENT_URI;

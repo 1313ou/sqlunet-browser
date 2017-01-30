@@ -202,7 +202,7 @@ public abstract class BaseProvider extends ContentProvider
 	 * @param items      items to addItem to projection
 	 * @return augmented projection
 	 */
-	protected static String[] appendProjection(final String[] projection, final String... items)
+	static protected String[] appendProjection(final String[] projection, final String... items)
 	{
 		String[] projection2;
 		int i = 0;
@@ -270,7 +270,7 @@ public abstract class BaseProvider extends ContentProvider
 	 * @param args args
 	 * @return string
 	 */
-	protected static String argsToString(final String... args)
+	static protected String argsToString(final String... args)
 	{
 		final StringBuilder sb = new StringBuilder();
 		if (args != null && args.length > 0)

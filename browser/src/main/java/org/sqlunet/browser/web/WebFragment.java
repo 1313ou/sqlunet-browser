@@ -63,7 +63,7 @@ public class WebFragment extends Fragment
 {
 	static private final String TAG = "WebFragment";
 
-	private static final String SQLUNET_NS = "http://org.sqlunet";
+	static private final String SQLUNET_NS = "http://org.sqlunet";
 
 	/**
 	 * HTML stuff

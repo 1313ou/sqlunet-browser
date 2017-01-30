@@ -38,7 +38,7 @@ public class DownloadActivity extends AppCompatActivity implements DownloadFragm
 			this.res = res;
 		}
 
-		public static Downloader getFromPref(final Context context)
+		static public Downloader getFromPref(final Context context)
 		{
 			final String preferredDownloader = Settings.getDownloaderPref(context);
 			if (preferredDownloader == null)

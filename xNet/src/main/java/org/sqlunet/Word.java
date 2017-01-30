@@ -17,7 +17,7 @@ public class Word implements IPointer
 	/**
 	 * Creator
 	 */
-	public static final Creator<Word> CREATOR = new Creator<Word>()
+	static public final Creator<Word> CREATOR = new Creator<Word>()
 	{
 		@Override
 		public Word createFromParcel(Parcel parcel)

@@ -29,7 +29,7 @@ public class Factories
 		@Override
 		public Object makeSpans(final long flags)
 		{
-			return new Object[]{new ForegroundColorSpan(Colors.blue), new StyleSpan(Typeface.ITALIC)};
+			return new Object[]{new ForegroundColorSpan(Colors.lt_blue), new StyleSpan(Typeface.ITALIC)};
 		}
 	};
 

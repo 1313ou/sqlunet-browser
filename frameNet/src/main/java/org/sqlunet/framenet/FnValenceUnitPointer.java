@@ -15,7 +15,7 @@ public class FnValenceUnitPointer extends Pointer
 	/**
 	 * Static field used to regenerate object, individually or as arrays
 	 */
-	public static final Parcelable.Creator<FnValenceUnitPointer> CREATOR = new Parcelable.Creator<FnValenceUnitPointer>()
+	static public final Parcelable.Creator<FnValenceUnitPointer> CREATOR = new Parcelable.Creator<FnValenceUnitPointer>()
 	{
 		@Override
 		public FnValenceUnitPointer createFromParcel(final Parcel parcel)

@@ -15,7 +15,7 @@ public class FnFramePointer extends Pointer
 	/**
 	 * Static field used to regenerate object, individually or as arrays
 	 */
-	public static final Parcelable.Creator<FnFramePointer> CREATOR = new Parcelable.Creator<FnFramePointer>()
+	static public final Parcelable.Creator<FnFramePointer> CREATOR = new Parcelable.Creator<FnFramePointer>()
 	{
 		@Override
 		public FnFramePointer createFromParcel(final Parcel parcel)

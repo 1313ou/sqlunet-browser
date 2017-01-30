@@ -75,7 +75,7 @@ public class SettingsActivity extends AppCompatPreferenceActivity
 	 * @param alwaysSimplePrefs flag
 	 */
 	@SuppressWarnings("unused")
-	public static void setAlwaysSimplePrefs(boolean alwaysSimplePrefs)
+	static public void setAlwaysSimplePrefs(boolean alwaysSimplePrefs)
 	{
 		ALWAYS_SIMPLE_PREFS = alwaysSimplePrefs;
 	}
@@ -334,7 +334,7 @@ public class SettingsActivity extends AppCompatPreferenceActivity
 	 * This fragment shows general preferences only.
 	 */
 	@TargetApi(Build.VERSION_CODES.HONEYCOMB)
-	public static class GeneralPreferenceFragment extends PreferenceFragment
+	static public class GeneralPreferenceFragment extends PreferenceFragment
 	{
 		@Override
 		public void onCreate(final Bundle savedInstanceState)
@@ -354,7 +354,7 @@ public class SettingsActivity extends AppCompatPreferenceActivity
 	 * This fragment shows general preferences only.
 	 */
 	@TargetApi(Build.VERSION_CODES.HONEYCOMB)
-	public static class FilterPreferenceFragment extends PreferenceFragment
+	static public class FilterPreferenceFragment extends PreferenceFragment
 	{
 		@Override
 		public void onCreate(final Bundle savedInstanceState)
@@ -370,7 +370,7 @@ public class SettingsActivity extends AppCompatPreferenceActivity
 	 * This fragment shows database preferences only.
 	 */
 	@TargetApi(Build.VERSION_CODES.HONEYCOMB)
-	public static class DatabasePreferenceFragment extends PreferenceFragment
+	static public class DatabasePreferenceFragment extends PreferenceFragment
 	{
 		@Override
 		public void onCreate(final Bundle savedInstanceState)
@@ -393,7 +393,7 @@ public class SettingsActivity extends AppCompatPreferenceActivity
 	 * This fragment shows download preferences only.
 	 */
 	@TargetApi(Build.VERSION_CODES.HONEYCOMB)
-	public static class DownloadPreferenceFragment extends PreferenceFragment
+	static public class DownloadPreferenceFragment extends PreferenceFragment
 	{
 		@Override
 		public void onCreate(final Bundle savedInstanceState)

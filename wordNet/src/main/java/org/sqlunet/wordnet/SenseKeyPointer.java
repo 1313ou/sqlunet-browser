@@ -17,7 +17,7 @@ public class SenseKeyPointer implements Parcelable, HasSenseKey
 	/**
 	 * Static field used to regenerate object, individually or as arrays
 	 */
-	public static final Creator<SenseKeyPointer> CREATOR = new Creator<SenseKeyPointer>()
+	static public final Creator<SenseKeyPointer> CREATOR = new Creator<SenseKeyPointer>()
 	{
 		@Override
 		public SenseKeyPointer createFromParcel(final Parcel parcel)

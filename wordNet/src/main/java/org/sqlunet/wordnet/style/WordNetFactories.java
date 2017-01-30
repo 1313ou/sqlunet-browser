@@ -15,7 +15,7 @@ import org.sqlunet.style.Spanner.SpanFactory;
  */
 public class WordNetFactories
 {
-	public static final SpanFactory lemmaFactory = new SpanFactory()
+	static public final SpanFactory lemmaFactory = new SpanFactory()
 	{
 		@Override
 		public Object makeSpans(final long flags)
@@ -24,7 +24,7 @@ public class WordNetFactories
 		}
 	};
 
-	public static final SpanFactory membersFactory = new SpanFactory()
+	static public final SpanFactory membersFactory = new SpanFactory()
 	{
 		@Override
 		public Object makeSpans(final long flags)
@@ -33,7 +33,7 @@ public class WordNetFactories
 		}
 	};
 
-	public static final SpanFactory wordFactory = new SpanFactory()
+	static public final SpanFactory wordFactory = new SpanFactory()
 	{
 		@Override
 		public Object makeSpans(final long flags)
@@ -42,9 +42,9 @@ public class WordNetFactories
 		}
 	};
 
-	public static final SpanFactory definitionFactory = Factories.definitionFactory;
+	static public final SpanFactory definitionFactory = Factories.definitionFactory;
 
-	public static final SpanFactory sampleFactory = Factories.exampleFactory;
+	static public final SpanFactory sampleFactory = Factories.exampleFactory;
 
-	public static final SpanFactory dataFactory = Factories.dataFactory;
+	static public final SpanFactory dataFactory = Factories.dataFactory;
 }

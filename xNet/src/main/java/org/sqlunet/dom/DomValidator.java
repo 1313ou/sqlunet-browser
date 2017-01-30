@@ -17,7 +17,7 @@ import mf.javax.xml.validation.Validator;
 
 public class DomValidator
 {
-	private static final String TAG = "XMLValidator";
+	static private final String TAG = "XMLValidator";
 
 	/**
 	 * DomValidator
@@ -25,7 +25,7 @@ public class DomValidator
 	 * @param validator validator
 	 * @param source    source to validate
 	 */
-	private static void validate(final Validator validator, final Source source)
+	static private void validate(final Validator validator, final Source source)
 	{
 		try
 		{
@@ -48,7 +48,7 @@ public class DomValidator
 	 * @param xsdUrl  xsd url
 	 * @param strings files
 	 */
-	public static void validateStrings(final URL xsdUrl, final String... strings)
+	static public void validateStrings(final URL xsdUrl, final String... strings)
 	{
 		try
 		{
@@ -73,7 +73,7 @@ public class DomValidator
 	 * @param xsdUrl    xsd url
 	 * @param documents documents
 	 */
-	public static void validateDocs(final URL xsdUrl, final org.w3c.dom.Document... documents)
+	static public void validateDocs(final URL xsdUrl, final org.w3c.dom.Document... documents)
 	{
 		try
 		{
@@ -102,7 +102,7 @@ public class DomValidator
 	 * @param filePaths files
 	 */
 	@SuppressWarnings("unused")
-	public static void validateFiles(final URL xsdUrl, final String... filePaths)
+	static public void validateFiles(final URL xsdUrl, final String... filePaths)
 	{
 		try
 		{
@@ -125,7 +125,7 @@ public class DomValidator
 	 * @return validator
 	 * @throws SAXException exception
 	 */
-	private static Validator makeValidator(final URL xsdUrl) throws SAXException
+	static private Validator makeValidator(final URL xsdUrl) throws SAXException
 	{
 		//final SchemaFactory schemaFactory = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
 		final SchemaFactory schemaFactory = new mf.org.apache.xerces.jaxp.validation.XMLSchemaFactory();
@@ -142,7 +142,7 @@ public class DomValidator
 	 * @return xsdUrl
 	 */
 	@SuppressWarnings("unused")
-	public static URL path2Url(final String xsdPath)
+	static public URL path2Url(final String xsdPath)
 	{
 		URL xsdUrl;
 		try

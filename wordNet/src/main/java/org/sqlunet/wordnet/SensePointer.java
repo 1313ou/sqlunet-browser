@@ -20,7 +20,7 @@ public class SensePointer extends SynsetPointer implements HasWordId
 	/**
 	 * Static field used to regenerate object, individually or as arrays
 	 */
-	public static final Parcelable.Creator<SensePointer> CREATOR = new Parcelable.Creator<SensePointer>()
+	static public final Parcelable.Creator<SensePointer> CREATOR = new Parcelable.Creator<SensePointer>()
 	{
 		@Override
 		public SensePointer createFromParcel(final Parcel parcel)

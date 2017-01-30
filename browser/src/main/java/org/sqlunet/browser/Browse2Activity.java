@@ -55,6 +55,6 @@ public class Browse2Activity extends AppCompatActivity
 	@Override
 	public boolean onOptionsItemSelected(final MenuItem item)
 	{
-		return MainActivity.dispatch(this, item);
+		return MainActivity.menuDispatch(this, item);
 	}
 }

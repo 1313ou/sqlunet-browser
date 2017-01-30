@@ -41,7 +41,7 @@ public class FnSentence
 	 * @param sentenceId is the sentence id to build query from
 	 * @return sentence
 	 */
-	public static FnSentence make(final SQLiteDatabase connection, final long sentenceId)
+	static public FnSentence make(final SQLiteDatabase connection, final long sentenceId)
 	{
 		FnSentence result = null;
 		FnSentenceQuery query = null;
@@ -75,7 +75,7 @@ public class FnSentence
 	 * @param luId       is the lex unit id to build query from
 	 * @return list of sentences
 	 */
-	public static List<FnSentence> makeFromLexicalUnit(final SQLiteDatabase connection, final long luId)
+	static public List<FnSentence> makeFromLexicalUnit(final SQLiteDatabase connection, final long luId)
 	{
 		final List<FnSentence> result = new ArrayList<>();
 		FnSentenceQueryFromLexUnitId query = null;

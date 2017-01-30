@@ -83,7 +83,7 @@ public class FnLexUnit
 	 * @param luId       lex unit id
 	 * @return lex units
 	 */
-	public static FnLexUnit makeFromId(final SQLiteDatabase connection, final long luId)
+	static public FnLexUnit makeFromId(final SQLiteDatabase connection, final long luId)
 	{
 		FnLexUnit result = null;
 		FnLexUnitQuery query = null;
@@ -209,7 +209,7 @@ public class FnLexUnit
 	 * @param frameId    frame id
 	 * @return list of lex units
 	 */
-	public static List<FnLexUnit> makeFromFrame(final SQLiteDatabase connection, final long frameId)
+	static public List<FnLexUnit> makeFromFrame(final SQLiteDatabase connection, final long frameId)
 	{
 		final List<FnLexUnit> result = new ArrayList<>();
 		FnLexUnitQueryFromFrameId query = null;

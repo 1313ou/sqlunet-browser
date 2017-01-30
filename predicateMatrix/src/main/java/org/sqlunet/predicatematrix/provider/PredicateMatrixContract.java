@@ -27,26 +27,26 @@ public class PredicateMatrixContract
 	@SuppressWarnings("unused")
 	static public class PredicateMatrix
 	{
-		public static final String PMID = "pmid";
-		public static final String PMROLEID = "pmroleid";
-		public static final String PMPREDID = "pmpredid";
-		public static final String PMPREDICATE = "predicate";
-		public static final String PMROLE = "role";
-		public static final String PMPOS = "pos";
-		public static final String WORD = "lemma";
-		public static final String WORDID = "wordid";
-		public static final String SYNSETID = "synsetid";
-		public static final String PMWSOURCE = "wsource";
-		public static final String VNWORDID = "vnwordid";
-		public static final String VNCLASSID = "vnclassid";
-		public static final String VNROLEID = "vnroleid";
-		public static final String PBWORDID = "pbwordid";
-		public static final String PBROLESETID = "pbrolesetid";
-		public static final String PBROLEID = "pbroleid";
-		public static final String FNWORDID = "fnwordid";
-		public static final String FRAMEID = "fnframeid";
-		public static final String LUID = "fnluid";
-		public static final String FEID = "fnfeid";
+		static public final String PMID = "pmid";
+		static public final String PMROLEID = "pmroleid";
+		static public final String PMPREDID = "pmpredid";
+		static public final String PMPREDICATE = "predicate";
+		static public final String PMROLE = "role";
+		static public final String PMPOS = "pos";
+		static public final String WORD = "lemma";
+		static public final String WORDID = "wordid";
+		static public final String SYNSETID = "synsetid";
+		static public final String PMWSOURCE = "wsource";
+		static public final String VNWORDID = "vnwordid";
+		static public final String VNCLASSID = "vnclassid";
+		static public final String VNROLEID = "vnroleid";
+		static public final String PBWORDID = "pbwordid";
+		static public final String PBROLESETID = "pbrolesetid";
+		static public final String PBROLEID = "pbroleid";
+		static public final String FNWORDID = "fnwordid";
+		static public final String FRAMEID = "fnframeid";
+		static public final String LUID = "fnluid";
+		static public final String FEID = "fnfeid";
 	}
 
 	@SuppressWarnings("unused")
@@ -61,25 +61,25 @@ public class PredicateMatrixContract
 	{
 		static public final String TABLE = "pm_x";
 		static public final String CONTENT_URI = BaseProvider.SCHEME + PredicateMatrixContract.AUTHORITY + '/' + Pm_X.TABLE;
-		public static final String DEFINITION = "definition";
-		public static final String VNCLASS = "class";
-		public static final String VNROLERESTRID = "restrsid";
-		public static final String VNROLETYPEID = "roletypeid";
-		public static final String VNROLETYPE = "roletype";
-		public static final String PBROLESETNAME = "rolesetname";
-		public static final String PBROLESETDESCR = "rolesetdescr";
-		public static final String PBROLESETHEAD = "rolesethead";
-		public static final String PBROLEDESCR = "roledescr";
-		public static final String PBROLENARG = "narg";
-		public static final String PBROLENARGDESCR = "nargdescr";
-		public static final String FRAME = "frame";
-		public static final String FRAMEDEFINITION = "framedefinition";
-		public static final String LEXUNIT = "lexunit";
-		public static final String LUDEFINITION = "ludefinition";
-		public static final String LUDICT = "ludict";
-		public static final String FETYPEID = "fetypeid";
-		public static final String FETYPE = "fetype";
-		public static final String FEABBREV = "feabbrev";
-		public static final String FEDEFINITION = "fedefinition";
+		static public final String DEFINITION = "definition";
+		static public final String VNCLASS = "class";
+		static public final String VNROLERESTRID = "restrsid";
+		static public final String VNROLETYPEID = "roletypeid";
+		static public final String VNROLETYPE = "roletype";
+		static public final String PBROLESETNAME = "rolesetname";
+		static public final String PBROLESETDESCR = "rolesetdescr";
+		static public final String PBROLESETHEAD = "rolesethead";
+		static public final String PBROLEDESCR = "roledescr";
+		static public final String PBROLENARG = "narg";
+		static public final String PBROLENARGDESCR = "nargdescr";
+		static public final String FRAME = "frame";
+		static public final String FRAMEDEFINITION = "framedefinition";
+		static public final String LEXUNIT = "lexunit";
+		static public final String LUDEFINITION = "ludefinition";
+		static public final String LUDICT = "ludict";
+		static public final String FETYPEID = "fetypeid";
+		static public final String FETYPE = "fetype";
+		static public final String FEABBREV = "feabbrev";
+		static public final String FEDEFINITION = "fedefinition";
 	}
 }

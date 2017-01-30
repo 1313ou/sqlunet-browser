@@ -93,7 +93,7 @@ class FnFrameElement
 	 * @param frameId    target frame id
 	 * @return list of FEs
 	 */
-	public static List<FnFrameElement> make(final SQLiteDatabase connection, final long frameId)
+	static public List<FnFrameElement> make(final SQLiteDatabase connection, final long frameId)
 	{
 		final List<FnFrameElement> result = new ArrayList<>();
 		FnFrameElementQueryFromFrameId query = null;

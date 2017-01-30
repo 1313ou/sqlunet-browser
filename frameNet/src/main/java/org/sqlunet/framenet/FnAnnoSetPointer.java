@@ -15,7 +15,7 @@ public class FnAnnoSetPointer extends Pointer
 	/**
 	 * Static field used to regenerate object, individually or as arrays
 	 */
-	public static final Parcelable.Creator<FnAnnoSetPointer> CREATOR = new Parcelable.Creator<FnAnnoSetPointer>()
+	static public final Parcelable.Creator<FnAnnoSetPointer> CREATOR = new Parcelable.Creator<FnAnnoSetPointer>()
 	{
 		@Override
 		public FnAnnoSetPointer createFromParcel(final Parcel parcel)

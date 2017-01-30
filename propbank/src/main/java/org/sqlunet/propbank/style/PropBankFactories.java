@@ -29,7 +29,7 @@ public class PropBankFactories
 		}
 	};
 
-	public static final SpanFactory definitionFactory = Factories.definitionFactory;
+	static public final SpanFactory definitionFactory = Factories.definitionFactory;
 
 	static public final SpanFactory exampleFactory = Factories.exampleFactory;
 

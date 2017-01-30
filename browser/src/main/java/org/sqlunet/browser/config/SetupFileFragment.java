@@ -21,7 +21,7 @@ public class SetupFileFragment extends BaseTaskFragment
 {
 	//static private final String TAG = "SetupFileFragment";
 
-	private static final String ARG = "operation";
+	static private final String ARG = "operation";
 
 	/**
 	 * Operations

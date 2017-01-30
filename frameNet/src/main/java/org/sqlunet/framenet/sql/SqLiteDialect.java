@@ -19,7 +19,7 @@ class SqLiteDialect
 					"WHERE luid = ? " + //
 					"ORDER BY frame;";
 	// lex units from word
-	public static final String FrameNetLexUnitQueryFromWord = //
+	static public final String FrameNetLexUnitQueryFromWord = //
 			"SELECT wordid,luid,lexunit,pos,ludefinition,ludict,fetype AS incorporatedfe,frameid,frame,framedefinition " + //
 					"FROM words AS w " + //
 					"INNER JOIN fnwords USING (wordid) " + //
@@ -123,7 +123,7 @@ class SqLiteDialect
 
 	// ANNOSETS
 	// annoSet from annoSet id
-	public static final String FrameNetAnnoSetQuery = //
+	static public final String FrameNetAnnoSetQuery = //
 			"SELECT s.sentenceid,`text`,GROUP_CONCAT(o.annosetid) " + //
 					"FROM fnannosets AS a " + //
 					"LEFT JOIN fnsentences AS s USING (sentenceid) " + //
@@ -133,7 +133,7 @@ class SqLiteDialect
 
 	// LAYERS
 	// layers from annoSet id
-	public static final String FrameNetLayerQueryFromAnnoSetId = //
+	static public final String FrameNetLayerQueryFromAnnoSetId = //
 			"SELECT layerid,layertype,annosetid,rank,GROUP_CONCAT(start||':'||end||':'||labeltype||':'||CASE WHEN labelitype IS NULL THEN '' ELSE labelitype END,'|') " + //
 					"FROM " + //
 					"(SELECT layerid,layertype,annosetid,rank,start,end,labeltype,labelitype " + //
@@ -146,7 +146,7 @@ class SqLiteDialect
 					"ORDER BY rank,layerid,start,end) " + //
 					"GROUP BY layerid;";
 	// layers from sentence id
-	public static final String FrameNetLayerQueryFromSentenceId = //
+	static public final String FrameNetLayerQueryFromSentenceId = //
 			"SELECT layerid,layertype,annosetid,rank,GROUP_CONCAT(start||':'||end||':'||labeltype||':'||CASE WHEN labelitype IS NULL THEN '' ELSE labelitype END,'|') " + //
 					"FROM " + //
 					"(SELECT layerid,layertype,annosetid,rank,start,end,labeltype,labelitype " + //

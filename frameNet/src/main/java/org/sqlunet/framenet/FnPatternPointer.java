@@ -15,7 +15,7 @@ public class FnPatternPointer extends Pointer
 	/**
 	 * Static field used to regenerate object, individually or as arrays
 	 */
-	public static final Parcelable.Creator<FnPatternPointer> CREATOR = new Parcelable.Creator<FnPatternPointer>()
+	static public final Parcelable.Creator<FnPatternPointer> CREATOR = new Parcelable.Creator<FnPatternPointer>()
 	{
 		@Override
 		public FnPatternPointer createFromParcel(final Parcel parcel)

@@ -30,7 +30,7 @@ class FileUtils
 	 * @param fileName file in assets
 	 * @return uri of copied file
 	 */
-	public static Uri copyAssetFile(final Context context, final String fileName)
+	static public Uri copyAssetFile(final Context context, final String fileName)
 	{
 		AssetManager assetManager = null;
 		try
@@ -134,7 +134,7 @@ class FileUtils
 	 * @param fileName zip file in assets
 	 * @return uri of dest dir
 	 */
-	public static Uri expandZipAssetFile(final Context context, final String fileName)
+	static public Uri expandZipAssetFile(final Context context, final String fileName)
 	{
 		AssetManager assetManager = null;
 		try

@@ -38,7 +38,7 @@ public class BncData
 	public Integer writtenRange;
 	public Float writtenDisp;
 
-	public static List<BncData> makeData(final SQLiteDatabase connection, final String targetWord)
+	static public List<BncData> makeData(final SQLiteDatabase connection, final String targetWord)
 	{
 		final List<BncData> result = new ArrayList<>();
 		BncQuery query = null;
@@ -64,7 +64,7 @@ public class BncData
 	}
 
 	@SuppressWarnings("boxing")
-	public static List<BncData> makeData(final SQLiteDatabase connection, final long targetWordId, final Character targetPos)
+	static public List<BncData> makeData(final SQLiteDatabase connection, final long targetWordId, final Character targetPos)
 	{
 		final List<BncData> result = new ArrayList<>();
 		BncQuery query = null;

@@ -15,7 +15,7 @@ public class VnClassPointer extends Pointer
 	/**
 	 * Static field used to regenerate object, individually or as arrays
 	 */
-	public static final Parcelable.Creator<VnClassPointer> CREATOR = new Parcelable.Creator<VnClassPointer>()
+	static public final Parcelable.Creator<VnClassPointer> CREATOR = new Parcelable.Creator<VnClassPointer>()
 	{
 		@Override
 		public VnClassPointer createFromParcel(final Parcel parcel)

@@ -15,7 +15,7 @@ public class PmRolePointer extends Pointer
 	/**
 	 * Static field used to regenerate object, individually or as arrays
 	 */
-	public static final Parcelable.Creator<PmRolePointer> CREATOR = new Parcelable.Creator<PmRolePointer>()
+	static public final Parcelable.Creator<PmRolePointer> CREATOR = new Parcelable.Creator<PmRolePointer>()
 	{
 		@Override
 		public PmRolePointer createFromParcel(final Parcel parcel)

@@ -25,7 +25,7 @@ public class Settings
 		 * @param context context
 		 * @return mode preference
 		 */
-		public static PMMode getPref(final Context context)
+		static public PMMode getPref(final Context context)
 		{
 			final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
 			final String mode_string = sharedPref.getString(Settings.PREF_PM_MODE, Settings.PMMode.ROLES.name());

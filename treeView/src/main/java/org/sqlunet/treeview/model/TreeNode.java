@@ -99,7 +99,7 @@ public class TreeNode
 	 *
 	 * @return node
 	 */
-	public static TreeNode makeRoot()
+	static public TreeNode makeRoot()
 	{
 		final TreeNode root = new TreeNode(null);
 		root.setSelectable(false);

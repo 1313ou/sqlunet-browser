@@ -63,7 +63,7 @@ class FnLayer
 	 * @param sentenceId sentence id
 	 * @return layers
 	 */
-	public static List<FnLayer> makeFromSentence(final SQLiteDatabase connection, final long sentenceId)
+	static public List<FnLayer> makeFromSentence(final SQLiteDatabase connection, final long sentenceId)
 	{
 		List<FnLayer> result = null;
 		FnLayerQueryFromSentenceId query = null;
@@ -103,7 +103,7 @@ class FnLayer
 	 * @param annoSetId  annoset id
 	 * @return layers
 	 */
-	public static List<FnLayer> makeFromAnnoSet(final SQLiteDatabase connection, final long annoSetId)
+	static public List<FnLayer> makeFromAnnoSet(final SQLiteDatabase connection, final long annoSetId)
 	{
 		List<FnLayer> result = null;
 		FnLayerQueryFromAnnoSetId query = null;

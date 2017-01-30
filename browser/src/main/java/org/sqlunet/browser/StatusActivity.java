@@ -60,6 +60,6 @@ public class StatusActivity extends AppCompatActivity
 				break;
 		}
 
-		return MainActivity.dispatch(this, item);
+		return MainActivity.menuDispatch(this, item);
 	}
 }

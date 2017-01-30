@@ -3,27 +3,28 @@ package org.sqlunet.browser;
 import android.app.Activity;
 import android.app.SearchManager;
 import android.content.Intent;
+import android.content.res.Resources;
+import android.content.res.TypedArray;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.view.LayoutInflater;
+import android.util.TypedValue;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
 
 import org.sqlunet.browser.config.SettingsActivity;
 import org.sqlunet.browser.config.SetupActivity;
 import org.sqlunet.browser.config.Status;
 import org.sqlunet.browser.config.StorageActivity;
-import org.sqlunet.browser.config.StorageFragment;
 import org.sqlunet.settings.Settings;
 import org.sqlunet.settings.StorageSettings;
 
-public class MainActivity extends AppCompatActivity implements NavigationDrawerFragment.Listener
+public class MainActivity extends AppCompatActivity // implements NavigationFragment.Listener
 {
 	static private final String TAG = "MainActivity";
 
@@ -51,8 +52,12 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawerF
 		// content view
 		setContentView(R.layout.activity_main);
 
+		// toolbar
+		final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_main);
+		setSupportActionBar(toolbar);
+
 		// get fragment
-		final NavigationDrawerFragment navigationDrawerFragment = (NavigationDrawerFragment) getSupportFragmentManager().findFragmentById(R.id.navigation_drawer);
+		final NavigationFragment navigationDrawerFragment = (NavigationFragment) getSupportFragmentManager().findFragmentById(R.id.navigation_drawer);
 
 		// get title for use in restoreActionBar
 		this.title = getTitle();
@@ -112,110 +117,132 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawerF
 		}
 	}
 
-	@Override
-	public void onItemSelected(final int position)
-	{
-		if (position == 8)
-		{
-			SqlDialogFragment.show(getSupportFragmentManager());
-			return;
-		}
+	//	@Override
+	//	public void onItemSelected(final int position, final boolean fromSavedInstanceState)
+	//	{
+	//		if (position == 8)
+	//		{
+	//			SqlDialogFragment.show(getSupportFragmentManager());
+	//			return;
+	//		}
+	//
+	//		if (!fromSavedInstanceState)
+	//		{
+	//			// update the browse content by replacing fragments
+	//			getSupportFragmentManager() //
+	//					.beginTransaction() //
+	//					.replace(R.id.container_content, PlaceholderFragment.newInstance(position)) //
+	//					.commit();
+	//		}
+	//	}
 
-		// update the browse content by replacing fragments
-		getSupportFragmentManager() //
-				.beginTransaction() //
-				.replace(R.id.container_content, PlaceholderFragment.newInstance(position)) //
-				.commit();
-	}
-
-	@SuppressWarnings("unused")
 	public void restoreActionBar()
 	{
-		ActionBar actionBar = getSupportActionBar();
+		// action bar
+		final ActionBar actionBar = getSupportActionBar();
 		assert actionBar != null;
 		actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_HOME | ActionBar.DISPLAY_HOME_AS_UP);
 		actionBar.setTitle(this.title);
-		// actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
+
+		// theme
+		final Resources.Theme theme = getTheme();
+
+		// res id of style pointed to from actionBarStyle
+		final TypedValue typedValue = new TypedValue();
+		theme.resolveAttribute(android.R.attr.actionBarStyle, typedValue, true);
+		int resId = typedValue.resourceId;
+
+		// now get action bar style values
+		final TypedArray style = theme.obtainStyledAttributes(resId, new int[]{android.R.attr.background});
+		try
+		{
+			final Drawable drawable = style.getDrawable(0);
+			actionBar.setBackgroundDrawable(drawable);
+		}
+		finally
+		{
+			style.recycle();
+		}
 	}
 
-	/**
-	 * Called on drawer selection
-	 *
-	 * @param number selected item number
-	 */
-	private void onSectionAttached(final int number)
-	{
-		// final String[] options = getResources().getStringArray(R.array.title_sections);
-		// this.title = options[number];
-		this.fragment = null;
-		Intent intent = null;
-		switch (number)
-		{
-			case 0:
-				this.title = getString(R.string.title_home_section);
-				this.fragment = new HomeFragment();
-				break;
-			case 1:
-				this.title = getString(R.string.title_browse_section);
-				//intent = new Intent(this, BrowseActivity.class);
-				this.fragment = new BrowseFragment();
-				break;
-			case 2:
-				this.title = getString(R.string.title_ts_section);
-				//intent = new Intent(this, TextSearchActivity.class);
-				this.fragment = new TextSearchFragment();
-				break;
-			case 3:
-				this.title = getString(R.string.title_pm_section);
-				//intent = new Intent(this, PredicateMatrixActivity.class);
-				this.fragment = new PredicateMatrixFragment();
-				break;
-			case 4:
-				this.title = getString(R.string.title_status_section);
-				//intent = new Intent(this, StatusActivity.class);
-				this.fragment = new StatusFragment();
-				break;
-			case 5:
-				this.title = getString(R.string.title_setup_section);
-				intent = new Intent(this, SetupActivity.class);
-				break;
-			case 6:
-				this.title = getString(R.string.title_storage_section);
-				//intent = new Intent(this, StorageActivity.class);
-				this.fragment = new StorageFragment();
-				break;
-			case 7:
-				this.title = getString(R.string.title_settings_section);
-				intent = new Intent(this, SettingsActivity.class);
-				break;
-			case 8:
-				this.title = getString(R.string.title_sql_section);
-				this.fragment = new SqlFragment();
-				break;
-			case 9:
-				this.title = getString(R.string.title_help_section);
-				//intent = new Intent(this, HelpActivity.class);
-				this.fragment = new HelpFragment();
-				break;
-			case 10:
-				this.title = getString(R.string.title_about_section);
-				//intent = new Intent(this, SettingsActivity.class);
-				this.fragment = new AboutFragment();
-				break;
-		}
-		if (this.fragment != null)
-		{
-			getSupportFragmentManager() //
-					.beginTransaction() //
-					.replace(R.id.container_content, this.fragment) //
-					.commit();
-			return;
-		}
-		if (intent != null)
-		{
-			startActivity(intent);
-		}
-	}
+	//	/**
+	//	 * Called on drawer selection
+	//	 *
+	//	 * @param number selected item number
+	//	 */
+	//	private void onSectionAttached(final int number)
+	//	{
+	//		// final String[] options = getResources().getStringArray(R.array.title_sections);
+	//		// this.title = options[number];
+	//		this.fragment = null;
+	//		Intent intent = null;
+	//		switch (number)
+	//		{
+	//			case 0:
+	//				this.title = getString(R.string.title_home_section);
+	//				this.fragment = new HomeFragment();
+	//				break;
+	//			case 1:
+	//				this.title = getString(R.string.title_browse_section);
+	//				//intent = new Intent(this, BrowseActivity.class);
+	//				this.fragment = new BrowseFragment();
+	//				break;
+	//			case 2:
+	//				this.title = getString(R.string.title_ts_section);
+	//				//intent = new Intent(this, TextSearchActivity.class);
+	//				this.fragment = new TextSearchFragment();
+	//				break;
+	//			case 3:
+	//				this.title = getString(R.string.title_pm_section);
+	//				//intent = new Intent(this, PredicateMatrixActivity.class);
+	//				this.fragment = new PredicateMatrixFragment();
+	//				break;
+	//			case 4:
+	//				this.title = getString(R.string.title_status_section);
+	//				//intent = new Intent(this, StatusActivity.class);
+	//				this.fragment = new StatusFragment();
+	//				break;
+	//			case 5:
+	//				this.title = getString(R.string.title_setup_section);
+	//				intent = new Intent(this, SetupActivity.class);
+	//				break;
+	//			case 6:
+	//				this.title = getString(R.string.title_storage_section);
+	//				//intent = new Intent(this, StorageActivity.class);
+	//				this.fragment = new StorageFragment();
+	//				break;
+	//			case 7:
+	//				this.title = getString(R.string.title_settings_section);
+	//				intent = new Intent(this, SettingsActivity.class);
+	//				break;
+	//			case 8:
+	//				this.title = getString(R.string.title_sql_section);
+	//				this.fragment = new SqlFragment();
+	//				break;
+	//			case 9:
+	//				this.title = getString(R.string.title_help_section);
+	//				//intent = new Intent(this, HelpActivity.class);
+	//				this.fragment = new HelpFragment();
+	//				break;
+	//			case 10:
+	//				this.title = getString(R.string.title_about_section);
+	//				//intent = new Intent(this, SettingsActivity.class);
+	//				this.fragment = new AboutFragment();
+	//				break;
+	//		}
+	//		if (this.fragment != null)
+	//		{
+	//			getSupportFragmentManager() //
+	//					.beginTransaction() //
+	//					.replace(R.id.container_content, this.fragment) //
+	//					.commit();
+	//			return;
+	//		}
+	//		if (intent != null)
+	//		{
+	//			startActivity(intent);
+	//		}
+	//	}
 
 	// M E N U
 
@@ -230,7 +257,7 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawerF
 	@Override
 	public boolean onOptionsItemSelected(final MenuItem item)
 	{
-		return dispatch(this, item);
+		return menuDispatch(this, item);
 	}
 
 	/**
@@ -240,7 +267,7 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawerF
 	 * @param item     menu item
 	 * @return true if processed/consumed
 	 */
-	static public boolean dispatch(final Activity activity, final MenuItem item)
+	static public boolean menuDispatch(final Activity activity, final MenuItem item)
 	{
 		Intent intent;
 
@@ -296,50 +323,50 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawerF
 		return true;
 	}
 
-	// P L A C E H O L D E R
-
-	/**
-	 * A placeholder fragment containing a simple view.
-	 */
-	public static class PlaceholderFragment extends Fragment
-	{
-		/**
-		 * The fragment argument representing the section number for this fragment.
-		 */
-		private static final String ARG_SECTION_NUMBER = "section_number";
-
-		/**
-		 * Constructor
-		 */
-		public PlaceholderFragment()
-		{
-		}
-
-		/**
-		 * Returns a new instance of this fragment for the given section number.
-		 */
-		public static PlaceholderFragment newInstance(final int sectionNumber)
-		{
-			final PlaceholderFragment fragment = new PlaceholderFragment();
-			final Bundle args = new Bundle();
-			args.putInt(ARG_SECTION_NUMBER, sectionNumber);
-			fragment.setArguments(args);
-			return fragment;
-		}
-
-		@Override
-		public View onCreateView(final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState)
-		{
-			return inflater.inflate(R.layout.fragment_main, container, false);
-		}
-
-		@SuppressWarnings("deprecation")
-		@Override
-		public void onAttach(final Activity activity)
-		{
-			super.onAttach(activity);
-			int sectionNumber = getArguments().getInt(ARG_SECTION_NUMBER);
-			((MainActivity) activity).onSectionAttached(sectionNumber);
-		}
-	}
+	//	// P L A C E H O L D E R
+	//
+	//	/**
+	//	 * A placeholder fragment containing a simple view.
+	//	 */
+	//	static public class PlaceholderFragment extends Fragment
+	//	{
+	//		/**
+	//		 * The fragment argument representing the section number for this fragment.
+	//		 */
+	//		static private final String ARG_SECTION_NUMBER = "section_number";
+	//
+	//		/**
+	//		 * Constructor
+	//		 */
+	//		public PlaceholderFragment()
+	//		{
+	//		}
+	//
+	//		/**
+	//		 * Returns a new instance of this fragment for the given section number.
+	//		 */
+	//		static public PlaceholderFragment newInstance(final int sectionNumber)
+	//		{
+	//			final PlaceholderFragment fragment = new PlaceholderFragment();
+	//			final Bundle args = new Bundle();
+	//			args.putInt(ARG_SECTION_NUMBER, sectionNumber);
+	//			fragment.setArguments(args);
+	//			return fragment;
+	//		}
+	//
+	//		@Override
+	//		public View onCreateView(final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState)
+	//		{
+	//			return inflater.inflate(R.layout.fragment_main, container, false);
+	//		}
+	//
+	//		@SuppressWarnings("deprecation")
+	//		@Override
+	//		public void onAttach(final Activity activity)
+	//		{
+	//			super.onAttach(activity);
+	//			int sectionNumber = getArguments().getInt(ARG_SECTION_NUMBER);
+	//			((MainActivity) activity).onSectionAttached(sectionNumber);
+	//		}
+	//	}
 }

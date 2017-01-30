@@ -62,7 +62,7 @@ public class XSelectorPointer extends SelectorPointer implements HasXId
 	/**
 	 * Static field used to regenerate object, individually or as arrays
 	 */
-	public static final Parcelable.Creator<XSelectorPointer> CREATOR = new Parcelable.Creator<XSelectorPointer>()
+	static public final Parcelable.Creator<XSelectorPointer> CREATOR = new Parcelable.Creator<XSelectorPointer>()
 	{
 		@Override
 		public XSelectorPointer createFromParcel(final Parcel parcel)
@@ -228,7 +228,7 @@ public class XSelectorPointer extends SelectorPointer implements HasXId
 	 * @param xSources x sources
 	 * @return mask
 	 */
-	public static long getMask(final String xSources)
+	static public long getMask(final String xSources)
 	{
 		long mask = 0;
 		if (xSources.contains("wn")) //

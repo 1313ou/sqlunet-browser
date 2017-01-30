@@ -42,7 +42,7 @@ public class VerbNetFactories
 
 	// role
 
-	public static final SpanFactory roleFactory = Factories.roleFactory;
+	static public final SpanFactory roleFactory = Factories.roleFactory;
 
 	static final SpanFactory themroleFactory = new SpanFactory()
 	{
@@ -55,7 +55,7 @@ public class VerbNetFactories
 
 	// frame
 
-	public static final SpanFactory frameFactory = new SpanFactory()
+	static public final SpanFactory frameFactory = new SpanFactory()
 	{
 		@Override
 		public Object makeSpans(final long flags)
@@ -64,7 +64,7 @@ public class VerbNetFactories
 		}
 	};
 
-	public static final SpanFactory framesubnameFactory = new SpanFactory()
+	static public final SpanFactory framesubnameFactory = new SpanFactory()
 	{
 		@Override
 		public Object makeSpans(final long flags)
@@ -131,7 +131,7 @@ public class VerbNetFactories
 
 	// restrs
 
-	public static final SpanFactory restrsFactory = new SpanFactory()
+	static public final SpanFactory restrsFactory = new SpanFactory()
 	{
 		@Override
 		public Object makeSpans(final long flags)
@@ -142,5 +142,5 @@ public class VerbNetFactories
 
 	// example
 
-	public static final SpanFactory exampleFactory = Factories.exampleFactory;
+	static public final SpanFactory exampleFactory = Factories.exampleFactory;
 }

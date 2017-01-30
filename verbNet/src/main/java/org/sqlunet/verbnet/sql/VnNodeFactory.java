@@ -22,7 +22,7 @@ class VnNodeFactory extends NodeFactory
 	 * @param classId target class id
 	 * @return newly created node
 	 */
-	public static Node makeVnRootClassNode(final Document doc, final long classId)
+	static public Node makeVnRootClassNode(final Document doc, final long classId)
 	{
 		final Element rootNode = NodeFactory.makeNode(doc, doc, "verbnet", null, VerbNetImplementation.VN_NS);
 		NodeFactory.addAttributes(rootNode, "classid", Long.toString(classId));
@@ -73,7 +73,7 @@ class VnNodeFactory extends NodeFactory
 	 * @param vnClass is the class
 	 * @return newly created node
 	 */
-	public static Node makeVnClassNode(final Document doc, final Node parent, final VnClass vnClass)
+	static public Node makeVnClassNode(final Document doc, final Node parent, final VnClass vnClass)
 	{
 		final Element element = NodeFactory.makeNode(doc, parent, "vnclass", null);
 		NodeFactory.makeAttribute(element, "name", vnClass.className);
@@ -87,7 +87,7 @@ class VnNodeFactory extends NodeFactory
 	 * @param parent  is the parent node to attach this node to
 	 * @param vnClass is the vn class with sense
 	 */
-	public static Node makeVnClassWithSenseNode(final Document doc, final Node parent, final VnClassWithSense vnClass)
+	static public Node makeVnClassWithSenseNode(final Document doc, final Node parent, final VnClassWithSense vnClass)
 	{
 		final Element element = NodeFactory.makeNode(doc, parent, "vnclass", null);
 		NodeFactory.addAttributes(element, //

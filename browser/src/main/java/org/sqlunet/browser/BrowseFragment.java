@@ -1,40 +1,17 @@
 package org.sqlunet.browser;
 
-import android.annotation.SuppressLint;
 import android.app.Activity;
-import android.app.SearchManager;
-import android.app.SearchableInfo;
-import android.content.ComponentName;
-import android.content.Context;
 import android.content.Intent;
-import android.content.res.Resources;
-import android.content.res.TypedArray;
-import android.graphics.drawable.ColorDrawable;
-import android.graphics.drawable.Drawable;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Parcelable;
-import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
-import android.support.v4.view.MenuItemCompat;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.SearchView;
 import android.util.Log;
-import android.util.TypedValue;
-import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
-import android.widget.ArrayAdapter;
 import android.widget.Spinner;
-import android.widget.SpinnerAdapter;
-import android.widget.TextView;
 
 import org.sqlunet.browser.config.TableActivity;
 import org.sqlunet.browser.selector.Browse1Activity;
@@ -76,66 +53,60 @@ import org.sqlunet.wordnet.provider.WordNetContract.PosTypes;
  *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
-public class BrowseFragment extends Fragment implements SearchListener
+public class BrowseFragment extends BaseSearchFragment
 {
 	static private final String TAG = "BrowseFragment";
 
-	/**
-	 * Selector mode state
-	 */
-	static private final String STATE_SPINNER = "selected_selector_mode";
-
-	/**
-	 * Search view
-	 */
-	private SearchView searchView;
-
-	/**
-	 * Selector mode spinner
-	 */
-	private Spinner spinner;
-
 	// C R E A T I O N
 
-	@Override
-	public View onCreateView(final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState)
+	/**
+	 * Constructor
+	 */
+	public BrowseFragment()
 	{
-		setHasOptionsMenu(true);
-
-		// view
-		final View view = inflater.inflate(R.layout.fragment_browse, container, false);
-
-		// action bar
-		this.spinner = setupActionBar(inflater);
-
-		// spinner update
-		if (savedInstanceState != null)
-		{
-			final int selected = savedInstanceState.getInt(STATE_SPINNER);
-			this.spinner.setSelection(selected);
-		}
-
-		return view;
+		this.layoutId = R.layout.fragment_browse;
+		this.menuId = R.menu.browse;
+		this.colorId = R.color.browse_action_bar_color;
+		this.spinnerLabels = R.array.selectors_names;
+		this.spinnerIcons = R.array.selectors_icons;
 	}
 
+	// S P I N N E R
+
 	@Override
-	public void onDetach()
+	protected void setupSpinner(final Spinner spinner)
 	{
-		restoreActionBar();
-		super.onDetach();
+		super.setupSpinner(spinner);
+
+		// spinner listener
+		spinner.setOnItemSelectedListener( //
+				new OnItemSelectedListener()
+				{
+					@Override
+					public void onItemSelected(final AdapterView<?> parentView, final View selectedItemView, final int position, final long id)
+					{
+						final Settings.Selector selectorMode = Settings.Selector.values()[position];
+						selectorMode.setPref(BrowseFragment.this.getActivity());
+
+						// Log.d(Browse1Fragment.TAG, selectorMode.name());
+					}
+
+					@Override
+					public void onNothingSelected(final AdapterView<?> parentView)
+					{
+						//
+					}
+				});
+
+		// saved selector mode
+		final Settings.Selector selectorMode = Settings.Selector.getPref(BrowseFragment.this.getActivity());
+		if (selectorMode != null)
+		{
+			spinner.setSelection(selectorMode.ordinal());
+		}
 	}
 
 	// M E N U
-
-	@Override
-	public void onCreateOptionsMenu(final Menu menu, final MenuInflater inflater)
-	{
-		// inflate the menu; this adds items to the type bar if it is present.
-		inflater.inflate(R.menu.browse, menu);
-
-		// set up search view
-		setupSearch(menu);
-	}
 
 	@Override
 	public boolean onOptionsItemSelected(final MenuItem item)
@@ -191,239 +162,6 @@ public class BrowseFragment extends Fragment implements SearchListener
 		return true;
 	}
 
-	// A C T I O N B A R
-
-	/**
-	 * Set up action bar
-	 *
-	 * @return spinner
-	 */
-	private Spinner setupActionBar(final LayoutInflater inflater)
-	{
-		// activity
-		final AppCompatActivity activity = (AppCompatActivity) getActivity();
-
-		// action bar
-		final ActionBar actionBar = activity.getSupportActionBar();
-		assert actionBar != null;
-
-		// color
-		int color;
-		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M)
-		{
-			color = getResources().getColor(R.color.browse_action_bar_color, activity.getTheme());
-		}
-		else
-		{
-			//noinspection deprecation
-			color = getResources().getColor(R.color.browse_action_bar_color);
-		}
-		actionBar.setBackgroundDrawable(new ColorDrawable(color));
-
-		// set up the type bar to show a custom layout
-		@SuppressLint("InflateParams") //
-		final View actionBarView = inflater.inflate(R.layout.actionbar_custom, null);
-		actionBar.setCustomView(actionBarView);
-		actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM | ActionBar.DISPLAY_SHOW_HOME | ActionBar.DISPLAY_HOME_AS_UP);
-		// actionBar.setDisplayShowCustomEnabled(true);
-		// actionBar.setDisplayShowHomeEnabled(true);
-		// actionBar.setDisplayHomeAsUpEnabled(true);
-		// actionBar.setDisplayShowTitleEnabled(false);
-
-		// spinner
-		final Spinner spinner = (Spinner) actionBarView.findViewById(R.id.spinner);
-		setupSpinner(spinner);
-
-		return spinner;
-	}
-
-	/**
-	 * Restore action bar
-	 */
-	private void restoreActionBar()
-	{
-		// activity
-		final AppCompatActivity activity = (AppCompatActivity) getActivity();
-
-		// action bar
-		final ActionBar actionBar = activity.getSupportActionBar();
-		assert actionBar != null;
-		actionBar.setDisplayShowCustomEnabled(false);
-
-		// theme
-		final Resources.Theme theme = activity.getTheme();
-
-		// res id of style pointed to from actionBarStyle
-		final TypedValue typedValue = new TypedValue();
-		theme.resolveAttribute(android.R.attr.actionBarStyle, typedValue, true);
-		int resId = typedValue.resourceId;
-
-		// now get action bar style values
-		final TypedArray style = theme.obtainStyledAttributes(resId, new int[]{android.R.attr.background});
-		try
-		{
-			final Drawable drawable = style.getDrawable(0);
-			actionBar.setBackgroundDrawable(drawable);
-		}
-		finally
-		{
-			style.recycle();
-		}
-	}
-
-	// S E A R C H V I E W
-
-	/**
-	 * Set up search view
-	 *
-	 * @param menu menu
-	 */
-	private void setupSearch(final Menu menu)
-	{
-		// menu item
-		final MenuItem searchMenuItem = menu.findItem(R.id.search);
-
-		// activity
-		final AppCompatActivity activity = (AppCompatActivity) getActivity();
-
-		// search info
-		final ComponentName componentName = activity.getComponentName();
-		final SearchManager searchManager = (SearchManager) activity.getSystemService(Context.SEARCH_SERVICE);
-		final SearchableInfo searchableInfo = searchManager.getSearchableInfo(componentName);
-
-		// search view
-		this.searchView = (SearchView) MenuItemCompat.getActionView(searchMenuItem);
-		this.searchView.setSearchableInfo(searchableInfo);
-		this.searchView.setIconifiedByDefault(true);
-		this.searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener()
-		{
-			@Override
-			public boolean onQueryTextSubmit(final String query)
-			{
-				BrowseFragment.this.searchView.clearFocus();
-				BrowseFragment.this.searchView.setFocusable(false);
-				BrowseFragment.this.searchView.setQuery("", false);
-				closeKeyboard();
-				searchMenuItem.collapseActionView();
-				return false;
-			}
-
-			@Override
-			public boolean onQueryTextChange(final String newText)
-			{
-				return false;
-			}
-		});
-	}
-
-	private void closeKeyboard()
-	{
-		// activity
-		final Activity activity = getActivity();
-
-		// view
-		final View view = activity.getCurrentFocus();
-		if (view != null)
-		{
-			final InputMethodManager imm = (InputMethodManager) activity.getSystemService(Context.INPUT_METHOD_SERVICE);
-			imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
-		}
-	}
-
-	// S P I N N E R
-
-	/**
-	 * Set up type bar spinner
-	 *
-	 * @param spinner spinner
-	 */
-	private void setupSpinner(final Spinner spinner)
-	{
-		// activity
-		final Activity activity = getActivity();
-
-		// selector mode adapter values
-		final CharSequence[] modes = activity.getResources().getTextArray(R.array.selectors_names);
-
-		// selector mode adapter
-		final SpinnerAdapter adapter = new ArrayAdapter<CharSequence>(activity, android.R.layout.simple_list_item_activated_1, android.R.id.text1, modes)
-		{
-			@NonNull
-			@Override
-			public View getView(final int position, final View convertView, @NonNull final ViewGroup parent)
-			{
-				final CharSequence rowItem = getItem(position);
-				assert rowItem != null;
-
-				final View view = super.getView(position, convertView, parent);
-				final TextView textView = (TextView) view.findViewById(android.R.id.text1);
-				textView.setText("");
-				textView.setCompoundDrawablesWithIntrinsicBounds(0, 0, position == 0 ? R.drawable.ic_selector : R.drawable.ic_xselector, 0);
-
-				return view;
-			}
-
-			@Override
-			public View getDropDownView(final int position, final View convertView, @NonNull final ViewGroup parent)
-			{
-				final CharSequence rowItem = getItem(position);
-				assert rowItem != null;
-
-				final View view = super.getDropDownView(position, convertView, parent);
-				final TextView textView = (TextView) view.findViewById(android.R.id.text1);
-				textView.setText(rowItem);
-				textView.setCompoundDrawablesWithIntrinsicBounds(position == 0 ? R.drawable.ic_selector : R.drawable.ic_xselector, 0, 0, 0);
-
-				return view;
-			}
-		};
-
-		// spinner listener
-		spinner.setOnItemSelectedListener( //
-				new OnItemSelectedListener()
-				{
-					@Override
-					public void onItemSelected(final AdapterView<?> parentView, final View selectedItemView, final int position, final long id)
-					{
-						final Settings.Selector selectorMode = Settings.Selector.values()[position];
-						selectorMode.setPref(activity);
-
-						// Log.d(Browse1Fragment.TAG, selectorMode.name());
-					}
-
-					@Override
-					public void onNothingSelected(final AdapterView<?> parentView)
-					{
-						//
-					}
-				});
-
-		// apply spinner adapter
-		spinner.setAdapter(adapter);
-
-		// saved selector mode
-		final Settings.Selector selectorMode = Settings.Selector.getPref(activity);
-		if (selectorMode != null)
-		{
-			spinner.setSelection(selectorMode.ordinal());
-		}
-	}
-
-	@Override
-	public void onSaveInstanceState(final Bundle savedInstanceState)
-	{
-		// always call the superclass so it can save the view hierarchy state
-		super.onSaveInstanceState(savedInstanceState);
-
-		// spinner
-		if (this.spinner != null)
-		{
-			// serialize the current dropdown position
-			final int position = this.spinner.getSelectedItemPosition();
-			savedInstanceState.putInt(BrowseFragment.STATE_SPINNER, position);
-		}
-	}
-
 	// S E A R C H
 
 	/**
@@ -434,10 +172,16 @@ public class BrowseFragment extends Fragment implements SearchListener
 	@Override
 	public void search(final String query)
 	{
+		// log
+		Log.d(BrowseFragment.TAG, "BROWSE " + query);
+
+		// set
+		this.query = query;
+
 		// recurse
 		final boolean recurse = Settings.getRecursePref(getActivity());
 
-		// dispatch as per query prefix
+		// menuDispatch as per query prefix
 		@SuppressWarnings("TooBroadScope") Fragment fragment = null;
 		Intent targetIntent = null;
 		Bundle args = new Bundle();
@@ -573,7 +317,7 @@ public class BrowseFragment extends Fragment implements SearchListener
 			//fragment = new Test1Fragment();
 		}
 
-		// dispatch
+		// menuDispatch
 		Log.d(BrowseFragment.TAG, "SEARCH " + args);
 		if (targetIntent != null)
 		{
@@ -604,8 +348,13 @@ public class BrowseFragment extends Fragment implements SearchListener
 		}
 	}
 
-	// I N T E N T / F R A G M E N T F A C T O R Y
+	// I N T E N T / F R A G M E N T   F A C T O R Y
 
+	/**
+	 * Fragment factory
+	 *
+	 * @return fragment
+	 */
 	private Fragment makeSelectorFragment()
 	{
 		// activity

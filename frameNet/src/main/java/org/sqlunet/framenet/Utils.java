@@ -52,7 +52,7 @@ public class Utils
 	 * @param labelsString label string
 	 * @return the labels from the result set
 	 */
-	public static List<FnLabel> parseLabels(final String labelsString)
+	static public List<FnLabel> parseLabels(final String labelsString)
 	{
 		if (labelsString == null)
 		{

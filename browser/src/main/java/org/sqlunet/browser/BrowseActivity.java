@@ -57,7 +57,7 @@ public class BrowseActivity extends AppCompatActivity
 	@Override
 	public boolean onOptionsItemSelected(final MenuItem item)
 	{
-		return MainActivity.dispatch(this, item);
+		return MainActivity.menuDispatch(this, item);
 	}
 
 	// S E A R C H

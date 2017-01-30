@@ -61,7 +61,7 @@ public class FnFrame
 	 * @param frameId    target frame id
 	 * @return frame
 	 */
-	public static FnFrame make(final SQLiteDatabase connection, final long frameId)
+	static public FnFrame make(final SQLiteDatabase connection, final long frameId)
 	{
 		FnFrame result = null;
 		FnFrameQuery query = null;

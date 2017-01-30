@@ -81,7 +81,7 @@ public class DownloadFragment extends BaseDownloadFragment
 		}
 	}
 
-	private static long pack(int status, int reason)
+	static private long pack(int status, int reason)
 	{
 		return ((long) status) | (((long) reason) << 32);
 	}

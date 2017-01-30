@@ -47,7 +47,7 @@ class PbNodeFactory extends NodeFactory
 	 * @param roleSetId target roleSet id
 	 * @return newly created node
 	 */
-	public static Node makePbRootRoleSetNode(final Document doc, long roleSetId)
+	static public Node makePbRootRoleSetNode(final Document doc, long roleSetId)
 	{
 		final Element rootNode = NodeFactory.makeNode(doc, doc, "propbank", null, PropBankImplementation.PB_NS);
 		NodeFactory.addAttributes(rootNode, "rolesetid", Long.toString(roleSetId));
@@ -62,7 +62,7 @@ class PbNodeFactory extends NodeFactory
 	 * @param roleSet is the roleSet information
 	 * @param i       the ith roleSet
 	 */
-	public static Node makePbRoleSetNode(final Document doc, final Node parent, final PbRoleSet roleSet, final int i)
+	static public Node makePbRoleSetNode(final Document doc, final Node parent, final PbRoleSet roleSet, final int i)
 	{
 		final Element element = NodeFactory.makeNode(doc, parent, "roleset", null);
 		NodeFactory.makeAttribute(element, "num", Integer.toString(i));
@@ -84,7 +84,7 @@ class PbNodeFactory extends NodeFactory
 	 * @param parent is the parent node to attach this node to
 	 * @param role   is the role information
 	 */
-	public static Node makePbRoleNode(final Document doc, final Node parent, final PbRole role)
+	static public Node makePbRoleNode(final Document doc, final Node parent, final PbRole role)
 	{
 		final Element element = NodeFactory.makeNode(doc, parent, "role", null);
 		NodeFactory.makeAttribute(element, "roleid", Long.toString(role.roleId));
@@ -95,7 +95,7 @@ class PbNodeFactory extends NodeFactory
 		return element;
 	}
 
-	public static Node makePbExampleNode(final Document doc, final Node parent, final PbExample example)
+	static public Node makePbExampleNode(final Document doc, final Node parent, final PbExample example)
 	{
 		final Element element = NodeFactory.makeNode(doc, parent, "example", null);
 		NodeFactory.makeAttribute(element, "exampleid", Long.toString(example.exampleId));

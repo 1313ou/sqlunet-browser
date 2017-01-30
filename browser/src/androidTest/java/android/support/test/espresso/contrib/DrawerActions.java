@@ -47,7 +47,7 @@ public final class DrawerActions
 		// forbid instantiation
 	}
 
-	private static Field listenerField;
+	static private Field listenerField;
 
 	private abstract static class DrawerAction implements ViewAction
 	{
@@ -99,7 +99,7 @@ public final class DrawerActions
 	 * be removed in the next release.
 	 */
 	@Deprecated
-	public static void openDrawer(int drawerLayoutId)
+	static public void openDrawer(int drawerLayoutId)
 	{
 		openDrawer(drawerLayoutId, GravityCompat.START);
 	}
@@ -109,7 +109,7 @@ public final class DrawerActions
 	 * be removed in the next release.
 	 */
 	@Deprecated
-	public static void openDrawer(int drawerLayoutId, int gravity)
+	static public void openDrawer(int drawerLayoutId, int gravity)
 	{
 		Espresso.onView(ViewMatchers.withId(drawerLayoutId)).perform(open(gravity));
 	}
@@ -119,7 +119,7 @@ public final class DrawerActions
 	 * blocks until the drawer is fully open. No operation if the drawer is already open.
 	 */
 	// TODO alias to openDrawer before 3.0 and deprecate this method.
-	public static ViewAction open()
+	static public ViewAction open()
 	{
 		return open(GravityCompat.START);
 	}
@@ -129,7 +129,7 @@ public final class DrawerActions
 	 * blocks until the drawer is fully open. No operation if the drawer is already open.
 	 */
 	// TODO alias to openDrawer before 3.0 and deprecate this method.
-	public static ViewAction open(final int gravity)
+	static public ViewAction open(final int gravity)
 	{
 		return new DrawerAction()
 		{
@@ -158,7 +158,7 @@ public final class DrawerActions
 	 * be removed in the next release.
 	 */
 	@Deprecated
-	public static void closeDrawer(int drawerLayoutId)
+	static public void closeDrawer(int drawerLayoutId)
 	{
 		closeDrawer(drawerLayoutId, GravityCompat.START);
 	}
@@ -168,7 +168,7 @@ public final class DrawerActions
 	 * be removed in the next release.
 	 */
 	@Deprecated
-	public static void closeDrawer(int drawerLayoutId, int gravity)
+	static public void closeDrawer(int drawerLayoutId, int gravity)
 	{
 		Espresso.onView(ViewMatchers.withId(drawerLayoutId)).perform(close(gravity));
 	}
@@ -178,7 +178,7 @@ public final class DrawerActions
 	 * blocks until the drawer is fully closed. No operation if the drawer is already closed.
 	 */
 	// TODO alias to closeDrawer before 3.0 and deprecate this method.
-	public static ViewAction close()
+	static public ViewAction close()
 	{
 		return close(GravityCompat.START);
 	}
@@ -188,7 +188,7 @@ public final class DrawerActions
 	 * blocks until the drawer is fully closed. No operation if the drawer is already closed.
 	 */
 	// TODO alias to closeDrawer before 3.0 and deprecate this method.
-	public static ViewAction close(final int gravity)
+	static public ViewAction close(final int gravity)
 	{
 		return new DrawerAction()
 		{
@@ -223,7 +223,7 @@ public final class DrawerActions
 	 * {@link DrawerLayout}. Uses reflection.
 	 */
 	@Nullable
-	private static DrawerListener getDrawerListener(DrawerLayout drawer)
+	static private DrawerListener getDrawerListener(DrawerLayout drawer)
 	{
 		try
 		{
@@ -246,11 +246,11 @@ public final class DrawerActions
 	 * Drawer listener that wraps an existing {@link DrawerListener}, and functions as an
 	 * {@link IdlingResource} for Espresso.
 	 */
-	private static class IdlingDrawerListener implements DrawerListener, IdlingResource
+	static private class IdlingDrawerListener implements DrawerListener, IdlingResource
 	{
-		private static IdlingDrawerListener instance;
+		static private IdlingDrawerListener instance;
 
-		private static IdlingDrawerListener getInstance(DrawerListener parentListener)
+		static private IdlingDrawerListener getInstance(DrawerListener parentListener)
 		{
 			if (instance == null)
 			{

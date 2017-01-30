@@ -48,7 +48,7 @@ class FnGovernor
 	 * @param luId       target lex unit id
 	 * @return list of governors
 	 */
-	public static List<FnGovernor> make(final SQLiteDatabase connection, final long luId)
+	static public List<FnGovernor> make(final SQLiteDatabase connection, final long luId)
 	{
 		final List<FnGovernor> result = new ArrayList<>();
 		FnGovernorQueryFromLexUnitId query = null;

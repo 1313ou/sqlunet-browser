@@ -21,9 +21,13 @@ public class Colors
 
 	static public final int pink = 0xFFE9967A;
 
+	static public final int dk_pink = 0xFFef2063;
+
 	static public final int brown = 0xFF6F4E37;
 
 	static public final int lt_brown = 0xFFFFE5B4;
 
-	static public final int blue = 0xFF4682B4;
+	static public final int lt_blue = 0xFF4682B4;
+
+	static public final int blue = 0xFF4251bd;
 }

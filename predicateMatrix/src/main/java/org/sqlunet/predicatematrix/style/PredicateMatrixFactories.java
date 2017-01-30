@@ -49,7 +49,17 @@ public class PredicateMatrixFactories
 	static public final SpanFactory classFactory = Factories.classFactory;
 
 	// role
-	public static final SpanFactory roleFactory = Factories.roleFactory;
+	static public final SpanFactory roleFactory = Factories.roleFactory;
+
+	// role alias
+	static public final SpanFactory roleAliasFactory = new SpanFactory()
+	{
+		@Override
+		public Object makeSpans(final long flags)
+		{
+			return new Object[]{new BackgroundColorSpan(Colors.blue), new ForegroundColorSpan(Color.WHITE), new StyleSpan(Typeface.BOLD)};
+		}
+	};
 
 	// data
 	static public final SpanFactory dataFactory = Factories.dataFactory;

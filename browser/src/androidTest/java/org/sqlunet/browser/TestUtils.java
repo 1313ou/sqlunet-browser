@@ -21,9 +21,9 @@ import java.util.List;
 
 class TestUtils
 {
-	private static final int PAUSE_MS = 5000;
+	static private final int PAUSE_MS = 5000;
 
-	private static final String LISTFILE = "sqlunet.list";
+	static private final String LISTFILE = "sqlunet.list";
 
 	/**
 	 * Count of children views in the view group/container
@@ -188,14 +188,14 @@ class TestUtils
 		}
 	}
 
-	public static String[] WORDLIST = {"abandon", "leave", "inveigle", "foist", "flounder", "flout"};
+	static public String[] WORDLIST = {"abandon", "leave", "inveigle", "foist", "flounder", "flout"};
 
-	public static String[] getWordList()
+	static public String[] getWordList()
 	{
 		return readWordList();
 	}
 
-	private static String[] readWordList()
+	static private String[] readWordList()
 	{
 		final List<String> list = new ArrayList<>();
 		final File dataFile = new File(Environment.getExternalStorageDirectory(), TestUtils.LISTFILE);

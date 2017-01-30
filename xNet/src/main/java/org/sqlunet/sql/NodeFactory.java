@@ -11,9 +11,9 @@ import org.w3c.dom.Node;
  */
 public class NodeFactory
 {
-	private static final String NS_URL = "http://org.sqlunet";
+	static private final String NS_URL = "http://org.sqlunet";
 
-	private static final String NS_XSD = "SqlUNet.xsd";
+	static private final String NS_XSD = "SqlUNet.xsd";
 
 	/**
 	 * Make versatile node
@@ -79,7 +79,7 @@ public class NodeFactory
 	 * @param name    is the attribute's name
 	 * @param value   is the attribute's value
 	 */
-	protected static void makeAttribute(final Element element, final String name, final String value)
+	static protected void makeAttribute(final Element element, final String name, final String value)
 	{
 		if (value != null && !value.isEmpty())
 		{
@@ -109,7 +109,7 @@ public class NodeFactory
 	 * @param text     text
 	 * @return parent
 	 */
-	protected static Element makeText(final Document document, final Element parent, final String text)
+	static protected Element makeText(final Document document, final Element parent, final String text)
 	{
 		// text
 		if (text != null && !text.isEmpty())

@@ -91,7 +91,7 @@ public class VnFrameSet
 	 * @param classId    class id
 	 * @return set of frames
 	 */
-	public static VnFrameSet make(final SQLiteDatabase connection, final long classId)
+	static public VnFrameSet make(final SQLiteDatabase connection, final long classId)
 	{
 		VnFrameQueryFromClassId query = null;
 		VnFrameSet frameSet = null;

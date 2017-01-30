@@ -24,27 +24,27 @@ public class Storage
 	/**
 	 * SqlUnet DB basename
 	 */
-	private static final String DBNAME = "sqlunet";
+	static private final String DBNAME = "sqlunet";
 
 	/**
 	 * SqlUnet DB filename
 	 */
-	public static final String DBFILE = DBNAME + ".db";
+	static public final String DBFILE = DBNAME + ".db";
 
 	/**
 	 * SqlUnet DB zipped filename
 	 */
-	public static final String DBFILEZIP = DBFILE + ".zip";
+	static public final String DBFILEZIP = DBFILE + ".zip";
 
 	/**
 	 * SqlUnet DB sql filename
 	 */
-	private static final String DBSQL = DBNAME + ".sql";
+	static private final String DBSQL = DBNAME + ".sql";
 
 	/**
 	 * SqlUnet DB zipped sql filename
 	 */
-	public static final String DBSQLZIP = DBSQL + ".zip";
+	static public final String DBSQLZIP = DBSQL + ".zip";
 
 	/**
 	 * SqlUnet sub directory when external public
@@ -54,12 +54,12 @@ public class Storage
 	/**
 	 * SqlUNet storage preference name
 	 */
-	public static final String PREF_SQLUNET_STORAGE = "pref_storage";
+	static public final String PREF_SQLUNET_STORAGE = "pref_storage";
 
 	/**
 	 * SqlUNet cache preference name
 	 */
-	public static final String PREF_SQLUNET_CACHE = "pref_cache";
+	static public final String PREF_SQLUNET_CACHE = "pref_cache";
 
 	// D A T A B A S E
 

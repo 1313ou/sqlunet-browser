@@ -15,7 +15,7 @@ public class FnLexUnitPointer extends Pointer
 	/**
 	 * Static field used to regenerate object, individually or as arrays
 	 */
-	public static final Parcelable.Creator<FnLexUnitPointer> CREATOR = new Parcelable.Creator<FnLexUnitPointer>()
+	static public final Parcelable.Creator<FnLexUnitPointer> CREATOR = new Parcelable.Creator<FnLexUnitPointer>()
 	{
 		@Override
 		public FnLexUnitPointer createFromParcel(final Parcel parcel)

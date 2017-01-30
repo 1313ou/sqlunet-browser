@@ -29,15 +29,15 @@ import java.util.StringTokenizer;
  */
 public class SqlFormatter
 {
-	private static final String WHITESPACE = " \n\r\f\t";
+	static private final String WHITESPACE = " \n\r\f\t";
 
-	private static final Collection<String> BEGIN_CLAUSES = new HashSet<>();
-	private static final Collection<String> END_CLAUSES = new HashSet<>();
-	private static final Collection<String> LOGICAL = new HashSet<>();
-	private static final Collection<String> QUANTIFIERS = new HashSet<>();
-	private static final Collection<String> DML = new HashSet<>();
-	private static final Collection<String> MISC = new HashSet<>();
-	private static final Collection<String> KEYW = new HashSet<>();
+	static private final Collection<String> BEGIN_CLAUSES = new HashSet<>();
+	static private final Collection<String> END_CLAUSES = new HashSet<>();
+	static private final Collection<String> LOGICAL = new HashSet<>();
+	static private final Collection<String> QUANTIFIERS = new HashSet<>();
+	static private final Collection<String> DML = new HashSet<>();
+	static private final Collection<String> MISC = new HashSet<>();
+	static private final Collection<String> KEYW = new HashSet<>();
 
 	static
 	{
@@ -92,8 +92,8 @@ public class SqlFormatter
 		KEYW.add("not");
 	}
 
-	private static final String INDENT_STRING = "    ";
-	private static final String INITIAL = ""; //"\n    ";
+	static private final String INDENT_STRING = "    ";
+	static private final String INITIAL = ""; //"\n    ";
 
 	static public CharSequence format(String source)
 	{
@@ -105,7 +105,7 @@ public class SqlFormatter
 		return new FormatProcess(source, true).perform();
 	}
 
-	private static class FormatProcess
+	static private class FormatProcess
 	{
 		final boolean style;
 
@@ -442,7 +442,7 @@ public class SqlFormatter
 
 		// test functions
 
-		private static boolean isFunctionName(String tok)
+		static private boolean isFunctionName(String tok)
 		{
 			final char begin = tok.charAt(0);
 			final boolean isIdentifier = Character.isJavaIdentifierStart(begin) || '"' == begin;
@@ -454,7 +454,7 @@ public class SqlFormatter
 					!MISC.contains(tok);
 		}
 
-		private static boolean isWhitespace(CharSequence token)
+		static private boolean isWhitespace(CharSequence token)
 		{
 			return WHITESPACE.contains(token);
 		}

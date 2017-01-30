@@ -15,7 +15,7 @@ public class PbRoleSetPointer extends Pointer
 	/**
 	 * Static field used to regenerate object, individually or as arrays
 	 */
-	public static final Parcelable.Creator<PbRoleSetPointer> CREATOR = new Parcelable.Creator<PbRoleSetPointer>()
+	static public final Parcelable.Creator<PbRoleSetPointer> CREATOR = new Parcelable.Creator<PbRoleSetPointer>()
 	{
 		@Override
 		public PbRoleSetPointer createFromParcel(final Parcel parcel)

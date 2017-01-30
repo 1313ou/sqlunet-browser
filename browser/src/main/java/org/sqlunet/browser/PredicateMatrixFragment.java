@@ -1,39 +1,15 @@
 package org.sqlunet.browser;
 
-import android.annotation.SuppressLint;
-import android.annotation.TargetApi;
-import android.app.Activity;
-import android.app.SearchManager;
-import android.app.SearchableInfo;
-import android.content.ComponentName;
-import android.content.Context;
-import android.content.res.Resources;
-import android.content.res.TypedArray;
-import android.graphics.drawable.ColorDrawable;
-import android.graphics.drawable.Drawable;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Parcelable;
-import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v4.view.MenuItemCompat;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.SearchView;
 import android.util.Log;
-import android.util.TypedValue;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Spinner;
-import android.widget.SpinnerAdapter;
-import android.widget.TextView;
 
 import org.sqlunet.Word;
 import org.sqlunet.predicatematrix.PmRolePointer;
@@ -45,293 +21,83 @@ import org.sqlunet.provider.ProviderArgs;
  *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
-public class PredicateMatrixFragment extends Fragment implements SearchListener
+public class PredicateMatrixFragment extends BaseSearchFragment
 {
 	static private final String TAG = "PredicateMatrixFragment";
 
 	/**
-	 * State of spinner
+	 * Saved pointer
 	 */
-	static private final String STATE_SPINNER = "selected_mode";
-
-	/**
-	 * Query
-	 */
-	private String query;
+	static private final String STATE_POINTER = "pointer";
 
 	/**
 	 * Pointer
 	 */
 	private PmRolePointer pointer;
 
-	/**
-	 * Search view
-	 */
-	private SearchView searchView;
-
-	/**
-	 * Action bar mode spinner
-	 */
-	private Spinner spinner;
+	// C R E A T I O N
 
 	/**
 	 * Constructor
 	 */
 	public PredicateMatrixFragment()
 	{
-		//
+		this.layoutId = R.layout.fragment_predicatematrix;
+		this.menuId = R.menu.predicate_matrix;
+		this.colorId = R.color.predicatematrix_action_bar_color;
+		this.spinnerLabels = R.array.predicatematrix_modes;
+		this.spinnerIcons = R.array.predicatematrix_icons;
+
+	}
+
+	@Override
+	public void onCreate(@Nullable Bundle savedInstanceState)
+	{
+		super.onCreate(savedInstanceState);
+
+		// spinner update
+		if (savedInstanceState != null)
+		{
+			this.pointer = savedInstanceState.getParcelable(STATE_POINTER);
+		}
 	}
 
 	@Override
 	public View onCreateView(final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState)
 	{
-		setHasOptionsMenu(true);
-
 		// view
-		final View view = inflater.inflate(R.layout.fragment_predicatematrix, container, false);
+		final View view = super.onCreateView(inflater, container, savedInstanceState);
 
-		// action bar
-		this.spinner = setupActionBar(inflater);
-
-		// spinner update
 		if (savedInstanceState != null)
 		{
-			final int selected = savedInstanceState.getInt(STATE_SPINNER);
-			this.spinner.setSelection(selected);
+			//TODO repeat
+			this.pointer = savedInstanceState.getParcelable(STATE_POINTER);
 		}
 
 		return view;
 	}
 
-	@Override
-	public void onDetach()
-	{
-		restoreActionBar();
-		super.onDetach();
-	}
-
-	// M E N U
+	// S A V E   R E S T O R E
 
 	@Override
-	public void onCreateOptionsMenu(final Menu menu, final MenuInflater inflater)
+	public void onSaveInstanceState(final Bundle outState)
 	{
-		// inflate the menu; this adds items to the type bar if it is present.
-		inflater.inflate(R.menu.predicate_matrix, menu);
+		// always call the superclass so it can save the view hierarchy state
+		super.onSaveInstanceState(outState);
 
-		// set up search
-		setupSearch(menu);
-	}
-
-	// A C T I O N B A R
-
-	/**
-	 * Set up action bar
-	 *
-	 * @return spinner
-	 */
-	@TargetApi(Build.VERSION_CODES.M)
-	private Spinner setupActionBar(final LayoutInflater inflater)
-	{
-		// activity
-		final AppCompatActivity activity = (AppCompatActivity) getActivity();
-
-		// action bar
-		final ActionBar actionBar = activity.getSupportActionBar();
-		assert actionBar != null;
-
-		// color
-		int color;
-		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M)
+		// pointer
+		if (this.pointer != null)
 		{
-			color = getResources().getColor(R.color.predicatematrix_action_bar_color, activity.getTheme());
-		}
-		else
-		{
-			//noinspection deprecation
-			color = getResources().getColor(R.color.predicatematrix_action_bar_color);
-		}
-		actionBar.setBackgroundDrawable(new ColorDrawable(color));
-
-		// set up the type bar to show a custom layout
-		@SuppressLint("InflateParams") //
-		final View actionBarView = inflater.inflate(R.layout.actionbar_custom, null);
-		actionBar.setCustomView(actionBarView);
-		actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM | ActionBar.DISPLAY_SHOW_HOME | ActionBar.DISPLAY_HOME_AS_UP);
-		// actionBar.setDisplayShowCustomEnabled(true);
-		// actionBar.setDisplayShowHomeEnabled(true);
-		// actionBar.setDisplayHomeAsUpEnabled(true);
-		// actionBar.setDisplayShowTitleEnabled(false);
-
-		// spinner
-		final Spinner spinner = (Spinner) actionBarView.findViewById(R.id.spinner);
-		setupSpinner(spinner);
-
-		return spinner;
-	}
-
-	/**
-	 * Restore action bar
-	 */
-	private void restoreActionBar()
-	{
-		// activity
-		final AppCompatActivity activity = (AppCompatActivity) getActivity();
-
-		// action bar
-		final ActionBar actionBar = activity.getSupportActionBar();
-		assert actionBar != null;
-		actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_HOME | ActionBar.DISPLAY_HOME_AS_UP);
-
-		// theme
-		final Resources.Theme theme = activity.getTheme();
-
-		// res id of style pointed to from actionBarStyle
-		final TypedValue typedValue = new TypedValue();
-		theme.resolveAttribute(android.R.attr.actionBarStyle, typedValue, true);
-		int resId = typedValue.resourceId;
-
-		// now get action bar style values
-		final TypedArray style = theme.obtainStyledAttributes(resId, new int[]{android.R.attr.background});
-		try
-		{
-			final Drawable drawable = style.getDrawable(0);
-			actionBar.setBackgroundDrawable(drawable);
-		}
-		finally
-		{
-			style.recycle();
-		}
-	}
-
-	// S E A R C H V I E W
-
-	/**
-	 * Set up search view
-	 *
-	 * @param menu menu
-	 */
-	private void setupSearch(final Menu menu)
-	{
-		// menu item
-		final MenuItem searchMenuItem = menu.findItem(R.id.search);
-
-		// activity
-		final AppCompatActivity activity = (AppCompatActivity) getActivity();
-
-		// search info
-		final ComponentName componentName = activity.getComponentName();
-		final SearchManager searchManager = (SearchManager) activity.getSystemService(Context.SEARCH_SERVICE);
-		final SearchableInfo searchableInfo = searchManager.getSearchableInfo(componentName);
-
-		// search view
-		this.searchView = (SearchView) MenuItemCompat.getActionView(searchMenuItem);
-		this.searchView.setSearchableInfo(searchableInfo);
-		this.searchView.setIconifiedByDefault(true);
-		this.searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener()
-		{
-			@Override
-			public boolean onQueryTextSubmit(final String query)
-			{
-				PredicateMatrixFragment.this.searchView.clearFocus();
-				PredicateMatrixFragment.this.searchView.setFocusable(false);
-				PredicateMatrixFragment.this.searchView.setQuery("", false);
-				closeKeyboard();
-				searchMenuItem.collapseActionView();
-				return false;
-			}
-
-			@Override
-			public boolean onQueryTextChange(final String newText)
-			{
-				return false;
-			}
-		});
-	}
-
-	private void closeKeyboard()
-	{
-		// activity
-		final Activity activity = getActivity();
-
-		// view
-		final View view = activity.getCurrentFocus();
-		if (view != null)
-		{
-			final InputMethodManager imm = (InputMethodManager) activity.getSystemService(Context.INPUT_METHOD_SERVICE);
-			imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+			outState.putParcelable(PredicateMatrixFragment.STATE_POINTER, this.pointer);
 		}
 	}
 
 	// S P I N N E R
 
-	/**
-	 * Set up type bar spinner
-	 *
-	 * @param spinner spinner
-	 */
-	private void setupSpinner(final Spinner spinner)
+	@Override
+	protected void setupSpinner(final Spinner spinner)
 	{
-		// activity
-		final Activity activity = getActivity();
-
-		// adapter values
-		final CharSequence[] modes = activity.getResources().getTextArray(R.array.pmmodes);
-
-		// adapter
-		final SpinnerAdapter adapter = new ArrayAdapter<CharSequence>(activity, android.R.layout.simple_list_item_activated_1, android.R.id.text1, modes)
-		{
-			@NonNull
-			@Override
-			public View getView(final int position, final View convertView, @NonNull final ViewGroup parent)
-			{
-				final CharSequence rowItem = getItem(position);
-				assert rowItem != null;
-
-				final View view = super.getView(position, convertView, parent);
-				final TextView textView = (TextView) view.findViewById(android.R.id.text1);
-				textView.setText("");
-				int resId = posToResId(position);
-				textView.setCompoundDrawablesWithIntrinsicBounds(0, resId, 0, 0);
-
-				return view;
-			}
-
-			@Override
-			public View getDropDownView(final int position, final View convertView, @NonNull final ViewGroup parent)
-			{
-				final CharSequence rowItem = getItem(position);
-				assert rowItem != null;
-
-				final View view = super.getDropDownView(position, convertView, parent);
-				final TextView textView = (TextView) view.findViewById(android.R.id.text1);
-				textView.setText(rowItem);
-				int resId = posToResId(position);
-				textView.setCompoundDrawablesWithIntrinsicBounds(resId, 0, 0, 0);
-
-				return view;
-			}
-
-			private int posToResId(final int position)
-			{
-				int resId = 0;
-				switch (position)
-				{
-					case 0: // ROLES
-						resId = R.drawable.ic_roles_grouped;
-						break;
-					case 1: // ROWS_GROUPED_BY_ROLE
-						resId = R.drawable.ic_rows_byrole;
-						break;
-					case 2: // ROWS_GROUPED_BY_SYNSET
-						resId = R.drawable.ic_rows_bysynset;
-						break;
-					case 3: // ROWS
-						resId = R.drawable.ic_rows_ungrouped;
-						break;
-				}
-				return resId;
-			}
-		};
+		super.setupSpinner(spinner);
 
 		// spinner listener
 		spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener()
@@ -340,7 +106,7 @@ public class PredicateMatrixFragment extends Fragment implements SearchListener
 			public void onItemSelected(final AdapterView<?> parentView, final View selectedItemView, final int position, final long id)
 			{
 				final Settings.PMMode mode = Settings.PMMode.values()[position];
-				mode.setPref(activity);
+				mode.setPref(PredicateMatrixFragment.this.getActivity());
 
 				Log.d(PredicateMatrixFragment.TAG, mode.name());
 
@@ -362,31 +128,11 @@ public class PredicateMatrixFragment extends Fragment implements SearchListener
 			}
 		});
 
-		// apply spinner adapter
-		spinner.setAdapter(adapter);
-
 		// saved mode
-		final Settings.PMMode mode = Settings.PMMode.getPref(activity);
+		final Settings.PMMode mode = Settings.PMMode.getPref(getActivity());
 		if (mode != null)
 		{
 			spinner.setSelection(mode.ordinal());
-		}
-	}
-
-	// S A V E   R E S T O R E
-
-	@Override
-	public void onSaveInstanceState(final Bundle outState)
-	{
-		// always call the superclass so it can save the view hierarchy state
-		super.onSaveInstanceState(outState);
-
-		// spinner
-		if (this.spinner != null)
-		{
-			// serialize the current dropdown position
-			final int position = this.spinner.getSelectedItemPosition();
-			outState.putInt(PredicateMatrixFragment.STATE_SPINNER, position);
 		}
 	}
 
@@ -449,7 +195,7 @@ public class PredicateMatrixFragment extends Fragment implements SearchListener
 		// log
 		Log.d(PredicateMatrixFragment.TAG, "PM SEARCH " + query);
 
-		// reset
+		// set
 		this.query = query;
 		this.pointer = null;
 

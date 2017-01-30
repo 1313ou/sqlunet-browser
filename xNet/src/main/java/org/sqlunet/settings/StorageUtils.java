@@ -57,7 +57,7 @@ public class StorageUtils
 		 * @param type2 type 2
 		 * @return order
 		 */
-		public static int compare(final DirType type1, final DirType type2)
+		static public int compare(final DirType type1, final DirType type2)
 		{
 			int i1 = type1.ordinal();
 			int i2 = type2.ordinal();
@@ -748,17 +748,17 @@ public class StorageUtils
 	/**
 	 * Index of free storage value
 	 */
-	private static final int STORAGE_FREE = 0;
+	static private final int STORAGE_FREE = 0;
 
 	/**
 	 * Index of capacity value
 	 */
-	private static final int STORAGE_CAPACITY = 1;
+	static private final int STORAGE_CAPACITY = 1;
 
 	/**
 	 * Index of occupancy value
 	 */
-	private static final int STORAGE_OCCUPANCY = 2;
+	static private final int STORAGE_OCCUPANCY = 2;
 
 	/**
 	 * Storage data at path
@@ -766,7 +766,7 @@ public class StorageUtils
 	 * @param path path
 	 * @return data
 	 */
-	private static float[] storageStats(final String path)
+	static private float[] storageStats(final String path)
 	{
 		float[] stats = new float[3];
 		stats[STORAGE_FREE] = storageFree(path);
@@ -793,7 +793,7 @@ public class StorageUtils
 	 * @return free storage in megabytes
 	 */
 	@TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR2)
-	private static float storageFree(final String path)
+	static private float storageFree(final String path)
 	{
 		try
 		{

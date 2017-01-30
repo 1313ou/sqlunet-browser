@@ -16,7 +16,7 @@ public class SynsetPointer extends Pointer implements HasSynsetId
 	/**
 	 * Static field used to regenerate object, individually or as arrays
 	 */
-	public static final Parcelable.Creator<SynsetPointer> CREATOR = new Parcelable.Creator<SynsetPointer>()
+	static public final Parcelable.Creator<SynsetPointer> CREATOR = new Parcelable.Creator<SynsetPointer>()
 	{
 		@Override
 		public SynsetPointer createFromParcel(final Parcel parcel)

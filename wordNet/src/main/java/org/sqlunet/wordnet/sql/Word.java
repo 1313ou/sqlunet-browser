@@ -214,7 +214,7 @@ public class Word extends BasicWord
 	 * @return lexdomain-link type map for a given word
 	 */
 	@SuppressWarnings("unused")
-	public static Map<Integer, Set<Integer>> getLinkTypes(final SQLiteDatabase connection, final String word)
+	static public Map<Integer, Set<Integer>> getLinkTypes(final SQLiteDatabase connection, final String word)
 	{
 		LinkTypesQueryFromWord query = null;
 		Map<Integer, Set<Integer>> map = new TreeMap<>();

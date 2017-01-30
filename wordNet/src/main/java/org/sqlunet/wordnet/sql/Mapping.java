@@ -60,12 +60,12 @@ class Mapping
 	/**
 	 * is the constant for unspecified search types (pos, lexdomains, links)
 	 */
-	public static final int ANYTYPE = -1;
+	static public final int ANYTYPE = -1;
 
 	/**
 	 * is the constant for non recursive queries
 	 */
-	public static final int NONRECURSIVE = -1;
+	static public final int NONRECURSIVE = -1;
 
 	/**
 	 * Read lexdomain mappings from database

@@ -41,7 +41,7 @@ public final class DrawerMatchers
 	 * only when the drawer is fully open. Use {@link #isClosed(int)} instead of {@code
 	 * not(isOpen())} when you wish to check that the drawer is fully closed.
 	 */
-	public static Matcher<View> isOpen(final int gravity)
+	static public Matcher<View> isOpen(final int gravity)
 	{
 		return new BoundedMatcher<View, DrawerLayout>(DrawerLayout.class)
 		{
@@ -64,7 +64,7 @@ public final class DrawerMatchers
 	 * when the drawer is fully open. Use {@link #isClosed()} instead of {@code not(isOpen())} when
 	 * you wish to check that the drawer is fully closed.
 	 */
-	public static Matcher<View> isOpen()
+	static public Matcher<View> isOpen()
 	{
 		return isOpen(GravityCompat.START);
 	}
@@ -74,7 +74,7 @@ public final class DrawerMatchers
 	 * only when the drawer is fully closed. Use {@link #isOpen(int)} instead of {@code
 	 * not(isClosed()))} when you wish to check that the drawer is fully open.
 	 */
-	public static Matcher<View> isClosed(final int gravity)
+	static public Matcher<View> isClosed(final int gravity)
 	{
 		return new BoundedMatcher<View, DrawerLayout>(DrawerLayout.class)
 		{
@@ -97,7 +97,7 @@ public final class DrawerMatchers
 	 * when the drawer is fully closed. Use {@link #isOpen()} instead of {@code not(isClosed()))}
 	 * when you wish to check that the drawer is fully open.
 	 */
-	public static Matcher<View> isClosed()
+	static public Matcher<View> isClosed()
 	{
 		return isClosed(GravityCompat.START);
 	}
