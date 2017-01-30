@@ -80,6 +80,7 @@
 	<string name="title_activity_fnlexunit">FrameNet LexUnit</string>
 	<string name="title_activity_fnsentence">FrameNet Sentence</string>
 	<string name="title_activity_fnannoset">FrameNet AnnoSet</string>
+	<string name="title_activity_predicatematrix">PredicateMatrix</string>
 
 	<!-- _status -->
 	<string name="status_data_fail">Data is unavailable</string>
@@ -124,8 +125,10 @@
 	<!-- misc -->
 	<string name="hint_search">Search</string>
 	<string name="hint_search_text">Text Search WordNet</string>
+	<string name="hint_search_predicatematrix">Search Predicate Matrix</string>
 	<string name="hint_splash_main">Exploring Semantic Roles</string>
 	<string name="hint_splash_textsearch">Text Search</string>
+	<string name="hint_splash_predicatematrix">Exploring Predicate Matrix</string>
 	<string name="hint_navigation_drawer_open">Open navigation drawer</string>
 	<string name="hint_navigation_drawer_close">Close navigation drawer</string>
 	<string name="hint_sql">SQL statements stack</string>
@@ -157,22 +160,6 @@
 	-->
 
 	<!-- ARRAYS -->
-
-	<!-- mode spinner -->
-	<string-array name="selectors_names">
-		<item>senses</item>
-		<item>per source</item>
-	</string-array>
-
-	<!-- textsearch spinner -->
-	<string-array name="textsearches_names">
-		<item>Words</item>
-		<item>Definitions</item>
-		<item>Samples</item>
-		<item>VerbNet Examples</item>
-		<item>ProbBank Examples</item>
-		<item>FrameNet Sentences</item>
-	</string-array>
 
 	<!-- navigation -->
 	<string name="title_home_section">Home</string>
@@ -212,6 +199,30 @@
 		<item>1</item>
 		<item>1</item>
 	</integer-array>
+
+	<!-- mode spinner -->
+	<string-array name="selectors_names">
+		<item>senses</item>
+		<item>per source</item>
+	</string-array>
+
+	<!-- textsearch spinner -->
+	<string-array name="textsearch_modes">
+		<item>Words</item>
+		<item>Definitions</item>
+		<item>Samples</item>
+		<item>VerbNet Examples</item>
+		<item>ProbBank Examples</item>
+		<item>FrameNet Sentences</item>
+	</string-array>
+
+	<!-- predicatematrix spinner -->
+	<string-array name="predicatematrix_modes">
+		<item>grouped</item>
+		<item>rows by role</item>
+		<item>rows by synset</item>
+		<item>rows</item>
+	</string-array>
 
 	<!-- setup spinner -->
 	<string name="title_select">[SELECT]</string>
