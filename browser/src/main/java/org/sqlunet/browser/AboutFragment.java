@@ -11,14 +11,14 @@ import android.view.ViewGroup;
  *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
-public class AboutFragment extends Fragment
+public class AboutFragment extends NavigableFragment
 {
 	/**
 	 * Mandatory empty constructor for the fragment manager to instantiate the fragment (e.g. upon screen orientation changes).
 	 */
 	public AboutFragment()
 	{
-		//
+		this.titleId = R.string.title_about_section;
 	}
 
 	@Override

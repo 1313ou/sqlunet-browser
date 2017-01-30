@@ -104,7 +104,7 @@ public class SettingsActivity extends AppCompatPreferenceActivity
 
 	/**
 	 * Binds a preference's summary to its value. More specifically, when the preference's value is changed, its summary (line of text below the preference
-	 * title) is updated to reflect the value. The summary is also immediately updated upon calling this method. The exact display format is dependent on the
+	 * titleId) is updated to reflect the value. The summary is also immediately updated upon calling this method. The exact display format is dependent on the
 	 * type of preference.
 	 *
 	 * @see #listener
@@ -222,9 +222,10 @@ public class SettingsActivity extends AppCompatPreferenceActivity
 		super.onCreate(savedInstanceState);
 
 		// action bar
-		final ActionBar actionBar = getSupportActionBar();
-		assert actionBar != null;
-		actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_HOME | ActionBar.DISPLAY_HOME_AS_UP | ActionBar.DISPLAY_SHOW_TITLE);
+		//TODO actionbar
+		//final ActionBar actionBar = getSupportActionBar();
+		//assert actionBar != null;
+		//actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_HOME | ActionBar.DISPLAY_HOME_AS_UP | ActionBar.DISPLAY_SHOW_TITLE);
 	}
 
 	@Override

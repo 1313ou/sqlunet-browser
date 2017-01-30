@@ -28,13 +28,10 @@ public class MainActivity extends AppCompatActivity // implements NavigationFrag
 {
 	static private final String TAG = "MainActivity";
 
-	/**
-	 * Active fragment
-	 */
-	private Fragment fragment = null;
+	private NavigationFragment navigationDrawerFragment;
 
 	/**
-	 * Used to store the last screen title. For use in {@link #restoreActionBar()}.
+	 * Used to store the last screen titleId. For use in {@link #restoreActionBar()}.
 	 */
 	private CharSequence title;
 
@@ -53,17 +50,17 @@ public class MainActivity extends AppCompatActivity // implements NavigationFrag
 		setContentView(R.layout.activity_main);
 
 		// toolbar
-		final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_main);
-		setSupportActionBar(toolbar);
+		// final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_main);
+		// setSupportActionBar(toolbar);
 
 		// get fragment
-		final NavigationFragment navigationDrawerFragment = (NavigationFragment) getSupportFragmentManager().findFragmentById(R.id.navigation_drawer);
+		this.navigationDrawerFragment = (NavigationFragment) getSupportFragmentManager().findFragmentById(R.id.navigation_drawer);
 
-		// get title for use in restoreActionBar
+		// get titleId for use in restoreActionBar
 		this.title = getTitle();
 
 		// set up the drawer
-		navigationDrawerFragment.setUp(R.id.navigation_drawer, (DrawerLayout) findViewById(R.id.drawer_layout));
+		this.navigationDrawerFragment.setUp(R.id.navigation_drawer, (DrawerLayout) findViewById(R.id.drawer_layout));
 	}
 
 	@Override
@@ -102,12 +99,13 @@ public class MainActivity extends AppCompatActivity // implements NavigationFrag
 	 */
 	private void handleSearchIntent(final Intent intent)
 	{
-		if (this.fragment instanceof SearchListener)
+		final Fragment fragment = this.navigationDrawerFragment.getActiveFragment();
+		if (fragment instanceof SearchListener)
 		{
 			final String action = intent.getAction();
 			if (Intent.ACTION_VIEW.equals(action) || Intent.ACTION_SEARCH.equals(action))
 			{
-				final SearchListener listener = (SearchListener) this.fragment;
+				final SearchListener listener = (SearchListener) fragment;
 				final String query = intent.getStringExtra(SearchManager.QUERY);
 
 				// search query submit or suggestion selection (when a suggested item is selected)
@@ -136,34 +134,34 @@ public class MainActivity extends AppCompatActivity // implements NavigationFrag
 	//		}
 	//	}
 
-	public void restoreActionBar()
-	{
-		// action bar
-		final ActionBar actionBar = getSupportActionBar();
-		assert actionBar != null;
-		actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_HOME | ActionBar.DISPLAY_HOME_AS_UP);
-		actionBar.setTitle(this.title);
-
-		// theme
-		final Resources.Theme theme = getTheme();
-
-		// res id of style pointed to from actionBarStyle
-		final TypedValue typedValue = new TypedValue();
-		theme.resolveAttribute(android.R.attr.actionBarStyle, typedValue, true);
-		int resId = typedValue.resourceId;
-
-		// now get action bar style values
-		final TypedArray style = theme.obtainStyledAttributes(resId, new int[]{android.R.attr.background});
-		try
-		{
-			final Drawable drawable = style.getDrawable(0);
-			actionBar.setBackgroundDrawable(drawable);
-		}
-		finally
-		{
-			style.recycle();
-		}
-	}
+	//	public void restoreActionBar()
+	//	{
+	//		// action bar
+	//		final ActionBar actionBar = getSupportActionBar();
+	//		assert actionBar != null;
+	//		actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_HOME | ActionBar.DISPLAY_HOME_AS_UP);
+	//		actionBar.setTitle(this.titleId);
+	//
+	//		// theme
+	//		final Resources.Theme theme = getTheme();
+	//
+	//		// res id of style pointed to from actionBarStyle
+	//		final TypedValue typedValue = new TypedValue();
+	//		theme.resolveAttribute(android.R.attr.actionBarStyle, typedValue, true);
+	//		int resId = typedValue.resourceId;
+	//
+	//		// now get action bar style values
+	//		final TypedArray style = theme.obtainStyledAttributes(resId, new int[]{android.R.attr.background});
+	//		try
+	//		{
+	//			final Drawable drawable = style.getDrawable(0);
+	//			actionBar.setBackgroundDrawable(drawable);
+	//		}
+	//		finally
+	//		{
+	//			style.recycle();
+	//		}
+	//	}
 
 	//	/**
 	//	 * Called on drawer selection
@@ -173,59 +171,59 @@ public class MainActivity extends AppCompatActivity // implements NavigationFrag
 	//	private void onSectionAttached(final int number)
 	//	{
 	//		// final String[] options = getResources().getStringArray(R.array.title_sections);
-	//		// this.title = options[number];
+	//		// this.titleId = options[number];
 	//		this.fragment = null;
 	//		Intent intent = null;
 	//		switch (number)
 	//		{
 	//			case 0:
-	//				this.title = getString(R.string.title_home_section);
+	//				this.titleId = getString(R.string.title_home_section);
 	//				this.fragment = new HomeFragment();
 	//				break;
 	//			case 1:
-	//				this.title = getString(R.string.title_browse_section);
+	//				this.titleId = getString(R.string.title_browse_section);
 	//				//intent = new Intent(this, BrowseActivity.class);
 	//				this.fragment = new BrowseFragment();
 	//				break;
 	//			case 2:
-	//				this.title = getString(R.string.title_ts_section);
+	//				this.titleId = getString(R.string.title_ts_section);
 	//				//intent = new Intent(this, TextSearchActivity.class);
 	//				this.fragment = new TextSearchFragment();
 	//				break;
 	//			case 3:
-	//				this.title = getString(R.string.title_pm_section);
+	//				this.titleId = getString(R.string.title_pm_section);
 	//				//intent = new Intent(this, PredicateMatrixActivity.class);
 	//				this.fragment = new PredicateMatrixFragment();
 	//				break;
 	//			case 4:
-	//				this.title = getString(R.string.title_status_section);
+	//				this.titleId = getString(R.string.title_status_section);
 	//				//intent = new Intent(this, StatusActivity.class);
 	//				this.fragment = new StatusFragment();
 	//				break;
 	//			case 5:
-	//				this.title = getString(R.string.title_setup_section);
+	//				this.titleId = getString(R.string.title_setup_section);
 	//				intent = new Intent(this, SetupActivity.class);
 	//				break;
 	//			case 6:
-	//				this.title = getString(R.string.title_storage_section);
+	//				this.titleId = getString(R.string.title_storage_section);
 	//				//intent = new Intent(this, StorageActivity.class);
 	//				this.fragment = new StorageFragment();
 	//				break;
 	//			case 7:
-	//				this.title = getString(R.string.title_settings_section);
+	//				this.titleId = getString(R.string.title_settings_section);
 	//				intent = new Intent(this, SettingsActivity.class);
 	//				break;
 	//			case 8:
-	//				this.title = getString(R.string.title_sql_section);
+	//				this.titleId = getString(R.string.title_sql_section);
 	//				this.fragment = new SqlFragment();
 	//				break;
 	//			case 9:
-	//				this.title = getString(R.string.title_help_section);
+	//				this.titleId = getString(R.string.title_help_section);
 	//				//intent = new Intent(this, HelpActivity.class);
 	//				this.fragment = new HelpFragment();
 	//				break;
 	//			case 10:
-	//				this.title = getString(R.string.title_about_section);
+	//				this.titleId = getString(R.string.title_about_section);
 	//				//intent = new Intent(this, SettingsActivity.class);
 	//				this.fragment = new AboutFragment();
 	//				break;
@@ -322,51 +320,4 @@ public class MainActivity extends AppCompatActivity // implements NavigationFrag
 		activity.startActivity(intent);
 		return true;
 	}
-
-	//	// P L A C E H O L D E R
-	//
-	//	/**
-	//	 * A placeholder fragment containing a simple view.
-	//	 */
-	//	static public class PlaceholderFragment extends Fragment
-	//	{
-	//		/**
-	//		 * The fragment argument representing the section number for this fragment.
-	//		 */
-	//		static private final String ARG_SECTION_NUMBER = "section_number";
-	//
-	//		/**
-	//		 * Constructor
-	//		 */
-	//		public PlaceholderFragment()
-	//		{
-	//		}
-	//
-	//		/**
-	//		 * Returns a new instance of this fragment for the given section number.
-	//		 */
-	//		static public PlaceholderFragment newInstance(final int sectionNumber)
-	//		{
-	//			final PlaceholderFragment fragment = new PlaceholderFragment();
-	//			final Bundle args = new Bundle();
-	//			args.putInt(ARG_SECTION_NUMBER, sectionNumber);
-	//			fragment.setArguments(args);
-	//			return fragment;
-	//		}
-	//
-	//		@Override
-	//		public View onCreateView(final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState)
-	//		{
-	//			return inflater.inflate(R.layout.fragment_main, container, false);
-	//		}
-	//
-	//		@SuppressWarnings("deprecation")
-	//		@Override
-	//		public void onAttach(final Activity activity)
-	//		{
-	//			super.onAttach(activity);
-	//			int sectionNumber = getArguments().getInt(ARG_SECTION_NUMBER);
-	//			((MainActivity) activity).onSectionAttached(sectionNumber);
-	//		}
-	//	}
 }

@@ -1,7 +1,6 @@
 package org.sqlunet.browser;
 
 import android.annotation.TargetApi;
-import android.support.v4.app.Fragment;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -19,12 +18,20 @@ import android.webkit.WebViewClient;
  *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
-public class HelpFragment extends Fragment
+public class HelpFragment extends NavigableFragment
 {
 	/**
 	 * Log tag
 	 */
 	static private final String TAG = "HelpFragment";
+
+	/**
+	 * Constructor
+	 */
+	public HelpFragment()
+	{
+		this.titleId = R.string.title_help_section;
+	}
 
 	@Override
 	public View onCreateView(final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState)

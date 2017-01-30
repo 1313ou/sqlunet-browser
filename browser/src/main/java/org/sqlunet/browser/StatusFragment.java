@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -29,7 +28,7 @@ import org.sqlunet.settings.StorageUtils;
  *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
-public class StatusFragment extends Fragment
+public class StatusFragment extends NavigableFragment
 {
 	static private final String TAG = "StatusFragment";
 
@@ -81,7 +80,7 @@ public class StatusFragment extends Fragment
 	 */
 	public StatusFragment()
 	{
-		//
+		this.titleId = R.string.title_status_section;
 	}
 
 	@Override

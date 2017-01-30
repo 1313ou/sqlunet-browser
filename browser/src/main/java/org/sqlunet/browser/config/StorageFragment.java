@@ -4,7 +4,6 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -14,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import org.sqlunet.browser.NavigableFragment;
 import org.sqlunet.browser.R;
 import org.sqlunet.settings.Storage;
 import org.sqlunet.settings.StorageReports;
@@ -23,12 +23,20 @@ import org.sqlunet.settings.StorageReports;
  *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
-public class StorageFragment extends Fragment
+public class StorageFragment extends NavigableFragment
 {
 	/**
 	 * Swipe refresh layout
 	 */
 	private SwipeRefreshLayout swipeRefreshLayout;
+
+	/**
+	 * Constructor
+	 */
+	public StorageFragment()
+	{
+		this.titleId = R.string.title_storage_section;
+	}
 
 	@Override
 	public View onCreateView(final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState)

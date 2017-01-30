@@ -9,7 +9,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.Spinner;
 
 import org.sqlunet.Word;
 import org.sqlunet.predicatematrix.PmRolePointer;
@@ -47,7 +46,7 @@ public class PredicateMatrixFragment extends BaseSearchFragment
 		this.colorId = R.color.predicatematrix_action_bar_color;
 		this.spinnerLabels = R.array.predicatematrix_modes;
 		this.spinnerIcons = R.array.predicatematrix_icons;
-
+		this.titleId = R.string.title_predicatematrix_section;
 	}
 
 	@Override
@@ -95,12 +94,12 @@ public class PredicateMatrixFragment extends BaseSearchFragment
 	// S P I N N E R
 
 	@Override
-	protected void setupSpinner(final Spinner spinner)
+	protected void setupSpinner()
 	{
-		super.setupSpinner(spinner);
+		super.setupSpinner();
 
 		// spinner listener
-		spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener()
+		this.spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener()
 		{
 			@Override
 			public void onItemSelected(final AdapterView<?> parentView, final View selectedItemView, final int position, final long id)
@@ -132,7 +131,7 @@ public class PredicateMatrixFragment extends BaseSearchFragment
 		final Settings.PMMode mode = Settings.PMMode.getPref(getActivity());
 		if (mode != null)
 		{
-			spinner.setSelection(mode.ordinal());
+			this.spinner.setSelection(mode.ordinal());
 		}
 	}
 

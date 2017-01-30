@@ -6,7 +6,6 @@ import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.Spinner;
 
 import org.sqlunet.framenet.provider.FrameNetContract.Lookup_FnSentences_X;
 import org.sqlunet.propbank.provider.PropBankContract.Lookup_PbExamples_X;
@@ -38,17 +37,18 @@ public class TextSearchFragment extends BaseSearchFragment
 		this.colorId = R.color.textsearch_action_bar_color;
 		this.spinnerLabels = R.array.textsearch_modes;
 		this.spinnerIcons = R.array.textsearch_icons;
+		this.titleId = R.string.title_textsearch_section;
 	}
 
 	// S P I N N E R
 
 	@Override
-	protected void setupSpinner(final Spinner spinner)
+	protected void setupSpinner()
 	{
-		super.setupSpinner(spinner);
+		super.setupSpinner();
 
 		// spinner listener
-		spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener()
+		this.spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener()
 		{
 			@Override
 			public void onItemSelected(final AdapterView<?> parentView, final View selectedItemView, final int position, final long id)
@@ -65,7 +65,7 @@ public class TextSearchFragment extends BaseSearchFragment
 
 		// spinner position
 		final int position = Settings.getSearchModePref(getActivity());
-		spinner.setSelection(position);
+		this.spinner.setSelection(position);
 	}
 
 	// S E A R C H

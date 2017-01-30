@@ -1,6 +1,5 @@
 package org.sqlunet.browser;
 
-import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,14 +10,14 @@ import android.view.ViewGroup;
  *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
-public class HomeFragment extends Fragment
+public class HomeFragment extends NavigableFragment
 {
 	/**
 	 * Mandatory empty constructor for the fragment manager to instantiate the fragment (e.g. upon screen orientation changes).
 	 */
 	public HomeFragment()
 	{
-		//
+		this.titleId = R.string.title_home_section;
 	}
 
 	@Override

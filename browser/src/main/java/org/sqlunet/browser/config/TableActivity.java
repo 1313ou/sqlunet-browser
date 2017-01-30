@@ -2,7 +2,6 @@ package org.sqlunet.browser.config;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 
 import org.sqlunet.browser.R;
@@ -23,9 +22,10 @@ public class TableActivity extends AppCompatActivity
 		setContentView(R.layout.activity_table);
 
 		// show the Up button in the type bar.
-		final ActionBar actionBar = getSupportActionBar();
-		assert actionBar != null;
-		actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_HOME | ActionBar.DISPLAY_HOME_AS_UP);
+		//TODO actionbar
+		//final ActionBar actionBar = getSupportActionBar();
+		//assert actionBar != null;
+		//actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_HOME | ActionBar.DISPLAY_HOME_AS_UP);
 
 		// fragment
 		final Fragment fragment = new TableFragment();

@@ -164,8 +164,8 @@
 	<!-- navigation -->
 	<string name="title_home_section">Home</string>
 	<string name="title_browse_section">Browse</string>
-	<string name="title_ts_section">Text</string>
-	<string name="title_pm_section">Predicate Matrix</string>
+	<string name="title_textsearch_section">Text</string>
+	<string name="title_predicatematrix_section">Predicate Matrix</string>
 	<string name="title_status_section">Status</string>
 	<string name="title_setup_section">Set up</string>
 	<string name="title_storage_section">Storage</string>
@@ -176,8 +176,8 @@
 	<string-array name="title_sections">
 		<item>@string/title_home_section</item>
 		<item>@string/title_browse_section</item>
-		<item>@string/title_ts_section</item>
-		<item>@string/title_pm_section</item>
+		<item>@string/title_textsearch_section</item>
+		<item>@string/title_predicatematrix_section</item>
 		<item>@string/title_status_section</item>
 		<item>@string/title_setup_section</item>
 		<item>@string/title_storage_section</item>

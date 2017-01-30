@@ -11,7 +11,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
-import android.widget.Spinner;
 
 import org.sqlunet.browser.config.TableActivity;
 import org.sqlunet.browser.selector.Browse1Activity;
@@ -69,17 +68,18 @@ public class BrowseFragment extends BaseSearchFragment
 		this.colorId = R.color.browse_action_bar_color;
 		this.spinnerLabels = R.array.selectors_names;
 		this.spinnerIcons = R.array.selectors_icons;
+		this.titleId = R.string.title_browse_section;
 	}
 
 	// S P I N N E R
 
 	@Override
-	protected void setupSpinner(final Spinner spinner)
+	protected void setupSpinner()
 	{
-		super.setupSpinner(spinner);
+		super.setupSpinner();
 
 		// spinner listener
-		spinner.setOnItemSelectedListener( //
+		this.spinner.setOnItemSelectedListener( //
 				new OnItemSelectedListener()
 				{
 					@Override
@@ -102,7 +102,7 @@ public class BrowseFragment extends BaseSearchFragment
 		final Settings.Selector selectorMode = Settings.Selector.getPref(BrowseFragment.this.getActivity());
 		if (selectorMode != null)
 		{
-			spinner.setSelection(selectorMode.ordinal());
+			this.spinner.setSelection(selectorMode.ordinal());
 		}
 	}
 
