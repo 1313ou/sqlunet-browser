@@ -1,1 +1,1 @@
-/opt/devel/android-sqlunet-as/SqlUNet/wordNet/src/main/resources/org/sqlunet/wordnet2html-select-ns.xsl
+../wordNet/src/main/resources/org/sqlunet/wordnet2html-select-ns.xsl

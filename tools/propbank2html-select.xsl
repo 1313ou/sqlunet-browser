@@ -1,1 +1,1 @@
-/opt/devel/android-sqlunet-as/SqlUNet/propbank/src/main/resources/org/sqlunet/propbank2html-select.xsl
+../propbank/src/main/resources/org/sqlunet/propbank2html-select.xsl

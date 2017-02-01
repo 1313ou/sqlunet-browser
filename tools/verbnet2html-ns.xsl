@@ -1,1 +1,1 @@
-/opt/devel/android-sqlunet-as/SqlUNet/verbNet/src/main/resources/org/sqlunet/verbnet2html-ns.xsl
+../verbNet/src/main/resources/org/sqlunet/verbnet2html-ns.xsl

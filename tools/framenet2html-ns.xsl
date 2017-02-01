@@ -1,1 +1,1 @@
-/opt/devel/android-sqlunet-as/SqlUNet/frameNet/src/main/resources/org/sqlunet/framenet2html-ns.xsl
+../frameNet/src/main/resources/org/sqlunet/framenet2html-ns.xsl
