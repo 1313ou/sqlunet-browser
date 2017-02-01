@@ -212,8 +212,14 @@ public class XSelectorsFragment extends ExpandableListFragment
 			}
 			this.activatedPosition = position;
 		}
+	}
 
-		// load the contents
+	@Override
+	public void onStart()
+	{
+		super.onStart();
+
+		// load the contents (once activity is available)
 		load();
 	}
 

@@ -1,6 +1,7 @@
 package org.sqlunet.browser;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Parcelable;
@@ -74,9 +75,9 @@ public class BrowseFragment extends BaseSearchFragment
 	// S P I N N E R
 
 	@Override
-	protected void setupSpinner()
+	protected void setupSpinner(final Context context)
 	{
-		super.setupSpinner();
+		super.setupSpinner(context);
 
 		// spinner listener
 		this.spinner.setOnItemSelectedListener( //
@@ -86,9 +87,7 @@ public class BrowseFragment extends BaseSearchFragment
 					public void onItemSelected(final AdapterView<?> parentView, final View selectedItemView, final int position, final long id)
 					{
 						final Settings.Selector selectorMode = Settings.Selector.values()[position];
-						selectorMode.setPref(BrowseFragment.this.getActivity());
-
-						// Log.d(Browse1Fragment.TAG, selectorMode.name());
+						selectorMode.setPref(context);
 					}
 
 					@Override
@@ -99,7 +98,7 @@ public class BrowseFragment extends BaseSearchFragment
 				});
 
 		// saved selector mode
-		final Settings.Selector selectorMode = Settings.Selector.getPref(BrowseFragment.this.getActivity());
+		final Settings.Selector selectorMode = Settings.Selector.getPref(context);
 		if (selectorMode != null)
 		{
 			this.spinner.setSelection(selectorMode.ordinal());

@@ -1,5 +1,6 @@
 package org.sqlunet.browser;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -43,9 +44,9 @@ public class TextSearchFragment extends BaseSearchFragment
 	// S P I N N E R
 
 	@Override
-	protected void setupSpinner()
+	protected void setupSpinner(final Context context)
 	{
-		super.setupSpinner();
+		super.setupSpinner(context);
 
 		// spinner listener
 		this.spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener()
@@ -53,7 +54,7 @@ public class TextSearchFragment extends BaseSearchFragment
 			@Override
 			public void onItemSelected(final AdapterView<?> parentView, final View selectedItemView, final int position, final long id)
 			{
-				Settings.setSearchModePref(TextSearchFragment.this.getActivity(), position);
+				Settings.setSearchModePref(context, position);
 			}
 
 			@Override
@@ -64,7 +65,7 @@ public class TextSearchFragment extends BaseSearchFragment
 		});
 
 		// spinner position
-		final int position = Settings.getSearchModePref(getActivity());
+		final int position = Settings.getSearchModePref(context);
 		this.spinner.setSelection(position);
 	}
 
@@ -90,6 +91,7 @@ public class TextSearchFragment extends BaseSearchFragment
 		// as per selected mode
 		String searchUri;
 		String id;
+		String idType;
 		String target;
 		String[] columns;
 		String[] hiddenColumns;
@@ -99,13 +101,16 @@ public class TextSearchFragment extends BaseSearchFragment
 			case 0:
 				searchUri = Lookup_Words.CONTENT_URI;
 				id = Lookup_Words.WORDID;
+				idType = "lemma";
 				target = Lookup_Words.LEMMA;
 				columns = new String[]{Lookup_Words.LEMMA};
 				hiddenColumns = new String[]{Lookup_Words.WORDID};
+				database = "wn";
 				break;
 			case 1:
 				searchUri = Lookup_Definitions.CONTENT_URI;
 				id = Lookup_Definitions.SYNSETID;
+				idType = "synset";
 				target = Lookup_Definitions.DEFINITION;
 				columns = new String[]{Lookup_Definitions.DEFINITION};
 				hiddenColumns = new String[]{Lookup_Definitions.SYNSETID};
@@ -114,6 +119,7 @@ public class TextSearchFragment extends BaseSearchFragment
 			case 2:
 				searchUri = Lookup_Samples.CONTENT_URI;
 				id = Lookup_Samples.SYNSETID;
+				idType = "synset";
 				target = Lookup_Samples.SAMPLE;
 				columns = new String[]{Lookup_Samples.SAMPLE};
 				hiddenColumns = new String[]{Lookup_Samples.SYNSETID};
@@ -122,6 +128,7 @@ public class TextSearchFragment extends BaseSearchFragment
 			case 3:
 				searchUri = Lookup_VnExamples_X.CONTENT_URI;
 				id = Lookup_VnExamples_X.EXAMPLEID;
+				idType = "vnexample";
 				target = Lookup_VnExamples_X.EXAMPLE;
 				columns = new String[]{Lookup_VnExamples_X.EXAMPLE};
 				hiddenColumns = new String[]{ //
@@ -131,6 +138,7 @@ public class TextSearchFragment extends BaseSearchFragment
 			case 4:
 				searchUri = Lookup_PbExamples_X.CONTENT_URI;
 				id = Lookup_PbExamples_X.EXAMPLEID;
+				idType = "pbexample";
 				target = Lookup_PbExamples_X.TEXT;
 				columns = new String[]{Lookup_PbExamples_X.TEXT};
 				hiddenColumns = new String[]{ //
@@ -140,6 +148,7 @@ public class TextSearchFragment extends BaseSearchFragment
 			case 5:
 				searchUri = Lookup_FnSentences_X.CONTENT_URI;
 				id = Lookup_FnSentences_X.SENTENCEID;
+				idType = "fnsentence";
 				target = Lookup_FnSentences_X.TEXT;
 				columns = new String[]{Lookup_FnSentences_X.TEXT};
 				hiddenColumns = new String[]{Lookup_FnSentences_X.SENTENCEID, //
@@ -155,6 +164,7 @@ public class TextSearchFragment extends BaseSearchFragment
 		final Bundle args = new Bundle();
 		args.putString(ProviderArgs.ARG_QUERYURI, searchUri);
 		args.putString(ProviderArgs.ARG_QUERYID, id);
+		args.putString(ProviderArgs.ARG_QUERYIDTYPE, idType);
 		args.putStringArray(ProviderArgs.ARG_QUERYITEMS, columns);
 		args.putStringArray(ProviderArgs.ARG_QUERYHIDDENITEMS, hiddenColumns);
 		args.putString(ProviderArgs.ARG_QUERYFILTER, target + " MATCH ?");

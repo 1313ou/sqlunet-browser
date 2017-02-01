@@ -1,10 +1,7 @@
 package org.sqlunet.browser;
 
 import android.content.Context;
-import android.content.res.Resources;
 import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 
 import org.sqlunet.browser.config.SetupStatusFragment;
 

@@ -42,6 +42,7 @@ public final class ProviderArgs
 	static public final String ARG_QUERYURI = "QUERYURI";
 	static public final String ARG_QUERYDATABASE = "QUERYDATABASE";
 	static public final String ARG_QUERYID = "QUERYID";
+	static public final String ARG_QUERYIDTYPE = "QUERYIDTYPE";
 	static public final String ARG_QUERYITEMS = "QUERYITEMS";
 	static public final String ARG_QUERYHIDDENITEMS = "QUERYXITEMS";
 	static public final String ARG_QUERYARG = "QUERYARG";

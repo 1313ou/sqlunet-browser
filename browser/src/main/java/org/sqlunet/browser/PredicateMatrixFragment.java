@@ -1,5 +1,6 @@
 package org.sqlunet.browser;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.support.v4.app.Fragment;
@@ -98,9 +99,9 @@ public class PredicateMatrixFragment extends BaseSearchFragment
 	// S P I N N E R
 
 	@Override
-	protected void setupSpinner()
+	protected void setupSpinner(final Context context)
 	{
-		super.setupSpinner();
+		super.setupSpinner(context);
 
 		// spinner listener
 		this.spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener()
@@ -109,7 +110,7 @@ public class PredicateMatrixFragment extends BaseSearchFragment
 			public void onItemSelected(final AdapterView<?> parentView, final View selectedItemView, final int position, final long id)
 			{
 				final Settings.PMMode mode = Settings.PMMode.values()[position];
-				mode.setPref(PredicateMatrixFragment.this.getActivity());
+				mode.setPref(context);
 
 				Log.d(PredicateMatrixFragment.TAG, mode.name());
 
@@ -132,7 +133,7 @@ public class PredicateMatrixFragment extends BaseSearchFragment
 		});
 
 		// saved mode
-		final Settings.PMMode mode = Settings.PMMode.getPref(getActivity());
+		final Settings.PMMode mode = Settings.PMMode.getPref(context);
 		if (mode != null)
 		{
 			this.spinner.setSelection(mode.ordinal());
