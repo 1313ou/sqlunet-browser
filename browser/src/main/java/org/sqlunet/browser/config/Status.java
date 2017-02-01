@@ -3,6 +3,7 @@ package org.sqlunet.browser.config;
 import android.content.Context;
 import android.database.Cursor;
 import android.net.Uri;
+import android.text.Editable;
 import android.text.SpannableStringBuilder;
 import android.util.Log;
 
@@ -234,7 +235,7 @@ public class Status
 
 	static public CharSequence toString(int status)
 	{
-		final SpannableStringBuilder sb = new SpannableStringBuilder();
+		final Editable sb = new SpannableStringBuilder();
 		sb.append(Integer.toHexString(status));
 		if ((status & EXISTS) != 0)
 		{

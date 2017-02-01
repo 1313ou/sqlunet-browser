@@ -42,6 +42,8 @@
       <w>bncunit</w>
       <w>bogdan</w>
       <w>bothlink</w>
+      <w>byrole</w>
+      <w>bysynset</w>
       <w>cantrun</w>
       <w>casedwordid</w>
       <w>casedwords</w>
@@ -112,7 +114,10 @@
       <w>fnannosets</w>
       <w>fnannosoets</w>
       <w>fncoretypes</w>
+      <w>fncorpuses</w>
+      <w>fncxns</w>
       <w>fndata</w>
+      <w>fndocuments</w>
       <w>fnex</w>
       <w>fnfe</w>
       <w>fnfedefinition</w>
@@ -175,6 +180,7 @@
       <w>fnsentencelabel</w>
       <w>fnsentences</w>
       <w>fnsentencetext</w>
+      <w>fnstatuses</w>
       <w>fnsubcorpuses</w>
       <w>fntarget</w>
       <w>fnvalenceunit</w>
@@ -329,6 +335,7 @@
       <w>pbexamplelabel</w>
       <w>pbexamples</w>
       <w>pbexampletext</w>
+      <w>pbfnframemaps</w>
       <w>pbforms</w>
       <w>pbfuncs</w>
       <w>pbloader</w>
@@ -357,6 +364,8 @@
       <w>pbsb</w>
       <w>pbtenses</w>
       <w>pbthetaname</w>
+      <w>pbvnclassmaps</w>
+      <w>pbvnrolemaps</w>
       <w>pbvnthetas</w>
       <w>pbvoices</w>
       <w>pbwordid</w>
@@ -411,6 +420,7 @@
       <w>queryfilter</w>
       <w>queryhiddenitems</w>
       <w>queryid</w>
+      <w>queryidtype</w>
       <w>queryintent</w>
       <w>queryitems</w>
       <w>querylayout</w>
@@ -508,6 +518,8 @@
       <w>subnodes</w>
       <w>subquery</w>
       <w>substr</w>
+      <w>subtarget</w>
+      <w>swipe_refres</w>
       <w>synitem</w>
       <w>synseid</w>
       <w>synset</w>
@@ -541,6 +553,9 @@
       <w>treeroot</w>
       <w>treeview</w>
       <w>tsfn</w>
+      <w>tspb</w>
+      <w>tsvn</w>
+      <w>tswn</w>
       <w>unet</w>
       <w>ungrouped</w>
       <w>unmarshal</w>
@@ -569,6 +584,7 @@
       <w>vnclasses</w>
       <w>vnclassid</w>
       <w>vnclasslabel</w>
+      <w>vnclassmembers</w>
       <w>vnclassmembersenses</w>
       <w>vnclassname</w>
       <w>vndata</w>
@@ -592,8 +608,11 @@
       <w>vngroupings</w>
       <w>vnloader</w>
       <w>vnmembers</w>
+      <w>vnpredicatemaps</w>
+      <w>vnpredicates</w>
       <w>vnrel</w>
       <w>vnrestrs</w>
+      <w>vnrestrtypes</w>
       <w>vnrole</w>
       <w>vnroleid</w>
       <w>vnrolemaps</w>

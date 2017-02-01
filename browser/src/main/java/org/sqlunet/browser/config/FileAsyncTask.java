@@ -518,7 +518,7 @@ class FileAsyncTask
 	}
 
 	/**
-	 * Copy data base from file in cance
+	 * Copy data base from file in cache
 	 *
 	 * @param context      context
 	 * @param databasePath database path
@@ -696,7 +696,7 @@ class FileAsyncTask
 		alert.show();
 	}
 
-	static String digestToString(byte... byteArray)
+	private static String digestToString(byte... byteArray)
 	{
 		if (byteArray == null)
 		{

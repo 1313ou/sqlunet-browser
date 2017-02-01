@@ -156,6 +156,7 @@ class MD5Downloader extends AsyncTask<String, Void, String>
 	 *
 	 * @return exception
 	 */
+	@SuppressWarnings("unused")
 	synchronized public Exception getException()
 	{
 		final Exception result = this.exception;

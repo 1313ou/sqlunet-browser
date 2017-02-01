@@ -12,9 +12,9 @@ import org.sqlunet.browser.config.SetupStatusFragment;
  */
 public class StatusFragment extends SetupStatusFragment implements ActionBarSetter
 {
-	static private final String TAG = "SetupStatusFragment";
+	// static private final String TAG = "StatusFragment";
 
-	protected int titleId;
+	private final int titleId;
 
 	/**
 	 * Mandatory empty constructor for the fragment manager to instantiate the fragment (e.g. upon screen orientation changes).

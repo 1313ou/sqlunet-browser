@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.content.res.Resources;
 import android.content.res.TypedArray;
 import android.graphics.drawable.Drawable;
-import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
@@ -14,9 +13,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.app.contrib.NavigationDrawerFragment;
 import android.util.Log;
 import android.util.TypedValue;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 
 import org.sqlunet.browser.config.SettingsActivity;
 import org.sqlunet.browser.config.SetupActivity;
@@ -65,71 +61,73 @@ public class NavigationFragment extends NavigationDrawerFragment implements Navi
 	public NavigationFragment()
 	{
 		this.listener = this;
-		Log.d(TAG, "CONSTRUCTOR");
+		// Log.d(TAG, "CONSTRUCTOR");
 	}
 
+	/*
 	@Override
 	public void onCreate(Bundle savedInstanceState)
 	{
-		Log.d(TAG, "ONCREATE");
+		// Log.d(TAG, "ON CREATE");
 		super.onCreate(savedInstanceState);
 	}
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
 	{
-		Log.d(TAG, "ONCREATEVIEW");
+		// Log.d(TAG, "ON CREATE VIEW");
 		return super.onCreateView(inflater, container, savedInstanceState);
 	}
 
 	@Override
 	public void onStart()
 	{
-		Log.d(TAG, "ONSTART");
+		// Log.d(TAG, "ON START");
 		super.onStart();
 	}
 
 	@Override
 	public void onResume()
 	{
-		Log.d(TAG, "ONRESUME");
+		// Log.d(TAG, "ON RESUME");
 		super.onResume();
 	}
 
 	@Override
 	public void onPause()
 	{
-		Log.d(TAG, "ONPAUSE");
+		// Log.d(TAG, "ON PAUSE");
 		super.onPause();
 	}
 
 	@Override
 	public void onStop()
 	{
-		Log.d(TAG, "ONSTOP");
+		// Log.d(TAG, "ON STOP");
 		super.onStop();
 	}
 
 	@Override
 	public void onDestroy()
 	{
-		Log.d(TAG, "ONDESTROY");
+		// Log.d(TAG, "ON DESTROY");
 		super.onDestroy();
 	}
 
 	@Override
 	public void onDetach()
 	{
-		Log.d(TAG, "ONDETACH");
+		//Log.d(TAG, "ON DETACH");
 		super.onDetach();
 	}
 
 	@Override
 	public void onSaveInstanceState(final Bundle outState)
 	{
-		Log.d(TAG, "ONSAVEINSTANCESTATE");
+		//Log.d(TAG, "ON SAVE INSTANCE STATE");
 		super.onSaveInstanceState(outState);
 	}
+	*/
 
 	/**
 	 * Get active fragment
@@ -191,7 +189,7 @@ public class NavigationFragment extends NavigationDrawerFragment implements Navi
 		return false;
 	}
 
-	void updateFragments(int position)
+	private void updateFragments(int position)
 	{
 		Log.d(TAG, "UPDATE FRAGMENTS " + position);
 		final AppCompatActivity activity = (AppCompatActivity) getActivity();
@@ -314,7 +312,7 @@ public class NavigationFragment extends NavigationDrawerFragment implements Navi
 	/**
 	 * Restore toolbar bar
 	 */
-	static public void restoreActionBar(final ActionBar actionBar, final Resources.Theme theme)
+	private static void restoreActionBar(final ActionBar actionBar, final Resources.Theme theme)
 	{
 		Log.d(NavigationFragment.TAG, "restore standard action bar");
 
@@ -339,6 +337,7 @@ public class NavigationFragment extends NavigationDrawerFragment implements Navi
 		actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_HOME | ActionBar.DISPLAY_SHOW_TITLE | ActionBar.DISPLAY_HOME_AS_UP);
 	}
 
+	@SuppressWarnings("unused")
 	private String title(final int number)
 	{
 		final String[] options = getResources().getStringArray(R.array.title_sections);

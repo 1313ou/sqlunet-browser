@@ -30,8 +30,8 @@
 	<item name="predicatematrix_action_bar_color" type="color">#FF262673</item>
 
 	<!-- swipe down refresh -->
-	<item name="swipedown1_color" type="color">#FFef2063</item>
-	<item name="swipedown2_color" type="color">#FFffa500</item>
+	<item name="swipe_down_1_color" type="color">#FFef2063</item>
+	<item name="swipe_down_2_color" type="color">#FFffa500</item>
 
 	<!-- home -->
 	<item name="home_color" type="color">#FF400020</item>

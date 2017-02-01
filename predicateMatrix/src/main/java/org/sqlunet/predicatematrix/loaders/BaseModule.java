@@ -1003,7 +1003,7 @@ abstract class BaseModule extends Module
 
 				final SpannableStringBuilder pmsb = new SpannableStringBuilder();
 				final TreeNode pmroleNode = this.displayer.displayPmRole(this.parent, pmsb, pmRole);
-				final Set<String> aliases = new TreeSet<>();
+				final Collection<String> aliases = new TreeSet<>();
 
 				if (vnDatas != null)
 				{

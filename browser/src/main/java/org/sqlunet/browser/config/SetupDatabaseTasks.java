@@ -87,6 +87,7 @@ class SetupDatabaseTasks
 	 * @param databasePath path
 	 * @param tables       tables to drop
 	 */
+	@SuppressWarnings("unused")
 	static public void dropAll(final Context context, final String databasePath, final Collection<String> tables)
 	{
 		if (tables != null && !tables.isEmpty())
@@ -108,6 +109,7 @@ class SetupDatabaseTasks
 	 * @param databasePath path
 	 * @param tables       tables to flush
 	 */
+	@SuppressWarnings("unused")
 	static public void flushAll(final Context context, final String databasePath, final Collection<String> tables)
 	{
 		if (tables != null && !tables.isEmpty())

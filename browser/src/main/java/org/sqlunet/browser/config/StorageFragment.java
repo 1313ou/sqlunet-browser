@@ -47,8 +47,8 @@ public class StorageFragment extends NavigableFragment
 		final View view = inflater.inflate(R.layout.fragment_storage, container, false);
 
 		// swipe refresh layout
-		this.swipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.swiperefresh);
-		this.swipeRefreshLayout.setColorSchemeResources(R.color.swipedown1_color, R.color.swipedown2_color);
+		this.swipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.swipe_refresh);
+		this.swipeRefreshLayout.setColorSchemeResources(R.color.swipe_down_1_color, R.color.swipe_down_2_color);
 		this.swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener()
 		{
 			@Override

@@ -302,6 +302,7 @@ class ExecAsyncTask
 	 * @param database database path
 	 * @param tempDir  temp directory
 	 */
+	@SuppressWarnings("unused")
 	void vacuum(final String database, final String tempDir)
 	{
 		final AsyncTask<String, Void, Void> task = new AsyncTask<String, Void, Void>()

@@ -23,7 +23,7 @@ public class SimpleDownloadFragment extends BaseDownloadFragment implements Simp
 	static private final String TAG = "SimpleDownloadFragment";
 
 	/**
-	 * Id for the current notication
+	 * Id for the current notification
 	 */
 	static private int notificationId = 0;
 

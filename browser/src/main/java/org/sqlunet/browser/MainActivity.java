@@ -3,17 +3,11 @@ package org.sqlunet.browser;
 import android.app.Activity;
 import android.app.SearchManager;
 import android.content.Intent;
-import android.content.res.Resources;
-import android.content.res.TypedArray;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.util.TypedValue;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -30,11 +24,6 @@ public class MainActivity extends AppCompatActivity // implements NavigationFrag
 
 	private NavigationFragment navigationDrawerFragment;
 
-	/**
-	 * Used to store the last screen titleId. For use in {@link #restoreActionBar()}.
-	 */
-	private CharSequence title;
-
 	@Override
 	protected void onCreate(final Bundle savedInstanceState)
 	{
@@ -49,15 +38,8 @@ public class MainActivity extends AppCompatActivity // implements NavigationFrag
 		// content view
 		setContentView(R.layout.activity_main);
 
-		// toolbar
-		// final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_main);
-		// setSupportActionBar(toolbar);
-
 		// get fragment
 		this.navigationDrawerFragment = (NavigationFragment) getSupportFragmentManager().findFragmentById(R.id.navigation_drawer);
-
-		// get titleId for use in restoreActionBar
-		this.title = getTitle();
 
 		// set up the drawer
 		this.navigationDrawerFragment.setUp(R.id.navigation_drawer, (DrawerLayout) findViewById(R.id.drawer_layout));

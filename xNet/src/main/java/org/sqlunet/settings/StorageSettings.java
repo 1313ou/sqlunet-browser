@@ -15,8 +15,6 @@ import java.io.File;
  */
 public class StorageSettings
 {
-	// database
-
 	// storage preferences
 
 	static public final String PREF_STORAGE = Storage.PREF_SQLUNET_STORAGE;
@@ -40,7 +38,7 @@ public class StorageSettings
 	 * @param context context
 	 * @return database directory
 	 */
-	static public String getDataDir(final Context context)
+	private static String getDataDir(final Context context)
 	{
 		final File dir = Storage.getSqlUNetStorage(context);
 		if (!dir.exists())

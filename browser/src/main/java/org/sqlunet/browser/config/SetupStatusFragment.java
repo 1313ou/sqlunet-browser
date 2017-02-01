@@ -67,8 +67,6 @@ public class SetupStatusFragment extends Fragment
 
 	private ImageButton buttonTextSearchFn;
 
-	private ImageButton infoDatabaseButton;
-
 	/**
 	 * Swipe refresh layout
 	 */
@@ -106,7 +104,7 @@ public class SetupStatusFragment extends Fragment
 		this.buttonTextSearchVn = (ImageButton) view.findViewById(R.id.textsearchVnButton);
 		this.buttonTextSearchPb = (ImageButton) view.findViewById(R.id.textsearchPbButton);
 		this.buttonTextSearchFn = (ImageButton) view.findViewById(R.id.textsearchFnButton);
-		this.infoDatabaseButton = (ImageButton) view.findViewById(R.id.info_database);
+		final ImageButton infoDatabaseButton = (ImageButton) view.findViewById(R.id.info_database);
 
 		// activity
 		final Activity activity = getActivity();
@@ -188,7 +186,7 @@ public class SetupStatusFragment extends Fragment
 			}
 		});
 
-		this.infoDatabaseButton.setOnClickListener(new View.OnClickListener()
+		infoDatabaseButton.setOnClickListener(new View.OnClickListener()
 		{
 			@Override
 			public void onClick(final View v)
@@ -204,8 +202,8 @@ public class SetupStatusFragment extends Fragment
 		});
 
 		// swipe refresh layout
-		this.swipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.swiperefresh);
-		this.swipeRefreshLayout.setColorSchemeResources(R.color.swipedown1_color, R.color.swipedown2_color);
+		this.swipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.swipe_refresh);
+		this.swipeRefreshLayout.setColorSchemeResources(R.color.swipe_down_1_color, R.color.swipe_down_2_color);
 		this.swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener()
 		{
 			@Override

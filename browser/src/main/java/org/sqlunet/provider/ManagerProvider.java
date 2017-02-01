@@ -121,6 +121,7 @@ public class ManagerProvider extends BaseProvider
 	 * @param context context
 	 * @return collection of tables
 	 */
+	@SuppressWarnings("unused")
 	static public Collection<String> getTables(final Context context)
 	{
 		final Collection<String> tables = new ArrayList<>();

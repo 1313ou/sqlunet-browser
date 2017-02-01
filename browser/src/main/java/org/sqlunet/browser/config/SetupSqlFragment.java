@@ -3,7 +3,6 @@ package org.sqlunet.browser.config;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -37,9 +36,6 @@ public class SetupSqlFragment extends Fragment
 	// codes
 
 	static private final int REQUEST_DOWNLOAD_CODE = 0xDDDD;
-
-	// task
-	private AsyncTask<?, Integer, Boolean> task;
 
 	// download sql button
 	private ImageButton downloadSqlZipButton;
@@ -240,8 +236,8 @@ public class SetupSqlFragment extends Fragment
 		});
 
 		// swipe refresh layout
-		this.swipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.swiperefresh);
-		this.swipeRefreshLayout.setColorSchemeResources(R.color.swipedown1_color, R.color.swipedown2_color);
+		this.swipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.swipe_refresh);
+		this.swipeRefreshLayout.setColorSchemeResources(R.color.swipe_down_1_color, R.color.swipe_down_2_color);
 		this.swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener()
 		{
 			@Override

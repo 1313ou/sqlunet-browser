@@ -14,7 +14,7 @@ import org.sqlunet.sql.SqlFormatter;
  */
 public class SqlFragment extends ListFragment
 {
-	static private final String TAG = "SqlFragment";
+	// static private final String TAG = "SqlFragment";
 
 	@Override
 	public void onResume()

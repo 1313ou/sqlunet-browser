@@ -67,6 +67,7 @@ public class StorageReports
 	 * @param dir storage directory
 	 * @return styled string
 	 */
+	@SuppressWarnings("unused")
 	static private CharSequence styledFitsIn(final StorageDirectory dir)
 	{
 		final SpannableStringBuilder sb = new SpannableStringBuilder();

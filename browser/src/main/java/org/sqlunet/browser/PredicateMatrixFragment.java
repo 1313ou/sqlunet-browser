@@ -37,7 +37,7 @@ public class PredicateMatrixFragment extends BaseSearchFragment
 	/**
 	 * Query
 	 */
-	protected String query;
+	private String query;
 
 	/**
 	 * Pointer

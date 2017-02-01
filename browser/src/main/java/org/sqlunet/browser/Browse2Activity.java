@@ -2,7 +2,6 @@ package org.sqlunet.browser;
 
 import android.os.Bundle;
 import android.os.Parcelable;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;

@@ -50,23 +50,29 @@ abstract public class BaseSearchFragment extends NavigableFragment implements Se
 	/**
 	 * Search view
 	 */
-	protected SearchView searchView;
+	private SearchView searchView;
 
 	/**
 	 * Action bar mode spinner
 	 */
+	@SuppressWarnings("WeakerAccess")
 	protected Spinner spinner;
 
 	// R E S O U R C E S
 
+	@SuppressWarnings("WeakerAccess")
 	protected int layoutId;
 
+	@SuppressWarnings("WeakerAccess")
 	protected int menuId;
 
+	@SuppressWarnings("WeakerAccess")
 	protected int colorId;
 
+	@SuppressWarnings("WeakerAccess")
 	protected int spinnerLabels;
 
+	@SuppressWarnings("WeakerAccess")
 	protected int spinnerIcons;
 
 	// C R E A T I O N
@@ -162,6 +168,7 @@ abstract public class BaseSearchFragment extends NavigableFragment implements Se
 		actionBar.setBackgroundDrawable(new ColorDrawable(color));
 
 		// action bar customized view
+		@SuppressLint("InflateParams")
 		final View actionBarView = LayoutInflater.from(context).inflate(R.layout.actionbar_custom, null);
 
 		// spinner
@@ -186,6 +193,7 @@ abstract public class BaseSearchFragment extends NavigableFragment implements Se
 	/**
 	 * Set up spinner
 	 */
+	@SuppressWarnings("WeakerAccess")
 	protected void setupSpinner(final Context context)
 	{
 		// resources
