@@ -25,7 +25,7 @@ public class SqlDialogFragment extends DialogFragment
 
 		@SuppressLint("InflateParams") final View view = inflater.inflate(R.layout.fragment_sql, null);
 
-		final Fragment sqlFragment = new SqlFragment();
+		final Fragment sqlFragment = new SqlHistoryFragment();
 		getChildFragmentManager() //
 				.beginTransaction() //
 				.replace(R.id.container_sql, sqlFragment) //

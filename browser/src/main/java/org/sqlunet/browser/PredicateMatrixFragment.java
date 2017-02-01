@@ -2,7 +2,6 @@ package org.sqlunet.browser;
 
 import android.os.Bundle;
 import android.os.Parcelable;
-import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -25,9 +24,19 @@ public class PredicateMatrixFragment extends BaseSearchFragment
 	static private final String TAG = "PredicateMatrixFragment";
 
 	/**
+	 * Saved query
+	 */
+	static private final String STATE_QUERY = "query";
+
+	/**
 	 * Saved pointer
 	 */
 	static private final String STATE_POINTER = "pointer";
+
+	/**
+	 * Query
+	 */
+	protected String query;
 
 	/**
 	 * Pointer
@@ -49,17 +58,7 @@ public class PredicateMatrixFragment extends BaseSearchFragment
 		this.titleId = R.string.title_predicatematrix_section;
 	}
 
-	@Override
-	public void onCreate(@Nullable Bundle savedInstanceState)
-	{
-		super.onCreate(savedInstanceState);
-
-		// spinner update
-		if (savedInstanceState != null)
-		{
-			this.pointer = savedInstanceState.getParcelable(STATE_POINTER);
-		}
-	}
+	// R E S T O R E
 
 	@Override
 	public View onCreateView(final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState)
@@ -67,16 +66,17 @@ public class PredicateMatrixFragment extends BaseSearchFragment
 		// view
 		final View view = super.onCreateView(inflater, container, savedInstanceState);
 
+		// restore data
 		if (savedInstanceState != null)
 		{
-			//TODO repeat
+			this.query = savedInstanceState.getString(STATE_QUERY);
 			this.pointer = savedInstanceState.getParcelable(STATE_POINTER);
 		}
 
 		return view;
 	}
 
-	// S A V E   R E S T O R E
+	// S A V E
 
 	@Override
 	public void onSaveInstanceState(final Bundle outState)
@@ -84,7 +84,11 @@ public class PredicateMatrixFragment extends BaseSearchFragment
 		// always call the superclass so it can save the view hierarchy state
 		super.onSaveInstanceState(outState);
 
-		// pointer
+		// save data
+		if (this.query != null)
+		{
+			outState.putString(PredicateMatrixFragment.STATE_QUERY, this.query);
+		}
 		if (this.pointer != null)
 		{
 			outState.putParcelable(PredicateMatrixFragment.STATE_POINTER, this.pointer);

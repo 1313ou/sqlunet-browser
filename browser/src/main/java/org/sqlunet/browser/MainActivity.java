@@ -198,7 +198,7 @@ public class MainActivity extends AppCompatActivity // implements NavigationFrag
 	//			case 4:
 	//				this.titleId = getString(R.string.title_status_section);
 	//				//intent = new Intent(this, StatusActivity.class);
-	//				this.fragment = new StatusFragment();
+	//				this.fragment = new SetupStatusFragment();
 	//				break;
 	//			case 5:
 	//				this.titleId = getString(R.string.title_setup_section);
@@ -215,7 +215,7 @@ public class MainActivity extends AppCompatActivity // implements NavigationFrag
 	//				break;
 	//			case 8:
 	//				this.titleId = getString(R.string.title_sql_section);
-	//				this.fragment = new SqlFragment();
+	//				this.fragment = new SqlHistoryFragment();
 	//				break;
 	//			case 9:
 	//				this.titleId = getString(R.string.title_help_section);

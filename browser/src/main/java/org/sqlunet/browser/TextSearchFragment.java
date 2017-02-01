@@ -81,9 +81,6 @@ public class TextSearchFragment extends BaseSearchFragment
 		// log
 		Log.d(TextSearchFragment.TAG, "TEXT SEARCH " + query);
 
-		// set
-		this.query = query;
-
 		// type
 		final int typePosition = this.spinner.getSelectedItemPosition();
 

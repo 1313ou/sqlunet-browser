@@ -175,9 +175,6 @@ public class BrowseFragment extends BaseSearchFragment
 		// log
 		Log.d(BrowseFragment.TAG, "BROWSE " + query);
 
-		// set
-		this.query = query;
-
 		// recurse
 		final boolean recurse = Settings.getRecursePref(getActivity());
 
@@ -340,6 +337,8 @@ public class BrowseFragment extends BaseSearchFragment
 
 			// fragment
 			fragment.setArguments(args);
+
+			// transaction
 			getChildFragmentManager() //
 					.beginTransaction() //
 					.replace(R.id.container_browse, fragment) //
