@@ -1,6 +1,5 @@
 package org.sqlunet.browser;
 
-import android.annotation.TargetApi;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -418,7 +417,7 @@ public class TextSearchResultFragment extends AbstractTableFragment
 		public final int type;
 		public final long id;
 
-		public TypedPointer(int type, long id)
+		TypedPointer(int type, long id)
 		{
 			this.type = type;
 			this.id = id;
@@ -545,7 +544,6 @@ public class TextSearchResultFragment extends AbstractTableFragment
 	 * @param resId   res id
 	 * @return image span
 	 */
-	@TargetApi(Build.VERSION_CODES.LOLLIPOP)
 	@SuppressWarnings("deprecation")
 	static private Object makeImageSpan(final Context context, final int resId)
 	{

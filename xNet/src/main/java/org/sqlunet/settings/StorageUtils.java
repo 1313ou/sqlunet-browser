@@ -36,7 +36,7 @@ public class StorageUtils
 	/**
 	 * Storage types
 	 */
-	public enum StorageType
+	enum StorageType
 	{
 		PRIMARY_EMULATED, PRIMARY_PHYSICAL, SECONDARY
 	}
@@ -90,24 +90,24 @@ public class StorageUtils
 	 *
 	 * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
 	 */
-	static public class Directory
+	static class Directory
 	{
 		private final File file;
 
 		private final DirType type;
 
-		public Directory(final File file, final DirType type)
+		Directory(final File file, final DirType type)
 		{
 			this.file = file;
 			this.type = type;
 		}
 
-		public final DirType getType()
+		DirType getType()
 		{
 			return this.type;
 		}
 
-		public CharSequence getValue()
+		CharSequence getValue()
 		{
 			if (DirType.AUTO == this.type)
 			{
@@ -127,32 +127,32 @@ public class StorageUtils
 	 *
 	 * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
 	 */
-	static public class StorageDirectory implements Comparable<StorageDirectory>
+	static class StorageDirectory implements Comparable<StorageDirectory>
 	{
 		/**
 		 * Status flag: null dir
 		 */
-		static public final int NULL_DIR = 0x0001;
+		static final int NULL_DIR = 0x0001;
 
 		/**
 		 * Status flag: storage is not mounted
 		 */
-		static public final int NOT_MOUNTED = 0x0002;
+		static final int NOT_MOUNTED = 0x0002;
 
 		/**
 		 * Status flag: directory does not exist
 		 */
-		static public final int NOT_EXISTS = 0x0004;
+		static final int NOT_EXISTS = 0x0004;
 
 		/**
 		 * Status flag: not a directory
 		 */
-		static public final int NOT_DIR = 0x0008;
+		static final int NOT_DIR = 0x0008;
 
 		/**
 		 * Status flag: directory is not writable
 		 */
-		static public final int NOT_WRITABLE = 0x0010;
+		static final int NOT_WRITABLE = 0x0010;
 
 		/**
 		 * Directory
@@ -162,12 +162,12 @@ public class StorageUtils
 		/**
 		 * Free megabytes
 		 */
-		public final float free;
+		final float free;
 
 		/**
 		 * Occupancy
 		 */
-		public final float occupancy;
+		final float occupancy;
 
 		/**
 		 * Status
@@ -182,7 +182,7 @@ public class StorageUtils
 		 * @param occupancy occupancy percentage
 		 * @param status    status
 		 */
-		public StorageDirectory(final Directory dir, final float free, final float occupancy, final int status)
+		StorageDirectory(final Directory dir, final float free, final float occupancy, final int status)
 		{
 			this.dir = dir;
 			this.free = free;
@@ -195,7 +195,7 @@ public class StorageUtils
 		 *
 		 * @return short string
 		 */
-		public CharSequence toShortString()
+		CharSequence toShortString()
 		{
 			return String.format(Locale.ENGLISH, "%s %s %s free", this.dir.type.toDisplay(), this.dir.file.getAbsolutePath(), mbToString(this.free));
 		}
@@ -205,7 +205,7 @@ public class StorageUtils
 		 *
 		 * @return long string
 		 */
-		public String toLongString()
+		String toLongString()
 		{
 			return String.format(Locale.ENGLISH, "%s\n%s\n%s free %.1f%% occupancy\n%s", this.dir.type.toDisplay(), this.dir.file.getAbsolutePath(), mbToString(this.free), this.occupancy, this.status());
 		}
@@ -315,7 +315,7 @@ public class StorageUtils
 		 *
 		 * @return true if database fits in storage
 		 */
-		public boolean fitsIn()
+		boolean fitsIn()
 		{
 			return !Float.isNaN(this.free) && this.free >= DATABASEMB;
 		}
@@ -480,7 +480,7 @@ public class StorageUtils
 	 * @param context context
 	 * @return list of storage directories (desc-) sorted by size and type
 	 */
-	static public List<StorageDirectory> getSortedStorageDirectories(final Context context)
+	static List<StorageDirectory> getSortedStorageDirectories(final Context context)
 	{
 		final List<StorageDirectory> storageDirectories = getStorageDirectories(context);
 		Collections.sort(storageDirectories);
@@ -494,7 +494,7 @@ public class StorageUtils
 	 *
 	 * @return map per type of external storage
 	 */
-	static public Map<StorageType, File[]> getExternalStorages()
+	static Map<StorageType, File[]> getExternalStorages()
 	{
 		// result set of paths
 		final Map<StorageType, File[]> dirs = new EnumMap<>(StorageType.class);
@@ -647,7 +647,6 @@ public class StorageUtils
 	 * @param dir directory
 	 * @return true if it qualifies
 	 */
-	@TargetApi(Build.VERSION_CODES.LOLLIPOP)
 	static private int qualifies(final File dir, final DirType type)
 	{
 		int status = 0;
@@ -660,29 +659,32 @@ public class StorageUtils
 		}
 
 		// state
-		switch (type)
+		if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.LOLLIPOP)
 		{
-			case APP_EXTERNAL_SECONDARY:
-			case APP_EXTERNAL_PRIMARY:
-			case PUBLIC_EXTERNAL_PRIMARY:
-			case PUBLIC_EXTERNAL_SECONDARY:
-				try
-				{
-					final String state = Environment.getExternalStorageState(dir);
-					if (!Environment.MEDIA_MOUNTED.equals(state))
+			switch (type)
+			{
+				case APP_EXTERNAL_SECONDARY:
+				case APP_EXTERNAL_PRIMARY:
+				case PUBLIC_EXTERNAL_PRIMARY:
+				case PUBLIC_EXTERNAL_SECONDARY:
+					try
 					{
-						Log.d(StorageUtils.TAG, "storage state of " + dir + ": " + state);
-						status |= StorageDirectory.NOT_MOUNTED;
+						final String state = Environment.getExternalStorageState(dir);
+						if (!Environment.MEDIA_MOUNTED.equals(state))
+						{
+							Log.d(StorageUtils.TAG, "storage state of " + dir + ": " + state);
+							status |= StorageDirectory.NOT_MOUNTED;
+						}
 					}
-				}
-				catch (final Throwable e)
-				{
-					//
-				}
-				break;
-			case APP_INTERNAL:
-			case AUTO:
-				break;
+					catch (final Throwable e)
+					{
+						//
+					}
+					break;
+				case APP_INTERNAL:
+				case AUTO:
+					break;
+			}
 		}
 
 		// make path
@@ -792,13 +794,21 @@ public class StorageUtils
 	 * @param path path
 	 * @return free storage in megabytes
 	 */
-	@TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR2)
 	static private float storageFree(final String path)
 	{
 		try
 		{
 			final StatFs stat = new StatFs(path);
-			final float bytes = stat.getAvailableBlocksLong() * stat.getBlockSizeLong();
+			float bytes;
+			if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2)
+			{
+				bytes = stat.getAvailableBlocksLong() * stat.getBlockSizeLong();
+			}
+			else
+			{
+				//noinspection deprecation
+				bytes = stat.getAvailableBlocks() * stat.getBlockSize();
+			}
 			return bytes / (1024.f * 1024.f);
 		}
 		catch (Throwable e)
@@ -813,7 +823,7 @@ public class StorageUtils
 	 * @param dir dir
 	 * @return free space as string
 	 */
-	static public CharSequence storageFreeAsString(final File dir)
+	static CharSequence storageFreeAsString(final File dir)
 	{
 		return storageFreeAsString(dir.getAbsolutePath());
 	}
@@ -824,7 +834,7 @@ public class StorageUtils
 	 * @param dir dir
 	 * @return free space as string
 	 */
-	static public CharSequence storageFreeAsString(final String dir)
+	static CharSequence storageFreeAsString(final String dir)
 	{
 		return StorageUtils.mbToString(storageFree(dir));
 	}
@@ -835,13 +845,21 @@ public class StorageUtils
 	 * @param path path
 	 * @return storage capacity in megabytes
 	 */
-	@TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR2)
-	static public float storageCapacity(final String path)
+	static float storageCapacity(final String path)
 	{
 		try
 		{
 			final StatFs stat = new StatFs(path);
-			final float bytes = stat.getBlockCountLong() * stat.getBlockSizeLong();
+			final float bytes;
+			if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2)
+			{
+				bytes = stat.getBlockCountLong() * stat.getBlockSizeLong();
+			}
+			else
+			{
+				//noinspection deprecation
+				bytes = stat.getBlockCount() * stat.getBlockSize();
+			}
 			return bytes / (1024.f * 1024.f);
 		}
 		catch (Throwable e)
@@ -856,7 +874,7 @@ public class StorageUtils
 	 * @param mb megabytes
 	 * @return string
 	 */
-	static public String mbToString(final float mb)
+	static String mbToString(final float mb)
 	{
 		if (Float.isNaN(mb))
 		{
@@ -901,7 +919,7 @@ public class StorageUtils
 
 	// R E P O R T S
 
-	static public CharSequence reportStorageDirectories(final Context context)
+	static CharSequence reportStorageDirectories(final Context context)
 	{
 		final StringBuilder sb = new StringBuilder();
 		int i = 1;
@@ -926,8 +944,7 @@ public class StorageUtils
 	 *
 	 * @return report
 	 */
-	@TargetApi(Build.VERSION_CODES.LOLLIPOP)
-	static public CharSequence reportExternalStorage()
+	static CharSequence reportExternalStorage()
 	{
 		final Map<StorageType, File[]> storages = StorageUtils.getExternalStorages();
 		final File[] physical = storages.get(StorageType.PRIMARY_PHYSICAL);
@@ -944,13 +961,17 @@ public class StorageUtils
 				sb.append(s);
 				sb.append(' ');
 				sb.append(mbToString(StorageUtils.storageCapacity(s)));
-				sb.append(' ');
-				try
+				if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
 				{
-					sb.append(Environment.isExternalStorageEmulated(f) ? "emulated" : "not-emulated");
-				}
-				catch (Throwable e)
-				{ //
+					sb.append(' ');
+					try
+					{
+						sb.append(Environment.isExternalStorageEmulated(f) ? "emulated" : "not-emulated");
+					}
+					catch (Throwable e)
+					{
+						//
+					}
 				}
 				sb.append('\n');
 			}
@@ -964,13 +985,17 @@ public class StorageUtils
 				sb.append(s);
 				sb.append(' ');
 				sb.append(mbToString(StorageUtils.storageCapacity(s)));
-				sb.append(' ');
-				try
+				if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
 				{
-					sb.append(Environment.isExternalStorageEmulated(f) ? "emulated" : "not-emulated");
-				}
-				catch (Throwable e)
-				{ //
+					sb.append(' ');
+					try
+					{
+						sb.append(Environment.isExternalStorageEmulated(f) ? "emulated" : "not-emulated");
+					}
+					catch (Throwable e)
+					{
+						//
+					}
 				}
 				sb.append('\n');
 			}
@@ -984,13 +1009,17 @@ public class StorageUtils
 				sb.append(s);
 				sb.append(' ');
 				sb.append(mbToString(StorageUtils.storageCapacity(s)));
-				sb.append(' ');
-				try
+				if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
 				{
-					sb.append(Environment.isExternalStorageEmulated(f) ? "emulated" : "not-emulated");
-				}
-				catch (Throwable e)
-				{ //
+					sb.append(' ');
+					try
+					{
+						sb.append(Environment.isExternalStorageEmulated(f) ? "emulated" : "not-emulated");
+					}
+					catch (Throwable e)
+					{
+						//
+					}
 				}
 				sb.append('\n');
 			}

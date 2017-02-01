@@ -3,6 +3,7 @@ package org.sqlunet.browser.config;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -36,6 +37,9 @@ public class SetupSqlFragment extends Fragment
 	// codes
 
 	static private final int REQUEST_DOWNLOAD_CODE = 0xDDDD;
+
+	// task
+	private AsyncTask<?, Integer, Boolean> task;
 
 	// download sql button
 	private ImageButton downloadSqlZipButton;

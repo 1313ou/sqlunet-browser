@@ -1,7 +1,7 @@
 package org.sqlunet.style;
 
-import android.annotation.TargetApi;
 import android.content.Context;
+import android.content.res.Resources;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
@@ -75,18 +75,18 @@ public class Report
 	 * @param resId   res id
 	 * @return image span
 	 */
-	@TargetApi(Build.VERSION_CODES.LOLLIPOP)
 	@SuppressWarnings("deprecation")
 	static private Object makeImageSpan(final Context context, final int resId)
 	{
+		final Resources res = context.getResources();
 		Drawable drawable;
 		if (Build.VERSION.SDK_INT < Build.VERSION_CODES.N)
 		{
-			drawable = context.getResources().getDrawable(resId);
+			drawable = res.getDrawable(resId);
 		}
 		else
 		{
-			drawable = context.getResources().getDrawable(resId, null);
+			drawable = res.getDrawable(resId, null);
 		}
 		drawable.setBounds(0, 0, drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight());
 		return new ImageSpan(drawable, DynamicDrawableSpan.ALIGN_BOTTOM);

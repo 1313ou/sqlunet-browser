@@ -49,7 +49,10 @@ public class HelpFragment extends NavigableFragment
 			@Override
 			public void onReceivedError(final WebView webView, final WebResourceRequest request, WebResourceError error)
 			{
-				super.onReceivedError(webView, request, error);
+				if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N)
+				{
+					super.onReceivedError(webView, request, error);
+				}
 				Log.e(HelpFragment.TAG, error.toString());
 			}
 

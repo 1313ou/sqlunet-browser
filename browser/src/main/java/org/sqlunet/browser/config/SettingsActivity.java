@@ -1,6 +1,5 @@
 package org.sqlunet.browser.config;
 
-import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
@@ -244,7 +243,6 @@ public class SettingsActivity extends AppCompatPreferenceActivity
 	 * {@inheritDoc}
 	 */
 	@Override
-	@TargetApi(Build.VERSION_CODES.HONEYCOMB)
 	public void onBuildHeaders(final List<Header> target)
 	{
 		if (!SettingsActivity.isSimplePreferences(this))
@@ -333,7 +331,6 @@ public class SettingsActivity extends AppCompatPreferenceActivity
 	/**
 	 * This fragment shows general preferences only.
 	 */
-	@TargetApi(Build.VERSION_CODES.HONEYCOMB)
 	static public class GeneralPreferenceFragment extends PreferenceFragment
 	{
 		@Override
@@ -353,7 +350,6 @@ public class SettingsActivity extends AppCompatPreferenceActivity
 	/**
 	 * This fragment shows general preferences only.
 	 */
-	@TargetApi(Build.VERSION_CODES.HONEYCOMB)
 	static public class FilterPreferenceFragment extends PreferenceFragment
 	{
 		@Override
@@ -369,7 +365,6 @@ public class SettingsActivity extends AppCompatPreferenceActivity
 	/**
 	 * This fragment shows database preferences only.
 	 */
-	@TargetApi(Build.VERSION_CODES.HONEYCOMB)
 	static public class DatabasePreferenceFragment extends PreferenceFragment
 	{
 		@Override
@@ -392,7 +387,6 @@ public class SettingsActivity extends AppCompatPreferenceActivity
 	/**
 	 * This fragment shows download preferences only.
 	 */
-	@TargetApi(Build.VERSION_CODES.HONEYCOMB)
 	static public class DownloadPreferenceFragment extends PreferenceFragment
 	{
 		@Override

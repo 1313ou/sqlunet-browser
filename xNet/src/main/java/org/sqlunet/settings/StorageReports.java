@@ -1,6 +1,5 @@
 package org.sqlunet.settings;
 
-import android.annotation.TargetApi;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.Typeface;
@@ -283,7 +282,6 @@ public class StorageReports
 	 * @param context context
 	 * @return report
 	 */
-	@TargetApi(Build.VERSION_CODES.LOLLIPOP)
 	static public CharSequence reportExternalStorage(final Context context)
 	{
 		final Map<StorageType, File[]> storages = StorageUtils.getExternalStorages();
@@ -304,13 +302,17 @@ public class StorageReports
 				Report.append(sb, s, new StyleSpan(Typeface.ITALIC), new ForegroundColorSpan(Color.GRAY));
 				sb.append('\n');
 				sb.append(StorageUtils.mbToString(StorageUtils.storageCapacity(s)));
-				sb.append(' ');
-				try
+				if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
 				{
-					sb.append(Environment.isExternalStorageEmulated(f) ? "emulated" : "not-emulated");
-				}
-				catch (Throwable e)
-				{ //
+					sb.append(' ');
+					try
+					{
+						sb.append(Environment.isExternalStorageEmulated(f) ? "emulated" : "not-emulated");
+					}
+					catch (Throwable e)
+					{
+						//
+					}
 				}
 				sb.append('\n');
 			}
