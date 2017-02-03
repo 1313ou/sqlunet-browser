@@ -2,7 +2,7 @@
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
 
 	<!-- Focused -->
-	<item android:state_focused="true" android:drawable="@android:color/holo_orange_light" />
+	<item android:state_focused="true" android:drawable="@android:color/transparent" />
 
 	<!-- Default -->
 	<item android:drawable="@android:color/transparent"/>

@@ -15,7 +15,7 @@ import android.widget.TextView;
 import org.sqlunet.browser.R;
 
 /**
- * Manage fragment
+ * Base task fragment
  *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */

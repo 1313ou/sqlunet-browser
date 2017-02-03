@@ -1,8 +1,9 @@
 package org.sqlunet.verbnet.browser;
 
-import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.os.Parcelable;
+import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,6 +26,8 @@ import org.sqlunet.view.TreeFactory;
  */
 public class VerbNetFragment extends Fragment
 {
+	static private final String TAG = "VerbNetFragment";
+
 	/**
 	 * State of tree
 	 */
@@ -65,13 +68,24 @@ public class VerbNetFragment extends Fragment
 		// saved state
 		if (savedInstanceState != null)
 		{
+			Log.d(TAG, "restore instance state " + this);
 			final String state = savedInstanceState.getString(STATE_TREEVIEW);
 			if (state != null && !state.isEmpty())
 			{
 				this.treeView.restoreState(state);
-				return view;
 			}
 		}
+		return view;
+	}
+
+	@Override
+	public void onStart()
+	{
+		super.onStart();
+
+		// root node
+		final TreeNode root = this.treeView.getRoot();
+		final TreeNode queryNode = root.getChildren().iterator().next();
 
 		// query
 		final Bundle args = getArguments();
@@ -86,13 +100,12 @@ public class VerbNetFragment extends Fragment
 			module.init(type, pointer);
 			module.process(queryNode);
 		}
-
-		return view;
 	}
 
 	@Override
 	public void onSaveInstanceState(final Bundle outState)
 	{
+		Log.d(TAG, "save instance state " + this);
 		super.onSaveInstanceState(outState);
 		outState.putString(STATE_TREEVIEW, this.treeView.getSaveState());
 	}

@@ -170,18 +170,6 @@ public class XSelectorsFragment extends ExpandableListFragment
 		this.wordId = 0;
 	}
 
-	// L I S T E N E R
-
-	/**
-	 * Set listener
-	 *
-	 * @param listener listener
-	 */
-	public void setListener(final Listener listener)
-	{
-		this.listener = listener;
-	}
-
 	// V I E W
 
 	@Override
@@ -233,6 +221,18 @@ public class XSelectorsFragment extends ExpandableListFragment
 			// serialize and persist the activated item position.
 			outState.putInt(XSelectorsFragment.STATE_ACTIVATED_SELECTOR, this.activatedPosition);
 		}
+	}
+
+	// L I S T E N E R
+
+	/**
+	 * Set listener
+	 *
+	 * @param listener listener
+	 */
+	public void setListener(final Listener listener)
+	{
+		this.listener = listener;
 	}
 
 	// L O A D

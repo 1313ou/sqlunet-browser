@@ -1,8 +1,9 @@
 package org.sqlunet.browser.selector;
 
-import android.support.v4.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -50,8 +51,9 @@ public class Browse1Fragment extends Fragment implements SelectorsFragment.Liste
 		this.selectorsFragment = new SelectorsFragment();
 		this.selectorsFragment.setArguments(args);
 		this.selectorsFragment.setListener(this);
-		getChildFragmentManager() //
-				.beginTransaction() //
+
+		final FragmentManager manager = getChildFragmentManager();
+		manager.beginTransaction() //
 				.replace(R.id.container_selectors, this.selectorsFragment) //
 				.commit();
 
@@ -63,10 +65,13 @@ public class Browse1Fragment extends Fragment implements SelectorsFragment.Liste
 			this.isTwoPane = true;
 
 			// detail fragment
-			final Fragment browse2Fragment = new Browse2Fragment();
-			getChildFragmentManager() //
-					.beginTransaction() //
-					.replace(R.id.container_browse2, browse2Fragment) //
+			Fragment browse2Fragment = manager.findFragmentByTag("browse2");
+			if (browse2Fragment == null)
+			{
+				browse2Fragment = new Browse2Fragment();
+			}
+			manager.beginTransaction() //
+					.replace(R.id.container_browse2, browse2Fragment, "browse2") //
 					.commit();
 		}
 

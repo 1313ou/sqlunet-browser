@@ -94,6 +94,18 @@ public class TreeView
 		this.context = context;
 	}
 
+	// R O O T
+
+	/**
+	 * Get root
+	 *
+	 * @return root
+	 */
+	public TreeNode getRoot()
+	{
+		return this.root;
+	}
+
 	// V I E W
 
 	/**

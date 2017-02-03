@@ -3,6 +3,7 @@ package org.sqlunet.bnc.browser;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,6 +24,8 @@ import org.sqlunet.view.TreeFactory;
  */
 public class BNCFragment extends Fragment
 {
+	static private final String TAG = "BNCFragment";
+
 	/**
 	 * State of tree
 	 */
@@ -55,11 +58,11 @@ public class BNCFragment extends Fragment
 		// saved state
 		if (savedInstanceState != null)
 		{
+			Log.d(TAG, "restore instance state " + this);
 			final String state = savedInstanceState.getString(STATE_TREEVIEW);
 			if (state != null && !state.isEmpty())
 			{
 				this.treeView.restoreState(state);
-				return view;
 			}
 		}
 
@@ -83,6 +86,7 @@ public class BNCFragment extends Fragment
 	@Override
 	public void onSaveInstanceState(final Bundle outState)
 	{
+		Log.d(TAG, "save instance state " + this);
 		super.onSaveInstanceState(outState);
 		outState.putString(STATE_TREEVIEW, this.treeView.getSaveState());
 	}

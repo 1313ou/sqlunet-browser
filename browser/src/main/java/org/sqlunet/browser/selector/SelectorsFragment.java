@@ -174,18 +174,6 @@ public class SelectorsFragment extends ListFragment
 		setListAdapter(adapter);
 	}
 
-	// L I S T E N E R
-
-	/**
-	 * Set listener
-	 *
-	 * @param listener listener
-	 */
-	public void setListener(final Listener listener)
-	{
-		this.listener = listener;
-	}
-
 	// V I E W
 
 	@Override
@@ -216,8 +204,14 @@ public class SelectorsFragment extends ListFragment
 			}
 			this.activatedPosition = position;
 		}
+	}
 
-		// load the contents
+	@Override
+	public void onStart()
+	{
+		super.onStart();
+
+		// load the contents (once activity is available)
 		load();
 	}
 
@@ -231,6 +225,18 @@ public class SelectorsFragment extends ListFragment
 			// serialize and persist the activated item position.
 			outState.putInt(SelectorsFragment.STATE_ACTIVATED_SELECTOR, this.activatedPosition);
 		}
+	}
+
+	// L I S T E N E R
+
+	/**
+	 * Set listener
+	 *
+	 * @param listener listener
+	 */
+	public void setListener(final Listener listener)
+	{
+		this.listener = listener;
 	}
 
 	// L O A D

@@ -88,7 +88,6 @@ public class PredicateMatrixResultFragment extends Fragment
 				if (state != null && !state.isEmpty())
 				{
 					this.treeView.restoreState(state);
-					return view;
 				}
 			}
 
