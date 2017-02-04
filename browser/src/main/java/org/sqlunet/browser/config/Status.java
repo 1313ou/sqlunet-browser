@@ -191,18 +191,20 @@ public class Status
 				"name NOT LIKE 'sqlite_%' AND name NOT LIKE 'android_%'", // selection criteria //
 				null, //
 				order);
-		assert cursor != null;
 		List<String> result = null;
-		if (cursor.moveToFirst())
+		if (cursor != null)
 		{
-			final int nameId = cursor.getColumnIndex(TablesAndIndices.NAME);
-			result = new ArrayList<>();
-			do
+			if (cursor.moveToFirst())
 			{
-				final String name = cursor.getString(nameId);
-				result.add(name);
+				final int nameId = cursor.getColumnIndex(TablesAndIndices.NAME);
+				result = new ArrayList<>();
+				do
+				{
+					final String name = cursor.getString(nameId);
+					result.add(name);
+				}
+				while (cursor.moveToNext());
 			}
-			while (cursor.moveToNext());
 		}
 		cursor.close();
 		return result;

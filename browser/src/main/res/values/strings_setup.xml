@@ -19,6 +19,11 @@
 	<string name="download_sqlzip">Download SQL archive</string>
 	<string name="info_sqlzip">Info about SQL archive</string>
 
+	<string name="status_created">Database status</string>
+	<string name="title_created">Database</string>
+	<string name="create_database">Create database</string>
+	<string name="info_created">Info about database</string>
+
 	<string name="status_import">Import status</string>
 	<string name="title_import">Import</string>
 	<string name="execute_import">Import</string>

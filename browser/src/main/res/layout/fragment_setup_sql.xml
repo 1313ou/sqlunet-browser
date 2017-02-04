@@ -63,6 +63,32 @@
 						android:src="@drawable/bn_info"/>
 				</LinearLayout>
 
+				<!-- create -->
+
+				<TextView
+					style="@style/GridLabel"
+					android:text="@string/title_created"/>
+
+				<LinearLayout style="@style/GridData">
+
+					<ImageView
+						android:id="@+id/status_created"
+						style="@style/GridStatusImage"
+						android:contentDescription="@string/status_created"/>
+
+					<ImageButton
+						android:id="@+id/create_database"
+						style="@style/GridActionButton"
+						android:contentDescription="@string/create_database"
+						android:src="@drawable/bn_setup"/>
+
+					<ImageButton
+						android:id="@+id/info_created"
+						style="@style/GridInfoButton"
+						android:contentDescription="@string/info_created"
+						android:src="@drawable/bn_info"/>
+				</LinearLayout>
+
 				<!-- import -->
 
 				<TextView

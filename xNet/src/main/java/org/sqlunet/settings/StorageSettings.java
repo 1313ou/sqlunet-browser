@@ -153,6 +153,28 @@ public class StorageSettings
 		return StorageSettings.getDataDir(context) + File.separatorChar + Storage.DBFILE;
 	}
 
+	/**
+	 * Get download db zipped source
+	 *
+	 * @param context context
+	 * @return download db source
+	 */
+	static public String getDbDownloadZippedSource(final Context context)
+	{
+		return StorageSettings.getDownloadSite(context) + '/' + StorageSettings.getDbDownloadFile(context) + ".zip";
+	}
+
+	/**
+	 * Get download db zipped target
+	 *
+	 * @param context context
+	 * @return download db target
+	 */
+	static public String getDbDownloadZippedTarget(final Context context)
+	{
+		return StorageSettings.getCacheDir(context) + File.separatorChar + Storage.DBFILEZIP;
+	}
+
 	// S Q L
 
 	/**

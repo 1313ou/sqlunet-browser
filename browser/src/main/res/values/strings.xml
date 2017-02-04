@@ -147,6 +147,7 @@
 	<string name="md5_downloaded">Downloaded</string>
 	<string name="md5_computed">Computed</string>
 	<string name="md5_compared">Compared</string>
+	<string name="unit_statement">statements</string>
 
 	<!-- databases -->
 	<!--
@@ -225,12 +226,13 @@
 	</string-array>
 
 	<!-- setup spinner -->
-	<string name="title_select">[SELECT]</string>
+	<string name="title_select">[SELECT OPERATION]</string>
 	<string name="title_setup_create">Create database</string>
 	<string name="title_setup_drop">Drop database</string>
 	<string name="title_setup_copy">Copy database from file &#8230;</string>
 	<string name="title_setup_unzip">Unzip database from file &#8230;</string>
 	<string name="title_setup_download">Download database</string>
+	<string name="title_setup_download_zipped">Download zipped database</string>
 	<string name="title_setup_md5">MD5 checksum &#8230;</string>
 	<string-array name="setup_titles">
 		<item>@string/title_select</item>
@@ -239,6 +241,7 @@
 		<item>@string/title_setup_copy</item>
 		<item>@string/title_setup_unzip</item>
 		<item>@string/title_setup_download</item>
+		<item>@string/title_setup_download_zipped</item>
 		<item>@string/title_setup_md5</item>
 	</string-array>
 	<string-array name="setup_values" formatted="false">
@@ -248,6 +251,7 @@
 		<item>COPY</item>
 		<item>UNZIP</item>
 		<item>DOWNLOAD</item>
+		<item>DOWNLOADZIPPED</item>
 		<item>MD5</item>
 	</string-array>
 

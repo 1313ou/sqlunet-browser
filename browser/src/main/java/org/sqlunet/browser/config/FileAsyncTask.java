@@ -502,7 +502,7 @@ class FileAsyncTask
 			public void onClick(DialogInterface dialog, int whichButton)
 			{
 				final String sourceFile = input.getText().toString();
-				final TaskObserver.Listener listener = new TaskObserver.DialogListener(context, R.string.action_unzip_from_archive, sourceFile);
+				final TaskObserver.Listener listener = new TaskObserver.DialogListener(context, R.string.action_unzip_from_archive, sourceFile, null);
 				new FileAsyncTask(listener, 1000).unzipFromArchive(sourceFile, Storage.DBFILE, databasePath);
 			}
 		});
@@ -544,7 +544,7 @@ class FileAsyncTask
 			public void onClick(DialogInterface dialog, int whichButton)
 			{
 				final String sourceFile = input.getText().toString();
-				final TaskObserver.Listener listener = new TaskObserver.DialogListener(context, R.string.action_copy_from_file, sourceFile);
+				final TaskObserver.Listener listener = new TaskObserver.DialogListener(context, R.string.action_copy_from_file, sourceFile, null);
 				new FileAsyncTask(listener, 1000).copyFromFile(sourceFile, databasePath);
 			}
 		});
@@ -568,7 +568,7 @@ class FileAsyncTask
 	 */
 	static public void md5(final Context context, final String path, final ResultListener resultListener)
 	{
-		final TaskObserver.Listener listener = new TaskObserver.DialogListener(context, R.string.action_md5, path);
+		final TaskObserver.Listener listener = new TaskObserver.DialogListener(context, R.string.action_md5, path, null);
 		new FileAsyncTask(listener, resultListener, 1000).md5FromFile(path);
 	}
 

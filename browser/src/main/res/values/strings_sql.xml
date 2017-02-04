@@ -2,7 +2,7 @@
 <resources>
 
 	<string-array name="sql_statement_titles">
-		<item>[SELECT]</item>
+		<item>[SELECT OPERATION]</item>
 		<item>Create all indexes</item>
 		<item>Prepare PredicateMatrix</item>
 		<item>Prepare WordNet text search</item>

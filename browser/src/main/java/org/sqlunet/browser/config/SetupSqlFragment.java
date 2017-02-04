@@ -1,7 +1,6 @@
 package org.sqlunet.browser.config;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -44,6 +43,9 @@ public class SetupSqlFragment extends Fragment
 	// download sql button
 	private ImageButton downloadSqlZipButton;
 
+	// create button
+	private ImageButton createButton;
+
 	// import button
 	private ImageButton importButton;
 
@@ -55,6 +57,9 @@ public class SetupSqlFragment extends Fragment
 
 	// download sql view
 	private ImageView downloadSqlZipStatus;
+
+	// create view
+	private ImageView createStatus;
 
 	// import view
 	private ImageView importStatus;
@@ -92,16 +97,19 @@ public class SetupSqlFragment extends Fragment
 
 		// statuses
 		this.downloadSqlZipStatus = (ImageView) view.findViewById(R.id.status_sqlzip);
+		this.createStatus = (ImageView) view.findViewById(R.id.status_created);
 		this.importStatus = (ImageView) view.findViewById(R.id.status_import);
 		this.indexesStatus = (ImageView) view.findViewById(R.id.status_indexes);
 		this.pmStatus = (ImageView) view.findViewById(R.id.status_pm);
 
 		// buttons
+		this.createButton = (ImageButton) view.findViewById(R.id.create_database);
 		this.downloadSqlZipButton = (ImageButton) view.findViewById(R.id.download_sqlzip);
 		this.importButton = (ImageButton) view.findViewById(R.id.execute_import);
 		this.indexesButton = (ImageButton) view.findViewById(R.id.execute_indexes);
 		this.predicateMatrixButton = (ImageButton) view.findViewById(R.id.execute_predicatematrix);
 		ImageButton infoSqlZipButton = (ImageButton) view.findViewById(R.id.info_sqlzip);
+		ImageButton infoCreateButton = (ImageButton) view.findViewById(R.id.info_created);
 		ImageButton infoImportButton = (ImageButton) view.findViewById(R.id.info_import);
 		ImageButton infoIndexesButton = (ImageButton) view.findViewById(R.id.info_indexes);
 		ImageButton infoPmButton = (ImageButton) view.findViewById(R.id.info_pm);
@@ -138,6 +146,34 @@ public class SetupSqlFragment extends Fragment
 			}
 		});
 
+		// created
+		this.createButton.setOnClickListener(new View.OnClickListener()
+		{
+			@Override
+			public void onClick(final View v)
+			{
+				try
+				{
+					SetupDatabaseTasks.createDatabase(activity, StorageSettings.getDatabasePath(activity));
+				}
+				catch (final Exception e)
+				{
+					Log.e(TAG, "While creating", e);
+				}
+				update();
+			}
+		});
+		infoCreateButton.setOnClickListener(new View.OnClickListener()
+		{
+			@Override
+			public void onClick(final View v)
+			{
+				final String database = StorageSettings.getDatabasePath(activity);
+				final String free = StorageUtils.getFree(getActivity(), database);
+				Info.info(activity, R.string.title_created, getString(R.string.title_database), database, getString(R.string.title_free), free);
+			}
+		});
+
 		// import
 		this.importButton.setOnClickListener(new View.OnClickListener()
 		{
@@ -149,7 +185,8 @@ public class SetupSqlFragment extends Fragment
 					final String database = StorageSettings.getDatabasePath(activity);
 					final String source = StorageSettings.getSqlSource(activity);
 					final String entry = StorageSettings.getImportEntry(activity);
-					final TaskObserver.Listener listener = new TaskObserver.DialogListener(activity, R.string.status_managing, source + '@' + entry);
+					final String unit = activity.getString(R.string.unit_statement);
+					final TaskObserver.Listener listener = new TaskObserver.DialogListener(activity, R.string.status_managing, source + '@' + entry, unit);
 					SetupSqlFragment.this.task = new ExecAsyncTask(listener, 1000).executeFromArchive(database, source, entry);
 				}
 				catch (final Exception e)
@@ -183,7 +220,8 @@ public class SetupSqlFragment extends Fragment
 					final String database = StorageSettings.getDatabasePath(activity);
 					final String source = StorageSettings.getSqlSource(activity);
 					final String entry = StorageSettings.getIndexEntry(activity);
-					final TaskObserver.Listener listener = new TaskObserver.DialogListener(activity, R.string.status_managing, source + '@' + entry);
+					final String unit = activity.getString(R.string.unit_statement);
+					final TaskObserver.Listener listener = new TaskObserver.DialogListener(activity, R.string.status_managing, source + '@' + entry, unit);
 					SetupSqlFragment.this.task = new ExecAsyncTask(listener, 1).executeFromArchive(database, source, entry);
 				}
 				catch (final Exception e)
@@ -217,7 +255,8 @@ public class SetupSqlFragment extends Fragment
 					final String database = StorageSettings.getDatabasePath(activity);
 					final String source = StorageSettings.getSqlSource(activity);
 					final String entry = StorageSettings.getPmEntry(activity);
-					final TaskObserver.Listener listener = new TaskObserver.DialogListener(activity, R.string.status_managing, source + '@' + entry);
+					final String unit = activity.getString(R.string.unit_statement);
+					final TaskObserver.Listener listener = new TaskObserver.DialogListener(activity, R.string.status_managing, source + '@' + entry, unit);
 					SetupSqlFragment.this.task = new ExecAsyncTask(listener, 1).executeFromArchive(database, source, entry);
 				}
 				catch (final Exception e)
@@ -279,17 +318,20 @@ public class SetupSqlFragment extends Fragment
 
 		// status
 		final int status = Status.status(activity);
-		final boolean existsData = (status & Status.EXISTS) != 0;
+		final boolean existsDatabase = (status & Status.EXISTS) != 0;
+		final boolean existsTables = (status & Status.EXISTS_TABLES) != 0;
 		final boolean existsIndexes = (status & Status.EXISTS_INDEXES) != 0;
 		final boolean existsPm = (status & Status.EXISTS_PREDICATEMATRIX) != 0;
-		this.importStatus.setImageResource(existsData ? R.drawable.ic_ok : R.drawable.ic_fail);
+		this.createStatus.setImageResource(existsDatabase ? R.drawable.ic_ok : R.drawable.ic_fail);
+		this.importStatus.setImageResource(existsTables ? R.drawable.ic_ok : R.drawable.ic_fail);
 		this.indexesStatus.setImageResource(existsIndexes ? R.drawable.ic_ok : R.drawable.ic_fail);
 		this.pmStatus.setImageResource(existsPm ? R.drawable.ic_ok : R.drawable.ic_fail);
 
 		// actions
-		this.importButton.setVisibility(sqlZipExists && !existsData ? View.VISIBLE : View.GONE);
-		this.indexesButton.setVisibility(sqlZipExists && !existsIndexes ? View.VISIBLE : View.GONE);
-		this.predicateMatrixButton.setVisibility(sqlZipExists && !existsPm ? View.VISIBLE : View.GONE);
+		this.createButton.setVisibility(sqlZipExists && !existsDatabase ? View.VISIBLE : View.GONE);
+		this.importButton.setVisibility(sqlZipExists && existsDatabase && !existsTables ? View.VISIBLE : View.GONE);
+		this.indexesButton.setVisibility(sqlZipExists && existsDatabase && existsTables && !existsIndexes ? View.VISIBLE : View.GONE);
+		this.predicateMatrixButton.setVisibility(sqlZipExists && existsDatabase && existsTables && !existsPm ? View.VISIBLE : View.GONE);
 	}
 
 	// R E T U R N S
@@ -322,10 +364,8 @@ public class SetupSqlFragment extends Fragment
 	}
 
 	@Override
-	public boolean onOptionsItemSelected(MenuItem item)
+	public boolean onOptionsItemSelected(final MenuItem item)
 	{
-		final Context context = getActivity();
-
 		// handle item selection
 		switch (item.getItemId())
 		{

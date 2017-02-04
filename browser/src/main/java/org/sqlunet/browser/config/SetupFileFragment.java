@@ -12,6 +12,9 @@ import android.widget.SpinnerAdapter;
 import org.sqlunet.browser.R;
 import org.sqlunet.settings.StorageSettings;
 
+import static org.sqlunet.browser.config.BaseDownloadFragment.DOWNLOAD_FROM_ARG;
+import static org.sqlunet.browser.config.BaseDownloadFragment.DOWNLOAD_TO_ARG;
+
 /**
  * Set up fragment
  *
@@ -28,7 +31,7 @@ public class SetupFileFragment extends BaseTaskFragment
 	 */
 	private enum Operation
 	{
-		CREATE, DROP, COPY, UNZIP, MD5, SETUPSQL, DOWNLOAD
+		CREATE, DROP, COPY, UNZIP, MD5, SETUPSQL, DOWNLOAD, DOWNLOADZIPPED
 	}
 
 	/**
@@ -118,6 +121,13 @@ public class SetupFileFragment extends BaseTaskFragment
 					case DOWNLOAD:
 						final Intent intent2 = new Intent(context, DownloadActivity.class);
 						context.startActivity(intent2);
+						break;
+
+					case DOWNLOADZIPPED:
+						final Intent intent3 = new Intent(context, DownloadActivity.class);
+						intent3.putExtra(DOWNLOAD_FROM_ARG, StorageSettings.getDbDownloadZippedSource(context));
+						intent3.putExtra(DOWNLOAD_TO_ARG, StorageSettings.getDbDownloadZippedTarget(context));
+						context.startActivity(intent3);
 						break;
 				}
 			}

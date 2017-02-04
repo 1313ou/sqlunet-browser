@@ -11,6 +11,7 @@ import android.widget.Toast;
 
 import org.sqlunet.browser.R;
 
+import java.text.NumberFormat;
 import java.util.Locale;
 
 /**
@@ -189,17 +190,20 @@ class TaskObserver
 	{
 		private final ProgressDialog progressDialog;
 
+		private final CharSequence unit;
+
 		/**
 		 * Constructor
 		 *
 		 * @param context   context
 		 * @param titleId   titleId id
 		 * @param messageId message id
+		 * @param unitId    unit id
 		 */
 		@SuppressWarnings("unused")
-		DialogListener(final Context context, final int titleId, final int messageId)
+		DialogListener(final Context context, final int titleId, final int messageId, final int unitId)
 		{
-			this(context, titleId, context.getString(messageId));
+			this(context, titleId, context.getString(messageId), context.getString(unitId));
 		}
 
 		/**
@@ -208,11 +212,13 @@ class TaskObserver
 		 * @param context context
 		 * @param titleId titleId id
 		 * @param message message
+		 * @param unit    unit
 		 */
-		DialogListener(final Context context, final int titleId, final CharSequence message)
+		DialogListener(final Context context, final int titleId, final CharSequence message, final CharSequence unit)
 		{
 			super(context);
 			this.progressDialog = makeDialog(context, titleId, message, ProgressDialog.STYLE_HORIZONTAL);
+			this.unit = unit;
 		}
 
 		@Override
@@ -241,7 +247,12 @@ class TaskObserver
 			super.taskUpdate(progress, length);
 			final boolean indeterminate = length == -1;
 			this.progressDialog.setIndeterminate(indeterminate);
-			final String message = countToString(progress);
+			if (indeterminate)
+			{
+				this.progressDialog.setProgressNumberFormat(null);
+				this.progressDialog.setProgressPercentFormat(null);
+			}
+			final String message = this.unit != null ? countToString(progress, this.unit) : countToStorageString(progress);
 			this.progressDialog.setMessage(message);
 			if (!indeterminate)
 			{
@@ -275,6 +286,7 @@ class TaskObserver
 			progressDialog.setIndeterminate(true);
 			progressDialog.setProgressStyle(style);
 			progressDialog.setCancelable(true);
+			// until task is available
 			progressDialog.setButton(DialogInterface.BUTTON_NEGATIVE, context.getString(R.string.action_abort), new DialogInterface.OnClickListener()
 			{
 				@Override
@@ -297,6 +309,17 @@ class TaskObserver
 
 	// H U M A N - R E A D A B L E   B Y T E   C O U N T
 
+	/**
+	 * Byte count to string
+	 *
+	 * @param count byte count
+	 * @return string
+	 */
+	static private String countToString(final int count, final CharSequence unit)
+	{
+		return NumberFormat.getNumberInstance(Locale.US).format(count) + ' ' + unit;
+	}
+
 	static private final String[] UNITS = {"B", "KB", "MB", "GB"};
 
 	/**
@@ -305,7 +328,7 @@ class TaskObserver
 	 * @param count byte count
 	 * @return string
 	 */
-	static private String countToString(final int count)
+	static private String countToStorageString(final int count)
 	{
 		if (count >= 0)
 		{

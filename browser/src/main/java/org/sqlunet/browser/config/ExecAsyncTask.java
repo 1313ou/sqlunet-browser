@@ -138,11 +138,11 @@ class ExecAsyncTask
 	/**
 	 * Execute sql statements from zipfile
 	 *
+	 * @param database database path
 	 * @param archive  zip file path with sql statements
 	 * @param entry    entry
-	 * @param database database path
 	 */
-	AsyncTask<String, Integer, Boolean> executeFromArchive(final String archive, final String entry, final String database)
+	AsyncTask<String, Integer, Boolean> executeFromArchive(final String database, final String archive, final String entry)
 	{
 		final AsyncTask<String, Integer, Boolean> task = new AsyncTask<String, Integer, Boolean>()
 		{
