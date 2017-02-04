@@ -34,6 +34,8 @@ public class Browse2Fragment extends Fragment
 
 	private Parcelable pointer = null;
 
+	private boolean isSearch = false;
+
 	// C R E A T I O N
 
 	/**
@@ -68,6 +70,7 @@ public class Browse2Fragment extends Fragment
 		{
 			Log.d(TAG, "restore instance state " + this);
 			this.pointer = savedInstanceState.getParcelable(POINTER_STATE);
+			this.isSearch = false;
 		}
 
 		return view;
@@ -100,6 +103,8 @@ public class Browse2Fragment extends Fragment
 	public void search(final Parcelable pointer)
 	{
 		this.pointer = pointer;
+		this.isSearch = true;
+
 		search();
 	}
 
@@ -109,6 +114,7 @@ public class Browse2Fragment extends Fragment
 	private void search()
 	{
 		final Context context = this.getActivity();
+		final FragmentManager manager = getChildFragmentManager();
 
 		// args
 		final Bundle args = new Bundle();
@@ -119,14 +125,41 @@ public class Browse2Fragment extends Fragment
 		switch (mode)
 		{
 			case VIEW:
-				final FragmentManager manager = getChildFragmentManager();
+				int enable = Settings.getAllPref(context);
+				if (this.pointer instanceof XSelectorPointer)
+				{
+					// sections to disable
+					int mask = 0;
+					final XSelectorPointer xpointer = (XSelectorPointer) this.pointer;
+					final int group = xpointer.getXGroup();
+					switch (group)
+					{
+						case 0: // wordnet
+							mask = Settings.ENABLE_VERBNET | Settings.ENABLE_PROPBANK | Settings.ENABLE_FRAMENET;
+							break;
+						case 1: // verbnet
+							mask = Settings.ENABLE_PROPBANK | Settings.ENABLE_FRAMENET;
+							break;
+						case 2: // propbank
+							mask = Settings.ENABLE_VERBNET | Settings.ENABLE_FRAMENET;
+							break;
+						case 3:// framenet
+							mask = Settings.ENABLE_VERBNET | Settings.ENABLE_PROPBANK;
+							break;
+					}
+					enable &= ~mask;
+				}
+
+				// transaction
 				final FragmentTransaction transaction = manager.beginTransaction();
-				if (Settings.getWordNetPref(context))
+
+				// wordnet
+				Fragment senseFragment = manager.findFragmentByTag("wordnet");
+				if ((enable & Settings.ENABLE_WORDNET) != 0)
 				{
 					// final View labelView = findViewById(R.id.label_wordnet);
 					// labelView.setVisibility(View.VISIBLE);
-					Fragment senseFragment = manager.findFragmentByTag("wordnet");
-					if (senseFragment == null)
+					if (this.isSearch)
 					{
 						final SenseFragment senseFragment2 = new SenseFragment();
 						senseFragment2.setArguments(args);
@@ -135,70 +168,99 @@ public class Browse2Fragment extends Fragment
 					}
 					transaction.replace(R.id.container_wordnet, senseFragment, "wordnet");
 				}
+				else if (senseFragment != null)
+				{
+					transaction.remove(senseFragment);
+				}
 
-				if (Settings.getVerbNetPref(context))
+				// verbnet
+				Fragment verbnetFragment = manager.findFragmentByTag("verbnet");
+				if ((enable & Settings.ENABLE_VERBNET) != 0)
 				{
 					// final View labelView = findViewById(R.id.label_verbnet);
 					// labelView.setVisibility(View.VISIBLE);
-					Fragment verbnetFragment = manager.findFragmentByTag("verbnet");
-					if (verbnetFragment == null)
+					if (this.isSearch)
 					{
 						verbnetFragment = new VerbNetFragment();
 						verbnetFragment.setArguments(args);
 					}
 					transaction.replace(R.id.container_verbnet, verbnetFragment, "verbnet");
 				}
+				else if (verbnetFragment != null)
+				{
+					transaction.remove(verbnetFragment);
+				}
 
-				if (Settings.getPropBankPref(context))
+				// propbank
+				Fragment propbankFragment = manager.findFragmentByTag("propbank");
+				if ((enable & Settings.ENABLE_PROPBANK) != 0)
 				{
 					// final View labelView = findViewById(R.id.label_propbank);
 					// labelView.setVisibility(View.VISIBLE);
-					Fragment propbankFragment = manager.findFragmentByTag("propbank");
-					if (propbankFragment == null)
+					if (this.isSearch)
 					{
 						propbankFragment = new PropBankFragment();
 						propbankFragment.setArguments(args);
 					}
 					transaction.replace(R.id.container_propbank, propbankFragment, "propbank");
 				}
+				else if (propbankFragment != null)
+				{
+					transaction.remove(propbankFragment);
+				}
 
-				if (Settings.getFrameNetPref(context))
+				// framenet
+				Fragment framenetFragment = manager.findFragmentByTag("framenet");
+				if ((enable & Settings.ENABLE_FRAMENET) != 0)
 				{
 					// final View labelView = findViewById(R.id.label_framenet);
 					// labelView.setVisibility(View.VISIBLE);
-					Fragment framenetFragment = manager.findFragmentByTag("framenet");
-					if (framenetFragment == null)
+					if (this.isSearch)
 					{
 						framenetFragment = new FrameNetFragment();
 						framenetFragment.setArguments(args);
 					}
 					transaction.replace(R.id.container_framenet, framenetFragment, "framenet");
 				}
+				else if (framenetFragment != null)
+				{
+					transaction.remove(framenetFragment);
+				}
 
-				if (Settings.getBncPref(context))
+				// bnc
+				Fragment bncFragment = manager.findFragmentByTag("bnc");
+				if ((enable & Settings.ENABLE_BNC) != 0)
 				{
 					// final View labelView = findViewById(R.id.label_bnc);
 					// labelView.setVisibility(View.VISIBLE);
-					Fragment bncFragment = manager.findFragmentByTag("bnc");
-					if (bncFragment == null)
+					if (this.isSearch)
 					{
 						bncFragment = new BNCFragment();
 						bncFragment.setArguments(args);
 					}
 					transaction.replace(R.id.container_bnc, bncFragment, "bnc");
 				}
+				else if (bncFragment != null)
+				{
+					transaction.remove(bncFragment);
+				}
+
 				transaction.commit();
 				break;
 
 			case WEB:
-				// fragment
-				final Fragment fragment = new WebFragment();
-				fragment.setArguments(args);
+				// web fragment
+				Fragment webFragment = manager.findFragmentByTag("web");
+				if (webFragment == null)
+				{
+					webFragment = new WebFragment();
+					webFragment.setArguments(args);
+				}
 
 				// detail fragment replace
 				getChildFragmentManager() //
 						.beginTransaction() //
-						.replace(R.id.container_web, fragment) //
+						.replace(R.id.container_web, webFragment, "web") //
 						.commit();
 				break;
 		}

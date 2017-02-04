@@ -174,7 +174,7 @@ public abstract class AbstractTableFragment extends ListFragment
 		final View view = inflater.inflate(R.layout.fragment_table, container, false);
 
 		// query view
-		final TextView queryView = (TextView) view.findViewById(R.id.queryView);
+		final TextView queryView = (TextView) view.findViewById(R.id.targetView);
 
 		// args
 		final Bundle args = getArguments();

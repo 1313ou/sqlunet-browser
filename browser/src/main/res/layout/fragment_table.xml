@@ -9,7 +9,7 @@
                 tools:context="org.sqlunet.browser.config.TableFragment">
 
 	<TextView
-		android:id="@+id/queryView"
+		android:id="@+id/targetView"
 		style="@style/Query"
 		android:layout_width="fill_parent"
 		android:layout_height="wrap_content"
@@ -19,7 +19,7 @@
 	          android:id="@+id/android:list"
 	          android:layout_width="match_parent"
 	          android:layout_height="wrap_content"
-	          android:layout_below="@+id/queryView"
+	          android:layout_below="@+id/targetView"
 	          android:layout_centerHorizontal="true"/>
 
 </RelativeLayout>

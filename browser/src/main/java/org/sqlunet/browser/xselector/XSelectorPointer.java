@@ -60,6 +60,11 @@ public class XSelectorPointer extends SelectorPointer implements HasXId
 	private final long xMask;
 
 	/**
+	 * xGroup (0=wordnet, 1=verbnet, 2=propbank, 3=framenet, 4=bnc)
+	 */
+	private final int xGroup;
+
+	/**
 	 * Static field used to regenerate object, individually or as arrays
 	 */
 	static public final Parcelable.Creator<XSelectorPointer> CREATOR = new Parcelable.Creator<XSelectorPointer>()
@@ -87,8 +92,9 @@ public class XSelectorPointer extends SelectorPointer implements HasXId
 	 * @param xMemberId x member id
 	 * @param xSources  x sources
 	 * @param xMask     x mask
+	 * @param xGroup    x group (0=wordnet, 1=verbnet, 2=propbank, 3=framenet, 4=bnc)
 	 */
-	public XSelectorPointer(final long synsetId, final long wordId, final long xId, final long xClassId, final long xMemberId, final String xSources, final long xMask)
+	XSelectorPointer(final long synsetId, final long wordId, final long xId, final long xClassId, final long xMemberId, final String xSources, final long xMask, final int xGroup)
 	{
 		super(synsetId, wordId);
 		this.xId = xId;
@@ -96,6 +102,7 @@ public class XSelectorPointer extends SelectorPointer implements HasXId
 		this.xMemberId = xMemberId;
 		this.xSources = xSources;
 		this.xMask = xMask;
+		this.xGroup = xGroup;
 	}
 
 	/**
@@ -126,6 +133,7 @@ public class XSelectorPointer extends SelectorPointer implements HasXId
 
 		this.xSources = parcel.readString();
 		this.xMask = parcel.readLong();
+		this.xGroup = parcel.readInt();
 	}
 
 	/**
@@ -173,6 +181,16 @@ public class XSelectorPointer extends SelectorPointer implements HasXId
 	}
 
 	/**
+	 * Get group
+	 *
+	 * @return xgroup
+	 */
+	public int getXGroup()
+	{
+		return this.xGroup;
+	}
+
+	/**
 	 * Get x mask
 	 *
 	 * @return x mask
@@ -193,6 +211,7 @@ public class XSelectorPointer extends SelectorPointer implements HasXId
 		parcel.writeLong(this.xMemberId);
 		parcel.writeString(this.xSources);
 		parcel.writeLong(this.xMask);
+		parcel.writeInt(this.xGroup);
 	}
 
 	@Override
@@ -219,7 +238,10 @@ public class XSelectorPointer extends SelectorPointer implements HasXId
 				this.xSources +
 				' ' +
 				"xmask=" + //
-				Long.toHexString(this.xMask);
+				Long.toHexString(this.xMask) +
+				' ' +
+				"xgroup=" + //
+				Integer.toString(this.xGroup);
 	}
 
 	/**

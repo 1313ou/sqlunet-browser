@@ -587,8 +587,9 @@ public class XSelectorsFragment extends ExpandableListFragment
 				final long xMask = XSelectorPointer.getMask(xSources);
 
 				// pointer
-				final XSelectorPointer pointer = new XSelectorPointer(synsetId, wordId, xId, xClassId, xMemberId, xSources, xMask);
+				final XSelectorPointer pointer = new XSelectorPointer(synsetId, wordId, xId, xClassId, xMemberId, xSources, xMask, groupPosition);
 				Log.d(TAG, "pointer=" + pointer);
+
 				// notify the active listener (the activity, if the fragment is attached to one) that an item has been selected
 				this.listener.onItemSelected(pointer, lemma, cased, pos);
 			}

@@ -58,7 +58,7 @@ public class PredicateMatrixResultFragment extends Fragment
 		assert pointer != null;
 
 		// query view
-		final TextView queryView = (TextView) view.findViewById(R.id.queryView);
+		final TextView queryView = (TextView) view.findViewById(R.id.targetView);
 		queryView.setText(pointer.toString());
 
 		// header

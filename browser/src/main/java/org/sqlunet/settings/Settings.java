@@ -43,6 +43,12 @@ public class Settings
 	static public final String PREF_ENTRY_INDEX = StorageSettings.PREF_ENTRY_INDEX;
 	static public final String PREF_CACHE = StorageSettings.PREF_CACHE;
 
+	static public final int ENABLE_WORDNET = 0x1;
+	static public final int ENABLE_VERBNET = 0x10;
+	static public final int ENABLE_PROPBANK = 0x20;
+	static public final int ENABLE_FRAMENET = 0x40;
+	static public final int ENABLE_BNC = 0x100;
+
 	// D A T A
 
 	/**
@@ -243,6 +249,39 @@ public class Settings
 	{
 		final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
 		return sharedPref.getBoolean(Settings.PREF_ENABLE_LINKS, false);
+	}
+
+	/**
+	 * Get preferred enable aggregated flag
+	 *
+	 * @param context context
+	 * @return preferred enable WordNet flag
+	 */
+	static public int getAllPref(final Context context)
+	{
+		final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
+		int result = 0;
+		if (sharedPref.getBoolean(Settings.PREF_ENABLE_WORDNET, true))
+		{
+			result |= ENABLE_WORDNET;
+		}
+		if (sharedPref.getBoolean(Settings.PREF_ENABLE_VERBNET, true))
+		{
+			result |= ENABLE_VERBNET;
+		}
+		if (sharedPref.getBoolean(Settings.PREF_ENABLE_PROPBANK, true))
+		{
+			result |= ENABLE_PROPBANK;
+		}
+		if (sharedPref.getBoolean(Settings.PREF_ENABLE_FRAMENET, true))
+		{
+			result |= ENABLE_FRAMENET;
+		}
+		if (sharedPref.getBoolean(Settings.PREF_ENABLE_BNC, true))
+		{
+			result |= ENABLE_BNC;
+		}
+		return result;
 	}
 
 	/**

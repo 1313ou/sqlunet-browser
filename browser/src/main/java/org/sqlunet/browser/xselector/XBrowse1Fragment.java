@@ -1,27 +1,18 @@
 package org.sqlunet.browser.xselector;
 
-import android.app.Activity;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import org.sqlunet.bnc.browser.BNCFragment;
 import org.sqlunet.browser.Browse2Activity;
 import org.sqlunet.browser.Browse2Fragment;
 import org.sqlunet.browser.R;
-import org.sqlunet.browser.web.WebFragment;
-import org.sqlunet.framenet.browser.FrameNetFragment;
-import org.sqlunet.propbank.browser.PropBankFragment;
 import org.sqlunet.provider.ProviderArgs;
-import org.sqlunet.settings.Settings;
-import org.sqlunet.verbnet.browser.VerbNetFragment;
-import org.sqlunet.wordnet.browser.SenseFragment;
-import org.sqlunet.wordnet.browser.SynsetFragment;
 
 /**
  * X selector activity
@@ -40,21 +31,6 @@ public class XBrowse1Fragment extends Fragment implements XSelectorsFragment.Lis
 	 */
 	private XSelectorsFragment xSelectorsFragment;
 
-	/**
-	 * VerbNet fragment
-	 */
-	private Fragment verbnetFragment;
-
-	/**
-	 * PropBank fragment
-	 */
-	private Fragment propbankFragment;
-
-	/**
-	 * FrameNet fragment
-	 */
-	private Fragment framenetFragment;
-
 	// C R E A T I O N
 
 	@Override
@@ -65,18 +41,22 @@ public class XBrowse1Fragment extends Fragment implements XSelectorsFragment.Lis
 
 		// query
 		final Bundle args = getArguments();
-		final String query = args.getString(ProviderArgs.ARG_QUERYSTRING);
+		final String query = args == null ? null : args.getString(ProviderArgs.ARG_QUERYSTRING);
 
-		// copy to query view
-		final TextView queryView = (TextView) view.findViewById(R.id.queryView);
-		queryView.setText(query);
+		// copy to target view
+		final TextView targetView = (TextView) view.findViewById(R.id.targetView);
+		targetView.setText(query);
 
-		// selector fragment
+		// x selector fragment
 		this.xSelectorsFragment = new XSelectorsFragment();
 		this.xSelectorsFragment.setArguments(args);
 		this.xSelectorsFragment.setListener(this);
-		getChildFragmentManager() //
-				.beginTransaction() //
+
+		// manager
+		final FragmentManager manager = getChildFragmentManager();
+
+		// transaction on selectors pane
+		manager.beginTransaction() //
 				.replace(R.id.container_xselectors, this.xSelectorsFragment) //
 				.commit();
 
@@ -88,10 +68,13 @@ public class XBrowse1Fragment extends Fragment implements XSelectorsFragment.Lis
 			this.isTwoPane = true;
 
 			// detail fragment
-			final Fragment browse2Fragment = new Browse2Fragment();
-			getChildFragmentManager() //
-					.beginTransaction() //
-					.replace(R.id.container_browse2, browse2Fragment) //
+			Fragment browse2Fragment = manager.findFragmentByTag("browse2");
+			if (browse2Fragment == null)
+			{
+				browse2Fragment = new Browse2Fragment();
+			}
+			manager.beginTransaction() //
+					.replace(R.id.container_browse2, browse2Fragment, "browse2") //
 					.commit();
 		}
 
@@ -118,107 +101,23 @@ public class XBrowse1Fragment extends Fragment implements XSelectorsFragment.Lis
 	@Override
 	public void onItemSelected(final XSelectorPointer pointer, final String word, final String cased, final String pos)
 	{
-		// activity
-		final Activity activity = getActivity();
-
 		if (this.isTwoPane)
 		{
 			// in two-pane mode, show the detail view in this activity by adding or replacing the detail fragment using a fragment transaction.
+			final Browse2Fragment fragment = (Browse2Fragment) getChildFragmentManager().findFragmentById(R.id.container_browse2);
+			fragment.search(pointer);
+		}
+		else
+		{
+			// in single-pane mode, simply start the detail activity for the selected item ID.
 			final Bundle args = new Bundle();
 			args.putParcelable(ProviderArgs.ARG_QUERYPOINTER, pointer);
 			args.putString(ProviderArgs.ARG_HINTWORD, word);
 			args.putString(ProviderArgs.ARG_HINTCASED, cased);
 			args.putString(ProviderArgs.ARG_HINTPOS, pos);
 
-			// transaction
-			final FragmentTransaction transaction = getChildFragmentManager().beginTransaction();
-
-			// detail fragment
-			final Settings.DetailViewMode mode = Settings.getDetailViewModePref(activity);
-			switch (mode)
-			{
-				case VIEW:
-					if (Settings.getWordNetPref(activity))
-					{
-						// final View labelView = findViewById(R.id.label_wordnet);
-						// labelView.setVisibility(View.VISIBLE);
-						final SynsetFragment senseFragment = new SenseFragment();
-						senseFragment.setArguments(args);
-						senseFragment.setExpand(pointer.wordNetOnly());
-						transaction.replace(R.id.container_wordnet, senseFragment);
-					}
-
-					// verbnet
-					if (Settings.getVerbNetPref(activity) && pointer.getXSources().contains("vn")) //
-					{
-						// final View labelView = findViewById(R.id.label_verbnet);
-						// labelView.setVisibility(View.VISIBLE);
-						this.verbnetFragment = new VerbNetFragment();
-						this.verbnetFragment.setArguments(args);
-						transaction.replace(R.id.container_verbnet, this.verbnetFragment);
-					}
-					else if (this.verbnetFragment != null)
-					{
-						transaction.remove(this.verbnetFragment);
-						this.verbnetFragment = null;
-					}
-
-					// propbank
-					if (Settings.getPropBankPref(activity) && pointer.getXSources().contains("pb")) //
-					{
-						// final View labelView = findViewById(R.id.label_propbank);
-						// labelView.setVisibility(View.VISIBLE);
-						this.propbankFragment = new PropBankFragment();
-						this.propbankFragment.setArguments(args);
-						transaction.replace(R.id.container_propbank, this.propbankFragment);
-					}
-					else if (this.propbankFragment != null)
-					{
-						transaction.remove(this.propbankFragment);
-						this.propbankFragment = null;
-					}
-
-					// framenet
-					if (Settings.getFrameNetPref(activity) && pointer.getXSources().contains("fn")) //
-					{
-						// final View labelView = findViewById(R.id.label_framenet);
-						// labelView.setVisibility(View.VISIBLE);
-						this.framenetFragment = new FrameNetFragment();
-						this.framenetFragment.setArguments(args);
-						transaction.replace(R.id.container_framenet, this.framenetFragment);
-					}
-					else if (this.framenetFragment != null)
-					{
-						transaction.remove(this.framenetFragment);
-						this.framenetFragment = null;
-					}
-
-					// bnc
-					if (Settings.getBncPref(activity))
-					{
-						// final View labelView = findViewById(R.id.label_bnc);
-						// labelView.setVisibility(View.VISIBLE);
-						final Fragment bncFragment = new BNCFragment();
-						bncFragment.setArguments(args);
-						transaction.replace(R.id.container_bnc, bncFragment);
-					}
-					break;
-
-				case WEB:
-					final Fragment fragment = new WebFragment();
-					fragment.setArguments(args);
-
-					// detail fragment replace
-					transaction.replace(R.id.container_browse2, fragment);
-					break;
-			}
-			transaction.commit();
-		}
-		else
-		{
-			// in single-pane mode, simply start the detail activity for the selected item ID.
-			final Intent intent = new Intent(activity, Browse2Activity.class);
-			intent.putExtra(ProviderArgs.ARG_QUERYPOINTER, pointer);
+			final Intent intent = new Intent(getActivity(), Browse2Activity.class);
+			intent.putExtras(args);
 			startActivity(intent);
 		}
 	}

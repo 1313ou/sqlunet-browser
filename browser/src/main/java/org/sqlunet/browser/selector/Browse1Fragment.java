@@ -43,16 +43,19 @@ public class Browse1Fragment extends Fragment implements SelectorsFragment.Liste
 		final Bundle args = getArguments();
 		final String query = args == null ? null : args.getString(ProviderArgs.ARG_QUERYSTRING);
 
-		// copy to query view
-		final TextView queryView = (TextView) view.findViewById(R.id.queryView);
-		queryView.setText(query);
+		// copy to target view
+		final TextView targetView = (TextView) view.findViewById(R.id.targetView);
+		targetView.setText(query);
 
 		// selector fragment
 		this.selectorsFragment = new SelectorsFragment();
 		this.selectorsFragment.setArguments(args);
 		this.selectorsFragment.setListener(this);
 
+		// manager
 		final FragmentManager manager = getChildFragmentManager();
+
+		// transaction on selectors pane
 		manager.beginTransaction() //
 				.replace(R.id.container_selectors, this.selectorsFragment) //
 				.commit();
@@ -77,7 +80,6 @@ public class Browse1Fragment extends Fragment implements SelectorsFragment.Liste
 
 		return view;
 	}
-
 
 	@Override
 	public void onViewCreated(View view, Bundle savedInstanceState)

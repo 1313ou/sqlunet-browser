@@ -9,7 +9,7 @@
                 tools:context="org.sqlunet.browser.xselector.XBrowse1Fragment">
 
 	<TextView
-		android:id="@+id/queryView"
+		android:id="@+id/targetView"
 		style="@style/Query"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
@@ -18,7 +18,7 @@
 	<LinearLayout
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
-		android:layout_below="@+id/queryView"
+		android:layout_below="@+id/targetView"
 		android:layout_marginEnd="16dp"
 		android:baselineAligned="false"
 		android:divider="?android:attr/dividerHorizontal"

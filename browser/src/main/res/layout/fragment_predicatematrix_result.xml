@@ -6,7 +6,7 @@
                 tools:context="org.sqlunet.browser.PredicateMatrixFragment">
 
 	<TextView
-		android:id="@+id/queryView"
+		android:id="@+id/targetView"
 		style="@style/Query"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
@@ -15,7 +15,7 @@
 	<ScrollView
 		android:layout_width="fill_parent"
 		android:layout_height="fill_parent"
-		android:layout_below="@+id/queryView">
+		android:layout_below="@+id/targetView">
 
 		<FrameLayout
 			android:id="@+id/data_contents"

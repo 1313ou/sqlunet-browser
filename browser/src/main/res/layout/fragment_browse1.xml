@@ -6,7 +6,7 @@
                 tools:context="org.sqlunet.browser.selector.Browse1Fragment">
 
 	<TextView
-		android:id="@+id/queryView"
+		android:id="@+id/targetView"
 		style="@style/Query"
 		android:layout_width="fill_parent"
 		android:layout_height="wrap_content"
@@ -17,7 +17,7 @@
 		android:id="@+id/container_selectors"
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
-		android:layout_below="@+id/queryView"
+		android:layout_below="@+id/targetView"
 		tools:layout="@layout/fragment_selectors"/>
 
 </RelativeLayout>
