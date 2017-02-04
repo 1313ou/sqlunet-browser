@@ -10,7 +10,7 @@ import org.sqlunet.wordnet.loaders.SenseModule;
  */
 public class SenseFragment extends SynsetFragment
 {
-	static private final String TAG = "SenseFragment";
+	// static private final String TAG = "SynsetFragment";
 
 	/**
 	 * Constructor

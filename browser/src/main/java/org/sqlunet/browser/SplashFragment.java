@@ -11,7 +11,7 @@ import android.view.ViewGroup;
  *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
-public class SplashFragment extends Fragment
+abstract public class SplashFragment extends Fragment
 {
 	// static private final String TAG = "SpalshFragment";
 
@@ -29,7 +29,6 @@ public class SplashFragment extends Fragment
 	public View onCreateView(final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState)
 	{
 		// view
-		final View view = inflater.inflate(this.layoutId, container, false);
-		return view;
+		return inflater.inflate(this.layoutId, container, false);
 	}
 }

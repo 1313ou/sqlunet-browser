@@ -1,5 +1,6 @@
 package org.sqlunet.settings;
 
+import android.annotation.TargetApi;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.Typeface;
@@ -282,6 +283,7 @@ public class StorageReports
 	 * @param context context
 	 * @return report
 	 */
+	@TargetApi(Build.VERSION_CODES.LOLLIPOP)
 	static public CharSequence reportExternalStorage(final Context context)
 	{
 		final Map<StorageType, File[]> storages = StorageUtils.getExternalStorages();

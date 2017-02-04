@@ -170,10 +170,7 @@ public class TextSearchFragment extends BaseSearchFragment
 		args.putString(ProviderArgs.ARG_QUERYFILTER, target + " MATCH ?");
 		args.putString(ProviderArgs.ARG_QUERYARG, query);
 		args.putInt(ProviderArgs.ARG_QUERYLAYOUT, R.layout.item_table1);
-		if (database != null)
-		{
-			args.putString(ProviderArgs.ARG_QUERYDATABASE, database);
-		}
+		args.putString(ProviderArgs.ARG_QUERYDATABASE, database);
 
 		// view
 		final View view = getView();

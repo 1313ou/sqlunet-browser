@@ -11,7 +11,7 @@ abstract public class BrowseSplashFragment extends Fragment
 {
 	// static private final String TAG = "MainSplashFragment";
 
-	protected int layoutId;
+	protected final int layoutId;
 
 	/**
 	 * Constructor

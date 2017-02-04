@@ -112,6 +112,7 @@ class SimpleDownloader extends AsyncTask<Void, Integer, Boolean>
 		File file = new File(this.toFile);
 		if (file.exists())
 		{
+			//noinspection ResultOfMethodCallIgnored
 			file.delete();
 		}
 

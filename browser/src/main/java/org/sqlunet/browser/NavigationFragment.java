@@ -266,6 +266,7 @@ public class NavigationFragment extends NavigationDrawerFragment implements Navi
 
 		// action bar
 		final ActionBarSetter setter = (ActionBarSetter) fragment;
+		assert setter != null;
 		if (!setter.setActionBar(actionBar, activity))
 		{
 			// theme
