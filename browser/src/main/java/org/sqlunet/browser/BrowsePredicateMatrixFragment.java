@@ -159,9 +159,18 @@ public class BrowsePredicateMatrixFragment extends BaseSearchFragment
 		// log
 		Log.d(BrowsePredicateMatrixFragment.TAG, "PM SEARCH " + pointer);
 
+		// view
+		final View view = getView();
+
 		// copy to target view
-		final TextView targetView = (TextView) getView().findViewById(R.id.targetView);
-		targetView.setText(pointer.toString());
+		if (view != null)
+		{
+			final TextView targetView = (TextView) view.findViewById(R.id.targetView);
+			if (targetView != null)
+			{
+				targetView.setText(query);
+			}
+		}
 
 		// set
 		this.pointer = pointer;
@@ -171,14 +180,6 @@ public class BrowsePredicateMatrixFragment extends BaseSearchFragment
 		final Bundle args = new Bundle();
 		args.putParcelable(ProviderArgs.ARG_QUERYPOINTER, pointer);
 		args.putInt(ProviderArgs.ARG_QUERYTYPE, ProviderArgs.ARG_QUERYTYPE_PM);
-
-		// view
-		final View view = getView();
-
-		// clear splash
-		assert view != null;
-		final ViewGroup container = (ViewGroup) view.findViewById(R.id.container_predicatematrix);
-		container.removeAllViews();
 
 		// fragment
 		final Fragment fragment = new PredicateMatrixFragment();
@@ -205,9 +206,18 @@ public class BrowsePredicateMatrixFragment extends BaseSearchFragment
 		// log
 		Log.d(BrowsePredicateMatrixFragment.TAG, "PM SEARCH " + query);
 
+		// view
+		final View view = getView();
+
 		// copy to target view
-		final TextView targetView = (TextView) getView().findViewById(R.id.targetView);
-		targetView.setText(query);
+		if (view != null)
+		{
+			final TextView targetView = (TextView) view.findViewById(R.id.targetView);
+			if (targetView != null)
+			{
+				targetView.setText(query);
+			}
+		}
 
 		// set
 		this.query = query;
@@ -229,15 +239,6 @@ public class BrowsePredicateMatrixFragment extends BaseSearchFragment
 		final Bundle args = new Bundle();
 		args.putParcelable(ProviderArgs.ARG_QUERYPOINTER, pointer);
 		args.putInt(ProviderArgs.ARG_QUERYTYPE, ProviderArgs.ARG_QUERYTYPE_PM);
-
-		// view
-		final View view = getView();
-
-		// clear splash
-		assert view != null;
-		final ViewGroup container = (ViewGroup) view.findViewById(R.id.container_predicatematrix);
-		assert container != null;
-		container.removeAllViews();
 
 		// fragment
 		final Fragment fragment = new PredicateMatrixFragment();

@@ -205,8 +205,8 @@ public class Status
 				}
 				while (cursor.moveToNext());
 			}
+			cursor.close();
 		}
-		cursor.close();
 		return result;
 	}
 

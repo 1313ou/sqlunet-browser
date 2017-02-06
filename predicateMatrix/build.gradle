@@ -25,5 +25,5 @@ dependencies {
     compile project(':frameNet')
     compile project(':propbank')
     compile project(':verbNet')
-    compile 'com.android.support:appcompat-v7:25.1.0'
+    compile 'com.android.support:appcompat-v7:25.1.1'
 }

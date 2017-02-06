@@ -60,7 +60,7 @@ abstract public class TreeFragment extends Fragment
 
 		// root node
 		final TreeNode root = TreeNode.makeRoot();
-		final TreeNode queryNode = TreeFactory.addTreeNode(root, header, iconId, getActivity());
+		TreeFactory.addTreeNode(root, header, iconId, getActivity());
 
 		// tree
 		this.treeView = new TreeView(getActivity(), root);

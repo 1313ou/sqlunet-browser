@@ -10,6 +10,7 @@
 		android:layout_height="match_parent"
 		android:layout_marginEnd="5dp"
 		android:layout_marginStart="5dp"
+		android:baselineAligned="false"
 		android:orientation="horizontal">
 
 		<!-- selectors -->
@@ -31,6 +32,7 @@
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"/>
 		</ScrollView>
+
 	</LinearLayout>
 
 </RelativeLayout>

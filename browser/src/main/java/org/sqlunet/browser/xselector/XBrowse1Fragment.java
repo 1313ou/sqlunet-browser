@@ -38,9 +38,8 @@ public class XBrowse1Fragment extends Fragment implements XSelectorsFragment.Lis
 		// view
 		final View view = inflater.inflate(R.layout.fragment_xbrowse1, container, false);
 
-		// query
+		// args
 		final Bundle args = getArguments();
-		final String query = args == null ? null : args.getString(ProviderArgs.ARG_QUERYSTRING);
 
 		// x selector fragment
 		this.xSelectorsFragment = new XSelectorsFragment();

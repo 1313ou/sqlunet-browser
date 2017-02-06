@@ -9,7 +9,6 @@ import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.TextView;
@@ -175,9 +174,18 @@ public class BrowseFragment extends BaseSearchFragment
 		// log
 		Log.d(BrowseFragment.TAG, "BROWSE " + query);
 
+		// view
+		final View view = getView();
+
 		// copy to target view
-		final TextView targetView = (TextView) getView().findViewById(R.id.targetView);
-		targetView.setText(query);
+		if (view != null)
+		{
+			final TextView targetView = (TextView) view.findViewById(R.id.targetView);
+			if (targetView != null)
+			{
+				targetView.setText(query);
+			}
+		}
 
 		// recurse
 		final boolean recurse = Settings.getRecursePref(getActivity());
@@ -330,14 +338,6 @@ public class BrowseFragment extends BaseSearchFragment
 		if (fragment != null)
 		{
 			fragment.setArguments(args);
-
-			// view
-			final View view = getView();
-
-			// clear splash
-			assert view != null;
-			final ViewGroup container = (ViewGroup) view.findViewById(R.id.container_browse);
-			container.removeAllViews();
 
 			// fragment
 			fragment.setArguments(args);

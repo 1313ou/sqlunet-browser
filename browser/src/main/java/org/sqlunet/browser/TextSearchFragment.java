@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.TextView;
 
@@ -83,9 +82,18 @@ public class TextSearchFragment extends BaseSearchFragment
 		// log
 		Log.d(TextSearchFragment.TAG, "TEXT SEARCH " + query);
 
+		// view
+		final View view = getView();
+
 		// copy to target view
-		final TextView targetView = (TextView) getView().findViewById(R.id.targetView);
-		targetView.setText(query);
+		if (view != null)
+		{
+			final TextView targetView = (TextView) view.findViewById(R.id.targetView);
+			if (targetView != null)
+			{
+				targetView.setText(query);
+			}
+		}
 
 		// type
 		final int typePosition = this.spinner.getSelectedItemPosition();
@@ -100,7 +108,7 @@ public class TextSearchFragment extends BaseSearchFragment
 		String target;
 		String[] columns;
 		String[] hiddenColumns;
-		String database = null;
+		String database;
 		switch (typePosition)
 		{
 			case 0:
@@ -176,14 +184,6 @@ public class TextSearchFragment extends BaseSearchFragment
 		args.putString(ProviderArgs.ARG_QUERYARG, query);
 		args.putInt(ProviderArgs.ARG_QUERYLAYOUT, R.layout.item_table1);
 		args.putString(ProviderArgs.ARG_QUERYDATABASE, database);
-
-		// view
-		final View view = getView();
-
-		// clear splash
-		assert view != null;
-		final ViewGroup container = (ViewGroup) view.findViewById(R.id.container_textsearch);
-		container.removeAllViews();
 
 		// fragment
 		final Fragment fragment = new TextSearchResultFragment();

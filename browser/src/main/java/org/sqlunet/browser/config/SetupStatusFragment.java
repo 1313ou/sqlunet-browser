@@ -1,7 +1,6 @@
 package org.sqlunet.browser.config;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -240,7 +239,7 @@ public class SetupStatusFragment extends Fragment
 		Log.d(TAG, "STATUS " + Status.toString(status));
 		final boolean existsDb = (status & Status.EXISTS) != 0;
 		final boolean existsTables = (status & Status.EXISTS_TABLES) != 0;
-		if (existsTables)
+		if (existsDb && existsTables)
 		{
 			this.imageDb.setImageResource(R.drawable.ic_ok);
 			this.buttonDb.setVisibility(View.GONE);
@@ -319,8 +318,6 @@ public class SetupStatusFragment extends Fragment
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item)
 	{
-		final Context context = getActivity();
-
 		// handle item selection
 		switch (item.getItemId())
 		{

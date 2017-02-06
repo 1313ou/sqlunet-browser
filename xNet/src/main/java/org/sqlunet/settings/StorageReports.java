@@ -225,7 +225,7 @@ public class StorageReports
 		names.add(name);
 		values.add(value);
 
-		// converf to array
+		// convert to array
 		final CharSequence[] entries = names.toArray(new CharSequence[0]);
 		final CharSequence[] entryValues = values.toArray(new CharSequence[0]);
 

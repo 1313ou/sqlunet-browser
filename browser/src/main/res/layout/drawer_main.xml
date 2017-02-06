@@ -8,8 +8,7 @@
 		android:id="@+id/splash"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
-		android:layout_centerInParent="true"
-		android:layout_gravity="left"
+		android:layout_gravity="start"
 		android:contentDescription="@string/app_name"
 		android:src="@drawable/ic_launcher"/>
 

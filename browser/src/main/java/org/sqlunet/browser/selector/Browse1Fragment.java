@@ -43,7 +43,6 @@ public class Browse1Fragment extends Fragment implements SelectorsFragment.Liste
 
 		// query
 		final Bundle args = getArguments();
-		final String query = args == null ? null : args.getString(ProviderArgs.ARG_QUERYSTRING);
 
 		// selector fragment
 		this.selectorsFragment = new SelectorsFragment();

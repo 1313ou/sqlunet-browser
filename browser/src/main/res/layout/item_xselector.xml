@@ -8,8 +8,6 @@
               tools:context="org.sqlunet.browser.xselector.XBrowse1Fragment"
               tools:ignore="Overdraw">
 
-	<View style="@style/Separator"/>
-
 	<LinearLayout
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
@@ -112,5 +110,7 @@
 			android:layout_height="wrap_content"
 			android:textIsSelectable="false"/>
 	</LinearLayout>
+
+	<View style="@style/Separator"/>
 
 </LinearLayout>
