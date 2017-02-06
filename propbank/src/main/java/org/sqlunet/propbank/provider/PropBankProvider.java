@@ -217,10 +217,10 @@ public class PropBankProvider extends BaseProvider
 				throw new RuntimeException("Malformed URI " + uri);
 		}
 
+		final String sql = SQLiteQueryBuilder.buildQueryString(false, table, projection, actualSelection, groupBy, null, actualSortOrder, null);
+		logSql(sql, selectionArgs);
 		if (BaseProvider.logSql)
 		{
-			final String sql = SQLiteQueryBuilder.buildQueryString(false, table, projection, actualSelection, groupBy, null, actualSortOrder, null);
-			logSql(sql, selectionArgs);
 			Log.d(PropBankProvider.TAG + "SQL", SqlFormatter.format(sql).toString());
 			Log.d(PropBankProvider.TAG + "ARGS", BaseProvider.argsToString(selectionArgs));
 		}
@@ -232,7 +232,6 @@ public class PropBankProvider extends BaseProvider
 		}
 		catch (SQLiteException e)
 		{
-			final String sql = SQLiteQueryBuilder.buildQueryString(false, table, projection, actualSelection, groupBy, null, actualSortOrder, null);
 			Log.d(TAG + "SQL", sql);
 			Log.e(TAG, "PropBank provider query failed", e);
 			return null;

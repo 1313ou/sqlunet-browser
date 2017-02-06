@@ -1,74 +1,39 @@
 package org.sqlunet.framenet.browser;
 
-import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.os.Parcelable;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 
 import org.sqlunet.browser.Module;
+import org.sqlunet.browser.TreeFragment;
 import org.sqlunet.framenet.R;
 import org.sqlunet.framenet.loaders.LexUnitModule;
 import org.sqlunet.provider.ProviderArgs;
-import org.sqlunet.treeview.control.TreeController;
 import org.sqlunet.treeview.model.TreeNode;
-import org.sqlunet.treeview.view.TreeView;
-import org.sqlunet.view.TreeFactory;
 
 /**
  * A fragment representing a lex unit
  *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
-public class FnLexUnitFragment extends Fragment
+public class FnLexUnitFragment extends TreeFragment
 {
-	/**
-	 * State of tree
-	 */
-	static private final String STATE_TREEVIEW = "state_treeview";
-
-	/**
-	 * Tree view
-	 */
-	private TreeView treeView;
+	static private final String TAG = "FnLexUnitF";
 
 	/**
 	 * Constructor
 	 */
 	public FnLexUnitFragment()
 	{
-		//
+		this.layoutId = R.layout.fragment_fnlexunit;
+		this.treeContainerId = R.id.data_contents;
+		this.header = "LexUnit";
+		this.iconId = R.drawable.member;
 	}
 
 	@Override
-	public View onCreateView(final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState)
+	public void onStart()
 	{
-		// view
-		final View view = inflater.inflate(R.layout.fragment_fnlexunit, container, false);
-
-		// container
-		final ViewGroup containerView = (ViewGroup) view.findViewById(R.id.data_contents);
-
-		// root node
-		final TreeNode root = TreeNode.makeRoot();
-		final TreeNode queryNode = TreeFactory.addTreeNode(root, "LexUnit", R.drawable.member, getActivity());
-
-		// tree
-		this.treeView = new TreeView(getActivity(), root);
-		this.treeView.setDefaultContainerStyle(R.style.TreeNodeStyleCustom); // R.style.TreeNodeStyleDivided
-		this.treeView.setDefaultController(TreeController.class);
-		containerView.addView(this.treeView.getView());
-
-		// saved state
-		if (savedInstanceState != null)
-		{
-			final String state = savedInstanceState.getString(STATE_TREEVIEW);
-			if (state != null && !state.isEmpty())
-			{
-				this.treeView.restoreState(state);
-			}
-		}
+		super.onStart();
 
 		// query
 		final Bundle args = getArguments();
@@ -78,19 +43,14 @@ public class FnLexUnitFragment extends Fragment
 			// pointer
 			final Parcelable pointer = args.getParcelable(ProviderArgs.ARG_QUERYPOINTER);
 
+			// root node
+			final TreeNode root = this.treeView.getRoot();
+			final TreeNode queryNode = root.getChildren().iterator().next();
+
 			// module
 			final Module module = new LexUnitModule(this);
 			module.init(type, pointer);
 			module.process(queryNode);
 		}
-
-		return view;
-	}
-
-	@Override
-	public void onSaveInstanceState(final Bundle outState)
-	{
-		super.onSaveInstanceState(outState);
-		outState.putString(STATE_TREEVIEW, this.treeView.getSaveState());
 	}
 }

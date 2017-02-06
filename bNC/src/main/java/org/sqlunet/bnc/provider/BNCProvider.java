@@ -131,10 +131,10 @@ public class BNCProvider extends BaseProvider
 		}
 
 		final String groupBy = null;
+		final String sql = SQLiteQueryBuilder.buildQueryString(false, table, projection, actualSelection, groupBy, null, sortOrder, null);
+		logSql(sql, selectionArgs);
 		if (BaseProvider.logSql)
 		{
-			final String sql = SQLiteQueryBuilder.buildQueryString(false, table, projection, actualSelection, groupBy, null, sortOrder, null);
-			logSql(sql, selectionArgs);
 			Log.d(BNCProvider.TAG + "SQL", SqlFormatter.format(sql).toString());
 			Log.d(BNCProvider.TAG + "ARGS", BaseProvider.argsToString(selectionArgs));
 		}
@@ -146,7 +146,6 @@ public class BNCProvider extends BaseProvider
 		}
 		catch (SQLiteException e)
 		{
-			final String sql = SQLiteQueryBuilder.buildQueryString(false, table, projection, actualSelection, groupBy, null, sortOrder, null);
 			Log.d(TAG + "SQL", sql);
 			Log.e(TAG, "Bnc provider query failed", e);
 			return null;

@@ -1,55 +1,39 @@
 package org.sqlunet.browser;
 
-import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.os.Parcelable;
-import android.text.SpannableStringBuilder;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.TextView;
 
 import org.sqlunet.predicatematrix.PmRolePointer;
 import org.sqlunet.predicatematrix.loaders.PredicateRoleFromWordModule;
 import org.sqlunet.predicatematrix.loaders.PredicateRoleModule;
 import org.sqlunet.predicatematrix.settings.Settings;
-import org.sqlunet.predicatematrix.style.PredicateMatrixFactories;
 import org.sqlunet.provider.ProviderArgs;
-import org.sqlunet.style.Spanner;
-import org.sqlunet.treeview.control.TreeController;
 import org.sqlunet.treeview.model.TreeNode;
-import org.sqlunet.treeview.view.TreeView;
-import org.sqlunet.view.TreeFactory;
 
 /**
  * PredicateMatrix progressMessage fragment
  *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
-public class PredicateMatrixResultFragment extends Fragment
+public class PredicateMatrixResultFragment extends TreeFragment
 {
-	/**
-	 * State of tree
-	 */
-	static private final String STATE_TREEVIEW = "state_treeview";
-
-	/**
-	 * Tree view
-	 */
-	private TreeView treeView;
+	static private final String TAG = "PmResultF";
 
 	/**
 	 * Constructor
 	 */
 	public PredicateMatrixResultFragment()
 	{
+		this.layoutId = R.layout.fragment_predicatematrix_result;
+		this.treeContainerId = org.sqlunet.bnc.R.id.data_contents;
+		this.header = "PredicateMatrix";
+		this.iconId = org.sqlunet.bnc.R.drawable.predicatematrix;
 	}
 
 	@Override
-	public View onCreateView(final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState)
+	public void onStart()
 	{
-		// view
-		final View view = inflater.inflate(R.layout.fragment_predicatematrix_result, container, false);
+		super.onStart();
 
 		// query
 		final Bundle args = getArguments();
@@ -57,55 +41,16 @@ public class PredicateMatrixResultFragment extends Fragment
 		final Parcelable pointer = args.getParcelable(ProviderArgs.ARG_QUERYPOINTER);
 		assert pointer != null;
 
-		// query view
-		final TextView queryView = (TextView) view.findViewById(R.id.targetView);
-		queryView.setText(pointer.toString());
+		// view mode
+		final Settings.PMMode mode = Settings.PMMode.getPref(getActivity());
 
-		// header
-		final SpannableStringBuilder hsb = new SpannableStringBuilder();
-		hsb.append("PredicateMatrix ");
-		Spanner.append(hsb, pointer.toString(), 0, PredicateMatrixFactories.wordFactory);
+		// root node
+		final TreeNode root = this.treeView.getRoot();
+		final TreeNode queryNode = root.getChildren().iterator().next();
 
-		if (type == ProviderArgs.ARG_QUERYTYPE_PM || type == ProviderArgs.ARG_QUERYTYPE_PMROLE)
-		{
-			// container insert point
-			final ViewGroup containerView = (ViewGroup) view.findViewById(R.id.data_contents);
-
-			// root node
-			final TreeNode root = TreeNode.makeRoot();
-			final TreeNode queryNode = TreeFactory.addTreeNode(root, hsb, R.drawable.predicatematrix, getActivity());
-
-			// tree
-			this.treeView = new TreeView(getActivity(), root);
-			this.treeView.setDefaultContainerStyle(R.style.TreeNodeStyleCustom); // R.style.TreeNodeStyleDivided
-			this.treeView.setDefaultController(TreeController.class);
-			containerView.addView(this.treeView.getView());
-
-			// saved state
-			if (savedInstanceState != null)
-			{
-				final String state = savedInstanceState.getString(STATE_TREEVIEW);
-				if (state != null && !state.isEmpty())
-				{
-					this.treeView.restoreState(state);
-				}
-			}
-
-			// view mode
-			final Settings.PMMode mode = Settings.PMMode.getPref(getActivity());
-
-			// module
-			Module module = (pointer instanceof PmRolePointer) ? new PredicateRoleModule(this, mode) : new PredicateRoleFromWordModule(this, mode);
-			module.init(type, pointer);
-			module.process(queryNode);
-		}
-		return view;
-	}
-
-	@Override
-	public void onSaveInstanceState(final Bundle outState)
-	{
-		super.onSaveInstanceState(outState);
-		outState.putString(STATE_TREEVIEW, this.treeView.getSaveState());
+		// module
+		Module module = (pointer instanceof PmRolePointer) ? new PredicateRoleModule(this, mode) : new PredicateRoleFromWordModule(this, mode);
+		module.init(type, pointer);
+		module.process(queryNode);
 	}
 }

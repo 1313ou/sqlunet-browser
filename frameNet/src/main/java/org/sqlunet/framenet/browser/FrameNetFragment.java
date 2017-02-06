@@ -1,91 +1,41 @@
 package org.sqlunet.framenet.browser;
 
-import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.os.Parcelable;
-import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 
 import org.sqlunet.HasXId;
 import org.sqlunet.browser.Module;
+import org.sqlunet.browser.TreeFragment;
 import org.sqlunet.framenet.R;
 import org.sqlunet.framenet.loaders.FrameModule;
 import org.sqlunet.framenet.loaders.LexUnitFromWordModule;
 import org.sqlunet.provider.ProviderArgs;
-import org.sqlunet.treeview.control.TreeController;
 import org.sqlunet.treeview.model.TreeNode;
-import org.sqlunet.treeview.view.TreeView;
-import org.sqlunet.view.TreeFactory;
 
 /**
  * A fragment representing a framenet search from a (word, pos)
  *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
-public class FrameNetFragment extends Fragment
+public class FrameNetFragment extends TreeFragment
 {
-	static private final String TAG = "FrameNetFragment";
-
-	/**
-	 * State of tree
-	 */
-	static private final String STATE_TREEVIEW = "state_treeview";
-
-	/**
-	 * Tree view
-	 */
-	private TreeView treeView;
+	static private final String TAG = "FrameNetF";
 
 	/**
 	 * Constructor
 	 */
 	public FrameNetFragment()
 	{
-		//
-	}
-
-	@Override
-	public View onCreateView(final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState)
-	{
-		// view
-		final View view = inflater.inflate(R.layout.fragment_framenet, container, false);
-
-		// container
-		final ViewGroup containerView = (ViewGroup) view.findViewById(R.id.data_contents);
-
-		// root node
-		final TreeNode root = TreeNode.makeRoot();
-		final TreeNode queryNode = TreeFactory.addTreeNode(root, "FrameNet", R.drawable.framenet, getActivity());
-
-		// tree
-		this.treeView = new TreeView(getActivity(), root);
-		this.treeView.setDefaultContainerStyle(R.style.TreeNodeStyleCustom); // R.style.TreeNodeStyleDivided
-		this.treeView.setDefaultController(TreeController.class);
-		containerView.addView(this.treeView.getView());
-
-		// saved state
-		if (savedInstanceState != null)
-		{
-			Log.d(TAG, "restore instance state " + this);
-			final String state = savedInstanceState.getString(STATE_TREEVIEW);
-			if (state != null && !state.isEmpty())
-			{
-				this.treeView.restoreState(state);
-			}
-		}
-		return view;
+		this.layoutId = R.layout.fragment_framenet;
+		this.treeContainerId = R.id.data_contents;
+		this.header = "FrameNet";
+		this.iconId = R.drawable.framenet;
 	}
 
 	@Override
 	public void onStart()
 	{
 		super.onStart();
-
-		// root node
-		final TreeNode root = this.treeView.getRoot();
-		final TreeNode queryNode = root.getChildren().iterator().next();
 
 		// query
 		final Bundle args = getArguments();
@@ -95,18 +45,14 @@ public class FrameNetFragment extends Fragment
 			// pointer
 			final Parcelable pointer = args.getParcelable(ProviderArgs.ARG_QUERYPOINTER);
 
+			// root node
+			final TreeNode root = this.treeView.getRoot();
+			final TreeNode queryNode = root.getChildren().iterator().next();
+
 			// module
 			Module module = pointer instanceof HasXId ? new FrameModule(this) : new LexUnitFromWordModule(this);
 			module.init(type, pointer);
 			module.process(queryNode);
 		}
-	}
-
-	@Override
-	public void onSaveInstanceState(final Bundle outState)
-	{
-		Log.d(TAG, "save instance state " + this);
-		super.onSaveInstanceState(outState);
-		outState.putString(STATE_TREEVIEW, this.treeView.getSaveState());
 	}
 }

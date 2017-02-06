@@ -71,7 +71,7 @@ public abstract class Controller<E>
 	 *
 	 * @param treeView tree view
 	 */
-	public void setTreeView(TreeView treeView)
+	public void setTreeView(final TreeView treeView)
 	{
 		this.treeView = treeView;
 	}

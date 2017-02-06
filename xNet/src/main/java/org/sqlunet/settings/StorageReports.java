@@ -184,7 +184,7 @@ public class StorageReports
 	 * @param context context
 	 * @return pair of names and values
 	 */
-	static public Pair<CharSequence[], CharSequence[]> getCachesNamesValues(final Context context)
+	static public Pair<CharSequence[], CharSequence[]> getStyledCachesNamesValues(final Context context)
 	{
 		final List<CharSequence> names = new ArrayList<>();
 		final List<CharSequence> values = new ArrayList<>();
@@ -206,7 +206,7 @@ public class StorageReports
 		names.add(name);
 		values.add(value);
 
-		if (Build.VERSION.SDK_INT > Build.VERSION_CODES.KITKAT)
+		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT)
 		{
 			int i = 1;
 			for (File dir2 : context.getExternalCacheDirs())
@@ -225,6 +225,7 @@ public class StorageReports
 		names.add(name);
 		values.add(value);
 
+		// converf to array
 		final CharSequence[] entries = names.toArray(new CharSequence[0]);
 		final CharSequence[] entryValues = values.toArray(new CharSequence[0]);
 

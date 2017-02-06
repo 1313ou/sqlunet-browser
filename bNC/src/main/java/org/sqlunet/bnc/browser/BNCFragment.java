@@ -2,69 +2,38 @@ package org.sqlunet.bnc.browser;
 
 import android.os.Bundle;
 import android.os.Parcelable;
-import android.support.v4.app.Fragment;
-import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 
 import org.sqlunet.bnc.R;
 import org.sqlunet.bnc.loaders.BaseModule;
 import org.sqlunet.browser.Module;
+import org.sqlunet.browser.TreeFragment;
 import org.sqlunet.provider.ProviderArgs;
-import org.sqlunet.treeview.control.TreeController;
 import org.sqlunet.treeview.model.TreeNode;
-import org.sqlunet.treeview.view.TreeView;
-import org.sqlunet.view.TreeFactory;
 
 /**
  * A fragment representing a lexunit.
  *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
-public class BNCFragment extends Fragment
+public class BNCFragment extends TreeFragment
 {
-	static private final String TAG = "BNCFragment";
+	static private final String TAG = "BncF";
 
 	/**
-	 * State of tree
+	 * Constructor
 	 */
-	static private final String STATE_TREEVIEW = "state_treeview";
-
-	/**
-	 * Tree view
-	 */
-	private TreeView treeView;
+	public BNCFragment()
+	{
+		this.layoutId = R.layout.fragment_bnc;
+		this.treeContainerId = R.id.data_contents;
+		this.header = "BNC";
+		this.iconId = R.drawable.bnc;
+	}
 
 	@Override
-	public View onCreateView(final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState)
+	public void onStart()
 	{
-		// view
-		final View view = inflater.inflate(R.layout.fragment_bnc, container, false);
-
-		// container
-		final ViewGroup containerView = (ViewGroup) view.findViewById(R.id.data_contents);
-
-		// root node
-		final TreeNode root = TreeNode.makeRoot();
-		final TreeNode queryNode = TreeFactory.addTreeNode(root, "BNC", R.drawable.bnc, getActivity());
-
-		// tree
-		this.treeView = new TreeView(getActivity(), root);
-		this.treeView.setDefaultContainerStyle(R.style.TreeNodeStyleCustom); // R.style.TreeNodeStyleDivided
-		this.treeView.setDefaultController(TreeController.class);
-		containerView.addView(this.treeView.getView());
-
-		// saved state
-		if (savedInstanceState != null)
-		{
-			Log.d(TAG, "restore instance state " + this);
-			final String state = savedInstanceState.getString(STATE_TREEVIEW);
-			if (state != null && !state.isEmpty())
-			{
-				this.treeView.restoreState(state);
-			}
-		}
+		super.onStart();
 
 		// query
 		final Bundle args = getArguments();
@@ -74,29 +43,14 @@ public class BNCFragment extends Fragment
 			// pointer
 			final Parcelable pointer = args.getParcelable(ProviderArgs.ARG_QUERYPOINTER);
 
+			// root node
+			final TreeNode root = this.treeView.getRoot();
+			final TreeNode queryNode = root.getChildren().iterator().next();
+
 			// module
 			Module module = new BaseModule(this);
 			module.init(type, pointer);
 			module.process(queryNode);
 		}
-
-		return view;
-	}
-
-	@Override
-	public void onSaveInstanceState(final Bundle outState)
-	{
-		Log.d(TAG, "save instance state " + this);
-		super.onSaveInstanceState(outState);
-		outState.putString(STATE_TREEVIEW, this.treeView.getSaveState());
-	}
-
-	// C R E A T I O N
-
-	/**
-	 * Mandatory empty constructor for the fragment manager to instantiate the fragment (e.g. upon screen orientation changes).
-	 */
-	public BNCFragment()
-	{
 	}
 }

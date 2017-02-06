@@ -23,7 +23,7 @@ public class SqlDialogFragment extends DialogFragment
 	{
 		getDialog().setTitle(R.string.title_dialog_sql);
 
-		@SuppressLint("InflateParams") final View view = inflater.inflate(R.layout.fragment_sql, null);
+		@SuppressLint("InflateParams") final View view = inflater.inflate(R.layout.fragment_sql, container);
 
 		final Fragment sqlFragment = new SqlHistoryFragment();
 		getChildFragmentManager() //

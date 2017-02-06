@@ -814,7 +814,7 @@ public class TreeView
 	 */
 	public void restoreState(final String saveState)
 	{
-		if (!TextUtils.isEmpty(saveState))
+		if (saveState != null && !TextUtils.isEmpty(saveState))
 		{
 			collapseAll();
 			final String[] openNodesArray = saveState.split(NODES_PATH_SEPARATOR);

@@ -218,10 +218,10 @@ public class VerbNetProvider extends BaseProvider
 				throw new RuntimeException("Malformed URI " + uri);
 		}
 
+		final String sql = SQLiteQueryBuilder.buildQueryString(false, table, projection, actualSelection, groupBy, null, sortOrder, null);
+		logSql(sql, selectionArgs);
 		if (BaseProvider.logSql)
 		{
-			final String sql = SQLiteQueryBuilder.buildQueryString(false, table, projection, actualSelection, groupBy, null, sortOrder, null);
-			logSql(sql, selectionArgs);
 			Log.d(VerbNetProvider.TAG + "SQL", SqlFormatter.format(sql).toString());
 			Log.d(VerbNetProvider.TAG + "ARGS", BaseProvider.argsToString(selectionArgs));
 		}
@@ -233,7 +233,6 @@ public class VerbNetProvider extends BaseProvider
 		}
 		catch (final SQLiteException e)
 		{
-			final String sql = SQLiteQueryBuilder.buildQueryString(false, table, projection, actualSelection, groupBy, null, sortOrder, null);
 			Log.d(TAG + "SQL", sql);
 			Log.e(VerbNetProvider.TAG, "VerbNet provider query failed", e);
 			return null;

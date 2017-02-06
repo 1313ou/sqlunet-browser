@@ -1,99 +1,70 @@
 package org.sqlunet.framenet.browser;
 
-import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.os.Parcelable;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 
 import org.sqlunet.browser.Module;
+import org.sqlunet.browser.TreeFragment;
 import org.sqlunet.framenet.R;
 import org.sqlunet.framenet.loaders.AnnoSetFromPatternModule;
 import org.sqlunet.framenet.loaders.AnnoSetFromValenceUnitModule;
 import org.sqlunet.framenet.loaders.AnnoSetModule;
 import org.sqlunet.provider.ProviderArgs;
-import org.sqlunet.treeview.control.TreeController;
 import org.sqlunet.treeview.model.TreeNode;
-import org.sqlunet.treeview.view.TreeView;
-import org.sqlunet.view.TreeFactory;
 
 /**
  * A fragment representing an annoSet.
  *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
-public class FnAnnoSetFragment extends Fragment
+public class FnAnnoSetFragment extends TreeFragment
 {
-	/**
-	 * State of tree
-	 */
-	static private final String STATE_TREEVIEW = "state_treeview";
-
-	/**
-	 * Tree view
-	 */
-	private TreeView treeView;
+	static private final String TAG = "FnAnnoSetF";
 
 	/**
 	 * Constructor
 	 */
 	public FnAnnoSetFragment()
 	{
-		//
-	}
-
-	@Override
-	public View onCreateView(final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState)
-	{
-		// view
-		final View view = inflater.inflate(R.layout.fragment_fnannoset, container, false);
-
-		// container
-		final ViewGroup containerView = (ViewGroup) view.findViewById(R.id.data_contents);
-
-		// query
-		final Bundle args = getArguments();
-		final int type = args.getInt(ProviderArgs.ARG_QUERYTYPE);
+		this.layoutId = R.layout.fragment_fnannoset;
+		this.treeContainerId = R.id.data_contents;
+		this.iconId = R.drawable.annoset;
 
 		// header
-		String header = "AnnoSet";
+		final Bundle args = getArguments();
+		final int type = args.getInt(ProviderArgs.ARG_QUERYTYPE);
 		switch (type)
 		{
 			case ProviderArgs.ARG_QUERYTYPE_FNPATTERN:
-				header = "AnnoSets for Pattern";
+				this.header = "AnnoSets for Pattern";
 				break;
 			case ProviderArgs.ARG_QUERYTYPE_FNVALENCEUNIT:
-				header = "AnnoSets for Valence Unit";
+				this.header = "AnnoSets for Valence Unit";
 				break;
 			default:
+				this.header = "AnnoSets";
+				break;
 		}
+	}
 
-		// root node
-		final TreeNode root = TreeNode.makeRoot();
-		final TreeNode queryNode = TreeFactory.addTreeNode(root, header, R.drawable.annoset, getActivity());
+	@Override
+	public void onStart()
+	{
+		super.onStart();
 
-		// tree
-		this.treeView = new TreeView(getActivity(), root);
-		this.treeView.setDefaultContainerStyle(R.style.TreeNodeStyleCustom); // R.style.TreeNodeStyleDivided
-		this.treeView.setDefaultController(TreeController.class);
-		containerView.addView(this.treeView.getView());
-
-		// saved state
-		if (savedInstanceState != null)
-		{
-			final String state = savedInstanceState.getString(STATE_TREEVIEW);
-			if (state != null && !state.isEmpty())
-			{
-				this.treeView.restoreState(state);
-			}
-		}
-
-		// module
+		// query
+		final Bundle args = getArguments();
 		if (args.containsKey(ProviderArgs.ARG_QUERYPOINTER))
 		{
 			// pointer
 			final Parcelable pointer = args.getParcelable(ProviderArgs.ARG_QUERYPOINTER);
+			final int type = args.getInt(ProviderArgs.ARG_QUERYTYPE);
+
+			// root node
+			final TreeNode root = this.treeView.getRoot();
+			final TreeNode queryNode = root.getChildren().iterator().next();
+
+			// module
 			Module module;
 			switch (type)
 			{
@@ -107,19 +78,10 @@ public class FnAnnoSetFragment extends Fragment
 					module = new AnnoSetFromValenceUnitModule(this);
 					break;
 				default:
-					return view;
+					return;
 			}
 			module.init(type, pointer);
 			module.process(queryNode);
 		}
-
-		return view;
-	}
-
-	@Override
-	public void onSaveInstanceState(final Bundle outState)
-	{
-		super.onSaveInstanceState(outState);
-		outState.putString(STATE_TREEVIEW, this.treeView.getSaveState());
 	}
 }

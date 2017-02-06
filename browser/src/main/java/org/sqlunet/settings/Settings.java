@@ -451,7 +451,8 @@ public class Settings
 
 		// globals
 
-		final boolean logSql = sharedPref.getBoolean(Settings.PREF_SQL_LOG, false);
+		// TODO
+		final boolean logSql = sharedPref.getBoolean(Settings.PREF_SQL_LOG, true);
 		PreparedStatement.logSql = logSql;
 		BaseProvider.logSql = logSql;
 	}

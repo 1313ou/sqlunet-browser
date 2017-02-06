@@ -574,7 +574,7 @@ class FileAsyncTask
 
 	static public void md5(final Context context)
 	{
-		final Pair<CharSequence[], CharSequence[]> result = StorageReports.getCachesNamesValues(context);
+		final Pair<CharSequence[], CharSequence[]> result = StorageReports.getStyledCachesNamesValues(context);
 		final CharSequence[] names = result.first;
 		final CharSequence[] values = result.second;
 		final Pair<CharSequence[], CharSequence[]> result2 = StorageReports.getStorageDirectoriesNamesValues(context);

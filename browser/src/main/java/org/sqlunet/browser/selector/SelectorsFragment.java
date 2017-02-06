@@ -90,6 +90,9 @@ public class SelectorsFragment extends ListFragment
 	{
 		super.onCreate(savedInstanceState);
 
+		//TODO
+		setRetainInstance(true);
+
 		// arguments
 		Bundle args = getArguments();
 		assert args != null;
@@ -191,9 +194,9 @@ public class SelectorsFragment extends ListFragment
 		getListView().setChoiceMode(this.activateOnItemClick ? AbsListView.CHOICE_MODE_SINGLE : AbsListView.CHOICE_MODE_NONE);
 
 		// restore the previously serialized activated item position, if any
-		if (savedInstanceState != null && savedInstanceState.containsKey(SelectorsFragment.STATE_ACTIVATED_SELECTOR))
+		if (savedInstanceState != null)
 		{
-			final int position = savedInstanceState.getInt(SelectorsFragment.STATE_ACTIVATED_SELECTOR);
+			final int position = savedInstanceState.getInt(SelectorsFragment.STATE_ACTIVATED_SELECTOR, AdapterView.INVALID_POSITION);
 			if (position == AdapterView.INVALID_POSITION)
 			{
 				getListView().setItemChecked(this.activatedPosition, false);
@@ -289,6 +292,13 @@ public class SelectorsFragment extends ListFragment
 
 				// pass on to list adapter
 				((CursorAdapter) getListAdapter()).swapCursor(cursor);
+
+				//TODO
+//				if (SelectorsFragment.this.activatedPosition != AdapterView.INVALID_POSITION)
+//				{
+//					final ListView listView = getListView();
+//					listView.setItemChecked(SelectorsFragment.this.activatedPosition, true);
+//				}
 			}
 
 			@Override
@@ -315,7 +325,14 @@ public class SelectorsFragment extends ListFragment
 	public void onListItemClick(final ListView listView, final View view, final int position, final long id)
 	{
 		super.onListItemClick(listView, view, position, id);
+		activate(position);
+	}
+
+	private void activate(int position)
+	{
+		final ListView listView = getListView();
 		listView.setItemChecked(position, true);
+		this.activatedPosition = position;
 
 		if (this.listener != null)
 		{

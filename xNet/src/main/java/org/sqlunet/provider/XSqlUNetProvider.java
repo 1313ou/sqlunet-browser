@@ -230,10 +230,10 @@ public class XSqlUNetProvider extends BaseProvider
 				throw new RuntimeException("Malformed URI " + uri);
 		}
 
+		final String sql = SQLiteQueryBuilder.buildQueryString(false, table, projection, selection, groupBy, null, sortOrder, null);
+		logSql(sql, selectionArgs);
 		if (BaseProvider.logSql)
 		{
-			final String sql = SQLiteQueryBuilder.buildQueryString(false, table, projection, selection, groupBy, null, sortOrder, null);
-			logSql(sql, selectionArgs);
 			Log.d(XSqlUNetProvider.TAG + "SQL", SqlFormatter.format(sql).toString());
 			Log.d(XSqlUNetProvider.TAG + "ARGS", BaseProvider.argsToString(selectionArgs));
 		}
@@ -245,7 +245,6 @@ public class XSqlUNetProvider extends BaseProvider
 		}
 		catch (final SQLiteException e)
 		{
-			final String sql = SQLiteQueryBuilder.buildQueryString(false, table, projection, selection, groupBy, null, sortOrder, null);
 			logSql(sql, selectionArgs);
 			Log.d(TAG + "SQL", sql);
 			Log.e(XSqlUNetProvider.TAG, "XSqlUNet provider query failed", e);
@@ -339,9 +338,9 @@ public class XSqlUNetProvider extends BaseProvider
 			selectionArgs2[2 * i] = selectionArgs2[2 * i + 1] = selectionArgs[i];
 		}
 
+		logSql(sql, selectionArgs);
 		if (BaseProvider.logSql)
 		{
-			logSql(sql, selectionArgs);
 			Log.d(XSqlUNetProvider.TAG + "SQL", SqlFormatter.format(sql).toString());
 			Log.d(XSqlUNetProvider.TAG + "ARGS", BaseProvider.argsToString(selectionArgs2));
 		}

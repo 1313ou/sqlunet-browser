@@ -1,17 +1,11 @@
 package org.sqlunet.wordnet.browser;
 
-import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.os.Parcelable;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 
+import org.sqlunet.browser.TreeFragment;
 import org.sqlunet.provider.ProviderArgs;
-import org.sqlunet.treeview.control.TreeController;
 import org.sqlunet.treeview.model.TreeNode;
-import org.sqlunet.treeview.view.TreeView;
-import org.sqlunet.view.TreeFactory;
 import org.sqlunet.wordnet.R;
 import org.sqlunet.wordnet.loaders.WordModule;
 
@@ -20,53 +14,25 @@ import org.sqlunet.wordnet.loaders.WordModule;
  *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
-public class WordFragment extends Fragment
+public class WordFragment extends TreeFragment
 {
-	/**
-	 * State of tree
-	 */
-	static private final String STATE_TREEVIEW = "state_treeview";
-
-	/**
-	 * Tree view
-	 */
-	private TreeView treeView;
+	static private final String TAG = "WordF";
 
 	/**
 	 * Constructor
 	 */
 	public WordFragment()
 	{
+		this.layoutId = R.layout.fragment_word;
+		this.treeContainerId = R.id.data_contents;
+		this.header = "WordNet";
+		this.iconId = R.drawable.wordnet;
 	}
 
 	@Override
-	public View onCreateView(final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState)
+	public void onStart()
 	{
-		// view
-		final View view = inflater.inflate(R.layout.fragment_word, container, false);
-
-		// container
-		final ViewGroup containerView = (ViewGroup) view.findViewById(R.id.data_contents);
-
-		// root node
-		final TreeNode root = TreeNode.makeRoot();
-		final TreeNode queryNode = TreeFactory.addTreeNode(root, "WordNet", R.drawable.wordnet, getActivity());
-
-		// tree
-		this.treeView = new TreeView(getActivity(), root);
-		this.treeView.setDefaultContainerStyle(R.style.TreeNodeStyleCustom); // R.style.TreeNodeStyleDivided
-		this.treeView.setDefaultController(TreeController.class);
-		containerView.addView(this.treeView.getView());
-
-		// saved state
-		if (savedInstanceState != null)
-		{
-			final String state = savedInstanceState.getString(STATE_TREEVIEW);
-			if (state != null && !state.isEmpty())
-			{
-				this.treeView.restoreState(state);
-			}
-		}
+		super.onStart();
 
 		// query
 		final Bundle args = getArguments();
@@ -76,20 +42,15 @@ public class WordFragment extends Fragment
 			// pointer
 			final Parcelable pointer = args.getParcelable(ProviderArgs.ARG_QUERYPOINTER);
 
+			// root node
+			final TreeNode root = this.treeView.getRoot();
+			final TreeNode queryNode = root.getChildren().iterator().next();
+
 			// module
 			final WordModule module = makeModule();
 			module.init(type, pointer);
 			module.process(queryNode);
 		}
-
-		return view;
-	}
-
-	@Override
-	public void onSaveInstanceState(final Bundle outState)
-	{
-		super.onSaveInstanceState(outState);
-		outState.putString(STATE_TREEVIEW, this.treeView.getSaveState());
 	}
 
 	/**

@@ -152,7 +152,7 @@ public class NavigationFragment extends NavigationDrawerFragment implements Navi
 	public void onItemSelected(int position)
 	{
 		Log.d(TAG, "SELECTED " + position);
-		if (hook(position))
+		if (tryActivity(position))
 		{
 			return;
 		}
@@ -161,11 +161,11 @@ public class NavigationFragment extends NavigationDrawerFragment implements Navi
 	}
 
 	/**
-	 * Drawer selection hook
+	 * Drawer selection tryActivity
 	 *
 	 * @param number selected item number
 	 */
-	private boolean hook(final int number)
+	private boolean tryActivity(final int number)
 	{
 		Intent intent = null;
 		switch (number)
@@ -191,7 +191,7 @@ public class NavigationFragment extends NavigationDrawerFragment implements Navi
 
 	private void updateFragments(int position)
 	{
-		Log.d(TAG, "UPDATE FRAGMENTS " + position);
+		Log.d(TAG, "UPDATE SECTION FRAGMENTS " + position);
 		final AppCompatActivity activity = (AppCompatActivity) getActivity();
 		final FragmentManager manager = activity.getSupportFragmentManager();
 		final FragmentTransaction transaction = manager.beginTransaction();

@@ -78,9 +78,9 @@ public abstract class BaseProvider extends ContentProvider
 	static public final CircularBuffer buffer = new CircularBuffer(15);
 
 	/**
-	 * Debug generated SQL
+	 * Record generated SQL
 	 */
-	static public boolean logSql = false;
+	static public boolean logSql = true;
 
 	static protected final String VENDOR = "sqlunet";
 

@@ -36,6 +36,9 @@ public class Browse1Fragment extends Fragment implements SelectorsFragment.Liste
 	@Override
 	public View onCreateView(final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState)
 	{
+		//TODO
+		setRetainInstance(true);
+
 		// view
 		final View view = inflater.inflate(R.layout.fragment_browse1, container, false);
 

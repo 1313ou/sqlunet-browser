@@ -20,7 +20,11 @@ public class SqlFragment extends ListFragment
 	public void onResume()
 	{
 		super.onResume();
+		update();
+	}
 
+	private void update()
+	{
 		CharSequence[] sqls = BaseProvider.buffer.reverseItems();
 		for (int i = 0; i < sqls.length; i++)
 		{

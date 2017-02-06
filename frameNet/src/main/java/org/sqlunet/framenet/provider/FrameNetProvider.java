@@ -532,10 +532,10 @@ public class FrameNetProvider extends BaseProvider
 				throw new RuntimeException("Malformed URI " + uri);
 		}
 
+		final String sql = SQLiteQueryBuilder.buildQueryString(false, table, projection, actualSelection, groupBy, null, sortOrder, null);
+		logSql(sql, selectionArgs);
 		if (BaseProvider.logSql)
 		{
-			final String sql = SQLiteQueryBuilder.buildQueryString(false, table, projection, actualSelection, groupBy, null, sortOrder, null);
-			logSql(sql, selectionArgs);
 			Log.d(FrameNetProvider.TAG + "SQL", SqlFormatter.format(sql).toString());
 			Log.d(FrameNetProvider.TAG + "ARGS", BaseProvider.argsToString(selectionArgs));
 		}
@@ -550,7 +550,6 @@ public class FrameNetProvider extends BaseProvider
 		catch (SQLiteException e)
 
 		{
-			final String sql = SQLiteQueryBuilder.buildQueryString(false, table, projection, actualSelection, groupBy, null, sortOrder, null);
 			Log.d(TAG + "SQL", sql);
 			Log.e(TAG, "FrameNet provider query failed", e);
 			return null;

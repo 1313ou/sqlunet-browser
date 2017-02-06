@@ -203,7 +203,7 @@ public class SettingsActivity extends AppCompatPreferenceActivity
 	 */
 	static private void populateCacheListPreference(final Context context, final ListPreference listPref)
 	{
-		final Pair<CharSequence[], CharSequence[]> result = StorageReports.getCachesNamesValues(context);
+		final Pair<CharSequence[], CharSequence[]> result = StorageReports.getStyledCachesNamesValues(context);
 		final CharSequence[] names = result.first;
 		final CharSequence[] values = result.second;
 

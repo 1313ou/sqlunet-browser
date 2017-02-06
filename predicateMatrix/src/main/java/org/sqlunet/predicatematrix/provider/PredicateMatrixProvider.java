@@ -121,10 +121,10 @@ public class PredicateMatrixProvider extends BaseProvider
 				throw new RuntimeException("Malformed URI " + uri);
 		}
 
+		final String sql = SQLiteQueryBuilder.buildQueryString(false, table, projection, selection, null, null, sortOrder, null);
+		logSql(sql, selectionArgs);
 		if (BaseProvider.logSql)
 		{
-			final String sql = SQLiteQueryBuilder.buildQueryString(false, table, projection, selection, null, null, sortOrder, null);
-			logSql(sql, selectionArgs);
 			Log.d(PredicateMatrixProvider.TAG + "SQL", SqlFormatter.format(sql).toString());
 			Log.d(PredicateMatrixProvider.TAG + "ARGS", BaseProvider.argsToString(selectionArgs));
 		}
@@ -136,7 +136,6 @@ public class PredicateMatrixProvider extends BaseProvider
 		}
 		catch (SQLiteException e)
 		{
-			final String sql = SQLiteQueryBuilder.buildQueryString(false, table, projection, selection, null, null, sortOrder, null);
 			Log.d(TAG + "SQL", sql);
 			Log.e(TAG, "PropBank provider query failed", e);
 			return null;

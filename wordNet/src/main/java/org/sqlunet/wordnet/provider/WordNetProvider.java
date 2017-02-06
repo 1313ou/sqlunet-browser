@@ -569,10 +569,10 @@ public class WordNetProvider extends BaseProvider
 				throw new RuntimeException("Malformed URI " + uri);
 		}
 
+		final String sql = SQLiteQueryBuilder.buildQueryString(false, table, actualProjection, actualSelection, groupBy, null, sortOrder, null);
+		logSql(sql, selectionArgs);
 		if (BaseProvider.logSql)
 		{
-			final String sql = SQLiteQueryBuilder.buildQueryString(false, table, actualProjection, actualSelection, groupBy, null, sortOrder, null);
-			logSql(sql, selectionArgs);
 			Log.d(WordNetProvider.TAG + "SQL", SqlFormatter.format(sql).toString());
 			Log.d(WordNetProvider.TAG + "ARG", BaseProvider.argsToString(selectionArgs));
 		}
@@ -584,7 +584,6 @@ public class WordNetProvider extends BaseProvider
 		}
 		catch (final SQLiteException e)
 		{
-			final String sql = SQLiteQueryBuilder.buildQueryString(false, table, actualProjection, actualSelection, groupBy, null, sortOrder, null);
 			Log.d(TAG + "SQL", sql);
 			Log.e(TAG, "WordNet provider query failed", e);
 			return null;
