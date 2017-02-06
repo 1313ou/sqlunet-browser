@@ -37,7 +37,6 @@ abstract public class TreeFragment extends Fragment
 
 	protected int iconId;
 
-
 	/**
 	 * Constructor
 	 */
