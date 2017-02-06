@@ -14,7 +14,6 @@ import android.view.ViewGroup;
 import android.widget.CursorAdapter;
 import android.widget.SimpleCursorAdapter;
 import android.widget.SimpleCursorAdapter.ViewBinder;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import org.sqlunet.provider.ProviderArgs;
@@ -34,7 +33,7 @@ public abstract class AbstractTableFragment extends ListFragment
 {
 	static private final String TAG = "AbstractTableFrag";
 
-	static private final boolean VERBOSE = false;
+	static private final boolean VERBOSE = true;
 
 	/**
 	 * View binder factory
@@ -173,9 +172,6 @@ public abstract class AbstractTableFragment extends ListFragment
 		// view
 		final View view = inflater.inflate(R.layout.fragment_table, container, false);
 
-		// query view
-		final TextView queryView = (TextView) view.findViewById(R.id.targetView);
-
 		// args
 		final Bundle args = getArguments();
 
@@ -185,11 +181,7 @@ public abstract class AbstractTableFragment extends ListFragment
 		{
 			final String uriString = args.getString(ProviderArgs.ARG_QUERYURI);
 			final String selection = args.getString(ProviderArgs.ARG_QUERYFILTER);
-			queryView.setText(String.format("%s (filter: %s)(arg=%s)", uriString, selection, queryArg));
-		}
-		else
-		{
-			queryView.setText(queryArg);
+			Log.d(TAG, String.format("%s (filter: %s)(arg=%s)", uriString, selection, queryArg));
 		}
 
 		return view;

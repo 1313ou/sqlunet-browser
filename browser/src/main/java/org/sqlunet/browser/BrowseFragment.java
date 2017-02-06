@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
+import android.widget.TextView;
 
 import org.sqlunet.browser.config.TableActivity;
 import org.sqlunet.browser.selector.Browse1Activity;
@@ -174,6 +175,10 @@ public class BrowseFragment extends BaseSearchFragment
 		// log
 		Log.d(BrowseFragment.TAG, "BROWSE " + query);
 
+		// copy to target view
+		final TextView targetView = (TextView) getView().findViewById(R.id.targetView);
+		targetView.setText(query);
+
 		// recurse
 		final boolean recurse = Settings.getRecursePref(getActivity());
 
@@ -282,7 +287,7 @@ public class BrowseFragment extends BaseSearchFragment
 				args.putInt(ProviderArgs.ARG_QUERYTYPE, ProviderArgs.ARG_QUERYTYPE_PMROLE);
 				args.putParcelable(ProviderArgs.ARG_QUERYPOINTER, rolePointer);
 
-				targetIntent = makeDetailIntent(PredicateMatrixActivity.class);
+				targetIntent = makeDetailIntent(BrowsePredicateMatrixActivity.class);
 			}
 			else
 			{

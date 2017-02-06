@@ -1,9 +1,12 @@
-package org.sqlunet.browser;
+package org.sqlunet.predicatematrix.browser;
 
 import android.os.Bundle;
 import android.os.Parcelable;
 
+import org.sqlunet.browser.Module;
+import org.sqlunet.browser.TreeFragment;
 import org.sqlunet.predicatematrix.PmRolePointer;
+import org.sqlunet.predicatematrix.R;
 import org.sqlunet.predicatematrix.loaders.PredicateRoleFromWordModule;
 import org.sqlunet.predicatematrix.loaders.PredicateRoleModule;
 import org.sqlunet.predicatematrix.settings.Settings;
@@ -15,19 +18,19 @@ import org.sqlunet.treeview.model.TreeNode;
  *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
-public class PredicateMatrixResultFragment extends TreeFragment
+public class PredicateMatrixFragment extends TreeFragment
 {
 	static private final String TAG = "PmResultF";
 
 	/**
 	 * Constructor
 	 */
-	public PredicateMatrixResultFragment()
+	public PredicateMatrixFragment()
 	{
-		this.layoutId = R.layout.fragment_predicatematrix_result;
-		this.treeContainerId = org.sqlunet.bnc.R.id.data_contents;
+		this.layoutId = R.layout.fragment_predicatematrix;
+		this.treeContainerId = R.id.data_contents;
 		this.header = "PredicateMatrix";
-		this.iconId = org.sqlunet.bnc.R.drawable.predicatematrix;
+		this.iconId = R.drawable.predicatematrix;
 	}
 
 	@Override

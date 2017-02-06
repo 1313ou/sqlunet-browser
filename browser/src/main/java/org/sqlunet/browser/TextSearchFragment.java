@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.TextView;
 
 import org.sqlunet.framenet.provider.FrameNetContract.Lookup_FnSentences_X;
 import org.sqlunet.propbank.provider.PropBankContract.Lookup_PbExamples_X;
@@ -81,6 +82,10 @@ public class TextSearchFragment extends BaseSearchFragment
 	{
 		// log
 		Log.d(TextSearchFragment.TAG, "TEXT SEARCH " + query);
+
+		// copy to target view
+		final TextView targetView = (TextView) getView().findViewById(R.id.targetView);
+		targetView.setText(query);
 
 		// type
 		final int typePosition = this.spinner.getSelectedItemPosition();

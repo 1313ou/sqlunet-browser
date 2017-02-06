@@ -96,10 +96,10 @@
 				android:resource="@xml/searchable"/>
 		</activity>
 		<activity
-			android:name=".PredicateMatrixActivity"
+			android:name=".BrowsePredicateMatrixActivity"
 			android:label="@string/title_activity_predicatematrix"
 			android:launchMode="singleTop"
-			android:parentActivityName=".PredicateMatrixActivity"
+			android:parentActivityName=".BrowsePredicateMatrixActivity"
 			tools:ignore="UnusedAttribute">
 			<intent-filter>
 				<action android:name="android.intent.action.SEARCH"/>

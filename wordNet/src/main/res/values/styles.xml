@@ -108,7 +108,7 @@
 	<style name="Data.WnAdjPosition"/>
 
 	<style name="Senses">
-		<item name="android:layout_width">fill_parent</item>
+		<item name="android:layout_width">match_parent</item>
 		<item name="android:layout_height">1dp</item>
 		<item name="android:layout_marginTop">6dp</item>
 		<item name="android:background">?android:attr/activatedBackgroundIndicator</item>

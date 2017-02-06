@@ -7,7 +7,6 @@ import android.support.v4.app.FragmentManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import org.sqlunet.browser.Browse2Activity;
 import org.sqlunet.browser.Browse2Fragment;
@@ -45,10 +44,6 @@ public class Browse1Fragment extends Fragment implements SelectorsFragment.Liste
 		// query
 		final Bundle args = getArguments();
 		final String query = args == null ? null : args.getString(ProviderArgs.ARG_QUERYSTRING);
-
-		// copy to target view
-		final TextView targetView = (TextView) view.findViewById(R.id.targetView);
-		targetView.setText(query);
 
 		// selector fragment
 		this.selectorsFragment = new SelectorsFragment();

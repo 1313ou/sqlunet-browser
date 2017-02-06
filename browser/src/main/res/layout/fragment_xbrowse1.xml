@@ -5,19 +5,12 @@
                 android:layout_height="match_parent"
                 tools:context="org.sqlunet.browser.xselector.XBrowse1Fragment">
 
-	<TextView
-		android:id="@+id/targetView"
-		style="@style/Query"
-		android:layout_width="fill_parent"
-		android:layout_height="wrap_content"
-		android:textIsSelectable="false"/>
-
-	<!-- selectors -->
+	<!-- x selectors -->
 	<FrameLayout
 		android:id="@+id/container_xselectors"
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
-		android:layout_below="@+id/targetView"
-		tools:layout="@layout/fragment_xselectors"/>
+		android:layout_marginEnd="5dp"
+		android:layout_marginStart="5dp"/>
 
 </RelativeLayout>

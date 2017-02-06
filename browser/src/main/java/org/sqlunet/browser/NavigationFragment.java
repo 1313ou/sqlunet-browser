@@ -289,7 +289,7 @@ public class NavigationFragment extends NavigationDrawerFragment implements Navi
 				return new TextSearchFragment();
 
 			case 3:
-				return new PredicateMatrixFragment();
+				return new BrowsePredicateMatrixFragment();
 
 			case 4:
 				return new StatusFragment();

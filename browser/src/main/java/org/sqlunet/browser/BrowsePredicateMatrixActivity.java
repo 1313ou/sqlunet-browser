@@ -16,12 +16,12 @@ import org.sqlunet.provider.ProviderArgs;
  *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
-public class PredicateMatrixActivity extends AppCompatActivity
+public class BrowsePredicateMatrixActivity extends AppCompatActivity
 {
 	/**
 	 * Fragment
 	 */
-	private PredicateMatrixFragment fragment;
+	private BrowsePredicateMatrixFragment fragment;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
@@ -32,7 +32,7 @@ public class PredicateMatrixActivity extends AppCompatActivity
 		setContentView(R.layout.activity_predicatematrix);
 
 		// fragment
-		this.fragment = (PredicateMatrixFragment) getSupportFragmentManager().findFragmentById(R.id.fragment_predicatematrix);
+		this.fragment = (BrowsePredicateMatrixFragment) getSupportFragmentManager().findFragmentById(R.id.fragment_predicatematrix);
 	}
 
 	@Override

@@ -3,7 +3,7 @@
                 xmlns:tools="http://schemas.android.com/tools"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                tools:context="org.sqlunet.browser.PredicateMatrixFragment">
+                tools:context="org.sqlunet.browser.BrowsePredicateMatrixFragment">
 
 	<TextView
 		android:id="@+id/targetView"
@@ -12,16 +12,12 @@
 		android:layout_height="wrap_content"
 		android:textIsSelectable="false"/>
 
-	<ScrollView
-		android:layout_width="fill_parent"
-		android:layout_height="fill_parent"
-		android:layout_below="@+id/targetView">
+	<FrameLayout
+		android:id="@+id/container_predicatematrix"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:layout_below="@+id/targetView"
+		android:layout_marginEnd="5dp"
+		android:layout_marginStart="5dp"/>
 
-		<FrameLayout
-			android:id="@+id/data_contents"
-			style="@style/Data.Contents"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"/>
-
-	</ScrollView>
 </RelativeLayout>

@@ -9,9 +9,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.TextView;
 
 import org.sqlunet.Word;
 import org.sqlunet.predicatematrix.PmRolePointer;
+import org.sqlunet.predicatematrix.browser.PredicateMatrixFragment;
 import org.sqlunet.predicatematrix.settings.Settings;
 import org.sqlunet.provider.ProviderArgs;
 
@@ -20,9 +22,9 @@ import org.sqlunet.provider.ProviderArgs;
  *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
-public class PredicateMatrixFragment extends BaseSearchFragment
+public class BrowsePredicateMatrixFragment extends BaseSearchFragment
 {
-	static private final String TAG = "PredicateMatrixFragment";
+	static private final String TAG = "BrowsePmFragment";
 
 	/**
 	 * Saved query
@@ -49,9 +51,9 @@ public class PredicateMatrixFragment extends BaseSearchFragment
 	/**
 	 * Constructor
 	 */
-	public PredicateMatrixFragment()
+	public BrowsePredicateMatrixFragment()
 	{
-		this.layoutId = R.layout.fragment_predicatematrix;
+		this.layoutId = R.layout.fragment_browse_predicatematrix;
 		this.menuId = R.menu.predicate_matrix;
 		this.colorId = R.color.predicatematrix_action_bar_color;
 		this.spinnerLabels = R.array.predicatematrix_modes;
@@ -88,11 +90,11 @@ public class PredicateMatrixFragment extends BaseSearchFragment
 		// save data
 		if (this.query != null)
 		{
-			outState.putString(PredicateMatrixFragment.STATE_QUERY, this.query);
+			outState.putString(BrowsePredicateMatrixFragment.STATE_QUERY, this.query);
 		}
 		if (this.pointer != null)
 		{
-			outState.putParcelable(PredicateMatrixFragment.STATE_POINTER, this.pointer);
+			outState.putParcelable(BrowsePredicateMatrixFragment.STATE_POINTER, this.pointer);
 		}
 	}
 
@@ -112,16 +114,16 @@ public class PredicateMatrixFragment extends BaseSearchFragment
 				final Settings.PMMode mode = Settings.PMMode.values()[position];
 				mode.setPref(context);
 
-				Log.d(PredicateMatrixFragment.TAG, mode.name());
+				Log.d(BrowsePredicateMatrixFragment.TAG, mode.name());
 
 				// restart
-				if (PredicateMatrixFragment.this.pointer != null)
+				if (BrowsePredicateMatrixFragment.this.pointer != null)
 				{
-					search(PredicateMatrixFragment.this.pointer);
+					search(BrowsePredicateMatrixFragment.this.pointer);
 				}
 				else
 				{
-					search(PredicateMatrixFragment.this.query);
+					search(BrowsePredicateMatrixFragment.this.query);
 				}
 			}
 
@@ -155,9 +157,13 @@ public class PredicateMatrixFragment extends BaseSearchFragment
 		}
 
 		// log
-		Log.d(PredicateMatrixFragment.TAG, "PM SEARCH " + pointer);
+		Log.d(BrowsePredicateMatrixFragment.TAG, "PM SEARCH " + pointer);
 
-		// reset
+		// copy to target view
+		final TextView targetView = (TextView) getView().findViewById(R.id.targetView);
+		targetView.setText(pointer.toString());
+
+		// set
 		this.pointer = pointer;
 		this.query = null;
 
@@ -175,7 +181,7 @@ public class PredicateMatrixFragment extends BaseSearchFragment
 		container.removeAllViews();
 
 		// fragment
-		final Fragment fragment = new PredicateMatrixResultFragment();
+		final Fragment fragment = new PredicateMatrixFragment();
 		fragment.setArguments(args);
 		getChildFragmentManager() //
 				.beginTransaction() //
@@ -197,7 +203,11 @@ public class PredicateMatrixFragment extends BaseSearchFragment
 		}
 
 		// log
-		Log.d(PredicateMatrixFragment.TAG, "PM SEARCH " + query);
+		Log.d(BrowsePredicateMatrixFragment.TAG, "PM SEARCH " + query);
+
+		// copy to target view
+		final TextView targetView = (TextView) getView().findViewById(R.id.targetView);
+		targetView.setText(query);
 
 		// set
 		this.query = query;
@@ -230,7 +240,7 @@ public class PredicateMatrixFragment extends BaseSearchFragment
 		container.removeAllViews();
 
 		// fragment
-		final Fragment fragment = new PredicateMatrixResultFragment();
+		final Fragment fragment = new PredicateMatrixFragment();
 		fragment.setArguments(args);
 		getChildFragmentManager() //
 				.beginTransaction() //

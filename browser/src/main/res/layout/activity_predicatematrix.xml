@@ -3,13 +3,13 @@
              xmlns:tools="http://schemas.android.com/tools"
              android:layout_width="match_parent"
              android:layout_height="match_parent"
-             tools:context="org.sqlunet.browser.PredicateMatrixActivity">
+             tools:context="org.sqlunet.browser.BrowsePredicateMatrixActivity">
 
 	<fragment
 		android:id="@+id/fragment_predicatematrix"
-		android:name="org.sqlunet.browser.PredicateMatrixFragment"
-		class="org.sqlunet.browser.PredicateMatrixFragment"
+		android:name="org.sqlunet.browser.BrowsePredicateMatrixFragment"
+		class="org.sqlunet.browser.BrowsePredicateMatrixFragment"
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
-		tools:layout="@layout/fragment_predicatematrix"/>
+		tools:layout="@layout/fragment_browse_predicatematrix"/>
 </FrameLayout>

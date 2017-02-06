@@ -3,27 +3,14 @@
                 xmlns:tools="http://schemas.android.com/tools"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:divider="?android:attr/dividerHorizontal"
-                android:orientation="horizontal"
-                android:showDividers="middle"
                 tools:context="org.sqlunet.browser.xselector.XBrowse1Fragment">
-
-	<TextView
-		android:id="@+id/targetView"
-		style="@style/Query"
-		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-		android:textIsSelectable="false"/>
 
 	<LinearLayout
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
-		android:layout_below="@+id/targetView"
-		android:layout_marginEnd="16dp"
-		android:baselineAligned="false"
-		android:divider="?android:attr/dividerHorizontal"
-		android:orientation="horizontal"
-		android:showDividers="middle">
+		android:layout_marginEnd="5dp"
+		android:layout_marginStart="5dp"
+		android:orientation="horizontal">
 
 		<!-- selectors -->
 		<RelativeLayout

@@ -3,23 +3,13 @@
                 xmlns:tools="http://schemas.android.com/tools"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:divider="?android:attr/dividerHorizontal"
-                android:orientation="horizontal"
-                android:showDividers="middle"
                 tools:context="org.sqlunet.browser.config.TableFragment">
 
-	<TextView
-		android:id="@+id/targetView"
-		style="@style/Query"
-		android:layout_width="fill_parent"
+	<ListView
+		android:id="@+id/android:list"
+		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
-		android:textIsSelectable="false"/>
-
-	<ListView xmlns:android="http://schemas.android.com/apk/res/android"
-	          android:id="@+id/android:list"
-	          android:layout_width="match_parent"
-	          android:layout_height="wrap_content"
-	          android:layout_below="@+id/targetView"
-	          android:layout_centerHorizontal="true"/>
+		android:layout_marginEnd="5dp"
+		android:layout_marginStart="5dp"/>
 
 </RelativeLayout>

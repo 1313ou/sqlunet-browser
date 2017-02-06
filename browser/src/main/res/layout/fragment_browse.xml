@@ -1,15 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 xmlns:tools="http://schemas.android.com/tools"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 tools:context="org.sqlunet.browser.BrowseFragment">
 
-	<RelativeLayout
+	<TextView
+		android:id="@+id/targetView"
+		style="@style/Query"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:textIsSelectable="false"/>
+
+	<FrameLayout
 		android:id="@+id/container_browse"
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
-		tools:ignore="UselessParent">
+		android:layout_below="@+id/targetView"
+		android:layout_marginEnd="5dp"
+		android:layout_marginStart="5dp"/>
 
-	</RelativeLayout>
-</FrameLayout>
+</RelativeLayout>
