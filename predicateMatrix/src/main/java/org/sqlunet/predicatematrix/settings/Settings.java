@@ -12,6 +12,7 @@ import android.preference.PreferenceManager;
 public class Settings
 {
 	static private final String PREF_PM_MODE = "pref_pm_mode";
+
 	/**
 	 * Modes
 	 */
@@ -46,11 +47,18 @@ public class Settings
 		 * Set preferred mode to this mode
 		 *
 		 * @param context context
+		 * @return true if value has changed
 		 */
-		public void setPref(final Context context)
+		public boolean setPref(final Context context)
 		{
 			final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
+			final String prev = sharedPref.getString(Settings.PREF_PM_MODE, null);
+			if (this.name().equals(prev))
+			{
+				return false;
+			}
 			sharedPref.edit().putString(Settings.PREF_PM_MODE, this.name()).apply();
+			return true;
 		}
 	}
 }

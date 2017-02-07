@@ -105,6 +105,15 @@ public class BrowsePredicateMatrixFragment extends BaseSearchFragment
 	{
 		super.setupSpinner(context);
 
+		// saved mode
+		final Settings.PMMode mode = Settings.PMMode.getPref(context);
+		if (mode != null)
+		{
+			// no listener yet
+			this.spinner.setOnItemSelectedListener(null);
+			this.spinner.setSelection(mode.ordinal());
+		}
+
 		// spinner listener
 		this.spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener()
 		{
@@ -112,18 +121,20 @@ public class BrowsePredicateMatrixFragment extends BaseSearchFragment
 			public void onItemSelected(final AdapterView<?> parentView, final View selectedItemView, final int position, final long id)
 			{
 				final Settings.PMMode mode = Settings.PMMode.values()[position];
-				mode.setPref(context);
-
-				Log.d(BrowsePredicateMatrixFragment.TAG, mode.name());
+				final boolean hasChanged = mode.setPref(context);
+				Log.d(BrowsePredicateMatrixFragment.TAG, "mode=" + mode.name() + " has changed=" + hasChanged);
 
 				// restart
-				if (BrowsePredicateMatrixFragment.this.pointer != null)
+				if (hasChanged)
 				{
-					search(BrowsePredicateMatrixFragment.this.pointer);
-				}
-				else
-				{
-					search(BrowsePredicateMatrixFragment.this.query);
+					if (BrowsePredicateMatrixFragment.this.pointer != null)
+					{
+						search(BrowsePredicateMatrixFragment.this.pointer);
+					}
+					else if (BrowsePredicateMatrixFragment.this.query != null)
+					{
+						search(BrowsePredicateMatrixFragment.this.query);
+					}
 				}
 			}
 
@@ -133,13 +144,6 @@ public class BrowsePredicateMatrixFragment extends BaseSearchFragment
 				//
 			}
 		});
-
-		// saved mode
-		final Settings.PMMode mode = Settings.PMMode.getPref(context);
-		if (mode != null)
-		{
-			this.spinner.setSelection(mode.ordinal());
-		}
 	}
 
 	// S E A R C H
