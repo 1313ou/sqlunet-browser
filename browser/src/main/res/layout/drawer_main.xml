@@ -9,6 +9,8 @@
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
 		android:layout_gravity="start"
+		android:paddingStart="?android:attr/listPreferredItemPaddingStart"
+		android:paddingTop="?android:attr/listPreferredItemPaddingStart"
 		android:contentDescription="@string/app_name"
 		android:src="@drawable/ic_launcher"/>
 

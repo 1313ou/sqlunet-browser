@@ -163,7 +163,7 @@
 	<!-- ARRAYS -->
 
 	<!-- navigation -->
-	<string name="title_home_section">Home</string>
+	<string name="title_home_section">SqlUNet</string>
 	<string name="title_browse_section">Browse</string>
 	<string name="title_textsearch_section">Text</string>
 	<string name="title_predicatematrix_section">Predicate Matrix</string>
