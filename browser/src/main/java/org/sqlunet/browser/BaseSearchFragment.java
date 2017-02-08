@@ -27,7 +27,6 @@ import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
-import android.widget.SpinnerAdapter;
 import android.widget.TextView;
 
 /**
@@ -211,7 +210,7 @@ abstract public class BaseSearchFragment extends NavigableFragment implements Se
 		array.recycle();
 
 		// adapter
-		final SpinnerAdapter adapter = new ArrayAdapter<CharSequence>(context, android.R.layout.simple_list_item_activated_1, android.R.id.text1, modeLabels)
+		final ArrayAdapter adapter = new ArrayAdapter<CharSequence>(context, R.layout.spinner_item_actionbar, android.R.id.text1, modeLabels)
 		{
 			@NonNull
 			@Override
@@ -244,6 +243,7 @@ abstract public class BaseSearchFragment extends NavigableFragment implements Se
 				return view;
 			}
 		};
+		adapter.setDropDownViewResource(R.layout.spinner_item_actionbar_dropdown);
 
 		// apply spinner adapter
 		this.spinner.setAdapter(adapter);

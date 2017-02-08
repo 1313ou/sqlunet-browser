@@ -156,6 +156,9 @@ public class XSelectorsFragment extends ExpandableListFragment
 	{
 		super.onCreate(savedInstanceState);
 
+		//TODO
+		setRetainInstance(true);
+
 		// args
 		Bundle args = getArguments();
 		assert args != null;

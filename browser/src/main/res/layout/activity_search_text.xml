@@ -3,13 +3,13 @@
              xmlns:tools="http://schemas.android.com/tools"
              android:layout_width="match_parent"
              android:layout_height="match_parent"
-             tools:context="org.sqlunet.browser.TextSearchActivity">
+             tools:context="org.sqlunet.browser.SearchTextActivity">
 
 	<fragment
 		android:id="@+id/fragment_textsearch"
-		android:name="org.sqlunet.browser.TextSearchFragment"
-		class="org.sqlunet.browser.TextSearchFragment"
+		android:name="org.sqlunet.browser.SearchTextFragment"
+		class="org.sqlunet.browser.SearchTextFragment"
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
-		tools:layout="@layout/fragment_textsearch"/>
+		tools:layout="@layout/fragment_search_text"/>
 </FrameLayout>

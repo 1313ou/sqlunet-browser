@@ -80,10 +80,10 @@
 				android:value=".MainActivity"/>
 		</activity>
 		<activity
-			android:name=".TextSearchActivity"
+			android:name=".SearchTextActivity"
 			android:label="@string/title_activity_text_search"
 			android:launchMode="singleTop"
-			android:parentActivityName=".TextSearchActivity"
+			android:parentActivityName=".SearchTextActivity"
 			tools:ignore="UnusedAttribute">
 			<intent-filter>
 				<action android:name="android.intent.action.SEARCH"/>

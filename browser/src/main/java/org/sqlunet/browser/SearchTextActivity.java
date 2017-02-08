@@ -10,12 +10,12 @@ import android.support.v7.app.AppCompatActivity;
  *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
-public class TextSearchActivity extends AppCompatActivity
+public class SearchTextActivity extends AppCompatActivity
 {
 	/**
 	 * Fragment
 	 */
-	private TextSearchFragment fragment;
+	private SearchTextFragment fragment;
 
 	@Override
 	protected void onCreate(final Bundle savedInstanceState)
@@ -23,12 +23,12 @@ public class TextSearchActivity extends AppCompatActivity
 		super.onCreate(savedInstanceState);
 
 		// content
-		setContentView(R.layout.activity_textsearch);
+		setContentView(R.layout.activity_search_text);
 
 		// fragment
 		if (savedInstanceState == null)
 		{
-			this.fragment = (TextSearchFragment) getSupportFragmentManager().findFragmentById(R.id.fragment_textsearch);
+			this.fragment = (SearchTextFragment) getSupportFragmentManager().findFragmentById(R.id.fragment_textsearch);
 		}
 	}
 

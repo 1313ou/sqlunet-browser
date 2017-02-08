@@ -1,6 +1,8 @@
 package org.sqlunet.browser;
 
 import android.content.Intent;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.content.res.Resources;
 import android.content.res.TypedArray;
 import android.graphics.drawable.Drawable;
@@ -191,7 +193,7 @@ public class NavigationFragment extends NavigationDrawerFragment implements Navi
 
 	private void updateFragments(int position)
 	{
-		Log.d(TAG, "UPDATE SECTION FRAGMENTS " + position);
+		Log.d(TAG, "SECTION FRAGMENTS " + position);
 		final AppCompatActivity activity = (AppCompatActivity) getActivity();
 		final FragmentManager manager = activity.getSupportFragmentManager();
 		final FragmentTransaction transaction = manager.beginTransaction();
@@ -269,8 +271,21 @@ public class NavigationFragment extends NavigationDrawerFragment implements Navi
 		assert setter != null;
 		if (!setter.setActionBar(actionBar, activity))
 		{
+			try
+			{
+				PackageInfo packageInfo = getActivity().getPackageManager().getPackageInfo(getActivity().getPackageName(), PackageManager.GET_META_DATA);
+				int themeResId = packageInfo.applicationInfo.theme;
+				String name = getResources().getResourceEntryName(themeResId);
+				Log.d(NavigationFragment.TAG, "THEME name " + name);
+			}
+			catch (PackageManager.NameNotFoundException e)
+			{
+				e.printStackTrace();
+			}
+
 			// theme
 			final Resources.Theme theme = activity.getTheme();
+			// theme.dump(Log.DEBUG, NavigationFragment.TAG, "THEME dump");
 			restoreActionBar(actionBar, theme);
 		}
 	}
@@ -286,7 +301,7 @@ public class NavigationFragment extends NavigationDrawerFragment implements Navi
 				return new BrowseFragment();
 
 			case 2:
-				return new TextSearchFragment();
+				return new SearchTextFragment();
 
 			case 3:
 				return new BrowsePredicateMatrixFragment();
@@ -317,15 +332,27 @@ public class NavigationFragment extends NavigationDrawerFragment implements Navi
 	{
 		Log.d(NavigationFragment.TAG, "restore standard action bar");
 
+		/*
+		final TypedValue style = new TypedValue();
+		theme.resolveAttribute(R.attr.colorPrimary, style, true);
+		int color = style.data;
+		final Drawable drawable = new ColorDrawable(color);
+		actionBar.setBackgroundDrawable(drawable);
+		*/
+
 		// res id of style pointed to from actionBarStyle
 		final TypedValue typedValue = new TypedValue();
 		theme.resolveAttribute(android.R.attr.actionBarStyle, typedValue, true);
 		final int resId = typedValue.resourceId;
+		Log.d(NavigationFragment.TAG, "resId " + Integer.toHexString(resId));
 
 		// now get action bar style values
 		final TypedArray style = theme.obtainStyledAttributes(resId, new int[]{android.R.attr.background});
+
+		//
 		try
 		{
+
 			final Drawable drawable = style.getDrawable(0);
 			actionBar.setBackgroundDrawable(drawable);
 		}

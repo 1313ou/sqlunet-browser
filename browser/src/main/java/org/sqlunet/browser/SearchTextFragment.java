@@ -22,18 +22,18 @@ import org.sqlunet.wordnet.provider.WordNetContract.Lookup_Words;
  *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
-public class TextSearchFragment extends BaseSearchFragment
+public class SearchTextFragment extends BaseSearchFragment
 {
-	static private final String TAG = "TextSearchActivity";
+	static private final String TAG = "SearchTextActivity";
 
 	// C R E A T I O N
 
 	/**
 	 * Constructor
 	 */
-	public TextSearchFragment()
+	public SearchTextFragment()
 	{
-		this.layoutId = R.layout.fragment_textsearch;
+		this.layoutId = R.layout.fragment_search_text;
 		this.menuId = R.menu.text_search;
 		this.colorId = R.color.textsearch_action_bar_color;
 		this.spinnerLabels = R.array.textsearch_modes;
@@ -80,7 +80,7 @@ public class TextSearchFragment extends BaseSearchFragment
 	public void search(final String query)
 	{
 		// log
-		Log.d(TextSearchFragment.TAG, "TEXT SEARCH " + query);
+		Log.d(SearchTextFragment.TAG, "TEXT SEARCH " + query);
 
 		// view
 		final View view = getView();
@@ -186,7 +186,7 @@ public class TextSearchFragment extends BaseSearchFragment
 		args.putString(ProviderArgs.ARG_QUERYDATABASE, database);
 
 		// fragment
-		final Fragment fragment = new TextSearchResultFragment();
+		final Fragment fragment = new TextFragment();
 		fragment.setArguments(args);
 		getChildFragmentManager() //
 				.beginTransaction() //

@@ -51,7 +51,7 @@ import java.util.regex.Pattern;
  *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
-public class TextSearchResultFragment extends AbstractTableFragment
+public class TextFragment extends AbstractTableFragment
 {
 	static private final String TAG = "TSResultFragment";
 
@@ -80,7 +80,7 @@ public class TextSearchResultFragment extends AbstractTableFragment
 	/**
 	 * Mandatory empty constructor for the fragment manager to instantiate the fragment (e.g. upon screen orientation changes).
 	 */
-	public TextSearchResultFragment()
+	public TextFragment()
 	{
 	}
 
@@ -325,7 +325,7 @@ public class TextSearchResultFragment extends AbstractTableFragment
 		{
 			case 0:
 				pointer = new VnClassPointer(targetId);
-				targetIntent = new Intent(TextSearchResultFragment.this.getActivity(), org.sqlunet.verbnet.browser.VnClassActivity.class);
+				targetIntent = new Intent(TextFragment.this.getActivity(), org.sqlunet.verbnet.browser.VnClassActivity.class);
 				targetIntent.putExtra(ProviderArgs.ARG_QUERYTYPE, ProviderArgs.ARG_QUERYTYPE_VNCLASS);
 				break;
 		}
@@ -355,7 +355,7 @@ public class TextSearchResultFragment extends AbstractTableFragment
 		{
 			case 0:
 				pointer = new PbRoleSetPointer(targetId);
-				targetIntent = new Intent(TextSearchResultFragment.this.getActivity(), org.sqlunet.propbank.browser.PbRoleSetActivity.class);
+				targetIntent = new Intent(TextFragment.this.getActivity(), org.sqlunet.propbank.browser.PbRoleSetActivity.class);
 				targetIntent.putExtra(ProviderArgs.ARG_QUERYTYPE, ProviderArgs.ARG_QUERYTYPE_PBROLESET);
 				break;
 		}
@@ -385,17 +385,17 @@ public class TextSearchResultFragment extends AbstractTableFragment
 		{
 			case 0:
 				pointer = new FnFramePointer(targetId);
-				targetIntent = new Intent(TextSearchResultFragment.this.getActivity(), org.sqlunet.framenet.browser.FnFrameActivity.class);
+				targetIntent = new Intent(TextFragment.this.getActivity(), org.sqlunet.framenet.browser.FnFrameActivity.class);
 				targetIntent.putExtra(ProviderArgs.ARG_QUERYTYPE, ProviderArgs.ARG_QUERYTYPE_FNFRAME);
 				break;
 			case 1:
 				pointer = new FnLexUnitPointer(targetId);
-				targetIntent = new Intent(TextSearchResultFragment.this.getActivity(), org.sqlunet.framenet.browser.FnLexUnitActivity.class);
+				targetIntent = new Intent(TextFragment.this.getActivity(), org.sqlunet.framenet.browser.FnLexUnitActivity.class);
 				targetIntent.putExtra(ProviderArgs.ARG_QUERYTYPE, ProviderArgs.ARG_QUERYTYPE_FNLEXUNIT);
 				break;
 			case 2:
 				pointer = new FnSentencePointer(targetId);
-				targetIntent = new Intent(TextSearchResultFragment.this.getActivity(), org.sqlunet.framenet.browser.FnSentenceActivity.class);
+				targetIntent = new Intent(TextFragment.this.getActivity(), org.sqlunet.framenet.browser.FnSentenceActivity.class);
 				targetIntent.putExtra(ProviderArgs.ARG_QUERYTYPE, ProviderArgs.ARG_QUERYTYPE_FNSENTENCE);
 				break;
 		}
