@@ -117,8 +117,10 @@
 	<string name="status_task_running">running</string>
 	<string name="status_task_done">done</string>
 	<string name="status_task_failed">failed</string>
-	<string name="status_task_start">Start task</string>
-	<string name="status_task_success">Task succeeded</string>
+	<string name="status_task_start_toast">Task started</string>
+	<string name="status_task_done_toast">Task done</string>
+	<string name="status_task_success_summary">Task succeeded</string>
+	<string name="status_task_failed_summary">Task failed</string>
 	<string name="status_error_null_download_url">Null download URL (see Settings)</string>
 	<string name="status_provider_query_failed">Could not perform query, cause is logged</string>
 
@@ -187,19 +189,6 @@
 		<item>@string/title_help_section</item>
 		<item>@string/title_about_section</item>
 	</string-array>
-	<integer-array name="flags_sections">
-		<item>1</item>
-		<item>1</item>
-		<item>1</item>
-		<item>1</item>
-		<item>1</item>
-		<item>0</item>
-		<item>1</item>
-		<item>0</item>
-		<item>0</item>
-		<item>1</item>
-		<item>1</item>
-	</integer-array>
 
 	<!-- mode spinner -->
 	<string-array name="selectors_names">

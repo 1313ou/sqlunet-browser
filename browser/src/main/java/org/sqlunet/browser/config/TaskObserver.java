@@ -94,14 +94,14 @@ class TaskObserver
 		public void taskStart(final AsyncTask<?, ?, ?> task)
 		{
 			super.taskStart(task);
-			Toast.makeText(this.context, R.string.status_task_start, Toast.LENGTH_SHORT).show();
+			Toast.makeText(this.context, R.string.status_task_start_toast, Toast.LENGTH_SHORT).show();
 		}
 
 		@Override
 		public void taskFinish(boolean result)
 		{
 			super.taskFinish(result);
-			Toast.makeText(this.context, R.string.status_task_done, Toast.LENGTH_SHORT).show();
+			Toast.makeText(this.context, R.string.status_task_done_toast, Toast.LENGTH_SHORT).show();
 		}
 	}
 
@@ -180,7 +180,6 @@ class TaskObserver
 			this.progress.setMax(100);
 			this.progress.setProgress(100);
 		}
-
 	}
 
 	/**
@@ -328,7 +327,7 @@ class TaskObserver
 	 * @param count byte count
 	 * @return string
 	 */
-	static private String countToStorageString(final int count)
+	static public String countToStorageString(final long count)
 	{
 		if (count >= 0)
 		{

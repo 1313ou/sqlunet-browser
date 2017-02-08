@@ -27,6 +27,19 @@
 		<item>@drawable/ic_help</item>
 		<item>@drawable/ic_about</item>
 	</integer-array>
+	<integer-array name="flags_sections">
+		<item>1</item>
+		<item>1</item>
+		<item>1</item>
+		<item>1</item>
+		<item>1</item>
+		<item>0</item>
+		<item>1</item>
+		<item>0</item>
+		<item>0</item>
+		<item>1</item>
+		<item>1</item>
+	</integer-array>
 
 	<!-- browser spinner
 	SELECTORS

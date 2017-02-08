@@ -75,6 +75,7 @@ public class SetupFileFragment extends BaseTaskFragment
 				final CharSequence[] operations = getActivity().getResources().getTextArray(R.array.setup_values);
 
 				// execute
+				boolean success;
 				final Context context = getActivity();
 				final CharSequence operation = operations[(int) id];
 				final Operation op = Operation.valueOf(operation.toString());
@@ -82,14 +83,14 @@ public class SetupFileFragment extends BaseTaskFragment
 				{
 					case CREATE:
 						SetupFileFragment.this.status.setText(R.string.status_task_running);
-						SetupDatabaseTasks.createDatabase(context, StorageSettings.getDatabasePath(context));
-						SetupFileFragment.this.status.setText(R.string.status_task_done);
+						success = SetupDatabaseTasks.createDatabase(context, StorageSettings.getDatabasePath(context));
+						SetupFileFragment.this.status.setText(success ? R.string.status_task_done : R.string.status_task_failed);
 						break;
 
 					case DROP:
 						SetupFileFragment.this.status.setText(R.string.status_task_running);
-						SetupDatabaseTasks.deleteDatabase(context, StorageSettings.getDatabasePath(context));
-						SetupFileFragment.this.status.setText(R.string.status_task_done);
+						success = SetupDatabaseTasks.deleteDatabase(context, StorageSettings.getDatabasePath(context));
+						SetupFileFragment.this.status.setText(success ? R.string.status_task_done : R.string.status_task_failed);
 						break;
 
 					case COPY:

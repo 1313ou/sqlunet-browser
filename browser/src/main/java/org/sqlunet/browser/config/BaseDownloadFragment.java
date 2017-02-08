@@ -131,7 +131,7 @@ abstract class BaseDownloadFragment extends Fragment implements View.OnClickList
 	/**
 	 * Progress status view
 	 */
-	private TextView progressView;
+	private TextView progressStatus;
 
 	/**
 	 * Status view
@@ -216,7 +216,7 @@ abstract class BaseDownloadFragment extends Fragment implements View.OnClickList
 		this.downloadButton = (ImageButton) view.findViewById(R.id.downloadButton);
 		this.downloadButton.setOnClickListener(this);
 		this.progressBar = (ProgressBar) view.findViewById(R.id.progressBar);
-		this.progressView = (TextView) view.findViewById(R.id.progressStatus);
+		this.progressStatus = (TextView) view.findViewById(R.id.progressStatus);
 		this.statusView = (TextView) view.findViewById(R.id.status);
 
 		// buttons
@@ -283,7 +283,7 @@ abstract class BaseDownloadFragment extends Fragment implements View.OnClickList
 		{
 			this.downloadButton.setVisibility(View.INVISIBLE);
 			this.progressBar.setVisibility(View.VISIBLE);
-			this.progressView.setVisibility(View.VISIBLE);
+			this.progressStatus.setVisibility(View.VISIBLE);
 			this.cancelButton.setVisibility(View.VISIBLE);
 
 			try
@@ -381,6 +381,7 @@ abstract class BaseDownloadFragment extends Fragment implements View.OnClickList
 		final String status = makeStatusString(this.status);
 		final String reason = getReason();
 		final String message = status + (reason == null ? "" : '\n' + reason);
+		final String count = TaskObserver.countToStorageString(this.progress.total);
 		Log.d(TAG, message + " at " + progress100);
 
 		getActivity().runOnUiThread(new Runnable()
@@ -389,7 +390,7 @@ abstract class BaseDownloadFragment extends Fragment implements View.OnClickList
 			public void run()
 			{
 				BaseDownloadFragment.this.progressBar.setProgress(progress100);
-				BaseDownloadFragment.this.progressView.setText(status);
+				BaseDownloadFragment.this.progressStatus.setText(count);
 				BaseDownloadFragment.this.statusView.setText(message);
 			}
 		});
@@ -477,7 +478,7 @@ abstract class BaseDownloadFragment extends Fragment implements View.OnClickList
 							sb.append('\n');
 							Report.appendHeader(sb, getString(R.string.md5_compared));
 							sb.append('\n');
-							sb.append(getString(success ? R.string.status_task_success : R.string.status_task_failed));
+							sb.append(getString(success ? R.string.status_task_success_summary : R.string.status_task_failed_summary));
 
 							final AlertDialog.Builder alert = new AlertDialog.Builder(getActivity());
 							alert.setTitle(getString(R.string.action_md5_of) + ' ' + targetFile);
@@ -506,9 +507,9 @@ abstract class BaseDownloadFragment extends Fragment implements View.OnClickList
 		{
 			BaseDownloadFragment.this.progressBar.setVisibility(View.INVISIBLE);
 		}
-		if (BaseDownloadFragment.this.progressView != null)
+		if (BaseDownloadFragment.this.progressStatus != null)
 		{
-			BaseDownloadFragment.this.progressView.setVisibility(View.INVISIBLE);
+			BaseDownloadFragment.this.progressStatus.setVisibility(View.INVISIBLE);
 		}
 		if (BaseDownloadFragment.this.statusView != null)
 		{
