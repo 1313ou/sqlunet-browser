@@ -10,6 +10,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import org.sqlunet.browser.R;
+import org.sqlunet.settings.StorageUtils;
 
 import java.text.NumberFormat;
 import java.util.Locale;
@@ -251,7 +252,7 @@ class TaskObserver
 				this.progressDialog.setProgressNumberFormat(null);
 				this.progressDialog.setProgressPercentFormat(null);
 			}
-			final String message = this.unit != null ? countToString(progress, this.unit) : countToStorageString(progress);
+			final String message = this.unit != null ? countToString(progress, this.unit) : StorageUtils.countToStorageString(progress);
 			this.progressDialog.setMessage(message);
 			if (!indeterminate)
 			{
@@ -306,8 +307,6 @@ class TaskObserver
 		}
 	}
 
-	// H U M A N - R E A D A B L E   B Y T E   C O U N T
-
 	/**
 	 * Byte count to string
 	 *
@@ -317,31 +316,5 @@ class TaskObserver
 	static private String countToString(final int count, final CharSequence unit)
 	{
 		return NumberFormat.getNumberInstance(Locale.US).format(count) + ' ' + unit;
-	}
-
-	static private final String[] UNITS = {"B", "KB", "MB", "GB"};
-
-	/**
-	 * Byte count to string
-	 *
-	 * @param count byte count
-	 * @return string
-	 */
-	static public String countToStorageString(final long count)
-	{
-		if (count >= 0)
-		{
-			float unit = 1024F * 1024F * 1024F;
-			for (int i = 3; i >= 0; i--)
-			{
-				if (count > unit)
-				{
-					return String.format(Locale.ENGLISH, "%.1f %s", count / unit, UNITS[i]);
-				}
-
-				unit /= 1024;
-			}
-		}
-		return "[N/A size]";
 	}
 }

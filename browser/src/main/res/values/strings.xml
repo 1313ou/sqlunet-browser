@@ -116,6 +116,7 @@
 	<string name="status_managing">Managing</string>
 	<string name="status_task_running">running</string>
 	<string name="status_task_done">done</string>
+	<string name="status_task_success">success</string>
 	<string name="status_task_failed">failed</string>
 	<string name="status_task_start_toast">Task started</string>
 	<string name="status_task_done_toast">Task done</string>

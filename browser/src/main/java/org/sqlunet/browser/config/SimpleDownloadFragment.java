@@ -204,9 +204,9 @@ public class SimpleDownloadFragment extends BaseDownloadFragment implements Simp
 	 * @param downloaded downloaded bytes
 	 */
 	@Override
-	public void onDownloadUpdate(long total, long downloaded)
+	public void onDownloadUpdate(long downloaded, long total)
 	{
-		this.progress.total = total;
 		this.progress.downloaded = downloaded;
+		this.progress.total = total;
 	}
 }

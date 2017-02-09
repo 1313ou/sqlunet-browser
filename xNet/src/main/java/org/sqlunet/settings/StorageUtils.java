@@ -7,7 +7,6 @@ import android.os.Environment;
 import android.os.StatFs;
 import android.support.annotation.NonNull;
 import android.util.Log;
-import android.util.Pair;
 
 import org.sqlunet.xnet.R;
 
@@ -659,7 +658,7 @@ public class StorageUtils
 		}
 
 		// state
-		if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.LOLLIPOP)
+		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
 		{
 			switch (type)
 			{
@@ -868,6 +867,8 @@ public class StorageUtils
 		}
 	}
 
+	// H U M A N - R E A D A B L E   B Y T E   C O U N T
+
 	/**
 	 * Megabytes to string
 	 *
@@ -890,140 +891,33 @@ public class StorageUtils
 		}
 	}
 
-	/**
-	 * Get storage dirs names and values
-	 *
-	 * @param context context
-	 * @return pair of names and values
-	 */
-	@SuppressWarnings("unused")
-	static public Pair<CharSequence[], CharSequence[]> getStorageDirectoriesNamesValues(final Context context)
-	{
-		final List<CharSequence> names = new ArrayList<>();
-		final List<CharSequence> values = new ArrayList<>();
-		final List<StorageDirectory> dirs = StorageUtils.getSortedStorageDirectories(context);
-		for (StorageDirectory dir : dirs)
-		{
-			if (dir.status != 0)
-			{
-				continue;
-			}
-			// name
-			names.add(dir.toShortString());
-
-			// value
-			values.add(dir.dir.getValue());
-		}
-		return new Pair<>(names.toArray(new CharSequence[0]), values.toArray(new CharSequence[0]));
-	}
-
-	// R E P O R T S
-
-	static CharSequence reportStorageDirectories(final Context context)
-	{
-		final StringBuilder sb = new StringBuilder();
-		int i = 1;
-		final List<StorageDirectory> dirs = StorageUtils.getSortedStorageDirectories(context);
-		for (StorageDirectory dir : dirs)
-		{
-			sb.append(i++);
-			sb.append(' ');
-			sb.append('-');
-			sb.append(' ');
-			sb.append(dir.toLongString());
-			sb.append(' ');
-			sb.append(dir.fitsIn() ? "Fits in" : "Does not fit in");
-			sb.append('\n');
-			sb.append('\n');
-		}
-		return sb;
-	}
+	static private final String[] UNITS = {"B", "KB", "MB", "GB"};
 
 	/**
-	 * Report on external storage
+	 * Byte count to string
 	 *
-	 * @return report
+	 * @param count byte count
+	 * @return string
 	 */
-	static CharSequence reportExternalStorage()
+	static public String countToStorageString(final long count)
 	{
-		final Map<StorageType, File[]> storages = StorageUtils.getExternalStorages();
-		final File[] physical = storages.get(StorageType.PRIMARY_PHYSICAL);
-		final File[] emulated = storages.get(StorageType.PRIMARY_EMULATED);
-		final File[] secondary = storages.get(StorageType.SECONDARY);
+		if (count > 0)
+		{
+			float unit = 1024F * 1024F * 1024F;
+			for (int i = 3; i >= 0; i--)
+			{
+				if (count >= unit)
+				{
+					return String.format(Locale.ENGLISH, "%.1f %s", count / unit, UNITS[i]);
+				}
 
-		final StringBuilder sb = new StringBuilder();
-		if (physical != null)
-		{
-			sb.append("primary physical:\n");
-			for (File f : physical)
-			{
-				final String s = f.getAbsolutePath();
-				sb.append(s);
-				sb.append(' ');
-				sb.append(mbToString(StorageUtils.storageCapacity(s)));
-				if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
-				{
-					sb.append(' ');
-					try
-					{
-						sb.append(Environment.isExternalStorageEmulated(f) ? "emulated" : "not-emulated");
-					}
-					catch (Throwable e)
-					{
-						//
-					}
-				}
-				sb.append('\n');
+				unit /= 1024;
 			}
 		}
-		if (emulated != null)
+		else if (count == 0)
 		{
-			sb.append("primary emulated:\n");
-			for (File f : emulated)
-			{
-				final String s = f.getAbsolutePath();
-				sb.append(s);
-				sb.append(' ');
-				sb.append(mbToString(StorageUtils.storageCapacity(s)));
-				if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
-				{
-					sb.append(' ');
-					try
-					{
-						sb.append(Environment.isExternalStorageEmulated(f) ? "emulated" : "not-emulated");
-					}
-					catch (Throwable e)
-					{
-						//
-					}
-				}
-				sb.append('\n');
-			}
+			return "0 Byte";
 		}
-		if (secondary != null)
-		{
-			sb.append("secondary:\n");
-			for (File f : secondary)
-			{
-				final String s = f.getAbsolutePath();
-				sb.append(s);
-				sb.append(' ');
-				sb.append(mbToString(StorageUtils.storageCapacity(s)));
-				if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
-				{
-					sb.append(' ');
-					try
-					{
-						sb.append(Environment.isExternalStorageEmulated(f) ? "emulated" : "not-emulated");
-					}
-					catch (Throwable e)
-					{
-						//
-					}
-				}
-				sb.append('\n');
-			}
-		}
-		return sb.toString();
+		return "[n/a]";
 	}
 }

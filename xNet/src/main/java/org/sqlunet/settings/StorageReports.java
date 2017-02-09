@@ -179,6 +179,33 @@ public class StorageReports
 	}
 
 	/**
+	 * Get storage dirs names and values
+	 *
+	 * @param context context
+	 * @return pair of names and values
+	 */
+	@SuppressWarnings("unused")
+	static public Pair<CharSequence[], CharSequence[]> get2StorageDirectoriesNamesValues(final Context context)
+	{
+		final List<CharSequence> names = new ArrayList<>();
+		final List<CharSequence> values = new ArrayList<>();
+		final List<StorageDirectory> dirs = StorageUtils.getSortedStorageDirectories(context);
+		for (StorageDirectory dir : dirs)
+		{
+			if (dir.status != 0)
+			{
+				continue;
+			}
+			// name
+			names.add(dir.toShortString());
+
+			// value
+			values.add(dir.dir.getValue());
+		}
+		return new Pair<>(names.toArray(new CharSequence[0]), values.toArray(new CharSequence[0]));
+	}
+
+	/**
 	 * Get cache directories as names and values
 	 *
 	 * @param context context
@@ -242,13 +269,123 @@ public class StorageReports
 
 	// R E P O R T S
 
+	static CharSequence reportStorageDirectories(final Context context)
+	{
+		final StringBuilder sb = new StringBuilder();
+		int i = 1;
+		final List<StorageDirectory> dirs = StorageUtils.getSortedStorageDirectories(context);
+		for (StorageDirectory dir : dirs)
+		{
+			sb.append(i++);
+			sb.append(' ');
+			sb.append('-');
+			sb.append(' ');
+			sb.append(dir.toLongString());
+			sb.append(' ');
+			sb.append(dir.fitsIn() ? "Fits in" : "Does not fit in");
+			sb.append('\n');
+			sb.append('\n');
+		}
+		return sb;
+	}
+
+	/**
+	 * Report on external storage
+	 *
+	 * @return report
+	 */
+	static CharSequence reportExternalStorage()
+	{
+		final Map<StorageType, File[]> storages = StorageUtils.getExternalStorages();
+		final File[] physical = storages.get(StorageType.PRIMARY_PHYSICAL);
+		final File[] emulated = storages.get(StorageType.PRIMARY_EMULATED);
+		final File[] secondary = storages.get(StorageType.SECONDARY);
+
+		final StringBuilder sb = new StringBuilder();
+		if (physical != null)
+		{
+			sb.append("primary physical:\n");
+			for (File f : physical)
+			{
+				final String s = f.getAbsolutePath();
+				sb.append(s);
+				sb.append(' ');
+				sb.append(StorageUtils.mbToString(StorageUtils.storageCapacity(s)));
+				if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
+				{
+					sb.append(' ');
+					try
+					{
+						sb.append(Environment.isExternalStorageEmulated(f) ? "emulated" : "not-emulated");
+					}
+					catch (Throwable e)
+					{
+						//
+					}
+				}
+				sb.append('\n');
+			}
+		}
+		if (emulated != null)
+		{
+			sb.append("primary emulated:\n");
+			for (File f : emulated)
+			{
+				final String s = f.getAbsolutePath();
+				sb.append(s);
+				sb.append(' ');
+				sb.append(StorageUtils.mbToString(StorageUtils.storageCapacity(s)));
+				if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
+				{
+					sb.append(' ');
+					try
+					{
+						sb.append(Environment.isExternalStorageEmulated(f) ? "emulated" : "not-emulated");
+					}
+					catch (Throwable e)
+					{
+						//
+					}
+				}
+				sb.append('\n');
+			}
+		}
+		if (secondary != null)
+		{
+			sb.append("secondary:\n");
+			for (File f : secondary)
+			{
+				final String s = f.getAbsolutePath();
+				sb.append(s);
+				sb.append(' ');
+				sb.append(StorageUtils.mbToString(StorageUtils.storageCapacity(s)));
+				if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
+				{
+					sb.append(' ');
+					try
+					{
+						sb.append(Environment.isExternalStorageEmulated(f) ? "emulated" : "not-emulated");
+					}
+					catch (Throwable e)
+					{
+						//
+					}
+				}
+				sb.append('\n');
+			}
+		}
+		return sb.toString();
+	}
+
+	// S T Y L E D   R E P O R T S
+
 	/**
 	 * Report on storage dirs
 	 *
 	 * @param context context
 	 * @return report
 	 */
-	static public CharSequence reportStorageDirectories(final Context context)
+	static public CharSequence reportStyledStorageDirectories(final Context context)
 	{
 		@SuppressWarnings("TypeMayBeWeakened") final SpannableStringBuilder sb = new SpannableStringBuilder();
 		final List<StorageDirectory> dirs = StorageUtils.getSortedStorageDirectories(context);
@@ -285,7 +422,7 @@ public class StorageReports
 	 * @return report
 	 */
 	@TargetApi(Build.VERSION_CODES.LOLLIPOP)
-	static public CharSequence reportExternalStorage(final Context context)
+	static public CharSequence reportStyledExternalStorage(final Context context)
 	{
 		final Map<StorageType, File[]> storages = StorageUtils.getExternalStorages();
 		final File[] physical = storages.get(StorageType.PRIMARY_PHYSICAL);
@@ -376,7 +513,7 @@ public class StorageReports
 	 * @param context context
 	 * @return directories report
 	 */
-	static public CharSequence reportDirs(final Context context)
+	static public CharSequence reportStyledDirs(final Context context)
 	{
 		final SpannableStringBuilder sb = new SpannableStringBuilder();
 

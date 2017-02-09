@@ -21,6 +21,7 @@ import android.widget.Toast;
 
 import org.sqlunet.browser.R;
 import org.sqlunet.settings.StorageSettings;
+import org.sqlunet.settings.StorageUtils;
 import org.sqlunet.style.Report;
 
 import java.io.File;
@@ -381,8 +382,8 @@ abstract class BaseDownloadFragment extends Fragment implements View.OnClickList
 		final String status = makeStatusString(this.status);
 		final String reason = getReason();
 		final String message = status + (reason == null ? "" : '\n' + reason);
-		final String count = TaskObserver.countToStorageString(this.progress.total);
-		Log.d(TAG, message + " at " + progress100);
+		final String count = StorageUtils.countToStorageString(this.progress.downloaded);
+		Log.d(TAG, message + " at " + progress100 + '%');
 
 		getActivity().runOnUiThread(new Runnable()
 		{
@@ -478,7 +479,7 @@ abstract class BaseDownloadFragment extends Fragment implements View.OnClickList
 							sb.append('\n');
 							Report.appendHeader(sb, getString(R.string.md5_compared));
 							sb.append('\n');
-							sb.append(getString(success ? R.string.status_task_success_summary : R.string.status_task_failed_summary));
+							sb.append(getString(success ? R.string.status_task_success : R.string.status_task_failed));
 
 							final AlertDialog.Builder alert = new AlertDialog.Builder(getActivity());
 							alert.setTitle(getString(R.string.action_md5_of) + ' ' + targetFile);

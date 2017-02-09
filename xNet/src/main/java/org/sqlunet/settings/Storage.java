@@ -127,8 +127,8 @@ public class Storage
 				return dir.dir.getFile();
 			}
 		}
-		Log.e(TAG, "Error while looking for storage directories. External storage is " + StorageUtils.reportExternalStorage());
-		throw new RuntimeException("Cannot find suitable storage directory " + StorageUtils.reportStorageDirectories(context) + ' ' + StorageUtils.reportExternalStorage());
+		Log.e(TAG, "Error while looking for storage directories. External storage is " + StorageReports.reportExternalStorage());
+		throw new RuntimeException("Cannot find suitable storage directory " + StorageReports.reportStorageDirectories(context) + ' ' + StorageReports.reportExternalStorage());
 	}
 
 	/**

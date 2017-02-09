@@ -85,11 +85,11 @@ public class StorageFragment extends NavigableFragment
 
 		// storage
 		final TextView storage = (TextView) view.findViewById(R.id.storage);
-		storage.setText(StorageReports.reportStorageDirectories(getActivity()));
+		storage.setText(StorageReports.reportStyledStorageDirectories(getActivity()));
 
 		// storage devices
 		final TextView storageDevices = (TextView) view.findViewById(R.id.storage_devices);
-		storageDevices.setText(StorageReports.reportExternalStorage(getActivity()));
+		storageDevices.setText(StorageReports.reportStyledExternalStorage(getActivity()));
 	}
 
 	// M E N U
@@ -110,7 +110,7 @@ public class StorageFragment extends NavigableFragment
 		switch (item.getItemId())
 		{
 			case R.id.action_storage_dirs:
-				final CharSequence message = StorageReports.reportDirs(getActivity());
+				final CharSequence message = StorageReports.reportStyledDirs(getActivity());
 				final AlertDialog.Builder alert = new AlertDialog.Builder(context);
 				alert.setTitle(R.string.action_storage_dirs);
 				alert.setMessage(message);

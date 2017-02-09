@@ -400,7 +400,6 @@ class FileAsyncTask
 						{
 							publishProgress(byteCount, length);
 						}
-
 					}
 					byte[] digest = md.digest();
 					return digestToString(digest);

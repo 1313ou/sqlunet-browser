@@ -14,26 +14,53 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6963923e-acc2-48e3-91d8-e040d24efc27" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/browser/src/main/java/org/sqlunet/browser/BrowsePredicateMatrixSplashFragment.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/browser/src/main/java/org/sqlunet/browser/SearchTextSplashFragment.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/browser/src/main/res/layout/fragment_splash_predicatematrix.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/browser/src/main/res/layout/fragment_splash_search_text.xml" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/browser/src/main/res/layout/fragment_splash_main.xml" afterPath="$PROJECT_DIR$/browser/src/main/res/layout/fragment_splash_browse.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/animated_vector_drawable_25_1_1.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/appcompat_v7_25_1_1.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/support_annotations_25_1_1.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/support_compat_25_1_1.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/support_core_ui_25_1_1.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/support_core_utils_25_1_1.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/support_fragment_25_1_1.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/support_media_compat_25_1_1.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/support_v13_25_1_1.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/support_v4_25_1_1.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/support_vector_drawable_25_1_1.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/browser/src/main/java/org/sqlunet/browser/BaseSearchFragment.java" afterPath="$PROJECT_DIR$/browser/src/main/java/org/sqlunet/browser/BaseSearchFragment.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/browser/src/main/java/org/sqlunet/browser/BrowseFragment.java" afterPath="$PROJECT_DIR$/browser/src/main/java/org/sqlunet/browser/BrowseFragment.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/browser/src/main/java/org/sqlunet/browser/BrowsePredicateMatrixFragment.java" afterPath="$PROJECT_DIR$/browser/src/main/java/org/sqlunet/browser/BrowsePredicateMatrixFragment.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/browser/src/main/java/org/sqlunet/browser/BrowseSplashFragment.java" afterPath="$PROJECT_DIR$/browser/src/main/java/org/sqlunet/browser/BrowseSplashFragment.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/browser/src/main/java/org/sqlunet/browser/SearchTextFragment.java" afterPath="$PROJECT_DIR$/browser/src/main/java/org/sqlunet/browser/SearchTextFragment.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/browser/src/main/java/org/sqlunet/browser/SplashFragment.java" afterPath="$PROJECT_DIR$/browser/src/main/java/org/sqlunet/browser/SplashFragment.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/browser/src/main/java/org/sqlunet/browser/config/BaseDownloadFragment.java" afterPath="$PROJECT_DIR$/browser/src/main/java/org/sqlunet/browser/config/BaseDownloadFragment.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/browser/src/main/java/org/sqlunet/browser/config/ExecAsyncTask.java" afterPath="$PROJECT_DIR$/browser/src/main/java/org/sqlunet/browser/config/ExecAsyncTask.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/browser/src/main/java/org/sqlunet/browser/config/FileAsyncTask.java" afterPath="$PROJECT_DIR$/browser/src/main/java/org/sqlunet/browser/config/FileAsyncTask.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/browser/src/main/java/org/sqlunet/browser/config/SimpleDownloadFragment.java" afterPath="$PROJECT_DIR$/browser/src/main/java/org/sqlunet/browser/config/SimpleDownloadFragment.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/browser/src/main/java/org/sqlunet/browser/config/SimpleDownloader.java" afterPath="$PROJECT_DIR$/browser/src/main/java/org/sqlunet/browser/config/SimpleDownloader.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/browser/src/main/java/org/sqlunet/browser/config/StorageFragment.java" afterPath="$PROJECT_DIR$/browser/src/main/java/org/sqlunet/browser/config/StorageFragment.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/browser/src/main/java/org/sqlunet/browser/config/TaskObserver.java" afterPath="$PROJECT_DIR$/browser/src/main/java/org/sqlunet/browser/config/TaskObserver.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/browser/src/main/res/values/strings.xml" afterPath="$PROJECT_DIR$/browser/src/main/res/values/strings.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/expandableListFragment/expandableListFragment.iml" afterPath="$PROJECT_DIR$/expandableListFragment/expandableListFragment.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frameNet/frameNet.iml" afterPath="$PROJECT_DIR$/frameNet/frameNet.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/treeView/treeView.iml" afterPath="$PROJECT_DIR$/treeView/treeView.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/xNet/xNet.iml" afterPath="$PROJECT_DIR$/xNet/xNet.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/xNet/src/main/java/org/sqlunet/settings/Storage.java" afterPath="$PROJECT_DIR$/xNet/src/main/java/org/sqlunet/settings/Storage.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/xNet/src/main/java/org/sqlunet/settings/StorageReports.java" afterPath="$PROJECT_DIR$/xNet/src/main/java/org/sqlunet/settings/StorageReports.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/xNet/src/main/java/org/sqlunet/settings/StorageUtils.java" afterPath="$PROJECT_DIR$/xNet/src/main/java/org/sqlunet/settings/StorageUtils.java" />
     </list>
     <ignored path="SqlUNet.iws" />
     <ignored path=".idea/workspace.xml" />
+    <ignored path="xNet/build/" />
+    <ignored path="browser/build/" />
+    <ignored path="bNC/build/" />
+    <ignored path="frameNet/build/" />
+    <ignored path="predicateMatrix/build/" />
+    <ignored path="propbank/build/" />
+    <ignored path=".gradle/" />
+    <ignored path="treeView/build/" />
+    <ignored path="verbNet/build/" />
+    <ignored path="wordNet/build/" />
+    <ignored path="gradle/wrapper/" />
+    <ignored path="captures/" />
+    <ignored path="tools/js/" />
+    <ignored path="tools/images/" />
+    <ignored path="tools/css/" />
+    <ignored path="tools/data/css/" />
+    <ignored path="tools/data/images/" />
+    <ignored path="tools/data/js/" />
+    <ignored path="tools/data/" />
+    <ignored path="build/" />
+    <ignored path="dist/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -62,77 +89,7 @@
     <favorites_list name="SqlUNet" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file leaf-file-name="fragment_splash_browse.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/browser/src/main/res/layout/fragment_splash_browse.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="273">
-              <caret line="21" column="48" selection-start-line="21" selection-start-column="30" selection-end-line="21" selection-end-column="48" />
-              <folding />
-            </state>
-          </provider>
-          <provider editor-type-id="android-designer2">
-            <state />
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="BrowsePredicateMatrixSplashFragment.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/browser/src/main/java/org/sqlunet/browser/BrowsePredicateMatrixSplashFragment.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="156">
-              <caret line="12" column="46" selection-start-line="12" selection-start-column="11" selection-end-line="12" selection-end-column="46" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="BrowsePredicateMatrixFragment.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/browser/src/main/java/org/sqlunet/browser/BrowsePredicateMatrixFragment.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="390">
-              <caret line="80" column="77" selection-start-line="80" selection-start-column="77" selection-end-line="80" selection-end-column="77" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="fragment_splash_search_text.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/browser/src/main/res/layout/fragment_splash_search_text.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="273">
-              <caret line="21" column="52" selection-start-line="21" selection-start-column="52" selection-end-line="21" selection-end-column="52" />
-              <folding />
-            </state>
-          </provider>
-          <provider editor-type-id="android-designer2">
-            <state />
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="fragment_splash_predicatematrix.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/browser/src/main/res/layout/fragment_splash_predicatematrix.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="273">
-              <caret line="21" column="57" selection-start-line="21" selection-start-column="30" selection-end-line="21" selection-end-column="57" />
-              <folding />
-            </state>
-          </provider>
-          <provider editor-type-id="android-designer2">
-            <state />
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="strings.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/browser/src/main/res/values/strings.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="195">
-              <caret line="132" column="18" selection-start-line="132" selection-start-column="18" selection-end-line="132" selection-end-column="18" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -8963,14 +8920,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/browser/src/main/res/layout/item_selector.xml" />
-        <option value="$PROJECT_DIR$/predicateMatrix/src/main/java/org/sqlunet/predicatematrix/settings/Settings.java" />
-        <option value="$PROJECT_DIR$/browser/src/main/java/org/sqlunet/browser/TextFragment.java" />
-        <option value="$PROJECT_DIR$/browser/src/main/res/layout/activity_search_text.xml" />
-        <option value="$PROJECT_DIR$/browser/src/main/res/layout/actionbar_custom.xml" />
-        <option value="$PROJECT_DIR$/browser/src/main/res/layout/spinner_item_actionbar_dropdown.xml" />
-        <option value="$PROJECT_DIR$/browser/src/main/res/layout/spinner_item_actionbar.xml" />
-        <option value="$PROJECT_DIR$/browser/src/main/res/drawable/border_spinner_item.xml" />
         <option value="$PROJECT_DIR$/browser/src/main/java/org/sqlunet/browser/xselector/XSelectorsFragment.java" />
         <option value="$PROJECT_DIR$/browser/src/main/java/org/sqlunet/browser/NavigationFragment.java" />
         <option value="$PROJECT_DIR$/xNet/src/main/res/drawable/listitem_background.xml" />
@@ -8997,11 +8946,8 @@
         <option value="$PROJECT_DIR$/browser/src/main/res/layout/fragment_browse1_browse2.xml" />
         <option value="$PROJECT_DIR$/browser/src/main/res/values/dimens.xml" />
         <option value="$PROJECT_DIR$/browser/src/main/res/values/array.xml" />
-        <option value="$PROJECT_DIR$/browser/src/main/res/values/strings.xml" />
         <option value="$PROJECT_DIR$/browser/src/main/java/org/sqlunet/browser/config/SetupDatabaseTasks.java" />
         <option value="$PROJECT_DIR$/browser/src/main/java/org/sqlunet/browser/config/SetupFileFragment.java" />
-        <option value="$PROJECT_DIR$/browser/src/main/java/org/sqlunet/browser/config/TaskObserver.java" />
-        <option value="$PROJECT_DIR$/browser/src/main/java/org/sqlunet/browser/config/BaseDownloadFragment.java" />
         <option value="$PROJECT_DIR$/browser/src/main/java/org/sqlunet/browser/BaseSearchFragment.java" />
         <option value="$PROJECT_DIR$/browser/src/main/java/org/sqlunet/browser/BrowseFragment.java" />
         <option value="$PROJECT_DIR$/browser/src/main/java/org/sqlunet/browser/SplashFragment.java" />
@@ -9014,14 +8960,25 @@
         <option value="$PROJECT_DIR$/browser/src/main/res/layout/fragment_splash_browse.xml" />
         <option value="$PROJECT_DIR$/browser/src/main/res/layout/fragment_splash_predicatematrix.xml" />
         <option value="$PROJECT_DIR$/browser/src/main/java/org/sqlunet/browser/BrowsePredicateMatrixFragment.java" />
+        <option value="$PROJECT_DIR$/browser/src/main/res/values/strings.xml" />
+        <option value="$PROJECT_DIR$/xNet/src/main/java/org/sqlunet/settings/Storage.java" />
+        <option value="$PROJECT_DIR$/browser/src/main/java/org/sqlunet/browser/config/TaskObserver.java" />
+        <option value="$PROJECT_DIR$/browser/src/main/java/org/sqlunet/browser/config/StorageFragment.java" />
+        <option value="$PROJECT_DIR$/xNet/src/main/java/org/sqlunet/settings/StorageReports.java" />
+        <option value="$PROJECT_DIR$/browser/src/main/java/org/sqlunet/browser/config/ExecAsyncTask.java" />
+        <option value="$PROJECT_DIR$/browser/src/main/java/org/sqlunet/browser/config/FileAsyncTask.java" />
+        <option value="$PROJECT_DIR$/browser/src/main/java/org/sqlunet/browser/config/SimpleDownloadFragment.java" />
+        <option value="$PROJECT_DIR$/browser/src/main/java/org/sqlunet/browser/config/SimpleDownloader.java" />
+        <option value="$PROJECT_DIR$/browser/src/main/java/org/sqlunet/browser/config/BaseDownloadFragment.java" />
+        <option value="$PROJECT_DIR$/xNet/src/main/java/org/sqlunet/settings/StorageUtils.java" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
     <option name="x" value="49" />
-    <option name="y" value="52" />
-    <option name="width" value="1233" />
-    <option name="height" value="1148" />
+    <option name="y" value="24" />
+    <option name="width" value="1871" />
+    <option name="height" value="1176" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -9121,7 +9078,7 @@
               <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidResFolderNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="values" />
+              <option name="myItemId" value="layout" />
               <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidResFolderTypeNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -9139,7 +9096,7 @@
               <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidResFolderNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="layout" />
+              <option name="myItemId" value="drawable" />
               <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidResFolderTypeNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -9197,6 +9154,32 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="SqlUNet" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="browser" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidSourceTypeNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="sqlunet" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="browser" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="config" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
       <pane id="ProjectPane">
@@ -9207,7 +9190,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="android.sdk.path" value="/opt/androidstudio/sdk" />
-    <property name="settings.editor.selected.configurable" value="android.sdk-updates" />
+    <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Ignored.Files" />
     <property name="settings.editor.splitter.proportion" value="0.2" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="device.picker.selection" value="avd_emu_tablet7_nougat" />
@@ -9611,12 +9594,19 @@
       <option name="project" value="LOCAL" />
       <updated>1486563270323</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="splash fragments&#10;">
+      <created>1486627188305</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1486627188305</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="49" y="52" width="1233" height="1148" extended-state="4" />
-    <editor active="true" />
+    <frame x="49" y="24" width="1871" height="1176" extended-state="6" />
+    <editor active="false" />
     <layout>
       <window_info id="Nl-Palette" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
@@ -9625,23 +9615,23 @@
       <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24983819" sideWeight="0.5" order="4" side_tool="false" content_ui="combo" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24931657" sideWeight="0.5" order="4" side_tool="false" content_ui="combo" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24983819" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Android Model" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39825583" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.39811322" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3283433" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32830188" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.26550388" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3283433" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3275194" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Captures" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="11" side_tool="true" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.29303107" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3604651" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16839804" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.34150943" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
@@ -9660,35 +9650,35 @@
       <window_info id="Nl-Palette" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
-      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="true" content_ui="tabs" />
-      <window_info id="Android Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3483034" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
-      <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Android Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3478682" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
+      <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24986331" sideWeight="0.5" order="5" side_tool="false" content_ui="combo" />
-      <window_info id="Dynamic Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24983819" sideWeight="0.5" order="4" side_tool="false" content_ui="combo" />
+      <window_info id="Dynamic Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24983819" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Android Model" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3992016" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Android Model" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39825583" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3283433" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Documentation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" x="149" y="209" width="1387" height="918" />
+      <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Documentation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" x="149" y="209" width="1387" height="918" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3283433" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.31132075" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.26550388" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3275194" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Captures" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="12" side_tool="true" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22588997" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.39620757" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19081466" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3509434" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
     </layout-to-restore>
   </component>
@@ -9713,101 +9703,39 @@
     <MESSAGE value="colors" />
     <MESSAGE value="styles" />
     <MESSAGE value="absolute download message fix" />
-    <option name="LAST_COMMIT_MESSAGE" value="absolute download message fix" />
+    <MESSAGE value="splash fragments&#10;" />
+    <option name="LAST_COMMIT_MESSAGE" value="splash fragments&#10;" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/browser/src/main/java/org/sqlunet/browser/SplashFragment.java</url>
-          <line>31</line>
+          <url>file://$PROJECT_DIR$/browser/src/main/java/org/sqlunet/browser/config/BaseDownloadFragment.java</url>
+          <line>393</line>
           <properties />
-          <option name="timeStamp" value="19" />
+          <option name="timeStamp" value="29" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/browser/src/main/java/org/sqlunet/browser/BrowseFragment.java</url>
-          <line>85</line>
+          <url>file://$PROJECT_DIR$/browser/src/main/java/org/sqlunet/browser/config/BaseDownloadFragment.java</url>
+          <line>384</line>
           <properties />
-          <option name="timeStamp" value="20" />
+          <option name="timeStamp" value="30" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/xNet/src/main/java/org/sqlunet/settings/StorageUtils.java</url>
+          <line>903</line>
+          <properties />
+          <option name="timeStamp" value="31" />
         </line-breakpoint>
       </breakpoints>
       <breakpoints-dialog>
         <breakpoints-dialog />
       </breakpoints-dialog>
-      <option name="time" value="21" />
+      <option name="time" value="32" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/browser/src/main/res/drawable/listitem_selector.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="117">
-          <caret line="9" column="11" selection-start-line="9" selection-start-column="11" selection-end-line="9" selection-end-column="11" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/wordNet/src/main/java/org/sqlunet/wordnet/browser/SensesFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="312">
-          <caret line="77" column="24" selection-start-line="77" selection-start-column="24" selection-end-line="77" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/wordNet/src/main/res/layout/fragment_senses.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="130">
-          <caret line="10" column="67" selection-start-line="10" selection-start-column="53" selection-end-line="10" selection-end-column="67" />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/browser/src/main/res/layout/fragment_xselectors.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="130">
-          <caret line="10" column="0" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/browser/src/main/res/layout/fragment_selectors.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="130">
-          <caret line="10" column="0" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/browser/src/main/res/layout/drawer_item_simple.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="117">
-          <caret line="9" column="0" selection-start-line="8" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/browser/src/main/res/layout/drawer_main.xml">
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="156">
-          <caret line="12" column="71" selection-start-line="12" selection-start-column="71" selection-end-line="12" selection-end-column="71" />
-          <folding />
-        </state>
-      </provider>
-      <provider selected="true" editor-type-id="android-designer2">
-        <state />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/browser/src/main/res/values/styles.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="234">
@@ -10001,6 +9929,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="204">
           <caret line="1455" column="28" selection-start-line="1455" selection-start-column="28" selection-end-line="1455" selection-end-column="28" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -10015,13 +9944,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="126">
           <caret line="77" column="67" selection-start-line="77" selection-start-column="67" selection-end-line="77" selection-end-column="67" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/browser/src/main/java/org/sqlunet/browser/config/DownloadFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="386" column="30" selection-start-line="386" selection-start-column="30" selection-end-line="386" selection-end-column="30" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -10029,13 +9952,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="204">
           <caret line="199" column="13" selection-start-line="199" selection-start-column="13" selection-end-line="199" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/browser/src/main/java/org/sqlunet/browser/config/SimpleDownloadFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="144" column="194" selection-start-line="144" selection-start-column="194" selection-end-line="144" selection-end-column="194" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -10043,38 +9960,13 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="204">
           <caret line="90" column="71" selection-start-line="90" selection-start-column="71" selection-end-line="90" selection-end-column="71" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/browser/src/main/java/org/sqlunet/browser/config/TaskObserver.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="496">
-          <caret line="329" column="63" selection-start-line="329" selection-start-column="63" selection-end-line="329" selection-end-column="63" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/browser/src/main/java/org/sqlunet/browser/config/BaseDownloadFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="269">
-          <caret line="383" column="84" selection-start-line="383" selection-start-column="84" selection-end-line="383" selection-end-column="84" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/browser/src/main/res/layout/fragment_download.xml">
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-      <provider selected="true" editor-type-id="android-designer2">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/xNet/src/main/java/org/sqlunet/settings/StorageUtils.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="884" column="55" selection-start-line="884" selection-start-column="55" selection-end-line="884" selection-end-column="55" />
+          <folding>
+            <element signature="e#2179#2207#0" expanded="false" />
+            <element signature="e#2366#2391#0" expanded="false" />
+            <element signature="e#2394#2421#0" expanded="false" />
+            <element signature="e#2685#2710#0" expanded="false" />
+            <element signature="e#2713#2740#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -10164,14 +10056,6 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/browser/src/main/res/values/strings.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="132" column="18" selection-start-line="132" selection-start-column="18" selection-end-line="132" selection-end-column="18" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/browser/src/main/res/layout/fragment_splash_predicatematrix.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="273">
@@ -10196,6 +10080,271 @@
         <state relative-caret-position="390">
           <caret line="80" column="77" selection-start-line="80" selection-start-column="77" selection-end-line="80" selection-end-column="77" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/browser/src/main/res/values/strings.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="159">
+          <caret line="118" column="46" selection-start-line="118" selection-start-column="46" selection-end-line="118" selection-end-column="46" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/xNet/src/main/java/org/sqlunet/settings/Storage.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="396">
+          <caret line="134" column="30" selection-start-line="134" selection-start-column="30" selection-end-line="134" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/xNet/src/main/java/org/sqlunet/settings/StorageReports.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="929">
+          <caret line="516" column="0" selection-start-line="516" selection-start-column="0" selection-end-line="516" selection-end-column="0" />
+          <folding>
+            <element signature="docComment;class#StorageReports#0" expanded="false" />
+            <element signature="docComment;method#toStyledString#0;class#StorageReports#0" expanded="false" />
+            <element signature="method#toStyledString#0;class#StorageReports#0" expanded="false" />
+            <element signature="docComment;method#styledFitsIn#0;class#StorageReports#0" expanded="false" />
+            <element signature="method#styledFitsIn#0;class#StorageReports#0" expanded="false" />
+            <element signature="docComment;method#styledStatus#0;class#StorageReports#0" expanded="false" />
+            <element signature="method#styledStatus#0;class#StorageReports#0" expanded="false" />
+            <element signature="docComment;method#toIconId#0;class#StorageReports#0" expanded="false" />
+            <element signature="method#toIconId#0;class#StorageReports#0" expanded="false" />
+            <element signature="docComment;method#getStyledStorageDirectoriesNamesValues#0;class#StorageReports#0" expanded="false" />
+            <element signature="method#getStyledStorageDirectoriesNamesValues#0;class#StorageReports#0" expanded="false" />
+            <element signature="docComment;method#getStorageDirectoriesNamesValues#0;class#StorageReports#0" expanded="false" />
+            <element signature="method#getStorageDirectoriesNamesValues#0;class#StorageReports#0" expanded="false" />
+            <element signature="docComment;method#get2StorageDirectoriesNamesValues#0;class#StorageReports#0" expanded="false" />
+            <element signature="method#get2StorageDirectoriesNamesValues#0;class#StorageReports#0" expanded="false" />
+            <element signature="docComment;method#getStyledCachesNamesValues#0;class#StorageReports#0" expanded="false" />
+            <element signature="method#getStyledCachesNamesValues#0;class#StorageReports#0" expanded="false" />
+            <element signature="method#appendDir#0;class#StorageReports#0" expanded="false" />
+            <element signature="method#reportStorageDirectories#0;class#StorageReports#0" expanded="false" />
+            <element signature="docComment;method#reportExternalStorage#0;class#StorageReports#0" expanded="false" />
+            <element signature="method#reportExternalStorage#0;class#StorageReports#0" expanded="false" />
+            <element signature="docComment;method#reportStyledStorageDirectories#0;class#StorageReports#0" expanded="false" />
+            <element signature="method#reportStyledStorageDirectories#0;class#StorageReports#0" expanded="false" />
+            <element signature="e#11278#11309#0" expanded="false" />
+            <element signature="e#11369#11386#0" expanded="false" />
+            <element signature="docComment;method#reportStyledExternalStorage#0;class#StorageReports#0" expanded="false" />
+            <element signature="method#reportStyledExternalStorage#0;class#StorageReports#0" expanded="false" />
+            <element signature="docComment;method#reportStyledDirs#0;class#StorageReports#0" expanded="false" />
+            <element signature="method#reportStyledDirs#0;class#StorageReports#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/browser/src/main/res/layout/fragment_download.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="624">
+          <caret line="48" column="47" selection-start-line="48" selection-start-column="33" selection-end-line="48" selection-end-column="47" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/browser/src/main/java/org/sqlunet/browser/config/StorageFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-46">
+          <caret line="91" column="52" selection-start-line="91" selection-start-column="52" selection-end-line="91" selection-end-column="52" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///opt/androidstudio/sdk/sources/android-25/java/net/URLConnection.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1112">
+          <caret line="482" column="15" selection-start-line="482" selection-start-column="15" selection-end-line="482" selection-end-column="15" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/browser/src/main/java/org/sqlunet/browser/config/ExecAsyncTask.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="223">
+          <caret line="87" column="28" selection-start-line="87" selection-start-column="28" selection-end-line="87" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/browser/src/main/java/org/sqlunet/browser/config/FileAsyncTask.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="236">
+          <caret line="401" column="25" selection-start-line="401" selection-start-column="25" selection-end-line="401" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/browser/src/main/java/org/sqlunet/browser/config/TaskObserver.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="449">
+          <caret line="245" column="9" selection-start-line="245" selection-start-column="9" selection-end-line="245" selection-end-column="9" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="docComment;class#TaskObserver#0" expanded="false" />
+            <element signature="docComment;class#Listener#0;class#TaskObserver#0" expanded="false" />
+            <element signature="class#Listener#0;class#TaskObserver#0" expanded="false" />
+            <element signature="docComment;method#taskStart#0;class#Listener#0;class#TaskObserver#0" expanded="false" />
+            <element signature="docComment;method#taskFinish#0;class#Listener#0;class#TaskObserver#0" expanded="false" />
+            <element signature="docComment;method#taskUpdate#0;class#Listener#0;class#TaskObserver#0" expanded="false" />
+            <element signature="docComment;class#BaseListener#0;class#TaskObserver#0" expanded="false" />
+            <element signature="class#BaseListener#0;class#TaskObserver#0" expanded="false" />
+            <element signature="docComment;class#ToastListener#0;class#TaskObserver#0" expanded="false" />
+            <element signature="class#ToastListener#0;class#TaskObserver#0" expanded="false" />
+            <element signature="method#taskStart#0;class#ToastListener#0;class#TaskObserver#0" expanded="false" />
+            <element signature="method#taskFinish#0;class#ToastListener#0;class#TaskObserver#0" expanded="false" />
+            <element signature="docComment;class#ToastWithStatusListener#0;class#TaskObserver#0" expanded="false" />
+            <element signature="class#ToastWithStatusListener#0;class#TaskObserver#0" expanded="false" />
+            <element signature="method#ToastWithStatusListener#0;class#ToastWithStatusListener#0;class#TaskObserver#0" expanded="false" />
+            <element signature="method#taskStart#0;class#ToastWithStatusListener#0;class#TaskObserver#0" expanded="false" />
+            <element signature="method#taskFinish#0;class#ToastWithStatusListener#0;class#TaskObserver#0" expanded="false" />
+            <element signature="docComment;class#ProgressListener#0;class#TaskObserver#0" expanded="false" />
+            <element signature="class#ProgressListener#0;class#TaskObserver#0" expanded="false" />
+            <element signature="docComment;method#ProgressListener#0;class#ProgressListener#0;class#TaskObserver#0" expanded="false" />
+            <element signature="method#ProgressListener#0;class#ProgressListener#0;class#TaskObserver#0" expanded="false" />
+            <element signature="method#taskStart#0;class#ProgressListener#0;class#TaskObserver#0" expanded="false" />
+            <element signature="method#taskUpdate#0;class#ProgressListener#0;class#TaskObserver#0" expanded="false" />
+            <element signature="method#taskFinish#0;class#ProgressListener#0;class#TaskObserver#0" expanded="false" />
+            <element signature="docComment;class#DialogListener#0;class#TaskObserver#0" expanded="false" />
+            <element signature="docComment;method#DialogListener#0;class#DialogListener#0;class#TaskObserver#0" expanded="false" />
+            <element signature="docComment;method#DialogListener#1;class#DialogListener#0;class#TaskObserver#0" expanded="false" />
+            <element signature="method#DialogListener#1;class#DialogListener#0;class#TaskObserver#0" expanded="false" />
+            <element signature="method#taskFinish#0;class#DialogListener#0;class#TaskObserver#0" expanded="false" />
+            <element signature="docComment;method#makeDialog#0;class#DialogListener#0;class#TaskObserver#0" expanded="false" />
+            <element signature="method#makeDialog#0;class#DialogListener#0;class#TaskObserver#0" expanded="false" />
+            <element signature="docComment;method#countToString#0;class#TaskObserver#0" expanded="false" />
+            <element signature="e#7367#7368#0" expanded="true" />
+            <element signature="e#7449#7450#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/browser/src/main/java/org/sqlunet/browser/config/DownloadFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="117">
+          <caret line="25" column="58" selection-start-line="25" selection-start-column="38" selection-end-line="25" selection-end-column="58" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/browser/src/main/java/org/sqlunet/browser/config/SimpleDownloadFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="379">
+          <caret line="99" column="35" selection-start-line="99" selection-start-column="25" selection-end-line="99" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/browser/src/main/java/org/sqlunet/browser/config/SimpleDownloader.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="185">
+          <caret line="89" column="0" selection-start-line="89" selection-start-column="0" selection-end-line="89" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/browser/src/main/java/org/sqlunet/browser/config/BaseDownloadFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="158">
+          <caret line="384" column="0" selection-start-line="384" selection-start-column="0" selection-end-line="384" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/xNet/src/main/java/org/sqlunet/settings/StorageUtils.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="483">
+          <caret line="915" column="9" selection-start-line="915" selection-start-column="9" selection-end-line="915" selection-end-column="9" />
+          <folding>
+            <element signature="docComment;class#StorageUtils#0" expanded="false" />
+            <element signature="docComment;field#DATABASEMB#0;class#StorageUtils#0" expanded="false" />
+            <element signature="docComment;class#StorageType#0;class#StorageUtils#0" expanded="false" />
+            <element signature="class#StorageType#0;class#StorageUtils#0" expanded="false" />
+            <element signature="docComment;class#DirType#0;class#StorageUtils#0" expanded="false" />
+            <element signature="class#DirType#0;class#StorageUtils#0" expanded="false" />
+            <element signature="docComment;method#compare#0;class#DirType#0;class#StorageUtils#0" expanded="false" />
+            <element signature="method#compare#0;class#DirType#0;class#StorageUtils#0" expanded="false" />
+            <element signature="method#toDisplay#0;class#DirType#0;class#StorageUtils#0" expanded="false" />
+            <element signature="docComment;class#Directory#0;class#StorageUtils#0" expanded="false" />
+            <element signature="class#Directory#0;class#StorageUtils#0" expanded="false" />
+            <element signature="method#Directory#0;class#Directory#0;class#StorageUtils#0" expanded="false" />
+            <element signature="method#getValue#0;class#Directory#0;class#StorageUtils#0" expanded="false" />
+            <element signature="docComment;class#StorageDirectory#0;class#StorageUtils#0" expanded="false" />
+            <element signature="class#StorageDirectory#0;class#StorageUtils#0" expanded="false" />
+            <element signature="docComment;field#NULL_DIR#0;class#StorageDirectory#0;class#StorageUtils#0" expanded="false" />
+            <element signature="docComment;field#NOT_MOUNTED#0;class#StorageDirectory#0;class#StorageUtils#0" expanded="false" />
+            <element signature="docComment;field#NOT_EXISTS#0;class#StorageDirectory#0;class#StorageUtils#0" expanded="false" />
+            <element signature="docComment;field#NOT_DIR#0;class#StorageDirectory#0;class#StorageUtils#0" expanded="false" />
+            <element signature="docComment;field#NOT_WRITABLE#0;class#StorageDirectory#0;class#StorageUtils#0" expanded="false" />
+            <element signature="docComment;field#dir#0;class#StorageDirectory#0;class#StorageUtils#0" expanded="false" />
+            <element signature="docComment;field#free#0;class#StorageDirectory#0;class#StorageUtils#0" expanded="false" />
+            <element signature="docComment;field#occupancy#0;class#StorageDirectory#0;class#StorageUtils#0" expanded="false" />
+            <element signature="docComment;field#status#0;class#StorageDirectory#0;class#StorageUtils#0" expanded="false" />
+            <element signature="docComment;method#StorageDirectory#0;class#StorageDirectory#0;class#StorageUtils#0" expanded="false" />
+            <element signature="method#StorageDirectory#0;class#StorageDirectory#0;class#StorageUtils#0" expanded="false" />
+            <element signature="docComment;method#toShortString#0;class#StorageDirectory#0;class#StorageUtils#0" expanded="false" />
+            <element signature="docComment;method#toLongString#0;class#StorageDirectory#0;class#StorageUtils#0" expanded="false" />
+            <element signature="docComment;method#equals#0;class#StorageDirectory#0;class#StorageUtils#0" expanded="false" />
+            <element signature="method#equals#0;class#StorageDirectory#0;class#StorageUtils#0" expanded="false" />
+            <element signature="docComment;method#compareTo#0;class#StorageDirectory#0;class#StorageUtils#0" expanded="false" />
+            <element signature="method#compareTo#0;class#StorageDirectory#0;class#StorageUtils#0" expanded="false" />
+            <element signature="docComment;method#status#0;class#StorageDirectory#0;class#StorageUtils#0" expanded="false" />
+            <element signature="method#status#0;class#StorageDirectory#0;class#StorageUtils#0" expanded="false" />
+            <element signature="docComment;method#fitsIn#0;class#StorageDirectory#0;class#StorageUtils#0" expanded="false" />
+            <element signature="docComment;method#getDirectories#0;class#StorageUtils#0" expanded="false" />
+            <element signature="method#getDirectories#0;class#StorageUtils#0" expanded="false" />
+            <element signature="e#6705#6731#0" expanded="false" />
+            <element signature="e#7803#7817#0" expanded="false" />
+            <element signature="e#8389#8469#0" expanded="false" />
+            <element signature="e#8811#8827#0" expanded="false" />
+            <element signature="docComment;method#directories2StorageDirectories#0;class#StorageUtils#0" expanded="false" />
+            <element signature="method#directories2StorageDirectories#0;class#StorageUtils#0" expanded="false" />
+            <element signature="docComment;method#getStorageDirectories#0;class#StorageUtils#0" expanded="false" />
+            <element signature="method#getStorageDirectories#0;class#StorageUtils#0" expanded="false" />
+            <element signature="docComment;method#getSortedStorageDirectories#0;class#StorageUtils#0" expanded="false" />
+            <element signature="method#getSortedStorageDirectories#0;class#StorageUtils#0" expanded="false" />
+            <element signature="docComment;method#getExternalStorages#0;class#StorageUtils#0" expanded="false" />
+            <element signature="method#getExternalStorages#0;class#StorageUtils#0" expanded="false" />
+            <element signature="e#10626#10642#0" expanded="false" />
+            <element signature="docComment;method#selectExternalStorage#0;class#StorageUtils#0" expanded="false" />
+            <element signature="method#selectExternalStorage#0;class#StorageUtils#0" expanded="false" />
+            <element signature="e#11465#11485#0" expanded="false" />
+            <element signature="e#11704#11720#0" expanded="false" />
+            <element signature="docComment;method#discoverPrimaryEmulatedExternalStorage#0;class#StorageUtils#0" expanded="false" />
+            <element signature="method#discoverPrimaryEmulatedExternalStorage#0;class#StorageUtils#0" expanded="false" />
+            <element signature="e#12468#12501#0" expanded="false" />
+            <element signature="docComment;method#discoverPrimaryPhysicalExternalStorage#0;class#StorageUtils#0" expanded="false" />
+            <element signature="method#discoverPrimaryPhysicalExternalStorage#0;class#StorageUtils#0" expanded="false" />
+            <element signature="docComment;method#discoverSecondaryExternalStorage#0;class#StorageUtils#0" expanded="false" />
+            <element signature="method#discoverSecondaryExternalStorage#0;class#StorageUtils#0" expanded="false" />
+            <element signature="docComment;method#qualifies#0;class#StorageUtils#0" expanded="false" />
+            <element signature="method#qualifies#0;class#StorageUtils#0" expanded="false" />
+            <element signature="e#15215#15227#0" expanded="false" />
+            <element signature="docComment;method#getUserId#0;class#StorageUtils#0" expanded="false" />
+            <element signature="method#getUserId#0;class#StorageUtils#0" expanded="false" />
+            <element signature="docComment;field#STORAGE_FREE#0;class#StorageUtils#0" expanded="false" />
+            <element signature="docComment;field#STORAGE_CAPACITY#0;class#StorageUtils#0" expanded="false" />
+            <element signature="docComment;field#STORAGE_OCCUPANCY#0;class#StorageUtils#0" expanded="false" />
+            <element signature="docComment;method#storageStats#0;class#StorageUtils#0" expanded="false" />
+            <element signature="method#storageStats#0;class#StorageUtils#0" expanded="false" />
+            <element signature="method#getFree#0;class#StorageUtils#0" expanded="false" />
+            <element signature="docComment;method#storageFree#0;class#StorageUtils#0" expanded="false" />
+            <element signature="method#storageFree#0;class#StorageUtils#0" expanded="false" />
+            <element signature="docComment;method#storageFreeAsString#0;class#StorageUtils#0" expanded="false" />
+            <element signature="docComment;method#storageFreeAsString#1;class#StorageUtils#0" expanded="false" />
+            <element signature="docComment;method#storageCapacity#0;class#StorageUtils#0" expanded="false" />
+            <element signature="method#storageCapacity#0;class#StorageUtils#0" expanded="false" />
+            <element signature="docComment;method#mbToString#0;class#StorageUtils#0" expanded="false" />
+            <element signature="method#mbToString#0;class#StorageUtils#0" expanded="false" />
+            <element signature="docComment;method#countToStorageString#0;class#StorageUtils#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>

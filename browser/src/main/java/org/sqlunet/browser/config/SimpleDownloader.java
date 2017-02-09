@@ -168,7 +168,7 @@ class SimpleDownloader extends AsyncTask<Void, Integer, Boolean>
 				downloaded += count;
 
 				// publishing the progress (onProgressUpdate will be called)
-				publishProgress(total, downloaded);
+				publishProgress(downloaded, total);
 
 				// writing data toFile file
 				output.write(buffer, 0, count);
@@ -276,9 +276,9 @@ class SimpleDownloader extends AsyncTask<Void, Integer, Boolean>
 		/**
 		 * Intermediate progress notification
 		 *
-		 * @param total      progress
 		 * @param downloaded byte count
+		 * @param total      progress
 		 */
-		void onDownloadUpdate(long total, long downloaded);
+		void onDownloadUpdate(long downloaded, long total);
 	}
 }

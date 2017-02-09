@@ -70,8 +70,8 @@ class ExecAsyncTask
 					db = SQLiteDatabase.openDatabase(databaseArg, null, SQLiteDatabase.OPEN_READWRITE);
 
 					// execute
-					final int count = sqlArgs.length;
-					for (int i = 0; i < count; i++)
+					final int total = sqlArgs.length;
+					for (int i = 0; i < total; i++)
 					{
 						final String sql = sqlArgs[i].trim();
 						if (sql.isEmpty())
@@ -83,9 +83,9 @@ class ExecAsyncTask
 						Log.d(ExecAsyncTask.TAG, "SQL " + sql);
 
 						// publish
-						if (count % ExecAsyncTask.this.publishRate == 0)
+						if (total % ExecAsyncTask.this.publishRate == 0)
 						{
-							publishProgress(i, count);
+							publishProgress(i, total);
 						}
 						if (isCancelled())
 						{
@@ -93,6 +93,7 @@ class ExecAsyncTask
 							break;
 						}
 					}
+					publishProgress(total, total);
 					return true;
 				}
 				catch (final Exception e)
@@ -225,7 +226,7 @@ class ExecAsyncTask
 							break;
 						}
 					}
-					publishProgress(count);
+					publishProgress(count, count);
 					return true;
 				}
 				catch (IOException e1)
@@ -335,12 +336,12 @@ class ExecAsyncTask
 
 			@Override
 			protected void onPreExecute()
-			{ /* */
+			{
 			}
 
 			@Override
 			protected void onProgressUpdate(Void... values)
-			{ /* */
+			{
 			}
 		};
 		task.execute(database, tempDir);
