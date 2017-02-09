@@ -128,7 +128,7 @@
 	<string name="hint_search">Search</string>
 	<string name="hint_search_text">Text Search WordNet</string>
 	<string name="hint_search_predicatematrix">Search Predicate Matrix</string>
-	<string name="hint_splash_main">Exploring Semantic Roles</string>
+	<string name="hint_splash_browse">Exploring Semantic Roles</string>
 	<string name="hint_splash_textsearch">Text Search</string>
 	<string name="hint_splash_predicatematrix">Exploring Predicate Matrix</string>
 	<string name="hint_navigation_drawer_open">Open navigation drawer</string>

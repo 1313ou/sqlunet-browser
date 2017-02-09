@@ -7,8 +7,10 @@ import android.os.Bundle;
 import android.os.Parcelable;
 import android.support.v4.app.Fragment;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.TextView;
@@ -70,6 +72,24 @@ public class BrowseFragment extends BaseSearchFragment
 		this.spinnerLabels = R.array.selectors_names;
 		this.spinnerIcons = R.array.selectors_icons;
 		this.titleId = R.string.title_browse_section;
+	}
+
+	@Override
+	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
+	{
+		final View view = super.onCreateView(inflater, container, savedInstanceState);
+
+		if (savedInstanceState == null)
+		{
+			// splash fragment
+			final Fragment fragment = new BrowseSplashFragment();
+			getChildFragmentManager() //
+					.beginTransaction() //
+					.replace(R.id.container_browse, fragment) //
+					.commit();
+		}
+
+		return view;
 	}
 
 	// S P I N N E R

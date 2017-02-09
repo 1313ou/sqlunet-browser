@@ -13,7 +13,7 @@ import android.view.ViewGroup;
  */
 abstract public class SplashFragment extends Fragment
 {
-	// static private final String TAG = "SpalshFragment";
+	// static private final String TAG = "SplashFragment";
 
 	protected int layoutId;
 

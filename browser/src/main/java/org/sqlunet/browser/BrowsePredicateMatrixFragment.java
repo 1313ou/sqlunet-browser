@@ -75,9 +75,19 @@ public class BrowsePredicateMatrixFragment extends BaseSearchFragment
 			this.query = savedInstanceState.getString(STATE_QUERY);
 			this.pointer = savedInstanceState.getParcelable(STATE_POINTER);
 		}
+		else
+		{
+			// splash fragment
+			final Fragment fragment = new BrowsePredicateMatrixSplashFragment();
+			getChildFragmentManager() //
+					.beginTransaction() //
+					.replace(R.id.container_predicatematrix, fragment) //
+					.commit();
+		}
 
 		return view;
 	}
+
 
 	// S A V E
 

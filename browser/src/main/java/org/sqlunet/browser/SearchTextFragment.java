@@ -4,7 +4,9 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.TextView;
 
@@ -39,6 +41,24 @@ public class SearchTextFragment extends BaseSearchFragment
 		this.spinnerLabels = R.array.textsearch_modes;
 		this.spinnerIcons = R.array.textsearch_icons;
 		this.titleId = R.string.title_textsearch_section;
+	}
+
+	@Override
+	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
+	{
+		final View view = super.onCreateView(inflater, container, savedInstanceState);
+
+		if (savedInstanceState == null)
+		{
+			// splash fragment
+			final Fragment fragment = new SearchTextSplashFragment();
+			getChildFragmentManager() //
+					.beginTransaction() //
+					.replace(R.id.container_textsearch, fragment) //
+					.commit();
+		}
+
+		return view;
 	}
 
 	// S P I N N E R
