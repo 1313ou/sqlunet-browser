@@ -16,19 +16,25 @@ dirapp=..
 #res_icon48=([mdpi]=48 [hdpi]=72 [xhdpi]=96 [xxhdpi]=144 [xxxhdpi]=192)
 #declare -A res_icon144
 #res_icon144=([mdpi]=144 [hdpi]=192 [xhdpi]=288 [xxhdpi]=384 [xxxhdpi]=576)
-#declare -A res_icon144
+#declare -A res_icon256
 #res_icon256=([mdpi]=256 [hdpi]=384 [xhdpi]=512 [xxhdpi]=768 [xxxhdpi]=1024)
+#declare -A res_icon512
+#res_icon512=([mdpi]=512 [hdpi]=768 [xhdpi]=1024 [xxhdpi]=1536 [xxxhdpi]=2048)
 
 declare -A res_launch
 res_launch=([mdpi]=48 [hdpi]=72 [xhdpi]=96 [xxhdpi]=144 [xxxhdpi]=192)
 list_launch="ic_launcher.svg"
+
+declare -A res_logo
+res_logo=([mdpi]=144 [hdpi]=192 [xhdpi]=288 [xxhdpi]=384 [xxxhdpi]=576)
+list_logo="ic_logo.svg"
 
 declare -A res_splash
 res_splash=([mdpi]=144 [hdpi]=192 [xhdpi]=288 [xxhdpi]=384 [xxxhdpi]=576)
 list_splash="ic_splash.svg"
 
 declare -A res_supersplash
-res_supersplash=([mdpi]=256 [hdpi]=384 [xhdpi]=512 [xxhdpi]=768 [xxxhdpi]=1024)
+res_supersplash=([mdpi]=512 [hdpi]=768 [xhdpi]=1024 [xxhdpi]=1536 [xxxhdpi]=2048)
 list_supersplash="sqlunet.svg"
 
 declare -A res_icon
@@ -63,6 +69,17 @@ for svg in ${list_launch}; do
 		png="${svg%.svg}.png"
 		echo "${svg} -> ${d}/${png} @ resolution ${res_launch[$r]}"
 		inkscape ${svg} --export-png=${d}/${png} -h${res_launch[$r]} > /dev/null 2> /dev/null
+	done
+done
+
+# logo
+for svg in ${list_logo}; do
+	for r in ${!res_logo[@]}; do 
+		d="${dirres}/drawable-${r}"
+		mkdir -p ${d}
+		png="${svg%.svg}.png"
+		echo "${svg} -> ${d}/${png} @ resolution ${res_logo[$r]}"
+		inkscape ${svg} --export-png=${d}/${png} -h${res_logo[$r]} > /dev/null 2> /dev/null
 	done
 done
 

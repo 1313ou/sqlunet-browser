@@ -12,7 +12,7 @@
 		android:paddingStart="?android:attr/listPreferredItemPaddingStart"
 		android:paddingTop="?android:attr/listPreferredItemPaddingStart"
 		android:contentDescription="@string/app_name"
-		android:src="@drawable/ic_launcher"/>
+		android:src="@drawable/ic_logo"/>
 
 	<ListView
 		android:id="@+id/sections"

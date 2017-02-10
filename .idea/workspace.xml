@@ -14,459 +14,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6963923e-acc2-48e3-91d8-e040d24efc27" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/browser/ic_launcher-app.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/browser/ic_launcher-web.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/browser/src/main/assets/help/images/logo.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/browser/src/main/assets/help/images/sqlunet.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/browser/src/main/res/drawable-hdpi/sqlunet.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/browser/src/main/res/drawable-mdpi/sqlunet.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/browser/src/main/res/drawable-xhdpi/sqlunet.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/browser/src/main/res/drawable-xxhdpi/sqlunet.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/browser/src/main/res/drawable-xxxhdpi/sqlunet.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wordNet/src/main/assets/images/wordnet/links.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bNC/artwork/make-artwork.sh" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bNC/artwork/make-images.sh" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/browser/artwork-assets/closed.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/browser/artwork-assets/error.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/browser/artwork-assets/logo.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/browser/artwork-assets/make-artwork.sh" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/browser/artwork-assets/make-images.sh" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/browser/artwork-assets/open.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/browser/artwork-assets/pointer.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/browser/artwork/bn_download.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/browser/artwork/bn_info.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/browser/artwork/bn_setup.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/browser/artwork/ic_about.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/browser/artwork/ic_action_error.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/browser/artwork/ic_download_dest.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/browser/artwork/ic_download_source.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/browser/artwork/ic_fail.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/browser/artwork/ic_help.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/browser/artwork/ic_home.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/browser/artwork/ic_item.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/browser/artwork/ic_launcher.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/browser/artwork/ic_ok.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/browser/artwork/ic_role.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/browser/artwork/ic_roles.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/browser/artwork/ic_roles_grouped.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/browser/artwork/ic_rows_byrole.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/browser/artwork/ic_rows_bysynset.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/browser/artwork/ic_rows_ungrouped.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/browser/artwork/ic_run.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/browser/artwork/ic_search_browse.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/browser/artwork/ic_search_fnsentence.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/browser/artwork/ic_search_pbexample.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/browser/artwork/ic_search_pm.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/browser/artwork/ic_search_text.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/browser/artwork/ic_search_vnexample.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/browser/artwork/ic_search_wndefinition.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/browser/artwork/ic_search_wnsample.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/browser/artwork/ic_search_wnword.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/browser/artwork/ic_selector.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/browser/artwork/ic_settings.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/browser/artwork/ic_setup.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/browser/artwork/ic_splash.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/browser/artwork/ic_sql.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/browser/artwork/ic_status.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/browser/artwork/ic_storage.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/browser/artwork/ic_unknown.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/browser/artwork/ic_xselector.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/browser/artwork/logo.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/browser/artwork/make-artwork.sh" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/browser/artwork/sqlunet.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/browser/src/main/assets/help/help.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/browser/src/main/assets/help/sqlunet.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/browser/src/main/assets/help/sqlunet.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/frameNet/artwork/annoset.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/frameNet/artwork/coreset.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/frameNet/artwork/governor.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/frameNet/artwork/grouprealization.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/frameNet/artwork/label1.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/frameNet/artwork/label2.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/frameNet/artwork/layer.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/frameNet/artwork/make-artwork.sh" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/frameNet/artwork/metadefinition.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/frameNet/artwork/realization.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/frameNet/artwork/semtype.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/make-artwork.sh" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/predicateMatrix/artwork/make-artwork.sh" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/propbank/artwork/alias.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/propbank/artwork/make-artwork.sh" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/propbank/artwork/theta.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/propbank/artwork/trace.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/treeView/artwork/ic_collapsed.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/treeView/artwork/ic_expanded.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/treeView/artwork/ic_leaf.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/treeView/artwork/ic_link.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/treeView/artwork/make-artwork.sh" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/verbNet/artwork/make-artwork.sh" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/verbNet/artwork/restr.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/verbNet/artwork/semantics.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/verbNet/artwork/syntax.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/verbNet/artwork/vnframe.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wordNet/artwork-links/.gitignore" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wordNet/artwork-links/base.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wordNet/artwork-links/base_dom.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wordNet/artwork-links/base_pos.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wordNet/artwork-links/ic_adjderived.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wordNet/artwork-links/ic_also.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wordNet/artwork-links/ic_antonym.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wordNet/artwork-links/ic_attribute.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wordNet/artwork-links/ic_cause.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wordNet/artwork-links/ic_derivation.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wordNet/artwork-links/ic_domain.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wordNet/artwork-links/ic_domain_category.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wordNet/artwork-links/ic_domain_member.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wordNet/artwork-links/ic_domain_member_category.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wordNet/artwork-links/ic_domain_member_region.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wordNet/artwork-links/ic_domain_member_term.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wordNet/artwork-links/ic_domain_member_usage.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wordNet/artwork-links/ic_domain_region.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wordNet/artwork-links/ic_domain_term.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wordNet/artwork-links/ic_domain_usage.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wordNet/artwork-links/ic_entail.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wordNet/artwork-links/ic_holonym.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wordNet/artwork-links/ic_hypernym.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wordNet/artwork-links/ic_hyponym.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wordNet/artwork-links/ic_instance_hypernym.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wordNet/artwork-links/ic_instance_hyponym.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wordNet/artwork-links/ic_links.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wordNet/artwork-links/ic_member_holonym.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wordNet/artwork-links/ic_member_meronym.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wordNet/artwork-links/ic_meronym.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wordNet/artwork-links/ic_other.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wordNet/artwork-links/ic_part_holonym.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wordNet/artwork-links/ic_part_meronym.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wordNet/artwork-links/ic_participle.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wordNet/artwork-links/ic_pertainym.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wordNet/artwork-links/ic_pos.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wordNet/artwork-links/ic_pos_a.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wordNet/artwork-links/ic_pos_n.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wordNet/artwork-links/ic_pos_r.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wordNet/artwork-links/ic_pos_s.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wordNet/artwork-links/ic_pos_v.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wordNet/artwork-links/ic_similar.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wordNet/artwork-links/ic_substance_holonym.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wordNet/artwork-links/ic_substance_meronym.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wordNet/artwork-links/ic_synonym.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wordNet/artwork-links/ic_verb_group.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wordNet/artwork-links/make-artwork.sh" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wordNet/artwork/make-artwork.sh" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wordNet/artwork/verbframe.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/xNet/artwork/bnc.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/xNet/artwork/definition.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/xNet/artwork/domain.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/xNet/artwork/error.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/xNet/artwork/framenet.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/xNet/artwork/ic_collapsed.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/xNet/artwork/ic_expanded.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/xNet/artwork/ic_leaf.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/xNet/artwork/ic_storage_auto.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/xNet/artwork/ic_storage_extern_primary.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/xNet/artwork/ic_storage_extern_public.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/xNet/artwork/ic_storage_extern_secondary.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/xNet/artwork/ic_storage_intern.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/xNet/artwork/info.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/xNet/artwork/item.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/xNet/artwork/link.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/xNet/artwork/make-artwork.sh" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/xNet/artwork/member.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/xNet/artwork/members.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/xNet/artwork/pos.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/xNet/artwork/predicatematrix.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/xNet/artwork/propbank.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/xNet/artwork/relation.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/xNet/artwork/role.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/xNet/artwork/role1.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/xNet/artwork/role2.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/xNet/artwork/roleclass.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/xNet/artwork/roles.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/xNet/artwork/rolex.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/xNet/artwork/rolex2.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/xNet/artwork/sample.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/xNet/artwork/sentence.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/xNet/artwork/synset.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/xNet/artwork/synsetmember.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/xNet/artwork/verbnet.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/xNet/artwork/wordnet.svg" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/browser/src/main/assets/help/images/icon.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/browser/src/main/res/drawable-hdpi/ic_refresh.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/browser/src/main/res/drawable-mdpi/ic_refresh.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/browser/src/main/res/drawable-xhdpi/ic_refresh.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/browser/src/main/res/drawable-xxhdpi/ic_refresh.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/browser/src/main/res/drawable-xxxhdpi/ic_refresh.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/xNet/src/main/res/drawable-hdpi/ic_storage_intern_or_adopted.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/xNet/src/main/res/drawable-mdpi/ic_storage_intern_or_adopted.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/xNet/src/main/res/drawable-xhdpi/ic_storage_intern_or_adopted.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/xNet/src/main/res/drawable-xxhdpi/ic_storage_intern_or_adopted.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/xNet/src/main/res/drawable-xxxhdpi/ic_storage_intern_or_adopted.png" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/browser/src/main/assets/images/logo.png" afterPath="$PROJECT_DIR$/browser/src/main/assets/images/logo.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordNet/src/main/assets/images/wordnet/adjderived.png" afterPath="$PROJECT_DIR$/wordNet/src/main/assets/images/wordnet/adjderived.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordNet/src/main/assets/images/wordnet/also.png" afterPath="$PROJECT_DIR$/wordNet/src/main/assets/images/wordnet/also.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordNet/src/main/assets/images/wordnet/antonym.png" afterPath="$PROJECT_DIR$/wordNet/src/main/assets/images/wordnet/antonym.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordNet/src/main/assets/images/wordnet/attribute.png" afterPath="$PROJECT_DIR$/wordNet/src/main/assets/images/wordnet/attribute.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordNet/src/main/assets/images/wordnet/cause.png" afterPath="$PROJECT_DIR$/wordNet/src/main/assets/images/wordnet/cause.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordNet/src/main/assets/images/wordnet/derivation.png" afterPath="$PROJECT_DIR$/wordNet/src/main/assets/images/wordnet/derivation.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordNet/src/main/assets/images/wordnet/domain.png" afterPath="$PROJECT_DIR$/wordNet/src/main/assets/images/wordnet/domain.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordNet/src/main/assets/images/wordnet/domain_category.png" afterPath="$PROJECT_DIR$/wordNet/src/main/assets/images/wordnet/domain_category.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordNet/src/main/assets/images/wordnet/domain_member.png" afterPath="$PROJECT_DIR$/wordNet/src/main/assets/images/wordnet/domain_member.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordNet/src/main/assets/images/wordnet/domain_member_category.png" afterPath="$PROJECT_DIR$/wordNet/src/main/assets/images/wordnet/domain_member_category.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordNet/src/main/assets/images/wordnet/domain_member_region.png" afterPath="$PROJECT_DIR$/wordNet/src/main/assets/images/wordnet/domain_member_region.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordNet/src/main/assets/images/wordnet/domain_member_term.png" afterPath="$PROJECT_DIR$/wordNet/src/main/assets/images/wordnet/domain_member_term.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordNet/src/main/assets/images/wordnet/domain_member_usage.png" afterPath="$PROJECT_DIR$/wordNet/src/main/assets/images/wordnet/domain_member_usage.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordNet/src/main/assets/images/wordnet/domain_region.png" afterPath="$PROJECT_DIR$/wordNet/src/main/assets/images/wordnet/domain_region.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordNet/src/main/assets/images/wordnet/domain_term.png" afterPath="$PROJECT_DIR$/wordNet/src/main/assets/images/wordnet/domain_term.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordNet/src/main/assets/images/wordnet/domain_usage.png" afterPath="$PROJECT_DIR$/wordNet/src/main/assets/images/wordnet/domain_usage.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordNet/src/main/assets/images/wordnet/entail.png" afterPath="$PROJECT_DIR$/wordNet/src/main/assets/images/wordnet/entail.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordNet/src/main/assets/images/wordnet/holonym.png" afterPath="$PROJECT_DIR$/wordNet/src/main/assets/images/wordnet/holonym.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordNet/src/main/assets/images/wordnet/hypernym.png" afterPath="$PROJECT_DIR$/wordNet/src/main/assets/images/wordnet/hypernym.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordNet/src/main/assets/images/wordnet/hyponym.png" afterPath="$PROJECT_DIR$/wordNet/src/main/assets/images/wordnet/hyponym.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordNet/src/main/assets/images/wordnet/instance_hypernym.png" afterPath="$PROJECT_DIR$/wordNet/src/main/assets/images/wordnet/instance_hypernym.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordNet/src/main/assets/images/wordnet/instance_hyponym.png" afterPath="$PROJECT_DIR$/wordNet/src/main/assets/images/wordnet/instance_hyponym.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordNet/src/main/assets/images/wordnet/member_holonym.png" afterPath="$PROJECT_DIR$/wordNet/src/main/assets/images/wordnet/member_holonym.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordNet/src/main/assets/images/wordnet/member_meronym.png" afterPath="$PROJECT_DIR$/wordNet/src/main/assets/images/wordnet/member_meronym.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordNet/src/main/assets/images/wordnet/meronym.png" afterPath="$PROJECT_DIR$/wordNet/src/main/assets/images/wordnet/meronym.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordNet/src/main/assets/images/wordnet/other.png" afterPath="$PROJECT_DIR$/wordNet/src/main/assets/images/wordnet/other.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordNet/src/main/assets/images/wordnet/part_holonym.png" afterPath="$PROJECT_DIR$/wordNet/src/main/assets/images/wordnet/part_holonym.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordNet/src/main/assets/images/wordnet/part_meronym.png" afterPath="$PROJECT_DIR$/wordNet/src/main/assets/images/wordnet/part_meronym.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordNet/src/main/assets/images/wordnet/participle.png" afterPath="$PROJECT_DIR$/wordNet/src/main/assets/images/wordnet/participle.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordNet/src/main/assets/images/wordnet/pertainym.png" afterPath="$PROJECT_DIR$/wordNet/src/main/assets/images/wordnet/pertainym.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordNet/src/main/assets/images/wordnet/pos.png" afterPath="$PROJECT_DIR$/wordNet/src/main/assets/images/wordnet/pos.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordNet/src/main/assets/images/wordnet/pos_a.png" afterPath="$PROJECT_DIR$/wordNet/src/main/assets/images/wordnet/pos_a.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordNet/src/main/assets/images/wordnet/pos_n.png" afterPath="$PROJECT_DIR$/wordNet/src/main/assets/images/wordnet/pos_n.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordNet/src/main/assets/images/wordnet/pos_r.png" afterPath="$PROJECT_DIR$/wordNet/src/main/assets/images/wordnet/pos_r.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordNet/src/main/assets/images/wordnet/pos_s.png" afterPath="$PROJECT_DIR$/wordNet/src/main/assets/images/wordnet/pos_s.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordNet/src/main/assets/images/wordnet/pos_v.png" afterPath="$PROJECT_DIR$/wordNet/src/main/assets/images/wordnet/pos_v.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordNet/src/main/assets/images/wordnet/similar.png" afterPath="$PROJECT_DIR$/wordNet/src/main/assets/images/wordnet/similar.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordNet/src/main/assets/images/wordnet/substance_holonym.png" afterPath="$PROJECT_DIR$/wordNet/src/main/assets/images/wordnet/substance_holonym.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordNet/src/main/assets/images/wordnet/substance_meronym.png" afterPath="$PROJECT_DIR$/wordNet/src/main/assets/images/wordnet/substance_meronym.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordNet/src/main/assets/images/wordnet/synonym.png" afterPath="$PROJECT_DIR$/wordNet/src/main/assets/images/wordnet/synonym.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordNet/src/main/assets/images/wordnet/verb_group.png" afterPath="$PROJECT_DIR$/wordNet/src/main/assets/images/wordnet/verb_group.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-hdpi/ic_adjderived.png" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-hdpi/ic_adjderived.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-hdpi/ic_also.png" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-hdpi/ic_also.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-hdpi/ic_antonym.png" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-hdpi/ic_antonym.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-hdpi/ic_attribute.png" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-hdpi/ic_attribute.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-hdpi/ic_cause.png" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-hdpi/ic_cause.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-hdpi/ic_derivation.png" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-hdpi/ic_derivation.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-hdpi/ic_domain.png" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-hdpi/ic_domain.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-hdpi/ic_domain_category.png" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-hdpi/ic_domain_category.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-hdpi/ic_domain_member.png" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-hdpi/ic_domain_member.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-hdpi/ic_domain_member_category.png" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-hdpi/ic_domain_member_category.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-hdpi/ic_domain_member_region.png" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-hdpi/ic_domain_member_region.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-hdpi/ic_domain_member_term.png" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-hdpi/ic_domain_member_term.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-hdpi/ic_domain_member_usage.png" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-hdpi/ic_domain_member_usage.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-hdpi/ic_domain_region.png" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-hdpi/ic_domain_region.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-hdpi/ic_domain_term.png" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-hdpi/ic_domain_term.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-hdpi/ic_domain_usage.png" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-hdpi/ic_domain_usage.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-hdpi/ic_entail.png" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-hdpi/ic_entail.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-hdpi/ic_holonym.png" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-hdpi/ic_holonym.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-hdpi/ic_hypernym.png" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-hdpi/ic_hypernym.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-hdpi/ic_hyponym.png" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-hdpi/ic_hyponym.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-hdpi/ic_instance_hypernym.png" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-hdpi/ic_instance_hypernym.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-hdpi/ic_instance_hyponym.png" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-hdpi/ic_instance_hyponym.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-hdpi/ic_links.png" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-hdpi/ic_links.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-hdpi/ic_member_holonym.png" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-hdpi/ic_member_holonym.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-hdpi/ic_member_meronym.png" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-hdpi/ic_member_meronym.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-hdpi/ic_meronym.png" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-hdpi/ic_meronym.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-hdpi/ic_other.png" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-hdpi/ic_other.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-hdpi/ic_part_holonym.png" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-hdpi/ic_part_holonym.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-hdpi/ic_part_meronym.png" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-hdpi/ic_part_meronym.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-hdpi/ic_participle.png" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-hdpi/ic_participle.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-hdpi/ic_pertainym.png" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-hdpi/ic_pertainym.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-hdpi/ic_pos.png" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-hdpi/ic_pos.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-hdpi/ic_pos_a.png" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-hdpi/ic_pos_a.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-hdpi/ic_pos_n.png" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-hdpi/ic_pos_n.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-hdpi/ic_pos_r.png" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-hdpi/ic_pos_r.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-hdpi/ic_pos_s.png" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-hdpi/ic_pos_s.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-hdpi/ic_pos_v.png" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-hdpi/ic_pos_v.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-hdpi/ic_similar.png" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-hdpi/ic_similar.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-hdpi/ic_substance_holonym.png" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-hdpi/ic_substance_holonym.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-hdpi/ic_substance_meronym.png" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-hdpi/ic_substance_meronym.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-hdpi/ic_synonym.png" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-hdpi/ic_synonym.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-hdpi/ic_verb_group.png" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-hdpi/ic_verb_group.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-mdpi/ic_adjderived.png" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-mdpi/ic_adjderived.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-mdpi/ic_also.png" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-mdpi/ic_also.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-mdpi/ic_antonym.png" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-mdpi/ic_antonym.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-mdpi/ic_attribute.png" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-mdpi/ic_attribute.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-mdpi/ic_cause.png" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-mdpi/ic_cause.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-mdpi/ic_derivation.png" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-mdpi/ic_derivation.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-mdpi/ic_domain.png" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-mdpi/ic_domain.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-mdpi/ic_domain_category.png" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-mdpi/ic_domain_category.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-mdpi/ic_domain_member.png" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-mdpi/ic_domain_member.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-mdpi/ic_domain_member_category.png" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-mdpi/ic_domain_member_category.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-mdpi/ic_domain_member_region.png" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-mdpi/ic_domain_member_region.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-mdpi/ic_domain_member_term.png" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-mdpi/ic_domain_member_term.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-mdpi/ic_domain_member_usage.png" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-mdpi/ic_domain_member_usage.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-mdpi/ic_domain_region.png" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-mdpi/ic_domain_region.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-mdpi/ic_domain_term.png" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-mdpi/ic_domain_term.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-mdpi/ic_domain_usage.png" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-mdpi/ic_domain_usage.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-mdpi/ic_entail.png" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-mdpi/ic_entail.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-mdpi/ic_holonym.png" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-mdpi/ic_holonym.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-mdpi/ic_hypernym.png" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-mdpi/ic_hypernym.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-mdpi/ic_hyponym.png" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-mdpi/ic_hyponym.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-mdpi/ic_instance_hypernym.png" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-mdpi/ic_instance_hypernym.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-mdpi/ic_instance_hyponym.png" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-mdpi/ic_instance_hyponym.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-mdpi/ic_links.png" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-mdpi/ic_links.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-mdpi/ic_member_holonym.png" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-mdpi/ic_member_holonym.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-mdpi/ic_member_meronym.png" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-mdpi/ic_member_meronym.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-mdpi/ic_meronym.png" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-mdpi/ic_meronym.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-mdpi/ic_other.png" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-mdpi/ic_other.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-mdpi/ic_part_holonym.png" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-mdpi/ic_part_holonym.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-mdpi/ic_part_meronym.png" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-mdpi/ic_part_meronym.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-mdpi/ic_participle.png" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-mdpi/ic_participle.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-mdpi/ic_pertainym.png" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-mdpi/ic_pertainym.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-mdpi/ic_pos.png" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-mdpi/ic_pos.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-mdpi/ic_pos_a.png" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-mdpi/ic_pos_a.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-mdpi/ic_pos_n.png" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-mdpi/ic_pos_n.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-mdpi/ic_pos_r.png" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-mdpi/ic_pos_r.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-mdpi/ic_pos_s.png" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-mdpi/ic_pos_s.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-mdpi/ic_pos_v.png" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-mdpi/ic_pos_v.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-mdpi/ic_similar.png" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-mdpi/ic_similar.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-mdpi/ic_substance_holonym.png" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-mdpi/ic_substance_holonym.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-mdpi/ic_substance_meronym.png" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-mdpi/ic_substance_meronym.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-mdpi/ic_synonym.png" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-mdpi/ic_synonym.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-mdpi/ic_verb_group.png" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-mdpi/ic_verb_group.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xhdpi/ic_adjderived.png" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xhdpi/ic_adjderived.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xhdpi/ic_also.png" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xhdpi/ic_also.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xhdpi/ic_antonym.png" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xhdpi/ic_antonym.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xhdpi/ic_attribute.png" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xhdpi/ic_attribute.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xhdpi/ic_cause.png" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xhdpi/ic_cause.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xhdpi/ic_derivation.png" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xhdpi/ic_derivation.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xhdpi/ic_domain.png" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xhdpi/ic_domain.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xhdpi/ic_domain_category.png" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xhdpi/ic_domain_category.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xhdpi/ic_domain_member.png" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xhdpi/ic_domain_member.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xhdpi/ic_domain_member_category.png" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xhdpi/ic_domain_member_category.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xhdpi/ic_domain_member_region.png" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xhdpi/ic_domain_member_region.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xhdpi/ic_domain_member_term.png" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xhdpi/ic_domain_member_term.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xhdpi/ic_domain_member_usage.png" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xhdpi/ic_domain_member_usage.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xhdpi/ic_domain_region.png" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xhdpi/ic_domain_region.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xhdpi/ic_domain_term.png" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xhdpi/ic_domain_term.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xhdpi/ic_domain_usage.png" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xhdpi/ic_domain_usage.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xhdpi/ic_entail.png" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xhdpi/ic_entail.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xhdpi/ic_holonym.png" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xhdpi/ic_holonym.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xhdpi/ic_hypernym.png" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xhdpi/ic_hypernym.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xhdpi/ic_hyponym.png" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xhdpi/ic_hyponym.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xhdpi/ic_instance_hypernym.png" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xhdpi/ic_instance_hypernym.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xhdpi/ic_instance_hyponym.png" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xhdpi/ic_instance_hyponym.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xhdpi/ic_links.png" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xhdpi/ic_links.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xhdpi/ic_member_holonym.png" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xhdpi/ic_member_holonym.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xhdpi/ic_member_meronym.png" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xhdpi/ic_member_meronym.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xhdpi/ic_meronym.png" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xhdpi/ic_meronym.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xhdpi/ic_other.png" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xhdpi/ic_other.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xhdpi/ic_part_holonym.png" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xhdpi/ic_part_holonym.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xhdpi/ic_part_meronym.png" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xhdpi/ic_part_meronym.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xhdpi/ic_participle.png" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xhdpi/ic_participle.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xhdpi/ic_pertainym.png" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xhdpi/ic_pertainym.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xhdpi/ic_pos.png" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xhdpi/ic_pos.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xhdpi/ic_pos_a.png" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xhdpi/ic_pos_a.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xhdpi/ic_pos_n.png" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xhdpi/ic_pos_n.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xhdpi/ic_pos_r.png" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xhdpi/ic_pos_r.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xhdpi/ic_pos_s.png" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xhdpi/ic_pos_s.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xhdpi/ic_pos_v.png" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xhdpi/ic_pos_v.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xhdpi/ic_similar.png" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xhdpi/ic_similar.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xhdpi/ic_substance_holonym.png" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xhdpi/ic_substance_holonym.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xhdpi/ic_substance_meronym.png" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xhdpi/ic_substance_meronym.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xhdpi/ic_synonym.png" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xhdpi/ic_synonym.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xhdpi/ic_verb_group.png" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xhdpi/ic_verb_group.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxhdpi/ic_adjderived.png" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxhdpi/ic_adjderived.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxhdpi/ic_also.png" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxhdpi/ic_also.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxhdpi/ic_antonym.png" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxhdpi/ic_antonym.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxhdpi/ic_attribute.png" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxhdpi/ic_attribute.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxhdpi/ic_cause.png" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxhdpi/ic_cause.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxhdpi/ic_derivation.png" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxhdpi/ic_derivation.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxhdpi/ic_domain.png" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxhdpi/ic_domain.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxhdpi/ic_domain_category.png" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxhdpi/ic_domain_category.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxhdpi/ic_domain_member.png" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxhdpi/ic_domain_member.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxhdpi/ic_domain_member_category.png" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxhdpi/ic_domain_member_category.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxhdpi/ic_domain_member_region.png" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxhdpi/ic_domain_member_region.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxhdpi/ic_domain_member_term.png" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxhdpi/ic_domain_member_term.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxhdpi/ic_domain_member_usage.png" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxhdpi/ic_domain_member_usage.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxhdpi/ic_domain_region.png" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxhdpi/ic_domain_region.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxhdpi/ic_domain_term.png" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxhdpi/ic_domain_term.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxhdpi/ic_domain_usage.png" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxhdpi/ic_domain_usage.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxhdpi/ic_entail.png" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxhdpi/ic_entail.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxhdpi/ic_holonym.png" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxhdpi/ic_holonym.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxhdpi/ic_hypernym.png" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxhdpi/ic_hypernym.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxhdpi/ic_hyponym.png" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxhdpi/ic_hyponym.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxhdpi/ic_instance_hypernym.png" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxhdpi/ic_instance_hypernym.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxhdpi/ic_instance_hyponym.png" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxhdpi/ic_instance_hyponym.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxhdpi/ic_links.png" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxhdpi/ic_links.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxhdpi/ic_member_holonym.png" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxhdpi/ic_member_holonym.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxhdpi/ic_member_meronym.png" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxhdpi/ic_member_meronym.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxhdpi/ic_meronym.png" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxhdpi/ic_meronym.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxhdpi/ic_other.png" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxhdpi/ic_other.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxhdpi/ic_part_holonym.png" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxhdpi/ic_part_holonym.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxhdpi/ic_part_meronym.png" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxhdpi/ic_part_meronym.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxhdpi/ic_participle.png" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxhdpi/ic_participle.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxhdpi/ic_pertainym.png" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxhdpi/ic_pertainym.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxhdpi/ic_pos.png" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxhdpi/ic_pos.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxhdpi/ic_pos_a.png" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxhdpi/ic_pos_a.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxhdpi/ic_pos_n.png" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxhdpi/ic_pos_n.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxhdpi/ic_pos_r.png" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxhdpi/ic_pos_r.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxhdpi/ic_pos_s.png" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxhdpi/ic_pos_s.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxhdpi/ic_pos_v.png" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxhdpi/ic_pos_v.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxhdpi/ic_similar.png" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxhdpi/ic_similar.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxhdpi/ic_substance_holonym.png" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxhdpi/ic_substance_holonym.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxhdpi/ic_substance_meronym.png" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxhdpi/ic_substance_meronym.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxhdpi/ic_synonym.png" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxhdpi/ic_synonym.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxhdpi/ic_verb_group.png" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxhdpi/ic_verb_group.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_adjderived.png" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_adjderived.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_also.png" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_also.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_antonym.png" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_antonym.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_attribute.png" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_attribute.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_cause.png" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_cause.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_derivation.png" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_derivation.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_domain.png" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_domain.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_domain_category.png" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_domain_category.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_domain_member.png" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_domain_member.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_domain_member_category.png" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_domain_member_category.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_domain_member_region.png" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_domain_member_region.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_domain_member_term.png" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_domain_member_term.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_domain_member_usage.png" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_domain_member_usage.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_domain_region.png" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_domain_region.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_domain_term.png" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_domain_term.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_domain_usage.png" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_domain_usage.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_entail.png" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_entail.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_holonym.png" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_holonym.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_hypernym.png" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_hypernym.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_hyponym.png" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_hyponym.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_instance_hypernym.png" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_instance_hypernym.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_instance_hyponym.png" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_instance_hyponym.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_links.png" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_links.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_member_holonym.png" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_member_holonym.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_member_meronym.png" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_member_meronym.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_meronym.png" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_meronym.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_other.png" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_other.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_part_holonym.png" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_part_holonym.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_part_meronym.png" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_part_meronym.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_participle.png" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_participle.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_pertainym.png" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_pertainym.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_pos.png" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_pos.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_pos_a.png" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_pos_a.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_pos_n.png" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_pos_n.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_pos_r.png" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_pos_r.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_pos_s.png" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_pos_s.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_pos_v.png" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_pos_v.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_similar.png" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_similar.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_substance_holonym.png" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_substance_holonym.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_substance_meronym.png" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_substance_meronym.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_synonym.png" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_synonym.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_verb_group.png" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_verb_group.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/xNet/src/main/res/drawable-hdpi/link.png" afterPath="$PROJECT_DIR$/xNet/src/main/res/drawable-hdpi/link.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/xNet/src/main/res/drawable-mdpi/link.png" afterPath="$PROJECT_DIR$/xNet/src/main/res/drawable-mdpi/link.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/xNet/src/main/res/drawable-xhdpi/link.png" afterPath="$PROJECT_DIR$/xNet/src/main/res/drawable-xhdpi/link.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/xNet/src/main/res/drawable-xxhdpi/link.png" afterPath="$PROJECT_DIR$/xNet/src/main/res/drawable-xxhdpi/link.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/xNet/src/main/res/drawable-xxxhdpi/link.png" afterPath="$PROJECT_DIR$/xNet/src/main/res/drawable-xxxhdpi/link.png" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/browser/ic_launcher-web.png" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/browser/src/main/res/drawable-hdpi/sqlunet.png" afterPath="$PROJECT_DIR$/browser/src/main/res/drawable-hdpi/sqlunet.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/browser/src/main/res/drawable-mdpi/sqlunet.png" afterPath="$PROJECT_DIR$/browser/src/main/res/drawable-mdpi/sqlunet.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/browser/src/main/res/drawable-xhdpi/sqlunet.png" afterPath="$PROJECT_DIR$/browser/src/main/res/drawable-xhdpi/sqlunet.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/browser/src/main/res/drawable-xxhdpi/sqlunet.png" afterPath="$PROJECT_DIR$/browser/src/main/res/drawable-xxhdpi/sqlunet.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/browser/src/main/res/drawable-xxxhdpi/sqlunet.png" afterPath="$PROJECT_DIR$/browser/src/main/res/drawable-xxxhdpi/sqlunet.png" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/browser/src/main/assets/help/index.html" afterPath="$PROJECT_DIR$/browser/src/main/assets/help/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/browser/src/main/assets/help/style.css" afterPath="$PROJECT_DIR$/browser/src/main/assets/help/style.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/browser/src/main/res/layout/fragment_home.xml" afterPath="$PROJECT_DIR$/browser/src/main/res/layout/fragment_home.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/browser/src/main/res/values/colors.xml" afterPath="$PROJECT_DIR$/browser/src/main/res/values/colors.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frameNet/frameNet.iml" afterPath="$PROJECT_DIR$/frameNet/frameNet.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/predicateMatrix/predicateMatrix.iml" afterPath="$PROJECT_DIR$/predicateMatrix/predicateMatrix.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/verbNet/verbNet.iml" afterPath="$PROJECT_DIR$/verbNet/verbNet.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordNet/wordNet.iml" afterPath="$PROJECT_DIR$/wordNet/wordNet.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/xNet/src/main/java/org/sqlunet/settings/StorageReports.java" afterPath="$PROJECT_DIR$/xNet/src/main/java/org/sqlunet/settings/StorageReports.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/browser/artwork/make-artwork.sh" afterPath="$PROJECT_DIR$/browser/artwork/make-artwork.sh" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/browser/src/main/res/layout/drawer_main.xml" afterPath="$PROJECT_DIR$/browser/src/main/res/layout/drawer_main.xml" />
     </list>
     <ignored path="SqlUNet.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -9359,7 +8915,6 @@
         <option value="$PROJECT_DIR$/browser/src/main/res/layout/fragment_xselectors.xml" />
         <option value="$PROJECT_DIR$/browser/src/main/res/layout/fragment_selectors.xml" />
         <option value="$PROJECT_DIR$/browser/src/main/res/layout/drawer_item_simple.xml" />
-        <option value="$PROJECT_DIR$/browser/src/main/res/layout/drawer_main.xml" />
         <option value="$PROJECT_DIR$/xNet/src/main/res/values/styles-a.xml" />
         <option value="$PROJECT_DIR$/xNet/src/main/res/values/styles-app.xml" />
         <option value="$PROJECT_DIR$/browser/src/main/res/values/styles-app.xml" />
@@ -9401,6 +8956,7 @@
         <option value="$PROJECT_DIR$/xNet/src/main/java/org/sqlunet/settings/StorageReports.java" />
         <option value="$PROJECT_DIR$/browser/src/main/res/values/colors.xml" />
         <option value="$PROJECT_DIR$/browser/src/main/assets/help/sqlunet.svg" />
+        <option value="$PROJECT_DIR$/browser/src/main/res/layout/drawer_main.xml" />
       </list>
     </option>
   </component>
@@ -9506,8 +9062,12 @@
               <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="assets" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidSourceTypeNode" />
+              <option name="myItemId" value="res" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidResFolderNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="layout" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidResFolderTypeNode" />
             </PATH_ELEMENT>
           </PATH>
           <PATH>
@@ -9522,24 +9082,6 @@
             <PATH_ELEMENT>
               <option name="myItemId" value="java" />
               <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidSourceTypeNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="SqlUNet" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="browser" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidSourceTypeNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="sqlunet" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidPsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
@@ -9968,7 +9510,14 @@
       <option name="project" value="LOCAL" />
       <updated>1486633238747</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="graphics&#10;help">
+      <created>1486723944874</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1486723944874</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -9978,7 +9527,7 @@
       <window_info id="Nl-Palette" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
-      <window_info id="Android Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3478682" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
+      <window_info id="Android Monitor" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.34716982" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -9992,7 +9541,7 @@
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.26509434" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32735848" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.27169812" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Captures" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="11" side_tool="true" content_ui="tabs" />
@@ -10072,7 +9621,8 @@
     <MESSAGE value="absolute download message fix" />
     <MESSAGE value="splash fragments&#10;" />
     <MESSAGE value="download progress display" />
-    <option name="LAST_COMMIT_MESSAGE" value="download progress display" />
+    <MESSAGE value="graphics&#10;help" />
+    <option name="LAST_COMMIT_MESSAGE" value="graphics&#10;help" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -10104,26 +9654,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/browser/src/main/res/layout/fragment_xbrowse1.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="143">
-          <caret line="11" column="44" selection-start-line="11" selection-start-column="44" selection-end-line="11" selection-end-column="44" />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/browser/src/main/res/layout/fragment_xbrowse1_browse2.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="117">
-          <caret line="9" column="44" selection-start-line="9" selection-start-column="44" selection-end-line="9" selection-end-column="44" />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/treeView/src/main/res/layout/layout_leaf_link.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="442">
@@ -10525,17 +10055,6 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/browser/src/main/res/layout/drawer_main.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="325">
-          <caret line="25" column="15" selection-start-line="25" selection-start-column="15" selection-end-line="25" selection-end-column="15" />
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/browser/src/main/res/layout/fragment_home.xml">
       <provider editor-type-id="text-editor">
         <state relative-caret-position="182">
@@ -10569,6 +10088,27 @@
           <caret line="1" column="57" selection-start-line="1" selection-start-column="57" selection-end-line="1" selection-end-column="57" />
           <folding />
         </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/browser/src/main/res/drawable-xxxhdpi/sqlunet.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/browser/src/main/res/drawable-hdpi/sqlunet.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/browser/src/main/res/layout/drawer_main.xml">
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="182">
+          <caret line="14" column="38" selection-start-line="14" selection-start-column="38" selection-end-line="14" selection-end-column="38" />
+          <folding />
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="android-designer2">
+        <state />
       </provider>
     </entry>
   </component>
