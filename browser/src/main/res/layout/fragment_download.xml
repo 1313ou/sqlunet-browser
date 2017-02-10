@@ -64,7 +64,6 @@
 		</View>
 	</LinearLayout>
 
-
 	<TextView
 		android:id="@+id/src"
 		android:layout_width="wrap_content"
@@ -72,8 +71,8 @@
 		android:layout_above="@+id/middle"
 		android:layout_centerHorizontal="true"
 		android:layout_marginBottom="10dp"
-		android:layout_marginLeft="10dp"
-		android:layout_marginRight="10dp"
+		android:layout_marginStart="25dp"
+		android:layout_marginEnd="25dp"
 		android:drawableBottom="@drawable/ic_download_source"
 		android:drawablePadding="5dp"
 		android:ellipsize="marquee"
@@ -86,8 +85,8 @@
 		android:layout_height="wrap_content"
 		android:layout_below="@+id/middle"
 		android:layout_centerHorizontal="true"
-		android:layout_marginLeft="10dp"
-		android:layout_marginRight="10dp"
+		android:layout_marginStart="25dp"
+		android:layout_marginEnd="25dp"
 		android:layout_marginTop="10dp"
 		android:drawablePadding="5dp"
 		android:drawableTop="@drawable/ic_download_dest"

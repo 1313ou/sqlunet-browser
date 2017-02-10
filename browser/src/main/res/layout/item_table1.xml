@@ -14,8 +14,6 @@
 -->
 
 <TextView xmlns:android="http://schemas.android.com/apk/res/android"
-          xmlns:tools="http://schemas.android.com/tools"
           android:id="@id/item0"
           style="@style/ListItem1"
-          android:textIsSelectable="false"
-          tools:ignore="SelectableText"/>
+          android:textIsSelectable="true"/>

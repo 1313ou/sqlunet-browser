@@ -68,7 +68,6 @@ abstract public class BaseTaskFragment extends Fragment
 		this.spinner.setAdapter(adapter);
 		this.spinner.setOnItemSelectedListener(new OnItemSelectedListener()
 		{
-
 			@Override
 			public void onItemSelected(final AdapterView<?> parent, final View view0, final int position, final long id)
 			{

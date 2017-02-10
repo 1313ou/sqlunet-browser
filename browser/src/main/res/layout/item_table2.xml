@@ -6,13 +6,11 @@
 	<TextView
 		android:id="@+id/item0"
 		style="@style/ListItemColumn.Enhanced"
-		android:layout_weight=".1"
-		tools:ignore="SelectableText"/>
+		android:layout_weight=".1"/>
 
 	<TextView
 		android:id="@+id/item1"
 		style="@style/ListItemColumn"
-		android:layout_weight=".9"
-		tools:ignore="SelectableText"/>
+		android:layout_weight=".9"/>
 
 </LinearLayout>

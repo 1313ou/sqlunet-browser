@@ -30,7 +30,7 @@ public class SqlFragment extends ListFragment
 		{
 			sqls[i] = SqlFormatter.styledFormat(sqls[i]);
 		}
-		final ListAdapter adapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_activated_1, android.R.id.text1, sqls.length > 0 ? sqls : new CharSequence[]{"empty"});
+		final ListAdapter adapter = new ArrayAdapter<>(getActivity(), R.layout.item_sql, android.R.id.text1, sqls.length > 0 ? sqls : new CharSequence[]{"empty"});
 		setListAdapter(adapter);
 	}
 }

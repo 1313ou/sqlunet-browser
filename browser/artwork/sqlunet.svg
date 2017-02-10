@@ -191,10 +191,10 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="0.98994949"
-     inkscape:cx="371.48708"
+     inkscape:cx="125.51493"
      inkscape:cy="315.67165"
      inkscape:document-units="px"
-     inkscape:current-layer="layer6"
+     inkscape:current-layer="layer7"
      showgrid="false"
      fit-margin-top="5"
      fit-margin-left="5"
@@ -213,7 +213,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -739,7 +739,7 @@
        cy="444.13278"
        r="28.284269" />
     <g
-       transform="matrix(0.21535918,0,0,0.21535918,449.05444,229.22634)"
+       transform="matrix(0.35405439,0,0,0.35405439,444.89662,80.282824)"
        id="layer1-9"
        inkscape:label="Layer 1">
       <g
@@ -779,8 +779,7 @@
   <g
      inkscape:groupmode="layer"
      id="layer7"
-     inkscape:label="Labels"
-     sodipodi:insensitive="true">
+     inkscape:label="Labels">
     <text
        xml:space="preserve"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:15px;line-height:100%;font-family:'DejaVu Sans Mono';-inkscape-font-specification:'DejaVu Sans Mono, Normal';text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
@@ -817,14 +816,14 @@
     <text
        sodipodi:linespacing="100%"
        id="text8282"
-       y="465.84946"
-       x="450.82739"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.99330044px;line-height:100%;font-family:'DejaVu Sans Mono';-inkscape-font-specification:'DejaVu Sans Mono, Normal';text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#a9a9a9;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       y="466.80289"
+       x="448.48233"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:15px;line-height:100%;font-family:'DejaVu Sans Mono';-inkscape-font-specification:'DejaVu Sans Mono, Normal';text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#a9a9a9;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;"
        xml:space="preserve"><tspan
          sodipodi:role="line"
          id="tspan8286"
-         x="450.82739"
-         y="465.84946">BNC</tspan></text>
+         x="448.48233"
+         y="466.80289">BNC</tspan></text>
     <text
        sodipodi:linespacing="100%"
        id="text8288"

@@ -144,7 +144,7 @@ public class SetupFileFragment extends BaseTaskFragment
 		final ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getActivity(), R.array.setup_titles, R.layout.spinner_item_task);
 
 		// specify the layout to use when the list of choices appears
-		adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+		adapter.setDropDownViewResource(R.layout.spinner_item_task);
 
 		return adapter;
 	}

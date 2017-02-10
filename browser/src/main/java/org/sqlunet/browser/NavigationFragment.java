@@ -29,30 +29,36 @@ public class NavigationFragment extends NavigationDrawerFragment implements Navi
 {
 	static private final String TAG = "NavigationFragment";
 
+	/**
+	 * Tags fragments are know under with fragmentmanager
+	 */
 	static private final String[] fragmentTags = { //
 			"home", // 0
 			"browse", // 1
 			"textsearch", // 2
 			"predicatematrix", // 3
 			"status", // 4
-			null, // 5 setup
+			null, // 5 setup - does not apply
 			"storage", // 6
-			null, // 7 settings
-			null, // 8 sql
+			null, // 7 settings - does not apply
+			null, // 8 sql - does not apply
 			"help", // 9
 			"about" // 10
 	};
 
+	/**
+	 * Whether fragments are recreated
+	 */
 	static private final boolean[] fragmentTransient = { //
 			true, // 0
 			false, // 1 browse
 			false, // 2 textsearch
 			false, // 3 predicatematrix
 			true, // 4
-			true, // 5 setup: not a fragment
+			true, // 5 setup: not a fragment - does not apply
 			true, // 6
-			true, // 7 settings: not a fragment
-			true, // 8 sql: not a fragment
+			true, // 7 settings: not a fragment - does not apply
+			true, // 8 sql: not a fragment - does not apply
 			true, // 9
 			true // 10
 	};

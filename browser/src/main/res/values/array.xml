@@ -27,7 +27,8 @@
 		<item>@drawable/ic_help</item>
 		<item>@drawable/ic_about</item>
 	</integer-array>
-	<integer-array name="flags_sections">
+	<!-- non-zero indicates fragment swap, non-zero for no change  -->
+	<integer-array name="drawer_flags">
 		<item>1</item>
 		<item>1</item>
 		<item>1</item>

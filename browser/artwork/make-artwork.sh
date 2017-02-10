@@ -14,6 +14,8 @@ dirapp=..
 #res_icon32=([mdpi]=32 [hdpi]=48 [xhdpi]=64 [xxhdpi]=96 [xxxhdpi]=128)
 #declare -A res_icon48
 #res_icon48=([mdpi]=48 [hdpi]=72 [xhdpi]=96 [xxhdpi]=144 [xxxhdpi]=192)
+#declare -A res_icon64
+#res_icon64=([mdpi]=64 [hdpi]=96 [xhdpi]=128 [xxhdpi]=192 [xxxhdpi]=256)
 #declare -A res_icon144
 #res_icon144=([mdpi]=144 [hdpi]=192 [xhdpi]=288 [xxhdpi]=384 [xxxhdpi]=576)
 #declare -A res_icon256
@@ -26,7 +28,7 @@ res_launch=([mdpi]=48 [hdpi]=72 [xhdpi]=96 [xxhdpi]=144 [xxxhdpi]=192)
 list_launch="ic_launcher.svg"
 
 declare -A res_logo
-res_logo=([mdpi]=144 [hdpi]=192 [xhdpi]=288 [xxhdpi]=384 [xxxhdpi]=576)
+res_logo=([mdpi]=64 [hdpi]=96 [xhdpi]=128 [xxhdpi]=192 [xxxhdpi]=256)
 list_logo="ic_logo.svg"
 
 declare -A res_splash

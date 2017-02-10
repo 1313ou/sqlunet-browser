@@ -114,9 +114,9 @@ public class NavigationDrawerFragment extends Fragment
 	private boolean userLearnedDrawer;
 
 	/**
-	 * Section enabledPositions
+	 * Section positionFlags
 	 */
-	private int[] enabledPositions;
+	private int[] positionFlags;
 
 	/**
 	 * Constructor
@@ -130,9 +130,9 @@ public class NavigationDrawerFragment extends Fragment
 	{
 		super.onCreate(savedInstanceState);
 
-		// read in the enabledPositions indicating whether or not the user has d
+		// read in the positionFlags indicating whether or not the user has d
 		final Resources res = getResources();
-		this.enabledPositions = res.getIntArray(R.array.flags_sections);
+		this.positionFlags = res.getIntArray(R.array.drawer_flags);
 
 		// read in the flag indicating whether or not the user has demonstrated awareness of the drawer. See PREF_USER_LEARNED_DRAWER for details.
 		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
@@ -352,7 +352,7 @@ public class NavigationDrawerFragment extends Fragment
 		Log.d(TAG,"SELECT " + position);
 
 		// record position
-		if (this.enabledPositions[position] != 0)
+		if (this.positionFlags[position] != 0)
 		{
 			this.selectedPosition = position;
 			if (this.drawerListView != null)
