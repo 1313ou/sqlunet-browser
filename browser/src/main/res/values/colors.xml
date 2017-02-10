@@ -30,6 +30,7 @@
 	<!-- violet -->
 	<item name="violet_color" type="color">#FF990073</item>
 	<item name="dark_violet_color" type="color">#FF400020</item>
+	<item name="mauve_color" type="color">#FF806678</item>
 
 	<!-- green -->
 	<item name="dark_green_color" type="color">#FF008000</item>
@@ -58,8 +59,8 @@
 
 	<!-- action bar specials -->
 	<item name="browse_action_bar_color" type="color">@color/violet_color</item>
+	<item name="predicatematrix_action_bar_color" type="color">@color/mauve_color</item>
 	<item name="textsearch_action_bar_color" type="color">@color/dark_red_color</item>
-	<item name="predicatematrix_action_bar_color" type="color">@color/dark_blue_color</item>
 
 	<!-- swipe down refresh -->
 	<item name="swipe_down_1_color" type="color">@color/pink_color</item>

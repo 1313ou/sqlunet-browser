@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:osb="http://www.openswatchbook.org/uri/2009/osb"
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   height="1000"
+   width="937.5"
+   id="svg2"
+   version="1.1"
+   inkscape:version="0.91 r13725"
+   sodipodi:docname="ic_status.svg">
+  <metadata
+     id="metadata10">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <defs
+     id="defs8">
+    <linearGradient
+       gradientTransform="matrix(0,0,0,0,-15850794,-50191087)"
+       osb:paint="solid"
+       id="linearGradient19282">
+      <stop
+         id="stop19284"
+         offset="0"
+         style="stop-color:#666666;stop-opacity:1;" />
+    </linearGradient>
+    <style
+       id="style2988"
+       type="text/css">
+    .fil0 {fill:#006C3B}
+    .fil1 {fill:#77C06C}
+   </style>
+  </defs>
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="854"
+     inkscape:window-height="1029"
+     id="namedview6"
+     showgrid="false"
+     inkscape:zoom="0.24208851"
+     inkscape:cx="506.1005"
+     inkscape:cy="864.039"
+     inkscape:window-x="721"
+     inkscape:window-y="145"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="svg2" />
+  <path
+     style="fill:#c0c0c0;fill-opacity:1;stroke-width:0.2;stroke-linejoin:round"
+     inkscape:connector-curvature="0"
+     d="m 382.59206,702.70271 -206.06491,-205.3905 58.27541,-58.08441 147.7895,147.30604 312.64184,-311.61821 58.27554,58.084 M 465.01849,86.531953 c -227.61953,0 -412.130473,183.905777 -412.130473,410.780257 0,226.87436 184.510943,410.78101 412.130473,410.78101 227.5779,0 412.13008,-183.90665 412.13008,-410.78101 0,-226.87448 -184.55218,-410.780257 -412.13008,-410.780257 z"
+     id="path7349" />
+</svg>

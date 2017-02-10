@@ -103,7 +103,7 @@ public class StorageReports
 		switch (type)
 		{
 			case AUTO:
-				resId = R.drawable.ic_storage_intern_or_adopted;
+				resId = R.drawable.ic_storage_auto;
 				break;
 			case APP_INTERNAL:
 				resId = R.drawable.ic_storage_intern;
