@@ -224,7 +224,7 @@
 	<string name="title_setup_download">Download database</string>
 	<string name="title_setup_download_zipped">Download zipped database</string>
 	<string name="title_setup_md5">MD5 checksum &#8230;</string>
-	<string-array name="setup_titles">
+	<string-array name="setup_files_titles">
 		<item>@string/title_select</item>
 		<item>@string/title_setup_create</item>
 		<item>@string/title_setup_drop</item>
@@ -234,7 +234,7 @@
 		<item>@string/title_setup_download_zipped</item>
 		<item>@string/title_setup_md5</item>
 	</string-array>
-	<string-array name="setup_values" formatted="false">
+	<string-array name="setup_files_values" formatted="false">
 		<item></item>
 		<item>CREATE</item>
 		<item>DROP</item>

@@ -3,14 +3,21 @@ package org.sqlunet.browser.config;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.SpannableStringBuilder;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.SpinnerAdapter;
 
+import org.sqlunet.browser.Info;
 import org.sqlunet.browser.R;
+import org.sqlunet.settings.Settings;
+import org.sqlunet.settings.Storage;
 import org.sqlunet.settings.StorageSettings;
+import org.sqlunet.settings.StorageUtils;
+
+import java.io.File;
 
 import static org.sqlunet.browser.config.BaseDownloadFragment.DOWNLOAD_FROM_ARG;
 import static org.sqlunet.browser.config.BaseDownloadFragment.DOWNLOAD_TO_ARG;
@@ -31,7 +38,22 @@ public class SetupFileFragment extends BaseTaskFragment
 	 */
 	private enum Operation
 	{
-		CREATE, DROP, COPY, UNZIP, MD5, SETUPSQL, DOWNLOAD, DOWNLOADZIPPED
+		CREATE, DROP, COPY, UNZIP, MD5, DOWNLOAD, DOWNLOADZIPPED;
+
+		/**
+		 * Spinner operations
+		 */
+		static private CharSequence[] operations;
+
+		static Operation fromIndex(int index)
+		{
+			final CharSequence operation = Operation.operations[index];
+			if (operation.length() == 0)
+			{
+				return null;
+			}
+			return Operation.valueOf(operation.toString());
+		}
 	}
 
 	/**
@@ -40,6 +62,15 @@ public class SetupFileFragment extends BaseTaskFragment
 	public SetupFileFragment()
 	{
 		// Required empty public constructor
+	}
+
+	@Override
+	public void onCreate(final Bundle savedInstanceState)
+	{
+		super.onCreate(savedInstanceState);
+
+		// operations
+		Operation.operations = getResources().getTextArray(R.array.setup_files_values);
 	}
 
 	@Override
@@ -71,65 +102,59 @@ public class SetupFileFragment extends BaseTaskFragment
 					return;
 				}
 
-				// operations
-				final CharSequence[] operations = getActivity().getResources().getTextArray(R.array.setup_values);
-
 				// execute
 				boolean success;
 				final Context context = getActivity();
-				final CharSequence operation = operations[(int) id];
-				final Operation op = Operation.valueOf(operation.toString());
-				switch (op)
+				final Operation op = Operation.fromIndex((int) id);
+				if (op != null)
 				{
-					case CREATE:
-						SetupFileFragment.this.status.setText(R.string.status_task_running);
-						success = SetupDatabaseTasks.createDatabase(context, StorageSettings.getDatabasePath(context));
-						SetupFileFragment.this.status.setText(success ? R.string.status_task_done : R.string.status_task_failed);
-						break;
+					switch (op)
+					{
+						case CREATE:
+							SetupFileFragment.this.status.setText(R.string.status_task_running);
+							success = SetupDatabaseTasks.createDatabase(context, StorageSettings.getDatabasePath(context));
+							SetupFileFragment.this.status.setText(success ? R.string.status_task_done : R.string.status_task_failed);
+							break;
 
-					case DROP:
-						SetupFileFragment.this.status.setText(R.string.status_task_running);
-						success = SetupDatabaseTasks.deleteDatabase(context, StorageSettings.getDatabasePath(context));
-						SetupFileFragment.this.status.setText(success ? R.string.status_task_done : R.string.status_task_failed);
-						break;
+						case DROP:
+							SetupFileFragment.this.status.setText(R.string.status_task_running);
+							success = SetupDatabaseTasks.deleteDatabase(context, StorageSettings.getDatabasePath(context));
+							SetupFileFragment.this.status.setText(success ? R.string.status_task_done : R.string.status_task_failed);
+							break;
 
-					case COPY:
-						if (Permissions.check(getActivity()))
-						{
-							FileAsyncTask.copyFromFile(context, StorageSettings.getDatabasePath(context));
-						}
-						break;
+						case COPY:
+							if (Permissions.check(getActivity()))
+							{
+								FileAsyncTask.copyFromFile(context, StorageSettings.getDatabasePath(context));
+							}
+							break;
 
-					case UNZIP:
-						if (Permissions.check(getActivity()))
-						{
-							FileAsyncTask.unzipFromArchive(context, StorageSettings.getDatabasePath(context));
-						}
-						break;
+						case UNZIP:
+							if (Permissions.check(getActivity()))
+							{
+								FileAsyncTask.unzipFromArchive(context, StorageSettings.getDatabasePath(context));
+							}
+							break;
 
-					case MD5:
-						if (Permissions.check(getActivity()))
-						{
-							FileAsyncTask.md5(context);
-						}
-						break;
+						case MD5:
+							if (Permissions.check(getActivity()))
+							{
+								FileAsyncTask.md5(context);
+							}
+							break;
 
-					case SETUPSQL:
-						final Intent intent = new Intent(context, SetupSqlActivity.class);
-						context.startActivity(intent);
-						break;
+						case DOWNLOAD:
+							final Intent intent2 = new Intent(context, DownloadActivity.class);
+							context.startActivity(intent2);
+							break;
 
-					case DOWNLOAD:
-						final Intent intent2 = new Intent(context, DownloadActivity.class);
-						context.startActivity(intent2);
-						break;
-
-					case DOWNLOADZIPPED:
-						final Intent intent3 = new Intent(context, DownloadActivity.class);
-						intent3.putExtra(DOWNLOAD_FROM_ARG, StorageSettings.getDbDownloadZippedSource(context));
-						intent3.putExtra(DOWNLOAD_TO_ARG, StorageSettings.getDbDownloadZippedTarget(context));
-						context.startActivity(intent3);
-						break;
+						case DOWNLOADZIPPED:
+							final Intent intent3 = new Intent(context, DownloadActivity.class);
+							intent3.putExtra(DOWNLOAD_FROM_ARG, StorageSettings.getDbDownloadZippedSource(context));
+							intent3.putExtra(DOWNLOAD_TO_ARG, StorageSettings.getDbDownloadZippedTarget(context));
+							context.startActivity(intent3);
+							break;
+					}
 				}
 			}
 		});
@@ -141,11 +166,182 @@ public class SetupFileFragment extends BaseTaskFragment
 	protected SpinnerAdapter makeAdapter()
 	{
 		// create an ArrayAdapter using the string array and a default spinner layout
-		final ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getActivity(), R.array.setup_titles, R.layout.spinner_item_task);
+		final ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getActivity(), R.array.setup_files_titles, R.layout.spinner_item_task);
 
 		// specify the layout to use when the list of choices appears
-		adapter.setDropDownViewResource(R.layout.spinner_item_task);
+		adapter.setDropDownViewResource(R.layout.spinner_item_task_dropdown);
 
 		return adapter;
+	}
+
+	@Override
+	protected void select(final int position)
+	{
+		CharSequence message = "";
+		final Operation op = Operation.fromIndex((int) position);
+		if (op != null)
+		{
+			switch (op)
+			{
+				case CREATE:
+					message = statusCreate();
+					break;
+
+				case DROP:
+					message = statusDrop();
+					break;
+
+				case COPY:
+					message = statusCopy();
+					break;
+
+				case UNZIP:
+					message = statusUnzip();
+					break;
+
+				case MD5:
+					message = statusMd5();
+					break;
+
+				case DOWNLOAD:
+					message = statusDownload();
+					break;
+
+				case DOWNLOADZIPPED:
+					message = statusDownloadZipped();
+					break;
+			}
+		}
+
+		SetupFileFragment.this.status.setText(message);
+	}
+
+	private CharSequence statusCreate()
+	{
+		final Context context = getActivity();
+		final String database = StorageSettings.getDatabasePath(context);
+		final String free = StorageUtils.getFree(context, database);
+		final boolean databaseExists = new File(database).exists();
+
+		final SpannableStringBuilder sb = new SpannableStringBuilder();
+		sb.append(getString(R.string.info_op_create_database));
+		sb.append('\n');
+		Info.build(sb, //
+				getString(R.string.title_database), database, //
+				getString(R.string.title_status), getString(databaseExists ? R.string.status_database_exists : R.string.status_database_not_exists), //
+				getString(R.string.title_free), free);
+		return sb;
+	}
+
+	private CharSequence statusDrop()
+	{
+		final Context context = getActivity();
+		final String database = StorageSettings.getDatabasePath(context);
+		final String free = StorageUtils.getFree(context, database);
+		final boolean databaseExists = new File(database).exists();
+
+		final SpannableStringBuilder sb = new SpannableStringBuilder();
+		sb.append(getString(R.string.info_op_drop_database));
+		sb.append('\n');
+		Info.build(sb, //
+				getString(R.string.title_database), database, //
+				getString(R.string.title_status), getString(databaseExists ? R.string.status_database_exists : R.string.status_database_not_exists), //
+				getString(R.string.title_free), free);
+		return sb;
+	}
+
+	private CharSequence statusCopy()
+	{
+		final Context context = getActivity();
+		final String database = StorageSettings.getDatabasePath(context);
+		final String free = StorageUtils.getFree(context, database);
+		final boolean databaseExists = new File(database).exists();
+		String fromPath = Settings.getCachePref(context);
+		if (fromPath != null)
+		{
+			fromPath += File.separatorChar + Storage.DBFILE;
+		}
+		final boolean sourceExists = new File(fromPath).exists();
+
+		final SpannableStringBuilder sb = new SpannableStringBuilder();
+		sb.append(getString(R.string.info_op_copy_database));
+		sb.append('\n');
+		Info.build(sb, //
+				getString(R.string.title_database), database, //
+				getString(R.string.title_status), getString(databaseExists ? R.string.status_database_exists : R.string.status_database_not_exists), //
+				getString(R.string.title_free), free, //
+				getString(R.string.title_from), fromPath, //
+				getString(R.string.title_status), getString(sourceExists ? R.string.status_source_exists : R.string.status_source_not_exists));
+		return sb;
+	}
+
+	private CharSequence statusUnzip()
+	{
+		final Context context = getActivity();
+		final String database = StorageSettings.getDatabasePath(context);
+		final String free = StorageUtils.getFree(context, database);
+		final boolean databaseExists = new File(database).exists();
+		String fromPath = Settings.getCachePref(context);
+		if (fromPath != null)
+		{
+			fromPath += File.separatorChar + Storage.DBFILEZIP;
+		}
+		final boolean sourceExists = new File(fromPath).exists();
+
+		final SpannableStringBuilder sb = new SpannableStringBuilder();
+		sb.append(getString(R.string.info_op_unzip_database));
+		sb.append('\n');
+		Info.build(sb, //
+				getString(R.string.title_database), database, //
+				getString(R.string.title_status), getString(databaseExists ? R.string.status_database_exists : R.string.status_database_not_exists), //
+				getString(R.string.title_free), free, //
+				getString(R.string.title_from), fromPath, //
+				getString(R.string.title_status), getString(sourceExists ? R.string.status_source_exists : R.string.status_source_not_exists));
+		return sb;
+	}
+
+	private CharSequence statusMd5()
+	{
+		final SpannableStringBuilder sb = new SpannableStringBuilder();
+		sb.append(getString(R.string.info_op_md5));
+		return sb;
+	}
+
+	private CharSequence statusDownload()
+	{
+		final Context context = getActivity();
+		final String from = StorageSettings.getDbDownloadSource(context);
+		final String to = StorageSettings.getDbDownloadTarget(context);
+		final String free = StorageUtils.getFree(context, to);
+		final boolean targetExists = new File(to).exists();
+
+		final SpannableStringBuilder sb = new SpannableStringBuilder();
+		sb.append(getString(R.string.info_op_download_database));
+		sb.append('\n');
+		Info.build(sb, //
+				getString(R.string.title_from), from, //
+				getString(R.string.title_to), to, //
+				getString(R.string.title_status), getString(targetExists ? R.string.status_local_exists : R.string.status_local_not_exists), //
+				getString(R.string.title_free), free);
+		return sb;
+	}
+
+	private CharSequence statusDownloadZipped()
+	{
+		final Context context = getActivity();
+		final String from = StorageSettings.getDbDownloadZippedSource(context);
+		final String to = StorageSettings.getDbDownloadZippedTarget(context);
+		final String free = StorageUtils.getFree(context, to);
+		final boolean targetExists = new File(to).exists();
+
+		final SpannableStringBuilder sb = new SpannableStringBuilder();
+		sb.append(getString(R.string.info_op_download_zipped_database));
+		sb.append('\n');
+		Info.build(sb, //
+				getString(R.string.title_from), from, //
+				getString(R.string.title_to), to, //
+				getString(R.string.title_status), getString(targetExists ? R.string.status_local_exists : R.string.status_local_not_exists), //
+				getString(R.string.title_free), free);
+		return sb;
 	}
 }

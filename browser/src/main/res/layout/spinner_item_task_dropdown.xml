@@ -5,10 +5,8 @@
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
           android:layout_gravity="center"
-          android:background="@color/accent"
           android:drawableBottom="?android:attr/listDivider"
           android:ellipsize="marquee"
           android:gravity="center"
           android:maxLines="1"
-          android:textColor="@android:color/white"
           android:textIsSelectable="false"/>

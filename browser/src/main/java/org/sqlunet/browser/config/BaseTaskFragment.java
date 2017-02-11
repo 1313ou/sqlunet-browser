@@ -1,7 +1,7 @@
 package org.sqlunet.browser.config;
 
-import android.support.v4.app.Fragment;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -71,13 +71,13 @@ abstract public class BaseTaskFragment extends Fragment
 			@Override
 			public void onItemSelected(final AdapterView<?> parent, final View view0, final int position, final long id)
 			{
-				BaseTaskFragment.this.status.setText("");
+				select(position);
 			}
 
 			@Override
 			public void onNothingSelected(final AdapterView<?> parent)
 			{
-				BaseTaskFragment.this.status.setText("");
+				select(-1);
 			}
 		});
 
@@ -88,5 +88,10 @@ abstract public class BaseTaskFragment extends Fragment
 		this.runButton = (ImageButton) view.findViewById(R.id.task_run);
 
 		return view;
+	}
+
+	protected void select(final int position)
+	{
+		BaseTaskFragment.this.status.setText("");
 	}
 }

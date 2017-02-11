@@ -17,6 +17,23 @@ import org.sqlunet.xnet.R;
 
 public class Info
 {
+	static public void build(final SpannableStringBuilder sb, final CharSequence... lines)
+	{
+		int i = 0;
+		for (CharSequence line : lines)
+		{
+			if ((i++ % 2) == 0)
+			{
+				Report.appendHeader(sb, line);
+			}
+			else
+			{
+				sb.append(line);
+			}
+			sb.append('\n');
+		}
+	}
+
 	static public void info(final Activity activity, final int messageId, final CharSequence... lines)
 	{
 		final AlertDialog.Builder alert = new AlertDialog.Builder(activity);
@@ -36,19 +53,7 @@ public class Info
 		input.setAdapter(adapter);
 		*/
 		final SpannableStringBuilder sb = new SpannableStringBuilder();
-		int i = 0;
-		for (CharSequence line : lines)
-		{
-			if ((i++ % 2) == 0)
-			{
-				Report.appendHeader(sb, line);
-			}
-			else
-			{
-				sb.append(line);
-			}
-			sb.append('\n');
-		}
+		build(sb, lines);
 
 		final TextView extra = new TextView(activity);
 		extra.setPadding(20, 0, 20, 0);

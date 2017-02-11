@@ -193,10 +193,25 @@ public class SetupStatusFragment extends Fragment
 				final String database = StorageSettings.getDatabasePath(activity);
 				final String free = StorageUtils.getFree(getActivity(), database);
 				final String source = StorageSettings.getDbDownloadSource(activity);
-				Info.info(activity, R.string.title_download, //
-						getString(R.string.title_from), source, //
-						getString(R.string.title_database), database, //
-						getString(R.string.title_free), free);
+				final int status = Status.status(activity);
+				final boolean existsDb = (status & Status.EXISTS) != 0;
+				final boolean existsTables = (status & Status.EXISTS_TABLES) != 0;
+				if (existsDb && existsTables)
+				{
+					Info.info(activity, R.string.title_status, //
+							getString(R.string.title_database), database, //
+							getString(R.string.title_status), getString(R.string.status_database_exists), getString(R.string.title_status), getString(R.string.status_data_exists));
+				}
+				else
+				{
+					Info.info(activity, R.string.title_download, //
+							getString(R.string.title_operation), getString(R.string.info_op_download_database), //
+							getString(R.string.title_from), source, //
+							getString(R.string.title_database), database, //
+							getString(R.string.title_free), free, //
+							getString(R.string.title_status), getString(existsDb ? R.string.status_database_exists : R.string.status_database_not_exists), //
+							getString(R.string.title_status), getString(existsTables ? R.string.status_data_exists : R.string.status_data_not_exists));
+				}
 			}
 		});
 
@@ -232,11 +247,10 @@ public class SetupStatusFragment extends Fragment
 	 */
 	private void update()
 	{
-		// activity
 		final Activity activity = getActivity();
-
 		final int status = Status.status(activity);
 		Log.d(TAG, "STATUS " + Status.toString(status));
+
 		final boolean existsDb = (status & Status.EXISTS) != 0;
 		final boolean existsTables = (status & Status.EXISTS_TABLES) != 0;
 		if (existsDb && existsTables)

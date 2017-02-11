@@ -100,7 +100,7 @@ public class SetupDatabaseFragment extends BaseTaskFragment
 		final ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getActivity(), R.array.sql_statement_titles, R.layout.spinner_item_task);
 
 		// specify the layout to use when the list of choices appears
-		adapter.setDropDownViewResource(R.layout.spinner_item_task);
+		adapter.setDropDownViewResource(R.layout.spinner_item_task_dropdown);
 
 		return adapter;
 	}
