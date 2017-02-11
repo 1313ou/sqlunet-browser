@@ -162,7 +162,7 @@
 	<string name="predicatematrix">Predicate Matrix</string>
 
 	<string name="sqlunet_blurb">SqlUNet\nunifies all</string>
-	<string name="wordnet_blurb">WordNet\ngroups English words into sets of synonyms called synsets, and records relations among these synonym sets or their members</string>
+	<string name="wordnet_blurb">WordNet\ngroups English words into sets of synonyms called synsets,\nand records relations among these synonym sets or their members</string>
 	<string name="framenet_blurb">FrameNet\nexplores semantic roles</string>
 	<string name="propbank_blurb">PropBank\nexplores semantic roles</string>
 	<string name="verbnet_blurb">VerbNet\nexplores semantic roles</string>
