@@ -1,9 +1,14 @@
 package org.sqlunet.browser;
 
+import android.graphics.Rect;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.Toast;
 
 /**
  * Home fragment
@@ -12,6 +17,16 @@ import android.view.ViewGroup;
  */
 public class HomeFragment extends NavigableFragment
 {
+	static private final String TAG = "HomeFragment";
+
+	/**
+	 * Rings
+	 */
+	static float[] rings = {0.37F, 0.79F, 1F, Float.MAX_VALUE};
+
+	/* Pies */
+	static double[] pies = {Math.PI / 6F, Math.PI * 5F / 6F, Math.PI * 3F / 2F, Math.PI * 2F, Double.MAX_VALUE};
+
 	/**
 	 * Mandatory empty constructor for the fragment manager to instantiate the fragment (e.g. upon screen orientation changes).
 	 */
@@ -24,7 +39,106 @@ public class HomeFragment extends NavigableFragment
 	public View onCreateView(final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState)
 	{
 		setHasOptionsMenu(true);
-		return inflater.inflate(R.layout.fragment_home, container, false);
+		final View view = inflater.inflate(R.layout.fragment_home, container, false);
+		final ImageView image = (ImageView) view.findViewById(R.id.splash);
+		image.setOnTouchListener(new View.OnTouchListener()
+		{
+			@Override
+			public boolean onTouch(View v, MotionEvent event)
+			{
+				float x = event.getX();
+				float y = event.getY();
+				// Log.i(TAG, "TOUCH x=" + x + " y=" + y);
+
+				Rect rect = new Rect();
+				rect.left = image.getLeft();
+				rect.top = image.getTop();
+				rect.bottom = image.getBottom();
+				rect.right = image.getRight();
+				float w = rect.width();
+				float h = rect.height();
+				float r = (w + h) / 4;
+				float cx = w / 2;
+				float cy = h / 2;
+				float d = distance(cx, cy, x, y);
+				double a = arg(cx, cy, x, y);
+
+				// Log.i(TAG, "view rect=" + rect);
+				// Log.i(TAG, "center " + cx + "," + cy);
+				// Log.i(TAG, "dist=" + d);
+				// Log.i(TAG, "arg=" + a);
+
+				int i;
+				for (i = 0; i < rings.length; i++)
+				{
+					float f = rings[i];
+					// Log.i("RING" + i, "dmax=" + (r * f));
+					if (d < r * f)
+					{
+						break;
+					}
+				}
+				int ring = i;
+				Log.d(TAG, "ring=" + ring);
+
+				for (i = 0; i < pies.length; i++)
+				{
+					double s = pies[i];
+					// Log.i("SECTOR" + i, "smax=" + s);
+					if (a < s)
+					{
+						break;
+					}
+				}
+				int pie = i % 3;
+				Log.d(TAG, "pie=" + pie);
+
+				int message = 0;
+				switch (ring)
+				{
+					case 0:
+						message = R.string.wordnet_blurb;
+						break;
+					case 1:
+						switch (pie)
+						{
+							case 0:
+								message = R.string.propbank_blurb;
+								break;
+							case 1:
+								message = R.string.framenet_blurb;
+								break;
+							case 2:
+								message = R.string.verbnet_blurb;
+								break;
+						}
+						break;
+					case 2:
+						message = R.string.predicatematrix_blurb;
+						break;
+				}
+				Log.i("PICK ", getString(message));
+				Toast.makeText(getActivity(), message, Toast.LENGTH_LONG).show();
+				return false;
+			}
+		});
+		return view;
+	}
+
+	static public float distance(final float x1, final float y1, final float x2, final float y2)
+	{
+		final float dx = x2 - x1;
+		final float dy = y2 - y1;
+		return (float) Math.sqrt(dx * dx + dy * dy);
+	}
+
+	static public double arg(final float x1, final float y1, final float x2, final float y2)
+	{
+		final float dx = x2 - x1;
+		final float dy = y2 - y1;
+		double a = Math.atan2(dy, dx);
+		// return a;
+		return a < 0 ? (2 * Math.PI + a) : a;
 	}
 }
 

@@ -13,29 +13,11 @@
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6963923e-acc2-48e3-91d8-e040d24efc27" name="Default" comment="dropdown with info">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/browser/src/main/res/drawable-hdpi/ic_spinner_arrow.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/browser/src/main/res/drawable-mdpi/ic_spinner_arrow.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/browser/src/main/res/drawable-xhdpi/ic_spinner_arrow.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/browser/src/main/res/drawable-xxhdpi/ic_spinner_arrow.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/browser/src/main/res/drawable-xxxhdpi/ic_spinner_arrow.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/browser/src/main/res/drawable/bg_spinner.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/rules_0_5.xml" afterPath="$PROJECT_DIR$/.idea/libraries/rules_0_5.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/runner_0_5.xml" afterPath="$PROJECT_DIR$/.idea/libraries/runner_0_5.xml" />
+    <list default="true" id="6963923e-acc2-48e3-91d8-e040d24efc27" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bNC/bNC.iml" afterPath="$PROJECT_DIR$/bNC/bNC.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/browser/artwork/make-artwork.sh" afterPath="$PROJECT_DIR$/browser/artwork/make-artwork.sh" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/browser/browser.iml" afterPath="$PROJECT_DIR$/browser/browser.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/browser/src/main/res/layout/fragment_setup_file.xml" afterPath="$PROJECT_DIR$/browser/src/main/res/layout/fragment_setup_file.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/browser/src/main/res/layout/spinner_item_task.xml" afterPath="$PROJECT_DIR$/browser/src/main/res/layout/spinner_item_task.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/expandableListFragment/expandableListFragment.iml" afterPath="$PROJECT_DIR$/expandableListFragment/expandableListFragment.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frameNet/frameNet.iml" afterPath="$PROJECT_DIR$/frameNet/frameNet.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/predicateMatrix/predicateMatrix.iml" afterPath="$PROJECT_DIR$/predicateMatrix/predicateMatrix.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/propbank/propbank.iml" afterPath="$PROJECT_DIR$/propbank/propbank.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/treeView/treeView.iml" afterPath="$PROJECT_DIR$/treeView/treeView.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/verbNet/verbNet.iml" afterPath="$PROJECT_DIR$/verbNet/verbNet.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordNet/wordNet.iml" afterPath="$PROJECT_DIR$/wordNet/wordNet.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/xNet/xNet.iml" afterPath="$PROJECT_DIR$/xNet/xNet.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/browser/artwork/sqlunet.svg" afterPath="$PROJECT_DIR$/browser/artwork/sqlunet.svg" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/browser/src/main/java/org/sqlunet/browser/HomeFragment.java" afterPath="$PROJECT_DIR$/browser/src/main/java/org/sqlunet/browser/HomeFragment.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/browser/src/main/res/values/strings.xml" afterPath="$PROJECT_DIR$/browser/src/main/res/values/strings.xml" />
     </list>
     <ignored path="SqlUNet.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -8919,7 +8901,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/browser/src/main/java/org/sqlunet/browser/config/SetupDatabaseTasks.java" />
         <option value="$PROJECT_DIR$/browser/src/main/java/org/sqlunet/browser/BaseSearchFragment.java" />
         <option value="$PROJECT_DIR$/browser/src/main/java/org/sqlunet/browser/BrowseFragment.java" />
         <option value="$PROJECT_DIR$/browser/src/main/java/org/sqlunet/browser/SplashFragment.java" />
@@ -8962,7 +8943,6 @@
         <option value="$PROJECT_DIR$/browser/src/main/java/org/sqlunet/browser/config/SetupStatusFragment.java" />
         <option value="$PROJECT_DIR$/browser/src/main/java/org/sqlunet/browser/config/BaseTaskFragment.java" />
         <option value="$PROJECT_DIR$/xNet/src/main/java/org/sqlunet/browser/Info.java" />
-        <option value="$PROJECT_DIR$/browser/src/main/res/values/strings.xml" />
         <option value="$PROJECT_DIR$/browser/src/main/res/values/strings_setup.xml" />
         <option value="$PROJECT_DIR$/browser/src/main/java/org/sqlunet/browser/config/SetupFileFragment.java" />
         <option value="$PROJECT_DIR$/browser/src/main/java/org/sqlunet/browser/config/SetupDatabaseFragment.java" />
@@ -8970,13 +8950,15 @@
         <option value="$PROJECT_DIR$/browser/src/main/res/layout/spinner_item_task.xml" />
         <option value="$PROJECT_DIR$/browser/src/main/res/drawable/bg_spinner.xml" />
         <option value="$PROJECT_DIR$/browser/src/main/res/layout/fragment_setup_file.xml" />
+        <option value="$PROJECT_DIR$/browser/src/main/java/org/sqlunet/browser/HomeFragment.java" />
+        <option value="$PROJECT_DIR$/browser/src/main/res/values/strings.xml" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="59" />
+    <option name="x" value="49" />
     <option name="y" value="52" />
-    <option name="width" value="1861" />
+    <option name="width" value="1063" />
     <option name="height" value="1148" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
@@ -9051,6 +9033,70 @@
             <PATH_ELEMENT>
               <option name="myItemId" value="browser" />
               <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="SqlUNet" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="browser" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="res" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidResFolderNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="SqlUNet" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="browser" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="res" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidResFolderNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="values" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidResFolderTypeNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="SqlUNet" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="browser" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidSourceTypeNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="SqlUNet" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="browser" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidSourceTypeNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="sqlunet" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidPsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
@@ -9520,17 +9566,31 @@
       <option name="project" value="LOCAL" />
       <updated>1486811072995</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="spinner">
+      <created>1486828072103</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1486828072103</updated>
+    </task>
+    <task id="LOCAL-00018" summary="spinner">
+      <created>1486828116281</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1486828116281</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="59" y="52" width="1861" height="1148" extended-state="4" />
+    <frame x="49" y="52" width="1063" height="1148" extended-state="4" />
     <editor active="false" />
     <layout>
       <window_info id="Nl-Palette" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
+      <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.21055526" sideWeight="0.5049226" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="true" content_ui="tabs" />
-      <window_info id="Android Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.43413174" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
+      <window_info id="Android Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3110465" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -9543,12 +9603,12 @@
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.27131784" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.27131784" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.26447105" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Captures" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="12" side_tool="true" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21055526" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.37512243" sideWeight="0.49507734" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.29360464" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -9628,7 +9688,8 @@
     <MESSAGE value="adjust graphics&#10;" />
     <MESSAGE value="minor fixes" />
     <MESSAGE value="dropdown with info" />
-    <option name="LAST_COMMIT_MESSAGE" value="dropdown with info" />
+    <MESSAGE value="spinner" />
+    <option name="LAST_COMMIT_MESSAGE" value="spinner" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -9666,68 +9727,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/browser/src/main/res/layout/drawer_item_simple.xml">
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="143">
-          <caret line="11" column="18" selection-start-line="11" selection-start-column="18" selection-end-line="11" selection-end-column="18" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/browser/src/main/res/layout/fragment_browse.xml">
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="156">
-          <caret line="12" column="16" selection-start-line="12" selection-start-column="16" selection-end-line="12" selection-end-column="16" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/browser/src/main/res/layout/item_group_xselector.xml">
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="156">
-          <caret line="12" column="16" selection-start-line="12" selection-start-column="16" selection-end-line="12" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/wordNet/src/main/res/layout/item_sense.xml">
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="173">
-          <caret line="54" column="20" selection-start-line="54" selection-start-column="20" selection-end-line="54" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/expandableListFragment/src/main/res/layout/expandable_list_fragment.xml">
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="407">
-          <caret line="39" column="0" selection-start-line="39" selection-start-column="0" selection-end-line="39" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/browser/src/main/res/layout/item_table3.xml">
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="234">
-          <caret line="18" column="34" selection-start-line="18" selection-start-column="34" selection-end-line="18" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/browser/src/main/res/layout/item_table2.xml">
       <provider editor-type-id="android-designer2">
         <state />
@@ -9914,14 +9913,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/browser/src/main/res/values/strings.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3068">
-          <caret line="236" column="30" selection-start-line="236" selection-start-column="30" selection-end-line="236" selection-end-column="30" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/browser/src/main/res/values/strings_setup.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="572">
@@ -9950,7 +9941,7 @@
         <state relative-caret-position="2223">
           <caret line="171" column="75" selection-start-line="171" selection-start-column="75" selection-end-line="171" selection-end-column="75" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -10125,6 +10116,80 @@
     <entry file="file://$PROJECT_DIR$/browser/src/main/res/drawable-xxxhdpi/ic_spinner_arrow.png">
       <provider selected="true" editor-type-id="images">
         <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/browser/src/main/res/layout/fragment_home.xml">
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///opt/androidstudio/sdk/sources/android-25/android/view/MotionEvent.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="1962" column="23" selection-start-line="1962" selection-start-column="23" selection-end-line="1962" selection-end-column="23" />
+          <folding>
+            <element signature="e#79481#79482#0" expanded="true" />
+            <element signature="e#79562#79563#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///opt/androidstudio/sdk/sources/android-25/android/view/View.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="241">
+          <caret line="12612" column="21" selection-start-line="12612" selection-start-column="21" selection-end-line="12612" selection-end-column="21" />
+          <folding>
+            <element signature="e#501219#501220#0" expanded="true" />
+            <element signature="e#501247#501248#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///opt/androidstudio/sdk/sources/android-25/java/lang/Math.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="228">
+          <caret line="303" column="32" selection-start-line="303" selection-start-column="32" selection-end-line="303" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/browser/src/main/res/values/strings_about.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/browser/src/main/res/values/strings.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="388">
+          <caret line="166" column="67" selection-start-line="166" selection-start-column="67" selection-end-line="166" selection-end-column="67" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/browser/src/main/java/org/sqlunet/browser/HomeFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="468">
+          <caret line="120" column="72" selection-start-line="120" selection-start-column="72" selection-end-line="120" selection-end-column="72" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1246#3016#0" expanded="true" />
+            <element signature="e#2484#2506#0" expanded="true" />
+            <element signature="e#2594#2617#0" expanded="true" />
+            <element signature="e#2667#2690#0" expanded="true" />
+            <element signature="e#2740#2762#0" expanded="true" />
+            <element signature="e#2829#2859#0" expanded="true" />
+            <element signature="e#3015#3016#0" expanded="true" />
+          </folding>
+        </state>
       </provider>
     </entry>
   </component>

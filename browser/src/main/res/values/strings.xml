@@ -153,15 +153,21 @@
 	<string name="unit_statement">statements</string>
 
 	<!-- databases -->
-	<!--
-		<string name="sqlunet">SqlUNet</string>
-		<string name="wordnet">WordNet</string>
-		<string name="framenet">FrameNet</string>
-		<string name="propbank">PropBank</string>
-		<string name="verbnet">VerbNet</string>
-		<string name="bnc">BNC</string>
-		<string name="xnet">XNet</string>
-	-->
+	<string name="sqlunet">SqlUNet</string>
+	<string name="wordnet">WordNet</string>
+	<string name="framenet">FrameNet</string>
+	<string name="propbank">PropBank</string>
+	<string name="verbnet">VerbNet</string>
+	<string name="bnc">BNC</string>
+	<string name="predicatematrix">Predicate Matrix</string>
+
+	<string name="sqlunet_blurb">SqlUNet\nunifies all</string>
+	<string name="wordnet_blurb">WordNet\ngroups English words into sets of synonyms called synsets, and records relations among these synonym sets or their members</string>
+	<string name="framenet_blurb">FrameNet\nexplores semantic roles</string>
+	<string name="propbank_blurb">PropBank\nexplores semantic roles</string>
+	<string name="verbnet_blurb">VerbNet\nexplores semantic roles</string>
+	<string name="bnc_blurb">BNC\nprovides word statitics</string>
+	<string name="predicatematrix_blurb">Predicate Matrix\nunifies semantic roles across VerbNet, PropBank and FrameNet</string>
 
 	<!-- ARRAYS -->
 
