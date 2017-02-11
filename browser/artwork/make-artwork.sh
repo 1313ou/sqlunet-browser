@@ -39,6 +39,10 @@ declare -A res_supersplash
 res_supersplash=([mdpi]=512 [hdpi]=768 [xhdpi]=1024 [xxhdpi]=1536 [xxxhdpi]=2048)
 list_supersplash="sqlunet.svg"
 
+declare -A res_arrow
+res_arrow=([mdpi]=10 [hdpi]=15 [xhdpi]=20 [xxhdpi]=30 [xxxhdpi]=40)
+list_arrow="ic_spinner_arrow.svg"
+
 declare -A res_icon
 res_icon=([mdpi]=32 [hdpi]=48 [xhdpi]=64 [xxhdpi]=96 [xxxhdpi]=128)
 list_icon="ic_selector.svg ic_xselector.svg ic_role.svg ic_roles.svg ic_rows_bysynset.svg ic_rows_byrole.svg ic_roles_grouped.svg ic_rows_ungrouped.svg ic_search_wnword.svg ic_search_wndefinition.svg ic_search_wnsample.svg ic_search_vnexample.svg ic_search_pbexample.svg ic_search_fnsentence.svg ic_unknown.svg ic_ok.svg ic_fail.svg ic_setup.svg ic_download.svg ic_run.svg ic_download_source.svg ic_download_dest.svg"
@@ -118,6 +122,17 @@ for svg in ${list_icon}; do
 	done
 done
 
+# arrows
+for svg in ${list_arrow}; do
+	for r in ${!res_arrow[@]}; do 
+		d="${dirres}/drawable-${r}"
+		mkdir -p ${d}
+		png="${svg%.svg}.png"
+		echo "${svg} -> ${d}/${png} @ resolution ${res_arrow[$r]}"
+		inkscape ${svg} --export-png=${d}/${png} -h${res_arrow[$r]} > /dev/null 2> /dev/null
+	done
+done
+exit
 # small icons
 for svg in ${list_smallicon}; do
 	for r in ${!res_smallicon[@]}; do 
