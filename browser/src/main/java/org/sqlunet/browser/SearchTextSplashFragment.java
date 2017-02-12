@@ -1,7 +1,7 @@
 package org.sqlunet.browser;
 
 /**
- * Seach text splash fragment
+ * Search text splash fragment
  *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */

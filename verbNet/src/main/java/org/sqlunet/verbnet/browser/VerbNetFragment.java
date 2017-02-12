@@ -19,7 +19,7 @@ import org.sqlunet.verbnet.loaders.ClassModule;
  */
 public class VerbNetFragment extends TreeFragment
 {
-	static private final String TAG = "VerbNetF";
+	// static private final String TAG = "VerbNetF";
 
 	/**
 	 * Constructor

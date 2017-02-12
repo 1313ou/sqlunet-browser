@@ -30,7 +30,7 @@ public class NavigationFragment extends NavigationDrawerFragment implements Navi
 	static private final String TAG = "NavigationFragment";
 
 	/**
-	 * Tags fragments are know under with fragmentmanager
+	 * Tags fragments are know under with FragmentManager
 	 */
 	static private final String[] fragmentTags = { //
 			"home", // 0

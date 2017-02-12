@@ -34,8 +34,6 @@ public class Browse2Fragment extends Fragment
 
 	private Parcelable pointer = null;
 
-	private boolean isSearch = false;
-
 	// C R E A T I O N
 
 	/**

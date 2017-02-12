@@ -19,7 +19,7 @@ import org.sqlunet.treeview.model.TreeNode;
  */
 public class PropBankFragment extends TreeFragment
 {
-	static private final String TAG = "PropBankF";
+	// static private final String TAG = "PropBankF";
 
 	/**
 	 * Constructor

@@ -19,7 +19,7 @@ import org.sqlunet.treeview.model.TreeNode;
  */
 public class FnAnnoSetFragment extends TreeFragment
 {
-	static private final String TAG = "FnAnnoSetF";
+	// static private final String TAG = "FnAnnoSetF";
 
 	/**
 	 * Constructor

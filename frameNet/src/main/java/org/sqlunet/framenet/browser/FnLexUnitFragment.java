@@ -17,7 +17,7 @@ import org.sqlunet.treeview.model.TreeNode;
  */
 public class FnLexUnitFragment extends TreeFragment
 {
-	static private final String TAG = "FnLexUnitF";
+	// static private final String TAG = "FnLexUnitF";
 
 	/**
 	 * Constructor

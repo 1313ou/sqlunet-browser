@@ -90,6 +90,7 @@ abstract public class BaseTaskFragment extends Fragment
 		return view;
 	}
 
+	@SuppressWarnings("WeakerAccess")
 	protected void select(final int position)
 	{
 		BaseTaskFragment.this.status.setText("");

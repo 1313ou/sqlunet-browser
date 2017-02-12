@@ -19,7 +19,7 @@ import org.sqlunet.treeview.model.TreeNode;
  */
 public class FrameNetFragment extends TreeFragment
 {
-	static private final String TAG = "FrameNetF";
+	// static private final String TAG = "FrameNetF";
 
 	/**
 	 * Constructor

@@ -178,7 +178,7 @@ public class SetupFileFragment extends BaseTaskFragment
 	protected void select(final int position)
 	{
 		CharSequence message = "";
-		final Operation op = Operation.fromIndex((int) position);
+		final Operation op = Operation.fromIndex(position);
 		if (op != null)
 		{
 			switch (op)
@@ -257,11 +257,12 @@ public class SetupFileFragment extends BaseTaskFragment
 		final String free = StorageUtils.getFree(context, database);
 		final boolean databaseExists = new File(database).exists();
 		String fromPath = Settings.getCachePref(context);
+		boolean sourceExists = false;
 		if (fromPath != null)
 		{
 			fromPath += File.separatorChar + Storage.DBFILE;
+			sourceExists = new File(fromPath).exists();
 		}
-		final boolean sourceExists = new File(fromPath).exists();
 
 		final SpannableStringBuilder sb = new SpannableStringBuilder();
 		sb.append(getString(R.string.info_op_copy_database));
@@ -284,11 +285,12 @@ public class SetupFileFragment extends BaseTaskFragment
 		final String free = StorageUtils.getFree(context, database);
 		final boolean databaseExists = new File(database).exists();
 		String fromPath = Settings.getCachePref(context);
+		boolean sourceExists = false;
 		if (fromPath != null)
 		{
 			fromPath += File.separatorChar + Storage.DBFILEZIP;
+			sourceExists = new File(fromPath).exists();
 		}
-		final boolean sourceExists = new File(fromPath).exists();
 
 		final SpannableStringBuilder sb = new SpannableStringBuilder();
 		sb.append(getString(R.string.info_op_unzip_database));

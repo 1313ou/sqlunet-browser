@@ -171,7 +171,7 @@
 	<string name="framenet_blurb">FrameNet\nexplores semantic roles</string>
 	<string name="propbank_blurb">PropBank\nexplores semantic roles</string>
 	<string name="verbnet_blurb">VerbNet\nexplores semantic roles</string>
-	<string name="bnc_blurb">BNC\nprovides word statitics</string>
+	<string name="bnc_blurb">BNC\nprovides word statistics</string>
 	<string name="predicatematrix_blurb">Predicate Matrix\nunifies semantic roles across VerbNet, PropBank and FrameNet</string>
 
 	<!-- ARRAYS -->

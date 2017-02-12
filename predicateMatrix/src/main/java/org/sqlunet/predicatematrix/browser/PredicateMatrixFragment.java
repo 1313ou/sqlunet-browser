@@ -20,7 +20,7 @@ import org.sqlunet.treeview.model.TreeNode;
  */
 public class PredicateMatrixFragment extends TreeFragment
 {
-	static private final String TAG = "PmResultF";
+	// static private final String TAG = "PmResultF";
 
 	/**
 	 * Constructor

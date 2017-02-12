@@ -1,36 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                xmlns:tools="http://schemas.android.com/tools"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                tools:context="org.sqlunet.browser.selector.Browse1Fragment">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:baselineAligned="false"
+              android:orientation="horizontal"
+              tools:context="org.sqlunet.browser.selector.Browse1Fragment">
 
-	<LinearLayout
-		android:layout_width="match_parent"
+	<!-- selectors -->
+	<RelativeLayout
+		android:id="@+id/container_selectors"
+		android:layout_width="0dp"
 		android:layout_height="match_parent"
-		android:baselineAligned="false"
-		android:orientation="horizontal">
+		android:layout_weight="1"
+		tools:layout="@layout/fragment_selectors"/>
 
-		<!-- selectors -->
-		<RelativeLayout
-			android:id="@+id/container_selectors"
-			android:layout_width="0dp"
-			android:layout_height="match_parent"
-			android:layout_weight="1"
-			tools:layout="@layout/fragment_selectors"/>
+	<!-- detail -->
+	<ScrollView
+		android:layout_width="0dp"
+		android:layout_height="match_parent"
+		android:layout_weight="2">
 
-		<!-- detail -->
-		<ScrollView
-			android:layout_width="0dp"
-			android:layout_height="match_parent"
-			android:layout_weight="2">
-
-			<FrameLayout
-				android:id="@+id/container_browse2"
-				android:layout_width="match_parent"
-				android:layout_height="wrap_content"/>
-		</ScrollView>
-
-	</LinearLayout>
-
-</RelativeLayout>
+		<FrameLayout
+			android:id="@+id/container_browse2"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"/>
+	</ScrollView>
+	
+</LinearLayout>

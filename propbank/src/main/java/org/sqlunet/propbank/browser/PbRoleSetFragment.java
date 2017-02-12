@@ -17,7 +17,7 @@ import org.sqlunet.treeview.model.TreeNode;
  */
 public class PbRoleSetFragment extends TreeFragment
 {
-	static private final String TAG = "PBRoleSetF";
+	// static private final String TAG = "PBRoleSetF";
 
 	/**
 	 * Constructor

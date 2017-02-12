@@ -91,7 +91,7 @@
     </lexdomain>
   </pos>
 </wordnet>
-<verbnet xmlns="http://org.sqlunet/vn" word="abandon">
+<verbnet word="abandon">
   <vnclass name="leave-51.2" classid="261" wordid="419"
   synsetid="202080923" sensenum="2" sensekey="abandon%2:38:00"
   groupings="abandon.01" quality="1.0">
@@ -111,7 +111,7 @@
     </sense>
   </vnclass>
 </verbnet>
-<propbank xmlns="http://org.sqlunet/pb" word="abandon">
+<propbank word="abandon">
   <roleset num="1" name="abandon.01" rolesetid="5" head="abandon"
   wordid="419">leave behind</roleset>
   <roleset num="2" name="abandon.02" rolesetid="6" head="abandon"
@@ -119,7 +119,7 @@
   <roleset num="3" name="abandon.03" rolesetid="7" head="abandon"
   wordid="419">surrender, give_over</roleset>
 </propbank>
-<framenet xmlns="http://org.sqlunet/fn" word="abandon">
+<framenet word="abandon">
   <lexunit name="abandon.v" luid="13410">give up (an action or
   practice) completely. [FN: this is distinct from abandoning a
   belief]

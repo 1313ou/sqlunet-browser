@@ -17,7 +17,7 @@ import org.sqlunet.treeview.model.TreeNode;
  */
 public class BNCFragment extends TreeFragment
 {
-	static private final String TAG = "BncF";
+	// static private final String TAG = "BncF";
 
 	/**
 	 * Constructor

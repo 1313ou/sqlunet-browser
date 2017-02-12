@@ -16,7 +16,7 @@ import org.sqlunet.wordnet.loaders.WordModule;
  */
 public class WordFragment extends TreeFragment
 {
-	static private final String TAG = "WordF";
+	// static private final String TAG = "WordF";
 
 	/**
 	 * Constructor

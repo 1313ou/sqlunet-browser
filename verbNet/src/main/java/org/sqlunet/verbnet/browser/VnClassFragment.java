@@ -17,7 +17,7 @@ import org.sqlunet.verbnet.loaders.ClassModule;
  */
 public class VnClassFragment extends TreeFragment
 {
-	static private final String TAG = "VnClassF";
+	// static private final String TAG = "VnClassF";
 
 	/**
 	 * Constructor

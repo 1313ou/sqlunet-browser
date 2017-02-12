@@ -22,10 +22,10 @@ public class HomeFragment extends NavigableFragment
 	/**
 	 * Rings
 	 */
-	static float[] rings = {0.37F, 0.79F, 1F, Float.MAX_VALUE};
+	private static final float[] rings = {0.37F, 0.79F, 1F, Float.MAX_VALUE};
 
 	/* Pies */
-	static double[] pies = {Math.PI / 6F, Math.PI * 5F / 6F, Math.PI * 3F / 2F, Math.PI * 2F, Double.MAX_VALUE};
+	private static final double[] pies = {Math.PI / 6F, Math.PI * 5F / 6F, Math.PI * 3F / 2F, Math.PI * 2F, Double.MAX_VALUE};
 
 	/**
 	 * Mandatory empty constructor for the fragment manager to instantiate the fragment (e.g. upon screen orientation changes).
@@ -125,14 +125,14 @@ public class HomeFragment extends NavigableFragment
 		return view;
 	}
 
-	static public float distance(final float x1, final float y1, final float x2, final float y2)
+	private static float distance(final float x1, final float y1, final float x2, final float y2)
 	{
 		final float dx = x2 - x1;
 		final float dy = y2 - y1;
 		return (float) Math.sqrt(dx * dx + dy * dy);
 	}
 
-	static public double arg(final float x1, final float y1, final float x2, final float y2)
+	private static double arg(final float x1, final float y1, final float x2, final float y2)
 	{
 		final float dx = x2 - x1;
 		final float dy = y2 - y1;

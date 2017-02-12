@@ -796,6 +796,7 @@ public class TreeView
 	 *
 	 * @return save state
 	 */
+	@SuppressWarnings("unused")
 	public String getSaveState()
 	{
 		final StringBuilder builder = new StringBuilder();
@@ -812,6 +813,7 @@ public class TreeView
 	 *
 	 * @param saveState save state
 	 */
+	@SuppressWarnings("unused")
 	public void restoreState(final String saveState)
 	{
 		if (saveState != null && !TextUtils.isEmpty(saveState))
