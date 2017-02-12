@@ -21,6 +21,8 @@ import org.sqlunet.browser.R;
 import org.sqlunet.settings.StorageSettings;
 import org.sqlunet.settings.StorageUtils;
 
+import java.io.File;
+
 /**
  * Status fragment
  *
@@ -196,11 +198,22 @@ public class SetupStatusFragment extends Fragment
 				final int status = Status.status(activity);
 				final boolean existsDb = (status & Status.EXISTS) != 0;
 				final boolean existsTables = (status & Status.EXISTS_TABLES) != 0;
-				if (existsDb && existsTables)
+				if (existsDb)
 				{
+					final long size = new File(database).length();
+					final String hrsize = StorageUtils.countToStorageString(size) + " (" + Long.toString(size) + ')';
 					Info.info(activity, R.string.title_status, //
 							getString(R.string.title_database), database, //
-							getString(R.string.title_status), getString(R.string.status_database_exists), getString(R.string.title_status), getString(R.string.status_data_exists));
+							getString(R.string.title_status), getString(R.string.status_database_exists), //
+							getString(R.string.title_status), getString(existsTables ? R.string.status_data_exists : R.string.status_data_not_exists), //
+							getString(R.string.size_expected), getString(R.string.hr_size_sqlunet_db), //
+							getString(R.string.size_expected) + ' ' + getString(R.string.text_search) + ' ' + getString(R.string.wordnet), getString(R.string.hr_size_textsearch_wn), //
+							getString(R.string.size_expected) + ' ' + getString(R.string.text_search) + ' ' + getString(R.string.verbnet), getString(R.string.hr_size_textsearch_vn), //
+							getString(R.string.size_expected) + ' ' + getString(R.string.text_search) + ' ' + getString(R.string.propbank), getString(R.string.hr_size_textsearch_pb), //
+							getString(R.string.size_expected) + ' ' + getString(R.string.text_search) + ' ' + getString(R.string.framenet), getString(R.string.hr_size_textsearch_fn), //
+							getString(R.string.size_expected) + ' ' + getString(R.string.text_search) + ' ' + getString(R.string.total), getString(R.string.hr_size_textsearch), //
+							getString(R.string.size_expected) + ' ' + getString(R.string.total), getString(R.string.hr_size_db_working_total), //
+							getString(R.string.size_actual), hrsize);
 				}
 				else
 				{
@@ -208,9 +221,13 @@ public class SetupStatusFragment extends Fragment
 							getString(R.string.title_operation), getString(R.string.info_op_download_database), //
 							getString(R.string.title_from), source, //
 							getString(R.string.title_database), database, //
-							getString(R.string.title_free), free, //
-							getString(R.string.title_status), getString(existsDb ? R.string.status_database_exists : R.string.status_database_not_exists), //
-							getString(R.string.title_status), getString(existsTables ? R.string.status_data_exists : R.string.status_data_not_exists));
+							getString(R.string.size_expected) + ' ' + getString(R.string.text_search) + ' ' + getString(R.string.wordnet), getString(R.string.hr_size_textsearch_wn), //
+							getString(R.string.size_expected) + ' ' + getString(R.string.text_search) + ' ' + getString(R.string.verbnet), getString(R.string.hr_size_textsearch_vn), //
+							getString(R.string.size_expected) + ' ' + getString(R.string.text_search) + ' ' + getString(R.string.propbank), getString(R.string.hr_size_textsearch_pb), //
+							getString(R.string.size_expected) + ' ' + getString(R.string.text_search) + ' ' + getString(R.string.framenet), getString(R.string.hr_size_textsearch_fn), //
+							getString(R.string.size_expected) + ' ' + getString(R.string.text_search) + ' ' + getString(R.string.total), getString(R.string.hr_size_textsearch), //
+							getString(R.string.size_expected) + ' ' + getString(R.string.total), getString(R.string.hr_size_db_working_total), //
+							getString(R.string.title_status), getString(R.string.status_database_not_exists));
 				}
 			}
 		});

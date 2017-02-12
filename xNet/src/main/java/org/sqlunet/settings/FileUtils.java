@@ -245,7 +245,6 @@ class FileUtils
 							final FileOutputStream os = new FileOutputStream(outFile);
 
 							// copy
-
 							try
 							{
 								int len;

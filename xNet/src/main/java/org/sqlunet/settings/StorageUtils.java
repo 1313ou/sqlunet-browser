@@ -30,7 +30,7 @@ public class StorageUtils
 	/**
 	 * Database size
 	 */
-	static private final float DATABASEMB = 512F;
+	static private float DATABASE_SIZE_MB = Float.NaN;
 
 	/**
 	 * Storage types
@@ -314,9 +314,14 @@ public class StorageUtils
 		 *
 		 * @return true if database fits in storage
 		 */
-		boolean fitsIn()
+		boolean fitsIn(final Context context)
 		{
-			return !Float.isNaN(this.free) && this.free >= DATABASEMB;
+			if (Float.isNaN(DATABASE_SIZE_MB))
+			{
+				float size = context.getResources().getInteger(R.integer.size_db_working_total);
+				DATABASE_SIZE_MB = (size + size / 10F) / (1024F * 1024F);
+			}
+			return !Float.isNaN(this.free) && this.free >= DATABASE_SIZE_MB;
 		}
 	}
 

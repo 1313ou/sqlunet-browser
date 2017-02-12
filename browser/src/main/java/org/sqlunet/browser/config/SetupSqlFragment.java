@@ -147,6 +147,7 @@ public class SetupSqlFragment extends Fragment
 						getString(R.string.title_operation), getString(R.string.info_op_download_sqlzip), //
 						getString(R.string.title_from), from, //
 						getString(R.string.title_to), to, //
+						getString(R.string.size_expected), getString(R.string.hr_size_sqlunet_sql_zip), //
 						getString(R.string.title_free), free, //
 						getString(R.string.title_status), getString(exists ? R.string.status_local_exists : R.string.status_local_not_exists));
 			}
@@ -220,10 +221,11 @@ public class SetupSqlFragment extends Fragment
 				Info.info(activity, R.string.title_import, //
 						getString(R.string.title_operation), getString(R.string.info_op_execute_import), //
 						getString(R.string.title_database), database, //
+						getString(R.string.title_status), getString(dbExists ? R.string.status_database_exists : R.string.status_database_not_exists), //
+						getString(R.string.title_free), free, //
 						getString(R.string.title_archive), source, //
 						getString(R.string.title_entry), entry, //
-						getString(R.string.title_free), free, //
-						getString(R.string.title_status), getString(dbExists ? R.string.status_database_exists : R.string.status_database_not_exists), //
+						getString(R.string.size_expected) + ' ' + getString(R.string.total), getString(R.string.hr_size_db_working_total), //
 						getString(R.string.title_status), getString(sqlzipExists ? R.string.status_local_exists : R.string.status_local_not_exists));
 			}
 		});
@@ -264,10 +266,10 @@ public class SetupSqlFragment extends Fragment
 				Info.info(activity, R.string.title_indexes, //
 						getString(R.string.title_operation), getString(R.string.info_op_execute_import), //
 						getString(R.string.title_database), database, //
+						getString(R.string.title_status), getString(dbExists ? R.string.status_database_exists : R.string.status_database_not_exists), //
+						getString(R.string.title_free), free, //
 						getString(R.string.title_archive), source, //
 						getString(R.string.title_entry), entry, //
-						getString(R.string.title_free), free, //
-						getString(R.string.title_status), getString(dbExists ? R.string.status_database_exists : R.string.status_database_not_exists), //
 						getString(R.string.title_status), getString(sqlzipExists ? R.string.status_local_exists : R.string.status_local_not_exists));
 			}
 		});
@@ -308,10 +310,10 @@ public class SetupSqlFragment extends Fragment
 				Info.info(activity, R.string.title_predicatematrix, //
 						getString(R.string.title_operation), getString(R.string.info_op_execute_predicatematrix), //
 						getString(R.string.title_database), database, //
+						getString(R.string.title_status), getString(dbExists ? R.string.status_database_exists : R.string.status_database_not_exists), //
+						getString(R.string.title_free), free, //
 						getString(R.string.title_archive), source, //
 						getString(R.string.title_entry), entry, //
-						getString(R.string.title_free), free, //
-						getString(R.string.title_status), getString(dbExists ? R.string.status_database_exists : R.string.status_database_not_exists), //
 						getString(R.string.title_status), getString(sqlzipExists ? R.string.status_local_exists : R.string.status_local_not_exists));
 			}
 		});

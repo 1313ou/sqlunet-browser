@@ -44,6 +44,7 @@ public class StorageReports
 	/**
 	 * Styled string
 	 *
+	 * @param context context
 	 * @param dir storage directory
 	 * @return styled string
 	 */
@@ -56,7 +57,7 @@ public class StorageReports
 		sb.append('\n');
 		Report.append(sb, dir.dir.getValue(), new StyleSpan(Typeface.ITALIC), new ForegroundColorSpan(Color.GRAY));
 		sb.append('\n');
-		Report.append(sb, StorageUtils.mbToString(dir.free), new ForegroundColorSpan(dir.status == 0 && dir.fitsIn() ? dkgreen : dkred));
+		Report.append(sb, StorageUtils.mbToString(dir.free), new ForegroundColorSpan(dir.status == 0 && dir.fitsIn(context) ? dkgreen : dkred));
 
 		return sb;
 	}
@@ -64,14 +65,15 @@ public class StorageReports
 	/**
 	 * Styled fits-in string
 	 *
+	 * @param context context
 	 * @param dir storage directory
 	 * @return styled string
 	 */
 	@SuppressWarnings("unused")
-	static private CharSequence styledFitsIn(final StorageDirectory dir)
+	static private CharSequence styledFitsIn(final Context context, final StorageDirectory dir)
 	{
 		final SpannableStringBuilder sb = new SpannableStringBuilder();
-		final boolean fitsIn = dir.fitsIn();
+		final boolean fitsIn = dir.fitsIn(context);
 		Report.append(sb, fitsIn ? "Fits in" : "Does not fit in", new ForegroundColorSpan(fitsIn ? dkgreen : dkred));
 		return sb;
 	}
@@ -282,7 +284,7 @@ public class StorageReports
 			sb.append(' ');
 			sb.append(dir.toLongString());
 			sb.append(' ');
-			sb.append(dir.fitsIn() ? "Fits in" : "Does not fit in");
+			sb.append(dir.fitsIn(context) ? "Fits in" : "Does not fit in");
 			sb.append('\n');
 			sb.append('\n');
 		}
