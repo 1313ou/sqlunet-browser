@@ -36,7 +36,7 @@ public class SetupDatabaseFragment extends BaseTaskFragment
 	 */
 	public SetupDatabaseFragment()
 	{
-		// Required empty public constructor
+		this.layoutId = R.layout.fragment_setup_database;
 	}
 
 	@Override

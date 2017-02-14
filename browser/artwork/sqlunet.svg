@@ -191,10 +191,10 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="0.98994949"
-     inkscape:cx="489.16258"
+     inkscape:cx="-2.7817155"
      inkscape:cy="297.592"
      inkscape:document-units="px"
-     inkscape:current-layer="layer6"
+     inkscape:current-layer="layer1"
      showgrid="false"
      fit-margin-top="5"
      fit-margin-left="5"
@@ -233,7 +233,8 @@
        rx="398.92853"
        ry="398.92859" />
     <g
-       id="g8498">
+       id="g8498"
+       transform="translate(-2.7482304,-4.9324417)">
       <path
          transform="matrix(0.9781386,0.20795401,-0.20942004,0.97782577,0,0)"
          d="M 774.06052,369.7853 A 319.63306,318.56323 0 0 1 538.45778,581.77346 319.63306,318.56323 0 0 1 235.67931,486.82862 l 234.65907,-216.2999 z"
@@ -274,8 +275,8 @@
     <ellipse
        style="display:inline;opacity:0.98999999;fill:#ffd700;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:2.29999995;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
        id="path8068"
-       cx="395.48621"
-       cy="366.67184"
+       cx="400"
+       cy="358.29041"
        rx="148.21852"
        ry="148.21854" />
     <ellipse
@@ -291,11 +292,12 @@
      id="layer6"
      inkscape:label="Icons"
      style="display:inline"
-     transform="translate(0,41.709597)">
+     transform="translate(0,41.709597)"
+     sodipodi:insensitive="true">
     <g
        style="display:inline"
        id="g8669"
-       transform="matrix(1.1037549,0,0,1.103755,-9.41264,-62.030052)">
+       transform="matrix(1.1037549,0,0,1.103755,-9.9661055,-62.030052)">
       <g
          inkscape:label="Layer 1"
          id="layer1-8"
@@ -337,7 +339,7 @@
     <g
        style="display:inline"
        id="g8691"
-       transform="matrix(1.1037549,0,0,1.103755,-13.844836,-3.7866443)">
+       transform="matrix(1.1037549,0,0,1.103755,-8.7940737,-13.731227)">
       <g
          inkscape:label="Layer 1"
          id="layer1-6"
@@ -379,7 +381,7 @@
     <g
        style="display:inline"
        id="g8680"
-       transform="matrix(1.1037549,0,0,1.103755,-10.185532,-12.979228)">
+       transform="matrix(1.1037549,0,0,1.103755,-5.1347697,-26.117402)">
       <g
          inkscape:label="Layer 1"
          id="layer1-1"
@@ -420,7 +422,7 @@
     </g>
     <g
        style="display:inline"
-       transform="matrix(0.9672334,0,0,0.96723349,350.96526,-703.13848)"
+       transform="matrix(0.9672334,0,0,0.96723349,353.8594,-713.13848)"
        id="layer1-5"
        inkscape:label="Layer 1">
       <g
@@ -460,7 +462,7 @@
     <g
        style="display:inline"
        id="g8702"
-       transform="matrix(1.1037549,0,0,1.103755,-26.987447,-104.62849)">
+       transform="matrix(1.1037549,0,0,1.103755,-27.119515,-106.62849)">
       <g
          inkscape:label="Layer 1"
          id="layer1-2"
@@ -501,7 +503,7 @@
     </g>
     <g
        style="display:inline"
-       transform="matrix(0.93824392,0,0,0.938244,349.8695,-570.58517)"
+       transform="matrix(0.93824392,0,0,0.938244,354.87136,-584.08844)"
        id="layer1-27"
        inkscape:label="Layer 1">
       <path
@@ -732,7 +734,7 @@
     <g
        style="display:inline"
        id="g8791"
-       transform="matrix(0.19026716,0,0,0.19026717,435.77068,660.78554)">
+       transform="matrix(0.19026716,0,0,0.19026717,437.25289,660.78554)">
       <path
          style="fill:#ff00ff;fill-opacity:1;fill-rule:evenodd;stroke:none"
          d="m -209.60848,140.74644 c -0.14909,0.0132 -0.29579,0.0419 -0.4375,0.0937 -9.06951,3.31833 -52.91764,43.79315 -62.90625,49.8125 -22.02596,13.27331 -44.86585,23.52191 -58.21875,25.03125 -28.49265,3.22066 -30.79497,1.36759 -53.46876,2.03125 -22.6738,0.66367 -63.68998,-7.26903 -66.28126,0.0312 -2.5913,7.30032 -0.64536,29.18643 2.59375,40.46875 3.23912,11.28231 12.81619,43.87165 22.40625,62.15625 2.6775,5.10496 14.74755,29.10614 31.0625,55.84375 16.31496,26.7376 41.4604,50.59109 50.12502,59.21875 17.32925,17.2553 41.39976,32.29025 46.90625,34.28125 11.01298,3.98199 46.41996,16.14407 69.09375,8.84375 22.67379,-7.30032 42.31496,-23.60593 44.90625,-30.90625 1.29564,-3.65016 13.27906,-29.43834 18.34375,-59.03125 5.06469,-29.59291 3.21032,-62.99284 2.5625,-70.625 -1.29565,-15.2643 -4.52774,-70.28337 -9.0625,-86.875 -4.46389,-16.3324 -28.23224,-91.20418 -37.625,-90.375 z m -32.28126,94.28125 c 16.60666,-0.13962 35.38652,15.25459 36.68751,15.90625 l -62.21875,26.875 c 1.01533,-33.16536 12.61495,-42.67266 25.53124,-42.78125 z m -87.68749,43.84375 c 16.60665,-0.13962 35.38651,15.25459 36.6875,15.90625 l -62.21875,26.875 c 1.01533,-33.16536 12.61496,-42.67266 25.53125,-42.78125 z m 130.125,69.65625 c 0.60077,-0.0341 1.21548,0.008 1.84375,0.15625 8.0721,1.89905 5.79476,28.35988 1.03125,43.96875 -7.41431,24.29491 -21.7627,37.30855 -34.53126,40.3125 -11.80013,2.7761 -25.05072,1.42911 -45.43749,-11.875 -29.22916,-19.07448 -43.89929,-37.81729 -37.3125,-41.15625 8.65807,-4.38891 45.8498,17.53814 71.78124,11.4375 23.375,-5.49921 30.40938,-42.15073 42.62501,-42.84375 z"
@@ -793,40 +795,41 @@
      inkscape:groupmode="layer"
      id="layer1"
      transform="translate(6.2879466,32.778153)"
-     style="display:inline">
+     style="display:inline"
+     sodipodi:insensitive="true">
     <text
        xml:space="preserve"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:16.55632401px;line-height:100%;font-family:'DejaVu Sans Mono';-inkscape-font-specification:'DejaVu Sans Mono, Normal';text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       x="360.46548"
+       x="359.03915"
        y="325.42139"
        id="text8266"
        sodipodi:linespacing="100%"><tspan
          sodipodi:role="line"
          id="tspan8268"
-         x="360.46548"
+         x="359.03915"
          y="325.42139">WORDNET</tspan></text>
     <text
        sodipodi:linespacing="100%"
        id="text8270"
        y="656.68237"
-       x="351.20953"
+       x="353.11752"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:16.55632401px;line-height:100%;font-family:'DejaVu Sans Mono';-inkscape-font-specification:'DejaVu Sans Mono, Normal';text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
        xml:space="preserve"><tspan
          sodipodi:role="line"
          id="tspan8274"
-         x="351.20953"
+         x="353.11752"
          y="656.68237">FRAMENET</tspan></text>
     <text
        xml:space="preserve"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:16.55632401px;line-height:100%;font-family:'DejaVu Sans Mono';-inkscape-font-specification:'DejaVu Sans Mono, Normal';text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       x="140.66605"
-       y="232.84045"
+       x="144.66605"
+       y="216.64102"
        id="text8276"
        sodipodi:linespacing="100%"><tspan
          sodipodi:role="line"
          id="tspan8280"
-         x="140.66605"
-         y="232.84045">VERBNET</tspan></text>
+         x="144.66605"
+         y="216.64102">VERBNET</tspan></text>
     <text
        sodipodi:linespacing="100%"
        id="text8282"
@@ -841,24 +844,24 @@
     <text
        sodipodi:linespacing="100%"
        id="text8288"
-       y="230.63293"
-       x="551.05536"
+       y="216.63293"
+       x="557.05536"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:16.55632401px;line-height:100%;font-family:'DejaVu Sans';-inkscape-font-specification:'DejaVu Sans, Normal';text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
        xml:space="preserve"><tspan
          sodipodi:role="line"
          id="tspan8292"
-         x="551.05536"
-         y="230.63293">PROPBANK</tspan></text>
+         x="557.05536"
+         y="216.63293">PROPBANK</tspan></text>
     <text
        sodipodi:linespacing="100%"
        id="text8294"
        y="54.032146"
-       x="311.62552"
+       x="313.53354"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:16.55632401px;line-height:100%;font-family:'DejaVu Sans';-inkscape-font-specification:'DejaVu Sans, Normal';text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
        xml:space="preserve"><tspan
          sodipodi:role="line"
          id="tspan8298"
-         x="311.62552"
+         x="313.53354"
          y="54.032146">PREDICATE MATRIX</tspan></text>
   </g>
 </svg>

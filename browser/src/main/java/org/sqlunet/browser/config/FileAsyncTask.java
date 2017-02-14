@@ -10,6 +10,7 @@ import android.util.Pair;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.TextView;
 
 import org.sqlunet.browser.R;
 import org.sqlunet.settings.Settings;
@@ -666,19 +667,26 @@ class FileAsyncTask
 									sb.append('\n');
 									sb.append(computedResult == null ? context.getString(R.string.status_task_failed) : computedResult);
 
+									// selectable
+									final TextView result = new TextView(context);
+									result.setText(sb);
+									result.setPadding(35, 20, 35, 20);
+									result.setTextIsSelectable(true);
+
 									final AlertDialog.Builder alert2 = new AlertDialog.Builder(context);
-									alert2.setTitle(context.getString(R.string.action_md5_of) + ' ' + sourceFile);
-									alert2.setMessage(sb);
-									alert2.show();
+									alert2.setTitle(context.getString(R.string.action_md5_of) + ' ' + sourceFile) //
+											.setView(result)
+											//.setMessage(sb)
+											.show();
 								}
 							});
 						}
 						else
 						{
 							final AlertDialog.Builder alert2 = new AlertDialog.Builder(context);
-							alert2.setTitle(sourceFile);
-							alert2.setMessage(context.getString(R.string.status_data_fail));
-							alert2.show();
+							alert2.setTitle(sourceFile) //
+									.setMessage(context.getString(R.string.status_data_fail)) //
+									.show();
 						}
 					}
 				}

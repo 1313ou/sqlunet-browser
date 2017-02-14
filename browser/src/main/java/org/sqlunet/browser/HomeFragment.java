@@ -22,7 +22,7 @@ public class HomeFragment extends NavigableFragment
 	/**
 	 * Rings
 	 */
-	private static final float[] rings = {0.37F, 0.79F, 1F, Float.MAX_VALUE};
+	private static final float[] rings = {0.370F, 0.795F, 1F, Float.MAX_VALUE};
 
 	/* Pies */
 	private static final double[] pies = {Math.PI / 6F, Math.PI * 5F / 6F, Math.PI * 3F / 2F, Math.PI * 2F, Double.MAX_VALUE};

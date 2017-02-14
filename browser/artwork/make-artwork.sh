@@ -132,7 +132,7 @@ for svg in ${list_arrow}; do
 		inkscape ${svg} --export-png=${d}/${png} -h${res_arrow[$r]} > /dev/null 2> /dev/null
 	done
 done
-exit
+
 # small icons
 for svg in ${list_smallicon}; do
 	for r in ${!res_smallicon[@]}; do 

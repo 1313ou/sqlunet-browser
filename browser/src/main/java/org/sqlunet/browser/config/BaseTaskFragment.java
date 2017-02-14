@@ -41,13 +41,15 @@ abstract public class BaseTaskFragment extends Fragment
 	protected ImageButton runButton;
 
 	/**
-	 * Constructor
+	 * Layout id set by derived class
 	 */
-	public BaseTaskFragment()
-	{
-		// Required empty public constructor
-	}
+	protected int layoutId;
 
+	/**
+	 * Make spinner
+	 *
+	 * @return spinner adapter
+	 */
 	abstract protected SpinnerAdapter makeAdapter();
 
 	@Override
@@ -56,7 +58,7 @@ abstract public class BaseTaskFragment extends Fragment
 		setHasOptionsMenu(true);
 
 		// view
-		final View view = inflater.inflate(R.layout.fragment_setup_file, container, false);
+		final View view = inflater.inflate(this.layoutId, container, false);
 
 		// task spinner
 		this.spinner = (Spinner) view.findViewById(R.id.task_spinner);

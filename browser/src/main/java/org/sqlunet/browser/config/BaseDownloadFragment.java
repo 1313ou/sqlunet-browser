@@ -39,6 +39,9 @@ abstract class BaseDownloadFragment extends Fragment implements View.OnClickList
 	 */
 	static private final String DOWNLOAD_BTN_STATE = "download_btn_state";
 
+	/**
+	 * Instance state key for download button background resource id
+	 */
 	static private final String DOWNLOAD_BTN_RES_STATE = "download_res_btn_state";
 
 	/**
@@ -175,6 +178,9 @@ abstract class BaseDownloadFragment extends Fragment implements View.OnClickList
 	 */
 	private ImageButton downloadButton;
 
+	/**
+	 * Saved resource id of background applied to download button
+	 */
 	private int downloadButtonRes;
 
 	/**
@@ -212,20 +218,11 @@ abstract class BaseDownloadFragment extends Fragment implements View.OnClickList
 	 */
 	private boolean fromSavedInstance = false;
 
-	/**
-	 * Constructor
-	 */
-	public BaseDownloadFragment()
-	{
-		super();
-		Log.d(TAG, "Constructor");
-	}
-
 	@Override
 	public void onCreate(final Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
-		Log.d(TAG, "onCreate " + savedInstanceState);
+		// Log.d(TAG, "onCreate " + savedInstanceState);
 
 		// context for threads that termitate after activity finishes
 		this.context = getActivity().getApplicationContext();
@@ -264,7 +261,7 @@ abstract class BaseDownloadFragment extends Fragment implements View.OnClickList
 	@Override
 	public View onCreateView(final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState)
 	{
-		Log.d(TAG, "onCreateView " + savedInstanceState);
+		// Log.d(TAG, "onCreateView " + savedInstanceState);
 
 		// view
 		final View view = inflater.inflate(R.layout.fragment_download, container, false);
@@ -353,23 +350,6 @@ abstract class BaseDownloadFragment extends Fragment implements View.OnClickList
 	}
 
 	@Override
-	public void onActivityCreated(final Bundle savedInstance)
-	{
-		super.onActivityCreated(savedInstance);
-		this.fromSavedInstance = savedInstance != null;
-	}
-
-	@Override
-	public void onResume()
-	{
-		super.onResume();
-		if (this.fromSavedInstance)
-		{
-			startObserver();
-		}
-	}
-
-	@Override
 	public void onClick(final View view)
 	{
 		final int id = view.getId();
@@ -409,20 +389,24 @@ abstract class BaseDownloadFragment extends Fragment implements View.OnClickList
 	 */
 	abstract protected void cancel();
 
-	/*
-	 * Get status
-	 *
-	 * @param result status
-	 * @return true if finished
-	 */
-	abstract int getStatus(final Progress progress);
+	// O B S E R V E R
 
-	/**
-	 * Get reason
-	 *
-	 * @return reason
-	 */
-	abstract String getReason();
+	@Override
+	public void onActivityCreated(final Bundle savedInstance)
+	{
+		super.onActivityCreated(savedInstance);
+		this.fromSavedInstance = savedInstance != null;
+	}
+
+	@Override
+	public void onResume()
+	{
+		super.onResume();
+		if (this.fromSavedInstance)
+		{
+			startObserver();
+		}
+	}
 
 	/**
 	 * Start observer thread
@@ -476,6 +460,11 @@ abstract class BaseDownloadFragment extends Fragment implements View.OnClickList
 		}).start();
 	}
 
+	/**
+	 * Observer update
+	 *
+	 * @return message
+	 */
 	private String observerUpdate()
 	{
 		final int progress100 = this.progress.total == 0 ? -1 : (int) (this.progress.downloaded * 100L / this.progress.total);
@@ -502,6 +491,50 @@ abstract class BaseDownloadFragment extends Fragment implements View.OnClickList
 		return message;
 	}
 
+	// S T A T U S
+
+	/**
+	 * Get status
+	 *
+	 * @param result status
+	 * @return true if finished
+	 */
+	abstract int getStatus(final Progress progress);
+
+	/**
+	 * Get reason
+	 *
+	 * @return reason
+	 */
+	abstract String getReason();
+
+	/**
+	 * Make status string
+	 *
+	 * @param statusCode status code
+	 * @return status string
+	 */
+	private String makeStatusString(int statusCode)
+	{
+		final Status status = Status.valueOf(statusCode);
+		final int statusResId = Status.toResId(status);
+
+		return makeString(statusResId);
+	}
+
+	// H E L P E R S
+
+	/**
+	 * Make string
+	 *
+	 * @param resId res id
+	 * @return string
+	 */
+	protected String makeString(int resId)
+	{
+		return this.context.getString(resId);
+	}
+
 	/**
 	 * Warn
 	 */
@@ -521,30 +554,82 @@ abstract class BaseDownloadFragment extends Fragment implements View.OnClickList
 		}
 	}
 
-	/**
-	 * Make status string
-	 *
-	 * @param statusCode status code
-	 * @return status string
-	 */
-	private String makeStatusString(int statusCode)
-	{
-		final Status status = Status.valueOf(statusCode);
-		final int statusResId = Status.toResId(status);
+	// E V E N T S
 
-		return makeString(statusResId);
+	/**
+	 * Event sink for events fired by downloader
+	 *
+	 * @param success whether download was successful
+	 */
+	@SuppressWarnings("WeakerAccess")
+	protected void onDone(boolean success)
+	{
+		Log.d(TAG, "OnDone " + success);
+
+		// progress
+		if (BaseDownloadFragment.this.progressBar != null)
+		{
+			BaseDownloadFragment.this.progressBar.setVisibility(View.INVISIBLE);
+		}
+		if (BaseDownloadFragment.this.progressStatus != null)
+		{
+			BaseDownloadFragment.this.progressStatus.setVisibility(View.INVISIBLE);
+		}
+		if (BaseDownloadFragment.this.statusView != null)
+		{
+			final String status = makeStatusString(this.status);
+			final String reason = getReason();
+			final String message = status + (reason == null ? "" : '\n' + reason);
+
+			BaseDownloadFragment.this.statusView.setText(success ? this.context.getString(R.string.status_download_successful) : message);
+			BaseDownloadFragment.this.statusView.setVisibility(View.VISIBLE);
+		}
+
+		// buttons
+		if (BaseDownloadFragment.this.downloadButton != null)
+		{
+			this.downloadButtonRes = success ? R.drawable.bg_button_ok : R.drawable.bg_button_err;
+			BaseDownloadFragment.this.downloadButton.setBackgroundResource(this.downloadButtonRes);
+			BaseDownloadFragment.this.downloadButton.setEnabled(false);
+			BaseDownloadFragment.this.downloadButton.setVisibility(View.VISIBLE);
+		}
+		if (BaseDownloadFragment.this.cancelButton != null)
+		{
+			BaseDownloadFragment.this.cancelButton.setVisibility(View.GONE);
+		}
+		if (BaseDownloadFragment.this.md5Button != null)
+		{
+			BaseDownloadFragment.this.md5Button.setVisibility(success ? View.VISIBLE : View.GONE);
+		}
+
+		// fire done (broadcast to listener)
+		fireDone(success);
 	}
 
 	/**
-	 * Make string
+	 * Fire done event to fragment listener
 	 *
-	 * @param resId res id
-	 * @return string
+	 * @param status result status
 	 */
-	protected String makeString(int resId)
+	private void fireDone(final boolean status)
 	{
-		return this.context.getString(resId);
+		if (this.listener == null)
+		{
+			return;
+		}
+
+		final Handler handler = new Handler();
+		handler.postDelayed(new Runnable()
+		{
+			@Override
+			public void run()
+			{
+				BaseDownloadFragment.this.listener.onDone(status);
+			}
+		}, 1000);
 	}
+
+	// M D 5
 
 	/**
 	 * MD5 check
@@ -596,74 +681,5 @@ abstract class BaseDownloadFragment extends Fragment implements View.OnClickList
 				}
 			}
 		}).execute(from, targetFile);
-	}
-
-
-	/**
-	 * Event sink
-	 *
-	 * @param success whether download was successful
-	 */
-	@SuppressWarnings("WeakerAccess")
-	protected void onDone(boolean success)
-	{
-		Log.d(TAG, "OnDone " + success);
-
-		// progress
-		if (BaseDownloadFragment.this.progressBar != null)
-		{
-			BaseDownloadFragment.this.progressBar.setVisibility(View.INVISIBLE);
-		}
-		if (BaseDownloadFragment.this.progressStatus != null)
-		{
-			BaseDownloadFragment.this.progressStatus.setVisibility(View.INVISIBLE);
-		}
-		if (BaseDownloadFragment.this.statusView != null)
-		{
-			final String status = makeStatusString(this.status);
-			final String reason = getReason();
-			final String message = status + (reason == null ? "" : '\n' + reason);
-
-			BaseDownloadFragment.this.statusView.setText(success ? this.context.getString(R.string.status_download_successful) : message);
-			BaseDownloadFragment.this.statusView.setVisibility(View.VISIBLE);
-		}
-
-		// buttons
-		if (BaseDownloadFragment.this.downloadButton != null)
-		{
-			this.downloadButtonRes = success ? R.drawable.bg_button_ok : R.drawable.bg_button_err;
-			BaseDownloadFragment.this.downloadButton.setBackgroundResource(this.downloadButtonRes);
-			BaseDownloadFragment.this.downloadButton.setEnabled(false);
-			BaseDownloadFragment.this.downloadButton.setVisibility(View.VISIBLE);
-		}
-		if (BaseDownloadFragment.this.cancelButton != null)
-		{
-			BaseDownloadFragment.this.cancelButton.setVisibility(View.GONE);
-		}
-		if (BaseDownloadFragment.this.md5Button != null)
-		{
-			BaseDownloadFragment.this.md5Button.setVisibility(success ? View.VISIBLE : View.GONE);
-		}
-
-		// fire done (broadcast to listener)
-		fireDone(success);
-	}
-
-	private void fireDone(final boolean status)
-	{
-		if (this.listener == null)
-		{
-			return;
-		}
-
-		final Handler handler = new Handler();
-		handler.postDelayed(new Runnable()
-		{
-			@Override
-			public void run()
-			{
-				BaseDownloadFragment.this.listener.onDone(status);
-			}
-		}, 1000);
 	}
 }

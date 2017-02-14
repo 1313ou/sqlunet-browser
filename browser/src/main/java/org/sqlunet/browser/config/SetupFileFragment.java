@@ -61,7 +61,7 @@ public class SetupFileFragment extends BaseTaskFragment
 	 */
 	public SetupFileFragment()
 	{
-		// Required empty public constructor
+		this.layoutId = R.layout.fragment_setup_file;
 	}
 
 	@Override
@@ -216,6 +216,11 @@ public class SetupFileFragment extends BaseTaskFragment
 		SetupFileFragment.this.status.setText(message);
 	}
 
+	/**
+	 * Operation status for create
+	 *
+	 * @return status string
+	 */
 	private CharSequence statusCreate()
 	{
 		final Context context = getActivity();
@@ -225,7 +230,7 @@ public class SetupFileFragment extends BaseTaskFragment
 
 		final SpannableStringBuilder sb = new SpannableStringBuilder();
 		sb.append(getString(R.string.info_op_create_database));
-		sb.append('\n');
+		sb.append("\n\n");
 		Info.build(sb, //
 				getString(R.string.title_database), database, //
 				getString(R.string.title_status), getString(databaseExists ? R.string.status_database_exists : R.string.status_database_not_exists), //
@@ -233,6 +238,11 @@ public class SetupFileFragment extends BaseTaskFragment
 		return sb;
 	}
 
+	/**
+	 * Operation status for create
+	 *
+	 * @return status string
+	 */
 	private CharSequence statusDrop()
 	{
 		final Context context = getActivity();
@@ -242,7 +252,7 @@ public class SetupFileFragment extends BaseTaskFragment
 
 		final SpannableStringBuilder sb = new SpannableStringBuilder();
 		sb.append(getString(R.string.info_op_drop_database));
-		sb.append('\n');
+		sb.append("\n\n");
 		Info.build(sb, //
 				getString(R.string.title_database), database, //
 				getString(R.string.title_status), getString(databaseExists ? R.string.status_database_exists : R.string.status_database_not_exists), //
@@ -250,6 +260,11 @@ public class SetupFileFragment extends BaseTaskFragment
 		return sb;
 	}
 
+	/**
+	 * Operation status for copy
+	 *
+	 * @return status string
+	 */
 	private CharSequence statusCopy()
 	{
 		final Context context = getActivity();
@@ -266,7 +281,7 @@ public class SetupFileFragment extends BaseTaskFragment
 
 		final SpannableStringBuilder sb = new SpannableStringBuilder();
 		sb.append(getString(R.string.info_op_copy_database));
-		sb.append('\n');
+		sb.append("\n\n");
 		Info.build(sb, //
 				getString(R.string.title_database), database, //
 				getString(R.string.title_status), getString(databaseExists ? R.string.status_database_exists : R.string.status_database_not_exists), //
@@ -278,6 +293,11 @@ public class SetupFileFragment extends BaseTaskFragment
 		return sb;
 	}
 
+	/**
+	 * Operation status for unzip
+	 *
+	 * @return status string
+	 */
 	private CharSequence statusUnzip()
 	{
 		final Context context = getActivity();
@@ -294,7 +314,7 @@ public class SetupFileFragment extends BaseTaskFragment
 
 		final SpannableStringBuilder sb = new SpannableStringBuilder();
 		sb.append(getString(R.string.info_op_unzip_database));
-		sb.append('\n');
+		sb.append("\n\n");
 		Info.build(sb, //
 				getString(R.string.title_database), database, //
 				getString(R.string.title_status), getString(databaseExists ? R.string.status_database_exists : R.string.status_database_not_exists), //
@@ -306,6 +326,11 @@ public class SetupFileFragment extends BaseTaskFragment
 		return sb;
 	}
 
+	/**
+	 * Operation status for md5
+	 *
+	 * @return status string
+	 */
 	private CharSequence statusMd5()
 	{
 		final SpannableStringBuilder sb = new SpannableStringBuilder();
@@ -313,6 +338,11 @@ public class SetupFileFragment extends BaseTaskFragment
 		return sb;
 	}
 
+	/**
+	 * Operation status for download database
+	 *
+	 * @return status string
+	 */
 	private CharSequence statusDownload()
 	{
 		final Context context = getActivity();
@@ -323,7 +353,7 @@ public class SetupFileFragment extends BaseTaskFragment
 
 		final SpannableStringBuilder sb = new SpannableStringBuilder();
 		sb.append(getString(R.string.info_op_download_database));
-		sb.append('\n');
+		sb.append("\n\n");
 		Info.build(sb, //
 				getString(R.string.title_from), from, //
 				getString(R.string.title_to), to, //
@@ -334,6 +364,11 @@ public class SetupFileFragment extends BaseTaskFragment
 		return sb;
 	}
 
+	/**
+	 * Operation status for download zipped database
+	 *
+	 * @return status string
+	 */
 	private CharSequence statusDownloadZipped()
 	{
 		final Context context = getActivity();
@@ -344,7 +379,7 @@ public class SetupFileFragment extends BaseTaskFragment
 
 		final SpannableStringBuilder sb = new SpannableStringBuilder();
 		sb.append(getString(R.string.info_op_download_zipped_database));
-		sb.append('\n');
+		sb.append("\n\n");
 		Info.build(sb, //
 				getString(R.string.title_from), from, //
 				getString(R.string.title_to), to, //
