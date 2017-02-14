@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
+import java.net.SocketTimeoutException;
 import java.net.URL;
 import java.net.URLConnection;
 
@@ -26,6 +27,11 @@ class SimpleDownloader extends AsyncTask<Void, Integer, Boolean>
 	 * Buffer size
 	 */
 	static private final int CHUNK_SIZE = 8192;
+
+	/**
+	 * Timeout in seconds
+	 */
+	static private final int TIMEOUT_S = 15;
 
 	/**
 	 * From URL
@@ -50,7 +56,7 @@ class SimpleDownloader extends AsyncTask<Void, Integer, Boolean>
 	/**
 	 * ResultListener
 	 */
-	private final Listener listener;
+	private Listener listener;
 
 	/**
 	 * Constructor
@@ -58,14 +64,22 @@ class SimpleDownloader extends AsyncTask<Void, Integer, Boolean>
 	 * @param from     from-url
 	 * @param to       to-file
 	 * @param code     code
-	 * @param listener listener
 	 */
-	SimpleDownloader(final String from, final String to, int code, final Listener listener)
+	SimpleDownloader(final String from, final String to, int code)
 	{
 		this.fromUrl = from;
 		this.toFile = to;
 		this.code = code;
 		this.exception = null;
+	}
+
+	/**
+	 * Set listener
+	 *
+	 * @param listener
+	 */
+	void setListener(final Listener listener)
+	{
 		this.listener = listener;
 	}
 
@@ -98,7 +112,7 @@ class SimpleDownloader extends AsyncTask<Void, Integer, Boolean>
 		// fire event
 		if (this.listener != null)
 		{
-			this.listener.onDownloadFinish(this.code, result);
+			this.listener.onDownloadFinish(this.code, result == null ? false : result);
 		}
 	}
 
@@ -119,7 +133,7 @@ class SimpleDownloader extends AsyncTask<Void, Integer, Boolean>
 		// fire event
 		if (this.listener != null)
 		{
-			this.listener.onDownloadFinish(this.code, result);
+			this.listener.onDownloadFinish(this.code, result == null ? false : result);
 		}
 	}
 
@@ -133,11 +147,16 @@ class SimpleDownloader extends AsyncTask<Void, Integer, Boolean>
 		OutputStream output = null;
 		try
 		{
-			// connect
+			// connection
 			final URL url = new URL(this.fromUrl);
 			Log.d(TAG, "Get " + url.toString());
 			final URLConnection connection = url.openConnection();
+			connection.setConnectTimeout(TIMEOUT_S * 1000);
+
+			// connect
+			Log.d(TAG, "Connecting");
 			connection.connect();
+			Log.d(TAG, "Connected");
 
 			// expect HTTP 200 OK, so we don't mistakenly save error report instead of the file
 			if (connection instanceof HttpURLConnection)
@@ -176,7 +195,7 @@ class SimpleDownloader extends AsyncTask<Void, Integer, Boolean>
 				// interrupted
 				if (Thread.interrupted())
 				{
-					final InterruptedException ie = new InterruptedException("interrupted while downloading");
+					final InterruptedException ie = new InterruptedException("interrupted");
 					this.exception = ie;
 					throw ie;
 				}
@@ -190,16 +209,23 @@ class SimpleDownloader extends AsyncTask<Void, Integer, Boolean>
 			output.flush();
 			return true;
 		}
-		catch (final InterruptedException e)
+		catch (final InterruptedException ie)
 		{
-			this.exception = e;
-			Log.d(TAG, e.toString());
+			this.exception = ie;
+			Log.d(TAG, "While downloading, " + ie.getMessage());
+			return false;
+		}
+		catch (SocketTimeoutException ste)
+		{
+			Log.d(TAG, "Timeout");
+			this.exception = ste;
+			Log.d(TAG, "While downloading, " + ste.getMessage());
 			return false;
 		}
 		catch (final Exception e)
 		{
 			this.exception = e;
-			Log.e(TAG, "while downloading", e);
+			Log.e(TAG, "While downloading, " + e.getMessage());
 			return false;
 		}
 		finally
@@ -212,7 +238,7 @@ class SimpleDownloader extends AsyncTask<Void, Integer, Boolean>
 				}
 				catch (final IOException e)
 				{
-					Log.e(TAG, "while closing output", e);
+					Log.e(TAG, "While closing output", e);
 				}
 			}
 			if (input != null)
@@ -224,7 +250,7 @@ class SimpleDownloader extends AsyncTask<Void, Integer, Boolean>
 				catch (final IOException e)
 				{
 					this.exception = e;
-					Log.e(TAG, "while closing input", e);
+					Log.e(TAG, "While closing input", e);
 				}
 			}
 		}

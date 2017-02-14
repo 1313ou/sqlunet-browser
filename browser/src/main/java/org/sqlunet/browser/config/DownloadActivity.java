@@ -54,31 +54,33 @@ public class DownloadActivity extends AppCompatActivity implements DownloadFragm
 	{
 		super.onCreate(savedInstanceState);
 
-
 		final Downloader downloader = Downloader.getFromPref(this);
 
 		// content
 		setContentView(downloader.res);
 
-		// set this as listener
-		BaseDownloadFragment downloadFragment = null;
-		switch (downloader)
+		if (savedInstanceState == null)
 		{
-			case SIMPLE:
-				downloadFragment = new SimpleDownloadFragment();
-				break;
+			// set this as listener
+			BaseDownloadFragment downloadFragment = null;
+			switch (downloader)
+			{
+				case SIMPLE:
+					downloadFragment = new SimpleDownloadFragment();
+					break;
 
-			case DOWNLOADMANAGER:
-				downloadFragment = new DownloadFragment();
-				break;
+				case DOWNLOADMANAGER:
+					downloadFragment = new DownloadFragment();
+					break;
+			}
+			downloadFragment.setArguments(getIntent().getExtras());
+			downloadFragment.setListener(this);
+
+			getSupportFragmentManager() //
+					.beginTransaction() //
+					.replace(R.id.container_download, downloadFragment) //
+					.commit();
 		}
-		downloadFragment.setArguments(getIntent().getExtras());
-		downloadFragment.setListener(this);
-
-		getSupportFragmentManager() //
-				.beginTransaction() //
-				.replace(R.id.container_download, downloadFragment) //
-				.commit();
 	}
 
 	@Override

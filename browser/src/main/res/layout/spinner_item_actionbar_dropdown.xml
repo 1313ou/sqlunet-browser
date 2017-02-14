@@ -4,7 +4,7 @@
           android:id="@android:id/text1"
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
-          android:background="@drawable/border_spinner_item"
+          android:background="@drawable/bg_spinner_item"
           android:gravity="center"
           android:minHeight="?android:attr/listPreferredItemHeightSmall"
           android:paddingEnd="?android:attr/listPreferredItemPaddingEnd"

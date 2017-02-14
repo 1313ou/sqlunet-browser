@@ -105,7 +105,7 @@ class MD5Downloader extends AsyncTask<String, Void, String>
 		catch (final Exception e)
 		{
 			this.exception = e;
-			Log.e(TAG, "while downloading", e);
+			Log.e(TAG, "While downloading", e);
 		}
 		finally
 		{
@@ -118,7 +118,7 @@ class MD5Downloader extends AsyncTask<String, Void, String>
 				catch (final IOException e)
 				{
 					this.exception = e;
-					Log.e(TAG, "while closing reader", e);
+					Log.e(TAG, "While closing reader", e);
 				}
 			}
 			if (input != null)
@@ -130,7 +130,7 @@ class MD5Downloader extends AsyncTask<String, Void, String>
 				catch (final IOException e)
 				{
 					this.exception = e;
-					Log.e(TAG, "while closing input", e);
+					Log.e(TAG, "While closing input", e);
 				}
 			}
 		}

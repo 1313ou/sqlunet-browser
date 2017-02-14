@@ -53,9 +53,9 @@
 
 	<!-- button -->
 	<item name="button_color_action" type="color">@color/orange_color</item>
+	<item name="button_color_info" type="color">@color/blue_color</item>
 	<item name="button_color_ok" type="color">@color/dark_green_color</item>
 	<item name="button_color_err" type="color">@color/darker_red_color</item>
-	<item name="button_info_color" type="color">@color/blue_color</item>
 
 	<!-- action bar specials -->
 	<item name="browse_action_bar_color" type="color">@color/violet_color</item>

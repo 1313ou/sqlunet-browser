@@ -93,32 +93,35 @@ public class HomeFragment extends NavigableFragment
 				int pie = i % 3;
 				Log.d(TAG, "pie=" + pie);
 
-				int message = 0;
+				int messageId = 0;
 				switch (ring)
 				{
 					case 0:
-						message = R.string.wordnet_blurb;
+						messageId = R.string.wordnet_blurb;
 						break;
 					case 1:
 						switch (pie)
 						{
 							case 0:
-								message = R.string.propbank_blurb;
+								messageId = R.string.propbank_blurb;
 								break;
 							case 1:
-								message = R.string.framenet_blurb;
+								messageId = R.string.framenet_blurb;
 								break;
 							case 2:
-								message = R.string.verbnet_blurb;
+								messageId = R.string.verbnet_blurb;
 								break;
 						}
 						break;
 					case 2:
-						message = R.string.predicatematrix_blurb;
+						messageId = R.string.predicatematrix_blurb;
 						break;
 				}
-				Log.i("PICK ", getString(message));
-				Toast.makeText(getActivity(), message, Toast.LENGTH_LONG).show();
+				if (messageId != 0)
+				{
+					Log.i("PICK ", getString(messageId));
+					Toast.makeText(getActivity(), messageId, Toast.LENGTH_LONG).show();
+				}
 				return false;
 			}
 		});

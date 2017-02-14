@@ -32,7 +32,8 @@
 				android:background="@drawable/bg_button_action"
 				android:contentDescription="@string/action_download"
 				android:src="@drawable/bn_download"
-				android:text="@string/action_download"/>
+				android:text="@string/action_download"
+				android:visibility="visible"/>
 
 			<ProgressBar
 				android:id="@+id/progressBar"
@@ -71,12 +72,17 @@
 		android:layout_above="@+id/middle"
 		android:layout_centerHorizontal="true"
 		android:layout_marginBottom="10dp"
-		android:layout_marginStart="25dp"
-		android:layout_marginEnd="25dp"
+		android:layout_marginEnd="50dp"
+		android:layout_marginStart="50dp"
 		android:drawableBottom="@drawable/ic_download_source"
 		android:drawablePadding="5dp"
 		android:ellipsize="marquee"
+		android:focusable="true"
+		android:focusableInTouchMode="true"
+		android:freezesText="true"
+		android:marqueeRepeatLimit="marquee_forever"
 		android:maxLines="1"
+		android:scrollHorizontally="true"
 		android:text="@string/download_source"/>
 
 	<TextView
@@ -85,13 +91,18 @@
 		android:layout_height="wrap_content"
 		android:layout_below="@+id/middle"
 		android:layout_centerHorizontal="true"
-		android:layout_marginStart="25dp"
-		android:layout_marginEnd="25dp"
+		android:layout_marginEnd="50dp"
+		android:layout_marginStart="50dp"
 		android:layout_marginTop="10dp"
 		android:drawablePadding="5dp"
 		android:drawableTop="@drawable/ic_download_dest"
 		android:ellipsize="marquee"
+		android:focusable="true"
+		android:focusableInTouchMode="true"
+		android:freezesText="true"
+		android:marqueeRepeatLimit="marquee_forever"
 		android:maxLines="1"
+		android:scrollHorizontally="true"
 		android:text="@string/download_dest"/>
 
 	<TextView
@@ -100,7 +111,11 @@
 		android:layout_height="wrap_content"
 		android:layout_below="@+id/target"
 		android:layout_centerHorizontal="true"
+		android:layout_marginBottom="20dp"
+		android:layout_marginEnd="50dp"
+		android:layout_marginStart="50dp"
 		android:layout_marginTop="50dp"
+		android:freezesText="true"
 		android:gravity="center"
 		android:textAppearance="?android:attr/textAppearanceSmall"
 		android:visibility="visible"/>

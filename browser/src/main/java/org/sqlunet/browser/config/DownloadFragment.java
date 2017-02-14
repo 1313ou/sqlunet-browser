@@ -25,10 +25,12 @@ import org.sqlunet.browser.R;
  */
 public class DownloadFragment extends BaseDownloadFragment
 {
+	static private final String TAG = "DownloadF";
+
 	/**
-	 * Log tag
+	 * Instance state label
 	 */
-	static private final String TAG = "DownloadFragment";
+	static private final String SHOW_BTN_STATE = "show_btn_state";
 
 	/**
 	 * Reason
@@ -195,7 +197,19 @@ public class DownloadFragment extends BaseDownloadFragment
 				showDownloads();
 			}
 		});
+		if (savedInstanceState != null)
+		{
+			//noinspection WrongConstant
+			this.showButton.setVisibility(savedInstanceState.getInt(SHOW_BTN_STATE, View.INVISIBLE));
+		}
 		return view;
+	}
+
+	@Override
+	public void onSaveInstanceState(final Bundle outState)
+	{
+		super.onSaveInstanceState(outState);
+		outState.putInt(SHOW_BTN_STATE, this.showButton.getVisibility());
 	}
 
 	@Override
