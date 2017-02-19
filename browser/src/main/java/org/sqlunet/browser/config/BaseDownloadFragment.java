@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.text.SpannableStringBuilder;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -299,14 +300,16 @@ abstract class BaseDownloadFragment extends Fragment implements View.OnClickList
 		// source
 		final TextView srcView = (TextView) view.findViewById(R.id.src);
 		srcView.setText(this.downloadUrl);
-		//srcView.setSingleLine(true);
-		//srcView.setEllipsize(TextUtils.TruncateAt.MARQUEE);
+		srcView.setSingleLine(true);
+		srcView.setEllipsize(TextUtils.TruncateAt.MARQUEE);
+		srcView.setSelected(true);
 
 		// destination
 		final TextView targetView = (TextView) view.findViewById(R.id.target);
 		targetView.setText(this.destFile != null ? this.destFile.getAbsolutePath() : "");
-		//targetView.setSingleLine(true);
-		//targetView.setEllipsize(TextUtils.TruncateAt.MARQUEE);
+		targetView.setSingleLine(true);
+		targetView.setEllipsize(TextUtils.TruncateAt.MARQUEE);
+		targetView.setSelected(true);
 
 		if (savedInstanceState != null)
 		{
@@ -496,7 +499,7 @@ abstract class BaseDownloadFragment extends Fragment implements View.OnClickList
 	/**
 	 * Get status
 	 *
-	 * @param result status
+	 * @param progress progress result
 	 * @return true if finished
 	 */
 	abstract int getStatus(final Progress progress);

@@ -116,7 +116,7 @@
 		</activity>
 		<activity
 			android:name=".Browse2Activity"
-			android:label="@string/title_activity_sense"
+			android:label="@string/title_activity_browse2"
 			android:parentActivityName=".selector.Browse1Activity"
 			tools:ignore="UnusedAttribute">
 			<meta-data
@@ -329,9 +329,9 @@
 		<receiver
 			android:name="org.sqlunet.browser.config.Killer"
 			android:enabled="true"
-			android:exported="true" >
+			android:exported="true">
 			<intent-filter>
-				<action android:name="kill_download" />
+				<action android:name="kill_download"/>
 			</intent-filter>
 		</receiver>
 

@@ -70,9 +70,9 @@
 
 	<string name="title_activity_selector">Senses</string>
 	<string name="title_activity_xselector">Sources</string>
-	<string name="title_activity_sense">Sense</string>
-	<string name="title_activity_table">Table</string>
+	<string name="title_activity_browse2">Data</string>
 	<string name="title_activity_word">Word</string>
+	<string name="title_activity_sense">Sense</string>
 	<string name="title_activity_synset">Synset</string>
 	<string name="title_activity_vnclass">VerbNet Class</string>
 	<string name="title_activity_pbroleset">PropBank RoleSet</string>
@@ -81,6 +81,7 @@
 	<string name="title_activity_fnsentence">FrameNet Sentence</string>
 	<string name="title_activity_fnannoset">FrameNet AnnoSet</string>
 	<string name="title_activity_predicatematrix">PredicateMatrix</string>
+	<string name="title_activity_table">Table</string>
 
 	<!-- _status -->
 	<string name="status_data_fail">Data is unavailable</string>

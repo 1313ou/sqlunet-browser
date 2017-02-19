@@ -1,31 +1,31 @@
 <component name="libraryTable">
   <library name="support-media-compat-25.1.1">
     <ANNOTATIONS>
-      <root url="jar://$PROJECT_DIR$/bNC/build/intermediates/exploded-aar/com.android.support/support-media-compat/25.1.1/annotations.zip!/" />
-      <root url="jar://$PROJECT_DIR$/browser/build/intermediates/exploded-aar/com.android.support/support-media-compat/25.1.1/annotations.zip!/" />
-      <root url="jar://$PROJECT_DIR$/expandableListFragment/build/intermediates/exploded-aar/com.android.support/support-media-compat/25.1.1/annotations.zip!/" />
-      <root url="jar://$PROJECT_DIR$/frameNet/build/intermediates/exploded-aar/com.android.support/support-media-compat/25.1.1/annotations.zip!/" />
-      <root url="jar://$PROJECT_DIR$/predicateMatrix/build/intermediates/exploded-aar/com.android.support/support-media-compat/25.1.1/annotations.zip!/" />
-      <root url="jar://$PROJECT_DIR$/propbank/build/intermediates/exploded-aar/com.android.support/support-media-compat/25.1.1/annotations.zip!/" />
-      <root url="jar://$PROJECT_DIR$/verbNet/build/intermediates/exploded-aar/com.android.support/support-media-compat/25.1.1/annotations.zip!/" />
-      <root url="jar://$PROJECT_DIR$/wordNet/build/intermediates/exploded-aar/com.android.support/support-media-compat/25.1.1/annotations.zip!/" />
-      <root url="jar://$PROJECT_DIR$/xNet/build/intermediates/exploded-aar/com.android.support/support-media-compat/25.1.1/annotations.zip!/" />
+      <root url="jar:///mnt/data2/devel/android-sqlunet-as/SqlUNet/bNC/build/intermediates/exploded-aar/com.android.support/support-media-compat/25.1.1/annotations.zip!/" />
+      <root url="jar:///mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/build/intermediates/exploded-aar/com.android.support/support-media-compat/25.1.1/annotations.zip!/" />
+      <root url="jar:///mnt/data2/devel/android-sqlunet-as/SqlUNet/expandableListFragment/build/intermediates/exploded-aar/com.android.support/support-media-compat/25.1.1/annotations.zip!/" />
+      <root url="jar:///mnt/data2/devel/android-sqlunet-as/SqlUNet/frameNet/build/intermediates/exploded-aar/com.android.support/support-media-compat/25.1.1/annotations.zip!/" />
+      <root url="jar:///mnt/data2/devel/android-sqlunet-as/SqlUNet/predicateMatrix/build/intermediates/exploded-aar/com.android.support/support-media-compat/25.1.1/annotations.zip!/" />
+      <root url="jar:///mnt/data2/devel/android-sqlunet-as/SqlUNet/propbank/build/intermediates/exploded-aar/com.android.support/support-media-compat/25.1.1/annotations.zip!/" />
+      <root url="jar:///mnt/data2/devel/android-sqlunet-as/SqlUNet/verbNet/build/intermediates/exploded-aar/com.android.support/support-media-compat/25.1.1/annotations.zip!/" />
+      <root url="jar:///mnt/data2/devel/android-sqlunet-as/SqlUNet/wordNet/build/intermediates/exploded-aar/com.android.support/support-media-compat/25.1.1/annotations.zip!/" />
+      <root url="jar:///mnt/data2/devel/android-sqlunet-as/SqlUNet/xNet/build/intermediates/exploded-aar/com.android.support/support-media-compat/25.1.1/annotations.zip!/" />
     </ANNOTATIONS>
     <CLASSES>
-      <root url="jar://$PROJECT_DIR$/bNC/build/intermediates/exploded-aar/com.android.support/support-media-compat/25.1.1/jars/classes.jar!/" />
-      <root url="file://$PROJECT_DIR$/bNC/build/intermediates/exploded-aar/com.android.support/support-media-compat/25.1.1/res" />
+      <root url="jar:///mnt/data2/devel/android-sqlunet-as/SqlUNet/bNC/build/intermediates/exploded-aar/com.android.support/support-media-compat/25.1.1/jars/classes.jar!/" />
+      <root url="file:///mnt/data2/devel/android-sqlunet-as/SqlUNet/bNC/build/intermediates/exploded-aar/com.android.support/support-media-compat/25.1.1/res" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>
-      <root url="jar:///opt/androidstudio/sdk/extras/android/m2repository/com/android/support/support-media-compat/25.1.1/support-media-compat-25.1.1-sources.jar!/" />
-      <root url="jar:///opt/androidstudio/sdk/extras/android/m2repository/com/android/support/support-media-compat/25.1.1/support-media-compat-25.1.1-sources.jar!/" />
-      <root url="jar:///opt/androidstudio/sdk/extras/android/m2repository/com/android/support/support-media-compat/25.1.1/support-media-compat-25.1.1-sources.jar!/" />
-      <root url="jar:///opt/androidstudio/sdk/extras/android/m2repository/com/android/support/support-media-compat/25.1.1/support-media-compat-25.1.1-sources.jar!/" />
-      <root url="jar:///opt/androidstudio/sdk/extras/android/m2repository/com/android/support/support-media-compat/25.1.1/support-media-compat-25.1.1-sources.jar!/" />
-      <root url="jar:///opt/androidstudio/sdk/extras/android/m2repository/com/android/support/support-media-compat/25.1.1/support-media-compat-25.1.1-sources.jar!/" />
-      <root url="jar:///opt/androidstudio/sdk/extras/android/m2repository/com/android/support/support-media-compat/25.1.1/support-media-compat-25.1.1-sources.jar!/" />
-      <root url="jar:///opt/androidstudio/sdk/extras/android/m2repository/com/android/support/support-media-compat/25.1.1/support-media-compat-25.1.1-sources.jar!/" />
-      <root url="jar:///opt/androidstudio/sdk/extras/android/m2repository/com/android/support/support-media-compat/25.1.1/support-media-compat-25.1.1-sources.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../../androidstudio/sdk/extras/android/m2repository/com/android/support/support-media-compat/25.1.1/support-media-compat-25.1.1-sources.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../../androidstudio/sdk/extras/android/m2repository/com/android/support/support-media-compat/25.1.1/support-media-compat-25.1.1-sources.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../../androidstudio/sdk/extras/android/m2repository/com/android/support/support-media-compat/25.1.1/support-media-compat-25.1.1-sources.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../../androidstudio/sdk/extras/android/m2repository/com/android/support/support-media-compat/25.1.1/support-media-compat-25.1.1-sources.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../../androidstudio/sdk/extras/android/m2repository/com/android/support/support-media-compat/25.1.1/support-media-compat-25.1.1-sources.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../../androidstudio/sdk/extras/android/m2repository/com/android/support/support-media-compat/25.1.1/support-media-compat-25.1.1-sources.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../../androidstudio/sdk/extras/android/m2repository/com/android/support/support-media-compat/25.1.1/support-media-compat-25.1.1-sources.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../../androidstudio/sdk/extras/android/m2repository/com/android/support/support-media-compat/25.1.1/support-media-compat-25.1.1-sources.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../../androidstudio/sdk/extras/android/m2repository/com/android/support/support-media-compat/25.1.1/support-media-compat-25.1.1-sources.jar!/" />
     </SOURCES>
   </library>
 </component>
