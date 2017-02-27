@@ -6,11 +6,6 @@
           android:versionCode="1"
           android:versionName="1.0">
 
-	<uses-sdk
-		android:minSdkVersion="17"
-		android:targetSdkVersion="25"
-		tools:ignore="GradleOverrides"/>
-
 	<uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
 	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
 	<uses-permission android:name="android.permission.INTERNET"/>

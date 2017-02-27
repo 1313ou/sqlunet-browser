@@ -48,7 +48,7 @@ public class HomeFragment extends NavigableFragment
 			{
 				float x = event.getX();
 				float y = event.getY();
-				// Log.i(TAG, "TOUCH x=" + x + " y=" + y);
+				//Log.i(TAG, "TOUCH x=" + x + " y=" + y);
 
 				Rect rect = new Rect();
 				rect.left = image.getLeft();
@@ -57,13 +57,13 @@ public class HomeFragment extends NavigableFragment
 				rect.right = image.getRight();
 				float w = rect.width();
 				float h = rect.height();
-				float r = (w + h) / 4;
-				float cx = w / 2;
-				float cy = h / 2;
+				float r = Math.min(w, h) / 2;
+				float cx = rect.centerX();
+				float cy = rect.centerY();
 				float d = distance(cx, cy, x, y);
 				double a = arg(cx, cy, x, y);
 
-				// Log.i(TAG, "view rect=" + rect);
+				// Log.i(TAG, "image rect=" + rect);
 				// Log.i(TAG, "center " + cx + "," + cy);
 				// Log.i(TAG, "dist=" + d);
 				// Log.i(TAG, "arg=" + a);
