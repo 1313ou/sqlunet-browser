@@ -48,13 +48,17 @@ public class HomeFragment extends NavigableFragment
 			{
 				float x = event.getX();
 				float y = event.getY();
-				//Log.i(TAG, "TOUCH x=" + x + " y=" + y);
+				Log.i(TAG, "TOUCH x=" + x + " y=" + y);
 
 				Rect rect = new Rect();
 				rect.left = image.getLeft();
 				rect.top = image.getTop();
 				rect.bottom = image.getBottom();
 				rect.right = image.getRight();
+
+				x += rect.left;
+				y += rect.top;
+
 				float w = rect.width();
 				float h = rect.height();
 				float r = Math.min(w, h) / 2;

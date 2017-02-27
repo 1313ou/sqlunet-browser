@@ -36,7 +36,7 @@ res_splash=([mdpi]=144 [hdpi]=192 [xhdpi]=288 [xxhdpi]=384 [xxxhdpi]=576)
 list_splash="ic_splash.svg"
 
 declare -A res_supersplash
-res_supersplash=([mdpi]=512 [hdpi]=768 [xhdpi]=1024 [xxhdpi]=1536 [xxxhdpi]=2048)
+res_supersplash=([mdpi]=400 [hdpi]=600 [xhdpi]=800 [xxhdpi]=1200 [xxxhdpi]=1600)
 list_supersplash="sqlunet.svg"
 
 declare -A res_arrow
@@ -190,7 +190,7 @@ echo "${svg} -> ${d}/${png} @ resolution ${r}"
 inkscape ${svg} --export-png=${d}/${png} -h${r} > /dev/null 2> /dev/null
 
 svg=sqlunet.svg
-r=512
+r=384
 png="${svg%.svg}.png"
 echo "${svg} -> ${d}/${png} @ resolution ${r}"
 inkscape ${svg} --export-png=${d}/${png} -h${r} > /dev/null 2> /dev/null
