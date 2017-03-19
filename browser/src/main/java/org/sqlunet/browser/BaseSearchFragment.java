@@ -167,17 +167,18 @@ abstract public class BaseSearchFragment extends NavigableFragment implements Se
 		actionBar.setBackgroundDrawable(new ColorDrawable(color));
 
 		// action bar customized view
-		@SuppressLint("InflateParams")
-		final View actionBarView = LayoutInflater.from(context).inflate(R.layout.actionbar_custom, null);
-
-		// spinner
-		this.spinner = (Spinner) actionBarView.findViewById(R.id.spinner);
+		View customView = actionBar.getCustomView();
+		if (customView == null)
+		{
+			customView = LayoutInflater.from(context).inflate(R.layout.actionbar_custom, null);
+			actionBar.setCustomView(customView);
+		}
+		this.spinner = (Spinner) customView.findViewById(R.id.spinner);
 
 		// spinner
 		setupSpinner(context);
 
 		// set up the action bar to show a custom layout
-		actionBar.setCustomView(actionBarView);
 		actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM | ActionBar.DISPLAY_SHOW_HOME | ActionBar.DISPLAY_SHOW_TITLE | ActionBar.DISPLAY_HOME_AS_UP);
 		// actionBar.setDisplayShowCustomEnabled(true);
 		// actionBar.setDisplayShowHomeEnabled(true);

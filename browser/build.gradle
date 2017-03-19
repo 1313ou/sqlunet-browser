@@ -30,8 +30,9 @@ dependencies {
     compile project(':verbNet')
     compile project(':wordNet')
     compile project(':xNet')
-    compile 'com.android.support:support-v13:25.1.1'
-    compile 'com.android.support:appcompat-v7:25.1.1'
+    // compile project(':support')
+    compile 'com.android.support:support-v13:25.3.0'
+    compile 'com.android.support:appcompat-v7:25.3.0'
 
     // Required for local unit tests (JUnit 4 framework)
     testCompile 'junit:junit:4.12'
@@ -39,7 +40,7 @@ dependencies {
     // Required for instrumented tests
     // DOES NOT WORK androidTestCompile project(path: ':expandableListFragment', configuration: 'androidTestCompile')
     androidTestCompile 'junit:junit:4.12'
-    androidTestCompile 'com.android.support:support-annotations:25.1.1'
+    androidTestCompile 'com.android.support:support-annotations:25.3.0'
     androidTestCompile 'com.android.support.test:runner:0.5'
     androidTestCompile 'com.android.support.test.espresso:espresso-core:2.2.2'
     androidTestCompile 'com.android.support.test.espresso:espresso-web:2.2.2'
