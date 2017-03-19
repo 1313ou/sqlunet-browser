@@ -30,7 +30,7 @@ dependencies {
     compile project(':verbNet')
     compile project(':wordNet')
     compile project(':xNet')
-    // compile project(':support')
+    compile project(':support')
     compile 'com.android.support:support-v13:25.3.0'
     compile 'com.android.support:appcompat-v7:25.3.0'
 
@@ -45,4 +45,5 @@ dependencies {
     androidTestCompile 'com.android.support.test.espresso:espresso-core:2.2.2'
     androidTestCompile 'com.android.support.test.espresso:espresso-web:2.2.2'
     androidTestCompile 'com.android.support.test.uiautomator:uiautomator-v18:2.1.2'
+    compile project(path: ':support')
 }
