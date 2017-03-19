@@ -202,7 +202,7 @@ public class SearchTextFragment extends BaseSearchFragment
 		args.putStringArray(ProviderArgs.ARG_QUERYHIDDENITEMS, hiddenColumns);
 		args.putString(ProviderArgs.ARG_QUERYFILTER, target + " MATCH ?");
 		args.putString(ProviderArgs.ARG_QUERYARG, query);
-		args.putInt(ProviderArgs.ARG_QUERYLAYOUT, R.layout.item_table1);
+		args.putInt(ProviderArgs.ARG_QUERYLAYOUT, R.layout.item_search_text);
 		args.putString(ProviderArgs.ARG_QUERYDATABASE, database);
 
 		// fragment

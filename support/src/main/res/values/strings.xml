@@ -5,4 +5,7 @@
 	<string name="title_donate_3">Donate 3</string>
 	<string name="title_donate_4">Donate 4</string>
 	<string name="error_cant_buy">Can\'t buy product</string>
+
+	<string name="title_treebolicwordnet">Treebolic WordNet</string>
+	<string name="market_fail">No handler for </string>
 </resources>

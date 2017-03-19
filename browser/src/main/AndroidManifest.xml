@@ -355,6 +355,26 @@
 				android:value=".MainActivity"/>
 		</activity>
 
+		<activity
+			android:name="org.sqlunet.support.DonateActivity"
+			android:label="@string/title_activity_donate"
+			android:parentActivityName=".MainActivity"
+			tools:ignore="UnusedAttribute">
+			<meta-data
+				android:name="android.support.PARENT_ACTIVITY"
+				android:value=".MainActivity"/>
+		</activity>
+
+		<activity
+			android:name="org.sqlunet.support.OtherActivity"
+			android:label="@string/title_activity_other"
+			android:parentActivityName=".MainActivity"
+			tools:ignore="UnusedAttribute">
+			<meta-data
+				android:name="android.support.PARENT_ACTIVITY"
+				android:value=".MainActivity"/>
+		</activity>
+
 		<receiver
 			android:name="org.sqlunet.browser.config.Killer"
 			android:enabled="true"

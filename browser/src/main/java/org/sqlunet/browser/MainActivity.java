@@ -17,6 +17,8 @@ import org.sqlunet.browser.config.Status;
 import org.sqlunet.browser.config.StorageActivity;
 import org.sqlunet.settings.Settings;
 import org.sqlunet.settings.StorageSettings;
+import org.sqlunet.support.DonateActivity;
+import org.sqlunet.support.OtherActivity;
 
 public class MainActivity extends AppCompatActivity // implements NavigationFragment.Listener
 {
@@ -155,6 +157,16 @@ public class MainActivity extends AppCompatActivity // implements NavigationFrag
 
 			case R.id.action_about:
 				intent = new Intent(activity, AboutActivity.class);
+				break;
+
+			// support
+
+			case R.id.action_donate:
+				intent = new Intent(activity, DonateActivity.class);
+				break;
+
+			case R.id.action_other:
+				intent = new Intent(activity, OtherActivity.class);
 				break;
 
 			// lifecycle

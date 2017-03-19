@@ -156,6 +156,8 @@ public class TextFragment extends AbstractTableFragment
 	@Override
 	public void onListItemClick(final ListView listView, final View view, final int position, final long id)
 	{
+		super.onListItemClick(listView, view, position, id);
+
 		Log.d(TAG, "CLICK id=" + id + " pos=" + position);
 
 		// cursor
