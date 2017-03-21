@@ -109,6 +109,5 @@
     <orderEntry type="library" exported="" name="support-vector-drawable-25.3.0" level="project" />
     <orderEntry type="module" module-name="xNet" exported="" />
     <orderEntry type="module" module-name="treeView" exported="" />
-    <orderEntry type="library" exported="" name="xerces-for-android" level="project" />
   </component>
 </module>
