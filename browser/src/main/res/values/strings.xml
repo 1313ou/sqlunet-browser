@@ -192,8 +192,8 @@
 	<string-array name="title_sections">
 		<item>@string/title_home_section</item>
 		<item>@string/title_browse_section</item>
-		<item>@string/title_textsearch_section</item>
 		<item>@string/title_predicatematrix_section</item>
+		<item>@string/title_textsearch_section</item>
 		<item>@string/title_status_section</item>
 		<item>@string/title_setup_section</item>
 		<item>@string/title_storage_section</item>

@@ -4,8 +4,8 @@
 	<!-- navigation sections
 	HOME
 	BROWSE
-	TS
 	PM
+	TS
 	STATUS
 	SETUP
 	STORAGE
@@ -17,8 +17,8 @@
 	<integer-array name="drawer_icons">
 		<item>@drawable/ic_home</item>
 		<item>@drawable/ic_search_browse</item>
-		<item>@drawable/ic_search_text</item>
 		<item>@drawable/ic_search_pm</item>
+		<item>@drawable/ic_search_text</item>
 		<item>@drawable/ic_status</item>
 		<item>@drawable/ic_setup</item>
 		<item>@drawable/ic_storage</item>
