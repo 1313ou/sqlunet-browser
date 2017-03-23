@@ -74,36 +74,35 @@ public class SimpleDownloadServiceFragment extends BaseDownloadFragment
 		@Override
 		public void onReceive(final Context context, final Intent intent)
 		{
-			Log.d(TAG, "RECEIVE");
+			//Log.d(TAG, "RECEIVE");
 
 			switch (intent.getStringExtra(SimpleDownloaderService.EVENT))
 			{
 				case SimpleDownloaderService.EVENT_START:
 					Log.d(TAG, "START");
-					//result = intent.getBooleanExtra(SimpleDownloaderService.EVENT_START_HANDLER);
 					SimpleDownloadServiceFragment.downloading = true;
-					fire(++SimpleDownloadServiceFragment.notificationId, false, false);
+					fireNotification(++SimpleDownloadServiceFragment.notificationId, false, false);
 					break;
 
 				case SimpleDownloaderService.EVENT_UPDATE:
-					Log.d(TAG, "UPDATE");
 					progressDownloaded = intent.getIntExtra(SimpleDownloaderService.EVENT_UPDATE_DOWNLOADED, 0);
 					progressTotal = intent.getIntExtra(SimpleDownloaderService.EVENT_UPDATE_TOTAL, 0);
+					Log.d(TAG, "UPDATE " + progressDownloaded + '/' + progressTotal);
 					break;
 
 				case SimpleDownloaderService.EVENT_FINISH:
-					Log.d(TAG, "FINISH " + success);
 					int id = intent.getIntExtra(SimpleDownloaderService.EVENT_FINISH_ID, 0);
-					SimpleDownloadServiceFragment.downloading = false;
-
 					if (id == SimpleDownloadServiceFragment.downloadId)
 					{
+						SimpleDownloadServiceFragment.downloading = false;
 						success = intent.getBooleanExtra(SimpleDownloaderService.EVENT_FINISH_RESULT, false);
 						exception = intent.getStringExtra(SimpleDownloaderService.EVENT_FINISH_EXCEPTION);
+						Log.d(TAG, "FINISH " + success);
 
-						fire(SimpleDownloadServiceFragment.notificationId, true, success);
+						// notification
+						fireNotification(SimpleDownloadServiceFragment.notificationId, true, success);
 
-						// fire on done
+						// fireNotification on done
 						onDone(success);
 					}
 
@@ -117,7 +116,7 @@ public class SimpleDownloadServiceFragment extends BaseDownloadFragment
 	{
 		super.onResume();
 		Log.d(TAG, "REGISTER RECEIVER");
-		LocalBroadcastManager.getInstance(getActivity()).registerReceiver(broadcastReceiver, new IntentFilter(SimpleDownloaderService.INTENT_FILTER));
+		LocalBroadcastManager.getInstance(getActivity()).registerReceiver(this.broadcastReceiver, new IntentFilter(SimpleDownloaderService.INTENT_FILTER));
 	}
 
 	@Override
@@ -125,7 +124,7 @@ public class SimpleDownloadServiceFragment extends BaseDownloadFragment
 	{
 		super.onPause();
 		Log.d(TAG, "UNREGISTER RECEIVER");
-		LocalBroadcastManager.getInstance(getActivity()).unregisterReceiver(broadcastReceiver);
+		LocalBroadcastManager.getInstance(getActivity()).unregisterReceiver(this.broadcastReceiver);
 	}
 
 	/**
@@ -232,7 +231,7 @@ public class SimpleDownloadServiceFragment extends BaseDownloadFragment
 	 * @param finish  has finished
 	 * @param success true if successful
 	 */
-	private void fire(int id, final boolean finish, final boolean success)
+	private void fireNotification(int id, final boolean finish, final boolean success)
 	{
 		final String from = Uri.parse(this.downloadUrl).getHost();
 		final String to = this.destFile.getName();

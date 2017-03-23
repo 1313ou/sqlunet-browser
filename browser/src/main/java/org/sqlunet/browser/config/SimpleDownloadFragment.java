@@ -192,7 +192,7 @@ public class SimpleDownloadFragment extends BaseDownloadFragment implements Simp
 	 * @param finish  has finished
 	 * @param success true if successful
 	 */
-	private void setNotification(int id, final boolean finish, final boolean success)
+	private void fireNotification(int id, final boolean finish, final boolean success)
 	{
 		final String from = Uri.parse(this.downloadUrl).getHost();
 		final String to = this.destFile.getName();
@@ -229,7 +229,7 @@ public class SimpleDownloadFragment extends BaseDownloadFragment implements Simp
 	@Override
 	public void onDownloadStart()
 	{
-		setNotification(++notificationId, false, false);
+		fireNotification(++notificationId, false, false);
 	}
 
 	/**
@@ -248,7 +248,7 @@ public class SimpleDownloadFragment extends BaseDownloadFragment implements Simp
 		{
 			this.success = result;
 
-			setNotification(notificationId, true, result);
+			fireNotification(notificationId, true, result);
 
 			Log.d(TAG, "onDownloadFinish: " + this.success);
 

@@ -4,7 +4,6 @@ import android.app.IntentService;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
 
@@ -111,10 +110,13 @@ public class SimpleDownloaderService extends IntentService
 			final String action = intent.getAction();
 			if (SimpleDownloaderService.ACTION_DOWNLOAD.equals(action))
 			{
+				/*
+				TODO
 				final IntentFilter filter = new IntentFilter(StopReceiver.ACTION_STOP);
 				filter.addCategory(Intent.CATEGORY_DEFAULT);
 				StopReceiver receiver = new StopReceiver();
 				registerReceiver(receiver, filter);
+				*/
 
 				// arguments
 				this.fromUrl = intent.getStringExtra(SimpleDownloaderService.ARG_FROMURL);
@@ -157,6 +159,13 @@ public class SimpleDownloaderService extends IntentService
 					this.exception = e;
 					Log.e(TAG, "Exception while downloading, " + e.getMessage());
 					broadcast(EVENT, EVENT_FINISH, EVENT_FINISH_ID, this.id, EVENT_FINISH_RESULT, false, EVENT_FINISH_EXCEPTION, exception.getMessage());
+				}
+				finally
+				{
+					/*
+					unregisterReceiver(receiver);
+					stopSelf();
+					*/
 				}
 			}
 		}

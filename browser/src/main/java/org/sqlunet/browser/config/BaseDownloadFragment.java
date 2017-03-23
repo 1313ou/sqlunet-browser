@@ -247,13 +247,6 @@ abstract class BaseDownloadFragment extends Fragment implements View.OnClickList
 		// download dest data
 		this.destFile = new File(toArg != null ? toArg : StorageSettings.getDbDownloadTarget(this.context));
 
-		/*
-		final File destDir = new File(StorageSettings.getDataDir(this.context));
-		final Uri downloadUri = Uri.parse(this.downloadUrl);
-		final String filename = downloadUri.getLastPathSegment(); // Storage.DBFILE
-		this.destFile = new File(destDir, filename);
-		*/
-
 		// inits
 		this.progress = new Progress();
 		this.status = 0;
@@ -262,7 +255,7 @@ abstract class BaseDownloadFragment extends Fragment implements View.OnClickList
 	@Override
 	public View onCreateView(final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState)
 	{
-		// Log.d(TAG, "onCreateView " + savedInstanceState);
+		Log.d(TAG, "onCreateView " + savedInstanceState);
 
 		// view
 		final View view = inflater.inflate(R.layout.fragment_download, container, false);
@@ -405,62 +398,93 @@ abstract class BaseDownloadFragment extends Fragment implements View.OnClickList
 	public void onResume()
 	{
 		super.onResume();
-		if (this.fromSavedInstance)
-		{
-			startObserver();
-		}
+
+		Log.d(TAG, "START OBSERVER");
+		startObserver();
 	}
+
+	@Override
+	public void onPause()
+	{
+		super.onPause();
+		Log.d(TAG, "STOP  OBSERVER");
+		stopObserver();
+	}
+
+	private Observer observer;
 
 	/**
 	 * Start observer thread
 	 */
 	private void startObserver()
 	{
-		new Thread(new Runnable()
+		this.observer = new Observer();
+		new Thread(this.observer).start();
+	}
+
+	/**
+	 * Stop observer thread
+	 */
+	private void stopObserver()
+	{
+		this.observer.cancel = true;
+	}
+
+	/**
+	 * Observer
+	 */
+	class Observer implements Runnable
+	{
+		boolean cancel = false;
+
+		@Override
+		public void run()
 		{
-			@Override
-			public void run()
+			Log.d(TAG, "OBSERVER IS ALIVE");
+			while (true)
 			{
-				Log.d(TAG, "OBSERVER IS ALIVE");
-				while (true)
+				// terminate if fragment is not in resumed state
+				if (!isResumed())
 				{
-					// terminate if fragment is not in resumed state
-					if (!isResumed())
-					{
-						break;
-					}
-
-					// observerUpdate status
-					BaseDownloadFragment.this.status = getStatus(BaseDownloadFragment.this.progress);
-					Log.d(TAG, "STATUS " + Long.toHexString(BaseDownloadFragment.this.status));
-
-					// observerUpdate UI if fragment is added to activity
-					observerUpdate();
-
-					// exit because task has ended
-					if (Status.finished(BaseDownloadFragment.this.status))
-					{
-						if (Status.STATUS_FAILED.test(BaseDownloadFragment.this.status))
-						{
-							cancel();
-						}
-						//noinspection BreakStatement
-						break;
-					}
-
-					// sleep
-					try
-					{
-						Thread.sleep(2000);
-					}
-					catch (final InterruptedException e)
-					{
-						//
-					}
+					break;
 				}
-				Log.d(TAG, "OBSERVER DIES");
+
+				// observerUpdate status
+				BaseDownloadFragment.this.status = getStatus(BaseDownloadFragment.this.progress);
+				Log.d(TAG, "STATUS " + Long.toHexString(BaseDownloadFragment.this.status));
+
+				// observerUpdate UI if fragment is added to activity
+				observerUpdate();
+
+				// exit because task was cancelled
+				if (cancel)
+				{
+					break;
+				}
+
+				// exit because task has ended
+				if (Status.finished(BaseDownloadFragment.this.status))
+				{
+					if (Status.STATUS_FAILED.test(BaseDownloadFragment.this.status))
+					{
+						cancel();
+					}
+					//noinspection BreakStatement
+					break;
+				}
+
+				// sleep
+				try
+				{
+					Thread.sleep(2000);
+				}
+				catch (final InterruptedException e)
+				{
+					//
+				}
 			}
-		}).start();
+			Log.d(TAG, "OBSERVER DIES");
+		}
 	}
 
 	/**
