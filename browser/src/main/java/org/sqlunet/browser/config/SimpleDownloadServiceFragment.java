@@ -103,7 +103,6 @@ public class SimpleDownloadServiceFragment extends BaseDownloadFragment
 
 						fire(SimpleDownloadServiceFragment.notificationId, true, success);
 
-
 						// fire on done
 						onDone(success);
 					}
@@ -142,8 +141,6 @@ public class SimpleDownloadServiceFragment extends BaseDownloadFragment
 			{
 				final String from = this.downloadUrl;
 				final String to = this.destFile.getAbsolutePath();
-				//final String from = StorageSettings.getDbDownloadSource(getBaseContext());
-				//final String to = StorageSettings.getDbDownloadTarget(getBaseContext());
 
 				// starting download
 				this.success = false;
@@ -164,6 +161,29 @@ public class SimpleDownloadServiceFragment extends BaseDownloadFragment
 		}
 		throw new RuntimeException("Already downloading");
 	}
+
+	/**
+	 * Cancel download
+	 */
+	@Override
+	protected void cancel()
+	{
+		System.out.println("CANCEL");
+		SimpleDownloadServiceFragment.downloading = false;
+		final Intent intent = new Intent(getActivity(), SimpleDownloaderService.class);
+		getActivity().stopService(intent);  // execute the Service.onDestroy() method immediately but then let the code in onHandleIntent() finish all the way through before destroying the service.
+	}
+
+	/**
+	 * Kill task (called from notification)
+	 */
+	protected void kill()
+	{
+		System.out.println("KILL");
+		SimpleDownloaderService.kill(getActivity());
+	}
+
+	// S T A T U S
 
 	/**
 	 * Download status
@@ -202,24 +222,6 @@ public class SimpleDownloadServiceFragment extends BaseDownloadFragment
 		return null;
 	}
 
-	/**
-	 * Cancel download
-	 */
-	@Override
-	protected void cancel()
-	{
-		System.out.println("CANCEL");
-		SimpleDownloadServiceFragment.downloading = false;
-	}
-
-	/**
-	 * Kill task (called from notification)
-	 */
-	static public void kill()
-	{
-		System.out.println("KILL");
-		SimpleDownloadServiceFragment.downloading = false;
-	}
 
 	// E V E N T S
 
@@ -251,13 +253,13 @@ public class SimpleDownloadServiceFragment extends BaseDownloadFragment
 			builder.addAction(R.drawable.error, context.getString(R.string.action_cancel), pendingIntent);
 		}
 
-		// notify
+		// notification
 		final Notification notification = builder.build();
 
 		// gets an instance of the NotificationManager service
 		final NotificationManager manager = (NotificationManager) this.context.getSystemService(Context.NOTIFICATION_SERVICE);
 
-		// issue notify
+		// issue notification
 		manager.notify(id, notification);
 	}
 }

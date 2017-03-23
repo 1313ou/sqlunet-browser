@@ -1,8 +1,10 @@
 package org.sqlunet.browser.config;
 
 import android.app.IntentService;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
-import android.os.Handler;
+import android.content.IntentFilter;
 import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
 
@@ -39,8 +41,6 @@ public class SimpleDownloaderService extends IntentService
 	static public final String EVENT = "event";
 
 	static public final String EVENT_START = "start";
-
-	static public final String EVENT_START_HANDLER = "start_handler";
 
 	static public final String EVENT_UPDATE = "update";
 
@@ -101,6 +101,8 @@ public class SimpleDownloaderService extends IntentService
 		this.exception = null;
 	}
 
+	// M A I N   E N T R Y
+
 	@Override
 	protected void onHandleIntent(final Intent intent)
 	{
@@ -109,13 +111,18 @@ public class SimpleDownloaderService extends IntentService
 			final String action = intent.getAction();
 			if (SimpleDownloaderService.ACTION_DOWNLOAD.equals(action))
 			{
+				final IntentFilter filter = new IntentFilter(StopReceiver.ACTION_STOP);
+				filter.addCategory(Intent.CATEGORY_DEFAULT);
+				StopReceiver receiver = new StopReceiver();
+				registerReceiver(receiver, filter);
+
 				// arguments
 				this.fromUrl = intent.getStringExtra(SimpleDownloaderService.ARG_FROMURL);
 				this.toFile = intent.getStringExtra(SimpleDownloaderService.ARG_TOFILE);
 				this.id = intent.getIntExtra(SimpleDownloaderService.ARG_CODE, 0);
 
 				// fire start event
-				broadcast(EVENT, EVENT_START, EVENT_START_HANDLER, handler);
+				broadcast(EVENT, EVENT_START);
 
 				// do job
 				try
@@ -155,50 +162,13 @@ public class SimpleDownloaderService extends IntentService
 		}
 	}
 
-	private void broadcast(final Object... args)
-	{
-		final Intent broadcastIntent = new Intent(INTENT_FILTER);
-		for (int i = 0; i < args.length; i = i + 2)
-		{
-			final String key = (String) args[i];
-			final Object value = args[i + 1];
-
-			// string
-			if (value instanceof String)
-			{
-				broadcastIntent.putExtra(key, (String) value);
-			}
-			// int
-			else if (value instanceof Integer)
-			{
-				broadcastIntent.putExtra(key, (int) value);
-			}
-			// boolean
-			else if (value instanceof Boolean)
-			{
-				broadcastIntent.putExtra(key, (boolean) value);
-			}
-			// Handler
-			/*
-			else if (value instanceof Handler)
-			{
-				broadcastIntent.putExtra(key, (Handler) value);
-			}
-			*/
-		}
-		LocalBroadcastManager.getInstance(this).sendBroadcast(broadcastIntent);
-	}
-
-	private Handler handler = new Handler();
+	// J O B
 
 	/**
-	 * Cancel
+	 * Download job
+	 *
+	 * @throws Exception exception
 	 */
-	void cancel()
-	{
-		this.cancel = true;
-	}
-
 	@SuppressWarnings("boxing")
 	private void job() throws Exception
 	{
@@ -315,15 +285,70 @@ public class SimpleDownloaderService extends IntentService
 		}
 	}
 
-	/**
-	 * Get Exception
-	 *
-	 * @return exception
-	 */
-	synchronized public Exception getException()
+	// F I R E   E V E N T S
+
+	private void broadcast(final Object... args)
 	{
-		final Exception result = this.exception;
-		this.exception = null;
-		return result;
+		final Intent broadcastIntent = new Intent(INTENT_FILTER);
+		for (int i = 0; i < args.length; i = i + 2)
+		{
+			final String key = (String) args[i];
+			final Object value = args[i + 1];
+
+			// string
+			if (value instanceof String)
+			{
+				broadcastIntent.putExtra(key, (String) value);
+			}
+			// int
+			else if (value instanceof Integer)
+			{
+				broadcastIntent.putExtra(key, (int) value);
+			}
+			// boolean
+			else if (value instanceof Boolean)
+			{
+				broadcastIntent.putExtra(key, (boolean) value);
+			}
+			// Handler
+			/*
+			else if (value instanceof Handler)
+			{
+				broadcastIntent.putExtra(key, (Handler) value);
+			}
+			*/
+		}
+		LocalBroadcastManager.getInstance(this).sendBroadcast(broadcastIntent);
+	}
+
+	/**
+	 * Cancel
+	 */
+	@Override
+	public void onDestroy()
+	{
+		super.onDestroy();
+		this.cancel = true;
+	}
+
+	// A L T
+	// TODO
+
+	public class StopReceiver extends BroadcastReceiver
+	{
+		public static final String ACTION_STOP = "stop";
+
+		@Override
+		public void onReceive(final Context context, Intent intent)
+		{
+			SimpleDownloaderService.this.cancel = true;
+		}
+	}
+
+	static public void kill(final Context context)
+	{
+		final Intent intent = new Intent();
+		intent.setAction(StopReceiver.ACTION_STOP);
+		context.sendBroadcast(intent);
 	}
 }

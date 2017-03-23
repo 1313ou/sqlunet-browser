@@ -10,22 +10,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="dbe7534c-3086-4b17-848a-f5676a7f84bd" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/java/org/sqlunet/browser/config/SimpleDownloadServiceFragment.java" />
-      <change type="NEW" beforePath="" afterPath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/java/org/sqlunet/browser/config/SimpleDownloaderService.java" />
+      <change type="MODIFICATION" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/.idea/misc.xml" afterPath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/.idea/misc.xml" />
       <change type="MODIFICATION" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/.idea/workspace.xml" afterPath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/bNC/bNC.iml" afterPath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/bNC/bNC.iml" />
-      <change type="MODIFICATION" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/AndroidManifest.xml" afterPath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/AndroidManifest.xml" />
-      <change type="MODIFICATION" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/java/org/sqlunet/browser/config/DownloadActivity.java" afterPath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/java/org/sqlunet/browser/config/DownloadActivity.java" />
-      <change type="MODIFICATION" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/java/org/sqlunet/browser/config/SimpleDownloadFragment.java" afterPath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/java/org/sqlunet/browser/config/SimpleDownloadFragment.java" />
-      <change type="MODIFICATION" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/values/strings.xml" afterPath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/values/strings.xml" />
-      <change type="MODIFICATION" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/values/strings_settings.xml" afterPath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/values/strings_settings.xml" />
+      <change type="MODIFICATION" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/browser.iml" afterPath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/browser.iml" />
+      <change type="MODIFICATION" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/java/org/sqlunet/browser/config/SimpleDownloadServiceFragment.java" afterPath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/java/org/sqlunet/browser/config/SimpleDownloadServiceFragment.java" />
+      <change type="MODIFICATION" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/java/org/sqlunet/browser/config/SimpleDownloaderService.java" afterPath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/java/org/sqlunet/browser/config/SimpleDownloaderService.java" />
       <change type="MODIFICATION" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/expandableListFragment/expandableListFragment.iml" afterPath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/expandableListFragment/expandableListFragment.iml" />
-      <change type="MODIFICATION" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/frameNet/frameNet.iml" afterPath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/frameNet/frameNet.iml" />
+      <change type="MODIFICATION" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/predicateMatrix/predicateMatrix.iml" afterPath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/predicateMatrix/predicateMatrix.iml" />
       <change type="MODIFICATION" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/propbank/propbank.iml" afterPath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/propbank/propbank.iml" />
       <change type="MODIFICATION" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/support/support.iml" afterPath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/support/support.iml" />
       <change type="MODIFICATION" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/treeView/treeView.iml" afterPath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/treeView/treeView.iml" />
-      <change type="MODIFICATION" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/wordNet/wordNet.iml" afterPath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/wordNet/wordNet.iml" />
-      <change type="MODIFICATION" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/xNet/xNet.iml" afterPath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/xNet/xNet.iml" />
     </list>
     <list id="36f6b5c7-9521-46b4-bf4d-149db941bcca" name="NonPublic" comment="">
       <change type="MODIFICATION" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/support/src/main/res/values/strings-nontranslatable.xml" afterPath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/support/src/main/res/values/strings-nontranslatable.xml" />
@@ -63,7 +58,69 @@
     <favorites_list name="SqlUNet" />
   </component>
   <component name="FileEditorManager">
-    <leaf />
+    <leaf>
+      <file leaf-file-name="SimpleDownloadServiceFragment.java" pinned="false" current-in-tab="true">
+        <entry file="file:///mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/java/org/sqlunet/browser/config/SimpleDownloadServiceFragment.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="281">
+              <caret line="182" column="52" selection-start-line="182" selection-start-column="52" selection-end-line="182" selection-end-column="52" />
+              <folding>
+                <element signature="docComment;class#SimpleDownloadServiceFragment#0" expanded="false" />
+                <element signature="docComment;field#TAG#0;class#SimpleDownloadServiceFragment#0" expanded="false" />
+                <element signature="docComment;field#NOTIFICATION_ID#0;class#SimpleDownloadServiceFragment#0" expanded="false" />
+                <element signature="docComment;field#notificationId#0;class#SimpleDownloadServiceFragment#0" expanded="false" />
+                <element signature="docComment;field#downloadId#0;class#SimpleDownloadServiceFragment#0" expanded="false" />
+                <element signature="docComment;field#success#0;class#SimpleDownloadServiceFragment#0" expanded="false" />
+                <element signature="docComment;field#exception#0;class#SimpleDownloadServiceFragment#0" expanded="false" />
+                <element signature="docComment;field#progressDownloaded#0;class#SimpleDownloadServiceFragment#0" expanded="false" />
+                <element signature="docComment;field#progressTotal#0;class#SimpleDownloadServiceFragment#0" expanded="false" />
+                <element signature="docComment;field#downloading#0;class#SimpleDownloadServiceFragment#0" expanded="false" />
+                <element signature="docComment;field#broadcastReceiver#0;class#SimpleDownloadServiceFragment#0" expanded="false" />
+                <element signature="method#onResume#0;class#SimpleDownloadServiceFragment#0" expanded="false" />
+                <element signature="method#onPause#0;class#SimpleDownloadServiceFragment#0" expanded="false" />
+                <element signature="docComment;method#start#0;class#SimpleDownloadServiceFragment#0" expanded="false" />
+                <element signature="method#start#0;class#SimpleDownloadServiceFragment#0" expanded="false" />
+                <element signature="docComment;method#cancel#0;class#SimpleDownloadServiceFragment#0" expanded="false" />
+                <element signature="docComment;method#getStatus#0;class#SimpleDownloadServiceFragment#0" expanded="false" />
+                <element signature="method#getStatus#0;class#SimpleDownloadServiceFragment#0" expanded="false" />
+                <element signature="docComment;method#getReason#0;class#SimpleDownloadServiceFragment#0" expanded="false" />
+                <element signature="method#getReason#0;class#SimpleDownloadServiceFragment#0" expanded="false" />
+                <element signature="docComment;method#fire#0;class#SimpleDownloadServiceFragment#0" expanded="false" />
+                <element signature="method#fire#0;class#SimpleDownloadServiceFragment#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SimpleDownloaderService.java" pinned="false" current-in-tab="false">
+        <entry file="file:///mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/java/org/sqlunet/browser/config/SimpleDownloaderService.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="476">
+              <caret line="347" column="27" selection-start-line="347" selection-start-column="27" selection-end-line="347" selection-end-column="27" />
+              <folding>
+                <element signature="docComment;class#SimpleDownloaderService#0" expanded="false" />
+                <element signature="docComment;field#CHUNK_SIZE#0;class#SimpleDownloaderService#0" expanded="false" />
+                <element signature="docComment;field#TIMEOUT_S#0;class#SimpleDownloaderService#0" expanded="false" />
+                <element signature="docComment;field#fromUrl#0;class#SimpleDownloaderService#0" expanded="false" />
+                <element signature="docComment;field#toFile#0;class#SimpleDownloaderService#0" expanded="false" />
+                <element signature="docComment;field#id#0;class#SimpleDownloaderService#0" expanded="false" />
+                <element signature="docComment;field#cancel#0;class#SimpleDownloaderService#0" expanded="false" />
+                <element signature="docComment;field#exception#0;class#SimpleDownloaderService#0" expanded="false" />
+                <element signature="docComment;method#SimpleDownloaderService#0;class#SimpleDownloaderService#0" expanded="false" />
+                <element signature="method#SimpleDownloaderService#0;class#SimpleDownloaderService#0" expanded="false" />
+                <element signature="docComment;method#job#0;class#SimpleDownloaderService#0" expanded="false" />
+                <element signature="method#job#0;class#SimpleDownloaderService#0" expanded="false" />
+                <element signature="docComment;method#prerequisite#0;class#SimpleDownloaderService#0" expanded="false" />
+                <element signature="method#prerequisite#0;class#SimpleDownloaderService#0" expanded="false" />
+                <element signature="method#broadcast#0;class#SimpleDownloaderService#0" expanded="false" />
+                <element signature="e#7924#7925#0" expanded="true" />
+                <element signature="e#7975#7976#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -9825,9 +9882,9 @@
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="67" />
+    <option name="x" value="49" />
     <option name="y" value="52" />
-    <option name="width" value="1241" />
+    <option name="width" value="1851" />
     <option name="height" value="1148" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
@@ -9880,6 +9937,11 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scratches" />
+      <pane id="PackagesPane" />
+      <pane id="ProjectPane">
+        <subPane />
+      </pane>
       <pane id="AndroidView">
         <subPane>
           <PATH>
@@ -10026,10 +10088,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scratches" />
-      <pane id="ProjectPane">
-        <subPane />
-      </pane>
       <pane id="Scope">
         <subPane subId="Project Files">
           <PATH>
@@ -10098,7 +10156,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -10633,7 +10690,14 @@
       <option name="project" value="LOCAL" />
       <updated>1490164187364</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="download service&#10;">
+      <created>1490264937772</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1490264937772</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TodoView">
@@ -10646,7 +10710,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="67" y="52" width="1241" height="1148" extended-state="4" />
+    <frame x="49" y="52" width="1851" height="1148" extended-state="4" />
     <editor active="false" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -10662,20 +10726,20 @@
       <window_info id="Captures" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32945737" sideWeight="0.35109532" order="11" side_tool="true" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.31359467" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.19729729" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24599226" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.31879845" sideWeight="0.49544072" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.27610716" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Android Model" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.28875968" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Nl-Palette" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.19729729" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -10742,7 +10806,8 @@
     <MESSAGE value="fixes textsearch item selecg&#10;other app" />
     <MESSAGE value="iab support" />
     <MESSAGE value="reorder drawers&#10;sql fragment guarded" />
-    <option name="LAST_COMMIT_MESSAGE" value="reorder drawers&#10;sql fragment guarded" />
+    <MESSAGE value="download service&#10;" />
+    <option name="LAST_COMMIT_MESSAGE" value="download service&#10;" />
     <option name="PRESELECT_EXISTING_CHANGELIST" value="false" />
   </component>
   <component name="XDebuggerManager">
@@ -10756,7 +10821,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file:///mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/java/org/sqlunet/browser/config/SimpleDownloaderService.java</url>
-          <line>106</line>
+          <line>108</line>
           <properties />
           <option name="timeStamp" value="22" />
         </line-breakpoint>
@@ -11077,7 +11142,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="335">
           <caret line="6175" column="15" selection-start-line="6175" selection-start-column="15" selection-end-line="6175" selection-end-column="15" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -11093,7 +11157,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="423">
           <caret line="386" column="0" selection-start-line="386" selection-start-column="0" selection-end-line="386" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -11106,6 +11169,9 @@
       </provider>
     </entry>
     <entry file="file:///mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/AndroidManifest.xml">
+      <provider editor-type-id="android-manifest">
+        <state />
+      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="175">
           <caret line="407" column="51" selection-start-line="407" selection-start-column="51" selection-end-line="407" selection-end-column="51" />
@@ -11114,9 +11180,6 @@
             <element signature="e#14604#14632#0" expanded="true" />
           </folding>
         </state>
-      </provider>
-      <provider editor-type-id="android-manifest">
-        <state />
       </provider>
     </entry>
     <entry file="file:///mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/values/strings_settings.xml">
@@ -11135,17 +11198,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file:///mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/java/org/sqlunet/browser/config/SimpleDownloadServiceFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="110" column="26" selection-start-line="110" selection-start-column="26" selection-end-line="110" selection-end-column="26" />
-          <folding>
-            <element signature="e#1435#2831#0" expanded="true" />
-            <element signature="e#2830#2831#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file:///mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/java/org/sqlunet/browser/config/DownloadActivity.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="576">
@@ -11156,10 +11208,57 @@
     </entry>
     <entry file="file:///mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/java/org/sqlunet/browser/config/SimpleDownloaderService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="98">
-          <caret line="96" column="36" selection-start-line="96" selection-start-column="36" selection-end-line="96" selection-end-column="36" />
+        <state relative-caret-position="476">
+          <caret line="347" column="27" selection-start-line="347" selection-start-column="27" selection-end-line="347" selection-end-column="27" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="docComment;class#SimpleDownloaderService#0" expanded="false" />
+            <element signature="docComment;field#CHUNK_SIZE#0;class#SimpleDownloaderService#0" expanded="false" />
+            <element signature="docComment;field#TIMEOUT_S#0;class#SimpleDownloaderService#0" expanded="false" />
+            <element signature="docComment;field#fromUrl#0;class#SimpleDownloaderService#0" expanded="false" />
+            <element signature="docComment;field#toFile#0;class#SimpleDownloaderService#0" expanded="false" />
+            <element signature="docComment;field#id#0;class#SimpleDownloaderService#0" expanded="false" />
+            <element signature="docComment;field#cancel#0;class#SimpleDownloaderService#0" expanded="false" />
+            <element signature="docComment;field#exception#0;class#SimpleDownloaderService#0" expanded="false" />
+            <element signature="docComment;method#SimpleDownloaderService#0;class#SimpleDownloaderService#0" expanded="false" />
+            <element signature="method#SimpleDownloaderService#0;class#SimpleDownloaderService#0" expanded="false" />
+            <element signature="docComment;method#job#0;class#SimpleDownloaderService#0" expanded="false" />
+            <element signature="method#job#0;class#SimpleDownloaderService#0" expanded="false" />
+            <element signature="docComment;method#prerequisite#0;class#SimpleDownloaderService#0" expanded="false" />
+            <element signature="method#prerequisite#0;class#SimpleDownloaderService#0" expanded="false" />
+            <element signature="method#broadcast#0;class#SimpleDownloaderService#0" expanded="false" />
+            <element signature="e#7924#7925#0" expanded="true" />
+            <element signature="e#7975#7976#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/java/org/sqlunet/browser/config/SimpleDownloadServiceFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="281">
+          <caret line="182" column="52" selection-start-line="182" selection-start-column="52" selection-end-line="182" selection-end-column="52" />
+          <folding>
+            <element signature="docComment;class#SimpleDownloadServiceFragment#0" expanded="false" />
+            <element signature="docComment;field#TAG#0;class#SimpleDownloadServiceFragment#0" expanded="false" />
+            <element signature="docComment;field#NOTIFICATION_ID#0;class#SimpleDownloadServiceFragment#0" expanded="false" />
+            <element signature="docComment;field#notificationId#0;class#SimpleDownloadServiceFragment#0" expanded="false" />
+            <element signature="docComment;field#downloadId#0;class#SimpleDownloadServiceFragment#0" expanded="false" />
+            <element signature="docComment;field#success#0;class#SimpleDownloadServiceFragment#0" expanded="false" />
+            <element signature="docComment;field#exception#0;class#SimpleDownloadServiceFragment#0" expanded="false" />
+            <element signature="docComment;field#progressDownloaded#0;class#SimpleDownloadServiceFragment#0" expanded="false" />
+            <element signature="docComment;field#progressTotal#0;class#SimpleDownloadServiceFragment#0" expanded="false" />
+            <element signature="docComment;field#downloading#0;class#SimpleDownloadServiceFragment#0" expanded="false" />
+            <element signature="docComment;field#broadcastReceiver#0;class#SimpleDownloadServiceFragment#0" expanded="false" />
+            <element signature="method#onResume#0;class#SimpleDownloadServiceFragment#0" expanded="false" />
+            <element signature="method#onPause#0;class#SimpleDownloadServiceFragment#0" expanded="false" />
+            <element signature="docComment;method#start#0;class#SimpleDownloadServiceFragment#0" expanded="false" />
+            <element signature="method#start#0;class#SimpleDownloadServiceFragment#0" expanded="false" />
+            <element signature="docComment;method#cancel#0;class#SimpleDownloadServiceFragment#0" expanded="false" />
+            <element signature="docComment;method#getStatus#0;class#SimpleDownloadServiceFragment#0" expanded="false" />
+            <element signature="method#getStatus#0;class#SimpleDownloadServiceFragment#0" expanded="false" />
+            <element signature="docComment;method#getReason#0;class#SimpleDownloadServiceFragment#0" expanded="false" />
+            <element signature="method#getReason#0;class#SimpleDownloadServiceFragment#0" expanded="false" />
+            <element signature="docComment;method#fire#0;class#SimpleDownloadServiceFragment#0" expanded="false" />
+            <element signature="method#fire#0;class#SimpleDownloadServiceFragment#0" expanded="false" />
           </folding>
         </state>
       </provider>
