@@ -3,22 +3,23 @@ package org.sqlunet.browser.config;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.net.Uri;
-import android.os.AsyncTask;
-import android.os.Bundle;
 import android.support.v4.app.NotificationCompat;
+import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
 
 import org.sqlunet.browser.R;
 
 /**
- * Download activity
+ * Download Service fragment
  *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
-public class SimpleDownloadFragment extends BaseDownloadFragment implements SimpleDownloader.Listener
+public class SimpleDownloadServiceFragment extends BaseDownloadFragment
 {
 	/**
 	 * Log tag
@@ -36,11 +37,6 @@ public class SimpleDownloadFragment extends BaseDownloadFragment implements Simp
 	static private int notificationId = 0;
 
 	/**
-	 * Download manager
-	 */
-	static public SimpleDownloader downloader;
-
-	/**
 	 * Download id
 	 */
 	static private int downloadId = -1;
@@ -51,9 +47,9 @@ public class SimpleDownloadFragment extends BaseDownloadFragment implements Simp
 	private Boolean success;
 
 	/**
-	 * Errors when status was read
+	 * Exception
 	 */
-	private Exception exception;
+	private String exception;
 
 	/**
 	 * Downloaded progress when status was read
@@ -70,14 +66,67 @@ public class SimpleDownloadFragment extends BaseDownloadFragment implements Simp
 	 */
 	static private boolean downloading = false;
 
-	@Override
-	public void onActivityCreated(final Bundle savedInstance)
+	/**
+	 * Broadcast receiver
+	 */
+	private BroadcastReceiver broadcastReceiver = new BroadcastReceiver()
 	{
-		super.onActivityCreated(savedInstance);
-		if (savedInstance != null && SimpleDownloadFragment.downloader != null)
+		@Override
+		public void onReceive(final Context context, final Intent intent)
 		{
-			SimpleDownloadFragment.downloader.setListener(this);
+			Log.d(TAG, "RECEIVE");
+
+			switch (intent.getStringExtra(SimpleDownloaderService.EVENT))
+			{
+				case SimpleDownloaderService.EVENT_START:
+					Log.d(TAG, "START");
+					//result = intent.getBooleanExtra(SimpleDownloaderService.EVENT_START_HANDLER);
+					SimpleDownloadServiceFragment.downloading = true;
+					fire(++SimpleDownloadServiceFragment.notificationId, false, false);
+					break;
+
+				case SimpleDownloaderService.EVENT_UPDATE:
+					Log.d(TAG, "UPDATE");
+					progressDownloaded = intent.getIntExtra(SimpleDownloaderService.EVENT_UPDATE_DOWNLOADED, 0);
+					progressTotal = intent.getIntExtra(SimpleDownloaderService.EVENT_UPDATE_TOTAL, 0);
+					break;
+
+				case SimpleDownloaderService.EVENT_FINISH:
+					Log.d(TAG, "FINISH " + success);
+					int id = intent.getIntExtra(SimpleDownloaderService.EVENT_FINISH_ID, 0);
+					SimpleDownloadServiceFragment.downloading = false;
+
+					if (id == SimpleDownloadServiceFragment.downloadId)
+					{
+						success = intent.getBooleanExtra(SimpleDownloaderService.EVENT_FINISH_RESULT, false);
+						exception = intent.getStringExtra(SimpleDownloaderService.EVENT_FINISH_EXCEPTION);
+
+						fire(SimpleDownloadServiceFragment.notificationId, true, success);
+
+
+						// fire on done
+						onDone(success);
+					}
+
+					break;
+			}
 		}
+	};
+
+	@Override
+	public void onResume()
+	{
+		super.onResume();
+		Log.d(TAG, "REGISTER RECEIVER");
+		LocalBroadcastManager.getInstance(getActivity()).registerReceiver(broadcastReceiver, new IntentFilter(SimpleDownloaderService.INTENT_FILTER));
+	}
+
+	@Override
+	public void onPause()
+	{
+		super.onPause();
+		Log.d(TAG, "UNREGISTER RECEIVER");
+		LocalBroadcastManager.getInstance(getActivity()).unregisterReceiver(broadcastReceiver);
 	}
 
 	/**
@@ -88,7 +137,8 @@ public class SimpleDownloadFragment extends BaseDownloadFragment implements Simp
 	{
 		synchronized (this)
 		{
-			if (!SimpleDownloadFragment.downloading)
+			Log.d(TAG, "START");
+			if (!SimpleDownloadServiceFragment.downloading)
 			{
 				final String from = this.downloadUrl;
 				final String to = this.destFile.getAbsolutePath();
@@ -100,10 +150,15 @@ public class SimpleDownloadFragment extends BaseDownloadFragment implements Simp
 				this.progressDownloaded = 0;
 				this.progressTotal = 0;
 				this.exception = null;
-				SimpleDownloadFragment.downloader = new SimpleDownloader(from, to, ++SimpleDownloadFragment.downloadId);
-				SimpleDownloadFragment.downloader.setListener(this);
-				SimpleDownloadFragment.downloader.execute();
-				SimpleDownloadFragment.downloading = true;
+
+				final Intent intent = new Intent(getActivity(), SimpleDownloaderService.class);
+				intent.setAction(SimpleDownloaderService.ACTION_DOWNLOAD);
+				intent.putExtra(SimpleDownloaderService.ARG_FROMURL, from);
+				intent.putExtra(SimpleDownloaderService.ARG_TOFILE, to);
+				intent.putExtra(SimpleDownloaderService.ARG_CODE, ++SimpleDownloadServiceFragment.downloadId);
+				getActivity().startService(intent);
+
+				SimpleDownloadServiceFragment.downloading = true;
 				return;
 			}
 		}
@@ -116,31 +171,22 @@ public class SimpleDownloadFragment extends BaseDownloadFragment implements Simp
 	@Override
 	synchronized protected int getStatus(final Progress progress)
 	{
-		Status status = null;
-		if (SimpleDownloadFragment.downloader != null)
+		Status status;
+		if (downloading)
 		{
-			AsyncTask.Status taskStatus = SimpleDownloadFragment.downloader.getStatus();
-			this.exception = SimpleDownloadFragment.downloader.getException();
-			switch (taskStatus)
-			{
-				case PENDING:
-					status = Status.STATUS_PENDING;
-					break;
-				case RUNNING:
-					status = Status.STATUS_RUNNING;
-					break;
-				case FINISHED:
-					status = this.exception == null && this.success != null && this.success ? Status.STATUS_SUCCESSFUL : Status.STATUS_FAILED;
-					break;
-			}
-
-			if (progress != null)
-			{
-				progress.downloaded = this.progressDownloaded;
-				progress.total = this.progressTotal;
-			}
+			status = Status.STATUS_RUNNING;
 		}
-		return status == null ? 0 : status.mask;
+		else
+		{
+			status = this.exception == null && this.success != null && this.success ? Status.STATUS_SUCCESSFUL : Status.STATUS_FAILED;
+		}
+
+		if (progress != null)
+		{
+			progress.downloaded = this.progressDownloaded;
+			progress.total = this.progressTotal;
+		}
+		return status.mask;
 	}
 
 	/**
@@ -151,7 +197,7 @@ public class SimpleDownloadFragment extends BaseDownloadFragment implements Simp
 	{
 		if (this.exception != null)
 		{
-			return this.exception.getMessage();
+			return this.exception;
 		}
 		return null;
 	}
@@ -162,11 +208,8 @@ public class SimpleDownloadFragment extends BaseDownloadFragment implements Simp
 	@Override
 	protected void cancel()
 	{
-		if (SimpleDownloadFragment.downloader != null)
-		{
-			SimpleDownloadFragment.downloader.cancel(true);
-			SimpleDownloadFragment.downloader = null;
-		}
+		System.out.println("CANCEL");
+		SimpleDownloadServiceFragment.downloading = false;
 	}
 
 	/**
@@ -174,13 +217,8 @@ public class SimpleDownloadFragment extends BaseDownloadFragment implements Simp
 	 */
 	static public void kill()
 	{
-		if (SimpleDownloadFragment.downloader != null)
-		{
-			System.out.println("KILL " + SimpleDownloadFragment.downloader.toString());
-			SimpleDownloadFragment.downloader.cancel(true);
-			SimpleDownloadFragment.downloader = null;
-			SimpleDownloadFragment.downloading = false;
-		}
+		System.out.println("KILL");
+		SimpleDownloadServiceFragment.downloading = false;
 	}
 
 	// E V E N T S
@@ -192,7 +230,7 @@ public class SimpleDownloadFragment extends BaseDownloadFragment implements Simp
 	 * @param finish  has finished
 	 * @param success true if successful
 	 */
-	private void setNotification(int id, final boolean finish, final boolean success)
+	private void fire(int id, final boolean finish, final boolean success)
 	{
 		final String from = Uri.parse(this.downloadUrl).getHost();
 		final String to = this.destFile.getName();
@@ -206,7 +244,7 @@ public class SimpleDownloadFragment extends BaseDownloadFragment implements Simp
 		{
 			final Intent intent = new Intent(this.context, Killer.class);
 			intent.setAction(Killer.KILL_DOWNLOAD);
-			intent.putExtra(SimpleDownloadFragment.NOTIFICATION_ID, id);
+			intent.putExtra(SimpleDownloadServiceFragment.NOTIFICATION_ID, id);
 
 			// use System.currentTimeMillis() to have a unique ID for the pending intent
 			PendingIntent pendingIntent = PendingIntent.getBroadcast(this.context, (int) System.currentTimeMillis(), intent, PendingIntent.FLAG_UPDATE_CURRENT);
@@ -222,51 +260,6 @@ public class SimpleDownloadFragment extends BaseDownloadFragment implements Simp
 		// issue notify
 		manager.notify(id, notification);
 	}
-
-	/**
-	 * Start
-	 */
-	@Override
-	public void onDownloadStart()
-	{
-		setNotification(++notificationId, false, false);
-	}
-
-	/**
-	 * Finish
-	 *
-	 * @param code   download code
-	 * @param result true if success
-	 */
-	@Override
-	public void onDownloadFinish(int code, boolean result)
-	{
-		SimpleDownloadFragment.downloading = false;
-		SimpleDownloadFragment.downloader = null;
-
-		if (code == SimpleDownloadFragment.downloadId)
-		{
-			this.success = result;
-
-			setNotification(notificationId, true, result);
-
-			Log.d(TAG, "onDownloadFinish: " + this.success);
-
-			// fire on done
-			onDone(this.success);
-		}
-	}
-
-	/**
-	 * Intermediate progress notify
-	 *
-	 * @param total      total to download
-	 * @param downloaded downloaded bytes
-	 */
-	@Override
-	public void onDownloadUpdate(long downloaded, long total)
-	{
-		this.progressDownloaded = downloaded;
-		this.progressTotal = total;
-	}
 }
+
+

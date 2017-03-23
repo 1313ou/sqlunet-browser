@@ -126,6 +126,10 @@
 	<string name="status_error_null_download_url">Null download URL (see Settings)</string>
 	<string name="status_provider_query_failed">Could not perform query, cause is logged</string>
 
+	<!-- service -->
+	<string name="service_downloader">service_downloader</string>
+	<string name="description_service_downloader">Downloader Service</string>
+
 	<!-- misc -->
 	<string name="hint_search">Search</string>
 	<string name="hint_search_text">Text Search WordNet</string>

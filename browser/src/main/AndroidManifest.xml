@@ -448,6 +448,15 @@
 			tools:ignore="ExportedContentProvider">
 		</provider>
 
+		<service
+			android:name="org.sqlunet.browser.config.SimpleDownloaderService"
+			android:description="@string/description_service_downloader"
+			android:enabled="true"
+			android:exported="false"
+			android:icon="@drawable/ic_launcher"
+			android:label="@string/service_downloader">
+		</service>
+
 	</application>
 
 </manifest>
