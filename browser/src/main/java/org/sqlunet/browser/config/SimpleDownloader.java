@@ -143,6 +143,7 @@ class SimpleDownloader extends AsyncTask<Void, Integer, Boolean>
 	{
 		prerequisite();
 
+		final File outFile = new File(this.toFile + ".part");
 		InputStream input = null;
 		OutputStream output = null;
 		try
@@ -176,7 +177,7 @@ class SimpleDownloader extends AsyncTask<Void, Integer, Boolean>
 			input = new BufferedInputStream(connection.getInputStream(), CHUNK_SIZE);
 
 			// output stream toFile write file
-			output = new FileOutputStream(this.toFile);
+			output = new FileOutputStream(outFile);
 
 			// copy streams
 			final byte[] buffer = new byte[1024];
@@ -207,6 +208,11 @@ class SimpleDownloader extends AsyncTask<Void, Integer, Boolean>
 				}
 			}
 			output.flush();
+
+			if (outFile.exists())
+			{
+				outFile.renameTo(new File(this.toFile));
+			}
 			return true;
 		}
 		catch (final InterruptedException ie)

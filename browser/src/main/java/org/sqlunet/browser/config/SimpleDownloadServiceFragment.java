@@ -8,6 +8,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.net.Uri;
+import android.os.Bundle;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
@@ -67,9 +68,9 @@ public class SimpleDownloadServiceFragment extends BaseDownloadFragment
 	static private boolean downloading = false;
 
 	/**
-	 * Broadcast receiver
+	 * Broadcast receiver for start finish events
 	 */
-	private BroadcastReceiver broadcastReceiver = new BroadcastReceiver()
+	private BroadcastReceiver startFinishBroadcastReceiver = new BroadcastReceiver()
 	{
 		@Override
 		public void onReceive(final Context context, final Intent intent)
@@ -79,15 +80,9 @@ public class SimpleDownloadServiceFragment extends BaseDownloadFragment
 			switch (intent.getStringExtra(SimpleDownloaderService.EVENT))
 			{
 				case SimpleDownloaderService.EVENT_START:
-					Log.d(TAG, "START");
+					Log.d(TAG, "Start");
 					SimpleDownloadServiceFragment.downloading = true;
 					fireNotification(++SimpleDownloadServiceFragment.notificationId, false, false);
-					break;
-
-				case SimpleDownloaderService.EVENT_UPDATE:
-					progressDownloaded = intent.getIntExtra(SimpleDownloaderService.EVENT_UPDATE_DOWNLOADED, 0);
-					progressTotal = intent.getIntExtra(SimpleDownloaderService.EVENT_UPDATE_TOTAL, 0);
-					Log.d(TAG, "UPDATE " + progressDownloaded + '/' + progressTotal);
 					break;
 
 				case SimpleDownloaderService.EVENT_FINISH:
@@ -97,7 +92,7 @@ public class SimpleDownloadServiceFragment extends BaseDownloadFragment
 						SimpleDownloadServiceFragment.downloading = false;
 						success = intent.getBooleanExtra(SimpleDownloaderService.EVENT_FINISH_RESULT, false);
 						exception = intent.getStringExtra(SimpleDownloaderService.EVENT_FINISH_EXCEPTION);
-						Log.d(TAG, "FINISH " + success);
+						Log.d(TAG, "Finish " + success);
 
 						// notification
 						fireNotification(SimpleDownloadServiceFragment.notificationId, true, success);
@@ -105,26 +100,62 @@ public class SimpleDownloadServiceFragment extends BaseDownloadFragment
 						// fireNotification on done
 						onDone(success);
 					}
+					break;
+			}
+		}
+	};
 
+	/**
+	 * Broadcast receiver for update events
+	 */
+	private BroadcastReceiver updateBroadcastReceiver = new BroadcastReceiver()
+	{
+		@Override
+		public void onReceive(final Context context, final Intent intent)
+		{
+			//Log.d(TAG, "RECEIVE");
+
+			switch (intent.getStringExtra(SimpleDownloaderService.EVENT))
+			{
+				case SimpleDownloaderService.EVENT_UPDATE:
+					progressDownloaded = intent.getIntExtra(SimpleDownloaderService.EVENT_UPDATE_DOWNLOADED, 0);
+					progressTotal = intent.getIntExtra(SimpleDownloaderService.EVENT_UPDATE_TOTAL, 0);
+					Log.d(TAG, "Update " + progressDownloaded + '/' + progressTotal);
 					break;
 			}
 		}
 	};
 
 	@Override
+	public void onCreate(final Bundle savedInstance)
+	{
+		super.onCreate(savedInstance);
+		Log.d(TAG, "Register start/finish receiver");
+		LocalBroadcastManager.getInstance(getActivity()).registerReceiver(this.startFinishBroadcastReceiver, new IntentFilter(SimpleDownloaderService.START_FINISH_INTENT_FILTER));
+	}
+
+	@Override
+	public void onDestroy()
+	{
+		super.onDestroy();
+		Log.d(TAG, "Unregister start/finish receiver");
+		LocalBroadcastManager.getInstance(getActivity()).unregisterReceiver(this.startFinishBroadcastReceiver);
+	}
+
+	@Override
 	public void onResume()
 	{
 		super.onResume();
-		Log.d(TAG, "REGISTER RECEIVER");
-		LocalBroadcastManager.getInstance(getActivity()).registerReceiver(this.broadcastReceiver, new IntentFilter(SimpleDownloaderService.INTENT_FILTER));
+		Log.d(TAG, "Register update receiver");
+		LocalBroadcastManager.getInstance(getActivity()).registerReceiver(this.updateBroadcastReceiver, new IntentFilter(SimpleDownloaderService.UPDATE_INTENT_FILTER));
 	}
 
 	@Override
 	public void onPause()
 	{
 		super.onPause();
-		Log.d(TAG, "UNREGISTER RECEIVER");
-		LocalBroadcastManager.getInstance(getActivity()).unregisterReceiver(this.broadcastReceiver);
+		Log.d(TAG, "Unregister update receiver");
+		LocalBroadcastManager.getInstance(getActivity()).unregisterReceiver(this.updateBroadcastReceiver);
 	}
 
 	/**
@@ -197,7 +228,14 @@ public class SimpleDownloadServiceFragment extends BaseDownloadFragment
 		}
 		else
 		{
-			status = this.exception == null && this.success != null && this.success ? Status.STATUS_SUCCESSFUL : Status.STATUS_FAILED;
+			if (this.success == null)
+			{
+				status = Status.STATUS_PENDING;
+			}
+			else
+			{
+				status = this.exception == null && this.success ? Status.STATUS_SUCCESSFUL : Status.STATUS_FAILED;
+			}
 		}
 
 		if (progress != null)

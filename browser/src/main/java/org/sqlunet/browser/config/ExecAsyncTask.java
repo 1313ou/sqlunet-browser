@@ -24,6 +24,11 @@ class ExecAsyncTask
 	static private final String TAG = "ExecAsyncTask";
 
 	/**
+	 * Execute transaction
+	 */
+	static final private boolean SKIP_TRANSACTION = true;
+
+	/**
 	 * ResultListener
 	 */
 	final private TaskObserver.Listener listener;
@@ -78,6 +83,7 @@ class ExecAsyncTask
 						{
 							continue;
 						}
+
 						// exec
 						db.execSQL(sql);
 						Log.d(ExecAsyncTask.TAG, "SQL " + sql);
@@ -195,12 +201,19 @@ class ExecAsyncTask
 							sql += '\n' + line;
 						}
 
-						// menuDispatch to execution
+						// wrap
 						if (!line.endsWith(";")) //
 						{
 							continue;
 						}
 
+						// filter
+						if (SKIP_TRANSACTION && (sql.equals("BEGIN TRANSACTION;") || sql.equals("COMMIT;"))) //
+						{
+							continue;
+						}
+
+						// execute
 						try
 						{
 							// exec one sql

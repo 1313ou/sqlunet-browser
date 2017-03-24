@@ -27,7 +27,9 @@ public class SimpleDownloaderService extends IntentService
 {
 	static private final String TAG = "SimpleDownloader";
 
-	static public final String INTENT_FILTER = "intent_filter_downloader";
+	static public final String START_FINISH_INTENT_FILTER = "intent_filter_downloader_start_finish";
+
+	static public final String UPDATE_INTENT_FILTER = "intent_filter_downloader_update";
 
 	static public final String ACTION_DOWNLOAD = "download";
 
@@ -124,14 +126,14 @@ public class SimpleDownloaderService extends IntentService
 				this.id = intent.getIntExtra(SimpleDownloaderService.ARG_CODE, 0);
 
 				// fire start event
-				broadcast(EVENT, EVENT_START);
+				broadcast(START_FINISH_INTENT_FILTER, EVENT, EVENT_START);
 
 				// do job
 				try
 				{
 					job();
 					Log.d(TAG, "Completed successfully");
-					broadcast(EVENT, EVENT_FINISH, EVENT_FINISH_ID, this.id, EVENT_FINISH_RESULT, true);
+					broadcast(START_FINISH_INTENT_FILTER, EVENT, EVENT_FINISH, EVENT_FINISH_ID, this.id, EVENT_FINISH_RESULT, true);
 				}
 				catch (final InterruptedException ie)
 				{
@@ -146,19 +148,19 @@ public class SimpleDownloaderService extends IntentService
 					}
 
 					Log.d(TAG, "Interrupted while downloading, " + ie.getMessage());
-					broadcast(EVENT, EVENT_FINISH, EVENT_FINISH_ID, this.id, EVENT_FINISH_RESULT, false, EVENT_FINISH_EXCEPTION, exception.getMessage());
+					broadcast(START_FINISH_INTENT_FILTER, EVENT, EVENT_FINISH, EVENT_FINISH_ID, this.id, EVENT_FINISH_RESULT, false, EVENT_FINISH_EXCEPTION, exception.getMessage());
 				}
 				catch (final SocketTimeoutException ste)
 				{
 					this.exception = ste;
 					Log.d(TAG, "Timeout while downloading, " + ste.getMessage());
-					broadcast(EVENT, EVENT_FINISH, EVENT_FINISH_ID, this.id, EVENT_FINISH_RESULT, false, EVENT_FINISH_EXCEPTION, exception.getMessage());
+					broadcast(START_FINISH_INTENT_FILTER, EVENT, EVENT_FINISH, EVENT_FINISH_ID, this.id, EVENT_FINISH_RESULT, false, EVENT_FINISH_EXCEPTION, exception.getMessage());
 				}
 				catch (final Exception e)
 				{
 					this.exception = e;
 					Log.e(TAG, "Exception while downloading, " + e.getMessage());
-					broadcast(EVENT, EVENT_FINISH, EVENT_FINISH_ID, this.id, EVENT_FINISH_RESULT, false, EVENT_FINISH_EXCEPTION, exception.getMessage());
+					broadcast(START_FINISH_INTENT_FILTER, EVENT, EVENT_FINISH, EVENT_FINISH_ID, this.id, EVENT_FINISH_RESULT, false, EVENT_FINISH_EXCEPTION, exception.getMessage());
 				}
 				finally
 				{
@@ -183,6 +185,7 @@ public class SimpleDownloaderService extends IntentService
 	{
 		prerequisite();
 
+		final File outFile = new File(this.toFile + ".part");
 		InputStream input = null;
 		OutputStream output = null;
 		try
@@ -216,7 +219,7 @@ public class SimpleDownloaderService extends IntentService
 			input = new BufferedInputStream(connection.getInputStream(), CHUNK_SIZE);
 
 			// output stream toFile write file
-			output = new FileOutputStream(this.toFile);
+			output = new FileOutputStream(outFile);
 
 			// copy streams
 			final byte[] buffer = new byte[1024];
@@ -230,7 +233,7 @@ public class SimpleDownloaderService extends IntentService
 				// publishing the progress
 				if ((chunks % 50) == 0)
 				{
-					broadcast(EVENT, EVENT_UPDATE, EVENT_UPDATE_DOWNLOADED, downloaded, EVENT_UPDATE_TOTAL, total);
+					broadcast(UPDATE_INTENT_FILTER, EVENT, EVENT_UPDATE, EVENT_UPDATE_DOWNLOADED, downloaded, EVENT_UPDATE_TOTAL, total);
 				}
 				chunks++;
 
@@ -252,6 +255,11 @@ public class SimpleDownloaderService extends IntentService
 				}
 			}
 			output.flush();
+
+			if (outFile.exists())
+			{
+				outFile.renameTo(new File(this.toFile));
+			}
 		}
 		finally
 		{
@@ -296,9 +304,15 @@ public class SimpleDownloaderService extends IntentService
 
 	// F I R E   E V E N T S
 
-	private void broadcast(final Object... args)
+	/**
+	 * Broadcast message
+	 *
+	 * @param intentFilter intent filter
+	 * @param args         arguments
+	 */
+	private void broadcast(final String intentFilter, final Object... args)
 	{
-		final Intent broadcastIntent = new Intent(INTENT_FILTER);
+		final Intent broadcastIntent = new Intent(intentFilter);
 		for (int i = 0; i < args.length; i = i + 2)
 		{
 			final String key = (String) args[i];
@@ -319,13 +333,6 @@ public class SimpleDownloaderService extends IntentService
 			{
 				broadcastIntent.putExtra(key, (boolean) value);
 			}
-			// Handler
-			/*
-			else if (value instanceof Handler)
-			{
-				broadcastIntent.putExtra(key, (Handler) value);
-			}
-			*/
 		}
 		LocalBroadcastManager.getInstance(this).sendBroadcast(broadcastIntent);
 	}

@@ -304,6 +304,9 @@ abstract class BaseDownloadFragment extends Fragment implements View.OnClickList
 		targetView.setEllipsize(TextUtils.TruncateAt.MARQUEE);
 		targetView.setSelected(true);
 
+		// destination
+		this.statusView.setText("");
+
 		if (savedInstanceState != null)
 		{
 			//noinspection WrongConstant
@@ -411,25 +414,6 @@ abstract class BaseDownloadFragment extends Fragment implements View.OnClickList
 		stopObserver();
 	}
 
-	private Observer observer;
-
-	/**
-	 * Start observer thread
-	 */
-	private void startObserver()
-	{
-		this.observer = new Observer();
-		new Thread(this.observer).start();
-	}
-
-	/**
-	 * Stop observer thread
-	 */
-	private void stopObserver()
-	{
-		this.observer.cancel = true;
-	}
-
 	/**
 	 * Observer
 	 */
@@ -488,6 +472,28 @@ abstract class BaseDownloadFragment extends Fragment implements View.OnClickList
 	}
 
 	/**
+	 * Observer
+	 */
+	private Observer observer;
+
+	/**
+	 * Start observer thread
+	 */
+	private void startObserver()
+	{
+		this.observer = new Observer();
+		new Thread(this.observer).start();
+	}
+
+	/**
+	 * Stop observer thread
+	 */
+	private void stopObserver()
+	{
+		this.observer.cancel = true;
+	}
+
+	/**
 	 * Observer update
 	 *
 	 * @return message
@@ -535,6 +541,8 @@ abstract class BaseDownloadFragment extends Fragment implements View.OnClickList
 	 */
 	abstract String getReason();
 
+	// H E L P E R S
+
 	/**
 	 * Make status string
 	 *
@@ -548,8 +556,6 @@ abstract class BaseDownloadFragment extends Fragment implements View.OnClickList
 
 		return makeString(statusResId);
 	}
-
-	// H E L P E R S
 
 	/**
 	 * Make string
