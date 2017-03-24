@@ -198,19 +198,24 @@ public class SimpleDownloadServiceFragment extends BaseDownloadFragment
 	@Override
 	protected void cancel()
 	{
-		System.out.println("CANCEL");
+		final Context context = getActivity();
+		Log.d(TAG, "Cancel");
 		SimpleDownloadServiceFragment.downloading = false;
-		final Intent intent = new Intent(getActivity(), SimpleDownloaderService.class);
-		getActivity().stopService(intent);  // execute the Service.onDestroy() method immediately but then let the code in onHandleIntent() finish all the way through before destroying the service.
+		final Intent intent = new Intent(context, SimpleDownloaderService.class);
+		context.stopService(intent);  // execute the Service.onDestroy() method immediately but then let the code in onHandleIntent() finish all the way through before destroying the service.
 	}
 
 	/**
 	 * Kill task (called from notification)
+	 *
+	 * @param context context
 	 */
-	protected void kill()
+	static public void kill(final Context context)
 	{
-		System.out.println("KILL");
-		SimpleDownloaderService.kill(getActivity());
+		Log.d(TAG, "Kill");
+		SimpleDownloadServiceFragment.downloading = false;
+		final Intent intent = new Intent(context, SimpleDownloaderService.class);
+		context.stopService(intent);  // execute the Service.onDestroy() method immediately but then let the code in onHandleIntent() finish all the way through before destroying the service.
 	}
 
 	// S T A T U S
@@ -262,6 +267,32 @@ public class SimpleDownloadServiceFragment extends BaseDownloadFragment
 
 	// E V E N T S
 
+	public static class Killer extends BroadcastReceiver
+	{
+		static public final String KILL_DOWNLOAD_SERVICE = "kill_download_service";
+
+		public Killer()
+		{
+		}
+
+		@Override
+		public void onReceive(Context context, Intent intent)
+		{
+			String action = intent.getAction();
+			System.out.println("Received kill " + action);
+			if (action.equals(SimpleDownloadServiceFragment.Killer.KILL_DOWNLOAD_SERVICE))
+			{
+				SimpleDownloadServiceFragment.kill(context);
+			}
+			int id = intent.getIntExtra(SimpleDownloadServiceFragment.NOTIFICATION_ID, 0);
+			if (id != 0)
+			{
+				final NotificationManager manager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
+				manager.cancel(id);
+			}
+		}
+	}
+
 	/**
 	 * UI notification
 	 *
@@ -282,7 +313,7 @@ public class SimpleDownloadServiceFragment extends BaseDownloadFragment
 		if (!finish)
 		{
 			final Intent intent = new Intent(this.context, Killer.class);
-			intent.setAction(Killer.KILL_DOWNLOAD);
+			intent.setAction(Killer.KILL_DOWNLOAD_SERVICE);
 			intent.putExtra(SimpleDownloadServiceFragment.NOTIFICATION_ID, id);
 
 			// use System.currentTimeMillis() to have a unique ID for the pending intent

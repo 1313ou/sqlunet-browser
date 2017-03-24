@@ -402,7 +402,7 @@ abstract class BaseDownloadFragment extends Fragment implements View.OnClickList
 	{
 		super.onResume();
 
-		Log.d(TAG, "START OBSERVER");
+		Log.d(TAG, "Start observer");
 		startObserver();
 	}
 
@@ -410,7 +410,7 @@ abstract class BaseDownloadFragment extends Fragment implements View.OnClickList
 	public void onPause()
 	{
 		super.onPause();
-		Log.d(TAG, "STOP  OBSERVER");
+		Log.d(TAG, "Stop  observer");
 		stopObserver();
 	}
 
@@ -424,7 +424,7 @@ abstract class BaseDownloadFragment extends Fragment implements View.OnClickList
 		@Override
 		public void run()
 		{
-			Log.d(TAG, "OBSERVER IS ALIVE");
+			Log.d(TAG, "Observer is alive");
 			while (true)
 			{
 				// terminate if fragment is not in resumed state
@@ -435,7 +435,7 @@ abstract class BaseDownloadFragment extends Fragment implements View.OnClickList
 
 				// observerUpdate status
 				BaseDownloadFragment.this.status = getStatus(BaseDownloadFragment.this.progress);
-				Log.d(TAG, "STATUS " + Long.toHexString(BaseDownloadFragment.this.status));
+				Log.d(TAG, "Status " + Long.toHexString(BaseDownloadFragment.this.status));
 
 				// observerUpdate UI if fragment is added to activity
 				observerUpdate();
@@ -467,7 +467,7 @@ abstract class BaseDownloadFragment extends Fragment implements View.OnClickList
 					//
 				}
 			}
-			Log.d(TAG, "OBSERVER DIES");
+			Log.d(TAG, "Observer dies");
 		}
 	}
 
@@ -505,7 +505,7 @@ abstract class BaseDownloadFragment extends Fragment implements View.OnClickList
 		final String reason = getReason();
 		final String message = status + (reason == null ? "" : '\n' + reason);
 		final String count = StorageUtils.countToStorageString(this.progress.downloaded);
-		Log.d(TAG, "OBSERVER UPDATE " + message + ", " + progress100 + "% done");
+		Log.d(TAG, "Observer update " + message + ", " + progress100 + "% done");
 
 		final Activity activity = getActivity();
 		if (activity != null && !this.isDetached())

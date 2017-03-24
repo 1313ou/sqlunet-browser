@@ -3,6 +3,7 @@ package org.sqlunet.browser.config;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
@@ -172,11 +173,11 @@ public class SimpleDownloadFragment extends BaseDownloadFragment implements Simp
 	/**
 	 * Kill task (called from notification)
 	 */
-	static public void kill()
+	static public void kill(final Context context)
 	{
 		if (SimpleDownloadFragment.downloader != null)
 		{
-			System.out.println("KILL " + SimpleDownloadFragment.downloader.toString());
+			System.out.println("Kill " + SimpleDownloadFragment.downloader.toString());
 			SimpleDownloadFragment.downloader.cancel(true);
 			SimpleDownloadFragment.downloader = null;
 			SimpleDownloadFragment.downloading = false;
@@ -184,6 +185,30 @@ public class SimpleDownloadFragment extends BaseDownloadFragment implements Simp
 	}
 
 	// E V E N T S
+
+	public static class Killer extends BroadcastReceiver
+	{
+		static public final String KILL_DOWNLOAD = "kill_download";
+
+		public Killer(){}
+
+		@Override
+		public void onReceive(final Context context, final Intent intent)
+		{
+			String action = intent.getAction();
+			System.out.println("Received kill " + action);
+			if (action.equals(Killer.KILL_DOWNLOAD))
+			{
+				SimpleDownloadFragment.kill(context);
+			}
+			int id = intent.getIntExtra(SimpleDownloadFragment.NOTIFICATION_ID, 0);
+			if (id != 0)
+			{
+				final NotificationManager manager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
+				manager.cancel(id);
+			}
+		}
+	}
 
 	/**
 	 * UI notification
