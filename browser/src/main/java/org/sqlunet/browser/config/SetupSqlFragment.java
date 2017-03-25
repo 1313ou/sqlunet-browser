@@ -199,7 +199,7 @@ public class SetupSqlFragment extends Fragment
 					final String entry = StorageSettings.getImportEntry(activity);
 					final String unit = activity.getString(R.string.unit_statement);
 					final TaskObserver.Listener listener = new TaskObserver.DialogListener(activity, R.string.status_managing, source + '@' + entry, unit);
-					SetupSqlFragment.this.task = new ExecAsyncTask(listener, 1000).executeFromArchive(database, source, entry);
+					SetupSqlFragment.this.task = new ExecAsyncTask(getActivity(), listener, 1000).executeFromArchive(database, source, entry);
 				}
 				catch (final Exception e)
 				{
@@ -244,7 +244,7 @@ public class SetupSqlFragment extends Fragment
 					final String entry = StorageSettings.getIndexEntry(activity);
 					final String unit = activity.getString(R.string.unit_statement);
 					final TaskObserver.Listener listener = new TaskObserver.DialogListener(activity, R.string.status_managing, source + '@' + entry, unit);
-					SetupSqlFragment.this.task = new ExecAsyncTask(listener, 1).executeFromArchive(database, source, entry);
+					SetupSqlFragment.this.task = new ExecAsyncTask(getActivity(), listener, 1).executeFromArchive(database, source, entry);
 				}
 				catch (final Exception e)
 				{
@@ -288,7 +288,7 @@ public class SetupSqlFragment extends Fragment
 					final String entry = StorageSettings.getPmEntry(activity);
 					final String unit = activity.getString(R.string.unit_statement);
 					final TaskObserver.Listener listener = new TaskObserver.DialogListener(activity, R.string.status_managing, source + '@' + entry, unit);
-					SetupSqlFragment.this.task = new ExecAsyncTask(listener, 1).executeFromArchive(database, source, entry);
+					SetupSqlFragment.this.task = new ExecAsyncTask(getActivity(), listener, 1).executeFromArchive(database, source, entry);
 				}
 				catch (final Exception e)
 				{
@@ -340,6 +340,18 @@ public class SetupSqlFragment extends Fragment
 	{
 		super.onResume();
 		update();
+	}
+
+	@Override
+	public void onHiddenChanged (boolean hidden)
+	{
+		super.onHiddenChanged(hidden);
+
+		// If we are becoming visible
+		if (!hidden)
+		{
+			update();
+		}
 	}
 
 	/**

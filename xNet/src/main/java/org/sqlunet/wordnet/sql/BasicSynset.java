@@ -27,7 +27,7 @@ public class BasicSynset
 	 */
 	public final String sample;
 
-	**
+	/**
 	 * Constructor from data
 	 *
 	 * @param synsetId    is the synset id
