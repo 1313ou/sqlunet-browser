@@ -50,7 +50,7 @@ public class OtherActivity extends AppCompatActivity
 	static private boolean isAppInstalled(final String uri, final Context context)
 	{
 		final PackageManager packageManager = context.getPackageManager();
-		boolean isInstalled = false;
+		boolean isInstalled;
 		try
 		{
 			packageManager.getPackageInfo(uri, PackageManager.GET_ACTIVITIES);

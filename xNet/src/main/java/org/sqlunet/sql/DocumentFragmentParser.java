@@ -68,8 +68,8 @@ public class DocumentFragmentParser
 	 *
 	 * @param text the input to parse.
 	 * @return document fragment
-	 * @throws SAXException
-	 * @throws IOException
+	 * @throws SAXException sax exception
+	 * @throws IOException  io exception
 	 */
 	private DocumentFragment parse(final String text) throws SAXException, IOException
 	{
@@ -112,8 +112,8 @@ public class DocumentFragmentParser
 	 *
 	 * @param text the input to parse.
 	 * @return document fragment
-	 * @throws SAXException
-	 * @throws IOException
+	 * @throws SAXException sax exception
+	 * @throws IOException  io exception
 	 */
 	@SuppressWarnings("unused")
 	public DocumentFragment parse_with_entities(final String text) throws SAXException, IOException

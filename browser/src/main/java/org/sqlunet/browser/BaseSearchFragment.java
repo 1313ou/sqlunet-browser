@@ -145,6 +145,7 @@ abstract public class BaseSearchFragment extends NavigableFragment implements Se
 
 	// A C T I O N B A R
 
+	@SuppressLint("InflateParams")
 	@Override
 	public boolean setActionBar(final ActionBar actionBar, final Context context)
 	{

@@ -86,7 +86,7 @@ public class SetupDatabaseFragment extends BaseTaskFragment
 				// execute
 				final CharSequence sql = sqls[(int) id];
 				final String[] sqlStatements = sql.toString().split(";");
-				new ExecAsyncTask(new TaskObserver.ToastWithStatusListener(getActivity(), SetupDatabaseFragment.this.status), 1).executeFromSql(databasePath, sqlStatements);
+				new ExecAsyncTask(getActivity(), new TaskObserver.ToastWithStatusListener(getActivity(), SetupDatabaseFragment.this.status), 1).executeFromSql(databasePath, sqlStatements);
 			}
 		});
 

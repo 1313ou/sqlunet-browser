@@ -69,7 +69,7 @@ public class Storage
 	 * @param context context
 	 * @return database storage directory
 	 */
-	@SuppressLint("CommitPrefEdits")
+	@SuppressLint({"CommitPrefEdits", "ApplySharedPref"})
 	static public File getSqlUNetStorage(final Context context)
 	{
 		// test if set in preference
@@ -156,7 +156,7 @@ public class Storage
 	 * @param context context
 	 * @return data cache
 	 */
-	@SuppressLint("CommitPrefEdits")
+	@SuppressLint({"CommitPrefEdits", "ApplySharedPref"})
 	static public String getCacheDir(final Context context)
 	{
 		// test if set in preference

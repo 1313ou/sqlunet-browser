@@ -10,6 +10,7 @@
 	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
 	<uses-permission android:name="android.permission.INTERNET"/>
 	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+	<uses-permission android:name="android.permission.WAKE_LOCK"/>
 	<uses-permission android:name="com.android.vending.BILLING"/>
 
 	<application
@@ -378,7 +379,7 @@
 		<receiver
 			android:name="org.sqlunet.browser.config.SimpleDownloadFragment$Killer"
 			android:enabled="true"
-			android:exported="true">
+			android:exported="false">
 			<intent-filter>
 				<action android:name="kill_download"/>
 			</intent-filter>
@@ -387,7 +388,7 @@
 		<receiver
 			android:name="org.sqlunet.browser.config.SimpleDownloadServiceFragment$Killer"
 			android:enabled="true"
-			android:exported="true">
+			android:exported="false">
 			<intent-filter>
 				<action android:name="kill_download_service"/>
 			</intent-filter>

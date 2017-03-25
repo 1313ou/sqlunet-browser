@@ -131,61 +131,64 @@ public class FrameNetMarkupFactory implements MarkupSpanner.SpanFactory
 	{
 		// Log.d(FrameNetMarkupFactory.TAG, selector + ' ' + flags);
 		final SpanPosition position = SpanPosition.valueOf(flags);
-		switch (position)
+		if (position != null)
 		{
-			case TAG1:
-				if ("t".equals(selector))
-				{
-					return new ImageSpan(this.relationDrawable, DynamicDrawableSpan.ALIGN_BASELINE);
-				}
-				if ("fen".equals(selector))
-				{
-					return new ImageSpan(this.roleDrawable, DynamicDrawableSpan.ALIGN_BASELINE);
-				}
-				if ("fe".equals(selector))
-				{
-					return new ImageSpan(this.role2Drawable, DynamicDrawableSpan.ALIGN_BASELINE);
-				}
-				if (selector.matches("fex.*"))
-				{
-					return new ImageSpan(this.role2Drawable, DynamicDrawableSpan.ALIGN_BASELINE);
-				}
-				if (selector.matches("xfen"))
-				{
-					return new HiddenSpan();
-				}
-				if (selector.matches("ex"))
-				{
-					return new ImageSpan(this.sampleDrawable, DynamicDrawableSpan.ALIGN_BASELINE);
-				}
-				if (selector.matches("x"))
-				{
-					return new HiddenSpan();
-				}
-				return new BackgroundColorSpan(Color.GREEN);
+			switch (position)
+			{
+				case TAG1:
+					if ("t".equals(selector))
+					{
+						return new ImageSpan(this.relationDrawable, DynamicDrawableSpan.ALIGN_BASELINE);
+					}
+					if ("fen".equals(selector))
+					{
+						return new ImageSpan(this.roleDrawable, DynamicDrawableSpan.ALIGN_BASELINE);
+					}
+					if ("fe".equals(selector))
+					{
+						return new ImageSpan(this.role2Drawable, DynamicDrawableSpan.ALIGN_BASELINE);
+					}
+					if (selector.matches("fex.*"))
+					{
+						return new ImageSpan(this.role2Drawable, DynamicDrawableSpan.ALIGN_BASELINE);
+					}
+					if (selector.matches("xfen"))
+					{
+						return new HiddenSpan();
+					}
+					if (selector.matches("ex"))
+					{
+						return new ImageSpan(this.sampleDrawable, DynamicDrawableSpan.ALIGN_BASELINE);
+					}
+					if (selector.matches("x"))
+					{
+						return new HiddenSpan();
+					}
+					return new BackgroundColorSpan(Color.GREEN);
 
-			case TAG2:
-				switch (selector)
-				{
-					case "t":
-						return new HiddenSpan();
-					case "fe":
-						return new HiddenSpan();
-					case "fen":
-						return new HiddenSpan();
-					case "xfen":
-						return new HiddenSpan();
-					case "fex":
-						return new HiddenSpan();
-					case "ex":
-						return new HiddenSpan();
-					case "x":
-						return new HiddenSpan();
-				}
-				return new BackgroundColorSpan(Color.CYAN);
+				case TAG2:
+					switch (selector)
+					{
+						case "t":
+							return new HiddenSpan();
+						case "fe":
+							return new HiddenSpan();
+						case "fen":
+							return new HiddenSpan();
+						case "xfen":
+							return new HiddenSpan();
+						case "fex":
+							return new HiddenSpan();
+						case "ex":
+							return new HiddenSpan();
+						case "x":
+							return new HiddenSpan();
+					}
+					return new BackgroundColorSpan(Color.CYAN);
 
-			case TEXT:
-				return FrameNetMarkupFactory.textFactory.makeSpans(selector, flags);
+				case TEXT:
+					return FrameNetMarkupFactory.textFactory.makeSpans(selector, flags);
+			}
 		}
 		return null;
 	}

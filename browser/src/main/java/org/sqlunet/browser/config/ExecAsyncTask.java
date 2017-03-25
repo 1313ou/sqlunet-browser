@@ -1,8 +1,10 @@
 package org.sqlunet.browser.config;
 
+import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
 import android.os.AsyncTask;
+import android.os.PowerManager;
 import android.util.Log;
 import android.util.Pair;
 
@@ -39,13 +41,20 @@ class ExecAsyncTask
 	private final int publishRate;
 
 	/**
+	 * Context
+	 */
+	private final Context context;
+
+	/**
 	 * Constructor
 	 *
+	 * @param context     context
 	 * @param listener    listener
 	 * @param publishRate publish rate
 	 */
-	ExecAsyncTask(final TaskObserver.Listener listener, final int publishRate)
+	ExecAsyncTask(final Context context, final TaskObserver.Listener listener, final int publishRate)
 	{
+		this.context = context;
 		this.listener = listener;
 		this.publishRate = publishRate;
 	}
@@ -162,6 +171,11 @@ class ExecAsyncTask
 				final String databaseArg = params[2];
 				Log.d(ExecAsyncTask.TAG, archiveArg + '!' + entryArg + '>' + databaseArg);
 
+				// wake lock
+				final PowerManager pm = (PowerManager) ExecAsyncTask.this.context.getSystemService(Context.POWER_SERVICE);
+				final PowerManager.WakeLock wakelock = pm.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, "DownloaderService");
+				wakelock.acquire();
+
 				SQLiteDatabase db = null;
 				ZipFile zipFile = null;
 				BufferedReader reader = null;
@@ -248,6 +262,9 @@ class ExecAsyncTask
 				}
 				finally
 				{
+					// wake lock
+					wakelock.release();
+
 					if (db != null)
 					{
 						db.close();

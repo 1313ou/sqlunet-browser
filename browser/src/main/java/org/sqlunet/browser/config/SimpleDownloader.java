@@ -1,6 +1,8 @@
 package org.sqlunet.browser.config;
 
+import android.content.Context;
 import android.os.AsyncTask;
+import android.os.PowerManager;
 import android.util.Log;
 
 import java.io.BufferedInputStream;
@@ -54,19 +56,26 @@ class SimpleDownloader extends AsyncTask<Void, Integer, Boolean>
 	private Exception exception;
 
 	/**
-	 * ResultListener
+	 * Result listener
 	 */
 	private Listener listener;
 
 	/**
+	 * Context
+	 */
+	private final Context context;
+
+	/**
 	 * Constructor
 	 *
+	 * @param context context
 	 * @param from     from-url
 	 * @param to       to-file
 	 * @param code     code
 	 */
-	SimpleDownloader(final String from, final String to, int code)
+	SimpleDownloader(final Context context, final String from, final String to, int code)
 	{
+		this.context = context;
 		this.fromUrl = from;
 		this.toFile = to;
 		this.code = code;
@@ -76,7 +85,7 @@ class SimpleDownloader extends AsyncTask<Void, Integer, Boolean>
 	/**
 	 * Set listener
 	 *
-	 * @param listener
+	 * @param listener listener
 	 */
 	void setListener(final Listener listener)
 	{
@@ -142,6 +151,11 @@ class SimpleDownloader extends AsyncTask<Void, Integer, Boolean>
 	protected Boolean doInBackground(final Void... params)
 	{
 		prerequisite();
+
+		// wake lock
+		final PowerManager pm = (PowerManager) this.context.getSystemService(Context.POWER_SERVICE);
+		final PowerManager.WakeLock wakelock = pm.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, "DownloaderService");
+		wakelock.acquire();
 
 		final File outFile = new File(this.toFile + ".part");
 		InputStream input = null;
@@ -236,6 +250,9 @@ class SimpleDownloader extends AsyncTask<Void, Integer, Boolean>
 		}
 		finally
 		{
+			// wake lock
+			wakelock.release();
+
 			if (output != null)
 			{
 				try

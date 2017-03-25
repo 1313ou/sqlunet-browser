@@ -367,8 +367,7 @@ public class TreeNode
 	{
 		if (isNotRoot())
 		{
-			List<TreeNode> parentChildren = this.parent.children;
-			return parentChildren.get(0).id == this.id;
+			return this.parent.children.get(0).id == this.id;
 		}
 		return false;
 	}
@@ -386,8 +385,7 @@ public class TreeNode
 			int parentSize = this.parent.children.size();
 			if (parentSize > 0)
 			{
-				final List<TreeNode> parentChildren = this.parent.children;
-				return parentChildren.get(parentSize - 1).id == this.id;
+				return this.parent.children.get(parentSize - 1).id == this.id;
 			}
 		}
 		return false;

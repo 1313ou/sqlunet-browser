@@ -113,7 +113,7 @@ class FileUtils
 	 *
 	 * @param in  instream
 	 * @param out outstream
-	 * @throws IOException
+	 * @throws IOException io exception
 	 */
 	static private void copyFile(final InputStream in, final OutputStream out) throws IOException
 	{

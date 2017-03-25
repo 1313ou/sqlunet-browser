@@ -70,7 +70,7 @@ public class SimpleDownloadServiceFragment extends BaseDownloadFragment
 	/**
 	 * Broadcast receiver for start finish events
 	 */
-	private BroadcastReceiver startFinishBroadcastReceiver = new BroadcastReceiver()
+	private BroadcastReceiver mainBroadcastReceiver = new BroadcastReceiver()
 	{
 		@Override
 		public void onReceive(final Context context, final Intent intent)
@@ -82,7 +82,16 @@ public class SimpleDownloadServiceFragment extends BaseDownloadFragment
 				case SimpleDownloaderService.EVENT_START:
 					Log.d(TAG, "Start");
 					SimpleDownloadServiceFragment.downloading = true;
-					fireNotification(++SimpleDownloadServiceFragment.notificationId, false, false);
+					fireNotification(++SimpleDownloadServiceFragment.notificationId, NotificationType.START);
+					break;
+
+				case SimpleDownloaderService.EVENT_UPDATE:
+					Log.d(TAG, "Update");
+					SimpleDownloadServiceFragment.downloading = true;
+					progressDownloaded = intent.getIntExtra(SimpleDownloaderService.EVENT_UPDATE_DOWNLOADED, 0);
+					progressTotal = intent.getIntExtra(SimpleDownloaderService.EVENT_UPDATE_TOTAL, 0);
+					float progress = (float) progressDownloaded / progressTotal;
+					fireNotification(SimpleDownloadServiceFragment.notificationId, NotificationType.UPDATE, progress);
 					break;
 
 				case SimpleDownloaderService.EVENT_FINISH:
@@ -95,7 +104,7 @@ public class SimpleDownloadServiceFragment extends BaseDownloadFragment
 						Log.d(TAG, "Finish " + success);
 
 						// notification
-						fireNotification(SimpleDownloadServiceFragment.notificationId, true, success);
+						fireNotification(SimpleDownloadServiceFragment.notificationId, NotificationType.FINISH, success);
 
 						// fireNotification on done
 						onDone(success);
@@ -130,16 +139,16 @@ public class SimpleDownloadServiceFragment extends BaseDownloadFragment
 	public void onCreate(final Bundle savedInstance)
 	{
 		super.onCreate(savedInstance);
-		Log.d(TAG, "Register start/finish receiver");
-		LocalBroadcastManager.getInstance(getActivity()).registerReceiver(this.startFinishBroadcastReceiver, new IntentFilter(SimpleDownloaderService.START_FINISH_INTENT_FILTER));
+		Log.d(TAG, "Register main receiver");
+		LocalBroadcastManager.getInstance(getActivity()).registerReceiver(this.mainBroadcastReceiver, new IntentFilter(SimpleDownloaderService.MAIN_INTENT_FILTER));
 	}
 
 	@Override
 	public void onDestroy()
 	{
 		super.onDestroy();
-		Log.d(TAG, "Unregister start/finish receiver");
-		LocalBroadcastManager.getInstance(getActivity()).unregisterReceiver(this.startFinishBroadcastReceiver);
+		Log.d(TAG, "Unregister main receiver");
+		LocalBroadcastManager.getInstance(getActivity()).unregisterReceiver(this.mainBroadcastReceiver);
 	}
 
 	@Override
@@ -267,6 +276,9 @@ public class SimpleDownloadServiceFragment extends BaseDownloadFragment
 
 	// E V E N T S
 
+	/**
+	 * Killer (used in notifications)
+	 */
 	public static class Killer extends BroadcastReceiver
 	{
 		static public final String KILL_DOWNLOAD_SERVICE = "kill_download_service";
@@ -293,24 +305,58 @@ public class SimpleDownloadServiceFragment extends BaseDownloadFragment
 		}
 	}
 
+	private enum NotificationType
+	{
+		START, UPDATE, FINISH
+	}
+
+	/**
+	 * Persistent notification builder
+	 */
+	private NotificationCompat.Builder builder;
+
 	/**
 	 * UI notification
 	 *
-	 * @param id      id
-	 * @param finish  has finished
-	 * @param success true if successful
+	 * @param id   id
+	 * @param type notification
+	 * @param args arguments
 	 */
-	private void fireNotification(int id, final boolean finish, final boolean success)
+	private void fireNotification(int id, final NotificationType type, final Object... args)
 	{
 		final String from = Uri.parse(this.downloadUrl).getHost();
 		final String to = this.destFile.getName();
+		String contentTitle = context.getString(R.string.title_download);
+		String contentText = from + '→' + to;
+		switch (type)
+		{
+			case START:
+				contentText += ' ' + this.context.getString(R.string.status_download_running);
+				this.builder = new NotificationCompat.Builder(this.context);
+				this.builder.setSmallIcon(android.R.drawable.stat_sys_download) //
+						.setContentTitle(contentTitle) //
+						.setContentText(contentText);
+				break;
 
-		final NotificationCompat.Builder builder = //
-				new NotificationCompat.Builder(this.context) //
-						.setSmallIcon(finish ? android.R.drawable.stat_sys_download_done : android.R.drawable.stat_sys_download)//
-						.setContentTitle(context.getString(R.string.title_download) + ' ' + this.context.getString(finish ? (success ? R.string.status_download_successful : R.string.status_download_fail) : R.string.status_download_running))//
-						.setContentText(from + '→' + to);
-		if (!finish)
+			case UPDATE:
+				final float downloaded = (Float) args[0];
+				final int percent = (int) (downloaded * 100);
+				contentText += ' ' + this.context.getString(R.string.status_download_running);
+				contentText += ' ' + Integer.toString(percent) + '%';
+				this.builder.setContentText(contentText);
+				break;
+
+			case FINISH:
+				final boolean success = (Boolean) args[0];
+				contentText += ' ' + this.context.getString(success ? R.string.status_download_successful : R.string.status_download_fail);
+				this.builder = new NotificationCompat.Builder(this.context);
+				this.builder.setSmallIcon(android.R.drawable.stat_sys_download_done) //
+						.setContentText(contentText);
+				break;
+		}
+
+		// action
+		if (type != NotificationType.FINISH)
 		{
 			final Intent intent = new Intent(this.context, Killer.class);
 			intent.setAction(Killer.KILL_DOWNLOAD_SERVICE);
@@ -318,7 +364,7 @@ public class SimpleDownloadServiceFragment extends BaseDownloadFragment
 
 			// use System.currentTimeMillis() to have a unique ID for the pending intent
 			PendingIntent pendingIntent = PendingIntent.getBroadcast(this.context, (int) System.currentTimeMillis(), intent, PendingIntent.FLAG_UPDATE_CURRENT);
-			builder.addAction(R.drawable.error, context.getString(R.string.action_cancel), pendingIntent);
+			this.builder.addAction(R.drawable.error, context.getString(R.string.action_cancel), pendingIntent);
 		}
 
 		// notification

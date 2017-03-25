@@ -53,7 +53,10 @@ public class LinkQueryController extends QueryController
 	private void followLink()
 	{
 		final Value value = (Value) this.node.getValue();
-		final Link link = (Link) value.payload[1];
-		link.process();
+		if (value != null)
+		{
+			final Link link = (Link) value.payload[1];
+			link.process();
+		}
 	}
 }

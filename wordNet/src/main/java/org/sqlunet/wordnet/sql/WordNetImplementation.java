@@ -707,8 +707,6 @@ public class WordNetImplementation implements WordNetInterface
 
 	/**
 	 * Initial house-keeping - directory queries - connections - database static data
-	 *
-	 * @throws RuntimeException
 	 */
 	static public void init(final SQLiteDatabase connection)
 	{

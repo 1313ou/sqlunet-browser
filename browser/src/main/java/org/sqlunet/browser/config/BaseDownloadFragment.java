@@ -214,11 +214,6 @@ abstract class BaseDownloadFragment extends Fragment implements View.OnClickList
 	 */
 	protected Context context;
 
-	/**
-	 * True if created from a saved instance
-	 */
-	private boolean fromSavedInstance = false;
-
 	@Override
 	public void onCreate(final Bundle savedInstanceState)
 	{
@@ -389,13 +384,6 @@ abstract class BaseDownloadFragment extends Fragment implements View.OnClickList
 	abstract protected void cancel();
 
 	// O B S E R V E R
-
-	@Override
-	public void onActivityCreated(final Bundle savedInstance)
-	{
-		super.onActivityCreated(savedInstance);
-		this.fromSavedInstance = savedInstance != null;
-	}
 
 	@Override
 	public void onResume()

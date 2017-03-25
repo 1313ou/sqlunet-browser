@@ -11,7 +11,6 @@ import javax.xml.transform.OutputKeys;
 import javax.xml.transform.Result;
 import javax.xml.transform.Source;
 import javax.xml.transform.Transformer;
-import javax.xml.transform.TransformerConfigurationException;
 import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
@@ -84,8 +83,7 @@ public class DomTransformer
 	 * @param doc       is the DOM Document to be output as XML
 	 * @param xslStream is the XSL stream
 	 * @return XML String that represents DOM document
-	 * @throws TransformerConfigurationException
-	 * @throws TransformerException
+	 * @throws TransformerException transformer exception
 	 */
 	static public String docToString(final Document doc, final InputStream xslStream, final String method) throws TransformerException
 	{

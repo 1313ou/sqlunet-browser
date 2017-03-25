@@ -101,7 +101,7 @@ public class SimpleDownloadFragment extends BaseDownloadFragment implements Simp
 				this.progressDownloaded = 0;
 				this.progressTotal = 0;
 				this.exception = null;
-				SimpleDownloadFragment.downloader = new SimpleDownloader(from, to, ++SimpleDownloadFragment.downloadId);
+				SimpleDownloadFragment.downloader = new SimpleDownloader(getActivity(), from, to, ++SimpleDownloadFragment.downloadId);
 				SimpleDownloadFragment.downloader.setListener(this);
 				SimpleDownloadFragment.downloader.execute();
 				SimpleDownloadFragment.downloading = true;

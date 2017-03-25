@@ -10,7 +10,7 @@
 	<string name="error_cant_buy">Can\'t buy product</string>
 
 	<string name="title_treebolicwordnet">Treebolic WordNet</string>
-	<string name="text_treebolicwordnet">For each word, a tree graph is built, based on WordNet® data, that captures the word\'s relations to other words. The relation types are those to be found in the WordNet database and include: \'more specific\', \'more generic\', \'causes\', \'entails\', \'similar to\', \'opposite of\', \'part of\', \'whole of\', etc...
+	<string name="text_treebolicwordnet">For each word, a tree graph is built, based on WordNet® data, that captures the word\'s relations to other words. The relation types are those to be found in the WordNet database and include: \'more specific\', \'more generic\', \'causes\', \'entails\', \'similar to\', \'opposite of\', \'part of\', \'whole of\', etc…
 Treebolic WordNet displays this graph, and gives it a hyperbolic rendering in which display space is subject to a particular curvature: more space is allocated to the focus node while the parent and children, still in the immediate visual context, appear slightly smaller. The grandparents and grandchildren are still visible but come out even smaller. As we move away from the focus node, less display space is allotted to the nodes, which gradually disappear towards the display\'s border.
 Touch-dragging word nodes allows the user to interact with the display and to browse through the graph\'s space by shifting the focus.</string>
 	<string name="market_fail">No handler for </string>

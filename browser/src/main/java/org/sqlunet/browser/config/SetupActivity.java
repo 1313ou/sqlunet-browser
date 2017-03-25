@@ -99,7 +99,6 @@ public class SetupActivity extends AppCompatActivity implements ActionBar.TabLis
 		@Override
 		public Fragment getItem(int position)
 		{
-			final FragmentManager manager = getSupportFragmentManager();
 			switch (position)
 			{
 				case 0:

@@ -423,7 +423,7 @@ public class Settings
 	 *
 	 * @param context context
 	 */
-	@SuppressLint("CommitPrefEdits")
+	@SuppressLint({"CommitPrefEdits", "ApplySharedPref"})
 	static public void initialize(final Context context)
 	{
 		final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
@@ -450,9 +450,7 @@ public class Settings
 		editor.commit();
 
 		// globals
-
-		// TODO
-		final boolean logSql = sharedPref.getBoolean(Settings.PREF_SQL_LOG, true);
+		final boolean logSql = sharedPref.getBoolean(Settings.PREF_SQL_LOG, false);
 		PreparedStatement.logSql = logSql;
 		BaseProvider.logSql = logSql;
 	}

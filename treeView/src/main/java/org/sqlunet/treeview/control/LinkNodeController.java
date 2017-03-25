@@ -66,7 +66,10 @@ public class LinkNodeController extends Controller<Value>
 	private void followLink()
 	{
 		final Value value = (Value) this.node.getValue();
-		final Link link = (Link) value.payload[0];
-		link.process();
+		if (value != null)
+		{
+			final Link link = (Link) value.payload[0];
+			link.process();
+		}
 	}
 }

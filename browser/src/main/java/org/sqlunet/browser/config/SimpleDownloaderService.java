@@ -4,6 +4,7 @@ import android.app.IntentService;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.os.PowerManager;
 import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
 
@@ -27,7 +28,7 @@ public class SimpleDownloaderService extends IntentService
 {
 	static private final String TAG = "SimpleDownloader";
 
-	static public final String START_FINISH_INTENT_FILTER = "intent_filter_downloader_start_finish";
+	static public final String MAIN_INTENT_FILTER = "intent_filter_downloader_main";
 
 	static public final String UPDATE_INTENT_FILTER = "intent_filter_downloader_update";
 
@@ -63,6 +64,16 @@ public class SimpleDownloaderService extends IntentService
 	static private final int CHUNK_SIZE = 8192;
 
 	/**
+	 * Publish granularity for update = 8192 x 128 = 1MB
+	 */
+	static private final int PUBLISH_UPDATE_GRANULARITY = 128;
+
+	/**
+	 * Publish granularity for main = 1MB x 10 = 10MB
+	 */
+	static private final int PUBLISH_MAIN_GRANULARITY = PUBLISH_UPDATE_GRANULARITY * 10;
+
+	/**
 	 * Timeout in seconds
 	 */
 	static private final int TIMEOUT_S = 15;
@@ -76,11 +87,6 @@ public class SimpleDownloaderService extends IntentService
 	 * To file
 	 */
 	private String toFile;
-
-	/**
-	 * Id
-	 */
-	private int id;
 
 	/**
 	 * Cancel
@@ -123,17 +129,21 @@ public class SimpleDownloaderService extends IntentService
 				// arguments
 				this.fromUrl = intent.getStringExtra(SimpleDownloaderService.ARG_FROMURL);
 				this.toFile = intent.getStringExtra(SimpleDownloaderService.ARG_TOFILE);
-				this.id = intent.getIntExtra(SimpleDownloaderService.ARG_CODE, 0);
+				/*
+	  Id
+	 */
+				int id = intent.getIntExtra(SimpleDownloaderService.ARG_CODE, 0);
 
 				// fire start event
-				broadcast(START_FINISH_INTENT_FILTER, EVENT, EVENT_START);
+				broadcast(MAIN_INTENT_FILTER, EVENT, EVENT_START);
 
 				// do job
+				//noinspection EmptyFinallyBlock
 				try
 				{
 					job();
 					Log.d(TAG, "Completed successfully");
-					broadcast(START_FINISH_INTENT_FILTER, EVENT, EVENT_FINISH, EVENT_FINISH_ID, this.id, EVENT_FINISH_RESULT, true);
+					broadcast(MAIN_INTENT_FILTER, EVENT, EVENT_FINISH, EVENT_FINISH_ID, id, EVENT_FINISH_RESULT, true);
 				}
 				catch (final InterruptedException ie)
 				{
@@ -148,27 +158,27 @@ public class SimpleDownloaderService extends IntentService
 					}
 
 					Log.d(TAG, "Interrupted while downloading, " + ie.getMessage());
-					broadcast(START_FINISH_INTENT_FILTER, EVENT, EVENT_FINISH, EVENT_FINISH_ID, this.id, EVENT_FINISH_RESULT, false, EVENT_FINISH_EXCEPTION, exception.getMessage());
+					broadcast(MAIN_INTENT_FILTER, EVENT, EVENT_FINISH, EVENT_FINISH_ID, id, EVENT_FINISH_RESULT, false, EVENT_FINISH_EXCEPTION, exception.getMessage());
 				}
 				catch (final SocketTimeoutException ste)
 				{
 					this.exception = ste;
 					Log.d(TAG, "Timeout while downloading, " + ste.getMessage());
-					broadcast(START_FINISH_INTENT_FILTER, EVENT, EVENT_FINISH, EVENT_FINISH_ID, this.id, EVENT_FINISH_RESULT, false, EVENT_FINISH_EXCEPTION, exception.getMessage());
+					broadcast(MAIN_INTENT_FILTER, EVENT, EVENT_FINISH, EVENT_FINISH_ID, id, EVENT_FINISH_RESULT, false, EVENT_FINISH_EXCEPTION, exception.getMessage());
 				}
 				catch (final Exception e)
 				{
 					this.exception = e;
 					Log.e(TAG, "Exception while downloading, " + e.getMessage());
-					broadcast(START_FINISH_INTENT_FILTER, EVENT, EVENT_FINISH, EVENT_FINISH_ID, this.id, EVENT_FINISH_RESULT, false, EVENT_FINISH_EXCEPTION, exception.getMessage());
+					broadcast(MAIN_INTENT_FILTER, EVENT, EVENT_FINISH, EVENT_FINISH_ID, id, EVENT_FINISH_RESULT, false, EVENT_FINISH_EXCEPTION, exception.getMessage());
 				}
+				/*
 				finally
 				{
-					/*
 					unregisterReceiver(receiver);
 					stopSelf();
-					*/
 				}
+				*/
 			}
 		}
 	}
@@ -184,6 +194,11 @@ public class SimpleDownloaderService extends IntentService
 	private void job() throws Exception
 	{
 		prerequisite();
+
+		// wake lock
+		final PowerManager pm = (PowerManager) getSystemService(Context.POWER_SERVICE);
+		final PowerManager.WakeLock wakelock = pm.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, "DownloaderService");
+		wakelock.acquire();
 
 		final File outFile = new File(this.toFile + ".part");
 		InputStream input = null;
@@ -231,7 +246,11 @@ public class SimpleDownloaderService extends IntentService
 				downloaded += count;
 
 				// publishing the progress
-				if ((chunks % 50) == 0)
+				if ((chunks % PUBLISH_MAIN_GRANULARITY) == 0)
+				{
+					broadcast(MAIN_INTENT_FILTER, EVENT, EVENT_UPDATE, EVENT_UPDATE_DOWNLOADED, downloaded, EVENT_UPDATE_TOTAL, total);
+				}
+				if ((chunks % PUBLISH_UPDATE_GRANULARITY) == 0)
 				{
 					broadcast(UPDATE_INTENT_FILTER, EVENT, EVENT_UPDATE, EVENT_UPDATE_DOWNLOADED, downloaded, EVENT_UPDATE_TOTAL, total);
 				}
@@ -263,6 +282,9 @@ public class SimpleDownloaderService extends IntentService
 		}
 		finally
 		{
+			// wake lock
+			wakelock.release();
+
 			if (output != null)
 			{
 				try

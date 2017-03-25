@@ -3,7 +3,6 @@ package org.sqlunet.browser.config;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
-import android.os.Build;
 import android.os.Bundle;
 import android.preference.ListPreference;
 import android.preference.Preference;
@@ -95,7 +94,7 @@ public class SettingsActivity extends AppCompatPreferenceActivity
 	 */
 	static private boolean isSimplePreferences(final Context context)
 	{
-		return SettingsActivity.ALWAYS_SIMPLE_PREFS || Build.VERSION.SDK_INT < Build.VERSION_CODES.HONEYCOMB || !SettingsActivity.isLargeTablet(context);
+		return SettingsActivity.ALWAYS_SIMPLE_PREFS || !SettingsActivity.isLargeTablet(context);
 	}
 
 	// S E T U P
