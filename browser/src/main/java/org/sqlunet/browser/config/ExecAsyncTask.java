@@ -4,6 +4,7 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.PowerManager;
 import android.util.Log;
 import android.util.Pair;
@@ -102,6 +103,8 @@ class ExecAsyncTask
 						{
 							publishProgress(i, total);
 						}
+
+						// cancel hook
 						if (isCancelled())
 						{
 							//noinspection BreakStatement
@@ -172,8 +175,8 @@ class ExecAsyncTask
 				Log.d(ExecAsyncTask.TAG, archiveArg + '!' + entryArg + '>' + databaseArg);
 
 				// wake lock
-				final PowerManager pm = (PowerManager) ExecAsyncTask.this.context.getSystemService(Context.POWER_SERVICE);
-				final PowerManager.WakeLock wakelock = pm.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, "DownloaderService");
+				final PowerManager powerManager = (PowerManager) ExecAsyncTask.this.context.getSystemService(Context.POWER_SERVICE);
+				final PowerManager.WakeLock wakelock = powerManager.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, "DownloaderService");
 				wakelock.acquire();
 
 				SQLiteDatabase db = null;
@@ -243,10 +246,16 @@ class ExecAsyncTask
 						sql = null;
 
 						// progress
-						if (count % ExecAsyncTask.this.publishRate == 0)
+						boolean isInteractive = Build.VERSION.SDK_INT > Build.VERSION_CODES.KITKAT ? powerManager.isInteractive() : powerManager.isScreenOn();
+						if (isInteractive)
 						{
-							publishProgress(count, -1);
+							if (count % ExecAsyncTask.this.publishRate == 0)
+							{
+								publishProgress(count, -1);
+							}
 						}
+
+						// cancel hook
 						if (isCancelled())
 						{
 							//noinspection BreakStatement

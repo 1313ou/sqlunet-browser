@@ -2,6 +2,7 @@ package org.sqlunet.browser.config;
 
 import android.content.Context;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.PowerManager;
 import android.util.Log;
 
@@ -153,8 +154,8 @@ class SimpleDownloader extends AsyncTask<Void, Integer, Boolean>
 		prerequisite();
 
 		// wake lock
-		final PowerManager pm = (PowerManager) this.context.getSystemService(Context.POWER_SERVICE);
-		final PowerManager.WakeLock wakelock = pm.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, "DownloaderService");
+		final PowerManager powerManager = (PowerManager) this.context.getSystemService(Context.POWER_SERVICE);
+		final PowerManager.WakeLock wakelock = powerManager.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, "DownloaderService");
 		wakelock.acquire();
 
 		final File outFile = new File(this.toFile + ".part");
@@ -201,8 +202,13 @@ class SimpleDownloader extends AsyncTask<Void, Integer, Boolean>
 			{
 				downloaded += count;
 
-				// publishing the progress (onProgressUpdate will be called)
-				publishProgress(downloaded, total);
+				// progress
+				boolean isInteractive = Build.VERSION.SDK_INT > Build.VERSION_CODES.KITKAT ? powerManager.isInteractive() : powerManager.isScreenOn();
+				if (isInteractive)
+				{
+					// publishing the progress (onProgressUpdate will be called)
+					publishProgress(downloaded, total);
+				}
 
 				// writing data toFile file
 				output.write(buffer, 0, count);
