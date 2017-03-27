@@ -1,5 +1,6 @@
 package org.sqlunet.browser.config;
 
+import android.app.Activity;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
@@ -8,6 +9,7 @@ import android.os.Build;
 import android.os.PowerManager;
 import android.util.Log;
 import android.util.Pair;
+import android.view.WindowManager;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -42,20 +44,20 @@ class ExecAsyncTask
 	private final int publishRate;
 
 	/**
-	 * Context
+	 * Activity
 	 */
-	private final Context context;
+	private final Activity activity;
 
 	/**
 	 * Constructor
 	 *
-	 * @param context     context
+	 * @param activity    activity
 	 * @param listener    listener
 	 * @param publishRate publish rate
 	 */
-	ExecAsyncTask(final Context context, final TaskObserver.Listener listener, final int publishRate)
+	ExecAsyncTask(final Activity activity, final TaskObserver.Listener listener, final int publishRate)
 	{
-		this.context = context;
+		this.activity = activity;
 		this.listener = listener;
 		this.publishRate = publishRate;
 	}
@@ -175,7 +177,7 @@ class ExecAsyncTask
 				Log.d(ExecAsyncTask.TAG, archiveArg + '!' + entryArg + '>' + databaseArg);
 
 				// wake lock
-				final PowerManager powerManager = (PowerManager) ExecAsyncTask.this.context.getSystemService(Context.POWER_SERVICE);
+				final PowerManager powerManager = (PowerManager) ExecAsyncTask.this.activity.getSystemService(Context.POWER_SERVICE);
 				final PowerManager.WakeLock wakelock = powerManager.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, "DownloaderService");
 				wakelock.acquire();
 
@@ -318,6 +320,7 @@ class ExecAsyncTask
 			@Override
 			protected void onPreExecute()
 			{
+				ExecAsyncTask.this.activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 				ExecAsyncTask.this.listener.taskStart(this);
 			}
 
@@ -330,6 +333,7 @@ class ExecAsyncTask
 			@Override
 			protected void onPostExecute(final Boolean result)
 			{
+				ExecAsyncTask.this.activity.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 				ExecAsyncTask.this.listener.taskFinish(result);
 			}
 		};
