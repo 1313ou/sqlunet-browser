@@ -31,7 +31,7 @@ class ExecAsyncTask
 	/**
 	 * Execute transaction
 	 */
-	static final private boolean SKIP_TRANSACTION = true;
+	static final private boolean SKIP_TRANSACTION = false;
 
 	/**
 	 * ResultListener
@@ -190,6 +190,9 @@ class ExecAsyncTask
 					// database
 					db = SQLiteDatabase.openDatabase(databaseArg, null, SQLiteDatabase.CREATE_IF_NECESSARY);
 
+					// temp store
+					// db.execSQL("PRAGMA temp_store = FILE;");
+
 					// zip
 					zipFile = new ZipFile(archiveArg);
 					final ZipEntry zipEntry = zipFile.getEntry(entryArg);
@@ -203,6 +206,12 @@ class ExecAsyncTask
 					// open the reader
 					InputStreamReader isr = new InputStreamReader(is);
 					reader = new BufferedReader(isr);
+
+					// journal off
+					if (SKIP_TRANSACTION)
+					{
+						db.execSQL("PRAGMA journal_mode = OFF;");
+					}
 
 					// iterate through lines (assuming each insert has its own line and there's no other stuff)
 					int count = 0;
