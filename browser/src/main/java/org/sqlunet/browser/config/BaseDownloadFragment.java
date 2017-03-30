@@ -220,7 +220,7 @@ abstract class BaseDownloadFragment extends Fragment implements View.OnClickList
 		super.onCreate(savedInstanceState);
 		// Log.d(TAG, "onCreate " + savedInstanceState);
 
-		// context for threads that termitate after activity finishes
+		// context for threads that terminate after activity finishes
 		this.context = getActivity().getApplicationContext();
 
 		// arguments

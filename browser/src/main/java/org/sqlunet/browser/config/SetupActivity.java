@@ -15,6 +15,7 @@ import android.view.MenuItem;
 
 import org.sqlunet.browser.R;
 
+@SuppressWarnings("deprecation")
 public class SetupActivity extends AppCompatActivity implements ActionBar.TabListener
 {
 	/**

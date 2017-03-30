@@ -257,7 +257,7 @@ class ExecAsyncTask
 						sql = null;
 
 						// progress
-						boolean isInteractive = Build.VERSION.SDK_INT > Build.VERSION_CODES.KITKAT ? powerManager.isInteractive() : powerManager.isScreenOn();
+						@SuppressWarnings("deprecation") boolean isInteractive = Build.VERSION.SDK_INT > Build.VERSION_CODES.KITKAT ? powerManager.isInteractive() : powerManager.isScreenOn();
 						if (isInteractive)
 						{
 							if (count % ExecAsyncTask.this.publishRate == 0)

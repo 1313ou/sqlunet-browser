@@ -30,7 +30,7 @@
 		<item>Drop sampleset View</item>
 	</string-array>
 	<string-array name="sql_statements_values" formatted="false">
-		<item></item>
+		<item/>
 		<item>
 			CREATE INDEX IF NOT EXISTS index_words_lemma ON words(lemma);
 			CREATE INDEX IF NOT EXISTS index_senses_wordid ON senses(wordid);

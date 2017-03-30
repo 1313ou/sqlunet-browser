@@ -673,7 +673,7 @@ public class IabHelper
 			logDebug("Result code was OK but in-app billing response was not OK: " + getResponseDesc(responseCode));
 			if (mPurchaseListener != null)
 			{
-				result = new IabResult(responseCode, "Problem purchashing item.");
+				result = new IabResult(responseCode, "Problem purchasing item.");
 				mPurchaseListener.onIabPurchaseFinished(result, null);
 			}
 		}

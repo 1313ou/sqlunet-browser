@@ -203,7 +203,7 @@ class SimpleDownloader extends AsyncTask<Void, Integer, Boolean>
 				downloaded += count;
 
 				// progress
-				boolean isInteractive = Build.VERSION.SDK_INT > Build.VERSION_CODES.KITKAT ? powerManager.isInteractive() : powerManager.isScreenOn();
+				@SuppressWarnings("deprecation") boolean isInteractive = Build.VERSION.SDK_INT > Build.VERSION_CODES.KITKAT ? powerManager.isInteractive() : powerManager.isScreenOn();
 				if (isInteractive)
 				{
 					// publishing the progress (onProgressUpdate will be called)
