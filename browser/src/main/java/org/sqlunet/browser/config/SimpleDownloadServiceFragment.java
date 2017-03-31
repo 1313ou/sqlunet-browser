@@ -75,8 +75,6 @@ public class SimpleDownloadServiceFragment extends BaseDownloadFragment
 		@Override
 		public void onReceive(final Context context, final Intent intent)
 		{
-			//Log.d(TAG, "RECEIVE");
-
 			switch (intent.getStringExtra(SimpleDownloaderService.EVENT))
 			{
 				case SimpleDownloaderService.EVENT_START:
@@ -108,6 +106,10 @@ public class SimpleDownloadServiceFragment extends BaseDownloadFragment
 
 						// fireNotification on done
 						onDone(success);
+
+						// receiver
+						Log.d(TAG, "Unregister main receiver");
+						LocalBroadcastManager.getInstance(getActivity()).unregisterReceiver(SimpleDownloadServiceFragment.this.mainBroadcastReceiver);
 					}
 					break;
 			}
@@ -122,8 +124,6 @@ public class SimpleDownloadServiceFragment extends BaseDownloadFragment
 		@Override
 		public void onReceive(final Context context, final Intent intent)
 		{
-			//Log.d(TAG, "RECEIVE");
-
 			switch (intent.getStringExtra(SimpleDownloaderService.EVENT))
 			{
 				case SimpleDownloaderService.EVENT_UPDATE:
@@ -139,16 +139,6 @@ public class SimpleDownloadServiceFragment extends BaseDownloadFragment
 	public void onCreate(final Bundle savedInstance)
 	{
 		super.onCreate(savedInstance);
-		Log.d(TAG, "Register main receiver");
-		LocalBroadcastManager.getInstance(getActivity()).registerReceiver(this.mainBroadcastReceiver, new IntentFilter(SimpleDownloaderService.MAIN_INTENT_FILTER));
-	}
-
-	@Override
-	public void onDestroy()
-	{
-		super.onDestroy();
-		Log.d(TAG, "Unregister main receiver");
-		LocalBroadcastManager.getInstance(getActivity()).unregisterReceiver(this.mainBroadcastReceiver);
 	}
 
 	@Override
@@ -178,15 +168,20 @@ public class SimpleDownloadServiceFragment extends BaseDownloadFragment
 			Log.d(TAG, "START");
 			if (!SimpleDownloadServiceFragment.downloading)
 			{
-				final String from = this.downloadUrl;
-				final String to = this.destFile.getAbsolutePath();
+				Log.d(TAG, "Register main receiver");
+				LocalBroadcastManager.getInstance(getActivity()).registerReceiver(this.mainBroadcastReceiver, new IntentFilter(SimpleDownloaderService.MAIN_INTENT_FILTER));
 
-				// starting download
+				// reset
 				this.success = false;
 				this.progressDownloaded = 0;
 				this.progressTotal = 0;
 				this.exception = null;
 
+				// args
+				final String from = this.downloadUrl;
+				final String to = this.destFile.getAbsolutePath();
+
+				// service intent
 				final Intent intent = new Intent(getActivity(), SimpleDownloaderService.class);
 				intent.setAction(SimpleDownloaderService.ACTION_DOWNLOAD);
 				intent.putExtra(SimpleDownloaderService.ARG_FROMURL, from);
@@ -194,6 +189,7 @@ public class SimpleDownloadServiceFragment extends BaseDownloadFragment
 				intent.putExtra(SimpleDownloaderService.ARG_CODE, ++SimpleDownloadServiceFragment.downloadId);
 				getActivity().startService(intent);
 
+				// status
 				SimpleDownloadServiceFragment.downloading = true;
 				return;
 			}
