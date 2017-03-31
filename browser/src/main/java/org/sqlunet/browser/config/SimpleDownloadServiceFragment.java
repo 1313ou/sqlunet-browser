@@ -336,6 +336,14 @@ public class SimpleDownloadServiceFragment extends BaseDownloadFragment
 				this.builder.setSmallIcon(android.R.drawable.stat_sys_download) //
 						.setContentTitle(contentTitle) //
 						.setContentText(contentText);
+				// action
+				final Intent intent = new Intent(this.context, Killer.class);
+				intent.setAction(Killer.KILL_DOWNLOAD_SERVICE);
+				intent.putExtra(SimpleDownloadServiceFragment.NOTIFICATION_ID, id);
+
+				// use System.currentTimeMillis() to have a unique ID for the pending intent
+				PendingIntent pendingIntent = PendingIntent.getBroadcast(this.context, (int) System.currentTimeMillis(), intent, PendingIntent.FLAG_UPDATE_CURRENT);
+				this.builder.addAction(R.drawable.error, context.getString(R.string.action_cancel), pendingIntent);
 				break;
 
 			case UPDATE:
@@ -355,17 +363,6 @@ public class SimpleDownloadServiceFragment extends BaseDownloadFragment
 				break;
 		}
 
-		// action
-		if (type != NotificationType.FINISH)
-		{
-			final Intent intent = new Intent(this.context, Killer.class);
-			intent.setAction(Killer.KILL_DOWNLOAD_SERVICE);
-			intent.putExtra(SimpleDownloadServiceFragment.NOTIFICATION_ID, id);
-
-			// use System.currentTimeMillis() to have a unique ID for the pending intent
-			PendingIntent pendingIntent = PendingIntent.getBroadcast(this.context, (int) System.currentTimeMillis(), intent, PendingIntent.FLAG_UPDATE_CURRENT);
-			this.builder.addAction(R.drawable.error, context.getString(R.string.action_cancel), pendingIntent);
-		}
 
 		// notification
 		final Notification notification = builder.build();
