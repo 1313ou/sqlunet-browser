@@ -112,7 +112,7 @@
 	<string name="status_download_paused_unknown">unknown</string>
 	<string name="status_download_paused_waiting_for_network">waiting for network</string>
 	<string name="status_download_paused_waiting_to_retry">waiting to retry</string>
-	<string name="status_state_unknown"></string>
+	<string name="status_state_unknown"/>
 	<string name="status_reason_unknown"/>
 	<string name="status_managing">Managing</string>
 	<string name="status_task_running">running</string>
