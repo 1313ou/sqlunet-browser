@@ -129,9 +129,8 @@ public class SimpleDownloaderService extends IntentService
 				// arguments
 				this.fromUrl = intent.getStringExtra(SimpleDownloaderService.ARG_FROMURL);
 				this.toFile = intent.getStringExtra(SimpleDownloaderService.ARG_TOFILE);
-				/*
-	  Id
-	 */
+
+				// id
 				int id = intent.getIntExtra(SimpleDownloaderService.ARG_CODE, 0);
 
 				// fire start event
@@ -172,13 +171,6 @@ public class SimpleDownloaderService extends IntentService
 					Log.e(TAG, "Exception while downloading, " + e.getMessage());
 					broadcast(MAIN_INTENT_FILTER, EVENT, EVENT_FINISH, EVENT_FINISH_ID, id, EVENT_FINISH_RESULT, false, EVENT_FINISH_EXCEPTION, exception.getMessage());
 				}
-				/*
-				finally
-				{
-					unregisterReceiver(receiver);
-					stopSelf();
-				}
-				*/
 			}
 		}
 	}
@@ -274,11 +266,6 @@ public class SimpleDownloaderService extends IntentService
 				}
 			}
 			output.flush();
-
-			if (outFile.exists())
-			{
-				outFile.renameTo(new File(this.toFile));
-			}
 		}
 		finally
 		{
@@ -309,6 +296,15 @@ public class SimpleDownloaderService extends IntentService
 				}
 			}
 		}
+
+		// rename
+		final File newFile = new File(this.toFile);
+		boolean success = false;
+		if (outFile.exists() && !newFile.exists())
+		{
+			success = outFile.renameTo(newFile);
+		}
+		Log.d(TAG, "Rename " + outFile + " to " + newFile + ' ' + success);
 	}
 
 	/**
