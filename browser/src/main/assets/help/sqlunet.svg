@@ -16,7 +16,10 @@
    id="svg2"
    version="1.1"
    inkscape:version="0.91 r13725"
-   sodipodi:docname="sqlunet.svg">
+   sodipodi:docname="sqlunet.svg"
+   inkscape:export-filename="/opt/devel/android-sqlunet-as/SqlUNet/browser/src/main/assets/help/images/sqlunet.png"
+   inkscape:export-xdpi="100"
+   inkscape:export-ydpi="100">
   <defs
      id="defs4">
     <linearGradient
@@ -191,7 +194,7 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="0.99092774"
-     inkscape:cx="379.14509"
+     inkscape:cx="133.41577"
      inkscape:cy="379.1452"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
@@ -214,7 +217,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
