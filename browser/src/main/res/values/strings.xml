@@ -36,6 +36,7 @@
 	<string name="action_md5_ask">MD5 &#8230;</string>
 
 	<!-- misc -->
+	<string name="action_clear_sql">Clear SQLs</string>
 	<string name="action_download">Download</string>
 	<string name="action_help">Help</string>
 	<string name="action_about">About</string>

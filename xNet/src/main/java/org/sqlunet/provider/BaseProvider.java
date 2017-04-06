@@ -23,6 +23,15 @@ public abstract class BaseProvider extends ContentProvider
 {
 	static private final String TAG = "BaseProvider";
 
+	/**
+	 * SQL statement buffer
+	 */
+	@SuppressWarnings("StaticVariableOfConcreteClass")
+	static public final CircularBuffer buffer = new CircularBuffer(15);
+
+	/**
+	 * Circular buffer
+	 */
 	static public class CircularBuffer extends LinkedList<CharSequence>
 	{
 		private int limit;
@@ -32,7 +41,7 @@ public abstract class BaseProvider extends ContentProvider
 			this.limit = number;
 		}
 
-		public void addItem(final CharSequence value)
+		synchronized public void addItem(final CharSequence value)
 		{
 			addLast(value);
 			if (size() > this.limit)
@@ -41,19 +50,19 @@ public abstract class BaseProvider extends ContentProvider
 			}
 		}
 
-		@SuppressWarnings("unused")
-		public CharSequence[] items()
+		synchronized public CharSequence[] reverseItems()
 		{
-			return toArray(new CharSequence[size()]);
-		}
-
-		public CharSequence[] reverseItems()
-		{
-			final CharSequence[] array = new CharSequence[size()];
-			Iterator<CharSequence> iter = descendingIterator();
-			for (int i = 0; iter.hasNext(); i++)
+			final int n = size();
+			// Log.d(TAG, "sql size " + n);
+			final CharSequence[] array = new CharSequence[n];
+			Iterator<CharSequence> iter = listIterator();
+			int i = n - 1;
+			while (iter.hasNext())
 			{
-				array[i] = iter.next();
+				CharSequence sql = iter.next();
+				// Log.d(TAG, "get sql " + sql + " " + i);
+				array[i] = sql;
+				i--;
 			}
 			return array;
 		}
@@ -70,12 +79,6 @@ public abstract class BaseProvider extends ContentProvider
 			this.limit = limit;
 		}
 	}
-
-	/**
-	 * SQL statement buffer
-	 */
-	@SuppressWarnings("StaticVariableOfConcreteClass")
-	static public final CircularBuffer buffer = new CircularBuffer(15);
 
 	/**
 	 * Record generated SQL
@@ -293,9 +296,12 @@ public abstract class BaseProvider extends ContentProvider
 	 * @param sql  sql
 	 * @param args parameters
 	 */
-	protected void logSql(final String sql, String... args)
+	protected void logSql(final String sql, final String... args)
 	{
 		final String sql2 = Utils.replaceArgs(sql, Utils.toArgs(args));
-		buffer.addItem(sql2);
+		if (sql2 != null)
+		{
+			buffer.addItem(sql2);
+		}
 	}
 }

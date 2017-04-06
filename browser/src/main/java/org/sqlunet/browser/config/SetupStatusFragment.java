@@ -252,7 +252,7 @@ public class SetupStatusFragment extends Fragment
 	}
 
 	@Override
-	public void onHiddenChanged (boolean hidden)
+	public void onHiddenChanged(boolean hidden)
 	{
 		super.onHiddenChanged(hidden);
 
@@ -334,7 +334,10 @@ public class SetupStatusFragment extends Fragment
 			case REQUEST_DOWNLOAD_CODE:
 				boolean success = resultCode == Activity.RESULT_OK;
 				Log.d(TAG, "Download " + (success ? "succeeded" : "failed")); ////
-				Toast.makeText(getActivity(), success ? R.string.title_download_complete : R.string.title_download_failed, Toast.LENGTH_SHORT).show();
+				if (success)
+				{
+					Toast.makeText(getActivity(), R.string.title_download_complete, Toast.LENGTH_SHORT).show();
+				}
 				update();
 				break;
 			default:

@@ -101,10 +101,10 @@ public class SimpleDownloadServiceFragment extends BaseDownloadFragment
 						exception = intent.getStringExtra(SimpleDownloaderService.EVENT_FINISH_EXCEPTION);
 						Log.d(TAG, "Finish " + success);
 
-						// notification
+						// fire notification
 						fireNotification(SimpleDownloadServiceFragment.notificationId, NotificationType.FINISH, success);
 
-						// fireNotification on done
+						// fire ondone
 						onDone(success);
 
 						// receiver

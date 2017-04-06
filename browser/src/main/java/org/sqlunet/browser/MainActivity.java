@@ -15,6 +15,7 @@ import org.sqlunet.browser.config.SettingsActivity;
 import org.sqlunet.browser.config.SetupActivity;
 import org.sqlunet.browser.config.Status;
 import org.sqlunet.browser.config.StorageActivity;
+import org.sqlunet.provider.BaseProvider;
 import org.sqlunet.settings.Settings;
 import org.sqlunet.settings.StorageSettings;
 import org.sqlunet.support.DonateActivity;
@@ -148,6 +149,12 @@ public class MainActivity extends AppCompatActivity // implements NavigationFrag
 			case R.id.action_setup:
 				intent = new Intent(activity, SetupActivity.class);
 				break;
+
+			// SQLs
+
+			case R.id.action_clear_sql:
+				BaseProvider.buffer.clear();
+				return true;
 
 			// guide
 
