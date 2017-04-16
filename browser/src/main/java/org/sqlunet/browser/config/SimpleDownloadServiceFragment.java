@@ -45,12 +45,17 @@ public class SimpleDownloadServiceFragment extends BaseDownloadFragment
 	/**
 	 * Result
 	 */
-	private Boolean success;
+	static private Boolean success;
 
 	/**
 	 * Exception
 	 */
-	private String exception;
+	static private String exception;
+
+	/**
+	 * Downloading flag (prevents re-entrance)
+	 */
+	static private boolean downloading = false;
 
 	/**
 	 * Downloaded progress when status was read
@@ -61,11 +66,6 @@ public class SimpleDownloadServiceFragment extends BaseDownloadFragment
 	 * Total progress when status was read
 	 */
 	private long progressTotal = 0;
-
-	/**
-	 * Downloading flag (prevents re-entrance)
-	 */
-	static private boolean downloading = false;
 
 	/**
 	 * Broadcast receiver for start finish events
@@ -97,15 +97,15 @@ public class SimpleDownloadServiceFragment extends BaseDownloadFragment
 					if (id == SimpleDownloadServiceFragment.downloadId)
 					{
 						SimpleDownloadServiceFragment.downloading = false;
-						success = intent.getBooleanExtra(SimpleDownloaderService.EVENT_FINISH_RESULT, false);
-						exception = intent.getStringExtra(SimpleDownloaderService.EVENT_FINISH_EXCEPTION);
-						Log.d(TAG, "Finish " + success);
+						SimpleDownloadServiceFragment.success = intent.getBooleanExtra(SimpleDownloaderService.EVENT_FINISH_RESULT, false);
+						SimpleDownloadServiceFragment.exception = intent.getStringExtra(SimpleDownloaderService.EVENT_FINISH_EXCEPTION);
+						Log.d(TAG, "Finish " + SimpleDownloadServiceFragment.success);
 
 						// fire notification
-						fireNotification(SimpleDownloadServiceFragment.notificationId, NotificationType.FINISH, success);
+						fireNotification(SimpleDownloadServiceFragment.notificationId, NotificationType.FINISH, SimpleDownloadServiceFragment.success);
 
 						// fire ondone
-						onDone(success);
+						onDone(SimpleDownloadServiceFragment.success);
 
 						// receiver
 						Log.d(TAG, "Unregister main receiver");
@@ -172,10 +172,10 @@ public class SimpleDownloadServiceFragment extends BaseDownloadFragment
 				LocalBroadcastManager.getInstance(getActivity()).registerReceiver(this.mainBroadcastReceiver, new IntentFilter(SimpleDownloaderService.MAIN_INTENT_FILTER));
 
 				// reset
-				this.success = false;
+				SimpleDownloadServiceFragment.success = null;
+				SimpleDownloadServiceFragment.exception = null;
 				this.progressDownloaded = 0;
 				this.progressTotal = 0;
-				this.exception = null;
 
 				// args
 				final String from = this.downloadUrl;
@@ -232,19 +232,19 @@ public class SimpleDownloadServiceFragment extends BaseDownloadFragment
 	synchronized protected int getStatus(final Progress progress)
 	{
 		Status status;
-		if (downloading)
+		if (SimpleDownloadServiceFragment.downloading)
 		{
 			status = Status.STATUS_RUNNING;
 		}
 		else
 		{
-			if (this.success == null)
+			if (SimpleDownloadServiceFragment.success == null)
 			{
 				status = Status.STATUS_PENDING;
 			}
 			else
 			{
-				status = this.exception == null && this.success ? Status.STATUS_SUCCESSFUL : Status.STATUS_FAILED;
+				status = SimpleDownloadServiceFragment.exception == null && SimpleDownloadServiceFragment.success ? Status.STATUS_SUCCESSFUL : Status.STATUS_FAILED;
 			}
 		}
 
@@ -262,9 +262,9 @@ public class SimpleDownloadServiceFragment extends BaseDownloadFragment
 	@Override
 	protected String getReason()
 	{
-		if (this.exception != null)
+		if (SimpleDownloadServiceFragment.exception != null)
 		{
-			return this.exception;
+			return SimpleDownloadServiceFragment.exception;
 		}
 		return null;
 	}
