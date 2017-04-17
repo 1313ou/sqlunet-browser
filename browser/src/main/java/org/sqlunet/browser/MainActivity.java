@@ -60,7 +60,6 @@ public class MainActivity extends AppCompatActivity // implements NavigationFrag
 			final Intent intent = new Intent(this, StatusActivity.class);
 			intent.putExtra(Status.CANTRUN, true);
 			intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-			// intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_TASK_ON_HOME);
 			startActivity(intent);
 			finish();
 		}

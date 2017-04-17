@@ -374,6 +374,28 @@ abstract class BaseDownloadFragment extends Fragment implements View.OnClickList
 	}
 
 	/**
+	 * Observer state
+	 */
+	private void observerState()
+	{
+		this.downloadButton.setVisibility(View.INVISIBLE);
+		this.progressBar.setVisibility(View.VISIBLE);
+		this.progressStatus.setVisibility(View.VISIBLE);
+		this.cancelButton.setVisibility(View.VISIBLE);
+	}
+
+	/**
+	 * Initial state
+	 */
+	private void initialState()
+	{
+		this.downloadButton.setVisibility(View.VISIBLE);
+		this.progressBar.setVisibility(View.INVISIBLE);
+		this.progressStatus.setVisibility(View.INVISIBLE);
+		this.cancelButton.setVisibility(View.GONE);
+	}
+
+	/**
 	 * Start download
 	 */
 	abstract protected void start();
@@ -424,6 +446,12 @@ abstract class BaseDownloadFragment extends Fragment implements View.OnClickList
 				// observerUpdate status
 				BaseDownloadFragment.this.status = getStatus(BaseDownloadFragment.this.progress);
 				Log.d(TAG, "Status " + Long.toHexString(BaseDownloadFragment.this.status));
+
+				// if
+				if (Status.STATUS_RUNNING.test(BaseDownloadFragment.this.status) || Status.STATUS_PAUSED.test(BaseDownloadFragment.this.status))
+				{
+					observerState();
+				}
 
 				// observerUpdate UI if fragment is added to activity
 				observerUpdate();

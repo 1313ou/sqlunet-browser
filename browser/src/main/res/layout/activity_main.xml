@@ -13,13 +13,6 @@
 		android:layout_height="match_parent"
 		android:orientation="vertical">
 
-		<!--
-		<include
-			layout="@layout/toolbar_main"
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"/>
-		-->
-
 		<!-- As the browse content view, the view below consumes the entire space available using match_parent in both dimensions. -->
 		<FrameLayout
 			android:id="@+id/container_content"

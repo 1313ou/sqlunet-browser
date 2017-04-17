@@ -17,6 +17,7 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import org.sqlunet.browser.Info;
+import org.sqlunet.browser.MainActivity;
 import org.sqlunet.browser.R;
 import org.sqlunet.settings.StorageSettings;
 import org.sqlunet.settings.StorageUtils;
@@ -334,11 +335,16 @@ public class SetupStatusFragment extends Fragment
 			case REQUEST_DOWNLOAD_CODE:
 				boolean success = resultCode == Activity.RESULT_OK;
 				Log.d(TAG, "Download " + (success ? "succeeded" : "failed")); ////
+				update();
 				if (success)
 				{
 					Toast.makeText(getActivity(), R.string.title_download_complete, Toast.LENGTH_SHORT).show();
+
+					final Intent intent = new Intent(getActivity(), MainActivity.class);
+					intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+					startActivity(intent);
+					getActivity().finish();
 				}
-				update();
 				break;
 			default:
 				break;
