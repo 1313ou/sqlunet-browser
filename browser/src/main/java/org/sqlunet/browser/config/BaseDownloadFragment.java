@@ -437,30 +437,15 @@ abstract class BaseDownloadFragment extends Fragment implements View.OnClickList
 			Log.d(TAG, "Observer is alive");
 			while (true)
 			{
-				// terminate if fragment is not in resumed state
+				// terminate observer if fragment is not in resumed state
 				if (!isResumed())
 				{
 					break;
 				}
 
-				// observerUpdate status
+				// status
 				BaseDownloadFragment.this.status = getStatus(BaseDownloadFragment.this.progress);
 				Log.d(TAG, "Status " + Long.toHexString(BaseDownloadFragment.this.status));
-
-				// if
-				if (Status.STATUS_RUNNING.test(BaseDownloadFragment.this.status) || Status.STATUS_PAUSED.test(BaseDownloadFragment.this.status))
-				{
-					observerState();
-				}
-
-				// observerUpdate UI if fragment is added to activity
-				observerUpdate();
-
-				// exit because task was cancelled
-				if (cancel)
-				{
-					break;
-				}
 
 				// exit because task has ended
 				if (Status.finished(BaseDownloadFragment.this.status))
@@ -472,6 +457,21 @@ abstract class BaseDownloadFragment extends Fragment implements View.OnClickList
 					//noinspection BreakStatement
 					break;
 				}
+
+				// exit because task was cancelled
+				if (cancel)
+				{
+					break;
+				}
+
+				// if running or paused
+				if (Status.STATUS_RUNNING.test(BaseDownloadFragment.this.status) || Status.STATUS_PAUSED.test(BaseDownloadFragment.this.status))
+				{
+					observerState();
+				}
+
+				// observerUpdate UI if fragment is added to activity
+				observerUpdate();
 
 				// sleep
 				try
