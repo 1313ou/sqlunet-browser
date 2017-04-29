@@ -83,7 +83,6 @@ public class Browse2Fragment extends Fragment
 		}
 	}
 
-	//TODO
 	@Override
 	public void onSaveInstanceState(Bundle outState)
 	{

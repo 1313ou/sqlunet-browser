@@ -58,9 +58,9 @@ public class Browse1Fragment extends Fragment implements SelectorsFragment.Liste
 				.commit();
 
 		// two-pane specific set up
-		if (view.findViewById(R.id.container_browse2) != null)
+		if (view.findViewById(R.id.detail) != null)
 		{
-			// the detail container view will be present only in the large-screen layouts (res/values-large and res/values-sw600dp).
+			// the detail view will be present only in the large-screen layouts
 			// if this view is present, then the activity should be in two-pane mode.
 			this.isTwoPane = true;
 
