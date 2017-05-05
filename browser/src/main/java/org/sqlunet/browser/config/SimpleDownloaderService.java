@@ -119,7 +119,6 @@ public class SimpleDownloaderService extends IntentService
 			if (SimpleDownloaderService.ACTION_DOWNLOAD.equals(action))
 			{
 				/*
-				TODO
 				final IntentFilter filter = new IntentFilter(StopReceiver.ACTION_STOP);
 				filter.addCategory(Intent.CATEGORY_DEFAULT);
 				StopReceiver receiver = new StopReceiver();
@@ -366,7 +365,6 @@ public class SimpleDownloaderService extends IntentService
 	}
 
 	// A L T
-	// TODO
 
 	public class StopReceiver extends BroadcastReceiver
 	{

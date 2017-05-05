@@ -90,7 +90,7 @@ public class SelectorsFragment extends ListFragment
 	{
 		super.onCreate(savedInstanceState);
 
-		//TODO
+		//TODO setRetainInstance
 		setRetainInstance(true);
 
 		// arguments
@@ -293,12 +293,14 @@ public class SelectorsFragment extends ListFragment
 				// pass on to list adapter
 				((CursorAdapter) getListAdapter()).swapCursor(cursor);
 
-				//TODO
-//				if (SelectorsFragment.this.activatedPosition != AdapterView.INVALID_POSITION)
-//				{
-//					final ListView listView = getListView();
-//					listView.setItemChecked(SelectorsFragment.this.activatedPosition, true);
-//				}
+				// check
+				/*
+				if (SelectorsFragment.this.activatedPosition != AdapterView.INVALID_POSITION)
+				{
+					final ListView listView = getListView();
+					listView.setItemChecked(SelectorsFragment.this.activatedPosition, true);
+				}
+				*/
 			}
 
 			@Override

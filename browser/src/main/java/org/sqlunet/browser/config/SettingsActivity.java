@@ -214,18 +214,6 @@ public class SettingsActivity extends AppCompatPreferenceActivity
 	// L I F E C Y C L E
 
 	@Override
-	protected void onCreate(final Bundle savedInstanceState)
-	{
-		super.onCreate(savedInstanceState);
-
-		// action bar
-		//TODO actionbar
-		//final ActionBar actionBar = getSupportActionBar();
-		//assert actionBar != null;
-		//actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_HOME | ActionBar.DISPLAY_HOME_AS_UP | ActionBar.DISPLAY_SHOW_TITLE);
-	}
-
-	@Override
 	protected void onPostCreate(final Bundle savedInstanceState)
 	{
 		super.onPostCreate(savedInstanceState);

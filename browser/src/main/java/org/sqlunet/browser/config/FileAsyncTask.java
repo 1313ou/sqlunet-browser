@@ -656,7 +656,6 @@ class FileAsyncTask
 						// String md5;
 						if (new File(sourceFile).exists())
 						{
-							// TODO md5 = md5(sourceFile);
 							FileAsyncTask.md5(context, sourceFile, new FileAsyncTask.ResultListener()
 							{
 								@Override

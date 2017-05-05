@@ -1,5 +1,6 @@
 package org.sqlunet.support;
 
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -108,8 +109,7 @@ public class DonateActivity extends AppCompatActivity implements IABAdapter.IABL
 			}
 			catch (IabHelper.IabAsyncInProgressException e)
 			{
-				// TODO
-				e.printStackTrace();
+				warn(e);
 			}
 		}
 	}
@@ -124,8 +124,7 @@ public class DonateActivity extends AppCompatActivity implements IABAdapter.IABL
 			}
 			catch (IabHelper.IabAsyncInProgressException e)
 			{
-				// TODO
-				e.printStackTrace();
+				warn(e);
 			}
 		}
 	}
@@ -140,8 +139,7 @@ public class DonateActivity extends AppCompatActivity implements IABAdapter.IABL
 			}
 			catch (IabHelper.IabAsyncInProgressException e)
 			{
-				// TODO
-				e.printStackTrace();
+				warn(e);
 			}
 		}
 	}
@@ -156,9 +154,16 @@ public class DonateActivity extends AppCompatActivity implements IABAdapter.IABL
 			}
 			catch (IabHelper.IabAsyncInProgressException e)
 			{
-				// TODO
-				e.printStackTrace();
+				warn(e);
 			}
 		}
+	}
+
+	private void warn(final Exception e)
+	{
+		final AlertDialog.Builder alert = new AlertDialog.Builder(this);
+		alert.setTitle(R.string.title_donate);
+		alert.setMessage(e.getMessage());
+		alert.show();
 	}
 }

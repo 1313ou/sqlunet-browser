@@ -473,7 +473,7 @@ public class IABAdapter implements IabBroadcastReceiver.IabBroadcastListener
 	static private boolean verifyDeveloperPayload(Purchase purchase)
 	{
 		/*
-		 * TODO: verify that the developer payload of the purchase is correct. It will be the same one that you sent when initiating the purchase.
+		 * Verify that the developer payload of the purchase is correct. It will be the same one that you sent when initiating the purchase.
 		 *
 		 * WARNING: Locally generating a random string when starting a purchase and verifying it here might seem like a good approach, but this will fail in the
 		 * case where the user purchases an item on one device and then uses your app on a different device, because on the other device you will not have

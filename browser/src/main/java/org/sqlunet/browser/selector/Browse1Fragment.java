@@ -35,7 +35,7 @@ public class Browse1Fragment extends Fragment implements SelectorsFragment.Liste
 	@Override
 	public View onCreateView(final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState)
 	{
-		//TODO
+		//TODO setRetainInstance
 		setRetainInstance(true);
 
 		// view

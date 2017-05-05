@@ -49,7 +49,7 @@ abstract public class TreeFragment extends Fragment
 	{
 		Log.d(TAG, "ON CREATE (TREE) VIEW " + this);
 
-		//TODO
+		//TODO setRetainInstance
 		setRetainInstance(true);
 
 		// view

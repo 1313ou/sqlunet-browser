@@ -3,7 +3,7 @@ apply plugin: 'com.android.library'
 //noinspection GroovyMissingReturnStatement
 android {
     compileSdkVersion 25
-    buildToolsVersion "25.0.2"
+    buildToolsVersion "25.0.3"
 
     //noinspection GroovyMissingReturnStatement
     defaultConfig {
@@ -21,7 +21,7 @@ android {
 
 dependencies {
     compile project(':treeView')
-    compile 'com.android.support:appcompat-v7:25.3.0'
-    compile 'com.android.support:support-annotations:25.3.0'
+    compile 'com.android.support:appcompat-v7:25.3.1'
+    compile 'com.android.support:support-annotations:25.3.1'
     compile fileTree(dir: 'libs', include: ['*.jar'])
 }

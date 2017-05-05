@@ -407,7 +407,7 @@ public class StorageReports
 			sb.append(' ');
 			//sb.append(styledFitsIn(dir));
 			//sb.append(' ');
-			// TODO if (dir.fitsIn())
+			//if (dir.fitsIn())
 			{
 				//sb.append('|');
 				//sb.append(' ');

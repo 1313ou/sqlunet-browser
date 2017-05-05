@@ -21,12 +21,6 @@ public class TableActivity extends AppCompatActivity
 		// content
 		setContentView(R.layout.activity_table);
 
-		// show the Up button in the type bar.
-		//TODO actionbar
-		//final ActionBar actionBar = getSupportActionBar();
-		//assert actionBar != null;
-		//actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_HOME | ActionBar.DISPLAY_HOME_AS_UP);
-
 		// fragment
 		final Fragment fragment = new TableFragment();
 		fragment.setArguments(getIntent().getExtras());
