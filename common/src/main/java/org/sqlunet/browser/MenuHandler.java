@@ -86,7 +86,8 @@ public class MenuHandler
 		else if (i == R.id.action_appsettings)
 		{
 			// settings
-			Settings.applicationSettings(activity, "org.sqlunet.browser");
+			final String appId = activity.getPackageName();
+			Settings.applicationSettings(activity, appId);
 			return true;
 		}
 		else

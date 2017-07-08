@@ -23,6 +23,7 @@ import org.sqlunet.framenet.provider.FrameNetContract.LexUnits_Governors;
 import org.sqlunet.framenet.provider.FrameNetContract.LexUnits_Sentences;
 import org.sqlunet.framenet.provider.FrameNetContract.LexUnits_Sentences_AnnoSets_Layers_Labels;
 import org.sqlunet.framenet.provider.FrameNetContract.LexUnits_X;
+import org.sqlunet.framenet.provider.FrameNetContract.LexUnits_or_Frames;
 import org.sqlunet.framenet.provider.FrameNetContract.Lookup_FnSentences;
 import org.sqlunet.framenet.provider.FrameNetContract.Patterns_Layers_X;
 import org.sqlunet.framenet.provider.FrameNetContract.Patterns_Sentences;
@@ -67,6 +68,7 @@ public class FrameNetProvider extends BaseProvider
 
 	// join codes
 	static private final int WORDS_LEXUNITS_FRAMES = 100;
+	static private final int LEXUNITS_OR_FRAMES = 101;
 	static private final int FRAMES_FES = 200;
 	static private final int FRAMES_FES_BY_FE = 201;
 	static private final int LEXUNITS_SENTENCES = 300;
@@ -90,6 +92,7 @@ public class FrameNetProvider extends BaseProvider
 		FrameNetProvider.uriMatcher.addURI(FrameNetContract.AUTHORITY, LexUnits.TABLE, FrameNetProvider.LEXUNIT);
 		FrameNetProvider.uriMatcher.addURI(FrameNetContract.AUTHORITY, LexUnits.TABLE, FrameNetProvider.LEXUNITS);
 		FrameNetProvider.uriMatcher.addURI(FrameNetContract.AUTHORITY, LexUnits_X.TABLE_BY_LEXUNIT, FrameNetProvider.LEXUNITS_X_BY_LEXUNIT);
+		FrameNetProvider.uriMatcher.addURI(FrameNetContract.AUTHORITY, LexUnits_or_Frames.TABLE, FrameNetProvider.LEXUNITS_OR_FRAMES);
 		FrameNetProvider.uriMatcher.addURI(FrameNetContract.AUTHORITY, Frames.TABLE, FrameNetProvider.FRAME);
 		FrameNetProvider.uriMatcher.addURI(FrameNetContract.AUTHORITY, Frames.TABLE, FrameNetProvider.FRAMES);
 		FrameNetProvider.uriMatcher.addURI(FrameNetContract.AUTHORITY, Frames_X.TABLE_BY_FRAME, FrameNetProvider.FRAMES_X_BY_FRAME);
@@ -147,6 +150,8 @@ public class FrameNetProvider extends BaseProvider
 				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + FrameNetContract.AUTHORITY + '.' + LexUnits.TABLE;
 			case LEXUNITS_X_BY_LEXUNIT:
 				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + FrameNetContract.AUTHORITY + '.' + LexUnits_X.TABLE_BY_LEXUNIT;
+			case LEXUNITS_OR_FRAMES:
+				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + FrameNetContract.AUTHORITY + '.' + LexUnits_or_Frames.TABLE;
 			case FRAME:
 				return BaseProvider.VENDOR + ".android.cursor.item/" + BaseProvider.VENDOR + '.' + FrameNetContract.AUTHORITY + '.' + Frames.TABLE;
 			case FRAMES:
@@ -302,6 +307,16 @@ public class FrameNetProvider extends BaseProvider
 				break;
 
 			// J O I N S
+
+			case LEXUNITS_OR_FRAMES:
+				table = "(" + //
+						"SELECT fnwordid + 10000 AS " + LexUnits_or_Frames.ID + ", fnwordid AS " + LexUnits_or_Frames.FNID + ", wordid AS " + LexUnits_or_Frames.WORDID + ", word AS " + LexUnits_or_Frames.WORD + ", 0 AS " + LexUnits_or_Frames.ISFRAME + " " + //
+						"FROM fnwords " + //
+						"UNION " + //
+						"SELECT frameid AS " + LexUnits_or_Frames.ID + ", frameid AS " + LexUnits_or_Frames.FNID + ", 0 AS " + LexUnits_or_Frames.WORDID + ", frame AS " + LexUnits_or_Frames.WORD + ", 1 AS " + LexUnits_or_Frames.ISFRAME + " " + //
+						"FROM fnframes " + //
+						")";
+				break;
 
 			case FRAMES_X_BY_FRAME:
 				groupBy = "frameid";

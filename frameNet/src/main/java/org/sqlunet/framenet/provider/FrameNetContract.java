@@ -55,6 +55,17 @@ public class FrameNetContract
 		static public final String INCORPORATEDFECORESET = "coreset";
 	}
 
+	static public final class LexUnits_or_Frames
+	{
+		static public final String TABLE = "fnlexunits_or_fnframe";
+		static public final String CONTENT_URI = BaseProvider.SCHEME + FrameNetContract.AUTHORITY + '/' + LexUnits_or_Frames.TABLE;
+		static public final String ID = "_id";
+		static public final String FNID = "fnid";
+		static public final String WORDID = "wordid";
+		static public final String WORD = "word";
+		static public final String ISFRAME = "isframe";
+	}
+
 	@SuppressWarnings("unused")
 	static public final class Frames
 	{
