@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
 
-	<string name="app_name">SqlUNet Browser</string>
+	<!-- app -->
+	<string name="semantikos">Semantikos</string>>
+	<string name="semantikos_greek">σημαντικός</string>>
+	<string name="semantikos_latin">significans</string>>
+	<string name="app_name">@string/semantikos</string>
 
 	<!-- ACTIONS -->
 
@@ -183,7 +187,7 @@
 	<!-- ARRAYS -->
 
 	<!-- navigation -->
-	<string name="title_home_section">SqlUNet</string>
+	<string name="title_home_section">@string/semantikos</string>
 	<string name="title_browse_section">Browse</string>
 	<string name="title_textsearch_section">Text</string>
 	<string name="title_predicatematrix_section">Predicate Matrix</string>

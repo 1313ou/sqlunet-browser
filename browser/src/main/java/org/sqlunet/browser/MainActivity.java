@@ -1,6 +1,5 @@
 package org.sqlunet.browser;
 
-import android.app.Activity;
 import android.app.SearchManager;
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,15 +10,9 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import org.sqlunet.browser.config.SettingsActivity;
-import org.sqlunet.browser.config.SetupActivity;
 import org.sqlunet.browser.config.Status;
-import org.sqlunet.browser.config.StorageActivity;
-import org.sqlunet.provider.BaseProvider;
 import org.sqlunet.settings.Settings;
 import org.sqlunet.settings.StorageSettings;
-import org.sqlunet.support.DonateActivity;
-import org.sqlunet.support.OtherActivity;
 
 public class MainActivity extends AppCompatActivity // implements NavigationFragment.Listener
 {
@@ -112,85 +105,6 @@ public class MainActivity extends AppCompatActivity // implements NavigationFrag
 	@Override
 	public boolean onOptionsItemSelected(final MenuItem item)
 	{
-		return menuDispatch(this, item);
-	}
-
-	/**
-	 * Dispatch menu item action
-	 *
-	 * @param activity activity
-	 * @param item     menu item
-	 * @return true if processed/consumed
-	 */
-	static public boolean menuDispatch(final Activity activity, final MenuItem item)
-	{
-		Intent intent;
-
-		// handle item selection
-		switch (item.getItemId())
-		{
-			// settings
-
-			case R.id.action_settings:
-				intent = new Intent(activity, SettingsActivity.class);
-				break;
-
-			// database
-
-			case R.id.action_storage:
-				intent = new Intent(activity, StorageActivity.class);
-				break;
-
-			case R.id.action_status:
-				intent = new Intent(activity, StatusActivity.class);
-				break;
-
-			case R.id.action_setup:
-				intent = new Intent(activity, SetupActivity.class);
-				break;
-
-			// SQLs
-
-			case R.id.action_clear_sql:
-				BaseProvider.buffer.clear();
-				return true;
-
-			// guide
-
-			case R.id.action_help:
-				intent = new Intent(activity, HelpActivity.class);
-				break;
-
-			case R.id.action_about:
-				intent = new Intent(activity, AboutActivity.class);
-				break;
-
-			// support
-
-			case R.id.action_donate:
-				intent = new Intent(activity, DonateActivity.class);
-				break;
-
-			case R.id.action_other:
-				intent = new Intent(activity, OtherActivity.class);
-				break;
-
-			// lifecycle
-
-			case R.id.action_quit:
-				activity.finish();
-				return true;
-
-			case R.id.action_appsettings:
-				Settings.applicationSettings(activity, "org.sqlunet.browser");
-				return true;
-
-			default:
-				return false;
-		}
-
-		// start activity
-		activity.startActivity(intent);
-		return true;
+		return MenuHandler.menuDispatch(this, item);
 	}
 }

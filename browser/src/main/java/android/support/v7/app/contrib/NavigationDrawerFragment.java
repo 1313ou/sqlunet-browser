@@ -4,6 +4,7 @@ import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.content.res.TypedArray;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
@@ -56,10 +57,13 @@ public class NavigationDrawerFragment extends Fragment
 
 		public final String title;
 
-		RowItem(final int iconId, final String title)
+		public final boolean isMain;
+
+		RowItem(final int iconId, final String title, final boolean isMain)
 		{
 			this.iconId = iconId;
 			this.title = title;
+			this.isMain = isMain;
 		}
 	}
 
@@ -114,9 +118,9 @@ public class NavigationDrawerFragment extends Fragment
 	private boolean userLearnedDrawer;
 
 	/**
-	 * Section positionFlags
+	 * Section swapInFlags
 	 */
-	private int[] positionFlags;
+	private int[] swapInFlags;
 
 	/**
 	 * Constructor
@@ -130,9 +134,9 @@ public class NavigationDrawerFragment extends Fragment
 	{
 		super.onCreate(savedInstanceState);
 
-		// read in the positionFlags indicating whether or not the user has d
+		// read in the swap in flags
 		final Resources res = getResources();
-		this.positionFlags = res.getIntArray(R.array.drawer_flags);
+		this.swapInFlags = res.getIntArray(R.array.drawer_swap_in_flags);
 
 		// read in the flag indicating whether or not the user has demonstrated awareness of the drawer. See PREF_USER_LEARNED_DRAWER for details.
 		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
@@ -154,11 +158,13 @@ public class NavigationDrawerFragment extends Fragment
 
 		// sections
 		final String[] options = res.getStringArray(R.array.title_sections);
-		final RowItem[] items = new RowItem[options.length];
+		int[] displayFlags = res.getIntArray(R.array.drawer_display_flags);
 		final TypedArray icons = res.obtainTypedArray(R.array.drawer_icons);
+
+		final RowItem[] items = new RowItem[options.length];
 		for (int i = 0; i < options.length; i++)
 		{
-			items[i] = new RowItem(icons.getResourceId(i, -1), options[i]);
+			items[i] = new RowItem(icons.getResourceId(i, -1), options[i], displayFlags[i] != 0);
 		}
 		icons.recycle();
 
@@ -174,6 +180,7 @@ public class NavigationDrawerFragment extends Fragment
 
 				final View view = super.getView(position, convertView, parent);
 				final TextView textView = (TextView) view.findViewById(android.R.id.text1);
+				textView.setTextColor(rowItem.isMain ? Color.WHITE : Color.GRAY);
 				textView.setText(rowItem.title);
 				textView.setCompoundDrawablesWithIntrinsicBounds(rowItem.iconId, 0, 0, 0);
 				textView.setCompoundDrawablePadding(10);
@@ -349,10 +356,10 @@ public class NavigationDrawerFragment extends Fragment
 	 */
 	private void selectItem(final int position)
 	{
-		Log.d(TAG,"SELECT " + position);
+		Log.d(TAG, "SELECT " + position);
 
 		// record position
-		if (this.positionFlags[position] != 0)
+		if (this.swapInFlags[position] != 0)
 		{
 			this.selectedPosition = position;
 			if (this.drawerListView != null)

@@ -22,32 +22,32 @@ public class Storage
 	static private final String TAG = "Storage";
 
 	/**
-	 * SqlUnet DB basename
+	 * SqlUNet DB basename
 	 */
 	static private final String DBNAME = "sqlunet";
 
 	/**
-	 * SqlUnet DB filename
+	 * SqlUNet DB filename
 	 */
 	static public final String DBFILE = DBNAME + ".db";
 
 	/**
-	 * SqlUnet DB zipped filename
+	 * SqlUNet DB zipped filename
 	 */
 	static public final String DBFILEZIP = DBFILE + ".zip";
 
 	/**
-	 * SqlUnet DB sql filename
+	 * SqlUNet DB sql filename
 	 */
 	static private final String DBSQL = DBNAME + ".sql";
 
 	/**
-	 * SqlUnet DB zipped sql filename
+	 * SqlUNet DB zipped sql filename
 	 */
 	static public final String DBSQLZIP = DBSQL + ".zip";
 
 	/**
-	 * SqlUnet sub directory when external public
+	 * SqlUNet sub directory when external public
 	 */
 	static final String SQLUNETDIR = "sqlunet" + '/';
 

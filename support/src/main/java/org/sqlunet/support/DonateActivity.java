@@ -159,6 +159,21 @@ public class DonateActivity extends AppCompatActivity implements IABAdapter.IABL
 		}
 	}
 
+	public void onBuy5(@SuppressWarnings("unused") View v)
+	{
+		if (this.iabAdapter != null)
+		{
+			try
+			{
+				this.iabAdapter.buy(IABAdapter.SKU_DONATE5);
+			}
+			catch (IabHelper.IabAsyncInProgressException e)
+			{
+				warn(e);
+			}
+		}
+	}
+
 	private void warn(final Exception e)
 	{
 		final AlertDialog.Builder alert = new AlertDialog.Builder(this);

@@ -32,6 +32,6 @@ public class AboutActivity extends AppCompatActivity
 	@Override
 	public boolean onOptionsItemSelected(final MenuItem item)
 	{
-		return MainActivity.menuDispatch(this, item);
+		return MenuHandler.menuDispatch(this, item);
 	}
 }

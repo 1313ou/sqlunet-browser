@@ -37,7 +37,7 @@ done
 # res
 declare -A res_donate_icon
 res_donate_icon=([mdpi]=32 [hdpi]=48 [xhdpi]=64 [xxhdpi]=96 [xxxhdpi]=128)
-list_donate_icon="ic_donate1.svg ic_donate2.svg ic_donate3.svg ic_donate4.svg"
+list_donate_icon="ic_donate1.svg ic_donate2.svg ic_donate3.svg ic_donate4.svg ic_donate5.svg"
 
 # icons
 for svg in ${list_donate_icon}; do

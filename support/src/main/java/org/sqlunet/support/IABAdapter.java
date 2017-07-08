@@ -43,11 +43,12 @@ public class IABAdapter implements IabBroadcastReceiver.IabBroadcastListener
 	 * SKUs for our products
 	 */
 	// static private final String SKU_TEST = "android.test.purchased";
-	static public final String SKU_DONATE1 = "donate_1";
-	static public final String SKU_DONATE2 = "donate_2";
-	static public final String SKU_DONATE3 = "donate_3";
-	static public final String SKU_DONATE4 = "donate_4";
-	static private final String[] SKU_DONATES = {SKU_DONATE1, SKU_DONATE2, SKU_DONATE3, SKU_DONATE4, /*SKU_TEST*/};
+	static public final String SKU_DONATE1 = "donate_1"; //1
+	static public final String SKU_DONATE2 = "donate_2"; //5
+	static public final String SKU_DONATE3 = "donate_3"; //10
+	static public final String SKU_DONATE4 = "donate_5"; //20
+	static public final String SKU_DONATE5 = "donate_4"; //50
+	static private final String[] SKU_DONATES = {SKU_DONATE1, SKU_DONATE2, SKU_DONATE3, SKU_DONATE4, SKU_DONATE5, /*SKU_TEST*/};
 
 	/**
 	 * The (arbitrary) payload for the purchase flow
@@ -409,7 +410,7 @@ public class IABAdapter implements IabBroadcastReceiver.IabBroadcastListener
 
 			if (!verifyDeveloperPayload(purchase))
 			{
-				Log.e(TAG, "SqlUNet Browser IAB failed to verify purchase: " + result);
+				Log.e(TAG, "Semantikos IAB failed to verify purchase: " + result);
 				complain("Error while donating : authenticity verification failed");
 				IABAdapter.this.iabListener.onFinish(false, IABListener.Op.BUY);
 				return;
@@ -422,7 +423,7 @@ public class IABAdapter implements IabBroadcastReceiver.IabBroadcastListener
 				if (donate.equals(purchase.getSku()))
 				{
 					// donated
-					Log.d(TAG, "Purchase is successful: donation_ is owned");
+					Log.d(TAG, "Purchase is successful: donation is owned " + donate);
 					alert("Thank you for donating!");
 					IABAdapter.this.hasDonated = true;
 					IABAdapter.this.iabListener.onFinish(true, IABListener.Op.BUY);

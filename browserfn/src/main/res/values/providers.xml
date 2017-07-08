@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+	<string name="manager_authority">org.sqlunet.provider.manager</string>
+	<string name="sqlunet_authority">org.sqlunet.cross.provider</string>
+	<string name="framenet_authority">org.sqlunet.framenet.provider</string>
+	<string-array name="provider_authorities">
+		<item>@string/manager_authority</item>
+		<item>@string/sqlunet_authority</item>
+		<item>@string/framenet_authority</item>
+	</string-array>
+
+</resources>

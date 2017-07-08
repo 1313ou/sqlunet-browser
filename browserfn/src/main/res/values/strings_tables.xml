@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+	<string-array name="required_tables">
+		<item>fnannosets</item>
+		<item>fncoretypes</item>
+		<item>fncorpuses</item>
+		<item>fncxns</item>
+		<item>fndocuments</item>
+		<item>fnfegrouprealizations</item>
+		<item>fnfegrouprealizations_fes</item>
+		<item>fnferealizations</item>
+		<item>fnfes</item>
+		<item>fnfes_excluded</item>
+		<item>fnfes_required</item>
+		<item>fnfes_semtypes</item>
+		<item>fnfetypes</item>
+		<item>fnframerelations</item>
+		<item>fnframes</item>
+		<item>fnframes_related</item>
+		<item>fnframes_semtypes</item>
+		<item>fngftypes</item>
+		<item>fngovernors</item>
+		<item>fngovernors_annosets</item>
+		<item>fnlabelitypes</item>
+		<item>fnlabels</item>
+		<item>fnlabeltypes</item>
+		<item>fnlayers</item>
+		<item>fnlayertypes</item>
+		<item>fnlexemes</item>
+		<item>fnlexunits</item>
+		<item>fnlexunits_governors</item>
+		<item>fnlexunits_semtypes</item>
+		<item>fnpatterns</item>
+		<item>fnpatterns_annosets</item>
+		<item>fnpatterns_valenceunits</item>
+		<item>fnposes</item>
+		<item>fnpttypes</item>
+		<item>fnsemtypes</item>
+		<item>fnsemtypes_supers</item>
+		<item>fnsentences</item>
+		<item>fnstatuses</item>
+		<item>fnsubcorpuses</item>
+		<item>fnsubcorpuses_sentences</item>
+		<item>fnvalenceunits</item>
+		<item>fnvalenceunits_annosets</item>
+		<item>fnwords</item>
+		<item>sources</item>
+	</string-array>
+	<string-array name="required_indexes">
+		<item>index_fnwords_wordid</item>
+		<item>index_fnframes_related_frameid</item>
+		<item>index_fnframes_related_frame2id</item>
+		<item>index_fnlexemes_fnwordid</item>
+		<item>index_fnfes_frameid</item>
+		<item>index_fnferealizations_luid</item>
+		<item>index_fnvalenceunits_ferid</item>
+		<item>index_fnfegrouprealizations_luid</item>
+		<item>index_fnpatterns_valenceunits_patternid</item>
+		<item>index_fnpatterns_fegrid</item>
+		<item>index_fnsubcorpuses_luid</item>
+		<item>index_fnannosets_sentenceid</item>
+		<item>index_fnlayers_annosetid</item>
+		<item>index_fnlabels_layerid</item>
+	</string-array>
+	<string-array name="required_texts">
+		<item>fnsentences_text_fts4</item>
+	</string-array>
+
+</resources>

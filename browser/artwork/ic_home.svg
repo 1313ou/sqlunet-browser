@@ -7,11 +7,11 @@
    xmlns="http://www.w3.org/2000/svg"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   height="1000"
-   width="937.5"
+   height="1066.6666"
+   width="1000"
    id="svg2"
    version="1.1"
-   inkscape:version="0.91 r13725"
+   inkscape:version="0.92.1 r15371"
    sodipodi:docname="ic_home.svg">
   <metadata
      id="metadata10">
@@ -40,15 +40,15 @@
      id="namedview6"
      showgrid="false"
      inkscape:zoom="0.24208851"
-     inkscape:cx="506.1005"
+     inkscape:cx="-313.84754"
      inkscape:cy="864.039"
      inkscape:window-x="59"
      inkscape:window-y="34"
      inkscape:window-maximized="0"
      inkscape:current-layer="svg2" />
   <path
-     style="fill:#333366;fill-opacity:1;stroke-width:0.2;stroke-linejoin:round"
+     style="fill:#0038d4;fill-opacity:1;stroke-width:0.21333334;stroke-linejoin:round"
      inkscape:connector-curvature="0"
-     d="m 382.08442,862.76131 0,-252.14572 168.09584,0 0,252.14572 210.12067,0 0,-336.19164 126.07078,0 -420.23738,-378.21651 -420.241549,378.21651 126.070789,0 0,336.19164 210.12085,0 z"
+     d="M 407.55671,920.27873 V 651.3233 H 586.85894 V 920.27873 H 810.98766 V 561.67431 h 134.4755 L 497.20995,158.24337 48.9523,561.67431 h 134.47551 v 358.60442 z"
      id="path20858" />
 </svg>

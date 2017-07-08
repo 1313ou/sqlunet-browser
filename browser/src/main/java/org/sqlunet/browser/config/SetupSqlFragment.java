@@ -419,22 +419,22 @@ public class SetupSqlFragment extends Fragment
 	public boolean onOptionsItemSelected(final MenuItem item)
 	{
 		// handle item selection
-		switch (item.getItemId())
+		int i = item.getItemId();
+		if (i == R.id.action_refresh)
 		{
-			case R.id.action_refresh:
-				/// make sure that the SwipeRefreshLayout is displaying its refreshing indicator
-				if (!this.swipeRefreshLayout.isRefreshing())
-				{
-					this.swipeRefreshLayout.setRefreshing(true);
-				}
-				update();
+			// make sure that the SwipeRefreshLayout is displaying its refreshing indicator
+			if (!this.swipeRefreshLayout.isRefreshing())
+			{
+				this.swipeRefreshLayout.setRefreshing(true);
+			}
+			update();
 
-				// stop the refreshing indicator
-				this.swipeRefreshLayout.setRefreshing(false);
-				break;
-
-			default:
-				return false;
+			// stop the refreshing indicator
+			this.swipeRefreshLayout.setRefreshing(false);
+		}
+		else
+		{
+			return false;
 		}
 		return true;
 	}

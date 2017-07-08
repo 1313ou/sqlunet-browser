@@ -107,38 +107,38 @@ public class StorageFragment extends NavigableFragment
 		final Context context = getActivity();
 
 		// handle item selection
-		switch (item.getItemId())
+		int i = item.getItemId();
+		if (i == R.id.action_storage_dirs)
 		{
-			case R.id.action_storage_dirs:
-				final CharSequence message = StorageReports.reportStyledDirs(getActivity());
-				final AlertDialog.Builder alert = new AlertDialog.Builder(context);
-				alert.setTitle(R.string.action_storage_dirs);
-				alert.setMessage(message);
-				alert.setNegativeButton(R.string.action_dismiss, new DialogInterface.OnClickListener()
+			final CharSequence message = StorageReports.reportStyledDirs(getActivity());
+			final AlertDialog.Builder alert = new AlertDialog.Builder(context);
+			alert.setTitle(R.string.action_storage_dirs);
+			alert.setMessage(message);
+			alert.setNegativeButton(R.string.action_dismiss, new DialogInterface.OnClickListener()
+			{
+				@Override
+				public void onClick(DialogInterface dialog, int whichButton)
 				{
-					@Override
-					public void onClick(DialogInterface dialog, int whichButton)
-					{
-						// canceled.
-					}
-				});
-				alert.show();
-				break;
-
-			case R.id.action_refresh:
-				/// make sure that the SwipeRefreshLayout is displaying its refreshing indicator
-				if (!this.swipeRefreshLayout.isRefreshing())
-				{
-					this.swipeRefreshLayout.setRefreshing(true);
+					// canceled.
 				}
-				update();
+			});
+			alert.show();
+		}
+		else if (i == R.id.action_refresh)
+		{
+			// make sure that the SwipeRefreshLayout is displaying its refreshing indicator
+			if (!this.swipeRefreshLayout.isRefreshing())
+			{
+				this.swipeRefreshLayout.setRefreshing(true);
+			}
+			update();
 
-				// stop the refreshing indicator
-				this.swipeRefreshLayout.setRefreshing(false);
-				break;
-
-			default:
-				return false;
+			// stop the refreshing indicator
+			this.swipeRefreshLayout.setRefreshing(false);
+		}
+		else
+		{
+			return false;
 		}
 		return true;
 	}

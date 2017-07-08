@@ -6,7 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import org.sqlunet.browser.MainActivity;
+import org.sqlunet.browser.MenuHandler;
 import org.sqlunet.browser.R;
 
 /**
@@ -46,6 +46,6 @@ public class SetupSqlActivity extends AppCompatActivity
 	@Override
 	public boolean onOptionsItemSelected(final MenuItem item)
 	{
-		return MainActivity.menuDispatch(this, item);
+		return MenuHandler.menuDispatch(this, item);
 	}
 }

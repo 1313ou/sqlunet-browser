@@ -3,8 +3,8 @@
           xmlns:tools="http://schemas.android.com/tools"
           package="org.sqlunet.browser"
           android:installLocation="preferExternal"
-          android:versionCode="8"
-          android:versionName="1.8">
+          android:versionCode="10"
+          android:versionName="1.10">
 
 	<uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
 	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
@@ -16,7 +16,7 @@
 	<application
 		android:allowBackup="true"
 		android:fullBackupContent="@xml/backup"
-		android:icon="@drawable/ic_launcher"
+		android:icon="@mipmap/ic_launcher"
 		android:label="@string/app_name"
 		android:largeHeap="true"
 		android:supportsRtl="true"
@@ -464,7 +464,7 @@
 			android:description="@string/description_service_downloader"
 			android:enabled="true"
 			android:exported="false"
-			android:icon="@drawable/ic_launcher"
+			android:icon="@mipmap/ic_launcher"
 			android:label="@string/service_downloader">
 		</service>
 

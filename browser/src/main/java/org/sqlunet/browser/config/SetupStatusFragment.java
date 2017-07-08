@@ -365,22 +365,23 @@ public class SetupStatusFragment extends Fragment
 	public boolean onOptionsItemSelected(MenuItem item)
 	{
 		// handle item selection
-		switch (item.getItemId())
+		int i = item.getItemId();
+		if (i == R.id.action_refresh)
 		{
-			case R.id.action_refresh:
-				/// make sure that the SwipeRefreshLayout is displaying its refreshing indicator
-				if (!this.swipeRefreshLayout.isRefreshing())
-				{
-					this.swipeRefreshLayout.setRefreshing(true);
-				}
-				update();
+			// make sure that the SwipeRefreshLayout is displaying its refreshing indicator
+			if (!this.swipeRefreshLayout.isRefreshing())
+			{
+				this.swipeRefreshLayout.setRefreshing(true);
+			}
+			update();
 
-				// stop the refreshing indicator
-				this.swipeRefreshLayout.setRefreshing(false);
-				break;
+			// stop the refreshing indicator
+			this.swipeRefreshLayout.setRefreshing(false);
 
-			default:
-				return false;
+		}
+		else
+		{
+			return false;
 		}
 		return true;
 	}

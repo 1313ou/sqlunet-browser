@@ -119,15 +119,15 @@ public class SetupDatabaseFragment extends BaseTaskFragment
 		Intent intent;
 
 		// handle item selection
-		switch (item.getItemId())
+		int i = item.getItemId();
+		if (i == R.id.action_tables_and_indices)
 		{
-			case R.id.action_tables_and_indices:
-				intent = ManagerContract.makeTablesAndIndexesIntent(context);
-				intent.putExtra(ProviderArgs.ARG_QUERYLAYOUT, R.layout.item_dbobject);
-				break;
-
-			default:
-				return false;
+			intent = ManagerContract.makeTablesAndIndexesIntent(context);
+			intent.putExtra(ProviderArgs.ARG_QUERYLAYOUT, R.layout.item_dbobject);
+		}
+		else
+		{
+			return false;
 		}
 
 		startActivity(intent);

@@ -30,7 +30,7 @@ public class NavigationFragment extends NavigationDrawerFragment implements Navi
 	static private final String TAG = "NavigationFragment";
 
 	/**
-	 * Tags fragments are know under with FragmentManager
+	 * Tags fragments are known under with FragmentManager
 	 */
 	static private final String[] fragmentTags = { //
 			"home", // 0
@@ -47,20 +47,20 @@ public class NavigationFragment extends NavigationDrawerFragment implements Navi
 	};
 
 	/**
-	 * Whether fragments are recreated
+	 * Whether fragments are recreated (1)
 	 */
-	static private final boolean[] fragmentTransient = { //
-			true, // 0
-			false, // 1 browse
-			false, // 2 predicatematrix
-			false, // 3 textsearch
-			true, // 4
-			true, // 5 setup: not a fragment - does not apply
-			true, // 6
-			true, // 7 settings: not a fragment - does not apply
-			true, // 8 sql: not a fragment - does not apply
-			true, // 9
-			true // 10
+	static private final int[] fragmentTransient = { //
+			1, // 0
+			0, // 1 browse
+			0, // 2 predicatematrix
+			0, // 3 textsearch
+			1, // 4
+			1, // 5 setup: not a fragment - does not apply
+			1, // 6
+			1, // 7 settings: not a fragment - does not apply
+			1, // 8 sql: not a fragment - does not apply
+			1, // 9
+			1 // 10
 	};
 
 	/**
@@ -94,7 +94,7 @@ public class NavigationFragment extends NavigationDrawerFragment implements Navi
 	@Override
 	public void onItemSelected(int position)
 	{
-		Log.d(TAG, "SELECTED " + position);
+		Log.d(TAG, "Section selected " + position);
 		if (tryActivity(position))
 		{
 			return;
@@ -134,7 +134,7 @@ public class NavigationFragment extends NavigationDrawerFragment implements Navi
 
 	private void updateFragments(int position)
 	{
-		Log.d(TAG, "SECTION FRAGMENTS " + position);
+		Log.d(TAG, "Section fragments " + position);
 		final AppCompatActivity activity = (AppCompatActivity) getActivity();
 		final FragmentManager manager = activity.getSupportFragmentManager();
 		final FragmentTransaction transaction = manager.beginTransaction();
@@ -156,7 +156,7 @@ public class NavigationFragment extends NavigationDrawerFragment implements Navi
 		else
 		{
 			// if it is transient
-			if (fragmentTransient[position])
+			if (fragmentTransient[position] != 0)
 			{
 				// remove
 				transaction.remove(fragment);
@@ -184,7 +184,7 @@ public class NavigationFragment extends NavigationDrawerFragment implements Navi
 			final Fragment fragment2 = manager.findFragmentByTag(tag2);
 			if (fragment2 != null)
 			{
-				if (fragmentTransient[i])
+				if (fragmentTransient[i] != 0)
 				{
 					transaction.remove(fragment2);
 				}
@@ -217,7 +217,7 @@ public class NavigationFragment extends NavigationDrawerFragment implements Navi
 				PackageInfo packageInfo = getActivity().getPackageManager().getPackageInfo(getActivity().getPackageName(), PackageManager.GET_META_DATA);
 				int themeResId = packageInfo.applicationInfo.theme;
 				String name = getResources().getResourceEntryName(themeResId);
-				Log.d(NavigationFragment.TAG, "THEME name " + name);
+				Log.d(NavigationFragment.TAG, "Theme name " + name);
 			}
 			catch (PackageManager.NameNotFoundException e)
 			{
@@ -229,6 +229,46 @@ public class NavigationFragment extends NavigationDrawerFragment implements Navi
 			// theme.dump(Log.DEBUG, NavigationFragment.TAG, "THEME dump");
 			restoreActionBar(actionBar, theme);
 		}
+	}
+
+	/**
+	 * Restore toolbar bar
+	 */
+	private static void restoreActionBar(final ActionBar actionBar, final Resources.Theme theme)
+	{
+		Log.d(NavigationFragment.TAG, "Restore standard action bar");
+
+		/*
+		final TypedValue style = new TypedValue();
+		theme.resolveAttribute(R.attr.colorPrimary, style, true);
+		int color = style.data;
+		final Drawable drawable = new ColorDrawable(color);
+		actionBar.setBackgroundDrawable(drawable);
+		*/
+
+		// res id of style pointed to from actionBarStyle
+		final TypedValue typedValue = new TypedValue();
+		theme.resolveAttribute(android.R.attr.actionBarStyle, typedValue, true);
+		final int resId = typedValue.resourceId;
+		Log.d(NavigationFragment.TAG, "ActionBarStyle ResId " + Integer.toHexString(resId));
+
+		// now get action bar style values
+		final TypedArray style = theme.obtainStyledAttributes(resId, new int[]{android.R.attr.background});
+
+		//
+		try
+		{
+
+			final Drawable drawable = style.getDrawable(0);
+			actionBar.setBackgroundDrawable(drawable);
+		}
+		finally
+		{
+			style.recycle();
+		}
+
+		// options
+		actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_HOME | ActionBar.DISPLAY_SHOW_TITLE | ActionBar.DISPLAY_HOME_AS_UP);
 	}
 
 	private Fragment newFragment(final int position)
@@ -263,47 +303,6 @@ public class NavigationFragment extends NavigationDrawerFragment implements Navi
 				return new AboutFragment();
 		}
 		return null;
-	}
-
-
-	/**
-	 * Restore toolbar bar
-	 */
-	private static void restoreActionBar(final ActionBar actionBar, final Resources.Theme theme)
-	{
-		Log.d(NavigationFragment.TAG, "restore standard action bar");
-
-		/*
-		final TypedValue style = new TypedValue();
-		theme.resolveAttribute(R.attr.colorPrimary, style, true);
-		int color = style.data;
-		final Drawable drawable = new ColorDrawable(color);
-		actionBar.setBackgroundDrawable(drawable);
-		*/
-
-		// res id of style pointed to from actionBarStyle
-		final TypedValue typedValue = new TypedValue();
-		theme.resolveAttribute(android.R.attr.actionBarStyle, typedValue, true);
-		final int resId = typedValue.resourceId;
-		Log.d(NavigationFragment.TAG, "resId " + Integer.toHexString(resId));
-
-		// now get action bar style values
-		final TypedArray style = theme.obtainStyledAttributes(resId, new int[]{android.R.attr.background});
-
-		//
-		try
-		{
-
-			final Drawable drawable = style.getDrawable(0);
-			actionBar.setBackgroundDrawable(drawable);
-		}
-		finally
-		{
-			style.recycle();
-		}
-
-		// options
-		actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_HOME | ActionBar.DISPLAY_SHOW_TITLE | ActionBar.DISPLAY_HOME_AS_UP);
 	}
 
 	@SuppressWarnings("unused")

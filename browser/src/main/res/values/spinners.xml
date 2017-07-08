@@ -1,47 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-	<!-- navigation sections
-	HOME
-	BROWSE
-	PM
-	TS
-	STATUS
-	SETUP
-	STORAGE
-	SETTINGS
-	SQL
-	HELP
-	ABOUT
-	-->
-	<integer-array name="drawer_icons">
-		<item>@drawable/ic_home</item>
-		<item>@drawable/ic_search_browse</item>
-		<item>@drawable/ic_search_pm</item>
-		<item>@drawable/ic_search_text</item>
-		<item>@drawable/ic_status</item>
-		<item>@drawable/ic_setup</item>
-		<item>@drawable/ic_storage</item>
-		<item>@drawable/ic_settings</item>
-		<item>@drawable/ic_sql</item>
-		<item>@drawable/ic_help</item>
-		<item>@drawable/ic_about</item>
-	</integer-array>
-	<!-- non-zero indicates fragment swap, non-zero for no change  -->
-	<integer-array name="drawer_flags">
-		<item>1</item>
-		<item>1</item>
-		<item>1</item>
-		<item>1</item>
-		<item>1</item>
-		<item>0</item>
-		<item>1</item>
-		<item>0</item>
-		<item>0</item>
-		<item>1</item>
-		<item>1</item>
-	</integer-array>
-
 	<!-- browser spinner
 	SELECTORS
 	XSELECTORS
