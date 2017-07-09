@@ -280,23 +280,23 @@ public class NavigationFragment extends NavigationDrawerFragment implements Navi
 			}
 			catch (ClassNotFoundException e)
 			{
-				Log.e(TAG, "Fragment", e);
+				Log.e(TAG, "Navigation fragment", e);
 			}
 			catch (NoSuchMethodException e)
 			{
-				Log.e(TAG, "Fragment", e);
+				Log.e(TAG, "Navigation fragment", e);
 			}
 			catch (java.lang.InstantiationException e)
 			{
-				Log.e(TAG, "Fragment", e);
+				Log.e(TAG, "Navigation fragment", e);
 			}
 			catch (IllegalAccessException e)
 			{
-				Log.e(TAG, "Fragment", e);
+				Log.e(TAG, "Navigation fragment", e);
 			}
 			catch (InvocationTargetException e)
 			{
-				Log.e(TAG, "Fragment", e);
+				Log.e(TAG, "Navigation fragment", e);
 			}
 		}
 		return null;

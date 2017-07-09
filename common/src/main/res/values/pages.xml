@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+	<!-- setup pages
+	SETUPSTATUSFRAGMENT
+	SETUPFILEFRAGMENT
+	SETUPDATABASEFRAGMENT
+	SETUPSQLFRAGMENT
+	-->
+
+	<string name="fragment_class_setup_status_page">org.sqlunet.browser.config.SetupStatusFragment</string> <!-- 0 -->
+	<string name="fragment_class_setup_file_page">org.sqlunet.browser.config.SetupFileFragment</string> <!-- 1 -->
+	<string name="fragment_class_setup_database_page">org.sqlunet.browser.config.SetupDatabaseFragment</string> <!-- 3 -->
+	<string name="fragment_class_setup_sql_page">org.sqlunet.browser.config.SetupSqlFragment</string> <!-- 4 -->
+	<string-array name="fragment_class_setup_pages">
+		<item>@string/fragment_class_setup_status_page</item>
+		<item>@string/fragment_class_setup_file_page</item>
+		<item>@string/fragment_class_setup_database_page</item>
+		<item>@string/fragment_class_setup_sql_page</item>
+	</string-array>
+
+</resources>

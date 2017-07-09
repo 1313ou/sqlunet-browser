@@ -17,7 +17,7 @@
 	<string name="fragment_class_home_section">org.sqlunet.browser.HomeFragment</string> <!-- 0 -->
 	<string name="fragment_class_browse_section">org.sqlunet.browser.BrowseFragment</string> <!-- 1 -->
 	<string name="fragment_class_textsearch_section">org.sqlunet.browser.TextSearchFragment</string> <!-- 3 -->
-	<string name="fragment_class_status_section">org.sqlunet.browser.StatusFragment</string> <!-- 4 -->
+	<string name="fragment_class_status_section">org.sqlunet.browser.fn.StatusFragment</string> <!-- 4 -->
 	<string name="fragment_class_setup_section"/> <!-- 5 -->
 	<string name="fragment_class_storage_section">org.sqlunet.browser.StorageFragment</string> <!-- 6 -->
 	<string name="fragment_class_settings_section"/> <!-- 7 -->
