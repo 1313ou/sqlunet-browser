@@ -354,23 +354,23 @@ public class WordNetContract
 		static public final String SAMPLE = "sample";
 	}
 
-	// S E A R C H
+	// S U G G E S T
 
-	static public final class Search_Words
+	static public final class Suggest_Words
 	{
-		static public final String SEARCH_WORD_PATH = "lookup_word";
-		static public final String TABLE = Search_Words.SEARCH_WORD_PATH + "/" + SearchManager.SUGGEST_URI_PATH_QUERY;
+		static public final String SEARCH_WORD_PATH = "suggest_word";
+		static public final String TABLE = Suggest_Words.SEARCH_WORD_PATH + "/" + SearchManager.SUGGEST_URI_PATH_QUERY;
 	}
 
-	static public final class Search_Definitions
+	static public final class Suggest_Definitions
 	{
-		static public final String SEARCH_DEFINITION_PATH = "lookup_definition";
-		static public final String TABLE = Search_Definitions.SEARCH_DEFINITION_PATH + "/" + SearchManager.SUGGEST_URI_PATH_QUERY;
+		static public final String SEARCH_DEFINITION_PATH = "suggest_definition";
+		static public final String TABLE = Suggest_Definitions.SEARCH_DEFINITION_PATH + "/" + SearchManager.SUGGEST_URI_PATH_QUERY;
 	}
 
-	static public final class Search_Samples
+	static public final class Suggest_Samples
 	{
-		static public final String SEARCH_SAMPLE_PATH = "lookup_definition";
-		static public final String TABLE = Search_Samples.SEARCH_SAMPLE_PATH + "/" + SearchManager.SUGGEST_URI_PATH_QUERY;
+		static public final String SEARCH_SAMPLE_PATH = "suggest_definition";
+		static public final String TABLE = Suggest_Samples.SEARCH_SAMPLE_PATH + "/" + SearchManager.SUGGEST_URI_PATH_QUERY;
 	}
 }

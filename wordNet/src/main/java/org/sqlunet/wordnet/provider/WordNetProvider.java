@@ -27,9 +27,9 @@ import org.sqlunet.wordnet.provider.WordNetContract.Lookup_Words;
 import org.sqlunet.wordnet.provider.WordNetContract.MorphMaps_Morphs;
 import org.sqlunet.wordnet.provider.WordNetContract.PosTypes;
 import org.sqlunet.wordnet.provider.WordNetContract.Samples;
-import org.sqlunet.wordnet.provider.WordNetContract.Search_Definitions;
-import org.sqlunet.wordnet.provider.WordNetContract.Search_Samples;
-import org.sqlunet.wordnet.provider.WordNetContract.Search_Words;
+import org.sqlunet.wordnet.provider.WordNetContract.Suggest_Definitions;
+import org.sqlunet.wordnet.provider.WordNetContract.Suggest_Samples;
+import org.sqlunet.wordnet.provider.WordNetContract.Suggest_Words;
 import org.sqlunet.wordnet.provider.WordNetContract.SemLinks;
 import org.sqlunet.wordnet.provider.WordNetContract.SemLinks_Synsets;
 import org.sqlunet.wordnet.provider.WordNetContract.SemLinks_Synsets_Words_X;
@@ -100,12 +100,14 @@ public class WordNetProvider extends BaseProvider
 	static private final int WORDS_MORPHMAPS_MORPHS_BY_WORD = 392;
 
 	// text search codes
-	static private final int LOOKUP_WORDS = 510;
-	static private final int LOOKUP_FTS_WORDS = 511;
-	static private final int LOOKUP_DEFINITIONS = 520;
-	static private final int LOOKUP_FTS_DEFINITIONS = 521;
-	static private final int LOOKUP_SAMPLES = 530;
-	static private final int LOOKUP_FTS_SAMPLES = 531;
+	static private final int LOOKUP_FTS_WORDS = 510;
+	static private final int LOOKUP_FTS_DEFINITIONS = 520;
+	static private final int LOOKUP_FTS_SAMPLES = 530;
+
+	// suggest codes
+	static private final int SUGGEST_WORDS = 610;
+	static private final int SUGGEST_DEFINITIONS = 620;
+	static private final int SUGGEST_SAMPLES = 630;
 
 	// U R I M A T C H E R
 
@@ -162,12 +164,12 @@ public class WordNetProvider extends BaseProvider
 		WordNetProvider.uriMatcher.addURI(WordNetContract.AUTHORITY, Lookup_Samples.TABLE, WordNetProvider.LOOKUP_FTS_SAMPLES);
 
 		// search
-		WordNetProvider.uriMatcher.addURI(WordNetContract.AUTHORITY, Search_Words.TABLE + "/*", WordNetProvider.LOOKUP_WORDS);
-		WordNetProvider.uriMatcher.addURI(WordNetContract.AUTHORITY, Search_Words.TABLE + "/", WordNetProvider.LOOKUP_WORDS);
-		WordNetProvider.uriMatcher.addURI(WordNetContract.AUTHORITY, Search_Definitions.TABLE + "/*", WordNetProvider.LOOKUP_DEFINITIONS);
-		WordNetProvider.uriMatcher.addURI(WordNetContract.AUTHORITY, Search_Definitions.TABLE + "/", WordNetProvider.LOOKUP_DEFINITIONS);
-		WordNetProvider.uriMatcher.addURI(WordNetContract.AUTHORITY, Search_Samples.TABLE + "/*", WordNetProvider.LOOKUP_SAMPLES);
-		WordNetProvider.uriMatcher.addURI(WordNetContract.AUTHORITY, Search_Samples.TABLE + "/", WordNetProvider.LOOKUP_SAMPLES);
+		WordNetProvider.uriMatcher.addURI(WordNetContract.AUTHORITY, Suggest_Words.TABLE + "/*", WordNetProvider.SUGGEST_WORDS);
+		WordNetProvider.uriMatcher.addURI(WordNetContract.AUTHORITY, Suggest_Words.TABLE + "/", WordNetProvider.SUGGEST_WORDS);
+		WordNetProvider.uriMatcher.addURI(WordNetContract.AUTHORITY, Suggest_Definitions.TABLE + "/*", WordNetProvider.SUGGEST_DEFINITIONS);
+		WordNetProvider.uriMatcher.addURI(WordNetContract.AUTHORITY, Suggest_Definitions.TABLE + "/", WordNetProvider.SUGGEST_DEFINITIONS);
+		WordNetProvider.uriMatcher.addURI(WordNetContract.AUTHORITY, Suggest_Samples.TABLE + "/*", WordNetProvider.SUGGEST_SAMPLES);
+		WordNetProvider.uriMatcher.addURI(WordNetContract.AUTHORITY, Suggest_Samples.TABLE + "/", WordNetProvider.SUGGEST_SAMPLES);
 	}
 
 	// C O N S T R U C T O R
@@ -271,11 +273,11 @@ public class WordNetProvider extends BaseProvider
 				return BaseProvider.VENDOR + ".android.cursor.item/" + BaseProvider.VENDOR + '.' + WordNetContract.AUTHORITY + '.' + Samples.TABLE;
 			// S E A R C H
 
-			case LOOKUP_WORDS:
+			case SUGGEST_WORDS:
 				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + WordNetContract.AUTHORITY + '.' + Words.TABLE;
-			case LOOKUP_DEFINITIONS:
+			case SUGGEST_DEFINITIONS:
 				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + WordNetContract.AUTHORITY + '.' + Synsets.TABLE;
-			case LOOKUP_SAMPLES:
+			case SUGGEST_SAMPLES:
 				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + WordNetContract.AUTHORITY + '.' + Samples.TABLE;
 			default:
 				throw new UnsupportedOperationException("Illegal MIME type");
@@ -524,7 +526,7 @@ public class WordNetProvider extends BaseProvider
 
 			// S U G G E S T
 
-			case LOOKUP_WORDS:
+			case SUGGEST_WORDS:
 			{
 				final String last = uri.getLastPathSegment();
 				if (SearchManager.SUGGEST_URI_PATH_QUERY.equals(last))
@@ -539,7 +541,7 @@ public class WordNetProvider extends BaseProvider
 						new String[]{last}, null, null, null);
 			}
 
-			case LOOKUP_DEFINITIONS:
+			case SUGGEST_DEFINITIONS:
 			{
 				final String last = uri.getLastPathSegment();
 				table = "synsets_definition_fts4";
@@ -550,7 +552,7 @@ public class WordNetProvider extends BaseProvider
 						new String[]{last}, null, null, null);
 			}
 
-			case LOOKUP_SAMPLES:
+			case SUGGEST_SAMPLES:
 			{
 				final String last = uri.getLastPathSegment();
 				if (SearchManager.SUGGEST_URI_PATH_QUERY.equals(last))

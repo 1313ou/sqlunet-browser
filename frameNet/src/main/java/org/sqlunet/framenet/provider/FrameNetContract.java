@@ -1,5 +1,7 @@
 package org.sqlunet.framenet.provider;
 
+import android.app.SearchManager;
+
 import org.sqlunet.provider.BaseProvider;
 
 /**
@@ -22,6 +24,16 @@ public class FrameNetContract
 	static public final String FETYPE = "t";
 	static public final String SENTENCE = "s";
 	static public final String ANNOSET = "a";
+
+	@SuppressWarnings("unused")
+	static public final class FnWords
+	{
+		static public final String TABLE = "fnwords";
+		static public final String CONTENT_URI = BaseProvider.SCHEME + FrameNetContract.AUTHORITY + '/' + FnWords.TABLE;
+		static public final String FNWORDID = "fnwordid";
+		static public final String WORDID = "wordid";
+		static public final String WORD = "word";
+	}
 
 	@SuppressWarnings("unused")
 	static public final class LexUnits
@@ -361,6 +373,33 @@ public class FrameNetContract
 		static public final String ANNOSETID = "annosetid";
 		static public final String SENTENCEID = "sentenceid";
 		static public final String TEXT = "text";
+	}
+
+	static public final class Suggest_FnWords
+	{
+		static public final String SEARCH_WORD_PATH = "suggest_fnword";
+		static public final String TABLE = Suggest_FnWords.SEARCH_WORD_PATH + "/" + SearchManager.SUGGEST_URI_PATH_QUERY;
+		static public final String FNWORDID = "fnwordid";
+		static public final String WORDID = "wordid";
+		static public final String WORD = "word";
+	}
+
+	static public final class Suggest_FTS_FnWords
+	{
+		static public final String SEARCH_WORD_PATH = "suggest_fts_fnword";
+		static public final String TABLE = Suggest_FTS_FnWords.SEARCH_WORD_PATH + "/" + SearchManager.SUGGEST_URI_PATH_QUERY;
+		static public final String FNWORDID = "fnwordid";
+		static public final String WORDID = "wordid";
+		static public final String WORD = "word";
+	}
+
+	static public final class Lookup_FnWords
+	{
+		static public final String TABLE = "fts_fnwords";
+		static public final String CONTENT_URI = BaseProvider.SCHEME + FrameNetContract.AUTHORITY + '/' + Lookup_FnWords.TABLE;
+		static public final String FNWORDID = "fnwordid";
+		static public final String WORDID = "wordid";
+		static public final String WORD = "word";
 	}
 
 	@SuppressWarnings("unused")

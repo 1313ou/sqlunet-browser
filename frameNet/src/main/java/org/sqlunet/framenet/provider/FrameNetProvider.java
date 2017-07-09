@@ -1,5 +1,6 @@
 package org.sqlunet.framenet.provider;
 
+import android.app.SearchManager;
 import android.content.UriMatcher;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteCantOpenDatabaseException;
@@ -11,6 +12,7 @@ import android.util.Log;
 
 import org.sqlunet.framenet.provider.FrameNetContract.AnnoSets;
 import org.sqlunet.framenet.provider.FrameNetContract.AnnoSets_Layers_X;
+import org.sqlunet.framenet.provider.FrameNetContract.FnWords;
 import org.sqlunet.framenet.provider.FrameNetContract.Frames;
 import org.sqlunet.framenet.provider.FrameNetContract.Frames_FEs;
 import org.sqlunet.framenet.provider.FrameNetContract.Frames_Related;
@@ -25,8 +27,12 @@ import org.sqlunet.framenet.provider.FrameNetContract.LexUnits_Sentences_AnnoSet
 import org.sqlunet.framenet.provider.FrameNetContract.LexUnits_X;
 import org.sqlunet.framenet.provider.FrameNetContract.LexUnits_or_Frames;
 import org.sqlunet.framenet.provider.FrameNetContract.Lookup_FnSentences;
+import org.sqlunet.framenet.provider.FrameNetContract.Lookup_FnSentences_X;
+import org.sqlunet.framenet.provider.FrameNetContract.Lookup_FnWords;
 import org.sqlunet.framenet.provider.FrameNetContract.Patterns_Layers_X;
 import org.sqlunet.framenet.provider.FrameNetContract.Patterns_Sentences;
+import org.sqlunet.framenet.provider.FrameNetContract.Suggest_FnWords;
+import org.sqlunet.framenet.provider.FrameNetContract.Suggest_FTS_FnWords;
 import org.sqlunet.framenet.provider.FrameNetContract.Sentences;
 import org.sqlunet.framenet.provider.FrameNetContract.Sentences_Layers_X;
 import org.sqlunet.framenet.provider.FrameNetContract.ValenceUnits_Layers_X;
@@ -82,9 +88,13 @@ public class FrameNetProvider extends BaseProvider
 	static private final int LEXUNITS_GROUPREALIZATIONS_BY_PATTERN = 431;
 
 	// text search codes
-	static private final int LOOKUP_FTS_SENTENCES = 501;
-	static private final int LOOKUP_FTS_SENTENCES_X = 511;
-	static private final int LOOKUP_FTS_SENTENCES_X_BY_SENTENCE = 512;
+	static private final int LOOKUP_FTS_WORDS = 510;
+	static private final int LOOKUP_FTS_SENTENCES = 511;
+	static private final int LOOKUP_FTS_SENTENCES_X = 512;
+	static private final int LOOKUP_FTS_SENTENCES_X_BY_SENTENCE = 513;
+
+	static private final int SUGGEST_WORDS = 601;
+	static private final int SUGGEST_FTS_WORDS = 602;
 
 	static
 	{
@@ -121,9 +131,16 @@ public class FrameNetProvider extends BaseProvider
 		FrameNetProvider.uriMatcher.addURI(FrameNetContract.AUTHORITY, ValenceUnits_Sentences.TABLE, FrameNetProvider.VALENCEUNITS_SENTENCES);
 		FrameNetProvider.uriMatcher.addURI(FrameNetContract.AUTHORITY, Governors_AnnoSets_Sentences.TABLE, FrameNetProvider.GOVERNORS_ANNOSETS);
 
+		FrameNetProvider.uriMatcher.addURI(FrameNetContract.AUTHORITY, Lookup_FnWords.TABLE + "/*", FrameNetProvider.LOOKUP_FTS_WORDS);
+		FrameNetProvider.uriMatcher.addURI(FrameNetContract.AUTHORITY, Lookup_FnWords.TABLE + "/", FrameNetProvider.LOOKUP_FTS_WORDS);
 		FrameNetProvider.uriMatcher.addURI(FrameNetContract.AUTHORITY, Lookup_FnSentences.TABLE + "/", FrameNetProvider.LOOKUP_FTS_SENTENCES);
-		FrameNetProvider.uriMatcher.addURI(FrameNetContract.AUTHORITY, FrameNetContract.Lookup_FnSentences_X.TABLE + "/", FrameNetProvider.LOOKUP_FTS_SENTENCES_X);
-		FrameNetProvider.uriMatcher.addURI(FrameNetContract.AUTHORITY, FrameNetContract.Lookup_FnSentences_X.TABLE_BY_SENTENCE + "/", FrameNetProvider.LOOKUP_FTS_SENTENCES_X_BY_SENTENCE);
+		FrameNetProvider.uriMatcher.addURI(FrameNetContract.AUTHORITY, Lookup_FnSentences_X.TABLE + "/", FrameNetProvider.LOOKUP_FTS_SENTENCES_X);
+		FrameNetProvider.uriMatcher.addURI(FrameNetContract.AUTHORITY, Lookup_FnSentences_X.TABLE_BY_SENTENCE + "/", FrameNetProvider.LOOKUP_FTS_SENTENCES_X_BY_SENTENCE);
+
+		FrameNetProvider.uriMatcher.addURI(FrameNetContract.AUTHORITY, Suggest_FnWords.TABLE + "/*", FrameNetProvider.SUGGEST_WORDS);
+		FrameNetProvider.uriMatcher.addURI(FrameNetContract.AUTHORITY, Suggest_FnWords.TABLE + "/", FrameNetProvider.SUGGEST_WORDS);
+		FrameNetProvider.uriMatcher.addURI(FrameNetContract.AUTHORITY, Suggest_FTS_FnWords.TABLE + "/*", FrameNetProvider.SUGGEST_FTS_WORDS);
+		FrameNetProvider.uriMatcher.addURI(FrameNetContract.AUTHORITY, Suggest_FTS_FnWords.TABLE + "/", FrameNetProvider.SUGGEST_FTS_WORDS);
 	}
 
 	// C O N S T R U C T O R
@@ -199,13 +216,21 @@ public class FrameNetProvider extends BaseProvider
 			case GOVERNORS_ANNOSETS:
 				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + FrameNetContract.AUTHORITY + '.' + Governors_AnnoSets_Sentences.TABLE;
 
-			// S E A R C H
+			// L O O K U P
+			case LOOKUP_FTS_WORDS:
+				return BaseProvider.VENDOR + ".android.cursor.item/" + BaseProvider.VENDOR + '.' + FrameNetContract.AUTHORITY + '.' + FnWords.TABLE;
 			case LOOKUP_FTS_SENTENCES:
 				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + FrameNetContract.AUTHORITY + '.' + Lookup_FnSentences.TABLE;
 			case LOOKUP_FTS_SENTENCES_X:
-				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + FrameNetContract.AUTHORITY + '.' + FrameNetContract.Lookup_FnSentences_X.TABLE;
+				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + FrameNetContract.AUTHORITY + '.' + Lookup_FnSentences_X.TABLE;
 			case LOOKUP_FTS_SENTENCES_X_BY_SENTENCE:
-				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + FrameNetContract.AUTHORITY + '.' + FrameNetContract.Lookup_FnSentences_X.TABLE_BY_SENTENCE;
+				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + FrameNetContract.AUTHORITY + '.' + Lookup_FnSentences_X.TABLE_BY_SENTENCE;
+
+			// S U G G E S T
+			case SUGGEST_WORDS:
+				return BaseProvider.VENDOR + ".android.cursor.item/" + BaseProvider.VENDOR + '.' + FrameNetContract.AUTHORITY + '.' + FnWords.TABLE;
+			case SUGGEST_FTS_WORDS:
+				return BaseProvider.VENDOR + ".android.cursor.item/" + BaseProvider.VENDOR + '.' + FrameNetContract.AUTHORITY + '.' + FnWords.TABLE;
 
 			default:
 				throw new UnsupportedOperationException("Illegal MIME type");
@@ -530,6 +555,11 @@ public class FrameNetProvider extends BaseProvider
 						"LEFT JOIN fnsentences AS " + FrameNetContract.SENTENCE + " USING (sentenceid)";
 				break;
 
+			// L O O K U P
+
+			case LOOKUP_FTS_WORDS:
+				table = "fnwords_word_fts4";
+				break;
 			case LOOKUP_FTS_SENTENCES:
 				table = "fnsentences_text_fts4";
 				break;
@@ -543,6 +573,37 @@ public class FrameNetProvider extends BaseProvider
 						"LEFT JOIN fnframes USING (frameid) " + //
 						"LEFT JOIN fnlexunits USING (frameid,luid)";
 				break;
+
+			// S U G G E S T
+
+			case SUGGEST_WORDS:
+			{
+				final String last = uri.getLastPathSegment();
+				if (SearchManager.SUGGEST_URI_PATH_QUERY.equals(last))
+				{
+					return null;
+				}
+				table = "fnwords";
+				return this.db.query(table, new String[]{"fnwordid AS _id", //
+								"word AS " + SearchManager.SUGGEST_COLUMN_TEXT_1, //
+								"word AS " + SearchManager.SUGGEST_COLUMN_QUERY}, //
+						"word LIKE ? || '%'", //
+						new String[]{last}, null, null, null);
+			}
+			case SUGGEST_FTS_WORDS:
+			{
+				final String last = uri.getLastPathSegment();
+				if (SearchManager.SUGGEST_URI_PATH_QUERY.equals(last))
+				{
+					return null;
+				}
+				table = "fnwords_word_fts4";
+				return this.db.query(table, new String[]{"fnwordid AS _id", //
+								"word AS " + SearchManager.SUGGEST_COLUMN_TEXT_1, //
+								"word AS " + SearchManager.SUGGEST_COLUMN_QUERY}, //
+						"word MATCH ?", //
+						new String[]{last}, null, null, null);
+			}
 
 			default:
 			case UriMatcher.NO_MATCH:
