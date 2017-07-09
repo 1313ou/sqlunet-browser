@@ -155,6 +155,7 @@ public class SelectorsFragment extends ListFragment
 				if (view instanceof TextView)
 				{
 					((TextView) view).setText(text);
+					// TODO return true; // if handled
 				}
 				else if (view instanceof ImageView)
 				{
@@ -166,6 +167,7 @@ public class SelectorsFragment extends ListFragment
 					{
 						((ImageView) view).setImageURI(Uri.parse(text));
 					}
+					// TODO return true; // if handled
 				}
 				else
 				{

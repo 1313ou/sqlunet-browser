@@ -61,8 +61,10 @@ public class FrameNetContract
 		static public final String CONTENT_URI = BaseProvider.SCHEME + FrameNetContract.AUTHORITY + '/' + LexUnits_or_Frames.TABLE;
 		static public final String ID = "_id";
 		static public final String FNID = "fnid";
+		static public final String FNWORDID = "fnwordid";
 		static public final String WORDID = "wordid";
 		static public final String WORD = "word";
+		static public final String NAME = "name";
 		static public final String ISFRAME = "isframe";
 	}
 
