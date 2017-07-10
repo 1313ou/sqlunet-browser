@@ -22,6 +22,7 @@ import org.sqlunet.browser.config.SetupActivity;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 
 /**
  * Fragment used for managing interactions for and presentation of a navigation drawer.
@@ -31,6 +32,11 @@ import java.lang.reflect.InvocationTargetException;
 public class NavigationFragment extends NavigationDrawerFragment implements NavigationDrawerFragment.Listener
 {
 	static private final String TAG = "NavigationFragment";
+
+	/**
+	 * Handlers (private methods in this class
+	 */
+	private String[] handlers;
 
 	/**
 	 * Fragment classes
@@ -63,6 +69,7 @@ public class NavigationFragment extends NavigationDrawerFragment implements Navi
 
 		// read fragment data
 		final Resources res = getResources();
+		this.handlers = res.getStringArray(R.array.handler_sections);
 		this.fragmentClasses = res.getStringArray(R.array.fragment_class_sections);
 		this.fragmentTags = res.getStringArray(R.array.fragment_tag_sections);
 		this.fragmentTransient = res.getIntArray(R.array.fragment_transient_flags);
@@ -78,7 +85,7 @@ public class NavigationFragment extends NavigationDrawerFragment implements Navi
 		final FragmentActivity activity = getActivity();
 		final FragmentManager manager = activity.getSupportFragmentManager();
 
-		final String tag = fragmentTags[this.selectedPosition];
+		final String tag = this.fragmentTags[this.selectedPosition];
 		return tag == null ? null : manager.findFragmentByTag(tag);
 	}
 
@@ -91,44 +98,81 @@ public class NavigationFragment extends NavigationDrawerFragment implements Navi
 	public void onItemSelected(int position)
 	{
 		Log.d(TAG, "Section selected " + position);
-		if (tryActivity(position))
+		if (handle(position))
 		{
 			return;
 		}
 
-		updateFragments(position);
+		handleFragments(position);
 	}
 
 	/**
-	 * Drawer selection tryActivity
+	 * Drawer selection handler
 	 *
-	 * @param number selected item number
+	 * @param position selected item number
+	 * @return true if handled
 	 */
-	private boolean tryActivity(final int number)
+	private boolean handle(final int position)
 	{
-		Intent intent = null;
-		switch (number)
+		final String run = handlers[position];
+		if (run != null && !run.isEmpty())
 		{
-			case 5:
-				intent = new Intent(getActivity(), SetupActivity.class);
-				break;
-			case 7:
-				intent = new Intent(getActivity(), SettingsActivity.class);
-				break;
-			case 8:
-				SqlDialogFragment.show(getActivity().getSupportFragmentManager());
-				return true;
-		}
-
-		if (intent != null)
-		{
-			startActivity(intent);
+			try
+			{
+				final Method method = NavigationFragment.class.getDeclaredMethod(run);
+				method.setAccessible(true);
+				method.invoke(this);
+			}
+			catch (NoSuchMethodException e)
+			{
+				Log.e(TAG, "Handling " + position, e);
+			}
+			catch (InvocationTargetException e)
+			{
+				Log.e(TAG, "Handling " + position, e);
+			}
+			catch (IllegalAccessException e)
+			{
+				Log.e(TAG, "Handling " + position, e);
+			}
 			return true;
 		}
 		return false;
 	}
 
-	private void updateFragments(int position)
+	/**
+	 * Setup handler
+	 */
+	private void setupActivity()
+	{
+		final Intent intent = new Intent(getActivity(), SetupActivity.class);
+		startActivity(intent);
+
+	}
+
+	/**
+	 * Settings handler
+	 */
+	private void settingsActivity()
+	{
+		final Intent intent = new Intent(getActivity(), SettingsActivity.class);
+		startActivity(intent);
+	}
+
+	/**
+	 * SQL handler
+	 */
+	private void sqlDialog()
+	{
+		SqlDialogFragment.show(getActivity().getSupportFragmentManager());
+	}
+
+	/**
+	 * Handle fragments
+	 *
+	 * @param position drawer position
+	 */
+	private void handleFragments(int position)
 	{
 		Log.d(TAG, "Section fragments " + position);
 		final AppCompatActivity activity = (AppCompatActivity) getActivity();
@@ -136,8 +180,8 @@ public class NavigationFragment extends NavigationDrawerFragment implements Navi
 		final FragmentTransaction transaction = manager.beginTransaction();
 		transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
 
-		final String tag = fragmentTags[position];
-		if (tag == null)
+		final String tag = this.fragmentTags[position];
+		if (tag == null || tag.isEmpty())
 		{
 			// this position does not match a fragment
 			return;
@@ -152,7 +196,7 @@ public class NavigationFragment extends NavigationDrawerFragment implements Navi
 		else
 		{
 			// if it is transient
-			if (fragmentTransient[position] != 0)
+			if (this.fragmentTransient[position] != 0)
 			{
 				// remove
 				transaction.remove(fragment);
@@ -164,14 +208,14 @@ public class NavigationFragment extends NavigationDrawerFragment implements Navi
 		}
 
 		// hide others
-		for (int i = 0; i < fragmentTags.length; i++)
+		for (int i = 0; i < this.fragmentTags.length; i++)
 		{
 			if (i == position)
 			{
 				// already handled and further handled later
 				continue;
 			}
-			final String tag2 = fragmentTags[i];
+			final String tag2 = this.fragmentTags[i];
 			if (tag2 == null)
 			{
 				// this position does not match a fragment
@@ -180,7 +224,7 @@ public class NavigationFragment extends NavigationDrawerFragment implements Navi
 			final Fragment fragment2 = manager.findFragmentByTag(tag2);
 			if (fragment2 != null)
 			{
-				if (fragmentTransient[i] != 0)
+				if (this.fragmentTransient[i] != 0)
 				{
 					transaction.remove(fragment2);
 				}
@@ -269,7 +313,7 @@ public class NavigationFragment extends NavigationDrawerFragment implements Navi
 
 	private Fragment newFragment(final int position)
 	{
-		final String fragmentClass = fragmentClasses[position];
+		final String fragmentClass = this.fragmentClasses[position];
 		if (fragmentClass != null && !fragmentClass.isEmpty())
 		{
 			try

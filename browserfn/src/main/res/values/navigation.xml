@@ -4,7 +4,7 @@
 	<!-- navigation sections
 	HOME
 	BROWSE
-	TS
+	TEXT SEARCH
 	STATUS
 	SETUP
 	STORAGE
@@ -14,27 +14,44 @@
 	ABOUT
 	-->
 
+	<string name="handler_setup_section">setupActivity</string>
+	<string name="handler_settings_section">settingsActivity</string>
+	<string name="handler_sql_section">sqlDialog</string>
+	<string-array name="handler_sections">
+		<item/>
+		<item/>
+		<!--<item/>--> <!--2 predicate matrix -->
+		<item/>
+		<item/>
+		<item>@string/handler_setup_section</item> <!--5 setup -->
+		<item/>
+		<item>@string/handler_settings_section</item> <!-- 7 settings -->
+		<item>@string/handler_sql_section</item> <!-- 8 sql -->
+		<item/>
+		<item/>
+	</string-array>
+
 	<string name="fragment_class_home_section">org.sqlunet.browser.HomeFragment</string> <!-- 0 -->
 	<string name="fragment_class_browse_section">org.sqlunet.browser.BrowseFragment</string> <!-- 1 -->
-	<string name="fragment_class_textsearch_section">org.sqlunet.browser.TextSearchFragment</string> <!-- 3 -->
-	<string name="fragment_class_status_section">org.sqlunet.browser.fn.StatusFragment</string> <!-- 4 -->
-	<string name="fragment_class_setup_section"/> <!-- 5 -->
-	<string name="fragment_class_storage_section">org.sqlunet.browser.StorageFragment</string> <!-- 6 -->
-	<string name="fragment_class_settings_section"/> <!-- 7 -->
-	<string name="fragment_class_sql_section">org.sqlunet.browser.SqlFragment</string> <!-- 8 -->
-	<string name="fragment_class_help_section">org.sqlunet.browser.HelpFragment</string> <!-- 9 -->
-	<string name="fragment_class_about_section">org.sqlunet.browser.AboutFragment</string> <!-- 10 -->
+	<string name="fragment_class_textsearch_section">org.sqlunet.browser.SearchTextFragment</string> <!-- 2 -->
+	<string name="fragment_class_status_section">org.sqlunet.browser.fn.StatusFragment</string> <!-- 3 -->
+	<string name="fragment_class_setup_section"/> <!-- 4 -->
+	<string name="fragment_class_storage_section">org.sqlunet.browser.config.StorageFragment</string> <!-- 5 -->
+	<string name="fragment_class_settings_section"/> <!-- 6 -->
+	<string name="fragment_class_sql_section">org.sqlunet.browser.SqlFragment</string> <!-- 7 -->
+	<string name="fragment_class_help_section">org.sqlunet.browser.HelpFragment</string> <!-- 8 -->
+	<string name="fragment_class_about_section">org.sqlunet.browser.AboutFragment</string> <!-- 9 -->
 	<string-array name="fragment_class_sections">
-		<item>@string/fragment_class_home_section</item>
-		<item>@string/fragment_class_browse_section</item>
-		<item>@string/fragment_class_textsearch_section</item>
-		<item>@string/fragment_class_status_section</item>
-		<item>@string/fragment_class_setup_section</item>
-		<item>@string/fragment_class_storage_section</item>
-		<item>@string/fragment_class_settings_section</item>
-		<item>@string/fragment_class_sql_section</item>
-		<item>@string/fragment_class_help_section</item>
-		<item>@string/fragment_class_about_section</item>
+		<item>@string/fragment_class_home_section</item> <!-- 0 home -->
+		<item>@string/fragment_class_browse_section</item> <!--1 browse -->
+		<item>@string/fragment_class_textsearch_section</item> <!--3 text search -->
+		<item>@string/fragment_class_status_section</item> <!--4 status -->
+		<item>@string/fragment_class_setup_section</item> <!--5 setup -->
+		<item>@string/fragment_class_storage_section</item> <!-- 6 storage -->
+		<item>@string/fragment_class_settings_section</item> <!-- 7 settings -->
+		<item>@string/fragment_class_sql_section</item> <!-- 8 sql -->
+		<item>@string/fragment_class_help_section</item> <!-- 9 help -->
+		<item>@string/fragment_class_about_section</item> <!-- 10 about -->
 	</string-array>
 
 	<string name="fragment_tag_home_section">home</string>
@@ -48,57 +65,58 @@
 	<string name="fragment_tag_help_section">help</string>
 	<string name="fragment_tag_about_section">about</string>
 	<string-array name="fragment_tag_sections">
-		<item>@string/fragment_tag_home_section</item>
-		<item>@string/fragment_tag_browse_section</item>
-		<item>@string/fragment_tag_textsearch_section</item>
-		<item>@string/fragment_tag_status_section</item>
-		<item>@string/fragment_tag_setup_section</item>
-		<item>@string/fragment_tag_storage_section</item>
-		<item>@string/fragment_tag_settings_section</item>
-		<item>@string/fragment_tag_sql_section</item>
-		<item>@string/fragment_tag_help_section</item>
-		<item>@string/fragment_tag_about_section</item>
+		<item>@string/fragment_tag_home_section</item> <!-- 0 home -->
+		<item>@string/fragment_tag_browse_section</item> <!--1 browse -->
+		<item>@string/fragment_tag_textsearch_section</item> <!--3 text search -->
+		<item>@string/fragment_tag_status_section</item> <!--4 status -->
+		<item>@string/fragment_tag_setup_section</item> <!--5 setup -->
+		<item>@string/fragment_tag_storage_section</item> <!-- 6 storage -->
+		<item>@string/fragment_tag_settings_section</item> <!-- 7 settings -->
+		<item>@string/fragment_tag_sql_section</item> <!-- 8 sql -->
+		<item>@string/fragment_tag_help_section</item> <!-- 9 help -->
+		<item>@string/fragment_tag_about_section</item> <!-- 10 about -->
 	</string-array>
 
 	<!-- non-zero indicates whether fragment is recreated  -->
 	<integer-array name="fragment_transient_flags">
-		<item>1</item> <!-- 0 -->
+		<item>1</item> <!-- 0 home -->
 		<item>0</item> <!-- 1 browse -->
-		<item>0</item> <!-- 3 textsearch -->
-		<item>1</item> <!-- 4 -->
+		<item>0</item> <!-- 3 text search -->
+		<item>1</item> <!-- 4 status -->
 		<item>1</item> <!-- 5 setup: not a fragment - does not apply -->
-		<item>1</item> <!-- 6 -->
+		<item>1</item> <!-- 6 storage -->
 		<item>1</item> <!-- 7 settings: not a fragment - does not apply -->
-		<item>1</item> <!-- 8 sql: not a fragment - does not apply -->
-		<item>1</item> <!-- 9 -->
-		<item>1</item> <!-- 10 -->
+		<item>1</item> <!-- 8 sql -->
+		<item>1</item> <!-- 9 help -->
+		<item>1</item> <!-- 10 about -->
 	</integer-array>
 
 	<!-- non-zero indicates fragment swap in, non-zero for no change  -->
 	<integer-array name="drawer_swap_in_flags">
-		<item>1</item>
-		<item>1</item>
-		<item>1</item>
-		<item>1</item>
-		<item>0</item>
-		<item>1</item>
-		<item>0</item>
-		<item>0</item>
-		<item>1</item>
-		<item>1</item>
+		<item>1</item> <!-- 0 home -->
+		<item>1</item> <!--1 browse -->
+		<item>1</item> <!--3 text search -->
+		<item>1</item> <!--4 status -->
+		<item>0</item> <!--5 setup -->
+		<item>1</item> <!-- 6 storage -->
+		<item>0</item> <!-- 7 settings -->
+		<item>0</item> <!-- 8 sql -->
+		<item>1</item> <!-- 9 help -->
+		<item>1</item> <!-- 10 about -->
 	</integer-array>
 
+	<!-- non-zero indicates enhanced displays, zero indicates dimmed -->
 	<integer-array name="drawer_display_flags">
-		<item>0</item>
-		<item>1</item>
-		<item>1</item>
-		<item>0</item>
-		<item>0</item>
-		<item>0</item>
-		<item>0</item>
-		<item>0</item>
-		<item>0</item>
-		<item>0</item>
+		<item>0</item> <!-- 0 home -->
+		<item>1</item> <!--1 browse -->
+		<item>1</item> <!--3 text search -->
+		<item>0</item> <!--4 status -->
+		<item>0</item> <!--5 setup -->
+		<item>0</item> <!-- 6 storage -->
+		<item>0</item> <!-- 7 settings -->
+		<item>0</item> <!-- 8 sql -->
+		<item>0</item> <!-- 9 help -->
+		<item>0</item> <!-- 10 about -->
 	</integer-array>
 
 	<!-- labels -->
@@ -113,30 +131,30 @@
 	<string name="title_help_section">Help</string>
 	<string name="title_about_section">About</string>
 	<string-array name="title_sections">
-		<item>@string/title_home_section</item>
-		<item>@string/title_browse_section</item>
-		<item>@string/title_textsearch_section</item>
-		<item>@string/title_status_section</item>
-		<item>@string/title_setup_section</item>
-		<item>@string/title_storage_section</item>
-		<item>@string/title_settings_section</item>
-		<item>@string/title_sql_section</item>
-		<item>@string/title_help_section</item>
-		<item>@string/title_about_section</item>
+		<item>@string/title_home_section</item> <!-- 0 home -->
+		<item>@string/title_browse_section</item> <!-- 1 browse -->
+		<item>@string/title_textsearch_section</item> <!-- 3 text search -->
+		<item>@string/title_status_section</item> <!-- 4 status -->
+		<item>@string/title_setup_section</item> <!-- 5 setup -->
+		<item>@string/title_storage_section</item> <!-- 6 storage -->
+		<item>@string/title_settings_section</item> <!-- 7 settings -->
+		<item>@string/title_sql_section</item> <!-- 8 sql -->
+		<item>@string/title_help_section</item> <!-- 9 help -->
+		<item>@string/title_about_section</item> <!-- 10 about -->
 	</string-array>
 
 	<!-- icons -->
 	<integer-array name="drawer_icons">
-		<item>@drawable/ic_home</item>
-		<item>@drawable/ic_search_browse</item>
-		<item>@drawable/ic_search_text</item>
-		<item>@drawable/ic_status</item>
-		<item>@drawable/ic_setup</item>
-		<item>@drawable/ic_storage</item>
-		<item>@drawable/ic_settings</item>
-		<item>@drawable/ic_sql</item>
-		<item>@drawable/ic_help</item>
-		<item>@drawable/ic_about</item>
+		<item>@drawable/ic_home</item> <!-- 0 home -->
+		<item>@drawable/ic_search_browse</item> <!-- 1 browse -->
+		<item>@drawable/ic_search_text</item> <!-- 3 text search -->
+		<item>@drawable/ic_status</item> <!-- 4 status -->
+		<item>@drawable/ic_setup</item> <!-- 5 setup -->
+		<item>@drawable/ic_storage</item> <!-- 6 storage -->
+		<item>@drawable/ic_settings</item> <!-- 7 settings -->
+		<item>@drawable/ic_sql</item> <!-- 8 sql -->
+		<item>@drawable/ic_help</item> <!-- 9 help -->
+		<item>@drawable/ic_about</item> <!-- 10 about -->
 	</integer-array>
 
 </resources>
