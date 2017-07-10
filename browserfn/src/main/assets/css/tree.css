@@ -1,0 +1,46 @@
+@CHARSET "UTF-8";
+
+/* Tree */
+
+a {
+	text-decoration: none;
+}
+
+ul,ol,li {
+	padding: 0;
+	margin: 0;
+}
+
+ul,ol {
+	list-style: none;
+}
+
+li {
+	padding-left: 10px;
+}
+
+.treejunction {
+	
+}
+
+.treebox {
+	background-color: white;
+	border-bottom: 1px solid #999;
+	border-right: 1px solid #999;
+}
+
+.treepanel {
+	padding-bottom: 2px;
+}
+
+.treepix {
+	vertical-align: middle;
+}
+
+.treeitem {
+	
+}
+
+.treeroot {
+	padding-left: 0px;
+}

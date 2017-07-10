@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+	<!-- browser spinner
+	SELECTORS
+	-->
+	<integer-array name="selectors_icons">
+		<item>@drawable/ic_selector</item>
+	</integer-array>
+
+	<!-- textsearch spinner
+	FRAMENET SENTENCES
+	-->
+	<integer-array name="textsearch_icons">
+		<item>@drawable/ic_search_fnsentence</item>
+	</integer-array>
+
+</resources>

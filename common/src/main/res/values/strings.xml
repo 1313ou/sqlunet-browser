@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+	<!-- app -->
+	<string name="semantikos">Semantikos</string>>
+	<string name="semantikos_greek">σημαντικός</string>>
+	<string name="semantikos_latin">significans</string>>
+	<string name="app_name">@string/semantikos</string>
+
+	<!-- ACTIONS -->
+
+	<!-- settings and status -->
+	<string name="action_settings">Settings</string>
+	<string name="action_status">Status</string>
+	<string name="action_refresh">Refresh</string>
+
+	<!-- setup -->
+	<string name="action_setup">Set up</string>
+
+	<!-- setup from file -->
+	<string name="action_copy_from_file">Copy database from &#8230;</string>
+	<string name="action_unzip_from_archive">Unzip database from &#8230;</string>
+
+	<!-- database info -->
+	<string name="action_tables_and_indices">Tables and Indices</string>
+
+	<!-- file info -->
+	<string name="action_storage_dirs">Storage dirs</string>
+	<string name="action_storage">Storage</string>
+	<string name="action_md5">MD5</string>
+	<string name="action_md5_of">MD5 of</string>
+	<string name="action_md5_ask">MD5 &#8230;</string>
+
+	<!-- misc -->
+	<string name="action_clear_sql">Clear SQLs</string>
+	<string name="action_download">Download</string>
+	<string name="action_help">Help</string>
+	<string name="action_about">About</string>
+	<string name="action_appsettings">Application</string>
+
+	<string name="action_run">Run</string>
+	<string name="action_quit">Quit</string>
+	<string name="action_abort">Abort</string>
+	<string name="action_dismiss">Dismiss</string>
+	<string name="action_cancel">Cancel</string>
+	<string name="action_ok">OK</string>
+	<string name="action_show">Show</string>
+
+	<!-- SETUP PAGES -->
+
+	<string name="page_setup">Default</string>
+	<string name="page_setup_file">File</string>
+	<string name="page_setup_database">Database</string>
+	<string name="page_setup_sql">SQL</string>
+
+	<!-- TITLES -->
+
+	<!-- labels -->
+	<string name="title_activity_main" tools:ignore="UnusedResources">Home</string>
+	<string name="title_activity_web" tools:ignore="UnusedResources">Web</string>
+	<string name="title_activity_status" tools:ignore="UnusedResources">Status</string>
+	<string name="title_activity_setup" tools:ignore="UnusedResources">Set up</string>
+	<string name="title_activity_setup_database" tools:ignore="UnusedResources">Set up database</string>
+	<string name="title_activity_download" tools:ignore="UnusedResources">Download</string>
+	<string name="title_activity_text_search" tools:ignore="UnusedResources">Text Search</string>
+	<string name="title_activity_storage" tools:ignore="UnusedResources">Storage</string>
+
+	<string name="title_activity_selector" tools:ignore="UnusedResources">Select</string>
+	<string name="title_activity_browse2" tools:ignore="UnusedResources">Data</string>
+	<string name="title_activity_table" tools:ignore="UnusedResources">Table</string>
+
+	<!-- _status -->
+	<string name="status_data_fail">Data is unavailable</string>
+	<string name="status_database">Database</string>
+	<string name="status_indexes">Indexes</string>
+	<string name="status_download_pending">pending</string>
+	<string name="status_download_running">running</string>
+	<string name="status_download_paused">paused</string>
+	<string name="status_download_successful">successful</string>
+	<string name="status_download_fail">failed</string>
+	<string name="status_download_error_cannot_resume">cannot resume</string>
+	<string name="status_download_error_device_not_found">device not found</string>
+	<string name="status_download_error_file_already_exists">file already exists</string>
+	<string name="status_download_error_file_error">file error</string>
+	<string name="status_download_error_http_data_error">http data error</string>
+	<string name="status_download_error_insufficient_space">insufficient space</string>
+	<string name="status_download_error_too_many_redirects">too many redirects</string>
+	<string name="status_download_error_unhandled_http_code">unhandled http code</string>
+	<string name="status_download_error_blocked">blocked</string>
+	<string name="status_download_error_unknown">error unknown</string>
+	<string name="status_download_exception">exception</string>
+	<string name="status_download_paused_queued_for_wifi">queued for wifi</string>
+	<string name="status_download_paused_unknown">unknown</string>
+	<string name="status_download_paused_waiting_for_network">waiting for network</string>
+	<string name="status_download_paused_waiting_to_retry">waiting to retry</string>
+	<string name="status_state_unknown"/>
+	<string name="status_reason_unknown"/>
+	<string name="status_managing">Managing</string>
+	<string name="status_task_running">running</string>
+	<string name="status_task_done">done</string>
+	<string name="status_task_success">success</string>
+	<string name="status_task_failed">failed</string>
+	<string name="status_task_start_toast">Task started</string>
+	<string name="status_task_done_toast">Task done</string>
+	<string name="status_task_success_summary" tools:ignore="UnusedResources">Task succeeded</string>
+	<string name="status_task_failed_summary" tools:ignore="UnusedResources">Task failed</string>
+	<string name="status_error_null_download_url">Null download URL (see Settings)</string>
+	<string name="status_provider_query_failed">Could not perform query, cause is logged</string>
+
+	<!-- service -->
+	<string name="service_downloader" tools:ignore="UnusedResources">service_downloader</string>
+	<string name="description_service_downloader" tools:ignore="UnusedResources">Downloader Service</string>
+
+	<!-- misc -->
+	<string name="hint_search">Search</string>
+	<string name="hint_search_text">Text Search</string>
+	<string name="hint_splash_browse">Exploring Semantic Roles</string>
+	<string name="hint_splash_textsearch">Text Search</string>
+	<string name="hint_navigation_drawer_open">Open navigation drawer</string>
+	<string name="hint_navigation_drawer_close">Close navigation drawer</string>
+	<string name="hint_sql">SQL statements stack</string>
+	<string name="hint_unzip_from_archive">Select the zip archive to unzip from</string>
+	<string name="hint_copy_from_file">Select the file to copy from</string>
+	<string name="hint_md5">Select the file to md5-checksum</string>
+	<string name="hint_database">Info about Database</string>
+
+	<string name="title_dialog_sql">SQL</string>
+	<string name="title_download">SqlUNet download</string>
+
+	<!-- items -->
+	<string name="download_source">source</string>
+	<string name="download_dest">destination</string>
+	<string name="item" tools:ignore="UnusedResources">item</string>
+	<string name="md5_downloaded">Downloaded</string>
+	<string name="md5_computed">Computed</string>
+	<string name="md5_compared">Compared</string>
+	<string name="md5_expected" tools:ignore="UnusedResources">Expected MD5</string>
+	<string name="size_expected">Expected size</string>
+	<string name="size_actual">Actual size</string>
+	<string name="total">total</string>
+	<string name="text_search">Text Search</string>
+	<string name="unit_statement">statements</string>
+
+	<!-- databases -->
+	<string name="sqlunet">SqlUNet</string>
+
+	<string name="sqlunet_blurb" tools:ignore="UnusedResources">SqlUNet\nunifies all</string>
+
+	<!-- ARRAYS -->
+
+	<!-- mode spinner -->
+	<string-array name="selectors_names" tools:ignore="UnusedResources">
+	</string-array>
+
+	<!-- textsearch spinner -->
+	<string-array name="textsearch_modes" tools:ignore="UnusedResources">
+	</string-array>
+
+	<!-- setup spinner -->
+	<string name="title_select">[SELECT OPERATION]</string>
+	<string name="title_setup_create">Create database</string>
+	<string name="title_setup_drop">Drop database</string>
+	<string name="title_setup_copy">Copy database from file &#8230;</string>
+	<string name="title_setup_unzip">Unzip database from file &#8230;</string>
+	<string name="title_setup_download">Download database</string>
+	<string name="title_setup_download_zipped">Download zipped database</string>
+	<string name="title_setup_md5">MD5 checksum &#8230;</string>
+	<string-array name="setup_files_titles">
+		<item>@string/title_select</item>
+		<item>@string/title_setup_create</item>
+		<item>@string/title_setup_drop</item>
+		<item>@string/title_setup_copy</item>
+		<item>@string/title_setup_unzip</item>
+		<item>@string/title_setup_download</item>
+		<item>@string/title_setup_download_zipped</item>
+		<item>@string/title_setup_md5</item>
+	</string-array>
+	<string-array name="setup_files_values" formatted="false">
+		<item/>
+		<item>CREATE</item>
+		<item>DROP</item>
+		<item>COPY</item>
+		<item>UNZIP</item>
+		<item>DOWNLOAD</item>
+		<item>DOWNLOADZIPPED</item>
+		<item>MD5</item>
+	</string-array>
+
+</resources>

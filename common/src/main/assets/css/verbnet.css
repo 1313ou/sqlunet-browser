@@ -1,0 +1,149 @@
+@CHARSET "UTF-8";
+
+/* VerbNet */
+
+.vnclass {
+	color: gray;
+}
+
+.vnclasslabel {
+	color: 	gray;
+}
+
+.vnclassname {
+	font-weight: bold;
+	font-size: large;
+	background-color: darkred;
+	color: white;
+	padding-left: 2px;
+	padding-right: 2px;
+}
+
+.vnclassdefinition {
+	color: black;
+	padding-left: 2px;
+	padding-right: 2px;
+}
+
+.vnthemroleset {
+}
+
+.vnthemrolesetlabel {
+	color: gray;
+}
+
+.vnthemrole {
+}
+
+.vnthemrolelabel {
+	vertical-align: top;
+}
+
+.vnthemrolename {
+	background-color: magenta;
+	color: white;
+	padding-left: 2px;
+	padding-right: 2px;
+}
+
+.vnframeset {
+}
+
+.vnframesetlabel {
+	color: gray;
+}
+
+.vnframe {
+}
+
+.vnframelabel {
+	vertical-align: top;
+	color: gray;
+}
+
+.vnframename {
+	font-weight: bold;
+	background-color: pink;
+	color: black;
+	padding-left: 2px;
+	padding-right: 2px;
+}
+
+.vnframename2 {
+	font-weight: bold;
+	background-color: lightsalmon;
+	color: black;
+}
+
+.vnframesynsem {
+}
+
+.vnframesynsemlabel {
+	color: gray;
+}
+
+.vncat {
+	background-color: orange;
+	color: black;
+	padding-left: 2px;
+	padding-right: 2px;
+}
+
+.vnsyntax {
+}
+
+.vnsemantics {
+}
+
+.vnrel {
+	background-color: red;
+	color: white;
+	padding-left: 2px;
+	padding-right: 2px;
+}
+
+.vnarg {
+	color: gray;
+}
+
+.vnargval {
+	background-color: magenta;
+	color: white;
+	padding-left: 2px;
+	padding-right: 2px;
+}
+
+.vnargevent {
+	color: blue;
+	padding-left: 2px;
+	padding-right: 2px;
+}
+
+.vnargspecific {
+	background-color: green;
+	color: white;
+}
+
+.vnargconst {
+	background-color: yellow;
+	color: gray;
+	padding-left: 2px;
+	padding-right: 2px;
+}
+
+.vnrestrs {
+	color: black;
+	font-style: italic;
+}
+
+.vnexample {
+}
+
+.vntext {
+}
+
+.vnexampletext {
+	background-color: lemonchiffon;
+	color: gray;
+	font-style: italic;
+}

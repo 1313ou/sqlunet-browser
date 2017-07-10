@@ -1,0 +1,15 @@
+<full-backup-content xmlns:tools="http://schemas.android.com/tools"
+                     tools:ignore="UnusedResources">
+	<exclude
+		domain="file"
+		path="sqlunet.db"/>
+	<exclude
+		domain="file"
+		path="sqlunet.db-journal"/>
+	<exclude
+		domain="external"
+		path="sqlunet.db"/>
+	<exclude
+		domain="external"
+		path="sqlunet.db-journal"/>
+</full-backup-content>

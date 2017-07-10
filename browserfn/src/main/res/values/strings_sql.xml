@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+	<string-array name="sql_statement_titles">
+		<item>[SELECT OPERATION]</item>
+		<item>Create all indexes</item>
+		<item>Prepare FrameNet text search</item>
+		<item>Create FrameNet indexes</item>
+		<item>Drop FrameNet indexes</item>
+		<item>Drop FrameNet text search</item>
+	</string-array>
+	<string-array name="sql_statements_values" formatted="false">
+		<item/>
+		<item>
+			CREATE INDEX IF NOT EXISTS index_fnwords_wordid ON fnwords(wordid);
+			CREATE INDEX IF NOT EXISTS index_fnframes_related_frameid ON fnframes_related(frameid);
+			CREATE INDEX IF NOT EXISTS index_fnframes_related_frame2id ON fnframes_related(frame2id);
+			CREATE INDEX IF NOT EXISTS index_fnlexemes_fnwordid ON fnlexemes(fnwordid);
+			CREATE INDEX IF NOT EXISTS index_fnfes_frameid ON fnfes(frameid);
+			CREATE INDEX IF NOT EXISTS index_fnferealizations_luid ON fnferealizations(luid);
+			CREATE INDEX IF NOT EXISTS index_fnvalenceunits_ferid ON fnvalenceunits(ferid);
+			CREATE INDEX IF NOT EXISTS index_fnfegrouprealizations_luid ON fnfegrouprealizations(luid);
+			CREATE INDEX IF NOT EXISTS index_fnpatterns_valenceunits_patternid ON fnpatterns_valenceunits(patternid);
+			CREATE INDEX IF NOT EXISTS index_fnpatterns_fegrid ON fnpatterns(fegrid);
+			CREATE INDEX IF NOT EXISTS index_fnsubcorpuses_luid ON fnsubcorpuses(luid);
+			CREATE INDEX IF NOT EXISTS index_fnannosets_sentenceid ON fnannosets(sentenceid);
+			CREATE INDEX IF NOT EXISTS index_fnlayers_annosetid ON fnlayers (annosetid);
+			CREATE INDEX IF NOT EXISTS index_fnlabels_layerid ON fnlabels(layerid);</item>
+		<item>
+			CREATE VIRTUAL TABLE IF NOT EXISTS fnsentences_text_fts4 USING fts4(sentenceid INTEGER not null, annosetid INTEGER, frameid INTEGER, luid INTEGER, text);
+			INSERT INTO fnsentences_text_fts4 SELECT sentenceid, annosetid, f.frameid, luid, text FROM fnsentences INNER JOIN fnannosets USING (sentenceid) LEFT JOIN fnframes AS f USING (frameid) LEFT JOIN fnlexunits AS l USING (luid) WHERE f.frameid IS NOT NULL;</item>
+		<item>
+			CREATE INDEX IF NOT EXISTS index_fnwords_wordid ON fnwords(wordid);
+			CREATE INDEX IF NOT EXISTS index_fnframes_related_frameid ON fnframes_related(frameid);
+			CREATE INDEX IF NOT EXISTS index_fnframes_related_frame2id ON fnframes_related(frame2id);
+			CREATE INDEX IF NOT EXISTS index_fnlexemes_fnwordid ON fnlexemes(fnwordid);
+			CREATE INDEX IF NOT EXISTS index_fnfes_frameid ON fnfes(frameid);
+			CREATE INDEX IF NOT EXISTS index_fnferealizations_luid ON fnferealizations(luid);
+			CREATE INDEX IF NOT EXISTS index_fnvalenceunits_ferid ON fnvalenceunits(ferid);
+			CREATE INDEX IF NOT EXISTS index_fnfegrouprealizations_luid ON fnfegrouprealizations(luid);
+			CREATE INDEX IF NOT EXISTS index_fnpatterns_valenceunits_patternid ON fnpatterns_valenceunits(patternid);
+			CREATE INDEX IF NOT EXISTS index_fnpatterns_fegrid ON fnpatterns(fegrid);
+			CREATE INDEX IF NOT EXISTS index_fnsubcorpuses_luid ON fnsubcorpuses(luid);
+			CREATE INDEX IF NOT EXISTS index_fnannosets_sentenceid ON fnannosets(sentenceid);
+			CREATE INDEX IF NOT EXISTS index_fnlayers_annosetid ON fnlayers (annosetid);
+			CREATE INDEX IF NOT EXISTS index_fnlabels_layerid ON fnlabels(layerid);</item>
+		<item>
+			DROP INDEX IF EXISTS index_fnwords_wordid;
+			DROP INDEX IF EXISTS index_fnframes_related_frameid;
+			DROP INDEX IF EXISTS index_fnframes_related_frame2id;
+			DROP INDEX IF EXISTS index_fnlexemes_fnwordid;
+			DROP INDEX IF EXISTS index_fnfes_frameid;
+			DROP INDEX IF EXISTS index_fnferealizations_luid;
+			DROP INDEX IF EXISTS index_fnvalenceunits_ferid;
+			DROP INDEX IF EXISTS index_fnfegrouprealizations_luid;
+			DROP INDEX IF EXISTS index_fnpatterns_valenceunits_patternid;
+			DROP INDEX IF EXISTS index_fnpatterns_fegrid;
+			DROP INDEX IF EXISTS index_fnsubcorpuses_luid;
+			DROP INDEX IF EXISTS index_fnannosets_sentenceid;
+			DROP INDEX IF EXISTS index_fnlayers_annosetid;
+			DROP INDEX IF EXISTS index_fnlabels_layerid;</item>
+		<item>
+			DROP TABLE IF EXISTS fnsentences_text_fts4;</item>
+	</string-array>
+</resources>

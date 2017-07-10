@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+	<!-- browser spinner
+	SELECTORS
+	XSELECTORS
+	-->
+	<integer-array name="selectors_icons" tools:ignore="UnusedResources">
+	</integer-array>
+
+	<integer-array name="textsearch_icons" tools:ignore="UnusedResources">
+	</integer-array>
+
+</resources>

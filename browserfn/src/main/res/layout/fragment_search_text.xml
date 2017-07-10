@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                tools:context="org.sqlunet.browser.SearchTextFragment">
+
+	<TextView
+		android:id="@+id/targetView"
+		style="@style/Query"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:textIsSelectable="false"/>
+
+	<FrameLayout
+		android:id="@+id/container_textsearch"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:layout_below="@+id/targetView"/>
+
+</RelativeLayout>
