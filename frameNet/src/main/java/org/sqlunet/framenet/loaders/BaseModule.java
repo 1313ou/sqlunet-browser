@@ -66,7 +66,7 @@ import java.util.List;
  */
 abstract public class BaseModule extends Module
 {
-	// static private final String TAG = "BaseModule";
+	static private final String TAG = "BaseModule";
 
 	/**
 	 * Verbose flag
@@ -1228,12 +1228,9 @@ abstract public class BaseModule extends Module
 						LexUnits_FERealizations_ValenceUnits.FERID, //
 						LexUnits_FERealizations_ValenceUnits.FETYPE, //
 						"GROUP_CONCAT(IFNULL(" +  //
-								LexUnits_FERealizations_ValenceUnits.PT +
-								",'') || ':' || IFNULL(" + //
-								LexUnits_FERealizations_ValenceUnits.GF +
-								",'') || ':' || " +  //
-								LexUnits_FERealizations_ValenceUnits.VUID +
-								") AS " +  //
+								LexUnits_FERealizations_ValenceUnits.PT + ",'') || ':' || IFNULL(" + //
+								LexUnits_FERealizations_ValenceUnits.GF + ",'') || ':' || " +  //
+								LexUnits_FERealizations_ValenceUnits.VUID + ") AS " +  //
 								LexUnits_FERealizations_ValenceUnits.FERS, //
 						LexUnits_FERealizations_ValenceUnits.TOTAL, //
 				};
@@ -1355,10 +1352,8 @@ abstract public class BaseModule extends Module
 						LexUnits_FEGroupRealizations_Patterns_ValenceUnits.FEGRID, //
 						LexUnits_FEGroupRealizations_Patterns_ValenceUnits.PATTERNID, //
 						"GROUP_CONCAT(" + //
-								LexUnits_FEGroupRealizations_Patterns_ValenceUnits.FETYPE +
-								" || '.' || " + //
-								LexUnits_FEGroupRealizations_Patterns_ValenceUnits.PT +
-								" || '.'|| IFNULL(" + //
+								LexUnits_FEGroupRealizations_Patterns_ValenceUnits.FETYPE + " || '.' || " + //
+								LexUnits_FEGroupRealizations_Patterns_ValenceUnits.PT + " || '.'|| IFNULL(" + //
 								LexUnits_FEGroupRealizations_Patterns_ValenceUnits.GF + ", '--')) AS " + //
 								LexUnits_FEGroupRealizations_Patterns_ValenceUnits.GROUPREALIZATIONS,};
 				final String selection = LexUnits_FEGroupRealizations_Patterns_ValenceUnits.LUID + " = ?";
@@ -1570,8 +1565,21 @@ abstract public class BaseModule extends Module
 								sb.append('\n');
 
 								// segment
+								String subtext;
 								final int from = Integer.parseInt(label.from);
 								final int to = Integer.parseInt(label.to) + 1;
+								final int len = text.length();
+								if (from < 0 || to > len || from > to)
+								{
+									final int idAnnoSetId = cursor.getColumnIndex(LexUnits_Sentences_AnnoSets_Layers_Labels.ANNOSETID);
+									final long annoSetId = cursor.getLong(idAnnoSetId);
+									Log.d(TAG, "annoSetId=" + annoSetId + "annotations=" + annotations + "label=" + label + "text=" + text);
+									subtext = label.toString() + " ERROR [" + label.from + ',' + label.to + ']';
+								}
+								else
+								{
+									subtext = text.substring(from, to);
+								}
 
 								// span text
 								Spanner.setSpan(sb, sentenceStart + from, sentenceStart + to, 0, "Target".equals(layerType) ? FrameNetFactories.targetHighlightTextFactory : FrameNetFactories.highlightTextFactory);
@@ -1582,7 +1590,6 @@ abstract public class BaseModule extends Module
 								sb.append(' ');
 
 								// subtext value
-								final String subtext = text.substring(from, to);
 								final int p = sb.length();
 								Spanner.append(sb, subtext, 0, FrameNetFactories.subtextFactory);
 
@@ -1886,9 +1893,20 @@ abstract public class BaseModule extends Module
 								sb.append(' ');
 
 								// subtext value
+								String subtext;
 								final int from = Integer.parseInt(label.from);
 								final int to = Integer.parseInt(label.to) + 1;
-								final String subtext = sentenceText.substring(from, to);
+								final int len = sentenceText.length();
+								if (from < 0 || to > len || from > to)
+								{
+									Log.d(TAG, "annoSetId=" + annoSetId + "annotations=" + annotations + "label=" + label + "text=" + sentenceText);
+									subtext = label.toString() + " ERROR [" + label.from + ',' + label.to + ']';
+								}
+								else
+								{
+									subtext = sentenceText.substring(from, to);
+								}
+
 								final int p = sb.length();
 								Spanner.append(sb, subtext, 0, FrameNetFactories.subtextFactory);
 
@@ -2046,6 +2064,7 @@ abstract public class BaseModule extends Module
 	 */
 	void layersForSentence(final long sentenceId, final String text, final TreeNode parent)
 	{
+		// Log.d(TAG, "sentence " + sentenceId);
 		getLoaderManager().restartLoader(++Module.loaderId, null, new LoaderCallbacks<Cursor>()
 		{
 			@Override
@@ -2173,7 +2192,17 @@ abstract public class BaseModule extends Module
 						// subtext value
 						final int from = Integer.parseInt(label.from);
 						final int to = Integer.parseInt(label.to) + 1;
-						final String subtext = text.substring(from, to);
+						String subtext;
+						final int len = text.length();
+						if (from < 0 || to > len || from > to)
+						{
+							Log.d(TAG, "annoSetId=" + annoSetId + "annotations=" + annotations + "label=" + label + "text=" + text);
+							subtext = label.toString() + " ERROR [" + label.from + ',' + label.to + ']';
+						}
+						else
+						{
+							subtext = text.substring(from, to);
+						}
 						final int p = sb.length();
 						Spanner.append(sb, subtext, 0, (isTarget ?  //
 								FrameNetFactories.targetFactory :  //

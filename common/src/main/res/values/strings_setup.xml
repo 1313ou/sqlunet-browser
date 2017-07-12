@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources>
 
 	<!-- Strings related to Setup -->
 	<string name="title_database">Database</string>
@@ -31,10 +31,6 @@
 	<string name="execute_import">Import</string>
 	<string name="info_import">Info about import</string>
 
-	<string name="title_predicatematrix">Predicate\nMatrix</string>
-	<string name="execute_predicatematrix">Import PredicateMatrix</string>
-	<string name="info_predicatematrix">Info about PredicateMatrix</string>
-
 	<string name="title_indexes">Indexes</string>
 	<string name="execute_indexes">Make indexes</string>
 	<string name="info_indexes">Info about indexes</string>
@@ -46,8 +42,7 @@
 	<string name="info_op_create_database">Create an empty database</string>
 	<string name="info_op_drop_database">Drop the database</string>
 	<string name="info_op_execute_import">Execute the import/insert statements to populate the database</string>
-	<string name="info_op_execute_predicatematrix">Execute the specific PredicateMatrix statements to alter the database</string>
-	<string name="info_op_execute_indexes" tools:ignore="UnusedResources">Execute the indexing statements to speed up queries</string>
+	<string name="info_op_execute_indexes">Execute the indexing statements to speed up queries</string>
 	<string name="info_op_copy_database">Copy the database file</string>
 	<string name="info_op_unzip_database">Unzip the database file</string>
 	<string name="info_op_download_zipped_database">Download the zipped database file</string>

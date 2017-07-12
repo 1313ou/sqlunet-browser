@@ -29,21 +29,24 @@ public class FnAnnoSetFragment extends TreeFragment
 		this.layoutId = R.layout.fragment_fnannoset;
 		this.treeContainerId = R.id.data_contents;
 		this.iconId = R.drawable.annoset;
+		this.header = "AnnoSets";
 
 		// header
 		final Bundle args = getArguments();
-		final int type = args.getInt(ProviderArgs.ARG_QUERYTYPE);
-		switch (type)
+		if (args != null)
 		{
-			case ProviderArgs.ARG_QUERYTYPE_FNPATTERN:
-				this.header = "AnnoSets for Pattern";
-				break;
-			case ProviderArgs.ARG_QUERYTYPE_FNVALENCEUNIT:
-				this.header = "AnnoSets for Valence Unit";
-				break;
-			default:
-				this.header = "AnnoSets";
-				break;
+			final int type = args.getInt(ProviderArgs.ARG_QUERYTYPE);
+			switch (type)
+			{
+				case ProviderArgs.ARG_QUERYTYPE_FNPATTERN:
+					this.header = "AnnoSets for Pattern";
+					break;
+				case ProviderArgs.ARG_QUERYTYPE_FNVALENCEUNIT:
+					this.header = "AnnoSets for Valence Unit";
+					break;
+				default:
+					break;
+			}
 		}
 	}
 

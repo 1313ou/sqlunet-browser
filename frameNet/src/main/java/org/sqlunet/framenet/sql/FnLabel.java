@@ -57,4 +57,10 @@ public class FnLabel
 		this.bgColor = bgColor != null && bgColor.isEmpty() ? null : bgColor;
 		this.fgColor = fgColor != null && fgColor.isEmpty() ? null : fgColor;
 	}
+
+	@Override
+	public String toString()
+	{
+		return this.label + '[' + this.from + ',' + this.to + "] type=" + this.iType;
+	}
 }
