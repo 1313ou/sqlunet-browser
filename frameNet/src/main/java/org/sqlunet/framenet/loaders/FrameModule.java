@@ -27,6 +27,8 @@ public class FrameModule extends BaseModule
 
 	/**
 	 * Constructor
+	 *
+	 * @param fragment  containing fragment
 	 */
 	public FrameModule(final Fragment fragment)
 	{

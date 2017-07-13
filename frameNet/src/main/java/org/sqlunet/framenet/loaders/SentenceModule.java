@@ -13,6 +13,7 @@ import android.text.SpannableStringBuilder;
 import org.sqlunet.browser.Module;
 import org.sqlunet.framenet.FnSentencePointer;
 import org.sqlunet.framenet.provider.FrameNetContract.Sentences;
+import org.sqlunet.framenet.provider.FrameNetProvider;
 import org.sqlunet.framenet.style.FrameNetFactories;
 import org.sqlunet.style.Spanner;
 import org.sqlunet.treeview.model.TreeNode;
@@ -38,6 +39,8 @@ public class SentenceModule extends BaseModule
 
 	/**
 	 * Constructor
+	 *
+	 * @param fragment  containing fragment
 	 */
 	public SentenceModule(final Fragment fragment)
 	{
@@ -80,7 +83,7 @@ public class SentenceModule extends BaseModule
 			@Override
 			public Loader<Cursor> onCreateLoader(final int loaderId, final Bundle loaderArgs)
 			{
-				final Uri uri = Uri.parse(Sentences.CONTENT_URI);
+				final Uri uri = Uri.parse(FrameNetProvider.makeUri(Sentences.CONTENT_URI_TABLE));
 				final String[] projection = { //
 						Sentences.SENTENCEID, //
 						Sentences.TEXT, //

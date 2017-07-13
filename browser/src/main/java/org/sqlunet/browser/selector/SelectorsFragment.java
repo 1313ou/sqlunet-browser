@@ -24,6 +24,7 @@ import org.sqlunet.browser.R;
 import org.sqlunet.provider.ProviderArgs;
 import org.sqlunet.provider.XSqlUNetContract;
 import org.sqlunet.provider.XSqlUNetContract.Words_FnWords_PbWords_VnWords;
+import org.sqlunet.provider.XSqlUNetProvider;
 
 import java.util.Locale;
 
@@ -257,7 +258,7 @@ public class SelectorsFragment extends ListFragment
 			@Override
 			public Loader<Cursor> onCreateLoader(final int loaderId, final Bundle loaderArgs)
 			{
-				final Uri uri = Uri.parse(Words_FnWords_PbWords_VnWords.CONTENT_URI);
+				final Uri uri = Uri.parse(XSqlUNetProvider.makeUri(Words_FnWords_PbWords_VnWords.CONTENT_URI_TABLE));
 				final String[] projection = { //
 						Words_FnWords_PbWords_VnWords.SYNSETID + " AS _id", //
 						Words_FnWords_PbWords_VnWords.WORDID, //

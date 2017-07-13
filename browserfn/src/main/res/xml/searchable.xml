@@ -3,7 +3,7 @@
             android:label="@string/app_name"
             android:hint="@string/hint_search"
             android:searchMode="queryRewriteFromText"
-            android:searchSuggestAuthority="org.sqlunet.framenet.provider"
+            android:searchSuggestAuthority="org.sqlunet.framenet.fn.provider"
             android:searchSuggestPath="suggest_fnword"
             android:searchSuggestThreshold="3"
             android:searchSuggestIntentAction="android.intent.action.VIEW">

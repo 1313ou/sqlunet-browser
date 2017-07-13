@@ -20,6 +20,8 @@ public class LexUnitModule extends FrameModule
 
 	/**
 	 * Constructor
+	 *
+	 * @param fragment  containing fragment
 	 */
 	public LexUnitModule(final Fragment fragment)
 	{

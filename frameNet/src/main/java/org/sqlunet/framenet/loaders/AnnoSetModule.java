@@ -21,7 +21,7 @@ public class AnnoSetModule extends BaseModule
 	/**
 	 * Constructor
 	 *
-	 * @param fragment fragment
+	 * @param fragment  containing fragment
 	 */
 	public AnnoSetModule(final Fragment fragment)
 	{

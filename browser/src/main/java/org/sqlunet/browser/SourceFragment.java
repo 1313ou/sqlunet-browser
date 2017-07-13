@@ -13,6 +13,7 @@ import android.widget.SimpleCursorAdapter;
 
 import org.sqlunet.provider.XSqlUNetContract;
 import org.sqlunet.provider.XSqlUNetContract.Sources;
+import org.sqlunet.provider.XSqlUNetProvider;
 
 /**
  * A list fragment representing sources.
@@ -41,7 +42,7 @@ public class SourceFragment extends ListFragment
 			@Override
 			public Loader<Cursor> onCreateLoader(final int loaderId, final Bundle loaderArgs)
 			{
-				final Uri uri = Uri.parse(XSqlUNetContract.Sources.CONTENT_URI);
+				final Uri uri = Uri.parse(XSqlUNetProvider.makeUri(XSqlUNetContract.Sources.CONTENT_URI_TABLE));
 				final String[] projection = {Sources.ID + " AS _id", Sources.NAME, Sources.VERSION, Sources.URL, Sources.PROVIDER, Sources.REFERENCE};
 				final String[] selectionArgs = null;
 				final String selection = null;

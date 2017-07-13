@@ -21,6 +21,8 @@ public class FnAnnoSetFragment extends TreeFragment
 {
 	// static private final String TAG = "FnAnnoSetF";
 
+	static protected String AUTHORITY;
+
 	/**
 	 * Constructor
 	 */

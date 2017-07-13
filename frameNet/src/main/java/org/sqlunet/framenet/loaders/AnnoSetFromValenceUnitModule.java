@@ -21,7 +21,7 @@ public class AnnoSetFromValenceUnitModule extends BaseModule
 	/**
 	 * Constructor
 	 *
-	 * @param fragment fragment
+	 * @param fragment  containing fragment
 	 */
 	public AnnoSetFromValenceUnitModule(final Fragment fragment)
 	{

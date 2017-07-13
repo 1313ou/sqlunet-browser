@@ -21,7 +21,7 @@ public class AnnoSetFromPatternModule extends BaseModule
 	/**
 	 * Constructor
 	 *
-	 * @param fragment fragment
+	 * @param fragment  containing fragment
 	 */
 	public AnnoSetFromPatternModule(final Fragment fragment)
 	{

@@ -43,6 +43,7 @@ import org.sqlunet.framenet.provider.FrameNetContract.Sentences_Layers_X;
 import org.sqlunet.framenet.provider.FrameNetContract.ValenceUnits_Layers_X;
 import org.sqlunet.framenet.provider.FrameNetContract.ValenceUnits_Sentences;
 import org.sqlunet.framenet.provider.FrameNetContract.Words_LexUnits_Frames;
+import org.sqlunet.framenet.provider.FrameNetProvider;
 import org.sqlunet.framenet.sql.FnLabel;
 import org.sqlunet.framenet.style.FrameNetFactories;
 import org.sqlunet.framenet.style.FrameNetFrameProcessor;
@@ -148,6 +149,8 @@ abstract public class BaseModule extends Module
 
 	/**
 	 * Constructor
+	 *
+	 * @param fragment  containing fragment
 	 */
 	BaseModule(final Fragment fragment)
 	{
@@ -201,7 +204,7 @@ abstract public class BaseModule extends Module
 			@Override
 			public Loader<Cursor> onCreateLoader(final int loaderId, final Bundle loaderArgs)
 			{
-				final Uri uri = Uri.parse(Frames_X.CONTENT_URI);
+				final Uri uri = Uri.parse(FrameNetProvider.makeUri(Frames_X.CONTENT_URI_TABLE));
 				final String[] projection = { //
 						Frames_X.FRAMEID, //
 						Frames_X.FRAME, //
@@ -303,7 +306,7 @@ abstract public class BaseModule extends Module
 			@Override
 			public Loader<Cursor> onCreateLoader(final int loaderId, final Bundle loaderArgs)
 			{
-				final Uri uri = Uri.parse(Frames_Related.CONTENT_URI);
+				final Uri uri = Uri.parse(FrameNetProvider.makeUri(Frames_Related.CONTENT_URI_TABLE));
 				final String[] projection = { //
 						FrameNetContract.SRC + '.' + Frames_Related.FRAMEID + " AS " + "i1", //
 						FrameNetContract.SRC + '.' + Frames_Related.FRAME + " AS " + "f1", //
@@ -442,7 +445,7 @@ abstract public class BaseModule extends Module
 			@Override
 			public Loader<Cursor> onCreateLoader(final int loaderId, final Bundle loaderArgs)
 			{
-				final Uri uri = Uri.parse(Frames_FEs.CONTENT_URI_BY_FE);
+				final Uri uri = Uri.parse(FrameNetProvider.makeUri(Frames_FEs.CONTENT_URI_TABLE_BY_FE));
 				final String[] projection = { //
 						Frames_FEs.FETYPEID, //
 						Frames_FEs.FETYPE, //
@@ -579,7 +582,7 @@ abstract public class BaseModule extends Module
 			@Override
 			public Loader<Cursor> onCreateLoader(final int loaderId, final Bundle loaderArgs)
 			{
-				final Uri uri = Uri.parse(LexUnits_X.CONTENT_URI);
+				final Uri uri = Uri.parse(FrameNetProvider.makeUri(LexUnits_X.CONTENT_URI_TABLE));
 				final String[] projection = { //
 						LexUnits_X.LUID, //
 						LexUnits_X.LEXUNIT, //
@@ -742,7 +745,7 @@ abstract public class BaseModule extends Module
 			@Override
 			public Loader<Cursor> onCreateLoader(final int loaderId, final Bundle loaderArgs)
 			{
-				final Uri uri = Uri.parse(LexUnits_X.CONTENT_URI);
+				final Uri uri = Uri.parse(FrameNetProvider.makeUri(LexUnits_X.CONTENT_URI_TABLE));
 				final String[] projection = { //
 						LexUnits_X.LUID, //
 						LexUnits_X.LEXUNIT, //
@@ -900,7 +903,7 @@ abstract public class BaseModule extends Module
 			@Override
 			public Loader<Cursor> onCreateLoader(final int loaderId, final Bundle loaderArgs)
 			{
-				final Uri uri = Uri.parse(Words_LexUnits_Frames.CONTENT_URI);
+				final Uri uri = Uri.parse(FrameNetProvider.makeUri(Words_LexUnits_Frames.CONTENT_URI_TABLE));
 				final String[] projection = { //
 						Words_LexUnits_Frames.LUID, //
 						Words_LexUnits_Frames.LEXUNIT, //
@@ -1047,7 +1050,7 @@ abstract public class BaseModule extends Module
 			@Override
 			public Loader<Cursor> onCreateLoader(final int loaderId, final Bundle loaderArgs)
 			{
-				final Uri uri = Uri.parse(LexUnits_Governors.CONTENT_URI);
+				final Uri uri = Uri.parse(FrameNetProvider.makeUri(LexUnits_Governors.CONTENT_URI_TABLE));
 				final String[] projection = { //
 						LexUnits_Governors.LUID, //
 						LexUnits_Governors.GOVERNORID, //
@@ -1135,7 +1138,7 @@ abstract public class BaseModule extends Module
 			@Override
 			public Loader<Cursor> onCreateLoader(final int loaderId, final Bundle loaderArgs)
 			{
-				final Uri uri = Uri.parse(Governors_AnnoSets_Sentences.CONTENT_URI);
+				final Uri uri = Uri.parse(FrameNetProvider.makeUri(Governors_AnnoSets_Sentences.CONTENT_URI_TABLE));
 				final String[] projection = { //
 						Governors_AnnoSets_Sentences.GOVERNORID, //
 						Governors_AnnoSets_Sentences.ANNOSETID, //
@@ -1222,7 +1225,7 @@ abstract public class BaseModule extends Module
 			@Override
 			public Loader<Cursor> onCreateLoader(final int loaderId, final Bundle loaderArgs)
 			{
-				final Uri uri = Uri.parse(LexUnits_FERealizations_ValenceUnits.CONTENT_URI_BY_REALIZATION);
+				final Uri uri = Uri.parse(FrameNetProvider.makeUri(LexUnits_FERealizations_ValenceUnits.CONTENT_URI_TABLE_BY_REALIZATION));
 				final String[] projection = { //
 						LexUnits_FERealizations_ValenceUnits.LUID, //
 						LexUnits_FERealizations_ValenceUnits.FERID, //
@@ -1346,7 +1349,7 @@ abstract public class BaseModule extends Module
 			@Override
 			public Loader<Cursor> onCreateLoader(final int loaderId, final Bundle loaderArgs)
 			{
-				final Uri uri = Uri.parse(LexUnits_FEGroupRealizations_Patterns_ValenceUnits.CONTENT_URI_BY_PATTERN);
+				final Uri uri = Uri.parse(FrameNetProvider.makeUri(LexUnits_FEGroupRealizations_Patterns_ValenceUnits.CONTENT_URI_TABLE_BY_PATTERN));
 				final String[] projection = { //
 						LexUnits_FEGroupRealizations_Patterns_ValenceUnits.LUID, //
 						LexUnits_FEGroupRealizations_Patterns_ValenceUnits.FEGRID, //
@@ -1501,7 +1504,7 @@ abstract public class BaseModule extends Module
 			@Override
 			public Loader<Cursor> onCreateLoader(final int loaderId, final Bundle loaderArgs)
 			{
-				final Uri uri = Uri.parse(LexUnits_Sentences_AnnoSets_Layers_Labels.CONTENT_URI_BY_SENTENCE);
+				final Uri uri = Uri.parse(FrameNetProvider.makeUri(LexUnits_Sentences_AnnoSets_Layers_Labels.CONTENT_URI_TABLE_BY_SENTENCE));
 				final String[] projection = { //
 						LexUnits_Sentences_AnnoSets_Layers_Labels.SENTENCEID, //
 						LexUnits_Sentences_AnnoSets_Layers_Labels.TEXT, //
@@ -1645,7 +1648,7 @@ abstract public class BaseModule extends Module
 			@Override
 			public Loader<Cursor> onCreateLoader(final int loaderId, final Bundle loaderArgs)
 			{
-				final Uri uri = Uri.parse(Patterns_Sentences.CONTENT_URI);
+				final Uri uri = Uri.parse(FrameNetProvider.makeUri(Patterns_Sentences.CONTENT_URI_TABLE));
 				final String[] projection = { //
 						Patterns_Sentences.ANNOSETID, //
 						Patterns_Sentences.SENTENCEID, //
@@ -1726,7 +1729,7 @@ abstract public class BaseModule extends Module
 			@Override
 			public Loader<Cursor> onCreateLoader(final int loaderId, final Bundle loaderArgs)
 			{
-				final Uri uri = Uri.parse(ValenceUnits_Sentences.CONTENT_URI);
+				final Uri uri = Uri.parse(FrameNetProvider.makeUri(ValenceUnits_Sentences.CONTENT_URI_TABLE));
 				final String[] projection = { //
 						Patterns_Sentences.ANNOSETID, //
 						Patterns_Sentences.SENTENCEID, //
@@ -1810,7 +1813,7 @@ abstract public class BaseModule extends Module
 			@Override
 			public Loader<Cursor> onCreateLoader(final int loaderId, final Bundle loaderArgs)
 			{
-				final Uri uri = Uri.parse(AnnoSets_Layers_X.CONTENT_URI);
+				final Uri uri = Uri.parse(FrameNetProvider.makeUri(AnnoSets_Layers_X.CONTENT_URI_TABLE));
 				final String[] projection = { //
 						AnnoSets_Layers_X.SENTENCEID, //
 						AnnoSets_Layers_X.SENTENCETEXT, //
@@ -1966,7 +1969,7 @@ abstract public class BaseModule extends Module
 			@Override
 			public Loader<Cursor> onCreateLoader(final int loaderId, final Bundle loaderArgs)
 			{
-				final Uri uri = Uri.parse(Patterns_Layers_X.CONTENT_URI);
+				final Uri uri = Uri.parse(FrameNetProvider.makeUri(Patterns_Layers_X.CONTENT_URI_TABLE));
 				final String[] projection = { //
 						Patterns_Layers_X.ANNOSETID, //
 						Patterns_Layers_X.SENTENCEID, //
@@ -2016,7 +2019,7 @@ abstract public class BaseModule extends Module
 			@Override
 			public Loader<Cursor> onCreateLoader(final int loaderId, final Bundle loaderArgs)
 			{
-				final Uri uri = Uri.parse(ValenceUnits_Layers_X.CONTENT_URI);
+				final Uri uri = Uri.parse(FrameNetProvider.makeUri(ValenceUnits_Layers_X.CONTENT_URI_TABLE));
 				final String[] projection = { //
 						ValenceUnits_Layers_X.ANNOSETID, //
 						ValenceUnits_Layers_X.SENTENCEID, //
@@ -2070,7 +2073,7 @@ abstract public class BaseModule extends Module
 			@Override
 			public Loader<Cursor> onCreateLoader(final int loaderId, final Bundle loaderArgs)
 			{
-				final Uri uri = Uri.parse(Sentences_Layers_X.CONTENT_URI);
+				final Uri uri = Uri.parse(FrameNetProvider.makeUri(Sentences_Layers_X.CONTENT_URI_TABLE));
 				final String[] projection = { //
 						Sentences_Layers_X.ANNOSETID, //
 						Sentences_Layers_X.LAYERID, //

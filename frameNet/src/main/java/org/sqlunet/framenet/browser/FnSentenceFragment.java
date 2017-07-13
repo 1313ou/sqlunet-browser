@@ -11,7 +11,7 @@ import org.sqlunet.provider.ProviderArgs;
 import org.sqlunet.treeview.model.TreeNode;
 
 /**
- * A fragment representing a sentence.
+ * A fragment representing a sentence
  *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */

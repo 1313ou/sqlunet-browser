@@ -26,6 +26,7 @@ import org.sqlunet.browser.fn.R;
 import org.sqlunet.framenet.FnFramePointer;
 import org.sqlunet.framenet.FnLexUnitPointer;
 import org.sqlunet.framenet.provider.FrameNetContract.LexUnits_or_Frames;
+import org.sqlunet.framenet.provider.FrameNetProvider;
 import org.sqlunet.provider.ProviderArgs;
 
 import java.util.Locale;
@@ -233,7 +234,7 @@ public class SelectorsFragment extends ListFragment
 			@Override
 			public Loader<Cursor> onCreateLoader(final int loaderId, final Bundle loaderArgs)
 			{
-				final Uri uri = Uri.parse(LexUnits_or_Frames.CONTENT_URI);
+				final Uri uri = Uri.parse(FrameNetProvider.makeUri(LexUnits_or_Frames.CONTENT_URI_TABLE));
 				final String[] projection = { //
 						LexUnits_or_Frames.ID, //
 						LexUnits_or_Frames.FNID, //

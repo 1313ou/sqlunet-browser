@@ -10,27 +10,33 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.TextView;
 
-import org.sqlunet.browser.fn.R;
 import org.sqlunet.framenet.provider.FrameNetContract.Lookup_FnSentences_X;
 import org.sqlunet.framenet.provider.FrameNetProvider;
+import org.sqlunet.propbank.provider.PropBankContract.Lookup_PbExamples_X;
 import org.sqlunet.provider.ProviderArgs;
 import org.sqlunet.settings.Settings;
+import org.sqlunet.verbnet.provider.VerbNetContract.Lookup_VnExamples_X;
+import org.sqlunet.wordnet.provider.WordNetContract.Lookup_Definitions;
+import org.sqlunet.wordnet.provider.WordNetContract.Lookup_Samples;
+import org.sqlunet.wordnet.provider.WordNetContract.Lookup_Words;
 
 /**
  * Text search activity
  *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
-public class SearchTextFragment extends BaseSearchFragment
+abstract public class AbstractSearchTextFragment extends BaseSearchFragment
 {
 	static private final String TAG = "SearchTextActivity";
+
+	static protected String fnauthority;
 
 	// C R E A T I O N
 
 	/**
 	 * Constructor
 	 */
-	public SearchTextFragment()
+	public AbstractSearchTextFragment()
 	{
 		this.layoutId = R.layout.fragment_search_text;
 		this.menuId = R.menu.text_search;
@@ -97,7 +103,7 @@ public class SearchTextFragment extends BaseSearchFragment
 	public void search(final String query)
 	{
 		// log
-		Log.d(SearchTextFragment.TAG, "TEXT SEARCH " + query);
+		Log.d(AbstractSearchTextFragment.TAG, "TEXT SEARCH " + query);
 
 		// view
 		final View view = getView();
@@ -129,6 +135,53 @@ public class SearchTextFragment extends BaseSearchFragment
 		switch (typePosition)
 		{
 			case 0:
+				searchUri = Lookup_Words.CONTENT_URI;
+				id = Lookup_Words.WORDID;
+				idType = "lemma";
+				target = Lookup_Words.LEMMA;
+				columns = new String[]{Lookup_Words.LEMMA};
+				hiddenColumns = new String[]{Lookup_Words.WORDID};
+				database = "wn";
+				break;
+			case 1:
+				searchUri = Lookup_Definitions.CONTENT_URI;
+				id = Lookup_Definitions.SYNSETID;
+				idType = "synset";
+				target = Lookup_Definitions.DEFINITION;
+				columns = new String[]{Lookup_Definitions.DEFINITION};
+				hiddenColumns = new String[]{Lookup_Definitions.SYNSETID};
+				database = "wn";
+				break;
+			case 2:
+				searchUri = Lookup_Samples.CONTENT_URI;
+				id = Lookup_Samples.SYNSETID;
+				idType = "synset";
+				target = Lookup_Samples.SAMPLE;
+				columns = new String[]{Lookup_Samples.SAMPLE};
+				hiddenColumns = new String[]{Lookup_Samples.SYNSETID};
+				database = "wn";
+				break;
+			case 3:
+				searchUri = Lookup_VnExamples_X.CONTENT_URI;
+				id = Lookup_VnExamples_X.EXAMPLEID;
+				idType = "vnexample";
+				target = Lookup_VnExamples_X.EXAMPLE;
+				columns = new String[]{Lookup_VnExamples_X.EXAMPLE};
+				hiddenColumns = new String[]{ //
+						"GROUP_CONCAT(class || '@' || classid) AS " + Lookup_VnExamples_X.CLASSES};
+				database = "vn";
+				break;
+			case 4:
+				searchUri = Lookup_PbExamples_X.CONTENT_URI;
+				id = Lookup_PbExamples_X.EXAMPLEID;
+				idType = "pbexample";
+				target = Lookup_PbExamples_X.TEXT;
+				columns = new String[]{Lookup_PbExamples_X.TEXT};
+				hiddenColumns = new String[]{ //
+						"GROUP_CONCAT(rolesetname ||'@'||rolesetid) AS " + Lookup_PbExamples_X.ROLESETS};
+				database = "pb";
+				break;
+			case 5:
 				searchUri = FrameNetProvider.makeUri(Lookup_FnSentences_X.CONTENT_URI_TABLE);
 				id = Lookup_FnSentences_X.SENTENCEID;
 				idType = "fnsentence";

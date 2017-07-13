@@ -31,15 +31,18 @@ import org.sqlunet.framenet.provider.FrameNetContract.Lookup_FnSentences_X;
 import org.sqlunet.framenet.provider.FrameNetContract.Lookup_FnWords;
 import org.sqlunet.framenet.provider.FrameNetContract.Patterns_Layers_X;
 import org.sqlunet.framenet.provider.FrameNetContract.Patterns_Sentences;
-import org.sqlunet.framenet.provider.FrameNetContract.Suggest_FnWords;
-import org.sqlunet.framenet.provider.FrameNetContract.Suggest_FTS_FnWords;
 import org.sqlunet.framenet.provider.FrameNetContract.Sentences;
 import org.sqlunet.framenet.provider.FrameNetContract.Sentences_Layers_X;
+import org.sqlunet.framenet.provider.FrameNetContract.Suggest_FTS_FnWords;
+import org.sqlunet.framenet.provider.FrameNetContract.Suggest_FnWords;
 import org.sqlunet.framenet.provider.FrameNetContract.ValenceUnits_Layers_X;
 import org.sqlunet.framenet.provider.FrameNetContract.ValenceUnits_Sentences;
 import org.sqlunet.framenet.provider.FrameNetContract.Words_LexUnits_Frames;
 import org.sqlunet.provider.BaseProvider;
 import org.sqlunet.sql.SqlFormatter;
+
+import java.io.InputStream;
+import java.util.Properties;
 
 /**
  * FrameNet provider
@@ -48,11 +51,40 @@ import org.sqlunet.sql.SqlFormatter;
  */
 public class FrameNetProvider extends BaseProvider
 {
-	static private final String TAG = "FrameNetProvider";
+	static private final String TAG = "AFrameNetProvider";
+
+	static private String AUTHORITY;
+
+	static
+	{
+		try
+		{
+			final InputStream is = FrameNetProvider.class.getResourceAsStream("/org/sqlunet/config.properties");
+			final Properties properties = new Properties();
+			properties.load(is);
+
+			AUTHORITY = properties.getProperty("framenetprovider");
+			if (AUTHORITY == null || AUTHORITY.isEmpty())
+			{
+				throw new RuntimeException("Null framenet provider");
+			}
+		}
+		catch (Exception e)
+		{
+			throw new RuntimeException(e);
+		}
+	}
+
 	// U R I M A T C H E R
 
+	static private UriMatcher uriMatcher = new UriMatcher(UriMatcher.NO_MATCH);
+
+	static
+	{
+		matchURIs();
+	}
+
 	// table codes
-	static private final UriMatcher uriMatcher;
 	static private final int LEXUNIT = 10;
 	static private final int LEXUNITS = 11;
 	static private final int LEXUNITS_X_BY_LEXUNIT = 12;
@@ -96,51 +128,55 @@ public class FrameNetProvider extends BaseProvider
 	static private final int SUGGEST_WORDS = 601;
 	static private final int SUGGEST_FTS_WORDS = 602;
 
-	static
+	static private void matchURIs()
 	{
-		uriMatcher = new UriMatcher(UriMatcher.NO_MATCH);
-		FrameNetProvider.uriMatcher.addURI(FrameNetContract.AUTHORITY, LexUnits.TABLE, FrameNetProvider.LEXUNIT);
-		FrameNetProvider.uriMatcher.addURI(FrameNetContract.AUTHORITY, LexUnits.TABLE, FrameNetProvider.LEXUNITS);
-		FrameNetProvider.uriMatcher.addURI(FrameNetContract.AUTHORITY, LexUnits_X.TABLE_BY_LEXUNIT, FrameNetProvider.LEXUNITS_X_BY_LEXUNIT);
-		FrameNetProvider.uriMatcher.addURI(FrameNetContract.AUTHORITY, LexUnits_or_Frames.TABLE, FrameNetProvider.LEXUNITS_OR_FRAMES);
-		FrameNetProvider.uriMatcher.addURI(FrameNetContract.AUTHORITY, Frames.TABLE, FrameNetProvider.FRAME);
-		FrameNetProvider.uriMatcher.addURI(FrameNetContract.AUTHORITY, Frames.TABLE, FrameNetProvider.FRAMES);
-		FrameNetProvider.uriMatcher.addURI(FrameNetContract.AUTHORITY, Frames_X.TABLE_BY_FRAME, FrameNetProvider.FRAMES_X_BY_FRAME);
-		FrameNetProvider.uriMatcher.addURI(FrameNetContract.AUTHORITY, Frames_Related.TABLE, FrameNetProvider.FRAMES_RELATED);
-		FrameNetProvider.uriMatcher.addURI(FrameNetContract.AUTHORITY, Sentences.TABLE, FrameNetProvider.SENTENCE);
-		FrameNetProvider.uriMatcher.addURI(FrameNetContract.AUTHORITY, Sentences.TABLE, FrameNetProvider.SENTENCES);
-		FrameNetProvider.uriMatcher.addURI(FrameNetContract.AUTHORITY, AnnoSets.TABLE, FrameNetProvider.ANNOSET);
-		FrameNetProvider.uriMatcher.addURI(FrameNetContract.AUTHORITY, AnnoSets.TABLE, FrameNetProvider.ANNOSETS);
-		FrameNetProvider.uriMatcher.addURI(FrameNetContract.AUTHORITY, Sentences_Layers_X.TABLE, FrameNetProvider.SENTENCES_LAYERS_X);
-		FrameNetProvider.uriMatcher.addURI(FrameNetContract.AUTHORITY, AnnoSets_Layers_X.TABLE, FrameNetProvider.ANNOSETS_LAYERS_X);
-		FrameNetProvider.uriMatcher.addURI(FrameNetContract.AUTHORITY, Patterns_Layers_X.TABLE, FrameNetProvider.PATTERNS_LAYERS_X);
-		FrameNetProvider.uriMatcher.addURI(FrameNetContract.AUTHORITY, ValenceUnits_Layers_X.TABLE, FrameNetProvider.VALENCEUNITS_LAYERS_X);
-		FrameNetProvider.uriMatcher.addURI(FrameNetContract.AUTHORITY, Words_LexUnits_Frames.TABLE, FrameNetProvider.WORDS_LEXUNITS_FRAMES);
-		FrameNetProvider.uriMatcher.addURI(FrameNetContract.AUTHORITY, Frames_FEs.TABLE, FrameNetProvider.FRAMES_FES);
-		FrameNetProvider.uriMatcher.addURI(FrameNetContract.AUTHORITY, Frames_FEs.TABLE_BY_FE, FrameNetProvider.FRAMES_FES_BY_FE);
-		FrameNetProvider.uriMatcher.addURI(FrameNetContract.AUTHORITY, LexUnits_Sentences.TABLE, FrameNetProvider.LEXUNITS_SENTENCES);
-		FrameNetProvider.uriMatcher.addURI(FrameNetContract.AUTHORITY, LexUnits_Sentences.TABLE_BY_SENTENCE, FrameNetProvider.LEXUNITS_SENTENCES_BY_SENTENCE);
-		FrameNetProvider.uriMatcher.addURI(FrameNetContract.AUTHORITY, LexUnits_Sentences_AnnoSets_Layers_Labels.TABLE, FrameNetProvider.LEXUNITS_SENTENCES_ANNOSETS_LAYERS_LABELS);
-		FrameNetProvider.uriMatcher.addURI(FrameNetContract.AUTHORITY, LexUnits_Sentences_AnnoSets_Layers_Labels.TABLE_BY_SENTENCE, FrameNetProvider.LEXUNITS_SENTENCES_ANNOSETS_LAYERS_LABELS_BY_SENTENCE);
-		FrameNetProvider.uriMatcher.addURI(FrameNetContract.AUTHORITY, LexUnits_Governors.TABLE, FrameNetProvider.LEXUNITS_GOVERNORS);
-		FrameNetProvider.uriMatcher.addURI(FrameNetContract.AUTHORITY, LexUnits_FERealizations_ValenceUnits.TABLE, FrameNetProvider.LEXUNITS_REALIZATIONS);
-		FrameNetProvider.uriMatcher.addURI(FrameNetContract.AUTHORITY, LexUnits_FERealizations_ValenceUnits.TABLE_BY_REALIZATION, FrameNetProvider.LEXUNITS_REALIZATIONS_BY_REALIZATION);
-		FrameNetProvider.uriMatcher.addURI(FrameNetContract.AUTHORITY, LexUnits_FEGroupRealizations_Patterns_ValenceUnits.TABLE, FrameNetProvider.LEXUNITS_GROUPREALIZATIONS);
-		FrameNetProvider.uriMatcher.addURI(FrameNetContract.AUTHORITY, LexUnits_FEGroupRealizations_Patterns_ValenceUnits.TABLE_BY_PATTERN, FrameNetProvider.LEXUNITS_GROUPREALIZATIONS_BY_PATTERN);
-		FrameNetProvider.uriMatcher.addURI(FrameNetContract.AUTHORITY, Patterns_Sentences.TABLE, FrameNetProvider.PATTERNS_SENTENCES);
-		FrameNetProvider.uriMatcher.addURI(FrameNetContract.AUTHORITY, ValenceUnits_Sentences.TABLE, FrameNetProvider.VALENCEUNITS_SENTENCES);
-		FrameNetProvider.uriMatcher.addURI(FrameNetContract.AUTHORITY, Governors_AnnoSets_Sentences.TABLE, FrameNetProvider.GOVERNORS_ANNOSETS);
+		FrameNetProvider.uriMatcher.addURI(AUTHORITY, LexUnits.TABLE, FrameNetProvider.LEXUNIT);
+		FrameNetProvider.uriMatcher.addURI(AUTHORITY, LexUnits.TABLE, FrameNetProvider.LEXUNITS);
+		FrameNetProvider.uriMatcher.addURI(AUTHORITY, LexUnits_X.TABLE_BY_LEXUNIT, FrameNetProvider.LEXUNITS_X_BY_LEXUNIT);
+		FrameNetProvider.uriMatcher.addURI(AUTHORITY, LexUnits_or_Frames.TABLE, FrameNetProvider.LEXUNITS_OR_FRAMES);
+		FrameNetProvider.uriMatcher.addURI(AUTHORITY, Frames.TABLE, FrameNetProvider.FRAME);
+		FrameNetProvider.uriMatcher.addURI(AUTHORITY, Frames.TABLE, FrameNetProvider.FRAMES);
+		FrameNetProvider.uriMatcher.addURI(AUTHORITY, Frames_X.TABLE_BY_FRAME, FrameNetProvider.FRAMES_X_BY_FRAME);
+		FrameNetProvider.uriMatcher.addURI(AUTHORITY, Frames_Related.TABLE, FrameNetProvider.FRAMES_RELATED);
+		FrameNetProvider.uriMatcher.addURI(AUTHORITY, Sentences.TABLE, FrameNetProvider.SENTENCE);
+		FrameNetProvider.uriMatcher.addURI(AUTHORITY, Sentences.TABLE, FrameNetProvider.SENTENCES);
+		FrameNetProvider.uriMatcher.addURI(AUTHORITY, AnnoSets.TABLE, FrameNetProvider.ANNOSET);
+		FrameNetProvider.uriMatcher.addURI(AUTHORITY, AnnoSets.TABLE, FrameNetProvider.ANNOSETS);
+		FrameNetProvider.uriMatcher.addURI(AUTHORITY, Sentences_Layers_X.TABLE, FrameNetProvider.SENTENCES_LAYERS_X);
+		FrameNetProvider.uriMatcher.addURI(AUTHORITY, AnnoSets_Layers_X.TABLE, FrameNetProvider.ANNOSETS_LAYERS_X);
+		FrameNetProvider.uriMatcher.addURI(AUTHORITY, Patterns_Layers_X.TABLE, FrameNetProvider.PATTERNS_LAYERS_X);
+		FrameNetProvider.uriMatcher.addURI(AUTHORITY, ValenceUnits_Layers_X.TABLE, FrameNetProvider.VALENCEUNITS_LAYERS_X);
+		FrameNetProvider.uriMatcher.addURI(AUTHORITY, Words_LexUnits_Frames.TABLE, FrameNetProvider.WORDS_LEXUNITS_FRAMES);
+		FrameNetProvider.uriMatcher.addURI(AUTHORITY, Frames_FEs.TABLE, FrameNetProvider.FRAMES_FES);
+		FrameNetProvider.uriMatcher.addURI(AUTHORITY, Frames_FEs.TABLE_BY_FE, FrameNetProvider.FRAMES_FES_BY_FE);
+		FrameNetProvider.uriMatcher.addURI(AUTHORITY, LexUnits_Sentences.TABLE, FrameNetProvider.LEXUNITS_SENTENCES);
+		FrameNetProvider.uriMatcher.addURI(AUTHORITY, LexUnits_Sentences.TABLE_BY_SENTENCE, FrameNetProvider.LEXUNITS_SENTENCES_BY_SENTENCE);
+		FrameNetProvider.uriMatcher.addURI(AUTHORITY, LexUnits_Sentences_AnnoSets_Layers_Labels.TABLE, FrameNetProvider.LEXUNITS_SENTENCES_ANNOSETS_LAYERS_LABELS);
+		FrameNetProvider.uriMatcher.addURI(AUTHORITY, LexUnits_Sentences_AnnoSets_Layers_Labels.TABLE_BY_SENTENCE, FrameNetProvider.LEXUNITS_SENTENCES_ANNOSETS_LAYERS_LABELS_BY_SENTENCE);
+		FrameNetProvider.uriMatcher.addURI(AUTHORITY, LexUnits_Governors.TABLE, FrameNetProvider.LEXUNITS_GOVERNORS);
+		FrameNetProvider.uriMatcher.addURI(AUTHORITY, LexUnits_FERealizations_ValenceUnits.TABLE, FrameNetProvider.LEXUNITS_REALIZATIONS);
+		FrameNetProvider.uriMatcher.addURI(AUTHORITY, LexUnits_FERealizations_ValenceUnits.TABLE_BY_REALIZATION, FrameNetProvider.LEXUNITS_REALIZATIONS_BY_REALIZATION);
+		FrameNetProvider.uriMatcher.addURI(AUTHORITY, LexUnits_FEGroupRealizations_Patterns_ValenceUnits.TABLE, FrameNetProvider.LEXUNITS_GROUPREALIZATIONS);
+		FrameNetProvider.uriMatcher.addURI(AUTHORITY, LexUnits_FEGroupRealizations_Patterns_ValenceUnits.TABLE_BY_PATTERN, FrameNetProvider.LEXUNITS_GROUPREALIZATIONS_BY_PATTERN);
+		FrameNetProvider.uriMatcher.addURI(AUTHORITY, Patterns_Sentences.TABLE, FrameNetProvider.PATTERNS_SENTENCES);
+		FrameNetProvider.uriMatcher.addURI(AUTHORITY, ValenceUnits_Sentences.TABLE, FrameNetProvider.VALENCEUNITS_SENTENCES);
+		FrameNetProvider.uriMatcher.addURI(AUTHORITY, Governors_AnnoSets_Sentences.TABLE, FrameNetProvider.GOVERNORS_ANNOSETS);
 
-		FrameNetProvider.uriMatcher.addURI(FrameNetContract.AUTHORITY, Lookup_FnWords.TABLE + "/*", FrameNetProvider.LOOKUP_FTS_WORDS);
-		FrameNetProvider.uriMatcher.addURI(FrameNetContract.AUTHORITY, Lookup_FnWords.TABLE + "/", FrameNetProvider.LOOKUP_FTS_WORDS);
-		FrameNetProvider.uriMatcher.addURI(FrameNetContract.AUTHORITY, Lookup_FnSentences.TABLE + "/", FrameNetProvider.LOOKUP_FTS_SENTENCES);
-		FrameNetProvider.uriMatcher.addURI(FrameNetContract.AUTHORITY, Lookup_FnSentences_X.TABLE + "/", FrameNetProvider.LOOKUP_FTS_SENTENCES_X);
-		FrameNetProvider.uriMatcher.addURI(FrameNetContract.AUTHORITY, Lookup_FnSentences_X.TABLE_BY_SENTENCE + "/", FrameNetProvider.LOOKUP_FTS_SENTENCES_X_BY_SENTENCE);
+		FrameNetProvider.uriMatcher.addURI(AUTHORITY, Lookup_FnWords.TABLE + "/*", FrameNetProvider.LOOKUP_FTS_WORDS);
+		FrameNetProvider.uriMatcher.addURI(AUTHORITY, Lookup_FnWords.TABLE + "/", FrameNetProvider.LOOKUP_FTS_WORDS);
+		FrameNetProvider.uriMatcher.addURI(AUTHORITY, Lookup_FnSentences.TABLE + "/", FrameNetProvider.LOOKUP_FTS_SENTENCES);
+		FrameNetProvider.uriMatcher.addURI(AUTHORITY, Lookup_FnSentences_X.TABLE + "/", FrameNetProvider.LOOKUP_FTS_SENTENCES_X);
+		FrameNetProvider.uriMatcher.addURI(AUTHORITY, Lookup_FnSentences_X.TABLE_BY_SENTENCE + "/", FrameNetProvider.LOOKUP_FTS_SENTENCES_X_BY_SENTENCE);
 
-		FrameNetProvider.uriMatcher.addURI(FrameNetContract.AUTHORITY, Suggest_FnWords.TABLE + "/*", FrameNetProvider.SUGGEST_WORDS);
-		FrameNetProvider.uriMatcher.addURI(FrameNetContract.AUTHORITY, Suggest_FnWords.TABLE + "/", FrameNetProvider.SUGGEST_WORDS);
-		FrameNetProvider.uriMatcher.addURI(FrameNetContract.AUTHORITY, Suggest_FTS_FnWords.TABLE + "/*", FrameNetProvider.SUGGEST_FTS_WORDS);
-		FrameNetProvider.uriMatcher.addURI(FrameNetContract.AUTHORITY, Suggest_FTS_FnWords.TABLE + "/", FrameNetProvider.SUGGEST_FTS_WORDS);
+		FrameNetProvider.uriMatcher.addURI(AUTHORITY, Suggest_FnWords.TABLE + "/*", FrameNetProvider.SUGGEST_WORDS);
+		FrameNetProvider.uriMatcher.addURI(AUTHORITY, Suggest_FnWords.TABLE + "/", FrameNetProvider.SUGGEST_WORDS);
+		FrameNetProvider.uriMatcher.addURI(AUTHORITY, Suggest_FTS_FnWords.TABLE + "/*", FrameNetProvider.SUGGEST_FTS_WORDS);
+		FrameNetProvider.uriMatcher.addURI(AUTHORITY, Suggest_FTS_FnWords.TABLE + "/", FrameNetProvider.SUGGEST_FTS_WORDS);
+	}
+
+	static public String makeUri(final String table)
+	{
+		return BaseProvider.SCHEME + AUTHORITY + '/' + table;
 	}
 
 	// C O N S T R U C T O R
@@ -162,75 +198,75 @@ public class FrameNetProvider extends BaseProvider
 			// TABLES
 
 			case LEXUNIT:
-				return BaseProvider.VENDOR + ".android.cursor.item/" + BaseProvider.VENDOR + '.' + FrameNetContract.AUTHORITY + '.' + LexUnits.TABLE;
+				return BaseProvider.VENDOR + ".android.cursor.item/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + LexUnits.TABLE;
 			case LEXUNITS:
-				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + FrameNetContract.AUTHORITY + '.' + LexUnits.TABLE;
+				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + LexUnits.TABLE;
 			case LEXUNITS_X_BY_LEXUNIT:
-				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + FrameNetContract.AUTHORITY + '.' + LexUnits_X.TABLE_BY_LEXUNIT;
+				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + LexUnits_X.TABLE_BY_LEXUNIT;
 			case LEXUNITS_OR_FRAMES:
-				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + FrameNetContract.AUTHORITY + '.' + LexUnits_or_Frames.TABLE;
+				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + LexUnits_or_Frames.TABLE;
 			case FRAME:
-				return BaseProvider.VENDOR + ".android.cursor.item/" + BaseProvider.VENDOR + '.' + FrameNetContract.AUTHORITY + '.' + Frames.TABLE;
+				return BaseProvider.VENDOR + ".android.cursor.item/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + Frames.TABLE;
 			case FRAMES:
-				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + FrameNetContract.AUTHORITY + '.' + Frames.TABLE;
+				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + Frames.TABLE;
 			case FRAMES_X_BY_FRAME:
-				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + FrameNetContract.AUTHORITY + '.' + Frames_X.TABLE_BY_FRAME;
+				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + Frames_X.TABLE_BY_FRAME;
 			case FRAMES_RELATED:
-				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + FrameNetContract.AUTHORITY + '.' + Frames_Related.TABLE;
+				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + Frames_Related.TABLE;
 			case SENTENCE:
-				return BaseProvider.VENDOR + ".android.cursor.item/" + BaseProvider.VENDOR + '.' + FrameNetContract.AUTHORITY + '.' + Sentences.TABLE;
+				return BaseProvider.VENDOR + ".android.cursor.item/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + Sentences.TABLE;
 			case SENTENCES:
-				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + FrameNetContract.AUTHORITY + '.' + Sentences.TABLE;
+				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + Sentences.TABLE;
 			case ANNOSET:
-				return BaseProvider.VENDOR + ".android.cursor.item/" + BaseProvider.VENDOR + '.' + FrameNetContract.AUTHORITY + '.' + AnnoSets.TABLE;
+				return BaseProvider.VENDOR + ".android.cursor.item/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + AnnoSets.TABLE;
 			case ANNOSETS:
-				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + FrameNetContract.AUTHORITY + '.' + AnnoSets.TABLE;
+				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + AnnoSets.TABLE;
 			case SENTENCES_LAYERS_X:
-				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + FrameNetContract.AUTHORITY + '.' + Sentences_Layers_X.TABLE;
+				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + Sentences_Layers_X.TABLE;
 			case ANNOSETS_LAYERS_X:
-				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + FrameNetContract.AUTHORITY + '.' + AnnoSets_Layers_X.TABLE;
+				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + AnnoSets_Layers_X.TABLE;
 			case PATTERNS_LAYERS_X:
-				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + FrameNetContract.AUTHORITY + '.' + Patterns_Layers_X.TABLE;
+				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + Patterns_Layers_X.TABLE;
 			case VALENCEUNITS_LAYERS_X:
-				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + FrameNetContract.AUTHORITY + '.' + ValenceUnits_Layers_X.TABLE;
+				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + ValenceUnits_Layers_X.TABLE;
 			case WORDS_LEXUNITS_FRAMES:
-				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + FrameNetContract.AUTHORITY + '.' + Words_LexUnits_Frames.TABLE;
+				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + Words_LexUnits_Frames.TABLE;
 			case FRAMES_FES:
-				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + FrameNetContract.AUTHORITY + '.' + Frames_FEs.TABLE;
+				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + Frames_FEs.TABLE;
 			case LEXUNITS_SENTENCES:
-				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + FrameNetContract.AUTHORITY + '.' + LexUnits_Sentences.TABLE;
+				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + LexUnits_Sentences.TABLE;
 			case LEXUNITS_GOVERNORS:
-				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + FrameNetContract.AUTHORITY + '.' + LexUnits_Governors.TABLE;
+				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + LexUnits_Governors.TABLE;
 			case LEXUNITS_REALIZATIONS:
-				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + FrameNetContract.AUTHORITY + '.' + LexUnits_FERealizations_ValenceUnits.TABLE;
+				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + LexUnits_FERealizations_ValenceUnits.TABLE;
 			case LEXUNITS_REALIZATIONS_BY_REALIZATION:
-				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + FrameNetContract.AUTHORITY + '.' + LexUnits_FERealizations_ValenceUnits.TABLE_BY_REALIZATION;
+				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + LexUnits_FERealizations_ValenceUnits.TABLE_BY_REALIZATION;
 			case LEXUNITS_GROUPREALIZATIONS:
-				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + FrameNetContract.AUTHORITY + '.' + LexUnits_FEGroupRealizations_Patterns_ValenceUnits.TABLE;
+				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + LexUnits_FEGroupRealizations_Patterns_ValenceUnits.TABLE;
 			case LEXUNITS_GROUPREALIZATIONS_BY_PATTERN:
-				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + FrameNetContract.AUTHORITY + '.' + LexUnits_FEGroupRealizations_Patterns_ValenceUnits.TABLE_BY_PATTERN;
+				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + LexUnits_FEGroupRealizations_Patterns_ValenceUnits.TABLE_BY_PATTERN;
 			case PATTERNS_SENTENCES:
-				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + FrameNetContract.AUTHORITY + '.' + Patterns_Sentences.TABLE;
+				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + Patterns_Sentences.TABLE;
 			case VALENCEUNITS_SENTENCES:
-				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + FrameNetContract.AUTHORITY + '.' + ValenceUnits_Sentences.TABLE;
+				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + ValenceUnits_Sentences.TABLE;
 			case GOVERNORS_ANNOSETS:
-				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + FrameNetContract.AUTHORITY + '.' + Governors_AnnoSets_Sentences.TABLE;
+				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + Governors_AnnoSets_Sentences.TABLE;
 
 			// L O O K U P
 			case LOOKUP_FTS_WORDS:
-				return BaseProvider.VENDOR + ".android.cursor.item/" + BaseProvider.VENDOR + '.' + FrameNetContract.AUTHORITY + '.' + FnWords.TABLE;
+				return BaseProvider.VENDOR + ".android.cursor.item/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + FnWords.TABLE;
 			case LOOKUP_FTS_SENTENCES:
-				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + FrameNetContract.AUTHORITY + '.' + Lookup_FnSentences.TABLE;
+				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + Lookup_FnSentences.TABLE;
 			case LOOKUP_FTS_SENTENCES_X:
-				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + FrameNetContract.AUTHORITY + '.' + Lookup_FnSentences_X.TABLE;
+				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + Lookup_FnSentences_X.TABLE;
 			case LOOKUP_FTS_SENTENCES_X_BY_SENTENCE:
-				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + FrameNetContract.AUTHORITY + '.' + Lookup_FnSentences_X.TABLE_BY_SENTENCE;
+				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + Lookup_FnSentences_X.TABLE_BY_SENTENCE;
 
 			// S U G G E S T
 			case SUGGEST_WORDS:
-				return BaseProvider.VENDOR + ".android.cursor.item/" + BaseProvider.VENDOR + '.' + FrameNetContract.AUTHORITY + '.' + FnWords.TABLE;
+				return BaseProvider.VENDOR + ".android.cursor.item/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + FnWords.TABLE;
 			case SUGGEST_FTS_WORDS:
-				return BaseProvider.VENDOR + ".android.cursor.item/" + BaseProvider.VENDOR + '.' + FrameNetContract.AUTHORITY + '.' + FnWords.TABLE;
+				return BaseProvider.VENDOR + ".android.cursor.item/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + FnWords.TABLE;
 
 			default:
 				throw new UnsupportedOperationException("Illegal MIME type");

@@ -12,8 +12,10 @@ import android.util.Log;
 
 import org.sqlunet.provider.ManagerContract.TablesAndIndices;
 
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Properties;
 
 /**
  * 5House-keeping) Manager provider
@@ -23,18 +25,50 @@ import java.util.Collection;
 public class ManagerProvider extends BaseProvider
 {
 	static private final String TAG = "ManagerProvider";
+
+	static private String AUTHORITY;
+
+	static
+	{
+		try
+		{
+			final InputStream is = ManagerProvider.class.getResourceAsStream("/org/sqlunet/config.properties");
+			final Properties properties = new Properties();
+			properties.load(is);
+
+			AUTHORITY = properties.getProperty("managerprovider");
+			if (AUTHORITY == null || AUTHORITY.isEmpty())
+			{
+				throw new RuntimeException("Null framenet provider");
+			}
+		}
+		catch (Exception e)
+		{
+			throw new RuntimeException(e);
+		}
+	}
+
 	// U R I M A T C H E R
 
-	// uri matcher
-	static private final UriMatcher uriMatcher;
+	static private UriMatcher uriMatcher = new UriMatcher(UriMatcher.NO_MATCH);
+
+	static
+	{
+		matchURIs();
+	}
 
 	// join codes
 	static private final int TABLES_AND_INDICES = 100;
 
-	static
+	static void matchURIs()
 	{
 		uriMatcher = new UriMatcher(UriMatcher.NO_MATCH);
-		ManagerProvider.uriMatcher.addURI(ManagerContract.AUTHORITY, TablesAndIndices.TABLE, ManagerProvider.TABLES_AND_INDICES);
+		ManagerProvider.uriMatcher.addURI(AUTHORITY, TablesAndIndices.TABLE, ManagerProvider.TABLES_AND_INDICES);
+	}
+
+	static public String makeUri(final String table)
+	{
+		return BaseProvider.SCHEME + AUTHORITY + '/' + table;
 	}
 
 	// C O N S T R U C T O R
@@ -54,7 +88,7 @@ public class ManagerProvider extends BaseProvider
 		switch (ManagerProvider.uriMatcher.match(uri))
 		{
 			case TABLES_AND_INDICES:
-				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + ManagerContract.AUTHORITY + '.' + TablesAndIndices.TABLE;
+				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + TablesAndIndices.TABLE;
 			default:
 				throw new UnsupportedOperationException("Illegal MIME type");
 		}
@@ -125,7 +159,7 @@ public class ManagerProvider extends BaseProvider
 	static public Collection<String> getTables(final Context context)
 	{
 		final Collection<String> tables = new ArrayList<>();
-		final Uri uri = Uri.parse(TablesAndIndices.CONTENT_URI);
+		final Uri uri = Uri.parse(makeUri(TablesAndIndices.CONTENT_URI_TABLE));
 		final String[] projection = {TablesAndIndices.TYPE, TablesAndIndices.NAME};
 		final String selection = TablesAndIndices.TYPE + " = 'table' AND name NOT IN ('sqlite_sequence', 'android_metadata' )";
 		final String[] selectionArgs = {};

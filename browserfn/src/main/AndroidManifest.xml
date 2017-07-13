@@ -305,25 +305,25 @@
 
 		<provider
 			android:name="org.sqlunet.provider.ManagerProvider"
-			android:authorities="org.sqlunet.provider.manager"
+			android:authorities="org.sqlunet.fn.manager.provider"
 			android:enabled="true"
-			android:exported="true"
+			android:exported="false"
 			tools:ignore="ExportedContentProvider">
 		</provider>
 
 		<provider
 			android:name="org.sqlunet.provider.XSqlUNetProvider"
-			android:authorities="org.sqlunet.cross.provider"
+			android:authorities="org.sqlunet.fn.xsqlunet.provider"
 			android:enabled="true"
-			android:exported="true"
+			android:exported="false"
 			tools:ignore="ExportedContentProvider">
 		</provider>
 
 		<provider
 			android:name="org.sqlunet.framenet.provider.FrameNetProvider"
-			android:authorities="org.sqlunet.framenet.provider"
+			android:authorities="org.sqlunet.fn.framenet.provider"
 			android:enabled="true"
-			android:exported="true"
+			android:exported="false"
 			tools:ignore="ExportedContentProvider">
 		</provider>
 

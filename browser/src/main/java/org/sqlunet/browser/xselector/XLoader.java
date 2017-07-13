@@ -18,6 +18,7 @@ import org.sqlunet.provider.XSqlUNetContract.Words_FnWords_FnFrames_U;
 import org.sqlunet.provider.XSqlUNetContract.Words_PbWords_PbRolesets_U;
 import org.sqlunet.provider.XSqlUNetContract.Words_VnWords_VnClasses_U;
 import org.sqlunet.provider.XSqlUNetContract.Words_XNet_U;
+import org.sqlunet.provider.XSqlUNetProvider;
 import org.sqlunet.wordnet.provider.WordNetContract;
 import org.sqlunet.wordnet.provider.WordNetContract.Words_Senses_CasedWords_Synsets_PosTypes_LexDomains;
 
@@ -89,7 +90,7 @@ class XLoader
 		@Override
 		public Loader<Cursor> onCreateLoader(final int id, final Bundle args)
 		{
-			final Uri uri = Uri.parse(Words_VnWords_VnClasses_U.CONTENT_URI);
+			final Uri uri = Uri.parse(XSqlUNetProvider.makeUri(Words_VnWords_VnClasses_U.CONTENT_URI_TABLE));
 			final String[] projection = { //
 					Words_VnWords_VnClasses_U.WORDID, //
 					Words_VnWords_VnClasses_U.SYNSETID, //
@@ -121,7 +122,7 @@ class XLoader
 		@Override
 		public Loader<Cursor> onCreateLoader(final int id, final Bundle args)
 		{
-			final Uri uri = Uri.parse(Words_PbWords_PbRolesets_U.CONTENT_URI);
+			final Uri uri = Uri.parse(XSqlUNetProvider.makeUri(Words_PbWords_PbRolesets_U.CONTENT_URI_TABLE));
 			final String[] projection = { //
 					Words_PbWords_PbRolesets_U.WORDID, //
 					Words_PbWords_PbRolesets_U.SYNSETID, //
@@ -154,7 +155,7 @@ class XLoader
 		@Override
 		public Loader<Cursor> onCreateLoader(final int id, final Bundle args)
 		{
-			final Uri uri = Uri.parse(Words_FnWords_FnFrames_U.CONTENT_URI);
+			final Uri uri = Uri.parse(XSqlUNetProvider.makeUri(Words_FnWords_FnFrames_U.CONTENT_URI_TABLE));
 			final String[] projection = { //
 					Words_FnWords_FnFrames_U.WORDID, //
 					Words_FnWords_FnFrames_U.SYNSETID, //

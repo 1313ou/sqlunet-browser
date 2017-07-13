@@ -27,6 +27,8 @@ public class LexUnitFromWordModule extends LexUnitModule
 
 	/**
 	 * Constructor
+	 *
+	 * @param fragment  containing fragment
 	 */
 	public LexUnitFromWordModule(final Fragment fragment)
 	{

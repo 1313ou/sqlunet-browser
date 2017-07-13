@@ -11,6 +11,7 @@ import android.util.Log;
 import org.sqlunet.browser.R;
 import org.sqlunet.provider.ManagerContract;
 import org.sqlunet.provider.ManagerContract.TablesAndIndices;
+import org.sqlunet.provider.ManagerProvider;
 import org.sqlunet.settings.StorageSettings;
 
 import java.io.File;
@@ -123,7 +124,7 @@ public class Status
 				+ "ELSE " + ManagerContract.TablesAndIndices.TYPE + " END ASC," //
 				+ ManagerContract.TablesAndIndices.NAME + " ASC";
 		final Cursor cursor = context.getContentResolver().query( //
-				Uri.parse(TablesAndIndices.CONTENT_URI), //
+				Uri.parse(ManagerProvider.makeUri(TablesAndIndices.CONTENT_URI_TABLE)), //
 				new String[]{TablesAndIndices.TYPE, TablesAndIndices.NAME}, // projection
 				"name NOT LIKE 'sqlite_%' AND name NOT LIKE 'android_%'", // selection criteria //
 				null, //

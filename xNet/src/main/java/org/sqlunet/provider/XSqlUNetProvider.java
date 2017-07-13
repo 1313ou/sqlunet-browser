@@ -21,9 +21,11 @@ import org.sqlunet.provider.XSqlUNetContract.Words_VnWords_VnClasses_U;
 import org.sqlunet.provider.XSqlUNetContract.Sources;
 import org.sqlunet.sql.SqlFormatter;
 
+import java.io.InputStream;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Properties;
 
 /**
  * Extended cross WordNet-FrameNet-PropBank-VerbNet provider
@@ -33,10 +35,37 @@ import java.util.List;
 public class XSqlUNetProvider extends BaseProvider
 {
 	static private final String TAG = "XSqlUNetProvider";
+
+	static public String AUTHORITY;
+
+	static
+	{
+		try
+		{
+			final InputStream is = XSqlUNetProvider.class.getResourceAsStream("/org/sqlunet/config.properties");
+			final Properties properties = new Properties();
+			properties.load(is);
+
+			AUTHORITY = properties.getProperty("xsqlunetprovider");
+			if (AUTHORITY == null || AUTHORITY.isEmpty())
+			{
+				throw new RuntimeException("Null xsqlunet provider");
+			}
+		}
+		catch (Exception e)
+		{
+			throw new RuntimeException(e);
+		}
+	}
+
 	// U R I M A T C H E R
 
-	// uri matcher
-	static private final UriMatcher uriMatcher;
+	static private UriMatcher uriMatcher = new UriMatcher(UriMatcher.NO_MATCH);
+
+	static
+	{
+		matchURIs();
+	}
 
 	// join codes
 	static private final int WORDS_FNWORDS_PBWORDS_VNWORDS = 100;
@@ -49,18 +78,23 @@ public class XSqlUNetProvider extends BaseProvider
 	static private final int WORDS_FNWORDS_FNFRAMES_U = 330;
 	static private final int SOURCES = 400;
 
-	static
+	static private void matchURIs()
 	{
 		uriMatcher = new UriMatcher(UriMatcher.NO_MATCH);
-		XSqlUNetProvider.uriMatcher.addURI(XSqlUNetContract.AUTHORITY, Words_FnWords_PbWords_VnWords.TABLE, XSqlUNetProvider.WORDS_FNWORDS_PBWORDS_VNWORDS);
-		XSqlUNetProvider.uriMatcher.addURI(XSqlUNetContract.AUTHORITY, PredicateMatrix.TABLE, XSqlUNetProvider.PREDICATEMATRIX);
-		XSqlUNetProvider.uriMatcher.addURI(XSqlUNetContract.AUTHORITY, PredicateMatrix_VerbNet.TABLE, XSqlUNetProvider.PREDICATEMATRIX_VERBNET);
-		XSqlUNetProvider.uriMatcher.addURI(XSqlUNetContract.AUTHORITY, PredicateMatrix_PropBank.TABLE, XSqlUNetProvider.PREDICATEMATRIX_PROPBANK);
-		XSqlUNetProvider.uriMatcher.addURI(XSqlUNetContract.AUTHORITY, PredicateMatrix_FrameNet.TABLE, XSqlUNetProvider.PREDICATEMATRIX_FRAMENET);
-		XSqlUNetProvider.uriMatcher.addURI(XSqlUNetContract.AUTHORITY, Words_VnWords_VnClasses_U.TABLE, XSqlUNetProvider.WORDS_VNWORDS_VNCLASSES_U);
-		XSqlUNetProvider.uriMatcher.addURI(XSqlUNetContract.AUTHORITY, Words_PbWords_PbRolesets_U.TABLE, XSqlUNetProvider.WORDS_PBWORDS_PBROLESETS_U);
-		XSqlUNetProvider.uriMatcher.addURI(XSqlUNetContract.AUTHORITY, Words_FnWords_FnFrames_U.TABLE, XSqlUNetProvider.WORDS_FNWORDS_FNFRAMES_U);
-		XSqlUNetProvider.uriMatcher.addURI(XSqlUNetContract.AUTHORITY, XSqlUNetContract.Sources.TABLE, XSqlUNetProvider.SOURCES);
+		XSqlUNetProvider.uriMatcher.addURI(AUTHORITY, Words_FnWords_PbWords_VnWords.TABLE, XSqlUNetProvider.WORDS_FNWORDS_PBWORDS_VNWORDS);
+		XSqlUNetProvider.uriMatcher.addURI(AUTHORITY, PredicateMatrix.TABLE, XSqlUNetProvider.PREDICATEMATRIX);
+		XSqlUNetProvider.uriMatcher.addURI(AUTHORITY, PredicateMatrix_VerbNet.TABLE, XSqlUNetProvider.PREDICATEMATRIX_VERBNET);
+		XSqlUNetProvider.uriMatcher.addURI(AUTHORITY, PredicateMatrix_PropBank.TABLE, XSqlUNetProvider.PREDICATEMATRIX_PROPBANK);
+		XSqlUNetProvider.uriMatcher.addURI(AUTHORITY, PredicateMatrix_FrameNet.TABLE, XSqlUNetProvider.PREDICATEMATRIX_FRAMENET);
+		XSqlUNetProvider.uriMatcher.addURI(AUTHORITY, Words_VnWords_VnClasses_U.TABLE, XSqlUNetProvider.WORDS_VNWORDS_VNCLASSES_U);
+		XSqlUNetProvider.uriMatcher.addURI(AUTHORITY, Words_PbWords_PbRolesets_U.TABLE, XSqlUNetProvider.WORDS_PBWORDS_PBROLESETS_U);
+		XSqlUNetProvider.uriMatcher.addURI(AUTHORITY, Words_FnWords_FnFrames_U.TABLE, XSqlUNetProvider.WORDS_FNWORDS_FNFRAMES_U);
+		XSqlUNetProvider.uriMatcher.addURI(AUTHORITY, XSqlUNetContract.Sources.TABLE, XSqlUNetProvider.SOURCES);
+	}
+
+	static public String makeUri(final String table)
+	{
+		return BaseProvider.SCHEME + AUTHORITY + '/' + table;
 	}
 
 	// C O N S T R U C T O R
@@ -80,23 +114,23 @@ public class XSqlUNetProvider extends BaseProvider
 		switch (XSqlUNetProvider.uriMatcher.match(uri))
 		{
 			case WORDS_FNWORDS_PBWORDS_VNWORDS:
-				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + XSqlUNetContract.AUTHORITY + '.' + Words_FnWords_PbWords_VnWords.TABLE;
+				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + Words_FnWords_PbWords_VnWords.TABLE;
 			case PREDICATEMATRIX:
-				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + XSqlUNetContract.AUTHORITY + '.' + PredicateMatrix.TABLE;
+				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + PredicateMatrix.TABLE;
 			case PREDICATEMATRIX_VERBNET:
-				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + XSqlUNetContract.AUTHORITY + '.' + PredicateMatrix_VerbNet.TABLE;
+				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + PredicateMatrix_VerbNet.TABLE;
 			case PREDICATEMATRIX_PROPBANK:
-				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + XSqlUNetContract.AUTHORITY + '.' + PredicateMatrix_PropBank.TABLE;
+				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + PredicateMatrix_PropBank.TABLE;
 			case PREDICATEMATRIX_FRAMENET:
-				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + XSqlUNetContract.AUTHORITY + '.' + PredicateMatrix_FrameNet.TABLE;
+				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + PredicateMatrix_FrameNet.TABLE;
 			case WORDS_VNWORDS_VNCLASSES_U:
-				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + XSqlUNetContract.AUTHORITY + '.' + Words_VnWords_VnClasses_U.TABLE;
+				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + Words_VnWords_VnClasses_U.TABLE;
 			case WORDS_PBWORDS_PBROLESETS_U:
-				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + XSqlUNetContract.AUTHORITY + '.' + Words_PbWords_PbRolesets_U.TABLE;
+				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + Words_PbWords_PbRolesets_U.TABLE;
 			case WORDS_FNWORDS_FNFRAMES_U:
-				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + XSqlUNetContract.AUTHORITY + '.' + Words_FnWords_FnFrames_U.TABLE;
+				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + Words_FnWords_FnFrames_U.TABLE;
 			case SOURCES:
-				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + XSqlUNetContract.AUTHORITY + '.' + Sources.TABLE;
+				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + Sources.TABLE;
 			default:
 				throw new UnsupportedOperationException("Illegal MIME type");
 		}
