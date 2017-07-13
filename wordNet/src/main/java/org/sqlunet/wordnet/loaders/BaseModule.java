@@ -45,6 +45,7 @@ import org.sqlunet.wordnet.provider.WordNetContract.VerbFrameSentenceMaps_VerbFr
 import org.sqlunet.wordnet.provider.WordNetContract.Words;
 import org.sqlunet.wordnet.provider.WordNetContract.Words_MorphMaps_Morphs;
 import org.sqlunet.wordnet.provider.WordNetContract.Words_Senses_CasedWords_Synsets_PosTypes_LexDomains;
+import org.sqlunet.wordnet.provider.WordNetProvider;
 import org.sqlunet.wordnet.style.WordNetFactories;
 
 import java.util.Locale;
@@ -132,7 +133,7 @@ abstract public class BaseModule extends Module
 			@Override
 			public Loader<Cursor> onCreateLoader(final int loaderId, final Bundle loaderArgs)
 			{
-				final Uri uri = Uri.parse(Words_MorphMaps_Morphs.CONTENT_URI_BY_WORD);
+				final Uri uri = Uri.parse(WordNetProvider.makeUri(Words_MorphMaps_Morphs.CONTENT_URI_TABLE_BY_WORD));
 				final String[] projection = { //
 						Words_MorphMaps_Morphs.LEMMA, //
 						Words_MorphMaps_Morphs.WORDID, //
@@ -216,7 +217,7 @@ abstract public class BaseModule extends Module
 			@Override
 			public Loader<Cursor> onCreateLoader(final int loaderId, final Bundle loaderArgs)
 			{
-				final Uri uri = Uri.parse(Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.CONTENT_URI);
+				final Uri uri = Uri.parse(WordNetProvider.makeUri(Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.CONTENT_URI_TABLE));
 				final String[] projection = { //
 						Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.SYNSETID + " AS _id", //
 						Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.WORDID, //
@@ -285,7 +286,7 @@ abstract public class BaseModule extends Module
 			@Override
 			public Loader<Cursor> onCreateLoader(final int loaderId, final Bundle loaderArgs)
 			{
-				final Uri uri = Uri.parse(Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.CONTENT_URI);
+				final Uri uri = Uri.parse(WordNetProvider.makeUri(Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.CONTENT_URI_TABLE));
 				final String[] projection = { //
 						Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.SYNSETID + " AS _id", //
 						Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.WORDID, //
@@ -388,7 +389,7 @@ abstract public class BaseModule extends Module
 			@Override
 			public Loader<Cursor> onCreateLoader(final int loaderId, final Bundle loaderArgs)
 			{
-				final Uri uri = Uri.parse(Senses.CONTENT_URI);
+				final Uri uri = Uri.parse(WordNetProvider.makeUri(Senses.CONTENT_URI_TABLE));
 				final String[] projection = { //
 						Senses.WORDID, //
 						Senses.SYNSETID, //
@@ -445,7 +446,7 @@ abstract public class BaseModule extends Module
 			@Override
 			public Loader<Cursor> onCreateLoader(final int loaderId, final Bundle loaderArgs)
 			{
-				final Uri uri = Uri.parse(Senses.CONTENT_URI);
+				final Uri uri = Uri.parse(WordNetProvider.makeUri(Senses.CONTENT_URI_TABLE));
 				final String[] projection = { //
 						Senses.WORDID, //
 						Senses.SYNSETID, //
@@ -510,7 +511,7 @@ abstract public class BaseModule extends Module
 			@Override
 			public Loader<Cursor> onCreateLoader(final int loaderId, final Bundle loaderArgs)
 			{
-				final Uri uri = Uri.parse(Synsets_PosTypes_LexDomains.CONTENT_URI);
+				final Uri uri = Uri.parse(WordNetProvider.makeUri(Synsets_PosTypes_LexDomains.CONTENT_URI_TABLE));
 				final String[] projection = { //
 						Synsets.DEFINITION, //
 						PosTypes.POSNAME, //
@@ -587,7 +588,7 @@ abstract public class BaseModule extends Module
 			@Override
 			public Loader<Cursor> onCreateLoader(final int loaderId, final Bundle loaderArgs)
 			{
-				final Uri uri = Uri.parse(Synsets_PosTypes_LexDomains.CONTENT_URI);
+				final Uri uri = Uri.parse(WordNetProvider.makeUri(Synsets_PosTypes_LexDomains.CONTENT_URI_TABLE));
 				final String[] projection = { //
 						Synsets.DEFINITION, //
 						PosTypes.POSNAME, //
@@ -753,7 +754,7 @@ abstract public class BaseModule extends Module
 			@Override
 			public Loader<Cursor> onCreateLoader(final int loaderId, final Bundle loaderArgs)
 			{
-				final Uri uri = Uri.parse(BaseModule.this.membersGrouped ? Senses_Words.CONTENT_URI_BY_SYNSET : Senses_Words.CONTENT_URI);
+				final Uri uri = Uri.parse(WordNetProvider.makeUri(BaseModule.this.membersGrouped ? Senses_Words.CONTENT_URI_TABLE_BY_SYNSET : Senses_Words.CONTENT_URI_TABLE));
 				final String[] projection = BaseModule.this.membersGrouped ? //
 						new String[]{Senses_Words.MEMBERS} : new String[]{Words.LEMMA};
 				final String selection = Senses_Words.SYNSETID + " = ?";
@@ -844,7 +845,7 @@ abstract public class BaseModule extends Module
 			@Override
 			public Loader<Cursor> onCreateLoader(final int loaderId, final Bundle loaderArgs)
 			{
-				final Uri uri = Uri.parse(Senses_Words.CONTENT_URI);
+				final Uri uri = Uri.parse(WordNetProvider.makeUri(Senses_Words.CONTENT_URI_TABLE));
 				final String[] projection = {Senses_Words.WORDID, Senses_Words.MEMBER};
 				final String selection = Senses_Words.SYNSETID + " = ?";
 				final String[] selectionArgs = {Long.toString(synsetId)};
@@ -920,7 +921,7 @@ abstract public class BaseModule extends Module
 			@Override
 			public Loader<Cursor> onCreateLoader(final int loaderId, final Bundle loaderArgs)
 			{
-				final Uri uri = Uri.parse(Samples.CONTENT_URI);
+				final Uri uri = Uri.parse(WordNetProvider.makeUri(Samples.CONTENT_URI_TABLE));
 				final String[] projection = { //
 						Samples.SAMPLEID, //
 						Samples.SAMPLE, //
@@ -1004,7 +1005,7 @@ abstract public class BaseModule extends Module
 			@Override
 			public Loader<Cursor> onCreateLoader(final int loaderId, final Bundle loaderArgs)
 			{
-				final Uri uri = Uri.parse(SemLinks_Synsets_Words_X.CONTENT_URI);
+				final Uri uri = Uri.parse(WordNetProvider.makeUri(SemLinks_Synsets_Words_X.CONTENT_URI_TABLE));
 				final String[] projection = { //
 						WordNetContract.DEST + '.' + Synsets.SYNSETID + " AS " + BaseModule.TARGET_SYNSETID, //
 						WordNetContract.DEST + '.' + Synsets.DEFINITION + " AS " + BaseModule.TARGET_DEFINITION, //
@@ -1096,7 +1097,7 @@ abstract public class BaseModule extends Module
 			@Override
 			public Loader<Cursor> onCreateLoader(final int loaderId, final Bundle loaderArgs)
 			{
-				final Uri uri = Uri.parse(SemLinks_Synsets_Words_X.CONTENT_URI);
+				final Uri uri = Uri.parse(WordNetProvider.makeUri(SemLinks_Synsets_Words_X.CONTENT_URI_TABLE));
 				final String[] projection = { //
 						WordNetContract.DEST + '.' + Synsets.SYNSETID + " AS " + BaseModule.TARGET_SYNSETID, //
 						WordNetContract.DEST + '.' + Synsets.DEFINITION + " AS " + BaseModule.TARGET_DEFINITION, //
@@ -1187,7 +1188,7 @@ abstract public class BaseModule extends Module
 			@Override
 			public Loader<Cursor> onCreateLoader(final int loaderId, final Bundle loaderArgs)
 			{
-				final Uri uri = Uri.parse(LexLinks_Senses_Words_X.CONTENT_URI);
+				final Uri uri = Uri.parse(WordNetProvider.makeUri(LexLinks_Senses_Words_X.CONTENT_URI_TABLE));
 				final String[] projection = { //
 						WordNetContract.DEST + '.' + Synsets.SYNSETID + " AS " + BaseModule.TARGET_SYNSETID, //
 						WordNetContract.DEST + '.' + Synsets.DEFINITION + " AS " + BaseModule.TARGET_DEFINITION, //
@@ -1291,7 +1292,7 @@ abstract public class BaseModule extends Module
 			@Override
 			public Loader<Cursor> onCreateLoader(final int loaderId, final Bundle loaderArgs)
 			{
-				final Uri uri = Uri.parse(LexLinks_Senses_Words_X.CONTENT_URI);
+				final Uri uri = Uri.parse(WordNetProvider.makeUri(LexLinks_Senses_Words_X.CONTENT_URI_TABLE));
 				final String[] projection = { //
 						WordNetContract.DEST + '.' + Synsets.SYNSETID + " AS " + BaseModule.TARGET_SYNSETID, //
 						WordNetContract.DEST + '.' + Synsets.DEFINITION + " AS " + BaseModule.TARGET_DEFINITION, //
@@ -1389,7 +1390,7 @@ abstract public class BaseModule extends Module
 			@Override
 			public Loader<Cursor> onCreateLoader(final int loaderId, final Bundle loaderArgs)
 			{
-				final Uri uri = Uri.parse(VerbFrameMaps_VerbFrames.CONTENT_URI);
+				final Uri uri = Uri.parse(WordNetProvider.makeUri(VerbFrameMaps_VerbFrames.CONTENT_URI_TABLE));
 				final String[] projection = {VerbFrameMaps_VerbFrames.FRAME};
 				final String selection = VerbFrameMaps_VerbFrames.SYNSETID + " = ?";
 				final String[] selectionArgs = {Long.toString(synsetId)};
@@ -1459,7 +1460,7 @@ abstract public class BaseModule extends Module
 			@Override
 			public Loader<Cursor> onCreateLoader(final int loaderId, final Bundle loaderArgs)
 			{
-				final Uri uri = Uri.parse(VerbFrameMaps_VerbFrames.CONTENT_URI);
+				final Uri uri = Uri.parse(WordNetProvider.makeUri(VerbFrameMaps_VerbFrames.CONTENT_URI_TABLE));
 				final String[] projection = {VerbFrameMaps_VerbFrames.FRAME};
 				final String selection = VerbFrameMaps_VerbFrames.SYNSETID + " = ? AND " + VerbFrameMaps_VerbFrames.WORDID + " = ?";
 				final String[] selectionArgs = {Long.toString(synsetId), Long.toString(wordId)};
@@ -1528,7 +1529,7 @@ abstract public class BaseModule extends Module
 			@Override
 			public Loader<Cursor> onCreateLoader(final int loaderId, final Bundle loaderArgs)
 			{
-				final Uri uri = Uri.parse(VerbFrameSentenceMaps_VerbFrameSentences.CONTENT_URI);
+				final Uri uri = Uri.parse(WordNetProvider.makeUri(VerbFrameSentenceMaps_VerbFrameSentences.CONTENT_URI_TABLE));
 				final String[] projection = {VerbFrameSentenceMaps_VerbFrameSentences.SENTENCE};
 				final String selection = VerbFrameSentenceMaps_VerbFrameSentences.SYNSETID + " = ?";
 				final String[] selectionArgs = {Long.toString(synsetId)};
@@ -1599,7 +1600,7 @@ abstract public class BaseModule extends Module
 			@Override
 			public Loader<Cursor> onCreateLoader(final int loaderId, final Bundle loaderArgs)
 			{
-				final Uri uri = Uri.parse(VerbFrameSentenceMaps_VerbFrameSentences.CONTENT_URI);
+				final Uri uri = Uri.parse(WordNetProvider.makeUri(VerbFrameSentenceMaps_VerbFrameSentences.CONTENT_URI_TABLE));
 				final String[] projection = {VerbFrameSentenceMaps_VerbFrameSentences.SENTENCE};
 				final String selection = VerbFrameSentenceMaps_VerbFrameSentences.SYNSETID + " = ? AND " + VerbFrameSentenceMaps_VerbFrameSentences.WORDID + " = ?";
 				final String[] selectionArgs = {Long.toString(synsetId), Long.toString(wordId)};
@@ -1668,7 +1669,7 @@ abstract public class BaseModule extends Module
 			@Override
 			public Loader<Cursor> onCreateLoader(final int loaderId, final Bundle loaderArgs)
 			{
-				final Uri uri = Uri.parse(AdjPositions_AdjPositionTypes.CONTENT_URI);
+				final Uri uri = Uri.parse(WordNetProvider.makeUri(AdjPositions_AdjPositionTypes.CONTENT_URI_TABLE));
 				final String[] projection = {AdjPositions_AdjPositionTypes.POSITIONNAME};
 				final String selection = AdjPositions_AdjPositionTypes.SYNSETID + " = ?";
 				final String[] selectionArgs = {Long.toString(synsetId)};
@@ -1738,7 +1739,7 @@ abstract public class BaseModule extends Module
 			@Override
 			public Loader<Cursor> onCreateLoader(final int loaderId, final Bundle loaderArgs)
 			{
-				final Uri uri = Uri.parse(AdjPositions_AdjPositionTypes.CONTENT_URI);
+				final Uri uri = Uri.parse(WordNetProvider.makeUri(AdjPositions_AdjPositionTypes.CONTENT_URI_TABLE));
 				final String[] projection = {AdjPositions_AdjPositionTypes.POSITIONNAME};
 				final String selection = AdjPositions_AdjPositionTypes.SYNSETID + " = ? AND " + AdjPositions_AdjPositionTypes.WORDID + " = ?";
 				final String[] selectionArgs = {Long.toString(synsetId), Long.toString(wordId)};
@@ -1806,7 +1807,7 @@ abstract public class BaseModule extends Module
 			@Override
 			public Loader<Cursor> onCreateLoader(final int loaderId, final Bundle loaderArgs)
 			{
-				final Uri uri = Uri.parse(MorphMaps_Morphs.CONTENT_URI);
+				final Uri uri = Uri.parse(WordNetProvider.makeUri(MorphMaps_Morphs.CONTENT_URI_TABLE));
 				final String[] projection = {MorphMaps_Morphs.POS, MorphMaps_Morphs.MORPH};
 				final String selection = MorphMaps_Morphs.WORDID + " = ?";
 				final String[] selectionArgs = {Long.toString(wordId)};

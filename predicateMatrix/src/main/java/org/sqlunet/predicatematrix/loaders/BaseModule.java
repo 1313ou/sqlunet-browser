@@ -21,6 +21,7 @@ import org.sqlunet.predicatematrix.R;
 import org.sqlunet.predicatematrix.provider.PredicateMatrixContract;
 import org.sqlunet.predicatematrix.provider.PredicateMatrixContract.Pm_X;
 import org.sqlunet.predicatematrix.provider.PredicateMatrixContract.PredicateMatrix;
+import org.sqlunet.predicatematrix.provider.PredicateMatrixProvider;
 import org.sqlunet.predicatematrix.style.PredicateMatrixFactories;
 import org.sqlunet.propbank.PbRoleSetPointer;
 import org.sqlunet.propbank.browser.PbRoleSetActivity;
@@ -702,7 +703,7 @@ abstract class BaseModule extends Module
 		@Override
 		public Loader<Cursor> onCreateLoader(final int loaderId, final Bundle loaderArgs)
 		{
-			final Uri uri = Uri.parse(Pm_X.CONTENT_URI);
+			final Uri uri = Uri.parse(PredicateMatrixProvider.makeUri(Pm_X.CONTENT_URI_TABLE));
 			final String[] projection = { //
 					PredicateMatrix.PMID, //
 					PredicateMatrix.PMROLEID, //

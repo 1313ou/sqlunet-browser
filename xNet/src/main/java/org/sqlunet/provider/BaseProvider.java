@@ -11,8 +11,10 @@ import android.util.Log;
 import org.sqlunet.settings.StorageSettings;
 import org.sqlunet.sql.Utils;
 
+import java.io.InputStream;
 import java.util.Iterator;
 import java.util.LinkedList;
+import java.util.Properties;
 
 /**
  * SqlUNet provider
@@ -22,6 +24,31 @@ import java.util.LinkedList;
 public abstract class BaseProvider extends ContentProvider
 {
 	static private final String TAG = "BaseProvider";
+
+	// C O N T E N T   P R O V I D E R   A U T H O R I T Y
+
+	static protected String makeAuthority(final String configKey)
+	{
+		try
+		{
+			final InputStream is = BaseProvider.class.getResourceAsStream("/org/sqlunet/config.properties");
+			final Properties properties = new Properties();
+			properties.load(is);
+
+			String authority = properties.getProperty(configKey);
+			if (authority != null && !authority.isEmpty())
+			{
+				return authority;
+			}
+			throw new RuntimeException("Null provider key=" + configKey);
+		}
+		catch (Exception e)
+		{
+			throw new RuntimeException(e);
+		}
+	}
+
+	// S Q L   B U F F E R
 
 	/**
 	 * SQL statement buffer

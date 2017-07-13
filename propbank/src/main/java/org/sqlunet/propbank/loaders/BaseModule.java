@@ -17,6 +17,7 @@ import org.sqlunet.propbank.provider.PropBankContract.PbRoleSets_PbExamples;
 import org.sqlunet.propbank.provider.PropBankContract.PbRoleSets_PbRoles;
 import org.sqlunet.propbank.provider.PropBankContract.PbRoleSets_X;
 import org.sqlunet.propbank.provider.PropBankContract.Words_PbRoleSets;
+import org.sqlunet.propbank.provider.PropBankProvider;
 import org.sqlunet.propbank.style.PropBankFactories;
 import org.sqlunet.propbank.style.PropBankSpanner;
 import org.sqlunet.style.Spanner;
@@ -124,7 +125,7 @@ abstract class BaseModule extends Module
 			@Override
 			public Loader<Cursor> onCreateLoader(final int loaderId, final Bundle loaderArgs)
 			{
-				final Uri uri = Uri.parse(PbRoleSets_X.CONTENT_URI);
+				final Uri uri = Uri.parse(PropBankProvider.makeUri(PbRoleSets_X.CONTENT_URI_TABLE));
 				final String[] projection = { //
 						PbRoleSets_X.ROLESETID, //
 						PbRoleSets_X.ROLESETNAME, //
@@ -216,7 +217,7 @@ abstract class BaseModule extends Module
 			@Override
 			public Loader<Cursor> onCreateLoader(final int loaderId, final Bundle loaderArgs)
 			{
-				final Uri uri = Uri.parse(Words_PbRoleSets.CONTENT_URI);
+				final Uri uri = Uri.parse(PropBankProvider.makeUri(Words_PbRoleSets.CONTENT_URI_TABLE));
 				final String[] projection = { //
 						Words_PbRoleSets.ROLESETID, //
 						Words_PbRoleSets.ROLESETNAME, //
@@ -308,7 +309,7 @@ abstract class BaseModule extends Module
 			@Override
 			public Loader<Cursor> onCreateLoader(final int loaderId, final Bundle loaderArgs)
 			{
-				final Uri uri = Uri.parse(PbRoleSets_PbRoles.CONTENT_URI);
+				final Uri uri = Uri.parse(PropBankProvider.makeUri(PbRoleSets_PbRoles.CONTENT_URI_TABLE));
 				final String[] projection = { //
 						PbRoleSets_PbRoles.ROLEID, //
 						PbRoleSets_PbRoles.ROLEDESCR, //
@@ -418,7 +419,7 @@ abstract class BaseModule extends Module
 			@Override
 			public Loader<Cursor> onCreateLoader(final int loaderId, final Bundle loaderArgs)
 			{
-				final Uri uri = Uri.parse(PbRoleSets_PbExamples.CONTENT_URI);
+				final Uri uri = Uri.parse(PropBankProvider.makeUri(PbRoleSets_PbExamples.CONTENT_URI_TABLE));
 				final String[] projection = { //
 						PbRoleSets_PbExamples.TEXT, //
 						PbRoleSets_PbExamples.REL, //

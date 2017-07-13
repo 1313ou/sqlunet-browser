@@ -20,10 +20,20 @@ import org.sqlunet.sql.SqlFormatter;
 public class PropBankProvider extends BaseProvider
 {
 	static private final String TAG = "PropBankProvider";
+
+	// C O N T E N T   P R O V I D E R   A U T H O R I T Y
+
+	static private String AUTHORITY = makeAuthority("propbankprovider");
+
 	// U R I M A T C H E R
 
 	// uri matcher
-	static private final UriMatcher uriMatcher;
+	static private final UriMatcher uriMatcher = new UriMatcher(UriMatcher.NO_MATCH);
+
+	static
+	{
+		matchURIs();
+	}
 
 	// table codes
 	static private final int PBROLESET = 10;
@@ -42,21 +52,25 @@ public class PropBankProvider extends BaseProvider
 	static private final int LOOKUP_FTS_EXAMPLES_X = 511;
 	static private final int LOOKUP_FTS_EXAMPLES_X_BY_EXAMPLE = 512;
 
-	static
+	static private void matchURIs()
 	{
-		uriMatcher = new UriMatcher(UriMatcher.NO_MATCH);
-		PropBankProvider.uriMatcher.addURI(PropBankContract.AUTHORITY, PropBankContract.PbRoleSets.TABLE, PropBankProvider.PBROLESET);
-		PropBankProvider.uriMatcher.addURI(PropBankContract.AUTHORITY, PropBankContract.PbRoleSets.TABLE, PropBankProvider.PBROLESETS);
-		PropBankProvider.uriMatcher.addURI(PropBankContract.AUTHORITY, PropBankContract.PbRoleSets_X.TABLE, PropBankProvider.PBROLESETS_X);
-		PropBankProvider.uriMatcher.addURI(PropBankContract.AUTHORITY, PropBankContract.PbRoleSets_X.TABLE_BY_ROLESET, PropBankProvider.PBROLESETS_X_BY_ROLESET);
-		PropBankProvider.uriMatcher.addURI(PropBankContract.AUTHORITY, PropBankContract.Words_PbRoleSets.TABLE, PropBankProvider.WORDS_PBROLESETS);
-		PropBankProvider.uriMatcher.addURI(PropBankContract.AUTHORITY, PropBankContract.PbRoleSets_PbRoles.TABLE, PropBankProvider.PBROLESETS_PBROLES);
-		PropBankProvider.uriMatcher.addURI(PropBankContract.AUTHORITY, PropBankContract.PbRoleSets_PbExamples.TABLE, PropBankProvider.PBROLESETS_PBEXAMPLES);
-		PropBankProvider.uriMatcher.addURI(PropBankContract.AUTHORITY, PropBankContract.PbRoleSets_PbExamples.TABLE_BY_EXAMPLE, PropBankProvider.PBROLESETS_PBEXAMPLES_BY_EXAMPLE);
+		PropBankProvider.uriMatcher.addURI(AUTHORITY, PropBankContract.PbRoleSets.TABLE, PropBankProvider.PBROLESET);
+		PropBankProvider.uriMatcher.addURI(AUTHORITY, PropBankContract.PbRoleSets.TABLE, PropBankProvider.PBROLESETS);
+		PropBankProvider.uriMatcher.addURI(AUTHORITY, PropBankContract.PbRoleSets_X.TABLE, PropBankProvider.PBROLESETS_X);
+		PropBankProvider.uriMatcher.addURI(AUTHORITY, PropBankContract.PbRoleSets_X.TABLE_BY_ROLESET, PropBankProvider.PBROLESETS_X_BY_ROLESET);
+		PropBankProvider.uriMatcher.addURI(AUTHORITY, PropBankContract.Words_PbRoleSets.TABLE, PropBankProvider.WORDS_PBROLESETS);
+		PropBankProvider.uriMatcher.addURI(AUTHORITY, PropBankContract.PbRoleSets_PbRoles.TABLE, PropBankProvider.PBROLESETS_PBROLES);
+		PropBankProvider.uriMatcher.addURI(AUTHORITY, PropBankContract.PbRoleSets_PbExamples.TABLE, PropBankProvider.PBROLESETS_PBEXAMPLES);
+		PropBankProvider.uriMatcher.addURI(AUTHORITY, PropBankContract.PbRoleSets_PbExamples.TABLE_BY_EXAMPLE, PropBankProvider.PBROLESETS_PBEXAMPLES_BY_EXAMPLE);
 
-		PropBankProvider.uriMatcher.addURI(PropBankContract.AUTHORITY, PropBankContract.Lookup_PbExamples.TABLE + "/", PropBankProvider.LOOKUP_FTS_EXAMPLES);
-		PropBankProvider.uriMatcher.addURI(PropBankContract.AUTHORITY, PropBankContract.Lookup_PbExamples_X.TABLE + "/", PropBankProvider.LOOKUP_FTS_EXAMPLES_X);
-		PropBankProvider.uriMatcher.addURI(PropBankContract.AUTHORITY, PropBankContract.Lookup_PbExamples_X.TABLE_BY_EXAMPLE + "/", PropBankProvider.LOOKUP_FTS_EXAMPLES_X_BY_EXAMPLE);
+		PropBankProvider.uriMatcher.addURI(AUTHORITY, PropBankContract.Lookup_PbExamples.TABLE + "/", PropBankProvider.LOOKUP_FTS_EXAMPLES);
+		PropBankProvider.uriMatcher.addURI(AUTHORITY, PropBankContract.Lookup_PbExamples_X.TABLE + "/", PropBankProvider.LOOKUP_FTS_EXAMPLES_X);
+		PropBankProvider.uriMatcher.addURI(AUTHORITY, PropBankContract.Lookup_PbExamples_X.TABLE_BY_EXAMPLE + "/", PropBankProvider.LOOKUP_FTS_EXAMPLES_X_BY_EXAMPLE);
+	}
+
+	static public String makeUri(final String table)
+	{
+		return BaseProvider.SCHEME + AUTHORITY + '/' + table;
 	}
 
 	// C O N S T R U C T O R
@@ -77,29 +91,29 @@ public class PropBankProvider extends BaseProvider
 		switch (PropBankProvider.uriMatcher.match(uri))
 		{
 			case PBROLESET:
-				return BaseProvider.VENDOR + ".android.cursor.item/" + BaseProvider.VENDOR + '.' + PropBankContract.AUTHORITY + '.' + PropBankContract.PbRoleSets.TABLE;
+				return BaseProvider.VENDOR + ".android.cursor.item/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + PropBankContract.PbRoleSets.TABLE;
 			case PBROLESETS:
-				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + PropBankContract.AUTHORITY + '.' + PropBankContract.PbRoleSets.TABLE;
+				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + PropBankContract.PbRoleSets.TABLE;
 			case PBROLESETS_X:
-				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + PropBankContract.AUTHORITY + '.' + PropBankContract.PbRoleSets_X.TABLE;
+				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + PropBankContract.PbRoleSets_X.TABLE;
 			case PBROLESETS_X_BY_ROLESET:
-				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + PropBankContract.AUTHORITY + '.' + PropBankContract.PbRoleSets_X.TABLE_BY_ROLESET;
+				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + PropBankContract.PbRoleSets_X.TABLE_BY_ROLESET;
 			case WORDS_PBROLESETS:
-				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + PropBankContract.AUTHORITY + '.' + PropBankContract.Words_PbRoleSets.TABLE;
+				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + PropBankContract.Words_PbRoleSets.TABLE;
 			case PBROLESETS_PBROLES:
-				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + PropBankContract.AUTHORITY + '.' + PropBankContract.PbRoleSets_PbRoles.TABLE;
+				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + PropBankContract.PbRoleSets_PbRoles.TABLE;
 			case PBROLESETS_PBEXAMPLES:
-				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + PropBankContract.AUTHORITY + '.' + PropBankContract.PbRoleSets_PbExamples.TABLE;
+				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + PropBankContract.PbRoleSets_PbExamples.TABLE;
 			case PBROLESETS_PBEXAMPLES_BY_EXAMPLE:
-				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + PropBankContract.AUTHORITY + '.' + PropBankContract.PbRoleSets_PbExamples.TABLE_BY_EXAMPLE;
+				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + PropBankContract.PbRoleSets_PbExamples.TABLE_BY_EXAMPLE;
 
 			// S E A R C H
 			case LOOKUP_FTS_EXAMPLES:
-				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + PropBankContract.AUTHORITY + '.' + PropBankContract.Lookup_PbExamples.TABLE;
+				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + PropBankContract.Lookup_PbExamples.TABLE;
 			case LOOKUP_FTS_EXAMPLES_X:
-				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + PropBankContract.AUTHORITY + '.' + PropBankContract.Lookup_PbExamples_X.TABLE;
+				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + PropBankContract.Lookup_PbExamples_X.TABLE;
 			case LOOKUP_FTS_EXAMPLES_X_BY_EXAMPLE:
-				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + PropBankContract.AUTHORITY + '.' + PropBankContract.Lookup_PbExamples_X.TABLE_BY_EXAMPLE;
+				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + PropBankContract.Lookup_PbExamples_X.TABLE_BY_EXAMPLE;
 			default:
 				throw new UnsupportedOperationException("Illegal MIME type");
 		}

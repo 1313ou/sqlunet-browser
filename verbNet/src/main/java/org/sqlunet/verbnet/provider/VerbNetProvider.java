@@ -21,10 +21,18 @@ public class VerbNetProvider extends BaseProvider
 {
 	static private final String TAG = "VerbNetProvider";
 
+	// C O N T E N T   P R O V I D E R   A U T H O R I T Y
+
+	static private String AUTHORITY = makeAuthority("verbnetprovider");
+
 	// U R I M A T C H E R
 
-	// uri matcher
-	static private final UriMatcher uriMatcher;
+	static private UriMatcher uriMatcher = new UriMatcher(UriMatcher.NO_MATCH);
+
+	static
+	{
+		matchURIs();
+	}
 
 	// table codes
 	static private final int VNCLASS = 10;
@@ -41,20 +49,24 @@ public class VerbNetProvider extends BaseProvider
 	static private final int LOOKUP_FTS_EXAMPLES = 501;
 	static private final int LOOKUP_FTS_EXAMPLES_X = 511;
 	static private final int LOOKUP_FTS_EXAMPLES_X_BY_EXAMPLE = 512;
-
-	static
+	
+	static private void matchURIs()
 	{
-		uriMatcher = new UriMatcher(UriMatcher.NO_MATCH);
-		VerbNetProvider.uriMatcher.addURI(VerbNetContract.AUTHORITY, VerbNetContract.VnClasses.TABLE, VerbNetProvider.VNCLASS);
-		VerbNetProvider.uriMatcher.addURI(VerbNetContract.AUTHORITY, VerbNetContract.VnClasses.TABLE, VerbNetProvider.VNCLASSES);
-		VerbNetProvider.uriMatcher.addURI(VerbNetContract.AUTHORITY, VerbNetContract.Words_VnClasses.TABLE, VerbNetProvider.WORDS_VNCLASSES);
-		VerbNetProvider.uriMatcher.addURI(VerbNetContract.AUTHORITY, VerbNetContract.VnClasses_VnMembers_X.TABLE_BY_WORD, VerbNetProvider.VNCLASSES_VNMEMBERS_X_BY_WORD);
-		VerbNetProvider.uriMatcher.addURI(VerbNetContract.AUTHORITY, VerbNetContract.VnClasses_VnRoles_X.TABLE_BY_ROLE, VerbNetProvider.VNCLASSES_VNROLES_X_BY_VNROLE);
-		VerbNetProvider.uriMatcher.addURI(VerbNetContract.AUTHORITY, VerbNetContract.VnClasses_VnFrames_X.TABLE_BY_FRAME, VerbNetProvider.VNCLASSES_VNFRAMES_X_BY_VNFRAME);
+		VerbNetProvider.uriMatcher.addURI(AUTHORITY, VerbNetContract.VnClasses.TABLE, VerbNetProvider.VNCLASS);
+		VerbNetProvider.uriMatcher.addURI(AUTHORITY, VerbNetContract.VnClasses.TABLE, VerbNetProvider.VNCLASSES);
+		VerbNetProvider.uriMatcher.addURI(AUTHORITY, VerbNetContract.Words_VnClasses.TABLE, VerbNetProvider.WORDS_VNCLASSES);
+		VerbNetProvider.uriMatcher.addURI(AUTHORITY, VerbNetContract.VnClasses_VnMembers_X.TABLE_BY_WORD, VerbNetProvider.VNCLASSES_VNMEMBERS_X_BY_WORD);
+		VerbNetProvider.uriMatcher.addURI(AUTHORITY, VerbNetContract.VnClasses_VnRoles_X.TABLE_BY_ROLE, VerbNetProvider.VNCLASSES_VNROLES_X_BY_VNROLE);
+		VerbNetProvider.uriMatcher.addURI(AUTHORITY, VerbNetContract.VnClasses_VnFrames_X.TABLE_BY_FRAME, VerbNetProvider.VNCLASSES_VNFRAMES_X_BY_VNFRAME);
 
-		VerbNetProvider.uriMatcher.addURI(VerbNetContract.AUTHORITY, VerbNetContract.Lookup_VnExamples.TABLE + "/", VerbNetProvider.LOOKUP_FTS_EXAMPLES);
-		VerbNetProvider.uriMatcher.addURI(VerbNetContract.AUTHORITY, VerbNetContract.Lookup_VnExamples_X.TABLE + "/", VerbNetProvider.LOOKUP_FTS_EXAMPLES_X);
-		VerbNetProvider.uriMatcher.addURI(VerbNetContract.AUTHORITY, VerbNetContract.Lookup_VnExamples_X.TABLE_BY_EXAMPLE + "/", VerbNetProvider.LOOKUP_FTS_EXAMPLES_X_BY_EXAMPLE);
+		VerbNetProvider.uriMatcher.addURI(AUTHORITY, VerbNetContract.Lookup_VnExamples.TABLE + "/", VerbNetProvider.LOOKUP_FTS_EXAMPLES);
+		VerbNetProvider.uriMatcher.addURI(AUTHORITY, VerbNetContract.Lookup_VnExamples_X.TABLE + "/", VerbNetProvider.LOOKUP_FTS_EXAMPLES_X);
+		VerbNetProvider.uriMatcher.addURI(AUTHORITY, VerbNetContract.Lookup_VnExamples_X.TABLE_BY_EXAMPLE + "/", VerbNetProvider.LOOKUP_FTS_EXAMPLES_X_BY_EXAMPLE);
+	}
+
+	static public String makeUri(final String table)
+	{
+		return BaseProvider.SCHEME + AUTHORITY + '/' + table;
 	}
 
 	// C O N S T R U C T O R
@@ -77,31 +89,31 @@ public class VerbNetProvider extends BaseProvider
 			// I T E M S
 
 			case VNCLASS:
-				return BaseProvider.VENDOR + ".android.cursor.item/" + BaseProvider.VENDOR + '.' + VerbNetContract.AUTHORITY + '.' + VerbNetContract.VnClasses.TABLE;
+				return BaseProvider.VENDOR + ".android.cursor.item/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + VerbNetContract.VnClasses.TABLE;
 
 			// T A B L E S
 
 			case VNCLASSES:
-				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + VerbNetContract.AUTHORITY + '.' + VerbNetContract.VnClasses.TABLE;
+				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + VerbNetContract.VnClasses.TABLE;
 
 			// J O I N S
 
 			case WORDS_VNCLASSES:
-				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + VerbNetContract.AUTHORITY + '.' + VerbNetContract.Words_VnClasses.TABLE;
+				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + VerbNetContract.Words_VnClasses.TABLE;
 			case VNCLASSES_VNMEMBERS_X_BY_WORD:
-				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + VerbNetContract.AUTHORITY + '.' + VerbNetContract.VnClasses_VnMembers_X.TABLE_BY_WORD;
+				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + VerbNetContract.VnClasses_VnMembers_X.TABLE_BY_WORD;
 			case VNCLASSES_VNROLES_X_BY_VNROLE:
-				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + VerbNetContract.AUTHORITY + '.' + VerbNetContract.VnClasses_VnRoles_X.TABLE_BY_ROLE;
+				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + VerbNetContract.VnClasses_VnRoles_X.TABLE_BY_ROLE;
 			case VNCLASSES_VNFRAMES_X_BY_VNFRAME:
-				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + VerbNetContract.AUTHORITY + '.' + VerbNetContract.VnClasses_VnFrames_X.TABLE_BY_FRAME;
+				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + VerbNetContract.VnClasses_VnFrames_X.TABLE_BY_FRAME;
 
 			// S E A R C H
 			case LOOKUP_FTS_EXAMPLES:
-				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + VerbNetContract.AUTHORITY + '.' + VerbNetContract.Lookup_VnExamples.TABLE;
+				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + VerbNetContract.Lookup_VnExamples.TABLE;
 			case LOOKUP_FTS_EXAMPLES_X:
-				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + VerbNetContract.AUTHORITY + '.' + VerbNetContract.Lookup_VnExamples_X.TABLE;
+				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + VerbNetContract.Lookup_VnExamples_X.TABLE;
 			case LOOKUP_FTS_EXAMPLES_X_BY_EXAMPLE:
-				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + VerbNetContract.AUTHORITY + '.' + VerbNetContract.Lookup_VnExamples_X.TABLE_BY_EXAMPLE;
+				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + VerbNetContract.Lookup_VnExamples_X.TABLE_BY_EXAMPLE;
 
 			default:
 				throw new UnsupportedOperationException("Illegal MIME type");

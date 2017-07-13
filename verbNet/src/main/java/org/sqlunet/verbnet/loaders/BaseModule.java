@@ -20,6 +20,7 @@ import org.sqlunet.verbnet.provider.VerbNetContract.VnClasses;
 import org.sqlunet.verbnet.provider.VerbNetContract.VnClasses_VnFrames_X;
 import org.sqlunet.verbnet.provider.VerbNetContract.VnClasses_VnMembers_X;
 import org.sqlunet.verbnet.provider.VerbNetContract.VnClasses_VnRoles_X;
+import org.sqlunet.verbnet.provider.VerbNetProvider;
 import org.sqlunet.verbnet.style.VerbNetFactories;
 import org.sqlunet.verbnet.style.VerbNetSemanticsProcessor;
 import org.sqlunet.verbnet.style.VerbNetSemanticsSpanner;
@@ -149,7 +150,7 @@ abstract class BaseModule extends Module
 			@Override
 			public Loader<Cursor> onCreateLoader(final int loaderId, final Bundle loaderArgs)
 			{
-				final Uri uri = Uri.parse(VnClasses.CONTENT_URI);
+				final Uri uri = Uri.parse(VerbNetProvider.makeUri(VnClasses.CONTENT_URI_TABLE));
 				final String[] projection = { //
 						VnClasses.CLASSID, //
 						VnClasses.CLASS, //
@@ -239,7 +240,7 @@ abstract class BaseModule extends Module
 			@Override
 			public Loader<Cursor> onCreateLoader(final int loaderId, final Bundle loaderArgs)
 			{
-				final Uri uri = Uri.parse(VnClasses_VnMembers_X.CONTENT_URI);
+				final Uri uri = Uri.parse(VerbNetProvider.makeUri(VnClasses_VnMembers_X.CONTENT_URI_TABLE));
 				final String[] projection = { //
 						VnClasses_VnMembers_X.WORDID, //
 						VnClasses_VnMembers_X.VNWORDID, //
@@ -372,7 +373,7 @@ abstract class BaseModule extends Module
 			@Override
 			public Loader<Cursor> onCreateLoader(final int loaderId, final Bundle loaderArgs)
 			{
-				final Uri uri = Uri.parse(VnClasses_VnRoles_X.CONTENT_URI);
+				final Uri uri = Uri.parse(VerbNetProvider.makeUri(VnClasses_VnRoles_X.CONTENT_URI_TABLE));
 				final String[] projection = { //
 						VnClasses_VnRoles_X.ROLEID, //
 						VnClasses_VnRoles_X.ROLETYPE, //
@@ -457,7 +458,7 @@ abstract class BaseModule extends Module
 			@Override
 			public Loader<Cursor> onCreateLoader(final int loaderId, final Bundle loaderArgs)
 			{
-				final Uri uri = Uri.parse(VnClasses_VnFrames_X.CONTENT_URI);
+				final Uri uri = Uri.parse(VerbNetProvider.makeUri(VnClasses_VnFrames_X.CONTENT_URI_TABLE));
 				final String[] projection = { //
 						VnClasses_VnFrames_X.FRAMEID, //
 						VnClasses_VnFrames_X.NUMBER, //

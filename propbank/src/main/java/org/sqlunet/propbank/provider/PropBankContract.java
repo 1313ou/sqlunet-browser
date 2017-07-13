@@ -1,8 +1,6 @@
 package org.sqlunet.propbank.provider;
 
 
-import org.sqlunet.provider.BaseProvider;
-
 /**
  * PropBank provider contract
  *
@@ -10,8 +8,6 @@ import org.sqlunet.provider.BaseProvider;
  */
 public class PropBankContract
 {
-	static public final String AUTHORITY = "org.sqlunet.propbank.provider";
-
 	// A L I A S E S
 
 	static public final String EXAMPLE = "e";
@@ -25,7 +21,7 @@ public class PropBankContract
 	static public final class PbRoleSets
 	{
 		static public final String TABLE = "pbrolesets";
-		static public final String CONTENT_URI = BaseProvider.SCHEME + PropBankContract.AUTHORITY + '/' + PbRoleSets.TABLE;
+		static public final String CONTENT_URI_TABLE = PbRoleSets.TABLE;
 		static public final String ROLESETID = "rolesetid";
 		static public final String ROLESETNAME = "rolesetname";
 		static public final String ROLESETDESC = "rolesetdescr";
@@ -36,7 +32,7 @@ public class PropBankContract
 	{
 		static public final String TABLE = "pbrolesets_x";
 		static public final String TABLE_BY_ROLESET = "pbrolesets_x_by_roleset";
-		static public final String CONTENT_URI = BaseProvider.SCHEME + PropBankContract.AUTHORITY + '/' + PbRoleSets_X.TABLE_BY_ROLESET;
+		static public final String CONTENT_URI_TABLE = PbRoleSets_X.TABLE_BY_ROLESET;
 		static public final String ROLESETID = "rolesetid";
 		static public final String ROLESETNAME = "rolesetname";
 		static public final String ROLESETDESC = "rolesetdescr";
@@ -49,7 +45,7 @@ public class PropBankContract
 	static public final class Words_PbRoleSets
 	{
 		static public final String TABLE = "words_pbrolesets";
-		static public final String CONTENT_URI = BaseProvider.SCHEME + PropBankContract.AUTHORITY + '/' + Words_PbRoleSets.TABLE;
+		static public final String CONTENT_URI_TABLE = Words_PbRoleSets.TABLE;
 		static public final String WORDID = "wordid";
 		static public final String POS = "pos";
 		static public final String ROLESETID = "rolesetid";
@@ -61,7 +57,7 @@ public class PropBankContract
 	static public final class PbRoleSets_PbRoles
 	{
 		static public final String TABLE = "pbrolesets_pbroles";
-		static public final String CONTENT_URI = BaseProvider.SCHEME + PropBankContract.AUTHORITY + '/' + PbRoleSets_PbRoles.TABLE;
+		static public final String CONTENT_URI_TABLE = PbRoleSets_PbRoles.TABLE;
 		static public final String ROLESETID = "rolesetid";
 		static public final String ROLEID = "roleid";
 		static public final String ROLEDESCR = "roledescr";
@@ -74,7 +70,7 @@ public class PropBankContract
 	{
 		static public final String TABLE = "pbrolesets_pbexamples";
 		static public final String TABLE_BY_EXAMPLE = "pbrolesets_pbexamples_by_example";
-		static public final String CONTENT_URI = BaseProvider.SCHEME + PropBankContract.AUTHORITY + '/' + PbRoleSets_PbExamples.TABLE_BY_EXAMPLE;
+		static public final String CONTENT_URI_TABLE = PbRoleSets_PbExamples.TABLE_BY_EXAMPLE;
 		static public final String ROLESETID = "rolesetid";
 		static public final String TEXT = "text";
 		static public final String REL = "rel";
@@ -96,7 +92,7 @@ public class PropBankContract
 	static public final class Lookup_PbExamples
 	{
 		static public final String TABLE = "fts_pbexamples";
-		static public final String CONTENT_URI = BaseProvider.SCHEME + PropBankContract.AUTHORITY + '/' + Lookup_PbExamples.TABLE;
+		static public final String CONTENT_URI_TABLE = Lookup_PbExamples.TABLE;
 		static public final String EXAMPLEID = "exampleid";
 		static public final String TEXT = "text";
 		static public final String ROLESETID = "rolesetid";
@@ -107,7 +103,7 @@ public class PropBankContract
 	{
 		static public final String TABLE = "fts_pbexamples_x";
 		static public final String TABLE_BY_EXAMPLE = "fts_pbexamples_x_by_examples";
-		static public final String CONTENT_URI = BaseProvider.SCHEME + PropBankContract.AUTHORITY + '/' + Lookup_PbExamples_X.TABLE_BY_EXAMPLE;
+		static public final String CONTENT_URI_TABLE = Lookup_PbExamples_X.TABLE_BY_EXAMPLE;
 		static public final String EXAMPLEID = "exampleid";
 		static public final String TEXT = "text";
 		static public final String ROLESETID = "rolesetid";

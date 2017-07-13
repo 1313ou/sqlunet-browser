@@ -41,9 +41,6 @@ import org.sqlunet.framenet.provider.FrameNetContract.Words_LexUnits_Frames;
 import org.sqlunet.provider.BaseProvider;
 import org.sqlunet.sql.SqlFormatter;
 
-import java.io.InputStream;
-import java.util.Properties;
-
 /**
  * FrameNet provider
  *
@@ -53,27 +50,9 @@ public class FrameNetProvider extends BaseProvider
 {
 	static private final String TAG = "AFrameNetProvider";
 
-	static private String AUTHORITY;
+	// C O N T E N T   P R O V I D E R   A U T H O R I T Y
 
-	static
-	{
-		try
-		{
-			final InputStream is = FrameNetProvider.class.getResourceAsStream("/org/sqlunet/config.properties");
-			final Properties properties = new Properties();
-			properties.load(is);
-
-			AUTHORITY = properties.getProperty("framenetprovider");
-			if (AUTHORITY == null || AUTHORITY.isEmpty())
-			{
-				throw new RuntimeException("Null framenet provider");
-			}
-		}
-		catch (Exception e)
-		{
-			throw new RuntimeException(e);
-		}
-	}
+	static private String AUTHORITY = makeAuthority("framenetprovider");
 
 	// U R I M A T C H E R
 

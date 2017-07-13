@@ -12,10 +12,8 @@ import android.util.Log;
 
 import org.sqlunet.provider.ManagerContract.TablesAndIndices;
 
-import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Properties;
 
 /**
  * 5House-keeping) Manager provider
@@ -26,27 +24,9 @@ public class ManagerProvider extends BaseProvider
 {
 	static private final String TAG = "ManagerProvider";
 
-	static private String AUTHORITY;
+	// C O N T E N T   P R O V I D E R   A U T H O R I T Y
 
-	static
-	{
-		try
-		{
-			final InputStream is = ManagerProvider.class.getResourceAsStream("/org/sqlunet/config.properties");
-			final Properties properties = new Properties();
-			properties.load(is);
-
-			AUTHORITY = properties.getProperty("managerprovider");
-			if (AUTHORITY == null || AUTHORITY.isEmpty())
-			{
-				throw new RuntimeException("Null framenet provider");
-			}
-		}
-		catch (Exception e)
-		{
-			throw new RuntimeException(e);
-		}
-	}
+	static private String AUTHORITY = makeAuthority("managerprovider");
 
 	// U R I M A T C H E R
 
@@ -62,7 +42,6 @@ public class ManagerProvider extends BaseProvider
 
 	static void matchURIs()
 	{
-		uriMatcher = new UriMatcher(UriMatcher.NO_MATCH);
 		ManagerProvider.uriMatcher.addURI(AUTHORITY, TablesAndIndices.TABLE, ManagerProvider.TABLES_AND_INDICES);
 	}
 

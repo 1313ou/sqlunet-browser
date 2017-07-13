@@ -14,18 +14,16 @@ import org.sqlunet.provider.XSqlUNetContract.PredicateMatrix;
 import org.sqlunet.provider.XSqlUNetContract.PredicateMatrix_FrameNet;
 import org.sqlunet.provider.XSqlUNetContract.PredicateMatrix_PropBank;
 import org.sqlunet.provider.XSqlUNetContract.PredicateMatrix_VerbNet;
+import org.sqlunet.provider.XSqlUNetContract.Sources;
 import org.sqlunet.provider.XSqlUNetContract.Words_FnWords_FnFrames_U;
 import org.sqlunet.provider.XSqlUNetContract.Words_FnWords_PbWords_VnWords;
 import org.sqlunet.provider.XSqlUNetContract.Words_PbWords_PbRolesets_U;
 import org.sqlunet.provider.XSqlUNetContract.Words_VnWords_VnClasses_U;
-import org.sqlunet.provider.XSqlUNetContract.Sources;
 import org.sqlunet.sql.SqlFormatter;
 
-import java.io.InputStream;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Properties;
 
 /**
  * Extended cross WordNet-FrameNet-PropBank-VerbNet provider
@@ -36,27 +34,9 @@ public class XSqlUNetProvider extends BaseProvider
 {
 	static private final String TAG = "XSqlUNetProvider";
 
-	static public String AUTHORITY;
+	// C O N T E N T   P R O V I D E R   A U T H O R I T Y
 
-	static
-	{
-		try
-		{
-			final InputStream is = XSqlUNetProvider.class.getResourceAsStream("/org/sqlunet/config.properties");
-			final Properties properties = new Properties();
-			properties.load(is);
-
-			AUTHORITY = properties.getProperty("xsqlunetprovider");
-			if (AUTHORITY == null || AUTHORITY.isEmpty())
-			{
-				throw new RuntimeException("Null xsqlunet provider");
-			}
-		}
-		catch (Exception e)
-		{
-			throw new RuntimeException(e);
-		}
-	}
+	static private String AUTHORITY = makeAuthority("xsqlunetprovider");
 
 	// U R I M A T C H E R
 
@@ -80,7 +60,6 @@ public class XSqlUNetProvider extends BaseProvider
 
 	static private void matchURIs()
 	{
-		uriMatcher = new UriMatcher(UriMatcher.NO_MATCH);
 		XSqlUNetProvider.uriMatcher.addURI(AUTHORITY, Words_FnWords_PbWords_VnWords.TABLE, XSqlUNetProvider.WORDS_FNWORDS_PBWORDS_VNWORDS);
 		XSqlUNetProvider.uriMatcher.addURI(AUTHORITY, PredicateMatrix.TABLE, XSqlUNetProvider.PREDICATEMATRIX);
 		XSqlUNetProvider.uriMatcher.addURI(AUTHORITY, PredicateMatrix_VerbNet.TABLE, XSqlUNetProvider.PREDICATEMATRIX_VERBNET);

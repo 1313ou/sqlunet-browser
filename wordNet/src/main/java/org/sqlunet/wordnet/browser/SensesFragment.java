@@ -25,6 +25,7 @@ import org.sqlunet.wordnet.R;
 import org.sqlunet.wordnet.SensePointer;
 import org.sqlunet.wordnet.provider.WordNetContract;
 import org.sqlunet.wordnet.provider.WordNetContract.Words_Senses_CasedWords_Synsets_PosTypes_LexDomains;
+import org.sqlunet.wordnet.provider.WordNetProvider;
 
 import java.util.Locale;
 
@@ -242,7 +243,7 @@ public class SensesFragment extends ListFragment
 			@Override
 			public Loader<Cursor> onCreateLoader(final int loaderId, final Bundle loaderArgs)
 			{
-				final Uri uri = Uri.parse(Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.CONTENT_URI);
+				final Uri uri = Uri.parse(WordNetProvider.makeUri(Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.CONTENT_URI_TABLE));
 				final String[] projection = { //
 						WordNetContract.Synsets.SYNSETID + " AS _id", //
 						WordNetContract.Words.WORDID, //

@@ -21,6 +21,7 @@ import org.sqlunet.provider.XSqlUNetContract.Words_XNet_U;
 import org.sqlunet.provider.XSqlUNetProvider;
 import org.sqlunet.wordnet.provider.WordNetContract;
 import org.sqlunet.wordnet.provider.WordNetContract.Words_Senses_CasedWords_Synsets_PosTypes_LexDomains;
+import org.sqlunet.wordnet.provider.WordNetProvider;
 
 /**
  * X loader
@@ -57,7 +58,7 @@ class XLoader
 		@Override
 		public Loader<Cursor> onCreateLoader(final int id, final Bundle args)
 		{
-			final Uri uri = Uri.parse(Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.CONTENT_URI);
+			final Uri uri = Uri.parse(WordNetProvider.makeUri(Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.CONTENT_URI_TABLE));
 			final String[] projection = { //
 					"'wn' AS " + Words_XNet_U.SOURCES, //
 					Words_VnWords_VnClasses_U.WORDID, //

@@ -21,10 +21,20 @@ import org.sqlunet.sql.SqlFormatter;
 public class PredicateMatrixProvider extends BaseProvider
 {
 	static private final String TAG = "PMProvider";
+
+	// C O N T E N T   P R O V I D E R   A U T H O R I T Y
+
+	static private String AUTHORITY = makeAuthority("predicatematrixprovider");
+
 	// U R I M A T C H E R
 
-	// uri matcher
-	static private final UriMatcher uriMatcher;
+	static private UriMatcher uriMatcher = new UriMatcher(UriMatcher.NO_MATCH);
+
+	static
+	{
+		matchURIs();
+	}
+
 
 	// table codes
 	static private final int PM = 10;
@@ -32,11 +42,10 @@ public class PredicateMatrixProvider extends BaseProvider
 	// join codes
 	static private final int PM_X = 11;
 
-	static
+	static private void matchURIs()
 	{
-		uriMatcher = new UriMatcher(UriMatcher.NO_MATCH);
-		PredicateMatrixProvider.uriMatcher.addURI(PredicateMatrixContract.AUTHORITY, PredicateMatrixContract.Pm.TABLE, PredicateMatrixProvider.PM);
-		PredicateMatrixProvider.uriMatcher.addURI(PredicateMatrixContract.AUTHORITY, PredicateMatrixContract.Pm_X.TABLE, PredicateMatrixProvider.PM_X);
+		PredicateMatrixProvider.uriMatcher.addURI(AUTHORITY, PredicateMatrixContract.Pm.TABLE, PredicateMatrixProvider.PM);
+		PredicateMatrixProvider.uriMatcher.addURI(AUTHORITY, PredicateMatrixContract.Pm_X.TABLE, PredicateMatrixProvider.PM_X);
 	}
 
 	// C O N S T R U C T O R
@@ -56,12 +65,17 @@ public class PredicateMatrixProvider extends BaseProvider
 		switch (PredicateMatrixProvider.uriMatcher.match(uri))
 		{
 			case PM:
-				return BaseProvider.VENDOR + ".android.cursor.item/" + BaseProvider.VENDOR + '.' + PredicateMatrixContract.AUTHORITY + '.' + PredicateMatrixContract.Pm.TABLE;
+				return BaseProvider.VENDOR + ".android.cursor.item/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + PredicateMatrixContract.Pm.TABLE;
 			case PM_X:
-				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + PredicateMatrixContract.AUTHORITY + '.' + PredicateMatrixContract.Pm_X.TABLE;
+				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + PredicateMatrixContract.Pm_X.TABLE;
 			default:
 				throw new UnsupportedOperationException("Illegal MIME type");
 		}
+	}
+
+	static public String makeUri(final String table)
+	{
+		return BaseProvider.SCHEME + AUTHORITY + '/' + table;
 	}
 
 	// Q U E R Y

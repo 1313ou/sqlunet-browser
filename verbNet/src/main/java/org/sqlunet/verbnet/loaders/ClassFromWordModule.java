@@ -17,6 +17,7 @@ import org.sqlunet.style.Spanner;
 import org.sqlunet.treeview.model.TreeNode;
 import org.sqlunet.verbnet.R;
 import org.sqlunet.verbnet.provider.VerbNetContract.Words_VnClasses;
+import org.sqlunet.verbnet.provider.VerbNetProvider;
 import org.sqlunet.verbnet.style.VerbNetFactories;
 import org.sqlunet.view.FireEvent;
 import org.sqlunet.view.TreeFactory;
@@ -94,7 +95,7 @@ public class ClassFromWordModule extends BaseModule
 			@Override
 			public Loader<Cursor> onCreateLoader(final int loaderId, final Bundle loaderArgs)
 			{
-				final Uri uri = Uri.parse(Words_VnClasses.CONTENT_URI);
+				final Uri uri = Uri.parse(VerbNetProvider.makeUri(Words_VnClasses.CONTENT_URI_TABLE));
 				final String[] projection = { //
 						Words_VnClasses.CLASSID, //
 						Words_VnClasses.CLASS, //

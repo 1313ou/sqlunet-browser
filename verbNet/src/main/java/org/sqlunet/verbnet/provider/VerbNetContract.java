@@ -1,7 +1,5 @@
 package org.sqlunet.verbnet.provider;
 
-import org.sqlunet.provider.BaseProvider;
-
 /**
  * VerbNet provider contract
  *
@@ -9,12 +7,11 @@ import org.sqlunet.provider.BaseProvider;
  */
 public class VerbNetContract
 {
-	static public final String AUTHORITY = "org.sqlunet.verbnet.provider";
 	@SuppressWarnings("unused")
 	static public final class VnClasses
 	{
 		static public final String TABLE = "vnclasses";
-		static public final String CONTENT_URI = BaseProvider.SCHEME + VerbNetContract.AUTHORITY + '/' + VnClasses.TABLE;
+		static public final String CONTENT_URI_TABLE = VnClasses.TABLE;
 		static public final String WORDID = "wordid";
 		static public final String POS = "pos";
 		static public final String CLASSID = "classid";
@@ -26,7 +23,7 @@ public class VerbNetContract
 	static public final class Words_VnClasses
 	{
 		static public final String TABLE = "words_vnclasses";
-		static public final String CONTENT_URI = BaseProvider.SCHEME + VerbNetContract.AUTHORITY + '/' + Words_VnClasses.TABLE;
+		static public final String CONTENT_URI_TABLE = Words_VnClasses.TABLE;
 		static public final String WORDID = "wordid";
 		static public final String SYNSETID = "synsetid";
 		static public final String CLASSID = "classid";
@@ -41,7 +38,7 @@ public class VerbNetContract
 	static public final class VnClasses_VnMembers_X
 	{
 		static public final String TABLE_BY_WORD = "vnclasses_vnmembers_x_by_word";
-		static public final String CONTENT_URI = BaseProvider.SCHEME + VerbNetContract.AUTHORITY + '/' + VnClasses_VnMembers_X.TABLE_BY_WORD;
+		static public final String CONTENT_URI_TABLE = VnClasses_VnMembers_X.TABLE_BY_WORD;
 		static public final String CLASSID = "classid";
 		static public final String VNWORDID = "vnwordid";
 		static public final String WORDID = "wordid";
@@ -55,7 +52,7 @@ public class VerbNetContract
 	static public final class VnClasses_VnRoles_X
 	{
 		static public final String TABLE_BY_ROLE = "vnclasses_vnroles_x_by_vnrole";
-		static public final String CONTENT_URI = BaseProvider.SCHEME + VerbNetContract.AUTHORITY + '/' + VnClasses_VnRoles_X.TABLE_BY_ROLE;
+		static public final String CONTENT_URI_TABLE = VnClasses_VnRoles_X.TABLE_BY_ROLE;
 		static public final String CLASSID = "classid";
 		static public final String ROLEID = "roleid";
 		static public final String ROLETYPE = "roletype";
@@ -65,7 +62,7 @@ public class VerbNetContract
 	static public final class VnClasses_VnFrames_X
 	{
 		static public final String TABLE_BY_FRAME = "vnclasses_vnframes_x_by_vnframe";
-		static public final String CONTENT_URI = BaseProvider.SCHEME + VerbNetContract.AUTHORITY + '/' + VnClasses_VnFrames_X.TABLE_BY_FRAME;
+		static public final String CONTENT_URI_TABLE = VnClasses_VnFrames_X.TABLE_BY_FRAME;
 		static public final String CLASSID = "classid";
 		static public final String FRAMEID = "frameid";
 		static public final String FRAMENAME = "framename";
@@ -82,7 +79,7 @@ public class VerbNetContract
 	static public final class Lookup_VnExamples
 	{
 		static public final String TABLE = "fts_vnexamples";
-		static public final String CONTENT_URI = BaseProvider.SCHEME + VerbNetContract.AUTHORITY + '/' + Lookup_VnExamples.TABLE;
+		static public final String CONTENT_URI_TABLE = Lookup_VnExamples.TABLE;
 		static public final String EXAMPLEID = "exampleid";
 		static public final String EXAMPLE = "example";
 		static public final String CLASSID = "classid";
@@ -94,7 +91,7 @@ public class VerbNetContract
 	{
 		static public final String TABLE = "fts_vnexamples_x";
 		static public final String TABLE_BY_EXAMPLE = "fts_vnexamples_x_by_example";
-		static public final String CONTENT_URI = BaseProvider.SCHEME + VerbNetContract.AUTHORITY + '/' + Lookup_VnExamples_X.TABLE_BY_EXAMPLE;
+		static public final String CONTENT_URI_TABLE = Lookup_VnExamples_X.TABLE_BY_EXAMPLE;
 		static public final String EXAMPLEID = "exampleid";
 		static public final String EXAMPLE = "example";
 		static public final String CLASSID = "classid";

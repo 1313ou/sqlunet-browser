@@ -1,7 +1,5 @@
 package org.sqlunet.predicatematrix.provider;
 
-import org.sqlunet.provider.BaseProvider;
-
 /**
  * PredicateMatrix provider contract
  *
@@ -9,7 +7,6 @@ import org.sqlunet.provider.BaseProvider;
  */
 public class PredicateMatrixContract
 {
-	static public final String AUTHORITY = "org.sqlunet.predicatematrix.provider";
 	// A L I A S E S
 
 	static public final String PMROLE = "mr";
@@ -24,6 +21,7 @@ public class PredicateMatrixContract
 	static public final String FNFE = "fe";
 	static public final String FNFETYPE = "ft";
 	static public final String FNLU = "fu";
+
 	@SuppressWarnings("unused")
 	static public class PredicateMatrix
 	{
@@ -53,14 +51,14 @@ public class PredicateMatrixContract
 	static public final class Pm extends PredicateMatrix
 	{
 		static public final String TABLE = "pm";
-		static public final String CONTENT_URI = BaseProvider.SCHEME + PredicateMatrixContract.AUTHORITY + '/' + Pm.TABLE;
+		static public final String CONTENT_URI_TABLE = Pm.TABLE;
 	}
 
 	@SuppressWarnings("unused")
 	static public final class Pm_X extends PredicateMatrix
 	{
 		static public final String TABLE = "pm_x";
-		static public final String CONTENT_URI = BaseProvider.SCHEME + PredicateMatrixContract.AUTHORITY + '/' + Pm_X.TABLE;
+		static public final String CONTENT_URI_TABLE = Pm_X.TABLE;
 		static public final String DEFINITION = "definition";
 		static public final String VNCLASS = "class";
 		static public final String VNROLERESTRID = "restrsid";

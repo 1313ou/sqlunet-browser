@@ -12,7 +12,6 @@ import org.sqlunet.browser.config.TableActivity;
  */
 public class ManagerContract
 {
-	static public final String AUTHORITY = "org.sqlunet.provider.manager";
 	/**
 	 * Query tables and indexes intent factory
 	 *
@@ -22,7 +21,7 @@ public class ManagerContract
 	static public Intent makeTablesAndIndexesIntent(final Context context)
 	{
 		final Intent intent = new Intent(context, TableActivity.class);
-		intent.putExtra(ProviderArgs.ARG_QUERYURI, TablesAndIndices.CONTENT_URI);
+		intent.putExtra(ProviderArgs.ARG_QUERYURI, ManagerProvider.makeUri(TablesAndIndices.CONTENT_URI_TABLE));
 		intent.putExtra(ProviderArgs.ARG_QUERYID, "rowid");
 		intent.putExtra(ProviderArgs.ARG_QUERYITEMS, new String[]{"rowid", TablesAndIndices.TYPE, TablesAndIndices.NAME});
 		final String order = "CASE " //
@@ -42,7 +41,7 @@ public class ManagerContract
 	static public final class TablesAndIndices
 	{
 		static public final String TABLE = "sqlite_master";
-		static public final String CONTENT_URI = BaseProvider.SCHEME + ManagerContract.AUTHORITY + '/' + TablesAndIndices.TABLE;
+		static public final String CONTENT_URI_TABLE = TablesAndIndices.TABLE;
 		static public final String NAME = "name";
 		static public final String TYPE = "type";
 	}

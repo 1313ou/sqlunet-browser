@@ -49,6 +49,7 @@ import org.sqlunet.wordnet.provider.WordNetContract.AdjPositionTypes;
 import org.sqlunet.wordnet.provider.WordNetContract.LexDomains;
 import org.sqlunet.wordnet.provider.WordNetContract.LinkTypes;
 import org.sqlunet.wordnet.provider.WordNetContract.PosTypes;
+import org.sqlunet.wordnet.provider.WordNetProvider;
 
 /**
  * Browse fragment
@@ -141,7 +142,7 @@ public class BrowseFragment extends BaseSearchFragment
 		{
 			case R.id.action_table_lexdomains:
 				intent = new Intent(activity, TableActivity.class);
-				intent.putExtra(ProviderArgs.ARG_QUERYURI, LexDomains.CONTENT_URI);
+				intent.putExtra(ProviderArgs.ARG_QUERYURI, WordNetProvider.makeUri(LexDomains.CONTENT_URI_TABLE));
 				intent.putExtra(ProviderArgs.ARG_QUERYID, LexDomains.LEXDOMAINID);
 				intent.putExtra(ProviderArgs.ARG_QUERYITEMS, new String[]{LexDomains.LEXDOMAINID, LexDomains.LEXDOMAIN, LexDomains.POS});
 				intent.putExtra(ProviderArgs.ARG_QUERYLAYOUT, R.layout.item_table3);
@@ -149,7 +150,7 @@ public class BrowseFragment extends BaseSearchFragment
 
 			case R.id.action_table_postypes:
 				intent = new Intent(activity, TableActivity.class);
-				intent.putExtra(ProviderArgs.ARG_QUERYURI, PosTypes.CONTENT_URI);
+				intent.putExtra(ProviderArgs.ARG_QUERYURI, WordNetProvider.makeUri(PosTypes.CONTENT_URI_TABLE));
 				intent.putExtra(ProviderArgs.ARG_QUERYID, PosTypes.POS);
 				intent.putExtra(ProviderArgs.ARG_QUERYITEMS, new String[]{PosTypes.POS, PosTypes.POSNAME});
 				intent.putExtra(ProviderArgs.ARG_QUERYLAYOUT, R.layout.item_table2);
@@ -157,7 +158,7 @@ public class BrowseFragment extends BaseSearchFragment
 
 			case R.id.action_table_adjpositiontypes:
 				intent = new Intent(activity, TableActivity.class);
-				intent.putExtra(ProviderArgs.ARG_QUERYURI, AdjPositionTypes.CONTENT_URI);
+				intent.putExtra(ProviderArgs.ARG_QUERYURI, WordNetProvider.makeUri(AdjPositionTypes.CONTENT_URI_TABLE));
 				intent.putExtra(ProviderArgs.ARG_QUERYID, AdjPositionTypes.POSITION);
 				intent.putExtra(ProviderArgs.ARG_QUERYITEMS, new String[]{AdjPositionTypes.POSITION, AdjPositionTypes.POSITIONNAME});
 				intent.putExtra(ProviderArgs.ARG_QUERYLAYOUT, R.layout.item_table2);
@@ -165,7 +166,7 @@ public class BrowseFragment extends BaseSearchFragment
 
 			case R.id.action_table_linktypes:
 				intent = new Intent(activity, TableActivity.class);
-				intent.putExtra(ProviderArgs.ARG_QUERYURI, LinkTypes.CONTENT_URI);
+				intent.putExtra(ProviderArgs.ARG_QUERYURI, WordNetProvider.makeUri(LinkTypes.CONTENT_URI_TABLE));
 				intent.putExtra(ProviderArgs.ARG_QUERYID, LinkTypes.LINKID);
 				intent.putExtra(ProviderArgs.ARG_QUERYITEMS, new String[]{LinkTypes.LINKID, LinkTypes.LINK, LinkTypes.RECURSESSELECT});
 				intent.putExtra(ProviderArgs.ARG_QUERYSORT, LinkTypes.LINKID + " ASC");

@@ -13,12 +13,15 @@ import android.widget.TextView;
 import org.sqlunet.framenet.provider.FrameNetContract.Lookup_FnSentences_X;
 import org.sqlunet.framenet.provider.FrameNetProvider;
 import org.sqlunet.propbank.provider.PropBankContract.Lookup_PbExamples_X;
+import org.sqlunet.propbank.provider.PropBankProvider;
 import org.sqlunet.provider.ProviderArgs;
 import org.sqlunet.settings.Settings;
 import org.sqlunet.verbnet.provider.VerbNetContract.Lookup_VnExamples_X;
+import org.sqlunet.verbnet.provider.VerbNetProvider;
 import org.sqlunet.wordnet.provider.WordNetContract.Lookup_Definitions;
 import org.sqlunet.wordnet.provider.WordNetContract.Lookup_Samples;
 import org.sqlunet.wordnet.provider.WordNetContract.Lookup_Words;
+import org.sqlunet.wordnet.provider.WordNetProvider;
 
 /**
  * Text search activity
@@ -135,7 +138,7 @@ abstract public class AbstractSearchTextFragment extends BaseSearchFragment
 		switch (typePosition)
 		{
 			case 0:
-				searchUri = Lookup_Words.CONTENT_URI;
+				searchUri = WordNetProvider.makeUri(Lookup_Words.CONTENT_URI_TABLE);
 				id = Lookup_Words.WORDID;
 				idType = "lemma";
 				target = Lookup_Words.LEMMA;
@@ -144,7 +147,7 @@ abstract public class AbstractSearchTextFragment extends BaseSearchFragment
 				database = "wn";
 				break;
 			case 1:
-				searchUri = Lookup_Definitions.CONTENT_URI;
+				searchUri = WordNetProvider.makeUri(Lookup_Definitions.CONTENT_URI_TABLE);
 				id = Lookup_Definitions.SYNSETID;
 				idType = "synset";
 				target = Lookup_Definitions.DEFINITION;
@@ -153,7 +156,7 @@ abstract public class AbstractSearchTextFragment extends BaseSearchFragment
 				database = "wn";
 				break;
 			case 2:
-				searchUri = Lookup_Samples.CONTENT_URI;
+				searchUri = WordNetProvider.makeUri(Lookup_Samples.CONTENT_URI_TABLE);
 				id = Lookup_Samples.SYNSETID;
 				idType = "synset";
 				target = Lookup_Samples.SAMPLE;
@@ -162,7 +165,7 @@ abstract public class AbstractSearchTextFragment extends BaseSearchFragment
 				database = "wn";
 				break;
 			case 3:
-				searchUri = Lookup_VnExamples_X.CONTENT_URI;
+				searchUri = VerbNetProvider.makeUri(Lookup_VnExamples_X.CONTENT_URI_TABLE);
 				id = Lookup_VnExamples_X.EXAMPLEID;
 				idType = "vnexample";
 				target = Lookup_VnExamples_X.EXAMPLE;
@@ -172,7 +175,7 @@ abstract public class AbstractSearchTextFragment extends BaseSearchFragment
 				database = "vn";
 				break;
 			case 4:
-				searchUri = Lookup_PbExamples_X.CONTENT_URI;
+				searchUri = PropBankProvider.makeUri(Lookup_PbExamples_X.CONTENT_URI_TABLE);
 				id = Lookup_PbExamples_X.EXAMPLEID;
 				idType = "pbexample";
 				target = Lookup_PbExamples_X.TEXT;
