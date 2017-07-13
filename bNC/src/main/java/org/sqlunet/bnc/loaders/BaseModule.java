@@ -15,6 +15,7 @@ import org.sqlunet.HasPos;
 import org.sqlunet.HasWordId;
 import org.sqlunet.bnc.R;
 import org.sqlunet.bnc.provider.BNCContract.Words_BNCs;
+import org.sqlunet.bnc.provider.BNCProvider;
 import org.sqlunet.bnc.style.BNCFactories;
 import org.sqlunet.browser.Module;
 import org.sqlunet.style.Spanner;
@@ -100,7 +101,7 @@ public class BaseModule extends Module
 			@Override
 			public Loader<Cursor> onCreateLoader(final int loaderId, final Bundle loaderArgs)
 			{
-				final Uri uri = Uri.parse(Words_BNCs.CONTENT_URI);
+				final Uri uri = Uri.parse(BNCProvider.makeUri(Words_BNCs.CONTENT_URI_TABLE));
 				final String[] projection = {Words_BNCs.POS, Words_BNCs.FREQ, Words_BNCs.RANGE, Words_BNCs.DISP, //
 						Words_BNCs.BNCCONVTASKS + '.' + Words_BNCs.FREQ1 + " AS " + Words_BNCs.BNCCONVTASKS + Words_BNCs.FREQ1, //
 						Words_BNCs.BNCCONVTASKS + '.' + Words_BNCs.RANGE1 + " AS " + Words_BNCs.BNCCONVTASKS + Words_BNCs.RANGE1, //

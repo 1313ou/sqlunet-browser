@@ -21,10 +21,18 @@ public class BNCProvider extends BaseProvider
 {
 	static private final String TAG = "BNCProvider";
 
+	// C O N T E N T   P R O V I D E R   A U T H O R I T Y
+
+	static private String AUTHORITY = makeAuthority("bncprovider");
+
 	// U R I M A T C H E R
 
-	// uri matcher
-	static private final UriMatcher uriMatcher;
+	static private UriMatcher uriMatcher = new UriMatcher(UriMatcher.NO_MATCH);
+
+	static
+	{
+		matchURIs();
+	}
 
 	// table codes
 	static private final int BNC = 11;
@@ -32,11 +40,15 @@ public class BNCProvider extends BaseProvider
 	// join tables
 	static private final int WORDS_BNC = 100;
 
-	static
+	static private void matchURIs()
 	{
-		uriMatcher = new UriMatcher(UriMatcher.NO_MATCH);
-		BNCProvider.uriMatcher.addURI(BNCContract.AUTHORITY, BNCContract.BNCs.TABLE, BNCProvider.BNC);
-		BNCProvider.uriMatcher.addURI(BNCContract.AUTHORITY, BNCContract.Words_BNCs.TABLE, BNCProvider.WORDS_BNC);
+		BNCProvider.uriMatcher.addURI(AUTHORITY, BNCContract.BNCs.TABLE, BNCProvider.BNC);
+		BNCProvider.uriMatcher.addURI(AUTHORITY, BNCContract.Words_BNCs.TABLE, BNCProvider.WORDS_BNC);
+	}
+
+	static public String makeUri(final String table)
+	{
+		return BaseProvider.SCHEME + AUTHORITY + '/' + table;
 	}
 
 	// C O N S T R U C T
@@ -59,12 +71,12 @@ public class BNCProvider extends BaseProvider
 			// TABLES
 
 			case BNC:
-				return BaseProvider.VENDOR + ".android.cursor.item/" + BaseProvider.VENDOR + '.' + BNCContract.AUTHORITY + '.' + BNCContract.BNCs.TABLE;
+				return BaseProvider.VENDOR + ".android.cursor.item/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + BNCContract.BNCs.TABLE;
 
 			// JOINS
 
 			case WORDS_BNC:
-				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + BNCContract.AUTHORITY + '.' + BNCContract.Words_BNCs.TABLE;
+				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + BNCContract.Words_BNCs.TABLE;
 
 			default:
 				throw new UnsupportedOperationException("Illegal MIME type");

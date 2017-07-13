@@ -35,7 +35,6 @@ public class PredicateMatrixProvider extends BaseProvider
 		matchURIs();
 	}
 
-
 	// table codes
 	static private final int PM = 10;
 
@@ -46,6 +45,11 @@ public class PredicateMatrixProvider extends BaseProvider
 	{
 		PredicateMatrixProvider.uriMatcher.addURI(AUTHORITY, PredicateMatrixContract.Pm.TABLE, PredicateMatrixProvider.PM);
 		PredicateMatrixProvider.uriMatcher.addURI(AUTHORITY, PredicateMatrixContract.Pm_X.TABLE, PredicateMatrixProvider.PM_X);
+	}
+
+	static public String makeUri(final String table)
+	{
+		return BaseProvider.SCHEME + AUTHORITY + '/' + table;
 	}
 
 	// C O N S T R U C T O R
@@ -71,11 +75,6 @@ public class PredicateMatrixProvider extends BaseProvider
 			default:
 				throw new UnsupportedOperationException("Illegal MIME type");
 		}
-	}
-
-	static public String makeUri(final String table)
-	{
-		return BaseProvider.SCHEME + AUTHORITY + '/' + table;
 	}
 
 	// Q U E R Y

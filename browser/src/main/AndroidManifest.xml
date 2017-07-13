@@ -397,7 +397,7 @@
 
 		<provider
 			android:name="org.sqlunet.provider.ManagerProvider"
-			android:authorities="org.sqlunet.provider.manager"
+			android:authorities="org.sqlunet.manager.provider"
 			android:enabled="true"
 			android:exported="true"
 			tools:ignore="ExportedContentProvider">
@@ -405,7 +405,7 @@
 
 		<provider
 			android:name="org.sqlunet.provider.XSqlUNetProvider"
-			android:authorities="org.sqlunet.cross.provider"
+			android:authorities="org.sqlunet.xsqlunet.provider"
 			android:enabled="true"
 			android:exported="true"
 			tools:ignore="ExportedContentProvider">
