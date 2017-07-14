@@ -63,7 +63,7 @@
 		<item>index_fnlayers_annosetid</item>
 		<item>index_fnlabels_layerid</item>
 	</string-array>
-	<string-array name="required_texts">
+	<string-array name="required_texts_fn">
 		<item>fnsentences_text_fts4</item>
 	</string-array>
 

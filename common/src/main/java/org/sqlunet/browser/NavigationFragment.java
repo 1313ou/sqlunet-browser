@@ -49,7 +49,7 @@ public class NavigationFragment extends NavigationDrawerFragment implements Navi
 	private String[] fragmentTags;
 
 	/**
-	 * Whether fragments are recreated
+	 * Whether fragments are recreated (1)
 	 */
 	private int[] fragmentTransient;
 

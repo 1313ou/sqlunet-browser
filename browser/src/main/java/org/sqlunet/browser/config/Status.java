@@ -1,15 +1,17 @@
 package org.sqlunet.browser.config;
 
 import android.content.Context;
+import android.content.res.Resources;
 import android.database.Cursor;
 import android.net.Uri;
 import android.text.Editable;
 import android.text.SpannableStringBuilder;
 import android.util.Log;
 
-import org.sqlunet.propbank.provider.PropBankProvider;
+import org.sqlunet.browser.R;
 import org.sqlunet.provider.ManagerContract;
 import org.sqlunet.provider.ManagerContract.TablesAndIndices;
+import org.sqlunet.provider.ManagerProvider;
 import org.sqlunet.settings.StorageSettings;
 
 import java.io.File;
@@ -71,6 +73,15 @@ public class Status
 		{
 			int status = EXISTS;
 
+			final Resources res = context.getResources();
+			final String[] requiredTables = res.getStringArray(R.array.required_tables);
+			final String[] requiredIndexes = res.getStringArray(R.array.required_indexes);
+			final String[] requiredTextsPm = res.getStringArray(R.array.required_pm);
+			final String[] requiredTextsWn = res.getStringArray(R.array.required_texts_wn);
+			final String[] requiredTextsVn = res.getStringArray(R.array.required_texts_vn);
+			final String[] requiredTextsPb = res.getStringArray(R.array.required_texts_pb);
+			final String[] requiredTextsFn = res.getStringArray(R.array.required_texts_fn);
+
 			List<String> existingTablesAndIndexes;
 			try
 			{
@@ -82,37 +93,13 @@ public class Status
 				return status;
 			}
 
-			boolean existsTables = contains(existingTablesAndIndexes,
-					// wordnet
-					"words", "senses", "synsets", "adjpositions", "adjpositiontypes", "casedwords", "lexdomains", "lexlinks", "linktypes", "morphmaps", "morphs", "postypes", "samples", "semlinks", "vframemaps", "vframes", "vframesentencemaps", "vframesentences",
-					// verbnet
-					"vnclasses", "vnclassmembers", "vnclassmembersenses", "vnexamplemaps", "vnexamples", "vnframemaps", "vnframenames", "vnframes", "vnframesubnames", "vngroupingmaps", "vngroupings", "vnpredicatemaps", "vnpredicates", "vnrestrs", "vnrestrtypes", "vnrolemaps", "vnroles", "vnroletypes", "vnsemantics", "vnsyntaxes", "vnwords",
-					// framenet
-					"fnannosets", "fncoretypes", "fncorpuses", "fncxns", "fndocuments", "fnfegrouprealizations", "fnfegrouprealizations_fes", "fnferealizations", "fnfes", "fnfes_excluded", "fnfes_required", "fnfes_semtypes", "fnfetypes", "fnframerelations", "fnframes", "fnframes_related", "fnframes_semtypes", "fngftypes", "fngovernors", "fngovernors_annosets", "fnlabelitypes", "fnlabels", "fnlabeltypes", "fnlayers", "fnlayertypes", "fnlexemes", "fnlexunits", "fnlexunits_governors", "fnlexunits_semtypes", "fnpatterns", "fnpatterns_annosets", "fnpatterns_valenceunits", "fnposes", "fnpttypes", "fnsemtypes", "fnsemtypes_supers", "fnsentences", "fnstatuses", "fnsubcorpuses", "fnsubcorpuses_sentences", "fnvalenceunits", "fnvalenceunits_annosets", "fnwords",
-					// propbank
-					"pbargns", "pbargs", "pbaspects", "pbexamples", "pbfnframemaps", "pbforms", "pbfuncs", "pbpersons", "pbrels", "pbroles", "pbrolesetmembers", "pbrolesets", "pbtenses", "pbvnclassmaps", "pbvnrolemaps", "pbvnthetas", "pbvoices", "pbwords",
-					// predicate matrix
-					"pm", "pmpredicates", "pmroles",
-					// "pmvn","pmpb","pmfn", // DERIVED
-					// bnc
-					"bncconvtasks", "bncimaginfs", "bncs", "bncspwrs",
-					// sources
-					"sources");
-			boolean existsIdx = contains(existingTablesAndIndexes, "index_words_lemma", "index_senses_wordid", "index_senses_synsetid", "index_synsets_synsetid", //
-					"index_casedwords_wordid_casedwordid", //
-					"index_semlinks_synset1id", "index_semlinks_linkid", //
-					"index_samples_synsetid", //
-					"index_vnwords_wordid", "index_vnrolemaps_classid", "index_vnframemaps_classid", //
-					"index_pbwords_wordid", "index_pbrolesets_pbwordid", "index_pbroles_rolesetid", "index_pbexamples_rolesetid", "index_pbrels_exampleid", "index_pbargs_exampleid", //
-					"index_fnwords_wordid", "index_fnframes_related_frameid", "index_fnframes_related_frame2id", "index_fnlexemes_fnwordid", "index_fnfes_frameid", //
-					"index_fnferealizations_luid", "index_fnvalenceunits_ferid", "index_fnfegrouprealizations_luid", "index_fnpatterns_valenceunits_patternid", "index_fnpatterns_fegrid", //
-					"index_fnsubcorpuses_luid", "index_fnannosets_sentenceid", "index_fnlayers_annosetid", "index_fnlabels_layerid", //
-					"index_pm_wordid", "index_pm_synsetid", "index_pm_lemma");
-			boolean existsPm = contains(existingTablesAndIndexes, "pmvn", "pmpb", "pmfn");
-			boolean existsTsWn = contains(existingTablesAndIndexes, "words_lemma_fts4", "synsets_definition_fts4", "samples_sample_fts4");
-			boolean existsTsVn = contains(existingTablesAndIndexes, "vnexamples_example_fts4");
-			boolean existsTsPb = contains(existingTablesAndIndexes, "pbexamples_text_fts4");
-			boolean existsTsFn = contains(existingTablesAndIndexes, "fnsentences_text_fts4");
+			boolean existsTables = contains(existingTablesAndIndexes, requiredTables);
+			boolean existsIdx = contains(existingTablesAndIndexes, requiredIndexes);
+			boolean existsPm = contains(existingTablesAndIndexes, requiredTextsPm);
+			boolean existsTsWn = contains(existingTablesAndIndexes, requiredTextsWn);
+			boolean existsTsVn = contains(existingTablesAndIndexes, requiredTextsVn);
+			boolean existsTsPb = contains(existingTablesAndIndexes, requiredTextsPb);
+			boolean existsTsFn = contains(existingTablesAndIndexes, requiredTextsFn);
 
 			if (existsTables)
 			{
@@ -178,7 +165,7 @@ public class Status
 	 * @param context context
 	 * @return list of tables and indexes
 	 */
-	static private List<String> tablesAndIndexes(final Context context)
+	static protected List<String> tablesAndIndexes(final Context context)
 	{
 		final String order = "CASE " //
 				+ "WHEN " + ManagerContract.TablesAndIndices.TYPE + " = 'table' THEN '1' " //
@@ -187,7 +174,7 @@ public class Status
 				+ "ELSE " + ManagerContract.TablesAndIndices.TYPE + " END ASC," //
 				+ ManagerContract.TablesAndIndices.NAME + " ASC";
 		final Cursor cursor = context.getContentResolver().query( //
-				Uri.parse(PropBankProvider.makeUri(TablesAndIndices.CONTENT_URI_TABLE)), //
+				Uri.parse(ManagerProvider.makeUri(TablesAndIndices.CONTENT_URI_TABLE)), //
 				new String[]{TablesAndIndices.TYPE, TablesAndIndices.NAME}, // projection
 				"name NOT LIKE 'sqlite_%' AND name NOT LIKE 'android_%'", // selection criteria //
 				null, //
@@ -218,7 +205,7 @@ public class Status
 	 * @param targets          targets
 	 * @return true if targets are contained in tables and indexes
 	 */
-	static private boolean contains(final Collection<String> tablesAndIndexes, final String... targets)
+	static protected boolean contains(final Collection<String> tablesAndIndexes, final String... targets)
 	{
 		if (tablesAndIndexes == null)
 		{

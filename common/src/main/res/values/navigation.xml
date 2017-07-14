@@ -20,7 +20,6 @@
 	<string-array name="handler_sections">
 		<item/>
 		<item/>
-		<!--<item/>--> <!--2 predicate matrix -->
 		<item/>
 		<item/>
 		<item>@string/handler_setup_section</item> <!--5 setup -->
@@ -33,7 +32,6 @@
 
 	<string name="fragment_class_home_section">org.sqlunet.browser.HomeFragment</string>
 	<string name="fragment_class_browse_section">org.sqlunet.browser.BrowseFragment</string>
-	<!--<string name="fragment_class_predicatematrix_section">org.sqlunet.browser.PredicateMatrixFragment</string>-->
 	<string name="fragment_class_textsearch_section">org.sqlunet.browser.SearchTextFragment</string>
 	<string name="fragment_class_status_section">org.sqlunet.browser.StatusFragment</string>
 	<string name="fragment_class_setup_section"/>
@@ -45,7 +43,6 @@
 	<string-array name="fragment_class_sections">
 		<item>@string/fragment_class_home_section</item> <!-- 0 home -->
 		<item>@string/fragment_class_browse_section</item> <!--1 browse -->
-		<!--<item>@string/fragment_class_predicatematrix_section</item>--> <!--2 predicate matrix -->
 		<item>@string/fragment_class_textsearch_section</item> <!--3 text search -->
 		<item>@string/fragment_class_status_section</item> <!--4 status -->
 		<item>@string/fragment_class_setup_section</item> <!--5 setup -->
@@ -58,7 +55,6 @@
 
 	<string name="fragment_tag_home_section">home</string>
 	<string name="fragment_tag_browse_section">browse</string>
-	<!--<string name="fragment_tag_predicatematrix_section">predicatematrix</string> -->
 	<string name="fragment_tag_textsearch_section">textsearch</string>
 	<string name="fragment_tag_status_section">status</string>
 	<string name="fragment_tag_setup_section"/>
@@ -70,7 +66,6 @@
 	<string-array name="fragment_tag_sections">
 		<item>@string/fragment_tag_home_section</item> <!-- 0 home -->
 		<item>@string/fragment_tag_browse_section</item> <!--1 browse -->
-		<!--<item>@string/fragment_tag_predicatematrix_section</item>--> <!--2 predicate matrix -->
 		<item>@string/fragment_tag_textsearch_section</item> <!--3 text search -->
 		<item>@string/fragment_tag_status_section</item> <!--4 status -->
 		<item>@string/fragment_tag_setup_section</item> <!--5 setup -->
@@ -85,7 +80,6 @@
 	<integer-array name="fragment_transient_flags">
 		<item>1</item> <!-- 0 home -->
 		<item>0</item> <!-- 1 browse -->
-		<!--<item>0</item>--> <!-- 2 predicate matrix -->
 		<item>0</item> <!-- 3 text search -->
 		<item>1</item> <!-- 4 status -->
 		<item>1</item> <!-- 5 setup: not a fragment - does not apply -->
@@ -100,7 +94,6 @@
 	<integer-array name="drawer_swap_in_flags">
 		<item>1</item> <!-- 0 home -->
 		<item>1</item> <!--1 browse -->
-		<!--<item>1</item>--> <!--2 predicate matrix -->
 		<item>1</item> <!--3 text search -->
 		<item>1</item> <!--4 status -->
 		<item>0</item> <!--5 setup -->
@@ -115,7 +108,6 @@
 	<integer-array name="drawer_display_flags">
 		<item>0</item> <!-- 0 home -->
 		<item>1</item> <!--1 browse -->
-		<!--<item>1</item>--> <!--2 predicate matrix -->
 		<item>1</item> <!--3 text search -->
 		<item>0</item> <!--4 status -->
 		<item>0</item> <!--5 setup -->
@@ -129,7 +121,6 @@
 	<!-- labels -->
 	<string name="title_home_section">@string/semantikos</string>
 	<string name="title_browse_section">Browse</string>
-	<!--<string name="title_predicatematrix_section">Predicate Matrix</string>-->
 	<string name="title_textsearch_section">Text</string>
 	<string name="title_status_section">Status</string>
 	<string name="title_setup_section">Set up</string>
@@ -141,7 +132,6 @@
 	<string-array name="title_sections">
 		<item>@string/title_home_section</item> <!-- 0 home -->
 		<item>@string/title_browse_section</item> <!-- 1 browse -->
-		<!--<item>@string/title_predicatematrix_section</item>--> <!-- 2 predicate matrix -->
 		<item>@string/title_textsearch_section</item> <!-- 3 text search -->
 		<item>@string/title_status_section</item> <!-- 4 status -->
 		<item>@string/title_setup_section</item> <!-- 5 setup -->
@@ -156,7 +146,6 @@
 	<integer-array name="drawer_icons">
 		<item>@drawable/ic_home</item> <!-- 0 home -->
 		<item>@drawable/ic_search_browse</item> <!-- 1 browse -->
-		<!--<item>@drawable/ic_search_pm</item>--> <!-- 2 predicate matrix -->
 		<item>@drawable/ic_search_text</item> <!-- 3 text search -->
 		<item>@drawable/ic_status</item> <!-- 4 status -->
 		<item>@drawable/ic_setup</item> <!-- 5 setup -->

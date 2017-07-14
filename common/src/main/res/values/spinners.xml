@@ -1,14 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
 
-	<!-- browser spinner
-	SELECTORS
-	XSELECTORS
+	<!-- mode spinner
 	-->
+	<string-array name="selectors_names">
+	</string-array>
 	<integer-array name="selectors_icons" tools:ignore="UnusedResources">
 	</integer-array>
 
+	<!-- textsearch spinner -->
+	<string-array name="textsearch_modes">
+	</string-array>
 	<integer-array name="textsearch_icons" tools:ignore="UnusedResources">
 	</integer-array>
+
+	<!-- setup spinner -->
+	<string name="title_select">[SELECT OPERATION]</string>
+	<string name="title_setup_create">Create database</string>
+	<string name="title_setup_drop">Drop database</string>
+	<string name="title_setup_copy">Copy database from file &#8230;</string>
+	<string name="title_setup_unzip">Unzip database from file &#8230;</string>
+	<string name="title_setup_download">Download database</string>
+	<string name="title_setup_download_zipped">Download zipped database</string>
+	<string name="title_setup_md5">MD5 checksum &#8230;</string>
+	<string-array name="setup_files_titles">
+		<item>@string/title_select</item>
+		<item>@string/title_setup_create</item>
+		<item>@string/title_setup_drop</item>
+		<item>@string/title_setup_copy</item>
+		<item>@string/title_setup_unzip</item>
+		<item>@string/title_setup_download</item>
+		<item>@string/title_setup_download_zipped</item>
+		<item>@string/title_setup_md5</item>
+	</string-array>
+	<string-array name="setup_files_values" formatted="false">
+		<item/>
+		<item>CREATE</item>
+		<item>DROP</item>
+		<item>COPY</item>
+		<item>UNZIP</item>
+		<item>DOWNLOAD</item>
+		<item>DOWNLOADZIPPED</item>
+		<item>MD5</item>
+	</string-array>
 
 </resources>

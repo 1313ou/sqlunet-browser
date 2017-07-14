@@ -4,6 +4,9 @@
 	<!-- browser spinner
 	SELECTORS
 	-->
+	<string-array name="selectors_names">
+		<item>FrameNet words</item>
+	</string-array>
 	<integer-array name="selectors_icons">
 		<item>@drawable/ic_selector</item>
 	</integer-array>
@@ -11,6 +14,9 @@
 	<!-- textsearch spinner
 	FRAMENET SENTENCES
 	-->
+	<string-array name="textsearch_modes">
+		<item>FrameNet sentences</item>
+	</string-array>
 	<integer-array name="textsearch_icons">
 		<item>@drawable/ic_search_fnsentence</item>
 	</integer-array>

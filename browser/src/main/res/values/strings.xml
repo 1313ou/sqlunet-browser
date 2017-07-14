@@ -75,6 +75,7 @@
 
 	<string name="title_activity_selector">Senses</string>
 	<string name="title_activity_xselector">Sources</string>
+
 	<string name="title_activity_browse2">Data</string>
 	<string name="title_activity_word">Word</string>
 	<string name="title_activity_sense">Sense</string>
@@ -87,6 +88,9 @@
 	<string name="title_activity_fnannoset">FrameNet AnnoSet</string>
 	<string name="title_activity_predicatematrix">PredicateMatrix</string>
 	<string name="title_activity_table">Table</string>
+
+	<string name="title_dialog_sql">SQL</string>
+	<string name="title_download">SqlUNet download</string>
 
 	<!-- _status -->
 	<string name="status_data_fail">Data is unavailable</string>
@@ -150,9 +154,6 @@
 	<string name="hint_md5">Select the file to md5-checksum</string>
 	<string name="hint_database">Info about Database</string>
 
-	<string name="title_dialog_sql">SQL</string>
-	<string name="title_download">SqlUNet download</string>
-
 	<!-- items -->
 	<string name="download_source">source</string>
 	<string name="download_dest">destination</string>
@@ -176,6 +177,7 @@
 	<string name="bnc">BNC</string>
 	<string name="predicatematrix">Predicate Matrix</string>
 
+	<!-- blurbs -->
 	<string name="sqlunet_blurb">SqlUNet\nunifies all</string>
 	<string name="wordnet_blurb">WordNet\ngroups English words into sets of synonyms called synsets,\nand records relations among these synonym sets or their members</string>
 	<string name="framenet_blurb">FrameNet\nexplores semantic roles</string>
@@ -183,87 +185,5 @@
 	<string name="verbnet_blurb">VerbNet\nexplores semantic roles</string>
 	<string name="bnc_blurb">BNC\nprovides word statistics</string>
 	<string name="predicatematrix_blurb">Predicate Matrix\nunifies semantic roles across VerbNet, PropBank and FrameNet</string>
-
-	<!-- ARRAYS -->
-
-	<!-- navigation -->
-	<string name="title_home_section">@string/semantikos</string>
-	<string name="title_browse_section">Browse</string>
-	<string name="title_textsearch_section">Text</string>
-	<string name="title_predicatematrix_section">Predicate Matrix</string>
-	<string name="title_status_section">Status</string>
-	<string name="title_setup_section">Set up</string>
-	<string name="title_storage_section">Storage</string>
-	<string name="title_settings_section">Settings</string>
-	<string name="title_sql_section">SQL</string>
-	<string name="title_help_section">Help</string>
-	<string name="title_about_section">About</string>
-	<string-array name="title_sections">
-		<item>@string/title_home_section</item>
-		<item>@string/title_browse_section</item>
-		<item>@string/title_predicatematrix_section</item>
-		<item>@string/title_textsearch_section</item>
-		<item>@string/title_status_section</item>
-		<item>@string/title_setup_section</item>
-		<item>@string/title_storage_section</item>
-		<item>@string/title_settings_section</item>
-		<item>@string/title_sql_section</item>
-		<item>@string/title_help_section</item>
-		<item>@string/title_about_section</item>
-	</string-array>
-
-	<!-- mode spinner -->
-	<string-array name="selectors_names">
-		<item>senses</item>
-		<item>per source</item>
-	</string-array>
-
-	<!-- textsearch spinner -->
-	<string-array name="textsearch_modes">
-		<item>Words</item>
-		<item>Definitions</item>
-		<item>Samples</item>
-		<item>VerbNet Examples</item>
-		<item>ProbBank Examples</item>
-		<item>FrameNet Sentences</item>
-	</string-array>
-
-	<!-- predicatematrix spinner -->
-	<string-array name="predicatematrix_modes">
-		<item>grouped</item>
-		<item>rows by role</item>
-		<item>rows by synset</item>
-		<item>rows</item>
-	</string-array>
-
-	<!-- setup spinner -->
-	<string name="title_select">[SELECT OPERATION]</string>
-	<string name="title_setup_create">Create database</string>
-	<string name="title_setup_drop">Drop database</string>
-	<string name="title_setup_copy">Copy database from file &#8230;</string>
-	<string name="title_setup_unzip">Unzip database from file &#8230;</string>
-	<string name="title_setup_download">Download database</string>
-	<string name="title_setup_download_zipped">Download zipped database</string>
-	<string name="title_setup_md5">MD5 checksum &#8230;</string>
-	<string-array name="setup_files_titles">
-		<item>@string/title_select</item>
-		<item>@string/title_setup_create</item>
-		<item>@string/title_setup_drop</item>
-		<item>@string/title_setup_copy</item>
-		<item>@string/title_setup_unzip</item>
-		<item>@string/title_setup_download</item>
-		<item>@string/title_setup_download_zipped</item>
-		<item>@string/title_setup_md5</item>
-	</string-array>
-	<string-array name="setup_files_values" formatted="false">
-		<item/>
-		<item>CREATE</item>
-		<item>DROP</item>
-		<item>COPY</item>
-		<item>UNZIP</item>
-		<item>DOWNLOAD</item>
-		<item>DOWNLOADZIPPED</item>
-		<item>MD5</item>
-	</string-array>
 
 </resources>

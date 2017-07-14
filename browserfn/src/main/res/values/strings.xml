@@ -24,16 +24,4 @@
 
 	<string name="framenet_blurb">FrameNet\nexplores semantic roles</string>
 
-	<!-- ARRAYS -->
-
-	<!-- mode spinner -->
-	<string-array name="selectors_names">
-		<item>per FrameNet word</item>
-	</string-array>
-
-	<!-- textsearch spinner -->
-	<string-array name="textsearch_modes">
-		<item>FrameNet Sentences</item>
-	</string-array>
-
 </resources>
