@@ -19,282 +19,21 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="dbe7534c-3086-4b17-848a-f5676a7f84bd" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/java/org/sqlunet/browser/wn/DocumentTransformer.java" />
-      <change type="NEW" beforePath="" afterPath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/java/org/sqlunet/browser/wn/Settings.java" />
-      <change type="NEW" beforePath="" afterPath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/java/org/sqlunet/browser/wn/SetupStatusFragment.java" />
-      <change type="NEW" beforePath="" afterPath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/java/org/sqlunet/browser/wn/Status.java" />
-      <change type="NEW" beforePath="" afterPath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/values/pages.xml" />
-      <change type="NEW" beforePath="" afterPath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/values/strings_download.xml" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/androidTest/java/android/support/test/espresso/contrib/DrawerActions.java" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/androidTest/java/android/support/test/espresso/contrib/DrawerMatchers.java" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/androidTest/java/android/support/test/espresso/contrib/ExpandableListViewProtocol.java" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/java/android/support/v7/app/contrib/AppCompatPreferenceActivity.java" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/java/android/support/v7/app/contrib/NavigationDrawerFragment.java" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/java/org/sqlunet/browser/AboutActivity.java" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/java/org/sqlunet/browser/AboutFragment.java" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/java/org/sqlunet/browser/AbstractSearchTextFragment.java" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/java/org/sqlunet/browser/AbstractTableFragment.java" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/java/org/sqlunet/browser/ActionBarSetter.java" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/java/org/sqlunet/browser/BaseSearchFragment.java" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/java/org/sqlunet/browser/BrowseSplashFragment.java" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/java/org/sqlunet/browser/HelpActivity.java" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/java/org/sqlunet/browser/HelpFragment.java" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/java/org/sqlunet/browser/SearchTextSplashFragment.java" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/java/org/sqlunet/browser/SourceFragment.java" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/java/org/sqlunet/browser/SplashFragment.java" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/java/org/sqlunet/browser/SqlDialogFragment.java" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/java/org/sqlunet/browser/SqlFragment.java" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/java/org/sqlunet/browser/SqlHistoryFragment.java" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/java/org/sqlunet/browser/StatusActivity.java" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/java/org/sqlunet/browser/config/BaseDownloadFragment.java" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/java/org/sqlunet/browser/config/BaseTaskFragment.java" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/java/org/sqlunet/browser/config/DownloadActivity.java" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/java/org/sqlunet/browser/config/DownloadFragment.java" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/java/org/sqlunet/browser/config/ExecAsyncTask.java" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/java/org/sqlunet/browser/config/FileAsyncTask.java" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/java/org/sqlunet/browser/config/MD5Downloader.java" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/java/org/sqlunet/browser/config/Permissions.java" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/java/org/sqlunet/browser/config/SettingsActivity.java" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/java/org/sqlunet/browser/config/SetupActivity.java" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/java/org/sqlunet/browser/config/SetupDatabaseActivity.java" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/java/org/sqlunet/browser/config/SetupDatabaseFragment.java" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/java/org/sqlunet/browser/config/SetupDatabaseTasks.java" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/java/org/sqlunet/browser/config/SetupFileActivity.java" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/java/org/sqlunet/browser/config/SetupFileFragment.java" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/java/org/sqlunet/browser/config/SetupSqlActivity.java" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/java/org/sqlunet/browser/config/SetupStatusFragment.java" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/java/org/sqlunet/browser/config/SimpleDownloadFragment.java" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/java/org/sqlunet/browser/config/SimpleDownloadServiceFragment.java" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/java/org/sqlunet/browser/config/SimpleDownloader.java" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/java/org/sqlunet/browser/config/SimpleDownloaderService.java" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/java/org/sqlunet/browser/config/StorageActivity.java" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/java/org/sqlunet/browser/config/StorageFragment.java" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/java/org/sqlunet/browser/config/TableActivity.java" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/java/org/sqlunet/browser/config/TableFragment.java" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/java/org/sqlunet/browser/config/TaskObserver.java" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/java/org/sqlunet/browser/web/DocumentLoader.java" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/java/org/sqlunet/browser/web/DocumentStringLoader.java" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/drawable-hdpi/bn_download.png" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/drawable-hdpi/bn_info.png" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/drawable-hdpi/bn_setup.png" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/drawable-hdpi/drawer_shadow.9.png" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/drawable-hdpi/ic_about.png" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/drawable-hdpi/ic_download_dest.png" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/drawable-hdpi/ic_download_source.png" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/drawable-hdpi/ic_fail.png" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/drawable-hdpi/ic_help.png" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/drawable-hdpi/ic_home.png" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/drawable-hdpi/ic_item.png" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/drawable-hdpi/ic_ok.png" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/drawable-hdpi/ic_role.png" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/drawable-hdpi/ic_roles.png" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/drawable-hdpi/ic_run.png" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/drawable-hdpi/ic_search_browse.png" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/drawable-hdpi/ic_settings.png" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/drawable-hdpi/ic_setup.png" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/drawable-hdpi/ic_spinner_arrow.png" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/drawable-hdpi/ic_sql.png" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/drawable-hdpi/ic_status.png" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/drawable-hdpi/ic_storage.png" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/drawable-hdpi/ic_unknown.png" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/drawable-mdpi/bn_download.png" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/drawable-mdpi/bn_info.png" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/drawable-mdpi/bn_setup.png" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/drawable-mdpi/drawer_shadow.9.png" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/drawable-mdpi/ic_about.png" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/drawable-mdpi/ic_download_dest.png" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/drawable-mdpi/ic_download_source.png" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/drawable-mdpi/ic_fail.png" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/drawable-mdpi/ic_help.png" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/drawable-mdpi/ic_home.png" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/drawable-mdpi/ic_item.png" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/drawable-mdpi/ic_ok.png" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/drawable-mdpi/ic_role.png" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/drawable-mdpi/ic_roles.png" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/drawable-mdpi/ic_run.png" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/drawable-mdpi/ic_search_browse.png" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/drawable-mdpi/ic_settings.png" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/drawable-mdpi/ic_setup.png" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/drawable-mdpi/ic_spinner_arrow.png" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/drawable-mdpi/ic_sql.png" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/drawable-mdpi/ic_status.png" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/drawable-mdpi/ic_storage.png" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/drawable-mdpi/ic_unknown.png" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/drawable-xhdpi/bn_download.png" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/drawable-xhdpi/bn_info.png" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/drawable-xhdpi/bn_setup.png" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/drawable-xhdpi/drawer_shadow.9.png" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/drawable-xhdpi/ic_about.png" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/drawable-xhdpi/ic_download_dest.png" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/drawable-xhdpi/ic_download_source.png" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/drawable-xhdpi/ic_fail.png" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/drawable-xhdpi/ic_help.png" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/drawable-xhdpi/ic_home.png" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/drawable-xhdpi/ic_item.png" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/drawable-xhdpi/ic_ok.png" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/drawable-xhdpi/ic_role.png" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/drawable-xhdpi/ic_roles.png" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/drawable-xhdpi/ic_run.png" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/drawable-xhdpi/ic_search_browse.png" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/drawable-xhdpi/ic_settings.png" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/drawable-xhdpi/ic_setup.png" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/drawable-xhdpi/ic_spinner_arrow.png" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/drawable-xhdpi/ic_sql.png" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/drawable-xhdpi/ic_status.png" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/drawable-xhdpi/ic_storage.png" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/drawable-xhdpi/ic_unknown.png" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/drawable-xxhdpi/bn_download.png" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/drawable-xxhdpi/bn_info.png" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/drawable-xxhdpi/bn_setup.png" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/drawable-xxhdpi/drawer_shadow.9.png" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/drawable-xxhdpi/ic_about.png" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/drawable-xxhdpi/ic_download_dest.png" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/drawable-xxhdpi/ic_download_source.png" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/drawable-xxhdpi/ic_fail.png" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/drawable-xxhdpi/ic_help.png" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/drawable-xxhdpi/ic_home.png" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/drawable-xxhdpi/ic_item.png" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/drawable-xxhdpi/ic_ok.png" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/drawable-xxhdpi/ic_role.png" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/drawable-xxhdpi/ic_roles.png" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/drawable-xxhdpi/ic_run.png" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/drawable-xxhdpi/ic_search_browse.png" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/drawable-xxhdpi/ic_settings.png" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/drawable-xxhdpi/ic_setup.png" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/drawable-xxhdpi/ic_spinner_arrow.png" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/drawable-xxhdpi/ic_sql.png" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/drawable-xxhdpi/ic_status.png" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/drawable-xxhdpi/ic_storage.png" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/drawable-xxhdpi/ic_unknown.png" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/drawable-xxxhdpi/bn_download.png" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/drawable-xxxhdpi/bn_info.png" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/drawable-xxxhdpi/bn_setup.png" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/drawable-xxxhdpi/drawer_shadow.9.png" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/drawable-xxxhdpi/ic_about.png" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/drawable-xxxhdpi/ic_download_dest.png" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/drawable-xxxhdpi/ic_download_source.png" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/drawable-xxxhdpi/ic_fail.png" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/drawable-xxxhdpi/ic_help.png" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/drawable-xxxhdpi/ic_home.png" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/drawable-xxxhdpi/ic_item.png" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/drawable-xxxhdpi/ic_ok.png" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/drawable-xxxhdpi/ic_role.png" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/drawable-xxxhdpi/ic_roles.png" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/drawable-xxxhdpi/ic_run.png" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/drawable-xxxhdpi/ic_search_browse.png" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/drawable-xxxhdpi/ic_settings.png" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/drawable-xxxhdpi/ic_setup.png" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/drawable-xxxhdpi/ic_spinner_arrow.png" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/drawable-xxxhdpi/ic_sql.png" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/drawable-xxxhdpi/ic_status.png" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/drawable-xxxhdpi/ic_storage.png" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/drawable-xxxhdpi/ic_unknown.png" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/drawable/bg_button_action.xml" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/drawable/bg_button_err.xml" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/drawable/bg_button_info.xml" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/drawable/bg_button_ok.xml" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/drawable/bg_spinner.xml" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/drawable/bg_spinner_item.xml" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/drawable/listitem_background.xml" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/drawable/listitem_selector.xml" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/drawable/rounded_corners_white.xml" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/layout-land/fragment_download.xml" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/layout/actionbar_custom.xml" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/layout/activity_about.xml" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/layout/activity_download.xml" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/layout/activity_download_simple.xml" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/layout/activity_help.xml" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/layout/activity_main.xml" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/layout/activity_setup.xml" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/layout/activity_setup_database.xml" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/layout/activity_setup_file.xml" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/layout/activity_status.xml" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/layout/activity_storage.xml" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/layout/activity_table.xml" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/layout/drawer_item_simple.xml" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/layout/drawer_main.xml" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/layout/fragment_about.xml" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/layout/fragment_download.xml" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/layout/fragment_setup_file.xml" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/layout/fragment_splash_browse.xml" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/layout/fragment_splash_search_text.xml" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/layout/fragment_sql.xml" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/layout/fragment_storage.xml" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/layout/fragment_table.xml" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/layout/fragment_web.xml" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/layout/item_dbobject.xml" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/layout/item_search_text.xml" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/layout/item_source.xml" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/layout/item_sql.xml" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/layout/item_table1.xml" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/layout/item_table2.xml" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/layout/item_table3.xml" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/layout/spinner_item_actionbar.xml" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/layout/spinner_item_actionbar_dropdown.xml" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/layout/spinner_item_task.xml" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/layout/spinner_item_task_dropdown.xml" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/menu/global.xml" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/menu/main.xml" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/menu/setup.xml" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/menu/setup_database.xml" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/menu/setup_sql.xml" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/menu/status.xml" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/menu/storage.xml" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/menu/text_search.xml" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/values-v21/styles.xml" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/values-w600dp/dimens.xml" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/values-w720dp/dimens.xml" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/values-w820dp/dimens.xml" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/values/colors.xml" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/values/dimens.xml" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/values/strings_about.xml" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/values/strings_help.xml" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/values/strings_support.xml" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/values/styles.xml" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/xml/backup.xml" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/xml/pref_container.xml" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/xml/pref_database.xml" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/xml/pref_general.xml" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/xml/pref_headers.xml" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browserfn/src/main/java/org/sqlunet/browser/org/sqlunet/browser/fn/DocumentTransformer.java" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browserfn/src/main/java/org/sqlunet/browser/org/sqlunet/browser/fn/Settings.java" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browserfn/src/main/java/org/sqlunet/browser/org/sqlunet/browser/fn/Status.java" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browserfn/src/main/res/layout/fragment_about.xml" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browserfn/src/main/res/layout/fragment_splash_browse.xml" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browserfn/src/main/res/layout/fragment_splash_search_text.xml" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browserfn/src/main/res/layout/fragment_sql.xml" afterPath="" />
-      <change type="DELETED" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/common/src/main/res/layout/item_group_xselector.xml" afterPath="" />
-      <change type="MOVED" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/java/org/sqlunet/browser/StatusFragment.java" afterPath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/java/org/sqlunet/browser/wn/StatusFragment.java" />
-      <change type="MOVED" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/java/org/sqlunet/browser/config/SetupSqlFragment.java" afterPath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/java/org/sqlunet/browser/wn/SetupSqlFragment.java" />
+      <change type="NEW" beforePath="" afterPath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/layout/fragment_web.xml" />
+      <change type="DELETED" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/java/org/sqlunet/browser/config/Status.java" afterPath="" />
+      <change type="DELETED" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/java/org/sqlunet/browser/web/DocumentTransformer.java" afterPath="" />
+      <change type="DELETED" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/java/org/sqlunet/settings/Settings.java" afterPath="" />
+      <change type="MODIFICATION" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/.idea/misc.xml" afterPath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/.idea/misc.xml" />
       <change type="MODIFICATION" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/.idea/workspace.xml" afterPath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/browser.iml" afterPath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/browser.iml" />
-      <change type="MODIFICATION" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/build.gradle" afterPath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/build.gradle" />
-      <change type="MODIFICATION" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/java/org/sqlunet/browser/Browse2Fragment.java" afterPath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/java/org/sqlunet/browser/Browse2Fragment.java" />
-      <change type="MODIFICATION" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/java/org/sqlunet/browser/BrowseFragment.java" afterPath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/java/org/sqlunet/browser/BrowseFragment.java" />
-      <change type="MODIFICATION" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/java/org/sqlunet/browser/SearchTextFragment.java" afterPath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/java/org/sqlunet/browser/SearchTextFragment.java" />
-      <change type="MODIFICATION" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/java/org/sqlunet/browser/web/WebFragment.java" afterPath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/java/org/sqlunet/browser/web/WebFragment.java" />
-      <change type="MODIFICATION" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/values/strings.xml" afterPath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/values/strings.xml" />
-      <change type="MODIFICATION" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/values/strings_settings.xml" afterPath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/values/strings_settings.xml" />
-      <change type="MODIFICATION" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/values/strings_setup.xml" afterPath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/values/strings_setup.xml" />
-      <change type="MODIFICATION" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/values/styles-app.xml" afterPath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/values/styles-app.xml" />
       <change type="MODIFICATION" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browserfn/browserfn.iml" afterPath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browserfn/browserfn.iml" />
-      <change type="MODIFICATION" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browserfn/build.gradle" afterPath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browserfn/build.gradle" />
-      <change type="MODIFICATION" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browserfn/src/main/java/org/sqlunet/browser/fn/SetupStatusFragment.java" afterPath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browserfn/src/main/java/org/sqlunet/browser/fn/SetupStatusFragment.java" />
-      <change type="MODIFICATION" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browserfn/src/main/res/values/strings.xml" afterPath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browserfn/src/main/res/values/strings.xml" />
-      <change type="MODIFICATION" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browserfn/src/main/res/values/strings_settings.xml" afterPath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browserfn/src/main/res/values/strings_settings.xml" />
-      <change type="MODIFICATION" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/common/src/main/java/org/sqlunet/browser/config/ExecAsyncTask.java" afterPath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/common/src/main/java/org/sqlunet/browser/config/ExecAsyncTask.java" />
-      <change type="MODIFICATION" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/common/src/main/java/org/sqlunet/browser/config/SetupDatabaseFragment.java" afterPath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/common/src/main/java/org/sqlunet/browser/config/SetupDatabaseFragment.java" />
-      <change type="MODIFICATION" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/common/src/main/java/org/sqlunet/browser/config/SetupSqlFragment.java" afterPath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/common/src/main/java/org/sqlunet/browser/config/SetupSqlFragment.java" />
-      <change type="MODIFICATION" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/common/src/main/java/org/sqlunet/browser/config/TaskObserver.java" afterPath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/common/src/main/java/org/sqlunet/browser/config/TaskObserver.java" />
-      <change type="MODIFICATION" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/common/src/main/java/org/sqlunet/settings/Settings.java" afterPath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/common/src/main/java/org/sqlunet/settings/Settings.java" />
-      <change type="MODIFICATION" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/common/src/main/res/values/strings_setup.xml" afterPath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/common/src/main/res/values/strings_setup.xml" />
+      <change type="MODIFICATION" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browserfn/src/androidTest/java/org/sqlunet/browser/Tests.java" afterPath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browserfn/src/androidTest/java/org/sqlunet/browser/Tests.java" />
+      <change type="MODIFICATION" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/common/common.iml" afterPath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/common/common.iml" />
       <change type="MODIFICATION" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/expandableListFragment/expandableListFragment.iml" afterPath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/expandableListFragment/expandableListFragment.iml" />
+      <change type="MODIFICATION" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/propbank/propbank.iml" afterPath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/propbank/propbank.iml" />
       <change type="MODIFICATION" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/support/support.iml" afterPath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/support/support.iml" />
-      <change type="MODIFICATION" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/test/test.iml" afterPath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/test/test.iml" />
       <change type="MODIFICATION" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/treeView/treeView.iml" afterPath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/treeView/treeView.iml" />
-      <change type="MODIFICATION" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/verbNet/verbNet.iml" afterPath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/verbNet/verbNet.iml" />
       <change type="MODIFICATION" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/wordNet/wordNet.iml" afterPath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/wordNet/wordNet.iml" />
-      <change type="MODIFICATION" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/xNet/xNet.iml" afterPath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/xNet/xNet.iml" />
     </list>
     <list id="36f6b5c7-9521-46b4-bf4d-149db941bcca" name="NonPublic" comment="">
       <change type="MODIFICATION" beforePath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/support/src/main/res/values/strings-nontranslatable.xml" afterPath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/support/src/main/res/values/strings-nontranslatable.xml" />
@@ -332,7 +71,21 @@
     <favorites_list name="SqlUNet" />
   </component>
   <component name="FileEditorManager">
-    <leaf />
+    <leaf>
+      <file leaf-file-name="AndroidManifest.xml" pinned="false" current-in-tab="true">
+        <entry file="file:///mnt/data2/devel/android-sqlunet-as/SqlUNet/common/src/main/AndroidManifest.xml">
+          <provider editor-type-id="android-manifest">
+            <state />
+          </provider>
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="26">
+              <caret line="2" column="38" selection-start-line="2" selection-start-column="38" selection-end-line="2" selection-end-column="38" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -12791,8 +12544,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="/mnt/data2/devel/android-sqlunet-as/SqlUNet/wordNet/src/main/java/org/sqlunet/wordnet/provider/WordNetProvider.java" />
-        <option value="/mnt/data2/devel/android-sqlunet-as/SqlUNet/xNet/src/main/java/org/sqlunet/provider/XSqlUNetProvider.java" />
         <option value="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/java/org/sqlunet/provider/ManagerProvider.java" />
         <option value="/mnt/data2/devel/android-sqlunet-as/SqlUNet/common/src/main/java/org/sqlunet/provider/ManagerProvider.java" />
         <option value="/mnt/data2/devel/android-sqlunet-as/SqlUNet/predicateMatrix/src/main/java/org/sqlunet/predicatematrix/provider/PredicateMatrixContract.java" />
@@ -12842,6 +12593,8 @@
         <option value="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browserfn/src/main/res/values/strings.xml" />
         <option value="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/values/strings.xml" />
         <option value="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/values/strings_setup.xml" />
+        <option value="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browserfn/src/androidTest/java/org/sqlunet/browser/Tests.java" />
+        <option value="/mnt/data2/devel/android-sqlunet-as/SqlUNet/common/src/main/AndroidManifest.xml" />
       </list>
     </option>
   </component>
@@ -12903,10 +12656,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
-      <pane id="ProjectPane">
-        <subPane />
-      </pane>
       <pane id="Scope">
         <subPane subId="Project Files">
           <PATH>
@@ -13055,12 +12804,40 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="ProjectPane">
+        <subPane />
+      </pane>
+      <pane id="Scratches" />
       <pane id="AndroidView">
         <subPane>
           <PATH>
             <PATH_ELEMENT>
               <option name="myItemId" value="SqlUNet" />
               <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="SqlUNet" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="common" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="SqlUNet" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="common" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="manifests" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidManifestsGroupNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
@@ -13100,17 +12877,17 @@
     <property name="last_directory_selection" value="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/values" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="/mnt/data2/devel/android-sqlunet-as/SqlUNet/common/src/main/res/menu" />
+      <recent name="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browserfn/src/main/res/layout" />
+      <recent name="/mnt/data2/devel/android-sqlunet-as/SqlUNet/common/src/main/res/values" />
+      <recent name="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browserfn/src/main/res/values" />
+      <recent name="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/values" />
+    </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="org.sqlunet.framenet" />
       <recent name="org.sqlunet.browser" />
       <recent name="org.sqlunet.support" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/values" />
-      <recent name="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/java/org/sqlunet/browser/wn" />
-      <recent name="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/java/org/sqlunet/provider" />
-      <recent name="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browserfn/src/main/java/org/sqlunet/browser/fn" />
-      <recent name="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browserfn/src/main/res/layout-land" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="org.sqlunet.browser.wn" />
@@ -13119,12 +12896,12 @@
       <recent name="org.sqlunet.browser" />
       <recent name="org.sqlunet.framenet.provider" />
     </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="/mnt/data2/devel/android-sqlunet-as/SqlUNet/common/src/main/res/menu" />
-      <recent name="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browserfn/src/main/res/layout" />
-      <recent name="/mnt/data2/devel/android-sqlunet-as/SqlUNet/common/src/main/res/values" />
-      <recent name="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browserfn/src/main/res/values" />
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/layout" />
       <recent name="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/values" />
+      <recent name="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/java/org/sqlunet/browser/wn" />
+      <recent name="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/java/org/sqlunet/provider" />
+      <recent name="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browserfn/src/main/java/org/sqlunet/browser/fn" />
     </key>
   </component>
   <component name="RunManager" selected="Android App.browser">
@@ -13843,7 +13620,14 @@
       <option name="project" value="LOCAL" />
       <updated>1500013100211</updated>
     </task>
-    <option name="localTasksCounter" value="49" />
+    <task id="LOCAL-00049" summary="strip down&#10;">
+      <created>1500042044615</created>
+      <option name="number" value="00049" />
+      <option name="presentableId" value="LOCAL-00049" />
+      <option name="project" value="LOCAL" />
+      <updated>1500042044615</updated>
+    </task>
+    <option name="localTasksCounter" value="50" />
     <servers />
   </component>
   <component name="TodoView" selected-index="3">
@@ -13857,10 +13641,10 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="27" width="1920" height="1140" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32934132" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.40425533" sideWeight="0.5021299" order="12" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.40425533" sideWeight="0.5021299" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
@@ -13873,8 +13657,7 @@
       <window_info id="Captures" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24973376" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.295846" sideWeight="0.49307775" order="11" side_tool="true" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19009584" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.44680852" sideWeight="0.6373802" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19009584" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.20820022" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Android Model" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
@@ -13892,6 +13675,7 @@
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.44680852" sideWeight="0.6373802" order="1" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -13946,7 +13730,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$" />
     </ignored-roots>
-    <MESSAGE value="fixes mutiple cancel in notification&#10;" />
     <MESSAGE value="fixes broadcast receiver lifetime&#10;" />
     <MESSAGE value="lint&#10;" />
     <MESSAGE value="rename&#10;" />
@@ -13971,7 +13754,8 @@
     <MESSAGE value="provider collision (all)&#10;" />
     <MESSAGE value="provider collision (all+bnc)&#10;" />
     <MESSAGE value="convergence&#10;" />
-    <option name="LAST_COMMIT_MESSAGE" value="convergence&#10;" />
+    <MESSAGE value="strip down&#10;" />
+    <option name="LAST_COMMIT_MESSAGE" value="strip down&#10;" />
     <option name="PRESELECT_EXISTING_CHANGELIST" value="false" />
   </component>
   <component name="XDebuggerManager">
@@ -14013,29 +13797,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file:///mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/drawable-hdpi/ic_roles_grouped.png">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file:///mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/drawable-hdpi/ic_rows_bysynset.png">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file:///mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/xml/backup.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/drawable-hdpi/ic_logo.png">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
     <entry file="file:///mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/drawable-hdpi/sqlunet.png">
       <provider selected="true" editor-type-id="images">
         <state />
@@ -14049,74 +13810,36 @@
         </state>
       </provider>
     </entry>
-    <entry file="file:///mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/xml/pref_container.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
-    </entry>
+    <entry file="file:///mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/xml/pref_container.xml" />
     <entry file="file:///mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/xml/pref_download.xml">
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
     </entry>
-    <entry file="file:///mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/xml/pref_database.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
-    </entry>
+    <entry file="file:///mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/xml/pref_database.xml" />
     <entry file="file:///mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/xml/pref_filter.xml">
+      <provider selected="true" editor-type-id="android-designer2">
+        <state />
+      </provider>
       <provider editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
-      <provider selected="true" editor-type-id="android-designer2">
-        <state />
-      </provider>
     </entry>
-    <entry file="file:///mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/xml/pref_general.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file:///mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/xml/pref_headers.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file:///mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/xml/pref_general.xml" />
+    <entry file="file:///mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/xml/pref_headers.xml" />
     <entry file="file:///mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/values-land/refs.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -14124,23 +13847,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file:///mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/values-w600dp/dimens.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file:///mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/values-w600dp/dimens.xml" />
     <entry file="file:///mnt/data2/devel/android-sqlunet-as/SqlUNet/browserfn/src/main/res/values-large/refs.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -14148,7 +13862,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -14184,22 +13897,8 @@
         </state>
       </provider>
     </entry>
-    <entry file="file:///mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/values/strings_about.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/values/strings_help.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file:///mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/values/strings_about.xml" />
+    <entry file="file:///mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/values/strings_help.xml" />
     <entry file="file:///mnt/data2/devel/android-sqlunet-as/SqlUNet/browserfn/src/main/res/values/strings_settings.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="39">
@@ -14216,22 +13915,8 @@
         </state>
       </provider>
     </entry>
-    <entry file="file:///mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/values/styles.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/values-v21/styles.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file:///mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/values/styles.xml" />
+    <entry file="file:///mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/values-v21/styles.xml" />
     <entry file="file:///mnt/data2/devel/android-sqlunet-as/SqlUNet/browserfn/src/main/res/values/styles-app.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="65">
@@ -14296,155 +13981,92 @@
         </state>
       </provider>
     </entry>
-    <entry file="file:///mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/menu/text_search.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file:///mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/menu/setup.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
-    </entry>
+    <entry file="file:///mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/menu/text_search.xml" />
+    <entry file="file:///mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/menu/setup.xml" />
     <entry file="file:///mnt/data2/devel/android-sqlunet-as/SqlUNet/browserfn/src/main/res/menu/setup.xml">
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
     </entry>
-    <entry file="file:///mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/layout/activity_about.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file:///mnt/data2/devel/android-sqlunet-as/SqlUNet/common/src/main/res/layout/item_group_xselector.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
-    </entry>
+    <entry file="file:///mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/layout/activity_about.xml" />
+    <entry file="file:///mnt/data2/devel/android-sqlunet-as/SqlUNet/common/src/main/res/layout/item_group_xselector.xml" />
     <entry file="file:///mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/java/org/sqlunet/browser/xselector/XSelectorsFragment.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="320">
           <caret line="297" column="113" selection-start-line="297" selection-start-column="113" selection-end-line="297" selection-end-column="113" />
-          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file:///mnt/data2/devel/android-sqlunet-as/SqlUNet/browserfn/src/main/res/layout/fragment_sql.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
-    </entry>
+    <entry file="file:///mnt/data2/devel/android-sqlunet-as/SqlUNet/browserfn/src/main/res/layout/fragment_sql.xml" />
     <entry file="file:///mnt/data2/devel/android-sqlunet-as/SqlUNet/browserfn/src/main/res/layout/fragment_main.xml">
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
     </entry>
-    <entry file="file:///mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/layout/fragment_splash_search_text.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
-    </entry>
+    <entry file="file:///mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/layout/fragment_splash_search_text.xml" />
     <entry file="file:///mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/layout/activity_search_text.xml">
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
-      </provider>
-      <provider editor-type-id="android-designer2">
-        <state />
       </provider>
     </entry>
     <entry file="file:///mnt/data2/devel/android-sqlunet-as/SqlUNet/browserfn/src/main/res/layout/fragment_home.xml">
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
-      </provider>
-      <provider editor-type-id="android-designer2">
-        <state />
       </provider>
     </entry>
     <entry file="file:///mnt/data2/devel/android-sqlunet-as/SqlUNet/common/src/main/res/menu/global.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
       <provider editor-type-id="android-designer2">
         <state />
       </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
     </entry>
     <entry file="file:///mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/layout/fragment_setup_sql.xml">
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="469">
           <caret line="144" column="0" selection-start-line="144" selection-start-column="0" selection-end-line="144" selection-end-column="0" />
           <folding />
         </state>
       </provider>
+    </entry>
+    <entry file="file:///mnt/data2/devel/android-sqlunet-as/SqlUNet/common/src/main/res/menu/setup_sql.xml">
       <provider editor-type-id="android-designer2">
         <state />
       </provider>
-    </entry>
-    <entry file="file:///mnt/data2/devel/android-sqlunet-as/SqlUNet/common/src/main/res/menu/setup_sql.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
-      </provider>
-      <provider editor-type-id="android-designer2">
-        <state />
       </provider>
     </entry>
     <entry file="file:///mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/values/strings_setup.xml">
@@ -14459,6 +14081,43 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="257">
           <caret line="250" column="26" selection-start-line="250" selection-start-column="26" selection-end-line="250" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/res/layout/fragment_web.xml">
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/src/main/java/org/sqlunet/browser/web/WebFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="247">
+          <caret line="100" column="45" selection-start-line="100" selection-start-column="45" selection-end-line="100" selection-end-column="45" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///mnt/data2/devel/android-sqlunet-as/SqlUNet/browserfn/src/androidTest/java/org/sqlunet/browser/Tests.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="455">
+          <caret line="44" column="0" selection-start-line="44" selection-start-column="0" selection-end-line="44" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///mnt/data2/devel/android-sqlunet-as/SqlUNet/common/src/main/AndroidManifest.xml">
+      <provider editor-type-id="android-manifest">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="26">
+          <caret line="2" column="38" selection-start-line="2" selection-start-column="38" selection-end-line="2" selection-end-column="38" />
           <folding />
         </state>
       </provider>
