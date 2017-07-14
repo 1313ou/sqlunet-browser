@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-	<!-- Strings related to Settings -->
-
 	<!-- Filter -->
 	<string name="pref_title_enable_framenet">Enable FrameNet</string>
 	<string name="pref_description_enable_framenet">Display FrameNet information</string>

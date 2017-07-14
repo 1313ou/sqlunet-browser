@@ -1,42 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-	<!-- Strings related to Settings -->
-
-	<string name="title_activity_settings">Settings</string>
-
-	<!-- General -->
-	<string name="pref_header_general">General</string>
-	<string name="pref_title_selector_mode">Selector Mode</string>
-	<string name="pref_description_selector_mode">Rendering of selector</string>
-
-	<string-array name="pref_selector_mode_list_titles">
-		<item>View</item>
-		<item>Web</item>
-	</string-array>
-	<string-array name="pref_selector_mode_list_values">
-		<item>VIEW</item>
-		<item>WEB</item>
-	</string-array>
-
-	<string name="pref_title_detail_mode">Detail Mode</string>
-	<string name="pref_description_detail_mode">Rendering of detail</string>
-
-	<string-array name="pref_detail_mode_list_titles">
-		<item>View</item>
-		<item>Web</item>
-	</string-array>
-	<string-array name="pref_detail_mode_list_values">
-		<item>VIEW</item>
-		<item>WEB</item>
-	</string-array>
-
-	<string name="pref_title_xml">XML output</string>
-	<string name="pref_description_xml">Out data in XML format</string>
-
-	<string name="pref_title_sql_log">Log SQL</string>
-	<string name="pref_description_sql_log">Log SQL statements to logs</string>
-
 	<!-- Filter -->
 	<string name="pref_header_filter">Filter</string>
 	<string name="pref_title_enable_links">Enable links</string>
@@ -52,40 +16,8 @@
 	<string name="pref_title_enable_bnc">Enable BNC</string>
 	<string name="pref_description_enable_bnc">Display BNC information</string>
 
-	<!-- Database -->
-	<string name="pref_header_database">Database</string>
-	<string name="pref_title_storage">Database Storage</string>
-	<string name="pref_description_storage">Database Storage</string>
-
-	<!-- Download -->
-	<string name="pref_header_download">Download</string>
-	<string name="pref_title_downloader">Downloader</string>
-	<string name="pref_default_downloader">SIMPLE_SERVICE</string>
-	<string-array name="pref_downloader_titles">
-		<item>Simple download service</item>
-		<item>Simple downloader</item>
-		<item>Android Download Manager</item>
-	</string-array>
-	<string-array name="pref_downloader_values">
-		<item>@string/pref_default_downloader</item>
-		<item>DOWNLOADMANAGER</item>
-	</string-array>
-	<string name="pref_description_downloader">Downloader</string>
-	<string name="pref_title_download_site">Download site</string>
-	<string name="pref_description_download_site">Download site for data</string>
-	<string name="pref_title_download_dbfile">Download DB file</string>
-	<string name="pref_description_download_dbfile">Data download DB file</string>
-	<string name="pref_title_download_sqlfile">Download SQL file</string>
-	<string name="pref_description_download_sqlfile">Data download SQL file</string>
-
 	<!-- Zip entries -->
-	<string name="pref_title_entry_import">Import entry</string>
-	<string name="pref_description_entry_import">Zip file entry for SQL importing code</string>
 	<string name="pref_title_entry_pm">PredicateMatrix entry</string>
 	<string name="pref_description_entry_pm">Zip file entry for SQL predicatematrix code</string>
-	<string name="pref_title_entry_index">Index entry</string>
-	<string name="pref_description_entry_index">Zip file entry for SQL indexing code</string>
-	<string name="pref_title_cache">Cache</string>
-	<string name="pref_description_cache">Cache used for download/copy/unzip</string>
 
 </resources>

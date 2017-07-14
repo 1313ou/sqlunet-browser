@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	
+	<string name="pref_default_download_site">https://sourceforge.net/projects/sqlunet/files/4.0.0/android</string>
+	<string name="pref_default_download_dbfile">sqlunet.db</string>
+	<string name="pref_default_download_dbfile_zipped">sqlunet.db.zip</string>
+	<string name="pref_default_download_sqlfile">sqlunet.sql.zip</string>
+	<string name="pref_default_entry_import">sqlunet.sql</string>
+	<string name="pref_default_entry_index">sqlunet-index.sql</string>
+
+</resources>

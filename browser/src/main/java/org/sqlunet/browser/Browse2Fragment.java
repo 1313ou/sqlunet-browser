@@ -13,14 +13,13 @@ import android.view.ViewGroup;
 
 import org.sqlunet.bnc.browser.BNCFragment;
 import org.sqlunet.browser.web.WebFragment;
+import org.sqlunet.browser.wn.Settings;
 import org.sqlunet.browser.xselector.XSelectorPointer;
 import org.sqlunet.framenet.browser.FrameNetFragment;
 import org.sqlunet.propbank.browser.PropBankFragment;
 import org.sqlunet.provider.ProviderArgs;
-import org.sqlunet.settings.Settings;
 import org.sqlunet.verbnet.browser.VerbNetFragment;
 import org.sqlunet.wordnet.browser.SenseFragment;
-
 /**
  * A fragment representing a detail
  *

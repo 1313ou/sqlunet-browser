@@ -24,7 +24,7 @@ import java.util.zip.ZipFile;
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
 @SuppressWarnings("RedundantSuppression")
-class ExecAsyncTask
+public class ExecAsyncTask
 {
 	static private final String TAG = "ExecAsyncTask";
 
@@ -55,7 +55,7 @@ class ExecAsyncTask
 	 * @param listener    listener
 	 * @param publishRate publish rate
 	 */
-	ExecAsyncTask(final Activity activity, final TaskObserver.Listener listener, final int publishRate)
+	public ExecAsyncTask(final Activity activity, final TaskObserver.Listener listener, final int publishRate)
 	{
 		this.activity = activity;
 		this.listener = listener;
@@ -68,7 +68,7 @@ class ExecAsyncTask
 	 * @param database database path
 	 * @param sqls     sql statements
 	 */
-	AsyncTask<Pair<String, String[]>, Integer, Boolean> executeFromSql(final String database, final String... sqls)
+	public AsyncTask<Pair<String, String[]>, Integer, Boolean> executeFromSql(final String database, final String... sqls)
 	{
 		final AsyncTask<Pair<String, String[]>, Integer, Boolean> task = new AsyncTask<Pair<String, String[]>, Integer, Boolean>()
 		{
@@ -163,7 +163,7 @@ class ExecAsyncTask
 	 * @param archive  zip file path with sql statements
 	 * @param entry    entry
 	 */
-	AsyncTask<String, Integer, Boolean> executeFromArchive(final String database, final String archive, final String entry)
+	public AsyncTask<String, Integer, Boolean> executeFromArchive(final String database, final String archive, final String entry)
 	{
 		final AsyncTask<String, Integer, Boolean> task = new AsyncTask<String, Integer, Boolean>()
 		{

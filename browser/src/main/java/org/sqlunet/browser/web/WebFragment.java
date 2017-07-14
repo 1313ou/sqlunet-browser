@@ -27,6 +27,7 @@ import org.sqlunet.bnc.sql.BncImplementation;
 import org.sqlunet.browser.BuildConfig;
 import org.sqlunet.browser.Module;
 import org.sqlunet.browser.R;
+import org.sqlunet.browser.wn.DocumentTransformer;
 import org.sqlunet.browser.xselector.XSelectorPointer;
 import org.sqlunet.dom.DomFactory;
 import org.sqlunet.dom.DomTransformer;
@@ -40,7 +41,7 @@ import org.sqlunet.propbank.PbRoleSetPointer;
 import org.sqlunet.propbank.sql.PropBankImplementation;
 import org.sqlunet.provider.ProviderArgs;
 import org.sqlunet.settings.LogUtils;
-import org.sqlunet.settings.Settings;
+import org.sqlunet.browser.wn.Settings;
 import org.sqlunet.settings.StorageSettings;
 import org.sqlunet.sql.DataSource;
 import org.sqlunet.sql.NodeFactory;
@@ -641,31 +642,31 @@ public class WebFragment extends Fragment
 			if (wnDomDoc != null)
 			{
 				sb.append(ITEM1);
-				sb.append(DocumentTransformer.docToHtml(wnDomDoc, Settings.Source.WORDNET, isSelector));
+				sb.append(new DocumentTransformer().docToHtml(wnDomDoc, Settings.Source.WORDNET.toString(), isSelector));
 				sb.append(ITEM2);
 			}
 			if (vnDomDoc != null)
 			{
 				sb.append(ITEM1);
-				sb.append(DocumentTransformer.docToHtml(vnDomDoc, Settings.Source.VERBNET, isSelector));
+				sb.append(new DocumentTransformer().docToHtml(vnDomDoc, Settings.Source.VERBNET.toString(), isSelector));
 				sb.append(ITEM2);
 			}
 			if (pbDomDoc != null)
 			{
 				sb.append(ITEM1);
-				sb.append(DocumentTransformer.docToHtml(pbDomDoc, Settings.Source.PROPBANK, isSelector));
+				sb.append(new DocumentTransformer().docToHtml(pbDomDoc, Settings.Source.PROPBANK.toString(), isSelector));
 				sb.append(ITEM2);
 			}
 			if (fnDomDoc != null)
 			{
 				sb.append(ITEM1);
-				sb.append(DocumentTransformer.docToHtml(fnDomDoc, Settings.Source.FRAMENET, isSelector));
+				sb.append(new DocumentTransformer().docToHtml(fnDomDoc, Settings.Source.FRAMENET.toString(), isSelector));
 				sb.append(ITEM2);
 			}
 			if (bncDomDoc != null)
 			{
 				sb.append(ITEM1);
-				sb.append(DocumentTransformer.docToHtml(bncDomDoc, Settings.Source.BNC, isSelector));
+				sb.append(new DocumentTransformer().docToHtml(bncDomDoc, Settings.Source.BNC.toString(), isSelector));
 				sb.append(ITEM2);
 			}
 			sb.append(LIST2);

@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-	<!-- Strings related to Setup -->
 	<string name="title_database">Database</string>
 	<string name="title_from">From</string>
 	<string name="title_to">To</string>

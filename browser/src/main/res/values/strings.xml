@@ -2,77 +2,19 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
 
 	<!-- app -->
-	<string name="semantikos">Semantikos</string>>
-	<string name="semantikos_greek">σημαντικός</string>>
-	<string name="semantikos_latin">significans</string>>
 	<string name="app_name">@string/semantikos</string>
 
 	<!-- ACTIONS -->
 
-	<!-- settings and status -->
-	<string name="action_settings">Settings</string>
-	<string name="action_status">Status</string>
-	<string name="action_refresh">Refresh</string>
-
 	<!-- setup -->
-	<string name="action_setup">Set up</string>
 	<string name="action_setup_textsearchWn" tools:keep="@string/action_setup_textsearchWn">Setup text search for WordNet</string>
 	<string name="action_setup_textsearchVn" tools:keep="@string/action_setup_textsearchVn">Setup text search for VerbNet</string>
 	<string name="action_setup_textsearchPb" tools:keep="@string/action_setup_textsearchPb">Setup text search for PropBank</string>
 	<string name="action_setup_textsearchFn" tools:keep="@string/action_setup_textsearchFn">Setup text search for FrameNet</string>
 
-	<!-- setup from file -->
-	<string name="action_copy_from_file">Copy database from &#8230;</string>
-	<string name="action_unzip_from_archive">Unzip database from &#8230;</string>
-
-	<!-- database info -->
-	<string name="action_tables_and_indices">Tables and Indices</string>
-	<string name="action_table_lexdomains">Lex Domains</string>
-	<string name="action_table_linktypes">Link types</string>
-	<string name="action_table_postypes">POS types</string>
-	<string name="action_table_adjpositiontypes">Adjective Position types</string>
-
-	<!-- file info -->
-	<string name="action_storage_dirs">Storage dirs</string>
-	<string name="action_storage">Storage</string>
-	<string name="action_md5">MD5</string>
-	<string name="action_md5_of">MD5 of</string>
-	<string name="action_md5_ask">MD5 &#8230;</string>
-
-	<!-- misc -->
-	<string name="action_clear_sql">Clear SQLs</string>
-	<string name="action_download">Download</string>
-	<string name="action_help">Help</string>
-	<string name="action_about">About</string>
-	<string name="action_appsettings">Application</string>
-
-	<string name="action_run">Run</string>
-	<string name="action_quit">Quit</string>
-	<string name="action_abort">Abort</string>
-	<string name="action_dismiss">Dismiss</string>
-	<string name="action_cancel">Cancel</string>
-	<string name="action_ok">OK</string>
-	<string name="action_show">Show</string>
-
-	<!-- SETUP PAGES -->
-
-	<string name="page_setup">Default</string>
-	<string name="page_setup_file">File</string>
-	<string name="page_setup_database">Database</string>
-	<string name="page_setup_sql">SQL</string>
-
 	<!-- TITLES -->
 
 	<!-- labels -->
-	<string name="title_activity_main">Home</string>
-	<string name="title_activity_web">Web</string>
-	<string name="title_activity_status">Status</string>
-	<string name="title_activity_setup">Set up</string>
-	<string name="title_activity_setup_database">Set up database</string>
-	<string name="title_activity_download">Download</string>
-	<string name="title_activity_text_search">Text Search</string>
-	<string name="title_activity_storage">Storage</string>
-
 	<string name="title_activity_selector">Senses</string>
 	<string name="title_activity_xselector">Sources</string>
 
@@ -89,84 +31,26 @@
 	<string name="title_activity_predicatematrix">PredicateMatrix</string>
 	<string name="title_activity_table">Table</string>
 
-	<string name="title_dialog_sql">SQL</string>
-	<string name="title_download">SqlUNet download</string>
-
 	<!-- _status -->
-	<string name="status_data_fail">Data is unavailable</string>
-	<string name="status_database">Database</string>
-	<string name="status_indexes">Indexes</string>
 	<string name="status_predicatematrix">Predicate\nMatrix</string>
 	<string name="status_textsearch">Text Search\non WordNet</string>
 	<string name="status_textsearchVn">Text Search\non VerbNet</string>
 	<string name="status_textsearchPb">Text Search\non PropBank</string>
 	<string name="status_textsearchFn">Text Search\non FrameNet</string>
-	<string name="status_download_pending">pending</string>
-	<string name="status_download_running">running</string>
-	<string name="status_download_paused">paused</string>
-	<string name="status_download_successful">successful</string>
-	<string name="status_download_fail">failed</string>
-	<string name="status_download_error_cannot_resume">cannot resume</string>
-	<string name="status_download_error_device_not_found">device not found</string>
-	<string name="status_download_error_file_already_exists">file already exists</string>
-	<string name="status_download_error_file_error">file error</string>
-	<string name="status_download_error_http_data_error">http data error</string>
-	<string name="status_download_error_insufficient_space">insufficient space</string>
-	<string name="status_download_error_too_many_redirects">too many redirects</string>
-	<string name="status_download_error_unhandled_http_code">unhandled http code</string>
-	<string name="status_download_error_blocked">blocked</string>
-	<string name="status_download_error_unknown">error unknown</string>
-	<string name="status_download_exception">exception</string>
-	<string name="status_download_paused_queued_for_wifi">queued for wifi</string>
-	<string name="status_download_paused_unknown">unknown</string>
-	<string name="status_download_paused_waiting_for_network">waiting for network</string>
-	<string name="status_download_paused_waiting_to_retry">waiting to retry</string>
-	<string name="status_state_unknown"/>
-	<string name="status_reason_unknown"/>
-	<string name="status_managing">Managing</string>
-	<string name="status_task_running">running</string>
-	<string name="status_task_done">done</string>
-	<string name="status_task_success">success</string>
-	<string name="status_task_failed">failed</string>
-	<string name="status_task_start_toast">Task started</string>
-	<string name="status_task_done_toast">Task done</string>
-	<string name="status_task_success_summary">Task succeeded</string>
-	<string name="status_task_failed_summary">Task failed</string>
-	<string name="status_error_null_download_url">Null download URL (see Settings)</string>
-	<string name="status_provider_query_failed">Could not perform query, cause is logged</string>
 
-	<!-- service -->
-	<string name="service_downloader">service_downloader</string>
-	<string name="description_service_downloader">Downloader Service</string>
+	<!-- database info -->
+	<string name="action_tables_and_indices">Tables and Indices</string>
+	<string name="action_table_lexdomains">Lex Domains</string>
+	<string name="action_table_linktypes">Link types</string>
+	<string name="action_table_postypes">POS types</string>
+	<string name="action_table_adjpositiontypes">Adjective Position types</string>
 
 	<!-- misc -->
-	<string name="hint_search">Search</string>
 	<string name="hint_search_text">Text Search WordNet</string>
 	<string name="hint_search_predicatematrix">Search Predicate Matrix</string>
 	<string name="hint_splash_browse">Exploring Semantic Roles</string>
 	<string name="hint_splash_textsearch">Text Search</string>
 	<string name="hint_splash_predicatematrix">Exploring Predicate Matrix</string>
-	<string name="hint_navigation_drawer_open">Open navigation drawer</string>
-	<string name="hint_navigation_drawer_close">Close navigation drawer</string>
-	<string name="hint_sql">SQL statements stack</string>
-	<string name="hint_unzip_from_archive">Select the zip archive to unzip from</string>
-	<string name="hint_copy_from_file">Select the file to copy from</string>
-	<string name="hint_md5">Select the file to md5-checksum</string>
-	<string name="hint_database">Info about Database</string>
-
-	<!-- items -->
-	<string name="download_source">source</string>
-	<string name="download_dest">destination</string>
-	<string name="item">item</string>
-	<string name="md5_downloaded">Downloaded</string>
-	<string name="md5_computed">Computed</string>
-	<string name="md5_compared">Compared</string>
-	<string name="md5_expected">Expected MD5</string>
-	<string name="size_expected">Expected size</string>
-	<string name="size_actual">Actual size</string>
-	<string name="total">total</string>
-	<string name="text_search">Text Search</string>
-	<string name="unit_statement">statements</string>
 
 	<!-- databases -->
 	<string name="sqlunet">SqlUNet</string>

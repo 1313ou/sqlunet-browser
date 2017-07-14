@@ -36,7 +36,7 @@ import org.sqlunet.predicatematrix.PmRolePointer;
 import org.sqlunet.propbank.PbRoleSetPointer;
 import org.sqlunet.propbank.browser.PbRoleSetActivity;
 import org.sqlunet.provider.ProviderArgs;
-import org.sqlunet.settings.Settings;
+import org.sqlunet.browser.wn.Settings;
 import org.sqlunet.verbnet.VnClassPointer;
 import org.sqlunet.verbnet.browser.VnClassActivity;
 import org.sqlunet.wordnet.SenseKeyPointer;
@@ -385,7 +385,7 @@ public class BrowseFragment extends BaseSearchFragment
 		final Activity activity = getActivity();
 
 		// type
-		final Settings.Selector selectorType = Settings.getSelectorPref(activity);
+		final Settings.Selector selectorType = Settings.getXSelectorPref(activity);
 
 		// mode
 		final Settings.SelectorViewMode selectorMode = Settings.getSelectorViewModePref(activity);
@@ -424,7 +424,7 @@ public class BrowseFragment extends BaseSearchFragment
 		Intent intent = null;
 
 		// type
-		final Settings.Selector selectorType = Settings.getSelectorPref(activity);
+		final Settings.Selector selectorType = Settings.getXSelectorPref(activity);
 
 		// mode
 		final Settings.SelectorViewMode selectorMode = Settings.getSelectorViewModePref(activity);

@@ -22,7 +22,7 @@ public class Settings
 	// preferences
 
 	static public final String PREF_SELECTOR_MODE = "pref_viewweb_mode";
-	static private final String PREF_SELECTOR = "pref_selector_mode";
+	static public final String PREF_SELECTOR = "pref_selector_mode";
 	static public final String PREF_DETAIL_MODE = "pref_detail_mode";
 	static private final String PREF_XML = "pref_xml";
 	static private final String PREF_SQL_LOG = "pref_sql_log";
@@ -191,7 +191,7 @@ public class Settings
 		}
 	}
 
-	// P R E F E R E N C E S H O R T C U T S
+	// P R E F E R E N C E   S H O R T C U T S
 
 	/**
 	 * Get selector preferred view mode

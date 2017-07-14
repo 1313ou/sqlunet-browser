@@ -49,13 +49,9 @@ public class SetupDatabaseFragment extends BaseTaskFragment
 		if (args != null)
 		{
 			final int arg = args.getInt(ARG);
-			switch (arg)
+			if (arg > 0)
 			{
-				default:
-					break;
-				case Status.DO_INDEXES: // index 1
-					this.spinner.setSelection(arg - 1);
-					break;
+				this.spinner.setSelection(arg - 1);
 			}
 		}
 

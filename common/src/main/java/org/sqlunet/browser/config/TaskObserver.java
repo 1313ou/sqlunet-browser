@@ -20,7 +20,7 @@ import java.util.Locale;
  *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
-class TaskObserver
+public class TaskObserver
 {
 	static private final String TAG = "TaskObserver";
 
@@ -186,7 +186,7 @@ class TaskObserver
 	/**
 	 * Dialog listener
 	 */
-	static class DialogListener extends BaseListener
+	static public class DialogListener extends BaseListener
 	{
 		private final ProgressDialog progressDialog;
 
@@ -214,7 +214,7 @@ class TaskObserver
 		 * @param message message
 		 * @param unit    unit
 		 */
-		DialogListener(final Context context, final int titleId, final CharSequence message, final CharSequence unit)
+		public DialogListener(final Context context, final int titleId, final CharSequence message, final CharSequence unit)
 		{
 			super(context);
 			this.progressDialog = makeDialog(context, titleId, message, ProgressDialog.STYLE_HORIZONTAL);

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+	<string name="fragment_class_setup_status_page">org.sqlunet.browser.wn.SetupStatusFragment</string> <!-- 0 -->
+
+</resources>

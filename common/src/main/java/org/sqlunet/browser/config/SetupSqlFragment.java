@@ -38,7 +38,7 @@ public class SetupSqlFragment extends Fragment
 	static private final int REQUEST_DOWNLOAD_CODE = 0xDDDD;
 
 	// task
-	private AsyncTask<?, Integer, Boolean> task;
+	protected AsyncTask<?, Integer, Boolean> task;
 
 	// download sql button
 	private ImageButton downloadSqlZipButton;
@@ -304,7 +304,7 @@ public class SetupSqlFragment extends Fragment
 	/**
 	 * Update status
 	 */
-	private void update()
+	protected void update()
 	{
 		// activity
 		final Activity activity = getActivity();

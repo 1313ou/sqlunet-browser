@@ -5,10 +5,11 @@ package org.sqlunet.browser;
  *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
-public class SearchTextFragment extends AbstractSearchTextFragment
+public class SearchTextFragment extends BaseSearchFragment
 {
-	static
+	@Override
+	public void search(String query)
 	{
-		fnauthority = "org.sqlunet.framenet.provider";
+
 	}
 }

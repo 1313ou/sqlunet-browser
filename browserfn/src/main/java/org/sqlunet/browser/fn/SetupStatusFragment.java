@@ -20,7 +20,7 @@ import org.sqlunet.settings.StorageUtils;
 import java.io.File;
 
 /**
- * Status fragment
+ * Setup Status fragment
  *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
