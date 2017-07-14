@@ -4,7 +4,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 
-import org.sqlunet.browser.R;
+import org.sqlunet.browser.common.R;
 
 /**
  * An activity representing table.

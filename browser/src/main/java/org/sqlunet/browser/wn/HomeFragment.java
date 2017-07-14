@@ -1,4 +1,4 @@
-package org.sqlunet.browser;
+package org.sqlunet.browser.wn;
 
 import android.graphics.Rect;
 import android.os.Bundle;
@@ -10,12 +10,14 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import org.sqlunet.browser.R;
+
 /**
  * Home fragment
  *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
-public class HomeFragment extends NavigableFragment
+public class HomeFragment extends org.sqlunet.browser.HomeFragment
 {
 	static private final String TAG = "HomeFragment";
 
@@ -32,14 +34,13 @@ public class HomeFragment extends NavigableFragment
 	 */
 	public HomeFragment()
 	{
-		this.titleId = R.string.title_home_section;
 	}
 
 	@Override
 	public View onCreateView(final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState)
 	{
-		setHasOptionsMenu(true);
-		final View view = inflater.inflate(R.layout.fragment_home, container, false);
+		final View view = super.onCreateView(inflater, container, savedInstanceState);
+		
 		final ImageView image = (ImageView) view.findViewById(R.id.splash);
 		image.setOnTouchListener(new View.OnTouchListener()
 		{

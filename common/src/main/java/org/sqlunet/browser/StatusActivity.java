@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import org.sqlunet.browser.common.R;
 import org.sqlunet.browser.config.Status;
 
 /**

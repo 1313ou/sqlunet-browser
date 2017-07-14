@@ -29,6 +29,8 @@ import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import org.sqlunet.browser.common.R;
+
 /**
  * Base search fragment
  *

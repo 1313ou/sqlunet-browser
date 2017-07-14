@@ -4,6 +4,8 @@ import android.content.Context;
 import android.support.v7.app.ActionBar;
 import android.util.Log;
 
+import org.sqlunet.browser.common.R;
+
 /**
  * Sql fragment
  *

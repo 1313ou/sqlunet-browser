@@ -27,7 +27,7 @@ import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import org.sqlunet.browser.R;
+import org.sqlunet.browser.common.R;
 
 /**
  * Fragment used for managing interactions for and presentation of a navigation drawer.

@@ -16,7 +16,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import org.sqlunet.browser.R;
+import org.sqlunet.browser.common.R;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;

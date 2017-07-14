@@ -23,7 +23,7 @@ import android.webkit.WebViewClient;
 import android.widget.Toast;
 
 import org.sqlunet.Pointer;
-import org.sqlunet.browser.BuildConfig;
+import org.sqlunet.browser.fn.BuildConfig;
 import org.sqlunet.browser.Module;
 import org.sqlunet.browser.fn.R;
 import org.sqlunet.browser.fn.DocumentTransformer;

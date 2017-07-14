@@ -13,7 +13,7 @@ import android.support.v4.app.NotificationCompat;
 import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
 
-import org.sqlunet.browser.R;
+import org.sqlunet.browser.common.R;
 
 /**
  * Download Service fragment

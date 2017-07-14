@@ -11,7 +11,7 @@ import android.widget.ArrayAdapter;
 import android.widget.SpinnerAdapter;
 
 import org.sqlunet.browser.Info;
-import org.sqlunet.browser.R;
+import org.sqlunet.browser.common.R;
 import org.sqlunet.settings.Settings;
 import org.sqlunet.settings.Storage;
 import org.sqlunet.settings.StorageSettings;

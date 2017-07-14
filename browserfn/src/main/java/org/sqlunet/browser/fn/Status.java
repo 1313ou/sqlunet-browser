@@ -47,9 +47,9 @@ public class Status extends org.sqlunet.browser.config.Status
 			}
 
 			final Resources res = context.getResources();
-			final String[] requiredTables = res.getStringArray(org.sqlunet.browser.R.array.required_tables);
-			final String[] requiredIndexes = res.getStringArray(org.sqlunet.browser.R.array.required_indexes);
-			final String[] requiredTextsFn = res.getStringArray(org.sqlunet.browser.fn.R.array.required_texts_fn);
+			final String[] requiredTables = res.getStringArray(R.array.required_tables);
+			final String[] requiredIndexes = res.getStringArray(R.array.required_indexes);
+			final String[] requiredTextsFn = res.getStringArray(R.array.required_texts_fn);
 
 			boolean existsTables = contains(existingTablesAndIndexes, requiredTables);
 			boolean existsIdx = contains(existingTablesAndIndexes, requiredIndexes);

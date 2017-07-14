@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import org.sqlunet.browser.common.R;
 import org.sqlunet.browser.config.Status;
 import org.sqlunet.settings.Settings;
 import org.sqlunet.settings.StorageSettings;

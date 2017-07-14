@@ -12,7 +12,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.SpinnerAdapter;
 
-import org.sqlunet.browser.R;
+import org.sqlunet.browser.common.R;
 import org.sqlunet.provider.ManagerContract;
 import org.sqlunet.provider.ProviderArgs;
 import org.sqlunet.settings.StorageSettings;

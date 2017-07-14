@@ -16,7 +16,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
-import org.sqlunet.browser.R;
+import org.sqlunet.browser.common.R;
 
 /**
  * Download activity

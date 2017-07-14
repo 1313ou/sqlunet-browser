@@ -7,7 +7,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import org.sqlunet.browser.MenuHandler;
-import org.sqlunet.browser.R;
+import org.sqlunet.browser.common.R;
 
 /**
  * Set up with SQL activity

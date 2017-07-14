@@ -16,6 +16,7 @@ import android.widget.SimpleCursorAdapter;
 import android.widget.SimpleCursorAdapter.ViewBinder;
 import android.widget.Toast;
 
+import org.sqlunet.browser.common.R;
 import org.sqlunet.provider.ProviderArgs;
 import org.sqlunet.sql.Utils;
 

@@ -1,5 +1,7 @@
 package org.sqlunet.browser;
 
+import org.sqlunet.browser.common.R;
+
 /**
  * Search text splash fragment
  *

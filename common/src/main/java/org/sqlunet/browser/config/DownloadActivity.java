@@ -6,7 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
-import org.sqlunet.browser.R;
+import org.sqlunet.browser.common.R;
 import org.sqlunet.settings.Settings;
 
 /**

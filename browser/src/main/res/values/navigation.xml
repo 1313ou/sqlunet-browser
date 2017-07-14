@@ -32,7 +32,7 @@
 		<item/>
 	</string-array>
 
-	<string name="fragment_class_home_section">org.sqlunet.browser.HomeFragment</string>
+	<string name="fragment_class_home_section">org.sqlunet.browser.wn.HomeFragment</string>
 	<string name="fragment_class_browse_section">org.sqlunet.browser.BrowseFragment</string>
 	<string name="fragment_class_predicatematrix_section">org.sqlunet.browser.PredicateMatrixFragment</string>
 	<string name="fragment_class_textsearch_section">org.sqlunet.browser.SearchTextFragment</string>

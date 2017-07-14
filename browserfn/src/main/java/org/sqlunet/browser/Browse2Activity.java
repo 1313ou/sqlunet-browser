@@ -43,7 +43,7 @@ public class Browse2Activity extends AppCompatActivity
 	public boolean onCreateOptionsMenu(final Menu menu)
 	{
 		// inflate the menu; this adds items to the type bar if it is present.
-		getMenuInflater().inflate(org.sqlunet.browser.R.menu.main, menu);
+		getMenuInflater().inflate(R.menu.main, menu);
 		return true;
 	}
 

@@ -18,7 +18,7 @@ import android.widget.Toast;
 
 import org.sqlunet.browser.Info;
 import org.sqlunet.browser.MainActivity;
-import org.sqlunet.browser.R;
+import org.sqlunet.browser.common.R;
 import org.sqlunet.settings.StorageSettings;
 import org.sqlunet.settings.StorageUtils;
 

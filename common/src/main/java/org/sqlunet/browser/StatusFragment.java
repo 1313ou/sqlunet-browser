@@ -3,6 +3,7 @@ package org.sqlunet.browser;
 import android.content.Context;
 import android.support.v7.app.ActionBar;
 
+import org.sqlunet.browser.common.R;
 import org.sqlunet.browser.config.SetupStatusFragment;
 
 /**

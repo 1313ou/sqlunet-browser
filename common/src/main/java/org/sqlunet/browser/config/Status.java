@@ -8,7 +8,7 @@ import android.text.Editable;
 import android.text.SpannableStringBuilder;
 import android.util.Log;
 
-import org.sqlunet.browser.R;
+import org.sqlunet.browser.common.R;
 import org.sqlunet.provider.ManagerContract;
 import org.sqlunet.provider.ManagerContract.TablesAndIndices;
 import org.sqlunet.provider.ManagerProvider;

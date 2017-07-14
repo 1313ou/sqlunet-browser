@@ -17,6 +17,7 @@ import android.support.v7.app.contrib.NavigationDrawerFragment;
 import android.util.Log;
 import android.util.TypedValue;
 
+import org.sqlunet.browser.common.R;
 import org.sqlunet.browser.config.SettingsActivity;
 import org.sqlunet.browser.config.SetupActivity;
 

@@ -17,7 +17,7 @@ import android.support.v7.app.contrib.AppCompatPreferenceActivity;
 import android.util.Pair;
 import android.view.MenuItem;
 
-import org.sqlunet.browser.R;
+import org.sqlunet.browser.common.R;
 import org.sqlunet.settings.Settings;
 import org.sqlunet.settings.StorageReports;
 import org.sqlunet.settings.StorageUtils;

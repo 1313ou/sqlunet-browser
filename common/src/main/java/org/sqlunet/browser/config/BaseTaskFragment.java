@@ -12,7 +12,7 @@ import android.widget.Spinner;
 import android.widget.SpinnerAdapter;
 import android.widget.TextView;
 
-import org.sqlunet.browser.R;
+import org.sqlunet.browser.common.R;
 
 /**
  * Base task fragment

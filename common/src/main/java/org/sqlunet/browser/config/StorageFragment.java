@@ -14,7 +14,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import org.sqlunet.browser.NavigableFragment;
-import org.sqlunet.browser.R;
+import org.sqlunet.browser.common.R;
 import org.sqlunet.settings.Storage;
 import org.sqlunet.settings.StorageReports;
 

@@ -13,6 +13,8 @@ import android.webkit.WebResourceRequest;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
+import org.sqlunet.browser.common.R;
+
 /**
  * Help fragment
  *

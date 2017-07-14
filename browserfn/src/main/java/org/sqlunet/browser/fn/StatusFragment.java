@@ -21,7 +21,7 @@ public class StatusFragment extends SetupStatusFragment implements ActionBarSett
 	 */
 	public StatusFragment()
 	{
-		this.titleId = org.sqlunet.browser.R.string.title_status_section;
+		this.titleId = R.string.title_status_section;
 	}
 
 	@Override

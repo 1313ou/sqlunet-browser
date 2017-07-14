@@ -26,6 +26,7 @@ import android.widget.ListView;
 import android.widget.SimpleCursorAdapter.ViewBinder;
 import android.widget.TextView;
 
+import org.sqlunet.browser.fn.R;
 import org.sqlunet.framenet.FnFramePointer;
 import org.sqlunet.framenet.FnLexUnitPointer;
 import org.sqlunet.framenet.FnSentencePointer;

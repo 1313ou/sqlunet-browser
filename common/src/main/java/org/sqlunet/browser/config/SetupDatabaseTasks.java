@@ -7,7 +7,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.os.Build;
 import android.util.Log;
 
-import org.sqlunet.browser.R;
+import org.sqlunet.browser.common.R;
 
 import java.util.Collection;
 
