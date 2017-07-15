@@ -1,16 +1,16 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-             xmlns:tools="http://schemas.android.com/tools"
-             android:layout_width="match_parent"
-             android:layout_height="match_parent"
-             tools:context="org.sqlunet.browser.config.UpdateFragment">
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                tools:context="org.sqlunet.browser.config.UpdateFragment">
 
 	<LinearLayout
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
 		android:layout_centerVertical="true"
+		android:orientation="vertical"
 		android:paddingEnd="@dimen/activity_horizontal_padding"
-		android:paddingStart="@dimen/activity_horizontal_padding"
-		android:orientation="vertical">
+		android:paddingStart="@dimen/activity_horizontal_padding">
 
 		<TextView
 			android:layout_width="match_parent"
@@ -39,6 +39,7 @@
 		<TextView
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
+			android:layout_marginTop="10dp"
 			android:text="@string/download_dest"
 			android:textStyle="bold"/>
 
@@ -65,6 +66,21 @@
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
 			android:text="@string/status_state_unknown"/>
+
+		<ImageButton
+			android:id="@+id/update"
+			style="?android:attr/buttonStyle"
+			android:layout_width="64dp"
+			android:layout_height="64dp"
+			android:layout_gravity="center_horizontal"
+			android:layout_marginBottom="10dp"
+			android:layout_marginTop="10dp"
+			android:background="@drawable/bg_button_action"
+			android:contentDescription="@string/action_update"
+			android:padding="5dp"
+			android:src="@drawable/ic_run"
+			android:text="@string/action_run"
+			android:visibility="invisible"/>
 
 	</LinearLayout>
 

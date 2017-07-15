@@ -11,6 +11,7 @@ import android.widget.Spinner;
 
 import org.hamcrest.CoreMatchers;
 import org.hamcrest.Matcher;
+import org.sqlunet.browser.fn.R;
 
 class TestActions
 {

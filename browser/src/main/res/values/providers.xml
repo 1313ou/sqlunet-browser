@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
-	<string name="manager_authority">org.sqlunet.provider.manager</string>
-	<string name="sqlunet_authority">org.sqlunet.cross.provider</string>
+	<string name="manager_authority">org.sqlunet.manager.provider</string>
+	<string name="sqlunet_authority">org.sqlunet.xsqlunet.provider</string>
 	<string name="wordnet_authority">org.sqlunet.wordnet.provider</string>
 	<string name="verbnet_authority">org.sqlunet.verbnet.provider</string>
 	<string name="propbank_authority">org.sqlunet.propbank.provider</string>

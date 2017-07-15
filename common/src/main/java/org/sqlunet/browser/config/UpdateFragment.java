@@ -7,6 +7,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import org.sqlunet.browser.common.R;
@@ -84,9 +85,27 @@ public class UpdateFragment extends Fragment
 		destDate.setText(toDateArg);
 		destSize.setText(toSizeArg);
 
-		if(newerArg)
+		if (newerArg)
 		{
-			final TextView newer = (TextView) view.findViewById(R.id.newer);newer.setText(R.string.download_source_newer);
+			final TextView newer = (TextView) view.findViewById(R.id.newer);
+			newer.setText(R.string.download_source_newer);
+			final ImageButton button = (ImageButton) view.findViewById(R.id.update);
+			button.setVisibility(View.VISIBLE);
+			button.setOnClickListener(new View.OnClickListener()
+			{
+				@Override
+				public void onClick(View v)
+				{
+					Utils.confirm(getContext(), R.string.title_activity_update, R.string.askUpdate, new Runnable()
+					{
+						@Override
+						public void run()
+						{
+							SetupDatabaseTasks.update(getContext());
+						}
+					});
+				}
+			});
 		}
 	}
 }

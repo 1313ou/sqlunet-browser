@@ -10,6 +10,7 @@ import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.sqlunet.browser.fn.R;
 
 @RunWith(AndroidJUnit4.class)
 @LargeTest
@@ -32,6 +33,6 @@ public class RunBrowseTree extends TestCase
 	@Test
 	public void searchRun()
 	{
-		Tests.searchRunTree();
+		Tests.searchRunFlat();
 	}
 }

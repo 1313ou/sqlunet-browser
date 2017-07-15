@@ -3,11 +3,13 @@ package org.sqlunet.browser.config;
 import android.content.ContentProvider;
 import android.content.ContentProviderClient;
 import android.content.Context;
+import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Build;
 import android.util.Log;
 
 import org.sqlunet.browser.common.R;
+import org.sqlunet.settings.StorageSettings;
 
 import java.util.Collection;
 
@@ -75,6 +77,21 @@ class SetupDatabaseTasks
 		boolean result = context.deleteDatabase(databasePath);
 		Log.d(TAG, "Dropping database: " + result);
 		return result;
+	}
+
+	/**
+	 * Update data
+	 *
+	 * @param context context
+	 */
+	static public void update(final Context context)
+	{
+		final boolean success = SetupDatabaseTasks.deleteDatabase(context, StorageSettings.getDatabasePath(context));
+		if (success)
+		{
+			final Intent intent = new Intent(context, DownloadActivity.class);
+			context.startActivity(intent);
+		}
 	}
 
 	/**

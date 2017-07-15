@@ -10,7 +10,7 @@
 		android:name="org.sqlunet.browser.config.UpdateFragment"
 		class="org.sqlunet.browser.config.UpdateFragment"
 		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
+		android:layout_height="match_parent"
 		tools:context="org.sqlunet.browser.config.UpdateActivity"
 		tools:layout="@layout/fragment_update"/>
 

@@ -38,7 +38,7 @@ public class SetupFileFragment extends BaseTaskFragment
 	 */
 	private enum Operation
 	{
-		CREATE, DROP, COPY, UNZIP, MD5, DOWNLOAD, DOWNLOADZIPPED;
+		CREATE, DROP, COPY, UNZIP, MD5, DOWNLOAD, DOWNLOADZIPPED, UPDATE;
 
 		/**
 		 * Spinner operations
@@ -117,9 +117,16 @@ public class SetupFileFragment extends BaseTaskFragment
 							break;
 
 						case DROP:
-							SetupFileFragment.this.status.setText(R.string.status_task_running);
-							success = SetupDatabaseTasks.deleteDatabase(context, StorageSettings.getDatabasePath(context));
-							SetupFileFragment.this.status.setText(success ? R.string.status_task_done : R.string.status_task_failed);
+							Utils.confirm(context, R.string.title_setup_drop, R.string.askDrop, new Runnable()
+							{
+								@Override
+								public void run()
+								{
+									SetupFileFragment.this.status.setText(R.string.status_task_running);
+									boolean success = SetupDatabaseTasks.deleteDatabase(context, StorageSettings.getDatabasePath(context));
+									SetupFileFragment.this.status.setText(success ? R.string.status_task_done : R.string.status_task_failed);
+								}
+							});
 							break;
 
 						case COPY:
@@ -153,6 +160,17 @@ public class SetupFileFragment extends BaseTaskFragment
 							intent3.putExtra(DOWNLOAD_FROM_ARG, StorageSettings.getDbDownloadZippedSource(context));
 							intent3.putExtra(DOWNLOAD_TO_ARG, StorageSettings.getDbDownloadZippedTarget(context));
 							context.startActivity(intent3);
+							break;
+
+						case UPDATE:
+							Utils.confirm(context, R.string.title_setup_update, R.string.askUpdate, new Runnable()
+							{
+								@Override
+								public void run()
+								{
+									SetupDatabaseTasks.update(context);
+								}
+							});
 							break;
 					}
 				}
@@ -209,6 +227,10 @@ public class SetupFileFragment extends BaseTaskFragment
 
 				case DOWNLOADZIPPED:
 					message = statusDownloadZipped();
+					break;
+
+				case UPDATE:
+					message = statusUpdate();
 					break;
 			}
 		}
@@ -336,6 +358,16 @@ public class SetupFileFragment extends BaseTaskFragment
 		final SpannableStringBuilder sb = new SpannableStringBuilder();
 		sb.append(getString(R.string.info_op_md5));
 		return sb;
+	}
+
+	/**
+	 * Operation status for update database
+	 *
+	 * @return status string
+	 */
+	private CharSequence statusUpdate()
+	{
+		return getString(R.string.info_op_drop_database) + '\n' + statusDownload();
 	}
 
 	/**

@@ -148,6 +148,13 @@
 	<!-- databases -->
 	<string name="sqlunet">SqlUNet</string>
 
+	<!-- dialog -->
+	<string name="yes">Yes</string>
+	<string name="no">No</string>
+	<string name="askDownload">Do you wish to download ?</string>
+	<string name="askUpdate">Do you wish to update ?</string>
+	<string name="askDrop">Do you wish to drop the database ?</string>
+
 	<string name="sqlunet_blurb">SqlUNet\nunifies all</string>
 
 </resources>
