@@ -1,4 +1,4 @@
-package org.sqlunet.browser.wn;
+package org.sqlunet.browser.xn;
 
 import android.content.Context;
 import android.support.v7.app.ActionBar;

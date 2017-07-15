@@ -1,0 +1,71 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             xmlns:tools="http://schemas.android.com/tools"
+             android:layout_width="match_parent"
+             android:layout_height="match_parent"
+             tools:context="org.sqlunet.browser.config.UpdateFragment">
+
+	<LinearLayout
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_centerVertical="true"
+		android:paddingEnd="@dimen/activity_horizontal_padding"
+		android:paddingStart="@dimen/activity_horizontal_padding"
+		android:orientation="vertical">
+
+		<TextView
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:text="@string/download_source"
+			android:textStyle="bold"/>
+
+		<TextView
+			android:id="@+id/src"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:text="@string/status_state_unknown"/>
+
+		<TextView
+			android:id="@+id/src_size"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:text="@string/status_state_unknown"/>
+
+		<TextView
+			android:id="@+id/src_date"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:text="@string/status_state_unknown"/>
+
+		<TextView
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:text="@string/download_dest"
+			android:textStyle="bold"/>
+
+		<TextView
+			android:id="@+id/dest"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:text="@string/status_state_unknown"/>
+
+		<TextView
+			android:id="@+id/dest_size"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:text="@string/status_state_unknown"/>
+
+		<TextView
+			android:id="@+id/dest_date"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:text="@string/status_state_unknown"/>
+
+		<TextView
+			android:id="@+id/newer"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:text="@string/status_state_unknown"/>
+
+	</LinearLayout>
+
+</RelativeLayout>

@@ -1,4 +1,4 @@
-package org.sqlunet.browser.wn;
+package org.sqlunet.browser.xn;
 
 import java.io.InputStream;
 

@@ -1,4 +1,4 @@
-package org.sqlunet.browser.wn;
+package org.sqlunet.browser.xn;
 
 import android.graphics.Rect;
 import android.os.Bundle;

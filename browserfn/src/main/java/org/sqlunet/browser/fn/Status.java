@@ -21,7 +21,7 @@ public class Status extends org.sqlunet.browser.config.Status
 
 	static public final int EXISTS_TS_FN = 0x4000;
 
-	static public final int DO_TS_FN = 7;
+	static public final int DO_TS_FN = 2;
 
 	/**
 	 * Get _status

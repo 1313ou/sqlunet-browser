@@ -27,7 +27,6 @@ public class StorageSettings
 	static public final String PREF_DOWNLOAD_DBFILE = "pref_download_dbfile";
 	static public final String PREF_DOWNLOAD_SQLFILE = "pref_download_sqlfile";
 	static public final String PREF_ENTRY_IMPORT = "pref_entry_import";
-	static public final String PREF_ENTRY_PM = "pref_entry_pm";
 	static public final String PREF_ENTRY_INDEX = "pref_entry_index";
 
 	// D A T A B A S E
@@ -257,31 +256,6 @@ public class StorageSettings
 
 		// store value in preferences
 		sharedPref.edit().putString(StorageSettings.PREF_ENTRY_IMPORT, value).apply();
-
-		return value;
-	}
-
-	/**
-	 * Get pm archive entry
-	 *
-	 * @param context context
-	 * @return pm archive entry
-	 */
-	static public String getPmEntry(final Context context)
-	{
-		// test if already in preferences
-		final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
-		String value = sharedPref.getString(StorageSettings.PREF_ENTRY_PM, null);
-		if (value != null)
-		{
-			return value;
-		}
-
-		// set to default value
-		value = context.getResources().getString(R.string.pref_default_entry_pm);
-
-		// store value in preferences
-		sharedPref.edit().putString(StorageSettings.PREF_ENTRY_PM, value).apply();
 
 		return value;
 	}

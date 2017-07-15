@@ -3,6 +3,8 @@ package org.sqlunet.browser.config;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
+import android.content.res.Resources;
+import android.content.res.XmlResourceParser;
 import android.os.Bundle;
 import android.preference.ListPreference;
 import android.preference.Preference;
@@ -21,8 +23,13 @@ import org.sqlunet.browser.common.R;
 import org.sqlunet.settings.Settings;
 import org.sqlunet.settings.StorageReports;
 import org.sqlunet.settings.StorageUtils;
+import org.xmlpull.v1.XmlPullParser;
+import org.xmlpull.v1.XmlPullParserException;
 
+import java.io.IOException;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * A {@link PreferenceActivity} that presents a set of application settings. On handset devices, settings are presented as a single list. On tablets, settings
@@ -33,6 +40,14 @@ import java.util.List;
  */
 public class SettingsActivity extends AppCompatPreferenceActivity
 {
+	/**
+	 * Determines whether to always show the simplified settings UI, where settings are presented in a single list. When false, settings are shown as a
+	 * master/detail two-pane view on tablets. When true, a single pane is shown on tablets.
+	 */
+	static private boolean ALWAYS_SIMPLE_PREFS = false;
+
+	// L I S T E N E R
+
 	/**
 	 * A preference value change listener that updates the preference's summary to reflect its new value.
 	 */
@@ -60,11 +75,8 @@ public class SettingsActivity extends AppCompatPreferenceActivity
 			return true;
 		}
 	};
-	/**
-	 * Determines whether to always show the simplified settings UI, where settings are presented in a single list. When false, settings are shown as a
-	 * master/detail two-pane view on tablets. When true, a single pane is shown on tablets.
-	 */
-	static private boolean ALWAYS_SIMPLE_PREFS = false;
+
+	// S E T T I N G S
 
 	/**
 	 * Set always-simple-preferences flag
@@ -76,8 +88,6 @@ public class SettingsActivity extends AppCompatPreferenceActivity
 	{
 		ALWAYS_SIMPLE_PREFS = alwaysSimplePrefs;
 	}
-
-	// E V E N T S
 
 	/**
 	 * Helper method to determine if the device has an large screen.
@@ -97,7 +107,53 @@ public class SettingsActivity extends AppCompatPreferenceActivity
 		return SettingsActivity.ALWAYS_SIMPLE_PREFS || !SettingsActivity.isLargeTablet(context);
 	}
 
-	// S E T U P
+	@Override
+	public boolean onIsMultiPane()
+	{
+		return SettingsActivity.isLargeTablet(this) && !SettingsActivity.isSimplePreferences(this);
+	}
+
+	// V A L I D AT I O N
+
+	static private Set<String> allowedFragments;
+
+	@Override
+	protected boolean isValidFragment(final String fragmentName)
+	{
+		if (allowedFragments == null)
+		{
+			allowedFragments = new HashSet<>();
+			final Resources res = getResources();
+			final XmlResourceParser xrp = res.getXml(R.xml.pref_headers);
+			try
+			{
+				while (xrp.next() != XmlPullParser.END_DOCUMENT)
+				{
+					if (xrp.getEventType() != XmlPullParser.START_TAG)
+					{
+						continue;
+					}
+					if ("header".equals(xrp.getName()))
+					{
+						final String attr = xrp.getAttributeValue("http://schemas.android.com/apk/res/android", "fragment");
+						allowedFragments.add(attr);
+					}
+				}
+			}
+			catch (XmlPullParserException e)
+			{
+				//
+			}
+			catch (IOException e)
+			{
+				//
+			}
+		}
+
+		return allowedFragments.contains(fragmentName);
+	}
+
+	// B I N D
 
 	/**
 	 * Binds a preference's summary to its value. More specifically, when the preference's value is changed, its summary (line of text below the preference
@@ -106,7 +162,7 @@ public class SettingsActivity extends AppCompatPreferenceActivity
 	 *
 	 * @see #listener
 	 */
-	static private void bind(final Preference preference)
+	static public void bind(final Preference preference)
 	{
 		// set the listener to watch for value changes.
 		preference.setOnPreferenceChangeListener(SettingsActivity.listener);
@@ -238,19 +294,7 @@ public class SettingsActivity extends AppCompatPreferenceActivity
 		}
 	}
 
-	// B I N D
-
-
-	@Override
-	protected boolean isValidFragment(final String fragmentName)
-	{
-		return GeneralPreferenceFragment.class.getName().equals(fragmentName) || //
-				FilterPreferenceFragment.class.getName().equals(fragmentName) || //
-				DatabasePreferenceFragment.class.getName().equals(fragmentName) || //
-				DownloadPreferenceFragment.class.getName().equals(fragmentName);
-	}
-
-	// S T O R A G E
+	// S I M P L E
 
 	/**
 	 * Shows the simplified settings UI if the device configuration if the device configuration dictates that a simplified, single-pane UI should be shown.
@@ -302,15 +346,6 @@ public class SettingsActivity extends AppCompatPreferenceActivity
 		SettingsActivity.bind(findPreference(Settings.PREF_DOWNLOAD_SITE));
 		SettingsActivity.bind(findPreference(Settings.PREF_DOWNLOADER));
 		SettingsActivity.bind(findPreference(Settings.PREF_CACHE));
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public boolean onIsMultiPane()
-	{
-		return SettingsActivity.isLargeTablet(this) && !SettingsActivity.isSimplePreferences(this);
 	}
 
 	// F R A G M E N T S

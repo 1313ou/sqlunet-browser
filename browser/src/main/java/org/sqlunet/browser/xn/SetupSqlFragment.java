@@ -1,4 +1,4 @@
-package org.sqlunet.browser.wn;
+package org.sqlunet.browser.xn;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -70,7 +70,7 @@ public class SetupSqlFragment extends org.sqlunet.browser.config.SetupSqlFragmen
 				{
 					final String database = StorageSettings.getDatabasePath(activity);
 					final String source = StorageSettings.getSqlSource(activity);
-					final String entry = StorageSettings.getPmEntry(activity);
+					final String entry = Settings.getPmEntry(activity);
 					final String unit = activity.getString(R.string.unit_statement);
 					final TaskObserver.Listener listener = new TaskObserver.DialogListener(activity, R.string.status_managing, source + '@' + entry, unit);
 					SetupSqlFragment.this.task = new ExecAsyncTask(getActivity(), listener, 1).executeFromArchive(database, source, entry);
@@ -88,7 +88,7 @@ public class SetupSqlFragment extends org.sqlunet.browser.config.SetupSqlFragmen
 			{
 				final String database = StorageSettings.getDatabasePath(activity);
 				final String source = StorageSettings.getSqlSource(activity);
-				final String entry = StorageSettings.getPmEntry(activity);
+				final String entry = Settings.getPmEntry(activity);
 				final String free = StorageUtils.getFree(getActivity(), database);
 				final boolean dbExists = new File(database).exists();
 				final boolean sqlzipExists = new File(source).exists();

@@ -180,7 +180,7 @@ public class NavigationDrawerFragment extends Fragment
 
 				final View view = super.getView(position, convertView, parent);
 				final TextView textView = (TextView) view.findViewById(android.R.id.text1);
-				textView.setTextColor(rowItem.isMain ? Color.WHITE : Color.GRAY);
+				textView.setTextColor(rowItem.isMain ? Color.WHITE : Color.LTGRAY);
 				textView.setText(rowItem.title);
 				textView.setCompoundDrawablesWithIntrinsicBounds(rowItem.iconId, 0, 0, 0);
 				textView.setCompoundDrawablePadding(10);

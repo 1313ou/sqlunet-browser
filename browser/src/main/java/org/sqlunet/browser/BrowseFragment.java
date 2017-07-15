@@ -36,7 +36,7 @@ import org.sqlunet.predicatematrix.PmRolePointer;
 import org.sqlunet.propbank.PbRoleSetPointer;
 import org.sqlunet.propbank.browser.PbRoleSetActivity;
 import org.sqlunet.provider.ProviderArgs;
-import org.sqlunet.browser.wn.Settings;
+import org.sqlunet.browser.xn.Settings;
 import org.sqlunet.verbnet.VnClassPointer;
 import org.sqlunet.verbnet.browser.VnClassActivity;
 import org.sqlunet.wordnet.SenseKeyPointer;

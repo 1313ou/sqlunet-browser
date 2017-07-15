@@ -7,8 +7,8 @@
 
 	<fragment
 		android:id="@+id/fragment_status"
-		android:name="org.sqlunet.browser.fn.StatusFragment"
-		class="org.sqlunet.browser.fn.StatusFragment"
+		android:name="org.sqlunet.browser.xn.StatusFragment"
+		class="org.sqlunet.browser.xn.StatusFragment"
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
 		tools:context="org.sqlunet.browser.StatusActivity"

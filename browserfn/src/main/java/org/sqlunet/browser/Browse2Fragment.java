@@ -146,12 +146,8 @@ public class Browse2Fragment extends Fragment
 
 			case WEB:
 				// web fragment
-				Fragment webFragment = manager.findFragmentByTag("web");
-				if (webFragment == null)
-				{
-					webFragment = new WebFragment();
-					webFragment.setArguments(args);
-				}
+				final Fragment webFragment = new WebFragment();
+				webFragment.setArguments(args);
 
 				// detail fragment replace
 				manager.beginTransaction() //

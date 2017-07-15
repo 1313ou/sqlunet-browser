@@ -23,7 +23,7 @@ import org.sqlunet.settings.Settings;
  */
 public class SearchTextFragment extends BaseSearchFragment
 {
-	static private final String TAG = "SearchTextActivity";
+	static private final String TAG = "SearchTextF";
 
 	// C R E A T I O N
 

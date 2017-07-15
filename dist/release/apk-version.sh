@@ -1,0 +1,1 @@
+/opt/devel/android-treebolic/dist/apk-version.sh

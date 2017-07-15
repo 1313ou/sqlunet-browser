@@ -13,7 +13,7 @@ import android.view.ViewGroup;
 
 import org.sqlunet.bnc.browser.BNCFragment;
 import org.sqlunet.browser.web.WebFragment;
-import org.sqlunet.browser.wn.Settings;
+import org.sqlunet.browser.xn.Settings;
 import org.sqlunet.browser.xselector.XSelectorPointer;
 import org.sqlunet.framenet.browser.FrameNetFragment;
 import org.sqlunet.propbank.browser.PropBankFragment;
@@ -243,12 +243,8 @@ public class Browse2Fragment extends Fragment
 
 			case WEB:
 				// web fragment
-				Fragment webFragment = manager.findFragmentByTag("web");
-				if (webFragment == null)
-				{
-					webFragment = new WebFragment();
-					webFragment.setArguments(args);
-				}
+				final Fragment webFragment = new WebFragment();
+				webFragment.setArguments(args);
 
 				// detail fragment replace
 				manager.beginTransaction() //

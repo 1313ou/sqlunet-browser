@@ -3,8 +3,8 @@
           xmlns:tools="http://schemas.android.com/tools"
           package="org.sqlunet.browser"
           android:installLocation="preferExternal"
-          android:versionCode="10"
-          android:versionName="1.10">
+          android:versionCode="11"
+          android:versionName="1.11">
 
 	<uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
 	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
@@ -244,7 +244,7 @@
 		</activity>
 
 		<activity
-			android:name=".config.SettingsActivity"
+			android:name="org.sqlunet.browser.config.SettingsActivity"
 			android:label="@string/title_activity_settings"
 			android:parentActivityName=".MainActivity"
 			tools:ignore="UnusedAttribute">
@@ -271,6 +271,12 @@
 			<meta-data
 				android:name="android.support.PARENT_ACTIVITY"
 				android:value=".MainActivity"/>
+		</activity>
+
+		<activity
+			android:name="org.sqlunet.browser.config.UpdateActivity"
+			android:label="@string/title_activity_update"
+			android:launchMode="singleTop">
 		</activity>
 
 		<activity
