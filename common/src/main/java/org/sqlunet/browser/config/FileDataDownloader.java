@@ -134,29 +134,40 @@ public class FileDataDownloader extends AsyncTask<String, Void, FileData>
 			@Override
 			public void onDone(final FileData srcData)
 			{
-				// dest data
+				// actual data
 				final String to = StorageSettings.getDbDownloadTarget(activity);
-				final File destFile = new File(to);
-				final FileData destData = new FileData(destFile);
+				final File actualFile = new File(to);
+				final String actual = actualFile.getAbsolutePath();
+				final FileData actualData = FileData.makeFileDataFrom(actualFile);
+				final Date actualDate = actualData == null ? null : actualData.getDate();
+				final Long actualSize = actualData == null ? null : actualData.getSize();
 
-				final String dest = destFile.getAbsolutePath();
-				final Long destSize = destData.getSize();
-				final Date destDate = destData.getDate();
+				// current data
+				final FileData currentData = FileData.getCurrent(activity);
+				final Date currentDate = currentData == null ? null : currentData.getDate();
+				final Long currentSize = currentData == null ? null : currentData.getSize();
 
 				// src data
 				final String src = downloadUrl;
-				final Long srcSize = srcData == null ? null : srcData.getSize();
 				final Date srcDate = srcData == null ? null : srcData.getDate();
+				final Long srcSize = srcData == null ? null : srcData.getSize();
 
-				final boolean newer = srcDate == null || destDate == null ? false : srcDate.compareTo(destDate) > 0;
+				// newer
+				final Date refDate = currentDate != null ? currentDate : actualDate;
+				final boolean newer = (srcDate == null || refDate == null) ? false : srcDate.compareTo(refDate) > 0;
 
 				final Intent intent = new Intent(activity, UpdateActivity.class);
+				intent.putExtra(UpdateFragment.CURRENT_DATE_ARG, currentDate == null ? "n/a" : currentDate.toString());
+				intent.putExtra(UpdateFragment.CURRENT_SIZE_ARG, currentSize == null ? "n/a" : currentSize.toString() + " bytes");
+
 				intent.putExtra(UpdateFragment.FROM_ARG, src);
 				intent.putExtra(UpdateFragment.FROM_DATE_ARG, srcDate == null ? "n/a" : srcDate.toString());
-				intent.putExtra(UpdateFragment.FROM_SIZE_ARG, srcSize == null ? "n/a" : srcSize.toString());
-				intent.putExtra(UpdateFragment.TO_ARG, dest);
-				intent.putExtra(UpdateFragment.TO_DATE_ARG, destDate == null ? "n/a" : destDate.toString());
-				intent.putExtra(UpdateFragment.TO_SIZE_ARG, destSize == null ? "n/a" : destSize.toString());
+				intent.putExtra(UpdateFragment.FROM_SIZE_ARG, srcSize == null ? "n/a" : srcSize.toString() + " bytes");
+
+				intent.putExtra(UpdateFragment.TO_ARG, actual);
+				intent.putExtra(UpdateFragment.TO_DATE_ARG, actualDate == null ? "n/a" : actualDate.toString());
+				intent.putExtra(UpdateFragment.TO_SIZE_ARG, actualSize == null ? "n/a" : actualSize.toString() + " bytes");
+
 				intent.putExtra(UpdateFragment.NEWER_ARG, newer);
 
 				activity.startActivity(intent);

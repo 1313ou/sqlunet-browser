@@ -15,32 +15,34 @@ import java.util.Date;
  */
 public class FileData
 {
-	public static final Object PREF_DB_DATE = Settings.PREF_DB_DATE;
-
-	public static final Object PREF_DB_SIZE = Settings.PREF_DB_SIZE;
+	private final long date;
 
 	private final long size;
 
-	private final long date;
-
 	public FileData(final long date, final long size)
 	{
-		this.size = size;
 		this.date = date;
+		this.size = size;
 	}
 
-	public FileData(final File file)
+	static public FileData makeFileDataFrom(final File file)
 	{
 		if (file.exists())
 		{
-			this.size = file.length();
-			this.date = file.lastModified();
+			return new FileData(file.lastModified(), file.length());
 		}
-		else
+		return null;
+	}
+
+	static public FileData getCurrent(final Context context)
+	{
+		long date = Settings.getDbDate(context);
+		long size = Settings.getDbSize(context);
+		if (date != -1)
 		{
-			this.size = -1;
-			this.date = -1;
+			return new FileData(date, size);
 		}
+		return null;
 	}
 
 	public Long getSize()
@@ -53,10 +55,10 @@ public class FileData
 		return this.date == -1 ? null : new Date(this.date);
 	}
 
-	public static void registerDb(final Context context)
+	public static void recordDb(final Context context)
 	{
 		final File file = new File(StorageSettings.getDatabasePath(context));
-		final FileData fileData = new FileData(file);
+		final FileData fileData = makeFileDataFrom(file);
 		if (fileData.date != -1)
 		{
 			Settings.setDbDate(context, fileData.date);

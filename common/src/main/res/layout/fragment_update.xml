@@ -15,7 +15,10 @@
 		<TextView
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
-			android:text="@string/download_source"
+			android:drawablePadding="10dp"
+			android:drawableStart="@drawable/ic_download_source"
+			android:gravity="center_vertical"
+			android:text="@string/download_available"
 			android:textStyle="bold"/>
 
 		<TextView
@@ -40,7 +43,32 @@
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
 			android:layout_marginTop="10dp"
-			android:text="@string/download_dest"
+			android:drawablePadding="10dp"
+			android:drawableStart="@drawable/ic_download_dest"
+			android:gravity="center_vertical"
+			android:text="@string/download_current"
+			android:textStyle="bold"/>
+
+		<TextView
+			android:id="@+id/current_size"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:text="@string/status_state_unknown"/>
+
+		<TextView
+			android:id="@+id/current_date"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:text="@string/status_state_unknown"/>
+
+		<TextView
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_marginTop="10dp"
+			android:drawablePadding="10dp"
+			android:drawableStart="@drawable/ic_download_dest"
+			android:gravity="center_vertical"
+			android:text="@string/download_actual"
 			android:textStyle="bold"/>
 
 		<TextView

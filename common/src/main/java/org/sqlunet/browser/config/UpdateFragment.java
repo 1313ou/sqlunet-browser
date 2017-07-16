@@ -17,6 +17,10 @@ import org.sqlunet.browser.common.R;
  */
 public class UpdateFragment extends Fragment
 {
+	static public final String CURRENT_DATE_ARG = "current_date";
+
+	static public final String CURRENT_SIZE_ARG = "current_size";
+
 	/**
 	 * From argument
 	 */
@@ -57,6 +61,9 @@ public class UpdateFragment extends Fragment
 		// arguments
 		final Intent intent = getActivity().getIntent();
 
+		final String currentDateArg = intent.getStringExtra(CURRENT_DATE_ARG);
+		final String currentSizeArg = intent.getStringExtra(CURRENT_SIZE_ARG);
+
 		final String fromArg = intent.getStringExtra(FROM_ARG);
 		final String fromDateArg = intent.getStringExtra(FROM_DATE_ARG);
 		final String fromSizeArg = intent.getStringExtra(FROM_SIZE_ARG);
@@ -69,10 +76,14 @@ public class UpdateFragment extends Fragment
 
 		final View view = getView();
 
+		final TextView currentDate = (TextView) view.findViewById(R.id.current_date);
+		final TextView currentSize = (TextView) view.findViewById(R.id.current_size);
+		currentDate.setText(currentDateArg);
+		currentSize.setText(currentSizeArg);
+
 		final TextView src = (TextView) view.findViewById(R.id.src);
 		final TextView srcDate = (TextView) view.findViewById(R.id.src_date);
 		final TextView srcSize = (TextView) view.findViewById(R.id.src_size);
-
 		src.setText(fromArg);
 		srcDate.setText(fromDateArg);
 		srcSize.setText(fromSizeArg);
@@ -80,7 +91,6 @@ public class UpdateFragment extends Fragment
 		final TextView dest = (TextView) view.findViewById(R.id.dest);
 		final TextView destDate = (TextView) view.findViewById(R.id.dest_date);
 		final TextView destSize = (TextView) view.findViewById(R.id.dest_size);
-
 		dest.setText(toArg);
 		destDate.setText(toDateArg);
 		destSize.setText(toSizeArg);
@@ -88,7 +98,7 @@ public class UpdateFragment extends Fragment
 		if (newerArg)
 		{
 			final TextView newer = (TextView) view.findViewById(R.id.newer);
-			newer.setText(R.string.download_source_newer);
+			newer.setText(R.string.download_newer);
 			final ImageButton button = (ImageButton) view.findViewById(R.id.update);
 			button.setVisibility(View.VISIBLE);
 			button.setOnClickListener(new View.OnClickListener()
