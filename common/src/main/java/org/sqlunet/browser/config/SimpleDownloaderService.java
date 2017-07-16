@@ -299,8 +299,12 @@ public class SimpleDownloaderService extends IntentService
 		// rename
 		final File newFile = new File(this.toFile);
 		boolean success = false;
-		if (outFile.exists() && !newFile.exists())
+		if (outFile.exists())
 		{
+			if (newFile.exists())
+			{
+				newFile.delete();
+			}
 			success = outFile.renameTo(newFile);
 		}
 		Log.d(TAG, "Rename " + outFile + " to " + newFile + ' ' + success);

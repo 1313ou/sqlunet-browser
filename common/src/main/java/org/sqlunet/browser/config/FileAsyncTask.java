@@ -31,7 +31,7 @@ import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
 
 /**
- * Execution manager
+ * File async tasks
  *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
@@ -52,9 +52,9 @@ class FileAsyncTask
 		/**
 		 * Done
 		 *
-		 * @param result md5 digest
+		 * @param result file/md5 digest/etc
 		 */
-		void onResult(final String result);
+		void onResult(final Object result);
 	}
 
 	/**
@@ -207,6 +207,10 @@ class FileAsyncTask
 			{
 				super.onPostExecute(result);
 				FileAsyncTask.this.listener.taskFinish(result);
+				if (FileAsyncTask.this.resultListener != null)
+				{
+					FileAsyncTask.this.resultListener.onResult(result);
+				}
 			}
 
 			@Override
@@ -346,6 +350,10 @@ class FileAsyncTask
 			protected void onPostExecute(final Boolean result)
 			{
 				FileAsyncTask.this.listener.taskFinish(result);
+				if (FileAsyncTask.this.resultListener != null)
+				{
+					FileAsyncTask.this.resultListener.onResult(result);
+				}
 			}
 
 			@Override
@@ -460,14 +468,20 @@ class FileAsyncTask
 			protected void onCancelled(final String result)
 			{
 				FileAsyncTask.this.listener.taskFinish(false);
-				FileAsyncTask.this.resultListener.onResult(null);
+				if (FileAsyncTask.this.resultListener != null)
+				{
+					FileAsyncTask.this.resultListener.onResult(null);
+				}
 			}
 
 			@Override
 			protected void onPostExecute(final String result)
 			{
 				FileAsyncTask.this.listener.taskFinish(result != null);
-				FileAsyncTask.this.resultListener.onResult(result);
+				if (FileAsyncTask.this.resultListener != null)
+				{
+					FileAsyncTask.this.resultListener.onResult(result);
+				}
 			}
 		};
 		return task.execute(targetFile);
@@ -503,17 +517,27 @@ class FileAsyncTask
 			{
 				final String sourceFile = input.getText().toString();
 				final TaskObserver.Listener listener = new TaskObserver.DialogListener(context, R.string.action_unzip_from_archive, sourceFile, null);
-				new FileAsyncTask(listener, 1000).unzipFromArchive(sourceFile, Storage.DBFILE, databasePath);
+				final ResultListener resultListener = new ResultListener()
+				{
+					@Override
+					public void onResult(Object result)
+					{
+						final Boolean success = (Boolean) result;
+						if(success)
+						{
+							FileData.registerDb(context);
+						}
+					}
+				}; new FileAsyncTask(listener, resultListener, 1000).unzipFromArchive(sourceFile, Storage.DBFILE, databasePath);
 			}
-		});
-		alert.setNegativeButton(R.string.action_cancel, new DialogInterface.OnClickListener()
+		}); alert.setNegativeButton(R.string.action_cancel, new DialogInterface.OnClickListener()
+	{
+		@Override
+		public void onClick(DialogInterface dialog, int whichButton)
 		{
-			@Override
-			public void onClick(DialogInterface dialog, int whichButton)
-			{
-				// canceled.
-			}
-		});
+			// canceled.
+		}
+	});
 		alert.show();
 	}
 
@@ -545,7 +569,19 @@ class FileAsyncTask
 			{
 				final String sourceFile = input.getText().toString();
 				final TaskObserver.Listener listener = new TaskObserver.DialogListener(context, R.string.action_copy_from_file, sourceFile, null);
-				new FileAsyncTask(listener, 1000).copyFromFile(sourceFile, databasePath);
+				final ResultListener resultListener = new ResultListener()
+				{
+					@Override
+					public void onResult(Object result)
+					{
+						final Boolean success = (Boolean) result;
+						if(success)
+						{
+							FileData.registerDb(context);
+						}
+					}
+				};
+				new FileAsyncTask(listener, resultListener, 1000).copyFromFile(sourceFile, databasePath);
 			}
 		});
 		alert.setNegativeButton(R.string.action_cancel, new DialogInterface.OnClickListener()
@@ -659,22 +695,23 @@ class FileAsyncTask
 							FileAsyncTask.md5(context, sourceFile, new FileAsyncTask.ResultListener()
 							{
 								@Override
-								public void onResult(final String computedResult)
+								public void onResult(final Object result)
 								{
+									final String computedResult = (String) result;
 									final SpannableStringBuilder sb = new SpannableStringBuilder();
 									Report.appendHeader(sb, context.getString(R.string.md5_computed));
 									sb.append('\n');
 									sb.append(computedResult == null ? context.getString(R.string.status_task_failed) : computedResult);
 
 									// selectable
-									final TextView result = new TextView(context);
-									result.setText(sb);
-									result.setPadding(35, 20, 35, 20);
-									result.setTextIsSelectable(true);
+									final TextView resultView = new TextView(context);
+									resultView.setText(sb);
+									resultView.setPadding(35, 20, 35, 20);
+									resultView.setTextIsSelectable(true);
 
 									final AlertDialog.Builder alert2 = new AlertDialog.Builder(context);
 									alert2.setTitle(context.getString(R.string.action_md5_of) + ' ' + sourceFile) //
-											.setView(result)
+											.setView(resultView)
 											//.setMessage(sb)
 											.show();
 								}

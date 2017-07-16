@@ -157,6 +157,7 @@ public class NavigationFragment extends NavigationDrawerFragment implements Navi
 	private void settingsActivity()
 	{
 		final Intent intent = new Intent(getActivity(), SettingsActivity.class);
+		intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
 		startActivity(intent);
 	}
 

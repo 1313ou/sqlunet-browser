@@ -1,6 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+	<integer name="sql_statement_do_indexes_position">1</integer>
+	<integer name="sql_statement_do_predicatematrix_position">2</integer>
+	<integer name="sql_statement_do_ts_wn_position">3</integer>
+	<integer name="sql_statement_do_ts_vn_position">4</integer>
+	<integer name="sql_statement_do_ts_pb_position">5</integer>
+	<integer name="sql_statement_do_ts_fn_position">6</integer>
+
 	<string-array name="sql_statement_titles">
 		<item>[SELECT OPERATION]</item>
 		<item>Create all indexes</item>

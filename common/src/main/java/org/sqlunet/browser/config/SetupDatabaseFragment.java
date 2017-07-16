@@ -29,7 +29,7 @@ public class SetupDatabaseFragment extends BaseTaskFragment
 	/**
 	 * Initial spinner position
 	 */
-	static public final String ARG = "position";
+	static public final String ARG_POSITION = "position";
 
 	/**
 	 * Constructor
@@ -48,10 +48,10 @@ public class SetupDatabaseFragment extends BaseTaskFragment
 		Bundle args = getArguments();
 		if (args != null)
 		{
-			final int arg = args.getInt(ARG);
+			final int arg = args.getInt(ARG_POSITION);
 			if (arg > 0)
 			{
-				this.spinner.setSelection(arg - 1);
+				this.spinner.setSelection(arg);
 			}
 		}
 

@@ -37,6 +37,7 @@ public class MenuHandler
 		if (i == R.id.action_settings)
 		{
 			intent = new Intent(activity, SettingsActivity.class);
+			intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
 		}
 		else if (i == R.id.action_storage)
 		{

@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+	<integer name="sql_statement_do_indexes_position">1</integer>
+	<integer name="sql_statement_do_ts_fn_position">2</integer>
+
 	<string-array name="sql_statement_titles">
 		<item>[SELECT OPERATION]</item>
 		<item>Create all indexes</item>
@@ -62,4 +65,5 @@
 		<item>
 			DROP TABLE IF EXISTS fnsentences_text_fts4;</item>
 	</string-array>
+
 </resources>

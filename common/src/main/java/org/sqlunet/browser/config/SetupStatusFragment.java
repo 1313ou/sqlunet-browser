@@ -99,9 +99,10 @@ public class SetupStatusFragment extends Fragment
 			@Override
 			public void onClick(View v)
 			{
+				int index = getResources().getInteger(R.integer.sql_statement_do_indexes_index);
 				final Intent intent = new Intent(activity, SetupDatabaseActivity.class);
-				intent.putExtra(SetupDatabaseFragment.ARG, Status.DO_INDEXES);
-				startActivityForResult(intent, SetupStatusFragment.REQUEST_MANAGE_CODE + Status.DO_INDEXES);
+				intent.putExtra(SetupDatabaseFragment.ARG_POSITION, index);
+				startActivityForResult(intent, SetupStatusFragment.REQUEST_MANAGE_CODE + index);
 			}
 		});
 

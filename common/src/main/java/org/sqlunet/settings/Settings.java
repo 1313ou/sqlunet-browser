@@ -21,6 +21,8 @@ public class Settings
 {
 	// preferences
 
+	static public final String PREF_DB_DATE = "pref_db_date";
+	static public final String PREF_DB_SIZE = "pref_db_size";
 	static public final String PREF_SELECTOR_MODE = "pref_viewweb_mode";
 	static public final String PREF_SELECTOR = "pref_selector_mode";
 	static public final String PREF_DETAIL_MODE = "pref_detail_mode";
@@ -298,6 +300,54 @@ public class Settings
 	{
 		final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
 		return sharedPref.getString(Settings.PREF_CACHE, null);
+	}
+
+	/**
+	 * Get db date
+	 *
+	 * @param context context
+	 * @return timestamp
+	 */
+	static public long getDbDate(final Context context)
+	{
+		final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
+		return sharedPref.getLong(Settings.PREF_DB_DATE, -1);
+	}
+
+	/**
+	 * Set db date
+	 *
+	 * @param context   context
+	 * @param timestamp timestamp
+	 */
+	static public void setDbDate(final Context context, final long timestamp)
+	{
+		final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
+		sharedPref.edit().putLong(Settings.PREF_DB_DATE, timestamp).apply();
+	}
+
+	/**
+	 * Get db size
+	 *
+	 * @param context context
+	 * @return size
+	 */
+	static public long getDbSize(final Context context)
+	{
+		final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
+		return sharedPref.getLong(Settings.PREF_DB_SIZE, -1);
+	}
+
+	/**
+	 * Set db size
+	 *
+	 * @param context context
+	 * @param size    size
+	 */
+	static public void setDbSize(final Context context, final long size)
+	{
+		final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
+		sharedPref.edit().putLong(Settings.PREF_DB_SIZE, size).apply();
 	}
 
 	/**

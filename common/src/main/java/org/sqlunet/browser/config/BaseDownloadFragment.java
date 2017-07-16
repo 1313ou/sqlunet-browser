@@ -210,7 +210,7 @@ abstract class BaseDownloadFragment extends Fragment implements View.OnClickList
 	private int status;
 
 	/**
-	 * Cached context
+	 * Cached context for threads that terminate after activity finishes
 	 */
 	protected Context context;
 
@@ -651,6 +651,12 @@ abstract class BaseDownloadFragment extends Fragment implements View.OnClickList
 			BaseDownloadFragment.this.md5Button.setVisibility(success ? View.VISIBLE : View.GONE);
 		}
 
+		// register if this is the database
+		if (success && destFile.equals(new File(StorageSettings.getDatabasePath(this.context))))
+		{
+			FileData.registerDb(this.context);
+		}
+
 		// fire done (broadcast to listener)
 		fireDone(success);
 	}
@@ -705,8 +711,9 @@ abstract class BaseDownloadFragment extends Fragment implements View.OnClickList
 					FileAsyncTask.md5(getActivity(), localPath, new FileAsyncTask.ResultListener()
 					{
 						@Override
-						public void onResult(final String computedResult)
+						public void onResult(final Object result)
 						{
+							final String computedResult = (String) result;
 							boolean success = downloadedResult.equals(computedResult);
 							final SpannableStringBuilder sb = new SpannableStringBuilder();
 							Report.appendHeader(sb, getString(R.string.md5_downloaded));

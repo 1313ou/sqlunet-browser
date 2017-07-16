@@ -25,7 +25,7 @@ import java.util.List;
  *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
-public class Status
+abstract public class Status
 {
 	static private final String TAG = "Status";
 
@@ -38,8 +38,6 @@ public class Status
 	static public final int EXISTS_TABLES = 0x2;
 
 	static public final int EXISTS_INDEXES = 0x10;
-
-	static public final int DO_INDEXES = 2;
 
 	/**
 	 * Get _status

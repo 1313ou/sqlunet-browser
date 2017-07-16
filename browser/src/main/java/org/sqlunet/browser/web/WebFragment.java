@@ -276,7 +276,7 @@ public class WebFragment extends Fragment
 
 		// pointer
 		final Parcelable pointer = args.getParcelable(ProviderArgs.ARG_QUERYPOINTER);
-		Log.d(WebFragment.TAG, "ARG query=" + pointer);
+		Log.d(WebFragment.TAG, "ARG_POSITION query=" + pointer);
 
 		// hint
 		final String posString = args.getString(ProviderArgs.ARG_HINTPOS);
@@ -284,7 +284,7 @@ public class WebFragment extends Fragment
 
 		// text
 		final String data = args.getString(ProviderArgs.ARG_QUERYSTRING);
-		Log.d(WebFragment.TAG, "ARG data=" + data);
+		Log.d(WebFragment.TAG, "ARG_POSITION data=" + data);
 
 		// load the contents
 		getLoaderManager().restartLoader(++Module.loaderId, null, new LoaderCallbacks<String>()
@@ -409,7 +409,7 @@ public class WebFragment extends Fragment
 
 									case ProviderArgs.ARG_QUERYTYPE_WORD:
 										@SuppressWarnings("TypeMayBeWeakened") final WordPointer wordPointer = (WordPointer) pointer;
-										Log.d(WebFragment.TAG, "ARG word=" + wordPointer);
+										Log.d(WebFragment.TAG, "ARG_POSITION word=" + wordPointer);
 										if (wordPointer != null && Settings.Source.WORDNET.test(sources))
 										{
 											wnDomDoc = new WordNetImplementation().queryWordDoc(db, wordPointer.getWordId());
@@ -418,7 +418,7 @@ public class WebFragment extends Fragment
 
 									case ProviderArgs.ARG_QUERYTYPE_SYNSET:
 										@SuppressWarnings("TypeMayBeWeakened") final SynsetPointer synsetPointer = (SynsetPointer) pointer;
-										Log.d(WebFragment.TAG, "ARG synset=" + synsetPointer);
+										Log.d(WebFragment.TAG, "ARG_POSITION synset=" + synsetPointer);
 										if (synsetPointer != null && Settings.Source.WORDNET.test(sources))
 										{
 											wnDomDoc = new WordNetImplementation().querySynsetDoc(db, synsetPointer.getSynsetId());
@@ -427,7 +427,7 @@ public class WebFragment extends Fragment
 
 									case ProviderArgs.ARG_QUERYTYPE_VNCLASS:
 										final VnClassPointer vnclassPointer = (VnClassPointer) pointer;
-										Log.d(WebFragment.TAG, "ARG vnclass=" + vnclassPointer);
+										Log.d(WebFragment.TAG, "ARG_POSITION vnclass=" + vnclassPointer);
 										if (vnclassPointer != null && Settings.Source.VERBNET.test(sources))
 										{
 											vnDomDoc = new VerbNetImplementation().queryClassDoc(db, vnclassPointer.getId(), null);
@@ -436,7 +436,7 @@ public class WebFragment extends Fragment
 
 									case ProviderArgs.ARG_QUERYTYPE_PBROLESET:
 										final PbRoleSetPointer pbroleSetPointer = (PbRoleSetPointer) pointer;
-										Log.d(WebFragment.TAG, "ARG fnframe=" + pbroleSetPointer);
+										Log.d(WebFragment.TAG, "ARG_POSITION fnframe=" + pbroleSetPointer);
 										if (pbroleSetPointer != null && Settings.Source.PROPBANK.test(sources))
 										{
 											pbDomDoc = new PropBankImplementation().queryRoleSetDoc(db, pbroleSetPointer.getId(), null);
@@ -445,7 +445,7 @@ public class WebFragment extends Fragment
 
 									case ProviderArgs.ARG_QUERYTYPE_FNLEXUNIT:
 										final FnLexUnitPointer lexunitPointer = (FnLexUnitPointer) pointer;
-										Log.d(WebFragment.TAG, "ARG fnlexunit=" + lexunitPointer);
+										Log.d(WebFragment.TAG, "ARG_POSITION fnlexunit=" + lexunitPointer);
 										if (lexunitPointer != null && Settings.Source.FRAMENET.test(sources))
 										{
 											fnDomDoc = new FrameNetImplementation().queryLexUnitDoc(db, lexunitPointer.getId());
@@ -454,7 +454,7 @@ public class WebFragment extends Fragment
 
 									case ProviderArgs.ARG_QUERYTYPE_FNFRAME:
 										final FnFramePointer framePointer = (FnFramePointer) pointer;
-										Log.d(WebFragment.TAG, "ARG fnframe=" + framePointer);
+										Log.d(WebFragment.TAG, "ARG_POSITION fnframe=" + framePointer);
 										if (framePointer != null && Settings.Source.FRAMENET.test(sources))
 										{
 											fnDomDoc = new FrameNetImplementation().queryFrameDoc(db, framePointer.getId(), null);
@@ -463,7 +463,7 @@ public class WebFragment extends Fragment
 
 									case ProviderArgs.ARG_QUERYTYPE_FNSENTENCE:
 										final FnSentencePointer sentencePointer = (FnSentencePointer) pointer;
-										Log.d(WebFragment.TAG, "ARG fnsentence=" + sentencePointer);
+										Log.d(WebFragment.TAG, "ARG_POSITION fnsentence=" + sentencePointer);
 										if (sentencePointer != null && Settings.Source.FRAMENET.test(sources))
 										{
 											fnDomDoc = new FrameNetImplementation().querySentenceDoc(db, sentencePointer.getId());
@@ -472,7 +472,7 @@ public class WebFragment extends Fragment
 
 									case ProviderArgs.ARG_QUERYTYPE_FNANNOSET:
 										final FnAnnoSetPointer annoSetPointer = (FnAnnoSetPointer) pointer;
-										Log.d(WebFragment.TAG, "ARG fnannoset=" + annoSetPointer);
+										Log.d(WebFragment.TAG, "ARG_POSITION fnannoset=" + annoSetPointer);
 										if (annoSetPointer != null && Settings.Source.FRAMENET.test(sources))
 										{
 											fnDomDoc = new FrameNetImplementation().queryAnnoSetDoc(db, annoSetPointer.getId());

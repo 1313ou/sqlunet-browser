@@ -17,50 +17,12 @@ import java.util.Date;
 
 /**
  * File data downloader
+ *
+ * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
-public class FileDataDownloader extends AsyncTask<String, Void, FileDataDownloader.FileData>
+public class FileDataDownloader extends AsyncTask<String, Void, FileData>
 {
 	static private final String TAG = "FileDataDownloader";
-
-	/**
-	 * Result
-	 */
-	static public class FileData
-	{
-		private final long size;
-
-		private final long date;
-
-		public FileData(final long date, final long size)
-		{
-			this.size = size;
-			this.date = date;
-		}
-
-		public FileData(final File file)
-		{
-			if (file.exists())
-			{
-				this.size = file.length();
-				this.date = file.lastModified();
-			}
-			else
-			{
-				this.size = -1;
-				this.date = -1;
-			}
-		}
-
-		public Long getSize()
-		{
-			return this.size == -1 ? null : this.size;
-		}
-
-		public Date getDate()
-		{
-			return this.date == -1 ? null : new Date(this.date);
-		}
-	}
 
 	/**
 	 * Result listener
@@ -170,12 +132,12 @@ public class FileDataDownloader extends AsyncTask<String, Void, FileDataDownload
 		final FileDataDownloader task = new FileDataDownloader(new FileDataDownloader.Listener()
 		{
 			@Override
-			public void onDone(final FileDataDownloader.FileData srcData)
+			public void onDone(final FileData srcData)
 			{
 				// dest data
 				final String to = StorageSettings.getDbDownloadTarget(activity);
 				final File destFile = new File(to);
-				final FileDataDownloader.FileData destData = new FileDataDownloader.FileData(destFile);
+				final FileData destData = new FileData(destFile);
 
 				final String dest = destFile.getAbsolutePath();
 				final Long destSize = destData.getSize();

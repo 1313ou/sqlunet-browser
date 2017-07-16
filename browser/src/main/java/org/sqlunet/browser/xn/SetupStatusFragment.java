@@ -94,9 +94,10 @@ public class SetupStatusFragment extends org.sqlunet.browser.config.SetupStatusF
 			@Override
 			public void onClick(View v)
 			{
+				int index = getResources().getInteger(R.integer.sql_statement_do_predicatematrix_position);
 				final Intent intent = new Intent(activity, SetupDatabaseActivity.class);
-				intent.putExtra(SetupDatabaseFragment.ARG, Status.DO_PM);
-				startActivityForResult(intent, SetupStatusFragment.REQUEST_MANAGE_CODE + Status.DO_PM);
+				intent.putExtra(SetupDatabaseFragment.ARG_POSITION, index);
+				startActivityForResult(intent, SetupStatusFragment.REQUEST_MANAGE_CODE + index);
 			}
 		});
 
@@ -105,9 +106,10 @@ public class SetupStatusFragment extends org.sqlunet.browser.config.SetupStatusF
 			@Override
 			public void onClick(View v)
 			{
+				int index = getResources().getInteger(R.integer.sql_statement_do_ts_wn_position);
 				final Intent intent = new Intent(activity, SetupDatabaseActivity.class);
-				intent.putExtra(SetupDatabaseFragment.ARG, Status.DO_TS_WN);
-				startActivityForResult(intent, SetupStatusFragment.REQUEST_MANAGE_CODE + Status.DO_TS_WN);
+				intent.putExtra(SetupDatabaseFragment.ARG_POSITION, index);
+				startActivityForResult(intent, SetupStatusFragment.REQUEST_MANAGE_CODE + index);
 			}
 		});
 
@@ -116,9 +118,10 @@ public class SetupStatusFragment extends org.sqlunet.browser.config.SetupStatusF
 			@Override
 			public void onClick(View v)
 			{
+				int index = getResources().getInteger(R.integer.sql_statement_do_ts_vn_position);
 				final Intent intent = new Intent(activity, SetupDatabaseActivity.class);
-				intent.putExtra(SetupDatabaseFragment.ARG, Status.DO_TS_VN);
-				startActivityForResult(intent, SetupStatusFragment.REQUEST_MANAGE_CODE + Status.DO_TS_VN);
+				intent.putExtra(SetupDatabaseFragment.ARG_POSITION, index);
+				startActivityForResult(intent, SetupStatusFragment.REQUEST_MANAGE_CODE + index);
 			}
 		});
 
@@ -127,9 +130,10 @@ public class SetupStatusFragment extends org.sqlunet.browser.config.SetupStatusF
 			@Override
 			public void onClick(View v)
 			{
+				int index = getResources().getInteger(R.integer.sql_statement_do_ts_pb_position);
 				final Intent intent = new Intent(activity, SetupDatabaseActivity.class);
-				intent.putExtra(SetupDatabaseFragment.ARG, Status.DO_TS_PB);
-				startActivityForResult(intent, SetupStatusFragment.REQUEST_MANAGE_CODE + Status.DO_TS_PB);
+				intent.putExtra(SetupDatabaseFragment.ARG_POSITION, index);
+				startActivityForResult(intent, SetupStatusFragment.REQUEST_MANAGE_CODE + index);
 			}
 		});
 
@@ -138,9 +142,10 @@ public class SetupStatusFragment extends org.sqlunet.browser.config.SetupStatusF
 			@Override
 			public void onClick(View v)
 			{
+				int index = getResources().getInteger(R.integer.sql_statement_do_ts_fn_position);
 				final Intent intent = new Intent(activity, SetupDatabaseActivity.class);
-				intent.putExtra(SetupDatabaseFragment.ARG, Status.DO_TS_FN);
-				startActivityForResult(intent, SetupStatusFragment.REQUEST_MANAGE_CODE + Status.DO_TS_FN);
+				intent.putExtra(SetupDatabaseFragment.ARG_POSITION, index);
+				startActivityForResult(intent, SetupStatusFragment.REQUEST_MANAGE_CODE + index);
 			}
 		});
 
