@@ -1,6 +1,8 @@
 package org.sqlunet.browser;
 
 import android.annotation.TargetApi;
+import android.content.ActivityNotFoundException;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -12,6 +14,7 @@ import android.webkit.WebResourceError;
 import android.webkit.WebResourceRequest;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.Toast;
 
 import org.sqlunet.browser.common.R;
 
@@ -71,6 +74,14 @@ public class HelpFragment extends NavigableFragment
 			public boolean shouldOverrideUrlLoading(final WebView webView, final WebResourceRequest request)
 			{
 				final Uri uri = request.getUrl();
+				final String fileName = uri.getLastPathSegment();
+				if (fileName.endsWith("pdf") || fileName.endsWith("PDF"))
+				{
+					if (handleUri(uri, "application/pdf"))
+					{
+						return true;
+					}
+				}
 				webView.loadUrl(uri.toString());
 				return false;
 			}
@@ -79,6 +90,14 @@ public class HelpFragment extends NavigableFragment
 			@Override
 			public boolean shouldOverrideUrlLoading(final WebView webView, final String url)
 			{
+				if (url.endsWith("pdf") || url.endsWith("PDF"))
+				{
+					final Uri uri = Uri.parse(url);
+					if (handleUri(uri, "application/pdf"))
+					{
+						return true;
+					}
+				}
 				webView.loadUrl(url);
 				return false;
 			}
@@ -94,5 +113,22 @@ public class HelpFragment extends NavigableFragment
 		webview.loadUrl(url);
 
 		return view;
+	}
+
+	private boolean handleUri(final Uri uri, final String mime)
+	{
+		try
+		{
+			final Intent intentUrl = new Intent(Intent.ACTION_VIEW);
+			intentUrl.setDataAndType(uri, mime);
+			intentUrl.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+			getActivity().startActivity(intentUrl);
+			return true;
+		}
+		catch (ActivityNotFoundException e)
+		{
+			Toast.makeText(getActivity(), R.string.status_viewer_failed, Toast.LENGTH_LONG).show();
+		}
+		return false;
 	}
 }

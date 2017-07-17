@@ -493,9 +493,10 @@ class FileAsyncTask
 	 * Unzip data base from
 	 *
 	 * @param context      context
+	 * @param zipEntry     zip entry
 	 * @param databasePath database path
 	 */
-	static void unzipFromArchive(final Context context, final String databasePath)
+	static void unzipFromArchive(final Context context, final String zipEntry, final String databasePath)
 	{
 		String fromPath = Settings.getCachePref(context);
 
@@ -523,21 +524,23 @@ class FileAsyncTask
 					public void onResult(Object result)
 					{
 						final Boolean success = (Boolean) result;
-						if(success)
+						if (success)
 						{
-							FileData.registerDb(context);
+							FileData.recordDb(context);
 						}
 					}
-				}; new FileAsyncTask(listener, resultListener, 1000).unzipFromArchive(sourceFile, Storage.DBFILE, databasePath);
+				};
+				new FileAsyncTask(listener, resultListener, 1000).unzipFromArchive(sourceFile, zipEntry, databasePath);
 			}
-		}); alert.setNegativeButton(R.string.action_cancel, new DialogInterface.OnClickListener()
-	{
-		@Override
-		public void onClick(DialogInterface dialog, int whichButton)
+		});
+		alert.setNegativeButton(R.string.action_cancel, new DialogInterface.OnClickListener()
 		{
-			// canceled.
-		}
-	});
+			@Override
+			public void onClick(DialogInterface dialog, int whichButton)
+			{
+				// canceled.
+			}
+		});
 		alert.show();
 	}
 
@@ -575,9 +578,9 @@ class FileAsyncTask
 					public void onResult(Object result)
 					{
 						final Boolean success = (Boolean) result;
-						if(success)
+						if (success)
 						{
-							FileData.registerDb(context);
+							FileData.recordDb(context);
 						}
 					}
 				};

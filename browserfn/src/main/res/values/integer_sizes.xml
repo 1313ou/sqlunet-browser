@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+	<integer name="size_sqlunet_db">315654144</integer> <!-- sqlunet-fn.db -->
+	<integer name="size_sqlunet_db_zip">104007470</integer> <!-- sqlunet-fn.db.zip -->
+	<integer name="size_sqlunet_sql_zip">73817018</integer> <!-- sqlunet-fn.sql.zip -->
+
+	<integer name="size_textsearch_fn">112922048</integer>
+	<integer name="size_textsearch">112922048</integer>
+
+	<integer name="size_db_working_total">428576192</integer>
+
+</resources>

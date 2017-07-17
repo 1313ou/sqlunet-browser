@@ -376,7 +376,20 @@ public class DownloadFragment extends BaseDownloadFragment
 	{
 		if (this.downloadId != -1)
 		{
-			Log.d(TAG, "CANCEL=" + this.downloadId);
+			Log.d(TAG, "Cancel DM " + this.downloadId);
+			this.downloadManager.remove(this.downloadId);
+		}
+	}
+
+	/**
+	 * Cleanup download
+	 */
+	@Override
+	protected void cleanup()
+	{
+		if (this.downloadId != -1)
+		{
+			Log.d(TAG, "Cleanup DM " + this.downloadId);
 			this.downloadManager.remove(this.downloadId);
 		}
 	}

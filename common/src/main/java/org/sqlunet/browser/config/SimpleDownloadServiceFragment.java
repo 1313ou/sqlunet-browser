@@ -25,7 +25,7 @@ public class SimpleDownloadServiceFragment extends BaseDownloadFragment
 	/**
 	 * Log tag
 	 */
-	static private final String TAG = "SimpleDownloadF";
+	static private final String TAG = "SimpleDownloadServiceF";
 
 	/**
 	 * Notification id key
@@ -204,10 +204,15 @@ public class SimpleDownloadServiceFragment extends BaseDownloadFragment
 	protected void cancel()
 	{
 		final Context context = getActivity();
-		Log.d(TAG, "Cancel");
-		SimpleDownloadServiceFragment.downloading = false;
-		final Intent intent = new Intent(context, SimpleDownloaderService.class);
-		context.stopService(intent);  // execute the Service.onDestroy() method immediately but then let the code in onHandleIntent() finish all the way through before destroying the service.
+		kill(context);
+	}
+
+	/**
+	 * Cleanup download
+	 */
+	@Override
+	protected void cleanup()
+	{
 	}
 
 	/**
@@ -217,7 +222,7 @@ public class SimpleDownloadServiceFragment extends BaseDownloadFragment
 	 */
 	static public void kill(final Context context)
 	{
-		Log.d(TAG, "Kill");
+		Log.d(TAG, "Kill service");
 		SimpleDownloadServiceFragment.downloading = false;
 		final Intent intent = new Intent(context, SimpleDownloaderService.class);
 		context.stopService(intent);  // execute the Service.onDestroy() method immediately but then let the code in onHandleIntent() finish all the way through before destroying the service.

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+	<integer name="size_sqlunet_db">404434944</integer>
+	<integer name="size_sqlunet_db_zip">140114575</integer>
+	<integer name="size_sqlunet_sql_zip">90843972</integer>
+
+	<integer name="size_textsearch_wn">34684928</integer>
+	<integer name="size_textsearch_vn">335872</integer>
+	<integer name="size_textsearch_pb">6291456</integer>
+	<integer name="size_textsearch_fn">113913856</integer>
+	<integer name="size_textsearch">155226112</integer>
+
+	<integer name="size_db_working_total">559661056</integer>
+
+</resources>

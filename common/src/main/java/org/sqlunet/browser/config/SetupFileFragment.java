@@ -139,7 +139,12 @@ public class SetupFileFragment extends BaseTaskFragment
 						case UNZIP:
 							if (Permissions.check(getActivity()))
 							{
-								FileAsyncTask.unzipFromArchive(context, StorageSettings.getDatabasePath(context));
+								String zipEntry = StorageSettings.getImportEntry(context);
+								if (zipEntry == null || zipEntry.isEmpty())
+								{
+									zipEntry = Storage.DBFILE;
+								}
+								FileAsyncTask.unzipFromArchive(context, zipEntry, StorageSettings.getDatabasePath(context));
 							}
 							break;
 

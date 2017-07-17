@@ -26,7 +26,7 @@ import java.net.URLConnection;
  */
 public class SimpleDownloaderService extends IntentService
 {
-	static private final String TAG = "SimpleDownloader";
+	static private final String TAG = "SimpleDownloaderS";
 
 	static public final String MAIN_INTENT_FILTER = "intent_filter_downloader_main";
 

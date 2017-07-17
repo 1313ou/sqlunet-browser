@@ -277,6 +277,9 @@
 			android:name="org.sqlunet.browser.config.UpdateActivity"
 			android:label="@string/title_activity_update"
 			android:launchMode="singleTop">
+			<meta-data
+				android:name="android.support.PARENT_ACTIVITY"
+				android:value=".MainActivity"/>
 		</activity>
 
 		<activity

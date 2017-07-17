@@ -112,6 +112,7 @@
 	<string name="status_task_failed_summary">Task failed</string>
 	<string name="status_error_null_download_url">Null download URL (see Settings)</string>
 	<string name="status_provider_query_failed">Could not perform query, cause is logged</string>
+	<string name="status_viewer_failed">No viewer</string>
 
 	<!-- service -->
 	<string name="service_downloader">service_downloader</string>

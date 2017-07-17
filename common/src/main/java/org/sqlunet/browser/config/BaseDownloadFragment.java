@@ -272,6 +272,7 @@ abstract class BaseDownloadFragment extends Fragment implements View.OnClickList
 			@Override
 			public void onClick(View v)
 			{
+				BaseDownloadFragment.this.cancelButton.setVisibility(View.INVISIBLE);
 				cancel();
 			}
 		});
@@ -349,6 +350,7 @@ abstract class BaseDownloadFragment extends Fragment implements View.OnClickList
 		final int id = view.getId();
 		if (id == R.id.downloadButton)
 		{
+			this.downloadButton.setEnabled(false);
 			this.downloadButton.setVisibility(View.INVISIBLE);
 			this.progressBar.setVisibility(View.VISIBLE);
 			this.progressStatus.setVisibility(View.VISIBLE);
@@ -374,17 +376,6 @@ abstract class BaseDownloadFragment extends Fragment implements View.OnClickList
 	}
 
 	/**
-	 * Observer state
-	 */
-	private void observerState()
-	{
-		this.downloadButton.setVisibility(View.INVISIBLE);
-		this.progressBar.setVisibility(View.VISIBLE);
-		this.progressStatus.setVisibility(View.VISIBLE);
-		this.cancelButton.setVisibility(View.VISIBLE);
-	}
-
-	/**
 	 * Initial state
 	 */
 	private void initialState()
@@ -405,6 +396,11 @@ abstract class BaseDownloadFragment extends Fragment implements View.OnClickList
 	 */
 	abstract protected void cancel();
 
+	/**
+	 * Cleanup after download
+	 */
+	abstract protected void cleanup();
+
 	// O B S E R V E R
 
 	@Override
@@ -423,6 +419,8 @@ abstract class BaseDownloadFragment extends Fragment implements View.OnClickList
 		Log.d(TAG, "Stop  observer");
 		stopObserver();
 	}
+
+	static private long TIMELAPSE = 3000L;
 
 	/**
 	 * Observer
@@ -452,31 +450,26 @@ abstract class BaseDownloadFragment extends Fragment implements View.OnClickList
 				{
 					if (Status.STATUS_FAILED.test(BaseDownloadFragment.this.status))
 					{
-						cancel();
+						cleanup();
 					}
+
 					//noinspection BreakStatement
 					break;
 				}
 
 				// exit because task was cancelled
-				if (cancel)
+				if (this.cancel)
 				{
 					break;
 				}
 
-				// if running or paused
-				if (Status.STATUS_RUNNING.test(BaseDownloadFragment.this.status) || Status.STATUS_PAUSED.test(BaseDownloadFragment.this.status))
-				{
-					observerState();
-				}
-
-				// observerUpdate UI if fragment is added to activity
+				// observer update UI
 				observerUpdate();
 
 				// sleep
 				try
 				{
-					Thread.sleep(2000);
+					Thread.sleep(TIMELAPSE);
 				}
 				catch (final InterruptedException e)
 				{
@@ -511,11 +504,10 @@ abstract class BaseDownloadFragment extends Fragment implements View.OnClickList
 
 	/**
 	 * Observer update
-	 *
-	 * @return message
 	 */
 	private String observerUpdate()
 	{
+		final boolean inProgress = Status.STATUS_RUNNING.test(BaseDownloadFragment.this.status) || Status.STATUS_PAUSED.test(BaseDownloadFragment.this.status);
 		final int progress100 = this.progress.total == 0 ? -1 : (int) (this.progress.downloaded * 100L / this.progress.total);
 		final String status = makeStatusString(this.status);
 		final String reason = getReason();
@@ -531,8 +523,15 @@ abstract class BaseDownloadFragment extends Fragment implements View.OnClickList
 				@Override
 				public void run()
 				{
-					BaseDownloadFragment.this.progressBar.setProgress(progress100);
-					BaseDownloadFragment.this.progressStatus.setText(count);
+					if (inProgress)
+					{
+						//BaseDownloadFragment.this.downloadButton.setVisibility(View.INVISIBLE);
+						//BaseDownloadFragment.this.cancelButton.setVisibility(View.VISIBLE);
+						BaseDownloadFragment.this.progressBar.setVisibility(View.VISIBLE);
+						BaseDownloadFragment.this.progressStatus.setVisibility(View.VISIBLE);
+						BaseDownloadFragment.this.progressBar.setProgress(progress100);
+						BaseDownloadFragment.this.progressStatus.setText(count);
+					}
 					BaseDownloadFragment.this.statusView.setText(message);
 				}
 			});
@@ -654,7 +653,7 @@ abstract class BaseDownloadFragment extends Fragment implements View.OnClickList
 		// register if this is the database
 		if (success && destFile.equals(new File(StorageSettings.getDatabasePath(this.context))))
 		{
-			FileData.registerDb(this.context);
+			FileData.recordDb(this.context);
 		}
 
 		// fire done (broadcast to listener)

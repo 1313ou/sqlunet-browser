@@ -171,6 +171,14 @@ public class SimpleDownloadFragment extends BaseDownloadFragment implements Simp
 	}
 
 	/**
+	 * Cleanup download
+	 */
+	@Override
+	protected void cleanup()
+	{
+	}
+
+	/**
 	 * Kill task (called from notification)
 	 */
 	static public void kill(final Context context)
