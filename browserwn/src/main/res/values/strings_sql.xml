@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+	<integer name="sql_statement_do_indexes_position">1</integer>
+	<integer name="sql_statement_do_ts_wn_position">2</integer>
+
+	<string-array name="sql_statement_titles">
+		<item>[SELECT OPERATION]</item>
+		<item>Create all indexes</item>
+		<item>Prepare WordNet text search</item>
+		<item>Create WordNet indexes</item>
+		<item>Drop WordNet indexes</item>
+		<item>Drop WordNet text search</item>
+	</string-array>
+	<string-array name="sql_statements_values" formatted="false">
+		<item/>
+		<item>
+			CREATE INDEX IF NOT EXISTS index_words_lemma ON words(lemma);
+			CREATE INDEX IF NOT EXISTS index_senses_wordid ON senses(wordid);
+			CREATE INDEX IF NOT EXISTS index_senses_synsetid ON senses(synsetid);
+			CREATE INDEX IF NOT EXISTS index_synsets_synsetid ON synsets(synsetid);
+			CREATE INDEX IF NOT EXISTS index_casedwords_wordid_casedwordid ON casedwords(wordid,casedwordid);
+			CREATE INDEX IF NOT EXISTS index_semlinks_synset1id ON semlinks(synset1id);
+			CREATE INDEX IF NOT EXISTS index_semlinks_linkid ON semlinks(linkid);
+			CREATE INDEX IF NOT EXISTS index_samples_synsetid ON samples(synsetid);</item>
+		<item>
+			CREATE VIRTUAL TABLE IF NOT EXISTS words_lemma_fts4 USING fts4(wordid INTEGER not null, lemma);
+			INSERT INTO words_lemma_fts4 SELECT wordid, lemma from words;
+			CREATE VIRTUAL TABLE IF NOT EXISTS synsets_definition_fts4 USING fts4(synsetid INTEGER not null, definition);
+			INSERT INTO synsets_definition_fts4 SELECT synsetid, definition from synsets;
+			CREATE VIRTUAL TABLE IF NOT EXISTS samples_sample_fts4 USING fts4(synsetid INTEGER not null, sample);
+			INSERT INTO samples_sample_fts4 SELECT synsetid, sample from samples;</item>
+		<item>
+			CREATE INDEX IF NOT EXISTS index_words_lemma ON words(lemma);
+			CREATE INDEX IF NOT EXISTS index_senses_wordid ON senses(wordid);
+			CREATE INDEX IF NOT EXISTS index_senses_synsetid ON senses(synsetid);
+			CREATE INDEX IF NOT EXISTS index_synsets_synsetid ON synsets(synsetid);
+			CREATE INDEX IF NOT EXISTS index_casedwords_wordid_casedwordid ON casedwords(wordid,casedwordid);
+			CREATE INDEX IF NOT EXISTS index_semlinks_synset1id ON semlinks(synset1id);
+			CREATE INDEX IF NOT EXISTS index_semlinks_linkid ON semlinks(linkid);
+			CREATE INDEX IF NOT EXISTS index_samples_synsetid ON samples(synsetid);</item>
+		<item>
+			DROP INDEX IF EXISTS index_words_lemma;
+			DROP INDEX IF EXISTS index_senses_wordid;
+			DROP INDEX IF EXISTS index_senses_synsetid;
+			DROP INDEX IF EXISTS index_synsets_synsetid;
+			DROP INDEX IF EXISTS index_casedwords_wordid_casedwordid;
+			DROP INDEX IF EXISTS index_semlinks_synset1id;
+			DROP INDEX IF EXISTS index_semlinks_linkid;
+			DROP INDEX IF EXISTS index_samples_synsetid;</item>
+		<item>
+			DROP TABLE IF EXISTS words_lemma_fts4;
+			DROP TABLE IF EXISTS synsets_definition_fts4;
+			DROP TABLE IF EXISTS samples_sample_fts4;</item>
+	</string-array>
+
+</resources>

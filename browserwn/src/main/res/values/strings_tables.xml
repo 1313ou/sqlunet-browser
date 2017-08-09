@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+	<string-array name="required_tables">
+		<item>words</item>
+		<item>senses</item>
+		<item>synsets</item>
+		<item>adjpositions</item>
+		<item>adjpositiontypes</item>
+		<item>casedwords</item>
+		<item>lexdomains</item>
+		<item>lexlinks</item>
+		<item>linktypes</item>
+		<item>morphmaps</item>
+		<item>morphs</item>
+		<item>postypes</item>
+		<item>samples</item>
+		<item>semlinks</item>
+		<item>vframemaps</item>
+		<item>vframes</item>
+		<item>vframesentencemaps</item>
+		<item>vframesentences</item>
+		<item>sources</item>
+	</string-array>
+	<string-array name="required_indexes">
+		<item>index_words_lemma</item>
+		<item>index_senses_wordid</item>
+		<item>index_senses_synsetid</item>
+		<item>index_synsets_synsetid</item>
+		<item>index_casedwords_wordid_casedwordid</item>
+		<item>index_semlinks_synset1id</item>
+		<item>index_semlinks_linkid</item>
+		<item>index_samples_synsetid</item>
+	</string-array>
+	<string-array name="required_texts_wn">
+		<item>words_lemma_fts4</item>
+		<item>synsets_definition_fts4</item>
+		<item>samples_sample_fts4</item>
+	</string-array>
+
+</resources>

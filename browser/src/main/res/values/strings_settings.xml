@@ -2,7 +2,6 @@
 <resources>
 
 	<!-- Filter -->
-	<string name="pref_header_filter">Filter</string>
 	<string name="pref_title_enable_links">Enable links</string>
 	<string name="pref_description_enable_links">Display synset links</string>
 	<string name="pref_title_enable_wordnet">Enable WordNet</string>

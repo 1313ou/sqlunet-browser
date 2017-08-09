@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
+	<string name="manager_authority">org.sqlunet.manager.fn.provider</string>
+	<string name="sqlunet_authority">org.sqlunet.xsqlunet.fn.provider</string>
 	<string name="framenet_authority">org.sqlunet.framenet.fn.provider</string>
 	<string-array name="provider_authorities">
 		<item>@string/manager_authority</item>

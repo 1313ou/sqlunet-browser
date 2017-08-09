@@ -1,0 +1,136 @@
+package org.sqlunet.browser.wn;
+
+import android.app.Activity;
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
+
+/**
+ * Settings
+ *
+ * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
+ */
+public class Settings extends org.sqlunet.settings.Settings
+{
+	// preferences
+
+	static private final String PREF_ENABLE_LINKS = "pref_enable_links";
+	static private final String PREF_ENABLE_WORDNET = "pref_enable_wordnet";
+	static private final String PREF_ENABLE_BNC = "pref_enable_bnc";
+
+	static public final int ENABLE_WORDNET = 0x1;
+	static public final int ENABLE_BNC = 0x100;
+
+	// D A T A
+
+	/**
+	 * Source
+	 */
+	public enum Source
+	{
+		WORDNET(0x1), BNC(0x2);
+
+		/**
+		 * Source mask
+		 */
+		final private int mask;
+
+		/**
+		 * Constructor
+		 *
+		 * @param mask mask
+		 */
+		Source(final int mask)
+		{
+			this.mask = mask;
+		}
+
+		/**
+		 * Set this source in sources
+		 *
+		 * @param sources sources to set
+		 * @return progressMessage
+		 */
+		public int set(final int sources)
+		{
+			return sources | this.mask;
+		}
+
+		/**
+		 * Test
+		 *
+		 * @param sources sources to test
+		 * @return true if this source is set
+		 */
+		public boolean test(final int sources)
+		{
+			return (sources & this.mask) != 0;
+		}
+	}
+
+	// S E L E C T O R
+
+	public static Selector getXSelectorPref(Activity activity)
+	{
+		return Selector.SELECTOR;
+	}
+
+	// P R E F E R E N C E S H O R T C U T S
+
+	/**
+	 * Get preferred enable aggregated flag
+	 *
+	 * @param context context
+	 * @return preferred enable WordNet flag
+	 */
+	static public int getAllPref(final Context context)
+	{
+		final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
+		int result = 0;
+		if (sharedPref.getBoolean(Settings.PREF_ENABLE_WORDNET, true))
+		{
+			result |= ENABLE_WORDNET;
+		}
+		if (sharedPref.getBoolean(Settings.PREF_ENABLE_BNC, true))
+		{
+			result |= ENABLE_BNC;
+		}
+		return result;
+	}
+
+	/**
+	 * Get preferred enable WordNet flag
+	 *
+	 * @param context context
+	 * @return preferred enable WordNet flag
+	 */
+	static public boolean getWordNetPref(final Context context)
+	{
+		final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
+		return sharedPref.getBoolean(Settings.PREF_ENABLE_WORDNET, true);
+	}
+
+	/**
+	 * Get preferred enable BNC flag
+	 *
+	 * @param context context
+	 * @return preferred enable BNC flag
+	 */
+	static public boolean getBncPref(final Context context)
+	{
+		final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
+		return sharedPref.getBoolean(Settings.PREF_ENABLE_BNC, true);
+	}
+
+	/**
+	 * Get preferred recurse flag
+	 *
+	 * @param context context
+	 * @return preferred recurse flag
+	 */
+	static public boolean getRecursePref(final Context context)
+	{
+		final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
+		return sharedPref.getBoolean(Settings.PREF_ENABLE_LINKS, false);
+	}
+}

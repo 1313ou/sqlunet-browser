@@ -8,14 +8,6 @@
 
 	<string name="action_setup_textsearchFn" tools:keep="@string/action_setup_textsearchFn">Setup text search for FrameNet</string>
 
-	<!-- TITLES -->
-
-	<!-- labels -->
-	<string name="title_activity_fnframe">FrameNet Frame</string>
-	<string name="title_activity_fnlexunit">FrameNet LexUnit</string>
-	<string name="title_activity_fnsentence">FrameNet Sentence</string>
-	<string name="title_activity_fnannoset">FrameNet AnnoSet</string>
-
 	<!-- _status -->
 	<string name="status_textsearchFn">Text Search\non FrameNet</string>
 

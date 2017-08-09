@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+	<string name="framenet">FrameNet</string>
+	<string name="framenet_blurb">FrameNet\nexplores semantic roles</string>
+
+	<string name="title_activity_fnframe">FrameNet Frame</string>
+	<string name="title_activity_fnlexunit">FrameNet LexUnit</string>
+	<string name="title_activity_fnsentence">FrameNet Sentence</string>
+	<string name="title_activity_fnannoset">FrameNet AnnoSet</string>
+
+</resources>

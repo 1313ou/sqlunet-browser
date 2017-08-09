@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+	<string name="verbnet">VerbNet</string>
+	<string name="verbnet_blurb">VerbNet\nexplores semantic roles</string>
+
+	<string name="title_activity_vnclass">VerbNet Class</string>
+
+</resources>

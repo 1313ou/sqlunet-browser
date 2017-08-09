@@ -1,9 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+	<string name="wordnet">WordNet</string>
+	<string name="wordnet_blurb">WordNet\ngroups English words into sets of synonyms called synsets,\nand records relations among these synonym sets or their members</string>
+
 	<string name="title_activity_senses">Senses</string>
 	<string name="title_activity_sense">Sense</string>
 	<string name="title_activity_synset">Synset</string>
+	<string name="title_activity_word">Word</string>
+
 	<string name="label_members">Members</string>
 	<string name="label_definition">Definition</string>
 	<string name="label_samples">Samples</string>

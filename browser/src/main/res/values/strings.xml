@@ -17,18 +17,7 @@
 	<!-- labels -->
 	<string name="title_activity_selector">Senses</string>
 	<string name="title_activity_xselector">Sources</string>
-
 	<string name="title_activity_browse2">Data</string>
-	<string name="title_activity_word">Word</string>
-	<string name="title_activity_sense">Sense</string>
-	<string name="title_activity_synset">Synset</string>
-	<string name="title_activity_vnclass">VerbNet Class</string>
-	<string name="title_activity_pbroleset">PropBank RoleSet</string>
-	<string name="title_activity_fnframe">FrameNet Frame</string>
-	<string name="title_activity_fnlexunit">FrameNet LexUnit</string>
-	<string name="title_activity_fnsentence">FrameNet Sentence</string>
-	<string name="title_activity_fnannoset">FrameNet AnnoSet</string>
-	<string name="title_activity_predicatematrix">PredicateMatrix</string>
 	<string name="title_activity_table">Table</string>
 
 	<!-- _status -->
@@ -54,20 +43,8 @@
 
 	<!-- databases -->
 	<string name="sqlunet">SqlUNet</string>
-	<string name="wordnet">WordNet</string>
-	<string name="framenet">FrameNet</string>
-	<string name="propbank">PropBank</string>
-	<string name="verbnet">VerbNet</string>
-	<string name="bnc">BNC</string>
-	<string name="predicatematrix">Predicate Matrix</string>
 
 	<!-- blurbs -->
 	<string name="sqlunet_blurb">SqlUNet\nunifies all</string>
-	<string name="wordnet_blurb">WordNet\ngroups English words into sets of synonyms called synsets,\nand records relations among these synonym sets or their members</string>
-	<string name="framenet_blurb">FrameNet\nexplores semantic roles</string>
-	<string name="propbank_blurb">PropBank\nexplores semantic roles</string>
-	<string name="verbnet_blurb">VerbNet\nexplores semantic roles</string>
-	<string name="bnc_blurb">BNC\nprovides word statistics</string>
-	<string name="predicatematrix_blurb">Predicate Matrix\nunifies semantic roles across VerbNet, PropBank and FrameNet</string>
 
 </resources>

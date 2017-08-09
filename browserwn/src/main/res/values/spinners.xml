@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+	<!-- browser spinner
+	SELECTORS
+	-->
+	<string-array name="selectors_names">
+		<item>WordNet words</item>
+	</string-array>
+	<integer-array name="selectors_icons">
+		<item>@drawable/ic_selector</item>
+	</integer-array>
+
+	<!-- textsearch spinner
+	WORDNET DEFINITIONS
+	WORDNET SAMPLES
+	WORDNET WORDS
+	-->
+	<string-array name="textsearch_modes">
+		<item>WordNet definitions</item>
+		<item>WordNet samples</item>
+		<item>WordNet words</item>
+	</string-array>
+	<integer-array name="textsearch_icons">
+		<item>@drawable/ic_search_wndefinition</item>
+		<item>@drawable/ic_search_wnsample</item>
+		<item>@drawable/ic_search_wnword</item>
+	</integer-array>
+
+</resources>

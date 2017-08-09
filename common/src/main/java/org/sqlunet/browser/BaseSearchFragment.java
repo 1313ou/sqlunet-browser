@@ -102,16 +102,20 @@ abstract public class BaseSearchFragment extends NavigableFragment implements Se
 		setHasOptionsMenu(true);
 
 		// view
-		final View view = inflater.inflate(this.layoutId, container, false);
+		return inflater.inflate(this.layoutId, container, false);
+	}
+
+	@Override
+	public void onViewStateRestored(@Nullable final Bundle savedInstanceState)
+	{
+		super.onViewStateRestored(savedInstanceState);
 
 		// restore from saved instance
-		if (savedInstanceState != null)
+		if (savedInstanceState != null && this.spinner != null)
 		{
 			final int selected = savedInstanceState.getInt(STATE_SPINNER);
 			this.spinner.setSelection(selected);
 		}
-
-		return view;
 	}
 
 	// S A V E
@@ -119,7 +123,7 @@ abstract public class BaseSearchFragment extends NavigableFragment implements Se
 	@Override
 	public void onSaveInstanceState(final Bundle outState)
 	{
-		Log.d(BaseSearchFragment.TAG, "ON SAVE INSTANCE");
+		Log.d(BaseSearchFragment.TAG, "on save instance");
 
 		// always call the superclass so it can save the view hierarchy state
 		super.onSaveInstanceState(outState);
@@ -251,10 +255,6 @@ abstract public class BaseSearchFragment extends NavigableFragment implements Se
 
 		// apply spinner adapter
 		this.spinner.setAdapter(adapter);
-
-		// spinner listener
-
-		// saved mode
 	}
 
 	// S E A R C H V I E W

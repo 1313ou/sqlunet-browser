@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+	<string name="predicatematrix">Predicate Matrix</string>
+	<string name="predicatematrix_blurb">Predicate Matrix\nunifies semantic roles across VerbNet, PropBank and FrameNet</string>
+
+	<string name="title_activity_predicatematrix">PredicateMatrix</string>
+
+</resources>

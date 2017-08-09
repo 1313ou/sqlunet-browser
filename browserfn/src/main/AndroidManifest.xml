@@ -3,8 +3,8 @@
           xmlns:tools="http://schemas.android.com/tools"
           package="org.sqlunet.browser.fn"
           android:installLocation="preferExternal"
-          android:versionCode="10"
-          android:versionName="1.10">
+          android:versionCode="11"
+          android:versionName="1.11">
 
 	<uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
 	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
@@ -314,7 +314,7 @@
 
 		<provider
 			android:name="org.sqlunet.provider.ManagerProvider"
-			android:authorities="org.sqlunet.fn.manager.provider"
+			android:authorities="org.sqlunet.manager.fn.provider"
 			android:enabled="true"
 			android:exported="false"
 			tools:ignore="ExportedContentProvider">
@@ -322,7 +322,7 @@
 
 		<provider
 			android:name="org.sqlunet.provider.XSqlUNetProvider"
-			android:authorities="org.sqlunet.fn.xsqlunet.provider"
+			android:authorities="org.sqlunet.xsqlunet.fn.provider"
 			android:enabled="true"
 			android:exported="false"
 			tools:ignore="ExportedContentProvider">
@@ -330,7 +330,7 @@
 
 		<provider
 			android:name="org.sqlunet.framenet.provider.FrameNetProvider"
-			android:authorities="org.sqlunet.fn.framenet.provider"
+			android:authorities="org.sqlunet.framenet.fn.provider"
 			android:enabled="true"
 			android:exported="false"
 			tools:ignore="ExportedContentProvider">
