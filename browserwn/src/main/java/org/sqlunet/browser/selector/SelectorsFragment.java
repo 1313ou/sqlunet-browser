@@ -22,9 +22,9 @@ import android.widget.TextView;
 import org.sqlunet.browser.Module;
 import org.sqlunet.browser.wn.R;
 import org.sqlunet.provider.ProviderArgs;
-import org.sqlunet.provider.XSqlUNetContract;
-import org.sqlunet.provider.XSqlUNetProvider;
+import org.sqlunet.wordnet.provider.WordNetContract;
 import org.sqlunet.wordnet.provider.WordNetContract.Words_Senses_CasedWords_Synsets_PosTypes_LexDomains;
+import org.sqlunet.wordnet.provider.WordNetProvider;
 
 import java.util.Locale;
 
@@ -252,7 +252,7 @@ public class SelectorsFragment extends ListFragment
 			@Override
 			public Loader<Cursor> onCreateLoader(final int loaderId, final Bundle loaderArgs)
 			{
-				final Uri uri = Uri.parse(XSqlUNetProvider.makeUri(Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.CONTENT_URI_TABLE));
+				final Uri uri = Uri.parse(WordNetProvider.makeUri(Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.CONTENT_URI_TABLE));
 				final String[] projection = { //
 						Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.SYNSETID + " AS _id", //
 						Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.WORDID, //
@@ -263,14 +263,14 @@ public class SelectorsFragment extends ListFragment
 						Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.TAGCOUNT, //
 						Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.SYNSETID, //
 						Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.DEFINITION, //
-						XSqlUNetContract.SYNSET + '.' + Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.POS, //
+						WordNetContract.SYNSET + '.' + Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.POS, //
 						Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.POSNAME, //
 						Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.LEXDOMAIN, //
 						Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.CASED, //
 				};
-				final String selection = XSqlUNetContract.WORD + '.' + Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.LEMMA + " = ?"; ////
+				final String selection = Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.LEMMA + " = ?"; ////
 				final String[] selectionArgs = {SelectorsFragment.this.word};
-				final String sortOrder = XSqlUNetContract.SYNSET + '.' + Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.POS + ',' + Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.SENSENUM;
+				final String sortOrder = WordNetContract.SYNSET + '.' + Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.POS + ',' + Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.SENSENUM;
 				return new CursorLoader(getActivity(), uri, projection, selection, selectionArgs, sortOrder);
 			}
 

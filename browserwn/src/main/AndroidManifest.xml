@@ -336,6 +336,14 @@
 			tools:ignore="ExportedContentProvider">
 		</provider>
 
+		<provider
+			android:name="org.sqlunet.bnc.provider.BNCProvider"
+			android:authorities="org.sqlunet.bnc.wn.provider"
+			android:enabled="true"
+			android:exported="true"
+			tools:ignore="ExportedContentProvider">
+		</provider>
+
 		<service
 			android:name="org.sqlunet.browser.config.SimpleDownloaderService"
 			android:description="@string/description_service_downloader"
