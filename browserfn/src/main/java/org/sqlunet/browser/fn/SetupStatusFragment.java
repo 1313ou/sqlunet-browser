@@ -91,11 +91,10 @@ public class SetupStatusFragment extends org.sqlunet.browser.config.SetupStatusF
 					final String hrSize = StorageUtils.countToStorageString(size) + " (" + Long.toString(size) + ')';
 					Info.info(activity, R.string.title_status, //
 							getString(R.string.title_database), database, //
-							getString(R.string.title_status), getString(R.string.status_database_exists), //
-							getString(R.string.title_status), getString(existsTables ? R.string.status_data_exists : R.string.status_data_not_exists), //
+							getString(R.string.title_status), getString(R.string.status_database_exists) + '-' + getString(existsTables ? R.string.status_data_exists : R.string.status_data_not_exists), //
 							getString(R.string.title_free), free, //
 							getString(R.string.size_expected), getString(R.string.hr_size_sqlunet_db), //
-							getString(R.string.size_expected) + ' ' + getString(R.string.text_search) + ' ' + getString(R.string.hr_size_textsearch), //
+							getString(R.string.size_expected) + ' ' + getString(R.string.text_search), getString(R.string.hr_size_textsearch), //
 							getString(R.string.size_expected) + ' ' + getString(R.string.total), getString(R.string.hr_size_db_working_total), //
 							getString(R.string.size_actual), hrSize);
 				}
@@ -106,7 +105,8 @@ public class SetupStatusFragment extends org.sqlunet.browser.config.SetupStatusF
 							getString(R.string.title_from), source, //
 							getString(R.string.title_database), database, //
 							getString(R.string.title_free), free, //
-							getString(R.string.size_expected) + ' ' + getString(R.string.text_search) + ' ' + getString(R.string.hr_size_textsearch) + ')', //
+							getString(R.string.size_expected), getString(R.string.hr_size_sqlunet_db), //
+							getString(R.string.size_expected) + ' ' + getString(R.string.text_search), getString(R.string.hr_size_textsearch), //
 							getString(R.string.size_expected) + ' ' + getString(R.string.total), getString(R.string.hr_size_db_working_total), //
 							getString(R.string.title_status), getString(R.string.status_database_not_exists));
 				}

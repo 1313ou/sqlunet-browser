@@ -20,7 +20,7 @@ dirapp=..
 # res
 declare -A res_logo_icon
 res_logo_icon=([mdpi]=48 [hdpi]=72 [xhdpi]=96 [xxhdpi]=144 [xxxhdpi]=192)
-list_logo_icon="logo_sqlunet.svg logo_treebolicwordnet.svg"
+list_logo_icon="logo_semantikos.svg logo_semantikos_wn.svg logo_semantikos_fn.svg logo_treebolicwordnet.svg"
 
 # icons
 for svg in ${list_logo_icon}; do

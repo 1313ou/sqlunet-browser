@@ -134,15 +134,6 @@ public class SearchTextFragment extends BaseSearchFragment
 		switch (typePosition)
 		{
 			case 0:
-				searchUri = WordNetProvider.makeUri(WordNetContract.Lookup_Words.CONTENT_URI_TABLE);
-				id = WordNetContract.Lookup_Words.WORDID;
-				idType = "lemma";
-				target = WordNetContract.Lookup_Words.LEMMA;
-				columns = new String[]{WordNetContract.Lookup_Words.LEMMA};
-				hiddenColumns = new String[]{WordNetContract.Lookup_Words.WORDID};
-				database = "wn";
-				break;
-			case 1:
 				searchUri = WordNetProvider.makeUri(WordNetContract.Lookup_Definitions.CONTENT_URI_TABLE);
 				id = WordNetContract.Lookup_Definitions.SYNSETID;
 				idType = "synset";
@@ -151,13 +142,22 @@ public class SearchTextFragment extends BaseSearchFragment
 				hiddenColumns = new String[]{WordNetContract.Lookup_Definitions.SYNSETID};
 				database = "wn";
 				break;
-			case 2:
+			case 1:
 				searchUri = WordNetProvider.makeUri(WordNetContract.Lookup_Samples.CONTENT_URI_TABLE);
 				id = WordNetContract.Lookup_Samples.SYNSETID;
 				idType = "synset";
 				target = WordNetContract.Lookup_Samples.SAMPLE;
 				columns = new String[]{WordNetContract.Lookup_Samples.SAMPLE};
 				hiddenColumns = new String[]{WordNetContract.Lookup_Samples.SYNSETID};
+				database = "wn";
+				break;
+			case 2:
+				searchUri = WordNetProvider.makeUri(WordNetContract.Lookup_Words.CONTENT_URI_TABLE);
+				id = WordNetContract.Lookup_Words.WORDID;
+				idType = "lemma";
+				target = WordNetContract.Lookup_Words.LEMMA;
+				columns = new String[]{WordNetContract.Lookup_Words.LEMMA};
+				hiddenColumns = new String[]{WordNetContract.Lookup_Words.WORDID};
 				database = "wn";
 				break;
 			case 3:

@@ -14,7 +14,7 @@
 			android:contentDescription="@string/title_donate"
 			android:gravity="center_horizontal"
 			android:padding="5dp"
-			android:src="@drawable/logo_sqlunet"
+			android:src="@drawable/logo_semantikos"
 			android:visibility="visible"/>
 
 		<TextView

@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-	<string name="sqlunet_db">6c820012d47078e78b6cb3b1ad2d2fa8</string>
-	<string name="sqlunet_db_zip">f4a63c45706f0eef5b0567a4eb96a37e</string>
-	<string name="sqlunet_sql_zip">d1dba399388b9d6b4180f2b8dac03d10</string>
+	<string name="sqlunet_db">9e7c2c09def23aed644c174001ef706a</string>
+	<string name="sqlunet_db_zip">5e23753a0a2d1cc7b8a75194a62d57f4</string>
+	<string name="sqlunet_sql_zip">cbc1043c1fc2037b80bf1f3614f273bf</string>
 
-	<string name="hr_size_sqlunet_db">386 MB</string>
-	<string name="hr_size_sqlunet_db_zip">134 MB</string>
-	<string name="hr_size_sqlunet_sql_zip">87 MB</string>
+	<string name="hr_size_sqlunet_db">498 MB</string>
+	<string name="hr_size_sqlunet_db_zip">167 MB</string>
+	<string name="hr_size_sqlunet_sql_zip">111 MB</string>
 
 	<string name="hr_size_textsearch_wn">34 MB</string>
 	<string name="hr_size_textsearch_vn">328 KB</string>
 	<string name="hr_size_textsearch_pb">6 MB</string>
-	<string name="hr_size_textsearch_fn">109 MB</string>
-	<string name="hr_size_textsearch">149 MB</string>
+	<string name="hr_size_textsearch_fn">137 MB</string>
+	<string name="hr_size_textsearch">176 MB</string>
 
-	<string name="hr_size_db_working_total">534 MB</string>
+	<string name="hr_size_db_working_total">674 MB</string>
 
 </resources>

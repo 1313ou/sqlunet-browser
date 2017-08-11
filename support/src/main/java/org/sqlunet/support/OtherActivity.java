@@ -25,14 +25,28 @@ public class OtherActivity extends AppCompatActivity
 		setContentView(R.layout.activity_other);
 	}
 
-	public void onMarket(View view)
+	public void onMarketTreebolicWordNet(View view)
 	{
-		install();
+		install(getString(R.string.treebolic_wordnet_uri));
 	}
 
-	private void install()
+	public void onMarketSemantikos(View view)
 	{
-		final String uri = getString(R.string.other_app_uri);
+		install(getString(R.string.semantikos_uri));
+	}
+
+	public void onMarketSemantikosWn(View view)
+	{
+		install(getString(R.string.semantikos_wn_uri));
+	}
+
+	public void onMarketSemantikosFn(View view)
+	{
+		install(getString(R.string.semantikos_fn_uri));
+	}
+
+	private void install(final String uri)
+	{
 		final Intent goToMarket = new Intent(Intent.ACTION_VIEW).setData(Uri.parse(uri));
 		try
 		{

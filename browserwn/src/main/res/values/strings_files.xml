@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-	<string name="sqlunet_db">bc08946059c7945281a952abfa9df6ca</string> <!-- sqlunet-wn.db -->
-	<string name="sqlunet_db_zip">62b35c07d8eedc116cad521ace9b62be</string> <!-- sqlunet-wn.db.zip -->
-	<string name="sqlunet_sql_zip">53baca8773efc40ea351864880f1acb7</string> <!-- sqlunet-wn.sql.zip -->
+	<string name="sqlunet_db">249700b80b1679c80f91b3685517492a</string> <!-- sqlunet-wn.db -->
+	<string name="sqlunet_db_zip">5e6a27cf04697cb5805a7e1b2057bd0d</string> <!-- sqlunet-wn.db.zip -->
+	<string name="sqlunet_sql_zip">e60d251bf82b73fcd8dfeb4db4c5c344</string> <!-- sqlunet-wn.sql.zip -->
 
-	<string name="hr_size_sqlunet_db">302 MB</string> <!-- sqlunet-wn.db -->
-	<string name="hr_size_sqlunet_db_zip">100 MB</string> <!-- sqlunet-wn.db.zip -->
-	<string name="hr_size_sqlunet_sql_zip">71 MB</string> <!-- sqlunet-wn.sql.zip -->
+	<string name="hr_size_sqlunet_db">63 MB</string> <!-- sqlunet-wn.db -->
+	<string name="hr_size_sqlunet_db_zip">26 MB</string> <!-- sqlunet-wn.db.zip -->
+	<string name="hr_size_sqlunet_sql_zip">11 MB</string> <!-- sqlunet-wn.sql.zip -->
 
-	<string name="hr_size_textsearch_wn">108 MB</string>
-	<string name="hr_size_textsearch">108 MB</string>
+	<string name="hr_size_textsearch_wn">34 MB</string>
+	<string name="hr_size_textsearch">34 MB</string>
 
-	<string name="hr_size_db_working_total">409 MB</string>
+	<string name="hr_size_db_working_total">96 MB</string>
 
 </resources>

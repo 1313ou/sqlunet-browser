@@ -23,17 +23,17 @@
 	FRAMENET SENTENCES
 	-->
 	<string-array name="textsearch_modes">
-		<item>WordNet words</item>
 		<item>WordNet definitions</item>
 		<item>WordNet samples</item>
+		<item>WordNet words</item>
 		<item>VerbNet examples</item>
 		<item>ProbBank examples</item>
 		<item>FrameNet sentences</item>
 	</string-array>
 	<integer-array name="textsearch_icons">
-		<item>@drawable/ic_search_wnword</item>
 		<item>@drawable/ic_search_wndefinition</item>
 		<item>@drawable/ic_search_wnsample</item>
+		<item>@drawable/ic_search_wnword</item>
 		<item>@drawable/ic_search_vnexample</item>
 		<item>@drawable/ic_search_pbexample</item>
 		<item>@drawable/ic_search_fnsentence</item>
