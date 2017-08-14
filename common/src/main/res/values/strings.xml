@@ -120,9 +120,9 @@
 
 	<!-- misc -->
 	<string name="hint_search">Search</string>
-	<string name="hint_search_text">Text Search</string>
-	<string name="hint_splash_browse">Exploring Semantic Roles</string>
-	<string name="hint_splash_textsearch">Text Search</string>
+	<string name="hint_search_text">Text search</string>
+	<string name="hint_splash_browse">Exploring senses and semantic roles</string>
+	<string name="hint_splash_textsearch">Text search</string>
 	<string name="hint_navigation_drawer_open">Open navigation drawer</string>
 	<string name="hint_navigation_drawer_close">Close navigation drawer</string>
 	<string name="hint_sql">SQL statements stack</string>

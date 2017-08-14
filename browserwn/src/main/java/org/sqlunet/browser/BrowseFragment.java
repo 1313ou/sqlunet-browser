@@ -11,8 +11,6 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.TextView;
 
 import org.sqlunet.browser.config.TableActivity;
@@ -83,7 +81,9 @@ public class BrowseFragment extends BaseSearchFragment
 	protected void setupSpinner(final Context context)
 	{
 		super.setupSpinner(context);
+		this.spinner.setVisibility(View.GONE);
 
+		/*
 		// spinner listener
 		this.spinner.setOnItemSelectedListener( //
 				new OnItemSelectedListener()
@@ -108,6 +108,7 @@ public class BrowseFragment extends BaseSearchFragment
 		{
 			this.spinner.setSelection(selectorMode.ordinal());
 		}
+		*/
 	}
 
 	// M E N U

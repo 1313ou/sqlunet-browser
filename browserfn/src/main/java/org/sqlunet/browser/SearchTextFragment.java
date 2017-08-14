@@ -7,14 +7,12 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.TextView;
 
 import org.sqlunet.browser.fn.R;
 import org.sqlunet.framenet.provider.FrameNetContract.Lookup_FnSentences_X;
 import org.sqlunet.framenet.provider.FrameNetProvider;
 import org.sqlunet.provider.ProviderArgs;
-import org.sqlunet.settings.Settings;
 
 /**
  * Text search activity
@@ -64,7 +62,9 @@ public class SearchTextFragment extends BaseSearchFragment
 	protected void setupSpinner(final Context context)
 	{
 		super.setupSpinner(context);
+		this.spinner.setVisibility(View.GONE);
 
+		/*
 		// spinner listener
 		this.spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener()
 		{
@@ -84,6 +84,7 @@ public class SearchTextFragment extends BaseSearchFragment
 		// spinner position
 		final int position = Settings.getSearchModePref(context);
 		this.spinner.setSelection(position);
+		*/
 	}
 
 	// S E A R C H

@@ -111,26 +111,26 @@ public class SelectorsFragment extends ListFragment
 		final SimpleCursorAdapter adapter = new SimpleCursorAdapter(getActivity(), R.layout.item_selector, null, //
 				new String[]{ //
 						Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.POS, //
-						Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.SENSENUM, //
 						Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.LEXDOMAIN, //
 						Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.DEFINITION, //
 						Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.CASED, //
-						Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.TAGCOUNT, //
-						Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.LEXID, //
+						Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.SENSENUM, //
 						Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.SENSEKEY, //
+						Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.LEXID, //
+						Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.TAGCOUNT, //
 						Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.WORDID, //
 						Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.SYNSETID, //
 						Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.SENSEID, //
 				}, //
 				new int[]{ //
 						R.id.pos, //
-						R.id.sensenum, //
 						R.id.lexdomain, //
 						R.id.definition, //
 						R.id.cased, //
-						R.id.tagcount, //
-						R.id.lexid, //
+						R.id.sensenum, //
 						R.id.sensekey, //
+						R.id.lexid, //
+						R.id.tagcount, //
 						R.id.wordid, //
 						R.id.synsetid, //
 						R.id.senseid, //

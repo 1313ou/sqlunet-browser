@@ -25,6 +25,13 @@
 		android:textIsSelectable="false"/>
 
 	<TextView
+		android:id="@+id/fnframename"
+		style="@style/Data.FnFrameName"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:textIsSelectable="false"/>
+
+	<TextView
 		android:id="@+id/fnword"
 		style="@style/Data.FnWord"
 		android:layout_width="wrap_content"

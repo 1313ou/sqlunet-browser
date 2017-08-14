@@ -49,11 +49,11 @@
       <image
          sodipodi:absref="/opt/devel/android-sqlunet-as/SqlUNet/browserwn/artwork/wordnet-background.jpg"
          xlink:href="wordnet-background.jpg"
-         width="320"
-         height="210"
-         id="image4320"
+         y="0"
          x="0"
-         y="0" />
+         id="image4320"
+         height="210"
+         width="320" />
     </pattern>
     <linearGradient
        y2="609.50507"
@@ -13755,11 +13755,11 @@
       <image
          sodipodi:absref="/opt/devel/android-sqlunet-as/SqlUNet/browserwn/artwork/wordnet-background.jpg"
          xlink:href="wordnet-background.jpg"
-         y="0"
-         x="0"
-         id="image4320-87"
+         width="320"
          height="210"
-         width="320" />
+         id="image4320-87"
+         x="0"
+         y="0" />
     </pattern>
     <inkscape:perspective
        id="perspective13-1"
@@ -13796,11 +13796,11 @@
       <image
          sodipodi:absref="/opt/devel/android-sqlunet-as/SqlUNet/browserwn/artwork/wordnet-background.jpg"
          xlink:href="wordnet-background.jpg"
-         width="320"
-         height="210"
-         id="image4320-2"
+         y="0"
          x="0"
-         y="0" />
+         id="image4320-2"
+         height="210"
+         width="320" />
     </pattern>
     <radialGradient
        xlink:href="#linearGradient5301"
@@ -21095,6 +21095,72 @@
            id="feFuncB10085-1" />
       </feComponentTransfer>
     </filter>
+    <linearGradient
+       id="greens-8"
+       inkscape:collect="always">
+      <stop
+         id="stop4553"
+         offset="0"
+         style="stop-color:#78aca7;stop-opacity:0.99607843" />
+      <stop
+         id="stop4555"
+         offset="1"
+         style="stop-color:#4ca599;stop-opacity:0.99607843" />
+    </linearGradient>
+    <linearGradient
+       id="greys-7"
+       inkscape:collect="always">
+      <stop
+         id="stop4515"
+         offset="0"
+         style="stop-color:#625c4e;stop-opacity:1;" />
+      <stop
+         id="stop4517"
+         offset="1"
+         style="stop-color:#352d26;stop-opacity:0.99590164" />
+    </linearGradient>
+    <linearGradient
+       id="browns-6"
+       inkscape:collect="always">
+      <stop
+         id="stop4505"
+         offset="0"
+         style="stop-color:#d08b45;stop-opacity:1" />
+      <stop
+         id="stop4507"
+         offset="1"
+         style="stop-color:#7e5832;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient
+       gradientTransform="matrix(2.785965,0,0,8.9811319,315.19596,-894.57717)"
+       gradientUnits="userSpaceOnUse"
+       y2="147.65318"
+       x2="28.763969"
+       y1="92.094795"
+       x1="29.82489"
+       id="linearGradient4511"
+       xlink:href="#browns-6"
+       inkscape:collect="always" />
+    <linearGradient
+       gradientTransform="matrix(2.7098975,0,0,4.0555557,279.21582,-349.55808)"
+       gradientUnits="userSpaceOnUse"
+       y2="273.64447"
+       x2="41.596912"
+       y1="235.68799"
+       x1="41.969677"
+       id="linearGradient4521"
+       xlink:href="#greys-7"
+       inkscape:collect="always" />
+    <linearGradient
+       gradientTransform="matrix(1,0,0,1.1686747,0,-62.179598)"
+       gradientUnits="userSpaceOnUse"
+       y2="462.82074"
+       x2="396.98996"
+       y1="380.99838"
+       x1="396.98996"
+       id="linearGradient4559"
+       xlink:href="#greens-8"
+       inkscape:collect="always" />
   </defs>
   <sodipodi:namedview
      id="base"
@@ -21104,14 +21170,14 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="1.0384944"
-     inkscape:cx="133.51202"
-     inkscape:cy="200.33538"
+     inkscape:cx="-141.42828"
+     inkscape:cy="161.81808"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
-     inkscape:window-width="1135"
+     inkscape:window-width="1715"
      inkscape:window-height="736"
-     inkscape:window-x="658"
+     inkscape:window-x="78"
      inkscape:window-y="349"
      inkscape:window-maximized="0"
      fit-margin-top="0"
@@ -21141,25 +21207,25 @@
        id="text3395"
        y="163.51024"
        x="556.77942"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:condensed;line-height:0%;font-family:Impact;-inkscape-font-specification:'Impact Condensed';text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#ed00ff;fill-opacity:1;stroke:#00132c;stroke-width:0.69631934;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;filter:url(#filter4016);"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:condensed;line-height:0%;font-family:Impact;-inkscape-font-specification:'Impact Condensed';text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#5b5548;fill-opacity:1;stroke:#00132c;stroke-width:0.69631934;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;filter:url(#filter4016);"
        xml:space="preserve"><tspan
          sodipodi:role="line"
          id="tspan3401"
          x="556.77942"
          y="163.51024"
-         style="font-size:127.66687775px;line-height:1.25;fill:#ed00ff;stroke:#00132c;stroke-width:0.69631934;stroke-opacity:1;fill-opacity:1;">Net</tspan></text>
+         style="font-size:127.66687775px;line-height:1.25;fill:#5b5548;stroke:#00132c;stroke-width:0.69631934;stroke-opacity:1;fill-opacity:1;">Net</tspan></text>
     <text
        transform="scale(0.61287678,1.6316494)"
        id="text5161"
        y="150.30367"
        x="348.23944"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:condensed;font-size:132.64131165px;line-height:0%;font-family:Impact;-inkscape-font-specification:'Impact, Condensed';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#4169e1;fill-opacity:1;stroke:none;stroke-width:8.1591711;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:condensed;font-size:132.64131165px;line-height:0%;font-family:Impact;-inkscape-font-specification:'Impact, Condensed';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#9e866b;fill-opacity:1;stroke:none;stroke-width:8.1591711;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;"
        xml:space="preserve"><tspan
          sodipodi:role="line"
          id="tspan7389"
          x="348.23944"
          y="150.30367"
-         style="stroke-width:8.1591711">Word</tspan></text>
+         style="stroke-width:8.1591711;fill:#9e866b;fill-opacity:1;">Word</tspan></text>
     <ellipse
        style="opacity:0.98999999;fill:#ceffff;fill-opacity:0;fill-rule:evenodd;stroke:none;stroke-width:5;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
        id="path8563"
@@ -21263,6 +21329,65 @@
          cy="275.43076"
          rx="17.870319"
          ry="17.920031" />
+    </g>
+    <g
+       id="g7718"
+       transform="matrix(0.59043586,0,0,0.59043586,-516.78662,-118.30664)">
+      <g
+         style="display:inline"
+         transform="translate(0,41.709597)"
+         inkscape:label="Rings"
+         id="layer7">
+        <rect
+           y="-44.780872"
+           x="8.076724e-06"
+           height="480.83261"
+           width="802.0611"
+           id="rect4503"
+           style="opacity:0.98999999;fill:url(#linearGradient4511);fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:25.01055717;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+        <rect
+           y="464.336"
+           x="8.076724e-06"
+           height="294.96454"
+           width="802.0611"
+           id="rect4513"
+           style="opacity:1;fill:url(#linearGradient4521);fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:16.57569122;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+        <rect
+           y="382.49332"
+           x="-8.2231486e-07"
+           height="97.984795"
+           width="803.07129"
+           id="rect4527"
+           style="opacity:1;fill:url(#linearGradient4559);fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:18.3908577;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+      </g>
+      <g
+         style="display:inline"
+         transform="translate(6.2879466,32.778153)"
+         id="layer1-6"
+         inkscape:label="Labels">
+        <text
+           transform="matrix(0.67834239,-0.00187899,0,1.4741818,0,0)"
+           id="text8462"
+           y="351.25592"
+           x="46.500858"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:condensed;font-size:301.97332764px;line-height:100%;font-family:Impact;-inkscape-font-specification:'Impact, Condensed';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#e4ddd6;fill-opacity:0.99607843;stroke:none;stroke-width:20.13168335px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:0.99607843"
+           xml:space="preserve"><tspan
+             id="tspan4506"
+             sodipodi:role="line"
+             x="46.500858"
+             y="351.25592">Word</tspan></text>
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:condensed;font-size:301.97332764px;line-height:100%;font-family:Impact;-inkscape-font-specification:'Impact, Condensed';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#c3b3a3;fill-opacity:0.99607843;stroke:none;stroke-width:20.13168335px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:0.99607843"
+           x="712.15027"
+           y="351.4191"
+           id="text4502"
+           transform="matrix(0.67834239,-0.00187899,0,1.4741818,0,0)"><tspan
+             y="351.4191"
+             x="712.15027"
+             id="tspan4504"
+             sodipodi:role="line">Net</tspan></text>
+      </g>
     </g>
   </g>
   <style

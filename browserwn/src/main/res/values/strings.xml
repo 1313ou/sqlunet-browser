@@ -4,8 +4,7 @@
 	<!-- app -->
 	<string name="app_name">Semantikos-WordNet</string>>
 
-	<!-- ACTIONS -->
-
+	<!-- actions -->
 	<string name="action_setup_textsearchWn" tools:keep="@string/action_setup_textsearchWn">Setup text search for WordNet</string>
 
 	<!-- database info -->
@@ -15,13 +14,14 @@
 	<string name="action_table_postypes">POS types</string>
 	<string name="action_table_adjpositiontypes">Adjective Position types</string>
 
-	<!-- TITLES -->
-
 	<!-- labels -->
 	<string name="title_activity_wnsense">WordNet Sense</string>
 
 	<!-- _status -->
 	<string name="status_textsearchWn">Text Search\non WordNet</string>
+
+	<!-- hints -->
+	<string name="hint_splash_browse">Exploring senses and relations</string>
 
 	<!-- databases -->
 	<string name="wordnet">WordNet</string>

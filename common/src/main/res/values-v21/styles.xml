@@ -23,6 +23,9 @@
 		<!-- activated background indicator -->
 		<item name="android:activatedBackgroundIndicator">@drawable/listitem_background</item>
 
+		<!-- action bar colors -->
+		<item name="actionbar_icon_color">@android:color/white</item>
+
 	</style>
 
 </resources>

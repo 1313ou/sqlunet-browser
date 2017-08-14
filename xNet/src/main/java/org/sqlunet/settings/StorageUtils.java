@@ -459,9 +459,21 @@ public class StorageUtils
 		final List<StorageDirectory> storages = new ArrayList<>();
 		for (final Directory dir : dirs)
 		{
-			int status = StorageUtils.qualifies(dir.file, dir.type);
+			// make path
+			// true if and only if the directory was created
+			final boolean wasCreated = dir.file.mkdirs();
+
+			// status and size
 			float[] stats = storageStats(dir.file.getAbsolutePath());
+			int status = StorageUtils.qualifies(dir.file, dir.type);
 			storages.add(new StorageDirectory(dir, stats[STORAGE_FREE], stats[STORAGE_OCCUPANCY], status));
+
+			// restore
+			if (wasCreated && dir.file.exists())
+			{
+				//noinspection ResultOfMethodCallIgnored
+				dir.file.delete();
+			}
 		}
 		return storages;
 	}
@@ -691,10 +703,6 @@ public class StorageUtils
 			}
 		}
 
-		// make path
-		// true if and only if the directory was created
-		final boolean wasCreated = dir.mkdirs();
-
 		// exists
 		if (!dir.exists())
 		{
@@ -711,13 +719,6 @@ public class StorageUtils
 		if (!dir.canWrite())
 		{
 			status |= StorageDirectory.NOT_WRITABLE;
-		}
-
-		// restore
-		if (wasCreated && dir.exists())
-		{
-			//noinspection ResultOfMethodCallIgnored
-			dir.delete();
 		}
 
 		return status;

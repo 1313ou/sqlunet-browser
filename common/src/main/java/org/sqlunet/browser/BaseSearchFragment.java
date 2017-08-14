@@ -30,6 +30,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import org.sqlunet.browser.common.R;
+import org.sqlunet.settings.Tint;
 
 /**
  * Base search fragment
@@ -271,6 +272,9 @@ abstract public class BaseSearchFragment extends NavigableFragment implements Se
 
 		// activity
 		final AppCompatActivity activity = (AppCompatActivity) getActivity();
+
+		// icon tint
+		Tint.tint(activity, searchMenuItem);
 
 		// search info
 		final ComponentName componentName = activity.getComponentName();

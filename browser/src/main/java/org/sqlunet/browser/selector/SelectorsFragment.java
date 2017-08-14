@@ -121,9 +121,9 @@ public class SelectorsFragment extends ListFragment
 						Words_FnWords_PbWords_VnWords.WORDID, //
 						Words_FnWords_PbWords_VnWords.SYNSETID, //
 						Words_FnWords_PbWords_VnWords.SENSEID, //
-						Words_FnWords_PbWords_VnWords.FNWORDID, //
 						Words_FnWords_PbWords_VnWords.VNWORDID, //
 						Words_FnWords_PbWords_VnWords.PBWORDID, //
+						Words_FnWords_PbWords_VnWords.FNWORDID, //
 				}, //
 				new int[]{ //
 						R.id.pos, //
@@ -137,9 +137,9 @@ public class SelectorsFragment extends ListFragment
 						R.id.wordid, //
 						R.id.synsetid, //
 						R.id.senseid, //
-						R.id.fnwordid, //
 						R.id.vnwordid, //
 						R.id.pbwordid, //
+						R.id.fnwordid, //
 				}, 0);
 
 		adapter.setViewBinder(new ViewBinder()

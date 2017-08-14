@@ -350,12 +350,13 @@ public class FrameNetProvider extends BaseProvider
 
 			case LEXUNITS_OR_FRAMES:
 				table = "(" + //
-						"SELECT fnwordid + 10000 AS " + LexUnits_or_Frames.ID + ", luid AS " + LexUnits_or_Frames.FNID + ", fnwordid AS " + LexUnits_or_Frames.FNWORDID + ", wordid AS " + LexUnits_or_Frames.WORDID + ", word AS " + LexUnits_or_Frames.WORD + ", lexunit AS " + LexUnits_or_Frames.NAME + ", 0 AS " + LexUnits_or_Frames.ISFRAME + " " + //
+						"SELECT fnwordid + 10000 AS " + LexUnits_or_Frames.ID + ", luid AS " + LexUnits_or_Frames.FNID + ", fnwordid AS " + LexUnits_or_Frames.FNWORDID + ", wordid AS " + LexUnits_or_Frames.WORDID + ", word AS " + LexUnits_or_Frames.WORD + ", lexunit AS " + LexUnits_or_Frames.NAME + ", frame AS " + LexUnits_or_Frames.FRAMENAME + ", 0 AS " + LexUnits_or_Frames.ISFRAME + " " + //
 						"FROM fnwords " + //
 						"INNER JOIN fnlexemes USING (fnwordid) " + //
 						"INNER JOIN fnlexunits AS " + FrameNetContract.LU + " USING (luid) " + //
+						"INNER JOIN fnframes AS " + FrameNetContract.FRAME + " USING (frameid) " + //
 						"UNION " + //
-						"SELECT frameid AS " + LexUnits_or_Frames.ID + ", frameid AS " + LexUnits_or_Frames.FNID + ", 0 AS " + LexUnits_or_Frames.FNWORDID + ", 0 AS " + LexUnits_or_Frames.WORDID + ", frame AS " + LexUnits_or_Frames.WORD + ", frame AS " + LexUnits_or_Frames.NAME + ", 1 AS " + LexUnits_or_Frames.ISFRAME + " " + //
+						"SELECT frameid AS " + LexUnits_or_Frames.ID + ", frameid AS " + LexUnits_or_Frames.FNID + ", 0 AS " + LexUnits_or_Frames.FNWORDID + ", 0 AS " + LexUnits_or_Frames.WORDID + ", frame AS " + LexUnits_or_Frames.WORD + ", frame AS " + LexUnits_or_Frames.NAME + ", frame AS " + LexUnits_or_Frames.FRAMENAME + ", 1 AS " + LexUnits_or_Frames.ISFRAME + " " + //
 						"FROM fnframes " + //
 						")";
 				break;

@@ -121,13 +121,6 @@
 		android:layout_height="wrap_content">
 
 		<TextView
-			android:id="@+id/fnwordid"
-			style="@style/Data.FnWordId"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:textIsSelectable="false"/>
-
-		<TextView
 			android:id="@+id/vnwordid"
 			style="@style/Data.VnWordId"
 			android:layout_width="wrap_content"
@@ -137,6 +130,13 @@
 		<TextView
 			android:id="@+id/pbwordid"
 			style="@style/Data.PbWordId"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:textIsSelectable="false"/>
+
+		<TextView
+			android:id="@+id/fnwordid"
+			style="@style/Data.FnWordId"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			android:textIsSelectable="false"/>

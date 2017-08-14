@@ -11,10 +11,9 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.TextView;
 
+import org.sqlunet.browser.fn.R;
 import org.sqlunet.browser.selector.Browse1Activity;
 import org.sqlunet.browser.selector.Browse1Fragment;
 import org.sqlunet.browser.web.WebActivity;
@@ -31,7 +30,6 @@ import org.sqlunet.framenet.browser.FnLexUnitActivity;
 import org.sqlunet.framenet.browser.FnSentenceActivity;
 import org.sqlunet.provider.ProviderArgs;
 import org.sqlunet.settings.Settings;
-import org.sqlunet.browser.fn.R;
 
 /**
  * Browse fragment
@@ -81,7 +79,9 @@ public class BrowseFragment extends BaseSearchFragment
 	protected void setupSpinner(final Context context)
 	{
 		super.setupSpinner(context);
+		this.spinner.setVisibility(View.GONE);
 
+		/*
 		// spinner listener
 		this.spinner.setOnItemSelectedListener( //
 				new OnItemSelectedListener()
@@ -106,6 +106,7 @@ public class BrowseFragment extends BaseSearchFragment
 		{
 			this.spinner.setSelection(selectorMode.ordinal());
 		}
+		*/
 	}
 
 	// M E N U

@@ -4,12 +4,14 @@
 	<!-- app -->
 	<string name="app_name">Semantikos-FrameNet</string>>
 
-	<!-- ACTIONS -->
-
+	<!-- actions -->
 	<string name="action_setup_textsearchFn" tools:keep="@string/action_setup_textsearchFn">Setup text search for FrameNet</string>
 
 	<!-- _status -->
 	<string name="status_textsearchFn">Text Search\non FrameNet</string>
+
+	<!-- hints -->
+	<string name="hint_splash_browse">Exploring semantic roles</string>
 
 	<!-- databases -->
 	<string name="framenet">FrameNet</string>
