@@ -36,6 +36,7 @@ img.center {
 .img {
 	text-align: center;
 	border-style: solid;
+	background-color: #ffffff;
 	border-width: 1;
 }
 
