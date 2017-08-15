@@ -276,6 +276,11 @@ public class TextFragment extends AbstractTableFragment
 		int type = 0;
 		for (String choices : concatChoices)
 		{
+			if (choices == null)
+			{
+				type++;
+				continue;
+			}
 			final List<String> choiceList = Arrays.asList(choices.split(","));
 			Collections.sort(choiceList);
 			for (String choice : choiceList)
