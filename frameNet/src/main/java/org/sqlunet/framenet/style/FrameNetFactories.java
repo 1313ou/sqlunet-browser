@@ -24,12 +24,12 @@ public class FrameNetFactories
 	// frame
 	static public final SpanFactory frameFactory = Factories.classFactory;
 
-	static public final SpanFactory metaDefinitionFactory = new SpanFactory()
+	static public final SpanFactory metaFrameDefinitionFactory = new SpanFactory()
 	{
 		@Override
 		public Object makeSpans(final long flags)
 		{
-			return new Object[]{new ForegroundColorSpan(Color.DKGRAY), new StyleSpan(Typeface.ITALIC)};
+			return new Object[]{ new ForegroundColorSpan(Colors.dk_red), new StyleSpan(Typeface.ITALIC)};
 		}
 	};
 
@@ -56,6 +56,15 @@ public class FrameNetFactories
 		public Object makeSpans(final long flags)
 		{
 			return new Object[]{new ForegroundColorSpan(Color.MAGENTA)};
+		}
+	};
+
+	static public final SpanFactory metaFeDefinitionFactory = new SpanFactory()
+	{
+		@Override
+		public Object makeSpans(final long flags)
+		{
+			return new Object[]{ new ForegroundColorSpan(Colors.lt_blue), new StyleSpan(Typeface.ITALIC)};
 		}
 	};
 

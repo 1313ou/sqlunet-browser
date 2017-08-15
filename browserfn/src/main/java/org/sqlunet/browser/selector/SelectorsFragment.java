@@ -109,10 +109,10 @@ public class SelectorsFragment extends ListFragment
 		// list adapter, with no data
 		final SimpleCursorAdapter adapter = new SimpleCursorAdapter(getActivity(), R.layout.item_selector, null, //
 				new String[]{ //
-						LexUnits_or_Frames.NAME, LexUnits_or_Frames.FRAMENAME, LexUnits_or_Frames.WORD, LexUnits_or_Frames.FNID, LexUnits_or_Frames.FNWORDID, LexUnits_or_Frames.WORDID, LexUnits_or_Frames.ISFRAME, //
+						LexUnits_or_Frames.NAME, LexUnits_or_Frames.FRAMENAME, LexUnits_or_Frames.WORD, LexUnits_or_Frames.FNID, LexUnits_or_Frames.FNWORDID, LexUnits_or_Frames.WORDID, LexUnits_or_Frames.FRAMEID, LexUnits_or_Frames.ISFRAME, //
 				}, //
 				new int[]{ //
-						R.id.fnname, R.id.fnframename, R.id.fnword, R.id.fnid, R.id.fnwordid, R.id.wordid, R.id.icon, //
+						R.id.fnname, R.id.fnframename, R.id.fnword, R.id.fnid, R.id.fnwordid, R.id.wordid, R.id.fnframeid, R.id.icon, //
 				}, 0);
 
 		adapter.setViewBinder(new ViewBinder()
@@ -243,6 +243,7 @@ public class SelectorsFragment extends ListFragment
 						LexUnits_or_Frames.WORD, //
 						LexUnits_or_Frames.NAME, //
 						LexUnits_or_Frames.FRAMENAME, //
+						LexUnits_or_Frames.FRAMEID, //
 						LexUnits_or_Frames.ISFRAME, //
 						LexUnits_or_Frames.WORD + "<>'" + SelectorsFragment.this.word + "' AS " + ISLIKE, //
 				};

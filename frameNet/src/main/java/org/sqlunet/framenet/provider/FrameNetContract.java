@@ -75,6 +75,7 @@ public class FrameNetContract
 		static public final String WORD = "word";
 		static public final String NAME = "name";
 		static public final String FRAMENAME = "framename";
+		static public final String FRAMEID = "frameid";
 		static public final String ISFRAME = "isframe";
 	}
 

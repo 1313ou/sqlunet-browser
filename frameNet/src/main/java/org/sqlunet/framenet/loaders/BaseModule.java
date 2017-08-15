@@ -150,7 +150,7 @@ abstract public class BaseModule extends Module
 	/**
 	 * Constructor
 	 *
-	 * @param fragment  containing fragment
+	 * @param fragment containing fragment
 	 */
 	BaseModule(final Fragment fragment)
 	{
@@ -252,9 +252,11 @@ abstract public class BaseModule extends Module
 					// definition
 					Spanner.appendImage(sb, BaseModule.this.metadefinitionDrawable);
 					sb.append(' ');
-					final String frameDefinition = cursor.getString(idFrameDefinition);
+					String frameDefinition = cursor.getString(idFrameDefinition);
+					frameDefinition = frameDefinition.replaceAll("\n*<ex></ex>\n*", ""); // TODO remove in sqlunet
+
 					final CharSequence[] frameDefinitionFields = processDefinition(frameDefinition, 0);
-					Spanner.append(sb, frameDefinitionFields[0], 0, FrameNetFactories.metaDefinitionFactory);
+					sb.append(frameDefinitionFields[0]);
 
 					// examples in definition
 					for (int i = 1; i < frameDefinitionFields.length; i++)
@@ -505,7 +507,7 @@ abstract public class BaseModule extends Module
 						sb2.append('\t');
 						Spanner.appendImage(sb2, BaseModule.this.metadefinitionDrawable);
 						sb2.append(' ');
-						Spanner.append(sb2, frameDefinitionFields[0], 0, FrameNetFactories.metaDefinitionFactory);
+						sb2.append(frameDefinitionFields[0]);
 						if (frameDefinitionFields.length > 1)
 						{
 							sb2.append('\n');
@@ -665,7 +667,7 @@ abstract public class BaseModule extends Module
 							sb.append('-');
 							sb.append(' ');
 							final CharSequence[] definitionFields = processDefinition(incorporatedFEDefinition, FrameNetMarkupFactory.FEDEF);
-							Spanner.append(sb, definitionFields[0], 0, FrameNetFactories.metaDefinitionFactory);
+							sb.append(definitionFields[0]);
 							// if (definitionFields.length > 1)
 							// {
 							// sb.append('\n');
@@ -986,7 +988,7 @@ abstract public class BaseModule extends Module
 								sb.append('-');
 								sb.append(' ');
 								final CharSequence[] definitionFields = processDefinition(incorporatedFEDefinition, FrameNetMarkupFactory.FEDEF);
-								Spanner.append(sb, definitionFields[0], 0, FrameNetFactories.metaDefinitionFactory);
+								sb.append(definitionFields[0]);
 								// if (definitionFields.length > 1)
 								// {
 								// sb.append('\n');
@@ -2263,13 +2265,21 @@ abstract public class BaseModule extends Module
 	 */
 	private CharSequence[] processDefinition(final CharSequence text, final long flags)
 	{
+		boolean isFrame = (flags & FrameNetMarkupFactory.FEDEF) == 0;
 		CharSequence[] texts = this.processor.split(text);
 		CharSequence[] fields = new CharSequence[texts.length];
 
 		for (int i = 0; i < texts.length; i++)
 		{
-			CharSequence field = (flags & FrameNetMarkupFactory.FEDEF) == 0 ? this.frameProcessor.process(texts[i]) : texts[i];
-			fields[i] = this.spanner.process(field, flags);
+			CharSequence field = isFrame ? this.frameProcessor.process(texts[i]) : texts[i];
+			if (i == 0)
+			{
+				fields[i] = this.spanner.process(field, flags, isFrame ? FrameNetFactories.metaFrameDefinitionFactory : FrameNetFactories.metaFeDefinitionFactory);
+			}
+			else
+			{
+				fields[i] = this.spanner.process(field, flags, null);
+			}
 		}
 		return fields;
 	}

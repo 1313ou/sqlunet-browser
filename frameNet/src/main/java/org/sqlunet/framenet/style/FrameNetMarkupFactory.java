@@ -75,7 +75,7 @@ public class FrameNetMarkupFactory implements MarkupSpanner.SpanFactory
 			}
 			if ("ex".equals(selector))
 			{
-				return new Object[]{new ForegroundColorSpan(Color.GRAY), new StyleSpan(android.graphics.Typeface.ITALIC)};
+				return new Object[]{new StyleSpan(android.graphics.Typeface.ITALIC)};
 			}
 			if ("x".equals(selector))
 			{

@@ -5,6 +5,7 @@ import android.text.SpannableStringBuilder;
 import android.text.Spanned;
 
 import org.sqlunet.style.MarkupSpanner;
+import org.sqlunet.style.Spanner;
 
 import java.util.regex.Pattern;
 
@@ -39,9 +40,13 @@ public class FrameNetSpanner
 	 * @param flags flags
 	 * @return processed text
 	 */
-	public CharSequence process(final CharSequence text, final long flags)
+	public CharSequence process(final CharSequence text, final long flags, final Spanner.SpanFactory factory)
 	{
 		final SpannableStringBuilder sb = new SpannableStringBuilder(text);
+		if(factory != null)
+		{
+			Spanner.setSpan(sb, 0, sb.length(), 0, factory);
+		}
 		MarkupSpanner.setSpan(text, sb, this.factory, flags, FrameNetSpanner.pattern, FrameNetSpanner.pattern1);
 		return sb;
 	}

@@ -8,8 +8,10 @@ import android.graphics.drawable.Drawable;
 import android.support.annotation.NonNull;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
+import android.text.style.BackgroundColorSpan;
 import android.text.style.ClickableSpan;
 import android.text.style.DynamicDrawableSpan;
+import android.text.style.ForegroundColorSpan;
 import android.text.style.ImageSpan;
 import android.text.style.ReplacementSpan;
 import android.util.Log;
@@ -149,9 +151,10 @@ public class Spanner
 	 * @param sb        spannable string builder
 	 * @param from      start
 	 * @param to        finish
+	 * @param flags     flags
 	 * @param factories span factories to call to get spans
 	 */
-	static public void setSpan(final SpannableStringBuilder sb, final int from, final int to, final int flags, final SpanFactory... factories)
+	static public void setSpan(final SpannableStringBuilder sb, final int from, final int to, final long flags, final SpanFactory... factories)
 	{
 		for (final SpanFactory spanFactory : factories)
 		{
@@ -365,5 +368,48 @@ public class Spanner
 		@SuppressWarnings("deprecation") final Drawable drawable = context.getResources().getDrawable(resId);
 		drawable.setBounds(0, 0, drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight());
 		return drawable;
+	}
+
+	/**
+	 * Dump spannable string builder
+	 *
+	 * @param sb spannable string builder
+	 * @return string
+	 */
+	static public String dump(final SpannableStringBuilder sb)
+	{
+		final StringBuffer dump = new StringBuffer();
+		for (Object span : sb.getSpans(0, sb.length(), Object.class))
+		{
+			final int from = sb.getSpanStart(span);
+			final int to = sb.getSpanEnd(span);
+			final CharSequence sub = sb.subSequence(from, to);
+			final Class<?> clazz = span.getClass();
+			dump.append(sub).append(' ').append('[').append(from).append(',').append(to).append(']').append(' ').append(clazz).append(' ');
+			if (clazz.equals(BackgroundColorSpan.class))
+			{
+				final BackgroundColorSpan bspan = (BackgroundColorSpan) span;
+				int color = bspan.getBackgroundColor();
+				dump.append(Integer.toHexString(color));
+			}
+			else if (clazz.equals(ForegroundColorSpan.class))
+			{
+				final ForegroundColorSpan fspan = (ForegroundColorSpan) span;
+				int color = fspan.getForegroundColor();
+				dump.append(Integer.toHexString(color));
+			}
+			else if (clazz.equals(ImageSpan.class))
+			{
+				final ImageSpan ispan = (ImageSpan) span;
+				dump.append(ispan.getDrawable()).append(' ').append(ispan.getSource());
+			}
+			else if (clazz.equals(HiddenSpan.class))
+			{
+				final HiddenSpan hspan = (HiddenSpan) span;
+				dump.append(hspan.toString());
+			}
+			dump.append('\n');
+		}
+		return dump.toString();
 	}
 }
