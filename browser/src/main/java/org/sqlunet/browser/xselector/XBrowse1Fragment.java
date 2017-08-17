@@ -22,11 +22,6 @@ import org.sqlunet.provider.ProviderArgs;
 public class XBrowse1Fragment extends Fragment implements XSelectorsFragment.Listener
 {
 	/**
-	 * Whether or not the activity is in two-pane mode, i.e. running on a tablet device.
-	 */
-	private boolean isTwoPane = false;
-
-	/**
 	 * Selectors fragment
 	 */
 	private XSelectorsFragment xSelectorsFragment;
@@ -60,12 +55,8 @@ public class XBrowse1Fragment extends Fragment implements XSelectorsFragment.Lis
 				.commit();
 
 		// two-pane specific set up
-		if (view.findViewById(R.id.detail) != null)
+		if (isTwoPane(view))
 		{
-			// the detail view will be present only in the large-screen layouts
-			// if this view is present, then the activity should be in two-pane mode.
-			this.isTwoPane = true;
-
 			// detail fragment
 			Fragment browse2Fragment = manager.findFragmentByTag("browse2");
 			if (browse2Fragment == null)
@@ -85,7 +76,7 @@ public class XBrowse1Fragment extends Fragment implements XSelectorsFragment.Lis
 	{
 		super.onViewCreated(view, savedInstanceState);
 
-		if (this.isTwoPane)
+		if (isTwoPane(view))
 		{
 			// in two-pane mode, list items should be given the 'activated' state when touched.
 			this.xSelectorsFragment.setActivateOnItemClick(true);
@@ -100,7 +91,7 @@ public class XBrowse1Fragment extends Fragment implements XSelectorsFragment.Lis
 	@Override
 	public void onItemSelected(final XSelectorPointer pointer, final String word, final String cased, final String pos)
 	{
-		if (this.isTwoPane)
+		if (isTwoPane(getView()))
 		{
 			// in two-pane mode, show the detail view in this activity by adding or replacing the detail fragment using a fragment transaction.
 			final Browse2Fragment fragment = (Browse2Fragment) getChildFragmentManager().findFragmentById(R.id.container_browse2);
@@ -121,5 +112,20 @@ public class XBrowse1Fragment extends Fragment implements XSelectorsFragment.Lis
 			intent.putExtras(args);
 			startActivity(intent);
 		}
+	}
+
+	// V I E W   D E T E C T I O N
+
+	/**
+	 * Whether view is two-pane
+	 *
+	 * @param view view
+	 * @return true if view is two-pane
+	 */
+	private boolean isTwoPane(final View view)
+	{
+		// the detail view will be present only in the large-screen layouts
+		// if this view is present, then the activity should be in two-pane mode.
+		return view.findViewById(R.id.detail) != null;
 	}
 }
