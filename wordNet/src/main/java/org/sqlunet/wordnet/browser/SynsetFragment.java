@@ -31,6 +31,11 @@ public class SynsetFragment extends TreeFragment
 	private boolean expand;
 
 	/**
+	 * Max recursion level
+	 */
+	protected int maxRecursion;
+
+	/**
 	 * Constructor
 	 */
 	public SynsetFragment()
@@ -63,6 +68,7 @@ public class SynsetFragment extends TreeFragment
 		// query
 		final Bundle args = getArguments();
 		final int type = args.getInt(ProviderArgs.ARG_QUERYTYPE);
+		this.maxRecursion = args.containsKey(ProviderArgs.ARG_QUERYRECURSE) ? args.getInt(ProviderArgs.ARG_QUERYRECURSE) : -1;
 		if (args.containsKey(ProviderArgs.ARG_QUERYPOINTER))
 		{
 			// pointer
@@ -96,7 +102,8 @@ public class SynsetFragment extends TreeFragment
 	protected Module makeModule()
 	{
 		final SynsetModule module = new SynsetModule(this);
-		module.setExpand(SynsetFragment.this.expand);
+		module.setMaxRecursionLevel(this.maxRecursion);
+		module.setExpand(this.expand);
 		return module;
 	}
 

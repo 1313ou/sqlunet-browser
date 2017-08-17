@@ -2,13 +2,14 @@ package org.sqlunet.view;
 
 import android.content.Context;
 
-import org.sqlunet.treeview.control.NodeController;
 import org.sqlunet.treeview.control.LeafController;
 import org.sqlunet.treeview.control.Link;
 import org.sqlunet.treeview.control.LinkLeafController;
 import org.sqlunet.treeview.control.LinkNodeController;
 import org.sqlunet.treeview.control.LinkQueryController;
 import org.sqlunet.treeview.control.LinkTreeController;
+import org.sqlunet.treeview.control.MoreController;
+import org.sqlunet.treeview.control.NodeController;
 import org.sqlunet.treeview.control.Query;
 import org.sqlunet.treeview.control.QueryController;
 import org.sqlunet.treeview.control.TextController;
@@ -77,6 +78,19 @@ public class TreeFactory
 	static public TreeNode newLeafNode(final CharSequence text, final int icon, final Context context)
 	{
 		return new TreeNode(new Value(text, icon), false).setController(new LeafController(context));
+	}
+
+	/**
+	 * Make more (leaf) node
+	 *
+	 * @param text    text
+	 * @param icon    icon (extra icon after tree icon)
+	 * @param context context
+	 * @return created node
+	 */
+	static public TreeNode newMoreNode(final CharSequence text, final int icon, final Context context)
+	{
+		return new TreeNode(new Value(text, icon), false).setController(new MoreController(context));
 	}
 
 	/**

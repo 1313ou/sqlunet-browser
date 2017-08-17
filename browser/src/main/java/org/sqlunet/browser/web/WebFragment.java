@@ -224,8 +224,10 @@ public class WebFragment extends Fragment
 							return false;
 						}
 
+						final int recurse = Settings.getRecursePref(getContext());
 						targetIntent.putExtra(ProviderArgs.ARG_QUERYTYPE, type);
 						targetIntent.putExtra(ProviderArgs.ARG_QUERYPOINTER, pointer);
+						targetIntent.putExtra(ProviderArgs.ARG_QUERYRECURSE, recurse);
 					}
 					targetIntent.setAction(ProviderArgs.ACTION_QUERY);
 					startActivity(targetIntent);

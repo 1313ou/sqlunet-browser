@@ -21,6 +21,8 @@ public class SenseKeyFragment extends SynsetFragment
 	@Override
 	protected Module makeModule()
 	{
-		return new SenseKeyModule(this);
+		final SenseKeyModule module = new SenseKeyModule(this);
+		module.setMaxRecursionLevel(this.maxRecursion);
+		return module;
 	}
 }

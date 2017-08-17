@@ -70,7 +70,7 @@ public class BncData
 		BncQuery query = null;
 		try
 		{
-			query = new BncQuery(connection, targetWordId, targetPos);
+			query = targetPos != null ? new BncQuery(connection, targetWordId, targetPos) : new BncQuery(connection, targetWordId);
 			query.execute();
 
 			while (query.next())

@@ -23,6 +23,8 @@ public class SenseFragment extends SynsetFragment
 	@Override
 	protected Module makeModule()
 	{
-		return new SenseModule(this);
+		final SenseModule module = new SenseModule(this);
+		module.setMaxRecursionLevel(this.maxRecursion);
+		return module;
 	}
 }

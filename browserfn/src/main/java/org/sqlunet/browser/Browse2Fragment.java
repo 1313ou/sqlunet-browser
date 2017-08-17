@@ -45,7 +45,7 @@ public class Browse2Fragment extends Fragment
 	@Override
 	public View onCreateView(final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState)
 	{
-		//TODO setRetainInstance
+		// retain instance
 		setRetainInstance(true);
 
 		final Settings.DetailViewMode mode = Settings.getDetailViewModePref(this.getActivity());

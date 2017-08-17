@@ -27,6 +27,7 @@ import android.widget.SimpleCursorAdapter.ViewBinder;
 import android.widget.TextView;
 
 import org.sqlunet.browser.wn.R;
+import org.sqlunet.browser.wn.Settings;
 import org.sqlunet.provider.ProviderArgs;
 import org.sqlunet.style.RegExprSpanner;
 import org.sqlunet.style.Spanner.SpanFactory;
@@ -169,8 +170,12 @@ public class TextFragment extends AbstractTableFragment
 			if ("wn".equals(database))
 			{
 				String subtarget = args.getString(ProviderArgs.ARG_QUERYIDTYPE);
+
 				if ("synset".equals(subtarget))
 				{
+					// recursion
+					final int recurse = Settings.getRecursePref(getContext());
+
 					// target
 					final int colIdx = cursor.getColumnIndex("synsetid");
 					final long targetId = cursor.getLong(colIdx);
@@ -184,6 +189,7 @@ public class TextFragment extends AbstractTableFragment
 					targetIntent.setAction(ProviderArgs.ACTION_QUERY);
 					targetIntent.putExtra(ProviderArgs.ARG_QUERYTYPE, ProviderArgs.ARG_QUERYTYPE_SYNSET);
 					targetIntent.putExtra(ProviderArgs.ARG_QUERYPOINTER, synsetPointer);
+					targetIntent.putExtra(ProviderArgs.ARG_QUERYRECURSE, recurse);
 
 					// start
 					startActivity(targetIntent);

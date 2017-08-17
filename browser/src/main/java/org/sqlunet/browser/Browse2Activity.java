@@ -32,8 +32,9 @@ public class Browse2Activity extends AppCompatActivity
 		final Bundle args = getIntent().getExtras();
 		//final int type = args.getInt(ProviderArgs.ARG_QUERYTYPE);
 		final Parcelable pointer = args.getParcelable(ProviderArgs.ARG_QUERYPOINTER);
+		final String pos = args.getParcelable(ProviderArgs.ARG_HINTPOS);
 		final Browse2Fragment fragment = (Browse2Fragment) getSupportFragmentManager().findFragmentById(R.id.fragment_detail);
-		fragment.search(pointer);
+		fragment.search(pointer, pos);
 	}
 
 	// M E N U

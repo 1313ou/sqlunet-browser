@@ -209,7 +209,7 @@ public class BrowseFragment extends BaseSearchFragment
 		}
 
 		// recurse
-		final boolean recurse = Settings.getRecursePref(getActivity());
+		final int recurse = Settings.getRecursePref(getActivity());
 
 		// menuDispatch as per query prefix
 		@SuppressWarnings("TooBroadScope") Fragment fragment = null;
@@ -225,7 +225,7 @@ public class BrowseFragment extends BaseSearchFragment
 				final Parcelable synsetPointer = new SynsetPointer(id);
 				args.putInt(ProviderArgs.ARG_QUERYTYPE, ProviderArgs.ARG_QUERYTYPE_SYNSET);
 				args.putParcelable(ProviderArgs.ARG_QUERYPOINTER, synsetPointer);
-				args.putBoolean(ProviderArgs.ARG_QUERYRECURSE, recurse);
+				args.putInt(ProviderArgs.ARG_QUERYRECURSE, recurse);
 
 				targetIntent = makeDetailIntent(SynsetActivity.class);
 			}
@@ -234,7 +234,7 @@ public class BrowseFragment extends BaseSearchFragment
 				final Parcelable wordPointer = new WordPointer(id);
 				args.putInt(ProviderArgs.ARG_QUERYTYPE, ProviderArgs.ARG_QUERYTYPE_WORD);
 				args.putParcelable(ProviderArgs.ARG_QUERYPOINTER, wordPointer);
-				args.putBoolean(ProviderArgs.ARG_QUERYRECURSE, recurse);
+				args.putInt(ProviderArgs.ARG_QUERYRECURSE, recurse);
 
 				targetIntent = makeDetailIntent(WordActivity.class);
 			}
@@ -331,7 +331,7 @@ public class BrowseFragment extends BaseSearchFragment
 				final Parcelable senseKeyPointer = new SenseKeyPointer(id);
 				args.putInt(ProviderArgs.ARG_QUERYTYPE, ProviderArgs.ARG_QUERYTYPE_SENSE);
 				args.putParcelable(ProviderArgs.ARG_QUERYPOINTER, senseKeyPointer);
-				args.putBoolean(ProviderArgs.ARG_QUERYRECURSE, recurse);
+				args.putInt(ProviderArgs.ARG_QUERYRECURSE, recurse);
 
 				targetIntent = makeDetailIntent(SenseKeyActivity.class);
 			}
@@ -340,7 +340,7 @@ public class BrowseFragment extends BaseSearchFragment
 		{
 			// search for string
 			args.putString(ProviderArgs.ARG_QUERYSTRING, query);
-			args.putBoolean(ProviderArgs.ARG_QUERYRECURSE, recurse);
+			args.putInt(ProviderArgs.ARG_QUERYRECURSE, recurse);
 
 			//targetIntent = makeSelectorIntent();
 			fragment = makeSelectorFragment();

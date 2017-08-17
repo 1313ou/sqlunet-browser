@@ -81,6 +81,11 @@ abstract public class BaseModule extends Module
 	private boolean membersGrouped = false;
 
 	/**
+	 * Max link recursion
+	 */
+	private int maxRecursion = Integer.MAX_VALUE;
+
+	/**
 	 * Constructor
 	 *
 	 * @param fragment fragment
@@ -98,6 +103,16 @@ abstract public class BaseModule extends Module
 		this.lexdomainDrawable = Spanner.getDrawable(this.context, R.drawable.domain);
 		this.verbframeDrawable = Spanner.getDrawable(this.context, R.drawable.verbframe);
 		this.morphDrawable = this.verbframeDrawable;
+	}
+
+	/**
+	 * Set max recursion level
+	 *
+	 * @param maxRecursion max recursion level
+	 */
+	public void setMaxRecursionLevel(final int maxRecursion)
+	{
+		this.maxRecursion = maxRecursion == -1 ? Integer.MAX_VALUE : maxRecursion;
 	}
 
 	/**
@@ -369,7 +384,7 @@ abstract public class BaseModule extends Module
 			sense(sb, synsetId, posName, lexDomain, definition, tagCount, cased);
 
 			// result
-			final TreeNode synsetNode = TreeFactory.newLinkNode(sb, R.drawable.synset, new SenseLink(synsetId, wordId), BaseModule.this.context);
+			final TreeNode synsetNode = TreeFactory.newLinkNode(sb, R.drawable.synset, new SenseLink(synsetId, wordId, this.maxRecursion), BaseModule.this.context);
 			parent.addChild(synsetNode);
 		}
 		while (cursor.moveToNext());
@@ -1044,22 +1059,23 @@ abstract public class BaseModule extends Module
 						final long targetSynsetId = cursor.getLong(idTargetSynsetId);
 						final String targetDefinition = cursor.getString(idTargetDefinition);
 						final String targetMembers = cursor.getString(idTargetMembers);
-						final int recurses = cursor.getInt(idRecurses);
+						final boolean linkCanRecurse = cursor.getInt(idRecurses) != 0;
 
 						Spanner.append(sb, targetMembers, 0, WordNetFactories.membersFactory);
 						sb.append(' ');
 						Spanner.append(sb, targetDefinition, 0, WordNetFactories.definitionFactory);
 
-						if (recurses == 0)
+						// recursion
+						if (linkCanRecurse)
 						{
-							TreeFactory.newLeafNode(sb, getLinkRes(linkId), context).prependTo(parent);
-						}
-						else
-						{
-							final TreeNode linksNode = TreeFactory.newLinkQueryNode(sb, getLinkRes(linkId), new SubLinksQuery(targetSynsetId, linkId), new SynsetLink(targetSynsetId), false, context).prependTo(parent);
+							final TreeNode linksNode = TreeFactory.newLinkQueryNode(sb, getLinkRes(linkId), new SubLinksQuery(targetSynsetId, linkId, BaseModule.this.maxRecursion), new SynsetLink(targetSynsetId, BaseModule.this.maxRecursion), false, context).prependTo(parent);
 
 							// fire event
 							FireEvent.onQueryReady(linksNode);
+						}
+						else
+						{
+							TreeFactory.newLeafNode(sb, getLinkRes(linkId), context).prependTo(parent);
 						}
 					}
 					while (cursor.moveToNext());
@@ -1090,7 +1106,7 @@ abstract public class BaseModule extends Module
 	 * @param linkId   link id
 	 * @param parent   parent node
 	 */
-	private void semLinks(final long synsetId, final int linkId, final TreeNode parent)
+	private void semLinks(final long synsetId, final int linkId, final int recurseLevel, final TreeNode parent)
 	{
 		getLoaderManager().restartLoader(++Module.loaderId, null, new LoaderCallbacks<Cursor>()
 		{
@@ -1135,22 +1151,31 @@ abstract public class BaseModule extends Module
 						final long targetSynsetId = cursor.getLong(idTargetSynsetId);
 						final String targetDefinition = cursor.getString(idTargetDefinition);
 						final String targetMembers = cursor.getString(idTargetMembers);
-						final int recurses = cursor.getInt(idRecurses);
+						final boolean linkCanRecurse = cursor.getInt(idRecurses) != 0;
 
 						Spanner.append(sb, targetMembers, 0, WordNetFactories.membersFactory);
 						sb.append(' ');
 						Spanner.append(sb, targetDefinition, 0, WordNetFactories.definitionFactory);
 
-						if (recurses == 0)
+						// recurse
+						if (linkCanRecurse)
 						{
-							TreeFactory.newLeafNode(sb, getLinkRes(linkId), context).addTo(parent);
+							if(recurseLevel > 1)
+							{
+								final int newRecurseLevel = recurseLevel - 1;
+								final TreeNode linksNode = TreeFactory.newLinkQueryNode(sb, getLinkRes(linkId), new SubLinksQuery(targetSynsetId, linkId, newRecurseLevel), new SynsetLink(targetSynsetId, BaseModule.this.maxRecursion), false, context).addTo(parent);
+
+								// fire event
+								FireEvent.onQueryReady(linksNode);
+							}
+							else
+							{
+								TreeFactory.newMoreNode(sb, getLinkRes(linkId), context).addTo(parent);
+							}
 						}
 						else
 						{
-							final TreeNode linksNode = TreeFactory.newLinkQueryNode(sb, getLinkRes(linkId), new SubLinksQuery(targetSynsetId, linkId), new SynsetLink(targetSynsetId), false, context).addTo(parent);
-
-							// fire event
-							FireEvent.onQueryReady(linksNode);
+							TreeFactory.newLeafNode(sb, getLinkRes(linkId), context).addTo(parent);
 						}
 					}
 					while (cursor.moveToNext());
@@ -1352,7 +1377,7 @@ abstract public class BaseModule extends Module
 						Spanner.append(sb, targetDefinition, 0, WordNetFactories.definitionFactory);
 
 						// attach result
-						final TreeNode linkNode = TreeFactory.newLinkLeafNode(sb, getLinkRes(linkId), new SenseLink(targetSynsetId, idTargetWordId), BaseModule.this.context);
+						final TreeNode linkNode = TreeFactory.newLinkLeafNode(sb, getLinkRes(linkId), new SenseLink(targetSynsetId, idTargetWordId, BaseModule.this.maxRecursion), BaseModule.this.context);
 						parent.addChild(linkNode);
 					}
 					while (cursor.moveToNext());
@@ -2036,22 +2061,29 @@ abstract public class BaseModule extends Module
 		final int linkId;
 
 		/**
+		 * Recurse level
+		 */
+		final int recurseLevel;
+
+		/**
 		 * Constructor
 		 *
-		 * @param synsetId synset id
-		 * @param linkId   link id
+		 * @param synsetId     synset id
+		 * @param linkId       link id
+		 * @param recurseLevel recurse level
 		 */
-		public SubLinksQuery(final long synsetId, final int linkId)
+		public SubLinksQuery(final long synsetId, final int linkId, final int recurseLevel)
 		{
 			super(synsetId);
 			this.linkId = linkId;
+			this.recurseLevel = recurseLevel;
 		}
 
 		@Override
 		public void process(final TreeNode node)
 		{
 			// semLinks
-			semLinks(this.id, this.linkId, node);
+			semLinks(this.id, this.linkId, recurseLevel, node);
 		}
 	}
 
@@ -2111,14 +2143,18 @@ abstract public class BaseModule extends Module
 	 */
 	class SynsetLink extends Link
 	{
+		protected final int recurse;
+
 		/**
 		 * Constructor
 		 *
 		 * @param synsetId synset id
+		 * @param recurse  max recursion level
 		 */
-		public SynsetLink(final long synsetId)
+		public SynsetLink(final long synsetId, final int recurse)
 		{
 			super(synsetId);
+			this.recurse = recurse;
 		}
 
 		@Override
@@ -2128,11 +2164,13 @@ abstract public class BaseModule extends Module
 			final Intent intent = new Intent(BaseModule.this.context, SynsetActivity.class);
 			intent.putExtra(ProviderArgs.ARG_QUERYTYPE, ProviderArgs.ARG_QUERYTYPE_SYNSET);
 			intent.putExtra(ProviderArgs.ARG_QUERYPOINTER, pointer);
+			intent.putExtra(ProviderArgs.ARG_QUERYRECURSE, this.recurse);
 			intent.setAction(ProviderArgs.ACTION_QUERY);
 
 			BaseModule.this.context.startActivity(intent);
 		}
 	}
+
 
 	/**
 	 * Sense link data
@@ -2146,10 +2184,11 @@ abstract public class BaseModule extends Module
 		 *
 		 * @param synsetId synset id
 		 * @param wordId   word id
+		 * @param recurse  max recursion level
 		 */
-		public SenseLink(final long synsetId, final long wordId)
+		public SenseLink(final long synsetId, final long wordId, final int recurse)
 		{
-			super(synsetId);
+			super(synsetId, recurse);
 			this.wordId = wordId;
 		}
 
@@ -2160,6 +2199,7 @@ abstract public class BaseModule extends Module
 			final Intent intent = new Intent(BaseModule.this.context, SynsetActivity.class);
 			intent.putExtra(ProviderArgs.ARG_QUERYTYPE, ProviderArgs.ARG_QUERYTYPE_SYNSET);
 			intent.putExtra(ProviderArgs.ARG_QUERYPOINTER, pointer);
+			intent.putExtra(ProviderArgs.ARG_QUERYRECURSE, this.recurse);
 			intent.setAction(ProviderArgs.ACTION_QUERY);
 
 			BaseModule.this.context.startActivity(intent);

@@ -193,9 +193,6 @@ public class BrowseFragment extends BaseSearchFragment
 			}
 		}
 
-		// recurse
-		final boolean recurse = Settings.getRecursePref(getActivity());
-
 		// menuDispatch as per query prefix
 		@SuppressWarnings("TooBroadScope") Fragment fragment = null;
 		Intent targetIntent = null;
@@ -207,10 +204,11 @@ public class BrowseFragment extends BaseSearchFragment
 			// wordnet
 			if (query.startsWith("#ws"))
 			{
+				final int recurse = Settings.getRecursePref(getActivity());
 				final Parcelable synsetPointer = new SynsetPointer(id);
 				args.putInt(ProviderArgs.ARG_QUERYTYPE, ProviderArgs.ARG_QUERYTYPE_SYNSET);
 				args.putParcelable(ProviderArgs.ARG_QUERYPOINTER, synsetPointer);
-				args.putBoolean(ProviderArgs.ARG_QUERYRECURSE, recurse);
+				args.putInt(ProviderArgs.ARG_QUERYRECURSE, recurse);
 
 				targetIntent = makeDetailIntent(SynsetActivity.class);
 			}
@@ -219,7 +217,6 @@ public class BrowseFragment extends BaseSearchFragment
 				final Parcelable wordPointer = new WordPointer(id);
 				args.putInt(ProviderArgs.ARG_QUERYTYPE, ProviderArgs.ARG_QUERYTYPE_WORD);
 				args.putParcelable(ProviderArgs.ARG_QUERYPOINTER, wordPointer);
-				args.putBoolean(ProviderArgs.ARG_QUERYRECURSE, recurse);
 
 				targetIntent = makeDetailIntent(WordActivity.class);
 			}
@@ -233,19 +230,22 @@ public class BrowseFragment extends BaseSearchFragment
 			final String id = query.substring(3);
 			if (query.startsWith("#wk"))
 			{
+				final int recurse = Settings.getRecursePref(getActivity());
 				final Parcelable senseKeyPointer = new SenseKeyPointer(id);
 				args.putInt(ProviderArgs.ARG_QUERYTYPE, ProviderArgs.ARG_QUERYTYPE_SENSE);
 				args.putParcelable(ProviderArgs.ARG_QUERYPOINTER, senseKeyPointer);
-				args.putBoolean(ProviderArgs.ARG_QUERYRECURSE, recurse);
+				args.putInt(ProviderArgs.ARG_QUERYRECURSE, recurse);
 
 				targetIntent = makeDetailIntent(SenseKeyActivity.class);
 			}
 		}
 		else
 		{
+			final int recurse = Settings.getRecursePref(getActivity());
+
 			// search for string
 			args.putString(ProviderArgs.ARG_QUERYSTRING, query);
-			args.putBoolean(ProviderArgs.ARG_QUERYRECURSE, recurse);
+			args.putInt(ProviderArgs.ARG_QUERYRECURSE, recurse);
 
 			//targetIntent = makeSelectorIntent();
 			fragment = makeSelectorFragment();

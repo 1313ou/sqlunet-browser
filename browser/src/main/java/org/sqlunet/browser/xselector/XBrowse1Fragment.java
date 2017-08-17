@@ -11,10 +11,11 @@ import android.view.ViewGroup;
 import org.sqlunet.browser.Browse2Activity;
 import org.sqlunet.browser.Browse2Fragment;
 import org.sqlunet.browser.R;
+import org.sqlunet.browser.xn.Settings;
 import org.sqlunet.provider.ProviderArgs;
 
 /**
- * X selector activity
+ * X selector fragment
  *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
@@ -38,20 +39,24 @@ public class XBrowse1Fragment extends Fragment implements XSelectorsFragment.Lis
 		// view
 		final View view = inflater.inflate(R.layout.fragment_xbrowse1, container, false);
 
-		// args
-		final Bundle args = getArguments();
-
-		// x selector fragment
-		this.xSelectorsFragment = new XSelectorsFragment();
-		this.xSelectorsFragment.setArguments(args);
-		this.xSelectorsFragment.setListener(this);
+		// retain instance
+		setRetainInstance(true);
 
 		// manager
 		final FragmentManager manager = getChildFragmentManager();
 
+		// x selector fragment
+		this.xSelectorsFragment = (XSelectorsFragment) manager.findFragmentByTag("browse1");
+		if (this.xSelectorsFragment == null)
+		{
+			this.xSelectorsFragment = new XSelectorsFragment();
+			this.xSelectorsFragment.setArguments(getArguments());
+			this.xSelectorsFragment.setListener(this);
+		}
+
 		// transaction on selectors pane
 		manager.beginTransaction() //
-				.replace(R.id.container_xselectors, this.xSelectorsFragment) //
+				.replace(R.id.container_xselectors, this.xSelectorsFragment, "browse1") //
 				.commit();
 
 		// two-pane specific set up
@@ -99,13 +104,15 @@ public class XBrowse1Fragment extends Fragment implements XSelectorsFragment.Lis
 		{
 			// in two-pane mode, show the detail view in this activity by adding or replacing the detail fragment using a fragment transaction.
 			final Browse2Fragment fragment = (Browse2Fragment) getChildFragmentManager().findFragmentById(R.id.container_browse2);
-			fragment.search(pointer);
+			fragment.search(pointer, pos);
 		}
 		else
 		{
 			// in single-pane mode, simply start the detail activity for the selected item ID.
+			final int recurse = Settings.getRecursePref(getContext());
 			final Bundle args = new Bundle();
 			args.putParcelable(ProviderArgs.ARG_QUERYPOINTER, pointer);
+			args.putInt(ProviderArgs.ARG_QUERYRECURSE, recurse);
 			args.putString(ProviderArgs.ARG_HINTWORD, word);
 			args.putString(ProviderArgs.ARG_HINTCASED, cased);
 			args.putString(ProviderArgs.ARG_HINTPOS, pos);

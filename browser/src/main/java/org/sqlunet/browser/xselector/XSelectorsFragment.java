@@ -14,7 +14,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
-import android.widget.AdapterView;
 import android.widget.CursorTreeAdapter;
 import android.widget.ExpandableListAdapter;
 import android.widget.ExpandableListView;
@@ -118,9 +117,9 @@ public class XSelectorsFragment extends ExpandableListFragment
 	private final MatrixCursor xnCursor;
 
 	/**
-	 * The current activated item position. Only used on tablets.
+	 * The current activated item position.
 	 */
-	private int activatedPosition = AdapterView.INVALID_POSITION;
+	private int groupPosition;
 
 	/**
 	 * The fragment's current callback object, which is notified of list item clicks.
@@ -148,6 +147,8 @@ public class XSelectorsFragment extends ExpandableListFragment
 		this.xnCursor.addRow(new Object[]{1, "verbnet", 2222});
 		this.xnCursor.addRow(new Object[]{2, "propbank", 3333});
 		this.xnCursor.addRow(new Object[]{3, "framenet", 4444});
+		this.groupPosition = 0;
+		Log.d(TAG, "init position " + this.groupPosition + " " + this);
 	}
 
 	// C R E A T E
@@ -157,7 +158,7 @@ public class XSelectorsFragment extends ExpandableListFragment
 	{
 		super.onCreate(savedInstanceState);
 
-		//TODO setRetainInstance
+		// retain instance
 		setRetainInstance(true);
 
 		// args
@@ -193,26 +194,18 @@ public class XSelectorsFragment extends ExpandableListFragment
 		// restore the previously serialized activated item position, if any
 		if (savedInstanceState != null && savedInstanceState.containsKey(XSelectorsFragment.STATE_ACTIVATED_SELECTOR))
 		{
-			final int position = savedInstanceState.getInt(XSelectorsFragment.STATE_ACTIVATED_SELECTOR);
-			if (position == AdapterView.INVALID_POSITION)
-			{
-				getListView().setItemChecked(this.activatedPosition, false);
-			}
-			else
-			{
-				getListView().setItemChecked(position, true);
-			}
-			this.activatedPosition = position;
+			this.groupPosition = savedInstanceState.getInt(XSelectorsFragment.STATE_ACTIVATED_SELECTOR);
+			Log.d(TAG, "restored position " + this.groupPosition + " " + this);
 		}
 	}
 
 	@Override
 	public void onStart()
 	{
-		super.onStart();
-
 		// load the contents (once activity is available)
 		load();
+
+		super.onStart();
 	}
 
 	@Override
@@ -220,11 +213,9 @@ public class XSelectorsFragment extends ExpandableListFragment
 	{
 		super.onSaveInstanceState(outState);
 
-		if (this.activatedPosition != AdapterView.INVALID_POSITION)
-		{
-			// serialize and persist the activated item position.
-			outState.putInt(XSelectorsFragment.STATE_ACTIVATED_SELECTOR, this.activatedPosition);
-		}
+		// serialize and persist the activated item position.
+		outState.putInt(XSelectorsFragment.STATE_ACTIVATED_SELECTOR, this.groupPosition);
+		Log.d(TAG, "saved position " + this.groupPosition + " " + this);
 	}
 
 	// L I S T E N E R
@@ -242,7 +233,7 @@ public class XSelectorsFragment extends ExpandableListFragment
 	// L O A D
 
 	/**
-	 * Load data from word
+	 * Load id from word
 	 */
 	private void load()
 	{
@@ -397,7 +388,8 @@ public class XSelectorsFragment extends ExpandableListFragment
 		setListAdapter(adapter);
 
 		// expand (triggers data loading)
-		expandWordNet();
+		Log.d(TAG, "expand position " + this.groupPosition + " " + this);
+		expand(this.groupPosition);
 	}
 
 	// L O A D E R  C A L L B A C K S
@@ -542,6 +534,16 @@ public class XSelectorsFragment extends ExpandableListFragment
 		};
 	}
 
+	// S E L E C T I O N   L I S T E N E R
+
+	@Override
+	public void onGroupExpand(int groupPosition)
+	{
+		super.onGroupExpand(groupPosition);
+		this.groupPosition = groupPosition;
+		Log.d(TAG, "select " + this.groupPosition);
+	}
+
 	// C L I C K
 
 	/**
@@ -605,12 +607,12 @@ public class XSelectorsFragment extends ExpandableListFragment
 	// E X P A N D
 
 	/**
-	 * Expand WordNet section
+	 * Expand section
 	 */
-	private void expandWordNet()
+	private void expand(int groupPosition)
 	{
 		ExpandableListView listView = getExpandableListView();
-		listView.expandGroup(0);
+		listView.expandGroup(groupPosition);
 	}
 
 	/**

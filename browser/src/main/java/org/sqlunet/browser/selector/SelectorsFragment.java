@@ -91,7 +91,7 @@ public class SelectorsFragment extends ListFragment
 	{
 		super.onCreate(savedInstanceState);
 
-		//TODO setRetainInstance
+		// retain instance
 		setRetainInstance(true);
 
 		// arguments

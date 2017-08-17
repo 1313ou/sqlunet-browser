@@ -31,6 +31,8 @@ public class Browse2Fragment extends Fragment
 
 	private Parcelable pointer = null;
 
+	private String pos = null;
+
 	// C R E A T I O N
 
 	/**
@@ -44,7 +46,7 @@ public class Browse2Fragment extends Fragment
 	@Override
 	public View onCreateView(final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState)
 	{
-		//TODO setRetainInstance
+		// retain instance
 		setRetainInstance(true);
 
 		final Settings.DetailViewMode mode = Settings.getDetailViewModePref(this.getActivity());
@@ -92,10 +94,12 @@ public class Browse2Fragment extends Fragment
 	 * Search
 	 *
 	 * @param pointer pointer
+	 * @param pos     pos
 	 */
-	public void search(final Parcelable pointer)
+	public void search(final Parcelable pointer, final String pos)
 	{
 		this.pointer = pointer;
+		this.pos = pos;
 
 		search();
 	}
@@ -109,8 +113,11 @@ public class Browse2Fragment extends Fragment
 		final FragmentManager manager = getChildFragmentManager();
 
 		// args
+		final int recurse = Settings.getRecursePref(context);
 		final Bundle args = new Bundle();
 		args.putParcelable(ProviderArgs.ARG_QUERYPOINTER, this.pointer);
+		args.putString(ProviderArgs.ARG_HINTPOS, this.pos);
+		args.putInt(ProviderArgs.ARG_QUERYRECURSE, recurse);
 
 		// detail fragment
 		final Settings.DetailViewMode mode = Settings.getDetailViewModePref(context);

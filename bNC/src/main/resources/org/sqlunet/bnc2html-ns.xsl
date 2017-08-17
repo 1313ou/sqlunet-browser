@@ -47,9 +47,6 @@
 			<SPAN class="bncpos">
 				<xsl:value-of select="./@pos"/>
 			</SPAN>
-			<SPAN class="bncid">
-				<xsl:value-of select="./@id"/>
-			</SPAN>
 
 			<DIV class="bncgen">
 				<DIV class="bncsection">
