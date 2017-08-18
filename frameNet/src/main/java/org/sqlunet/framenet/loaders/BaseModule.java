@@ -253,7 +253,7 @@ abstract public class BaseModule extends Module
 					Spanner.appendImage(sb, BaseModule.this.metadefinitionDrawable);
 					sb.append(' ');
 					String frameDefinition = cursor.getString(idFrameDefinition);
-					frameDefinition = frameDefinition.replaceAll("\n*<ex></ex>\n*", ""); // TODO remove in sqlunet
+					frameDefinition = frameDefinition.replaceAll("\n*<ex></ex>\n*", ""); // TODO remove in sqlunet database
 
 					final CharSequence[] frameDefinitionFields = processDefinition(frameDefinition, 0);
 					sb.append(frameDefinitionFields[0]);

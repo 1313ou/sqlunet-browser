@@ -23,7 +23,7 @@ abstract public class NavigableFragment extends Fragment implements ActionBarSet
 	{
 		super.onCreate(savedInstanceState);
 
-		// TODO setRetainInstance
+		// retain instance
 		setRetainInstance(true);
 	}
 

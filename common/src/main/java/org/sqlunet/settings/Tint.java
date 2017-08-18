@@ -45,7 +45,6 @@ public class Tint
 		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
 		{
 			drawable.setTint(iconTint);
-			//DrawableCompat.setTint(drawable, iconTint);
 		}
 		else
 		{
