@@ -13,24 +13,10 @@ import org.sqlunet.wordnet.R;
  */
 public class SenseActivity extends SynsetActivity
 {
-	private boolean fromSavedInstance;
-
-	@Override
-	protected void onCreate(final Bundle savedInstanceState)
+	public SenseActivity()
 	{
-		super.onCreate(savedInstanceState);
-
-		// content
-		setContentView(R.layout.activity_synset);
-
-		// fragment
-		// savedInstanceState is non-null when there is fragment state saved from previous configurations of this activity (e.g. when rotating the screen from
-		// portrait to landscape). In this case, the fragment will automatically be re-added to its container so we don't need to manually addItem it.
-		// @see http://developer.android.com/guide/components/fragments.html
-		if (savedInstanceState != null)
-		{
-			this.fromSavedInstance = true;
-		}
+		super();
+		// this.layoutId = R.layout.activity_synset;
 	}
 
 	@Override

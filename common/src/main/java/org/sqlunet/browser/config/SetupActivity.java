@@ -5,13 +5,14 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -22,7 +23,7 @@ import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 
 @SuppressWarnings("deprecation")
-public class SetupActivity extends AppCompatActivity implements ActionBar.TabListener
+public class SetupActivity extends AppCompatActivity implements TabLayout.OnTabSelectedListener
 {
 	static private final String TAG = "SetupA";
 
@@ -38,30 +39,33 @@ public class SetupActivity extends AppCompatActivity implements ActionBar.TabLis
 
 		setContentView(R.layout.activity_setup);
 
+		// toolbar
+		final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+		setSupportActionBar(toolbar);
+
+		// set up the action bar
+		final ActionBar actionBar = getSupportActionBar();
+		assert actionBar != null;
+		actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_HOME | ActionBar.DISPLAY_HOME_AS_UP | ActionBar.DISPLAY_SHOW_TITLE);
+
 		// create the adapter that will return a fragment for each of the three sections of the activity.
 		final SectionsPagerAdapter pagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager(), this);
 
 		// set up the pager with the sections adapter.
 		this.viewPager = (ViewPager) findViewById(R.id.container);
 		this.viewPager.setAdapter(pagerAdapter);
-
-		// set up the action bar.
-		final ActionBar actionBar = getSupportActionBar();
-		assert actionBar != null;
-		actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
-		actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_HOME | ActionBar.DISPLAY_HOME_AS_UP | ActionBar.DISPLAY_SHOW_TITLE);
-		actionBar.setTitle(R.string.title_setup_section);
-
-		// When swiping between different sections, select the corresponding tab.
-		// We can also use ActionBar.Tab#select() to do this if we have a reference to the Tab.
 		this.viewPager.setOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener()
 		{
 			@Override
 			public void onPageSelected(int position)
 			{
-				actionBar.setSelectedNavigationItem(position);
+				//
 			}
 		});
+
+		// tab layout
+		final TabLayout tabLayout = (TabLayout) findViewById(R.id.tablayout);
+		tabLayout.setOnTabSelectedListener(this);
 
 		// For each of the sections in the app, add a tab to the action bar.
 		for (int i = 0; i < pagerAdapter.getCount(); i++)
@@ -69,29 +73,29 @@ public class SetupActivity extends AppCompatActivity implements ActionBar.TabLis
 			// Create a tab with text corresponding to the page titleId defined by the adapter.
 			// Also specify this Activity object, which implements the TabListener interface, as the callback (listener) for when
 			// this tab is selected.
-			actionBar.addTab(actionBar.newTab() //
-					.setText(pagerAdapter.getPageTitle(i)) //
-					.setTabListener(this));
+			tabLayout.addTab(tabLayout.newTab() //
+					.setText(pagerAdapter.getPageTitle(i)));
 		}
 	}
 
 	// T A B  L I S T E N E R
 
 	@Override
-	public void onTabSelected(ActionBar.Tab tab, FragmentTransaction fragmentTransaction)
+	public void onTabSelected(TabLayout.Tab tab)
 	{
-		// when the given tab is selected, switch to the corresponding page in the ViewPager.
 		this.viewPager.setCurrentItem(tab.getPosition());
 	}
 
 	@Override
-	public void onTabUnselected(ActionBar.Tab tab, FragmentTransaction fragmentTransaction)
+	public void onTabUnselected(TabLayout.Tab tab)
 	{
+
 	}
 
 	@Override
-	public void onTabReselected(ActionBar.Tab tab, FragmentTransaction fragmentTransaction)
+	public void onTabReselected(TabLayout.Tab tab)
 	{
+
 	}
 
 	/**

@@ -1,7 +1,9 @@
 package org.sqlunet.browser.config;
 
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -22,6 +24,15 @@ public class StorageActivity extends AppCompatActivity
 
 		// content
 		setContentView(R.layout.activity_storage);
+
+		// toolbar
+		final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+		setSupportActionBar(toolbar);
+
+		// set up the action bar
+		final ActionBar actionBar = getSupportActionBar();
+		assert actionBar != null;
+		actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_HOME | ActionBar.DISPLAY_HOME_AS_UP | ActionBar.DISPLAY_SHOW_TITLE);
 	}
 
 	// M E N U

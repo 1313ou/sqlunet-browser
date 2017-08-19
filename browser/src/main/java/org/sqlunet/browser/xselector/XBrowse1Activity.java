@@ -3,6 +3,7 @@ package org.sqlunet.browser.xselector;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 
 import org.sqlunet.browser.R;
 
@@ -20,6 +21,10 @@ public class XBrowse1Activity extends AppCompatActivity
 
 		// content
 		setContentView(R.layout.activity_browse1);
+
+		// toolbar
+		final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+		setSupportActionBar(toolbar);
 
 		// fragment
 		// savedInstanceState is non-null when there is fragment state saved from previous configurations of this activity (e.g. when rotating the screen from

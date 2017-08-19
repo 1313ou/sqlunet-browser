@@ -3,7 +3,10 @@ package org.sqlunet.browser;
 import android.app.SearchManager;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
+
 import org.sqlunet.browser.wn.R;
 
 /**
@@ -25,6 +28,15 @@ public class SearchTextActivity extends AppCompatActivity
 
 		// content
 		setContentView(R.layout.activity_search_text);
+
+		// toolbar
+		final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+		setSupportActionBar(toolbar);
+
+		// set up the action bar
+		final ActionBar actionBar = getSupportActionBar();
+		assert actionBar != null;
+		actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_HOME | ActionBar.DISPLAY_HOME_AS_UP | ActionBar.DISPLAY_SHOW_TITLE);
 
 		// fragment
 		if (savedInstanceState == null)

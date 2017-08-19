@@ -5,6 +5,8 @@ import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.content.res.XmlResourceParser;
+import android.graphics.drawable.ColorDrawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.preference.ListPreference;
 import android.preference.Preference;
@@ -15,6 +17,7 @@ import android.preference.PreferenceFragment;
 import android.preference.PreferenceManager;
 import android.preference.PreferenceScreen;
 import android.support.v4.app.NavUtils;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.contrib.AppCompatPreferenceActivity;
 import android.util.Pair;
 import android.view.MenuItem;
@@ -45,6 +48,39 @@ public class SettingsActivity extends AppCompatPreferenceActivity
 	 * master/detail two-pane view on tablets. When true, a single pane is shown on tablets.
 	 */
 	static private boolean ALWAYS_SIMPLE_PREFS = false;
+
+	// L I S T E N E R
+
+	@Override
+	protected void onCreate(final Bundle savedInstanceState)
+	{
+		// super
+		super.onCreate(savedInstanceState);
+
+		// toolbar
+		setupToolbar(R.layout.toolbar, R.id.toolbar);
+
+		// set up the action bar
+		final ActionBar actionBar = getSupportActionBar();
+		if (actionBar != null)
+		{
+			// background
+			int color;
+			if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M)
+			{
+				color = getResources().getColor(R.color.primary, getTheme());
+			}
+			else
+			{
+				//noinspection deprecation
+				color = getResources().getColor(R.color.primary);
+			}
+			actionBar.setBackgroundDrawable(new ColorDrawable(color));
+
+			// options
+			actionBar.setDisplayOptions(ActionBar.DISPLAY_USE_LOGO | ActionBar.DISPLAY_SHOW_TITLE | ActionBar.DISPLAY_SHOW_HOME | ActionBar.DISPLAY_HOME_AS_UP);
+		}
+	}
 
 	// L I S T E N E R
 
@@ -113,7 +149,7 @@ public class SettingsActivity extends AppCompatPreferenceActivity
 		return SettingsActivity.isLargeTablet(this) && !SettingsActivity.isSimplePreferences(this);
 	}
 
-	// V A L I D AT I O N
+	// V A L I D A T I O N
 
 	static private Set<String> allowedFragments;
 

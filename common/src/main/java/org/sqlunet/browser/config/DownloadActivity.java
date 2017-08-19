@@ -4,7 +4,9 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 
 import org.sqlunet.browser.common.R;
 import org.sqlunet.settings.Settings;
@@ -59,6 +61,15 @@ public class DownloadActivity extends AppCompatActivity implements DownloadFragm
 
 		// content
 		setContentView(downloader.res);
+
+		// toolbar
+		final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+		setSupportActionBar(toolbar);
+
+		// set up the action bar
+		final ActionBar actionBar = getSupportActionBar();
+		assert actionBar != null;
+		actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_HOME | ActionBar.DISPLAY_HOME_AS_UP | ActionBar.DISPLAY_SHOW_TITLE);
 
 		if (savedInstanceState == null)
 		{

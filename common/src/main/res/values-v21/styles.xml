@@ -2,7 +2,7 @@
 <resources>
 
 	<!-- BASE application theme, dependent on API level. This theme is replaced by AppBaseTheme from res/values-vXX/styles-app.xml on newer devices. -->
-	<style name="CompatAppBaseTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+	<style name="CompatAppBaseTheme" parent="Theme.AppCompat.Light.NoActionBar">
 	</style>
 
 	<!-- APP theme -->
@@ -26,6 +26,14 @@
 		<!-- action bar colors -->
 		<item name="actionbar_icon_color">@android:color/white</item>
 
+		<!-- action bar -->
+		<item name="android:actionBarStyle">@style/ActionBar</item>
+
+	</style>
+
+	<!-- Action bar -->
+	<style name="ActionBar" parent="Widget.AppCompat.ActionBar">
+		<item name="android:background">@color/primary</item>
 	</style>
 
 </resources>

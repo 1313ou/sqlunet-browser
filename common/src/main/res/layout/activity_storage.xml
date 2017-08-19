@@ -1,17 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-             xmlns:tools="http://schemas.android.com/tools"
-             android:layout_width="match_parent"
-             android:layout_height="match_parent"
-             tools:context="org.sqlunet.browser.config.StorageActivity">
+<android.support.design.widget.CoordinatorLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent">
 
-	<fragment
-		android:id="@+id/fragment_storage"
-		android:name="org.sqlunet.browser.config.StorageFragment"
-		class="org.sqlunet.browser.config.StorageFragment"
+	<android.support.design.widget.AppBarLayout
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
-		tools:context="org.sqlunet.browser.config.StorageActivity"
-		tools:layout="@layout/fragment_storage"/>
+		android:theme="@style/CompatAppTheme.AppBarOverlay">
 
-</FrameLayout>
+		<include layout="@layout/toolbar"/>
+
+	</android.support.design.widget.AppBarLayout>
+
+	<FrameLayout
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		app:layout_behavior="@string/appbar_scrolling_view_behavior"
+		tools:context="org.sqlunet.browser.config.StorageActivity">
+
+		<fragment
+			android:id="@+id/fragment_storage"
+			android:name="org.sqlunet.browser.config.StorageFragment"
+			class="org.sqlunet.browser.config.StorageFragment"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			tools:context="org.sqlunet.browser.config.StorageActivity"
+			tools:layout="@layout/fragment_storage"/>
+
+	</FrameLayout>
+
+</android.support.design.widget.CoordinatorLayout>

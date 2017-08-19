@@ -28,17 +28,28 @@ import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import org.sqlunet.browser.common.R;
+
 /**
- * A {@link android.preference.PreferenceActivity} which implements and proxies the necessary calls
- * to be used with AppCompat.
- * <p>
- * This technique can be used with an {@link android.app.Activity} class, not just
- * {@link android.preference.PreferenceActivity}.
+ * A {@link android.preference.PreferenceActivity} which implements and proxies the necessary calls to be used with AppCompat.
  */
 @SuppressWarnings("unused")
 public abstract class AppCompatPreferenceActivity extends PreferenceActivity
 {
+	// D E L E G A T E
+
 	private AppCompatDelegate mDelegate;
+
+	private AppCompatDelegate getDelegate()
+	{
+		if (this.mDelegate == null)
+		{
+			this.mDelegate = AppCompatDelegate.create(this, null);
+		}
+		return this.mDelegate;
+	}
+
+	// L I F E C Y C L E
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
@@ -53,6 +64,43 @@ public abstract class AppCompatPreferenceActivity extends PreferenceActivity
 	{
 		super.onPostCreate(savedInstanceState);
 		getDelegate().onPostCreate(savedInstanceState);
+	}
+
+	@Override
+	protected void onPostResume()
+	{
+		super.onPostResume();
+		getDelegate().onPostResume();
+	}
+
+	@Override
+	protected void onStop()
+	{
+		super.onStop();
+		getDelegate().onStop();
+	}
+
+	@Override
+	protected void onDestroy()
+	{
+		super.onDestroy();
+		getDelegate().onDestroy();
+	}
+
+	// A C T I O N   B A R
+
+	protected void setupToolbar(int toolbarLayout, int toolbarId)
+	{
+		// TODO
+		final ViewGroup rootView = (ViewGroup)findViewById(R.id.action_bar_root); //id from appcompat
+		if (rootView != null)
+		{
+			final View view = getLayoutInflater().inflate(toolbarLayout, rootView, false);
+			rootView.addView(view, 0);
+
+			final Toolbar toolbar = (Toolbar)findViewById(toolbarId);
+			setSupportActionBar(toolbar);
+		}
 	}
 
 	public ActionBar getSupportActionBar()
@@ -71,6 +119,8 @@ public abstract class AppCompatPreferenceActivity extends PreferenceActivity
 	{
 		return getDelegate().getMenuInflater();
 	}
+
+	// C O N T E N T   V I E W
 
 	@Override
 	public void setContentView(@LayoutRes int layoutResID)
@@ -96,12 +146,7 @@ public abstract class AppCompatPreferenceActivity extends PreferenceActivity
 		getDelegate().addContentView(view, params);
 	}
 
-	@Override
-	protected void onPostResume()
-	{
-		super.onPostResume();
-		getDelegate().onPostResume();
-	}
+	// M I S C   O V E R R I D E S
 
 	@Override
 	protected void onTitleChanged(CharSequence title, int color)
@@ -118,31 +163,8 @@ public abstract class AppCompatPreferenceActivity extends PreferenceActivity
 	}
 
 	@Override
-	protected void onStop()
-	{
-		super.onStop();
-		getDelegate().onStop();
-	}
-
-	@Override
-	protected void onDestroy()
-	{
-		super.onDestroy();
-		getDelegate().onDestroy();
-	}
-
-	@Override
 	public void invalidateOptionsMenu()
 	{
 		getDelegate().invalidateOptionsMenu();
-	}
-
-	private AppCompatDelegate getDelegate()
-	{
-		if (this.mDelegate == null)
-		{
-			this.mDelegate = AppCompatDelegate.create(this, null);
-		}
-		return this.mDelegate;
 	}
 }

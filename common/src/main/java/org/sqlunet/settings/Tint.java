@@ -17,18 +17,9 @@ import org.sqlunet.browser.common.R;
  */
 public class Tint
 {
-	static private int fetchColor(final Context context, int attr)
-	{
-		final TypedValue typedValue = new TypedValue();
-		final Resources.Theme theme = context.getTheme();
-		theme.resolveAttribute(attr, typedValue, true);
-		return typedValue.data;
-	}
-
 	static public void tint(final Context context, final MenuItem... menuItems)
 	{
-		int iconTint = fetchColor(context, R.attr.actionbar_icon_color); //
-		// iconTint = Color.WHITE;
+		final int iconTint = fetchColor(context, R.attr.actionbar_icon_color); // iconTint = Color.WHITE;
 		for (MenuItem menuItem : menuItems)
 		{
 			final Drawable drawable = menuItem.getIcon();
@@ -41,7 +32,6 @@ public class Tint
 
 	static public void tint(final Drawable drawable, int iconTint)
 	{
-		// final int iconTint = fetchColor(R.attr.treebolic_actionbar_icon_color);
 		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
 		{
 			drawable.setTint(iconTint);
@@ -50,5 +40,13 @@ public class Tint
 		{
 			DrawableCompat.setTint(DrawableCompat.wrap(drawable), iconTint);
 		}
+	}
+
+	static private int fetchColor(final Context context, int attr)
+	{
+		final TypedValue typedValue = new TypedValue();
+		final Resources.Theme theme = context.getTheme();
+		theme.resolveAttribute(attr, typedValue, true);
+		return typedValue.data;
 	}
 }
