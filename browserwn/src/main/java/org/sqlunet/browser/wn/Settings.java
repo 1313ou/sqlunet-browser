@@ -1,6 +1,5 @@
 package org.sqlunet.browser.wn;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
@@ -66,13 +65,6 @@ public class Settings extends org.sqlunet.settings.Settings
 		{
 			return (sources & this.mask) != 0;
 		}
-	}
-
-	// S E L E C T O R
-
-	public static Selector getXSelectorPref(Activity activity)
-	{
-		return Selector.SELECTOR;
 	}
 
 	// P R E F E R E N C E S H O R T C U T S

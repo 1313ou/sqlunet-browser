@@ -2,6 +2,7 @@
 
 <android.support.v4.widget.SwipeRefreshLayout
 	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:tools="http://schemas.android.com/tools"
 	android:id="@+id/swipe_refresh"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent">
@@ -78,13 +79,15 @@
 					<ImageView
 						android:id="@+id/status_predicatematrix"
 						style="@style/GridStatusImage"
-						android:contentDescription="@string/status_predicatematrix"/>
+						android:contentDescription="@string/status_predicatematrix"
+						tools:ignore="InconsistentLayout"/>
 
 					<ImageButton
 						android:id="@+id/predicatematrixButton"
 						style="@style/GridStatusActionButton"
 						android:contentDescription="@string/status_predicatematrix"
-						android:src="@drawable/bn_setup"/>
+						android:src="@drawable/bn_setup"
+						tools:ignore="InconsistentLayout"/>
 				</LinearLayout>
 
 				<!-- indexes -->
@@ -120,13 +123,15 @@
 					<ImageView
 						android:id="@+id/status_textsearchWn"
 						style="@style/GridStatusImage"
-						android:contentDescription="@string/status_textsearch"/>
+						android:contentDescription="@string/status_textsearch"
+						tools:ignore="InconsistentLayout"/>
 
 					<ImageButton
 						android:id="@+id/textsearchWnButton"
 						style="@style/GridStatusActionButton"
 						android:contentDescription="@string/status_textsearch"
-						android:src="@drawable/bn_setup"/>
+						android:src="@drawable/bn_setup"
+						tools:ignore="InconsistentLayout"/>
 				</LinearLayout>
 
 				<!-- textsearch verbnet -->
@@ -140,13 +145,15 @@
 					<ImageView
 						android:id="@+id/status_textsearchVn"
 						style="@style/GridStatusImage"
-						android:contentDescription="@string/status_textsearchVn"/>
+						android:contentDescription="@string/status_textsearchVn"
+						tools:ignore="InconsistentLayout"/>
 
 					<ImageButton
 						android:id="@+id/textsearchVnButton"
 						style="@style/GridStatusActionButton"
 						android:contentDescription="@string/status_textsearchVn"
-						android:src="@drawable/bn_setup"/>
+						android:src="@drawable/bn_setup"
+						tools:ignore="InconsistentLayout"/>
 				</LinearLayout>
 
 				<!-- textsearch propbank -->
@@ -160,13 +167,15 @@
 					<ImageView
 						android:id="@+id/status_textsearchPb"
 						style="@style/GridStatusImage"
-						android:contentDescription="@string/status_textsearchPb"/>
+						android:contentDescription="@string/status_textsearchPb"
+						tools:ignore="InconsistentLayout"/>
 
 					<ImageButton
 						android:id="@+id/textsearchPbButton"
 						style="@style/GridStatusActionButton"
 						android:contentDescription="@string/status_textsearchPb"
-						android:src="@drawable/bn_setup"/>
+						android:src="@drawable/bn_setup"
+						tools:ignore="InconsistentLayout"/>
 				</LinearLayout>
 
 				<!-- textsearch framenet -->
@@ -180,13 +189,15 @@
 					<ImageView
 						android:id="@+id/status_textsearchFn"
 						style="@style/GridStatusImage"
-						android:contentDescription="@string/status_textsearchFn"/>
+						android:contentDescription="@string/status_textsearchFn"
+						tools:ignore="InconsistentLayout"/>
 
 					<ImageButton
 						android:id="@+id/textsearchFnButton"
 						style="@style/GridStatusActionButton"
 						android:contentDescription="@string/status_textsearchFn"
-						android:src="@drawable/bn_setup"/>
+						android:src="@drawable/bn_setup"
+						tools:ignore="InconsistentLayout"/>
 				</LinearLayout>
 			</GridLayout>
 		</ScrollView>

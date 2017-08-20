@@ -67,6 +67,7 @@ public class LinkLeafController extends LeafController
 		final Value value = (Value) this.node.getValue();
 		if (value != null)
 		{
+			assert value.payload != null;
 			final Link link = (Link) value.payload[0];
 			link.process();
 		}

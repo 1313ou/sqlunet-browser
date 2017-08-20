@@ -263,6 +263,7 @@ public class StorageReports
 
 	// D I R
 
+	@SuppressWarnings("UnusedReturnValue")
 	static private SpannableStringBuilder appendDir(final SpannableStringBuilder sb, final CharSequence header, final File dir)
 	{
 		Report.appendHeader(sb, header).append(' ').append(StorageUtils.storageFreeAsString(dir)).append('\n').append(dir.getAbsolutePath()).append('\n');

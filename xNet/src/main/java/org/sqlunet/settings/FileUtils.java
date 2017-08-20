@@ -204,6 +204,7 @@ class FileUtils
 	 * @param destDir           destination dir
 	 * @return dest dir
 	 */
+	@SuppressWarnings("UnusedReturnValue")
 	static private File expandZip(final InputStream in, final String pathPrefixFilter0, final File destDir) throws IOException
 	{
 		// prefix

@@ -63,7 +63,7 @@ public abstract class BaseProvider extends ContentProvider
 	{
 		private int limit;
 
-		public CircularBuffer(final int number)
+		public CircularBuffer(@SuppressWarnings("SameParameterValue") final int number)
 		{
 			this.limit = number;
 		}
@@ -170,7 +170,7 @@ public abstract class BaseProvider extends ContentProvider
 	 * @param flags database name
 	 * @return opened database
 	 */
-	private SQLiteDatabase open(final String path, final int flags)
+	private SQLiteDatabase open(final String path, @SuppressWarnings("SameParameterValue") final int flags)
 	{
 		this.db = SQLiteDatabase.openDatabase(path, null, flags);
 		return this.db;
@@ -264,7 +264,7 @@ public abstract class BaseProvider extends ContentProvider
 	 * @param items      items to addItem to projection
 	 * @return augmented projection
 	 */
-	static String[] prependProjection(final String[] projection, final String... items)
+	static String[] prependProjection(final String[] projection, @SuppressWarnings("SameParameterValue") final String... items)
 	{
 		String[] projection2;
 		if (projection == null)

@@ -233,8 +233,8 @@ public class WebFragment extends Fragment
 		Log.d(WebFragment.TAG, "ARG_POSITION query=" + pointer);
 
 		// hint
-		final String posString = args.getString(ProviderArgs.ARG_HINTPOS);
-		final Character pos = posString == null ? null : posString.charAt(0);
+		//final String posString = args.getString(ProviderArgs.ARG_HINTPOS);
+		//final Character pos = posString == null ? null : posString.charAt(0);
 
 		// text
 		final String data = args.getString(ProviderArgs.ARG_QUERYSTRING);

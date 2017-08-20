@@ -257,6 +257,7 @@ public class NavigationDrawerFragment extends Fragment
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item)
 	{
+		//noinspection SimplifiableIfStatement
 		if (this.drawerToggle.onOptionsItemSelected(item))
 		{
 			return true;

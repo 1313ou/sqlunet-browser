@@ -1,7 +1,6 @@
 package org.sqlunet.browser.config;
 
 import android.app.IntentService;
-import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.os.PowerManager;
@@ -303,6 +302,7 @@ public class SimpleDownloaderService extends IntentService
 		{
 			if (newFile.exists())
 			{
+				//noinspection ResultOfMethodCallIgnored
 				newFile.delete();
 			}
 			success = outFile.renameTo(newFile);
@@ -369,7 +369,7 @@ public class SimpleDownloaderService extends IntentService
 	}
 
 	// A L T
-
+	/*
 	public class StopReceiver extends BroadcastReceiver
 	{
 		public static final String ACTION_STOP = "stop";
@@ -387,4 +387,5 @@ public class SimpleDownloaderService extends IntentService
 		intent.setAction(StopReceiver.ACTION_STOP);
 		context.sendBroadcast(intent);
 	}
+	*/
 }

@@ -34,7 +34,7 @@ public class FileDataDownloader extends AsyncTask<String, Void, FileData>
 	 *
 	 * @param listener listener
 	 */
-	FileDataDownloader(final Listener listener)
+	private FileDataDownloader(final Listener listener)
 	{
 		this.listener = listener;
 	}
@@ -148,19 +148,18 @@ public class FileDataDownloader extends AsyncTask<String, Void, FileData>
 				final Long currentSize = currentData == null ? null : currentData.getSize();
 
 				// src data
-				final String src = downloadUrl;
 				final Date srcDate = srcData == null ? null : srcData.getDate();
 				final Long srcSize = srcData == null ? null : srcData.getSize();
 
 				// newer
 				final Date refDate = currentDate != null ? currentDate : actualDate;
-				final boolean newer = (srcDate == null || refDate == null) ? false : srcDate.compareTo(refDate) > 0;
+				@SuppressWarnings("SimplifiableConditionalExpression") final boolean newer = (srcDate == null || refDate == null) ? false : srcDate.compareTo(refDate) > 0;
 
 				final Intent intent = new Intent(activity, UpdateActivity.class);
 				intent.putExtra(UpdateFragment.CURRENT_DATE_ARG, currentDate == null ? "n/a" : currentDate.toString());
 				intent.putExtra(UpdateFragment.CURRENT_SIZE_ARG, currentSize == null ? "n/a" : currentSize.toString() + " bytes");
 
-				intent.putExtra(UpdateFragment.FROM_ARG, src);
+				intent.putExtra(UpdateFragment.FROM_ARG, downloadUrl);
 				intent.putExtra(UpdateFragment.FROM_DATE_ARG, srcDate == null ? "n/a" : srcDate.toString());
 				intent.putExtra(UpdateFragment.FROM_SIZE_ARG, srcSize == null ? "n/a" : srcSize.toString() + " bytes");
 

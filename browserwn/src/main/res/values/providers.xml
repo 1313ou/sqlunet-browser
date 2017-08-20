@@ -3,7 +3,7 @@
 	<string name="manager_authority">org.sqlunet.manager.wn.provider</string>
 	<string name="sqlunet_authority">org.sqlunet.xsqlunet.wn.provider</string>
 	<string name="wordnet_authority">org.sqlunet.wordnet.wn.provider</string>
-	<string-array name="provider_authorities">
+	<string-array name="provider_authorities" tools:ignore="InconsistentArrays">
 		<item>@string/manager_authority</item>
 		<item>@string/sqlunet_authority</item>
 		<item>@string/wordnet_authority</item>

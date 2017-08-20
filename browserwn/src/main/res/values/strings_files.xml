@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 
 	<string name="sqlunet_db">249700b80b1679c80f91b3685517492a</string> <!-- sqlunet-wn.db -->
 	<string name="sqlunet_db_zip">5e6a27cf04697cb5805a7e1b2057bd0d</string> <!-- sqlunet-wn.db.zip -->
@@ -9,7 +9,7 @@
 	<string name="hr_size_sqlunet_db_zip">26 MB</string> <!-- sqlunet-wn.db.zip -->
 	<string name="hr_size_sqlunet_sql_zip">11 MB</string> <!-- sqlunet-wn.sql.zip -->
 
-	<string name="hr_size_textsearch_wn">34 MB</string>
+	<string name="hr_size_textsearch_wn" tools:ignore="UnusedResources">34 MB</string>
 	<string name="hr_size_textsearch">34 MB</string>
 
 	<string name="hr_size_db_working_total">96 MB</string>

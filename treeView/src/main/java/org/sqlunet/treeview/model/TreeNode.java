@@ -189,7 +189,7 @@ public class TreeNode
 	 * @param childNode child node
 	 * @return this node
 	 */
-	@SuppressWarnings("WeakerAccess")
+	@SuppressWarnings({"WeakerAccess", "UnusedReturnValue"})
 	public TreeNode prependChild(TreeNode childNode)
 	{
 		childNode.parent = this;
@@ -227,6 +227,7 @@ public class TreeNode
 	public boolean delete()
 	{
 		final TreeNode parent = getParent();
+		//noinspection SimplifiableIfStatement
 		if (parent != null)
 		{
 			return parent.deleteChild(this) != -1;
@@ -365,6 +366,7 @@ public class TreeNode
 	@SuppressWarnings("unused")
 	public boolean isFirstChild()
 	{
+		//noinspection SimplifiableIfStatement
 		if (isNotRoot())
 		{
 			return this.parent.children.get(0).id == this.id;

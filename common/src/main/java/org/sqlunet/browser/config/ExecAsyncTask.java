@@ -68,6 +68,7 @@ public class ExecAsyncTask
 	 * @param database database path
 	 * @param sqls     sql statements
 	 */
+	@SuppressWarnings("UnusedReturnValue")
 	public AsyncTask<Pair<String, String[]>, Integer, Boolean> executeFromSql(final String database, final String... sqls)
 	{
 		final AsyncTask<Pair<String, String[]>, Integer, Boolean> task = new AsyncTask<Pair<String, String[]>, Integer, Boolean>()

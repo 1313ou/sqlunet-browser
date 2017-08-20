@@ -38,22 +38,22 @@ public class OtherActivity extends AppCompatActivity
 		actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_HOME | ActionBar.DISPLAY_HOME_AS_UP | ActionBar.DISPLAY_SHOW_TITLE);
 	}
 
-	public void onMarketTreebolicWordNet(View view)
+	public void onMarketTreebolicWordNet(@SuppressWarnings("UnusedParameters") View view)
 	{
 		install(getString(R.string.treebolic_wordnet_uri));
 	}
 
-	public void onMarketSemantikos(View view)
+	public void onMarketSemantikos(@SuppressWarnings("UnusedParameters") View view)
 	{
 		install(getString(R.string.semantikos_uri));
 	}
 
-	public void onMarketSemantikosWn(View view)
+	public void onMarketSemantikosWn(@SuppressWarnings("UnusedParameters") View view)
 	{
 		install(getString(R.string.semantikos_wn_uri));
 	}
 
-	public void onMarketSemantikosFn(View view)
+	public void onMarketSemantikosFn(@SuppressWarnings("UnusedParameters") View view)
 	{
 		install(getString(R.string.semantikos_fn_uri));
 	}

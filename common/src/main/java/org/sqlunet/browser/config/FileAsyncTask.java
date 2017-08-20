@@ -79,23 +79,25 @@ class FileAsyncTask
 	 * @param resultListener result listener
 	 * @param publishRate    publish rate
 	 */
-	private FileAsyncTask(final TaskObserver.Listener listener, final ResultListener resultListener, final int publishRate)
+	private FileAsyncTask(final TaskObserver.Listener listener, final ResultListener resultListener, @SuppressWarnings("SameParameterValue") final int publishRate)
 	{
 		this.listener = listener;
 		this.resultListener = resultListener;
 		this.publishRate = publishRate;
 	}
 
-	/**
-	 * Constructor
-	 *
-	 * @param listener    listener
-	 * @param publishRate publish rate
-	 */
-	private FileAsyncTask(final TaskObserver.Listener listener, final int publishRate)
-	{
-		this(listener, null, publishRate);
-	}
+// --Commented out by Inspection START (8/20/17 9:13 AM):
+//	/**
+//	 * Constructor
+//	 *
+//	 * @param listener    listener
+//	 * @param publishRate publish rate
+//	 */
+//	private FileAsyncTask(final TaskObserver.Listener listener, final int publishRate)
+//	{
+//		this(listener, null, publishRate);
+//	}
+// --Commented out by Inspection STOP (8/20/17 9:13 AM)
 
 	// CORE
 
@@ -105,6 +107,7 @@ class FileAsyncTask
 	 * @param src  source file
 	 * @param dest dest file
 	 */
+	@SuppressWarnings("UnusedReturnValue")
 	private AsyncTask<String, Integer, Boolean> copyFromFile(final String src, final String dest)
 	{
 		final AsyncTask<String, Integer, Boolean> task = new AsyncTask<String, Integer, Boolean>()
@@ -230,6 +233,7 @@ class FileAsyncTask
 	 * @param srcEntry   entry
 	 * @param dest       dest file
 	 */
+	@SuppressWarnings("UnusedReturnValue")
 	private AsyncTask<String, Integer, Boolean> unzipFromArchive(final String srcArchive, final String srcEntry, final String dest)
 	{
 		final AsyncTask<String, Integer, Boolean> task = new AsyncTask<String, Integer, Boolean>()
@@ -370,6 +374,7 @@ class FileAsyncTask
 	 *
 	 * @param targetFile file path
 	 */
+	@SuppressWarnings("UnusedReturnValue")
 	private AsyncTask<String, Integer, String> md5FromFile(final String targetFile)
 	{
 		final AsyncTask<String, Integer, String> task = new AsyncTask<String, Integer, String>()

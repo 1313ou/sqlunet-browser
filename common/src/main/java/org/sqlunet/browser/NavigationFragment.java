@@ -1,6 +1,5 @@
 package org.sqlunet.browser;
 
-import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.res.Resources;
@@ -18,8 +17,6 @@ import android.util.Log;
 import android.util.TypedValue;
 
 import org.sqlunet.browser.common.R;
-import org.sqlunet.browser.config.SettingsActivity;
-import org.sqlunet.browser.config.SetupActivity;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
@@ -113,6 +110,7 @@ public class NavigationFragment extends NavigationDrawerFragment implements Navi
 	 * @param position selected item number
 	 * @return true if handled
 	 */
+	@SuppressWarnings("TryWithIdenticalCatches")
 	private boolean handle(final int position)
 	{
 		final String run = handlers[position];
@@ -141,33 +139,39 @@ public class NavigationFragment extends NavigationDrawerFragment implements Navi
 		return false;
 	}
 
-	/**
+	/*
 	 * Setup handler
 	 */
+	/*
 	private void setupActivity()
 	{
 		final Intent intent = new Intent(getActivity(), SetupActivity.class);
 		startActivity(intent);
-
 	}
+	*/
 
-	/**
+	/*
 	 * Settings handler
 	 */
+	/*
 	private void settingsActivity()
 	{
 		final Intent intent = new Intent(getActivity(), SettingsActivity.class);
 		intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
 		startActivity(intent);
 	}
+	*/
 
-	/**
+	/*
 	 * SQL handler
 	 */
+
+	/*
 	private void sqlDialog()
 	{
 		SqlDialogFragment.show(getActivity().getSupportFragmentManager());
 	}
+	*/
 
 	/**
 	 * Handle fragments
@@ -313,6 +317,7 @@ public class NavigationFragment extends NavigationDrawerFragment implements Navi
 		actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_HOME | ActionBar.DISPLAY_SHOW_TITLE | ActionBar.DISPLAY_HOME_AS_UP);
 	}
 
+	@SuppressWarnings("TryWithIdenticalCatches")
 	private Fragment newFragment(final int position)
 	{
 		final String fragmentClass = this.fragmentClasses[position];

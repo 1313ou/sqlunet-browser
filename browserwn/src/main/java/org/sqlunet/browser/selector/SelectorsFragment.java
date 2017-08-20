@@ -22,6 +22,7 @@ import android.widget.TextView;
 import org.sqlunet.browser.Module;
 import org.sqlunet.browser.wn.R;
 import org.sqlunet.provider.ProviderArgs;
+import org.sqlunet.wordnet.SensePointer;
 import org.sqlunet.wordnet.provider.WordNetContract;
 import org.sqlunet.wordnet.provider.WordNetContract.Words_Senses_CasedWords_Synsets_PosTypes_LexDomains;
 import org.sqlunet.wordnet.provider.WordNetProvider;
@@ -45,7 +46,7 @@ public class SelectorsFragment extends ListFragment
 		/**
 		 * Callback for when an item has been selected.
 		 */
-		void onItemSelected(SelectorPointer pointer, String word, String cased, String pos);
+		void onItemSelected(SensePointer pointer, String word, String cased, String pos);
 	}
 
 	/**
@@ -310,7 +311,7 @@ public class SelectorsFragment extends ListFragment
 	 *
 	 * @param activateOnItemClick true if activate
 	 */
-	public void setActivateOnItemClick(final boolean activateOnItemClick)
+	public void setActivateOnItemClick(@SuppressWarnings("SameParameterValue") final boolean activateOnItemClick)
 	{
 		this.activateOnItemClick = activateOnItemClick;
 	}
@@ -345,7 +346,7 @@ public class SelectorsFragment extends ListFragment
 				final String cased = cursor.getString(idCased);
 
 				// pointer
-				final SelectorPointer pointer = new SelectorPointer(synsetId, this.wordId);
+				final SensePointer pointer = new SensePointer(synsetId, this.wordId);
 
 				// notify the active listener (the activity, if the fragment is attached to one) that an item has been selected
 				this.listener.onItemSelected(pointer, this.word, cased, pos);

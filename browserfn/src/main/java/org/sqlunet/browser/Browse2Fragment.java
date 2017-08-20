@@ -12,12 +12,12 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import org.sqlunet.browser.fn.R;
+import org.sqlunet.browser.fn.Settings;
 import org.sqlunet.browser.web.WebFragment;
 import org.sqlunet.framenet.FnFramePointer;
 import org.sqlunet.framenet.browser.FnFrameFragment;
 import org.sqlunet.framenet.browser.FnLexUnitFragment;
 import org.sqlunet.provider.ProviderArgs;
-import org.sqlunet.settings.Settings;
 
 /**
  * A fragment representing a detail
@@ -118,12 +118,12 @@ public class Browse2Fragment extends Fragment
 		switch (mode)
 		{
 			case VIEW:
-				boolean enable = true;
 
 				// transaction
 				final FragmentTransaction transaction = manager.beginTransaction();
 
 				// framenet
+				boolean enable = Settings.getFrameNetPref(context);
 				if (enable)
 				{
 					// final View labelView = findViewById(R.id.label_framenet);

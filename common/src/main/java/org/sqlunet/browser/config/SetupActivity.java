@@ -113,6 +113,7 @@ public class SetupActivity extends AppCompatActivity implements TabLayout.OnTabS
 			this.fragmentClasses = res.getStringArray(R.array.fragment_class_setup_pages);
 		}
 
+		@SuppressWarnings("TryWithIdenticalCatches")
 		@Override
 		public Fragment getItem(int position)
 		{

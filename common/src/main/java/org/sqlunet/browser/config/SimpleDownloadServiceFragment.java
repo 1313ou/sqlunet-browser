@@ -8,7 +8,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.net.Uri;
-import android.os.Bundle;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
@@ -30,7 +29,7 @@ public class SimpleDownloadServiceFragment extends BaseDownloadFragment
 	/**
 	 * Notification id key
 	 */
-	static public final String NOTIFICATION_ID = "notification_id";
+	private static final String NOTIFICATION_ID = "notification_id";
 
 	/**
 	 * Id for the current notification
@@ -70,7 +69,7 @@ public class SimpleDownloadServiceFragment extends BaseDownloadFragment
 	/**
 	 * Broadcast receiver for start finish events
 	 */
-	private BroadcastReceiver mainBroadcastReceiver = new BroadcastReceiver()
+	private final BroadcastReceiver mainBroadcastReceiver = new BroadcastReceiver()
 	{
 		@Override
 		public void onReceive(final Context context, final Intent intent)
@@ -119,7 +118,7 @@ public class SimpleDownloadServiceFragment extends BaseDownloadFragment
 	/**
 	 * Broadcast receiver for update events
 	 */
-	private BroadcastReceiver updateBroadcastReceiver = new BroadcastReceiver()
+	private final BroadcastReceiver updateBroadcastReceiver = new BroadcastReceiver()
 	{
 		@Override
 		public void onReceive(final Context context, final Intent intent)
@@ -134,12 +133,6 @@ public class SimpleDownloadServiceFragment extends BaseDownloadFragment
 			}
 		}
 	};
-
-	@Override
-	public void onCreate(final Bundle savedInstance)
-	{
-		super.onCreate(savedInstance);
-	}
 
 	@Override
 	public void onResume()
@@ -220,7 +213,7 @@ public class SimpleDownloadServiceFragment extends BaseDownloadFragment
 	 *
 	 * @param context context
 	 */
-	static public void kill(final Context context)
+	private static void kill(final Context context)
 	{
 		Log.d(TAG, "Kill service");
 		SimpleDownloadServiceFragment.downloading = false;

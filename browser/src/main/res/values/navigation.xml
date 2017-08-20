@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 
 	<!-- navigation sections
 	HOME
@@ -18,7 +18,7 @@
 	<string name="handler_setup_section">setupActivity</string>
 	<string name="handler_settings_section">settingsActivity</string>
 	<string name="handler_sql_section">sqlDialog</string>
-	<string-array name="handler_sections">
+	<string-array name="handler_sections" tools:ignore="InconsistentArrays">
 		<item/>
 		<item/>
 		<item/>--> <!--2 predicate matrix -->
@@ -43,7 +43,7 @@
 	<string name="fragment_class_sql_section">org.sqlunet.browser.SqlFragment</string>
 	<string name="fragment_class_help_section">org.sqlunet.browser.HelpFragment</string>
 	<string name="fragment_class_about_section">org.sqlunet.browser.AboutFragment</string>
-	<string-array name="fragment_class_sections">
+	<string-array name="fragment_class_sections" tools:ignore="InconsistentArrays">
 		<item>@string/fragment_class_home_section</item> <!-- 0 home -->
 		<item>@string/fragment_class_browse_section</item> <!--1 browse -->
 		<item>@string/fragment_class_predicatematrix_section</item> <!--2 predicate matrix -->
@@ -68,7 +68,7 @@
 	<string name="fragment_tag_sql_section"/>
 	<string name="fragment_tag_help_section">help</string>
 	<string name="fragment_tag_about_section">about</string>
-	<string-array name="fragment_tag_sections">
+	<string-array name="fragment_tag_sections" tools:ignore="InconsistentArrays">
 		<item>@string/fragment_tag_home_section</item> <!-- 0 home -->
 		<item>@string/fragment_tag_browse_section</item> <!--1 browse -->
 		<item>@string/fragment_tag_predicatematrix_section</item> <!--2 predicate matrix -->
@@ -83,7 +83,7 @@
 	</string-array>
 
 	<!-- non-zero indicates whether fragment is recreated  -->
-	<integer-array name="fragment_transient_flags">
+	<integer-array name="fragment_transient_flags" tools:ignore="InconsistentArrays">
 		<item>1</item> <!-- 0 home -->
 		<item>0</item> <!-- 1 browse -->
 		<item>0</item> <!-- 2 predicate matrix -->
@@ -98,7 +98,7 @@
 	</integer-array>
 
 	<!-- non-zero indicates fragment swap in, non-zero for no change  -->
-	<integer-array name="drawer_swap_in_flags">
+	<integer-array name="drawer_swap_in_flags" tools:ignore="InconsistentArrays">
 		<item>1</item> <!-- 0 home -->
 		<item>1</item> <!--1 browse -->
 		<item>1</item> <!--2 predicate matrix -->
@@ -113,7 +113,7 @@
 	</integer-array>
 
 	<!-- non-zero indicates enhanced displays, zero indicates dimmed -->
-	<integer-array name="drawer_display_flags">
+	<integer-array name="drawer_display_flags" tools:ignore="InconsistentArrays">
 		<item>0</item> <!-- 0 home -->
 		<item>1</item> <!--1 browse -->
 		<item>1</item> <!--2 predicate matrix -->
@@ -139,7 +139,7 @@
 	<string name="title_sql_section">SQL</string>
 	<string name="title_help_section">Help</string>
 	<string name="title_about_section">About</string>
-	<string-array name="title_sections">
+	<string-array name="title_sections" tools:ignore="InconsistentArrays">
 		<item>@string/title_home_section</item> <!-- 0 home -->
 		<item>@string/title_browse_section</item> <!-- 1 browse -->
 		<item>@string/title_predicatematrix_section</item> <!-- 2 predicate matrix -->
@@ -154,7 +154,7 @@
 	</string-array>
 
 	<!-- icons -->
-	<integer-array name="drawer_icons">
+	<integer-array name="drawer_icons" tools:ignore="InconsistentArrays">
 		<item>@drawable/ic_home</item> <!-- 0 home -->
 		<item>@drawable/ic_search_browse</item> <!-- 1 browse -->
 		<item>@drawable/ic_search_pm</item> <!-- 2 predicate matrix -->

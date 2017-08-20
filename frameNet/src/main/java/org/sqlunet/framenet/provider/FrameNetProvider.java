@@ -52,11 +52,11 @@ public class FrameNetProvider extends BaseProvider
 
 	// C O N T E N T   P R O V I D E R   A U T H O R I T Y
 
-	static private String AUTHORITY = makeAuthority("framenetprovider");
+	static private final String AUTHORITY = makeAuthority("framenetprovider");
 
 	// U R I M A T C H E R
 
-	static private UriMatcher uriMatcher = new UriMatcher(UriMatcher.NO_MATCH);
+	static private final UriMatcher uriMatcher = new UriMatcher(UriMatcher.NO_MATCH);
 
 	static
 	{

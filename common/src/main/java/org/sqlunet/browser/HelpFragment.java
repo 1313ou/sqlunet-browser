@@ -115,7 +115,7 @@ public class HelpFragment extends NavigableFragment
 		return view;
 	}
 
-	private boolean handleUri(final Uri uri, final String mime)
+	private boolean handleUri(final Uri uri, @SuppressWarnings("SameParameterValue") final String mime)
 	{
 		try
 		{

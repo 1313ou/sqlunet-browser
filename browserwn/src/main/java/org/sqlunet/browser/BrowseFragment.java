@@ -290,7 +290,7 @@ public class BrowseFragment extends BaseSearchFragment
 		final Activity activity = getActivity();
 
 		// type
-		final Settings.Selector selectorType = Settings.getXSelectorPref(activity);
+		final Settings.Selector selectorType = Settings.getSelectorPref(activity);
 
 		// mode
 		final Settings.SelectorViewMode selectorMode = Settings.getSelectorViewModePref(activity);
@@ -327,7 +327,7 @@ public class BrowseFragment extends BaseSearchFragment
 		Intent intent = null;
 
 		// type
-		final Settings.Selector selectorType = Settings.getXSelectorPref(activity);
+		final Settings.Selector selectorType = Settings.getSelectorPref(activity);
 
 		// mode
 		final Settings.SelectorViewMode selectorMode = Settings.getSelectorViewModePref(activity);

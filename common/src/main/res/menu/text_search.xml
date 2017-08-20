@@ -5,10 +5,10 @@
       tools:ignore="UnusedResources">
 	<item
 		android:id="@+id/search"
-		android:icon="@android:drawable/ic_menu_search"
-		android:showAsAction="collapseActionView|ifRoom"
+		android:iconifiedByDefault="true"
 		android:title="@string/hint_search_text"
 		app:actionViewClass="android.support.v7.widget.SearchView"
-		app:showAsAction="collapseActionView|ifRoom"
-		tools:ignore="AppCompatResource"/>
+		app:showAsAction="always"
+		tools:ignore="AlwaysShowAction"
+		/>
 </menu>

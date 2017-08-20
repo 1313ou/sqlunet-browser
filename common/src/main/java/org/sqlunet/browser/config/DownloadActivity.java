@@ -31,7 +31,6 @@ public class DownloadActivity extends AppCompatActivity implements DownloadFragm
 	private enum Downloader
 	{
 		SIMPLE_SERVICE(R.layout.activity_download), //
-		SIMPLE_ASYNCTASK(R.layout.activity_download_simple), //
 		DOWNLOADMANAGER(R.layout.activity_download);
 
 		final private int res;
@@ -77,10 +76,6 @@ public class DownloadActivity extends AppCompatActivity implements DownloadFragm
 			BaseDownloadFragment downloadFragment = null;
 			switch (downloader)
 			{
-				case SIMPLE_ASYNCTASK:
-					downloadFragment = new SimpleDownloadFragment();
-					break;
-
 				case SIMPLE_SERVICE:
 					downloadFragment = new SimpleDownloadServiceFragment();
 					break;

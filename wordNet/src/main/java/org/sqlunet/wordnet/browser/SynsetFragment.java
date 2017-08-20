@@ -33,6 +33,7 @@ public class SynsetFragment extends TreeFragment
 	/**
 	 * Max recursion level
 	 */
+	@SuppressWarnings("WeakerAccess")
 	protected int maxRecursion;
 
 	/**

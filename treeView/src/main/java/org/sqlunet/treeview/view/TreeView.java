@@ -740,7 +740,7 @@ public class TreeView
 	 * @param defaultStyle default container style
 	 * @param applyForRoot apply for root
 	 */
-	private void setDefaultContainerStyle(final int defaultStyle, boolean applyForRoot)
+	private void setDefaultContainerStyle(final int defaultStyle, @SuppressWarnings("SameParameterValue") boolean applyForRoot)
 	{
 		this.containerStyle = defaultStyle;
 		this.applyForRoot = applyForRoot;

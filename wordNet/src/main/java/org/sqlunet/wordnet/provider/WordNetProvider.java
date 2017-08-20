@@ -58,11 +58,11 @@ public class WordNetProvider extends BaseProvider
 
 	// C O N T E N T   P R O V I D E R   A U T H O R I T Y
 
-	static private String AUTHORITY = makeAuthority("wordnetprovider");
+	static private final String AUTHORITY = makeAuthority("wordnetprovider");
 
 	// U R I M A T C H E R
 
-	static private UriMatcher uriMatcher = new UriMatcher(UriMatcher.NO_MATCH);
+	static private final UriMatcher uriMatcher = new UriMatcher(UriMatcher.NO_MATCH);
 
 	static
 	{

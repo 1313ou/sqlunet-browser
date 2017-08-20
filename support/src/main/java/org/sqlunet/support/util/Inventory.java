@@ -25,12 +25,13 @@ import java.util.Map;
  * An Inventory is returned by such methods as {@link IabHelper#queryInventory}.
  */
 public class Inventory {
-    Map<String,SkuDetails> mSkuMap = new HashMap<>();
-    Map<String,Purchase> mPurchaseMap = new HashMap<>();
+    private final Map<String,SkuDetails> mSkuMap = new HashMap<>();
+    private final Map<String,Purchase> mPurchaseMap = new HashMap<>();
 
     Inventory() { }
 
     /** Returns the listing details for an in-app product. */
+    @SuppressWarnings("unused")
     public SkuDetails getSkuDetails(String sku) {
         return mSkuMap.get(sku);
     }
@@ -41,11 +42,13 @@ public class Inventory {
     }
 
     /** Returns whether or not there exists a purchase of the given product. */
+    @SuppressWarnings("unused")
     public boolean hasPurchase(String sku) {
         return mPurchaseMap.containsKey(sku);
     }
 
     /** Return whether or not details about the given product are available. */
+    @SuppressWarnings("unused")
     public boolean hasDetails(String sku) {
         return mSkuMap.containsKey(sku);
     }
@@ -58,11 +61,13 @@ public class Inventory {
      * purchase data from the Inventory you already have is quicker than querying for
      * a new Inventory.
      */
+    @SuppressWarnings("unused")
     public void erasePurchase(String sku) {
         if (mPurchaseMap.containsKey(sku)) mPurchaseMap.remove(sku);
     }
 
     /** Returns a list of all owned product IDs. */
+    @SuppressWarnings("unused")
     List<String> getAllOwnedSkus() {
         return new ArrayList<>(mPurchaseMap.keySet());
     }
@@ -77,6 +82,7 @@ public class Inventory {
     }
 
     /** Returns a list of all purchases. */
+    @SuppressWarnings("unused")
     List<Purchase> getAllPurchases() {
         return new ArrayList<>(mPurchaseMap.values());
     }

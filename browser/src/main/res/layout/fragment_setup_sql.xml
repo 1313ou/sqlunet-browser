@@ -2,6 +2,7 @@
 
 <android.support.v4.widget.SwipeRefreshLayout
 	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:tools="http://schemas.android.com/tools"
 	android:id="@+id/swipe_refresh"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent">
@@ -126,19 +127,22 @@
 					<ImageView
 						android:id="@+id/status_pm"
 						style="@style/GridStatusImage"
-						android:contentDescription="@string/status_predicatematrix"/>
+						android:contentDescription="@string/status_predicatematrix"
+						tools:ignore="InconsistentLayout"/>
 
 					<ImageButton
 						android:id="@+id/execute_predicatematrix"
 						style="@style/GridActionButton"
 						android:contentDescription="@string/execute_predicatematrix"
-						android:src="@drawable/bn_setup"/>
+						android:src="@drawable/bn_setup"
+						tools:ignore="InconsistentLayout"/>
 
 					<ImageButton
 						android:id="@+id/info_pm"
 						style="@style/GridInfoButton"
 						android:contentDescription="@string/info_predicatematrix"
-						android:src="@drawable/bn_info"/>
+						android:src="@drawable/bn_info"
+						tools:ignore="InconsistentLayout"/>
 				</LinearLayout>
 
 				<!-- indexes -->

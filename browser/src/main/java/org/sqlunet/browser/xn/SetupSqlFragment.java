@@ -47,6 +47,7 @@ public class SetupSqlFragment extends org.sqlunet.browser.config.SetupSqlFragmen
 	{
 		// view
 		final View view = super.onCreateView(inflater, container, savedInstanceState);
+		assert view != null;
 
 		// activity
 		final Activity activity = getActivity();
@@ -124,7 +125,7 @@ public class SetupSqlFragment extends org.sqlunet.browser.config.SetupSqlFragmen
 		final int status = Status.status(activity);
 		final boolean existsDatabase = (status & org.sqlunet.browser.config.Status.EXISTS) != 0;
 		final boolean existsTables = (status & org.sqlunet.browser.config.Status.EXISTS_TABLES) != 0;
-		final boolean existsIndexes = (status & org.sqlunet.browser.config.Status.EXISTS_INDEXES) != 0;
+		// final boolean existsIndexes = (status & org.sqlunet.browser.config.Status.EXISTS_INDEXES) != 0;
 		final boolean existsPm = (status & Status.EXISTS_PREDICATEMATRIX) != 0;
 		this.pmStatus.setImageResource(existsPm ? R.drawable.ic_ok : R.drawable.ic_fail);
 

@@ -84,6 +84,7 @@ class PbNodeFactory extends NodeFactory
 	 * @param parent is the parent node to attach this node to
 	 * @param role   is the role information
 	 */
+	@SuppressWarnings("UnusedReturnValue")
 	static public Node makePbRoleNode(final Document doc, final Node parent, final PbRole role)
 	{
 		final Element element = NodeFactory.makeNode(doc, parent, "role", null);
@@ -95,6 +96,7 @@ class PbNodeFactory extends NodeFactory
 		return element;
 	}
 
+	@SuppressWarnings("UnusedReturnValue")
 	static public Node makePbExampleNode(final Document doc, final Node parent, final PbExample example)
 	{
 		final Element element = NodeFactory.makeNode(doc, parent, "example", null);

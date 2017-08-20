@@ -70,9 +70,10 @@ public class IABAdapter implements IabBroadcastReceiver.IabBroadcastListener
 			SETUP, INVENTORY, BUY
 		}
 
-		void onStart(Op op);
+		@SuppressWarnings("EmptyMethod")
+		void onStart(@SuppressWarnings("UnusedParameters") Op op);
 
-		void onFinish(boolean result, Op op);
+		void onFinish(@SuppressWarnings("UnusedParameters") boolean result, Op op);
 	}
 
 	/**
@@ -202,6 +203,7 @@ public class IABAdapter implements IabBroadcastReceiver.IabBroadcastListener
 	/**
 	 * Query inventory (result returned with receivedBroadcast
 	 */
+	@SuppressWarnings("WeakerAccess")
 	public void queryInventory() throws IabHelper.IabAsyncInProgressException
 	{
 		Log.d(TAG, "Querying inventory");
@@ -241,6 +243,7 @@ public class IABAdapter implements IabBroadcastReceiver.IabBroadcastListener
 	 * @param purchase purchase to consume
 	 * @throws IabHelper.IabAsyncInProgressException exception
 	 */
+	@SuppressWarnings("WeakerAccess")
 	public void consume(final Purchase purchase) throws IabHelper.IabAsyncInProgressException
 	{
 		Log.d(TAG, "Consuming product: " + purchase.getSku());
@@ -500,6 +503,7 @@ public class IABAdapter implements IabBroadcastReceiver.IabBroadcastListener
 	 *
 	 * @param message message
 	 */
+	@SuppressWarnings("WeakerAccess")
 	void complain(String message)
 	{
 		alert("Error: " + message);
@@ -510,6 +514,7 @@ public class IABAdapter implements IabBroadcastReceiver.IabBroadcastListener
 	 *
 	 * @param message message
 	 */
+	@SuppressWarnings("WeakerAccess")
 	void alert(String message)
 	{
 		final AlertDialog.Builder builder = new AlertDialog.Builder(this.activity);

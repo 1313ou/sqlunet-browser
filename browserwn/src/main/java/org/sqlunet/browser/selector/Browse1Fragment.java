@@ -13,6 +13,7 @@ import org.sqlunet.browser.Browse2Fragment;
 import org.sqlunet.browser.wn.R;
 import org.sqlunet.browser.wn.Settings;
 import org.sqlunet.provider.ProviderArgs;
+import org.sqlunet.wordnet.SensePointer;
 
 /**
  * Selector fragment
@@ -89,7 +90,7 @@ public class Browse1Fragment extends Fragment implements SelectorsFragment.Liste
 	 * Callback method from {@link SelectorsFragment.Listener} indicating that the item with the given ID was selected.
 	 */
 	@Override
-	public void onItemSelected(final SelectorPointer pointer, final String word, final String cased, final String pos)
+	public void onItemSelected(final SensePointer pointer, final String word, final String cased, final String pos)
 	{
 		if (isTwoPane(getView()))
 		{

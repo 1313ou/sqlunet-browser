@@ -16,6 +16,7 @@
 
 package android.support.test.espresso.contrib;
 
+import android.annotation.SuppressLint;
 import android.database.Cursor;
 import android.os.Build;
 import android.support.test.espresso.action.AdapterViewProtocol;
@@ -205,6 +206,7 @@ public final class ExpandableListViewProtocol implements AdapterViewProtocol
 	 * @throws IllegalArgumentException if this protocol cannot manipulate adapterView or if data is
 	 *                                  not owned by this AdapterViewProtocol.
 	 */
+	@SuppressLint("ObsoleteSdkInt")
 	@Override
 	public void makeDataRenderedWithinAdapterView(AdapterView<? extends Adapter> adapterView, AdaptedData data)
 	{
@@ -258,6 +260,7 @@ public final class ExpandableListViewProtocol implements AdapterViewProtocol
 
 		if (Range.closed(adapterView.getFirstVisiblePosition(), adapterView.getLastVisiblePosition()).contains(flatPosition))
 		{
+			//noinspection SimplifiableIfStatement
 			if (adapterView.getFirstVisiblePosition() == adapterView.getLastVisiblePosition())
 			{
 				// that's a huge element.

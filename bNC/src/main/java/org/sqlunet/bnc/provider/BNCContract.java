@@ -6,7 +6,7 @@ public class BNCContract
 	static public final class BNCs
 	{
 		static public final String TABLE = "bncs";
-		static public final String CONTENT_URITABLE = BNCs.TABLE;
+		static public final String CONTENT_URI_TABLE = BNCs.TABLE;
 		static public final String WORDID = "wordid";
 		static public final String POS = "pos";
 		static public final String CONTENTS = "contents";

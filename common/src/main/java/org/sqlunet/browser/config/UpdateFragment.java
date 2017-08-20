@@ -75,6 +75,7 @@ public class UpdateFragment extends Fragment
 		final boolean newerArg = intent.getBooleanExtra(NEWER_ARG, false);
 
 		final View view = getView();
+		assert view != null;
 
 		final TextView currentDate = (TextView) view.findViewById(R.id.current_date);
 		final TextView currentSize = (TextView) view.findViewById(R.id.current_size);

@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 
 	<!-- browser spinner
 	SELECTORS
 	-->
-	<string-array name="selectors_names">
+	<string-array name="selectors_names" tools:ignore="InconsistentArrays">
 		<item>WordNet words</item>
 	</string-array>
-	<integer-array name="selectors_icons">
+	<integer-array name="selectors_icons" tools:ignore="InconsistentArrays">
 		<item>@drawable/ic_selector</item>
 	</integer-array>
 
@@ -16,12 +16,12 @@
 	WORDNET SAMPLES
 	WORDNET WORDS
 	-->
-	<string-array name="textsearch_modes">
+	<string-array name="textsearch_modes" tools:ignore="InconsistentArrays">
 		<item>WordNet definitions</item>
 		<item>WordNet samples</item>
 		<item>WordNet words</item>
 	</string-array>
-	<integer-array name="textsearch_icons">
+	<integer-array name="textsearch_icons" tools:ignore="InconsistentArrays">
 		<item>@drawable/ic_search_wndefinition</item>
 		<item>@drawable/ic_search_wnsample</item>
 		<item>@drawable/ic_search_wnword</item>

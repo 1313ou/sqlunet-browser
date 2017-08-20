@@ -110,7 +110,7 @@ public class DonateActivity extends AppCompatActivity implements IABAdapter.IABL
 
 	// B U Y
 
-	public void onBuy1(@SuppressWarnings("unused") View v)
+	public void onBuy1(@SuppressWarnings("UnusedParameters") View v)
 	{
 		if (this.iabAdapter != null)
 		{
@@ -125,7 +125,7 @@ public class DonateActivity extends AppCompatActivity implements IABAdapter.IABL
 		}
 	}
 
-	public void onBuy2(@SuppressWarnings("unused") View v)
+	public void onBuy2(@SuppressWarnings("UnusedParameters") View v)
 	{
 		if (this.iabAdapter != null)
 		{
@@ -140,7 +140,7 @@ public class DonateActivity extends AppCompatActivity implements IABAdapter.IABL
 		}
 	}
 
-	public void onBuy3(@SuppressWarnings("unused") View v)
+	public void onBuy3(@SuppressWarnings("UnusedParameters") View v)
 	{
 		if (this.iabAdapter != null)
 		{
@@ -155,7 +155,7 @@ public class DonateActivity extends AppCompatActivity implements IABAdapter.IABL
 		}
 	}
 
-	public void onBuy4(@SuppressWarnings("unused") View v)
+	public void onBuy4(@SuppressWarnings("UnusedParameters") View v)
 	{
 		if (this.iabAdapter != null)
 		{
@@ -170,7 +170,7 @@ public class DonateActivity extends AppCompatActivity implements IABAdapter.IABL
 		}
 	}
 
-	public void onBuy5(@SuppressWarnings("unused") View v)
+	public void onBuy5(@SuppressWarnings("UnusedParameters") View v)
 	{
 		if (this.iabAdapter != null)
 		{

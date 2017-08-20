@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 
 	<integer name="sql_statement_do_indexes_position">1</integer>
 	<integer name="sql_statement_do_ts_fn_position">2</integer>
 
-	<string-array name="sql_statement_titles">
+	<string-array name="sql_statement_titles" tools:ignore="InconsistentArrays">
 		<item>[SELECT OPERATION]</item>
 		<item>Create all indexes</item>
 		<item>Prepare FrameNet text search</item>
@@ -12,7 +12,7 @@
 		<item>Drop FrameNet indexes</item>
 		<item>Drop FrameNet text search</item>
 	</string-array>
-	<string-array name="sql_statements_values" formatted="false">
+	<string-array name="sql_statements_values" formatted="false" tools:ignore="InconsistentArrays">
 		<item/>
 		<item>
 			CREATE INDEX IF NOT EXISTS index_fnwords_wordid ON fnwords(wordid);

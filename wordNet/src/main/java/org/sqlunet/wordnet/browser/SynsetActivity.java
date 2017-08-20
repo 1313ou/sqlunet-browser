@@ -16,9 +16,10 @@ import org.sqlunet.wordnet.R;
  */
 public class SynsetActivity extends AppCompatActivity
 {
+	@SuppressWarnings("WeakerAccess")
 	protected boolean fromSavedInstance;
 
-	protected int layoutId;
+	private final int layoutId;
 
 	public SynsetActivity()
 	{

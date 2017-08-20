@@ -3,7 +3,6 @@ package org.sqlunet.browser.wn;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.widget.SwipeRefreshLayout;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -34,10 +33,10 @@ public class SetupStatusFragment extends org.sqlunet.browser.config.SetupStatusF
 
 	private ImageButton buttonTextSearchWn;
 
-	/**
+	/*
 	 * Swipe refresh layout
 	 */
-	private SwipeRefreshLayout swipeRefreshLayout;
+	// private SwipeRefreshLayout swipeRefreshLayout;
 
 	/**
 	 * Mandatory empty constructor for the fragment manager to instantiate the fragment (e.g. upon screen orientation changes).
@@ -51,6 +50,7 @@ public class SetupStatusFragment extends org.sqlunet.browser.config.SetupStatusF
 	{
 		// view
 		final View view = super.onCreateView(inflater, container, savedInstanceState);
+		assert view != null;
 
 		// images
 		this.imageTextSearchWn = (ImageView) view.findViewById(R.id.status_textsearchWn);

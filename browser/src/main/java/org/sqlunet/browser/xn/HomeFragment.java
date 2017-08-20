@@ -40,7 +40,7 @@ public class HomeFragment extends org.sqlunet.browser.HomeFragment
 	public View onCreateView(final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState)
 	{
 		final View view = super.onCreateView(inflater, container, savedInstanceState);
-		
+		assert view != null;
 		final ImageView image = (ImageView) view.findViewById(R.id.splash);
 		image.setOnTouchListener(new View.OnTouchListener()
 		{

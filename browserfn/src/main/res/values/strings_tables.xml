@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 
-	<string-array name="required_tables">
+	<string-array name="required_tables" tools:ignore="InconsistentArrays">
 		<item>fnannosets</item>
 		<item>fncoretypes</item>
 		<item>fncorpuses</item>
@@ -47,7 +47,7 @@
 		<item>fnwords</item>
 		<item>sources</item>
 	</string-array>
-	<string-array name="required_indexes">
+	<string-array name="required_indexes" tools:ignore="InconsistentArrays">
 		<item>index_fnwords_wordid</item>
 		<item>index_fnframes_related_frameid</item>
 		<item>index_fnframes_related_frame2id</item>

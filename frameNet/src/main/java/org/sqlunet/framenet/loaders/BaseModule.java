@@ -577,7 +577,7 @@ abstract public class BaseModule extends Module
 	 * @param withFrame whether to include frames
 	 * @param withFes   whether to include frame elements
 	 */
-	void lexUnit(final long luId, final TreeNode parent, final boolean withFrame, final boolean withFes)
+	void lexUnit(final long luId, final TreeNode parent, @SuppressWarnings("SameParameterValue") final boolean withFrame, @SuppressWarnings("SameParameterValue") final boolean withFes)
 	{
 		getLoaderManager().restartLoader(++Module.loaderId, null, new LoaderCallbacks<Cursor>()
 		{
@@ -740,7 +740,7 @@ abstract public class BaseModule extends Module
 	 * @param parent    parent node
 	 * @param withFrame whether to include frame
 	 */
-	private void lexUnitsForFrame(final long frameId, final TreeNode parent, final boolean withFrame)
+	private void lexUnitsForFrame(final long frameId, final TreeNode parent, @SuppressWarnings("SameParameterValue") final boolean withFrame)
 	{
 		getLoaderManager().restartLoader(++Module.loaderId, null, new LoaderCallbacks<Cursor>()
 		{
@@ -1451,6 +1451,7 @@ abstract public class BaseModule extends Module
 	 * @param sb        builder to host result
 	 * @return builder
 	 */
+	@SuppressWarnings("UnusedReturnValue")
 	private CharSequence parseGroupRealizations(final String aggregate, final SpannableStringBuilder sb)
 	{
 		// fe.pt.gf,fe.pt.gf,...
@@ -2564,7 +2565,7 @@ abstract public class BaseModule extends Module
 		 *
 		 * @param annoSetId annoSet id
 		 */
-		public AnnoSetQuery(final long annoSetId, final boolean withSentence)
+		public AnnoSetQuery(final long annoSetId, @SuppressWarnings("SameParameterValue") final boolean withSentence)
 		{
 			super(annoSetId);
 			this.withSentence = withSentence;

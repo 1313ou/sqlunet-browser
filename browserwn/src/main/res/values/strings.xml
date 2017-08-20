@@ -14,9 +14,6 @@
 	<string name="action_table_postypes">POS types</string>
 	<string name="action_table_adjpositiontypes">Adjective Position types</string>
 
-	<!-- labels -->
-	<string name="title_activity_wnsense">WordNet Sense</string>
-
 	<!-- _status -->
 	<string name="status_textsearchWn">Text Search\non WordNet</string>
 

@@ -217,7 +217,7 @@ public class TaskObserver
 		public DialogListener(final Context context, final int titleId, final CharSequence message, final CharSequence unit)
 		{
 			super(context);
-			this.progressDialog = makeDialog(context, titleId, message, ProgressDialog.STYLE_HORIZONTAL);
+			this.progressDialog = makeDialog(context, titleId, message);
 			this.unit = unit;
 		}
 
@@ -275,16 +275,15 @@ public class TaskObserver
 		 * @param context context
 		 * @param titleId titleId id
 		 * @param message message
-		 * @param style   style
 		 * @return dialog
 		 */
-		static private ProgressDialog makeDialog(final Context context, final int titleId, final CharSequence message, final int style)
+		static private ProgressDialog makeDialog(final Context context, final int titleId, final CharSequence message)
 		{
 			final ProgressDialog progressDialog = new ProgressDialog(context);
 			progressDialog.setTitle(titleId);
 			progressDialog.setMessage(message);
 			progressDialog.setIndeterminate(true);
-			progressDialog.setProgressStyle(style);
+			progressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
 			progressDialog.setCancelable(true);
 			// until task is available
 			progressDialog.setButton(DialogInterface.BUTTON_NEGATIVE, context.getString(R.string.action_abort), new DialogInterface.OnClickListener()

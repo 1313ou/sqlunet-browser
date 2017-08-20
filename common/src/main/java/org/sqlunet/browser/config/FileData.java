@@ -27,7 +27,7 @@ public class FileData
 
 	static public FileData makeFileDataFrom(final File file)
 	{
-		if (file.exists())
+		if (file !=null && file.exists())
 		{
 			return new FileData(file.lastModified(), file.length());
 		}

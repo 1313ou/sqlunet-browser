@@ -140,7 +140,7 @@ abstract public class BaseModule extends Module
 	 * @param addNewNode whether to addItem to (or set) node
 	 */
 	@SuppressWarnings("WeakerAccess")
-	protected void word(final long wordId, final TreeNode parent, final boolean addNewNode)
+	protected void word(final long wordId, final TreeNode parent, @SuppressWarnings("SameParameterValue") final boolean addNewNode)
 	{
 		// load the contents
 		getLoaderManager().restartLoader(++Module.loaderId, null, new LoaderCallbacks<Cursor>()
@@ -596,7 +596,7 @@ abstract public class BaseModule extends Module
 	 * @param parent     parent node
 	 * @param addNewNode whether to addItem to (or set) node
 	 */
-	void synset(final long synsetId, final TreeNode parent, final boolean addNewNode)
+	void synset(final long synsetId, final TreeNode parent, @SuppressWarnings("SameParameterValue") final boolean addNewNode)
 	{
 		getLoaderManager().restartLoader(++Module.loaderId, null, new LoaderCallbacks<Cursor>()
 		{
@@ -675,6 +675,7 @@ abstract public class BaseModule extends Module
 	 * @param cased      cased
 	 * @return string builder
 	 */
+	@SuppressWarnings("UnusedReturnValue")
 	private SpannableStringBuilder sense(final SpannableStringBuilder sb, final long synsetId, final CharSequence posName, final CharSequence lexDomain, final CharSequence definition, final int tagCount, final CharSequence cased)
 	{
 		synset_head(sb, synsetId, posName, lexDomain);
@@ -708,6 +709,7 @@ abstract public class BaseModule extends Module
 	 * @param definition definition
 	 * @return string builder
 	 */
+	@SuppressWarnings("UnusedReturnValue")
 	private SpannableStringBuilder synset(final SpannableStringBuilder sb, final long synsetId, final CharSequence posName, final CharSequence lexDomain, final CharSequence definition)
 	{
 		synset_head(sb, synsetId, posName, lexDomain);
@@ -725,6 +727,7 @@ abstract public class BaseModule extends Module
 	 * @param lexDomain lex domain
 	 * @return string builder
 	 */
+	@SuppressWarnings("UnusedReturnValue")
 	private SpannableStringBuilder synset_head(final SpannableStringBuilder sb, final long synsetId, final CharSequence posName, final CharSequence lexDomain)
 	{
 		Spanner.appendImage(sb, BaseModule.this.posDrawable);
@@ -746,6 +749,7 @@ abstract public class BaseModule extends Module
 	 * @param definition definition
 	 * @return string builder
 	 */
+	@SuppressWarnings("UnusedReturnValue")
 	private SpannableStringBuilder synset_definition(final SpannableStringBuilder sb, final CharSequence definition)
 	{
 		Spanner.appendImage(sb, BaseModule.this.definitionDrawable);
@@ -929,7 +933,7 @@ abstract public class BaseModule extends Module
 	 * @param addNewNode whether to addItem to (or set) node
 	 */
 	@SuppressWarnings("WeakerAccess")
-	void samples(final long synsetId, final TreeNode parent, final boolean addNewNode)
+	void samples(final long synsetId, final TreeNode parent, @SuppressWarnings("SameParameterValue") final boolean addNewNode)
 	{
 		getLoaderManager().restartLoader(++Module.loaderId, null, new LoaderCallbacks<Cursor>()
 		{
@@ -2143,6 +2147,7 @@ abstract public class BaseModule extends Module
 	 */
 	class SynsetLink extends Link
 	{
+		@SuppressWarnings("WeakerAccess")
 		protected final int recurse;
 
 		/**

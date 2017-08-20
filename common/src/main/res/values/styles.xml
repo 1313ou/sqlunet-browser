@@ -28,6 +28,13 @@
 
 	</style>
 
+	<!-- Root theme -->
+	<style name="NoBackgroundCompatAppTheme" parent="CompatAppBaseTheme">
+
+		<item name="android:windowBackground">@null</item>
+
+	</style>
+
 	<!-- Action bar -->
 	<style name="ActionBar" parent="Widget.AppCompat.ActionBar">
 		<item name="android:background">@color/primary</item>

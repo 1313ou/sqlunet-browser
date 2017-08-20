@@ -144,7 +144,7 @@ public class BrowseFragment extends BaseSearchFragment
 		}
 
 		// menuDispatch as per query prefix
-		@SuppressWarnings("TooBroadScope") Fragment fragment = null;
+		@SuppressWarnings("TooBroadScope") Fragment fragment;
 		Intent targetIntent = null;
 		Bundle args = new Bundle();
 		if (query.matches("#\\p{Lower}\\p{Lower}\\d+"))

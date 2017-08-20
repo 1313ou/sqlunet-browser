@@ -3,7 +3,7 @@
 	<string name="manager_authority">org.sqlunet.manager.fn.provider</string>
 	<string name="sqlunet_authority">org.sqlunet.xsqlunet.fn.provider</string>
 	<string name="framenet_authority">org.sqlunet.framenet.fn.provider</string>
-	<string-array name="provider_authorities">
+	<string-array name="provider_authorities" tools:ignore="InconsistentArrays">
 		<item>@string/manager_authority</item>
 		<item>@string/sqlunet_authority</item>
 		<item>@string/framenet_authority</item>

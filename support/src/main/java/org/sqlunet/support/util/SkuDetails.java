@@ -22,7 +22,7 @@ import org.json.JSONObject;
  * Represents an in-app product's listing details.
  */
 public class SkuDetails {
-    @SuppressWarnings("FieldCanBeLocal")
+    @SuppressWarnings({"FieldCanBeLocal", "unused"})
     private final String mItemType;
     private final String mSku;
     private final String mType;
@@ -33,6 +33,7 @@ public class SkuDetails {
     private final String mDescription;
     private final String mJson;
 
+    @SuppressWarnings("unused")
     public SkuDetails(String jsonSkuDetails) throws JSONException {
         this(IabHelper.ITEM_TYPE_INAPP, jsonSkuDetails);
     }
@@ -51,11 +52,17 @@ public class SkuDetails {
     }
 
     public String getSku() { return mSku; }
+    @SuppressWarnings("unused")
     public String getType() { return mType; }
+    @SuppressWarnings("unused")
     public String getPrice() { return mPrice; }
+    @SuppressWarnings("unused")
     public long getPriceAmountMicros() { return mPriceAmountMicros; }
+    @SuppressWarnings("unused")
     public String getPriceCurrencyCode() { return mPriceCurrencyCode; }
+    @SuppressWarnings("unused")
     public String getTitle() { return mTitle; }
+    @SuppressWarnings("unused")
     public String getDescription() { return mDescription; }
 
     @Override

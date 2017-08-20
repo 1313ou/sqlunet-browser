@@ -124,10 +124,11 @@ public class Browse2Fragment extends Fragment
 		switch (mode)
 		{
 			case VIEW:
-				int enable = Settings.getAllPref(context);
 
 				// transaction
 				final FragmentTransaction transaction = manager.beginTransaction();
+
+				int enable = Settings.getAllPref(context);
 
 				// wordnet
 				if ((enable & Settings.ENABLE_WORDNET) != 0)
@@ -136,7 +137,7 @@ public class Browse2Fragment extends Fragment
 					// labelView.setVisibility(View.VISIBLE);
 					final SenseFragment senseFragment = new SenseFragment();
 					senseFragment.setArguments(args);
-					senseFragment.setExpand(wordNetOnly(this.pointer));
+					senseFragment.setExpand(false);
 					transaction.replace(R.id.container_wordnet, senseFragment, "wordnet");
 				}
 				else
@@ -180,16 +181,5 @@ public class Browse2Fragment extends Fragment
 						.commit();
 				break;
 		}
-	}
-
-	/**
-	 * Determine whether to expand
-	 *
-	 * @param pointer pointer
-	 * @return whether to expand
-	 */
-	private boolean wordNetOnly(final Parcelable pointer)
-	{
-		return false;
 	}
 }

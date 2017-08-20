@@ -1,7 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="EntryPointsManager">
-    <entry_points version="2.0" />
+    <entry_points version="2.0">
+      <entry_point TYPE="method" FQNAME="org.sqlunet.browser.config.BaseDownloadFragment.Status boolean isSuccess(long status)" />
+      <entry_point TYPE="method" FQNAME="org.sqlunet.browser.SqlDialogFragment void show(android.support.v4.app.FragmentManager manager)" />
+      <entry_point TYPE="method" FQNAME="org.sqlunet.settings.Settings.Selector void setPref(android.content.Context context)" />
+      <entry_point TYPE="field" FQNAME="org.sqlunet.framenet.provider.FrameNetContract.Lookup_FnWords WORD" />
+      <entry_point TYPE="field" FQNAME="org.sqlunet.framenet.provider.FrameNetContract.Lookup_FnWords WORDID" />
+      <entry_point TYPE="field" FQNAME="org.sqlunet.framenet.provider.FrameNetContract.Lookup_FnWords FNWORDID" />
+      <entry_point TYPE="field" FQNAME="org.sqlunet.framenet.provider.FrameNetContract.Lookup_FnWords CONTENT_URI_TABLE" />
+      <entry_point TYPE="implicit.constructor" FQNAME="org.sqlunet.framenet.provider.FrameNetContract.Lookup_FnWords" />
+      <entry_point TYPE="field" FQNAME="org.sqlunet.framenet.provider.FrameNetContract.Suggest_FTS_FnWords WORD" />
+      <entry_point TYPE="field" FQNAME="org.sqlunet.framenet.provider.FrameNetContract.Suggest_FTS_FnWords WORDID" />
+      <entry_point TYPE="field" FQNAME="org.sqlunet.framenet.provider.FrameNetContract.Suggest_FTS_FnWords FNWORDID" />
+      <entry_point TYPE="implicit.constructor" FQNAME="org.sqlunet.framenet.provider.FrameNetContract.Suggest_FTS_FnWords" />
+      <entry_point TYPE="field" FQNAME="org.sqlunet.framenet.provider.FrameNetContract.Suggest_FnWords WORD" />
+      <entry_point TYPE="field" FQNAME="org.sqlunet.framenet.provider.FrameNetContract.Suggest_FnWords WORDID" />
+      <entry_point TYPE="field" FQNAME="org.sqlunet.framenet.provider.FrameNetContract.Suggest_FnWords FNWORDID" />
+      <entry_point TYPE="implicit.constructor" FQNAME="org.sqlunet.framenet.provider.FrameNetContract.Suggest_FnWords" />
+      <entry_point TYPE="field" FQNAME="org.sqlunet.support.util.IabHelper BILLING_RESPONSE_RESULT_USER_CANCELED" />
+      <entry_point TYPE="field" FQNAME="org.sqlunet.support.util.IabHelper BILLING_RESPONSE_RESULT_SERVICE_UNAVAILABLE" />
+      <entry_point TYPE="field" FQNAME="org.sqlunet.support.util.IabHelper BILLING_RESPONSE_RESULT_ITEM_UNAVAILABLE" />
+      <entry_point TYPE="field" FQNAME="org.sqlunet.support.util.IabHelper BILLING_RESPONSE_RESULT_DEVELOPER_ERROR" />
+      <entry_point TYPE="field" FQNAME="org.sqlunet.support.util.IabHelper BILLING_RESPONSE_RESULT_ERROR" />
+      <entry_point TYPE="field" FQNAME="org.sqlunet.support.util.IabHelper BILLING_RESPONSE_RESULT_ITEM_ALREADY_OWNED" />
+      <entry_point TYPE="field" FQNAME="org.sqlunet.support.util.IabHelper BILLING_RESPONSE_RESULT_ITEM_NOT_OWNED" />
+      <entry_point TYPE="field" FQNAME="org.sqlunet.support.util.IabHelper GET_SKU_DETAILS_ITEM_TYPE_LIST" />
+      <entry_point TYPE="method" FQNAME="org.sqlunet.support.OtherActivity boolean isAppInstalled(java.lang.String uri, android.content.Context context)" />
+      <entry_point TYPE="implicit.constructor" FQNAME="org.sqlunet.support.OtherActivity" />
+      <entry_point TYPE="method" FQNAME="org.sqlunet.browser.xn.Settings void initialize(android.content.Context context)" />
+      <entry_point TYPE="method" FQNAME="org.sqlunet.browser.xn.Status boolean canRun(android.content.Context context)" />
+    </entry_points>
   </component>
   <component name="NullableNotNullManager">
     <option name="myDefaultNullable" value="android.support.annotation.Nullable" />

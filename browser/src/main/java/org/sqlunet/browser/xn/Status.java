@@ -15,6 +15,7 @@ import java.util.List;
  *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
+@SuppressWarnings("WeakerAccess")
 public class Status extends org.sqlunet.browser.config.Status
 {
 	static private final String TAG = "Status";

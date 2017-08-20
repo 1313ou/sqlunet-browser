@@ -8,7 +8,7 @@
 	<string name="framenet_authority">org.sqlunet.framenet.provider</string>
 	<string name="predicatematrix_authority">org.sqlunet.predicatematrix.provider</string>
 
-	<string-array name="provider_authorities">
+	<string-array name="provider_authorities" tools:ignore="InconsistentArrays">
 		<item>@string/manager_authority</item>
 		<item>@string/sqlunet_authority</item>
 		<item>@string/wordnet_authority</item>

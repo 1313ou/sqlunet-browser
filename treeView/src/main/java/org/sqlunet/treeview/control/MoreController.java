@@ -22,7 +22,7 @@ public class MoreController extends Controller<Value>
 	 * Resource used (changed by derived classes)
 	 */
 	@SuppressWarnings("WeakerAccess")
-	protected int layoutRes = R.layout.layout_more;
+	protected final int layoutRes = R.layout.layout_more;
 
 	/**
 	 * Constructor

@@ -48,12 +48,11 @@
 	<!-- Download -->
 	<string name="pref_header_download">Download</string>
 	<string name="pref_title_downloader">Downloader</string>
-	<string name="pref_default_downloader">SIMPLE_SERVICE</string>
 	<string-array name="pref_downloader_titles">
 		<item>Simple download service</item>
-		<item>Simple downloader</item>
 		<item>Android Download Manager</item>
 	</string-array>
+	<string name="pref_default_downloader">SIMPLE_SERVICE</string>
 	<string-array name="pref_downloader_values">
 		<item>@string/pref_default_downloader</item>
 		<item>DOWNLOADMANAGER</item>

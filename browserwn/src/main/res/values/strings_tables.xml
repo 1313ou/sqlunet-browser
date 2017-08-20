@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 
-	<string-array name="required_tables">
+	<string-array name="required_tables" tools:ignore="InconsistentArrays">
 		<item>words</item>
 		<item>senses</item>
 		<item>synsets</item>
@@ -22,7 +22,7 @@
 		<item>vframesentences</item>
 		<item>sources</item>
 	</string-array>
-	<string-array name="required_indexes">
+	<string-array name="required_indexes" tools:ignore="InconsistentArrays">
 		<item>index_words_lemma</item>
 		<item>index_senses_wordid</item>
 		<item>index_senses_synsetid</item>

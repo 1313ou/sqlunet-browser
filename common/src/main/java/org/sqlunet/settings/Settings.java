@@ -38,53 +38,6 @@ public class Settings
 	static public final String PREF_ENTRY_INDEX = StorageSettings.PREF_ENTRY_INDEX;
 	static public final String PREF_CACHE = StorageSettings.PREF_CACHE;
 
-	// D A T A
-
-	/**
-	 * Source
-	 */
-	public enum Source
-	{
-		X(0);
-
-		/**
-		 * Source mask
-		 */
-		final private int mask;
-
-		/**
-		 * Constructor
-		 *
-		 * @param mask mask
-		 */
-		Source(final int mask)
-		{
-			this.mask = mask;
-		}
-
-		/**
-		 * Set this source in sources
-		 *
-		 * @param sources sources to set
-		 * @return progressMessage
-		 */
-		public int set(final int sources)
-		{
-			return sources | this.mask;
-		}
-
-		/**
-		 * Test
-		 *
-		 * @param sources sources to test
-		 * @return true if this source is set
-		 */
-		public boolean test(final int sources)
-		{
-			return (sources & this.mask) != 0;
-		}
-	}
-
 	// D I S P L A Y
 
 	/**

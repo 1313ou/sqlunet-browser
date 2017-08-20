@@ -465,7 +465,7 @@ public class WordNetImplementation implements WordNetInterface
 			final Node parent, //
 			final boolean withLinks,//
 			final boolean recurse, //
-			final int targetLinkType)
+			@SuppressWarnings("SameParameterValue") final int targetLinkType)
 	{
 		if (synsetId == null)
 		{
@@ -541,6 +541,7 @@ public class WordNetImplementation implements WordNetInterface
 	 * @param parent org.w3c.dom.Node walk will attach results to
 	 * @param synset synset whose data are to be processed
 	 */
+	@SuppressWarnings("UnusedReturnValue")
 	static private Node walkSynsetHeader(final Document doc, final Node parent, final Synset synset)
 	{
 		// anchor node

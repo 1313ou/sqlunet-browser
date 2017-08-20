@@ -26,11 +26,11 @@ public class ManagerProvider extends BaseProvider
 
 	// C O N T E N T   P R O V I D E R   A U T H O R I T Y
 
-	static private String AUTHORITY = makeAuthority("managerprovider");
+	static private final String AUTHORITY = makeAuthority("managerprovider");
 
 	// U R I M A T C H E R
 
-	static private UriMatcher uriMatcher = new UriMatcher(UriMatcher.NO_MATCH);
+	static private final UriMatcher uriMatcher = new UriMatcher(UriMatcher.NO_MATCH);
 
 	static
 	{
@@ -40,12 +40,12 @@ public class ManagerProvider extends BaseProvider
 	// join codes
 	static private final int TABLES_AND_INDICES = 100;
 
-	static void matchURIs()
+	private static void matchURIs()
 	{
 		ManagerProvider.uriMatcher.addURI(AUTHORITY, TablesAndIndices.TABLE, ManagerProvider.TABLES_AND_INDICES);
 	}
 
-	static public String makeUri(final String table)
+	static public String makeUri(@SuppressWarnings("SameParameterValue") final String table)
 	{
 		return BaseProvider.SCHEME + AUTHORITY + '/' + table;
 	}

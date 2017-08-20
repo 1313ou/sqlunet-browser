@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 
-	<string-array name="required_tables">
+	<string-array name="required_tables" tools:ignore="InconsistentArrays">
 		<!-- wordnet -->
 		<item>words</item>
 		<item>senses</item>
@@ -131,7 +131,7 @@
 	</string-array>
 
 
-	<string-array name="required_indexes">
+	<string-array name="required_indexes" tools:ignore="InconsistentArrays">
 		<!-- wordnet -->
 		<item>index_words_lemma</item>
 		<item>index_senses_wordid</item>
@@ -199,10 +199,6 @@
 	</string-array>
 
 	<string-array name="required_texts_fn">
-		<item>fnsentences_text_fts4</item>
-	</string-array>
-
-	<string-array name="required_texts">
 		<item>fnsentences_text_fts4</item>
 	</string-array>
 

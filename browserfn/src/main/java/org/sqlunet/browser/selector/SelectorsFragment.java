@@ -40,7 +40,7 @@ public class SelectorsFragment extends ListFragment
 {
 	// static protected final String TAG = "SelectorsFragment";
 
-	static protected final String ISLIKE = "islike";
+	private static final String ISLIKE = "islike";
 
 	/**
 	 * A callback interface that all activities containing this fragment must implement. This mechanism allows activities to be notified of item selections.
@@ -275,7 +275,7 @@ public class SelectorsFragment extends ListFragment
 	 *
 	 * @param activateOnItemClick true if activate
 	 */
-	public void setActivateOnItemClick(final boolean activateOnItemClick)
+	public void setActivateOnItemClick(@SuppressWarnings("SameParameterValue") final boolean activateOnItemClick)
 	{
 		this.activateOnItemClick = activateOnItemClick;
 	}

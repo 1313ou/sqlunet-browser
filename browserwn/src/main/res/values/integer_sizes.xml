@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 
 	<integer name="size_sqlunet_db">65818624</integer> <!-- sqlunet-wn.db -->
 	<integer name="size_sqlunet_db_zip">27719002</integer> <!-- sqlunet-wn.db.zip -->
 	<integer name="size_sqlunet_sql_zip">12038180</integer> <!-- sqlunet-wn.sql.zip -->
 
-	<integer name="size_textsearch_wn">34684928</integer>
+	<integer name="size_textsearch_wn" tools:ignore="UnusedResources">34684928</integer>
 	<integer name="size_textsearch">34684928</integer>
 
 	<integer name="size_db_working_total">100503552</integer>

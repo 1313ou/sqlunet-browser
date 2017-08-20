@@ -375,16 +375,18 @@ abstract class BaseDownloadFragment extends Fragment implements View.OnClickList
 		}
 	}
 
-	/**
-	 * Initial state
-	 */
-	private void initialState()
-	{
-		this.downloadButton.setVisibility(View.VISIBLE);
-		this.progressBar.setVisibility(View.INVISIBLE);
-		this.progressStatus.setVisibility(View.INVISIBLE);
-		this.cancelButton.setVisibility(View.GONE);
-	}
+// --Commented out by Inspection START (8/20/17 9:13 AM):
+//	/**
+//	 * Initial state
+//	 */
+//	private void initialState()
+//	{
+//		this.downloadButton.setVisibility(View.VISIBLE);
+//		this.progressBar.setVisibility(View.INVISIBLE);
+//		this.progressStatus.setVisibility(View.INVISIBLE);
+//		this.cancelButton.setVisibility(View.GONE);
+//	}
+// --Commented out by Inspection STOP (8/20/17 9:13 AM)
 
 	/**
 	 * Start download
@@ -420,7 +422,7 @@ abstract class BaseDownloadFragment extends Fragment implements View.OnClickList
 		stopObserver();
 	}
 
-	static private long TIMELAPSE = 3000L;
+	static private final long TIMELAPSE = 3000L;
 
 	/**
 	 * Observer
@@ -505,7 +507,7 @@ abstract class BaseDownloadFragment extends Fragment implements View.OnClickList
 	/**
 	 * Observer update
 	 */
-	private String observerUpdate()
+	private void observerUpdate()
 	{
 		final boolean inProgress = Status.STATUS_RUNNING.test(BaseDownloadFragment.this.status) || Status.STATUS_PAUSED.test(BaseDownloadFragment.this.status);
 		final int progress100 = this.progress.total == 0 ? -1 : (int) (this.progress.downloaded * 100L / this.progress.total);
@@ -536,7 +538,6 @@ abstract class BaseDownloadFragment extends Fragment implements View.OnClickList
 				}
 			});
 		}
-		return message;
 	}
 
 	// S T A T U S

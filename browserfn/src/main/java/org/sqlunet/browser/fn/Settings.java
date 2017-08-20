@@ -16,8 +16,6 @@ public class Settings extends org.sqlunet.settings.Settings
 	static private final String PREF_ENABLE_FRAMENET = "pref_enable_framenet";
 
 
-	static public final int ENABLE_FRAMENET = 0x40;
-
 	// D A T A
 
 	/**
@@ -78,5 +76,4 @@ public class Settings extends org.sqlunet.settings.Settings
 		final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
 		return sharedPref.getBoolean(Settings.PREF_ENABLE_FRAMENET, true);
 	}
-
 }

@@ -55,6 +55,7 @@ public class LinkQueryController extends QueryController
 		final Value value = (Value) this.node.getValue();
 		if (value != null)
 		{
+			assert value.payload != null;
 			final Link link = (Link) value.payload[1];
 			link.process();
 		}

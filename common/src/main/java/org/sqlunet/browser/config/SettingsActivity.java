@@ -153,6 +153,7 @@ public class SettingsActivity extends AppCompatPreferenceActivity
 
 	static private Set<String> allowedFragments;
 
+	@SuppressWarnings("TryWithIdenticalCatches")
 	@Override
 	protected boolean isValidFragment(final String fragmentName)
 	{

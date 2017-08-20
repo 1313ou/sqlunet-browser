@@ -2,6 +2,7 @@
 
 <android.support.v4.widget.SwipeRefreshLayout
 	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:tools="http://schemas.android.com/tools"
 	android:id="@+id/swipe_refresh"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent">
@@ -97,13 +98,15 @@
 					<ImageView
 						android:id="@+id/status_textsearchFn"
 						style="@style/GridStatusImage"
-						android:contentDescription="@string/status_textsearchFn"/>
+						android:contentDescription="@string/status_textsearchFn"
+						tools:ignore="InconsistentLayout"/>
 
 					<ImageButton
 						android:id="@+id/textsearchFnButton"
 						style="@style/GridStatusActionButton"
 						android:contentDescription="@string/status_textsearchFn"
-						android:src="@drawable/bn_setup"/>
+						android:src="@drawable/bn_setup"
+						tools:ignore="InconsistentLayout"/>
 				</LinearLayout>
 
 			</GridLayout>

@@ -319,7 +319,7 @@ public class SelectorsFragment extends ListFragment
 	 *
 	 * @param activateOnItemClick true if activate
 	 */
-	public void setActivateOnItemClick(final boolean activateOnItemClick)
+	public void setActivateOnItemClick(@SuppressWarnings("SameParameterValue") final boolean activateOnItemClick)
 	{
 		this.activateOnItemClick = activateOnItemClick;
 	}
