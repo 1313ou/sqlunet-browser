@@ -24,11 +24,11 @@ public class PredicateMatrixProvider extends BaseProvider
 
 	// C O N T E N T   P R O V I D E R   A U T H O R I T Y
 
-	static private String AUTHORITY = makeAuthority("predicatematrixprovider");
+	static private final String AUTHORITY = makeAuthority("predicatematrixprovider");
 
 	// U R I M A T C H E R
 
-	static private UriMatcher uriMatcher = new UriMatcher(UriMatcher.NO_MATCH);
+	static private final UriMatcher uriMatcher = new UriMatcher(UriMatcher.NO_MATCH);
 
 	static
 	{
@@ -47,7 +47,7 @@ public class PredicateMatrixProvider extends BaseProvider
 		PredicateMatrixProvider.uriMatcher.addURI(AUTHORITY, PredicateMatrixContract.Pm_X.TABLE, PredicateMatrixProvider.PM_X);
 	}
 
-	static public String makeUri(final String table)
+	static public String makeUri(@SuppressWarnings("SameParameterValue") final String table)
 	{
 		return BaseProvider.SCHEME + AUTHORITY + '/' + table;
 	}

@@ -43,6 +43,7 @@ abstract public class BaseTaskFragment extends Fragment
 	/**
 	 * Layout id set by derived class
 	 */
+	@SuppressWarnings("WeakerAccess")
 	protected int layoutId;
 
 	/**

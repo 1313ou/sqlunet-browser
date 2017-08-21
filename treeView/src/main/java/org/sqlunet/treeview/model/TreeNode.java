@@ -83,7 +83,7 @@ public class TreeNode
 		this.collapsible = true;
 	}
 
-	public TreeNode(final Object value, final boolean collapsible)
+	public TreeNode(final Object value, @SuppressWarnings("SameParameterValue") final boolean collapsible)
 	{
 		this.children = new ArrayList<>();
 		this.value = value;
@@ -126,6 +126,7 @@ public class TreeNode
 	 * @param childNode child node
 	 * @return this node
 	 */
+	@SuppressWarnings("UnusedReturnValue")
 	public TreeNode addChild(final TreeNode childNode)
 	{
 		childNode.parent = this;
@@ -140,6 +141,7 @@ public class TreeNode
 	 * @param nodes children nodes
 	 * @return this node
 	 */
+	@SuppressWarnings("UnusedReturnValue")
 	public TreeNode addChildren(final TreeNode... nodes)
 	{
 		for (TreeNode node : nodes)

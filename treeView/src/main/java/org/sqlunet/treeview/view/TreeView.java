@@ -338,7 +338,7 @@ public class TreeView
 	 * @param node            node
 	 * @param includeSubnodes whether to include subnodes
 	 */
-	static public void expand(final TreeNode node, boolean includeSubnodes)
+	static public void expand(final TreeNode node, @SuppressWarnings("SameParameterValue") boolean includeSubnodes)
 	{
 		final Controller<?> controller = node.getController();
 		assert controller != null;

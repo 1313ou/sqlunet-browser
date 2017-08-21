@@ -114,7 +114,7 @@ public abstract class BaseProvider extends ContentProvider
 
 	static protected final String VENDOR = "sqlunet";
 
-	static public final String SCHEME = "content://";
+	protected static final String SCHEME = "content://";
 
 /*
 	static private final class DatabaseHelper extends SQLiteOpenHelper

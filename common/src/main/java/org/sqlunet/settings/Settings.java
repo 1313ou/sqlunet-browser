@@ -21,10 +21,14 @@ public class Settings
 {
 	// preferences
 
+	@SuppressWarnings("WeakerAccess")
 	static public final String PREF_DB_DATE = "pref_db_date";
+	@SuppressWarnings("WeakerAccess")
 	static public final String PREF_DB_SIZE = "pref_db_size";
-	static public final String PREF_SELECTOR_MODE = "pref_viewweb_mode";
+
+	@SuppressWarnings("WeakerAccess")
 	static public final String PREF_SELECTOR = "pref_selector_mode";
+	static public final String PREF_SELECTOR_MODE = "pref_viewweb_mode";
 	static public final String PREF_DETAIL_MODE = "pref_detail_mode";
 	static private final String PREF_XML = "pref_xml";
 	static private final String PREF_SQL_LOG = "pref_sql_log";

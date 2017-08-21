@@ -46,7 +46,7 @@ public class TreeFactory
 	 * @param context context
 	 * @return created node
 	 */
-	static public TreeNode newNode(final CharSequence text, final int icon, final Context context)
+	static public TreeNode newNode(@SuppressWarnings("SameParameterValue") final CharSequence text, final int icon, final Context context)
 	{
 		return new TreeNode(new Value(text, icon), false).setController(new NodeController(context));
 	}
@@ -160,7 +160,7 @@ public class TreeFactory
 	 * @param context    context
 	 * @return created node
 	 */
-	static public TreeNode newLinkQueryNode(final CharSequence text, final int icon, final Query query, final Link link, final boolean triggerNow, final Context context)
+	static public TreeNode newLinkQueryNode(final CharSequence text, final int icon, final Query query, final Link link, @SuppressWarnings("SameParameterValue") final boolean triggerNow, final Context context)
 	{
 		return new TreeNode(new Value(text, icon, query, link)).setController(new LinkQueryController(context, triggerNow));
 	}
@@ -172,6 +172,7 @@ public class TreeFactory
 	 * @param value   character sequence
 	 * @param context context
 	 */
+	@SuppressWarnings("UnusedReturnValue")
 	static public TreeNode addTextNode(final TreeNode parent, final CharSequence value, final Context context)
 	{
 		final TreeNode result = TreeFactory.newTextNode(value, context);
@@ -187,7 +188,7 @@ public class TreeFactory
 	 * @param icon    icon resource id
 	 * @param context context
 	 */
-	@SuppressWarnings("unused")
+	@SuppressWarnings({"unused", "UnusedReturnValue"})
 	static public TreeNode addLeafNode(final TreeNode parent, final CharSequence value, final int icon, final Context context)
 	{
 		final TreeNode result = TreeFactory.newLeafNode(value, icon, context);

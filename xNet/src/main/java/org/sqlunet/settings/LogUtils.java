@@ -64,7 +64,8 @@ public class LogUtils
 	 * @param append    whether to append to file
 	 * @param fileName0 file name
 	 */
-	static public String writeLog(final boolean append, final String fileName0, final Document... docs)
+	@SuppressWarnings("UnusedReturnValue")
+	static public String writeLog(@SuppressWarnings("SameParameterValue") final boolean append, @SuppressWarnings("SameParameterValue") final String fileName0, final Document... docs)
 	{
 		final String fileName = fileName0 != null ? fileName0 : "sqlunetx.log";
 		final StringBuilder sb = new StringBuilder();

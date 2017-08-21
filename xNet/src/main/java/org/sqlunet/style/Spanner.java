@@ -152,7 +152,7 @@ public class Spanner
 	 * @param flags     flags
 	 * @param factories span factories to call to get spans
 	 */
-	static public void setSpan(final SpannableStringBuilder sb, final int from, final int to, final long flags, final SpanFactory... factories)
+	static public void setSpan(final SpannableStringBuilder sb, final int from, final int to, @SuppressWarnings("SameParameterValue") final long flags, final SpanFactory... factories)
 	{
 		for (final SpanFactory spanFactory : factories)
 		{
@@ -300,7 +300,7 @@ public class Spanner
 	 * @param flags     flags
 	 * @param factories span factories
 	 */
-	static public void append(final SpannableStringBuilder sb, final CharSequence text, final long flags, final SpanFactory... factories)
+	static public void append(final SpannableStringBuilder sb, final CharSequence text, @SuppressWarnings("SameParameterValue") final long flags, final SpanFactory... factories)
 	{
 		if (text == null || text.length() == 0)
 		{

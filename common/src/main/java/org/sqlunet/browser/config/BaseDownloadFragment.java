@@ -212,6 +212,7 @@ abstract class BaseDownloadFragment extends Fragment implements View.OnClickList
 	/**
 	 * Cached context for threads that terminate after activity finishes
 	 */
+	@SuppressWarnings("WeakerAccess")
 	protected Context context;
 
 	@Override
@@ -579,6 +580,7 @@ abstract class BaseDownloadFragment extends Fragment implements View.OnClickList
 	 * @param resId res id
 	 * @return string
 	 */
+	@SuppressWarnings("WeakerAccess")
 	protected String makeString(int resId)
 	{
 		return this.context.getString(resId);

@@ -28,7 +28,7 @@
 
 	</style>
 
-	<!-- Root theme -->
+	<!-- No background theme -->
 	<style name="NoBackgroundCompatAppTheme" parent="CompatAppBaseTheme">
 
 		<item name="android:windowBackground">@null</item>

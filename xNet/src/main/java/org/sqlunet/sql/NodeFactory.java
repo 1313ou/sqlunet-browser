@@ -65,7 +65,8 @@ public class NodeFactory
 	 * @param text     is the node's text content
 	 * @return newly created node
 	 */
-	static public Element makeRootNode(final Document document, final Node parent, final String name, final String text, final String ns)
+	@SuppressWarnings("UnusedReturnValue")
+	static public Element makeRootNode(final Document document, final Node parent, @SuppressWarnings("SameParameterValue") final String name, @SuppressWarnings("SameParameterValue") final String text, @SuppressWarnings("SameParameterValue") final String ns)
 	{
 		final Element node = makeNode(document, parent, name, text, ns);
 		node.setAttributeNS("http://www.w3.org/2001/XMLSchema-instance", "xs:schemaLocation", NS_URL + ' ' + NS_XSD);
@@ -109,6 +110,7 @@ public class NodeFactory
 	 * @param text     text
 	 * @return parent
 	 */
+	@SuppressWarnings("UnusedReturnValue")
 	static protected Element makeText(final Document document, final Element parent, final String text)
 	{
 		// text

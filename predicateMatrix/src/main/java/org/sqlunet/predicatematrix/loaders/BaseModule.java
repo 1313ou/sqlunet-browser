@@ -1139,7 +1139,7 @@ abstract class BaseModule extends Module
 		 * @param wnDataOnRow   whether to display WordNet data on label
 		 * @param wnDataOnXData whether to display WordNet data on extended data
 		 */
-		void displayRow(final TreeNode parentNode, final WnData wnData, final PmRow pmRow, final VnData vnData, final PbData pbData, final FnData fnData, final boolean wnDataOnRow, final boolean wnDataOnXData)
+		void displayRow(final TreeNode parentNode, final WnData wnData, final PmRow pmRow, final VnData vnData, final PbData pbData, final FnData fnData, final boolean wnDataOnRow, @SuppressWarnings("SameParameterValue") final boolean wnDataOnXData)
 		{
 			// vn
 			final TreeNode vnNode = wnDataOnXData ? makeVnNode(vnData, wnData) : makeVnNode(vnData);

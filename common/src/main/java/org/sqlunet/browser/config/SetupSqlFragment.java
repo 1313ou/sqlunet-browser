@@ -38,6 +38,7 @@ public class SetupSqlFragment extends Fragment
 	static private final int REQUEST_DOWNLOAD_CODE = 0xDDDD;
 
 	// task
+	@SuppressWarnings("unused")
 	protected AsyncTask<?, Integer, Boolean> task;
 
 	// download sql button

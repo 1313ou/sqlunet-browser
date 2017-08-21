@@ -86,7 +86,7 @@ public class PreparedStatement
 	 * @param i    ith parameter
 	 * @param type type
 	 */
-	public void setNull(final int i, @SuppressWarnings("UnusedParameters") final int type)
+	public void setNull(@SuppressWarnings("SameParameterValue") final int i, @SuppressWarnings({"UnusedParameters", "SameParameterValue"}) final int type)
 	{
 		this.selectionArgs.put(i, null);
 	}
