@@ -31,6 +31,14 @@
 
 	</style>
 
+	<!-- Custom background theme -->
+	<style name="CustomBackgroundCompatAppTheme" parent="CompatAppBaseTheme">
+
+		<item name="android:windowBackground">@null</item>
+		<item name="android:background">@null</item>
+
+	</style>
+
 	<!-- Action bar -->
 	<style name="ActionBar" parent="Widget.AppCompat.ActionBar">
 		<item name="android:background">@color/primary</item>
