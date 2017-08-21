@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
               android:orientation="vertical">
@@ -15,7 +16,8 @@
 	<FrameLayout
 		android:id="@+id/container_wordnet"
 		android:layout_width="match_parent"
-		android:layout_height="wrap_content"/>
+		android:layout_height="wrap_content"
+		tools:ignore="InconsistentLayout"/>
 
 	<!--     <TextView -->
 	<!--         android:id="@+id/label_verbnet" -->
@@ -28,7 +30,8 @@
 	<FrameLayout
 		android:id="@+id/container_verbnet"
 		android:layout_width="match_parent"
-		android:layout_height="wrap_content"/>
+		android:layout_height="wrap_content"
+		tools:ignore="InconsistentLayout"/>
 
 	<!--     <TextView -->
 	<!--         android:id="@+id/label_propbank" -->
@@ -41,7 +44,8 @@
 	<FrameLayout
 		android:id="@+id/container_propbank"
 		android:layout_width="match_parent"
-		android:layout_height="wrap_content"/>
+		android:layout_height="wrap_content"
+		tools:ignore="InconsistentLayout"/>
 
 	<!--     <TextView -->
 	<!--         android:id="@+id/label_framenet" -->
@@ -54,7 +58,8 @@
 	<FrameLayout
 		android:id="@+id/container_framenet"
 		android:layout_width="match_parent"
-		android:layout_height="wrap_content"/>
+		android:layout_height="wrap_content"
+		tools:ignore="InconsistentLayout"/>
 
 	<!--     <TextView -->
 	<!--         android:id="@+id/label_bnc" -->
@@ -67,6 +72,7 @@
 	<FrameLayout
 		android:id="@+id/container_bnc"
 		android:layout_width="match_parent"
-		android:layout_height="wrap_content"/>
+		android:layout_height="wrap_content"
+		tools:ignore="InconsistentLayout"/>
 
 </LinearLayout>

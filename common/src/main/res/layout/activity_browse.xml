@@ -23,11 +23,13 @@
 
 		<fragment
 			android:id="@+id/fragment_browse"
-			android:name="org.sqlunet.browser.BrowseFragment"
-			class="org.sqlunet.browser.BrowseFragment"
 			android:layout_width="match_parent"
-			android:layout_height="match_parent"
-			tools:layout="@layout/fragment_browse"/>
+			android:layout_height="match_parent"/>
+		<!--
+		android:name="org.sqlunet.browser.BrowseFragment"
+		class="org.sqlunet.browser.BrowseFragment"
+		-->
+
 	</FrameLayout>
 
 </android.support.design.widget.CoordinatorLayout>

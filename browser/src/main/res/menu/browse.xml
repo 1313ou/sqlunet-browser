@@ -10,6 +10,11 @@
 		app:showAsAction="always"
 		tools:ignore="AlwaysShowAction"/>
 	<item
+		android:id="@+id/action_main"
+		android:title="@string/action_main"
+		app:showAsAction="never"
+		tools:ignore="AppCompatResource"/>
+	<item
 		android:id="@+id/action_table_lexdomains"
 		android:title="@string/action_table_lexdomains"
 		app:showAsAction="never"/>

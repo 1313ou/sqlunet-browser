@@ -5,11 +5,27 @@
 
 	<string name="title_activity_settings" tools:ignore="UnusedResources">Settings</string>
 
-	<!-- General -->
+	<!-- GENERAL -->
 	<string name="pref_header_general">General</string>
+
+	<!-- Launch -->
+	<string name="pref_title_launch">Launched activity</string>
+	<string name="pref_description_launch">Launched activity on start up</string>
+	<string-array name="pref_launch_list_titles" tools:ignore="InconsistentArrays">
+		<item>Main</item>
+		<item>Browse</item>
+		<item>Search text</item>
+	</string-array>
+	<string name="pref_default_launch">org.sqlunet.browser.MainActivity</string>
+	<string-array name="pref_launch_list_values" tools:ignore="InconsistentArrays">
+		<item>@string/pref_default_launch</item>
+		<item>org.sqlunet.browser.BrowseActivity</item>
+		<item>org.sqlunet.browser.SearchTextActivity</item>
+	</string-array>
+
+	<!-- Selector -->
 	<string name="pref_title_selector_mode">Selector Mode</string>
 	<string name="pref_description_selector_mode">Rendering of selector</string>
-
 	<string-array name="pref_selector_mode_list_titles">
 		<item>View</item>
 		<item>Web</item>
@@ -19,9 +35,9 @@
 		<item>WEB</item>
 	</string-array>
 
+	<!-- Detail -->
 	<string name="pref_title_detail_mode">Detail Mode</string>
 	<string name="pref_description_detail_mode">Rendering of detail</string>
-
 	<string-array name="pref_detail_mode_list_titles">
 		<item>View</item>
 		<item>Web</item>
@@ -31,22 +47,29 @@
 		<item>WEB</item>
 	</string-array>
 
+	<!-- Xml -->
 	<string name="pref_title_xml">XML output</string>
 	<string name="pref_description_xml">Output data in XML format</string>
 
+	<!-- Log -->
 	<string name="pref_title_sql_log">Log SQL</string>
 	<string name="pref_description_sql_log">Log SQL statements to logs</string>
 
-	<!-- Filter -->
+	<!-- FILTER -->
+
 	<string name="pref_header_filter">Filter</string>
 
-	<!-- Database -->
+	<!-- DATABASE -->
+
 	<string name="pref_header_database">Database</string>
 	<string name="pref_title_storage">Database Storage</string>
 	<string name="pref_description_storage">Database Storage</string>
 
-	<!-- Download -->
+	<!-- DOWNLOAD -->
+
 	<string name="pref_header_download">Download</string>
+
+	<!-- Downloader -->
 	<string name="pref_title_downloader">Downloader</string>
 	<string-array name="pref_downloader_titles">
 		<item>Simple download service</item>
@@ -58,10 +81,16 @@
 		<item>DOWNLOADMANAGER</item>
 	</string-array>
 	<string name="pref_description_downloader">Downloader</string>
+
+	<!-- Download site -->
 	<string name="pref_title_download_site">Download site</string>
 	<string name="pref_description_download_site">Download site for data</string>
+
+	<!-- Db file -->
 	<string name="pref_title_download_dbfile">Download DB file</string>
 	<string name="pref_description_download_dbfile">Data download DB file</string>
+
+	<!-- Sql file -->
 	<string name="pref_title_download_sqlfile">Download SQL file</string>
 	<string name="pref_description_download_sqlfile">Data download SQL file</string>
 

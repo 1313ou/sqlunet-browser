@@ -284,14 +284,6 @@ public class NavigationFragment extends NavigationDrawerFragment implements Navi
 	{
 		Log.d(NavigationFragment.TAG, "Restore standard action bar");
 
-		/*
-		final TypedValue style = new TypedValue();
-		theme.resolveAttribute(R.attr.colorPrimary, style, true);
-		int color = style.data;
-		final Drawable drawable = new ColorDrawable(color);
-		actionBar.setBackgroundDrawable(drawable);
-		*/
-
 		// res id of style pointed to from actionBarStyle
 		final TypedValue typedValue = new TypedValue();
 		theme.resolveAttribute(android.R.attr.actionBarStyle, typedValue, true);
@@ -304,7 +296,6 @@ public class NavigationFragment extends NavigationDrawerFragment implements Navi
 		//
 		try
 		{
-
 			final Drawable drawable = style.getDrawable(0);
 			actionBar.setBackgroundDrawable(drawable);
 		}

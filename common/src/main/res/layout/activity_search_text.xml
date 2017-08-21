@@ -19,15 +19,16 @@
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
 		app:layout_behavior="@string/appbar_scrolling_view_behavior"
-		tools:context="org.sqlunet.browser.AbstractBrowseActivity">
+		tools:context="org.sqlunet.browser.SearchTextActivity">
 
 		<fragment
-			android:id="@+id/fragment_browse"
-			android:name="org.sqlunet.browser.BrowseFragment"
-			class="org.sqlunet.browser.BrowseFragment"
+			android:id="@+id/fragment_textsearch"
 			android:layout_width="match_parent"
-			android:layout_height="match_parent"
-			tools:layout="@layout/fragment_browse"/>
+			android:layout_height="match_parent"/>
+		<!--
+		android:name="org.sqlunet.browser.SearchTextFragment"
+		class="org.sqlunet.browser.SearchTextFragment"
+		-->
 	</FrameLayout>
 
 </android.support.design.widget.CoordinatorLayout>

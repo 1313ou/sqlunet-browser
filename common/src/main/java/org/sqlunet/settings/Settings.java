@@ -9,6 +9,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.preference.PreferenceManager;
 
+import org.sqlunet.browser.common.R;
 import org.sqlunet.provider.BaseProvider;
 import org.sqlunet.sql.PreparedStatement;
 
@@ -22,10 +23,7 @@ public class Settings
 	// preferences
 
 	@SuppressWarnings("WeakerAccess")
-	static public final String PREF_DB_DATE = "pref_db_date";
-	@SuppressWarnings("WeakerAccess")
-	static public final String PREF_DB_SIZE = "pref_db_size";
-
+	static public final String PREF_LAUNCH = "pref_launch";
 	@SuppressWarnings("WeakerAccess")
 	static public final String PREF_SELECTOR = "pref_selector_mode";
 	static public final String PREF_SELECTOR_MODE = "pref_viewweb_mode";
@@ -41,6 +39,10 @@ public class Settings
 	static public final String PREF_ENTRY_IMPORT = StorageSettings.PREF_ENTRY_IMPORT;
 	static public final String PREF_ENTRY_INDEX = StorageSettings.PREF_ENTRY_INDEX;
 	static public final String PREF_CACHE = StorageSettings.PREF_CACHE;
+	@SuppressWarnings("WeakerAccess")
+	static public final String PREF_DB_DATE = "pref_db_date";
+	@SuppressWarnings("WeakerAccess")
+	static public final String PREF_DB_SIZE = "pref_db_size";
 
 	// D I S P L A Y
 
@@ -151,6 +153,23 @@ public class Settings
 	}
 
 	// P R E F E R E N C E   S H O R T C U T S
+
+	/**
+	 * Get launch activity class
+	 *
+	 * @param context context
+	 * @return preferred launch activity class
+	 */
+	static public String getLaunchPref(final Context context)
+	{
+		final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
+		String result = sharedPref.getString(Settings.PREF_LAUNCH, null);
+		if (result == null)
+		{
+			result = context.getString(R.string.pref_default_launch);
+		}
+		return result;
+	}
 
 	/**
 	 * Get selector preferred view mode

@@ -2,14 +2,9 @@ package org.sqlunet.browser;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 
 import org.sqlunet.browser.fn.R;
 import org.sqlunet.browser.fn.Settings;
@@ -24,87 +19,13 @@ import org.sqlunet.provider.ProviderArgs;
  *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
-public class Browse2Fragment extends Fragment
+public class Browse2Fragment extends BaseBrowse2Fragment
 {
-	static private final String TAG = "Browse2Fragment";
-
-	static private final String POINTER_STATE = "pointer";
-
-	private Parcelable pointer = null;
-
-	// C R E A T I O N
-
-	/**
-	 * Mandatory empty constructor for the fragment manager to instantiate the fragment (e.g. upon screen orientation changes).
-	 */
-	public Browse2Fragment()
-	{
-		//
-	}
-
-	@Override
-	public View onCreateView(final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState)
-	{
-		// retain instance
-		setRetainInstance(true);
-
-		final Settings.DetailViewMode mode = Settings.getDetailViewModePref(this.getActivity());
-
-		// view
-		View view = null;
-		switch (mode)
-		{
-			case VIEW:
-				view = inflater.inflate(R.layout.fragment_browse2_multi, container, false);
-				break;
-			case WEB:
-				view = inflater.inflate(R.layout.fragment_browse2, container, false);
-				break;
-		}
-
-		if (savedInstanceState != null)
-		{
-			Log.d(TAG, "restore instance state " + this);
-			this.pointer = savedInstanceState.getParcelable(POINTER_STATE);
-		}
-
-		return view;
-	}
-
-	@Override
-	public void onStart()
-	{
-		super.onStart();
-		if (this.pointer != null)
-		{
-			search();
-		}
-	}
-
-	@Override
-	public void onSaveInstanceState(Bundle outState)
-	{
-		Log.d(TAG, "save instance state " + this);
-		super.onSaveInstanceState(outState);
-		outState.putParcelable(POINTER_STATE, this.pointer);
-	}
-
-	/**
-	 * Search
-	 *
-	 * @param pointer pointer
-	 */
-	public void search(final Parcelable pointer)
-	{
-		this.pointer = pointer;
-
-		search();
-	}
-
 	/**
 	 * Search
 	 */
-	private void search()
+	@Override
+	protected void search()
 	{
 		final Context context = this.getActivity();
 		final FragmentManager manager = getChildFragmentManager();

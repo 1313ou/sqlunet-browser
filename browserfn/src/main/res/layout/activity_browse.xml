@@ -19,7 +19,7 @@
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
 		app:layout_behavior="@string/appbar_scrolling_view_behavior"
-		tools:context="org.sqlunet.browser.BrowseActivity">
+		tools:context="org.sqlunet.browser.AbstractBrowseActivity">
 
 		<fragment
 			android:id="@+id/fragment_browse"

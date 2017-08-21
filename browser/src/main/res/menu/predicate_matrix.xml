@@ -9,4 +9,9 @@
 		app:actionViewClass="android.support.v7.widget.SearchView"
 		app:showAsAction="always"
 		tools:ignore="AlwaysShowAction"/>
+	<item
+		android:id="@+id/action_main"
+		android:title="@string/action_main"
+		app:showAsAction="never"
+		tools:ignore="AppCompatResource"/>
 </menu>

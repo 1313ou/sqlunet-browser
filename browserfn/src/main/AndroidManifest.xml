@@ -27,12 +27,21 @@
 			android:value="AEdPqrEAAAAID_zbp9cxwJUjUAfo2NGHn0kl4YQeFmFCyj_QXQ"/>
 
 		<activity
+			android:name="org.sqlunet.browser.EntryActivity"
+			android:label="@string/app_name"
+			android:launchMode="singleTask"
+			android:noHistory="true">
+			<intent-filter>
+				<action android:name="android.intent.action.MAIN"/>
+				<category android:name="android.intent.category.LAUNCHER"/>
+			</intent-filter>
+		</activity>
+
+		<activity
 			android:name="org.sqlunet.browser.MainActivity"
 			android:label="@string/app_name"
 			android:launchMode="singleTask">
 			<intent-filter>
-				<action android:name="android.intent.action.MAIN"/>
-				<category android:name="android.intent.category.LAUNCHER"/>
 				<action android:name="android.intent.action.SEARCH"/>
 			</intent-filter>
 			<meta-data
@@ -42,14 +51,18 @@
 
 		<activity
 			android:name="org.sqlunet.browser.BrowseActivity"
-			android:label="@string/title_activity_main"
+			android:label="@string/title_activity_browse"
 			android:launchMode="singleTop"
 			android:parentActivityName="org.sqlunet.browser.MainActivity"
 			tools:ignore="UnusedAttribute">
 			<intent-filter>
 				<action android:name="android.intent.action.SEARCH"/>
 			</intent-filter>
-
+			<intent-filter>
+				<action android:name="android.intent.action.SEND"/>
+				<category android:name="android.intent.category.DEFAULT"/>
+				<data android:mimeType="text/plain"/>
+			</intent-filter>
 			<meta-data
 				android:name="android.support.PARENT_ACTIVITY"
 				android:value="org.sqlunet.browser.MainActivity"/>
@@ -82,7 +95,11 @@
 			<intent-filter>
 				<action android:name="android.intent.action.SEARCH"/>
 			</intent-filter>
-
+			<intent-filter>
+				<action android:name="android.intent.action.SEND"/>
+				<category android:name="android.intent.category.DEFAULT"/>
+				<data android:mimeType="text/plain"/>
+			</intent-filter>
 			<meta-data
 				android:name="android.support.PARENT_ACTIVITY"
 				android:value="org.sqlunet.browser.MainActivity"/>

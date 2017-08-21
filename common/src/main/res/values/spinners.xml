@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
 
-	<!-- mode spinner
-	-->
+	<!-- mode spinner -->
 	<string-array name="selectors_names">
 	</string-array>
 	<integer-array name="selectors_icons" tools:ignore="UnusedResources">

@@ -3,35 +3,33 @@ package org.sqlunet.browser;
 import android.app.SearchManager;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import org.sqlunet.predicatematrix.PmRolePointer;
-import org.sqlunet.provider.ProviderArgs;
+import org.sqlunet.browser.common.R;
 
 /**
- * Predicate Matrix activity
+ * Browse activity
  *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
-public class BrowsePredicateMatrixActivity extends AppCompatActivity
+public abstract class AbstractBrowseActivity<F extends BaseSearchFragment> extends AppCompatActivity
 {
 	/**
 	 * Fragment
 	 */
-	private BrowsePredicateMatrixFragment fragment;
+	private F fragment;
 
 	@Override
-	protected void onCreate(Bundle savedInstanceState)
+	protected void onCreate(final Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
 
 		// content
-		setContentView(R.layout.activity_predicatematrix);
+		setContentView(R.layout.activity_browse);
 
 		// toolbar
 		final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -40,7 +38,8 @@ public class BrowsePredicateMatrixActivity extends AppCompatActivity
 		// fragment
 		if (savedInstanceState == null)
 		{
-			this.fragment = (BrowsePredicateMatrixFragment) getSupportFragmentManager().findFragmentById(R.id.fragment_predicatematrix);
+			//noinspection unchecked
+			this.fragment = (F) getSupportFragmentManager().findFragmentById(R.id.fragment_browse);
 
 			// set up the action bar
 			final ActionBar actionBar = getSupportActionBar();
@@ -88,13 +87,14 @@ public class BrowsePredicateMatrixActivity extends AppCompatActivity
 	private void handleSearchIntent(final Intent intent)
 	{
 		final String action = intent.getAction();
-
 		if (Intent.ACTION_VIEW.equals(action) || Intent.ACTION_SEARCH.equals(action))
 		{
 			// search query submit or suggestion selection (when a suggested item is selected)
 			final String query = intent.getStringExtra(SearchManager.QUERY);
-			this.fragment.search(query);
-			return;
+			if (query != null)
+			{
+				this.fragment.search(query);
+			}
 		}
 		else if (Intent.ACTION_SEND.equals(action))
 		{
@@ -105,26 +105,6 @@ public class BrowsePredicateMatrixActivity extends AppCompatActivity
 				if (query != null)
 				{
 					this.fragment.search(query);
-					return;
-				}
-			}
-		}
-
-		// search query from other source
-		if (ProviderArgs.ACTION_QUERY.equals(action))
-		{
-			final Bundle args = intent.getExtras();
-			if (args != null)
-			{
-				final int type = args.getInt(ProviderArgs.ARG_QUERYTYPE);
-				if (ProviderArgs.ARG_QUERYTYPE_PM == type || ProviderArgs.ARG_QUERYTYPE_PMROLE == type)
-				{
-					final Parcelable pointer = args.getParcelable(ProviderArgs.ARG_QUERYPOINTER);
-					if (pointer instanceof PmRolePointer)
-					{
-						final PmRolePointer rolePointer = (PmRolePointer) pointer;
-						this.fragment.search(rolePointer);
-					}
 				}
 			}
 		}

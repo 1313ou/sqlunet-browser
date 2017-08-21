@@ -38,10 +38,10 @@ import java.security.spec.X509EncodedKeySpec;
  * purchases as verified.
  */
 class Security {
-    private static final String TAG = "IABUtil/Security";
+    static private final String TAG = "IABUtil/Security";
 
-    private static final String KEY_FACTORY_ALGORITHM = "RSA";
-    private static final String SIGNATURE_ALGORITHM = "SHA1withRSA";
+    static private final String KEY_FACTORY_ALGORITHM = "RSA";
+    static private final String SIGNATURE_ALGORITHM = "SHA1withRSA";
 
     /**
      * Verifies that the data was signed with the given signature, and returns

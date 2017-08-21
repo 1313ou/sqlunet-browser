@@ -34,7 +34,12 @@ public class MenuHandler
 
 		// handle item selection
 		int i = item.getItemId();
-		if (i == R.id.action_settings)
+		if (i == R.id.action_main)
+		{
+			intent = new Intent(activity, MainActivity.class);
+			intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+		}
+		else if (i == R.id.action_settings)
 		{
 			intent = new Intent(activity, SettingsActivity.class);
 			intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);

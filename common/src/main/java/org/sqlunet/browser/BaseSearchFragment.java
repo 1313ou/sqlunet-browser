@@ -188,7 +188,7 @@ abstract public class BaseSearchFragment extends NavigableFragment implements Se
 		setupSpinner(context);
 
 		// set up the action bar to show a custom layout
-		actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM | ActionBar.DISPLAY_SHOW_HOME | ActionBar.DISPLAY_SHOW_TITLE | ActionBar.DISPLAY_HOME_AS_UP);
+		actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM | ActionBar.DISPLAY_SHOW_TITLE /*| ActionBar.DISPLAY_SHOW_HOME | ActionBar.DISPLAY_HOME_AS_UP*/);
 		// actionBar.setDisplayShowCustomEnabled(true);
 		// actionBar.setDisplayShowHomeEnabled(true);
 		// actionBar.setDisplayHomeAsUpEnabled(true);
@@ -273,9 +273,6 @@ abstract public class BaseSearchFragment extends NavigableFragment implements Se
 
 		// activity
 		final AppCompatActivity activity = (AppCompatActivity) getActivity();
-
-		// icon tint
-		//TODO Tint.tint(activity, searchMenuItem);
 
 		// search info
 		final ComponentName componentName = activity.getComponentName();
