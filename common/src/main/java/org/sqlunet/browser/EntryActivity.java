@@ -1,5 +1,6 @@
 package org.sqlunet.browser;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -14,7 +15,7 @@ import org.sqlunet.settings.Settings;
  */
 public class EntryActivity extends AppCompatActivity
 {
-	// --Commented out by Inspection (8/21/17 6:30 PM):static private final String TAG = "EntryActivity";
+	// static private final String TAG = "EntryActivity";
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
@@ -25,20 +26,48 @@ public class EntryActivity extends AppCompatActivity
 		boolean canRun = Status.canRun(getBaseContext());
 		if (!canRun)
 		{
-			final Intent intent = new Intent(this, StatusActivity.class);
-			intent.putExtra(Status.CANTRUN, true);
-			intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-			startActivity(intent);
-			finish();
+			forkOff(this);
+			return;
 		}
 
-		// switch
-		final String clazz = Settings.getLaunchPref(this);
-		//final String clazz = "org.sqlunet.browser.MainActivity";
+		// switch as per preferred launch mode
+		final String clazz = Settings.getLaunchPref(this); // = "org.sqlunet.browser.MainActivity";
 		final Intent intent = new Intent();
 		intent.setClassName(this, clazz);
 		intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+		intent.putExtra(Status.CANTRUN, false);
 		startActivity(intent);
 		finish();
+	}
+
+	static public void forkOffIfCantRun(final Activity activity)
+	{
+		boolean canRun;
+		final Intent currentIntent = activity.getIntent();
+		final Bundle extras = currentIntent.getExtras();
+		boolean checked = extras != null && extras.containsKey(Status.CANTRUN);
+		if (checked)
+		{
+			canRun = !currentIntent.getBooleanExtra(Status.CANTRUN, true);
+		}
+		else
+		{
+			// check now
+			canRun = Status.canRun(activity);
+		}
+		if (!canRun)
+		{
+			forkOff(activity);
+			return;
+		}
+	}
+
+	static public void forkOff(final Activity activity)
+	{
+		final Intent intent = new Intent(activity, StatusActivity.class);
+		intent.putExtra(Status.CANTRUN, true);
+		intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+		activity.startActivity(intent);
+		activity.finish();
 	}
 }

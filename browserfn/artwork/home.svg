@@ -16,9 +16,14 @@
    id="svg2"
    version="1.1"
    inkscape:version="0.92.1 r15371"
-   sodipodi:docname="framenet.svg">
+   sodipodi:docname="home.svg">
   <defs
      id="defs4">
+    <pattern
+       inkscape:collect="always"
+       xlink:href="#pattern10666"
+       id="pattern10065"
+       patternTransform="matrix(1,0,0,0.99177708,-360.07214,-229.24339)" />
     <pattern
        inkscape:collect="always"
        xlink:href="#pattern9084"
@@ -5623,6 +5628,17 @@
          in2="SourceGraphic"
          k1="1" />
     </filter>
+    <clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath10067">
+      <ellipse
+         style="opacity:1;fill:#c0c0c0;fill-opacity:1;fill-rule:nonzero;stroke:#c0c0c0;stroke-width:9.92344189;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+         id="ellipse10069"
+         cx="396.21054"
+         cy="365.55615"
+         rx="400.97427"
+         ry="399.23181" />
+    </clipPath>
   </defs>
   <sodipodi:namedview
      id="base"
@@ -5631,9 +5647,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.35"
-     inkscape:cx="399.45087"
-     inkscape:cy="30.329866"
+     inkscape:zoom="0.64"
+     inkscape:cx="350.83057"
+     inkscape:cy="286.74363"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -5641,20 +5657,14 @@
      fit-margin-left="5"
      fit-margin-right="5"
      fit-margin-bottom="5"
-     inkscape:window-width="1097"
+     inkscape:window-width="1452"
      inkscape:window-height="1056"
-     inkscape:window-x="679"
+     inkscape:window-x="324"
      inkscape:window-y="60"
      inkscape:window-maximized="0"
      units="px"
      showguides="true"
-     inkscape:guide-bbox="true">
-    <sodipodi:guide
-       position="-432.34528,-1228.3455"
-       orientation="1,0"
-       id="guide23454"
-       inkscape:locked="false" />
-  </sodipodi:namedview>
+     inkscape:guide-bbox="true" />
   <metadata
      id="metadata7">
     <rdf:RDF>
@@ -5672,63 +5682,62 @@
      id="layer7"
      inkscape:label="Rings"
      transform="translate(0,41.709597)"
-     style="display:inline">
-    <rect
-       style="fill:url(#pattern10666);stroke:none;stroke-width:4.97940026;stroke-miterlimit:4;stroke-dasharray:none"
-       width="1527.4492"
-       height="1214.5872"
-       x="-359.61432"
-       y="-234.12785"
-       id="rect9929"
-       clip-path="url(#clipPath10662)"
-       transform="matrix(1,0,0,1.0082911,2.0203051,-6.1087813)" />
-    <rect
-       transform="matrix(1,0,0,1.0082911,2.0203051,-6.1087813)"
-       clip-path="url(#clipPath10662)"
-       id="rect14910"
-       y="-234.12785"
-       x="-359.61432"
-       height="1214.5872"
-       width="1527.4492"
-       style="fill:url(#pattern10666);stroke:none;stroke-width:4.97940026;stroke-miterlimit:4;stroke-dasharray:none" />
-  </g>
+     style="display:inline" />
   <g
      inkscape:label="Labels"
      inkscape:groupmode="layer"
      id="layer1"
      transform="translate(6.2879466,32.778153)"
      style="display:inline">
-    <rect
-       style="opacity:1;fill:#5e4c72;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:5;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
-       id="rect23452"
-       width="811.42859"
-       height="388.45636"
-       x="-9.5945997"
-       y="390.96219" />
-    <text
-       transform="matrix(1.4480938,0,0,3.2049513,-321.99295,225.95863)"
-       id="text3395"
-       y="163.51024"
-       x="556.77942"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:condensed;line-height:0%;font-family:Impact;-inkscape-font-specification:'Impact Condensed';text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#ffa500;fill-opacity:1;stroke:#00132c;stroke-width:0.3654846;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;filter:url(#filter4016-39)"
-       xml:space="preserve"><tspan
-         sodipodi:role="line"
-         id="tspan3401"
-         x="556.77942"
-         y="163.51024"
-         style="font-size:127.66687775px;line-height:1.25;fill:#ffa500;stroke:#00132c;stroke-width:0.3654846;stroke-opacity:1">Net</tspan></text>
-    <text
-       transform="scale(0.65685462,1.5224069)"
-       id="text5161"
-       y="488.75928"
-       x="68.833122"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:condensed;font-size:266.63046265px;line-height:0%;font-family:Impact;-inkscape-font-specification:'Impact, Condensed';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#ffd700;fill-opacity:1;stroke:none;stroke-width:1;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       xml:space="preserve"><tspan
-         sodipodi:role="line"
-         id="tspan3648"
-         x="68.833122"
-         y="488.75928"
-         style="fill:#ffd700;fill-opacity:1;stroke:none;stroke-width:1;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1">Frame</tspan></text>
+    <g
+       id="g10059"
+       transform="translate(-1.5625012,3.1249996)"
+       clip-path="url(#clipPath10067)">
+      <rect
+         style="display:inline;fill:url(#pattern10065);stroke:none;stroke-width:4.97940016;stroke-miterlimit:4;stroke-dasharray:none"
+         width="1527.4492"
+         height="1214.5872"
+         x="-359.61432"
+         y="-234.12785"
+         id="rect14910"
+         clip-path="url(#clipPath10662)"
+         transform="matrix(1,0,0,1.0082911,-4.2676415,2.822663)" />
+      <g
+         transform="translate(0,-20)"
+         id="g10050">
+        <rect
+           style="opacity:1;fill:#5e4c72;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:4.73710918;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+           id="rect23452"
+           width="811.42859"
+           height="348.68158"
+           x="-7.5945997"
+           y="216.81462" />
+        <text
+           transform="matrix(1.4480938,0,0,3.2049513,-321.99295,31.923682)"
+           id="text3395"
+           y="163.51024"
+           x="556.77942"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:condensed;line-height:0%;font-family:Impact;-inkscape-font-specification:'Impact Condensed';text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#ffa500;fill-opacity:1;stroke:#00132c;stroke-width:0.3654846;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;filter:url(#filter4016-39)"
+           xml:space="preserve"><tspan
+             sodipodi:role="line"
+             id="tspan3401"
+             x="556.77942"
+             y="163.51024"
+             style="font-size:127.66687775px;line-height:1.25;fill:#ffa500;stroke:#00132c;stroke-width:0.3654846;stroke-opacity:1">Net</tspan></text>
+        <text
+           transform="scale(0.65685462,1.5224069)"
+           id="text5161"
+           y="361.30652"
+           x="68.833122"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:condensed;font-size:266.63046265px;line-height:0%;font-family:Impact;-inkscape-font-specification:'Impact, Condensed';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#ffd700;fill-opacity:1;stroke:none;stroke-width:1;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+           xml:space="preserve"><tspan
+             sodipodi:role="line"
+             id="tspan3648"
+             x="68.833122"
+             y="361.30652"
+             style="fill:#ffd700;fill-opacity:1;stroke:none;stroke-width:1;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1">Frame</tspan></text>
+      </g>
+    </g>
   </g>
   <style
      type="text/css"

@@ -31,7 +31,7 @@
 		android:title="@string/pref_title_detail_mode"/>
 
 	<CheckBoxPreference
-		android:defaultValue="true"
+		android:defaultValue="false"
 		android:key="pref_xml"
 		android:summary="@string/pref_description_xml"
 		android:title="@string/pref_title_xml"/>

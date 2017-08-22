@@ -52,6 +52,11 @@ public abstract class AbstractSearchTextActivity<F extends BaseSearchFragment> e
 	protected void onResume()
 	{
 		super.onResume();
+
+		// check hook
+		EntryActivity.forkOffIfCantRun(this);
+
+		// handle sent intent
 		handleSearchIntent(getIntent());
 	}
 

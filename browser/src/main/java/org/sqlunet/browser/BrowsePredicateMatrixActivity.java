@@ -53,6 +53,11 @@ public class BrowsePredicateMatrixActivity extends AppCompatActivity
 	protected void onResume()
 	{
 		super.onResume();
+
+		// check hook
+		EntryActivity.forkOffIfCantRun(this);
+
+		// handle sent intent
 		handleSearchIntent(getIntent());
 	}
 

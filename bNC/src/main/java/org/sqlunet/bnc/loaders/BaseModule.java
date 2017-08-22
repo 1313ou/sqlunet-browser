@@ -35,9 +35,19 @@ public class BaseModule extends Module
 	// Resources
 
 	/**
-	 * Drawable for domain
+	 * Drawable for conv/task
 	 */
-	private final Drawable domainDrawable;
+	private final Drawable convtaskDrawable;
+
+	/**
+	 * Drawable for spolen/written
+	 */
+	private final Drawable imaginfDrawable;
+
+	/**
+	 * Drawable for spoken/written
+	 */
+	private final Drawable spwrDrawable;
 
 	/**
 	 * Drawable for pos
@@ -52,7 +62,9 @@ public class BaseModule extends Module
 		super(fragment);
 
 		// drawables
-		this.domainDrawable = Spanner.getDrawable(this.context, R.drawable.domain);
+		this.convtaskDrawable = Spanner.getDrawable(this.context, R.drawable.convtask);
+		this.imaginfDrawable = Spanner.getDrawable(this.context, R.drawable.imaginf);
+		this.spwrDrawable = Spanner.getDrawable(this.context, R.drawable.spwr);
 		this.posDrawable = Spanner.getDrawable(this.context, R.drawable.pos);
 	}
 
@@ -179,15 +191,15 @@ public class BaseModule extends Module
 						String value1;
 						if ((value1 = cursor.getString(idFreq)) != null)
 						{
-							sb.append("freq=").append(value1).append(' ');
+							sb.append("frequency=").append(value1).append(" per million").append('\n');
 						}
 						if ((value1 = cursor.getString(idRange)) != null)
 						{
-							sb.append("range=").append(value1).append(' ');
+							sb.append("range=").append(value1).append('\n');
 						}
 						if ((value1 = cursor.getString(idDisp)) != null)
 						{
-							sb.append("disp=").append(value1);
+							sb.append("dispersion=").append(value1);
 						}
 						sb.append('\n');
 
@@ -199,20 +211,20 @@ public class BaseModule extends Module
 						String dvalue2 = cursor.getString(idTaskDisp);
 						if (fvalue != null || fvalue2 != null || rvalue != null || rvalue2 != null || dvalue != null || dvalue2 != null)
 						{
-							Spanner.appendImage(sb, BaseModule.this.domainDrawable);
+							Spanner.appendImage(sb, BaseModule.this.convtaskDrawable);
 							sb.append(' ');
 							Spanner.append(sb, "conversation / task\n", 0, BNCFactories.headerFactory);
 							if (fvalue != null && fvalue2 != null)
 							{
-								sb.append("freq=").append(fvalue).append(" / ").append(fvalue2).append(' ');
+								sb.append("frequency=").append(fvalue).append(" / ").append(fvalue2).append('\n');
 							}
 							if (rvalue != null && rvalue2 != null)
 							{
-								sb.append("range=").append(rvalue).append(" / ").append(rvalue2).append(' ');
+								sb.append("range=").append(rvalue).append(" / ").append(rvalue2).append('\n');
 							}
 							if (dvalue != null && dvalue2 != null)
 							{
-								sb.append("disp=").append(dvalue).append(" / ").append(dvalue2);
+								sb.append("dispersion=").append(dvalue).append(" / ").append(dvalue2);
 							}
 							sb.append('\n');
 						}
@@ -225,20 +237,20 @@ public class BaseModule extends Module
 						dvalue2 = cursor.getString(idInfDisp);
 						if (fvalue != null || fvalue2 != null || rvalue != null || rvalue2 != null || dvalue != null || dvalue2 != null)
 						{
-							Spanner.appendImage(sb, BaseModule.this.domainDrawable);
+							Spanner.appendImage(sb, BaseModule.this.imaginfDrawable);
 							sb.append(' ');
 							Spanner.append(sb, "imagination / information\n", 0, BNCFactories.headerFactory);
 							if (fvalue != null && fvalue2 != null)
 							{
-								sb.append("freq=").append(fvalue).append(" / ").append(fvalue2).append(' ');
+								sb.append("frequency=").append(fvalue).append(" / ").append(fvalue2).append('\n');
 							}
 							if (rvalue != null && rvalue2 != null)
 							{
-								sb.append("range=").append(rvalue).append(" / ").append(rvalue2).append(' ');
+								sb.append("range=").append(rvalue).append(" / ").append(rvalue2).append('\n');
 							}
 							if (dvalue != null && dvalue2 != null)
 							{
-								sb.append("disp=").append(dvalue).append(" / ").append(dvalue2);
+								sb.append("dispersion=").append(dvalue).append(" / ").append(dvalue2);
 							}
 							sb.append('\n');
 
@@ -252,20 +264,20 @@ public class BaseModule extends Module
 						dvalue2 = cursor.getString(idWrDisp);
 						if (fvalue != null || fvalue2 != null || rvalue != null || rvalue2 != null || dvalue != null || dvalue2 != null)
 						{
-							Spanner.appendImage(sb, BaseModule.this.domainDrawable);
+							Spanner.appendImage(sb, BaseModule.this.spwrDrawable);
 							sb.append(' ');
 							Spanner.append(sb, "spoken / written\n", 0, BNCFactories.headerFactory);
 							if (fvalue != null && fvalue2 != null)
 							{
-								sb.append("freq=").append(fvalue).append(" / ").append(fvalue2).append(' ');
+								sb.append("frequency=").append(fvalue).append(" / ").append(fvalue2).append('\n');
 							}
 							if (rvalue != null && rvalue2 != null)
 							{
-								sb.append("range=").append(rvalue).append(" / ").append(rvalue2).append(' ');
+								sb.append("range=").append(rvalue).append(" / ").append(rvalue2).append('\n');
 							}
 							if (dvalue != null && dvalue2 != null)
 							{
-								sb.append("disp=").append(dvalue).append(" / ").append(dvalue2);
+								sb.append("dispersion=").append(dvalue).append(" / ").append(dvalue2);
 							}
 							sb.append('\n');
 

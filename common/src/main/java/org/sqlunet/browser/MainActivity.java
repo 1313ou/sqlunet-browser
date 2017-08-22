@@ -12,7 +12,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import org.sqlunet.browser.common.R;
-import org.sqlunet.browser.config.Status;
 import org.sqlunet.settings.Settings;
 import org.sqlunet.settings.StorageSettings;
 
@@ -53,15 +52,7 @@ public class MainActivity extends AppCompatActivity // implements NavigationFrag
 		super.onResume();
 
 		// check hook
-		boolean canRun = Status.canRun(getBaseContext());
-		if (!canRun)
-		{
-			final Intent intent = new Intent(this, StatusActivity.class);
-			intent.putExtra(Status.CANTRUN, true);
-			intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-			startActivity(intent);
-			finish();
-		}
+		EntryActivity.forkOffIfCantRun(this);
 
 		// handle sent intent
 		handleSearchIntent(getIntent());

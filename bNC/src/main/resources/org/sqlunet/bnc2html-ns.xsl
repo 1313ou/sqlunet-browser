@@ -44,6 +44,7 @@
 	<xsl:template match="bc:bncdata">
 		<!-- indent -->
 		<LI class="treeitem treepanel bncdata block3">
+			<IMG class="dataimg" src="images/xnet/pos.png"/>
 			<SPAN class="bncpos">
 				<xsl:value-of select="./@pos"/>
 			</SPAN>
@@ -71,6 +72,7 @@
 
 			<xsl:if test="count(./bc:spokenfreq)>0 or count(./bc:writtenfreq)>0">
 				<DIV class="bncspwr">
+					<IMG class="dataimg" src="images/bnc/spwr.png"/>
 					<TABLE class="bnctable">
 						<TR>
 							<TH class="bnctablecell">
@@ -126,6 +128,7 @@
 
 			<xsl:if test="count(./bc:convfreq)>0 or count(./bc:taskfreq)>0">
 				<DIV class="bncconvtask">
+					<IMG class="dataimg" src="images/bnc/convtask.png"/>
 					<TABLE class="bnctable">
 						<TR>
 							<TH class="bnctablecell">
@@ -181,6 +184,7 @@
 
 			<xsl:if test="count(./bc:imagfreq)>0 or count(./bc:inffreq)>0">
 				<DIV class="bncimaginf">
+					<IMG class="dataimg" src="images/bnc/imaginf.png"/>
 					<TABLE class="bnctable">
 						<TR>
 							<TH class="bnctablecell">
