@@ -1,16 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
 
-	<integer name="size_sqlunet_db">522260480</integer>
-	<integer name="size_sqlunet_db_zip">175511215</integer>
-	<integer name="size_sqlunet_sql_zip">116705233</integer>
+	<integer name="size_sqlunet_db">539594752</integer>
+	<integer name="size_sqlunet_db_zip">181779860</integer>
+	<integer name="size_sqlunet_sql_zip">119924605</integer>
 
-	<integer name="size_textsearch_wn" tools:ignore="UnusedResources">34684928</integer>
-	<integer name="size_textsearch_vn" tools:ignore="UnusedResources">335872</integer>
-	<integer name="size_textsearch_pb" tools:ignore="UnusedResources">6291456</integer>
-	<integer name="size_textsearch_fn" tools:ignore="UnusedResources">143159296</integer>
-	<integer name="size_textsearch">184471552</integer>
+	<integer name="size_textsearch">180764672</integer>
 
-	<integer name="size_db_working_total">706732032</integer>
+	<integer name="size_db_working_total">720359424</integer>
 
 </resources>

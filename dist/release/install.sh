@@ -1,9 +1,17 @@
 #!/bin/bash
 
-if [ "$1" == "-z" ]; then
-	adb uninstall org.sqlunet.browser
-	adb uninstall org.sqlunet.browser.fn
-fi
+for e in '' 'fn' 'wn'; do
+	d=$e
+	if [ ! -z "$e" ]; then
+		d=".$e"
+	fi
+	echo "browser$e <$e><$d>"
 
-adb install -r browser-release.apk
-adb install -r browserfn-release.apk
+	if [ "$1" == "-z" ]; then
+		adb uninstall org.sqlunet.browser$d
+	fi
+
+	adb install -r browser$e-release.apk
+
+done
+

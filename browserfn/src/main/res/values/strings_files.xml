@@ -1,17 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
 
-	<string name="sqlunet_db">caa706d7f0446024fd19548028e86481</string> <!-- sqlunet-fn.db -->
-	<string name="sqlunet_db_zip">c4f21b943286586c60e0d77bdb3c1d53</string> <!-- sqlunet-fn.db.zip -->
-	<string name="sqlunet_sql_zip">83a027bb08b7d407a5a34758464c9798</string> <!-- sqlunet-fn.sql.zip -->
+	<string name="sqlunet_db">b74958d1e53f959956f5cfe2369cb62c</string> <!-- sqlunet-fn.db -->
+	<string name="sqlunet_db_zip">20dee9bf42d1ed1515faf978e53ab4f5</string> <!-- sqlunet-fn.db.zip -->
+	<string name="sqlunet_sql_zip">a3864ac1c9fa2515a78431c714de350e</string> <!-- sqlunet-fn.sql.zip -->
 
-	<string name="hr_size_sqlunet_db">413 MB</string> <!-- sqlunet-fn.db -->
-	<string name="hr_size_sqlunet_db_zip">133 MB</string> <!-- sqlunet-fn.db.zip -->
-	<string name="hr_size_sqlunet_sql_zip">95 MB</string> <!-- sqlunet-fn.sql.zip -->
+	<string name="hr_size_sqlunet_db">430 MB</string> <!-- sqlunet-fn.db -->
+	<string name="hr_size_sqlunet_db_zip">139 MB</string> <!-- sqlunet-fn.db.zip -->
+	<string name="hr_size_sqlunet_sql_zip">99 MB</string> <!-- sqlunet-fn.sql.zip -->
 
-	<string name="hr_size_textsearch_fn" tools:ignore="UnusedResources">137 MB</string>
-	<string name="hr_size_textsearch">137 MB</string>
+	<string name="hr_size_textsearch">134 MB</string>
 
-	<string name="hr_size_db_working_total">550 MB</string>
+	<string name="hr_size_db_working_total">564 MB</string>
 
 </resources>

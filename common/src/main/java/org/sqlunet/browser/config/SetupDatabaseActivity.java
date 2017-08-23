@@ -28,14 +28,14 @@ public class SetupDatabaseActivity extends AppCompatActivity
 		// content
 		setContentView(R.layout.activity_setup_database);
 
+		// toolbar
+		final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+		setSupportActionBar(toolbar);
+
 		// set up the action bar
 		final ActionBar actionBar = getSupportActionBar();
 		assert actionBar != null;
 		actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_HOME | ActionBar.DISPLAY_HOME_AS_UP | ActionBar.DISPLAY_SHOW_TITLE);
-
-		// toolbar
-		final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-		setSupportActionBar(toolbar);
 
 		// fragment
 		final Fragment fragment = new SetupDatabaseFragment();
