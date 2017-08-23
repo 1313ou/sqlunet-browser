@@ -87,24 +87,24 @@
 						android:src="@drawable/bn_setup"/>
 				</LinearLayout>
 
-				<!-- textsearch framenet -->
+				<!-- searchtext framenet -->
 
 				<TextView
 					style="@style/GridLabel"
-					android:text="@string/status_textsearchFn"/>
+					android:text="@string/status_searchtext_fn"/>
 
 				<LinearLayout style="@style/GridData">
 
 					<ImageView
-						android:id="@+id/status_textsearchFn"
+						android:id="@+id/status_searchtext_fn"
 						style="@style/GridStatusImage"
-						android:contentDescription="@string/status_textsearchFn"
+						android:contentDescription="@string/status_searchtext_fn"
 						tools:ignore="InconsistentLayout"/>
 
 					<ImageButton
-						android:id="@+id/textsearchFnButton"
+						android:id="@+id/searchtextFnButton"
 						style="@style/GridStatusActionButton"
-						android:contentDescription="@string/status_textsearchFn"
+						android:contentDescription="@string/status_searchtext_fn"
 						android:src="@drawable/bn_setup"
 						tools:ignore="InconsistentLayout"/>
 				</LinearLayout>

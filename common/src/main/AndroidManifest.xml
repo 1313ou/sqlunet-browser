@@ -95,7 +95,7 @@
 
 		<activity
 			android:name=".SearchTextActivity"
-			android:label="@string/title_activity_text_search"
+			android:label="@string/title_activity_searchtext"
 			android:launchMode="singleTop"
 			android:parentActivityName=".SearchTextActivity"
 			tools:ignore="UnusedAttribute">

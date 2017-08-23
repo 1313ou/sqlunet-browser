@@ -12,7 +12,7 @@ import android.view.MenuItem;
 import org.sqlunet.browser.common.R;
 
 /**
- * Text search activity
+ * Abstract search text activity
  *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
@@ -29,7 +29,7 @@ public abstract class AbstractSearchTextActivity<F extends BaseSearchFragment> e
 		super.onCreate(savedInstanceState);
 
 		// content
-		setContentView(R.layout.activity_search_text);
+		setContentView(R.layout.activity_searchtext);
 
 		// toolbar
 		final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -39,12 +39,12 @@ public abstract class AbstractSearchTextActivity<F extends BaseSearchFragment> e
 		if (savedInstanceState == null)
 		{
 			//noinspection unchecked
-			this.fragment = (F) getSupportFragmentManager().findFragmentById(R.id.fragment_textsearch);
+			this.fragment = (F) getSupportFragmentManager().findFragmentById(R.id.fragment_searchtext);
 
 			// set up the action bar
 			final ActionBar actionBar = getSupportActionBar();
 			assert actionBar != null;
-			this.fragment.setActionBar(actionBar, this);
+			this.fragment.setActionBarUpDisabled(actionBar, this);
 		}
 	}
 

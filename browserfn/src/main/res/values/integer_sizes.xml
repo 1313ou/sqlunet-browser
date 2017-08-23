@@ -5,7 +5,7 @@
 	<integer name="size_sqlunet_db_zip">145667295</integer> <!-- sqlunet-fn.db.zip -->
 	<integer name="size_sqlunet_sql_zip">102900169</integer> <!-- sqlunet-fn.sql.zip -->
 
-	<integer name="size_textsearch">139870208</integer>
+	<integer name="size_searchtext">139870208</integer>
 
 	<integer name="size_db_working_total">590696448</integer>
 

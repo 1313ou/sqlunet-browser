@@ -47,7 +47,7 @@ public class PropBankProvider extends BaseProvider
 	static private final int PBROLESETS_PBEXAMPLES = 130;
 	static private final int PBROLESETS_PBEXAMPLES_BY_EXAMPLE = 131;
 
-	// text search codes
+	// search text codes
 	static private final int LOOKUP_FTS_EXAMPLES = 501;
 	static private final int LOOKUP_FTS_EXAMPLES_X = 511;
 	static private final int LOOKUP_FTS_EXAMPLES_X_BY_EXAMPLE = 512;

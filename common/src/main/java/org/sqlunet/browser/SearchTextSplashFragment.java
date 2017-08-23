@@ -15,6 +15,6 @@ public class SearchTextSplashFragment extends SplashFragment
 	public SearchTextSplashFragment()
 	{
 		super();
-		this.layoutId = R.layout.fragment_splash_search_text;
+		this.layoutId = R.layout.fragment_splash_searchtext;
 	}
 }

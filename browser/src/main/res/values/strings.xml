@@ -7,10 +7,10 @@
 	<!-- ACTIONS -->
 
 	<!-- setup -->
-	<string name="action_setup_textsearchWn" tools:keep="@string/action_setup_textsearchWn">Setup text search for WordNet</string>
-	<string name="action_setup_textsearchVn" tools:keep="@string/action_setup_textsearchVn">Setup text search for VerbNet</string>
-	<string name="action_setup_textsearchPb" tools:keep="@string/action_setup_textsearchPb">Setup text search for PropBank</string>
-	<string name="action_setup_textsearchFn" tools:keep="@string/action_setup_textsearchFn">Setup text search for FrameNet</string>
+	<string name="action_setup_searchtext_wn" tools:keep="@string/action_setup_searchtext_wn">Setup text search for WordNet</string>
+	<string name="action_setup_searchtext_vn" tools:keep="@string/action_setup_searchtext_vn">Setup text search for VerbNet</string>
+	<string name="action_setup_searchtext_pb" tools:keep="@string/action_setup_searchtext_pb">Setup text search for PropBank</string>
+	<string name="action_setup_searchtext_fn" tools:keep="@string/action_setup_searchtext_fn">Setup text search for FrameNet</string>
 
 	<!-- TITLES -->
 
@@ -20,12 +20,15 @@
 	<string name="title_activity_browse2">Data</string>
 	<string name="title_activity_table">Table</string>
 
+	<!-- send -->
+	<string name="send_activity_predicatematrix">Semantikos (PredicateMatrix)</string>
+
 	<!-- _status -->
 	<string name="status_predicatematrix">Predicate\nMatrix</string>
-	<string name="status_textsearch">Text Search\non WordNet</string>
-	<string name="status_textsearchVn">Text Search\non VerbNet</string>
-	<string name="status_textsearchPb">Text Search\non PropBank</string>
-	<string name="status_textsearchFn">Text Search\non FrameNet</string>
+	<string name="status_searchtext">Text Search\non WordNet</string>
+	<string name="status_searchtext_vn">Text Search\non VerbNet</string>
+	<string name="status_searchtext_pb">Text Search\non PropBank</string>
+	<string name="status_searchtext_fn">Text Search\non FrameNet</string>
 
 	<!-- database info -->
 	<string name="action_tables_and_indices">Tables and Indices</string>

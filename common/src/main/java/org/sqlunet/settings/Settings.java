@@ -30,7 +30,7 @@ public class Settings
 	static public final String PREF_DETAIL_MODE = "pref_detail_mode";
 	static private final String PREF_XML = "pref_xml";
 	static private final String PREF_SQL_LOG = "pref_sql_log";
-	static private final String PREF_TEXTSEARCH_MODE = "pref_textsearch_mode";
+	static private final String PREF_TEXTSEARCH_MODE = "pref_searchtext_mode";
 	static public final String PREF_STORAGE = StorageSettings.PREF_STORAGE;
 	static public final String PREF_DOWNLOAD_SITE = StorageSettings.PREF_DOWNLOAD_SITE;
 	static public final String PREF_DOWNLOADER = StorageSettings.PREF_DOWNLOADER;

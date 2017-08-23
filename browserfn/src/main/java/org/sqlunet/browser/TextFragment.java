@@ -334,7 +334,7 @@ public class TextFragment extends AbstractTableFragment
 		AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
 
 		// set the dialog characteristics
-		builder.setTitle(R.string.title_activity_text_search);
+		builder.setTitle(R.string.title_activity_searchtext);
 
 		// data and listener
 		builder.setItems(choices, listener);

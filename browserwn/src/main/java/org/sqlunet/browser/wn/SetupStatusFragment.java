@@ -53,10 +53,10 @@ public class SetupStatusFragment extends org.sqlunet.browser.config.SetupStatusF
 		assert view != null;
 
 		// images
-		this.imageTextSearchWn = (ImageView) view.findViewById(R.id.status_textsearchWn);
+		this.imageTextSearchWn = (ImageView) view.findViewById(R.id.status_searchtext_wn);
 
 		// buttons
-		this.buttonTextSearchWn = (ImageButton) view.findViewById(R.id.textsearchWnButton);
+		this.buttonTextSearchWn = (ImageButton) view.findViewById(R.id.searchtextWnButton);
 
 		// activity
 		final Activity activity = getActivity();
@@ -94,7 +94,7 @@ public class SetupStatusFragment extends org.sqlunet.browser.config.SetupStatusF
 							getString(R.string.title_status), getString(R.string.status_database_exists) + '-' + getString(existsTables ? R.string.status_data_exists : R.string.status_data_not_exists), //
 							getString(R.string.title_free), free, //
 							getString(R.string.size_expected), getString(R.string.hr_size_sqlunet_db), //
-							getString(R.string.size_expected) + ' ' + getString(R.string.text_search), getString(R.string.hr_size_textsearch), //
+							getString(R.string.size_expected) + ' ' + getString(R.string.text_search), getString(R.string.hr_size_searchtext), //
 							getString(R.string.size_expected) + ' ' + getString(R.string.total), getString(R.string.hr_size_db_working_total), //
 							getString(R.string.size_actual), hrSize);
 				}
@@ -106,7 +106,7 @@ public class SetupStatusFragment extends org.sqlunet.browser.config.SetupStatusF
 							getString(R.string.title_database), database, //
 							getString(R.string.title_free), free, //
 							getString(R.string.size_expected), getString(R.string.hr_size_sqlunet_db), //
-							getString(R.string.size_expected) + ' ' + getString(R.string.text_search), getString(R.string.hr_size_textsearch), //
+							getString(R.string.size_expected) + ' ' + getString(R.string.text_search), getString(R.string.hr_size_searchtext), //
 							getString(R.string.size_expected) + ' ' + getString(R.string.total), getString(R.string.hr_size_db_working_total), //
 							getString(R.string.title_status), getString(R.string.status_database_not_exists));
 				}

@@ -60,7 +60,7 @@
 	<!-- action bar specials -->
 	<item name="browse_action_bar_color" type="color" tools:ignore="UnusedResources">@color/violet_color</item>
 	<item name="predicatematrix_action_bar_color" type="color" tools:ignore="UnusedResources">@color/mauve_color</item>
-	<item name="textsearch_action_bar_color" type="color" tools:ignore="UnusedResources">@color/dark_red_color</item>
+	<item name="searchtext_action_bar_color" type="color" tools:ignore="UnusedResources">@color/dark_red_color</item>
 
 	<!-- swipe down refresh -->
 	<item name="swipe_down_1_color" type="color">@color/pink_color</item>

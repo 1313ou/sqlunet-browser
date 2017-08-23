@@ -207,12 +207,17 @@ public class BrowsePredicateMatrixFragment extends BaseSearchFragment
 	/**
 	 * Handle search
 	 *
-	 * @param query query string
+	 * @param query0 query string
 	 */
 	@Override
-	public void search(final String query)
+	public void search(final String query0)
 	{
-		if (query == null || query.isEmpty())
+		if (query0 == null)
+		{
+			return;
+		}
+		final String query = query0.trim();
+		if (query.isEmpty())
 		{
 			return;
 		}

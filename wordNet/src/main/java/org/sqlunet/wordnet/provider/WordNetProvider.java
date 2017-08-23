@@ -109,7 +109,7 @@ public class WordNetProvider extends BaseProvider
 	static private final int WORDS_MORPHMAPS_MORPHS = 391;
 	static private final int WORDS_MORPHMAPS_MORPHS_BY_WORD = 392;
 
-	// text search codes
+	// search text codes
 	static private final int LOOKUP_FTS_WORDS = 510;
 	static private final int LOOKUP_FTS_DEFINITIONS = 520;
 	static private final int LOOKUP_FTS_SAMPLES = 530;
@@ -165,7 +165,7 @@ public class WordNetProvider extends BaseProvider
 		WordNetProvider.uriMatcher.addURI(AUTHORITY, Words_MorphMaps_Morphs.TABLE, WordNetProvider.WORDS_MORPHMAPS_MORPHS);
 		WordNetProvider.uriMatcher.addURI(AUTHORITY, WordNetContract.Words_MorphMaps_Morphs.TABLE_BY_WORD, WordNetProvider.WORDS_MORPHMAPS_MORPHS_BY_WORD);
 
-		// text search
+		// search text
 		WordNetProvider.uriMatcher.addURI(AUTHORITY, Lookup_Words.TABLE, WordNetProvider.LOOKUP_FTS_WORDS);
 		WordNetProvider.uriMatcher.addURI(AUTHORITY, Lookup_Definitions.TABLE, WordNetProvider.LOOKUP_FTS_DEFINITIONS);
 		WordNetProvider.uriMatcher.addURI(AUTHORITY, Lookup_Samples.TABLE, WordNetProvider.LOOKUP_FTS_SAMPLES);

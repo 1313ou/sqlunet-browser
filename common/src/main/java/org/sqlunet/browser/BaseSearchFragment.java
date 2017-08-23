@@ -188,13 +188,20 @@ abstract public class BaseSearchFragment extends NavigableFragment implements Se
 		setupSpinner(context);
 
 		// set up the action bar to show a custom layout
-		actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM | ActionBar.DISPLAY_SHOW_TITLE /*| ActionBar.DISPLAY_SHOW_HOME | ActionBar.DISPLAY_HOME_AS_UP*/);
+		actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM | ActionBar.DISPLAY_SHOW_TITLE | ActionBar.DISPLAY_SHOW_HOME | ActionBar.DISPLAY_HOME_AS_UP);
 		// actionBar.setDisplayShowCustomEnabled(true);
 		// actionBar.setDisplayShowHomeEnabled(true);
 		// actionBar.setDisplayHomeAsUpEnabled(true);
 		// actionBar.setDisplayShowTitleEnabled(false);
 
 		return true;
+	}
+
+	public boolean setActionBarUpDisabled(final ActionBar actionBar, final Context context)
+	{
+		boolean result = setActionBar(actionBar, context);
+		actionBar.setDisplayHomeAsUpEnabled(false);
+		return result;
 	}
 
 	// S P I N N E R

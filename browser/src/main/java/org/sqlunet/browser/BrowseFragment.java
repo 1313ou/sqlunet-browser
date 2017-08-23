@@ -187,11 +187,21 @@ public class BrowseFragment extends BaseSearchFragment
 	/**
 	 * Handle search
 	 *
-	 * @param query query
+	 * @param query0 query
 	 */
 	@Override
-	public void search(final String query)
+	public void search(final String query0)
 	{
+		if (query0 == null)
+		{
+			return;
+		}
+		final String query = query0.trim();
+		if (query.isEmpty())
+		{
+			return;
+		}
+
 		// log
 		Log.d(BrowseFragment.TAG, "BROWSE " + query);
 

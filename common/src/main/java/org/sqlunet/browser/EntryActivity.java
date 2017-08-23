@@ -58,11 +58,11 @@ public class EntryActivity extends AppCompatActivity
 		if (!canRun)
 		{
 			forkOff(activity);
-			return;
+			// return;
 		}
 	}
 
-	static public void forkOff(final Activity activity)
+	private static void forkOff(final Activity activity)
 	{
 		final Intent intent = new Intent(activity, StatusActivity.class);
 		intent.putExtra(Status.CANTRUN, true);

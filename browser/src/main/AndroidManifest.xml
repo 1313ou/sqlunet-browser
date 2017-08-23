@@ -58,11 +58,12 @@
 			<intent-filter>
 				<action android:name="android.intent.action.SEARCH"/>
 			</intent-filter>
-			<intent-filter>
+			<intent-filter android:label="@string/send_activity_browse">
 				<action android:name="android.intent.action.SEND"/>
 				<category android:name="android.intent.category.DEFAULT"/>
 				<data android:mimeType="text/plain"/>
 			</intent-filter>
+
 			<meta-data
 				android:name="android.support.PARENT_ACTIVITY"
 				android:value=".MainActivity"/>
@@ -102,18 +103,19 @@
 
 		<activity
 			android:name=".SearchTextActivity"
-			android:label="@string/title_activity_text_search"
+			android:label="@string/title_activity_searchtext"
 			android:launchMode="singleTop"
 			android:parentActivityName=".SearchTextActivity"
 			tools:ignore="UnusedAttribute">
 			<intent-filter>
 				<action android:name="android.intent.action.SEARCH"/>
 			</intent-filter>
-			<intent-filter>
+			<intent-filter android:label="@string/send_activity_searchtext">
 				<action android:name="android.intent.action.SEND"/>
 				<category android:name="android.intent.category.DEFAULT"/>
 				<data android:mimeType="text/plain"/>
 			</intent-filter>
+
 			<meta-data
 				android:name="android.support.PARENT_ACTIVITY"
 				android:value=".MainActivity"/>
@@ -131,7 +133,7 @@
 			<intent-filter>
 				<action android:name="android.intent.action.SEARCH"/>
 			</intent-filter>
-			<intent-filter>
+			<intent-filter android:label="@string/send_activity_predicatematrix">
 				<action android:name="android.intent.action.SEND"/>
 				<category android:name="android.intent.category.DEFAULT"/>
 				<data android:mimeType="text/plain"/>

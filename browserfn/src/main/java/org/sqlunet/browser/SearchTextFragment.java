@@ -15,7 +15,7 @@ import org.sqlunet.framenet.provider.FrameNetProvider;
 import org.sqlunet.provider.ProviderArgs;
 
 /**
- * Text search activity
+ * Search text fragment
  *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
@@ -30,12 +30,12 @@ public class SearchTextFragment extends BaseSearchFragment
 	 */
 	public SearchTextFragment()
 	{
-		this.layoutId = R.layout.fragment_search_text;
-		this.menuId = R.menu.text_search;
-		this.colorId = R.color.textsearch_action_bar_color;
-		this.spinnerLabels = R.array.textsearch_modes;
-		this.spinnerIcons = R.array.textsearch_icons;
-		this.titleId = R.string.title_textsearch_section;
+		this.layoutId = R.layout.fragment_searchtext;
+		this.menuId = R.menu.searchtext;
+		this.colorId = R.color.searchtext_action_bar_color;
+		this.spinnerLabels = R.array.searchtext_modes;
+		this.spinnerIcons = R.array.searchtext_icons;
+		this.titleId = R.string.title_searchtext_section;
 	}
 
 	@Override
@@ -49,7 +49,7 @@ public class SearchTextFragment extends BaseSearchFragment
 			final Fragment fragment = new SearchTextSplashFragment();
 			getChildFragmentManager() //
 					.beginTransaction() //
-					.replace(R.id.container_textsearch, fragment) //
+					.replace(R.id.container_searchtext, fragment) //
 					.commit();
 		}
 
@@ -92,13 +92,23 @@ public class SearchTextFragment extends BaseSearchFragment
 	/**
 	 * Handle query
 	 *
-	 * @param query query
+	 * @param query0 query
 	 */
 	@Override
-	public void search(final String query)
+	public void search(final String query0)
 	{
+		if (query0 == null)
+		{
+			return;
+		}
+		final String query = query0.trim();
+		if (query.isEmpty())
+		{
+			return;
+		}
+
 		// log
-		Log.d(SearchTextFragment.TAG, "TEXT SEARCH " + query);
+		Log.d(SearchTextFragment.TAG, "SEARCH TEXT " + query);
 
 		// view
 		final View view = getView();
@@ -117,7 +127,7 @@ public class SearchTextFragment extends BaseSearchFragment
 		final int typePosition = this.spinner.getSelectedItemPosition();
 
 		// status
-		// final CharSequence[] textSearches = getResources().getTextArray(R.array.textsearch_modes);
+		// final CharSequence[] textSearches = getResources().getTextArray(R.array.searchtext_modes);
 
 		// as per selected mode
 		String searchUri;
@@ -153,7 +163,7 @@ public class SearchTextFragment extends BaseSearchFragment
 		args.putStringArray(ProviderArgs.ARG_QUERYHIDDENITEMS, hiddenColumns);
 		args.putString(ProviderArgs.ARG_QUERYFILTER, target + " MATCH ?");
 		args.putString(ProviderArgs.ARG_QUERYARG, query);
-		args.putInt(ProviderArgs.ARG_QUERYLAYOUT, R.layout.item_search_text);
+		args.putInt(ProviderArgs.ARG_QUERYLAYOUT, R.layout.item_searchtext);
 		args.putString(ProviderArgs.ARG_QUERYDATABASE, database);
 
 		// fragment
@@ -161,7 +171,7 @@ public class SearchTextFragment extends BaseSearchFragment
 		fragment.setArguments(args);
 		getChildFragmentManager() //
 				.beginTransaction() //
-				.replace(R.id.container_textsearch, fragment) //
+				.replace(R.id.container_searchtext, fragment) //
 				.commit();
 	}
 }

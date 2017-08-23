@@ -15,6 +15,9 @@ abstract public class SplashFragment extends Fragment
 {
 	// static private final String TAG = "SplashFragment";
 
+	/**
+	 * Layout id set bu super class
+	 */
 	@SuppressWarnings("WeakerAccess")
 	protected int layoutId;
 

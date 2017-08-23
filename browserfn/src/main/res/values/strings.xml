@@ -5,10 +5,14 @@
 	<string name="app_name">Semantikos-FrameNet</string>>
 
 	<!-- actions -->
-	<string name="action_setup_textsearchFn" tools:keep="@string/action_setup_textsearchFn">Setup text search for FrameNet</string>
+	<string name="action_setup_searchtext_fn" tools:keep="@string/action_setup_searchtext_fn">Setup text search for FrameNet</string>
+
+	<!-- send -->
+	<string name="send_activity_browse">Semantikos-FrameNet</string>
+	<string name="send_activity_searchtext">Semantikos-FrameNet (Text)</string>
 
 	<!-- _status -->
-	<string name="status_textsearchFn">Text Search\non FrameNet</string>
+	<string name="status_searchtext_fn">Text Search\non FrameNet</string>
 
 	<!-- hints -->
 	<string name="hint_splash_browse">Exploring semantic roles</string>

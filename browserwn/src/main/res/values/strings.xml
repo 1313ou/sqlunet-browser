@@ -5,7 +5,11 @@
 	<string name="app_name">Semantikos-WordNet</string>>
 
 	<!-- actions -->
-	<string name="action_setup_textsearchWn" tools:keep="@string/action_setup_textsearchWn">Setup text search for WordNet</string>
+	<string name="action_setup_searchtext_wn" tools:keep="@string/action_setup_searchtext_wn">Setup text search for WordNet</string>
+
+	<!-- send -->
+	<string name="send_activity_browse">Semantikos-WordNet</string>
+	<string name="send_activity_searchtext">Semantikos-WordNet (Text)</string>
 
 	<!-- database info -->
 	<string name="action_tables_and_indices">Tables and Indices</string>
@@ -15,7 +19,7 @@
 	<string name="action_table_adjpositiontypes">Adjective Position types</string>
 
 	<!-- _status -->
-	<string name="status_textsearchWn">Text Search\non WordNet</string>
+	<string name="status_searchtext_wn">Text Search\non WordNet</string>
 
 	<!-- hints -->
 	<string name="hint_splash_browse">Exploring senses and relations</string>

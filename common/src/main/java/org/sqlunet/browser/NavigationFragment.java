@@ -1,5 +1,6 @@
 package org.sqlunet.browser;
 
+import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.res.Resources;
@@ -17,6 +18,8 @@ import android.util.Log;
 import android.util.TypedValue;
 
 import org.sqlunet.browser.common.R;
+import org.sqlunet.browser.config.SettingsActivity;
+import org.sqlunet.browser.config.SetupActivity;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
@@ -139,39 +142,35 @@ public class NavigationFragment extends NavigationDrawerFragment implements Navi
 		return false;
 	}
 
-	/*
-	 * Setup handler
+	/**
+	 * Setup handler (used by reflexion)
 	 */
-	/*
+	@SuppressWarnings("unused")
 	private void setupActivity()
 	{
 		final Intent intent = new Intent(getActivity(), SetupActivity.class);
 		startActivity(intent);
 	}
-	*/
 
-	/*
-	 * Settings handler
+	/**
+	 * Settings handler (used by reflexion)
 	 */
-	/*
+	@SuppressWarnings("unused")
 	private void settingsActivity()
 	{
 		final Intent intent = new Intent(getActivity(), SettingsActivity.class);
 		intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
 		startActivity(intent);
 	}
-	*/
 
-	/*
-	 * SQL handler
+	/**
+	 * SQL handler (used by reflexion)
 	 */
-
-	/*
+	@SuppressWarnings("unused")
 	private void sqlDialog()
 	{
 		SqlDialogFragment.show(getActivity().getSupportFragmentManager());
 	}
-	*/
 
 	/**
 	 * Handle fragments

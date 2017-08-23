@@ -5,7 +5,7 @@
 	<integer name="size_sqlunet_db_zip">0</integer>
 	<integer name="size_sqlunet_sql_zip">0</integer>
 
-	<integer name="size_textsearch">0</integer>
+	<integer name="size_searchtext">0</integer>
 
 	<integer name="size_db_working_total">0</integer>
 

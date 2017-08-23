@@ -9,7 +9,7 @@
 	<string name="hr_size_sqlunet_db_zip">27 MB</string> <!-- sqlunet-wn.db.zip -->
 	<string name="hr_size_sqlunet_sql_zip">12 MB</string> <!-- sqlunet-wn.sql.zip -->
 
-	<string name="hr_size_textsearch">34 MB</string>
+	<string name="hr_size_searchtext">34 MB</string>
 
 	<string name="hr_size_db_working_total">97 MB</string>
 

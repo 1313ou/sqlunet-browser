@@ -45,7 +45,7 @@ public class VerbNetProvider extends BaseProvider
 	static private final int VNCLASSES_VNROLES_X_BY_VNROLE = 120;
 	static private final int VNCLASSES_VNFRAMES_X_BY_VNFRAME = 130;
 
-	// text search codes
+	// search text codes
 	static private final int LOOKUP_FTS_EXAMPLES = 501;
 	static private final int LOOKUP_FTS_EXAMPLES_X = 511;
 	static private final int LOOKUP_FTS_EXAMPLES_X_BY_EXAMPLE = 512;

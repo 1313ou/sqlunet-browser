@@ -87,24 +87,24 @@
 						android:src="@drawable/bn_setup"/>
 				</LinearLayout>
 
-				<!-- textsearch wordnet -->
+				<!-- searchtext wordnet -->
 
 				<TextView
 					style="@style/GridLabel"
-					android:text="@string/status_textsearchWn"/>
+					android:text="@string/status_searchtext_wn"/>
 
 				<LinearLayout style="@style/GridData">
 
 					<ImageView
-						android:id="@+id/status_textsearchWn"
+						android:id="@+id/status_searchtext_wn"
 						style="@style/GridStatusImage"
-						android:contentDescription="@string/status_textsearchWn"
+						android:contentDescription="@string/status_searchtext_wn"
 						tools:ignore="InconsistentLayout"/>
 
 					<ImageButton
-						android:id="@+id/textsearchWnButton"
+						android:id="@+id/searchtextWnButton"
 						style="@style/GridStatusActionButton"
-						android:contentDescription="@string/status_textsearchWn"
+						android:contentDescription="@string/status_searchtext_wn"
 						android:src="@drawable/bn_setup"
 						tools:ignore="InconsistentLayout"/>
 				</LinearLayout>

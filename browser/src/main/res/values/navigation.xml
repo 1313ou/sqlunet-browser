@@ -5,7 +5,7 @@
 	HOME
 	BROWSE
 	PREDICATE MATRIX
-	TEXT SEARCH
+	SEARCH TEXT
 	STATUS
 	SETUP
 	STORAGE
@@ -35,7 +35,7 @@
 	<string name="fragment_class_home_section">org.sqlunet.browser.xn.HomeFragment</string>
 	<string name="fragment_class_browse_section">org.sqlunet.browser.BrowseFragment</string>
 	<string name="fragment_class_predicatematrix_section">org.sqlunet.browser.BrowsePredicateMatrixFragment</string>
-	<string name="fragment_class_textsearch_section">org.sqlunet.browser.SearchTextFragment</string>
+	<string name="fragment_class_searchtext_section">org.sqlunet.browser.SearchTextFragment</string>
 	<string name="fragment_class_status_section">org.sqlunet.browser.xn.StatusFragment</string>
 	<string name="fragment_class_setup_section"/>
 	<string name="fragment_class_storage_section">org.sqlunet.browser.config.StorageFragment</string>
@@ -47,7 +47,7 @@
 		<item>@string/fragment_class_home_section</item> <!-- 0 home -->
 		<item>@string/fragment_class_browse_section</item> <!--1 browse -->
 		<item>@string/fragment_class_predicatematrix_section</item> <!--2 predicate matrix -->
-		<item>@string/fragment_class_textsearch_section</item> <!--3 text search -->
+		<item>@string/fragment_class_searchtext_section</item> <!--3 search text -->
 		<item>@string/fragment_class_status_section</item> <!--4 status -->
 		<item>@string/fragment_class_setup_section</item> <!--5 setup -->
 		<item>@string/fragment_class_storage_section</item> <!-- 6 storage -->
@@ -60,7 +60,7 @@
 	<string name="fragment_tag_home_section">home</string>
 	<string name="fragment_tag_browse_section">browse</string>
 	<string name="fragment_tag_predicatematrix_section">predicatematrix</string>
-	<string name="fragment_tag_textsearch_section">textsearch</string>
+	<string name="fragment_tag_searchtext_section">searchtext</string>
 	<string name="fragment_tag_status_section">status</string>
 	<string name="fragment_tag_setup_section"/>
 	<string name="fragment_tag_storage_section">storage</string>
@@ -72,7 +72,7 @@
 		<item>@string/fragment_tag_home_section</item> <!-- 0 home -->
 		<item>@string/fragment_tag_browse_section</item> <!--1 browse -->
 		<item>@string/fragment_tag_predicatematrix_section</item> <!--2 predicate matrix -->
-		<item>@string/fragment_tag_textsearch_section</item> <!--3 text search -->
+		<item>@string/fragment_tag_searchtext_section</item> <!--3 search text -->
 		<item>@string/fragment_tag_status_section</item> <!--4 status -->
 		<item>@string/fragment_tag_setup_section</item> <!--5 setup -->
 		<item>@string/fragment_tag_storage_section</item> <!-- 6 storage -->
@@ -87,7 +87,7 @@
 		<item>1</item> <!-- 0 home -->
 		<item>0</item> <!-- 1 browse -->
 		<item>0</item> <!-- 2 predicate matrix -->
-		<item>0</item> <!-- 3 text search -->
+		<item>0</item> <!-- 3 search text -->
 		<item>1</item> <!-- 4 status -->
 		<item>1</item> <!-- 5 setup: not a fragment - does not apply -->
 		<item>1</item> <!-- 6 storage -->
@@ -102,7 +102,7 @@
 		<item>1</item> <!-- 0 home -->
 		<item>1</item> <!--1 browse -->
 		<item>1</item> <!--2 predicate matrix -->
-		<item>1</item> <!--3 text search -->
+		<item>1</item> <!--3 search text -->
 		<item>1</item> <!--4 status -->
 		<item>0</item> <!--5 setup -->
 		<item>1</item> <!-- 6 storage -->
@@ -117,7 +117,7 @@
 		<item>0</item> <!-- 0 home -->
 		<item>1</item> <!--1 browse -->
 		<item>1</item> <!--2 predicate matrix -->
-		<item>1</item> <!--3 text search -->
+		<item>1</item> <!--3 search text -->
 		<item>0</item> <!--4 status -->
 		<item>0</item> <!--5 setup -->
 		<item>0</item> <!-- 6 storage -->
@@ -131,7 +131,7 @@
 	<string name="title_home_section">@string/semantikos</string>
 	<string name="title_browse_section">Browse</string>
 	<string name="title_predicatematrix_section">Predicate Matrix</string>
-	<string name="title_textsearch_section">Text</string>
+	<string name="title_searchtext_section">Text</string>
 	<string name="title_status_section">Status</string>
 	<string name="title_setup_section">Set up</string>
 	<string name="title_storage_section">Storage</string>
@@ -143,7 +143,7 @@
 		<item>@string/title_home_section</item> <!-- 0 home -->
 		<item>@string/title_browse_section</item> <!-- 1 browse -->
 		<item>@string/title_predicatematrix_section</item> <!-- 2 predicate matrix -->
-		<item>@string/title_textsearch_section</item> <!-- 3 text search -->
+		<item>@string/title_searchtext_section</item> <!-- 3 search text -->
 		<item>@string/title_status_section</item> <!-- 4 status -->
 		<item>@string/title_setup_section</item> <!-- 5 setup -->
 		<item>@string/title_storage_section</item> <!-- 6 storage -->
@@ -158,7 +158,7 @@
 		<item>@drawable/ic_home</item> <!-- 0 home -->
 		<item>@drawable/ic_search_browse</item> <!-- 1 browse -->
 		<item>@drawable/ic_search_pm</item> <!-- 2 predicate matrix -->
-		<item>@drawable/ic_search_text</item> <!-- 3 text search -->
+		<item>@drawable/ic_search_text</item> <!-- 3 search text -->
 		<item>@drawable/ic_status</item> <!-- 4 status -->
 		<item>@drawable/ic_setup</item> <!-- 5 setup -->
 		<item>@drawable/ic_storage</item> <!-- 6 storage -->

@@ -11,17 +11,17 @@
 		<item>@drawable/ic_selector</item>
 	</integer-array>
 
-	<!-- textsearch spinner
+	<!-- searchtext spinner
 	WORDNET DEFINITIONS
 	WORDNET SAMPLES
 	WORDNET WORDS
 	-->
-	<string-array name="textsearch_modes" tools:ignore="InconsistentArrays">
+	<string-array name="searchtext_modes" tools:ignore="InconsistentArrays">
 		<item>WordNet definitions</item>
 		<item>WordNet samples</item>
 		<item>WordNet words</item>
 	</string-array>
-	<integer-array name="textsearch_icons" tools:ignore="InconsistentArrays">
+	<integer-array name="searchtext_icons" tools:ignore="InconsistentArrays">
 		<item>@drawable/ic_search_wndefinition</item>
 		<item>@drawable/ic_search_wnsample</item>
 		<item>@drawable/ic_search_wnword</item>

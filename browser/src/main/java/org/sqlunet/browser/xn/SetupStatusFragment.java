@@ -70,19 +70,19 @@ public class SetupStatusFragment extends org.sqlunet.browser.config.SetupStatusF
 		assert view != null;
 
 		// images
-		this.imageTextSearchFn = (ImageView) view.findViewById(R.id.status_textsearchFn);
+		this.imageTextSearchFn = (ImageView) view.findViewById(R.id.status_searchtext_fn);
 		this.imagePm = (ImageView) view.findViewById(R.id.status_predicatematrix);
-		this.imageTextSearchWn = (ImageView) view.findViewById(R.id.status_textsearchWn);
-		this.imageTextSearchVn = (ImageView) view.findViewById(R.id.status_textsearchVn);
-		this.imageTextSearchPb = (ImageView) view.findViewById(R.id.status_textsearchPb);
-		this.imageTextSearchFn = (ImageView) view.findViewById(R.id.status_textsearchFn);
+		this.imageTextSearchWn = (ImageView) view.findViewById(R.id.status_searchtext_wn);
+		this.imageTextSearchVn = (ImageView) view.findViewById(R.id.status_searchtext_vn);
+		this.imageTextSearchPb = (ImageView) view.findViewById(R.id.status_searchtext_pb);
+		this.imageTextSearchFn = (ImageView) view.findViewById(R.id.status_searchtext_fn);
 
 		// buttons
 		this.buttonPm = (ImageButton) view.findViewById(R.id.predicatematrixButton);
-		this.buttonTextSearchWn = (ImageButton) view.findViewById(R.id.textsearchWnButton);
-		this.buttonTextSearchVn = (ImageButton) view.findViewById(R.id.textsearchVnButton);
-		this.buttonTextSearchPb = (ImageButton) view.findViewById(R.id.textsearchPbButton);
-		this.buttonTextSearchFn = (ImageButton) view.findViewById(R.id.textsearchFnButton);
+		this.buttonTextSearchWn = (ImageButton) view.findViewById(R.id.searchtextWnButton);
+		this.buttonTextSearchVn = (ImageButton) view.findViewById(R.id.searchtextVnButton);
+		this.buttonTextSearchPb = (ImageButton) view.findViewById(R.id.searchtextPbButton);
+		this.buttonTextSearchFn = (ImageButton) view.findViewById(R.id.searchtextFnButton);
 		final ImageButton infoDatabaseButton = (ImageButton) view.findViewById(R.id.info_database);
 
 		// activity
@@ -170,7 +170,7 @@ public class SetupStatusFragment extends org.sqlunet.browser.config.SetupStatusF
 							getString(R.string.title_status), getString(existsTables ? R.string.status_data_exists : R.string.status_data_not_exists), //
 							getString(R.string.title_free), free, //
 							getString(R.string.size_expected), getString(R.string.hr_size_sqlunet_db), //
-							getString(R.string.size_expected) + ' ' + getString(R.string.text_search) + ' ' + getString(R.string.wordnet) + '/' + getString(R.string.verbnet) + '/' + getString(R.string.propbank) + '/' + getString(R.string.framenet), getString(R.string.hr_size_textsearch) + " (" + getString(R.string.hr_size_textsearch_wn) + '+' + getString(R.string.hr_size_textsearch_vn) + '+' + getString(R.string.hr_size_textsearch_pb) + '+' + getString(R.string.hr_size_textsearch_fn) + '+' + getString(R.string.hr_size_textsearch) + ')', //
+							getString(R.string.size_expected) + ' ' + getString(R.string.text_search) + ' ' + getString(R.string.wordnet) + '/' + getString(R.string.verbnet) + '/' + getString(R.string.propbank) + '/' + getString(R.string.framenet), getString(R.string.hr_size_searchtext) + " (" + getString(R.string.hr_size_searchtext_wn) + '+' + getString(R.string.hr_size_searchtext_vn) + '+' + getString(R.string.hr_size_searchtext_pb) + '+' + getString(R.string.hr_size_searchtext_fn) + '+' + getString(R.string.hr_size_searchtext) + ')', //
 							getString(R.string.size_expected) + ' ' + getString(R.string.total), getString(R.string.hr_size_db_working_total), //
 							getString(R.string.size_actual), hrSize);
 				}
@@ -181,7 +181,7 @@ public class SetupStatusFragment extends org.sqlunet.browser.config.SetupStatusF
 							getString(R.string.title_from), source, //
 							getString(R.string.title_database), database, //
 							getString(R.string.title_free), free, //
-							getString(R.string.size_expected) + ' ' + getString(R.string.text_search) + ' ' + getString(R.string.wordnet) + '/' + getString(R.string.verbnet) + '/' + getString(R.string.propbank) + '/' + getString(R.string.framenet), getString(R.string.hr_size_textsearch) + " (" + getString(R.string.hr_size_textsearch_wn) + '+' + getString(R.string.hr_size_textsearch_vn) + '+' + getString(R.string.hr_size_textsearch_pb) + '+' + getString(R.string.hr_size_textsearch_fn) + '+' + getString(R.string.hr_size_textsearch) + ')', //
+							getString(R.string.size_expected) + ' ' + getString(R.string.text_search) + ' ' + getString(R.string.wordnet) + '/' + getString(R.string.verbnet) + '/' + getString(R.string.propbank) + '/' + getString(R.string.framenet), getString(R.string.hr_size_searchtext) + " (" + getString(R.string.hr_size_searchtext_wn) + '+' + getString(R.string.hr_size_searchtext_vn) + '+' + getString(R.string.hr_size_searchtext_pb) + '+' + getString(R.string.hr_size_searchtext_fn) + '+' + getString(R.string.hr_size_searchtext) + ')', //
 							getString(R.string.size_expected) + ' ' + getString(R.string.total), getString(R.string.hr_size_db_working_total), //
 							getString(R.string.title_status), getString(R.string.status_database_not_exists));
 				}

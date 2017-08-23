@@ -111,91 +111,91 @@
 						android:src="@drawable/bn_setup"/>
 				</LinearLayout>
 
-				<!-- textsearch wordnet -->
+				<!-- searchtext wordnet -->
 
 				<TextView
 					style="@style/GridLabel"
-					android:text="@string/status_textsearch"
+					android:text="@string/status_searchtext"
 					/>
 
 				<LinearLayout style="@style/GridData">
 
 					<ImageView
-						android:id="@+id/status_textsearchWn"
+						android:id="@+id/status_searchtext_wn"
 						style="@style/GridStatusImage"
-						android:contentDescription="@string/status_textsearch"
+						android:contentDescription="@string/status_searchtext"
 						tools:ignore="InconsistentLayout"/>
 
 					<ImageButton
-						android:id="@+id/textsearchWnButton"
+						android:id="@+id/searchtextWnButton"
 						style="@style/GridStatusActionButton"
-						android:contentDescription="@string/status_textsearch"
+						android:contentDescription="@string/status_searchtext"
 						android:src="@drawable/bn_setup"
 						tools:ignore="InconsistentLayout"/>
 				</LinearLayout>
 
-				<!-- textsearch verbnet -->
+				<!-- searchtext verbnet -->
 
 				<TextView
 					style="@style/GridLabel"
-					android:text="@string/status_textsearchVn"/>
+					android:text="@string/status_searchtext_vn"/>
 
 				<LinearLayout style="@style/GridData">
 
 					<ImageView
-						android:id="@+id/status_textsearchVn"
+						android:id="@+id/status_searchtext_vn"
 						style="@style/GridStatusImage"
-						android:contentDescription="@string/status_textsearchVn"
+						android:contentDescription="@string/status_searchtext_vn"
 						tools:ignore="InconsistentLayout"/>
 
 					<ImageButton
-						android:id="@+id/textsearchVnButton"
+						android:id="@+id/searchtextVnButton"
 						style="@style/GridStatusActionButton"
-						android:contentDescription="@string/status_textsearchVn"
+						android:contentDescription="@string/status_searchtext_vn"
 						android:src="@drawable/bn_setup"
 						tools:ignore="InconsistentLayout"/>
 				</LinearLayout>
 
-				<!-- textsearch propbank -->
+				<!-- searchtext propbank -->
 
 				<TextView
 					style="@style/GridLabel"
-					android:text="@string/status_textsearchPb"/>
+					android:text="@string/status_searchtext_pb"/>
 
 				<LinearLayout style="@style/GridData">
 
 					<ImageView
-						android:id="@+id/status_textsearchPb"
+						android:id="@+id/status_searchtext_pb"
 						style="@style/GridStatusImage"
-						android:contentDescription="@string/status_textsearchPb"
+						android:contentDescription="@string/status_searchtext_pb"
 						tools:ignore="InconsistentLayout"/>
 
 					<ImageButton
-						android:id="@+id/textsearchPbButton"
+						android:id="@+id/searchtextPbButton"
 						style="@style/GridStatusActionButton"
-						android:contentDescription="@string/status_textsearchPb"
+						android:contentDescription="@string/status_searchtext_pb"
 						android:src="@drawable/bn_setup"
 						tools:ignore="InconsistentLayout"/>
 				</LinearLayout>
 
-				<!-- textsearch framenet -->
+				<!-- searchtext framenet -->
 
 				<TextView
 					style="@style/GridLabel"
-					android:text="@string/status_textsearchFn"/>
+					android:text="@string/status_searchtext_fn"/>
 
 				<LinearLayout style="@style/GridData">
 
 					<ImageView
-						android:id="@+id/status_textsearchFn"
+						android:id="@+id/status_searchtext_fn"
 						style="@style/GridStatusImage"
-						android:contentDescription="@string/status_textsearchFn"
+						android:contentDescription="@string/status_searchtext_fn"
 						tools:ignore="InconsistentLayout"/>
 
 					<ImageButton
-						android:id="@+id/textsearchFnButton"
+						android:id="@+id/searchtextFnButton"
 						style="@style/GridStatusActionButton"
-						android:contentDescription="@string/status_textsearchFn"
+						android:contentDescription="@string/status_searchtext_fn"
 						android:src="@drawable/bn_setup"
 						tools:ignore="InconsistentLayout"/>
 				</LinearLayout>

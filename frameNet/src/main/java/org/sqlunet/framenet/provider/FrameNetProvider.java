@@ -98,7 +98,7 @@ public class FrameNetProvider extends BaseProvider
 	static private final int LEXUNITS_GROUPREALIZATIONS = 430;
 	static private final int LEXUNITS_GROUPREALIZATIONS_BY_PATTERN = 431;
 
-	// text search codes
+	// search text codes
 	static private final int LOOKUP_FTS_WORDS = 510;
 	static private final int LOOKUP_FTS_SENTENCES = 511;
 	static private final int LOOKUP_FTS_SENTENCES_X = 512;

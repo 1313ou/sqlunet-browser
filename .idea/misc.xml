@@ -31,6 +31,9 @@
       <entry_point TYPE="method" FQNAME="org.sqlunet.browser.xn.Settings void initialize(android.content.Context context)" />
       <entry_point TYPE="method" FQNAME="org.sqlunet.browser.xn.Status boolean canRun(android.content.Context context)" />
       <entry_point TYPE="field" FQNAME="org.sqlunet.predicatematrix.style.PredicateMatrixFactories wordFactory" />
+      <entry_point TYPE="method" FQNAME="org.sqlunet.browser.NavigationFragment void sqlDialog()" />
+      <entry_point TYPE="method" FQNAME="org.sqlunet.browser.NavigationFragment void settingsActivity()" />
+      <entry_point TYPE="method" FQNAME="org.sqlunet.browser.NavigationFragment void setupActivity()" />
     </entry_points>
   </component>
   <component name="NullableNotNullManager">
@@ -67,7 +70,7 @@
     <ConfirmationsSetting value="0" id="Add" />
     <ConfirmationsSetting value="0" id="Remove" />
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" default="true" assert-keyword="true" jdk-15="true" project-jdk-name="1.8 (1)" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_7" default="true" assert-keyword="true" jdk-15="true" project-jdk-name="1.8 (1)" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">

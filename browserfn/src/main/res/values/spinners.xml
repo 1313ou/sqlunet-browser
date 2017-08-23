@@ -11,13 +11,13 @@
 		<item>@drawable/ic_selector</item>
 	</integer-array>
 
-	<!-- textsearch spinner
+	<!-- searchtext spinner
 	FRAMENET SENTENCES
 	-->
-	<string-array name="textsearch_modes" tools:ignore="InconsistentArrays">
+	<string-array name="searchtext_modes" tools:ignore="InconsistentArrays">
 		<item>FrameNet sentences</item>
 	</string-array>
-	<integer-array name="textsearch_icons" tools:ignore="InconsistentArrays">
+	<integer-array name="searchtext_icons" tools:ignore="InconsistentArrays">
 		<item>@drawable/ic_search_fnsentence</item>
 	</integer-array>
 

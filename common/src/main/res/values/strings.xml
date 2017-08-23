@@ -65,11 +65,11 @@
 	<string name="title_activity_setup">Set up</string>
 	<string name="title_activity_setup_database">Set up database</string>
 	<string name="title_activity_download">Download</string>
-	<string name="title_activity_text_search">Text Search</string>
+	<string name="title_activity_searchtext">Text Search</string>
 	<string name="title_activity_storage">Storage</string>
 	<string name="title_activity_update">Update</string>
 	<string name="title_activity_share_browse">Browse with Semantikos</string>
-	<string name="title_activity_share_textsearch">Text search with Semantikos</string>
+	<string name="title_activity_share_searchtext">Text search with Semantikos</string>
 
 	<string name="title_activity_selector">Select</string>
 
@@ -78,6 +78,10 @@
 
 	<string name="title_dialog_sql">SQL</string>
 	<string name="title_download">SqlUNet download</string>
+
+	<!-- send -->
+	<string name="send_activity_browse">Semantikos</string>
+	<string name="send_activity_searchtext">Semantikos (Text)</string>
 
 	<!-- _status -->
 	<string name="status_data_fail">Data is unavailable</string>
@@ -124,9 +128,9 @@
 
 	<!-- misc -->
 	<string name="hint_search">Search</string>
-	<string name="hint_search_text">Text search</string>
+	<string name="hint_searchtext">Text search</string>
 	<string name="hint_splash_browse">Exploring senses and semantic roles</string>
-	<string name="hint_splash_textsearch">Text search</string>
+	<string name="hint_splash_searchtext">Text search</string>
 	<string name="hint_navigation_drawer_open">Open navigation drawer</string>
 	<string name="hint_navigation_drawer_close">Close navigation drawer</string>
 	<string name="hint_sql">SQL statements stack</string>

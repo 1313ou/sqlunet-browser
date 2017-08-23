@@ -14,7 +14,7 @@
 		<item>@drawable/ic_xselector</item>
 	</integer-array>
 
-	<!-- textsearch spinner
+	<!-- searchtext spinner
 	WORDS
 	DEFINITIONS
 	SAMPLES
@@ -22,7 +22,7 @@
 	PROPBANK EXAMPLES
 	FRAMENET SENTENCES
 	-->
-	<string-array name="textsearch_modes" tools:ignore="InconsistentArrays">
+	<string-array name="searchtext_modes" tools:ignore="InconsistentArrays">
 		<item>WordNet definitions</item>
 		<item>WordNet samples</item>
 		<item>WordNet words</item>
@@ -30,7 +30,7 @@
 		<item>ProbBank examples</item>
 		<item>FrameNet sentences</item>
 	</string-array>
-	<integer-array name="textsearch_icons" tools:ignore="InconsistentArrays">
+	<integer-array name="searchtext_icons" tools:ignore="InconsistentArrays">
 		<item>@drawable/ic_search_wndefinition</item>
 		<item>@drawable/ic_search_wnsample</item>
 		<item>@drawable/ic_search_wnword</item>

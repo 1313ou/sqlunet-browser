@@ -45,7 +45,7 @@ public class BrowsePredicateMatrixActivity extends AppCompatActivity
 			// set up the action bar
 			final ActionBar actionBar = getSupportActionBar();
 			assert actionBar != null;
-			this.fragment.setActionBar(actionBar, this);
+			this.fragment.setActionBarUpDisabled(actionBar, this);
 		}
 	}
 
