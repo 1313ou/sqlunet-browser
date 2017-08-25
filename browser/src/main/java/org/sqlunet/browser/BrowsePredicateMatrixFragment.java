@@ -4,12 +4,13 @@ import android.content.Context;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.TextView;
 
 import org.sqlunet.Word;
 import org.sqlunet.predicatematrix.PmRolePointer;
@@ -55,7 +56,7 @@ public class BrowsePredicateMatrixFragment extends BaseSearchFragment
 	{
 		this.layoutId = R.layout.fragment_browse_predicatematrix;
 		this.menuId = R.menu.predicate_matrix;
-		this.colorId = R.color.predicatematrix_action_bar_color;
+		this.colorId = R.color.predicatematrix_actionbar_color;
 		this.spinnerLabels = R.array.predicatematrix_modes;
 		this.spinnerIcons = R.array.predicatematrix_icons;
 		this.titleId = R.string.title_predicatematrix_section;
@@ -173,10 +174,14 @@ public class BrowsePredicateMatrixFragment extends BaseSearchFragment
 		// log
 		Log.d(BrowsePredicateMatrixFragment.TAG, "PM SEARCH " + pointer);
 
-		// view
-		final View view = getView();
+		// subtitle
+		final AppCompatActivity activity = (AppCompatActivity) getActivity();
+		final ActionBar actionBar = activity.getSupportActionBar();
+		actionBar.setSubtitle(query);
 
+		/*
 		// copy to target view
+		final View view = getView();
 		if (view != null)
 		{
 			final TextView targetView = (TextView) view.findViewById(R.id.targetView);
@@ -185,6 +190,7 @@ public class BrowsePredicateMatrixFragment extends BaseSearchFragment
 				targetView.setText(query);
 			}
 		}
+		*/
 
 		// set
 		this.pointer = pointer;
@@ -225,10 +231,14 @@ public class BrowsePredicateMatrixFragment extends BaseSearchFragment
 		// log
 		Log.d(BrowsePredicateMatrixFragment.TAG, "PM SEARCH " + query);
 
-		// view
-		final View view = getView();
+		// subtitle
+		final AppCompatActivity activity = (AppCompatActivity) getActivity();
+		final ActionBar actionBar = activity.getSupportActionBar();
+		actionBar.setSubtitle(query);
 
+		/*
 		// copy to target view
+		final View view = getView();
 		if (view != null)
 		{
 			final TextView targetView = (TextView) view.findViewById(R.id.targetView);
@@ -237,6 +247,7 @@ public class BrowsePredicateMatrixFragment extends BaseSearchFragment
 				targetView.setText(query);
 			}
 		}
+		*/
 
 		// set
 		this.query = query;

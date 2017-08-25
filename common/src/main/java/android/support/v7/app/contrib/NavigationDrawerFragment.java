@@ -51,9 +51,9 @@ public class NavigationDrawerFragment extends Fragment
 		void onItemSelected(int position);
 	}
 
-	class RowItem
+	static public class RowItem
 	{
-		final int iconId;
+		public final int iconId;
 
 		public final String title;
 
@@ -179,12 +179,7 @@ public class NavigationDrawerFragment extends Fragment
 				assert rowItem != null;
 
 				final View view = super.getView(position, convertView, parent);
-				final TextView textView = (TextView) view.findViewById(android.R.id.text1);
-				textView.setTextColor(rowItem.isMain ? Color.WHITE : Color.LTGRAY);
-				textView.setText(rowItem.title);
-				textView.setCompoundDrawablesWithIntrinsicBounds(rowItem.iconId, 0, 0, 0);
-				textView.setCompoundDrawablePadding(10);
-
+				set(view, rowItem);
 				return view;
 			}
 		};
@@ -203,6 +198,15 @@ public class NavigationDrawerFragment extends Fragment
 		this.drawerListView.setAdapter(adapter);
 		this.drawerListView.setItemChecked(this.selectedPosition, true);
 		return view;
+	}
+
+	protected void set(final View view, final RowItem rowItem)
+	{
+		final TextView textView = (TextView) view.findViewById(android.R.id.text1);
+		textView.setTextColor(rowItem.isMain ? Color.WHITE : Color.LTGRAY);
+		textView.setText(rowItem.title);
+		textView.setCompoundDrawablesWithIntrinsicBounds(rowItem.iconId, 0, 0, 0);
+		textView.setCompoundDrawablePadding(10);
 	}
 
 	@Override
@@ -405,6 +409,7 @@ public class NavigationDrawerFragment extends Fragment
 		final ActionBar actionBar = getSupportActionBar();
 		actionBar.setDisplayShowTitleEnabled(true);
 		// actionBar.setTitle(R.string.app_name);
+		// actionBar.setSubtitle(null);
 		// actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
 	}
 

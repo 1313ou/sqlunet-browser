@@ -5,17 +5,9 @@
                 android:layout_height="match_parent"
                 tools:context="org.sqlunet.browser.BrowsePredicateMatrixFragment">
 
-	<TextView
-		android:id="@+id/targetView"
-		style="@style/Query"
-		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-		android:textIsSelectable="false"/>
-
 	<FrameLayout
 		android:id="@+id/container_predicatematrix"
 		android:layout_width="match_parent"
-		android:layout_height="match_parent"
-		android:layout_below="@+id/targetView"/>
+		android:layout_height="match_parent"/>
 
 </RelativeLayout>

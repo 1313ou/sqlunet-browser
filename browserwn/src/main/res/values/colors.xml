@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+	<color name="primaryColor">#fff59d</color>
+	<color name="primaryLightColor">#ffffcf</color>
+	<color name="primaryDarkColor">#cbc26d</color>
+	<color name="secondaryColor">#ef6c00</color>
+	<color name="secondaryLightColor">#ff9d3f</color>
+	<color name="secondaryDarkColor">#b53d00</color>
+	<color name="primaryTextColor">@android:color/black</color>
+	<color name="primaryAltTextColor">#ff606060</color>
+	<color name="secondaryTextColor">@android:color/white</color>
+
+	<!-- special action bars -->
+	<item name="browse_actionbar_color" type="color">@color/primaryLightColor</item>
+	<item name="predicatematrix_actionbar_color" type="color">@color/primaryLightColor</item>
+	<item name="searchtext_actionbar_color" type="color">@color/primaryLightColor</item>
+
+</resources>

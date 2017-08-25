@@ -31,6 +31,7 @@ abstract public class NavigableFragment extends Fragment implements ActionBarSet
 	public boolean setActionBar(final ActionBar actionBar, final Context context)
 	{
 		actionBar.setTitle(this.titleId);
+		actionBar.setSubtitle(null);
 		return false;
 	}
 }

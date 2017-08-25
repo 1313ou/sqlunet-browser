@@ -6,7 +6,6 @@ import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.content.res.XmlResourceParser;
 import android.graphics.drawable.ColorDrawable;
-import android.os.Build;
 import android.os.Bundle;
 import android.preference.ListPreference;
 import android.preference.Preference;
@@ -22,6 +21,7 @@ import android.support.v7.app.contrib.AppCompatPreferenceActivity;
 import android.util.Pair;
 import android.view.MenuItem;
 
+import org.sqlunet.browser.ColorUtils;
 import org.sqlunet.browser.common.R;
 import org.sqlunet.settings.Settings;
 import org.sqlunet.settings.StorageReports;
@@ -65,16 +65,7 @@ public class SettingsActivity extends AppCompatPreferenceActivity
 		if (actionBar != null)
 		{
 			// background
-			int color;
-			if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M)
-			{
-				color = getResources().getColor(R.color.primary, getTheme());
-			}
-			else
-			{
-				//noinspection deprecation
-				color = getResources().getColor(R.color.primary);
-			}
+			final int color = ColorUtils.getColor(this, R.color.primaryColor);
 			actionBar.setBackgroundDrawable(new ColorDrawable(color));
 
 			// options

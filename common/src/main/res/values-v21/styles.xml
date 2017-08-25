@@ -8,26 +8,26 @@
 	<!-- APP theme -->
 	<style name="CompatAppTheme" parent="CompatAppBaseTheme">
 
-		<!-- app branding color for the app bar -->
-		<item name="android:colorPrimary">@color/primary</item>
-		<item name="colorPrimary">@color/primary</item>
+		<item name="colorPrimary">@color/primaryColor</item>
+		<item name="colorPrimaryDark">@color/primaryDarkColor</item>
+		<item name="colorAccent">@color/accentColor</item>
 
-		<!-- darker variant for the status bar and contextual app bars -->
-		<item name="android:colorPrimaryDark">@color/primary_dark</item>
-		<item name="colorPrimaryDark">@color/primary_dark</item>
+		<item name="android:colorPrimary">@color/primaryColor</item>
+		<item name="android:colorPrimaryDark">@color/primaryDarkColor</item>
+		<item name="android:colorAccent">@color/accentColor</item>
+		<item name="android:textColorPrimary">@color/primaryTextColor</item>
+		<item name="android:textColorSecondary">@color/secondaryTextColor</item>
 
-		<!-- theme UI controls like checkboxes and text fields -->
-		<item name="android:colorAccent">@color/accent</item>
-		<item name="colorAccent">@color/accent</item>
+		<!-- toolbar/action bar -->
+		<item name="android:toolbarStyle">@style/CompatAppTheme.Toolbar</item>
+		<item name="android:actionBarStyle">@style/CompatAppTheme.ActionBar</item>
 
-		<!-- activated background indicator -->
+		<!-- dropdowns -->
+		<item name="android:dropDownItemStyle">@style/CompatAppTheme.DropDownItemStyle</item>
+		<item name="android:dropDownListViewStyle">@style/CompatAppTheme.DropDownListViewStyle</item>
+
+		<!-- background of activated indicator -->
 		<item name="android:activatedBackgroundIndicator">@drawable/listitem_background</item>
-
-		<!-- action bar colors -->
-		<item name="actionbar_icon_color">@android:color/white</item>
-
-		<!-- action bar -->
-		<item name="android:actionBarStyle">@style/ActionBar</item>
 
 	</style>
 
@@ -37,11 +37,6 @@
 		<item name="android:windowBackground">@null</item>
 		<item name="android:background">@color/home_color</item>
 
-	</style>
-
-	<!-- Action bar -->
-	<style name="ActionBar" parent="Widget.AppCompat.ActionBar">
-		<item name="android:background">@color/primary</item>
 	</style>
 
 </resources>

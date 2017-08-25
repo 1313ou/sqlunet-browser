@@ -6,12 +6,13 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import org.sqlunet.browser.fn.R;
 import org.sqlunet.browser.selector.Browse1Activity;
@@ -49,7 +50,7 @@ public class BrowseFragment extends BaseSearchFragment
 	{
 		this.layoutId = R.layout.fragment_browse;
 		this.menuId = R.menu.browse;
-		this.colorId = R.color.browse_action_bar_color;
+		this.colorId = R.color.browse_actionbar_color;
 		this.spinnerLabels = R.array.selectors_names;
 		this.spinnerIcons = R.array.selectors_icons;
 		this.titleId = R.string.title_browse_section;
@@ -140,11 +141,14 @@ public class BrowseFragment extends BaseSearchFragment
 		// log
 		Log.d(BrowseFragment.TAG, "BROWSE " + query);
 
-		// view
-		final View view = getView();
+		// subtitle
+		final AppCompatActivity activity = (AppCompatActivity) getActivity();
+		final ActionBar actionBar = activity.getSupportActionBar();
+		actionBar.setSubtitle(query);
 
+		/*
 		// copy to target view
-		if (view != null)
+		final View view = getView();
 		{
 			final TextView targetView = (TextView) view.findViewById(R.id.targetView);
 			if (targetView != null)
@@ -152,6 +156,7 @@ public class BrowseFragment extends BaseSearchFragment
 				targetView.setText(query);
 			}
 		}
+		*/
 
 		// menuDispatch as per query prefix
 		@SuppressWarnings("TooBroadScope") Fragment fragment;

@@ -1,8 +1,7 @@
 package org.sqlunet.browser;
 
+import android.content.Context;
 import android.content.Intent;
-import android.content.pm.PackageInfo;
-import android.content.pm.PackageManager;
 import android.content.res.Resources;
 import android.content.res.TypedArray;
 import android.graphics.drawable.Drawable;
@@ -14,8 +13,11 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.app.contrib.NavigationDrawerFragment;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.util.TypedValue;
+import android.view.View;
+import android.widget.TextView;
 
 import org.sqlunet.browser.common.R;
 import org.sqlunet.browser.config.SettingsActivity;
@@ -248,7 +250,10 @@ public class NavigationFragment extends NavigationDrawerFragment implements Navi
 
 		// A C T I O N   B A R
 
-		// action bar
+		// TODO toolbar bar
+		final Toolbar toolbar = (Toolbar) activity.findViewById(R.id.toolbar);
+		Log.d(TAG, "toolbar " + toolbar);
+
 		final ActionBar actionBar = activity.getSupportActionBar();
 		assert actionBar != null;
 
@@ -257,6 +262,7 @@ public class NavigationFragment extends NavigationDrawerFragment implements Navi
 		assert setter != null;
 		if (!setter.setActionBar(actionBar, activity))
 		{
+			/*
 			try
 			{
 				PackageInfo packageInfo = getActivity().getPackageManager().getPackageInfo(getActivity().getPackageName(), PackageManager.GET_META_DATA);
@@ -268,6 +274,7 @@ public class NavigationFragment extends NavigationDrawerFragment implements Navi
 			{
 				e.printStackTrace();
 			}
+			*/
 
 			// theme
 			final Resources.Theme theme = activity.getTheme();
@@ -277,7 +284,7 @@ public class NavigationFragment extends NavigationDrawerFragment implements Navi
 	}
 
 	/**
-	 * Restore toolbar bar
+	 * Restore action bar
 	 */
 	private static void restoreActionBar(final ActionBar actionBar, final Resources.Theme theme)
 	{
@@ -287,7 +294,7 @@ public class NavigationFragment extends NavigationDrawerFragment implements Navi
 		final TypedValue typedValue = new TypedValue();
 		theme.resolveAttribute(android.R.attr.actionBarStyle, typedValue, true);
 		final int resId = typedValue.resourceId;
-		Log.d(NavigationFragment.TAG, "ActionBarStyle ResId " + Integer.toHexString(resId));
+		// Log.d(NavigationFragment.TAG, "ActionBarStyle ResId " + Integer.toHexString(resId));
 
 		// now get action bar style values
 		final TypedArray style = theme.obtainStyledAttributes(resId, new int[]{android.R.attr.background});
@@ -348,5 +355,21 @@ public class NavigationFragment extends NavigationDrawerFragment implements Navi
 	{
 		final String[] options = getResources().getStringArray(R.array.title_sections);
 		return options[number];
+	}
+
+	@Override
+	protected void set(final View view, final RowItem rowItem)
+	{
+		super.set(view, rowItem);
+
+		final Context context = getContext();
+		int colorMain = ColorUtils.getColor(context, R.color.drawer_main_fore_color);
+		int colorOther = ColorUtils.getColor(context, R.color.drawer_fore_color);
+		int color = rowItem.isMain ? colorMain : colorOther;
+
+		final TextView textView = (TextView) view.findViewById(android.R.id.text1);
+		final Drawable drawable = textView.getCompoundDrawables()[0];
+		ColorUtils.tint(color, drawable);
+		textView.setTextColor(rowItem.isMain ? colorMain : color);
 	}
 }

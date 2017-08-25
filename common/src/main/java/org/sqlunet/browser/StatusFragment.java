@@ -29,6 +29,7 @@ public class StatusFragment extends SetupStatusFragment implements ActionBarSett
 	public boolean setActionBar(final ActionBar actionBar, final Context context)
 	{
 		actionBar.setTitle(this.titleId);
+		actionBar.setSubtitle(null);
 		return false;
 	}
 }

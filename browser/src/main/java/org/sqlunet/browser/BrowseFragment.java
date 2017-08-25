@@ -6,6 +6,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -13,13 +15,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
-import android.widget.TextView;
 
 import org.sqlunet.browser.config.TableActivity;
 import org.sqlunet.browser.selector.Browse1Activity;
 import org.sqlunet.browser.selector.Browse1Fragment;
 import org.sqlunet.browser.web.WebActivity;
 import org.sqlunet.browser.web.WebFragment;
+import org.sqlunet.browser.xn.Settings;
 import org.sqlunet.browser.xselector.XBrowse1Activity;
 import org.sqlunet.browser.xselector.XBrowse1Fragment;
 import org.sqlunet.framenet.FnAnnoSetPointer;
@@ -36,7 +38,6 @@ import org.sqlunet.predicatematrix.PmRolePointer;
 import org.sqlunet.propbank.PbRoleSetPointer;
 import org.sqlunet.propbank.browser.PbRoleSetActivity;
 import org.sqlunet.provider.ProviderArgs;
-import org.sqlunet.browser.xn.Settings;
 import org.sqlunet.verbnet.VnClassPointer;
 import org.sqlunet.verbnet.browser.VnClassActivity;
 import org.sqlunet.wordnet.SenseKeyPointer;
@@ -69,7 +70,7 @@ public class BrowseFragment extends BaseSearchFragment
 	{
 		this.layoutId = R.layout.fragment_browse;
 		this.menuId = R.menu.browse;
-		this.colorId = R.color.browse_action_bar_color;
+		this.colorId = R.color.browse_actionbar_color;
 		this.spinnerLabels = R.array.selectors_names;
 		this.spinnerIcons = R.array.selectors_icons;
 		this.titleId = R.string.title_browse_section;
@@ -205,10 +206,14 @@ public class BrowseFragment extends BaseSearchFragment
 		// log
 		Log.d(BrowseFragment.TAG, "BROWSE " + query);
 
-		// view
-		final View view = getView();
+		// subtitle
+		final AppCompatActivity activity = (AppCompatActivity) getActivity();
+		final ActionBar actionBar = activity.getSupportActionBar();
+		actionBar.setSubtitle(query);
 
+		/*
 		// copy to target view
+		final View view = getView();
 		if (view != null)
 		{
 			final TextView targetView = (TextView) view.findViewById(R.id.targetView);
@@ -217,6 +222,7 @@ public class BrowseFragment extends BaseSearchFragment
 				targetView.setText(query);
 			}
 		}
+		*/
 
 		// recurse
 		final int recurse = Settings.getRecursePref(getActivity());

@@ -2,7 +2,7 @@
 <resources>
 
 	<!-- Base application theme, dependent on API level. This theme is replaced by AppBaseTheme from res/values-vXX/styles-app.xml on newer devices. -->
-	<style name="AppBaseTheme" parent="android:Theme.Light">
+	<style name="AppBaseTheme" parent="Theme.AppCompat.Light.NoActionBar">
 		<!--
 			Theme customizations available in newer API levels can go in
 			res/values-vXX/styles-app.xml, while customizations related to

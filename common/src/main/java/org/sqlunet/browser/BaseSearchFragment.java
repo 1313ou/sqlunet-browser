@@ -9,7 +9,7 @@ import android.content.Context;
 import android.content.res.Resources;
 import android.content.res.TypedArray;
 import android.graphics.drawable.ColorDrawable;
-import android.os.Build;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -161,18 +161,10 @@ abstract public class BaseSearchFragment extends NavigableFragment implements Se
 
 		// title
 		actionBar.setTitle(this.titleId);
+		actionBar.setSubtitle(null);
 
 		// background
-		int color;
-		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M)
-		{
-			color = context.getResources().getColor(this.colorId, context.getTheme());
-		}
-		else
-		{
-			//noinspection deprecation
-			color = context.getResources().getColor(this.colorId);
-		}
+		final int color = ColorUtils.getColor(context, this.colorId);
 		actionBar.setBackgroundDrawable(new ColorDrawable(color));
 
 		// action bar customized view
@@ -240,7 +232,12 @@ abstract public class BaseSearchFragment extends NavigableFragment implements Se
 				final TextView textView = (TextView) view.findViewById(android.R.id.text1);
 				textView.setText("");
 				int resId = modeIcons[position];
-				textView.setCompoundDrawablesWithIntrinsicBounds(0, 0, resId, 0);
+
+				final int color = ColorUtils.getColor(context, R.color.actionbar_fore_color);
+				final Drawable drawable = ColorUtils.getDrawable(context, resId);
+				ColorUtils.tint(color, drawable);
+
+				textView.setCompoundDrawablesWithIntrinsicBounds(null, null, drawable, null);
 
 				return view;
 			}
@@ -255,7 +252,12 @@ abstract public class BaseSearchFragment extends NavigableFragment implements Se
 				final TextView textView = (TextView) view.findViewById(android.R.id.text1);
 				textView.setText(rowItem);
 				int resId = modeIcons[position];
-				textView.setCompoundDrawablesWithIntrinsicBounds(0, resId, 0, 0);
+
+				final int color = ColorUtils.getColor(context, R.color.actionbar_fore_color);
+				final Drawable drawable = ColorUtils.getDrawable(context, resId);
+				ColorUtils.tint(color, drawable);
+
+				textView.setCompoundDrawablesWithIntrinsicBounds(null, drawable, null,  null);
 
 				return view;
 			}

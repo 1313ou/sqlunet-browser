@@ -3,12 +3,13 @@ package org.sqlunet.browser;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.TextView;
 
 import org.sqlunet.browser.xn.Settings;
 import org.sqlunet.framenet.provider.FrameNetContract;
@@ -39,7 +40,7 @@ public class SearchTextFragment extends BaseSearchFragment
 	{
 		this.layoutId = R.layout.fragment_searchtext;
 		this.menuId = R.menu.searchtext;
-		this.colorId = R.color.searchtext_action_bar_color;
+		this.colorId = R.color.searchtext_actionbar_color;
 		this.spinnerLabels = R.array.searchtext_modes;
 		this.spinnerIcons = R.array.searchtext_icons;
 		this.titleId = R.string.title_searchtext_section;
@@ -114,10 +115,14 @@ public class SearchTextFragment extends BaseSearchFragment
 		// log
 		Log.d(SearchTextFragment.TAG, "Search text " + query);
 
-		// view
-		final View view = getView();
+		// subtitle
+		final AppCompatActivity activity = (AppCompatActivity) getActivity();
+		final ActionBar actionBar = activity.getSupportActionBar();
+		actionBar.setSubtitle(query);
 
+		/*
 		// copy to target view
+		final View view = getView();
 		if (view != null)
 		{
 			final TextView targetView = (TextView) view.findViewById(R.id.targetView);
@@ -126,6 +131,7 @@ public class SearchTextFragment extends BaseSearchFragment
 				targetView.setText(query);
 			}
 		}
+		*/
 
 		// type
 		final int typePosition = this.spinner.getSelectedItemPosition();
