@@ -8,12 +8,7 @@
 	<color name="secondaryLightColor">#fdff58</color>
 	<color name="secondaryDarkColor">#90cc00</color>
 	<color name="primaryTextColor">@android:color/white</color>
-	<color name="primaryAltTextColor">@android:color/darker_gray</color>
-	<color name="secondaryTextColor">@android:color/darker_gray</color>
-
-	<!-- special action bars -->
-	<item name="browse_actionbar_color" type="color">@color/violet_color</item>
-	<item name="predicatematrix_actionbar_color" type="color">@color/mauve_color</item>
-	<item name="searchtext_actionbar_color" type="color">@color/dark_red_color</item>
+	<color name="primaryAltTextColor">#e0e0e0</color>
+	<color name="secondaryTextColor">@android:color/white</color>
 
 </resources>

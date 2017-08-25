@@ -2,6 +2,7 @@ package org.sqlunet.browser.xn;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -10,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 
+import org.sqlunet.browser.ColorUtils;
 import org.sqlunet.browser.Info;
 import org.sqlunet.browser.R;
 import org.sqlunet.browser.config.SetupDatabaseActivity;
@@ -213,12 +215,17 @@ public class SetupStatusFragment extends org.sqlunet.browser.config.SetupStatusF
 			final boolean existsTsPb = (status & Status.EXISTS_TS_PB) != 0;
 			final boolean existsTsFn = (status & Status.EXISTS_TS_FN) != 0;
 
-			this.imageTextSearchFn.setImageResource(existsTsFn ? R.drawable.ic_ok : R.drawable.ic_fail);
-			this.imagePm.setImageResource(existsPm ? R.drawable.ic_ok : R.drawable.ic_fail);
-			this.imageTextSearchWn.setImageResource(existsTsWn ? R.drawable.ic_ok : R.drawable.ic_fail);
-			this.imageTextSearchVn.setImageResource(existsTsVn ? R.drawable.ic_ok : R.drawable.ic_fail);
-			this.imageTextSearchPb.setImageResource(existsTsPb ? R.drawable.ic_ok : R.drawable.ic_fail);
-			this.imageTextSearchFn.setImageResource(existsTsFn ? R.drawable.ic_ok : R.drawable.ic_fail);
+			// images
+			final Drawable okDrawable = ColorUtils.getDrawable(activity, R.drawable.ic_ok);
+			ColorUtils.tint(ColorUtils.getColor(activity, R.color.secondaryTextColor), okDrawable);
+			final Drawable failDrawable = ColorUtils.getDrawable(activity, R.drawable.ic_fail);
+
+			this.imageTextSearchFn.setImageDrawable(existsTsFn ? okDrawable : failDrawable);
+			this.imagePm.setImageDrawable(existsPm ? okDrawable : failDrawable);
+			this.imageTextSearchWn.setImageDrawable(existsTsWn ? okDrawable : failDrawable);
+			this.imageTextSearchVn.setImageDrawable(existsTsVn ? okDrawable : failDrawable);
+			this.imageTextSearchPb.setImageDrawable(existsTsPb ? okDrawable : failDrawable);
+			this.imageTextSearchFn.setImageDrawable(existsTsFn ? okDrawable : failDrawable);
 
 			this.buttonTextSearchFn.setVisibility(existsTsFn ? View.GONE : View.VISIBLE);
 			this.buttonPm.setVisibility(existsPm ? View.GONE : View.VISIBLE);

@@ -1,6 +1,7 @@
 package org.sqlunet.browser.xn;
 
 import android.app.Activity;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -9,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 
+import org.sqlunet.browser.ColorUtils;
 import org.sqlunet.browser.Info;
 import org.sqlunet.browser.R;
 import org.sqlunet.browser.config.ExecAsyncTask;
@@ -121,13 +123,18 @@ public class SetupSqlFragment extends org.sqlunet.browser.config.SetupSqlFragmen
 		final String sqlZip = StorageSettings.getSqlSource(activity);
 		boolean sqlZipExists = new File(sqlZip).exists();
 
+		// images
+		final Drawable okDrawable = ColorUtils.getDrawable(activity, R.drawable.ic_ok);
+		ColorUtils.tint(ColorUtils.getColor(activity, R.color.secondaryTextColor), okDrawable);
+		final Drawable failDrawable = ColorUtils.getDrawable(activity, R.drawable.ic_fail);
+
 		// status
 		final int status = Status.status(activity);
-		final boolean existsDatabase = (status & org.sqlunet.browser.config.Status.EXISTS) != 0;
-		final boolean existsTables = (status & org.sqlunet.browser.config.Status.EXISTS_TABLES) != 0;
+		final boolean existsDatabase = (status & Status.EXISTS) != 0;
+		final boolean existsTables = (status & Status.EXISTS_TABLES) != 0;
 		// final boolean existsIndexes = (status & org.sqlunet.browser.config.Status.EXISTS_INDEXES) != 0;
 		final boolean existsPm = (status & Status.EXISTS_PREDICATEMATRIX) != 0;
-		this.pmStatus.setImageResource(existsPm ? R.drawable.ic_ok : R.drawable.ic_fail);
+		this.pmStatus.setImageDrawable(existsPm ? okDrawable : failDrawable);
 
 		// actions
 		this.predicateMatrixButton.setVisibility(sqlZipExists && existsDatabase && existsTables && !existsPm ? View.VISIBLE : View.GONE);

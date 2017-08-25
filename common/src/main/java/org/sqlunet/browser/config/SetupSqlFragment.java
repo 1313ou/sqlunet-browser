@@ -2,6 +2,7 @@ package org.sqlunet.browser.config;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -17,6 +18,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import org.sqlunet.browser.ColorUtils;
 import org.sqlunet.browser.Info;
 import org.sqlunet.browser.common.R;
 import org.sqlunet.settings.StorageSettings;
@@ -291,7 +293,7 @@ public class SetupSqlFragment extends Fragment
 	}
 
 	@Override
-	public void onHiddenChanged (boolean hidden)
+	public void onHiddenChanged(boolean hidden)
 	{
 		super.onHiddenChanged(hidden);
 
@@ -310,20 +312,26 @@ public class SetupSqlFragment extends Fragment
 		// activity
 		final Activity activity = getActivity();
 
+		// images
+		final Drawable okDrawable = ColorUtils.getDrawable(activity, R.drawable.ic_ok);
+		ColorUtils.tint(ColorUtils.getColor(activity, R.color.secondaryTextColor), okDrawable);
+		final Drawable failDrawable = ColorUtils.getDrawable(activity, R.drawable.ic_fail);
+
 		// sql zip file
 		final String sqlZip = StorageSettings.getSqlSource(activity);
 		boolean sqlZipExists = new File(sqlZip).exists();
 		this.downloadSqlZipButton.setVisibility(sqlZipExists ? View.GONE : View.VISIBLE);
-		this.downloadSqlZipStatus.setImageResource(sqlZipExists ? R.drawable.ic_ok : R.drawable.ic_fail);
+		this.downloadSqlZipStatus.setImageDrawable(sqlZipExists ? okDrawable : failDrawable);
 
 		// status
 		final int status = Status.status(activity);
 		final boolean existsDatabase = (status & Status.EXISTS) != 0;
 		final boolean existsTables = (status & Status.EXISTS_TABLES) != 0;
 		final boolean existsIndexes = (status & Status.EXISTS_INDEXES) != 0;
-		this.createStatus.setImageResource(existsDatabase ? R.drawable.ic_ok : R.drawable.ic_fail);
-		this.importStatus.setImageResource(existsTables ? R.drawable.ic_ok : R.drawable.ic_fail);
-		this.indexesStatus.setImageResource(existsIndexes ? R.drawable.ic_ok : R.drawable.ic_fail);
+
+		this.createStatus.setImageDrawable(existsDatabase ? okDrawable : failDrawable);
+		this.importStatus.setImageDrawable(existsTables ? okDrawable : failDrawable);
+		this.indexesStatus.setImageDrawable(existsIndexes ? okDrawable : failDrawable);
 
 		// actions
 		this.createButton.setVisibility(sqlZipExists && !existsDatabase ? View.VISIBLE : View.GONE);

@@ -2,6 +2,7 @@ package org.sqlunet.browser.fn;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -10,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 
+import org.sqlunet.browser.ColorUtils;
 import org.sqlunet.browser.Info;
 import org.sqlunet.browser.config.SetupDatabaseActivity;
 import org.sqlunet.browser.config.SetupDatabaseFragment;
@@ -132,8 +134,13 @@ public class SetupStatusFragment extends org.sqlunet.browser.config.SetupStatusF
 		final boolean existsTables = (status & Status.EXISTS_TABLES) != 0;
 		if (existsDb && existsTables)
 		{
+			// images
+			final Drawable okDrawable = ColorUtils.getDrawable(activity, R.drawable.ic_ok);
+			ColorUtils.tint(ColorUtils.getColor(activity, R.color.secondaryTextColor), okDrawable);
+			final Drawable failDrawable = ColorUtils.getDrawable(activity, org.sqlunet.browser.common.R.drawable.ic_fail);
+
 			final boolean existsTsFn = (status & Status.EXISTS_TS_FN) != 0;
-			this.imageTextSearchFn.setImageResource(existsTsFn ? R.drawable.ic_ok : R.drawable.ic_fail);
+			this.imageTextSearchFn.setImageDrawable(existsTsFn ? okDrawable : failDrawable);
 			this.buttonTextSearchFn.setVisibility(existsTsFn ? View.GONE : View.VISIBLE);
 		}
 		else

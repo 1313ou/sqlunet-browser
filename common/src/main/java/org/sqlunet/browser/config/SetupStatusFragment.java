@@ -2,6 +2,7 @@ package org.sqlunet.browser.config;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -16,6 +17,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import org.sqlunet.browser.ColorUtils;
 import org.sqlunet.browser.Info;
 import org.sqlunet.browser.MainActivity;
 import org.sqlunet.browser.common.R;
@@ -193,21 +195,26 @@ public class SetupStatusFragment extends Fragment
 		final int status = Status.status(activity);
 		Log.d(TAG, "STATUS " + Status.toString(status));
 
+		// images
+		final Drawable okDrawable = ColorUtils.getDrawable(activity, R.drawable.ic_ok);
+		ColorUtils.tint(ColorUtils.getColor(activity, R.color.secondaryTextColor), okDrawable);
+		final Drawable failDrawable = ColorUtils.getDrawable(activity, R.drawable.ic_fail);
+
 		final boolean existsDb = (status & Status.EXISTS) != 0;
 		final boolean existsTables = (status & Status.EXISTS_TABLES) != 0;
 		if (existsDb && existsTables)
 		{
-			this.imageDb.setImageResource(R.drawable.ic_ok);
+			this.imageDb.setImageDrawable(okDrawable);
 			this.buttonDb.setVisibility(View.GONE);
 
 			final boolean existsIndexes = (status & Status.EXISTS_INDEXES) != 0;
 
-			this.imageIndexes.setImageResource(existsIndexes ? R.drawable.ic_ok : R.drawable.ic_fail);
+			this.imageIndexes.setImageDrawable(existsIndexes ? okDrawable : failDrawable);
 			this.buttonIndexes.setVisibility(existsIndexes ? View.GONE : View.VISIBLE);
 		}
 		else
 		{
-			this.imageDb.setImageResource(R.drawable.ic_fail);
+			this.imageDb.setImageDrawable(failDrawable);
 			this.buttonDb.setVisibility(View.VISIBLE);
 
 			this.buttonIndexes.setVisibility(View.GONE);

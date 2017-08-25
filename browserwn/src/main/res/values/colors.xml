@@ -11,9 +11,4 @@
 	<color name="primaryAltTextColor">#ff606060</color>
 	<color name="secondaryTextColor">@android:color/white</color>
 
-	<!-- special action bars -->
-	<item name="browse_actionbar_color" type="color">@color/primaryLightColor</item>
-	<item name="predicatematrix_actionbar_color" type="color">@color/primaryLightColor</item>
-	<item name="searchtext_actionbar_color" type="color">@color/primaryLightColor</item>
-
 </resources>

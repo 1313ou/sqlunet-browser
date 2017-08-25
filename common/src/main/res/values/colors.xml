@@ -64,10 +64,15 @@
 	<color name="enhance_color">@color/secondaryLightColor</color>
 	<color name="home_color">@color/primaryColor</color>
 
-	<!-- action bar specials -->
+	<!-- special action bars -->
+	<item name="browse_actionbar_color" type="color">@color/primaryLightColor</item>
+	<item name="predicatematrix_actionbar_color" type="color">@color/primaryLightColor</item>
+	<item name="searchtext_actionbar_color" type="color">@color/primaryLightColor</item>
+	<!--
 	<color name="browse_actionbar_color">@color/violet_color</color>
 	<color name="predicatematrix_actionbar_color">@color/mauve_color</color>
 	<color name="searchtext_actionbar_color">@color/dark_red_color</color>
+	-->
 
 	<!-- button -->
 	<color name="action_button_color">@color/secondaryColor</color>
