@@ -36,7 +36,7 @@ public class XSqlUNetProvider extends BaseProvider
 
 	// C O N T E N T   P R O V I D E R   A U T H O R I T Y
 
-	static private final String AUTHORITY = makeAuthority("xsqlunetprovider");
+	static private final String AUTHORITY = makeAuthority("xsqlunet_authority");
 
 	// U R I M A T C H E R
 

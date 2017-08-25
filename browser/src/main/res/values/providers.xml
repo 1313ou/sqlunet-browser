@@ -1,20 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
 	<string name="manager_authority">org.sqlunet.manager.provider</string>
-	<string name="sqlunet_authority">org.sqlunet.xsqlunet.provider</string>
+	<string name="xsqlunet_authority">org.sqlunet.xsqlunet.provider</string>
 	<string name="wordnet_authority">org.sqlunet.wordnet.provider</string>
 	<string name="verbnet_authority">org.sqlunet.verbnet.provider</string>
 	<string name="propbank_authority">org.sqlunet.propbank.provider</string>
 	<string name="framenet_authority">org.sqlunet.framenet.provider</string>
+	<string name="bnc_authority">org.sqlunet.bnc.provider</string>
 	<string name="predicatematrix_authority">org.sqlunet.predicatematrix.provider</string>
 
 	<string-array name="provider_authorities" tools:ignore="InconsistentArrays">
 		<item>@string/manager_authority</item>
-		<item>@string/sqlunet_authority</item>
+		<item>@string/xsqlunet_authority</item>
 		<item>@string/wordnet_authority</item>
 		<item>@string/verbnet_authority</item>
 		<item>@string/propbank_authority</item>
 		<item>@string/framenet_authority</item>
+		<item>@string/bnc_authority</item>
 		<item>@string/predicatematrix_authority</item>
 	</string-array>
 

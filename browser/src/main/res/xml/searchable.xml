@@ -3,7 +3,7 @@
             android:label="@string/app_name"
             android:hint="@string/hint_search"
             android:searchMode="queryRewriteFromText"
-            android:searchSuggestAuthority="org.sqlunet.wordnet.provider"
+            android:searchSuggestAuthority="@string/wordnet_authority"
             android:searchSuggestPath="suggest_word"
             android:searchSuggestThreshold="3"
             android:searchSuggestIntentAction="android.intent.action.VIEW"

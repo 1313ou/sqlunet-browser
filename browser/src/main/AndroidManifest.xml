@@ -420,7 +420,7 @@
 
 		<provider
 			android:name="org.sqlunet.provider.ManagerProvider"
-			android:authorities="org.sqlunet.manager.provider"
+			android:authorities="@string/manager_authority"
 			android:enabled="true"
 			android:exported="true"
 			tools:ignore="ExportedContentProvider">
@@ -428,7 +428,7 @@
 
 		<provider
 			android:name="org.sqlunet.provider.XSqlUNetProvider"
-			android:authorities="org.sqlunet.xsqlunet.provider"
+			android:authorities="@string/xsqlunet_authority"
 			android:enabled="true"
 			android:exported="true"
 			tools:ignore="ExportedContentProvider">
@@ -436,23 +436,7 @@
 
 		<provider
 			android:name="org.sqlunet.wordnet.provider.WordNetProvider"
-			android:authorities="org.sqlunet.wordnet.provider"
-			android:enabled="true"
-			android:exported="true"
-			tools:ignore="ExportedContentProvider">
-		</provider>
-
-		<provider
-			android:name="org.sqlunet.framenet.provider.FrameNetProvider"
-			android:authorities="org.sqlunet.framenet.provider"
-			android:enabled="true"
-			android:exported="true"
-			tools:ignore="ExportedContentProvider">
-		</provider>
-
-		<provider
-			android:name="org.sqlunet.propbank.provider.PropBankProvider"
-			android:authorities="org.sqlunet.propbank.provider"
+			android:authorities="@string/wordnet_authority"
 			android:enabled="true"
 			android:exported="true"
 			tools:ignore="ExportedContentProvider">
@@ -460,7 +444,23 @@
 
 		<provider
 			android:name="org.sqlunet.verbnet.provider.VerbNetProvider"
-			android:authorities="org.sqlunet.verbnet.provider"
+			android:authorities="@string/verbnet_authority"
+			android:enabled="true"
+			android:exported="true"
+			tools:ignore="ExportedContentProvider">
+		</provider>
+
+		<provider
+			android:name="org.sqlunet.propbank.provider.PropBankProvider"
+			android:authorities="@string/propbank_authority"
+			android:enabled="true"
+			android:exported="true"
+			tools:ignore="ExportedContentProvider">
+		</provider>
+
+		<provider
+			android:name="org.sqlunet.framenet.provider.FrameNetProvider"
+			android:authorities="@string/framenet_authority"
 			android:enabled="true"
 			android:exported="true"
 			tools:ignore="ExportedContentProvider">
@@ -468,7 +468,7 @@
 
 		<provider
 			android:name="org.sqlunet.bnc.provider.BNCProvider"
-			android:authorities="org.sqlunet.bnc.provider"
+			android:authorities="@string/bnc_authority"
 			android:enabled="true"
 			android:exported="true"
 			tools:ignore="ExportedContentProvider">
@@ -476,7 +476,7 @@
 
 		<provider
 			android:name="org.sqlunet.predicatematrix.provider.PredicateMatrixProvider"
-			android:authorities="org.sqlunet.predicatematrix.provider"
+			android:authorities="@string/predicatematrix_authority"
 			android:enabled="true"
 			android:exported="true"
 			tools:ignore="ExportedContentProvider">

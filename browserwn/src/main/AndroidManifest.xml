@@ -322,7 +322,7 @@
 
 		<provider
 			android:name="org.sqlunet.provider.ManagerProvider"
-			android:authorities="org.sqlunet.manager.wn.provider"
+			android:authorities="@string/manager_authority"
 			android:enabled="true"
 			android:exported="false"
 			tools:ignore="ExportedContentProvider">
@@ -330,7 +330,7 @@
 
 		<provider
 			android:name="org.sqlunet.provider.XSqlUNetProvider"
-			android:authorities="org.sqlunet.xsqlunet.wn.provider"
+			android:authorities="@string/xsqlunet_authority"
 			android:enabled="true"
 			android:exported="false"
 			tools:ignore="ExportedContentProvider">
@@ -338,7 +338,7 @@
 
 		<provider
 			android:name="org.sqlunet.wordnet.provider.WordNetProvider"
-			android:authorities="org.sqlunet.wordnet.wn.provider"
+			android:authorities="@string/wordnet_authority"
 			android:enabled="true"
 			android:exported="false"
 			tools:ignore="ExportedContentProvider">
@@ -346,7 +346,7 @@
 
 		<provider
 			android:name="org.sqlunet.bnc.provider.BNCProvider"
-			android:authorities="org.sqlunet.bnc.wn.provider"
+			android:authorities="@string/bnc_authority"
 			android:enabled="true"
 			android:exported="true"
 			tools:ignore="ExportedContentProvider">

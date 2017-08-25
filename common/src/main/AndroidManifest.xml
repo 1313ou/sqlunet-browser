@@ -294,7 +294,7 @@
 
 		<provider
 			android:name="org.sqlunet.provider.ManagerProvider"
-			android:authorities="org.sqlunet.manager.provider"
+			android:authorities="@string/manager_authority"
 			android:enabled="true"
 			android:exported="true"
 			tools:ignore="ExportedContentProvider">
@@ -302,7 +302,7 @@
 
 		<provider
 			android:name="org.sqlunet.provider.XSqlUNetProvider"
-			android:authorities="org.sqlunet.xsqlunet.provider"
+			android:authorities="@string/xsqlunet_authority"
 			android:enabled="true"
 			android:exported="true"
 			tools:ignore="ExportedContentProvider">

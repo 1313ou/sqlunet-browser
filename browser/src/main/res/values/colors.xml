@@ -1,6 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
 
+	<color name="primaryColor">#607d8b</color>
+	<color name="primaryLightColor">#8eacbb</color>
+	<color name="primaryDarkColor">#34515e</color>
+	<color name="secondaryColor">#c6ff00</color>
+	<color name="secondaryLightColor">#fdff58</color>
+	<color name="secondaryDarkColor">#90cc00</color>
+	<color name="primaryTextColor">#ffffff</color>
+	<color name="primaryAltTextColor">#e0e0e0</color>
+	<color name="secondaryTextColor">#000000</color>
+	<!--
 	<color name="primaryColor">#d500f9</color>
 	<color name="primaryLightColor">#ff5bff</color>
 	<color name="primaryDarkColor">#9e00c5</color>
@@ -10,5 +20,5 @@
 	<color name="primaryTextColor">@android:color/white</color>
 	<color name="primaryAltTextColor">#e0e0e0</color>
 	<color name="secondaryTextColor">@android:color/white</color>
-
+	-->
 </resources>

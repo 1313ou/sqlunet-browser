@@ -322,7 +322,7 @@
 
 		<provider
 			android:name="org.sqlunet.provider.ManagerProvider"
-			android:authorities="org.sqlunet.manager.fn.provider"
+			android:authorities="@string/manager_authority"
 			android:enabled="true"
 			android:exported="false"
 			tools:ignore="ExportedContentProvider">
@@ -330,7 +330,7 @@
 
 		<provider
 			android:name="org.sqlunet.provider.XSqlUNetProvider"
-			android:authorities="org.sqlunet.xsqlunet.fn.provider"
+			android:authorities="@string/xsqlunet_authority"
 			android:enabled="true"
 			android:exported="false"
 			tools:ignore="ExportedContentProvider">
@@ -338,7 +338,7 @@
 
 		<provider
 			android:name="org.sqlunet.framenet.provider.FrameNetProvider"
-			android:authorities="org.sqlunet.framenet.fn.provider"
+			android:authorities="@string/framenet_authority"
 			android:enabled="true"
 			android:exported="false"
 			tools:ignore="ExportedContentProvider">
