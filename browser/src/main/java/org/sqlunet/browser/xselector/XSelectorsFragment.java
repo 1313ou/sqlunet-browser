@@ -1,6 +1,7 @@
 package org.sqlunet.browser.xselector;
 
 import android.android.support.local.app.ExpandableListFragment;
+import android.content.Context;
 import android.database.Cursor;
 import android.database.MatrixCursor;
 import android.net.Uri;
@@ -67,17 +68,27 @@ public class XSelectorsFragment extends ExpandableListFragment
 	/**
 	 * Database column
 	 */
-	static private final String DBCOLUMN = "xb";
+	static private final String NAMECOLUMN = "xn";
+
+	/**
+	 * Loader column
+	 */
+	static private final String LOADERCOLUMN = "xloader";
+
+	/**
+	 * Database column
+	 */
+	static private final String ICONCOLUMN = "xicon";
 
 	/**
 	 * Source fields for groups
 	 */
-	static private final String[] groupFrom = {DBCOLUMN,};
+	static private final String[] groupFrom = {NAMECOLUMN, ICONCOLUMN,};
 
 	/**
 	 * Target resource for groups
 	 */
-	static private final int[] groupTo = {R.id.xn,};
+	static private final int[] groupTo = {R.id.xn, R.id.xicon,};
 
 	/**
 	 * Source fields
@@ -142,11 +153,11 @@ public class XSelectorsFragment extends ExpandableListFragment
 	@SuppressWarnings("boxing")
 	public XSelectorsFragment()
 	{
-		this.xnCursor = new MatrixCursor(new String[]{"_id", DBCOLUMN, "loader"});
-		this.xnCursor.addRow(new Object[]{0, "wordnet", 1111});
-		this.xnCursor.addRow(new Object[]{1, "verbnet", 2222});
-		this.xnCursor.addRow(new Object[]{2, "propbank", 3333});
-		this.xnCursor.addRow(new Object[]{3, "framenet", 4444});
+		this.xnCursor = new MatrixCursor(new String[]{"_id", NAMECOLUMN, LOADERCOLUMN, ICONCOLUMN});
+		this.xnCursor.addRow(new Object[]{0, "wordnet", 1111, Integer.toString(R.drawable.wordnet)});
+		this.xnCursor.addRow(new Object[]{1, "verbnet", 2222, Integer.toString(R.drawable.verbnet)});
+		this.xnCursor.addRow(new Object[]{2, "propbank", 3333, Integer.toString(R.drawable.propbank)});
+		this.xnCursor.addRow(new Object[]{3, "framenet", 4444, Integer.toString(R.drawable.framenet)});
 		this.groupPosition = 0;
 		Log.d(TAG, "init position " + this.groupPosition + " " + this);
 	}
@@ -289,6 +300,12 @@ public class XSelectorsFragment extends ExpandableListFragment
 		final ExpandableListAdapter adapter = new SimpleCursorTreeAdapter(getActivity(), this.xnCursor, R.layout.item_group_xselector, groupFrom, groupTo, R.layout.item_xselector, childFrom, childTo)
 		{
 			@Override
+			protected void bindGroupView(View view, Context context, Cursor cursor, boolean isExpanded)
+			{
+				super.bindGroupView(view, context, cursor, isExpanded);
+			}
+
+			@Override
 			protected Cursor getChildrenCursor(Cursor groupCursor)
 			{
 				final FragmentActivity activity = getActivity();
@@ -299,9 +316,9 @@ public class XSelectorsFragment extends ExpandableListFragment
 
 				// given the group, we return a cursor for all the children within that group
 				int groupPos = groupCursor.getPosition();
-				// String groupName = groupCursor.getString(groupCursor.getColumnIndex(DBCOLUMN));
+				// String groupName = groupCursor.getString(groupCursor.getColumnIndex(NAMECOLUMN));
 
-				int loaderId = groupCursor.getInt(groupCursor.getColumnIndex("loader"));
+				int loaderId = groupCursor.getInt(groupCursor.getColumnIndex(LOADERCOLUMN));
 				// Log.d(TAG, "group " + groupPos + ' ' + groupName + " loader=" + loaderId);
 				LoaderCallbacks<Cursor> callbacks = null;
 				switch (groupPos)
@@ -381,6 +398,10 @@ public class XSelectorsFragment extends ExpandableListFragment
 						}
 						v.setImageDrawable(null);
 						v.setVisibility(View.GONE);
+						break;
+
+					default:
+						super.setViewImage(v, value);
 						break;
 				}
 			}
