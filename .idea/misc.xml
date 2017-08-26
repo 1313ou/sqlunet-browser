@@ -34,6 +34,7 @@
       <entry_point TYPE="method" FQNAME="org.sqlunet.browser.NavigationFragment void sqlDialog()" />
       <entry_point TYPE="method" FQNAME="org.sqlunet.browser.NavigationFragment void settingsActivity()" />
       <entry_point TYPE="method" FQNAME="org.sqlunet.browser.NavigationFragment void setupActivity()" />
+      <entry_point TYPE="method" FQNAME="org.sqlunet.browser.ColorUtils int fetchColor(android.content.Context context, int attr)" />
     </entry_points>
   </component>
   <component name="NullableNotNullManager">

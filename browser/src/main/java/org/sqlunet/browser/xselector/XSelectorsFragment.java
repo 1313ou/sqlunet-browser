@@ -1,7 +1,6 @@
 package org.sqlunet.browser.xselector;
 
 import android.android.support.local.app.ExpandableListFragment;
-import android.content.Context;
 import android.database.Cursor;
 import android.database.MatrixCursor;
 import android.net.Uri;
@@ -299,12 +298,6 @@ public class XSelectorsFragment extends ExpandableListFragment
 		// adapter
 		final ExpandableListAdapter adapter = new SimpleCursorTreeAdapter(getActivity(), this.xnCursor, R.layout.item_group_xselector, groupFrom, groupTo, R.layout.item_xselector, childFrom, childTo)
 		{
-			@Override
-			protected void bindGroupView(View view, Context context, Cursor cursor, boolean isExpanded)
-			{
-				super.bindGroupView(view, context, cursor, isExpanded);
-			}
-
 			@Override
 			protected Cursor getChildrenCursor(Cursor groupCursor)
 			{

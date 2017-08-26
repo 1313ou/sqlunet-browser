@@ -43,6 +43,7 @@
 	<string name="hint_splash_predicatematrix">Exploring Predicate Matrix</string>
 
 	<!-- databases -->
+	<string name="source">Source database</string>
 	<string name="sqlunet">SqlUNet</string>
 
 	<!-- blurbs -->

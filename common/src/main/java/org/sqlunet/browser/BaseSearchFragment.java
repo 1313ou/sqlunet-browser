@@ -189,6 +189,7 @@ abstract public class BaseSearchFragment extends NavigableFragment implements Se
 		return true;
 	}
 
+	@SuppressWarnings("UnusedReturnValue")
 	public boolean setActionBarUpDisabled(final ActionBar actionBar, final Context context)
 	{
 		boolean result = setActionBar(actionBar, context);

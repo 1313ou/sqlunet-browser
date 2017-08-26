@@ -22,7 +22,7 @@
 	<!-- Drop downs -->
 	<style name="CompatAppTheme.DropDownItemStyle" parent="Widget.AppCompat.DropDownItem.Spinner">
 		<item name="android:textColor">@color/dropdown_fore_color</item>
-		<item name="android:textSize">14dp</item>
+		<item name="android:textSize">14sp</item>
 	</style>
 
 	<style name="CompatAppTheme.DropDownListViewStyle" parent="Widget.AppCompat.ListView.DropDown">

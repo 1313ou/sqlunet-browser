@@ -144,6 +144,7 @@ public class BrowseFragment extends BaseSearchFragment
 		// subtitle
 		final AppCompatActivity activity = (AppCompatActivity) getActivity();
 		final ActionBar actionBar = activity.getSupportActionBar();
+		assert actionBar != null;
 		actionBar.setSubtitle(query);
 
 		/*

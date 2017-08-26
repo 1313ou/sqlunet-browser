@@ -40,7 +40,7 @@ public class BaseModule extends Module
 	private final Drawable convtaskDrawable;
 
 	/**
-	 * Drawable for spolen/written
+	 * Drawable for spoken/written
 	 */
 	private final Drawable imaginfDrawable;
 

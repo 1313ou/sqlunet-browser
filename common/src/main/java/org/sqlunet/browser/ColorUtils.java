@@ -25,6 +25,7 @@ public class ColorUtils
 		}
 	}
 
+	@SuppressWarnings("WeakerAccess")
 	static public void tint(final Drawable drawable, int color)
 	{
 		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
@@ -55,6 +56,7 @@ public class ColorUtils
 		return getColor(res, theme, colorRes);
 	}
 
+	@SuppressWarnings("WeakerAccess")
 	static public int getColor(final Resources res, final Resources.Theme theme, int colorRes)
 	{
 		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M)

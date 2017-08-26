@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources>
 
 	<integer name="size_sqlunet_db">539594752</integer>
 	<integer name="size_sqlunet_db_zip">181779860</integer>

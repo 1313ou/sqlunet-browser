@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources>
 
 	<string name="sqlunet_db">b74958d1e53f959956f5cfe2369cb62c</string> <!-- sqlunet-fn.db -->
 	<string name="sqlunet_db_zip">20dee9bf42d1ed1515faf978e53ab4f5</string> <!-- sqlunet-fn.db.zip -->
