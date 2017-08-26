@@ -161,7 +161,7 @@ abstract public class BaseSearchFragment extends NavigableFragment implements Se
 
 		// title
 		actionBar.setTitle(this.titleId);
-		actionBar.setSubtitle(null);
+		actionBar.setSubtitle(R.string.app_subname);
 
 		// background
 		final int color = ColorUtils.getColor(context, this.colorId);

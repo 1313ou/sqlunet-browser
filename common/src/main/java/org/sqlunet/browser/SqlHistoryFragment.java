@@ -20,7 +20,7 @@ public class SqlHistoryFragment extends SqlFragment implements ActionBarSetter
 	{
 		Log.d(SqlHistoryFragment.TAG, "restore action bar");
 		actionBar.setTitle(R.string.title_sql_section);
-		actionBar.setSubtitle(null);
+		actionBar.setSubtitle(R.string.app_subname);
 		return false;
 	}
 }

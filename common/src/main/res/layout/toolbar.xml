@@ -7,6 +7,8 @@
                                    android:layout_height="?attr/actionBarSize"
                                    android:theme="@style/CompatAppTheme.AppBarOverlay"
                                    app:elevation="4dp"
+                                   app:title="@string/app_name"
+                                   app:subtitle="@string/app_subname"
                                    app:popupTheme="@style/CompatAppTheme.PopupOverlay"
                                    app:subtitleTextColor="@color/primaryAltTextColor"
                                    app:titleTextColor="@color/primaryTextColor"

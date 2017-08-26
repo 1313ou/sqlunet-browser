@@ -3,6 +3,7 @@
 
 	<!-- app -->
 	<string name="app_name">@string/semantikos</string>
+	<string name="app_subname"/>
 
 	<!-- ACTIONS -->
 

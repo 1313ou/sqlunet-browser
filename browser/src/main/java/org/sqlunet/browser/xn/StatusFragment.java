@@ -4,6 +4,7 @@ import android.content.Context;
 import android.support.v7.app.ActionBar;
 
 import org.sqlunet.browser.ActionBarSetter;
+import org.sqlunet.browser.R;
 
 /**
  * Status fragment
@@ -28,7 +29,7 @@ public class StatusFragment extends SetupStatusFragment implements ActionBarSett
 	public boolean setActionBar(final ActionBar actionBar, final Context context)
 	{
 		actionBar.setTitle(this.titleId);
-		actionBar.setSubtitle(null);
+		actionBar.setSubtitle(R.string.app_subname);
 		return false;
 	}
 }

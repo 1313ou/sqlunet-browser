@@ -363,13 +363,12 @@ public class NavigationFragment extends NavigationDrawerFragment implements Navi
 		super.set(view, rowItem);
 
 		final Context context = getContext();
-		int colorMain = ColorUtils.getColor(context, R.color.drawer_main_fore_color);
-		int colorOther = ColorUtils.getColor(context, R.color.drawer_fore_color);
-		int color = rowItem.isMain ? colorMain : colorOther;
+		int[] colors = ColorUtils.getColors(context, R.color.drawer_main_fore_color, R.color.drawer_fore_color, R.color.accentColor);
+		int color = colors[rowItem.isMain ? 2 : 1];
 
 		final TextView textView = (TextView) view.findViewById(android.R.id.text1);
 		final Drawable drawable = textView.getCompoundDrawables()[0];
 		ColorUtils.tint(color, drawable);
-		textView.setTextColor(rowItem.isMain ? colorMain : color);
+		textView.setTextColor(colors[rowItem.isMain ? 0 : 1]);
 	}
 }

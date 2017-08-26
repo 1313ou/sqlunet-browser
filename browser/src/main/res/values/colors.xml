@@ -8,7 +8,7 @@
 	<color name="secondaryLightColor">#fdff58</color>
 	<color name="secondaryDarkColor">#90cc00</color>
 	<color name="primaryTextColor">#ffffff</color>
-	<color name="primaryAltTextColor">#e0e0e0</color>
+	<color name="primaryAltTextColor">#c0c0d0</color>
 	<color name="secondaryTextColor">#000000</color>
 
 	<color name="group_color">@color/secondaryColor</color>

@@ -409,7 +409,7 @@ public class NavigationDrawerFragment extends Fragment
 		final ActionBar actionBar = getSupportActionBar();
 		actionBar.setDisplayShowTitleEnabled(true);
 		// actionBar.setTitle(R.string.app_name);
-		// actionBar.setSubtitle(null);
+		// actionBar.setSubtitle(R.string.app_subname);
 		// actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
 	}
 

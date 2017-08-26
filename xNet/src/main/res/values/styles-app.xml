@@ -40,15 +40,4 @@
 
 	<style name="Data.Contents"/>
 
-	<!-- S E P A R A T O R -->
-
-	<style name="Separator">
-		<item name="android:layout_width">match_parent</item>
-		<item name="android:layout_height">1dp</item>
-		<item name="android:layout_marginTop">1dp</item>
-		<item name="android:layout_marginBottom">1dp</item>
-		<item name="android:background">@android:color/holo_blue_light</item>
-		<item name="android:visibility">visible</item>
-	</style>
-
 </resources>

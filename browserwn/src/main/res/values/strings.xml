@@ -3,6 +3,7 @@
 
 	<!-- app -->
 	<string name="app_name">Semantikos-WordNet</string>>
+	<string name="app_subname">WordNet</string>
 
 	<!-- actions -->
 	<string name="action_setup_searchtext_wn" tools:keep="@string/action_setup_searchtext_wn">Setup text search for WordNet</string>

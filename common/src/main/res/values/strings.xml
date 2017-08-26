@@ -6,6 +6,7 @@
 	<string name="semantikos_greek">σημαντικός</string>>
 	<string name="semantikos_latin">significans</string>>
 	<string name="app_name">@string/semantikos</string>
+	<string name="app_subname">@null</string>
 
 	<!-- ACTIONS -->
 

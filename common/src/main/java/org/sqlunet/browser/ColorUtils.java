@@ -38,16 +38,33 @@ public class ColorUtils
 		}
 	}
 
+	static public int[] getColors(final Context context, int... colorRes)
+	{
+		int result[] = new int[colorRes.length];
+		for (int i = 0; i < colorRes.length; i++)
+		{
+			result[i] = getColor(context, colorRes[i]);
+		}
+		return result;
+	}
+
 	static public int getColor(final Context context, int colorRes)
+	{
+		final Resources res = context.getResources();
+		final Resources.Theme theme = context.getTheme();
+		return getColor(res, theme, colorRes);
+	}
+
+	static public int getColor(final Resources res, final Resources.Theme theme, int colorRes)
 	{
 		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M)
 		{
-			return context.getResources().getColor(colorRes, context.getTheme());
+			return res.getColor(colorRes, theme);
 		}
 		else
 		{
 			//noinspection deprecation
-			return context.getResources().getColor(colorRes);
+			return res.getColor(colorRes);
 		}
 	}
 

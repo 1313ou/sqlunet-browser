@@ -6,6 +6,8 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.ActionBar;
 
+import org.sqlunet.browser.common.R;
+
 /**
  * Navigable fragment (gets notification of activation)
  *
@@ -31,7 +33,7 @@ abstract public class NavigableFragment extends Fragment implements ActionBarSet
 	public boolean setActionBar(final ActionBar actionBar, final Context context)
 	{
 		actionBar.setTitle(this.titleId);
-		actionBar.setSubtitle(null);
+		actionBar.setSubtitle(R.string.app_subname);
 		return false;
 	}
 }

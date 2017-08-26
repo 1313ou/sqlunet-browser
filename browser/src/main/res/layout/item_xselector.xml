@@ -111,6 +111,4 @@
 			android:textIsSelectable="false"/>
 	</LinearLayout>
 
-	<View style="@style/Separator"/>
-
 </LinearLayout>

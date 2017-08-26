@@ -3,6 +3,7 @@
 
 	<!-- app -->
 	<string name="app_name">Semantikos-FrameNet</string>>
+	<string name="app_subname">FrameNet</string>
 
 	<!-- actions -->
 	<string name="action_setup_searchtext_fn" tools:keep="@string/action_setup_searchtext_fn">Setup text search for FrameNet</string>
