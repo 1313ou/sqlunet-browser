@@ -6,12 +6,12 @@
 
 	<TextView
 		android:id="@+id/item0"
-		style="@style/ListItemColumn.Small"
+		style="@style/ListItemColumn.Minor"
 		android:layout_weight=".1"/>
 
 	<TextView
 		android:id="@+id/item1"
-		style="@style/ListItemColumn.Enhanced"
+		style="@style/ListItemColumn.Major"
 		android:layout_weight=".7"/>
 
 	<TextView

@@ -125,7 +125,7 @@ public class SetupSqlFragment extends org.sqlunet.browser.config.SetupSqlFragmen
 
 		// images
 		final Drawable okDrawable = ColorUtils.getDrawable(activity, R.drawable.ic_ok);
-		ColorUtils.tint(ColorUtils.getColor(activity, R.color.secondaryTextColor), okDrawable);
+		ColorUtils.tint(ColorUtils.getColor(activity, R.color.secondaryForeColor), okDrawable);
 		final Drawable failDrawable = ColorUtils.getDrawable(activity, R.drawable.ic_fail);
 
 		// status

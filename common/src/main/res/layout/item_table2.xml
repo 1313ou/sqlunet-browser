@@ -6,7 +6,7 @@
 
 	<TextView
 		android:id="@+id/item0"
-		style="@style/ListItemColumn.Enhanced"
+		style="@style/ListItemColumn.Major"
 		android:layout_weight=".1"/>
 
 	<TextView

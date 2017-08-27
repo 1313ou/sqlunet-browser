@@ -2,6 +2,6 @@
 <resources>
 
 	<string name="title_activity_donate">Donate</string>
-	<string name="title_activity_other">Other</string>
+	<string name="title_activity_other">Other apps</string>
 
 </resources>

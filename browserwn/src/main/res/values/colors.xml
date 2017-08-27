@@ -7,8 +7,8 @@
 	<color name="secondaryColor">#ef6c00</color>
 	<color name="secondaryLightColor">#ff9d3f</color>
 	<color name="secondaryDarkColor">#b53d00</color>
-	<color name="primaryTextColor">@android:color/black</color>
-	<color name="primaryAltTextColor">#808080</color>
-	<color name="secondaryTextColor">#ffffff</color>
+	<color name="primaryForeColor">@android:color/black</color>
+	<color name="primaryAltForeColor">#808080</color>
+	<color name="secondaryForeColor">#ffffff</color>
 
 </resources>

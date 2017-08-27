@@ -52,11 +52,6 @@ public class SetupStatusFragment extends org.sqlunet.browser.config.SetupStatusF
 
 	private ImageButton buttonTextSearchFn;
 
-	/*
-	 * Swipe refresh layout
-	 */
-	// private SwipeRefreshLayout swipeRefreshLayout;
-
 	/**
 	 * Mandatory empty constructor for the fragment manager to instantiate the fragment (e.g. upon screen orientation changes).
 	 */
@@ -217,7 +212,7 @@ public class SetupStatusFragment extends org.sqlunet.browser.config.SetupStatusF
 
 			// images
 			final Drawable okDrawable = ColorUtils.getDrawable(activity, R.drawable.ic_ok);
-			ColorUtils.tint(ColorUtils.getColor(activity, R.color.secondaryTextColor), okDrawable);
+			ColorUtils.tint(ColorUtils.getColor(activity, R.color.secondaryForeColor), okDrawable);
 			final Drawable failDrawable = ColorUtils.getDrawable(activity, R.drawable.ic_fail);
 
 			this.imageTextSearchFn.setImageDrawable(existsTsFn ? okDrawable : failDrawable);

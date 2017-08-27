@@ -15,29 +15,6 @@
 
 	<!-- L I S T -->
 
-	<style name="ListItemColumn">
-		<item name="android:layout_width">0dp</item>
-		<item name="android:layout_height">wrap_content</item>
-		<item name="android:paddingStart">@dimen/listitem_horizontal_padding</item>
-		<item name="android:paddingEnd">@dimen/listitem_horizontal_padding</item>
-		<item name="android:paddingTop">@dimen/listitem_vertical_padding</item>
-		<item name="android:paddingBottom">@dimen/listitem_vertical_padding</item>
-		<item name="android:gravity">center_vertical</item>
-		<item name="android:textIsSelectable">true</item>
-		<item name="android:textColor">@color/dark_gray_color</item>
-		<item name="android:textAppearance">?android:attr/textAppearanceMedium</item>
-		<item name="android:ellipsize">end</item>
-	</style>
-
-	<style name="ListItemColumn.Small">
-		<item name="android:textAppearance">?android:attr/textAppearanceListItemSmall</item>
-		<item name="android:textColor">@color/middle_gray_color</item>
-	</style>
-
-	<style name="ListItemColumn.Enhanced">
-		<item name="android:background">@color/light_gray_color</item>
-	</style>
-
 	<style name="ListItem">
 		<item name="android:layout_width">match_parent</item>
 		<item name="android:layout_height">wrap_content</item>
@@ -55,7 +32,33 @@
 		<item name="android:descendantFocusability">blocksDescendants</item>
 	</style>
 
-	<style name="ListItem1" tools:ignore="UnusedResources">
+	<style name="ListItemColumn">
+		<item name="android:layout_width">0dp</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="android:paddingStart">@dimen/listitem_horizontal_padding</item>
+		<item name="android:paddingEnd">@dimen/listitem_horizontal_padding</item>
+		<item name="android:paddingTop">@dimen/listitem_vertical_padding</item>
+		<item name="android:paddingBottom">@dimen/listitem_vertical_padding</item>
+		<item name="android:gravity">center_vertical</item>
+		<item name="android:textIsSelectable">true</item>
+		<item name="android:textColor">@color/dark_gray_color</item>
+		<item name="android:textAppearance">?android:attr/textAppearanceMedium</item>
+		<item name="android:ellipsize">end</item>
+	</style>
+
+	<style name="ListItemColumn.Minor">
+		<item name="android:textAppearance">?android:attr/textAppearanceListItemSmall</item>
+		<item name="android:textColor">@color/middle_gray_color</item>
+	</style>
+
+	<style name="ListItemColumn.Major">
+		<item name="android:background">@color/secondaryLightColor</item>
+		<item name="android:textColor">@color/secondaryForeColor</item>
+	</style>
+
+<!-- S E A R C H -->
+
+	<style name="SearchItem" tools:ignore="UnusedResources">
 		<item name="android:layout_width">match_parent</item>
 		<item name="android:layout_height">wrap_content</item>
 		<item name="android:textAppearance">?android:attr/textAppearanceListItemSmall</item>

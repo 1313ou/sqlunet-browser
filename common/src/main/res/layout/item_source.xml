@@ -34,17 +34,20 @@
 		android:id="@+id/url"
 		style="@android:style/TextAppearance.Small"
 		android:layout_width="wrap_content"
-		android:layout_gravity="center_horizontal"
-		android:gravity="center"
 		android:layout_height="wrap_content"
-		android:textIsSelectable="true"/>
+		android:layout_gravity="center_horizontal"
+		android:autoLink="web"
+		android:gravity="center"
+		android:clickable="true"
+		android:linksClickable="true"
+		android:textIsSelectable="false"/>
 
 	<TextView
 		android:id="@+id/reference"
 		style="@android:style/TextAppearance.Small"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
-		android:textColor="@android:color/darker_gray"
+		android:textColor="@android:color/secondary_text_dark"
 		android:textIsSelectable="true"/>
 
 </LinearLayout>

@@ -12,7 +12,7 @@
           android:ellipsize="marquee"
           android:gravity="center"
           android:maxLines="1"
-          android:textColor="@color/secondaryTextColor"
+          android:textColor="@color/secondaryForeColor"
           android:textIsSelectable="false"/>
 
 <!-- android:drawableEnd="@drawable/ic_spinner_arrow" -->

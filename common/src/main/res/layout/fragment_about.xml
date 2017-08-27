@@ -19,10 +19,11 @@
 		android:src="@mipmap/ic_launcher"/>
 
 	<TextView
-		style="@android:style/TextAppearance.Large"
+		style="@android:style/TextAppearance.Large.Inverse"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
 		android:layout_gravity="center_horizontal"
+		android:background="@color/accentColor"
 		android:text="@string/about_sqlunet_label"
 		android:textStyle="bold"/>
 
@@ -47,6 +48,7 @@
 		android:layout_height="10dp"/>
 
 	<TextView
+		style="@android:style/TextAppearance.Medium"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
 		android:layout_gravity="center_horizontal"
@@ -78,6 +80,7 @@
 		android:id="@+id/container_source"
 		android:layout_width="match_parent"
 		android:layout_height="0dp"
+		android:layout_marginTop="10dp"
 		android:layout_weight="1">
 	</RelativeLayout>
 

@@ -7,8 +7,8 @@
 	<color name="secondaryColor">#1de9b6</color>
 	<color name="secondaryLightColor">#6effe8</color>
 	<color name="secondaryDarkColor">#00b686</color>
-	<color name="primaryTextColor">#000000</color>
-	<color name="primaryAltTextColor">#808080</color>
-	<color name="secondaryTextColor">#000000</color>
+	<color name="primaryForeColor">#000000</color>
+	<color name="primaryAltForeColor">#808080</color>
+	<color name="secondaryForeColor">#000000</color>
 
 </resources>

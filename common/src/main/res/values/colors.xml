@@ -44,9 +44,10 @@
 	<color name="secondaryColor">@color/pink_color</color>
 	<color name="secondaryLightColor">@color/light_pink_color</color>
 	<color name="secondaryDarkColor">@color/dark_pink_color</color>
-	<color name="primaryTextColor">@android:color/white</color>
-	<color name="primaryAltTextColor">@android:color/darker_gray</color>
-	<color name="secondaryTextColor">@android:color/white</color>
+
+	<color name="primaryForeColor">@android:color/white</color>
+	<color name="primaryAltForeColor">@android:color/darker_gray</color>
+	<color name="secondaryForeColor">@android:color/white</color>
 
 	<color name="accentColor">@color/secondaryColor</color>
 
@@ -54,12 +55,12 @@
 
 	<!-- custom -->
 	<color name="actionbar_color">@color/primaryColor</color>
-	<color name="actionbar_fore_color">@color/primaryTextColor</color>
+	<color name="actionbar_fore_color">@color/primaryForeColor</color>
 	<color name="dropdown_color">@color/primaryColor</color>
-	<color name="dropdown_fore_color">@color/primaryTextColor</color>
+	<color name="dropdown_fore_color">@color/primaryForeColor</color>
 	<color name="drawer_color">@color/primaryColor</color>
-	<color name="drawer_fore_color">@color/primaryAltTextColor</color>
-	<color name="drawer_main_fore_color">@color/primaryTextColor</color>
+	<color name="drawer_fore_color">@color/primaryAltForeColor</color>
+	<color name="drawer_main_fore_color">@color/primaryForeColor</color>
 	<color name="activated_color">@color/secondaryLightColor</color>
 	<color name="enhance_color">@color/secondaryLightColor</color>
 	<color name="home_color">@color/primaryColor</color>

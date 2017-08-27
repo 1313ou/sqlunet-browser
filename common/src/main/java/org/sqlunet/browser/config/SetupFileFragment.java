@@ -372,7 +372,11 @@ public class SetupFileFragment extends BaseTaskFragment
 	 */
 	private CharSequence statusUpdate()
 	{
-		return getString(R.string.info_op_drop_database) + '\n' + statusDownload();
+		final SpannableStringBuilder sb = new SpannableStringBuilder();
+		sb.append(getString(R.string.info_op_drop_database));
+		sb.append('\n');
+		sb.append(statusDownload());
+		return sb;
 	}
 
 	/**
