@@ -127,11 +127,7 @@
     <orderEntry type="library" exported="" name="support-vector-drawable-25.3.1" level="project" />
     <orderEntry type="library" exported="" name="support-compat-25.3.1" level="project" />
     <orderEntry type="library" exported="" name="animated-vector-drawable-25.3.1" level="project" />
-    <orderEntry type="module" module-name="support" exported="" />
     <orderEntry type="module" module-name="xNet" exported="" />
-    <orderEntry type="module" module-name="test" exported="" scope="TEST" />
-    <orderEntry type="module" module-name="expandableListFragment" exported="" />
-    <orderEntry type="module" module-name="treeView" exported="" />
     <orderEntry type="module" module-name="common" exported="" />
     <orderEntry type="module" module-name="frameNet" exported="" />
   </component>

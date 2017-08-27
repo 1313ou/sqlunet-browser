@@ -35,6 +35,10 @@
       <entry_point TYPE="method" FQNAME="org.sqlunet.browser.NavigationFragment void settingsActivity()" />
       <entry_point TYPE="method" FQNAME="org.sqlunet.browser.NavigationFragment void setupActivity()" />
       <entry_point TYPE="method" FQNAME="org.sqlunet.browser.ColorUtils int fetchColor(android.content.Context context, int attr)" />
+      <entry_point TYPE="method" FQNAME="android.support.test.espresso.contrib.ExpandableListViewProtocol.ExpandableDataFunction ExpandableDataFunction(java.lang.Object dataAtPosition, int group, int child)" />
+      <entry_point TYPE="class" FQNAME="android.support.test.espresso.contrib.ExpandableListViewProtocol.ExpandableDataFunction" />
+      <entry_point TYPE="method" FQNAME="android.support.test.espresso.contrib.ExpandableListViewProtocol android.support.test.espresso.action.AdapterViewProtocol expandableListViewProtocol()" />
+      <entry_point TYPE="implicit.constructor" FQNAME="android.support.test.espresso.contrib.ExpandableListViewProtocol" />
     </entry_points>
   </component>
   <component name="NullableNotNullManager">

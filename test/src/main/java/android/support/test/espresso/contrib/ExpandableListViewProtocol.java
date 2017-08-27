@@ -41,6 +41,7 @@ import java.util.List;
  *
  * @author Bernard Bou (1313ou@gmail.com)
  */
+@SuppressWarnings("WeakerAccess")
 public final class ExpandableListViewProtocol implements AdapterViewProtocol
 {
 	static private final String TAG = "ELVProtocol";

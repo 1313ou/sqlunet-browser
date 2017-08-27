@@ -115,6 +115,5 @@
     <orderEntry type="module" module-name="support" exported="" />
     <orderEntry type="module" module-name="xNet" exported="" />
     <orderEntry type="module" module-name="expandableListFragment" exported="" />
-    <orderEntry type="module" module-name="treeView" exported="" />
   </component>
 </module>
