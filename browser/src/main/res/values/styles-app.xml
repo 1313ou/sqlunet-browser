@@ -58,7 +58,7 @@
 	</style>
 
 	<style name="Data.Cased">
-		<item name="android:textColor">#0000FF</item>
+		<item name="android:textColor">@color/accentColor</item>
 		<item name="android:textSize">12sp</item>
 	</style>
 
@@ -90,10 +90,6 @@
 	<style name="Data.SynsetId">
 		<item name="android:textColor">#808080</item>
 		<item name="android:textSize">10sp</item>
-	</style>
-
-	<style name="Data.Members">
-		<item name="android:textColor">#0000FF</item>
 	</style>
 
 	<style name="Data.Definition"/>
