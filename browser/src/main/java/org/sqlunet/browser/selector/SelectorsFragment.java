@@ -1,8 +1,10 @@
 package org.sqlunet.browser.selector;
 
+import android.content.Context;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.ListFragment;
 import android.support.v4.app.LoaderManager.LoaderCallbacks;
 import android.support.v4.content.CursorLoader;
@@ -187,7 +189,7 @@ public class SelectorsFragment extends ListFragment
 	}
 
 	@Override
-	public void onViewCreated(final View view, final Bundle savedInstanceState)
+	public void onViewCreated(@NonNull final View view, final Bundle savedInstanceState)
 	{
 		super.onViewCreated(view, savedInstanceState);
 
@@ -220,7 +222,7 @@ public class SelectorsFragment extends ListFragment
 	}
 
 	@Override
-	public void onSaveInstanceState(final Bundle outState)
+	public void onSaveInstanceState(@NonNull final Bundle outState)
 	{
 		super.onSaveInstanceState(outState);
 
@@ -278,7 +280,9 @@ public class SelectorsFragment extends ListFragment
 				final String selection = XSqlUNetContract.WORD + '.' + Words_FnWords_PbWords_VnWords.LEMMA + " = ?"; ////
 				final String[] selectionArgs = {SelectorsFragment.this.word};
 				final String sortOrder = XSqlUNetContract.SYNSET + '.' + Words_FnWords_PbWords_VnWords.POS + ',' + Words_FnWords_PbWords_VnWords.SENSENUM;
-				return new CursorLoader(getActivity(), uri, projection, selection, selectionArgs, sortOrder);
+				final Context context = getActivity();
+				assert context != null;
+				return new CursorLoader(context, uri, projection, selection, selectionArgs, sortOrder);
 			}
 
 			@Override

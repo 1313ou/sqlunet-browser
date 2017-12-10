@@ -4,6 +4,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.LoaderManager.LoaderCallbacks;
 import android.support.v4.content.CursorLoader;
@@ -200,7 +201,7 @@ class XLoader
 		final OnLoadCompleteListener<Cursor> listener = new OnLoadCompleteListener<Cursor>()
 		{
 			@Override
-			public void onLoadComplete(final Loader<Cursor> subloader, final Cursor cursor)
+			public void onLoadComplete(@NonNull final Loader<Cursor> subloader, final Cursor cursor)
 			{
 				int id = subloader.getId();
 				FullLoaderCallbacks.this.cursors.put(id, cursor);

@@ -30,7 +30,7 @@ abstract public class AbstractActivity extends AppCompatActivity
 		setContentView(getLayoutId());
 
 		// toolbar
-		final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+		final Toolbar toolbar = findViewById(R.id.toolbar);
 		setSupportActionBar(toolbar);
 
 		// set up the action bar

@@ -10,6 +10,6 @@
           android:drawableBottom="?android:attr/listDivider"
           android:ellipsize="marquee"
           android:gravity="center"
-          android:maxLines="1"
           android:textColor="@color/dropdown_fore_color"
-          android:textIsSelectable="false"/>
+          android:textIsSelectable="false"
+          android:singleLine="true"/>

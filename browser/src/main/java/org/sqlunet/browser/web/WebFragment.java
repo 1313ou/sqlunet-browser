@@ -9,6 +9,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Parcelable;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.LoaderManager.LoaderCallbacks;
 import android.support.v4.content.Loader;
@@ -95,13 +96,13 @@ public class WebFragment extends Fragment
 	}
 
 	@Override
-	public View onCreateView(final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState)
+	public View onCreateView(@NonNull final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState)
 	{
 		// view
 		final View view = inflater.inflate(R.layout.fragment_web, container, false);
 
 		// webview
-		this.webview = (WebView) view.findViewById(R.id.webView);
+		this.webview = view.findViewById(R.id.webView);
 
 		// load view
 		load();
@@ -165,6 +166,7 @@ public class WebFragment extends Fragment
 
 						// warn with id
 						final Activity activity = WebFragment.this.getActivity();
+						assert activity != null;
 						activity.runOnUiThread(new Runnable()
 						{
 							@Override

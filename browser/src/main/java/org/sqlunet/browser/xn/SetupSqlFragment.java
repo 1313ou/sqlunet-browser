@@ -3,6 +3,7 @@ package org.sqlunet.browser.xn;
 import android.app.Activity;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -45,7 +46,7 @@ public class SetupSqlFragment extends org.sqlunet.browser.config.SetupSqlFragmen
 
 	@SuppressWarnings("boxing")
 	@Override
-	public View onCreateView(final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState)
+	public View onCreateView(@NonNull final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState)
 	{
 		// view
 		final View view = super.onCreateView(inflater, container, savedInstanceState);
@@ -55,11 +56,11 @@ public class SetupSqlFragment extends org.sqlunet.browser.config.SetupSqlFragmen
 		final Activity activity = getActivity();
 
 		// statuses
-		this.pmStatus = (ImageView) view.findViewById(R.id.status_pm);
+		this.pmStatus = view.findViewById(R.id.status_pm);
 
 		// buttons
-		this.predicateMatrixButton = (ImageButton) view.findViewById(R.id.execute_predicatematrix);
-		ImageButton infoPmButton = (ImageButton) view.findViewById(R.id.info_pm);
+		this.predicateMatrixButton = view.findViewById(R.id.execute_predicatematrix);
+		ImageButton infoPmButton = view.findViewById(R.id.info_pm);
 
 
 		// pm button
@@ -68,6 +69,7 @@ public class SetupSqlFragment extends org.sqlunet.browser.config.SetupSqlFragmen
 			@Override
 			public void onClick(final View v)
 			{
+				assert activity != null;
 				// starting pm task
 				try
 				{
@@ -89,6 +91,7 @@ public class SetupSqlFragment extends org.sqlunet.browser.config.SetupSqlFragmen
 			@Override
 			public void onClick(final View v)
 			{
+				assert activity != null;
 				final String database = StorageSettings.getDatabasePath(activity);
 				final String source = StorageSettings.getSqlSource(activity);
 				final String entry = Settings.getPmEntry(activity);

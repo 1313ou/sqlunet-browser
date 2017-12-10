@@ -37,6 +37,7 @@ public class FnFrameFragment extends TreeFragment
 
 		// query
 		final Bundle args = getArguments();
+		assert args != null;
 		final int type = args.getInt(ProviderArgs.ARG_QUERYTYPE);
 		if (args.containsKey(ProviderArgs.ARG_QUERYPOINTER))
 		{

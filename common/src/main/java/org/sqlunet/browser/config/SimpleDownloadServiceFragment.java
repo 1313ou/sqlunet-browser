@@ -1,6 +1,7 @@
 package org.sqlunet.browser.config;
 
 import android.app.Notification;
+import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
@@ -8,6 +9,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.net.Uri;
+import android.os.Build;
+import android.os.Bundle;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
@@ -29,7 +32,12 @@ public class SimpleDownloadServiceFragment extends BaseDownloadFragment
 	/**
 	 * Notification id key
 	 */
-	private static final String NOTIFICATION_ID = "notification_id";
+	static private final String NOTIFICATION_ID = "notification_id";
+
+	/**
+	 * Channel id
+	 */
+	static private final String CHANNEL_ID = "simple_download_service";
 
 	/**
 	 * Id for the current notification
@@ -108,7 +116,7 @@ public class SimpleDownloadServiceFragment extends BaseDownloadFragment
 
 						// receiver
 						Log.d(TAG, "Unregister main receiver");
-						LocalBroadcastManager.getInstance(getActivity()).unregisterReceiver(SimpleDownloadServiceFragment.this.mainBroadcastReceiver);
+						LocalBroadcastManager.getInstance(context).unregisterReceiver(SimpleDownloadServiceFragment.this.mainBroadcastReceiver);
 					}
 					break;
 			}
@@ -135,11 +143,20 @@ public class SimpleDownloadServiceFragment extends BaseDownloadFragment
 	};
 
 	@Override
+	public void onCreate(final Bundle savedInstanceState)
+	{
+		super.onCreate(savedInstanceState);
+		initChannels();
+	}
+
+	@Override
 	public void onResume()
 	{
 		super.onResume();
 		Log.d(TAG, "Register update receiver");
-		LocalBroadcastManager.getInstance(getActivity()).registerReceiver(this.updateBroadcastReceiver, new IntentFilter(SimpleDownloaderService.UPDATE_INTENT_FILTER));
+		final Context context = getActivity();
+		assert context != null;
+		LocalBroadcastManager.getInstance(context).registerReceiver(this.updateBroadcastReceiver, new IntentFilter(SimpleDownloaderService.UPDATE_INTENT_FILTER));
 	}
 
 	@Override
@@ -147,7 +164,9 @@ public class SimpleDownloadServiceFragment extends BaseDownloadFragment
 	{
 		super.onPause();
 		Log.d(TAG, "Unregister update receiver");
-		LocalBroadcastManager.getInstance(getActivity()).unregisterReceiver(this.updateBroadcastReceiver);
+		final Context context = getActivity();
+		assert context != null;
+		LocalBroadcastManager.getInstance(context).unregisterReceiver(this.updateBroadcastReceiver);
 	}
 
 	/**
@@ -162,7 +181,9 @@ public class SimpleDownloadServiceFragment extends BaseDownloadFragment
 			if (!SimpleDownloadServiceFragment.downloading)
 			{
 				Log.d(TAG, "Register main receiver");
-				LocalBroadcastManager.getInstance(getActivity()).registerReceiver(this.mainBroadcastReceiver, new IntentFilter(SimpleDownloaderService.MAIN_INTENT_FILTER));
+				final Context context = getActivity();
+				assert context != null;
+				LocalBroadcastManager.getInstance(context).registerReceiver(this.mainBroadcastReceiver, new IntentFilter(SimpleDownloaderService.MAIN_INTENT_FILTER));
 
 				// reset
 				SimpleDownloadServiceFragment.success = null;
@@ -286,6 +307,7 @@ public class SimpleDownloadServiceFragment extends BaseDownloadFragment
 		{
 			String action = intent.getAction();
 			System.out.println("Received kill " + action);
+			assert action != null;
 			if (action.equals(SimpleDownloadServiceFragment.Killer.KILL_DOWNLOAD_SERVICE))
 			{
 				SimpleDownloadServiceFragment.kill(context);
@@ -294,6 +316,7 @@ public class SimpleDownloadServiceFragment extends BaseDownloadFragment
 			if (id != 0)
 			{
 				final NotificationManager manager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
+				assert manager != null;
 				manager.cancel(id);
 			}
 		}
@@ -326,7 +349,7 @@ public class SimpleDownloadServiceFragment extends BaseDownloadFragment
 		{
 			case START:
 				contentText += ' ' + this.context.getString(R.string.status_download_running);
-				this.builder = new NotificationCompat.Builder(this.context);
+				this.builder = new NotificationCompat.Builder(this.context, CHANNEL_ID);
 				this.builder.setSmallIcon(android.R.drawable.stat_sys_download) //
 						.setContentTitle(contentTitle) //
 						.setContentText(contentText);
@@ -351,7 +374,7 @@ public class SimpleDownloadServiceFragment extends BaseDownloadFragment
 			case FINISH:
 				final boolean success = (Boolean) args[0];
 				contentText += ' ' + this.context.getString(success ? R.string.status_download_successful : R.string.status_download_fail);
-				this.builder = new NotificationCompat.Builder(this.context);
+				this.builder = new NotificationCompat.Builder(this.context, CHANNEL_ID);
 				this.builder.setSmallIcon(android.R.drawable.stat_sys_download_done) //
 						.setContentText(contentText);
 				break;
@@ -363,9 +386,25 @@ public class SimpleDownloadServiceFragment extends BaseDownloadFragment
 
 		// gets an instance of the NotificationManager service
 		final NotificationManager manager = (NotificationManager) this.context.getSystemService(Context.NOTIFICATION_SERVICE);
+		assert manager != null;
 
 		// issue notification
 		manager.notify(id, notification);
+	}
+
+	private void initChannels()
+	{
+		if (Build.VERSION.SDK_INT < 26)
+		{
+			return;
+		}
+		final Context context = getContext();
+		assert context != null;
+		final NotificationChannel channel = new NotificationChannel(CHANNEL_ID, "Simple Download Service", NotificationManager.IMPORTANCE_DEFAULT);
+		channel.setDescription("Simple Download Service Channel");
+		final NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
+		assert notificationManager != null;
+		notificationManager.createNotificationChannel(channel);
 	}
 }
 

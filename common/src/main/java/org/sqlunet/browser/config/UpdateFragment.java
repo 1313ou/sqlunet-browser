@@ -1,7 +1,9 @@
 package org.sqlunet.browser.config;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -47,7 +49,7 @@ public class UpdateFragment extends Fragment
 	}
 
 	@Override
-	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
+	public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
 	{
 		// inflate the layout for this fragment
 		return inflater.inflate(R.layout.fragment_update, container, false);
@@ -59,7 +61,9 @@ public class UpdateFragment extends Fragment
 		super.onActivityCreated(savedInstanceState);
 
 		// arguments
-		final Intent intent = getActivity().getIntent();
+		final Activity activity = getActivity();
+		assert activity != null;
+		final Intent intent = activity.getIntent();
 
 		final String currentDateArg = intent.getStringExtra(CURRENT_DATE_ARG);
 		final String currentSizeArg = intent.getStringExtra(CURRENT_SIZE_ARG);
@@ -77,30 +81,30 @@ public class UpdateFragment extends Fragment
 		final View view = getView();
 		assert view != null;
 
-		final TextView currentDate = (TextView) view.findViewById(R.id.current_date);
-		final TextView currentSize = (TextView) view.findViewById(R.id.current_size);
+		final TextView currentDate = view.findViewById(R.id.current_date);
+		final TextView currentSize = view.findViewById(R.id.current_size);
 		currentDate.setText(currentDateArg);
 		currentSize.setText(currentSizeArg);
 
-		final TextView src = (TextView) view.findViewById(R.id.src);
-		final TextView srcDate = (TextView) view.findViewById(R.id.src_date);
-		final TextView srcSize = (TextView) view.findViewById(R.id.src_size);
+		final TextView src = view.findViewById(R.id.src);
+		final TextView srcDate = view.findViewById(R.id.src_date);
+		final TextView srcSize = view.findViewById(R.id.src_size);
 		src.setText(fromArg);
 		srcDate.setText(fromDateArg);
 		srcSize.setText(fromSizeArg);
 
-		final TextView dest = (TextView) view.findViewById(R.id.dest);
-		final TextView destDate = (TextView) view.findViewById(R.id.dest_date);
-		final TextView destSize = (TextView) view.findViewById(R.id.dest_size);
+		final TextView dest = view.findViewById(R.id.dest);
+		final TextView destDate = view.findViewById(R.id.dest_date);
+		final TextView destSize = view.findViewById(R.id.dest_size);
 		dest.setText(toArg);
 		destDate.setText(toDateArg);
 		destSize.setText(toSizeArg);
 
 		if (newerArg)
 		{
-			final TextView newer = (TextView) view.findViewById(R.id.newer);
+			final TextView newer = view.findViewById(R.id.newer);
 			newer.setText(R.string.download_newer);
-			final ImageButton button = (ImageButton) view.findViewById(R.id.update);
+			final ImageButton button = view.findViewById(R.id.update);
 			button.setVisibility(View.VISIBLE);
 			button.setOnClickListener(new View.OnClickListener()
 			{

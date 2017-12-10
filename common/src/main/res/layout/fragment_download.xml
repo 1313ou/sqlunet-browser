@@ -81,9 +81,9 @@
 		android:focusableInTouchMode="true"
 		android:freezesText="true"
 		android:marqueeRepeatLimit="marquee_forever"
-		android:maxLines="1"
 		android:scrollHorizontally="true"
-		android:text="@string/download_source"/>
+		android:text="@string/download_source"
+		android:singleLine="true"/>
 
 	<TextView
 		android:id="@+id/target"
@@ -101,9 +101,9 @@
 		android:focusableInTouchMode="true"
 		android:freezesText="true"
 		android:marqueeRepeatLimit="marquee_forever"
-		android:maxLines="1"
 		android:scrollHorizontally="true"
-		android:text="@string/download_dest"/>
+		android:text="@string/download_dest"
+		android:singleLine="true"/>
 
 	<TextView
 		android:id="@+id/status"

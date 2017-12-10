@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -39,7 +40,7 @@ public class StorageFragment extends NavigableFragment
 	}
 
 	@Override
-	public View onCreateView(final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState)
+	public View onCreateView(@NonNull final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState)
 	{
 		setHasOptionsMenu(true);
 
@@ -47,7 +48,7 @@ public class StorageFragment extends NavigableFragment
 		final View view = inflater.inflate(R.layout.fragment_storage, container, false);
 
 		// swipe refresh layout
-		this.swipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.swipe_refresh);
+		this.swipeRefreshLayout = view.findViewById(R.id.swipe_refresh);
 		this.swipeRefreshLayout.setColorSchemeResources(R.color.swipe_down_1_color, R.color.swipe_down_2_color);
 		this.swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener()
 		{
@@ -80,15 +81,15 @@ public class StorageFragment extends NavigableFragment
 
 		// db
 		assert view != null;
-		final TextView db = (TextView) view.findViewById(R.id.database);
+		final TextView db = view.findViewById(R.id.database);
 		db.setText(Storage.getSqlUNetStorage(getActivity()).getAbsolutePath());
 
 		// storage
-		final TextView storage = (TextView) view.findViewById(R.id.storage);
+		final TextView storage = view.findViewById(R.id.storage);
 		storage.setText(StorageReports.reportStyledStorageDirectories(getActivity()));
 
 		// storage devices
-		final TextView storageDevices = (TextView) view.findViewById(R.id.storage_devices);
+		final TextView storageDevices = view.findViewById(R.id.storage_devices);
 		storageDevices.setText(StorageReports.reportStyledExternalStorage(getActivity()));
 	}
 

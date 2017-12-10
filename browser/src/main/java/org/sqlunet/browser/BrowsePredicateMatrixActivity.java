@@ -34,7 +34,7 @@ public class BrowsePredicateMatrixActivity extends AppCompatActivity
 		setContentView(R.layout.activity_predicatematrix);
 
 		// toolbar
-		final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+		final Toolbar toolbar = findViewById(R.id.toolbar);
 		setSupportActionBar(toolbar);
 
 		// fragment

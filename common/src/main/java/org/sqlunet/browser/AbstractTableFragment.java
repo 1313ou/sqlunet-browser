@@ -1,5 +1,6 @@
 package org.sqlunet.browser;
 
+import android.content.Context;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
@@ -51,6 +52,7 @@ public abstract class AbstractTableFragment extends ListFragment
 
 		// args
 		final Bundle args = getArguments();
+		assert args != null;
 
 		// query params
 		final String uriString = args.getString(ProviderArgs.ARG_QUERYURI);
@@ -141,7 +143,9 @@ public abstract class AbstractTableFragment extends ListFragment
 				//  Log.d(TAG, p);
 				// }
 				final String[] selectionArgs = queryArg == null ? null : new String[]{queryArg};
-				return new CursorLoader(getActivity(), uri, projection, selection, selectionArgs, sort);
+				final Context context = getActivity();
+				assert context != null;
+				return new CursorLoader(context, uri, projection, selection, selectionArgs, sort);
 			}
 
 			@Override
@@ -175,6 +179,7 @@ public abstract class AbstractTableFragment extends ListFragment
 
 		// args
 		final Bundle args = getArguments();
+		assert args != null;
 
 		// query
 		final String queryArg = args.getString(ProviderArgs.ARG_QUERYARG);

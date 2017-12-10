@@ -3,6 +3,7 @@ package android.android.support.local.app;
 import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.annotation.NonNull;
 import android.support.local.app.R;
 import android.support.v4.app.Fragment;
 import android.view.ContextMenu;
@@ -60,7 +61,7 @@ public class ExpandableListFragment extends Fragment implements ExpandableListVi
 	 * built-in indeterminant progress state be shown.
 	 */
 	@Override
-	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
+	public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
 	{
 	/*
 		final Context context = getActivity();
@@ -110,7 +111,7 @@ public class ExpandableListFragment extends Fragment implements ExpandableListVi
 	 * Attach to list view once the view hierarchy has been created.
 	 */
 	@Override
-	public void onViewCreated(View view, Bundle savedInstanceState)
+	public void onViewCreated(@NonNull View view, Bundle savedInstanceState)
 	{
 		super.onViewCreated(view, savedInstanceState);
 		ensureList();
@@ -323,7 +324,7 @@ public class ExpandableListFragment extends Fragment implements ExpandableListVi
 		}
 		else
 		{
-			this.mStandardEmptyView = (TextView) view.findViewById(R.id.empty);
+			this.mStandardEmptyView = view.findViewById(R.id.empty);
 			if (this.mStandardEmptyView == null)
 			{
 				this.mEmptyView = view.findViewById(android.R.id.empty);
@@ -444,7 +445,7 @@ public class ExpandableListFragment extends Fragment implements ExpandableListVi
 		// super.onContentChanged();
 		final View view = getView();
 		assert view != null;
-		this.mExpandableList = (ExpandableListView) view.findViewById(android.R.id.list);
+		this.mExpandableList = view.findViewById(android.R.id.list);
 		if (this.mExpandableList == null)
 		{
 			throw new RuntimeException("Your content must have a ExpandableListView whose id attribute is " + "'android.R.id.list'");

@@ -34,7 +34,7 @@ public class DonateActivity extends AppCompatActivity implements IABAdapter.IABL
 		setContentView(R.layout.activity_buy);
 
 		// toolbar
-		final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+		final Toolbar toolbar = findViewById(R.id.toolbar);
 		setSupportActionBar(toolbar);
 
 		// set up the action bar

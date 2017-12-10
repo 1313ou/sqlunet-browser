@@ -2,6 +2,7 @@ package org.sqlunet.browser.xn;
 
 import android.graphics.Rect;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -37,11 +38,11 @@ public class HomeFragment extends org.sqlunet.browser.HomeFragment
 	}
 
 	@Override
-	public View onCreateView(final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState)
+	public View onCreateView(@NonNull final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState)
 	{
 		final View view = super.onCreateView(inflater, container, savedInstanceState);
 		assert view != null;
-		final ImageView image = (ImageView) view.findViewById(R.id.splash);
+		final ImageView image = view.findViewById(R.id.splash);
 		image.setOnTouchListener(new View.OnTouchListener()
 		{
 			@Override

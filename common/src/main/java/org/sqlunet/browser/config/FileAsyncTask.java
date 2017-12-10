@@ -86,20 +86,466 @@ class FileAsyncTask
 		this.publishRate = publishRate;
 	}
 
-// --Commented out by Inspection START (8/20/17 9:13 AM):
-//	/**
-//	 * Constructor
-//	 *
-//	 * @param listener    listener
-//	 * @param publishRate publish rate
-//	 */
-//	private FileAsyncTask(final TaskObserver.Listener listener, final int publishRate)
-//	{
-//		this(listener, null, publishRate);
-//	}
-// --Commented out by Inspection STOP (8/20/17 9:13 AM)
+	// --Commented out by Inspection START (8/20/17 9:13 AM):
+	//	/**
+	//	 * Constructor
+	//	 *
+	//	 * @param listener    listener
+	//	 * @param publishRate publish rate
+	//	 */
+	//	private FileAsyncTask(final TaskObserver.Listener listener, final int publishRate)
+	//	{
+	//		this(listener, null, publishRate);
+	//	}
+	// --Commented out by Inspection STOP (8/20/17 9:13 AM)
 
 	// CORE
+
+	static private class AsyncCopyFromFile extends AsyncTask<String, Integer, Boolean>
+	{
+		/**
+		 * Task listener
+		 */
+		final private TaskObserver.Listener listener;
+
+		/**
+		 * Result listener
+		 */
+		final private ResultListener resultListener;
+
+		/**
+		 * Publish rate
+		 */
+		private final int publishRate;
+
+		/**
+		 * Constructor
+		 *
+		 * @param listener       listener
+		 * @param resultListener result listener
+		 * @param publishRate    public rate
+		 */
+		AsyncCopyFromFile(final TaskObserver.Listener listener, final ResultListener resultListener, final int publishRate)
+		{
+			this.listener = listener;
+			this.resultListener = resultListener;
+			this.publishRate = publishRate;
+		}
+
+		@SuppressWarnings("boxing")
+		@Override
+		protected Boolean doInBackground(final String... params)
+		{
+			String srcArg = params[0];
+			String destArg = params[1];
+			Log.d(FileAsyncTask.TAG, "COPY FROM " + srcArg + " TO " + destArg);
+
+			File sourceFile = new File(srcArg);
+			int length = (int) sourceFile.length();
+
+			FileInputStream in = null;
+			FileOutputStream out = null;
+			try
+			{
+				in = new FileInputStream(srcArg);
+				out = new FileOutputStream(destArg);
+
+				final byte[] buffer = new byte[CHUNK_SIZE];
+				int byteCount = 0;
+				int chunkCount = 0;
+				int readCount;
+				while ((readCount = in.read(buffer)) != -1)
+				{
+					// write
+					out.write(buffer, 0, readCount);
+
+					// count
+					byteCount += readCount;
+					chunkCount++;
+
+					// publish
+					if ((chunkCount % this.publishRate) == 0)
+					{
+						publishProgress(byteCount, length);
+					}
+
+					// cancel hook
+					if (isCancelled())
+					{
+						//noinspection BreakStatement
+						break;
+					}
+				}
+				publishProgress(byteCount, length);
+				return true;
+			}
+			catch (final Exception e)
+			{
+				Log.e(TAG, "While copying", e);
+			}
+			finally
+			{
+				if (out != null)
+				{
+					try
+					{
+						out.close();
+					}
+					catch (IOException e)
+					{
+						//
+					}
+				}
+				if (in != null)
+				{
+					try
+					{
+						in.close();
+					}
+					catch (IOException e)
+					{
+						//
+					}
+				}
+			}
+			return false;
+		}
+
+		@Override
+		protected void onPreExecute()
+		{
+			super.onPreExecute();
+			this.listener.taskStart(this);
+		}
+
+		@Override
+		protected void onProgressUpdate(final Integer... params)
+		{
+			super.onProgressUpdate(params);
+			this.listener.taskUpdate(params[0], params[1]);
+		}
+
+		@Override
+		protected void onPostExecute(final Boolean result)
+		{
+			super.onPostExecute(result);
+			this.listener.taskFinish(result);
+			if (this.resultListener != null)
+			{
+				this.resultListener.onResult(result);
+			}
+		}
+
+		@Override
+		protected void onCancelled(final Boolean result)
+		{
+			this.listener.taskFinish(false);
+		}
+
+	}
+
+	static private class AsyncUnzipFromArchive extends AsyncTask<String, Integer, Boolean>
+	{
+		/**
+		 * Task listener
+		 */
+		final private TaskObserver.Listener listener;
+
+		/**
+		 * Result listener
+		 */
+		final private ResultListener resultListener;
+
+		/**
+		 * Publish rate
+		 */
+		private final int publishRate;
+
+		/**
+		 * Constructor
+		 *
+		 * @param listener       listener
+		 * @param resultListener result listener
+		 * @param publishRate    public rate
+		 */
+		AsyncUnzipFromArchive(final TaskObserver.Listener listener, final ResultListener resultListener, final int publishRate)
+		{
+			this.listener = listener;
+			this.resultListener = resultListener;
+			this.publishRate = publishRate;
+		}
+
+		@Override
+		@SuppressWarnings("boxing")
+		protected Boolean doInBackground(final String... params)
+		{
+			String srcArchiveArg = params[0];
+			String srcEntryArg = params[1];
+			String destArg = params[2];
+			Log.d(FileAsyncTask.TAG, "EXPAND FROM " + srcArchiveArg + " (entry " + srcEntryArg + ") TO " + destArg);
+
+			ZipFile zipFile = null;
+			InputStream in = null;
+			FileOutputStream out = null;
+
+			try
+			{
+				// in
+				zipFile = new ZipFile(srcArchiveArg);
+				final ZipEntry zipEntry = zipFile.getEntry(srcEntryArg);
+				if (zipEntry == null)
+				{
+					throw new IOException("Zip entry not found " + srcEntryArg);
+				}
+				in = zipFile.getInputStream(zipEntry);
+				int length = (int) zipEntry.getSize();
+
+				// out
+				out = new FileOutputStream(destArg);
+
+				final byte[] buffer = new byte[CHUNK_SIZE];
+				int byteCount = 0;
+				int chunkCount = 0;
+				int readCount;
+				while ((readCount = in.read(buffer)) != -1)
+				{
+					// write
+					out.write(buffer, 0, readCount);
+
+					// count
+					byteCount += readCount;
+					chunkCount++;
+
+					// publish
+					if ((chunkCount % this.publishRate) == 0)
+					{
+						publishProgress(byteCount, length);
+					}
+
+					// cancel hook
+					if (isCancelled())
+					{
+						//noinspection BreakStatement
+						break;
+					}
+				}
+				publishProgress(byteCount, length);
+				return true;
+			}
+			catch (IOException e1)
+			{
+				Log.e(TAG, "While executing from archive", e1);
+			}
+			finally
+			{
+				if (out != null)
+				{
+					try
+					{
+						out.close();
+					}
+					catch (IOException e)
+					{
+						//
+					}
+				}
+				if (zipFile != null)
+				{
+					try
+					{
+						zipFile.close();
+					}
+					catch (IOException e)
+					{
+						Log.e(TAG, "While closing archive", e);
+					}
+				}
+				if (in != null)
+				{
+					try
+					{
+						in.close();
+					}
+					catch (IOException e)
+					{
+						//
+					}
+				}
+			}
+			return false;
+		}
+
+		@Override
+		protected void onPreExecute()
+		{
+			this.listener.taskStart(this);
+		}
+
+		@Override
+		protected void onProgressUpdate(final Integer... params)
+		{
+			this.listener.taskUpdate(params[0], params[1]);
+		}
+
+		@Override
+		protected void onPostExecute(final Boolean result)
+		{
+			this.listener.taskFinish(result);
+			if (this.resultListener != null)
+			{
+				this.resultListener.onResult(result);
+			}
+		}
+
+		@Override
+		protected void onCancelled(final Boolean result)
+		{
+			this.listener.taskFinish(false);
+		}
+
+	}
+
+	static private class AsyncMd5FromFile extends AsyncTask<String, Integer, String>
+	{
+		/**
+		 * Task listener
+		 */
+		final private TaskObserver.Listener listener;
+
+		/**
+		 * Result listener
+		 */
+		final private ResultListener resultListener;
+
+		/**
+		 * Publish rate
+		 */
+		private final int publishRate;
+
+		/**
+		 * Constructor
+		 *
+		 * @param listener       listener
+		 * @param resultListener result listener
+		 * @param publishRate    public rate
+		 */
+		AsyncMd5FromFile(final TaskObserver.Listener listener, final ResultListener resultListener, final int publishRate)
+		{
+			this.listener = listener;
+			this.resultListener = resultListener;
+			this.publishRate = publishRate;
+		}
+
+		@Override
+		@SuppressWarnings("boxing")
+		protected String doInBackground(final String... params)
+		{
+			final String pathArg = params[0];
+			Log.d(TAG, "MD5 " + pathArg);
+			FileInputStream fis = null;
+			DigestInputStream dis = null;
+			try
+			{
+				File sourceFile = new File(pathArg);
+				int length = (int) sourceFile.length();
+
+				fis = new FileInputStream(pathArg);
+
+				MessageDigest md = MessageDigest.getInstance("MD5");
+				dis = new DigestInputStream(fis, md);
+
+				final byte[] buffer = new byte[CHUNK_SIZE];
+				int byteCount = 0;
+				int chunkCount = 0;
+				@SuppressWarnings("UnusedAssignment") int readCount = 0;
+
+				// read decorated stream (dis) to EOF as normal
+				while ((readCount = dis.read(buffer)) != -1)
+				{
+					// count
+					byteCount += readCount;
+					chunkCount++;
+
+					// publish
+					if ((chunkCount % this.publishRate) == 0)
+					{
+						publishProgress(byteCount, length);
+					}
+				}
+				byte[] digest = md.digest();
+				return digestToString(digest);
+			}
+			catch (FileNotFoundException e)
+			{
+				return null;
+			}
+			catch (NoSuchAlgorithmException e)
+			{
+				return null;
+			}
+			catch (IOException e)
+			{
+				return null;
+			}
+			finally
+			{
+				if (dis != null)
+				{
+					try
+					{
+						dis.close();
+					}
+					catch (IOException e)
+					{
+						//
+					}
+				}
+				if (fis != null)
+				{
+					try
+					{
+						fis.close();
+					}
+					catch (IOException e)
+					{
+						//
+					}
+				}
+			}
+		}
+
+		@Override
+		protected void onPreExecute()
+		{
+			this.listener.taskStart(this);
+		}
+
+		@Override
+		protected void onProgressUpdate(final Integer... params)
+		{
+			this.listener.taskUpdate(params[0], params[1]);
+		}
+
+		@Override
+		protected void onCancelled(final String result)
+		{
+			this.listener.taskFinish(false);
+			if (this.resultListener != null)
+			{
+				this.resultListener.onResult(null);
+			}
+		}
+
+		@Override
+		protected void onPostExecute(final String result)
+		{
+			this.listener.taskFinish(result != null);
+			if (this.resultListener != null)
+			{
+				this.resultListener.onResult(result);
+			}
+		}
+	}
 
 	/**
 	 * Copy from source file
@@ -110,118 +556,7 @@ class FileAsyncTask
 	@SuppressWarnings("UnusedReturnValue")
 	private AsyncTask<String, Integer, Boolean> copyFromFile(final String src, final String dest)
 	{
-		final AsyncTask<String, Integer, Boolean> task = new AsyncTask<String, Integer, Boolean>()
-		{
-			@SuppressWarnings("boxing")
-			@Override
-			protected Boolean doInBackground(final String... params)
-			{
-				String srcArg = params[0];
-				String destArg = params[1];
-				Log.d(FileAsyncTask.TAG, "COPY FROM " + srcArg + " TO " + destArg);
-
-				File sourceFile = new File(srcArg);
-				int length = (int) sourceFile.length();
-
-				FileInputStream in = null;
-				FileOutputStream out = null;
-				try
-				{
-					in = new FileInputStream(srcArg);
-					out = new FileOutputStream(destArg);
-
-					final byte[] buffer = new byte[CHUNK_SIZE];
-					int byteCount = 0;
-					int chunkCount = 0;
-					int readCount;
-					while ((readCount = in.read(buffer)) != -1)
-					{
-						// write
-						out.write(buffer, 0, readCount);
-
-						// count
-						byteCount += readCount;
-						chunkCount++;
-
-						// publish
-						if ((chunkCount % FileAsyncTask.this.publishRate) == 0)
-						{
-							publishProgress(byteCount, length);
-						}
-
-						// cancel hook
-						if (isCancelled())
-						{
-							//noinspection BreakStatement
-							break;
-						}
-					}
-					publishProgress(byteCount, length);
-					return true;
-				}
-				catch (final Exception e)
-				{
-					Log.e(TAG, "While copying", e);
-				}
-				finally
-				{
-					if (out != null)
-					{
-						try
-						{
-							out.close();
-						}
-						catch (IOException e)
-						{
-							//
-						}
-					}
-					if (in != null)
-					{
-						try
-						{
-							in.close();
-						}
-						catch (IOException e)
-						{
-							//
-						}
-					}
-				}
-				return false;
-			}
-
-			@Override
-			protected void onPreExecute()
-			{
-				super.onPreExecute();
-				FileAsyncTask.this.listener.taskStart(this);
-			}
-
-			@Override
-			protected void onProgressUpdate(final Integer... params)
-			{
-				super.onProgressUpdate(params);
-				FileAsyncTask.this.listener.taskUpdate(params[0], params[1]);
-			}
-
-			@Override
-			protected void onPostExecute(final Boolean result)
-			{
-				super.onPostExecute(result);
-				FileAsyncTask.this.listener.taskFinish(result);
-				if (FileAsyncTask.this.resultListener != null)
-				{
-					FileAsyncTask.this.resultListener.onResult(result);
-				}
-			}
-
-			@Override
-			protected void onCancelled(final Boolean result)
-			{
-				FileAsyncTask.this.listener.taskFinish(false);
-			}
-		};
+		final AsyncTask<String, Integer, Boolean> task = new AsyncCopyFromFile(this.listener, this.resultListener, this.publishRate);
 		task.execute(src, dest);
 		return task;
 	}
@@ -236,136 +571,7 @@ class FileAsyncTask
 	@SuppressWarnings("UnusedReturnValue")
 	private AsyncTask<String, Integer, Boolean> unzipFromArchive(final String srcArchive, final String srcEntry, final String dest)
 	{
-		final AsyncTask<String, Integer, Boolean> task = new AsyncTask<String, Integer, Boolean>()
-		{
-			@Override
-			@SuppressWarnings("boxing")
-			protected Boolean doInBackground(final String... params)
-			{
-				String srcArchiveArg = params[0];
-				String srcEntryArg = params[1];
-				String destArg = params[2];
-				Log.d(FileAsyncTask.TAG, "EXPAND FROM " + srcArchiveArg + " (entry " + srcEntryArg + ") TO " + destArg);
-
-				ZipFile zipFile = null;
-				InputStream in = null;
-				FileOutputStream out = null;
-
-				try
-				{
-					// in
-					zipFile = new ZipFile(srcArchiveArg);
-					final ZipEntry zipEntry = zipFile.getEntry(srcEntryArg);
-					if (zipEntry == null)
-					{
-						throw new IOException("Zip entry not found " + srcEntryArg);
-					}
-					in = zipFile.getInputStream(zipEntry);
-					int length = (int) zipEntry.getSize();
-
-					// out
-					out = new FileOutputStream(destArg);
-
-					final byte[] buffer = new byte[CHUNK_SIZE];
-					int byteCount = 0;
-					int chunkCount = 0;
-					int readCount;
-					while ((readCount = in.read(buffer)) != -1)
-					{
-						// write
-						out.write(buffer, 0, readCount);
-
-						// count
-						byteCount += readCount;
-						chunkCount++;
-
-						// publish
-						if ((chunkCount % FileAsyncTask.this.publishRate) == 0)
-						{
-							publishProgress(byteCount, length);
-						}
-
-						// cancel hook
-						if (isCancelled())
-						{
-							//noinspection BreakStatement
-							break;
-						}
-					}
-					publishProgress(byteCount, length);
-					return true;
-				}
-				catch (IOException e1)
-				{
-					Log.e(TAG, "While executing from archive", e1);
-				}
-				finally
-				{
-					if (out != null)
-					{
-						try
-						{
-							out.close();
-						}
-						catch (IOException e)
-						{
-							//
-						}
-					}
-					if (zipFile != null)
-					{
-						try
-						{
-							zipFile.close();
-						}
-						catch (IOException e)
-						{
-							Log.e(TAG, "While closing archive", e);
-						}
-					}
-					if (in != null)
-					{
-						try
-						{
-							in.close();
-						}
-						catch (IOException e)
-						{
-							//
-						}
-					}
-				}
-				return false;
-			}
-
-			@Override
-			protected void onPreExecute()
-			{
-				FileAsyncTask.this.listener.taskStart(this);
-			}
-
-			@Override
-			protected void onProgressUpdate(final Integer... params)
-			{
-				FileAsyncTask.this.listener.taskUpdate(params[0], params[1]);
-			}
-
-			@Override
-			protected void onPostExecute(final Boolean result)
-			{
-				FileAsyncTask.this.listener.taskFinish(result);
-				if (FileAsyncTask.this.resultListener != null)
-				{
-					FileAsyncTask.this.resultListener.onResult(result);
-				}
-			}
-
-			@Override
-			protected void onCancelled(final Boolean result)
-			{
-				FileAsyncTask.this.listener.taskFinish(false);
-			}
-		};
+		final AsyncTask<String, Integer, Boolean> task = new AsyncUnzipFromArchive(this.listener, this.resultListener, this.publishRate);
 		return task.execute(srcArchive, srcEntry, dest);
 	}
 
@@ -377,118 +583,7 @@ class FileAsyncTask
 	@SuppressWarnings("UnusedReturnValue")
 	private AsyncTask<String, Integer, String> md5FromFile(final String targetFile)
 	{
-		final AsyncTask<String, Integer, String> task = new AsyncTask<String, Integer, String>()
-		{
-			@Override
-			@SuppressWarnings("boxing")
-			protected String doInBackground(final String... params)
-			{
-				final String pathArg = params[0];
-				Log.d(TAG, "MD5 " + pathArg);
-				FileInputStream fis = null;
-				DigestInputStream dis = null;
-				try
-				{
-					File sourceFile = new File(pathArg);
-					int length = (int) sourceFile.length();
-
-					fis = new FileInputStream(pathArg);
-
-					MessageDigest md = MessageDigest.getInstance("MD5");
-					dis = new DigestInputStream(fis, md);
-
-					final byte[] buffer = new byte[CHUNK_SIZE];
-					int byteCount = 0;
-					int chunkCount = 0;
-					@SuppressWarnings("UnusedAssignment") int readCount = 0;
-
-					// read decorated stream (dis) to EOF as normal
-					while ((readCount = dis.read(buffer)) != -1)
-					{
-						// count
-						byteCount += readCount;
-						chunkCount++;
-
-						// publish
-						if ((chunkCount % FileAsyncTask.this.publishRate) == 0)
-						{
-							publishProgress(byteCount, length);
-						}
-					}
-					byte[] digest = md.digest();
-					return digestToString(digest);
-				}
-				catch (FileNotFoundException e)
-				{
-					return null;
-				}
-				catch (NoSuchAlgorithmException e)
-				{
-					return null;
-				}
-				catch (IOException e)
-				{
-					return null;
-				}
-				finally
-				{
-					if (dis != null)
-					{
-						try
-						{
-							dis.close();
-						}
-						catch (IOException e)
-						{
-							//
-						}
-					}
-					if (fis != null)
-					{
-						try
-						{
-							fis.close();
-						}
-						catch (IOException e)
-						{
-							//
-						}
-					}
-				}
-			}
-
-			@Override
-			protected void onPreExecute()
-			{
-				FileAsyncTask.this.listener.taskStart(this);
-			}
-
-			@Override
-			protected void onProgressUpdate(final Integer... params)
-			{
-				FileAsyncTask.this.listener.taskUpdate(params[0], params[1]);
-			}
-
-			@Override
-			protected void onCancelled(final String result)
-			{
-				FileAsyncTask.this.listener.taskFinish(false);
-				if (FileAsyncTask.this.resultListener != null)
-				{
-					FileAsyncTask.this.resultListener.onResult(null);
-				}
-			}
-
-			@Override
-			protected void onPostExecute(final String result)
-			{
-				FileAsyncTask.this.listener.taskFinish(result != null);
-				if (FileAsyncTask.this.resultListener != null)
-				{
-					FileAsyncTask.this.resultListener.onResult(result);
-				}
-			}
-		};
+		final AsyncTask<String, Integer, String> task = new AsyncMd5FromFile(this.listener, this.resultListener, this.publishRate);
 		return task.execute(targetFile);
 	}
 

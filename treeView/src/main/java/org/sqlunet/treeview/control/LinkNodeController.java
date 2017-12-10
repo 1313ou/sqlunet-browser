@@ -36,11 +36,11 @@ public class LinkNodeController extends Controller<Value>
 		@SuppressLint("InflateParams") final View view = inflater.inflate(R.layout.layout_node_link, null, false);
 
 		// icon
-		final ImageView iconView = (ImageView) view.findViewById(R.id.node_icon);
+		final ImageView iconView = view.findViewById(R.id.node_icon);
 		iconView.setImageResource(value.icon);
 
 		// text
-		TextView valueView = (TextView) view.findViewById(R.id.node_value);
+		TextView valueView = view.findViewById(R.id.node_value);
 		valueView.setText(value.text);
 
 		// link listener

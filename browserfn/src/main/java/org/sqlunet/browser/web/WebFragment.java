@@ -3,12 +3,14 @@ package org.sqlunet.browser.web;
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Parcelable;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.LoaderManager.LoaderCallbacks;
 import android.support.v4.content.Loader;
@@ -85,18 +87,136 @@ public class WebFragment extends Fragment
 	}
 
 	@Override
-	public View onCreateView(final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState)
+	public View onCreateView(@NonNull final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState)
 	{
 		// view
 		final View view = inflater.inflate(R.layout.fragment_web, container, false);
 
 		// webview
-		this.webview = (WebView) view.findViewById(R.id.webView);
+		this.webview = view.findViewById(R.id.webView);
 
 		// load view
 		load();
 
 		return view;
+	}
+
+	static private class WebDocumentStringLoader extends DocumentStringLoader
+	{
+		final Parcelable pointer;
+		final int type;
+		final String data;
+		final int sources;
+		final boolean xml;
+
+		public WebDocumentStringLoader(final Context context, final Parcelable pointer, final int type, final String data, final int sources, final boolean xml)
+		{
+			super(context);
+			this.pointer = pointer;
+			this.type = type;
+			this.data = data;
+			this.sources = sources;
+			this.xml = xml;
+		}
+
+		@SuppressWarnings({"boxing"})
+		@Override
+		protected String getDoc()
+		{
+			DataSource dataSource = null;
+			try
+			{
+				// data source
+				dataSource = new DataSource(StorageSettings.getDatabasePath(getContext()));
+				final SQLiteDatabase db = dataSource.getConnection();
+
+				// dom documents
+				Document fnDomDoc = null;
+
+				// selector mode
+				final boolean isSelector = this.data != null;
+
+				// make documents
+				if (isSelector)
+				{
+					// this is a selector query
+					if (Settings.Source.FRAMENET.test(sources))
+					{
+						fnDomDoc = new FrameNetImplementation().querySelectorDoc(db, data, null);
+					}
+				}
+				else
+				{
+					// this is a detail query
+					switch (this.type)
+					{
+						case ProviderArgs.ARG_QUERYTYPE_ALL:
+							if (this.pointer != null)
+							{
+								if (this.pointer instanceof Pointer)
+								{
+									final Pointer xPointer = (Pointer) this.pointer;
+									final Long id = xPointer.getId();
+									final boolean isFrame = xPointer instanceof FnFramePointer;
+									fnDomDoc = isFrame ? new FrameNetImplementation().queryFrameDoc(db, id, null) : new FrameNetImplementation().queryLexUnitDoc(db, id);
+								}
+							}
+							break;
+
+						case ProviderArgs.ARG_QUERYTYPE_FNLEXUNIT:
+							final FnLexUnitPointer lexunitPointer = (FnLexUnitPointer) this.pointer;
+							Log.d(WebFragment.TAG, "ARG_POSITION fnlexunit=" + lexunitPointer);
+							if (lexunitPointer != null && Settings.Source.FRAMENET.test(this.sources))
+							{
+								fnDomDoc = new FrameNetImplementation().queryLexUnitDoc(db, lexunitPointer.getId());
+							}
+							break;
+
+						case ProviderArgs.ARG_QUERYTYPE_FNFRAME:
+							final FnFramePointer framePointer = (FnFramePointer) this.pointer;
+							Log.d(WebFragment.TAG, "ARG_POSITION fnframe=" + framePointer);
+							if (framePointer != null && Settings.Source.FRAMENET.test(this.sources))
+							{
+								fnDomDoc = new FrameNetImplementation().queryFrameDoc(db, framePointer.getId(), null);
+							}
+							break;
+
+						case ProviderArgs.ARG_QUERYTYPE_FNSENTENCE:
+							final FnSentencePointer sentencePointer = (FnSentencePointer) this.pointer;
+							Log.d(WebFragment.TAG, "ARG_POSITION fnsentence=" + sentencePointer);
+							if (sentencePointer != null && Settings.Source.FRAMENET.test(this.sources))
+							{
+								fnDomDoc = new FrameNetImplementation().querySentenceDoc(db, sentencePointer.getId());
+							}
+							break;
+
+						case ProviderArgs.ARG_QUERYTYPE_FNANNOSET:
+							final FnAnnoSetPointer annoSetPointer = (FnAnnoSetPointer) this.pointer;
+							Log.d(WebFragment.TAG, "ARG_POSITION fnannoset=" + annoSetPointer);
+							if (annoSetPointer != null && Settings.Source.FRAMENET.test(this.sources))
+							{
+								fnDomDoc = new FrameNetImplementation().queryAnnoSetDoc(db, annoSetPointer.getId());
+							}
+							break;
+					}
+				}
+
+				// stringify
+				return WebFragment.docsToString(this.data, this.xml, isSelector, fnDomDoc);
+			}
+			catch (final Exception e)
+			{
+				Log.e(WebFragment.TAG, "getDoc", e);
+			}
+			finally
+			{
+				if (dataSource != null)
+				{
+					dataSource.close();
+				}
+			}
+			return null;
+		}
 	}
 
 	/**
@@ -155,6 +275,7 @@ public class WebFragment extends Fragment
 
 						// warn with id
 						final Activity activity = WebFragment.this.getActivity();
+						assert activity != null;
 						activity.runOnUiThread(new Runnable()
 						{
 							@Override
@@ -246,107 +367,7 @@ public class WebFragment extends Fragment
 			@Override
 			public Loader<String> onCreateLoader(final int loaderId, final Bundle loaderArgs)
 			{
-				return new DocumentStringLoader(getActivity())
-				{
-					@SuppressWarnings({"boxing"})
-					@Override
-					protected String getDoc()
-					{
-						DataSource dataSource = null;
-						try
-						{
-							// data source
-							dataSource = new DataSource(StorageSettings.getDatabasePath(getContext()));
-							final SQLiteDatabase db = dataSource.getConnection();
-
-							// dom documents
-							Document fnDomDoc = null;
-
-							// selector mode
-							final boolean isSelector = data != null;
-
-							// make documents
-							if (isSelector)
-							{
-								// this is a selector query
-								if (Settings.Source.FRAMENET.test(sources))
-								{
-									fnDomDoc = new FrameNetImplementation().querySelectorDoc(db, data, null);
-								}
-							}
-							else
-							{
-								// this is a detail query
-								switch (type)
-								{
-									case ProviderArgs.ARG_QUERYTYPE_ALL:
-										if (pointer != null)
-										{
-											if (pointer instanceof Pointer)
-											{
-												final Pointer xPointer = (Pointer) pointer;
-												final Long id = xPointer.getId();
-												final boolean isFrame = xPointer instanceof FnFramePointer;
-												fnDomDoc = isFrame ? new FrameNetImplementation().queryFrameDoc(db, id, null) : new FrameNetImplementation().queryLexUnitDoc(db, id);
-											}
-										}
-										break;
-
-									case ProviderArgs.ARG_QUERYTYPE_FNLEXUNIT:
-										final FnLexUnitPointer lexunitPointer = (FnLexUnitPointer) pointer;
-										Log.d(WebFragment.TAG, "ARG_POSITION fnlexunit=" + lexunitPointer);
-										if (lexunitPointer != null && Settings.Source.FRAMENET.test(sources))
-										{
-											fnDomDoc = new FrameNetImplementation().queryLexUnitDoc(db, lexunitPointer.getId());
-										}
-										break;
-
-									case ProviderArgs.ARG_QUERYTYPE_FNFRAME:
-										final FnFramePointer framePointer = (FnFramePointer) pointer;
-										Log.d(WebFragment.TAG, "ARG_POSITION fnframe=" + framePointer);
-										if (framePointer != null && Settings.Source.FRAMENET.test(sources))
-										{
-											fnDomDoc = new FrameNetImplementation().queryFrameDoc(db, framePointer.getId(), null);
-										}
-										break;
-
-									case ProviderArgs.ARG_QUERYTYPE_FNSENTENCE:
-										final FnSentencePointer sentencePointer = (FnSentencePointer) pointer;
-										Log.d(WebFragment.TAG, "ARG_POSITION fnsentence=" + sentencePointer);
-										if (sentencePointer != null && Settings.Source.FRAMENET.test(sources))
-										{
-											fnDomDoc = new FrameNetImplementation().querySentenceDoc(db, sentencePointer.getId());
-										}
-										break;
-
-									case ProviderArgs.ARG_QUERYTYPE_FNANNOSET:
-										final FnAnnoSetPointer annoSetPointer = (FnAnnoSetPointer) pointer;
-										Log.d(WebFragment.TAG, "ARG_POSITION fnannoset=" + annoSetPointer);
-										if (annoSetPointer != null && Settings.Source.FRAMENET.test(sources))
-										{
-											fnDomDoc = new FrameNetImplementation().queryAnnoSetDoc(db, annoSetPointer.getId());
-										}
-										break;
-								}
-							}
-
-							// stringify
-							return WebFragment.docsToString(data, xml, isSelector, fnDomDoc);
-						}
-						catch (final Exception e)
-						{
-							Log.e(WebFragment.TAG, "getDoc", e);
-						}
-						finally
-						{
-							if (dataSource != null)
-							{
-								dataSource.close();
-							}
-						}
-						return null;
-					}
-				};
+				return new WebDocumentStringLoader(getActivity(), pointer, type, data, sources, xml);
 			}
 
 			@Override

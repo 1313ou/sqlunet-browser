@@ -6,6 +6,7 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.text.SpannableStringBuilder;
 import android.text.TextUtils;
@@ -222,7 +223,9 @@ abstract class BaseDownloadFragment extends Fragment implements View.OnClickList
 		// Log.d(TAG, "onCreate " + savedInstanceState);
 
 		// context for threads that terminate after activity finishes
-		this.context = getActivity().getApplicationContext();
+		final Activity activity = getActivity();
+		assert activity != null;
+		this.context = activity.getApplicationContext();
 
 		// arguments
 		final Bundle arguments = getArguments();
@@ -231,7 +234,7 @@ abstract class BaseDownloadFragment extends Fragment implements View.OnClickList
 
 		// download source data
 		this.downloadUrl = fromArg != null ? fromArg : StorageSettings.getDbDownloadSource(this.context);
-		if (this.downloadUrl == null || this.downloadUrl.isEmpty())
+		if (/*this.downloadUrl == null ||*/ this.downloadUrl.isEmpty())
 		{
 			final String message = this.context.getString(R.string.status_error_null_download_url);
 			warn(message);
@@ -249,7 +252,7 @@ abstract class BaseDownloadFragment extends Fragment implements View.OnClickList
 	}
 
 	@Override
-	public View onCreateView(final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState)
+	public View onCreateView(@NonNull final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState)
 	{
 		Log.d(TAG, "onCreateView " + savedInstanceState);
 
@@ -257,17 +260,17 @@ abstract class BaseDownloadFragment extends Fragment implements View.OnClickList
 		final View view = inflater.inflate(R.layout.fragment_download, container, false);
 
 		// components
-		this.progressBar = (ProgressBar) view.findViewById(R.id.progressBar);
-		this.progressStatus = (TextView) view.findViewById(R.id.progressStatus);
-		this.statusView = (TextView) view.findViewById(R.id.status);
+		this.progressBar = view.findViewById(R.id.progressBar);
+		this.progressStatus = view.findViewById(R.id.progressStatus);
+		this.statusView = view.findViewById(R.id.status);
 
 		// default background res
 		this.downloadButtonRes = R.drawable.bg_button_action;
 
 		// buttons
-		this.downloadButton = (ImageButton) view.findViewById(R.id.downloadButton);
+		this.downloadButton = view.findViewById(R.id.downloadButton);
 		this.downloadButton.setOnClickListener(this);
-		this.cancelButton = (Button) view.findViewById(R.id.cancelButton);
+		this.cancelButton = view.findViewById(R.id.cancelButton);
 		this.cancelButton.setOnClickListener(new View.OnClickListener()
 		{
 			@Override
@@ -277,7 +280,7 @@ abstract class BaseDownloadFragment extends Fragment implements View.OnClickList
 				cancel();
 			}
 		});
-		this.md5Button = (Button) view.findViewById(R.id.md5Button);
+		this.md5Button = view.findViewById(R.id.md5Button);
 		this.md5Button.setOnClickListener(new View.OnClickListener()
 		{
 			@Override
@@ -288,14 +291,14 @@ abstract class BaseDownloadFragment extends Fragment implements View.OnClickList
 		});
 
 		// source
-		final TextView srcView = (TextView) view.findViewById(R.id.src);
+		final TextView srcView = view.findViewById(R.id.src);
 		srcView.setText(this.downloadUrl);
 		srcView.setSingleLine(true);
 		srcView.setEllipsize(TextUtils.TruncateAt.MARQUEE);
 		srcView.setSelected(true);
 
 		// destination
-		final TextView targetView = (TextView) view.findViewById(R.id.target);
+		final TextView targetView = view.findViewById(R.id.target);
 		targetView.setText(this.destFile != null ? this.destFile.getAbsolutePath() : "");
 		targetView.setSingleLine(true);
 		targetView.setEllipsize(TextUtils.TruncateAt.MARQUEE);
@@ -323,7 +326,7 @@ abstract class BaseDownloadFragment extends Fragment implements View.OnClickList
 	}
 
 	@Override
-	public void onSaveInstanceState(final Bundle outState)
+	public void onSaveInstanceState(@NonNull final Bundle outState)
 	{
 		super.onSaveInstanceState(outState);
 

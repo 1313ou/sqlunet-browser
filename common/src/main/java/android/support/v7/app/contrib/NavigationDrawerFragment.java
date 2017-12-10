@@ -1,5 +1,7 @@
 package android.support.v7.app.contrib;
 
+import android.app.Activity;
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.content.res.Resources;
@@ -151,7 +153,7 @@ public class NavigationDrawerFragment extends Fragment
 	}
 
 	@Override
-	public View onCreateView(final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState)
+	public View onCreateView(@NonNull final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState)
 	{
 		// resources
 		final Resources res = getResources();
@@ -169,7 +171,9 @@ public class NavigationDrawerFragment extends Fragment
 		icons.recycle();
 
 		// adapter
-		final ListAdapter adapter = new ArrayAdapter<RowItem>(getContext(), R.layout.drawer_item_simple, android.R.id.text1, items) //simple_list_item_activated_1
+		final Context context = getActivity();
+		assert context != null;
+		final ListAdapter adapter = new ArrayAdapter<RowItem>(context, R.layout.drawer_item_simple, android.R.id.text1, items) //simple_list_item_activated_1
 		{
 			@NonNull
 			@Override
@@ -186,7 +190,7 @@ public class NavigationDrawerFragment extends Fragment
 
 		// set up the drawer's list view with items and click listener
 		final View view = inflater.inflate(R.layout.drawer_main, container, false);
-		this.drawerListView = (ListView) view.findViewById(R.id.sections);
+		this.drawerListView = view.findViewById(R.id.sections);
 		this.drawerListView.setOnItemClickListener(new AdapterView.OnItemClickListener()
 		{
 			@Override
@@ -202,7 +206,7 @@ public class NavigationDrawerFragment extends Fragment
 
 	protected void set(final View view, final RowItem rowItem)
 	{
-		final TextView textView = (TextView) view.findViewById(android.R.id.text1);
+		final TextView textView = view.findViewById(android.R.id.text1);
 		textView.setTextColor(rowItem.isMain ? Color.WHITE : Color.LTGRAY);
 		textView.setText(rowItem.title);
 		textView.setCompoundDrawablesWithIntrinsicBounds(rowItem.iconId, 0, 0, 0);
@@ -229,7 +233,7 @@ public class NavigationDrawerFragment extends Fragment
 	}
 
 	@Override
-	public void onSaveInstanceState(final Bundle outState)
+	public void onSaveInstanceState(@NonNull final Bundle outState)
 	{
 		super.onSaveInstanceState(outState);
 		outState.putInt(STATE_SELECTED_SECTION, this.selectedPosition);
@@ -279,7 +283,9 @@ public class NavigationDrawerFragment extends Fragment
 	 */
 	public void setUp(final int fragmentId, final DrawerLayout drawerLayout)
 	{
-		this.containerView = getActivity().findViewById(fragmentId);
+		final Activity activity = getActivity();
+		assert activity != null;
+		this.containerView = activity.findViewById(fragmentId);
 
 		// drawer layout
 		this.drawerLayout = drawerLayout;
@@ -420,6 +426,8 @@ public class NavigationDrawerFragment extends Fragment
 	 */
 	private ActionBar getSupportActionBar()
 	{
-		return ((AppCompatActivity) getActivity()).getSupportActionBar();
+		final AppCompatActivity activity = (AppCompatActivity)getActivity();
+		assert activity != null;
+		return activity.getSupportActionBar();
 	}
 }

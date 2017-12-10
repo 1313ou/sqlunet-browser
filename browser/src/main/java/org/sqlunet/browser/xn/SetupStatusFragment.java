@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -60,27 +61,27 @@ public class SetupStatusFragment extends org.sqlunet.browser.config.SetupStatusF
 	}
 
 	@Override
-	public View onCreateView(final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState)
+	public View onCreateView(@NonNull final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState)
 	{
 		// view
 		final View view = super.onCreateView(inflater, container, savedInstanceState);
 		assert view != null;
 
 		// images
-		this.imageTextSearchFn = (ImageView) view.findViewById(R.id.status_searchtext_fn);
-		this.imagePm = (ImageView) view.findViewById(R.id.status_predicatematrix);
-		this.imageTextSearchWn = (ImageView) view.findViewById(R.id.status_searchtext_wn);
-		this.imageTextSearchVn = (ImageView) view.findViewById(R.id.status_searchtext_vn);
-		this.imageTextSearchPb = (ImageView) view.findViewById(R.id.status_searchtext_pb);
-		this.imageTextSearchFn = (ImageView) view.findViewById(R.id.status_searchtext_fn);
+		this.imageTextSearchFn = view.findViewById(R.id.status_searchtext_fn);
+		this.imagePm = view.findViewById(R.id.status_predicatematrix);
+		this.imageTextSearchWn = view.findViewById(R.id.status_searchtext_wn);
+		this.imageTextSearchVn = view.findViewById(R.id.status_searchtext_vn);
+		this.imageTextSearchPb = view.findViewById(R.id.status_searchtext_pb);
+		this.imageTextSearchFn = view.findViewById(R.id.status_searchtext_fn);
 
 		// buttons
-		this.buttonPm = (ImageButton) view.findViewById(R.id.predicatematrixButton);
-		this.buttonTextSearchWn = (ImageButton) view.findViewById(R.id.searchtextWnButton);
-		this.buttonTextSearchVn = (ImageButton) view.findViewById(R.id.searchtextVnButton);
-		this.buttonTextSearchPb = (ImageButton) view.findViewById(R.id.searchtextPbButton);
-		this.buttonTextSearchFn = (ImageButton) view.findViewById(R.id.searchtextFnButton);
-		final ImageButton infoDatabaseButton = (ImageButton) view.findViewById(R.id.info_database);
+		this.buttonPm = view.findViewById(R.id.predicatematrixButton);
+		this.buttonTextSearchWn = view.findViewById(R.id.searchtextWnButton);
+		this.buttonTextSearchVn = view.findViewById(R.id.searchtextVnButton);
+		this.buttonTextSearchPb = view.findViewById(R.id.searchtextPbButton);
+		this.buttonTextSearchFn = view.findViewById(R.id.searchtextFnButton);
+		final ImageButton infoDatabaseButton = view.findViewById(R.id.info_database);
 
 		// activity
 		final Activity activity = getActivity();

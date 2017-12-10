@@ -187,8 +187,9 @@ public class SimpleDownloaderService extends IntentService
 
 		// wake lock
 		final PowerManager pm = (PowerManager) getSystemService(Context.POWER_SERVICE);
+		assert pm != null;
 		final PowerManager.WakeLock wakelock = pm.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, "DownloaderService");
-		wakelock.acquire();
+		wakelock.acquire(30*60*1000L /*30 minutes*/);
 
 		final File outFile = new File(this.toFile + ".part");
 		InputStream input = null;

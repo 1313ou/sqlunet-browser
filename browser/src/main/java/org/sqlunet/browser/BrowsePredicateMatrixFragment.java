@@ -3,6 +3,7 @@ package org.sqlunet.browser;
 import android.content.Context;
 import android.os.Bundle;
 import android.os.Parcelable;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -65,7 +66,7 @@ public class BrowsePredicateMatrixFragment extends BaseSearchFragment
 	// R E S T O R E
 
 	@Override
-	public View onCreateView(final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState)
+	public View onCreateView(@NonNull final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState)
 	{
 		// view
 		final View view = super.onCreateView(inflater, container, savedInstanceState);
@@ -93,7 +94,7 @@ public class BrowsePredicateMatrixFragment extends BaseSearchFragment
 	// S A V E
 
 	@Override
-	public void onSaveInstanceState(final Bundle outState)
+	public void onSaveInstanceState(@NonNull final Bundle outState)
 	{
 		// always call the superclass so it can save the view hierarchy state
 		super.onSaveInstanceState(outState);
@@ -176,6 +177,7 @@ public class BrowsePredicateMatrixFragment extends BaseSearchFragment
 
 		// subtitle
 		final AppCompatActivity activity = (AppCompatActivity) getActivity();
+		assert activity != null;
 		final ActionBar actionBar = activity.getSupportActionBar();
 		assert actionBar != null;
 		actionBar.setSubtitle(query);
@@ -234,6 +236,7 @@ public class BrowsePredicateMatrixFragment extends BaseSearchFragment
 
 		// subtitle
 		final AppCompatActivity activity = (AppCompatActivity) getActivity();
+		assert activity != null;
 		final ActionBar actionBar = activity.getSupportActionBar();
 		assert actionBar != null;
 		actionBar.setSubtitle(query);

@@ -321,7 +321,7 @@ public class TreeView
 			}
 			else
 			{
-				final TextView textView = (TextView) view.findViewById(R.id.node_value);
+				final TextView textView = view.findViewById(R.id.node_value);
 				if (textView != null)
 				{
 					textView.setText(value);

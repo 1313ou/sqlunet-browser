@@ -2,6 +2,7 @@ package org.sqlunet.wordnet.browser;
 
 import android.os.Bundle;
 import android.os.Parcelable;
+import android.support.annotation.NonNull;
 import android.util.Log;
 
 import org.sqlunet.browser.Module;
@@ -68,6 +69,7 @@ public class SynsetFragment extends TreeFragment
 
 		// query
 		final Bundle args = getArguments();
+		assert args != null;
 		final int type = args.getInt(ProviderArgs.ARG_QUERYTYPE);
 		this.maxRecursion = args.containsKey(ProviderArgs.ARG_QUERYRECURSE) ? args.getInt(ProviderArgs.ARG_QUERYRECURSE) : -1;
 		if (args.containsKey(ProviderArgs.ARG_QUERYPOINTER))
@@ -87,7 +89,7 @@ public class SynsetFragment extends TreeFragment
 	}
 
 	@Override
-	public void onSaveInstanceState(final Bundle outState)
+	public void onSaveInstanceState(@NonNull final Bundle outState)
 	{
 		Log.d(TAG, "save instance state " + this);
 		super.onSaveInstanceState(outState);

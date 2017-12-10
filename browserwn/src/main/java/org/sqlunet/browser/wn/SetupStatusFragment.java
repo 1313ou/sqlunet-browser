@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -43,17 +44,17 @@ public class SetupStatusFragment extends org.sqlunet.browser.config.SetupStatusF
 	}
 
 	@Override
-	public View onCreateView(final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState)
+	public View onCreateView(@NonNull final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState)
 	{
 		// view
 		final View view = super.onCreateView(inflater, container, savedInstanceState);
 		assert view != null;
 
 		// images
-		this.imageTextSearchWn = (ImageView) view.findViewById(R.id.status_searchtext_wn);
+		this.imageTextSearchWn = view.findViewById(R.id.status_searchtext_wn);
 
 		// buttons
-		this.buttonTextSearchWn = (ImageButton) view.findViewById(R.id.searchtextWnButton);
+		this.buttonTextSearchWn = view.findViewById(R.id.searchtextWnButton);
 
 		// activity
 		final Activity activity = getActivity();

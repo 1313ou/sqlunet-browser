@@ -27,7 +27,7 @@ public class Browse2Activity extends AppCompatActivity
 		setContentView(R.layout.activity_browse2);
 
 		// toolbar
-		final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+		final Toolbar toolbar = findViewById(R.id.toolbar);
 		setSupportActionBar(toolbar);
 
 		// set up the action bar
@@ -42,6 +42,7 @@ public class Browse2Activity extends AppCompatActivity
 		super.onPostResume();
 
 		final Bundle args = getIntent().getExtras();
+		assert args != null;
 		//final int type = args.getInt(ProviderArgs.ARG_QUERYTYPE);
 		final Parcelable pointer = args.getParcelable(ProviderArgs.ARG_QUERYPOINTER);
 		final String pos = args.getString(ProviderArgs.ARG_HINTPOS);

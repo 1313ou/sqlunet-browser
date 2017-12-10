@@ -1,6 +1,7 @@
 package org.sqlunet.browser.config;
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -54,7 +55,7 @@ abstract public class BaseTaskFragment extends Fragment
 	abstract protected SpinnerAdapter makeAdapter();
 
 	@Override
-	public View onCreateView(final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState)
+	public View onCreateView(@NonNull final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState)
 	{
 		setHasOptionsMenu(true);
 
@@ -62,7 +63,7 @@ abstract public class BaseTaskFragment extends Fragment
 		final View view = inflater.inflate(this.layoutId, container, false);
 
 		// task spinner
-		this.spinner = (Spinner) view.findViewById(R.id.task_spinner);
+		this.spinner = view.findViewById(R.id.task_spinner);
 
 		// adapter
 		final SpinnerAdapter adapter = makeAdapter();
@@ -85,10 +86,10 @@ abstract public class BaseTaskFragment extends Fragment
 		});
 
 		// task status view
-		this.status = (TextView) view.findViewById(R.id.task_status);
+		this.status = view.findViewById(R.id.task_status);
 
 		// task run button
-		this.runButton = (ImageButton) view.findViewById(R.id.task_run);
+		this.runButton = view.findViewById(R.id.task_run);
 
 		return view;
 	}

@@ -29,7 +29,7 @@ public class SetupFileActivity extends AppCompatActivity
 		setContentView(R.layout.activity_setup_file);
 
 		// toolbar
-		final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+		final Toolbar toolbar = findViewById(R.id.toolbar);
 		setSupportActionBar(toolbar);
 
 		// set up the action bar

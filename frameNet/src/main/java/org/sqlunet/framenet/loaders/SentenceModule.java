@@ -91,6 +91,7 @@ public class SentenceModule extends BaseModule
 				final String selection = Sentences.SENTENCEID + " = ?";
 				final String[] selectionArgs = {Long.toString(sentenceId)};
 				final String sortOrder = null;
+				assert SentenceModule.this.context != null;
 				return new CursorLoader(SentenceModule.this.context, uri, projection, selection, selectionArgs, sortOrder);
 			}
 

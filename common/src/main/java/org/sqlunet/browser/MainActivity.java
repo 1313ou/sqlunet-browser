@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity // implements NavigationFrag
 		setContentView(R.layout.activity_main);
 
 		// toolbar
-		final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+		final Toolbar toolbar = findViewById(R.id.toolbar);
 		setSupportActionBar(toolbar);
 
 		// get fragment

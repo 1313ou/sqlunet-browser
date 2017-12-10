@@ -40,7 +40,7 @@ public class SetupActivity extends AppCompatActivity implements TabLayout.OnTabS
 		setContentView(R.layout.activity_setup);
 
 		// toolbar
-		final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+		final Toolbar toolbar = findViewById(R.id.toolbar);
 		setSupportActionBar(toolbar);
 
 		// set up the action bar
@@ -52,7 +52,7 @@ public class SetupActivity extends AppCompatActivity implements TabLayout.OnTabS
 		final SectionsPagerAdapter pagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager(), this);
 
 		// set up the pager with the sections adapter.
-		this.viewPager = (ViewPager) findViewById(R.id.container);
+		this.viewPager = findViewById(R.id.container);
 		this.viewPager.setAdapter(pagerAdapter);
 		this.viewPager.setOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener()
 		{
@@ -64,7 +64,7 @@ public class SetupActivity extends AppCompatActivity implements TabLayout.OnTabS
 		});
 
 		// tab layout
-		final TabLayout tabLayout = (TabLayout) findViewById(R.id.tablayout);
+		final TabLayout tabLayout = findViewById(R.id.tablayout);
 		tabLayout.setOnTabSelectedListener(this);
 
 		// For each of the sections in the app, add a tab to the action bar.

@@ -2,6 +2,7 @@ package org.sqlunet.browser.xselector;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.view.LayoutInflater;
@@ -29,7 +30,7 @@ public class XBrowse1Fragment extends Fragment implements XSelectorsFragment.Lis
 	// C R E A T I O N
 
 	@Override
-	public View onCreateView(final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState)
+	public View onCreateView(@NonNull final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState)
 	{
 		// view
 		final View view = inflater.inflate(R.layout.fragment_xbrowse1, container, false);
@@ -72,7 +73,7 @@ public class XBrowse1Fragment extends Fragment implements XSelectorsFragment.Lis
 	}
 
 	@Override
-	public void onViewCreated(View view, Bundle savedInstanceState)
+	public void onViewCreated(@NonNull View view, Bundle savedInstanceState)
 	{
 		super.onViewCreated(view, savedInstanceState);
 

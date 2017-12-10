@@ -13,7 +13,6 @@ import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.SearchView;
@@ -95,7 +94,7 @@ abstract public class BaseSearchFragment extends NavigableFragment implements Se
 
 	@SuppressLint("InflateParams")
 	@Override
-	public View onCreateView(final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState)
+	public View onCreateView(@NonNull final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState)
 	{
 		Log.d(BaseSearchFragment.TAG, "on create view " + this + " from " + savedInstanceState);
 
@@ -121,7 +120,7 @@ abstract public class BaseSearchFragment extends NavigableFragment implements Se
 	// S A V E
 
 	@Override
-	public void onSaveInstanceState(final Bundle outState)
+	public void onSaveInstanceState(@NonNull final Bundle outState)
 	{
 		Log.d(BaseSearchFragment.TAG, "on save instance");
 
@@ -174,7 +173,7 @@ abstract public class BaseSearchFragment extends NavigableFragment implements Se
 			customView = LayoutInflater.from(context).inflate(R.layout.actionbar_custom, null);
 			actionBar.setCustomView(customView);
 		}
-		this.spinner = (Spinner) customView.findViewById(R.id.spinner);
+		this.spinner = customView.findViewById(R.id.spinner);
 
 		// spinner
 		setupSpinner(context);
@@ -230,7 +229,7 @@ abstract public class BaseSearchFragment extends NavigableFragment implements Se
 				assert rowItem != null;
 
 				final View view = super.getView(position, convertView, parent);
-				final TextView textView = (TextView) view.findViewById(android.R.id.text1);
+				final TextView textView = view.findViewById(android.R.id.text1);
 				textView.setText("");
 				int resId = modeIcons[position];
 
@@ -250,7 +249,7 @@ abstract public class BaseSearchFragment extends NavigableFragment implements Se
 				assert rowItem != null;
 
 				final View view = super.getDropDownView(position, convertView, parent);
-				final TextView textView = (TextView) view.findViewById(android.R.id.text1);
+				final TextView textView = view.findViewById(android.R.id.text1);
 				textView.setText(rowItem);
 				int resId = modeIcons[position];
 
@@ -283,14 +282,16 @@ abstract public class BaseSearchFragment extends NavigableFragment implements Se
 
 		// activity
 		final AppCompatActivity activity = (AppCompatActivity) getActivity();
+		assert activity != null;
 
 		// search info
 		final ComponentName componentName = activity.getComponentName();
 		final SearchManager searchManager = (SearchManager) activity.getSystemService(Context.SEARCH_SERVICE);
+		assert searchManager != null;
 		final SearchableInfo searchableInfo = searchManager.getSearchableInfo(componentName);
 
 		// search view
-		this.searchView = (SearchView) MenuItemCompat.getActionView(searchMenuItem);
+		this.searchView = (SearchView) searchMenuItem.getActionView();
 		this.searchView.setSearchableInfo(searchableInfo);
 		this.searchView.setIconifiedByDefault(true);
 		this.searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener()
@@ -318,12 +319,14 @@ abstract public class BaseSearchFragment extends NavigableFragment implements Se
 	{
 		// activity
 		final Activity activity = getActivity();
+		assert activity != null;
 
 		// view
 		final View view = activity.getCurrentFocus();
 		if (view != null)
 		{
 			final InputMethodManager imm = (InputMethodManager) activity.getSystemService(Context.INPUT_METHOD_SERVICE);
+			assert imm != null;
 			imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
 		}
 	}

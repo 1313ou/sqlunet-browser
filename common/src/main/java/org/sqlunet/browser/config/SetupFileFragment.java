@@ -3,6 +3,7 @@ package org.sqlunet.browser.config;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.text.SpannableStringBuilder;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -74,7 +75,7 @@ public class SetupFileFragment extends BaseTaskFragment
 	}
 
 	@Override
-	public View onCreateView(final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState)
+	public View onCreateView(@NonNull final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState)
 	{
 		final View view = super.onCreateView(inflater, container, savedInstanceState);
 
@@ -157,6 +158,7 @@ public class SetupFileFragment extends BaseTaskFragment
 
 						case DOWNLOAD:
 							final Intent intent2 = new Intent(context, DownloadActivity.class);
+							assert context != null;
 							context.startActivity(intent2);
 							break;
 
@@ -164,6 +166,7 @@ public class SetupFileFragment extends BaseTaskFragment
 							final Intent intent3 = new Intent(context, DownloadActivity.class);
 							intent3.putExtra(DOWNLOAD_FROM_ARG, StorageSettings.getDbDownloadZippedSource(context));
 							intent3.putExtra(DOWNLOAD_TO_ARG, StorageSettings.getDbDownloadZippedTarget(context));
+							assert context != null;
 							context.startActivity(intent3);
 							break;
 
@@ -189,7 +192,9 @@ public class SetupFileFragment extends BaseTaskFragment
 	protected SpinnerAdapter makeAdapter()
 	{
 		// create an ArrayAdapter using the string array and a default spinner layout
-		final ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getActivity(), R.array.setup_files_titles, R.layout.spinner_item_task);
+		final Context context = getActivity();
+		assert context != null;
+		final ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(context, R.array.setup_files_titles, R.layout.spinner_item_task);
 
 		// specify the layout to use when the list of choices appears
 		adapter.setDropDownViewResource(R.layout.spinner_item_task_dropdown);

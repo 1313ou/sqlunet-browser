@@ -1,6 +1,7 @@
 package org.sqlunet.browser;
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -45,7 +46,7 @@ abstract public class TreeFragment extends Fragment
 	}
 
 	@Override
-	public View onCreateView(final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState)
+	public View onCreateView(@NonNull final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState)
 	{
 		Log.d(TAG, "ON CREATE (TREE) VIEW " + this);
 
@@ -56,7 +57,7 @@ abstract public class TreeFragment extends Fragment
 		final View view = inflater.inflate(this.layoutId, container, false);
 
 		// container
-		final ViewGroup treeContainer = (ViewGroup) view.findViewById(this.treeContainerId);
+		final ViewGroup treeContainer = view.findViewById(this.treeContainerId);
 
 		// root node
 		final TreeNode root = TreeNode.makeRoot();
@@ -78,7 +79,7 @@ abstract public class TreeFragment extends Fragment
 	}
 
 	@Override
-	public void onSaveInstanceState(final Bundle outState)
+	public void onSaveInstanceState(@NonNull final Bundle outState)
 	{
 		Log.d(TAG, "save instance state " + this);
 		super.onSaveInstanceState(outState);

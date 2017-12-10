@@ -40,7 +40,8 @@
 		android:gravity="center"
 		android:clickable="true"
 		android:linksClickable="true"
-		android:textIsSelectable="false"/>
+		android:textIsSelectable="false"
+		android:focusable="true"/>
 
 	<TextView
 		android:id="@+id/reference"

@@ -24,7 +24,7 @@ public class TableActivity extends AppCompatActivity
 		setContentView(R.layout.activity_table);
 
 		// toolbar
-		final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+		final Toolbar toolbar = findViewById(R.id.toolbar);
 		setSupportActionBar(toolbar);
 
 		// set up the action bar

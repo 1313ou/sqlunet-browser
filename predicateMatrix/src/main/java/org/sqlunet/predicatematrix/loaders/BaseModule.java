@@ -744,6 +744,7 @@ abstract class BaseModule extends Module
 			final String selection = getSelection();
 			final String[] selectionArgs = getSelectionArgs();
 			final String sortOrder = this.displayer.getRequiredOrder();
+			assert BaseModule.this.context != null;
 			return new CursorLoader(BaseModule.this.context, uri, projection, selection, selectionArgs, sortOrder);
 		}
 
@@ -1590,6 +1591,7 @@ abstract class BaseModule extends Module
 			intent.putExtra(ProviderArgs.ARG_QUERYPOINTER, pointer);
 			intent.setAction(ProviderArgs.ACTION_QUERY);
 
+			assert BaseModule.this.context != null;
 			BaseModule.this.context.startActivity(intent);
 		}
 	}
@@ -1619,6 +1621,7 @@ abstract class BaseModule extends Module
 			intent.putExtra(ProviderArgs.ARG_QUERYPOINTER, pointer);
 			intent.setAction(ProviderArgs.ACTION_QUERY);
 
+			assert BaseModule.this.context != null;
 			BaseModule.this.context.startActivity(intent);
 		}
 	}
@@ -1648,6 +1651,7 @@ abstract class BaseModule extends Module
 			intent.putExtra(ProviderArgs.ARG_QUERYPOINTER, pointer);
 			intent.setAction(ProviderArgs.ACTION_QUERY);
 
+			assert BaseModule.this.context != null;
 			BaseModule.this.context.startActivity(intent);
 		}
 	}

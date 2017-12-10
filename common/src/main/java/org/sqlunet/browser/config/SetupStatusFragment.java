@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.util.Log;
@@ -66,7 +67,7 @@ public class SetupStatusFragment extends Fragment
 	}
 
 	@Override
-	public View onCreateView(final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState)
+	public View onCreateView(@NonNull final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState)
 	{
 		setHasOptionsMenu(true);
 
@@ -74,13 +75,13 @@ public class SetupStatusFragment extends Fragment
 		final View view = inflater.inflate(R.layout.fragment_status, container, false);
 
 		// images
-		this.imageDb = (ImageView) view.findViewById(R.id.status_database);
-		this.imageIndexes = (ImageView) view.findViewById(R.id.status_indexes);
+		this.imageDb = view.findViewById(R.id.status_database);
+		this.imageIndexes = view.findViewById(R.id.status_indexes);
 
 		// buttons
-		this.buttonDb = (ImageButton) view.findViewById(R.id.databaseButton);
-		this.buttonIndexes = (ImageButton) view.findViewById(R.id.indexesButton);
-		this.infoDatabaseButton = (ImageButton) view.findViewById(R.id.info_database);
+		this.buttonDb = view.findViewById(R.id.databaseButton);
+		this.buttonIndexes = view.findViewById(R.id.indexesButton);
+		this.infoDatabaseButton = view.findViewById(R.id.info_database);
 
 		// activity
 		final Activity activity = getActivity();
@@ -148,7 +149,7 @@ public class SetupStatusFragment extends Fragment
 		});
 
 		// swipe refresh layout
-		this.swipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.swipe_refresh);
+		this.swipeRefreshLayout = view.findViewById(R.id.swipe_refresh);
 		this.swipeRefreshLayout.setColorSchemeResources(R.color.swipe_down_1_color, R.color.swipe_down_2_color);
 		this.swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener()
 		{
@@ -241,7 +242,9 @@ public class SetupStatusFragment extends Fragment
 					final Intent intent = new Intent(getActivity(), MainActivity.class);
 					intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 					startActivity(intent);
-					getActivity().finish();
+					final Activity activity = getActivity();
+					assert activity != null;
+					activity.finish();
 				}
 				break;
 			default:

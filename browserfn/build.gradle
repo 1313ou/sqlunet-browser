@@ -1,14 +1,13 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 25
-    buildToolsVersion '25.0.3'
+    compileSdkVersion 27
     // enforceUniquePackageName = false
 
      defaultConfig {
         applicationId "org.sqlunet.browser.fn"
         minSdkVersion 17
-        targetSdkVersion 25
+        targetSdkVersion 27
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
 
@@ -28,8 +27,8 @@ dependencies {
     compile project(':xNet')
     compile project(':frameNet')
 
-    compile 'com.android.support:support-v13:25.3.1'
-    compile 'com.android.support:appcompat-v7:25.3.1'
+    compile 'com.android.support:support-v13:27.0.2'
+    compile 'com.android.support:appcompat-v7:27.0.2'
 
     // Required for local unit tests (JUnit 4 framework)
     testCompile 'junit:junit:4.12'
@@ -37,9 +36,9 @@ dependencies {
     // Required for instrumented tests
     androidTestCompile project(':test')
     androidTestCompile 'junit:junit:4.12'
-    androidTestCompile 'com.android.support:support-annotations:25.3.1'
-    androidTestCompile 'com.android.support.test:runner:0.5'
-    androidTestCompile 'com.android.support.test.espresso:espresso-core:2.2.2'
-    androidTestCompile 'com.android.support.test.espresso:espresso-web:2.2.2'
-    androidTestCompile 'com.android.support.test.uiautomator:uiautomator-v18:2.1.2'
+    androidTestCompile 'com.android.support:support-annotations:27.0.2'
+    androidTestCompile 'com.android.support.test:runner:1.0.1'
+    androidTestCompile 'com.android.support.test.espresso:espresso-core:3.0.1'
+    androidTestCompile 'com.android.support.test.espresso:espresso-web:3.0.1'
+    androidTestCompile 'com.android.support.test.uiautomator:uiautomator-v18:2.1.3'
 }

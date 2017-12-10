@@ -86,6 +86,7 @@ public class NavigationFragment extends NavigationDrawerFragment implements Navi
 	public Fragment getActiveFragment()
 	{
 		final FragmentActivity activity = getActivity();
+		assert activity != null;
 		final FragmentManager manager = activity.getSupportFragmentManager();
 
 		final String tag = this.fragmentTags[this.selectedPosition];
@@ -171,7 +172,9 @@ public class NavigationFragment extends NavigationDrawerFragment implements Navi
 	@SuppressWarnings("unused")
 	private void sqlDialog()
 	{
-		SqlDialogFragment.show(getActivity().getSupportFragmentManager());
+		final AppCompatActivity activity = (AppCompatActivity)getActivity();
+		assert activity != null;
+		SqlDialogFragment.show(activity.getSupportFragmentManager());
 	}
 
 	/**
@@ -183,6 +186,7 @@ public class NavigationFragment extends NavigationDrawerFragment implements Navi
 	{
 		Log.d(TAG, "Section fragments " + position);
 		final AppCompatActivity activity = (AppCompatActivity) getActivity();
+		assert activity != null;
 		final FragmentManager manager = activity.getSupportFragmentManager();
 		final FragmentTransaction transaction = manager.beginTransaction();
 		transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
@@ -251,7 +255,7 @@ public class NavigationFragment extends NavigationDrawerFragment implements Navi
 		// A C T I O N   B A R
 
 		// TODO toolbar bar
-		final Toolbar toolbar = (Toolbar) activity.findViewById(R.id.toolbar);
+		final Toolbar toolbar = activity.findViewById(R.id.toolbar);
 		Log.d(TAG, "toolbar " + toolbar);
 
 		final ActionBar actionBar = activity.getSupportActionBar();
@@ -366,7 +370,7 @@ public class NavigationFragment extends NavigationDrawerFragment implements Navi
 		int[] colors = ColorUtils.getColors(context, R.color.drawer_main_fore_color, R.color.drawer_fore_color, R.color.accentColor);
 		int color = colors[rowItem.isMain ? 2 : 1];
 
-		final TextView textView = (TextView) view.findViewById(android.R.id.text1);
+		final TextView textView = view.findViewById(android.R.id.text1);
 		final Drawable drawable = textView.getCompoundDrawables()[0];
 		ColorUtils.tint(color, drawable);
 		textView.setTextColor(colors[rowItem.isMain ? 0 : 1]);

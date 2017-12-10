@@ -23,7 +23,7 @@ public class XBrowse1Activity extends AppCompatActivity
 		setContentView(R.layout.activity_browse1);
 
 		// toolbar
-		final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+		final Toolbar toolbar = findViewById(R.id.toolbar);
 		setSupportActionBar(toolbar);
 
 		// fragment

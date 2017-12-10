@@ -276,6 +276,7 @@ class VnNodeFactory extends NodeFactory
 	 * Semantics pattern
 	 */
 	static private final Pattern semanticsPattern = Pattern.compile("([^\\(]+)\\((.*)\\)");
+
 	/**
 	 * Arguments pattern
 	 */

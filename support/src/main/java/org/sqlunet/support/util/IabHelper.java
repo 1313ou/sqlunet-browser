@@ -628,7 +628,7 @@ public class IabHelper
 			if (purchaseData == null || dataSignature == null)
 			{
 				logError("BUG: either purchaseData or dataSignature is null.");
-				logDebug("Extras: " + data.getExtras().toString());
+				logDebug("Extras: " + (data.getExtras() != null ? data.getExtras().toString() : ""));
 				result = new IabResult(IABHELPER_UNKNOWN_ERROR, "IAB returned null purchaseData or dataSignature");
 				if (mPurchaseListener != null)
 				{
@@ -1027,7 +1027,9 @@ public class IabHelper
 	// Workaround to bug where sometimes response codes come as Long instead of Integer
 	private int getResponseCodeFromIntent(Intent i)
 	{
-		Object o = i.getExtras().get(RESPONSE_CODE);
+		Bundle extras = i.getExtras();
+		assert extras != null;
+		Object o = extras.get(RESPONSE_CODE);
 		if (o == null)
 		{
 			logError("Intent with no response code, assuming OK (known issue)");
@@ -1197,19 +1199,13 @@ public class IabHelper
 		for (int i = 0; i < n; i++)
 		{
 			tempList = new ArrayList<>();
-			for (String s : skuList.subList(i * 20, i * 20 + 20))
-			{
-				tempList.add(s);
-			}
+			tempList.addAll(skuList.subList(i * 20, i * 20 + 20));
 			packs.add(tempList);
 		}
 		if (mod != 0)
 		{
 			tempList = new ArrayList<>();
-			for (String s : skuList.subList(n * 20, n * 20 + mod))
-			{
-				tempList.add(s);
-			}
+			tempList.addAll(skuList.subList(n * 20, n * 20 + mod));
 			packs.add(tempList);
 		}
 

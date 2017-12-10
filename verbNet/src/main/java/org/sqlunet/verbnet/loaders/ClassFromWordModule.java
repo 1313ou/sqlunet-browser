@@ -120,6 +120,7 @@ public class ClassFromWordModule extends BaseModule
 							Long.toString(wordId)};
 				}
 				final String sortOrder = null;
+				assert ClassFromWordModule.this.context != null;
 				return new CursorLoader(ClassFromWordModule.this.context, uri, projection, selection, selectionArgs, sortOrder);
 			}
 

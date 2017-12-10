@@ -2138,6 +2138,7 @@ abstract public class BaseModule extends Module
 			intent.putExtra(ProviderArgs.ARG_QUERYPOINTER, pointer);
 			intent.setAction(ProviderArgs.ACTION_QUERY);
 
+			assert BaseModule.this.context != null;
 			BaseModule.this.context.startActivity(intent);
 		}
 	}
@@ -2172,6 +2173,7 @@ abstract public class BaseModule extends Module
 			intent.putExtra(ProviderArgs.ARG_QUERYRECURSE, this.recurse);
 			intent.setAction(ProviderArgs.ACTION_QUERY);
 
+			assert BaseModule.this.context != null;
 			BaseModule.this.context.startActivity(intent);
 		}
 	}
@@ -2207,6 +2209,7 @@ abstract public class BaseModule extends Module
 			intent.putExtra(ProviderArgs.ARG_QUERYRECURSE, this.recurse);
 			intent.setAction(ProviderArgs.ACTION_QUERY);
 
+			assert BaseModule.this.context != null;
 			BaseModule.this.context.startActivity(intent);
 		}
 	}

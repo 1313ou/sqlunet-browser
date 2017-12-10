@@ -39,6 +39,22 @@
       <entry_point TYPE="class" FQNAME="android.support.test.espresso.contrib.ExpandableListViewProtocol.ExpandableDataFunction" />
       <entry_point TYPE="method" FQNAME="android.support.test.espresso.contrib.ExpandableListViewProtocol android.support.test.espresso.action.AdapterViewProtocol expandableListViewProtocol()" />
       <entry_point TYPE="implicit.constructor" FQNAME="android.support.test.espresso.contrib.ExpandableListViewProtocol" />
+      <entry_point TYPE="field" FQNAME="org.sqlunet.framenet.FnAnnoSetPointer CREATOR" />
+      <entry_point TYPE="field" FQNAME="org.sqlunet.framenet.FnFramePointer CREATOR" />
+      <entry_point TYPE="field" FQNAME="org.sqlunet.framenet.FnLexUnitPointer CREATOR" />
+      <entry_point TYPE="field" FQNAME="org.sqlunet.framenet.FnPatternPointer CREATOR" />
+      <entry_point TYPE="field" FQNAME="org.sqlunet.framenet.FnSentencePointer CREATOR" />
+      <entry_point TYPE="field" FQNAME="org.sqlunet.framenet.FnValenceUnitPointer CREATOR" />
+      <entry_point TYPE="field" FQNAME="org.sqlunet.propbank.PbRoleSetPointer CREATOR" />
+      <entry_point TYPE="field" FQNAME="org.sqlunet.predicatematrix.PmRolePointer CREATOR" />
+      <entry_point TYPE="field" FQNAME="org.sqlunet.Pointer CREATOR" />
+      <entry_point TYPE="field" FQNAME="org.sqlunet.wordnet.SenseKeyPointer CREATOR" />
+      <entry_point TYPE="field" FQNAME="org.sqlunet.wordnet.SensePointer CREATOR" />
+      <entry_point TYPE="field" FQNAME="org.sqlunet.wordnet.SynsetPointer CREATOR" />
+      <entry_point TYPE="field" FQNAME="org.sqlunet.verbnet.VnClassPointer CREATOR" />
+      <entry_point TYPE="field" FQNAME="org.sqlunet.Word CREATOR" />
+      <entry_point TYPE="field" FQNAME="org.sqlunet.wordnet.WordPointer CREATOR" />
+      <entry_point TYPE="field" FQNAME="org.sqlunet.browser.xselector.XSelectorPointer CREATOR" />
     </entry_points>
   </component>
   <component name="NullableNotNullManager">
@@ -65,17 +81,7 @@
       </value>
     </option>
   </component>
-  <component name="ProjectLevelVcsManager" settingsEditedManually="false">
-    <OptionsSetting value="true" id="Add" />
-    <OptionsSetting value="true" id="Remove" />
-    <OptionsSetting value="true" id="Checkout" />
-    <OptionsSetting value="true" id="Update" />
-    <OptionsSetting value="true" id="Status" />
-    <OptionsSetting value="true" id="Edit" />
-    <ConfirmationsSetting value="0" id="Add" />
-    <ConfirmationsSetting value="0" id="Remove" />
-  </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_7" default="true" assert-keyword="true" jdk-15="true" project-jdk-name="1.8 (1)" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_7" default="true" project-jdk-name="1.8 (1)" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">

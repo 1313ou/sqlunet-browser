@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.util.Log;
@@ -82,7 +83,7 @@ public class SetupSqlFragment extends Fragment
 
 	@SuppressWarnings("boxing")
 	@Override
-	public View onCreateView(final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState)
+	public View onCreateView(@NonNull final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState)
 	{
 		setHasOptionsMenu(true);
 
@@ -93,20 +94,20 @@ public class SetupSqlFragment extends Fragment
 		final Activity activity = getActivity();
 
 		// statuses
-		this.downloadSqlZipStatus = (ImageView) view.findViewById(R.id.status_sqlzip);
-		this.createStatus = (ImageView) view.findViewById(R.id.status_created);
-		this.importStatus = (ImageView) view.findViewById(R.id.status_import);
-		this.indexesStatus = (ImageView) view.findViewById(R.id.status_indexes);
+		this.downloadSqlZipStatus = view.findViewById(R.id.status_sqlzip);
+		this.createStatus = view.findViewById(R.id.status_created);
+		this.importStatus = view.findViewById(R.id.status_import);
+		this.indexesStatus = view.findViewById(R.id.status_indexes);
 
 		// buttons
-		this.createButton = (ImageButton) view.findViewById(R.id.create_database);
-		this.downloadSqlZipButton = (ImageButton) view.findViewById(R.id.download_sqlzip);
-		this.importButton = (ImageButton) view.findViewById(R.id.execute_import);
-		this.indexesButton = (ImageButton) view.findViewById(R.id.execute_indexes);
-		ImageButton infoSqlZipButton = (ImageButton) view.findViewById(R.id.info_sqlzip);
-		ImageButton infoCreateButton = (ImageButton) view.findViewById(R.id.info_created);
-		ImageButton infoImportButton = (ImageButton) view.findViewById(R.id.info_import);
-		ImageButton infoIndexesButton = (ImageButton) view.findViewById(R.id.info_indexes);
+		this.createButton = view.findViewById(R.id.create_database);
+		this.downloadSqlZipButton = view.findViewById(R.id.download_sqlzip);
+		this.importButton = view.findViewById(R.id.execute_import);
+		this.indexesButton = view.findViewById(R.id.execute_indexes);
+		ImageButton infoSqlZipButton = view.findViewById(R.id.info_sqlzip);
+		ImageButton infoCreateButton = view.findViewById(R.id.info_created);
+		ImageButton infoImportButton = view.findViewById(R.id.info_import);
+		ImageButton infoIndexesButton = view.findViewById(R.id.info_indexes);
 
 		// sql zip
 		this.downloadSqlZipButton.setOnClickListener(new View.OnClickListener()
@@ -186,6 +187,7 @@ public class SetupSqlFragment extends Fragment
 			@Override
 			public void onClick(final View v)
 			{
+				assert activity != null;
 				try
 				{
 					final String database = StorageSettings.getDatabasePath(activity);
@@ -206,6 +208,7 @@ public class SetupSqlFragment extends Fragment
 			@Override
 			public void onClick(final View v)
 			{
+				assert activity != null;
 				final String database = StorageSettings.getDatabasePath(activity);
 				final String source = StorageSettings.getSqlSource(activity);
 				final String entry = StorageSettings.getImportEntry(activity);
@@ -230,6 +233,7 @@ public class SetupSqlFragment extends Fragment
 			@Override
 			public void onClick(final View v)
 			{
+				assert activity != null;
 				// starting indexing task
 				try
 				{
@@ -251,6 +255,7 @@ public class SetupSqlFragment extends Fragment
 			@Override
 			public void onClick(final View v)
 			{
+				assert activity != null;
 				final String database = StorageSettings.getDatabasePath(activity);
 				final String source = StorageSettings.getSqlSource(activity);
 				final String entry = StorageSettings.getIndexEntry(activity);
@@ -269,7 +274,7 @@ public class SetupSqlFragment extends Fragment
 		});
 
 		// swipe refresh layout
-		this.swipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.swipe_refresh);
+		this.swipeRefreshLayout = view.findViewById(R.id.swipe_refresh);
 		this.swipeRefreshLayout.setColorSchemeResources(R.color.swipe_down_1_color, R.color.swipe_down_2_color);
 		this.swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener()
 		{

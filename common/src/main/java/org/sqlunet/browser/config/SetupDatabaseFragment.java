@@ -1,8 +1,10 @@
 package org.sqlunet.browser.config;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -40,7 +42,7 @@ public class SetupDatabaseFragment extends BaseTaskFragment
 	}
 
 	@Override
-	public View onCreateView(final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState)
+	public View onCreateView(@NonNull final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState)
 	{
 		final View view = super.onCreateView(inflater, container, savedInstanceState);
 
@@ -69,7 +71,9 @@ public class SetupDatabaseFragment extends BaseTaskFragment
 				SetupDatabaseFragment.this.status.setText(R.string.status_task_running);
 
 				// database path
-				final String databasePath = StorageSettings.getDatabasePath(getActivity().getBaseContext());
+				final Activity activity = getActivity();
+				assert activity != null;
+				final String databasePath = StorageSettings.getDatabasePath(activity.getBaseContext());
 
 				// sqls
 				final CharSequence[] sqls = getActivity().getResources().getTextArray(R.array.sql_statements_values);
@@ -88,7 +92,9 @@ public class SetupDatabaseFragment extends BaseTaskFragment
 	protected SpinnerAdapter makeAdapter()
 	{
 		// create an ArrayAdapter using the string array and a default spinner layout
-		final ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getActivity(), R.array.sql_statement_titles, R.layout.spinner_item_task);
+		final Context context = getActivity();
+		assert context != null;
+		final ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(context, R.array.sql_statement_titles, R.layout.spinner_item_task);
 
 		// specify the layout to use when the list of choices appears
 		adapter.setDropDownViewResource(R.layout.spinner_item_task_dropdown);

@@ -114,7 +114,7 @@ public class FileDataDownloader extends AsyncTask<String, Void, FileData>
 	{
 		// download source data
 		final String downloadUrl = StorageSettings.getDbDownloadSource(activity);
-		if (downloadUrl == null || downloadUrl.isEmpty())
+		if (/*downloadUrl == null ||*/ downloadUrl.isEmpty())
 		{
 			final String message = activity.getString(R.string.status_error_null_download_url);
 			activity.runOnUiThread(new Runnable()

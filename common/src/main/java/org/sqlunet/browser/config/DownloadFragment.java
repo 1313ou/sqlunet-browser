@@ -1,5 +1,6 @@
 package org.sqlunet.browser.config;
 
+import android.app.Activity;
 import android.app.DownloadManager;
 import android.app.DownloadManager.Query;
 import android.app.DownloadManager.Request;
@@ -10,6 +11,7 @@ import android.content.IntentFilter;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -140,6 +142,7 @@ public class DownloadFragment extends BaseDownloadFragment
 
 		// activity
 		final Context context = getActivity();
+		assert context != null;
 
 		// downloader
 		this.downloadManager = (DownloadManager) context.getSystemService(Context.DOWNLOAD_SERVICE);
@@ -184,11 +187,11 @@ public class DownloadFragment extends BaseDownloadFragment
 	}
 
 	@Override
-	public View onCreateView(final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState)
+	public View onCreateView(@NonNull final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState)
 	{
 		final View view = super.onCreateView(inflater, container, savedInstanceState);
 		//noinspection ConstantConditions
-		this.showButton = (Button) view.findViewById(R.id.showButton);
+		this.showButton = view.findViewById(R.id.showButton);
 		this.showButton.setOnClickListener(new View.OnClickListener()
 		{
 			@Override
@@ -206,7 +209,7 @@ public class DownloadFragment extends BaseDownloadFragment
 	}
 
 	@Override
-	public void onSaveInstanceState(final Bundle outState)
+	public void onSaveInstanceState(@NonNull final Bundle outState)
 	{
 		super.onSaveInstanceState(outState);
 		outState.putInt(SHOW_BTN_STATE, this.showButton.getVisibility());
@@ -230,7 +233,9 @@ public class DownloadFragment extends BaseDownloadFragment
 
 		// register receiver
 		Log.d(TAG, "Register listener");
-		getActivity().registerReceiver(this.receiver, new IntentFilter(DownloadManager.ACTION_DOWNLOAD_COMPLETE));
+		final Activity activity = getActivity();
+		assert activity != null;
+		activity.registerReceiver(this.receiver, new IntentFilter(DownloadManager.ACTION_DOWNLOAD_COMPLETE));
 	}
 
 	@Override
@@ -238,7 +243,9 @@ public class DownloadFragment extends BaseDownloadFragment
 	{
 		// unregister receiver
 		Log.d(TAG, "Unregister listener");
-		getActivity().unregisterReceiver(DownloadFragment.this.receiver);
+		final Activity activity = getActivity();
+		assert activity != null;
+		activity.unregisterReceiver(DownloadFragment.this.receiver);
 		super.onStop();
 	}
 

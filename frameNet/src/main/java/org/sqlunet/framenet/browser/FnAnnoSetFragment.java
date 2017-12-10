@@ -57,6 +57,7 @@ public class FnAnnoSetFragment extends TreeFragment
 
 		// query
 		final Bundle args = getArguments();
+		assert args != null;
 		if (args.containsKey(ProviderArgs.ARG_QUERYPOINTER))
 		{
 			// pointer

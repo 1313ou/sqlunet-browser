@@ -1,11 +1,13 @@
 package org.sqlunet.browser;
 
 import android.annotation.TargetApi;
+import android.app.Activity;
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -39,7 +41,7 @@ public class HelpFragment extends NavigableFragment
 	}
 
 	@Override
-	public View onCreateView(final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState)
+	public View onCreateView(@NonNull final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState)
 	{
 		setHasOptionsMenu(true);
 
@@ -47,7 +49,7 @@ public class HelpFragment extends NavigableFragment
 		final View view = inflater.inflate(R.layout.fragment_help, container, false);
 
 		// web view
-		final WebView webview = (WebView) view.findViewById(R.id.webView);
+		final WebView webview = view.findViewById(R.id.webView);
 		webview.setWebViewClient(new WebViewClient()
 		{
 			@TargetApi(Build.VERSION_CODES.N)
@@ -122,7 +124,9 @@ public class HelpFragment extends NavigableFragment
 			final Intent intentUrl = new Intent(Intent.ACTION_VIEW);
 			intentUrl.setDataAndType(uri, mime);
 			intentUrl.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-			getActivity().startActivity(intentUrl);
+			final Activity activity = getActivity();
+			assert activity != null;
+			activity.startActivity(intentUrl);
 			return true;
 		}
 		catch (ActivityNotFoundException e)

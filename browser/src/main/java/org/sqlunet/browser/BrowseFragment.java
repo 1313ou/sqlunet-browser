@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Parcelable;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -77,7 +78,7 @@ public class BrowseFragment extends BaseSearchFragment
 	}
 
 	@Override
-	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
+	public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
 	{
 		final View view = super.onCreateView(inflater, container, savedInstanceState);
 
@@ -208,6 +209,7 @@ public class BrowseFragment extends BaseSearchFragment
 
 		// subtitle
 		final AppCompatActivity activity = (AppCompatActivity) getActivity();
+		assert activity != null;
 		final ActionBar actionBar = activity.getSupportActionBar();
 		assert actionBar != null;
 		actionBar.setSubtitle(query);

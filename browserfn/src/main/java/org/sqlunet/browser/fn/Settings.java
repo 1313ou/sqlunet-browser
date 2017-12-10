@@ -35,7 +35,7 @@ public class Settings extends org.sqlunet.settings.Settings
 		 *
 		 * @param mask mask
 		 */
-		Source(final int mask)
+		Source(@SuppressWarnings("SameParameterValue") final int mask)
 		{
 			this.mask = mask;
 		}

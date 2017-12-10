@@ -44,11 +44,11 @@ public class MoreController extends Controller<Value>
 		// final ImageView junctionView = (ImageView) view.findViewById(R.id.junction_icon);
 
 		// icon
-		final ImageView iconView = (ImageView) view.findViewById(R.id.node_icon);
+		final ImageView iconView = view.findViewById(R.id.node_icon);
 		iconView.setImageResource(value.icon);
 
 		// text
-		TextView valueView = (TextView) view.findViewById(R.id.node_value);
+		TextView valueView = view.findViewById(R.id.node_value);
 		valueView.setText(value.text);
 
 		return view;

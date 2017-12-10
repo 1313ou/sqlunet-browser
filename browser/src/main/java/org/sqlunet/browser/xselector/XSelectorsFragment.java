@@ -1,10 +1,12 @@
 package org.sqlunet.browser.xselector;
 
 import android.android.support.local.app.ExpandableListFragment;
+import android.content.Context;
 import android.database.Cursor;
 import android.database.MatrixCursor;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.LoaderManager.LoaderCallbacks;
 import android.support.v4.content.CursorLoader;
@@ -188,13 +190,13 @@ public class XSelectorsFragment extends ExpandableListFragment
 	// V I E W
 
 	@Override
-	public View onCreateView(final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState)
+	public View onCreateView(@NonNull final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState)
 	{
 		return inflater.inflate(R.layout.fragment_xselectors, container, false);
 	}
 
 	@Override
-	public void onViewCreated(final View view, final Bundle savedInstanceState)
+	public void onViewCreated(@NonNull final View view, final Bundle savedInstanceState)
 	{
 		super.onViewCreated(view, savedInstanceState);
 
@@ -219,7 +221,7 @@ public class XSelectorsFragment extends ExpandableListFragment
 	}
 
 	@Override
-	public void onSaveInstanceState(final Bundle outState)
+	public void onSaveInstanceState(@NonNull final Bundle outState)
 	{
 		super.onSaveInstanceState(outState);
 
@@ -264,7 +266,9 @@ public class XSelectorsFragment extends ExpandableListFragment
 				final String selection = XSqlUNetContract.WORD + '.' + Words_FnWords_PbWords_VnWords.LEMMA + " = ?";
 				final String[] selectionArgs = {XSelectorsFragment.this.word};
 				final String sortOrder = XSqlUNetContract.POS + '.' + Words_FnWords_PbWords_VnWords.POS + ',' + Words_FnWords_PbWords_VnWords.SENSENUM;
-				return new CursorLoader(getActivity(), uri, projection, selection, selectionArgs, sortOrder);
+				final Context context = getActivity();
+				assert context != null;
+				return new CursorLoader(context, uri, projection, selection, selectionArgs, sortOrder);
 			}
 
 			@Override

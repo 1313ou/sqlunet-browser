@@ -32,7 +32,7 @@ public abstract class AbstractSearchTextActivity<F extends BaseSearchFragment> e
 		setContentView(R.layout.activity_searchtext);
 
 		// toolbar
-		final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+		final Toolbar toolbar = findViewById(R.id.toolbar);
 		setSupportActionBar(toolbar);
 
 		// fragment
