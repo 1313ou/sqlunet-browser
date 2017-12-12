@@ -40,6 +40,28 @@ public final class XSqlUNetContract
 		static public final String SOURCES = "sources";
 	}
 
+	static public final class Words_PbWords_VnWords
+	{
+		static public final String TABLE = "words_pbwords_vnwords";
+		static public final String CONTENT_URI_TABLE = Words_PbWords_VnWords.TABLE;
+		static public final String WORDID = "wordid";
+		static public final String PBWORDID = "pbwordid";
+		static public final String VNWORDID = "vnwordid";
+		static public final String SYNSETID = "synsetid";
+		static public final String LEXID = "lexid";
+		static public final String SENSEID = "senseid";
+		static public final String LEMMA = "lemma";
+		static public final String SENSENUM = "sensenum";
+		static public final String SENSEKEY = "sensekey";
+		static public final String POS = "pos";
+		static public final String POSNAME = "posname";
+		static public final String LEXDOMAIN = "lexdomain";
+		static public final String DEFINITION = "definition";
+		static public final String CASED = "cased";
+		static public final String TAGCOUNT = "tagcount";
+		static public final String SOURCES = "sources";
+	}
+
 	// Sources
 
 	static public final class Sources
