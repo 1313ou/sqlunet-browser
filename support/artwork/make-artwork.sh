@@ -8,5 +8,5 @@ googleplay_list="ic_googleplay.svg"
 
 make_res "${logo_list}" 48
 make_res "${donate_list}" 32
-make_res_w "${googleplay_list}" 128
+make_res "${googleplay_list}" 128 w
 

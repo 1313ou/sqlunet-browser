@@ -3,6 +3,7 @@ package org.sqlunet.browser.web;
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
@@ -108,6 +109,231 @@ public class WebFragment extends Fragment
 		load();
 
 		return view;
+	}
+
+	static private class WebDocumentStringLoader extends DocumentStringLoader
+	{
+		final Parcelable pointer;
+		final int type;
+		final String data;
+		final int sources;
+		final boolean xml;
+		final Character pos;
+
+		WebDocumentStringLoader(final Context context, final Parcelable pointer, final Character pos, final int type, final String data, final int sources, final boolean xml)
+		{
+			super(context);
+			this.pointer = pointer;
+			this.type = type;
+			this.data = data;
+			this.sources = sources;
+			this.xml = xml;
+			this.pos = pos;
+		}
+
+		@SuppressWarnings({"boxing"})
+		@Override
+		protected String getDoc()
+		{
+			DataSource dataSource = null;
+			try
+			{
+				// data source
+				dataSource = new DataSource(StorageSettings.getDatabasePath(getContext()));
+				final SQLiteDatabase db = dataSource.getConnection();
+				WordNetImplementation.init(db);
+
+				// dom documents
+				Document wnDomDoc = null;
+				Document vnDomDoc = null;
+				Document pbDomDoc = null;
+				Document fnDomDoc = null;
+				Document bncDomDoc = null;
+
+				// selector mode
+				final boolean isSelector = data != null;
+
+				// make documents
+				if (isSelector)
+				{
+					// this is a selector query
+					if (Settings.Source.WORDNET.test(sources))
+					{
+						wnDomDoc = new WordNetImplementation().querySelectorDoc(db, data);
+					}
+
+					if (Settings.Source.VERBNET.test(sources))
+					{
+						vnDomDoc = new VerbNetImplementation().querySelectorDoc(db, data);
+					}
+
+					if (Settings.Source.PROPBANK.test(sources))
+					{
+						pbDomDoc = new PropBankImplementation().querySelectorDoc(db, data);
+					}
+
+					if (Settings.Source.FRAMENET.test(sources))
+					{
+						fnDomDoc = new FrameNetImplementation().querySelectorDoc(db, data, null);
+					}
+				}
+				else
+				{
+					// this is a detail query
+					switch (type)
+					{
+						case ProviderArgs.ARG_QUERYTYPE_ALL:
+							if (pointer != null)
+							{
+								if (pointer instanceof XSelectorPointer)
+								{
+									final XSelectorPointer xPointer = (XSelectorPointer) pointer;
+									final String xSources = xPointer.getXSources();
+									final Long xClassId = xPointer.getXClassId();
+									// final Long xMemberId = xpointer.getXMemberId();
+									final Long wordId = xPointer.getWordId();
+									final Long synsetId = xPointer.getSynsetId();
+									if (xSources.contains("wn")) //
+									{
+										wnDomDoc = new WordNetImplementation().querySenseDoc(db, wordId, synsetId);
+									}
+									if (xSources.contains("vn")) //
+									{
+										vnDomDoc = new VerbNetImplementation().queryClassDoc(db, xClassId, pos);
+									}
+									if (xSources.contains("pb")) //
+									{
+										pbDomDoc = new PropBankImplementation().queryRoleSetDoc(db, xClassId, pos);
+									}
+									if (xSources.contains("fn")) //
+									{
+										fnDomDoc = new FrameNetImplementation().queryFrameDoc(db, xClassId, pos);
+									}
+									if (Settings.Source.BNC.test(sources))
+									{
+										bncDomDoc = new BncImplementation().queryDoc(db, wordId, pos);
+									}
+								}
+								else
+								{
+									final SensePointer sense2Pointer = (SensePointer) pointer;
+									final Long wordId = sense2Pointer.getWordId();
+									final Long synsetId = sense2Pointer.getSynsetId();
+									if (Settings.Source.WORDNET.test(sources))
+									{
+										wnDomDoc = new WordNetImplementation().queryDoc(db, wordId, synsetId, true, false);
+									}
+
+									if (Settings.Source.VERBNET.test(sources))
+									{
+										vnDomDoc = new VerbNetImplementation().queryDoc(db, wordId, synsetId, pos);
+									}
+									if (Settings.Source.PROPBANK.test(sources))
+									{
+										pbDomDoc = new PropBankImplementation().queryDoc(db, wordId, pos);
+									}
+									if (Settings.Source.FRAMENET.test(sources))
+									{
+										fnDomDoc = new FrameNetImplementation().queryDoc(db, wordId, pos);
+									}
+									if (Settings.Source.BNC.test(sources))
+									{
+										bncDomDoc = new BncImplementation().queryDoc(db, wordId, pos);
+									}
+								}
+							}
+							break;
+
+						case ProviderArgs.ARG_QUERYTYPE_WORD:
+							@SuppressWarnings("TypeMayBeWeakened") final WordPointer wordPointer = (WordPointer) pointer;
+							Log.d(WebFragment.TAG, "ARG_POSITION word=" + wordPointer);
+							if (wordPointer != null && Settings.Source.WORDNET.test(sources))
+							{
+								wnDomDoc = new WordNetImplementation().queryWordDoc(db, wordPointer.getWordId());
+							}
+							break;
+
+						case ProviderArgs.ARG_QUERYTYPE_SYNSET:
+							@SuppressWarnings("TypeMayBeWeakened") final SynsetPointer synsetPointer = (SynsetPointer) pointer;
+							Log.d(WebFragment.TAG, "ARG_POSITION synset=" + synsetPointer);
+							if (synsetPointer != null && Settings.Source.WORDNET.test(sources))
+							{
+								wnDomDoc = new WordNetImplementation().querySynsetDoc(db, synsetPointer.getSynsetId());
+							}
+							break;
+
+						case ProviderArgs.ARG_QUERYTYPE_VNCLASS:
+							final VnClassPointer vnclassPointer = (VnClassPointer) pointer;
+							Log.d(WebFragment.TAG, "ARG_POSITION vnclass=" + vnclassPointer);
+							if (vnclassPointer != null && Settings.Source.VERBNET.test(sources))
+							{
+								vnDomDoc = new VerbNetImplementation().queryClassDoc(db, vnclassPointer.getId(), null);
+							}
+							break;
+
+						case ProviderArgs.ARG_QUERYTYPE_PBROLESET:
+							final PbRoleSetPointer pbroleSetPointer = (PbRoleSetPointer) pointer;
+							Log.d(WebFragment.TAG, "ARG_POSITION fnframe=" + pbroleSetPointer);
+							if (pbroleSetPointer != null && Settings.Source.PROPBANK.test(sources))
+							{
+								pbDomDoc = new PropBankImplementation().queryRoleSetDoc(db, pbroleSetPointer.getId(), null);
+							}
+							break;
+
+						case ProviderArgs.ARG_QUERYTYPE_FNLEXUNIT:
+							final FnLexUnitPointer lexunitPointer = (FnLexUnitPointer) pointer;
+							Log.d(WebFragment.TAG, "ARG_POSITION fnlexunit=" + lexunitPointer);
+							if (lexunitPointer != null && Settings.Source.FRAMENET.test(sources))
+							{
+								fnDomDoc = new FrameNetImplementation().queryLexUnitDoc(db, lexunitPointer.getId());
+							}
+							break;
+
+						case ProviderArgs.ARG_QUERYTYPE_FNFRAME:
+							final FnFramePointer framePointer = (FnFramePointer) pointer;
+							Log.d(WebFragment.TAG, "ARG_POSITION fnframe=" + framePointer);
+							if (framePointer != null && Settings.Source.FRAMENET.test(sources))
+							{
+								fnDomDoc = new FrameNetImplementation().queryFrameDoc(db, framePointer.getId(), null);
+							}
+							break;
+
+						case ProviderArgs.ARG_QUERYTYPE_FNSENTENCE:
+							final FnSentencePointer sentencePointer = (FnSentencePointer) pointer;
+							Log.d(WebFragment.TAG, "ARG_POSITION fnsentence=" + sentencePointer);
+							if (sentencePointer != null && Settings.Source.FRAMENET.test(sources))
+							{
+								fnDomDoc = new FrameNetImplementation().querySentenceDoc(db, sentencePointer.getId());
+							}
+							break;
+
+						case ProviderArgs.ARG_QUERYTYPE_FNANNOSET:
+							final FnAnnoSetPointer annoSetPointer = (FnAnnoSetPointer) pointer;
+							Log.d(WebFragment.TAG, "ARG_POSITION fnannoset=" + annoSetPointer);
+							if (annoSetPointer != null && Settings.Source.FRAMENET.test(sources))
+							{
+								fnDomDoc = new FrameNetImplementation().queryAnnoSetDoc(db, annoSetPointer.getId());
+							}
+							break;
+					}
+				}
+
+				// stringify
+				return WebFragment.docsToString(data, xml, isSelector, wnDomDoc, vnDomDoc, pbDomDoc, fnDomDoc, bncDomDoc);
+			}
+			catch (final Exception e)
+			{
+				Log.e(WebFragment.TAG, "getDoc", e);
+			}
+			finally
+			{
+				if (dataSource != null)
+				{
+					dataSource.close();
+				}
+			}
+			return null;
+		}
 	}
 
 	/**
@@ -296,212 +522,7 @@ public class WebFragment extends Fragment
 			@Override
 			public Loader<String> onCreateLoader(final int loaderId, final Bundle loaderArgs)
 			{
-				return new DocumentStringLoader(getActivity())
-				{
-					@SuppressWarnings({"boxing"})
-					@Override
-					protected String getDoc()
-					{
-						DataSource dataSource = null;
-						try
-						{
-							// data source
-							dataSource = new DataSource(StorageSettings.getDatabasePath(getContext()));
-							final SQLiteDatabase db = dataSource.getConnection();
-							WordNetImplementation.init(db);
-
-							// dom documents
-							Document wnDomDoc = null;
-							Document vnDomDoc = null;
-							Document pbDomDoc = null;
-							Document fnDomDoc = null;
-							Document bncDomDoc = null;
-
-							// selector mode
-							final boolean isSelector = data != null;
-
-							// make documents
-							if (isSelector)
-							{
-								// this is a selector query
-								if (Settings.Source.WORDNET.test(sources))
-								{
-									wnDomDoc = new WordNetImplementation().querySelectorDoc(db, data);
-								}
-
-								if (Settings.Source.VERBNET.test(sources))
-								{
-									vnDomDoc = new VerbNetImplementation().querySelectorDoc(db, data);
-								}
-
-								if (Settings.Source.PROPBANK.test(sources))
-								{
-									pbDomDoc = new PropBankImplementation().querySelectorDoc(db, data);
-								}
-
-								if (Settings.Source.FRAMENET.test(sources))
-								{
-									fnDomDoc = new FrameNetImplementation().querySelectorDoc(db, data, null);
-								}
-							}
-							else
-							{
-								// this is a detail query
-								switch (type)
-								{
-									case ProviderArgs.ARG_QUERYTYPE_ALL:
-										if (pointer != null)
-										{
-											if (pointer instanceof XSelectorPointer)
-											{
-												final XSelectorPointer xPointer = (XSelectorPointer) pointer;
-												final String xSources = xPointer.getXSources();
-												final Long xClassId = xPointer.getXClassId();
-												// final Long xMemberId = xpointer.getXMemberId();
-												final Long wordId = xPointer.getWordId();
-												final Long synsetId = xPointer.getSynsetId();
-												if (xSources.contains("wn")) //
-												{
-													wnDomDoc = new WordNetImplementation().querySenseDoc(db, wordId, synsetId);
-												}
-												if (xSources.contains("vn")) //
-												{
-													vnDomDoc = new VerbNetImplementation().queryClassDoc(db, xClassId, pos);
-												}
-												if (xSources.contains("pb")) //
-												{
-													pbDomDoc = new PropBankImplementation().queryRoleSetDoc(db, xClassId, pos);
-												}
-												if (xSources.contains("fn")) //
-												{
-													fnDomDoc = new FrameNetImplementation().queryFrameDoc(db, xClassId, pos);
-												}
-												if (Settings.Source.BNC.test(sources))
-												{
-													bncDomDoc = new BncImplementation().queryDoc(db, wordId, pos);
-												}
-											}
-											else
-											{
-												final SensePointer sense2Pointer = (SensePointer) pointer;
-												final Long wordId = sense2Pointer.getWordId();
-												final Long synsetId = sense2Pointer.getSynsetId();
-												if (Settings.Source.WORDNET.test(sources))
-												{
-													wnDomDoc = new WordNetImplementation().queryDoc(db, wordId, synsetId, true, false);
-												}
-
-												if (Settings.Source.VERBNET.test(sources))
-												{
-													vnDomDoc = new VerbNetImplementation().queryDoc(db, wordId, synsetId, pos);
-												}
-												if (Settings.Source.PROPBANK.test(sources))
-												{
-													pbDomDoc = new PropBankImplementation().queryDoc(db, wordId, pos);
-												}
-												if (Settings.Source.FRAMENET.test(sources))
-												{
-													fnDomDoc = new FrameNetImplementation().queryDoc(db, wordId, pos);
-												}
-												if (Settings.Source.BNC.test(sources))
-												{
-													bncDomDoc = new BncImplementation().queryDoc(db, wordId, pos);
-												}
-											}
-										}
-										break;
-
-									case ProviderArgs.ARG_QUERYTYPE_WORD:
-										@SuppressWarnings("TypeMayBeWeakened") final WordPointer wordPointer = (WordPointer) pointer;
-										Log.d(WebFragment.TAG, "ARG_POSITION word=" + wordPointer);
-										if (wordPointer != null && Settings.Source.WORDNET.test(sources))
-										{
-											wnDomDoc = new WordNetImplementation().queryWordDoc(db, wordPointer.getWordId());
-										}
-										break;
-
-									case ProviderArgs.ARG_QUERYTYPE_SYNSET:
-										@SuppressWarnings("TypeMayBeWeakened") final SynsetPointer synsetPointer = (SynsetPointer) pointer;
-										Log.d(WebFragment.TAG, "ARG_POSITION synset=" + synsetPointer);
-										if (synsetPointer != null && Settings.Source.WORDNET.test(sources))
-										{
-											wnDomDoc = new WordNetImplementation().querySynsetDoc(db, synsetPointer.getSynsetId());
-										}
-										break;
-
-									case ProviderArgs.ARG_QUERYTYPE_VNCLASS:
-										final VnClassPointer vnclassPointer = (VnClassPointer) pointer;
-										Log.d(WebFragment.TAG, "ARG_POSITION vnclass=" + vnclassPointer);
-										if (vnclassPointer != null && Settings.Source.VERBNET.test(sources))
-										{
-											vnDomDoc = new VerbNetImplementation().queryClassDoc(db, vnclassPointer.getId(), null);
-										}
-										break;
-
-									case ProviderArgs.ARG_QUERYTYPE_PBROLESET:
-										final PbRoleSetPointer pbroleSetPointer = (PbRoleSetPointer) pointer;
-										Log.d(WebFragment.TAG, "ARG_POSITION fnframe=" + pbroleSetPointer);
-										if (pbroleSetPointer != null && Settings.Source.PROPBANK.test(sources))
-										{
-											pbDomDoc = new PropBankImplementation().queryRoleSetDoc(db, pbroleSetPointer.getId(), null);
-										}
-										break;
-
-									case ProviderArgs.ARG_QUERYTYPE_FNLEXUNIT:
-										final FnLexUnitPointer lexunitPointer = (FnLexUnitPointer) pointer;
-										Log.d(WebFragment.TAG, "ARG_POSITION fnlexunit=" + lexunitPointer);
-										if (lexunitPointer != null && Settings.Source.FRAMENET.test(sources))
-										{
-											fnDomDoc = new FrameNetImplementation().queryLexUnitDoc(db, lexunitPointer.getId());
-										}
-										break;
-
-									case ProviderArgs.ARG_QUERYTYPE_FNFRAME:
-										final FnFramePointer framePointer = (FnFramePointer) pointer;
-										Log.d(WebFragment.TAG, "ARG_POSITION fnframe=" + framePointer);
-										if (framePointer != null && Settings.Source.FRAMENET.test(sources))
-										{
-											fnDomDoc = new FrameNetImplementation().queryFrameDoc(db, framePointer.getId(), null);
-										}
-										break;
-
-									case ProviderArgs.ARG_QUERYTYPE_FNSENTENCE:
-										final FnSentencePointer sentencePointer = (FnSentencePointer) pointer;
-										Log.d(WebFragment.TAG, "ARG_POSITION fnsentence=" + sentencePointer);
-										if (sentencePointer != null && Settings.Source.FRAMENET.test(sources))
-										{
-											fnDomDoc = new FrameNetImplementation().querySentenceDoc(db, sentencePointer.getId());
-										}
-										break;
-
-									case ProviderArgs.ARG_QUERYTYPE_FNANNOSET:
-										final FnAnnoSetPointer annoSetPointer = (FnAnnoSetPointer) pointer;
-										Log.d(WebFragment.TAG, "ARG_POSITION fnannoset=" + annoSetPointer);
-										if (annoSetPointer != null && Settings.Source.FRAMENET.test(sources))
-										{
-											fnDomDoc = new FrameNetImplementation().queryAnnoSetDoc(db, annoSetPointer.getId());
-										}
-										break;
-								}
-							}
-
-							// stringify
-							return WebFragment.docsToString(data, xml, isSelector, wnDomDoc, vnDomDoc, pbDomDoc, fnDomDoc, bncDomDoc);
-						}
-						catch (final Exception e)
-						{
-							Log.e(WebFragment.TAG, "getDoc", e);
-						}
-						finally
-						{
-							if (dataSource != null)
-							{
-								dataSource.close();
-							}
-						}
-						return null;
-					}
-				};
+				return new WebDocumentStringLoader(getActivity(), pointer, pos, type, data, sources, xml);
 			}
 
 			@Override

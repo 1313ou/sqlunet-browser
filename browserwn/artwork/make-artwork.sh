@@ -13,7 +13,7 @@ drawericon_list="ic_home.svg ic_search_browse.svg ic_search_text.svg ic_search_p
 arrow_list="ic_spinner_arrow.svg"
 domain_list="wordnet.svg verbnet.svg propbank.svg framenet.svg bnc.svg predicatematrix.svg"
 
-make_res "${launch_list}" 48
+make_mipmap "${launch_list}" 48
 make_res "${logo_list}" 64
 make_res "${splash_list}" 144
 make_res "${supersplash_list}" 400
