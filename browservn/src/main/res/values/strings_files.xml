@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+	<string name="sqlunet_db">b74958d1e53f959956f5cfe2369cb62c</string> <!-- sqlunet-vn.db -->
+	<string name="sqlunet_db_zip">20dee9bf42d1ed1515faf978e53ab4f5</string> <!-- sqlunet-vn.db.zip -->
+	<string name="sqlunet_sql_zip">a3864ac1c9fa2515a78431c714de350e</string> <!-- sqlunet-vn.sql.zip -->
+
+	<string name="hr_size_sqlunet_db">430 MB</string> <!-- sqlunet-vn.db -->
+	<string name="hr_size_sqlunet_db_zip">139 MB</string> <!-- sqlunet-vn.db.zip -->
+	<string name="hr_size_sqlunet_sql_zip">99 MB</string> <!-- sqlunet-vn.sql.zip -->
+
+	<string name="hr_size_searchtext">134 MB</string>
+
+	<string name="hr_size_db_working_total">564 MB</string>
+
+</resources>

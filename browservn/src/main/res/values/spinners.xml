@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+	<!-- browser spinner
+	SELECTORS
+	XSELECTORS
+	-->
+	<string-array name="selectors_names" tools:ignore="InconsistentArrays">
+		<item>words</item>
+		<item>grouped by source</item>
+	</string-array>
+	<integer-array name="selectors_icons" tools:ignore="InconsistentArrays">
+		<item>@drawable/ic_selector</item>
+		<item>@drawable/ic_xselector</item>
+	</integer-array>
+
+	<!-- searchtext spinner
+	VERBNET EXAMPLES
+	PROPBANK EXAMPLES
+	-->
+	<string-array name="searchtext_modes" tools:ignore="InconsistentArrays">
+		<item>VerbNet examples</item>
+		<item>PropBank examples</item>
+	</string-array>
+	<integer-array name="searchtext_icons" tools:ignore="InconsistentArrays">
+		<item>@drawable/ic_search_vnexample</item>
+		<item>@drawable/ic_search_pbexample</item>
+	</integer-array>
+
+</resources>

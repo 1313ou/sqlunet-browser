@@ -1,0 +1,77 @@
+<HTML>
+<HEAD>
+	<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<TITLE>Semantikos</TITLE>
+	<LINK rel="stylesheet" type="text/css" href="style.css">
+</HEAD>
+<BODY>
+
+<DIV class="header">
+	<IMG class='center title' src="./images/logo.png">
+</DIV>
+
+<DIV class='section'>
+	<DIV class='sectionhead'>What is Semantikos ?</DIV>
+	<DIV class='sectiontext'>The app runs on phones (preferably phablets) and tablets, and any Android device.
+	It started out as proof-of-concept but is now a full-fledged browser and navigation interface.
+	All processing takes place on board the device, so there is no need for a connection: the app operates off-line.</DIV>
+</DIV>
+
+<DIV class='section'>
+	<DIV class='sectionhead'>Licence</DIV>
+	<DIV class='sectiontext'>Semantikos is free (as in <i>free</i> speech and <i>free</i> beer). It’s open-source and its licence is GPL3.</DIV>
+</DIV>
+
+<DIV class='section'>
+	<DIV class='sectionhead'>Features</DIV>
+	<DIV class='sectiontext'>The app offers the following features:</DIV>
+	<UL>
+		<LI class='sectiontext'><SPAN class='enh'>Browse senses and semantic roles</SPAN> The user can navigate the different senses of words, browse the relation between senses and explore the semantic roles attached to them.</LI>
+		<LI class='sectiontext'><SPAN class='enh'>Explore Predicate Matrix (cross-referenced semantic roles)</SPAN>  The user can explore the different semantic role matches or alignments.</LI>
+		<LI class='sectiontext'><SPAN class='enh'>Search for text occurrences</SPAN> . The user can find occurrences of words in WordNet samples, VerbNet samples, PropBank samples, FrameNet sentences, together with the annotations that are attached to them.</LI>
+		<LI class='sectiontext'><SPAN class='enh'>Direct access to entities (senses, semantic roles, semantic classes, frames, lex units, sentences)</SPAN> Direct access to entities is made possible by referencing them by ID. </LI>
+		<LI class='sectiontext'><SPAN class='enh'>Hyperlinks</SPAN> Result pages include hyperlinks to related queries. Activating them triggers the queries. The usual backtracking mechanism applies.</LI>
+		<LI class='sectiontext'><SPAN class='enh'>Peek at the underlying SQL queries</SPAN> The app maintains a circular buffer of the SQL queries used by the UI interface, so that the user can have a glimpse of (sometimes tricky) queries.</LI>
+		<LI class='sectiontext'><SPAN class='enh'>Set up interface</SPAN> Care has been taken to make the interface user-friendly, particularly during the setup, and to inform the user about space requirements.</LI>
+	</UL>
+</DIV>
+
+<DIV class='section'>
+	<DIV class='sectionhead'>Requirements</DIV>
+	<DIV class='sectiontext'>The app requires an Android terminal running with Kitkat or later. It does not require specific hardware so mid-range to high-end hardware will do. Standard memory capacity will also suffice. Nor does the app require a lot of processing power.
+	However storage requirements are high: when fully expanded the database takes up in the region of 500M bytes. Care must be taken that this amount of space is available either in emulated external storage or sdcard.
+	The application comes without the database which has to be downloaded before proper operation can start.</DIV>
+</DIV>
+
+<DIV class='section'>
+	<DIV class='sectionhead'>Standard install</DIV>
+	<UL>
+		<LI class='sectiontext'>Install the APK available from Google Play. It is to be found at https://play.google.com/store/apps/details?id=org.sqlunet.browser Once the app installed, the data and the sqlite3 database won’t be available yet</LI>
+		<LI class='sectiontext'>Download the database</LI>
+		<LI class='sectiontext'>Add (build) a few tables that are needed to speed up text search</LI>
+	</UL>
+</DIV>
+
+<DIV class='section'>
+	<DIV class='sectionhead'>Alternative install (not recommended)</DIV>
+	<UL>
+		<LI class='sectiontext'>Install the APK available from Google Play</LI>
+		<LI class='sectiontext'>Download the zipped database</LI>
+		<LI class='sectiontext'>Expand (unzip) the database</LI>
+	</UL>
+	<DIV class='sectiontext'>This method requires almost twice the space : the zipped database and the expanded database.</DIV>
+</DIV>
+
+<DIV class='section'>
+	<DIV class='sectionhead'>Alternative Install 2 (not recommended)</DIV>
+	<UL>
+		<LI class='sectiontext'>Download the database dump : zipped SQL statement</LI>
+		<LI class='sectiontext'>Execute these statements to restore the database</LI>
+	</UL>
+	<DIV class='sectiontext'>This method is very lengthy and requires more space in the process than the resulting database footprint</DIV>
+</DIV>
+
+<BR/>
+
+</BODY>
+</HTML>

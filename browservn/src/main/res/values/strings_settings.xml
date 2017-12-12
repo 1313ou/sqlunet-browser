@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+	<!-- Filter -->
+	<string name="pref_title_enable_verbnet">Enable VerbNet</string>
+	<string name="pref_title_enable_propbank">Enable PropBank</string>
+	<string name="pref_title_enable_wordnet">Enable WordNet</string>
+	<string name="pref_description_enable_verbnet">Display VerbNet information</string>
+	<string name="pref_description_enable_propbank">Display PropBank information</string>
+	<string name="pref_description_enable_wordnet">Display WordNet information</string>
+
+</resources>

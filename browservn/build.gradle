@@ -1,0 +1,46 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 27
+    // enforceUniquePackageName = false
+
+     defaultConfig {
+        applicationId "org.sqlunet.browser.vn"
+        minSdkVersion 17
+        targetSdkVersion 25
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
+        }
+    }
+}
+
+dependencies {
+    compile project(':common')
+    compile project(':expandableListFragment')
+    compile project(':support')
+
+    compile project(':xNet')
+    compile project(':wordNet')
+    compile project(':verbNet')
+    compile project(':propbank')
+
+    compile 'com.android.support:support-v13:27.0.2'
+    compile 'com.android.support:appcompat-v7:27.0.2'
+
+    // Required for local unit tests (JUnit 4 framework)
+    testCompile 'junit:junit:4.12'
+
+    // Required for instrumented tests
+    androidTestCompile project(':test')
+    androidTestCompile 'junit:junit:4.12'
+    androidTestCompile 'com.android.support:support-annotations:27.0.2'
+    androidTestCompile 'com.android.support.test:runner:1.0.1'
+    androidTestCompile 'com.android.support.test.espresso:espresso-core:3.0.1'
+    androidTestCompile 'com.android.support.test.espresso:espresso-web:3.0.1'
+    androidTestCompile 'com.android.support.test.uiautomator:uiautomator-v18:2.1.3'
+}

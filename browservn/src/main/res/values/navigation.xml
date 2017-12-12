@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+	<string name="fragment_class_status_section">org.sqlunet.browser.vn.StatusFragment</string> <!-- 3 -->
+
+</resources>

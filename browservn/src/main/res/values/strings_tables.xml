@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+	<string-array name="required_tables" tools:ignore="InconsistentArrays">
+
+		<!-- wordnet -->
+		<item>words</item>
+		<item>senses</item>
+		<item>synsets</item>
+		<item>adjpositions</item>
+		<item>adjpositiontypes</item>
+		<item>casedwords</item>
+		<item>lexdomains</item>
+		<item>morphmaps</item>
+		<item>morphs</item>
+		<item>postypes</item>
+		<item>samples</item>
+		<item>vframemaps</item>
+		<item>vframes</item>
+		<item>vframesentencemaps</item>
+		<item>vframesentences</item>
+
+		<!-- verbnet -->
+		<item>vnclasses</item>
+		<item>vnclassmembers</item>
+		<item>vnclassmembersenses</item>
+		<item>vnexamplemaps</item>
+		<item>vnexamples</item>
+		<item>vnframemaps</item>
+		<item>vnframenames</item>
+		<item>vnframes</item>
+		<item>vnframesubnames</item>
+		<item>vngroupingmaps</item>
+		<item>vngroupings</item>
+		<item>vnpredicatemaps</item>
+		<item>vnpredicates</item>
+		<item>vnrestrs</item>
+		<item>vnrestrtypes</item>
+		<item>vnrolemaps</item>
+		<item>vnroles</item>
+		<item>vnroletypes</item>
+		<item>vnsemantics</item>
+		<item>vnsyntaxes</item>
+		<item>vnwords</item>
+
+		<!-- propbank -->
+		<item>pbargns</item>
+		<item>pbargs</item>
+		<item>pbaspects</item>
+		<item>pbexamples</item>
+		<item>pbvnframemaps</item>
+		<item>pbforms</item>
+		<item>pbfuncs</item>
+		<item>pbpersons</item>
+		<item>pbrels</item>
+		<item>pbroles</item>
+		<item>pbrolesetmembers</item>
+		<item>pbrolesets</item>
+		<item>pbtenses</item>
+		<item>pbvnclassmaps</item>
+		<item>pbvnrolemaps</item>
+		<item>pbvnthetas</item>
+		<item>pbvoices</item>
+		<item>pbwords</item>
+
+		<!-- sources -->
+		<item>sources</item>
+
+	</string-array>
+
+	<string-array name="required_indexes" tools:ignore="InconsistentArrays">
+
+		<!-- wordnet -->
+		<item>index_words_lemma</item>
+		<item>index_senses_wordid</item>
+		<item>index_senses_synsetid</item>
+		<item>index_synsets_synsetid</item>
+		<item>index_casedwords_wordid_casedwordid</item>
+		<item>index_samples_synsetid</item>
+
+		<!-- verbnet -->
+		<item>index_vnwords_wordid</item>
+		<item>index_vnrolemaps_classid</item>
+		<item>index_vnframemaps_classid</item>
+
+		<!-- propbank -->
+		<item>index_pbwords_wordid</item>
+		<item>index_pbrolesets_pbwordid</item>
+		<item>index_pbroles_rolesetid</item>
+		<item>index_pbexamples_rolesetid</item>
+		<item>index_pbrels_exampleid</item>
+		<item>index_pbargs_exampleid</item>
+
+	</string-array>
+
+	<string-array name="required_texts_wn">
+		<item>words_lemma_fts4</item>
+		<item>synsets_definition_fts4</item>
+		<item>samples_sample_fts4</item>
+	</string-array>
+
+	<string-array name="required_texts_vn">
+		<item>vnexamples_example_fts4</item>
+	</string-array>
+
+	<string-array name="required_texts_pb">
+		<item>pbexamples_text_fts4</item>
+	</string-array>
+
+</resources>
