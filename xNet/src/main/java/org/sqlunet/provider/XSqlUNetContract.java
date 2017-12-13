@@ -13,6 +13,7 @@ public final class XSqlUNetContract
 	static public final String SENSE = "s";
 	static public final String SYNSET = "y";
 	static public final String POS = "p";
+	static public final String CLASS = "c";
 
 	// Word cross reference
 
@@ -59,6 +60,54 @@ public final class XSqlUNetContract
 		static public final String DEFINITION = "definition";
 		static public final String CASED = "cased";
 		static public final String TAGCOUNT = "tagcount";
+		static public final String SOURCES = "sources";
+	}
+
+	@SuppressWarnings("unused")
+	static public final class Words_VnWords_VnClasses
+	{
+		static public final String TABLE = "words_vnwords_vnclasses";
+		static public final String CONTENT_URI_TABLE = Words_VnWords_VnClasses.TABLE;
+		static public final String WORDID = "wordid";
+		static public final String SYNSETID = "synsetid";
+		static public final String VNWORDID = "vnwordid";
+		static public final String CLASSID = "classid";
+		static public final String CLASS = "class";
+		static public final String CLASSTAG = "classtag";
+		static public final String DEFINITION = "definition";
+		static public final String SOURCE = "source";
+		static public final String SOURCES = "sources";
+	}
+
+	@SuppressWarnings("unused")
+	static public final class Words_PbWords_PbRolesets
+	{
+		static public final String TABLE = "words_pbwords_pbrolesets";
+		static public final String CONTENT_URI_TABLE = Words_PbWords_PbRolesets.TABLE;
+		static public final String WORDID = "wordid";
+		static public final String SYNSETID = "synsetid";
+		static public final String ROLESETID = "rolesetid";
+		static public final String ROLESETNAME = "rolesetname";
+		static public final String ROLESETHEAD = "rolesethead";
+		static public final String ROLESETDESCR = "rolesetdescr";
+		static public final String DEFINITION = "definition";
+		static public final String SOURCE = "source";
+		static public final String SOURCES = "sources";
+	}
+
+	@SuppressWarnings("unused")
+	static public final class Words_XNet
+	{
+		static public final String WORDID = "wordid";
+		static public final String SYNSETID = "synsetid";
+		static public final String XID = "xid";
+		static public final String XCLASSID = "xclassid";
+		static public final String XMEMBERID = "xmemberid";
+		static public final String XNAME = "xname";
+		static public final String XHEADER = "xheader";
+		static public final String XINFO = "xinfo";
+		static public final String XDEFINITION = "xdefinition";
+		static public final String SOURCE = "source";
 		static public final String SOURCES = "sources";
 	}
 

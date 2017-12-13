@@ -21,32 +21,6 @@
 			android:contentDescription="@string/item"
 			android:src="@drawable/ic_item"/>
 
-		<View
-			android:layout_width="0dp"
-			android:layout_height="0dp"
-			android:layout_weight="1"/>
-
-		<TextView
-			android:id="@+id/xsourcestext"
-			style="@style/Data.XSources"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:contentDescription="@string/download_source"
-			android:textIsSelectable="false"/>
-
-		<ImageView
-			android:id="@+id/xsources"
-			style="@style/Data.XSources"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:contentDescription="@string/download_source"/>
-
-		<ImageView
-			android:id="@+id/pm"
-			style="@style/Data.XSources"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:contentDescription="@string/download_source"/>
 	</LinearLayout>
 
 	<TextView

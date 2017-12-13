@@ -22,9 +22,6 @@ public class XSelectorPointer extends SelectorPointer implements HasXId
 	@SuppressWarnings("WeakerAccess")
 	static public final int PROPBANKSOURCE = 0x00004;
 
-	@SuppressWarnings("WeakerAccess")
-	static public final int FRAMENETSOURCE = 0x00008;
-
 	/**
 	 * xId : optional/nullable
 	 */
@@ -51,7 +48,7 @@ public class XSelectorPointer extends SelectorPointer implements HasXId
 	private final long xMask;
 
 	/**
-	 * xGroup (0=wordnet, 1=verbnet, 2=propbank, 3=framenet, 4=bnc)
+	 * xGroup (0=wordnet, 1=verbnet, 2=propbank)
 	 */
 	private final int xGroup;
 
@@ -83,7 +80,7 @@ public class XSelectorPointer extends SelectorPointer implements HasXId
 	 * @param xMemberId x member id
 	 * @param xSources  x sources
 	 * @param xMask     x mask
-	 * @param xGroup    x group (0=wordnet, 1=verbnet, 2=propbank, 3=framenet, 4=bnc)
+	 * @param xGroup    x group (0=wordnet, 1=verbnet, 2=propbank)
 	 */
 	XSelectorPointer(final long synsetId, final long wordId, final long xId, final long xClassId, final long xMemberId, final String xSources, final long xMask, final int xGroup)
 	{

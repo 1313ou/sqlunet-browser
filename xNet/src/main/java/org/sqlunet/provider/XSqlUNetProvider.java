@@ -17,7 +17,10 @@ import org.sqlunet.provider.XSqlUNetContract.PredicateMatrix_VerbNet;
 import org.sqlunet.provider.XSqlUNetContract.Sources;
 import org.sqlunet.provider.XSqlUNetContract.Words_FnWords_FnFrames_U;
 import org.sqlunet.provider.XSqlUNetContract.Words_FnWords_PbWords_VnWords;
+import org.sqlunet.provider.XSqlUNetContract.Words_PbWords_PbRolesets;
 import org.sqlunet.provider.XSqlUNetContract.Words_PbWords_PbRolesets_U;
+import org.sqlunet.provider.XSqlUNetContract.Words_PbWords_VnWords;
+import org.sqlunet.provider.XSqlUNetContract.Words_VnWords_VnClasses;
 import org.sqlunet.provider.XSqlUNetContract.Words_VnWords_VnClasses_U;
 import org.sqlunet.sql.SqlFormatter;
 
@@ -49,23 +52,29 @@ public class XSqlUNetProvider extends BaseProvider
 
 	// join codes
 	static private final int WORDS_FNWORDS_PBWORDS_VNWORDS = 100;
+	static private final int WORDS_PBWORDS_VNWORDS = 101;
 	static private final int PREDICATEMATRIX = 200;
 	static private final int PREDICATEMATRIX_VERBNET = 210;
 	static private final int PREDICATEMATRIX_PROPBANK = 220;
 	static private final int PREDICATEMATRIX_FRAMENET = 230;
-	static private final int WORDS_VNWORDS_VNCLASSES_U = 310;
-	static private final int WORDS_PBWORDS_PBROLESETS_U = 320;
-	static private final int WORDS_FNWORDS_FNFRAMES_U = 330;
+	static private final int WORDS_VNWORDS_VNCLASSES = 310;
+	static private final int WORDS_VNWORDS_VNCLASSES_U = 311;
+	static private final int WORDS_PBWORDS_PBROLESETS = 320;
+	static private final int WORDS_PBWORDS_PBROLESETS_U = 321;
+	static private final int WORDS_FNWORDS_FNFRAMES_U = 331;
 	static private final int SOURCES = 400;
 
 	static private void matchURIs()
 	{
 		XSqlUNetProvider.uriMatcher.addURI(AUTHORITY, Words_FnWords_PbWords_VnWords.TABLE, XSqlUNetProvider.WORDS_FNWORDS_PBWORDS_VNWORDS);
+		XSqlUNetProvider.uriMatcher.addURI(AUTHORITY, Words_PbWords_VnWords.TABLE, XSqlUNetProvider.WORDS_PBWORDS_VNWORDS);
 		XSqlUNetProvider.uriMatcher.addURI(AUTHORITY, PredicateMatrix.TABLE, XSqlUNetProvider.PREDICATEMATRIX);
 		XSqlUNetProvider.uriMatcher.addURI(AUTHORITY, PredicateMatrix_VerbNet.TABLE, XSqlUNetProvider.PREDICATEMATRIX_VERBNET);
 		XSqlUNetProvider.uriMatcher.addURI(AUTHORITY, PredicateMatrix_PropBank.TABLE, XSqlUNetProvider.PREDICATEMATRIX_PROPBANK);
 		XSqlUNetProvider.uriMatcher.addURI(AUTHORITY, PredicateMatrix_FrameNet.TABLE, XSqlUNetProvider.PREDICATEMATRIX_FRAMENET);
+		XSqlUNetProvider.uriMatcher.addURI(AUTHORITY, Words_VnWords_VnClasses.TABLE, XSqlUNetProvider.WORDS_VNWORDS_VNCLASSES);
 		XSqlUNetProvider.uriMatcher.addURI(AUTHORITY, Words_VnWords_VnClasses_U.TABLE, XSqlUNetProvider.WORDS_VNWORDS_VNCLASSES_U);
+		XSqlUNetProvider.uriMatcher.addURI(AUTHORITY, Words_PbWords_PbRolesets.TABLE, XSqlUNetProvider.WORDS_PBWORDS_PBROLESETS);
 		XSqlUNetProvider.uriMatcher.addURI(AUTHORITY, Words_PbWords_PbRolesets_U.TABLE, XSqlUNetProvider.WORDS_PBWORDS_PBROLESETS_U);
 		XSqlUNetProvider.uriMatcher.addURI(AUTHORITY, Words_FnWords_FnFrames_U.TABLE, XSqlUNetProvider.WORDS_FNWORDS_FNFRAMES_U);
 		XSqlUNetProvider.uriMatcher.addURI(AUTHORITY, XSqlUNetContract.Sources.TABLE, XSqlUNetProvider.SOURCES);
@@ -94,6 +103,8 @@ public class XSqlUNetProvider extends BaseProvider
 		{
 			case WORDS_FNWORDS_PBWORDS_VNWORDS:
 				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + Words_FnWords_PbWords_VnWords.TABLE;
+			case WORDS_PBWORDS_VNWORDS:
+				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + Words_PbWords_VnWords.TABLE;
 			case PREDICATEMATRIX:
 				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + PredicateMatrix.TABLE;
 			case PREDICATEMATRIX_VERBNET:
@@ -102,8 +113,12 @@ public class XSqlUNetProvider extends BaseProvider
 				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + PredicateMatrix_PropBank.TABLE;
 			case PREDICATEMATRIX_FRAMENET:
 				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + PredicateMatrix_FrameNet.TABLE;
+			case WORDS_VNWORDS_VNCLASSES:
+				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + Words_VnWords_VnClasses.TABLE;
 			case WORDS_VNWORDS_VNCLASSES_U:
 				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + Words_VnWords_VnClasses_U.TABLE;
+			case WORDS_PBWORDS_PBROLESETS:
+				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + Words_PbWords_PbRolesets.TABLE;
 			case WORDS_PBWORDS_PBROLESETS_U:
 				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + Words_PbWords_PbRolesets_U.TABLE;
 			case WORDS_FNWORDS_FNFRAMES_U:
@@ -189,6 +204,28 @@ public class XSqlUNetProvider extends BaseProvider
 				groupBy = "synsetid";
 				break;
 
+			case WORDS_PBWORDS_VNWORDS:
+				table = "words AS " + XSqlUNetContract.WORD + ' ' + //
+						"LEFT JOIN senses AS " + XSqlUNetContract.SENSE + " USING (wordid) " + //
+						"LEFT JOIN synsets AS " + XSqlUNetContract.SYNSET + " USING (synsetid) " + //
+						"LEFT JOIN postypes AS " + XSqlUNetContract.POS + " USING (pos) " + //
+						"LEFT JOIN casedwords USING (wordid,casedwordid) " + //
+						"LEFT JOIN lexdomains USING (lexdomainid) " + //
+						"LEFT JOIN vnwords USING (wordid) " + //
+						"LEFT JOIN pbwords USING (wordid)";
+				groupBy = "synsetid";
+				break;
+
+			case WORDS_VNWORDS_VNCLASSES:
+			{
+				table = "vnwords INNER JOIN " + //
+						"vnclassmembersenses USING (vnwordid) " + //
+						"INNER JOIN vnclasses AS " +  XSqlUNetContract.CLASS + " USING (classid) " + //
+						"LEFT JOIN synsets USING (synsetid)";
+					groupBy = "wordid,synsetid,classid";
+				break;
+			}
+
 			case WORDS_VNWORDS_VNCLASSES_U:
 			{
 				final String table1 = "pmvn " + //
@@ -203,6 +240,14 @@ public class XSqlUNetProvider extends BaseProvider
 				final String query = makeQuery(table1, table2, tableProjection, unionProjection, projection, selection, groupByArray, sortOrder, "vn");
 				Log.d(XSqlUNetProvider.TAG + "PM-VN", query);
 				return raw(query, selectionArgs);
+			}
+
+			case WORDS_PBWORDS_PBROLESETS:
+			{
+				table = "pbwords " + //
+						"INNER JOIN pbrolesets AS " +  XSqlUNetContract.CLASS + " USING (pbwordid)";
+				groupBy = "wordid,synsetid,rolesetid";
+				break;
 			}
 
 			case WORDS_PBWORDS_PBROLESETS_U:

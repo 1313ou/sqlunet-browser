@@ -159,16 +159,18 @@ abstract public class Status
 		{
 			return false;
 		}
-		/*
-		for (String target : targets)
+		boolean result = tablesAndIndexes.containsAll(Arrays.asList(targets));
+		if (!result)
 		{
-			if (!tablesAndIndexes.contains(target))
+			for (String target : targets)
 			{
-				Log.d(TAG, "ABSENT " + target);
+				if (!tablesAndIndexes.contains(target))
+				{
+					Log.d(TAG, "ABSENT " + target);
+				}
 			}
 		}
-		*/
-		return tablesAndIndexes.containsAll(Arrays.asList(targets));
+		return result;
 	}
 
 	static public CharSequence toString(int status)

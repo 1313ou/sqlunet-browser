@@ -244,7 +244,7 @@ public class WebFragment extends Fragment
 
 						case ProviderArgs.ARG_QUERYTYPE_PBROLESET:
 							final PbRoleSetPointer pbroleSetPointer = (PbRoleSetPointer) pointer;
-							Log.d(WebFragment.TAG, "ARG_POSITION fnframe=" + pbroleSetPointer);
+							Log.d(WebFragment.TAG, "ARG_POSITION pbroleset=" + pbroleSetPointer);
 							if (pbroleSetPointer != null && Settings.Source.PROPBANK.test(sources))
 							{
 								pbDomDoc = new PropBankImplementation().queryRoleSetDoc(db, pbroleSetPointer.getId(), null);
@@ -451,7 +451,6 @@ public class WebFragment extends Fragment
 		// LogUtils.writeLog(DomTransformer.docToXml(wnDomDoc), false, "wn_sqlunet.log");
 		// LogUtils.writeLog(DomTransformer.docToXml(vnDomDoc), false, "vn_sqlunet.log");
 		// LogUtils.writeLog(DomTransformer.docToXml(pbDomDoc), false, "pb_sqlunet.log");
-		// LogUtils.writeLog(DomTransformer.docToXml(fnDomDoc), false, "fn_sqlunet.log");
 		// LogUtils.writeLog(DomTransformer.docToXml(bncDomDoc), false, "bnc_sqlunet.log");
 
 		String data;

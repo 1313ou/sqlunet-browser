@@ -24,14 +24,13 @@ import android.widget.SimpleCursorTreeAdapter;
 
 import org.sqlunet.browser.Module;
 import org.sqlunet.browser.vn.R;
-import org.sqlunet.browser.xselector.XLoader.FnLoaderCallbacks;
 import org.sqlunet.browser.xselector.XLoader.PbLoaderCallbacks;
 import org.sqlunet.browser.xselector.XLoader.VnLoaderCallbacks;
 import org.sqlunet.browser.xselector.XLoader.WnLoaderCallbacks;
 import org.sqlunet.provider.ProviderArgs;
 import org.sqlunet.provider.XSqlUNetContract;
-import org.sqlunet.provider.XSqlUNetContract.Words_FnWords_PbWords_VnWords;
-import org.sqlunet.provider.XSqlUNetContract.Words_XNet_U;
+import org.sqlunet.provider.XSqlUNetContract.Words_PbWords_VnWords;
+import org.sqlunet.provider.XSqlUNetContract.Words_XNet;
 import org.sqlunet.provider.XSqlUNetProvider;
 
 import java.util.Locale;
@@ -60,6 +59,16 @@ public class XSelectorsFragment extends ExpandableListFragment
 	 * The serialization (saved instance state) Bundle key representing the activated item position. Only used on tablets.
 	 */
 	static private final String STATE_ACTIVATED_SELECTOR = "activated_selector";
+
+	/**
+	 * VerbNet group position
+	 */
+	static private final int GROUP_VERBNET = 0;
+
+	/**
+	 * PropBank group position
+	 */
+	static private final int GROUP_PROPBANK = 1;
 
 	/**
 	 * Activate on click flag
@@ -103,25 +112,19 @@ public class XSelectorsFragment extends ExpandableListFragment
 			R.id.xheader, //
 			R.id.xinfo, //
 			R.id.xdefinition, //
-			R.id.xsourcestext, //
-			R.id.xsources, //
-			R.id.pm, //
 	};
 
 	/**
 	 * Target resource
 	 */
-	static private final String[] childFrom = {Words_XNet_U.WORDID, //
-			Words_XNet_U.SYNSETID, //
-			Words_XNet_U.XID, //
-			Words_XNet_U.XMEMBERID, //
-			Words_XNet_U.XNAME, //
-			Words_XNet_U.XHEADER, //
-			Words_XNet_U.XINFO, //
-			Words_XNet_U.XDEFINITION, //
-			Words_XNet_U.SOURCES, //
-			Words_XNet_U.SOURCES, //
-			Words_XNet_U.SOURCES,};
+	static private final String[] childFrom = {Words_XNet.WORDID, //
+			Words_XNet.SYNSETID, //
+			Words_XNet.XID, //
+			Words_XNet.XMEMBERID, //
+			Words_XNet.XNAME, //
+			Words_XNet.XHEADER, //
+			Words_XNet.XINFO, //
+			Words_XNet.XDEFINITION,};
 
 	/**
 	 * Xn group cursor
@@ -155,11 +158,10 @@ public class XSelectorsFragment extends ExpandableListFragment
 	public XSelectorsFragment()
 	{
 		this.xnCursor = new MatrixCursor(new String[]{"_id", NAMECOLUMN, LOADERCOLUMN, ICONCOLUMN});
-		this.xnCursor.addRow(new Object[]{0, "wordnet", 1111, Integer.toString(R.drawable.wordnet)});
-		this.xnCursor.addRow(new Object[]{1, "verbnet", 2222, Integer.toString(R.drawable.verbnet)});
-		this.xnCursor.addRow(new Object[]{2, "propbank", 3333, Integer.toString(R.drawable.propbank)});
-		this.xnCursor.addRow(new Object[]{3, "framenet", 4444, Integer.toString(R.drawable.framenet)});
-		this.groupPosition = 0;
+		//this.xnCursor.addRow(new Object[]{GROUP_WORDNET, "wordnet", 1111, Integer.toString(R.drawable.wordnet)});
+		this.xnCursor.addRow(new Object[]{GROUP_VERBNET, "verbnet", 2222, Integer.toString(R.drawable.verbnet)});
+		this.xnCursor.addRow(new Object[]{GROUP_PROPBANK, "propbank", 3333, Integer.toString(R.drawable.propbank)});
+		this.groupPosition = GROUP_VERBNET;
 		Log.d(TAG, "init position " + this.groupPosition + " " + this);
 	}
 
@@ -255,17 +257,16 @@ public class XSelectorsFragment extends ExpandableListFragment
 			@Override
 			public Loader<Cursor> onCreateLoader(final int id, final Bundle args)
 			{
-				final Uri uri = Uri.parse(XSqlUNetProvider.makeUri(Words_FnWords_PbWords_VnWords.CONTENT_URI_TABLE));
+				final Uri uri = Uri.parse(XSqlUNetProvider.makeUri(XSqlUNetContract.Words_PbWords_VnWords.CONTENT_URI_TABLE));
 				final String[] projection = { //
-						Words_FnWords_PbWords_VnWords.SYNSETID + " AS _id", //
-						Words_FnWords_PbWords_VnWords.WORDID, //
-						Words_FnWords_PbWords_VnWords.FNWORDID, //
-						Words_FnWords_PbWords_VnWords.VNWORDID, //
-						Words_FnWords_PbWords_VnWords.PBWORDID, //
+						Words_PbWords_VnWords.SYNSETID + " AS _id", //
+						Words_PbWords_VnWords.WORDID, //
+						Words_PbWords_VnWords.VNWORDID, //
+						Words_PbWords_VnWords.PBWORDID, //
 				};
-				final String selection = XSqlUNetContract.WORD + '.' + Words_FnWords_PbWords_VnWords.LEMMA + " = ?";
+				final String selection = XSqlUNetContract.WORD + '.' + Words_PbWords_VnWords.LEMMA + " = ?";
 				final String[] selectionArgs = {XSelectorsFragment.this.word};
-				final String sortOrder = XSqlUNetContract.POS + '.' + Words_FnWords_PbWords_VnWords.POS + ',' + Words_FnWords_PbWords_VnWords.SENSENUM;
+				final String sortOrder = XSqlUNetContract.POS + '.' + Words_PbWords_VnWords.POS + ',' + Words_PbWords_VnWords.SENSENUM;
 				final Context context = getActivity();
 				assert context != null;
 				return new CursorLoader(context, uri, projection, selection, selectionArgs, sortOrder);
@@ -277,7 +278,7 @@ public class XSelectorsFragment extends ExpandableListFragment
 				// store source progressMessage
 				if (cursor.moveToFirst())
 				{
-					final int idWordId = cursor.getColumnIndex(Words_FnWords_PbWords_VnWords.WORDID);
+					final int idWordId = cursor.getColumnIndex(Words_PbWords_VnWords.WORDID);
 					XSelectorsFragment.this.wordId = cursor.getLong(idWordId);
 
 					load(XSelectorsFragment.this.wordId);
@@ -312,25 +313,22 @@ public class XSelectorsFragment extends ExpandableListFragment
 				}
 
 				// given the group, we return a cursor for all the children within that group
-				int groupPos = groupCursor.getPosition();
+				int groupPosition = groupCursor.getPosition();
 				// String groupName = groupCursor.getString(groupCursor.getColumnIndex(NAMECOLUMN));
 
 				int loaderId = groupCursor.getInt(groupCursor.getColumnIndex(LOADERCOLUMN));
-				// Log.d(TAG, "group " + groupPos + ' ' + groupName + " loader=" + loaderId);
+				// Log.d(TAG, "group " + groupPosition + ' ' + groupName + " loader=" + loaderId);
 				LoaderCallbacks<Cursor> callbacks = null;
-				switch (groupPos)
+				switch (groupPosition)
 				{
-					case 0:
-						callbacks = getWnCallbacks(wordId, groupPos);
+					//case GROUP_WORDNET:
+					//  callbacks = getWnCallbacks(wordId, groupPosition);
+					//  break;
+					case GROUP_VERBNET:
+						callbacks = getVnCallbacks(wordId, groupPosition);
 						break;
-					case 1:
-						callbacks = getVnCallbacks(wordId, groupPos);
-						break;
-					case 2:
-						callbacks = getPbCallbacks(wordId, groupPos);
-						break;
-					case 3:
-						callbacks = getFnCallbacks(wordId, groupPos);
+					case GROUP_PROPBANK:
+						callbacks = getPbCallbacks(wordId, groupPosition);
 						break;
 				}
 
@@ -356,48 +354,7 @@ public class XSelectorsFragment extends ExpandableListFragment
 			@Override
 			protected void setViewImage(ImageView v, String value)
 			{
-				switch (v.getId())
-				{
-					case R.id.xsources:
-						final String[] fields = value.split(",");
-						for (String field : fields)
-						{
-							switch (field)
-							{
-								case "wn": //
-									v.setImageResource(R.drawable.wordnet);
-									return;
-								case "vn": //
-									v.setImageResource(R.drawable.verbnet);
-									return;
-								case "pb": //
-									v.setImageResource(R.drawable.propbank);
-									return;
-							}
-						}
-						v.setImageDrawable(null);
-						// v.setVisibility(View.GONE);
-						break;
-
-					case R.id.pm:
-						final String[] fields2 = value.split(",");
-						for (String field2 : fields2)
-						{
-							if (field2.startsWith("pm")) //
-							{
-								v.setImageResource(R.drawable.predicatematrix);
-								v.setVisibility(View.VISIBLE);
-								return;
-							}
-						}
-						v.setImageDrawable(null);
-						v.setVisibility(View.GONE);
-						break;
-
-					default:
-						super.setViewImage(v, value);
-						break;
-				}
+				super.setViewImage(v, value);
 			}
 		};
 		setListAdapter(adapter);
@@ -514,41 +471,6 @@ public class XSelectorsFragment extends ExpandableListFragment
 		};
 	}
 
-	/**
-	 * Get FrameNet callbacks
-	 *
-	 * @param wordId        word id
-	 * @param groupPosition position in group
-	 * @return FrameNet callbacks
-	 */
-	private LoaderCallbacks<Cursor> getFnCallbacks(final long wordId, final int groupPosition)
-	{
-		return new FnLoaderCallbacks(getActivity(), wordId)
-		{
-			@Override
-			public void onLoadFinished(final Loader<Cursor> loader, final Cursor cursor)
-			{
-				if (cursor != null)
-				{
-					// XLoader.dump(cursor);
-
-					// pass on to list adapter
-					((CursorTreeAdapter) getListAdapter()).setChildrenCursor(groupPosition, cursor);
-				}
-				else
-				{
-					Log.i(TAG, "FN none");
-				}
-			}
-
-			@Override
-			public void onLoaderReset(final Loader<Cursor> loader)
-			{
-				((CursorTreeAdapter) getListAdapter()).setChildrenCursor(groupPosition, null);
-			}
-		};
-	}
-
 	// S E L E C T I O N   L I S T E N E R
 
 	@Override
@@ -588,12 +510,12 @@ public class XSelectorsFragment extends ExpandableListFragment
 			if (!cursor.isAfterLast())
 			{
 				// column indices
-				final int idSynsetId = cursor.getColumnIndex(Words_XNet_U.SYNSETID);
-				final int idXId = cursor.getColumnIndex(Words_XNet_U.XID);
-				final int idXClassId = cursor.getColumnIndex(Words_XNet_U.XCLASSID);
-				final int idXMemberId = cursor.getColumnIndex(Words_XNet_U.XMEMBERID);
-				final int idXSources = cursor.getColumnIndex(Words_XNet_U.SOURCES);
-				// final int idWordId = cursor.getColumnIndex(Words_XNet_U.WORDID);
+				final int idSynsetId = cursor.getColumnIndex(XSqlUNetContract.Words_XNet.SYNSETID);
+				final int idXId = cursor.getColumnIndex(Words_XNet.XID);
+				final int idXClassId = cursor.getColumnIndex(Words_XNet.XCLASSID);
+				final int idXMemberId = cursor.getColumnIndex(Words_XNet.XMEMBERID);
+				final int idXSources = cursor.getColumnIndex(Words_XNet.SOURCES);
+				// final int idWordId = cursor.getColumnIndex(Words_XNet.WORDID);
 
 				// data
 				final long wordId = this.wordId;

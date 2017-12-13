@@ -41,11 +41,11 @@ public class Browse2Fragment extends BaseBrowse2Fragment
 				// transaction
 				final FragmentTransaction transaction = manager.beginTransaction();
 
-				// framenet
+				// verbnet
 				boolean enable = Settings.getVerbNetPref(context);
 				if (enable)
 				{
-					// final View labelView = findViewById(R.id.label_framenet);
+					// final View labelView = findViewById(R.id.label_verbnet);
 					// labelView.setVisibility(View.VISIBLE);
 					final Fragment verbnetFragment = new VnClassFragment();
 					verbnetFragment.setArguments(args);
@@ -53,10 +53,10 @@ public class Browse2Fragment extends BaseBrowse2Fragment
 				}
 				else
 				{
-					final Fragment framenetFragment = manager.findFragmentByTag("verbnet");
-					if (framenetFragment != null)
+					final Fragment verbnetFragment = manager.findFragmentByTag("verbnet");
+					if (verbnetFragment != null)
 					{
-						transaction.remove(framenetFragment);
+						transaction.remove(verbnetFragment);
 					}
 				}
 
