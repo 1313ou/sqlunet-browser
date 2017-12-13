@@ -245,7 +245,6 @@ public class XSelectorPointer extends SelectorPointer implements HasXId
 		{
 			mask |= WORDNETSOURCE;
 		}
-
 		if (xSources.contains("vn")) //
 		{
 			mask |= VERBNETSOURCE;

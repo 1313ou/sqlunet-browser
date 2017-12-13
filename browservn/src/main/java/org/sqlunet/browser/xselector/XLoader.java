@@ -103,6 +103,7 @@ class XLoader
 					Words_VnWords_VnClasses.CLASS + " AS " + Words_XNet.XHEADER, //
 					Words_VnWords_VnClasses.CLASSTAG + " AS " + Words_XNet.XINFO, //
 					Words_VnWords_VnClasses.DEFINITION + " AS " + Words_XNet.XDEFINITION, //
+					"'vn' AS " + Words_XNet.SOURCES, //
 					XSqlUNetContract.CLASS + ".rowid AS _id",};
 			final String selection = Words_VnWords_VnClasses.WORDID + " = ?";
 			final String[] selectionArgs = {Long.toString(this.wordId)};
@@ -136,6 +137,7 @@ class XLoader
 					//Words_PbWords_PbRolesets.ROLESETHEAD + " AS " + Words_XNet.XHEADER, //
 					Words_PbWords_PbRolesets.ROLESETDESCR + " AS " + Words_XNet.XINFO, //
 					"NULL AS " + Words_XNet.XDEFINITION, //
+					"'pb' AS " + Words_XNet.SOURCES, //
 					XSqlUNetContract.CLASS + ".rowid AS _id",};
 			final String selection = PredicateMatrix_PropBank.WORDID + " = ?";
 			final String[] selectionArgs = {Long.toString(this.wordId)};
