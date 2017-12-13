@@ -9,8 +9,12 @@ import android.support.v4.app.FragmentTransaction;
 import org.sqlunet.browser.vn.R;
 import org.sqlunet.browser.vn.Settings;
 import org.sqlunet.browser.web.WebFragment;
+import org.sqlunet.browser.xselector.XSelectorPointer;
+import org.sqlunet.browser.xselector.XSelectorsFragment;
+import org.sqlunet.propbank.browser.PropBankFragment;
 import org.sqlunet.provider.ProviderArgs;
-import org.sqlunet.verbnet.browser.VnClassFragment;
+import org.sqlunet.verbnet.browser.VerbNetFragment;
+import org.sqlunet.wordnet.browser.SenseFragment;
 
 /**
  * A fragment representing a detail
@@ -38,16 +42,34 @@ public class Browse2Fragment extends BaseBrowse2Fragment
 		{
 			case VIEW:
 
+				int enable = Settings.getAllPref(context);
+				if (this.pointer instanceof XSelectorPointer)
+				{
+					// sections to disable
+					int mask = 0;
+					final XSelectorPointer xpointer = (XSelectorPointer) this.pointer;
+					final int group = xpointer.getXGroup();
+					switch (group)
+					{
+						case XSelectorsFragment.GROUP_VERBNET:
+							mask = Settings.ENABLE_PROPBANK;
+							break;
+						case XSelectorsFragment.GROUP_PROPBANK:
+							mask = Settings.ENABLE_VERBNET | Settings.ENABLE_WORDNET;
+							break;
+					}
+					enable &= ~mask;
+				}
+
 				// transaction
 				final FragmentTransaction transaction = manager.beginTransaction();
 
 				// verbnet
-				boolean enable = Settings.getVerbNetPref(context);
-				if (enable)
+				if ((enable & Settings.ENABLE_VERBNET) != 0)
 				{
 					// final View labelView = findViewById(R.id.label_verbnet);
 					// labelView.setVisibility(View.VISIBLE);
-					final Fragment verbnetFragment = new VnClassFragment();
+					final Fragment verbnetFragment = new VerbNetFragment();
 					verbnetFragment.setArguments(args);
 					transaction.replace(R.id.container_verbnet, verbnetFragment, "verbnet");
 				}
@@ -57,6 +79,42 @@ public class Browse2Fragment extends BaseBrowse2Fragment
 					if (verbnetFragment != null)
 					{
 						transaction.remove(verbnetFragment);
+					}
+				}
+
+				// propbank
+				if ((enable & Settings.ENABLE_PROPBANK) != 0)
+				{
+					// final View labelView = findViewById(R.id.label_propbank);
+					// labelView.setVisibility(View.VISIBLE);
+					final Fragment propbankFragment = new PropBankFragment();
+					propbankFragment.setArguments(args);
+					transaction.replace(R.id.container_propbank, propbankFragment, "propbank");
+				}
+				else
+				{
+					final Fragment propbankFragment = manager.findFragmentByTag("propbank");
+					if (propbankFragment != null)
+					{
+						transaction.remove(propbankFragment);
+					}
+				}
+
+				// wordnet
+				if ((enable & Settings.ENABLE_WORDNET) != 0)
+				{
+					// final View labelView = findViewById(R.id.label_wordnet);
+					// labelView.setVisibility(View.VISIBLE);
+					final SenseFragment senseFragment = new SenseFragment();
+					senseFragment.setArguments(args);
+					transaction.replace(R.id.container_wordnet, senseFragment, "wordnet");
+				}
+				else
+				{
+					final Fragment senseFragment = manager.findFragmentByTag("wordnet");
+					if (senseFragment != null)
+					{
+						transaction.remove(senseFragment);
 					}
 				}
 

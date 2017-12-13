@@ -63,12 +63,12 @@ public class XSelectorsFragment extends ExpandableListFragment
 	/**
 	 * VerbNet group position
 	 */
-	static private final int GROUP_VERBNET = 0;
+	static public final int GROUP_VERBNET = 0;
 
 	/**
 	 * PropBank group position
 	 */
-	static private final int GROUP_PROPBANK = 1;
+	static public final int GROUP_PROPBANK = 1;
 
 	/**
 	 * Activate on click flag

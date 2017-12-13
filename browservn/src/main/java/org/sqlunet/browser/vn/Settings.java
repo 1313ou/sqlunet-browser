@@ -126,6 +126,31 @@ public class Settings extends org.sqlunet.settings.Settings
 	// P R E F E R E N C E S H O R T C U T S
 
 	/**
+	 * Get preferred enable aggregated flag
+	 *
+	 * @param context context
+	 * @return preferred enable WordNet flag
+	 */
+	static public int getAllPref(final Context context)
+	{
+		final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
+		int result = 0;
+		if (sharedPref.getBoolean(Settings.PREF_ENABLE_WORDNET, true))
+		{
+			result |= ENABLE_WORDNET;
+		}
+		if (sharedPref.getBoolean(Settings.PREF_ENABLE_VERBNET, true))
+		{
+			result |= ENABLE_VERBNET;
+		}
+		if (sharedPref.getBoolean(Settings.PREF_ENABLE_PROPBANK, true))
+		{
+			result |= ENABLE_PROPBANK;
+		}
+		return result;
+	}
+
+	/**
 	 * Get preferred enable VerbNet flag
 	 *
 	 * @param context context
