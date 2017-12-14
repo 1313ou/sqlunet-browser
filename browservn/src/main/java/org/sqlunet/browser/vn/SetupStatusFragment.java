@@ -153,13 +153,18 @@ public class SetupStatusFragment extends org.sqlunet.browser.config.SetupStatusF
 			final Drawable failDrawable = ColorUtils.getDrawable(activity, org.sqlunet.browser.common.R.drawable.ic_fail);
 
 			final boolean existsTsVn = (status & Status.EXISTS_TS_VN) != 0;
+			final boolean existsTsPb = (status & Status.EXISTS_TS_PB) != 0;
 			this.imageTextSearchVn.setImageDrawable(existsTsVn ? okDrawable : failDrawable);
 			this.buttonTextSearchVn.setVisibility(existsTsVn ? View.GONE : View.VISIBLE);
+			this.imageTextSearchPb.setImageDrawable(existsTsPb ? okDrawable : failDrawable);
+			this.buttonTextSearchPb.setVisibility(existsTsPb ? View.GONE : View.VISIBLE);
 		}
 		else
 		{
 			this.buttonTextSearchVn.setVisibility(View.GONE);
 			this.imageTextSearchVn.setImageResource(R.drawable.ic_unknown);
+			this.buttonTextSearchPb.setVisibility(View.GONE);
+			this.imageTextSearchPb.setImageResource(R.drawable.ic_unknown);
 		}
 	}
 }

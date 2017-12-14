@@ -21,6 +21,9 @@ Touch-dragging word nodes allows the user to interact with the display and to br
 	<string name="title_semantikos_wn">Semantikos WordNet</string>
 	<string name="text_semantikos_wn">Semantikos WordNet explores senses and semantic roles of English. Linguistic data from WordNet, BNC statistical data. Textual search on samples, definitions.</string>
 
+	<string name="title_semantikos_vn">Semantikos VerbNet</string>
+	<string name="text_semantikos_vn">Semantikos VerbNet explores senses and semantic roles of English. Linguistic data from VerbNet, PropBank and WordNet. Textual search on samples, definitions.</string>
+
 	<string name="title_semantikos_fn">Semantikos FrameNet</string>
 	<string name="text_semantikos_fn">Semantikos FrameNet explores senses and semantic roles of English. Linguistic data from FrameNet. Textual search on sample sentences.</string>
 

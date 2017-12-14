@@ -10,8 +10,10 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 
 import org.sqlunet.browser.vn.R;
+import org.sqlunet.browser.vn.Settings;
 import org.sqlunet.propbank.provider.PropBankContract;
 import org.sqlunet.propbank.provider.PropBankProvider;
 import org.sqlunet.provider.ProviderArgs;
@@ -66,9 +68,7 @@ public class SearchTextFragment extends BaseSearchFragment
 	protected void setupSpinner(final Context context)
 	{
 		super.setupSpinner(context);
-		this.spinner.setVisibility(View.GONE);
 
-		/*
 		// spinner listener
 		this.spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener()
 		{
@@ -88,7 +88,6 @@ public class SearchTextFragment extends BaseSearchFragment
 		// spinner position
 		final int position = Settings.getSearchModePref(context);
 		this.spinner.setSelection(position);
-		*/
 	}
 
 	// S E A R C H
