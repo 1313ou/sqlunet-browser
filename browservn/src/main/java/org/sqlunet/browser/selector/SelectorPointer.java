@@ -17,7 +17,7 @@ public class SelectorPointer extends SensePointer
 	 * @param synsetId synset id
 	 * @param wordId   word id
 	 */
-	public SelectorPointer(final long synsetId, final long wordId)
+	protected SelectorPointer(final long synsetId, final long wordId)
 	{
 		super(synsetId, wordId);
 	}

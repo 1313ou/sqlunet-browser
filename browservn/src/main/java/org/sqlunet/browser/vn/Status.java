@@ -19,8 +19,6 @@ class Status extends org.sqlunet.browser.config.Status
 
 	// _status flags
 
-	static public final int EXISTS_TS_WN = 0x100;
-
 	static public final int EXISTS_TS_VN = 0x1000;
 
 	static public final int EXISTS_TS_PB = 0x2000;
@@ -53,13 +51,11 @@ class Status extends org.sqlunet.browser.config.Status
 			final String[] requiredIndexes = res.getStringArray(R.array.required_indexes);
 			final String[] requiredTextsVn = res.getStringArray(R.array.required_texts_vn);
 			final String[] requiredTextsPb = res.getStringArray(R.array.required_texts_pb);
-			final String[] requiredTextsWn = res.getStringArray(R.array.required_texts_wn);
 
 			boolean existsTables = contains(existingTablesAndIndexes, requiredTables);
 			boolean existsIdx = contains(existingTablesAndIndexes, requiredIndexes);
 			boolean existsTsVn = contains(existingTablesAndIndexes, requiredTextsVn);
 			boolean existsTsPb = contains(existingTablesAndIndexes, requiredTextsPb);
-			boolean existsTsWn = contains(existingTablesAndIndexes, requiredTextsWn);
 
 			if (existsTables)
 			{
@@ -76,10 +72,6 @@ class Status extends org.sqlunet.browser.config.Status
 			if (existsTsPb)
 			{
 				status |= EXISTS_TS_PB;
-			}
-			if (existsTsWn)
-			{
-				status |= EXISTS_TS_WN;
 			}
 			return status;
 		}
@@ -109,10 +101,6 @@ class Status extends org.sqlunet.browser.config.Status
 		if ((status & EXISTS_TS_PB) != 0)
 		{
 			sb.append(" tspb");
-		}
-		if ((status & EXISTS_TS_WN) != 0)
-		{
-			sb.append(" tswn");
 		}
 		return sb;
 	}

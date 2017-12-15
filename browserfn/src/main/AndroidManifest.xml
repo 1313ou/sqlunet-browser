@@ -111,7 +111,7 @@
 		<activity
 			android:name="org.sqlunet.browser.Browse2Activity"
 			android:label="@string/title_activity_browse2"
-			android:parentActivityName="org.sqlunet.browser.selector.Browse1Activity"
+			android:parentActivityName="org.sqlunet.browser.MainActivity"
 			tools:ignore="UnusedAttribute">
 			<meta-data
 				android:name="android.support.PARENT_ACTIVITY"

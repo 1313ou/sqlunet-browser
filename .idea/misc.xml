@@ -55,7 +55,21 @@
       <entry_point TYPE="field" FQNAME="org.sqlunet.Word CREATOR" />
       <entry_point TYPE="field" FQNAME="org.sqlunet.wordnet.WordPointer CREATOR" />
       <entry_point TYPE="field" FQNAME="org.sqlunet.browser.xselector.XSelectorPointer CREATOR" />
+      <entry_point TYPE="field" FQNAME="org.sqlunet.provider.XSqlUNetContract.Words_PbWords_VnWords SOURCES" />
+      <entry_point TYPE="field" FQNAME="org.sqlunet.provider.XSqlUNetContract.Words_PbWords_VnWords TAGCOUNT" />
+      <entry_point TYPE="field" FQNAME="org.sqlunet.provider.XSqlUNetContract.Words_PbWords_VnWords CASED" />
+      <entry_point TYPE="field" FQNAME="org.sqlunet.provider.XSqlUNetContract.Words_PbWords_VnWords DEFINITION" />
+      <entry_point TYPE="field" FQNAME="org.sqlunet.provider.XSqlUNetContract.Words_PbWords_VnWords LEXDOMAIN" />
+      <entry_point TYPE="field" FQNAME="org.sqlunet.provider.XSqlUNetContract.Words_PbWords_VnWords POSNAME" />
+      <entry_point TYPE="field" FQNAME="org.sqlunet.provider.XSqlUNetContract.Words_PbWords_VnWords SENSEKEY" />
+      <entry_point TYPE="field" FQNAME="org.sqlunet.provider.XSqlUNetContract.Words_PbWords_VnWords SENSEID" />
+      <entry_point TYPE="field" FQNAME="org.sqlunet.provider.XSqlUNetContract.Words_PbWords_VnWords LEXID" />
     </entry_points>
+    <pattern value="org.sqlunet.browser.vn.Settings" method="getPropBankPref" />
+    <pattern value="org.sqlunet.browser.vn.Settings" method="getWordNetPref" />
+    <pattern value="org.sqlunet.browser.vn.Settings.Selector" method="setPref" />
+    <pattern value="org.sqlunet.browser.xselector.XSelectorPointer" />
+    <pattern value="org.sqlunet.provider.XSqlUNetContract.Words_PbWords_VnWords" />
   </component>
   <component name="NullableNotNullManager">
     <option name="myDefaultNullable" value="android.support.annotation.Nullable" />

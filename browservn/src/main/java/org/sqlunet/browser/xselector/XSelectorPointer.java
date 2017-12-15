@@ -55,6 +55,7 @@ public class XSelectorPointer extends SelectorPointer implements HasXId
 	/**
 	 * Static field used to regenerate object, individually or as arrays
 	 */
+	@SuppressWarnings("unused")
 	static public final Parcelable.Creator<XSelectorPointer> CREATOR = new Parcelable.Creator<XSelectorPointer>()
 	{
 		@Override
@@ -254,22 +255,5 @@ public class XSelectorPointer extends SelectorPointer implements HasXId
 			mask |= PROPBANKSOURCE;
 		}
 		return mask;
-	}
-
-
-	/**
-	 * Determine whether WordNet is only source
-	 *
-	 * @return whether to expand
-	 */
-	public boolean wordNetOnly()
-	{
-		boolean result = true;
-		long mask = this.getXMask();
-		if ((mask & ~XSelectorPointer.WORDNETSOURCE) != 0)
-		{
-			result = false;
-		}
-		return result;
 	}
 }

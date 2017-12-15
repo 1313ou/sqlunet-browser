@@ -19,14 +19,12 @@ import android.widget.AbsListView;
 import android.widget.CursorTreeAdapter;
 import android.widget.ExpandableListAdapter;
 import android.widget.ExpandableListView;
-import android.widget.ImageView;
 import android.widget.SimpleCursorTreeAdapter;
 
 import org.sqlunet.browser.Module;
 import org.sqlunet.browser.vn.R;
 import org.sqlunet.browser.xselector.XLoader.PbLoaderCallbacks;
 import org.sqlunet.browser.xselector.XLoader.VnLoaderCallbacks;
-import org.sqlunet.browser.xselector.XLoader.WnLoaderCallbacks;
 import org.sqlunet.provider.ProviderArgs;
 import org.sqlunet.provider.XSqlUNetContract;
 import org.sqlunet.provider.XSqlUNetContract.Words_PbWords_VnWords;
@@ -158,7 +156,6 @@ public class XSelectorsFragment extends ExpandableListFragment
 	public XSelectorsFragment()
 	{
 		this.xnCursor = new MatrixCursor(new String[]{"_id", NAMECOLUMN, LOADERCOLUMN, ICONCOLUMN});
-		//this.xnCursor.addRow(new Object[]{GROUP_WORDNET, "wordnet", 1111, Integer.toString(R.drawable.wordnet)});
 		this.xnCursor.addRow(new Object[]{GROUP_VERBNET, "verbnet", 2222, Integer.toString(R.drawable.verbnet)});
 		this.xnCursor.addRow(new Object[]{GROUP_PROPBANK, "propbank", 3333, Integer.toString(R.drawable.propbank)});
 		this.groupPosition = GROUP_VERBNET;
@@ -350,12 +347,6 @@ public class XSelectorsFragment extends ExpandableListFragment
 			{
 				return true;
 			}
-
-			@Override
-			protected void setViewImage(ImageView v, String value)
-			{
-				super.setViewImage(v, value);
-			}
 		};
 		setListAdapter(adapter);
 
@@ -365,41 +356,6 @@ public class XSelectorsFragment extends ExpandableListFragment
 	}
 
 	// L O A D E R  C A L L B A C K S
-
-	/**
-	 * Get WordNet callbacks
-	 *
-	 * @param wordId        word id
-	 * @param groupPosition position in group
-	 * @return WordNet callbacks
-	 */
-	private LoaderCallbacks<Cursor> getWnCallbacks(final long wordId, final int groupPosition)
-	{
-		return new WnLoaderCallbacks(getActivity(), wordId)
-		{
-			@Override
-			public void onLoadFinished(final Loader<Cursor> loader, final Cursor cursor)
-			{
-				if (cursor != null)
-				{
-					// XLoader.dump(cursor);
-
-					// pass on to list adapter
-					((CursorTreeAdapter) getListAdapter()).setChildrenCursor(groupPosition, cursor);
-				}
-				else
-				{
-					Log.i(TAG, "WN none");
-				}
-			}
-
-			@Override
-			public void onLoaderReset(final Loader<Cursor> loader)
-			{
-				((CursorTreeAdapter) getListAdapter()).setChildrenCursor(groupPosition, null);
-			}
-		};
-	}
 
 	/**
 	 * Get VerbNet callbacks

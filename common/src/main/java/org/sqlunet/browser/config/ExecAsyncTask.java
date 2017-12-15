@@ -231,7 +231,7 @@ public class ExecAsyncTask
 
 			// wake lock
 			assert this.powerManager != null;
-			final PowerManager.WakeLock wakelock = this.powerManager.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, "DownloaderService");
+			final PowerManager.WakeLock wakelock = this.powerManager.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, "Executor");
 			wakelock.acquire(20*60*1000L /*20 minutes*/);
 
 			SQLiteDatabase db = null;

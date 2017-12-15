@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-	<integer name="size_sqlunet_db">53014528</integer> <!-- sqlunet-vn.db -->
-	<integer name="size_sqlunet_db_zip">23884874</integer> <!-- sqlunet-vn.db.zip -->
-	<integer name="size_sqlunet_sql_zip">12999656</integer> <!-- sqlunet-vn.sql.zip -->
+	<integer name="size_sqlunet_db">75468800</integer> <!-- sqlunet-vn.db -->
+	<integer name="size_sqlunet_db_zip">32243849</integer> <!-- sqlunet-vn.db.zip -->
+	<integer name="size_sqlunet_sql_zip">15337919</integer> <!-- sqlunet-vn.sql.zip -->
 
 	<integer name="size_searchtext_vn">339968</integer>
 	<integer name="size_searchtext_pb">6291456</integer>
 	<integer name="size_searchtext">6631424</integer>
 
-	<integer name="size_db_working_total">59645952</integer>
+	<integer name="size_db_working_total">82100224</integer>
 
 </resources>
