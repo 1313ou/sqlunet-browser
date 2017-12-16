@@ -113,10 +113,6 @@ public class SimpleDownloadServiceFragment extends BaseDownloadFragment
 
 						// fire ondone
 						onDone(SimpleDownloadServiceFragment.success);
-
-						// receiver
-						Log.d(TAG, "Unregister main receiver");
-						LocalBroadcastManager.getInstance(context).unregisterReceiver(SimpleDownloadServiceFragment.this.mainBroadcastReceiver);
 					}
 					break;
 			}
@@ -146,13 +142,32 @@ public class SimpleDownloadServiceFragment extends BaseDownloadFragment
 	public void onCreate(final Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
+
+		// main receiver
+		Log.d(TAG, "Register main receiver");
+		final Context context = getActivity();
+		assert context != null;
+		LocalBroadcastManager.getInstance(context).registerReceiver(this.mainBroadcastReceiver, new IntentFilter(SimpleDownloaderService.MAIN_INTENT_FILTER));
+
 		initChannels();
+	}
+
+	@Override
+	public void onDestroy()
+	{
+		super.onDestroy();
+
+		// main receiver
+		Log.d(TAG, "Unregister main receiver");
+		LocalBroadcastManager.getInstance(context).unregisterReceiver(SimpleDownloadServiceFragment.this.mainBroadcastReceiver);
 	}
 
 	@Override
 	public void onResume()
 	{
 		super.onResume();
+
+		// update receiver
 		Log.d(TAG, "Register update receiver");
 		final Context context = getActivity();
 		assert context != null;
@@ -163,6 +178,8 @@ public class SimpleDownloadServiceFragment extends BaseDownloadFragment
 	public void onPause()
 	{
 		super.onPause();
+
+		// update receiver
 		Log.d(TAG, "Unregister update receiver");
 		final Context context = getActivity();
 		assert context != null;
@@ -180,11 +197,6 @@ public class SimpleDownloadServiceFragment extends BaseDownloadFragment
 			Log.d(TAG, "START");
 			if (!SimpleDownloadServiceFragment.downloading)
 			{
-				Log.d(TAG, "Register main receiver");
-				final Context context = getActivity();
-				assert context != null;
-				LocalBroadcastManager.getInstance(context).registerReceiver(this.mainBroadcastReceiver, new IntentFilter(SimpleDownloaderService.MAIN_INTENT_FILTER));
-
 				// reset
 				SimpleDownloadServiceFragment.success = null;
 				SimpleDownloadServiceFragment.exception = null;
@@ -368,6 +380,7 @@ public class SimpleDownloadServiceFragment extends BaseDownloadFragment
 				final int percent = (int) (downloaded * 100);
 				contentText += ' ' + this.context.getString(R.string.status_download_running);
 				contentText += ' ' + Integer.toString(percent) + '%';
+				ensureBuilder();
 				this.builder.setContentText(contentText);
 				break;
 
@@ -380,9 +393,9 @@ public class SimpleDownloadServiceFragment extends BaseDownloadFragment
 				break;
 		}
 
-
 		// notification
-		final Notification notification = builder.build();
+		ensureBuilder();
+		final Notification notification = this.builder.build();
 
 		// gets an instance of the NotificationManager service
 		final NotificationManager manager = (NotificationManager) this.context.getSystemService(Context.NOTIFICATION_SERVICE);
@@ -390,6 +403,15 @@ public class SimpleDownloadServiceFragment extends BaseDownloadFragment
 
 		// issue notification
 		manager.notify(id, notification);
+	}
+
+	private void ensureBuilder()
+	{
+		if (this.builder == null)
+		{
+			this.builder = new NotificationCompat.Builder(this.context, CHANNEL_ID);
+			this.builder.setSmallIcon(android.R.drawable.stat_sys_download);
+		}
 	}
 
 	private void initChannels()

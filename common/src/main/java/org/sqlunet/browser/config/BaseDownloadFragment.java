@@ -211,6 +211,11 @@ abstract class BaseDownloadFragment extends Fragment implements View.OnClickList
 	private int status;
 
 	/**
+	 * Whether one download is in progress
+	 */
+	static private boolean isDownloading = false;
+
+	/**
 	 * Cached context for threads that terminate after activity finishes
 	 */
 	@SuppressWarnings("WeakerAccess")
@@ -220,7 +225,7 @@ abstract class BaseDownloadFragment extends Fragment implements View.OnClickList
 	public void onCreate(final Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
-		// Log.d(TAG, "onCreate " + savedInstanceState);
+		Log.d(TAG, "onCreate " + savedInstanceState + " " + this);
 
 		// context for threads that terminate after activity finishes
 		final Activity activity = getActivity();
@@ -254,7 +259,7 @@ abstract class BaseDownloadFragment extends Fragment implements View.OnClickList
 	@Override
 	public View onCreateView(@NonNull final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState)
 	{
-		Log.d(TAG, "onCreateView " + savedInstanceState);
+		Log.d(TAG, "onCreateView " + savedInstanceState + " " + this);
 
 		// view
 		final View view = inflater.inflate(R.layout.fragment_download, container, false);
@@ -322,6 +327,11 @@ abstract class BaseDownloadFragment extends Fragment implements View.OnClickList
 			//noinspection WrongConstant
 			this.md5Button.setVisibility(savedInstanceState.getInt(MD5_BTN_STATE, View.INVISIBLE));
 		}
+		else
+		{
+			this.initialState();
+		}
+
 		return view;
 	}
 
@@ -348,49 +358,64 @@ abstract class BaseDownloadFragment extends Fragment implements View.OnClickList
 		this.listener = listener;
 	}
 
+	static private Object lock = new Object();
+
 	@Override
 	public void onClick(final View view)
 	{
 		final int id = view.getId();
 		if (id == R.id.downloadButton)
 		{
-			this.downloadButton.setEnabled(false);
-			this.downloadButton.setVisibility(View.INVISIBLE);
-			this.progressBar.setVisibility(View.VISIBLE);
-			this.progressStatus.setVisibility(View.VISIBLE);
-			this.cancelButton.setVisibility(View.VISIBLE);
-			this.statusView.setText("");
-
-			try
+			boolean download = false;
+			synchronized (lock)
 			{
-				// start downloading
-				start();
-
-				// start progress
-				startObserver();
+				download = !BaseDownloadFragment.isDownloading;
+				if (download)
+				{
+					BaseDownloadFragment.isDownloading = true;
+				}
 			}
-			catch (Exception e)
+			if (download)
 			{
-				Log.e(TAG, "While starting", e);
-				warn(e.getMessage());
-				this.status = getStatus(null);
-				onDone(false);
+				this.downloadButton.setEnabled(false);
+				this.downloadButton.setVisibility(View.INVISIBLE);
+				this.progressBar.setVisibility(View.VISIBLE);
+				this.progressStatus.setVisibility(View.VISIBLE);
+				this.cancelButton.setVisibility(View.VISIBLE);
+				this.statusView.setText("");
+
+				try
+				{
+					// start downloading
+					start();
+
+					// start progress
+					startObserver();
+				}
+				catch (Exception e)
+				{
+					Log.e(TAG, "While starting", e);
+					warn(e.getMessage());
+					this.status = getStatus(null);
+					onDone(false);
+				}
 			}
 		}
 	}
 
-// --Commented out by Inspection START (8/20/17 9:13 AM):
-//	/**
-//	 * Initial state
-//	 */
-//	private void initialState()
-//	{
-//		this.downloadButton.setVisibility(View.VISIBLE);
-//		this.progressBar.setVisibility(View.INVISIBLE);
-//		this.progressStatus.setVisibility(View.INVISIBLE);
-//		this.cancelButton.setVisibility(View.GONE);
-//	}
-// --Commented out by Inspection STOP (8/20/17 9:13 AM)
+	/**
+	 * Initial state
+	 */
+	private void initialState()
+	{
+		if (!BaseDownloadFragment.isDownloading)
+		{
+			this.downloadButton.setVisibility(View.VISIBLE);
+			this.progressBar.setVisibility(View.INVISIBLE);
+			this.progressStatus.setVisibility(View.INVISIBLE);
+			this.cancelButton.setVisibility(View.GONE);
+		}
+	}
 
 	/**
 	 * Start download
@@ -616,9 +641,23 @@ abstract class BaseDownloadFragment extends Fragment implements View.OnClickList
 	 * @param success whether download was successful
 	 */
 	@SuppressWarnings("WeakerAccess")
-	protected void onDone(boolean success)
+	protected void onDone(final boolean success)
 	{
-		Log.d(TAG, "OnDone " + success);
+		Log.d(TAG, "OnDone " + success + " " + this);
+
+		BaseDownloadFragment.isDownloading = false;
+
+		// register if this is the database
+		if (success && destFile.equals(new File(StorageSettings.getDatabasePath(this.context))))
+		{
+			FileData.recordDb(this.context);
+		}
+
+		// observer
+		stopObserver();
+
+		// UI
+		Log.d(TAG, "Update UI " + success);
 
 		// progress
 		if (BaseDownloadFragment.this.progressBar != null)
@@ -631,19 +670,19 @@ abstract class BaseDownloadFragment extends Fragment implements View.OnClickList
 		}
 		if (BaseDownloadFragment.this.statusView != null)
 		{
-			final String status = makeStatusString(this.status);
+			final String status = makeStatusString(BaseDownloadFragment.this.status);
 			final String reason = getReason();
 			final String message = status + (reason == null ? "" : '\n' + reason);
 
-			BaseDownloadFragment.this.statusView.setText(success ? this.context.getString(R.string.status_download_successful) : message);
+			BaseDownloadFragment.this.statusView.setText(success ? BaseDownloadFragment.this.context.getString(R.string.status_download_successful) : message);
 			BaseDownloadFragment.this.statusView.setVisibility(View.VISIBLE);
 		}
 
 		// buttons
 		if (BaseDownloadFragment.this.downloadButton != null)
 		{
-			this.downloadButtonRes = success ? R.drawable.bg_button_ok : R.drawable.bg_button_err;
-			BaseDownloadFragment.this.downloadButton.setBackgroundResource(this.downloadButtonRes);
+			BaseDownloadFragment.this.downloadButtonRes = success ? R.drawable.bg_button_ok : R.drawable.bg_button_err;
+			BaseDownloadFragment.this.downloadButton.setBackgroundResource(BaseDownloadFragment.this.downloadButtonRes);
 			BaseDownloadFragment.this.downloadButton.setEnabled(false);
 			BaseDownloadFragment.this.downloadButton.setVisibility(View.VISIBLE);
 		}
@@ -654,12 +693,6 @@ abstract class BaseDownloadFragment extends Fragment implements View.OnClickList
 		if (BaseDownloadFragment.this.md5Button != null)
 		{
 			BaseDownloadFragment.this.md5Button.setVisibility(success ? View.VISIBLE : View.GONE);
-		}
-
-		// register if this is the database
-		if (success && destFile.equals(new File(StorageSettings.getDatabasePath(this.context))))
-		{
-			FileData.recordDb(this.context);
 		}
 
 		// fire done (broadcast to listener)

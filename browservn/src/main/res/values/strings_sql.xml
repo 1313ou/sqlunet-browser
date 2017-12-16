@@ -2,13 +2,12 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
 
 	<integer name="sql_statement_do_indexes_position">1</integer>
-	<integer name="sql_statement_do_ts_vn_position">3</integer>
-	<integer name="sql_statement_do_ts_pb_position">4</integer>
+	<integer name="sql_statement_do_ts_vn_position">2</integer>
+	<integer name="sql_statement_do_ts_pb_position">3</integer>
 
 	<string-array name="sql_statement_titles" tools:ignore="InconsistentArrays">
 		<item>[SELECT OPERATION]</item>
 		<item>Create all indexes</item>
-		<item>Prepare WordNet text search</item>
 		<item>Prepare VerbNet text search</item>
 		<item>Prepare PropBank text search</item>
 		<item>Create WordNet indexes</item>
@@ -17,7 +16,6 @@
 		<item>Drop VerbNet indexes</item>
 		<item>Create PropBank indexes</item>
 		<item>Drop PropBank indexes</item>
-		<item>Drop WordNet text search</item>
 		<item>Drop VerbNet text search</item>
 		<item>Drop PropBank text search</item>
 	</string-array>
@@ -39,13 +37,6 @@
 			CREATE INDEX IF NOT EXISTS index_pbexamples_rolesetid ON pbexamples(rolesetid);
 			CREATE INDEX IF NOT EXISTS index_pbrels_exampleid ON pbrels(exampleid);
 			CREATE INDEX IF NOT EXISTS index_pbargs_exampleid ON pbargs(exampleid);</item>
-		<item>
-			CREATE VIRTUAL TABLE IF NOT EXISTS words_lemma_fts4 USING fts4(wordid INTEGER not null, lemma);
-			INSERT INTO words_lemma_fts4 SELECT wordid, lemma from words;
-			CREATE VIRTUAL TABLE IF NOT EXISTS synsets_definition_fts4 USING fts4(synsetid INTEGER not null, definition);
-			INSERT INTO synsets_definition_fts4 SELECT synsetid, definition from synsets;
-			CREATE VIRTUAL TABLE IF NOT EXISTS samples_sample_fts4 USING fts4(synsetid INTEGER not null, sample);
-			INSERT INTO samples_sample_fts4 SELECT synsetid, sample from samples;</item>
 		<item>
 			CREATE VIRTUAL TABLE IF NOT EXISTS vnexamples_example_fts4 USING fts4(exampleid INTEGER not null, frameid INTEGER, classid INTEGER, example);
 			INSERT INTO vnexamples_example_fts4 SELECT exampleid, frameid, classid, example FROM vnexamples INNER JOIN vnexamplemaps USING (exampleid) INNER JOIN vnframes USING (frameid) INNER JOIN vnframemaps USING (frameid) INNER JOIN vnclasses USING (classid);</item>
@@ -89,10 +80,6 @@
 			DROP INDEX IF EXISTS index_pbexamples_rolesetid;
 			DROP INDEX IF EXISTS index_pbrels_exampleid;
 			DROP INDEX IF EXISTS index_pbargs_exampleid;</item>
-		<item>
-			DROP TABLE IF EXISTS words_lemma_fts4;
-			DROP TABLE IF EXISTS synsets_definition_fts4;
-			DROP TABLE IF EXISTS samples_sample_fts4;</item>
 		<item>
 			DROP TABLE IF EXISTS vnexamples_example_fts4;</item>
 		<item>

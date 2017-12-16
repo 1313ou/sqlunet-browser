@@ -33,7 +33,7 @@
 				android:contentDescription="@string/action_download"
 				android:src="@drawable/bn_download"
 				android:text="@string/action_download"
-				android:visibility="visible"/>
+				android:visibility="invisible"/>
 
 			<ProgressBar
 				android:id="@+id/progressBar"
