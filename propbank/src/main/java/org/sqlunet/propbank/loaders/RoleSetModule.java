@@ -1,5 +1,7 @@
 package org.sqlunet.propbank.loaders;
 
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.os.Parcelable;
 
@@ -18,6 +20,7 @@ public class RoleSetModule extends BaseModule
 	/**
 	 * Role set id
 	 */
+	@Nullable
 	private Long roleSetId;
 
 	/**
@@ -25,7 +28,7 @@ public class RoleSetModule extends BaseModule
 	 *
 	 * @param fragment fragment
 	 */
-	public RoleSetModule(final Fragment fragment)
+	public RoleSetModule(@NonNull final Fragment fragment)
 	{
 		super(fragment);
 	}
@@ -50,7 +53,7 @@ public class RoleSetModule extends BaseModule
 	}
 
 	@Override
-	public void process(final TreeNode node)
+	public void process(@NonNull final TreeNode node)
 	{
 		if (this.roleSetId != null)
 		{

@@ -11,6 +11,8 @@ import android.content.IntentFilter;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
@@ -52,11 +54,13 @@ public class SimpleDownloadServiceFragment extends BaseDownloadFragment
 	/**
 	 * Result
 	 */
+	@Nullable
 	static private Boolean success;
 
 	/**
 	 * Exception
 	 */
+	@Nullable
 	static private String exception;
 
 	/**
@@ -80,7 +84,7 @@ public class SimpleDownloadServiceFragment extends BaseDownloadFragment
 	private final BroadcastReceiver mainBroadcastReceiver = new BroadcastReceiver()
 	{
 		@Override
-		public void onReceive(final Context context, final Intent intent)
+		public void onReceive(final Context context, @NonNull final Intent intent)
 		{
 			switch (intent.getStringExtra(SimpleDownloaderService.EVENT))
 			{
@@ -125,7 +129,7 @@ public class SimpleDownloadServiceFragment extends BaseDownloadFragment
 	private final BroadcastReceiver updateBroadcastReceiver = new BroadcastReceiver()
 	{
 		@Override
-		public void onReceive(final Context context, final Intent intent)
+		public void onReceive(final Context context, @NonNull final Intent intent)
 		{
 			switch (intent.getStringExtra(SimpleDownloaderService.EVENT))
 			{
@@ -213,7 +217,9 @@ public class SimpleDownloadServiceFragment extends BaseDownloadFragment
 				intent.putExtra(SimpleDownloaderService.ARG_FROMURL, from);
 				intent.putExtra(SimpleDownloaderService.ARG_TOFILE, to);
 				intent.putExtra(SimpleDownloaderService.ARG_CODE, ++SimpleDownloadServiceFragment.downloadId);
-				getActivity().startService(intent);
+				final Context context = getActivity();
+				assert context != null;
+				context.startService(intent);
 
 				// status
 				SimpleDownloadServiceFragment.downloading = true;
@@ -246,7 +252,7 @@ public class SimpleDownloadServiceFragment extends BaseDownloadFragment
 	 *
 	 * @param context context
 	 */
-	private static void kill(final Context context)
+	private static void kill(@NonNull final Context context)
 	{
 		Log.d(TAG, "Kill service");
 		SimpleDownloadServiceFragment.downloading = false;
@@ -260,7 +266,7 @@ public class SimpleDownloadServiceFragment extends BaseDownloadFragment
 	 * Download status
 	 */
 	@Override
-	synchronized protected int getStatus(final Progress progress)
+	synchronized protected int getStatus(@Nullable final Progress progress)
 	{
 		Status status;
 		if (SimpleDownloadServiceFragment.downloading)
@@ -290,6 +296,7 @@ public class SimpleDownloadServiceFragment extends BaseDownloadFragment
 	/**
 	 * Download reason
 	 */
+	@Nullable
 	@Override
 	protected String getReason()
 	{
@@ -315,7 +322,7 @@ public class SimpleDownloadServiceFragment extends BaseDownloadFragment
 		}
 
 		@Override
-		public void onReceive(Context context, Intent intent)
+		public void onReceive(@NonNull Context context, @NonNull Intent intent)
 		{
 			String action = intent.getAction();
 			System.out.println("Received kill " + action);
@@ -351,7 +358,7 @@ public class SimpleDownloadServiceFragment extends BaseDownloadFragment
 	 * @param type notification
 	 * @param args arguments
 	 */
-	private void fireNotification(int id, final NotificationType type, final Object... args)
+	private void fireNotification(int id, @NonNull final NotificationType type, final Object... args)
 	{
 		final String from = Uri.parse(this.downloadUrl).getHost();
 		final String to = this.destFile.getName();

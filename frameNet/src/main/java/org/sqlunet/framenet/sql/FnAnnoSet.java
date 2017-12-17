@@ -1,6 +1,7 @@
 package org.sqlunet.framenet.sql;
 
 import android.database.sqlite.SQLiteDatabase;
+import android.support.annotation.Nullable;
 
 /**
  * AnnoSet
@@ -38,6 +39,7 @@ public class FnAnnoSet
 	 * @param annoSetId  annoSet id
 	 * @return annoSet
 	 */
+	@Nullable
 	static public FnAnnoSet make(final SQLiteDatabase connection, final long annoSetId)
 	{
 		FnAnnoSet result = null;

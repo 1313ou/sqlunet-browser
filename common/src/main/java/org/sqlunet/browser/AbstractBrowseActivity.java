@@ -3,6 +3,8 @@ package org.sqlunet.browser;
 import android.app.SearchManager;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -24,7 +26,7 @@ public abstract class AbstractBrowseActivity<F extends BaseSearchFragment> exten
 	private F fragment;
 
 	@Override
-	protected void onCreate(final Bundle savedInstanceState)
+	protected void onCreate(@Nullable final Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
 
@@ -61,7 +63,7 @@ public abstract class AbstractBrowseActivity<F extends BaseSearchFragment> exten
 	}
 
 	@Override
-	protected void onNewIntent(final Intent intent)
+	protected void onNewIntent(@NonNull final Intent intent)
 	{
 		handleSearchIntent(intent);
 	}
@@ -77,7 +79,7 @@ public abstract class AbstractBrowseActivity<F extends BaseSearchFragment> exten
 	}
 
 	@Override
-	public boolean onOptionsItemSelected(final MenuItem item)
+	public boolean onOptionsItemSelected(@NonNull final MenuItem item)
 	{
 		return MenuHandler.menuDispatch(this, item);
 	}
@@ -89,7 +91,7 @@ public abstract class AbstractBrowseActivity<F extends BaseSearchFragment> exten
 	 *
 	 * @param intent intent
 	 */
-	private void handleSearchIntent(final Intent intent)
+	private void handleSearchIntent(@NonNull final Intent intent)
 	{
 		final String action = intent.getAction();
 		if (Intent.ACTION_VIEW.equals(action) || Intent.ACTION_SEARCH.equals(action))

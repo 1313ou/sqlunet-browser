@@ -16,6 +16,7 @@
 
 package android.support.test.espresso.contrib;
 
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.test.espresso.Espresso;
 import android.support.test.espresso.IdlingResource;
@@ -59,7 +60,7 @@ public final class DrawerActions
 		}
 
 		@Override
-		public final void perform(UiController uiController, View view)
+		public final void perform(@NonNull UiController uiController, View view)
 		{
 			DrawerLayout drawer = (DrawerLayout) view;
 
@@ -89,6 +90,7 @@ public final class DrawerActions
 			idlingListener.parentListener = null;
 		}
 
+		@NonNull
 		protected abstract Matcher<View> checkAction();
 
 		protected abstract void performAction(UiController uiController, DrawerLayout view);
@@ -133,12 +135,14 @@ public final class DrawerActions
 	{
 		return new DrawerAction()
 		{
+			@NonNull
 			@Override
 			public String getDescription()
 			{
 				return "open drawer with gravity " + gravity;
 			}
 
+			@NonNull
 			@Override
 			protected Matcher<View> checkAction()
 			{
@@ -146,7 +150,7 @@ public final class DrawerActions
 			}
 
 			@Override
-			protected void performAction(UiController uiController, DrawerLayout view)
+			protected void performAction(UiController uiController, @NonNull DrawerLayout view)
 			{
 				view.openDrawer(gravity);
 			}
@@ -192,12 +196,14 @@ public final class DrawerActions
 	{
 		return new DrawerAction()
 		{
+			@NonNull
 			@Override
 			public String getDescription()
 			{
 				return "close drawer with gravity " + gravity;
 			}
 
+			@NonNull
 			@Override
 			protected Matcher<View> checkAction()
 			{
@@ -205,7 +211,7 @@ public final class DrawerActions
 			}
 
 			@Override
-			protected void performAction(UiController uiController, DrawerLayout view)
+			protected void performAction(@NonNull UiController uiController, @NonNull DrawerLayout view)
 			{
 				view.closeDrawer(gravity);
 				uiController.loopMainThreadUntilIdle();
@@ -235,7 +241,7 @@ public final class DrawerActions
 			}
 			return (DrawerListener) listenerField.get(drawer);
 		}
-		catch (IllegalArgumentException | IllegalAccessException | NoSuchFieldException | SecurityException ex)
+		catch (@NonNull IllegalArgumentException | IllegalAccessException | NoSuchFieldException | SecurityException ex)
 		{
 			// Pity we can't use Java 7 multi-catch for all of these.
 			throw new PerformException.Builder().withCause(ex).build();
@@ -319,6 +325,7 @@ public final class DrawerActions
 			}
 		}
 
+		@NonNull
 		@Override
 		public String getName()
 		{

@@ -1,6 +1,7 @@
 package org.sqlunet.propbank.sql;
 
 import android.database.sqlite.SQLiteDatabase;
+import android.support.annotation.NonNull;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -62,6 +63,7 @@ class PbRoleSet
 	 * @param word       is the word to build query from
 	 * @return list of PropBank roleSets
 	 */
+	@NonNull
 	static public List<PbRoleSet> makeFromWord(final SQLiteDatabase connection, final String word)
 	{
 		final List<PbRoleSet> result = new ArrayList<>();
@@ -98,6 +100,7 @@ class PbRoleSet
 	 * @param wordId     is the word id to build query from
 	 * @return list of PropBank roleSets
 	 */
+	@NonNull
 	static public List<PbRoleSet> makeFromWordId(final SQLiteDatabase connection, final long wordId)
 	{
 		final List<PbRoleSet> result = new ArrayList<>();
@@ -133,6 +136,7 @@ class PbRoleSet
 	 * @param roleSetId  is the role set id to build query from
 	 * @return list of PropBank role sets
 	 */
+	@NonNull
 	static public List<PbRoleSet> make(final SQLiteDatabase connection, final long roleSetId)
 	{
 		final List<PbRoleSet> result = new ArrayList<>();

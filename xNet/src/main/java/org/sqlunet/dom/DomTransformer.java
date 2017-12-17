@@ -1,5 +1,7 @@
 package org.sqlunet.dom;
 
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.util.Log;
 
 import org.w3c.dom.Document;
@@ -38,7 +40,7 @@ public class DomTransformer
 		{
 			return DomTransformer.docToString(doc, null, "xml");
 		}
-		catch (final Exception e)
+		catch (@NonNull final Exception e)
 		{
 			Log.e(TAG, "While transforming doc to XML", e);
 			return "error " + e;
@@ -71,7 +73,7 @@ public class DomTransformer
 			transformer.transform(source, result);
 			return writer.toString();
 		}
-		catch (final TransformerException e)
+		catch (@NonNull final TransformerException e)
 		{
 			throw new RuntimeException(e);
 		}
@@ -85,7 +87,7 @@ public class DomTransformer
 	 * @return XML String that represents DOM document
 	 * @throws TransformerException transformer exception
 	 */
-	static public String docToString(final Document doc, final InputStream xslStream, final String method) throws TransformerException
+	static public String docToString(final Document doc, @Nullable final InputStream xslStream, final String method) throws TransformerException
 	{
 		final Source source = new DOMSource(doc);
 

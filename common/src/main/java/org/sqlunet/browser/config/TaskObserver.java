@@ -4,6 +4,7 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.os.AsyncTask;
+import android.support.annotation.NonNull;
 import android.util.Log;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -188,6 +189,7 @@ public class TaskObserver
 	 */
 	static public class DialogListener extends BaseListener
 	{
+		@NonNull
 		private final ProgressDialog progressDialog;
 
 		private final CharSequence unit;
@@ -201,7 +203,7 @@ public class TaskObserver
 		 * @param unitId    unit id
 		 */
 		@SuppressWarnings("unused")
-		DialogListener(final Context context, final int titleId, final int messageId, final int unitId)
+		DialogListener(@NonNull final Context context, final int titleId, final int messageId, final int unitId)
 		{
 			this(context, titleId, context.getString(messageId), context.getString(unitId));
 		}
@@ -214,7 +216,7 @@ public class TaskObserver
 		 * @param message message
 		 * @param unit    unit
 		 */
-		public DialogListener(final Context context, final int titleId, final CharSequence message, final CharSequence unit)
+		public DialogListener(@NonNull final Context context, final int titleId, final CharSequence message, final CharSequence unit)
 		{
 			super(context);
 			this.progressDialog = makeDialog(context, titleId, message);
@@ -222,14 +224,14 @@ public class TaskObserver
 		}
 
 		@Override
-		public void taskStart(final AsyncTask<?, ?, ?> task)
+		public void taskStart(@NonNull final AsyncTask<?, ?, ?> task)
 		{
 			super.taskStart(task);
 			this.progressDialog.show();
 			this.progressDialog.setButton(DialogInterface.BUTTON_NEGATIVE, this.context.getString(R.string.action_abort), new DialogInterface.OnClickListener()
 			{
 				@Override
-				public void onClick(final DialogInterface dialog, final int which)
+				public void onClick(@NonNull final DialogInterface dialog, final int which)
 				{
 					if (which == DialogInterface.BUTTON_NEGATIVE)
 					{
@@ -277,7 +279,8 @@ public class TaskObserver
 		 * @param message message
 		 * @return dialog
 		 */
-		static private ProgressDialog makeDialog(final Context context, final int titleId, final CharSequence message)
+		@NonNull
+		static private ProgressDialog makeDialog(@NonNull final Context context, final int titleId, final CharSequence message)
 		{
 			final ProgressDialog progressDialog = new ProgressDialog(context);
 			progressDialog.setTitle(titleId);
@@ -289,7 +292,7 @@ public class TaskObserver
 			progressDialog.setButton(DialogInterface.BUTTON_NEGATIVE, context.getString(R.string.action_abort), new DialogInterface.OnClickListener()
 			{
 				@Override
-				public void onClick(final DialogInterface dialog, final int which)
+				public void onClick(@NonNull final DialogInterface dialog, final int which)
 				{
 					dialog.dismiss();
 				}
@@ -297,7 +300,7 @@ public class TaskObserver
 			progressDialog.setButton(DialogInterface.BUTTON_POSITIVE, context.getString(R.string.action_dismiss), new DialogInterface.OnClickListener()
 			{
 				@Override
-				public void onClick(final DialogInterface dialog, final int which)
+				public void onClick(@NonNull final DialogInterface dialog, final int which)
 				{
 					dialog.dismiss();
 				}

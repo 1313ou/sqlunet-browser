@@ -1,5 +1,7 @@
 package org.sqlunet.sql;
 
+import android.support.annotation.NonNull;
+
 import org.w3c.dom.Document;
 import org.w3c.dom.DocumentFragment;
 import org.w3c.dom.Element;
@@ -56,7 +58,7 @@ public class DocumentFragmentParser
 			factory.setValidating(false);
 			return factory.newDocumentBuilder();
 		}
-		catch (final ParserConfigurationException e)
+		catch (@NonNull final ParserConfigurationException e)
 		{
 			// do nothing
 		}
@@ -116,7 +118,7 @@ public class DocumentFragmentParser
 	 * @throws IOException  io exception
 	 */
 	@SuppressWarnings("unused")
-	public DocumentFragment parse_with_entities(final String text) throws SAXException, IOException
+	public DocumentFragment parse_with_entities(@NonNull final String text) throws SAXException, IOException
 	{
 		final InputSource input = new InputSource(new StringReader(text));
 
@@ -133,6 +135,7 @@ public class DocumentFragmentParser
 		// the real input will be delivered by this entity resolver
 		builder.setEntityResolver(new EntityResolver()
 		{
+			@NonNull
 			@Override
 			public InputSource resolveEntity(final String publicId, final String systemId)
 			{
@@ -177,7 +180,7 @@ public class DocumentFragmentParser
 	 * @param element  is the DOM element to attach to
 	 * @param xml      definition
 	 */
-	static public void mount(final Document document, final Node element, final String xml, final String tag)
+	static public void mount(@NonNull final Document document, @NonNull final Node element, final String xml, final String tag)
 	{
 		final DocumentFragmentParser parser = new DocumentFragmentParser();
 		try
@@ -185,11 +188,11 @@ public class DocumentFragmentParser
 			final DocumentFragment fragment = parser.parse('<' + tag + '>' + xml + "</" + tag + '>');
 			element.appendChild(document.importNode(fragment, true));
 		}
-		catch (final SAXException e)
+		catch (@NonNull final SAXException e)
 		{
 			element.appendChild(document.createTextNode("XML:" + xml + ":" + e.getMessage()));
 		}
-		catch (final IOException e)
+		catch (@NonNull final IOException e)
 		{
 			// do nothing
 		}

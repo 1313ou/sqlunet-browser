@@ -10,6 +10,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.LoaderManager.LoaderCallbacks;
 import android.support.v4.content.Loader;
@@ -129,13 +130,13 @@ public class WebFragment extends Fragment
 
 			@TargetApi(Build.VERSION_CODES.N)
 			@Override
-			public boolean shouldOverrideUrlLoading(final WebView view, final WebResourceRequest request)
+			public boolean shouldOverrideUrlLoading(final WebView view, @NonNull final WebResourceRequest request)
 			{
 				final Uri uri = request.getUrl();
 				return handleUrl(uri);
 			}
 
-			private boolean handleUrl(final Uri uri)
+			private boolean handleUrl(@NonNull final Uri uri)
 			{
 				Log.d(WebFragment.TAG, "Uri " + uri);
 				try
@@ -195,7 +196,7 @@ public class WebFragment extends Fragment
 					startActivity(targetIntent);
 					return true;
 				}
-				catch (final Exception e)
+				catch (@NonNull final Exception e)
 				{
 					Log.e(WebFragment.TAG, "Error while loading Uri: " + uri, e);
 				}
@@ -241,11 +242,13 @@ public class WebFragment extends Fragment
 		// load the contents
 		getLoaderManager().restartLoader(++Module.loaderId, null, new LoaderCallbacks<String>()
 		{
+			@Nullable
 			@Override
 			public Loader<String> onCreateLoader(final int loaderId, final Bundle loaderArgs)
 			{
 				return new DocumentStringLoader(getActivity())
 				{
+					@Nullable
 					@SuppressWarnings({"boxing"})
 					@Override
 					protected String getDoc()
@@ -319,7 +322,7 @@ public class WebFragment extends Fragment
 							// stringify
 							return WebFragment.docsToString(data, xml, isSelector, wnDomDoc, bncDomDoc);
 						}
-						catch (final Exception e)
+						catch (@NonNull final Exception e)
 						{
 							Log.e(WebFragment.TAG, "getDoc", e);
 						}
@@ -366,8 +369,8 @@ public class WebFragment extends Fragment
 	static private String docsToString(@SuppressWarnings("UnusedParameters") final String word,  //
 			final boolean xml,  //
 			final boolean isSelector,  //
-			final Document wnDomDoc,  //
-			final Document bncDomDoc)
+			@Nullable final Document wnDomDoc,  //
+			@Nullable final Document bncDomDoc)
 	{
 		// LogUtils.writeLog(DomTransformer.docToXml(wnDomDoc), false, "wn_sqlunet.log");
 		// LogUtils.writeLog(DomTransformer.docToXml(vnDomDoc), false, "vn_sqlunet.log");

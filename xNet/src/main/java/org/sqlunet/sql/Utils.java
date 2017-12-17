@@ -1,5 +1,8 @@
 package org.sqlunet.sql;
 
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
+
 /**
  * Prepared statement
  *
@@ -13,8 +16,9 @@ public class Utils
 	 * @param ids ids
 	 * @return joined ids
 	 */
+	@Nullable
 	@SuppressWarnings("unused")
-	static public String join(final int... ids)
+	static public String join(@Nullable final int... ids)
 	{
 		if (ids == null)
 		{
@@ -43,8 +47,9 @@ public class Utils
 	 * @param ids ids
 	 * @return joined ids
 	 */
+	@Nullable
 	@SuppressWarnings("unused")
-	static public String join(final long... ids)
+	static public String join(@Nullable final long... ids)
 	{
 		if (ids == null)
 		{
@@ -73,7 +78,8 @@ public class Utils
 	 * @param strings strings to join
 	 * @return joined strings
 	 */
-	static public String join(final String... strings)
+	@Nullable
+	static public String join(@Nullable final String... strings)
 	{
 		if (strings == null)
 		{
@@ -102,7 +108,7 @@ public class Utils
 	 * @param args arguments
 	 * @return arguments as string
 	 */
-	static public String argsToString(final String... args)
+	static public String argsToString(@Nullable final String... args)
 	{
 		final StringBuilder sb = new StringBuilder();
 		if (args != null && args.length > 0)
@@ -126,7 +132,7 @@ public class Utils
 	 * @param args arguments
 	 * @return expanded sql
 	 */
-	static public String replaceArgs(final String sql, final String... args)
+	static public String replaceArgs(final String sql, @Nullable final String... args)
 	{
 		String processedSql = sql;
 		if (args != null && args.length > 0)
@@ -139,7 +145,8 @@ public class Utils
 		return processedSql;
 	}
 
-	static public String[] toArgs(final String... args)
+	@Nullable
+	static public String[] toArgs(@Nullable final String... args)
 	{
 		if (args == null)
 		{
@@ -166,7 +173,8 @@ public class Utils
 	 * @param string ,-separated string of ids
 	 * @return ids as long array
 	 */
-	static public long[] toIds(final String string)
+	@NonNull
+	static public long[] toIds(@NonNull final String string)
 	{
 		final String[] strings = string.split(",");
 		final long[] ids = new long[strings.length];

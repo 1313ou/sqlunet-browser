@@ -6,6 +6,8 @@ import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Parcelable;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.text.SpannableStringBuilder;
 import android.text.style.StyleSpan;
 import android.util.Log;
@@ -80,6 +82,7 @@ public class TextFragment extends AbstractTableFragment
 	 *
 	 * @return ViewBinder
 	 */
+	@Nullable
 	@Override
 	protected ViewBinder makeViewBinder()
 	{
@@ -93,7 +96,7 @@ public class TextFragment extends AbstractTableFragment
 		return new ViewBinder()
 		{
 			@Override
-			public boolean setViewValue(final View view, final Cursor cursor, final int columnIndex)
+			public boolean setViewValue(final View view, @NonNull final Cursor cursor, final int columnIndex)
 			{
 				String value = cursor.getString(columnIndex);
 				if (value == null)
@@ -113,7 +116,7 @@ public class TextFragment extends AbstractTableFragment
 					{
 						((ImageView) view).setImageResource(Integer.parseInt(value));
 					}
-					catch (final NumberFormatException nfe)
+					catch (@NonNull final NumberFormatException nfe)
 					{
 						((ImageView) view).setImageURI(Uri.parse(value));
 					}

@@ -1,6 +1,7 @@
 package org.sqlunet.propbank.sql;
 
 import android.database.sqlite.SQLiteDatabase;
+import android.support.annotation.NonNull;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -63,6 +64,7 @@ class PbRole
 	 * @param roleSetId  role set id to build query from
 	 * @return list of PropBank roles
 	 */
+	@NonNull
 	static public List<PbRole> make(final SQLiteDatabase connection, final long roleSetId)
 	{
 		final List<PbRole> result = new ArrayList<>();

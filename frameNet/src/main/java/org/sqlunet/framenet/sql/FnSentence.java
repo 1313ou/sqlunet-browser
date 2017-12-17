@@ -1,6 +1,8 @@
 package org.sqlunet.framenet.sql;
 
 import android.database.sqlite.SQLiteDatabase;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -41,6 +43,7 @@ public class FnSentence
 	 * @param sentenceId is the sentence id to build query from
 	 * @return sentence
 	 */
+	@Nullable
 	static public FnSentence make(final SQLiteDatabase connection, final long sentenceId)
 	{
 		FnSentence result = null;
@@ -75,6 +78,7 @@ public class FnSentence
 	 * @param luId       is the lex unit id to build query from
 	 * @return list of sentences
 	 */
+	@NonNull
 	static public List<FnSentence> makeFromLexicalUnit(final SQLiteDatabase connection, final long luId)
 	{
 		final List<FnSentence> result = new ArrayList<>();

@@ -2,6 +2,7 @@ package org.sqlunet.verbnet.style;
 
 import android.graphics.Color;
 import android.graphics.Typeface;
+import android.support.annotation.Nullable;
 import android.text.style.BackgroundColorSpan;
 import android.text.style.ForegroundColorSpan;
 import android.text.style.StyleSpan;
@@ -102,6 +103,7 @@ public class VerbNetFactories
 		}
 	};
 
+	@Nullable
 	static final SpanFactory argsFactory = new SpanFactory()
 	{
 		@Override

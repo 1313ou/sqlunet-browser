@@ -4,6 +4,7 @@ import android.content.Context;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -41,11 +42,13 @@ public class BrowsePredicateMatrixFragment extends BaseSearchFragment
 	/**
 	 * Query
 	 */
+	@Nullable
 	private String query;
 
 	/**
 	 * Pointer
 	 */
+	@Nullable
 	private PmRolePointer pointer;
 
 	// C R E A T I O N
@@ -66,7 +69,7 @@ public class BrowsePredicateMatrixFragment extends BaseSearchFragment
 	// R E S T O R E
 
 	@Override
-	public View onCreateView(@NonNull final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState)
+	public View onCreateView(@NonNull final LayoutInflater inflater, final ViewGroup container, @Nullable final Bundle savedInstanceState)
 	{
 		// view
 		final View view = super.onCreateView(inflater, container, savedInstanceState);
@@ -113,7 +116,7 @@ public class BrowsePredicateMatrixFragment extends BaseSearchFragment
 	// S P I N N E R
 
 	@Override
-	protected void setupSpinner(final Context context)
+	protected void setupSpinner(@NonNull final Context context)
 	{
 		super.setupSpinner(context);
 
@@ -165,7 +168,7 @@ public class BrowsePredicateMatrixFragment extends BaseSearchFragment
 	 *
 	 * @param pointer query pointer
 	 */
-	public void search(final PmRolePointer pointer)
+	public void search(@Nullable final PmRolePointer pointer)
 	{
 		if (pointer == null)
 		{
@@ -219,7 +222,7 @@ public class BrowsePredicateMatrixFragment extends BaseSearchFragment
 	 * @param query0 query string
 	 */
 	@Override
-	public void search(final String query0)
+	public void search(@Nullable final String query0)
 	{
 		if (query0 == null)
 		{

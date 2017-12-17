@@ -144,7 +144,7 @@ public class XSqlUNetProvider extends BaseProvider
 	 */
 	@SuppressWarnings("boxing")
 	@Override
-	public Cursor query(@NonNull final Uri uri, final String[] projection, final String selection, final String[] selectionArgs, final String sortOrder)
+	public Cursor query(@NonNull final Uri uri, @NonNull final String[] projection, final String selection, final String[] selectionArgs, final String sortOrder)
 	{
 		if (this.db == null)
 		{
@@ -301,7 +301,7 @@ public class XSqlUNetProvider extends BaseProvider
 		{
 			return this.db.query(table, projection, selection, selectionArgs, groupBy, null, sortOrder, null);
 		}
-		catch (final SQLiteException e)
+		catch (@NonNull final SQLiteException e)
 		{
 			logSql(sql, selectionArgs);
 			Log.d(TAG + "SQL", sql);
@@ -325,7 +325,7 @@ public class XSqlUNetProvider extends BaseProvider
 	 * @return union sql
 	 */
 	private String makeQuery(final String table1, final String table2, //
-			final String[] tableProjection, final String[] unionProjection0, final String[] projection, //
+			final String[] tableProjection, final String[] unionProjection0, @NonNull final String[] projection, //
 			final String selection, //
 			final String[] groupBys, final String sortOrder, final String tag)
 	{
@@ -388,7 +388,7 @@ public class XSqlUNetProvider extends BaseProvider
 	 * @param selectionArgs selection arguments
 	 * @return cursor
 	 */
-	private Cursor raw(final String sql, final String... selectionArgs)
+	private Cursor raw(@NonNull final String sql, @NonNull final String... selectionArgs)
 	{
 		final String[] selectionArgs2 = new String[2 * selectionArgs.length];
 		for (int i = 0; i < selectionArgs.length; i++)
@@ -408,7 +408,7 @@ public class XSqlUNetProvider extends BaseProvider
 		{
 			return this.db.rawQuery(sql, selectionArgs2);
 		}
-		catch (final SQLiteException e)
+		catch (@NonNull final SQLiteException e)
 		{
 			Log.e(XSqlUNetProvider.TAG, "XSqlUNet provider query failed", e);
 			return null;

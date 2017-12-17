@@ -1,5 +1,7 @@
 package org.sqlunet.view;
 
+import android.support.annotation.NonNull;
+
 import org.sqlunet.treeview.control.Controller;
 import org.sqlunet.treeview.control.QueryController;
 import org.sqlunet.treeview.model.TreeNode;
@@ -66,7 +68,7 @@ public class FireEvent
 
 	// Q U E R Y  R E A D Y
 
-	static public void onQueryReady(final TreeNode node)
+	static public void onQueryReady(@NonNull final TreeNode node)
 	{
 		final Controller<?> controller = node.getController();
 		if (controller instanceof QueryController)

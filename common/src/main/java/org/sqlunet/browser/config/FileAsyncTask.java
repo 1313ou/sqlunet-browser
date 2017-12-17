@@ -4,6 +4,8 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.os.AsyncTask;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.text.SpannableStringBuilder;
 import android.util.Log;
 import android.util.Pair;
@@ -132,6 +134,7 @@ class FileAsyncTask
 			this.publishRate = publishRate;
 		}
 
+		@NonNull
 		@SuppressWarnings("boxing")
 		@Override
 		protected Boolean doInBackground(final String... params)
@@ -179,7 +182,7 @@ class FileAsyncTask
 				publishProgress(byteCount, length);
 				return true;
 			}
-			catch (final Exception e)
+			catch (@NonNull final Exception e)
 			{
 				Log.e(TAG, "While copying", e);
 			}
@@ -275,6 +278,7 @@ class FileAsyncTask
 			this.publishRate = publishRate;
 		}
 
+		@NonNull
 		@Override
 		@SuppressWarnings("boxing")
 		protected Boolean doInBackground(final String... params)
@@ -436,6 +440,7 @@ class FileAsyncTask
 			this.publishRate = publishRate;
 		}
 
+		@Nullable
 		@Override
 		@SuppressWarnings("boxing")
 		protected String doInBackground(final String... params)
@@ -537,7 +542,7 @@ class FileAsyncTask
 		}
 
 		@Override
-		protected void onPostExecute(final String result)
+		protected void onPostExecute(@Nullable final String result)
 		{
 			this.listener.taskFinish(result != null);
 			if (this.resultListener != null)
@@ -553,6 +558,7 @@ class FileAsyncTask
 	 * @param src  source file
 	 * @param dest dest file
 	 */
+	@NonNull
 	@SuppressWarnings("UnusedReturnValue")
 	private AsyncTask<String, Integer, Boolean> copyFromFile(final String src, final String dest)
 	{
@@ -596,7 +602,7 @@ class FileAsyncTask
 	 * @param zipEntry     zip entry
 	 * @param databasePath database path
 	 */
-	static void unzipFromArchive(final Context context, final String zipEntry, final String databasePath)
+	static void unzipFromArchive(@NonNull final Context context, final String zipEntry, final String databasePath)
 	{
 		String fromPath = Settings.getCachePref(context);
 
@@ -650,7 +656,7 @@ class FileAsyncTask
 	 * @param context      context
 	 * @param databasePath database path
 	 */
-	static void copyFromFile(final Context context, final String databasePath)
+	static void copyFromFile(@NonNull final Context context, final String databasePath)
 	{
 		String fromPath = Settings.getCachePref(context);
 
@@ -705,13 +711,13 @@ class FileAsyncTask
 	 * @param path           path
 	 * @param resultListener result listener
 	 */
-	static public void md5(final Context context, final String path, final ResultListener resultListener)
+	static public void md5(@NonNull final Context context, final String path, final ResultListener resultListener)
 	{
 		final TaskObserver.Listener listener = new TaskObserver.DialogListener(context, R.string.action_md5, path, null);
 		new FileAsyncTask(listener, resultListener, 1000).md5FromFile(path);
 	}
 
-	static public void md5(final Context context)
+	static public void md5(@NonNull final Context context)
 	{
 		final Pair<CharSequence[], CharSequence[]> result = StorageReports.getStyledCachesNamesValues(context);
 		final CharSequence[] names = result.first;
@@ -779,7 +785,7 @@ class FileAsyncTask
 		alert.setPositiveButton(R.string.action_ok, new DialogInterface.OnClickListener()
 		{
 			@Override
-			public void onClick(DialogInterface dialog, int whichButton)
+			public void onClick(@NonNull DialogInterface dialog, int whichButton)
 			{
 				dialog.dismiss();
 
@@ -842,7 +848,8 @@ class FileAsyncTask
 		alert.show();
 	}
 
-	private static String digestToString(byte... byteArray)
+	@Nullable
+	private static String digestToString(@Nullable byte... byteArray)
 	{
 		if (byteArray == null)
 		{

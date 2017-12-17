@@ -2,6 +2,7 @@ package org.sqlunet.framenet;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.support.annotation.NonNull;
 
 import org.sqlunet.Pointer;
 
@@ -18,7 +19,7 @@ public class FnPatternPointer extends Pointer
 	static public final Parcelable.Creator<FnPatternPointer> CREATOR = new Parcelable.Creator<FnPatternPointer>()
 	{
 		@Override
-		public FnPatternPointer createFromParcel(final Parcel parcel)
+		public FnPatternPointer createFromParcel(@NonNull final Parcel parcel)
 		{
 			return new FnPatternPointer(parcel);
 		}
@@ -43,7 +44,7 @@ public class FnPatternPointer extends Pointer
 	/**
 	 * Constructor from parcel, reads back fields IN THE ORDER they were written
 	 */
-	private FnPatternPointer(final Parcel parcel)
+	private FnPatternPointer(@NonNull final Parcel parcel)
 	{
 		super(parcel);
 	}

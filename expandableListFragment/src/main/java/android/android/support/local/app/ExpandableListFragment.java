@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.local.app.R;
 import android.support.v4.app.Fragment;
 import android.view.ContextMenu;
@@ -29,7 +30,9 @@ public class ExpandableListFragment extends Fragment implements ExpandableListVi
 			onListItemClick((ExpandableListView) parent, v, position, id);
 		}
 	};
+	@Nullable
 	private ExpandableListAdapter mAdapter;
+	@Nullable
 	private ExpandableListView mExpandableList;
 	final private Runnable mRequestFocus = new Runnable()
 	{
@@ -40,9 +43,13 @@ public class ExpandableListFragment extends Fragment implements ExpandableListVi
 		}
 	};
 	private boolean mFinishedStart = false;
+	@Nullable
 	private View mEmptyView;
+	@Nullable
 	private TextView mStandardEmptyView;
+	@Nullable
 	private View mProgressContainer;
+	@Nullable
 	private View mExpandableListContainer;
 	private CharSequence mEmptyText;
 	private boolean mExpandableListShown;
@@ -60,6 +67,7 @@ public class ExpandableListFragment extends Fragment implements ExpandableListVi
 	 * layout file, so that you continue to retain all of the standard behavior of ListFragment. In particular, this is currently the only way to have the
 	 * built-in indeterminant progress state be shown.
 	 */
+	@Nullable
 	@Override
 	public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
 	{
@@ -178,6 +186,7 @@ public class ExpandableListFragment extends Fragment implements ExpandableListVi
 	/**
 	 * Get the activity's list view widget.
 	 */
+	@Nullable
 	protected ExpandableListView getListView()
 	{
 		ensureList();
@@ -280,6 +289,7 @@ public class ExpandableListFragment extends Fragment implements ExpandableListVi
 	/**
 	 * Get the ListAdapter associated with this activity's ListView.
 	 */
+	@Nullable
 	protected ExpandableListAdapter getListAdapter()
 	{
 		return this.mAdapter;
@@ -471,6 +481,7 @@ public class ExpandableListFragment extends Fragment implements ExpandableListVi
 	 *
 	 * @see ExpandableListView
 	 */
+	@Nullable
 	protected ExpandableListView getExpandableListView()
 	{
 		ensureList();
@@ -480,6 +491,7 @@ public class ExpandableListFragment extends Fragment implements ExpandableListVi
 	/**
 	 * Get the ExpandableListAdapter associated with this activity's ExpandableListView.
 	 */
+	@Nullable
 	public ExpandableListAdapter getExpandableListAdapter()
 	{
 		return this.mAdapter;

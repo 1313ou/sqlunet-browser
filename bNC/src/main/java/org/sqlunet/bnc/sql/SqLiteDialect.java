@@ -1,5 +1,7 @@
 package org.sqlunet.bnc.sql;
 
+import android.support.annotation.NonNull;
+
 @SuppressWarnings("unused")
 class SqLiteDialect
 {
@@ -19,9 +21,11 @@ class SqLiteDialect
 			"LEFT JOIN bncimaginfs USING (wordid, pos) " + //
 			"LEFT JOIN postypes USING (pos) ";
 
+	@NonNull
 	static String BNCWordPosQuery = SqLiteDialect.BNCBaseWordQuery + //
 			"WHERE lemma = ? AND pos = ?;";
 
+	@NonNull
 	static String BNCWordQuery = SqLiteDialect.BNCBaseWordQuery + //
 			"WHERE lemma = ?;";
 

@@ -2,6 +2,7 @@ package org.sqlunet.wordnet;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.support.annotation.NonNull;
 
 import org.sqlunet.HasSenseKey;
 
@@ -20,7 +21,7 @@ public class SenseKeyPointer implements Parcelable, HasSenseKey
 	static public final Creator<SenseKeyPointer> CREATOR = new Creator<SenseKeyPointer>()
 	{
 		@Override
-		public SenseKeyPointer createFromParcel(final Parcel parcel)
+		public SenseKeyPointer createFromParcel(@NonNull final Parcel parcel)
 		{
 			return new SenseKeyPointer(parcel);
 		}
@@ -35,7 +36,7 @@ public class SenseKeyPointer implements Parcelable, HasSenseKey
 	/**
 	 * Constructor from parcel, reads back fields IN THE ORDER they were written
 	 */
-	private SenseKeyPointer(final Parcel parcel)
+	private SenseKeyPointer(@NonNull final Parcel parcel)
 	{
 		this.senseKey = parcel.readString();
 	}
@@ -57,7 +58,7 @@ public class SenseKeyPointer implements Parcelable, HasSenseKey
 	}
 
 	@Override
-	public void writeToParcel(final Parcel parcel, final int flags)
+	public void writeToParcel(@NonNull final Parcel parcel, final int flags)
 	{
 		parcel.writeString(this.senseKey);
 	}
@@ -68,6 +69,7 @@ public class SenseKeyPointer implements Parcelable, HasSenseKey
 		return 0;
 	}
 
+	@NonNull
 	@Override
 	public String toString()
 	{

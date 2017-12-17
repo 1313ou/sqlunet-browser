@@ -2,6 +2,8 @@ package org.sqlunet.browser.xselector;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 
 import org.sqlunet.HasXId;
 import org.sqlunet.browser.selector.SelectorPointer;
@@ -70,7 +72,7 @@ public class XSelectorPointer extends SelectorPointer implements HasXId
 	static public final Parcelable.Creator<XSelectorPointer> CREATOR = new Parcelable.Creator<XSelectorPointer>()
 	{
 		@Override
-		public XSelectorPointer createFromParcel(final Parcel parcel)
+		public XSelectorPointer createFromParcel(@NonNull final Parcel parcel)
 		{
 			return new XSelectorPointer(parcel);
 		}
@@ -109,7 +111,7 @@ public class XSelectorPointer extends SelectorPointer implements HasXId
 	 * Constructor from parcel, reads back fields IN THE ORDER they were written
 	 */
 	@SuppressWarnings("boxing")
-	private XSelectorPointer(final Parcel parcel)
+	private XSelectorPointer(@NonNull final Parcel parcel)
 	{
 		super(parcel);
 
@@ -141,6 +143,7 @@ public class XSelectorPointer extends SelectorPointer implements HasXId
 	 *
 	 * @return target object id
 	 */
+	@Nullable
 	@Override
 	public Long getXId()
 	{
@@ -152,6 +155,7 @@ public class XSelectorPointer extends SelectorPointer implements HasXId
 	 *
 	 * @return role class id
 	 */
+	@Nullable
 	@Override
 	public Long getXClassId()
 	{
@@ -163,6 +167,7 @@ public class XSelectorPointer extends SelectorPointer implements HasXId
 	 *
 	 * @return role id
 	 */
+	@Nullable
 	@Override
 	public Long getXMemberId()
 	{
@@ -202,7 +207,7 @@ public class XSelectorPointer extends SelectorPointer implements HasXId
 	}
 
 	@Override
-	public void writeToParcel(final Parcel parcel, final int flags)
+	public void writeToParcel(@NonNull final Parcel parcel, final int flags)
 	{
 		super.writeToParcel(parcel, flags);
 
@@ -220,6 +225,7 @@ public class XSelectorPointer extends SelectorPointer implements HasXId
 		return 0;
 	}
 
+	@NonNull
 	@Override
 	public String toString()
 	{
@@ -250,7 +256,7 @@ public class XSelectorPointer extends SelectorPointer implements HasXId
 	 * @param xSources x sources
 	 * @return mask
 	 */
-	static public long getMask(final String xSources)
+	static public long getMask(@NonNull final String xSources)
 	{
 		long mask = 0;
 		if (xSources.contains("wn")) //

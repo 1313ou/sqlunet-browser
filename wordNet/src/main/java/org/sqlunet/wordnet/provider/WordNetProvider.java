@@ -597,7 +597,7 @@ public class WordNetProvider extends BaseProvider
 		{
 			return this.db.query(table, actualProjection, actualSelection, selectionArgs, groupBy, null, sortOrder, null);
 		}
-		catch (final SQLiteException e)
+		catch (@NonNull final SQLiteException e)
 		{
 			Log.d(TAG + "SQL", sql);
 			Log.e(TAG, "WordNet provider query failed", e);

@@ -96,14 +96,14 @@ public class StorageFragment extends NavigableFragment
 	// M E N U
 
 	@Override
-	public void onCreateOptionsMenu(final Menu menu, final MenuInflater inflater)
+	public void onCreateOptionsMenu(final Menu menu, @NonNull final MenuInflater inflater)
 	{
 		// inflate the menu; this adds items to the type bar if it is present.
 		inflater.inflate(R.menu.storage, menu);
 	}
 
 	@Override
-	public boolean onOptionsItemSelected(MenuItem item)
+	public boolean onOptionsItemSelected(@NonNull MenuItem item)
 	{
 		final Context context = getActivity();
 

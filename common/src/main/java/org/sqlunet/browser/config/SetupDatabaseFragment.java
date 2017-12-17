@@ -88,6 +88,7 @@ public class SetupDatabaseFragment extends BaseTaskFragment
 		return view;
 	}
 
+	@NonNull
 	@Override
 	protected SpinnerAdapter makeAdapter()
 	{
@@ -103,14 +104,14 @@ public class SetupDatabaseFragment extends BaseTaskFragment
 	}
 
 	@Override
-	public void onCreateOptionsMenu(final Menu menu, final MenuInflater inflater)
+	public void onCreateOptionsMenu(final Menu menu, @NonNull final MenuInflater inflater)
 	{
 		inflater.inflate(R.menu.setup_database, menu);
 		super.onCreateOptionsMenu(menu, inflater);
 	}
 
 	@Override
-	public boolean onOptionsItemSelected(MenuItem item)
+	public boolean onOptionsItemSelected(@NonNull MenuItem item)
 	{
 		final Context context = getActivity();
 		Intent intent;

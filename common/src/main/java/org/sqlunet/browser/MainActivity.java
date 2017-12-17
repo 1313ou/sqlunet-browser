@@ -3,6 +3,7 @@ package org.sqlunet.browser;
 import android.app.SearchManager;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -59,7 +60,7 @@ public class MainActivity extends AppCompatActivity // implements NavigationFrag
 	}
 
 	@Override
-	protected void onNewIntent(final Intent intent)
+	protected void onNewIntent(@NonNull final Intent intent)
 	{
 		handleSearchIntent(intent);
 	}
@@ -71,7 +72,7 @@ public class MainActivity extends AppCompatActivity // implements NavigationFrag
 	 *
 	 * @param intent intent
 	 */
-	private void handleSearchIntent(final Intent intent)
+	private void handleSearchIntent(@NonNull final Intent intent)
 	{
 		final Fragment fragment = this.navigationDrawerFragment.getActiveFragment();
 		if (fragment instanceof SearchListener)
@@ -100,7 +101,7 @@ public class MainActivity extends AppCompatActivity // implements NavigationFrag
 	}
 
 	@Override
-	public boolean onOptionsItemSelected(final MenuItem item)
+	public boolean onOptionsItemSelected(@NonNull final MenuItem item)
 	{
 		return MenuHandler.menuDispatch(this, item);
 	}

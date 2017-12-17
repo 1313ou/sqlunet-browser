@@ -1,6 +1,7 @@
 package org.sqlunet.treeview.control;
 
 import android.content.Context;
+import android.support.annotation.Nullable;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -40,6 +41,7 @@ public abstract class Controller<E>
 	/**
 	 * Node view (node label)
 	 */
+	@Nullable
 	private View nodeView;
 
 	/**
@@ -117,6 +119,7 @@ public abstract class Controller<E>
 	 *
 	 * @return children nodes' container view
 	 */
+	@Nullable
 	public ViewGroup getChildrenContainerView()
 	{
 		return (ViewGroup) getView().findViewById(R.id.node_children);
@@ -131,6 +134,7 @@ public abstract class Controller<E>
 	 * @param value     value
 	 * @return node view
 	 */
+	@Nullable
 	public abstract View createNodeView(@SuppressWarnings("UnusedParameters") final TreeNode node, final E value);
 
 	/**
@@ -138,6 +142,7 @@ public abstract class Controller<E>
 	 *
 	 * @return node view
 	 */
+	@Nullable
 	@SuppressWarnings("unchecked")
 	public View getNodeView()
 	{

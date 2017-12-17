@@ -1,6 +1,7 @@
 package org.sqlunet.propbank.sql;
 
 import android.database.sqlite.SQLiteDatabase;
+import android.support.annotation.Nullable;
 
 import org.sqlunet.sql.DBQuery;
 
@@ -67,6 +68,7 @@ class PbExampleQueryFromRoleSetId extends DBQuery
 	 *
 	 * @return args
 	 */
+	@Nullable
 	public List<PbArg> getArgs()
 	{
 		final String concatArg = this.cursor.getString(3);

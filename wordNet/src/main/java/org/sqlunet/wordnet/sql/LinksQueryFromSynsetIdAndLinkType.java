@@ -1,6 +1,7 @@
 package org.sqlunet.wordnet.sql;
 
 import android.database.sqlite.SQLiteDatabase;
+import android.support.annotation.Nullable;
 
 import org.sqlunet.sql.DBQuery;
 
@@ -116,6 +117,7 @@ class LinksQueryFromSynsetIdAndLinkType extends DBQuery
 	 *
 	 * @return source synset id
 	 */
+	@Nullable
 	public long[] getWordIds()
 	{
 		final String resultString = this.cursor.getString(5);
@@ -137,6 +139,7 @@ class LinksQueryFromSynsetIdAndLinkType extends DBQuery
 	 *
 	 * @return source synset id
 	 */
+	@Nullable
 	public String[] getWords()
 	{
 		final String results = this.cursor.getString(6);

@@ -3,6 +3,7 @@ package org.sqlunet.sql;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
+import android.support.annotation.NonNull;
 
 /**
  * Database query
@@ -15,6 +16,7 @@ public class DBQuery
 	/**
 	 * <code>statement</code> is the SQL statement
 	 */
+	@NonNull
 	protected final PreparedStatement statement;
 
 	/**
@@ -64,7 +66,7 @@ public class DBQuery
 			}
 			this.statement.close();
 		}
-		catch (final SQLException e)
+		catch (@NonNull final SQLException e)
 		{
 			// nothing
 		}
@@ -75,7 +77,7 @@ public class DBQuery
 	 *
 	 * @param params the parameters
 	 */
-	protected void setParams(final Object... params)
+	protected void setParams(@NonNull final Object... params)
 	{
 		int i = 0;
 		for (final Object param : params)

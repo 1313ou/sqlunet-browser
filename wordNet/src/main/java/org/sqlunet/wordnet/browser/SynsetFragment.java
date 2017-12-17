@@ -3,6 +3,7 @@ package org.sqlunet.wordnet.browser;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.util.Log;
 
 import org.sqlunet.browser.Module;
@@ -50,7 +51,7 @@ public class SynsetFragment extends TreeFragment
 	}
 
 	@Override
-	public void onActivityCreated(final Bundle savedInstanceState)
+	public void onActivityCreated(@Nullable final Bundle savedInstanceState)
 	{
 		super.onActivityCreated(savedInstanceState);
 

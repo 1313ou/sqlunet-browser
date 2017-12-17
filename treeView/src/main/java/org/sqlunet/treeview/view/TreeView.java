@@ -3,6 +3,8 @@ package org.sqlunet.treeview.view;
 import android.animation.Animator;
 import android.animation.ValueAnimator;
 import android.content.Context;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.text.TextUtils;
 import android.view.ContextThemeWrapper;
 import android.view.View;
@@ -113,6 +115,7 @@ public class TreeView
 	 *
 	 * @return view
 	 */
+	@NonNull
 	public View getView()
 	{
 		return getView(-1);
@@ -124,6 +127,7 @@ public class TreeView
 	 * @param style style
 	 * @return view
 	 */
+	@NonNull
 	private View getView(final int style)
 	{
 		// top scrollview
@@ -154,12 +158,14 @@ public class TreeView
 		// root
 		this.root.setController(new Controller<Void>(this.context)
 		{
+			@Nullable
 			@Override
 			public View createNodeView(TreeNode node, Void value)
 			{
 				return null;
 			}
 
+			@Nullable
 			@Override
 			public ViewGroup getChildrenContainerView()
 			{
@@ -180,7 +186,7 @@ public class TreeView
 	 * @param node   node to add
 	 */
 	@SuppressWarnings("unused")
-	public void addNode(final TreeNode parent, final TreeNode node)
+	public void addNode(@NonNull final TreeNode parent, @NonNull final TreeNode node)
 	{
 		// tree
 		parent.addChild(node);
@@ -199,7 +205,7 @@ public class TreeView
 	 * @param container container
 	 * @param node      node
 	 */
-	private void addNode(final ViewGroup container, final TreeNode node)
+	private void addNode(@NonNull final ViewGroup container, @NonNull final TreeNode node)
 	{
 		final Controller<?> controller = getNodeController(node);
 		assert controller != null;
@@ -245,7 +251,7 @@ public class TreeView
 	 *
 	 * @param node node
 	 */
-	static public void remove(final TreeNode node)
+	static public void remove(@NonNull final TreeNode node)
 	{
 		final Controller<?> controller = node.getController();
 		assert controller != null;
@@ -260,7 +266,7 @@ public class TreeView
 	 * @param node node to remove
 	 */
 	@SuppressWarnings("unused")
-	public void removeNode(final TreeNode node)
+	public void removeNode(@NonNull final TreeNode node)
 	{
 		if (node.getParent() != null)
 		{
@@ -282,7 +288,7 @@ public class TreeView
 	 *
 	 * @param node node
 	 */
-	static public void disable(final TreeNode node)
+	static public void disable(@NonNull final TreeNode node)
 	{
 		node.disable();
 
@@ -297,7 +303,7 @@ public class TreeView
 	 * @param node  node
 	 * @param value character sequence
 	 */
-	static public void setNodeValue(final TreeNode node, final CharSequence value)
+	static public void setNodeValue(@NonNull final TreeNode node, @Nullable final CharSequence value)
 	{
 		// delete node from parent if null value
 		if (value == null || value.length() == 0)
@@ -338,7 +344,7 @@ public class TreeView
 	 * @param node            node
 	 * @param includeSubnodes whether to include subnodes
 	 */
-	static public void expand(final TreeNode node, @SuppressWarnings("SameParameterValue") boolean includeSubnodes)
+	static public void expand(@NonNull final TreeNode node, @SuppressWarnings("SameParameterValue") boolean includeSubnodes)
 	{
 		final Controller<?> controller = node.getController();
 		assert controller != null;
@@ -353,7 +359,7 @@ public class TreeView
 	 * @param node   node
 	 * @param levels number of levels to expand
 	 */
-	static public void expand(final TreeNode node, int levels)
+	static public void expand(@NonNull final TreeNode node, int levels)
 	{
 		final Controller<?> controller = node.getController();
 		assert controller != null;
@@ -369,7 +375,7 @@ public class TreeView
 	 * @param includeSubnodes whether to include subnodes
 	 */
 	@SuppressWarnings("unused")
-	static public void collapse(final TreeNode node, boolean includeSubnodes)
+	static public void collapse(@NonNull final TreeNode node, boolean includeSubnodes)
 	{
 		final Controller<?> controller = node.getController();
 		assert controller != null;
@@ -418,7 +424,7 @@ public class TreeView
 	 * @param node  node
 	 * @param level level number
 	 */
-	private void expandLevel(final TreeNode node, final int level)
+	private void expandLevel(@NonNull final TreeNode node, final int level)
 	{
 		if (node.getLevel() <= level)
 		{
@@ -436,7 +442,7 @@ public class TreeView
 	 * @param node   node
 	 * @param levels number of levels
 	 */
-	private void expandRelativeLevel(final TreeNode node, final int levels)
+	private void expandRelativeLevel(@NonNull final TreeNode node, final int levels)
 	{
 		if (levels <= 0)
 		{
@@ -456,7 +462,7 @@ public class TreeView
 	 *
 	 * @param node node
 	 */
-	private void expandNode(final TreeNode node)
+	private void expandNode(@NonNull final TreeNode node)
 	{
 		expandNode(node, false);
 	}
@@ -467,7 +473,7 @@ public class TreeView
 	 * @param node node
 	 */
 	@SuppressWarnings("unused")
-	public void collapseNode(final TreeNode node)
+	public void collapseNode(@NonNull final TreeNode node)
 	{
 		collapseNode(node, false);
 	}
@@ -477,7 +483,7 @@ public class TreeView
 	 *
 	 * @param node node
 	 */
-	private void toggleNode(final TreeNode node)
+	private void toggleNode(@NonNull final TreeNode node)
 	{
 		if (node.isExpanded())
 		{
@@ -495,7 +501,7 @@ public class TreeView
 	 * @param node            node
 	 * @param includeSubnodes whether to include subnodes
 	 */
-	private void collapseNode(final TreeNode node, final boolean includeSubnodes)
+	private void collapseNode(@NonNull final TreeNode node, final boolean includeSubnodes)
 	{
 		// collapsibility
 		if (!node.isCollapsible())
@@ -538,7 +544,7 @@ public class TreeView
 	 * @param node            node
 	 * @param includeSubnodes whether to include subnodes
 	 */
-	private void expandNode(final TreeNode node, boolean includeSubnodes)
+	private void expandNode(@NonNull final TreeNode node, boolean includeSubnodes)
 	{
 		// flag
 		node.setExpanded(true);
@@ -583,7 +589,7 @@ public class TreeView
 	 *
 	 * @param view view
 	 */
-	static private void expand(final View view)
+	static private void expand(@NonNull final View view)
 	{
 		view.getLayoutParams().height = LayoutParams.WRAP_CONTENT;
 		view.requestLayout();
@@ -595,7 +601,7 @@ public class TreeView
 	 *
 	 * @param view view
 	 */
-	static private void collapse(final View view)
+	static private void collapse(@NonNull final View view)
 	{
 		view.setVisibility(View.GONE);
 	}
@@ -605,7 +611,7 @@ public class TreeView
 	 *
 	 * @param view view
 	 */
-	static private void animatedExpand(final View view)
+	static private void animatedExpand(@NonNull final View view)
 	{
 		view.measure(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
 		final int targetHeight = view.getMeasuredHeight();
@@ -620,7 +626,7 @@ public class TreeView
 		animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener()
 		{
 			@Override
-			public void onAnimationUpdate(ValueAnimator valueAnimator)
+			public void onAnimationUpdate(@NonNull ValueAnimator valueAnimator)
 			{
 				float value = (float) valueAnimator.getAnimatedValue();
 				view.getLayoutParams().height = value == 1 ? LayoutParams.WRAP_CONTENT : (int) (targetHeight * value);
@@ -663,7 +669,7 @@ public class TreeView
 	 *
 	 * @param view view
 	 */
-	static private void animatedCollapse(final View view)
+	static private void animatedCollapse(@NonNull final View view)
 	{
 		final int initialHeight = view.getMeasuredHeight();
 		int duration = (int) (ANIMATION_DP_PER_MS * initialHeight / view.getContext().getResources().getDisplayMetrics().density);
@@ -677,7 +683,7 @@ public class TreeView
 		animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener()
 		{
 			@Override
-			public void onAnimationUpdate(ValueAnimator valueAnimator)
+			public void onAnimationUpdate(@NonNull ValueAnimator valueAnimator)
 			{
 				float value = (float) valueAnimator.getAnimatedValue();
 				view.getLayoutParams().height = initialHeight - (int) (initialHeight * value);
@@ -796,6 +802,7 @@ public class TreeView
 	 *
 	 * @return save state
 	 */
+	@NonNull
 	@SuppressWarnings("unused")
 	public String getSaveState()
 	{
@@ -814,7 +821,7 @@ public class TreeView
 	 * @param saveState save state
 	 */
 	@SuppressWarnings("unused")
-	public void restoreState(final String saveState)
+	public void restoreState(@Nullable final String saveState)
 	{
 		if (saveState != null && !TextUtils.isEmpty(saveState))
 		{
@@ -831,7 +838,7 @@ public class TreeView
 	 * @param node      node
 	 * @param openNodes open nodes
 	 */
-	private void restoreNodeState(final TreeNode node, final Set<String> openNodes)
+	private void restoreNodeState(@NonNull final TreeNode node, @NonNull final Set<String> openNodes)
 	{
 		for (TreeNode child : node.getChildren())
 		{
@@ -849,7 +856,7 @@ public class TreeView
 	 * @param root root
 	 * @param sb   builder
 	 */
-	private void getSaveState(final TreeNode root, final StringBuilder sb)
+	private void getSaveState(@NonNull final TreeNode root, @NonNull final StringBuilder sb)
 	{
 		for (TreeNode node : root.getChildren())
 		{
@@ -905,7 +912,7 @@ public class TreeView
 	 * @param node       node
 	 * @param selectable selectable flag
 	 */
-	private void setSelectable(final TreeNode node, final boolean selectable)
+	private void setSelectable(@NonNull final TreeNode node, final boolean selectable)
 	{
 		fireNodeSelected(node, selectable);
 
@@ -926,6 +933,7 @@ public class TreeView
 	 *
 	 * @return selected nodes
 	 */
+	@NonNull
 	private List<TreeNode> getAllSelected()
 	{
 		if (this.selectable)
@@ -944,7 +952,8 @@ public class TreeView
 	 * @param node node
 	 * @return selected nodes
 	 */
-	private List<TreeNode> getAllSelected(final TreeNode node)
+	@NonNull
+	private List<TreeNode> getAllSelected(@NonNull final TreeNode node)
 	{
 		List<TreeNode> result = new ArrayList<>();
 		for (TreeNode child : node.getChildren())
@@ -965,6 +974,7 @@ public class TreeView
 	 * @param <E>        value type
 	 * @return values
 	 */
+	@NonNull
 	@SuppressWarnings({"unchecked", "unused"})
 	public <E> List<E> getSelectedValues(final Class<E> valueClass)
 	{
@@ -1027,7 +1037,7 @@ public class TreeView
 	 * @param selected selected flag
 	 */
 	@SuppressWarnings("unused")
-	public void selectNode(final TreeNode node, boolean selected)
+	public void selectNode(@NonNull final TreeNode node, boolean selected)
 	{
 		if (this.selectable)
 		{
@@ -1042,7 +1052,7 @@ public class TreeView
 	 * @param node     node
 	 * @param selected selected flag
 	 */
-	private void selectNode(final TreeNode node, final boolean selected, final boolean skipCollapsed)
+	private void selectNode(@NonNull final TreeNode node, final boolean selected, final boolean skipCollapsed)
 	{
 		node.setSelected(selected);
 		fireNodeSelected(node, selected);
@@ -1064,7 +1074,7 @@ public class TreeView
 	 * @param node     node
 	 * @param selected selection mode flag
 	 */
-	private void fireNodeSelected(final TreeNode node, final boolean selected)
+	private void fireNodeSelected(@NonNull final TreeNode node, final boolean selected)
 	{
 		final Controller<?> controller = getNodeController(node);
 		assert controller != null;
@@ -1082,7 +1092,7 @@ public class TreeView
 	 * @param node node
 	 * @return controller
 	 */
-	private Controller<?> getNodeController(final TreeNode node)
+	private Controller<?> getNodeController(@NonNull final TreeNode node)
 	{
 		Controller<?> controller = node.getController();
 		if (controller == null)

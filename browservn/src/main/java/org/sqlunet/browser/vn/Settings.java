@@ -3,6 +3,7 @@ package org.sqlunet.browser.vn;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
+import android.support.annotation.NonNull;
 
 /**
  * Settings
@@ -103,7 +104,7 @@ public class Settings extends org.sqlunet.settings.Settings
 			{
 				mode = Settings.Selector.valueOf(name);
 			}
-			catch (final Exception e)
+			catch (@NonNull final Exception e)
 			{
 				mode = Selector.XSELECTOR;
 				sharedPref.edit().putString(Settings.PREF_SELECTOR, mode.name()).apply();

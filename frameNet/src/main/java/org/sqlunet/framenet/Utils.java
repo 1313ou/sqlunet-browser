@@ -1,5 +1,7 @@
 package org.sqlunet.framenet;
 
+import android.support.annotation.Nullable;
+
 import org.sqlunet.framenet.sql.FnLabel;
 
 import java.util.ArrayList;
@@ -13,7 +15,7 @@ public class Utils
 	 * @param c pos character
 	 * @return pos id
 	 */
-	static public int posToPosId(final Character c)
+	static public int posToPosId(@Nullable final Character c)
 	{
 		if (c == null)
 		{
@@ -52,7 +54,8 @@ public class Utils
 	 * @param labelsString label string
 	 * @return the labels from the result set
 	 */
-	static public List<FnLabel> parseLabels(final String labelsString)
+	@Nullable
+	static public List<FnLabel> parseLabels(@Nullable final String labelsString)
 	{
 		if (labelsString == null)
 		{

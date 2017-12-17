@@ -4,6 +4,8 @@ import android.content.AsyncTaskLoader;
 import android.content.Context;
 import android.os.CancellationSignal;
 import android.os.OperationCanceledException;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 
 import org.w3c.dom.Document;
 
@@ -17,11 +19,13 @@ abstract public class DocumentLoader extends AsyncTaskLoader<Document>
 	/**
 	 * Document
 	 */
+	@Nullable
 	private Document document;
 
 	/**
 	 * Cancellation signal
 	 */
+	@Nullable
 	@SuppressWarnings("WeakerAccess")
 	protected CancellationSignal cancellationSignal;
 
@@ -37,6 +41,7 @@ abstract public class DocumentLoader extends AsyncTaskLoader<Document>
 	}
 
 	/* Runs on a worker thread */
+	@NonNull
 	@Override
 	public Document loadInBackground()
 	{
@@ -66,6 +71,7 @@ abstract public class DocumentLoader extends AsyncTaskLoader<Document>
 	 *
 	 * @return document
 	 */
+	@NonNull
 	abstract protected Document getDoc();
 
 	@Override

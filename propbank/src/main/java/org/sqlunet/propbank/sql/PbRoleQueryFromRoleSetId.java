@@ -1,6 +1,7 @@
 package org.sqlunet.propbank.sql;
 
 import android.database.sqlite.SQLiteDatabase;
+import android.support.annotation.NonNull;
 
 import org.sqlunet.sql.DBQuery;
 
@@ -56,6 +57,7 @@ class PbRoleQueryFromRoleSetId extends DBQuery
 	 *
 	 * @return the role description from the result set
 	 */
+	@NonNull
 	public String getRoleDescr()
 	{
 		return this.cursor.getString(1).toLowerCase(Locale.ENGLISH);

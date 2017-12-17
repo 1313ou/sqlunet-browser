@@ -1,6 +1,7 @@
 package org.sqlunet.framenet.sql;
 
 import android.database.sqlite.SQLiteDatabase;
+import android.support.annotation.Nullable;
 
 import org.sqlunet.sql.DBQuery;
 
@@ -29,7 +30,7 @@ class FnLexUnitQueryFromWordId extends DBQuery
 	 * @param pos        target pos or null
 	 */
 	@SuppressWarnings("boxing")
-	public FnLexUnitQueryFromWordId(final SQLiteDatabase connection, final long wordId, final Character pos)
+	public FnLexUnitQueryFromWordId(final SQLiteDatabase connection, final long wordId, @Nullable final Character pos)
 	{
 		super(connection, pos != null ? FnLexUnitQueryFromWordId.QUERYWITHPOS : FnLexUnitQueryFromWordId.QUERY);
 		setParams(wordId, FnLexUnitQueryFromWordId.mapPos(pos));
@@ -131,8 +132,9 @@ class FnLexUnitQueryFromWordId extends DBQuery
 	 * @param pos pos character
 	 * @return pos code
 	 */
+	@Nullable
 	@SuppressWarnings("boxing")
-	static private Integer mapPos(final Character pos)
+	static private Integer mapPos(@Nullable final Character pos)
 	{
 		if (pos == null)
 		{

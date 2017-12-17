@@ -188,6 +188,7 @@ public class SetupFileFragment extends BaseTaskFragment
 		return view;
 	}
 
+	@NonNull
 	@Override
 	protected SpinnerAdapter makeAdapter()
 	{
@@ -253,6 +254,7 @@ public class SetupFileFragment extends BaseTaskFragment
 	 *
 	 * @return status string
 	 */
+	@NonNull
 	private CharSequence statusCreate()
 	{
 		final Context context = getActivity();
@@ -275,6 +277,7 @@ public class SetupFileFragment extends BaseTaskFragment
 	 *
 	 * @return status string
 	 */
+	@NonNull
 	private CharSequence statusDrop()
 	{
 		final Context context = getActivity();
@@ -297,6 +300,7 @@ public class SetupFileFragment extends BaseTaskFragment
 	 *
 	 * @return status string
 	 */
+	@NonNull
 	private CharSequence statusCopy()
 	{
 		final Context context = getActivity();
@@ -330,6 +334,7 @@ public class SetupFileFragment extends BaseTaskFragment
 	 *
 	 * @return status string
 	 */
+	@NonNull
 	private CharSequence statusUnzip()
 	{
 		final Context context = getActivity();
@@ -363,6 +368,7 @@ public class SetupFileFragment extends BaseTaskFragment
 	 *
 	 * @return status string
 	 */
+	@NonNull
 	private CharSequence statusMd5()
 	{
 		final SpannableStringBuilder sb = new SpannableStringBuilder();
@@ -375,6 +381,7 @@ public class SetupFileFragment extends BaseTaskFragment
 	 *
 	 * @return status string
 	 */
+	@NonNull
 	private CharSequence statusUpdate()
 	{
 		final SpannableStringBuilder sb = new SpannableStringBuilder();
@@ -389,6 +396,7 @@ public class SetupFileFragment extends BaseTaskFragment
 	 *
 	 * @return status string
 	 */
+	@NonNull
 	private CharSequence statusDownload()
 	{
 		final Context context = getActivity();
@@ -415,6 +423,7 @@ public class SetupFileFragment extends BaseTaskFragment
 	 *
 	 * @return status string
 	 */
+	@NonNull
 	private CharSequence statusDownloadZipped()
 	{
 		final Context context = getActivity();

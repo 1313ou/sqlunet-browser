@@ -1,5 +1,8 @@
 package org.sqlunet.treeview.model;
 
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
+
 import org.sqlunet.treeview.control.Controller;
 
 import java.util.ArrayList;
@@ -33,11 +36,13 @@ public class TreeNode
 	/**
 	 * Children nodes
 	 */
+	@NonNull
 	private final List<TreeNode> children;
 
 	/**
 	 * Controller
 	 */
+	@Nullable
 	private Controller<?> controller;
 
 	/**
@@ -99,6 +104,7 @@ public class TreeNode
 	 *
 	 * @return node
 	 */
+	@Nullable
 	static public TreeNode makeRoot()
 	{
 		final TreeNode root = new TreeNode(null);
@@ -114,7 +120,8 @@ public class TreeNode
 	 * @param parentNode parent node
 	 * @return this node
 	 */
-	public TreeNode addTo(final TreeNode parentNode)
+	@NonNull
+	public TreeNode addTo(@NonNull final TreeNode parentNode)
 	{
 		parentNode.addChild(this);
 		return this;
@@ -126,8 +133,9 @@ public class TreeNode
 	 * @param childNode child node
 	 * @return this node
 	 */
+	@NonNull
 	@SuppressWarnings("UnusedReturnValue")
-	public TreeNode addChild(final TreeNode childNode)
+	public TreeNode addChild(@NonNull final TreeNode childNode)
 	{
 		childNode.parent = this;
 		childNode.id = size();
@@ -141,8 +149,9 @@ public class TreeNode
 	 * @param nodes children nodes
 	 * @return this node
 	 */
+	@NonNull
 	@SuppressWarnings("UnusedReturnValue")
-	public TreeNode addChildren(final TreeNode... nodes)
+	public TreeNode addChildren(@NonNull final TreeNode... nodes)
 	{
 		for (TreeNode node : nodes)
 		{
@@ -160,8 +169,9 @@ public class TreeNode
 	 * @param nodes children node iteration
 	 * @return this node
 	 */
+	@NonNull
 	@SuppressWarnings("unused")
-	public TreeNode addChildren(final Iterable<TreeNode> nodes)
+	public TreeNode addChildren(@NonNull final Iterable<TreeNode> nodes)
 	{
 		for (TreeNode node : nodes)
 		{
@@ -179,7 +189,8 @@ public class TreeNode
 	 * @param parentNode parent node
 	 * @return this node
 	 */
-	public TreeNode prependTo(final TreeNode parentNode)
+	@NonNull
+	public TreeNode prependTo(@NonNull final TreeNode parentNode)
 	{
 		parentNode.prependChild(this);
 		return this;
@@ -191,8 +202,9 @@ public class TreeNode
 	 * @param childNode child node
 	 * @return this node
 	 */
+	@NonNull
 	@SuppressWarnings({"WeakerAccess", "UnusedReturnValue"})
-	public TreeNode prependChild(TreeNode childNode)
+	public TreeNode prependChild(@NonNull TreeNode childNode)
 	{
 		childNode.parent = this;
 		childNode.id = size();
@@ -206,8 +218,9 @@ public class TreeNode
 	 * @param nodes children nodes
 	 * @return this node
 	 */
+	@NonNull
 	@SuppressWarnings({"unused"})
-	public TreeNode prependChildren(final TreeNode... nodes)
+	public TreeNode prependChildren(@NonNull final TreeNode... nodes)
 	{
 		for (int i = nodes.length - 1; i >= 0; i--)
 		{
@@ -243,7 +256,7 @@ public class TreeNode
 	 * @param child child to delete
 	 * @return child index
 	 */
-	public int deleteChild(final TreeNode child)
+	public int deleteChild(@NonNull final TreeNode child)
 	{
 		for (int i = 0; i < this.children.size(); i++)
 		{
@@ -307,6 +320,7 @@ public class TreeNode
 	 *
 	 * @return path
 	 */
+	@NonNull
 	public String getPath()
 	{
 		final StringBuilder path = new StringBuilder();
@@ -543,7 +557,8 @@ public class TreeNode
 	 * @param controller controller
 	 * @return this node
 	 */
-	public TreeNode setController(final Controller<?> controller)
+	@NonNull
+	public TreeNode setController(@Nullable final Controller<?> controller)
 	{
 		this.controller = controller;
 
@@ -560,6 +575,7 @@ public class TreeNode
 	 *
 	 * @return controller
 	 */
+	@Nullable
 	public Controller<?> getController()
 	{
 		return this.controller;
@@ -573,6 +589,7 @@ public class TreeNode
 	 * @param listener click listener
 	 * @return this node
 	 */
+	@NonNull
 	@SuppressWarnings("unused")
 	public TreeNode setClickListener(TreeNodeClickListener listener)
 	{

@@ -46,7 +46,7 @@ public class HomeFragment extends org.sqlunet.browser.HomeFragment
 		image.setOnTouchListener(new View.OnTouchListener()
 		{
 			@Override
-			public boolean onTouch(View v, MotionEvent event)
+			public boolean onTouch(View v, @NonNull MotionEvent event)
 			{
 				float x = event.getX();
 				float y = event.getY();

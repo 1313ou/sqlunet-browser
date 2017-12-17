@@ -37,7 +37,7 @@ public class SqlDialogFragment extends DialogFragment
 		return view;
 	}
 
-	static void show(final FragmentManager manager)
+	static void show(@NonNull final FragmentManager manager)
 	{
 		final SqlDialogFragment dialogFragment = new SqlDialogFragment();
 		dialogFragment.show(manager, "sql");

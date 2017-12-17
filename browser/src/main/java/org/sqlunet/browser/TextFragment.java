@@ -12,6 +12,8 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Parcelable;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
 import android.text.style.DynamicDrawableSpan;
@@ -105,6 +107,7 @@ public class TextFragment extends AbstractTableFragment
 	 *
 	 * @return ViewBinder
 	 */
+	@Nullable
 	@Override
 	protected ViewBinder makeViewBinder()
 	{
@@ -118,7 +121,7 @@ public class TextFragment extends AbstractTableFragment
 		return new ViewBinder()
 		{
 			@Override
-			public boolean setViewValue(final View view, final Cursor cursor, final int columnIndex)
+			public boolean setViewValue(final View view, @NonNull final Cursor cursor, final int columnIndex)
 			{
 				String value = cursor.getString(columnIndex);
 				if (value == null)
@@ -138,7 +141,7 @@ public class TextFragment extends AbstractTableFragment
 					{
 						((ImageView) view).setImageResource(Integer.parseInt(value));
 					}
-					catch (final NumberFormatException nfe)
+					catch (@NonNull final NumberFormatException nfe)
 					{
 						((ImageView) view).setImageURI(Uri.parse(value));
 					}
@@ -322,7 +325,7 @@ public class TextFragment extends AbstractTableFragment
 	 *
 	 * @param typedPointer typed pointer
 	 */
-	private void startVn(final TypedPointer typedPointer)
+	private void startVn(@NonNull final TypedPointer typedPointer)
 	{
 		final long targetId = typedPointer.id;
 		Intent targetIntent = null;
@@ -352,7 +355,7 @@ public class TextFragment extends AbstractTableFragment
 	 *
 	 * @param typedPointer typed pointer
 	 */
-	private void startPb(final TypedPointer typedPointer)
+	private void startPb(@NonNull final TypedPointer typedPointer)
 	{
 		final long targetId = typedPointer.id;
 		Intent targetIntent = null;
@@ -382,7 +385,7 @@ public class TextFragment extends AbstractTableFragment
 	 *
 	 * @param typedPointer typed pointer
 	 */
-	private void startFn(final TypedPointer typedPointer)
+	private void startFn(@NonNull final TypedPointer typedPointer)
 	{
 		final long targetId = typedPointer.id;
 		Intent targetIntent = null;
@@ -438,7 +441,7 @@ public class TextFragment extends AbstractTableFragment
 	 * @param concatChoices concatenated choices
 	 * @return array of typed pointers and array of labels
 	 */
-	private Pair<TypedPointer[], CharSequence[]> makeData(final String... concatChoices)
+	private Pair<TypedPointer[], CharSequence[]> makeData(@NonNull final String... concatChoices)
 	{
 		final List<TypedPointer> typedPointers = new ArrayList<>();
 		final List<CharSequence> labels = new ArrayList<>();
@@ -521,7 +524,7 @@ public class TextFragment extends AbstractTableFragment
 	 * @param text  text
 	 * @param spans spans to apply
 	 */
-	static private void append(final SpannableStringBuilder sb, final CharSequence text, final Object... spans)
+	static private void append(@NonNull final SpannableStringBuilder sb, @Nullable final CharSequence text, @NonNull final Object... spans)
 	{
 		if (text == null || text.length() == 0)
 		{
@@ -545,7 +548,7 @@ public class TextFragment extends AbstractTableFragment
 	 * @param sb      spannable string builder
 	 * @param resId   resource id
 	 */
-	static private void appendImage(final Context context, final SpannableStringBuilder sb, final int resId)
+	static private void appendImage(@NonNull final Context context, @NonNull final SpannableStringBuilder sb, final int resId)
 	{
 		append(sb, "\u0000", makeImageSpan(context, resId));
 	}
@@ -558,7 +561,7 @@ public class TextFragment extends AbstractTableFragment
 	 * @return image span
 	 */
 	@SuppressWarnings("deprecation")
-	static private Object makeImageSpan(final Context context, final int resId)
+	static private Object makeImageSpan(@NonNull final Context context, final int resId)
 	{
 		Drawable drawable;
 		if (Build.VERSION.SDK_INT < Build.VERSION_CODES.N)

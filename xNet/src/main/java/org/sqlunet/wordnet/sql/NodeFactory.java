@@ -1,5 +1,7 @@
 package org.sqlunet.wordnet.sql;
 
+import android.support.annotation.NonNull;
+
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -19,7 +21,7 @@ public class NodeFactory extends org.sqlunet.sql.NodeFactory
 	 * @param value  is the part-of-speech
 	 * @return newly created node
 	 */
-	static public Node makePosNode(final Document doc, final Node parent, final String value)
+	static public Node makePosNode(@NonNull final Document doc, final Node parent, final String value)
 	{
 		final Element element = NodeFactory.makeNode(doc, parent, "pos", null);
 		NodeFactory.makeAttribute(element, "name", value);
@@ -34,7 +36,7 @@ public class NodeFactory extends org.sqlunet.sql.NodeFactory
 	 * @param value  lexdomain
 	 * @return newly created node
 	 */
-	static public Node makeLexDomainNode(final Document doc, final Node parent, final String value)
+	static public Node makeLexDomainNode(@NonNull final Document doc, final Node parent, final String value)
 	{
 		final Element element = NodeFactory.makeNode(doc, parent, "lexdomain", null);
 		NodeFactory.makeAttribute(element, "name", value);
@@ -50,7 +52,7 @@ public class NodeFactory extends org.sqlunet.sql.NodeFactory
 	 * @param synsetId is the synset id
 	 * @return newly created node
 	 */
-	static public Element makeSenseNode(final Document doc, final Node parent, final long wordId, final long synsetId, final int senseIdx)
+	static public Element makeSenseNode(@NonNull final Document doc, final Node parent, final long wordId, final long synsetId, final int senseIdx)
 	{
 		final Element element = NodeFactory.makeNode(doc, parent, "sense", null);
 		if (wordId != 0)
@@ -77,7 +79,7 @@ public class NodeFactory extends org.sqlunet.sql.NodeFactory
 	 * @param size     is the synset's size (the number of words in the synset)
 	 * @return newly created element
 	 */
-	static public Element makeSynsetNode(final Document doc, final Node parent, final long synsetId, final int size)
+	static public Element makeSynsetNode(@NonNull final Document doc, final Node parent, final long synsetId, final int size)
 	{
 		final Element element = NodeFactory.makeNode(doc, parent, "synset", null);
 		NodeFactory.makeAttribute(element, "synsetid", Long.toString(synsetId));
@@ -97,7 +99,7 @@ public class NodeFactory extends org.sqlunet.sql.NodeFactory
 	 * @param id     is the word id
 	 * @return newly created node
 	 */
-	static public Node makeWordNode(final Document doc, final Node parent, final String word, final long id)
+	static public Node makeWordNode(@NonNull final Document doc, final Node parent, final String word, final long id)
 	{
 		final Element element = NodeFactory.makeNode(doc, parent, "word", word);
 		NodeFactory.makeAttribute(element, "wordid", Long.toString(id));
@@ -113,7 +115,7 @@ public class NodeFactory extends org.sqlunet.sql.NodeFactory
 	 * @param level    is the recursion level
 	 * @return newly created node
 	 */
-	static public Node makeLinkNode(final Document doc, final Node parent, final String linkType, final int level)
+	static public Node makeLinkNode(@NonNull final Document doc, final Node parent, final String linkType, final int level)
 	{
 		final Element element = NodeFactory.makeNode(doc, parent, linkType, null);
 		if (level > 0)
@@ -133,7 +135,7 @@ public class NodeFactory extends org.sqlunet.sql.NodeFactory
 	 * @return newly created node
 	 */
 	@SuppressWarnings("UnusedReturnValue")
-	static public Node makeMoreLinkNode(final Document doc, final Node parent, final String linkType, final int level)
+	static public Node makeMoreLinkNode(@NonNull final Document doc, final Node parent, final String linkType, final int level)
 	{
 		final Element element = NodeFactory.makeNode(doc, parent, linkType, null);
 		NodeFactory.makeAttribute(element, "level", Integer.toString(level));

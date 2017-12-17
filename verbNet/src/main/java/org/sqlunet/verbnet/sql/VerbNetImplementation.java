@@ -1,6 +1,7 @@
 package org.sqlunet.verbnet.sql;
 
 import android.database.sqlite.SQLiteDatabase;
+import android.support.annotation.NonNull;
 
 import org.sqlunet.dom.DomFactory;
 import org.sqlunet.dom.DomTransformer;
@@ -154,7 +155,7 @@ public class VerbNetImplementation implements VerbNetInterface
 	 * @param targetWord target word
 	 */
 	@SuppressWarnings("boxing")
-	static private void walkSelector(final SQLiteDatabase connection, final Document doc, final Node parent, final String targetWord)
+	static private void walkSelector(final SQLiteDatabase connection, @NonNull final Document doc, final Node parent, final String targetWord)
 	{
 		// entry
 		final VnEntry entry = VnEntry.make(connection, targetWord);
@@ -202,7 +203,7 @@ public class VerbNetImplementation implements VerbNetInterface
 	 * @param targetWord target word
 	 */
 	@SuppressWarnings("boxing")
-	static private void walk(final SQLiteDatabase connection, final Document doc, final Node parent, final String targetWord)
+	static private void walk(final SQLiteDatabase connection, @NonNull final Document doc, final Node parent, final String targetWord)
 	{
 		// entry
 		final VnEntry entry = VnEntry.make(connection, targetWord);
@@ -256,7 +257,7 @@ public class VerbNetImplementation implements VerbNetInterface
 	 * @param roles          whether to include roles
 	 * @param frames         whether to include frames
 	 */
-	static private void walk(final SQLiteDatabase connection, final Document doc, final Node parent, final long targetWordId, final Long targetSynsetId, final boolean roles, final boolean frames)
+	static private void walk(final SQLiteDatabase connection, @NonNull final Document doc, final Node parent, final long targetWordId, final Long targetSynsetId, final boolean roles, final boolean frames)
 	{
 		// classes
 		final List<VnClassWithSense> vnClasses = VnClassWithSense.make(connection, targetWordId, targetSynsetId);
@@ -321,7 +322,7 @@ public class VerbNetImplementation implements VerbNetInterface
 	 * @param parent     org.w3c.dom.Node walk will attach results to
 	 * @param classId    target class id
 	 */
-	static private void walkClass(final SQLiteDatabase connection, final Document doc, final Node parent, final long classId)
+	static private void walkClass(final SQLiteDatabase connection, @NonNull final Document doc, final Node parent, final long classId)
 	{
 		// class
 		final VnClass clazz = VnClass.make(connection, classId);

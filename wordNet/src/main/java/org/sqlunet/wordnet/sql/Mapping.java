@@ -3,6 +3,8 @@ package org.sqlunet.wordnet.sql;
 import android.annotation.SuppressLint;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.util.Log;
 import android.util.SparseArray;
 
@@ -93,7 +95,7 @@ class Mapping
 				Mapping.lexDomainsByName.put(name, lexDomain);
 			}
 		}
-		catch (final SQLException e)
+		catch (@NonNull final SQLException e)
 		{
 			Log.e(TAG, "While initializing lexdomains", e);
 			throw new RuntimeException(e);
@@ -133,7 +135,7 @@ class Mapping
 				Mapping.linksByName.put(name, linkDef);
 			}
 		}
-		catch (final SQLException e)
+		catch (@NonNull final SQLException e)
 		{
 			Log.e(TAG, "While initializing links", e);
 			throw new RuntimeException(e);
@@ -192,7 +194,7 @@ class Mapping
 			final LexDomainDef lexDomain = Mapping.lexDomains.get(lexDomainId);
 			return lexDomain.posName;
 		}
-		catch (final IndexOutOfBoundsException e)
+		catch (@NonNull final IndexOutOfBoundsException e)
 		{
 			return "lexdomainid." + Integer.toString(lexDomainId);
 		}
@@ -211,7 +213,7 @@ class Mapping
 			final LexDomainDef lexDomain = Mapping.lexDomains.get(lexDomainId);
 			return lexDomain.lexDomainName;
 		}
-		catch (final IndexOutOfBoundsException e)
+		catch (@NonNull final IndexOutOfBoundsException e)
 		{
 			return "lexdomainid." + Integer.toString(lexDomainId);
 		}
@@ -224,7 +226,7 @@ class Mapping
 	 * @param lexDomainName target lexdomain name
 	 * @return lexdomain id or -1 if not found
 	 */
-	static public int getLexDomainId(final String posName, final String lexDomainName)
+	static public int getLexDomainId(@Nullable final String posName, @Nullable final String lexDomainName)
 	{
 		if (posName == null || lexDomainName == null)
 		{
@@ -236,7 +238,7 @@ class Mapping
 			final LexDomainDef lexDomain = Mapping.lexDomainsByName.get(fullName);
 			return lexDomain.id;
 		}
-		catch (final NullPointerException e)
+		catch (@NonNull final NullPointerException e)
 		{
 			return Mapping.ANYTYPE;
 		}
@@ -248,7 +250,7 @@ class Mapping
 	 * @param posName target part-of-speech name
 	 * @return part-of-speech id or ANYTYPE if not found
 	 */
-	static public int getPosId(final String posName)
+	static public int getPosId(@Nullable final String posName)
 	{
 		if (posName == null)
 		{
@@ -286,7 +288,7 @@ class Mapping
 			final LinkDef linkDef = Mapping.linksById.get(linkType);
 			return linkDef.name;
 		}
-		catch (final NullPointerException e)
+		catch (@NonNull final NullPointerException e)
 		{
 			return "linktype." + Integer.toString(linkType);
 		}
@@ -298,7 +300,7 @@ class Mapping
 	 * @param linkName target link name
 	 * @return link id or ANYTYPE if it is not found
 	 */
-	static public int getLinkType(final String linkName)
+	static public int getLinkType(@Nullable final String linkName)
 	{
 		if (linkName == null)
 		{
@@ -310,7 +312,7 @@ class Mapping
 			final LinkDef linkDef = Mapping.linksByName.get(linkName);
 			return linkDef.id;
 		}
-		catch (final NullPointerException e)
+		catch (@NonNull final NullPointerException e)
 		{
 			return Mapping.ANYTYPE;
 		}
@@ -329,11 +331,11 @@ class Mapping
 			final LinkDef linkDef = Mapping.linksById.get(linkType);
 			return linkDef.recurses;
 		}
-		catch (final IndexOutOfBoundsException e)
+		catch (@NonNull final IndexOutOfBoundsException e)
 		{
 			return false;
 		}
-		catch (final NullPointerException e)
+		catch (@NonNull final NullPointerException e)
 		{
 			return false;
 		}

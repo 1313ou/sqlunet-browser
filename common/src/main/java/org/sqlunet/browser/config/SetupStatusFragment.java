@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.util.Log;
@@ -66,6 +67,7 @@ public class SetupStatusFragment extends Fragment
 	{
 	}
 
+	@Nullable
 	@Override
 	public View onCreateView(@NonNull final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState)
 	{
@@ -256,14 +258,14 @@ public class SetupStatusFragment extends Fragment
 	// M E N U
 
 	@Override
-	public void onCreateOptionsMenu(final Menu menu, final MenuInflater inflater)
+	public void onCreateOptionsMenu(final Menu menu, @NonNull final MenuInflater inflater)
 	{
 		// inflate the menu; this adds items to the type bar if it is present.
 		inflater.inflate(R.menu.status, menu);
 	}
 
 	@Override
-	public boolean onOptionsItemSelected(MenuItem item)
+	public boolean onOptionsItemSelected(@NonNull MenuItem item)
 	{
 		// handle item selection
 		int i = item.getItemId();

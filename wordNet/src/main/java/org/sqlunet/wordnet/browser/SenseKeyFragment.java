@@ -1,5 +1,7 @@
 package org.sqlunet.wordnet.browser;
 
+import android.support.annotation.NonNull;
+
 import org.sqlunet.browser.Module;
 import org.sqlunet.wordnet.loaders.SenseKeyModule;
 
@@ -18,6 +20,7 @@ public class SenseKeyFragment extends SynsetFragment
 		super();
 	}
 
+	@NonNull
 	@Override
 	protected Module makeModule()
 	{

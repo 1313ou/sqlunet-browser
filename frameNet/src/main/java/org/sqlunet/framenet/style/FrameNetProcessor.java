@@ -1,5 +1,7 @@
 package org.sqlunet.framenet.style;
 
+import android.support.annotation.NonNull;
+
 import org.sqlunet.style.Preprocessor;
 
 /**
@@ -31,6 +33,7 @@ public class FrameNetProcessor extends Preprocessor
 	 * @param text text to split
 	 * @return split text
 	 */
+	@NonNull
 	public CharSequence[] split(final CharSequence text)
 	{
 		CharSequence processedText = process(text);

@@ -1,5 +1,7 @@
 package org.sqlunet.framenet.sql;
 
+import android.support.annotation.Nullable;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -45,7 +47,8 @@ class FnRelatedFrame
 	 * @param relatedFramesString (id:rel|id:rel...)
 	 * @return list of related frames
 	 */
-	static public List<FnRelatedFrame> make(final String relatedFramesString)
+	@Nullable
+	static public List<FnRelatedFrame> make(@Nullable final String relatedFramesString)
 	{
 		if (relatedFramesString == null)
 		{

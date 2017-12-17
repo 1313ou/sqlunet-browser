@@ -6,6 +6,7 @@ import android.database.sqlite.SQLiteCantOpenDatabaseException;
 import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.util.Log;
 
 import org.sqlunet.settings.StorageSettings;
@@ -77,6 +78,7 @@ public abstract class BaseProvider extends ContentProvider
 			}
 		}
 
+		@NonNull
 		synchronized public CharSequence[] reverseItems()
 		{
 			final int n = size();
@@ -144,6 +146,7 @@ public abstract class BaseProvider extends ContentProvider
 
 	// database
 
+	@Nullable
 	protected SQLiteDatabase db;
 
 	// O P E N / S H U T D O W N
@@ -156,7 +159,7 @@ public abstract class BaseProvider extends ContentProvider
 			this.db = open(path, SQLiteDatabase.OPEN_READONLY);
 			Log.d(BaseProvider.TAG, "Opened by " + this.getClass() + " content provider: " + this.db.getPath());
 		}
-		catch (final SQLiteCantOpenDatabaseException e)
+		catch (@NonNull final SQLiteCantOpenDatabaseException e)
 		{
 			Log.e(BaseProvider.TAG, "Open failed by " + this.getClass() + " content provider: " + path, e);
 			throw e;
@@ -170,6 +173,7 @@ public abstract class BaseProvider extends ContentProvider
 	 * @param flags database name
 	 * @return opened database
 	 */
+	@Nullable
 	private SQLiteDatabase open(final String path, @SuppressWarnings("SameParameterValue") final int flags)
 	{
 		this.db = SQLiteDatabase.openDatabase(path, null, flags);
@@ -232,7 +236,7 @@ public abstract class BaseProvider extends ContentProvider
 	 * @param items      items to addItem to projection
 	 * @return augmented projection
 	 */
-	static protected String[] appendProjection(final String[] projection, final String... items)
+	static protected String[] appendProjection(@Nullable final String[] projection, @NonNull final String... items)
 	{
 		String[] projection2;
 		int i = 0;
@@ -264,7 +268,7 @@ public abstract class BaseProvider extends ContentProvider
 	 * @param items      items to addItem to projection
 	 * @return augmented projection
 	 */
-	static String[] prependProjection(final String[] projection, @SuppressWarnings("SameParameterValue") final String... items)
+	static String[] prependProjection(@Nullable final String[] projection, @NonNull @SuppressWarnings("SameParameterValue") final String... items)
 	{
 		String[] projection2;
 		if (projection == null)
@@ -300,7 +304,7 @@ public abstract class BaseProvider extends ContentProvider
 	 * @param args args
 	 * @return string
 	 */
-	static protected String argsToString(final String... args)
+	static protected String argsToString(@Nullable final String... args)
 	{
 		final StringBuilder sb = new StringBuilder();
 		if (args != null && args.length > 0)

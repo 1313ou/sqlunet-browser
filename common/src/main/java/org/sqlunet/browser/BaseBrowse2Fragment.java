@@ -3,6 +3,7 @@ package org.sqlunet.browser;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -23,9 +24,11 @@ public abstract class BaseBrowse2Fragment extends Fragment
 
 	static private final String POINTER_STATE = "pointer";
 
+	@Nullable
 	@SuppressWarnings("WeakerAccess")
 	protected Parcelable pointer = null;
 
+	@Nullable
 	@SuppressWarnings("WeakerAccess")
 	protected String pos = null;
 
@@ -40,7 +43,7 @@ public abstract class BaseBrowse2Fragment extends Fragment
 	}
 
 	@Override
-	public View onCreateView(@NonNull final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState)
+	public View onCreateView(@NonNull final LayoutInflater inflater, final ViewGroup container, @Nullable final Bundle savedInstanceState)
 	{
 		// retain instance
 		setRetainInstance(true);

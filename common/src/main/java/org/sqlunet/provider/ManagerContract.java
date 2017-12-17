@@ -2,6 +2,7 @@ package org.sqlunet.provider;
 
 import android.content.Context;
 import android.content.Intent;
+import android.support.annotation.NonNull;
 
 import org.sqlunet.browser.config.TableActivity;
 
@@ -18,6 +19,7 @@ public class ManagerContract
 	 * @param context context
 	 * @return intent
 	 */
+	@NonNull
 	static public Intent makeTablesAndIndexesIntent(final Context context)
 	{
 		final Intent intent = new Intent(context, TableActivity.class);

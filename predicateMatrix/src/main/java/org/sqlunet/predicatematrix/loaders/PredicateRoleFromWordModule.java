@@ -1,5 +1,7 @@
 package org.sqlunet.predicatematrix.loaders;
 
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.os.Parcelable;
 
@@ -17,6 +19,7 @@ public class PredicateRoleFromWordModule extends BaseModule
 	/**
 	 * Query
 	 */
+	@Nullable
 	private String word;
 
 	/**
@@ -29,7 +32,7 @@ public class PredicateRoleFromWordModule extends BaseModule
 	 *
 	 * @param mode predicatematrix mode
 	 */
-	public PredicateRoleFromWordModule(final Fragment fragment, final PMMode mode)
+	public PredicateRoleFromWordModule(@NonNull final Fragment fragment, final PMMode mode)
 	{
 		super(fragment);
 		this.mode = mode;

@@ -19,6 +19,7 @@ package android.support.test.espresso.contrib;
 import android.annotation.SuppressLint;
 import android.database.Cursor;
 import android.os.Build;
+import android.support.annotation.NonNull;
 import android.support.test.espresso.action.AdapterViewProtocol;
 import android.support.test.espresso.core.internal.deps.guava.base.Optional;
 import android.support.test.espresso.core.internal.deps.guava.base.Preconditions;
@@ -51,6 +52,7 @@ public final class ExpandableListViewProtocol implements AdapterViewProtocol
 	/**
 	 * Creates an implementation of AdapterViewProtocol that can work with ExpandableListViews.
 	 */
+	@NonNull
 	static public AdapterViewProtocol expandableListViewProtocol()
 	{
 		return EXPANDABLELISTVIEW_PROTOCOL;
@@ -106,6 +108,7 @@ public final class ExpandableListViewProtocol implements AdapterViewProtocol
 	 * @throws IllegalArgumentException if the implementation doesn't know how to manipulate the given
 	 *                                  adapter view.
 	 */
+	@NonNull
 	@Override
 	public Iterable<AdaptedData> getDataInAdapterView(AdapterView<? extends Adapter> adapterView)
 	{
@@ -166,7 +169,7 @@ public final class ExpandableListViewProtocol implements AdapterViewProtocol
 	 * @throws IllegalArgumentException if this protocol cannot interrogate this class of adapterView
 	 */
 	@Override
-	public Optional<AdaptedData> getDataRenderedByView(AdapterView<? extends Adapter> adapterView, View descendantView)
+	public Optional<AdaptedData> getDataRenderedByView(@NonNull AdapterView<? extends Adapter> adapterView, @NonNull View descendantView)
 	{
 		// if the target view is a child of list view (both groups and group children are)
 		if (adapterView == descendantView.getParent())
@@ -209,7 +212,7 @@ public final class ExpandableListViewProtocol implements AdapterViewProtocol
 	 */
 	@SuppressLint("ObsoleteSdkInt")
 	@Override
-	public void makeDataRenderedWithinAdapterView(AdapterView<? extends Adapter> adapterView, AdaptedData data)
+	public void makeDataRenderedWithinAdapterView(@NonNull AdapterView<? extends Adapter> adapterView, @NonNull AdaptedData data)
 	{
 		Preconditions.checkArgument(data.opaqueToken instanceof Pair, "Not my data: %s", data);
 		@SuppressWarnings({"unchecked", "ConstantConditions"}) final Pair<Integer, Integer> position = (Pair<Integer, Integer>) data.opaqueToken;
@@ -248,7 +251,7 @@ public final class ExpandableListViewProtocol implements AdapterViewProtocol
 	 * @return true if the data is rendered by a view in the adapterView, false otherwise.
 	 */
 	@Override
-	public boolean isDataRenderedWithinAdapterView(AdapterView<? extends Adapter> adapterView, AdaptedData data)
+	public boolean isDataRenderedWithinAdapterView(@NonNull AdapterView<? extends Adapter> adapterView, @NonNull AdaptedData data)
 	{
 		Preconditions.checkArgument(data.opaqueToken instanceof Pair, "Not my data: %s", data);
 		@SuppressWarnings({"unchecked", "ConstantConditions"}) final Pair<Integer, Integer> dataPosition = (Pair<Integer, Integer>) data.opaqueToken;
@@ -281,7 +284,7 @@ public final class ExpandableListViewProtocol implements AdapterViewProtocol
 		return inView;
 	}
 
-	private boolean isElementFullyRendered(AdapterView<? extends Adapter> adapterView, int childAt)
+	private boolean isElementFullyRendered(@NonNull AdapterView<? extends Adapter> adapterView, int childAt)
 	{
 		final View view = adapterView.getChildAt(childAt);
 

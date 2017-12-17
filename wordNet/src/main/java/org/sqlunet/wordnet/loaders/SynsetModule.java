@@ -1,5 +1,7 @@
 package org.sqlunet.wordnet.loaders;
 
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.os.Parcelable;
 
@@ -21,11 +23,13 @@ public class SynsetModule extends BaseModule
 	/**
 	 * Synset id
 	 */
+	@Nullable
 	Long synsetId;
 
 	/**
 	 * Pos
 	 */
+	@Nullable
 	Character pos;
 
 	/**
@@ -39,7 +43,7 @@ public class SynsetModule extends BaseModule
 	 *
 	 * @param fragment fragment
 	 */
-	public SynsetModule(final Fragment fragment)
+	public SynsetModule(@NonNull final Fragment fragment)
 	{
 		super(fragment);
 		this.expand = true;
@@ -73,7 +77,7 @@ public class SynsetModule extends BaseModule
 	}
 
 	@Override
-	public void process(final TreeNode parent)
+	public void process(@NonNull final TreeNode parent)
 	{
 		if (this.synsetId != null && this.synsetId != 0)
 		{

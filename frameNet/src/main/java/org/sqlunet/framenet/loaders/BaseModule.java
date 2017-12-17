@@ -6,6 +6,8 @@ import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Parcelable;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.LoaderManager.LoaderCallbacks;
 import android.support.v4.content.CursorLoader;
@@ -83,16 +85,19 @@ abstract public class BaseModule extends Module
 	/**
 	 * Processor
 	 */
+	@NonNull
 	private final FrameNetProcessor processor;
 
 	/**
 	 * Frame Processor
 	 */
+	@NonNull
 	private final FrameNetFrameProcessor frameProcessor;
 
 	/**
 	 * Spanner
 	 */
+	@Nullable
 	private final FrameNetSpanner spanner;
 
 	// resources
@@ -152,7 +157,7 @@ abstract public class BaseModule extends Module
 	 *
 	 * @param fragment containing fragment
 	 */
-	BaseModule(final Fragment fragment)
+	BaseModule(@NonNull final Fragment fragment)
 	{
 		super(fragment);
 
@@ -197,10 +202,11 @@ abstract public class BaseModule extends Module
 	 * @param frameId frame id
 	 * @param parent  parent node
 	 */
-	void frame(final long frameId, final TreeNode parent)
+	void frame(final long frameId, @NonNull final TreeNode parent)
 	{
 		getLoaderManager().restartLoader(++Module.loaderId, null, new LoaderCallbacks<Cursor>()
 		{
+			@Nullable
 			@Override
 			public Loader<Cursor> onCreateLoader(final int loaderId, final Bundle loaderArgs)
 			{
@@ -220,7 +226,7 @@ abstract public class BaseModule extends Module
 			}
 
 			@Override
-			public void onLoadFinished(final Loader<Cursor> loader, final Cursor cursor)
+			public void onLoadFinished(final Loader<Cursor> loader, @NonNull final Cursor cursor)
 			{
 				if (cursor.getCount() > 1)
 				{
@@ -301,10 +307,11 @@ abstract public class BaseModule extends Module
 	 * @param frameId frame id
 	 * @param parent  parent node
 	 */
-	private void relatedFrames(final long frameId, final TreeNode parent)
+	private void relatedFrames(final long frameId, @NonNull final TreeNode parent)
 	{
 		getLoaderManager().restartLoader(++Module.loaderId, null, new LoaderCallbacks<Cursor>()
 		{
+			@Nullable
 			@Override
 			public Loader<Cursor> onCreateLoader(final int loaderId, final Bundle loaderArgs)
 			{
@@ -325,7 +332,7 @@ abstract public class BaseModule extends Module
 			}
 
 			@Override
-			public void onLoadFinished(final Loader<Cursor> loader, final Cursor cursor)
+			public void onLoadFinished(final Loader<Cursor> loader, @NonNull final Cursor cursor)
 			{
 				if (cursor.moveToFirst())
 				{
@@ -440,10 +447,11 @@ abstract public class BaseModule extends Module
 	 * @param frameId frame id
 	 * @param parent  parent node
 	 */
-	private void fesForFrame(final int frameId, final TreeNode parent)
+	private void fesForFrame(final int frameId, @NonNull final TreeNode parent)
 	{
 		getLoaderManager().restartLoader(++Module.loaderId, null, new LoaderCallbacks<Cursor>()
 		{
+			@Nullable
 			@Override
 			public Loader<Cursor> onCreateLoader(final int loaderId, final Bundle loaderArgs)
 			{
@@ -465,7 +473,7 @@ abstract public class BaseModule extends Module
 			}
 
 			@Override
-			public void onLoadFinished(final Loader<Cursor> loader, final Cursor cursor)
+			public void onLoadFinished(final Loader<Cursor> loader, @NonNull final Cursor cursor)
 			{
 				if (cursor.moveToFirst())
 				{
@@ -577,10 +585,11 @@ abstract public class BaseModule extends Module
 	 * @param withFrame whether to include frames
 	 * @param withFes   whether to include frame elements
 	 */
-	void lexUnit(final long luId, final TreeNode parent, @SuppressWarnings("SameParameterValue") final boolean withFrame, @SuppressWarnings("SameParameterValue") final boolean withFes)
+	void lexUnit(final long luId, @NonNull final TreeNode parent, @SuppressWarnings("SameParameterValue") final boolean withFrame, @SuppressWarnings("SameParameterValue") final boolean withFes)
 	{
 		getLoaderManager().restartLoader(++Module.loaderId, null, new LoaderCallbacks<Cursor>()
 		{
+			@Nullable
 			@Override
 			public Loader<Cursor> onCreateLoader(final int loaderId, final Bundle loaderArgs)
 			{
@@ -603,7 +612,7 @@ abstract public class BaseModule extends Module
 			}
 
 			@Override
-			public void onLoadFinished(final Loader<Cursor> loader, final Cursor cursor)
+			public void onLoadFinished(final Loader<Cursor> loader, @NonNull final Cursor cursor)
 			{
 				if (cursor.getCount() > 1)
 				{
@@ -740,10 +749,11 @@ abstract public class BaseModule extends Module
 	 * @param parent    parent node
 	 * @param withFrame whether to include frame
 	 */
-	private void lexUnitsForFrame(final long frameId, final TreeNode parent, @SuppressWarnings("SameParameterValue") final boolean withFrame)
+	private void lexUnitsForFrame(final long frameId, @NonNull final TreeNode parent, @SuppressWarnings("SameParameterValue") final boolean withFrame)
 	{
 		getLoaderManager().restartLoader(++Module.loaderId, null, new LoaderCallbacks<Cursor>()
 		{
+			@Nullable
 			@Override
 			public Loader<Cursor> onCreateLoader(final int loaderId, final Bundle loaderArgs)
 			{
@@ -765,7 +775,7 @@ abstract public class BaseModule extends Module
 			}
 
 			@Override
-			public void onLoadFinished(final Loader<Cursor> loader, final Cursor cursor)
+			public void onLoadFinished(final Loader<Cursor> loader, @NonNull final Cursor cursor)
 			{
 				if (cursor.moveToFirst())
 				{
@@ -898,10 +908,11 @@ abstract public class BaseModule extends Module
 	 * @param pos    pos
 	 * @param parent parent node
 	 */
-	void lexUnitsForWordAndPos(final long wordId, final Character pos, final TreeNode parent)
+	void lexUnitsForWordAndPos(final long wordId, @Nullable final Character pos, @NonNull final TreeNode parent)
 	{
 		getLoaderManager().restartLoader(++Module.loaderId, null, new LoaderCallbacks<Cursor>()
 		{
+			@Nullable
 			@Override
 			public Loader<Cursor> onCreateLoader(final int loaderId, final Bundle loaderArgs)
 			{
@@ -925,7 +936,7 @@ abstract public class BaseModule extends Module
 			}
 
 			@Override
-			public void onLoadFinished(final Loader<Cursor> loader, final Cursor cursor)
+			public void onLoadFinished(final Loader<Cursor> loader, @NonNull final Cursor cursor)
 			{
 				if (cursor.moveToFirst())
 				{
@@ -1049,6 +1060,7 @@ abstract public class BaseModule extends Module
 	{
 		getLoaderManager().restartLoader(++Module.loaderId, null, new LoaderCallbacks<Cursor>()
 		{
+			@Nullable
 			@Override
 			public Loader<Cursor> onCreateLoader(final int loaderId, final Bundle loaderArgs)
 			{
@@ -1067,7 +1079,7 @@ abstract public class BaseModule extends Module
 			}
 
 			@Override
-			public void onLoadFinished(final Loader<Cursor> loader, final Cursor cursor)
+			public void onLoadFinished(final Loader<Cursor> loader, @NonNull final Cursor cursor)
 			{
 				if (cursor.moveToFirst())
 				{
@@ -1137,6 +1149,7 @@ abstract public class BaseModule extends Module
 	{
 		getLoaderManager().restartLoader(++Module.loaderId, null, new LoaderCallbacks<Cursor>()
 		{
+			@Nullable
 			@Override
 			public Loader<Cursor> onCreateLoader(final int loaderId, final Bundle loaderArgs)
 			{
@@ -1154,7 +1167,7 @@ abstract public class BaseModule extends Module
 			}
 
 			@Override
-			public void onLoadFinished(final Loader<Cursor> loader, final Cursor cursor)
+			public void onLoadFinished(final Loader<Cursor> loader, @NonNull final Cursor cursor)
 			{
 				if (cursor.moveToFirst())
 				{
@@ -1220,10 +1233,11 @@ abstract public class BaseModule extends Module
 	 * @param luId   lex unit id
 	 * @param parent parent node
 	 */
-	private void realizationsForLexicalunit(final long luId, final TreeNode parent)
+	private void realizationsForLexicalunit(final long luId, @NonNull final TreeNode parent)
 	{
 		getLoaderManager().restartLoader(++Module.loaderId, null, new LoaderCallbacks<Cursor>()
 		{
+			@Nullable
 			@Override
 			public Loader<Cursor> onCreateLoader(final int loaderId, final Bundle loaderArgs)
 			{
@@ -1246,7 +1260,7 @@ abstract public class BaseModule extends Module
 			}
 
 			@Override
-			public void onLoadFinished(final Loader<Cursor> loader, final Cursor cursor)
+			public void onLoadFinished(final Loader<Cursor> loader, @NonNull final Cursor cursor)
 			{
 				if (cursor.moveToFirst())
 				{
@@ -1344,10 +1358,11 @@ abstract public class BaseModule extends Module
 	 * @param luId   lex unit id
 	 * @param parent parent node
 	 */
-	private void groupRealizationsForLexUnit(final long luId, final TreeNode parent)
+	private void groupRealizationsForLexUnit(final long luId, @NonNull final TreeNode parent)
 	{
 		getLoaderManager().restartLoader(++Module.loaderId, null, new LoaderCallbacks<Cursor>()
 		{
+			@Nullable
 			@Override
 			public Loader<Cursor> onCreateLoader(final int loaderId, final Bundle loaderArgs)
 			{
@@ -1368,7 +1383,7 @@ abstract public class BaseModule extends Module
 			}
 
 			@Override
-			public void onLoadFinished(final Loader<Cursor> loader, final Cursor cursor)
+			public void onLoadFinished(final Loader<Cursor> loader, @NonNull final Cursor cursor)
 			{
 				if (cursor.moveToFirst())
 				{
@@ -1451,8 +1466,9 @@ abstract public class BaseModule extends Module
 	 * @param sb        builder to host result
 	 * @return builder
 	 */
+	@NonNull
 	@SuppressWarnings("UnusedReturnValue")
-	private CharSequence parseGroupRealizations(final String aggregate, final SpannableStringBuilder sb)
+	private CharSequence parseGroupRealizations(@NonNull final String aggregate, @NonNull final SpannableStringBuilder sb)
 	{
 		// fe.pt.gf,fe.pt.gf,...
 		final String[] groupRealizations = aggregate.split(",");
@@ -1500,10 +1516,11 @@ abstract public class BaseModule extends Module
 	 * @param luId   lex unit id
 	 * @param parent parent node
 	 */
-	private void sentencesForLexUnit(final long luId, final TreeNode parent)
+	private void sentencesForLexUnit(final long luId, @NonNull final TreeNode parent)
 	{
 		getLoaderManager().restartLoader(++Module.loaderId, null, new LoaderCallbacks<Cursor>()
 		{
+			@Nullable
 			@Override
 			public Loader<Cursor> onCreateLoader(final int loaderId, final Bundle loaderArgs)
 			{
@@ -1533,7 +1550,7 @@ abstract public class BaseModule extends Module
 			}
 
 			@Override
-			public void onLoadFinished(final Loader<Cursor> loader, final Cursor cursor)
+			public void onLoadFinished(final Loader<Cursor> loader, @NonNull final Cursor cursor)
 			{
 				if (cursor.moveToFirst())
 				{
@@ -1648,6 +1665,7 @@ abstract public class BaseModule extends Module
 	{
 		getLoaderManager().restartLoader(++Module.loaderId, null, new LoaderCallbacks<Cursor>()
 		{
+			@Nullable
 			@Override
 			public Loader<Cursor> onCreateLoader(final int loaderId, final Bundle loaderArgs)
 			{
@@ -1664,7 +1682,7 @@ abstract public class BaseModule extends Module
 			}
 
 			@Override
-			public void onLoadFinished(final Loader<Cursor> loader, final Cursor cursor)
+			public void onLoadFinished(final Loader<Cursor> loader, @NonNull final Cursor cursor)
 			{
 				if (cursor.moveToFirst())
 				{
@@ -1729,6 +1747,7 @@ abstract public class BaseModule extends Module
 	{
 		getLoaderManager().restartLoader(++Module.loaderId, null, new LoaderCallbacks<Cursor>()
 		{
+			@Nullable
 			@Override
 			public Loader<Cursor> onCreateLoader(final int loaderId, final Bundle loaderArgs)
 			{
@@ -1745,7 +1764,7 @@ abstract public class BaseModule extends Module
 			}
 
 			@Override
-			public void onLoadFinished(final Loader<Cursor> loader, final Cursor cursor)
+			public void onLoadFinished(final Loader<Cursor> loader, @NonNull final Cursor cursor)
 			{
 				if (cursor.moveToFirst())
 				{
@@ -1809,10 +1828,11 @@ abstract public class BaseModule extends Module
 	 * @param parent       parent node
 	 * @param withSentence whether to include sentence
 	 */
-	void annoSet(final long annoSetId, final TreeNode parent, final boolean withSentence)
+	void annoSet(final long annoSetId, @NonNull final TreeNode parent, final boolean withSentence)
 	{
 		getLoaderManager().restartLoader(++Module.loaderId, null, new LoaderCallbacks<Cursor>()
 		{
+			@Nullable
 			@Override
 			public Loader<Cursor> onCreateLoader(final int loaderId, final Bundle loaderArgs)
 			{
@@ -1832,7 +1852,7 @@ abstract public class BaseModule extends Module
 			}
 
 			@Override
-			public void onLoadFinished(final Loader<Cursor> loader, final Cursor cursor)
+			public void onLoadFinished(final Loader<Cursor> loader, @NonNull final Cursor cursor)
 			{
 				final SpannableStringBuilder sb = new SpannableStringBuilder();
 
@@ -1965,10 +1985,11 @@ abstract public class BaseModule extends Module
 	 * @param patternId pattern id
 	 * @param parent    parent node
 	 */
-	void annoSetsForPattern(final long patternId, final TreeNode parent)
+	void annoSetsForPattern(final long patternId, @NonNull final TreeNode parent)
 	{
 		getLoaderManager().restartLoader(++Module.loaderId, null, new LoaderCallbacks<Cursor>()
 		{
+			@Nullable
 			@Override
 			public Loader<Cursor> onCreateLoader(final int loaderId, final Bundle loaderArgs)
 			{
@@ -1989,7 +2010,7 @@ abstract public class BaseModule extends Module
 			}
 
 			@Override
-			public void onLoadFinished(final Loader<Cursor> loader, final Cursor cursor)
+			public void onLoadFinished(final Loader<Cursor> loader, @NonNull final Cursor cursor)
 			{
 				// column indices
 				final int idLayerType = cursor.getColumnIndex(Patterns_Layers_X.LAYERTYPE);
@@ -2015,10 +2036,11 @@ abstract public class BaseModule extends Module
 	 * @param vuId   valence unit id
 	 * @param parent parent node
 	 */
-	void annoSetsForValenceUnit(final long vuId, final TreeNode parent)
+	void annoSetsForValenceUnit(final long vuId, @NonNull final TreeNode parent)
 	{
 		getLoaderManager().restartLoader(++Module.loaderId, null, new LoaderCallbacks<Cursor>()
 		{
+			@Nullable
 			@Override
 			public Loader<Cursor> onCreateLoader(final int loaderId, final Bundle loaderArgs)
 			{
@@ -2039,7 +2061,7 @@ abstract public class BaseModule extends Module
 			}
 
 			@Override
-			public void onLoadFinished(final Loader<Cursor> loader, final Cursor cursor)
+			public void onLoadFinished(final Loader<Cursor> loader, @NonNull final Cursor cursor)
 			{
 				// column indices
 				final int idLayerType = cursor.getColumnIndex(ValenceUnits_Layers_X.LAYERTYPE);
@@ -2068,11 +2090,12 @@ abstract public class BaseModule extends Module
 	 * @param text       reference sentence text
 	 * @param parent     parent node
 	 */
-	void layersForSentence(final long sentenceId, final String text, final TreeNode parent)
+	void layersForSentence(final long sentenceId, final String text, @NonNull final TreeNode parent)
 	{
 		// Log.d(TAG, "sentence " + sentenceId);
 		getLoaderManager().restartLoader(++Module.loaderId, null, new LoaderCallbacks<Cursor>()
 		{
+			@Nullable
 			@Override
 			public Loader<Cursor> onCreateLoader(final int loaderId, final Bundle loaderArgs)
 			{
@@ -2091,7 +2114,7 @@ abstract public class BaseModule extends Module
 			}
 
 			@Override
-			public void onLoadFinished(final Loader<Cursor> loader, final Cursor cursor)
+			public void onLoadFinished(final Loader<Cursor> loader, @NonNull final Cursor cursor)
 			{
 				// column indices
 				final int idLayerType = cursor.getColumnIndex(Sentences_Layers_X.LAYERTYPE);
@@ -2122,8 +2145,8 @@ abstract public class BaseModule extends Module
 	 * @param idAnnotations  id of annotations column
 	 * @param idAnnoSetId    id of annoSet i column
 	 */
-	private void annoSets(final TreeNode parent, final Cursor cursor, //
-			final String sentenceText, final int idSentenceText, final int idLayerType, final int idRank, final int idAnnotations, final int idAnnoSetId)
+	private void annoSets(@NonNull final TreeNode parent, @NonNull final Cursor cursor, //
+			@Nullable final String sentenceText, final int idSentenceText, final int idLayerType, final int idRank, final int idAnnotations, final int idAnnoSetId)
 	{
 		if (cursor.moveToFirst())
 		{
@@ -2264,6 +2287,7 @@ abstract public class BaseModule extends Module
 	 * @param flags flags
 	 * @return processed definition
 	 */
+	@NonNull
 	private CharSequence[] processDefinition(final CharSequence text, final long flags)
 	{
 		boolean isFrame = (flags & FrameNetMarkupFactory.FEDEF) == 0;
@@ -2349,7 +2373,7 @@ abstract public class BaseModule extends Module
 		}
 
 		@Override
-		public void process(final TreeNode node)
+		public void process(@NonNull final TreeNode node)
 		{
 			frame((int) this.id, node);
 		}
@@ -2371,7 +2395,7 @@ abstract public class BaseModule extends Module
 		}
 
 		@Override
-		public void process(final TreeNode node)
+		public void process(@NonNull final TreeNode node)
 		{
 			relatedFrames((int) this.id, node);
 		}
@@ -2393,7 +2417,7 @@ abstract public class BaseModule extends Module
 		}
 
 		@Override
-		public void process(final TreeNode node)
+		public void process(@NonNull final TreeNode node)
 		{
 			lexUnitsForFrame((int) this.id, node, false);
 		}
@@ -2415,7 +2439,7 @@ abstract public class BaseModule extends Module
 		}
 
 		@Override
-		public void process(final TreeNode node)
+		public void process(@NonNull final TreeNode node)
 		{
 			fesForFrame((int) this.id, node);
 		}
@@ -2459,7 +2483,7 @@ abstract public class BaseModule extends Module
 		}
 
 		@Override
-		public void process(final TreeNode node)
+		public void process(@NonNull final TreeNode node)
 		{
 			realizationsForLexicalunit(this.id, node);
 		}
@@ -2481,7 +2505,7 @@ abstract public class BaseModule extends Module
 		}
 
 		@Override
-		public void process(final TreeNode node)
+		public void process(@NonNull final TreeNode node)
 		{
 			groupRealizationsForLexUnit(this.id, node);
 		}
@@ -2547,7 +2571,7 @@ abstract public class BaseModule extends Module
 		}
 
 		@Override
-		public void process(final TreeNode node)
+		public void process(@NonNull final TreeNode node)
 		{
 			sentencesForLexUnit(this.id, node);
 		}
@@ -2572,7 +2596,7 @@ abstract public class BaseModule extends Module
 		}
 
 		@Override
-		public void process(final TreeNode node)
+		public void process(@NonNull final TreeNode node)
 		{
 			annoSet(this.id, node, this.withSentence);
 		}

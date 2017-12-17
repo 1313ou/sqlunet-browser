@@ -1,6 +1,7 @@
 package org.sqlunet.framenet.sql;
 
 import android.database.sqlite.SQLiteDatabase;
+import android.support.annotation.NonNull;
 import android.util.Pair;
 
 import org.sqlunet.dom.DomFactory;
@@ -262,7 +263,7 @@ public class FrameNetImplementation implements FrameNetInterface
 	 * @param parent     the org.w3c.dom.Node the walk will attach results to
 	 * @param targetWord the target word
 	 */
-	static private void walkSelector(final SQLiteDatabase connection, final Document doc, final Node parent, final String targetWord)
+	static private void walkSelector(final SQLiteDatabase connection, @NonNull final Document doc, final Node parent, final String targetWord)
 	{
 		final Pair<Long, List<FnLexUnit>> result = FnLexUnit.makeFromWord(connection, targetWord);
 		final List<FnLexUnit> lexUnits = result.second;
@@ -283,7 +284,7 @@ public class FrameNetImplementation implements FrameNetInterface
 	 * @param parent     the org.w3c.dom.Node the walk will attach results to
 	 * @param targetWord the target word
 	 */
-	static private void walk(final SQLiteDatabase connection, final Document doc, final Node parent, final String targetWord)
+	static private void walk(final SQLiteDatabase connection, @NonNull final Document doc, final Node parent, final String targetWord)
 	{
 		final Pair<Long, List<FnLexUnit>> result = FnLexUnit.makeFromWord(connection, targetWord);
 		final Long wordId = result.first;
@@ -317,7 +318,7 @@ public class FrameNetImplementation implements FrameNetInterface
 	 * @param targetWordId the target word id
 	 * @param pos          the target pos
 	 */
-	static private void walkWord(final SQLiteDatabase connection, final Document doc, final Node parent, final long targetWordId, final Character pos)
+	static private void walkWord(final SQLiteDatabase connection, @NonNull final Document doc, final Node parent, final long targetWordId, final Character pos)
 	{
 		// lexunits
 		final List<FnLexUnit> lexUnits = FnLexUnit.makeFromWordId(connection, targetWordId, pos);
@@ -372,7 +373,7 @@ public class FrameNetImplementation implements FrameNetInterface
 	 * @param parent        the org.w3c.dom.Node the walk will attach results to
 	 * @param targetFrameId the target frame id
 	 */
-	static private void walkFrame(final SQLiteDatabase connection, final Document doc, final Node parent, final long targetFrameId)
+	static private void walkFrame(final SQLiteDatabase connection, @NonNull final Document doc, final Node parent, final long targetFrameId)
 	{
 		// frame
 		final FnFrame frame = FnFrame.make(connection, targetFrameId);
@@ -410,7 +411,7 @@ public class FrameNetImplementation implements FrameNetInterface
 	 * @param parent     the org.w3c.dom.Node the walk will attach results to
 	 * @param luId       the target lexunit id
 	 */
-	static private void walkLexUnit(final SQLiteDatabase connection, final Document doc, final Node parent, final long luId)
+	static private void walkLexUnit(final SQLiteDatabase connection, @NonNull final Document doc, final Node parent, final long luId)
 	{
 		// lexunit
 		final FnLexUnit lexUnit = FnLexUnit.makeFromId(connection, luId);
@@ -453,7 +454,7 @@ public class FrameNetImplementation implements FrameNetInterface
 	 * @param parent     the org.w3c.dom.Node the walk will attach results to
 	 * @param sentenceId the target sentence id
 	 */
-	static private void walkSentence(final SQLiteDatabase connection, final Document doc, final Node parent, final long sentenceId)
+	static private void walkSentence(final SQLiteDatabase connection, @NonNull final Document doc, final Node parent, final long sentenceId)
 	{
 		// sentence
 		final FnSentence sentence = FnSentence.make(connection, sentenceId);
@@ -471,7 +472,7 @@ public class FrameNetImplementation implements FrameNetInterface
 	 * @param parent     the org.w3c.dom.Node the walk will attach results to
 	 * @param annoSetId  the target annoSet id
 	 */
-	static private void walkAnnoSet(final SQLiteDatabase connection, final Document doc, final Node parent, final long annoSetId)
+	static private void walkAnnoSet(final SQLiteDatabase connection, @NonNull final Document doc, final Node parent, final long annoSetId)
 	{
 		// annoSet
 		final FnAnnoSet annoSet = FnAnnoSet.make(connection, annoSetId);
@@ -494,7 +495,7 @@ public class FrameNetImplementation implements FrameNetInterface
 	 * @param parent     the org.w3c.dom.Node the walk will attach results to
 	 * @param annoSetId  the target annoSet id
 	 */
-	static private void walkLayersFromAnnoSet(final SQLiteDatabase connection, final Document doc, final Node parent, final long annoSetId)
+	static private void walkLayersFromAnnoSet(final SQLiteDatabase connection, @NonNull final Document doc, final Node parent, final long annoSetId)
 	{
 		// layers
 		final List<FnLayer> layers = FnLayer.makeFromAnnoSet(connection, annoSetId);
@@ -513,7 +514,7 @@ public class FrameNetImplementation implements FrameNetInterface
 	 * @param parent     the org.w3c.dom.Node the walk will attach results to
 	 * @param sentenceId the target sentence id
 	 */
-	static private void walkLayersFromSentence(final SQLiteDatabase connection, final Document doc, final Node parent, final long sentenceId)
+	static private void walkLayersFromSentence(final SQLiteDatabase connection, @NonNull final Document doc, final Node parent, final long sentenceId)
 	{
 		// layers
 		final List<FnLayer> layers = FnLayer.makeFromSentence(connection, sentenceId);
@@ -542,7 +543,7 @@ public class FrameNetImplementation implements FrameNetInterface
 	 * @param lexUnits lexunits
 	 * @param doFrame  whether to include frame data
 	 */
-	static private void makeSelector(final Document doc, final Node parent, final Iterable<FnLexUnit> lexUnits, @SuppressWarnings("SameParameterValue") final boolean doFrame)
+	static private void makeSelector(@NonNull final Document doc, final Node parent, @NonNull final Iterable<FnLexUnit> lexUnits, @SuppressWarnings("SameParameterValue") final boolean doFrame)
 	{
 		// lexunits
 		for (final FnLexUnit lexUnit : lexUnits)

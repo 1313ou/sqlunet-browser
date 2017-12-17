@@ -2,6 +2,8 @@ package org.sqlunet.browser;
 
 import android.content.Context;
 import android.os.Parcelable;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.LoaderManager;
 
@@ -22,11 +24,13 @@ public abstract class Module
 	/**
 	 * Fragment
 	 */
+	@NonNull
 	private final Fragment fragment;
 
 	/**
 	 * Context
 	 */
+	@Nullable
 	protected final Context context;
 
 	/**
@@ -40,7 +44,7 @@ public abstract class Module
 	 *
 	 * @param fragment fragment
 	 */
-	protected Module(final Fragment fragment)
+	protected Module(@NonNull final Fragment fragment)
 	{
 		this.fragment = fragment;
 		this.context = fragment.getActivity();

@@ -1,5 +1,7 @@
 package org.sqlunet.verbnet.sql;
 
+import android.support.annotation.NonNull;
+
 import org.sqlunet.wordnet.sql.BasicSynset;
 
 /**
@@ -19,7 +21,7 @@ class VnSynset extends BasicSynset
 	 *
 	 * @param query query for synsets
 	 */
-	VnSynset(final VnClassQueryFromWordAndPos query)
+	VnSynset(@NonNull final VnClassQueryFromWordAndPos query)
 	{
 		super(query.getSynsetId(), query.getDefinition(), query.getLexDomainId(), null);
 		this.flag = query.getSynsetSpecific();

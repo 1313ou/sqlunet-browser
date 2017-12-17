@@ -1,5 +1,7 @@
 package org.sqlunet.dom;
 
+import android.support.annotation.NonNull;
+
 import org.w3c.dom.Document;
 
 import javax.xml.parsers.DocumentBuilder;
@@ -29,7 +31,7 @@ public class DomFactory
 			final DocumentBuilder builder = factory.newDocumentBuilder();
 			return builder.newDocument();
 		}
-		catch (final ParserConfigurationException e)
+		catch (@NonNull final ParserConfigurationException e)
 		{
 			throw new RuntimeException(e);
 		}

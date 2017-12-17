@@ -8,6 +8,8 @@ package org.sqlunet.sql;
 
 import android.graphics.Color;
 import android.graphics.Typeface;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
 import android.text.style.ForegroundColorSpan;
@@ -95,12 +97,14 @@ public class SqlFormatter
 	static private final String INDENT_STRING = "    ";
 	static private final String INITIAL = ""; //"\n    ";
 
-	static public CharSequence format(String source)
+	@NonNull
+	static public CharSequence format(@NonNull String source)
 	{
 		return new FormatProcess(source, false).perform();
 	}
 
-	static public CharSequence styledFormat(CharSequence source)
+	@NonNull
+	static public CharSequence styledFormat(@NonNull CharSequence source)
 	{
 		return new FormatProcess(source, true).perform();
 	}
@@ -123,17 +127,19 @@ public class SqlFormatter
 		int indent = 1;
 
 		final SpannableStringBuilder result = new SpannableStringBuilder();
+		@NonNull
 		final StringTokenizer tokens;
 		String lastToken;
 		String token;
 		String lcToken;
 
-		public FormatProcess(CharSequence sql, boolean style)
+		public FormatProcess(@NonNull CharSequence sql, boolean style)
 		{
 			this.style = style;
 			this.tokens = new StringTokenizer(sql.toString(), "()+*/-=<>'`\"[]," + WHITESPACE, true);
 		}
 
+		@NonNull
 		public CharSequence perform()
 		{
 			initial();
@@ -442,7 +448,7 @@ public class SqlFormatter
 
 		// test functions
 
-		static private boolean isFunctionName(String tok)
+		static private boolean isFunctionName(@NonNull String tok)
 		{
 			final char begin = tok.charAt(0);
 			final boolean isIdentifier = Character.isJavaIdentifierStart(begin) || '"' == begin;
@@ -454,7 +460,7 @@ public class SqlFormatter
 					!MISC.contains(tok);
 		}
 
-		static private boolean isWhitespace(CharSequence token)
+		static private boolean isWhitespace(@NonNull CharSequence token)
 		{
 			return WHITESPACE.contains(token);
 		}
@@ -531,7 +537,7 @@ public class SqlFormatter
 		 * @param text  text
 		 * @param spans spans to apply
 		 */
-		static private void append(final SpannableStringBuilder sb, final CharSequence text, final Object... spans)
+		static private void append(@NonNull final SpannableStringBuilder sb, @Nullable final CharSequence text, @NonNull final Object... spans)
 		{
 			if (text == null || text.length() == 0)
 			{

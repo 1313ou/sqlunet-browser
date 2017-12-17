@@ -1,6 +1,7 @@
 package org.sqlunet.verbnet.sql;
 
 import android.database.sqlite.SQLiteDatabase;
+import android.support.annotation.Nullable;
 
 import org.sqlunet.sql.DBQuery;
 
@@ -27,7 +28,7 @@ class VnRoleQueryFromClassIdAndSense extends DBQuery
 	 * @param synsetId   target synset id
 	 */
 	@SuppressWarnings("boxing")
-	public VnRoleQueryFromClassIdAndSense(final SQLiteDatabase connection, final long classId, final long wordId, final Long synsetId)
+	public VnRoleQueryFromClassIdAndSense(final SQLiteDatabase connection, final long classId, final long wordId, @Nullable final Long synsetId)
 	{
 		super(connection, VnRoleQueryFromClassIdAndSense.QUERY);
 		setParams(classId, wordId);

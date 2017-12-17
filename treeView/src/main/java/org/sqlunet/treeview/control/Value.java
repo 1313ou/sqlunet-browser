@@ -1,5 +1,7 @@
 package org.sqlunet.treeview.control;
 
+import android.support.annotation.Nullable;
+
 /**
  * Value for tree item with extra icon
  *
@@ -20,6 +22,7 @@ public class Value
 	/**
 	 * Payload
 	 */
+	@Nullable
 	public final Object[] payload;
 
 	/**

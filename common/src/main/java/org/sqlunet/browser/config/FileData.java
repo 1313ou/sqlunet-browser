@@ -1,6 +1,8 @@
 package org.sqlunet.browser.config;
 
 import android.content.Context;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 
 import org.sqlunet.settings.Settings;
 import org.sqlunet.settings.StorageSettings;
@@ -25,7 +27,8 @@ public class FileData
 		this.size = size;
 	}
 
-	static public FileData makeFileDataFrom(final File file)
+	@Nullable
+	static public FileData makeFileDataFrom(@Nullable final File file)
 	{
 		if (file !=null && file.exists())
 		{
@@ -45,17 +48,19 @@ public class FileData
 		return null;
 	}
 
+	@Nullable
 	public Long getSize()
 	{
 		return this.size == -1 ? null : this.size;
 	}
 
+	@Nullable
 	public Date getDate()
 	{
 		return this.date == -1 ? null : new Date(this.date);
 	}
 
-	public static void recordDb(final Context context)
+	public static void recordDb(@NonNull final Context context)
 	{
 		final File file = new File(StorageSettings.getDatabasePath(context));
 		final FileData fileData = makeFileDataFrom(file);

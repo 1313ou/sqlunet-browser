@@ -1,6 +1,7 @@
 package org.sqlunet.browser.fn;
 
 import android.content.Context;
+import android.support.annotation.NonNull;
 import android.support.v7.app.ActionBar;
 
 import org.sqlunet.browser.ActionBarSetter;
@@ -25,7 +26,7 @@ public class StatusFragment extends SetupStatusFragment implements ActionBarSett
 	}
 
 	@Override
-	public boolean setActionBar(final ActionBar actionBar, final Context context)
+	public boolean setActionBar(@NonNull final ActionBar actionBar, final Context context)
 	{
 		actionBar.setTitle(this.titleId);
 		actionBar.setSubtitle(R.string.app_subname);

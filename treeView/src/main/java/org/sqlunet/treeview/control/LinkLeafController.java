@@ -1,6 +1,7 @@
 package org.sqlunet.treeview.control;
 
 import android.content.Context;
+import android.support.annotation.NonNull;
 import android.view.View;
 
 import org.sqlunet.treeview.R;
@@ -27,7 +28,7 @@ public class LinkLeafController extends LeafController
 	}
 
 	@Override
-	public View createNodeView(final TreeNode node, final Value value)
+	public View createNodeView(final TreeNode node, @NonNull final Value value)
 	{
 		final View view = super.createNodeView(node, value);
 

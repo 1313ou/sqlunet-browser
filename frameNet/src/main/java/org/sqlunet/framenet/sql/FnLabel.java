@@ -1,5 +1,8 @@
 package org.sqlunet.framenet.sql;
 
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
+
 /**
  * Label
  *
@@ -30,11 +33,13 @@ public class FnLabel
 	/**
 	 * Background color
 	 */
+	@Nullable
 	public final String bgColor;
 
 	/**
 	 * Foreground color
 	 */
+	@Nullable
 	public final String fgColor;
 
 	/**
@@ -47,7 +52,7 @@ public class FnLabel
 	 * @param bgColor background color
 	 * @param fgColor foreground color
 	 */
-	public FnLabel(final String from, final String to, final String label, final String iType, final String bgColor, final String fgColor)
+	public FnLabel(final String from, final String to, final String label, final String iType, @Nullable final String bgColor, @Nullable final String fgColor)
 	{
 		super();
 		this.from = from;
@@ -58,6 +63,7 @@ public class FnLabel
 		this.fgColor = fgColor != null && fgColor.isEmpty() ? null : fgColor;
 	}
 
+	@NonNull
 	@Override
 	public String toString()
 	{

@@ -2,6 +2,8 @@ package org.sqlunet.sql;
 
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.text.TextUtils;
 import android.util.Log;
 import android.util.SparseArray;
@@ -96,6 +98,7 @@ public class PreparedStatement
 	 *
 	 * @return cursor
 	 */
+	@Nullable
 	public Cursor executeQuery()
 	{
 		final String[] args = toSelectionArgs();
@@ -108,7 +111,7 @@ public class PreparedStatement
 		{
 			return this.db.rawQuery(this.sql, args);
 		}
-		catch (final Exception e)
+		catch (@NonNull final Exception e)
 		{
 			Log.e(PreparedStatement.TAG, this.sql + ' ' + Utils.argsToString(args), e);
 			return null;
@@ -130,6 +133,7 @@ public class PreparedStatement
 	 *
 	 * @return selection arguments as string array
 	 */
+	@NonNull
 	private String[] toSelectionArgs()
 	{
 		final int n = this.selectionArgs.size();

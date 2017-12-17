@@ -1,6 +1,7 @@
 package org.sqlunet.verbnet.sql;
 
 import android.database.sqlite.SQLiteDatabase;
+import android.support.annotation.NonNull;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -93,6 +94,7 @@ class VnClassWithSense
 	 * @param synsetId   synset id to build the query from (null if any)
 	 * @return list of VerbNet classes
 	 */
+	@NonNull
 	static public List<VnClassWithSense> make(final SQLiteDatabase connection, final long wordId, final Long synsetId)
 	{
 		final List<VnClassWithSense> result = new ArrayList<>();

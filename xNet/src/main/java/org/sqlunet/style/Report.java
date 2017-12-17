@@ -5,6 +5,8 @@ import android.content.res.Resources;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
 import android.text.style.DynamicDrawableSpan;
@@ -27,7 +29,8 @@ public class Report
 	 * @param text  text
 	 * @param spans spans to apply
 	 */
-	static public SpannableStringBuilder append(final SpannableStringBuilder sb, final CharSequence text, final Object... spans)
+	@NonNull
+	static public SpannableStringBuilder append(@NonNull final SpannableStringBuilder sb, @Nullable final CharSequence text, @NonNull final Object... spans)
 	{
 		if (text != null && text.length() > 0)
 		{
@@ -50,8 +53,9 @@ public class Report
 	 * @param text text
 	 * @return spannable string builder
 	 */
+	@NonNull
 	@SuppressWarnings("TypeMayBeWeakened")
-	static public SpannableStringBuilder appendHeader(SpannableStringBuilder sb, CharSequence text)
+	static public SpannableStringBuilder appendHeader(@NonNull SpannableStringBuilder sb, CharSequence text)
 	{
 		return append(sb, text, new StyleSpan(Typeface.BOLD));
 	}
@@ -63,7 +67,7 @@ public class Report
 	 * @param sb      spannable string builder
 	 * @param resId   resource id
 	 */
-	static public void appendImage(final Context context, final SpannableStringBuilder sb, final int resId)
+	static public void appendImage(@NonNull final Context context, @NonNull final SpannableStringBuilder sb, final int resId)
 	{
 		append(sb, "\u0000", makeImageSpan(context, resId));
 	}
@@ -76,7 +80,7 @@ public class Report
 	 * @return image span
 	 */
 	@SuppressWarnings("deprecation")
-	static private Object makeImageSpan(final Context context, final int resId)
+	static private Object makeImageSpan(@NonNull final Context context, final int resId)
 	{
 		final Resources res = context.getResources();
 		Drawable drawable;

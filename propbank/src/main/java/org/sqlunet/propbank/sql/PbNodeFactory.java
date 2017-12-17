@@ -1,5 +1,7 @@
 package org.sqlunet.propbank.sql;
 
+import android.support.annotation.NonNull;
+
 import org.sqlunet.sql.NodeFactory;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -19,7 +21,7 @@ class PbNodeFactory extends NodeFactory
 	 * @param wordId target word id
 	 * @return newly created node
 	 */
-	static public Node makePbRootNode(final Document doc, final long wordId)
+	static public Node makePbRootNode(@NonNull final Document doc, final long wordId)
 	{
 		final Element rootNode = NodeFactory.makeNode(doc, doc, "propbank", null, PropBankImplementation.PB_NS);
 		NodeFactory.addAttributes(rootNode, "wordid", Long.toString(wordId));
@@ -33,7 +35,7 @@ class PbNodeFactory extends NodeFactory
 	 * @param word target word
 	 * @return newly created node
 	 */
-	static public Node makePbRootNode(final Document doc, final String word)
+	static public Node makePbRootNode(@NonNull final Document doc, final String word)
 	{
 		final Element rootNode = NodeFactory.makeNode(doc, doc, "propbank", null, PropBankImplementation.PB_NS);
 		NodeFactory.addAttributes(rootNode, "word", word);
@@ -47,7 +49,7 @@ class PbNodeFactory extends NodeFactory
 	 * @param roleSetId target roleSet id
 	 * @return newly created node
 	 */
-	static public Node makePbRootRoleSetNode(final Document doc, long roleSetId)
+	static public Node makePbRootRoleSetNode(@NonNull final Document doc, long roleSetId)
 	{
 		final Element rootNode = NodeFactory.makeNode(doc, doc, "propbank", null, PropBankImplementation.PB_NS);
 		NodeFactory.addAttributes(rootNode, "rolesetid", Long.toString(roleSetId));
@@ -62,7 +64,7 @@ class PbNodeFactory extends NodeFactory
 	 * @param roleSet is the roleSet information
 	 * @param i       the ith roleSet
 	 */
-	static public Node makePbRoleSetNode(final Document doc, final Node parent, final PbRoleSet roleSet, final int i)
+	static public Node makePbRoleSetNode(@NonNull final Document doc, final Node parent, @NonNull final PbRoleSet roleSet, final int i)
 	{
 		final Element element = NodeFactory.makeNode(doc, parent, "roleset", null);
 		NodeFactory.makeAttribute(element, "num", Integer.toString(i));
@@ -85,7 +87,7 @@ class PbNodeFactory extends NodeFactory
 	 * @param role   is the role information
 	 */
 	@SuppressWarnings("UnusedReturnValue")
-	static public Node makePbRoleNode(final Document doc, final Node parent, final PbRole role)
+	static public Node makePbRoleNode(@NonNull final Document doc, final Node parent, @NonNull final PbRole role)
 	{
 		final Element element = NodeFactory.makeNode(doc, parent, "role", null);
 		NodeFactory.makeAttribute(element, "roleid", Long.toString(role.roleId));
@@ -97,7 +99,7 @@ class PbNodeFactory extends NodeFactory
 	}
 
 	@SuppressWarnings("UnusedReturnValue")
-	static public Node makePbExampleNode(final Document doc, final Node parent, final PbExample example)
+	static public Node makePbExampleNode(@NonNull final Document doc, final Node parent, @NonNull final PbExample example)
 	{
 		final Element element = NodeFactory.makeNode(doc, parent, "example", null);
 		NodeFactory.makeAttribute(element, "exampleid", Long.toString(example.exampleId));

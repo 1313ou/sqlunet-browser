@@ -3,6 +3,7 @@ package org.sqlunet.browser;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -45,7 +46,7 @@ public class SearchTextFragment extends BaseSearchFragment
 	}
 
 	@Override
-	public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
+	public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, @Nullable Bundle savedInstanceState)
 	{
 		final View view = super.onCreateView(inflater, container, savedInstanceState);
 
@@ -65,7 +66,7 @@ public class SearchTextFragment extends BaseSearchFragment
 	// S P I N N E R
 
 	@Override
-	protected void setupSpinner(final Context context)
+	protected void setupSpinner(@NonNull final Context context)
 	{
 		super.setupSpinner(context);
 
@@ -98,7 +99,7 @@ public class SearchTextFragment extends BaseSearchFragment
 	 * @param query0 query
 	 */
 	@Override
-	public void search(final String query0)
+	public void search(@Nullable final String query0)
 	{
 		if (query0 == null)
 		{

@@ -2,6 +2,7 @@ package org.sqlunet.browser;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.ActionBar;
@@ -30,7 +31,7 @@ abstract public class NavigableFragment extends Fragment implements ActionBarSet
 	}
 
 	@Override
-	public boolean setActionBar(final ActionBar actionBar, final Context context)
+	public boolean setActionBar(@NonNull final ActionBar actionBar, final Context context)
 	{
 		actionBar.setTitle(this.titleId);
 		actionBar.setSubtitle(R.string.app_subname);

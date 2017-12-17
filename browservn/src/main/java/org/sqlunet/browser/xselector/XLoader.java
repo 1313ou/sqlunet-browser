@@ -4,6 +4,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.LoaderManager.LoaderCallbacks;
 import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
@@ -48,6 +49,7 @@ class XLoader
 			super(context, wordId);
 		}
 
+		@NonNull
 		@Override
 		public Loader<Cursor> onCreateLoader(final int id, final Bundle args)
 		{
@@ -81,6 +83,7 @@ class XLoader
 			super(context, wordId);
 		}
 
+		@NonNull
 		@Override
 		public Loader<Cursor> onCreateLoader(final int id, final Bundle args)
 		{
@@ -109,7 +112,7 @@ class XLoader
 	 * Dump utility
 	 */
 	@SuppressWarnings("unused")
-	static public void dump(final Cursor cursor)
+	static public void dump(@NonNull final Cursor cursor)
 	{
 		if (cursor.moveToFirst())
 		{

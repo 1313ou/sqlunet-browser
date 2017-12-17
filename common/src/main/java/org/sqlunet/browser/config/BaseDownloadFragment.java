@@ -7,6 +7,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.text.SpannableStringBuilder;
 import android.text.TextUtils;
@@ -110,7 +111,7 @@ abstract class BaseDownloadFragment extends Fragment implements View.OnClickList
 			return (status & this.mask) != 0;
 		}
 
-		static int toResId(final Status status)
+		static int toResId(@Nullable final Status status)
 		{
 			if (status == null)
 			{
@@ -151,12 +152,14 @@ abstract class BaseDownloadFragment extends Fragment implements View.OnClickList
 	/**
 	 * Download dir uri
 	 */
+	@Nullable
 	@SuppressWarnings("WeakerAccess")
 	protected String downloadUrl;
 
 	/**
 	 * Destination file uri
 	 */
+	@Nullable
 	@SuppressWarnings("WeakerAccess")
 	protected File destFile;
 
@@ -256,8 +259,9 @@ abstract class BaseDownloadFragment extends Fragment implements View.OnClickList
 		this.status = 0;
 	}
 
+	@Nullable
 	@Override
-	public View onCreateView(@NonNull final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState)
+	public View onCreateView(@NonNull final LayoutInflater inflater, final ViewGroup container, @Nullable final Bundle savedInstanceState)
 	{
 		Log.d(TAG, "onCreateView " + savedInstanceState + " " + this);
 
@@ -358,15 +362,15 @@ abstract class BaseDownloadFragment extends Fragment implements View.OnClickList
 		this.listener = listener;
 	}
 
-	static private Object lock = new Object();
+	static private final Object lock = new Object();
 
 	@Override
-	public void onClick(final View view)
+	public void onClick(@NonNull final View view)
 	{
 		final int id = view.getId();
 		if (id == R.id.downloadButton)
 		{
-			boolean download = false;
+			@SuppressWarnings("UnusedAssignment") boolean download = false;
 			synchronized (lock)
 			{
 				download = !BaseDownloadFragment.isDownloading;
@@ -502,7 +506,7 @@ abstract class BaseDownloadFragment extends Fragment implements View.OnClickList
 				{
 					Thread.sleep(TIMELAPSE);
 				}
-				catch (final InterruptedException e)
+				catch (@NonNull final InterruptedException e)
 				{
 					//
 				}
@@ -584,6 +588,7 @@ abstract class BaseDownloadFragment extends Fragment implements View.OnClickList
 	 *
 	 * @return reason
 	 */
+	@Nullable
 	abstract String getReason();
 
 	// H E L P E R S
@@ -594,6 +599,7 @@ abstract class BaseDownloadFragment extends Fragment implements View.OnClickList
 	 * @param statusCode status code
 	 * @return status string
 	 */
+	@NonNull
 	private String makeStatusString(int statusCode)
 	{
 		final Status status = Status.valueOf(statusCode);
@@ -608,6 +614,7 @@ abstract class BaseDownloadFragment extends Fragment implements View.OnClickList
 	 * @param resId res id
 	 * @return string
 	 */
+	@NonNull
 	@SuppressWarnings("WeakerAccess")
 	protected String makeString(int resId)
 	{
@@ -734,7 +741,7 @@ abstract class BaseDownloadFragment extends Fragment implements View.OnClickList
 		new MD5Downloader(new MD5Downloader.Listener()
 		{
 			@Override
-			public void onDone(final String downloadedResult)
+			public void onDone(@Nullable final String downloadedResult)
 			{
 				if (downloadedResult == null)
 				{

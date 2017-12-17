@@ -15,6 +15,8 @@ import android.preference.PreferenceCategory;
 import android.preference.PreferenceFragment;
 import android.preference.PreferenceManager;
 import android.preference.PreferenceScreen;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v4.app.NavUtils;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.contrib.AppCompatPreferenceActivity;
@@ -78,10 +80,11 @@ public class SettingsActivity extends AppCompatPreferenceActivity
 	/**
 	 * A preference value change listener that updates the preference's summary to reflect its new value.
 	 */
+	@Nullable
 	static private final Preference.OnPreferenceChangeListener listener = new Preference.OnPreferenceChangeListener()
 	{
 		@Override
-		public boolean onPreferenceChange(final Preference preference, final Object value)
+		public boolean onPreferenceChange(final Preference preference, @Nullable final Object value)
 		{
 			if (preference instanceof ListPreference && value != null)
 			{
@@ -119,7 +122,7 @@ public class SettingsActivity extends AppCompatPreferenceActivity
 	/**
 	 * Helper method to determine if the device has an large screen.
 	 */
-	static private boolean isLargeTablet(final Context context)
+	static private boolean isLargeTablet(@NonNull final Context context)
 	{
 		return (context.getResources().getConfiguration().screenLayout & Configuration.SCREENLAYOUT_SIZE_MASK) >= Configuration.SCREENLAYOUT_SIZE_LARGE;
 	}
@@ -129,7 +132,7 @@ public class SettingsActivity extends AppCompatPreferenceActivity
 	 * have newer APIs like {@link PreferenceFragment}, or the device doesn't have an extra-large screen. In these cases, a single-pane "simplified" settings UI
 	 * should be shown.
 	 */
-	static private boolean isSimplePreferences(final Context context)
+	static private boolean isSimplePreferences(@NonNull final Context context)
 	{
 		return SettingsActivity.ALWAYS_SIMPLE_PREFS || !SettingsActivity.isLargeTablet(context);
 	}
@@ -190,7 +193,7 @@ public class SettingsActivity extends AppCompatPreferenceActivity
 	 *
 	 * @see #listener
 	 */
-	static public void bind(final Preference preference)
+	static public void bind(@NonNull final Preference preference)
 	{
 		// set the listener to watch for value changes.
 		preference.setOnPreferenceChangeListener(SettingsActivity.listener);
@@ -213,7 +216,7 @@ public class SettingsActivity extends AppCompatPreferenceActivity
 	 * @param context context
 	 * @param pref    preference
 	 */
-	static private void populateStoragePreference(final Context context, final Preference pref)
+	static private void populateStoragePreference(@NonNull final Context context, final Preference pref)
 	{
 		final ListPreference listPreference = (ListPreference) pref;
 		populateStorageListPreference(context, listPreference);
@@ -234,7 +237,7 @@ public class SettingsActivity extends AppCompatPreferenceActivity
 	 * @param context context
 	 * @param pref    preference
 	 */
-	static private void populateCachePreference(final Context context, final Preference pref)
+	static private void populateCachePreference(@NonNull final Context context, final Preference pref)
 	{
 		final ListPreference listPreference = (ListPreference) pref;
 		populateCacheListPreference(context, listPreference);
@@ -255,7 +258,7 @@ public class SettingsActivity extends AppCompatPreferenceActivity
 	 * @param context  context
 	 * @param listPref pref
 	 */
-	static private void populateStorageListPreference(final Context context, final ListPreference listPref)
+	static private void populateStorageListPreference(@NonNull final Context context, @NonNull final ListPreference listPref)
 	{
 		final Pair<CharSequence[], CharSequence[]> namesValues = StorageReports.getStyledStorageDirectoriesNamesValues(context);
 
@@ -284,7 +287,7 @@ public class SettingsActivity extends AppCompatPreferenceActivity
 	 * @param context  context
 	 * @param listPref pref
 	 */
-	static private void populateCacheListPreference(final Context context, final ListPreference listPref)
+	static private void populateCacheListPreference(@NonNull final Context context, @NonNull final ListPreference listPref)
 	{
 		final Pair<CharSequence[], CharSequence[]> result = StorageReports.getStyledCachesNamesValues(context);
 		final CharSequence[] names = result.first;
@@ -463,7 +466,7 @@ public class SettingsActivity extends AppCompatPreferenceActivity
 	}
 
 	@Override
-	public boolean onOptionsItemSelected(MenuItem item)
+	public boolean onOptionsItemSelected(@NonNull MenuItem item)
 	{
 		switch (item.getItemId())
 		{

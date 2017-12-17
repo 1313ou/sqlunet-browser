@@ -1,5 +1,7 @@
 package org.sqlunet;
 
+import android.support.annotation.NonNull;
+
 /**
  * Has part-of-speech interface
  *
@@ -12,5 +14,6 @@ public interface HasPos
 	 *
 	 * @return pos
 	 */
+	@NonNull
 	Character getPos();
 }

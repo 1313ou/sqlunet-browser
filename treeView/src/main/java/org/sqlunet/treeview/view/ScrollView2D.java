@@ -2,6 +2,8 @@ package org.sqlunet.treeview.view;
 
 import android.content.Context;
 import android.graphics.Rect;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.FocusFinder;
 import android.view.KeyEvent;
@@ -60,6 +62,7 @@ public class ScrollView2D extends FrameLayout
 	 * The child to give focus to in the event that a child has requested focus while the layout is dirty. This prevents the scroll from being wrong if the
 	 * child has not been laid out before requesting focus.
 	 */
+	@Nullable
 	private View mChildToScrollTo;
 
 	/**
@@ -71,6 +74,7 @@ public class ScrollView2D extends FrameLayout
 	/**
 	 * Determines speed during touch scrolling
 	 */
+	@Nullable
 	private VelocityTracker mVelocityTracker;
 
 	/**
@@ -80,19 +84,19 @@ public class ScrollView2D extends FrameLayout
 	private int mMinimumVelocity;
 	private int mMaximumVelocity;
 
-	public ScrollView2D(Context context)
+	public ScrollView2D(@NonNull Context context)
 	{
 		super(context);
 		initTwoDScrollView();
 	}
 
-	public ScrollView2D(Context context, AttributeSet attrs)
+	public ScrollView2D(@NonNull Context context, AttributeSet attrs)
 	{
 		super(context, attrs);
 		initTwoDScrollView();
 	}
 
-	public ScrollView2D(Context context, AttributeSet attrs, int defStyle)
+	public ScrollView2D(@NonNull Context context, AttributeSet attrs, int defStyle)
 	{
 		super(context, attrs, defStyle);
 		initTwoDScrollView();
@@ -244,7 +248,7 @@ public class ScrollView2D extends FrameLayout
 	}
 
 	@Override
-	public boolean dispatchKeyEvent(KeyEvent event)
+	public boolean dispatchKeyEvent(@NonNull KeyEvent event)
 	{
 		// Let the focused view and/or our descendants get the key first
 		boolean handled = super.dispatchKeyEvent(event);
@@ -258,7 +262,7 @@ public class ScrollView2D extends FrameLayout
 	 * @param event The key event to execute.
 	 * @return Return true if the event was handled, else false.
 	 */
-	private boolean executeKeyEvent(KeyEvent event)
+	private boolean executeKeyEvent(@NonNull KeyEvent event)
 	{
 		this.mTempRect.setEmpty();
 		if (!canScroll())
@@ -326,7 +330,7 @@ public class ScrollView2D extends FrameLayout
 	}
 
 	@Override
-	public boolean onInterceptTouchEvent(MotionEvent ev)
+	public boolean onInterceptTouchEvent(@NonNull MotionEvent ev)
 	{
 		/*
 		 * This method JUST determines whether we want to intercept the motion. If we return true, onMotionEvent will be called and we do the actual scrolling
@@ -388,7 +392,7 @@ public class ScrollView2D extends FrameLayout
 	}
 
 	@Override
-	public boolean onTouchEvent(MotionEvent ev)
+	public boolean onTouchEvent(@NonNull MotionEvent ev)
 	{
 		if (ev.getAction() == MotionEvent.ACTION_DOWN && ev.getEdgeFlags() != 0)
 		{
@@ -507,7 +511,8 @@ public class ScrollView2D extends FrameLayout
 	 * @param preferredFocusable the View that has highest priority and will be returned if it is within my bounds (null is valid)
 	 * @return the next focusable component in the bounds or null if none can be found
 	 */
-	private View findFocusableViewInMyBounds(final boolean leftFocus, final int left, final boolean topFocus, final int top, View preferredFocusable)
+	@Nullable
+	private View findFocusableViewInMyBounds(final boolean leftFocus, final int left, final boolean topFocus, final int top, @Nullable View preferredFocusable)
 	{
 		/*
 		 * The fading edge's transparent side should be considered for focus since it's mostly visible, so we divide the actual fading edge length by 2.
@@ -542,6 +547,7 @@ public class ScrollView2D extends FrameLayout
 	 * @param right     the right offset of the bounds in which a focusable must be found
 	 * @return the next focusable component in the bounds or null if none can be found
 	 */
+	@Nullable
 	private View findFocusableViewInBounds(boolean leftFocus, int left, int right, boolean topFocus, int top, int bottom)
 	{
 		List<View> focusables = getFocusables(View.FOCUS_FORWARD);
@@ -873,7 +879,7 @@ public class ScrollView2D extends FrameLayout
 	}
 
 	@Override
-	protected void measureChild(View child, int parentWidthMeasureSpec, int parentHeightMeasureSpec)
+	protected void measureChild(@NonNull View child, int parentWidthMeasureSpec, int parentHeightMeasureSpec)
 	{
 		ViewGroup.LayoutParams lp = child.getLayoutParams();
 
@@ -884,7 +890,7 @@ public class ScrollView2D extends FrameLayout
 	}
 
 	@Override
-	protected void measureChildWithMargins(View child, int parentWidthMeasureSpec, int widthUsed, int parentHeightMeasureSpec, int heightUsed)
+	protected void measureChildWithMargins(@NonNull View child, int parentWidthMeasureSpec, int widthUsed, int parentHeightMeasureSpec, int heightUsed)
 	{
 		final MarginLayoutParams lp = (MarginLayoutParams) child.getLayoutParams();
 		final int childWidthMeasureSpec = MeasureSpec.makeMeasureSpec(lp.leftMargin + lp.rightMargin, MeasureSpec.UNSPECIFIED);
@@ -942,7 +948,7 @@ public class ScrollView2D extends FrameLayout
 	 *
 	 * @param child the View to scroll to
 	 */
-	private void scrollToChild(View child)
+	private void scrollToChild(@NonNull View child)
 	{
 		child.getDrawingRect(this.mTempRect);
 		/* Offset from child's local coordinates to ScrollView2D coordinates */
@@ -961,7 +967,7 @@ public class ScrollView2D extends FrameLayout
 	 * @param immediate True to scroll immediately without animation
 	 * @return true if scrolling was performed
 	 */
-	private boolean scrollToChildRect(Rect rect, boolean immediate)
+	private boolean scrollToChildRect(@NonNull Rect rect, boolean immediate)
 	{
 		final int delta = computeScrollDeltaToGetChildRectOnScreen(rect);
 		final boolean scroll = delta != 0;
@@ -986,7 +992,7 @@ public class ScrollView2D extends FrameLayout
 	 * @param rect The rect.
 	 * @return The scroll delta.
 	 */
-	private int computeScrollDeltaToGetChildRectOnScreen(Rect rect)
+	private int computeScrollDeltaToGetChildRectOnScreen(@NonNull Rect rect)
 	{
 		if (getChildCount() == 0)
 		{
@@ -1054,7 +1060,7 @@ public class ScrollView2D extends FrameLayout
 	}
 
 	@Override
-	public void requestChildFocus(View child, View focused)
+	public void requestChildFocus(View child, @NonNull View focused)
 	{
 		if (!this.mTwoDScrollViewMovedFocus)
 		{
@@ -1077,7 +1083,7 @@ public class ScrollView2D extends FrameLayout
 	 * This is more expensive than the default {@link android.view.ViewGroup} implementation, otherwise this behavior might have been made the default.
 	 */
 	@Override
-	protected boolean onRequestFocusInDescendants(int direction, Rect previouslyFocusedRect)
+	protected boolean onRequestFocusInDescendants(int direction, @Nullable Rect previouslyFocusedRect)
 	{
 		int actualDirection = direction;
 
@@ -1098,7 +1104,7 @@ public class ScrollView2D extends FrameLayout
 	}
 
 	@Override
-	public boolean requestChildRectangleOnScreen(View child, Rect rectangle, boolean immediate)
+	public boolean requestChildRectangleOnScreen(@NonNull View child, @NonNull Rect rectangle, boolean immediate)
 	{
 		// offset into coordinate space of this scroll view
 		rectangle.offset(child.getLeft() - child.getScrollX(), child.getTop() - child.getScrollY());
@@ -1152,7 +1158,7 @@ public class ScrollView2D extends FrameLayout
 	/**
 	 * Return true if child is an descendant of parent, (or equal to the parent).
 	 */
-	private boolean isViewDescendantOf(View child, View parent)
+	private boolean isViewDescendantOf(@NonNull View child, View parent)
 	{
 		if (child == parent)
 		{

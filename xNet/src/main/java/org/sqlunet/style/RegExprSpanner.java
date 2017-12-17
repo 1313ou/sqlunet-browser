@@ -1,5 +1,6 @@
 package org.sqlunet.style;
 
+import android.support.annotation.NonNull;
 import android.text.SpannableStringBuilder;
 
 import java.util.regex.Matcher;
@@ -15,6 +16,7 @@ public class RegExprSpanner extends Spanner
 	/**
 	 * Replacers
 	 */
+	@NonNull
 	final private SpanReplacer[] spanReplacers;
 
 	/**
@@ -23,7 +25,7 @@ public class RegExprSpanner extends Spanner
 	 * @param regexprs  regexprs
 	 * @param factories span factories
 	 */
-	public RegExprSpanner(final String[] regexprs, final SpanFactory[][] factories)
+	public RegExprSpanner(@NonNull final String[] regexprs, final SpanFactory[][] factories)
 	{
 		this.spanReplacers = new SpanReplacer[regexprs.length];
 		for (int i = 0; i < regexprs.length; i++)
@@ -39,7 +41,7 @@ public class RegExprSpanner extends Spanner
 	 * @param sb    spannable string builder to append to
 	 * @param flags flags
 	 */
-	public void append(final CharSequence text, final SpannableStringBuilder sb, @SuppressWarnings("SameParameterValue") final long flags)
+	public void append(final CharSequence text, @NonNull final SpannableStringBuilder sb, @SuppressWarnings("SameParameterValue") final long flags)
 	{
 		final int from = sb.length();
 		sb.append(text);
@@ -53,7 +55,7 @@ public class RegExprSpanner extends Spanner
 	 * @param from  start
 	 * @param flags flags
 	 */
-	public void setSpan(final SpannableStringBuilder sb, final int from, final long flags)
+	public void setSpan(@NonNull final SpannableStringBuilder sb, final int from, final long flags)
 	{
 		final CharSequence text = sb.subSequence(from, sb.length());
 		for (final SpanReplacer spanReplacer : this.spanReplacers)
@@ -87,7 +89,7 @@ public class RegExprSpanner extends Spanner
 		 * @param regexpr    regexpr
 		 * @param factories span factories
 		 */
-		SpanReplacer(final String regexpr, final SpanFactory... factories)
+		SpanReplacer(@NonNull final String regexpr, final SpanFactory... factories)
 		{
 			this.pattern = Pattern.compile(regexpr, Pattern.MULTILINE);
 			this.spanFactories = factories;
@@ -101,7 +103,7 @@ public class RegExprSpanner extends Spanner
 		 * @param from  start
 		 * @param flags flags
 		 */
-		public void setSpan(final CharSequence input, final SpannableStringBuilder sb, final int from, final long flags)
+		public void setSpan(@NonNull final CharSequence input, @NonNull final SpannableStringBuilder sb, final int from, final long flags)
 		{
 			if (input.length() == 0)
 			{
@@ -131,6 +133,7 @@ public class RegExprSpanner extends Spanner
 			}
 		}
 
+		@NonNull
 		@Override
 		public String toString()
 		{

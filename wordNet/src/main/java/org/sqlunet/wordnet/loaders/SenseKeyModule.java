@@ -1,5 +1,7 @@
 package org.sqlunet.wordnet.loaders;
 
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.os.Parcelable;
 
@@ -17,6 +19,7 @@ public class SenseKeyModule extends BaseModule
 	/**
 	 * Sense key
 	 */
+	@Nullable
 	private String senseKey;
 
 	/**
@@ -24,7 +27,7 @@ public class SenseKeyModule extends BaseModule
 	 *
 	 * @param fragment fragment
 	 */
-	public SenseKeyModule(final Fragment fragment)
+	public SenseKeyModule(@NonNull final Fragment fragment)
 	{
 		super(fragment);
 	}
@@ -41,7 +44,7 @@ public class SenseKeyModule extends BaseModule
 	}
 
 	@Override
-	public void process(final TreeNode parent)
+	public void process(@NonNull final TreeNode parent)
 	{
 		if (this.senseKey == null || this.senseKey.isEmpty())
 		{

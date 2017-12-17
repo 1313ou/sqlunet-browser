@@ -2,6 +2,7 @@ package org.sqlunet.wordnet;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.support.annotation.NonNull;
 
 import org.sqlunet.HasSynsetId;
 import org.sqlunet.Pointer;
@@ -19,7 +20,7 @@ public class SynsetPointer extends Pointer implements HasSynsetId
 	static public final Parcelable.Creator<SynsetPointer> CREATOR = new Parcelable.Creator<SynsetPointer>()
 	{
 		@Override
-		public SynsetPointer createFromParcel(final Parcel parcel)
+		public SynsetPointer createFromParcel(@NonNull final Parcel parcel)
 		{
 			return new SynsetPointer(parcel);
 		}
@@ -34,7 +35,7 @@ public class SynsetPointer extends Pointer implements HasSynsetId
 	/**
 	 * Constructor from parcel, reads back fields IN THE ORDER they were written
 	 */
-	SynsetPointer(final Parcel parcel)
+	SynsetPointer(@NonNull final Parcel parcel)
 	{
 		super(parcel);
 	}

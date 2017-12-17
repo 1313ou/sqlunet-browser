@@ -2,6 +2,8 @@ package org.sqlunet.wordnet.sql;
 
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.util.Log;
 
 import java.util.ArrayList;
@@ -34,7 +36,7 @@ class Synset extends BasicSynset
 	 *
 	 * @param query query for synsets
 	 */
-	Synset(final SynsetsQueryFromWordId query)
+	Synset(@NonNull final SynsetsQueryFromWordId query)
 	{
 		super(query.getSynsetId(), query.getDefinition(), query.getLexDomainId(), query.getSample());
 	}
@@ -44,7 +46,7 @@ class Synset extends BasicSynset
 	 *
 	 * @param query query for synset
 	 */
-	Synset(final SynsetQuery query)
+	Synset(@NonNull final SynsetQuery query)
 	{
 		super(query.getSynsetId(), query.getDefinition(), query.getLexDomainId(), query.getSample());
 	}
@@ -54,7 +56,7 @@ class Synset extends BasicSynset
 	 *
 	 * @param query query for synsets of a given type
 	 */
-	Synset(final SynsetsQueryFromWordIdAndCondition query)
+	Synset(@NonNull final SynsetsQueryFromWordIdAndCondition query)
 	{
 		super(query.getSynsetId(), query.getDefinition(), query.getLexDomainId(), query.getSample());
 	}
@@ -64,7 +66,7 @@ class Synset extends BasicSynset
 	 *
 	 * @param query query for linked synsets
 	 */
-	Synset(final LinksQueryFromSynsetId query)
+	Synset(@NonNull final LinksQueryFromSynsetId query)
 	{
 		super(query.getSynsetId(), query.getDefinition(), query.getLexDomainId(), query.getSamples());
 	}
@@ -74,7 +76,7 @@ class Synset extends BasicSynset
 	 *
 	 * @param query query for synsets linked through a given relation type
 	 */
-	Synset(final LinksQueryFromSynsetIdAndLinkType query)
+	Synset(@NonNull final LinksQueryFromSynsetIdAndLinkType query)
 	{
 		super(query.getSynsetId(), query.getDefinition(), query.getLexDomainId(), query.getSamples());
 	}
@@ -85,6 +87,7 @@ class Synset extends BasicSynset
 	 * @param connection connection to the database
 	 * @return list of words in synset
 	 */
+	@Nullable
 	public List<Word> getSynsetWords(final SQLiteDatabase connection)
 	{
 		SynsetWordsQuery query = null;
@@ -101,7 +104,7 @@ class Synset extends BasicSynset
 				words.add(new Word(lemma, id));
 			}
 		}
-		catch (final SQLException e)
+		catch (@NonNull final SQLException e)
 		{
 			Log.e(TAG, "While querying synset words", e);
 			words = null;
@@ -122,6 +125,7 @@ class Synset extends BasicSynset
 	 * @param connection connection to the database
 	 * @return list of words in synset as a comma-separated string
 	 */
+	@NonNull
 	@SuppressWarnings("unused")
 	public String getSynsetWordsAsString(final SQLiteDatabase connection)
 	{
@@ -171,6 +175,7 @@ class Synset extends BasicSynset
 	 * @param wordId     word id (for lexical links)
 	 * @return list of synsets linked to the synset
 	 */
+	@Nullable
 	public List<Link> getLinks(final SQLiteDatabase connection, final long wordId)
 	{
 		LinksQueryFromSynsetId query = null;
@@ -188,7 +193,7 @@ class Synset extends BasicSynset
 				links.add(link);
 			}
 		}
-		catch (final SQLException e)
+		catch (@NonNull final SQLException e)
 		{
 			Log.e(TAG, "While querying links", e);
 			links = null;
@@ -211,6 +216,7 @@ class Synset extends BasicSynset
 	 * @param linkType   link type
 	 * @return list of synsets linked to the synset through a given relation type
 	 */
+	@Nullable
 	public List<Link> getTypedLinks(final SQLiteDatabase connection, final long wordId, final int linkType)
 	{
 		LinksQueryFromSynsetIdAndLinkType query = null;
@@ -229,7 +235,7 @@ class Synset extends BasicSynset
 				links.add(link);
 			}
 		}
-		catch (final SQLException e)
+		catch (@NonNull final SQLException e)
 		{
 			Log.e(TAG, "While querying typed links", e);
 			links = null;

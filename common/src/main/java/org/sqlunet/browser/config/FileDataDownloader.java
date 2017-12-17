@@ -3,6 +3,8 @@ package org.sqlunet.browser.config;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.AsyncTask;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -39,6 +41,7 @@ public class FileDataDownloader extends AsyncTask<String, Void, FileData>
 		this.listener = listener;
 	}
 
+	@Nullable
 	@Override
 	protected FileData doInBackground(final String... params)
 	{
@@ -69,7 +72,7 @@ public class FileDataDownloader extends AsyncTask<String, Void, FileData>
 				return new FileData(date, size);
 			}
 		}
-		catch (final Exception e)
+		catch (@NonNull final Exception e)
 		{
 			Log.e(TAG, "While downloading", e);
 		}
@@ -110,7 +113,7 @@ public class FileDataDownloader extends AsyncTask<String, Void, FileData>
 		void onDone(final FileData result);
 	}
 
-	static public void start(final Activity activity)
+	static public void start(@NonNull final Activity activity)
 	{
 		// download source data
 		final String downloadUrl = StorageSettings.getDbDownloadSource(activity);
@@ -132,7 +135,7 @@ public class FileDataDownloader extends AsyncTask<String, Void, FileData>
 		final FileDataDownloader task = new FileDataDownloader(new FileDataDownloader.Listener()
 		{
 			@Override
-			public void onDone(final FileData srcData)
+			public void onDone(@Nullable final FileData srcData)
 			{
 				// actual data
 				final String to = StorageSettings.getDbDownloadTarget(activity);

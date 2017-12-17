@@ -6,6 +6,7 @@ import android.os.Build;
 import android.os.Environment;
 import android.os.StatFs;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.util.Log;
 
 import org.sqlunet.xnet.R;
@@ -56,7 +57,7 @@ public class StorageUtils
 		 * @param type2 type 2
 		 * @return order
 		 */
-		static public int compare(final DirType type1, final DirType type2)
+		static public int compare(@NonNull final DirType type1, @NonNull final DirType type2)
 		{
 			int i1 = type1.ordinal();
 			int i2 = type2.ordinal();
@@ -258,6 +259,7 @@ public class StorageUtils
 		 *
 		 * @return status string
 		 */
+		@NonNull
 		public CharSequence status()
 		{
 			if (this.status == 0)
@@ -314,7 +316,7 @@ public class StorageUtils
 		 *
 		 * @return true if database fits in storage
 		 */
-		boolean fitsIn(final Context context)
+		boolean fitsIn(@NonNull final Context context)
 		{
 			if (Float.isNaN(DATABASE_SIZE_MB))
 			{
@@ -333,8 +335,9 @@ public class StorageUtils
 	 * @param context context
 	 * @return list of storage directories
 	 */
+	@NonNull
 	@TargetApi(Build.VERSION_CODES.KITKAT)
-	static private List<Directory> getDirectories(final Context context)
+	static private List<Directory> getDirectories(@NonNull final Context context)
 	{
 		final List<Directory> result = new ArrayList<>();
 
@@ -372,7 +375,7 @@ public class StorageUtils
 				}
 			}
 		}
-		catch (final Throwable e)
+		catch (@NonNull final Throwable e)
 		{
 			// application-specific primary external storage
 			try
@@ -394,7 +397,7 @@ public class StorageUtils
 						result.add(new Directory(dir, DirType.APP_EXTERNAL_PRIMARY));
 					}
 				}
-				catch (final NoSuchFieldError e3)
+				catch (@NonNull final NoSuchFieldError e3)
 				{
 					//
 				}
@@ -409,7 +412,7 @@ public class StorageUtils
 			dir = Environment.getExternalStoragePublicDirectory(Storage.SQLUNETDIR);
 			result.add(new Directory(dir, DirType.PUBLIC_EXTERNAL_PRIMARY));
 		}
-		catch (final Throwable e)
+		catch (@NonNull final Throwable e)
 		{
 			// top-level public in external
 			try
@@ -421,7 +424,7 @@ public class StorageUtils
 					result.add(new Directory(dir, DirType.PUBLIC_EXTERNAL_PRIMARY));
 				}
 			}
-			catch (final Throwable e2)
+			catch (@NonNull final Throwable e2)
 			{
 				//
 			}
@@ -460,7 +463,8 @@ public class StorageUtils
 	 * @param dirs list of directories
 	 * @return list of storage storages
 	 */
-	static private List<StorageDirectory> directories2StorageDirectories(final Iterable<Directory> dirs)
+	@NonNull
+	static private List<StorageDirectory> directories2StorageDirectories(@NonNull final Iterable<Directory> dirs)
 	{
 		final List<StorageDirectory> storages = new ArrayList<>();
 		for (final Directory dir : dirs)
@@ -490,7 +494,8 @@ public class StorageUtils
 	 * @param context context
 	 * @return list of storage storages
 	 */
-	static private List<StorageDirectory> getStorageDirectories(final Context context)
+	@NonNull
+	static private List<StorageDirectory> getStorageDirectories(@NonNull final Context context)
 	{
 		final List<Directory> dirs = getDirectories(context);
 		return directories2StorageDirectories(dirs);
@@ -502,7 +507,8 @@ public class StorageUtils
 	 * @param context context
 	 * @return list of storage directories (desc-) sorted by size and type
 	 */
-	static List<StorageDirectory> getSortedStorageDirectories(final Context context)
+	@NonNull
+	static List<StorageDirectory> getSortedStorageDirectories(@NonNull final Context context)
 	{
 		final List<StorageDirectory> storageDirectories = getStorageDirectories(context);
 		Collections.sort(storageDirectories);
@@ -516,6 +522,7 @@ public class StorageUtils
 	 *
 	 * @return map per type of external storage
 	 */
+	@NonNull
 	static Map<StorageType, File[]> getExternalStorages()
 	{
 		// result set of paths
@@ -669,7 +676,7 @@ public class StorageUtils
 	 * @param dir directory
 	 * @return true if it qualifies
 	 */
-	static private int qualifies(final File dir, final DirType type)
+	static private int qualifies(@Nullable final File dir, @NonNull final DirType type)
 	{
 		int status = 0;
 
@@ -698,7 +705,7 @@ public class StorageUtils
 							status |= StorageDirectory.NOT_MOUNTED;
 						}
 					}
-					catch (final Throwable e)
+					catch (@NonNull final Throwable e)
 					{
 						//
 					}
@@ -737,6 +744,7 @@ public class StorageUtils
 	 *
 	 * @return user id
 	 */
+	@NonNull
 	static private String getUserId()
 	{
 		final String path = Environment.getExternalStorageDirectory().getAbsolutePath();
@@ -749,7 +757,7 @@ public class StorageUtils
 			Integer.valueOf(lastFolder);
 			isDigit = true;
 		}
-		catch (final NumberFormatException ignored)
+		catch (@NonNull final NumberFormatException ignored)
 		{
 			//
 		}
@@ -779,6 +787,7 @@ public class StorageUtils
 	 * @param path path
 	 * @return data
 	 */
+	@NonNull
 	static private float[] storageStats(final String path)
 	{
 		float[] stats = new float[3];
@@ -788,7 +797,7 @@ public class StorageUtils
 		return stats;
 	}
 
-	static public String getFree(final Context context, final String target)
+	static public String getFree(@NonNull final Context context, @NonNull final String target)
 	{
 		final File file = new File(target);
 		final String dir = file.isDirectory() ? file.getAbsolutePath() : file.getParent();
@@ -834,7 +843,7 @@ public class StorageUtils
 	 * @param dir dir
 	 * @return free space as string
 	 */
-	static CharSequence storageFreeAsString(final File dir)
+	static CharSequence storageFreeAsString(@NonNull final File dir)
 	{
 		return storageFreeAsString(dir.getAbsolutePath());
 	}

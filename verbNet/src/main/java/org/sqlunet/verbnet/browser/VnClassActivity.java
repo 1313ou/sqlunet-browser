@@ -1,5 +1,6 @@
 package org.sqlunet.verbnet.browser;
 
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 
 import org.sqlunet.browser.AbstractActivity;
@@ -24,6 +25,7 @@ public class VnClassActivity extends AbstractActivity
 		return R.id.container_vnclass;
 	}
 
+	@NonNull
 	@Override
 	protected Fragment makeFragment()
 	{

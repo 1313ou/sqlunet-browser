@@ -1,6 +1,8 @@
 package org.sqlunet.framenet.sql;
 
 import android.database.sqlite.SQLiteDatabase;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.util.Pair;
 
 import java.util.ArrayList;
@@ -43,6 +45,7 @@ public class FnLexUnit
 	/**
 	 * Buddy frame
 	 */
+	@Nullable
 	public final FnFrame frame;
 
 	/**
@@ -83,6 +86,7 @@ public class FnLexUnit
 	 * @param luId       lex unit id
 	 * @return lex units
 	 */
+	@Nullable
 	static public FnLexUnit makeFromId(final SQLiteDatabase connection, final long luId)
 	{
 		FnLexUnit result = null;
@@ -168,6 +172,7 @@ public class FnLexUnit
 	 * @param pos        pos to build query from, null if any
 	 * @return list of lex units
 	 */
+	@NonNull
 	static public List<FnLexUnit> makeFromWordId(final SQLiteDatabase connection, final long wordId, final Character pos)
 	{
 		final List<FnLexUnit> result = new ArrayList<>();
@@ -209,6 +214,7 @@ public class FnLexUnit
 	 * @param frameId    frame id
 	 * @return list of lex units
 	 */
+	@NonNull
 	static public List<FnLexUnit> makeFromFrame(final SQLiteDatabase connection, final long frameId)
 	{
 		final List<FnLexUnit> result = new ArrayList<>();

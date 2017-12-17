@@ -1,5 +1,8 @@
 package org.sqlunet.verbnet.sql;
 
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
+
 import org.sqlunet.wordnet.sql.NodeFactory;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -22,7 +25,7 @@ class VnNodeFactory extends NodeFactory
 	 * @param classId target class id
 	 * @return newly created node
 	 */
-	static public Node makeVnRootClassNode(final Document doc, final long classId)
+	static public Node makeVnRootClassNode(@NonNull final Document doc, final long classId)
 	{
 		final Element rootNode = NodeFactory.makeNode(doc, doc, "verbnet", null, VerbNetImplementation.VN_NS);
 		NodeFactory.addAttributes(rootNode, "classid", Long.toString(classId));
@@ -37,7 +40,7 @@ class VnNodeFactory extends NodeFactory
 	 * @param synsetId target synset id (0 for all)
 	 * @return newly created node
 	 */
-	static public Node makeVnRootNode(final Document doc, final long wordId, final Long synsetId)
+	static public Node makeVnRootNode(@NonNull final Document doc, final long wordId, @Nullable final Long synsetId)
 	{
 		final Element rootNode = NodeFactory.makeNode(doc, doc, "verbnet", null, VerbNetImplementation.VN_NS);
 		if (synsetId == null || synsetId == 0)
@@ -58,7 +61,7 @@ class VnNodeFactory extends NodeFactory
 	 * @param word target word
 	 * @return newly created node
 	 */
-	static public Node makeVnRootNode(final Document doc, final String word)
+	static public Node makeVnRootNode(@NonNull final Document doc, final String word)
 	{
 		final Element rootNode = NodeFactory.makeNode(doc, doc, "verbnet", null, VerbNetImplementation.VN_NS);
 		NodeFactory.addAttributes(rootNode, "word", word);
@@ -73,7 +76,7 @@ class VnNodeFactory extends NodeFactory
 	 * @param vnClass is the class
 	 * @return newly created node
 	 */
-	static public Node makeVnClassNode(final Document doc, final Node parent, final VnClass vnClass)
+	static public Node makeVnClassNode(@NonNull final Document doc, final Node parent, @NonNull final VnClass vnClass)
 	{
 		final Element element = NodeFactory.makeNode(doc, parent, "vnclass", null);
 		NodeFactory.makeAttribute(element, "name", vnClass.className);
@@ -87,7 +90,7 @@ class VnNodeFactory extends NodeFactory
 	 * @param parent  is the parent node to attach this node to
 	 * @param vnClass is the vn class with sense
 	 */
-	static public Node makeVnClassWithSenseNode(final Document doc, final Node parent, final VnClassWithSense vnClass)
+	static public Node makeVnClassWithSenseNode(@NonNull final Document doc, final Node parent, @NonNull final VnClassWithSense vnClass)
 	{
 		final Element element = NodeFactory.makeNode(doc, parent, "vnclass", null);
 		NodeFactory.addAttributes(element, //
@@ -109,7 +112,7 @@ class VnNodeFactory extends NodeFactory
 	 * @param parent is the parent node to attach this node to
 	 * @return newly created node
 	 */
-	static public Node makeVnRolesNode(final Document doc, final Node parent)
+	static public Node makeVnRolesNode(@NonNull final Document doc, final Node parent)
 	{
 		return NodeFactory.makeNode(doc, parent, "themroles", null);
 	}
@@ -124,7 +127,7 @@ class VnNodeFactory extends NodeFactory
 	 * @return newly created node
 	 */
 	@SuppressWarnings("UnusedReturnValue")
-	static public Node makeVnRoleNode(final Document doc, final Node parent, final VnRole role, final int i)
+	static public Node makeVnRoleNode(@NonNull final Document doc, final Node parent, @NonNull final VnRole role, final int i)
 	{
 		final Element element = NodeFactory.makeNode(doc, parent, "themrole", null);
 		NodeFactory.makeAttribute(element, "type", role.roleType);
@@ -145,7 +148,7 @@ class VnNodeFactory extends NodeFactory
 	 * @param parent is the parent node to attach this node to
 	 * @return newly created node
 	 */
-	static public Node makeVnFramesNode(final Document doc, final Node parent)
+	static public Node makeVnFramesNode(@NonNull final Document doc, final Node parent)
 	{
 		return NodeFactory.makeNode(doc, parent, "frames", null);
 	}
@@ -160,7 +163,7 @@ class VnNodeFactory extends NodeFactory
 	 * @return newly created node
 	 */
 	@SuppressWarnings("UnusedReturnValue")
-	static public Node makeVnFrameNode(final Document doc, final Node parent, final VnFrame frame, final int i)
+	static public Node makeVnFrameNode(@NonNull final Document doc, final Node parent, @NonNull final VnFrame frame, final int i)
 	{
 		final Element element = NodeFactory.makeNode(doc, parent, "frame", null);
 		NodeFactory.makeAttribute(element, "id", Integer.toString(i));
@@ -211,7 +214,7 @@ class VnNodeFactory extends NodeFactory
 	 * @param pattern delimiter pattern
 	 * @return segments
 	 */
-	static private String[] parse(final CharSequence text, final Pattern pattern)
+	static private String[] parse(@NonNull final CharSequence text, @NonNull final Pattern pattern)
 	{
 		// general pattern
 		final Matcher matcher = pattern.matcher(text);
@@ -246,7 +249,7 @@ class VnNodeFactory extends NodeFactory
 	 * @return node
 	 */
 	@SuppressWarnings("UnusedReturnValue")
-	static private Node makeVnSyntaxNodes(final Document doc, final Node parent, final CharSequence statement)
+	static private Node makeVnSyntaxNodes(@NonNull final Document doc, final Node parent, @NonNull final CharSequence statement)
 	{
 		final String[] fields = VnNodeFactory.parse(statement, VnNodeFactory.syntaxPattern);
 		if (fields != null && fields.length == 3)
@@ -291,7 +294,7 @@ class VnNodeFactory extends NodeFactory
 	 * @return node
 	 */
 	@SuppressWarnings("UnusedReturnValue")
-	static private Node makeVnSemanticNodes(final Document doc, final Node parent, final CharSequence statement)
+	static private Node makeVnSemanticNodes(@NonNull final Document doc, final Node parent, @NonNull final CharSequence statement)
 	{
 		final String[] relArgs = VnNodeFactory.parse(statement, VnNodeFactory.semanticsPattern);
 		if (relArgs != null && relArgs.length == 2)
@@ -326,7 +329,7 @@ class VnNodeFactory extends NodeFactory
 	 * @return newly created node
 	 */
 	@SuppressWarnings("unused")
-	static public Node makeSynsetNodeFlagged(final Document doc, final Node parent, final int size, final long id, final boolean flag)
+	static public Node makeSynsetNodeFlagged(@NonNull final Document doc, final Node parent, final int size, final long id, final boolean flag)
 	{
 		final Element element = NodeFactory.makeSynsetNode(doc, parent, id, size);
 		if (flag)

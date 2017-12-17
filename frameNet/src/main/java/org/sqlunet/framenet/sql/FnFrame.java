@@ -1,6 +1,7 @@
 package org.sqlunet.framenet.sql;
 
 import android.database.sqlite.SQLiteDatabase;
+import android.support.annotation.Nullable;
 
 import java.util.List;
 
@@ -61,6 +62,7 @@ public class FnFrame
 	 * @param frameId    target frame id
 	 * @return frame
 	 */
+	@Nullable
 	static public FnFrame make(final SQLiteDatabase connection, final long frameId)
 	{
 		FnFrame result = null;

@@ -1,6 +1,7 @@
 package org.sqlunet.verbnet.sql;
 
 import android.database.sqlite.SQLiteDatabase;
+import android.support.annotation.Nullable;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,6 +35,7 @@ public class VnRoleSet
 	 * @param classId    is the class id to build query from
 	 * @return set of VerbNet roles
 	 */
+	@Nullable
 	static public VnRoleSet make(final SQLiteDatabase connection, final long classId)
 	{
 		VnRoleQueryFromClassId query = null;
@@ -81,6 +83,7 @@ public class VnRoleSet
 	 * @param synsetId   is the synset id to build query from (null for any)
 	 * @return set of VerbNet roles
 	 */
+	@Nullable
 	static public VnRoleSet make(final SQLiteDatabase connection, final long classId, final long wordId, final Long synsetId)
 	{
 		VnRoleQueryFromClassIdAndSense query = null;

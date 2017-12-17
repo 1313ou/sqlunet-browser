@@ -1,6 +1,7 @@
 package org.sqlunet.bnc.sql;
 
 import android.database.sqlite.SQLiteDatabase;
+import android.support.annotation.NonNull;
 
 import org.sqlunet.sql.DBQuery;
 
@@ -27,7 +28,7 @@ class BncQuery extends DBQuery
 	 * @param connection connection
 	 * @param params     parameters
 	 */
-	public BncQuery(final SQLiteDatabase connection, final Object... params)
+	public BncQuery(final SQLiteDatabase connection, @NonNull final Object... params)
 	{
 		super(connection, params.length > 1 ? BncQuery.QUERYWITHPOS : BncQuery.QUERY);
 		setParams(params);
@@ -379,6 +380,7 @@ class BncQuery extends DBQuery
 	 *
 	 * @return the written from the result set
 	 */
+	@NonNull
 	public BncData getData()
 	{
 		final BncData data = new BncData();

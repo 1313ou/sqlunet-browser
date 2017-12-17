@@ -1,6 +1,7 @@
 package org.sqlunet.browser.web;
 
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -16,7 +17,7 @@ import org.sqlunet.browser.wn.R;
 public class WebActivity extends AppCompatActivity
 {
 	@Override
-	public void onCreate(final Bundle savedInstanceState)
+	public void onCreate(@Nullable final Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
 

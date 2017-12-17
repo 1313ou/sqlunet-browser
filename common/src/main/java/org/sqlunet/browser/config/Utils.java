@@ -2,6 +2,7 @@ package org.sqlunet.browser.config;
 
 import android.content.Context;
 import android.content.DialogInterface;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog;
 
 import org.sqlunet.browser.common.R;
@@ -21,7 +22,7 @@ class Utils
 	 * @param askId    ask resource id
 	 * @param runnable run if confirmed
 	 */
-	static public void confirm(final Context context, final int titleId, final int askId, final Runnable runnable)
+	static public void confirm(@NonNull final Context context, final int titleId, final int askId, @NonNull final Runnable runnable)
 	{
 		new AlertDialog.Builder(context) //
 				.setIcon(android.R.drawable.ic_dialog_alert) //

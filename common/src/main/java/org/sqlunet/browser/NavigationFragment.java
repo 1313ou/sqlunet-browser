@@ -6,6 +6,8 @@ import android.content.res.Resources;
 import android.content.res.TypedArray;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
@@ -83,6 +85,7 @@ public class NavigationFragment extends NavigationDrawerFragment implements Navi
 	 *
 	 * @return active fragment
 	 */
+	@Nullable
 	public Fragment getActiveFragment()
 	{
 		final FragmentActivity activity = getActivity();
@@ -290,7 +293,7 @@ public class NavigationFragment extends NavigationDrawerFragment implements Navi
 	/**
 	 * Restore action bar
 	 */
-	private static void restoreActionBar(final ActionBar actionBar, final Resources.Theme theme)
+	private static void restoreActionBar(@NonNull final ActionBar actionBar, @NonNull final Resources.Theme theme)
 	{
 		Log.d(NavigationFragment.TAG, "Restore standard action bar");
 
@@ -362,7 +365,7 @@ public class NavigationFragment extends NavigationDrawerFragment implements Navi
 	}
 
 	@Override
-	protected void set(final View view, final RowItem rowItem)
+	protected void set(@NonNull final View view, @NonNull final RowItem rowItem)
 	{
 		super.set(view, rowItem);
 

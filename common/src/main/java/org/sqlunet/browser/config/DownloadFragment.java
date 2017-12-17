@@ -12,6 +12,7 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -67,7 +68,7 @@ public class DownloadFragment extends BaseDownloadFragment
 			this.res = res;
 		}
 
-		static int toRes(final Reason reason)
+		static int toRes(@Nullable final Reason reason)
 		{
 			return reason == null ? R.string.status_reason_unknown : reason.res;
 		}
@@ -103,11 +104,13 @@ public class DownloadFragment extends BaseDownloadFragment
 	/**
 	 * Download manager
 	 */
+	@Nullable
 	private DownloadManager downloadManager;
 
 	/**
 	 * Done receiver
 	 */
+	@Nullable
 	private BroadcastReceiver receiver;
 
 	/**
@@ -128,6 +131,7 @@ public class DownloadFragment extends BaseDownloadFragment
 	/**
 	 * Exception exception message
 	 */
+	@Nullable
 	private String exceptionMessage;
 
 	/**
@@ -151,7 +155,7 @@ public class DownloadFragment extends BaseDownloadFragment
 		this.receiver = new BroadcastReceiver()
 		{
 			@Override
-			public void onReceive(final Context context0, final Intent intent)
+			public void onReceive(final Context context0, @NonNull final Intent intent)
 			{
 				final String action = intent.getAction();
 				if (DownloadManager.ACTION_DOWNLOAD_COMPLETE.equals(action))
@@ -187,7 +191,7 @@ public class DownloadFragment extends BaseDownloadFragment
 	}
 
 	@Override
-	public View onCreateView(@NonNull final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState)
+	public View onCreateView(@NonNull final LayoutInflater inflater, final ViewGroup container, @Nullable final Bundle savedInstanceState)
 	{
 		final View view = super.onCreateView(inflater, container, savedInstanceState);
 		//noinspection ConstantConditions
@@ -216,7 +220,7 @@ public class DownloadFragment extends BaseDownloadFragment
 	}
 
 	@Override
-	public void onClick(final View view)
+	public void onClick(@NonNull final View view)
 	{
 		final int id = view.getId();
 		if (id == R.id.downloadButton)
@@ -284,7 +288,7 @@ public class DownloadFragment extends BaseDownloadFragment
 		}
 	}
 
-	private void flagException(final Exception e)
+	private void flagException(@NonNull final Exception e)
 	{
 		this.xStatus = pack(Status.STATUS_FAILED.mask, Reason.EXCEPTION.code);
 		this.exceptionHasOccurred = true;
@@ -294,7 +298,7 @@ public class DownloadFragment extends BaseDownloadFragment
 	/**
 	 * Download status
 	 */
-	synchronized private long getXStatus(final Progress progress)
+	synchronized private long getXStatus(@Nullable final Progress progress)
 	{
 		// query
 		final Query query = new Query();
@@ -355,6 +359,7 @@ public class DownloadFragment extends BaseDownloadFragment
 	/**
 	 * Download reason
 	 */
+	@Nullable
 	@Override
 	protected String getReason()
 	{

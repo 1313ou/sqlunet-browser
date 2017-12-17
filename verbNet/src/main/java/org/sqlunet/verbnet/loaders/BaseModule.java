@@ -5,6 +5,8 @@ import android.database.Cursor;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.LoaderManager.LoaderCallbacks;
 import android.support.v4.content.CursorLoader;
@@ -41,16 +43,19 @@ abstract class BaseModule extends Module
 	/**
 	 * Processor
 	 */
+	@NonNull
 	private final VerbNetSemanticsProcessor semanticsProcessor;
 
 	/**
 	 * Syntax spanner
 	 */
+	@NonNull
 	private final VerbNetSyntaxSpanner syntaxSpanner;
 
 	/**
 	 * Semantics
 	 */
+	@NonNull
 	private final VerbNetSemanticsSpanner semanticsSpanner;
 
 	// drawables
@@ -111,7 +116,7 @@ abstract class BaseModule extends Module
 	 *
 	 * @param fragment fragment
 	 */
-	BaseModule(final Fragment fragment)
+	BaseModule(@NonNull final Fragment fragment)
 	{
 		super(fragment);
 
@@ -143,10 +148,11 @@ abstract class BaseModule extends Module
 	 * @param classId class id
 	 * @param parent  parent node
 	 */
-	void vnClass(final long classId, final TreeNode parent)
+	void vnClass(final long classId, @NonNull final TreeNode parent)
 	{
 		getLoaderManager().restartLoader(++Module.loaderId, null, new LoaderCallbacks<Cursor>()
 		{
+			@Nullable
 			@Override
 			public Loader<Cursor> onCreateLoader(final int loaderId, final Bundle loaderArgs)
 			{
@@ -164,7 +170,7 @@ abstract class BaseModule extends Module
 			}
 
 			@Override
-			public void onLoadFinished(final Loader<Cursor> loader, final Cursor cursor)
+			public void onLoadFinished(final Loader<Cursor> loader, @NonNull final Cursor cursor)
 			{
 				if (cursor.getCount() > 1)
 				{
@@ -233,10 +239,11 @@ abstract class BaseModule extends Module
 	 * @param classId class id
 	 * @param parent  parent node
 	 */
-	private void vnMembers(final int classId, final TreeNode parent)
+	private void vnMembers(final int classId, @NonNull final TreeNode parent)
 	{
 		getLoaderManager().restartLoader(++Module.loaderId, null, new LoaderCallbacks<Cursor>()
 		{
+			@Nullable
 			@Override
 			public Loader<Cursor> onCreateLoader(final int loaderId, final Bundle loaderArgs)
 			{
@@ -256,7 +263,7 @@ abstract class BaseModule extends Module
 			}
 
 			@Override
-			public void onLoadFinished(final Loader<Cursor> loader, final Cursor cursor)
+			public void onLoadFinished(final Loader<Cursor> loader, @NonNull final Cursor cursor)
 			{
 				if (cursor.moveToFirst())
 				{
@@ -366,10 +373,11 @@ abstract class BaseModule extends Module
 	 * @param classId class id
 	 * @param parent  parent node
 	 */
-	private void vnRoles(final int classId, final TreeNode parent)
+	private void vnRoles(final int classId, @NonNull final TreeNode parent)
 	{
 		getLoaderManager().restartLoader(++Module.loaderId, null, new LoaderCallbacks<Cursor>()
 		{
+			@Nullable
 			@Override
 			public Loader<Cursor> onCreateLoader(final int loaderId, final Bundle loaderArgs)
 			{
@@ -387,7 +395,7 @@ abstract class BaseModule extends Module
 			}
 
 			@Override
-			public void onLoadFinished(final Loader<Cursor> loader, final Cursor cursor)
+			public void onLoadFinished(final Loader<Cursor> loader, @NonNull final Cursor cursor)
 			{
 				if (cursor.moveToFirst())
 				{
@@ -451,10 +459,11 @@ abstract class BaseModule extends Module
 
 	// vnFrames
 
-	private void vnFrames(final int classId, final TreeNode parent)
+	private void vnFrames(final int classId, @NonNull final TreeNode parent)
 	{
 		getLoaderManager().restartLoader(++Module.loaderId, null, new LoaderCallbacks<Cursor>()
 		{
+			@Nullable
 			@Override
 			public Loader<Cursor> onCreateLoader(final int loaderId, final Bundle loaderArgs)
 			{
@@ -477,7 +486,7 @@ abstract class BaseModule extends Module
 			}
 
 			@Override
-			public void onLoadFinished(final Loader<Cursor> loader, final Cursor cursor)
+			public void onLoadFinished(final Loader<Cursor> loader, @NonNull final Cursor cursor)
 			{
 				final SpannableStringBuilder sb = new SpannableStringBuilder();
 
@@ -573,8 +582,9 @@ abstract class BaseModule extends Module
 	 * @param group items concat with '|'
 	 * @return node
 	 */
+	@Nullable
 	@SuppressWarnings({"WeakerAccess", "unused"})
-	protected TreeNode items(final String group)
+	protected TreeNode items(@Nullable final String group)
 	{
 		if (group != null)
 		{
@@ -625,7 +635,7 @@ abstract class BaseModule extends Module
 		}
 
 		@Override
-		public void process(final TreeNode node)
+		public void process(@NonNull final TreeNode node)
 		{
 			vnMembers((int) this.id, node);
 		}
@@ -647,7 +657,7 @@ abstract class BaseModule extends Module
 		}
 
 		@Override
-		public void process(final TreeNode node)
+		public void process(@NonNull final TreeNode node)
 		{
 			vnRoles((int) this.id, node);
 		}
@@ -669,7 +679,7 @@ abstract class BaseModule extends Module
 		}
 
 		@Override
-		public void process(final TreeNode node)
+		public void process(@NonNull final TreeNode node)
 		{
 			vnFrames((int) this.id, node);
 		}

@@ -1,6 +1,7 @@
 package org.sqlunet.propbank.style;
 
 import android.content.Context;
+import android.support.annotation.NonNull;
 import android.text.style.ImageSpan;
 
 import org.sqlunet.propbank.R;
@@ -31,6 +32,7 @@ public class PropBankSpanner extends RegExprSpanner
 				new SpanFactory[]{ //
 						new SpanFactory() // trace
 						{
+							@NonNull
 							@Override
 							public Object makeSpans(long flags)
 							{
@@ -40,6 +42,7 @@ public class PropBankSpanner extends RegExprSpanner
 
 						new SpanFactory() // trace number
 						{
+							@NonNull
 							@Override
 							public Object makeSpans(long flags)
 							{

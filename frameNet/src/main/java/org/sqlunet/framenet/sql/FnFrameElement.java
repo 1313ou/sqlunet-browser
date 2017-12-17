@@ -1,6 +1,8 @@
 package org.sqlunet.framenet.sql;
 
 import android.database.sqlite.SQLiteDatabase;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -53,6 +55,7 @@ class FnFrameElement
 	/**
 	 * FE sem types
 	 */
+	@NonNull
 	public final String[] semTypes;
 
 	/**
@@ -73,7 +76,7 @@ class FnFrameElement
 	 * @param isCore       whether FE is core
 	 * @param coreSet      core set number
 	 */
-	private FnFrameElement(final long feId, final long feTypeId, final String feType, final String feDefinition, final String feAbbrev, final String coreType, final String semTypes, final boolean isCore, final int coreSet)
+	private FnFrameElement(final long feId, final long feTypeId, final String feType, final String feDefinition, final String feAbbrev, final String coreType, @Nullable final String semTypes, final boolean isCore, final int coreSet)
 	{
 		this.feId = feId;
 		this.feTypeId = feTypeId;
@@ -93,6 +96,7 @@ class FnFrameElement
 	 * @param frameId    target frame id
 	 * @return list of FEs
 	 */
+	@NonNull
 	static public List<FnFrameElement> make(final SQLiteDatabase connection, final long frameId)
 	{
 		final List<FnFrameElement> result = new ArrayList<>();

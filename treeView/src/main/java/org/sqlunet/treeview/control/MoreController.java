@@ -1,6 +1,7 @@
 package org.sqlunet.treeview.control;
 
 import android.content.Context;
+import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
@@ -35,7 +36,7 @@ public class MoreController extends Controller<Value>
 	}
 
 	@Override
-	public View createNodeView(final TreeNode node, final Value value)
+	public View createNodeView(final TreeNode node, @NonNull final Value value)
 	{
 		final LayoutInflater inflater = LayoutInflater.from(this.context);
 		final View view = inflater.inflate(this.layoutRes, null, false);

@@ -1,6 +1,7 @@
 package org.sqlunet.propbank.sql;
 
 import android.database.sqlite.SQLiteDatabase;
+import android.support.annotation.NonNull;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -84,6 +85,7 @@ class PbExample
 	 * @param connection connection
 	 * @return list of PropBank examples
 	 */
+	@NonNull
 	static public List<PbExample> make(final SQLiteDatabase connection, final long roleSetId)
 	{
 		final List<PbExample> result = new ArrayList<>();

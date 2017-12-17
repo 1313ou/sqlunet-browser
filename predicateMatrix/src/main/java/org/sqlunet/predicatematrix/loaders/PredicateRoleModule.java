@@ -1,5 +1,7 @@
 package org.sqlunet.predicatematrix.loaders;
 
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.os.Parcelable;
 
@@ -17,6 +19,7 @@ public class PredicateRoleModule extends BaseModule
 	/**
 	 * Query id
 	 */
+	@Nullable
 	private Long pmRoleId;
 
 	/**
@@ -27,7 +30,7 @@ public class PredicateRoleModule extends BaseModule
 	/**
 	 * Constructor
 	 */
-	public PredicateRoleModule(final Fragment fragment, final PMMode mode)
+	public PredicateRoleModule(@NonNull final Fragment fragment, final PMMode mode)
 	{
 		super(fragment);
 		this.mode = mode;

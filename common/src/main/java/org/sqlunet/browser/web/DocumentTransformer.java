@@ -1,5 +1,6 @@
 package org.sqlunet.browser.web;
 
+import android.support.annotation.NonNull;
 import android.util.Log;
 
 import org.sqlunet.dom.DomTransformer;
@@ -30,7 +31,7 @@ abstract public class DocumentTransformer
 		{
 			return DomTransformer.docToString(doc, getXSLStream(source, isSelector), "html");
 		}
-		catch (final Exception e)
+		catch (@NonNull final Exception e)
 		{
 			Log.e(TAG, "While transforming doc to HTML", e);
 			return "error " + e;

@@ -27,6 +27,8 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.IBinder;
 import android.os.RemoteException;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.text.TextUtils;
 import android.util.Log;
 
@@ -103,10 +105,13 @@ public class IabHelper
 	private String mAsyncOperation = "";
 
 	// Context we were passed during initialization
+	@Nullable
 	private Context mContext;
 
 	// Connection to the service
+	@Nullable
 	private IInAppBillingService mService;
+	@Nullable
 	private ServiceConnection mServiceConn;
 
 	// The request code used to launch purchase flow
@@ -116,6 +121,7 @@ public class IabHelper
 	private String mPurchasingItemType;
 
 	// Public key for verifying signature, in base64 encoding
+	@Nullable
 	private String mSignatureBase64 = null;
 
 	// Billing response codes
@@ -173,7 +179,7 @@ public class IabHelper
 	 *                        public key in your application's page on Google Play Developer Console. Note that this
 	 *                        is NOT your "developer public key".
 	 */
-	public IabHelper(Context ctx, String base64PublicKey)
+	public IabHelper(@NonNull Context ctx, String base64PublicKey)
 	{
 		mContext = ctx.getApplicationContext();
 		mSignatureBase64 = base64PublicKey;
@@ -218,7 +224,7 @@ public class IabHelper
 	 *
 	 * @param listener The listener to notify when the setup process is complete.
 	 */
-	public void startSetup(final OnIabSetupFinishedListener listener)
+	public void startSetup(@Nullable final OnIabSetupFinishedListener listener)
 	{
 		// If already set up, can't do it again.
 		checkNotDisposed();
@@ -442,26 +448,27 @@ public class IabHelper
 
 	// The listener registered on launchPurchaseFlow, which we have to call back when
 	// the purchase finishes
+	@Nullable
 	private OnIabPurchaseFinishedListener mPurchaseListener;
 
 	@SuppressWarnings("unused")
-	public void launchPurchaseFlow(Activity act, String sku, int requestCode, OnIabPurchaseFinishedListener listener) throws IabAsyncInProgressException
+	public void launchPurchaseFlow(@NonNull Activity act, String sku, int requestCode, OnIabPurchaseFinishedListener listener) throws IabAsyncInProgressException
 	{
 		launchPurchaseFlow(act, sku, requestCode, listener, "");
 	}
 
-	public void launchPurchaseFlow(Activity act, String sku, int requestCode, OnIabPurchaseFinishedListener listener, String extraData) throws IabAsyncInProgressException
+	public void launchPurchaseFlow(@NonNull Activity act, String sku, int requestCode, OnIabPurchaseFinishedListener listener, String extraData) throws IabAsyncInProgressException
 	{
 		launchPurchaseFlow(act, sku, ITEM_TYPE_INAPP, null, requestCode, listener, extraData);
 	}
 
 	@SuppressWarnings("unused")
-	public void launchSubscriptionPurchaseFlow(Activity act, String sku, int requestCode, OnIabPurchaseFinishedListener listener) throws IabAsyncInProgressException
+	public void launchSubscriptionPurchaseFlow(@NonNull Activity act, String sku, int requestCode, OnIabPurchaseFinishedListener listener) throws IabAsyncInProgressException
 	{
 		launchSubscriptionPurchaseFlow(act, sku, requestCode, listener, "");
 	}
 
-	private void launchSubscriptionPurchaseFlow(Activity act, String sku, int requestCode, OnIabPurchaseFinishedListener listener, @SuppressWarnings("SameParameterValue") String extraData) throws IabAsyncInProgressException
+	private void launchSubscriptionPurchaseFlow(@NonNull Activity act, String sku, int requestCode, OnIabPurchaseFinishedListener listener, @SuppressWarnings("SameParameterValue") String extraData) throws IabAsyncInProgressException
 	{
 		launchPurchaseFlow(act, sku, ITEM_TYPE_SUBS, null, requestCode, listener, extraData);
 	}
@@ -486,7 +493,7 @@ public class IabHelper
 	 *                    data when the purchase completes. This extra data will be permanently bound to that
 	 *                    purchase and will always be returned when the purchase is queried.
 	 */
-	private void launchPurchaseFlow(Activity act, String sku, String itemType, @SuppressWarnings("SameParameterValue") List<String> oldSkus, int requestCode, OnIabPurchaseFinishedListener listener, String extraData) throws IabAsyncInProgressException
+	private void launchPurchaseFlow(@NonNull Activity act, String sku, @NonNull String itemType, @Nullable @SuppressWarnings("SameParameterValue") List<String> oldSkus, int requestCode, @Nullable OnIabPurchaseFinishedListener listener, String extraData) throws IabAsyncInProgressException
 	{
 		checkNotDisposed();
 		checkSetupDone("launchPurchaseFlow");
@@ -588,7 +595,7 @@ public class IabHelper
 	 * false if the result was not related to a purchase, in which case you should
 	 * handle it normally.
 	 */
-	public boolean handleActivityResult(int requestCode, int resultCode, Intent data)
+	public boolean handleActivityResult(int requestCode, int resultCode, @Nullable Intent data)
 	{
 		IabResult result;
 		if (requestCode != mRequestCode)
@@ -704,6 +711,7 @@ public class IabHelper
 		return true;
 	}
 
+	@NonNull
 	@SuppressWarnings("unused")
 	public Inventory queryInventory() throws IabException
 	{
@@ -723,6 +731,7 @@ public class IabHelper
 	 *                        Ignored if null or if querySkuDetails is false.
 	 * @throws IabException if a problem occurs while refreshing the inventory.
 	 */
+	@NonNull
 	private Inventory queryInventory(boolean querySkuDetails, List<String> moreItemSkus, List<String> moreSubsSkus) throws IabException
 	{
 		checkNotDisposed();
@@ -802,7 +811,7 @@ public class IabHelper
 	 * @param moreSubsSkus    as in {@link #queryInventory}
 	 * @param listener        The listener to notify when the refresh operation completes.
 	 */
-	private void queryInventoryAsync(@SuppressWarnings("SameParameterValue") final boolean querySkuDetails, @SuppressWarnings("SameParameterValue") final List<String> moreItemSkus, @SuppressWarnings("SameParameterValue") final List<String> moreSubsSkus, final QueryInventoryFinishedListener listener) throws IabAsyncInProgressException
+	private void queryInventoryAsync(@SuppressWarnings("SameParameterValue") final boolean querySkuDetails, @SuppressWarnings("SameParameterValue") final List<String> moreItemSkus, @SuppressWarnings("SameParameterValue") final List<String> moreSubsSkus, @Nullable final QueryInventoryFinishedListener listener) throws IabAsyncInProgressException
 	{
 		final Handler handler = new Handler();
 		checkNotDisposed();
@@ -855,7 +864,7 @@ public class IabHelper
 	 * @param itemInfo The PurchaseInfo that represents the item to consume.
 	 * @throws IabException if there is a problem during consumption.
 	 */
-	private void consume(Purchase itemInfo) throws IabException
+	private void consume(@NonNull Purchase itemInfo) throws IabException
 	{
 		checkNotDisposed();
 		checkSetupDone("consume");
@@ -947,7 +956,7 @@ public class IabHelper
 	 * @param listener  The listener to notify when the consumption operation finishes.
 	 */
 	@SuppressWarnings("unused")
-	public void consumeAsync(List<Purchase> purchases, OnConsumeMultiFinishedListener listener) throws IabAsyncInProgressException
+	public void consumeAsync(@NonNull List<Purchase> purchases, OnConsumeMultiFinishedListener listener) throws IabAsyncInProgressException
 	{
 		checkNotDisposed();
 		checkSetupDone("consume");
@@ -1000,7 +1009,7 @@ public class IabHelper
 	}
 
 	// Workaround to bug where sometimes response codes come as Long instead of Integer
-	private int getResponseCodeFromBundle(Bundle b)
+	private int getResponseCodeFromBundle(@NonNull Bundle b)
 	{
 		Object o = b.get(RESPONSE_CODE);
 		if (o == null)
@@ -1025,7 +1034,7 @@ public class IabHelper
 	}
 
 	// Workaround to bug where sometimes response codes come as Long instead of Integer
-	private int getResponseCodeFromIntent(Intent i)
+	private int getResponseCodeFromIntent(@NonNull Intent i)
 	{
 		Bundle extras = i.getExtras();
 		assert extras != null;
@@ -1099,7 +1108,7 @@ public class IabHelper
 		}
 	}
 
-	private int queryPurchases(Inventory inv, String itemType) throws JSONException, RemoteException
+	private int queryPurchases(@NonNull Inventory inv, String itemType) throws JSONException, RemoteException
 	{
 		// Query purchases
 		logDebug("Querying owned items, item type: " + itemType);
@@ -1169,7 +1178,7 @@ public class IabHelper
 		return verificationFailed ? IABHELPER_VERIFICATION_FAILED : BILLING_RESPONSE_RESULT_OK;
 	}
 
-	private int querySkuDetails(String itemType, Inventory inv, List<String> moreSkus) throws RemoteException, JSONException
+	private int querySkuDetails(String itemType, @NonNull Inventory inv, @Nullable List<String> moreSkus) throws RemoteException, JSONException
 	{
 		logDebug("Querying SKU details.");
 		ArrayList<String> skuList = new ArrayList<>();
@@ -1245,7 +1254,7 @@ public class IabHelper
 		return BILLING_RESPONSE_RESULT_OK;
 	}
 
-	private void consumeAsyncInternal(final List<Purchase> purchases, final OnConsumeFinishedListener singleListener, final OnConsumeMultiFinishedListener multiListener) throws IabAsyncInProgressException
+	private void consumeAsyncInternal(@NonNull final List<Purchase> purchases, @Nullable final OnConsumeFinishedListener singleListener, @Nullable final OnConsumeMultiFinishedListener multiListener) throws IabAsyncInProgressException
 	{
 		final Handler handler = new Handler();
 		flagStartAsync("consume");

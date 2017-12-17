@@ -3,6 +3,7 @@ package org.sqlunet.settings;
 import android.content.Context;
 import android.content.res.AssetManager;
 import android.net.Uri;
+import android.support.annotation.NonNull;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -30,7 +31,7 @@ class FileUtils
 	 * @param fileName file in assets
 	 * @return uri of copied file
 	 */
-	static public Uri copyAssetFile(final Context context, final String fileName)
+	static public Uri copyAssetFile(@NonNull final Context context, @NonNull final String fileName)
 	{
 		AssetManager assetManager = null;
 		try
@@ -61,7 +62,7 @@ class FileUtils
 	 * @param toPath       destination path
 	 * @return destination path
 	 */
-	static private boolean copyAsset(final AssetManager assetManager, final String assetPath, final String toPath)
+	static private boolean copyAsset(@NonNull final AssetManager assetManager, final String assetPath, @NonNull final String toPath)
 	{
 		InputStream in = null;
 		OutputStream out = null;
@@ -77,7 +78,7 @@ class FileUtils
 			FileUtils.copyFile(in, out);
 			return true;
 		}
-		catch (final Exception e)
+		catch (@NonNull final Exception e)
 		{
 			return false;
 		}
@@ -89,7 +90,7 @@ class FileUtils
 				{
 					out.close();
 				}
-				catch (final IOException e)
+				catch (@NonNull final IOException e)
 				{
 					//
 				}
@@ -100,7 +101,7 @@ class FileUtils
 				{
 					in.close();
 				}
-				catch (final IOException e)
+				catch (@NonNull final IOException e)
 				{
 					//
 				}
@@ -115,7 +116,7 @@ class FileUtils
 	 * @param out outstream
 	 * @throws IOException io exception
 	 */
-	static private void copyFile(final InputStream in, final OutputStream out) throws IOException
+	static private void copyFile(@NonNull final InputStream in, @NonNull final OutputStream out) throws IOException
 	{
 		final byte[] buffer = new byte[1024];
 		int read;
@@ -134,7 +135,7 @@ class FileUtils
 	 * @param fileName zip file in assets
 	 * @return uri of dest dir
 	 */
-	static public Uri expandZipAssetFile(final Context context, final String fileName)
+	static public Uri expandZipAssetFile(@NonNull final Context context, final String fileName)
 	{
 		AssetManager assetManager = null;
 		try
@@ -167,7 +168,7 @@ class FileUtils
 	 * @param toPath       destination path
 	 * @return true if successful
 	 */
-	static private boolean expandZipAsset(final AssetManager assetManager, final String assetPath, final String toPath)
+	static private boolean expandZipAsset(@NonNull final AssetManager assetManager, final String assetPath, @NonNull final String toPath)
 	{
 		InputStream in = null;
 		try
@@ -176,7 +177,7 @@ class FileUtils
 			FileUtils.expandZip(in, null, new File(toPath));
 			return true;
 		}
-		catch (final Exception e)
+		catch (@NonNull final Exception e)
 		{
 			return false;
 		}
@@ -188,7 +189,7 @@ class FileUtils
 				{
 					in.close();
 				}
-				catch (final IOException e)
+				catch (@NonNull final IOException e)
 				{
 					//
 				}
@@ -204,8 +205,9 @@ class FileUtils
 	 * @param destDir           destination dir
 	 * @return dest dir
 	 */
+	@NonNull
 	@SuppressWarnings("UnusedReturnValue")
-	static private File expandZip(final InputStream in, final String pathPrefixFilter0, final File destDir) throws IOException
+	static private File expandZip(@NonNull final InputStream in, final String pathPrefixFilter0, @NonNull final File destDir) throws IOException
 	{
 		// prefix
 		String pathPrefixFilter = pathPrefixFilter0;

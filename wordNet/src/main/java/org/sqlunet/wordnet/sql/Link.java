@@ -2,6 +2,8 @@ package org.sqlunet.wordnet.sql;
 
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.util.Log;
 
 import java.util.ArrayList;
@@ -24,6 +26,7 @@ class Link extends Synset
 	/**
 	 * <code>word</code> related word (lexlinks)
 	 */
+	@Nullable
 	public final String word;
 
 	/**
@@ -48,7 +51,7 @@ class Link extends Synset
 	 *
 	 * @param query query for synsets linked to a given synset
 	 */
-	public Link(final LinksQueryFromSynsetId query)
+	public Link(@NonNull final LinksQueryFromSynsetId query)
 	{
 		// construct synset
 		super(query);
@@ -69,7 +72,7 @@ class Link extends Synset
 	 *
 	 * @param query is a query for synsets linked to a given synset through a given relation type
 	 */
-	Link(final LinksQueryFromSynsetIdAndLinkType query)
+	Link(@NonNull final LinksQueryFromSynsetIdAndLinkType query)
 	{
 		// construct synset
 		super(query);
@@ -108,6 +111,7 @@ class Link extends Synset
 	/**
 	 * Override : recurse only on links of the same link type
 	 */
+	@Nullable
 	@Override
 	public List<Link> getLinks(final SQLiteDatabase connection, final long wordId)
 	{
@@ -127,7 +131,7 @@ class Link extends Synset
 				links.add(link);
 			}
 		}
-		catch (final SQLException e)
+		catch (@NonNull final SQLException e)
 		{
 			Log.e(TAG, "While querying", e);
 			links = null;

@@ -10,6 +10,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -102,6 +103,7 @@ public class NavigationDrawerFragment extends Fragment
 	/**
 	 * Helper component that ties together the the proper interactions between the navigation drawer and the type bar app icon
 	 */
+	@Nullable
 	private ActionBarDrawerToggle drawerToggle;
 
 	/**
@@ -132,7 +134,7 @@ public class NavigationDrawerFragment extends Fragment
 	}
 
 	@Override
-	public void onCreate(final Bundle savedInstanceState)
+	public void onCreate(@Nullable final Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
 
@@ -204,7 +206,7 @@ public class NavigationDrawerFragment extends Fragment
 		return view;
 	}
 
-	protected void set(final View view, final RowItem rowItem)
+	protected void set(@NonNull final View view, @NonNull final RowItem rowItem)
 	{
 		final TextView textView = view.findViewById(android.R.id.text1);
 		textView.setTextColor(rowItem.isMain ? Color.WHITE : Color.LTGRAY);
@@ -251,7 +253,7 @@ public class NavigationDrawerFragment extends Fragment
 	// M E N U
 
 	@Override
-	public void onCreateOptionsMenu(final Menu menu, final MenuInflater inflater)
+	public void onCreateOptionsMenu(final Menu menu, @NonNull final MenuInflater inflater)
 	{
 		// if the drawer is open, show the global app actions in the type bar. See also showGlobalContextActionBar, which controls the top-left area of the type bar.
 		if (this.drawerLayout != null && isDrawerOpen())
@@ -424,6 +426,7 @@ public class NavigationDrawerFragment extends Fragment
 	 *
 	 * @return type bar
 	 */
+	@Nullable
 	private ActionBar getSupportActionBar()
 	{
 		final AppCompatActivity activity = (AppCompatActivity)getActivity();

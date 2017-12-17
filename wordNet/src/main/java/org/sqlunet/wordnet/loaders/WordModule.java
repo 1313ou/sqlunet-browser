@@ -1,5 +1,7 @@
 package org.sqlunet.wordnet.loaders;
 
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.os.Parcelable;
 
@@ -19,6 +21,7 @@ public class WordModule extends BaseModule
 	/**
 	 * Word id
 	 */
+	@Nullable
 	private Long wordId;
 
 	/**
@@ -26,7 +29,7 @@ public class WordModule extends BaseModule
 	 *
 	 * @param fragment fragment
 	 */
-	public WordModule(final Fragment fragment)
+	public WordModule(@NonNull final Fragment fragment)
 	{
 		super(fragment);
 	}
@@ -43,7 +46,7 @@ public class WordModule extends BaseModule
 	}
 
 	@Override
-	public void process(final TreeNode parent)
+	public void process(@NonNull final TreeNode parent)
 	{
 		if (this.wordId != null && this.wordId != 0)
 		{

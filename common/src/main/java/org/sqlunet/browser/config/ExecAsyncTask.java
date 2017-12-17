@@ -7,6 +7,8 @@ import android.database.sqlite.SQLiteException;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.PowerManager;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.util.Log;
 import android.util.Pair;
 import android.view.Window;
@@ -131,7 +133,7 @@ public class ExecAsyncTask
 				publishProgress(total, total);
 				return true;
 			}
-			catch (final Exception e)
+			catch (@NonNull final Exception e)
 			{
 				Log.e(TAG, "While executing", e);
 			}
@@ -173,6 +175,7 @@ public class ExecAsyncTask
 	 * @param database database path
 	 * @param sqls     sql statements
 	 */
+	@NonNull
 	@SuppressWarnings("UnusedReturnValue")
 	public AsyncTask<Pair<String, String[]>, Integer, Boolean> executeFromSql(final String database, final String... sqls)
 	{
@@ -220,6 +223,7 @@ public class ExecAsyncTask
 			this.window = window;
 		}
 
+		@NonNull
 		@Override
 		@SuppressWarnings("boxing")
 		protected Boolean doInBackground(final String... params)
@@ -300,7 +304,7 @@ public class ExecAsyncTask
 						// exec one sql
 						db.execSQL(sql);
 					}
-					catch (final SQLiteException e)
+					catch (@NonNull final SQLiteException e)
 					{
 						Log.e(TAG, "SQL update failed: " + e.getMessage());
 					}
@@ -432,6 +436,7 @@ public class ExecAsyncTask
 			this.listener = listener;
 		}
 
+		@Nullable
 		@Override
 		protected Void doInBackground(String... params)
 		{

@@ -1,6 +1,7 @@
 package org.sqlunet.framenet.sql;
 
 import android.database.sqlite.SQLiteDatabase;
+import android.support.annotation.NonNull;
 
 import org.sqlunet.sql.DBQuery;
 import org.sqlunet.sql.Utils;
@@ -55,6 +56,7 @@ class FnAnnoSetQuery extends DBQuery
 	 *
 	 * @return the annoSet ids from the result set
 	 */
+	@NonNull
 	@SuppressWarnings("unused")
 	public long[] getAnnoSetIds()
 	{

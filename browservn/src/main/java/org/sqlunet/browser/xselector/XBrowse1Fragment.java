@@ -121,7 +121,7 @@ public class XBrowse1Fragment extends Fragment implements XSelectorsFragment.Lis
 	 * @param view view
 	 * @return true if view is two-pane
 	 */
-	private boolean isTwoPane(final View view)
+	private boolean isTwoPane(@NonNull final View view)
 	{
 		// the detail view will be present only in the large-screen layouts
 		// if this view is present, then the activity should be in two-pane mode.

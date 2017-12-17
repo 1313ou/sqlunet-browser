@@ -33,4 +33,5 @@ dependencies {
 
     // Required for instrumented tests
     // DOES NOT WORK androidTestCompile project(path: ':expandableListFragment', configuration: 'androidTestCompile')
+    implementation 'com.android.support:support-annotations:27.0.2'
 }

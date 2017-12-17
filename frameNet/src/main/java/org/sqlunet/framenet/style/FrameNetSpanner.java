@@ -1,6 +1,8 @@
 package org.sqlunet.framenet.style;
 
 import android.content.Context;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
 
@@ -21,6 +23,7 @@ public class FrameNetSpanner
 	/**
 	 * Span factory
 	 */
+	@NonNull
 	private final FrameNetMarkupFactory factory;
 
 	/**
@@ -40,7 +43,8 @@ public class FrameNetSpanner
 	 * @param flags flags
 	 * @return processed text
 	 */
-	public CharSequence process(final CharSequence text, final long flags, final Spanner.SpanFactory factory)
+	@NonNull
+	public CharSequence process(@NonNull final CharSequence text, final long flags, @Nullable final Spanner.SpanFactory factory)
 	{
 		final SpannableStringBuilder sb = new SpannableStringBuilder(text);
 		if(factory != null)
@@ -61,7 +65,7 @@ public class FrameNetSpanner
 	 * @param flags    flags
 	 */
 	@SuppressWarnings("unused")
-	public void addSpan(@SuppressWarnings("TypeMayBeWeakened") final SpannableStringBuilder sb, final int start, final int end, final String selector, final long flags)
+	public void addSpan(@NonNull @SuppressWarnings("TypeMayBeWeakened") final SpannableStringBuilder sb, final int start, final int end, final String selector, final long flags)
 	{
 		final Object spans = this.factory.makeSpans(selector, flags);
 		if (spans != null)

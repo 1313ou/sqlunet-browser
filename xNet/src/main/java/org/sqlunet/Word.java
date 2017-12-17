@@ -1,6 +1,7 @@
 package org.sqlunet;
 
 import android.os.Parcel;
+import android.support.annotation.NonNull;
 
 /**
  * Parcelable word
@@ -20,7 +21,7 @@ public class Word implements IPointer
 	static public final Creator<Word> CREATOR = new Creator<Word>()
 	{
 		@Override
-		public Word createFromParcel(Parcel parcel)
+		public Word createFromParcel(@NonNull Parcel parcel)
 		{
 			return new Word(parcel);
 		}
@@ -46,7 +47,7 @@ public class Word implements IPointer
 	 * Constructor from parcel, reads back fields IN THE ORDER they were written
 	 */
 	@SuppressWarnings("unused")
-	public Word(final Parcel parcel)
+	public Word(@NonNull final Parcel parcel)
 	{
 		this.word = parcel.readString();
 	}
@@ -62,7 +63,7 @@ public class Word implements IPointer
 	}
 
 	@Override
-	public void writeToParcel(final Parcel parcel, final int flags)
+	public void writeToParcel(@NonNull final Parcel parcel, final int flags)
 	{
 		parcel.writeString(this.word);
 	}

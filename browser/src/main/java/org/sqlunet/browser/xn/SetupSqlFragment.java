@@ -80,7 +80,7 @@ public class SetupSqlFragment extends org.sqlunet.browser.config.SetupSqlFragmen
 					final TaskObserver.Listener listener = new TaskObserver.DialogListener(activity, R.string.status_managing, source + '@' + entry, unit);
 					SetupSqlFragment.this.task = new ExecAsyncTask(getActivity(), listener, 1).executeFromArchive(database, source, entry);
 				}
-				catch (final Exception e)
+				catch (@NonNull final Exception e)
 				{
 					Log.e(TAG, "While preparing predicatematrix", e);
 				}

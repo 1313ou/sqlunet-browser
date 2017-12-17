@@ -1,6 +1,8 @@
 package org.sqlunet.wordnet.sql;
 
 import android.database.sqlite.SQLiteDatabase;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 
 import org.sqlunet.dom.DomFactory;
 import org.sqlunet.dom.DomTransformer;
@@ -94,7 +96,7 @@ public class WordNetImplementation implements WordNetInterface
 	 * @return WordNet data as a DOM Document
 	 */
 	@Override
-	public Document queryDoc(final SQLiteDatabase connection, final long wordId, final Long synsetId, final boolean withLinks, final boolean recurse)
+	public Document queryDoc(final SQLiteDatabase connection, final long wordId, @Nullable final Long synsetId, final boolean withLinks, final boolean recurse)
 	{
 		final Document doc = DomFactory.makeDocument();
 		final Element rootNode = NodeFactory.makeNode(doc, doc, "wordnet", null, WordNetImplementation.WN_NS);
@@ -328,7 +330,7 @@ public class WordNetImplementation implements WordNetInterface
 	 * @param parent     org.w3c.dom.Node walk will attach results to
 	 * @param targetWord target word
 	 */
-	static private void walkSelector(final SQLiteDatabase connection, final Document doc, final Node parent, final String targetWord)
+	static private void walkSelector(final SQLiteDatabase connection, @NonNull final Document doc, final Node parent, final String targetWord)
 	{
 		// word
 		final Word word = Word.make(connection, targetWord);
@@ -392,7 +394,7 @@ public class WordNetImplementation implements WordNetInterface
 	 * @param targetLexDomainType target lexdomain type (ANYTYPE for all types)
 	 * @param targetLinkType      target link type (ANYTYPE for all types)
 	 */
-	static private void walk(final SQLiteDatabase connection, final String targetWord, final Document doc, final Node parent, final boolean withLinks, final boolean recurse, final int targetPosType, final int targetLexDomainType, final int targetLinkType)
+	static private void walk(final SQLiteDatabase connection, final String targetWord, @NonNull final Document doc, final Node parent, final boolean withLinks, final boolean recurse, final int targetPosType, final int targetLexDomainType, final int targetLinkType)
 	{
 		// word
 		final Word word = Word.make(connection, targetWord);
@@ -460,8 +462,8 @@ public class WordNetImplementation implements WordNetInterface
 	 */
 	static private void walkSense(final SQLiteDatabase connection, //
 			final long wordId,  //
-			final Long synsetId,  //
-			final Document doc, //
+			@Nullable final Long synsetId,  //
+			@NonNull final Document doc, //
 			final Node parent, //
 			final boolean withLinks,//
 			final boolean recurse, //
@@ -542,7 +544,7 @@ public class WordNetImplementation implements WordNetInterface
 	 * @param synset synset whose data are to be processed
 	 */
 	@SuppressWarnings("UnusedReturnValue")
-	static private Node walkSynsetHeader(final Document doc, final Node parent, final Synset synset)
+	static private Node walkSynsetHeader(@NonNull final Document doc, final Node parent, @NonNull final Synset synset)
 	{
 		// anchor node
 		final Node synsetNode = NodeFactory.makeSynsetNode(doc, parent, synset.synsetId, 0);
@@ -561,7 +563,7 @@ public class WordNetImplementation implements WordNetInterface
 	 * @param parent     org.w3c.dom.Node walk will attach results to
 	 * @param synset     synset whose data are to be processed
 	 */
-	static private Node walkSynset(final SQLiteDatabase connection, final Document doc, final Node parent, final Synset synset)
+	static private Node walkSynset(final SQLiteDatabase connection, @NonNull final Document doc, final Node parent, @NonNull final Synset synset)
 	{
 		// synset words
 		final List<Word> words = synset.getSynsetWords(connection);
@@ -603,7 +605,7 @@ public class WordNetImplementation implements WordNetInterface
 	 * @param recurse        determines if queries are to follow links recursively
 	 * @param targetLinkType target link type
 	 */
-	static private void walkSynsetLinks(final SQLiteDatabase connection, final Document doc, final Node parent, final Synset synset, final long wordId, final boolean withLinks, final boolean recurse, final int targetLinkType)
+	static private void walkSynsetLinks(final SQLiteDatabase connection, @NonNull final Document doc, final Node parent, @NonNull final Synset synset, final long wordId, final boolean withLinks, final boolean recurse, final int targetLinkType)
 	{
 		if (withLinks)
 		{
@@ -652,7 +654,7 @@ public class WordNetImplementation implements WordNetInterface
 	 * @param recurseLevel   recursion level
 	 * @param targetLinkType target link type (cannot be ANYTYPE for all types)
 	 */
-	static private void walkLink(final SQLiteDatabase connection, final Document doc, final Node parent0, final Link link, final long wordId, final int recurseLevel, final int targetLinkType)
+	static private void walkLink(final SQLiteDatabase connection, @NonNull final Document doc, final Node parent0, @NonNull final Link link, final long wordId, final int recurseLevel, final int targetLinkType)
 	{
 		Node parent = parent0;
 
@@ -723,6 +725,7 @@ public class WordNetImplementation implements WordNetInterface
 	 *
 	 * @return array of Strings
 	 */
+	@NonNull
 	@Override
 	public String[] getPosNames()
 	{
@@ -734,6 +737,7 @@ public class WordNetImplementation implements WordNetInterface
 	 *
 	 * @return array of Strings
 	 */
+	@NonNull
 	@Override
 	public String[] getLexDomainNames()
 	{
@@ -747,6 +751,7 @@ public class WordNetImplementation implements WordNetInterface
 	 *
 	 * @return array of Strings
 	 */
+	@NonNull
 	@Override
 	public String[] getLinkNames()
 	{

@@ -1,5 +1,8 @@
 package org.sqlunet.sql;
 
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
+
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -24,7 +27,7 @@ public class NodeFactory
 	 * @param text     is the node's text content
 	 * @return newly created node
 	 */
-	static public Element makeNode(final Document document, final Node parent, final String name, final String text)
+	static public Element makeNode(@NonNull final Document document, @Nullable final Node parent, final String name, final String text)
 	{
 		final Element element = document.createElement(name);
 
@@ -49,7 +52,7 @@ public class NodeFactory
 	 * @param text     is the node's text content
 	 * @return newly created node
 	 */
-	static public Element makeNode(final Document document, final Node parent, final String name, final String text, final String ns)
+	static public Element makeNode(@NonNull final Document document, final Node parent, final String name, final String text, final String ns)
 	{
 		final Element node = makeNode(document, parent, name, text);
 		node.setAttributeNS("http://www.w3.org/2000/xmlns/", "xmlns", ns);
@@ -66,7 +69,7 @@ public class NodeFactory
 	 * @return newly created node
 	 */
 	@SuppressWarnings("UnusedReturnValue")
-	static public Element makeRootNode(final Document document, final Node parent, @SuppressWarnings("SameParameterValue") final String name, @SuppressWarnings("SameParameterValue") final String text, @SuppressWarnings("SameParameterValue") final String ns)
+	static public Element makeRootNode(@NonNull final Document document, final Node parent, @SuppressWarnings("SameParameterValue") final String name, @SuppressWarnings("SameParameterValue") final String text, @SuppressWarnings("SameParameterValue") final String ns)
 	{
 		final Element node = makeNode(document, parent, name, text, ns);
 		node.setAttributeNS("http://www.w3.org/2001/XMLSchema-instance", "xs:schemaLocation", NS_URL + ' ' + NS_XSD);
@@ -80,7 +83,7 @@ public class NodeFactory
 	 * @param name    is the attribute's name
 	 * @param value   is the attribute's value
 	 */
-	static protected void makeAttribute(final Element element, final String name, final String value)
+	static protected void makeAttribute(@NonNull final Element element, final String name, @Nullable final String value)
 	{
 		if (value != null && !value.isEmpty())
 		{
@@ -93,7 +96,7 @@ public class NodeFactory
 	 *
 	 * @param element DOM element to attach attributes to	 * @param args     name-value pairs
 	 */
-	static public void addAttributes(final Element element, final String... args)
+	static public void addAttributes(@NonNull final Element element, @NonNull final String... args)
 	{
 		// attributes
 		for (int i = 0; i < args.length; i += 2)
@@ -110,8 +113,9 @@ public class NodeFactory
 	 * @param text     text
 	 * @return parent
 	 */
+	@NonNull
 	@SuppressWarnings("UnusedReturnValue")
-	static protected Element makeText(final Document document, final Element parent, final String text)
+	static protected Element makeText(@NonNull final Document document, @NonNull final Element parent, @Nullable final String text)
 	{
 		// text
 		if (text != null && !text.isEmpty())

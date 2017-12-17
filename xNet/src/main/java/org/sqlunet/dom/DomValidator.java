@@ -1,5 +1,6 @@
 package org.sqlunet.dom;
 
+import android.support.annotation.NonNull;
 import android.util.Log;
 
 import org.xml.sax.SAXException;
@@ -25,18 +26,18 @@ public class DomValidator
 	 * @param validator validator
 	 * @param source    source to validate
 	 */
-	static private void validate(final Validator validator, final Source source)
+	static private void validate(@NonNull final Validator validator, final Source source)
 	{
 		try
 		{
 			validator.validate(source);
 			Log.i(TAG, "ok");
 		}
-		catch (final SAXException e)
+		catch (@NonNull final SAXException e)
 		{
 			Log.e(TAG, "sax", e);
 		}
-		catch (final IOException e)
+		catch (@NonNull final IOException e)
 		{
 			Log.e(TAG, "io", e);
 		}
@@ -48,7 +49,7 @@ public class DomValidator
 	 * @param xsdUrl  xsd url
 	 * @param strings files
 	 */
-	static public void validateStrings(final URL xsdUrl, final String... strings)
+	static public void validateStrings(@NonNull final URL xsdUrl, @NonNull final String... strings)
 	{
 		try
 		{
@@ -61,7 +62,7 @@ public class DomValidator
 				}
 			}
 		}
-		catch (final SAXException e)
+		catch (@NonNull final SAXException e)
 		{
 			Log.e(TAG, "xsd", e);
 		}
@@ -73,7 +74,7 @@ public class DomValidator
 	 * @param xsdUrl    xsd url
 	 * @param documents documents
 	 */
-	static public void validateDocs(final URL xsdUrl, final org.w3c.dom.Document... documents)
+	static public void validateDocs(@NonNull final URL xsdUrl, @NonNull final org.w3c.dom.Document... documents)
 	{
 		try
 		{
@@ -89,7 +90,7 @@ public class DomValidator
 				}
 			}
 		}
-		catch (final SAXException e)
+		catch (@NonNull final SAXException e)
 		{
 			Log.e(TAG, "xsd", e);
 		}
@@ -102,7 +103,7 @@ public class DomValidator
 	 * @param filePaths files
 	 */
 	@SuppressWarnings("unused")
-	static public void validateFiles(final URL xsdUrl, final String... filePaths)
+	static public void validateFiles(@NonNull final URL xsdUrl, @NonNull final String... filePaths)
 	{
 		try
 		{
@@ -112,7 +113,7 @@ public class DomValidator
 				DomValidator.validate(validator, new StreamSource(filePath));
 			}
 		}
-		catch (final SAXException e)
+		catch (@NonNull final SAXException e)
 		{
 			Log.e(TAG, "xsd", e);
 		}
@@ -125,7 +126,7 @@ public class DomValidator
 	 * @return validator
 	 * @throws SAXException exception
 	 */
-	static private Validator makeValidator(final URL xsdUrl) throws SAXException
+	static private Validator makeValidator(@NonNull final URL xsdUrl) throws SAXException
 	{
 		//final SchemaFactory schemaFactory = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
 		final SchemaFactory schemaFactory = new mf.org.apache.xerces.jaxp.validation.XMLSchemaFactory();
@@ -142,7 +143,7 @@ public class DomValidator
 	 * @return xsdUrl
 	 */
 	@SuppressWarnings("unused")
-	static public URL path2Url(final String xsdPath)
+	static public URL path2Url(@NonNull final String xsdPath)
 	{
 		URL xsdUrl;
 		try
@@ -153,19 +154,19 @@ public class DomValidator
 				throw new RuntimeException("Null XSD resource file");
 			}
 		}
-		catch (final Exception e)
+		catch (@NonNull final Exception e)
 		{
 			try
 			{
 				xsdUrl = new URL(xsdPath);
 			}
-			catch (final Exception e1)
+			catch (@NonNull final Exception e1)
 			{
 				try
 				{
 					xsdUrl = new File(xsdPath).toURI().toURL();
 				}
-				catch (final Exception e2)
+				catch (@NonNull final Exception e2)
 				{
 					throw new RuntimeException("No validator XSD file");
 				}

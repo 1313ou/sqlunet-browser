@@ -1,5 +1,7 @@
 package org.sqlunet.style;
 
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.text.SpannableStringBuilder;
 
 import java.util.regex.Matcher;
@@ -19,6 +21,7 @@ public class MarkupSpanner extends Spanner
 	 */
 	public interface SpanFactory
 	{
+		@Nullable
 		Object makeSpans(final String selector, final long flags);
 	}
 
@@ -85,12 +88,13 @@ public class MarkupSpanner extends Spanner
 	 * @param extraPatterns more patterns
 	 * @return spannable string builder
 	 */
+	@NonNull
 	@SuppressWarnings("UnusedReturnValue")
-	static public CharSequence setSpan(final CharSequence text, //
-			final SpannableStringBuilder sb, final SpanFactory spanFactory, //
+	static public CharSequence setSpan(@NonNull final CharSequence text, //
+			@NonNull final SpannableStringBuilder sb, @NonNull final SpanFactory spanFactory, //
 			final long flags, //
-			@SuppressWarnings("SameParameterValue") final Pattern pattern, //
-			@SuppressWarnings("SameParameterValue") final Pattern... extraPatterns)
+			@NonNull @SuppressWarnings("SameParameterValue") final Pattern pattern, //
+			@NonNull @SuppressWarnings("SameParameterValue") final Pattern... extraPatterns)
 	{
 		// specific patterns
 		for (final Pattern xpattern : extraPatterns)
@@ -169,7 +173,7 @@ public class MarkupSpanner extends Spanner
 	 * @param factories span factories
 	 */
 	@SuppressWarnings("unused")
-	static private void setSpan(final String selector, final SpannableStringBuilder sb, final int i, final int j, final long flags, final SpanFactory... factories)
+	static private void setSpan(final String selector, @NonNull final SpannableStringBuilder sb, final int i, final int j, final long flags, @NonNull final SpanFactory... factories)
 	{
 		final Object[] spans = new Object[factories.length];
 		for (int f = 0; f < factories.length; f++)

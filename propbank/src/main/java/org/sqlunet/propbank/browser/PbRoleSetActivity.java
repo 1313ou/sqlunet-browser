@@ -1,5 +1,6 @@
 package org.sqlunet.propbank.browser;
 
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 
 import org.sqlunet.browser.AbstractActivity;
@@ -24,6 +25,7 @@ public class PbRoleSetActivity extends AbstractActivity
 		return R.id.container_pbroleset;
 	}
 
+	@NonNull
 	@Override
 	protected Fragment makeFragment()
 	{

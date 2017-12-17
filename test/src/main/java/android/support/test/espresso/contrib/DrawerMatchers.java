@@ -16,6 +16,7 @@
 
 package android.support.test.espresso.contrib;
 
+import android.support.annotation.NonNull;
 import android.support.test.espresso.matcher.BoundedMatcher;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -46,13 +47,13 @@ public final class DrawerMatchers
 		return new BoundedMatcher<View, DrawerLayout>(DrawerLayout.class)
 		{
 			@Override
-			public void describeTo(Description description)
+			public void describeTo(@NonNull Description description)
 			{
 				description.appendText("is drawer open");
 			}
 
 			@Override
-			public boolean matchesSafely(DrawerLayout drawer)
+			public boolean matchesSafely(@NonNull DrawerLayout drawer)
 			{
 				return drawer.isDrawerOpen(gravity);
 			}
@@ -79,13 +80,13 @@ public final class DrawerMatchers
 		return new BoundedMatcher<View, DrawerLayout>(DrawerLayout.class)
 		{
 			@Override
-			public void describeTo(Description description)
+			public void describeTo(@NonNull Description description)
 			{
 				description.appendText("is drawer closed");
 			}
 
 			@Override
-			public boolean matchesSafely(DrawerLayout drawer)
+			public boolean matchesSafely(@NonNull DrawerLayout drawer)
 			{
 				return !drawer.isDrawerVisible(gravity);
 			}

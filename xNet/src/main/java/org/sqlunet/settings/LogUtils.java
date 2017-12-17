@@ -1,6 +1,8 @@
 package org.sqlunet.settings;
 
 import android.os.Environment;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.util.Log;
 
 import org.sqlunet.dom.DomTransformer;
@@ -27,7 +29,7 @@ public class LogUtils
 	 * @param append   whether to append to file
 	 * @param fileName file name
 	 */
-	static public String writeLog(final CharSequence text, final boolean append, final String fileName)
+	static public String writeLog(final CharSequence text, final boolean append, @Nullable final String fileName)
 	{
 		final File storage = Environment.getExternalStorageDirectory();
 		final File logFile = new File(storage, fileName != null ? fileName : "sqlunet.log");
@@ -64,8 +66,9 @@ public class LogUtils
 	 * @param append    whether to append to file
 	 * @param fileName0 file name
 	 */
+	@Nullable
 	@SuppressWarnings("UnusedReturnValue")
-	static public String writeLog(@SuppressWarnings("SameParameterValue") final boolean append, @SuppressWarnings("SameParameterValue") final String fileName0, final Document... docs)
+	static public String writeLog(@SuppressWarnings("SameParameterValue") final boolean append, @Nullable @SuppressWarnings("SameParameterValue") final String fileName0, @NonNull final Document... docs)
 	{
 		final String fileName = fileName0 != null ? fileName0 : "sqlunetx.log";
 		final StringBuilder sb = new StringBuilder();

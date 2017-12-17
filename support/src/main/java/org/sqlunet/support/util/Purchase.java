@@ -15,6 +15,8 @@
 
 package org.sqlunet.support.util;
 
+import android.support.annotation.NonNull;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -67,6 +69,7 @@ public class Purchase {
     @SuppressWarnings("unused")
     public boolean isAutoRenewing() { return mIsAutoRenewing; }
 
+    @NonNull
     @Override
     public String toString() { return "PurchaseInfo(type:" + mItemType + "):" + mOriginalJson; }
 }

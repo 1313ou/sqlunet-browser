@@ -1,6 +1,7 @@
 package org.sqlunet.verbnet.sql;
 
 import android.database.sqlite.SQLiteDatabase;
+import android.support.annotation.Nullable;
 
 import org.sqlunet.wordnet.sql.BasicWord;
 
@@ -43,6 +44,7 @@ public class VnEntry
 	 * @param word       target word
 	 * @return new entry or null
 	 */
+	@Nullable
 	static public VnEntry make(final SQLiteDatabase connection, final String word)
 	{
 		VnEntry entry = null;

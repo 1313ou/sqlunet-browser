@@ -2,6 +2,8 @@ package org.sqlunet.wordnet.sql;
 
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.util.Log;
 
 import java.util.ArrayList;
@@ -36,7 +38,7 @@ public class Word extends BasicWord
 	 *
 	 * @param query database query
 	 */
-	private Word(final WordQuery query)
+	private Word(@NonNull final WordQuery query)
 	{
 		super(query.getLemma(), query.getId());
 	}
@@ -46,7 +48,7 @@ public class Word extends BasicWord
 	 *
 	 * @param query database query
 	 */
-	private Word(final WordQueryFromLemma query)
+	private Word(@NonNull final WordQueryFromLemma query)
 	{
 		super(query.getLemma(), query.getId());
 	}
@@ -58,6 +60,7 @@ public class Word extends BasicWord
 	 * @param lemma      target string
 	 * @return Word or null
 	 */
+	@Nullable
 	static public Word make(final SQLiteDatabase connection, final String lemma)
 	{
 		Word word = null;
@@ -72,7 +75,7 @@ public class Word extends BasicWord
 				word = new Word(query);
 			}
 		}
-		catch (final SQLException e)
+		catch (@NonNull final SQLException e)
 		{
 			Log.e(TAG, "While querying word", e);
 			// word can only be null here
@@ -94,6 +97,7 @@ public class Word extends BasicWord
 	 * @param wordId     target id
 	 * @return Word or null
 	 */
+	@Nullable
 	static public Word make(final SQLiteDatabase connection, final long wordId)
 	{
 		Word word = null;
@@ -108,7 +112,7 @@ public class Word extends BasicWord
 				word = new Word(query);
 			}
 		}
-		catch (final SQLException e)
+		catch (@NonNull final SQLException e)
 		{
 			Log.e(TAG, "While querying word", e);
 			// word can only be null here
@@ -129,6 +133,7 @@ public class Word extends BasicWord
 	 * @param connection connection
 	 * @return list of synsets containing a given word
 	 */
+	@Nullable
 	public List<Synset> getSynsets(final SQLiteDatabase connection)
 	{
 		SynsetsQueryFromWordId query = null;
@@ -144,7 +149,7 @@ public class Word extends BasicWord
 				synsets.add(synset);
 			}
 		}
-		catch (final SQLException e)
+		catch (@NonNull final SQLException e)
 		{
 			Log.e(TAG, "While querying synsets", e);
 			synsets = null;
@@ -167,6 +172,7 @@ public class Word extends BasicWord
 	 * @param lexDomainBased is whether the query is lexdomain based
 	 * @return list of synsets for a given word
 	 */
+	@Nullable
 	public List<Synset> getTypedSynsets(final SQLiteDatabase connection, final int targetType, final boolean lexDomainBased)
 	{
 		SynsetsQueryFromWordIdAndCondition query = null;
@@ -191,7 +197,7 @@ public class Word extends BasicWord
 				synsets.add(synset);
 			}
 		}
-		catch (final SQLException e)
+		catch (@NonNull final SQLException e)
 		{
 			Log.e(TAG, "While querying typed synsets", e);
 			synsets = null;
@@ -213,6 +219,7 @@ public class Word extends BasicWord
 	 * @param word       target word
 	 * @return lexdomain-link type map for a given word
 	 */
+	@Nullable
 	@SuppressWarnings("unused")
 	static public Map<Integer, Set<Integer>> getLinkTypes(final SQLiteDatabase connection, final String word)
 	{
@@ -246,7 +253,7 @@ public class Word extends BasicWord
 				values.add(linkType);
 			}
 		}
-		catch (final SQLException e)
+		catch (@NonNull final SQLException e)
 		{
 			Log.e(TAG, "While querying link types", e);
 			map = null;

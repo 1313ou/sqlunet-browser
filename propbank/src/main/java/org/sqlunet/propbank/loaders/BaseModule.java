@@ -4,6 +4,8 @@ import android.database.Cursor;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.LoaderManager.LoaderCallbacks;
 import android.support.v4.content.CursorLoader;
@@ -83,6 +85,7 @@ abstract class BaseModule extends Module
 	/**
 	 * Spanner
 	 */
+	@NonNull
 	private final PropBankSpanner spanner;
 
 	/**
@@ -90,7 +93,7 @@ abstract class BaseModule extends Module
 	 *
 	 * @param fragment fragment
 	 */
-	BaseModule(final Fragment fragment)
+	BaseModule(@NonNull final Fragment fragment)
 	{
 		super(fragment);
 
@@ -118,10 +121,11 @@ abstract class BaseModule extends Module
 	 * @param roleSetId role set id
 	 * @param parent    parent node
 	 */
-	void roleSet(final long roleSetId, final TreeNode parent)
+	void roleSet(final long roleSetId, @NonNull final TreeNode parent)
 	{
 		getLoaderManager().restartLoader(++Module.loaderId, null, new LoaderCallbacks<Cursor>()
 		{
+			@Nullable
 			@Override
 			public Loader<Cursor> onCreateLoader(final int loaderId, final Bundle loaderArgs)
 			{
@@ -139,7 +143,7 @@ abstract class BaseModule extends Module
 			}
 
 			@Override
-			public void onLoadFinished(final Loader<Cursor> loader, final Cursor cursor)
+			public void onLoadFinished(final Loader<Cursor> loader, @NonNull final Cursor cursor)
 			{
 				if (cursor.getCount() > 1)
 				{
@@ -210,10 +214,11 @@ abstract class BaseModule extends Module
 	 * @param wordId word id
 	 * @param parent parent node
 	 */
-	void roleSets(final long wordId, final TreeNode parent)
+	void roleSets(final long wordId, @NonNull final TreeNode parent)
 	{
 		getLoaderManager().restartLoader(++Module.loaderId, null, new LoaderCallbacks<Cursor>()
 		{
+			@Nullable
 			@Override
 			public Loader<Cursor> onCreateLoader(final int loaderId, final Bundle loaderArgs)
 			{
@@ -231,7 +236,7 @@ abstract class BaseModule extends Module
 			}
 
 			@Override
-			public void onLoadFinished(final Loader<Cursor> loader, final Cursor cursor)
+			public void onLoadFinished(final Loader<Cursor> loader, @NonNull final Cursor cursor)
 			{
 				if (cursor.moveToFirst())
 				{
@@ -302,10 +307,11 @@ abstract class BaseModule extends Module
 	 * @param roleSetId role set id
 	 * @param parent    parent node
 	 */
-	private void roles(final int roleSetId, final TreeNode parent)
+	private void roles(final int roleSetId, @NonNull final TreeNode parent)
 	{
 		getLoaderManager().restartLoader(++Module.loaderId, null, new LoaderCallbacks<Cursor>()
 		{
+			@Nullable
 			@Override
 			public Loader<Cursor> onCreateLoader(final int loaderId, final Bundle loaderArgs)
 			{
@@ -324,7 +330,7 @@ abstract class BaseModule extends Module
 			}
 
 			@Override
-			public void onLoadFinished(final Loader<Cursor> loader, final Cursor cursor)
+			public void onLoadFinished(final Loader<Cursor> loader, @NonNull final Cursor cursor)
 			{
 				final SpannableStringBuilder sb = new SpannableStringBuilder();
 				if (cursor.moveToFirst())
@@ -412,10 +418,11 @@ abstract class BaseModule extends Module
 	 * @param roleSetId role set id
 	 * @param parent    parent node
 	 */
-	private void examples(final int roleSetId, final TreeNode parent)
+	private void examples(final int roleSetId, @NonNull final TreeNode parent)
 	{
 		getLoaderManager().restartLoader(++Module.loaderId, null, new LoaderCallbacks<Cursor>()
 		{
+			@Nullable
 			@Override
 			public Loader<Cursor> onCreateLoader(final int loaderId, final Bundle loaderArgs)
 			{
@@ -447,7 +454,7 @@ abstract class BaseModule extends Module
 
 			@SuppressWarnings("BreakStatement")
 			@Override
-			public void onLoadFinished(final Loader<Cursor> loader, final Cursor cursor)
+			public void onLoadFinished(final Loader<Cursor> loader, @NonNull final Cursor cursor)
 			{
 				final SpannableStringBuilder sb = new SpannableStringBuilder();
 
@@ -571,7 +578,7 @@ abstract class BaseModule extends Module
 		}
 
 		@Override
-		public void process(final TreeNode node)
+		public void process(@NonNull final TreeNode node)
 		{
 			roles((int) this.id, node);
 		}
@@ -593,7 +600,7 @@ abstract class BaseModule extends Module
 		}
 
 		@Override
-		public void process(final TreeNode node)
+		public void process(@NonNull final TreeNode node)
 		{
 			examples((int) this.id, node);
 		}
@@ -607,7 +614,7 @@ abstract class BaseModule extends Module
 	 * @param s string
 	 * @return string with capitalized first character
 	 */
-	private CharSequence capitalize1(final String s)
+	private CharSequence capitalize1(@NonNull final String s)
 	{
 		return s.substring(0, 1).toUpperCase(Locale.ENGLISH) + s.substring(1);
 	}

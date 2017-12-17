@@ -1,5 +1,7 @@
 package org.sqlunet.bnc.loaders;
 
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.LoaderManager.LoaderCallbacks;
 import android.support.v4.content.CursorLoader;
@@ -28,8 +30,10 @@ public class BaseModule extends Module
 	/**
 	 * Query
 	 */
+	@Nullable
 	private Long wordId;
 
+	@Nullable
 	private Character pos;
 
 	// Resources
@@ -106,10 +110,11 @@ public class BaseModule extends Module
 	 * @param pos    pos
 	 * @param parent parent node
 	 */
-	private void bnc(final long wordId, final Character pos, final TreeNode parent)
+	private void bnc(final long wordId, @Nullable final Character pos, final TreeNode parent)
 	{
 		getLoaderManager().restartLoader(++Module.loaderId, null, new LoaderCallbacks<Cursor>()
 		{
+			@NonNull
 			@Override
 			public Loader<Cursor> onCreateLoader(final int loaderId, final Bundle loaderArgs)
 			{
@@ -143,7 +148,7 @@ public class BaseModule extends Module
 			}
 
 			@Override
-			public void onLoadFinished(final Loader<Cursor> loader, final Cursor cursor)
+			public void onLoadFinished(final Loader<Cursor> loader, @NonNull final Cursor cursor)
 			{
 				final SpannableStringBuilder sb = new SpannableStringBuilder();
 				// if (cursor.getCount() > 1)

@@ -1,5 +1,7 @@
 package org.sqlunet.framenet.sql;
 
+import android.support.annotation.Nullable;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -45,7 +47,8 @@ class FnSemType
 	 * @param semTypesString (id:def|id:def...)
 	 * @return list of semtypes
 	 */
-	static public List<FnSemType> make(final String semTypesString)
+	@Nullable
+	static public List<FnSemType> make(@Nullable final String semTypesString)
 	{
 		if (semTypesString == null)
 		{

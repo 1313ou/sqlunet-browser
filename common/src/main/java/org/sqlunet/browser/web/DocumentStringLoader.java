@@ -3,6 +3,8 @@ package org.sqlunet.browser.web;
 import android.content.Context;
 import android.os.CancellationSignal;
 import android.os.OperationCanceledException;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v4.content.AsyncTaskLoader;
 
 /**
@@ -15,11 +17,13 @@ abstract class DocumentStringLoader extends AsyncTaskLoader<String>
 	/**
 	 * String document
 	 */
+	@Nullable
 	private String document;
 
 	/**
 	 * Cancellation signal
 	 */
+	@Nullable
 	@SuppressWarnings("WeakerAccess")
 	protected CancellationSignal cancellationSignal;
 
@@ -28,7 +32,7 @@ abstract class DocumentStringLoader extends AsyncTaskLoader<String>
 	 *
 	 * @param context context
 	 */
-	public DocumentStringLoader(final Context context)
+	public DocumentStringLoader(@NonNull final Context context)
 	{
 		super(context);
 	}

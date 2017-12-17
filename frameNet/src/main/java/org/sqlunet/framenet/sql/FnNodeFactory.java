@@ -1,5 +1,8 @@
 package org.sqlunet.framenet.sql;
 
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
+
 import org.sqlunet.sql.DocumentFragmentParser;
 import org.sqlunet.sql.NodeFactory;
 import org.sqlunet.sql.Utils;
@@ -23,7 +26,7 @@ class FnNodeFactory extends NodeFactory
 	 * @param pos    target pos
 	 * @return newly created node
 	 */
-	static public Node makeFnRootNode(final Document doc, final long wordId, final Character pos)
+	static public Node makeFnRootNode(@NonNull final Document doc, final long wordId, @Nullable final Character pos)
 	{
 		final Element rootNode = NodeFactory.makeNode(doc, doc, "framenet", null, FrameNetImplementation.FN_NS);
 		if (pos == null)
@@ -45,7 +48,7 @@ class FnNodeFactory extends NodeFactory
 	 * @param pos  target pos
 	 * @return newly created node
 	 */
-	static public Node makeFnRootNode(final Document doc, final String word, final Character pos)
+	static public Node makeFnRootNode(@NonNull final Document doc, final String word, @Nullable final Character pos)
 	{
 		final Element rootNode = NodeFactory.makeNode(doc, doc, "framenet", null, FrameNetImplementation.FN_NS);
 		if (pos == null)
@@ -66,7 +69,7 @@ class FnNodeFactory extends NodeFactory
 	 * @param parent  parent node to attach this node to
 	 * @param lexUnit frame information
 	 */
-	static public Node makeFnLexunitNode(final Document doc, final Node parent, final FnLexUnit lexUnit)
+	static public Node makeFnLexunitNode(@NonNull final Document doc, final Node parent, @NonNull final FnLexUnit lexUnit)
 	{
 		final Element element = NodeFactory.makeNode(doc, parent, "lexunit", null);
 		NodeFactory.makeAttribute(element, "name", lexUnit.lexUnit);
@@ -84,7 +87,7 @@ class FnNodeFactory extends NodeFactory
 	 * @param removeEx whether to remove <ex> element
 	 * @return newly created node
 	 */
-	static public Node makeFnFrameNode(final Document doc, final Node parent, final FnFrame frame, final boolean removeEx)
+	static public Node makeFnFrameNode(@NonNull final Document doc, final Node parent, @NonNull final FnFrame frame, final boolean removeEx)
 	{
 		final Element element = NodeFactory.makeNode(doc, parent, "frame", null);
 		NodeFactory.makeAttribute(element, "name", frame.frameName);
@@ -135,7 +138,7 @@ class FnNodeFactory extends NodeFactory
 	 * @return newly created node
 	 */
 	@SuppressWarnings("UnusedReturnValue")
-	static public Node makeFnFENode(final Document doc, final Node parent, final FnFrameElement fe)
+	static public Node makeFnFENode(@NonNull final Document doc, final Node parent, @NonNull final FnFrameElement fe)
 	{
 		final Element element = NodeFactory.makeNode(doc, parent, "fe", null);
 		NodeFactory.makeAttribute(element, "name", fe.feType);
@@ -156,7 +159,7 @@ class FnNodeFactory extends NodeFactory
 	 * @return newly created node
 	 */
 	@SuppressWarnings("UnusedReturnValue")
-	static public Node makeFnGovernorNode(final Document doc, final Node parent, final FnGovernor governor)
+	static public Node makeFnGovernorNode(@NonNull final Document doc, final Node parent, @NonNull final FnGovernor governor)
 	{
 		final Element element = NodeFactory.makeNode(doc, parent, "governor", null);
 		NodeFactory.makeAttribute(element, "governorid", Long.toString(governor.governorId));
@@ -172,7 +175,7 @@ class FnNodeFactory extends NodeFactory
 	 * @param parent parent node to attach this node to
 	 * @return newly created node
 	 */
-	static public Node makeFnSentencesNode(final Document doc, final Node parent)
+	static public Node makeFnSentencesNode(@NonNull final Document doc, final Node parent)
 	{
 		return NodeFactory.makeNode(doc, parent, "sentences", null);
 	}
@@ -184,7 +187,7 @@ class FnNodeFactory extends NodeFactory
 	 * @param parent parent node to attach this node to
 	 * @param i      the ith
 	 */
-	static public Node makeFnSentenceNode(final Document doc, final Node parent, final FnSentence sentence, final int i)
+	static public Node makeFnSentenceNode(@NonNull final Document doc, final Node parent, @NonNull final FnSentence sentence, final int i)
 	{
 		return FnNodeFactory.makeFnSentenceNode(doc, parent, sentence.text, sentence.sentenceId, i);
 	}
@@ -196,7 +199,7 @@ class FnNodeFactory extends NodeFactory
 	 * @param parent parent node to attach this node to
 	 * @param i      the ith
 	 */
-	static private Node makeFnSentenceNode(final Document doc, final Node parent, final String text, final long sentenceId, final int i)
+	static private Node makeFnSentenceNode(@NonNull final Document doc, final Node parent, final String text, final long sentenceId, final int i)
 	{
 		final Element element = NodeFactory.makeNode(doc, parent, "sentence", null);
 		if (i != 0)
@@ -216,7 +219,7 @@ class FnNodeFactory extends NodeFactory
 	 * @param annoSetId annoSetId
 	 * @return annoSet node
 	 */
-	static public Node makeFnAnnoSetNode(final Document doc, final Node parent, final long annoSetId)
+	static public Node makeFnAnnoSetNode(@NonNull final Document doc, final Node parent, final long annoSetId)
 	{
 		final Element element = NodeFactory.makeNode(doc, parent, "annoset", null);
 		NodeFactory.makeAttribute(element, "annosetid", Long.toString(annoSetId));
@@ -231,7 +234,7 @@ class FnNodeFactory extends NodeFactory
 	 * @param annoSet annoSet
 	 * @return annoSet node
 	 */
-	static public Node makeFnAnnoSetNode(final Document doc, final Node parent, final FnAnnoSet annoSet)
+	static public Node makeFnAnnoSetNode(@NonNull final Document doc, final Node parent, @NonNull final FnAnnoSet annoSet)
 	{
 		return FnNodeFactory.makeFnAnnoSetNode(doc, parent, annoSet.annoSetId);
 	}
@@ -244,7 +247,7 @@ class FnNodeFactory extends NodeFactory
 	 * @return layer node
 	 */
 	@SuppressWarnings("UnusedReturnValue")
-	static public Node makeFnLayerNode(final Document doc, final Node parent, final FnLayer layer)
+	static public Node makeFnLayerNode(@NonNull final Document doc, final Node parent, @NonNull final FnLayer layer)
 	{
 		final Element element = NodeFactory.makeNode(doc, parent, "layer", null);
 		NodeFactory.makeAttribute(element, "rank", Long.toString(layer.rank));
@@ -277,7 +280,7 @@ class FnNodeFactory extends NodeFactory
 	 * @param frameId target frame id
 	 * @return root frame node
 	 */
-	static public Node makeFnRootFrameNode(final Document doc, final long frameId)
+	static public Node makeFnRootFrameNode(@NonNull final Document doc, final long frameId)
 	{
 		final Element rootNode = NodeFactory.makeNode(doc, doc, "framenet", null, FrameNetImplementation.FN_NS);
 		NodeFactory.addAttributes(rootNode, "frameid", Long.toString(frameId));
@@ -291,7 +294,7 @@ class FnNodeFactory extends NodeFactory
 	 * @param luId target luId
 	 * @return root lexunit node
 	 */
-	static public Node makeFnRootLexUnitNode(final Document doc, final long luId)
+	static public Node makeFnRootLexUnitNode(@NonNull final Document doc, final long luId)
 	{
 		final Element rootNode = NodeFactory.makeNode(doc, doc, "framenet", null, FrameNetImplementation.FN_NS);
 		NodeFactory.addAttributes(rootNode, "luid", Long.toString(luId));
@@ -305,7 +308,7 @@ class FnNodeFactory extends NodeFactory
 	 * @param sentenceId target sentence id
 	 * @return root sentence node
 	 */
-	static public Node makeFnRootSentenceNode(final Document doc, final long sentenceId)
+	static public Node makeFnRootSentenceNode(@NonNull final Document doc, final long sentenceId)
 	{
 		final Element rootNode = NodeFactory.makeNode(doc, doc, "framenet", null, FrameNetImplementation.FN_NS);
 		NodeFactory.addAttributes(rootNode, "sentenceid", Long.toString(sentenceId));
@@ -319,7 +322,7 @@ class FnNodeFactory extends NodeFactory
 	 * @param annoSetId target annoSetId
 	 * @return root annoSet node
 	 */
-	static public Node makeFnRootAnnoSetNode(final Document doc, final long annoSetId)
+	static public Node makeFnRootAnnoSetNode(@NonNull final Document doc, final long annoSetId)
 	{
 		final Element rootNode = NodeFactory.makeNode(doc, doc, "framenet", null, FrameNetImplementation.FN_NS);
 		NodeFactory.addAttributes(rootNode, "annosetid", Long.toString(annoSetId));

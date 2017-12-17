@@ -1,5 +1,7 @@
 package org.sqlunet.framenet.loaders;
 
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.os.Parcelable;
 
@@ -18,11 +20,13 @@ public class FrameModule extends BaseModule
 	/**
 	 * Frame id
 	 */
+	@Nullable
 	private Long frameId;
 
 	/**
 	 * Lex unit id
 	 */
+	@Nullable
 	private Long luId;
 
 	/**
@@ -30,7 +34,7 @@ public class FrameModule extends BaseModule
 	 *
 	 * @param fragment  containing fragment
 	 */
-	public FrameModule(final Fragment fragment)
+	public FrameModule(@NonNull final Fragment fragment)
 	{
 		super(fragment);
 	}
@@ -57,7 +61,7 @@ public class FrameModule extends BaseModule
 	}
 
 	@Override
-	public void process(final TreeNode node)
+	public void process(@NonNull final TreeNode node)
 	{
 		if (this.luId != null)
 		{

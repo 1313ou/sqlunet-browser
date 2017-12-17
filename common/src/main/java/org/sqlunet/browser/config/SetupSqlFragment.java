@@ -6,6 +6,7 @@ import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.util.Log;
@@ -81,6 +82,7 @@ public class SetupSqlFragment extends Fragment
 		// Required empty public constructor
 	}
 
+	@Nullable
 	@SuppressWarnings("boxing")
 	@Override
 	public View onCreateView(@NonNull final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState)
@@ -158,7 +160,7 @@ public class SetupSqlFragment extends Fragment
 				{
 					SetupDatabaseTasks.createDatabase(activity, StorageSettings.getDatabasePath(activity));
 				}
-				catch (final Exception e)
+				catch (@NonNull final Exception e)
 				{
 					Log.e(TAG, "While creating", e);
 				}
@@ -197,7 +199,7 @@ public class SetupSqlFragment extends Fragment
 					final TaskObserver.Listener listener = new TaskObserver.DialogListener(activity, R.string.status_managing, source + '@' + entry, unit);
 					SetupSqlFragment.this.task = new ExecAsyncTask(getActivity(), listener, 1000).executeFromArchive(database, source, entry);
 				}
-				catch (final Exception e)
+				catch (@NonNull final Exception e)
 				{
 					Log.e(TAG, "While importing", e);
 				}
@@ -244,7 +246,7 @@ public class SetupSqlFragment extends Fragment
 					final TaskObserver.Listener listener = new TaskObserver.DialogListener(activity, R.string.status_managing, source + '@' + entry, unit);
 					SetupSqlFragment.this.task = new ExecAsyncTask(getActivity(), listener, 1).executeFromArchive(database, source, entry);
 				}
-				catch (final Exception e)
+				catch (@NonNull final Exception e)
 				{
 					Log.e(TAG, "While indexing", e);
 				}
@@ -367,14 +369,14 @@ public class SetupSqlFragment extends Fragment
 	// M E N U
 
 	@Override
-	public void onCreateOptionsMenu(final Menu menu, final MenuInflater inflater)
+	public void onCreateOptionsMenu(final Menu menu, @NonNull final MenuInflater inflater)
 	{
 		// inflate the menu; this adds items to the type bar if it is present.
 		inflater.inflate(R.menu.setup_sql, menu);
 	}
 
 	@Override
-	public boolean onOptionsItemSelected(final MenuItem item)
+	public boolean onOptionsItemSelected(@NonNull final MenuItem item)
 	{
 		// handle item selection
 		int i = item.getItemId();

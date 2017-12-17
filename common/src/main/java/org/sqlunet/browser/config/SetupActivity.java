@@ -5,6 +5,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -81,7 +83,7 @@ public class SetupActivity extends AppCompatActivity implements TabLayout.OnTabS
 	// T A B  L I S T E N E R
 
 	@Override
-	public void onTabSelected(TabLayout.Tab tab)
+	public void onTabSelected(@NonNull TabLayout.Tab tab)
 	{
 		this.viewPager.setCurrentItem(tab.getPosition());
 	}
@@ -104,15 +106,17 @@ public class SetupActivity extends AppCompatActivity implements TabLayout.OnTabS
 	 */
 	private class SectionsPagerAdapter extends FragmentPagerAdapter
 	{
+		@Nullable
 		private String[] fragmentClasses = null;
 
-		public SectionsPagerAdapter(final FragmentManager fragmentManager, final Context context)
+		public SectionsPagerAdapter(final FragmentManager fragmentManager, @NonNull final Context context)
 		{
 			super(fragmentManager);
 			final Resources res = context.getResources();
 			this.fragmentClasses = res.getStringArray(R.array.fragment_class_setup_pages);
 		}
 
+		@Nullable
 		@SuppressWarnings("TryWithIdenticalCatches")
 		@Override
 		public Fragment getItem(int position)
@@ -186,7 +190,7 @@ public class SetupActivity extends AppCompatActivity implements TabLayout.OnTabS
 	}
 
 	@Override
-	public boolean onOptionsItemSelected(MenuItem item)
+	public boolean onOptionsItemSelected(@NonNull MenuItem item)
 	{
 		// Handle action bar item clicks here. The action bar will
 		// automatically handle clicks on the Home/Up button, so long

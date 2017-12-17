@@ -1,6 +1,7 @@
 package org.sqlunet.wordnet;
 
 import android.os.Parcel;
+import android.support.annotation.NonNull;
 
 import org.sqlunet.HasWordId;
 import org.sqlunet.Pointer;
@@ -18,7 +19,7 @@ public class WordPointer extends Pointer implements HasWordId
 	static public final Creator<WordPointer> CREATOR = new Creator<WordPointer>()
 	{
 		@Override
-		public WordPointer createFromParcel(final Parcel parcel)
+		public WordPointer createFromParcel(@NonNull final Parcel parcel)
 		{
 			return new WordPointer(parcel);
 		}
@@ -33,7 +34,7 @@ public class WordPointer extends Pointer implements HasWordId
 	/**
 	 * Constructor from parcel, reads back fields IN THE ORDER they were written
 	 */
-	private WordPointer(final Parcel parcel)
+	private WordPointer(@NonNull final Parcel parcel)
 	{
 		super(parcel);
 	}
@@ -54,6 +55,7 @@ public class WordPointer extends Pointer implements HasWordId
 		return this.id;
 	}
 
+	@NonNull
 	@Override
 	public String toString()
 	{

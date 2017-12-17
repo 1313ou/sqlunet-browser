@@ -243,7 +243,7 @@ public class VerbNetProvider extends BaseProvider
 		{
 			return this.db.query(table, projection, actualSelection, selectionArgs, groupBy, null, sortOrder, null);
 		}
-		catch (final SQLiteException e)
+		catch (@NonNull final SQLiteException e)
 		{
 			Log.d(TAG + "SQL", sql);
 			Log.e(VerbNetProvider.TAG, "VerbNet provider query failed", e);

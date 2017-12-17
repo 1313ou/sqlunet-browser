@@ -1,5 +1,7 @@
 package org.sqlunet.verbnet.style;
 
+import android.support.annotation.Nullable;
+
 import org.sqlunet.style.RegExprSpanner;
 
 /**
@@ -21,6 +23,7 @@ public class VerbNetSemanticsSpanner extends RegExprSpanner
 	/**
 	 * Factories
 	 */
+	@Nullable
 	static private final SpanFactory[][] semanticFactories = {new SpanFactory[]{VerbNetFactories.predicateFactory, VerbNetFactories.argsFactory,}, // predicate/args
 			new SpanFactory[]{VerbNetFactories.eventFactory,}, // event
 			new SpanFactory[]{VerbNetFactories.themroleFactory,}, // role arg

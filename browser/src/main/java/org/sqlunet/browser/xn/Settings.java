@@ -4,6 +4,8 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 
 /**
  * Settings
@@ -111,7 +113,7 @@ public class Settings extends org.sqlunet.settings.Settings
 			{
 				mode = Selector.valueOf(name);
 			}
-			catch (final Exception e)
+			catch (@NonNull final Exception e)
 			{
 				mode = Selector.XSELECTOR;
 				sharedPref.edit().putString(org.sqlunet.settings.Settings.PREF_SELECTOR, mode.name()).apply();
@@ -232,7 +234,8 @@ public class Settings extends org.sqlunet.settings.Settings
 	 * @param context context
 	 * @return pm archive entry
 	 */
-	static public String getPmEntry(final Context context)
+	@Nullable
+	static public String getPmEntry(@NonNull final Context context)
 	{
 		// test if already in preferences
 		final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);

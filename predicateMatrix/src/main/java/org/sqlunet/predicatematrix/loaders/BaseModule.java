@@ -7,6 +7,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.LoaderManager.LoaderCallbacks;
 import android.support.v4.content.CursorLoader;
@@ -66,7 +67,7 @@ abstract class BaseModule extends Module
 	/**
 	 * Constructor
 	 */
-	BaseModule(final Fragment fragment)
+	BaseModule(@NonNull final Fragment fragment)
 	{
 		super(fragment);
 
@@ -88,12 +89,14 @@ abstract class BaseModule extends Module
 	{
 		getLoaderManager().restartLoader(++Module.loaderId, null, new PmProcessOnIteration(parent, displayer)
 		{
+			@NonNull
 			@Override
 			protected String getSelection()
 			{
 				return PredicateMatrix.WORD + "= ?";
 			}
 
+			@NonNull
 			@Override
 			protected String[] getSelectionArgs()
 			{
@@ -112,12 +115,14 @@ abstract class BaseModule extends Module
 	{
 		getLoaderManager().restartLoader(++Module.loaderId, null, new PmProcessGrouped(parent, new DisplayerByPmRole())
 		{
+			@NonNull
 			@Override
 			protected String getSelection()
 			{
 				return PredicateMatrix.WORD + "= ?";
 			}
 
+			@NonNull
 			@Override
 			protected String[] getSelectionArgs()
 			{
@@ -137,12 +142,14 @@ abstract class BaseModule extends Module
 	{
 		getLoaderManager().restartLoader(++Module.loaderId, null, new PmProcessOnIteration(parent, displayer)
 		{
+			@NonNull
 			@Override
 			protected String getSelection()
 			{
 				return PredicateMatrix.PMROLEID + "= ?";
 			}
 
+			@NonNull
 			@Override
 			protected String[] getSelectionArgs()
 			{
@@ -236,6 +243,7 @@ abstract class BaseModule extends Module
 			return (int) (17 * (int) this.pmPos.charAt(0) + 19 * this.pmRoleId + 3 * this.pmPredId);
 		}
 
+		@NonNull
 		@Override
 		public String toString()
 		{
@@ -247,6 +255,7 @@ abstract class BaseModule extends Module
 		 *
 		 * @return role data as string
 		 */
+		@NonNull
 		String toRoleString()
 		{
 			return (this.pmPos == null ? "null" : this.pmPos) + //
@@ -262,6 +271,7 @@ abstract class BaseModule extends Module
 		 *
 		 * @return role data as string
 		 */
+		@NonNull
 		public String toData()
 		{
 			return toRoleData();
@@ -272,6 +282,7 @@ abstract class BaseModule extends Module
 		 *
 		 * @return role data as string
 		 */
+		@NonNull
 		String toRoleData()
 		{
 			return this.pmPos + '-' + Long.toString(this.pmRoleId) + '-' + Long.toString(this.pmPredId);
@@ -304,12 +315,14 @@ abstract class BaseModule extends Module
 			this.pmId = pmId;
 		}
 
+		@NonNull
 		@Override
 		public String toString()
 		{
 			return '[' + Long.toString(this.pmId) + ']' + '-' + super.toString();
 		}
 
+		@NonNull
 		@Override
 		public String toData()
 		{
@@ -450,6 +463,7 @@ abstract class BaseModule extends Module
 			return (int) (19 * this.vnClassId + 13 * this.vnRoleId);
 		}
 
+		@NonNull
 		@Override
 		public String toString()
 		{
@@ -461,6 +475,7 @@ abstract class BaseModule extends Module
 		 *
 		 * @return string
 		 */
+		@NonNull
 		CharSequence toData()
 		{
 			return Long.toString(this.vnClassId) + '-' + Long.toString(this.vnRoleId);
@@ -551,6 +566,7 @@ abstract class BaseModule extends Module
 			return (int) (23 * this.pbRoleSetId + 51 * this.pbRoleId);
 		}
 
+		@NonNull
 		@Override
 		public String toString()
 		{
@@ -562,6 +578,7 @@ abstract class BaseModule extends Module
 		 *
 		 * @return string
 		 */
+		@NonNull
 		CharSequence toData()
 		{
 			return Long.toString(this.pbRoleSetId) + '-' + Long.toString(this.pbRoleId);
@@ -640,6 +657,7 @@ abstract class BaseModule extends Module
 			return (int) (17 * this.fnFrameId + 7 * this.fnFeId);
 		}
 
+		@NonNull
 		@Override
 		public String toString()
 		{
@@ -651,6 +669,7 @@ abstract class BaseModule extends Module
 		 *
 		 * @return string
 		 */
+		@NonNull
 		CharSequence toData()
 		{
 			return Long.toString(this.fnFrameId) + '-' + Long.toString(this.fnFeId);
@@ -691,6 +710,7 @@ abstract class BaseModule extends Module
 		 *
 		 * @return selection
 		 */
+		@NonNull
 		abstract protected String getSelection();
 
 		/**
@@ -698,8 +718,10 @@ abstract class BaseModule extends Module
 		 *
 		 * @return selection arguments
 		 */
+		@NonNull
 		abstract protected String[] getSelectionArgs();
 
+		@Nullable
 		@Override
 		public Loader<Cursor> onCreateLoader(final int loaderId, final Bundle loaderArgs)
 		{
@@ -749,7 +771,7 @@ abstract class BaseModule extends Module
 		}
 
 		@Override
-		public void onLoadFinished(final Loader<Cursor> loader, final Cursor cursor)
+		public void onLoadFinished(final Loader<Cursor> loader, @NonNull final Cursor cursor)
 		{
 			if (cursor.moveToFirst())
 			{
@@ -923,7 +945,7 @@ abstract class BaseModule extends Module
 		}
 
 		@Override
-		protected void process(final TreeNode parent, final WnData wnData, final PmRow pmRow, final VnData vnData, final PbData pbData, final FnData fnData)
+		protected void process(final TreeNode parent, final WnData wnData, @NonNull final PmRow pmRow, @NonNull final VnData vnData, @NonNull final PbData pbData, @NonNull final FnData fnData)
 		{
 			if (this.pmRoleId != pmRow.pmRoleId)
 			{
@@ -1108,6 +1130,7 @@ abstract class BaseModule extends Module
 		 *
 		 * @return sort order
 		 */
+		@NonNull
 		abstract protected String getRequiredOrder();
 
 		/**
@@ -1123,7 +1146,7 @@ abstract class BaseModule extends Module
 		 * @param s string
 		 * @return string with capitalized first character
 		 */
-		private CharSequence capitalize1(final String s)
+		private CharSequence capitalize1(@NonNull final String s)
 		{
 			return s.substring(0, 1).toUpperCase(Locale.ENGLISH) + s.substring(1);
 		}
@@ -1140,7 +1163,7 @@ abstract class BaseModule extends Module
 		 * @param wnDataOnRow   whether to display WordNet data on label
 		 * @param wnDataOnXData whether to display WordNet data on extended data
 		 */
-		void displayRow(final TreeNode parentNode, final WnData wnData, final PmRow pmRow, final VnData vnData, final PbData pbData, final FnData fnData, final boolean wnDataOnRow, @SuppressWarnings("SameParameterValue") final boolean wnDataOnXData)
+		void displayRow(@NonNull final TreeNode parentNode, final WnData wnData, @NonNull final PmRow pmRow, @NonNull final VnData vnData, @NonNull final PbData pbData, @NonNull final FnData fnData, final boolean wnDataOnRow, @SuppressWarnings("SameParameterValue") final boolean wnDataOnXData)
 		{
 			// vn
 			final TreeNode vnNode = wnDataOnXData ? makeVnNode(vnData, wnData) : makeVnNode(vnData);
@@ -1163,7 +1186,7 @@ abstract class BaseModule extends Module
 		 * @param pmRole     PredicateMatrix role
 		 * @return created node
 		 */
-		TreeNode displayPmRole(final TreeNode parentNode, final PmRole pmRole)
+		TreeNode displayPmRole(@NonNull final TreeNode parentNode, @NonNull final PmRole pmRole)
 		{
 			final SpannableStringBuilder pmsb = new SpannableStringBuilder();
 			return displayPmRole(parentNode, pmsb, pmRole);
@@ -1176,7 +1199,7 @@ abstract class BaseModule extends Module
 		 * @param pmRole     PredicateMatrix role
 		 * @return created node
 		 */
-		TreeNode displayPmRole(final TreeNode parentNode, final SpannableStringBuilder pmsb, final PmRole pmRole)
+		TreeNode displayPmRole(@NonNull final TreeNode parentNode, @NonNull final SpannableStringBuilder pmsb, @NonNull final PmRole pmRole)
 		{
 			if (pmRole.pmRole != null)
 			{
@@ -1199,7 +1222,7 @@ abstract class BaseModule extends Module
 		 * @param wnData     WordNet data
 		 * @return created node
 		 */
-		TreeNode displayPmRow(final TreeNode parentNode, final PmRow pmRow, final WnData wnData)
+		TreeNode displayPmRow(@NonNull final TreeNode parentNode, @NonNull final PmRow pmRow, @Nullable final WnData wnData)
 		{
 			final SpannableStringBuilder pmsb = new SpannableStringBuilder();
 			// rolesb.append("predicate role ");
@@ -1228,7 +1251,7 @@ abstract class BaseModule extends Module
 		 * @param wnDatas WordNet data
 		 * @return created node
 		 */
-		TreeNode makeVnNode(final VnData vnData, final WnData... wnDatas)
+		TreeNode makeVnNode(@NonNull final VnData vnData, @NonNull final WnData... wnDatas)
 		{
 			final SpannableStringBuilder vnsb = new SpannableStringBuilder();
 			if (vnData.vnClass != null && !vnData.vnClass.isEmpty())
@@ -1279,7 +1302,7 @@ abstract class BaseModule extends Module
 		 * @param wnDatas WordNet data
 		 * @return created node
 		 */
-		TreeNode makePbNode(final PbData pbData, final WnData... wnDatas)
+		TreeNode makePbNode(@NonNull final PbData pbData, @NonNull final WnData... wnDatas)
 		{
 			// pb
 			final SpannableStringBuilder pbsb = new SpannableStringBuilder();
@@ -1344,7 +1367,7 @@ abstract class BaseModule extends Module
 		 * @param wnDatas WordNet data
 		 * @return created node
 		 */
-		TreeNode makeFnNode(final FnData fnData, final WnData... wnDatas)
+		TreeNode makeFnNode(@NonNull final FnData fnData, @NonNull final WnData... wnDatas)
 		{
 			// fn
 			final SpannableStringBuilder fnsb = new SpannableStringBuilder();
@@ -1459,7 +1482,7 @@ abstract class BaseModule extends Module
 		private TreeNode synsetNode;
 
 		@Override
-		public void display(final TreeNode parentNode, final WnData wnData, final PmRow pmRole, final VnData vnData, final PbData pbData, final FnData fnData)
+		public void display(@NonNull final TreeNode parentNode, @NonNull final WnData wnData, @NonNull final PmRow pmRole, @NonNull final VnData vnData, @NonNull final PbData pbData, @NonNull final FnData fnData)
 		{
 			if (this.synsetId != wnData.synsetId)
 			{
@@ -1484,6 +1507,7 @@ abstract class BaseModule extends Module
 			super.displayRow(this.synsetNode, wnData, pmRole, vnData, pbData, fnData, false, false);
 		}
 
+		@NonNull
 		@Override
 		protected String getRequiredOrder()
 		{
@@ -1513,7 +1537,7 @@ abstract class BaseModule extends Module
 		private TreeNode pmRoleNode;
 
 		@Override
-		public void display(final TreeNode parentNode, final WnData wnData, final PmRow pmRole, final VnData vnData, final PbData pbData, final FnData fnData)
+		public void display(@NonNull final TreeNode parentNode, final WnData wnData, @NonNull final PmRow pmRole, @NonNull final VnData vnData, @NonNull final PbData pbData, @NonNull final FnData fnData)
 		{
 			if (this.pmRoleId != pmRole.pmRoleId)
 			{
@@ -1527,6 +1551,7 @@ abstract class BaseModule extends Module
 			super.displayRow(this.pmRoleNode, wnData, pmRole, vnData, pbData, fnData, true, false);
 		}
 
+		@NonNull
 		@Override
 		protected String getRequiredOrder()
 		{
@@ -1546,11 +1571,12 @@ abstract class BaseModule extends Module
 	class DisplayerUngrouped extends Displayer
 	{
 		@Override
-		public void display(final TreeNode parentNode, final WnData wnData, final PmRow pmRole, final VnData vnData, final PbData pbData, final FnData fnData)
+		public void display(@NonNull final TreeNode parentNode, final WnData wnData, @NonNull final PmRow pmRole, @NonNull final VnData vnData, @NonNull final PbData pbData, @NonNull final FnData fnData)
 		{
 			super.displayRow(parentNode, wnData, pmRole, vnData, pbData, fnData, true, false);
 		}
 
+		@NonNull
 		@Override
 		protected String getRequiredOrder()
 		{
@@ -1664,7 +1690,7 @@ abstract class BaseModule extends Module
 	 * @param s string
 	 * @return string with capitalized first character
 	 */
-	private String capitalize1(final String s)
+	private String capitalize1(@NonNull final String s)
 	{
 		return s.substring(0, 1).toUpperCase(Locale.ENGLISH) + s.substring(1);
 	}

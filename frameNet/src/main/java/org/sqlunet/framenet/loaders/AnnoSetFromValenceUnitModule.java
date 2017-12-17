@@ -1,5 +1,7 @@
 package org.sqlunet.framenet.loaders;
 
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.os.Parcelable;
 
@@ -16,6 +18,7 @@ public class AnnoSetFromValenceUnitModule extends BaseModule
 	/**
 	 * Valence unit id
 	 */
+	@Nullable
 	private Long vuId;
 
 	/**
@@ -23,7 +26,7 @@ public class AnnoSetFromValenceUnitModule extends BaseModule
 	 *
 	 * @param fragment  containing fragment
 	 */
-	public AnnoSetFromValenceUnitModule(final Fragment fragment)
+	public AnnoSetFromValenceUnitModule(@NonNull final Fragment fragment)
 	{
 		super(fragment);
 	}
@@ -40,7 +43,7 @@ public class AnnoSetFromValenceUnitModule extends BaseModule
 	}
 
 	@Override
-	public void process(final TreeNode node)
+	public void process(@NonNull final TreeNode node)
 	{
 		if (this.vuId != null)
 		{

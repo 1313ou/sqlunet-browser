@@ -1,6 +1,7 @@
 package org.sqlunet.framenet.sql;
 
 import android.database.sqlite.SQLiteDatabase;
+import android.support.annotation.Nullable;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -63,6 +64,7 @@ class FnLayer
 	 * @param sentenceId sentence id
 	 * @return layers
 	 */
+	@Nullable
 	static public List<FnLayer> makeFromSentence(final SQLiteDatabase connection, final long sentenceId)
 	{
 		List<FnLayer> result = null;
@@ -103,6 +105,7 @@ class FnLayer
 	 * @param annoSetId  annoset id
 	 * @return layers
 	 */
+	@Nullable
 	static public List<FnLayer> makeFromAnnoSet(final SQLiteDatabase connection, final long annoSetId)
 	{
 		List<FnLayer> result = null;

@@ -2,6 +2,7 @@ package org.sqlunet.propbank;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.support.annotation.NonNull;
 
 import org.sqlunet.Pointer;
 
@@ -18,7 +19,7 @@ public class PbRoleSetPointer extends Pointer
 	static public final Parcelable.Creator<PbRoleSetPointer> CREATOR = new Parcelable.Creator<PbRoleSetPointer>()
 	{
 		@Override
-		public PbRoleSetPointer createFromParcel(final Parcel parcel)
+		public PbRoleSetPointer createFromParcel(@NonNull final Parcel parcel)
 		{
 			return new PbRoleSetPointer(parcel);
 		}
@@ -45,7 +46,7 @@ public class PbRoleSetPointer extends Pointer
 	 *
 	 * @param parcel parcel
 	 */
-	private PbRoleSetPointer(final Parcel parcel)
+	private PbRoleSetPointer(@NonNull final Parcel parcel)
 	{
 		super(parcel);
 	}

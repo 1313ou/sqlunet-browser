@@ -15,6 +15,9 @@
 
 package org.sqlunet.support.util;
 
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
+
 /**
  * Represents the result of an in-app billing operation.
  * A result is composed of a response code (an integer) and possibly a
@@ -27,7 +30,7 @@ public class IabResult {
     private final int mResponse;
     private final String mMessage;
 
-    public IabResult(int response, String message) {
+    public IabResult(int response, @Nullable String message) {
         mResponse = response;
         if (message == null || message.trim().length() == 0) {
             mMessage = IabHelper.getResponseDesc(response);
@@ -41,6 +44,7 @@ public class IabResult {
     public String getMessage() { return mMessage; }
     public boolean isSuccess() { return mResponse == IabHelper.BILLING_RESPONSE_RESULT_OK; }
     public boolean isFailure() { return !isSuccess(); }
+    @NonNull
     public String toString() { return "IabResult: " + getMessage(); }
 }
 

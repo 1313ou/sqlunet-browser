@@ -5,6 +5,7 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.LoaderManager.LoaderCallbacks;
 import android.support.v4.content.CursorLoader;
@@ -56,6 +57,7 @@ class XLoader
 			super(context, wordId);
 		}
 
+		@NonNull
 		@Override
 		public Loader<Cursor> onCreateLoader(final int id, final Bundle args)
 		{
@@ -89,6 +91,7 @@ class XLoader
 			super(context, wordId);
 		}
 
+		@NonNull
 		@Override
 		public Loader<Cursor> onCreateLoader(final int id, final Bundle args)
 		{
@@ -121,6 +124,7 @@ class XLoader
 			super(context, wordId);
 		}
 
+		@NonNull
 		@Override
 		public Loader<Cursor> onCreateLoader(final int id, final Bundle args)
 		{
@@ -154,6 +158,7 @@ class XLoader
 			super(context, wordId);
 		}
 
+		@NonNull
 		@Override
 		public Loader<Cursor> onCreateLoader(final int id, final Bundle args)
 		{
@@ -184,6 +189,7 @@ class XLoader
 		final FragmentActivity activity;
 		final long wordId;
 		final Loader<Cursor> loader;
+		@NonNull
 		final SparseArray<Cursor> cursors;
 
 		@SuppressWarnings("unused")
@@ -215,19 +221,20 @@ class XLoader
 		};
 
 		// load the contents
+		@Nullable
 		@Override
 		public Loader<Cursor> onCreateLoader(int id, Bundle args)
 		{
 			final Loader<Cursor> vnloader = this.activity.getSupportLoaderManager().restartLoader(++Module.loaderId, null, new VnLoaderCallbacks(this.activity, this.wordId)
 			{
 				@Override
-				public void onLoadFinished(Loader<Cursor> loader, Cursor data)
+				public void onLoadFinished(@NonNull Loader<Cursor> loader, Cursor data)
 				{
 					loader.deliverResult(data);
 				}
 
 				@Override
-				public void onLoaderReset(Loader<Cursor> loader)
+				public void onLoaderReset(@NonNull Loader<Cursor> loader)
 				{
 					loader.deliverResult(null);
 				}
@@ -237,13 +244,13 @@ class XLoader
 			final Loader<Cursor> pbloader = this.activity.getSupportLoaderManager().restartLoader(++Module.loaderId, null, new PbLoaderCallbacks(this.activity, this.wordId)
 			{
 				@Override
-				public void onLoadFinished(Loader<Cursor> loader, Cursor data)
+				public void onLoadFinished(@NonNull Loader<Cursor> loader, Cursor data)
 				{
 					loader.deliverResult(data);
 				}
 
 				@Override
-				public void onLoaderReset(Loader<Cursor> loader)
+				public void onLoaderReset(@NonNull Loader<Cursor> loader)
 				{
 					loader.deliverResult(null);
 				}
@@ -253,13 +260,13 @@ class XLoader
 			final Loader<Cursor> fnloader = this.activity.getSupportLoaderManager().restartLoader(++Module.loaderId, null, new FnLoaderCallbacks(this.activity, this.wordId)
 			{
 				@Override
-				public void onLoadFinished(Loader<Cursor> loader, Cursor data)
+				public void onLoadFinished(@NonNull Loader<Cursor> loader, Cursor data)
 				{
 					loader.deliverResult(data);
 				}
 
 				@Override
-				public void onLoaderReset(Loader<Cursor> loader)
+				public void onLoaderReset(@NonNull Loader<Cursor> loader)
 				{
 					loader.deliverResult(null);
 				}
@@ -273,7 +280,7 @@ class XLoader
 	 * Dump utility
 	 */
 	@SuppressWarnings("unused")
-	static public void dump(final Cursor cursor)
+	static public void dump(@NonNull final Cursor cursor)
 	{
 		if (cursor.moveToFirst())
 		{

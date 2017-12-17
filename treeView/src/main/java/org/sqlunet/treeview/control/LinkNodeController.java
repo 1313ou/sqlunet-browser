@@ -2,6 +2,7 @@ package org.sqlunet.treeview.control;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
@@ -30,7 +31,7 @@ public class LinkNodeController extends Controller<Value>
 	}
 
 	@Override
-	public View createNodeView(final TreeNode node, final Value value)
+	public View createNodeView(final TreeNode node, @NonNull final Value value)
 	{
 		final LayoutInflater inflater = LayoutInflater.from(this.context);
 		@SuppressLint("InflateParams") final View view = inflater.inflate(R.layout.layout_node_link, null, false);

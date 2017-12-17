@@ -18,6 +18,8 @@ package org.sqlunet.support;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.widget.Toast;
@@ -84,6 +86,7 @@ public class IABAdapter implements IabBroadcastReceiver.IabBroadcastListener
 	/**
 	 * The helper object
 	 */
+	@Nullable
 	private IabHelper iabHelper;
 
 	/**
@@ -244,7 +247,7 @@ public class IABAdapter implements IabBroadcastReceiver.IabBroadcastListener
 	 * @throws IabHelper.IabAsyncInProgressException exception
 	 */
 	@SuppressWarnings("WeakerAccess")
-	public void consume(final Purchase purchase) throws IabHelper.IabAsyncInProgressException
+	public void consume(@NonNull final Purchase purchase) throws IabHelper.IabAsyncInProgressException
 	{
 		Log.d(TAG, "Consuming product: " + purchase.getSku());
 		this.iabHelper.consumeAsync(purchase, this.consumeFinishedListener);
@@ -255,11 +258,12 @@ public class IABAdapter implements IabBroadcastReceiver.IabBroadcastListener
 	/**
 	 * Callback for when we finish setting up
 	 */
+	@Nullable
 	private final IabHelper.OnIabSetupFinishedListener setupFinishedListener = new IabHelper.OnIabSetupFinishedListener()
 	{
 		@SuppressWarnings("synthetic-access")
 		@Override
-		public void onIabSetupFinished(final IabResult result)
+		public void onIabSetupFinished(@NonNull final IabResult result)
 		{
 			Log.d(TAG, "Setup finished");
 
@@ -308,11 +312,12 @@ public class IABAdapter implements IabBroadcastReceiver.IabBroadcastListener
 	/**
 	 * Callback for when we finish querying the items and subscriptions we own
 	 */
+	@Nullable
 	private final IabHelper.QueryInventoryFinishedListener queryInventoryListener = new IabHelper.QueryInventoryFinishedListener()
 	{
 		@SuppressWarnings("synthetic-access")
 		@Override
-		public void onQueryInventoryFinished(final IabResult result, final Inventory inventory)
+		public void onQueryInventoryFinished(@NonNull final IabResult result, @NonNull final Inventory inventory)
 		{
 			Log.d(TAG, "Query inventory finished");
 
@@ -389,11 +394,12 @@ public class IABAdapter implements IabBroadcastReceiver.IabBroadcastListener
 	/**
 	 * Callback for when a purchase is finished
 	 */
+	@Nullable
 	private final IabHelper.OnIabPurchaseFinishedListener purchaseFinishedListener = new IabHelper.OnIabPurchaseFinishedListener()
 	{
 		@SuppressWarnings("synthetic-access")
 		@Override
-		public void onIabPurchaseFinished(IabResult result, Purchase purchase)
+		public void onIabPurchaseFinished(@NonNull IabResult result, @NonNull Purchase purchase)
 		{
 			Log.d(TAG, "Purchase finished: " + result + ", purchase: " + purchase);
 
@@ -438,11 +444,12 @@ public class IABAdapter implements IabBroadcastReceiver.IabBroadcastListener
 	/**
 	 * Callback for when consumption is complete
 	 */
+	@Nullable
 	private final IabHelper.OnConsumeFinishedListener consumeFinishedListener = new IabHelper.OnConsumeFinishedListener()
 	{
 		@SuppressWarnings("synthetic-access")
 		@Override
-		public void onConsumeFinished(Purchase purchase, IabResult result)
+		public void onConsumeFinished(Purchase purchase, @NonNull IabResult result)
 		{
 			Log.d(TAG, "Consumption finished. Purchase: " + purchase + ", result: " + result);
 
@@ -474,7 +481,7 @@ public class IABAdapter implements IabBroadcastReceiver.IabBroadcastListener
 	/**
 	 * Verifies the developer payload of a purchase.
 	 */
-	static private boolean verifyDeveloperPayload(Purchase purchase)
+	static private boolean verifyDeveloperPayload(@NonNull Purchase purchase)
 	{
 		/*
 		 * Verify that the developer payload of the purchase is correct. It will be the same one that you sent when initiating the purchase.

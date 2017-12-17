@@ -15,6 +15,8 @@
 
 package org.sqlunet.support.util;
 
+import android.support.annotation.NonNull;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -67,12 +69,14 @@ public class Inventory {
     }
 
     /** Returns a list of all owned product IDs. */
+    @NonNull
     @SuppressWarnings("unused")
     List<String> getAllOwnedSkus() {
         return new ArrayList<>(mPurchaseMap.keySet());
     }
 
     /** Returns a list of all owned product IDs of a given type */
+    @NonNull
     List<String> getAllOwnedSkus(String itemType) {
         List<String> result = new ArrayList<>();
         for (Purchase p : mPurchaseMap.values()) {
@@ -82,16 +86,17 @@ public class Inventory {
     }
 
     /** Returns a list of all purchases. */
+    @NonNull
     @SuppressWarnings("unused")
     List<Purchase> getAllPurchases() {
         return new ArrayList<>(mPurchaseMap.values());
     }
 
-    void addSkuDetails(SkuDetails d) {
+    void addSkuDetails(@NonNull SkuDetails d) {
         mSkuMap.put(d.getSku(), d);
     }
 
-    void addPurchase(Purchase p) {
+    void addPurchase(@NonNull Purchase p) {
         mPurchaseMap.put(p.getSku(), p);
     }
 }

@@ -1,6 +1,7 @@
 package org.sqlunet.treeview.control;
 
 import android.content.Context;
+import android.support.annotation.NonNull;
 import android.view.View;
 import android.widget.TextView;
 
@@ -23,6 +24,7 @@ public class NodeController extends Controller<Object>
 		super(context);
 	}
 
+	@NonNull
 	@Override
 	public View createNodeView(TreeNode node, Object value)
 	{

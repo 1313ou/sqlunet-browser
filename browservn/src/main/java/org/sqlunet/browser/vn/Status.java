@@ -2,6 +2,7 @@ package org.sqlunet.browser.vn;
 
 import android.content.Context;
 import android.content.res.Resources;
+import android.support.annotation.NonNull;
 import android.text.Editable;
 import android.text.SpannableStringBuilder;
 import android.util.Log;
@@ -29,7 +30,7 @@ class Status extends org.sqlunet.browser.config.Status
 	 * @param context context
 	 * @return _status
 	 */
-	static public int status(final Context context)
+	static public int status(@NonNull final Context context)
 	{
 		if (existsDatabase(context))
 		{
@@ -78,6 +79,7 @@ class Status extends org.sqlunet.browser.config.Status
 		return 0;
 	}
 
+	@NonNull
 	static public CharSequence toString(int status)
 	{
 		final Editable sb = new SpannableStringBuilder();

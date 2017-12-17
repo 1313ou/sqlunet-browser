@@ -6,6 +6,7 @@ import android.graphics.Paint;
 import android.graphics.Paint.FontMetricsInt;
 import android.graphics.drawable.Drawable;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
 import android.text.style.ClickableSpan;
@@ -54,6 +55,7 @@ public class Spanner
 	 */
 	public interface SpanFactory
 	{
+		@Nullable
 		Object makeSpans(@SuppressWarnings("UnusedParameters") final long flags);
 	}
 
@@ -105,6 +107,7 @@ public class Spanner
 	@SuppressWarnings("unused")
 	static public class HiddenSpanFactory implements SpanFactory
 	{
+		@NonNull
 		@Override
 		public Object makeSpans(final long flags)
 		{
@@ -122,7 +125,7 @@ public class Spanner
 	 * @param to    finish
 	 * @param spans spans to apply
 	 */
-	static void setSpan(@SuppressWarnings("TypeMayBeWeakened") final SpannableStringBuilder sb, final int from, final int to, final Object spans)
+	static void setSpan(@NonNull @SuppressWarnings("TypeMayBeWeakened") final SpannableStringBuilder sb, final int from, final int to, @Nullable final Object spans)
 	{
 		if (spans != null && from != to)
 		{
@@ -152,7 +155,7 @@ public class Spanner
 	 * @param flags     flags
 	 * @param factories span factories to call to get spans
 	 */
-	static public void setSpan(final SpannableStringBuilder sb, final int from, final int to, @SuppressWarnings("SameParameterValue") final long flags, final SpanFactory... factories)
+	static public void setSpan(@NonNull final SpannableStringBuilder sb, final int from, final int to, @SuppressWarnings("SameParameterValue") final long flags, @NonNull final SpanFactory... factories)
 	{
 		for (final SpanFactory spanFactory : factories)
 		{
@@ -169,7 +172,7 @@ public class Spanner
 	 * @param sb    spannable string builder
 	 * @param spans image span with possible image style span
 	 */
-	static private void appendImageSpans(final SpannableStringBuilder sb, final Object... spans)
+	static private void appendImageSpans(@NonNull final SpannableStringBuilder sb, @NonNull final Object... spans)
 	{
 		final int from = sb.length();
 		sb.append(COLLAPSEDCHAR);
@@ -186,7 +189,7 @@ public class Spanner
 	 * @param sb       spannable string builder
 	 * @param drawable drawable to use
 	 */
-	static public void appendImage(final SpannableStringBuilder sb, final Drawable drawable)
+	static public void appendImage(@NonNull final SpannableStringBuilder sb, final Drawable drawable)
 	{
 		final Object span = new ImageSpan(drawable, DynamicDrawableSpan.ALIGN_BASELINE);
 		Spanner.appendImageSpans(sb, span);
@@ -203,7 +206,7 @@ public class Spanner
 	 * @param context  context
 	 */
 	@SuppressWarnings("unused")
-	static public void appendClickableImage(final SpannableStringBuilder sb, final CharSequence caption, final OnClickImage listener, final Context context)
+	static public void appendClickableImage(@NonNull final SpannableStringBuilder sb, @NonNull final CharSequence caption, @NonNull final OnClickImage listener, @NonNull final Context context)
 	{
 		final Drawable collapsedDrawable = getDrawable(context, R.drawable.ic_collapsed);
 		final Drawable expandedDrawable = getDrawable(context, R.drawable.ic_expanded);
@@ -219,7 +222,7 @@ public class Spanner
 	 * @param caption           caption
 	 * @param listener          click listener
 	 */
-	static private void appendClickableImage(final SpannableStringBuilder sb, final Drawable collapsedDrawable, final Drawable expandedDrawable, final CharSequence caption, final OnClickImage listener)
+	static private void appendClickableImage(@NonNull final SpannableStringBuilder sb, final Drawable collapsedDrawable, final Drawable expandedDrawable, @NonNull final CharSequence caption, @NonNull final OnClickImage listener)
 	{
 		final ImageSpan span = new ImageSpan(collapsedDrawable, DynamicDrawableSpan.ALIGN_BASELINE);
 		final ClickableSpan span2 = new ClickableSpan()
@@ -270,7 +273,7 @@ public class Spanner
 	 * @param tag      tag
 	 */
 	@SuppressWarnings("unused")
-	static public void insertTag(final SpannableStringBuilder sb, final int position, final CharSequence tag)
+	static public void insertTag(@NonNull final SpannableStringBuilder sb, final int position, @NonNull final CharSequence tag)
 	{
 		final String insert = tag.toString() + '\n' + Spanner.EOEXPANDEDSTRING;
 		sb.insert(position, insert);
@@ -285,7 +288,7 @@ public class Spanner
 	 * @param position position to start from (to end-of-expanded string)
 	 */
 	@SuppressWarnings("unused")
-	static public void collapse(final SpannableStringBuilder sb, final int position)
+	static public void collapse(@NonNull final SpannableStringBuilder sb, final int position)
 	{
 		sb.delete(position, Spanner.find(sb, position, Spanner.EOEXPANDEDSTRING));
 	}
@@ -300,7 +303,7 @@ public class Spanner
 	 * @param flags     flags
 	 * @param factories span factories
 	 */
-	static public void append(final SpannableStringBuilder sb, final CharSequence text, @SuppressWarnings("SameParameterValue") final long flags, final SpanFactory... factories)
+	static public void append(@NonNull final SpannableStringBuilder sb, @Nullable final CharSequence text, @SuppressWarnings("SameParameterValue") final long flags, @Nullable final SpanFactory... factories)
 	{
 		if (text == null || text.length() == 0)
 		{
@@ -340,7 +343,7 @@ public class Spanner
 	 * @param delimiter delimiter
 	 * @return delimiter position or -1 if not found
 	 */
-	static private int find(@SuppressWarnings("TypeMayBeWeakened") final SpannableStringBuilder sb, final int start, @SuppressWarnings("SameParameterValue") final char delimiter)
+	static private int find(@NonNull @SuppressWarnings("TypeMayBeWeakened") final SpannableStringBuilder sb, final int start, @SuppressWarnings("SameParameterValue") final char delimiter)
 	{
 		int i = start;
 		while (i < sb.length())
@@ -361,7 +364,7 @@ public class Spanner
 	 * @param resId   resource id
 	 * @return drawable
 	 */
-	static public Drawable getDrawable(final Context context, final int resId)
+	static public Drawable getDrawable(@NonNull final Context context, final int resId)
 	{
 		@SuppressWarnings("deprecation") final Drawable drawable = context.getResources().getDrawable(resId);
 		drawable.setBounds(0, 0, drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight());

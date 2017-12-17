@@ -3,6 +3,7 @@ package org.sqlunet.browser.config;
 import android.Manifest;
 import android.app.Activity;
 import android.content.pm.PackageManager;
+import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 
@@ -16,7 +17,7 @@ class Permissions
 {
 	static private final int PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE = 1313;
 
-	static public boolean check(final Activity activity)
+	static public boolean check(@NonNull final Activity activity)
 	{
 		if (ContextCompat.checkSelfPermission(activity, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED)
 		{

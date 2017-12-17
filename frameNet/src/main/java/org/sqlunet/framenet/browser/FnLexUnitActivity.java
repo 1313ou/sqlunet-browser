@@ -1,5 +1,6 @@
 package org.sqlunet.framenet.browser;
 
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 
 import org.sqlunet.browser.AbstractActivity;
@@ -18,6 +19,7 @@ public class FnLexUnitActivity extends AbstractActivity
 	@Override
 	protected int getContainerId(){return R.id.container_lexunit;}
 
+	@NonNull
 	@Override
 	protected Fragment makeFragment(){ return new FnLexUnitFragment(); }
 }

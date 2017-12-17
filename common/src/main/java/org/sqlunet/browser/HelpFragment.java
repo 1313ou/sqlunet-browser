@@ -54,7 +54,7 @@ public class HelpFragment extends NavigableFragment
 		{
 			@TargetApi(Build.VERSION_CODES.N)
 			@Override
-			public void onReceivedError(final WebView webView, final WebResourceRequest request, WebResourceError error)
+			public void onReceivedError(final WebView webView, final WebResourceRequest request, @NonNull WebResourceError error)
 			{
 				if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N)
 				{
@@ -73,7 +73,7 @@ public class HelpFragment extends NavigableFragment
 
 			@TargetApi(Build.VERSION_CODES.N)
 			@Override
-			public boolean shouldOverrideUrlLoading(final WebView webView, final WebResourceRequest request)
+			public boolean shouldOverrideUrlLoading(@NonNull final WebView webView, @NonNull final WebResourceRequest request)
 			{
 				final Uri uri = request.getUrl();
 				final String fileName = uri.getLastPathSegment();
@@ -90,7 +90,7 @@ public class HelpFragment extends NavigableFragment
 
 			@SuppressWarnings("deprecation")
 			@Override
-			public boolean shouldOverrideUrlLoading(final WebView webView, final String url)
+			public boolean shouldOverrideUrlLoading(@NonNull final WebView webView, @NonNull final String url)
 			{
 				if (url.endsWith("pdf") || url.endsWith("PDF"))
 				{

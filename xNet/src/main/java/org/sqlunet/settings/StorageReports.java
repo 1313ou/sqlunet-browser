@@ -6,6 +6,7 @@ import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Build;
 import android.os.Environment;
+import android.support.annotation.NonNull;
 import android.text.SpannableStringBuilder;
 import android.text.style.BackgroundColorSpan;
 import android.text.style.ForegroundColorSpan;
@@ -48,7 +49,8 @@ public class StorageReports
 	 * @param dir     storage directory
 	 * @return styled string
 	 */
-	static private CharSequence toStyledString(final Context context, final StorageDirectory dir)
+	@NonNull
+	static private CharSequence toStyledString(@NonNull final Context context, @NonNull final StorageDirectory dir)
 	{
 		final SpannableStringBuilder sb = new SpannableStringBuilder();
 		Report.appendImage(context, sb, toIconId(dir.dir.getType()));
@@ -69,8 +71,9 @@ public class StorageReports
 	 * @param dir     storage directory
 	 * @return styled string
 	 */
+	@NonNull
 	@SuppressWarnings("unused")
-	static private CharSequence styledFitsIn(final Context context, final StorageDirectory dir)
+	static private CharSequence styledFitsIn(@NonNull final Context context, @NonNull final StorageDirectory dir)
 	{
 		final SpannableStringBuilder sb = new SpannableStringBuilder();
 		final boolean fitsIn = dir.fitsIn(context);
@@ -84,7 +87,8 @@ public class StorageReports
 	 * @param dir storage directory
 	 * @return styled string
 	 */
-	static private CharSequence styledStatus(final StorageDirectory dir)
+	@NonNull
+	static private CharSequence styledStatus(@NonNull final StorageDirectory dir)
 	{
 		final SpannableStringBuilder sb = new SpannableStringBuilder();
 		final CharSequence status = dir.status();
@@ -99,7 +103,7 @@ public class StorageReports
 	 * @param type dir type
 	 * @return res id
 	 */
-	static private int toIconId(final DirType type)
+	static private int toIconId(@NonNull final DirType type)
 	{
 		int resId = 0;
 		switch (type)
@@ -132,7 +136,7 @@ public class StorageReports
 	 * @param context context
 	 * @return pair of names and values
 	 */
-	static public Pair<CharSequence[], CharSequence[]> getStyledStorageDirectoriesNamesValues(final Context context)
+	static public Pair<CharSequence[], CharSequence[]> getStyledStorageDirectoriesNamesValues(@NonNull final Context context)
 	{
 		final List<CharSequence> names = new ArrayList<>();
 		final List<CharSequence> values = new ArrayList<>();
@@ -159,7 +163,7 @@ public class StorageReports
 	 * @param context context
 	 * @return pair of names and values
 	 */
-	static public Pair<CharSequence[], CharSequence[]> getStorageDirectoriesNamesValues(final Context context)
+	static public Pair<CharSequence[], CharSequence[]> getStorageDirectoriesNamesValues(@NonNull final Context context)
 	{
 		final List<CharSequence> names = new ArrayList<>();
 		final List<CharSequence> values = new ArrayList<>();
@@ -187,7 +191,7 @@ public class StorageReports
 	 * @return pair of names and values
 	 */
 	@SuppressWarnings("unused")
-	static public Pair<CharSequence[], CharSequence[]> get2StorageDirectoriesNamesValues(final Context context)
+	static public Pair<CharSequence[], CharSequence[]> get2StorageDirectoriesNamesValues(@NonNull final Context context)
 	{
 		final List<CharSequence> names = new ArrayList<>();
 		final List<CharSequence> values = new ArrayList<>();
@@ -213,7 +217,7 @@ public class StorageReports
 	 * @param context context
 	 * @return pair of names and values
 	 */
-	static public Pair<CharSequence[], CharSequence[]> getStyledCachesNamesValues(final Context context)
+	static public Pair<CharSequence[], CharSequence[]> getStyledCachesNamesValues(@NonNull final Context context)
 	{
 		final List<CharSequence> names = new ArrayList<>();
 		final List<CharSequence> values = new ArrayList<>();
@@ -267,8 +271,9 @@ public class StorageReports
 
 	// D I R
 
+	@NonNull
 	@SuppressWarnings("UnusedReturnValue")
-	static private SpannableStringBuilder appendDir(final SpannableStringBuilder sb, final CharSequence header, final File dir)
+	static private SpannableStringBuilder appendDir(@NonNull final SpannableStringBuilder sb, final CharSequence header, @NonNull final File dir)
 	{
 		Report.appendHeader(sb, header).append(' ').append(StorageUtils.storageFreeAsString(dir)).append('\n').append(dir.getAbsolutePath()).append('\n');
 		return sb;
@@ -276,7 +281,8 @@ public class StorageReports
 
 	// R E P O R T S
 
-	static CharSequence reportStorageDirectories(final Context context)
+	@NonNull
+	static CharSequence reportStorageDirectories(@NonNull final Context context)
 	{
 		final StringBuilder sb = new StringBuilder();
 		int i = 1;
@@ -392,7 +398,8 @@ public class StorageReports
 	 * @param context context
 	 * @return report
 	 */
-	static public CharSequence reportStyledStorageDirectories(final Context context)
+	@NonNull
+	static public CharSequence reportStyledStorageDirectories(@NonNull final Context context)
 	{
 		@SuppressWarnings("TypeMayBeWeakened") final SpannableStringBuilder sb = new SpannableStringBuilder();
 		final List<StorageDirectory> dirs = StorageUtils.getSortedStorageDirectories(context);
@@ -428,8 +435,9 @@ public class StorageReports
 	 * @param context context
 	 * @return report
 	 */
+	@NonNull
 	@TargetApi(Build.VERSION_CODES.LOLLIPOP)
-	static public CharSequence reportStyledExternalStorage(final Context context)
+	static public CharSequence reportStyledExternalStorage(@NonNull final Context context)
 	{
 		final Map<StorageType, File[]> storages = StorageUtils.getExternalStorages();
 		final File[] physical = storages.get(StorageType.PRIMARY_PHYSICAL);
@@ -520,7 +528,8 @@ public class StorageReports
 	 * @param context context
 	 * @return directories report
 	 */
-	static public CharSequence reportStyledDirs(final Context context)
+	@NonNull
+	static public CharSequence reportStyledDirs(@NonNull final Context context)
 	{
 		final SpannableStringBuilder sb = new SpannableStringBuilder();
 

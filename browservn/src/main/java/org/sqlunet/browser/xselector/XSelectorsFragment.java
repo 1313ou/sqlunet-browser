@@ -7,6 +7,7 @@ import android.database.MatrixCursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.LoaderManager.LoaderCallbacks;
 import android.support.v4.content.CursorLoader;
@@ -127,6 +128,7 @@ public class XSelectorsFragment extends ExpandableListFragment
 	/**
 	 * Xn group cursor
 	 */
+	@NonNull
 	private final MatrixCursor xnCursor;
 
 	/**
@@ -142,6 +144,7 @@ public class XSelectorsFragment extends ExpandableListFragment
 	/**
 	 * Search query
 	 */
+	@Nullable
 	private String word;
 
 	/**
@@ -195,7 +198,7 @@ public class XSelectorsFragment extends ExpandableListFragment
 	}
 
 	@Override
-	public void onViewCreated(@NonNull final View view, final Bundle savedInstanceState)
+	public void onViewCreated(@NonNull final View view, @Nullable final Bundle savedInstanceState)
 	{
 		super.onViewCreated(view, savedInstanceState);
 
@@ -251,6 +254,7 @@ public class XSelectorsFragment extends ExpandableListFragment
 		// load the contents
 		getLoaderManager().restartLoader(++Module.loaderId, null, new LoaderCallbacks<Cursor>()
 		{
+			@NonNull
 			@Override
 			public Loader<Cursor> onCreateLoader(final int id, final Bundle args)
 			{
@@ -270,7 +274,7 @@ public class XSelectorsFragment extends ExpandableListFragment
 			}
 
 			@Override
-			public void onLoadFinished(final Loader<Cursor> loader, final Cursor cursor)
+			public void onLoadFinished(final Loader<Cursor> loader, @NonNull final Cursor cursor)
 			{
 				// store source progressMessage
 				if (cursor.moveToFirst())
@@ -301,7 +305,7 @@ public class XSelectorsFragment extends ExpandableListFragment
 		final ExpandableListAdapter adapter = new SimpleCursorTreeAdapter(getActivity(), this.xnCursor, R.layout.item_group_xselector, groupFrom, groupTo, R.layout.item_xselector, childFrom, childTo)
 		{
 			@Override
-			protected Cursor getChildrenCursor(Cursor groupCursor)
+			protected Cursor getChildrenCursor(@NonNull Cursor groupCursor)
 			{
 				final FragmentActivity activity = getActivity();
 				if (activity == null)
@@ -369,7 +373,7 @@ public class XSelectorsFragment extends ExpandableListFragment
 		return new VnLoaderCallbacks(getActivity(), wordId)
 		{
 			@Override
-			public void onLoadFinished(final Loader<Cursor> loader, final Cursor cursor)
+			public void onLoadFinished(final Loader<Cursor> loader, @Nullable final Cursor cursor)
 			{
 				if (cursor != null)
 				{
@@ -404,7 +408,7 @@ public class XSelectorsFragment extends ExpandableListFragment
 		return new PbLoaderCallbacks(getActivity(), wordId)
 		{
 			@Override
-			public void onLoadFinished(final Loader<Cursor> loader, final Cursor cursor)
+			public void onLoadFinished(final Loader<Cursor> loader, @Nullable final Cursor cursor)
 			{
 				if (cursor != null)
 				{
@@ -451,7 +455,7 @@ public class XSelectorsFragment extends ExpandableListFragment
 
 	@SuppressWarnings("boxing")
 	@Override
-	public boolean onChildClick(final ExpandableListView listView, final View view, final int groupPosition, final int childPosition, final long id)
+	public boolean onChildClick(@NonNull final ExpandableListView listView, final View view, final int groupPosition, final int childPosition, final long id)
 	{
 		super.onChildClick(listView, view, groupPosition, childPosition, id);
 
@@ -530,7 +534,8 @@ public class XSelectorsFragment extends ExpandableListFragment
 	 * @param synsetId synset id
 	 * @return pos
 	 */
-	private String synsetIdToPos(final Long synsetId)
+	@Nullable
+	private String synsetIdToPos(@Nullable final Long synsetId)
 	{
 		if (synsetId == null)
 		{

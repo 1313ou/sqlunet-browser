@@ -3,6 +3,8 @@ package org.sqlunet.framenet.style;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.text.style.BackgroundColorSpan;
 import android.text.style.DynamicDrawableSpan;
 import android.text.style.ForegroundColorSpan;
@@ -34,10 +36,11 @@ public class FrameNetMarkupFactory implements MarkupSpanner.SpanFactory
 	/**
 	 * Text factory
 	 */
+	@Nullable
 	static private final MarkupSpanner.SpanFactory textFactory = new MarkupSpanner.SpanFactory()
 	{
 		@Override
-		public Object makeSpans(final String selector, final long flags)
+		public Object makeSpans(@NonNull final String selector, final long flags)
 		{
 			if ("fe".equals(selector))
 			{
@@ -110,7 +113,7 @@ public class FrameNetMarkupFactory implements MarkupSpanner.SpanFactory
 	 *
 	 * @param context context
 	 */
-	FrameNetMarkupFactory(final Context context)
+	FrameNetMarkupFactory(@NonNull final Context context)
 	{
 		super();
 		this.roleDrawable = Spanner.getDrawable(context, R.drawable.role);
@@ -126,8 +129,9 @@ public class FrameNetMarkupFactory implements MarkupSpanner.SpanFactory
 	 * @param flags    flags
 	 * @return spans
 	 */
+	@Nullable
 	@Override
-	public Object makeSpans(final String selector, final long flags)
+	public Object makeSpans(@NonNull final String selector, final long flags)
 	{
 		// Log.d(FrameNetMarkupFactory.TAG, selector + ' ' + flags);
 		final SpanPosition position = SpanPosition.valueOf(flags);

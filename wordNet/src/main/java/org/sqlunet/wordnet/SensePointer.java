@@ -2,6 +2,7 @@ package org.sqlunet.wordnet;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.support.annotation.NonNull;
 
 import org.sqlunet.HasWordId;
 
@@ -23,7 +24,7 @@ public class SensePointer extends SynsetPointer implements HasWordId
 	static public final Parcelable.Creator<SensePointer> CREATOR = new Parcelable.Creator<SensePointer>()
 	{
 		@Override
-		public SensePointer createFromParcel(final Parcel parcel)
+		public SensePointer createFromParcel(@NonNull final Parcel parcel)
 		{
 			return new SensePointer(parcel);
 		}
@@ -38,7 +39,7 @@ public class SensePointer extends SynsetPointer implements HasWordId
 	/**
 	 * Constructor from parcel, reads back fields IN THE ORDER they were written
 	 */
-	protected SensePointer(final Parcel parcel)
+	protected SensePointer(@NonNull final Parcel parcel)
 	{
 		super(parcel);
 		this.wordId = parcel.readLong();
@@ -63,7 +64,7 @@ public class SensePointer extends SynsetPointer implements HasWordId
 	}
 
 	@Override
-	public void writeToParcel(final Parcel parcel, final int flags)
+	public void writeToParcel(@NonNull final Parcel parcel, final int flags)
 	{
 		super.writeToParcel(parcel, flags);
 		parcel.writeLong(this.wordId);

@@ -6,6 +6,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Build;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.util.Log;
 
 import org.sqlunet.browser.common.R;
@@ -29,7 +31,7 @@ class SetupDatabaseTasks
 	 * @param databasePath path
 	 * @return true if successful
 	 */
-	static public boolean createDatabase(final Context context, final String databasePath)
+	static public boolean createDatabase(@NonNull final Context context, final String databasePath)
 	{
 		try
 		{
@@ -51,7 +53,7 @@ class SetupDatabaseTasks
 	 * @param databasePath path
 	 * @return true if successful
 	 */
-	static public boolean deleteDatabase(final Context context, final String databasePath)
+	static public boolean deleteDatabase(@NonNull final Context context, final String databasePath)
 	{
 		// make sure you close all connections before deleting
 		final String[] authorities = context.getResources().getStringArray(R.array.provider_authorities);
@@ -84,7 +86,7 @@ class SetupDatabaseTasks
 	 *
 	 * @param context context
 	 */
-	static public void update(final Context context)
+	static public void update(@NonNull final Context context)
 	{
 		final boolean success = SetupDatabaseTasks.deleteDatabase(context, StorageSettings.getDatabasePath(context));
 		if (success)
@@ -102,7 +104,7 @@ class SetupDatabaseTasks
 	 * @param tables       tables to drop
 	 */
 	@SuppressWarnings("unused")
-	static public void dropAll(final Context context, final String databasePath, final Collection<String> tables)
+	static public void dropAll(@NonNull final Context context, final String databasePath, @Nullable final Collection<String> tables)
 	{
 		if (tables != null && !tables.isEmpty())
 		{
@@ -124,7 +126,7 @@ class SetupDatabaseTasks
 	 * @param tables       tables to flush
 	 */
 	@SuppressWarnings("unused")
-	static public void flushAll(final Context context, final String databasePath, final Collection<String> tables)
+	static public void flushAll(@NonNull final Context context, final String databasePath, @Nullable final Collection<String> tables)
 	{
 		if (tables != null && !tables.isEmpty())
 		{

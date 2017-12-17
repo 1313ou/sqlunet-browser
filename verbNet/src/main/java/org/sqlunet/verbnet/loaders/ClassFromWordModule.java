@@ -4,6 +4,8 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Parcelable;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.LoaderManager.LoaderCallbacks;
 import android.support.v4.content.CursorLoader;
@@ -32,11 +34,13 @@ public class ClassFromWordModule extends BaseModule
 	/**
 	 * Word id
 	 */
+	@Nullable
 	private Long wordId;
 
 	/**
 	 * Synset id (null=ignore)
 	 */
+	@Nullable
 	private Long synsetId;
 
 	/**
@@ -44,7 +48,7 @@ public class ClassFromWordModule extends BaseModule
 	 *
 	 * @param fragment fragment
 	 */
-	public ClassFromWordModule(final Fragment fragment)
+	public ClassFromWordModule(@NonNull final Fragment fragment)
 	{
 		super(fragment);
 	}
@@ -67,7 +71,7 @@ public class ClassFromWordModule extends BaseModule
 	}
 
 	@Override
-	public void process(final TreeNode node)
+	public void process(@NonNull final TreeNode node)
 	{
 		if (this.wordId != null)
 		{
@@ -88,10 +92,11 @@ public class ClassFromWordModule extends BaseModule
 	 * @param synsetId synset id (null or 0 means ignore)
 	 * @param parent   parent node
 	 */
-	private void vnClasses(final long wordId, final Long synsetId, final TreeNode parent)
+	private void vnClasses(final long wordId, @Nullable final Long synsetId, @NonNull final TreeNode parent)
 	{
 		getLoaderManager().restartLoader(++Module.loaderId, null, new LoaderCallbacks<Cursor>()
 		{
+			@Nullable
 			@Override
 			public Loader<Cursor> onCreateLoader(final int loaderId, final Bundle loaderArgs)
 			{
@@ -125,7 +130,7 @@ public class ClassFromWordModule extends BaseModule
 			}
 
 			@Override
-			public void onLoadFinished(final Loader<Cursor> loader, final Cursor cursor)
+			public void onLoadFinished(final Loader<Cursor> loader, @NonNull final Cursor cursor)
 			{
 				if (cursor.moveToFirst())
 				{

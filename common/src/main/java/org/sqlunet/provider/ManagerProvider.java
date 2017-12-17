@@ -134,8 +134,9 @@ public class ManagerProvider extends BaseProvider
 	 * @param context context
 	 * @return collection of tables
 	 */
+	@NonNull
 	@SuppressWarnings("unused")
-	static public Collection<String> getTables(final Context context)
+	static public Collection<String> getTables(@NonNull final Context context)
 	{
 		final Collection<String> tables = new ArrayList<>();
 		final Uri uri = Uri.parse(makeUri(TablesAndIndices.CONTENT_URI_TABLE));

@@ -4,6 +4,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.ListFragment;
 import android.support.v4.app.LoaderManager.LoaderCallbacks;
 import android.support.v4.content.CursorLoader;
@@ -42,6 +43,7 @@ public abstract class AbstractTableFragment extends ListFragment
 	 *
 	 * @return view binder
 	 */
+	@Nullable
 	abstract protected ViewBinder makeViewBinder();
 
 	@SuppressWarnings("boxing")
@@ -116,6 +118,7 @@ public abstract class AbstractTableFragment extends ListFragment
 		// load the contents
 		getLoaderManager().restartLoader(++Module.loaderId, null, new LoaderCallbacks<Cursor>()
 		{
+			@Nullable
 			@Override
 			public Loader<Cursor> onCreateLoader(final int loaderId, final Bundle loaderArgs)
 			{
@@ -149,7 +152,7 @@ public abstract class AbstractTableFragment extends ListFragment
 			}
 
 			@Override
-			public void onLoadFinished(final Loader<Cursor> loader, final Cursor cursor)
+			public void onLoadFinished(final Loader<Cursor> loader, @Nullable final Cursor cursor)
 			{
 				// dump(cursor);
 
@@ -199,7 +202,7 @@ public abstract class AbstractTableFragment extends ListFragment
 	 * @param cursor cursor
 	 */
 	@SuppressWarnings("unused")
-	void dump(final Cursor cursor)
+	void dump(@Nullable final Cursor cursor)
 	{
 		if (cursor == null)
 		{

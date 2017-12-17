@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -78,7 +79,7 @@ public class BrowseFragment extends BaseSearchFragment
 	}
 
 	@Override
-	public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
+	public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, @Nullable Bundle savedInstanceState)
 	{
 		final View view = super.onCreateView(inflater, container, savedInstanceState);
 
@@ -98,7 +99,7 @@ public class BrowseFragment extends BaseSearchFragment
 	// S P I N N E R
 
 	@Override
-	protected void setupSpinner(final Context context)
+	protected void setupSpinner(@NonNull final Context context)
 	{
 		super.setupSpinner(context);
 
@@ -131,7 +132,7 @@ public class BrowseFragment extends BaseSearchFragment
 	// M E N U
 
 	@Override
-	public boolean onOptionsItemSelected(final MenuItem item)
+	public boolean onOptionsItemSelected(@NonNull final MenuItem item)
 	{
 		// activity
 		final Activity activity = getActivity();
@@ -192,7 +193,7 @@ public class BrowseFragment extends BaseSearchFragment
 	 * @param query0 query
 	 */
 	@Override
-	public void search(final String query0)
+	public void search(@Nullable final String query0)
 	{
 		if (query0 == null)
 		{
@@ -433,6 +434,7 @@ public class BrowseFragment extends BaseSearchFragment
 	 *
 	 * @return intent
 	 */
+	@Nullable
 	@SuppressWarnings("unused")
 	private Intent makeSelectorIntent()
 	{
@@ -479,6 +481,7 @@ public class BrowseFragment extends BaseSearchFragment
 	 * @param intentClass intent class if WebActivity is not to be used
 	 * @return intent
 	 */
+	@Nullable
 	private Intent makeDetailIntent(final Class<?> intentClass)
 	{
 		// activity

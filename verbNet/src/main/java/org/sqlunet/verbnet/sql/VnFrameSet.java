@@ -1,6 +1,7 @@
 package org.sqlunet.verbnet.sql;
 
 import android.database.sqlite.SQLiteDatabase;
+import android.support.annotation.Nullable;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,6 +37,7 @@ public class VnFrameSet
 	 * @param synsetId   synset id to build query from (null for any)
 	 * @return set of frames
 	 */
+	@Nullable
 	static public VnFrameSet make(final SQLiteDatabase connection, final long classId, final long wordId, final Long synsetId)
 	{
 		VnFrameQueryFromClassIdAndSense query = null;
@@ -91,6 +93,7 @@ public class VnFrameSet
 	 * @param classId    class id
 	 * @return set of frames
 	 */
+	@Nullable
 	static public VnFrameSet make(final SQLiteDatabase connection, final long classId)
 	{
 		VnFrameQueryFromClassId query = null;

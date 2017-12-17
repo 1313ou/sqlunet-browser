@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -70,7 +71,7 @@ public class OtherActivity extends AppCompatActivity
 		{
 			startActivity(goToMarket);
 		}
-		catch (final ActivityNotFoundException e)
+		catch (@NonNull final ActivityNotFoundException e)
 		{
 			String message = getString(R.string.market_fail);
 			message += ' ';
@@ -79,7 +80,7 @@ public class OtherActivity extends AppCompatActivity
 		}
 	}
 
-	static private boolean isAppInstalled(final String uri, final Context context)
+	static private boolean isAppInstalled(final String uri, @NonNull final Context context)
 	{
 		final PackageManager packageManager = context.getPackageManager();
 		boolean isInstalled;
@@ -88,7 +89,7 @@ public class OtherActivity extends AppCompatActivity
 			packageManager.getPackageInfo(uri, PackageManager.GET_ACTIVITIES);
 			isInstalled = true;
 		}
-		catch (final PackageManager.NameNotFoundException e)
+		catch (@NonNull final PackageManager.NameNotFoundException e)
 		{
 			isInstalled = false;
 		}

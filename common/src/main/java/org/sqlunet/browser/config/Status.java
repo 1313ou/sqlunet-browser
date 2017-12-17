@@ -4,6 +4,8 @@ import android.content.Context;
 import android.content.res.Resources;
 import android.database.Cursor;
 import android.net.Uri;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.text.Editable;
 import android.text.SpannableStringBuilder;
 import android.util.Log;
@@ -45,7 +47,7 @@ abstract public class Status
 	 * @param context context
 	 * @return _status
 	 */
-	static public int status(final Context context)
+	static public int status(@NonNull final Context context)
 	{
 		if (existsDatabase(context))
 		{
@@ -88,7 +90,7 @@ abstract public class Status
 	 * @param context context
 	 * @return true if app is ready to run
 	 */
-	static public boolean canRun(final Context context)
+	static public boolean canRun(@NonNull final Context context)
 	{
 		final int status = status(context);
 		return (status & (EXISTS | EXISTS_TABLES | EXISTS_INDEXES)) == (EXISTS | EXISTS_TABLES | EXISTS_INDEXES);
@@ -100,7 +102,7 @@ abstract public class Status
 	 * @param context context
 	 * @return true if database exists
 	 */
-	static protected boolean existsDatabase(final Context context)
+	static protected boolean existsDatabase(@NonNull final Context context)
 	{
 		final String databasePath = StorageSettings.getDatabasePath(context);
 		final File db = new File(databasePath);
@@ -113,7 +115,8 @@ abstract public class Status
 	 * @param context context
 	 * @return list of tables and indexes
 	 */
-	static protected List<String> tablesAndIndexes(final Context context)
+	@Nullable
+	static protected List<String> tablesAndIndexes(@NonNull final Context context)
 	{
 		final String order = "CASE " //
 				+ "WHEN " + ManagerContract.TablesAndIndices.TYPE + " = 'table' THEN '1' " //
@@ -153,7 +156,7 @@ abstract public class Status
 	 * @param targets          targets
 	 * @return true if targets are contained in tables and indexes
 	 */
-	static protected boolean contains(final Collection<String> tablesAndIndexes, final String... targets)
+	static protected boolean contains(@Nullable final Collection<String> tablesAndIndexes, @NonNull final String... targets)
 	{
 		if (tablesAndIndexes == null)
 		{
@@ -173,6 +176,7 @@ abstract public class Status
 		return result;
 	}
 
+	@NonNull
 	static public CharSequence toString(int status)
 	{
 		final Editable sb = new SpannableStringBuilder();

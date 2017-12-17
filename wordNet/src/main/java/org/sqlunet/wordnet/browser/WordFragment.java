@@ -2,6 +2,7 @@ package org.sqlunet.wordnet.browser;
 
 import android.os.Bundle;
 import android.os.Parcelable;
+import android.support.annotation.NonNull;
 
 import org.sqlunet.browser.TreeFragment;
 import org.sqlunet.provider.ProviderArgs;
@@ -59,6 +60,7 @@ public class WordFragment extends TreeFragment
 	 *
 	 * @return module
 	 */
+	@NonNull
 	@SuppressWarnings("WeakerAccess")
 	protected WordModule makeModule()
 	{

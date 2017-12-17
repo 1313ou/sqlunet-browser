@@ -3,6 +3,8 @@ package org.sqlunet.settings;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 
 import org.sqlunet.xnet.R;
 
@@ -37,7 +39,7 @@ public class StorageSettings
 	 * @param context context
 	 * @return database directory
 	 */
-	private static String getDataDir(final Context context)
+	private static String getDataDir(@NonNull final Context context)
 	{
 		final File dir = Storage.getSqlUNetStorage(context);
 		if (!dir.exists())
@@ -58,7 +60,7 @@ public class StorageSettings
 	 * @param context context
 	 * @return database path
 	 */
-	static public String getDatabasePath(final Context context)
+	static public String getDatabasePath(@NonNull final Context context)
 	{
 		return getDataDir(context) + File.separatorChar + Storage.DBFILE;
 	}
@@ -71,7 +73,8 @@ public class StorageSettings
 	 * @param context context
 	 * @return data cache
 	 */
-	static private String getCacheDir(final Context context)
+	@Nullable
+	static private String getCacheDir(@NonNull final Context context)
 	{
 		return Storage.getCacheDir(context);
 	}
@@ -84,7 +87,8 @@ public class StorageSettings
 	 * @param context context
 	 * @return download site
 	 */
-	static private String getDownloadSite(final Context context)
+	@Nullable
+	static private String getDownloadSite(@NonNull final Context context)
 	{
 		// test if already in preferences
 		final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
@@ -111,7 +115,8 @@ public class StorageSettings
 	 * @param context context
 	 * @return download db file
 	 */
-	static private String getDbDownloadFile(final Context context)
+	@Nullable
+	static private String getDbDownloadFile(@NonNull final Context context)
 	{
 		// test if already already in preferences
 		final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
@@ -136,7 +141,7 @@ public class StorageSettings
 	 * @param context context
 	 * @return download db source
 	 */
-	static public String getDbDownloadSource(final Context context)
+	static public String getDbDownloadSource(@NonNull final Context context)
 	{
 		return StorageSettings.getDownloadSite(context) + '/' + StorageSettings.getDbDownloadFile(context);
 	}
@@ -147,7 +152,7 @@ public class StorageSettings
 	 * @param context context
 	 * @return download db target
 	 */
-	static public String getDbDownloadTarget(final Context context)
+	static public String getDbDownloadTarget(@NonNull final Context context)
 	{
 		return StorageSettings.getDataDir(context) + File.separatorChar + Storage.DBFILE;
 	}
@@ -158,7 +163,7 @@ public class StorageSettings
 	 * @param context context
 	 * @return download db source
 	 */
-	static public String getDbDownloadZippedSource(final Context context)
+	static public String getDbDownloadZippedSource(@NonNull final Context context)
 	{
 		return StorageSettings.getDownloadSite(context) + '/' + StorageSettings.getDbDownloadFile(context) + ".zip";
 	}
@@ -169,7 +174,7 @@ public class StorageSettings
 	 * @param context context
 	 * @return download db target
 	 */
-	static public String getDbDownloadZippedTarget(final Context context)
+	static public String getDbDownloadZippedTarget(@NonNull final Context context)
 	{
 		return StorageSettings.getCacheDir(context) + File.separatorChar + Storage.DBFILEZIP;
 	}
@@ -182,7 +187,8 @@ public class StorageSettings
 	 * @param context context
 	 * @return download sql file
 	 */
-	static private String getSqlDownloadFile(final Context context)
+	@Nullable
+	static private String getSqlDownloadFile(@NonNull final Context context)
 	{
 		// test if already already in preferences
 		final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
@@ -207,7 +213,7 @@ public class StorageSettings
 	 * @param context context
 	 * @return download sql source
 	 */
-	static public String getSqlDownloadSource(final Context context)
+	static public String getSqlDownloadSource(@NonNull final Context context)
 	{
 
 		return StorageSettings.getDownloadSite(context) + '/' + StorageSettings.getSqlDownloadFile(context);
@@ -219,7 +225,7 @@ public class StorageSettings
 	 * @param context context
 	 * @return download sql target
 	 */
-	static public String getSqlDownloadTarget(final Context context)
+	static public String getSqlDownloadTarget(@NonNull final Context context)
 	{
 		return StorageSettings.getCacheDir(context) + File.separator + StorageSettings.getSqlDownloadFile(context);
 	}
@@ -230,7 +236,7 @@ public class StorageSettings
 	 * @param context context
 	 * @return SQL source
 	 */
-	static public String getSqlSource(final Context context)
+	static public String getSqlSource(@NonNull final Context context)
 	{
 		return StorageSettings.getSqlDownloadTarget(context);
 	}
@@ -241,7 +247,8 @@ public class StorageSettings
 	 * @param context context
 	 * @return import archive entry
 	 */
-	static public String getImportEntry(final Context context)
+	@Nullable
+	static public String getImportEntry(@NonNull final Context context)
 	{
 		// test if already in preferences
 		final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
@@ -266,7 +273,8 @@ public class StorageSettings
 	 * @param context context
 	 * @return index archive entry
 	 */
-	static public String getIndexEntry(final Context context)
+	@Nullable
+	static public String getIndexEntry(@NonNull final Context context)
 	{
 		// test if already in preferences
 		final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);

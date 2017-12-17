@@ -1,5 +1,8 @@
 package org.sqlunet.style;
 
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
+
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -33,7 +36,7 @@ public class Preprocessor
 		 * @param regexpr     regexpr
 		 * @param replacement replacement
 		 */
-		Replacer(final String regexpr, final String replacement)
+		Replacer(@NonNull final String regexpr, final String replacement)
 		{
 			this.pattern = Pattern.compile(regexpr);
 			this.replacement = replacement;
@@ -45,12 +48,13 @@ public class Preprocessor
 		 * @param input input
 		 * @return output
 		 */
-		public String replace(final CharSequence input)
+		public String replace(@NonNull final CharSequence input)
 		{
 			final Matcher matcher = this.pattern.matcher(input);
 			return matcher.replaceAll(this.replacement);
 		}
 
+		@NonNull
 		@Override
 		public String toString()
 		{
@@ -61,6 +65,7 @@ public class Preprocessor
 	/**
 	 * Array of replacers
 	 */
+	@NonNull
 	private final Replacer[] replacers;
 
 	/**
@@ -68,7 +73,7 @@ public class Preprocessor
 	 *
 	 * @param data regexpr-replacement pairs
 	 */
-	protected Preprocessor(final String... data)
+	protected Preprocessor(@NonNull final String... data)
 	{
 		final int n = data.length / 2;
 		this.replacers = new Replacer[n];
@@ -86,7 +91,8 @@ public class Preprocessor
 	 * @param input input
 	 * @return output
 	 */
-	public CharSequence process(final CharSequence input)
+	@Nullable
+	public CharSequence process(@Nullable final CharSequence input)
 	{
 		if (input == null)
 		{

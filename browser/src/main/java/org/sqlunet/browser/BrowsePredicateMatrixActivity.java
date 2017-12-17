@@ -4,6 +4,8 @@ import android.app.SearchManager;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Parcelable;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -26,7 +28,7 @@ public class BrowsePredicateMatrixActivity extends AppCompatActivity
 	private BrowsePredicateMatrixFragment fragment;
 
 	@Override
-	protected void onCreate(Bundle savedInstanceState)
+	protected void onCreate(@Nullable Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
 
@@ -62,7 +64,7 @@ public class BrowsePredicateMatrixActivity extends AppCompatActivity
 	}
 
 	@Override
-	protected void onNewIntent(final Intent intent)
+	protected void onNewIntent(@NonNull final Intent intent)
 	{
 		handleSearchIntent(intent);
 	}
@@ -78,7 +80,7 @@ public class BrowsePredicateMatrixActivity extends AppCompatActivity
 	}
 
 	@Override
-	public boolean onOptionsItemSelected(final MenuItem item)
+	public boolean onOptionsItemSelected(@NonNull final MenuItem item)
 	{
 		return MenuHandler.menuDispatch(this, item);
 	}
@@ -90,7 +92,7 @@ public class BrowsePredicateMatrixActivity extends AppCompatActivity
 	 *
 	 * @param intent intent
 	 */
-	private void handleSearchIntent(final Intent intent)
+	private void handleSearchIntent(@NonNull final Intent intent)
 	{
 		final String action = intent.getAction();
 

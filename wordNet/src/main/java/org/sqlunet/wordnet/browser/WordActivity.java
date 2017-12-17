@@ -1,6 +1,7 @@
 package org.sqlunet.wordnet.browser;
 
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.ActionBar;
@@ -19,7 +20,7 @@ public class WordActivity extends AppCompatActivity
 	private boolean fromSavedInstance;
 
 	@Override
-	protected void onCreate(final Bundle savedInstanceState)
+	protected void onCreate(@Nullable final Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
 

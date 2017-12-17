@@ -2,6 +2,7 @@ package org.sqlunet.predicatematrix;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.support.annotation.NonNull;
 
 import org.sqlunet.Pointer;
 
@@ -18,7 +19,7 @@ public class PmRolePointer extends Pointer
 	static public final Parcelable.Creator<PmRolePointer> CREATOR = new Parcelable.Creator<PmRolePointer>()
 	{
 		@Override
-		public PmRolePointer createFromParcel(final Parcel parcel)
+		public PmRolePointer createFromParcel(@NonNull final Parcel parcel)
 		{
 			return new PmRolePointer(parcel);
 		}
@@ -46,7 +47,7 @@ public class PmRolePointer extends Pointer
 	 *
 	 * @param parcel parcel
 	 */
-	private PmRolePointer(final Parcel parcel)
+	private PmRolePointer(@NonNull final Parcel parcel)
 	{
 		super(parcel);
 	}

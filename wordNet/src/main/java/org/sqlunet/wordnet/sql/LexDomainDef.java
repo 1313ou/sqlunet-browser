@@ -1,5 +1,7 @@
 package org.sqlunet.wordnet.sql;
 
+import android.support.annotation.NonNull;
+
 /**
  * LexDomainDef, utility class to encapsulate lexdomain data
  *
@@ -21,11 +23,13 @@ class LexDomainDef
 	/**
 	 * <code>posName</code> part-of-speech
 	 */
+	@NonNull
 	public final String posName;
 
 	/**
 	 * <code>lexDomainName</code> lexdomain name
 	 */
+	@NonNull
 	public final String lexDomainName;
 
 	/**
@@ -35,7 +39,7 @@ class LexDomainDef
 	 * @param pos  part-of-speech id
 	 * @param name lexdomain name
 	 */
-	public LexDomainDef(final int id, final int pos, final String name)
+	public LexDomainDef(final int id, final int pos, @NonNull final String name)
 	{
 		super();
 		this.id = id;
@@ -50,7 +54,8 @@ class LexDomainDef
 	 * @param string full lexdomain name
 	 * @return the part-of-speech name
 	 */
-	private String getPosName(final String string)
+	@NonNull
+	private String getPosName(@NonNull final String string)
 	{
 		final int index = string.indexOf('.');
 		return index == -1 ? string : string.substring(0, index);
@@ -62,7 +67,8 @@ class LexDomainDef
 	 * @param string full lexdomain name
 	 * @return the lexdomain name
 	 */
-	private String getLexDomainName(final String string)
+	@NonNull
+	private String getLexDomainName(@NonNull final String string)
 	{
 		final int index = string.indexOf('.');
 		return index == -1 ? string : string.substring(index + 1);

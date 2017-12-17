@@ -8,6 +8,8 @@ import android.content.SharedPreferences.Editor;
 import android.net.Uri;
 import android.os.Build;
 import android.preference.PreferenceManager;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 
 import org.sqlunet.browser.common.R;
 import org.sqlunet.provider.BaseProvider;
@@ -68,7 +70,7 @@ public class Settings
 			{
 				mode = SelectorViewMode.valueOf(mode_string);
 			}
-			catch (final Exception e)
+			catch (@NonNull final Exception e)
 			{
 				mode = SelectorViewMode.VIEW;
 				sharedPref.edit().putString(Settings.PREF_SELECTOR_MODE, mode.name()).apply();
@@ -99,7 +101,7 @@ public class Settings
 			{
 				mode = DetailViewMode.valueOf(mode_string);
 			}
-			catch (final Exception e)
+			catch (@NonNull final Exception e)
 			{
 				mode = DetailViewMode.VIEW;
 				sharedPref.edit().putString(Settings.PREF_DETAIL_MODE, mode.name()).apply();
@@ -143,7 +145,7 @@ public class Settings
 			{
 				mode = Settings.Selector.valueOf(name);
 			}
-			catch (final Exception e)
+			catch (@NonNull final Exception e)
 			{
 				mode = Settings.Selector.SELECTOR;
 				sharedPref.edit().putString(Settings.PREF_SELECTOR, mode.name()).apply();
@@ -160,7 +162,8 @@ public class Settings
 	 * @param context context
 	 * @return preferred launch activity class
 	 */
-	static public String getLaunchPref(final Context context)
+	@Nullable
+	static public String getLaunchPref(@NonNull final Context context)
 	{
 		final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
 		String result = sharedPref.getString(Settings.PREF_LAUNCH, null);
@@ -259,6 +262,7 @@ public class Settings
 	 * @param context context
 	 * @return preferred downloader
 	 */
+	@Nullable
 	static public String getDownloaderPref(final Context context)
 	{
 		final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
@@ -272,6 +276,7 @@ public class Settings
 	 * @param context context
 	 * @return preferred cache
 	 */
+	@Nullable
 	static public String getCachePref(final Context context)
 	{
 		final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
@@ -369,7 +374,7 @@ public class Settings
 	 * @param context context
 	 * @param pkgName package name
 	 */
-	static public void applicationSettings(final Context context, final String pkgName)
+	static public void applicationSettings(@NonNull final Context context, final String pkgName)
 	{
 		final int apiLevel = Build.VERSION.SDK_INT;
 		final Intent intent = new Intent();

@@ -7,6 +7,8 @@ import android.content.Loader;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -71,6 +73,7 @@ public class SensesFragment extends ListFragment
 	/**
 	 * Search query
 	 */
+	@Nullable
 	private String word;
 
 	/**
@@ -137,7 +140,7 @@ public class SensesFragment extends ListFragment
 		adapter.setViewBinder(new ViewBinder()
 		{
 			@Override
-			public boolean setViewValue(final View view, final Cursor cursor, final int columnIndex)
+			public boolean setViewValue(final View view, @NonNull final Cursor cursor, final int columnIndex)
 			{
 				String text = cursor.getString(columnIndex);
 				if (text == null)
@@ -155,7 +158,7 @@ public class SensesFragment extends ListFragment
 					{
 						((ImageView) view).setImageResource(Integer.parseInt(text));
 					}
-					catch (final NumberFormatException nfe)
+					catch (@NonNull final NumberFormatException nfe)
 					{
 						((ImageView) view).setImageURI(Uri.parse(text));
 					}
@@ -186,13 +189,13 @@ public class SensesFragment extends ListFragment
 	// V I E W
 
 	@Override
-	public View onCreateView(final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState)
+	public View onCreateView(@NonNull final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState)
 	{
 		return inflater.inflate(R.layout.fragment_senses, container, false);
 	}
 
 	@Override
-	public void onViewCreated(final View view, final Bundle savedInstanceState)
+	public void onViewCreated(final View view, @Nullable final Bundle savedInstanceState)
 	{
 		super.onViewCreated(view, savedInstanceState);
 
@@ -219,7 +222,7 @@ public class SensesFragment extends ListFragment
 	}
 
 	@Override
-	public void onSaveInstanceState(final Bundle outState)
+	public void onSaveInstanceState(@NonNull final Bundle outState)
 	{
 		super.onSaveInstanceState(outState);
 
@@ -240,6 +243,7 @@ public class SensesFragment extends ListFragment
 		// load the contents
 		getLoaderManager().restartLoader(++Module.loaderId, null, new LoaderCallbacks<Cursor>()
 		{
+			@NonNull
 			@Override
 			public Loader<Cursor> onCreateLoader(final int loaderId, final Bundle loaderArgs)
 			{
@@ -264,7 +268,7 @@ public class SensesFragment extends ListFragment
 			}
 
 			@Override
-			public void onLoadFinished(final Loader<Cursor> loader, final Cursor cursor)
+			public void onLoadFinished(final Loader<Cursor> loader, @NonNull final Cursor cursor)
 			{
 				// store source result
 				if (cursor.moveToFirst())

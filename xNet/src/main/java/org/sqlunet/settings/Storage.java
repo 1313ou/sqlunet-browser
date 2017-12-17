@@ -5,6 +5,8 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Build;
 import android.preference.PreferenceManager;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.util.Log;
 
 import org.sqlunet.settings.StorageUtils.StorageDirectory;
@@ -69,8 +71,9 @@ public class Storage
 	 * @param context context
 	 * @return database storage directory
 	 */
+	@Nullable
 	@SuppressLint({"CommitPrefEdits", "ApplySharedPref"})
-	static public File getSqlUNetStorage(final Context context)
+	static public File getSqlUNetStorage(@NonNull final Context context)
 	{
 		// test if set in preference
 		final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
@@ -137,7 +140,7 @@ public class Storage
 	 * @param dir directory
 	 * @return true if it qualifies
 	 */
-	static private boolean build(final File dir)
+	static private boolean build(@Nullable final File dir)
 	{
 		if (dir == null)
 		{
@@ -156,8 +159,9 @@ public class Storage
 	 * @param context context
 	 * @return data cache
 	 */
+	@Nullable
 	@SuppressLint({"CommitPrefEdits", "ApplySharedPref"})
-	static public String getCacheDir(final Context context)
+	static public String getCacheDir(@NonNull final Context context)
 	{
 		// test if set in preference
 		final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);

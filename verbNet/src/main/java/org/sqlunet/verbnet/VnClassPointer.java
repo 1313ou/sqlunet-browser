@@ -2,6 +2,7 @@ package org.sqlunet.verbnet;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.support.annotation.NonNull;
 
 import org.sqlunet.Pointer;
 
@@ -18,7 +19,7 @@ public class VnClassPointer extends Pointer
 	static public final Parcelable.Creator<VnClassPointer> CREATOR = new Parcelable.Creator<VnClassPointer>()
 	{
 		@Override
-		public VnClassPointer createFromParcel(final Parcel parcel)
+		public VnClassPointer createFromParcel(@NonNull final Parcel parcel)
 		{
 			return new VnClassPointer(parcel);
 		}
@@ -43,7 +44,7 @@ public class VnClassPointer extends Pointer
 	/**
 	 * Constructor from parcel, reads back fields IN THE ORDER they were written
 	 */
-	private VnClassPointer(final Parcel parcel)
+	private VnClassPointer(@NonNull final Parcel parcel)
 	{
 		super(parcel);
 	}

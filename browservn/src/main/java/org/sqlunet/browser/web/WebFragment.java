@@ -11,6 +11,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.LoaderManager.LoaderCallbacks;
 import android.support.v4.content.Loader;
@@ -114,7 +115,7 @@ public class WebFragment extends Fragment
 		final boolean xml;
 		final Character pos;
 
-		WebDocumentStringLoader(final Context context, final Parcelable pointer, final Character pos, final int type, final String data, final int sources, final boolean xml)
+		WebDocumentStringLoader(@NonNull final Context context, final Parcelable pointer, final Character pos, final int type, final String data, final int sources, final boolean xml)
 		{
 			super(context);
 			this.pointer = pointer;
@@ -125,6 +126,7 @@ public class WebFragment extends Fragment
 			this.pos = pos;
 		}
 
+		@Nullable
 		@SuppressWarnings({"boxing"})
 		@Override
 		protected String getDoc()
@@ -256,7 +258,7 @@ public class WebFragment extends Fragment
 				// stringify
 				return WebFragment.docsToString(this.data, this.xml, isSelector, wnDomDoc, vnDomDoc, pbDomDoc);
 			}
-			catch (final Exception e)
+			catch (@NonNull final Exception e)
 			{
 				Log.e(WebFragment.TAG, "getDoc", e);
 			}
@@ -300,13 +302,13 @@ public class WebFragment extends Fragment
 
 			@TargetApi(Build.VERSION_CODES.N)
 			@Override
-			public boolean shouldOverrideUrlLoading(final WebView view, final WebResourceRequest request)
+			public boolean shouldOverrideUrlLoading(final WebView view, @NonNull final WebResourceRequest request)
 			{
 				final Uri uri = request.getUrl();
 				return handleUrl(uri);
 			}
 
-			private boolean handleUrl(final Uri uri)
+			private boolean handleUrl(@NonNull final Uri uri)
 			{
 				Log.d(WebFragment.TAG, "Uri " + uri);
 				try
@@ -364,7 +366,7 @@ public class WebFragment extends Fragment
 					startActivity(targetIntent);
 					return true;
 				}
-				catch (final Exception e)
+				catch (@NonNull final Exception e)
 				{
 					Log.e(WebFragment.TAG, "Error while loading Uri: " + uri, e);
 				}
@@ -406,6 +408,7 @@ public class WebFragment extends Fragment
 		// load the contents
 		getLoaderManager().restartLoader(++Module.loaderId, null, new LoaderCallbacks<String>()
 		{
+			@Nullable
 			@Override
 			public Loader<String> onCreateLoader(final int loaderId, final Bundle loaderArgs)
 			{
@@ -444,9 +447,9 @@ public class WebFragment extends Fragment
 	static private String docsToString(@SuppressWarnings("UnusedParameters") final String word,  //
 			final boolean xml,  //
 			final boolean isSelector,  //
-			final Document wnDomDoc,  //
-			final Document vnDomDoc,  //
-			final Document pbDomDoc)
+			@Nullable final Document wnDomDoc,  //
+			@Nullable final Document vnDomDoc,  //
+			@Nullable final Document pbDomDoc)
 	{
 		// LogUtils.writeLog(DomTransformer.docToXml(wnDomDoc), false, "wn_sqlunet.log");
 		// LogUtils.writeLog(DomTransformer.docToXml(vnDomDoc), false, "vn_sqlunet.log");

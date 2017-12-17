@@ -3,6 +3,7 @@ package org.sqlunet.predicatematrix.settings;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
+import android.support.annotation.NonNull;
 
 /**
  * Settings
@@ -35,7 +36,7 @@ public class Settings
 			{
 				mode = Settings.PMMode.valueOf(mode_string);
 			}
-			catch (final Exception e)
+			catch (@NonNull final Exception e)
 			{
 				mode = Settings.PMMode.ROLES;
 				sharedPref.edit().putString(Settings.PREF_PM_MODE, mode.name()).apply();

@@ -1,6 +1,7 @@
 package org.sqlunet;
 
 import android.os.Parcel;
+import android.support.annotation.NonNull;
 
 /**
  * Parcelable id pointer
@@ -20,7 +21,7 @@ public class Pointer implements IPointer
 	static public final Creator<Pointer> CREATOR = new Creator<Pointer>()
 	{
 		@Override
-		public Pointer createFromParcel(Parcel in)
+		public Pointer createFromParcel(@NonNull Parcel in)
 		{
 			return new Pointer(in);
 		}
@@ -45,7 +46,7 @@ public class Pointer implements IPointer
 	/**
 	 * Constructor from parcel, reads back fields IN THE ORDER they were written
 	 */
-	protected Pointer(final Parcel parcel)
+	protected Pointer(@NonNull final Parcel parcel)
 	{
 		this.id = parcel.readLong();
 	}
@@ -61,7 +62,7 @@ public class Pointer implements IPointer
 	}
 
 	@Override
-	public void writeToParcel(final Parcel parcel, final int flags)
+	public void writeToParcel(@NonNull final Parcel parcel, final int flags)
 	{
 		parcel.writeLong(this.id);
 	}

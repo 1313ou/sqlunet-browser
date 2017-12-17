@@ -103,6 +103,7 @@ public abstract class AppCompatPreferenceActivity extends PreferenceActivity
 		}
 	}
 
+	@Nullable
 	public ActionBar getSupportActionBar()
 	{
 		return getDelegate().getSupportActionBar();

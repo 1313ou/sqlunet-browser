@@ -3,6 +3,7 @@ package org.sqlunet.browser;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.support.annotation.NonNull;
 import android.text.SpannableStringBuilder;
 import android.widget.TextView;
 
@@ -17,7 +18,7 @@ import org.sqlunet.xnet.R;
 
 public class Info
 {
-	static public void build(final SpannableStringBuilder sb, final CharSequence... lines)
+	static public void build(@NonNull final SpannableStringBuilder sb, @NonNull final CharSequence... lines)
 	{
 		int i = 0;
 		for (CharSequence line : lines)

@@ -1,6 +1,7 @@
 package org.sqlunet.view;
 
 import android.content.Context;
+import android.support.annotation.NonNull;
 
 import org.sqlunet.treeview.control.LeafController;
 import org.sqlunet.treeview.control.Link;
@@ -173,7 +174,7 @@ public class TreeFactory
 	 * @param context context
 	 */
 	@SuppressWarnings("UnusedReturnValue")
-	static public TreeNode addTextNode(final TreeNode parent, final CharSequence value, final Context context)
+	static public TreeNode addTextNode(@NonNull final TreeNode parent, final CharSequence value, final Context context)
 	{
 		final TreeNode result = TreeFactory.newTextNode(value, context);
 		parent.addChild(result);
@@ -189,7 +190,7 @@ public class TreeFactory
 	 * @param context context
 	 */
 	@SuppressWarnings({"unused", "UnusedReturnValue"})
-	static public TreeNode addLeafNode(final TreeNode parent, final CharSequence value, final int icon, final Context context)
+	static public TreeNode addLeafNode(@NonNull final TreeNode parent, final CharSequence value, final int icon, final Context context)
 	{
 		final TreeNode result = TreeFactory.newLeafNode(value, icon, context);
 		parent.addChild(result);
@@ -204,7 +205,7 @@ public class TreeFactory
 	 * @param icon    icon resource id
 	 * @param context context
 	 */
-	static public TreeNode addTreeNode(final TreeNode parent, final CharSequence value, final int icon, final Context context)
+	static public TreeNode addTreeNode(@NonNull final TreeNode parent, final CharSequence value, final int icon, final Context context)
 	{
 		final TreeNode result = TreeFactory.newTreeNode(value, icon, context);
 		parent.addChild(result);

@@ -1,6 +1,8 @@
 package org.sqlunet.browser.config;
 
 import android.os.AsyncTask;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.util.Log;
 
 import java.io.BufferedReader;
@@ -28,6 +30,7 @@ class MD5Downloader extends AsyncTask<String, Void, String>
 	/**
 	 * Exception while executing
 	 */
+	@Nullable
 	private Exception exception;
 
 	/**
@@ -41,6 +44,7 @@ class MD5Downloader extends AsyncTask<String, Void, String>
 		this.exception = null;
 	}
 
+	@Nullable
 	@Override
 	protected String doInBackground(final String... params)
 	{
@@ -97,12 +101,12 @@ class MD5Downloader extends AsyncTask<String, Void, String>
 			}
 			return null;
 		}
-		catch (final InterruptedException e)
+		catch (@NonNull final InterruptedException e)
 		{
 			this.exception = e;
 			Log.d(TAG, e.toString());
 		}
-		catch (final Exception e)
+		catch (@NonNull final Exception e)
 		{
 			this.exception = e;
 			Log.e(TAG, "While downloading", e);
@@ -115,7 +119,7 @@ class MD5Downloader extends AsyncTask<String, Void, String>
 				{
 					reader.close();
 				}
-				catch (final IOException e)
+				catch (@NonNull final IOException e)
 				{
 					this.exception = e;
 					Log.e(TAG, "While closing reader", e);
@@ -127,7 +131,7 @@ class MD5Downloader extends AsyncTask<String, Void, String>
 				{
 					input.close();
 				}
-				catch (final IOException e)
+				catch (@NonNull final IOException e)
 				{
 					this.exception = e;
 					Log.e(TAG, "While closing input", e);
@@ -156,6 +160,7 @@ class MD5Downloader extends AsyncTask<String, Void, String>
 	 *
 	 * @return exception
 	 */
+	@Nullable
 	@SuppressWarnings("unused")
 	synchronized public Exception getException()
 	{

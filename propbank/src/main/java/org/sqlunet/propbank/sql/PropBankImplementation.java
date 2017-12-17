@@ -1,6 +1,7 @@
 package org.sqlunet.propbank.sql;
 
 import android.database.sqlite.SQLiteDatabase;
+import android.support.annotation.NonNull;
 
 import org.sqlunet.dom.DomFactory;
 import org.sqlunet.dom.DomTransformer;
@@ -28,7 +29,7 @@ public class PropBankImplementation implements PropBankInterface
 	 * @param parent     org.w3c.dom.Node the walk will attach results to
 	 * @param targetWord target word
 	 */
-	static private void walkSelector(final SQLiteDatabase connection, final Document doc, final Node parent, final String targetWord)
+	static private void walkSelector(final SQLiteDatabase connection, @NonNull final Document doc, final Node parent, final String targetWord)
 	{
 		final List<PbRoleSet> roleSets = PbRoleSet.makeFromWord(connection, targetWord);
 		if (roleSets == null)
@@ -51,7 +52,7 @@ public class PropBankImplementation implements PropBankInterface
 	 * @param parent     org.w3c.dom.Node the walk will attach results to
 	 * @param targetWord target word
 	 */
-	static private void walk(final SQLiteDatabase connection, final Document doc, final Node parent, final String targetWord)
+	static private void walk(final SQLiteDatabase connection, @NonNull final Document doc, final Node parent, final String targetWord)
 	{
 		final List<PbRoleSet> roleSets = PbRoleSet.makeFromWord(connection, targetWord);
 		if (roleSets == null)
@@ -81,7 +82,7 @@ public class PropBankImplementation implements PropBankInterface
 	 * @param parent       org.w3c.dom.Node the walk will attach results to
 	 * @param targetWordId target word id
 	 */
-	static private void walk(final SQLiteDatabase connection, final Document doc, final Node parent, final long targetWordId)
+	static private void walk(final SQLiteDatabase connection, @NonNull final Document doc, final Node parent, final long targetWordId)
 	{
 		// role sets
 		final List<PbRoleSet> roleSets = PbRoleSet.makeFromWordId(connection, targetWordId);
@@ -96,7 +97,7 @@ public class PropBankImplementation implements PropBankInterface
 	 * @param parent     org.w3c.dom.Node the walk will attach results to
 	 * @param roleSetId  role set id
 	 */
-	static private void walkRoleSet(final SQLiteDatabase connection, final Document doc, final Node parent, final long roleSetId)
+	static private void walkRoleSet(final SQLiteDatabase connection, @NonNull final Document doc, final Node parent, final long roleSetId)
 	{
 		// role sets
 		final List<PbRoleSet> roleSets = PbRoleSet.make(connection, roleSetId);
@@ -111,7 +112,7 @@ public class PropBankImplementation implements PropBankInterface
 	 * @param parent     org.w3c.dom.Node the walk will attach results to
 	 * @param roleSets   role sets
 	 */
-	static private void walk(final SQLiteDatabase connection, final Document doc, final Node parent, final Iterable<PbRoleSet> roleSets)
+	static private void walk(final SQLiteDatabase connection, @NonNull final Document doc, final Node parent, @NonNull final Iterable<PbRoleSet> roleSets)
 	{
 		// role sets
 		int i = 1;
@@ -142,7 +143,7 @@ public class PropBankImplementation implements PropBankInterface
 	 * @param parent   org.w3c.dom.Node the walk will attach results to
 	 * @param roleSets role sets
 	 */
-	static private void makeSelector(final Document doc, final Node parent, final Iterable<PbRoleSet> roleSets)
+	static private void makeSelector(@NonNull final Document doc, final Node parent, @NonNull final Iterable<PbRoleSet> roleSets)
 	{
 		// role sets
 		int i = 1;

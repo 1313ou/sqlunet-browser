@@ -92,6 +92,7 @@ abstract public class BaseSearchFragment extends NavigableFragment implements Se
 		super.onCreate(savedInstanceState);
 	}
 
+	@Nullable
 	@SuppressLint("InflateParams")
 	@Override
 	public View onCreateView(@NonNull final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState)
@@ -139,7 +140,7 @@ abstract public class BaseSearchFragment extends NavigableFragment implements Se
 	// M E N U
 
 	@Override
-	public void onCreateOptionsMenu(final Menu menu, final MenuInflater inflater)
+	public void onCreateOptionsMenu(@NonNull final Menu menu, @NonNull final MenuInflater inflater)
 	{
 		// inflate the menu; this adds items to the type bar if it is present.
 		inflater.inflate(this.menuId, menu);
@@ -154,7 +155,7 @@ abstract public class BaseSearchFragment extends NavigableFragment implements Se
 
 	@SuppressLint("InflateParams")
 	@Override
-	public boolean setActionBar(final ActionBar actionBar, final Context context)
+	public boolean setActionBar(@NonNull final ActionBar actionBar, @NonNull final Context context)
 	{
 		Log.d(BaseSearchFragment.TAG, "set up specific action bar " + this);
 
@@ -189,7 +190,7 @@ abstract public class BaseSearchFragment extends NavigableFragment implements Se
 	}
 
 	@SuppressWarnings("UnusedReturnValue")
-	public boolean setActionBarUpDisabled(final ActionBar actionBar, final Context context)
+	public boolean setActionBarUpDisabled(@NonNull final ActionBar actionBar, @NonNull final Context context)
 	{
 		boolean result = setActionBar(actionBar, context);
 		actionBar.setDisplayHomeAsUpEnabled(false);
@@ -202,7 +203,7 @@ abstract public class BaseSearchFragment extends NavigableFragment implements Se
 	 * Set up spinner
 	 */
 	@SuppressWarnings("WeakerAccess")
-	protected void setupSpinner(final Context context)
+	protected void setupSpinner(@NonNull final Context context)
 	{
 		// resources
 		final Resources resources = context.getResources();
@@ -275,7 +276,7 @@ abstract public class BaseSearchFragment extends NavigableFragment implements Se
 	 *
 	 * @param menu menu
 	 */
-	private void setupSearch(final Menu menu)
+	private void setupSearch(@NonNull final Menu menu)
 	{
 		// menu item
 		final MenuItem searchMenuItem = menu.findItem(R.id.search);

@@ -5,6 +5,7 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v4.app.ListFragment;
 import android.support.v4.app.LoaderManager.LoaderCallbacks;
 import android.support.v4.content.CursorLoader;
@@ -73,6 +74,7 @@ public class SelectorsFragment extends ListFragment
 	/**
 	 * Search query
 	 */
+	@Nullable
 	private String word;
 
 	/**
@@ -142,7 +144,7 @@ public class SelectorsFragment extends ListFragment
 		adapter.setViewBinder(new ViewBinder()
 		{
 			@Override
-			public boolean setViewValue(final View view, final Cursor cursor, final int columnIndex)
+			public boolean setViewValue(final View view, @NonNull final Cursor cursor, final int columnIndex)
 			{
 				String text = cursor.getString(columnIndex);
 				if (text == null)
@@ -160,7 +162,7 @@ public class SelectorsFragment extends ListFragment
 					{
 						((ImageView) view).setImageResource(Integer.parseInt(text));
 					}
-					catch (final NumberFormatException nfe)
+					catch (@NonNull final NumberFormatException nfe)
 					{
 						((ImageView) view).setImageURI(Uri.parse(text));
 					}
@@ -184,7 +186,7 @@ public class SelectorsFragment extends ListFragment
 	}
 
 	@Override
-	public void onViewCreated(@NonNull final View view, final Bundle savedInstanceState)
+	public void onViewCreated(@NonNull final View view, @Nullable final Bundle savedInstanceState)
 	{
 		super.onViewCreated(view, savedInstanceState);
 
@@ -250,6 +252,7 @@ public class SelectorsFragment extends ListFragment
 		// load the contents
 		getLoaderManager().restartLoader(++Module.loaderId, null, new LoaderCallbacks<Cursor>()
 		{
+			@NonNull
 			@Override
 			public Loader<Cursor> onCreateLoader(final int loaderId, final Bundle loaderArgs)
 			{
@@ -278,7 +281,7 @@ public class SelectorsFragment extends ListFragment
 			}
 
 			@Override
-			public void onLoadFinished(final Loader<Cursor> loader, final Cursor cursor)
+			public void onLoadFinished(final Loader<Cursor> loader, @NonNull final Cursor cursor)
 			{
 				// store source progressMessage
 				if (cursor.moveToFirst())

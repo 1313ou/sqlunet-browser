@@ -1,5 +1,7 @@
 package org.sqlunet.framenet.loaders;
 
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.os.Parcelable;
 
@@ -18,11 +20,13 @@ public class LexUnitFromWordModule extends LexUnitModule
 	/**
 	 * Word id
 	 */
+	@Nullable
 	private Long wordId;
 
 	/**
 	 * Pos
 	 */
+	@Nullable
 	private Character pos;
 
 	/**
@@ -30,7 +34,7 @@ public class LexUnitFromWordModule extends LexUnitModule
 	 *
 	 * @param fragment  containing fragment
 	 */
-	public LexUnitFromWordModule(final Fragment fragment)
+	public LexUnitFromWordModule(@NonNull final Fragment fragment)
 	{
 		super(fragment);
 	}
@@ -55,7 +59,7 @@ public class LexUnitFromWordModule extends LexUnitModule
 	}
 
 	@Override
-	public void process(final TreeNode node)
+	public void process(@NonNull final TreeNode node)
 	{
 		if (this.wordId != null && this.pos != null)
 		{

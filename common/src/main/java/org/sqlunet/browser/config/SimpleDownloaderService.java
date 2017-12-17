@@ -4,6 +4,8 @@ import android.app.IntentService;
 import android.content.Context;
 import android.content.Intent;
 import android.os.PowerManager;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
 
@@ -95,6 +97,7 @@ public class SimpleDownloaderService extends IntentService
 	/**
 	 * Exception while executing
 	 */
+	@Nullable
 	private Exception exception;
 
 	/**
@@ -110,7 +113,7 @@ public class SimpleDownloaderService extends IntentService
 	// M A I N   E N T R Y
 
 	@Override
-	protected void onHandleIntent(final Intent intent)
+	protected void onHandleIntent(@Nullable final Intent intent)
 	{
 		if (intent != null)
 		{
@@ -142,7 +145,7 @@ public class SimpleDownloaderService extends IntentService
 					Log.d(TAG, "Completed successfully");
 					broadcast(MAIN_INTENT_FILTER, EVENT, EVENT_FINISH, EVENT_FINISH_ID, id, EVENT_FINISH_RESULT, true);
 				}
-				catch (final InterruptedException ie)
+				catch (@NonNull final InterruptedException ie)
 				{
 					this.exception = ie;
 
@@ -157,13 +160,13 @@ public class SimpleDownloaderService extends IntentService
 					Log.d(TAG, "Interrupted while downloading, " + ie.getMessage());
 					broadcast(MAIN_INTENT_FILTER, EVENT, EVENT_FINISH, EVENT_FINISH_ID, id, EVENT_FINISH_RESULT, false, EVENT_FINISH_EXCEPTION, exception.getMessage());
 				}
-				catch (final SocketTimeoutException ste)
+				catch (@NonNull final SocketTimeoutException ste)
 				{
 					this.exception = ste;
 					Log.d(TAG, "Timeout while downloading, " + ste.getMessage());
 					broadcast(MAIN_INTENT_FILTER, EVENT, EVENT_FINISH, EVENT_FINISH_ID, id, EVENT_FINISH_RESULT, false, EVENT_FINISH_EXCEPTION, exception.getMessage());
 				}
-				catch (final Exception e)
+				catch (@NonNull final Exception e)
 				{
 					this.exception = e;
 					Log.e(TAG, "Exception while downloading, " + e.getMessage());
@@ -277,7 +280,7 @@ public class SimpleDownloaderService extends IntentService
 				{
 					output.close();
 				}
-				catch (final IOException e)
+				catch (@NonNull final IOException e)
 				{
 					Log.e(TAG, "While closing output", e);
 				}
@@ -288,7 +291,7 @@ public class SimpleDownloaderService extends IntentService
 				{
 					input.close();
 				}
-				catch (final IOException e)
+				catch (@NonNull final IOException e)
 				{
 					this.exception = e;
 					Log.e(TAG, "While closing input", e);
@@ -332,7 +335,7 @@ public class SimpleDownloaderService extends IntentService
 	 * @param intentFilter intent filter
 	 * @param args         arguments
 	 */
-	private void broadcast(final String intentFilter, final Object... args)
+	private void broadcast(final String intentFilter, @NonNull final Object... args)
 	{
 		final Intent broadcastIntent = new Intent(intentFilter);
 		for (int i = 0; i < args.length; i = i + 2)

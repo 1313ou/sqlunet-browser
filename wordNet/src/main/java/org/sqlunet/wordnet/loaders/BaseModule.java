@@ -7,6 +7,8 @@ import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Parcelable;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.LoaderManager.LoaderCallbacks;
 import android.support.v4.content.CursorLoader;
@@ -90,7 +92,7 @@ abstract public class BaseModule extends Module
 	 *
 	 * @param fragment fragment
 	 */
-	BaseModule(final Fragment fragment)
+	BaseModule(@NonNull final Fragment fragment)
 	{
 		super(fragment);
 
@@ -140,11 +142,12 @@ abstract public class BaseModule extends Module
 	 * @param addNewNode whether to addItem to (or set) node
 	 */
 	@SuppressWarnings("WeakerAccess")
-	protected void word(final long wordId, final TreeNode parent, @SuppressWarnings("SameParameterValue") final boolean addNewNode)
+	protected void word(final long wordId, @NonNull final TreeNode parent, @SuppressWarnings("SameParameterValue") final boolean addNewNode)
 	{
 		// load the contents
 		getLoaderManager().restartLoader(++Module.loaderId, null, new LoaderCallbacks<Cursor>()
 		{
+			@Nullable
 			@Override
 			public Loader<Cursor> onCreateLoader(final int loaderId, final Bundle loaderArgs)
 			{
@@ -160,7 +163,7 @@ abstract public class BaseModule extends Module
 			}
 
 			@Override
-			public void onLoadFinished(final Loader<Cursor> loader, final Cursor cursor)
+			public void onLoadFinished(final Loader<Cursor> loader, @NonNull final Cursor cursor)
 			{
 				if (cursor.getCount() > 1)
 				{
@@ -224,11 +227,12 @@ abstract public class BaseModule extends Module
 	 * @param parent tree parent node
 	 */
 	@SuppressWarnings("unused")
-	protected void senses(final String word, final TreeNode parent)
+	protected void senses(final String word, @NonNull final TreeNode parent)
 	{
 		// load the contents
 		getLoaderManager().restartLoader(++Module.loaderId, null, new LoaderCallbacks<Cursor>()
 		{
+			@Nullable
 			@Override
 			public Loader<Cursor> onCreateLoader(final int loaderId, final Bundle loaderArgs)
 			{
@@ -253,7 +257,7 @@ abstract public class BaseModule extends Module
 			}
 
 			@Override
-			public void onLoadFinished(final Loader<Cursor> loader, final Cursor cursor)
+			public void onLoadFinished(final Loader<Cursor> loader, @NonNull final Cursor cursor)
 			{
 				// store source result
 				if (cursor.moveToFirst())
@@ -293,11 +297,12 @@ abstract public class BaseModule extends Module
 	 * @param parent tree parent node
 	 */
 	@SuppressWarnings("WeakerAccess")
-	protected void senses(final long wordId, final TreeNode parent)
+	protected void senses(final long wordId, @NonNull final TreeNode parent)
 	{
 		// load the contents
 		getLoaderManager().restartLoader(++Module.loaderId, null, new LoaderCallbacks<Cursor>()
 		{
+			@Nullable
 			@Override
 			public Loader<Cursor> onCreateLoader(final int loaderId, final Bundle loaderArgs)
 			{
@@ -322,7 +327,7 @@ abstract public class BaseModule extends Module
 			}
 
 			@Override
-			public void onLoadFinished(final Loader<Cursor> loader, final Cursor cursor)
+			public void onLoadFinished(final Loader<Cursor> loader, @NonNull final Cursor cursor)
 			{
 				// store source result
 				if (cursor.moveToFirst())
@@ -368,7 +373,7 @@ abstract public class BaseModule extends Module
 	 * @param idCased      column id of cased word
 	 * @param parent       tree parent node
 	 */
-	private void senses(final Cursor cursor, final int idWordId, final int idSynsetId, final int idPosName, final int idLexDomain, final int idDefinition, final int idTagCount, final int idCased, final TreeNode parent)
+	private void senses(@NonNull final Cursor cursor, final int idWordId, final int idSynsetId, final int idPosName, final int idLexDomain, final int idDefinition, final int idTagCount, final int idCased, @NonNull final TreeNode parent)
 	{
 		do
 		{
@@ -397,10 +402,11 @@ abstract public class BaseModule extends Module
 	 * @param parent  parent node
 	 */
 	@SuppressWarnings("unused")
-	public void sense(final long senseId, final TreeNode parent)
+	public void sense(final long senseId, @NonNull final TreeNode parent)
 	{
 		getLoaderManager().restartLoader(++Module.loaderId, null, new LoaderCallbacks<Cursor>()
 		{
+			@Nullable
 			@Override
 			public Loader<Cursor> onCreateLoader(final int loaderId, final Bundle loaderArgs)
 			{
@@ -416,7 +422,7 @@ abstract public class BaseModule extends Module
 			}
 
 			@Override
-			public void onLoadFinished(final Loader<Cursor> loader, final Cursor cursor)
+			public void onLoadFinished(final Loader<Cursor> loader, @NonNull final Cursor cursor)
 			{
 				if (cursor.getCount() > 1)
 				{
@@ -454,10 +460,11 @@ abstract public class BaseModule extends Module
 	 * @param parent   parent node
 	 */
 	@SuppressWarnings("WeakerAccess")
-	public void sense(final String senseKey, final TreeNode parent)
+	public void sense(final String senseKey, @NonNull final TreeNode parent)
 	{
 		getLoaderManager().restartLoader(++Module.loaderId, null, new LoaderCallbacks<Cursor>()
 		{
+			@Nullable
 			@Override
 			public Loader<Cursor> onCreateLoader(final int loaderId, final Bundle loaderArgs)
 			{
@@ -473,7 +480,7 @@ abstract public class BaseModule extends Module
 			}
 
 			@Override
-			public void onLoadFinished(final Loader<Cursor> loader, final Cursor cursor)
+			public void onLoadFinished(final Loader<Cursor> loader, @NonNull final Cursor cursor)
 			{
 				if (cursor.getCount() > 1)
 				{
@@ -519,10 +526,11 @@ abstract public class BaseModule extends Module
 	 * @param parent   parent node
 	 */
 	@SuppressWarnings("WeakerAccess")
-	public void sense(final long synsetId, final long wordId, final TreeNode parent)
+	public void sense(final long synsetId, final long wordId, @NonNull final TreeNode parent)
 	{
 		getLoaderManager().restartLoader(++Module.loaderId, null, new LoaderCallbacks<Cursor>()
 		{
+			@Nullable
 			@Override
 			public Loader<Cursor> onCreateLoader(final int loaderId, final Bundle loaderArgs)
 			{
@@ -539,7 +547,7 @@ abstract public class BaseModule extends Module
 			}
 
 			@Override
-			public void onLoadFinished(final Loader<Cursor> loader, final Cursor cursor)
+			public void onLoadFinished(final Loader<Cursor> loader, @NonNull final Cursor cursor)
 			{
 				if (cursor.getCount() > 1)
 				{
@@ -596,10 +604,11 @@ abstract public class BaseModule extends Module
 	 * @param parent     parent node
 	 * @param addNewNode whether to addItem to (or set) node
 	 */
-	void synset(final long synsetId, final TreeNode parent, @SuppressWarnings("SameParameterValue") final boolean addNewNode)
+	void synset(final long synsetId, @NonNull final TreeNode parent, @SuppressWarnings("SameParameterValue") final boolean addNewNode)
 	{
 		getLoaderManager().restartLoader(++Module.loaderId, null, new LoaderCallbacks<Cursor>()
 		{
+			@Nullable
 			@Override
 			public Loader<Cursor> onCreateLoader(final int loaderId, final Bundle loaderArgs)
 			{
@@ -616,7 +625,7 @@ abstract public class BaseModule extends Module
 			}
 
 			@Override
-			public void onLoadFinished(final Loader<Cursor> loader, final Cursor cursor)
+			public void onLoadFinished(final Loader<Cursor> loader, @NonNull final Cursor cursor)
 			{
 				if (cursor.getCount() > 1)
 				{
@@ -675,8 +684,9 @@ abstract public class BaseModule extends Module
 	 * @param cased      cased
 	 * @return string builder
 	 */
+	@NonNull
 	@SuppressWarnings("UnusedReturnValue")
-	private SpannableStringBuilder sense(final SpannableStringBuilder sb, final long synsetId, final CharSequence posName, final CharSequence lexDomain, final CharSequence definition, final int tagCount, final CharSequence cased)
+	private SpannableStringBuilder sense(@NonNull final SpannableStringBuilder sb, final long synsetId, final CharSequence posName, final CharSequence lexDomain, final CharSequence definition, final int tagCount, @Nullable final CharSequence cased)
 	{
 		synset_head(sb, synsetId, posName, lexDomain);
 
@@ -709,8 +719,9 @@ abstract public class BaseModule extends Module
 	 * @param definition definition
 	 * @return string builder
 	 */
+	@NonNull
 	@SuppressWarnings("UnusedReturnValue")
-	private SpannableStringBuilder synset(final SpannableStringBuilder sb, final long synsetId, final CharSequence posName, final CharSequence lexDomain, final CharSequence definition)
+	private SpannableStringBuilder synset(@NonNull final SpannableStringBuilder sb, final long synsetId, final CharSequence posName, final CharSequence lexDomain, final CharSequence definition)
 	{
 		synset_head(sb, synsetId, posName, lexDomain);
 		sb.append('\n');
@@ -727,8 +738,9 @@ abstract public class BaseModule extends Module
 	 * @param lexDomain lex domain
 	 * @return string builder
 	 */
+	@NonNull
 	@SuppressWarnings("UnusedReturnValue")
-	private SpannableStringBuilder synset_head(final SpannableStringBuilder sb, final long synsetId, final CharSequence posName, final CharSequence lexDomain)
+	private SpannableStringBuilder synset_head(@NonNull final SpannableStringBuilder sb, final long synsetId, final CharSequence posName, final CharSequence lexDomain)
 	{
 		Spanner.appendImage(sb, BaseModule.this.posDrawable);
 		sb.append(' ');
@@ -749,8 +761,9 @@ abstract public class BaseModule extends Module
 	 * @param definition definition
 	 * @return string builder
 	 */
+	@NonNull
 	@SuppressWarnings("UnusedReturnValue")
-	private SpannableStringBuilder synset_definition(final SpannableStringBuilder sb, final CharSequence definition)
+	private SpannableStringBuilder synset_definition(@NonNull final SpannableStringBuilder sb, final CharSequence definition)
 	{
 		Spanner.appendImage(sb, BaseModule.this.definitionDrawable);
 		sb.append(' ');
@@ -766,10 +779,11 @@ abstract public class BaseModule extends Module
 	 * @param addNewNode whether to addItem to (or set) node
 	 */
 	@SuppressWarnings("unused")
-	void members(final long synsetId, final TreeNode parent, final boolean addNewNode)
+	void members(final long synsetId, @NonNull final TreeNode parent, final boolean addNewNode)
 	{
 		getLoaderManager().restartLoader(++Module.loaderId, null, new LoaderCallbacks<Cursor>()
 		{
+			@Nullable
 			@Override
 			public Loader<Cursor> onCreateLoader(final int loaderId, final Bundle loaderArgs)
 			{
@@ -783,7 +797,7 @@ abstract public class BaseModule extends Module
 			}
 
 			@Override
-			public void onLoadFinished(final Loader<Cursor> loader, final Cursor cursor)
+			public void onLoadFinished(final Loader<Cursor> loader, @NonNull final Cursor cursor)
 			{
 				if (BaseModule.this.membersGrouped)
 				{
@@ -857,10 +871,11 @@ abstract public class BaseModule extends Module
 	 * @param synsetId synset
 	 * @param parent   parent node
 	 */
-	void members(final long synsetId, final TreeNode parent)
+	void members(final long synsetId, @NonNull final TreeNode parent)
 	{
 		getLoaderManager().restartLoader(++Module.loaderId, null, new LoaderCallbacks<Cursor>()
 		{
+			@Nullable
 			@Override
 			public Loader<Cursor> onCreateLoader(final int loaderId, final Bundle loaderArgs)
 			{
@@ -873,7 +888,7 @@ abstract public class BaseModule extends Module
 			}
 
 			@Override
-			public void onLoadFinished(final Loader<Cursor> loader, final Cursor cursor)
+			public void onLoadFinished(final Loader<Cursor> loader, @NonNull final Cursor cursor)
 			{
 				if (BaseModule.this.membersGrouped)
 				{
@@ -933,10 +948,11 @@ abstract public class BaseModule extends Module
 	 * @param addNewNode whether to addItem to (or set) node
 	 */
 	@SuppressWarnings("WeakerAccess")
-	void samples(final long synsetId, final TreeNode parent, @SuppressWarnings("SameParameterValue") final boolean addNewNode)
+	void samples(final long synsetId, @NonNull final TreeNode parent, @SuppressWarnings("SameParameterValue") final boolean addNewNode)
 	{
 		getLoaderManager().restartLoader(++Module.loaderId, null, new LoaderCallbacks<Cursor>()
 		{
+			@Nullable
 			@Override
 			public Loader<Cursor> onCreateLoader(final int loaderId, final Bundle loaderArgs)
 			{
@@ -952,7 +968,7 @@ abstract public class BaseModule extends Module
 			}
 
 			@Override
-			public void onLoadFinished(final Loader<Cursor> loader, final Cursor cursor)
+			public void onLoadFinished(final Loader<Cursor> loader, @NonNull final Cursor cursor)
 			{
 				if (cursor.moveToFirst())
 				{
@@ -1021,6 +1037,7 @@ abstract public class BaseModule extends Module
 	{
 		getLoaderManager().restartLoader(++Module.loaderId, null, new LoaderCallbacks<Cursor>()
 		{
+			@Nullable
 			@Override
 			public Loader<Cursor> onCreateLoader(final int loaderId, final Bundle loaderArgs)
 			{
@@ -1039,7 +1056,7 @@ abstract public class BaseModule extends Module
 			}
 
 			@Override
-			public void onLoadFinished(final Loader<Cursor> loader, final Cursor cursor)
+			public void onLoadFinished(final Loader<Cursor> loader, @NonNull final Cursor cursor)
 			{
 				// noinspection StatementWithEmptyBody
 				if (cursor.moveToFirst())
@@ -1114,6 +1131,7 @@ abstract public class BaseModule extends Module
 	{
 		getLoaderManager().restartLoader(++Module.loaderId, null, new LoaderCallbacks<Cursor>()
 		{
+			@Nullable
 			@Override
 			public Loader<Cursor> onCreateLoader(final int loaderId, final Bundle loaderArgs)
 			{
@@ -1132,7 +1150,7 @@ abstract public class BaseModule extends Module
 			}
 
 			@Override
-			public void onLoadFinished(final Loader<Cursor> loader, final Cursor cursor)
+			public void onLoadFinished(final Loader<Cursor> loader, @NonNull final Cursor cursor)
 			{
 				if (cursor.moveToFirst())
 				{
@@ -1210,10 +1228,11 @@ abstract public class BaseModule extends Module
 	 * @param parent   parent
 	 */
 	@SuppressWarnings("unused")
-	void lexLinks(final long synsetId, final TreeNode parent)
+	void lexLinks(final long synsetId, @NonNull final TreeNode parent)
 	{
 		getLoaderManager().restartLoader(++Module.loaderId, null, new LoaderCallbacks<Cursor>()
 		{
+			@Nullable
 			@Override
 			public Loader<Cursor> onCreateLoader(final int loaderId, final Bundle loaderArgs)
 			{
@@ -1232,7 +1251,7 @@ abstract public class BaseModule extends Module
 			}
 
 			@Override
-			public void onLoadFinished(final Loader<Cursor> loader, final Cursor cursor)
+			public void onLoadFinished(final Loader<Cursor> loader, @NonNull final Cursor cursor)
 			{
 				// noinspection StatementWithEmptyBody
 				if (cursor.moveToFirst())
@@ -1314,10 +1333,11 @@ abstract public class BaseModule extends Module
 	 * @param wordId   word id
 	 * @param parent   parent node
 	 */
-	private void lexLinks(final long synsetId, final long wordId, final TreeNode parent)
+	private void lexLinks(final long synsetId, final long wordId, @NonNull final TreeNode parent)
 	{
 		getLoaderManager().restartLoader(++Module.loaderId, null, new LoaderCallbacks<Cursor>()
 		{
+			@Nullable
 			@Override
 			public Loader<Cursor> onCreateLoader(final int loaderId, final Bundle loaderArgs)
 			{
@@ -1335,7 +1355,7 @@ abstract public class BaseModule extends Module
 			}
 
 			@Override
-			public void onLoadFinished(final Loader<Cursor> loader, final Cursor cursor)
+			public void onLoadFinished(final Loader<Cursor> loader, @NonNull final Cursor cursor)
 			{
 				//noinspection StatementWithEmptyBody
 				if (cursor.moveToFirst())
@@ -1411,11 +1431,12 @@ abstract public class BaseModule extends Module
 	 * @param synsetId synset id
 	 * @param parent   parent node
 	 */
-	void vFrames(final long synsetId, final TreeNode parent)
+	void vFrames(final long synsetId, @NonNull final TreeNode parent)
 	{
 		getLoaderManager().restartLoader(++Module.loaderId, null, new LoaderCallbacks<Cursor>()
 		{
 
+			@Nullable
 			@Override
 			public Loader<Cursor> onCreateLoader(final int loaderId, final Bundle loaderArgs)
 			{
@@ -1428,7 +1449,7 @@ abstract public class BaseModule extends Module
 			}
 
 			@Override
-			public void onLoadFinished(final Loader<Cursor> loader, final Cursor cursor)
+			public void onLoadFinished(final Loader<Cursor> loader, @NonNull final Cursor cursor)
 			{
 				//noinspection StatementWithEmptyBody
 				if (cursor.moveToFirst())
@@ -1481,11 +1502,12 @@ abstract public class BaseModule extends Module
 	 * @param wordId   word id
 	 * @param parent   parent node
 	 */
-	void vFrames(final long synsetId, final long wordId, final TreeNode parent)
+	void vFrames(final long synsetId, final long wordId, @NonNull final TreeNode parent)
 	{
 		getLoaderManager().restartLoader(++Module.loaderId, null, new LoaderCallbacks<Cursor>()
 		{
 
+			@Nullable
 			@Override
 			public Loader<Cursor> onCreateLoader(final int loaderId, final Bundle loaderArgs)
 			{
@@ -1498,7 +1520,7 @@ abstract public class BaseModule extends Module
 			}
 
 			@Override
-			public void onLoadFinished(final Loader<Cursor> loader, final Cursor cursor)
+			public void onLoadFinished(final Loader<Cursor> loader, @NonNull final Cursor cursor)
 			{
 				//noinspection StatementWithEmptyBody
 				if (cursor.moveToFirst())
@@ -1550,11 +1572,12 @@ abstract public class BaseModule extends Module
 	 * @param synsetId synset id
 	 * @param parent   parent node
 	 */
-	void vFrameSentences(final long synsetId, final TreeNode parent)
+	void vFrameSentences(final long synsetId, @NonNull final TreeNode parent)
 	{
 		getLoaderManager().restartLoader(++Module.loaderId, null, new LoaderCallbacks<Cursor>()
 		{
 
+			@Nullable
 			@Override
 			public Loader<Cursor> onCreateLoader(final int loaderId, final Bundle loaderArgs)
 			{
@@ -1567,7 +1590,7 @@ abstract public class BaseModule extends Module
 			}
 
 			@Override
-			public void onLoadFinished(final Loader<Cursor> loader, final Cursor cursor)
+			public void onLoadFinished(final Loader<Cursor> loader, @NonNull final Cursor cursor)
 			{
 				//noinspection StatementWithEmptyBody
 				if (cursor.moveToFirst())
@@ -1620,12 +1643,13 @@ abstract public class BaseModule extends Module
 	 * @param wordId   word id
 	 * @param parent   parent node
 	 */
-	void vFrameSentences(final long synsetId, final long wordId, final TreeNode parent)
+	void vFrameSentences(final long synsetId, final long wordId, @NonNull final TreeNode parent)
 	{
 		final String lemma = "---";
 		getLoaderManager().restartLoader(++Module.loaderId, null, new LoaderCallbacks<Cursor>()
 		{
 
+			@Nullable
 			@Override
 			public Loader<Cursor> onCreateLoader(final int loaderId, final Bundle loaderArgs)
 			{
@@ -1638,7 +1662,7 @@ abstract public class BaseModule extends Module
 			}
 
 			@Override
-			public void onLoadFinished(final Loader<Cursor> loader, final Cursor cursor)
+			public void onLoadFinished(final Loader<Cursor> loader, @NonNull final Cursor cursor)
 			{
 				// noinspection StatementWithEmptyBody
 				if (cursor.moveToFirst())
@@ -1690,11 +1714,12 @@ abstract public class BaseModule extends Module
 	 * @param synsetId synset id
 	 * @param parent   parent node
 	 */
-	void adjPosition(final long synsetId, final TreeNode parent)
+	void adjPosition(final long synsetId, @NonNull final TreeNode parent)
 	{
 		getLoaderManager().restartLoader(++Module.loaderId, null, new LoaderCallbacks<Cursor>()
 		{
 
+			@Nullable
 			@Override
 			public Loader<Cursor> onCreateLoader(final int loaderId, final Bundle loaderArgs)
 			{
@@ -1707,7 +1732,7 @@ abstract public class BaseModule extends Module
 			}
 
 			@Override
-			public void onLoadFinished(final Loader<Cursor> loader, final Cursor cursor)
+			public void onLoadFinished(final Loader<Cursor> loader, @NonNull final Cursor cursor)
 			{
 				//noinspection StatementWithEmptyBody
 				if (cursor.moveToFirst())
@@ -1760,11 +1785,12 @@ abstract public class BaseModule extends Module
 	 * @param wordId   word id
 	 * @param parent   parent node
 	 */
-	void adjPosition(final long synsetId, final long wordId, final TreeNode parent)
+	void adjPosition(final long synsetId, final long wordId, @NonNull final TreeNode parent)
 	{
 		getLoaderManager().restartLoader(++Module.loaderId, null, new LoaderCallbacks<Cursor>()
 		{
 
+			@Nullable
 			@Override
 			public Loader<Cursor> onCreateLoader(final int loaderId, final Bundle loaderArgs)
 			{
@@ -1777,7 +1803,7 @@ abstract public class BaseModule extends Module
 			}
 
 			@Override
-			public void onLoadFinished(final Loader<Cursor> loader, final Cursor cursor)
+			public void onLoadFinished(final Loader<Cursor> loader, @NonNull final Cursor cursor)
 			{
 				//noinspection StatementWithEmptyBody
 				if (cursor.moveToFirst())
@@ -1829,10 +1855,11 @@ abstract public class BaseModule extends Module
 	 * @param wordId word id
 	 * @param parent parent node
 	 */
-	void morphs(final long wordId, final TreeNode parent)
+	void morphs(final long wordId, @NonNull final TreeNode parent)
 	{
 		getLoaderManager().restartLoader(++Module.loaderId, null, new LoaderCallbacks<Cursor>()
 		{
+			@Nullable
 			@Override
 			public Loader<Cursor> onCreateLoader(final int loaderId, final Bundle loaderArgs)
 			{
@@ -1845,7 +1872,7 @@ abstract public class BaseModule extends Module
 			}
 
 			@Override
-			public void onLoadFinished(final Loader<Cursor> loader, final Cursor cursor)
+			public void onLoadFinished(final Loader<Cursor> loader, @NonNull final Cursor cursor)
 			{
 				//noinspection StatementWithEmptyBody
 				if (cursor.moveToFirst())
@@ -1991,7 +2018,7 @@ abstract public class BaseModule extends Module
 		}
 
 		@Override
-		public void process(final TreeNode node)
+		public void process(@NonNull final TreeNode node)
 		{
 			// sem links
 			semLinks(this.id, node);
@@ -2048,7 +2075,7 @@ abstract public class BaseModule extends Module
 		}
 
 		@Override
-		public void process(final TreeNode node)
+		public void process(@NonNull final TreeNode node)
 		{
 			lexLinks(this.id, this.wordId, node);
 		}
@@ -2107,7 +2134,7 @@ abstract public class BaseModule extends Module
 		}
 
 		@Override
-		public void process(final TreeNode node)
+		public void process(@NonNull final TreeNode node)
 		{
 			// samples
 			samples(this.id, node, true);

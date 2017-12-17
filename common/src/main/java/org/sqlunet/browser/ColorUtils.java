@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
+import android.support.annotation.NonNull;
 import android.support.v4.graphics.drawable.DrawableCompat;
 import android.util.TypedValue;
 
@@ -14,7 +15,7 @@ import android.util.TypedValue;
  */
 public class ColorUtils
 {
-	static public void tint(int color, final Drawable... drawables)
+	static public void tint(int color, @NonNull final Drawable... drawables)
 	{
 		for (Drawable drawable : drawables)
 		{
@@ -26,7 +27,7 @@ public class ColorUtils
 	}
 
 	@SuppressWarnings("WeakerAccess")
-	static public void tint(final Drawable drawable, int color)
+	static public void tint(@NonNull final Drawable drawable, int color)
 	{
 		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
 		{
@@ -39,7 +40,8 @@ public class ColorUtils
 		}
 	}
 
-	static public int[] getColors(final Context context, int... colorRes)
+	@NonNull
+	static public int[] getColors(@NonNull final Context context, @NonNull int... colorRes)
 	{
 		int result[] = new int[colorRes.length];
 		for (int i = 0; i < colorRes.length; i++)
@@ -49,7 +51,7 @@ public class ColorUtils
 		return result;
 	}
 
-	static public int getColor(final Context context, int colorRes)
+	static public int getColor(@NonNull final Context context, int colorRes)
 	{
 		final Resources res = context.getResources();
 		final Resources.Theme theme = context.getTheme();
@@ -57,7 +59,7 @@ public class ColorUtils
 	}
 
 	@SuppressWarnings("WeakerAccess")
-	static public int getColor(final Resources res, final Resources.Theme theme, int colorRes)
+	static public int getColor(@NonNull final Resources res, final Resources.Theme theme, int colorRes)
 	{
 		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M)
 		{
@@ -70,7 +72,7 @@ public class ColorUtils
 		}
 	}
 
-	static public Drawable getDrawable(final Context context, int drawableRes)
+	static public Drawable getDrawable(@NonNull final Context context, int drawableRes)
 	{
 		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M)
 		{
@@ -83,7 +85,7 @@ public class ColorUtils
 		}
 	}
 
-	static public int fetchColor(final Context context, int attr)
+	static public int fetchColor(@NonNull final Context context, int attr)
 	{
 		final TypedValue typedValue = new TypedValue();
 		final Resources.Theme theme = context.getTheme();
