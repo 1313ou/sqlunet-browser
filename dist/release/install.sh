@@ -1,6 +1,6 @@
 #!/bin/bash
 
-for e in '' 'fn' 'wn'; do
+for e in '' 'fn' 'wn' 'vn'; do
 	d=$e
 	if [ ! -z "$e" ]; then
 		d=".$e"

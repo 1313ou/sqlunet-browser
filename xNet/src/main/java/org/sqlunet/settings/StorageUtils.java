@@ -352,7 +352,7 @@ public class StorageUtils
 		try
 		{
 			final File[] dirs = context.getExternalFilesDirs(null);
-			if (dirs != null && dirs.length > 0)
+			if (dirs.length > 0)
 			{
 				// preferably secondary storage
 				for (int i = 1; i < dirs.length; i++)
@@ -378,7 +378,10 @@ public class StorageUtils
 			try
 			{
 				dir = context.getExternalFilesDir(null);
-				result.add(new Directory(dir, DirType.APP_EXTERNAL_PRIMARY));
+				if (dir != null)
+				{
+					result.add(new Directory(dir, DirType.APP_EXTERNAL_PRIMARY));
+				}
 			}
 			catch (Exception e2)
 			{
@@ -386,7 +389,10 @@ public class StorageUtils
 				try
 				{
 					dir = context.getExternalFilesDir(Storage.SQLUNETDIR);
-					result.add(new Directory(dir, DirType.APP_EXTERNAL_PRIMARY));
+					if (dir != null)
+					{
+						result.add(new Directory(dir, DirType.APP_EXTERNAL_PRIMARY));
+					}
 				}
 				catch (final NoSuchFieldError e3)
 				{

@@ -164,8 +164,11 @@ public class Storage
 		String prefValue = sharedPref.getString(Storage.PREF_SQLUNET_CACHE, null);
 		if (prefValue == null || prefValue.isEmpty())
 		{
-			final File cache = context.getExternalCacheDir();
-			assert cache != null;
+			File cache = context.getExternalCacheDir();
+			if (cache == null)
+			{
+				cache = context.getCacheDir();
+			}
 			prefValue = cache.getAbsolutePath();
 
 			// record as discovered

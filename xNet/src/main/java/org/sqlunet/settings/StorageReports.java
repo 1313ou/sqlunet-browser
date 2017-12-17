@@ -45,7 +45,7 @@ public class StorageReports
 	 * Styled string
 	 *
 	 * @param context context
-	 * @param dir storage directory
+	 * @param dir     storage directory
 	 * @return styled string
 	 */
 	static private CharSequence toStyledString(final Context context, final StorageDirectory dir)
@@ -66,7 +66,7 @@ public class StorageReports
 	 * Styled fits-in string
 	 *
 	 * @param context context
-	 * @param dir storage directory
+	 * @param dir     storage directory
 	 * @return styled string
 	 */
 	@SuppressWarnings("unused")
@@ -222,7 +222,7 @@ public class StorageReports
 		File dir = context.getExternalCacheDir();
 		if (dir != null)
 		{
-			value = context.getExternalCacheDir().getAbsolutePath();
+			value = dir.getAbsolutePath();
 			name = new SpannableStringBuilder();
 			Report.appendHeader(name, "External cache").append(' ').append(StorageUtils.storageFreeAsString(value.toString())).append('\n').append(value);
 			names.add(name);
@@ -240,6 +240,10 @@ public class StorageReports
 			int i = 1;
 			for (File dir2 : context.getExternalCacheDirs())
 			{
+				if (dir2 == null)
+				{
+					continue;
+				}
 				value = dir2.getAbsolutePath();
 				name = new SpannableStringBuilder();
 				Report.appendHeader(name, "External cache[" + i++ + "]").append(' ').append(StorageUtils.storageFreeAsString(value.toString())).append('\n').append(value);
@@ -530,12 +534,19 @@ public class StorageReports
 			int i = 1;
 			for (File dir : context.getExternalFilesDirs(null))
 			{
-				appendDir(sb, "external files dir [" + i++ + ']', dir);
+				if (dir != null)
+				{
+					appendDir(sb, "external files dir [" + i++ + ']', dir);
+				}
 			}
 		}
 		else
 		{
-			appendDir(sb, "external files dir", context.getExternalFilesDir(null));
+			final File dir = context.getExternalFilesDir(null);
+			if (dir != null)
+			{
+				appendDir(sb, "external files dir", dir);
+			}
 		}
 
 		// external caches
@@ -544,12 +555,19 @@ public class StorageReports
 			int i = 1;
 			for (File dir : context.getExternalCacheDirs())
 			{
-				appendDir(sb, "external cache dir [" + i++ + ']', dir);
+				if (dir != null)
+				{
+					appendDir(sb, "external cache dir [" + i++ + ']', dir);
+				}
 			}
 		}
 		else
 		{
-			appendDir(sb, "external cache dir", context.getExternalCacheDir());
+			final File dir = context.getExternalCacheDir();
+			if (dir != null)
+			{
+				appendDir(sb, "external cache dir", dir);
+			}
 		}
 
 		// obbs
