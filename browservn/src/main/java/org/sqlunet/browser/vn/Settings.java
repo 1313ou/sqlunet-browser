@@ -29,7 +29,7 @@ public class Settings extends org.sqlunet.settings.Settings
 	 */
 	public enum Source
 	{
-		WORDNET(0x1), VERBNET(0x10), PROPBANK(0x20);
+		WORDNET(ENABLE_WORDNET), VERBNET(ENABLE_VERBNET), PROPBANK(ENABLE_PROPBANK);
 
 		/**
 		 * Source mask
@@ -136,10 +136,6 @@ public class Settings extends org.sqlunet.settings.Settings
 	{
 		final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
 		int result = 0;
-		if (sharedPref.getBoolean(Settings.PREF_ENABLE_WORDNET, true))
-		{
-			result |= ENABLE_WORDNET;
-		}
 		if (sharedPref.getBoolean(Settings.PREF_ENABLE_VERBNET, true))
 		{
 			result |= ENABLE_VERBNET;
@@ -147,6 +143,10 @@ public class Settings extends org.sqlunet.settings.Settings
 		if (sharedPref.getBoolean(Settings.PREF_ENABLE_PROPBANK, true))
 		{
 			result |= ENABLE_PROPBANK;
+		}
+		if (sharedPref.getBoolean(Settings.PREF_ENABLE_WORDNET, true))
+		{
+			result |= ENABLE_WORDNET;
 		}
 		return result;
 	}

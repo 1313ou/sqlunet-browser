@@ -69,6 +69,7 @@ public class SearchTextFragment extends BaseSearchFragment
 	protected void setupSpinner(@NonNull final Context context)
 	{
 		super.setupSpinner(context);
+		this.spinner.setVisibility(View.VISIBLE);
 
 		// spinner listener
 		this.spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener()

@@ -83,7 +83,7 @@ public class XSelectorPointer extends SelectorPointer implements HasXId
 	 * @param xMemberId x member id
 	 * @param xSources  x sources
 	 * @param xMask     x mask
-	 * @param xGroup    x group (0=wordnet, 1=verbnet, 2=propbank)
+	 * @param xGroup    x group
 	 */
 	XSelectorPointer(final long synsetId, final long wordId, final long xId, final long xClassId, final long xMemberId, final String xSources, final long xMask, final int xGroup)
 	{

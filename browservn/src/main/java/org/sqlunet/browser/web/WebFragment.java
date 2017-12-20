@@ -137,6 +137,7 @@ public class WebFragment extends Fragment
 				// data source
 				dataSource = new DataSource(StorageSettings.getDatabasePath(getContext()));
 				final SQLiteDatabase db = dataSource.getConnection();
+				WordNetImplementation.init(db);
 
 				// dom documents
 				Document wnDomDoc = null;
@@ -149,7 +150,6 @@ public class WebFragment extends Fragment
 				// make documents
 				if (isSelector)
 				{
-					// this is a selector query
 					// this is a selector query
 					if (Settings.Source.WORDNET.test(sources))
 					{
@@ -353,6 +353,16 @@ public class WebFragment extends Fragment
 							type = ProviderArgs.ARG_QUERYTYPE_PBROLESET;
 							pointer = new PbRoleSetPointer(id);
 						}
+						else if ("wordid".equals(name)) //
+						{
+							type = ProviderArgs.ARG_QUERYTYPE_WORD;
+							pointer = new WordPointer(id);
+						}
+						else if ("synsetid".equals(name)) //
+						{
+							type = ProviderArgs.ARG_QUERYTYPE_SYNSET;
+							pointer = new SynsetPointer(id);
+						}
 						else
 						{
 							Log.e(WebFragment.TAG, "Ill-formed Uri: " + uri);
@@ -376,12 +386,7 @@ public class WebFragment extends Fragment
 		this.webview.setWebViewClient(webClient);
 
 		// settings sources
-		int mask = 0;
-		if (Settings.getVerbNetPref(getActivity()))
-		{
-			mask |= Settings.Source.VERBNET.set(mask);
-		}
-		final int sources = mask;
+		final int enable = Settings.getAllPref(getActivity());
 
 		// settings output
 		final boolean xml = Settings.getXmlPref(getActivity());
@@ -412,7 +417,7 @@ public class WebFragment extends Fragment
 			@Override
 			public Loader<String> onCreateLoader(final int loaderId, final Bundle loaderArgs)
 			{
-				return new WebDocumentStringLoader(getActivity(), pointer, pos, type, data, sources, xml);
+				return new WebDocumentStringLoader(getActivity(), pointer, pos, type, data, enable, xml);
 			}
 
 			@Override
@@ -525,12 +530,6 @@ public class WebFragment extends Fragment
 
 			// xslt-transformed data
 			sb.append(LIST1);
-			if (wnDomDoc != null)
-			{
-				sb.append(ITEM1);
-				sb.append(new DocumentTransformer().docToHtml(wnDomDoc, Settings.Source.WORDNET.toString(), isSelector));
-				sb.append(ITEM2);
-			}
 			if (vnDomDoc != null)
 			{
 				sb.append(ITEM1);
@@ -541,6 +540,12 @@ public class WebFragment extends Fragment
 			{
 				sb.append(ITEM1);
 				sb.append(new DocumentTransformer().docToHtml(pbDomDoc, Settings.Source.PROPBANK.toString(), isSelector));
+				sb.append(ITEM2);
+			}
+			if (wnDomDoc != null)
+			{
+				sb.append(ITEM1);
+				sb.append(new DocumentTransformer().docToHtml(wnDomDoc, Settings.Source.WORDNET.toString(), isSelector));
 				sb.append(ITEM2);
 			}
 			sb.append(LIST2);

@@ -48,13 +48,13 @@ public class Browse2Fragment extends BaseBrowse2Fragment
 					// sections to disable
 					int mask = 0;
 					final XSelectorPointer xpointer = (XSelectorPointer) this.pointer;
-					final int group = xpointer.getXGroup();
-					switch (group)
+					final int groupId = xpointer.getXGroup();
+					switch (groupId)
 					{
-						case XSelectorsFragment.GROUP_VERBNET:
+						case XSelectorsFragment.GROUPID_VERBNET:
 							mask = Settings.ENABLE_PROPBANK;
 							break;
-						case XSelectorsFragment.GROUP_PROPBANK:
+						case XSelectorsFragment.GROUPID_PROPBANK:
 							mask = Settings.ENABLE_VERBNET | Settings.ENABLE_WORDNET;
 							break;
 					}

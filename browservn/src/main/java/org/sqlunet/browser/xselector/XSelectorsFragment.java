@@ -24,6 +24,7 @@ import android.widget.SimpleCursorTreeAdapter;
 
 import org.sqlunet.browser.Module;
 import org.sqlunet.browser.vn.R;
+import org.sqlunet.browser.vn.Settings;
 import org.sqlunet.browser.xselector.XLoader.PbLoaderCallbacks;
 import org.sqlunet.browser.xselector.XLoader.VnLoaderCallbacks;
 import org.sqlunet.provider.ProviderArgs;
@@ -60,16 +61,6 @@ public class XSelectorsFragment extends ExpandableListFragment
 	static private final String STATE_ACTIVATED_SELECTOR = "activated_selector";
 
 	/**
-	 * VerbNet group position
-	 */
-	static public final int GROUP_VERBNET = 0;
-
-	/**
-	 * PropBank group position
-	 */
-	static public final int GROUP_PROPBANK = 1;
-
-	/**
 	 * Activate on click flag
 	 */
 	private boolean activateOnItemClick = false;
@@ -77,22 +68,37 @@ public class XSelectorsFragment extends ExpandableListFragment
 	/**
 	 * Database column
 	 */
-	static private final String NAMECOLUMN = "xn";
-
-	/**
-	 * Loader column
-	 */
-	static private final String LOADERCOLUMN = "xloader";
+	static private final String GROUPID_COLUMN = "_id";
 
 	/**
 	 * Database column
 	 */
-	static private final String ICONCOLUMN = "xicon";
+	static private final String GROUPNAME_COLUMN = "xn";
+
+	/**
+	 * Loader column
+	 */
+	static private final String GROUPLOADER_COLUMN = "xloader";
+
+	/**
+	 * Database column
+	 */
+	static private final String GROUPICON_COLUMN = "xicon";
+
+	/**
+	 * Id
+	 */
+	static public final int GROUPID_VERBNET = 2;
+
+	/**
+	 * Id
+	 */
+	static public final int GROUPID_PROPBANK = 3;
 
 	/**
 	 * Source fields for groups
 	 */
-	static private final String[] groupFrom = {NAMECOLUMN, ICONCOLUMN,};
+	static private final String[] groupFrom = {GROUPNAME_COLUMN, GROUPICON_COLUMN,};
 
 	/**
 	 * Target resource for groups
@@ -124,6 +130,17 @@ public class XSelectorsFragment extends ExpandableListFragment
 			Words_XNet.XHEADER, //
 			Words_XNet.XINFO, //
 			Words_XNet.XDEFINITION,};
+
+
+	/**
+	 * VerbNet group position
+	 */
+	private int groupVerbNetPosition;
+
+	/**
+	 * PropBank group position
+	 */
+	private int groupPropBankPosition;
 
 	/**
 	 * Xn group cursor
@@ -158,11 +175,9 @@ public class XSelectorsFragment extends ExpandableListFragment
 	@SuppressWarnings("boxing")
 	public XSelectorsFragment()
 	{
-		this.xnCursor = new MatrixCursor(new String[]{"_id", NAMECOLUMN, LOADERCOLUMN, ICONCOLUMN});
-		this.xnCursor.addRow(new Object[]{GROUP_VERBNET, "verbnet", 2222, Integer.toString(R.drawable.verbnet)});
-		this.xnCursor.addRow(new Object[]{GROUP_PROPBANK, "propbank", 3333, Integer.toString(R.drawable.propbank)});
-		this.groupPosition = GROUP_VERBNET;
-		Log.d(TAG, "init position " + this.groupPosition + " " + this);
+		this.groupVerbNetPosition = -1;
+		this.groupPropBankPosition = -1;
+		this.xnCursor = new MatrixCursor(new String[]{GROUPID_COLUMN, GROUPNAME_COLUMN, GROUPLOADER_COLUMN, GROUPICON_COLUMN});
 	}
 
 	// C R E A T E
@@ -187,6 +202,24 @@ public class XSelectorsFragment extends ExpandableListFragment
 		}
 		this.word = query;
 		this.wordId = 0;
+
+		// fill groups
+		int position = 0;
+		int enable = Settings.getAllPref(getContext());
+
+		if (Settings.Source.VERBNET.test(enable))
+		{
+			this.groupVerbNetPosition = position++;
+			this.xnCursor.addRow(new Object[]{GROUPID_VERBNET, "verbnet", 2222, Integer.toString(R.drawable.verbnet)});
+		}
+		if (Settings.Source.PROPBANK.test(enable))
+		{
+			this.groupPropBankPosition = position++;
+			this.xnCursor.addRow(new Object[]{GROUPID_PROPBANK, "propbank", 3333, Integer.toString(R.drawable.propbank)});
+		}
+		this.groupPosition = position >= 0 ? 0 : -1;
+		Log.d(TAG, "init position " + this.groupPosition + " " + this);
+
 	}
 
 	// V I E W
@@ -317,18 +350,17 @@ public class XSelectorsFragment extends ExpandableListFragment
 				int groupPosition = groupCursor.getPosition();
 				// String groupName = groupCursor.getString(groupCursor.getColumnIndex(NAMECOLUMN));
 
-				int loaderId = groupCursor.getInt(groupCursor.getColumnIndex(LOADERCOLUMN));
+				int loaderId = groupCursor.getInt(groupCursor.getColumnIndex(GROUPLOADER_COLUMN));
+				int groupId = groupCursor.getInt(groupCursor.getColumnIndex(GROUPID_COLUMN));
+
 				// Log.d(TAG, "group " + groupPosition + ' ' + groupName + " loader=" + loaderId);
 				LoaderCallbacks<Cursor> callbacks = null;
-				switch (groupPosition)
+				switch (groupId)
 				{
-					//case GROUP_WORDNET:
-					//  callbacks = getWnCallbacks(wordId, groupPosition);
-					//  break;
-					case GROUP_VERBNET:
+					case GROUPID_VERBNET:
 						callbacks = getVnCallbacks(wordId, groupPosition);
 						break;
-					case GROUP_PROPBANK:
+					case GROUPID_PROPBANK:
 						callbacks = getPbCallbacks(wordId, groupPosition);
 						break;
 				}
@@ -489,8 +521,14 @@ public class XSelectorsFragment extends ExpandableListFragment
 				final String xSources = cursor.getString(idXSources);
 				final long xMask = XSelectorPointer.getMask(xSources);
 
+				int groupId = -1;
+				if(this.groupVerbNetPosition != -1 && groupPosition == this.groupVerbNetPosition)
+					groupId = GROUPID_VERBNET;
+				else if(this.groupPropBankPosition != -1 && groupPosition == this.groupPropBankPosition)
+					groupId = GROUPID_PROPBANK;
+
 				// pointer
-				final XSelectorPointer pointer = new XSelectorPointer(synsetId, wordId, xId, xClassId, xMemberId, xSources, xMask, groupPosition);
+				final XSelectorPointer pointer = new XSelectorPointer(synsetId, wordId, xId, xClassId, xMemberId, xSources, xMask, groupId);
 				Log.d(TAG, "pointer=" + pointer);
 
 				// notify the active listener (the activity, if the fragment is attached to one) that an item has been selected
