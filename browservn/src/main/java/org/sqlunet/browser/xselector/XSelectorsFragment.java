@@ -133,6 +133,12 @@ public class XSelectorsFragment extends ExpandableListFragment
 
 
 	/**
+	 * Xn group cursor
+	 */
+	@NonNull
+	private final MatrixCursor xnCursor;
+
+	/**
 	 * VerbNet group position
 	 */
 	private int groupVerbNetPosition;
@@ -141,12 +147,6 @@ public class XSelectorsFragment extends ExpandableListFragment
 	 * PropBank group position
 	 */
 	private int groupPropBankPosition;
-
-	/**
-	 * Xn group cursor
-	 */
-	@NonNull
-	private final MatrixCursor xnCursor;
 
 	/**
 	 * The current activated item position.
@@ -219,7 +219,6 @@ public class XSelectorsFragment extends ExpandableListFragment
 		}
 		this.groupPosition = position >= 0 ? 0 : -1;
 		Log.d(TAG, "init position " + this.groupPosition + " " + this);
-
 	}
 
 	// V I E W
@@ -348,7 +347,7 @@ public class XSelectorsFragment extends ExpandableListFragment
 
 				// given the group, we return a cursor for all the children within that group
 				int groupPosition = groupCursor.getPosition();
-				// String groupName = groupCursor.getString(groupCursor.getColumnIndex(NAMECOLUMN));
+				// String groupName = groupCursor.getString(groupCursor.getColumnIndex(GROUPNAME_COLUMN));
 
 				int loaderId = groupCursor.getInt(groupCursor.getColumnIndex(GROUPLOADER_COLUMN));
 				int groupId = groupCursor.getInt(groupCursor.getColumnIndex(GROUPID_COLUMN));

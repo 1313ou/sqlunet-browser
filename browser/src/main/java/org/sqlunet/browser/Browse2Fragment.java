@@ -11,6 +11,7 @@ import org.sqlunet.bnc.browser.BNCFragment;
 import org.sqlunet.browser.web.WebFragment;
 import org.sqlunet.browser.xn.Settings;
 import org.sqlunet.browser.xselector.XSelectorPointer;
+import org.sqlunet.browser.xselector.XSelectorsFragment;
 import org.sqlunet.framenet.browser.FrameNetFragment;
 import org.sqlunet.propbank.browser.PropBankFragment;
 import org.sqlunet.provider.ProviderArgs;
@@ -54,16 +55,16 @@ public class Browse2Fragment extends BaseBrowse2Fragment
 					final int group = xpointer.getXGroup();
 					switch (group)
 					{
-						case 0: // wordnet
+						case XSelectorsFragment.GROUPID_WORDNET:
 							mask = Settings.ENABLE_VERBNET | Settings.ENABLE_PROPBANK | Settings.ENABLE_FRAMENET;
 							break;
-						case 1: // verbnet
+						case XSelectorsFragment.GROUPID_VERBNET:
 							mask = Settings.ENABLE_PROPBANK | Settings.ENABLE_FRAMENET;
 							break;
-						case 2: // propbank
+						case XSelectorsFragment.GROUPID_PROPBANK:
 							mask = Settings.ENABLE_VERBNET | Settings.ENABLE_FRAMENET;
 							break;
-						case 3:// framenet
+						case XSelectorsFragment.GROUPID_FRAMENET:
 							mask = Settings.ENABLE_VERBNET | Settings.ENABLE_PROPBANK;
 							break;
 					}
