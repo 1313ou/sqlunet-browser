@@ -3,8 +3,8 @@
           xmlns:tools="http://schemas.android.com/tools"
           package="org.sqlunet.browser.fn"
           android:installLocation="preferExternal"
-          android:versionCode="18"
-          android:versionName="1.18">
+          android:versionCode="22"
+          android:versionName="1.22">
 
 	<uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
 	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>

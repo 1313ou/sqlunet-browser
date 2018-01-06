@@ -17,12 +17,12 @@ android {
 }
 
 dependencies {
-    compile project(':xNet')
-    compile project(':treeView')
-    compile project(':frameNet')
-    compile project(':propbank')
-    compile project(':verbNet')
+    implementation project(':xNet')
+    implementation project(':treeView')
+    implementation project(':frameNet')
+    implementation project(':propbank')
+    implementation project(':verbNet')
 
-    compile 'com.android.support:appcompat-v7:27.0.2'
+    implementation 'com.android.support:appcompat-v7:27.0.2'
     implementation 'com.android.support:support-annotations:27.0.2'
 }

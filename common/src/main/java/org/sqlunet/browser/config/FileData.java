@@ -30,7 +30,7 @@ public class FileData
 	@Nullable
 	static public FileData makeFileDataFrom(@Nullable final File file)
 	{
-		if (file !=null && file.exists())
+		if (file != null && file.exists())
 		{
 			return new FileData(file.lastModified(), file.length());
 		}
@@ -64,13 +64,16 @@ public class FileData
 	{
 		final File file = new File(StorageSettings.getDatabasePath(context));
 		final FileData fileData = makeFileDataFrom(file);
-		if (fileData.date != -1)
+		if (fileData != null)
 		{
-			Settings.setDbDate(context, fileData.date);
-		}
-		if (fileData.size != -1)
-		{
-			Settings.setDbSize(context, fileData.size);
+			if (fileData.date != -1)
+			{
+				Settings.setDbDate(context, fileData.date);
+			}
+			if (fileData.size != -1)
+			{
+				Settings.setDbSize(context, fileData.size);
+			}
 		}
 	}
 }

@@ -77,7 +77,7 @@ public class HelpFragment extends NavigableFragment
 			{
 				final Uri uri = request.getUrl();
 				final String fileName = uri.getLastPathSegment();
-				if (fileName.endsWith("pdf") || fileName.endsWith("PDF"))
+				if (fileName != null && (fileName.endsWith("pdf") || fileName.endsWith("PDF")))
 				{
 					if (handleUri(uri, "application/pdf"))
 					{

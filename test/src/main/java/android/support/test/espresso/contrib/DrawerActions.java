@@ -101,6 +101,7 @@ public final class DrawerActions
 	 * be removed in the next release.
 	 */
 	@Deprecated
+	@SuppressWarnings("deprecation")
 	static public void openDrawer(int drawerLayoutId)
 	{
 		openDrawer(drawerLayoutId, GravityCompat.START);
@@ -162,6 +163,7 @@ public final class DrawerActions
 	 * be removed in the next release.
 	 */
 	@Deprecated
+	@SuppressWarnings("deprecation")
 	static public void closeDrawer(int drawerLayoutId)
 	{
 		closeDrawer(drawerLayoutId, GravityCompat.START);

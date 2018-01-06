@@ -14,7 +14,7 @@
    inkscape:export-xdpi="57.252365"
    inkscape:export-filename="/home/bbou/Desktop/wordnet.png"
    sodipodi:docname="ic_splash.svg"
-   inkscape:version="0.92.1 r15371"
+   inkscape:version="0.92.2 (5c3e80d, 2017-08-06)"
    version="1.1"
    id="svg2"
    height="373.33334"
@@ -49,11 +49,11 @@
       <image
          sodipodi:absref="/opt/devel/android-sqlunet-as/SqlUNet/browserfn/artwork/wordnet-background.jpg"
          xlink:href="wordnet-background.jpg"
-         y="0"
-         x="0"
-         id="image4320"
+         width="320"
          height="210"
-         width="320" />
+         id="image4320"
+         x="0"
+         y="0" />
     </pattern>
     <linearGradient
        y2="609.50507"
@@ -13755,11 +13755,11 @@
       <image
          sodipodi:absref="/opt/devel/android-sqlunet-as/SqlUNet/browserfn/artwork/wordnet-background.jpg"
          xlink:href="wordnet-background.jpg"
-         width="320"
-         height="210"
-         id="image4320-87"
+         y="0"
          x="0"
-         y="0" />
+         id="image4320-87"
+         height="210"
+         width="320" />
     </pattern>
     <inkscape:perspective
        id="perspective13-1"
@@ -13796,11 +13796,11 @@
       <image
          sodipodi:absref="/opt/devel/android-sqlunet-as/SqlUNet/browserfn/artwork/wordnet-background.jpg"
          xlink:href="wordnet-background.jpg"
-         y="0"
-         x="0"
-         id="image4320-2"
+         width="320"
          height="210"
-         width="320" />
+         id="image4320-2"
+         x="0"
+         y="0" />
     </pattern>
     <radialGradient
        xlink:href="#linearGradient5301"
@@ -19421,15 +19421,15 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="2.0769888"
-     inkscape:cx="134.92894"
+     inkscape:zoom="0.73432643"
+     inkscape:cx="43.691086"
      inkscape:cy="151.90529"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
-     inkscape:window-width="1135"
+     inkscape:window-width="1525"
      inkscape:window-height="736"
-     inkscape:window-x="658"
+     inkscape:window-x="268"
      inkscape:window-y="349"
      inkscape:window-maximized="0"
      fit-margin-top="0"
@@ -19459,25 +19459,25 @@
        id="text3395"
        y="163.51024"
        x="556.77942"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:condensed;line-height:0%;font-family:Impact;-inkscape-font-specification:'Impact Condensed';text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#ffa500;fill-opacity:1;stroke:#00132c;stroke-width:0.69631934;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;filter:url(#filter4016);"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:condensed;line-height:0%;font-family:Impact;-inkscape-font-specification:'Impact Condensed';text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#bdb76b;fill-opacity:1;stroke:#00132c;stroke-width:0.69631934;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;filter:url(#filter4016);"
        xml:space="preserve"><tspan
          sodipodi:role="line"
          id="tspan3401"
          x="556.77942"
          y="163.51024"
-         style="font-size:127.66687775px;line-height:1.25;fill:#ffa500;stroke:#00132c;stroke-width:0.69631934;stroke-opacity:1;">Net</tspan></text>
+         style="font-size:127.66687775px;line-height:1.25;fill:#bdb76b;stroke:#00132c;stroke-width:0.69631934;stroke-opacity:1;">Net</tspan></text>
     <text
        transform="scale(0.57306615,1.7449992)"
        id="text5161"
        y="140.54039"
        x="372.43149"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:condensed;font-size:124.02507782px;line-height:0%;font-family:Impact;-inkscape-font-specification:'Impact, Condensed';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#ff8c00;fill-opacity:1;stroke:none;stroke-width:7.62917614;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:condensed;font-size:124.02507782px;line-height:0%;font-family:Impact;-inkscape-font-specification:'Impact, Condensed';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#908474;fill-opacity:1;stroke:none;stroke-width:7.62917614;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;"
        xml:space="preserve"><tspan
          sodipodi:role="line"
          id="tspan3648"
          x="372.43149"
          y="140.54039"
-         style="stroke-width:7.62917614">Frame</tspan></text>
+         style="stroke-width:7.62917614;fill:#908474;">Frame</tspan></text>
     <g
        style="stroke:#ffa500;filter:url(#filter4016-0)"
        transform="matrix(0.52586531,0,0,0.52586531,346.73032,-306.61834)"

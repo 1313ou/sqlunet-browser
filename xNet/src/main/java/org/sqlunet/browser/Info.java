@@ -23,7 +23,11 @@ public class Info
 		int i = 0;
 		for (CharSequence line : lines)
 		{
-			if ((i++ % 2) == 0)
+			if (line == null)
+			{
+				// sb.append("");
+			}
+			else if ((i++ % 2) == 0)
 			{
 				Report.appendHeader(sb, line);
 			}

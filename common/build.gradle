@@ -2,7 +2,6 @@ apply plugin: 'com.android.library'
 
 android {
     compileSdkVersion 27
-    //enforceUniquePackageName = false
 
     defaultConfig {
         minSdkVersion 17
@@ -19,14 +18,14 @@ android {
 }
 
 dependencies {
-    compile project(':expandableListFragment')
-    compile project(':xNet')
-    compile project(':support')
+    implementation project(':expandableListFragment')
+    implementation project(':xNet')
+    implementation project(':support')
 
-    compile 'com.android.support:support-v13:27.0.2'
-    compile 'com.android.support:appcompat-v7:27.0.2'
-    compile 'com.android.support.constraint:constraint-layout:1.0.2'
-    compile 'com.android.support:support-v4:27.0.2'
-    compile 'com.android.support:design:27.0.2'
+    implementation 'com.android.support:support-v13:27.0.2'
+    implementation 'com.android.support:appcompat-v7:27.0.2'
+    implementation 'com.android.support.constraint:constraint-layout:1.0.2'
+    implementation 'com.android.support:support-v4:27.0.2'
+    implementation 'com.android.support:design:27.0.2'
     implementation 'com.android.support:support-annotations:27.0.2'
 }
