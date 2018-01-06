@@ -1,4 +1,5 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
+
 buildscript {
     repositories {
         jcenter()
@@ -13,5 +14,13 @@ allprojects {
     repositories {
         jcenter()
         google()
+    }
+
+    ext {
+        versionCode = 22
+        versionName = '1.22'
+        minSdkVersion = 17
+        targetSdkVersion = 27
+        compileSdkVersion = 27
     }
 }
