@@ -176,11 +176,10 @@ public class ExecAsyncTask
 	 * @param sqls     sql statements
 	 */
 	@NonNull
-	@SuppressWarnings("UnusedReturnValue")
+	@SuppressWarnings({"UnusedReturnValue","unchecked"})
 	public AsyncTask<Pair<String, String[]>, Integer, Boolean> executeFromSql(final String database, final String... sqls)
 	{
 		final AsyncTask<Pair<String, String[]>, Integer, Boolean> task = new AsyncExecuteFromSql(this.listener, this.publishRate);
-		//noinspection unchecked
 		task.execute(new Pair<>(database, sqls));
 		return task;
 	}

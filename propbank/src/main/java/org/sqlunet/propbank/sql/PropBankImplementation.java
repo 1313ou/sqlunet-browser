@@ -32,10 +32,10 @@ public class PropBankImplementation implements PropBankInterface
 	static private void walkSelector(final SQLiteDatabase connection, @NonNull final Document doc, final Node parent, final String targetWord)
 	{
 		final List<PbRoleSet> roleSets = PbRoleSet.makeFromWord(connection, targetWord);
-		if (roleSets == null)
-		{
-			return;
-		}
+		//if (roleSets == null)
+		//{
+		//	return;
+		//}
 
 		// word
 		// NodeFactory.makeWordNode(doc, parent, targetWord, wordId);
@@ -55,10 +55,10 @@ public class PropBankImplementation implements PropBankInterface
 	static private void walk(final SQLiteDatabase connection, @NonNull final Document doc, final Node parent, final String targetWord)
 	{
 		final List<PbRoleSet> roleSets = PbRoleSet.makeFromWord(connection, targetWord);
-		if (roleSets == null)
-		{
-			return;
-		}
+		//if (roleSets == null)
+		//{
+		//	return;
+		//}
 
 		// word
 		// NodeFactory.makeWordNode(doc, parent, targetWord, wordId);

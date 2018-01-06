@@ -3,6 +3,7 @@ package org.sqlunet.browser.web;
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
@@ -242,11 +243,13 @@ public class WebFragment extends Fragment
 		// load the contents
 		getLoaderManager().restartLoader(++Module.loaderId, null, new LoaderCallbacks<String>()
 		{
-			@Nullable
+			@NonNull
 			@Override
 			public Loader<String> onCreateLoader(final int loaderId, final Bundle loaderArgs)
 			{
-				return new DocumentStringLoader(getActivity())
+				final Context context = getActivity();
+				assert context != null;
+				return new DocumentStringLoader(context)
 				{
 					@Nullable
 					@SuppressWarnings({"boxing"})

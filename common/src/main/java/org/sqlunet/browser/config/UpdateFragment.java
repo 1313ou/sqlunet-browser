@@ -1,6 +1,7 @@
 package org.sqlunet.browser.config;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -111,12 +112,14 @@ public class UpdateFragment extends Fragment
 				@Override
 				public void onClick(View v)
 				{
-					Utils.confirm(getContext(), R.string.title_activity_update, R.string.askUpdate, new Runnable()
+					final Context context = getActivity();
+					assert context != null;
+					Utils.confirm(context, R.string.title_activity_update, R.string.askUpdate, new Runnable()
 					{
 						@Override
 						public void run()
 						{
-							SetupDatabaseTasks.update(getContext());
+							SetupDatabaseTasks.update(context);
 						}
 					});
 				}

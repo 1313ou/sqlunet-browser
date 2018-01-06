@@ -162,7 +162,7 @@ public class Settings
 	 * @param context context
 	 * @return preferred launch activity class
 	 */
-	@Nullable
+	@NonNull
 	static public String getLaunchPref(@NonNull final Context context)
 	{
 		final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);

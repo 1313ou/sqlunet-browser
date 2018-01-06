@@ -2,6 +2,7 @@ package org.sqlunet.provider;
 
 import android.content.ContentProvider;
 import android.content.ContentValues;
+import android.content.Context;
 import android.database.sqlite.SQLiteCantOpenDatabaseException;
 import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
@@ -153,10 +154,13 @@ public abstract class BaseProvider extends ContentProvider
 
 	protected void open() throws SQLiteCantOpenDatabaseException
 	{
-		final String path = StorageSettings.getDatabasePath(getContext());
+		final Context context = getContext();
+		assert context != null;
+		final String path = StorageSettings.getDatabasePath(context);
 		try
 		{
 			this.db = open(path, SQLiteDatabase.OPEN_READONLY);
+			assert this.db != null;
 			Log.d(BaseProvider.TAG, "Opened by " + this.getClass() + " content provider: " + this.db.getPath());
 		}
 		catch (@NonNull final SQLiteCantOpenDatabaseException e)

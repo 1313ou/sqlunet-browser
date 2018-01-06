@@ -175,6 +175,7 @@ public class DownloadFragment extends BaseDownloadFragment
 						boolean success = Status.STATUS_SUCCESSFUL.test(status);
 						if (!success)
 						{
+							assert DownloadFragment.this.destFile != null;
 							if (DownloadFragment.this.destFile.exists())
 							{
 								//noinspection ResultOfMethodCallIgnored
@@ -279,6 +280,7 @@ public class DownloadFragment extends BaseDownloadFragment
 			// request.setAllowedNetworkTypes(Request.NETWORK_WIFI);
 			// request.setAllowedOverRoaming(false);
 
+			assert this.downloadManager != null;
 			this.downloadId = this.downloadManager.enqueue(request);
 		}
 		catch (SecurityException e)
@@ -307,6 +309,7 @@ public class DownloadFragment extends BaseDownloadFragment
 		// cursor
 		int statusCode = 0;
 		int reasonCode = 0;
+		assert DownloadFragment.this.downloadManager != null;
 		final Cursor cursor = DownloadFragment.this.downloadManager.query(query);
 		if (cursor.moveToFirst())
 		{
@@ -389,6 +392,7 @@ public class DownloadFragment extends BaseDownloadFragment
 		if (this.downloadId != -1)
 		{
 			Log.d(TAG, "Cancel DM " + this.downloadId);
+			assert this.downloadManager != null;
 			this.downloadManager.remove(this.downloadId);
 		}
 	}
@@ -402,6 +406,7 @@ public class DownloadFragment extends BaseDownloadFragment
 		if (this.downloadId != -1)
 		{
 			Log.d(TAG, "Cleanup DM " + this.downloadId);
+			assert this.downloadManager != null;
 			this.downloadManager.remove(this.downloadId);
 		}
 	}

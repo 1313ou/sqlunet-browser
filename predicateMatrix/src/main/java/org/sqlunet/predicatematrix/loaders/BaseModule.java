@@ -72,6 +72,7 @@ abstract class BaseModule extends Module
 		super(fragment);
 
 		// spanner
+		assert this.context != null;
 		this.classDrawable = Spanner.getDrawable(this.context, R.drawable.roles);
 		this.roleDrawable = Spanner.getDrawable(this.context, R.drawable.role);
 	}

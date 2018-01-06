@@ -370,6 +370,7 @@ public class NavigationFragment extends NavigationDrawerFragment implements Navi
 		super.set(view, rowItem);
 
 		final Context context = getContext();
+		assert context != null;
 		int[] colors = ColorUtils.getColors(context, R.color.drawer_main_fore_color, R.color.drawer_fore_color, R.color.accentColor);
 		int color = colors[rowItem.isMain ? 2 : 1];
 

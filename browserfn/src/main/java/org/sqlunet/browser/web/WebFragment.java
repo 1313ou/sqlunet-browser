@@ -366,11 +366,13 @@ public class WebFragment extends Fragment
 		// load the contents
 		getLoaderManager().restartLoader(++Module.loaderId, null, new LoaderCallbacks<String>()
 		{
-			@Nullable
+			@NonNull
 			@Override
 			public Loader<String> onCreateLoader(final int loaderId, final Bundle loaderArgs)
 			{
-				return new WebDocumentStringLoader(getActivity(), pointer, type, data, sources, xml);
+				final Context context = getActivity();
+				assert context != null;
+				return new WebDocumentStringLoader(context, pointer, type, data, sources, xml);
 			}
 
 			@Override

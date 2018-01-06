@@ -87,6 +87,7 @@ public class SetupStatusFragment extends Fragment
 
 		// activity
 		final Activity activity = getActivity();
+		assert activity != null;
 
 		// click listeners
 		this.buttonDb.setOnClickListener(new View.OnClickListener()
@@ -117,7 +118,7 @@ public class SetupStatusFragment extends Fragment
 			public void onClick(final View v)
 			{
 				final String database = StorageSettings.getDatabasePath(activity);
-				final String free = StorageUtils.getFree(getActivity(), database);
+				final String free = StorageUtils.getFree(activity, database);
 				final String source = StorageSettings.getDbDownloadSource(activity);
 				final int status = Status.status(activity);
 				final boolean existsDb = (status & Status.EXISTS) != 0;
@@ -195,6 +196,7 @@ public class SetupStatusFragment extends Fragment
 	protected void update()
 	{
 		final Activity activity = getActivity();
+		assert activity != null;
 		final int status = Status.status(activity);
 		Log.d(TAG, "STATUS " + Status.toString(status));
 

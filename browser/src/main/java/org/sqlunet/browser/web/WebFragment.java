@@ -199,15 +199,15 @@ public class WebFragment extends Fragment
 									{
 										wnDomDoc = new WordNetImplementation().querySenseDoc(db, wordId, synsetId);
 									}
-									if (xSources.contains("vn")) //
+									if (xSources.contains("vn") && xClassId != null) //
 									{
 										vnDomDoc = new VerbNetImplementation().queryClassDoc(db, xClassId, pos);
 									}
-									if (xSources.contains("pb")) //
+									if (xSources.contains("pb") && xClassId != null) //
 									{
 										pbDomDoc = new PropBankImplementation().queryRoleSetDoc(db, xClassId, pos);
 									}
-									if (xSources.contains("fn")) //
+									if (xSources.contains("fn") && xClassId != null) //
 									{
 										fnDomDoc = new FrameNetImplementation().queryFrameDoc(db, xClassId, pos);
 									}
@@ -521,11 +521,13 @@ public class WebFragment extends Fragment
 		// load the contents
 		getLoaderManager().restartLoader(++Module.loaderId, null, new LoaderCallbacks<String>()
 		{
-			@Nullable
+			@NonNull
 			@Override
 			public Loader<String> onCreateLoader(final int loaderId, final Bundle loaderArgs)
 			{
-				return new WebDocumentStringLoader(getActivity(), pointer, pos, type, data, sources, xml);
+				final Context context = getActivity();
+				assert context != null;
+				return new WebDocumentStringLoader(context, pointer, pos, type, data, sources, xml);
 			}
 
 			@Override

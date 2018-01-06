@@ -105,6 +105,7 @@ public abstract class Controller<E>
 
 		// make view
 		final View nodeView = getNodeView();
+		assert nodeView != null;
 
 		// wrapper
 		final SubtreeView nodeWrapperView = new SubtreeView(nodeView.getContext(), getContainerStyle());

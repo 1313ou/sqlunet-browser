@@ -104,7 +104,7 @@ public class TreeNode
 	 *
 	 * @return node
 	 */
-	@Nullable
+	@NonNull
 	static public TreeNode makeRoot()
 	{
 		final TreeNode root = new TreeNode(null);

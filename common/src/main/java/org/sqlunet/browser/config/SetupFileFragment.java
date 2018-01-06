@@ -106,6 +106,7 @@ public class SetupFileFragment extends BaseTaskFragment
 				// execute
 				boolean success;
 				final Context context = getActivity();
+				assert context != null;
 				final Operation op = Operation.fromIndex((int) id);
 				if (op != null)
 				{
@@ -141,7 +142,7 @@ public class SetupFileFragment extends BaseTaskFragment
 							if (Permissions.check(getActivity()))
 							{
 								String zipEntry = StorageSettings.getImportEntry(context);
-								if (zipEntry == null || zipEntry.isEmpty())
+								if (/*zipEntry == null ||*/ zipEntry.isEmpty())
 								{
 									zipEntry = Storage.DBFILE;
 								}
@@ -158,7 +159,6 @@ public class SetupFileFragment extends BaseTaskFragment
 
 						case DOWNLOAD:
 							final Intent intent2 = new Intent(context, DownloadActivity.class);
-							assert context != null;
 							context.startActivity(intent2);
 							break;
 
@@ -166,7 +166,6 @@ public class SetupFileFragment extends BaseTaskFragment
 							final Intent intent3 = new Intent(context, DownloadActivity.class);
 							intent3.putExtra(DOWNLOAD_FROM_ARG, StorageSettings.getDbDownloadZippedSource(context));
 							intent3.putExtra(DOWNLOAD_TO_ARG, StorageSettings.getDbDownloadZippedTarget(context));
-							assert context != null;
 							context.startActivity(intent3);
 							break;
 
@@ -258,6 +257,7 @@ public class SetupFileFragment extends BaseTaskFragment
 	private CharSequence statusCreate()
 	{
 		final Context context = getActivity();
+		assert context != null;
 		final String database = StorageSettings.getDatabasePath(context);
 		final String free = StorageUtils.getFree(context, database);
 		final boolean databaseExists = new File(database).exists();
@@ -281,6 +281,7 @@ public class SetupFileFragment extends BaseTaskFragment
 	private CharSequence statusDrop()
 	{
 		final Context context = getActivity();
+		assert context != null;
 		final String database = StorageSettings.getDatabasePath(context);
 		final String free = StorageUtils.getFree(context, database);
 		final boolean databaseExists = new File(database).exists();
@@ -304,6 +305,7 @@ public class SetupFileFragment extends BaseTaskFragment
 	private CharSequence statusCopy()
 	{
 		final Context context = getActivity();
+		assert context != null;
 		final String database = StorageSettings.getDatabasePath(context);
 		final String free = StorageUtils.getFree(context, database);
 		final boolean databaseExists = new File(database).exists();
@@ -338,6 +340,7 @@ public class SetupFileFragment extends BaseTaskFragment
 	private CharSequence statusUnzip()
 	{
 		final Context context = getActivity();
+		assert context != null;
 		final String database = StorageSettings.getDatabasePath(context);
 		final String free = StorageUtils.getFree(context, database);
 		final boolean databaseExists = new File(database).exists();
@@ -400,6 +403,7 @@ public class SetupFileFragment extends BaseTaskFragment
 	private CharSequence statusDownload()
 	{
 		final Context context = getActivity();
+		assert context != null;
 		final String from = StorageSettings.getDbDownloadSource(context);
 		final String to = StorageSettings.getDbDownloadTarget(context);
 		final String free = StorageUtils.getFree(context, to);
@@ -427,6 +431,7 @@ public class SetupFileFragment extends BaseTaskFragment
 	private CharSequence statusDownloadZipped()
 	{
 		final Context context = getActivity();
+		assert context != null;
 		final String from = StorageSettings.getDbDownloadZippedSource(context);
 		final String to = StorageSettings.getDbDownloadZippedTarget(context);
 		final String free = StorageUtils.getFree(context, to);

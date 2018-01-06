@@ -70,6 +70,9 @@
     <pattern value="org.sqlunet.browser.vn.Settings.Selector" method="setPref" />
     <pattern value="org.sqlunet.browser.xselector.XSelectorPointer" />
     <pattern value="org.sqlunet.provider.XSqlUNetContract.Words_PbWords_VnWords" />
+    <pattern value="org.sqlunet.browser.vn.Settings.Source" method="set" />
+    <pattern value="org.sqlunet.browser.vn.Settings.Source" />
+    <pattern value="org.sqlunet.browser.vn.Settings" method="getVerbNetPref" />
   </component>
   <component name="NullableNotNullManager">
     <option name="myDefaultNullable" value="android.support.annotation.Nullable" />

@@ -197,6 +197,7 @@ public class WordNetImplementation implements WordNetInterface
 
 		// word
 		final Word word = Word.make(connection, wordId);
+		assert word != null;
 		final Node wordNode = NodeFactory.makeWordNode(doc, rootNode, word.lemma, word.id);
 
 		final SynsetsQueryFromWordId query = new SynsetsQueryFromWordId(connection, wordId);

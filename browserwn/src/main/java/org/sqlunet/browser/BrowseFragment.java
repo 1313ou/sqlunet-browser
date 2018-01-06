@@ -337,7 +337,7 @@ public class BrowseFragment extends BaseSearchFragment
 	 *
 	 * @return intent
 	 */
-	@Nullable
+	@NonNull
 	@SuppressWarnings("unused")
 	private Intent makeSelectorIntent()
 	{
@@ -381,7 +381,7 @@ public class BrowseFragment extends BaseSearchFragment
 	 * @param intentClass intent class if WebActivity is not to be used
 	 * @return intent
 	 */
-	@Nullable
+	@NonNull
 	private Intent makeDetailIntent(final Class<?> intentClass)
 	{
 		// activity

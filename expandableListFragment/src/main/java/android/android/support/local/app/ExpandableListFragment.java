@@ -39,6 +39,7 @@ public class ExpandableListFragment extends Fragment implements ExpandableListVi
 		@Override
 		public void run()
 		{
+			assert ExpandableListFragment.this.mExpandableList != null;
 			ExpandableListFragment.this.mExpandableList.focusableViewAvailable(ExpandableListFragment.this.mExpandableList);
 		}
 	};
@@ -162,6 +163,7 @@ public class ExpandableListFragment extends Fragment implements ExpandableListVi
 	public void setSelection(int position)
 	{
 		ensureList();
+		assert this.mExpandableList != null;
 		this.mExpandableList.setSelection(position);
 	}
 
@@ -171,6 +173,7 @@ public class ExpandableListFragment extends Fragment implements ExpandableListVi
 	public int getSelectedItemPosition()
 	{
 		ensureList();
+		assert this.mExpandableList != null;
 		return this.mExpandableList.getSelectedItemPosition();
 	}
 
@@ -180,6 +183,7 @@ public class ExpandableListFragment extends Fragment implements ExpandableListVi
 	public long getSelectedItemId()
 	{
 		ensureList();
+		assert this.mExpandableList != null;
 		return this.mExpandableList.getSelectedItemId();
 	}
 
@@ -207,6 +211,7 @@ public class ExpandableListFragment extends Fragment implements ExpandableListVi
 		this.mStandardEmptyView.setText(text);
 		if (this.mEmptyText == null)
 		{
+			assert this.mExpandableList != null;
 			this.mExpandableList.setEmptyView(this.mStandardEmptyView);
 		}
 		this.mEmptyText = text;
@@ -254,6 +259,7 @@ public class ExpandableListFragment extends Fragment implements ExpandableListVi
 			return;
 		}
 		this.mExpandableListShown = shown;
+		assert this.mExpandableListContainer != null;
 		if (shown)
 		{
 			if (animate)
@@ -504,6 +510,7 @@ public class ExpandableListFragment extends Fragment implements ExpandableListVi
 	 */
 	public long getSelectedId()
 	{
+		assert this.mExpandableList != null;
 		return this.mExpandableList.getSelectedId();
 	}
 
@@ -515,6 +522,7 @@ public class ExpandableListFragment extends Fragment implements ExpandableListVi
 	 */
 	public long getSelectedPosition()
 	{
+		assert this.mExpandableList != null;
 		return this.mExpandableList.getSelectedPosition();
 	}
 
@@ -529,6 +537,7 @@ public class ExpandableListFragment extends Fragment implements ExpandableListVi
 	 */
 	public boolean setSelectedChild(int groupPosition, int childPosition, boolean shouldExpandGroup)
 	{
+		assert this.mExpandableList != null;
 		return this.mExpandableList.setSelectedChild(groupPosition, childPosition, shouldExpandGroup);
 	}
 
@@ -539,6 +548,7 @@ public class ExpandableListFragment extends Fragment implements ExpandableListVi
 	 */
 	public void setSelectedGroup(int groupPosition)
 	{
+		assert this.mExpandableList != null;
 		this.mExpandableList.setSelectedGroup(groupPosition);
 	}
 }

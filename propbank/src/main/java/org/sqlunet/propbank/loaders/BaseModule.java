@@ -5,7 +5,6 @@ import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.LoaderManager.LoaderCallbacks;
 import android.support.v4.content.CursorLoader;
@@ -98,6 +97,7 @@ abstract class BaseModule extends Module
 		super(fragment);
 
 		// drawables
+		assert this.context != null;
 		this.roleSetDrawable = Spanner.getDrawable(this.context, R.drawable.roleclass);
 		this.rolesDrawable = Spanner.getDrawable(this.context, R.drawable.roles);
 		this.relationDrawable = Spanner.getDrawable(this.context, R.drawable.relation);
@@ -125,7 +125,7 @@ abstract class BaseModule extends Module
 	{
 		getLoaderManager().restartLoader(++Module.loaderId, null, new LoaderCallbacks<Cursor>()
 		{
-			@Nullable
+			@NonNull
 			@Override
 			public Loader<Cursor> onCreateLoader(final int loaderId, final Bundle loaderArgs)
 			{
@@ -139,6 +139,7 @@ abstract class BaseModule extends Module
 				final String selection = PbRoleSets_X.ROLESETID + " = ?";
 				final String[] selectionArgs = {Long.toString(roleSetId)};
 				final String sortOrder = null;
+				assert BaseModule.this.context != null;
 				return new CursorLoader(BaseModule.this.context, uri, projection, selection, selectionArgs, sortOrder);
 			}
 
@@ -218,7 +219,7 @@ abstract class BaseModule extends Module
 	{
 		getLoaderManager().restartLoader(++Module.loaderId, null, new LoaderCallbacks<Cursor>()
 		{
-			@Nullable
+			@NonNull
 			@Override
 			public Loader<Cursor> onCreateLoader(final int loaderId, final Bundle loaderArgs)
 			{
@@ -232,6 +233,7 @@ abstract class BaseModule extends Module
 				final String selection = Words_PbRoleSets.WORDID + " = ?";
 				final String[] selectionArgs = {Long.toString(wordId)};
 				final String sortOrder = null;
+				assert BaseModule.this.context != null;
 				return new CursorLoader(BaseModule.this.context, uri, projection, selection, selectionArgs, sortOrder);
 			}
 
@@ -311,7 +313,7 @@ abstract class BaseModule extends Module
 	{
 		getLoaderManager().restartLoader(++Module.loaderId, null, new LoaderCallbacks<Cursor>()
 		{
-			@Nullable
+			@NonNull
 			@Override
 			public Loader<Cursor> onCreateLoader(final int loaderId, final Bundle loaderArgs)
 			{
@@ -326,6 +328,7 @@ abstract class BaseModule extends Module
 				final String selection = PbRoleSets_PbRoles.ROLESETID + "= ?";
 				final String[] selectionArgs = {Long.toString(roleSetId)};
 				final String sortOrder = null;
+				assert BaseModule.this.context != null;
 				return new CursorLoader(BaseModule.this.context, uri, projection, selection, selectionArgs, sortOrder);
 			}
 
@@ -422,7 +425,7 @@ abstract class BaseModule extends Module
 	{
 		getLoaderManager().restartLoader(++Module.loaderId, null, new LoaderCallbacks<Cursor>()
 		{
-			@Nullable
+			@NonNull
 			@Override
 			public Loader<Cursor> onCreateLoader(final int loaderId, final Bundle loaderArgs)
 			{
@@ -449,6 +452,7 @@ abstract class BaseModule extends Module
 				final String selection = PbRoleSets_PbExamples.ROLESETID + "= ?";
 				final String[] selectionArgs = {Long.toString(roleSetId)};
 				final String sortOrder = PbRoleSets_PbExamples.EXAMPLEID + ',' + PbRoleSets_PbExamples.NARG;
+				assert BaseModule.this.context != null;
 				return new CursorLoader(BaseModule.this.context, uri, projection, selection, selectionArgs, sortOrder);
 			}
 

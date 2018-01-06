@@ -94,8 +94,9 @@ public class SetupStatusFragment extends org.sqlunet.browser.config.SetupStatusF
 			@Override
 			public void onClick(final View v)
 			{
+				assert activity != null;
 				final String database = StorageSettings.getDatabasePath(activity);
-				final String free = StorageUtils.getFree(getActivity(), database);
+				final String free = StorageUtils.getFree(activity, database);
 				final String source = StorageSettings.getDbDownloadSource(activity);
 				final int status = Status.status(activity);
 				final boolean existsDb = (status & Status.EXISTS) != 0;
@@ -140,6 +141,7 @@ public class SetupStatusFragment extends org.sqlunet.browser.config.SetupStatusF
 		super.update();
 
 		final Activity activity = getActivity();
+		assert activity != null;
 		final int status = Status.status(activity);
 		Log.d(TAG, "STATUS " + Status.toString(status));
 

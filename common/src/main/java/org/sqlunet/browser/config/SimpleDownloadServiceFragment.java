@@ -110,13 +110,14 @@ public class SimpleDownloadServiceFragment extends BaseDownloadFragment
 						SimpleDownloadServiceFragment.downloading = false;
 						SimpleDownloadServiceFragment.success = intent.getBooleanExtra(SimpleDownloaderService.EVENT_FINISH_RESULT, false);
 						SimpleDownloadServiceFragment.exception = intent.getStringExtra(SimpleDownloaderService.EVENT_FINISH_EXCEPTION);
-						Log.d(TAG, "Finish " + SimpleDownloadServiceFragment.success);
+						Log.d(TAG, "Finish " + success);
 
 						// fire notification
 						fireNotification(SimpleDownloadServiceFragment.notificationId, NotificationType.FINISH, SimpleDownloadServiceFragment.success);
 
 						// fire ondone
-						onDone(SimpleDownloadServiceFragment.success);
+						boolean result = success != null ? success : false;
+						onDone(result);
 					}
 					break;
 			}
@@ -209,6 +210,7 @@ public class SimpleDownloadServiceFragment extends BaseDownloadFragment
 
 				// args
 				final String from = this.downloadUrl;
+				assert this.destFile != null;
 				final String to = this.destFile.getAbsolutePath();
 
 				// service intent
@@ -236,6 +238,7 @@ public class SimpleDownloadServiceFragment extends BaseDownloadFragment
 	protected void cancel()
 	{
 		final Context context = getActivity();
+		assert context != null;
 		kill(context);
 	}
 
@@ -281,7 +284,7 @@ public class SimpleDownloadServiceFragment extends BaseDownloadFragment
 			}
 			else
 			{
-				status = SimpleDownloadServiceFragment.exception == null && SimpleDownloadServiceFragment.success ? Status.STATUS_SUCCESSFUL : Status.STATUS_FAILED;
+				status = SimpleDownloadServiceFragment.exception == null && (success != null && success) ? Status.STATUS_SUCCESSFUL : Status.STATUS_FAILED;
 			}
 		}
 
@@ -361,6 +364,7 @@ public class SimpleDownloadServiceFragment extends BaseDownloadFragment
 	private void fireNotification(int id, @NonNull final NotificationType type, final Object... args)
 	{
 		final String from = Uri.parse(this.downloadUrl).getHost();
+		assert this.destFile != null;
 		final String to = this.destFile.getName();
 		String contentTitle = context.getString(R.string.title_download);
 		String contentText = from + '→' + to;

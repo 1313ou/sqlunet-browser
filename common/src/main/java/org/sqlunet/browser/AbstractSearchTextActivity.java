@@ -25,6 +25,7 @@ public abstract class AbstractSearchTextActivity<F extends BaseSearchFragment> e
 	 */
 	private F fragment;
 
+	@SuppressWarnings("unchecked")
 	@Override
 	protected void onCreate(@Nullable final Bundle savedInstanceState)
 	{
@@ -40,7 +41,6 @@ public abstract class AbstractSearchTextActivity<F extends BaseSearchFragment> e
 		// fragment
 		if (savedInstanceState == null)
 		{
-			//noinspection unchecked
 			this.fragment = (F) getSupportFragmentManager().findFragmentById(R.id.fragment_searchtext);
 
 			// set up the action bar

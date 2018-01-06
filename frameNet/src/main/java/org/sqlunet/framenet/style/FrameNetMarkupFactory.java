@@ -191,7 +191,8 @@ public class FrameNetMarkupFactory implements MarkupSpanner.SpanFactory
 					return new BackgroundColorSpan(Color.CYAN);
 
 				case TEXT:
-					return FrameNetMarkupFactory.textFactory.makeSpans(selector, flags);
+					assert textFactory != null;
+					return textFactory.makeSpans(selector, flags);
 			}
 		}
 		return null;

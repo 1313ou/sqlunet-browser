@@ -49,6 +49,7 @@ public class PredicateMatrixFragment extends TreeFragment
 		final Settings.PMMode mode = Settings.PMMode.getPref(getActivity());
 
 		// root node
+		assert this.treeView != null;
 		final TreeNode root = this.treeView.getRoot();
 		final TreeNode queryNode = root.getChildren().iterator().next();
 

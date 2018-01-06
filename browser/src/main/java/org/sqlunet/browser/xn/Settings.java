@@ -5,7 +5,6 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 
 /**
  * Settings
@@ -234,7 +233,7 @@ public class Settings extends org.sqlunet.settings.Settings
 	 * @param context context
 	 * @return pm archive entry
 	 */
-	@Nullable
+	@NonNull
 	static public String getPmEntry(@NonNull final Context context)
 	{
 		// test if already in preferences

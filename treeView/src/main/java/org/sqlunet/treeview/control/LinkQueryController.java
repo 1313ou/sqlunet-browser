@@ -31,6 +31,7 @@ public class LinkQueryController extends QueryController
 	public View createNodeView(final TreeNode node, @NonNull final Value value)
 	{
 		final View view = super.createNodeView(node, value);
+		assert view != null;
 
 		// link listener
 		final View hotLink = view.findViewById(R.id.node_link);

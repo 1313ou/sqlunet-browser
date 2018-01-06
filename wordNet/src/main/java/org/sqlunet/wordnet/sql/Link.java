@@ -62,7 +62,7 @@ class Link extends Synset
 
 		this.linkType = query.getLinkType();
 		this.word = words == null ? null : (words.length == 1 ? words[0] : null);
-		this.wordId = words == null ? 0 : (words.length == 1 ? wordIds[0] : 0);
+		this.wordId = wordIds == null ? 0 : (wordIds.length == 1 ? wordIds[0] : 0);
 		this.fromSynsetId = query.getFromSynset();
 		this.fromWordId = query.getFromWord();
 	}
@@ -83,7 +83,7 @@ class Link extends Synset
 
 		this.linkType = query.getLinkType();
 		this.word = words == null ? null : (words.length == 1 ? words[0] : null);
-		this.wordId = words == null ? 0 : (words.length == 1 ? wordIds[0] : 0);
+		this.wordId = wordIds == null ? 0 : (wordIds.length == 1 ? wordIds[0] : 0);
 		this.fromSynsetId = query.getFromSynset();
 		this.fromWordId = query.getFromWord();
 	}

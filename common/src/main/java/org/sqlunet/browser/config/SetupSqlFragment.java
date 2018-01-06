@@ -1,6 +1,7 @@
 package org.sqlunet.browser.config;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
@@ -94,6 +95,7 @@ public class SetupSqlFragment extends Fragment
 
 		// activity
 		final Activity activity = getActivity();
+		assert activity != null;
 
 		// statuses
 		this.downloadSqlZipStatus = view.findViewById(R.id.status_sqlzip);
@@ -138,7 +140,7 @@ public class SetupSqlFragment extends Fragment
 			{
 				final String from = StorageSettings.getSqlDownloadSource(activity);
 				final String to = StorageSettings.getSqlDownloadTarget(activity);
-				final String free = StorageUtils.getFree(getActivity(), to);
+				final String free = StorageUtils.getFree(activity, to);
 				final boolean exists = new File(to).exists();
 				Info.info(activity, R.string.title_sqlzip, //
 						getString(R.string.title_operation), getString(R.string.info_op_download_sqlzip), //
@@ -173,7 +175,7 @@ public class SetupSqlFragment extends Fragment
 			public void onClick(final View v)
 			{
 				final String database = StorageSettings.getDatabasePath(activity);
-				final String free = StorageUtils.getFree(getActivity(), database);
+				final String free = StorageUtils.getFree(activity, database);
 				final boolean databaseExists = new File(database).exists();
 				Info.info(activity, R.string.title_created, //
 						getString(R.string.title_operation), getString(R.string.info_op_create_database), //
@@ -189,7 +191,6 @@ public class SetupSqlFragment extends Fragment
 			@Override
 			public void onClick(final View v)
 			{
-				assert activity != null;
 				try
 				{
 					final String database = StorageSettings.getDatabasePath(activity);
@@ -210,7 +211,6 @@ public class SetupSqlFragment extends Fragment
 			@Override
 			public void onClick(final View v)
 			{
-				assert activity != null;
 				final String database = StorageSettings.getDatabasePath(activity);
 				final String source = StorageSettings.getSqlSource(activity);
 				final String entry = StorageSettings.getImportEntry(activity);
@@ -235,7 +235,6 @@ public class SetupSqlFragment extends Fragment
 			@Override
 			public void onClick(final View v)
 			{
-				assert activity != null;
 				// starting indexing task
 				try
 				{
@@ -257,7 +256,6 @@ public class SetupSqlFragment extends Fragment
 			@Override
 			public void onClick(final View v)
 			{
-				assert activity != null;
 				final String database = StorageSettings.getDatabasePath(activity);
 				final String source = StorageSettings.getSqlSource(activity);
 				final String entry = StorageSettings.getIndexEntry(activity);
@@ -317,21 +315,22 @@ public class SetupSqlFragment extends Fragment
 	protected void update()
 	{
 		// activity
-		final Activity activity = getActivity();
+		final Context context = getActivity();
+		assert context != null;
 
 		// images
-		final Drawable okDrawable = ColorUtils.getDrawable(activity, R.drawable.ic_ok);
-		ColorUtils.tint(ColorUtils.getColor(activity, R.color.secondaryForeColor), okDrawable);
-		final Drawable failDrawable = ColorUtils.getDrawable(activity, R.drawable.ic_fail);
+		final Drawable okDrawable = ColorUtils.getDrawable(context, R.drawable.ic_ok);
+		ColorUtils.tint(ColorUtils.getColor(context, R.color.secondaryForeColor), okDrawable);
+		final Drawable failDrawable = ColorUtils.getDrawable(context, R.drawable.ic_fail);
 
 		// sql zip file
-		final String sqlZip = StorageSettings.getSqlSource(activity);
+		final String sqlZip = StorageSettings.getSqlSource(context);
 		boolean sqlZipExists = new File(sqlZip).exists();
 		this.downloadSqlZipButton.setVisibility(sqlZipExists ? View.GONE : View.VISIBLE);
 		this.downloadSqlZipStatus.setImageDrawable(sqlZipExists ? okDrawable : failDrawable);
 
 		// status
-		final int status = Status.status(activity);
+		final int status = Status.status(context);
 		final boolean existsDatabase = (status & Status.EXISTS) != 0;
 		final boolean existsTables = (status & Status.EXISTS_TABLES) != 0;
 		final boolean existsIndexes = (status & Status.EXISTS_INDEXES) != 0;

@@ -121,6 +121,7 @@ public class SetupActivity extends AppCompatActivity implements TabLayout.OnTabS
 		@Override
 		public Fragment getItem(int position)
 		{
+			assert this.fragmentClasses != null;
 			final String fragmentClass = this.fragmentClasses[position];
 			if (fragmentClass != null && !fragmentClass.isEmpty())
 			{

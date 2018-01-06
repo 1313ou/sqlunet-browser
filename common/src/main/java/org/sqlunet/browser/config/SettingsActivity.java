@@ -204,7 +204,8 @@ public class SettingsActivity extends AppCompatPreferenceActivity
 		if (sharedPreferences.contains(key))
 		{
 			final Object val = sharedPreferences.getAll().get(key);
-			SettingsActivity.listener.onPreferenceChange(preference, val);
+			assert listener != null;
+			listener.onPreferenceChange(preference, val);
 		}
 	}
 

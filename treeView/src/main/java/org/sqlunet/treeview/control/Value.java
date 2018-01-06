@@ -32,7 +32,7 @@ public class Value
 	 * @param icon    extra icon
 	 * @param payload payload
 	 */
-	public Value(final CharSequence text, final int icon, final Object... payload)
+	public Value(final CharSequence text, final int icon, @Nullable final Object... payload)
 	{
 		this.text = text;
 		this.icon = icon;

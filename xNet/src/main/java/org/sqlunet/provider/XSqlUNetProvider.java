@@ -7,6 +7,7 @@ import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteQueryBuilder;
 import android.net.Uri;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.text.TextUtils;
 import android.util.Log;
 
@@ -144,7 +145,7 @@ public class XSqlUNetProvider extends BaseProvider
 	 */
 	@SuppressWarnings("boxing")
 	@Override
-	public Cursor query(@NonNull final Uri uri, @NonNull final String[] projection, final String selection, final String[] selectionArgs, final String sortOrder)
+	public Cursor query(@NonNull final Uri uri, @Nullable final String[] projection, final String selection, final String[] selectionArgs, final String sortOrder)
 	{
 		if (this.db == null)
 		{
@@ -325,7 +326,7 @@ public class XSqlUNetProvider extends BaseProvider
 	 * @return union sql
 	 */
 	private String makeQuery(final String table1, final String table2, //
-			final String[] tableProjection, final String[] unionProjection0, @NonNull final String[] projection, //
+			final String[] tableProjection, final String[] unionProjection0, final String[] projection, //
 			final String selection, //
 			final String[] groupBys, final String sortOrder, final String tag)
 	{
@@ -406,6 +407,7 @@ public class XSqlUNetProvider extends BaseProvider
 		// do query
 		try
 		{
+			assert this.db != null;
 			return this.db.rawQuery(sql, selectionArgs2);
 		}
 		catch (@NonNull final SQLiteException e)

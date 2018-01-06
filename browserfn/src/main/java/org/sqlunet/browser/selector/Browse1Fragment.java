@@ -92,7 +92,9 @@ public class Browse1Fragment extends Fragment implements SelectorsFragment.Liste
 	@Override
 	public void onItemSelected(final Pointer pointer, final String word, final long wordId)
 	{
-		if (isTwoPane(getView()))
+		final View view = getView();
+		assert view != null;
+		if (isTwoPane(view))
 		{
 			// in two-pane mode, show the detail view in this activity by adding or replacing the detail fragment using a fragment transaction.
 			final Browse2Fragment fragment = (Browse2Fragment) getChildFragmentManager().findFragmentById(R.id.container_browse2);

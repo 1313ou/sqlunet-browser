@@ -121,6 +121,7 @@ abstract class BaseModule extends Module
 		super(fragment);
 
 		// drawable
+		assert this.context != null;
 		this.drawableClass = Spanner.getDrawable(this.context, R.drawable.roleclass);
 		this.drawableMember = Spanner.getDrawable(this.context, R.drawable.member);
 		this.drawableRoles = Spanner.getDrawable(this.context, R.drawable.roles);
@@ -152,7 +153,7 @@ abstract class BaseModule extends Module
 	{
 		getLoaderManager().restartLoader(++Module.loaderId, null, new LoaderCallbacks<Cursor>()
 		{
-			@Nullable
+			@NonNull
 			@Override
 			public Loader<Cursor> onCreateLoader(final int loaderId, final Bundle loaderArgs)
 			{
@@ -166,6 +167,7 @@ abstract class BaseModule extends Module
 				final String[] selectionArgs = { //
 						Long.toString(classId)};
 				final String sortOrder = null;
+				assert BaseModule.this.context != null;
 				return new CursorLoader(BaseModule.this.context, uri, projection, selection, selectionArgs, sortOrder);
 			}
 
@@ -243,7 +245,7 @@ abstract class BaseModule extends Module
 	{
 		getLoaderManager().restartLoader(++Module.loaderId, null, new LoaderCallbacks<Cursor>()
 		{
-			@Nullable
+			@NonNull
 			@Override
 			public Loader<Cursor> onCreateLoader(final int loaderId, final Bundle loaderArgs)
 			{
@@ -259,6 +261,7 @@ abstract class BaseModule extends Module
 				final String selection = VnClasses_VnRoles_X.CLASSID + " = ?";
 				final String[] selectionArgs = {Long.toString(classId)};
 				final String sortOrder = VnClasses_VnMembers_X.LEMMA;
+				assert BaseModule.this.context != null;
 				return new CursorLoader(BaseModule.this.context, uri, projection, selection, selectionArgs, sortOrder);
 			}
 
@@ -377,7 +380,7 @@ abstract class BaseModule extends Module
 	{
 		getLoaderManager().restartLoader(++Module.loaderId, null, new LoaderCallbacks<Cursor>()
 		{
-			@Nullable
+			@NonNull
 			@Override
 			public Loader<Cursor> onCreateLoader(final int loaderId, final Bundle loaderArgs)
 			{
@@ -391,6 +394,7 @@ abstract class BaseModule extends Module
 				final String selection = VnClasses_VnRoles_X.CLASSID + " = ?";
 				final String[] selectionArgs = {Long.toString(classId)};
 				final String sortOrder = null;
+				assert BaseModule.this.context != null;
 				return new CursorLoader(BaseModule.this.context, uri, projection, selection, selectionArgs, sortOrder);
 			}
 
@@ -463,7 +467,7 @@ abstract class BaseModule extends Module
 	{
 		getLoaderManager().restartLoader(++Module.loaderId, null, new LoaderCallbacks<Cursor>()
 		{
-			@Nullable
+			@NonNull
 			@Override
 			public Loader<Cursor> onCreateLoader(final int loaderId, final Bundle loaderArgs)
 			{
@@ -482,6 +486,7 @@ abstract class BaseModule extends Module
 				final String selection = VnClasses_VnFrames_X.CLASSID + " = ?";
 				final String[] selectionArgs = {Long.toString(classId)};
 				final String sortOrder = null;
+				assert BaseModule.this.context != null;
 				return new CursorLoader(BaseModule.this.context, uri, projection, selection, selectionArgs, sortOrder);
 			}
 

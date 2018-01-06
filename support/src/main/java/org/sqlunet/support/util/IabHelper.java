@@ -179,7 +179,7 @@ public class IabHelper
 	 *                        public key in your application's page on Google Play Developer Console. Note that this
 	 *                        is NOT your "developer public key".
 	 */
-	public IabHelper(@NonNull Context ctx, String base64PublicKey)
+	public IabHelper(@NonNull Context ctx, @Nullable String base64PublicKey)
 	{
 		mContext = ctx.getApplicationContext();
 		mSignatureBase64 = base64PublicKey;
@@ -226,6 +226,8 @@ public class IabHelper
 	 */
 	public void startSetup(@Nullable final OnIabSetupFinishedListener listener)
 	{
+		assert mContext != null;
+
 		// If already set up, can't do it again.
 		checkNotDisposed();
 		if (mSetupDone)
@@ -259,6 +261,7 @@ public class IabHelper
 					logDebug("Checking for in-app billing 3 support.");
 
 					// check for in-app billing v3 support
+					assert mService != null;
 					int response = mService.isBillingSupported(3, packageName, ITEM_TYPE_INAPP);
 					if (response != BILLING_RESPONSE_RESULT_OK)
 					{
@@ -514,6 +517,8 @@ public class IabHelper
 		try
 		{
 			logDebug("Constructing buy intent for " + sku + ", item type: " + itemType);
+			assert mContext != null;
+			assert mService != null;
 			Bundle buyIntentBundle;
 			if (oldSkus == null || oldSkus.isEmpty())
 			{
@@ -874,6 +879,8 @@ public class IabHelper
 			throw new IabException(IABHELPER_INVALID_CONSUMPTION, "Items of type '" + itemInfo.mItemType + "' can't be consumed.");
 		}
 
+		assert mService != null;
+		assert mContext != null;
 		try
 		{
 			String token = itemInfo.getToken();
@@ -1110,9 +1117,13 @@ public class IabHelper
 
 	private int queryPurchases(@NonNull Inventory inv, String itemType) throws JSONException, RemoteException
 	{
+		assert mService != null;
+		assert mContext != null;
+
 		// Query purchases
 		logDebug("Querying owned items, item type: " + itemType);
 		logDebug("Package name: " + mContext.getPackageName());
+
 		boolean verificationFailed = false;
 		String continueToken = null;
 
@@ -1180,6 +1191,9 @@ public class IabHelper
 
 	private int querySkuDetails(String itemType, @NonNull Inventory inv, @Nullable List<String> moreSkus) throws RemoteException, JSONException
 	{
+		assert mService != null;
+		assert mContext != null;
+
 		logDebug("Querying SKU details.");
 		ArrayList<String> skuList = new ArrayList<>();
 		skuList.addAll(inv.getAllOwnedSkus(itemType));

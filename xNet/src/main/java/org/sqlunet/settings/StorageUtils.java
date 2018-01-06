@@ -606,7 +606,7 @@ public class StorageUtils
 			final String userId = StorageUtils.getUserId();
 
 			// /extStorage/emulated/0[1,2,...]
-			if (userId == null || userId.isEmpty())
+			if (/*userId == null ||*/ userId.isEmpty())
 			{
 				return new File(emulatedStorageTarget);
 			}

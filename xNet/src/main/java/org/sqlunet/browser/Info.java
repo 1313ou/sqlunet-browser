@@ -23,6 +23,7 @@ public class Info
 		int i = 0;
 		for (CharSequence line : lines)
 		{
+			//noinspection StatementWithEmptyBody
 			if (line == null)
 			{
 				// sb.append("");

@@ -165,7 +165,7 @@ public class TreeView
 				return null;
 			}
 
-			@Nullable
+			@NonNull
 			@Override
 			public ViewGroup getChildrenContainerView()
 			{
@@ -195,7 +195,10 @@ public class TreeView
 		if (parent.isExpanded())
 		{
 			final Controller<?> controller = getNodeController(parent);
-			addNode(controller.getChildrenContainerView(), node);
+			assert controller != null;
+			final ViewGroup viewGroup = controller.getChildrenContainerView();
+			assert viewGroup != null;
+			addNode(viewGroup, node);
 		}
 	}
 
@@ -278,7 +281,9 @@ public class TreeView
 			if (parent.isExpanded() && index >= 0)
 			{
 				final Controller<?> controller = getNodeController(parent);
-				controller.getChildrenContainerView().removeViewAt(index);
+				final ViewGroup viewGroup = controller.getChildrenContainerView();
+				assert viewGroup != null;
+				viewGroup.removeViewAt(index);
 			}
 		}
 	}
@@ -317,6 +322,7 @@ public class TreeView
 
 		// update view
 		final Controller<?> controller = node.getController();
+		assert controller != null;
 		final View view = controller.getNodeView();
 		if (view != null)
 		{
@@ -513,16 +519,18 @@ public class TreeView
 		node.setExpanded(false);
 
 		final Controller<?> controller = getNodeController(node);
+		assert controller != null;
 
 		// display
-		final View container = controller.getChildrenContainerView();
+		final ViewGroup viewGroup = controller.getChildrenContainerView();
+		assert viewGroup != null;
 		if (this.useAnimation)
 		{
-			animatedCollapse(container);
+			animatedCollapse(viewGroup);
 		}
 		else
 		{
-			collapse(container);
+			collapse(viewGroup);
 		}
 
 		// fire collapse event
@@ -550,9 +558,12 @@ public class TreeView
 		node.setExpanded(true);
 
 		final Controller<?> controller = getNodeController(node);
+		assert controller != null;
+		final ViewGroup viewGroup = controller.getChildrenContainerView();
+		assert viewGroup != null;
 
 		// clear all views
-		controller.getChildrenContainerView().removeAllViews();
+		viewGroup.removeAllViews();
 
 		// fire expand event
 		controller.onExpandEvent(true);
@@ -561,7 +572,7 @@ public class TreeView
 		for (final TreeNode child : node.getChildren())
 		{
 			// add children node to container view
-			addNode(controller.getChildrenContainerView(), child);
+			addNode(viewGroup, child);
 
 			// recurse
 			if (child.isExpanded() || includeSubnodes)
@@ -571,14 +582,13 @@ public class TreeView
 		}
 
 		// display
-		final View container = controller.getChildrenContainerView();
 		if (this.useAnimation)
 		{
-			animatedExpand(container);
+			animatedExpand(viewGroup);
 		}
 		else
 		{
-			expand(container);
+			expand(viewGroup);
 		}
 	}
 

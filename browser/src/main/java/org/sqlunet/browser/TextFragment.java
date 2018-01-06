@@ -443,6 +443,9 @@ public class TextFragment extends AbstractTableFragment
 	 */
 	private Pair<TypedPointer[], CharSequence[]> makeData(@NonNull final String... concatChoices)
 	{
+		final Context context = getActivity();
+		assert context != null;
+
 		final List<TypedPointer> typedPointers = new ArrayList<>();
 		final List<CharSequence> labels = new ArrayList<>();
 		final Pattern pattern = Pattern.compile('(' + "(?i)" + this.query + ')');
@@ -475,7 +478,7 @@ public class TextFragment extends AbstractTableFragment
 						break;
 				}
 				final SpannableStringBuilder sb = new SpannableStringBuilder();
-				appendImage(getActivity(), sb, resId);
+				appendImage(context, sb, resId);
 				sb.append(' ');
 				if (pattern.matcher(label).find())
 				{

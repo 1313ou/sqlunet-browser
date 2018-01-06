@@ -78,19 +78,23 @@ public class StorageFragment extends NavigableFragment
 	{
 		// view
 		final View view = getView();
+		assert view != null;
+
+		// context
+		final Context context = getActivity();
+		assert context != null;
 
 		// db
-		assert view != null;
 		final TextView db = view.findViewById(R.id.database);
-		db.setText(Storage.getSqlUNetStorage(getActivity()).getAbsolutePath());
+		db.setText(Storage.getSqlUNetStorage(context).getAbsolutePath());
 
 		// storage
 		final TextView storage = view.findViewById(R.id.storage);
-		storage.setText(StorageReports.reportStyledStorageDirectories(getActivity()));
+		storage.setText(StorageReports.reportStyledStorageDirectories(context));
 
 		// storage devices
 		final TextView storageDevices = view.findViewById(R.id.storage_devices);
-		storageDevices.setText(StorageReports.reportStyledExternalStorage(getActivity()));
+		storageDevices.setText(StorageReports.reportStyledExternalStorage(context));
 	}
 
 	// M E N U
@@ -106,12 +110,13 @@ public class StorageFragment extends NavigableFragment
 	public boolean onOptionsItemSelected(@NonNull MenuItem item)
 	{
 		final Context context = getActivity();
+		assert context != null;
 
 		// handle item selection
 		int i = item.getItemId();
 		if (i == R.id.action_storage_dirs)
 		{
-			final CharSequence message = StorageReports.reportStyledDirs(getActivity());
+			final CharSequence message = StorageReports.reportStyledDirs(context);
 			final AlertDialog.Builder alert = new AlertDialog.Builder(context);
 			alert.setTitle(R.string.action_storage_dirs);
 			alert.setMessage(message);

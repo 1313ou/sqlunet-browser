@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 
 import org.sqlunet.xnet.R;
 
@@ -73,7 +72,7 @@ public class StorageSettings
 	 * @param context context
 	 * @return data cache
 	 */
-	@Nullable
+	@NonNull
 	static private String getCacheDir(@NonNull final Context context)
 	{
 		return Storage.getCacheDir(context);
@@ -87,7 +86,7 @@ public class StorageSettings
 	 * @param context context
 	 * @return download site
 	 */
-	@Nullable
+	@NonNull
 	static private String getDownloadSite(@NonNull final Context context)
 	{
 		// test if already in preferences
@@ -115,7 +114,7 @@ public class StorageSettings
 	 * @param context context
 	 * @return download db file
 	 */
-	@Nullable
+	@NonNull
 	static private String getDbDownloadFile(@NonNull final Context context)
 	{
 		// test if already already in preferences
@@ -187,7 +186,7 @@ public class StorageSettings
 	 * @param context context
 	 * @return download sql file
 	 */
-	@Nullable
+	@NonNull
 	static private String getSqlDownloadFile(@NonNull final Context context)
 	{
 		// test if already already in preferences
@@ -247,7 +246,7 @@ public class StorageSettings
 	 * @param context context
 	 * @return import archive entry
 	 */
-	@Nullable
+	@NonNull
 	static public String getImportEntry(@NonNull final Context context)
 	{
 		// test if already in preferences
@@ -273,7 +272,7 @@ public class StorageSettings
 	 * @param context context
 	 * @return index archive entry
 	 */
-	@Nullable
+	@NonNull
 	static public String getIndexEntry(@NonNull final Context context)
 	{
 		// test if already in preferences

@@ -71,7 +71,7 @@ public class Storage
 	 * @param context context
 	 * @return database storage directory
 	 */
-	@Nullable
+	@NonNull
 	@SuppressLint({"CommitPrefEdits", "ApplySharedPref"})
 	static public File getSqlUNetStorage(@NonNull final Context context)
 	{
@@ -159,7 +159,7 @@ public class Storage
 	 * @param context context
 	 * @return data cache
 	 */
-	@Nullable
+	@NonNull
 	@SuppressLint({"CommitPrefEdits", "ApplySharedPref"})
 	static public String getCacheDir(@NonNull final Context context)
 	{

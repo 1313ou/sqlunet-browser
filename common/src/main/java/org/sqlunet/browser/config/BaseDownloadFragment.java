@@ -655,7 +655,8 @@ abstract class BaseDownloadFragment extends Fragment implements View.OnClickList
 		BaseDownloadFragment.isDownloading = false;
 
 		// register if this is the database
-		if (success && destFile.equals(new File(StorageSettings.getDatabasePath(this.context))))
+		assert this.destFile != null;
+		if (success && this.destFile.equals(new File(StorageSettings.getDatabasePath(this.context))))
 		{
 			FileData.recordDb(this.context);
 		}
@@ -752,8 +753,11 @@ abstract class BaseDownloadFragment extends Fragment implements View.OnClickList
 				}
 				else
 				{
+					final Context context = getActivity();
+					assert context != null;
+					assert BaseDownloadFragment.this.destFile != null;
 					final String localPath = BaseDownloadFragment.this.destFile.getAbsolutePath();
-					FileAsyncTask.md5(getActivity(), localPath, new FileAsyncTask.ResultListener()
+					FileAsyncTask.md5(context, localPath, new FileAsyncTask.ResultListener()
 					{
 						@Override
 						public void onResult(final Object result)

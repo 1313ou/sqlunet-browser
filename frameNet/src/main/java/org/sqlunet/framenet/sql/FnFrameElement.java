@@ -55,7 +55,6 @@ class FnFrameElement
 	/**
 	 * FE sem types
 	 */
-	@NonNull
 	public final String[] semTypes;
 
 	/**
@@ -84,7 +83,7 @@ class FnFrameElement
 		this.feAbbrev = feAbbrev;
 		this.feDefinition = feDefinition;
 		this.coreType = coreType;
-		this.semTypes = semTypes != null ? semTypes.split("\\|") : null;
+		this.semTypes = semTypes == null ? null : semTypes.split("\\|");
 		this.isCore = isCore;
 		this.coreSet = coreSet;
 	}

@@ -45,6 +45,7 @@ public class VnClassFragment extends TreeFragment
 			final Parcelable pointer = args.getParcelable(ProviderArgs.ARG_QUERYPOINTER);
 
 			// root node
+			assert this.treeView != null;
 			final TreeNode root = this.treeView.getRoot();
 			final TreeNode queryNode = root.getChildren().iterator().next();
 

@@ -6,17 +6,25 @@
       <w>compatiblelicenses</w>
       <w>convtask</w>
       <w>creativecommons</w>
+      <w>dasharray</w>
+      <w>dashoffset</w>
+      <w>dcmitype</w>
       <w>defs</w>
+      <w>deja</w>
       <w>derivs</w>
       <w>diathesis</w>
       <w>domainimg</w>
       <w>dropdowns</w>
       <w>euralex</w>
+      <w>evenodd</w>
       <w>fnid</w>
       <w>fnname</w>
       <w>framenetprovider</w>
       <w>fromurl</w>
       <w>generis</w>
+      <w>groupicon</w>
+      <w>grouploader</w>
+      <w>groupname</w>
       <w>hintwordid</w>
       <w>howto</w>
       <w>iconcolumn</w>
@@ -25,8 +33,12 @@
       <w>isframe</w>
       <w>islike</w>
       <w>korhonen</w>
+      <w>linecap</w>
+      <w>linejoin</w>
+      <w>livello</w>
       <w>loadercolumn</w>
       <w>managerprovider</w>
+      <w>miterlimit</w>
       <w>mpalmer</w>
       <w>namecolumn</w>
       <w>nand</w>
@@ -34,6 +46,7 @@
       <w>ngroups</w>
       <w>nprovides</w>
       <w>nunifies</w>
+      <w>ombre</w>
       <w>ondone</w>
       <w>phablets</w>
       <w>predicatematrixprovider</w>
@@ -51,6 +64,7 @@
       <w>setupstatusfragment</w>
       <w>significans</w>
       <w>signup</w>
+      <w>sodipodi</w>
       <w>spwr</w>
       <w>sqlunetbrowser</w>
       <w>sublicensable</w>
@@ -60,9 +74,11 @@
       <w>timelapse</w>
       <w>tofile</w>
       <w>treebolicwordnet</w>
+      <w>tspan</w>
       <w>verbnetprovider</w>
       <w>vnword</w>
       <w>wordnetprovider</w>
+      <w>xlink</w>
       <w>xsqlunet</w>
       <w>xsqlunetprovider</w>
     </words>

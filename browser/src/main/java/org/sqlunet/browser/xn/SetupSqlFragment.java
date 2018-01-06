@@ -95,7 +95,7 @@ public class SetupSqlFragment extends org.sqlunet.browser.config.SetupSqlFragmen
 				final String database = StorageSettings.getDatabasePath(activity);
 				final String source = StorageSettings.getSqlSource(activity);
 				final String entry = Settings.getPmEntry(activity);
-				final String free = StorageUtils.getFree(getActivity(), database);
+				final String free = StorageUtils.getFree(activity, database);
 				final boolean dbExists = new File(database).exists();
 				final boolean sqlzipExists = new File(source).exists();
 				Info.info(activity, R.string.title_predicatematrix, //
@@ -121,6 +121,7 @@ public class SetupSqlFragment extends org.sqlunet.browser.config.SetupSqlFragmen
 
 		// activity
 		final Activity activity = getActivity();
+		assert activity != null;
 
 		// sql zip file
 		final String sqlZip = StorageSettings.getSqlSource(activity);

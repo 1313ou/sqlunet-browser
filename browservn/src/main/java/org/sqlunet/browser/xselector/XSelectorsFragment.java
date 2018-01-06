@@ -230,12 +230,14 @@ public class XSelectorsFragment extends ExpandableListFragment
 	}
 
 	@Override
-	public void onViewCreated(@NonNull final View view, @Nullable final Bundle savedInstanceState)
+	public void onViewCreated(@NonNull final View view0, @Nullable final Bundle savedInstanceState)
 	{
-		super.onViewCreated(view, savedInstanceState);
+		super.onViewCreated(view0, savedInstanceState);
 
 		// when setting CHOICE_MODE_SINGLE, ListView will automatically give items the 'activated' state when touched.
-		getListView().setChoiceMode(this.activateOnItemClick ? AbsListView.CHOICE_MODE_SINGLE : AbsListView.CHOICE_MODE_NONE);
+		final ExpandableListView view = getListView();
+		assert view != null;
+		view.setChoiceMode(this.activateOnItemClick ? AbsListView.CHOICE_MODE_SINGLE : AbsListView.CHOICE_MODE_NONE);
 
 		// restore the previously serialized activated item position, if any
 		if (savedInstanceState != null && savedInstanceState.containsKey(XSelectorsFragment.STATE_ACTIVATED_SELECTOR))
@@ -411,7 +413,9 @@ public class XSelectorsFragment extends ExpandableListFragment
 					// XLoader.dump(cursor);
 
 					// pass on to list adapter
-					((CursorTreeAdapter) getListAdapter()).setChildrenCursor(groupPosition, cursor);
+					final CursorTreeAdapter adapter = (CursorTreeAdapter) getListAdapter();
+					assert adapter != null;
+					adapter.setChildrenCursor(groupPosition, cursor);
 				}
 				else
 				{
@@ -422,7 +426,9 @@ public class XSelectorsFragment extends ExpandableListFragment
 			@Override
 			public void onLoaderReset(final Loader<Cursor> loader)
 			{
-				((CursorTreeAdapter) getListAdapter()).setChildrenCursor(groupPosition, null);
+				final CursorTreeAdapter adapter = (CursorTreeAdapter) getListAdapter();
+				assert adapter != null;
+				adapter.setChildrenCursor(groupPosition, null);
 			}
 		};
 	}
@@ -446,7 +452,9 @@ public class XSelectorsFragment extends ExpandableListFragment
 					// XLoader.dump(cursor);
 
 					// pass on to list adapter
-					((CursorTreeAdapter) getListAdapter()).setChildrenCursor(groupPosition, cursor);
+					final CursorTreeAdapter adapter = (CursorTreeAdapter) getListAdapter();
+					assert adapter != null;
+					adapter.setChildrenCursor(groupPosition, cursor);
 				}
 				else
 				{
@@ -457,7 +465,9 @@ public class XSelectorsFragment extends ExpandableListFragment
 			@Override
 			public void onLoaderReset(final Loader<Cursor> loader)
 			{
-				((CursorTreeAdapter) getListAdapter()).setChildrenCursor(groupPosition, null);
+				final CursorTreeAdapter adapter = (CursorTreeAdapter) getListAdapter();
+				assert adapter != null;
+				adapter.setChildrenCursor(groupPosition, null);
 			}
 		};
 	}
@@ -497,6 +507,7 @@ public class XSelectorsFragment extends ExpandableListFragment
 			listView.setItemChecked(index, true);
 
 			@SuppressWarnings("TypeMayBeWeakened") final SimpleCursorTreeAdapter adapter = (SimpleCursorTreeAdapter) getListAdapter();
+			assert adapter != null;
 			final Cursor cursor = adapter.getChild(groupPosition, childPosition);
 			if (!cursor.isAfterLast())
 			{
@@ -545,8 +556,9 @@ public class XSelectorsFragment extends ExpandableListFragment
 	 */
 	private void expand(int groupPosition)
 	{
-		ExpandableListView listView = getExpandableListView();
-		listView.expandGroup(groupPosition);
+		final ExpandableListView view = getExpandableListView();
+		assert view != null;
+		view.expandGroup(groupPosition);
 	}
 
 	/**
@@ -555,11 +567,12 @@ public class XSelectorsFragment extends ExpandableListFragment
 	@SuppressWarnings("unused")
 	private void expandAll()
 	{
-		ExpandableListView listView = getExpandableListView();
+		final ExpandableListView view = getExpandableListView();
+		assert view != null;
 		int count = this.xnCursor.getCount();
 		for (int position = 0; position < count; position++)
 		{
-			listView.expandGroup(position);
+			view.expandGroup(position);
 		}
 	}
 

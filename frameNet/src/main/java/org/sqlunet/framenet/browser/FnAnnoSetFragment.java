@@ -65,6 +65,7 @@ public class FnAnnoSetFragment extends TreeFragment
 			final int type = args.getInt(ProviderArgs.ARG_QUERYTYPE);
 
 			// root node
+			assert this.treeView != null;
 			final TreeNode root = this.treeView.getRoot();
 			final TreeNode queryNode = root.getChildren().iterator().next();
 

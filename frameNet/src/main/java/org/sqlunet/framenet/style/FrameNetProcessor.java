@@ -37,6 +37,6 @@ public class FrameNetProcessor extends Preprocessor
 	public CharSequence[] split(final CharSequence text)
 	{
 		CharSequence processedText = process(text);
-		return processedText.toString().split("\n");
+		return processedText == null ? new CharSequence[0] : processedText.toString().split("\n");
 	}
 }

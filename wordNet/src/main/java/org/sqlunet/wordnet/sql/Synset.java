@@ -135,15 +135,18 @@ class Synset extends BasicSynset
 		final List<Word> words = getSynsetWords(connection);
 
 		// stringify
-		for (int i = 0; i < words.size(); i++)
+		if(words != null)
 		{
-			final Word word = words.get(i);
-			final String lemma = word.lemma.replace('_', ' ');
-			if (i != 0)
+			for (int i = 0; i < words.size(); i++)
 			{
-				sb.append(',');
+				final Word word = words.get(i);
+				final String lemma = word.lemma.replace('_', ' ');
+				if (i != 0)
+				{
+					sb.append(',');
+				}
+				sb.append(lemma);
 			}
-			sb.append(lemma);
 		}
 		return sb.toString();
 	}

@@ -193,6 +193,7 @@ public class IABAdapter implements IabBroadcastReceiver.IabBroadcastListener
 		Log.d(TAG, "Querying inventory");
 		try
 		{
+			assert this.iabHelper != null;
 			this.iabHelper.queryInventoryAsync(this.queryInventoryListener);
 		}
 		catch (IabHelper.IabAsyncInProgressException e)
@@ -211,6 +212,7 @@ public class IABAdapter implements IabBroadcastReceiver.IabBroadcastListener
 	{
 		Log.d(TAG, "Querying inventory");
 		IABAdapter.this.iabListener.onStart(IABListener.Op.INVENTORY);
+		assert this.iabHelper != null;
 		this.iabHelper.queryInventoryAsync(this.queryInventoryListener);
 	}
 
@@ -229,6 +231,7 @@ public class IABAdapter implements IabBroadcastReceiver.IabBroadcastListener
 		{
 			// Production apps should carefully generate this
 			final String payload = "sqlunet donation";
+			assert this.iabHelper != null;
 			this.iabHelper.launchPurchaseFlow(this.activity, sku, RC_REQUEST, this.purchaseFinishedListener, payload);
 		}
 		catch (IllegalStateException e)
@@ -250,6 +253,7 @@ public class IABAdapter implements IabBroadcastReceiver.IabBroadcastListener
 	public void consume(@NonNull final Purchase purchase) throws IabHelper.IabAsyncInProgressException
 	{
 		Log.d(TAG, "Consuming product: " + purchase.getSku());
+		assert this.iabHelper != null;
 		this.iabHelper.consumeAsync(purchase, this.consumeFinishedListener);
 	}
 

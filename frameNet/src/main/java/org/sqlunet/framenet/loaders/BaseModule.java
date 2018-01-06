@@ -162,6 +162,7 @@ abstract public class BaseModule extends Module
 		super(fragment);
 
 		// drawables
+		assert this.context != null;
 		this.frameDrawable = Spanner.getDrawable(this.context, R.drawable.roleclass);
 		this.feDrawable = Spanner.getDrawable(this.context, R.drawable.role);
 		this.lexunitDrawable = Spanner.getDrawable(this.context, R.drawable.member);
@@ -206,7 +207,7 @@ abstract public class BaseModule extends Module
 	{
 		getLoaderManager().restartLoader(++Module.loaderId, null, new LoaderCallbacks<Cursor>()
 		{
-			@Nullable
+			@NonNull
 			@Override
 			public Loader<Cursor> onCreateLoader(final int loaderId, final Bundle loaderArgs)
 			{
@@ -222,6 +223,7 @@ abstract public class BaseModule extends Module
 				final String selection = Frames_X.FRAMEID + " = ?";
 				final String[] selectionArgs = {Long.toString(frameId)};
 				final String sortOrder = Frames_X.FRAME;
+				assert BaseModule.this.context != null;
 				return new CursorLoader(BaseModule.this.context, uri, projection, selection, selectionArgs, sortOrder);
 			}
 
@@ -311,7 +313,7 @@ abstract public class BaseModule extends Module
 	{
 		getLoaderManager().restartLoader(++Module.loaderId, null, new LoaderCallbacks<Cursor>()
 		{
-			@Nullable
+			@NonNull
 			@Override
 			public Loader<Cursor> onCreateLoader(final int loaderId, final Bundle loaderArgs)
 			{
@@ -328,6 +330,7 @@ abstract public class BaseModule extends Module
 				final String selection = FrameNetContract.RELATED + '.' + Frames_Related.FRAMEID + " = ?" + " OR " + FrameNetContract.RELATED + '.' + Frames_Related.FRAME2ID + " = ?";
 				final String[] selectionArgs = {Long.toString(frameId), Long.toString(frameId)};
 				final String sortOrder = Frames_Related.RELATIONTYPE;
+				assert BaseModule.this.context != null;
 				return new CursorLoader(BaseModule.this.context, uri, projection, selection, selectionArgs, sortOrder);
 			}
 
@@ -451,7 +454,7 @@ abstract public class BaseModule extends Module
 	{
 		getLoaderManager().restartLoader(++Module.loaderId, null, new LoaderCallbacks<Cursor>()
 		{
-			@Nullable
+			@NonNull
 			@Override
 			public Loader<Cursor> onCreateLoader(final int loaderId, final Bundle loaderArgs)
 			{
@@ -469,6 +472,7 @@ abstract public class BaseModule extends Module
 				final String selection = Frames_FEs.FRAMEID + " = ? ";
 				final String[] selectionArgs = {Integer.toString(frameId)};
 				final String sortOrder = Frames_FEs.CORETYPEID + ',' + Frames_FEs.FETYPE;
+				assert BaseModule.this.context != null;
 				return new CursorLoader(BaseModule.this.context, uri, projection, selection, selectionArgs, sortOrder);
 			}
 
@@ -589,7 +593,7 @@ abstract public class BaseModule extends Module
 	{
 		getLoaderManager().restartLoader(++Module.loaderId, null, new LoaderCallbacks<Cursor>()
 		{
-			@Nullable
+			@NonNull
 			@Override
 			public Loader<Cursor> onCreateLoader(final int loaderId, final Bundle loaderArgs)
 			{
@@ -608,6 +612,7 @@ abstract public class BaseModule extends Module
 				final String selection = LexUnits_X.LUID + " = ?";
 				final String[] selectionArgs = {Long.toString(luId)};
 				final String sortOrder = null;
+				assert BaseModule.this.context != null;
 				return new CursorLoader(BaseModule.this.context, uri, projection, selection, selectionArgs, sortOrder);
 			}
 
@@ -753,7 +758,7 @@ abstract public class BaseModule extends Module
 	{
 		getLoaderManager().restartLoader(++Module.loaderId, null, new LoaderCallbacks<Cursor>()
 		{
-			@Nullable
+			@NonNull
 			@Override
 			public Loader<Cursor> onCreateLoader(final int loaderId, final Bundle loaderArgs)
 			{
@@ -771,6 +776,7 @@ abstract public class BaseModule extends Module
 				final String selection = FrameNetContract.FRAME + '.' + LexUnits_X.FRAMEID + " = ?";
 				final String[] selectionArgs = {Long.toString(frameId)};
 				final String sortOrder = LexUnits_X.LEXUNIT;
+				assert BaseModule.this.context != null;
 				return new CursorLoader(BaseModule.this.context, uri, projection, selection, selectionArgs, sortOrder);
 			}
 
@@ -912,7 +918,7 @@ abstract public class BaseModule extends Module
 	{
 		getLoaderManager().restartLoader(++Module.loaderId, null, new LoaderCallbacks<Cursor>()
 		{
-			@Nullable
+			@NonNull
 			@Override
 			public Loader<Cursor> onCreateLoader(final int loaderId, final Bundle loaderArgs)
 			{
@@ -932,6 +938,7 @@ abstract public class BaseModule extends Module
 						Words_LexUnits_Frames.WORDID + " = ? AND " + FrameNetContract.LU + '.' + Words_LexUnits_Frames.POSID + " = ?";
 				final String[] selectionArgs = pos == null ? new String[]{Long.toString(wordId)} : new String[]{Long.toString(wordId), Integer.toString(Utils.posToPosId(pos))};
 				final String sortOrder = Words_LexUnits_Frames.FRAME + ',' + Words_LexUnits_Frames.LUID;
+				assert BaseModule.this.context != null;
 				return new CursorLoader(BaseModule.this.context, uri, projection, selection, selectionArgs, sortOrder);
 			}
 
@@ -1060,7 +1067,7 @@ abstract public class BaseModule extends Module
 	{
 		getLoaderManager().restartLoader(++Module.loaderId, null, new LoaderCallbacks<Cursor>()
 		{
-			@Nullable
+			@NonNull
 			@Override
 			public Loader<Cursor> onCreateLoader(final int loaderId, final Bundle loaderArgs)
 			{
@@ -1075,6 +1082,7 @@ abstract public class BaseModule extends Module
 				final String selection = LexUnits_Governors.LUID + " = ?";
 				final String[] selectionArgs = {Long.toString(luId)};
 				final String sortOrder = LexUnits_Governors.GOVERNORID;
+				assert BaseModule.this.context != null;
 				return new CursorLoader(BaseModule.this.context, uri, projection, selection, selectionArgs, sortOrder);
 			}
 
@@ -1149,7 +1157,7 @@ abstract public class BaseModule extends Module
 	{
 		getLoaderManager().restartLoader(++Module.loaderId, null, new LoaderCallbacks<Cursor>()
 		{
-			@Nullable
+			@NonNull
 			@Override
 			public Loader<Cursor> onCreateLoader(final int loaderId, final Bundle loaderArgs)
 			{
@@ -1163,6 +1171,7 @@ abstract public class BaseModule extends Module
 				final String selection = Governors_AnnoSets_Sentences.GOVERNORID + " = ?";
 				final String[] selectionArgs = {Long.toString(governorId)};
 				final String sortOrder = null;
+				assert BaseModule.this.context != null;
 				return new CursorLoader(BaseModule.this.context, uri, projection, selection, selectionArgs, sortOrder);
 			}
 
@@ -1237,7 +1246,7 @@ abstract public class BaseModule extends Module
 	{
 		getLoaderManager().restartLoader(++Module.loaderId, null, new LoaderCallbacks<Cursor>()
 		{
-			@Nullable
+			@NonNull
 			@Override
 			public Loader<Cursor> onCreateLoader(final int loaderId, final Bundle loaderArgs)
 			{
@@ -1256,6 +1265,7 @@ abstract public class BaseModule extends Module
 				final String selection = LexUnits_FERealizations_ValenceUnits.LUID + " = ?";
 				final String[] selectionArgs = {Long.toString(luId)};
 				final String sortOrder = LexUnits_FERealizations_ValenceUnits.FERID;
+				assert BaseModule.this.context != null;
 				return new CursorLoader(BaseModule.this.context, uri, projection, selection, selectionArgs, sortOrder);
 			}
 
@@ -1362,7 +1372,7 @@ abstract public class BaseModule extends Module
 	{
 		getLoaderManager().restartLoader(++Module.loaderId, null, new LoaderCallbacks<Cursor>()
 		{
-			@Nullable
+			@NonNull
 			@Override
 			public Loader<Cursor> onCreateLoader(final int loaderId, final Bundle loaderArgs)
 			{
@@ -1379,6 +1389,7 @@ abstract public class BaseModule extends Module
 				final String selection = LexUnits_FEGroupRealizations_Patterns_ValenceUnits.LUID + " = ?";
 				final String[] selectionArgs = {Long.toString(luId)};
 				final String sortOrder = null; // LexUnits_FEGroupRealizations_Patterns_ValenceUnits.FEGRID;
+				assert BaseModule.this.context != null;
 				return new CursorLoader(BaseModule.this.context, uri, projection, selection, selectionArgs, sortOrder);
 			}
 
@@ -1520,7 +1531,7 @@ abstract public class BaseModule extends Module
 	{
 		getLoaderManager().restartLoader(++Module.loaderId, null, new LoaderCallbacks<Cursor>()
 		{
-			@Nullable
+			@NonNull
 			@Override
 			public Loader<Cursor> onCreateLoader(final int loaderId, final Bundle loaderArgs)
 			{
@@ -1546,6 +1557,7 @@ abstract public class BaseModule extends Module
 						LexUnits_Sentences_AnnoSets_Layers_Labels.DOCUMENTID + ',' + //
 						LexUnits_Sentences_AnnoSets_Layers_Labels.PARAGNO + ',' + //
 						LexUnits_Sentences_AnnoSets_Layers_Labels.SENTNO;
+				assert BaseModule.this.context != null;
 				return new CursorLoader(BaseModule.this.context, uri, projection, selection, selectionArgs, sortOrder);
 			}
 
@@ -1665,7 +1677,7 @@ abstract public class BaseModule extends Module
 	{
 		getLoaderManager().restartLoader(++Module.loaderId, null, new LoaderCallbacks<Cursor>()
 		{
-			@Nullable
+			@NonNull
 			@Override
 			public Loader<Cursor> onCreateLoader(final int loaderId, final Bundle loaderArgs)
 			{
@@ -1678,6 +1690,7 @@ abstract public class BaseModule extends Module
 				final String selection = Patterns_Sentences.PATTERNID + " = ?";
 				final String[] selectionArgs = {Long.toString(patternId)};
 				final String sortOrder = Patterns_Sentences.SENTENCEID;
+				assert BaseModule.this.context != null;
 				return new CursorLoader(BaseModule.this.context, uri, projection, selection, selectionArgs, sortOrder);
 			}
 
@@ -1747,7 +1760,7 @@ abstract public class BaseModule extends Module
 	{
 		getLoaderManager().restartLoader(++Module.loaderId, null, new LoaderCallbacks<Cursor>()
 		{
-			@Nullable
+			@NonNull
 			@Override
 			public Loader<Cursor> onCreateLoader(final int loaderId, final Bundle loaderArgs)
 			{
@@ -1760,6 +1773,7 @@ abstract public class BaseModule extends Module
 				final String selection = ValenceUnits_Sentences.VUID + " = ?";
 				final String[] selectionArgs = {Long.toString(vuId)};
 				final String sortOrder = ValenceUnits_Sentences.SENTENCEID;
+				assert BaseModule.this.context != null;
 				return new CursorLoader(BaseModule.this.context, uri, projection, selection, selectionArgs, sortOrder);
 			}
 
@@ -1832,7 +1846,7 @@ abstract public class BaseModule extends Module
 	{
 		getLoaderManager().restartLoader(++Module.loaderId, null, new LoaderCallbacks<Cursor>()
 		{
-			@Nullable
+			@NonNull
 			@Override
 			public Loader<Cursor> onCreateLoader(final int loaderId, final Bundle loaderArgs)
 			{
@@ -1848,6 +1862,7 @@ abstract public class BaseModule extends Module
 				final String selection = null; // embedded selection
 				final String[] selectionArgs = {Long.toString(annoSetId)};
 				final String sortOrder = null;
+				assert BaseModule.this.context != null;
 				return new CursorLoader(BaseModule.this.context, uri, projection, selection, selectionArgs, sortOrder);
 			}
 
@@ -1989,7 +2004,7 @@ abstract public class BaseModule extends Module
 	{
 		getLoaderManager().restartLoader(++Module.loaderId, null, new LoaderCallbacks<Cursor>()
 		{
-			@Nullable
+			@NonNull
 			@Override
 			public Loader<Cursor> onCreateLoader(final int loaderId, final Bundle loaderArgs)
 			{
@@ -2006,6 +2021,7 @@ abstract public class BaseModule extends Module
 				final String selection = null; // embedded selection
 				final String[] selectionArgs = {Long.toString(patternId)};
 				final String sortOrder = null;
+				assert BaseModule.this.context != null;
 				return new CursorLoader(BaseModule.this.context, uri, projection, selection, selectionArgs, sortOrder);
 			}
 
@@ -2040,7 +2056,7 @@ abstract public class BaseModule extends Module
 	{
 		getLoaderManager().restartLoader(++Module.loaderId, null, new LoaderCallbacks<Cursor>()
 		{
-			@Nullable
+			@NonNull
 			@Override
 			public Loader<Cursor> onCreateLoader(final int loaderId, final Bundle loaderArgs)
 			{
@@ -2057,6 +2073,7 @@ abstract public class BaseModule extends Module
 				final String selection = null; // embedded selection
 				final String[] selectionArgs = {Long.toString(vuId)};
 				final String sortOrder = null;
+				assert BaseModule.this.context != null;
 				return new CursorLoader(BaseModule.this.context, uri, projection, selection, selectionArgs, sortOrder);
 			}
 
@@ -2095,7 +2112,7 @@ abstract public class BaseModule extends Module
 		// Log.d(TAG, "sentence " + sentenceId);
 		getLoaderManager().restartLoader(++Module.loaderId, null, new LoaderCallbacks<Cursor>()
 		{
-			@Nullable
+			@NonNull
 			@Override
 			public Loader<Cursor> onCreateLoader(final int loaderId, final Bundle loaderArgs)
 			{
@@ -2110,6 +2127,7 @@ abstract public class BaseModule extends Module
 				final String selection = null; // embedded selection
 				final String[] selectionArgs = {Long.toString(sentenceId)};
 				final String sortOrder = null;
+				assert BaseModule.this.context != null;
 				return new CursorLoader(BaseModule.this.context, uri, projection, selection, selectionArgs, sortOrder);
 			}
 
@@ -2294,9 +2312,11 @@ abstract public class BaseModule extends Module
 		CharSequence[] texts = this.processor.split(text);
 		CharSequence[] fields = new CharSequence[texts.length];
 
+		assert this.spanner != null;
 		for (int i = 0; i < texts.length; i++)
 		{
 			CharSequence field = isFrame ? this.frameProcessor.process(texts[i]) : texts[i];
+			assert field != null;
 			if (i == 0)
 			{
 				fields[i] = this.spanner.process(field, flags, isFrame ? FrameNetFactories.metaFrameDefinitionFactory : FrameNetFactories.metaFeDefinitionFactory);

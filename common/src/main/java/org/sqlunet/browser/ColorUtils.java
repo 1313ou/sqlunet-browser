@@ -58,7 +58,7 @@ public class ColorUtils
 		return getColor(res, theme, colorRes);
 	}
 
-	@SuppressWarnings("WeakerAccess")
+	@SuppressWarnings({"WeakerAccess","deprecation"})
 	static public int getColor(@NonNull final Resources res, final Resources.Theme theme, int colorRes)
 	{
 		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M)
@@ -72,6 +72,7 @@ public class ColorUtils
 		}
 	}
 
+	@SuppressWarnings("deprecation")
 	static public Drawable getDrawable(@NonNull final Context context, int drawableRes)
 	{
 		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M)

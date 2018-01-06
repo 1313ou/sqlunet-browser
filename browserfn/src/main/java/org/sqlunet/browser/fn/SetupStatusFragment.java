@@ -58,6 +58,7 @@ public class SetupStatusFragment extends org.sqlunet.browser.config.SetupStatusF
 
 		// activity
 		final Activity activity = getActivity();
+		assert activity != null;
 
 		// click listeners
 		this.buttonTextSearchFn.setOnClickListener(new View.OnClickListener()
@@ -123,6 +124,7 @@ public class SetupStatusFragment extends org.sqlunet.browser.config.SetupStatusF
 		super.update();
 
 		final Activity activity = getActivity();
+		assert activity != null;
 		final int status = Status.status(activity);
 		Log.d(TAG, "STATUS " + Status.toString(status));
 

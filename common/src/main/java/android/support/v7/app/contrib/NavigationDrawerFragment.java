@@ -247,6 +247,7 @@ public class NavigationDrawerFragment extends Fragment
 		super.onConfigurationChanged(newConfig);
 
 		// forward the new configuration to the drawer toggle component
+		assert this.drawerToggle != null;
 		this.drawerToggle.onConfigurationChanged(newConfig);
 	}
 
@@ -267,6 +268,7 @@ public class NavigationDrawerFragment extends Fragment
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item)
 	{
+		assert this.drawerToggle != null;
 		//noinspection SimplifiableIfStatement
 		if (this.drawerToggle.onOptionsItemSelected(item))
 		{
@@ -297,6 +299,7 @@ public class NavigationDrawerFragment extends Fragment
 
 		// type bar
 		final ActionBar actionBar = getSupportActionBar();
+		assert actionBar != null;
 		actionBar.setDisplayHomeAsUpEnabled(true);
 		actionBar.setHomeButtonEnabled(true);
 
@@ -352,6 +355,7 @@ public class NavigationDrawerFragment extends Fragment
 			@Override
 			public void run()
 			{
+				assert NavigationDrawerFragment.this.drawerToggle != null;
 				NavigationDrawerFragment.this.drawerToggle.syncState();
 			}
 		});
@@ -415,6 +419,7 @@ public class NavigationDrawerFragment extends Fragment
 	private void showGlobalContextActionBar()
 	{
 		final ActionBar actionBar = getSupportActionBar();
+		assert actionBar != null;
 		actionBar.setDisplayShowTitleEnabled(true);
 		// actionBar.setTitle(R.string.app_name);
 		// actionBar.setSubtitle(R.string.app_subname);

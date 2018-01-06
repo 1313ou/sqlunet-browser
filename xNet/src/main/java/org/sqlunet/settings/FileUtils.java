@@ -38,6 +38,7 @@ class FileUtils
 		{
 			assetManager = context.getAssets();
 			final File dir = Storage.getSqlUNetStorage(context);
+
 			//noinspection ResultOfMethodCallIgnored
 			dir.mkdirs();
 			final File file = new File(dir, fileName);
@@ -143,6 +144,7 @@ class FileUtils
 			assetManager = context.getAssets();
 			assert assetManager != null;
 			final File dir = Storage.getSqlUNetStorage(context);
+
 			//noinspection ResultOfMethodCallIgnored
 			dir.mkdirs();
 			if (FileUtils.expandZipAsset(assetManager, fileName, dir.getAbsolutePath()))

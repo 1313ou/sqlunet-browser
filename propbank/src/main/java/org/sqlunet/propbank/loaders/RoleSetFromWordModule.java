@@ -1,9 +1,9 @@
 package org.sqlunet.propbank.loaders;
 
+import android.os.Parcelable;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.os.Parcelable;
 
 import org.sqlunet.HasWordId;
 import org.sqlunet.treeview.model.TreeNode;
@@ -46,7 +46,7 @@ public class RoleSetFromWordModule extends BaseModule
 	@Override
 	public void process(@NonNull final TreeNode node)
 	{
-		if (this.wordId != 0)
+		if (this.wordId != null && this.wordId != 0)
 		{
 			// data
 			roleSets(this.wordId, node);

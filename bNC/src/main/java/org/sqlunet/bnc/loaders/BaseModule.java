@@ -66,6 +66,7 @@ public class BaseModule extends Module
 		super(fragment);
 
 		// drawables
+		assert this.context != null;
 		this.convtaskDrawable = Spanner.getDrawable(this.context, R.drawable.convtask);
 		this.imaginfDrawable = Spanner.getDrawable(this.context, R.drawable.imaginf);
 		this.spwrDrawable = Spanner.getDrawable(this.context, R.drawable.spwr);
@@ -144,6 +145,7 @@ public class BaseModule extends Module
 				final String selection = pos == null ? Words_BNCs.WORDID + " = ?" : Words_BNCs.WORDID + " = ? AND " + Words_BNCs.POS + "= ?";
 				final String[] selectionArgs = pos == null ? new String[]{Long.toString(wordId)} : new String[]{Long.toString(wordId), Character.toString(pos),};
 				final String sortOrder = null;
+				assert BaseModule.this.context != null;
 				return new CursorLoader(BaseModule.this.context, uri, projection, selection, selectionArgs, sortOrder);
 			}
 
