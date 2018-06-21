@@ -346,7 +346,7 @@
 			android:name="org.sqlunet.bnc.provider.BNCProvider"
 			android:authorities="@string/bnc_authority"
 			android:enabled="true"
-			android:exported="true"
+			android:exported="false"
 			tools:ignore="ExportedContentProvider">
 		</provider>
 

@@ -420,7 +420,7 @@
 			android:name="org.sqlunet.provider.ManagerProvider"
 			android:authorities="@string/manager_authority"
 			android:enabled="true"
-			android:exported="true"
+			android:exported="false"
 			tools:ignore="ExportedContentProvider">
 		</provider>
 
@@ -428,7 +428,7 @@
 			android:name="org.sqlunet.provider.XSqlUNetProvider"
 			android:authorities="@string/xsqlunet_authority"
 			android:enabled="true"
-			android:exported="true"
+			android:exported="false"
 			tools:ignore="ExportedContentProvider">
 		</provider>
 
@@ -436,7 +436,7 @@
 			android:name="org.sqlunet.wordnet.provider.WordNetProvider"
 			android:authorities="@string/wordnet_authority"
 			android:enabled="true"
-			android:exported="true"
+			android:exported="false"
 			tools:ignore="ExportedContentProvider">
 		</provider>
 
@@ -444,7 +444,7 @@
 			android:name="org.sqlunet.verbnet.provider.VerbNetProvider"
 			android:authorities="@string/verbnet_authority"
 			android:enabled="true"
-			android:exported="true"
+			android:exported="false"
 			tools:ignore="ExportedContentProvider">
 		</provider>
 
@@ -452,7 +452,7 @@
 			android:name="org.sqlunet.propbank.provider.PropBankProvider"
 			android:authorities="@string/propbank_authority"
 			android:enabled="true"
-			android:exported="true"
+			android:exported="false"
 			tools:ignore="ExportedContentProvider">
 		</provider>
 
@@ -460,7 +460,7 @@
 			android:name="org.sqlunet.framenet.provider.FrameNetProvider"
 			android:authorities="@string/framenet_authority"
 			android:enabled="true"
-			android:exported="true"
+			android:exported="false"
 			tools:ignore="ExportedContentProvider">
 		</provider>
 
@@ -468,7 +468,7 @@
 			android:name="org.sqlunet.bnc.provider.BNCProvider"
 			android:authorities="@string/bnc_authority"
 			android:enabled="true"
-			android:exported="true"
+			android:exported="false"
 			tools:ignore="ExportedContentProvider">
 		</provider>
 
@@ -476,7 +476,7 @@
 			android:name="org.sqlunet.predicatematrix.provider.PredicateMatrixProvider"
 			android:authorities="@string/predicatematrix_authority"
 			android:enabled="true"
-			android:exported="true"
+			android:exported="false"
 			tools:ignore="ExportedContentProvider">
 		</provider>
 
