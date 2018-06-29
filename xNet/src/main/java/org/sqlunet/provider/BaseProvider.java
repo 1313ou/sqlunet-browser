@@ -65,12 +65,12 @@ public abstract class BaseProvider extends ContentProvider
 	{
 		private int limit;
 
-		public CircularBuffer(@SuppressWarnings("SameParameterValue") final int number)
+		CircularBuffer(@SuppressWarnings("SameParameterValue") final int number)
 		{
 			this.limit = number;
 		}
 
-		synchronized public void addItem(final CharSequence value)
+		synchronized void addItem(final CharSequence value)
 		{
 			addLast(value);
 			if (size() > this.limit)
@@ -185,6 +185,7 @@ public abstract class BaseProvider extends ContentProvider
 	}
 
 
+	@SuppressWarnings("SameReturnValue")
 	@Override
 	public boolean onCreate()
 	{

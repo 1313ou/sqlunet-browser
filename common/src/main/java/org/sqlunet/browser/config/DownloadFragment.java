@@ -58,7 +58,7 @@ public class DownloadFragment extends BaseDownloadFragment
 
 		EXCEPTION(10000, R.string.status_download_exception);
 
-		final public int code;
+		final int code;
 
 		final private int res;
 
@@ -500,6 +500,7 @@ public class DownloadFragment extends BaseDownloadFragment
 		startActivity(intent);
 	}
 
+	@SuppressWarnings("WeakerAccess")
 	@Override
 	protected void onDone(boolean success)
 	{

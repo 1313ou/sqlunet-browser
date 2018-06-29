@@ -103,7 +103,7 @@ public class FileDataDownloader extends AsyncTask<String, Void, FileData>
 	/**
 	 * SizeDownloader listener
 	 */
-	public interface Listener
+	interface Listener
 	{
 		/**
 		 * Done

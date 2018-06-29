@@ -110,7 +110,7 @@ public class WebFragment extends Fragment
 		final int sources;
 		final boolean xml;
 
-		public WebDocumentStringLoader(@NonNull final Context context, final Parcelable pointer, final int type, final String data, final int sources, final boolean xml)
+		WebDocumentStringLoader(@NonNull final Context context, final Parcelable pointer, final int type, final String data, final int sources, final boolean xml)
 		{
 			super(context);
 			this.pointer = pointer;
@@ -291,30 +291,27 @@ public class WebFragment extends Fragment
 						int type;
 						Pointer pointer;
 
-						if ("fnframeid".equals(name)) //
+						switch (name)
 						{
-							type = ProviderArgs.ARG_QUERYTYPE_FNFRAME;
-							pointer = new FnFramePointer(id);
-						}
-						else if ("fnluid".equals(name)) //
-						{
-							type = ProviderArgs.ARG_QUERYTYPE_FNLEXUNIT;
-							pointer = new FnLexUnitPointer(id);
-						}
-						else if ("fnsentenceid".equals(name)) //
-						{
-							type = ProviderArgs.ARG_QUERYTYPE_FNSENTENCE;
-							pointer = new FnSentencePointer(id);
-						}
-						else if ("fnannosetid".equals(name)) //
-						{
-							type = ProviderArgs.ARG_QUERYTYPE_FNANNOSET;
-							pointer = new FnAnnoSetPointer(id);
-						}
-						else
-						{
-							Log.e(WebFragment.TAG, "Ill-formed Uri: " + uri);
-							return false;
+							case "fnframeid":
+								type = ProviderArgs.ARG_QUERYTYPE_FNFRAME;
+								pointer = new FnFramePointer(id);
+								break;
+							case "fnluid":
+								type = ProviderArgs.ARG_QUERYTYPE_FNLEXUNIT;
+								pointer = new FnLexUnitPointer(id);
+								break;
+							case "fnsentenceid":
+								type = ProviderArgs.ARG_QUERYTYPE_FNSENTENCE;
+								pointer = new FnSentencePointer(id);
+								break;
+							case "fnannosetid":
+								type = ProviderArgs.ARG_QUERYTYPE_FNANNOSET;
+								pointer = new FnAnnoSetPointer(id);
+								break;
+							default:
+								Log.e(WebFragment.TAG, "Ill-formed Uri: " + uri);
+								return false;
 						}
 
 						targetIntent.putExtra(ProviderArgs.ARG_QUERYTYPE, type);
@@ -376,7 +373,7 @@ public class WebFragment extends Fragment
 			}
 
 			@Override
-			public void onLoadFinished(final Loader<String> loader, final String doc)
+			public void onLoadFinished(@NonNull final Loader<String> loader, final String doc)
 			{
 				Log.d(WebFragment.TAG, "onLoadFinished");
 				final String mimeType = xml ? "text/xml" : "text/html";
@@ -386,7 +383,7 @@ public class WebFragment extends Fragment
 			}
 
 			@Override
-			public void onLoaderReset(final Loader<String> loader)
+			public void onLoaderReset(@NonNull final Loader<String> loader)
 			{
 				WebFragment.this.webview.loadUrl("_about:blank");
 			}

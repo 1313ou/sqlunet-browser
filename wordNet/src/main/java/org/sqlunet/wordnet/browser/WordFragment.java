@@ -62,8 +62,7 @@ public class WordFragment extends TreeFragment
 	 * @return module
 	 */
 	@NonNull
-	@SuppressWarnings("WeakerAccess")
-	protected WordModule makeModule()
+	private WordModule makeModule()
 	{
 		return new WordModule(this);
 	}

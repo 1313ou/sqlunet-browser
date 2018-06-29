@@ -19,7 +19,7 @@ public abstract class Query
 	 *
 	 * @param id   id
 	 */
-	public Query(final long id)
+	protected Query(final long id)
 	{
 		this.id = id;
 	}

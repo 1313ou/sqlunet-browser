@@ -133,14 +133,14 @@ public class SqlFormatter
 		String token;
 		String lcToken;
 
-		public FormatProcess(@NonNull CharSequence sql, boolean style)
+		FormatProcess(@NonNull CharSequence sql, boolean style)
 		{
 			this.style = style;
 			this.tokens = new StringTokenizer(sql.toString(), "()+*/-=<>'`\"[]," + WHITESPACE, true);
 		}
 
 		@NonNull
-		public CharSequence perform()
+		CharSequence perform()
 		{
 			initial();
 
@@ -511,17 +511,17 @@ public class SqlFormatter
 		{
 			if (this.style)
 			{
-				if (this.token.charAt(0) == '\'')
+				switch (this.token.charAt(0))
 				{
-					append(this.result, this.token, new ForegroundColorSpan(0xFF008000));
-				}
-				else if (this.token.charAt(0) == '?')
-				{
-					append(this.result, this.token, new ForegroundColorSpan(Color.RED));
-				}
-				else
-				{
-					out();
+					case '\'':
+						append(this.result, this.token, new ForegroundColorSpan(0xFF008000));
+						break;
+					case '?':
+						append(this.result, this.token, new ForegroundColorSpan(Color.RED));
+						break;
+					default:
+						out();
+						break;
 				}
 			}
 			else

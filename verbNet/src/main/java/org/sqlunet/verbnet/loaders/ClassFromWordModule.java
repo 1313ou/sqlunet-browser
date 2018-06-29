@@ -130,7 +130,7 @@ public class ClassFromWordModule extends BaseModule
 			}
 
 			@Override
-			public void onLoadFinished(final Loader<Cursor> loader, @NonNull final Cursor cursor)
+			public void onLoadFinished(@NonNull final Loader<Cursor> loader, @NonNull final Cursor cursor)
 			{
 				if (cursor.moveToFirst())
 				{
@@ -184,7 +184,7 @@ public class ClassFromWordModule extends BaseModule
 			}
 
 			@Override
-			public void onLoaderReset(final Loader<Cursor> loader)
+			public void onLoaderReset(@NonNull final Loader<Cursor> loader)
 			{
 				//
 			}

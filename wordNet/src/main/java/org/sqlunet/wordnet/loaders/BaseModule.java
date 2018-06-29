@@ -142,8 +142,7 @@ abstract public class BaseModule extends Module
 	 * @param parent     tree parent node
 	 * @param addNewNode whether to addItem to (or set) node
 	 */
-	@SuppressWarnings("WeakerAccess")
-	protected void word(final long wordId, @NonNull final TreeNode parent, @SuppressWarnings("SameParameterValue") final boolean addNewNode)
+	void word(final long wordId, @NonNull final TreeNode parent, @SuppressWarnings("SameParameterValue") final boolean addNewNode)
 	{
 		// load the contents
 		getLoaderManager().restartLoader(++Module.loaderId, null, new LoaderCallbacks<Cursor>()
@@ -165,7 +164,7 @@ abstract public class BaseModule extends Module
 			}
 
 			@Override
-			public void onLoadFinished(final Loader<Cursor> loader, @NonNull final Cursor cursor)
+			public void onLoadFinished(@NonNull final Loader<Cursor> loader, @NonNull final Cursor cursor)
 			{
 				if (cursor.getCount() > 1)
 				{
@@ -213,7 +212,7 @@ abstract public class BaseModule extends Module
 			}
 
 			@Override
-			public void onLoaderReset(final Loader<Cursor> loader)
+			public void onLoaderReset(@NonNull final Loader<Cursor> loader)
 			{
 				//
 			}
@@ -260,7 +259,7 @@ abstract public class BaseModule extends Module
 			}
 
 			@Override
-			public void onLoadFinished(final Loader<Cursor> loader, @NonNull final Cursor cursor)
+			public void onLoadFinished(@NonNull final Loader<Cursor> loader, @NonNull final Cursor cursor)
 			{
 				// store source result
 				if (cursor.moveToFirst())
@@ -286,7 +285,7 @@ abstract public class BaseModule extends Module
 			}
 
 			@Override
-			public void onLoaderReset(final Loader<Cursor> loader)
+			public void onLoaderReset(@NonNull final Loader<Cursor> loader)
 			{
 				//
 			}
@@ -299,8 +298,7 @@ abstract public class BaseModule extends Module
 	 * @param wordId word id
 	 * @param parent tree parent node
 	 */
-	@SuppressWarnings("WeakerAccess")
-	protected void senses(final long wordId, @NonNull final TreeNode parent)
+	void senses(final long wordId, @NonNull final TreeNode parent)
 	{
 		// load the contents
 		getLoaderManager().restartLoader(++Module.loaderId, null, new LoaderCallbacks<Cursor>()
@@ -331,7 +329,7 @@ abstract public class BaseModule extends Module
 			}
 
 			@Override
-			public void onLoadFinished(final Loader<Cursor> loader, @NonNull final Cursor cursor)
+			public void onLoadFinished(@NonNull final Loader<Cursor> loader, @NonNull final Cursor cursor)
 			{
 				// store source result
 				if (cursor.moveToFirst())
@@ -357,7 +355,7 @@ abstract public class BaseModule extends Module
 			}
 
 			@Override
-			public void onLoaderReset(final Loader<Cursor> loader)
+			public void onLoaderReset(@NonNull final Loader<Cursor> loader)
 			{
 				//
 			}
@@ -427,7 +425,7 @@ abstract public class BaseModule extends Module
 			}
 
 			@Override
-			public void onLoadFinished(final Loader<Cursor> loader, @NonNull final Cursor cursor)
+			public void onLoadFinished(@NonNull final Loader<Cursor> loader, @NonNull final Cursor cursor)
 			{
 				if (cursor.getCount() > 1)
 				{
@@ -451,7 +449,7 @@ abstract public class BaseModule extends Module
 			}
 
 			@Override
-			public void onLoaderReset(final Loader<Cursor> loader)
+			public void onLoaderReset(@NonNull final Loader<Cursor> loader)
 			{
 				//
 			}
@@ -464,8 +462,7 @@ abstract public class BaseModule extends Module
 	 * @param senseKey sense key
 	 * @param parent   parent node
 	 */
-	@SuppressWarnings("WeakerAccess")
-	public void sense(final String senseKey, @NonNull final TreeNode parent)
+	void sense(final String senseKey, @NonNull final TreeNode parent)
 	{
 		getLoaderManager().restartLoader(++Module.loaderId, null, new LoaderCallbacks<Cursor>()
 		{
@@ -486,7 +483,7 @@ abstract public class BaseModule extends Module
 			}
 
 			@Override
-			public void onLoadFinished(final Loader<Cursor> loader, @NonNull final Cursor cursor)
+			public void onLoadFinished(@NonNull final Loader<Cursor> loader, @NonNull final Cursor cursor)
 			{
 				if (cursor.getCount() > 1)
 				{
@@ -517,7 +514,7 @@ abstract public class BaseModule extends Module
 			}
 
 			@Override
-			public void onLoaderReset(final Loader<Cursor> loader)
+			public void onLoaderReset(@NonNull final Loader<Cursor> loader)
 			{
 				//
 			}
@@ -531,8 +528,7 @@ abstract public class BaseModule extends Module
 	 * @param wordId   word id
 	 * @param parent   parent node
 	 */
-	@SuppressWarnings("WeakerAccess")
-	public void sense(final long synsetId, final long wordId, @NonNull final TreeNode parent)
+	private void sense(final long synsetId, final long wordId, @NonNull final TreeNode parent)
 	{
 		getLoaderManager().restartLoader(++Module.loaderId, null, new LoaderCallbacks<Cursor>()
 		{
@@ -554,7 +550,7 @@ abstract public class BaseModule extends Module
 			}
 
 			@Override
-			public void onLoadFinished(final Loader<Cursor> loader, @NonNull final Cursor cursor)
+			public void onLoadFinished(@NonNull final Loader<Cursor> loader, @NonNull final Cursor cursor)
 			{
 				if (cursor.getCount() > 1)
 				{
@@ -595,7 +591,7 @@ abstract public class BaseModule extends Module
 			}
 
 			@Override
-			public void onLoaderReset(final Loader<Cursor> loader)
+			public void onLoaderReset(@NonNull final Loader<Cursor> loader)
 			{
 				//
 			}
@@ -633,7 +629,7 @@ abstract public class BaseModule extends Module
 			}
 
 			@Override
-			public void onLoadFinished(final Loader<Cursor> loader, @NonNull final Cursor cursor)
+			public void onLoadFinished(@NonNull final Loader<Cursor> loader, @NonNull final Cursor cursor)
 			{
 				if (cursor.getCount() > 1)
 				{
@@ -673,7 +669,7 @@ abstract public class BaseModule extends Module
 			}
 
 			@Override
-			public void onLoaderReset(final Loader<Cursor> loader)
+			public void onLoaderReset(@NonNull final Loader<Cursor> loader)
 			{
 				//
 			}
@@ -806,7 +802,7 @@ abstract public class BaseModule extends Module
 			}
 
 			@Override
-			public void onLoadFinished(final Loader<Cursor> loader, @NonNull final Cursor cursor)
+			public void onLoadFinished(@NonNull final Loader<Cursor> loader, @NonNull final Cursor cursor)
 			{
 				if (BaseModule.this.membersGrouped)
 				{
@@ -867,7 +863,7 @@ abstract public class BaseModule extends Module
 			}
 
 			@Override
-			public void onLoaderReset(final Loader<Cursor> loader)
+			public void onLoaderReset(@NonNull final Loader<Cursor> loader)
 			{
 				//
 			}
@@ -898,7 +894,7 @@ abstract public class BaseModule extends Module
 			}
 
 			@Override
-			public void onLoadFinished(final Loader<Cursor> loader, @NonNull final Cursor cursor)
+			public void onLoadFinished(@NonNull final Loader<Cursor> loader, @NonNull final Cursor cursor)
 			{
 				if (BaseModule.this.membersGrouped)
 				{
@@ -943,7 +939,7 @@ abstract public class BaseModule extends Module
 			}
 
 			@Override
-			public void onLoaderReset(final Loader<Cursor> loader)
+			public void onLoaderReset(@NonNull final Loader<Cursor> loader)
 			{
 				//
 			}
@@ -957,8 +953,7 @@ abstract public class BaseModule extends Module
 	 * @param parent     parent node
 	 * @param addNewNode whether to addItem to (or set) node
 	 */
-	@SuppressWarnings("WeakerAccess")
-	void samples(final long synsetId, @NonNull final TreeNode parent, @SuppressWarnings("SameParameterValue") final boolean addNewNode)
+	private void samples(final long synsetId, @NonNull final TreeNode parent, @SuppressWarnings("SameParameterValue") final boolean addNewNode)
 	{
 		getLoaderManager().restartLoader(++Module.loaderId, null, new LoaderCallbacks<Cursor>()
 		{
@@ -979,7 +974,7 @@ abstract public class BaseModule extends Module
 			}
 
 			@Override
-			public void onLoadFinished(final Loader<Cursor> loader, @NonNull final Cursor cursor)
+			public void onLoadFinished(@NonNull final Loader<Cursor> loader, @NonNull final Cursor cursor)
 			{
 				if (cursor.moveToFirst())
 				{
@@ -1026,7 +1021,7 @@ abstract public class BaseModule extends Module
 			}
 
 			@Override
-			public void onLoaderReset(final Loader<Cursor> loader)
+			public void onLoaderReset(@NonNull final Loader<Cursor> loader)
 			{
 				//
 			}
@@ -1068,7 +1063,7 @@ abstract public class BaseModule extends Module
 			}
 
 			@Override
-			public void onLoadFinished(final Loader<Cursor> loader, @NonNull final Cursor cursor)
+			public void onLoadFinished(@NonNull final Loader<Cursor> loader, @NonNull final Cursor cursor)
 			{
 				// noinspection StatementWithEmptyBody
 				if (cursor.moveToFirst())
@@ -1125,7 +1120,7 @@ abstract public class BaseModule extends Module
 			}
 
 			@Override
-			public void onLoaderReset(final Loader<Cursor> loader)
+			public void onLoaderReset(@NonNull final Loader<Cursor> loader)
 			{
 				//
 			}
@@ -1163,7 +1158,7 @@ abstract public class BaseModule extends Module
 			}
 
 			@Override
-			public void onLoadFinished(final Loader<Cursor> loader, @NonNull final Cursor cursor)
+			public void onLoadFinished(@NonNull final Loader<Cursor> loader, @NonNull final Cursor cursor)
 			{
 				if (cursor.moveToFirst())
 				{
@@ -1227,7 +1222,7 @@ abstract public class BaseModule extends Module
 			}
 
 			@Override
-			public void onLoaderReset(final Loader<Cursor> loader)
+			public void onLoaderReset(@NonNull final Loader<Cursor> loader)
 			{
 				//
 			}
@@ -1265,7 +1260,7 @@ abstract public class BaseModule extends Module
 			}
 
 			@Override
-			public void onLoadFinished(final Loader<Cursor> loader, @NonNull final Cursor cursor)
+			public void onLoadFinished(@NonNull final Loader<Cursor> loader, @NonNull final Cursor cursor)
 			{
 				// noinspection StatementWithEmptyBody
 				if (cursor.moveToFirst())
@@ -1333,7 +1328,7 @@ abstract public class BaseModule extends Module
 			}
 
 			@Override
-			public void onLoaderReset(final Loader<Cursor> loader)
+			public void onLoaderReset(@NonNull final Loader<Cursor> loader)
 			{
 				//
 			}
@@ -1370,7 +1365,7 @@ abstract public class BaseModule extends Module
 			}
 
 			@Override
-			public void onLoadFinished(final Loader<Cursor> loader, @NonNull final Cursor cursor)
+			public void onLoadFinished(@NonNull final Loader<Cursor> loader, @NonNull final Cursor cursor)
 			{
 				//noinspection StatementWithEmptyBody
 				if (cursor.moveToFirst())
@@ -1433,7 +1428,7 @@ abstract public class BaseModule extends Module
 			}
 
 			@Override
-			public void onLoaderReset(final Loader<Cursor> loader)
+			public void onLoaderReset(@NonNull final Loader<Cursor> loader)
 			{
 				//
 			}
@@ -1465,7 +1460,7 @@ abstract public class BaseModule extends Module
 			}
 
 			@Override
-			public void onLoadFinished(final Loader<Cursor> loader, @NonNull final Cursor cursor)
+			public void onLoadFinished(@NonNull final Loader<Cursor> loader, @NonNull final Cursor cursor)
 			{
 				//noinspection StatementWithEmptyBody
 				if (cursor.moveToFirst())
@@ -1504,7 +1499,7 @@ abstract public class BaseModule extends Module
 			}
 
 			@Override
-			public void onLoaderReset(final Loader<Cursor> loader)
+			public void onLoaderReset(@NonNull final Loader<Cursor> loader)
 			{
 				//
 			}
@@ -1537,7 +1532,7 @@ abstract public class BaseModule extends Module
 			}
 
 			@Override
-			public void onLoadFinished(final Loader<Cursor> loader, @NonNull final Cursor cursor)
+			public void onLoadFinished(@NonNull final Loader<Cursor> loader, @NonNull final Cursor cursor)
 			{
 				//noinspection StatementWithEmptyBody
 				if (cursor.moveToFirst())
@@ -1576,7 +1571,7 @@ abstract public class BaseModule extends Module
 			}
 
 			@Override
-			public void onLoaderReset(final Loader<Cursor> loader)
+			public void onLoaderReset(@NonNull final Loader<Cursor> loader)
 			{
 				//
 			}
@@ -1607,7 +1602,7 @@ abstract public class BaseModule extends Module
 			}
 
 			@Override
-			public void onLoadFinished(final Loader<Cursor> loader, @NonNull final Cursor cursor)
+			public void onLoadFinished(@NonNull final Loader<Cursor> loader, @NonNull final Cursor cursor)
 			{
 				//noinspection StatementWithEmptyBody
 				if (cursor.moveToFirst())
@@ -1646,7 +1641,7 @@ abstract public class BaseModule extends Module
 			}
 
 			@Override
-			public void onLoaderReset(final Loader<Cursor> loader)
+			public void onLoaderReset(@NonNull final Loader<Cursor> loader)
 			{
 				//
 			}
@@ -1680,7 +1675,7 @@ abstract public class BaseModule extends Module
 			}
 
 			@Override
-			public void onLoadFinished(final Loader<Cursor> loader, @NonNull final Cursor cursor)
+			public void onLoadFinished(@NonNull final Loader<Cursor> loader, @NonNull final Cursor cursor)
 			{
 				// noinspection StatementWithEmptyBody
 				if (cursor.moveToFirst())
@@ -1719,7 +1714,7 @@ abstract public class BaseModule extends Module
 			}
 
 			@Override
-			public void onLoaderReset(final Loader<Cursor> loader)
+			public void onLoaderReset(@NonNull final Loader<Cursor> loader)
 			{
 				//
 			}
@@ -1751,7 +1746,7 @@ abstract public class BaseModule extends Module
 			}
 
 			@Override
-			public void onLoadFinished(final Loader<Cursor> loader, @NonNull final Cursor cursor)
+			public void onLoadFinished(@NonNull final Loader<Cursor> loader, @NonNull final Cursor cursor)
 			{
 				//noinspection StatementWithEmptyBody
 				if (cursor.moveToFirst())
@@ -1790,7 +1785,7 @@ abstract public class BaseModule extends Module
 			}
 
 			@Override
-			public void onLoaderReset(final Loader<Cursor> loader)
+			public void onLoaderReset(@NonNull final Loader<Cursor> loader)
 			{
 				//
 			}
@@ -1823,7 +1818,7 @@ abstract public class BaseModule extends Module
 			}
 
 			@Override
-			public void onLoadFinished(final Loader<Cursor> loader, @NonNull final Cursor cursor)
+			public void onLoadFinished(@NonNull final Loader<Cursor> loader, @NonNull final Cursor cursor)
 			{
 				//noinspection StatementWithEmptyBody
 				if (cursor.moveToFirst())
@@ -1862,7 +1857,7 @@ abstract public class BaseModule extends Module
 			}
 
 			@Override
-			public void onLoaderReset(final Loader<Cursor> loader)
+			public void onLoaderReset(@NonNull final Loader<Cursor> loader)
 			{
 				//
 			}
@@ -1893,7 +1888,7 @@ abstract public class BaseModule extends Module
 			}
 
 			@Override
-			public void onLoadFinished(final Loader<Cursor> loader, @NonNull final Cursor cursor)
+			public void onLoadFinished(@NonNull final Loader<Cursor> loader, @NonNull final Cursor cursor)
 			{
 				//noinspection StatementWithEmptyBody
 				if (cursor.moveToFirst())
@@ -1934,7 +1929,7 @@ abstract public class BaseModule extends Module
 			}
 
 			@Override
-			public void onLoaderReset(final Loader<Cursor> loader)
+			public void onLoaderReset(@NonNull final Loader<Cursor> loader)
 			{
 				//
 			}
@@ -2124,7 +2119,7 @@ abstract public class BaseModule extends Module
 		 * @param linkId       link id
 		 * @param recurseLevel recurse level
 		 */
-		public SubLinksQuery(final long synsetId, final int linkId, final int recurseLevel)
+		SubLinksQuery(final long synsetId, final int linkId, final int recurseLevel)
 		{
 			super(synsetId);
 			this.linkId = linkId;
@@ -2149,7 +2144,7 @@ abstract public class BaseModule extends Module
 		 *
 		 * @param synsetId synset id
 		 */
-		public SamplesQuery(final long synsetId)
+		SamplesQuery(final long synsetId)
 		{
 			super(synsetId);
 		}
@@ -2172,7 +2167,7 @@ abstract public class BaseModule extends Module
 		 *
 		 * @param wordId word id
 		 */
-		public WordLink(final long wordId)
+		WordLink(final long wordId)
 		{
 			super(wordId);
 		}
@@ -2196,8 +2191,7 @@ abstract public class BaseModule extends Module
 	 */
 	class SynsetLink extends Link
 	{
-		@SuppressWarnings("WeakerAccess")
-		protected final int recurse;
+		final int recurse;
 
 		/**
 		 * Constructor
@@ -2205,7 +2199,7 @@ abstract public class BaseModule extends Module
 		 * @param synsetId synset id
 		 * @param recurse  max recursion level
 		 */
-		public SynsetLink(final long synsetId, final int recurse)
+		SynsetLink(final long synsetId, final int recurse)
 		{
 			super(synsetId);
 			this.recurse = recurse;
@@ -2241,7 +2235,7 @@ abstract public class BaseModule extends Module
 		 * @param wordId   word id
 		 * @param recurse  max recursion level
 		 */
-		public SenseLink(final long synsetId, final long wordId, final int recurse)
+		SenseLink(final long synsetId, final long wordId, final int recurse)
 		{
 			super(synsetId, recurse);
 			this.wordId = wordId;

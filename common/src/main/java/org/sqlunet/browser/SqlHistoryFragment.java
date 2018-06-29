@@ -16,6 +16,7 @@ public class SqlHistoryFragment extends SqlFragment implements ActionBarSetter
 {
 	static private final String TAG = "SqlHistoryFragment";
 
+	@SuppressWarnings("SameReturnValue")
 	@Override
 	public boolean setActionBar(@NonNull final ActionBar actionBar, final Context context)
 	{

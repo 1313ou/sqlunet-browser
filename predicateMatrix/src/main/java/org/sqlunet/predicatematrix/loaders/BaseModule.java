@@ -273,7 +273,7 @@ abstract class BaseModule extends Module
 		 * @return role data as string
 		 */
 		@NonNull
-		public String toData()
+		String toData()
 		{
 			return toRoleData();
 		}
@@ -325,7 +325,7 @@ abstract class BaseModule extends Module
 
 		@NonNull
 		@Override
-		public String toData()
+		String toData()
 		{
 			return '[' + Long.toString(this.pmId) + ']' + '-' + super.toData();
 		}
@@ -722,7 +722,7 @@ abstract class BaseModule extends Module
 		@NonNull
 		abstract protected String[] getSelectionArgs();
 
-		@Nullable
+		@NonNull
 		@Override
 		public Loader<Cursor> onCreateLoader(final int loaderId, final Bundle loaderArgs)
 		{
@@ -772,7 +772,7 @@ abstract class BaseModule extends Module
 		}
 
 		@Override
-		public void onLoadFinished(final Loader<Cursor> loader, @NonNull final Cursor cursor)
+		public void onLoadFinished(@NonNull final Loader<Cursor> loader, @NonNull final Cursor cursor)
 		{
 			if (cursor.moveToFirst())
 			{
@@ -867,7 +867,7 @@ abstract class BaseModule extends Module
 		}
 
 		@Override
-		public void onLoaderReset(final Loader<Cursor> loader)
+		public void onLoaderReset(@NonNull final Loader<Cursor> loader)
 		{
 			//
 		}

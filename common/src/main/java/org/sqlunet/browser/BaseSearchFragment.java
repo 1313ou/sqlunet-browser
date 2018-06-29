@@ -55,25 +55,19 @@ abstract public class BaseSearchFragment extends NavigableFragment implements Se
 	/**
 	 * Action bar mode spinner
 	 */
-	@SuppressWarnings("WeakerAccess")
-	protected Spinner spinner;
+	Spinner spinner;
 
 	// R E S O U R C E S
 
-	@SuppressWarnings("WeakerAccess")
-	protected int layoutId;
+	int layoutId;
 
-	@SuppressWarnings("WeakerAccess")
-	protected int menuId;
+	int menuId;
 
-	@SuppressWarnings("WeakerAccess")
-	protected int colorId;
+	int colorId;
 
-	@SuppressWarnings("WeakerAccess")
-	protected int spinnerLabels;
+	int spinnerLabels;
 
-	@SuppressWarnings("WeakerAccess")
-	protected int spinnerIcons;
+	int spinnerIcons;
 
 	// C R E A T I O N
 
@@ -202,8 +196,7 @@ abstract public class BaseSearchFragment extends NavigableFragment implements Se
 	/**
 	 * Set up spinner
 	 */
-	@SuppressWarnings("WeakerAccess")
-	protected void setupSpinner(@NonNull final Context context)
+	void setupSpinner(@NonNull final Context context)
 	{
 		// resources
 		final Resources resources = context.getResources();

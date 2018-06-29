@@ -19,11 +19,11 @@ package android.support.test.espresso.contrib;
 import android.database.Cursor;
 import android.os.Build;
 import android.support.test.espresso.action.AdapterViewProtocol;
-import android.support.test.espresso.core.deps.guava.base.Optional;
-import android.support.test.espresso.core.deps.guava.base.Preconditions;
-import android.support.test.espresso.core.deps.guava.collect.Lists;
-import android.support.test.espresso.core.deps.guava.collect.Range;
+import android.support.test.espresso.core.internal.deps.guava.base.Preconditions;
+import android.support.test.espresso.core.internal.deps.guava.collect.Lists;
+import android.support.test.espresso.core.internal.deps.guava.collect.Range;
 import android.support.test.espresso.matcher.ViewMatchers;
+import android.support.test.espresso.util.EspressoOptional;
 import android.util.Log;
 import android.util.Pair;
 import android.view.View;
@@ -40,7 +40,6 @@ import java.util.List;
  *
  * @author Bernard Bou (1313ou@gmail.com)
  */
-@SuppressWarnings("WeakerAccess")
 public final class ExpandableListViewProtocol implements AdapterViewProtocol
 {
 	static private final String TAG = "ELVProtocol";
@@ -165,7 +164,7 @@ public final class ExpandableListViewProtocol implements AdapterViewProtocol
 	 * @throws IllegalArgumentException if this protocol cannot interrogate this class of adapterView
 	 */
 	@Override
-	public Optional<AdaptedData> getDataRenderedByView(AdapterView<? extends Adapter> adapterView, View descendantView)
+	public EspressoOptional<AdaptedData> getDataRenderedByView(AdapterView<? extends Adapter> adapterView, View descendantView)
 	{
 		// if the target view is a child of list view (both groups and group children are)
 		if (adapterView == descendantView.getParent())
@@ -180,13 +179,13 @@ public final class ExpandableListViewProtocol implements AdapterViewProtocol
 				int groupPosition = ExpandableListView.getPackedPositionGroup(packedPosition);
 				int childPosition = ExpandableListView.getPackedPositionChild(packedPosition);
 				final Object dataAtPosition = childPosition == -1 ? adapter.getGroup(groupPosition) : adapter.getChild(groupPosition, childPosition);
-				return Optional.of(new AdaptedData.Builder() //
+				return EspressoOptional.of(new AdaptedData.Builder() //
 						.withDataFunction(new ExpandableDataFunction(dataAtPosition, groupPosition, childPosition)) //
 						.withOpaqueToken(new Pair<>(groupPosition, childPosition)) //
 						.build());
 			}
 		}
-		return Optional.absent();
+		return EspressoOptional.absent();
 	}
 
 	/**

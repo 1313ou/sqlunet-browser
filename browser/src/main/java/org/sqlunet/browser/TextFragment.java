@@ -177,144 +177,152 @@ public class TextFragment extends AbstractTableFragment
 		if (database != null)
 		{
 			// wordnet
-			if ("wn".equals(database))
+			switch (database)
 			{
-				String subtarget = args.getString(ProviderArgs.ARG_QUERYIDTYPE);
+				case "wn":
+					String subtarget = args.getString(ProviderArgs.ARG_QUERYIDTYPE);
 
-				if ("synset".equals(subtarget))
-				{
-					// recursion
-					final int recurse = Settings.getRecursePref(getContext());
-
-					// target
-					final int colIdx = cursor.getColumnIndex("synsetid");
-					final long targetId = cursor.getLong(colIdx);
-					Log.d(TAG, "CLICK wn synset=" + targetId);
-
-					// build pointer
-					final Parcelable synsetPointer = new SynsetPointer(targetId);
-
-					// intent
-					final Intent targetIntent = new Intent(this.getActivity(), org.sqlunet.wordnet.browser.SynsetActivity.class);
-					targetIntent.setAction(ProviderArgs.ACTION_QUERY);
-					targetIntent.putExtra(ProviderArgs.ARG_QUERYTYPE, ProviderArgs.ARG_QUERYTYPE_SYNSET);
-					targetIntent.putExtra(ProviderArgs.ARG_QUERYPOINTER, synsetPointer);
-					targetIntent.putExtra(ProviderArgs.ARG_QUERYRECURSE, recurse);
-
-					// start
-					startActivity(targetIntent);
-				}
-				else if ("lemma".equals(subtarget))
-				{
-					// target
-					final int colIdx = cursor.getColumnIndex("wordid");
-					final long targetId = cursor.getLong(colIdx);
-					Log.d(TAG, "CLICK wn word=" + targetId);
-
-					// build pointer
-					final Parcelable wordPointer = new WordPointer(targetId);
-
-					// intent
-					final Intent targetIntent = new Intent(this.getActivity(), org.sqlunet.wordnet.browser.WordActivity.class);
-					targetIntent.setAction(ProviderArgs.ACTION_QUERY);
-					targetIntent.putExtra(ProviderArgs.ARG_QUERYTYPE, ProviderArgs.ARG_QUERYTYPE_WORD);
-					targetIntent.putExtra(ProviderArgs.ARG_QUERYPOINTER, wordPointer);
-
-					// start
-					startActivity(targetIntent);
-				}
-			}
-			else if ("vn".equals(database)) //
-			{
-				final int idClasses = cursor.getColumnIndex(VerbNetContract.Lookup_VnExamples_X.CLASSES);
-				final String classes = cursor.getString(idClasses);
-				Log.d(TAG, "CLICK vn classes=" + classes);
-
-				final Pair<TypedPointer[], CharSequence[]> result = makeData(classes);
-				if (result.first.length > 1)
-				{
-					final DialogInterface.OnClickListener listener = new DialogInterface.OnClickListener()
+					if ("synset".equals(subtarget))
 					{
-						@Override
-						public void onClick(final DialogInterface dialog, int which)
-						{
-							// which argument contains the index position of the selected item
-							final TypedPointer typedPointer = result.first[which];
-							startVn(typedPointer);
-						}
-					};
+						// recursion
+						final int recurse = Settings.getRecursePref(getContext());
 
-					final AlertDialog dialog = makeDialog(listener, result.second);
-					dialog.show();
-				}
-				else if (result.first.length == 1)
-				{
-					final TypedPointer typedPointer = result.first[0];
-					startVn(typedPointer);
-				}
-			}
-			else if ("pb".equals(database)) //
-			{
-				final int idRolesets = cursor.getColumnIndex(PropBankContract.Lookup_PbExamples_X.ROLESETS);
-				final String roleSets = cursor.getString(idRolesets);
-				Log.d(TAG, "CLICK pb rolesets=" + roleSets);
+						// target
+						final int colIdx = cursor.getColumnIndex("synsetid");
+						final long targetId = cursor.getLong(colIdx);
+						Log.d(TAG, "CLICK wn synset=" + targetId);
 
-				final Pair<TypedPointer[], CharSequence[]> result = makeData(roleSets);
-				if (result.first.length > 1)
-				{
-					final DialogInterface.OnClickListener listener = new DialogInterface.OnClickListener()
+						// build pointer
+						final Parcelable synsetPointer = new SynsetPointer(targetId);
+
+						// intent
+						final Intent targetIntent = new Intent(this.getActivity(), org.sqlunet.wordnet.browser.SynsetActivity.class);
+						targetIntent.setAction(ProviderArgs.ACTION_QUERY);
+						targetIntent.putExtra(ProviderArgs.ARG_QUERYTYPE, ProviderArgs.ARG_QUERYTYPE_SYNSET);
+						targetIntent.putExtra(ProviderArgs.ARG_QUERYPOINTER, synsetPointer);
+						targetIntent.putExtra(ProviderArgs.ARG_QUERYRECURSE, recurse);
+
+						// start
+						startActivity(targetIntent);
+					}
+					else if ("lemma".equals(subtarget))
 					{
-						@Override
-						public void onClick(final DialogInterface dialog, int which)
-						{
-							// which argument contains the index position of the selected item
-							final TypedPointer typedPointer = result.first[which];
-							startPb(typedPointer);
-						}
-					};
+						// target
+						final int colIdx = cursor.getColumnIndex("wordid");
+						final long targetId = cursor.getLong(colIdx);
+						Log.d(TAG, "CLICK wn word=" + targetId);
 
-					final AlertDialog dialog = makeDialog(listener, result.second);
-					dialog.show();
-				}
-				else if (result.first.length == 1)
-				{
-					final TypedPointer typedPointer = result.first[0];
-					startPb(typedPointer);
-				}
-			}
-			else if ("fn".equals(database)) //
-			{
-				final int idFrames = cursor.getColumnIndex(FrameNetContract.Lookup_FnSentences_X.FRAMES);
-				final int idLexUnits = cursor.getColumnIndex(FrameNetContract.Lookup_FnSentences_X.LEXUNITS);
-				final int idSentenceId = cursor.getColumnIndex(FrameNetContract.Lookup_FnSentences_X.SENTENCEID);
-				final String frames = cursor.getString(idFrames);
-				final String lexUnits = cursor.getString(idLexUnits);
-				final String sentence = "sentence@" + cursor.getString(idSentenceId);
-				Log.d(TAG, "CLICK fn frames=" + frames);
-				Log.d(TAG, "CLICK fn lexunits=" + lexUnits);
-				Log.d(TAG, "CLICK fn sentence=" + sentence);
+						// build pointer
+						final Parcelable wordPointer = new WordPointer(targetId);
 
-				final Pair<TypedPointer[], CharSequence[]> result = makeData(frames, lexUnits, sentence);
-				if (result.first.length > 1)
+						// intent
+						final Intent targetIntent = new Intent(this.getActivity(), org.sqlunet.wordnet.browser.WordActivity.class);
+						targetIntent.setAction(ProviderArgs.ACTION_QUERY);
+						targetIntent.putExtra(ProviderArgs.ARG_QUERYTYPE, ProviderArgs.ARG_QUERYTYPE_WORD);
+						targetIntent.putExtra(ProviderArgs.ARG_QUERYPOINTER, wordPointer);
+
+						// start
+						startActivity(targetIntent);
+					}
+					break;
+				case "vn":
+					//
 				{
-					final DialogInterface.OnClickListener listener = new DialogInterface.OnClickListener()
+					final int idClasses = cursor.getColumnIndex(VerbNetContract.Lookup_VnExamples_X.CLASSES);
+					final String classes = cursor.getString(idClasses);
+					Log.d(TAG, "CLICK vn classes=" + classes);
+
+					final Pair<TypedPointer[], CharSequence[]> result = makeData(classes);
+					if (result.first.length > 1)
 					{
-						@Override
-						public void onClick(final DialogInterface dialog, int which)
+						final DialogInterface.OnClickListener listener = new DialogInterface.OnClickListener()
 						{
-							// which argument contains the index position of the selected item
-							final TypedPointer typedPointer = result.first[which];
-							startFn(typedPointer);
-						}
-					};
+							@Override
+							public void onClick(final DialogInterface dialog, int which)
+							{
+								// which argument contains the index position of the selected item
+								final TypedPointer typedPointer = result.first[which];
+								startVn(typedPointer);
+							}
+						};
 
-					final AlertDialog dialog = makeDialog(listener, result.second);
-					dialog.show();
+						final AlertDialog dialog = makeDialog(listener, result.second);
+						dialog.show();
+					}
+					else if (result.first.length == 1)
+					{
+						final TypedPointer typedPointer = result.first[0];
+						startVn(typedPointer);
+					}
+					break;
 				}
-				else if (result.first.length == 1)
+				case "pb":
+					//
 				{
-					final TypedPointer typedPointer = result.first[0];
-					startFn(typedPointer);
+					final int idRolesets = cursor.getColumnIndex(PropBankContract.Lookup_PbExamples_X.ROLESETS);
+					final String roleSets = cursor.getString(idRolesets);
+					Log.d(TAG, "CLICK pb rolesets=" + roleSets);
+
+					final Pair<TypedPointer[], CharSequence[]> result = makeData(roleSets);
+					if (result.first.length > 1)
+					{
+						final DialogInterface.OnClickListener listener = new DialogInterface.OnClickListener()
+						{
+							@Override
+							public void onClick(final DialogInterface dialog, int which)
+							{
+								// which argument contains the index position of the selected item
+								final TypedPointer typedPointer = result.first[which];
+								startPb(typedPointer);
+							}
+						};
+
+						final AlertDialog dialog = makeDialog(listener, result.second);
+						dialog.show();
+					}
+					else if (result.first.length == 1)
+					{
+						final TypedPointer typedPointer = result.first[0];
+						startPb(typedPointer);
+					}
+					break;
+				}
+				case "fn":
+					//
+				{
+					final int idFrames = cursor.getColumnIndex(FrameNetContract.Lookup_FnSentences_X.FRAMES);
+					final int idLexUnits = cursor.getColumnIndex(FrameNetContract.Lookup_FnSentences_X.LEXUNITS);
+					final int idSentenceId = cursor.getColumnIndex(FrameNetContract.Lookup_FnSentences_X.SENTENCEID);
+					final String frames = cursor.getString(idFrames);
+					final String lexUnits = cursor.getString(idLexUnits);
+					final String sentence = "sentence@" + cursor.getString(idSentenceId);
+					Log.d(TAG, "CLICK fn frames=" + frames);
+					Log.d(TAG, "CLICK fn lexunits=" + lexUnits);
+					Log.d(TAG, "CLICK fn sentence=" + sentence);
+
+					final Pair<TypedPointer[], CharSequence[]> result = makeData(frames, lexUnits, sentence);
+					if (result.first.length > 1)
+					{
+						final DialogInterface.OnClickListener listener = new DialogInterface.OnClickListener()
+						{
+							@Override
+							public void onClick(final DialogInterface dialog, int which)
+							{
+								// which argument contains the index position of the selected item
+								final TypedPointer typedPointer = result.first[which];
+								startFn(typedPointer);
+							}
+						};
+
+						final AlertDialog dialog = makeDialog(listener, result.second);
+						dialog.show();
+					}
+					else if (result.first.length == 1)
+					{
+						final TypedPointer typedPointer = result.first[0];
+						startFn(typedPointer);
+					}
+					break;
 				}
 			}
 		}
@@ -425,8 +433,8 @@ public class TextFragment extends AbstractTableFragment
 	 */
 	private class TypedPointer
 	{
-		public final int type;
-		public final long id;
+		final int type;
+		final long id;
 
 		TypedPointer(int type, long id)
 		{

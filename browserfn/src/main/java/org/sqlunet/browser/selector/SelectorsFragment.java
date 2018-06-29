@@ -261,14 +261,14 @@ public class SelectorsFragment extends ListFragment
 			}
 
 			@Override
-			public void onLoadFinished(final Loader<Cursor> loader, final Cursor cursor)
+			public void onLoadFinished(@NonNull final Loader<Cursor> loader, final Cursor cursor)
 			{
 				// pass on to list adapter
 				((CursorAdapter) getListAdapter()).swapCursor(cursor);
 			}
 
 			@Override
-			public void onLoaderReset(final Loader<Cursor> arg)
+			public void onLoaderReset(@NonNull final Loader<Cursor> loader)
 			{
 				((CursorAdapter) getListAdapter()).swapCursor(null);
 			}

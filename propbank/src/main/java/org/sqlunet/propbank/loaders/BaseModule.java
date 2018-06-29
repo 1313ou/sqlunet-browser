@@ -144,7 +144,7 @@ abstract class BaseModule extends Module
 			}
 
 			@Override
-			public void onLoadFinished(final Loader<Cursor> loader, @NonNull final Cursor cursor)
+			public void onLoadFinished(@NonNull final Loader<Cursor> loader, @NonNull final Cursor cursor)
 			{
 				if (cursor.getCount() > 1)
 				{
@@ -202,7 +202,7 @@ abstract class BaseModule extends Module
 			}
 
 			@Override
-			public void onLoaderReset(final Loader<Cursor> loader)
+			public void onLoaderReset(@NonNull final Loader<Cursor> loader)
 			{
 				//
 			}
@@ -238,7 +238,7 @@ abstract class BaseModule extends Module
 			}
 
 			@Override
-			public void onLoadFinished(final Loader<Cursor> loader, @NonNull final Cursor cursor)
+			public void onLoadFinished(@NonNull final Loader<Cursor> loader, @NonNull final Cursor cursor)
 			{
 				if (cursor.moveToFirst())
 				{
@@ -294,7 +294,7 @@ abstract class BaseModule extends Module
 			}
 
 			@Override
-			public void onLoaderReset(final Loader<Cursor> loader)
+			public void onLoaderReset(@NonNull final Loader<Cursor> loader)
 			{
 				//
 			}
@@ -333,7 +333,7 @@ abstract class BaseModule extends Module
 			}
 
 			@Override
-			public void onLoadFinished(final Loader<Cursor> loader, @NonNull final Cursor cursor)
+			public void onLoadFinished(@NonNull final Loader<Cursor> loader, @NonNull final Cursor cursor)
 			{
 				final SpannableStringBuilder sb = new SpannableStringBuilder();
 				if (cursor.moveToFirst())
@@ -406,7 +406,7 @@ abstract class BaseModule extends Module
 			}
 
 			@Override
-			public void onLoaderReset(final Loader<Cursor> loader)
+			public void onLoaderReset(@NonNull final Loader<Cursor> loader)
 			{
 				//
 			}
@@ -458,7 +458,7 @@ abstract class BaseModule extends Module
 
 			@SuppressWarnings("BreakStatement")
 			@Override
-			public void onLoadFinished(final Loader<Cursor> loader, @NonNull final Cursor cursor)
+			public void onLoadFinished(@NonNull final Loader<Cursor> loader, @NonNull final Cursor cursor)
 			{
 				final SpannableStringBuilder sb = new SpannableStringBuilder();
 
@@ -559,7 +559,7 @@ abstract class BaseModule extends Module
 			}
 
 			@Override
-			public void onLoaderReset(final Loader<Cursor> loader)
+			public void onLoaderReset(@NonNull final Loader<Cursor> loader)
 			{
 				//
 			}

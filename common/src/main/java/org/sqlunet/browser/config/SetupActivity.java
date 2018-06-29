@@ -107,9 +107,9 @@ public class SetupActivity extends AppCompatActivity implements TabLayout.OnTabS
 	private class SectionsPagerAdapter extends FragmentPagerAdapter
 	{
 		@Nullable
-		private String[] fragmentClasses = null;
+		private final String[] fragmentClasses;
 
-		public SectionsPagerAdapter(final FragmentManager fragmentManager, @NonNull final Context context)
+		SectionsPagerAdapter(final FragmentManager fragmentManager, @NonNull final Context context)
 		{
 			super(fragmentManager);
 			final Resources res = context.getResources();

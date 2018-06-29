@@ -56,7 +56,7 @@ class MD5Downloader extends AsyncTask<String, Void, String>
 		{
 			// connect
 			final URL url = new URL(md5Arg);
-			Log.d(TAG, "Get " + url.toString());
+			Log.d(MD5Downloader.TAG, "Get " + url.toString());
 			final URLConnection connection = url.openConnection();
 			connection.connect();
 
@@ -104,12 +104,12 @@ class MD5Downloader extends AsyncTask<String, Void, String>
 		catch (@NonNull final InterruptedException e)
 		{
 			this.exception = e;
-			Log.d(TAG, e.toString());
+			Log.d(MD5Downloader.TAG, e.toString());
 		}
 		catch (@NonNull final Exception e)
 		{
 			this.exception = e;
-			Log.e(TAG, "While downloading", e);
+			Log.e(MD5Downloader.TAG, "While downloading", e);
 		}
 		finally
 		{

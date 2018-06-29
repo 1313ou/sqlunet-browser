@@ -28,8 +28,7 @@ abstract public class BaseTaskFragment extends Fragment
 	/**
 	 * Action spinner
 	 */
-	@SuppressWarnings("WeakerAccess")
-	protected Spinner spinner;
+	Spinner spinner;
 
 	/**
 	 * Status view
@@ -39,14 +38,12 @@ abstract public class BaseTaskFragment extends Fragment
 	/**
 	 * Run button
 	 */
-	@SuppressWarnings("WeakerAccess")
-	protected ImageButton runButton;
+	ImageButton runButton;
 
 	/**
 	 * Layout id set by derived class
 	 */
-	@SuppressWarnings("WeakerAccess")
-	protected int layoutId;
+	int layoutId;
 
 	/**
 	 * Make spinner
@@ -96,8 +93,7 @@ abstract public class BaseTaskFragment extends Fragment
 		return view;
 	}
 
-	@SuppressWarnings("WeakerAccess")
-	protected void select(final int position)
+	void select(final int position)
 	{
 		BaseTaskFragment.this.status.setText("");
 	}

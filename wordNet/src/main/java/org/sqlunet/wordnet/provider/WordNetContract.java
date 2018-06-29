@@ -97,7 +97,7 @@ public class WordNetContract
 		static public final String LINKID = "linkid";
 		static public final String LINK = "link";
 		static public final String RECURSES = "recurses";
-		static public final String RECURSESSTR = "recursesstr";
+		static final String RECURSESSTR = "recursesstr";
 		static public final String RECURSESSELECT = "(CASE WHEN recurses <> 0 THEN 'recurses' ELSE '' END) AS " + LinkTypes.RECURSESSTR;
 	}
 
@@ -355,19 +355,19 @@ public class WordNetContract
 
 	static public final class Suggest_Words
 	{
-		static public final String SEARCH_WORD_PATH = "suggest_word";
+		static final String SEARCH_WORD_PATH = "suggest_word";
 		static public final String TABLE = Suggest_Words.SEARCH_WORD_PATH + "/" + SearchManager.SUGGEST_URI_PATH_QUERY;
 	}
 
 	static public final class Suggest_Definitions
 	{
-		static public final String SEARCH_DEFINITION_PATH = "suggest_definition";
+		static final String SEARCH_DEFINITION_PATH = "suggest_definition";
 		static public final String TABLE = Suggest_Definitions.SEARCH_DEFINITION_PATH + "/" + SearchManager.SUGGEST_URI_PATH_QUERY;
 	}
 
 	static public final class Suggest_Samples
 	{
-		static public final String SEARCH_SAMPLE_PATH = "suggest_definition";
+		static final String SEARCH_SAMPLE_PATH = "suggest_definition";
 		static public final String TABLE = Suggest_Samples.SEARCH_SAMPLE_PATH + "/" + SearchManager.SUGGEST_URI_PATH_QUERY;
 	}
 }

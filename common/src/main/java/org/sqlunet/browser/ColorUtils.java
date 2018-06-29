@@ -58,7 +58,7 @@ public class ColorUtils
 		return getColor(res, theme, colorRes);
 	}
 
-	@SuppressWarnings({"WeakerAccess","deprecation"})
+	@SuppressWarnings({"deprecation", "WeakerAccess"})
 	static public int getColor(@NonNull final Resources res, final Resources.Theme theme, int colorRes)
 	{
 		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M)

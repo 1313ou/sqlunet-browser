@@ -83,7 +83,7 @@ public class ExecAsyncTask
 		 * @param listener    listener
 		 * @param publishRate publish rate
 		 */
-		public AsyncExecuteFromSql(final TaskObserver.Listener listener, final int publishRate)
+		AsyncExecuteFromSql(final TaskObserver.Listener listener, final int publishRate)
 		{
 			this.listener = listener;
 			this.publishRate = publishRate;
@@ -214,7 +214,7 @@ public class ExecAsyncTask
 		 * @param powerManager power manager
 		 * @param window       window
 		 */
-		public AsyncExecuteFromArchive(final TaskObserver.Listener listener, final int publishRate, final PowerManager powerManager, final Window window)
+		AsyncExecuteFromArchive(final TaskObserver.Listener listener, final int publishRate, final PowerManager powerManager, final Window window)
 		{
 			this.listener = listener;
 			this.publishRate = publishRate;
@@ -430,7 +430,7 @@ public class ExecAsyncTask
 		 *
 		 * @param listener listener
 		 */
-		public AsyncVacuum(final TaskObserver.Listener listener)
+		AsyncVacuum(final TaskObserver.Listener listener)
 		{
 			this.listener = listener;
 		}

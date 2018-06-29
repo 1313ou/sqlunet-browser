@@ -59,6 +59,115 @@ public class WebFragment extends Fragment
 
 	static private final String SQLUNET_NS = "http://org.sqlunet";
 
+	static class WebDocumentStringLoader extends DocumentStringLoader
+	{
+		final private int type;
+		final private String data;
+		final private Parcelable pointer;
+		final private Character pos;
+		final private int sources;
+		final private boolean xml;
+
+		WebDocumentStringLoader(final Context context, final int type, final String data, final Parcelable pointer, final Character pos, final int sources, final boolean xml)
+		{
+			super(context);
+			this.data = data;
+			this.type = type;
+			this.pointer = pointer;
+			this.pos = pos;
+			this.sources = sources;
+			this.xml = xml;
+		}
+
+		@Nullable
+		@SuppressWarnings({"boxing"})
+		@Override
+		protected String getDoc()
+		{
+			DataSource dataSource = null;
+			try
+			{
+				// data source
+				dataSource = new DataSource(StorageSettings.getDatabasePath(getContext()));
+				final SQLiteDatabase db = dataSource.getConnection();
+				WordNetImplementation.init(db);
+
+				// dom documents
+				Document wnDomDoc = null;
+				Document bncDomDoc = null;
+
+				// selector mode
+				final boolean isSelector = this.data != null;
+
+				// make documents
+				if (isSelector)
+				{
+					// this is a selector query
+					if (Settings.Source.WORDNET.test(this.sources))
+					{
+						wnDomDoc = new WordNetImplementation().querySelectorDoc(db, this.data);
+					}
+				}
+				else
+				{
+					// this is a detail query
+					switch (this.type)
+					{
+						case ProviderArgs.ARG_QUERYTYPE_ALL:
+							if (pointer != null)
+							{
+								final SensePointer sense2Pointer = (SensePointer) this.pointer;
+								final Long wordId = sense2Pointer.getWordId();
+								final Long synsetId = sense2Pointer.getSynsetId();
+								if (Settings.Source.WORDNET.test(this.sources))
+								{
+									wnDomDoc = new WordNetImplementation().queryDoc(db, wordId, synsetId, true, false);
+								}
+								if (Settings.Source.BNC.test(this.sources))
+								{
+									bncDomDoc = new BncImplementation().queryDoc(db, wordId, pos);
+								}
+							}
+							break;
+
+						case ProviderArgs.ARG_QUERYTYPE_WORD:
+							@SuppressWarnings("TypeMayBeWeakened") final WordPointer wordPointer = (WordPointer) this.pointer;
+							Log.d(WebFragment.TAG, "word=" + wordPointer);
+							if (wordPointer != null && Settings.Source.WORDNET.test(this.sources))
+							{
+								wnDomDoc = new WordNetImplementation().queryWordDoc(db, wordPointer.getWordId());
+							}
+							break;
+
+						case ProviderArgs.ARG_QUERYTYPE_SYNSET:
+							@SuppressWarnings("TypeMayBeWeakened") final SynsetPointer synsetPointer = (SynsetPointer) this.pointer;
+							Log.d(WebFragment.TAG, "synset=" + synsetPointer);
+							if (synsetPointer != null && Settings.Source.WORDNET.test(this.sources))
+							{
+								wnDomDoc = new WordNetImplementation().querySynsetDoc(db, synsetPointer.getSynsetId());
+							}
+							break;
+					}
+				}
+
+				// stringify
+				return WebFragment.docsToString(data, xml, isSelector, wnDomDoc, bncDomDoc);
+			}
+			catch (@NonNull final Exception e)
+			{
+				Log.e(WebFragment.TAG, "getDoc", e);
+			}
+			finally
+			{
+				if (dataSource != null)
+				{
+					dataSource.close();
+				}
+			}
+			return null;
+		}
+	}
+
 	/**
 	 * HTML stuff
 	 */
@@ -172,20 +281,19 @@ public class WebFragment extends Fragment
 						int type;
 						Pointer pointer;
 
-						if ("wordid".equals(name)) //
+						switch (name)
 						{
-							type = ProviderArgs.ARG_QUERYTYPE_WORD;
-							pointer = new WordPointer(id);
-						}
-						else if ("synsetid".equals(name)) //
-						{
-							type = ProviderArgs.ARG_QUERYTYPE_SYNSET;
-							pointer = new SynsetPointer(id);
-						}
-						else
-						{
-							Log.e(WebFragment.TAG, "Ill-formed Uri: " + uri);
-							return false;
+							case "wordid":
+								type = ProviderArgs.ARG_QUERYTYPE_WORD;
+								pointer = new WordPointer(id);
+								break;
+							case "synsetid":
+								type = ProviderArgs.ARG_QUERYTYPE_SYNSET;
+								pointer = new SynsetPointer(id);
+								break;
+							default:
+								Log.e(WebFragment.TAG, "Ill-formed Uri: " + uri);
+								return false;
 						}
 
 						final int recurse = Settings.getRecursePref(getContext());
@@ -230,7 +338,7 @@ public class WebFragment extends Fragment
 
 		// pointer
 		final Parcelable pointer = args.getParcelable(ProviderArgs.ARG_QUERYPOINTER);
-		Log.d(WebFragment.TAG, "ARG_POSITION query=" + pointer);
+		Log.d(WebFragment.TAG, "query=" + pointer);
 
 		// hint
 		final String posString = args.getString(ProviderArgs.ARG_HINTPOS);
@@ -238,7 +346,7 @@ public class WebFragment extends Fragment
 
 		// text
 		final String data = args.getString(ProviderArgs.ARG_QUERYSTRING);
-		Log.d(WebFragment.TAG, "ARG_POSITION data=" + data);
+		Log.d(WebFragment.TAG, "data=" + data);
 
 		// load the contents
 		getLoaderManager().restartLoader(++Module.loaderId, null, new LoaderCallbacks<String>()
@@ -249,100 +357,11 @@ public class WebFragment extends Fragment
 			{
 				final Context context = getActivity();
 				assert context != null;
-				return new DocumentStringLoader(context)
-				{
-					@Nullable
-					@SuppressWarnings({"boxing"})
-					@Override
-					protected String getDoc()
-					{
-						DataSource dataSource = null;
-						try
-						{
-							// data source
-							dataSource = new DataSource(StorageSettings.getDatabasePath(getContext()));
-							final SQLiteDatabase db = dataSource.getConnection();
-							WordNetImplementation.init(db);
-
-							// dom documents
-							Document wnDomDoc = null;
-							Document bncDomDoc = null;
-
-							// selector mode
-							final boolean isSelector = data != null;
-
-							// make documents
-							if (isSelector)
-							{
-								// this is a selector query
-								if (Settings.Source.WORDNET.test(sources))
-								{
-									wnDomDoc = new WordNetImplementation().querySelectorDoc(db, data);
-								}
-							}
-							else
-							{
-								// this is a detail query
-								switch (type)
-								{
-									case ProviderArgs.ARG_QUERYTYPE_ALL:
-										if (pointer != null)
-										{
-											final SensePointer sense2Pointer = (SensePointer) pointer;
-											final Long wordId = sense2Pointer.getWordId();
-											final Long synsetId = sense2Pointer.getSynsetId();
-											if (Settings.Source.WORDNET.test(sources))
-											{
-												wnDomDoc = new WordNetImplementation().queryDoc(db, wordId, synsetId, true, false);
-											}
-											if (Settings.Source.BNC.test(sources))
-											{
-												bncDomDoc = new BncImplementation().queryDoc(db, wordId, pos);
-											}
-										}
-										break;
-
-									case ProviderArgs.ARG_QUERYTYPE_WORD:
-										@SuppressWarnings("TypeMayBeWeakened") final WordPointer wordPointer = (WordPointer) pointer;
-										Log.d(WebFragment.TAG, "ARG_POSITION word=" + wordPointer);
-										if (wordPointer != null && Settings.Source.WORDNET.test(sources))
-										{
-											wnDomDoc = new WordNetImplementation().queryWordDoc(db, wordPointer.getWordId());
-										}
-										break;
-
-									case ProviderArgs.ARG_QUERYTYPE_SYNSET:
-										@SuppressWarnings("TypeMayBeWeakened") final SynsetPointer synsetPointer = (SynsetPointer) pointer;
-										Log.d(WebFragment.TAG, "ARG_POSITION synset=" + synsetPointer);
-										if (synsetPointer != null && Settings.Source.WORDNET.test(sources))
-										{
-											wnDomDoc = new WordNetImplementation().querySynsetDoc(db, synsetPointer.getSynsetId());
-										}
-										break;
-								}
-							}
-
-							// stringify
-							return WebFragment.docsToString(data, xml, isSelector, wnDomDoc, bncDomDoc);
-						}
-						catch (@NonNull final Exception e)
-						{
-							Log.e(WebFragment.TAG, "getDoc", e);
-						}
-						finally
-						{
-							if (dataSource != null)
-							{
-								dataSource.close();
-							}
-						}
-						return null;
-					}
-				};
+				return new WebDocumentStringLoader(context, type, data, pointer, pos, sources, xml);
 			}
 
 			@Override
-			public void onLoadFinished(final Loader<String> loader, final String doc)
+			public void onLoadFinished(@NonNull final Loader<String> loader, final String doc)
 			{
 				Log.d(WebFragment.TAG, "onLoadFinished");
 				final String mimeType = xml ? "text/xml" : "text/html";
@@ -352,7 +371,7 @@ public class WebFragment extends Fragment
 			}
 
 			@Override
-			public void onLoaderReset(final Loader<String> loader)
+			public void onLoaderReset(@NonNull final Loader<String> loader)
 			{
 				WebFragment.this.webview.loadUrl("_about:blank");
 			}

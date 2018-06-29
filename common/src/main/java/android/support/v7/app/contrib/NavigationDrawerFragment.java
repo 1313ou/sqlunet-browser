@@ -44,6 +44,7 @@ public class NavigationDrawerFragment extends Fragment
 	/**
 	 * Listener interface that all activities using this fragment must implement
 	 */
+	@SuppressWarnings("WeakerAccess")
 	public interface Listener
 	{
 		/**
@@ -56,9 +57,9 @@ public class NavigationDrawerFragment extends Fragment
 
 	static public class RowItem
 	{
-		public final int iconId;
+		final int iconId;
 
-		public final String title;
+		final String title;
 
 		public final boolean isMain;
 
@@ -129,6 +130,7 @@ public class NavigationDrawerFragment extends Fragment
 	/**
 	 * Constructor
 	 */
+	@SuppressWarnings("WeakerAccess")
 	public NavigationDrawerFragment()
 	{
 	}
@@ -265,6 +267,7 @@ public class NavigationDrawerFragment extends Fragment
 		super.onCreateOptionsMenu(menu, inflater);
 	}
 
+	@SuppressWarnings("SameReturnValue")
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item)
 	{
@@ -373,7 +376,7 @@ public class NavigationDrawerFragment extends Fragment
 	 */
 	private void selectItem(final int position)
 	{
-		Log.d(TAG, "SELECT " + position);
+		Log.d(NavigationDrawerFragment.TAG, "SELECT " + position);
 
 		// record position
 		if (this.swapInFlags[position] != 0)
@@ -405,8 +408,7 @@ public class NavigationDrawerFragment extends Fragment
 	 *
 	 * @return true if drawer is open
 	 */
-	@SuppressWarnings("WeakerAccess")
-	public boolean isDrawerOpen()
+	private boolean isDrawerOpen()
 	{
 		return this.drawerLayout != null && this.drawerLayout.isDrawerOpen(this.containerView);
 	}

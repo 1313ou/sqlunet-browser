@@ -23,8 +23,7 @@ public abstract class Controller<E>
 	/**
 	 * Node
 	 */
-	@SuppressWarnings("WeakerAccess")
-	protected TreeNode node;
+	TreeNode node;
 
 	// V I E W
 
@@ -136,7 +135,7 @@ public abstract class Controller<E>
 	 * @return node view
 	 */
 	@Nullable
-	public abstract View createNodeView(@SuppressWarnings("UnusedParameters") final TreeNode node, final E value);
+	protected abstract View createNodeView(@SuppressWarnings("UnusedParameters") final TreeNode node, final E value);
 
 	/**
 	 * Get node view

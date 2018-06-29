@@ -36,7 +36,7 @@ public abstract class Module
 	/**
 	 * Type of query (expected result)
 	 */
-	@SuppressWarnings({"WeakerAccess", "unused"})
+	@SuppressWarnings("unused")
 	protected int type;
 
 	/**

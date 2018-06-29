@@ -5,7 +5,7 @@
 
 	<uses-sdk
 		android:minSdkVersion="11"
-		android:targetSdkVersion="25"
+		android:targetSdkVersion="27"
 		tools:ignore="GradleOverrides"/>
 
 	<application android:allowBackup="true"/>

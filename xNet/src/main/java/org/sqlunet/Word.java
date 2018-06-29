@@ -68,6 +68,7 @@ public class Word implements IPointer
 		parcel.writeString(this.word);
 	}
 
+	@SuppressWarnings("SameReturnValue")
 	@Override
 	public int describeContents()
 	{

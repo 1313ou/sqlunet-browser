@@ -67,6 +67,7 @@ public class Pointer implements IPointer
 		parcel.writeLong(this.id);
 	}
 
+	@SuppressWarnings("SameReturnValue")
 	@Override
 	public int describeContents()
 	{

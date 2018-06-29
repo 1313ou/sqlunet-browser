@@ -100,7 +100,7 @@ public class SentenceModule extends BaseModule
 			}
 
 			@Override
-			public void onLoadFinished(final Loader<Cursor> loader, @NonNull final Cursor cursor)
+			public void onLoadFinished(@NonNull final Loader<Cursor> loader, @NonNull final Cursor cursor)
 			{
 				if (cursor.getCount() > 1)
 				{
@@ -136,7 +136,7 @@ public class SentenceModule extends BaseModule
 			}
 
 			@Override
-			public void onLoaderReset(final Loader<Cursor> loader)
+			public void onLoaderReset(@NonNull final Loader<Cursor> loader)
 			{
 				//
 			}

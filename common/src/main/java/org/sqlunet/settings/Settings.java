@@ -20,13 +20,12 @@ import org.sqlunet.sql.PreparedStatement;
  *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
+@SuppressWarnings("WeakerAccess")
 public class Settings
 {
 	// preferences
 
-	@SuppressWarnings("WeakerAccess")
 	static public final String PREF_LAUNCH = "pref_launch";
-	@SuppressWarnings("WeakerAccess")
 	static public final String PREF_SELECTOR = "pref_selector_mode";
 	static public final String PREF_SELECTOR_MODE = "pref_viewweb_mode";
 	static public final String PREF_DETAIL_MODE = "pref_detail_mode";
@@ -41,9 +40,7 @@ public class Settings
 	static public final String PREF_ENTRY_IMPORT = StorageSettings.PREF_ENTRY_IMPORT;
 	static public final String PREF_ENTRY_INDEX = StorageSettings.PREF_ENTRY_INDEX;
 	static public final String PREF_CACHE = StorageSettings.PREF_CACHE;
-	@SuppressWarnings("WeakerAccess")
 	static public final String PREF_DB_DATE = "pref_db_date";
-	@SuppressWarnings("WeakerAccess")
 	static public final String PREF_DB_SIZE = "pref_db_size";
 
 	// D I S P L A Y
@@ -136,7 +133,7 @@ public class Settings
 		 * @param context context
 		 * @return preferred selector mode
 		 */
-		static public Selector getPref(final Context context)
+		static Selector getPref(final Context context)
 		{
 			final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
 			final String name = sharedPref.getString(Settings.PREF_SELECTOR, Settings.Selector.SELECTOR.name());

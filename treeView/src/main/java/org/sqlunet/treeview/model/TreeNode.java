@@ -203,8 +203,8 @@ public class TreeNode
 	 * @return this node
 	 */
 	@NonNull
-	@SuppressWarnings({"WeakerAccess", "UnusedReturnValue"})
-	public TreeNode prependChild(@NonNull TreeNode childNode)
+	@SuppressWarnings("UnusedReturnValue")
+	private TreeNode prependChild(@NonNull TreeNode childNode)
 	{
 		childNode.parent = this;
 		childNode.id = size();

@@ -57,10 +57,11 @@ public class StorageUtils
 		 * @param type2 type 2
 		 * @return order
 		 */
-		static public int compare(@NonNull final DirType type1, @NonNull final DirType type2)
+		static int compare(@NonNull final DirType type1, @NonNull final DirType type2)
 		{
 			int i1 = type1.ordinal();
 			int i2 = type2.ordinal();
+			//noinspection UseCompareMethod
 			return i1 < i2 ? -1 : (i1 == i2 ? 0 : 1);
 		}
 

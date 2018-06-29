@@ -103,7 +103,7 @@ public class RegExprSpanner extends Spanner
 		 * @param from  start
 		 * @param flags flags
 		 */
-		public void setSpan(@NonNull final CharSequence input, @NonNull final SpannableStringBuilder sb, final int from, final long flags)
+		void setSpan(@NonNull final CharSequence input, @NonNull final SpannableStringBuilder sb, final int from, final long flags)
 		{
 			if (input.length() == 0)
 			{

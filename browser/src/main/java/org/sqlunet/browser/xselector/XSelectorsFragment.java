@@ -349,7 +349,7 @@ public class XSelectorsFragment extends ExpandableListFragment
 			}
 
 			@Override
-			public void onLoadFinished(final Loader<Cursor> loader, @NonNull final Cursor cursor)
+			public void onLoadFinished(@NonNull final Loader<Cursor> loader, @NonNull final Cursor cursor)
 			{
 				// store source progressMessage
 				if (cursor.moveToFirst())
@@ -362,7 +362,7 @@ public class XSelectorsFragment extends ExpandableListFragment
 			}
 
 			@Override
-			public void onLoaderReset(final Loader<Cursor> loader)
+			public void onLoaderReset(@NonNull final Loader<Cursor> loader)
 			{
 				//
 			}
@@ -416,10 +416,12 @@ public class XSelectorsFragment extends ExpandableListFragment
 				Loader<Cursor> loader1 = activity.getSupportLoaderManager().getLoader(loaderId);
 				if (loader1 != null && !loader1.isReset())
 				{
+					assert callbacks != null;
 					activity.getSupportLoaderManager().restartLoader(loaderId, null, callbacks);
 				}
 				else
 				{
+					assert callbacks != null;
 					activity.getSupportLoaderManager().initLoader(loaderId, null, callbacks);
 				}
 
@@ -503,7 +505,7 @@ public class XSelectorsFragment extends ExpandableListFragment
 		return new WnLoaderCallbacks(getActivity(), wordId)
 		{
 			@Override
-			public void onLoadFinished(final Loader<Cursor> loader, @Nullable final Cursor cursor)
+			public void onLoadFinished(@NonNull final Loader<Cursor> loader, @Nullable final Cursor cursor)
 			{
 				if (cursor != null)
 				{
@@ -521,7 +523,7 @@ public class XSelectorsFragment extends ExpandableListFragment
 			}
 
 			@Override
-			public void onLoaderReset(final Loader<Cursor> loader)
+			public void onLoaderReset(@NonNull final Loader<Cursor> loader)
 			{
 				final CursorTreeAdapter adapter = (CursorTreeAdapter) getListAdapter();
 				assert adapter != null;
@@ -542,7 +544,7 @@ public class XSelectorsFragment extends ExpandableListFragment
 		return new VnLoaderCallbacks(getActivity(), wordId)
 		{
 			@Override
-			public void onLoadFinished(final Loader<Cursor> loader, @Nullable final Cursor cursor)
+			public void onLoadFinished(@NonNull final Loader<Cursor> loader, @Nullable final Cursor cursor)
 			{
 				if (cursor != null)
 				{
@@ -560,7 +562,7 @@ public class XSelectorsFragment extends ExpandableListFragment
 			}
 
 			@Override
-			public void onLoaderReset(final Loader<Cursor> loader)
+			public void onLoaderReset(@NonNull final Loader<Cursor> loader)
 			{
 				final CursorTreeAdapter adapter = (CursorTreeAdapter) getListAdapter();
 				assert adapter != null;
@@ -581,7 +583,7 @@ public class XSelectorsFragment extends ExpandableListFragment
 		return new PbLoaderCallbacks(getActivity(), wordId)
 		{
 			@Override
-			public void onLoadFinished(final Loader<Cursor> loader, @Nullable final Cursor cursor)
+			public void onLoadFinished(@NonNull final Loader<Cursor> loader, @Nullable final Cursor cursor)
 			{
 				if (cursor != null)
 				{
@@ -599,7 +601,7 @@ public class XSelectorsFragment extends ExpandableListFragment
 			}
 
 			@Override
-			public void onLoaderReset(final Loader<Cursor> loader)
+			public void onLoaderReset(@NonNull final Loader<Cursor> loader)
 			{
 				final CursorTreeAdapter adapter = (CursorTreeAdapter) getListAdapter();
 				assert adapter != null;
@@ -620,7 +622,7 @@ public class XSelectorsFragment extends ExpandableListFragment
 		return new FnLoaderCallbacks(getActivity(), wordId)
 		{
 			@Override
-			public void onLoadFinished(final Loader<Cursor> loader, @Nullable final Cursor cursor)
+			public void onLoadFinished(@NonNull final Loader<Cursor> loader, @Nullable final Cursor cursor)
 			{
 				if (cursor != null)
 				{
@@ -638,7 +640,7 @@ public class XSelectorsFragment extends ExpandableListFragment
 			}
 
 			@Override
-			public void onLoaderReset(final Loader<Cursor> loader)
+			public void onLoaderReset(@NonNull final Loader<Cursor> loader)
 			{
 				final CursorTreeAdapter adapter = (CursorTreeAdapter) getListAdapter();
 				assert adapter != null;

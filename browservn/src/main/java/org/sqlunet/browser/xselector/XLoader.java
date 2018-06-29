@@ -27,12 +27,12 @@ class XLoader
 	/**
 	 * Xn callbacks
 	 */
-	public abstract static class XnLoaderCallbacks implements LoaderCallbacks<Cursor>
+	abstract static class XnLoaderCallbacks implements LoaderCallbacks<Cursor>
 	{
 		final Context context;
 		final long wordId;
 
-		public XnLoaderCallbacks(final Context context, final long wordId)
+		XnLoaderCallbacks(final Context context, final long wordId)
 		{
 			this.context = context;
 			this.wordId = wordId;

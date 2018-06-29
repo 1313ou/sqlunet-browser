@@ -6,7 +6,7 @@
 	android:theme="@style/CustomBackgroundCompatAppTheme"
 	tools:context="org.sqlunet.browser.xn.HomeFragment">
 
-	<ImageView
+	<org.sqlunet.browser.xn.HomeImageView
 		android:id="@+id/splash"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"

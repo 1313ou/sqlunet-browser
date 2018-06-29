@@ -133,7 +133,7 @@ public class WebFragment extends Fragment
 		}
 
 		@Nullable
-		@SuppressWarnings({"boxing"})
+		@SuppressWarnings({"boxing", "ConstantConditions"})
 		@Override
 		protected String getDoc()
 		{
@@ -408,50 +408,43 @@ public class WebFragment extends Fragment
 						int type;
 						Pointer pointer;
 
-						if ("wordid".equals(name)) //
+						switch (name)
 						{
-							type = ProviderArgs.ARG_QUERYTYPE_WORD;
-							pointer = new WordPointer(id);
-						}
-						else if ("synsetid".equals(name)) //
-						{
-							type = ProviderArgs.ARG_QUERYTYPE_SYNSET;
-							pointer = new SynsetPointer(id);
-						}
-						else if ("vnclassid".equals(name)) //
-						{
-							type = ProviderArgs.ARG_QUERYTYPE_VNCLASS;
-							pointer = new VnClassPointer(id);
-						}
-						else if ("pbrolesetid".equals(name)) //
-						{
-							type = ProviderArgs.ARG_QUERYTYPE_PBROLESET;
-							pointer = new PbRoleSetPointer(id);
-						}
-						else if ("fnframeid".equals(name)) //
-						{
-							type = ProviderArgs.ARG_QUERYTYPE_FNFRAME;
-							pointer = new FnFramePointer(id);
-						}
-						else if ("fnluid".equals(name)) //
-						{
-							type = ProviderArgs.ARG_QUERYTYPE_FNLEXUNIT;
-							pointer = new FnLexUnitPointer(id);
-						}
-						else if ("fnsentenceid".equals(name)) //
-						{
-							type = ProviderArgs.ARG_QUERYTYPE_FNSENTENCE;
-							pointer = new FnSentencePointer(id);
-						}
-						else if ("fnannosetid".equals(name)) //
-						{
-							type = ProviderArgs.ARG_QUERYTYPE_FNANNOSET;
-							pointer = new FnAnnoSetPointer(id);
-						}
-						else
-						{
-							Log.e(WebFragment.TAG, "Ill-formed Uri: " + uri);
-							return false;
+							case "wordid":
+								type = ProviderArgs.ARG_QUERYTYPE_WORD;
+								pointer = new WordPointer(id);
+								break;
+							case "synsetid":
+								type = ProviderArgs.ARG_QUERYTYPE_SYNSET;
+								pointer = new SynsetPointer(id);
+								break;
+							case "vnclassid":
+								type = ProviderArgs.ARG_QUERYTYPE_VNCLASS;
+								pointer = new VnClassPointer(id);
+								break;
+							case "pbrolesetid":
+								type = ProviderArgs.ARG_QUERYTYPE_PBROLESET;
+								pointer = new PbRoleSetPointer(id);
+								break;
+							case "fnframeid":
+								type = ProviderArgs.ARG_QUERYTYPE_FNFRAME;
+								pointer = new FnFramePointer(id);
+								break;
+							case "fnluid":
+								type = ProviderArgs.ARG_QUERYTYPE_FNLEXUNIT;
+								pointer = new FnLexUnitPointer(id);
+								break;
+							case "fnsentenceid":
+								type = ProviderArgs.ARG_QUERYTYPE_FNSENTENCE;
+								pointer = new FnSentencePointer(id);
+								break;
+							case "fnannosetid":
+								type = ProviderArgs.ARG_QUERYTYPE_FNANNOSET;
+								pointer = new FnAnnoSetPointer(id);
+								break;
+							default:
+								Log.e(WebFragment.TAG, "Ill-formed Uri: " + uri);
+								return false;
 						}
 
 						final int recurse = Settings.getRecursePref(getContext());
@@ -531,7 +524,7 @@ public class WebFragment extends Fragment
 			}
 
 			@Override
-			public void onLoadFinished(final Loader<String> loader, final String doc)
+			public void onLoadFinished(@NonNull final Loader<String> loader, final String doc)
 			{
 				Log.d(WebFragment.TAG, "onLoadFinished");
 				final String mimeType = xml ? "text/xml" : "text/html";
@@ -541,7 +534,7 @@ public class WebFragment extends Fragment
 			}
 
 			@Override
-			public void onLoaderReset(final Loader<String> loader)
+			public void onLoaderReset(@NonNull final Loader<String> loader)
 			{
 				WebFragment.this.webview.loadUrl("_about:blank");
 			}

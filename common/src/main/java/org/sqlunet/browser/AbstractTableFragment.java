@@ -153,7 +153,7 @@ public abstract class AbstractTableFragment extends ListFragment
 			}
 
 			@Override
-			public void onLoadFinished(final Loader<Cursor> loader, @Nullable final Cursor cursor)
+			public void onLoadFinished(@NonNull final Loader<Cursor> loader, @Nullable final Cursor cursor)
 			{
 				// dump(cursor);
 
@@ -166,7 +166,7 @@ public abstract class AbstractTableFragment extends ListFragment
 			}
 
 			@Override
-			public void onLoaderReset(final Loader<Cursor> loader)
+			public void onLoaderReset(@NonNull final Loader<Cursor> loader)
 			{
 				((CursorAdapter) getListAdapter()).swapCursor(null);
 			}

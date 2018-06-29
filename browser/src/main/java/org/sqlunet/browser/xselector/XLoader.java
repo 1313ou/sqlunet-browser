@@ -5,16 +5,11 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.LoaderManager.LoaderCallbacks;
 import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
-import android.support.v4.content.Loader.OnLoadCompleteListener;
 import android.util.Log;
-import android.util.SparseArray;
 
-import org.sqlunet.browser.Module;
 import org.sqlunet.provider.XSqlUNetContract.PredicateMatrix_PropBank;
 import org.sqlunet.provider.XSqlUNetContract.Words_FnWords_FnFrames_U;
 import org.sqlunet.provider.XSqlUNetContract.Words_PbWords_PbRolesets_U;
@@ -35,12 +30,12 @@ class XLoader
 	/**
 	 * Xn callbacks
 	 */
-	public abstract static class XnLoaderCallbacks implements LoaderCallbacks<Cursor>
+	abstract static class XnLoaderCallbacks implements LoaderCallbacks<Cursor>
 	{
 		final Context context;
 		final long wordId;
 
-		public XnLoaderCallbacks(final Context context, final long wordId)
+		XnLoaderCallbacks(final Context context, final long wordId)
 		{
 			this.context = context;
 			this.wordId = wordId;
@@ -178,101 +173,6 @@ class XLoader
 			final String[] selectionArgs = {Long.toString(this.wordId)};
 			final String sortOrder = Words_FnWords_FnFrames_U.LUID + ' ' + "IS NULL" + ',' + Words_FnWords_FnFrames_U.SOURCES + ',' + Words_FnWords_FnFrames_U.FRAMEID;
 			return new CursorLoader(this.context, uri, projection, selection, selectionArgs, sortOrder);
-		}
-	}
-
-	/**
-	 * Full loader callbacks
-	 */
-	abstract static class FullLoaderCallbacks implements LoaderCallbacks<Cursor>
-	{
-		final FragmentActivity activity;
-		final long wordId;
-		final Loader<Cursor> loader;
-		@NonNull
-		final SparseArray<Cursor> cursors;
-
-		@SuppressWarnings("unused")
-		public FullLoaderCallbacks(final FragmentActivity activity, final long wordId, final Loader<Cursor> loader)
-		{
-			this.activity = activity;
-			this.wordId = wordId;
-			this.cursors = new SparseArray<>();
-			this.loader = loader;
-		}
-
-		/**
-		 * Listener to subloader complete events
-		 */
-		final OnLoadCompleteListener<Cursor> listener = new OnLoadCompleteListener<Cursor>()
-		{
-			@Override
-			public void onLoadComplete(@NonNull final Loader<Cursor> subloader, final Cursor cursor)
-			{
-				int id = subloader.getId();
-				FullLoaderCallbacks.this.cursors.put(id, cursor);
-
-				// fire load complete if we have all cursors
-				if (FullLoaderCallbacks.this.cursors.size() == 3)
-				{
-					onLoadFinished(FullLoaderCallbacks.this.loader, null);
-				}
-			}
-		};
-
-		// load the contents
-		@Nullable
-		@Override
-		public Loader<Cursor> onCreateLoader(int id, Bundle args)
-		{
-			final Loader<Cursor> vnloader = this.activity.getSupportLoaderManager().restartLoader(++Module.loaderId, null, new VnLoaderCallbacks(this.activity, this.wordId)
-			{
-				@Override
-				public void onLoadFinished(@NonNull Loader<Cursor> loader, Cursor data)
-				{
-					loader.deliverResult(data);
-				}
-
-				@Override
-				public void onLoaderReset(@NonNull Loader<Cursor> loader)
-				{
-					loader.deliverResult(null);
-				}
-			});
-			vnloader.registerListener(1, this.listener);
-
-			final Loader<Cursor> pbloader = this.activity.getSupportLoaderManager().restartLoader(++Module.loaderId, null, new PbLoaderCallbacks(this.activity, this.wordId)
-			{
-				@Override
-				public void onLoadFinished(@NonNull Loader<Cursor> loader, Cursor data)
-				{
-					loader.deliverResult(data);
-				}
-
-				@Override
-				public void onLoaderReset(@NonNull Loader<Cursor> loader)
-				{
-					loader.deliverResult(null);
-				}
-			});
-			pbloader.registerListener(2, this.listener);
-
-			final Loader<Cursor> fnloader = this.activity.getSupportLoaderManager().restartLoader(++Module.loaderId, null, new FnLoaderCallbacks(this.activity, this.wordId)
-			{
-				@Override
-				public void onLoadFinished(@NonNull Loader<Cursor> loader, Cursor data)
-				{
-					loader.deliverResult(data);
-				}
-
-				@Override
-				public void onLoaderReset(@NonNull Loader<Cursor> loader)
-				{
-					loader.deliverResult(null);
-				}
-			});
-			fnloader.registerListener(3, this.listener);
-			return null;
 		}
 	}
 

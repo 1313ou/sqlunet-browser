@@ -254,8 +254,8 @@ public class TextFragment extends AbstractTableFragment
 	 */
 	private class TypedPointer
 	{
-		public final int type;
-		public final long id;
+		final int type;
+		final long id;
 
 		TypedPointer(int type, long id)
 		{

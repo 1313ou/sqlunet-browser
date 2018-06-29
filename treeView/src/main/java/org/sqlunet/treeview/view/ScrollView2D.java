@@ -335,7 +335,7 @@ public class ScrollView2D extends FrameLayout
 		/*
 		 * This method JUST determines whether we want to intercept the motion. If we return true, onMotionEvent will be called and we do the actual scrolling
 		 * there.
-		 * 
+		 *
 		 * Shortcut the most recurring case: the user is in the dragging state and he is moving his finger. We want to intercept this motion.
 		 */
 		final int action = ev.getAction();
@@ -353,12 +353,12 @@ public class ScrollView2D extends FrameLayout
 		switch (action)
 		{
 			case MotionEvent.ACTION_MOVE:
-			/*
-			 * mIsBeingDragged == false, otherwise the shortcut would have caught it. Check whether the user has moved far enough from his original down touch.
-			 */
-			/*
-			 * Locally do absolute value. mLastMotionY is set to the y value of the down event.
-			 */
+				/*
+				 * mIsBeingDragged == false, otherwise the shortcut would have caught it. Check whether the user has moved far enough from his original down touch.
+				 */
+				/*
+				 * Locally do absolute value. mLastMotionY is set to the y value of the down event.
+				 */
 				final int yDiff = (int) Math.abs(y - this.mLastMotionY);
 				final int xDiff = (int) Math.abs(x - this.mLastMotionX);
 				if (yDiff > this.mTouchSlop || xDiff > this.mTouchSlop)
@@ -368,19 +368,19 @@ public class ScrollView2D extends FrameLayout
 				break;
 
 			case MotionEvent.ACTION_DOWN:
-			/* Remember location of down touch */
+				/* Remember location of down touch */
 				this.mLastMotionY = y;
 				this.mLastMotionX = x;
 
-			/*
-			 * If being flung and user touches the screen, initiate drag; otherwise don't. mScroller.isFinished should be false when being flung.
-			 */
+				/*
+				 * If being flung and user touches the screen, initiate drag; otherwise don't. mScroller.isFinished should be false when being flung.
+				 */
 				this.mIsBeingDragged = !this.mScroller.isFinished();
 				break;
 
 			case MotionEvent.ACTION_CANCEL:
 			case MotionEvent.ACTION_UP:
-			/* Release the drag */
+				/* Release the drag */
 				this.mIsBeingDragged = false;
 				break;
 		}
@@ -392,9 +392,30 @@ public class ScrollView2D extends FrameLayout
 	}
 
 	@Override
-	public boolean onTouchEvent(@NonNull MotionEvent ev)
+	public boolean performClick()
 	{
-		if (ev.getAction() == MotionEvent.ACTION_DOWN && ev.getEdgeFlags() != 0)
+		// Calls the super implementation, which generates an AccessibilityEvent and calls the onClick() listener on the view, if any
+		super.performClick();
+		// Handle the action for the custom click here
+		return true;
+	}
+
+	@Override
+	public boolean onTouchEvent(@NonNull MotionEvent event)
+	{
+		// accessibility
+		switch (event.getAction())
+		{
+			case MotionEvent.ACTION_DOWN:
+				break;
+			case MotionEvent.ACTION_UP:
+				performClick();
+				break;
+			default:
+				break;
+		}
+
+		if (event.getAction() == MotionEvent.ACTION_DOWN && event.getEdgeFlags() != 0)
 		{
 			// Don't handle edge touches immediately -- they may actually belong to one of our descendants.
 			return false;
@@ -409,18 +430,18 @@ public class ScrollView2D extends FrameLayout
 		{
 			this.mVelocityTracker = VelocityTracker.obtain();
 		}
-		this.mVelocityTracker.addMovement(ev);
+		this.mVelocityTracker.addMovement(event);
 
-		final int action = ev.getAction();
-		final float y = ev.getY();
-		final float x = ev.getX();
+		final int action = event.getAction();
+		final float y = event.getY();
+		final float x = event.getX();
 
 		switch (action)
 		{
 			case MotionEvent.ACTION_DOWN:
-			/*
-			 * If being flung and user touches, stop the fling. isFinished will be false if being flung.
-			 */
+				/*
+				 * If being flung and user touches, stop the fling. isFinished will be false if being flung.
+				 */
 				if (!this.mScroller.isFinished())
 				{
 					this.mScroller.abortAnimation();
@@ -1238,7 +1259,7 @@ public class ScrollView2D extends FrameLayout
 			/*
 			 * my >= child is this case: |--------------- me ---------------| |------ child ------| or |--------------- me ---------------| |------ child
 			 * ------| or |--------------- me ---------------| |------ child ------|
-			 * 
+			 *
 			 * n < 0 is this case: |------ me ------| |-------- child --------| |-- mScrollX --|
 			 */
 			return 0;

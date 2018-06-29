@@ -35,8 +35,7 @@ public class SynsetFragment extends TreeFragment
 	/**
 	 * Max recursion level
 	 */
-	@SuppressWarnings("WeakerAccess")
-	protected int maxRecursion;
+	int maxRecursion;
 
 	/**
 	 * Constructor
@@ -103,8 +102,7 @@ public class SynsetFragment extends TreeFragment
 	 *
 	 * @return module
 	 */
-	@SuppressWarnings("WeakerAccess")
-	protected Module makeModule()
+	Module makeModule()
 	{
 		final SynsetModule module = new SynsetModule(this);
 		module.setMaxRecursionLevel(this.maxRecursion);

@@ -6,47 +6,47 @@
 	<xs:element name='bnc'>
 		<xs:complexType>
 			<xs:sequence>
-				<xs:element maxOccurs='1' minOccurs='0' ref='word'/>
+				<xs:element minOccurs='0' ref='word'/>
 				<xs:element maxOccurs='unbounded' minOccurs='0' ref='bncdata'/>
 			</xs:sequence>
-			<xs:attribute name='wordid' type='xs:long' use='optional'/>
-			<xs:attribute name='word' type='xs:string' use='optional'/>
-			<xs:attribute name='pos' type='xs:string' use='optional'/>
+			<xs:attribute name='wordid' type='xs:long'/>
+			<xs:attribute name='word' type='xs:string'/>
+			<xs:attribute name='pos' type='xs:string'/>
 		</xs:complexType>
 	</xs:element>
 
 	<xs:element name='word'>
 		<xs:complexType mixed='true'>
-			<xs:attribute name='pos' type='xs:string' use='optional'/>
+			<xs:attribute name='pos' type='xs:string'/>
 		</xs:complexType>
 	</xs:element>
 
 	<xs:element name='bncdata'>
 		<xs:complexType>
 			<xs:sequence>
-				<xs:element maxOccurs='1' minOccurs='0' ref='freq'/>
-				<xs:element maxOccurs='1' minOccurs='0' ref='range'/>
-				<xs:element maxOccurs='1' minOccurs='0' ref='disp'/>
-				<xs:element maxOccurs='1' minOccurs='0' ref='convfreq'/>
-				<xs:element maxOccurs='1' minOccurs='0' ref='convrange'/>
-				<xs:element maxOccurs='1' minOccurs='0' ref='convdisp'/>
-				<xs:element maxOccurs='1' minOccurs='0' ref='taskfreq'/>
-				<xs:element maxOccurs='1' minOccurs='0' ref='taskrange'/>
-				<xs:element maxOccurs='1' minOccurs='0' ref='taskdisp'/>
-				<xs:element maxOccurs='1' minOccurs='0' ref='imagfreq'/>
-				<xs:element maxOccurs='1' minOccurs='0' ref='imagrange'/>
-				<xs:element maxOccurs='1' minOccurs='0' ref='imagdisp'/>
-				<xs:element maxOccurs='1' minOccurs='0' ref='inffreq'/>
-				<xs:element maxOccurs='1' minOccurs='0' ref='infrange'/>
-				<xs:element maxOccurs='1' minOccurs='0' ref='infdisp'/>
-				<xs:element maxOccurs='1' minOccurs='0' ref='spokenfreq'/>
-				<xs:element maxOccurs='1' minOccurs='0' ref='spokenrange'/>
-				<xs:element maxOccurs='1' minOccurs='0' ref='spokendisp'/>
-				<xs:element maxOccurs='1' minOccurs='0' ref='writtenfreq'/>
-				<xs:element maxOccurs='1' minOccurs='0' ref='writtenrange'/>
-				<xs:element maxOccurs='1' minOccurs='0' ref='writtendisp'/>
+				<xs:element minOccurs='0' ref='freq'/>
+				<xs:element minOccurs='0' ref='range'/>
+				<xs:element minOccurs='0' ref='disp'/>
+				<xs:element minOccurs='0' ref='convfreq'/>
+				<xs:element minOccurs='0' ref='convrange'/>
+				<xs:element minOccurs='0' ref='convdisp'/>
+				<xs:element minOccurs='0' ref='taskfreq'/>
+				<xs:element minOccurs='0' ref='taskrange'/>
+				<xs:element minOccurs='0' ref='taskdisp'/>
+				<xs:element minOccurs='0' ref='imagfreq'/>
+				<xs:element minOccurs='0' ref='imagrange'/>
+				<xs:element minOccurs='0' ref='imagdisp'/>
+				<xs:element minOccurs='0' ref='inffreq'/>
+				<xs:element minOccurs='0' ref='infrange'/>
+				<xs:element minOccurs='0' ref='infdisp'/>
+				<xs:element minOccurs='0' ref='spokenfreq'/>
+				<xs:element minOccurs='0' ref='spokenrange'/>
+				<xs:element minOccurs='0' ref='spokendisp'/>
+				<xs:element minOccurs='0' ref='writtenfreq'/>
+				<xs:element minOccurs='0' ref='writtenrange'/>
+				<xs:element minOccurs='0' ref='writtendisp'/>
 			</xs:sequence>
-			<xs:attribute name='pos' type='xs:string' use='optional'/>
+			<xs:attribute name='pos' type='xs:string'/>
 		</xs:complexType>
 	</xs:element>
 

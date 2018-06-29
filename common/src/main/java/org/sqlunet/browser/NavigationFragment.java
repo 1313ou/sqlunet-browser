@@ -61,6 +61,7 @@ public class NavigationFragment extends NavigationDrawerFragment implements Navi
 	/**
 	 * Constructor
 	 */
+	@SuppressWarnings("WeakerAccess")
 	public NavigationFragment()
 	{
 		this.listener = this;
@@ -133,15 +134,15 @@ public class NavigationFragment extends NavigationDrawerFragment implements Navi
 			}
 			catch (NoSuchMethodException e)
 			{
-				Log.e(TAG, "Handling " + position, e);
+				Log.e(NavigationFragment.TAG, "Handling " + position, e);
 			}
 			catch (InvocationTargetException e)
 			{
-				Log.e(TAG, "Handling " + position, e);
+				Log.e(NavigationFragment.TAG, "Handling " + position, e);
 			}
 			catch (IllegalAccessException e)
 			{
-				Log.e(TAG, "Handling " + position, e);
+				Log.e(NavigationFragment.TAG, "Handling " + position, e);
 			}
 			return true;
 		}

@@ -11,21 +11,21 @@
 				<xs:element maxOccurs='unbounded' minOccurs='0' ref='sentence'/>
 				<xs:element maxOccurs='unbounded' minOccurs='0' ref='annoset'/>
 			</xs:sequence>
-			<xs:attribute name='wordid' type='xs:long' use='optional'/>
-			<xs:attribute name='synsetid' type='xs:long' use='optional'/>
-			<xs:attribute name='word' type='xs:string' use='optional'/>
-			<xs:attribute name='pos' type='xs:string' use='optional'/>
-			<xs:attribute name='frameid' type='xs:integer' use='optional'/>
-			<xs:attribute name='luid' type='xs:long' use='optional'/>
-			<xs:attribute name='annosetid' type='xs:long' use='optional'/>
-			<xs:attribute name='sentenceid' type='xs:long' use='optional'/>
+			<xs:attribute name='wordid' type='xs:long'/>
+			<xs:attribute name='synsetid' type='xs:long'/>
+			<xs:attribute name='word' type='xs:string'/>
+			<xs:attribute name='pos' type='xs:string'/>
+			<xs:attribute name='frameid' type='xs:integer'/>
+			<xs:attribute name='luid' type='xs:long'/>
+			<xs:attribute name='annosetid' type='xs:long'/>
+			<xs:attribute name='sentenceid' type='xs:long'/>
 		</xs:complexType>
 	</xs:element>
 
 	<xs:element name='lexunit'>
 		<xs:complexType mixed='true'>
 			<xs:sequence>
-				<xs:element maxOccurs='1' minOccurs='0' ref='frame'/>
+				<xs:element minOccurs='0' ref='frame'/>
 				<xs:element maxOccurs='unbounded' minOccurs='0' ref='sentences'/>
 			</xs:sequence>
 			<xs:attribute name='name' type='xs:string' use='required'/>
@@ -42,7 +42,7 @@
 				<xs:element maxOccurs='unbounded' minOccurs='0' ref='fe'/>
 			</xs:sequence>
 			<xs:attribute name='name' type='xs:string' use='required'/>
-			<xs:attribute name='frameid' type='xs:string' use='optional'/>
+			<xs:attribute name='frameid' type='xs:string'/>
 		</xs:complexType>
 	</xs:element>
 
@@ -50,7 +50,7 @@
 		<xs:complexType>
 			<xs:attribute name='frameid' type='xs:long' use='required'/>
 			<xs:attribute name='frame' type='xs:string' use='required'/>
-			<xs:attribute name='relation' type='xs:string' use='optional'/>
+			<xs:attribute name='relation' type='xs:string'/>
 		</xs:complexType>
 	</xs:element>
 
@@ -61,10 +61,10 @@
 				<xs:element maxOccurs='unbounded' minOccurs='0' ref='fe'/>
 			</xs:sequence>
 			<xs:attribute name='name' type='xs:string' use='required'/>
-			<xs:attribute name='feid' type='xs:string' use='optional'/>
-			<xs:attribute name='type' type='xs:string' use='optional'/>
-			<xs:attribute name='semtype' type='xs:string' use='optional'/>
-			<xs:attribute name='coreset' type='xs:string' use='optional'/>
+			<xs:attribute name='feid' type='xs:string'/>
+			<xs:attribute name='type' type='xs:string'/>
+			<xs:attribute name='semtype' type='xs:string'/>
+			<xs:attribute name='coreset' type='xs:string'/>
 		</xs:complexType>
 	</xs:element>
 
@@ -109,7 +109,7 @@
 
 	<xs:element name='fex'>
 		<xs:complexType mixed='true'>
-			<xs:attribute name='name' type='xs:string' use='optional'/>
+			<xs:attribute name='name' type='xs:string'/>
 		</xs:complexType>
 	</xs:element>
 
@@ -131,7 +131,7 @@
 			<xs:sequence>
 				<xs:element maxOccurs='unbounded' minOccurs='0' ref='annoset'/>
 			</xs:sequence>
-			<xs:attribute name='num' type='xs:int' use='optional'/>
+			<xs:attribute name='num' type='xs:int'/>
 			<xs:attribute name='sentenceid' type='xs:long' use='required'/>
 		</xs:complexType>
 	</xs:element>
@@ -141,7 +141,7 @@
 			<xs:sequence>
 				<xs:element ref='layer' maxOccurs='unbounded' minOccurs='0'/>
 			</xs:sequence>
-			<xs:attribute name='annosetid' type='xs:string' use='optional'/>
+			<xs:attribute name='annosetid' type='xs:string'/>
 		</xs:complexType>
 	</xs:element>
 
@@ -150,18 +150,18 @@
 			<xs:sequence>
 				<xs:element maxOccurs='unbounded' minOccurs='0' ref='label'/>
 			</xs:sequence>
-			<xs:attribute name='layerid' type='xs:string' use='optional'/>
-			<xs:attribute name='type' type='xs:string' use='optional'/>
-			<xs:attribute name='rank' type='xs:string' use='optional'/>
+			<xs:attribute name='layerid' type='xs:string'/>
+			<xs:attribute name='type' type='xs:string'/>
+			<xs:attribute name='rank' type='xs:string'/>
 		</xs:complexType>
 	</xs:element>
 
 	<xs:element name='label'>
 		<xs:complexType>
-			<xs:attribute name='labelid' type='xs:string' use='optional'/>
-			<xs:attribute name='from' type='xs:string' use='optional'/>
-			<xs:attribute name='to' type='xs:string' use='optional'/>
-			<xs:attribute name='label' type='xs:string' use='optional'/>
+			<xs:attribute name='labelid' type='xs:string'/>
+			<xs:attribute name='from' type='xs:string'/>
+			<xs:attribute name='to' type='xs:string'/>
+			<xs:attribute name='label' type='xs:string'/>
 		</xs:complexType>
 	</xs:element>
 </xs:schema>

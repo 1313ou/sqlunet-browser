@@ -22,8 +22,7 @@ public class LeafController extends Controller<Value>
 	/**
 	 * Resource used (changed by derived classes)
 	 */
-	@SuppressWarnings("WeakerAccess")
-	protected int layoutRes = R.layout.layout_leaf;
+	int layoutRes = R.layout.layout_leaf;
 
 	/**
 	 * Constructor
@@ -36,7 +35,7 @@ public class LeafController extends Controller<Value>
 	}
 
 	@Override
-	public View createNodeView(final TreeNode node, @NonNull final Value value)
+	protected View createNodeView(final TreeNode node, @NonNull final Value value)
 	{
 		final LayoutInflater inflater = LayoutInflater.from(this.context);
 		final View view = inflater.inflate(this.layoutRes, null, false);

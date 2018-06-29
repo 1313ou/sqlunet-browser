@@ -63,6 +63,7 @@ public class SenseKeyPointer implements Parcelable, HasSenseKey
 		parcel.writeString(this.senseKey);
 	}
 
+	@SuppressWarnings("SameReturnValue")
 	@Override
 	public int describeContents()
 	{

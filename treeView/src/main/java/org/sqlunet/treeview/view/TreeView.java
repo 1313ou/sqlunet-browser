@@ -1017,8 +1017,7 @@ public class TreeView
 	/**
 	 * Deselect all
 	 */
-	@SuppressWarnings("WeakerAccess")
-	public void deselectAll()
+	private void deselectAll()
 	{
 		selectAll(false, false);
 	}

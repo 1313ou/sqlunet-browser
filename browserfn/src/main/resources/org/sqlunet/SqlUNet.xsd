@@ -11,7 +11,7 @@
  <xs:element name='sqlunet'>
   <xs:complexType>
    <xs:sequence>
-    <xs:element ref='fn:framenet' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='fn:framenet' minOccurs='0'/>
    </xs:sequence>
   </xs:complexType>
  </xs:element>

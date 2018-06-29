@@ -24,15 +24,14 @@ abstract class DocumentStringLoader extends AsyncTaskLoader<String>
 	 * Cancellation signal
 	 */
 	@Nullable
-	@SuppressWarnings("WeakerAccess")
-	protected CancellationSignal cancellationSignal;
+	private CancellationSignal cancellationSignal;
 
 	/**
 	 * Constructor
 	 *
 	 * @param context context
 	 */
-	public DocumentStringLoader(@NonNull final Context context)
+	DocumentStringLoader(@NonNull final Context context)
 	{
 		super(context);
 	}

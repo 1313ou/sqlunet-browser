@@ -11,6 +11,7 @@
 		android:layout_height="wrap_content"
 		android:theme="@style/CompatAppTheme.AppBarOverlay">
 
+		<!--suppress AndroidElementNotAllowed, AndroidElementNotAllowed, AndroidElementNotAllowed -->
 		<include layout="@layout/toolbar"/>
 
 	</android.support.design.widget.AppBarLayout>

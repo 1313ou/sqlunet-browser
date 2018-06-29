@@ -73,8 +73,7 @@ abstract class BaseModule extends Module
 	/**
 	 * Drawable for role sets
 	 */
-	@SuppressWarnings("WeakerAccess")
-	protected final Drawable drawableRoles;
+	final Drawable drawableRoles;
 
 	/**
 	 * Drawable for role
@@ -172,7 +171,7 @@ abstract class BaseModule extends Module
 			}
 
 			@Override
-			public void onLoadFinished(final Loader<Cursor> loader, @NonNull final Cursor cursor)
+			public void onLoadFinished(@NonNull final Loader<Cursor> loader, @NonNull final Cursor cursor)
 			{
 				if (cursor.getCount() > 1)
 				{
@@ -226,7 +225,7 @@ abstract class BaseModule extends Module
 			}
 
 			@Override
-			public void onLoaderReset(final Loader<Cursor> loader)
+			public void onLoaderReset(@NonNull final Loader<Cursor> loader)
 			{
 				//
 			}
@@ -266,7 +265,7 @@ abstract class BaseModule extends Module
 			}
 
 			@Override
-			public void onLoadFinished(final Loader<Cursor> loader, @NonNull final Cursor cursor)
+			public void onLoadFinished(@NonNull final Loader<Cursor> loader, @NonNull final Cursor cursor)
 			{
 				if (cursor.moveToFirst())
 				{
@@ -361,7 +360,7 @@ abstract class BaseModule extends Module
 			}
 
 			@Override
-			public void onLoaderReset(final Loader<Cursor> loader)
+			public void onLoaderReset(@NonNull final Loader<Cursor> loader)
 			{
 				//
 			}
@@ -399,7 +398,7 @@ abstract class BaseModule extends Module
 			}
 
 			@Override
-			public void onLoadFinished(final Loader<Cursor> loader, @NonNull final Cursor cursor)
+			public void onLoadFinished(@NonNull final Loader<Cursor> loader, @NonNull final Cursor cursor)
 			{
 				if (cursor.moveToFirst())
 				{
@@ -454,7 +453,7 @@ abstract class BaseModule extends Module
 			}
 
 			@Override
-			public void onLoaderReset(final Loader<Cursor> loader)
+			public void onLoaderReset(@NonNull final Loader<Cursor> loader)
 			{
 				//
 			}
@@ -491,7 +490,7 @@ abstract class BaseModule extends Module
 			}
 
 			@Override
-			public void onLoadFinished(final Loader<Cursor> loader, @NonNull final Cursor cursor)
+			public void onLoadFinished(@NonNull final Loader<Cursor> loader, @NonNull final Cursor cursor)
 			{
 				final SpannableStringBuilder sb = new SpannableStringBuilder();
 
@@ -574,7 +573,7 @@ abstract class BaseModule extends Module
 			}
 
 			@Override
-			public void onLoaderReset(final Loader<Cursor> loader)
+			public void onLoaderReset(@NonNull final Loader<Cursor> loader)
 			{
 				//
 			}
@@ -588,7 +587,7 @@ abstract class BaseModule extends Module
 	 * @return node
 	 */
 	@Nullable
-	@SuppressWarnings({"WeakerAccess", "unused"})
+	@SuppressWarnings("unused")
 	protected TreeNode items(@Nullable final String group)
 	{
 		if (group != null)

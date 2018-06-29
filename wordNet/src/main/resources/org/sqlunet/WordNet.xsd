@@ -110,7 +110,7 @@
 		<xs:sequence>
 			<xs:element maxOccurs='unbounded' minOccurs='0' ref='synset'/>
 		</xs:sequence>
-		<xs:attribute name='level' type='xs:integer' use='optional'/>
+		<xs:attribute name='level' type='xs:integer'/>
 	</xs:complexType>
 
 	<xs:complexType name="lexlinkType">
@@ -134,14 +134,14 @@
 				<xs:element maxOccurs='unbounded' minOccurs='0' ref='sense'/>
 				<xs:element maxOccurs='unbounded' minOccurs='0' ref='synset'/>
 			</xs:choice>
-			<xs:attribute name='synsetid' type='xs:long' use='optional'/>
-			<xs:attribute name='wordid' type='xs:long' use='optional'/>
-			<xs:attribute name='word' type='wordType' use='optional'/>
-			<xs:attribute name='pos' type='posType' use='optional'/>
-			<xs:attribute name='lexdomain' type='lexdomainType' use='optional'/>
-			<xs:attribute name='link' type='linkType' use='optional'/>
-			<xs:attribute name='withlinks' type='xs:boolean' use='optional'/>
-			<xs:attribute name='recurse' type='xs:boolean' use='optional'/>
+			<xs:attribute name='synsetid' type='xs:long'/>
+			<xs:attribute name='wordid' type='xs:long'/>
+			<xs:attribute name='word' type='wordType'/>
+			<xs:attribute name='pos' type='posType'/>
+			<xs:attribute name='lexdomain' type='lexdomainType'/>
+			<xs:attribute name='link' type='linkType'/>
+			<xs:attribute name='withlinks' type='xs:boolean'/>
+			<xs:attribute name='recurse' type='xs:boolean'/>
 		</xs:complexType>
 	</xs:element>
 
@@ -168,22 +168,22 @@
 			<xs:sequence>
 				<xs:element maxOccurs='unbounded' minOccurs='0' ref='sense'/>
 			</xs:sequence>
-			<xs:attribute name='wordid' type='xs:long' use='optional'/>
+			<xs:attribute name='wordid' type='xs:long'/>
 		</xs:complexType>
 	</xs:element>
 
 	<xs:element name='sense'>
 		<xs:complexType>
 			<xs:sequence>
-				<xs:element maxOccurs='1' minOccurs='0' ref='word'/>
-				<xs:element maxOccurs='1' minOccurs='1' ref='synset'/>
+				<xs:element minOccurs='0' ref='word'/>
+				<xs:element ref='synset'/>
 			</xs:sequence>
-			<xs:attribute name='number' type='xs:integer' use='optional'/>
-			<xs:attribute name='wordid' type='xs:long' use='optional'/>
-			<xs:attribute name='synsetid' type='xs:long' use='optional'/>
-			<xs:attribute name='sensekey' type='sensekeyType' use='optional'/>
-			<xs:attribute name='pos' type='posType' use='optional'/>
-			<xs:attribute name='lexdomain' type='lexdomainType' use='optional'/>
+			<xs:attribute name='number' type='xs:integer'/>
+			<xs:attribute name='wordid' type='xs:long'/>
+			<xs:attribute name='synsetid' type='xs:long'/>
+			<xs:attribute name='sensekey' type='sensekeyType'/>
+			<xs:attribute name='pos' type='posType'/>
+			<xs:attribute name='lexdomain' type='lexdomainType'/>
 		</xs:complexType>
 	</xs:element>
 
@@ -191,12 +191,12 @@
 		<xs:complexType>
 			<xs:sequence>
 				<xs:element maxOccurs='unbounded' minOccurs='0' ref='word'/>
-				<xs:element maxOccurs='1' minOccurs='1' ref='definition'/>
-				<xs:element maxOccurs='1' minOccurs='0' ref='sample'/>
-				<xs:element maxOccurs='1' minOccurs='0' ref='links'/>
+				<xs:element ref='definition'/>
+				<xs:element minOccurs='0' ref='sample'/>
+				<xs:element minOccurs='0' ref='links'/>
 			</xs:sequence>
-			<xs:attribute name='size' type='xs:integer' use='optional'/>
-			<xs:attribute name='synsetid' type='xs:long' use='optional'/>
+			<xs:attribute name='size' type='xs:integer'/>
+			<xs:attribute name='synsetid' type='xs:long'/>
 		</xs:complexType>
 	</xs:element>
 
@@ -269,32 +269,32 @@
 	<xs:element name='links'>
 		<xs:complexType>
 			<xs:sequence>
-				<xs:element maxOccurs='1' minOccurs='0' ref='hypernym'/>
-				<xs:element maxOccurs='1' minOccurs='0' ref='hyponym'/>
-				<xs:element maxOccurs='1' minOccurs='0' ref='instance_hypernym'/>
-				<xs:element maxOccurs='1' minOccurs='0' ref='instance_hyponym'/>
-				<xs:element maxOccurs='1' minOccurs='0' ref='part_holonym'/>
-				<xs:element maxOccurs='1' minOccurs='0' ref='part_meronym'/>
-				<xs:element maxOccurs='1' minOccurs='0' ref='member_holonym'/>
-				<xs:element maxOccurs='1' minOccurs='0' ref='member_meronym'/>
-				<xs:element maxOccurs='1' minOccurs='0' ref='substance_holonym'/>
-				<xs:element maxOccurs='1' minOccurs='0' ref='substance_meronym'/>
-				<xs:element maxOccurs='1' minOccurs='0' ref='entail'/>
-				<xs:element maxOccurs='1' minOccurs='0' ref='cause'/>
-				<xs:element maxOccurs='1' minOccurs='0' ref='antonym'/>
-				<xs:element maxOccurs='1' minOccurs='0' ref='similar'/>
-				<xs:element maxOccurs='1' minOccurs='0' ref='also'/>
-				<xs:element maxOccurs='1' minOccurs='0' ref='attribute'/>
-				<xs:element maxOccurs='1' minOccurs='0' ref='verb_group'/>
-				<xs:element maxOccurs='1' minOccurs='0' ref='participle'/>
-				<xs:element maxOccurs='1' minOccurs='0' ref='pertainym'/>
-				<xs:element maxOccurs='1' minOccurs='0' ref='derivation'/>
-				<xs:element maxOccurs='1' minOccurs='0' ref='domain_category'/>
-				<xs:element maxOccurs='1' minOccurs='0' ref='domain_member_category'/>
-				<xs:element maxOccurs='1' minOccurs='0' ref='domain_region'/>
-				<xs:element maxOccurs='1' minOccurs='0' ref='domain_member_region'/>
-				<xs:element maxOccurs='1' minOccurs='0' ref='domain_usage'/>
-				<xs:element maxOccurs='1' minOccurs='0' ref='domain_member_usage'/>
+				<xs:element minOccurs='0' ref='hypernym'/>
+				<xs:element minOccurs='0' ref='hyponym'/>
+				<xs:element minOccurs='0' ref='instance_hypernym'/>
+				<xs:element minOccurs='0' ref='instance_hyponym'/>
+				<xs:element minOccurs='0' ref='part_holonym'/>
+				<xs:element minOccurs='0' ref='part_meronym'/>
+				<xs:element minOccurs='0' ref='member_holonym'/>
+				<xs:element minOccurs='0' ref='member_meronym'/>
+				<xs:element minOccurs='0' ref='substance_holonym'/>
+				<xs:element minOccurs='0' ref='substance_meronym'/>
+				<xs:element minOccurs='0' ref='entail'/>
+				<xs:element minOccurs='0' ref='cause'/>
+				<xs:element minOccurs='0' ref='antonym'/>
+				<xs:element minOccurs='0' ref='similar'/>
+				<xs:element minOccurs='0' ref='also'/>
+				<xs:element minOccurs='0' ref='attribute'/>
+				<xs:element minOccurs='0' ref='verb_group'/>
+				<xs:element minOccurs='0' ref='participle'/>
+				<xs:element minOccurs='0' ref='pertainym'/>
+				<xs:element minOccurs='0' ref='derivation'/>
+				<xs:element minOccurs='0' ref='domain_category'/>
+				<xs:element minOccurs='0' ref='domain_member_category'/>
+				<xs:element minOccurs='0' ref='domain_region'/>
+				<xs:element minOccurs='0' ref='domain_member_region'/>
+				<xs:element minOccurs='0' ref='domain_usage'/>
+				<xs:element minOccurs='0' ref='domain_member_usage'/>
 			</xs:sequence>
 		</xs:complexType>
 	</xs:element>

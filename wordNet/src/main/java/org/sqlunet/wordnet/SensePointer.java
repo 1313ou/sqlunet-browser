@@ -70,6 +70,7 @@ public class SensePointer extends SynsetPointer implements HasWordId
 		parcel.writeLong(this.wordId);
 	}
 
+	@SuppressWarnings("SameReturnValue")
 	@Override
 	public int describeContents()
 	{

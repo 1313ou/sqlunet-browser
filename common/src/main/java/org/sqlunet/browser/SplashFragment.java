@@ -19,8 +19,7 @@ abstract public class SplashFragment extends Fragment
 	/**
 	 * Layout id set bu super class
 	 */
-	@SuppressWarnings("WeakerAccess")
-	protected int layoutId;
+	int layoutId;
 
 	/**
 	 * Constructor

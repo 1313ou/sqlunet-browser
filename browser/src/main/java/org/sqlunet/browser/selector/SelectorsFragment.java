@@ -289,7 +289,7 @@ public class SelectorsFragment extends ListFragment
 			}
 
 			@Override
-			public void onLoadFinished(final Loader<Cursor> loader, @NonNull final Cursor cursor)
+			public void onLoadFinished(@NonNull final Loader<Cursor> loader, @NonNull final Cursor cursor)
 			{
 				// store source progressMessage
 				if (cursor.moveToFirst())
@@ -312,7 +312,7 @@ public class SelectorsFragment extends ListFragment
 			}
 
 			@Override
-			public void onLoaderReset(final Loader<Cursor> arg)
+			public void onLoaderReset(@NonNull final Loader<Cursor> loader)
 			{
 				((CursorAdapter) getListAdapter()).swapCursor(null);
 			}

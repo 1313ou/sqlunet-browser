@@ -39,10 +39,10 @@
 			<xs:sequence>
 				<xs:element maxOccurs='unbounded' minOccurs='0' ref='roleset'/>
 			</xs:sequence>
-			<xs:attribute name='rolesetid' type='xs:string' use='optional'/>
-			<xs:attribute name='wordid' type='xs:long' use='optional'/>
-			<xs:attribute name='word' type='xs:string' use='optional'/>
-			<xs:attribute name='synsetid' type='xs:long' use='optional'/>
+			<xs:attribute name='rolesetid' type='xs:string'/>
+			<xs:attribute name='wordid' type='xs:long'/>
+			<xs:attribute name='word' type='xs:string'/>
+			<xs:attribute name='synsetid' type='xs:long'/>
 		</xs:complexType>
 	</xs:element>
 
@@ -53,7 +53,7 @@
 				<xs:element maxOccurs='unbounded' minOccurs='0' ref='example'/>
 			</xs:sequence>
 			<xs:attribute name='rolesetid' type='xs:long' use='required'/>
-			<xs:attribute name='wordid' type='xs:long' use='optional'/>
+			<xs:attribute name='wordid' type='xs:long'/>
 			<xs:attribute name='num' type='xs:string' use='required'/>
 			<xs:attribute name='name' type='xs:string' use='required'/>
 			<xs:attribute name='head' type='xs:string' use='required'/>
@@ -64,7 +64,7 @@
 		<xs:complexType mixed='true'>
 			<xs:attribute name='roleid' type='xs:int' use='required'/>
 			<xs:attribute name='narg' type='xs:string' use='required'/>
-			<xs:attribute name='theta' type='xs:string' use='optional'/>
+			<xs:attribute name='theta' type='xs:string'/>
 			<xs:attribute name='func' type='xs:string' use='required'/>
 		</xs:complexType>
 	</xs:element>
@@ -76,16 +76,16 @@
 				<xs:element maxOccurs='unbounded' minOccurs='0' ref='arg'/>
 			</xs:sequence>
 			<xs:attribute name='exampleid' type='xs:int' use='required'/>
-			<xs:attribute name='form' type='formType' use='optional' />
-			<xs:attribute name='tense' type='tenseType' use='optional' />
-			<xs:attribute name='voice' type='voiceType' use='optional' />
-			<xs:attribute name='person' type='personType' use='optional' />
+			<xs:attribute name='form' type='formType'/>
+			<xs:attribute name='tense' type='tenseType'/>
+			<xs:attribute name='voice' type='voiceType'/>
+			<xs:attribute name='person' type='personType'/>
 		</xs:complexType>
 	</xs:element>
 
 	<xs:element name='rel'>
 		<xs:complexType mixed='true'>
-			<xs:attribute name='value' type='xs:string' use='optional'/>
+			<xs:attribute name='value' type='xs:string'/>
 		</xs:complexType>
 	</xs:element>
 
@@ -93,7 +93,7 @@
 		<xs:complexType mixed='true'>
 			<xs:attribute name='narg' type='xs:string' use='required'/>
 			<xs:attribute name='descr' type='xs:string' use='required'/>
-			<xs:attribute name='theta' type='xs:string' use='optional'/>
+			<xs:attribute name='theta' type='xs:string'/>
 		</xs:complexType>
 	</xs:element>
 </xs:schema>

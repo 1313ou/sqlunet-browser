@@ -17,7 +17,7 @@ public abstract class Link
 	 *
 	 * @param id id
 	 */
-	public Link(long id)
+	protected Link(long id)
 	{
 		this.id = id;
 	}

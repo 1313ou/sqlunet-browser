@@ -318,7 +318,7 @@ public class SimpleDownloadServiceFragment extends BaseDownloadFragment
 	 */
 	public static class Killer extends BroadcastReceiver
 	{
-		static public final String KILL_DOWNLOAD_SERVICE = "kill_download_service";
+		static final String KILL_DOWNLOAD_SERVICE = "kill_download_service";
 
 		public Killer()
 		{

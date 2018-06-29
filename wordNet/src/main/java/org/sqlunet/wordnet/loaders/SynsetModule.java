@@ -35,8 +35,7 @@ public class SynsetModule extends BaseModule
 	/**
 	 * Expand flag
 	 */
-	@SuppressWarnings("WeakerAccess")
-	protected boolean expand;
+	boolean expand;
 
 	/**
 	 * Constructor

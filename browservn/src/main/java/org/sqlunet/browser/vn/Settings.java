@@ -95,7 +95,7 @@ public class Settings extends org.sqlunet.settings.Settings
 		 * @param context context
 		 * @return preferred selector mode
 		 */
-		static public Selector getPref(final Context context)
+		static Selector getPref(final Context context)
 		{
 			final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
 			final String name = sharedPref.getString(Settings.PREF_SELECTOR, Selector.XSELECTOR.name());

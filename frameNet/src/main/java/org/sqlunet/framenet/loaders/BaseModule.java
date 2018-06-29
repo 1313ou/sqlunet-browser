@@ -228,7 +228,7 @@ abstract public class BaseModule extends Module
 			}
 
 			@Override
-			public void onLoadFinished(final Loader<Cursor> loader, @NonNull final Cursor cursor)
+			public void onLoadFinished(@NonNull final Loader<Cursor> loader, @NonNull final Cursor cursor)
 			{
 				if (cursor.getCount() > 1)
 				{
@@ -296,7 +296,7 @@ abstract public class BaseModule extends Module
 			}
 
 			@Override
-			public void onLoaderReset(final Loader<Cursor> loader)
+			public void onLoaderReset(@NonNull final Loader<Cursor> loader)
 			{
 				//
 			}
@@ -335,7 +335,7 @@ abstract public class BaseModule extends Module
 			}
 
 			@Override
-			public void onLoadFinished(final Loader<Cursor> loader, @NonNull final Cursor cursor)
+			public void onLoadFinished(@NonNull final Loader<Cursor> loader, @NonNull final Cursor cursor)
 			{
 				if (cursor.moveToFirst())
 				{
@@ -435,7 +435,7 @@ abstract public class BaseModule extends Module
 			}
 
 			@Override
-			public void onLoaderReset(final Loader<Cursor> loader)
+			public void onLoaderReset(@NonNull final Loader<Cursor> loader)
 			{
 				//
 			}
@@ -477,7 +477,7 @@ abstract public class BaseModule extends Module
 			}
 
 			@Override
-			public void onLoadFinished(final Loader<Cursor> loader, @NonNull final Cursor cursor)
+			public void onLoadFinished(@NonNull final Loader<Cursor> loader, @NonNull final Cursor cursor)
 			{
 				if (cursor.moveToFirst())
 				{
@@ -572,7 +572,7 @@ abstract public class BaseModule extends Module
 			}
 
 			@Override
-			public void onLoaderReset(final Loader<Cursor> loader)
+			public void onLoaderReset(@NonNull final Loader<Cursor> loader)
 			{
 				//
 			}
@@ -617,7 +617,7 @@ abstract public class BaseModule extends Module
 			}
 
 			@Override
-			public void onLoadFinished(final Loader<Cursor> loader, @NonNull final Cursor cursor)
+			public void onLoadFinished(@NonNull final Loader<Cursor> loader, @NonNull final Cursor cursor)
 			{
 				if (cursor.getCount() > 1)
 				{
@@ -740,7 +740,7 @@ abstract public class BaseModule extends Module
 			}
 
 			@Override
-			public void onLoaderReset(final Loader<Cursor> loader)
+			public void onLoaderReset(@NonNull final Loader<Cursor> loader)
 			{
 				//
 			}
@@ -781,7 +781,7 @@ abstract public class BaseModule extends Module
 			}
 
 			@Override
-			public void onLoadFinished(final Loader<Cursor> loader, @NonNull final Cursor cursor)
+			public void onLoadFinished(@NonNull final Loader<Cursor> loader, @NonNull final Cursor cursor)
 			{
 				if (cursor.moveToFirst())
 				{
@@ -900,7 +900,7 @@ abstract public class BaseModule extends Module
 			}
 
 			@Override
-			public void onLoaderReset(final Loader<Cursor> loader)
+			public void onLoaderReset(@NonNull final Loader<Cursor> loader)
 			{
 				//
 			}
@@ -943,7 +943,7 @@ abstract public class BaseModule extends Module
 			}
 
 			@Override
-			public void onLoadFinished(final Loader<Cursor> loader, @NonNull final Cursor cursor)
+			public void onLoadFinished(@NonNull final Loader<Cursor> loader, @NonNull final Cursor cursor)
 			{
 				if (cursor.moveToFirst())
 				{
@@ -1048,7 +1048,7 @@ abstract public class BaseModule extends Module
 			}
 
 			@Override
-			public void onLoaderReset(final Loader<Cursor> loader)
+			public void onLoaderReset(@NonNull final Loader<Cursor> loader)
 			{
 				//
 			}
@@ -1087,7 +1087,7 @@ abstract public class BaseModule extends Module
 			}
 
 			@Override
-			public void onLoadFinished(final Loader<Cursor> loader, @NonNull final Cursor cursor)
+			public void onLoadFinished(@NonNull final Loader<Cursor> loader, @NonNull final Cursor cursor)
 			{
 				if (cursor.moveToFirst())
 				{
@@ -1140,7 +1140,7 @@ abstract public class BaseModule extends Module
 			}
 
 			@Override
-			public void onLoaderReset(final Loader<Cursor> loader)
+			public void onLoaderReset(@NonNull final Loader<Cursor> loader)
 			{
 				//
 			}
@@ -1176,7 +1176,7 @@ abstract public class BaseModule extends Module
 			}
 
 			@Override
-			public void onLoadFinished(final Loader<Cursor> loader, @NonNull final Cursor cursor)
+			public void onLoadFinished(@NonNull final Loader<Cursor> loader, @NonNull final Cursor cursor)
 			{
 				if (cursor.moveToFirst())
 				{
@@ -1227,7 +1227,7 @@ abstract public class BaseModule extends Module
 			}
 
 			@Override
-			public void onLoaderReset(final Loader<Cursor> loader)
+			public void onLoaderReset(@NonNull final Loader<Cursor> loader)
 			{
 				//
 			}
@@ -1270,7 +1270,7 @@ abstract public class BaseModule extends Module
 			}
 
 			@Override
-			public void onLoadFinished(final Loader<Cursor> loader, @NonNull final Cursor cursor)
+			public void onLoadFinished(@NonNull final Loader<Cursor> loader, @NonNull final Cursor cursor)
 			{
 				if (cursor.moveToFirst())
 				{
@@ -1355,7 +1355,7 @@ abstract public class BaseModule extends Module
 			}
 
 			@Override
-			public void onLoaderReset(final Loader<Cursor> loader)
+			public void onLoaderReset(@NonNull final Loader<Cursor> loader)
 			{
 				//
 			}
@@ -1394,7 +1394,7 @@ abstract public class BaseModule extends Module
 			}
 
 			@Override
-			public void onLoadFinished(final Loader<Cursor> loader, @NonNull final Cursor cursor)
+			public void onLoadFinished(@NonNull final Loader<Cursor> loader, @NonNull final Cursor cursor)
 			{
 				if (cursor.moveToFirst())
 				{
@@ -1463,7 +1463,7 @@ abstract public class BaseModule extends Module
 			}
 
 			@Override
-			public void onLoaderReset(final Loader<Cursor> loader)
+			public void onLoaderReset(@NonNull final Loader<Cursor> loader)
 			{
 				//
 			}
@@ -1562,7 +1562,7 @@ abstract public class BaseModule extends Module
 			}
 
 			@Override
-			public void onLoadFinished(final Loader<Cursor> loader, @NonNull final Cursor cursor)
+			public void onLoadFinished(@NonNull final Loader<Cursor> loader, @NonNull final Cursor cursor)
 			{
 				if (cursor.moveToFirst())
 				{
@@ -1660,7 +1660,7 @@ abstract public class BaseModule extends Module
 			}
 
 			@Override
-			public void onLoaderReset(final Loader<Cursor> loader)
+			public void onLoaderReset(@NonNull final Loader<Cursor> loader)
 			{
 				//
 			}
@@ -1695,7 +1695,7 @@ abstract public class BaseModule extends Module
 			}
 
 			@Override
-			public void onLoadFinished(final Loader<Cursor> loader, @NonNull final Cursor cursor)
+			public void onLoadFinished(@NonNull final Loader<Cursor> loader, @NonNull final Cursor cursor)
 			{
 				if (cursor.moveToFirst())
 				{
@@ -1743,7 +1743,7 @@ abstract public class BaseModule extends Module
 			}
 
 			@Override
-			public void onLoaderReset(final Loader<Cursor> loader)
+			public void onLoaderReset(@NonNull final Loader<Cursor> loader)
 			{
 				//
 			}
@@ -1778,7 +1778,7 @@ abstract public class BaseModule extends Module
 			}
 
 			@Override
-			public void onLoadFinished(final Loader<Cursor> loader, @NonNull final Cursor cursor)
+			public void onLoadFinished(@NonNull final Loader<Cursor> loader, @NonNull final Cursor cursor)
 			{
 				if (cursor.moveToFirst())
 				{
@@ -1826,7 +1826,7 @@ abstract public class BaseModule extends Module
 			}
 
 			@Override
-			public void onLoaderReset(final Loader<Cursor> loader)
+			public void onLoaderReset(@NonNull final Loader<Cursor> loader)
 			{
 				//
 			}
@@ -1867,7 +1867,7 @@ abstract public class BaseModule extends Module
 			}
 
 			@Override
-			public void onLoadFinished(final Loader<Cursor> loader, @NonNull final Cursor cursor)
+			public void onLoadFinished(@NonNull final Loader<Cursor> loader, @NonNull final Cursor cursor)
 			{
 				final SpannableStringBuilder sb = new SpannableStringBuilder();
 
@@ -1987,7 +1987,7 @@ abstract public class BaseModule extends Module
 			}
 
 			@Override
-			public void onLoaderReset(final Loader<Cursor> loader)
+			public void onLoaderReset(@NonNull final Loader<Cursor> loader)
 			{
 				//
 			}
@@ -2026,7 +2026,7 @@ abstract public class BaseModule extends Module
 			}
 
 			@Override
-			public void onLoadFinished(final Loader<Cursor> loader, @NonNull final Cursor cursor)
+			public void onLoadFinished(@NonNull final Loader<Cursor> loader, @NonNull final Cursor cursor)
 			{
 				// column indices
 				final int idLayerType = cursor.getColumnIndex(Patterns_Layers_X.LAYERTYPE);
@@ -2039,7 +2039,7 @@ abstract public class BaseModule extends Module
 			}
 
 			@Override
-			public void onLoaderReset(final Loader<Cursor> loader)
+			public void onLoaderReset(@NonNull final Loader<Cursor> loader)
 			{
 				//
 			}
@@ -2078,7 +2078,7 @@ abstract public class BaseModule extends Module
 			}
 
 			@Override
-			public void onLoadFinished(final Loader<Cursor> loader, @NonNull final Cursor cursor)
+			public void onLoadFinished(@NonNull final Loader<Cursor> loader, @NonNull final Cursor cursor)
 			{
 				// column indices
 				final int idLayerType = cursor.getColumnIndex(ValenceUnits_Layers_X.LAYERTYPE);
@@ -2091,7 +2091,7 @@ abstract public class BaseModule extends Module
 			}
 
 			@Override
-			public void onLoaderReset(final Loader<Cursor> loader)
+			public void onLoaderReset(@NonNull final Loader<Cursor> loader)
 			{
 				//
 			}
@@ -2132,7 +2132,7 @@ abstract public class BaseModule extends Module
 			}
 
 			@Override
-			public void onLoadFinished(final Loader<Cursor> loader, @NonNull final Cursor cursor)
+			public void onLoadFinished(@NonNull final Loader<Cursor> loader, @NonNull final Cursor cursor)
 			{
 				// column indices
 				final int idLayerType = cursor.getColumnIndex(Sentences_Layers_X.LAYERTYPE);
@@ -2144,7 +2144,7 @@ abstract public class BaseModule extends Module
 			}
 
 			@Override
-			public void onLoaderReset(final Loader<Cursor> loader)
+			public void onLoaderReset(@NonNull final Loader<Cursor> loader)
 			{
 				//
 			}
@@ -2337,15 +2337,15 @@ abstract public class BaseModule extends Module
 	 */
 	private CharSequence processLayer(final CharSequence name)
 	{
-		if ("FE".equals(name)) //
+		if ("FE".contentEquals(name)) //
 		{
 			return "Frame element";
 		}
-		if ("PT".equals(name)) //
+		if ("PT".contentEquals(name)) //
 		{
 			return "Phrase type";
 		}
-		if ("GF".equals(name)) //
+		if ("GF".contentEquals(name)) //
 		{
 			return "Grammatical function";
 		}
@@ -2360,15 +2360,15 @@ abstract public class BaseModule extends Module
 	 */
 	private CharSequence processPT(final CharSequence name)
 	{
-		if ("CNI".equals(name)) //
+		if ("CNI".contentEquals(name)) //
 		{
 			return "constructional ∅";
 		}
-		if ("DNI".equals(name)) //
+		if ("DNI".contentEquals(name)) //
 		{
 			return "definite ∅";
 		}
-		if ("INI".equals(name)) //
+		if ("INI".contentEquals(name)) //
 		{
 			return "indefinite ∅";
 		}
@@ -2387,7 +2387,7 @@ abstract public class BaseModule extends Module
 		 *
 		 * @param frameId frame id
 		 */
-		public FrameQuery(final long frameId)
+		FrameQuery(final long frameId)
 		{
 			super(frameId);
 		}
@@ -2409,7 +2409,7 @@ abstract public class BaseModule extends Module
 		 *
 		 * @param frameId frame id
 		 */
-		public RelatedQuery(final long frameId)
+		RelatedQuery(final long frameId)
 		{
 			super(frameId);
 		}
@@ -2431,7 +2431,7 @@ abstract public class BaseModule extends Module
 		 *
 		 * @param frameId frame id
 		 */
-		public LexUnitsQuery(final long frameId)
+		LexUnitsQuery(final long frameId)
 		{
 			super(frameId);
 		}
@@ -2453,7 +2453,7 @@ abstract public class BaseModule extends Module
 		 *
 		 * @param frameId frame id
 		 */
-		public FEsQuery(final long frameId)
+		FEsQuery(final long frameId)
 		{
 			super(frameId);
 		}
@@ -2475,7 +2475,7 @@ abstract public class BaseModule extends Module
 		 *
 		 * @param luId lex unit id
 		 */
-		public GovernorsQuery(final long luId)
+		GovernorsQuery(final long luId)
 		{
 			super(luId);
 		}
@@ -2497,7 +2497,7 @@ abstract public class BaseModule extends Module
 		 *
 		 * @param luId lex unit id
 		 */
-		public RealizationsQuery(final long luId)
+		RealizationsQuery(final long luId)
 		{
 			super(luId);
 		}
@@ -2519,7 +2519,7 @@ abstract public class BaseModule extends Module
 		 *
 		 * @param luId lex unit id
 		 */
-		public GroupRealizationsQuery(final long luId)
+		GroupRealizationsQuery(final long luId)
 		{
 			super(luId);
 		}
@@ -2541,7 +2541,7 @@ abstract public class BaseModule extends Module
 		 *
 		 * @param patternId pattern id
 		 */
-		public SentencesForPatternQuery(final long patternId)
+		SentencesForPatternQuery(final long patternId)
 		{
 			super(patternId);
 		}
@@ -2563,7 +2563,7 @@ abstract public class BaseModule extends Module
 		 *
 		 * @param vuId valence unit id
 		 */
-		public SentencesForValenceUnitQuery(final long vuId)
+		SentencesForValenceUnitQuery(final long vuId)
 		{
 			super(vuId);
 		}
@@ -2585,7 +2585,7 @@ abstract public class BaseModule extends Module
 		 *
 		 * @param luId lex unit id
 		 */
-		public SentencesForLexUnitQuery(final long luId)
+		SentencesForLexUnitQuery(final long luId)
 		{
 			super(luId);
 		}
@@ -2609,7 +2609,7 @@ abstract public class BaseModule extends Module
 		 *
 		 * @param annoSetId annoSet id
 		 */
-		public AnnoSetQuery(final long annoSetId, @SuppressWarnings("SameParameterValue") final boolean withSentence)
+		AnnoSetQuery(final long annoSetId, @SuppressWarnings("SameParameterValue") final boolean withSentence)
 		{
 			super(annoSetId);
 			this.withSentence = withSentence;
@@ -2632,7 +2632,7 @@ abstract public class BaseModule extends Module
 		 *
 		 * @param governorId governor id
 		 */
-		public AnnoSetsForGovernorQuery(final long governorId)
+		AnnoSetsForGovernorQuery(final long governorId)
 		{
 			super(governorId);
 		}
@@ -2676,7 +2676,7 @@ abstract public class BaseModule extends Module
 		 *
 		 * @param frameId frame id
 		 */
-		public FnFrameLink(final long frameId)
+		FnFrameLink(final long frameId)
 		{
 			super(frameId);
 		}
@@ -2705,7 +2705,7 @@ abstract public class BaseModule extends Module
 		 *
 		 * @param luId lex unit id
 		 */
-		public FnLexUnitLink(final long luId)
+		FnLexUnitLink(final long luId)
 		{
 			super(luId);
 		}
@@ -2734,7 +2734,7 @@ abstract public class BaseModule extends Module
 		 *
 		 * @param sentenceId sentence id
 		 */
-		public FnSentenceLink(final long sentenceId)
+		FnSentenceLink(final long sentenceId)
 		{
 			super(sentenceId);
 		}

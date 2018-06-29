@@ -376,7 +376,7 @@ public class FrameNetContract
 
 	static public final class Suggest_FnWords
 	{
-		static public final String SEARCH_WORD_PATH = "suggest_fnword";
+		static final String SEARCH_WORD_PATH = "suggest_fnword";
 		static public final String TABLE = Suggest_FnWords.SEARCH_WORD_PATH + "/" + SearchManager.SUGGEST_URI_PATH_QUERY;
 		static public final String FNWORDID = "fnwordid";
 		static public final String WORDID = "wordid";
@@ -385,7 +385,7 @@ public class FrameNetContract
 
 	static public final class Suggest_FTS_FnWords
 	{
-		static public final String SEARCH_WORD_PATH = "suggest_fts_fnword";
+		static final String SEARCH_WORD_PATH = "suggest_fts_fnword";
 		static public final String TABLE = Suggest_FTS_FnWords.SEARCH_WORD_PATH + "/" + SearchManager.SUGGEST_URI_PATH_QUERY;
 		static public final String FNWORDID = "fnwordid";
 		static public final String WORDID = "wordid";

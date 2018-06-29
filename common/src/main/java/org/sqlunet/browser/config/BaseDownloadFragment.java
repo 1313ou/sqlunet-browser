@@ -96,9 +96,9 @@ abstract class BaseDownloadFragment extends Fragment implements View.OnClickList
 		STATUS_SUCCESSFUL(0x08, R.string.status_download_successful), // 8
 		STATUS_FAILED(0x10, R.string.status_download_fail); // 16
 
-		final public int mask;
+		final int mask;
 
-		final public int res;
+		final int res;
 
 		Status(int mask, int res)
 		{
@@ -153,15 +153,13 @@ abstract class BaseDownloadFragment extends Fragment implements View.OnClickList
 	 * Download dir uri
 	 */
 	@Nullable
-	@SuppressWarnings("WeakerAccess")
-	protected String downloadUrl;
+	String downloadUrl;
 
 	/**
 	 * Destination file uri
 	 */
 	@Nullable
-	@SuppressWarnings("WeakerAccess")
-	protected File destFile;
+	File destFile;
 
 	/**
 	 * Progress bar
@@ -221,8 +219,7 @@ abstract class BaseDownloadFragment extends Fragment implements View.OnClickList
 	/**
 	 * Cached context for threads that terminate after activity finishes
 	 */
-	@SuppressWarnings("WeakerAccess")
-	protected Context context;
+	Context context;
 
 	@Override
 	public void onCreate(final Bundle savedInstanceState)
@@ -615,8 +612,7 @@ abstract class BaseDownloadFragment extends Fragment implements View.OnClickList
 	 * @return string
 	 */
 	@NonNull
-	@SuppressWarnings("WeakerAccess")
-	protected String makeString(int resId)
+	String makeString(int resId)
 	{
 		return this.context.getString(resId);
 	}
@@ -647,8 +643,7 @@ abstract class BaseDownloadFragment extends Fragment implements View.OnClickList
 	 *
 	 * @param success whether download was successful
 	 */
-	@SuppressWarnings("WeakerAccess")
-	protected void onDone(final boolean success)
+	void onDone(final boolean success)
 	{
 		Log.d(TAG, "OnDone " + success + " " + this);
 

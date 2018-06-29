@@ -25,12 +25,10 @@ public abstract class BaseBrowse2Fragment extends Fragment
 	static private final String POINTER_STATE = "pointer";
 
 	@Nullable
-	@SuppressWarnings("WeakerAccess")
-	protected Parcelable pointer = null;
+	Parcelable pointer = null;
 
 	@Nullable
-	@SuppressWarnings("WeakerAccess")
-	protected String pos = null;
+	String pos = null;
 
 	// C R E A T I O N
 

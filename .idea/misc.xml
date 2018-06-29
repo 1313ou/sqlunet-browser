@@ -64,6 +64,35 @@
       <entry_point TYPE="field" FQNAME="org.sqlunet.provider.XSqlUNetContract.Words_PbWords_VnWords SENSEKEY" />
       <entry_point TYPE="field" FQNAME="org.sqlunet.provider.XSqlUNetContract.Words_PbWords_VnWords SENSEID" />
       <entry_point TYPE="field" FQNAME="org.sqlunet.provider.XSqlUNetContract.Words_PbWords_VnWords LEXID" />
+      <entry_point TYPE="field" FQNAME="org.sqlunet.browser.NavigationFragment handlers" />
+      <entry_point TYPE="field" FQNAME="org.sqlunet.browser.NavigationFragment fragmentClasses" />
+      <entry_point TYPE="field" FQNAME="org.sqlunet.browser.NavigationFragment fragmentTransient" />
+      <entry_point TYPE="method" FQNAME="org.sqlunet.browser.config.BaseDownloadFragment$7$1 void onResult(java.lang.Object result)" />
+      <entry_point TYPE="method" FQNAME="org.sqlunet.browser.config.BaseDownloadFragment$7 void onDone(java.lang.String downloadedResult)" />
+      <entry_point TYPE="field" FQNAME="org.sqlunet.browser.config.BaseDownloadFragment PROGRESS_STATUS_STATE" />
+      <entry_point TYPE="field" FQNAME="org.sqlunet.browser.config.BaseDownloadFragment PROGRESS_STATE" />
+      <entry_point TYPE="field" FQNAME="org.sqlunet.browser.config.BaseDownloadFragment MD5_BTN_STATE" />
+      <entry_point TYPE="field" FQNAME="org.sqlunet.browser.config.BaseDownloadFragment CANCEL_BTN_STATE" />
+      <entry_point TYPE="field" FQNAME="org.sqlunet.browser.config.BaseDownloadFragment DOWNLOAD_BTN_RES_STATE" />
+      <entry_point TYPE="field" FQNAME="org.sqlunet.browser.config.BaseDownloadFragment DOWNLOAD_BTN_STATE" />
+      <entry_point TYPE="field" FQNAME="org.sqlunet.browser.NavigationFragment TAG" />
+      <entry_point TYPE="field" FQNAME="org.sqlunet.browser.SqlHistoryFragment TAG" />
+      <entry_point TYPE="field" FQNAME="org.sqlunet.browser.config.BaseDownloadFragment lock" />
+      <entry_point TYPE="field" FQNAME="org.sqlunet.browser.config.BaseDownloadFragment progress" />
+      <entry_point TYPE="field" FQNAME="org.sqlunet.browser.config.MD5Downloader exception" />
+      <entry_point TYPE="field" FQNAME="org.sqlunet.browser.config.MD5Downloader listener" />
+      <entry_point TYPE="field" FQNAME="org.sqlunet.browser.config.BaseDownloadFragment TIMELAPSE" />
+      <entry_point TYPE="field" FQNAME="org.sqlunet.browser.config.MD5Downloader TAG" />
+      <entry_point TYPE="field" FQNAME="org.sqlunet.browser.config.BaseDownloadFragment.Progress downloaded" />
+      <entry_point TYPE="field" FQNAME="org.sqlunet.browser.config.BaseDownloadFragment.Progress total" />
+      <entry_point TYPE="field" FQNAME="android.support.v7.app.contrib.NavigationDrawerFragment.RowItem isMain" />
+      <entry_point TYPE="field" FQNAME="android.support.v7.app.contrib.NavigationDrawerFragment listener" />
+      <entry_point TYPE="field" FQNAME="android.support.v7.app.contrib.NavigationDrawerFragment swapInFlags" />
+      <entry_point TYPE="field" FQNAME="android.support.v7.app.contrib.NavigationDrawerFragment drawerListView" />
+      <entry_point TYPE="field" FQNAME="android.support.v7.app.contrib.NavigationDrawerFragment STATE_SELECTED_SECTION" />
+      <entry_point TYPE="field" FQNAME="android.support.v7.app.contrib.NavigationDrawerFragment.RowItem title" />
+      <entry_point TYPE="field" FQNAME="android.support.v7.app.contrib.NavigationDrawerFragment.RowItem iconId" />
+      <entry_point TYPE="field" FQNAME="android.support.v7.app.contrib.NavigationDrawerFragment TAG" />
     </entry_points>
     <pattern value="org.sqlunet.browser.vn.Settings" method="getPropBankPref" />
     <pattern value="org.sqlunet.browser.vn.Settings" method="getWordNetPref" />
@@ -73,6 +102,93 @@
     <pattern value="org.sqlunet.browser.vn.Settings.Source" method="set" />
     <pattern value="org.sqlunet.browser.vn.Settings.Source" />
     <pattern value="org.sqlunet.browser.vn.Settings" method="getVerbNetPref" />
+    <pattern value="org.sqlunet.browser.xselector.XSelectorPointer" method="getXId" />
+    <pattern value="org.sqlunet.browser.xselector.XSelectorPointer" method="getXMemberId" />
+    <pattern value="org.sqlunet.browser.xselector.XSelectorPointer" method="writeToParcel" />
+    <pattern value="org.sqlunet.browser.xselector.XSelectorPointer" method="describeContents" />
+    <pattern value="org.sqlunet.browser.xselector.XSelectorPointer" method="toString" />
+    <pattern value="org.sqlunet.browser.config.BaseDownloadFragment" method="onPause" />
+    <pattern value="org.sqlunet.browser.config.BaseDownloadFragment" method="onResume" />
+    <pattern value="org.sqlunet.browser.config.BaseDownloadFragment" method="onClick" />
+    <pattern value="org.sqlunet.browser.config.BaseDownloadFragment" method="onSaveInstanceState" />
+    <pattern value="org.sqlunet.browser.config.BaseDownloadFragment" method="onCreateView" />
+    <pattern value="org.sqlunet.browser.config.BaseDownloadFragment" method="onCreate" />
+    <pattern value="org.sqlunet.browser.SqlHistoryFragment" />
+    <pattern value="org.sqlunet.browser.NavigationFragment" method="onItemSelected" />
+    <pattern value="org.sqlunet.browser.NavigationFragment" method="onCreate" />
+    <pattern value="org.sqlunet.Word" method="toString" />
+    <pattern value="org.sqlunet.Word" method="describeContents" />
+    <pattern value="org.sqlunet.Word" method="writeToParcel" />
+    <pattern value="org.sqlunet.wordnet.SenseKeyPointer" method="toString" />
+    <pattern value="org.sqlunet.wordnet.SenseKeyPointer" method="describeContents" />
+    <pattern value="org.sqlunet.wordnet.SenseKeyPointer" method="writeToParcel" />
+    <pattern value="org.sqlunet.wordnet.SenseKeyPointer" method="getSenseKey" />
+    <pattern value="org.sqlunet.wordnet.SensePointer" method="describeContents" />
+    <pattern value="org.sqlunet.wordnet.WordPointer" method="toString" />
+    <pattern value="org.sqlunet.Pointer" method="toString" />
+    <pattern value="org.sqlunet.Pointer" method="describeContents" />
+    <pattern value="org.sqlunet.Pointer" method="writeToParcel" />
+    <pattern value="org.sqlunet.browser.SqlFragment" method="onResume" />
+    <pattern value="org.sqlunet.browser.SqlDialogFragment" method="onCreateView" />
+    <pattern value="org.sqlunet.browser.config.BaseDownloadFragment" method="start" />
+    <pattern value="org.sqlunet.browser.config.BaseDownloadFragment" method="cancel" />
+    <pattern value="org.sqlunet.browser.config.BaseDownloadFragment" method="startObserver" />
+    <pattern value="org.sqlunet.browser.config.BaseDownloadFragment" method="getStatus" />
+    <pattern value="org.sqlunet.support.OtherActivity" method="onCreate" />
+    <pattern value="org.sqlunet.browser.SqlHistoryFragment" method="setActionBar" />
+    <pattern value="org.sqlunet.browser.NavigationFragment" method="handle" />
+    <pattern value="org.sqlunet.browser.NavigationFragment" method="handleFragments" />
+    <pattern value="org.sqlunet.browser.NavigationFragment" method="set" />
+    <pattern value="org.sqlunet.browser.SqlFragment" />
+    <pattern value="org.sqlunet.browser.SqlFragment" method="update" />
+    <pattern value="org.sqlunet.browser.ActionBarSetter" method="setActionBar" />
+    <pattern value="org.sqlunet.browser.ColorUtils" method="getColors" />
+    <pattern value="org.sqlunet.sql.SqlFormatter" method="styledFormat" />
+    <pattern value="org.sqlunet.provider.BaseProvider.CircularBuffer" method="reverseItems" />
+    <pattern value="org.sqlunet.browser.config.MD5Downloader" method="MD5Downloader" />
+    <pattern value="org.sqlunet.browser.config.BaseDownloadFragment" method="md5" />
+    <pattern value="org.sqlunet.browser.config.BaseDownloadFragment" method="warn" />
+    <pattern value="org.sqlunet.browser.config.BaseDownloadFragment" method="initialState" />
+    <pattern value="org.sqlunet.browser.NavigationFragment" method="newFragment" />
+    <pattern value="org.sqlunet.browser.NavigationFragment" method="restoreActionBar" />
+    <pattern value="org.sqlunet.browser.config.BaseDownloadFragment.Observer" />
+    <pattern value="org.sqlunet.browser.config.MD5Downloader.Listener" />
+    <pattern value="org.sqlunet.browser.config.MD5Downloader" method="onCancelled" />
+    <pattern value="org.sqlunet.browser.config.MD5Downloader" method="onPostExecute" />
+    <pattern value="org.sqlunet.browser.config.MD5Downloader" method="doInBackground" />
+    <pattern value="org.sqlunet.browser.config.MD5Downloader" />
+    <pattern value="org.sqlunet.browser.config.BaseDownloadFragment.Observer" method="run" />
+    <pattern value="org.sqlunet.browser.config.BaseDownloadFragment" />
+    <pattern value="org.sqlunet.provider.BaseProvider" method="update" />
+    <pattern value="org.sqlunet.provider.BaseProvider" method="insert" />
+    <pattern value="org.sqlunet.provider.BaseProvider" method="delete" />
+    <pattern value="org.sqlunet.provider.BaseProvider" method="shutdown" />
+    <pattern value="org.sqlunet.provider.BaseProvider" method="onCreate" />
+    <pattern value="org.sqlunet.provider.BaseProvider" />
+    <pattern value="org.sqlunet.browser.config.BaseDownloadFragment.Status" method="finished" />
+    <pattern value="org.sqlunet.browser.config.BaseDownloadFragment.Status" />
+    <pattern value="org.sqlunet.browser.config.BaseDownloadFragment" method="cleanup" />
+    <pattern value="org.sqlunet.browser.config.BaseDownloadFragment" method="observerUpdate" />
+    <pattern value="org.sqlunet.browser.config.MD5Downloader.Listener" method="onDone" />
+    <pattern value="org.sqlunet.browser.config.BaseDownloadFragment.Progress" />
+    <pattern value="android.support.v7.app.contrib.NavigationDrawerFragment.RowItem" method="RowItem" />
+    <pattern value="android.support.v7.app.contrib.NavigationDrawerFragment.RowItem" />
+    <pattern value="android.support.v7.app.contrib.NavigationDrawerFragment" method="onOptionsItemSelected" />
+    <pattern value="android.support.v7.app.contrib.NavigationDrawerFragment" method="onCreateOptionsMenu" />
+    <pattern value="android.support.v7.app.contrib.NavigationDrawerFragment" method="onConfigurationChanged" />
+    <pattern value="android.support.v7.app.contrib.NavigationDrawerFragment" method="onSaveInstanceState" />
+    <pattern value="android.support.v7.app.contrib.NavigationDrawerFragment" method="onStart" />
+    <pattern value="android.support.v7.app.contrib.NavigationDrawerFragment" method="onActivityCreated" />
+    <pattern value="android.support.v7.app.contrib.NavigationDrawerFragment" method="set" />
+    <pattern value="android.support.v7.app.contrib.NavigationDrawerFragment" method="onCreateView" />
+    <pattern value="android.support.v7.app.contrib.NavigationDrawerFragment" method="onCreate" />
+    <pattern value="android.support.v7.app.contrib.NavigationDrawerFragment" />
+    <pattern value="android.support.v7.app.contrib.NavigationDrawerFragment" method="showGlobalContextActionBar" />
+    <pattern value="android.support.v7.app.contrib.NavigationDrawerFragment" method="isDrawerOpen" />
+    <pattern value="android.support.v7.app.contrib.NavigationDrawerFragment" method="selectItem" />
+    <pattern value="android.support.v7.app.contrib.NavigationDrawerFragment.Listener" method="onItemSelected" />
+    <pattern value="android.support.v7.app.contrib.NavigationDrawerFragment.Listener" />
+    <pattern value="org.sqlunet.browser.config.BaseDownloadFragment.Status" method="test" />
   </component>
   <component name="NullableNotNullManager">
     <option name="myDefaultNullable" value="android.support.annotation.Nullable" />

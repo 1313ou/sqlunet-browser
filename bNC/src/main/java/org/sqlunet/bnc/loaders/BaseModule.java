@@ -150,7 +150,7 @@ public class BaseModule extends Module
 			}
 
 			@Override
-			public void onLoadFinished(final Loader<Cursor> loader, @NonNull final Cursor cursor)
+			public void onLoadFinished(@NonNull final Loader<Cursor> loader, @NonNull final Cursor cursor)
 			{
 				final SpannableStringBuilder sb = new SpannableStringBuilder();
 				// if (cursor.getCount() > 1)
@@ -307,7 +307,7 @@ public class BaseModule extends Module
 			}
 
 			@Override
-			public void onLoaderReset(final Loader<Cursor> arg)
+			public void onLoaderReset(@NonNull final Loader<Cursor> loader)
 			{
 				//
 			}

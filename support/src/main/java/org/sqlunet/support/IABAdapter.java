@@ -207,8 +207,7 @@ public class IABAdapter implements IabBroadcastReceiver.IabBroadcastListener
 	/**
 	 * Query inventory (result returned with receivedBroadcast
 	 */
-	@SuppressWarnings("WeakerAccess")
-	public void queryInventory() throws IabHelper.IabAsyncInProgressException
+	private void queryInventory() throws IabHelper.IabAsyncInProgressException
 	{
 		Log.d(TAG, "Querying inventory");
 		IABAdapter.this.iabListener.onStart(IABListener.Op.INVENTORY);
@@ -249,8 +248,7 @@ public class IABAdapter implements IabBroadcastReceiver.IabBroadcastListener
 	 * @param purchase purchase to consume
 	 * @throws IabHelper.IabAsyncInProgressException exception
 	 */
-	@SuppressWarnings("WeakerAccess")
-	public void consume(@NonNull final Purchase purchase) throws IabHelper.IabAsyncInProgressException
+	private void consume(@NonNull final Purchase purchase) throws IabHelper.IabAsyncInProgressException
 	{
 		Log.d(TAG, "Consuming product: " + purchase.getSku());
 		assert this.iabHelper != null;
@@ -514,8 +512,7 @@ public class IABAdapter implements IabBroadcastReceiver.IabBroadcastListener
 	 *
 	 * @param message message
 	 */
-	@SuppressWarnings("WeakerAccess")
-	void complain(String message)
+	private void complain(String message)
 	{
 		alert("Error: " + message);
 	}
@@ -525,8 +522,7 @@ public class IABAdapter implements IabBroadcastReceiver.IabBroadcastListener
 	 *
 	 * @param message message
 	 */
-	@SuppressWarnings("WeakerAccess")
-	void alert(String message)
+	private void alert(String message)
 	{
 		final AlertDialog.Builder builder = new AlertDialog.Builder(this.activity);
 		builder.setMessage(message);

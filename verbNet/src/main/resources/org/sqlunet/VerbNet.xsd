@@ -8,27 +8,27 @@
 			<xs:sequence>
 				<xs:element maxOccurs='unbounded' minOccurs='0' ref='vnclass'/>
 			</xs:sequence>
-			<xs:attribute name='wordid' type='xs:long' use='optional'/>
-			<xs:attribute name='word' type='xs:string' use='optional'/>
-			<xs:attribute name='synsetid' type='xs:long' use='optional'/>
-			<xs:attribute name='classid' type='xs:long' use='optional'/>
+			<xs:attribute name='wordid' type='xs:long'/>
+			<xs:attribute name='word' type='xs:string'/>
+			<xs:attribute name='synsetid' type='xs:long'/>
+			<xs:attribute name='classid' type='xs:long'/>
 		</xs:complexType>
 	</xs:element>
 
 	<xs:element name='vnclass'>
 		<xs:complexType>
 			<xs:sequence>
-				<xs:element maxOccurs='1' minOccurs='0' ref='themroles'/>
-				<xs:element maxOccurs='1' minOccurs='0' ref='frames'/>
+				<xs:element minOccurs='0' ref='themroles'/>
+				<xs:element minOccurs='0' ref='frames'/>
 			</xs:sequence>
-			<xs:attribute name='name' type='xs:string' use='optional'/>
-			<xs:attribute name='classid' type='xs:string' use='optional'/>
-			<xs:attribute name='synsetid' type='xs:long' use='optional'/>
-			<xs:attribute name='wordid' type='xs:long' use='optional'/>
-			<xs:attribute name='sensenum' type='xs:int' use='optional'/>
-			<xs:attribute name='sensekey' type='xs:string' use='optional'/>
-			<xs:attribute name='groupings' type='xs:string' use='optional'/>
-			<xs:attribute name='quality' type='xs:float' use='optional'/>
+			<xs:attribute name='name' type='xs:string'/>
+			<xs:attribute name='classid' type='xs:string'/>
+			<xs:attribute name='synsetid' type='xs:long'/>
+			<xs:attribute name='wordid' type='xs:long'/>
+			<xs:attribute name='sensenum' type='xs:int'/>
+			<xs:attribute name='sensekey' type='xs:string'/>
+			<xs:attribute name='groupings' type='xs:string'/>
+			<xs:attribute name='quality' type='xs:float'/>
 		</xs:complexType>
 	</xs:element>
 
@@ -67,16 +67,16 @@
 				<xs:element ref='examples'/>
 			</xs:sequence>
 			<xs:attribute name='id' type='xs:int' use='required'/>
-			<xs:attribute name='description' type='xs:string' use='optional'/>
+			<xs:attribute name='description' type='xs:string'/>
 		</xs:complexType>
 	</xs:element>
 
 	<xs:element name='description'>
 		<xs:complexType>
 			<xs:attribute name='primary' type='xs:string' use='required'/>
-			<xs:attribute name='secondary' type='xs:string' use='optional'/>
-			<xs:attribute name='descriptionNumber' type='xs:string' use='optional'/>
-			<xs:attribute name='xtag' type='xs:string' use='optional'/>
+			<xs:attribute name='secondary' type='xs:string'/>
+			<xs:attribute name='descriptionNumber' type='xs:string'/>
+			<xs:attribute name='xtag' type='xs:string'/>
 		</xs:complexType>
 	</xs:element>
 
@@ -104,9 +104,9 @@
 	<xs:element name='synitem'>
 		<xs:complexType>
 			<xs:sequence maxOccurs='unbounded'>
-				<xs:element maxOccurs='1' minOccurs='1' ref='cat'/>
-				<xs:element maxOccurs='1' minOccurs='0' ref='value'/>
-				<xs:element maxOccurs='1' minOccurs='0' ref='restrs'/>
+				<xs:element ref='cat'/>
+				<xs:element minOccurs='0' ref='value'/>
+				<xs:element minOccurs='0' ref='restrs'/>
 			</xs:sequence>
 		</xs:complexType>
 	</xs:element>
@@ -134,7 +134,7 @@
 	<xs:element name='semitem'>
 		<xs:complexType>
 			<xs:sequence maxOccurs='unbounded'>
-				<xs:element maxOccurs='1' minOccurs='1' ref='rel'/>
+				<xs:element ref='rel'/>
 				<xs:element maxOccurs='unbounded' minOccurs='0' ref='arg'/>
 			</xs:sequence>
 		</xs:complexType>

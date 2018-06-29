@@ -15,26 +15,19 @@ import org.sqlunet.browser.selector.SelectorPointer;
  */
 public class XSelectorPointer extends SelectorPointer implements HasXId
 {
-	@SuppressWarnings("WeakerAccess")
-	static public final int WORDNETSOURCE = 0x00001;
+	private static final int WORDNETSOURCE = 0x00001;
 
-	@SuppressWarnings("WeakerAccess")
-	static public final int VERBNETSOURCE = 0x00002;
+	private static final int VERBNETSOURCE = 0x00002;
 
-	@SuppressWarnings("WeakerAccess")
-	static public final int PROPBANKSOURCE = 0x00004;
+	private static final int PROPBANKSOURCE = 0x00004;
 
-	@SuppressWarnings("WeakerAccess")
-	static public final int FRAMENETSOURCE = 0x00008;
+	private static final int FRAMENETSOURCE = 0x00008;
 
-	@SuppressWarnings("WeakerAccess")
-	static public final int PMVERBNETSOURCE = 0x00020;
+	private static final int PMVERBNETSOURCE = 0x00020;
 
-	@SuppressWarnings("WeakerAccess")
-	static public final int PMPROPBANKSOURCE = 0x00040;
+	private static final int PMPROPBANKSOURCE = 0x00040;
 
-	@SuppressWarnings("WeakerAccess")
-	static public final int PMFRAMENETSOURCE = 0x00080;
+	private static final int PMFRAMENETSOURCE = 0x00080;
 
 	/**
 	 * xId : optional/nullable
@@ -219,6 +212,7 @@ public class XSelectorPointer extends SelectorPointer implements HasXId
 		parcel.writeInt(this.xGroup);
 	}
 
+	@SuppressWarnings("SameReturnValue")
 	@Override
 	public int describeContents()
 	{

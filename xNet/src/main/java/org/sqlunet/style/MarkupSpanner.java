@@ -39,7 +39,7 @@ public class MarkupSpanner extends Spanner
 		 *
 		 * @return flags
 		 */
-		public int flags()
+		int flags()
 		{
 			switch (this)
 			{

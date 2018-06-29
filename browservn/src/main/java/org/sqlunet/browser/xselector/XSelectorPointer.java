@@ -15,14 +15,11 @@ import org.sqlunet.browser.selector.SelectorPointer;
  */
 public class XSelectorPointer extends SelectorPointer implements HasXId
 {
-	@SuppressWarnings("WeakerAccess")
-	static public final int WORDNETSOURCE = 0x00001;
+	private static final int WORDNETSOURCE = 0x00001;
 
-	@SuppressWarnings("WeakerAccess")
-	static public final int VERBNETSOURCE = 0x00002;
+	private static final int VERBNETSOURCE = 0x00002;
 
-	@SuppressWarnings("WeakerAccess")
-	static public final int PROPBANKSOURCE = 0x00004;
+	private static final int PROPBANKSOURCE = 0x00004;
 
 	/**
 	 * xId : optional/nullable
