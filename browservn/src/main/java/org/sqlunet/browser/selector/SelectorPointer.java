@@ -13,6 +13,16 @@ import org.sqlunet.wordnet.SensePointer;
 public class SelectorPointer extends SensePointer
 {
 	/**
+	 * Constructor from parcel
+	 *
+	 * @param parcel parcel
+	 */
+	protected SelectorPointer(@NonNull Parcel parcel)
+	{
+		super(parcel);
+	}
+
+	/**
 	 * Constructor
 	 *
 	 * @param synsetId synset id
@@ -21,15 +31,5 @@ public class SelectorPointer extends SensePointer
 	protected SelectorPointer(final long synsetId, final long wordId)
 	{
 		super(synsetId, wordId);
-	}
-
-	/**
-	 * Constructor from parcel
-	 *
-	 * @param parcel parcel
-	 */
-	protected SelectorPointer(@NonNull Parcel parcel)
-	{
-		super(parcel);
 	}
 }

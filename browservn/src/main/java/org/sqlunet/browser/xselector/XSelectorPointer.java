@@ -71,29 +71,6 @@ public class XSelectorPointer extends SelectorPointer implements HasXId
 	};
 
 	/**
-	 * Constructor
-	 *
-	 * @param synsetId  synset id
-	 * @param wordId    word id
-	 * @param xId       x id
-	 * @param xClassId  x class id
-	 * @param xMemberId x member id
-	 * @param xSources  x sources
-	 * @param xMask     x mask
-	 * @param xGroup    x group id
-	 */
-	XSelectorPointer(final long synsetId, final long wordId, final long xId, final long xClassId, final long xMemberId, final String xSources, final long xMask, final int xGroup)
-	{
-		super(synsetId, wordId);
-		this.xId = xId;
-		this.xClassId = xClassId;
-		this.xMemberId = xMemberId;
-		this.xSources = xSources;
-		this.xMask = xMask;
-		this.xGroup = xGroup;
-	}
-
-	/**
 	 * Constructor from parcel, reads back fields IN THE ORDER they were written
 	 */
 	@SuppressWarnings("boxing")
@@ -122,6 +99,29 @@ public class XSelectorPointer extends SelectorPointer implements HasXId
 		this.xSources = parcel.readString();
 		this.xMask = parcel.readLong();
 		this.xGroup = parcel.readInt();
+	}
+
+	/**
+	 * Constructor
+	 *
+	 * @param synsetId  synset id
+	 * @param wordId    word id
+	 * @param xId       x id
+	 * @param xClassId  x class id
+	 * @param xMemberId x member id
+	 * @param xSources  x sources
+	 * @param xMask     x mask
+	 * @param xGroup    x group id
+	 */
+	public XSelectorPointer(final long synsetId, final long wordId, final long xId, final long xClassId, final long xMemberId, final String xSources, final long xMask, final int xGroup)
+	{
+		super(synsetId, wordId);
+		this.xId = xId;
+		this.xClassId = xClassId;
+		this.xMemberId = xMemberId;
+		this.xSources = xSources;
+		this.xMask = xMask;
+		this.xGroup = xGroup;
 	}
 
 	/**

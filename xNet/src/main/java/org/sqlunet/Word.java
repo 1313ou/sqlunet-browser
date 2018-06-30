@@ -34,6 +34,15 @@ public class Word implements IPointer
 	};
 
 	/**
+	 * Constructor from parcel, reads back fields IN THE ORDER they were written
+	 */
+	@SuppressWarnings("unused")
+	private Word(@NonNull final Parcel parcel)
+	{
+		this.word = parcel.readString();
+	}
+
+	/**
 	 * Constructor
 	 *
 	 * @param word word
@@ -41,15 +50,6 @@ public class Word implements IPointer
 	public Word(final String word)
 	{
 		this.word = word;
-	}
-
-	/**
-	 * Constructor from parcel, reads back fields IN THE ORDER they were written
-	 */
-	@SuppressWarnings("unused")
-	public Word(@NonNull final Parcel parcel)
-	{
-		this.word = parcel.readString();
 	}
 
 	/**

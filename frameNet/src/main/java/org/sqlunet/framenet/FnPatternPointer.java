@@ -32,6 +32,14 @@ public class FnPatternPointer extends Pointer
 	};
 
 	/**
+	 * Constructor from parcel, reads back fields IN THE ORDER they were written
+	 */
+	private FnPatternPointer(@NonNull final Parcel parcel)
+	{
+		super(parcel);
+	}
+
+	/**
 	 * Constructor
 	 *
 	 * @param patternId pattern id
@@ -39,13 +47,5 @@ public class FnPatternPointer extends Pointer
 	public FnPatternPointer(final long patternId)
 	{
 		super(patternId);
-	}
-
-	/**
-	 * Constructor from parcel, reads back fields IN THE ORDER they were written
-	 */
-	private FnPatternPointer(@NonNull final Parcel parcel)
-	{
-		super(parcel);
 	}
 }

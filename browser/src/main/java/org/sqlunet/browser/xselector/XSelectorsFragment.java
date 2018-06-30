@@ -326,12 +326,13 @@ public class XSelectorsFragment extends ExpandableListFragment
 	private void load()
 	{
 		// load the contents
-		getLoaderManager().restartLoader(++Module.loaderId, null, new LoaderCallbacks<Cursor>()
+		getLoaderManager().initLoader(++Module.loaderId, null, new LoaderCallbacks<Cursor>()
 		{
 			@NonNull
 			@Override
 			public Loader<Cursor> onCreateLoader(final int id, final Bundle args)
 			{
+				Log.d(TAG, "onCreateLoader() for wordid loader id " + id);
 				final Uri uri = Uri.parse(XSqlUNetProvider.makeUri(Words_FnWords_PbWords_VnWords.CONTENT_URI_TABLE));
 				final String[] projection = { //
 						Words_FnWords_PbWords_VnWords.SYNSETID + " AS " + GROUPID_COLUMN, //
@@ -351,6 +352,9 @@ public class XSelectorsFragment extends ExpandableListFragment
 			@Override
 			public void onLoadFinished(@NonNull final Loader<Cursor> loader, @NonNull final Cursor cursor)
 			{
+				int id = loader.getId();
+				Log.d(TAG, "onLoadFinished() for wordid loader id " + id);
+
 				// store source progressMessage
 				if (cursor.moveToFirst())
 				{
@@ -364,9 +368,45 @@ public class XSelectorsFragment extends ExpandableListFragment
 			@Override
 			public void onLoaderReset(@NonNull final Loader<Cursor> loader)
 			{
-				//
+				int id = loader.getId();
+				Log.d(TAG, "onLoaderReset() for wordid loader id " + id);
 			}
 		});
+	}
+
+	void initLoader(int groupPosition, int groupId, int loaderId)
+	{
+		LoaderCallbacks<Cursor> callbacks = null;
+		switch (groupId)
+		{
+			case GROUPID_WORDNET:
+				callbacks = getWnCallbacks(wordId, groupPosition);
+				break;
+			case GROUPID_VERBNET:
+				callbacks = getVnCallbacks(wordId, groupPosition);
+				break;
+			case GROUPID_PROPBANK:
+				callbacks = getPbCallbacks(wordId, groupPosition);
+				break;
+			case GROUPID_FRAMENET:
+				callbacks = getFnCallbacks(wordId, groupPosition);
+				break;
+		}
+
+		final FragmentActivity activity = getActivity();
+		if (activity == null)
+		{
+			return;
+		}
+		Loader<Cursor> loader1 = activity.getSupportLoaderManager().getLoader(loaderId);
+		if (loader1 != null && !loader1.isReset())
+		{
+			activity.getSupportLoaderManager().restartLoader(loaderId, null, callbacks);
+		}
+		else
+		{
+			activity.getSupportLoaderManager().initLoader(loaderId, null, callbacks);
+		}
 	}
 
 	/**
@@ -390,40 +430,12 @@ public class XSelectorsFragment extends ExpandableListFragment
 
 				// given the group, we return a cursor for all the children within that group
 				int groupPosition = groupCursor.getPosition();
-				// String groupName = groupCursor.getString(groupCursor.getColumnIndex(GROUPNAME_COLUMN));
-
 				int loaderId = groupCursor.getInt(groupCursor.getColumnIndex(GROUPLOADER_COLUMN));
 				int groupId = groupCursor.getInt(groupCursor.getColumnIndex(GROUPID_COLUMN));
-
+				// String groupName = groupCursor.getString(groupCursor.getColumnIndex(GROUPNAME_COLUMN));
 				// Log.d(TAG, "group " + groupPosition + ' ' + groupName + " loader=" + loaderId);
-				LoaderCallbacks<Cursor> callbacks = null;
-				switch (groupId)
-				{
-					case GROUPID_WORDNET:
-						callbacks = getWnCallbacks(wordId, groupPosition);
-						break;
-					case GROUPID_VERBNET:
-						callbacks = getVnCallbacks(wordId, groupPosition);
-						break;
-					case GROUPID_PROPBANK:
-						callbacks = getPbCallbacks(wordId, groupPosition);
-						break;
-					case GROUPID_FRAMENET:
-						callbacks = getFnCallbacks(wordId, groupPosition);
-						break;
-				}
 
-				Loader<Cursor> loader1 = activity.getSupportLoaderManager().getLoader(loaderId);
-				if (loader1 != null && !loader1.isReset())
-				{
-					assert callbacks != null;
-					activity.getSupportLoaderManager().restartLoader(loaderId, null, callbacks);
-				}
-				else
-				{
-					assert callbacks != null;
-					activity.getSupportLoaderManager().initLoader(loaderId, null, callbacks);
-				}
+				initLoader(groupPosition, groupId, loaderId);
 
 				return null;
 			}
@@ -525,6 +537,9 @@ public class XSelectorsFragment extends ExpandableListFragment
 			@Override
 			public void onLoaderReset(@NonNull final Loader<Cursor> loader)
 			{
+				int id = loader.getId();
+				Log.d(TAG, "onLoaderReset() for WN loader id " + id);
+
 				final CursorTreeAdapter adapter = (CursorTreeAdapter) getListAdapter();
 				assert adapter != null;
 				adapter.setChildrenCursor(groupPosition, null);
@@ -564,6 +579,9 @@ public class XSelectorsFragment extends ExpandableListFragment
 			@Override
 			public void onLoaderReset(@NonNull final Loader<Cursor> loader)
 			{
+				int id = loader.getId();
+				Log.d(TAG, "onLoaderReset() for VN loader id " + id);
+
 				final CursorTreeAdapter adapter = (CursorTreeAdapter) getListAdapter();
 				assert adapter != null;
 				adapter.setChildrenCursor(groupPosition, null);
@@ -603,6 +621,9 @@ public class XSelectorsFragment extends ExpandableListFragment
 			@Override
 			public void onLoaderReset(@NonNull final Loader<Cursor> loader)
 			{
+				int id = loader.getId();
+				Log.d(TAG, "onLoaderReset() for PB loader id " + id);
+
 				final CursorTreeAdapter adapter = (CursorTreeAdapter) getListAdapter();
 				assert adapter != null;
 				adapter.setChildrenCursor(groupPosition, null);
@@ -642,6 +663,9 @@ public class XSelectorsFragment extends ExpandableListFragment
 			@Override
 			public void onLoaderReset(@NonNull final Loader<Cursor> loader)
 			{
+				int id = loader.getId();
+				Log.d(TAG, "onLoaderReset() for FN loader id " + id);
+
 				final CursorTreeAdapter adapter = (CursorTreeAdapter) getListAdapter();
 				assert adapter != null;
 				adapter.setChildrenCursor(groupPosition, null);

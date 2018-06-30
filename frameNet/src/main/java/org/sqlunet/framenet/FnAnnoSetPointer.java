@@ -32,6 +32,14 @@ public class FnAnnoSetPointer extends Pointer
 	};
 
 	/**
+	 * Constructor from parcel, reads back fields IN THE ORDER they were written
+	 */
+	private FnAnnoSetPointer(@NonNull final Parcel parcel)
+	{
+		super(parcel);
+	}
+
+	/**
 	 * Constructor
 	 *
 	 * @param annoSetId annoSet id
@@ -39,13 +47,5 @@ public class FnAnnoSetPointer extends Pointer
 	public FnAnnoSetPointer(final long annoSetId)
 	{
 		super(annoSetId);
-	}
-
-	/**
-	 * Constructor from parcel, reads back fields IN THE ORDER they were written
-	 */
-	private FnAnnoSetPointer(@NonNull final Parcel parcel)
-	{
-		super(parcel);
 	}
 }

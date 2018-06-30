@@ -34,6 +34,14 @@ public class Pointer implements IPointer
 	};
 
 	/**
+	 * Constructor from parcel, reads back fields IN THE ORDER they were written
+	 */
+	protected Pointer(@NonNull final Parcel parcel)
+	{
+		this.id = parcel.readLong();
+	}
+
+	/**
 	 * Constructor
 	 *
 	 * @param id id
@@ -41,14 +49,6 @@ public class Pointer implements IPointer
 	protected Pointer(final long id)
 	{
 		this.id = id;
-	}
-
-	/**
-	 * Constructor from parcel, reads back fields IN THE ORDER they were written
-	 */
-	protected Pointer(@NonNull final Parcel parcel)
-	{
-		this.id = parcel.readLong();
 	}
 
 	/**

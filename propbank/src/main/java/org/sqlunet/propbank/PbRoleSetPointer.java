@@ -32,16 +32,6 @@ public class PbRoleSetPointer extends Pointer
 	};
 
 	/**
-	 * Constructor
-	 *
-	 * @param roleSetId role set id
-	 */
-	public PbRoleSetPointer(final long roleSetId)
-	{
-		super(roleSetId);
-	}
-
-	/**
 	 * Constructor from parcel, reads back fields IN THE ORDER they were written
 	 *
 	 * @param parcel parcel
@@ -49,5 +39,15 @@ public class PbRoleSetPointer extends Pointer
 	private PbRoleSetPointer(@NonNull final Parcel parcel)
 	{
 		super(parcel);
+	}
+
+	/**
+	 * Constructor
+	 *
+	 * @param roleSetId role set id
+	 */
+	public PbRoleSetPointer(final long roleSetId)
+	{
+		super(roleSetId);
 	}
 }

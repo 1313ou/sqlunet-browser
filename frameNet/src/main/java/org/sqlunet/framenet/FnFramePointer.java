@@ -32,6 +32,14 @@ public class FnFramePointer extends Pointer
 	};
 
 	/**
+	 * Constructor from parcel, reads back fields IN THE ORDER they were written
+	 */
+	private FnFramePointer(@NonNull final Parcel parcel)
+	{
+		super(parcel);
+	}
+
+	/**
 	 * Constructor
 	 *
 	 * @param frameId frame id
@@ -39,13 +47,5 @@ public class FnFramePointer extends Pointer
 	public FnFramePointer(final long frameId)
 	{
 		super(frameId);
-	}
-
-	/**
-	 * Constructor from parcel, reads back fields IN THE ORDER they were written
-	 */
-	private FnFramePointer(@NonNull final Parcel parcel)
-	{
-		super(parcel);
 	}
 }

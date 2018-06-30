@@ -32,6 +32,14 @@ public class FnLexUnitPointer extends Pointer
 	};
 
 	/**
+	 * Constructor from parcel, reads back fields IN THE ORDER they were written
+	 */
+	private FnLexUnitPointer(@NonNull final Parcel parcel)
+	{
+		super(parcel);
+	}
+
+	/**
 	 * Constructor
 	 *
 	 * @param luId lex unit id
@@ -39,13 +47,5 @@ public class FnLexUnitPointer extends Pointer
 	public FnLexUnitPointer(final long luId)
 	{
 		super(luId);
-	}
-
-	/**
-	 * Constructor from parcel, reads back fields IN THE ORDER they were written
-	 */
-	private FnLexUnitPointer(@NonNull final Parcel parcel)
-	{
-		super(parcel);
 	}
 }

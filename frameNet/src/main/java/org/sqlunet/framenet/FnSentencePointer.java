@@ -32,6 +32,14 @@ public class FnSentencePointer extends Pointer
 	};
 
 	/**
+	 * Constructor from parcel, reads back fields IN THE ORDER they were written
+	 */
+	private FnSentencePointer(@NonNull final Parcel parcel)
+	{
+		super(parcel);
+	}
+
+	/**
 	 * Constructor
 	 *
 	 * @param sentenceId sentence id
@@ -39,13 +47,5 @@ public class FnSentencePointer extends Pointer
 	public FnSentencePointer(final long sentenceId)
 	{
 		super(sentenceId);
-	}
-
-	/**
-	 * Constructor from parcel, reads back fields IN THE ORDER they were written
-	 */
-	private FnSentencePointer(@NonNull final Parcel parcel)
-	{
-		super(parcel);
 	}
 }

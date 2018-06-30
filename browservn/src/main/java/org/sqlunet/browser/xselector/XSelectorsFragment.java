@@ -339,6 +339,16 @@ public class XSelectorsFragment extends ExpandableListFragment
 		final ExpandableListAdapter adapter = new SimpleCursorTreeAdapter(getActivity(), this.xnCursor, R.layout.item_group_xselector, groupFrom, groupTo, R.layout.item_xselector, childFrom, childTo)
 		{
 			@Override
+			public View getGroupView(final int groupPosition, final boolean isExpanded, final View convertView, final ViewGroup parent)
+			{
+				Cursor cursor = this.getCursor();
+				if (cursor == null) {
+					return null;
+				}
+				return super.getGroupView(groupPosition, isExpanded, convertView, parent);
+			}
+
+			@Override
 			protected Cursor getChildrenCursor(@NonNull Cursor groupCursor)
 			{
 				final FragmentActivity activity = getActivity();
@@ -369,12 +379,10 @@ public class XSelectorsFragment extends ExpandableListFragment
 				Loader<Cursor> loader1 = activity.getSupportLoaderManager().getLoader(loaderId);
 				if (loader1 != null && !loader1.isReset())
 				{
-					assert callbacks != null;
 					activity.getSupportLoaderManager().restartLoader(loaderId, null, callbacks);
 				}
 				else
 				{
-					assert callbacks != null;
 					activity.getSupportLoaderManager().initLoader(loaderId, null, callbacks);
 				}
 

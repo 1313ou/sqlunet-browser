@@ -32,6 +32,14 @@ public class FnValenceUnitPointer extends Pointer
 	};
 
 	/**
+	 * Constructor from parcel, reads back fields IN THE ORDER they were written
+	 */
+	private FnValenceUnitPointer(@NonNull final Parcel parcel)
+	{
+		super(parcel);
+	}
+
+	/**
 	 * Constructor
 	 *
 	 * @param vuId valence unit id
@@ -39,13 +47,5 @@ public class FnValenceUnitPointer extends Pointer
 	public FnValenceUnitPointer(final long vuId)
 	{
 		super(vuId);
-	}
-
-	/**
-	 * Constructor from parcel, reads back fields IN THE ORDER they were written
-	 */
-	private FnValenceUnitPointer(@NonNull final Parcel parcel)
-	{
-		super(parcel);
 	}
 }
