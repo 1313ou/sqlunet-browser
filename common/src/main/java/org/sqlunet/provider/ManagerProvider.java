@@ -157,6 +157,7 @@ public class ManagerProvider extends BaseProvider
 				}
 				while (cursor.moveToNext());
 			}
+
 			cursor.close();
 		}
 		return tables;

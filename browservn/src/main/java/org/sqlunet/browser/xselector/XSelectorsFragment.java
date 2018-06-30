@@ -315,8 +315,7 @@ public class XSelectorsFragment extends ExpandableListFragment
 				{
 					final int idWordId = cursor.getColumnIndex(Words_PbWords_VnWords.WORDID);
 					XSelectorsFragment.this.wordId = cursor.getLong(idWordId);
-
-					load(XSelectorsFragment.this.wordId);
+					initialize();
 				}
 			}
 
@@ -329,11 +328,9 @@ public class XSelectorsFragment extends ExpandableListFragment
 	}
 
 	/**
-	 * Load data from word id
-	 *
-	 * @param wordId word id
+	 * Initialize
 	 */
-	private void load(final long wordId)
+	private void initialize()
 	{
 		// adapter
 		final ExpandableListAdapter adapter = new SimpleCursorTreeAdapter(getActivity(), this.xnCursor, R.layout.item_group_xselector, groupFrom, groupTo, R.layout.item_xselector, childFrom, childTo)
@@ -351,42 +348,16 @@ public class XSelectorsFragment extends ExpandableListFragment
 			@Override
 			protected Cursor getChildrenCursor(@NonNull Cursor groupCursor)
 			{
-				final FragmentActivity activity = getActivity();
-				if (activity == null)
-				{
-					return null;
-				}
-
-				// given the group, we return a cursor for all the children within that group
+				// given the group, return a cursor for all the children within that group
 				int groupPosition = groupCursor.getPosition();
-				// String groupName = groupCursor.getString(groupCursor.getColumnIndex(GROUPNAME_COLUMN));
-
 				int loaderId = groupCursor.getInt(groupCursor.getColumnIndex(GROUPLOADER_COLUMN));
 				int groupId = groupCursor.getInt(groupCursor.getColumnIndex(GROUPID_COLUMN));
-
+				// String groupName = groupCursor.getString(groupCursor.getColumnIndex(GROUPNAME_COLUMN));
 				// Log.d(TAG, "group " + groupPosition + ' ' + groupName + " loader=" + loaderId);
-				LoaderCallbacks<Cursor> callbacks = null;
-				switch (groupId)
-				{
-					case GROUPID_VERBNET:
-						callbacks = getVnCallbacks(wordId, groupPosition);
-						break;
-					case GROUPID_PROPBANK:
-						callbacks = getPbCallbacks(wordId, groupPosition);
-						break;
-				}
 
-				Loader<Cursor> loader1 = activity.getSupportLoaderManager().getLoader(loaderId);
-				if (loader1 != null && !loader1.isReset())
-				{
-					activity.getSupportLoaderManager().restartLoader(loaderId, null, callbacks);
-				}
-				else
-				{
-					activity.getSupportLoaderManager().initLoader(loaderId, null, callbacks);
-				}
+				initLoader(groupPosition, groupId, loaderId);
 
-				return null;
+				return null; // set later when loader completes
 			}
 
 			@Override
@@ -400,6 +371,58 @@ public class XSelectorsFragment extends ExpandableListFragment
 		// expand (triggers data loading)
 		Log.d(TAG, "expand position " + this.groupPosition + " " + this);
 		expand(this.groupPosition);
+	}
+
+	/**
+	 * Init loaders for
+	 *
+	 * @param groupPosition group position
+	 * @param groupId       group id
+	 * @param loaderId      loader id
+	 */
+	private void initLoader(int groupPosition, int groupId, int loaderId)
+	{
+		Log.d(XSelectorsFragment.TAG, "initLoader() for  groupPosition=" + groupPosition + " groupId=" + groupId + " loaderId=" + loaderId);
+		LoaderCallbacks<Cursor> callbacks;
+		switch (groupId)
+		{
+			case GROUPID_VERBNET:
+				callbacks = getVnCallbacks(this.wordId, groupPosition);
+				break;
+			case GROUPID_PROPBANK:
+				callbacks = getPbCallbacks(this.wordId, groupPosition);
+				break;
+			default:
+				return;
+		}
+
+		final FragmentActivity activity = getActivity();
+		if (activity == null)
+		{
+			return;
+		}
+		if (activity.isFinishing())
+		{
+			return;
+		}
+
+		final Loader<Cursor> loaderChild = activity.getSupportLoaderManager().getLoader(loaderId);
+		Log.d(XSelectorsFragment.TAG, "Existing loader with same loaderId null=" + (loaderChild == null));
+		if (loaderChild != null)
+		{
+			Log.d(XSelectorsFragment.TAG, "Existing loader with same loaderId isReset=" + loaderChild.isReset());
+		}
+
+		if (loaderChild != null && !loaderChild.isReset())
+		{
+			Log.d(XSelectorsFragment.TAG, "restartLoader()");
+			activity.getSupportLoaderManager().restartLoader(loaderId, null, callbacks);
+		}
+		else
+		{
+			Log.d(XSelectorsFragment.TAG, "initLoader()");
+			activity.getSupportLoaderManager().initLoader(loaderId, null, callbacks);
+		}
 	}
 
 	// L O A D E R  C A L L B A C K S
@@ -555,7 +578,8 @@ public class XSelectorsFragment extends ExpandableListFragment
 				this.listener.onItemSelected(pointer, lemma, cased, pos);
 			}
 		}
-		// cursor.close();
+
+		//cursor.close();
 		return true;
 	}
 

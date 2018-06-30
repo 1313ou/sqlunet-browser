@@ -180,7 +180,7 @@ public class ClassFromWordModule extends BaseModule
 					FireEvent.onNoResult(parent, true);
 				}
 
-				cursor.close();
+				//cursor.close();
 			}
 
 			@Override

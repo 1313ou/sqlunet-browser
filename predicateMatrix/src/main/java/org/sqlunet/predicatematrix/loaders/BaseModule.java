@@ -863,7 +863,7 @@ abstract class BaseModule extends Module
 				FireEvent.onResults(this.parent, this.displayer.getExpandLevels());
 			}
 
-			cursor.close();
+			//cursor.close();
 		}
 
 		@Override

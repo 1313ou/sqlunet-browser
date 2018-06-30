@@ -132,7 +132,7 @@ public class SentenceModule extends BaseModule
 					FireEvent.onNoResult(parent, true);
 				}
 
-				cursor.close();
+				//cursor.close();
 			}
 
 			@Override

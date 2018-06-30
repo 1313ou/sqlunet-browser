@@ -258,7 +258,7 @@ public class XSelectorsFragment extends ExpandableListFragment
 			this.xnCursor.addRow(new Object[]{GROUPID_FRAMENET, "framenet", 4444, Integer.toString(R.drawable.framenet)});
 		}
 		this.groupPosition = position >= 0 ? 0 : -1;
-		Log.d(TAG, "init position " + this.groupPosition + " " + this);
+		Log.d(XSelectorsFragment.TAG, "init position " + this.groupPosition + " " + this);
 	}
 
 	// V I E W
@@ -283,7 +283,7 @@ public class XSelectorsFragment extends ExpandableListFragment
 		if (savedInstanceState != null && savedInstanceState.containsKey(XSelectorsFragment.STATE_ACTIVATED_SELECTOR))
 		{
 			this.groupPosition = savedInstanceState.getInt(XSelectorsFragment.STATE_ACTIVATED_SELECTOR);
-			Log.d(TAG, "restored position " + this.groupPosition + " " + this);
+			Log.d(XSelectorsFragment.TAG, "restored position " + this.groupPosition + " " + this);
 		}
 	}
 
@@ -303,7 +303,7 @@ public class XSelectorsFragment extends ExpandableListFragment
 
 		// serialize and persist the activated item position.
 		outState.putInt(XSelectorsFragment.STATE_ACTIVATED_SELECTOR, this.groupPosition);
-		Log.d(TAG, "saved position " + this.groupPosition + " " + this);
+		Log.d(XSelectorsFragment.TAG, "saved position " + this.groupPosition + " " + this);
 	}
 
 	// L I S T E N E R
@@ -332,7 +332,7 @@ public class XSelectorsFragment extends ExpandableListFragment
 			@Override
 			public Loader<Cursor> onCreateLoader(final int id, final Bundle args)
 			{
-				Log.d(TAG, "onCreateLoader() for wordid loader id " + id);
+				Log.d(XSelectorsFragment.TAG, "onCreateLoader() for wordid loader id " + id);
 				final Uri uri = Uri.parse(XSqlUNetProvider.makeUri(Words_FnWords_PbWords_VnWords.CONTENT_URI_TABLE));
 				final String[] projection = { //
 						Words_FnWords_PbWords_VnWords.SYNSETID + " AS " + GROUPID_COLUMN, //
@@ -353,15 +353,14 @@ public class XSelectorsFragment extends ExpandableListFragment
 			public void onLoadFinished(@NonNull final Loader<Cursor> loader, @NonNull final Cursor cursor)
 			{
 				int id = loader.getId();
-				Log.d(TAG, "onLoadFinished() for wordid loader id " + id);
+				Log.d(XSelectorsFragment.TAG, "onLoadFinished() for wordid loader id " + id);
 
 				// store source progressMessage
 				if (cursor.moveToFirst())
 				{
 					final int idWordId = cursor.getColumnIndex(Words_FnWords_PbWords_VnWords.WORDID);
 					XSelectorsFragment.this.wordId = cursor.getLong(idWordId);
-
-					load(XSelectorsFragment.this.wordId);
+					initialize();
 				}
 			}
 
@@ -369,52 +368,15 @@ public class XSelectorsFragment extends ExpandableListFragment
 			public void onLoaderReset(@NonNull final Loader<Cursor> loader)
 			{
 				int id = loader.getId();
-				Log.d(TAG, "onLoaderReset() for wordid loader id " + id);
+				Log.d(XSelectorsFragment.TAG, "onLoaderReset() for wordid loader id " + id);
 			}
 		});
 	}
 
-	void initLoader(int groupPosition, int groupId, int loaderId)
-	{
-		LoaderCallbacks<Cursor> callbacks = null;
-		switch (groupId)
-		{
-			case GROUPID_WORDNET:
-				callbacks = getWnCallbacks(wordId, groupPosition);
-				break;
-			case GROUPID_VERBNET:
-				callbacks = getVnCallbacks(wordId, groupPosition);
-				break;
-			case GROUPID_PROPBANK:
-				callbacks = getPbCallbacks(wordId, groupPosition);
-				break;
-			case GROUPID_FRAMENET:
-				callbacks = getFnCallbacks(wordId, groupPosition);
-				break;
-		}
-
-		final FragmentActivity activity = getActivity();
-		if (activity == null)
-		{
-			return;
-		}
-		Loader<Cursor> loader1 = activity.getSupportLoaderManager().getLoader(loaderId);
-		if (loader1 != null && !loader1.isReset())
-		{
-			activity.getSupportLoaderManager().restartLoader(loaderId, null, callbacks);
-		}
-		else
-		{
-			activity.getSupportLoaderManager().initLoader(loaderId, null, callbacks);
-		}
-	}
-
 	/**
-	 * Load data from word id
-	 *
-	 * @param wordId word id
+	 * Initialize
 	 */
-	private void load(final long wordId)
+	private void initialize()
 	{
 		// adapter
 		final ExpandableListAdapter adapter = new SimpleCursorTreeAdapter(getActivity(), this.xnCursor, R.layout.item_group_xselector, groupFrom, groupTo, R.layout.item_xselector, childFrom, childTo)
@@ -422,22 +384,16 @@ public class XSelectorsFragment extends ExpandableListFragment
 			@Override
 			protected Cursor getChildrenCursor(@NonNull Cursor groupCursor)
 			{
-				final FragmentActivity activity = getActivity();
-				if (activity == null)
-				{
-					return null;
-				}
-
-				// given the group, we return a cursor for all the children within that group
+				// given the group, return a cursor for all the children within that group
 				int groupPosition = groupCursor.getPosition();
 				int loaderId = groupCursor.getInt(groupCursor.getColumnIndex(GROUPLOADER_COLUMN));
 				int groupId = groupCursor.getInt(groupCursor.getColumnIndex(GROUPID_COLUMN));
 				// String groupName = groupCursor.getString(groupCursor.getColumnIndex(GROUPNAME_COLUMN));
-				// Log.d(TAG, "group " + groupPosition + ' ' + groupName + " loader=" + loaderId);
+				// Log.d(XSelectorsFragment.TAG, "group " + groupPosition + ' ' + groupName + " loader=" + loaderId);
 
 				initLoader(groupPosition, groupId, loaderId);
 
-				return null;
+				return null; // set later when loader completes
 			}
 
 			@Override
@@ -499,8 +455,66 @@ public class XSelectorsFragment extends ExpandableListFragment
 		setListAdapter(adapter);
 
 		// expand (triggers data loading)
-		Log.d(TAG, "expand position " + this.groupPosition + " " + this);
+		Log.d(XSelectorsFragment.TAG, "expand position " + this.groupPosition + " " + this);
 		expand(this.groupPosition);
+	}
+
+	/**
+	 * Init loaders for
+	 *
+	 * @param groupPosition group position
+	 * @param groupId       group id
+	 * @param loaderId      loader id
+	 */
+	private void initLoader(int groupPosition, int groupId, int loaderId)
+	{
+		Log.d(XSelectorsFragment.TAG, "initLoader() for  groupPosition=" + groupPosition + " groupId=" + groupId + " loaderId=" + loaderId);
+		LoaderCallbacks<Cursor> callbacks;
+		switch (groupId)
+		{
+			case GROUPID_WORDNET:
+				callbacks = getWnCallbacks(this.wordId, groupPosition);
+				break;
+			case GROUPID_VERBNET:
+				callbacks = getVnCallbacks(this.wordId, groupPosition);
+				break;
+			case GROUPID_PROPBANK:
+				callbacks = getPbCallbacks(this.wordId, groupPosition);
+				break;
+			case GROUPID_FRAMENET:
+				callbacks = getFnCallbacks(this.wordId, groupPosition);
+				break;
+			default:
+				return;
+		}
+
+		final FragmentActivity activity = getActivity();
+		if (activity == null)
+		{
+			return;
+		}
+		if (activity.isFinishing())
+		{
+			return;
+		}
+
+		final Loader<Cursor> loaderChild = activity.getSupportLoaderManager().getLoader(loaderId);
+		Log.d(XSelectorsFragment.TAG, "Existing loader with same loaderId null=" + (loaderChild == null));
+		if (loaderChild != null)
+		{
+			Log.d(XSelectorsFragment.TAG, "Existing loader with same loaderId isReset=" + loaderChild.isReset());
+		}
+
+		if (loaderChild != null && !loaderChild.isReset())
+		{
+			Log.d(XSelectorsFragment.TAG, "restartLoader()");
+			activity.getSupportLoaderManager().restartLoader(loaderId, null, callbacks);
+		}
+		else
+		{
+			Log.d(XSelectorsFragment.TAG, "initLoader()");
+			activity.getSupportLoaderManager().initLoader(loaderId, null, callbacks);
+		}
 	}
 
 	// L O A D E R  C A L L B A C K S
@@ -530,7 +544,7 @@ public class XSelectorsFragment extends ExpandableListFragment
 				}
 				else
 				{
-					Log.i(TAG, "WN none");
+					Log.i(XSelectorsFragment.TAG, "WN none");
 				}
 			}
 
@@ -538,7 +552,7 @@ public class XSelectorsFragment extends ExpandableListFragment
 			public void onLoaderReset(@NonNull final Loader<Cursor> loader)
 			{
 				int id = loader.getId();
-				Log.d(TAG, "onLoaderReset() for WN loader id " + id);
+				Log.d(XSelectorsFragment.TAG, "onLoaderReset() for WN loader id " + id);
 
 				final CursorTreeAdapter adapter = (CursorTreeAdapter) getListAdapter();
 				assert adapter != null;
@@ -572,7 +586,7 @@ public class XSelectorsFragment extends ExpandableListFragment
 				}
 				else
 				{
-					Log.i(TAG, "VN none");
+					Log.i(XSelectorsFragment.TAG, "VN none");
 				}
 			}
 
@@ -580,7 +594,7 @@ public class XSelectorsFragment extends ExpandableListFragment
 			public void onLoaderReset(@NonNull final Loader<Cursor> loader)
 			{
 				int id = loader.getId();
-				Log.d(TAG, "onLoaderReset() for VN loader id " + id);
+				Log.d(XSelectorsFragment.TAG, "onLoaderReset() for VN loader id " + id);
 
 				final CursorTreeAdapter adapter = (CursorTreeAdapter) getListAdapter();
 				assert adapter != null;
@@ -614,7 +628,7 @@ public class XSelectorsFragment extends ExpandableListFragment
 				}
 				else
 				{
-					Log.i(TAG, "PB none");
+					Log.i(XSelectorsFragment.TAG, "PB none");
 				}
 			}
 
@@ -622,7 +636,7 @@ public class XSelectorsFragment extends ExpandableListFragment
 			public void onLoaderReset(@NonNull final Loader<Cursor> loader)
 			{
 				int id = loader.getId();
-				Log.d(TAG, "onLoaderReset() for PB loader id " + id);
+				Log.d(XSelectorsFragment.TAG, "onLoaderReset() for PB loader id " + id);
 
 				final CursorTreeAdapter adapter = (CursorTreeAdapter) getListAdapter();
 				assert adapter != null;
@@ -656,7 +670,7 @@ public class XSelectorsFragment extends ExpandableListFragment
 				}
 				else
 				{
-					Log.i(TAG, "FN none");
+					Log.i(XSelectorsFragment.TAG, "FN none");
 				}
 			}
 
@@ -664,7 +678,7 @@ public class XSelectorsFragment extends ExpandableListFragment
 			public void onLoaderReset(@NonNull final Loader<Cursor> loader)
 			{
 				int id = loader.getId();
-				Log.d(TAG, "onLoaderReset() for FN loader id " + id);
+				Log.d(XSelectorsFragment.TAG, "onLoaderReset() for FN loader id " + id);
 
 				final CursorTreeAdapter adapter = (CursorTreeAdapter) getListAdapter();
 				assert adapter != null;
@@ -680,7 +694,7 @@ public class XSelectorsFragment extends ExpandableListFragment
 	{
 		super.onGroupExpand(groupPosition);
 		this.groupPosition = groupPosition;
-		Log.d(TAG, "select " + this.groupPosition);
+		Log.d(XSelectorsFragment.TAG, "select " + this.groupPosition);
 	}
 
 	// C L I C K
@@ -703,7 +717,7 @@ public class XSelectorsFragment extends ExpandableListFragment
 
 		if (this.listener != null)
 		{
-			//Log.d(TAG, "CLICK on group=" + groupPosition + " child=" + childPosition + " id=" + id);
+			//Log.d(XSelectorsFragment.TAG, "CLICK on group=" + groupPosition + " child=" + childPosition + " id=" + id);
 			int index = listView.getFlatListPosition(ExpandableListView.getPackedPositionForChild(groupPosition, childPosition));
 			listView.setItemChecked(index, true);
 
@@ -733,24 +747,33 @@ public class XSelectorsFragment extends ExpandableListFragment
 				final long xMask = XSelectorPointer.getMask(xSources);
 
 				int groupId = -1;
-				if(this.groupWordNetPosition != -1 && groupPosition == this.groupWordNetPosition)
+				if (this.groupWordNetPosition != -1 && groupPosition == this.groupWordNetPosition)
+				{
 					groupId = GROUPID_WORDNET;
-				else if(this.groupVerbNetPosition != -1 && groupPosition == this.groupVerbNetPosition)
+				}
+				else if (this.groupVerbNetPosition != -1 && groupPosition == this.groupVerbNetPosition)
+				{
 					groupId = GROUPID_VERBNET;
-				else if(this.groupPropBankPosition != -1 && groupPosition == this.groupPropBankPosition)
+				}
+				else if (this.groupPropBankPosition != -1 && groupPosition == this.groupPropBankPosition)
+				{
 					groupId = GROUPID_PROPBANK;
-				else if(this.groupFrameNetPosition != -1 && groupPosition == this.groupFrameNetPosition)
+				}
+				else if (this.groupFrameNetPosition != -1 && groupPosition == this.groupFrameNetPosition)
+				{
 					groupId = GROUPID_FRAMENET;
+				}
 
 				// pointer
 				final XSelectorPointer pointer = new XSelectorPointer(synsetId, wordId, xId, xClassId, xMemberId, xSources, xMask, groupId);
-				Log.d(TAG, "pointer=" + pointer);
+				Log.d(XSelectorsFragment.TAG, "pointer=" + pointer);
 
 				// notify the active listener (the activity, if the fragment is attached to one) that an item has been selected
 				this.listener.onItemSelected(pointer, lemma, cased, pos);
 			}
 		}
-		// cursor.close();
+
+		//cursor.close();
 		return true;
 	}
 

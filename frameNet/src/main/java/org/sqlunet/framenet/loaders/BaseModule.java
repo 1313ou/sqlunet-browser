@@ -292,7 +292,7 @@ abstract public class BaseModule extends Module
 					FireEvent.onNoResult(parent, true);
 				}
 
-				cursor.close();
+				//cursor.close();
 			}
 
 			@Override
@@ -431,7 +431,7 @@ abstract public class BaseModule extends Module
 					FireEvent.onNoResult(parent, true);
 				}
 
-				cursor.close();
+				//cursor.close();
 			}
 
 			@Override
@@ -568,7 +568,7 @@ abstract public class BaseModule extends Module
 					FireEvent.onNoResult(parent, true);
 				}
 
-				cursor.close();
+				//cursor.close();
 			}
 
 			@Override
@@ -736,7 +736,7 @@ abstract public class BaseModule extends Module
 					FireEvent.onNoResult(parent, true);
 				}
 
-				cursor.close();
+				//cursor.close();
 			}
 
 			@Override
@@ -896,7 +896,7 @@ abstract public class BaseModule extends Module
 					FireEvent.onNoResult(parent, true);
 				}
 
-				cursor.close();
+				//cursor.close();
 			}
 
 			@Override
@@ -1044,7 +1044,7 @@ abstract public class BaseModule extends Module
 					FireEvent.onNoResult(parent, true);
 				}
 
-				cursor.close();
+				//cursor.close();
 			}
 
 			@Override
@@ -1136,7 +1136,7 @@ abstract public class BaseModule extends Module
 					FireEvent.onNoResult(parent, true);
 				}
 
-				cursor.close();
+				//cursor.close();
 			}
 
 			@Override
@@ -1223,7 +1223,7 @@ abstract public class BaseModule extends Module
 					FireEvent.onNoResult(parent, true);
 				}
 
-				cursor.close();
+				//cursor.close();
 			}
 
 			@Override
@@ -1351,7 +1351,7 @@ abstract public class BaseModule extends Module
 					FireEvent.onNoResult(parent, true);
 				}
 
-				cursor.close();
+				//cursor.close();
 			}
 
 			@Override
@@ -1459,7 +1459,7 @@ abstract public class BaseModule extends Module
 					FireEvent.onNoResult(parent, true);
 				}
 
-				cursor.close();
+				//cursor.close();
 			}
 
 			@Override
@@ -1656,7 +1656,7 @@ abstract public class BaseModule extends Module
 					FireEvent.onNoResult(parent, true);
 				}
 
-				cursor.close();
+				//cursor.close();
 			}
 
 			@Override
@@ -1739,7 +1739,7 @@ abstract public class BaseModule extends Module
 					FireEvent.onNoResult(parent, true);
 				}
 
-				cursor.close();
+				//cursor.close();
 			}
 
 			@Override
@@ -1822,7 +1822,7 @@ abstract public class BaseModule extends Module
 					FireEvent.onNoResult(parent, true);
 				}
 
-				cursor.close();
+				//cursor.close();
 			}
 
 			@Override
@@ -1983,7 +1983,7 @@ abstract public class BaseModule extends Module
 					FireEvent.onNoResult(parent, true);
 				}
 
-				cursor.close();
+				//cursor.close();
 			}
 
 			@Override
@@ -2293,7 +2293,7 @@ abstract public class BaseModule extends Module
 			FireEvent.onNoResult(parent, true);
 		}
 
-		cursor.close();
+		//cursor.close();
 	}
 
 	// agents

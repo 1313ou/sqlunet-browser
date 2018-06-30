@@ -12,6 +12,7 @@ import org.sqlunet.Pointer;
  *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
+@SuppressWarnings("WeakerAccess")
 public class SynsetPointer extends Pointer implements HasSynsetId
 {
 	/**

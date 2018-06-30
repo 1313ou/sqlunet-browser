@@ -1,14 +1,15 @@
 package org.sqlunet.wordnet.browser;
 
-import android.support.v4.app.ListFragment ;
-import android.support.v4.app.LoaderManager.LoaderCallbacks;
-import android.support.v4.content.CursorLoader;
-import android.support.v4.content.Loader;
+import android.app.Activity;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.app.ListFragment;
+import android.support.v4.app.LoaderManager.LoaderCallbacks;
+import android.support.v4.content.CursorLoader;
+import android.support.v4.content.Loader;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -98,6 +99,7 @@ public class SensesFragment extends ListFragment
 
 		// arguments
 		final Bundle args = getArguments();
+		assert args != null;
 
 		// target word
 		String query = args.getString(ProviderArgs.ARG_QUERYSTRING);
@@ -195,7 +197,7 @@ public class SensesFragment extends ListFragment
 	}
 
 	@Override
-	public void onViewCreated(final View view, @Nullable final Bundle savedInstanceState)
+	public void onViewCreated(@NonNull final View view, @Nullable final Bundle savedInstanceState)
 	{
 		super.onViewCreated(view, savedInstanceState);
 
@@ -264,11 +266,13 @@ public class SensesFragment extends ListFragment
 				final String selection = Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.LEMMA + " = ?";
 				final String[] selectionArgs = {SensesFragment.this.word};
 				final String sortOrder = Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.POS + ',' + Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.SENSENUM;
-				return new CursorLoader(getActivity(), uri, projection, selection, selectionArgs, sortOrder);
+				final Activity activity = getActivity();
+				assert activity != null;
+				return new CursorLoader(activity, uri, projection, selection, selectionArgs, sortOrder);
 			}
 
 			@Override
-			public void onLoadFinished(final Loader<Cursor> loader, @NonNull final Cursor cursor)
+			public void onLoadFinished(@NonNull final Loader<Cursor> loader, @NonNull final Cursor cursor)
 			{
 				// store source result
 				if (cursor.moveToFirst())
@@ -282,7 +286,7 @@ public class SensesFragment extends ListFragment
 			}
 
 			@Override
-			public void onLoaderReset(final Loader<Cursor> loader)
+			public void onLoaderReset(@NonNull final Loader<Cursor> loader)
 			{
 				((CursorAdapter) getListAdapter()).swapCursor(null);
 			}

@@ -144,6 +144,7 @@ abstract public class Status
 				}
 				while (cursor.moveToNext());
 			}
+
 			cursor.close();
 		}
 		return result;

@@ -341,6 +341,7 @@ public class DownloadFragment extends BaseDownloadFragment
 				progress.downloaded = cursor.getLong(cursor.getColumnIndex(DownloadManager.COLUMN_BYTES_DOWNLOADED_SO_FAR));
 			}
 		}
+
 		cursor.close();
 		Log.d(TAG, "READ STATUS status=" + statusCode + " reason=" + reasonCode);
 		return pack(statusCode, reasonCode);
