@@ -113,7 +113,7 @@ public abstract class BaseProvider extends ContentProvider
 	/**
 	 * Record generated SQL
 	 */
-	static public boolean logSql = true;
+	static public boolean logSql = false;
 
 	static protected final String VENDOR = "sqlunet";
 

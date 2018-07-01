@@ -307,6 +307,7 @@ public class XSelectorsFragment extends ExpandableListFragment
 				return new CursorLoader(context, uri, projection, selection, selectionArgs, sortOrder);
 			}
 
+			// This will always be called from the process's main thread.
 			@Override
 			public void onLoadFinished(@NonNull final Loader<Cursor> loader, @NonNull final Cursor cursor)
 			{
@@ -355,7 +356,7 @@ public class XSelectorsFragment extends ExpandableListFragment
 				// String groupName = groupCursor.getString(groupCursor.getColumnIndex(GROUPNAME_COLUMN));
 				// Log.d(TAG, "group " + groupPosition + ' ' + groupName + " loader=" + loaderId);
 
-				initLoader(groupPosition, groupId, loaderId);
+				startLoader(groupPosition, groupId, loaderId);
 
 				return null; // set later when loader completes
 			}
@@ -374,15 +375,15 @@ public class XSelectorsFragment extends ExpandableListFragment
 	}
 
 	/**
-	 * Init loaders for
+	 * Start loader for
 	 *
 	 * @param groupPosition group position
 	 * @param groupId       group id
 	 * @param loaderId      loader id
 	 */
-	private void initLoader(int groupPosition, int groupId, int loaderId)
+	private void startLoader(int groupPosition, int groupId, int loaderId)
 	{
-		Log.d(XSelectorsFragment.TAG, "initLoader() for  groupPosition=" + groupPosition + " groupId=" + groupId + " loaderId=" + loaderId);
+		Log.d(XSelectorsFragment.TAG, "Invoking startLoader() for  groupPosition=" + groupPosition + " groupId=" + groupId + " loaderId=" + loaderId);
 		LoaderCallbacks<Cursor> callbacks;
 		switch (groupId)
 		{
@@ -415,12 +416,12 @@ public class XSelectorsFragment extends ExpandableListFragment
 
 		if (loaderChild != null && !loaderChild.isReset())
 		{
-			Log.d(XSelectorsFragment.TAG, "restartLoader()");
+			Log.d(XSelectorsFragment.TAG, "Using restartLoader()");
 			activity.getSupportLoaderManager().restartLoader(loaderId, null, callbacks);
 		}
 		else
 		{
-			Log.d(XSelectorsFragment.TAG, "initLoader()");
+			Log.d(XSelectorsFragment.TAG, "Using initLoader()");
 			activity.getSupportLoaderManager().initLoader(loaderId, null, callbacks);
 		}
 	}
