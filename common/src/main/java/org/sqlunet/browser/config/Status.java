@@ -145,6 +145,7 @@ abstract public class Status
 				while (cursor.moveToNext());
 			}
 
+			// done with cursor
 			cursor.close();
 		}
 		return result;

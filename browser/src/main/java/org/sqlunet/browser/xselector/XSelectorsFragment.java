@@ -198,6 +198,11 @@ public class XSelectorsFragment extends ExpandableListFragment
 	private long wordId;
 
 	/**
+	 * WordId loader id
+	 */
+	private int wordIdLoaderId;
+
+	/**
 	 * Mandatory empty constructor for the fragment manager to instantiate the fragment (e.g. upon screen orientation changes).
 	 */
 	@SuppressWarnings("boxing")
@@ -232,6 +237,7 @@ public class XSelectorsFragment extends ExpandableListFragment
 		}
 		this.word = query;
 		this.wordId = 0;
+		this.wordIdLoaderId = ++Module.loaderId;
 
 		// fill groups
 		int position = 0;
@@ -287,13 +293,15 @@ public class XSelectorsFragment extends ExpandableListFragment
 		}
 	}
 
+	// L I F E C Y C L E   E V E N T S
+
 	@Override
-	public void onStart()
+	public void onActivityCreated(@Nullable final Bundle savedInstanceState)
 	{
+		super.onActivityCreated(savedInstanceState);
+
 		// load the contents (once activity is available)
 		load();
-
-		super.onStart();
 	}
 
 	@Override
@@ -326,7 +334,7 @@ public class XSelectorsFragment extends ExpandableListFragment
 	private void load()
 	{
 		// load the contents
-		getLoaderManager().initLoader(++Module.loaderId, null, new LoaderCallbacks<Cursor>()
+		getLoaderManager().initLoader(this.wordIdLoaderId, null, new LoaderCallbacks<Cursor>()
 		{
 			@NonNull
 			@Override
@@ -349,7 +357,7 @@ public class XSelectorsFragment extends ExpandableListFragment
 				return new CursorLoader(context, uri, projection, selection, selectionArgs, sortOrder);
 			}
 
-	        // This will always be called from the process's main thread.
+			// This will always be called from the process's main thread.
 			@Override
 			public void onLoadFinished(@NonNull final Loader<Cursor> loader, @NonNull final Cursor cursor)
 			{
@@ -361,6 +369,8 @@ public class XSelectorsFragment extends ExpandableListFragment
 				{
 					final int idWordId = cursor.getColumnIndex(Words_FnWords_PbWords_VnWords.WORDID);
 					XSelectorsFragment.this.wordId = cursor.getLong(idWordId);
+					// handled by LoaderManager, so no need to call cursor.close()
+
 					initialize();
 				}
 			}
@@ -392,7 +402,7 @@ public class XSelectorsFragment extends ExpandableListFragment
 				// String groupName = groupCursor.getString(groupCursor.getColumnIndex(GROUPNAME_COLUMN));
 				// Log.d(XSelectorsFragment.TAG, "group " + groupPosition + ' ' + groupName + " loader=" + loaderId);
 
-				startLoader(groupPosition, groupId, loaderId);
+				startChildLoader(groupPosition, groupId, loaderId);
 
 				return null; // set later when loader completes
 			}
@@ -461,15 +471,15 @@ public class XSelectorsFragment extends ExpandableListFragment
 	}
 
 	/**
-	 * Start loaders for
+	 * Start child loader for
 	 *
 	 * @param groupPosition group position
 	 * @param groupId       group id
 	 * @param loaderId      loader id
 	 */
-	private void startLoader(int groupPosition, int groupId, int loaderId)
+	private void startChildLoader(int groupPosition, int groupId, int loaderId)
 	{
-		Log.d(XSelectorsFragment.TAG, "Invoking startLoader() for  groupPosition=" + groupPosition + " groupId=" + groupId + " loaderId=" + loaderId);
+		Log.d(XSelectorsFragment.TAG, "Invoking startChildLoader() for  groupPosition=" + groupPosition + " groupId=" + groupId + " loaderId=" + loaderId);
 		LoaderCallbacks<Cursor> callbacks;
 		switch (groupId)
 		{
@@ -774,7 +784,7 @@ public class XSelectorsFragment extends ExpandableListFragment
 			}
 		}
 
-		//cursor.close();
+		// cursor is handled by LoaderManager (+ transferred ownership to adapter), so do not call cursor.close();
 		return true;
 	}
 

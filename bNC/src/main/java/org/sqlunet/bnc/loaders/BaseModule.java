@@ -303,7 +303,7 @@ public class BaseModule extends Module
 					FireEvent.onNoResult(parent, true);
 				}
 
-				//cursor.close();
+				// handled by LoaderManager, so no need to call cursor.close()
 			}
 
 			@Override

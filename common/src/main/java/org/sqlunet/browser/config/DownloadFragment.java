@@ -342,6 +342,7 @@ public class DownloadFragment extends BaseDownloadFragment
 			}
 		}
 
+		// done with cursor
 		cursor.close();
 		Log.d(TAG, "READ STATUS status=" + statusCode + " reason=" + reasonCode);
 		return pack(statusCode, reasonCode);

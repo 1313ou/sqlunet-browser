@@ -180,7 +180,7 @@ public class ClassFromWordModule extends BaseModule
 					FireEvent.onNoResult(parent, true);
 				}
 
-				//cursor.close();
+				// handled by LoaderManager, so no need to call cursor.close()
 			}
 
 			@Override
