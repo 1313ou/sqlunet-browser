@@ -1,4 +1,5 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
                 xmlns:tools="http://schemas.android.com/tools"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -107,7 +108,7 @@
 			android:background="@drawable/bg_button_action"
 			android:contentDescription="@string/action_update"
 			android:padding="5dp"
-			android:src="@drawable/ic_run"
+			app:srcCompat="@drawable/ic_run"
 			android:text="@string/action_run"
 			android:visibility="invisible"/>
 

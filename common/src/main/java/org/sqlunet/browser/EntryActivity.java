@@ -1,6 +1,5 @@
 package org.sqlunet.browser;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -41,7 +40,7 @@ public class EntryActivity extends AppCompatActivity
 		finish();
 	}
 
-	static public void forkOffIfCantRun(@NonNull final Activity activity)
+	static public void forkOffIfCantRun(@NonNull final AppCompatActivity activity)
 	{
 		boolean canRun;
 		final Intent currentIntent = activity.getIntent();
@@ -63,7 +62,7 @@ public class EntryActivity extends AppCompatActivity
 		}
 	}
 
-	private static void forkOff(@NonNull final Activity activity)
+	private static void forkOff(@NonNull final AppCompatActivity activity)
 	{
 		final Intent intent = new Intent(activity, StatusActivity.class);
 		intent.putExtra(Status.CANTRUN, true);

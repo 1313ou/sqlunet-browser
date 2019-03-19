@@ -12,21 +12,21 @@
 		<item name="colorPrimaryDark">@color/primaryDarkColor</item>
 		<item name="colorAccent">@color/accentColor</item>
 
-		<item name="android:colorPrimary">@color/primaryColor</item>
-		<item name="android:colorPrimaryDark">@color/primaryDarkColor</item>
-		<item name="android:colorAccent">@color/accentColor</item>
+		<item name="colorPrimary">@color/primaryColor</item>
+		<item name="colorPrimaryDark">@color/primaryDarkColor</item>
+		<item name="colorAccent">@color/accentColor</item>
 		<!--
 		<item name="android:textColorPrimary">@color/primaryTextColor</item>
 		<item name="android:textColorSecondary">@color/secondaryTextColor</item>
 		-->
 
 		<!-- toolbar/action bar -->
-		<item name="android:toolbarStyle">@style/CompatAppTheme.Toolbar</item>
-		<item name="android:actionBarStyle">@style/CompatAppTheme.ActionBar</item>
+		<item name="toolbarStyle">@style/CompatAppTheme.Toolbar</item>
+		<item name="actionBarStyle">@style/CompatAppTheme.ActionBar</item>
 
 		<!-- dropdowns -->
 		<item name="android:dropDownItemStyle">@style/CompatAppTheme.DropDownItemStyle</item>
-		<item name="android:dropDownListViewStyle">@style/CompatAppTheme.DropDownListViewStyle</item>
+		<item name="dropDownListViewStyle">@style/CompatAppTheme.DropDownListViewStyle</item>
 
 		<!-- background of activated indicator -->
 		<item name="android:activatedBackgroundIndicator">@drawable/listitem_background</item>
@@ -37,7 +37,7 @@
 	<style name="CustomBackgroundCompatAppTheme" parent="CompatAppBaseTheme">
 
 		<item name="android:windowBackground">@null</item>
-		<item name="android:background">@color/home_color</item>
+		<item name="background">@color/home_color</item>
 
 	</style>
 

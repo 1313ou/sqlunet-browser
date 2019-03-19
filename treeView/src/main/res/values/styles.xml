@@ -14,8 +14,8 @@
 	</style>
 
 	<style name="TreeNodeStyleDivided">
-		<item name="android:showDividers">middle</item>
-		<item name="android:divider">@android:drawable/divider_horizontal_bright</item>
+		<item name="showDividers">middle</item>
+		<item name="divider">@android:drawable/divider_horizontal_bright</item>
 	</style>
 
 </resources>

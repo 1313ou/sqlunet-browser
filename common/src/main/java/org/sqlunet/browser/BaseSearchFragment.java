@@ -13,6 +13,7 @@ import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.SearchView;
@@ -285,7 +286,7 @@ abstract public class BaseSearchFragment extends NavigableFragment implements Se
 		final SearchableInfo searchableInfo = searchManager.getSearchableInfo(componentName);
 
 		// search view
-		this.searchView = (SearchView) searchMenuItem.getActionView();
+		this.searchView = (SearchView) MenuItemCompat.getActionView(searchMenuItem);
 		this.searchView.setSearchableInfo(searchableInfo);
 		this.searchView.setIconifiedByDefault(true);
 		this.searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener()
@@ -297,7 +298,7 @@ abstract public class BaseSearchFragment extends NavigableFragment implements Se
 				BaseSearchFragment.this.searchView.setFocusable(false);
 				BaseSearchFragment.this.searchView.setQuery("", false);
 				closeKeyboard();
-				searchMenuItem.collapseActionView();
+				MenuItemCompat.collapseActionView(searchMenuItem);
 				return false;
 			}
 

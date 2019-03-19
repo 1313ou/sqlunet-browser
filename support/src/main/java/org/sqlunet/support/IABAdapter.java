@@ -15,12 +15,12 @@
 
 package org.sqlunet.support;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -95,7 +95,7 @@ public class IABAdapter implements IabBroadcastReceiver.IabBroadcastListener
 	/**
 	 * The context activity
 	 */
-	private Activity activity;
+	private AppCompatActivity activity;
 
 	/**
 	 * Has the user donated ?
@@ -110,7 +110,7 @@ public class IABAdapter implements IabBroadcastReceiver.IabBroadcastListener
 	 * @param activity0    activity
 	 * @param iabListener0 listener
 	 */
-	public void onCreate(final Activity activity0, final IABListener iabListener0)
+	public void onCreate(final AppCompatActivity activity0, final IABListener iabListener0)
 	{
 		this.activity = activity0;
 		this.iabListener = iabListener0;

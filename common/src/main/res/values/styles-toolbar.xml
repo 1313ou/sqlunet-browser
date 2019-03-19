@@ -6,17 +6,17 @@
 	</style>
 
 	<style name="CompatAppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Dark">
-		<item name="android:background">@color/actionbar_color</item>item>
+		<item name="background">@color/actionbar_color</item>item>
 		<item name="android:textColorPrimary">@color/actionbar_fore_color</item>item>
 	</style>
 
 	<style name="CompatAppTheme.Toolbar" parent="Widget.AppCompat.Toolbar">
-		<item name="android:background">@color/actionbar_color</item>
+		<item name="background">@color/actionbar_color</item>
 	</style>
 
 	<!-- Action bar -->
 	<style name="CompatAppTheme.ActionBar" parent="Widget.AppCompat.ActionBar">
-		<item name="android:background">@color/actionbar_color</item>
+		<item name="background">@color/actionbar_color</item>
 	</style>
 
 	<!-- Drop downs -->
@@ -26,7 +26,7 @@
 	</style>
 
 	<style name="CompatAppTheme.DropDownListViewStyle" parent="Widget.AppCompat.ListView.DropDown">
-		<item name="android:background">@color/dropdown_color</item>
+		<item name="background">@color/dropdown_color</item>
 	</style>
 
 </resources>

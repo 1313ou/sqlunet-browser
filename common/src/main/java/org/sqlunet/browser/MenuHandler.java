@@ -1,8 +1,8 @@
 package org.sqlunet.browser;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.support.annotation.NonNull;
+import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 
 import org.sqlunet.browser.common.R;
@@ -29,7 +29,7 @@ public class MenuHandler
 	 * @param item     menu item
 	 * @return true if processed/consumed
 	 */
-	static public boolean menuDispatch(@NonNull final Activity activity, @NonNull final MenuItem item)
+	static public boolean menuDispatch(@NonNull final AppCompatActivity activity, @NonNull final MenuItem item)
 	{
 		Intent intent;
 

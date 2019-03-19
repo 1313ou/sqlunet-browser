@@ -1,10 +1,10 @@
 package org.sqlunet.browser.config;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -113,7 +113,7 @@ public class FileDataDownloader extends AsyncTask<String, Void, FileData>
 		void onDone(final FileData result);
 	}
 
-	static public void start(@NonNull final Activity activity)
+	static public void start(@NonNull final AppCompatActivity activity)
 	{
 		// download source data
 		final String downloadUrl = StorageSettings.getDbDownloadSource(activity);

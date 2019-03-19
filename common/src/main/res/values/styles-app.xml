@@ -22,7 +22,7 @@
 		<item name="android:layout_marginTop">@dimen/list_vertical_margin</item>
 		<item name="android:layout_marginLeft">@dimen/list_horizontal_margin</item>
 		<item name="android:layout_marginRight">@dimen/list_horizontal_margin</item>
-		<item name="android:background">@drawable/rounded_corners_white</item>
+		<item name="background">@drawable/rounded_corners_white</item>
 		<item name="android:gravity">center_vertical</item>
 		<item name="android:paddingTop">@dimen/list_vertical_padding</item>
 		<item name="android:paddingBottom">@dimen/list_vertical_padding</item>
@@ -35,8 +35,8 @@
 	<style name="ListItemColumn">
 		<item name="android:layout_width">0dp</item>
 		<item name="android:layout_height">wrap_content</item>
-		<item name="android:paddingStart">@dimen/listitem_horizontal_padding</item>
-		<item name="android:paddingEnd">@dimen/listitem_horizontal_padding</item>
+		<item name="paddingStart">@dimen/listitem_horizontal_padding</item>
+		<item name="paddingEnd">@dimen/listitem_horizontal_padding</item>
 		<item name="android:paddingTop">@dimen/listitem_vertical_padding</item>
 		<item name="android:paddingBottom">@dimen/listitem_vertical_padding</item>
 		<item name="android:gravity">center_vertical</item>
@@ -47,12 +47,12 @@
 	</style>
 
 	<style name="ListItemColumn.Minor">
-		<item name="android:textAppearance">?android:attr/textAppearanceListItemSmall</item>
+		<item name="android:textAppearance">?attr/textAppearanceListItemSmall</item>
 		<item name="android:textColor">@color/middle_gray_color</item>
 	</style>
 
 	<style name="ListItemColumn.Major">
-		<item name="android:background">@color/secondaryLightColor</item>
+		<item name="background">@color/secondaryLightColor</item>
 		<item name="android:textColor">@color/secondaryForeColor</item>
 	</style>
 
@@ -61,12 +61,12 @@
 	<style name="SearchItem" tools:ignore="UnusedResources">
 		<item name="android:layout_width">match_parent</item>
 		<item name="android:layout_height">wrap_content</item>
-		<item name="android:textAppearance">?android:attr/textAppearanceListItemSmall</item>
+		<item name="android:textAppearance">?attr/textAppearanceListItemSmall</item>
 		<item name="android:gravity">center_vertical</item>
 		<item name="android:paddingLeft">?android:attr/listPreferredItemPaddingStart</item>
 		<item name="android:paddingRight">?android:attr/listPreferredItemPaddingEnd</item>
 		<item name="android:textIsSelectable">true</item>
-		<item name="android:minHeight">?android:attr/listPreferredItemHeightSmall</item>
+		<item name="android:minHeight">?attr/listPreferredItemHeightSmall</item>
 	</style>
 
 	<!-- S T A T U S   /   S E T U P  -->
@@ -93,7 +93,7 @@
 		<item name="android:layout_height">wrap_content</item>
 		<item name="android:layout_gravity">center</item>
 		<item name="android:layout_marginRight">10dp</item>
-		<item name="android:background">@color/enhance_color</item>
+		<item name="background">@color/enhance_color</item>
 		<item name="android:paddingBottom">12dp</item>
 		<item name="android:paddingTop">12dp</item>
 		<item name="android:paddingLeft">20dp</item>
@@ -109,7 +109,7 @@
 		<item name="android:layout_marginRight">8dp</item>
 		<item name="android:paddingTop">2dp</item>
 		<item name="android:paddingBottom">2dp</item>
-		<item name="android:background">@drawable/bg_button_action</item>
+		<item name="background">@drawable/bg_button_action</item>
 		<item name="android:gravity">end|center_vertical</item>
 		<item name="android:visibility">gone</item>
 	</style>
@@ -122,7 +122,7 @@
 		<item name="android:layout_marginRight">8dp</item>
 		<item name="android:paddingTop">2dp</item>
 		<item name="android:paddingBottom">2dp</item>
-		<item name="android:background">@drawable/bg_button_info</item>
+		<item name="background">@drawable/bg_button_info</item>
 		<item name="android:gravity">end|center_vertical</item>
 		<item name="android:visibility">visible</item>
 	</style>
@@ -135,7 +135,7 @@
 		<item name="android:layout_marginRight">8dp</item>
 		<item name="android:paddingTop">2dp</item>
 		<item name="android:paddingBottom">2dp</item>
-		<item name="android:background">@drawable/bg_button_action</item>
+		<item name="background">@drawable/bg_button_action</item>
 		<item name="android:gravity">center</item>
 		<item name="android:visibility">visible</item>
 	</style>
@@ -148,7 +148,7 @@
 		<item name="android:layout_marginRight">8dp</item>
 		<item name="android:paddingTop">2dp</item>
 		<item name="android:paddingBottom">2dp</item>
-		<item name="android:background">@drawable/bg_button_info</item>
+		<item name="background">@drawable/bg_button_info</item>
 		<item name="android:gravity">end|center_vertical</item>
 		<item name="android:visibility">visible</item>
 	</style>

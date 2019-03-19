@@ -26,4 +26,8 @@ allprojects {
         targetSdkVersion = 28
         compileSdkVersion = 28
     }
+
+    tasks.withType(JavaCompile) {
+        options.compilerArgs << "-Xlint:unchecked" << "-Xlint:deprecation"
+    }
 }
