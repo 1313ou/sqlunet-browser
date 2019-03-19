@@ -36,7 +36,7 @@ public class Browse1Fragment extends Fragment implements SelectorsFragment.Liste
 	public View onCreateView(@NonNull final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState)
 	{
 		// view
-		final View view = inflater.inflate(R.layout.fragment_browse1, container, false);
+		final View view = inflater.inflate(R.layout.fragment_browse_first, container, false);
 
 		// retain instance
 		setRetainInstance(true);
