@@ -69,7 +69,7 @@ public class VnFrameSet
 				// allocate
 				if (frameSet == null)
 				{
-					frameSet = new VnFrameSet(new ArrayList<VnFrame>());
+					frameSet = new VnFrameSet(new ArrayList<>());
 				}
 
 				// if same class, addItem role to frame set
@@ -122,7 +122,7 @@ public class VnFrameSet
 				// allocate
 				if (frameSet == null)
 				{
-					frameSet = new VnFrameSet(new ArrayList<VnFrame>());
+					frameSet = new VnFrameSet(new ArrayList<>());
 				}
 
 				// if same class, addItem role to frame set

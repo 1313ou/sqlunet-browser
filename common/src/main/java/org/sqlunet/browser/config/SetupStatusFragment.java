@@ -90,80 +90,60 @@ public class SetupStatusFragment extends Fragment
 		assert activity != null;
 
 		// click listeners
-		this.buttonDb.setOnClickListener(new View.OnClickListener()
-		{
-			@Override
-			public void onClick(View v)
-			{
-				final Intent intent = new Intent(activity, DownloadActivity.class);
-				startActivityForResult(intent, SetupStatusFragment.REQUEST_DOWNLOAD_CODE);
-			}
+		this.buttonDb.setOnClickListener(v -> {
+			final Intent intent = new Intent(activity, DownloadActivity.class);
+			startActivityForResult(intent, SetupStatusFragment.REQUEST_DOWNLOAD_CODE);
 		});
 
-		this.buttonIndexes.setOnClickListener(new View.OnClickListener()
-		{
-			@Override
-			public void onClick(View v)
-			{
-				int index = getResources().getInteger(R.integer.sql_statement_do_indexes_position);
-				final Intent intent = new Intent(activity, SetupDatabaseActivity.class);
-				intent.putExtra(SetupDatabaseFragment.ARG_POSITION, index);
-				startActivityForResult(intent, SetupStatusFragment.REQUEST_MANAGE_CODE + index);
-			}
+		this.buttonIndexes.setOnClickListener(v -> {
+			int index = getResources().getInteger(R.integer.sql_statement_do_indexes_position);
+			final Intent intent = new Intent(activity, SetupDatabaseActivity.class);
+			intent.putExtra(SetupDatabaseFragment.ARG_POSITION, index);
+			startActivityForResult(intent, SetupStatusFragment.REQUEST_MANAGE_CODE + index);
 		});
 
-		this.infoDatabaseButton.setOnClickListener(new View.OnClickListener()
-		{
-			@Override
-			public void onClick(final View v)
+		this.infoDatabaseButton.setOnClickListener(v -> {
+			final String database = StorageSettings.getDatabasePath(activity);
+			final String free = StorageUtils.getFree(activity, database);
+			final String source = StorageSettings.getDbDownloadSource(activity);
+			final int status = Status.status(activity);
+			final boolean existsDb = (status & Status.EXISTS) != 0;
+			final boolean existsTables = (status & Status.EXISTS_TABLES) != 0;
+			if (existsDb)
 			{
-				final String database = StorageSettings.getDatabasePath(activity);
-				final String free = StorageUtils.getFree(activity, database);
-				final String source = StorageSettings.getDbDownloadSource(activity);
-				final int status = Status.status(activity);
-				final boolean existsDb = (status & Status.EXISTS) != 0;
-				final boolean existsTables = (status & Status.EXISTS_TABLES) != 0;
-				if (existsDb)
-				{
-					final long size = new File(database).length();
-					final String hrSize = StorageUtils.countToStorageString(size) + " (" + Long.toString(size) + ')';
-					Info.info(activity, R.string.title_status, //
-							getString(R.string.title_database), database, //
-							getString(R.string.title_status), getString(R.string.status_database_exists), //
-							getString(R.string.title_status), getString(existsTables ? R.string.status_data_exists : R.string.status_data_not_exists), //
-							getString(R.string.title_free), free, //
-							getString(R.string.size_expected), getString(R.string.hr_size_sqlunet_db), //
-							getString(R.string.size_expected) + ' ' + getString(R.string.text_search), getString(R.string.hr_size_searchtext), //
-							getString(R.string.size_expected) + ' ' + getString(R.string.total), getString(R.string.hr_size_db_working_total), //
-							getString(R.string.size_actual), hrSize);
-				}
-				else
-				{
-					Info.info(activity, R.string.title_download, //
-							getString(R.string.title_operation), getString(R.string.info_op_download_database), //
-							getString(R.string.title_from), source, //
-							getString(R.string.title_database), database, //
-							getString(R.string.title_free), free, //
-							getString(R.string.size_expected) + ' ' + getString(R.string.text_search), getString(R.string.hr_size_searchtext), //
-							getString(R.string.size_expected) + ' ' + getString(R.string.total), getString(R.string.hr_size_db_working_total), //
-							getString(R.string.title_status), getString(R.string.status_database_not_exists));
-				}
+				final long size = new File(database).length();
+				final String hrSize = StorageUtils.countToStorageString(size) + " (" + Long.toString(size) + ')';
+				Info.info(activity, R.string.title_status, //
+						getString(R.string.title_database), database, //
+						getString(R.string.title_status), getString(R.string.status_database_exists), //
+						getString(R.string.title_status), getString(existsTables ? R.string.status_data_exists : R.string.status_data_not_exists), //
+						getString(R.string.title_free), free, //
+						getString(R.string.size_expected), getString(R.string.hr_size_sqlunet_db), //
+						getString(R.string.size_expected) + ' ' + getString(R.string.text_search), getString(R.string.hr_size_searchtext), //
+						getString(R.string.size_expected) + ' ' + getString(R.string.total), getString(R.string.hr_size_db_working_total), //
+						getString(R.string.size_actual), hrSize);
+			}
+			else
+			{
+				Info.info(activity, R.string.title_download, //
+						getString(R.string.title_operation), getString(R.string.info_op_download_database), //
+						getString(R.string.title_from), source, //
+						getString(R.string.title_database), database, //
+						getString(R.string.title_free), free, //
+						getString(R.string.size_expected) + ' ' + getString(R.string.text_search), getString(R.string.hr_size_searchtext), //
+						getString(R.string.size_expected) + ' ' + getString(R.string.total), getString(R.string.hr_size_db_working_total), //
+						getString(R.string.title_status), getString(R.string.status_database_not_exists));
 			}
 		});
 
 		// swipe refresh layout
 		this.swipeRefreshLayout = view.findViewById(R.id.swipe_refresh);
 		this.swipeRefreshLayout.setColorSchemeResources(R.color.swipe_down_1_color, R.color.swipe_down_2_color);
-		this.swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener()
-		{
-			@Override
-			public void onRefresh()
-			{
-				update();
+		this.swipeRefreshLayout.setOnRefreshListener(() -> {
+			update();
 
-				// stop the refreshing indicator
-				SetupStatusFragment.this.swipeRefreshLayout.setRefreshing(false);
-			}
+			// stop the refreshing indicator
+			SetupStatusFragment.this.swipeRefreshLayout.setRefreshing(false);
 		});
 		return view;
 	}

@@ -35,6 +35,7 @@ class VnClassQueryFromWordAndPos extends DBQuery
 	 */
 	public long getWordId()
 	{
+		assert this.cursor != null;
 		return this.cursor.getLong(0);
 	}
 
@@ -45,6 +46,7 @@ class VnClassQueryFromWordAndPos extends DBQuery
 	 */
 	public boolean getSynsetSpecific()
 	{
+		assert this.cursor != null;
 		final int result = this.cursor.getInt(1);
 		return result != 0;
 	}
@@ -56,6 +58,7 @@ class VnClassQueryFromWordAndPos extends DBQuery
 	 */
 	public long getSynsetId()
 	{
+		assert this.cursor != null;
 		return this.cursor.getLong(2);
 	}
 
@@ -66,6 +69,7 @@ class VnClassQueryFromWordAndPos extends DBQuery
 	 */
 	public String getDefinition()
 	{
+		assert this.cursor != null;
 		return this.cursor.getString(3);
 	}
 
@@ -76,6 +80,7 @@ class VnClassQueryFromWordAndPos extends DBQuery
 	 */
 	public int getLexDomainId()
 	{
+		assert this.cursor != null;
 		return this.cursor.getInt(4);
 	}
 }

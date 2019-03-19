@@ -37,6 +37,7 @@ class VnClassQuery extends DBQuery
 	@SuppressWarnings("unused")
 	public long getClassId()
 	{
+		assert this.cursor != null;
 		return this.cursor.getLong(0);
 	}
 
@@ -47,6 +48,7 @@ class VnClassQuery extends DBQuery
 	 */
 	public String getClassName()
 	{
+		assert this.cursor != null;
 		return this.cursor.getString(1);
 	}
 
@@ -57,6 +59,7 @@ class VnClassQuery extends DBQuery
 	 */
 	public String getGroupings()
 	{
+		assert this.cursor != null;
 		return this.cursor.getString(2);
 	}
 }

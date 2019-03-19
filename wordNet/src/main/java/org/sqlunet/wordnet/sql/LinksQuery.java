@@ -33,6 +33,7 @@ class LinksQuery extends DBQuery
 	 */
 	public int getId()
 	{
+		assert this.cursor != null;
 		return this.cursor.getInt(0);
 	}
 
@@ -43,6 +44,7 @@ class LinksQuery extends DBQuery
 	 */
 	public String getName()
 	{
+		assert this.cursor != null;
 		return this.cursor.getString(1);
 	}
 
@@ -53,6 +55,7 @@ class LinksQuery extends DBQuery
 	 */
 	public boolean getRecurse()
 	{
+		assert this.cursor != null;
 		return this.cursor.getInt(2) != 0;
 	}
 }

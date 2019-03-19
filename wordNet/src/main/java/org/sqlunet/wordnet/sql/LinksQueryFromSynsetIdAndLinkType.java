@@ -69,6 +69,7 @@ class LinksQueryFromSynsetIdAndLinkType extends DBQuery
 	 */
 	public int getLinkType()
 	{
+		assert this.cursor != null;
 		return this.cursor.getInt(0);
 	}
 
@@ -79,6 +80,7 @@ class LinksQueryFromSynsetIdAndLinkType extends DBQuery
 	 */
 	public long getSynsetId()
 	{
+		assert this.cursor != null;
 		return this.cursor.getLong(1);
 	}
 
@@ -89,6 +91,7 @@ class LinksQueryFromSynsetIdAndLinkType extends DBQuery
 	 */
 	public String getDefinition()
 	{
+		assert this.cursor != null;
 		return this.cursor.getString(2);
 	}
 
@@ -99,6 +102,7 @@ class LinksQueryFromSynsetIdAndLinkType extends DBQuery
 	 */
 	public int getLexDomainId()
 	{
+		assert this.cursor != null;
 		return this.cursor.getInt(3);
 	}
 
@@ -109,6 +113,7 @@ class LinksQueryFromSynsetIdAndLinkType extends DBQuery
 	 */
 	public String getSamples()
 	{
+		assert this.cursor != null;
 		return this.cursor.getString(4);
 	}
 
@@ -120,6 +125,7 @@ class LinksQueryFromSynsetIdAndLinkType extends DBQuery
 	@Nullable
 	public long[] getWordIds()
 	{
+		assert this.cursor != null;
 		final String resultString = this.cursor.getString(5);
 		if (resultString == null)
 		{
@@ -142,6 +148,7 @@ class LinksQueryFromSynsetIdAndLinkType extends DBQuery
 	@Nullable
 	public String[] getWords()
 	{
+		assert this.cursor != null;
 		final String results = this.cursor.getString(6);
 		if (results == null)
 		{
@@ -157,6 +164,7 @@ class LinksQueryFromSynsetIdAndLinkType extends DBQuery
 	 */
 	public long getFromSynset()
 	{
+		assert this.cursor != null;
 		return this.cursor.getLong(7);
 	}
 
@@ -167,6 +175,7 @@ class LinksQueryFromSynsetIdAndLinkType extends DBQuery
 	 */
 	public long getFromWord()
 	{
+		assert this.cursor != null;
 		return this.cursor.getLong(8);
 	}
 }

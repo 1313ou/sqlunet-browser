@@ -49,6 +49,7 @@ class PbRoleQueryFromRoleSetId extends DBQuery
 	 */
 	public long getRoleId()
 	{
+		assert this.cursor != null;
 		return this.cursor.getLong(0);
 	}
 
@@ -60,6 +61,7 @@ class PbRoleQueryFromRoleSetId extends DBQuery
 	@NonNull
 	public String getRoleDescr()
 	{
+		assert this.cursor != null;
 		return this.cursor.getString(1).toLowerCase(Locale.ENGLISH);
 	}
 
@@ -70,6 +72,7 @@ class PbRoleQueryFromRoleSetId extends DBQuery
 	 */
 	public String getNArg()
 	{
+		assert this.cursor != null;
 		return this.cursor.getString(2);
 	}
 
@@ -80,6 +83,7 @@ class PbRoleQueryFromRoleSetId extends DBQuery
 	 */
 	public String getRoleFunc()
 	{
+		assert this.cursor != null;
 		return this.cursor.getString(3);
 	}
 
@@ -90,6 +94,7 @@ class PbRoleQueryFromRoleSetId extends DBQuery
 	 */
 	public String getRoleTheta()
 	{
+		assert this.cursor != null;
 		return this.cursor.getString(4);
 	}
 }

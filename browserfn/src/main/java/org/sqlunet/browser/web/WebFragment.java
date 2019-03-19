@@ -158,7 +158,7 @@ public class WebFragment extends Fragment
 								if (this.pointer instanceof Pointer)
 								{
 									final Pointer xPointer = (Pointer) this.pointer;
-									final Long id = xPointer.getId();
+									final long id = xPointer.getId();
 									final boolean isFrame = xPointer instanceof FnFramePointer;
 									fnDomDoc = isFrame ? new FrameNetImplementation().queryFrameDoc(db, id, null) : new FrameNetImplementation().queryLexUnitDoc(db, id);
 								}
@@ -278,14 +278,7 @@ public class WebFragment extends Fragment
 						// warn with id
 						final Activity activity = WebFragment.this.getActivity();
 						assert activity != null;
-						activity.runOnUiThread(new Runnable()
-						{
-							@Override
-							public void run()
-							{
-								Toast.makeText(activity, "id=" + id, Toast.LENGTH_SHORT).show();
-							}
-						});
+						activity.runOnUiThread(() -> Toast.makeText(activity, "id=" + id, Toast.LENGTH_SHORT).show());
 
 						// prepare data
 						int type;
@@ -425,6 +418,7 @@ public class WebFragment extends Fragment
 			if (BuildConfig.DEBUG)
 			{
 				LogUtils.writeLog(data, false, null);
+				//noinspection ConstantConditions
 				DomValidator.validateStrings(DocumentTransformer.class.getResource("/org/sqlunet/SqlUNet.xsd"), data);
 				Log.d(TAG, "output=\n" + data);
 			}
@@ -478,6 +472,7 @@ public class WebFragment extends Fragment
 
 			if (BuildConfig.DEBUG)
 			{
+				//noinspection ConstantConditions
 				DomValidator.validateDocs(DocumentTransformer.class.getResource("/org/sqlunet/SqlUNet.xsd"), fnDomDoc);
 				LogUtils.writeLog(false, null, fnDomDoc);
 				LogUtils.writeLog(data, false, null);

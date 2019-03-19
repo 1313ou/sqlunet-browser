@@ -1,6 +1,7 @@
 package org.sqlunet.framenet.sql;
 
 import android.database.sqlite.SQLiteDatabase;
+import android.support.annotation.Nullable;
 
 import org.sqlunet.framenet.Utils;
 import org.sqlunet.sql.DBQuery;
@@ -34,6 +35,7 @@ class FnLayerQuery extends DBQuery
 	 */
 	public long getLayerId()
 	{
+		assert this.cursor != null;
 		return this.cursor.getLong(0);
 	}
 
@@ -44,6 +46,7 @@ class FnLayerQuery extends DBQuery
 	 */
 	public String getLayerType()
 	{
+		assert this.cursor != null;
 		return this.cursor.getString(1);
 	}
 
@@ -54,6 +57,7 @@ class FnLayerQuery extends DBQuery
 	 */
 	public long getAnnoSetId()
 	{
+		assert this.cursor != null;
 		return this.cursor.getLong(2);
 	}
 
@@ -64,6 +68,7 @@ class FnLayerQuery extends DBQuery
 	 */
 	public int getRank()
 	{
+		assert this.cursor != null;
 		return this.cursor.getInt(3);
 	}
 
@@ -72,8 +77,10 @@ class FnLayerQuery extends DBQuery
 	 *
 	 * @return the labels from the result set
 	 */
+	@Nullable
 	public List<FnLabel> getLabels()
 	{
+		assert this.cursor != null;
 		return Utils.parseLabels(this.cursor.getString(4));
 	}
 }

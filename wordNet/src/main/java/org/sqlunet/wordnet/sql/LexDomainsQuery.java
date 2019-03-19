@@ -33,6 +33,7 @@ class LexDomainsQuery extends DBQuery
 	 */
 	public int getId()
 	{
+		assert this.cursor != null;
 		return this.cursor.getInt(0);
 	}
 
@@ -43,6 +44,7 @@ class LexDomainsQuery extends DBQuery
 	 */
 	public String getPosLexDomainName()
 	{
+		assert this.cursor != null;
 		return this.cursor.getString(1);
 	}
 
@@ -53,6 +55,7 @@ class LexDomainsQuery extends DBQuery
 	 */
 	public int getPos()
 	{
+		assert this.cursor != null;
 		return this.cursor.getString(2).charAt(0);
 	}
 }

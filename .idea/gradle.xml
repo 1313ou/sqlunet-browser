@@ -3,27 +3,30 @@
   <component name="GradleSettings">
     <option name="linkedExternalProjectsSettings">
       <GradleProjectSettings>
+        <compositeConfiguration>
+          <compositeBuild compositeDefinitionSource="SCRIPT" />
+        </compositeConfiguration>
         <option name="distributionType" value="DEFAULT_WRAPPED" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
         <option name="modules">
           <set>
-            <option value="/mnt/data2/devel/android-sqlunet-as/SqlUNet" />
-            <option value="/mnt/data2/devel/android-sqlunet-as/SqlUNet/bNC" />
-            <option value="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser" />
-            <option value="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browserfn" />
-            <option value="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browservn" />
-            <option value="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browserwn" />
-            <option value="/mnt/data2/devel/android-sqlunet-as/SqlUNet/common" />
-            <option value="/mnt/data2/devel/android-sqlunet-as/SqlUNet/expandableListFragment" />
-            <option value="/mnt/data2/devel/android-sqlunet-as/SqlUNet/frameNet" />
-            <option value="/mnt/data2/devel/android-sqlunet-as/SqlUNet/predicateMatrix" />
-            <option value="/mnt/data2/devel/android-sqlunet-as/SqlUNet/propbank" />
-            <option value="/mnt/data2/devel/android-sqlunet-as/SqlUNet/support" />
-            <option value="/mnt/data2/devel/android-sqlunet-as/SqlUNet/test" />
-            <option value="/mnt/data2/devel/android-sqlunet-as/SqlUNet/treeView" />
-            <option value="/mnt/data2/devel/android-sqlunet-as/SqlUNet/verbNet" />
-            <option value="/mnt/data2/devel/android-sqlunet-as/SqlUNet/wordNet" />
-            <option value="/mnt/data2/devel/android-sqlunet-as/SqlUNet/xNet" />
+            <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/bNC" />
+            <option value="$PROJECT_DIR$/browser" />
+            <option value="$PROJECT_DIR$/browserfn" />
+            <option value="$PROJECT_DIR$/browservn" />
+            <option value="$PROJECT_DIR$/browserwn" />
+            <option value="$PROJECT_DIR$/common" />
+            <option value="$PROJECT_DIR$/expandableListFragment" />
+            <option value="$PROJECT_DIR$/frameNet" />
+            <option value="$PROJECT_DIR$/predicateMatrix" />
+            <option value="$PROJECT_DIR$/propbank" />
+            <option value="$PROJECT_DIR$/support" />
+            <option value="$PROJECT_DIR$/test" />
+            <option value="$PROJECT_DIR$/treeView" />
+            <option value="$PROJECT_DIR$/verbNet" />
+            <option value="$PROJECT_DIR$/wordNet" />
+            <option value="$PROJECT_DIR$/xNet" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />

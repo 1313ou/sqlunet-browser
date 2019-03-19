@@ -28,23 +28,11 @@ public class ExpandableListFragment extends Fragment implements ExpandableListVi
 
 	final private Handler mHandler = new Handler();
 
-	final private AdapterView.OnItemClickListener mOnClickListener = new AdapterView.OnItemClickListener()
-	{
-		@Override
-		public void onItemClick(AdapterView<?> parent, View v, int position, long id)
-		{
-			onListItemClick((ExpandableListView) parent, v, position, id);
-		}
-	};
+	final private AdapterView.OnItemClickListener mOnClickListener = (parent, v, position, id) -> onListItemClick((ExpandableListView) parent, v, position, id);
 
-	final private Runnable mRequestFocus = new Runnable()
-	{
-		@Override
-		public void run()
-		{
-			assert ExpandableListFragment.this.mExpandableList != null;
-			ExpandableListFragment.this.mExpandableList.focusableViewAvailable(ExpandableListFragment.this.mExpandableList);
-		}
+	final private Runnable mRequestFocus = () -> {
+		assert ExpandableListFragment.this.mExpandableList != null;
+		ExpandableListFragment.this.mExpandableList.focusableViewAvailable(ExpandableListFragment.this.mExpandableList);
 	};
 
 	/**

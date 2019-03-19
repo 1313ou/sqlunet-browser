@@ -68,7 +68,7 @@ public class WebFragment extends Fragment
 		final private int sources;
 		final private boolean xml;
 
-		WebDocumentStringLoader(final Context context, final int type, final String data, final Parcelable pointer, final Character pos, final int sources, final boolean xml)
+		WebDocumentStringLoader(@NonNull final Context context, final int type, final String data, final Parcelable pointer, final Character pos, final int sources, final boolean xml)
 		{
 			super(context);
 			this.data = data;
@@ -117,7 +117,7 @@ public class WebFragment extends Fragment
 							if (pointer != null)
 							{
 								final SensePointer sense2Pointer = (SensePointer) this.pointer;
-								final Long wordId = sense2Pointer.getWordId();
+								final long wordId = sense2Pointer.getWordId();
 								final Long synsetId = sense2Pointer.getSynsetId();
 								if (Settings.Source.WORDNET.test(this.sources))
 								{
@@ -268,14 +268,7 @@ public class WebFragment extends Fragment
 						// warn with id
 						final Activity activity = WebFragment.this.getActivity();
 						assert activity != null;
-						activity.runOnUiThread(new Runnable()
-						{
-							@Override
-							public void run()
-							{
-								Toast.makeText(activity, "id=" + id, Toast.LENGTH_SHORT).show();
-							}
-						});
+						activity.runOnUiThread(() -> Toast.makeText(activity, "id=" + id, Toast.LENGTH_SHORT).show());
 
 						// prepare data
 						int type;
@@ -419,6 +412,7 @@ public class WebFragment extends Fragment
 			if (BuildConfig.DEBUG)
 			{
 				LogUtils.writeLog(data, false, null);
+				//noinspection ConstantConditions
 				DomValidator.validateStrings(DocumentTransformer.class.getResource("/org/sqlunet/SqlUNet.xsd"), data);
 				Log.d(TAG, "output=\n" + data);
 			}
@@ -478,6 +472,7 @@ public class WebFragment extends Fragment
 
 			if (BuildConfig.DEBUG)
 			{
+				//noinspection ConstantConditions
 				DomValidator.validateDocs(DocumentTransformer.class.getResource("/org/sqlunet/SqlUNet.xsd"), wnDomDoc, bncDomDoc);
 				LogUtils.writeLog(false, null, wnDomDoc, bncDomDoc);
 				LogUtils.writeLog(data, false, null);

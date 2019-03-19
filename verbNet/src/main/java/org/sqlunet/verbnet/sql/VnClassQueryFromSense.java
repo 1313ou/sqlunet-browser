@@ -37,6 +37,7 @@ class VnClassQueryFromSense extends DBQuery
 	 */
 	public long getClassId()
 	{
+		assert this.cursor != null;
 		return this.cursor.getLong(0);
 	}
 
@@ -47,6 +48,7 @@ class VnClassQueryFromSense extends DBQuery
 	 */
 	public String getClassName()
 	{
+		assert this.cursor != null;
 		return this.cursor.getString(1);
 	}
 
@@ -57,6 +59,7 @@ class VnClassQueryFromSense extends DBQuery
 	 */
 	public boolean getSynsetSpecific()
 	{
+		assert this.cursor != null;
 		return this.cursor.getInt(2) == 0;
 	}
 
@@ -67,6 +70,7 @@ class VnClassQueryFromSense extends DBQuery
 	 */
 	public String getDefinition()
 	{
+		assert this.cursor != null;
 		return this.cursor.getString(3);
 	}
 
@@ -77,6 +81,7 @@ class VnClassQueryFromSense extends DBQuery
 	 */
 	public int getSenseNum()
 	{
+		assert this.cursor != null;
 		return this.cursor.getInt(4);
 	}
 
@@ -87,6 +92,7 @@ class VnClassQueryFromSense extends DBQuery
 	 */
 	public String getSenseKey()
 	{
+		assert this.cursor != null;
 		return this.cursor.getString(5);
 	}
 
@@ -97,6 +103,7 @@ class VnClassQueryFromSense extends DBQuery
 	 */
 	public float getQuality()
 	{
+		assert this.cursor != null;
 		return this.cursor.getFloat(6);
 	}
 
@@ -107,6 +114,7 @@ class VnClassQueryFromSense extends DBQuery
 	 */
 	public String getGroupings()
 	{
+		assert this.cursor != null;
 		return this.cursor.getString(7);
 	}
 }

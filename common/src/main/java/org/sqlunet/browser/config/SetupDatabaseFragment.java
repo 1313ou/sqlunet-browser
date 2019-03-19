@@ -57,32 +57,27 @@ public class SetupDatabaseFragment extends BaseTaskFragment
 			}
 		}
 
-		this.runButton.setOnClickListener(new View.OnClickListener()
-		{
-			@Override
-			public void onClick(final View v)
+		this.runButton.setOnClickListener(v -> {
+			// skip first
+			final long id = SetupDatabaseFragment.this.spinner.getSelectedItemId();
+			if (id == 0)
 			{
-				// skip first
-				final long id = SetupDatabaseFragment.this.spinner.getSelectedItemId();
-				if (id == 0)
-				{
-					return;
-				}
-				SetupDatabaseFragment.this.status.setText(R.string.status_task_running);
-
-				// database path
-				final Activity activity = getActivity();
-				assert activity != null;
-				final String databasePath = StorageSettings.getDatabasePath(activity.getBaseContext());
-
-				// sqls
-				final CharSequence[] sqls = getActivity().getResources().getTextArray(R.array.sql_statements_values);
-
-				// execute
-				final CharSequence sql = sqls[(int) id];
-				final String[] sqlStatements = sql.toString().split(";");
-				new ExecAsyncTask(getActivity(), new TaskObserver.ToastWithStatusListener(getActivity(), SetupDatabaseFragment.this.status), 1).executeFromSql(databasePath, sqlStatements);
+				return;
 			}
+			SetupDatabaseFragment.this.status.setText(R.string.status_task_running);
+
+			// database path
+			final Activity activity = getActivity();
+			assert activity != null;
+			final String databasePath = StorageSettings.getDatabasePath(activity.getBaseContext());
+
+			// sqls
+			final CharSequence[] sqls = getActivity().getResources().getTextArray(R.array.sql_statements_values);
+
+			// execute
+			final CharSequence sql = sqls[(int) id];
+			final String[] sqlStatements = sql.toString().split(";");
+			new ExecAsyncTask(getActivity(), new TaskObserver.ToastWithStatusListener(getActivity(), SetupDatabaseFragment.this.status), 1).executeFromSql(databasePath, sqlStatements);
 		});
 
 		return view;

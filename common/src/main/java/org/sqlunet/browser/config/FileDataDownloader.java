@@ -120,60 +120,48 @@ public class FileDataDownloader extends AsyncTask<String, Void, FileData>
 		if (/*downloadUrl == null ||*/ downloadUrl.isEmpty())
 		{
 			final String message = activity.getString(R.string.status_error_null_download_url);
-			activity.runOnUiThread(new Runnable()
-			{
-				@Override
-				public void run()
-				{
-					Toast.makeText(activity, message, Toast.LENGTH_LONG).show();
-				}
-			});
+			activity.runOnUiThread(() -> Toast.makeText(activity, message, Toast.LENGTH_LONG).show());
 			return;
 		}
 
 		// download source data (acquired by task)
-		final FileDataDownloader task = new FileDataDownloader(new FileDataDownloader.Listener()
-		{
-			@Override
-			public void onDone(@Nullable final FileData srcData)
-			{
-				// actual data
-				final String to = StorageSettings.getDbDownloadTarget(activity);
-				final File actualFile = new File(to);
-				final String actual = actualFile.getAbsolutePath();
-				final FileData actualData = FileData.makeFileDataFrom(actualFile);
-				final Date actualDate = actualData == null ? null : actualData.getDate();
-				final Long actualSize = actualData == null ? null : actualData.getSize();
+		final FileDataDownloader task = new FileDataDownloader(srcData -> {
+			// actual data
+			final String to = StorageSettings.getDbDownloadTarget(activity);
+			final File actualFile = new File(to);
+			final String actual = actualFile.getAbsolutePath();
+			final FileData actualData = FileData.makeFileDataFrom(actualFile);
+			final Date actualDate = actualData == null ? null : actualData.getDate();
+			final Long actualSize = actualData == null ? null : actualData.getSize();
 
-				// current data
-				final FileData currentData = FileData.getCurrent(activity);
-				final Date currentDate = currentData == null ? null : currentData.getDate();
-				final Long currentSize = currentData == null ? null : currentData.getSize();
+			// current data
+			final FileData currentData = FileData.getCurrent(activity);
+			final Date currentDate = currentData == null ? null : currentData.getDate();
+			final Long currentSize = currentData == null ? null : currentData.getSize();
 
-				// src data
-				final Date srcDate = srcData == null ? null : srcData.getDate();
-				final Long srcSize = srcData == null ? null : srcData.getSize();
+			// src data
+			final Date srcDate = srcData == null ? null : srcData.getDate();
+			final Long srcSize = srcData == null ? null : srcData.getSize();
 
-				// newer
-				final Date refDate = currentDate != null ? currentDate : actualDate;
-				@SuppressWarnings("SimplifiableConditionalExpression") final boolean newer = (srcDate == null || refDate == null) ? false : srcDate.compareTo(refDate) > 0;
+			// newer
+			final Date refDate = currentDate != null ? currentDate : actualDate;
+			@SuppressWarnings("SimplifiableConditionalExpression") final boolean newer = (srcDate == null || refDate == null) ? false : srcDate.compareTo(refDate) > 0;
 
-				final Intent intent = new Intent(activity, UpdateActivity.class);
-				intent.putExtra(UpdateFragment.CURRENT_DATE_ARG, currentDate == null ? "n/a" : currentDate.toString());
-				intent.putExtra(UpdateFragment.CURRENT_SIZE_ARG, currentSize == null ? "n/a" : currentSize.toString() + " bytes");
+			final Intent intent = new Intent(activity, UpdateActivity.class);
+			intent.putExtra(UpdateFragment.CURRENT_DATE_ARG, currentDate == null ? "n/a" : currentDate.toString());
+			intent.putExtra(UpdateFragment.CURRENT_SIZE_ARG, currentSize == null ? "n/a" : currentSize.toString() + " bytes");
 
-				intent.putExtra(UpdateFragment.FROM_ARG, downloadUrl);
-				intent.putExtra(UpdateFragment.FROM_DATE_ARG, srcDate == null ? "n/a" : srcDate.toString());
-				intent.putExtra(UpdateFragment.FROM_SIZE_ARG, srcSize == null ? "n/a" : srcSize.toString() + " bytes");
+			intent.putExtra(UpdateFragment.FROM_ARG, downloadUrl);
+			intent.putExtra(UpdateFragment.FROM_DATE_ARG, srcDate == null ? "n/a" : srcDate.toString());
+			intent.putExtra(UpdateFragment.FROM_SIZE_ARG, srcSize == null ? "n/a" : srcSize.toString() + " bytes");
 
-				intent.putExtra(UpdateFragment.TO_ARG, actual);
-				intent.putExtra(UpdateFragment.TO_DATE_ARG, actualDate == null ? "n/a" : actualDate.toString());
-				intent.putExtra(UpdateFragment.TO_SIZE_ARG, actualSize == null ? "n/a" : actualSize.toString() + " bytes");
+			intent.putExtra(UpdateFragment.TO_ARG, actual);
+			intent.putExtra(UpdateFragment.TO_DATE_ARG, actualDate == null ? "n/a" : actualDate.toString());
+			intent.putExtra(UpdateFragment.TO_SIZE_ARG, actualSize == null ? "n/a" : actualSize.toString() + " bytes");
 
-				intent.putExtra(UpdateFragment.NEWER_ARG, newer);
+			intent.putExtra(UpdateFragment.NEWER_ARG, newer);
 
-				activity.startActivity(intent);
-			}
+			activity.startActivity(intent);
 		});
 		task.execute(downloadUrl);
 	}

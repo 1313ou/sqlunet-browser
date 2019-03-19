@@ -385,6 +385,7 @@ abstract class BaseModule extends Module
 			return (int) this.synsetId;
 		}
 
+		@NonNull
 		@Override
 		public String toString()
 		{
@@ -1035,6 +1036,7 @@ abstract class BaseModule extends Module
 					for (VnData vnData : vnDatas)
 					{
 						final Set<WnData> wnData = this.wnMap.get(vnData);
+						assert wnData != null;
 						final TreeNode vnNode = this.displayer.makeVnNode(vnData, wnData.toArray(new WnData[0]));
 						pmroleNode.addChild(vnNode);
 
@@ -1050,6 +1052,7 @@ abstract class BaseModule extends Module
 					for (PbData pbData : pbDatas)
 					{
 						final Set<WnData> wnData = this.wnMap.get(pbData);
+						assert wnData != null;
 						final TreeNode pbNode = this.displayer.makePbNode(pbData, wnData.toArray(new WnData[0]));
 						pmroleNode.addChild(pbNode);
 
@@ -1065,6 +1068,7 @@ abstract class BaseModule extends Module
 					for (FnData fnData : fnDatas)
 					{
 						final Set<WnData> wnData = this.wnMap.get(fnData);
+						assert wnData != null;
 						final TreeNode fnNode = this.displayer.makeFnNode(fnData, wnData.toArray(new WnData[0]));
 						pmroleNode.addChild(fnNode);
 
@@ -1187,6 +1191,7 @@ abstract class BaseModule extends Module
 		 * @param pmRole     PredicateMatrix role
 		 * @return created node
 		 */
+		@NonNull
 		TreeNode displayPmRole(@NonNull final TreeNode parentNode, @NonNull final PmRole pmRole)
 		{
 			final SpannableStringBuilder pmsb = new SpannableStringBuilder();
@@ -1200,6 +1205,7 @@ abstract class BaseModule extends Module
 		 * @param pmRole     PredicateMatrix role
 		 * @return created node
 		 */
+		@NonNull
 		TreeNode displayPmRole(@NonNull final TreeNode parentNode, @NonNull final SpannableStringBuilder pmsb, @NonNull final PmRole pmRole)
 		{
 			if (pmRole.pmRole != null)
@@ -1223,6 +1229,7 @@ abstract class BaseModule extends Module
 		 * @param wnData     WordNet data
 		 * @return created node
 		 */
+		@NonNull
 		TreeNode displayPmRow(@NonNull final TreeNode parentNode, @NonNull final PmRow pmRow, @Nullable final WnData wnData)
 		{
 			final SpannableStringBuilder pmsb = new SpannableStringBuilder();
@@ -1252,6 +1259,7 @@ abstract class BaseModule extends Module
 		 * @param wnDatas WordNet data
 		 * @return created node
 		 */
+		@NonNull
 		TreeNode makeVnNode(@NonNull final VnData vnData, @NonNull final WnData... wnDatas)
 		{
 			final SpannableStringBuilder vnsb = new SpannableStringBuilder();
@@ -1303,6 +1311,7 @@ abstract class BaseModule extends Module
 		 * @param wnDatas WordNet data
 		 * @return created node
 		 */
+		@NonNull
 		TreeNode makePbNode(@NonNull final PbData pbData, @NonNull final WnData... wnDatas)
 		{
 			// pb
@@ -1368,6 +1377,7 @@ abstract class BaseModule extends Module
 		 * @param wnDatas WordNet data
 		 * @return created node
 		 */
+		@NonNull
 		TreeNode makeFnNode(@NonNull final FnData fnData, @NonNull final WnData... wnDatas)
 		{
 			// fn

@@ -37,6 +37,7 @@ class FnFrameQuery extends DBQuery
 	@SuppressWarnings("unused")
 	public long getFrameId()
 	{
+		assert this.cursor != null;
 		return this.cursor.getInt(0);
 	}
 
@@ -47,6 +48,7 @@ class FnFrameQuery extends DBQuery
 	 */
 	public String getFrame()
 	{
+		assert this.cursor != null;
 		return this.cursor.getString(1);
 	}
 
@@ -57,6 +59,7 @@ class FnFrameQuery extends DBQuery
 	 */
 	public String getFrameDescription()
 	{
+		assert this.cursor != null;
 		return this.cursor.getString(2);
 	}
 
@@ -67,6 +70,7 @@ class FnFrameQuery extends DBQuery
 	 */
 	public String getSemTypes()
 	{
+		assert this.cursor != null;
 		return this.cursor.getString(3);
 	}
 
@@ -77,6 +81,7 @@ class FnFrameQuery extends DBQuery
 	 */
 	public String getRelatedFrames()
 	{
+		assert this.cursor != null;
 		return this.cursor.getString(4);
 	}
 }

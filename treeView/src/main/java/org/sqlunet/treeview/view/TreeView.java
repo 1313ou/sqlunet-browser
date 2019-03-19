@@ -128,7 +128,7 @@ public class TreeView
 	 * @return view
 	 */
 	@NonNull
-	private View getView(final int style)
+	private View getView(@SuppressWarnings("SameParameterValue") final int style)
 	{
 		// top scrollview
 		final ViewGroup view;
@@ -195,7 +195,6 @@ public class TreeView
 		if (parent.isExpanded())
 		{
 			final Controller<?> controller = getNodeController(parent);
-			assert controller != null;
 			final ViewGroup viewGroup = controller.getChildrenContainerView();
 			assert viewGroup != null;
 			addNode(viewGroup, node);
@@ -211,7 +210,6 @@ public class TreeView
 	private void addNode(@NonNull final ViewGroup container, @NonNull final TreeNode node)
 	{
 		final Controller<?> controller = getNodeController(node);
-		assert controller != null;
 		final View nodeView = controller.getView();
 
 		// add to container
@@ -221,31 +219,26 @@ public class TreeView
 		node.setSelectable(this.selectable);
 
 		// listener
-		nodeView.setOnClickListener(new View.OnClickListener()
-		{
-			@Override
-			public void onClick(View v)
+		nodeView.setOnClickListener(v -> {
+			// if disabled
+			if (!node.isEnabled())
 			{
-				// if disabled
-				if (!node.isEnabled())
-				{
-					return;
-				}
-
-				// click node listener if node has one
-				if (node.getClickListener() != null)
-				{
-					node.getClickListener().onClick(node, node.getValue());
-				}
-				// else default
-				else if (TreeView.this.nodeClickListener != null)
-				{
-					TreeView.this.nodeClickListener.onClick(node, node.getValue());
-				}
-
-				// toggle node
-				toggleNode(node);
+				return;
 			}
+
+			// click node listener if node has one
+			if (node.getClickListener() != null)
+			{
+				node.getClickListener().onClick(node, node.getValue());
+			}
+			// else default
+			else if (TreeView.this.nodeClickListener != null)
+			{
+				TreeView.this.nodeClickListener.onClick(node, node.getValue());
+			}
+
+			// toggle node
+			toggleNode(node);
 		});
 	}
 
@@ -519,7 +512,6 @@ public class TreeView
 		node.setExpanded(false);
 
 		final Controller<?> controller = getNodeController(node);
-		assert controller != null;
 
 		// display
 		final ViewGroup viewGroup = controller.getChildrenContainerView();
@@ -558,7 +550,6 @@ public class TreeView
 		node.setExpanded(true);
 
 		final Controller<?> controller = getNodeController(node);
-		assert controller != null;
 		final ViewGroup viewGroup = controller.getChildrenContainerView();
 		assert viewGroup != null;
 
@@ -633,15 +624,10 @@ public class TreeView
 		animator.setDuration(duration);
 		animator.setStartDelay(0);
 		animator.setInterpolator(new LinearInterpolator());
-		animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener()
-		{
-			@Override
-			public void onAnimationUpdate(@NonNull ValueAnimator valueAnimator)
-			{
-				float value = (float) valueAnimator.getAnimatedValue();
-				view.getLayoutParams().height = value == 1 ? LayoutParams.WRAP_CONTENT : (int) (targetHeight * value);
-				view.requestLayout();
-			}
+		animator.addUpdateListener(valueAnimator -> {
+			float value = (float) valueAnimator.getAnimatedValue();
+			view.getLayoutParams().height = value == 1 ? LayoutParams.WRAP_CONTENT : (int) (targetHeight * value);
+			view.requestLayout();
 		});
 		animator.addListener(new Animator.AnimatorListener()
 		{
@@ -690,15 +676,10 @@ public class TreeView
 		animator.setDuration(duration);
 		animator.setStartDelay(0);
 		animator.setInterpolator(new LinearInterpolator());
-		animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener()
-		{
-			@Override
-			public void onAnimationUpdate(@NonNull ValueAnimator valueAnimator)
-			{
-				float value = (float) valueAnimator.getAnimatedValue();
-				view.getLayoutParams().height = initialHeight - (int) (initialHeight * value);
-				view.requestLayout();
-			}
+		animator.addUpdateListener(valueAnimator -> {
+			float value = (float) valueAnimator.getAnimatedValue();
+			view.getLayoutParams().height = initialHeight - (int) (initialHeight * value);
+			view.requestLayout();
 		});
 		animator.addListener(new Animator.AnimatorListener()
 		{
@@ -1086,7 +1067,6 @@ public class TreeView
 	private void fireNodeSelected(@NonNull final TreeNode node, final boolean selected)
 	{
 		final Controller<?> controller = getNodeController(node);
-		assert controller != null;
 		if (controller.isInitialized())
 		{
 			controller.onSelectedEvent(selected);
@@ -1101,6 +1081,7 @@ public class TreeView
 	 * @param node node
 	 * @return controller
 	 */
+	@NonNull
 	private Controller<?> getNodeController(@NonNull final TreeNode node)
 	{
 		Controller<?> controller = node.getController();

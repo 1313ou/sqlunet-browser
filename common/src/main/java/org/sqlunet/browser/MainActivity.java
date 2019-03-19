@@ -4,8 +4,8 @@ import android.app.SearchManager;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -20,6 +20,7 @@ public class MainActivity extends AppCompatActivity // implements NavigationFrag
 {
 	static private final String TAG = "MainActivity";
 
+	@Nullable
 	private NavigationFragment navigationDrawerFragment;
 
 	@Override
@@ -44,7 +45,8 @@ public class MainActivity extends AppCompatActivity // implements NavigationFrag
 		this.navigationDrawerFragment = (NavigationFragment) getSupportFragmentManager().findFragmentById(R.id.navigation_drawer);
 
 		// set up the drawer
-		this.navigationDrawerFragment.setUp(R.id.navigation_drawer, (DrawerLayout) findViewById(R.id.drawer_layout));
+		assert this.navigationDrawerFragment != null;
+		this.navigationDrawerFragment.setUp(R.id.navigation_drawer, findViewById(R.id.drawer_layout));
 	}
 
 	@Override
@@ -74,6 +76,7 @@ public class MainActivity extends AppCompatActivity // implements NavigationFrag
 	 */
 	private void handleSearchIntent(@NonNull final Intent intent)
 	{
+		assert this.navigationDrawerFragment != null;
 		final Fragment fragment = this.navigationDrawerFragment.getActiveFragment();
 		if (fragment instanceof SearchListener)
 		{

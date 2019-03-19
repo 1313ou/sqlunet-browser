@@ -77,6 +77,7 @@ public class SensePointer extends SynsetPointer implements HasWordId
 		return 0;
 	}
 
+	@NonNull
 	@Override
 	public String toString()
 	{

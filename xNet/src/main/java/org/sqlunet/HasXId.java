@@ -1,5 +1,7 @@
 package org.sqlunet;
 
+import android.support.annotation.Nullable;
+
 /**
  * Has extended-id interface
  *
@@ -12,6 +14,7 @@ public interface HasXId
 	 *
 	 * @return extended class id (class=vn:class,pb:rolesetid,fn:frame)
 	 */
+	@Nullable
 	@SuppressWarnings("unused")
 	Long getXId();
 
@@ -20,6 +23,7 @@ public interface HasXId
 	 *
 	 * @return extended class id (class=vn:class id,pb:roleset id,fn:frame id)
 	 */
+	@Nullable
 	Long getXClassId();
 
 	/**
@@ -27,6 +31,7 @@ public interface HasXId
 	 *
 	 * @return extended member id (fn:lexunit)
 	 */
+	@Nullable
 	Long getXMemberId();
 
 	/**

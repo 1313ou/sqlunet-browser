@@ -197,14 +197,7 @@ public class DownloadFragment extends BaseDownloadFragment
 		final View view = super.onCreateView(inflater, container, savedInstanceState);
 		//noinspection ConstantConditions
 		this.showButton = view.findViewById(R.id.showButton);
-		this.showButton.setOnClickListener(new View.OnClickListener()
-		{
-			@Override
-			public void onClick(View v)
-			{
-				showDownloads();
-			}
-		});
+		this.showButton.setOnClickListener(v -> showDownloads());
 		if (savedInstanceState != null)
 		{
 			//noinspection WrongConstant

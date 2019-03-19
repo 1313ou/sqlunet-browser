@@ -1063,7 +1063,7 @@ abstract public class BaseModule extends Module
 	 * @param luId   lex unit id
 	 * @param parent parent node
 	 */
-	private void governorsForLexUnit(final long luId, final TreeNode parent)
+	private void governorsForLexUnit(final long luId, @NonNull final TreeNode parent)
 	{
 		getLoaderManager().restartLoader(++Module.loaderId, null, new LoaderCallbacks<Cursor>()
 		{
@@ -1153,7 +1153,7 @@ abstract public class BaseModule extends Module
 	 * @param governorId governor id
 	 * @param parent     parent id
 	 */
-	private void annoSetsForGovernor(final long governorId, final TreeNode parent)
+	private void annoSetsForGovernor(final long governorId, @NonNull final TreeNode parent)
 	{
 		getLoaderManager().restartLoader(++Module.loaderId, null, new LoaderCallbacks<Cursor>()
 		{
@@ -1673,7 +1673,7 @@ abstract public class BaseModule extends Module
 	 * @param patternId pattern id
 	 * @param parent    parent node
 	 */
-	private void sentencesForPattern(final long patternId, final TreeNode parent)
+	private void sentencesForPattern(final long patternId, @NonNull final TreeNode parent)
 	{
 		getLoaderManager().restartLoader(++Module.loaderId, null, new LoaderCallbacks<Cursor>()
 		{
@@ -1756,7 +1756,7 @@ abstract public class BaseModule extends Module
 	 * @param vuId   valence unit id
 	 * @param parent parent node
 	 */
-	private void sentencesForValenceUnit(final long vuId, final TreeNode parent)
+	private void sentencesForValenceUnit(final long vuId, @NonNull final TreeNode parent)
 	{
 		getLoaderManager().restartLoader(++Module.loaderId, null, new LoaderCallbacks<Cursor>()
 		{
@@ -2339,7 +2339,8 @@ abstract public class BaseModule extends Module
 	 * @param name layer name
 	 * @return processed layer name
 	 */
-	private CharSequence processLayer(final CharSequence name)
+	@NonNull
+	private CharSequence processLayer(@NonNull final CharSequence name)
 	{
 		if ("FE".contentEquals(name)) //
 		{
@@ -2362,7 +2363,8 @@ abstract public class BaseModule extends Module
 	 * @param name PT name
 	 * @return processed PT
 	 */
-	private CharSequence processPT(final CharSequence name)
+	@NonNull
+	private CharSequence processPT(@NonNull final CharSequence name)
 	{
 		if ("CNI".contentEquals(name)) //
 		{
@@ -2485,7 +2487,7 @@ abstract public class BaseModule extends Module
 		}
 
 		@Override
-		public void process(final TreeNode node)
+		public void process(@NonNull final TreeNode node)
 		{
 			governorsForLexUnit(this.id, node);
 		}
@@ -2551,7 +2553,7 @@ abstract public class BaseModule extends Module
 		}
 
 		@Override
-		public void process(final TreeNode node)
+		public void process(@NonNull final TreeNode node)
 		{
 			sentencesForPattern(this.id, node);
 		}
@@ -2573,7 +2575,7 @@ abstract public class BaseModule extends Module
 		}
 
 		@Override
-		public void process(final TreeNode node)
+		public void process(@NonNull final TreeNode node)
 		{
 			sentencesForValenceUnit(this.id, node);
 		}
@@ -2642,7 +2644,7 @@ abstract public class BaseModule extends Module
 		}
 
 		@Override
-		public void process(final TreeNode node)
+		public void process(@NonNull final TreeNode node)
 		{
 			annoSetsForGovernor(this.id, node);
 		}

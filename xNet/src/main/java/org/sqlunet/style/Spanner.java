@@ -189,7 +189,7 @@ public class Spanner
 	 * @param sb       spannable string builder
 	 * @param drawable drawable to use
 	 */
-	static public void appendImage(@NonNull final SpannableStringBuilder sb, final Drawable drawable)
+	static public void appendImage(@NonNull final SpannableStringBuilder sb, @NonNull final Drawable drawable)
 	{
 		final Object span = new ImageSpan(drawable, DynamicDrawableSpan.ALIGN_BASELINE);
 		Spanner.appendImageSpans(sb, span);
@@ -222,13 +222,13 @@ public class Spanner
 	 * @param caption           caption
 	 * @param listener          click listener
 	 */
-	static private void appendClickableImage(@NonNull final SpannableStringBuilder sb, final Drawable collapsedDrawable, final Drawable expandedDrawable, @NonNull final CharSequence caption, @NonNull final OnClickImage listener)
+	static private void appendClickableImage(@NonNull final SpannableStringBuilder sb, @NonNull final Drawable collapsedDrawable, final Drawable expandedDrawable, @NonNull final CharSequence caption, @NonNull final OnClickImage listener)
 	{
 		final ImageSpan span = new ImageSpan(collapsedDrawable, DynamicDrawableSpan.ALIGN_BASELINE);
 		final ClickableSpan span2 = new ClickableSpan()
 		{
 			@Override
-			synchronized public void onClick(final View view)
+			synchronized public void onClick(@NonNull final View view)
 			{
 				// Log.d(TAG, "Click image");
 				final TextView textView = (TextView) view;

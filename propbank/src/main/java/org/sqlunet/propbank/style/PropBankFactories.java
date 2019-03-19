@@ -20,25 +20,11 @@ public class PropBankFactories
 
 	static public final SpanFactory roleFactory = Factories.roleFactory;
 
-	static public final SpanFactory thetaFactory = new SpanFactory()
-	{
-		@Override
-		public Object makeSpans(final long flags)
-		{
-			return new Object[]{new BackgroundColorSpan(Color.BLUE), new ForegroundColorSpan(Color.WHITE), new StyleSpan(Typeface.BOLD)};
-		}
-	};
+	static public final SpanFactory thetaFactory = flags -> new Object[]{new BackgroundColorSpan(Color.BLUE), new ForegroundColorSpan(Color.WHITE), new StyleSpan(Typeface.BOLD)};
 
 	static public final SpanFactory definitionFactory = Factories.definitionFactory;
 
 	static public final SpanFactory exampleFactory = Factories.exampleFactory;
 
-	static public final SpanFactory relationFactory = new SpanFactory()
-	{
-		@Override
-		public Object makeSpans(final long flags)
-		{
-			return new Object[]{new BackgroundColorSpan(Color.GRAY), new ForegroundColorSpan(Color.WHITE), new StyleSpan(Typeface.BOLD)};
-		}
-	};
+	static public final SpanFactory relationFactory = flags -> new Object[]{new BackgroundColorSpan(Color.GRAY), new ForegroundColorSpan(Color.WHITE), new StyleSpan(Typeface.BOLD)};
 }

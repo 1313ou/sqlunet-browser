@@ -36,6 +36,7 @@ class SynsetWordsQuery extends DBQuery
 	 */
 	public String getLemma()
 	{
+		assert this.cursor != null;
 		return this.cursor.getString(0);
 	}
 
@@ -46,6 +47,7 @@ class SynsetWordsQuery extends DBQuery
 	 */
 	public long getId()
 	{
+		assert this.cursor != null;
 		return this.cursor.getLong(1);
 	}
 }

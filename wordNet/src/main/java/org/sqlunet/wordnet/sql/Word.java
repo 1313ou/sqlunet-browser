@@ -250,6 +250,7 @@ public class Word extends BasicWord
 					values = new TreeSet<>();
 					map.put(key, values);
 				}
+				assert values != null;
 				values.add(linkType);
 			}
 		}

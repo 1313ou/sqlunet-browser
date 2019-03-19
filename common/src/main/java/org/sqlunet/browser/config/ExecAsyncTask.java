@@ -97,11 +97,9 @@ public class ExecAsyncTask
 			final String databaseArg = args.first;
 			final String[] sqlArgs = args.second;
 
-			SQLiteDatabase db = null;
-			try
+			try (SQLiteDatabase db = SQLiteDatabase.openDatabase(databaseArg, null, SQLiteDatabase.OPEN_READWRITE))
 			{
 				// database
-				db = SQLiteDatabase.openDatabase(databaseArg, null, SQLiteDatabase.OPEN_READWRITE);
 
 				// execute
 				final int total = sqlArgs.length;
@@ -136,13 +134,6 @@ public class ExecAsyncTask
 			catch (@NonNull final Exception e)
 			{
 				Log.e(TAG, "While executing", e);
-			}
-			finally
-			{
-				if (db != null)
-				{
-					db.close();
-				}
 			}
 			return false;
 		}
@@ -234,7 +225,7 @@ public class ExecAsyncTask
 
 			// wake lock
 			assert this.powerManager != null;
-			final PowerManager.WakeLock wakelock = this.powerManager.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, "Executor");
+			final PowerManager.WakeLock wakelock = this.powerManager.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, "org.sqlunet.browser:Executor");
 			wakelock.acquire(20*60*1000L /*20 minutes*/);
 
 			SQLiteDatabase db = null;

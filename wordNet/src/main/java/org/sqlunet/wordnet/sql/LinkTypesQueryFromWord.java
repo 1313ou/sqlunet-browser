@@ -44,6 +44,7 @@ class LinkTypesQueryFromWord extends DBQuery
 	 */
 	public int getLinkType()
 	{
+		assert this.cursor != null;
 		return this.cursor.getInt(0);
 	}
 
@@ -54,6 +55,7 @@ class LinkTypesQueryFromWord extends DBQuery
 	 */
 	public int getLexDomainId()
 	{
+		assert this.cursor != null;
 		return this.cursor.getInt(1);
 	}
 }

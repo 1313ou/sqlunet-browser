@@ -26,8 +26,6 @@ import android.widget.Toast;
 
 import org.sqlunet.support.util.IabBroadcastReceiver;
 import org.sqlunet.support.util.IabHelper;
-import org.sqlunet.support.util.IabResult;
-import org.sqlunet.support.util.Inventory;
 import org.sqlunet.support.util.Purchase;
 
 /**
@@ -261,53 +259,47 @@ public class IABAdapter implements IabBroadcastReceiver.IabBroadcastListener
 	 * Callback for when we finish setting up
 	 */
 	@Nullable
-	private final IabHelper.OnIabSetupFinishedListener setupFinishedListener = new IabHelper.OnIabSetupFinishedListener()
-	{
-		@SuppressWarnings("synthetic-access")
-		@Override
-		public void onIabSetupFinished(@NonNull final IabResult result)
+	private final IabHelper.OnIabSetupFinishedListener setupFinishedListener = result -> {
+		Log.d(TAG, "Setup finished");
+
+		if (!result.isSuccess())
 		{
-			Log.d(TAG, "Setup finished");
+			// There was a problem.
+			Log.e(TAG, "Set up failed with result: " + result);
+			complain("Failed to set up in-app billing: " + result);
+			IABAdapter.this.iabListener.onFinish(false, IABListener.Op.SETUP);
+			return;
+		}
 
-			if (!result.isSuccess())
-			{
-				// There was a problem.
-				Log.e(TAG, "Set up failed with result: " + result);
-				complain("Failed to set up in-app billing: " + result);
-				IABAdapter.this.iabListener.onFinish(false, IABListener.Op.SETUP);
-				return;
-			}
+		// Have we been disposed of in the meantime? If so, quit.
+		if (IABAdapter.this.iabHelper == null)
+		{
+			return;
+		}
 
-			// Have we been disposed of in the meantime? If so, quit.
-			if (IABAdapter.this.iabHelper == null)
-			{
-				return;
-			}
+		// IAB is fully set up
+		Log.d(TAG, "Setup successful");
+		IABAdapter.this.iabListener.onFinish(true, IABListener.Op.SETUP);
 
-			// IAB is fully set up
-			Log.d(TAG, "Setup successful");
-			IABAdapter.this.iabListener.onFinish(true, IABListener.Op.SETUP);
+		// Important: Dynamically register for broadcast messages about updated purchases.
+		// We register the receiver here instead of as a <receiver> in the Manifest
+		// because we always call getPurchases() at startup, so therefore we can ignore
+		// any broadcasts sent while the app isn't running.
+		// Note: registering this listener in an Activity is a bad idea, but is done here
+		// because this is a SAMPLE. Regardless, the receiver must be registered after
+		// IabHelper is setup, but before first call to getPurchases().
+		IABAdapter.this.broadcastReceiver = new IabBroadcastReceiver(IABAdapter.this);
+		IntentFilter broadcastFilter = new IntentFilter(IabBroadcastReceiver.ACTION);
+		IABAdapter.this.activity.registerReceiver(IABAdapter.this.broadcastReceiver, broadcastFilter);
 
-			// Important: Dynamically register for broadcast messages about updated purchases.
-			// We register the receiver here instead of as a <receiver> in the Manifest
-			// because we always call getPurchases() at startup, so therefore we can ignore
-			// any broadcasts sent while the app isn't running.
-			// Note: registering this listener in an Activity is a bad idea, but is done here
-			// because this is a SAMPLE. Regardless, the receiver must be registered after
-			// IabHelper is setup, but before first call to getPurchases().
-			IABAdapter.this.broadcastReceiver = new IabBroadcastReceiver(IABAdapter.this);
-			IntentFilter broadcastFilter = new IntentFilter(IabBroadcastReceiver.ACTION);
-			IABAdapter.this.activity.registerReceiver(IABAdapter.this.broadcastReceiver, broadcastFilter);
-
-			// Get an inventory of stuff we own.
-			try
-			{
-				queryInventory();
-			}
-			catch (IabHelper.IabAsyncInProgressException e)
-			{
-				Log.e(TAG, "Query inventory failed", e);
-			}
+		// Get an inventory of stuff we own.
+		try
+		{
+			queryInventory();
+		}
+		catch (IabHelper.IabAsyncInProgressException e)
+		{
+			Log.e(TAG, "Query inventory failed", e);
 		}
 	};
 
@@ -315,130 +307,118 @@ public class IABAdapter implements IabBroadcastReceiver.IabBroadcastListener
 	 * Callback for when we finish querying the items and subscriptions we own
 	 */
 	@Nullable
-	private final IabHelper.QueryInventoryFinishedListener queryInventoryListener = new IabHelper.QueryInventoryFinishedListener()
-	{
-		@SuppressWarnings("synthetic-access")
-		@Override
-		public void onQueryInventoryFinished(@NonNull final IabResult result, @NonNull final Inventory inventory)
+	private final IabHelper.QueryInventoryFinishedListener queryInventoryListener = (result, inventory) -> {
+		Log.d(TAG, "Query inventory finished");
+
+		// Have we been disposed of in the meantime? If so, quit.
+		if (IABAdapter.this.iabHelper == null)
 		{
-			Log.d(TAG, "Query inventory finished");
-
-			// Have we been disposed of in the meantime? If so, quit.
-			if (IABAdapter.this.iabHelper == null)
-			{
-				return;
-			}
-
-			/*
-			if (inventory.hasPurchase(SKU_TEST))
-			{
-				try
-				{
-					consume(inventory.getPurchase(SKU_TEST));
-				}
-				catch (IabHelper.IabAsyncInProgressException e)
-				{
-					e.printStackTrace();
-				}
-			}
-			*/
-
-			// Is it a failure?
-			if (result.isFailure())
-			{
-				Log.e(TAG, "Query inventory failed with result: " + result);
-				complain("Failed to query inventory: " + result);
-				IABAdapter.this.iabListener.onFinish(false, IABListener.Op.INVENTORY);
-				return;
-			}
-
-			Log.d(TAG, "Query inventory was successful");
-
-			// Scan inventory
-			IABAdapter.this.hasDonated = false;
-			for (String sku : SKU_DONATES)
-			{
-				final Purchase purchase = inventory.getPurchase(sku);
-				if (purchase != null)
-				{
-					if (verifyDeveloperPayload(purchase))
-					{
-						IABAdapter.this.hasDonated = true;
-					}
-
-					// The time the product was purchased, in milliseconds since the epoch (Jan 1, 1970).
-					long purchaseTime = purchase.getPurchaseTime();
-					long now = System.currentTimeMillis();
-					long diff = now - purchaseTime;
-					//      s      m    h    d
-					diff /= 1000 * 60 * 60 * 24;
-					if (diff > 30)
-					{
-						try
-						{
-							consume(purchase);
-						}
-						catch (Exception e)
-						{
-							Log.e(TAG, "Cannot consume");
-						}
-					}
-				}
-			}
-
-			Log.d(TAG, "User has " + (IABAdapter.this.hasDonated ? "donated" : "not donated"));
-
-			// Fire finish signal
-			IABAdapter.this.iabListener.onFinish(IABAdapter.this.hasDonated, IABListener.Op.INVENTORY);
+			return;
 		}
+
+		/*
+		if (inventory.hasPurchase(SKU_TEST))
+		{
+			try
+			{
+				consume(inventory.getPurchase(SKU_TEST));
+			}
+			catch (IabHelper.IabAsyncInProgressException e)
+			{
+				e.printStackTrace();
+			}
+		}
+		*/
+
+		// Is it a failure?
+		if (result.isFailure())
+		{
+			Log.e(TAG, "Query inventory failed with result: " + result);
+			complain("Failed to query inventory: " + result);
+			IABAdapter.this.iabListener.onFinish(false, IABListener.Op.INVENTORY);
+			return;
+		}
+
+		Log.d(TAG, "Query inventory was successful");
+
+		// Scan inventory
+		IABAdapter.this.hasDonated = false;
+		for (String sku : SKU_DONATES)
+		{
+			final Purchase purchase = inventory.getPurchase(sku);
+			if (purchase != null)
+			{
+				if (verifyDeveloperPayload(purchase))
+				{
+					IABAdapter.this.hasDonated = true;
+				}
+
+				// The time the product was purchased, in milliseconds since the epoch (Jan 1, 1970).
+				long purchaseTime = purchase.getPurchaseTime();
+				long now = System.currentTimeMillis();
+				long diff = now - purchaseTime;
+				//      s      m    h    d
+				diff /= 1000 * 60 * 60 * 24;
+				if (diff > 30)
+				{
+					try
+					{
+						consume(purchase);
+					}
+					catch (Exception e)
+					{
+						Log.e(TAG, "Cannot consume");
+					}
+				}
+			}
+		}
+
+		Log.d(TAG, "User has " + (IABAdapter.this.hasDonated ? "donated" : "not donated"));
+
+		// Fire finish signal
+		IABAdapter.this.iabListener.onFinish(IABAdapter.this.hasDonated, IABListener.Op.INVENTORY);
 	};
 
 	/**
 	 * Callback for when a purchase is finished
 	 */
 	@Nullable
-	private final IabHelper.OnIabPurchaseFinishedListener purchaseFinishedListener = new IabHelper.OnIabPurchaseFinishedListener()
-	{
-		@SuppressWarnings("synthetic-access")
-		@Override
-		public void onIabPurchaseFinished(@NonNull IabResult result, @NonNull Purchase purchase)
+	private final IabHelper.OnIabPurchaseFinishedListener purchaseFinishedListener = (result, purchase) -> {
+		Log.d(TAG, "Purchase finished: " + result + ", purchase: " + purchase);
+
+		// if we were disposed of in the meantime, quit.
+		if (IABAdapter.this.iabHelper == null)
 		{
-			Log.d(TAG, "Purchase finished: " + result + ", purchase: " + purchase);
+			return;
+		}
 
-			// if we were disposed of in the meantime, quit.
-			if (IABAdapter.this.iabHelper == null)
+		if (result.isFailure())
+		{
+			Log.e(TAG, "Purchase failed with result: " + result);
+			complain("Error purchasing: " + result);
+			IABAdapter.this.iabListener.onFinish(false, IABListener.Op.BUY);
+			return;
+		}
+
+		if (!verifyDeveloperPayload(purchase))
+		{
+			Log.e(TAG, "Semantikos IAB failed to verify purchase: " + result);
+			complain("Error while donating : authenticity verification failed");
+			IABAdapter.this.iabListener.onFinish(false, IABListener.Op.BUY);
+			return;
+		}
+
+		Log.d(TAG, "Purchase successful " + purchase.getSku());
+
+		for (String donate : SKU_DONATES)
+		{
+			if (donate.equals(purchase.getSku()))
 			{
-				return;
-			}
-
-			if (result.isFailure())
-			{
-				Log.e(TAG, "Purchase failed with result: " + result);
-				complain("Error purchasing: " + result);
-				IABAdapter.this.iabListener.onFinish(false, IABListener.Op.BUY);
-				return;
-			}
-
-			if (!verifyDeveloperPayload(purchase))
-			{
-				Log.e(TAG, "Semantikos IAB failed to verify purchase: " + result);
-				complain("Error while donating : authenticity verification failed");
-				IABAdapter.this.iabListener.onFinish(false, IABListener.Op.BUY);
-				return;
-			}
-
-			Log.d(TAG, "Purchase successful " + purchase.getSku());
-
-			for (String donate : SKU_DONATES)
-			{
-				if (donate.equals(purchase.getSku()))
-				{
-					// donated
-					Log.d(TAG, "Purchase is successful: donation is owned " + donate);
-					alert("Thank you for donating!");
-					IABAdapter.this.hasDonated = true;
-					IABAdapter.this.iabListener.onFinish(true, IABListener.Op.BUY);
-				}
+				// donated
+				Log.d(TAG, "Purchase is successful: donation is owned " + donate);
+				alert("Thank you for donating!");
+				IABAdapter.this.hasDonated = true;
+				IABAdapter.this.iabListener.onFinish(true, IABListener.Op.BUY);
 			}
 		}
 	};
@@ -447,35 +427,29 @@ public class IABAdapter implements IabBroadcastReceiver.IabBroadcastListener
 	 * Callback for when consumption is complete
 	 */
 	@Nullable
-	private final IabHelper.OnConsumeFinishedListener consumeFinishedListener = new IabHelper.OnConsumeFinishedListener()
-	{
-		@SuppressWarnings("synthetic-access")
-		@Override
-		public void onConsumeFinished(Purchase purchase, @NonNull IabResult result)
+	private final IabHelper.OnConsumeFinishedListener consumeFinishedListener = (purchase, result) -> {
+		Log.d(TAG, "Consumption finished. Purchase: " + purchase + ", result: " + result);
+
+		// if we were disposed of in the meantime, quit.
+		if (IABAdapter.this.iabHelper == null)
 		{
-			Log.d(TAG, "Consumption finished. Purchase: " + purchase + ", result: " + result);
-
-			// if we were disposed of in the meantime, quit.
-			if (IABAdapter.this.iabHelper == null)
-			{
-				return;
-			}
-
-			// We know this is the X sku because it's the only one we consume, so we don't check which sku was consumed. If you have more than one sku, you probably should check...
-			if (result.isSuccess())
-			{
-				// successfully consumed, so we apply the effects of the item in our world's logic
-				Log.d(TAG, "Consumption successful");
-				// ...
-				alert("Consuming!");
-			}
-			else
-			{
-				complain("Error while consuming: " + result);
-			}
-			IABAdapter.this.iabListener.onFinish(IABAdapter.this.hasDonated, IABListener.Op.BUY);
-			Log.d(TAG, "End consumption flow");
+			return;
 		}
+
+		// We know this is the X sku because it's the only one we consume, so we don't check which sku was consumed. If you have more than one sku, you probably should check...
+		if (result.isSuccess())
+		{
+			// successfully consumed, so we apply the effects of the item in our world's logic
+			Log.d(TAG, "Consumption successful");
+			// ...
+			alert("Consuming!");
+		}
+		else
+		{
+			complain("Error while consuming: " + result);
+		}
+		IABAdapter.this.iabListener.onFinish(IABAdapter.this.hasDonated, IABListener.Op.BUY);
+		Log.d(TAG, "End consumption flow");
 	};
 
 	// P A Y L O A D    V E R I F I C A T I O N

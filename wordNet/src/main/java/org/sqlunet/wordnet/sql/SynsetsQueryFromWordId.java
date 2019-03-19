@@ -36,6 +36,7 @@ class SynsetsQueryFromWordId extends DBQuery
 	 */
 	public long getSynsetId()
 	{
+		assert this.cursor != null;
 		return this.cursor.getLong(0);
 	}
 
@@ -46,6 +47,7 @@ class SynsetsQueryFromWordId extends DBQuery
 	 */
 	public String getDefinition()
 	{
+		assert this.cursor != null;
 		return this.cursor.getString(1);
 	}
 
@@ -57,6 +59,7 @@ class SynsetsQueryFromWordId extends DBQuery
 	@SuppressWarnings("unused")
 	public String getPos()
 	{
+		assert this.cursor != null;
 		return this.cursor.getString(2);
 	}
 
@@ -67,6 +70,7 @@ class SynsetsQueryFromWordId extends DBQuery
 	 */
 	public int getLexDomainId()
 	{
+		assert this.cursor != null;
 		return this.cursor.getInt(3);
 	}
 
@@ -77,6 +81,7 @@ class SynsetsQueryFromWordId extends DBQuery
 	 */
 	public String getSample()
 	{
+		assert this.cursor != null;
 		return this.cursor.getString(4);
 	}
 }

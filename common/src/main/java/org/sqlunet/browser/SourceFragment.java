@@ -52,7 +52,9 @@ public class SourceFragment extends ListFragment
 				final String[] selectionArgs = null;
 				final String selection = null;
 				final String sort = Sources.ID;
-				return new CursorLoader(getActivity(), uri, projection, selection, selectionArgs, sort);
+				final Context context = getContext();
+				assert context != null;
+				return new CursorLoader(context, uri, projection, selection, selectionArgs, sort);
 			}
 
 			@Override

@@ -2,7 +2,6 @@ package org.sqlunet.browser.config;
 
 import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.os.AsyncTask;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -146,12 +145,8 @@ class FileAsyncTask
 			File sourceFile = new File(srcArg);
 			int length = (int) sourceFile.length();
 
-			FileInputStream in = null;
-			FileOutputStream out = null;
-			try
+			try (FileInputStream in = new FileInputStream(srcArg); FileOutputStream out = new FileOutputStream(destArg))
 			{
-				in = new FileInputStream(srcArg);
-				out = new FileOutputStream(destArg);
 
 				final byte[] buffer = new byte[CHUNK_SIZE];
 				int byteCount = 0;
@@ -186,31 +181,8 @@ class FileAsyncTask
 			{
 				Log.e(TAG, "While copying", e);
 			}
-			finally
-			{
-				if (out != null)
-				{
-					try
-					{
-						out.close();
-					}
-					catch (IOException e)
-					{
-						//
-					}
-				}
-				if (in != null)
-				{
-					try
-					{
-						in.close();
-					}
-					catch (IOException e)
-					{
-						//
-					}
-				}
-			}
+			//
+			//
 			return false;
 		}
 
@@ -617,35 +589,20 @@ class FileAsyncTask
 			input.setSelection(fromPath.length());
 		}
 		alert.setView(input);
-		alert.setPositiveButton(R.string.action_ok, new DialogInterface.OnClickListener()
-		{
-			@Override
-			public void onClick(DialogInterface dialog, int whichButton)
-			{
-				final String sourceFile = input.getText().toString();
-				final TaskObserver.Listener listener = new TaskObserver.DialogListener(context, R.string.action_unzip_from_archive, sourceFile, null);
-				final ResultListener resultListener = new ResultListener()
+		alert.setPositiveButton(R.string.action_ok, (dialog, whichButton) -> {
+			final String sourceFile = input.getText().toString();
+			final TaskObserver.Listener listener = new TaskObserver.DialogListener(context, R.string.action_unzip_from_archive, sourceFile, null);
+			final ResultListener resultListener = result -> {
+				final Boolean success = (Boolean) result;
+				if (success)
 				{
-					@Override
-					public void onResult(Object result)
-					{
-						final Boolean success = (Boolean) result;
-						if (success)
-						{
-							FileData.recordDb(context);
-						}
-					}
-				};
-				new FileAsyncTask(listener, resultListener, 1000).unzipFromArchive(sourceFile, zipEntry, databasePath);
-			}
+					FileData.recordDb(context);
+				}
+			};
+			new FileAsyncTask(listener, resultListener, 1000).unzipFromArchive(sourceFile, zipEntry, databasePath);
 		});
-		alert.setNegativeButton(R.string.action_cancel, new DialogInterface.OnClickListener()
-		{
-			@Override
-			public void onClick(DialogInterface dialog, int whichButton)
-			{
-				// canceled.
-			}
+		alert.setNegativeButton(R.string.action_cancel, (dialog, whichButton) -> {
+			// canceled.
 		});
 		alert.show();
 	}
@@ -671,35 +628,20 @@ class FileAsyncTask
 			input.setSelection(fromPath.length());
 		}
 		alert.setView(input);
-		alert.setPositiveButton(R.string.action_ok, new DialogInterface.OnClickListener()
-		{
-			@Override
-			public void onClick(DialogInterface dialog, int whichButton)
-			{
-				final String sourceFile = input.getText().toString();
-				final TaskObserver.Listener listener = new TaskObserver.DialogListener(context, R.string.action_copy_from_file, sourceFile, null);
-				final ResultListener resultListener = new ResultListener()
+		alert.setPositiveButton(R.string.action_ok, (dialog, whichButton) -> {
+			final String sourceFile = input.getText().toString();
+			final TaskObserver.Listener listener = new TaskObserver.DialogListener(context, R.string.action_copy_from_file, sourceFile, null);
+			final ResultListener resultListener = result -> {
+				final Boolean success = (Boolean) result;
+				if (success)
 				{
-					@Override
-					public void onResult(Object result)
-					{
-						final Boolean success = (Boolean) result;
-						if (success)
-						{
-							FileData.recordDb(context);
-						}
-					}
-				};
-				new FileAsyncTask(listener, resultListener, 1000).copyFromFile(sourceFile, databasePath);
-			}
+					FileData.recordDb(context);
+				}
+			};
+			new FileAsyncTask(listener, resultListener, 1000).copyFromFile(sourceFile, databasePath);
 		});
-		alert.setNegativeButton(R.string.action_cancel, new DialogInterface.OnClickListener()
-		{
-			@Override
-			public void onClick(DialogInterface dialog, int whichButton)
-			{
-				// canceled.
-			}
+		alert.setNegativeButton(R.string.action_cancel, (dialog, whichButton) -> {
+			// canceled.
 		});
 		alert.show();
 	}
@@ -782,68 +724,53 @@ class FileAsyncTask
 			}
 		}
 		alert.setView(input);
-		alert.setPositiveButton(R.string.action_ok, new DialogInterface.OnClickListener()
-		{
-			@Override
-			public void onClick(@NonNull DialogInterface dialog, int whichButton)
+		alert.setPositiveButton(R.string.action_ok, (dialog, whichButton) -> {
+			dialog.dismiss();
+
+			//final String sourceFile = input0.getText();
+			//final String sourceFile = input.getSelectedItem().toString();
+			int childCount = input.getChildCount();
+			for (int i = 0; i < childCount; i++)
 			{
-				dialog.dismiss();
-
-				//final String sourceFile = input0.getText();
-				//final String sourceFile = input.getSelectedItem().toString();
-				int childCount = input.getChildCount();
-				for (int i = 0; i < childCount; i++)
+				final RadioButton radioButton = (RadioButton) input.getChildAt(i);
+				if (radioButton.getId() == input.getCheckedRadioButtonId())
 				{
-					final RadioButton radioButton = (RadioButton) input.getChildAt(i);
-					if (radioButton.getId() == input.getCheckedRadioButtonId())
+					final String sourceFile = radioButton.getTag().toString();
+					// String md5;
+					if (new File(sourceFile).exists())
 					{
-						final String sourceFile = radioButton.getTag().toString();
-						// String md5;
-						if (new File(sourceFile).exists())
-						{
-							FileAsyncTask.md5(context, sourceFile, new FileAsyncTask.ResultListener()
-							{
-								@Override
-								public void onResult(final Object result)
-								{
-									final String computedResult = (String) result;
-									final SpannableStringBuilder sb = new SpannableStringBuilder();
-									Report.appendHeader(sb, context.getString(R.string.md5_computed));
-									sb.append('\n');
-									sb.append(computedResult == null ? context.getString(R.string.status_task_failed) : computedResult);
+						FileAsyncTask.md5(context, sourceFile, result1 -> {
+							final String computedResult = (String) result1;
+							final SpannableStringBuilder sb = new SpannableStringBuilder();
+							Report.appendHeader(sb, context.getString(R.string.md5_computed));
+							sb.append('\n');
+							sb.append(computedResult == null ? context.getString(R.string.status_task_failed) : computedResult);
 
-									// selectable
-									final TextView resultView = new TextView(context);
-									resultView.setText(sb);
-									resultView.setPadding(35, 20, 35, 20);
-									resultView.setTextIsSelectable(true);
+							// selectable
+							final TextView resultView = new TextView(context);
+							resultView.setText(sb);
+							resultView.setPadding(35, 20, 35, 20);
+							resultView.setTextIsSelectable(true);
 
-									final AlertDialog.Builder alert2 = new AlertDialog.Builder(context);
-									alert2.setTitle(context.getString(R.string.action_md5_of) + ' ' + sourceFile) //
-											.setView(resultView)
-											//.setMessage(sb)
-											.show();
-								}
-							});
-						}
-						else
-						{
 							final AlertDialog.Builder alert2 = new AlertDialog.Builder(context);
-							alert2.setTitle(sourceFile) //
-									.setMessage(context.getString(R.string.status_data_fail)) //
+							alert2.setTitle(context.getString(R.string.action_md5_of) + ' ' + sourceFile) //
+									.setView(resultView)
+									//.setMessage(sb)
 									.show();
-						}
+						});
+					}
+					else
+					{
+						final AlertDialog.Builder alert2 = new AlertDialog.Builder(context);
+						alert2.setTitle(sourceFile) //
+								.setMessage(context.getString(R.string.status_data_fail)) //
+								.show();
 					}
 				}
 			}
 		});
-		alert.setNegativeButton(R.string.action_cancel, new DialogInterface.OnClickListener()
-		{
-			@Override
-			public void onClick(DialogInterface dialog, int whichButton)
-			{
-				// canceled.
-			}
+		alert.setNegativeButton(R.string.action_cancel, (dialog, whichButton) -> {
+			// canceled.
 		});
 		alert.show();
 	}

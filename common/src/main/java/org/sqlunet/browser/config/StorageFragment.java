@@ -2,7 +2,6 @@ package org.sqlunet.browser.config;
 
 import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -50,16 +49,11 @@ public class StorageFragment extends NavigableFragment
 		// swipe refresh layout
 		this.swipeRefreshLayout = view.findViewById(R.id.swipe_refresh);
 		this.swipeRefreshLayout.setColorSchemeResources(R.color.swipe_down_1_color, R.color.swipe_down_2_color);
-		this.swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener()
-		{
-			@Override
-			public void onRefresh()
-			{
-				update();
+		this.swipeRefreshLayout.setOnRefreshListener(() -> {
+			update();
 
-				// stop the refreshing indicator
-				StorageFragment.this.swipeRefreshLayout.setRefreshing(false);
-			}
+			// stop the refreshing indicator
+			StorageFragment.this.swipeRefreshLayout.setRefreshing(false);
 		});
 		return view;
 	}
@@ -120,13 +114,8 @@ public class StorageFragment extends NavigableFragment
 			final AlertDialog.Builder alert = new AlertDialog.Builder(context);
 			alert.setTitle(R.string.action_storage_dirs);
 			alert.setMessage(message);
-			alert.setNegativeButton(R.string.action_dismiss, new DialogInterface.OnClickListener()
-			{
-				@Override
-				public void onClick(DialogInterface dialog, int whichButton)
-				{
-					// canceled.
-				}
+			alert.setNegativeButton(R.string.action_dismiss, (dialog, whichButton) -> {
+				// canceled.
 			});
 			alert.show();
 		}

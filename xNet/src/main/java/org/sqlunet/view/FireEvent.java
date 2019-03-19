@@ -22,7 +22,7 @@ public class FireEvent
 	 * @param node       node
 	 * @param addNewNode whether results were supposed to be new subnodes or replace query node
 	 */
-	static public void onNoResult(final TreeNode node, boolean addNewNode)
+	static public void onNoResult(@NonNull final TreeNode node, boolean addNewNode)
 	{
 		if (addNewNode)
 		{
@@ -39,7 +39,7 @@ public class FireEvent
 	 *
 	 * @param node node
 	 */
-	static public void onResults(final TreeNode node)
+	static public void onResults(@NonNull final TreeNode node)
 	{
 		TreeView.expand(node, false);
 	}
@@ -50,7 +50,7 @@ public class FireEvent
 	 * @param node   node
 	 * @param levels number of levels
 	 */
-	static public void onResults(final TreeNode node, int levels)
+	static public void onResults(@NonNull final TreeNode node, int levels)
 	{
 		TreeView.expand(node, levels);
 	}
@@ -61,7 +61,7 @@ public class FireEvent
 	 * @param node  node
 	 * @param value node value
 	 */
-	static public void onResults(final TreeNode node, final CharSequence value)
+	static public void onResults(@NonNull final TreeNode node, final CharSequence value)
 	{
 		TreeView.setNodeValue(node, value);
 	}

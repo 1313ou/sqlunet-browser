@@ -19,7 +19,6 @@ import android.widget.CursorAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
-import android.widget.SimpleCursorAdapter.ViewBinder;
 import android.widget.TextView;
 
 import org.sqlunet.browser.Module;
@@ -146,38 +145,33 @@ public class SelectorsFragment extends ListFragment
 						R.id.fnwordid, //
 				}, 0);
 
-		adapter.setViewBinder(new ViewBinder()
-		{
-			@Override
-			public boolean setViewValue(final View view, @NonNull final Cursor cursor, final int columnIndex)
+		adapter.setViewBinder((view, cursor, columnIndex) -> {
+			String text = cursor.getString(columnIndex);
+			if (text == null)
 			{
-				String text = cursor.getString(columnIndex);
-				if (text == null)
-				{
-					text = "";
-				}
-
-				if (view instanceof TextView)
-				{
-					((TextView) view).setText(text);
-				}
-				else if (view instanceof ImageView)
-				{
-					try
-					{
-						((ImageView) view).setImageResource(Integer.parseInt(text));
-					}
-					catch (@NonNull final NumberFormatException nfe)
-					{
-						((ImageView) view).setImageURI(Uri.parse(text));
-					}
-				}
-				else
-				{
-					throw new IllegalStateException(view.getClass().getName() + " is not a view that can be bound by this SimpleCursorAdapter");
-				}
-				return false;
+				text = "";
 			}
+
+			if (view instanceof TextView)
+			{
+				((TextView) view).setText(text);
+			}
+			else if (view instanceof ImageView)
+			{
+				try
+				{
+					((ImageView) view).setImageResource(Integer.parseInt(text));
+				}
+				catch (@NonNull final NumberFormatException nfe)
+				{
+					((ImageView) view).setImageURI(Uri.parse(text));
+				}
+			}
+			else
+			{
+				throw new IllegalStateException(view.getClass().getName() + " is not a view that can be bound by this SimpleCursorAdapter");
+			}
+			return false;
 		});
 		setListAdapter(adapter);
 	}
@@ -185,7 +179,7 @@ public class SelectorsFragment extends ListFragment
 	// V I E W
 
 	@Override
-	public View onCreateView(final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState)
+	public View onCreateView(@NonNull final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState)
 	{
 		return inflater.inflate(R.layout.fragment_selectors, container, false);
 	}

@@ -37,6 +37,7 @@ class FnSentenceQuery extends DBQuery
 	@SuppressWarnings("unused")
 	public long getSentenceId()
 	{
+		assert this.cursor != null;
 		return this.cursor.getLong(0);
 	}
 
@@ -47,6 +48,7 @@ class FnSentenceQuery extends DBQuery
 	 */
 	public String getText()
 	{
+		assert this.cursor != null;
 		return this.cursor.getString(1);
 	}
 }

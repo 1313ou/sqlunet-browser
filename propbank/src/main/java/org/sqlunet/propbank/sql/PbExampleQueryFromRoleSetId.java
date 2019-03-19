@@ -40,6 +40,7 @@ class PbExampleQueryFromRoleSetId extends DBQuery
 	 */
 	public long getExampleId()
 	{
+		assert this.cursor != null;
 		return this.cursor.getLong(0);
 	}
 
@@ -50,6 +51,7 @@ class PbExampleQueryFromRoleSetId extends DBQuery
 	 */
 	public String getText()
 	{
+		assert this.cursor != null;
 		return this.cursor.getString(1);
 	}
 
@@ -60,6 +62,7 @@ class PbExampleQueryFromRoleSetId extends DBQuery
 	 */
 	public String getRel()
 	{
+		assert this.cursor != null;
 		return this.cursor.getString(2);
 	}
 
@@ -71,6 +74,7 @@ class PbExampleQueryFromRoleSetId extends DBQuery
 	@Nullable
 	public List<PbArg> getArgs()
 	{
+		assert this.cursor != null;
 		final String concatArg = this.cursor.getString(3);
 		if (concatArg == null)
 		{
@@ -92,6 +96,7 @@ class PbExampleQueryFromRoleSetId extends DBQuery
 	 */
 	public String getAspect()
 	{
+		assert this.cursor != null;
 		return this.cursor.getString(4);
 	}
 
@@ -102,6 +107,7 @@ class PbExampleQueryFromRoleSetId extends DBQuery
 	 */
 	public String getForm()
 	{
+		assert this.cursor != null;
 		return this.cursor.getString(5);
 	}
 
@@ -112,6 +118,7 @@ class PbExampleQueryFromRoleSetId extends DBQuery
 	 */
 	public String getTense()
 	{
+		assert this.cursor != null;
 		return this.cursor.getString(6);
 	}
 
@@ -122,6 +129,7 @@ class PbExampleQueryFromRoleSetId extends DBQuery
 	 */
 	public String getVoice()
 	{
+		assert this.cursor != null;
 		return this.cursor.getString(7);
 	}
 
@@ -132,6 +140,7 @@ class PbExampleQueryFromRoleSetId extends DBQuery
 	 */
 	public String getPerson()
 	{
+		assert this.cursor != null;
 		return this.cursor.getString(8);
 	}
 }

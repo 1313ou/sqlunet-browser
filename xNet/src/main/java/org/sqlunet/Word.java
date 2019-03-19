@@ -75,6 +75,7 @@ public class Word implements IPointer
 		return 0;
 	}
 
+	@NonNull
 	@Override
 	public String toString()
 	{

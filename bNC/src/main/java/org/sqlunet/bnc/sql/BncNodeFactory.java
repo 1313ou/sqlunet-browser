@@ -23,7 +23,7 @@ class BncNodeFactory extends NodeFactory
 	 * @param pos    target pos
 	 * @return newly created node
 	 */
-	static public Node makeBncRootNode(final Document doc, final long wordId, @Nullable final Character pos)
+	static public Node makeBncRootNode(@NonNull final Document doc, final long wordId, @Nullable final Character pos)
 	{
 		final Element rootNode = NodeFactory.makeNode(doc, doc, "bnc", null, BncImplementation.BNC_NS);
 		if (pos == null)
@@ -46,7 +46,7 @@ class BncNodeFactory extends NodeFactory
 	 * @param i      the ith BNC data
 	 */
 	@SuppressWarnings("UnusedReturnValue")
-	static public Node makeBncNode(final Document doc, final Node parent, @NonNull final BncData data, final int i)
+	static public Node makeBncNode(@NonNull final Document doc, final Node parent, @NonNull final BncData data, final int i)
 	{
 		final Element element = NodeFactory.makeNode(doc, parent, "bncdata", null);
 		NodeFactory.makeAttribute(element, "id", Integer.toString(i));
@@ -82,7 +82,7 @@ class BncNodeFactory extends NodeFactory
 		return element;
 	}
 
-	static private void makeDataNode(final Document doc, final Node parent, final String name, @Nullable final Object object)
+	static private void makeDataNode(@NonNull final Document doc, final Node parent, final String name, @Nullable final Object object)
 	{
 		if (object == null)
 		{

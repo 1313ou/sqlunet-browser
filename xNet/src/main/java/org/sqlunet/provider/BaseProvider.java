@@ -178,7 +178,7 @@ public abstract class BaseProvider extends ContentProvider
 	 * @return opened database
 	 */
 	@Nullable
-	private SQLiteDatabase open(final String path, @SuppressWarnings("SameParameterValue") final int flags)
+	private SQLiteDatabase open(@NonNull final String path, @SuppressWarnings("SameParameterValue") final int flags)
 	{
 		this.db = SQLiteDatabase.openDatabase(path, null, flags);
 		return this.db;

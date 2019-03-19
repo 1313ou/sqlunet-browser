@@ -277,24 +277,12 @@ abstract class BaseDownloadFragment extends Fragment implements View.OnClickList
 		this.downloadButton = view.findViewById(R.id.downloadButton);
 		this.downloadButton.setOnClickListener(this);
 		this.cancelButton = view.findViewById(R.id.cancelButton);
-		this.cancelButton.setOnClickListener(new View.OnClickListener()
-		{
-			@Override
-			public void onClick(View v)
-			{
-				BaseDownloadFragment.this.cancelButton.setVisibility(View.INVISIBLE);
-				cancel();
-			}
+		this.cancelButton.setOnClickListener(v -> {
+			BaseDownloadFragment.this.cancelButton.setVisibility(View.INVISIBLE);
+			cancel();
 		});
 		this.md5Button = view.findViewById(R.id.md5Button);
-		this.md5Button.setOnClickListener(new View.OnClickListener()
-		{
-			@Override
-			public void onClick(View v)
-			{
-				md5();
-			}
-		});
+		this.md5Button.setOnClickListener(v -> md5());
 
 		// source
 		final TextView srcView = view.findViewById(R.id.src);
@@ -550,22 +538,17 @@ abstract class BaseDownloadFragment extends Fragment implements View.OnClickList
 		final Activity activity = getActivity();
 		if (activity != null && !this.isDetached())
 		{
-			activity.runOnUiThread(new Runnable()
-			{
-				@Override
-				public void run()
+			activity.runOnUiThread(() -> {
+				if (inProgress)
 				{
-					if (inProgress)
-					{
-						//BaseDownloadFragment.this.downloadButton.setVisibility(View.INVISIBLE);
-						//BaseDownloadFragment.this.cancelButton.setVisibility(View.VISIBLE);
-						BaseDownloadFragment.this.progressBar.setVisibility(View.VISIBLE);
-						BaseDownloadFragment.this.progressStatus.setVisibility(View.VISIBLE);
-						BaseDownloadFragment.this.progressBar.setProgress(progress100);
-						BaseDownloadFragment.this.progressStatus.setText(count);
-					}
-					BaseDownloadFragment.this.statusView.setText(message);
+					//BaseDownloadFragment.this.downloadButton.setVisibility(View.INVISIBLE);
+					//BaseDownloadFragment.this.cancelButton.setVisibility(View.VISIBLE);
+					BaseDownloadFragment.this.progressBar.setVisibility(View.VISIBLE);
+					BaseDownloadFragment.this.progressStatus.setVisibility(View.VISIBLE);
+					BaseDownloadFragment.this.progressBar.setProgress(progress100);
+					BaseDownloadFragment.this.progressStatus.setText(count);
 				}
+				BaseDownloadFragment.this.statusView.setText(message);
 			});
 		}
 	}
@@ -625,14 +608,7 @@ abstract class BaseDownloadFragment extends Fragment implements View.OnClickList
 		final Activity activity = getActivity();
 		if (activity != null && !this.isDetached())
 		{
-			activity.runOnUiThread(new Runnable()
-			{
-				@Override
-				public void run()
-				{
-					Toast.makeText(activity, message, Toast.LENGTH_LONG).show();
-				}
-			});
+			activity.runOnUiThread(() -> Toast.makeText(activity, message, Toast.LENGTH_LONG).show());
 		}
 	}
 
@@ -715,14 +691,7 @@ abstract class BaseDownloadFragment extends Fragment implements View.OnClickList
 		}
 
 		final Handler handler = new Handler();
-		handler.postDelayed(new Runnable()
-		{
-			@Override
-			public void run()
-			{
-				BaseDownloadFragment.this.listener.onDone(status);
-			}
-		}, 1000);
+		handler.postDelayed(() -> BaseDownloadFragment.this.listener.onDone(status), 1000);
 	}
 
 	// M D 5
@@ -734,51 +703,41 @@ abstract class BaseDownloadFragment extends Fragment implements View.OnClickList
 	{
 		final String from = this.downloadUrl + ".md5";
 		final String targetFile = Uri.parse(this.downloadUrl).getLastPathSegment();
-		new MD5Downloader(new MD5Downloader.Listener()
-		{
-			@Override
-			public void onDone(@Nullable final String downloadedResult)
+		new MD5Downloader(downloadedResult -> {
+			if (downloadedResult == null)
 			{
-				if (downloadedResult == null)
-				{
-					final AlertDialog.Builder alert = new AlertDialog.Builder(BaseDownloadFragment.this.getActivity());
-					alert.setTitle(getString(R.string.action_md5) + " of " + targetFile);
-					alert.setMessage(R.string.status_task_failed);
-					alert.show();
-				}
-				else
-				{
-					final Context context = getActivity();
-					assert context != null;
-					assert BaseDownloadFragment.this.destFile != null;
-					final String localPath = BaseDownloadFragment.this.destFile.getAbsolutePath();
-					FileAsyncTask.md5(context, localPath, new FileAsyncTask.ResultListener()
-					{
-						@Override
-						public void onResult(final Object result)
-						{
-							final String computedResult = (String) result;
-							boolean success = downloadedResult.equals(computedResult);
-							final SpannableStringBuilder sb = new SpannableStringBuilder();
-							Report.appendHeader(sb, getString(R.string.md5_downloaded));
-							sb.append('\n');
-							sb.append(downloadedResult);
-							sb.append('\n');
-							Report.appendHeader(sb, getString(R.string.md5_computed));
-							sb.append('\n');
-							sb.append(computedResult == null ? getString(R.string.status_task_failed) : computedResult);
-							sb.append('\n');
-							Report.appendHeader(sb, getString(R.string.md5_compared));
-							sb.append('\n');
-							sb.append(getString(success ? R.string.status_task_success : R.string.status_task_failed));
+				final AlertDialog.Builder alert = new AlertDialog.Builder(BaseDownloadFragment.this.getActivity());
+				alert.setTitle(getString(R.string.action_md5) + " of " + targetFile);
+				alert.setMessage(R.string.status_task_failed);
+				alert.show();
+			}
+			else
+			{
+				final Context context = getActivity();
+				assert context != null;
+				assert BaseDownloadFragment.this.destFile != null;
+				final String localPath = BaseDownloadFragment.this.destFile.getAbsolutePath();
+				FileAsyncTask.md5(context, localPath, result -> {
+					final String computedResult = (String) result;
+					boolean success = downloadedResult.equals(computedResult);
+					final SpannableStringBuilder sb = new SpannableStringBuilder();
+					Report.appendHeader(sb, getString(R.string.md5_downloaded));
+					sb.append('\n');
+					sb.append(downloadedResult);
+					sb.append('\n');
+					Report.appendHeader(sb, getString(R.string.md5_computed));
+					sb.append('\n');
+					sb.append(computedResult == null ? getString(R.string.status_task_failed) : computedResult);
+					sb.append('\n');
+					Report.appendHeader(sb, getString(R.string.md5_compared));
+					sb.append('\n');
+					sb.append(getString(success ? R.string.status_task_success : R.string.status_task_failed));
 
-							final AlertDialog.Builder alert = new AlertDialog.Builder(BaseDownloadFragment.this.getActivity());
-							alert.setTitle(getString(R.string.action_md5_of) + ' ' + targetFile);
-							alert.setMessage(sb);
-							alert.show();
-						}
-					});
-				}
+					final AlertDialog.Builder alert = new AlertDialog.Builder(BaseDownloadFragment.this.getActivity());
+					alert.setTitle(getString(R.string.action_md5_of) + ' ' + targetFile);
+					alert.setMessage(sb);
+					alert.show();
+				});
 			}
 		}).execute(from, targetFile);
 	}

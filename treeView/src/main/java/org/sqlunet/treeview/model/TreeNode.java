@@ -274,6 +274,7 @@ public class TreeNode
 	 *
 	 * @return children
 	 */
+	@NonNull
 	public Iterable<TreeNode> getChildren()
 	{
 		return Collections.unmodifiableList(this.children);

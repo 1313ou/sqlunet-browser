@@ -228,17 +228,12 @@ public class TaskObserver
 		{
 			super.taskStart(task);
 			this.progressDialog.show();
-			this.progressDialog.setButton(DialogInterface.BUTTON_NEGATIVE, this.context.getString(R.string.action_abort), new DialogInterface.OnClickListener()
-			{
-				@Override
-				public void onClick(@NonNull final DialogInterface dialog, final int which)
+			this.progressDialog.setButton(DialogInterface.BUTTON_NEGATIVE, this.context.getString(R.string.action_abort), (dialog, which) -> {
+				if (which == DialogInterface.BUTTON_NEGATIVE)
 				{
-					if (which == DialogInterface.BUTTON_NEGATIVE)
-					{
-						boolean result = task.cancel(true);
-						Log.d(TAG, "Cancel task " + task + ' ' + result);
-						dialog.dismiss();
-					}
+					boolean result = task.cancel(true);
+					Log.d(TAG, "Cancel task " + task + ' ' + result);
+					dialog.dismiss();
 				}
 			});
 		}
@@ -289,22 +284,8 @@ public class TaskObserver
 			progressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
 			progressDialog.setCancelable(true);
 			// until task is available
-			progressDialog.setButton(DialogInterface.BUTTON_NEGATIVE, context.getString(R.string.action_abort), new DialogInterface.OnClickListener()
-			{
-				@Override
-				public void onClick(@NonNull final DialogInterface dialog, final int which)
-				{
-					dialog.dismiss();
-				}
-			});
-			progressDialog.setButton(DialogInterface.BUTTON_POSITIVE, context.getString(R.string.action_dismiss), new DialogInterface.OnClickListener()
-			{
-				@Override
-				public void onClick(@NonNull final DialogInterface dialog, final int which)
-				{
-					dialog.dismiss();
-				}
-			});
+			progressDialog.setButton(DialogInterface.BUTTON_NEGATIVE, context.getString(R.string.action_abort), (dialog, which) -> dialog.dismiss());
+			progressDialog.setButton(DialogInterface.BUTTON_POSITIVE, context.getString(R.string.action_dismiss), (dialog, which) -> dialog.dismiss());
 			return progressDialog;
 		}
 	}

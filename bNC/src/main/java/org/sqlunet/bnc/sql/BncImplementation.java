@@ -1,6 +1,7 @@
 package org.sqlunet.bnc.sql;
 
 import android.database.sqlite.SQLiteDatabase;
+import android.support.annotation.NonNull;
 
 import org.sqlunet.sql.NodeFactory;
 import org.sqlunet.dom.DomFactory;
@@ -91,7 +92,7 @@ public class BncImplementation implements BncInterface
 	 * @param parent     the org.w3c.dom.Node the walk will attach results to
 	 * @param targetWord the target word
 	 */
-	static private void walk(final SQLiteDatabase connection, final Document doc, final Node parent, final String targetWord)
+	static private void walk(final SQLiteDatabase connection, @NonNull final Document doc, final Node parent, final String targetWord)
 	{
 		final List<BncData> datas = BncData.makeData(connection, targetWord);
 		int i = 1;
@@ -110,7 +111,7 @@ public class BncImplementation implements BncInterface
 	 * @param targetWordId the target word id
 	 * @param targetPos    the target pos (null for any)
 	 */
-	static private void walk(final SQLiteDatabase connection, final Document doc, final Node parent, final long targetWordId, final Character targetPos)
+	static private void walk(final SQLiteDatabase connection, @NonNull final Document doc, final Node parent, final long targetWordId, final Character targetPos)
 	{
 		final List<BncData> datas = BncData.makeData(connection, targetWordId, targetPos);
 		int i = 1;

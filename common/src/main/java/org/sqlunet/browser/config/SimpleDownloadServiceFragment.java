@@ -81,6 +81,7 @@ public class SimpleDownloadServiceFragment extends BaseDownloadFragment
 	/**
 	 * Broadcast receiver for start finish events
 	 */
+	@Nullable
 	private final BroadcastReceiver mainBroadcastReceiver = new BroadcastReceiver()
 	{
 		@Override
@@ -152,6 +153,7 @@ public class SimpleDownloadServiceFragment extends BaseDownloadFragment
 		Log.d(TAG, "Register main receiver");
 		final Context context = getActivity();
 		assert context != null;
+		assert this.mainBroadcastReceiver != null;
 		LocalBroadcastManager.getInstance(context).registerReceiver(this.mainBroadcastReceiver, new IntentFilter(SimpleDownloaderService.MAIN_INTENT_FILTER));
 
 		initChannels();
@@ -164,7 +166,8 @@ public class SimpleDownloadServiceFragment extends BaseDownloadFragment
 
 		// main receiver
 		Log.d(TAG, "Unregister main receiver");
-		LocalBroadcastManager.getInstance(context).unregisterReceiver(SimpleDownloadServiceFragment.this.mainBroadcastReceiver);
+		assert this.mainBroadcastReceiver != null;
+		LocalBroadcastManager.getInstance(context).unregisterReceiver(this.mainBroadcastReceiver);
 	}
 
 	@Override
@@ -284,7 +287,7 @@ public class SimpleDownloadServiceFragment extends BaseDownloadFragment
 			}
 			else
 			{
-				status = SimpleDownloadServiceFragment.exception == null && (success != null && success) ? Status.STATUS_SUCCESSFUL : Status.STATUS_FAILED;
+				status = SimpleDownloadServiceFragment.exception == null && success ? Status.STATUS_SUCCESSFUL : Status.STATUS_FAILED;
 			}
 		}
 

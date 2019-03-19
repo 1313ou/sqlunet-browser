@@ -88,102 +88,72 @@ public class SetupStatusFragment extends org.sqlunet.browser.config.SetupStatusF
 		assert activity != null;
 
 		// click listeners
-		this.buttonPm.setOnClickListener(new View.OnClickListener()
-		{
-			@Override
-			public void onClick(View v)
-			{
-				int index = getResources().getInteger(R.integer.sql_statement_do_predicatematrix_position);
-				final Intent intent = new Intent(activity, SetupDatabaseActivity.class);
-				intent.putExtra(SetupDatabaseFragment.ARG_POSITION, index);
-				startActivityForResult(intent, SetupStatusFragment.REQUEST_MANAGE_CODE + index);
-			}
+		this.buttonPm.setOnClickListener(v -> {
+			int index = getResources().getInteger(R.integer.sql_statement_do_predicatematrix_position);
+			final Intent intent = new Intent(activity, SetupDatabaseActivity.class);
+			intent.putExtra(SetupDatabaseFragment.ARG_POSITION, index);
+			startActivityForResult(intent, SetupStatusFragment.REQUEST_MANAGE_CODE + index);
 		});
 
-		this.buttonTextSearchWn.setOnClickListener(new View.OnClickListener()
-		{
-			@Override
-			public void onClick(View v)
-			{
-				int index = getResources().getInteger(R.integer.sql_statement_do_ts_wn_position);
-				final Intent intent = new Intent(activity, SetupDatabaseActivity.class);
-				intent.putExtra(SetupDatabaseFragment.ARG_POSITION, index);
-				startActivityForResult(intent, SetupStatusFragment.REQUEST_MANAGE_CODE + index);
-			}
+		this.buttonTextSearchWn.setOnClickListener(v -> {
+			int index = getResources().getInteger(R.integer.sql_statement_do_ts_wn_position);
+			final Intent intent = new Intent(activity, SetupDatabaseActivity.class);
+			intent.putExtra(SetupDatabaseFragment.ARG_POSITION, index);
+			startActivityForResult(intent, SetupStatusFragment.REQUEST_MANAGE_CODE + index);
 		});
 
-		this.buttonTextSearchVn.setOnClickListener(new View.OnClickListener()
-		{
-			@Override
-			public void onClick(View v)
-			{
-				int index = getResources().getInteger(R.integer.sql_statement_do_ts_vn_position);
-				final Intent intent = new Intent(activity, SetupDatabaseActivity.class);
-				intent.putExtra(SetupDatabaseFragment.ARG_POSITION, index);
-				startActivityForResult(intent, SetupStatusFragment.REQUEST_MANAGE_CODE + index);
-			}
+		this.buttonTextSearchVn.setOnClickListener(v -> {
+			int index = getResources().getInteger(R.integer.sql_statement_do_ts_vn_position);
+			final Intent intent = new Intent(activity, SetupDatabaseActivity.class);
+			intent.putExtra(SetupDatabaseFragment.ARG_POSITION, index);
+			startActivityForResult(intent, SetupStatusFragment.REQUEST_MANAGE_CODE + index);
 		});
 
-		this.buttonTextSearchPb.setOnClickListener(new View.OnClickListener()
-		{
-			@Override
-			public void onClick(View v)
-			{
-				int index = getResources().getInteger(R.integer.sql_statement_do_ts_pb_position);
-				final Intent intent = new Intent(activity, SetupDatabaseActivity.class);
-				intent.putExtra(SetupDatabaseFragment.ARG_POSITION, index);
-				startActivityForResult(intent, SetupStatusFragment.REQUEST_MANAGE_CODE + index);
-			}
+		this.buttonTextSearchPb.setOnClickListener(v -> {
+			int index = getResources().getInteger(R.integer.sql_statement_do_ts_pb_position);
+			final Intent intent = new Intent(activity, SetupDatabaseActivity.class);
+			intent.putExtra(SetupDatabaseFragment.ARG_POSITION, index);
+			startActivityForResult(intent, SetupStatusFragment.REQUEST_MANAGE_CODE + index);
 		});
 
-		this.buttonTextSearchFn.setOnClickListener(new View.OnClickListener()
-		{
-			@Override
-			public void onClick(View v)
-			{
-				int index = getResources().getInteger(R.integer.sql_statement_do_ts_fn_position);
-				final Intent intent = new Intent(activity, SetupDatabaseActivity.class);
-				intent.putExtra(SetupDatabaseFragment.ARG_POSITION, index);
-				startActivityForResult(intent, SetupStatusFragment.REQUEST_MANAGE_CODE + index);
-			}
+		this.buttonTextSearchFn.setOnClickListener(v -> {
+			int index = getResources().getInteger(R.integer.sql_statement_do_ts_fn_position);
+			final Intent intent = new Intent(activity, SetupDatabaseActivity.class);
+			intent.putExtra(SetupDatabaseFragment.ARG_POSITION, index);
+			startActivityForResult(intent, SetupStatusFragment.REQUEST_MANAGE_CODE + index);
 		});
 
-		infoDatabaseButton.setOnClickListener(new View.OnClickListener()
-		{
-			@Override
-			public void onClick(final View v)
+		infoDatabaseButton.setOnClickListener(v -> {
+			final String database = StorageSettings.getDatabasePath(activity);
+			final String free = StorageUtils.getFree(getActivity(), database);
+			final String source = StorageSettings.getDbDownloadSource(activity);
+			final int status = org.sqlunet.browser.config.Status.status(activity);
+			final boolean existsDb = (status & org.sqlunet.browser.config.Status.EXISTS) != 0;
+			final boolean existsTables = (status & org.sqlunet.browser.config.Status.EXISTS_TABLES) != 0;
+			if (existsDb)
 			{
-				final String database = StorageSettings.getDatabasePath(activity);
-				final String free = StorageUtils.getFree(getActivity(), database);
-				final String source = StorageSettings.getDbDownloadSource(activity);
-				final int status = org.sqlunet.browser.config.Status.status(activity);
-				final boolean existsDb = (status & org.sqlunet.browser.config.Status.EXISTS) != 0;
-				final boolean existsTables = (status & org.sqlunet.browser.config.Status.EXISTS_TABLES) != 0;
-				if (existsDb)
-				{
-					final long size = new File(database).length();
-					final String hrSize = StorageUtils.countToStorageString(size) + " (" + Long.toString(size) + ')';
-					Info.info(activity, R.string.title_status, //
-							getString(R.string.title_database), database, //
-							getString(R.string.title_status), getString(R.string.status_database_exists), //
-							getString(R.string.title_status), getString(existsTables ? R.string.status_data_exists : R.string.status_data_not_exists), //
-							getString(R.string.title_free), free, //
-							getString(R.string.size_expected), getString(R.string.hr_size_sqlunet_db), //
-							getString(R.string.size_expected) + ' ' + getString(R.string.text_search) + ' ' + getString(R.string.wordnet) + '/' + getString(R.string.verbnet) + '/' + getString(R.string.propbank) + '/' + getString(R.string.framenet), getString(R.string.hr_size_searchtext) + " (" + getString(R.string.hr_size_searchtext_wn) + '+' + getString(R.string.hr_size_searchtext_vn) + '+' + getString(R.string.hr_size_searchtext_pb) + '+' + getString(R.string.hr_size_searchtext_fn) + '+' + getString(R.string.hr_size_searchtext) + ')', //
-							getString(R.string.size_expected) + ' ' + getString(R.string.total), getString(R.string.hr_size_db_working_total), //
-							getString(R.string.size_actual), hrSize);
-				}
-				else
-				{
-					Info.info(activity, R.string.title_download, //
-							getString(R.string.title_operation), getString(R.string.info_op_download_database), //
-							getString(R.string.title_from), source, //
-							getString(R.string.title_database), database, //
-							getString(R.string.title_free), free, //
-							getString(R.string.size_expected) + ' ' + getString(R.string.text_search) + ' ' + getString(R.string.wordnet) + '/' + getString(R.string.verbnet) + '/' + getString(R.string.propbank) + '/' + getString(R.string.framenet), getString(R.string.hr_size_searchtext) + " (" + getString(R.string.hr_size_searchtext_wn) + '+' + getString(R.string.hr_size_searchtext_vn) + '+' + getString(R.string.hr_size_searchtext_pb) + '+' + getString(R.string.hr_size_searchtext_fn) + '+' + getString(R.string.hr_size_searchtext) + ')', //
-							getString(R.string.size_expected) + ' ' + getString(R.string.total), getString(R.string.hr_size_db_working_total), //
-							getString(R.string.title_status), getString(R.string.status_database_not_exists));
-				}
+				final long size = new File(database).length();
+				final String hrSize = StorageUtils.countToStorageString(size) + " (" + Long.toString(size) + ')';
+				Info.info(activity, R.string.title_status, //
+						getString(R.string.title_database), database, //
+						getString(R.string.title_status), getString(R.string.status_database_exists), //
+						getString(R.string.title_status), getString(existsTables ? R.string.status_data_exists : R.string.status_data_not_exists), //
+						getString(R.string.title_free), free, //
+						getString(R.string.size_expected), getString(R.string.hr_size_sqlunet_db), //
+						getString(R.string.size_expected) + ' ' + getString(R.string.text_search) + ' ' + getString(R.string.wordnet) + '/' + getString(R.string.verbnet) + '/' + getString(R.string.propbank) + '/' + getString(R.string.framenet), getString(R.string.hr_size_searchtext) + " (" + getString(R.string.hr_size_searchtext_wn) + '+' + getString(R.string.hr_size_searchtext_vn) + '+' + getString(R.string.hr_size_searchtext_pb) + '+' + getString(R.string.hr_size_searchtext_fn) + '+' + getString(R.string.hr_size_searchtext) + ')', //
+						getString(R.string.size_expected) + ' ' + getString(R.string.total), getString(R.string.hr_size_db_working_total), //
+						getString(R.string.size_actual), hrSize);
+			}
+			else
+			{
+				Info.info(activity, R.string.title_download, //
+						getString(R.string.title_operation), getString(R.string.info_op_download_database), //
+						getString(R.string.title_from), source, //
+						getString(R.string.title_database), database, //
+						getString(R.string.title_free), free, //
+						getString(R.string.size_expected) + ' ' + getString(R.string.text_search) + ' ' + getString(R.string.wordnet) + '/' + getString(R.string.verbnet) + '/' + getString(R.string.propbank) + '/' + getString(R.string.framenet), getString(R.string.hr_size_searchtext) + " (" + getString(R.string.hr_size_searchtext_wn) + '+' + getString(R.string.hr_size_searchtext_vn) + '+' + getString(R.string.hr_size_searchtext_pb) + '+' + getString(R.string.hr_size_searchtext_fn) + '+' + getString(R.string.hr_size_searchtext) + ')', //
+						getString(R.string.size_expected) + ' ' + getString(R.string.total), getString(R.string.hr_size_db_working_total), //
+						getString(R.string.title_status), getString(R.string.status_database_not_exists));
 			}
 		});
 		return view;

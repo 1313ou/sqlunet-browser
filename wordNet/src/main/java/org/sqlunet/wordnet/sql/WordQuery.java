@@ -35,6 +35,7 @@ class WordQuery extends DBQuery
 	 */
 	public int getId()
 	{
+		assert this.cursor != null;
 		return this.cursor.getInt(0);
 	}
 
@@ -45,6 +46,7 @@ class WordQuery extends DBQuery
 	 */
 	public String getLemma()
 	{
+		assert this.cursor != null;
 		return this.cursor.getString(1);
 	}
 }

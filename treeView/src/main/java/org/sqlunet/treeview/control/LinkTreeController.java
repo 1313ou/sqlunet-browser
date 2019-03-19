@@ -37,14 +37,7 @@ public class LinkTreeController extends TreeController
 		final View hotLink = view.findViewById(R.id.node_link);
 		if (hotLink != null)
 		{
-			hotLink.setOnClickListener(new View.OnClickListener()
-			{
-				@Override
-				public void onClick(View v)
-				{
-					followLink();
-				}
-			});
+			hotLink.setOnClickListener(v -> followLink());
 		}
 		return view;
 	}

@@ -1,6 +1,7 @@
 package org.sqlunet.sql;
 
 import android.database.sqlite.SQLiteDatabase;
+import android.support.annotation.NonNull;
 
 /**
  * Data source wrapping to use JDBC style
@@ -19,7 +20,7 @@ public class DataSource
 	 *
 	 * @param path path to database
 	 */
-	public DataSource(final String path)
+	public DataSource(@NonNull final String path)
 	{
 		this.db = SQLiteDatabase.openDatabase(path, null, SQLiteDatabase.OPEN_READONLY);
 	}

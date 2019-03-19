@@ -167,7 +167,7 @@ class Mapping
 	static public String[] getLexDomainNames()
 	{
 		final Set<String> nameSet = Mapping.lexDomainsByName.keySet();
-		return nameSet.toArray(new String[nameSet.size()]);
+		return nameSet.toArray(new String[0]);
 	}
 
 	/**
@@ -178,7 +178,7 @@ class Mapping
 	static public String[] getLinkNames()
 	{
 		final Set<String> nameSet = Mapping.linksByName.keySet();
-		return nameSet.toArray(new String[nameSet.size()]);
+		return nameSet.toArray(new String[0]);
 	}
 
 	/**
@@ -187,6 +187,7 @@ class Mapping
 	 * @param lexDomainId is the lexdomain id
 	 * @return part-of-speech name
 	 */
+	@NonNull
 	static public String getPosName(final int lexDomainId)
 	{
 		try
@@ -206,6 +207,7 @@ class Mapping
 	 * @param lexDomainId is the lexdomain id
 	 * @return lexdomain name or "lexdomainid.xxx" if not found
 	 */
+	@NonNull
 	static public String getLexDomainName(final int lexDomainId)
 	{
 		try
@@ -236,6 +238,7 @@ class Mapping
 		try
 		{
 			final LexDomainDef lexDomain = Mapping.lexDomainsByName.get(fullName);
+			assert lexDomain != null;
 			return lexDomain.id;
 		}
 		catch (@NonNull final NullPointerException e)
@@ -310,6 +313,7 @@ class Mapping
 		try
 		{
 			final LinkDef linkDef = Mapping.linksByName.get(linkName);
+			assert linkDef != null;
 			return linkDef.id;
 		}
 		catch (@NonNull final NullPointerException e)

@@ -822,35 +822,25 @@ public class IabHelper
 		checkNotDisposed();
 		checkSetupDone("queryInventory");
 		flagStartAsync("refresh inventory");
-		(new Thread(new Runnable()
-		{
-			public void run()
+		(new Thread(() -> {
+			IabResult result = new IabResult(BILLING_RESPONSE_RESULT_OK, "Inventory refresh successful.");
+			Inventory inv = null;
+			try
 			{
-				IabResult result = new IabResult(BILLING_RESPONSE_RESULT_OK, "Inventory refresh successful.");
-				Inventory inv = null;
-				try
-				{
-					inv = queryInventory(querySkuDetails, moreItemSkus, moreSubsSkus);
-				}
-				catch (IabException ex)
-				{
-					result = ex.getResult();
-				}
+				inv = queryInventory(querySkuDetails, moreItemSkus, moreSubsSkus);
+			}
+			catch (IabException ex)
+			{
+				result = ex.getResult();
+			}
 
-				flagEndAsync();
+			flagEndAsync();
 
-				final IabResult result_f = result;
-				final Inventory inv_f = inv;
-				if (!mDisposed && listener != null)
-				{
-					handler.post(new Runnable()
-					{
-						public void run()
-						{
-							listener.onQueryInventoryFinished(result_f, inv_f);
-						}
-					});
-				}
+			final IabResult result_f = result;
+			final Inventory inv_f = inv;
+			if (!mDisposed && listener != null)
+			{
+				handler.post(() -> listener.onQueryInventoryFinished(result_f, inv_f));
 			}
 		})).start();
 	}
@@ -985,7 +975,7 @@ public class IabHelper
 		if (code <= IABHELPER_ERROR_BASE)
 		{
 			int index = IABHELPER_ERROR_BASE - code;
-			if (index >= 0 && index < iabhelper_msgs.length)
+			if (index < iabhelper_msgs.length)
 			{
 				return iabhelper_msgs[index];
 			}
@@ -1269,45 +1259,29 @@ public class IabHelper
 	{
 		final Handler handler = new Handler();
 		flagStartAsync("consume");
-		(new Thread(new Runnable()
-		{
-			public void run()
+		(new Thread(() -> {
+			final List<IabResult> results = new ArrayList<>();
+			for (Purchase purchase : purchases)
 			{
-				final List<IabResult> results = new ArrayList<>();
-				for (Purchase purchase : purchases)
+				try
 				{
-					try
-					{
-						consume(purchase);
-						results.add(new IabResult(BILLING_RESPONSE_RESULT_OK, "Successful consume of sku " + purchase.getSku()));
-					}
-					catch (IabException ex)
-					{
-						results.add(ex.getResult());
-					}
+					consume(purchase);
+					results.add(new IabResult(BILLING_RESPONSE_RESULT_OK, "Successful consume of sku " + purchase.getSku()));
 				}
+				catch (IabException ex)
+				{
+					results.add(ex.getResult());
+				}
+			}
 
-				flagEndAsync();
-				if (!mDisposed && singleListener != null)
-				{
-					handler.post(new Runnable()
-					{
-						public void run()
-						{
-							singleListener.onConsumeFinished(purchases.get(0), results.get(0));
-						}
-					});
-				}
-				if (!mDisposed && multiListener != null)
-				{
-					handler.post(new Runnable()
-					{
-						public void run()
-						{
-							multiListener.onConsumeMultiFinished(purchases, results);
-						}
-					});
-				}
+			flagEndAsync();
+			if (!mDisposed && singleListener != null)
+			{
+				handler.post(() -> singleListener.onConsumeFinished(purchases.get(0), results.get(0)));
+			}
+			if (!mDisposed && multiListener != null)
+			{
+				handler.post(() -> multiListener.onConsumeMultiFinished(purchases, results));
 			}
 		})).start();
 	}

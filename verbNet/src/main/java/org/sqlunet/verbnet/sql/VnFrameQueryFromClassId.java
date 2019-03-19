@@ -37,6 +37,7 @@ class VnFrameQueryFromClassId extends DBQuery
 	@SuppressWarnings("unused")
 	public long getFrameId()
 	{
+		assert this.cursor != null;
 		return this.cursor.getLong(0);
 	}
 
@@ -47,6 +48,7 @@ class VnFrameQueryFromClassId extends DBQuery
 	 */
 	public String getNumber()
 	{
+		assert this.cursor != null;
 		return this.cursor.getString(1);
 	}
 
@@ -57,6 +59,7 @@ class VnFrameQueryFromClassId extends DBQuery
 	 */
 	public String getXTag()
 	{
+		assert this.cursor != null;
 		return this.cursor.getString(2);
 	}
 
@@ -67,6 +70,7 @@ class VnFrameQueryFromClassId extends DBQuery
 	 */
 	public String getDescription1()
 	{
+		assert this.cursor != null;
 		return this.cursor.getString(3);
 	}
 
@@ -77,6 +81,7 @@ class VnFrameQueryFromClassId extends DBQuery
 	 */
 	public String getDescription2()
 	{
+		assert this.cursor != null;
 		return this.cursor.getString(4);
 	}
 
@@ -87,6 +92,7 @@ class VnFrameQueryFromClassId extends DBQuery
 	 */
 	public String getSyntax()
 	{
+		assert this.cursor != null;
 		return this.cursor.getString(5);
 	}
 
@@ -97,6 +103,7 @@ class VnFrameQueryFromClassId extends DBQuery
 	 */
 	public String getSemantics()
 	{
+		assert this.cursor != null;
 		return this.cursor.getString(6);
 	}
 
@@ -107,6 +114,7 @@ class VnFrameQueryFromClassId extends DBQuery
 	 */
 	public String getExamples()
 	{
+		assert this.cursor != null;
 		return this.cursor.getString(7);
 	}
 }

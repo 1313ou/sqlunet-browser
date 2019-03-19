@@ -2,7 +2,6 @@ package org.sqlunet.browser;
 
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.support.annotation.NonNull;
 import android.text.SpannableStringBuilder;
 import android.widget.TextView;
@@ -45,13 +44,8 @@ public class Info
 		final AlertDialog.Builder alert = new AlertDialog.Builder(activity);
 		alert.setTitle(R.string.action_info);
 		alert.setMessage(messageId);
-		alert.setNegativeButton(R.string.action_dismiss, new DialogInterface.OnClickListener()
-		{
-			@Override
-			public void onClick(DialogInterface dialog, int whichButton)
-			{
-				// canceled.
-			}
+		alert.setNegativeButton(R.string.action_dismiss, (dialog, whichButton) -> {
+			// canceled.
 		});
 		/*
 		final ArrayAdapter<CharSequence> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, messages);

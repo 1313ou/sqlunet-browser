@@ -26,28 +26,14 @@ public class PropBankSpanner extends RegExprSpanner
 	 *
 	 * @param context context
 	 */
-	public PropBankSpanner(final Context context)
+	public PropBankSpanner(@NonNull final Context context)
 	{
+		// trace number
+		// trace
 		super(PropBankSpanner.patterns, new SpanFactory[][]{ //
 				new SpanFactory[]{ //
-						new SpanFactory() // trace
-						{
-							@NonNull
-							@Override
-							public Object makeSpans(long flags)
-							{
-								return new ImageSpan(context, R.drawable.trace);
-							}
-						}, //
+						flags -> new ImageSpan(context, R.drawable.trace), //
 
-						new SpanFactory() // trace number
-						{
-							@NonNull
-							@Override
-							public Object makeSpans(long flags)
-							{
-								return new HiddenSpan();
-							}
-						},},});
+						flags -> new HiddenSpan(),},});
 	}
 }

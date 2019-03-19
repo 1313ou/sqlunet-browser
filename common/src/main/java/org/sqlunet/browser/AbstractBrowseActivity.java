@@ -23,6 +23,7 @@ public abstract class AbstractBrowseActivity<F extends BaseSearchFragment> exten
 	/**
 	 * Fragment
 	 */
+	@Nullable
 	private F fragment;
 
 	@SuppressWarnings("unchecked")
@@ -46,6 +47,7 @@ public abstract class AbstractBrowseActivity<F extends BaseSearchFragment> exten
 			// set up the action bar
 			final ActionBar actionBar = getSupportActionBar();
 			assert actionBar != null;
+			assert this.fragment != null;
 			this.fragment.setActionBarUpDisabled(actionBar, this);
 		}
 	}
@@ -100,17 +102,19 @@ public abstract class AbstractBrowseActivity<F extends BaseSearchFragment> exten
 			final String query = intent.getStringExtra(SearchManager.QUERY);
 			if (query != null)
 			{
+				assert this.fragment != null;
 				this.fragment.search(query);
 			}
 		}
 		else if (Intent.ACTION_SEND.equals(action))
 		{
 			final String type = intent.getType();
-			if (type != null && "text/plain".equals(type))
+			if ("text/plain".equals(type))
 			{
 				final String query = intent.getStringExtra(Intent.EXTRA_TEXT);
 				if (query != null)
 				{
+					assert this.fragment != null;
 					this.fragment.search(query);
 				}
 			}

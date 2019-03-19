@@ -37,6 +37,7 @@ class VnRoleQueryFromClassId extends DBQuery
 	@SuppressWarnings("unused")
 	public long getRoleId()
 	{
+		assert this.cursor != null;
 		return this.cursor.getLong(0);
 	}
 
@@ -48,6 +49,7 @@ class VnRoleQueryFromClassId extends DBQuery
 	@SuppressWarnings("unused")
 	public long getRoleTypeId()
 	{
+		assert this.cursor != null;
 		return this.cursor.getLong(1);
 	}
 
@@ -58,6 +60,7 @@ class VnRoleQueryFromClassId extends DBQuery
 	 */
 	public String getRoleType()
 	{
+		assert this.cursor != null;
 		return this.cursor.getString(2);
 	}
 
@@ -68,6 +71,7 @@ class VnRoleQueryFromClassId extends DBQuery
 	 */
 	public String getSelectionRestriction()
 	{
+		assert this.cursor != null;
 		return this.cursor.getString(3);
 	}
 }

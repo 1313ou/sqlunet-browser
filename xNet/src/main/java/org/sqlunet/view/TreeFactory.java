@@ -173,6 +173,7 @@ public class TreeFactory
 	 * @param value   character sequence
 	 * @param context context
 	 */
+	@NonNull
 	@SuppressWarnings("UnusedReturnValue")
 	static public TreeNode addTextNode(@NonNull final TreeNode parent, final CharSequence value, final Context context)
 	{
@@ -189,6 +190,7 @@ public class TreeFactory
 	 * @param icon    icon resource id
 	 * @param context context
 	 */
+	@NonNull
 	@SuppressWarnings({"unused", "UnusedReturnValue"})
 	static public TreeNode addLeafNode(@NonNull final TreeNode parent, final CharSequence value, final int icon, final Context context)
 	{
@@ -205,6 +207,7 @@ public class TreeFactory
 	 * @param icon    icon resource id
 	 * @param context context
 	 */
+	@NonNull
 	static public TreeNode addTreeNode(@NonNull final TreeNode parent, final CharSequence value, final int icon, final Context context)
 	{
 		final TreeNode result = TreeFactory.newTreeNode(value, icon, context);

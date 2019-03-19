@@ -167,6 +167,7 @@ final class ExpandableListViewProtocol implements AdapterViewProtocol
 	 * @return an optional data object the descendant view is rendering.
 	 * @throws IllegalArgumentException if this protocol cannot interrogate this class of adapterView
 	 */
+	@NonNull
 	@Override
 	public EspressoOptional<AdaptedData> getDataRenderedByView(@NonNull AdapterView<? extends Adapter> adapterView, @NonNull View descendantView)
 	{

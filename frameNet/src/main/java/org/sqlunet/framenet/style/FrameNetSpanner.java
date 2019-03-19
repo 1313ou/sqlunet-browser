@@ -31,7 +31,7 @@ public class FrameNetSpanner
 	 *
 	 * @param context context
 	 */
-	public FrameNetSpanner(final Context context)
+	public FrameNetSpanner(@NonNull final Context context)
 	{
 		this.factory = new FrameNetMarkupFactory(context);
 	}
@@ -65,7 +65,7 @@ public class FrameNetSpanner
 	 * @param flags    flags
 	 */
 	@SuppressWarnings("unused")
-	public void addSpan(@NonNull @SuppressWarnings("TypeMayBeWeakened") final SpannableStringBuilder sb, final int start, final int end, final String selector, final long flags)
+	public void addSpan(@NonNull @SuppressWarnings("TypeMayBeWeakened") final SpannableStringBuilder sb, final int start, final int end, @NonNull final String selector, final long flags)
 	{
 		final Object spans = this.factory.makeSpans(selector, flags);
 		if (spans != null)

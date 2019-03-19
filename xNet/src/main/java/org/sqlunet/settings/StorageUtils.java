@@ -196,6 +196,7 @@ public class StorageUtils
 		 *
 		 * @return short string
 		 */
+		@NonNull
 		CharSequence toShortString()
 		{
 			return String.format(Locale.ENGLISH, "%s %s %s free", this.dir.type.toDisplay(), this.dir.file.getAbsolutePath(), mbToString(this.free));
@@ -206,11 +207,13 @@ public class StorageUtils
 		 *
 		 * @return long string
 		 */
+		@NonNull
 		String toLongString()
 		{
 			return String.format(Locale.ENGLISH, "%s\n%s\n%s free %.1f%% occupancy\n%s", this.dir.type.toDisplay(), this.dir.file.getAbsolutePath(), mbToString(this.free), this.occupancy, this.status());
 		}
 
+		@NonNull
 		@Override
 		public String toString()
 		{

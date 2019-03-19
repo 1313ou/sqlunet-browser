@@ -36,6 +36,7 @@ class PbRoleSetQueryFromWordId extends DBQuery
 	 */
 	public long getRoleSetId()
 	{
+		assert this.cursor != null;
 		return this.cursor.getLong(0);
 	}
 
@@ -46,6 +47,7 @@ class PbRoleSetQueryFromWordId extends DBQuery
 	 */
 	public String getRoleSetName()
 	{
+		assert this.cursor != null;
 		return this.cursor.getString(1);
 	}
 
@@ -56,6 +58,7 @@ class PbRoleSetQueryFromWordId extends DBQuery
 	 */
 	public String getRoleSetHead()
 	{
+		assert this.cursor != null;
 		return this.cursor.getString(2);
 	}
 
@@ -66,6 +69,7 @@ class PbRoleSetQueryFromWordId extends DBQuery
 	 */
 	public String getRoleSetDescr()
 	{
+		assert this.cursor != null;
 		return this.cursor.getString(3);
 	}
 }

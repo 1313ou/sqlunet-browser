@@ -37,55 +37,50 @@ public class FrameNetMarkupFactory implements MarkupSpanner.SpanFactory
 	 * Text factory
 	 */
 	@Nullable
-	static private final MarkupSpanner.SpanFactory textFactory = new MarkupSpanner.SpanFactory()
-	{
-		@Override
-		public Object makeSpans(@NonNull final String selector, final long flags)
+	static private final MarkupSpanner.SpanFactory textFactory = (selector, flags) -> {
+		if ("fe".equals(selector))
 		{
-			if ("fe".equals(selector))
+			return new Object[]{new BackgroundColorSpan(Color.MAGENTA), new ForegroundColorSpan(Color.WHITE)};
+		}
+		if ("t".equals(selector)) // target
+		{
+			return new Object[]{new BackgroundColorSpan(Color.GRAY), new ForegroundColorSpan(Color.WHITE)};
+		}
+		if ("fen".equals(selector))
+		{
+			if ((flags & FrameNetMarkupFactory.FEDEF) != 0)
+			{
+				return new ForegroundColorSpan(Color.MAGENTA);
+			}
+			else
 			{
 				return new Object[]{new BackgroundColorSpan(Color.MAGENTA), new ForegroundColorSpan(Color.WHITE)};
 			}
-			if ("t".equals(selector)) // target
-			{
-				return new Object[]{new BackgroundColorSpan(Color.GRAY), new ForegroundColorSpan(Color.WHITE)};
-			}
-			if ("fen".equals(selector))
-			{
-				if ((flags & FrameNetMarkupFactory.FEDEF) != 0)
-				{
-					return new ForegroundColorSpan(Color.MAGENTA);
-				}
-				else
-				{
-					return new Object[]{new BackgroundColorSpan(Color.MAGENTA), new ForegroundColorSpan(Color.WHITE)};
-				}
-			}
-			if (selector.matches("fex.*"))
-			{
-				if ((flags & FrameNetMarkupFactory.FEDEF) == 0)
-				{
-					return new Object[]{new ForegroundColorSpan(Color.GRAY), new UnderlineSpan()};
-				}
-				else
-				{
-					return new Object[]{new BackgroundColorSpan(Colors.lt_magenta), new ForegroundColorSpan(Color.WHITE)};
-				}
-			}
-			if ("xfen".equals(selector))
-			{
-				return new ForegroundColorSpan(Color.MAGENTA);// new BackgroundColorSpan(Color.WHITE);
-			}
-			if ("ex".equals(selector))
-			{
-				return new Object[]{new StyleSpan(android.graphics.Typeface.ITALIC)};
-			}
-			if ("x".equals(selector))
-			{
-				return new Object[]{new ForegroundColorSpan(Color.BLACK), new StyleSpan(android.graphics.Typeface.BOLD)};
-			}
-			return null;
 		}
+		if (selector.matches("fex.*"))
+		{
+			if ((flags & FrameNetMarkupFactory.FEDEF) == 0)
+			{
+				return new Object[]{new ForegroundColorSpan(Color.GRAY), new UnderlineSpan()};
+			}
+			else
+			{
+				return new Object[]{new BackgroundColorSpan(Colors.lt_magenta), new ForegroundColorSpan(Color.WHITE)};
+			}
+		}
+		if ("xfen".equals(selector))
+		{
+			return new ForegroundColorSpan(Color.MAGENTA);// new BackgroundColorSpan(Color.WHITE);
+		}
+		if ("ex".equals(selector))
+		{
+			return new Object[]{new StyleSpan(android.graphics.Typeface.ITALIC)};
+		}
+		if ("x".equals(selector))
+		{
+			return new Object[]{new ForegroundColorSpan(Color.BLACK), new StyleSpan(android.graphics.Typeface.BOLD)};
+		}
+		return null;
 	};
 
 	/**

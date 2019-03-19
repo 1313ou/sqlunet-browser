@@ -64,49 +64,39 @@ public class SetupSqlFragment extends org.sqlunet.browser.config.SetupSqlFragmen
 
 
 		// pm button
-		this.predicateMatrixButton.setOnClickListener(new View.OnClickListener()
-		{
-			@Override
-			public void onClick(final View v)
+		this.predicateMatrixButton.setOnClickListener(v -> {
+			assert activity != null;
+			// starting pm task
+			try
 			{
-				assert activity != null;
-				// starting pm task
-				try
-				{
-					final String database = StorageSettings.getDatabasePath(activity);
-					final String source = StorageSettings.getSqlSource(activity);
-					final String entry = Settings.getPmEntry(activity);
-					final String unit = activity.getString(R.string.unit_statement);
-					final TaskObserver.Listener listener = new TaskObserver.DialogListener(activity, R.string.status_managing, source + '@' + entry, unit);
-					SetupSqlFragment.this.task = new ExecAsyncTask(getActivity(), listener, 1).executeFromArchive(database, source, entry);
-				}
-				catch (@NonNull final Exception e)
-				{
-					Log.e(TAG, "While preparing predicatematrix", e);
-				}
-			}
-		});
-		infoPmButton.setOnClickListener(new View.OnClickListener()
-		{
-			@Override
-			public void onClick(final View v)
-			{
-				assert activity != null;
 				final String database = StorageSettings.getDatabasePath(activity);
 				final String source = StorageSettings.getSqlSource(activity);
 				final String entry = Settings.getPmEntry(activity);
-				final String free = StorageUtils.getFree(activity, database);
-				final boolean dbExists = new File(database).exists();
-				final boolean sqlzipExists = new File(source).exists();
-				Info.info(activity, R.string.title_predicatematrix, //
-						getString(R.string.title_operation), getString(R.string.info_op_execute_predicatematrix), //
-						getString(R.string.title_database), database, //
-						getString(R.string.title_status), getString(dbExists ? R.string.status_database_exists : R.string.status_database_not_exists), //
-						getString(R.string.title_free), free, //
-						getString(R.string.title_archive), source, //
-						getString(R.string.title_entry), entry, //
-						getString(R.string.title_status), getString(sqlzipExists ? R.string.status_local_exists : R.string.status_local_not_exists));
+				final String unit = activity.getString(R.string.unit_statement);
+				final TaskObserver.Listener listener = new TaskObserver.DialogListener(activity, R.string.status_managing, source + '@' + entry, unit);
+				SetupSqlFragment.this.task = new ExecAsyncTask(getActivity(), listener, 1).executeFromArchive(database, source, entry);
 			}
+			catch (@NonNull final Exception e)
+			{
+				Log.e(TAG, "While preparing predicatematrix", e);
+			}
+		});
+		infoPmButton.setOnClickListener(v -> {
+			assert activity != null;
+			final String database = StorageSettings.getDatabasePath(activity);
+			final String source = StorageSettings.getSqlSource(activity);
+			final String entry = Settings.getPmEntry(activity);
+			final String free = StorageUtils.getFree(activity, database);
+			final boolean dbExists = new File(database).exists();
+			final boolean sqlzipExists = new File(source).exists();
+			Info.info(activity, R.string.title_predicatematrix, //
+					getString(R.string.title_operation), getString(R.string.info_op_execute_predicatematrix), //
+					getString(R.string.title_database), database, //
+					getString(R.string.title_status), getString(dbExists ? R.string.status_database_exists : R.string.status_database_not_exists), //
+					getString(R.string.title_free), free, //
+					getString(R.string.title_archive), source, //
+					getString(R.string.title_entry), entry, //
+					getString(R.string.title_status), getString(sqlzipExists ? R.string.status_local_exists : R.string.status_local_not_exists));
 		});
 
 		return view;

@@ -36,6 +36,7 @@ class FnFrameElementQueryFromFrameId extends DBQuery
 	 */
 	public long getFETypeId()
 	{
+		assert this.cursor != null;
 		return this.cursor.getLong(0);
 	}
 
@@ -46,6 +47,7 @@ class FnFrameElementQueryFromFrameId extends DBQuery
 	 */
 	public String getFEType()
 	{
+		assert this.cursor != null;
 		return this.cursor.getString(1);
 	}
 
@@ -56,6 +58,7 @@ class FnFrameElementQueryFromFrameId extends DBQuery
 	 */
 	public long getFEId()
 	{
+		assert this.cursor != null;
 		return this.cursor.getLong(2);
 	}
 
@@ -66,6 +69,7 @@ class FnFrameElementQueryFromFrameId extends DBQuery
 	 */
 	public String getFEDefinition()
 	{
+		assert this.cursor != null;
 		return this.cursor.getString(3);
 	}
 
@@ -76,6 +80,7 @@ class FnFrameElementQueryFromFrameId extends DBQuery
 	 */
 	public String getFEAbbrev()
 	{
+		assert this.cursor != null;
 		return this.cursor.getString(4);
 	}
 
@@ -86,6 +91,7 @@ class FnFrameElementQueryFromFrameId extends DBQuery
 	 */
 	public String getFECoreType()
 	{
+		assert this.cursor != null;
 		return this.cursor.getString(5);
 	}
 
@@ -96,6 +102,7 @@ class FnFrameElementQueryFromFrameId extends DBQuery
 	 */
 	public String getSemTypes()
 	{
+		assert this.cursor != null;
 		return this.cursor.getString(6);
 	}
 
@@ -106,6 +113,7 @@ class FnFrameElementQueryFromFrameId extends DBQuery
 	 */
 	public boolean getIsCore()
 	{
+		assert this.cursor != null;
 		return this.cursor.getInt(7) != 0;
 	}
 
@@ -116,6 +124,7 @@ class FnFrameElementQueryFromFrameId extends DBQuery
 	 */
 	public int getCoreSet()
 	{
+		assert this.cursor != null;
 		return this.cursor.getInt(8);
 	}
 }

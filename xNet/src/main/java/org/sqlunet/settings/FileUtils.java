@@ -63,7 +63,7 @@ class FileUtils
 	 * @param toPath       destination path
 	 * @return destination path
 	 */
-	static private boolean copyAsset(@NonNull final AssetManager assetManager, final String assetPath, @NonNull final String toPath)
+	static private boolean copyAsset(@NonNull final AssetManager assetManager, @NonNull final String assetPath, @NonNull final String toPath)
 	{
 		InputStream in = null;
 		OutputStream out = null;
@@ -136,12 +136,10 @@ class FileUtils
 	 * @param fileName zip file in assets
 	 * @return uri of dest dir
 	 */
-	static public Uri expandZipAssetFile(@NonNull final Context context, final String fileName)
+	static public Uri expandZipAssetFile(@NonNull final Context context, @NonNull final String fileName)
 	{
-		AssetManager assetManager = null;
-		try
+		try (AssetManager assetManager = context.getAssets())
 		{
-			assetManager = context.getAssets();
 			assert assetManager != null;
 			final File dir = Storage.getSqlUNetStorage(context);
 
@@ -153,13 +151,6 @@ class FileUtils
 			}
 			return null;
 		}
-		finally
-		{
-			if (assetManager != null)
-			{
-				assetManager.close();
-			}
-		}
 	}
 
 	/**
@@ -170,12 +161,10 @@ class FileUtils
 	 * @param toPath       destination path
 	 * @return true if successful
 	 */
-	static private boolean expandZipAsset(@NonNull final AssetManager assetManager, final String assetPath, @NonNull final String toPath)
+	static private boolean expandZipAsset(@NonNull final AssetManager assetManager, @NonNull final String assetPath, @NonNull final String toPath)
 	{
-		InputStream in = null;
-		try
+		try (InputStream in = assetManager.open(assetPath))
 		{
-			in = assetManager.open(assetPath);
 			FileUtils.expandZip(in, null, new File(toPath));
 			return true;
 		}
@@ -183,20 +172,7 @@ class FileUtils
 		{
 			return false;
 		}
-		finally
-		{
-			if (in != null)
-			{
-				try
-				{
-					in.close();
-				}
-				catch (@NonNull final IOException e)
-				{
-					//
-				}
-			}
-		}
+		//
 	}
 
 	/**
@@ -247,25 +223,14 @@ class FileUtils
 							new File(outFile.getParent()).mkdirs();
 
 							// output
-							final FileOutputStream os = new FileOutputStream(outFile);
 
 							// copy
-							try
+							try (FileOutputStream os = new FileOutputStream(outFile))
 							{
 								int len;
 								while ((len = zis.read(buffer)) > 0)
 								{
 									os.write(buffer, 0, len);
-								}
-							}
-							finally
-							{
-								try
-								{
-									os.close();
-								}
-								catch (IOException ignored)
-								{
 								}
 							}
 						}

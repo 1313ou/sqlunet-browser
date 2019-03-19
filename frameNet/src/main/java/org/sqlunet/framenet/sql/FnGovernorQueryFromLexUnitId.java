@@ -36,6 +36,7 @@ class FnGovernorQueryFromLexUnitId extends DBQuery
 	 */
 	public long getGovernorId()
 	{
+		assert this.cursor != null;
 		return this.cursor.getLong(0);
 	}
 
@@ -46,6 +47,7 @@ class FnGovernorQueryFromLexUnitId extends DBQuery
 	 */
 	public long getWordId()
 	{
+		assert this.cursor != null;
 		return this.cursor.getLong(1);
 	}
 
@@ -56,6 +58,7 @@ class FnGovernorQueryFromLexUnitId extends DBQuery
 	 */
 	public String getGovernor()
 	{
+		assert this.cursor != null;
 		return this.cursor.getString(2);
 	}
 }

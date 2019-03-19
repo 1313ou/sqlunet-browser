@@ -13,34 +13,13 @@ import org.sqlunet.style.Spanner.SpanFactory;
 public class PredicateMatrixFactories
 {
 	// name
-	static public final SpanFactory nameFactory = new SpanFactory()
-	{
-		@Override
-		public Object makeSpans(final long flags)
-		{
-			return new Object[]{new BackgroundColorSpan(Colors.lt_yellow), new ForegroundColorSpan(Color.BLACK), new StyleSpan(Typeface.BOLD)};
-		}
-	};
+	static public final SpanFactory nameFactory = flags -> new Object[]{new BackgroundColorSpan(Colors.lt_yellow), new ForegroundColorSpan(Color.BLACK), new StyleSpan(Typeface.BOLD)};
 
 	// group
-	static public final SpanFactory groupFactory = new SpanFactory()
-	{
-		@Override
-		public Object makeSpans(final long flags)
-		{
-			return new Object[]{new BackgroundColorSpan(Colors.orange), new ForegroundColorSpan(Color.BLACK), new StyleSpan(Typeface.BOLD)};
-		}
-	};
+	static public final SpanFactory groupFactory = flags -> new Object[]{new BackgroundColorSpan(Colors.orange), new ForegroundColorSpan(Color.BLACK), new StyleSpan(Typeface.BOLD)};
 
 	// word
-	static public final SpanFactory wordFactory = new SpanFactory()
-	{
-		@Override
-		public Object makeSpans(final long flags)
-		{
-			return new Object[]{new ForegroundColorSpan(Color.BLACK), new StyleSpan(Typeface.ITALIC)};
-		}
-	};
+	static public final SpanFactory wordFactory = flags -> new Object[]{new ForegroundColorSpan(Color.BLACK), new StyleSpan(Typeface.ITALIC)};
 
 	// definition
 	static public final SpanFactory definitionFactory = Factories.definitionFactory;
@@ -52,14 +31,7 @@ public class PredicateMatrixFactories
 	static public final SpanFactory roleFactory = Factories.roleFactory;
 
 	// role alias
-	static public final SpanFactory roleAliasFactory = new SpanFactory()
-	{
-		@Override
-		public Object makeSpans(final long flags)
-		{
-			return new Object[]{new BackgroundColorSpan(Colors.blue), new ForegroundColorSpan(Color.WHITE), new StyleSpan(Typeface.BOLD)};
-		}
-	};
+	static public final SpanFactory roleAliasFactory = flags -> new Object[]{new BackgroundColorSpan(Colors.blue), new ForegroundColorSpan(Color.WHITE), new StyleSpan(Typeface.BOLD)};
 
 	// data
 	static public final SpanFactory dataFactory = Factories.dataFactory;

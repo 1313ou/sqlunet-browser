@@ -57,7 +57,7 @@ public class VnRoleSet
 				// allocate
 				if (roleSet == null)
 				{
-					roleSet = new VnRoleSet(new ArrayList<VnRole>());
+					roleSet = new VnRoleSet(new ArrayList<>());
 				}
 
 				// addItem role to role set
@@ -105,7 +105,7 @@ public class VnRoleSet
 				// allocate
 				if (roleSet == null)
 				{
-					roleSet = new VnRoleSet(new ArrayList<VnRole>());
+					roleSet = new VnRoleSet(new ArrayList<>());
 				}
 
 				// addItem role to role set

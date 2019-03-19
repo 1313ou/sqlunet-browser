@@ -61,7 +61,7 @@ public class BaseModule extends Module
 	/**
 	 * Constructor
 	 */
-	public BaseModule(final Fragment fragment)
+	public BaseModule(@NonNull final Fragment fragment)
 	{
 		super(fragment);
 
@@ -91,7 +91,7 @@ public class BaseModule extends Module
 	}
 
 	@Override
-	public void process(final TreeNode node)
+	public void process(@NonNull final TreeNode node)
 	{
 		if (this.wordId != null)
 		{
@@ -111,7 +111,7 @@ public class BaseModule extends Module
 	 * @param pos    pos
 	 * @param parent parent node
 	 */
-	private void bnc(final long wordId, @Nullable final Character pos, final TreeNode parent)
+	private void bnc(final long wordId, @Nullable final Character pos, @NonNull final TreeNode parent)
 	{
 		getLoaderManager().restartLoader(++Module.loaderId, null, new LoaderCallbacks<Cursor>()
 		{

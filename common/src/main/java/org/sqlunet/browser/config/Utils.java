@@ -1,7 +1,6 @@
 package org.sqlunet.browser.config;
 
 import android.content.Context;
-import android.content.DialogInterface;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog;
 
@@ -28,13 +27,6 @@ class Utils
 				.setIcon(android.R.drawable.ic_dialog_alert) //
 				.setTitle(titleId) //
 				.setMessage(askId) //
-				.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener()
-				{
-					@Override
-					public void onClick(DialogInterface dialog, int which)
-					{
-						runnable.run();
-					}
-				}).setNegativeButton(R.string.no, null).show();
+				.setPositiveButton(R.string.yes, (dialog, which) -> runnable.run()).setNegativeButton(R.string.no, null).show();
 	}
 }

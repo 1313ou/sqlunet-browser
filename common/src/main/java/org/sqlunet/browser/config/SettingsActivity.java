@@ -9,7 +9,6 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.preference.ListPreference;
 import android.preference.Preference;
-import android.preference.Preference.OnPreferenceClickListener;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceCategory;
 import android.preference.PreferenceFragment;
@@ -81,29 +80,24 @@ public class SettingsActivity extends AppCompatPreferenceActivity
 	 * A preference value change listener that updates the preference's summary to reflect its new value.
 	 */
 	@Nullable
-	static private final Preference.OnPreferenceChangeListener listener = new Preference.OnPreferenceChangeListener()
-	{
-		@Override
-		public boolean onPreferenceChange(final Preference preference, @Nullable final Object value)
+	static private final Preference.OnPreferenceChangeListener listener = (preference, value) -> {
+		if (preference instanceof ListPreference && value != null)
 		{
-			if (preference instanceof ListPreference && value != null)
-			{
-				// For list preferences, look up the correct display value in the preference's 'entries' list.
-				final ListPreference listPreference = (ListPreference) preference;
-				final String stringValue = value.toString();
-				final int index = listPreference.findIndexOfValue(stringValue);
+			// For list preferences, look up the correct display value in the preference's 'entries' list.
+			final ListPreference listPreference = (ListPreference) preference;
+			final String stringValue = value.toString();
+			final int index = listPreference.findIndexOfValue(stringValue);
 
-				// Set the summary to reflect the new value.
-				preference.setSummary(index >= 0 ? listPreference.getEntries()[index].toString().trim() : null);
-			}
-			else
-			{
-				// For all other preferences, set the summary to the value's simple string representation.
-				final String stringValue = value != null ? value.toString() : "<default>";
-				preference.setSummary(stringValue);
-			}
-			return true;
+			// Set the summary to reflect the new value.
+			preference.setSummary(index >= 0 ? listPreference.getEntries()[index].toString().trim() : null);
 		}
+		else
+		{
+			// For all other preferences, set the summary to the value's simple string representation.
+			final String stringValue = value != null ? value.toString() : "<default>";
+			preference.setSummary(stringValue);
+		}
+		return true;
 	};
 
 	// S E T T I N G S
@@ -221,14 +215,9 @@ public class SettingsActivity extends AppCompatPreferenceActivity
 	{
 		final ListPreference listPreference = (ListPreference) pref;
 		populateStorageListPreference(context, listPreference);
-		listPreference.setOnPreferenceClickListener(new OnPreferenceClickListener()
-		{
-			@Override
-			public boolean onPreferenceClick(Preference preference)
-			{
-				populateStorageListPreference(context, listPreference);
-				return false;
-			}
+		listPreference.setOnPreferenceClickListener(preference -> {
+			populateStorageListPreference(context, listPreference);
+			return false;
 		});
 	}
 
@@ -242,14 +231,9 @@ public class SettingsActivity extends AppCompatPreferenceActivity
 	{
 		final ListPreference listPreference = (ListPreference) pref;
 		populateCacheListPreference(context, listPreference);
-		listPreference.setOnPreferenceClickListener(new OnPreferenceClickListener()
-		{
-			@Override
-			public boolean onPreferenceClick(Preference preference)
-			{
-				populateCacheListPreference(context, listPreference);
-				return false;
-			}
+		listPreference.setOnPreferenceClickListener(preference -> {
+			populateCacheListPreference(context, listPreference);
+			return false;
 		});
 	}
 

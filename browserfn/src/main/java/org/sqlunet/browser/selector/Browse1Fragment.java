@@ -3,6 +3,7 @@ package org.sqlunet.browser.selector;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.view.LayoutInflater;
@@ -25,6 +26,7 @@ public class Browse1Fragment extends Fragment implements SelectorsFragment.Liste
 	/**
 	 * Selectors fragment
 	 */
+	@Nullable
 	private SelectorsFragment selectorsFragment;
 
 	// C R E A T I O N
@@ -80,6 +82,7 @@ public class Browse1Fragment extends Fragment implements SelectorsFragment.Liste
 		if (isTwoPane(view))
 		{
 			// in two-pane mode, list items should be given the 'activated' state when touched.
+			assert this.selectorsFragment != null;
 			this.selectorsFragment.setActivateOnItemClick(true);
 		}
 	}
@@ -98,6 +101,7 @@ public class Browse1Fragment extends Fragment implements SelectorsFragment.Liste
 		{
 			// in two-pane mode, show the detail view in this activity by adding or replacing the detail fragment using a fragment transaction.
 			final Browse2Fragment fragment = (Browse2Fragment) getChildFragmentManager().findFragmentById(R.id.container_browse2);
+			assert fragment != null;
 			fragment.search(pointer, null);
 		}
 		else

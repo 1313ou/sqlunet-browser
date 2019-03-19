@@ -280,7 +280,7 @@ public final class DrawerActions
 		}
 
 		@Override
-		public void onDrawerClosed(View drawer)
+		public void onDrawerClosed(@NonNull View drawer)
 		{
 			if (this.parentListener != null)
 			{
@@ -289,7 +289,7 @@ public final class DrawerActions
 		}
 
 		@Override
-		public void onDrawerOpened(View drawer)
+		public void onDrawerOpened(@NonNull View drawer)
 		{
 			if (this.parentListener != null)
 			{
@@ -298,7 +298,7 @@ public final class DrawerActions
 		}
 
 		@Override
-		public void onDrawerSlide(View drawer, float slideOffset)
+		public void onDrawerSlide(@NonNull View drawer, float slideOffset)
 		{
 			if (this.parentListener != null)
 			{

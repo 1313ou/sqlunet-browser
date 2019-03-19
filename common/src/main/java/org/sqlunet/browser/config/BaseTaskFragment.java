@@ -50,6 +50,7 @@ abstract public class BaseTaskFragment extends Fragment
 	 *
 	 * @return spinner adapter
 	 */
+	@NonNull
 	abstract protected SpinnerAdapter makeAdapter();
 
 	@Nullable

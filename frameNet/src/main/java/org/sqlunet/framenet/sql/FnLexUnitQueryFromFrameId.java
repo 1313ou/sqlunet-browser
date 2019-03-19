@@ -36,6 +36,7 @@ class FnLexUnitQueryFromFrameId extends DBQuery
 	 */
 	public long getLuId()
 	{
+		assert this.cursor != null;
 		return this.cursor.getLong(0);
 	}
 
@@ -46,6 +47,7 @@ class FnLexUnitQueryFromFrameId extends DBQuery
 	 */
 	public String getLexUnit()
 	{
+		assert this.cursor != null;
 		return this.cursor.getString(1);
 	}
 
@@ -56,6 +58,7 @@ class FnLexUnitQueryFromFrameId extends DBQuery
 	 */
 	public String getPos()
 	{
+		assert this.cursor != null;
 		return this.cursor.getString(2);
 	}
 
@@ -66,6 +69,7 @@ class FnLexUnitQueryFromFrameId extends DBQuery
 	 */
 	public String getDefinition()
 	{
+		assert this.cursor != null;
 		return this.cursor.getString(3);
 	}
 
@@ -76,6 +80,7 @@ class FnLexUnitQueryFromFrameId extends DBQuery
 	 */
 	public String getDictionary()
 	{
+		assert this.cursor != null;
 		return this.cursor.getString(4);
 	}
 
@@ -86,6 +91,7 @@ class FnLexUnitQueryFromFrameId extends DBQuery
 	 */
 	public String getIncorporatedFe()
 	{
+		assert this.cursor != null;
 		return this.cursor.getString(5);
 	}
 
@@ -97,6 +103,7 @@ class FnLexUnitQueryFromFrameId extends DBQuery
 	@SuppressWarnings("unused")
 	public long getFrameId()
 	{
+		assert this.cursor != null;
 		return this.cursor.getInt(6);
 	}
 }

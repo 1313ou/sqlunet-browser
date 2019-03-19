@@ -1,6 +1,7 @@
 package org.sqlunet.wordnet.sql;
 
 import android.database.sqlite.SQLiteDatabase;
+import android.support.annotation.NonNull;
 
 import org.w3c.dom.Document;
 
@@ -159,6 +160,7 @@ interface WordNetInterface
 	 *
 	 * @return array of Strings
 	 */
+	@NonNull
 	String[] getPosNames();
 
 	/**
@@ -166,6 +168,7 @@ interface WordNetInterface
 	 *
 	 * @return array of Strings
 	 */
+	@NonNull
 	String[] getLexDomainNames();
 
 	/**
@@ -173,5 +176,6 @@ interface WordNetInterface
 	 *
 	 * @return array of Strings
 	 */
+	@NonNull
 	String[] getLinkNames();
 }

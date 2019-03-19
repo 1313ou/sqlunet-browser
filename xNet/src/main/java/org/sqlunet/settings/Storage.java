@@ -119,7 +119,7 @@ public class Storage
 	 * @param context context
 	 * @return SqlUNet storage
 	 */
-	static private File discover(final Context context)
+	static private File discover(@NonNull final Context context)
 	{
 		final List<StorageDirectory> dirs = StorageUtils.getSortedStorageDirectories(context);
 		for (StorageDirectory dir : dirs)

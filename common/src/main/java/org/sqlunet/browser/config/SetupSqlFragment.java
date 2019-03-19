@@ -114,178 +114,133 @@ public class SetupSqlFragment extends Fragment
 		ImageButton infoIndexesButton = view.findViewById(R.id.info_indexes);
 
 		// sql zip
-		this.downloadSqlZipButton.setOnClickListener(new View.OnClickListener()
-		{
-			@Override
-			public void onClick(final View v)
-			{
-				SetupSqlFragment.this.downloadSqlZipButton.setEnabled(false);
-				SetupSqlFragment.this.importButton.setEnabled(false);
-				SetupSqlFragment.this.indexesButton.setEnabled(false);
+		this.downloadSqlZipButton.setOnClickListener(v -> {
+			SetupSqlFragment.this.downloadSqlZipButton.setEnabled(false);
+			SetupSqlFragment.this.importButton.setEnabled(false);
+			SetupSqlFragment.this.indexesButton.setEnabled(false);
 
-				// starting download
-				final String from = StorageSettings.getSqlDownloadSource(activity);
-				final String to = StorageSettings.getSqlDownloadTarget(activity);
-				final Intent intent = new Intent(activity, DownloadActivity.class);
-				intent.putExtra(BaseDownloadFragment.DOWNLOAD_FROM_ARG, from);
-				intent.putExtra(BaseDownloadFragment.DOWNLOAD_TO_ARG, to);
-				startActivityForResult(intent, REQUEST_DOWNLOAD_CODE);
+			// starting download
+			final String from = StorageSettings.getSqlDownloadSource(activity);
+			final String to = StorageSettings.getSqlDownloadTarget(activity);
+			final Intent intent = new Intent(activity, DownloadActivity.class);
+			intent.putExtra(BaseDownloadFragment.DOWNLOAD_FROM_ARG, from);
+			intent.putExtra(BaseDownloadFragment.DOWNLOAD_TO_ARG, to);
+			startActivityForResult(intent, REQUEST_DOWNLOAD_CODE);
 
-			}
 		});
-		infoSqlZipButton.setOnClickListener(new View.OnClickListener()
-		{
-			@Override
-			public void onClick(final View v)
-			{
-				final String from = StorageSettings.getSqlDownloadSource(activity);
-				final String to = StorageSettings.getSqlDownloadTarget(activity);
-				final String free = StorageUtils.getFree(activity, to);
-				final boolean exists = new File(to).exists();
-				Info.info(activity, R.string.title_sqlzip, //
-						getString(R.string.title_operation), getString(R.string.info_op_download_sqlzip), //
-						getString(R.string.title_from), from, //
-						getString(R.string.title_to), to, //
-						getString(R.string.size_expected), getString(R.string.hr_size_sqlunet_sql_zip), //
-						getString(R.string.title_free), free, //
-						getString(R.string.title_status), getString(exists ? R.string.status_local_exists : R.string.status_local_not_exists));
-			}
+		infoSqlZipButton.setOnClickListener(v -> {
+			final String from = StorageSettings.getSqlDownloadSource(activity);
+			final String to = StorageSettings.getSqlDownloadTarget(activity);
+			final String free = StorageUtils.getFree(activity, to);
+			final boolean exists = new File(to).exists();
+			Info.info(activity, R.string.title_sqlzip, //
+					getString(R.string.title_operation), getString(R.string.info_op_download_sqlzip), //
+					getString(R.string.title_from), from, //
+					getString(R.string.title_to), to, //
+					getString(R.string.size_expected), getString(R.string.hr_size_sqlunet_sql_zip), //
+					getString(R.string.title_free), free, //
+					getString(R.string.title_status), getString(exists ? R.string.status_local_exists : R.string.status_local_not_exists));
 		});
 
 		// created
-		this.createButton.setOnClickListener(new View.OnClickListener()
-		{
-			@Override
-			public void onClick(final View v)
+		this.createButton.setOnClickListener(v -> {
+			try
 			{
-				try
-				{
-					SetupDatabaseTasks.createDatabase(activity, StorageSettings.getDatabasePath(activity));
-				}
-				catch (@NonNull final Exception e)
-				{
-					Log.e(TAG, "While creating", e);
-				}
-				update();
+				SetupDatabaseTasks.createDatabase(activity, StorageSettings.getDatabasePath(activity));
 			}
+			catch (@NonNull final Exception e)
+			{
+				Log.e(TAG, "While creating", e);
+			}
+			update();
 		});
-		infoCreateButton.setOnClickListener(new View.OnClickListener()
-		{
-			@Override
-			public void onClick(final View v)
-			{
-				final String database = StorageSettings.getDatabasePath(activity);
-				final String free = StorageUtils.getFree(activity, database);
-				final boolean databaseExists = new File(database).exists();
-				Info.info(activity, R.string.title_created, //
-						getString(R.string.title_operation), getString(R.string.info_op_create_database), //
-						getString(R.string.title_database), database, //
-						getString(R.string.title_free), free, //
-						getString(R.string.title_status), getString(databaseExists ? R.string.status_local_exists : R.string.status_local_not_exists));
-			}
+		infoCreateButton.setOnClickListener(v -> {
+			final String database = StorageSettings.getDatabasePath(activity);
+			final String free = StorageUtils.getFree(activity, database);
+			final boolean databaseExists = new File(database).exists();
+			Info.info(activity, R.string.title_created, //
+					getString(R.string.title_operation), getString(R.string.info_op_create_database), //
+					getString(R.string.title_database), database, //
+					getString(R.string.title_free), free, //
+					getString(R.string.title_status), getString(databaseExists ? R.string.status_local_exists : R.string.status_local_not_exists));
 		});
 
 		// import
-		this.importButton.setOnClickListener(new View.OnClickListener()
-		{
-			@Override
-			public void onClick(final View v)
-			{
-				try
-				{
-					final String database = StorageSettings.getDatabasePath(activity);
-					final String source = StorageSettings.getSqlSource(activity);
-					final String entry = StorageSettings.getImportEntry(activity);
-					final String unit = activity.getString(R.string.unit_statement);
-					final TaskObserver.Listener listener = new TaskObserver.DialogListener(activity, R.string.status_managing, source + '@' + entry, unit);
-					SetupSqlFragment.this.task = new ExecAsyncTask(getActivity(), listener, 1000).executeFromArchive(database, source, entry);
-				}
-				catch (@NonNull final Exception e)
-				{
-					Log.e(TAG, "While importing", e);
-				}
-			}
-		});
-		infoImportButton.setOnClickListener(new View.OnClickListener()
-		{
-			@Override
-			public void onClick(final View v)
+		this.importButton.setOnClickListener(v -> {
+			try
 			{
 				final String database = StorageSettings.getDatabasePath(activity);
 				final String source = StorageSettings.getSqlSource(activity);
 				final String entry = StorageSettings.getImportEntry(activity);
-				final String free = StorageUtils.getFree(getActivity(), database);
-				final boolean dbExists = new File(database).exists();
-				final boolean sqlzipExists = new File(source).exists();
-				Info.info(activity, R.string.title_import, //
-						getString(R.string.title_operation), getString(R.string.info_op_execute_import), //
-						getString(R.string.title_database), database, //
-						getString(R.string.title_status), getString(dbExists ? R.string.status_database_exists : R.string.status_database_not_exists), //
-						getString(R.string.title_free), free, //
-						getString(R.string.title_archive), source, //
-						getString(R.string.title_entry), entry, //
-						getString(R.string.size_expected) + ' ' + getString(R.string.total), getString(R.string.hr_size_db_working_total), //
-						getString(R.string.title_status), getString(sqlzipExists ? R.string.status_local_exists : R.string.status_local_not_exists));
+				final String unit = activity.getString(R.string.unit_statement);
+				final TaskObserver.Listener listener = new TaskObserver.DialogListener(activity, R.string.status_managing, source + '@' + entry, unit);
+				SetupSqlFragment.this.task = new ExecAsyncTask(getActivity(), listener, 1000).executeFromArchive(database, source, entry);
 			}
+			catch (@NonNull final Exception e)
+			{
+				Log.e(TAG, "While importing", e);
+			}
+		});
+		infoImportButton.setOnClickListener(v -> {
+			final String database = StorageSettings.getDatabasePath(activity);
+			final String source = StorageSettings.getSqlSource(activity);
+			final String entry = StorageSettings.getImportEntry(activity);
+			final String free = StorageUtils.getFree(getActivity(), database);
+			final boolean dbExists = new File(database).exists();
+			final boolean sqlzipExists = new File(source).exists();
+			Info.info(activity, R.string.title_import, //
+					getString(R.string.title_operation), getString(R.string.info_op_execute_import), //
+					getString(R.string.title_database), database, //
+					getString(R.string.title_status), getString(dbExists ? R.string.status_database_exists : R.string.status_database_not_exists), //
+					getString(R.string.title_free), free, //
+					getString(R.string.title_archive), source, //
+					getString(R.string.title_entry), entry, //
+					getString(R.string.size_expected) + ' ' + getString(R.string.total), getString(R.string.hr_size_db_working_total), //
+					getString(R.string.title_status), getString(sqlzipExists ? R.string.status_local_exists : R.string.status_local_not_exists));
 		});
 
 		// index button
-		this.indexesButton.setOnClickListener(new View.OnClickListener()
-		{
-			@Override
-			public void onClick(final View v)
-			{
-				// starting indexing task
-				try
-				{
-					final String database = StorageSettings.getDatabasePath(activity);
-					final String source = StorageSettings.getSqlSource(activity);
-					final String entry = StorageSettings.getIndexEntry(activity);
-					final String unit = activity.getString(R.string.unit_statement);
-					final TaskObserver.Listener listener = new TaskObserver.DialogListener(activity, R.string.status_managing, source + '@' + entry, unit);
-					SetupSqlFragment.this.task = new ExecAsyncTask(getActivity(), listener, 1).executeFromArchive(database, source, entry);
-				}
-				catch (@NonNull final Exception e)
-				{
-					Log.e(TAG, "While indexing", e);
-				}
-			}
-		});
-		infoIndexesButton.setOnClickListener(new View.OnClickListener()
-		{
-			@Override
-			public void onClick(final View v)
+		this.indexesButton.setOnClickListener(v -> {
+			// starting indexing task
+			try
 			{
 				final String database = StorageSettings.getDatabasePath(activity);
 				final String source = StorageSettings.getSqlSource(activity);
 				final String entry = StorageSettings.getIndexEntry(activity);
-				final String free = StorageUtils.getFree(getActivity(), database);
-				final boolean dbExists = new File(database).exists();
-				final boolean sqlzipExists = new File(source).exists();
-				Info.info(activity, R.string.title_indexes, //
-						getString(R.string.title_operation), getString(R.string.info_op_execute_import), //
-						getString(R.string.title_database), database, //
-						getString(R.string.title_status), getString(dbExists ? R.string.status_database_exists : R.string.status_database_not_exists), //
-						getString(R.string.title_free), free, //
-						getString(R.string.title_archive), source, //
-						getString(R.string.title_entry), entry, //
-						getString(R.string.title_status), getString(sqlzipExists ? R.string.status_local_exists : R.string.status_local_not_exists));
+				final String unit = activity.getString(R.string.unit_statement);
+				final TaskObserver.Listener listener = new TaskObserver.DialogListener(activity, R.string.status_managing, source + '@' + entry, unit);
+				SetupSqlFragment.this.task = new ExecAsyncTask(getActivity(), listener, 1).executeFromArchive(database, source, entry);
 			}
+			catch (@NonNull final Exception e)
+			{
+				Log.e(TAG, "While indexing", e);
+			}
+		});
+		infoIndexesButton.setOnClickListener(v -> {
+			final String database = StorageSettings.getDatabasePath(activity);
+			final String source = StorageSettings.getSqlSource(activity);
+			final String entry = StorageSettings.getIndexEntry(activity);
+			final String free = StorageUtils.getFree(getActivity(), database);
+			final boolean dbExists = new File(database).exists();
+			final boolean sqlzipExists = new File(source).exists();
+			Info.info(activity, R.string.title_indexes, //
+					getString(R.string.title_operation), getString(R.string.info_op_execute_import), //
+					getString(R.string.title_database), database, //
+					getString(R.string.title_status), getString(dbExists ? R.string.status_database_exists : R.string.status_database_not_exists), //
+					getString(R.string.title_free), free, //
+					getString(R.string.title_archive), source, //
+					getString(R.string.title_entry), entry, //
+					getString(R.string.title_status), getString(sqlzipExists ? R.string.status_local_exists : R.string.status_local_not_exists));
 		});
 
 		// swipe refresh layout
 		this.swipeRefreshLayout = view.findViewById(R.id.swipe_refresh);
 		this.swipeRefreshLayout.setColorSchemeResources(R.color.swipe_down_1_color, R.color.swipe_down_2_color);
-		this.swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener()
-		{
-			@Override
-			public void onRefresh()
-			{
-				update();
+		this.swipeRefreshLayout.setOnRefreshListener(() -> {
+			update();
 
-				// stop the refreshing indicator
-				SetupSqlFragment.this.swipeRefreshLayout.setRefreshing(false);
-			}
+			// stop the refreshing indicator
+			SetupSqlFragment.this.swipeRefreshLayout.setRefreshing(false);
 		});
 		return view;
 	}

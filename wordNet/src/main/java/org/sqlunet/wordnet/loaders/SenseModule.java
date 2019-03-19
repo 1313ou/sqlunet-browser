@@ -30,7 +30,7 @@ public class SenseModule extends SynsetModule
 	 *
 	 * @param fragment fragment
 	 */
-	public SenseModule(final Fragment fragment)
+	public SenseModule(@NonNull final Fragment fragment)
 	{
 		super(fragment);
 	}

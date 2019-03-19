@@ -50,6 +50,7 @@ class VnRoleQueryFromClassIdAndSense extends DBQuery
 	@SuppressWarnings("unused")
 	public long getRoleId()
 	{
+		assert this.cursor != null;
 		return this.cursor.getLong(0);
 	}
 
@@ -61,6 +62,7 @@ class VnRoleQueryFromClassIdAndSense extends DBQuery
 	@SuppressWarnings("unused")
 	public long getRoleTypeId()
 	{
+		assert this.cursor != null;
 		return this.cursor.getLong(1);
 	}
 
@@ -71,6 +73,7 @@ class VnRoleQueryFromClassIdAndSense extends DBQuery
 	 */
 	public String getRoleType()
 	{
+		assert this.cursor != null;
 		return this.cursor.getString(2);
 	}
 
@@ -81,6 +84,7 @@ class VnRoleQueryFromClassIdAndSense extends DBQuery
 	 */
 	public String getSelectionRestriction()
 	{
+		assert this.cursor != null;
 		return this.cursor.getString(3);
 	}
 
@@ -92,6 +96,7 @@ class VnRoleQueryFromClassIdAndSense extends DBQuery
 	@SuppressWarnings("unused")
 	public int getQuality()
 	{
+		assert this.cursor != null;
 		return this.cursor.getInt(4);
 	}
 
@@ -103,6 +108,7 @@ class VnRoleQueryFromClassIdAndSense extends DBQuery
 	@SuppressWarnings("unused")
 	public boolean getSynsetSpecific()
 	{
+		assert this.cursor != null;
 		final int result = this.cursor.getInt(5);
 		return result == 0;
 	}

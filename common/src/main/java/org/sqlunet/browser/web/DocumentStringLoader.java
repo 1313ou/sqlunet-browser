@@ -66,6 +66,7 @@ abstract class DocumentStringLoader extends AsyncTaskLoader<String>
 	 *
 	 * @return document
 	 */
+	@Nullable
 	abstract protected String getDoc();
 
 	@Override

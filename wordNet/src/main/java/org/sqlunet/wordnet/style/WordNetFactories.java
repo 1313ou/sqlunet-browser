@@ -15,32 +15,11 @@ import org.sqlunet.style.Spanner.SpanFactory;
  */
 public class WordNetFactories
 {
-	static public final SpanFactory lemmaFactory = new SpanFactory()
-	{
-		@Override
-		public Object makeSpans(final long flags)
-		{
-			return new Object[]{new ForegroundColorSpan(Color.BLACK), new StyleSpan(Typeface.BOLD)};
-		}
-	};
+	static public final SpanFactory lemmaFactory = flags -> new Object[]{new ForegroundColorSpan(Color.BLACK), new StyleSpan(Typeface.BOLD)};
 
-	static public final SpanFactory membersFactory = new SpanFactory()
-	{
-		@Override
-		public Object makeSpans(final long flags)
-		{
-			return new Object[]{new ForegroundColorSpan(Color.DKGRAY), new StyleSpan(Typeface.BOLD)};
-		}
-	};
+	static public final SpanFactory membersFactory = flags -> new Object[]{new ForegroundColorSpan(Color.DKGRAY), new StyleSpan(Typeface.BOLD)};
 
-	static public final SpanFactory wordFactory = new SpanFactory()
-	{
-		@Override
-		public Object makeSpans(final long flags)
-		{
-			return new Object[]{new ForegroundColorSpan(Color.BLACK), new StyleSpan(Typeface.BOLD)};
-		}
-	};
+	static public final SpanFactory wordFactory = flags -> new Object[]{new ForegroundColorSpan(Color.BLACK), new StyleSpan(Typeface.BOLD)};
 
 	static public final SpanFactory definitionFactory = Factories.definitionFactory;
 

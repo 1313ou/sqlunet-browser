@@ -15,76 +15,20 @@ import org.sqlunet.style.Spanner.SpanFactory;
  */
 public class Factories
 {
-	static public final SpanFactory exampleFactory = new SpanFactory()
-	{
-		@Override
-		public Object makeSpans(final long flags)
-		{
-			return new Object[]{new BackgroundColorSpan(Colors.xlt_yellow), new StyleSpan(Typeface.ITALIC)};
-		}
-	};
+	static public final SpanFactory exampleFactory = flags -> new Object[]{new BackgroundColorSpan(Colors.xlt_yellow), new StyleSpan(Typeface.ITALIC)};
 
-	static public final SpanFactory definitionFactory = new SpanFactory()
-	{
-		@Override
-		public Object makeSpans(final long flags)
-		{
-			return new Object[]{new ForegroundColorSpan(Colors.lt_blue), new StyleSpan(Typeface.ITALIC)};
-		}
-	};
+	static public final SpanFactory definitionFactory = flags -> new Object[]{new ForegroundColorSpan(Colors.lt_blue), new StyleSpan(Typeface.ITALIC)};
 
-	static public final SpanFactory classFactory = new SpanFactory()
-	{
-		@Override
-		public Object makeSpans(final long flags)
-		{
-			return new Object[]{new BackgroundColorSpan(Colors.dk_red), new ForegroundColorSpan(Color.WHITE), new StyleSpan(Typeface.BOLD)};
-		}
-	};
+	static public final SpanFactory classFactory = flags -> new Object[]{new BackgroundColorSpan(Colors.dk_red), new ForegroundColorSpan(Color.WHITE), new StyleSpan(Typeface.BOLD)};
 
-	static public final SpanFactory roleFactory = new SpanFactory()
-	{
-		@Override
-		public Object makeSpans(final long flags)
-		{
-			return new Object[]{new BackgroundColorSpan(Color.MAGENTA), new ForegroundColorSpan(Color.WHITE), new StyleSpan(Typeface.BOLD)};
-		}
-	};
+	static public final SpanFactory roleFactory = flags -> new Object[]{new BackgroundColorSpan(Color.MAGENTA), new ForegroundColorSpan(Color.WHITE), new StyleSpan(Typeface.BOLD)};
 
-	static public final SpanFactory memberFactory = new SpanFactory()
-	{
-		@Override
-		public Object makeSpans(final long flags)
-		{
-			return new Object[]{new BackgroundColorSpan(Color.RED), new ForegroundColorSpan(Color.WHITE), new StyleSpan(Typeface.BOLD)};
-		}
-	};
+	static public final SpanFactory memberFactory = flags -> new Object[]{new BackgroundColorSpan(Color.RED), new ForegroundColorSpan(Color.WHITE), new StyleSpan(Typeface.BOLD)};
 
-	static public final SpanFactory dataFactory = new SpanFactory()
-	{
-		@Override
-		public Object makeSpans(final long flags)
-		{
-			return new Object[]{new ForegroundColorSpan(Color.GRAY), new StyleSpan(Typeface.ITALIC)};
-		}
-	};
+	static public final SpanFactory dataFactory = flags -> new Object[]{new ForegroundColorSpan(Color.GRAY), new StyleSpan(Typeface.ITALIC)};
 
-	static public final SpanFactory boldFactory = new SpanFactory()
-	{
-		@Override
-		public Object makeSpans(final long flags)
-		{
-			return new Object[]{new StyleSpan(Typeface.BOLD)};
-		}
-	};
+	static public final SpanFactory boldFactory = flags -> new Object[]{new StyleSpan(Typeface.BOLD)};
 
 	@SuppressWarnings("unused")
-	static public final SpanFactory italicFactory = new SpanFactory()
-	{
-		@Override
-		public Object makeSpans(final long flags)
-		{
-			return new Object[]{new StyleSpan(Typeface.ITALIC)};
-		}
-	};
+	static public final SpanFactory italicFactory = flags -> new Object[]{new StyleSpan(Typeface.ITALIC)};
 }

@@ -50,6 +50,7 @@ class VnFrameQueryFromClassIdAndSense extends DBQuery
 	@SuppressWarnings("unused")
 	public long getFrameId()
 	{
+		assert this.cursor != null;
 		return this.cursor.getLong(0);
 	}
 
@@ -60,6 +61,7 @@ class VnFrameQueryFromClassIdAndSense extends DBQuery
 	 */
 	public String getNumber()
 	{
+		assert this.cursor != null;
 		return this.cursor.getString(1);
 	}
 
@@ -70,6 +72,7 @@ class VnFrameQueryFromClassIdAndSense extends DBQuery
 	 */
 	public String getXTag()
 	{
+		assert this.cursor != null;
 		return this.cursor.getString(2);
 	}
 
@@ -80,6 +83,7 @@ class VnFrameQueryFromClassIdAndSense extends DBQuery
 	 */
 	public String getDescription1()
 	{
+		assert this.cursor != null;
 		return this.cursor.getString(3);
 	}
 
@@ -90,6 +94,7 @@ class VnFrameQueryFromClassIdAndSense extends DBQuery
 	 */
 	public String getDescription2()
 	{
+		assert this.cursor != null;
 		return this.cursor.getString(4);
 	}
 
@@ -100,6 +105,7 @@ class VnFrameQueryFromClassIdAndSense extends DBQuery
 	 */
 	public String getSyntax()
 	{
+		assert this.cursor != null;
 		return this.cursor.getString(5);
 	}
 
@@ -110,6 +116,7 @@ class VnFrameQueryFromClassIdAndSense extends DBQuery
 	 */
 	public String getSemantics()
 	{
+		assert this.cursor != null;
 		return this.cursor.getString(6);
 	}
 
@@ -120,6 +127,7 @@ class VnFrameQueryFromClassIdAndSense extends DBQuery
 	 */
 	public String getExample()
 	{
+		assert this.cursor != null;
 		return this.cursor.getString(7);
 	}
 
@@ -131,6 +139,7 @@ class VnFrameQueryFromClassIdAndSense extends DBQuery
 	@SuppressWarnings("unused")
 	public int getQuality()
 	{
+		assert this.cursor != null;
 		return this.cursor.getInt(8);
 	}
 
@@ -142,6 +151,7 @@ class VnFrameQueryFromClassIdAndSense extends DBQuery
 	@SuppressWarnings("unused")
 	public boolean getSynsetSpecific()
 	{
+		assert this.cursor != null;
 		final int result = this.cursor.getInt(9);
 		return result == 0;
 	}

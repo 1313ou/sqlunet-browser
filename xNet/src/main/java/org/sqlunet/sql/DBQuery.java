@@ -4,6 +4,7 @@ import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 
 /**
  * Database query
@@ -22,6 +23,7 @@ public class DBQuery
 	/**
 	 * <code>cursor</code> is the result set/cursor
 	 */
+	@Nullable
 	protected Cursor cursor;
 
 	/**

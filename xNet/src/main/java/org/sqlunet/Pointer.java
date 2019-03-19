@@ -74,6 +74,7 @@ public class Pointer implements IPointer
 		return 0;
 	}
 
+	@NonNull
 	@Override
 	public String toString()
 	{

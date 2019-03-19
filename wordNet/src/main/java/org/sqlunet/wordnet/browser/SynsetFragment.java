@@ -102,6 +102,7 @@ public class SynsetFragment extends TreeFragment
 	 *
 	 * @return module
 	 */
+	@NonNull
 	Module makeModule()
 	{
 		final SynsetModule module = new SynsetModule(this);

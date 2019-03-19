@@ -61,54 +61,44 @@ public class SetupStatusFragment extends org.sqlunet.browser.config.SetupStatusF
 		assert activity != null;
 
 		// click listeners
-		this.buttonTextSearchWn.setOnClickListener(new View.OnClickListener()
-		{
-			@Override
-			public void onClick(View v)
-			{
-				int index = getResources().getInteger(R.integer.sql_statement_do_ts_wn_position);
-				final Intent intent = new Intent(activity, SetupDatabaseActivity.class);
-				intent.putExtra(SetupDatabaseFragment.ARG_POSITION, index);
-				startActivityForResult(intent, SetupStatusFragment.REQUEST_MANAGE_CODE + index);
-			}
+		this.buttonTextSearchWn.setOnClickListener(v -> {
+			int index = getResources().getInteger(R.integer.sql_statement_do_ts_wn_position);
+			final Intent intent = new Intent(activity, SetupDatabaseActivity.class);
+			intent.putExtra(SetupDatabaseFragment.ARG_POSITION, index);
+			startActivityForResult(intent, SetupStatusFragment.REQUEST_MANAGE_CODE + index);
 		});
 
-		this.infoDatabaseButton.setOnClickListener(new View.OnClickListener()
-		{
-			@Override
-			public void onClick(final View v)
+		this.infoDatabaseButton.setOnClickListener(v -> {
+			final String database = StorageSettings.getDatabasePath(activity);
+			final String free = StorageUtils.getFree(activity, database);
+			final String source = StorageSettings.getDbDownloadSource(activity);
+			final int status = Status.status(activity);
+			final boolean existsDb = (status & Status.EXISTS) != 0;
+			final boolean existsTables = (status & Status.EXISTS_TABLES) != 0;
+			if (existsDb)
 			{
-				final String database = StorageSettings.getDatabasePath(activity);
-				final String free = StorageUtils.getFree(activity, database);
-				final String source = StorageSettings.getDbDownloadSource(activity);
-				final int status = Status.status(activity);
-				final boolean existsDb = (status & Status.EXISTS) != 0;
-				final boolean existsTables = (status & Status.EXISTS_TABLES) != 0;
-				if (existsDb)
-				{
-					final long size = new File(database).length();
-					final String hrSize = StorageUtils.countToStorageString(size) + " (" + Long.toString(size) + ')';
-					Info.info(activity, R.string.title_status, //
-							getString(R.string.title_database), database, //
-							getString(R.string.title_status), getString(R.string.status_database_exists) + '-' + getString(existsTables ? R.string.status_data_exists : R.string.status_data_not_exists), //
-							getString(R.string.title_free), free, //
-							getString(R.string.size_expected), getString(R.string.hr_size_sqlunet_db), //
-							getString(R.string.size_expected) + ' ' + getString(R.string.text_search), getString(R.string.hr_size_searchtext), //
-							getString(R.string.size_expected) + ' ' + getString(R.string.total), getString(R.string.hr_size_db_working_total), //
-							getString(R.string.size_actual), hrSize);
-				}
-				else
-				{
-					Info.info(activity, R.string.title_download, //
-							getString(R.string.title_operation), getString(R.string.info_op_download_database), //
-							getString(R.string.title_from), source, //
-							getString(R.string.title_database), database, //
-							getString(R.string.title_free), free, //
-							getString(R.string.size_expected), getString(R.string.hr_size_sqlunet_db), //
-							getString(R.string.size_expected) + ' ' + getString(R.string.text_search), getString(R.string.hr_size_searchtext), //
-							getString(R.string.size_expected) + ' ' + getString(R.string.total), getString(R.string.hr_size_db_working_total), //
-							getString(R.string.title_status), getString(R.string.status_database_not_exists));
-				}
+				final long size = new File(database).length();
+				final String hrSize = StorageUtils.countToStorageString(size) + " (" + Long.toString(size) + ')';
+				Info.info(activity, R.string.title_status, //
+						getString(R.string.title_database), database, //
+						getString(R.string.title_status), getString(R.string.status_database_exists) + '-' + getString(existsTables ? R.string.status_data_exists : R.string.status_data_not_exists), //
+						getString(R.string.title_free), free, //
+						getString(R.string.size_expected), getString(R.string.hr_size_sqlunet_db), //
+						getString(R.string.size_expected) + ' ' + getString(R.string.text_search), getString(R.string.hr_size_searchtext), //
+						getString(R.string.size_expected) + ' ' + getString(R.string.total), getString(R.string.hr_size_db_working_total), //
+						getString(R.string.size_actual), hrSize);
+			}
+			else
+			{
+				Info.info(activity, R.string.title_download, //
+						getString(R.string.title_operation), getString(R.string.info_op_download_database), //
+						getString(R.string.title_from), source, //
+						getString(R.string.title_database), database, //
+						getString(R.string.title_free), free, //
+						getString(R.string.size_expected), getString(R.string.hr_size_sqlunet_db), //
+						getString(R.string.size_expected) + ' ' + getString(R.string.text_search), getString(R.string.hr_size_searchtext), //
+						getString(R.string.size_expected) + ' ' + getString(R.string.total), getString(R.string.hr_size_db_working_total), //
+						getString(R.string.title_status), getString(R.string.status_database_not_exists));
 			}
 		});
 		return view;

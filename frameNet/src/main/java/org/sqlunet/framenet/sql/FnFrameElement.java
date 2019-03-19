@@ -55,6 +55,7 @@ class FnFrameElement
 	/**
 	 * FE sem types
 	 */
+	@Nullable
 	public final String[] semTypes;
 
 	/**

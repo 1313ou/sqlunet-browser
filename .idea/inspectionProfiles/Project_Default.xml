@@ -2,5 +2,7 @@
   <profile version="1.0">
     <option name="myName" value="Project Default" />
     <inspection_tool class="Annotator" enabled="true" level="WARNING" enabled_by_default="true" />
+    <inspection_tool class="CheckEmptyScriptTag" enabled="true" level="WEAK WARNING" enabled_by_default="true" />
+    <inspection_tool class="XmlHighlighting" enabled="true" level="WEAK WARNING" enabled_by_default="true" />
   </profile>
 </component>

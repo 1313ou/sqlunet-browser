@@ -36,14 +36,7 @@ public class TextFragment extends AbstractTableFragment
 	/**
 	 * Bold style factory
 	 */
-	static private final SpanFactory boldFactory = new SpanFactory()
-	{
-		@Override
-		public Object makeSpans(final long flags)
-		{
-			return new Object[]{/*new BackgroundColorSpan(Colors.dk_red), new ForegroundColorSpan(Color.WHITE), */new StyleSpan(Typeface.BOLD)};
-		}
-	};
+	static private final SpanFactory boldFactory = flags -> new Object[]{/*new BackgroundColorSpan(Colors.dk_red), new ForegroundColorSpan(Color.WHITE), */new StyleSpan(Typeface.BOLD)};
 
 	/**
 	 * Factories
@@ -93,40 +86,35 @@ public class TextFragment extends AbstractTableFragment
 		final RegExprSpanner spanner = new RegExprSpanner(patterns, factories);
 
 		// view binder
-		return new ViewBinder()
-		{
-			@Override
-			public boolean setViewValue(final View view, @NonNull final Cursor cursor, final int columnIndex)
+		return (view, cursor, columnIndex) -> {
+			String value = cursor.getString(columnIndex);
+			if (value == null)
 			{
-				String value = cursor.getString(columnIndex);
-				if (value == null)
-				{
-					value = "";
-				}
-
-				if (view instanceof TextView)
-				{
-					final SpannableStringBuilder sb = new SpannableStringBuilder(value);
-					spanner.setSpan(sb, 0, 0);
-					((TextView) view).setText(sb);
-				}
-				else if (view instanceof ImageView)
-				{
-					try
-					{
-						((ImageView) view).setImageResource(Integer.parseInt(value));
-					}
-					catch (@NonNull final NumberFormatException nfe)
-					{
-						((ImageView) view).setImageURI(Uri.parse(value));
-					}
-				}
-				else
-				{
-					throw new IllegalStateException(view.getClass().getName() + " is not a view that can be bound by this SimpleCursorAdapter");
-				}
-				return true;
+				value = "";
 			}
+
+			if (view instanceof TextView)
+			{
+				final SpannableStringBuilder sb = new SpannableStringBuilder(value);
+				spanner.setSpan(sb, 0, 0);
+				((TextView) view).setText(sb);
+			}
+			else if (view instanceof ImageView)
+			{
+				try
+				{
+					((ImageView) view).setImageResource(Integer.parseInt(value));
+				}
+				catch (@NonNull final NumberFormatException nfe)
+				{
+					((ImageView) view).setImageURI(Uri.parse(value));
+				}
+			}
+			else
+			{
+				throw new IllegalStateException(view.getClass().getName() + " is not a view that can be bound by this SimpleCursorAdapter");
+			}
+			return true;
 		};
 	}
 

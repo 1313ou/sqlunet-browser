@@ -238,6 +238,7 @@ public class XSqlUNetProvider extends BaseProvider
 				final String[] unionProjection = {"wordid", "synsetid", "classid", "class", "classtag", "definition"};
 				final String[] tableProjection = {"wordid", "synsetid", "classid", "class", "classtag"};
 				final String[] groupByArray = {"wordid", "synsetid", "classid"};
+				assert projection != null;
 				final String query = makeQuery(table1, table2, tableProjection, unionProjection, projection, selection, groupByArray, sortOrder, "vn");
 				Log.d(XSqlUNetProvider.TAG + "PM-VN", query);
 				return raw(query, selectionArgs);
@@ -261,6 +262,7 @@ public class XSqlUNetProvider extends BaseProvider
 				final String[] unionProjection = {"wordid", "synsetid", "rolesetid", "rolesetname", "rolesethead", "rolesetdescr", "definition"};
 				final String[] tableProjection = {"wordid", "rolesetid", "rolesetname", "rolesethead", "rolesetdescr"};
 				final String[] groupByArray = {"wordid", "synsetid", "rolesetid"};
+				assert projection != null;
 				final String query = makeQuery(table1, table2, tableProjection, unionProjection, projection, selection, groupByArray, sortOrder, "pb");
 				Log.d(XSqlUNetProvider.TAG + "PM-PB", query);
 				return raw(query, selectionArgs);
@@ -279,6 +281,7 @@ public class XSqlUNetProvider extends BaseProvider
 				final String[] unionProjection = {"wordid", "synsetid", "frameid", "frame", "framedefinition", "luid", "lexunit", "ludefinition", "definition"};
 				final String[] tableProjection = {"wordid", "frameid", "frame", "framedefinition", "luid", "lexunit", "ludefinition"};
 				final String[] groupByArray = {"wordid", "synsetid", "frameid"};
+				assert projection != null;
 				final String query = makeQuery(table1, table2, tableProjection, unionProjection, projection, selection, groupByArray, sortOrder, "fn");
 				Log.d(XSqlUNetProvider.TAG + "PM-FN", query);
 				return raw(query, selectionArgs);
@@ -326,7 +329,7 @@ public class XSqlUNetProvider extends BaseProvider
 	 * @return union sql
 	 */
 	private String makeQuery(final String table1, final String table2, //
-			final String[] tableProjection, final String[] unionProjection0, final String[] projection, //
+			final String[] tableProjection, final String[] unionProjection0, @NonNull final String[] projection, //
 			final String selection, //
 			final String[] groupBys, final String sortOrder, final String tag)
 	{

@@ -206,6 +206,7 @@ public class NavigationFragment extends NavigationDrawerFragment implements Navi
 		{
 			// add new one
 			fragment = newFragment(position);
+			assert fragment != null;
 			transaction.add(R.id.container_content, fragment, tag);
 		}
 		else
@@ -218,6 +219,7 @@ public class NavigationFragment extends NavigationDrawerFragment implements Navi
 
 				// add new one
 				fragment = newFragment(position);
+				assert fragment != null;
 				transaction.add(R.id.container_content, fragment, tag);
 			}
 		}
@@ -267,7 +269,6 @@ public class NavigationFragment extends NavigationDrawerFragment implements Navi
 
 		// action bar
 		final ActionBarSetter setter = (ActionBarSetter) fragment;
-		assert setter != null;
 		if (!setter.setActionBar(actionBar, activity))
 		{
 			/*

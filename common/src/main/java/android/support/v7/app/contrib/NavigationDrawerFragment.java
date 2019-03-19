@@ -24,7 +24,6 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListAdapter;
 import android.widget.ListView;
@@ -195,14 +194,7 @@ public class NavigationDrawerFragment extends Fragment
 		// set up the drawer's list view with items and click listener
 		final View view = inflater.inflate(R.layout.drawer_main, container, false);
 		this.drawerListView = view.findViewById(R.id.sections);
-		this.drawerListView.setOnItemClickListener(new AdapterView.OnItemClickListener()
-		{
-			@Override
-			public void onItemClick(AdapterView<?> parent, View view0, int position, long id)
-			{
-				selectItem(position);
-			}
-		});
+		this.drawerListView.setOnItemClickListener((parent, view0, position, id) -> selectItem(position));
 		this.drawerListView.setAdapter(adapter);
 		this.drawerListView.setItemChecked(this.selectedPosition, true);
 		return view;
@@ -321,8 +313,9 @@ public class NavigationDrawerFragment extends Fragment
 				{
 					return;
 				}
-
-				getActivity().invalidateOptionsMenu(); // calls onPrepareOptionsMenu()
+				Activity activity = getActivity();
+				assert activity != null;
+				activity.invalidateOptionsMenu(); // calls onPrepareOptionsMenu()
 			}
 
 			@Override
@@ -342,7 +335,9 @@ public class NavigationDrawerFragment extends Fragment
 					sharedPreferences.edit().putBoolean(PREF_USER_LEARNED_DRAWER, true).apply();
 				}
 
-				getActivity().invalidateOptionsMenu(); // calls onPrepareOptionsMenu()
+				Activity activity = getActivity();
+				assert activity != null;
+				activity.invalidateOptionsMenu(); // calls onPrepareOptionsMenu()
 			}
 		};
 
@@ -353,14 +348,9 @@ public class NavigationDrawerFragment extends Fragment
 		}
 
 		// defer code dependent on restoration of previous instance state.
-		this.drawerLayout.post(new Runnable()
-		{
-			@Override
-			public void run()
-			{
-				assert NavigationDrawerFragment.this.drawerToggle != null;
-				NavigationDrawerFragment.this.drawerToggle.syncState();
-			}
+		this.drawerLayout.post(() -> {
+			assert NavigationDrawerFragment.this.drawerToggle != null;
+			NavigationDrawerFragment.this.drawerToggle.syncState();
 		});
 
 		// listener

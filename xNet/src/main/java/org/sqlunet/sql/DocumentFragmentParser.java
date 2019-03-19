@@ -7,7 +7,6 @@ import org.w3c.dom.DocumentFragment;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
-import org.xml.sax.EntityResolver;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 
@@ -133,15 +132,7 @@ public class DocumentFragmentParser
 		assert builder != null;
 
 		// the real input will be delivered by this entity resolver
-		builder.setEntityResolver(new EntityResolver()
-		{
-			@NonNull
-			@Override
-			public InputSource resolveEntity(final String publicId, final String systemId)
-			{
-				return input;
-			}
-		});
+		builder.setEntityResolver((publicId, systemId) -> input);
 
 		// parse
 		final Document document = builder.parse(inputSource);

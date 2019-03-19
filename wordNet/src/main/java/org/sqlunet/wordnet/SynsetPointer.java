@@ -57,6 +57,7 @@ public class SynsetPointer extends Pointer implements HasSynsetId
 		return this.id;
 	}
 
+	@NonNull
 	@SuppressWarnings("WeakerAccess")
 	@Override
 	public String toString()

@@ -20,7 +20,6 @@ import android.widget.CursorAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
-import android.widget.SimpleCursorAdapter.ViewBinder;
 import android.widget.TextView;
 
 import org.sqlunet.Pointer;
@@ -119,42 +118,37 @@ public class SelectorsFragment extends ListFragment
 						R.id.fnname, R.id.fnframename, R.id.fnword, R.id.fnid, R.id.fnwordid, R.id.wordid, R.id.fnframeid, R.id.icon, //
 				}, 0);
 
-		adapter.setViewBinder(new ViewBinder()
-		{
-			@Override
-			public boolean setViewValue(final View view, @NonNull final Cursor cursor, final int columnIndex)
+		adapter.setViewBinder((view, cursor, columnIndex) -> {
+			if (view instanceof TextView)
 			{
-				if (view instanceof TextView)
-				{
-					final int idIsLike = cursor.getColumnIndex(ISLIKE);
-					final int idName = cursor.getColumnIndex(LexUnits_or_Frames.NAME);
+				final int idIsLike = cursor.getColumnIndex(ISLIKE);
+				final int idName = cursor.getColumnIndex(LexUnits_or_Frames.NAME);
 
-					String text = cursor.getString(columnIndex);
-					if (text == null || "0".equals(text))
-					{
-						text = "";
-					}
-					final TextView textView = (TextView) view;
-					textView.setText(text);
+				String text = cursor.getString(columnIndex);
+				if (text == null || "0".equals(text))
+				{
+					text = "";
+				}
+				final TextView textView = (TextView) view;
+				textView.setText(text);
 
-					if (idName == columnIndex)
-					{
-						boolean isLike = cursor.getInt(idIsLike) != 0;
-						textView.setTextColor(isLike ? Color.GRAY : Color.BLACK);
-					}
-					return true;
-				}
-				else if (view instanceof ImageView)
+				if (idName == columnIndex)
 				{
-					boolean isFrame = cursor.getInt(columnIndex) != 0;
-					((ImageView) view).setImageResource(isFrame ? R.drawable.roles : R.drawable.member);
-					return true;
+					boolean isLike = cursor.getInt(idIsLike) != 0;
+					textView.setTextColor(isLike ? Color.GRAY : Color.BLACK);
 				}
-				else
-				{
-					throw new IllegalStateException(view.getClass().getName() + " is not a view that can be bound by this SimpleCursorAdapter");
-					//return false;
-				}
+				return true;
+			}
+			else if (view instanceof ImageView)
+			{
+				boolean isFrame = cursor.getInt(columnIndex) != 0;
+				((ImageView) view).setImageResource(isFrame ? R.drawable.roles : R.drawable.member);
+				return true;
+			}
+			else
+			{
+				throw new IllegalStateException(view.getClass().getName() + " is not a view that can be bound by this SimpleCursorAdapter");
+				//return false;
 			}
 		});
 		setListAdapter(adapter);
@@ -163,7 +157,7 @@ public class SelectorsFragment extends ListFragment
 	// V I E W
 
 	@Override
-	public View onCreateView(final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState)
+	public View onCreateView(@NonNull final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState)
 	{
 		return inflater.inflate(R.layout.fragment_selectors, container, false);
 	}

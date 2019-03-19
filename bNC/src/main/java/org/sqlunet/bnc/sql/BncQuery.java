@@ -41,6 +41,7 @@ class BncQuery extends DBQuery
 	 */
 	private String getPos()
 	{
+		assert this.cursor != null;
 		return this.cursor.getString(0);
 	}
 
@@ -51,6 +52,7 @@ class BncQuery extends DBQuery
 	 */
 	private String getPosName()
 	{
+		assert this.cursor != null;
 		return this.cursor.getString(1);
 	}
 
@@ -62,6 +64,7 @@ class BncQuery extends DBQuery
 	@SuppressWarnings("boxing")
 	private Integer getFreq()
 	{
+		assert this.cursor != null;
 		if (this.cursor.isNull(2))
 		{
 			return null;
@@ -77,6 +80,7 @@ class BncQuery extends DBQuery
 	@SuppressWarnings("boxing")
 	private Integer getRange()
 	{
+		assert this.cursor != null;
 		if (this.cursor.isNull(3))
 		{
 			return null;
@@ -92,6 +96,7 @@ class BncQuery extends DBQuery
 	@SuppressWarnings("boxing")
 	private Float getDisp()
 	{
+		assert this.cursor != null;
 		if (this.cursor.isNull(4))
 		{
 			return null;
@@ -109,6 +114,7 @@ class BncQuery extends DBQuery
 	@SuppressWarnings("boxing")
 	private Integer getConvFreq()
 	{
+		assert this.cursor != null;
 		if (this.cursor.isNull(5))
 		{
 			return null;
@@ -124,6 +130,7 @@ class BncQuery extends DBQuery
 	@SuppressWarnings("boxing")
 	private Integer getConvRange()
 	{
+		assert this.cursor != null;
 		if (this.cursor.isNull(6))
 		{
 			return null;
@@ -139,6 +146,7 @@ class BncQuery extends DBQuery
 	@SuppressWarnings("boxing")
 	private Float getConvDisp()
 	{
+		assert this.cursor != null;
 		if (this.cursor.isNull(7))
 		{
 			return null;
@@ -154,6 +162,7 @@ class BncQuery extends DBQuery
 	@SuppressWarnings("boxing")
 	private Integer getTaskFreq()
 	{
+		assert this.cursor != null;
 		if (this.cursor.isNull(8))
 		{
 			return null;
@@ -169,6 +178,7 @@ class BncQuery extends DBQuery
 	@SuppressWarnings("boxing")
 	private Integer getTaskRange()
 	{
+		assert this.cursor != null;
 		if (this.cursor.isNull(9))
 		{
 			return null;
@@ -184,6 +194,7 @@ class BncQuery extends DBQuery
 	@SuppressWarnings("boxing")
 	private Float getTaskDisp()
 	{
+		assert this.cursor != null;
 		if (this.cursor.isNull(10))
 		{
 			return null;
@@ -201,6 +212,7 @@ class BncQuery extends DBQuery
 	@SuppressWarnings("boxing")
 	private Integer getImagFreq()
 	{
+		assert this.cursor != null;
 		if (this.cursor.isNull(11))
 		{
 			return null;
@@ -216,6 +228,7 @@ class BncQuery extends DBQuery
 	@SuppressWarnings("boxing")
 	private Integer getImagRange()
 	{
+		assert this.cursor != null;
 		if (this.cursor.isNull(12))
 		{
 			return null;
@@ -231,6 +244,7 @@ class BncQuery extends DBQuery
 	@SuppressWarnings("boxing")
 	private Float getImagDisp()
 	{
+		assert this.cursor != null;
 		if (this.cursor.isNull(13))
 		{
 			return null;
@@ -246,6 +260,7 @@ class BncQuery extends DBQuery
 	@SuppressWarnings("boxing")
 	private Integer getInfFreq()
 	{
+		assert this.cursor != null;
 		if (this.cursor.isNull(14))
 		{
 			return null;
@@ -261,6 +276,7 @@ class BncQuery extends DBQuery
 	@SuppressWarnings("boxing")
 	private Integer getInfRange()
 	{
+		assert this.cursor != null;
 		if (this.cursor.isNull(15))
 		{
 			return null;
@@ -276,6 +292,7 @@ class BncQuery extends DBQuery
 	@SuppressWarnings("boxing")
 	private Float getInfDisp()
 	{
+		assert this.cursor != null;
 		if (this.cursor.isNull(16))
 		{
 			return null;
@@ -293,6 +310,7 @@ class BncQuery extends DBQuery
 	@SuppressWarnings("boxing")
 	private Integer getSpokenFreq()
 	{
+		assert this.cursor != null;
 		if (this.cursor.isNull(17))
 		{
 			return null;
@@ -308,6 +326,7 @@ class BncQuery extends DBQuery
 	@SuppressWarnings("boxing")
 	private Integer getSpokenRange()
 	{
+		assert this.cursor != null;
 		if (this.cursor.isNull(18))
 		{
 			return null;
@@ -323,6 +342,7 @@ class BncQuery extends DBQuery
 	@SuppressWarnings("boxing")
 	private Float getSpokenDisp()
 	{
+		assert this.cursor != null;
 		if (this.cursor.isNull(19))
 		{
 			return null;
@@ -338,6 +358,7 @@ class BncQuery extends DBQuery
 	@SuppressWarnings("boxing")
 	private Integer getWrittenFreq()
 	{
+		assert this.cursor != null;
 		if (this.cursor.isNull(20))
 		{
 			return null;
@@ -353,6 +374,7 @@ class BncQuery extends DBQuery
 	@SuppressWarnings("boxing")
 	private Integer getWrittenRange()
 	{
+		assert this.cursor != null;
 		if (this.cursor.isNull(21))
 		{
 			return null;
@@ -368,6 +390,7 @@ class BncQuery extends DBQuery
 	@SuppressWarnings("boxing")
 	private Float getWrittenDisp()
 	{
+		assert this.cursor != null;
 		if (this.cursor.isNull(22))
 		{
 			return null;

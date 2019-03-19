@@ -25,6 +25,7 @@ public class BrowsePredicateMatrixActivity extends AppCompatActivity
 	/**
 	 * Fragment
 	 */
+	@Nullable
 	private BrowsePredicateMatrixFragment fragment;
 
 	@Override
@@ -47,6 +48,7 @@ public class BrowsePredicateMatrixActivity extends AppCompatActivity
 			// set up the action bar
 			final ActionBar actionBar = getSupportActionBar();
 			assert actionBar != null;
+			assert this.fragment != null;
 			this.fragment.setActionBarUpDisabled(actionBar, this);
 		}
 	}
@@ -100,17 +102,19 @@ public class BrowsePredicateMatrixActivity extends AppCompatActivity
 		{
 			// search query submit or suggestion selection (when a suggested item is selected)
 			final String query = intent.getStringExtra(SearchManager.QUERY);
+			assert this.fragment != null;
 			this.fragment.search(query);
 			return;
 		}
 		else if (Intent.ACTION_SEND.equals(action))
 		{
 			final String type = intent.getType();
-			if (type != null && "text/plain".equals(type))
+			if ("text/plain".equals(type))
 			{
 				final String query = intent.getStringExtra(Intent.EXTRA_TEXT);
 				if (query != null)
 				{
+					assert this.fragment != null;
 					this.fragment.search(query);
 					return;
 				}
@@ -130,6 +134,7 @@ public class BrowsePredicateMatrixActivity extends AppCompatActivity
 					if (pointer instanceof PmRolePointer)
 					{
 						final PmRolePointer rolePointer = (PmRolePointer) pointer;
+						assert this.fragment != null;
 						this.fragment.search(rolePointer);
 					}
 				}

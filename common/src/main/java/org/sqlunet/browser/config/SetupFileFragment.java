@@ -91,95 +91,78 @@ public class SetupFileFragment extends BaseTaskFragment
 			}
 		}
 
-		this.runButton.setOnClickListener(new View.OnClickListener()
-		{
-			@Override
-			public void onClick(final View v)
+		this.runButton.setOnClickListener(v -> {
+			// skip first
+			final long id = SetupFileFragment.this.spinner.getSelectedItemId();
+			if (id == 0)
 			{
-				// skip first
-				final long id = SetupFileFragment.this.spinner.getSelectedItemId();
-				if (id == 0)
-				{
-					return;
-				}
+				return;
+			}
 
-				// execute
-				boolean success;
-				final Context context = getActivity();
-				assert context != null;
-				final Operation op = Operation.fromIndex((int) id);
-				if (op != null)
+			// execute
+			boolean success;
+			final Context context = getActivity();
+			assert context != null;
+			final Operation op = Operation.fromIndex((int) id);
+			if (op != null)
+			{
+				switch (op)
 				{
-					switch (op)
-					{
-						case CREATE:
+					case CREATE:
+						SetupFileFragment.this.status.setText(R.string.status_task_running);
+						success = SetupDatabaseTasks.createDatabase(context, StorageSettings.getDatabasePath(context));
+						SetupFileFragment.this.status.setText(success ? R.string.status_task_done : R.string.status_task_failed);
+						break;
+
+					case DROP:
+						Utils.confirm(context, R.string.title_setup_drop, R.string.askDrop, () -> {
 							SetupFileFragment.this.status.setText(R.string.status_task_running);
-							success = SetupDatabaseTasks.createDatabase(context, StorageSettings.getDatabasePath(context));
-							SetupFileFragment.this.status.setText(success ? R.string.status_task_done : R.string.status_task_failed);
-							break;
+							boolean success1 = SetupDatabaseTasks.deleteDatabase(context, StorageSettings.getDatabasePath(context));
+							SetupFileFragment.this.status.setText(success1 ? R.string.status_task_done : R.string.status_task_failed);
+						});
+						break;
 
-						case DROP:
-							Utils.confirm(context, R.string.title_setup_drop, R.string.askDrop, new Runnable()
-							{
-								@Override
-								public void run()
-								{
-									SetupFileFragment.this.status.setText(R.string.status_task_running);
-									boolean success = SetupDatabaseTasks.deleteDatabase(context, StorageSettings.getDatabasePath(context));
-									SetupFileFragment.this.status.setText(success ? R.string.status_task_done : R.string.status_task_failed);
-								}
-							});
-							break;
+					case COPY:
+						if (Permissions.check(getActivity()))
+						{
+							FileAsyncTask.copyFromFile(context, StorageSettings.getDatabasePath(context));
+						}
+						break;
 
-						case COPY:
-							if (Permissions.check(getActivity()))
+					case UNZIP:
+						if (Permissions.check(getActivity()))
+						{
+							String zipEntry = StorageSettings.getImportEntry(context);
+							if (/*zipEntry == null ||*/ zipEntry.isEmpty())
 							{
-								FileAsyncTask.copyFromFile(context, StorageSettings.getDatabasePath(context));
+								zipEntry = Storage.DBFILE;
 							}
-							break;
+							FileAsyncTask.unzipFromArchive(context, zipEntry, StorageSettings.getDatabasePath(context));
+						}
+						break;
 
-						case UNZIP:
-							if (Permissions.check(getActivity()))
-							{
-								String zipEntry = StorageSettings.getImportEntry(context);
-								if (/*zipEntry == null ||*/ zipEntry.isEmpty())
-								{
-									zipEntry = Storage.DBFILE;
-								}
-								FileAsyncTask.unzipFromArchive(context, zipEntry, StorageSettings.getDatabasePath(context));
-							}
-							break;
+					case MD5:
+						if (Permissions.check(getActivity()))
+						{
+							FileAsyncTask.md5(context);
+						}
+						break;
 
-						case MD5:
-							if (Permissions.check(getActivity()))
-							{
-								FileAsyncTask.md5(context);
-							}
-							break;
+					case DOWNLOAD:
+						final Intent intent2 = new Intent(context, DownloadActivity.class);
+						context.startActivity(intent2);
+						break;
 
-						case DOWNLOAD:
-							final Intent intent2 = new Intent(context, DownloadActivity.class);
-							context.startActivity(intent2);
-							break;
+					case DOWNLOADZIPPED:
+						final Intent intent3 = new Intent(context, DownloadActivity.class);
+						intent3.putExtra(DOWNLOAD_FROM_ARG, StorageSettings.getDbDownloadZippedSource(context));
+						intent3.putExtra(DOWNLOAD_TO_ARG, StorageSettings.getDbDownloadZippedTarget(context));
+						context.startActivity(intent3);
+						break;
 
-						case DOWNLOADZIPPED:
-							final Intent intent3 = new Intent(context, DownloadActivity.class);
-							intent3.putExtra(DOWNLOAD_FROM_ARG, StorageSettings.getDbDownloadZippedSource(context));
-							intent3.putExtra(DOWNLOAD_TO_ARG, StorageSettings.getDbDownloadZippedTarget(context));
-							context.startActivity(intent3);
-							break;
-
-						case UPDATE:
-							Utils.confirm(context, R.string.title_setup_update, R.string.askUpdate, new Runnable()
-							{
-								@Override
-								public void run()
-								{
-									SetupDatabaseTasks.update(context);
-								}
-							});
-							break;
-					}
+					case UPDATE:
+						Utils.confirm(context, R.string.title_setup_update, R.string.askUpdate, () -> SetupDatabaseTasks.update(context));
+						break;
 				}
 			}
 		});

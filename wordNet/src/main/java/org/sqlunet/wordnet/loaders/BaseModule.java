@@ -1039,7 +1039,7 @@ abstract public class BaseModule extends Module
 	 * @param synsetId synset id
 	 * @param parent   parent node
 	 */
-	private void semLinks(final long synsetId, final TreeNode parent)
+	private void semLinks(final long synsetId, @NonNull final TreeNode parent)
 	{
 		getLoaderManager().restartLoader(++Module.loaderId, null, new LoaderCallbacks<Cursor>()
 		{
@@ -1134,7 +1134,7 @@ abstract public class BaseModule extends Module
 	 * @param linkId   link id
 	 * @param parent   parent node
 	 */
-	private void semLinks(final long synsetId, final int linkId, final int recurseLevel, final TreeNode parent)
+	private void semLinks(final long synsetId, final int linkId, final int recurseLevel, @NonNull final TreeNode parent)
 	{
 		getLoaderManager().restartLoader(++Module.loaderId, null, new LoaderCallbacks<Cursor>()
 		{
@@ -2061,7 +2061,7 @@ abstract public class BaseModule extends Module
 		}
 
 		@Override
-		public void process(final TreeNode node)
+		public void process(@NonNull final TreeNode node)
 		{
 			semLinks(this.id, node);
 		}
@@ -2127,7 +2127,7 @@ abstract public class BaseModule extends Module
 		}
 
 		@Override
-		public void process(final TreeNode node)
+		public void process(@NonNull final TreeNode node)
 		{
 			// semLinks
 			semLinks(this.id, this.linkId, recurseLevel, node);

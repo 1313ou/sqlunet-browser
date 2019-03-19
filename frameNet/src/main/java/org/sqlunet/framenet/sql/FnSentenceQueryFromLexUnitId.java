@@ -36,6 +36,7 @@ class FnSentenceQueryFromLexUnitId extends DBQuery
 	 */
 	public long getSentenceId()
 	{
+		assert this.cursor != null;
 		return this.cursor.getLong(0);
 	}
 
@@ -46,6 +47,7 @@ class FnSentenceQueryFromLexUnitId extends DBQuery
 	 */
 	public String getText()
 	{
+		assert this.cursor != null;
 		return this.cursor.getString(1);
 	}
 }

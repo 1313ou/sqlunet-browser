@@ -38,6 +38,7 @@ class FnAnnoSetQuery extends DBQuery
 	 */
 	public long getSentenceId()
 	{
+		assert this.cursor != null;
 		return this.cursor.getLong(0);
 	}
 
@@ -48,6 +49,7 @@ class FnAnnoSetQuery extends DBQuery
 	 */
 	public String getSentenceText()
 	{
+		assert this.cursor != null;
 		return this.cursor.getString(1);
 	}
 
@@ -60,6 +62,7 @@ class FnAnnoSetQuery extends DBQuery
 	@SuppressWarnings("unused")
 	public long[] getAnnoSetIds()
 	{
+		assert this.cursor != null;
 		return Utils.toIds(this.cursor.getString(2));
 	}
 }

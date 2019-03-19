@@ -107,22 +107,10 @@ public class UpdateFragment extends Fragment
 			newer.setText(R.string.download_newer);
 			final ImageButton button = view.findViewById(R.id.update);
 			button.setVisibility(View.VISIBLE);
-			button.setOnClickListener(new View.OnClickListener()
-			{
-				@Override
-				public void onClick(View v)
-				{
-					final Context context = getActivity();
-					assert context != null;
-					Utils.confirm(context, R.string.title_activity_update, R.string.askUpdate, new Runnable()
-					{
-						@Override
-						public void run()
-						{
-							SetupDatabaseTasks.update(context);
-						}
-					});
-				}
+			button.setOnClickListener(v -> {
+				final Context context = getActivity();
+				assert context != null;
+				Utils.confirm(context, R.string.title_activity_update, R.string.askUpdate, () -> SetupDatabaseTasks.update(context));
 			});
 		}
 	}
