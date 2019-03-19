@@ -2,7 +2,7 @@ package org.sqlunet.wordnet.browser;
 
 import android.os.Bundle;
 import android.os.Parcelable;
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 import org.sqlunet.browser.TreeFragment;
 import org.sqlunet.provider.ProviderArgs;

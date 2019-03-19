@@ -14,7 +14,8 @@ android {
         versionName rootProject.ext.versionName
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        multiDexEnabled true
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
     compileOptions {
@@ -43,6 +44,7 @@ android {
 
 dependencies {
     implementation project(':common')
+    implementation project(':preference')
     implementation project(':expandableListFragment')
     implementation project(':support')
     implementation project(':xNet')
@@ -52,10 +54,13 @@ dependencies {
     implementation project(':frameNet')
     implementation project(':predicateMatrix')
     implementation project(':bNC')
-    implementation 'com.android.support:support-v13:28.0.0'
-    implementation 'com.android.support:appcompat-v7:28.0.0'
-    implementation 'com.android.support:design:28.0.0'
-    implementation 'com.android.support:support-annotations:28.0.0'
+    implementation 'androidx.appcompat:appcompat:1.1.0-alpha03'
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    implementation 'androidx.legacy:legacy-support-v13:1.0.0'
+    implementation 'androidx.preference:preference:1.0.0'
+    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+    implementation 'androidx.annotation:annotation:1.1.0-alpha02'
+    implementation 'com.google.android.material:material:1.1.0-alpha04'
 
     // local unit tests (JUnit 4 framework)
     testImplementation 'junit:junit:4.12'
@@ -63,9 +68,9 @@ dependencies {
     // instrumented tests
     androidTestImplementation project(':test')
     androidTestImplementation 'junit:junit:4.12'
-    androidTestImplementation 'com.android.support:support-annotations:28.0.0'
-    androidTestImplementation 'com.android.support.test:runner:1.0.2'
-    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
-    androidTestImplementation 'com.android.support.test.espresso:espresso-web:3.0.2'
-    androidTestImplementation 'com.android.support.test.uiautomator:uiautomator-v18:2.1.3'
+    androidTestImplementation 'androidx.annotation:annotation:1.1.0-alpha02'
+    androidTestImplementation 'androidx.test:runner:1.1.2-alpha02'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0-alpha02'
+    androidTestImplementation 'androidx.test.espresso:espresso-web:3.2.0-alpha02'
+    androidTestImplementation 'androidx.test.uiautomator:uiautomator:2.2.0'
 }

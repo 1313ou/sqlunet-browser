@@ -1,6 +1,6 @@
 package org.sqlunet.bnc.sql;
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 @SuppressWarnings("unused")
 class SqLiteDialect

@@ -1,8 +1,8 @@
 package org.sqlunet.browser;
 
 import android.content.Context;
-import android.support.annotation.NonNull;
-import android.support.v7.app.ActionBar;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import android.util.Log;
 
 import org.sqlunet.browser.common.R;

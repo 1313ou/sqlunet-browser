@@ -1,6 +1,6 @@
 package org.sqlunet.framenet;
 
-import android.support.annotation.Nullable;
+import androidx.annotation.Nullable;
 
 import org.sqlunet.framenet.sql.FnLabel;
 

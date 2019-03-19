@@ -1,6 +1,6 @@
 package org.sqlunet.verbnet.sql;
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 import org.sqlunet.wordnet.sql.BasicSynset;
 

@@ -2,7 +2,7 @@ package org.sqlunet.browser.vn;
 
 import android.content.Context;
 import android.content.res.Resources;
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 import android.text.Editable;
 import android.text.SpannableStringBuilder;
 import android.util.Log;

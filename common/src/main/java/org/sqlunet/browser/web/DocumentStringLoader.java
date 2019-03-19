@@ -3,9 +3,9 @@ package org.sqlunet.browser.web;
 import android.content.Context;
 import android.os.CancellationSignal;
 import android.os.OperationCanceledException;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v4.content.AsyncTaskLoader;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.loader.content.AsyncTaskLoader;
 
 /**
  * Document string loader

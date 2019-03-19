@@ -12,9 +12,6 @@
 		<item name="colorPrimaryDark">@color/primaryDarkColor</item>
 		<item name="colorAccent">@color/accentColor</item>
 
-		<item name="colorPrimary">@color/primaryColor</item>
-		<item name="colorPrimaryDark">@color/primaryDarkColor</item>
-		<item name="colorAccent">@color/accentColor</item>
 		<!--
 		<item name="android:textColorPrimary">@color/primaryTextColor</item>
 		<item name="android:textColorSecondary">@color/secondaryTextColor</item>
@@ -30,6 +27,9 @@
 
 		<!-- background of activated indicator -->
 		<item name="android:activatedBackgroundIndicator">@drawable/listitem_background</item>
+
+		<!-- theme UI preference -->
+		<item name="preferenceTheme">@style/PreferenceCompatTheme</item>
 
 	</style>
 

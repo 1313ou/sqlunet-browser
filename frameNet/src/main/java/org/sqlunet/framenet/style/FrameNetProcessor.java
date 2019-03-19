@@ -1,6 +1,6 @@
 package org.sqlunet.framenet.style;
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 import org.sqlunet.style.Preprocessor;
 

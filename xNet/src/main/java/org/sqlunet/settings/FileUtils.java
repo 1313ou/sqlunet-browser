@@ -3,7 +3,7 @@ package org.sqlunet.settings;
 import android.content.Context;
 import android.content.res.AssetManager;
 import android.net.Uri;
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 import java.io.File;
 import java.io.FileOutputStream;

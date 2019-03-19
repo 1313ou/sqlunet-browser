@@ -1,7 +1,7 @@
 package org.sqlunet.wordnet;
 
 import android.os.Parcel;
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 import org.sqlunet.HasWordId;
 import org.sqlunet.Pointer;

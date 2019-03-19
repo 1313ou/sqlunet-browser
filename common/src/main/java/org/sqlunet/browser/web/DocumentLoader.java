@@ -1,13 +1,14 @@
 package org.sqlunet.browser.web;
 
-import android.content.AsyncTaskLoader;
 import android.content.Context;
 import android.os.CancellationSignal;
 import android.os.OperationCanceledException;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 
 import org.w3c.dom.Document;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.loader.content.AsyncTaskLoader;
 
 /**
  * Abstract document loader

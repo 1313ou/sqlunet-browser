@@ -1,6 +1,6 @@
 package org.sqlunet.style;
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 import android.text.SpannableStringBuilder;
 
 import java.util.regex.Matcher;

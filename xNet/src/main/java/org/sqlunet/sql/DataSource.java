@@ -1,7 +1,7 @@
 package org.sqlunet.sql;
 
 import android.database.sqlite.SQLiteDatabase;
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 /**
  * Data source wrapping to use JDBC style

@@ -1,6 +1,6 @@
 package org.sqlunet.propbank.sql;
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 import org.sqlunet.sql.NodeFactory;
 import org.w3c.dom.Document;

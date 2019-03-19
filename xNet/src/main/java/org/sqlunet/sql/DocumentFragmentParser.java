@@ -1,6 +1,6 @@
 package org.sqlunet.sql;
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.DocumentFragment;

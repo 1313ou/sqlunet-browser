@@ -1,6 +1,6 @@
 package org.sqlunet;
 
-import android.support.annotation.Nullable;
+import androidx.annotation.Nullable;
 
 /**
  * Has extended-id interface

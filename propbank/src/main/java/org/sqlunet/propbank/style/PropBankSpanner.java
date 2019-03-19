@@ -1,7 +1,7 @@
 package org.sqlunet.propbank.style;
 
 import android.content.Context;
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 import android.text.style.ImageSpan;
 
 import org.sqlunet.propbank.R;

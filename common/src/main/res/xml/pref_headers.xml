@@ -1,18 +1,18 @@
-<preference-headers xmlns:android="http://schemas.android.com/apk/res/android">
+<preference-headers xmlns:app="http://schemas.android.com/apk/res-auto">
 
 	<!-- These settings headers are only used on tablets. -->
 
 	<header
-		android:fragment="org.sqlunet.browser.config.SettingsActivity$GeneralPreferenceFragment"
-		android:title="@string/pref_header_general"/>
+		app:fragment="org.sqlunet.browser.config.SettingsActivity$GeneralPreferenceFragment"
+		app:title="@string/pref_header_general"/>
 	<header
-		android:fragment="org.sqlunet.browser.config.SettingsActivity$FilterPreferenceFragment"
-		android:title="@string/pref_header_filter"/>
+		app:fragment="org.sqlunet.browser.config.SettingsActivity$FilterPreferenceFragment"
+		app:title="@string/pref_header_filter"/>
 	<header
-		android:fragment="org.sqlunet.browser.config.SettingsActivity$DownloadPreferenceFragment"
-		android:title="@string/pref_header_download"/>
+		app:fragment="org.sqlunet.browser.config.SettingsActivity$DownloadPreferenceFragment"
+		app:title="@string/pref_header_download"/>
 	<header
-		android:fragment="org.sqlunet.browser.config.SettingsActivity$DatabasePreferenceFragment"
-		android:title="@string/pref_header_database"/>
+		app:fragment="org.sqlunet.browser.config.SettingsActivity$DatabasePreferenceFragment"
+		app:title="@string/pref_header_database"/>
 
 </preference-headers>

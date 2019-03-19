@@ -1,6 +1,6 @@
 package org.sqlunet.browser.web;
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 import android.util.Log;
 
 import org.sqlunet.dom.DomTransformer;

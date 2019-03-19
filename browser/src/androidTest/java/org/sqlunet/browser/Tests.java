@@ -1,10 +1,10 @@
 package org.sqlunet.browser;
 
-import android.support.test.espresso.Espresso;
-import android.support.test.espresso.action.ViewActions;
-import android.support.test.espresso.assertion.ViewAssertions;
-import android.support.test.espresso.contrib.ExpandableListViewProtocol;
-import android.support.test.espresso.matcher.ViewMatchers;
+import androidx.test.espresso.Espresso;
+import androidx.test.espresso.action.ViewActions;
+import androidx.test.espresso.assertion.ViewAssertions;
+import androidx.test.espresso.contrib.ExpandableListViewProtocol;
+import androidx.test.espresso.matcher.ViewMatchers;
 import android.util.Log;
 import android.view.View;
 import android.widget.ListView;

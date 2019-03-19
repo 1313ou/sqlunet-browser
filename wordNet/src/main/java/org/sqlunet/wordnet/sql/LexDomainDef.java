@@ -1,6 +1,6 @@
 package org.sqlunet.wordnet.sql;
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 /**
  * LexDomainDef, utility class to encapsulate lexdomain data

@@ -14,16 +14,16 @@
  * limitations under the License.
  */
 
-package android.support.test.espresso.contrib;
+package androidx.test.espresso.contrib;
 
 import android.database.Cursor;
 import android.os.Build;
-import android.support.test.espresso.action.AdapterViewProtocol;
-import android.support.test.espresso.core.internal.deps.guava.base.Preconditions;
-import android.support.test.espresso.core.internal.deps.guava.collect.Lists;
-import android.support.test.espresso.core.internal.deps.guava.collect.Range;
-import android.support.test.espresso.matcher.ViewMatchers;
-import android.support.test.espresso.util.EspressoOptional;
+import androidx.test.espresso.action.AdapterViewProtocol;
+import androidx.test.espresso.core.internal.deps.guava.base.Preconditions;
+import androidx.test.espresso.core.internal.deps.guava.collect.Lists;
+import androidx.test.espresso.core.internal.deps.guava.collect.Range;
+import androidx.test.espresso.matcher.ViewMatchers;
+import androidx.test.espresso.util.EspressoOptional;
 import android.util.Log;
 import android.util.Pair;
 import android.view.View;

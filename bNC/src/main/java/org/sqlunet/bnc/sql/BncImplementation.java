@@ -1,7 +1,7 @@
 package org.sqlunet.bnc.sql;
 
 import android.database.sqlite.SQLiteDatabase;
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 import org.sqlunet.sql.NodeFactory;
 import org.sqlunet.dom.DomFactory;

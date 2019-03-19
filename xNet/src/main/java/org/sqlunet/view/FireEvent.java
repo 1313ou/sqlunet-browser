@@ -1,6 +1,6 @@
 package org.sqlunet.view;
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 import org.sqlunet.treeview.control.Controller;
 import org.sqlunet.treeview.control.QueryController;

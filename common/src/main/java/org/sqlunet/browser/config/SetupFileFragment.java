@@ -3,7 +3,7 @@ package org.sqlunet.browser.config;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 import android.text.SpannableStringBuilder;
 import android.view.LayoutInflater;
 import android.view.View;

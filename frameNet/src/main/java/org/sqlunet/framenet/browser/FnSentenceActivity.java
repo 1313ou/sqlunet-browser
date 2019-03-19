@@ -1,7 +1,7 @@
 package org.sqlunet.framenet.browser;
 
-import android.support.annotation.NonNull;
-import android.support.v4.app.Fragment;
+import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
 
 import org.sqlunet.browser.AbstractActivity;
 import org.sqlunet.framenet.R;

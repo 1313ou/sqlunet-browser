@@ -1,7 +1,7 @@
 package org.sqlunet.framenet.sql;
 
 import android.database.sqlite.SQLiteDatabase;
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 import org.sqlunet.sql.DBQuery;
 import org.sqlunet.sql.Utils;

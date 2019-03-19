@@ -1,9 +1,9 @@
 package org.sqlunet.browser;
 
 import android.os.Environment;
-import android.support.test.espresso.Espresso;
-import android.support.test.espresso.UiController;
-import android.support.test.espresso.ViewAction;
+import androidx.test.espresso.Espresso;
+import androidx.test.espresso.UiController;
+import androidx.test.espresso.ViewAction;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;

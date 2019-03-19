@@ -7,7 +7,7 @@
 		android:id="@+id/search"
 		android:iconifiedByDefault="true"
 		android:title="@string/hint_searchtext"
-		app:actionViewClass="android.support.v7.widget.SearchView"
+		app:actionViewClass="androidx.appcompat.widget.SearchView"
 		app:showAsAction="always"
 		tools:ignore="AlwaysShowAction"
 		/>

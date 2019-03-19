@@ -1,6 +1,6 @@
 package org.sqlunet.wordnet.browser;
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 import org.sqlunet.browser.Module;
 import org.sqlunet.wordnet.loaders.SenseKeyModule;

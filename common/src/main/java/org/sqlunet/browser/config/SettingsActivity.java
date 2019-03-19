@@ -2,28 +2,17 @@ package org.sqlunet.browser.config;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.content.res.XmlResourceParser;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-import android.preference.ListPreference;
-import android.preference.Preference;
-import android.preference.PreferenceActivity;
-import android.preference.PreferenceCategory;
-import android.preference.PreferenceFragment;
-import android.preference.PreferenceManager;
-import android.preference.PreferenceScreen;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v4.app.NavUtils;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.contrib.AppCompatPreferenceActivity;
 import android.util.Pair;
 import android.view.MenuItem;
 
 import org.sqlunet.browser.ColorUtils;
 import org.sqlunet.browser.common.R;
+import org.sqlunet.preference.Header;
+import org.sqlunet.preference.PreferenceActivityCompat;
 import org.sqlunet.settings.Settings;
 import org.sqlunet.settings.StorageReports;
 import org.sqlunet.settings.StorageUtils;
@@ -35,14 +24,23 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBar;
+import androidx.core.app.NavUtils;
+import androidx.preference.ListPreference;
+import androidx.preference.Preference;
+import androidx.preference.PreferenceFragmentCompat;
+import androidx.preference.PreferenceManager;
+
 /**
- * A {@link PreferenceActivity} that presents a set of application settings. On handset devices, settings are presented as a single list. On tablets, settings
+ * A PreferenceActivity that presents a set of application settings. On handset devices, settings are presented as a single list. On tablets, settings
  * are split by category, with category headers shown to the left of the list of settings.
  * <p>
  * See <a href="http://developer.android.com/design/patterns/settings.html"> Android Design: Settings</a> for design guidelines and the
  * <a href="http://developer.android.com/guide/topics/ui/settings.html">Settings API Guide</a> for more information on developing a Settings UI.
  */
-public class SettingsActivity extends AppCompatPreferenceActivity
+public class SettingsActivity extends PreferenceActivityCompat
 {
 	/**
 	 * Determines whether to always show the simplified settings UI, where settings are presented in a single list. When false, settings are shown as a
@@ -100,41 +98,10 @@ public class SettingsActivity extends AppCompatPreferenceActivity
 		return true;
 	};
 
-	// S E T T I N G S
+	// T O O L B A R
 
-	/**
-	 * Set always-simple-preferences flag
-	 *
-	 * @param alwaysSimplePrefs flag
-	 */
-	@SuppressWarnings("unused")
-	static public void setAlwaysSimplePrefs(boolean alwaysSimplePrefs)
+	private void setupToolbar(final int toolbar, final int toolbar1)
 	{
-		ALWAYS_SIMPLE_PREFS = alwaysSimplePrefs;
-	}
-
-	/**
-	 * Helper method to determine if the device has an large screen.
-	 */
-	static private boolean isLargeTablet(@NonNull final Context context)
-	{
-		return (context.getResources().getConfiguration().screenLayout & Configuration.SCREENLAYOUT_SIZE_MASK) >= Configuration.SCREENLAYOUT_SIZE_LARGE;
-	}
-
-	/**
-	 * Determines whether the simplified settings UI should be shown. This is true if this is forced via {@link #ALWAYS_SIMPLE_PREFS}, or the device doesn't
-	 * have newer APIs like {@link PreferenceFragment}, or the device doesn't have an extra-large screen. In these cases, a single-pane "simplified" settings UI
-	 * should be shown.
-	 */
-	static private boolean isSimplePreferences(@NonNull final Context context)
-	{
-		return SettingsActivity.ALWAYS_SIMPLE_PREFS || !SettingsActivity.isLargeTablet(context);
-	}
-
-	@Override
-	public boolean onIsMultiPane()
-	{
-		return SettingsActivity.isLargeTablet(this) && !SettingsActivity.isSimplePreferences(this);
 	}
 
 	// V A L I D A T I O N
@@ -143,7 +110,7 @@ public class SettingsActivity extends AppCompatPreferenceActivity
 
 	@SuppressWarnings("TryWithIdenticalCatches")
 	@Override
-	protected boolean isValidFragment(final String fragmentName)
+	public boolean isValidFragment(final String fragmentName)
 	{
 		if (allowedFragments == null)
 		{
@@ -283,19 +250,6 @@ public class SettingsActivity extends AppCompatPreferenceActivity
 		listPref.setDefaultValue(values[0]);
 	}
 
-	// L I F E C Y C L E
-
-	@Override
-	protected void onPostCreate(final Bundle savedInstanceState)
-	{
-		super.onPostCreate(savedInstanceState);
-
-		if (SettingsActivity.isSimplePreferences(this))
-		{
-			setupSimplePreferencesScreen();
-		}
-	}
-
 	// L I S T E N E R
 
 	/**
@@ -304,64 +258,7 @@ public class SettingsActivity extends AppCompatPreferenceActivity
 	@Override
 	public void onBuildHeaders(final List<Header> target)
 	{
-		if (!SettingsActivity.isSimplePreferences(this))
-		{
-			loadHeadersFromResource(R.xml.pref_headers, target);
-		}
-	}
-
-	// S I M P L E
-
-	/**
-	 * Shows the simplified settings UI if the device configuration if the device configuration dictates that a simplified, single-pane UI should be shown.
-	 */
-	@SuppressWarnings("deprecation")
-	private void setupSimplePreferencesScreen()
-	{
-		// in the simplified UI, fragments are not used at all and we instead use the older PreferenceActivity APIs.
-
-		// Add container
-		addPreferencesFromResource(R.xml.pref_container);
-		final PreferenceScreen prefScreen = getPreferenceScreen();
-
-		// addItem 'general' header
-		final PreferenceCategory generalHeader = new PreferenceCategory(this);
-		generalHeader.setTitle(R.string.pref_header_general);
-		prefScreen.addPreference(generalHeader);
-
-		// addItem 'general' preferences.
-		addPreferencesFromResource(R.xml.pref_general);
-
-		// addItem 'filter' header
-		final PreferenceCategory filterHeader = new PreferenceCategory(this);
-		filterHeader.setTitle(R.string.pref_header_filter);
-		prefScreen.addPreference(filterHeader);
-
-		// addItem 'filter' header
-		addPreferencesFromResource(R.xml.pref_filter);
-
-		// addItem 'database' header
-		final PreferenceCategory databaseHeader = new PreferenceCategory(this);
-		databaseHeader.setTitle(R.string.pref_header_database);
-		prefScreen.addPreference(databaseHeader);
-
-		// addItem 'download'
-		addPreferencesFromResource(R.xml.pref_download);
-		populateCachePreference(this, findPreference(Settings.PREF_CACHE));
-
-		// addItem 'database'
-		addPreferencesFromResource(R.xml.pref_database);
-		populateStoragePreference(this, findPreference(Settings.PREF_STORAGE));
-
-		// addItem 'database'
-
-		// bind the summaries of preferences to their values.
-		SettingsActivity.bind(findPreference(Settings.PREF_SELECTOR_MODE));
-		SettingsActivity.bind(findPreference(Settings.PREF_DETAIL_MODE));
-		SettingsActivity.bind(findPreference(Settings.PREF_STORAGE));
-		SettingsActivity.bind(findPreference(Settings.PREF_DOWNLOAD_SITE));
-		SettingsActivity.bind(findPreference(Settings.PREF_DOWNLOADER));
-		SettingsActivity.bind(findPreference(Settings.PREF_CACHE));
+		loadHeadersFromResource(R.xml.pref_headers, target);
 	}
 
 	// F R A G M E N T S
@@ -369,10 +266,10 @@ public class SettingsActivity extends AppCompatPreferenceActivity
 	/**
 	 * This fragment shows general preferences only.
 	 */
-	static public class GeneralPreferenceFragment extends PreferenceFragment
+	static public class GeneralPreferenceFragment extends PreferenceFragmentCompat
 	{
 		@Override
-		public void onCreate(final Bundle savedInstanceState)
+		public void onCreatePreferences(final Bundle savedInstanceState, final String rootKey)
 		{
 			super.onCreate(savedInstanceState);
 
@@ -380,18 +277,18 @@ public class SettingsActivity extends AppCompatPreferenceActivity
 			addPreferencesFromResource(R.xml.pref_general);
 
 			// bind the summaries to their values.
-			SettingsActivity.bind(findPreference(Settings.PREF_SELECTOR_MODE));
-			SettingsActivity.bind(findPreference(Settings.PREF_DETAIL_MODE));
+			bind(findPreference(Settings.PREF_SELECTOR_MODE));
+			bind(findPreference(Settings.PREF_DETAIL_MODE));
 		}
 	}
 
 	/**
 	 * This fragment shows general preferences only.
 	 */
-	static public class FilterPreferenceFragment extends PreferenceFragment
+	static public class FilterPreferenceFragment extends PreferenceFragmentCompat
 	{
 		@Override
-		public void onCreate(final Bundle savedInstanceState)
+		public void onCreatePreferences(final Bundle savedInstanceState, final String rootKey)
 		{
 			super.onCreate(savedInstanceState);
 
@@ -403,10 +300,10 @@ public class SettingsActivity extends AppCompatPreferenceActivity
 	/**
 	 * This fragment shows database preferences only.
 	 */
-	static public class DatabasePreferenceFragment extends PreferenceFragment
+	static public class DatabasePreferenceFragment extends PreferenceFragmentCompat
 	{
 		@Override
-		public void onCreate(final Bundle savedInstanceState)
+		public void onCreatePreferences(final Bundle savedInstanceState, final String rootKey)
 		{
 			super.onCreate(savedInstanceState);
 
@@ -418,20 +315,18 @@ public class SettingsActivity extends AppCompatPreferenceActivity
 			populateStoragePreference(getActivity(), storagePreference);
 
 			// bind the summaries to their values.
-			SettingsActivity.bind(storagePreference);
+			bind(storagePreference);
 		}
 	}
 
 	/**
 	 * This fragment shows download preferences only.
 	 */
-	static public class DownloadPreferenceFragment extends PreferenceFragment
+	static public class DownloadPreferenceFragment extends PreferenceFragmentCompat
 	{
 		@Override
-		public void onCreate(final Bundle savedInstanceState)
+		public void onCreatePreferences(final Bundle savedInstanceState, final String rootKey)
 		{
-			super.onCreate(savedInstanceState);
-
 			// inflate
 			addPreferencesFromResource(R.xml.pref_download);
 
@@ -440,13 +335,13 @@ public class SettingsActivity extends AppCompatPreferenceActivity
 			populateCachePreference(getActivity(), cachePreference);
 
 			// bind the summaries to their values.
-			SettingsActivity.bind(findPreference(Settings.PREF_DOWNLOAD_SITE));
-			SettingsActivity.bind(findPreference(Settings.PREF_DOWNLOADER));
-			SettingsActivity.bind(findPreference(Settings.PREF_DOWNLOAD_DBFILE));
-			SettingsActivity.bind(findPreference(Settings.PREF_DOWNLOAD_SQLFILE));
-			SettingsActivity.bind(findPreference(Settings.PREF_ENTRY_IMPORT));
-			SettingsActivity.bind(findPreference(Settings.PREF_ENTRY_INDEX));
-			SettingsActivity.bind(cachePreference);
+			bind(findPreference(Settings.PREF_DOWNLOAD_SITE));
+			bind(findPreference(Settings.PREF_DOWNLOADER));
+			bind(findPreference(Settings.PREF_DOWNLOAD_DBFILE));
+			bind(findPreference(Settings.PREF_DOWNLOAD_SQLFILE));
+			bind(findPreference(Settings.PREF_ENTRY_IMPORT));
+			bind(findPreference(Settings.PREF_ENTRY_INDEX));
+			bind(cachePreference);
 		}
 	}
 

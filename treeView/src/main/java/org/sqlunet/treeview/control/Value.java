@@ -1,6 +1,6 @@
 package org.sqlunet.treeview.control;
 
-import android.support.annotation.Nullable;
+import androidx.annotation.Nullable;
 
 /**
  * Value for tree item with extra icon

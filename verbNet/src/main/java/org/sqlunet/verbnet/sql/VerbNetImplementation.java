@@ -1,7 +1,7 @@
 package org.sqlunet.verbnet.sql;
 
 import android.database.sqlite.SQLiteDatabase;
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 import org.sqlunet.dom.DomFactory;
 import org.sqlunet.dom.DomTransformer;

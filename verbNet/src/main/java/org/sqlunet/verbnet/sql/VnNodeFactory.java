@@ -1,7 +1,7 @@
 package org.sqlunet.verbnet.sql;
 
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import org.sqlunet.wordnet.sql.NodeFactory;
 import org.w3c.dom.Document;

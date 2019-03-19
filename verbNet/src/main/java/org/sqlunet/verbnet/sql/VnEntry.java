@@ -1,7 +1,7 @@
 package org.sqlunet.verbnet.sql;
 
 import android.database.sqlite.SQLiteDatabase;
-import android.support.annotation.Nullable;
+import androidx.annotation.Nullable;
 
 import org.sqlunet.wordnet.sql.BasicWord;
 

@@ -1,6 +1,6 @@
 package org.sqlunet;
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 /**
  * Has part-of-speech interface

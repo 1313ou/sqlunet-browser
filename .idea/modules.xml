@@ -2,23 +2,24 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file:///mnt/data2/devel/android-sqlunet-as/SqlUNet/SqlUNet.iml" filepath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/SqlUNet.iml" />
-      <module fileurl="file:///mnt/data2/devel/android-sqlunet-as/SqlUNet/bNC/bNC.iml" filepath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/bNC/bNC.iml" />
-      <module fileurl="file:///mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/browser.iml" filepath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/browser.iml" />
-      <module fileurl="file:///mnt/data2/devel/android-sqlunet-as/SqlUNet/browserfn/browserfn.iml" filepath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browserfn/browserfn.iml" />
-      <module fileurl="file:///mnt/data2/devel/android-sqlunet-as/SqlUNet/browservn/browservn.iml" filepath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browservn/browservn.iml" />
-      <module fileurl="file:///mnt/data2/devel/android-sqlunet-as/SqlUNet/browserwn/browserwn.iml" filepath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/browserwn/browserwn.iml" />
-      <module fileurl="file:///mnt/data2/devel/android-sqlunet-as/SqlUNet/common/common.iml" filepath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/common/common.iml" />
-      <module fileurl="file:///mnt/data2/devel/android-sqlunet-as/SqlUNet/expandableListFragment/expandableListFragment.iml" filepath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/expandableListFragment/expandableListFragment.iml" />
-      <module fileurl="file:///mnt/data2/devel/android-sqlunet-as/SqlUNet/frameNet/frameNet.iml" filepath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/frameNet/frameNet.iml" />
-      <module fileurl="file:///mnt/data2/devel/android-sqlunet-as/SqlUNet/predicateMatrix/predicateMatrix.iml" filepath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/predicateMatrix/predicateMatrix.iml" />
-      <module fileurl="file:///mnt/data2/devel/android-sqlunet-as/SqlUNet/propbank/propbank.iml" filepath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/propbank/propbank.iml" />
-      <module fileurl="file:///mnt/data2/devel/android-sqlunet-as/SqlUNet/support/support.iml" filepath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/support/support.iml" />
-      <module fileurl="file:///mnt/data2/devel/android-sqlunet-as/SqlUNet/test/test.iml" filepath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/test/test.iml" />
-      <module fileurl="file:///mnt/data2/devel/android-sqlunet-as/SqlUNet/treeView/treeView.iml" filepath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/treeView/treeView.iml" />
-      <module fileurl="file:///mnt/data2/devel/android-sqlunet-as/SqlUNet/verbNet/verbNet.iml" filepath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/verbNet/verbNet.iml" />
-      <module fileurl="file:///mnt/data2/devel/android-sqlunet-as/SqlUNet/wordNet/wordNet.iml" filepath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/wordNet/wordNet.iml" />
-      <module fileurl="file:///mnt/data2/devel/android-sqlunet-as/SqlUNet/xNet/xNet.iml" filepath="/mnt/data2/devel/android-sqlunet-as/SqlUNet/xNet/xNet.iml" />
+      <module fileurl="file://$PROJECT_DIR$/SqlUNet.iml" filepath="$PROJECT_DIR$/SqlUNet.iml" />
+      <module fileurl="file://$PROJECT_DIR$/bNC/bNC.iml" filepath="$PROJECT_DIR$/bNC/bNC.iml" />
+      <module fileurl="file://$PROJECT_DIR$/browser/browser.iml" filepath="$PROJECT_DIR$/browser/browser.iml" />
+      <module fileurl="file://$PROJECT_DIR$/browserfn/browserfn.iml" filepath="$PROJECT_DIR$/browserfn/browserfn.iml" />
+      <module fileurl="file://$PROJECT_DIR$/browservn/browservn.iml" filepath="$PROJECT_DIR$/browservn/browservn.iml" />
+      <module fileurl="file://$PROJECT_DIR$/browserwn/browserwn.iml" filepath="$PROJECT_DIR$/browserwn/browserwn.iml" />
+      <module fileurl="file://$PROJECT_DIR$/common/common.iml" filepath="$PROJECT_DIR$/common/common.iml" />
+      <module fileurl="file://$PROJECT_DIR$/expandableListFragment/expandableListFragment.iml" filepath="$PROJECT_DIR$/expandableListFragment/expandableListFragment.iml" />
+      <module fileurl="file://$PROJECT_DIR$/frameNet/frameNet.iml" filepath="$PROJECT_DIR$/frameNet/frameNet.iml" />
+      <module fileurl="file://$PROJECT_DIR$/predicateMatrix/predicateMatrix.iml" filepath="$PROJECT_DIR$/predicateMatrix/predicateMatrix.iml" />
+      <module fileurl="file://$PROJECT_DIR$/preference/preference.iml" filepath="$PROJECT_DIR$/preference/preference.iml" />
+      <module fileurl="file://$PROJECT_DIR$/propbank/propbank.iml" filepath="$PROJECT_DIR$/propbank/propbank.iml" />
+      <module fileurl="file://$PROJECT_DIR$/support/support.iml" filepath="$PROJECT_DIR$/support/support.iml" />
+      <module fileurl="file://$PROJECT_DIR$/test/test.iml" filepath="$PROJECT_DIR$/test/test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/treeView/treeView.iml" filepath="$PROJECT_DIR$/treeView/treeView.iml" />
+      <module fileurl="file://$PROJECT_DIR$/verbNet/verbNet.iml" filepath="$PROJECT_DIR$/verbNet/verbNet.iml" />
+      <module fileurl="file://$PROJECT_DIR$/wordNet/wordNet.iml" filepath="$PROJECT_DIR$/wordNet/wordNet.iml" />
+      <module fileurl="file://$PROJECT_DIR$/xNet/xNet.iml" filepath="$PROJECT_DIR$/xNet/xNet.iml" />
     </modules>
   </component>
 </project>

@@ -22,6 +22,9 @@
 		<!-- background of activated indicator -->
 		<item name="android:activatedBackgroundIndicator">@drawable/listitem_background</item>
 
+		<!-- theme UI preference -->
+		<item name="preferenceTheme">@style/PreferenceCompatTheme</item>
+
 	</style>
 
 	<!-- Custom background theme -->

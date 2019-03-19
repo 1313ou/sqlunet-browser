@@ -1,7 +1,7 @@
 <component name="libraryTable">
   <library name="Gradle: __local_aars__:/mnt/data2/devel/android-sqlunet-as/SqlUNet/xNet/libs/xerces-for-android.jar:unspecified@jar">
     <CLASSES>
-      <root url="jar:///mnt/data2/devel/android-sqlunet-as/SqlUNet/xNet/libs/xerces-for-android.jar!/" />
+      <root url="jar://$PROJECT_DIR$/xNet/libs/xerces-for-android.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />
