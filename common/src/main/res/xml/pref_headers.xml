@@ -1,6 +1,5 @@
-<preference-headers xmlns:app="http://schemas.android.com/apk/res-auto">
-
-	<!-- These settings headers are only used on tablets. -->
+<preference-headers
+	xmlns:app="http://schemas.android.com/apk/res-auto">
 
 	<header
 		app:fragment="org.sqlunet.browser.config.SettingsActivity$GeneralPreferenceFragment"

@@ -1,4 +1,5 @@
-<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+<androidx.preference.PreferenceScreen
+	xmlns:android="http://schemas.android.com/apk/res/android">
 
 	<!-- NOTE: Hide buttons to simplify the UI. Users can touch outside the dialog to dismiss it. -->
 	<!-- NOTE: ListPreference's summary should be set to its value by the activity code. -->
@@ -11,4 +12,4 @@
 		android:summary="@string/pref_description_storage"
 		android:title="@string/pref_title_storage"/>
 
-</PreferenceScreen>
+</androidx.preference.PreferenceScreen>

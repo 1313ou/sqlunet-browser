@@ -127,7 +127,7 @@ public class SettingsActivity extends PreferenceActivityCompat
 					}
 					if ("header".equals(xrp.getName()))
 					{
-						final String attr = xrp.getAttributeValue("http://schemas.android.com/apk/res/android", "fragment");
+						final String attr = xrp.getAttributeValue("http://schemas.android.com/apk/res-auto", "fragment");
 						allowedFragments.add(attr);
 					}
 				}
@@ -271,8 +271,6 @@ public class SettingsActivity extends PreferenceActivityCompat
 		@Override
 		public void onCreatePreferences(final Bundle savedInstanceState, final String rootKey)
 		{
-			super.onCreate(savedInstanceState);
-
 			// inflate
 			addPreferencesFromResource(R.xml.pref_general);
 
@@ -290,8 +288,6 @@ public class SettingsActivity extends PreferenceActivityCompat
 		@Override
 		public void onCreatePreferences(final Bundle savedInstanceState, final String rootKey)
 		{
-			super.onCreate(savedInstanceState);
-
 			// inflate
 			addPreferencesFromResource(R.xml.pref_filter);
 		}
@@ -305,8 +301,6 @@ public class SettingsActivity extends PreferenceActivityCompat
 		@Override
 		public void onCreatePreferences(final Bundle savedInstanceState, final String rootKey)
 		{
-			super.onCreate(savedInstanceState);
-
 			// inflate
 			addPreferencesFromResource(R.xml.pref_database);
 

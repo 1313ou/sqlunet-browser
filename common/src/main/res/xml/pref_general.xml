@@ -1,4 +1,5 @@
-<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+<androidx.preference.PreferenceScreen
+	xmlns:android="http://schemas.android.com/apk/res/android">
 
 	<ListPreference
 		android:defaultValue="@string/pref_default_launch"
@@ -42,4 +43,4 @@
 		android:summary="@string/pref_description_sql_log"
 		android:title="@string/pref_title_sql_log"/>
 
-</PreferenceScreen>
+</androidx.preference.PreferenceScreen>

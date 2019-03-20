@@ -1,4 +1,5 @@
-<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+<androidx.preference.PreferenceScreen
+	xmlns:android="http://schemas.android.com/apk/res/android">
 
 	<CheckBoxPreference
 		android:defaultValue="true"
@@ -32,4 +33,4 @@
 		android:summary="@string/pref_description_link_recursion"
 		android:title="@string/pref_title_link_recursion"/>
 
-</PreferenceScreen>
+</androidx.preference.PreferenceScreen>

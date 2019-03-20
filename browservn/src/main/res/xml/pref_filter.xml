@@ -1,4 +1,5 @@
-<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+<androidx.preference.PreferenceScreen
+	xmlns:android="http://schemas.android.com/apk/res/android">
 
 	<CheckBoxPreference
 		android:defaultValue="true"
@@ -18,4 +19,4 @@
 		android:summary="@string/pref_description_enable_wordnet"
 		android:title="@string/pref_title_enable_wordnet"/>
 
-</PreferenceScreen>
+</androidx.preference.PreferenceScreen>
