@@ -8,6 +8,8 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.util.Pair;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
 
 import org.sqlunet.browser.ColorUtils;
 import org.sqlunet.browser.common.R;
@@ -27,6 +29,7 @@ import java.util.Set;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.NavUtils;
 import androidx.preference.ListPreference;
 import androidx.preference.Preference;
@@ -42,13 +45,7 @@ import androidx.preference.PreferenceManager;
  */
 public class SettingsActivity extends PreferenceActivityCompat
 {
-	/**
-	 * Determines whether to always show the simplified settings UI, where settings are presented in a single list. When false, settings are shown as a
-	 * master/detail two-pane view on tablets. When true, a single pane is shown on tablets.
-	 */
-	static private boolean ALWAYS_SIMPLE_PREFS = false;
-
-	// L I S T E N E R
+	// L I F E C Y C L E
 
 	@Override
 	protected void onCreate(final Bundle savedInstanceState)
@@ -59,49 +56,43 @@ public class SettingsActivity extends PreferenceActivityCompat
 		// toolbar
 		setupToolbar(R.layout.toolbar, R.id.toolbar);
 
-		// set up the action bar
-		final ActionBar actionBar = getSupportActionBar();
-		if (actionBar != null)
-		{
-			// background
-			final int color = ColorUtils.getColor(this, R.color.primaryColor);
-			actionBar.setBackgroundDrawable(new ColorDrawable(color));
-
-			// options
-			actionBar.setDisplayOptions(ActionBar.DISPLAY_USE_LOGO | ActionBar.DISPLAY_SHOW_TITLE | ActionBar.DISPLAY_SHOW_HOME | ActionBar.DISPLAY_HOME_AS_UP);
-		}
+		// action bar
+		setupActionBar();
 	}
-
-	// L I S T E N E R
-
-	/**
-	 * A preference value change listener that updates the preference's summary to reflect its new value.
-	 */
-	@Nullable
-	static private final Preference.OnPreferenceChangeListener listener = (preference, value) -> {
-		if (preference instanceof ListPreference && value != null)
-		{
-			// For list preferences, look up the correct display value in the preference's 'entries' list.
-			final ListPreference listPreference = (ListPreference) preference;
-			final String stringValue = value.toString();
-			final int index = listPreference.findIndexOfValue(stringValue);
-
-			// Set the summary to reflect the new value.
-			preference.setSummary(index >= 0 ? listPreference.getEntries()[index].toString().trim() : null);
-		}
-		else
-		{
-			// For all other preferences, set the summary to the value's simple string representation.
-			final String stringValue = value != null ? value.toString() : "<default>";
-			preference.setSummary(stringValue);
-		}
-		return true;
-	};
 
 	// T O O L B A R
 
-	private void setupToolbar(final int toolbar, final int toolbar1)
+	/**
+	 * Set up the {@link android.app.ActionBar}, if the API is available.
+	 */
+	private void setupActionBar()
 	{
+		final ActionBar actionBar = getSupportActionBar();
+		if (actionBar != null)
+		{
+			// Show the Up button in the action bar.
+			// actionBar.setDisplayHomeAsUpEnabled(true);
+			actionBar.setDisplayOptions(ActionBar.DISPLAY_USE_LOGO | ActionBar.DISPLAY_SHOW_TITLE | ActionBar.DISPLAY_SHOW_HOME | ActionBar.DISPLAY_HOME_AS_UP);
+
+			// background
+			final int color = ColorUtils.getColor(this, R.color.primaryColor);
+			actionBar.setBackgroundDrawable(new ColorDrawable(color));
+		}
+	}
+
+	@SuppressWarnings({"SameParameterValue", "WeakerAccess"})
+	protected void setupToolbar(int toolbarLayout, int toolbarId)
+	{
+		// TODO hacked dependency on R.id.action_bar_root
+		final ViewGroup rootView = findViewById(R.id.action_bar_root); //id from appcompat
+		if (rootView != null)
+		{
+			final View view = getLayoutInflater().inflate(toolbarLayout, rootView, false);
+			rootView.addView(view, 0);
+
+			final Toolbar toolbar = findViewById(toolbarId);
+			setSupportActionBar(toolbar);
+		}
 	}
 
 	// V A L I D A T I O N
@@ -144,6 +135,32 @@ public class SettingsActivity extends PreferenceActivityCompat
 
 		return allowedFragments.contains(fragmentName);
 	}
+
+	// L I S T E N E R
+
+	/**
+	 * A preference value change listener that updates the preference's summary to reflect its new value.
+	 */
+	@Nullable
+	static private final Preference.OnPreferenceChangeListener listener = (preference, value) -> {
+		if (preference instanceof ListPreference && value != null)
+		{
+			// For list preferences, look up the correct display value in the preference's 'entries' list.
+			final ListPreference listPreference = (ListPreference) preference;
+			final String stringValue = value.toString();
+			final int index = listPreference.findIndexOfValue(stringValue);
+
+			// Set the summary to reflect the new value.
+			preference.setSummary(index >= 0 ? listPreference.getEntries()[index].toString().trim() : null);
+		}
+		else
+		{
+			// For all other preferences, set the summary to the value's simple string representation.
+			final String stringValue = value != null ? value.toString() : "<default>";
+			preference.setSummary(stringValue);
+		}
+		return true;
+	};
 
 	// B I N D
 
@@ -250,7 +267,7 @@ public class SettingsActivity extends PreferenceActivityCompat
 		listPref.setDefaultValue(values[0]);
 	}
 
-	// L I S T E N E R
+	// H E A D E R S
 
 	/**
 	 * {@inheritDoc}

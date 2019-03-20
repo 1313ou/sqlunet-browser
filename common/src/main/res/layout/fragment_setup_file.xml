@@ -33,7 +33,7 @@
 			android:layout_gravity="center_horizontal"
 			android:background="@drawable/bg_button_action"
 			android:contentDescription="@string/action_download"
-			app:srcCompat="@drawable/ic_run"
+			android:src="@drawable/ic_run"
 			android:text="@string/action_run"/>
 
 		<TextView

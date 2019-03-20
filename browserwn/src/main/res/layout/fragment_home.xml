@@ -13,5 +13,5 @@
 		android:layout_height="wrap_content"
 		android:layout_gravity="center"
 		android:contentDescription="@string/app_name"
-		app:srcCompat="@drawable/home"/>
+		android:src="@drawable/home"/>
 </FrameLayout>

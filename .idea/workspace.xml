@@ -37,37 +37,71 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="dbe7534c-3086-4b17-848a-f5676a7f84bd" name="Default" comment="migrate to androidx">
+    <list default="true" id="dbe7534c-3086-4b17-848a-f5676a7f84bd" name="Default" comment="fixes">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bNC/bNC.iml" beforeDir="false" afterPath="$PROJECT_DIR$/bNC/bNC.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/browser/browser.iml" beforeDir="false" afterPath="$PROJECT_DIR$/browser/browser.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/browser/src/main/res/xml/pref_download.xml" beforeDir="false" afterPath="$PROJECT_DIR$/browser/src/main/res/xml/pref_download.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/browser/src/main/res/xml/pref_filter.xml" beforeDir="false" afterPath="$PROJECT_DIR$/browser/src/main/res/xml/pref_filter.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/browser/src/main/res/xml/pref_headers.xml" beforeDir="false" afterPath="$PROJECT_DIR$/browser/src/main/res/xml/pref_headers.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/browser/src/main/res/layout/activity_other.xml" beforeDir="false" afterPath="$PROJECT_DIR$/browser/src/main/res/layout/activity_other.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/browser/src/main/res/layout/fragment_setup_database.xml" beforeDir="false" afterPath="$PROJECT_DIR$/browser/src/main/res/layout/fragment_setup_database.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/browser/src/main/res/layout/fragment_setup_sql.xml" beforeDir="false" afterPath="$PROJECT_DIR$/browser/src/main/res/layout/fragment_setup_sql.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/browser/src/main/res/layout/fragment_splash_predicatematrix.xml" beforeDir="false" afterPath="$PROJECT_DIR$/browser/src/main/res/layout/fragment_splash_predicatematrix.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/browser/src/main/res/layout/fragment_status.xml" beforeDir="false" afterPath="$PROJECT_DIR$/browser/src/main/res/layout/fragment_status.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/browser/src/main/res/layout/item_selector.xml" beforeDir="false" afterPath="$PROJECT_DIR$/browser/src/main/res/layout/item_selector.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/browser/src/main/res/layout/item_xselector.xml" beforeDir="false" afterPath="$PROJECT_DIR$/browser/src/main/res/layout/item_xselector.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/browserfn/browserfn.iml" beforeDir="false" afterPath="$PROJECT_DIR$/browserfn/browserfn.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/browserfn/src/main/res/xml/pref_filter.xml" beforeDir="false" afterPath="$PROJECT_DIR$/browserfn/src/main/res/xml/pref_filter.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/browserfn/src/main/res/layout/activity_other.xml" beforeDir="false" afterPath="$PROJECT_DIR$/browserfn/src/main/res/layout/activity_other.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/browserfn/src/main/res/layout/fragment_home.xml" beforeDir="false" afterPath="$PROJECT_DIR$/browserfn/src/main/res/layout/fragment_home.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/browserfn/src/main/res/layout/fragment_status.xml" beforeDir="false" afterPath="$PROJECT_DIR$/browserfn/src/main/res/layout/fragment_status.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/browserfn/src/main/res/layout/item_selector.xml" beforeDir="false" afterPath="$PROJECT_DIR$/browserfn/src/main/res/layout/item_selector.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/browservn/browservn.iml" beforeDir="false" afterPath="$PROJECT_DIR$/browservn/browservn.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/browservn/src/main/res/xml/pref_filter.xml" beforeDir="false" afterPath="$PROJECT_DIR$/browservn/src/main/res/xml/pref_filter.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/browservn/src/main/res/layout/activity_other.xml" beforeDir="false" afterPath="$PROJECT_DIR$/browservn/src/main/res/layout/activity_other.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/browservn/src/main/res/layout/fragment_home.xml" beforeDir="false" afterPath="$PROJECT_DIR$/browservn/src/main/res/layout/fragment_home.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/browservn/src/main/res/layout/fragment_status.xml" beforeDir="false" afterPath="$PROJECT_DIR$/browservn/src/main/res/layout/fragment_status.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/browservn/src/main/res/layout/item_xselector.xml" beforeDir="false" afterPath="$PROJECT_DIR$/browservn/src/main/res/layout/item_xselector.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/browserwn/browserwn.iml" beforeDir="false" afterPath="$PROJECT_DIR$/browserwn/browserwn.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/browserwn/src/main/res/xml/pref_filter.xml" beforeDir="false" afterPath="$PROJECT_DIR$/browserwn/src/main/res/xml/pref_filter.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/browserwn/src/main/res/layout/activity_other.xml" beforeDir="false" afterPath="$PROJECT_DIR$/browserwn/src/main/res/layout/activity_other.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/browserwn/src/main/res/layout/fragment_home.xml" beforeDir="false" afterPath="$PROJECT_DIR$/browserwn/src/main/res/layout/fragment_home.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/browserwn/src/main/res/layout/fragment_status.xml" beforeDir="false" afterPath="$PROJECT_DIR$/browserwn/src/main/res/layout/fragment_status.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/browserwn/src/main/res/layout/item_selector.xml" beforeDir="false" afterPath="$PROJECT_DIR$/browserwn/src/main/res/layout/item_selector.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/artwork/make-artwork.sh" beforeDir="false" afterPath="$PROJECT_DIR$/common/artwork/make-artwork.sh" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/common/common.iml" beforeDir="false" afterPath="$PROJECT_DIR$/common/common.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/common/src/main/java/org/sqlunet/browser/config/SettingsActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/org/sqlunet/browser/config/SettingsActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/res/xml/pref_container.xml" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/res/xml/pref_container.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/res/xml/pref_database.xml" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/res/xml/pref_database.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/res/xml/pref_download.xml" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/res/xml/pref_download.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/res/xml/pref_filter.xml" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/res/xml/pref_filter.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/res/xml/pref_general.xml" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/res/xml/pref_general.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/res/layout-land/fragment_download.xml" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/res/layout-land/fragment_download.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/res/layout/drawer_main.xml" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/res/layout/drawer_main.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/res/layout/fragment_about.xml" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/res/layout/fragment_about.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/res/layout/fragment_download.xml" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/res/layout/fragment_download.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/res/layout/fragment_home.xml" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/res/layout/fragment_home.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/res/layout/fragment_setup_database.xml" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/res/layout/fragment_setup_database.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/res/layout/fragment_setup_file.xml" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/res/layout/fragment_setup_file.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/res/layout/fragment_setup_sql.xml" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/res/layout/fragment_setup_sql.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/res/layout/fragment_splash_browse.xml" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/res/layout/fragment_splash_browse.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/res/layout/fragment_splash_searchtext.xml" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/res/layout/fragment_splash_searchtext.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/res/layout/fragment_status.xml" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/res/layout/fragment_status.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/res/layout/fragment_update.xml" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/res/layout/fragment_update.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/res/values/styles-app.xml" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/res/values/styles-app.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/common/src/main/res/xml/pref_headers.xml" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/res/xml/pref_headers.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/expandableListFragment/expandableListFragment.iml" beforeDir="false" afterPath="$PROJECT_DIR$/expandableListFragment/expandableListFragment.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frameNet/frameNet.iml" beforeDir="false" afterPath="$PROJECT_DIR$/frameNet/frameNet.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/predicateMatrix/predicateMatrix.iml" beforeDir="false" afterPath="$PROJECT_DIR$/predicateMatrix/predicateMatrix.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/preference/preference.iml" beforeDir="false" afterPath="$PROJECT_DIR$/preference/preference.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/propbank/propbank.iml" beforeDir="false" afterPath="$PROJECT_DIR$/propbank/propbank.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/support/src/main/res/layout/activity_buy.xml" beforeDir="false" afterPath="$PROJECT_DIR$/support/src/main/res/layout/activity_buy.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/support/src/main/res/layout/activity_other.xml" beforeDir="false" afterPath="$PROJECT_DIR$/support/src/main/res/layout/activity_other.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/support/src/main/res/values/strings-nontranslatable.xml" beforeDir="false" afterPath="$PROJECT_DIR$/support/src/main/res/values/strings-nontranslatable.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/support/support.iml" beforeDir="false" afterPath="$PROJECT_DIR$/support/support.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/test.iml" beforeDir="false" afterPath="$PROJECT_DIR$/test/test.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/treeView/src/main/res/layout/layout_leaf.xml" beforeDir="false" afterPath="$PROJECT_DIR$/treeView/src/main/res/layout/layout_leaf.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/treeView/src/main/res/layout/layout_leaf_link.xml" beforeDir="false" afterPath="$PROJECT_DIR$/treeView/src/main/res/layout/layout_leaf_link.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/treeView/src/main/res/layout/layout_more.xml" beforeDir="false" afterPath="$PROJECT_DIR$/treeView/src/main/res/layout/layout_more.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/treeView/src/main/res/layout/layout_node_link.xml" beforeDir="false" afterPath="$PROJECT_DIR$/treeView/src/main/res/layout/layout_node_link.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/treeView/src/main/res/layout/layout_tree.xml" beforeDir="false" afterPath="$PROJECT_DIR$/treeView/src/main/res/layout/layout_tree.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/treeView/src/main/res/layout/layout_tree_link.xml" beforeDir="false" afterPath="$PROJECT_DIR$/treeView/src/main/res/layout/layout_tree_link.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/treeView/treeView.iml" beforeDir="false" afterPath="$PROJECT_DIR$/treeView/treeView.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/verbNet/verbNet.iml" beforeDir="false" afterPath="$PROJECT_DIR$/verbNet/verbNet.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/wordNet/wordNet.iml" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/wordNet.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/xNet/xNet.iml" beforeDir="false" afterPath="$PROJECT_DIR$/xNet/xNet.iml" afterDir="false" />
     </list>
-    <list id="36f6b5c7-9521-46b4-bf4d-149db941bcca" name="NonPublic" comment="">
-      <change beforePath="$PROJECT_DIR$/support/src/main/res/values/strings-nontranslatable.xml" beforeDir="false" afterPath="$PROJECT_DIR$/support/src/main/res/values/strings-nontranslatable.xml" afterDir="false" />
-    </list>
+    <list id="36f6b5c7-9521-46b4-bf4d-149db941bcca" name="NonPublic" comment="" />
     <ignored path="SqlUNet.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path="../../../../mnt/data2/devel/android-sqlunet-as/SqlUNet/data/" />
@@ -1366,7 +1400,6 @@
     <ignored path="tools/data/images/" />
     <ignored path="tools/data/js/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
-    <file path="$PROJECT_DIR$/support/src/main/res/values/strings-nontranslatable.xml" ignored="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -1413,15 +1446,16 @@
     <session id="-2055943333">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="11" />
+          <entry key="project.closed" value="13" />
           <entry key="project.open.time.12" value="1" />
+          <entry key="project.open.time.13" value="1" />
           <entry key="project.open.time.14" value="1" />
           <entry key="project.open.time.15" value="1" />
           <entry key="project.open.time.36" value="2" />
           <entry key="project.open.time.5" value="1" />
           <entry key="project.open.time.7" value="5" />
-          <entry key="project.open.time.8" value="1" />
-          <entry key="project.opened" value="12" />
+          <entry key="project.open.time.8" value="2" />
+          <entry key="project.opened" value="14" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -1429,10 +1463,10 @@
           <entry key="class" value="1" />
           <entry key="gradle" value="86" />
           <entry key="html" value="1" />
-          <entry key="java" value="238" />
+          <entry key="java" value="242" />
           <entry key="pro" value="1" />
           <entry key="svg" value="15" />
-          <entry key="xml" value="148" />
+          <entry key="xml" value="166" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
@@ -1440,28 +1474,28 @@
           <entry key="CLASS" value="1" />
           <entry key="Groovy" value="86" />
           <entry key="HTML" value="1" />
-          <entry key="JAVA" value="238" />
+          <entry key="JAVA" value="242" />
           <entry key="ProGuard File" value="1" />
           <entry key="SVG" value="15" />
-          <entry key="XML" value="148" />
+          <entry key="XML" value="166" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="gradle" value="570" />
-          <entry key="java" value="521" />
+          <entry key="java" value="566" />
           <entry key="svg" value="1" />
-          <entry key="txt" value="64" />
-          <entry key="xml" value="217" />
+          <entry key="txt" value="69" />
+          <entry key="xml" value="352" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="Groovy" value="570" />
-          <entry key="JAVA" value="521" />
-          <entry key="PLAIN_TEXT" value="64" />
+          <entry key="JAVA" value="566" />
+          <entry key="PLAIN_TEXT" value="69" />
           <entry key="SVG" value="1" />
-          <entry key="XML" value="217" />
+          <entry key="XML" value="352" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.vcs.git.usages">
@@ -1475,14 +1509,60 @@
     <favorites_list name="SqlUNet" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/common/src/main/java/org/sqlunet/browser/config/SettingsActivity.java">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/common/src/main/res/xml/pref_headers.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="679">
-              <caret line="338" column="9" lean-forward="true" selection-start-line="338" selection-start-column="9" selection-end-line="338" selection-end-column="9" />
+            <state relative-caret-position="273">
+              <caret line="21" selection-start-line="21" selection-end-line="21" />
             </state>
           </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/common/src/main/res/layout/activity_table.xml">
+          <provider editor-type-id="text-editor" />
+          <provider selected="true" editor-type-id="android-designer2" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/common/src/main/res/layout/fragment_status.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="312">
+              <caret line="63" column="58" selection-start-line="63" selection-start-column="38" selection-end-line="63" selection-end-column="58" />
+            </state>
+          </provider>
+          <provider editor-type-id="android-designer2" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/browser/src/main/res/layout/fragment_status.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-104">
+              <caret line="64" column="16" selection-start-line="64" selection-start-column="16" selection-end-line="64" selection-end-column="16" />
+            </state>
+          </provider>
+          <provider editor-type-id="android-designer2" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/common/src/main/res/values/styles-app.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1122">
+              <caret line="95" column="28" selection-start-line="95" selection-start-column="28" selection-end-line="95" selection-end-column="28" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/common/src/main/res/drawable/bg_button_info.xml">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/common/src/main/res/layout/fragment_storage.xml">
+          <provider editor-type-id="text-editor" />
+          <provider selected="true" editor-type-id="android-designer2" />
         </entry>
       </file>
     </leaf>
@@ -1498,7 +1578,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>ownershi</find>
       <find>// TODO</find>
       <find>\/\/.*cursor.close</find>
       <find>this.curs</find>
@@ -1528,6 +1607,7 @@
       <find>CompatAppTheme</find>
       <find>preference-hea</find>
       <find>PreferenceScreen</find>
+      <find>app:srcCompat</find>
     </findStrings>
     <replaceStrings>
       <replace>_BUFFER_IDX</replace>
@@ -1543,6 +1623,7 @@
       <replace>handled by LoaderManager, so no need to call cursor.close()</replace>
       <replace>handled by LoaderManager\, so no need to call cursor\.close\(\)\n</replace>
       <replace>@string/appbar_scrolling_view_behavior</replace>
+      <replace>android:src</replace>
     </replaceStrings>
     <dirStrings>
       <dir>$PROJECT_DIR$/browservn/src/main/java</dir>
@@ -1567,6 +1648,11 @@
       </list>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="master" />
+      </map>
+    </option>
     <option name="PUSH_TAGS">
       <GitPushTagMode />
     </option>
@@ -16902,10 +16988,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/common/src/main/java/org/sqlunet/browser/config/ExecAsyncTask.java" />
-        <option value="$PROJECT_DIR$/browserfn/src/main/java/org/sqlunet/browser/BrowseFragment.java" />
-        <option value="$PROJECT_DIR$/browserfn/src/main/java/org/sqlunet/browser/web/WebFragment.java" />
-        <option value="$PROJECT_DIR$/browser/src/main/java/org/sqlunet/browser/web/WebFragment.java" />
         <option value="$PROJECT_DIR$/browservn/src/main/java/org/sqlunet/browser/BrowseFragment.java" />
         <option value="$PROJECT_DIR$/browservn/src/main/java/org/sqlunet/browser/web/WebFragment.java" />
         <option value="$PROJECT_DIR$/browserwn/src/main/java/org/sqlunet/browser/BrowseFragment.java" />
@@ -16949,10 +17031,14 @@
         <option value="$PROJECT_DIR$/browser/src/main/res/xml/pref_filter.xml" />
         <option value="$PROJECT_DIR$/browserfn/src/main/res/xml/pref_filter.xml" />
         <option value="$PROJECT_DIR$/browservn/src/main/res/xml/pref_filter.xml" />
-        <option value="$PROJECT_DIR$/common/src/main/res/xml/pref_headers.xml" />
         <option value="$PROJECT_DIR$/browser/src/main/res/xml/pref_headers.xml" />
         <option value="$PROJECT_DIR$/browserwn/src/main/res/xml/pref_filter.xml" />
+        <option value="$PROJECT_DIR$/support/src/main/res/values/strings-nontranslatable.xml" />
+        <option value="$PROJECT_DIR$/common/src/main/res/xml/pref_headers.xml" />
         <option value="$PROJECT_DIR$/common/src/main/java/org/sqlunet/browser/config/SettingsActivity.java" />
+        <option value="$PROJECT_DIR$/common/src/main/res/layout/fragment_status.xml" />
+        <option value="$PROJECT_DIR$/browser/src/main/res/layout/fragment_status.xml" />
+        <option value="$PROJECT_DIR$/common/src/main/res/values/styles-app.xml" />
       </list>
     </option>
   </component>
@@ -16979,7 +17065,7 @@
   <component name="ProjectFrameBounds">
     <option name="x" value="51" />
     <option name="y" value="27" />
-    <option name="width" value="1508" />
+    <option name="width" value="1265" />
     <option name="height" value="1166" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
@@ -17034,7 +17120,19 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="ProjectPane" />
       <pane id="PackagesPane" />
+      <pane id="Scope">
+        <subPane subId="Scope 'Project Files'; set:Project Files; class com.intellij.psi.search.scope.ProjectFilesScope">
+          <expand>
+            <path>
+              <item name="SqlUNet" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
+              <item name="" type="442cc68d:ScopeViewTreeModel$RootNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
       <pane id="AndroidView">
         <subPane>
           <expand>
@@ -17051,78 +17149,11 @@
               <item name="SqlUNet" type="1abcf292:AndroidViewProjectNode" />
               <item name="browser" type="feadf853:AndroidModuleNode" />
               <item name="res" type="d4f16f75:AndroidResFolderNode" />
-              <item name="xml" type="ddeffd01:AndroidResFolderTypeNode" />
-            </path>
-            <path>
-              <item name="SqlUNet" type="1abcf292:AndroidViewProjectNode" />
-              <item name="browserfn" type="feadf853:AndroidModuleNode" />
-            </path>
-            <path>
-              <item name="SqlUNet" type="1abcf292:AndroidViewProjectNode" />
-              <item name="browserfn" type="feadf853:AndroidModuleNode" />
-              <item name="res" type="d4f16f75:AndroidResFolderNode" />
-            </path>
-            <path>
-              <item name="SqlUNet" type="1abcf292:AndroidViewProjectNode" />
-              <item name="browserfn" type="feadf853:AndroidModuleNode" />
-              <item name="res" type="d4f16f75:AndroidResFolderNode" />
-              <item name="xml" type="ddeffd01:AndroidResFolderTypeNode" />
-            </path>
-            <path>
-              <item name="SqlUNet" type="1abcf292:AndroidViewProjectNode" />
-              <item name="browserfn" type="feadf853:AndroidModuleNode" />
-              <item name="resources" type="edd41e36:AndroidSourceTypeNode" />
-            </path>
-            <path>
-              <item name="SqlUNet" type="1abcf292:AndroidViewProjectNode" />
-              <item name="browserfn" type="feadf853:AndroidModuleNode" />
-              <item name="resources" type="edd41e36:AndroidSourceTypeNode" />
-              <item name="sqlunet" type="cbb59c9e:AndroidPsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="SqlUNet" type="1abcf292:AndroidViewProjectNode" />
-              <item name="browservn" type="feadf853:AndroidModuleNode" />
-            </path>
-            <path>
-              <item name="SqlUNet" type="1abcf292:AndroidViewProjectNode" />
-              <item name="browservn" type="feadf853:AndroidModuleNode" />
-              <item name="res" type="d4f16f75:AndroidResFolderNode" />
-            </path>
-            <path>
-              <item name="SqlUNet" type="1abcf292:AndroidViewProjectNode" />
-              <item name="browservn" type="feadf853:AndroidModuleNode" />
-              <item name="res" type="d4f16f75:AndroidResFolderNode" />
-              <item name="xml" type="ddeffd01:AndroidResFolderTypeNode" />
+              <item name="layout" type="ddeffd01:AndroidResFolderTypeNode" />
             </path>
             <path>
               <item name="SqlUNet" type="1abcf292:AndroidViewProjectNode" />
               <item name="common" type="feadf853:AndroidModuleNode" />
-            </path>
-            <path>
-              <item name="SqlUNet" type="1abcf292:AndroidViewProjectNode" />
-              <item name="common" type="feadf853:AndroidModuleNode" />
-              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
-            </path>
-            <path>
-              <item name="SqlUNet" type="1abcf292:AndroidViewProjectNode" />
-              <item name="common" type="feadf853:AndroidModuleNode" />
-              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
-              <item name="sqlunet" type="cbb59c9e:AndroidPsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="SqlUNet" type="1abcf292:AndroidViewProjectNode" />
-              <item name="common" type="feadf853:AndroidModuleNode" />
-              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
-              <item name="sqlunet" type="cbb59c9e:AndroidPsiDirectoryNode" />
-              <item name="browser" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="SqlUNet" type="1abcf292:AndroidViewProjectNode" />
-              <item name="common" type="feadf853:AndroidModuleNode" />
-              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
-              <item name="sqlunet" type="cbb59c9e:AndroidPsiDirectoryNode" />
-              <item name="browser" type="462c0819:PsiDirectoryNode" />
-              <item name="config" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="SqlUNet" type="1abcf292:AndroidViewProjectNode" />
@@ -17133,28 +17164,18 @@
               <item name="SqlUNet" type="1abcf292:AndroidViewProjectNode" />
               <item name="common" type="feadf853:AndroidModuleNode" />
               <item name="res" type="d4f16f75:AndroidResFolderNode" />
-              <item name="xml" type="ddeffd01:AndroidResFolderTypeNode" />
+              <item name="drawable" type="ddeffd01:AndroidResFolderTypeNode" />
             </path>
             <path>
               <item name="SqlUNet" type="1abcf292:AndroidViewProjectNode" />
-              <item name="Gradle Scripts" type="ae0cef3a:AndroidBuildScriptsGroupNode" />
+              <item name="common" type="feadf853:AndroidModuleNode" />
+              <item name="res" type="d4f16f75:AndroidResFolderNode" />
+              <item name="layout" type="ddeffd01:AndroidResFolderTypeNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope">
-        <subPane subId="Scope 'Project Files'; set:Project Files; class com.intellij.psi.search.scope.ProjectFilesScope">
-          <expand>
-            <path>
-              <item name="SqlUNet" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
-              <item name="" type="442cc68d:ScopeViewTreeModel$RootNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
-      <pane id="ProjectPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -17683,13 +17704,6 @@
       <option name="presentableId" value="Default" />
       <updated>1487150992421</updated>
     </task>
-    <task id="LOCAL-00073" summary="fix on search params">
-      <created>1503333740942</created>
-      <option name="number" value="00073" />
-      <option name="presentableId" value="LOCAL-00073" />
-      <option name="project" value="LOCAL" />
-      <updated>1503333740943</updated>
-    </task>
     <task id="LOCAL-00074" summary="bnc icons and ifo&#10;browse menus include main item&#10;entry and checking if can run&#10;v21 style&#10;xml default off&#10;&#10;">
       <created>1503390490838</created>
       <option name="number" value="00074" />
@@ -18026,7 +18040,14 @@
       <option name="project" value="LOCAL" />
       <updated>1553016836962</updated>
     </task>
-    <option name="localTasksCounter" value="122" />
+    <task id="LOCAL-00122" summary="fixes">
+      <created>1553066250168</created>
+      <option name="number" value="00122" />
+      <option name="presentableId" value="LOCAL-00122" />
+      <option name="project" value="LOCAL" />
+      <updated>1553066250169</updated>
+    </task>
+    <option name="localTasksCounter" value="123" />
     <servers />
   </component>
   <component name="TodoView" selected-index="3">
@@ -18039,9 +18060,9 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="51" y="27" width="1508" height="1166" extended-state="0" />
+    <frame x="51" y="27" width="1265" height="1166" extended-state="0" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4914966" visible="true" weight="0.260573" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.4914966" visible="true" weight="0.24856909" />
       <window_info id="Structure" order="1" sideWeight="0.5085034" side_tool="true" weight="0.2344997" />
       <window_info id="Captures" order="2" side_tool="true" weight="0.24973376" />
       <window_info id="Capture Tool" order="3" />
@@ -18051,7 +18072,7 @@
       <window_info id="Favorites" order="7" side_tool="true" />
       <window_info id="Build Variants" order="8" sideWeight="0.50392157" side_tool="true" weight="0.18117131" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" sideWeight="0.29859388" weight="0.42209074" />
+      <window_info anchor="bottom" id="Find" order="1" sideWeight="0.29859388" visible="true" weight="0.42209074" />
       <window_info anchor="bottom" id="Run" order="2" sideWeight="0.45905706" weight="0.32643" />
       <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.39427012" weight="0.30276135" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
@@ -18062,7 +18083,7 @@
       <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.6743295" side_tool="true" weight="0.4201763" />
       <window_info anchor="bottom" id="Build" order="10" sideWeight="0.72194856" weight="0.4398422" />
       <window_info anchor="bottom" id="Android Monitor" order="11" sideWeight="0.82428116" weight="0.39513677" />
-      <window_info active="true" anchor="bottom" id="Version Control" order="12" sideWeight="0.19813903" visible="true" weight="0.2061144" />
+      <window_info anchor="bottom" id="Version Control" order="12" sideWeight="0.19813903" weight="0.2061144" />
       <window_info anchor="bottom" id="Terminal" order="13" sideWeight="0.3136289" weight="0.32615083" />
       <window_info active="true" anchor="bottom" id="Gradle Console" order="14" sideWeight="0.4729064" side_tool="true" visible="true" weight="0.3107843" />
       <window_info anchor="bottom" id="Messages" order="15" sideWeight="0.5270936" weight="0.3107843" />
@@ -18078,7 +18099,7 @@
       <window_info anchor="right" id="Gradle" order="8" weight="0.13245758" />
       <window_info anchor="right" id="Theme Preview" order="9" />
       <window_info anchor="right" id="Palette&#9;" order="10" />
-      <window_info anchor="right" id="Preview" order="11" weight="0.32950193" />
+      <window_info anchor="right" id="Preview" order="11" weight="0.32869992" />
       <window_info anchor="right" id="Capture Analysis" order="12" />
       <window_info anchor="right" x="0" y="0" width="417" height="973" id="Documentation" order="13" side_tool="true" weight="0.32950193" />
     </layout>
@@ -18151,7 +18172,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$" />
     </ignored-roots>
-    <MESSAGE value="lint&#10;1.13rc" />
     <MESSAGE value="1.13rc2" />
     <MESSAGE value="1.13rc3" />
     <MESSAGE value="lint&#10;1.13rc4" />
@@ -18176,7 +18196,8 @@
     <MESSAGE value="new tools&#10;lint&#10;new version" />
     <MESSAGE value="migrate to appcompat" />
     <MESSAGE value="migrate to androidx" />
-    <option name="LAST_COMMIT_MESSAGE" value="migrate to androidx" />
+    <MESSAGE value="fixes" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixes" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -18247,15 +18268,9 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/common/src/main/java/org/sqlunet/browser/config/SettingsActivity.java</url>
-          <line>56</line>
+          <line>53</line>
           <properties />
           <option name="timeStamp" value="229" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/common/src/main/java/org/sqlunet/browser/config/SettingsActivity.java</url>
-          <line>114</line>
-          <properties />
-          <option name="timeStamp" value="231" />
         </line-breakpoint>
       </breakpoints>
       <breakpoints-dialog>
@@ -18264,115 +18279,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/common/src/main/AndroidManifest.xml">
-      <provider editor-type-id="android-manifest" />
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-3773" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/bNC/build.gradle">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="377">
-          <caret line="29" column="64" selection-start-line="29" selection-start-column="64" selection-end-line="29" selection-end-column="64" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/predicateMatrix/build.gradle">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="416">
-          <caret line="32" column="56" selection-start-line="32" selection-start-column="56" selection-end-line="32" selection-end-column="56" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/frameNet/build.gradle">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="403">
-          <caret line="31" selection-start-line="28" selection-end-line="31" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/verbNet/build.gradle">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="403">
-          <caret line="31" selection-start-line="31" selection-end-line="31" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/wordNet/build.gradle">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="403">
-          <caret line="31" selection-start-line="31" selection-end-line="31" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/xNet/build.gradle">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="403">
-          <caret line="31" selection-start-line="31" selection-end-line="31" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/treeView/build.gradle">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="416">
-          <caret line="32" selection-start-line="32" selection-end-line="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test/build.gradle">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="350">
-          <caret line="31" column="71" selection-start-line="31" selection-start-column="71" selection-end-line="31" selection-end-column="71" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/support/build.gradle">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="390">
-          <caret line="30" selection-start-line="30" selection-end-line="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/propbank/build.gradle">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="403">
-          <caret line="31" selection-start-line="31" selection-end-line="31" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/expandableListFragment/build.gradle">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="390">
-          <caret line="30" selection-start-line="30" selection-end-line="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/preference/src/main/res/values/bools.xml">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/preference/src/main/AndroidManifest.xml">
-      <provider editor-type-id="android-manifest" />
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="26">
-          <caret line="2" selection-start-line="2" selection-end-line="2" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/browser/src/main/res/values/styles-app.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-390" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/preference/src/main/java/org/sqlunet/preference/Header.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="13">
-          <caret line="1" column="42" selection-start-line="1" selection-start-column="27" selection-end-line="1" selection-end-column="42" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/preference/proguard-rules.pro">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/xNet/src/main/res/values/styles.xml">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -18388,14 +18294,6 @@
           <caret line="14" selection-start-line="14" selection-end-line="14" />
         </state>
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/preference/src/main/res/layout/content.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="205">
-          <caret line="54" column="44" selection-start-line="54" selection-start-column="44" selection-end-line="54" selection-end-column="44" />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer2" />
     </entry>
     <entry file="file://$PROJECT_DIR$/preference/src/main/res/values/attrs.xml">
       <provider selected="true" editor-type-id="text-editor" />
@@ -18589,13 +18487,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/common/src/main/res/xml/pref_headers.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="13">
-          <caret line="1" column="54" selection-start-line="1" selection-start-column="15" selection-end-line="1" selection-end-column="54" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/androidx.preference/preference/1.0.0/3eb748f2645fba8bb4510f4a53456dfcde7f8a0d/preference-1.0.0-sources.jar!/androidx/preference/PreferenceFragmentCompat.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="538">
@@ -18603,10 +18494,109 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/support/src/main/java/org/sqlunet/support/OtherActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="353">
+          <caret line="43" column="28" selection-start-line="43" selection-start-column="28" selection-end-line="43" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/support/src/main/res/values/strings.xml">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/support/src/main/res/values/strings-nontranslatable.xml">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/preference/src/main/res/layout/header_item.xml">
+      <provider selected="true" editor-type-id="text-editor" />
+      <provider editor-type-id="android-designer2" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/preference/src/main/res/layout/preference_category_compat.xml">
+      <provider selected="true" editor-type-id="text-editor" />
+      <provider editor-type-id="android-designer2" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/preference/src/main/res/layout/breadcrumbs.xml">
+      <provider selected="true" editor-type-id="text-editor" />
+      <provider editor-type-id="android-designer2" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/preference/src/main/res/layout-xlarge/breadcrumbs.xml">
+      <provider selected="true" editor-type-id="text-editor" />
+      <provider editor-type-id="android-designer2" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/preference/src/main/res/layout/content.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="702">
+          <caret line="54" column="44" selection-start-line="54" selection-start-column="44" selection-end-line="54" selection-end-column="44" />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer2" />
+    </entry>
     <entry file="file://$PROJECT_DIR$/common/src/main/java/org/sqlunet/browser/config/SettingsActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="679">
-          <caret line="338" column="9" lean-forward="true" selection-start-line="338" selection-start-column="9" selection-end-line="338" selection-end-column="9" />
+        <state relative-caret-position="13">
+          <caret line="269" column="19" selection-start-line="269" selection-start-column="19" selection-end-line="269" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/common/src/main/res/xml/pref_headers.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="273">
+          <caret line="21" selection-start-line="21" selection-end-line="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/common/src/main/res/layout/activity_table.xml">
+      <provider editor-type-id="text-editor" />
+      <provider selected="true" editor-type-id="android-designer2" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/common/src/main/res/layout/fragment_storage.xml">
+      <provider editor-type-id="text-editor" />
+      <provider selected="true" editor-type-id="android-designer2" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/browserwn/src/main/res/layout/fragment_status.xml">
+      <provider editor-type-id="text-editor" />
+      <provider selected="true" editor-type-id="android-designer2" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/browservn/src/main/res/layout/fragment_status.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-546" />
+      </provider>
+      <provider editor-type-id="android-designer2" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/browserfn/src/main/res/layout/fragment_status.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="364">
+          <caret line="58" column="60" selection-start-line="58" selection-start-column="38" selection-end-line="58" selection-end-column="60" />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer2" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/common/src/main/res/drawable/bg_button_info.xml">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/common/src/main/res/drawable/bg_button_action.xml">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/browser/src/main/res/layout/fragment_status.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-104">
+          <caret line="64" column="16" selection-start-line="64" selection-start-column="16" selection-end-line="64" selection-end-column="16" />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer2" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/common/src/main/res/layout/fragment_status.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="312">
+          <caret line="63" column="58" selection-start-line="63" selection-start-column="38" selection-end-line="63" selection-end-column="58" />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer2" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/common/src/main/res/values/styles-app.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1122">
+          <caret line="95" column="28" selection-start-line="95" selection-start-column="28" selection-end-line="95" selection-end-column="28" />
         </state>
       </provider>
     </entry>

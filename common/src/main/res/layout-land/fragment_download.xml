@@ -52,7 +52,7 @@
 				android:layout_gravity="center_vertical|center_horizontal"
 				android:background="@drawable/bg_button_action"
 				android:contentDescription="@string/action_download"
-				app:srcCompat="@drawable/bn_download"
+				android:src="@drawable/bn_download"
 				android:text="@string/action_download"
 				android:visibility="invisible"/>
 

@@ -20,7 +20,7 @@
 			android:layout_marginBottom="12dp"
 			android:layout_marginTop="12dp"
 			android:contentDescription="@string/app_name"
-			app:srcCompat="@mipmap/ic_launcher"/>
+			android:src="@mipmap/ic_launcher"/>
 
 		<ScrollView
 			android:layout_width="match_parent"
@@ -55,13 +55,13 @@
 						android:id="@+id/download_sqlzip"
 						style="@style/GridActionButton"
 						android:contentDescription="@string/download_sqlzip"
-						app:srcCompat="@drawable/bn_download"/>
+						android:src="@drawable/bn_download"/>
 
 					<ImageButton
 						android:id="@+id/info_sqlzip"
 						style="@style/GridInfoButton"
 						android:contentDescription="@string/info_sqlzip"
-						app:srcCompat="@drawable/bn_info"/>
+						android:src="@drawable/bn_info"/>
 				</LinearLayout>
 
 				<!-- create -->
@@ -81,13 +81,13 @@
 						android:id="@+id/create_database"
 						style="@style/GridActionButton"
 						android:contentDescription="@string/create_database"
-						app:srcCompat="@drawable/bn_setup"/>
+						android:src="@drawable/bn_setup"/>
 
 					<ImageButton
 						android:id="@+id/info_created"
 						style="@style/GridInfoButton"
 						android:contentDescription="@string/info_created"
-						app:srcCompat="@drawable/bn_info"/>
+						android:src="@drawable/bn_info"/>
 				</LinearLayout>
 
 				<!-- import -->
@@ -107,13 +107,13 @@
 						android:id="@+id/execute_import"
 						style="@style/GridActionButton"
 						android:contentDescription="@string/execute_import"
-						app:srcCompat="@drawable/bn_setup"/>
+						android:src="@drawable/bn_setup"/>
 
 					<ImageButton
 						android:id="@+id/info_import"
 						style="@style/GridInfoButton"
 						android:contentDescription="@string/info_import"
-						app:srcCompat="@drawable/bn_info"/>
+						android:src="@drawable/bn_info"/>
 				</LinearLayout>
 
 				<!-- indexes -->
@@ -133,13 +133,13 @@
 						android:id="@+id/execute_indexes"
 						style="@style/GridActionButton"
 						android:contentDescription="@string/execute_indexes"
-						app:srcCompat="@drawable/bn_setup"/>
+						android:src="@drawable/bn_setup"/>
 
 					<ImageButton
 						android:id="@+id/info_indexes"
 						style="@style/GridInfoButton"
 						android:contentDescription="@string/info_indexes"
-						app:srcCompat="@drawable/bn_info"/>
+						android:src="@drawable/bn_info"/>
 				</LinearLayout>
 
 			</GridLayout>

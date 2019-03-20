@@ -3,15 +3,19 @@
 
 	<header
 		app:fragment="org.sqlunet.browser.config.SettingsActivity$GeneralPreferenceFragment"
+		app:icon="@drawable/ic_settings_general"
 		app:title="@string/pref_header_general"/>
 	<header
 		app:fragment="org.sqlunet.browser.config.SettingsActivity$FilterPreferenceFragment"
+		app:icon="@drawable/ic_settings_filter"
 		app:title="@string/pref_header_filter"/>
 	<header
 		app:fragment="org.sqlunet.browser.config.SettingsActivity$DownloadPreferenceFragment"
+		app:icon="@drawable/ic_settings_download"
 		app:title="@string/pref_header_download"/>
 	<header
 		app:fragment="org.sqlunet.browser.config.SettingsActivity$DatabasePreferenceFragment"
+		app:icon="@drawable/ic_settings_database"
 		app:title="@string/pref_header_database"/>
 
 </preference-headers>

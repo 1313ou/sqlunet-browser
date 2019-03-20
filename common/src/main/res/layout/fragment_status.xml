@@ -20,7 +20,7 @@
 			android:layout_marginBottom="12dp"
 			android:layout_marginTop="12dp"
 			android:contentDescription="@string/app_name"
-			app:srcCompat="@mipmap/ic_launcher"/>
+			android:src="@mipmap/ic_launcher"/>
 
 		<ScrollView
 			android:layout_width="match_parent"
@@ -57,13 +57,13 @@
 						android:id="@+id/databaseButton"
 						style="@style/GridStatusActionButton"
 						android:contentDescription="@string/status_database"
-						app:srcCompat="@drawable/bn_download"/>
+						android:src="@drawable/bn_download"/>
 
 					<ImageButton
 						android:id="@+id/info_database"
 						style="@style/GridStatusInfoButton"
 						android:contentDescription="@string/hint_database"
-						app:srcCompat="@drawable/bn_info"/>
+						android:src="@drawable/bn_info"/>
 				</LinearLayout>
 
 				<!-- indexes -->
@@ -84,7 +84,7 @@
 						android:id="@+id/indexesButton"
 						style="@style/GridStatusActionButton"
 						android:contentDescription="@string/status_indexes"
-						app:srcCompat="@drawable/bn_setup"/>
+						android:src="@drawable/bn_setup"/>
 				</LinearLayout>
 			</GridLayout>
 		</ScrollView>

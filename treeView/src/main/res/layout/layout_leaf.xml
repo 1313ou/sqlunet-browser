@@ -13,7 +13,7 @@
 		android:layout_gravity="top"
 		android:contentDescription="@string/hint_leaf"
 		android:gravity="center_vertical"
-		app:srcCompat="@drawable/ic_leaf"/>
+		android:src="@drawable/ic_leaf"/>
 
 	<ImageView
 		android:id="@+id/node_icon"

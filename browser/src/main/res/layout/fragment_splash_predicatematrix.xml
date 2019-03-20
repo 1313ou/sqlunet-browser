@@ -12,7 +12,7 @@
 		android:layout_height="wrap_content"
 		android:layout_centerInParent="true"
 		android:contentDescription="@string/app_name"
-		app:srcCompat="@drawable/ic_splash"/>
+		android:src="@drawable/ic_splash"/>
 
 	<TextView
 		android:layout_width="match_parent"

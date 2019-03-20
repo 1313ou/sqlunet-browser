@@ -2,8 +2,12 @@
 <resources>
 
 	<!-- customize -->
-	<string name="backup_key" translatable="false">AEdPqrEAAAAIPmTCGvMs3fpFRaLHjKbpSOF8rcdWjRXspS5J9A</string>
-	<string name="license_key" translatable="false">MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAi6qVawz3jVcvd7UE6C65otOvbsS84AXiCq3NePtOxJoQokz0C4ObrxO4LmOOgCb983PFl1Wd0WLFVi1+DBewWT0IOWT2MC0GAjYhszcSBOJ87NPAzfATYMGZHwcyOS/9wmRacT3kjhiOSe+z6YPKGBVeE5fzjxTDYAZqKCYe6DiX6ZlLqgpAMZv7ZyuYhiXFGJ9+NE3MYAFlzLMbwOzJv8J+SwYQiKw1rvPXmrmW6r2sBO7Uqt+b4xJDju6CaaPohEFJhU3xRUMtDsuu6nGxW6jtv12/Y8P9G2YTckRzsDXJJiwHW0j/0x3qIjIoJQaPh8ghypmVjz8p6juV8gywrQIDAQAB</string>
-	<string name="alt_app" translatable="false">org.treebolic.royals</string>
+	<string name="backup_key" translatable="false">AEdPqrEAAAAID_zbp9cxwJUjUAfo2NGHn0kl4YQeFmFCyj_QXQ</string>
+	<string name="license_key" translatable="false">MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAhWN1M/pi/UraHfqzIL6UaFakdWGW7mf1+KRs0G1L8Onyc24Q4WdyfL3PuOO1Hx30qGeUuhpXpp/Mzv81I62EJEOVZ3w4YZKTa2vzGzt2BfcFTBrmj6Zb/8yTVMFjVnwVSPwUX6LRmKPaK/PlosefwLDfKIg824hG5LQ+G12GDyQtVOozMly3xDFtK7NrQ671X29YcAvxVM2ZbyT4/ZWqUfYB0WmouZUGgxV9NwIArrVlLYOkWJD1MJ+aa0gPXG9Oe0HbjuxXC1+7GzgbWpwAHBQ2iq3PuMhqSafu5nxxvOu4/BnE1qYwdjJ92Sj+q4MV3i9Qjqyx1HUQPb83XGWTRwIDAQAB</string>
+	<string name="treebolic_wordnet_uri" translatable="false">market://details?id=org.treebolic.wordnet.browser</string>
+	<string name="semantikos_uri" translatable="false">market://details?id=org.sqlunet.browser</string>
+	<string name="semantikos_wn_uri" translatable="false">market://details?id=org.sqlunet.browser.wn</string>
+	<string name="semantikos_vn_uri" translatable="false">market://details?id=org.sqlunet.browser.vn</string>
+	<string name="semantikos_fn_uri" translatable="false">market://details?id=org.sqlunet.browser.fn</string>
 
 </resources>

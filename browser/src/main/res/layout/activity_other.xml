@@ -34,7 +34,7 @@
 				android:contentDescription="@string/title_treebolicwordnet"
 				android:gravity="center_horizontal"
 				android:padding="5dp"
-				app:srcCompat="@drawable/logo_treebolicwordnet"
+				android:src="@drawable/logo_treebolicwordnet"
 				android:visibility="visible"/>
 
 			<TextView
@@ -65,7 +65,7 @@
 				android:background="@null"
 				android:contentDescription="@string/title_treebolicwordnet"
 				android:onClick="onMarketTreebolicWordNet"
-				app:srcCompat="@drawable/ic_googleplay"
+				android:src="@drawable/ic_googleplay"
 				android:visibility="visible"/>
 
 			<!-- semantikos wn -->
@@ -78,7 +78,7 @@
 				android:contentDescription="@string/title_semantikos_wn"
 				android:gravity="center_horizontal"
 				android:padding="5dp"
-				app:srcCompat="@drawable/logo_semantikos_wn"
+				android:src="@drawable/logo_semantikos_wn"
 				android:visibility="visible"/>
 
 			<TextView
@@ -109,7 +109,7 @@
 				android:background="@null"
 				android:contentDescription="@string/title_semantikos_wn"
 				android:onClick="onMarketSemantikosWn"
-				app:srcCompat="@drawable/ic_googleplay"
+				android:src="@drawable/ic_googleplay"
 				android:visibility="visible"/>
 
 			<!-- semantikos fn -->
@@ -122,7 +122,7 @@
 				android:contentDescription="@string/title_semantikos_fn"
 				android:gravity="center_horizontal"
 				android:padding="5dp"
-				app:srcCompat="@drawable/logo_semantikos_fn"
+				android:src="@drawable/logo_semantikos_fn"
 				android:visibility="visible"/>
 
 			<TextView
@@ -153,7 +153,7 @@
 				android:background="@null"
 				android:contentDescription="@string/title_semantikos_fn"
 				android:onClick="onMarketSemantikosFn"
-				app:srcCompat="@drawable/ic_googleplay"
+				android:src="@drawable/ic_googleplay"
 				android:visibility="visible"/>
 
 		</LinearLayout>
