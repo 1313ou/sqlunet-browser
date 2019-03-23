@@ -23,10 +23,14 @@ import org.sqlunet.browser.ColorUtils;
 import org.sqlunet.browser.Info;
 import org.sqlunet.browser.MainActivity;
 import org.sqlunet.browser.common.R;
+import org.sqlunet.download.DownloadActivity;
 import org.sqlunet.settings.StorageSettings;
 import org.sqlunet.settings.StorageUtils;
 
 import java.io.File;
+
+import static org.sqlunet.download.BaseDownloadFragment.DOWNLOAD_FROM_ARG;
+import static org.sqlunet.download.BaseDownloadFragment.DOWNLOAD_TO_ARG;
 
 /**
  * Status fragment
@@ -92,6 +96,8 @@ public class SetupStatusFragment extends Fragment
 		// click listeners
 		this.buttonDb.setOnClickListener(v -> {
 			final Intent intent = new Intent(activity, DownloadActivity.class);
+			intent.putExtra(DOWNLOAD_FROM_ARG, StorageSettings.getDbDownloadSource(activity));
+			intent.putExtra(DOWNLOAD_TO_ARG, StorageSettings.getDbDownloadTarget(activity));
 			startActivityForResult(intent, SetupStatusFragment.REQUEST_DOWNLOAD_CODE);
 		});
 

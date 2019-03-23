@@ -45,6 +45,8 @@ android {
 dependencies {
     implementation project(':common')
     implementation project(':expandableListFragment')
+    implementation project(':download')
+    implementation project(':deploy')
     implementation project(':support')
     implementation project(':xNet')
     implementation project(':wordNet')
@@ -52,6 +54,7 @@ dependencies {
     implementation project(':propbank')
     implementation 'androidx.appcompat:appcompat:1.1.0-alpha03'
     implementation 'androidx.legacy:legacy-support-v13:1.0.0'
+    implementation 'androidx.preference:preference:1.0.0'
     implementation 'androidx.annotation:annotation:1.1.0-alpha02'
     implementation 'com.google.android.material:material:1.1.0-alpha04'
 

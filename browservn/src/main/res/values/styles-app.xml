@@ -5,19 +5,19 @@
 
 	<style name="Label.Group">
 		<item name="android:padding">8dp</item>
-		<item name="background">@color/group_color</item>
+		<item name="android:background">@color/group_color</item>
 	</style>
 
 	<style name="Label.GroupIcon">
 		<item name="android:paddingLeft">20dp</item>
-		<item name="paddingStart">20dp</item>
+		<item name="android:paddingStart">20dp</item>
 	</style>
 
 	<style name="Label.GroupName">
 		<item name="android:textSize">20sp</item>
 		<item name="android:textColor">@color/group_fore_color</item>
 		<item name="android:paddingLeft">2dp</item>
-		<item name="paddingStart">2dp</item>
+		<item name="android:paddingStart">2dp</item>
 	</style>
 
 	<style name="Data.VnName">

@@ -9,7 +9,7 @@ import android.os.Build;
 import android.os.PowerManager;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
+
 import android.util.Log;
 import android.util.Pair;
 import android.view.Window;

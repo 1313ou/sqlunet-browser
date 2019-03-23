@@ -23,8 +23,8 @@ public class StorageSettings
 
 	// download preferences
 
-	static public final String PREF_DOWNLOAD_SITE = "pref_download_site";
 	static public final String PREF_DOWNLOADER = "pref_downloader";
+	static public final String PREF_DOWNLOAD_SITE = "pref_download_site";
 	static public final String PREF_DOWNLOAD_DBFILE = "pref_download_dbfile";
 	static public final String PREF_DOWNLOAD_SQLFILE = "pref_download_sqlfile";
 	static public final String PREF_ENTRY_IMPORT = "pref_entry_import";
@@ -73,7 +73,7 @@ public class StorageSettings
 	 * @return data cache
 	 */
 	@NonNull
-	static private String getCacheDir(@NonNull final Context context)
+	static public String getCacheDir(@NonNull final Context context)
 	{
 		return Storage.getCacheDir(context);
 	}

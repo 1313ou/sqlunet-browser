@@ -46,6 +46,8 @@ dependencies {
     implementation project(':common')
     implementation project(':preference')
     implementation project(':expandableListFragment')
+    implementation project(':download')
+    implementation project(':deploy')
     implementation project(':support')
     implementation project(':xNet')
     implementation project(':wordNet')

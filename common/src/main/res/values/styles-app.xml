@@ -22,7 +22,7 @@
 		<item name="android:layout_marginTop">@dimen/list_vertical_margin</item>
 		<item name="android:layout_marginLeft">@dimen/list_horizontal_margin</item>
 		<item name="android:layout_marginRight">@dimen/list_horizontal_margin</item>
-		<item name="background">@drawable/rounded_corners_white</item>
+		<item name="android:background">@drawable/rounded_corners_white</item>
 		<item name="android:gravity">center_vertical</item>
 		<item name="android:paddingTop">@dimen/list_vertical_padding</item>
 		<item name="android:paddingBottom">@dimen/list_vertical_padding</item>
@@ -35,8 +35,8 @@
 	<style name="ListItemColumn">
 		<item name="android:layout_width">0dp</item>
 		<item name="android:layout_height">wrap_content</item>
-		<item name="paddingStart">@dimen/listitem_horizontal_padding</item>
-		<item name="paddingEnd">@dimen/listitem_horizontal_padding</item>
+		<item name="android:paddingStart">@dimen/listitem_horizontal_padding</item>
+		<item name="android:paddingEnd">@dimen/listitem_horizontal_padding</item>
 		<item name="android:paddingTop">@dimen/listitem_vertical_padding</item>
 		<item name="android:paddingBottom">@dimen/listitem_vertical_padding</item>
 		<item name="android:gravity">center_vertical</item>
@@ -52,7 +52,7 @@
 	</style>
 
 	<style name="ListItemColumn.Major">
-		<item name="background">@color/secondaryLightColor</item>
+		<item name="android:background">@color/secondaryLightColor</item>
 		<item name="android:textColor">@color/secondaryForeColor</item>
 	</style>
 

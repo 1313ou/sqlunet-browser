@@ -1,5 +1,6 @@
 package org.sqlunet.browser.config;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,6 +14,8 @@ import android.widget.SpinnerAdapter;
 
 import org.sqlunet.browser.Info;
 import org.sqlunet.browser.common.R;
+import org.sqlunet.download.DownloadActivity;
+import org.sqlunet.download.FileAsyncTask;
 import org.sqlunet.settings.Settings;
 import org.sqlunet.settings.Storage;
 import org.sqlunet.settings.StorageSettings;
@@ -20,8 +23,9 @@ import org.sqlunet.settings.StorageUtils;
 
 import java.io.File;
 
-import static org.sqlunet.browser.config.BaseDownloadFragment.DOWNLOAD_FROM_ARG;
-import static org.sqlunet.browser.config.BaseDownloadFragment.DOWNLOAD_TO_ARG;
+import static org.sqlunet.download.BaseDownloadFragment.DOWNLOAD_FROM_ARG;
+import static org.sqlunet.download.BaseDownloadFragment.DOWNLOAD_TO_ARG;
+import static org.sqlunet.download.BaseDownloadFragment.UNZIP_TO_ARG;
 
 /**
  * Set up fragment
@@ -101,7 +105,7 @@ public class SetupFileFragment extends BaseTaskFragment
 
 			// execute
 			boolean success;
-			final Context context = getActivity();
+			final Activity context = getActivity();
 			assert context != null;
 			final Operation op = Operation.fromIndex((int) id);
 			if (op != null)
@@ -123,26 +127,26 @@ public class SetupFileFragment extends BaseTaskFragment
 						break;
 
 					case COPY:
-						if (Permissions.check(getActivity()))
+						if (Permissions.check(context))
 						{
-							FileAsyncTask.copyFromFile(context, StorageSettings.getDatabasePath(context));
+							FileAsyncTask.copyFromFile(context, StorageSettings.getCacheDir(context), StorageSettings.getDatabasePath(context));
 						}
 						break;
 
 					case UNZIP:
-						if (Permissions.check(getActivity()))
+						if (Permissions.check(context))
 						{
 							String zipEntry = StorageSettings.getImportEntry(context);
 							if (/*zipEntry == null ||*/ zipEntry.isEmpty())
 							{
 								zipEntry = Storage.DBFILE;
 							}
-							FileAsyncTask.unzipFromArchive(context, zipEntry, StorageSettings.getDatabasePath(context));
+							FileAsyncTask.unzipEntryFromArchive(context, StorageSettings.getCacheDir(context), zipEntry, StorageSettings.getDatabasePath(context));
 						}
 						break;
 
 					case MD5:
-						if (Permissions.check(getActivity()))
+						if (Permissions.check(context))
 						{
 							FileAsyncTask.md5(context);
 						}
@@ -150,6 +154,8 @@ public class SetupFileFragment extends BaseTaskFragment
 
 					case DOWNLOAD:
 						final Intent intent2 = new Intent(context, DownloadActivity.class);
+						intent2.putExtra(DOWNLOAD_FROM_ARG, StorageSettings.getDbDownloadSource(context));
+						intent2.putExtra(DOWNLOAD_TO_ARG, StorageSettings.getDbDownloadTarget(context));
 						context.startActivity(intent2);
 						break;
 
@@ -157,6 +163,7 @@ public class SetupFileFragment extends BaseTaskFragment
 						final Intent intent3 = new Intent(context, DownloadActivity.class);
 						intent3.putExtra(DOWNLOAD_FROM_ARG, StorageSettings.getDbDownloadZippedSource(context));
 						intent3.putExtra(DOWNLOAD_TO_ARG, StorageSettings.getDbDownloadZippedTarget(context));
+						intent3.putExtra(UNZIP_TO_ARG, StorageSettings.getDbDownloadTarget(context));
 						context.startActivity(intent3);
 						break;
 

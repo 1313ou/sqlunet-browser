@@ -31,7 +31,7 @@
 	<style name="CustomBackgroundCompatAppTheme" parent="CompatAppBaseTheme">
 
 		<item name="android:windowBackground">@null</item>
-		<item name="background">@color/home_color</item>
+		<item name="android:background">@color/home_color</item>
 
 	</style>
 

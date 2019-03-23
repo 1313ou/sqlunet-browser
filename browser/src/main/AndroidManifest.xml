@@ -19,7 +19,9 @@
 		android:label="@string/app_name"
 		android:largeHeap="true"
 		android:supportsRtl="true"
-		android:theme="@style/CompatAppTheme">
+		android:theme="@style/CompatAppTheme"
+		android:usesCleartextTraffic="true"
+		tools:ignore="GoogleAppIndexingWarning">
 
 		<meta-data
 			android:name="com.google.android.backup.api_key"
@@ -296,7 +298,7 @@
 		</activity>
 
 		<activity
-			android:name="org.sqlunet.browser.config.UpdateActivity"
+			android:name="org.sqlunet.download.UpdateActivity"
 			android:label="@string/title_activity_update"
 			android:launchMode="singleTop">
 			<meta-data
@@ -349,7 +351,7 @@
 		</activity>
 
 		<activity
-			android:name=".config.DownloadActivity"
+			android:name="org.sqlunet.download.DownloadActivity"
 			android:label="@string/title_activity_download"
 			android:parentActivityName=".MainActivity"
 			tools:ignore="UnusedAttribute">
@@ -409,7 +411,7 @@
 		</activity>
 
 		<receiver
-			android:name="org.sqlunet.browser.config.SimpleDownloadServiceFragment$Killer"
+			android:name="org.sqlunet.download.SimpleDownloadServiceFragment$Killer"
 			android:enabled="true"
 			android:exported="false">
 			<intent-filter>
@@ -482,7 +484,7 @@
 		</provider>
 
 		<service
-			android:name="org.sqlunet.browser.config.SimpleDownloaderService"
+			android:name="org.sqlunet.browser.org.sqlunet.download.SimpleDownloaderService"
 			android:description="@string/description_service_downloader"
 			android:enabled="true"
 			android:exported="false"

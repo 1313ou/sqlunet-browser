@@ -11,16 +11,20 @@ import androidx.annotation.Nullable;
 import android.util.Log;
 
 import org.sqlunet.browser.common.R;
+import org.sqlunet.download.DownloadActivity;
 import org.sqlunet.settings.StorageSettings;
 
 import java.util.Collection;
+
+import static org.sqlunet.download.BaseDownloadFragment.DOWNLOAD_FROM_ARG;
+import static org.sqlunet.download.BaseDownloadFragment.DOWNLOAD_TO_ARG;
 
 /**
  * Manage tasks
  *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
-class SetupDatabaseTasks
+public class SetupDatabaseTasks
 {
 	static private final String TAG = "SetupDatabaseTasks";
 
@@ -93,6 +97,8 @@ class SetupDatabaseTasks
 		if (success)
 		{
 			final Intent intent = new Intent(context, DownloadActivity.class);
+			intent.putExtra(DOWNLOAD_FROM_ARG, StorageSettings.getDbDownloadSource(context));
+			intent.putExtra(DOWNLOAD_TO_ARG, StorageSettings.getDbDownloadTarget(context));
 			context.startActivity(intent);
 		}
 	}

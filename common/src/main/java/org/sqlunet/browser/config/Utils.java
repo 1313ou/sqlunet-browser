@@ -11,7 +11,7 @@ import org.sqlunet.browser.common.R;
  *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
-class Utils
+public class Utils
 {
 	/**
 	 * Confirm

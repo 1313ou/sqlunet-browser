@@ -26,8 +26,10 @@ android {
 dependencies {
     implementation project(':expandableListFragment')
     implementation project(':preference')
-    implementation project(':xNet')
+    implementation project(':download')
+    implementation project(':deploy')
     implementation project(':support')
+    implementation project(':xNet')
 
     implementation 'androidx.appcompat:appcompat:1.1.0-alpha03'
     implementation 'androidx.preference:preference:1.0.0'

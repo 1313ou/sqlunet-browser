@@ -284,7 +284,7 @@
 		</activity>
 
 		<receiver
-			android:name="org.sqlunet.browser.config.SimpleDownloadServiceFragment$Killer"
+			android:name="org.sqlunet.download.SimpleDownloadServiceFragment$Killer"
 			android:enabled="true"
 			android:exported="false">
 			<intent-filter>
@@ -309,7 +309,7 @@
 		</provider>
 
 		<service
-			android:name="org.sqlunet.browser.config.SimpleDownloaderService"
+			android:name="org.sqlunet.download.SimpleDownloaderService"
 			android:description="@string/description_service_downloader"
 			android:enabled="true"
 			android:exported="false"

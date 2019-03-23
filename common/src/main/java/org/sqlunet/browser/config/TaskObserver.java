@@ -110,11 +110,11 @@ public class TaskObserver
 	/**
 	 * Toast listener
 	 */
-	static class ToastWithStatusListener extends ToastListener
+	static public class ToastWithStatusListener extends ToastListener
 	{
 		final private TextView status;
 
-		ToastWithStatusListener(final Context context, final TextView status)
+		public ToastWithStatusListener(final Context context, final TextView status)
 		{
 			super(context);
 			this.status = status;

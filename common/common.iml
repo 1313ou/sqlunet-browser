@@ -155,8 +155,16 @@
     <orderEntry type="library" name="Gradle: com.google.guava:listenablefuture:1.0@jar" level="project" />
     <orderEntry type="library" name="Gradle: androidx.concurrent:concurrent-futures:1.0.0-alpha02@jar" level="project" />
     <orderEntry type="module" module-name="expandableListFragment" />
+    <orderEntry type="module" module-name="deploy" />
     <orderEntry type="module" module-name="preference" />
     <orderEntry type="module" module-name="support" />
+    <orderEntry type="module" module-name="download" />
+    <orderEntry type="module" module-name="xNet" />
+    <orderEntry type="module" module-name="expandableListFragment" />
+    <orderEntry type="module" module-name="deploy" />
+    <orderEntry type="module" module-name="preference" />
+    <orderEntry type="module" module-name="support" />
+    <orderEntry type="module" module-name="download" />
     <orderEntry type="module" module-name="xNet" />
   </component>
 </module>
