@@ -25,6 +25,8 @@ import java.io.File;
 
 import static org.sqlunet.download.BaseDownloadFragment.DOWNLOAD_FROM_ARG;
 import static org.sqlunet.download.BaseDownloadFragment.DOWNLOAD_TO_ARG;
+import static org.sqlunet.download.BaseDownloadFragment.RENAME_FROM_ARG;
+import static org.sqlunet.download.BaseDownloadFragment.RENAME_TO_ARG;
 import static org.sqlunet.download.BaseDownloadFragment.UNZIP_TO_ARG;
 
 /**
@@ -163,7 +165,9 @@ public class SetupFileFragment extends BaseTaskFragment
 						final Intent intent3 = new Intent(context, DownloadActivity.class);
 						intent3.putExtra(DOWNLOAD_FROM_ARG, StorageSettings.getDbDownloadZippedSource(context));
 						intent3.putExtra(DOWNLOAD_TO_ARG, StorageSettings.getDbDownloadZippedTarget(context));
-						intent3.putExtra(UNZIP_TO_ARG, StorageSettings.getDbDownloadTarget(context));
+						intent3.putExtra(UNZIP_TO_ARG, StorageSettings.getDataDir(context));
+						intent3.putExtra(RENAME_FROM_ARG, StorageSettings.getDbDownloadFile(context));
+						intent3.putExtra(RENAME_TO_ARG, StorageSettings.getDatabaseName(context));
 						context.startActivity(intent3);
 						break;
 

@@ -1,0 +1,96 @@
+<resources>
+	<!-- labels -->
+	<string name="title_activity_download">Download</string>
+	<string name="title_activity_update">Update</string>
+	<string name="title_download">Download</string>
+
+	<!-- action -->
+	<string name="action_download">Download</string>
+	<string name="action_run">Run</string>
+	<string name="action_cancel">Cancel</string>
+	<string name="action_ok">OK</string>
+	<string name="action_abort">Abort</string>
+	<string name="action_dismiss">Dismiss</string>
+	<string name="action_show">Show</string>
+	<string name="action_deploy">Deploy</string>
+	<string name="action_copy_from_file">Copy database from &#8230;</string>
+	<string name="action_unzip_from_archive">Unzip database from &#8230;</string>
+	<string name="action_update">Update</string>
+	<string name="action_md5">MD5</string>
+	<string name="action_md5_of">MD5 of</string>
+	<string name="action_md5_ask">MD5 &#8230;</string>
+
+	<!-- hint -->
+	<string name="hint_unzip_from_archive">Select the zip archive to unzip from</string>
+	<string name="hint_copy_from_file">Select the file to copy from</string>
+	<string name="hint_md5">Select the file to md5-checksum</string>
+
+	<!-- description -->
+	<string name="description_download">Download database</string>
+
+	<!-- service -->
+	<string name="service_downloader">service_downloader</string>
+	<string name="description_service_downloader">Downloader Service</string>
+
+	<!-- items -->
+	<string name="download_source">source</string>
+	<string name="download_dest">destination</string>
+	<string name="download_available">available source</string>
+	<string name="download_newer">source is newer</string>
+	<string name="download_uptodate">source is up-to-date</string>
+	<string name="download_actual">actual database</string>
+
+	<!-- dialog -->
+	<string name="yes">Yes</string>
+	<string name="no">No</string>
+	<string name="askUpdate">Do you wish to update ?</string>
+
+	<!-- status -->
+	<string name="md5_downloaded">Downloaded</string>
+	<string name="md5_computed">Computed</string>
+	<string name="md5_compared">Compared</string>
+	<string name="md5_none">No possible zipped database file in storage</string>
+
+	<string name="status_download_pending">pending</string>
+	<string name="status_download_running">running</string>
+	<string name="status_download_paused">paused</string>
+	<string name="status_download_successful">successful</string>
+	<string name="status_download_fail">failed</string>
+	<string name="status_download_canceled">canceled</string>
+	<string name="status_download_error_cannot_resume">cannot resume</string>
+	<string name="status_download_error_device_not_found">device not found</string>
+	<string name="status_download_error_file_already_exists">file already exists</string>
+	<string name="status_download_error_file_error">file error</string>
+	<string name="status_download_error_http_data_error">http data error</string>
+	<string name="status_download_error_insufficient_space">insufficient space</string>
+	<string name="status_download_error_too_many_redirects">too many redirects</string>
+	<string name="status_download_error_unhandled_http_code">unhandled http code</string>
+	<string name="status_download_error_blocked">blocked</string>
+	<string name="status_download_error_unknown">error unknown</string>
+	<string name="status_download_null_exception">null source or destination</string>
+	<string name="status_download_exception">exception</string>
+	<string name="status_download_paused_queued_for_wifi">queued for wifi</string>
+	<string name="status_download_paused_unknown">unknown</string>
+	<string name="status_download_paused_waiting_for_network">waiting for network</string>
+	<string name="status_download_paused_waiting_to_retry">waiting to retry</string>
+	<string name="status_download_error_null_download_url">No download url</string>
+	<string name="status_download_error_unavailable_download_url">Unavailable download url</string>
+
+	<string name="status_error_no_file">no file</string>
+	<string name="status_error_reason_unknown">unknown reason</string>
+	<string name="status_error_invalid">invalid</string>
+
+	<string name="status_state_unknown">unknown state</string>
+
+	<string name="status_task_running">running</string>
+	<string name="status_task_done">done</string>
+	<string name="status_task_success">success</string>
+	<string name="status_task_failed">failed</string>
+	<string name="status_task_start_toast">Task started</string>
+	<string name="status_task_done_toast">Task done</string>
+
+	<string name="status_download_dowloadable_content">Now downloading available content. Be patient.</string>
+
+	<string name="format_storage_data" formatted="true">%1$s\nfree: %2$s capacity: %3$s (%4$.1f percent)</string>
+
+</resources>

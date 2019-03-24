@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+	<!-- must be overridden in app -->
+	<string name="default_model_site" translatable="false">http://10.0.2.2:1313</string>
+
+</resources>

@@ -38,7 +38,7 @@ public class StorageSettings
 	 * @param context context
 	 * @return database directory
 	 */
-	private static String getDataDir(@NonNull final Context context)
+	 static public String getDataDir(@NonNull final Context context)
 	{
 		final File dir = Storage.getSqlUNetStorage(context);
 		if (!dir.exists())
@@ -62,6 +62,17 @@ public class StorageSettings
 	static public String getDatabasePath(@NonNull final Context context)
 	{
 		return getDataDir(context) + File.separatorChar + Storage.DBFILE;
+	}
+
+	/**
+	 * Get database name
+	 *
+	 * @param context context
+	 * @return database name
+	 */
+	static public String getDatabaseName(@NonNull final Context context)
+	{
+		return Storage.DBFILE;
 	}
 
 	// C A C H E
@@ -115,7 +126,7 @@ public class StorageSettings
 	 * @return download db file
 	 */
 	@NonNull
-	static private String getDbDownloadFile(@NonNull final Context context)
+	static public String getDbDownloadFile(@NonNull final Context context)
 	{
 		// test if already already in preferences
 		final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);

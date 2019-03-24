@@ -1,0 +1,26 @@
+<resources>
+
+	<string name="pref_title_downloader">Downloader</string>
+	<string name="pref_default_downloader">SIMPLE_SERVICE</string>
+	<string-array name="pref_downloader_titles">
+		<item>Simple service</item>
+		<!-- <item>Download manager</item> -->
+	</string-array>
+	<string-array name="pref_downloader_values">
+		<item>@string/pref_default_downloader</item>
+		<!-- <item>DOWNLOAD_MANAGER</item> -->
+	</string-array>
+
+	<string name="pref_title_cache">Cache</string>
+
+	<string name="pref_title_model_source">Model source</string>
+
+	<string name="pref_title_model_dest">Model dest</string>
+
+	<string name="pref_title_model_name">Model name</string>
+
+	<string name="pref_title_model_date">Model date</string>
+
+	<string name="pref_title_model_size">Model size</string>
+
+</resources>

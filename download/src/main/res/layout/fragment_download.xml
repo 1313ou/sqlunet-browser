@@ -1,0 +1,216 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                tools:context="org.sqlunet.download.DownloadFragment"
+                tools:ignore="InconsistentLayouts">
+
+	<LinearLayout
+		android:id="@+id/middle"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_centerHorizontal="true"
+		android:layout_centerVertical="true"
+		android:orientation="horizontal">
+
+		<View
+			android:layout_width="0dip"
+			android:layout_height="match_parent"
+			android:layout_weight="0.15">
+		</View>
+
+		<FrameLayout
+			android:layout_width="0dip"
+			android:layout_height="wrap_content"
+			android:layout_weight="0.7">
+
+			<ImageButton
+				android:id="@+id/downloadButton"
+				style="?android:attr/buttonStyle"
+				android:layout_width="64dp"
+				android:layout_height="64dp"
+				android:layout_gravity="center_vertical|center_horizontal"
+				android:background="@drawable/bg_button_action"
+				android:contentDescription="@string/description_download"
+				android:src="@drawable/bn_download"
+				android:text="@string/action_download"
+				android:visibility="invisible"/>
+
+			<ProgressBar
+				android:id="@+id/progressBar"
+				style="@android:style/Widget.ProgressBar.Horizontal"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_gravity="center_vertical|center_horizontal"
+				android:indeterminate="false"
+				android:max="100"
+				android:progress="0"
+				android:visibility="invisible"/>
+
+			<TextView
+				android:id="@+id/progressStatus"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_gravity="center_vertical|center_horizontal"
+				android:text="@string/action_download"
+				android:textAppearance="?android:attr/textAppearanceSmall"
+				android:textColor="@android:color/white"
+				android:visibility="invisible"/>
+
+		</FrameLayout>
+
+		<View
+			android:layout_width="0dip"
+			android:layout_height="match_parent"
+			android:layout_weight="0.15">
+		</View>
+	</LinearLayout>
+
+	<TextView
+		android:id="@+id/src"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_above="@+id/middle"
+		android:layout_centerHorizontal="true"
+		android:layout_marginStart="50dp"
+		android:layout_marginEnd="50dp"
+		android:layout_marginBottom="10dp"
+		android:drawableBottom="@drawable/ic_download_source"
+		android:drawablePadding="5dp"
+		android:scrollHorizontally="true"
+		android:singleLine="true"
+		android:text="@string/download_source"
+		android:textStyle="bold"/>
+
+	<TextView
+		android:id="@+id/src2"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_above="@+id/src"
+		android:layout_centerHorizontal="true"
+		android:layout_marginStart="50dp"
+		android:layout_marginEnd="50dp"
+		android:scrollHorizontally="true"
+		android:singleLine="true"
+		android:text="@string/download_source"
+		tools:ignore="InconsistentLayout"/>
+
+	<TextView
+		android:id="@+id/src3"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_above="@+id/src2"
+		android:layout_centerHorizontal="true"
+		android:layout_marginStart="50dp"
+		android:layout_marginEnd="50dp"
+		android:scrollHorizontally="true"
+		android:singleLine="true"
+		android:text="@string/download_source"
+		tools:ignore="InconsistentLayout"/>
+
+	<TextView
+		android:id="@+id/target"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_below="@+id/middle"
+		android:layout_centerHorizontal="true"
+		android:layout_marginStart="50dp"
+		android:layout_marginTop="10dp"
+		android:layout_marginEnd="50dp"
+		android:drawableTop="@drawable/ic_download_dest"
+		android:drawablePadding="5dp"
+		android:ellipsize="marquee"
+		android:focusable="true"
+		android:focusableInTouchMode="true"
+		android:freezesText="true"
+		android:marqueeRepeatLimit="marquee_forever"
+		android:scrollHorizontally="true"
+		android:singleLine="true"
+		android:text="@string/download_dest"/>
+
+	<TextView
+		android:id="@+id/target2"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_below="@+id/target"
+		android:layout_centerHorizontal="true"
+		android:layout_marginStart="50dp"
+		android:layout_marginEnd="50dp"
+		android:scrollHorizontally="true"
+		android:singleLine="true"
+		android:text="@string/download_dest"
+		tools:ignore="InconsistentLayout"/>
+
+	<TextView
+		android:id="@+id/target3"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_below="@+id/target2"
+		android:layout_centerHorizontal="true"
+		android:layout_marginStart="50dp"
+		android:layout_marginEnd="50dp"
+		android:scrollHorizontally="true"
+		android:singleLine="true"
+		android:text="@string/download_dest"
+		android:textStyle="bold"
+		tools:ignore="InconsistentLayout"/>
+
+	<TextView
+		android:id="@+id/status"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_above="@+id/buttons"
+		android:layout_centerHorizontal="true"
+		android:layout_marginStart="50dp"
+		android:layout_marginTop="20dp"
+		android:layout_marginEnd="50dp"
+		android:layout_marginBottom="50dp"
+		android:freezesText="true"
+		android:gravity="center"
+		android:textAppearance="?android:attr/textAppearanceSmall"
+		android:textStyle="italic"
+		android:visibility="visible"/>
+
+	<LinearLayout
+		android:id="@+id/buttons"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_alignParentBottom="true"
+		android:layout_centerHorizontal="true"
+		android:orientation="horizontal">
+
+		<Button
+			android:id="@+id/cancelButton"
+			style="?android:attr/buttonBarButtonStyle"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:text="@string/action_cancel"
+			android:visibility="gone"/>
+
+		<Button
+			android:id="@+id/showButton"
+			style="?android:attr/buttonBarButtonStyle"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:text="@string/action_show"
+			android:visibility="gone"/>
+
+		<Button
+			android:id="@+id/md5Button"
+			style="?android:attr/buttonBarButtonStyle"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:text="@string/action_md5"
+			android:visibility="gone"/>
+
+		<Button
+			android:id="@+id/deployButton"
+			style="?android:attr/buttonBarButtonStyle"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:text="@string/action_deploy"
+			android:visibility="gone"/>
+
+	</LinearLayout>
+
+</RelativeLayout>

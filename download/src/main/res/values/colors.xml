@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+	<!-- R A W -->
+
+	<!-- red -->
+	<color name="dark_red_color">#FFb32400</color>
+
+	<!-- green -->
+	<color name="dark_green_color">#FF008000</color>
+
+	<!-- M A I N -->
+
+	<!-- button -->
+	<color name="ok_button_color">@color/dark_green_color</color>
+	<color name="err_button_color">@color/dark_red_color</color>
+
+</resources>
