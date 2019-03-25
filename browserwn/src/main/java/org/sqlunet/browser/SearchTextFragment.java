@@ -114,8 +114,7 @@ public class SearchTextFragment extends BaseSearchFragment
 		Log.d(SearchTextFragment.TAG, "SEARCH TEXT " + query);
 
 		// subtitle
-		final AppCompatActivity activity = (AppCompatActivity) getActivity();
-		assert activity != null;
+		final AppCompatActivity activity = (AppCompatActivity)requireActivity();
 		final ActionBar actionBar = activity.getSupportActionBar();
 		assert actionBar != null;
 		actionBar.setSubtitle(query);

@@ -276,8 +276,7 @@ abstract public class BaseSearchFragment extends NavigableFragment implements Se
 		final MenuItem searchMenuItem = menu.findItem(R.id.search);
 
 		// activity
-		final AppCompatActivity activity = (AppCompatActivity) getActivity();
-		assert activity != null;
+		final Activity activity = requireActivity();
 
 		// search info
 		final ComponentName componentName = activity.getComponentName();
@@ -313,8 +312,7 @@ abstract public class BaseSearchFragment extends NavigableFragment implements Se
 	private void closeKeyboard()
 	{
 		// activity
-		final Activity activity = getActivity();
-		assert activity != null;
+		final Activity activity = requireActivity();
 
 		// view
 		final View view = activity.getCurrentFocus();

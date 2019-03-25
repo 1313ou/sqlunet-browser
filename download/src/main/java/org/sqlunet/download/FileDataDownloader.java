@@ -137,7 +137,7 @@ public class FileDataDownloader extends AsyncTask<String, Void, FileData>
 			final Long srcSize = srcData == null ? null : srcData.getSize();
 
 			// newer
-			final boolean newer = srcDate != null && srcDate.compareTo(actualDate) > 0;
+			final boolean newer = srcDate == null || actualDate == null || srcDate.compareTo(actualDate) > 0;
 
 			// cache
 			String downloadFromArg = downloadSourceUrl + '/' + name;

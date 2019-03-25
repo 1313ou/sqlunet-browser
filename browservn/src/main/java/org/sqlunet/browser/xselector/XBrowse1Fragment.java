@@ -113,7 +113,7 @@ public class XBrowse1Fragment extends Fragment implements XSelectorsFragment.Lis
 			args.putString(ProviderArgs.ARG_HINTCASED, cased);
 			args.putString(ProviderArgs.ARG_HINTPOS, pos);
 
-			final Intent intent = new Intent(getActivity(), Browse2Activity.class);
+			final Intent intent = new Intent(requireContext(), Browse2Activity.class);
 			intent.putExtras(args);
 			startActivity(intent);
 		}

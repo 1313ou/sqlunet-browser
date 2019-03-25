@@ -46,7 +46,7 @@ public class PredicateMatrixFragment extends TreeFragment
 		assert pointer != null;
 
 		// view mode
-		final Settings.PMMode mode = Settings.PMMode.getPref(getActivity());
+		final Settings.PMMode mode = Settings.PMMode.getPref(requireContext());
 
 		// root node
 		assert this.treeView != null;

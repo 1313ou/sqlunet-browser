@@ -415,8 +415,8 @@ public class ExpandableListFragment extends Fragment implements ExpandableListVi
 		{
 			if (animate)
 			{
-				this.mProgressContainer.startAnimation(AnimationUtils.loadAnimation(getActivity(), android.R.anim.fade_out));
-				this.mExpandableListContainer.startAnimation(AnimationUtils.loadAnimation(getActivity(), android.R.anim.fade_in));
+				this.mProgressContainer.startAnimation(AnimationUtils.loadAnimation(requireContext(), android.R.anim.fade_out));
+				this.mExpandableListContainer.startAnimation(AnimationUtils.loadAnimation(requireContext(), android.R.anim.fade_in));
 			}
 			else
 			{
@@ -430,8 +430,8 @@ public class ExpandableListFragment extends Fragment implements ExpandableListVi
 		{
 			if (animate)
 			{
-				this.mProgressContainer.startAnimation(AnimationUtils.loadAnimation(getActivity(), android.R.anim.fade_in));
-				this.mExpandableListContainer.startAnimation(AnimationUtils.loadAnimation(getActivity(), android.R.anim.fade_out));
+				this.mProgressContainer.startAnimation(AnimationUtils.loadAnimation(requireContext(), android.R.anim.fade_in));
+				this.mExpandableListContainer.startAnimation(AnimationUtils.loadAnimation(requireContext(), android.R.anim.fade_out));
 			}
 			else
 			{

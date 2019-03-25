@@ -110,7 +110,7 @@ public class SensesFragment extends ListFragment
 		this.wordId = 0;
 
 		// list adapter, with no data
-		final SimpleCursorAdapter adapter = new SimpleCursorAdapter(getActivity(), R.layout.item_sense, null, //
+		final SimpleCursorAdapter adapter = new SimpleCursorAdapter(requireContext(), R.layout.item_sense, null, //
 				new String[]{ //
 						WordNetContract.PosTypes.POSNAME, //
 						WordNetContract.Senses.SENSENUM, //
@@ -260,9 +260,7 @@ public class SensesFragment extends ListFragment
 				final String selection = Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.LEMMA + " = ?";
 				final String[] selectionArgs = {SensesFragment.this.word};
 				final String sortOrder = Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.POS + ',' + Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.SENSENUM;
-				final Activity activity = getActivity();
-				assert activity != null;
-				return new CursorLoader(activity, uri, projection, selection, selectionArgs, sortOrder);
+				return new CursorLoader(requireContext(), uri, projection, selection, selectionArgs, sortOrder);
 			}
 
 			@Override

@@ -110,7 +110,7 @@ public class SelectorsFragment extends ListFragment
 		this.word = query;
 
 		// list adapter, with no data
-		final SimpleCursorAdapter adapter = new SimpleCursorAdapter(getActivity(), R.layout.item_selector, null, //
+		final SimpleCursorAdapter adapter = new SimpleCursorAdapter(requireContext(), R.layout.item_selector, null, //
 				new String[]{ //
 						LexUnits_or_Frames.NAME, LexUnits_or_Frames.FRAMENAME, LexUnits_or_Frames.WORD, LexUnits_or_Frames.FNID, LexUnits_or_Frames.FNWORDID, LexUnits_or_Frames.WORDID, LexUnits_or_Frames.FRAMEID, LexUnits_or_Frames.ISFRAME, //
 				}, //
@@ -249,9 +249,7 @@ public class SelectorsFragment extends ListFragment
 				final String selection = LexUnits_or_Frames.WORD + " LIKE ? || '%'";
 				final String[] selectionArgs = {SelectorsFragment.this.word};
 				final String sortOrder = LexUnits_or_Frames.ISFRAME + ',' + LexUnits_or_Frames.WORD + ',' + LexUnits_or_Frames.ID;
-				final Context context = getActivity();
-				assert context != null;
-				return new CursorLoader(context, uri, projection, selection, selectionArgs, sortOrder);
+				return new CursorLoader(requireContext(), uri, projection, selection, selectionArgs, sortOrder);
 			}
 
 			@Override

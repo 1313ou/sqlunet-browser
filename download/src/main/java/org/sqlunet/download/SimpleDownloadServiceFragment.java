@@ -152,9 +152,7 @@ public class SimpleDownloadServiceFragment extends BaseDownloadFragment
 
 		// main receiver
 		Log.d(TAG, "Register main receiver");
-		final Context context = getActivity();
-		assert context != null;
-		LocalBroadcastManager.getInstance(context).registerReceiver(this.mainBroadcastReceiver, new IntentFilter(SimpleDownloaderService.MAIN_INTENT_FILTER));
+		LocalBroadcastManager.getInstance(requireContext()).registerReceiver(this.mainBroadcastReceiver, new IntentFilter(SimpleDownloaderService.MAIN_INTENT_FILTER));
 
 		initChannels();
 	}
@@ -176,9 +174,7 @@ public class SimpleDownloadServiceFragment extends BaseDownloadFragment
 
 		// update receiver
 		Log.d(TAG, "Register update receiver");
-		final Context context = getActivity();
-		assert context != null;
-		LocalBroadcastManager.getInstance(context).registerReceiver(this.updateBroadcastReceiver, new IntentFilter(SimpleDownloaderService.UPDATE_INTENT_FILTER));
+		LocalBroadcastManager.getInstance(requireContext()).registerReceiver(this.updateBroadcastReceiver, new IntentFilter(SimpleDownloaderService.UPDATE_INTENT_FILTER));
 	}
 
 	@Override
@@ -188,9 +184,7 @@ public class SimpleDownloadServiceFragment extends BaseDownloadFragment
 
 		// update receiver
 		Log.d(TAG, "Unregister update receiver");
-		final Context context = getActivity();
-		assert context != null;
-		LocalBroadcastManager.getInstance(context).unregisterReceiver(this.updateBroadcastReceiver);
+		LocalBroadcastManager.getInstance(requireContext()).unregisterReceiver(this.updateBroadcastReceiver);
 	}
 
 	/**
@@ -216,13 +210,12 @@ public class SimpleDownloadServiceFragment extends BaseDownloadFragment
 				final String to = this.destFile.getAbsolutePath();
 
 				// service intent
-				final Intent intent = new Intent(getActivity(), SimpleDownloaderService.class);
+				final Intent intent = new Intent(requireContext(), SimpleDownloaderService.class);
 				intent.setAction(SimpleDownloaderService.ACTION_DOWNLOAD);
 				intent.putExtra(SimpleDownloaderService.ARG_FROM_URL, from);
 				intent.putExtra(SimpleDownloaderService.ARG_TO_FILE, to);
 				intent.putExtra(SimpleDownloaderService.ARG_CODE, ++SimpleDownloadServiceFragment.downloadId);
-				final Context context = getActivity();
-				assert context != null;
+				final Context context = requireContext();
 				context.startService(intent);
 
 				// status
@@ -239,9 +232,7 @@ public class SimpleDownloadServiceFragment extends BaseDownloadFragment
 	@Override
 	protected void cancel()
 	{
-		final Context context = getActivity();
-		assert context != null;
-		kill(context);
+		kill(requireContext());
 	}
 
 	/**

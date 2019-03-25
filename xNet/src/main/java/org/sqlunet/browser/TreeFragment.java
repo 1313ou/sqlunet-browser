@@ -63,10 +63,10 @@ abstract public class TreeFragment extends Fragment
 
 		// root node
 		final TreeNode root = TreeNode.makeRoot();
-		TreeFactory.addTreeNode(root, header, iconId, getActivity());
+		TreeFactory.addTreeNode(root, header, iconId, requireContext());
 
 		// tree
-		this.treeView = new TreeView(getActivity(), root);
+		this.treeView = new TreeView(requireContext(), root);
 		this.treeView.setDefaultContainerStyle(R.style.TreeNodeStyleCustom); // R.style.TreeNodeStyleDivided
 		this.treeView.setDefaultController(TreeController.class);
 		treeContainer.addView(this.treeView.getView());

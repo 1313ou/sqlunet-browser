@@ -158,7 +158,7 @@ public class TextFragment extends AbstractTableFragment
 					final Parcelable synsetPointer = new SynsetPointer(targetId);
 
 					// intent
-					final Intent targetIntent = new Intent(this.getActivity(), org.sqlunet.wordnet.browser.SynsetActivity.class);
+					final Intent targetIntent = new Intent(requireContext(), org.sqlunet.wordnet.browser.SynsetActivity.class);
 					targetIntent.setAction(ProviderArgs.ACTION_QUERY);
 					targetIntent.putExtra(ProviderArgs.ARG_QUERYTYPE, ProviderArgs.ARG_QUERYTYPE_SYNSET);
 					targetIntent.putExtra(ProviderArgs.ARG_QUERYPOINTER, synsetPointer);
@@ -178,7 +178,7 @@ public class TextFragment extends AbstractTableFragment
 					final Parcelable wordPointer = new WordPointer(targetId);
 
 					// intent
-					final Intent targetIntent = new Intent(this.getActivity(), org.sqlunet.wordnet.browser.WordActivity.class);
+					final Intent targetIntent = new Intent(requireContext(), org.sqlunet.wordnet.browser.WordActivity.class);
 					targetIntent.setAction(ProviderArgs.ACTION_QUERY);
 					targetIntent.putExtra(ProviderArgs.ARG_QUERYTYPE, ProviderArgs.ARG_QUERYTYPE_WORD);
 					targetIntent.putExtra(ProviderArgs.ARG_QUERYPOINTER, wordPointer);

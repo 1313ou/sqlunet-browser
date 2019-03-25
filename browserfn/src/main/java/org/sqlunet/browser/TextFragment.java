@@ -208,17 +208,17 @@ public class TextFragment extends AbstractTableFragment
 		{
 			case 0:
 				pointer = new FnFramePointer(targetId);
-				targetIntent = new Intent(TextFragment.this.getActivity(), org.sqlunet.framenet.browser.FnFrameActivity.class);
+				targetIntent = new Intent(requireContext(), org.sqlunet.framenet.browser.FnFrameActivity.class);
 				targetIntent.putExtra(ProviderArgs.ARG_QUERYTYPE, ProviderArgs.ARG_QUERYTYPE_FNFRAME);
 				break;
 			case 1:
 				pointer = new FnLexUnitPointer(targetId);
-				targetIntent = new Intent(TextFragment.this.getActivity(), org.sqlunet.framenet.browser.FnLexUnitActivity.class);
+				targetIntent = new Intent(requireContext(), org.sqlunet.framenet.browser.FnLexUnitActivity.class);
 				targetIntent.putExtra(ProviderArgs.ARG_QUERYTYPE, ProviderArgs.ARG_QUERYTYPE_FNLEXUNIT);
 				break;
 			case 2:
 				pointer = new FnSentencePointer(targetId);
-				targetIntent = new Intent(TextFragment.this.getActivity(), org.sqlunet.framenet.browser.FnSentenceActivity.class);
+				targetIntent = new Intent(requireContext(), org.sqlunet.framenet.browser.FnSentenceActivity.class);
 				targetIntent.putExtra(ProviderArgs.ARG_QUERYTYPE, ProviderArgs.ARG_QUERYTYPE_FNSENTENCE);
 				break;
 		}
@@ -255,9 +255,6 @@ public class TextFragment extends AbstractTableFragment
 	 */
 	private Pair<TypedPointer[], CharSequence[]> makeData(@NonNull final String... concatChoices)
 	{
-		final Context context = getActivity();
-		assert context != null;
-
 		final List<TypedPointer> typedPointers = new ArrayList<>();
 		final List<CharSequence> labels = new ArrayList<>();
 		final Pattern pattern = Pattern.compile('(' + "(?i)" + this.query + ')');
@@ -290,7 +287,7 @@ public class TextFragment extends AbstractTableFragment
 						break;
 				}
 				final SpannableStringBuilder sb = new SpannableStringBuilder();
-				appendImage(context, sb, resId);
+				appendImage(requireContext(), sb, resId);
 				sb.append(' ');
 				if (pattern.matcher(label).find())
 				{
@@ -320,7 +317,7 @@ public class TextFragment extends AbstractTableFragment
 	 */
 	private AlertDialog makeDialog(final DialogInterface.OnClickListener listener, final CharSequence... choices)
 	{
-		AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+		AlertDialog.Builder builder = new AlertDialog.Builder(requireContext());
 
 		// set the dialog characteristics
 		builder.setTitle(R.string.title_activity_searchtext);

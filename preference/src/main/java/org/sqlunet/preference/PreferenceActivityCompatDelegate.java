@@ -298,7 +298,7 @@ public class PreferenceActivityCompatDelegate
 	@NonNull
 	private FragmentManager getFragmentManager()
 	{
-		return this.activity.getSupportFragmentManager();
+		return getFragmentManager();
 	}
 
 	@NonNull

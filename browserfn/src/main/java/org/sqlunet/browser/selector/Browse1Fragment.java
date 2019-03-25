@@ -112,7 +112,7 @@ public class Browse1Fragment extends Fragment implements SelectorsFragment.Liste
 			args.putString(ProviderArgs.ARG_HINTWORD, word);
 			args.putLong(ProviderArgs.ARG_HINTWORDID, wordId);
 
-			final Intent intent = new Intent(getActivity(), Browse2Activity.class);
+			final Intent intent = new Intent(requireContext(), Browse2Activity.class);
 			intent.putExtras(args);
 			startActivity(intent);
 		}

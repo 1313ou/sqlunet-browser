@@ -111,7 +111,7 @@ public class SelectorsFragment extends ListFragment
 		this.wordId = 0;
 
 		// list adapter, with no data
-		final SimpleCursorAdapter adapter = new SimpleCursorAdapter(getActivity(), R.layout.item_selector, null, //
+		final SimpleCursorAdapter adapter = new SimpleCursorAdapter(requireContext(), R.layout.item_selector, null, //
 				new String[]{ //
 						Words_FnWords_PbWords_VnWords.POS, //
 						Words_FnWords_PbWords_VnWords.SENSENUM, //
@@ -277,9 +277,7 @@ public class SelectorsFragment extends ListFragment
 				final String selection = XSqlUNetContract.WORD + '.' + Words_FnWords_PbWords_VnWords.LEMMA + " = ?"; ////
 				final String[] selectionArgs = {SelectorsFragment.this.word};
 				final String sortOrder = XSqlUNetContract.SYNSET + '.' + Words_FnWords_PbWords_VnWords.POS + ',' + Words_FnWords_PbWords_VnWords.SENSENUM;
-				final Context context = getActivity();
-				assert context != null;
-				return new CursorLoader(context, uri, projection, selection, selectionArgs, sortOrder);
+				return new CursorLoader(requireContext(), uri, projection, selection, selectionArgs, sortOrder);
 			}
 
 			@Override

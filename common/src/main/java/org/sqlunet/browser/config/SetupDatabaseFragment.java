@@ -67,17 +67,16 @@ public class SetupDatabaseFragment extends BaseTaskFragment
 			SetupDatabaseFragment.this.status.setText(R.string.status_task_running);
 
 			// database path
-			final Activity activity = getActivity();
-			assert activity != null;
+			final Activity activity = requireActivity();
 			final String databasePath = StorageSettings.getDatabasePath(activity.getBaseContext());
 
 			// sqls
-			final CharSequence[] sqls = getActivity().getResources().getTextArray(R.array.sql_statements_values);
+			final CharSequence[] sqls = activity.getResources().getTextArray(R.array.sql_statements_values);
 
 			// execute
 			final CharSequence sql = sqls[(int) id];
 			final String[] sqlStatements = sql.toString().split(";");
-			new ExecAsyncTask(getActivity(), new TaskObserver.ToastWithStatusListener(getActivity(), SetupDatabaseFragment.this.status), 1).executeFromSql(databasePath, sqlStatements);
+			new ExecAsyncTask(activity, this::update, new TaskObserver.ToastWithStatusListener(activity, SetupDatabaseFragment.this.status), 1).executeFromSql(databasePath, sqlStatements);
 		});
 
 		return view;
@@ -88,9 +87,7 @@ public class SetupDatabaseFragment extends BaseTaskFragment
 	protected SpinnerAdapter makeAdapter()
 	{
 		// create an ArrayAdapter using the string array and a default spinner layout
-		final Context context = getActivity();
-		assert context != null;
-		final ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(context, R.array.sql_statement_titles, R.layout.spinner_item_task);
+		final ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(requireContext(), R.array.sql_statement_titles, R.layout.spinner_item_task);
 
 		// specify the layout to use when the list of choices appears
 		adapter.setDropDownViewResource(R.layout.spinner_item_task_dropdown);
@@ -108,14 +105,13 @@ public class SetupDatabaseFragment extends BaseTaskFragment
 	@Override
 	public boolean onOptionsItemSelected(@NonNull MenuItem item)
 	{
-		final Context context = getActivity();
 		Intent intent;
 
 		// handle item selection
 		int i = item.getItemId();
 		if (i == R.id.action_tables_and_indices)
 		{
-			intent = ManagerContract.makeTablesAndIndexesIntent(context);
+			intent = ManagerContract.makeTablesAndIndexesIntent(requireContext());
 			intent.putExtra(ProviderArgs.ARG_QUERYLAYOUT, R.layout.item_dbobject);
 		}
 		else
@@ -126,4 +122,7 @@ public class SetupDatabaseFragment extends BaseTaskFragment
 		startActivity(intent);
 		return true;
 	}
+
+	private void update()
+	{}
 }

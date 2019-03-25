@@ -27,7 +27,7 @@ public class Browse2Fragment extends BaseBrowse2Fragment
 	@Override
 	protected void search()
 	{
-		final Context context = this.getActivity();
+		final Context context = requireContext();
 		final FragmentManager manager = getChildFragmentManager();
 
 		// args

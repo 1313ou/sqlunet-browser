@@ -6,16 +6,6 @@ import android.content.res.Resources;
 import android.content.res.TypedArray;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentActivity;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.app.contrib.NavigationDrawerFragment;
-import androidx.appcompat.widget.Toolbar;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.View;
@@ -28,6 +18,16 @@ import org.sqlunet.browser.config.SetupActivity;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.contrib.NavigationDrawerFragment;
+import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 /**
  * Fragment used for managing interactions for and presentation of a navigation drawer.
@@ -89,12 +89,8 @@ public class NavigationFragment extends NavigationDrawerFragment implements Navi
 	@Nullable
 	public Fragment getActiveFragment()
 	{
-		final FragmentActivity activity = getActivity();
-		assert activity != null;
-		final FragmentManager manager = activity.getSupportFragmentManager();
-
 		final String tag = this.fragmentTags[this.selectedPosition];
-		return tag == null ? null : manager.findFragmentByTag(tag);
+		return tag == null ? null : getFragmentManager().findFragmentByTag(tag);
 	}
 
 	/**
@@ -155,7 +151,7 @@ public class NavigationFragment extends NavigationDrawerFragment implements Navi
 	@SuppressWarnings("unused")
 	private void setupActivity()
 	{
-		final Intent intent = new Intent(getActivity(), SetupActivity.class);
+		final Intent intent = new Intent(requireContext(), SetupActivity.class);
 		startActivity(intent);
 	}
 
@@ -165,7 +161,7 @@ public class NavigationFragment extends NavigationDrawerFragment implements Navi
 	@SuppressWarnings("unused")
 	private void settingsActivity()
 	{
-		final Intent intent = new Intent(getActivity(), SettingsActivity.class);
+		final Intent intent = new Intent(requireContext(), SettingsActivity.class);
 		intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
 		startActivity(intent);
 	}
@@ -176,8 +172,7 @@ public class NavigationFragment extends NavigationDrawerFragment implements Navi
 	@SuppressWarnings("unused")
 	private void sqlDialog()
 	{
-		final AppCompatActivity activity = (AppCompatActivity)getActivity();
-		assert activity != null;
+		final AppCompatActivity activity = (AppCompatActivity) requireActivity();
 		SqlDialogFragment.show(activity.getSupportFragmentManager());
 	}
 
@@ -189,10 +184,8 @@ public class NavigationFragment extends NavigationDrawerFragment implements Navi
 	private void handleFragments(int position)
 	{
 		Log.d(TAG, "Section fragments " + position);
-		final AppCompatActivity activity = (AppCompatActivity) getActivity();
-		assert activity != null;
-		final FragmentManager manager = activity.getSupportFragmentManager();
-		final FragmentTransaction transaction = manager.beginTransaction();
+		final FragmentManager manager = getFragmentManager();
+		final FragmentTransaction transaction = getFragmentManager().beginTransaction();
 		transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
 
 		final String tag = this.fragmentTags[position];
@@ -260,21 +253,22 @@ public class NavigationFragment extends NavigationDrawerFragment implements Navi
 
 		// A C T I O N   B A R
 
-		// TODO toolbar bar
+		final AppCompatActivity activity = (AppCompatActivity) requireActivity();
+
+		// toolbar
 		final Toolbar toolbar = activity.findViewById(R.id.toolbar);
 		Log.d(TAG, "toolbar " + toolbar);
 
+		// action bar
 		final ActionBar actionBar = activity.getSupportActionBar();
 		assert actionBar != null;
-
-		// action bar
 		final ActionBarSetter setter = (ActionBarSetter) fragment;
 		if (!setter.setActionBar(actionBar, activity))
 		{
 			/*
 			try
 			{
-				PackageInfo packageInfo = getActivity().getPackageManager().getPackageInfo(getActivity().getPackageName(), PackageManager.GET_META_DATA);
+				PackageInfo packageInfo = requireActivity().getPackageManager().getPackageInfo(requireActivity().getPackageName(), PackageManager.GET_META_DATA);
 				int themeResId = packageInfo.applicationInfo.theme;
 				String name = getResources().getResourceEntryName(themeResId);
 				Log.d(NavigationFragment.TAG, "Theme name " + name);

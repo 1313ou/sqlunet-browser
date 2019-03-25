@@ -310,9 +310,7 @@ public class XSelectorsFragment extends ExpandableListFragment
 				final String selection = XSqlUNetContract.WORD + '.' + Words_PbWords_VnWords.LEMMA + " = ?";
 				final String[] selectionArgs = {XSelectorsFragment.this.word};
 				final String sortOrder = XSqlUNetContract.POS + '.' + Words_PbWords_VnWords.POS + ',' + Words_PbWords_VnWords.SENSENUM;
-				final Context context = getActivity();
-				assert context != null;
-				return new CursorLoader(context, uri, projection, selection, selectionArgs, sortOrder);
+				return new CursorLoader(requireContext(), uri, projection, selection, selectionArgs, sortOrder);
 			}
 
 			// This will always be called from the process's main thread.
@@ -344,7 +342,7 @@ public class XSelectorsFragment extends ExpandableListFragment
 	private void initialize()
 	{
 		// adapter
-		final ExpandableListAdapter adapter = new SimpleCursorTreeAdapter(getActivity(), this.xnCursor, R.layout.item_group_xselector, groupFrom, groupTo, R.layout.item_xselector, childFrom, childTo)
+		final ExpandableListAdapter adapter = new SimpleCursorTreeAdapter(requireContext(), this.xnCursor, R.layout.item_group_xselector, groupFrom, groupTo, R.layout.item_xselector, childFrom, childTo)
 		{
 			@Override
 			protected Cursor getChildrenCursor(@NonNull Cursor groupCursor)
@@ -408,11 +406,7 @@ public class XSelectorsFragment extends ExpandableListFragment
 		}
 
 		final FragmentActivity activity = getActivity();
-		if (activity == null)
-		{
-			return;
-		}
-		if (activity.isFinishing())
+		if (activity == null || isDetached() || activity.isFinishing() || activity.isDestroyed())
 		{
 			return;
 		}
@@ -447,7 +441,7 @@ public class XSelectorsFragment extends ExpandableListFragment
 	 */
 	private LoaderCallbacks<Cursor> getVnCallbacks(final long wordId, final int groupPosition)
 	{
-		return new VnLoaderCallbacks(getActivity(), wordId)
+		return new VnLoaderCallbacks(requireContext(), wordId)
 		{
 			@Override
 			public void onLoadFinished(@NonNull final Loader<Cursor> loader, @Nullable final Cursor cursor)
@@ -486,7 +480,7 @@ public class XSelectorsFragment extends ExpandableListFragment
 	 */
 	private LoaderCallbacks<Cursor> getPbCallbacks(final long wordId, final int groupPosition)
 	{
-		return new PbLoaderCallbacks(getActivity(), wordId)
+		return new PbLoaderCallbacks(requireContext(), wordId)
 		{
 			@Override
 			public void onLoadFinished(@NonNull final Loader<Cursor> loader, @Nullable final Cursor cursor)

@@ -10,12 +10,6 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Parcelable;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-import androidx.loader.app.LoaderManager.LoaderCallbacks;
-import androidx.loader.content.Loader;
-import androidx.appcompat.app.AppCompatActivity;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -48,6 +42,12 @@ import org.sqlunet.wordnet.sql.WordNetImplementation;
 import org.w3c.dom.Document;
 
 import java.net.URLDecoder;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.loader.app.LoaderManager.LoaderCallbacks;
+import androidx.loader.content.Loader;
 
 /**
  * A fragment representing a SqlUNet web view.
@@ -257,7 +257,7 @@ public class WebFragment extends Fragment
 					final String name = target[0];
 					final String value = target[1];
 					Log.d(WebFragment.TAG, "QUERY " + query + " name=" + name + " value=" + value);
-					final Intent targetIntent = new Intent(getActivity(), WebActivity.class);
+					final Intent targetIntent = new Intent(requireContext(), WebActivity.class);
 					if ("word".equals(name)) //
 					{
 						targetIntent.putExtra(ProviderArgs.ARG_QUERYSTRING, value);
@@ -267,9 +267,11 @@ public class WebFragment extends Fragment
 						final long id = Long.valueOf(value);
 
 						// warn with id
-						final Activity activity = WebFragment.this.getActivity();
-						assert activity != null;
-						activity.runOnUiThread(() -> Toast.makeText(activity, "id=" + id, Toast.LENGTH_SHORT).show());
+						final Activity activity = getActivity();
+						if (activity != null && !isDetached() && !activity.isFinishing() && !activity.isDestroyed())
+						{
+							activity.runOnUiThread(() -> Toast.makeText(activity, "id=" + id, Toast.LENGTH_SHORT).show());
+						}
 
 						// prepare data
 						int type;
@@ -309,19 +311,21 @@ public class WebFragment extends Fragment
 		this.webview.setWebViewClient(webClient);
 
 		// settings sources
+		Context context = requireContext();
+
 		int mask = 0;
-		if (Settings.getWordNetPref(getActivity()))
+		if (Settings.getWordNetPref(context))
 		{
 			mask = Settings.Source.WORDNET.set(mask);
 		}
-		if (Settings.getBncPref(getActivity()))
+		if (Settings.getBncPref(context))
 		{
 			mask |= Settings.Source.BNC.set(mask);
 		}
 		final int sources = mask;
 
 		// settings output
-		final boolean xml = Settings.getXmlPref(getActivity());
+		final boolean xml = Settings.getXmlPref(context);
 
 		// unmarshal arguments
 		Bundle args = getArguments();
@@ -349,9 +353,7 @@ public class WebFragment extends Fragment
 			@Override
 			public Loader<String> onCreateLoader(final int loaderId, final Bundle loaderArgs)
 			{
-				final Context context = getActivity();
-				assert context != null;
-				return new WebDocumentStringLoader(context, type, data, pointer, pos, sources, xml);
+				return new WebDocumentStringLoader(requireContext(), type, data, pointer, pos, sources, xml);
 			}
 
 			@Override

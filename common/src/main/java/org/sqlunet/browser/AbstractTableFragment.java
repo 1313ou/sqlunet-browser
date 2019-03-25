@@ -110,7 +110,7 @@ public abstract class AbstractTableFragment extends ListFragment
 		Log.d(AbstractTableFragment.TAG + "To", Utils.join(to));
 
 		// make cursor adapter
-		final SimpleCursorAdapter adapter = new SimpleCursorAdapter(getActivity(), layoutId, null, //
+		final SimpleCursorAdapter adapter = new SimpleCursorAdapter(requireContext(), layoutId, null, //
 				from, //
 				to, 0);
 		adapter.setViewBinder(makeViewBinder());
@@ -147,9 +147,7 @@ public abstract class AbstractTableFragment extends ListFragment
 				//  Log.d(TAG, p);
 				// }
 				final String[] selectionArgs = queryArg == null ? null : new String[]{queryArg};
-				final Context context = getActivity();
-				assert context != null;
-				return new CursorLoader(context, uri, projection, selection, selectionArgs, sort);
+				return new CursorLoader(requireContext(), uri, projection, selection, selectionArgs, sort);
 			}
 
 			@Override
@@ -159,7 +157,7 @@ public abstract class AbstractTableFragment extends ListFragment
 
 				if (cursor == null)
 				{
-					Toast.makeText(getActivity(), R.string.status_provider_query_failed, Toast.LENGTH_LONG).show();
+					Toast.makeText(requireContext(), R.string.status_provider_query_failed, Toast.LENGTH_LONG).show();
 				}
 
 				((CursorAdapter) getListAdapter()).swapCursor(cursor);

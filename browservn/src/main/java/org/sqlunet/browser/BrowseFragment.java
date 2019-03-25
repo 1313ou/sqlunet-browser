@@ -143,8 +143,7 @@ public class BrowseFragment extends BaseSearchFragment
 		Log.d(BrowseFragment.TAG, "BROWSE " + query);
 
 		// subtitle
-		final AppCompatActivity activity = (AppCompatActivity) getActivity();
-		assert activity != null;
+		final AppCompatActivity activity = (AppCompatActivity) requireActivity();
 		final ActionBar actionBar = activity.getSupportActionBar();
 		assert actionBar != null;
 		actionBar.setSubtitle(query);
@@ -257,14 +256,14 @@ public class BrowseFragment extends BaseSearchFragment
 	 */
 	private Fragment makeSelectorFragment()
 	{
-		// activity
-		final Activity activity = getActivity();
+		// context
+		final Context context = requireContext();
 
 		// type
-		final Selector selectorType = Settings.getXSelectorPref(activity);
+		final Selector selectorType = Settings.getXSelectorPref(context);
 
 		// mode
-		final Settings.SelectorViewMode selectorMode = Settings.getSelectorViewModePref(activity);
+		final Settings.SelectorViewMode selectorMode = Settings.getSelectorViewModePref(context);
 
 		switch (selectorMode)
 		{
@@ -292,17 +291,17 @@ public class BrowseFragment extends BaseSearchFragment
 	@SuppressWarnings("unused")
 	private Intent makeSelectorIntent()
 	{
-		// activity
-		final Activity activity = getActivity();
+		// context
+		final Context context = requireContext();
 
 		// intent
 		Intent intent = null;
 
 		// type
-		final Selector selectorType = Settings.getXSelectorPref(activity);
+		final Selector selectorType = Settings.getXSelectorPref(context);
 
 		// mode
-		final Settings.SelectorViewMode selectorMode = Settings.getSelectorViewModePref(activity);
+		final Settings.SelectorViewMode selectorMode = Settings.getSelectorViewModePref(context);
 
 		switch (selectorMode)
 		{
@@ -314,11 +313,11 @@ public class BrowseFragment extends BaseSearchFragment
 						intentClass = XBrowse1Activity.class;
 						break;
 				}
-				intent = new Intent(getActivity(), intentClass);
+				intent = new Intent(requireContext(), intentClass);
 				break;
 
 			case WEB:
-				intent = new Intent(getActivity(), WebActivity.class);
+				intent = new Intent(requireContext(), WebActivity.class);
 				break;
 		}
 		intent.setAction(ProviderArgs.ACTION_QUERY);
@@ -335,22 +334,22 @@ public class BrowseFragment extends BaseSearchFragment
 	@NonNull
 	private Intent makeDetailIntent(final Class<?> intentClass)
 	{
-		// activity
-		final Activity activity = getActivity();
+		// context
+		final Context context = requireContext();
 
 		// intent
 		Intent intent = null;
 
 		// mode
-		final Settings.DetailViewMode detailMode = Settings.getDetailViewModePref(activity);
+		final Settings.DetailViewMode detailMode = Settings.getDetailViewModePref(context);
 		switch (detailMode)
 		{
 			case VIEW:
-				intent = new Intent(getActivity(), intentClass);
+				intent = new Intent(context, intentClass);
 				break;
 
 			case WEB:
-				intent = new Intent(getActivity(), WebActivity.class);
+				intent = new Intent(context, WebActivity.class);
 				break;
 		}
 		intent.setAction(ProviderArgs.ACTION_QUERY);

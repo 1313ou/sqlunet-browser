@@ -323,7 +323,7 @@ public class SettingsActivity extends PreferenceActivityCompat
 
 			// required if no 'entries' and 'entryValues' in XML
 			final Preference storagePreference = findPreference(Settings.PREF_STORAGE);
-			populateStoragePreference(getActivity(), storagePreference);
+			populateStoragePreference(requireContext(), storagePreference);
 
 			// bind the summaries to their values.
 			bind(storagePreference);
@@ -343,7 +343,7 @@ public class SettingsActivity extends PreferenceActivityCompat
 
 			// required if no 'entries' and 'entryValues' in XML
 			final Preference cachePreference = findPreference(Settings.PREF_CACHE);
-			populateCachePreference(getActivity(), cachePreference);
+			populateCachePreference(requireContext(), cachePreference);
 
 			// bind the summaries to their values.
 			bind(findPreference(Settings.PREF_DOWNLOAD_SITE));

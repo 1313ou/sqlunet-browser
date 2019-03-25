@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import androidx.annotation.NonNull;
 import android.text.SpannableStringBuilder;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,6 +21,8 @@ import org.sqlunet.settings.StorageSettings;
 import org.sqlunet.settings.StorageUtils;
 
 import java.io.File;
+
+import androidx.annotation.NonNull;
 
 import static org.sqlunet.download.BaseDownloadFragment.DOWNLOAD_FROM_ARG;
 import static org.sqlunet.download.BaseDownloadFragment.DOWNLOAD_TO_ARG;
@@ -107,8 +108,7 @@ public class SetupFileFragment extends BaseTaskFragment
 
 			// execute
 			boolean success;
-			final Activity context = getActivity();
-			assert context != null;
+			final Activity activity = requireActivity();
 			final Operation op = Operation.fromIndex((int) id);
 			if (op != null)
 			{
@@ -116,63 +116,63 @@ public class SetupFileFragment extends BaseTaskFragment
 				{
 					case CREATE:
 						SetupFileFragment.this.status.setText(R.string.status_task_running);
-						success = SetupDatabaseTasks.createDatabase(context, StorageSettings.getDatabasePath(context));
+						success = SetupDatabaseTasks.createDatabase(activity, StorageSettings.getDatabasePath(activity));
 						SetupFileFragment.this.status.setText(success ? R.string.status_task_done : R.string.status_task_failed);
 						break;
 
 					case DROP:
-						Utils.confirm(context, R.string.title_setup_drop, R.string.askDrop, () -> {
+						Utils.confirm(activity, R.string.title_setup_drop, R.string.askDrop, () -> {
 							SetupFileFragment.this.status.setText(R.string.status_task_running);
-							boolean success1 = SetupDatabaseTasks.deleteDatabase(context, StorageSettings.getDatabasePath(context));
+							boolean success1 = SetupDatabaseTasks.deleteDatabase(activity, StorageSettings.getDatabasePath(activity));
 							SetupFileFragment.this.status.setText(success1 ? R.string.status_task_done : R.string.status_task_failed);
 						});
 						break;
 
 					case COPY:
-						if (Permissions.check(context))
+						if (Permissions.check(activity))
 						{
-							FileAsyncTask.copyFromFile(context, StorageSettings.getCacheDir(context), StorageSettings.getDatabasePath(context));
+							FileAsyncTask.copyFromFile(activity, StorageSettings.getCacheDir(activity), StorageSettings.getDatabasePath(activity));
 						}
 						break;
 
 					case UNZIP:
-						if (Permissions.check(context))
+						if (Permissions.check(activity))
 						{
-							String zipEntry = StorageSettings.getImportEntry(context);
+							String zipEntry = StorageSettings.getImportEntry(activity);
 							if (/*zipEntry == null ||*/ zipEntry.isEmpty())
 							{
 								zipEntry = Storage.DBFILE;
 							}
-							FileAsyncTask.unzipEntryFromArchive(context, StorageSettings.getCacheDir(context), zipEntry, StorageSettings.getDatabasePath(context));
+							FileAsyncTask.unzipEntryFromArchive(activity, StorageSettings.getCacheDir(activity), zipEntry, StorageSettings.getDatabasePath(activity));
 						}
 						break;
 
 					case MD5:
-						if (Permissions.check(context))
+						if (Permissions.check(activity))
 						{
-							FileAsyncTask.md5(context);
+							FileAsyncTask.md5(activity);
 						}
 						break;
 
 					case DOWNLOAD:
-						final Intent intent2 = new Intent(context, DownloadActivity.class);
-						intent2.putExtra(DOWNLOAD_FROM_ARG, StorageSettings.getDbDownloadSource(context));
-						intent2.putExtra(DOWNLOAD_TO_ARG, StorageSettings.getDbDownloadTarget(context));
-						context.startActivity(intent2);
+						final Intent intent2 = new Intent(activity, DownloadActivity.class);
+						intent2.putExtra(DOWNLOAD_FROM_ARG, StorageSettings.getDbDownloadSource(activity));
+						intent2.putExtra(DOWNLOAD_TO_ARG, StorageSettings.getDbDownloadTarget(activity));
+						activity.startActivity(intent2);
 						break;
 
 					case DOWNLOADZIPPED:
-						final Intent intent3 = new Intent(context, DownloadActivity.class);
-						intent3.putExtra(DOWNLOAD_FROM_ARG, StorageSettings.getDbDownloadZippedSource(context));
-						intent3.putExtra(DOWNLOAD_TO_ARG, StorageSettings.getDbDownloadZippedTarget(context));
-						intent3.putExtra(UNZIP_TO_ARG, StorageSettings.getDataDir(context));
-						intent3.putExtra(RENAME_FROM_ARG, StorageSettings.getDbDownloadFile(context));
-						intent3.putExtra(RENAME_TO_ARG, StorageSettings.getDatabaseName(context));
-						context.startActivity(intent3);
+						final Intent intent3 = new Intent(activity, DownloadActivity.class);
+						intent3.putExtra(DOWNLOAD_FROM_ARG, StorageSettings.getDbDownloadZippedSource(activity));
+						intent3.putExtra(DOWNLOAD_TO_ARG, StorageSettings.getDbDownloadZippedTarget(activity));
+						intent3.putExtra(UNZIP_TO_ARG, StorageSettings.getDataDir(activity));
+						intent3.putExtra(RENAME_FROM_ARG, StorageSettings.getDbDownloadFile(activity));
+						intent3.putExtra(RENAME_TO_ARG, StorageSettings.getDatabaseName(activity));
+						activity.startActivity(intent3);
 						break;
 
 					case UPDATE:
-						Utils.confirm(context, R.string.title_setup_update, R.string.askUpdate, () -> SetupDatabaseTasks.update(context));
+						Utils.confirm(activity, R.string.title_setup_update, R.string.askUpdate, () -> SetupDatabaseTasks.update(activity));
 						break;
 				}
 			}
@@ -186,9 +186,7 @@ public class SetupFileFragment extends BaseTaskFragment
 	protected SpinnerAdapter makeAdapter()
 	{
 		// create an ArrayAdapter using the string array and a default spinner layout
-		final Context context = getActivity();
-		assert context != null;
-		final ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(context, R.array.setup_files_titles, R.layout.spinner_item_task);
+		final ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(requireContext(), R.array.setup_files_titles, R.layout.spinner_item_task);
 
 		// specify the layout to use when the list of choices appears
 		adapter.setDropDownViewResource(R.layout.spinner_item_task_dropdown);
@@ -250,8 +248,7 @@ public class SetupFileFragment extends BaseTaskFragment
 	@NonNull
 	private CharSequence statusCreate()
 	{
-		final Context context = getActivity();
-		assert context != null;
+		final Context context = requireContext();
 		final String database = StorageSettings.getDatabasePath(context);
 		final String free = StorageUtils.getFree(context, database);
 		final boolean databaseExists = new File(database).exists();
@@ -274,8 +271,7 @@ public class SetupFileFragment extends BaseTaskFragment
 	@NonNull
 	private CharSequence statusDrop()
 	{
-		final Context context = getActivity();
-		assert context != null;
+		final Context context = requireContext();
 		final String database = StorageSettings.getDatabasePath(context);
 		final String free = StorageUtils.getFree(context, database);
 		final boolean databaseExists = new File(database).exists();
@@ -298,8 +294,7 @@ public class SetupFileFragment extends BaseTaskFragment
 	@NonNull
 	private CharSequence statusCopy()
 	{
-		final Context context = getActivity();
-		assert context != null;
+		final Context context = requireContext();
 		final String database = StorageSettings.getDatabasePath(context);
 		final String free = StorageUtils.getFree(context, database);
 		final boolean databaseExists = new File(database).exists();
@@ -333,8 +328,7 @@ public class SetupFileFragment extends BaseTaskFragment
 	@NonNull
 	private CharSequence statusUnzip()
 	{
-		final Context context = getActivity();
-		assert context != null;
+		final Context context = requireContext();
 		final String database = StorageSettings.getDatabasePath(context);
 		final String free = StorageUtils.getFree(context, database);
 		final boolean databaseExists = new File(database).exists();
@@ -396,8 +390,7 @@ public class SetupFileFragment extends BaseTaskFragment
 	@NonNull
 	private CharSequence statusDownload()
 	{
-		final Context context = getActivity();
-		assert context != null;
+		final Context context = requireContext();
 		final String from = StorageSettings.getDbDownloadSource(context);
 		final String to = StorageSettings.getDbDownloadTarget(context);
 		final String free = StorageUtils.getFree(context, to);
@@ -424,8 +417,7 @@ public class SetupFileFragment extends BaseTaskFragment
 	@NonNull
 	private CharSequence statusDownloadZipped()
 	{
-		final Context context = getActivity();
-		assert context != null;
+		final Context context = requireContext();
 		final String from = StorageSettings.getDbDownloadZippedSource(context);
 		final String to = StorageSettings.getDbDownloadZippedTarget(context);
 		final String free = StorageUtils.getFree(context, to);

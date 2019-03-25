@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+	<string name="title_other">Other</string>
+	<string name="title_activity_other">Other</string>
+
+	<string name="title_grammarscope_syntaxnet">GrammarScope (SyntaxNet)</string>
+	<string name="text_grammarscope_syntaxnet">GrammarScope (SyntaxNet) is an extended version of this application. It is powered by Google\'s SyntaxNet.</string>
+	<string name="description_logo_grammarscope_syntaxnet">GrammarScope (SyntaxNet)Logo</string>
+	<string name="description_googleplay_grammarscope_syntaxnet">GrammarScope (SyntaxNet) on GooglePlay</string>
+
+	<string name="title_grammarscope_udpipe">GrammarScope (UDPipe)</string>
+	<string name="text_grammarscope_udpipe">GrammarScope is another version of this application. It is powered by UDPipe.</string>
+	<string name="description_logo_grammarscope_udpipe">GrammarScope UDPipe Logo</string>
+	<string name="description_googleplay_grammarscope_udpipe">GrammarScope UDPipe on GooglePlay</string>
+
+	<string name="title_treebolicwordnet">Treebolic WordNet</string>
+	<string name="text_treebolicwordnet">For each word, a tree graph is built, based on WordNet® data, that captures the word\'s relations to other words. The relation types are those to be found in the WordNet database and include: \'more specific\', \'more generic\', \'causes\', \'entails\', \'similar to\', \'opposite of\', \'part of\', \'whole of\', etc…
+Treebolic WordNet displays this graph, and gives it a hyperbolic rendering in which display space is subject to a particular curvature: more space is allocated to the focus node while the parent and children, still in the immediate visual context, appear slightly smaller. The grandparents and grandchildren are still visible but come out even smaller. As we move away from the focus node, less display space is allotted to the nodes, which gradually disappear towards the display\'s border.
+Touch-dragging word nodes allows the user to interact with the display and to browse through the graph\'s space by shifting the focus.</string>
+	<string name="description_logo_treebolicwordnet">Treebolic WordNet Logo</string>
+	<string name="description_googleplay_treebolicwordnet">Treebolic WordNet on GooglePlay</string>
+
+	<string name="title_semantikos">Semantikos</string>
+	<string name="text_semantikos">Semantikos explores senses and semantic roles of English. Linguistic data from WordNet, VerbNet, Propbank, FrameNet, BNC statistical data, Predicate Matrix. Textual search on samples, definitions, text occurrences.</string>
+	<string name="description_logo_semantikos">Semantikos Logo</string>
+	<string name="description_googleplay_semantikos">Semantikos on GooglePlay</string>
+
+	<string name="title_semantikos_wn">Semantikos WordNet</string>
+	<string name="text_semantikos_wn">Semantikos WordNet explores senses and semantic roles of English. Linguistic data from WordNet, BNC statistical data. Textual search on samples, definitions.</string>
+	<string name="description_logo_semantikos_wn">Semantikos WordNet Logo</string>
+	<string name="description_googleplay_semantikos_wn">Semantikos WordNet on GooglePlay</string>
+
+	<string name="title_semantikos_vn">Semantikos VerbNet</string>
+	<string name="text_semantikos_vn">Semantikos VerbNet explores senses and semantic roles of English. Linguistic data from VerbNet, PropBank and WordNet. Textual search on samples, definitions.</string>
+	<string name="description_logo_semantikos_vn">Semantikos VerbNet Logo</string>
+	<string name="description_googleplay_semantikos_vn">Semantikos VerbNet on GooglePlay</string>
+
+	<string name="title_semantikos_fn">Semantikos FrameNet</string>
+	<string name="text_semantikos_fn">Semantikos FrameNet explores senses and semantic roles of English. Linguistic data from FrameNet. Textual search on sample sentences.</string>
+	<string name="description_logo_semantikos_fn">Semantikos FrameNet Logo</string>
+	<string name="description_googleplay_semantikos_fn">Semantikos FrameNet on GooglePlay</string>
+
+	<string name="market_fail">Failed to query Google Play for </string>
+</resources>

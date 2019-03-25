@@ -1,10 +1,10 @@
 package org.sqlunet.browser.xn;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import androidx.annotation.NonNull;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,6 +21,8 @@ import org.sqlunet.settings.StorageSettings;
 import org.sqlunet.settings.StorageUtils;
 
 import java.io.File;
+
+import androidx.annotation.NonNull;
 
 /**
  * Setup Status fragment
@@ -83,49 +85,52 @@ public class SetupStatusFragment extends org.sqlunet.browser.config.SetupStatusF
 		this.buttonTextSearchFn = view.findViewById(R.id.searchtextFnButton);
 		final ImageButton infoDatabaseButton = view.findViewById(R.id.info_database);
 
-		// activity
-		final Activity activity = getActivity();
-		assert activity != null;
-
 		// click listeners
 		this.buttonPm.setOnClickListener(v -> {
+
 			int index = getResources().getInteger(R.integer.sql_statement_do_predicatematrix_position);
-			final Intent intent = new Intent(activity, SetupDatabaseActivity.class);
+			final Intent intent = new Intent(requireContext(), SetupDatabaseActivity.class);
 			intent.putExtra(SetupDatabaseFragment.ARG_POSITION, index);
 			startActivityForResult(intent, SetupStatusFragment.REQUEST_MANAGE_CODE + index);
 		});
 
 		this.buttonTextSearchWn.setOnClickListener(v -> {
+
 			int index = getResources().getInteger(R.integer.sql_statement_do_ts_wn_position);
-			final Intent intent = new Intent(activity, SetupDatabaseActivity.class);
+			final Intent intent = new Intent(requireContext(), SetupDatabaseActivity.class);
 			intent.putExtra(SetupDatabaseFragment.ARG_POSITION, index);
 			startActivityForResult(intent, SetupStatusFragment.REQUEST_MANAGE_CODE + index);
 		});
 
 		this.buttonTextSearchVn.setOnClickListener(v -> {
+
 			int index = getResources().getInteger(R.integer.sql_statement_do_ts_vn_position);
-			final Intent intent = new Intent(activity, SetupDatabaseActivity.class);
+			final Intent intent = new Intent(requireContext(), SetupDatabaseActivity.class);
 			intent.putExtra(SetupDatabaseFragment.ARG_POSITION, index);
 			startActivityForResult(intent, SetupStatusFragment.REQUEST_MANAGE_CODE + index);
 		});
 
 		this.buttonTextSearchPb.setOnClickListener(v -> {
+
 			int index = getResources().getInteger(R.integer.sql_statement_do_ts_pb_position);
-			final Intent intent = new Intent(activity, SetupDatabaseActivity.class);
+			final Intent intent = new Intent(requireContext(), SetupDatabaseActivity.class);
 			intent.putExtra(SetupDatabaseFragment.ARG_POSITION, index);
 			startActivityForResult(intent, SetupStatusFragment.REQUEST_MANAGE_CODE + index);
 		});
 
 		this.buttonTextSearchFn.setOnClickListener(v -> {
+
 			int index = getResources().getInteger(R.integer.sql_statement_do_ts_fn_position);
-			final Intent intent = new Intent(activity, SetupDatabaseActivity.class);
+			final Intent intent = new Intent(requireContext(), SetupDatabaseActivity.class);
 			intent.putExtra(SetupDatabaseFragment.ARG_POSITION, index);
 			startActivityForResult(intent, SetupStatusFragment.REQUEST_MANAGE_CODE + index);
 		});
 
 		infoDatabaseButton.setOnClickListener(v -> {
+
+			final Activity activity = requireActivity();
 			final String database = StorageSettings.getDatabasePath(activity);
-			final String free = StorageUtils.getFree(getActivity(), database);
+			final String free = StorageUtils.getFree(activity, database);
 			final String source = StorageSettings.getDbDownloadSource(activity);
 			final int status = org.sqlunet.browser.config.Status.status(activity);
 			final boolean existsDb = (status & org.sqlunet.browser.config.Status.EXISTS) != 0;
@@ -168,55 +173,57 @@ public class SetupStatusFragment extends org.sqlunet.browser.config.SetupStatusF
 	{
 		super.update();
 
-		final Activity activity = getActivity();
-		assert activity != null;
-		final int status = Status.status(activity);
-		Log.d(TAG, "STATUS " + Status.toString(status));
-
-		final boolean existsDb = (status & Status.EXISTS) != 0;
-		final boolean existsTables = (status & Status.EXISTS_TABLES) != 0;
-		if (existsDb && existsTables)
+		final Context context = getContext();
+		if (context != null)
 		{
-			final boolean existsPm = (status & Status.EXISTS_PREDICATEMATRIX) != 0;
-			final boolean existsTsWn = (status & Status.EXISTS_TS_WN) != 0;
-			final boolean existsTsVn = (status & Status.EXISTS_TS_VN) != 0;
-			final boolean existsTsPb = (status & Status.EXISTS_TS_PB) != 0;
-			final boolean existsTsFn = (status & Status.EXISTS_TS_FN) != 0;
+			final int status = Status.status(context);
+			Log.d(TAG, "STATUS " + Status.toString(status));
 
-			// images
-			final Drawable okDrawable = ColorUtils.getDrawable(activity, R.drawable.ic_ok);
-			ColorUtils.tint(ColorUtils.getColor(activity, R.color.secondaryForeColor), okDrawable);
-			final Drawable failDrawable = ColorUtils.getDrawable(activity, R.drawable.ic_fail);
+			final boolean existsDb = (status & Status.EXISTS) != 0;
+			final boolean existsTables = (status & Status.EXISTS_TABLES) != 0;
+			if (existsDb && existsTables)
+			{
+				final boolean existsPm = (status & Status.EXISTS_PREDICATEMATRIX) != 0;
+				final boolean existsTsWn = (status & Status.EXISTS_TS_WN) != 0;
+				final boolean existsTsVn = (status & Status.EXISTS_TS_VN) != 0;
+				final boolean existsTsPb = (status & Status.EXISTS_TS_PB) != 0;
+				final boolean existsTsFn = (status & Status.EXISTS_TS_FN) != 0;
 
-			this.imageTextSearchFn.setImageDrawable(existsTsFn ? okDrawable : failDrawable);
-			this.imagePm.setImageDrawable(existsPm ? okDrawable : failDrawable);
-			this.imageTextSearchWn.setImageDrawable(existsTsWn ? okDrawable : failDrawable);
-			this.imageTextSearchVn.setImageDrawable(existsTsVn ? okDrawable : failDrawable);
-			this.imageTextSearchPb.setImageDrawable(existsTsPb ? okDrawable : failDrawable);
-			this.imageTextSearchFn.setImageDrawable(existsTsFn ? okDrawable : failDrawable);
+				// images
+				final Drawable okDrawable = ColorUtils.getDrawable(context, R.drawable.ic_ok);
+				ColorUtils.tint(ColorUtils.getColor(context, R.color.secondaryForeColor), okDrawable);
+				final Drawable failDrawable = ColorUtils.getDrawable(context, R.drawable.ic_fail);
 
-			this.buttonTextSearchFn.setVisibility(existsTsFn ? View.GONE : View.VISIBLE);
-			this.buttonPm.setVisibility(existsPm ? View.GONE : View.VISIBLE);
-			this.buttonTextSearchWn.setVisibility(existsTsWn ? View.GONE : View.VISIBLE);
-			this.buttonTextSearchVn.setVisibility(existsTsVn ? View.GONE : View.VISIBLE);
-			this.buttonTextSearchPb.setVisibility(existsTsPb ? View.GONE : View.VISIBLE);
-			this.buttonTextSearchFn.setVisibility(existsTsFn ? View.GONE : View.VISIBLE);
-		}
-		else
-		{
-			this.buttonTextSearchFn.setVisibility(View.GONE);
-			this.buttonPm.setVisibility(View.GONE);
-			this.buttonTextSearchWn.setVisibility(View.GONE);
-			this.buttonTextSearchVn.setVisibility(View.GONE);
-			this.buttonTextSearchPb.setVisibility(View.GONE);
-			this.buttonTextSearchFn.setVisibility(View.GONE);
+				this.imageTextSearchFn.setImageDrawable(existsTsFn ? okDrawable : failDrawable);
+				this.imagePm.setImageDrawable(existsPm ? okDrawable : failDrawable);
+				this.imageTextSearchWn.setImageDrawable(existsTsWn ? okDrawable : failDrawable);
+				this.imageTextSearchVn.setImageDrawable(existsTsVn ? okDrawable : failDrawable);
+				this.imageTextSearchPb.setImageDrawable(existsTsPb ? okDrawable : failDrawable);
+				this.imageTextSearchFn.setImageDrawable(existsTsFn ? okDrawable : failDrawable);
 
-			this.imageTextSearchFn.setImageResource(R.drawable.ic_unknown);
-			this.imagePm.setImageResource(R.drawable.ic_unknown);
-			this.imageTextSearchWn.setImageResource(R.drawable.ic_unknown);
-			this.imageTextSearchVn.setImageResource(R.drawable.ic_unknown);
-			this.imageTextSearchPb.setImageResource(R.drawable.ic_unknown);
-			this.imageTextSearchFn.setImageResource(R.drawable.ic_unknown);
+				this.buttonTextSearchFn.setVisibility(existsTsFn ? View.GONE : View.VISIBLE);
+				this.buttonPm.setVisibility(existsPm ? View.GONE : View.VISIBLE);
+				this.buttonTextSearchWn.setVisibility(existsTsWn ? View.GONE : View.VISIBLE);
+				this.buttonTextSearchVn.setVisibility(existsTsVn ? View.GONE : View.VISIBLE);
+				this.buttonTextSearchPb.setVisibility(existsTsPb ? View.GONE : View.VISIBLE);
+				this.buttonTextSearchFn.setVisibility(existsTsFn ? View.GONE : View.VISIBLE);
+			}
+			else
+			{
+				this.buttonTextSearchFn.setVisibility(View.GONE);
+				this.buttonPm.setVisibility(View.GONE);
+				this.buttonTextSearchWn.setVisibility(View.GONE);
+				this.buttonTextSearchVn.setVisibility(View.GONE);
+				this.buttonTextSearchPb.setVisibility(View.GONE);
+				this.buttonTextSearchFn.setVisibility(View.GONE);
+
+				this.imageTextSearchFn.setImageResource(R.drawable.ic_unknown);
+				this.imagePm.setImageResource(R.drawable.ic_unknown);
+				this.imageTextSearchWn.setImageResource(R.drawable.ic_unknown);
+				this.imageTextSearchVn.setImageResource(R.drawable.ic_unknown);
+				this.imageTextSearchPb.setImageResource(R.drawable.ic_unknown);
+				this.imageTextSearchFn.setImageResource(R.drawable.ic_unknown);
+			}
 		}
 	}
 }

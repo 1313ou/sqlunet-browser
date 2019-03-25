@@ -125,14 +125,12 @@ public class HelpFragment extends NavigableFragment
 			final Intent intentUrl = new Intent(Intent.ACTION_VIEW);
 			intentUrl.setDataAndType(uri, mime);
 			intentUrl.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-			final Activity activity = getActivity();
-			assert activity != null;
-			activity.startActivity(intentUrl);
+			startActivity(intentUrl);
 			return true;
 		}
 		catch (ActivityNotFoundException e)
 		{
-			Toast.makeText(getActivity(), R.string.status_viewer_failed, Toast.LENGTH_LONG).show();
+			Toast.makeText(requireContext(), R.string.status_viewer_failed, Toast.LENGTH_LONG).show();
 		}
 		return false;
 	}

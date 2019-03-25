@@ -64,8 +64,7 @@ public class UpdateFragment extends Fragment
 		super.onActivityCreated(savedInstanceState);
 
 		// arguments
-		final Activity activity = getActivity();
-		assert activity != null;
+		final Activity activity = requireActivity();
 		final Intent intent = activity.getIntent();
 
 		final String fromArg = intent.getStringExtra(FROM_ARG);
@@ -102,13 +101,17 @@ public class UpdateFragment extends Fragment
 			final ImageButton button = view.findViewById(R.id.update);
 			button.setVisibility(View.VISIBLE);
 			button.setOnClickListener(v -> {
-				final Context context = getActivity();
-				assert context != null;
+
+				final Context context = requireContext();
 				confirm(context, R.string.title_activity_update, R.string.askUpdate, () -> {
 					final String downloadFromArg = intent.getStringExtra(DOWNLOAD_FROM_ARG);
 					final String downloadToArg = intent.getStringExtra(DOWNLOAD_TO_ARG);
 					update(context, downloadFromArg, downloadToArg);
-					getActivity().finish();
+					final Activity activity2 = getActivity();
+					if (activity2 != null)
+					{
+						activity2.finish();
+					}
 				});
 			});
 		}

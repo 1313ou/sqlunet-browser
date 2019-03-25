@@ -1,31 +1,3 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-	<string name="title_donate">Donate</string>
-	<string name="title_donate_1">Donate 1</string>
-	<string name="title_donate_2">Donate 5</string>
-	<string name="title_donate_3">Donate 10</string>
-	<string name="title_donate_4">Donate 20</string>
-	<string name="title_donate_5">Donate 50</string>
-	<string name="text_donate">SqUNet browser comes free to you. Just as simple as that. But the project took me a number of years to carry out and this really meant hard work, first building the SQL database then the Android application. I did it out of passion and do not beg for money.
-		But if you like the result and think it deserves your contribution and you can afford it, please donate to support the developer\'s work</string>
-	<string name="error_cant_buy">Can\'t buy product</string>
-
-	<string name="title_treebolicwordnet">Treebolic WordNet</string>
-	<string name="text_treebolicwordnet">For each word, a tree graph is built, based on WordNet® data, that captures the word\'s relations to other words. The relation types are those to be found in the WordNet database and include: \'more specific\', \'more generic\', \'causes\', \'entails\', \'similar to\', \'opposite of\', \'part of\', \'whole of\', etc…
-Treebolic WordNet displays this graph, and gives it a hyperbolic rendering in which display space is subject to a particular curvature: more space is allocated to the focus node while the parent and children, still in the immediate visual context, appear slightly smaller. The grandparents and grandchildren are still visible but come out even smaller. As we move away from the focus node, less display space is allotted to the nodes, which gradually disappear towards the display\'s border.
-Touch-dragging word nodes allows the user to interact with the display and to browse through the graph\'s space by shifting the focus.</string>
-
-	<string name="title_semantikos">Semantikos</string>
-	<string name="text_sqlunet">Semantikos explores senses and semantic roles of English. Linguistic data from WordNet, VerbNet, Propbank, FrameNet, BNC statistical data, Predicate Matrix. Textual search on samples, definitions, text occurrences.</string>
-
-	<string name="title_semantikos_wn">Semantikos WordNet</string>
-	<string name="text_semantikos_wn">Semantikos WordNet explores senses and semantic roles of English. Linguistic data from WordNet, BNC statistical data. Textual search on samples, definitions.</string>
-
-	<string name="title_semantikos_vn">Semantikos VerbNet</string>
-	<string name="text_semantikos_vn">Semantikos VerbNet explores senses and semantic roles of English. Linguistic data from VerbNet, PropBank and WordNet. Textual search on samples, definitions.</string>
-
-	<string name="title_semantikos_fn">Semantikos FrameNet</string>
-	<string name="text_semantikos_fn">Semantikos FrameNet explores senses and semantic roles of English. Linguistic data from FrameNet. Textual search on sample sentences.</string>
-
-	<string name="market_fail">No handler for </string>
 </resources>

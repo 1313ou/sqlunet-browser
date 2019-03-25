@@ -75,8 +75,7 @@ public class StorageFragment extends NavigableFragment
 		assert view != null;
 
 		// context
-		final Context context = getActivity();
-		assert context != null;
+		final Context context = requireContext();
 
 		// db
 		final TextView db = view.findViewById(R.id.database);
@@ -103,8 +102,7 @@ public class StorageFragment extends NavigableFragment
 	@Override
 	public boolean onOptionsItemSelected(@NonNull MenuItem item)
 	{
-		final Context context = getActivity();
-		assert context != null;
+		final Context context = requireContext();
 
 		// handle item selection
 		int i = item.getItemId();

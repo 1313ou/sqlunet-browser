@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+	<string name="grammarscope_uri" translatable="false">market://details?id=org.grammarscope</string>
+	<string name="grammarscope_udpipe_uri" translatable="false">market://details?id=org.grammarscope.udpipe</string>
+	<string name="treebolic_wordnet_uri" translatable="false">market://details?id=org.treebolic.wordnet.browser</string>
+	<string name="semantikos_uri" translatable="false">market://details?id=org.sqlunet.browser</string>
+	<string name="semantikos_wn_uri" translatable="false">market://details?id=org.sqlunet.browser.wn</string>
+	<string name="semantikos_vn_uri" translatable="false">market://details?id=org.sqlunet.browser.vn</string>
+	<string name="semantikos_fn_uri" translatable="false">market://details?id=org.sqlunet.browser.fn</string>
+
+</resources>

@@ -227,7 +227,7 @@ public class TextFragment extends AbstractTableFragment
 		{
 			case 0:
 				pointer = new VnClassPointer(targetId);
-				targetIntent = new Intent(TextFragment.this.getActivity(), org.sqlunet.verbnet.browser.VnClassActivity.class);
+				targetIntent = new Intent(requireContext(), org.sqlunet.verbnet.browser.VnClassActivity.class);
 				targetIntent.putExtra(ProviderArgs.ARG_QUERYTYPE, ProviderArgs.ARG_QUERYTYPE_VNCLASS);
 				break;
 		}
@@ -257,7 +257,7 @@ public class TextFragment extends AbstractTableFragment
 		{
 			case 0:
 				pointer = new PbRoleSetPointer(targetId);
-				targetIntent = new Intent(TextFragment.this.getActivity(), org.sqlunet.propbank.browser.PbRoleSetActivity.class);
+				targetIntent = new Intent(requireContext(), org.sqlunet.propbank.browser.PbRoleSetActivity.class);
 				targetIntent.putExtra(ProviderArgs.ARG_QUERYTYPE, ProviderArgs.ARG_QUERYTYPE_PBROLESET);
 				break;
 		}
@@ -294,9 +294,6 @@ public class TextFragment extends AbstractTableFragment
 	 */
 	private Pair<TypedPointer[], CharSequence[]> makeData(@NonNull final String... concatChoices)
 	{
-		final Context context = getActivity();
-		assert context != null;
-
 		final List<TypedPointer> typedPointers = new ArrayList<>();
 		final List<CharSequence> labels = new ArrayList<>();
 		final Pattern pattern = Pattern.compile('(' + "(?i)" + this.query + ')');
@@ -329,7 +326,7 @@ public class TextFragment extends AbstractTableFragment
 						break;
 				}
 				final SpannableStringBuilder sb = new SpannableStringBuilder();
-				appendImage(context, sb, resId);
+				appendImage(requireContext(), sb, resId);
 				sb.append(' ');
 				if (pattern.matcher(label).find())
 				{
@@ -359,7 +356,7 @@ public class TextFragment extends AbstractTableFragment
 	 */
 	private AlertDialog makeDialog(final DialogInterface.OnClickListener listener, final CharSequence... choices)
 	{
-		AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+		AlertDialog.Builder builder = new AlertDialog.Builder(requireContext());
 
 		// set the dialog characteristics
 		builder.setTitle(R.string.title_activity_searchtext);

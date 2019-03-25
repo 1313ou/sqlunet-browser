@@ -1,13 +1,10 @@
 package org.sqlunet.browser.config;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -28,6 +25,11 @@ import org.sqlunet.settings.StorageSettings;
 import org.sqlunet.settings.StorageUtils;
 
 import java.io.File;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import static org.sqlunet.download.BaseDownloadFragment.DOWNLOAD_FROM_ARG;
 import static org.sqlunet.download.BaseDownloadFragment.DOWNLOAD_TO_ARG;
@@ -90,25 +92,28 @@ public class SetupStatusFragment extends Fragment
 		this.infoDatabaseButton = view.findViewById(R.id.info_database);
 
 		// activity
-		final Activity activity = getActivity();
-		assert activity != null;
 
 		// click listeners
 		this.buttonDb.setOnClickListener(v -> {
-			final Intent intent = new Intent(activity, DownloadActivity.class);
-			intent.putExtra(DOWNLOAD_FROM_ARG, StorageSettings.getDbDownloadSource(activity));
-			intent.putExtra(DOWNLOAD_TO_ARG, StorageSettings.getDbDownloadTarget(activity));
+
+			final Context context = requireContext();
+			final Intent intent = new Intent(context, DownloadActivity.class);
+			intent.putExtra(DOWNLOAD_FROM_ARG, StorageSettings.getDbDownloadSource(context));
+			intent.putExtra(DOWNLOAD_TO_ARG, StorageSettings.getDbDownloadTarget(context));
 			startActivityForResult(intent, SetupStatusFragment.REQUEST_DOWNLOAD_CODE);
 		});
 
 		this.buttonIndexes.setOnClickListener(v -> {
+
 			int index = getResources().getInteger(R.integer.sql_statement_do_indexes_position);
-			final Intent intent = new Intent(activity, SetupDatabaseActivity.class);
+			final Intent intent = new Intent(requireContext(), SetupDatabaseActivity.class);
 			intent.putExtra(SetupDatabaseFragment.ARG_POSITION, index);
 			startActivityForResult(intent, SetupStatusFragment.REQUEST_MANAGE_CODE + index);
 		});
 
 		this.infoDatabaseButton.setOnClickListener(v -> {
+
+			final Activity activity = requireActivity();
 			final String database = StorageSettings.getDatabasePath(activity);
 			final String free = StorageUtils.getFree(activity, database);
 			final String source = StorageSettings.getDbDownloadSource(activity);
@@ -181,15 +186,14 @@ public class SetupStatusFragment extends Fragment
 	 */
 	protected void update()
 	{
-		final Activity activity = getActivity();
-		assert activity != null;
-		final int status = Status.status(activity);
+		final Context context = requireContext();
+		final int status = Status.status(context);
 		Log.d(TAG, "STATUS " + Status.toString(status));
 
 		// images
-		final Drawable okDrawable = ColorUtils.getDrawable(activity, R.drawable.ic_ok);
-		ColorUtils.tint(ColorUtils.getColor(activity, R.color.secondaryForeColor), okDrawable);
-		final Drawable failDrawable = ColorUtils.getDrawable(activity, R.drawable.ic_fail);
+		final Drawable okDrawable = ColorUtils.getDrawable(context, R.drawable.ic_ok);
+		ColorUtils.tint(ColorUtils.getColor(context, R.color.secondaryForeColor), okDrawable);
+		final Drawable failDrawable = ColorUtils.getDrawable(context, R.drawable.ic_fail);
 
 		final boolean existsDb = (status & Status.EXISTS) != 0;
 		final boolean existsTables = (status & Status.EXISTS_TABLES) != 0;
@@ -227,14 +231,18 @@ public class SetupStatusFragment extends Fragment
 				update();
 				if (success)
 				{
-					Toast.makeText(getActivity(), R.string.title_download_complete, Toast.LENGTH_SHORT).show();
+					final Context context = requireContext();
 
-					final Intent intent = new Intent(getActivity(), MainActivity.class);
+					Toast.makeText(context, R.string.title_download_complete, Toast.LENGTH_SHORT).show();
+
+					final Intent intent = new Intent(context, MainActivity.class);
 					intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 					startActivity(intent);
 					final Activity activity = getActivity();
-					assert activity != null;
-					activity.finish();
+					if (activity != null)
+					{
+						activity.finish();
+					}
 				}
 				break;
 			default:
@@ -268,7 +276,6 @@ public class SetupStatusFragment extends Fragment
 
 			// stop the refreshing indicator
 			this.swipeRefreshLayout.setRefreshing(false);
-
 		}
 		else
 		{

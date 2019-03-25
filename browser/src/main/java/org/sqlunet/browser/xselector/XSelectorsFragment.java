@@ -1,17 +1,10 @@
 package org.sqlunet.browser.xselector;
 
 import android.android.support.local.app.ExpandableListFragment;
-import android.content.Context;
 import android.database.Cursor;
 import android.database.MatrixCursor;
 import android.net.Uri;
 import android.os.Bundle;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.FragmentActivity;
-import androidx.loader.app.LoaderManager.LoaderCallbacks;
-import androidx.loader.content.CursorLoader;
-import androidx.loader.content.Loader;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -37,6 +30,13 @@ import org.sqlunet.provider.XSqlUNetContract.Words_XNet_U;
 import org.sqlunet.provider.XSqlUNetProvider;
 
 import java.util.Locale;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.loader.app.LoaderManager.LoaderCallbacks;
+import androidx.loader.content.CursorLoader;
+import androidx.loader.content.Loader;
 
 /**
  * X selector fragment
@@ -352,9 +352,7 @@ public class XSelectorsFragment extends ExpandableListFragment
 				final String selection = XSqlUNetContract.WORD + '.' + Words_FnWords_PbWords_VnWords.LEMMA + " = ?";
 				final String[] selectionArgs = {XSelectorsFragment.this.word};
 				final String sortOrder = XSqlUNetContract.POS + '.' + Words_FnWords_PbWords_VnWords.POS + ',' + Words_FnWords_PbWords_VnWords.SENSENUM;
-				final Context context = getActivity();
-				assert context != null;
-				return new CursorLoader(context, uri, projection, selection, selectionArgs, sortOrder);
+				return new CursorLoader(requireContext(), uri, projection, selection, selectionArgs, sortOrder);
 			}
 
 			// This will always be called from the process's main thread.
@@ -390,7 +388,7 @@ public class XSelectorsFragment extends ExpandableListFragment
 	private void initialize()
 	{
 		// adapter
-		final ExpandableListAdapter adapter = new SimpleCursorTreeAdapter(getActivity(), this.xnCursor, R.layout.item_group_xselector, groupFrom, groupTo, R.layout.item_xselector, childFrom, childTo)
+		final ExpandableListAdapter adapter = new SimpleCursorTreeAdapter(requireContext(), this.xnCursor, R.layout.item_group_xselector, groupFrom, groupTo, R.layout.item_xselector, childFrom, childTo)
 		{
 			@Override
 			protected Cursor getChildrenCursor(@NonNull Cursor groupCursor)
@@ -499,12 +497,8 @@ public class XSelectorsFragment extends ExpandableListFragment
 				return;
 		}
 
-		final FragmentActivity activity = getActivity();
-		if (activity == null)
-		{
-			return;
-		}
-		if (activity.isFinishing())
+		final AppCompatActivity activity = (AppCompatActivity) getActivity();
+		if (activity == null || isDetached() || activity.isFinishing() || activity.isDestroyed())
 		{
 			return;
 		}
@@ -539,7 +533,7 @@ public class XSelectorsFragment extends ExpandableListFragment
 	 */
 	private LoaderCallbacks<Cursor> getWnCallbacks(final long wordId, final int groupPosition)
 	{
-		return new WnLoaderCallbacks(getActivity(), wordId)
+		return new WnLoaderCallbacks(requireContext(), wordId)
 		{
 			@Override
 			public void onLoadFinished(@NonNull final Loader<Cursor> loader, @Nullable final Cursor cursor)
@@ -581,7 +575,7 @@ public class XSelectorsFragment extends ExpandableListFragment
 	 */
 	private LoaderCallbacks<Cursor> getVnCallbacks(final long wordId, final int groupPosition)
 	{
-		return new VnLoaderCallbacks(getActivity(), wordId)
+		return new VnLoaderCallbacks(requireContext(), wordId)
 		{
 			@Override
 			public void onLoadFinished(@NonNull final Loader<Cursor> loader, @Nullable final Cursor cursor)
@@ -623,7 +617,7 @@ public class XSelectorsFragment extends ExpandableListFragment
 	 */
 	private LoaderCallbacks<Cursor> getPbCallbacks(final long wordId, final int groupPosition)
 	{
-		return new PbLoaderCallbacks(getActivity(), wordId)
+		return new PbLoaderCallbacks(requireContext(), wordId)
 		{
 			@Override
 			public void onLoadFinished(@NonNull final Loader<Cursor> loader, @Nullable final Cursor cursor)
@@ -665,7 +659,7 @@ public class XSelectorsFragment extends ExpandableListFragment
 	 */
 	private LoaderCallbacks<Cursor> getFnCallbacks(final long wordId, final int groupPosition)
 	{
-		return new FnLoaderCallbacks(getActivity(), wordId)
+		return new FnLoaderCallbacks(requireContext(), wordId)
 		{
 			@Override
 			public void onLoadFinished(@NonNull final Loader<Cursor> loader, @Nullable final Cursor cursor)

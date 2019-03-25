@@ -144,7 +144,7 @@ public class NavigationDrawerFragment extends Fragment
 		this.swapInFlags = res.getIntArray(R.array.drawer_swap_in_flags);
 
 		// read in the flag indicating whether or not the user has demonstrated awareness of the drawer. See PREF_USER_LEARNED_DRAWER for details.
-		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
+		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(requireContext());
 		this.userLearnedDrawer = prefs.getBoolean(PREF_USER_LEARNED_DRAWER, false);
 
 		// read saved instance data
@@ -174,8 +174,7 @@ public class NavigationDrawerFragment extends Fragment
 		icons.recycle();
 
 		// adapter
-		final Context context = getActivity();
-		assert context != null;
+		final Context context = requireContext();
 		final ListAdapter adapter = new ArrayAdapter<RowItem>(context, R.layout.drawer_item_simple, android.R.id.text1, items) //simple_list_item_activated_1
 		{
 			@NonNull
@@ -282,8 +281,7 @@ public class NavigationDrawerFragment extends Fragment
 	 */
 	public void setUp(final int fragmentId, final DrawerLayout drawerLayout)
 	{
-		final Activity activity = getActivity();
-		assert activity != null;
+		final Activity activity = requireActivity();
 		this.containerView = activity.findViewById(fragmentId);
 
 		// drawer layout
@@ -299,7 +297,7 @@ public class NavigationDrawerFragment extends Fragment
 		actionBar.setHomeButtonEnabled(true);
 
 		// ActionBarDrawerToggle ties together the the proper interactions between the navigation drawer and the type bar app icon.
-		this.drawerToggle = new ActionBarDrawerToggle(getActivity(), // host Activity
+		this.drawerToggle = new ActionBarDrawerToggle(activity, // host Activity
 				NavigationDrawerFragment.this.drawerLayout, // DrawerLayout object
 				// R.drawable.ic_drawer, // nav drawer image to replace 'Up' caret
 				R.string.hint_navigation_drawer_open,  // "open drawer" description for accessibility
@@ -313,8 +311,7 @@ public class NavigationDrawerFragment extends Fragment
 				{
 					return;
 				}
-				Activity activity = getActivity();
-				assert activity != null;
+				final Activity activity = requireActivity();
 				activity.invalidateOptionsMenu(); // calls onPrepareOptionsMenu()
 			}
 
@@ -331,12 +328,11 @@ public class NavigationDrawerFragment extends Fragment
 				{
 					// The user manually opened the drawer; store this flag to prevent auto-showing the navigation drawer automatically in the future.
 					NavigationDrawerFragment.this.userLearnedDrawer = true;
-					SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
+					SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(requireContext());
 					sharedPreferences.edit().putBoolean(PREF_USER_LEARNED_DRAWER, true).apply();
 				}
 
-				Activity activity = getActivity();
-				assert activity != null;
+				final Activity activity = requireActivity();
 				activity.invalidateOptionsMenu(); // calls onPrepareOptionsMenu()
 			}
 		};
@@ -426,8 +422,7 @@ public class NavigationDrawerFragment extends Fragment
 	@Nullable
 	private ActionBar getSupportActionBar()
 	{
-		final AppCompatActivity activity = (AppCompatActivity)getActivity();
-		assert activity != null;
+		final AppCompatActivity activity = (AppCompatActivity)requireActivity();
 		return activity.getSupportActionBar();
 	}
 }

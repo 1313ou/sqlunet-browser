@@ -134,8 +134,7 @@ public class DownloadFragment extends BaseDownloadFragment
 		super.onCreate(savedInstanceState);
 
 		// activity
-		final Context context = getActivity();
-		assert context != null;
+		final Context context = requireContext();
 
 		// downloader
 		this.downloadManager = (DownloadManager) context.getSystemService(Context.DOWNLOAD_SERVICE);
@@ -220,9 +219,8 @@ public class DownloadFragment extends BaseDownloadFragment
 
 		// register receiver
 		Log.d(TAG, "Register listener");
-		final Activity activity = getActivity();
-		assert activity != null;
-		activity.registerReceiver(this.receiver, new IntentFilter(DownloadManager.ACTION_DOWNLOAD_COMPLETE));
+		final Context context = requireContext();
+		context.registerReceiver(this.receiver, new IntentFilter(DownloadManager.ACTION_DOWNLOAD_COMPLETE));
 	}
 
 	@Override
@@ -230,9 +228,8 @@ public class DownloadFragment extends BaseDownloadFragment
 	{
 		// unregisterDb receiver
 		Log.d(TAG, "Unregister listener");
-		final Activity activity = getActivity();
-		assert activity != null;
-		activity.unregisterReceiver(DownloadFragment.this.receiver);
+		final Context context = requireContext();
+		context.unregisterReceiver(DownloadFragment.this.receiver);
 		super.onStop();
 	}
 

@@ -39,6 +39,16 @@ public class OtherActivity extends AppCompatActivity
 		actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_HOME | ActionBar.DISPLAY_HOME_AS_UP | ActionBar.DISPLAY_SHOW_TITLE);
 	}
 
+	public void onMarketGrammarScope(@SuppressWarnings("UnusedParameters") View view)
+	{
+		install(getString(R.string.grammarscope_uri));
+	}
+
+	public void onMarketGrammarScopeUDPipe(@SuppressWarnings("UnusedParameters") View view)
+	{
+		install(getString(R.string.grammarscope_udpipe_uri));
+	}
+
 	public void onMarketTreebolicWordNet(@SuppressWarnings("UnusedParameters") View view)
 	{
 		install(getString(R.string.treebolic_wordnet_uri));

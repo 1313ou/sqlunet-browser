@@ -1,10 +1,10 @@
 package org.sqlunet.browser.wn;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import androidx.annotation.NonNull;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,6 +20,8 @@ import org.sqlunet.settings.StorageSettings;
 import org.sqlunet.settings.StorageUtils;
 
 import java.io.File;
+
+import androidx.annotation.NonNull;
 
 /**
  * Setup Status fragment
@@ -56,19 +58,18 @@ public class SetupStatusFragment extends org.sqlunet.browser.config.SetupStatusF
 		// buttons
 		this.buttonTextSearchWn = view.findViewById(R.id.searchtextWnButton);
 
-		// activity
-		final Activity activity = getActivity();
-		assert activity != null;
-
 		// click listeners
 		this.buttonTextSearchWn.setOnClickListener(v -> {
+
 			int index = getResources().getInteger(R.integer.sql_statement_do_ts_wn_position);
-			final Intent intent = new Intent(activity, SetupDatabaseActivity.class);
+			final Intent intent = new Intent(requireContext(), SetupDatabaseActivity.class);
 			intent.putExtra(SetupDatabaseFragment.ARG_POSITION, index);
 			startActivityForResult(intent, SetupStatusFragment.REQUEST_MANAGE_CODE + index);
 		});
 
 		this.infoDatabaseButton.setOnClickListener(v -> {
+
+			final Activity activity = requireActivity();
 			final String database = StorageSettings.getDatabasePath(activity);
 			final String free = StorageUtils.getFree(activity, database);
 			final String source = StorageSettings.getDbDownloadSource(activity);
@@ -113,29 +114,30 @@ public class SetupStatusFragment extends org.sqlunet.browser.config.SetupStatusF
 	{
 		super.update();
 
-		final Activity activity = getActivity();
-		assert activity != null;
-
-		final int status = Status.status(activity);
-		Log.d(TAG, "STATUS " + Status.toString(status));
-
-		final boolean existsDb = (status & Status.EXISTS) != 0;
-		final boolean existsTables = (status & Status.EXISTS_TABLES) != 0;
-		if (existsDb && existsTables)
+		final Context context = getContext();
+		if (context != null)
 		{
-			// images
-			final Drawable okDrawable = ColorUtils.getDrawable(activity, R.drawable.ic_ok);
-			ColorUtils.tint(ColorUtils.getColor(activity, R.color.secondaryForeColor), okDrawable);
-			final Drawable failDrawable = ColorUtils.getDrawable(activity, org.sqlunet.browser.common.R.drawable.ic_fail);
+			final int status = Status.status(context);
+			Log.d(TAG, "STATUS " + Status.toString(status));
 
-			final boolean existsTsWn = (status & Status.EXISTS_TS_WN) != 0;
-			this.imageTextSearchWn.setImageDrawable(existsTsWn ? okDrawable : failDrawable);
-			this.buttonTextSearchWn.setVisibility(existsTsWn ? View.GONE : View.VISIBLE);
-		}
-		else
-		{
-			this.buttonTextSearchWn.setVisibility(View.GONE);
-			this.imageTextSearchWn.setImageResource(R.drawable.ic_unknown);
+			final boolean existsDb = (status & Status.EXISTS) != 0;
+			final boolean existsTables = (status & Status.EXISTS_TABLES) != 0;
+			if (existsDb && existsTables)
+			{
+				// images
+				final Drawable okDrawable = ColorUtils.getDrawable(context, R.drawable.ic_ok);
+				ColorUtils.tint(ColorUtils.getColor(context, R.color.secondaryForeColor), okDrawable);
+				final Drawable failDrawable = ColorUtils.getDrawable(context, org.sqlunet.browser.common.R.drawable.ic_fail);
+
+				final boolean existsTsWn = (status & Status.EXISTS_TS_WN) != 0;
+				this.imageTextSearchWn.setImageDrawable(existsTsWn ? okDrawable : failDrawable);
+				this.buttonTextSearchWn.setVisibility(existsTsWn ? View.GONE : View.VISIBLE);
+			}
+			else
+			{
+				this.buttonTextSearchWn.setVisibility(View.GONE);
+				this.imageTextSearchWn.setImageResource(R.drawable.ic_unknown);
+			}
 		}
 	}
 }

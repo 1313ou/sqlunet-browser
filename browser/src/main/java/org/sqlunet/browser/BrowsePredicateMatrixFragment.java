@@ -179,8 +179,7 @@ public class BrowsePredicateMatrixFragment extends BaseSearchFragment
 		Log.d(BrowsePredicateMatrixFragment.TAG, "PM SEARCH " + pointer);
 
 		// subtitle
-		final AppCompatActivity activity = (AppCompatActivity) getActivity();
-		assert activity != null;
+		final AppCompatActivity activity = (AppCompatActivity) requireActivity();
 		final ActionBar actionBar = activity.getSupportActionBar();
 		assert actionBar != null;
 		actionBar.setSubtitle(query);
@@ -238,8 +237,7 @@ public class BrowsePredicateMatrixFragment extends BaseSearchFragment
 		Log.d(BrowsePredicateMatrixFragment.TAG, "PM SEARCH " + query);
 
 		// subtitle
-		final AppCompatActivity activity = (AppCompatActivity) getActivity();
-		assert activity != null;
+		final AppCompatActivity activity = (AppCompatActivity) requireActivity();
 		final ActionBar actionBar = activity.getSupportActionBar();
 		assert actionBar != null;
 		actionBar.setSubtitle(query);

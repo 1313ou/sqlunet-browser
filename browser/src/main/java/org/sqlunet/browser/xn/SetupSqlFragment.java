@@ -1,9 +1,9 @@
 package org.sqlunet.browser.xn;
 
 import android.app.Activity;
+import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import androidx.annotation.NonNull;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,6 +20,8 @@ import org.sqlunet.settings.StorageSettings;
 import org.sqlunet.settings.StorageUtils;
 
 import java.io.File;
+
+import androidx.annotation.NonNull;
 
 /**
  * Set up with SQL fragment
@@ -52,9 +54,6 @@ public class SetupSqlFragment extends org.sqlunet.browser.config.SetupSqlFragmen
 		final View view = super.onCreateView(inflater, container, savedInstanceState);
 		assert view != null;
 
-		// activity
-		final Activity activity = getActivity();
-
 		// statuses
 		this.pmStatus = view.findViewById(R.id.status_pm);
 
@@ -65,7 +64,8 @@ public class SetupSqlFragment extends org.sqlunet.browser.config.SetupSqlFragmen
 
 		// pm button
 		this.predicateMatrixButton.setOnClickListener(v -> {
-			assert activity != null;
+
+			final Activity activity = requireActivity();
 			// starting pm task
 			try
 			{
@@ -74,7 +74,7 @@ public class SetupSqlFragment extends org.sqlunet.browser.config.SetupSqlFragmen
 				final String entry = Settings.getPmEntry(activity);
 				final String unit = activity.getString(R.string.unit_statement);
 				final TaskObserver.Listener listener = new TaskObserver.DialogListener(activity, R.string.status_managing, source + '@' + entry, unit);
-				SetupSqlFragment.this.task = new ExecAsyncTask(getActivity(), listener, 1).executeFromArchive(database, source, entry);
+				SetupSqlFragment.this.task = new ExecAsyncTask(activity, this::update, listener, 1).executeFromArchive(database, source, entry);
 			}
 			catch (@NonNull final Exception e)
 			{
@@ -82,7 +82,8 @@ public class SetupSqlFragment extends org.sqlunet.browser.config.SetupSqlFragmen
 			}
 		});
 		infoPmButton.setOnClickListener(v -> {
-			assert activity != null;
+
+			final Activity activity = requireActivity();
 			final String database = StorageSettings.getDatabasePath(activity);
 			final String source = StorageSettings.getSqlSource(activity);
 			final String entry = Settings.getPmEntry(activity);
@@ -109,28 +110,28 @@ public class SetupSqlFragment extends org.sqlunet.browser.config.SetupSqlFragmen
 	{
 		super.update();
 
-		// activity
-		final Activity activity = getActivity();
-		assert activity != null;
+		final Context context = getContext();
+		if (context != null)
+		{
+			// sql zip file
+			final String sqlZip = StorageSettings.getSqlSource(context);
+			boolean sqlZipExists = new File(sqlZip).exists();
 
-		// sql zip file
-		final String sqlZip = StorageSettings.getSqlSource(activity);
-		boolean sqlZipExists = new File(sqlZip).exists();
+			// images
+			final Drawable okDrawable = ColorUtils.getDrawable(context, R.drawable.ic_ok);
+			ColorUtils.tint(ColorUtils.getColor(context, R.color.secondaryForeColor), okDrawable);
+			final Drawable failDrawable = ColorUtils.getDrawable(context, R.drawable.ic_fail);
 
-		// images
-		final Drawable okDrawable = ColorUtils.getDrawable(activity, R.drawable.ic_ok);
-		ColorUtils.tint(ColorUtils.getColor(activity, R.color.secondaryForeColor), okDrawable);
-		final Drawable failDrawable = ColorUtils.getDrawable(activity, R.drawable.ic_fail);
+			// status
+			final int status = Status.status(context);
+			final boolean existsDatabase = (status & Status.EXISTS) != 0;
+			final boolean existsTables = (status & Status.EXISTS_TABLES) != 0;
+			// final boolean existsIndexes = (status & org.sqlunet.browser.config.Status.EXISTS_INDEXES) != 0;
+			final boolean existsPm = (status & Status.EXISTS_PREDICATEMATRIX) != 0;
+			this.pmStatus.setImageDrawable(existsPm ? okDrawable : failDrawable);
 
-		// status
-		final int status = Status.status(activity);
-		final boolean existsDatabase = (status & Status.EXISTS) != 0;
-		final boolean existsTables = (status & Status.EXISTS_TABLES) != 0;
-		// final boolean existsIndexes = (status & org.sqlunet.browser.config.Status.EXISTS_INDEXES) != 0;
-		final boolean existsPm = (status & Status.EXISTS_PREDICATEMATRIX) != 0;
-		this.pmStatus.setImageDrawable(existsPm ? okDrawable : failDrawable);
-
-		// actions
-		this.predicateMatrixButton.setVisibility(sqlZipExists && existsDatabase && existsTables && !existsPm ? View.VISIBLE : View.GONE);
+			// actions
+			this.predicateMatrixButton.setVisibility(sqlZipExists && existsDatabase && existsTables && !existsPm ? View.VISIBLE : View.GONE);
+		}
 	}
 }

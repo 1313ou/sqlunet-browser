@@ -112,7 +112,7 @@ public class SelectorsFragment extends ListFragment
 		this.wordId = 0;
 
 		// list adapter, with no data
-		final SimpleCursorAdapter adapter = new SimpleCursorAdapter(getActivity(), R.layout.item_selector, null, //
+		final SimpleCursorAdapter adapter = new SimpleCursorAdapter(requireContext(), R.layout.item_selector, null, //
 				new String[]{ //
 						Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.POS, //
 						Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.LEXDOMAIN, //
@@ -269,9 +269,7 @@ public class SelectorsFragment extends ListFragment
 				final String selection = Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.LEMMA + " = ?"; ////
 				final String[] selectionArgs = {SelectorsFragment.this.word};
 				final String sortOrder = WordNetContract.SYNSET + '.' + Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.POS + ',' + Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.SENSENUM;
-				final Context context = getActivity();
-				assert context != null;
-				return new CursorLoader(context, uri, projection, selection, selectionArgs, sortOrder);
+				return new CursorLoader(requireContext(), uri, projection, selection, selectionArgs, sortOrder);
 			}
 
 			@Override

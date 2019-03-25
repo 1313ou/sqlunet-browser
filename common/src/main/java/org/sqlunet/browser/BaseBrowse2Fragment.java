@@ -46,7 +46,7 @@ public abstract class BaseBrowse2Fragment extends Fragment
 		// retain instance
 		setRetainInstance(true);
 
-		final Settings.DetailViewMode mode = Settings.getDetailViewModePref(this.getActivity());
+		final Settings.DetailViewMode mode = Settings.getDetailViewModePref(requireContext());
 
 		// view
 		View view = null;

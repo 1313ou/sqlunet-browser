@@ -289,8 +289,7 @@ abstract public class BaseDownloadFragment extends Fragment implements View.OnCl
 		Log.d(TAG, "onCreate " + savedInstanceState + " " + this);
 
 		// context for threads that terminate after activity finishes
-		final Activity activity = getActivity();
-		assert activity != null;
+		final Activity activity = requireActivity();
 		this.appContext = activity.getApplicationContext();
 
 		// arguments
@@ -673,7 +672,7 @@ abstract public class BaseDownloadFragment extends Fragment implements View.OnCl
 		Log.d(TAG, "Observer update " + message + ", " + progress100 + "% done");
 
 		final Activity activity = getActivity();
-		if (activity != null && !this.isDetached())
+		if (activity != null && !isDetached() && !activity.isFinishing() && !activity.isDestroyed())
 		{
 			activity.runOnUiThread(() -> {
 				if (inProgress)
@@ -742,7 +741,7 @@ abstract public class BaseDownloadFragment extends Fragment implements View.OnCl
 	private void warn(final CharSequence message)
 	{
 		final Activity activity = getActivity();
-		if (activity != null && !this.isDetached())
+		if (activity != null && !isDetached() && !activity.isFinishing() && !activity.isDestroyed())
 		{
 			activity.runOnUiThread(() -> Toast.makeText(activity, message, Toast.LENGTH_LONG).show());
 		}
@@ -858,7 +857,7 @@ abstract public class BaseDownloadFragment extends Fragment implements View.OnCl
 
 		Deploy.emptyDirectory(new File(destDir));
 
-		Activity activity = getActivity();
+		final Activity activity = getActivity();
 		if (activity == null || isDetached() || activity.isFinishing() || activity.isDestroyed())
 		{
 			return;
@@ -955,14 +954,14 @@ abstract public class BaseDownloadFragment extends Fragment implements View.OnCl
 					sb.append(getString(success ? R.string.status_task_success : R.string.status_task_failed));
 
 					final Activity activity2 = getActivity();
-					if (activity2 == null || isDetached() || activity2.isFinishing() || activity2.isDestroyed())
+					if (activity2 != null && !isDetached() && !activity2.isFinishing() && !activity2.isDestroyed())
 					{
+						final AlertDialog.Builder alert = new AlertDialog.Builder(activity2); // guarded, level 3
+						alert.setTitle(getString(R.string.action_md5_of) + ' ' + targetFile);
+						alert.setMessage(sb);
+						alert.show();
 						return;
 					}
-					final AlertDialog.Builder alert = new AlertDialog.Builder(activity2); // guarded, level 3
-					alert.setTitle(getString(R.string.action_md5_of) + ' ' + targetFile);
-					alert.setMessage(sb);
-					alert.show();
 				});
 			}
 		}).execute(from, targetFile);

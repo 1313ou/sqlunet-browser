@@ -96,8 +96,6 @@ public class SetupSqlFragment extends Fragment
 		final View view = inflater.inflate(R.layout.fragment_setup_sql, container, false);
 
 		// activity
-		final Activity activity = getActivity();
-		assert activity != null;
 
 		// statuses
 		this.downloadSqlZipStatus = view.findViewById(R.id.status_sqlzip);
@@ -117,19 +115,23 @@ public class SetupSqlFragment extends Fragment
 
 		// sql zip
 		this.downloadSqlZipButton.setOnClickListener(v -> {
+
 			SetupSqlFragment.this.downloadSqlZipButton.setEnabled(false);
 			SetupSqlFragment.this.importButton.setEnabled(false);
 			SetupSqlFragment.this.indexesButton.setEnabled(false);
 
 			// starting download
-			final String from = StorageSettings.getSqlDownloadSource(activity);
-			final String to = StorageSettings.getSqlDownloadTarget(activity);
-			final Intent intent = new Intent(activity, DownloadActivity.class);
+			final Context context = requireContext();
+			final String from = StorageSettings.getSqlDownloadSource(context);
+			final String to = StorageSettings.getSqlDownloadTarget(context);
+			final Intent intent = new Intent(context, DownloadActivity.class);
 			intent.putExtra(BaseDownloadFragment.DOWNLOAD_FROM_ARG, from);
 			intent.putExtra(BaseDownloadFragment.DOWNLOAD_TO_ARG, to);
 			startActivityForResult(intent, REQUEST_DOWNLOAD_CODE);
 		});
 		infoSqlZipButton.setOnClickListener(v -> {
+
+			final Activity activity = requireActivity();
 			final String from = StorageSettings.getSqlDownloadSource(activity);
 			final String to = StorageSettings.getSqlDownloadTarget(activity);
 			final String free = StorageUtils.getFree(activity, to);
@@ -145,9 +147,10 @@ public class SetupSqlFragment extends Fragment
 
 		// created
 		this.createButton.setOnClickListener(v -> {
+
 			try
 			{
-				SetupDatabaseTasks.createDatabase(activity, StorageSettings.getDatabasePath(activity));
+				SetupDatabaseTasks.createDatabase(requireContext(), StorageSettings.getDatabasePath(requireContext()));
 			}
 			catch (@NonNull final Exception e)
 			{
@@ -156,6 +159,8 @@ public class SetupSqlFragment extends Fragment
 			update();
 		});
 		infoCreateButton.setOnClickListener(v -> {
+
+			final Activity activity = requireActivity();
 			final String database = StorageSettings.getDatabasePath(activity);
 			final String free = StorageUtils.getFree(activity, database);
 			final boolean databaseExists = new File(database).exists();
@@ -168,6 +173,8 @@ public class SetupSqlFragment extends Fragment
 
 		// import
 		this.importButton.setOnClickListener(v -> {
+
+			final Activity activity = requireActivity();
 			try
 			{
 				final String database = StorageSettings.getDatabasePath(activity);
@@ -175,7 +182,7 @@ public class SetupSqlFragment extends Fragment
 				final String entry = StorageSettings.getImportEntry(activity);
 				final String unit = activity.getString(R.string.unit_statement);
 				final TaskObserver.Listener listener = new TaskObserver.DialogListener(activity, R.string.status_managing, source + '@' + entry, unit);
-				SetupSqlFragment.this.task = new ExecAsyncTask(getActivity(), listener, 1000).executeFromArchive(database, source, entry);
+				SetupSqlFragment.this.task = new ExecAsyncTask(activity, this::update, listener, 1000).executeFromArchive(database, source, entry);
 			}
 			catch (@NonNull final Exception e)
 			{
@@ -183,10 +190,12 @@ public class SetupSqlFragment extends Fragment
 			}
 		});
 		infoImportButton.setOnClickListener(v -> {
+
+			final Activity activity = requireActivity();
 			final String database = StorageSettings.getDatabasePath(activity);
 			final String source = StorageSettings.getSqlSource(activity);
 			final String entry = StorageSettings.getImportEntry(activity);
-			final String free = StorageUtils.getFree(getActivity(), database);
+			final String free = StorageUtils.getFree(activity, database);
 			final boolean dbExists = new File(database).exists();
 			final boolean sqlzipExists = new File(source).exists();
 			Info.info(activity, R.string.title_import, //
@@ -202,6 +211,9 @@ public class SetupSqlFragment extends Fragment
 
 		// index button
 		this.indexesButton.setOnClickListener(v -> {
+
+			final Activity activity = requireActivity();
+
 			// starting indexing task
 			try
 			{
@@ -210,7 +222,7 @@ public class SetupSqlFragment extends Fragment
 				final String entry = StorageSettings.getIndexEntry(activity);
 				final String unit = activity.getString(R.string.unit_statement);
 				final TaskObserver.Listener listener = new TaskObserver.DialogListener(activity, R.string.status_managing, source + '@' + entry, unit);
-				SetupSqlFragment.this.task = new ExecAsyncTask(getActivity(), listener, 1).executeFromArchive(database, source, entry);
+				SetupSqlFragment.this.task = new ExecAsyncTask(activity, this::update, listener, 1).executeFromArchive(database, source, entry);
 			}
 			catch (@NonNull final Exception e)
 			{
@@ -218,10 +230,12 @@ public class SetupSqlFragment extends Fragment
 			}
 		});
 		infoIndexesButton.setOnClickListener(v -> {
+
+			final Activity activity = requireActivity();
 			final String database = StorageSettings.getDatabasePath(activity);
 			final String source = StorageSettings.getSqlSource(activity);
 			final String entry = StorageSettings.getIndexEntry(activity);
-			final String free = StorageUtils.getFree(getActivity(), database);
+			final String free = StorageUtils.getFree(activity, database);
 			final boolean dbExists = new File(database).exists();
 			final boolean sqlzipExists = new File(source).exists();
 			Info.info(activity, R.string.title_indexes, //
@@ -270,9 +284,8 @@ public class SetupSqlFragment extends Fragment
 	 */
 	protected void update()
 	{
-		// activity
-		final Context context = getActivity();
-		assert context != null;
+		// context
+		final Context context = requireContext();
 
 		// images
 		final Drawable okDrawable = ColorUtils.getDrawable(context, R.drawable.ic_ok);
@@ -312,7 +325,7 @@ public class SetupSqlFragment extends Fragment
 			case REQUEST_DOWNLOAD_CODE:
 				boolean success = resultCode == Activity.RESULT_OK;
 				Log.d(TAG, "Download " + (success ? "succeeded" : "failed")); ////
-				Toast.makeText(getActivity(), success ? R.string.title_download_complete : R.string.title_download_failed, Toast.LENGTH_SHORT).show();
+				Toast.makeText(requireContext(), success ? R.string.title_download_complete : R.string.title_download_failed, Toast.LENGTH_SHORT).show();
 				update();
 				break;
 			default:

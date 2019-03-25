@@ -135,7 +135,7 @@ public class BrowseFragment extends BaseSearchFragment
 	public boolean onOptionsItemSelected(@NonNull final MenuItem item)
 	{
 		// activity
-		final Activity activity = getActivity();
+		final Context context = requireContext();
 
 		// intent
 		Intent intent;
@@ -144,7 +144,7 @@ public class BrowseFragment extends BaseSearchFragment
 		switch (item.getItemId())
 		{
 			case R.id.action_table_lexdomains:
-				intent = new Intent(activity, TableActivity.class);
+				intent = new Intent(context, TableActivity.class);
 				intent.putExtra(ProviderArgs.ARG_QUERYURI, WordNetProvider.makeUri(LexDomains.CONTENT_URI_TABLE));
 				intent.putExtra(ProviderArgs.ARG_QUERYID, LexDomains.LEXDOMAINID);
 				intent.putExtra(ProviderArgs.ARG_QUERYITEMS, new String[]{LexDomains.LEXDOMAINID, LexDomains.LEXDOMAIN, LexDomains.POS});
@@ -152,7 +152,7 @@ public class BrowseFragment extends BaseSearchFragment
 				break;
 
 			case R.id.action_table_postypes:
-				intent = new Intent(activity, TableActivity.class);
+				intent = new Intent(context, TableActivity.class);
 				intent.putExtra(ProviderArgs.ARG_QUERYURI, WordNetProvider.makeUri(PosTypes.CONTENT_URI_TABLE));
 				intent.putExtra(ProviderArgs.ARG_QUERYID, PosTypes.POS);
 				intent.putExtra(ProviderArgs.ARG_QUERYITEMS, new String[]{PosTypes.POS, PosTypes.POSNAME});
@@ -160,7 +160,7 @@ public class BrowseFragment extends BaseSearchFragment
 				break;
 
 			case R.id.action_table_adjpositiontypes:
-				intent = new Intent(activity, TableActivity.class);
+				intent = new Intent(context, TableActivity.class);
 				intent.putExtra(ProviderArgs.ARG_QUERYURI, WordNetProvider.makeUri(AdjPositionTypes.CONTENT_URI_TABLE));
 				intent.putExtra(ProviderArgs.ARG_QUERYID, AdjPositionTypes.POSITION);
 				intent.putExtra(ProviderArgs.ARG_QUERYITEMS, new String[]{AdjPositionTypes.POSITION, AdjPositionTypes.POSITIONNAME});
@@ -168,7 +168,7 @@ public class BrowseFragment extends BaseSearchFragment
 				break;
 
 			case R.id.action_table_linktypes:
-				intent = new Intent(activity, TableActivity.class);
+				intent = new Intent(context, TableActivity.class);
 				intent.putExtra(ProviderArgs.ARG_QUERYURI, WordNetProvider.makeUri(LinkTypes.CONTENT_URI_TABLE));
 				intent.putExtra(ProviderArgs.ARG_QUERYID, LinkTypes.LINKID);
 				intent.putExtra(ProviderArgs.ARG_QUERYITEMS, new String[]{LinkTypes.LINKID, LinkTypes.LINK, LinkTypes.RECURSESSELECT});
@@ -209,8 +209,7 @@ public class BrowseFragment extends BaseSearchFragment
 		Log.d(BrowseFragment.TAG, "BROWSE " + query);
 
 		// subtitle
-		final AppCompatActivity activity = (AppCompatActivity) getActivity();
-		assert activity != null;
+		final AppCompatActivity activity = (AppCompatActivity) requireActivity();
 		final ActionBar actionBar = activity.getSupportActionBar();
 		assert actionBar != null;
 		actionBar.setSubtitle(query);
@@ -229,7 +228,7 @@ public class BrowseFragment extends BaseSearchFragment
 		*/
 
 		// recurse
-		final int recurse = Settings.getRecursePref(getActivity());
+		final int recurse = Settings.getRecursePref(requireContext());
 
 		// menuDispatch as per query prefix
 		@SuppressWarnings("TooBroadScope") Fragment fragment = null;
@@ -401,14 +400,14 @@ public class BrowseFragment extends BaseSearchFragment
 	 */
 	private Fragment makeSelectorFragment()
 	{
-		// activity
-		final Activity activity = getActivity();
+		// context
+		final Context context = requireContext();
 
 		// type
-		final Settings.Selector selectorType = Settings.getXSelectorPref(activity);
+		final Settings.Selector selectorType = Settings.getXSelectorPref(context);
 
 		// mode
-		final Settings.SelectorViewMode selectorMode = Settings.getSelectorViewModePref(activity);
+		final Settings.SelectorViewMode selectorMode = Settings.getSelectorViewModePref(context);
 
 		switch (selectorMode)
 		{
@@ -438,17 +437,17 @@ public class BrowseFragment extends BaseSearchFragment
 	@SuppressWarnings("unused")
 	private Intent makeSelectorIntent()
 	{
-		// activity
-		final Activity activity = getActivity();
+		// context
+		final Context context = requireContext();
 
 		// intent
 		Intent intent = null;
 
 		// type
-		final Settings.Selector selectorType = Settings.getXSelectorPref(activity);
+		final Settings.Selector selectorType = Settings.getXSelectorPref(context);
 
 		// mode
-		final Settings.SelectorViewMode selectorMode = Settings.getSelectorViewModePref(activity);
+		final Settings.SelectorViewMode selectorMode = Settings.getSelectorViewModePref(context);
 
 		switch (selectorMode)
 		{
@@ -463,11 +462,11 @@ public class BrowseFragment extends BaseSearchFragment
 						intentClass = XBrowse1Activity.class;
 						break;
 				}
-				intent = new Intent(getActivity(), intentClass);
+				intent = new Intent(requireContext(), intentClass);
 				break;
 
 			case WEB:
-				intent = new Intent(getActivity(), WebActivity.class);
+				intent = new Intent(requireContext(), WebActivity.class);
 				break;
 		}
 		intent.setAction(ProviderArgs.ACTION_QUERY);
@@ -484,22 +483,22 @@ public class BrowseFragment extends BaseSearchFragment
 	@NonNull
 	private Intent makeDetailIntent(final Class<?> intentClass)
 	{
-		// activity
-		final Activity activity = getActivity();
+		// context
+		final Context context = requireContext();
 
 		// intent
 		Intent intent = null;
 
 		// mode
-		final Settings.DetailViewMode detailMode = Settings.getDetailViewModePref(activity);
+		final Settings.DetailViewMode detailMode = Settings.getDetailViewModePref(context);
 		switch (detailMode)
 		{
 			case VIEW:
-				intent = new Intent(getActivity(), intentClass);
+				intent = new Intent(context, intentClass);
 				break;
 
 			case WEB:
-				intent = new Intent(getActivity(), WebActivity.class);
+				intent = new Intent(context, WebActivity.class);
 				break;
 		}
 		intent.setAction(ProviderArgs.ACTION_QUERY);

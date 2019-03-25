@@ -33,9 +33,7 @@ public class SourceFragment extends ListFragment
 		final int[] to = {R.id.name, R.id.version, R.id.url, R.id.provider, R.id.reference};
 
 		// make cursor adapter
-		final Context context = getActivity();
-		assert context != null;
-		final ListAdapter adapter = new SimpleCursorAdapter(context, R.layout.item_source, null, //
+		final ListAdapter adapter = new SimpleCursorAdapter(requireContext(), R.layout.item_source, null, //
 				from, //
 				to, 0);
 		setListAdapter(adapter);

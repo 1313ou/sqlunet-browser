@@ -7,9 +7,6 @@ import android.database.sqlite.SQLiteException;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.PowerManager;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-
 import android.util.Log;
 import android.util.Pair;
 import android.view.Window;
@@ -21,6 +18,9 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 /**
  * Execution manager
@@ -36,6 +36,16 @@ public class ExecAsyncTask
 	 * Execute transaction
 	 */
 	static final private boolean SKIP_TRANSACTION = false;
+
+	public interface DoneListener
+	{
+		void onDone();
+	}
+
+	/**
+	 * Result listener
+	 */
+	final private DoneListener doneListener;
 
 	/**
 	 * Result listener
@@ -55,13 +65,15 @@ public class ExecAsyncTask
 	/**
 	 * Constructor
 	 *
-	 * @param activity    activity
-	 * @param listener    listener
-	 * @param publishRate publish rate
+	 * @param activity     activity
+	 * @param doneListener doneListener
+	 * @param listener     listener
+	 * @param publishRate  publish rate
 	 */
-	public ExecAsyncTask(final Activity activity, final TaskObserver.Listener listener, final int publishRate)
+	public ExecAsyncTask(final Activity activity, final DoneListener doneListener, final TaskObserver.Listener listener, final int publishRate)
 	{
 		this.activity = activity;
+		this.doneListener = doneListener;
 		this.listener = listener;
 		this.publishRate = publishRate;
 	}
@@ -69,7 +81,12 @@ public class ExecAsyncTask
 	static private class AsyncExecuteFromSql extends AsyncTask<Pair<String, String[]>, Integer, Boolean>
 	{
 		/**
-		 * Result listener
+		 * Done listener
+		 */
+		final DoneListener doneListener;
+
+		/**
+		 * Task listener
 		 */
 		final private TaskObserver.Listener listener;
 
@@ -84,8 +101,9 @@ public class ExecAsyncTask
 		 * @param listener    listener
 		 * @param publishRate publish rate
 		 */
-		AsyncExecuteFromSql(final TaskObserver.Listener listener, final int publishRate)
+		AsyncExecuteFromSql(final DoneListener doneListener, final TaskObserver.Listener listener, final int publishRate)
 		{
+			this.doneListener = doneListener;
 			this.listener = listener;
 			this.publishRate = publishRate;
 		}
@@ -158,6 +176,7 @@ public class ExecAsyncTask
 		{
 			super.onPostExecute(result);
 			this.listener.taskFinish(result);
+			this.doneListener.onDone();
 		}
 	}
 
@@ -168,10 +187,10 @@ public class ExecAsyncTask
 	 * @param sqls     sql statements
 	 */
 	@NonNull
-	@SuppressWarnings({"UnusedReturnValue","unchecked"})
+	@SuppressWarnings({"UnusedReturnValue", "unchecked"})
 	public AsyncTask<Pair<String, String[]>, Integer, Boolean> executeFromSql(final String database, final String... sqls)
 	{
-		final AsyncTask<Pair<String, String[]>, Integer, Boolean> task = new AsyncExecuteFromSql(this.listener, this.publishRate);
+		final AsyncTask<Pair<String, String[]>, Integer, Boolean> task = new AsyncExecuteFromSql(this.doneListener, this.listener, this.publishRate);
 		task.execute(new Pair<>(database, sqls));
 		return task;
 	}
@@ -179,7 +198,12 @@ public class ExecAsyncTask
 	static private class AsyncExecuteFromArchive extends AsyncTask<String, Integer, Boolean>
 	{
 		/**
-		 * Result listener
+		 * Done listener
+		 */
+		final DoneListener doneListener;
+
+		/**
+		 * Task listener
 		 */
 		final private TaskObserver.Listener listener;
 
@@ -201,13 +225,15 @@ public class ExecAsyncTask
 		/**
 		 * Constructor
 		 *
+		 * @param doneListener doneListener
 		 * @param listener     listener
 		 * @param publishRate  publish rate
 		 * @param powerManager power manager
 		 * @param window       window
 		 */
-		AsyncExecuteFromArchive(final TaskObserver.Listener listener, final int publishRate, final PowerManager powerManager, final Window window)
+		AsyncExecuteFromArchive(final DoneListener doneListener, final TaskObserver.Listener listener, final int publishRate, final PowerManager powerManager, final Window window)
 		{
+			this.doneListener = doneListener;
 			this.listener = listener;
 			this.publishRate = publishRate;
 			this.powerManager = powerManager;
@@ -227,7 +253,7 @@ public class ExecAsyncTask
 			// wake lock
 			assert this.powerManager != null;
 			final PowerManager.WakeLock wakelock = this.powerManager.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, "org.sqlunet.browser:Executor");
-			wakelock.acquire(20*60*1000L /*20 minutes*/);
+			wakelock.acquire(20 * 60 * 1000L /*20 minutes*/);
 
 			SQLiteDatabase db = null;
 			ZipFile zipFile = null;
@@ -392,6 +418,7 @@ public class ExecAsyncTask
 		{
 			this.window.clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 			this.listener.taskFinish(result);
+			this.doneListener.onDone();
 		}
 	}
 
@@ -406,24 +433,31 @@ public class ExecAsyncTask
 	{
 		final PowerManager powerManager = (PowerManager) ExecAsyncTask.this.activity.getSystemService(Context.POWER_SERVICE);
 		final Window window = ExecAsyncTask.this.activity.getWindow();
-		final AsyncTask<String, Integer, Boolean> task = new AsyncExecuteFromArchive(this.listener, this.publishRate, powerManager, window);
+		final AsyncTask<String, Integer, Boolean> task = new AsyncExecuteFromArchive(this.doneListener, this.listener, this.publishRate, powerManager, window);
 		return task.execute(archive, entry, database);
 	}
 
 	static private class AsyncVacuum extends AsyncTask<String, Void, Void>
 	{
 		/**
-		 * Result listener
+		 * Done listener
+		 */
+		final DoneListener doneListener;
+
+		/**
+		 * Task listener
 		 */
 		final private TaskObserver.Listener listener;
 
 		/**
 		 * Constructor
 		 *
-		 * @param listener listener
+		 * @param doneListener doneListener
+		 * @param listener     listener
 		 */
-		AsyncVacuum(final TaskObserver.Listener listener)
+		AsyncVacuum(final DoneListener doneListener, final TaskObserver.Listener listener)
 		{
+			this.doneListener = doneListener;
 			this.listener = listener;
 		}
 
@@ -452,6 +486,7 @@ public class ExecAsyncTask
 		protected void onPostExecute(Void result)
 		{
 			this.listener.taskFinish(true);
+			this.doneListener.onDone();
 		}
 
 		@Override
@@ -474,7 +509,7 @@ public class ExecAsyncTask
 	@SuppressWarnings("unused")
 	void vacuum(final String database, final String tempDir)
 	{
-		final AsyncTask<String, Void, Void> task = new AsyncVacuum(this.listener);
+		final AsyncTask<String, Void, Void> task = new AsyncVacuum(this.doneListener, this.listener);
 		task.execute(database, tempDir);
 	}
 }
