@@ -7,6 +7,9 @@
 	<EditTextPreference
 		android:defaultValue="@string/pref_default_download_site"
 		android:key="pref_download_site"
+		android:inputType="text|textUri"
+		android:maxLines="1"
+		android:singleLine="true"
 		android:summary="@string/pref_description_download_site"
 		android:title="@string/pref_title_download_site"/>
 

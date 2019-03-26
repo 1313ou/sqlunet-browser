@@ -68,6 +68,7 @@
 	<!-- DOWNLOAD -->
 
 	<string name="pref_header_download">Download</string>
+	<string name="pref_header_downloaded">Downloaded</string>
 
 	<!-- Downloader -->
 	<string name="pref_title_downloader">Downloader</string>

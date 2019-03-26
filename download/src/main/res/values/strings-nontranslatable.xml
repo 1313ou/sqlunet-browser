@@ -2,6 +2,6 @@
 <resources>
 
 	<!-- must be overridden in app -->
-	<string name="default_model_site" translatable="false">http://10.0.2.2:1313</string>
+	<string name="default_database_site" translatable="false">http://10.0.2.2:1313</string>
 
 </resources>

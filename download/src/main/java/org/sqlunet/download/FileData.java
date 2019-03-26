@@ -38,8 +38,8 @@ public class FileData
 
 	static public FileData getCurrent(final Context context)
 	{
-		long date = Settings.getDbDate(context);
-		long size = Settings.getDbSize(context);
+		final long date = Settings.getDbDate(context);
+		final long size = Settings.getDbSize(context);
 		if (date != -1)
 		{
 			return new FileData(date, size);
@@ -59,9 +59,9 @@ public class FileData
 		return this.date == -1 ? null : new Date(this.date);
 	}
 
-	public static void recordModel(@NonNull final Context context, final File modelFile)
+	public static void recordDatabase(@NonNull final Context context, final File databaseFile)
 	{
-		final FileData fileData = makeFileDataFrom(modelFile);
+		final FileData fileData = makeFileDataFrom(databaseFile);
 		if (fileData != null)
 		{
 			if (fileData.date != -1)

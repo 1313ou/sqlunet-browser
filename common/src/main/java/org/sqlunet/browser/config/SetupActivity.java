@@ -5,24 +5,28 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import com.google.android.material.tabs.TabLayout;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentPagerAdapter;
-import androidx.viewpager.widget.ViewPager;
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+
+import com.google.android.material.tabs.TabLayout;
 
 import org.sqlunet.browser.common.R;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
+import java.util.ArrayList;
+import java.util.List;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentPagerAdapter;
+import androidx.viewpager.widget.ViewPager;
 
 @SuppressWarnings("deprecation")
 public class SetupActivity extends AppCompatActivity implements TabLayout.OnTabSelectedListener
@@ -76,6 +80,7 @@ public class SetupActivity extends AppCompatActivity implements TabLayout.OnTabS
 			// Also specify this Activity object, which implements the TabListener interface, as the callback (listener) for when
 			// this tab is selected.
 			tabLayout.addTab(tabLayout.newTab() //
+					.setTag(pagerAdapter.getItem(i)) //
 					.setText(pagerAdapter.getPageTitle(i)));
 		}
 	}
@@ -85,7 +90,15 @@ public class SetupActivity extends AppCompatActivity implements TabLayout.OnTabS
 	@Override
 	public void onTabSelected(@NonNull TabLayout.Tab tab)
 	{
-		this.viewPager.setCurrentItem(tab.getPosition());
+		int position = tab.getPosition();
+		this.viewPager.setCurrentItem(position);
+
+		final Fragment fragment = (Fragment) tab.getTag();
+		if (fragment instanceof Updatable)
+		{
+			final Updatable updatable = (Updatable) fragment;
+			updatable.update();
+		}
 	}
 
 	@Override
@@ -106,23 +119,25 @@ public class SetupActivity extends AppCompatActivity implements TabLayout.OnTabS
 	 */
 	private class SectionsPagerAdapter extends FragmentPagerAdapter
 	{
-		@Nullable
-		private final String[] fragmentClasses;
+		private final Fragment[] fragments;
 
 		SectionsPagerAdapter(final FragmentManager fragmentManager, @NonNull final Context context)
 		{
 			super(fragmentManager);
+			final List<Fragment> listOfFragments = new ArrayList<>();
 			final Resources res = context.getResources();
-			this.fragmentClasses = res.getStringArray(R.array.fragment_class_setup_pages);
+			String[] fragmentClasses = res.getStringArray(R.array.fragment_class_setup_pages);
+			for (int i = 0; i < fragmentClasses.length; i++)
+			{
+				listOfFragments.add(makeFragment(fragmentClasses[i]));
+			}
+			this.fragments = listOfFragments.toArray(new Fragment[0]);
 		}
 
 		@Nullable
 		@SuppressWarnings("TryWithIdenticalCatches")
-		@Override
-		public Fragment getItem(int position)
+		private Fragment makeFragment(final String fragmentClass)
 		{
-			assert this.fragmentClasses != null;
-			final String fragmentClass = this.fragmentClasses[position];
 			if (fragmentClass != null && !fragmentClass.isEmpty())
 			{
 				try
@@ -155,11 +170,18 @@ public class SetupActivity extends AppCompatActivity implements TabLayout.OnTabS
 			return null;
 		}
 
+		@SuppressWarnings("TryWithIdenticalCatches")
+		@NonNull
+		@Override
+		public Fragment getItem(int position)
+		{
+			return this.fragments[position];
+		}
+
 		@Override
 		public int getCount()
 		{
-			// Show 3 total pages.
-			return 4;
+			return this.fragments.length;
 		}
 
 		@Override

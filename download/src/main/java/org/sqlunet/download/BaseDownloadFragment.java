@@ -760,11 +760,11 @@ abstract public class BaseDownloadFragment extends Fragment implements View.OnCl
 
 		BaseDownloadFragment.isDownloading = false;
 
-		// register if this is the model
+		// register if this is the database
 		//assert this.destFile != null;
 		//if (success)
 		//{
-		//	FileData.recordModel(this.context, this.destFile);
+		//	FileData.recordDatabase(this.context, this.destFile);
 		//}
 
 		// observer
@@ -876,7 +876,7 @@ abstract public class BaseDownloadFragment extends Fragment implements View.OnCl
 						final File renameToFile = new File(destDir, renameTo);
 						boolean result2 = renameFromFile.renameTo(renameToFile);
 						Log.d(TAG, "Rename " + renameFromFile + " to " + renameToFile + " : " + result2);
-						FileData.recordModel(this.appContext, renameToFile);
+						FileData.recordDatabase(this.appContext, renameToFile);
 					}
 
 					//noinspection ResultOfMethodCallIgnored

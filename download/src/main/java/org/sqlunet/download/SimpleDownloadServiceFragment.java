@@ -97,12 +97,15 @@ public class SimpleDownloadServiceFragment extends BaseDownloadFragment
 					break;
 
 				case SimpleDownloaderService.EVENT_UPDATE:
-					Log.d(TAG, "Update");
-					SimpleDownloadServiceFragment.downloading = true;
-					progressDownloaded = intent.getIntExtra(SimpleDownloaderService.EVENT_UPDATE_DOWNLOADED, 0);
-					progressTotal = intent.getIntExtra(SimpleDownloaderService.EVENT_UPDATE_TOTAL, 0);
-					float progress = (float) progressDownloaded / progressTotal;
-					fireNotification(SimpleDownloadServiceFragment.notificationId, NotificationType.UPDATE, progress);
+					if (SimpleDownloadServiceFragment.downloading)
+					{
+						Log.d(TAG, "Update");
+						// SimpleDownloadServiceFragment.downloading = true;
+						progressDownloaded = intent.getIntExtra(SimpleDownloaderService.EVENT_UPDATE_DOWNLOADED, 0);
+						progressTotal = intent.getIntExtra(SimpleDownloaderService.EVENT_UPDATE_TOTAL, 0);
+						float progress = (float) progressDownloaded / progressTotal;
+						fireNotification(SimpleDownloadServiceFragment.notificationId, NotificationType.UPDATE, progress);
+					}
 					break;
 
 				case SimpleDownloaderService.EVENT_FINISH:

@@ -106,7 +106,8 @@ public class SetupSqlFragment extends org.sqlunet.browser.config.SetupSqlFragmen
 	/**
 	 * Update status
 	 */
-	protected void update()
+	@Override
+	public void update()
 	{
 		super.update();
 

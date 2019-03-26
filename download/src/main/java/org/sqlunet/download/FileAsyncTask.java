@@ -482,7 +482,7 @@ public class FileAsyncTask
 				final Boolean success = (Boolean) result;
 				if (success)
 				{
-					FileData.recordModel(activity, new File(sourceFile));
+					FileData.recordDatabase(activity, new File(sourceFile));
 				}
 			};
 			new FileAsyncTask(listener, resultListener, 1000).unzipFromArchive(sourceFile, databasePath);
@@ -528,7 +528,7 @@ public class FileAsyncTask
 				final Boolean success = (Boolean) result;
 				if (success)
 				{
-					FileData.recordModel(activity, new File(sourceFile));
+					FileData.recordDatabase(activity, new File(sourceFile));
 				}
 			};
 			new FileAsyncTask(listener, resultListener, 1000).unzipEntryFromArchive(sourceFile, zipEntry, databasePath);
@@ -571,7 +571,7 @@ public class FileAsyncTask
 				final Boolean success = (Boolean) result;
 				if (success)
 				{
-					FileData.recordModel(activity, new File(sourceFile));
+					FileData.recordDatabase(activity, new File(sourceFile));
 				}
 			};
 			new FileAsyncTask(listener, resultListener, 1000).copyFromFile(sourceFile, databasePath);

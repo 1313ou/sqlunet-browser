@@ -10,6 +10,7 @@ public class Settings
 {
 	static public final String PREF_DOWNLOADER = "pref_downloader";
 
+	static public final String PREF_DB_NAME = "pref_db_name";
 	static public final String PREF_DB_DATE = "pref_db_date";
 	static public final String PREF_DB_SIZE = "pref_db_size";
 

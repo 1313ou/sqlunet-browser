@@ -84,11 +84,11 @@ public class DownloadPreferenceFragment extends PreferenceFragmentCompat
 	@Override
 	public void onCreatePreferences(Bundle savedInstanceState, String rootKey)
 	{
-		addPreferencesFromResource(R.xml.pref_download);
+		addPreferencesFromResource(R.xml.pref_downloaded);
 		setHasOptionsMenu(true);
 
 		// Bind the summaries of preferences to their values. When their values change, their summaries are updated to reflect the new value, per the Android Design guidelines.
-		bindPreferenceSummaryToValue(findPreference(Settings.PREF_DOWNLOADER));
+		bindPreferenceSummaryToValue(findPreference(Settings.PREF_DB_NAME));
 		bindDatePreferenceSummaryToValue(findPreference(Settings.PREF_DB_DATE));
 		bindLongPreferenceSummaryToValue(findPreference(Settings.PREF_DB_SIZE));
 	}

@@ -6,10 +6,6 @@ import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -31,12 +27,17 @@ import org.sqlunet.settings.StorageUtils;
 
 import java.io.File;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
+
 /**
  * Set up with SQL fragment
  *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
-public class SetupSqlFragment extends Fragment
+public class SetupSqlFragment extends Fragment implements Updatable
 {
 	static private final String TAG = "SetupSqlFragment";
 
@@ -282,36 +283,39 @@ public class SetupSqlFragment extends Fragment
 	/**
 	 * Update status
 	 */
-	protected void update()
+	@Override
+	public void update()
 	{
 		// context
-		final Context context = requireContext();
+		final Context context = getContext();
+		if (context != null)
+		{
+			// images
+			final Drawable okDrawable = ColorUtils.getDrawable(context, R.drawable.ic_ok);
+			ColorUtils.tint(ColorUtils.getColor(context, R.color.secondaryForeColor), okDrawable);
+			final Drawable failDrawable = ColorUtils.getDrawable(context, R.drawable.ic_fail);
 
-		// images
-		final Drawable okDrawable = ColorUtils.getDrawable(context, R.drawable.ic_ok);
-		ColorUtils.tint(ColorUtils.getColor(context, R.color.secondaryForeColor), okDrawable);
-		final Drawable failDrawable = ColorUtils.getDrawable(context, R.drawable.ic_fail);
+			// sql zip file
+			final String sqlZip = StorageSettings.getSqlSource(context);
+			boolean sqlZipExists = new File(sqlZip).exists();
+			this.downloadSqlZipButton.setVisibility(sqlZipExists ? View.GONE : View.VISIBLE);
+			this.downloadSqlZipStatus.setImageDrawable(sqlZipExists ? okDrawable : failDrawable);
 
-		// sql zip file
-		final String sqlZip = StorageSettings.getSqlSource(context);
-		boolean sqlZipExists = new File(sqlZip).exists();
-		this.downloadSqlZipButton.setVisibility(sqlZipExists ? View.GONE : View.VISIBLE);
-		this.downloadSqlZipStatus.setImageDrawable(sqlZipExists ? okDrawable : failDrawable);
+			// status
+			final int status = Status.status(context);
+			final boolean existsDatabase = (status & Status.EXISTS) != 0;
+			final boolean existsTables = (status & Status.EXISTS_TABLES) != 0;
+			final boolean existsIndexes = (status & Status.EXISTS_INDEXES) != 0;
 
-		// status
-		final int status = Status.status(context);
-		final boolean existsDatabase = (status & Status.EXISTS) != 0;
-		final boolean existsTables = (status & Status.EXISTS_TABLES) != 0;
-		final boolean existsIndexes = (status & Status.EXISTS_INDEXES) != 0;
+			this.createStatus.setImageDrawable(existsDatabase ? okDrawable : failDrawable);
+			this.importStatus.setImageDrawable(existsTables ? okDrawable : failDrawable);
+			this.indexesStatus.setImageDrawable(existsIndexes ? okDrawable : failDrawable);
 
-		this.createStatus.setImageDrawable(existsDatabase ? okDrawable : failDrawable);
-		this.importStatus.setImageDrawable(existsTables ? okDrawable : failDrawable);
-		this.indexesStatus.setImageDrawable(existsIndexes ? okDrawable : failDrawable);
-
-		// actions
-		this.createButton.setVisibility(sqlZipExists && !existsDatabase ? View.VISIBLE : View.GONE);
-		this.importButton.setVisibility(sqlZipExists && existsDatabase && !existsTables ? View.VISIBLE : View.GONE);
-		this.indexesButton.setVisibility(sqlZipExists && existsDatabase && existsTables && !existsIndexes ? View.VISIBLE : View.GONE);
+			// actions
+			this.createButton.setVisibility(sqlZipExists && !existsDatabase ? View.VISIBLE : View.GONE);
+			this.importButton.setVisibility(sqlZipExists && existsDatabase && !existsTables ? View.VISIBLE : View.GONE);
+			this.indexesButton.setVisibility(sqlZipExists && existsDatabase && existsTables && !existsIndexes ? View.VISIBLE : View.GONE);
+		}
 	}
 
 	// R E T U R N S

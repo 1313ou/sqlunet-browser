@@ -110,7 +110,8 @@ public class SetupStatusFragment extends org.sqlunet.browser.config.SetupStatusF
 	/**
 	 * Update status
 	 */
-	protected void update()
+	@Override
+	public void update()
 	{
 		super.update();
 

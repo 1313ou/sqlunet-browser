@@ -346,8 +346,8 @@ public class SettingsActivity extends PreferenceActivityCompat
 			populateCachePreference(requireContext(), cachePreference);
 
 			// bind the summaries to their values.
-			bind(findPreference(Settings.PREF_DOWNLOAD_SITE));
 			bind(findPreference(Settings.PREF_DOWNLOADER));
+			bind(findPreference(Settings.PREF_DOWNLOAD_SITE));
 			bind(findPreference(Settings.PREF_DOWNLOAD_DBFILE));
 			bind(findPreference(Settings.PREF_DOWNLOAD_SQLFILE));
 			bind(findPreference(Settings.PREF_ENTRY_IMPORT));

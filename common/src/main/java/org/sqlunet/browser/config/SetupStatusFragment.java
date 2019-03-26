@@ -39,7 +39,7 @@ import static org.sqlunet.download.BaseDownloadFragment.DOWNLOAD_TO_ARG;
  *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
-public class SetupStatusFragment extends Fragment
+public class SetupStatusFragment extends Fragment implements Updatable
 {
 	static private final String TAG = "SetupStatusFragment";
 
@@ -184,36 +184,40 @@ public class SetupStatusFragment extends Fragment
 	/**
 	 * Update status
 	 */
-	protected void update()
+	@Override
+	public void update()
 	{
-		final Context context = requireContext();
-		final int status = Status.status(context);
-		Log.d(TAG, "STATUS " + Status.toString(status));
-
-		// images
-		final Drawable okDrawable = ColorUtils.getDrawable(context, R.drawable.ic_ok);
-		ColorUtils.tint(ColorUtils.getColor(context, R.color.secondaryForeColor), okDrawable);
-		final Drawable failDrawable = ColorUtils.getDrawable(context, R.drawable.ic_fail);
-
-		final boolean existsDb = (status & Status.EXISTS) != 0;
-		final boolean existsTables = (status & Status.EXISTS_TABLES) != 0;
-		if (existsDb && existsTables)
+		final Context context = getContext();
+		if (context != null)
 		{
-			this.imageDb.setImageDrawable(okDrawable);
-			this.buttonDb.setVisibility(View.GONE);
+			final int status = Status.status(context);
+			Log.d(TAG, "STATUS " + Status.toString(status));
 
-			final boolean existsIndexes = (status & Status.EXISTS_INDEXES) != 0;
+			// images
+			final Drawable okDrawable = ColorUtils.getDrawable(context, R.drawable.ic_ok);
+			ColorUtils.tint(ColorUtils.getColor(context, R.color.secondaryForeColor), okDrawable);
+			final Drawable failDrawable = ColorUtils.getDrawable(context, R.drawable.ic_fail);
 
-			this.imageIndexes.setImageDrawable(existsIndexes ? okDrawable : failDrawable);
-			this.buttonIndexes.setVisibility(existsIndexes ? View.GONE : View.VISIBLE);
-		}
-		else
-		{
-			this.imageDb.setImageDrawable(failDrawable);
-			this.buttonDb.setVisibility(View.VISIBLE);
+			final boolean existsDb = (status & Status.EXISTS) != 0;
+			final boolean existsTables = (status & Status.EXISTS_TABLES) != 0;
+			if (existsDb && existsTables)
+			{
+				this.imageDb.setImageDrawable(okDrawable);
+				this.buttonDb.setVisibility(View.GONE);
 
-			this.buttonIndexes.setVisibility(View.GONE);
-			this.imageIndexes.setImageResource(R.drawable.ic_unknown);
+				final boolean existsIndexes = (status & Status.EXISTS_INDEXES) != 0;
+
+				this.imageIndexes.setImageDrawable(existsIndexes ? okDrawable : failDrawable);
+				this.buttonIndexes.setVisibility(existsIndexes ? View.GONE : View.VISIBLE);
+			}
+			else
+			{
+				this.imageDb.setImageDrawable(failDrawable);
+				this.buttonDb.setVisibility(View.VISIBLE);
+
+				this.buttonIndexes.setVisibility(View.GONE);
+				this.imageIndexes.setImageResource(R.drawable.ic_unknown);
+			}
 		}
 	}
 
