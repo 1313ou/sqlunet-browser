@@ -308,7 +308,7 @@ public class SimpleDownloadServiceFragment extends BaseDownloadFragment
 	}
 
 
-	// E V E N T S
+	// K I L L   E V E N T
 
 	/**
 	 * Killer (used in notifications)
@@ -341,6 +341,8 @@ public class SimpleDownloadServiceFragment extends BaseDownloadFragment
 		}
 	}
 
+	// N O T I F I C A T I O N
+
 	private enum NotificationType
 	{
 		START, UPDATE, FINISH
@@ -360,11 +362,19 @@ public class SimpleDownloadServiceFragment extends BaseDownloadFragment
 	 */
 	private void fireNotification(int id, @NonNull final NotificationType type, final Object... args)
 	{
+		// get an instance of the NotificationManager service
+		final NotificationManager manager = (NotificationManager) this.appContext.getSystemService(Context.NOTIFICATION_SERVICE);
+		assert manager != null;
+
+		// content
 		final String from = Uri.parse(this.downloadUrl).getHost();
 		assert this.destFile != null;
 		final String to = this.destFile.getName();
 		String contentTitle = this.appContext.getString(R.string.title_download);
 		String contentText = from + '→' + to;
+
+		// notification
+		Notification notification;
 		switch (type)
 		{
 			case START:
@@ -382,6 +392,8 @@ public class SimpleDownloadServiceFragment extends BaseDownloadFragment
 				// use System.currentTimeMillis() to have a unique ID for the pending intent
 				PendingIntent pendingIntent = PendingIntent.getBroadcast(this.appContext, (int) System.currentTimeMillis(), intent, PendingIntent.FLAG_UPDATE_CURRENT);
 				this.builder.addAction(R.drawable.ic_error, this.appContext.getString(R.string.action_cancel), pendingIntent);
+
+				notification = this.builder.build();
 				break;
 
 			case UPDATE:
@@ -389,29 +401,34 @@ public class SimpleDownloadServiceFragment extends BaseDownloadFragment
 				final int percent = (int) (downloaded * 100);
 				contentText += ' ' + this.appContext.getString(R.string.status_download_running);
 				contentText += ' ' + Integer.toString(percent) + '%';
+
 				ensureBuilder();
 				this.builder.setContentText(contentText);
+
+				notification = this.builder.build();
 				break;
 
 			case FINISH:
 				final boolean success = (Boolean) args[0];
 				contentText += ' ' + this.appContext.getString(success ? R.string.status_download_successful : R.string.status_download_fail);
+
+				// force new builder (no action)
 				this.builder = new NotificationCompat.Builder(this.appContext, CHANNEL_ID);
 				this.builder.setDefaults(NotificationCompat.DEFAULT_LIGHTS) //
 						.setSmallIcon(android.R.drawable.stat_sys_download_done) //
 						.setContentText(contentText);
+
+				manager.cancel(id);
+				notification = this.builder.build();
+				this.builder = null;
 				break;
+
+			default:
+				return;
 		}
 
-		// notification
-		ensureBuilder();
-		final Notification notification = this.builder.build();
-
-		// gets an instance of the NotificationManager service
-		final NotificationManager manager = (NotificationManager) this.appContext.getSystemService(Context.NOTIFICATION_SERVICE);
-		assert manager != null;
-
 		// issue notification
+		Log.d(TAG, "Notification id=" + id + " type=" + type.name() + " " + notification);
 		manager.notify(id, notification);
 	}
 
@@ -419,6 +436,7 @@ public class SimpleDownloadServiceFragment extends BaseDownloadFragment
 	{
 		if (this.builder == null)
 		{
+			Log.d(TAG, "New Notification Builder");
 			this.builder = new NotificationCompat.Builder(this.appContext, CHANNEL_ID);
 			this.builder.setDefaults(NotificationCompat.DEFAULT_LIGHTS) //
 					.setSmallIcon(android.R.drawable.stat_sys_download);

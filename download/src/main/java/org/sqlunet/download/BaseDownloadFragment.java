@@ -305,7 +305,7 @@ abstract public class BaseDownloadFragment extends Fragment implements View.OnCl
 			final String message = this.appContext.getString(R.string.status_download_error_null_download_url);
 			warn(message);
 
-			// fire done
+			// fire done result to listener
 			fireDone(false);
 		}
 
@@ -815,7 +815,7 @@ abstract public class BaseDownloadFragment extends Fragment implements View.OnCl
 			this.deployButton.setVisibility(success && this.unzipDir != null ? View.VISIBLE : View.GONE);
 		}
 
-		// fire done (broadcast to listener)
+		// fire done result (to listener)
 		fireDone(success);
 
 		// invalidate
