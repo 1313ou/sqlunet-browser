@@ -1,0 +1,21 @@
+<androidx.preference.PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+	<!-- NOTE: Hide buttons to simplify the UI. Users can touch outside the dialog to dismiss it. -->
+	<!-- NOTE: ListPreference's summary should be set to its value by the activity code. -->
+
+	<Preference
+		android:key="pref_db_name"
+		android:selectable="false"
+		android:title="@string/pref_title_db_name"/>
+
+	<Preference
+		android:key="pref_db_date"
+		android:selectable="false"
+		android:title="@string/pref_title_db_date"/>
+
+	<Preference
+		android:key="pref_db_size"
+		android:selectable="false"
+		android:title="@string/pref_title_db_size"/>
+
+</androidx.preference.PreferenceScreen>
