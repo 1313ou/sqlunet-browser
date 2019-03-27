@@ -13,8 +13,6 @@ import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 
-import org.sqlunet.download.R;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.app.NotificationCompat;
@@ -209,8 +207,8 @@ public class SimpleDownloadServiceFragment extends BaseDownloadFragment
 
 				// args
 				final String from = this.downloadUrl;
-				assert this.destFile != null;
-				final String to = this.destFile.getAbsolutePath();
+				assert this.downloadedFile != null;
+				final String to = this.downloadedFile.getAbsolutePath();
 
 				// service intent
 				final Intent intent = new Intent(requireContext(), SimpleDownloaderService.class);
@@ -368,8 +366,8 @@ public class SimpleDownloadServiceFragment extends BaseDownloadFragment
 
 		// content
 		final String from = Uri.parse(this.downloadUrl).getHost();
-		assert this.destFile != null;
-		final String to = this.destFile.getName();
+		assert this.downloadedFile != null;
+		final String to = this.downloadedFile.getName();
 		String contentTitle = this.appContext.getString(R.string.title_download);
 		String contentText = from + '→' + to;
 

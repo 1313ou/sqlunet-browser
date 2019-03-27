@@ -181,7 +181,7 @@ abstract public class BaseDownloadFragment extends Fragment implements View.OnCl
 	 * Destination file
 	 */
 	@Nullable
-	protected File destFile;
+	protected File downloadedFile;
 
 	/**
 	 * Unzip dir
@@ -310,7 +310,7 @@ abstract public class BaseDownloadFragment extends Fragment implements View.OnCl
 		}
 
 		// download dest data
-		this.destFile = toArg != null ? new File(toArg) : null;
+		this.downloadedFile = toArg != null ? new File(toArg) : null;
 
 		// unzip
 		this.unzipDir = unzipToArg != null ? new File(unzipToArg) : null;
@@ -401,14 +401,14 @@ abstract public class BaseDownloadFragment extends Fragment implements View.OnCl
 		final TextView targetView3 = view.findViewById(R.id.target3);
 		if (targetView2 != null && targetView3 != null)
 		{
-			targetView3.setText(this.destFile != null ? this.destFile.getName() : "");
-			File parent = this.destFile != null ? this.destFile.getParentFile() : null;
+			targetView3.setText(this.downloadedFile != null ? this.downloadedFile.getName() : "");
+			File parent = this.downloadedFile != null ? this.downloadedFile.getParentFile() : null;
 			targetView2.setText(parent != null ? parent.getName() : "");
 			targetView.setText(parent != null ? parent.getParent() : "");
 		}
 		else
 		{
-			targetView.setText(this.destFile != null ? this.destFile.getAbsolutePath() : "");
+			targetView.setText(this.downloadedFile != null ? this.downloadedFile.getAbsolutePath() : "");
 		}
 
 		// destination
@@ -759,12 +759,13 @@ abstract public class BaseDownloadFragment extends Fragment implements View.OnCl
 		Log.d(TAG, "OnDone " + success + " " + this);
 
 		BaseDownloadFragment.isDownloading = false;
+		FileData.recordDatabase(this.appContext, this.downloadedFile);
 
 		// register if this is the database
-		//assert this.destFile != null;
+		//assert this.downloadedFile != null;
 		//if (success)
 		//{
-		//	FileData.recordDatabase(this.context, this.destFile);
+		//	FileData.recordDatabase(this.context, this.downloadedFile);
 		//}
 
 		// observer
@@ -821,7 +822,7 @@ abstract public class BaseDownloadFragment extends Fragment implements View.OnCl
 		// invalidate
 		if (!success)
 		{
-			this.destFile = null;
+			this.downloadedFile = null;
 		}
 	}
 
@@ -848,12 +849,12 @@ abstract public class BaseDownloadFragment extends Fragment implements View.OnCl
 	 */
 	private void deploy(final String destDir, final String renameFrom, final String renameTo)
 	{
-		if (this.destFile == null)
+		if (this.downloadedFile == null)
 		{
 			return;
 		}
 
-		Log.d(TAG, "Deploy " + this.destFile + " to " + destDir);
+		Log.d(TAG, "Deploy " + this.downloadedFile + " to " + destDir);
 
 		Deploy.emptyDirectory(new File(destDir));
 
@@ -862,13 +863,13 @@ abstract public class BaseDownloadFragment extends Fragment implements View.OnCl
 		{
 			return;
 		}
-		final TaskObserver.Listener taskListener = new TaskObserver.DialogListener(activity, R.string.action_unzip_from_archive, this.destFile.getName(), null) // guarded, level 1
+		final TaskObserver.Listener taskListener = new TaskObserver.DialogListener(activity, R.string.action_unzip_from_archive, this.downloadedFile.getName(), null) // guarded, level 1
 		{
 			@Override
 			public void taskFinish(final boolean result)
 			{
 				super.taskFinish(result);
-				if (result && BaseDownloadFragment.this.destFile != null)
+				if (result && BaseDownloadFragment.this.downloadedFile != null)
 				{
 					if (renameFrom != null && renameTo != null && !renameFrom.equals(renameTo))
 					{
@@ -880,7 +881,7 @@ abstract public class BaseDownloadFragment extends Fragment implements View.OnCl
 					}
 
 					//noinspection ResultOfMethodCallIgnored
-					BaseDownloadFragment.this.destFile.delete();
+					BaseDownloadFragment.this.downloadedFile.delete();
 				}
 				//broadcastRequest(this.appContext, NEW);
 				final Activity activity = getActivity();
@@ -891,7 +892,7 @@ abstract public class BaseDownloadFragment extends Fragment implements View.OnCl
 			}
 		};
 		//broadcastRequest(this.appContext, KILL);
-		new FileAsyncTask(taskListener, null, 1000).unzipFromArchive(this.destFile.getAbsolutePath(), destDir);
+		new FileAsyncTask(taskListener, null, 1000).unzipFromArchive(this.downloadedFile.getAbsolutePath(), destDir);
 	}
 
 	/*
@@ -933,8 +934,8 @@ abstract public class BaseDownloadFragment extends Fragment implements View.OnCl
 			}
 			else
 			{
-				assert this.destFile != null;
-				final String localPath = this.destFile.getAbsolutePath();
+				assert this.downloadedFile != null;
+				final String localPath = this.downloadedFile.getAbsolutePath();
 
 				FileAsyncTask.md5(activity, localPath, result -> {
 

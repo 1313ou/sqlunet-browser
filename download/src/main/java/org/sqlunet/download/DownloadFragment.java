@@ -1,6 +1,5 @@
 package org.sqlunet.download;
 
-import android.app.Activity;
 import android.app.DownloadManager;
 import android.app.DownloadManager.Query;
 import android.app.DownloadManager.Request;
@@ -16,8 +15,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-
-import org.sqlunet.download.R;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -163,11 +160,11 @@ public class DownloadFragment extends BaseDownloadFragment
 						boolean success = Status.STATUS_SUCCESSFUL.test(status);
 						if (!success)
 						{
-							assert DownloadFragment.this.destFile != null;
-							if (DownloadFragment.this.destFile.exists())
+							assert DownloadFragment.this.downloadedFile != null;
+							if (DownloadFragment.this.downloadedFile.exists())
 							{
 								//noinspection ResultOfMethodCallIgnored
-								DownloadFragment.this.destFile.delete();
+								DownloadFragment.this.downloadedFile.delete();
 							}
 						}
 
@@ -246,9 +243,9 @@ public class DownloadFragment extends BaseDownloadFragment
 		{
 			final Uri downloadUri = Uri.parse(this.downloadUrl);
 			final Request request = new Request(downloadUri);
-			if (this.destFile != null)
+			if (this.downloadedFile != null)
 			{
-				Uri destUri = Uri.fromFile(this.destFile);
+				Uri destUri = Uri.fromFile(this.downloadedFile);
 				request.setDestinationUri(destUri);
 			}
 			request.setTitle(getString(R.string.title_download));

@@ -67,9 +67,10 @@ public class FileDataDownloader extends AsyncTask<String, Void, FileData>
 					final String message = "server returned HTTP " + httpConnection.getResponseCode() + " " + httpConnection.getResponseMessage();
 					throw new RuntimeException(message);
 				}
-				long date = httpConnection.getLastModified(); // new Date(date));
-				int size = httpConnection.getContentLength();
-				return new FileData(date, size);
+				final String name = url.getFile();
+				final long date = httpConnection.getLastModified(); // new Date(date));
+				final int size = httpConnection.getContentLength();
+				return new FileData(name, date, size);
 			}
 		}
 		catch (@NonNull final Exception e)

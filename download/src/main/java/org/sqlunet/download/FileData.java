@@ -15,12 +15,15 @@ import androidx.annotation.Nullable;
  */
 public class FileData
 {
+	private final String name;
+
 	private final long date;
 
 	private final long size;
 
-	public FileData(final long date, final long size)
+	public FileData(final String name, final long date, final long size)
 	{
+		this.name = name;
 		this.date = date;
 		this.size = size;
 	}
@@ -31,18 +34,19 @@ public class FileData
 	{
 		if (file != null && file.exists())
 		{
-			return new FileData(file.lastModified(), file.length());
+			return new FileData(file.getName(), file.lastModified(), file.length());
 		}
 		return null;
 	}
 
 	static public FileData getCurrent(final Context context)
 	{
+		final String name = Settings.getDbName(context);
 		final long date = Settings.getDbDate(context);
 		final long size = Settings.getDbSize(context);
 		if (date != -1)
 		{
-			return new FileData(date, size);
+			return new FileData(name, date, size);
 		}
 		return null;
 	}
@@ -64,6 +68,10 @@ public class FileData
 		final FileData fileData = makeFileDataFrom(databaseFile);
 		if (fileData != null)
 		{
+			if (fileData.name != null)
+			{
+				Settings.setDbName(context, fileData.name);
+			}
 			if (fileData.date != -1)
 			{
 				Settings.setDbDate(context, fileData.date);
@@ -73,5 +81,10 @@ public class FileData
 				Settings.setDbSize(context, fileData.size);
 			}
 		}
+	}
+
+	public static void unrecordDatabase(@NonNull final Context context)
+	{
+		Settings.unrecordDb(context);
 	}
 }

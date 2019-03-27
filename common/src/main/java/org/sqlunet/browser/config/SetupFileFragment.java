@@ -15,6 +15,7 @@ import org.sqlunet.browser.Info;
 import org.sqlunet.browser.common.R;
 import org.sqlunet.download.DownloadActivity;
 import org.sqlunet.download.FileAsyncTask;
+import org.sqlunet.download.FileData;
 import org.sqlunet.settings.Settings;
 import org.sqlunet.settings.Storage;
 import org.sqlunet.settings.StorageSettings;
@@ -118,6 +119,7 @@ public class SetupFileFragment extends BaseTaskFragment
 						SetupFileFragment.this.status.setText(R.string.status_task_running);
 						success = SetupDatabaseTasks.createDatabase(activity, StorageSettings.getDatabasePath(activity));
 						SetupFileFragment.this.status.setText(success ? R.string.status_task_done : R.string.status_task_failed);
+						FileData.unrecordDatabase(activity);
 						break;
 
 					case DROP:
@@ -125,6 +127,7 @@ public class SetupFileFragment extends BaseTaskFragment
 							SetupFileFragment.this.status.setText(R.string.status_task_running);
 							boolean success1 = SetupDatabaseTasks.deleteDatabase(activity, StorageSettings.getDatabasePath(activity));
 							SetupFileFragment.this.status.setText(success1 ? R.string.status_task_done : R.string.status_task_failed);
+							FileData.unrecordDatabase(activity);
 						});
 						break;
 
@@ -132,6 +135,7 @@ public class SetupFileFragment extends BaseTaskFragment
 						if (Permissions.check(activity))
 						{
 							FileAsyncTask.copyFromFile(activity, StorageSettings.getCacheDir(activity), StorageSettings.getDatabasePath(activity));
+							FileData.unrecordDatabase(activity);
 						}
 						break;
 
@@ -144,6 +148,7 @@ public class SetupFileFragment extends BaseTaskFragment
 								zipEntry = Storage.DBFILE;
 							}
 							FileAsyncTask.unzipEntryFromArchive(activity, StorageSettings.getCacheDir(activity), zipEntry, StorageSettings.getDatabasePath(activity));
+							FileData.unrecordDatabase(activity);
 						}
 						break;
 

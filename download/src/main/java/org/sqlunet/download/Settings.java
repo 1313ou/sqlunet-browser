@@ -37,6 +37,30 @@ public class Settings
 	}
 
 	/**
+	 * Set database name
+	 *
+	 * @param context context
+	 * @param name    name
+	 */
+	static public void setDbName(final Context context, final String name)
+	{
+		final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
+		sharedPref.edit().putString(Settings.PREF_DB_NAME, name).apply();
+	}
+
+	/**
+	 * Get database name
+	 *
+	 * @param context context
+	 * @return name
+	 */
+	static public String getDbName(final Context context)
+	{
+		final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
+		return sharedPref.getString(Settings.PREF_DB_NAME, null);
+	}
+
+	/**
 	 * Set database date
 	 *
 	 * @param context   context
@@ -78,10 +102,11 @@ public class Settings
 	 *
 	 * @param context context
 	 */
-	static public void unregisterDb(final Context context)
+	static public void unrecordDb(final Context context)
 	{
 		final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
 		sharedPref.edit() //
+				.remove(Settings.PREF_DB_NAME) //
 				.remove(Settings.PREF_DB_DATE) //
 				.remove(Settings.PREF_DB_SIZE) //
 				.apply();
