@@ -1,10 +1,5 @@
 package org.sqlunet.browser;
 
-import androidx.test.espresso.Espresso;
-import androidx.test.espresso.action.ViewActions;
-import androidx.test.espresso.assertion.ViewAssertions;
-import androidx.test.espresso.contrib.ExpandableListViewProtocol;
-import androidx.test.espresso.matcher.ViewMatchers;
 import android.util.Log;
 import android.view.View;
 import android.widget.ListView;
@@ -12,6 +7,12 @@ import android.widget.TextView;
 
 import org.hamcrest.CoreMatchers;
 import org.hamcrest.Matcher;
+
+import androidx.test.espresso.Espresso;
+import androidx.test.espresso.action.ViewActions;
+import androidx.test.espresso.assertion.ViewAssertions;
+import androidx.test.espresso.contrib.ExpandableListViewProtocol;
+import androidx.test.espresso.matcher.ViewMatchers;
 
 class Tests
 {

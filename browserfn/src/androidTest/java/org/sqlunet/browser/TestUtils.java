@@ -1,9 +1,6 @@
 package org.sqlunet.browser;
 
 import android.os.Environment;
-import androidx.test.espresso.Espresso;
-import androidx.test.espresso.UiController;
-import androidx.test.espresso.ViewAction;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -18,6 +15,10 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+
+import androidx.test.espresso.Espresso;
+import androidx.test.espresso.UiController;
+import androidx.test.espresso.ViewAction;
 
 class TestUtils
 {
@@ -212,7 +213,7 @@ class TestUtils
 		}
 		catch (final IOException e)
 		{
-			Log.d("READ", "Error "+ dataFile.getAbsolutePath(), e);
+			Log.d("READ", "Error " + dataFile.getAbsolutePath(), e);
 		}
 		return list.toArray(new String[0]);
 	}
