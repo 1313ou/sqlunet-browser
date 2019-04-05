@@ -1,15 +1,8 @@
 package org.sqlunet.wordnet.browser;
 
-import android.app.Activity;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.ListFragment;
-import androidx.loader.app.LoaderManager.LoaderCallbacks;
-import androidx.loader.content.CursorLoader;
-import androidx.loader.content.Loader;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,7 +14,8 @@ import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
 
-import org.sqlunet.browser.Module;
+import org.sqlunet.browser.SqlunetViewModel;
+import org.sqlunet.browser.SqlunetViewModelFactory;
 import org.sqlunet.provider.ProviderArgs;
 import org.sqlunet.wordnet.R;
 import org.sqlunet.wordnet.SensePointer;
@@ -30,6 +24,11 @@ import org.sqlunet.wordnet.provider.WordNetContract.Words_Senses_CasedWords_Syns
 import org.sqlunet.wordnet.provider.WordNetProvider;
 
 import java.util.Locale;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.ListFragment;
+import androidx.lifecycle.ViewModelProviders;
 
 /**
  * A fragment representing senses
@@ -237,51 +236,38 @@ public class SensesFragment extends ListFragment
 	private void load()
 	{
 		// load the contents
-		getLoaderManager().restartLoader(++Module.loaderId, null, new LoaderCallbacks<Cursor>()
-		{
-			@NonNull
-			@Override
-			public Loader<Cursor> onCreateLoader(final int loaderId, final Bundle loaderArgs)
+		final Uri uri = Uri.parse(WordNetProvider.makeUri(Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.CONTENT_URI_TABLE));
+		final String[] projection = { //
+				WordNetContract.Synsets.SYNSETID + " AS _id", //
+				WordNetContract.Words.WORDID, //
+				Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.SENSEID, //
+				Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.SENSENUM, //
+				Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.SENSEKEY, //
+				Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.LEXID, //
+				Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.TAGCOUNT, //
+				Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.SYNSETID, //
+				Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.DEFINITION, //
+				Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.POSNAME, //
+				Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.LEXDOMAIN, //
+				Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.CASED};
+		final String selection = Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.LEMMA + " = ?";
+		final String[] selectionArgs = {SensesFragment.this.word};
+		final String sortOrder = Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.POS + ',' + Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.SENSENUM;
+
+		final SqlunetViewModel model = ViewModelProviders.of(this, new SqlunetViewModelFactory(this, uri, projection, selection, selectionArgs, sortOrder)).get(SqlunetViewModel.class);
+		model.loadData();model.getData().observe(this, cursor -> {
+
+			// update UI
+
+			// store source result
+			if (cursor.moveToFirst())
 			{
-				final Uri uri = Uri.parse(WordNetProvider.makeUri(Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.CONTENT_URI_TABLE));
-				final String[] projection = { //
-						WordNetContract.Synsets.SYNSETID + " AS _id", //
-						WordNetContract.Words.WORDID, //
-						Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.SENSEID, //
-						Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.SENSENUM, //
-						Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.SENSEKEY, //
-						Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.LEXID, //
-						Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.TAGCOUNT, //
-						Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.SYNSETID, //
-						Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.DEFINITION, //
-						Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.POSNAME, //
-						Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.LEXDOMAIN, //
-						Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.CASED};
-				final String selection = Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.LEMMA + " = ?";
-				final String[] selectionArgs = {SensesFragment.this.word};
-				final String sortOrder = Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.POS + ',' + Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.SENSENUM;
-				return new CursorLoader(requireContext(), uri, projection, selection, selectionArgs, sortOrder);
+				final int wordId = cursor.getColumnIndex(WordNetContract.Words.WORDID);
+				SensesFragment.this.wordId = cursor.getLong(wordId);
 			}
 
-			@Override
-			public void onLoadFinished(@NonNull final Loader<Cursor> loader, @NonNull final Cursor cursor)
-			{
-				// store source result
-				if (cursor.moveToFirst())
-				{
-					final int wordId = cursor.getColumnIndex(WordNetContract.Words.WORDID);
-					SensesFragment.this.wordId = cursor.getLong(wordId);
-				}
-
-				// pass on to list adapter
-				((CursorAdapter) getListAdapter()).swapCursor(cursor);
-			}
-
-			@Override
-			public void onLoaderReset(@NonNull final Loader<Cursor> loader)
-			{
-				((CursorAdapter) getListAdapter()).swapCursor(null);
-			}
+			// pass on to list adapter
+			((CursorAdapter) getListAdapter()).swapCursor(cursor);
 		});
 	}
 

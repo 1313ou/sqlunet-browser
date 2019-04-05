@@ -1,19 +1,13 @@
 package org.sqlunet.verbnet.loaders;
 
 import android.content.Context;
-import android.database.Cursor;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
-import android.os.Bundle;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-import androidx.loader.app.LoaderManager.LoaderCallbacks;
-import androidx.loader.content.CursorLoader;
-import androidx.loader.content.Loader;
 import android.text.SpannableStringBuilder;
 
 import org.sqlunet.browser.Module;
+import org.sqlunet.browser.SqlunetViewModel;
+import org.sqlunet.browser.SqlunetViewModelFactory;
 import org.sqlunet.style.Spanner;
 import org.sqlunet.treeview.control.Query;
 import org.sqlunet.treeview.model.TreeNode;
@@ -29,6 +23,11 @@ import org.sqlunet.verbnet.style.VerbNetSemanticsSpanner;
 import org.sqlunet.verbnet.style.VerbNetSyntaxSpanner;
 import org.sqlunet.view.FireEvent;
 import org.sqlunet.view.TreeFactory;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProviders;
 
 /**
  * VerbNet base module
@@ -150,85 +149,70 @@ abstract class BaseModule extends Module
 	 */
 	void vnClass(final long classId, @NonNull final TreeNode parent)
 	{
-		getLoaderManager().restartLoader(++Module.loaderId, null, new LoaderCallbacks<Cursor>()
-		{
-			@NonNull
-			@Override
-			public Loader<Cursor> onCreateLoader(final int loaderId, final Bundle loaderArgs)
+		final Uri uri = Uri.parse(VerbNetProvider.makeUri(VnClasses.CONTENT_URI_TABLE));
+		final String[] projection = { //
+				VnClasses.CLASSID, //
+				VnClasses.CLASS, //
+				VnClasses.CLASSTAG, //
+		};
+		final String selection = VnClasses.CLASSID + " = ?";
+		final String[] selectionArgs = { //
+				Long.toString(classId)};
+		final String sortOrder = null;
+
+		final SqlunetViewModel model = ViewModelProviders.of(this.fragment, new SqlunetViewModelFactory(this.fragment, uri, projection, selection, selectionArgs, sortOrder)).get(SqlunetViewModel.class);
+		model.loadData();model.getData().observe(this.fragment, cursor -> {
+
+			// update UI
+			if (cursor.getCount() > 1)
 			{
-				final Uri uri = Uri.parse(VerbNetProvider.makeUri(VnClasses.CONTENT_URI_TABLE));
-				final String[] projection = { //
-						VnClasses.CLASSID, //
-						VnClasses.CLASS, //
-						VnClasses.CLASSTAG, //
-				};
-				final String selection = VnClasses.CLASSID + " = ?";
-				final String[] selectionArgs = { //
-						Long.toString(classId)};
-				final String sortOrder = null;
-				assert BaseModule.this.context != null;
-				return new CursorLoader(BaseModule.this.context, uri, projection, selection, selectionArgs, sortOrder);
+				throw new RuntimeException("Unexpected number of rows");
 			}
 
-			@Override
-			public void onLoadFinished(@NonNull final Loader<Cursor> loader, @NonNull final Cursor cursor)
+			// read cursor
+			if (cursor.moveToFirst())
 			{
-				if (cursor.getCount() > 1)
-				{
-					throw new RuntimeException("Unexpected number of rows");
-				}
+				final Context context = BaseModule.this.context;
+				final SpannableStringBuilder sb = new SpannableStringBuilder();
 
-				// read cursor
-				if (cursor.moveToFirst())
-				{
-					final Context context = BaseModule.this.context;
-					final SpannableStringBuilder sb = new SpannableStringBuilder();
+				// column indices
+				// final int idClassId = cursor.getColumnIndex(VnClasses_X.CLASSID);
+				final int idClass = cursor.getColumnIndex(VnClasses.CLASS);
+				// final int idClassTag = cursor.getColumnIndex(VnClasses.CLASSTAG);
 
-					// column indices
-					// final int idClassId = cursor.getColumnIndex(VnClasses_X.CLASSID);
-					final int idClass = cursor.getColumnIndex(VnClasses.CLASS);
-					// final int idClassTag = cursor.getColumnIndex(VnClasses.CLASSTAG);
+				// data
+				// final int classId = cursor.getInt(idClassId);
+				final String vnClass = cursor.getString(idClass);
 
-					// data
-					// final int classId = cursor.getInt(idClassId);
-					final String vnClass = cursor.getString(idClass);
+				// sb.append("[class]");
+				Spanner.appendImage(sb, BaseModule.this.drawableClass);
+				sb.append(' ');
+				Spanner.append(sb, vnClass, 0, VerbNetFactories.classFactory);
+				// sb.append(" tag=");
+				// sb.append(cursor.getString(idClassTag));
+				sb.append(" id=");
+				sb.append(Long.toString(classId));
 
-					// sb.append("[class]");
-					Spanner.appendImage(sb, BaseModule.this.drawableClass);
-					sb.append(' ');
-					Spanner.append(sb, vnClass, 0, VerbNetFactories.classFactory);
-					// sb.append(" tag=");
-					// sb.append(cursor.getString(idClassTag));
-					sb.append(" id=");
-					sb.append(Long.toString(classId));
+				// attach result
+				TreeFactory.addTextNode(parent, sb, BaseModule.this.context);
 
-					// attach result
-					TreeFactory.addTextNode(parent, sb, BaseModule.this.context);
+				// sub nodes
+				final TreeNode membersNode = TreeFactory.newQueryNode("Members", R.drawable.members, new MembersQuery(classId), true, context).addTo(parent);
+				final TreeNode rolesNode = TreeFactory.newQueryNode("Roles", R.drawable.roles, new RolesQuery(classId), true, context).addTo(parent);
+				final TreeNode framesNode = TreeFactory.newQueryNode("Frames", R.drawable.vnframe, new FramesQuery(classId), false, context).addTo(parent);
 
-					// sub nodes
-					final TreeNode membersNode = TreeFactory.newQueryNode("Members", R.drawable.members, new MembersQuery(classId), true, context).addTo(parent);
-					final TreeNode rolesNode = TreeFactory.newQueryNode("Roles", R.drawable.roles, new RolesQuery(classId), true, context).addTo(parent);
-					final TreeNode framesNode = TreeFactory.newQueryNode("Frames", R.drawable.vnframe, new FramesQuery(classId), false, context).addTo(parent);
-
-					// fire event
-					FireEvent.onQueryReady(membersNode);
-					FireEvent.onQueryReady(rolesNode);
-					FireEvent.onQueryReady(framesNode);
-					FireEvent.onResults(parent);
-				}
-				else
-				{
-					FireEvent.onNoResult(parent, true);
-				}
-
-				// handled by LoaderManager, so no need to call cursor.close()
+				// fire event
+				FireEvent.onQueryReady(membersNode);
+				FireEvent.onQueryReady(rolesNode);
+				FireEvent.onQueryReady(framesNode);
+				FireEvent.onResults(parent);
+			}
+			else
+			{
+				FireEvent.onNoResult(parent, true);
 			}
 
-			@Override
-			public void onLoaderReset(@NonNull final Loader<Cursor> loader)
-			{
-				//
-			}
+			// TODO no need to call cursor.close() ?
 		});
 	}
 
@@ -242,129 +226,114 @@ abstract class BaseModule extends Module
 	 */
 	private void vnMembers(final int classId, @NonNull final TreeNode parent)
 	{
-		getLoaderManager().restartLoader(++Module.loaderId, null, new LoaderCallbacks<Cursor>()
-		{
-			@NonNull
-			@Override
-			public Loader<Cursor> onCreateLoader(final int loaderId, final Bundle loaderArgs)
-			{
-				final Uri uri = Uri.parse(VerbNetProvider.makeUri(VnClasses_VnMembers_X.CONTENT_URI_TABLE));
-				final String[] projection = { //
-						VnClasses_VnMembers_X.WORDID, //
-						VnClasses_VnMembers_X.VNWORDID, //
-						VnClasses_VnMembers_X.LEMMA, //
-						"REPLACE(REPLACE(GROUP_CONCAT(DISTINCT REPLACE(" + VnClasses_VnMembers_X.DEFINITION + ",',','#')),',','|'),'#',',') AS " + VnClasses_VnMembers_X.DEFINITIONS, //
-						"GROUP_CONCAT(DISTINCT " + VnClasses_VnMembers_X.GROUPING + ") AS " + VnClasses_VnMembers_X.GROUPINGS, //
-						VnClasses_VnMembers_X.CLASSID, //
-				};
-				final String selection = VnClasses_VnRoles_X.CLASSID + " = ?";
-				final String[] selectionArgs = {Long.toString(classId)};
-				final String sortOrder = VnClasses_VnMembers_X.LEMMA;
-				assert BaseModule.this.context != null;
-				return new CursorLoader(BaseModule.this.context, uri, projection, selection, selectionArgs, sortOrder);
-			}
+		final Uri uri = Uri.parse(VerbNetProvider.makeUri(VnClasses_VnMembers_X.CONTENT_URI_TABLE));
+		final String[] projection = { //
+				VnClasses_VnMembers_X.WORDID, //
+				VnClasses_VnMembers_X.VNWORDID, //
+				VnClasses_VnMembers_X.LEMMA, //
+				"REPLACE(REPLACE(GROUP_CONCAT(DISTINCT REPLACE(" + VnClasses_VnMembers_X.DEFINITION + ",',','#')),',','|'),'#',',') AS " + VnClasses_VnMembers_X.DEFINITIONS, //
+				"GROUP_CONCAT(DISTINCT " + VnClasses_VnMembers_X.GROUPING + ") AS " + VnClasses_VnMembers_X.GROUPINGS, //
+				VnClasses_VnMembers_X.CLASSID, //
+		};
+		final String selection = VnClasses_VnRoles_X.CLASSID + " = ?";
+		final String[] selectionArgs = {Long.toString(classId)};
+		final String sortOrder = VnClasses_VnMembers_X.LEMMA;
 
-			@Override
-			public void onLoadFinished(@NonNull final Loader<Cursor> loader, @NonNull final Cursor cursor)
+		final SqlunetViewModel model = ViewModelProviders.of(this.fragment, new SqlunetViewModelFactory(this.fragment, uri, projection, selection, selectionArgs, sortOrder)).get(SqlunetViewModel.class);
+		model.loadData();model.getData().observe(this.fragment, cursor -> {
+
+			// update UI
+			if (cursor.moveToFirst())
 			{
-				if (cursor.moveToFirst())
+				// column indices
+				// final int idWordId = cursor.getColumnIndex(VnClasses_VnMembers_X.WORDID);
+				// final int idVnWordId = cursor.getColumnIndex(VnClasses_VnMembers_X.VNWORDID);
+				final int idLemma = cursor.getColumnIndex(VnClasses_VnMembers_X.LEMMA);
+				final int idGroupings = cursor.getColumnIndex(VnClasses_VnMembers_X.GROUPINGS);
+				final int idDefinitions = cursor.getColumnIndex(VnClasses_VnMembers_X.DEFINITIONS);
+
+				do
 				{
-					// column indices
-					// final int idWordId = cursor.getColumnIndex(VnClasses_VnMembers_X.WORDID);
-					// final int idVnWordId = cursor.getColumnIndex(VnClasses_VnMembers_X.VNWORDID);
-					final int idLemma = cursor.getColumnIndex(VnClasses_VnMembers_X.LEMMA);
-					final int idGroupings = cursor.getColumnIndex(VnClasses_VnMembers_X.GROUPINGS);
-					final int idDefinitions = cursor.getColumnIndex(VnClasses_VnMembers_X.DEFINITIONS);
+					final SpannableStringBuilder sb = new SpannableStringBuilder();
 
-					do
+					// member
+					// Spanner.appendImage(sb, BaseModule.this.drawableMember);
+					// sb.append(' ');
+					Spanner.append(sb, cursor.getString(idLemma), 0, VerbNetFactories.memberFactory);
+
+					final String definitions = cursor.getString(idDefinitions);
+					final String groupings = cursor.getString(idGroupings);
+					if (definitions != null || groupings != null)
 					{
-						final SpannableStringBuilder sb = new SpannableStringBuilder();
+						final TreeNode memberNode = TreeFactory.addTreeNode(parent, sb, R.drawable.member, BaseModule.this.context);
 
-						// member
-						// Spanner.appendImage(sb, BaseModule.this.drawableMember);
-						// sb.append(' ');
-						Spanner.append(sb, cursor.getString(idLemma), 0, VerbNetFactories.memberFactory);
+						final SpannableStringBuilder sb2 = new SpannableStringBuilder();
 
-						final String definitions = cursor.getString(idDefinitions);
-						final String groupings = cursor.getString(idGroupings);
-						if (definitions != null || groupings != null)
+						// definitions
+						boolean first = true;
+						if (definitions != null)
 						{
-							final TreeNode memberNode = TreeFactory.addTreeNode(parent, sb, R.drawable.member, BaseModule.this.context);
-
-							final SpannableStringBuilder sb2 = new SpannableStringBuilder();
-
-							// definitions
-							boolean first = true;
-							if (definitions != null)
+							for (String definition : definitions.split("\\|"))
 							{
-								for (String definition : definitions.split("\\|"))
+								if (first)
 								{
-									if (first)
-									{
-										first = false;
-									}
-									else
+									first = false;
+								}
+								else
+								{
+									sb2.append('\n');
+								}
+
+								Spanner.appendImage(sb2, BaseModule.this.drawableDefinition);
+								sb2.append(' ');
+								Spanner.append(sb2, definition.trim(), 0, VerbNetFactories.definitionFactory);
+							}
+						}
+
+						// groupings
+						first = true;
+						if (groupings != null)
+						{
+							for (String grouping : groupings.split(","))
+							{
+								if (first)
+								{
+									if (sb2.length() > 0)
 									{
 										sb2.append('\n');
 									}
-
-									Spanner.appendImage(sb2, BaseModule.this.drawableDefinition);
-									sb2.append(' ');
-									Spanner.append(sb2, definition.trim(), 0, VerbNetFactories.definitionFactory);
+									first = false;
 								}
-							}
-
-							// groupings
-							first = true;
-							if (groupings != null)
-							{
-								for (String grouping : groupings.split(","))
+								else
 								{
-									if (first)
-									{
-										if (sb2.length() > 0)
-										{
-											sb2.append('\n');
-										}
-										first = false;
-									}
-									else
-									{
-										sb2.append('\n');
-									}
-
-									Spanner.appendImage(sb2, BaseModule.this.drawableGrouping);
-									sb2.append(' ');
-									Spanner.append(sb2, grouping.trim(), 0, VerbNetFactories.groupingFactory);
+									sb2.append('\n');
 								}
-							}
 
-							// attach definition and groupings result
-							TreeFactory.addTextNode(memberNode, sb2, BaseModule.this.context);
+								Spanner.appendImage(sb2, BaseModule.this.drawableGrouping);
+								sb2.append(' ');
+								Spanner.append(sb2, grouping.trim(), 0, VerbNetFactories.groupingFactory);
+							}
 						}
-						else
-						{
-							TreeFactory.addLeafNode(parent, sb, R.drawable.member, BaseModule.this.context);
-						}
+
+						// attach definition and groupings result
+						TreeFactory.addTextNode(memberNode, sb2, BaseModule.this.context);
 					}
-					while (cursor.moveToNext());
-
-					// fire event
-					FireEvent.onResults(parent);
+					else
+					{
+						TreeFactory.addLeafNode(parent, sb, R.drawable.member, BaseModule.this.context);
+					}
 				}
-				else
-				{
-					FireEvent.onNoResult(parent, true);
-				}
+				while (cursor.moveToNext());
 
-				// handled by LoaderManager, so no need to call cursor.close()
+				// fire event
+				FireEvent.onResults(parent);
 			}
-
-			@Override
-			public void onLoaderReset(@NonNull final Loader<Cursor> loader)
+			else
 			{
-				//
+				FireEvent.onNoResult(parent, true);
 			}
+
+			// TODO no need to call cursor.close() ?
 		});
 	}
 
@@ -378,87 +347,73 @@ abstract class BaseModule extends Module
 	 */
 	private void vnRoles(final int classId, @NonNull final TreeNode parent)
 	{
-		getLoaderManager().restartLoader(++Module.loaderId, null, new LoaderCallbacks<Cursor>()
-		{
-			@NonNull
-			@Override
-			public Loader<Cursor> onCreateLoader(final int loaderId, final Bundle loaderArgs)
-			{
-				final Uri uri = Uri.parse(VerbNetProvider.makeUri(VnClasses_VnRoles_X.CONTENT_URI_TABLE));
-				final String[] projection = { //
-						VnClasses_VnRoles_X.ROLEID, //
-						VnClasses_VnRoles_X.ROLETYPE, //
-						VnClasses_VnRoles_X.RESTRS, //
-						VnClasses_VnRoles_X.CLASSID, //
-				};
-				final String selection = VnClasses_VnRoles_X.CLASSID + " = ?";
-				final String[] selectionArgs = {Long.toString(classId)};
-				final String sortOrder = null;
-				assert BaseModule.this.context != null;
-				return new CursorLoader(BaseModule.this.context, uri, projection, selection, selectionArgs, sortOrder);
-			}
+		final Uri uri = Uri.parse(VerbNetProvider.makeUri(VnClasses_VnRoles_X.CONTENT_URI_TABLE));
+		final String[] projection = { //
+				VnClasses_VnRoles_X.ROLEID, //
+				VnClasses_VnRoles_X.ROLETYPE, //
+				VnClasses_VnRoles_X.RESTRS, //
+				VnClasses_VnRoles_X.CLASSID, //
+		};
+		final String selection = VnClasses_VnRoles_X.CLASSID + " = ?";
+		final String[] selectionArgs = {Long.toString(classId)};
+		final String sortOrder = null;
 
-			@Override
-			public void onLoadFinished(@NonNull final Loader<Cursor> loader, @NonNull final Cursor cursor)
+		final SqlunetViewModel model = ViewModelProviders.of(this.fragment, new SqlunetViewModelFactory(this.fragment, uri, projection, selection, selectionArgs, sortOrder)).get(SqlunetViewModel.class);
+		model.loadData();model.getData().observe(this.fragment, cursor -> {
+
+			// update UI
+			if (cursor.moveToFirst())
 			{
-				if (cursor.moveToFirst())
+				final SpannableStringBuilder sb = new SpannableStringBuilder();
+
+				// column indices
+				// final int idRoleId = cursor.getColumnIndex(VnClasses_VnRoles.ROLEID);
+				final int idRoleType = cursor.getColumnIndex(VnClasses_VnRoles_X.ROLETYPE);
+				final int idRestrs = cursor.getColumnIndex(VnClasses_VnRoles_X.RESTRS);
+
+				// read cursor
+				while (true)
 				{
-					final SpannableStringBuilder sb = new SpannableStringBuilder();
+					// role
+					Spanner.appendImage(sb, BaseModule.this.drawableRole);
+					sb.append(' ');
+					Spanner.append(sb, cursor.getString(idRoleType), 0, VerbNetFactories.roleFactory);
 
-					// column indices
-					// final int idRoleId = cursor.getColumnIndex(VnClasses_VnRoles.ROLEID);
-					final int idRoleType = cursor.getColumnIndex(VnClasses_VnRoles_X.ROLETYPE);
-					final int idRestrs = cursor.getColumnIndex(VnClasses_VnRoles_X.RESTRS);
-
-					// read cursor
-					while (true)
+					// restr
+					final CharSequence restrs = cursor.getString(idRestrs);
+					if (restrs != null)
 					{
-						// role
-						Spanner.appendImage(sb, BaseModule.this.drawableRole);
 						sb.append(' ');
-						Spanner.append(sb, cursor.getString(idRoleType), 0, VerbNetFactories.roleFactory);
-
-						// restr
-						final CharSequence restrs = cursor.getString(idRestrs);
-						if (restrs != null)
-						{
-							sb.append(' ');
-							Spanner.append(sb, restrs, 0, VerbNetFactories.restrsFactory);
-						}
-
-						// role id
-						// final int roleId = cursor.getInt(idRoleId);
-						// sb.append(" role id=");
-						// sb.append(Integer.toString(roleId));
-
-						if (!cursor.moveToNext())
-						{
-							//noinspection BreakStatement
-							break;
-						}
-
-						sb.append('\n');
+						Spanner.append(sb, restrs, 0, VerbNetFactories.restrsFactory);
 					}
 
-					// attach result
-					TreeFactory.addTextNode(parent, sb, BaseModule.this.context);
+					// role id
+					// final int roleId = cursor.getInt(idRoleId);
+					// sb.append(" role id=");
+					// sb.append(Integer.toString(roleId));
 
-					// fire event
-					FireEvent.onResults(parent);
-				}
-				else
-				{
-					FireEvent.onNoResult(parent, true);
+					if (!cursor.moveToNext())
+					{
+						//noinspection BreakStatement
+						break;
+					}
+
+					sb.append('\n');
 				}
 
-				// handled by LoaderManager, so no need to call cursor.close()
+				// attach result
+				TreeFactory.addTextNode(parent, sb, BaseModule.this.context);
+
+				// fire event
+				FireEvent.onResults(parent);
 			}
-
-			@Override
-			public void onLoaderReset(@NonNull final Loader<Cursor> loader)
+			else
 			{
-				//
+				FireEvent.onNoResult(parent, true);
 			}
+
+			// TODO no need to call cursor.close() ?
+
 		});
 	}
 
@@ -466,119 +421,104 @@ abstract class BaseModule extends Module
 
 	private void vnFrames(final int classId, @NonNull final TreeNode parent)
 	{
-		getLoaderManager().restartLoader(++Module.loaderId, null, new LoaderCallbacks<Cursor>()
-		{
-			@NonNull
-			@Override
-			public Loader<Cursor> onCreateLoader(final int loaderId, final Bundle loaderArgs)
-			{
-				final Uri uri = Uri.parse(VerbNetProvider.makeUri(VnClasses_VnFrames_X.CONTENT_URI_TABLE));
-				final String[] projection = { //
-						VnClasses_VnFrames_X.FRAMEID, //
-						VnClasses_VnFrames_X.NUMBER, //
-						VnClasses_VnFrames_X.XTAG, //
-						VnClasses_VnFrames_X.FRAMENAME, //
-						VnClasses_VnFrames_X.FRAMESUBNAME, //
-						VnClasses_VnFrames_X.SYNTAX, //
-						VnClasses_VnFrames_X.SEMANTICS, //
-						"GROUP_CONCAT(" + VnClasses_VnFrames_X.EXAMPLE + " , '|') AS " + VnClasses_VnFrames_X.EXAMPLES, //
-						VnClasses_VnFrames_X.CLASSID, //
-				};
-				final String selection = VnClasses_VnFrames_X.CLASSID + " = ?";
-				final String[] selectionArgs = {Long.toString(classId)};
-				final String sortOrder = null;
-				assert BaseModule.this.context != null;
-				return new CursorLoader(BaseModule.this.context, uri, projection, selection, selectionArgs, sortOrder);
-			}
+		final Uri uri = Uri.parse(VerbNetProvider.makeUri(VnClasses_VnFrames_X.CONTENT_URI_TABLE));
+		final String[] projection = { //
+				VnClasses_VnFrames_X.FRAMEID, //
+				VnClasses_VnFrames_X.NUMBER, //
+				VnClasses_VnFrames_X.XTAG, //
+				VnClasses_VnFrames_X.FRAMENAME, //
+				VnClasses_VnFrames_X.FRAMESUBNAME, //
+				VnClasses_VnFrames_X.SYNTAX, //
+				VnClasses_VnFrames_X.SEMANTICS, //
+				"GROUP_CONCAT(" + VnClasses_VnFrames_X.EXAMPLE + " , '|') AS " + VnClasses_VnFrames_X.EXAMPLES, //
+				VnClasses_VnFrames_X.CLASSID, //
+		};
+		final String selection = VnClasses_VnFrames_X.CLASSID + " = ?";
+		final String[] selectionArgs = {Long.toString(classId)};
+		final String sortOrder = null;
 
-			@Override
-			public void onLoadFinished(@NonNull final Loader<Cursor> loader, @NonNull final Cursor cursor)
-			{
-				final SpannableStringBuilder sb = new SpannableStringBuilder();
+		final SqlunetViewModel model = ViewModelProviders.of(this.fragment, new SqlunetViewModelFactory(this.fragment, uri, projection, selection, selectionArgs, sortOrder)).get(SqlunetViewModel.class);
+		model.loadData();model.getData().observe(this.fragment, cursor -> {
 
-				if (cursor.moveToFirst())
+			// update UI
+			final SpannableStringBuilder sb = new SpannableStringBuilder();
+
+			if (cursor.moveToFirst())
+			{
+				// column indices
+				// final int idFrameId = cursor.getColumnIndex(VnClasses_VnFrames.FRAMEID);
+				final int idFrameName = cursor.getColumnIndex(VnClasses_VnFrames_X.FRAMENAME);
+				final int idFrameSubName = cursor.getColumnIndex(VnClasses_VnFrames_X.FRAMESUBNAME);
+				final int idSyntax = cursor.getColumnIndex(VnClasses_VnFrames_X.SYNTAX);
+				final int idSemantics = cursor.getColumnIndex(VnClasses_VnFrames_X.SEMANTICS);
+				final int idExamples = cursor.getColumnIndex(VnClasses_VnFrames_X.EXAMPLES);
+
+				// read cursor
+				while (true)
 				{
-					// column indices
-					// final int idFrameId = cursor.getColumnIndex(VnClasses_VnFrames.FRAMEID);
-					final int idFrameName = cursor.getColumnIndex(VnClasses_VnFrames_X.FRAMENAME);
-					final int idFrameSubName = cursor.getColumnIndex(VnClasses_VnFrames_X.FRAMESUBNAME);
-					final int idSyntax = cursor.getColumnIndex(VnClasses_VnFrames_X.SYNTAX);
-					final int idSemantics = cursor.getColumnIndex(VnClasses_VnFrames_X.SEMANTICS);
-					final int idExamples = cursor.getColumnIndex(VnClasses_VnFrames_X.EXAMPLES);
+					// frame
+					Spanner.appendImage(sb, BaseModule.this.drawableFrame);
+					sb.append(' ');
+					Spanner.append(sb, cursor.getString(idFrameName), 0, VerbNetFactories.frameFactory);
+					sb.append(' ');
+					Spanner.append(sb, cursor.getString(idFrameSubName), 0, VerbNetFactories.framesubnameFactory);
 
-					// read cursor
-					while (true)
+					// frame id
+					// sb.append(Integer.toString(cursor.getInt(idFrameId)));
+					// sb.append('\n');
+
+					// syntax
+					final String syntax = cursor.getString(idSyntax);
+					for (final String line : syntax.split("\n")) //
 					{
-						// frame
-						Spanner.appendImage(sb, BaseModule.this.drawableFrame);
-						sb.append(' ');
-						Spanner.append(sb, cursor.getString(idFrameName), 0, VerbNetFactories.frameFactory);
-						sb.append(' ');
-						Spanner.append(sb, cursor.getString(idFrameSubName), 0, VerbNetFactories.framesubnameFactory);
-
-						// frame id
-						// sb.append(Integer.toString(cursor.getInt(idFrameId)));
-						// sb.append('\n');
-
-						// syntax
-						final String syntax = cursor.getString(idSyntax);
-						for (final String line : syntax.split("\n")) //
-						{
-							sb.append('\n');
-							sb.append('\t');
-							Spanner.appendImage(sb, BaseModule.this.drawableSyntax);
-							BaseModule.this.syntaxSpanner.append(line, sb, 0);
-						}
-
-						// semantics
-						final String semantics = cursor.getString(idSemantics);
-						for (final String line : semantics.split("\n")) //
-						{
-							sb.append('\n');
-							sb.append('\t');
-							Spanner.appendImage(sb, BaseModule.this.drawableSemantics);
-							final CharSequence statement = BaseModule.this.semanticsProcessor.process(line);
-							BaseModule.this.semanticsSpanner.append(statement, sb, 0);
-						}
-
-						// examples
-						final String examplesConcat = cursor.getString(idExamples);
-						final String[] examples = examplesConcat.split("\\|");
-						for (final String example : examples)
-						{
-							sb.append('\n');
-							sb.append('\t');
-							Spanner.appendImage(sb, BaseModule.this.drawableExample);
-							Spanner.append(sb, example, 0, VerbNetFactories.exampleFactory);
-						}
-
-						if (!cursor.moveToNext())
-						{
-							//noinspection BreakStatement
-							break;
-						}
 						sb.append('\n');
+						sb.append('\t');
+						Spanner.appendImage(sb, BaseModule.this.drawableSyntax);
+						BaseModule.this.syntaxSpanner.append(line, sb, 0);
 					}
 
-					// attach result
-					TreeFactory.addTextNode(parent, sb, BaseModule.this.context);
+					// semantics
+					final String semantics = cursor.getString(idSemantics);
+					for (final String line : semantics.split("\n")) //
+					{
+						sb.append('\n');
+						sb.append('\t');
+						Spanner.appendImage(sb, BaseModule.this.drawableSemantics);
+						final CharSequence statement = BaseModule.this.semanticsProcessor.process(line);
+						BaseModule.this.semanticsSpanner.append(statement, sb, 0);
+					}
 
-					// fire event
-					FireEvent.onResults(parent);
-				}
-				else
-				{
-					FireEvent.onNoResult(parent, true);
+					// examples
+					final String examplesConcat = cursor.getString(idExamples);
+					final String[] examples = examplesConcat.split("\\|");
+					for (final String example : examples)
+					{
+						sb.append('\n');
+						sb.append('\t');
+						Spanner.appendImage(sb, BaseModule.this.drawableExample);
+						Spanner.append(sb, example, 0, VerbNetFactories.exampleFactory);
+					}
+
+					if (!cursor.moveToNext())
+					{
+						//noinspection BreakStatement
+						break;
+					}
+					sb.append('\n');
 				}
 
-				// handled by LoaderManager, so no need to call cursor.close()
+				// attach result
+				TreeFactory.addTextNode(parent, sb, BaseModule.this.context);
+
+				// fire event
+				FireEvent.onResults(parent);
 			}
-
-			@Override
-			public void onLoaderReset(@NonNull final Loader<Cursor> loader)
+			else
 			{
-				//
+				FireEvent.onNoResult(parent, true);
 			}
+
+			// TODO no need to call cursor.close() ?
 		});
 	}
 

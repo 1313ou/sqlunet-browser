@@ -1,17 +1,10 @@
 package org.sqlunet.browser.xselector;
 
 import android.android.support.local.app.ExpandableListFragment;
-import android.content.Context;
 import android.database.Cursor;
 import android.database.MatrixCursor;
 import android.net.Uri;
 import android.os.Bundle;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.FragmentActivity;
-import androidx.loader.app.LoaderManager.LoaderCallbacks;
-import androidx.loader.content.CursorLoader;
-import androidx.loader.content.Loader;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,6 +16,8 @@ import android.widget.ExpandableListView;
 import android.widget.SimpleCursorTreeAdapter;
 
 import org.sqlunet.browser.Module;
+import org.sqlunet.browser.SqlunetViewModel;
+import org.sqlunet.browser.SqlunetViewModelFactory;
 import org.sqlunet.browser.vn.R;
 import org.sqlunet.browser.vn.Settings;
 import org.sqlunet.browser.xselector.XLoader.PbLoaderCallbacks;
@@ -34,6 +29,13 @@ import org.sqlunet.provider.XSqlUNetContract.Words_XNet;
 import org.sqlunet.provider.XSqlUNetProvider;
 
 import java.util.Locale;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.FragmentActivity;
+import androidx.lifecycle.ViewModelProviders;
+import androidx.loader.app.LoaderManager.LoaderCallbacks;
+import androidx.loader.content.Loader;
 
 /**
  * X selector fragment
@@ -294,44 +296,30 @@ public class XSelectorsFragment extends ExpandableListFragment
 	private void load()
 	{
 		// load the contents
-		getLoaderManager().restartLoader(this.wordIdLoaderId, null, new LoaderCallbacks<Cursor>()
-		{
-			@NonNull
-			@Override
-			public Loader<Cursor> onCreateLoader(final int id, final Bundle args)
-			{
-				final Uri uri = Uri.parse(XSqlUNetProvider.makeUri(XSqlUNetContract.Words_PbWords_VnWords.CONTENT_URI_TABLE));
-				final String[] projection = { //
-						Words_PbWords_VnWords.SYNSETID + " AS _id", //
-						Words_PbWords_VnWords.WORDID, //
-						Words_PbWords_VnWords.VNWORDID, //
-						Words_PbWords_VnWords.PBWORDID, //
-				};
-				final String selection = XSqlUNetContract.WORD + '.' + Words_PbWords_VnWords.LEMMA + " = ?";
-				final String[] selectionArgs = {XSelectorsFragment.this.word};
-				final String sortOrder = XSqlUNetContract.POS + '.' + Words_PbWords_VnWords.POS + ',' + Words_PbWords_VnWords.SENSENUM;
-				return new CursorLoader(requireContext(), uri, projection, selection, selectionArgs, sortOrder);
-			}
+		final Uri uri = Uri.parse(XSqlUNetProvider.makeUri(XSqlUNetContract.Words_PbWords_VnWords.CONTENT_URI_TABLE));
+		final String[] projection = { //
+				Words_PbWords_VnWords.SYNSETID + " AS _id", //
+				Words_PbWords_VnWords.WORDID, //
+				Words_PbWords_VnWords.VNWORDID, //
+				Words_PbWords_VnWords.PBWORDID, //
+		};
+		final String selection = XSqlUNetContract.WORD + '.' + Words_PbWords_VnWords.LEMMA + " = ?";
+		final String[] selectionArgs = {XSelectorsFragment.this.word};
+		final String sortOrder = XSqlUNetContract.POS + '.' + Words_PbWords_VnWords.POS + ',' + Words_PbWords_VnWords.SENSENUM;
 
-			// This will always be called from the process's main thread.
-			@Override
-			public void onLoadFinished(@NonNull final Loader<Cursor> loader, @NonNull final Cursor cursor)
-			{
-				// store source progressMessage
-				if (cursor.moveToFirst())
-				{
-					final int idWordId = cursor.getColumnIndex(Words_PbWords_VnWords.WORDID);
-					XSelectorsFragment.this.wordId = cursor.getLong(idWordId);
-					// handled by LoaderManager, so no need to call cursor.close()
+		final SqlunetViewModel model = ViewModelProviders.of(this, new SqlunetViewModelFactory(this, uri, projection, selection, selectionArgs, sortOrder)).get(SqlunetViewModel.class);
+		model.loadData();model.getData().observe(this, cursor -> {
 
-					initialize();
-				}
-			}
+			// update UI
 
-			@Override
-			public void onLoaderReset(@NonNull final Loader<Cursor> loader)
+			// store source progressMessage
+			if (cursor.moveToFirst())
 			{
-				//
+				final int idWordId = cursor.getColumnIndex(Words_PbWords_VnWords.WORDID);
+				XSelectorsFragment.this.wordId = cursor.getLong(idWordId);
+				// handled by LoaderManager, so no need to call cursor.close()
+
+				initialize();
 			}
 		});
 	}
@@ -369,7 +357,8 @@ public class XSelectorsFragment extends ExpandableListFragment
 			public View getGroupView(final int groupPosition, final boolean isExpanded, final View convertView, final ViewGroup parent)
 			{
 				Cursor cursor = this.getCursor();
-				if (cursor == null) {
+				if (cursor == null)
+				{
 					return null;
 				}
 				return super.getGroupView(groupPosition, isExpanded, convertView, parent);
@@ -391,6 +380,12 @@ public class XSelectorsFragment extends ExpandableListFragment
 	 */
 	private void startChildLoader(int groupPosition, int groupId, int loaderId)
 	{
+		final FragmentActivity activity = getActivity();
+		if (activity == null || isDetached() || activity.isFinishing() || activity.isDestroyed())
+		{
+			return;
+		}
+
 		Log.d(XSelectorsFragment.TAG, "Invoking startChildLoader() for  groupPosition=" + groupPosition + " groupId=" + groupId + " loaderId=" + loaderId);
 		LoaderCallbacks<Cursor> callbacks;
 		switch (groupId)
@@ -403,12 +398,6 @@ public class XSelectorsFragment extends ExpandableListFragment
 				break;
 			default:
 				return;
-		}
-
-		final FragmentActivity activity = getActivity();
-		if (activity == null || isDetached() || activity.isFinishing() || activity.isDestroyed())
-		{
-			return;
 		}
 
 		final Loader<Cursor> loaderChild = activity.getSupportLoaderManager().getLoader(loaderId);
@@ -570,10 +559,14 @@ public class XSelectorsFragment extends ExpandableListFragment
 				final long xMask = XSelectorPointer.getMask(xSources);
 
 				int groupId = -1;
-				if(this.groupVerbNetPosition != -1 && groupPosition == this.groupVerbNetPosition)
+				if (this.groupVerbNetPosition != -1 && groupPosition == this.groupVerbNetPosition)
+				{
 					groupId = GROUPID_VERBNET;
-				else if(this.groupPropBankPosition != -1 && groupPosition == this.groupPropBankPosition)
+				}
+				else if (this.groupPropBankPosition != -1 && groupPosition == this.groupPropBankPosition)
+				{
 					groupId = GROUPID_PROPBANK;
+				}
 
 				// pointer
 				final XSelectorPointer pointer = new XSelectorPointer(synsetId, wordId, xId, xClassId, xMemberId, xSources, xMask, groupId);

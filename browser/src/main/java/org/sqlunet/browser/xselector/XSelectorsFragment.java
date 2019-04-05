@@ -18,6 +18,8 @@ import android.widget.SimpleCursorTreeAdapter;
 
 import org.sqlunet.browser.Module;
 import org.sqlunet.browser.R;
+import org.sqlunet.browser.SqlunetViewModel;
+import org.sqlunet.browser.SqlunetViewModelFactory;
 import org.sqlunet.browser.xn.Settings;
 import org.sqlunet.browser.xselector.XLoader.FnLoaderCallbacks;
 import org.sqlunet.browser.xselector.XLoader.PbLoaderCallbacks;
@@ -34,8 +36,8 @@ import java.util.Locale;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProviders;
 import androidx.loader.app.LoaderManager.LoaderCallbacks;
-import androidx.loader.content.CursorLoader;
 import androidx.loader.content.Loader;
 
 /**
@@ -300,7 +302,7 @@ public class XSelectorsFragment extends ExpandableListFragment
 	{
 		super.onActivityCreated(savedInstanceState);
 
-		// load the contents (once activity is available)
+		// run the contents (once activity is available)
 		load();
 	}
 
@@ -333,51 +335,33 @@ public class XSelectorsFragment extends ExpandableListFragment
 	 */
 	private void load()
 	{
-		// load the contents
-		getLoaderManager().initLoader(this.wordIdLoaderId, null, new LoaderCallbacks<Cursor>()
-		{
-			@NonNull
-			@Override
-			public Loader<Cursor> onCreateLoader(final int id, final Bundle args)
+		// run the contents
+		final Uri uri = Uri.parse(XSqlUNetProvider.makeUri(Words_FnWords_PbWords_VnWords.CONTENT_URI_TABLE));
+		final String[] projection = { //
+				Words_FnWords_PbWords_VnWords.SYNSETID + " AS " + GROUPID_COLUMN, //
+				Words_FnWords_PbWords_VnWords.WORDID, //
+				Words_FnWords_PbWords_VnWords.FNWORDID, //
+				Words_FnWords_PbWords_VnWords.VNWORDID, //
+				Words_FnWords_PbWords_VnWords.PBWORDID, //
+		};
+		final String selection = XSqlUNetContract.WORD + '.' + Words_FnWords_PbWords_VnWords.LEMMA + " = ?";
+		final String[] selectionArgs = {XSelectorsFragment.this.word};
+		final String sortOrder = XSqlUNetContract.POS + '.' + Words_FnWords_PbWords_VnWords.POS + ',' + Words_FnWords_PbWords_VnWords.SENSENUM;
+
+		final SqlunetViewModel model = ViewModelProviders.of(this, new SqlunetViewModelFactory(this, uri, projection, selection, selectionArgs, sortOrder)).get(SqlunetViewModel.class);
+		model.loadData();
+		model.getData().observe(this, cursor -> {
+
+			// update UI
+
+			// store source progressMessage
+			if (cursor.moveToFirst())
 			{
-				Log.d(XSelectorsFragment.TAG, "onCreateLoader() for wordid loader id " + id);
-				final Uri uri = Uri.parse(XSqlUNetProvider.makeUri(Words_FnWords_PbWords_VnWords.CONTENT_URI_TABLE));
-				final String[] projection = { //
-						Words_FnWords_PbWords_VnWords.SYNSETID + " AS " + GROUPID_COLUMN, //
-						Words_FnWords_PbWords_VnWords.WORDID, //
-						Words_FnWords_PbWords_VnWords.FNWORDID, //
-						Words_FnWords_PbWords_VnWords.VNWORDID, //
-						Words_FnWords_PbWords_VnWords.PBWORDID, //
-				};
-				final String selection = XSqlUNetContract.WORD + '.' + Words_FnWords_PbWords_VnWords.LEMMA + " = ?";
-				final String[] selectionArgs = {XSelectorsFragment.this.word};
-				final String sortOrder = XSqlUNetContract.POS + '.' + Words_FnWords_PbWords_VnWords.POS + ',' + Words_FnWords_PbWords_VnWords.SENSENUM;
-				return new CursorLoader(requireContext(), uri, projection, selection, selectionArgs, sortOrder);
-			}
+				final int idWordId = cursor.getColumnIndex(Words_FnWords_PbWords_VnWords.WORDID);
+				XSelectorsFragment.this.wordId = cursor.getLong(idWordId);
+				// TODO no need to call cursor.close() ?
 
-			// This will always be called from the process's main thread.
-			@Override
-			public void onLoadFinished(@NonNull final Loader<Cursor> loader, @NonNull final Cursor cursor)
-			{
-				int id = loader.getId();
-				Log.d(XSelectorsFragment.TAG, "onLoadFinished() for wordid loader id " + id);
-
-				// store source progressMessage
-				if (cursor.moveToFirst())
-				{
-					final int idWordId = cursor.getColumnIndex(Words_FnWords_PbWords_VnWords.WORDID);
-					XSelectorsFragment.this.wordId = cursor.getLong(idWordId);
-					// handled by LoaderManager, so no need to call cursor.close()
-
-					initialize();
-				}
-			}
-
-			@Override
-			public void onLoaderReset(@NonNull final Loader<Cursor> loader)
-			{
-				int id = loader.getId();
-				Log.d(XSelectorsFragment.TAG, "onLoaderReset() for wordid loader id " + id);
+				initialize();
 			}
 		});
 	}

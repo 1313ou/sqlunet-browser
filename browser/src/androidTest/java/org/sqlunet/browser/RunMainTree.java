@@ -21,8 +21,8 @@ public class RunMainTree extends TestCase
 	@Before
 	public void before()
 	{
-		TestActions.navigationDrawer("Browse");
-		TestActions.spinner("per base", R.id.spinner);
+		Actions.do_navigate("Browse");
+		Actions.do_choose(R.id.spinner, "grouped by source");
 	}
 
 	@Test

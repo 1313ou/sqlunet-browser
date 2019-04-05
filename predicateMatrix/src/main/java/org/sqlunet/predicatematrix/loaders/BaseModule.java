@@ -1,21 +1,15 @@
 package org.sqlunet.predicatematrix.loaders;
 
 import android.content.Intent;
-import android.database.Cursor;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
-import android.os.Bundle;
 import android.os.Parcelable;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-import androidx.loader.app.LoaderManager.LoaderCallbacks;
-import androidx.loader.content.CursorLoader;
-import androidx.loader.content.Loader;
 import android.text.SpannableStringBuilder;
 import android.util.SparseArray;
 
 import org.sqlunet.browser.Module;
+import org.sqlunet.browser.SqlunetViewModel;
+import org.sqlunet.browser.SqlunetViewModelFactory;
 import org.sqlunet.framenet.FnFramePointer;
 import org.sqlunet.framenet.browser.FnFrameActivity;
 import org.sqlunet.predicatematrix.R;
@@ -43,6 +37,11 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
 import java.util.TreeSet;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProviders;
 
 /**
  * Base module for PredicateMatrix
@@ -88,7 +87,7 @@ abstract class BaseModule extends Module
 	 */
 	void fromWord(final String word, final TreeNode parent, final Displayer displayer)
 	{
-		getLoaderManager().restartLoader(++Module.loaderId, null, new PmProcessOnIteration(parent, displayer)
+		new PmProcessOnIteration(parent, displayer)
 		{
 			@NonNull
 			@Override
@@ -103,7 +102,7 @@ abstract class BaseModule extends Module
 			{
 				return new String[]{word};
 			}
-		});
+		}.run(this.fragment);
 	}
 
 	/**
@@ -114,7 +113,7 @@ abstract class BaseModule extends Module
 	 */
 	void fromWordGrouped(final String word, final TreeNode parent)
 	{
-		getLoaderManager().restartLoader(++Module.loaderId, null, new PmProcessGrouped(parent, new DisplayerByPmRole())
+		new PmProcessGrouped(parent, new DisplayerByPmRole())
 		{
 			@NonNull
 			@Override
@@ -129,7 +128,7 @@ abstract class BaseModule extends Module
 			{
 				return new String[]{word};
 			}
-		});
+		}.run(this.fragment);
 	}
 
 	/**
@@ -141,7 +140,7 @@ abstract class BaseModule extends Module
 	 */
 	void fromRoleId(final long pmRoleId, final TreeNode parent, final Displayer displayer)
 	{
-		getLoaderManager().restartLoader(++Module.loaderId, null, new PmProcessOnIteration(parent, displayer)
+		new PmProcessOnIteration(parent, displayer)
 		{
 			@NonNull
 			@Override
@@ -156,7 +155,7 @@ abstract class BaseModule extends Module
 			{
 				return new String[]{Long.toString(pmRoleId)};
 			}
-		});
+		}.run(this.fragment);
 	}
 
 	// D A T A
@@ -261,8 +260,7 @@ abstract class BaseModule extends Module
 		{
 			return (this.pmPos == null ? "null" : this.pmPos) + //
 					'-' + //
-					this.pmPredicate +
-					'-' + //
+					this.pmPredicate + '-' + //
 					(this.pmRole == null ? "null" : this.pmRole) //
 					;
 		}
@@ -683,7 +681,7 @@ abstract class BaseModule extends Module
 	/**
 	 * Abstract PredicateMatrix loader callbacks
 	 */
-	abstract class PmCallbacks implements LoaderCallbacks<Cursor>
+	abstract class PmCallbacks
 	{
 		/**
 		 * Displayer
@@ -724,8 +722,7 @@ abstract class BaseModule extends Module
 		abstract protected String[] getSelectionArgs();
 
 		@NonNull
-		@Override
-		public Loader<Cursor> onCreateLoader(final int loaderId, final Bundle loaderArgs)
+		public void run(final Fragment fragment)
 		{
 			final Uri uri = Uri.parse(PredicateMatrixProvider.makeUri(Pm_X.CONTENT_URI_TABLE));
 			final String[] projection = { //
@@ -768,109 +765,102 @@ abstract class BaseModule extends Module
 			final String selection = getSelection();
 			final String[] selectionArgs = getSelectionArgs();
 			final String sortOrder = this.displayer.getRequiredOrder();
-			assert BaseModule.this.context != null;
-			return new CursorLoader(BaseModule.this.context, uri, projection, selection, selectionArgs, sortOrder);
-		}
 
-		@Override
-		public void onLoadFinished(@NonNull final Loader<Cursor> loader, @NonNull final Cursor cursor)
-		{
-			if (cursor.moveToFirst())
-			{
-				// column indices
-				final int idPmId = cursor.getColumnIndex(PredicateMatrix.PMID);
-				final int idPmRoleId = cursor.getColumnIndex(PredicateMatrix.PMROLEID);
-				final int idPmPredId = cursor.getColumnIndex(PredicateMatrix.PMPREDID);
-				final int idPmPredicate = cursor.getColumnIndex(PredicateMatrix.PMPREDICATE);
-				final int idPmRole = cursor.getColumnIndex(PredicateMatrix.PMROLE);
-				final int idPmPos = cursor.getColumnIndex(PredicateMatrix.PMPOS);
+			final SqlunetViewModel model = ViewModelProviders.of(fragment, new SqlunetViewModelFactory(fragment, uri, projection, selection, selectionArgs, sortOrder)).get(SqlunetViewModel.class);
+			model.loadData();model.getData().observe(fragment, cursor -> {
 
-				// final int idWord = cursor.getColumnIndex(PredicateMatrix.WORD);
-				final int idSynsetId = cursor.getColumnIndex(PredicateMatrix.SYNSETID);
-				final int idDefinition = cursor.getColumnIndex(Pm_X.DEFINITION);
-
-				final int idVnClassId = cursor.getColumnIndex(PredicateMatrix.VNCLASSID);
-				final int idVnClass = cursor.getColumnIndex(Pm_X.VNCLASS);
-				final int idVnRoleTypeId = cursor.getColumnIndex(Pm_X.VNROLETYPEID);
-				final int idVnRoleType = cursor.getColumnIndex(Pm_X.VNROLETYPE);
-				// final int idVnRoleId = cursor.getColumnIndex(Pm_X.VNROLEID);
-				// final int idVnRoleRestrsId = cursor.getColumnIndex(Pm_X.VNROLERESTRID);
-
-				final int idPbRoleSetId = cursor.getColumnIndex(PredicateMatrix.PBROLESETID);
-				final int idPbRoleSet = cursor.getColumnIndex(Pm_X.PBROLESETNAME);
-				final int idPbRoleSetDescr = cursor.getColumnIndex(Pm_X.PBROLESETDESCR);
-				final int idPbRoleId = cursor.getColumnIndex(Pm_X.PBROLEID);
-				final int idPbRole = cursor.getColumnIndex(Pm_X.PBROLENARG);
-				final int idPbRoleDescr = cursor.getColumnIndex(Pm_X.PBROLEDESCR);
-				// final int idPbRoleSetHead = cursor.getColumnIndex(Pm_X.PBROLESETHEAD);
-				// final int idPbRoleNArgDescr = cursor.getColumnIndex(Pm_X.PBROLENARGDESCR);
-
-				final int idFnFrameId = cursor.getColumnIndex(PredicateMatrix.FRAMEID);
-				final int idFnFrame = cursor.getColumnIndex(Pm_X.FRAME);
-				final int idFnFeTypeId = cursor.getColumnIndex(Pm_X.FETYPEID);
-				final int idFnFeType = cursor.getColumnIndex(Pm_X.FETYPE);
-				// final int idFnFrameDefinition = cursor.getColumnIndex(Pm_X.FRAMEDEFINITION);
-				// final int idFnLexUnit = cursor.getColumnIndex(Pm_X.LEXUNIT);
-				// final int idFnLuDefinition = cursor.getColumnIndex(Pm_X.LUDEFINITION);
-				// final int idFnLuDict = cursor.getColumnIndex(Pm_X.LUDICT);
-				// final int idFnFeAbbrev = cursor.getColumnIndex(Pm_X.FEABBREV);
-				// final int idFnFeDefinition = cursor.getColumnIndex(Pm_X.FEDEFINITION);
-
-				// read cursor
-				do
+				// update UI
+				if (cursor.moveToFirst())
 				{
-					// data
-					final long pmId = cursor.getLong(idPmId);
-					final long pmRoleId = cursor.getLong(idPmRoleId);
-					final long pmPredId = cursor.getLong(idPmPredId);
-					final String pmPredicate = cursor.getString(idPmPredicate);
-					final String pmRole = cursor.getString(idPmRole);
-					final String pmPos = cursor.getString(idPmPos);
-					final PmRow pmRow = new PmRow(pmId, pmPredId, pmRoleId, pmPredicate, pmRole, pmPos);
+					// column indices
+					final int idPmId = cursor.getColumnIndex(PredicateMatrix.PMID);
+					final int idPmRoleId = cursor.getColumnIndex(PredicateMatrix.PMROLEID);
+					final int idPmPredId = cursor.getColumnIndex(PredicateMatrix.PMPREDID);
+					final int idPmPredicate = cursor.getColumnIndex(PredicateMatrix.PMPREDICATE);
+					final int idPmRole = cursor.getColumnIndex(PredicateMatrix.PMROLE);
+					final int idPmPos = cursor.getColumnIndex(PredicateMatrix.PMPOS);
 
-					// final String word = cursor.getString(idWord);
-					final long synsetId = cursor.getLong(idSynsetId);
-					final String definition = cursor.getString(idDefinition);
-					final WnData wnData = new WnData(synsetId, definition);
+					// final int idWord = cursor.getColumnIndex(PredicateMatrix.WORD);
+					final int idSynsetId = cursor.getColumnIndex(PredicateMatrix.SYNSETID);
+					final int idDefinition = cursor.getColumnIndex(Pm_X.DEFINITION);
 
-					final long vnClassId = cursor.getLong(idVnClassId);
-					final long vnRoleId = cursor.getLong(idVnRoleTypeId);
-					final String vnClass = cursor.getString(idVnClass);
-					final String vnRole = cursor.getString(idVnRoleType);
-					final VnData vnData = new VnData(vnClassId, vnRoleId, vnClass, vnRole);
+					final int idVnClassId = cursor.getColumnIndex(PredicateMatrix.VNCLASSID);
+					final int idVnClass = cursor.getColumnIndex(Pm_X.VNCLASS);
+					final int idVnRoleTypeId = cursor.getColumnIndex(Pm_X.VNROLETYPEID);
+					final int idVnRoleType = cursor.getColumnIndex(Pm_X.VNROLETYPE);
+					// final int idVnRoleId = cursor.getColumnIndex(Pm_X.VNROLEID);
+					// final int idVnRoleRestrsId = cursor.getColumnIndex(Pm_X.VNROLERESTRID);
 
-					final long pbRoleSetId = cursor.getLong(idPbRoleSetId);
-					final long pbRoleId = cursor.getLong(idPbRoleId);
-					final String pbRoleSet = cursor.getString(idPbRoleSet);
-					final String pbRoleSetDescr = cursor.getString(idPbRoleSetDescr);
-					final String pbRole = cursor.getString(idPbRole);
-					final String pbRoleDescr = cursor.getString(idPbRoleDescr);
-					final PbData pbData = new PbData(pbRoleSetId, pbRoleId, pbRoleSet, pbRoleSetDescr, pbRole, pbRoleDescr);
+					final int idPbRoleSetId = cursor.getColumnIndex(PredicateMatrix.PBROLESETID);
+					final int idPbRoleSet = cursor.getColumnIndex(Pm_X.PBROLESETNAME);
+					final int idPbRoleSetDescr = cursor.getColumnIndex(Pm_X.PBROLESETDESCR);
+					final int idPbRoleId = cursor.getColumnIndex(Pm_X.PBROLEID);
+					final int idPbRole = cursor.getColumnIndex(Pm_X.PBROLENARG);
+					final int idPbRoleDescr = cursor.getColumnIndex(Pm_X.PBROLEDESCR);
+					// final int idPbRoleSetHead = cursor.getColumnIndex(Pm_X.PBROLESETHEAD);
+					// final int idPbRoleNArgDescr = cursor.getColumnIndex(Pm_X.PBROLENARGDESCR);
 
-					final long fnFrameId = cursor.getLong(idFnFrameId);
-					final long fnFeId = cursor.getLong(idFnFeTypeId);
-					final String fnFrame = cursor.getString(idFnFrame);
-					final String fnFe = cursor.getString(idFnFeType);
-					final FnData fnData = new FnData(fnFrameId, fnFeId, fnFrame, fnFe);
+					final int idFnFrameId = cursor.getColumnIndex(PredicateMatrix.FRAMEID);
+					final int idFnFrame = cursor.getColumnIndex(Pm_X.FRAME);
+					final int idFnFeTypeId = cursor.getColumnIndex(Pm_X.FETYPEID);
+					final int idFnFeType = cursor.getColumnIndex(Pm_X.FETYPE);
+					// final int idFnFrameDefinition = cursor.getColumnIndex(Pm_X.FRAMEDEFINITION);
+					// final int idFnLexUnit = cursor.getColumnIndex(Pm_X.LEXUNIT);
+					// final int idFnLuDefinition = cursor.getColumnIndex(Pm_X.LUDEFINITION);
+					// final int idFnLuDict = cursor.getColumnIndex(Pm_X.LUDICT);
+					// final int idFnFeAbbrev = cursor.getColumnIndex(Pm_X.FEABBREV);
+					// final int idFnFeDefinition = cursor.getColumnIndex(Pm_X.FEDEFINITION);
 
-					// process
-					process(this.parent, wnData, pmRow, vnData, pbData, fnData);
+					// read cursor
+					do
+					{
+						// data
+						final long pmId = cursor.getLong(idPmId);
+						final long pmRoleId = cursor.getLong(idPmRoleId);
+						final long pmPredId = cursor.getLong(idPmPredId);
+						final String pmPredicate = cursor.getString(idPmPredicate);
+						final String pmRole = cursor.getString(idPmRole);
+						final String pmPos = cursor.getString(idPmPos);
+						final PmRow pmRow = new PmRow(pmId, pmPredId, pmRoleId, pmPredicate, pmRole, pmPos);
+
+						// final String word = cursor.getString(idWord);
+						final long synsetId = cursor.getLong(idSynsetId);
+						final String definition = cursor.getString(idDefinition);
+						final WnData wnData = new WnData(synsetId, definition);
+
+						final long vnClassId = cursor.getLong(idVnClassId);
+						final long vnRoleId = cursor.getLong(idVnRoleTypeId);
+						final String vnClass = cursor.getString(idVnClass);
+						final String vnRole = cursor.getString(idVnRoleType);
+						final VnData vnData = new VnData(vnClassId, vnRoleId, vnClass, vnRole);
+
+						final long pbRoleSetId = cursor.getLong(idPbRoleSetId);
+						final long pbRoleId = cursor.getLong(idPbRoleId);
+						final String pbRoleSet = cursor.getString(idPbRoleSet);
+						final String pbRoleSetDescr = cursor.getString(idPbRoleSetDescr);
+						final String pbRole = cursor.getString(idPbRole);
+						final String pbRoleDescr = cursor.getString(idPbRoleDescr);
+						final PbData pbData = new PbData(pbRoleSetId, pbRoleId, pbRoleSet, pbRoleSetDescr, pbRole, pbRoleDescr);
+
+						final long fnFrameId = cursor.getLong(idFnFrameId);
+						final long fnFeId = cursor.getLong(idFnFeTypeId);
+						final String fnFrame = cursor.getString(idFnFrame);
+						final String fnFe = cursor.getString(idFnFeType);
+						final FnData fnData = new FnData(fnFrameId, fnFeId, fnFrame, fnFe);
+
+						// process
+						process(this.parent, wnData, pmRow, vnData, pbData, fnData);
+					}
+					while (cursor.moveToNext());
+
+					endProcess();
+
+					// fire event
+					FireEvent.onResults(this.parent, this.displayer.getExpandLevels());
 				}
-				while (cursor.moveToNext());
 
-				endProcess();
-
-				// fire event
-				FireEvent.onResults(this.parent, this.displayer.getExpandLevels());
-			}
-
-			// handled by LoaderManager, so no need to call cursor.close()
-		}
-
-		@Override
-		public void onLoaderReset(@NonNull final Loader<Cursor> loader)
-		{
-			//
+				// TODO no need to call cursor.close() ?
+			});
 		}
 
 		/**

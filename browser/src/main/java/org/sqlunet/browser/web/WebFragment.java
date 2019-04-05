@@ -107,7 +107,7 @@ public class WebFragment extends Fragment
 		// webview
 		this.webview = view.findViewById(R.id.webView);
 
-		// load view
+		// run view
 		load();
 
 		return view;
@@ -507,7 +507,7 @@ public class WebFragment extends Fragment
 		final String data = args.getString(ProviderArgs.ARG_QUERYSTRING);
 		Log.d(WebFragment.TAG, "ARG_POSITION data=" + data);
 
-		// load the contents
+		// run the contents
 		getLoaderManager().restartLoader(++Module.loaderId, null, new LoaderCallbacks<String>()
 		{
 			@NonNull

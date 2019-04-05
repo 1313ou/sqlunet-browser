@@ -1,15 +1,8 @@
 package org.sqlunet.browser;
 
-import android.content.Context;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.ListFragment;
-import androidx.loader.app.LoaderManager.LoaderCallbacks;
-import androidx.loader.content.CursorLoader;
-import androidx.loader.content.Loader;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,7 +10,6 @@ import android.view.ViewGroup;
 import android.widget.CursorAdapter;
 import android.widget.SimpleCursorAdapter;
 import android.widget.SimpleCursorAdapter.ViewBinder;
-import android.widget.Toast;
 
 import org.sqlunet.browser.common.R;
 import org.sqlunet.provider.ProviderArgs;
@@ -27,6 +19,11 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.ListFragment;
+import androidx.lifecycle.ViewModelProviders;
 
 /**
  * A list fragment representing a table.
@@ -63,7 +60,7 @@ public abstract class AbstractTableFragment extends ListFragment
 		final String id = args.getString(ProviderArgs.ARG_QUERYID);
 		final String[] items = args.getStringArray(ProviderArgs.ARG_QUERYITEMS);
 		final String[] hiddenItems = args.getStringArray(ProviderArgs.ARG_QUERYHIDDENITEMS);
-		final String sort = args.getString(ProviderArgs.ARG_QUERYSORT);
+		final String sortOrder = args.getString(ProviderArgs.ARG_QUERYSORT);
 		final String selection = args.getString(ProviderArgs.ARG_QUERYFILTER);
 		final String queryArg = args.getString(ProviderArgs.ARG_QUERYARG);
 		final int layoutId = args.getInt(ProviderArgs.ARG_QUERYLAYOUT);
@@ -117,57 +114,35 @@ public abstract class AbstractTableFragment extends ListFragment
 		setListAdapter(adapter);
 
 		// load the contents
-		getLoaderManager().restartLoader(++Module.loaderId, null, new LoaderCallbacks<Cursor>()
+
+		// make projection
+		final List<String> cols = new ArrayList<>();
+
+		// add _id alias for first column
+		cols.add(id + " AS _id");
+
+		// add items
+		if (items != null)
 		{
-			@NonNull
-			@Override
-			public Loader<Cursor> onCreateLoader(final int loaderId, final Bundle loaderArgs)
-			{
-				// make projection
-				final List<String> cols = new ArrayList<>();
+			Collections.addAll(cols, items);
+		}
 
-				// addItem _id alias for first column
-				cols.add(id + " AS _id");
+		// add hidden items
+		if (hiddenItems != null)
+		{
+			Collections.addAll(cols, hiddenItems);
+		}
 
-				// addItem items
-				if (items != null)
-				{
-					Collections.addAll(cols, items);
-				}
-
-				// addItem hidden items
-				if (hiddenItems != null)
-				{
-					Collections.addAll(cols, hiddenItems);
-				}
-
-				final String[] projection = cols.toArray(new String[0]);
-				// for (String p : projection)
-				// {
-				//  Log.d(TAG, p);
-				// }
-				final String[] selectionArgs = queryArg == null ? null : new String[]{queryArg};
-				return new CursorLoader(requireContext(), uri, projection, selection, selectionArgs, sort);
-			}
-
-			@Override
-			public void onLoadFinished(@NonNull final Loader<Cursor> loader, @Nullable final Cursor cursor)
-			{
-				// dump(cursor);
-
-				if (cursor == null)
-				{
-					Toast.makeText(requireContext(), R.string.status_provider_query_failed, Toast.LENGTH_LONG).show();
-				}
-
-				((CursorAdapter) getListAdapter()).swapCursor(cursor);
-			}
-
-			@Override
-			public void onLoaderReset(@NonNull final Loader<Cursor> loader)
-			{
-				((CursorAdapter) getListAdapter()).swapCursor(null);
-			}
+		final String[] projection = cols.toArray(new String[0]);
+		// for (String p : projection)
+		// {
+		//  Log.d(TAG, p);
+		// }
+		final String[] selectionArgs = queryArg == null ? null : new String[]{queryArg};
+		final SqlunetViewModel model = ViewModelProviders.of(this, new SqlunetViewModelFactory(this, uri, projection, selection, selectionArgs, sortOrder)).get(SqlunetViewModel.class);
+		model.loadData();model.getData().observe(this, cursor -> {
+			// update UI
+			((CursorAdapter) getListAdapter()).swapCursor(cursor);
 		});
 	}
 

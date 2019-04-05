@@ -1,15 +1,8 @@
 package org.sqlunet.browser.selector;
 
-import android.content.Context;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.ListFragment;
-import androidx.loader.app.LoaderManager.LoaderCallbacks;
-import androidx.loader.content.CursorLoader;
-import androidx.loader.content.Loader;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,14 +14,20 @@ import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
 
-import org.sqlunet.browser.Module;
 import org.sqlunet.browser.R;
+import org.sqlunet.browser.SqlunetViewModel;
+import org.sqlunet.browser.SqlunetViewModelFactory;
 import org.sqlunet.provider.ProviderArgs;
 import org.sqlunet.provider.XSqlUNetContract;
 import org.sqlunet.provider.XSqlUNetContract.Words_FnWords_PbWords_VnWords;
 import org.sqlunet.provider.XSqlUNetProvider;
 
 import java.util.Locale;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.ListFragment;
+import androidx.lifecycle.ViewModelProviders;
 
 /**
  * Selector Fragment
@@ -213,7 +212,7 @@ public class SelectorsFragment extends ListFragment
 	{
 		super.onStart();
 
-		// load the contents (once activity is available)
+		// run the contents (once activity is available)
 		load();
 	}
 
@@ -248,66 +247,53 @@ public class SelectorsFragment extends ListFragment
 	 */
 	private void load()
 	{
-		// load the contents
-		getLoaderManager().restartLoader(++Module.loaderId, null, new LoaderCallbacks<Cursor>()
-		{
-			@NonNull
-			@Override
-			public Loader<Cursor> onCreateLoader(final int loaderId, final Bundle loaderArgs)
+		// run the contents
+		final Uri uri = Uri.parse(XSqlUNetProvider.makeUri(Words_FnWords_PbWords_VnWords.CONTENT_URI_TABLE));
+		final String[] projection = { //
+				Words_FnWords_PbWords_VnWords.SYNSETID + " AS _id", //
+				Words_FnWords_PbWords_VnWords.WORDID, //
+				Words_FnWords_PbWords_VnWords.SENSEID, //
+				Words_FnWords_PbWords_VnWords.SENSENUM, //
+				Words_FnWords_PbWords_VnWords.SENSEKEY, //
+				Words_FnWords_PbWords_VnWords.LEXID, //
+				Words_FnWords_PbWords_VnWords.TAGCOUNT, //
+				Words_FnWords_PbWords_VnWords.SYNSETID, //
+				Words_FnWords_PbWords_VnWords.DEFINITION, //
+				XSqlUNetContract.SYNSET + '.' + Words_FnWords_PbWords_VnWords.POS, //
+				Words_FnWords_PbWords_VnWords.POSNAME, //
+				Words_FnWords_PbWords_VnWords.LEXDOMAIN, //
+				Words_FnWords_PbWords_VnWords.CASED, //
+				Words_FnWords_PbWords_VnWords.FNWORDID, //
+				Words_FnWords_PbWords_VnWords.VNWORDID, //
+				Words_FnWords_PbWords_VnWords.PBWORDID, //
+		};
+		final String selection = XSqlUNetContract.WORD + '.' + Words_FnWords_PbWords_VnWords.LEMMA + " = ?"; ////
+		final String[] selectionArgs = {SelectorsFragment.this.word};
+		final String sortOrder = XSqlUNetContract.SYNSET + '.' + Words_FnWords_PbWords_VnWords.POS + ',' + Words_FnWords_PbWords_VnWords.SENSENUM;
+
+		final SqlunetViewModel model = ViewModelProviders.of(this, new SqlunetViewModelFactory(this, uri, projection, selection, selectionArgs, sortOrder)).get(SqlunetViewModel.class);
+		model.loadData();model.getData().observe(this, cursor -> {
+
+			// update UI
+
+			// store source progressMessage
+			if (cursor.moveToFirst())
 			{
-				final Uri uri = Uri.parse(XSqlUNetProvider.makeUri(Words_FnWords_PbWords_VnWords.CONTENT_URI_TABLE));
-				final String[] projection = { //
-						Words_FnWords_PbWords_VnWords.SYNSETID + " AS _id", //
-						Words_FnWords_PbWords_VnWords.WORDID, //
-						Words_FnWords_PbWords_VnWords.SENSEID, //
-						Words_FnWords_PbWords_VnWords.SENSENUM, //
-						Words_FnWords_PbWords_VnWords.SENSEKEY, //
-						Words_FnWords_PbWords_VnWords.LEXID, //
-						Words_FnWords_PbWords_VnWords.TAGCOUNT, //
-						Words_FnWords_PbWords_VnWords.SYNSETID, //
-						Words_FnWords_PbWords_VnWords.DEFINITION, //
-						XSqlUNetContract.SYNSET + '.' + Words_FnWords_PbWords_VnWords.POS, //
-						Words_FnWords_PbWords_VnWords.POSNAME, //
-						Words_FnWords_PbWords_VnWords.LEXDOMAIN, //
-						Words_FnWords_PbWords_VnWords.CASED, //
-						Words_FnWords_PbWords_VnWords.FNWORDID, //
-						Words_FnWords_PbWords_VnWords.VNWORDID, //
-						Words_FnWords_PbWords_VnWords.PBWORDID, //
-				};
-				final String selection = XSqlUNetContract.WORD + '.' + Words_FnWords_PbWords_VnWords.LEMMA + " = ?"; ////
-				final String[] selectionArgs = {SelectorsFragment.this.word};
-				final String sortOrder = XSqlUNetContract.SYNSET + '.' + Words_FnWords_PbWords_VnWords.POS + ',' + Words_FnWords_PbWords_VnWords.SENSENUM;
-				return new CursorLoader(requireContext(), uri, projection, selection, selectionArgs, sortOrder);
+				final int idWordId = cursor.getColumnIndex(Words_FnWords_PbWords_VnWords.WORDID);
+				SelectorsFragment.this.wordId = cursor.getLong(idWordId);
 			}
 
-			@Override
-			public void onLoadFinished(@NonNull final Loader<Cursor> loader, @NonNull final Cursor cursor)
+			// pass on to list adapter
+			((CursorAdapter) getListAdapter()).swapCursor(cursor);
+
+			// check
+			/*
+			if (SelectorsFragment.this.activatedPosition != AdapterView.INVALID_POSITION)
 			{
-				// store source progressMessage
-				if (cursor.moveToFirst())
-				{
-					final int idWordId = cursor.getColumnIndex(Words_FnWords_PbWords_VnWords.WORDID);
-					SelectorsFragment.this.wordId = cursor.getLong(idWordId);
-				}
-
-				// pass on to list adapter
-				((CursorAdapter) getListAdapter()).swapCursor(cursor);
-
-				// check
-				/*
-				if (SelectorsFragment.this.activatedPosition != AdapterView.INVALID_POSITION)
-				{
-					final ListView listView = getListView();
-					listView.setItemChecked(SelectorsFragment.this.activatedPosition, true);
-				}
-				*/
+				final ListView listView = getListView();
+				listView.setItemChecked(SelectorsFragment.this.activatedPosition, true);
 			}
-
-			@Override
-			public void onLoaderReset(@NonNull final Loader<Cursor> loader)
-			{
-				((CursorAdapter) getListAdapter()).swapCursor(null);
-			}
+			*/
 		});
 	}
 

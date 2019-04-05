@@ -25,6 +25,7 @@ allprojects {
         minSdkVersion = 17
         targetSdkVersion = 28
         compileSdkVersion = 28
+        lifecycleVersion = '2.0.0'
     }
 
     tasks.withType(JavaCompile) {

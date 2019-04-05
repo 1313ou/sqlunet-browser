@@ -1,16 +1,9 @@
 package org.sqlunet.browser.selector;
 
-import android.content.Context;
 import android.database.Cursor;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.ListFragment;
-import androidx.loader.app.LoaderManager.LoaderCallbacks;
-import androidx.loader.content.CursorLoader;
-import androidx.loader.content.Loader;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,7 +16,8 @@ import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
 
 import org.sqlunet.Pointer;
-import org.sqlunet.browser.Module;
+import org.sqlunet.browser.SqlunetViewModel;
+import org.sqlunet.browser.SqlunetViewModelFactory;
 import org.sqlunet.browser.fn.R;
 import org.sqlunet.framenet.FnFramePointer;
 import org.sqlunet.framenet.FnLexUnitPointer;
@@ -32,6 +26,11 @@ import org.sqlunet.framenet.provider.FrameNetProvider;
 import org.sqlunet.provider.ProviderArgs;
 
 import java.util.Locale;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.ListFragment;
+import androidx.lifecycle.ViewModelProviders;
 
 /**
  * Selector Fragment
@@ -227,44 +226,33 @@ public class SelectorsFragment extends ListFragment
 	private void load()
 	{
 		// load the contents
-		getLoaderManager().restartLoader(++Module.loaderId, null, new LoaderCallbacks<Cursor>()
-		{
-			@NonNull
-			@Override
-			public Loader<Cursor> onCreateLoader(final int loaderId, final Bundle loaderArgs)
-			{
-				final Uri uri = Uri.parse(FrameNetProvider.makeUri(LexUnits_or_Frames.CONTENT_URI_TABLE));
-				final String[] projection = { //
-						LexUnits_or_Frames.ID, //
-						LexUnits_or_Frames.FNID, //
-						LexUnits_or_Frames.FNWORDID, //
-						LexUnits_or_Frames.WORDID, //
-						LexUnits_or_Frames.WORD, //
-						LexUnits_or_Frames.NAME, //
-						LexUnits_or_Frames.FRAMENAME, //
-						LexUnits_or_Frames.FRAMEID, //
-						LexUnits_or_Frames.ISFRAME, //
-						LexUnits_or_Frames.WORD + "<>'" + SelectorsFragment.this.word + "' AS " + ISLIKE, //
-				};
-				final String selection = LexUnits_or_Frames.WORD + " LIKE ? || '%'";
-				final String[] selectionArgs = {SelectorsFragment.this.word};
-				final String sortOrder = LexUnits_or_Frames.ISFRAME + ',' + LexUnits_or_Frames.WORD + ',' + LexUnits_or_Frames.ID;
-				return new CursorLoader(requireContext(), uri, projection, selection, selectionArgs, sortOrder);
-			}
+		final Uri uri = Uri.parse(FrameNetProvider.makeUri(LexUnits_or_Frames.CONTENT_URI_TABLE));
+		final String[] projection = { //
+				LexUnits_or_Frames.ID, //
+				LexUnits_or_Frames.FNID, //
+				LexUnits_or_Frames.FNWORDID, //
+				LexUnits_or_Frames.WORDID, //
+				LexUnits_or_Frames.WORD, //
+				LexUnits_or_Frames.NAME, //
+				LexUnits_or_Frames.FRAMENAME, //
+				LexUnits_or_Frames.FRAMEID, //
+				LexUnits_or_Frames.ISFRAME, //
+				LexUnits_or_Frames.WORD + "<>'" + SelectorsFragment.this.word + "' AS " + ISLIKE, //
+		};
+		final String selection = LexUnits_or_Frames.WORD + " LIKE ? || '%'";
+		final String[] selectionArgs = {SelectorsFragment.this.word};
+		final String sortOrder = LexUnits_or_Frames.ISFRAME + ',' + LexUnits_or_Frames.WORD + ',' + LexUnits_or_Frames.ID;
 
-			@Override
-			public void onLoadFinished(@NonNull final Loader<Cursor> loader, final Cursor cursor)
-			{
-				// pass on to list adapter
-				((CursorAdapter) getListAdapter()).swapCursor(cursor);
-			}
 
-			@Override
-			public void onLoaderReset(@NonNull final Loader<Cursor> loader)
-			{
-				((CursorAdapter) getListAdapter()).swapCursor(null);
-			}
+		final SqlunetViewModel model = ViewModelProviders.of(this, new SqlunetViewModelFactory(this, uri, projection, selection, selectionArgs, sortOrder)).get(SqlunetViewModel.class);
+		model.loadData();model.getData().observe(this, cursor -> {
+
+			// update UI
+
+			// pass on to list adapter
+			((CursorAdapter) getListAdapter()).swapCursor(cursor);
 		});
+
 	}
 
 	// C L I C K

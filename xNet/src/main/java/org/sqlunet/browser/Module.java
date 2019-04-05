@@ -25,7 +25,7 @@ public abstract class Module
 	 * Fragment
 	 */
 	@NonNull
-	private final Fragment fragment;
+	protected final Fragment fragment;
 
 	/**
 	 * Context
@@ -48,16 +48,6 @@ public abstract class Module
 	{
 		this.fragment = fragment;
 		this.context = fragment.getContext();
-	}
-
-	/**
-	 * Get loader manager
-	 *
-	 * @return loader manager
-	 */
-	protected LoaderManager getLoaderManager()
-	{
-		return this.fragment.getLoaderManager();
 	}
 
 	/**

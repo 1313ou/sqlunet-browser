@@ -20,12 +20,10 @@ import androidx.test.espresso.Espresso;
 import androidx.test.espresso.UiController;
 import androidx.test.espresso.ViewAction;
 
-class TestUtils
+import static androidx.test.espresso.Espresso.onView;
+
+class ContainerUtils
 {
-	static private final int PAUSE_MS = 5000;
-
-	static private final String LISTFILE = "sqlunet.list";
-
 	/**
 	 * Count of children views in the view group/container
 	 *
@@ -35,7 +33,7 @@ class TestUtils
 	static public int getViewCount(final Matcher<View> matcher)
 	{
 		final int[] count = {0}; // has to be final
-		Espresso.onView(matcher).perform(new ViewAction()
+		onView(matcher).perform(new ViewAction()
 		{
 			@Override
 			public Matcher<View> getConstraints()
@@ -65,10 +63,10 @@ class TestUtils
 	 * @param matcher matcher for adapter view
 	 * @return how many items are in the data set represented by this adapter
 	 */
-	static public int getItemCount(final Matcher<View> matcher)
+	static int getItemCount(final Matcher<View> matcher)
 	{
 		final int[] count = {0}; // has to be final
-		Espresso.onView(matcher).perform(new ViewAction()
+		onView(matcher).perform(new ViewAction()
 		{
 			@Override
 			public Matcher<View> getConstraints()
@@ -98,10 +96,10 @@ class TestUtils
 	 * @param matcher matcher for ExpandableListView
 	 * @return array of counts per group
 	 */
-	static public int[] getExpandableListViewItemCounts(final Matcher<View> matcher)
+	static int[] getExpandableListViewItemCounts(final Matcher<View> matcher)
 	{
 		final int[][] result = {new int[0]}; // has to be final
-		Espresso.onView(matcher).perform(new ViewAction()
+		onView(matcher).perform(new ViewAction()
 		{
 			@Override
 			public Matcher<View> getConstraints()
@@ -130,91 +128,5 @@ class TestUtils
 			}
 		});
 		return result[0];
-	}
-
-	static public ViewAction withCustomConstraints(final ViewAction action, final Matcher<View> constraints)
-	{
-		return new ViewAction()
-		{
-			@Override
-			public Matcher<View> getConstraints()
-			{
-				return constraints;
-			}
-
-			@Override
-			public String getDescription()
-			{
-				return action.getDescription();
-			}
-
-			@Override
-			public void perform(UiController uiController, View view)
-			{
-				action.perform(uiController, view);
-			}
-		};
-	}
-
-	static public String arrayToString(int... a)
-	{
-		final StringBuilder sb = new StringBuilder();
-		sb.append('{');
-		boolean first = true;
-		for (int i : a)
-		{
-			if (first)
-			{
-				first = false;
-			}
-			else
-			{
-				sb.append(',');
-			}
-			sb.append(i);
-		}
-		sb.append('}');
-		return sb.toString();
-	}
-
-	static public void pause()
-	{
-		try
-		{
-			Thread.sleep(PAUSE_MS);
-		}
-		catch (InterruptedException e)
-		{
-			//
-		}
-	}
-
-	static public String[] WORDLIST = {"abandon", "leave", "inveigle", "foist", "flounder", "flout"};
-
-	static public String[] getWordList()
-	{
-		return readWordList();
-	}
-
-	static private String[] readWordList()
-	{
-		final List<String> list = new ArrayList<>();
-		final File dataFile = new File(Environment.getExternalStorageDirectory(), TestUtils.LISTFILE);
-		try
-		{
-			final FileReader reader = new FileReader(dataFile);
-			final BufferedReader br = new BufferedReader(reader);
-			String line;
-			while ((line = br.readLine()) != null)
-			{
-				list.add(line.trim());
-			}
-			br.close();
-		}
-		catch (final IOException e)
-		{
-			Log.d("READ", "Error " + dataFile.getAbsolutePath(), e);
-		}
-		return list.toArray(new String[0]);
 	}
 }

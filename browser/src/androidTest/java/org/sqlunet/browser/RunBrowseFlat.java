@@ -7,6 +7,7 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import androidx.annotation.NonNull;
 import androidx.test.filters.LargeTest;
 import androidx.test.rule.ActivityTestRule;
 import androidx.test.runner.AndroidJUnit4;
@@ -15,13 +16,14 @@ import androidx.test.runner.AndroidJUnit4;
 @LargeTest
 public class RunBrowseFlat extends TestCase
 {
+	@NonNull
 	@Rule
 	public ActivityTestRule<BrowseActivity> testRule = new ActivityTestRule<>(BrowseActivity.class, true, true);
 
 	@Before
 	public void before()
 	{
-		TestActions.spinner("senses", R.id.spinner);
+		Actions.do_choose(R.id.spinner, "senses");
 	}
 
 	@Test

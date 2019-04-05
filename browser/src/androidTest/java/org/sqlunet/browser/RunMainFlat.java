@@ -21,8 +21,8 @@ public class RunMainFlat extends TestCase
 	@Before
 	public void before()
 	{
-		TestActions.navigationDrawer("Browse");
-		TestActions.spinner("senses", R.id.spinner);
+		Actions.do_navigate("Browse");
+		Actions.do_choose(R.id.spinner, "senses");
 	}
 
 	@Test
