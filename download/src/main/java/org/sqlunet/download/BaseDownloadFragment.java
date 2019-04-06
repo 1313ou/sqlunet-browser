@@ -616,7 +616,7 @@ abstract public class BaseDownloadFragment extends Fragment implements View.OnCl
 					break;
 				}
 
-				// observer update UI
+				// observer update
 				observerUpdate();
 
 				// sleep

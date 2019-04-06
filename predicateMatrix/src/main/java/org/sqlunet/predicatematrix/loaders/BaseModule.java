@@ -1,6 +1,7 @@
 package org.sqlunet.predicatematrix.loaders;
 
 import android.content.Intent;
+import android.database.Cursor;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Parcelable;
@@ -767,100 +768,112 @@ abstract class BaseModule extends Module
 			final String sortOrder = this.displayer.getRequiredOrder();
 
 			final SqlunetViewModel model = ViewModelProviders.of(fragment, new SqlunetViewModelFactory(fragment, uri, projection, selection, selectionArgs, sortOrder)).get(SqlunetViewModel.class);
-			model.loadData();model.getData().observe(fragment, cursor -> {
+			final String tag = "pm.pm";
+			model.loadData(tag);
+			model.getData().observe(fragment, entry -> {
 
-				// update UI
-				if (cursor.moveToFirst())
+				final String key = entry.getKey();
+				if (!tag.equals(key))
 				{
-					// column indices
-					final int idPmId = cursor.getColumnIndex(PredicateMatrix.PMID);
-					final int idPmRoleId = cursor.getColumnIndex(PredicateMatrix.PMROLEID);
-					final int idPmPredId = cursor.getColumnIndex(PredicateMatrix.PMPREDID);
-					final int idPmPredicate = cursor.getColumnIndex(PredicateMatrix.PMPREDICATE);
-					final int idPmRole = cursor.getColumnIndex(PredicateMatrix.PMROLE);
-					final int idPmPos = cursor.getColumnIndex(PredicateMatrix.PMPOS);
-
-					// final int idWord = cursor.getColumnIndex(PredicateMatrix.WORD);
-					final int idSynsetId = cursor.getColumnIndex(PredicateMatrix.SYNSETID);
-					final int idDefinition = cursor.getColumnIndex(Pm_X.DEFINITION);
-
-					final int idVnClassId = cursor.getColumnIndex(PredicateMatrix.VNCLASSID);
-					final int idVnClass = cursor.getColumnIndex(Pm_X.VNCLASS);
-					final int idVnRoleTypeId = cursor.getColumnIndex(Pm_X.VNROLETYPEID);
-					final int idVnRoleType = cursor.getColumnIndex(Pm_X.VNROLETYPE);
-					// final int idVnRoleId = cursor.getColumnIndex(Pm_X.VNROLEID);
-					// final int idVnRoleRestrsId = cursor.getColumnIndex(Pm_X.VNROLERESTRID);
-
-					final int idPbRoleSetId = cursor.getColumnIndex(PredicateMatrix.PBROLESETID);
-					final int idPbRoleSet = cursor.getColumnIndex(Pm_X.PBROLESETNAME);
-					final int idPbRoleSetDescr = cursor.getColumnIndex(Pm_X.PBROLESETDESCR);
-					final int idPbRoleId = cursor.getColumnIndex(Pm_X.PBROLEID);
-					final int idPbRole = cursor.getColumnIndex(Pm_X.PBROLENARG);
-					final int idPbRoleDescr = cursor.getColumnIndex(Pm_X.PBROLEDESCR);
-					// final int idPbRoleSetHead = cursor.getColumnIndex(Pm_X.PBROLESETHEAD);
-					// final int idPbRoleNArgDescr = cursor.getColumnIndex(Pm_X.PBROLENARGDESCR);
-
-					final int idFnFrameId = cursor.getColumnIndex(PredicateMatrix.FRAMEID);
-					final int idFnFrame = cursor.getColumnIndex(Pm_X.FRAME);
-					final int idFnFeTypeId = cursor.getColumnIndex(Pm_X.FETYPEID);
-					final int idFnFeType = cursor.getColumnIndex(Pm_X.FETYPE);
-					// final int idFnFrameDefinition = cursor.getColumnIndex(Pm_X.FRAMEDEFINITION);
-					// final int idFnLexUnit = cursor.getColumnIndex(Pm_X.LEXUNIT);
-					// final int idFnLuDefinition = cursor.getColumnIndex(Pm_X.LUDEFINITION);
-					// final int idFnLuDict = cursor.getColumnIndex(Pm_X.LUDICT);
-					// final int idFnFeAbbrev = cursor.getColumnIndex(Pm_X.FEABBREV);
-					// final int idFnFeDefinition = cursor.getColumnIndex(Pm_X.FEDEFINITION);
-
-					// read cursor
-					do
-					{
-						// data
-						final long pmId = cursor.getLong(idPmId);
-						final long pmRoleId = cursor.getLong(idPmRoleId);
-						final long pmPredId = cursor.getLong(idPmPredId);
-						final String pmPredicate = cursor.getString(idPmPredicate);
-						final String pmRole = cursor.getString(idPmRole);
-						final String pmPos = cursor.getString(idPmPos);
-						final PmRow pmRow = new PmRow(pmId, pmPredId, pmRoleId, pmPredicate, pmRole, pmPos);
-
-						// final String word = cursor.getString(idWord);
-						final long synsetId = cursor.getLong(idSynsetId);
-						final String definition = cursor.getString(idDefinition);
-						final WnData wnData = new WnData(synsetId, definition);
-
-						final long vnClassId = cursor.getLong(idVnClassId);
-						final long vnRoleId = cursor.getLong(idVnRoleTypeId);
-						final String vnClass = cursor.getString(idVnClass);
-						final String vnRole = cursor.getString(idVnRoleType);
-						final VnData vnData = new VnData(vnClassId, vnRoleId, vnClass, vnRole);
-
-						final long pbRoleSetId = cursor.getLong(idPbRoleSetId);
-						final long pbRoleId = cursor.getLong(idPbRoleId);
-						final String pbRoleSet = cursor.getString(idPbRoleSet);
-						final String pbRoleSetDescr = cursor.getString(idPbRoleSetDescr);
-						final String pbRole = cursor.getString(idPbRole);
-						final String pbRoleDescr = cursor.getString(idPbRoleDescr);
-						final PbData pbData = new PbData(pbRoleSetId, pbRoleId, pbRoleSet, pbRoleSetDescr, pbRole, pbRoleDescr);
-
-						final long fnFrameId = cursor.getLong(idFnFrameId);
-						final long fnFeId = cursor.getLong(idFnFeTypeId);
-						final String fnFrame = cursor.getString(idFnFrame);
-						final String fnFe = cursor.getString(idFnFeType);
-						final FnData fnData = new FnData(fnFrameId, fnFeId, fnFrame, fnFe);
-
-						// process
-						process(this.parent, wnData, pmRow, vnData, pbData, fnData);
-					}
-					while (cursor.moveToNext());
-
-					endProcess();
-
-					// fire event
-					FireEvent.onResults(this.parent, this.displayer.getExpandLevels());
+					return;
 				}
-
-				// TODO no need to call cursor.close() ?
+				final Cursor cursor = entry.getValue();
+				pmToView(cursor, parent);
 			});
+		}
+
+		private void pmToView(@NonNull final Cursor cursor, @NonNull final TreeNode parent)
+		{
+			if (cursor.moveToFirst())
+			{
+				// column indices
+				final int idPmId = cursor.getColumnIndex(PredicateMatrix.PMID);
+				final int idPmRoleId = cursor.getColumnIndex(PredicateMatrix.PMROLEID);
+				final int idPmPredId = cursor.getColumnIndex(PredicateMatrix.PMPREDID);
+				final int idPmPredicate = cursor.getColumnIndex(PredicateMatrix.PMPREDICATE);
+				final int idPmRole = cursor.getColumnIndex(PredicateMatrix.PMROLE);
+				final int idPmPos = cursor.getColumnIndex(PredicateMatrix.PMPOS);
+
+				// final int idWord = cursor.getColumnIndex(PredicateMatrix.WORD);
+				final int idSynsetId = cursor.getColumnIndex(PredicateMatrix.SYNSETID);
+				final int idDefinition = cursor.getColumnIndex(Pm_X.DEFINITION);
+
+				final int idVnClassId = cursor.getColumnIndex(PredicateMatrix.VNCLASSID);
+				final int idVnClass = cursor.getColumnIndex(Pm_X.VNCLASS);
+				final int idVnRoleTypeId = cursor.getColumnIndex(Pm_X.VNROLETYPEID);
+				final int idVnRoleType = cursor.getColumnIndex(Pm_X.VNROLETYPE);
+				// final int idVnRoleId = cursor.getColumnIndex(Pm_X.VNROLEID);
+				// final int idVnRoleRestrsId = cursor.getColumnIndex(Pm_X.VNROLERESTRID);
+
+				final int idPbRoleSetId = cursor.getColumnIndex(PredicateMatrix.PBROLESETID);
+				final int idPbRoleSet = cursor.getColumnIndex(Pm_X.PBROLESETNAME);
+				final int idPbRoleSetDescr = cursor.getColumnIndex(Pm_X.PBROLESETDESCR);
+				final int idPbRoleId = cursor.getColumnIndex(Pm_X.PBROLEID);
+				final int idPbRole = cursor.getColumnIndex(Pm_X.PBROLENARG);
+				final int idPbRoleDescr = cursor.getColumnIndex(Pm_X.PBROLEDESCR);
+				// final int idPbRoleSetHead = cursor.getColumnIndex(Pm_X.PBROLESETHEAD);
+				// final int idPbRoleNArgDescr = cursor.getColumnIndex(Pm_X.PBROLENARGDESCR);
+
+				final int idFnFrameId = cursor.getColumnIndex(PredicateMatrix.FRAMEID);
+				final int idFnFrame = cursor.getColumnIndex(Pm_X.FRAME);
+				final int idFnFeTypeId = cursor.getColumnIndex(Pm_X.FETYPEID);
+				final int idFnFeType = cursor.getColumnIndex(Pm_X.FETYPE);
+				// final int idFnFrameDefinition = cursor.getColumnIndex(Pm_X.FRAMEDEFINITION);
+				// final int idFnLexUnit = cursor.getColumnIndex(Pm_X.LEXUNIT);
+				// final int idFnLuDefinition = cursor.getColumnIndex(Pm_X.LUDEFINITION);
+				// final int idFnLuDict = cursor.getColumnIndex(Pm_X.LUDICT);
+				// final int idFnFeAbbrev = cursor.getColumnIndex(Pm_X.FEABBREV);
+				// final int idFnFeDefinition = cursor.getColumnIndex(Pm_X.FEDEFINITION);
+
+				// read cursor
+				do
+				{
+					// data
+					final long pmId = cursor.getLong(idPmId);
+					final long pmRoleId = cursor.getLong(idPmRoleId);
+					final long pmPredId = cursor.getLong(idPmPredId);
+					final String pmPredicate = cursor.getString(idPmPredicate);
+					final String pmRole = cursor.getString(idPmRole);
+					final String pmPos = cursor.getString(idPmPos);
+					final PmRow pmRow = new PmRow(pmId, pmPredId, pmRoleId, pmPredicate, pmRole, pmPos);
+
+					// final String word = cursor.getString(idWord);
+					final long synsetId = cursor.getLong(idSynsetId);
+					final String definition = cursor.getString(idDefinition);
+					final WnData wnData = new WnData(synsetId, definition);
+
+					final long vnClassId = cursor.getLong(idVnClassId);
+					final long vnRoleId = cursor.getLong(idVnRoleTypeId);
+					final String vnClass = cursor.getString(idVnClass);
+					final String vnRole = cursor.getString(idVnRoleType);
+					final VnData vnData = new VnData(vnClassId, vnRoleId, vnClass, vnRole);
+
+					final long pbRoleSetId = cursor.getLong(idPbRoleSetId);
+					final long pbRoleId = cursor.getLong(idPbRoleId);
+					final String pbRoleSet = cursor.getString(idPbRoleSet);
+					final String pbRoleSetDescr = cursor.getString(idPbRoleSetDescr);
+					final String pbRole = cursor.getString(idPbRole);
+					final String pbRoleDescr = cursor.getString(idPbRoleDescr);
+					final PbData pbData = new PbData(pbRoleSetId, pbRoleId, pbRoleSet, pbRoleSetDescr, pbRole, pbRoleDescr);
+
+					final long fnFrameId = cursor.getLong(idFnFrameId);
+					final long fnFeId = cursor.getLong(idFnFeTypeId);
+					final String fnFrame = cursor.getString(idFnFrame);
+					final String fnFe = cursor.getString(idFnFeType);
+					final FnData fnData = new FnData(fnFrameId, fnFeId, fnFrame, fnFe);
+
+					// process
+					process(this.parent, wnData, pmRow, vnData, pbData, fnData);
+				}
+				while (cursor.moveToNext());
+
+				endProcess();
+
+				// fire event
+				FireEvent.onResults(this.parent, this.displayer.getExpandLevels());
+			}
+
+			// TODO no need to call cursor.close() ?
 		}
 
 		/**

@@ -255,20 +255,31 @@ public class SensesFragment extends ListFragment
 		final String sortOrder = Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.POS + ',' + Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.SENSENUM;
 
 		final SqlunetViewModel model = ViewModelProviders.of(this, new SqlunetViewModelFactory(this, uri, projection, selection, selectionArgs, sortOrder)).get(SqlunetViewModel.class);
-		model.loadData();model.getData().observe(this, cursor -> {
+		final String tag = "wn.senses";
+		model.loadData(tag);
+		model.getData().observe(this, entry -> {
 
-			// update UI
-
-			// store source result
-			if (cursor.moveToFirst())
+			final String key = entry.getKey();
+			if (!tag.equals(key))
 			{
-				final int wordId = cursor.getColumnIndex(WordNetContract.Words.WORDID);
-				SensesFragment.this.wordId = cursor.getLong(wordId);
+				return;
 			}
-
-			// pass on to list adapter
-			((CursorAdapter) getListAdapter()).swapCursor(cursor);
+			final Cursor cursor = entry.getValue();
+			sensesToView(cursor);
 		});
+	}
+
+	private void sensesToView(@NonNull final Cursor cursor)
+	{
+		// store source result
+		if (cursor.moveToFirst())
+		{
+			final int wordId = cursor.getColumnIndex(WordNetContract.Words.WORDID);
+			SensesFragment.this.wordId = cursor.getLong(wordId);
+		}
+
+		// pass on to list adapter
+		((CursorAdapter) getListAdapter()).swapCursor(cursor);
 	}
 
 	// C L I C K

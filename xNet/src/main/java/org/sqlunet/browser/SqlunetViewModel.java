@@ -7,6 +7,8 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.os.AsyncTask;
 
+import java.util.AbstractMap.SimpleEntry;
+
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
@@ -23,9 +25,9 @@ public class SqlunetViewModel extends AndroidViewModel
 
 	private String sortOrder;
 
-	private final MutableLiveData<Cursor> data = new MutableLiveData<>();
+	private final MutableLiveData<SimpleEntry<String, Cursor>> data = new MutableLiveData<>();
 
-	public LiveData<Cursor> getData()
+	public LiveData<SimpleEntry<String, Cursor>> getData()
 	{
 		return data;
 	}
@@ -45,20 +47,21 @@ public class SqlunetViewModel extends AndroidViewModel
 	}
 
 	@SuppressLint("StaticFieldLeak")
-	public void loadData()
+	public void loadData(final String tag)
 	{
-		new AsyncTask<Void, Void, Cursor>()
+		new AsyncTask<Void, Void, SimpleEntry<String, Cursor>>()
 		{
 			@Override
-			protected Cursor doInBackground(Void... voids)
+			protected SimpleEntry<String, Cursor> doInBackground(Void... voids)
 			{
-				return getApplication().getContentResolver().query(uri, projection, selection, selectionArgs, sortOrder);
+				final Cursor cursor = getApplication().getContentResolver().query(uri, projection, selection, selectionArgs, sortOrder);
+				return new SimpleEntry<>(tag, cursor);
 			}
 
 			@Override
-			protected void onPostExecute(Cursor cursor)
+			protected void onPostExecute(SimpleEntry<String, Cursor> entry)
 			{
-				data.setValue(cursor);
+				data.setValue(entry);
 			}
 
 		}.execute();

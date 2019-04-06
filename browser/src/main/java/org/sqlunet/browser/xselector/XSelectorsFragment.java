@@ -349,21 +349,32 @@ public class XSelectorsFragment extends ExpandableListFragment
 		final String sortOrder = XSqlUNetContract.POS + '.' + Words_FnWords_PbWords_VnWords.POS + ',' + Words_FnWords_PbWords_VnWords.SENSENUM;
 
 		final SqlunetViewModel model = ViewModelProviders.of(this, new SqlunetViewModelFactory(this, uri, projection, selection, selectionArgs, sortOrder)).get(SqlunetViewModel.class);
-		model.loadData();
-		model.getData().observe(this, cursor -> {
+		final String tag = "xselectors";
+		model.loadData(tag);
+		model.getData().observe(this, entry -> {
 
-			// update UI
-
-			// store source progressMessage
-			if (cursor.moveToFirst())
+			final String key = entry.getKey();
+			if (!tag.equals(key))
 			{
-				final int idWordId = cursor.getColumnIndex(Words_FnWords_PbWords_VnWords.WORDID);
-				XSelectorsFragment.this.wordId = cursor.getLong(idWordId);
-				// TODO no need to call cursor.close() ?
-
-				initialize();
+				return;
 			}
+			final Cursor cursor = entry.getValue();
+
+			xselectorsToView(cursor);
 		});
+	}
+
+	private void xselectorsToView(@NonNull final Cursor cursor)
+	{
+		// store source progressMessage
+		if (cursor.moveToFirst())
+		{
+			final int idWordId = cursor.getColumnIndex(Words_FnWords_PbWords_VnWords.WORDID);
+			XSelectorsFragment.this.wordId = cursor.getLong(idWordId);
+			// TODO no need to call cursor.close() ?
+
+			initialize();
+		}
 	}
 
 	/**

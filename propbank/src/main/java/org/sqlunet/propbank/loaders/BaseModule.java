@@ -1,5 +1,6 @@
 package org.sqlunet.propbank.loaders;
 
+import android.database.Cursor;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.text.SpannableStringBuilder;
@@ -134,64 +135,75 @@ abstract class BaseModule extends Module
 		final String sortOrder = null;
 
 		final SqlunetViewModel model = ViewModelProviders.of(this.fragment, new SqlunetViewModelFactory(this.fragment, uri, projection, selection, selectionArgs, sortOrder)).get(SqlunetViewModel.class);
-		model.loadData();model.getData().observe(this.fragment, cursor -> {
+		final String tag = "pb.roleset";
+		model.loadData(tag);
+		model.getData().observe(this.fragment, entry -> {
 
-			// update UI
-			if (cursor.getCount() > 1)
+			final String key = entry.getKey();
+			if (!tag.equals(key))
 			{
-				throw new RuntimeException("Unexpected number of rows");
+				return;
 			}
-			if (cursor.moveToFirst())
-			{
-				// column indices
-				// final int idRolesetId = cursor.getColumnIndex(PbRoleSets_X.ROLESETID);
-				final int idRolesetName = cursor.getColumnIndex(PbRoleSets_X.ROLESETNAME);
-				final int idRolesetDesc = cursor.getColumnIndex(PbRoleSets_X.ROLESETDESC);
-				final int idRolesetHead = cursor.getColumnIndex(PbRoleSets_X.ROLESETHEAD);
-				final int idAliases = cursor.getColumnIndex(PbRoleSets_X.ALIASES);
-
-				// read cursor
-				final SpannableStringBuilder sb = new SpannableStringBuilder();
-
-				// data
-				// final int roleSetId = cursor.getInt(idRolesetId);
-
-				// roleSet
-				Spanner.appendImage(sb, BaseModule.this.roleSetDrawable);
-				sb.append(' ');
-				Spanner.append(sb, cursor.getString(idRolesetName), 0, PropBankFactories.roleSetFactory);
-				sb.append(' ');
-				sb.append("head=");
-				sb.append(cursor.getString(idRolesetHead));
-				sb.append('\n');
-				Spanner.appendImage(sb, BaseModule.this.aliasDrawable);
-				sb.append(cursor.getString(idAliases));
-				sb.append('\n');
-
-				// description
-				Spanner.appendImage(sb, BaseModule.this.definitionDrawable);
-				Spanner.append(sb, cursor.getString(idRolesetDesc), 0, PropBankFactories.definitionFactory);
-
-				// attach result
-				TreeFactory.addTextNode(parent, sb, BaseModule.this.context);
-
-				// sub nodes
-				final TreeNode rolesNode = TreeFactory.newQueryNode("Roles", R.drawable.roles, new RolesQuery(roleSetId), true, BaseModule.this.context).addTo(parent);
-				final TreeNode examplesNode = TreeFactory.newQueryNode("Examples", R.drawable.sample, new ExamplesQuery(roleSetId), false, BaseModule.this.context).addTo(parent);
-
-				// fire event
-				FireEvent.onQueryReady(rolesNode);
-				FireEvent.onQueryReady(examplesNode);
-				FireEvent.onResults(parent);
-			}
-			else
-			{
-				FireEvent.onNoResult(parent, true);
-			}
-
-			// handled by LoaderManager, so no need to call cursor.close()
-
+			final Cursor cursor = entry.getValue();
+			roloSetToView(cursor, roleSetId, parent);
 		});
+	}
+
+	private void roloSetToView(@NonNull final Cursor cursor, final long roleSetId, @NonNull final TreeNode parent)
+	{
+		if (cursor.getCount() > 1)
+		{
+			throw new RuntimeException("Unexpected number of rows");
+		}
+		if (cursor.moveToFirst())
+		{
+			// column indices
+			// final int idRolesetId = cursor.getColumnIndex(PbRoleSets_X.ROLESETID);
+			final int idRolesetName = cursor.getColumnIndex(PbRoleSets_X.ROLESETNAME);
+			final int idRolesetDesc = cursor.getColumnIndex(PbRoleSets_X.ROLESETDESC);
+			final int idRolesetHead = cursor.getColumnIndex(PbRoleSets_X.ROLESETHEAD);
+			final int idAliases = cursor.getColumnIndex(PbRoleSets_X.ALIASES);
+
+			// read cursor
+			final SpannableStringBuilder sb = new SpannableStringBuilder();
+
+			// data
+			// final int roleSetId = cursor.getInt(idRolesetId);
+
+			// roleSet
+			Spanner.appendImage(sb, BaseModule.this.roleSetDrawable);
+			sb.append(' ');
+			Spanner.append(sb, cursor.getString(idRolesetName), 0, PropBankFactories.roleSetFactory);
+			sb.append(' ');
+			sb.append("head=");
+			sb.append(cursor.getString(idRolesetHead));
+			sb.append('\n');
+			Spanner.appendImage(sb, BaseModule.this.aliasDrawable);
+			sb.append(cursor.getString(idAliases));
+			sb.append('\n');
+
+			// description
+			Spanner.appendImage(sb, BaseModule.this.definitionDrawable);
+			Spanner.append(sb, cursor.getString(idRolesetDesc), 0, PropBankFactories.definitionFactory);
+
+			// attach result
+			TreeFactory.addTextNode(parent, sb, BaseModule.this.context);
+
+			// sub nodes
+			final TreeNode rolesNode = TreeFactory.newQueryNode("Roles", R.drawable.roles, new RolesQuery(roleSetId), true, BaseModule.this.context).addTo(parent);
+			final TreeNode examplesNode = TreeFactory.newQueryNode("Examples", R.drawable.sample, new ExamplesQuery(roleSetId), false, BaseModule.this.context).addTo(parent);
+
+			// fire event
+			FireEvent.onQueryReady(rolesNode);
+			FireEvent.onQueryReady(examplesNode);
+			FireEvent.onResults(parent);
+		}
+		else
+		{
+			FireEvent.onNoResult(parent, true);
+		}
+
+		// handled by LoaderManager, so no need to call cursor.close()
 	}
 
 	/**
@@ -214,61 +226,73 @@ abstract class BaseModule extends Module
 		final String sortOrder = null;
 
 		final SqlunetViewModel model = ViewModelProviders.of(this.fragment, new SqlunetViewModelFactory(this.fragment, uri, projection, selection, selectionArgs, sortOrder)).get(SqlunetViewModel.class);
-		model.loadData();model.getData().observe(this.fragment, cursor -> {
+		final String tag = "pb.rolesets";
+		model.loadData(tag);
+		model.getData().observe(this.fragment, entry -> {
 
-			// update UI
-			if (cursor.moveToFirst())
+			final String key = entry.getKey();
+			if (!tag.equals(key))
 			{
-				// column indices
-				final int idRoleSetId = cursor.getColumnIndex(Words_PbRoleSets.ROLESETID);
-				final int idRoleSetName = cursor.getColumnIndex(Words_PbRoleSets.ROLESETNAME);
-				final int idRoleSetDesc = cursor.getColumnIndex(Words_PbRoleSets.ROLESETDESC);
-				final int idRoleSetHead = cursor.getColumnIndex(Words_PbRoleSets.ROLESETHEAD);
+				return;
+			}
+			final Cursor cursor = entry.getValue();
+			roleSetsToView(cursor, parent);
+		});
+	}
 
-				// read cursor
-				do
-				{
-					final SpannableStringBuilder sb = new SpannableStringBuilder();
+	private void roleSetsToView(@NonNull final Cursor cursor, @NonNull final TreeNode parent)
+	{
+		if (cursor.moveToFirst())
+		{
+			// column indices
+			final int idRoleSetId = cursor.getColumnIndex(Words_PbRoleSets.ROLESETID);
+			final int idRoleSetName = cursor.getColumnIndex(Words_PbRoleSets.ROLESETNAME);
+			final int idRoleSetDesc = cursor.getColumnIndex(Words_PbRoleSets.ROLESETDESC);
+			final int idRoleSetHead = cursor.getColumnIndex(Words_PbRoleSets.ROLESETHEAD);
 
-					// data
-					final int roleSetId = cursor.getInt(idRoleSetId);
+			// read cursor
+			do
+			{
+				final SpannableStringBuilder sb = new SpannableStringBuilder();
 
-					// roleSet
-					Spanner.appendImage(sb, BaseModule.this.rolesDrawable);
-					sb.append(' ');
-					Spanner.append(sb, cursor.getString(idRoleSetName), 0, PropBankFactories.roleSetFactory);
-					sb.append(' ');
-					sb.append("head=");
-					sb.append(cursor.getString(idRoleSetHead));
-					sb.append('\n');
+				// data
+				final int roleSetId = cursor.getInt(idRoleSetId);
 
-					// description
-					Spanner.appendImage(sb, BaseModule.this.definitionDrawable);
-					Spanner.append(sb, cursor.getString(idRoleSetDesc), 0, PropBankFactories.definitionFactory);
+				// roleSet
+				Spanner.appendImage(sb, BaseModule.this.rolesDrawable);
+				sb.append(' ');
+				Spanner.append(sb, cursor.getString(idRoleSetName), 0, PropBankFactories.roleSetFactory);
+				sb.append(' ');
+				sb.append("head=");
+				sb.append(cursor.getString(idRoleSetHead));
+				sb.append('\n');
 
-					// attach result
-					TreeFactory.addTextNode(parent, sb, BaseModule.this.context);
+				// description
+				Spanner.appendImage(sb, BaseModule.this.definitionDrawable);
+				Spanner.append(sb, cursor.getString(idRoleSetDesc), 0, PropBankFactories.definitionFactory);
 
-					// sub nodes
-					final TreeNode rolesNode = TreeFactory.newQueryNode("Roles", R.drawable.roles, new RolesQuery(roleSetId), true, BaseModule.this.context).addTo(parent);
-					final TreeNode examplesNode = TreeFactory.newQueryNode("Examples", R.drawable.sample, new ExamplesQuery(roleSetId), false, BaseModule.this.context).addTo(parent);
+				// attach result
+				TreeFactory.addTextNode(parent, sb, BaseModule.this.context);
 
-					// fire event
-					FireEvent.onQueryReady(rolesNode);
-					FireEvent.onQueryReady(examplesNode);
-				}
-				while (cursor.moveToNext());
+				// sub nodes
+				final TreeNode rolesNode = TreeFactory.newQueryNode("Roles", R.drawable.roles, new RolesQuery(roleSetId), true, BaseModule.this.context).addTo(parent);
+				final TreeNode examplesNode = TreeFactory.newQueryNode("Examples", R.drawable.sample, new ExamplesQuery(roleSetId), false, BaseModule.this.context).addTo(parent);
 
 				// fire event
-				FireEvent.onResults(parent);
+				FireEvent.onQueryReady(rolesNode);
+				FireEvent.onQueryReady(examplesNode);
 			}
-			else
-			{
-				FireEvent.onNoResult(parent, true);
-			}
+			while (cursor.moveToNext());
 
-			// handled by LoaderManager, so no need to call cursor.close()
-		});
+			// fire event
+			FireEvent.onResults(parent);
+		}
+		else
+		{
+			FireEvent.onNoResult(parent, true);
+		}
+
+		// handled by LoaderManager, so no need to call cursor.close()
 	}
 
 	// roles
@@ -294,78 +318,90 @@ abstract class BaseModule extends Module
 		final String sortOrder = null;
 
 		final SqlunetViewModel model = ViewModelProviders.of(this.fragment, new SqlunetViewModelFactory(this.fragment, uri, projection, selection, selectionArgs, sortOrder)).get(SqlunetViewModel.class);
-		model.loadData();model.getData().observe(this.fragment, cursor -> {
+		final String tag = "pb.roles";
+		model.loadData(tag);
+		model.getData().observe(this.fragment, entry -> {
 
-			// update UI
-			final SpannableStringBuilder sb = new SpannableStringBuilder();
-			if (cursor.moveToFirst())
+			final String key = entry.getKey();
+			if (!tag.equals(key))
 			{
-				// column indices
-				// final int idRoleId = cursor.getColumnIndex(PbRoleSets_PbRoles.ROLEID);
-				final int idRoleDescr = cursor.getColumnIndex(PbRoleSets_PbRoles.ROLEDESCR);
-				final int idFunc = cursor.getColumnIndex(PbRoleSets_PbRoles.FUNCNAME);
-				final int idTheta = cursor.getColumnIndex(PbRoleSets_PbRoles.THETANAME);
-				final int idNArg = cursor.getColumnIndex(PropBankContract.PbRoleSets_PbRoles.NARG);
+				return;
+			}
+			final Cursor cursor = entry.getValue();
+			rolesToView(cursor, parent);
+		});
+	}
 
-				// read cursor
-				while (true)
+	private void rolesToView(@NonNull final Cursor cursor, @NonNull final TreeNode parent)
+	{
+		final SpannableStringBuilder sb = new SpannableStringBuilder();
+		if (cursor.moveToFirst())
+		{
+			// column indices
+			// final int idRoleId = cursor.getColumnIndex(PbRoleSets_PbRoles.ROLEID);
+			final int idRoleDescr = cursor.getColumnIndex(PbRoleSets_PbRoles.ROLEDESCR);
+			final int idFunc = cursor.getColumnIndex(PbRoleSets_PbRoles.FUNCNAME);
+			final int idTheta = cursor.getColumnIndex(PbRoleSets_PbRoles.THETANAME);
+			final int idNArg = cursor.getColumnIndex(PropBankContract.PbRoleSets_PbRoles.NARG);
+
+			// read cursor
+			while (true)
+			{
+				// data
+
+				// n
+				sb.append(cursor.getString(idNArg));
+				sb.append(' ');
+
+				// role
+				Spanner.appendImage(sb, BaseModule.this.roleDrawable);
+				sb.append(' ');
+				Spanner.append(sb, capitalize1(cursor.getString(idRoleDescr)), 0, PropBankFactories.roleFactory);
+
+				// theta
+				String theta = cursor.getString(idTheta);
+				if (theta != null && !theta.isEmpty())
 				{
-					// data
-
-					// n
-					sb.append(cursor.getString(idNArg));
 					sb.append(' ');
-
-					// role
-					Spanner.appendImage(sb, BaseModule.this.roleDrawable);
+					Spanner.appendImage(sb, BaseModule.this.thetaDrawable);
 					sb.append(' ');
-					Spanner.append(sb, capitalize1(cursor.getString(idRoleDescr)), 0, PropBankFactories.roleFactory);
-
-					// theta
-					String theta = cursor.getString(idTheta);
-					if (theta != null && !theta.isEmpty())
-					{
-						sb.append(' ');
-						Spanner.appendImage(sb, BaseModule.this.thetaDrawable);
-						sb.append(' ');
-						Spanner.append(sb, theta, 0, PropBankFactories.thetaFactory);
-					}
-
-					// func
-					if (!cursor.isNull(idFunc))
-					{
-						sb.append(' ');
-						sb.append("func=");
-						sb.append(Integer.toString(cursor.getInt(idFunc)));
-					}
-
-					// final int roleId = cursor.getInt(idRoleId);
-					// sb.append(" role id=");
-					// sb.append(Integer.toString(roleId));
-					// sb.append(' ');
-
-					if (!cursor.moveToNext())
-					{
-						//noinspection BreakStatement
-						break;
-					}
-
-					sb.append('\n');
+					Spanner.append(sb, theta, 0, PropBankFactories.thetaFactory);
 				}
 
-				// attach result
-				TreeFactory.addTextNode(parent, sb, BaseModule.this.context);
+				// func
+				if (!cursor.isNull(idFunc))
+				{
+					sb.append(' ');
+					sb.append("func=");
+					sb.append(Integer.toString(cursor.getInt(idFunc)));
+				}
 
-				// fire event
-				FireEvent.onResults(parent);
-			}
-			else
-			{
-				FireEvent.onNoResult(parent, true);
+				// final int roleId = cursor.getInt(idRoleId);
+				// sb.append(" role id=");
+				// sb.append(Integer.toString(roleId));
+				// sb.append(' ');
+
+				if (!cursor.moveToNext())
+				{
+					//noinspection BreakStatement
+					break;
+				}
+
+				sb.append('\n');
 			}
 
-			// handled by LoaderManager, so no need to call cursor.close()
-		});
+			// attach result
+			TreeFactory.addTextNode(parent, sb, BaseModule.this.context);
+
+			// fire event
+			FireEvent.onResults(parent);
+		}
+		else
+		{
+			FireEvent.onNoResult(parent, true);
+		}
+
+		// handled by LoaderManager, so no need to call cursor.close()
 	}
 
 	// examples
@@ -403,106 +439,118 @@ abstract class BaseModule extends Module
 		final String sortOrder = PbRoleSets_PbExamples.EXAMPLEID + ',' + PbRoleSets_PbExamples.NARG;
 
 		final SqlunetViewModel model = ViewModelProviders.of(this.fragment, new SqlunetViewModelFactory(this.fragment, uri, projection, selection, selectionArgs, sortOrder)).get(SqlunetViewModel.class);
-		model.loadData();model.getData().observe(this.fragment, cursor -> {
+		final String tag = "pb.examples";
+		model.loadData(tag);
+		model.getData().observe(this.fragment, entry -> {
 
-			// update UI
-			final SpannableStringBuilder sb = new SpannableStringBuilder();
-
-			if (cursor.moveToFirst())
+			final String key = entry.getKey();
+			if (!tag.equals(key))
 			{
-				// column indices
-				final int idText = cursor.getColumnIndex(PbRoleSets_PbExamples.TEXT);
-				final int idRel = cursor.getColumnIndex(PbRoleSets_PbExamples.REL);
-				final int idArgs = cursor.getColumnIndex(PbRoleSets_PbExamples.ARGS);
+				return;
+			}
+			final Cursor cursor = entry.getValue();
+			examplesToView(cursor, parent);
+		});
+	}
 
-				// read cursor
-				while (true)
+	private void examplesToView(@NonNull final Cursor cursor, @NonNull final TreeNode parent)
+	{
+		final SpannableStringBuilder sb = new SpannableStringBuilder();
+
+		if (cursor.moveToFirst())
+		{
+			// column indices
+			final int idText = cursor.getColumnIndex(PbRoleSets_PbExamples.TEXT);
+			final int idRel = cursor.getColumnIndex(PbRoleSets_PbExamples.REL);
+			final int idArgs = cursor.getColumnIndex(PbRoleSets_PbExamples.ARGS);
+
+			// read cursor
+			while (true)
+			{
+				// text
+				String text = cursor.getString(idText);
+				Spanner.appendImage(sb, BaseModule.this.sampleDrawable);
+				Spanner.append(sb, text, 0, PropBankFactories.exampleFactory);
+				sb.append('\n');
+
+				// relation
+				sb.append('\t');
+				Spanner.appendImage(sb, BaseModule.this.relationDrawable);
+				sb.append(' ');
+				Spanner.append(sb, cursor.getString(idRel), 0, PropBankFactories.relationFactory);
+
+				// args
+				final String argspack = cursor.getString(idArgs);
+				if (argspack != null)
 				{
-					// text
-					String text = cursor.getString(idText);
-					Spanner.appendImage(sb, BaseModule.this.sampleDrawable);
-					Spanner.append(sb, text, 0, PropBankFactories.exampleFactory);
-					sb.append('\n');
-
-					// relation
-					sb.append('\t');
-					Spanner.appendImage(sb, BaseModule.this.relationDrawable);
-					sb.append(' ');
-					Spanner.append(sb, cursor.getString(idRel), 0, PropBankFactories.relationFactory);
-
-					// args
-					final String argspack = cursor.getString(idArgs);
-					if (argspack != null)
+					final String[] args = argspack.split("\\|");
+					Arrays.sort(args);
+					for (final String arg : args)
 					{
-						final String[] args = argspack.split("\\|");
-						Arrays.sort(args);
-						for (final String arg : args)
+						final String[] fields = arg.split("~");
+						if (fields.length < 5)
 						{
-							final String[] fields = arg.split("~");
-							if (fields.length < 5)
-							{
-								sb.append(arg);
-								continue;
-							}
-
-							sb.append('\n');
-							sb.append('\t');
-
-							// n
-							sb.append(fields[0]);
-							sb.append(' ');
-
-							// role
-							Spanner.appendImage(sb, BaseModule.this.roleDrawable);
-							sb.append(' ');
-							Spanner.append(sb, capitalize1(fields[2]), 0, PropBankFactories.roleFactory);
-							sb.append(' ');
-
-							// theta
-							Spanner.appendImage(sb, BaseModule.this.thetaDrawable);
-							sb.append(' ');
-							Spanner.append(sb, fields[3], 0, PropBankFactories.thetaFactory);
-
-							// func
-							if (!fields[1].isEmpty())
-							{
-								// sb.append(" func=");
-								sb.append(' ');
-								sb.append(fields[1]);
-							}
-
-							// subtext
-							sb.append(' ');
-							// sb.append("subtext=");
-							sb.append(fields[4]);
-							// Spanner.append(sb, fields[4], 0, PropBankFactories.textFactory);
+							sb.append(arg);
+							continue;
 						}
-					}
 
-					if (!cursor.moveToNext())
-					{
-						break;
-					}
+						sb.append('\n');
+						sb.append('\t');
 
-					sb.append('\n');
+						// n
+						sb.append(fields[0]);
+						sb.append(' ');
+
+						// role
+						Spanner.appendImage(sb, BaseModule.this.roleDrawable);
+						sb.append(' ');
+						Spanner.append(sb, capitalize1(fields[2]), 0, PropBankFactories.roleFactory);
+						sb.append(' ');
+
+						// theta
+						Spanner.appendImage(sb, BaseModule.this.thetaDrawable);
+						sb.append(' ');
+						Spanner.append(sb, fields[3], 0, PropBankFactories.thetaFactory);
+
+						// func
+						if (!fields[1].isEmpty())
+						{
+							// sb.append(" func=");
+							sb.append(' ');
+							sb.append(fields[1]);
+						}
+
+						// subtext
+						sb.append(' ');
+						// sb.append("subtext=");
+						sb.append(fields[4]);
+						// Spanner.append(sb, fields[4], 0, PropBankFactories.textFactory);
+					}
 				}
 
-				// extra format
-				BaseModule.this.spanner.setSpan(sb, 0, 0);
+				if (!cursor.moveToNext())
+				{
+					break;
+				}
 
-				// attach result
-				TreeFactory.addTextNode(parent, sb, BaseModule.this.context);
-
-				// fire event
-				FireEvent.onResults(parent);
-			}
-			else
-			{
-				FireEvent.onNoResult(parent, true);
+				sb.append('\n');
 			}
 
-			// handled by LoaderManager, so no need to call cursor.close()
-		});
+			// extra format
+			BaseModule.this.spanner.setSpan(sb, 0, 0);
+
+			// attach result
+			TreeFactory.addTextNode(parent, sb, BaseModule.this.context);
+
+			// fire event
+			FireEvent.onResults(parent);
+		}
+		else
+		{
+			FireEvent.onNoResult(parent, true);
+		}
+
+		// handled by LoaderManager, so no need to call cursor.close()
 	}
 
 	/**

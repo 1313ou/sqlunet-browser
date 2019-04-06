@@ -50,7 +50,6 @@ import java.util.Locale;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelProviders;
 
 /**
@@ -157,53 +156,66 @@ abstract public class BaseModule extends Module
 		assert BaseModule.this.context != null;
 
 		final SqlunetViewModel model = ViewModelProviders.of(this.fragment, new SqlunetViewModelFactory(this.fragment, uri, projection, selection, selectionArgs, sortOrder)).get(SqlunetViewModel.class);
-		model.loadData();model.getData().observe(this.fragment, cursor -> {
+		final String tag = "wn.word";
+		model.loadData(tag);
+		model.getData().observe(this.fragment, entry -> {
 
-			// update UI
-			if (cursor.getCount() > 1)
+			final String key = entry.getKey();
+			if (!tag.equals(key))
 			{
-				throw new RuntimeException("Unexpected number of rows");
+				return;
 			}
 
-			// store source result
-			if (cursor.moveToFirst())
+			final Cursor cursor = entry.getValue();
+			wordToView(cursor, parent, addNewNode);
+		});
+	}
+
+	private void wordToView(@NonNull final Cursor cursor, @NonNull final TreeNode parent, @SuppressWarnings("SameParameterValue") final boolean addNewNode)
+	{
+		if (cursor.getCount() > 1)
+		{
+			throw new RuntimeException("Unexpected number of rows");
+		}
+
+		// store source result
+		if (cursor.moveToFirst())
+		{
+			final SpannableStringBuilder sb = new SpannableStringBuilder();
+
+			// final int idWordId = cursor.getColumnIndex(Words.WORDID);
+			final int idLemma = cursor.getColumnIndex(Words_MorphMaps_Morphs.LEMMA);
+			final int idMorphs = cursor.getColumnIndex(BaseModule.ALLMORPHS);
+			final String lemma = cursor.getString(idLemma);
+			final String morphs = cursor.getString(idMorphs);
+
+			Spanner.appendImage(sb, BaseModule.this.memberDrawable);
+			sb.append(' ');
+			Spanner.append(sb, lemma, 0, WordNetFactories.wordFactory);
+
+			if (morphs != null && !morphs.isEmpty())
 			{
-				final SpannableStringBuilder sb = new SpannableStringBuilder();
-
-				// final int idWordId = cursor.getColumnIndex(Words.WORDID);
-				final int idLemma = cursor.getColumnIndex(Words_MorphMaps_Morphs.LEMMA);
-				final int idMorphs = cursor.getColumnIndex(BaseModule.ALLMORPHS);
-				final String lemma = cursor.getString(idLemma);
-				final String morphs = cursor.getString(idMorphs);
-
-				Spanner.appendImage(sb, BaseModule.this.memberDrawable);
 				sb.append(' ');
-				Spanner.append(sb, lemma, 0, WordNetFactories.wordFactory);
+				Spanner.append(sb, morphs, 0, WordNetFactories.dataFactory);
+			}
 
-				if (morphs != null && !morphs.isEmpty())
-				{
-					sb.append(' ');
-					Spanner.append(sb, morphs, 0, WordNetFactories.dataFactory);
-				}
-
-				// result
-				if (addNewNode)
-				{
-					TreeFactory.addTextNode(parent, sb, BaseModule.this.context);
-					FireEvent.onResults(parent);
-				}
-				else
-				{
-					FireEvent.onResults(parent, sb);
-				}
+			// result
+			if (addNewNode)
+			{
+				TreeFactory.addTextNode(parent, sb, BaseModule.this.context);
+				FireEvent.onResults(parent);
 			}
 			else
 			{
-				FireEvent.onNoResult(parent, true);
+				FireEvent.onResults(parent, sb);
 			}
+		}
+		else
+		{
+			FireEvent.onNoResult(parent, true);
+		}
 
-			// TODO no need to call cursor.close() ?
-		});
+		// TODO no need to call cursor.close() ?() ?
 	}
 
 	// Sense
@@ -237,31 +249,18 @@ abstract public class BaseModule extends Module
 		final String sortOrder = Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.POS + ',' + Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.SENSENUM;
 
 		final SqlunetViewModel model = ViewModelProviders.of(this.fragment, new SqlunetViewModelFactory(this.fragment, uri, projection, selection, selectionArgs, sortOrder)).get(SqlunetViewModel.class);
-		model.loadData();model.getData().observe(this.fragment, cursor -> {
+		final String tag = "wn.senses1";
+		model.loadData(tag);
+		model.getData().observe(this.fragment, entry -> {
 
-			// update UI
-
-			// store source result
-			if (cursor.moveToFirst())
+			final String key = entry.getKey();
+			if (!tag.equals(key))
 			{
-				final int idWordId = cursor.getColumnIndex(Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.WORDID);
-				final int idSynsetId = cursor.getColumnIndex(Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.SYNSETID);
-				final int idPosName = cursor.getColumnIndex(Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.POSNAME);
-				final int idLexDomain = cursor.getColumnIndex(Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.LEXDOMAIN);
-				final int idDefinition = cursor.getColumnIndex(Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.DEFINITION);
-				final int idTagCount = cursor.getColumnIndex(Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.TAGCOUNT);
-				final int idCased = cursor.getColumnIndex(Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.CASED);
-
-				senses(cursor, idWordId, idSynsetId, idPosName, idLexDomain, idDefinition, idTagCount, idCased, parent);
-
-				FireEvent.onResults(parent);
-			}
-			else
-			{
-				FireEvent.onNoResult(parent, true);
+				return;
 			}
 
-			// TODO no need to call cursor.close() ?
+			final Cursor cursor = entry.getValue();
+			sensesToView1(cursor, parent);
 		});
 	}
 
@@ -293,32 +292,44 @@ abstract public class BaseModule extends Module
 		final String sortOrder = WordNetContract.POS + '.' + Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.POS + ',' + Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.SENSENUM;
 
 		final SqlunetViewModel model = ViewModelProviders.of(this.fragment, new SqlunetViewModelFactory(this.fragment, uri, projection, selection, selectionArgs, sortOrder)).get(SqlunetViewModel.class);
-		model.loadData();model.getData().observe(this.fragment, cursor -> {
+		final String tag = "wn.senses2";
+		model.loadData(tag);
+		model.getData().observe(this.fragment, entry -> {
 
-			// update UI
-
-			// store source result
-			if (cursor.moveToFirst())
+			final String key = entry.getKey();
+			if (!tag.equals(key))
 			{
-				final int idWordId = cursor.getColumnIndex(Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.WORDID);
-				final int idSynsetId = cursor.getColumnIndex(Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.SYNSETID);
-				final int idPosName = cursor.getColumnIndex(Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.POSNAME);
-				final int idLexDomain = cursor.getColumnIndex(Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.LEXDOMAIN);
-				final int idDefinition = cursor.getColumnIndex(Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.DEFINITION);
-				final int idTagCount = cursor.getColumnIndex(Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.TAGCOUNT);
-				final int idCased = cursor.getColumnIndex(Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.CASED);
-
-				senses(cursor, idWordId, idSynsetId, idPosName, idLexDomain, idDefinition, idTagCount, idCased, parent);
-
-				FireEvent.onResults(parent);
-			}
-			else
-			{
-				FireEvent.onNoResult(parent, true);
+				return;
 			}
 
-			// handled by LoaderManager, so no need to call cursor.close()
+			final Cursor cursor = entry.getValue();
+			sensesToView1(cursor, parent);
 		});
+	}
+
+	private void sensesToView1(@NonNull final Cursor cursor, @NonNull final TreeNode parent)
+	{
+		// store source result
+		if (cursor.moveToFirst())
+		{
+			final int idWordId = cursor.getColumnIndex(Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.WORDID);
+			final int idSynsetId = cursor.getColumnIndex(Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.SYNSETID);
+			final int idPosName = cursor.getColumnIndex(Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.POSNAME);
+			final int idLexDomain = cursor.getColumnIndex(Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.LEXDOMAIN);
+			final int idDefinition = cursor.getColumnIndex(Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.DEFINITION);
+			final int idTagCount = cursor.getColumnIndex(Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.TAGCOUNT);
+			final int idCased = cursor.getColumnIndex(Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.CASED);
+
+			sensesToView2(cursor, idWordId, idSynsetId, idPosName, idLexDomain, idDefinition, idTagCount, idCased, parent);
+
+			FireEvent.onResults(parent);
+		}
+		else
+		{
+			FireEvent.onNoResult(parent, true);
+		}
+
+		// TODO no need to call cursor.close() ?
 	}
 
 	/**
@@ -334,7 +345,7 @@ abstract public class BaseModule extends Module
 	 * @param idCased      column id of cased word
 	 * @param parent       tree parent node
 	 */
-	private void senses(@NonNull final Cursor cursor, final int idWordId, final int idSynsetId, final int idPosName, final int idLexDomain, final int idDefinition, final int idTagCount, final int idCased, @NonNull final TreeNode parent)
+	private void sensesToView2(@NonNull final Cursor cursor, final int idWordId, final int idSynsetId, final int idPosName, final int idLexDomain, final int idDefinition, final int idTagCount, final int idCased, @NonNull final TreeNode parent)
 	{
 		do
 		{
@@ -375,29 +386,41 @@ abstract public class BaseModule extends Module
 		final String sortOrder = null;
 
 		final SqlunetViewModel model = ViewModelProviders.of(this.fragment, new SqlunetViewModelFactory(this.fragment, uri, projection, selection, selectionArgs, sortOrder)).get(SqlunetViewModel.class);
-		model.loadData();model.getData().observe(this.fragment, cursor -> {
+		final String tag = "wn.sense1";
+		model.loadData(tag);
+		model.getData().observe(this.fragment, entry -> {
 
-			// update UI
-			if (cursor.getCount() > 1)
+			final String key = entry.getKey();
+			if (!tag.equals(key))
 			{
-				throw new RuntimeException("Unexpected number of rows");
+				return;
 			}
-			if (cursor.moveToFirst())
-			{
-				final int idWordId = cursor.getColumnIndex(PosTypes.POSNAME);
-				final int idSynsetId = cursor.getColumnIndex(Synsets.DEFINITION);
-				final long wordId = cursor.getLong(idWordId);
-				final long synsetId = cursor.getLong(idSynsetId);
-
-				sense(synsetId, wordId, parent);
-			}
-			else
-			{
-				FireEvent.onNoResult(parent, true);
-			}
-
-			// handled by LoaderManager, so no need to call cursor.close()
+			final Cursor cursor = entry.getValue();
+			senseToView1(cursor, parent);
 		});
+	}
+
+	private void senseToView1(@NonNull final Cursor cursor, @NonNull final TreeNode parent)
+	{
+		if (cursor.getCount() > 1)
+		{
+			throw new RuntimeException("Unexpected number of rows");
+		}
+		if (cursor.moveToFirst())
+		{
+			final int idWordId = cursor.getColumnIndex(PosTypes.POSNAME);
+			final int idSynsetId = cursor.getColumnIndex(Synsets.DEFINITION);
+			final long wordId = cursor.getLong(idWordId);
+			final long synsetId = cursor.getLong(idSynsetId);
+
+			sense(synsetId, wordId, parent);
+		}
+		else
+		{
+			FireEvent.onNoResult(parent, true);
+		}
+
+		// TODO no need to call cursor.close() ?
 	}
 
 	/**
@@ -418,36 +441,48 @@ abstract public class BaseModule extends Module
 		final String sortOrder = null;
 
 		final SqlunetViewModel model = ViewModelProviders.of(this.fragment, new SqlunetViewModelFactory(this.fragment, uri, projection, selection, selectionArgs, sortOrder)).get(SqlunetViewModel.class);
-		model.loadData();model.getData().observe(this.fragment, cursor -> {
+		final String tag = "wn.sense2";
+		model.loadData(tag);
+		model.getData().observe(this.fragment, entry -> {
 
-			// update UI
-			if (cursor.getCount() > 1)
+			final String key = entry.getKey();
+			if (!tag.equals(key))
 			{
-				throw new RuntimeException("Unexpected number of rows");
+				return;
 			}
-			if (cursor.moveToFirst())
-			{
-				final int idWordId = cursor.getColumnIndex(Senses.WORDID);
-				final int idSynsetId = cursor.getColumnIndex(Senses.SYNSETID);
-				final long wordId = cursor.getLong(idWordId);
-				final long synsetId = cursor.getLong(idSynsetId);
-
-				// sub nodes
-				final TreeNode wordNode = TreeFactory.newTextNode("Word", BaseModule.this.context);
-				parent.addChild(wordNode);
-				FireEvent.onResults(parent);
-
-				// word
-				word(wordId, wordNode, false);
-				sense(synsetId, wordId, wordNode);
-			}
-			else
-			{
-				FireEvent.onNoResult(parent, true);
-			}
-
-			// handled by LoaderManager, so no need to call cursor.close()
+			final Cursor cursor = entry.getValue();
+			senseToView2(cursor, parent);
 		});
+	}
+
+	private void senseToView2(@NonNull final Cursor cursor, @NonNull final TreeNode parent)
+	{
+		if (cursor.getCount() > 1)
+		{
+			throw new RuntimeException("Unexpected number of rows");
+		}
+		if (cursor.moveToFirst())
+		{
+			final int idWordId = cursor.getColumnIndex(Senses.WORDID);
+			final int idSynsetId = cursor.getColumnIndex(Senses.SYNSETID);
+			final long wordId = cursor.getLong(idWordId);
+			final long synsetId = cursor.getLong(idSynsetId);
+
+			// sub nodes
+			final TreeNode wordNode = TreeFactory.newTextNode("Word", BaseModule.this.context);
+			parent.addChild(wordNode);
+			FireEvent.onResults(parent);
+
+			// word
+			word(wordId, wordNode, false);
+			sense(synsetId, wordId, wordNode);
+		}
+		else
+		{
+			FireEvent.onNoResult(parent, true);
+		}
+
+		// TODO no need to call cursor.close() ?
 	}
 
 	/**
@@ -470,47 +505,58 @@ abstract public class BaseModule extends Module
 		final String sortOrder = null;
 
 		final SqlunetViewModel model = ViewModelProviders.of(this.fragment, new SqlunetViewModelFactory(this.fragment, uri, projection, selection, selectionArgs, sortOrder)).get(SqlunetViewModel.class);
-		model.loadData();model.getData().observe(this.fragment, cursor -> {
+		final String tag = "wn.sense3";
+		model.loadData(tag);
+		model.getData().observe(this.fragment, entry -> {
 
-			// update UI
-			if (cursor.getCount() > 1)
+			final String key = entry.getKey();
+			if (!tag.equals(key))
 			{
-				throw new RuntimeException("Unexpected number of rows");
+				return;
 			}
-			if (cursor.moveToFirst())
-			{
-				final SpannableStringBuilder sb = new SpannableStringBuilder();
-				final int idPosName = cursor.getColumnIndex(PosTypes.POSNAME);
-				final int idLexDomain = cursor.getColumnIndex(LexDomains.LEXDOMAIN);
-				final int idDefinition = cursor.getColumnIndex(Synsets.DEFINITION);
-				final String posName = cursor.getString(idPosName);
-				final String lexDomain = cursor.getString(idLexDomain);
-				final String definition = cursor.getString(idDefinition);
-
-				Spanner.appendImage(sb, BaseModule.this.synsetDrawable);
-				sb.append(' ');
-				synset(sb, synsetId, posName, lexDomain, definition);
-
-				// attach result
-				TreeFactory.addTextNode(parent, sb, BaseModule.this.context);
-
-				// subnodes
-				final TreeNode linksNode = TreeFactory.newQueryNode("Links", R.drawable.ic_links, new LinksQuery(synsetId, wordId), true, BaseModule.this.context).addTo(parent);
-				final TreeNode samplesNode = TreeFactory.newQueryNode("Samples", R.drawable.sample, new SamplesQuery(synsetId), true, BaseModule.this.context).addTo(parent);
-
-				// fire event
-				FireEvent.onQueryReady(linksNode);
-				FireEvent.onQueryReady(samplesNode);
-				FireEvent.onResults(parent);
-			}
-			else
-			{
-				FireEvent.onNoResult(parent, true);
-			}
-
-			// handled by LoaderManager, so no need to call cursor.close()
-
+			final Cursor cursor = entry.getValue();
+			senseToView3(cursor, synsetId, wordId, parent);
 		});
+	}
+
+	private void senseToView3(@NonNull final Cursor cursor, final long synsetId, final long wordId, @NonNull final TreeNode parent)
+	{
+		if (cursor.getCount() > 1)
+		{
+			throw new RuntimeException("Unexpected number of rows");
+		}
+		if (cursor.moveToFirst())
+		{
+			final SpannableStringBuilder sb = new SpannableStringBuilder();
+			final int idPosName = cursor.getColumnIndex(PosTypes.POSNAME);
+			final int idLexDomain = cursor.getColumnIndex(LexDomains.LEXDOMAIN);
+			final int idDefinition = cursor.getColumnIndex(Synsets.DEFINITION);
+			final String posName = cursor.getString(idPosName);
+			final String lexDomain = cursor.getString(idLexDomain);
+			final String definition = cursor.getString(idDefinition);
+
+			Spanner.appendImage(sb, BaseModule.this.synsetDrawable);
+			sb.append(' ');
+			synset(sb, synsetId, posName, lexDomain, definition);
+
+			// attach result
+			TreeFactory.addTextNode(parent, sb, BaseModule.this.context);
+
+			// subnodes
+			final TreeNode linksNode = TreeFactory.newQueryNode("Links", R.drawable.ic_links, new LinksQuery(synsetId, wordId), true, BaseModule.this.context).addTo(parent);
+			final TreeNode samplesNode = TreeFactory.newQueryNode("Samples", R.drawable.sample, new SamplesQuery(synsetId), true, BaseModule.this.context).addTo(parent);
+
+			// fire event
+			FireEvent.onQueryReady(linksNode);
+			FireEvent.onQueryReady(samplesNode);
+			FireEvent.onResults(parent);
+		}
+		else
+		{
+			FireEvent.onNoResult(parent, true);
+		}
+
+		// TODO no need to call cursor.close() ?
 	}
 
 	// Synset
@@ -534,45 +580,58 @@ abstract public class BaseModule extends Module
 		final String[] selectionArgs = {Long.toString(synsetId)};
 		final String sortOrder = null;
 		final SqlunetViewModel model = ViewModelProviders.of(this.fragment, new SqlunetViewModelFactory(this.fragment, uri, projection, selection, selectionArgs, sortOrder)).get(SqlunetViewModel.class);
-		model.loadData();model.getData().observe(this.fragment, cursor -> {
+		final String tag = "wn.synset";
+		model.loadData(tag);
+		model.getData().observe(this.fragment, entry -> {
 
-			// update UI
-			if (cursor.getCount() > 1)
+			final String key = entry.getKey();
+			if (!tag.equals(key))
 			{
-				throw new RuntimeException("Unexpected number of rows");
+				return;
 			}
-			if (cursor.moveToFirst())
+
+			final Cursor cursor = entry.getValue();
+			synset(cursor, synsetId, parent, addNewNode);
+		});
+	}
+
+	private void synset(@NonNull final Cursor cursor, final long synsetId, @NonNull final TreeNode parent, @SuppressWarnings("SameParameterValue") final boolean addNewNode)
+	{
+		if (cursor.getCount() > 1)
+		{
+			throw new RuntimeException("Unexpected number of rows");
+		}
+		if (cursor.moveToFirst())
+		{
+			final SpannableStringBuilder sb = new SpannableStringBuilder();
+			final int idPosName = cursor.getColumnIndex(PosTypes.POSNAME);
+			final int idLexDomain = cursor.getColumnIndex(LexDomains.LEXDOMAIN);
+			final int idDefinition = cursor.getColumnIndex(Synsets.DEFINITION);
+			final String posName = cursor.getString(idPosName);
+			final String lexDomain = cursor.getString(idLexDomain);
+			final String definition = cursor.getString(idDefinition);
+
+			Spanner.appendImage(sb, BaseModule.this.synsetDrawable);
+			sb.append(' ');
+			synset(sb, synsetId, posName, lexDomain, definition);
+
+			// result
+			if (addNewNode)
 			{
-				final SpannableStringBuilder sb = new SpannableStringBuilder();
-				final int idPosName = cursor.getColumnIndex(PosTypes.POSNAME);
-				final int idLexDomain = cursor.getColumnIndex(LexDomains.LEXDOMAIN);
-				final int idDefinition = cursor.getColumnIndex(Synsets.DEFINITION);
-				final String posName = cursor.getString(idPosName);
-				final String lexDomain = cursor.getString(idLexDomain);
-				final String definition = cursor.getString(idDefinition);
-
-				Spanner.appendImage(sb, BaseModule.this.synsetDrawable);
-				sb.append(' ');
-				synset(sb, synsetId, posName, lexDomain, definition);
-
-				// result
-				if (addNewNode)
-				{
-					TreeFactory.addTextNode(parent, sb, BaseModule.this.context);
-					FireEvent.onResults(parent);
-				}
-				else
-				{
-					FireEvent.onResults(parent, sb);
-				}
+				TreeFactory.addTextNode(parent, sb, BaseModule.this.context);
+				FireEvent.onResults(parent);
 			}
 			else
 			{
-				FireEvent.onNoResult(parent, addNewNode);
+				FireEvent.onResults(parent, sb);
 			}
+		}
+		else
+		{
+			FireEvent.onNoResult(parent, addNewNode);
+		}
 
-			// TODO no need to call cursor.close()
-		});
+		// TODO no need to call cursor.close() ?()
 	}
 
 	/**
@@ -691,67 +750,78 @@ abstract public class BaseModule extends Module
 		final String[] selectionArgs = {Long.toString(synsetId)};
 		final String sortOrder = Words.LEMMA;
 		final SqlunetViewModel model = ViewModelProviders.of(this.fragment, new SqlunetViewModelFactory(this.fragment, uri, projection, selection, selectionArgs, sortOrder)).get(SqlunetViewModel.class);
-		model.loadData();model.getData().observe(this.fragment, cursor -> {
+		final String tag = "wn.members1";
+		model.loadData(tag);
+		model.getData().observe(this.fragment, entry -> {
 
-			// update UI
+			final String key = entry.getKey();
+			if (!tag.equals(key))
+			{
+				return;
+			}
+			final Cursor cursor = entry.getValue();
+			membersToView1(cursor, parent, addNewNode);
+		});
+	}
+
+	private void membersToView1(final Cursor cursor, @NonNull final TreeNode parent, final boolean addNewNode)
+	{
+		if (BaseModule.this.membersGrouped)
+		{
+			if (cursor.getCount() > 1)
+			{
+				throw new RuntimeException("Unexpected number of rows");
+			}
+		}
+
+		if (cursor.moveToFirst())
+		{
+			final SpannableStringBuilder sb = new SpannableStringBuilder();
 			if (BaseModule.this.membersGrouped)
 			{
-				if (cursor.getCount() > 1)
-				{
-					throw new RuntimeException("Unexpected number of rows");
-				}
-			}
-
-			if (cursor.moveToFirst())
-			{
-				final SpannableStringBuilder sb = new SpannableStringBuilder();
-				if (BaseModule.this.membersGrouped)
-				{
-					final int idMembers = cursor.getColumnIndex(Senses_Words.MEMBERS);
-					sb.append(cursor.getString(idMembers));
-				}
-				else
-				{
-					final int lemmaId = cursor.getColumnIndex(Words.LEMMA);
-					// int i = 1;
-					do
-					{
-						final String lemma = cursor.getString(lemmaId);
-						if (sb.length() != 0)
-						{
-							sb.append('\n');
-						}
-						// final String record = String.format(Locale.ENGLISH, "[%d] %s", i++, lemma);
-						// sb.append(record);
-						Spanner.appendImage(sb, BaseModule.this.memberDrawable);
-						sb.append(' ');
-						// sb.append(Integer.toString(i++));
-						// sb.append('-');
-						// sb.append(lemma);
-						Spanner.append(sb, lemma, 0, WordNetFactories.membersFactory);
-					}
-					while (cursor.moveToNext());
-				}
-
-				// result
-				if (addNewNode)
-				{
-					TreeFactory.addTextNode(parent, sb, BaseModule.this.context);
-					FireEvent.onResults(parent);
-				}
-				else
-				{
-					FireEvent.onResults(parent, sb);
-				}
+				final int idMembers = cursor.getColumnIndex(Senses_Words.MEMBERS);
+				sb.append(cursor.getString(idMembers));
 			}
 			else
 			{
-				FireEvent.onNoResult(parent, addNewNode);
+				final int lemmaId = cursor.getColumnIndex(Words.LEMMA);
+				// int i = 1;
+				do
+				{
+					final String lemma = cursor.getString(lemmaId);
+					if (sb.length() != 0)
+					{
+						sb.append('\n');
+					}
+					// final String record = String.format(Locale.ENGLISH, "[%d] %s", i++, lemma);
+					// sb.append(record);
+					Spanner.appendImage(sb, BaseModule.this.memberDrawable);
+					sb.append(' ');
+					// sb.append(Integer.toString(i++));
+					// sb.append('-');
+					// sb.append(lemma);
+					Spanner.append(sb, lemma, 0, WordNetFactories.membersFactory);
+				}
+				while (cursor.moveToNext());
 			}
 
-			// handled by LoaderManager, so no need to call cursor.close()
+			// result
+			if (addNewNode)
+			{
+				TreeFactory.addTextNode(parent, sb, BaseModule.this.context);
+				FireEvent.onResults(parent);
+			}
+			else
+			{
+				FireEvent.onResults(parent, sb);
+			}
+		}
+		else
+		{
+			FireEvent.onNoResult(parent, addNewNode);
+		}
 
-		});
+		// TODO no need to call cursor.close() ?
 	}
 
 	/**
@@ -769,51 +839,62 @@ abstract public class BaseModule extends Module
 		final String sortOrder = Senses_Words.MEMBER;
 
 		final SqlunetViewModel model = ViewModelProviders.of(this.fragment, new SqlunetViewModelFactory(this.fragment, uri, projection, selection, selectionArgs, sortOrder)).get(SqlunetViewModel.class);
-		model.loadData();
-		model.getData().observe(this.fragment, cursor -> {
+		final String tag = "wn.members2";
+		model.loadData(tag);
+		model.getData().observe(this.fragment, entry -> {
 
-			// update UI
-			if (BaseModule.this.membersGrouped)
+			final String key = entry.getKey();
+			if (!tag.equals(key))
 			{
-				if (cursor.getCount() > 1)
-				{
-					throw new RuntimeException("Unexpected number of rows");
-				}
+				return;
 			}
-
-			if (cursor.moveToFirst())
-			{
-				final int idWordId = cursor.getColumnIndex(Senses_Words.WORDID);
-				final int idMember = cursor.getColumnIndex(Senses_Words.MEMBER);
-				// int i = 1;
-				do
-				{
-					final long wordId = cursor.getLong(idWordId);
-					final String member = cursor.getString(idMember);
-
-					final SpannableStringBuilder sb = new SpannableStringBuilder();
-					// final String record = String.format(Locale.ENGLISH, "[%d] %s", i++, lemma);
-					// sb.append(record);
-					// sb.append(Integer.toString(i++));
-					// sb.append('-');
-					// sb.append(lemma);
-					Spanner.append(sb, member, 0, WordNetFactories.membersFactory);
-
-					// result
-					final TreeNode memberNode = TreeFactory.newLinkNode(sb, R.drawable.member, new WordLink(wordId), BaseModule.this.context);
-					parent.addChild(memberNode);
-				}
-				while (cursor.moveToNext());
-
-				FireEvent.onResults(parent);
-			}
-			else
-			{
-				FireEvent.onNoResult(parent, true);
-			}
-
-			// handled by LoaderManager, so no need to call cursor.close()
+			final Cursor cursor = entry.getValue();
+			membersToView2(cursor, parent);
 		});
+	}
+
+	private void membersToView2(@NonNull final Cursor cursor, @NonNull final TreeNode parent)
+	{
+		if (BaseModule.this.membersGrouped)
+		{
+			if (cursor.getCount() > 1)
+			{
+				throw new RuntimeException("Unexpected number of rows");
+			}
+		}
+
+		if (cursor.moveToFirst())
+		{
+			final int idWordId = cursor.getColumnIndex(Senses_Words.WORDID);
+			final int idMember = cursor.getColumnIndex(Senses_Words.MEMBER);
+			// int i = 1;
+			do
+			{
+				final long wordId = cursor.getLong(idWordId);
+				final String member = cursor.getString(idMember);
+
+				final SpannableStringBuilder sb = new SpannableStringBuilder();
+				// final String record = String.format(Locale.ENGLISH, "[%d] %s", i++, lemma);
+				// sb.append(record);
+				// sb.append(Integer.toString(i++));
+				// sb.append('-');
+				// sb.append(lemma);
+				Spanner.append(sb, member, 0, WordNetFactories.membersFactory);
+
+				// result
+				final TreeNode memberNode = TreeFactory.newLinkNode(sb, R.drawable.member, new WordLink(wordId), BaseModule.this.context);
+				parent.addChild(memberNode);
+			}
+			while (cursor.moveToNext());
+
+			FireEvent.onResults(parent);
+		}
+		else
+		{
+			FireEvent.onNoResult(parent, true);
+		}
+
+		// TODO no need to call cursor.close() ?()?
 	}
 
 	/**
@@ -823,7 +904,7 @@ abstract public class BaseModule extends Module
 	 * @param parent     parent node
 	 * @param addNewNode whether to addItem to (or set) node
 	 */
-	private void samples(final long synsetId, @NonNull final TreeNode parent, @SuppressWarnings("SameParameterValue") final boolean addNewNode)
+	private void samples(@NonNull final long synsetId, @NonNull final TreeNode parent, @SuppressWarnings("SameParameterValue") final boolean addNewNode)
 	{
 
 		final Uri uri = Uri.parse(WordNetProvider.makeUri(Samples.CONTENT_URI_TABLE));
@@ -836,52 +917,64 @@ abstract public class BaseModule extends Module
 		final String sortOrder = Samples.SAMPLEID;
 
 		final SqlunetViewModel model = ViewModelProviders.of(this.fragment, new SqlunetViewModelFactory(this.fragment, uri, projection, selection, selectionArgs, sortOrder)).get(SqlunetViewModel.class);
-		model.loadData();model.getData().observe(this.fragment, cursor -> {
+		final String tag = "wn.samples";
+		model.loadData(tag);
+		model.getData().observe(this.fragment, entry -> {
 
-			// update UI
-			if (cursor.moveToFirst())
+			final String key = entry.getKey();
+			if (!tag.equals(key))
 			{
-				final Context context = BaseModule.this.context;
+				return;
+			}
+			final Cursor cursor = entry.getValue();
+			samplesToView(cursor, parent, addNewNode);
+		});
+	}
 
-				final int idSample = cursor.getColumnIndex(Samples.SAMPLE);
+	private void samplesToView(@NonNull final Cursor cursor, @NonNull final TreeNode parent, @SuppressWarnings("SameParameterValue") final boolean addNewNode)
+	{
+		if (cursor.moveToFirst())
+		{
+			final Context context = BaseModule.this.context;
 
-				final SpannableStringBuilder sb = new SpannableStringBuilder();
-				do
-				{
-					final String sample = cursor.getString(idSample);
-					// final int sampleId = cursor.getInt(idSampleId);
-					if (sb.length() != 0)
-					{
-						sb.append('\n');
-					}
-					Spanner.appendImage(sb, BaseModule.this.sampleDrawable);
-					sb.append(' ');
-					// sb.append(Integer.toString(sampleId));
-					// sb.append(' ');
-					Spanner.append(sb, sample, 0, WordNetFactories.sampleFactory);
-					// final String record = String.format(Locale.ENGLISH, "[%d] %s", sampleId, sample);
-					// sb.append(record);
-				}
-				while (cursor.moveToNext());
+			final int idSample = cursor.getColumnIndex(Samples.SAMPLE);
 
-				// result
-				if (addNewNode)
+			final SpannableStringBuilder sb = new SpannableStringBuilder();
+			do
+			{
+				final String sample = cursor.getString(idSample);
+				// final int sampleId = cursor.getInt(idSampleId);
+				if (sb.length() != 0)
 				{
-					TreeFactory.addTextNode(parent, sb, context);
-					FireEvent.onResults(parent);
+					sb.append('\n');
 				}
-				else
-				{
-					FireEvent.onResults(parent, sb);
-				}
+				Spanner.appendImage(sb, BaseModule.this.sampleDrawable);
+				sb.append(' ');
+				// sb.append(Integer.toString(sampleId));
+				// sb.append(' ');
+				Spanner.append(sb, sample, 0, WordNetFactories.sampleFactory);
+				// final String record = String.format(Locale.ENGLISH, "[%d] %s", sampleId, sample);
+				// sb.append(record);
+			}
+			while (cursor.moveToNext());
+
+			// result
+			if (addNewNode)
+			{
+				TreeFactory.addTextNode(parent, sb, context);
+				FireEvent.onResults(parent);
 			}
 			else
 			{
-				FireEvent.onNoResult(parent, addNewNode);
+				FireEvent.onResults(parent, sb);
 			}
+		}
+		else
+		{
+			FireEvent.onNoResult(parent, addNewNode);
+		}
 
-			// handled by LoaderManager, so no need to call cursor.close()
-		});
+		// TODO no need to call cursor.close() ?
 	}
 
 	static private final String TARGET_SYNSETID = "d_synsetid";
@@ -910,62 +1003,74 @@ abstract public class BaseModule extends Module
 		final String sortOrder = LinkTypes.LINKID;
 
 		final SqlunetViewModel model = ViewModelProviders.of(this.fragment, new SqlunetViewModelFactory(this.fragment, uri, projection, selection, selectionArgs, sortOrder)).get(SqlunetViewModel.class);
-		model.loadData();model.getData().observe(this.fragment, cursor -> {
+		final String tag = "wn.semlinks1";
+		model.loadData(tag);
+		model.getData().observe(this.fragment, entry -> {
 
-			// update UI
-			// noinspection StatementWithEmptyBody
-			if (cursor.moveToFirst())
+			final String key = entry.getKey();
+			if (!tag.equals(key))
 			{
-				final Context context = BaseModule.this.context;
-
-				final int idLinkId = cursor.getColumnIndex(LinkTypes.LINKID);
-				// final int idLink = cursor.getColumnIndex(LinkTypes.LINK);
-				final int idTargetSynsetId = cursor.getColumnIndex(BaseModule.TARGET_SYNSETID);
-				final int idTargetDefinition = cursor.getColumnIndex(BaseModule.TARGET_DEFINITION);
-				final int idTargetMembers = cursor.getColumnIndex(SemLinks_Synsets_Words_X.MEMBERS2);
-				final int idRecurses = cursor.getColumnIndex(SemLinks_Synsets_Words_X.RECURSES);
-
-				do
-				{
-					final SpannableStringBuilder sb = new SpannableStringBuilder();
-
-					final int linkId = cursor.getInt(idLinkId);
-					// final String link = cursor.getString(idLink);
-
-					final long targetSynsetId = cursor.getLong(idTargetSynsetId);
-					final String targetDefinition = cursor.getString(idTargetDefinition);
-					final String targetMembers = cursor.getString(idTargetMembers);
-					final boolean linkCanRecurse = cursor.getInt(idRecurses) != 0;
-
-					Spanner.append(sb, targetMembers, 0, WordNetFactories.membersFactory);
-					sb.append(' ');
-					Spanner.append(sb, targetDefinition, 0, WordNetFactories.definitionFactory);
-
-					// recursion
-					if (linkCanRecurse)
-					{
-						final TreeNode linksNode = TreeFactory.newLinkQueryNode(sb, getLinkRes(linkId), new SubLinksQuery(targetSynsetId, linkId, BaseModule.this.maxRecursion), new SynsetLink(targetSynsetId, BaseModule.this.maxRecursion), false, context).prependTo(parent);
-
-						// fire event
-						FireEvent.onQueryReady(linksNode);
-					}
-					else
-					{
-						TreeFactory.newLeafNode(sb, getLinkRes(linkId), context).prependTo(parent);
-					}
-				}
-				while (cursor.moveToNext());
-
-				// fire event
-				FireEvent.onResults(parent);
+				return;
 			}
-			else
-			{
-				// FireEvent.onNoResult(parent, true)
-			}
-
-			// handled by LoaderManager, so no need to call cursor.close()
+			final Cursor cursor = entry.getValue();
+			semLinksToView1(cursor, parent);
 		});
+	}
+
+	private void semLinksToView1(@NonNull final Cursor cursor, @NonNull final TreeNode parent)
+	{
+		// noinspection StatementWithEmptyBody
+		if (cursor.moveToFirst())
+		{
+			final Context context = BaseModule.this.context;
+
+			final int idLinkId = cursor.getColumnIndex(LinkTypes.LINKID);
+			// final int idLink = cursor.getColumnIndex(LinkTypes.LINK);
+			final int idTargetSynsetId = cursor.getColumnIndex(BaseModule.TARGET_SYNSETID);
+			final int idTargetDefinition = cursor.getColumnIndex(BaseModule.TARGET_DEFINITION);
+			final int idTargetMembers = cursor.getColumnIndex(SemLinks_Synsets_Words_X.MEMBERS2);
+			final int idRecurses = cursor.getColumnIndex(SemLinks_Synsets_Words_X.RECURSES);
+
+			do
+			{
+				final SpannableStringBuilder sb = new SpannableStringBuilder();
+
+				final int linkId = cursor.getInt(idLinkId);
+				// final String link = cursor.getString(idLink);
+
+				final long targetSynsetId = cursor.getLong(idTargetSynsetId);
+				final String targetDefinition = cursor.getString(idTargetDefinition);
+				final String targetMembers = cursor.getString(idTargetMembers);
+				final boolean linkCanRecurse = cursor.getInt(idRecurses) != 0;
+
+				Spanner.append(sb, targetMembers, 0, WordNetFactories.membersFactory);
+				sb.append(' ');
+				Spanner.append(sb, targetDefinition, 0, WordNetFactories.definitionFactory);
+
+				// recursion
+				if (linkCanRecurse)
+				{
+					final TreeNode linksNode = TreeFactory.newLinkQueryNode(sb, getLinkRes(linkId), new SubLinksQuery(targetSynsetId, linkId, BaseModule.this.maxRecursion), new SynsetLink(targetSynsetId, BaseModule.this.maxRecursion), false, context).prependTo(parent);
+
+					// fire event
+					FireEvent.onQueryReady(linksNode);
+				}
+				else
+				{
+					TreeFactory.newLeafNode(sb, getLinkRes(linkId), context).prependTo(parent);
+				}
+			}
+			while (cursor.moveToNext());
+
+			// fire event
+			FireEvent.onResults(parent);
+		}
+		else
+		{
+			// FireEvent.onNoResult(parent, true)
+		}
+
+		// TODO no need to call cursor.close() ?
 	}
 
 	/**
@@ -990,69 +1095,81 @@ abstract public class BaseModule extends Module
 		final String sortOrder = null;
 		assert BaseModule.this.context != null;
 		final SqlunetViewModel model = ViewModelProviders.of(this.fragment, new SqlunetViewModelFactory(this.fragment, uri, projection, selection, selectionArgs, sortOrder)).get(SqlunetViewModel.class);
-		model.loadData();model.getData().observe(this.fragment, cursor -> {
+		final String tag = "wn.semlinks2";
+		model.loadData(tag);
+		model.getData().observe(this.fragment, entry -> {
 
-			// update UI
-			if (cursor.moveToFirst())
+			final String key = entry.getKey();
+			if (!tag.equals(key))
 			{
-				final Context context = BaseModule.this.context;
+				return;
+			}
+			final Cursor cursor = entry.getValue();
+			semLinksToView2(cursor, linkId, recurseLevel, parent);
+		});
+	}
 
-				// final int idLinkId = cursor.getColumnIndex(LinkTypes.LINKID);
-				// final int idLink = cursor.getColumnIndex(LinkTypes.LINK);
-				final int idTargetSynsetId = cursor.getColumnIndex(BaseModule.TARGET_SYNSETID);
-				final int idTargetDefinition = cursor.getColumnIndex(BaseModule.TARGET_DEFINITION);
-				final int idTargetMembers = cursor.getColumnIndex(SemLinks_Synsets_Words_X.MEMBERS2);
-				final int idRecurses = cursor.getColumnIndex(SemLinks_Synsets_Words_X.RECURSES);
+	private void semLinksToView2(@NonNull final Cursor cursor, final int linkId, final int recurseLevel, @NonNull final TreeNode parent)
+	{
+		if (cursor.moveToFirst())
+		{
+			final Context context = BaseModule.this.context;
 
-				do
+			// final int idLinkId = cursor.getColumnIndex(LinkTypes.LINKID);
+			// final int idLink = cursor.getColumnIndex(LinkTypes.LINK);
+			final int idTargetSynsetId = cursor.getColumnIndex(BaseModule.TARGET_SYNSETID);
+			final int idTargetDefinition = cursor.getColumnIndex(BaseModule.TARGET_DEFINITION);
+			final int idTargetMembers = cursor.getColumnIndex(SemLinks_Synsets_Words_X.MEMBERS2);
+			final int idRecurses = cursor.getColumnIndex(SemLinks_Synsets_Words_X.RECURSES);
+
+			do
+			{
+				final SpannableStringBuilder sb = new SpannableStringBuilder();
+
+				// final int linkId = cursor.getInt(idLinkId);
+				// final String link = cursor.getString(idLink);
+
+				final long targetSynsetId = cursor.getLong(idTargetSynsetId);
+				final String targetDefinition = cursor.getString(idTargetDefinition);
+				final String targetMembers = cursor.getString(idTargetMembers);
+				final boolean linkCanRecurse = cursor.getInt(idRecurses) != 0;
+
+				Spanner.append(sb, targetMembers, 0, WordNetFactories.membersFactory);
+				sb.append(' ');
+				Spanner.append(sb, targetDefinition, 0, WordNetFactories.definitionFactory);
+
+				// recurse
+				if (linkCanRecurse)
 				{
-					final SpannableStringBuilder sb = new SpannableStringBuilder();
-
-					// final int linkId = cursor.getInt(idLinkId);
-					// final String link = cursor.getString(idLink);
-
-					final long targetSynsetId = cursor.getLong(idTargetSynsetId);
-					final String targetDefinition = cursor.getString(idTargetDefinition);
-					final String targetMembers = cursor.getString(idTargetMembers);
-					final boolean linkCanRecurse = cursor.getInt(idRecurses) != 0;
-
-					Spanner.append(sb, targetMembers, 0, WordNetFactories.membersFactory);
-					sb.append(' ');
-					Spanner.append(sb, targetDefinition, 0, WordNetFactories.definitionFactory);
-
-					// recurse
-					if (linkCanRecurse)
+					if (recurseLevel > 1)
 					{
-						if (recurseLevel > 1)
-						{
-							final int newRecurseLevel = recurseLevel - 1;
-							final TreeNode linksNode = TreeFactory.newLinkQueryNode(sb, getLinkRes(linkId), new SubLinksQuery(targetSynsetId, linkId, newRecurseLevel), new SynsetLink(targetSynsetId, BaseModule.this.maxRecursion), false, context).addTo(parent);
+						final int newRecurseLevel = recurseLevel - 1;
+						final TreeNode linksNode = TreeFactory.newLinkQueryNode(sb, getLinkRes(linkId), new SubLinksQuery(targetSynsetId, linkId, newRecurseLevel), new SynsetLink(targetSynsetId, BaseModule.this.maxRecursion), false, context).addTo(parent);
 
-							// fire event
-							FireEvent.onQueryReady(linksNode);
-						}
-						else
-						{
-							TreeFactory.newMoreNode(sb, getLinkRes(linkId), context).addTo(parent);
-						}
+						// fire event
+						FireEvent.onQueryReady(linksNode);
 					}
 					else
 					{
-						TreeFactory.newLeafNode(sb, getLinkRes(linkId), context).addTo(parent);
+						TreeFactory.newMoreNode(sb, getLinkRes(linkId), context).addTo(parent);
 					}
 				}
-				while (cursor.moveToNext());
-
-				// fire event
-				FireEvent.onResults(parent);
+				else
+				{
+					TreeFactory.newLeafNode(sb, getLinkRes(linkId), context).addTo(parent);
+				}
 			}
-			else
-			{
-				FireEvent.onNoResult(parent, true);
-			}
+			while (cursor.moveToNext());
 
-			// handled by LoaderManager, so no need to call cursor.close()
-		});
+			// fire event
+			FireEvent.onResults(parent);
+		}
+		else
+		{
+			FireEvent.onNoResult(parent, true);
+		}
+
+		// TODO no need to call cursor.close() ?
 	}
 
 	/**
@@ -1077,9 +1194,24 @@ abstract public class BaseModule extends Module
 		final String sortOrder = null;
 
 		final SqlunetViewModel model = ViewModelProviders.of(this.fragment, new SqlunetViewModelFactory(this.fragment, uri, projection, selection, selectionArgs, sortOrder)).get(SqlunetViewModel.class);
-		model.loadData();model.getData().observe(this.fragment, cursor -> {
+		final String tag = "wn.lexlinks1";
+		model.loadData(tag);
+		model.getData().observe(this.fragment, entry -> {
 
-			// update UI
+			final String key = entry.getKey();
+			if (!tag.equals(key))
+			{
+				return;
+			}
+			final Cursor cursor = entry.getValue();
+			lexLinksToView1(cursor, parent);
+		});
+	}
+
+	private void lexLinksToView1(@NonNull final Cursor cursor, @NonNull final TreeNode parent)
+	{
+		if (cursor.moveToFirst())
+		{
 			// noinspection StatementWithEmptyBody
 			if (cursor.moveToFirst())
 			{
@@ -1142,8 +1274,8 @@ abstract public class BaseModule extends Module
 				// FireEvent.onNoResult(parent, true)
 			}
 
-			// handled by LoaderManager, so no need to call cursor.close()
-		});
+			// TODO no need to call cursor.close() ?
+		}
 	}
 
 	/**
@@ -1167,9 +1299,24 @@ abstract public class BaseModule extends Module
 		final String sortOrder = LinkTypes.LINKID;
 
 		final SqlunetViewModel model = ViewModelProviders.of(this.fragment, new SqlunetViewModelFactory(this.fragment, uri, projection, selection, selectionArgs, sortOrder)).get(SqlunetViewModel.class);
-		model.loadData();model.getData().observe(this.fragment, cursor -> {
+		final String tag = "wn.lexlinks2";
+		model.loadData(tag);
+		model.getData().observe(this.fragment, entry -> {
 
-			// update UI
+			final String key = entry.getKey();
+			if (!tag.equals(key))
+			{
+				return;
+			}
+			final Cursor cursor = entry.getValue();
+			lexLinksToView2(cursor, parent);
+		});
+	}
+
+	private void lexLinksToView2(@NonNull final Cursor cursor, @NonNull final TreeNode parent)
+	{
+		if (cursor.moveToFirst())
+		{
 			//noinspection StatementWithEmptyBody
 			if (cursor.moveToFirst())
 			{
@@ -1208,7 +1355,7 @@ abstract public class BaseModule extends Module
 					// sb.append(" in ");
 					// sb.append(' ');
 					// sb.append('{');
-					// Spanner.append(sb, members, 0, WordNetFactories.membersFactory);
+					// Spanner.append(sb, membersToView1, 0, WordNetFactories.membersFactory);
 					// sb.append('}');
 					sb.append(' ');
 					Spanner.append(sb, targetDefinition, 0, WordNetFactories.definitionFactory);
@@ -1227,8 +1374,8 @@ abstract public class BaseModule extends Module
 				// FireEvent.onNoResult(parent, true)
 			}
 
-			// handled by LoaderManager, so no need to call cursor.close()
-		});
+			// TODO no need to call cursor.close() ?
+		}
 	}
 
 	/**
@@ -1246,43 +1393,17 @@ abstract public class BaseModule extends Module
 		final String sortOrder = null;
 
 		final SqlunetViewModel model = ViewModelProviders.of(this.fragment, new SqlunetViewModelFactory(this.fragment, uri, projection, selection, selectionArgs, sortOrder)).get(SqlunetViewModel.class);
-		model.loadData();model.getData().observe(this.fragment, cursor -> {
+		final String tag = "wn.vframes1";
+		model.loadData(tag);
+		model.getData().observe(this.fragment, entry -> {
 
-			// update UI
-			//noinspection StatementWithEmptyBody
-			if (cursor.moveToFirst())
+			final String key = entry.getKey();
+			if (!tag.equals(key))
 			{
-				final Context context = BaseModule.this.context;
-
-				final int vframeId = cursor.getColumnIndex(VerbFrameMaps_VerbFrames.FRAME);
-
-				final SpannableStringBuilder sb = new SpannableStringBuilder();
-				do
-				{
-					final String vframe = cursor.getString(vframeId);
-					final String record = String.format(Locale.ENGLISH, "%s", vframe);
-					if (sb.length() != 0)
-					{
-						sb.append('\n');
-					}
-					Spanner.appendImage(sb, BaseModule.this.verbframeDrawable);
-					sb.append(' ');
-					sb.append(record);
-				}
-				while (cursor.moveToNext());
-
-				// attach result
-				TreeFactory.addTextNode(parent, sb, context);
-
-				// fire event
-				FireEvent.onResults(parent);
+				return;
 			}
-			else
-			{
-				// FireEvent.onNoResult(parent, true)
-			}
-
-			// handled by LoaderManager, so no need to call cursor.close()
+			final Cursor cursor = entry.getValue();
+			vframesToView(cursor, parent);
 		});
 	}
 
@@ -1302,44 +1423,56 @@ abstract public class BaseModule extends Module
 		final String sortOrder = null;
 
 		final SqlunetViewModel model = ViewModelProviders.of(this.fragment, new SqlunetViewModelFactory(this.fragment, uri, projection, selection, selectionArgs, sortOrder)).get(SqlunetViewModel.class);
-		model.loadData();model.getData().observe(this.fragment, cursor -> {
+		final String tag = "wn.vframes2";
+		model.loadData(tag);
+		model.getData().observe(this.fragment, entry -> {
 
-			// update UI
-			//noinspection StatementWithEmptyBody
-			if (cursor.moveToFirst())
+			final String key = entry.getKey();
+			if (!tag.equals(key))
 			{
-				final Context context = BaseModule.this.context;
-
-				final int vframeId = cursor.getColumnIndex(VerbFrameMaps_VerbFrames.FRAME);
-
-				final SpannableStringBuilder sb = new SpannableStringBuilder();
-				do
-				{
-					final String vframe = cursor.getString(vframeId);
-					final String record = String.format(Locale.ENGLISH, "%s", vframe);
-					if (sb.length() != 0)
-					{
-						sb.append('\n');
-					}
-					Spanner.appendImage(sb, BaseModule.this.verbframeDrawable);
-					sb.append(' ');
-					sb.append(record);
-				}
-				while (cursor.moveToNext());
-
-				// attach result
-				TreeFactory.addTextNode(parent, sb, context);
-
-				// fire event
-				FireEvent.onResults(parent);
+				return;
 			}
-			else
-			{
-				// FireEvent.onNoResult(parent, true)
-			}
-
-			// handled by LoaderManager, so no need to call cursor.close()
+			final Cursor cursor = entry.getValue();
+			vframesToView(cursor, parent);
 		});
+	}
+
+	private void vframesToView(@NonNull final Cursor cursor, @NonNull final TreeNode parent)
+	{
+		//noinspection StatementWithEmptyBody
+		if (cursor.moveToFirst())
+		{
+			final Context context = BaseModule.this.context;
+
+			final int vframeId = cursor.getColumnIndex(VerbFrameMaps_VerbFrames.FRAME);
+
+			final SpannableStringBuilder sb = new SpannableStringBuilder();
+			do
+			{
+				final String vframe = cursor.getString(vframeId);
+				final String record = String.format(Locale.ENGLISH, "%s", vframe);
+				if (sb.length() != 0)
+				{
+					sb.append('\n');
+				}
+				Spanner.appendImage(sb, BaseModule.this.verbframeDrawable);
+				sb.append(' ');
+				sb.append(record);
+			}
+			while (cursor.moveToNext());
+
+			// attach result
+			TreeFactory.addTextNode(parent, sb, context);
+
+			// fire event
+			FireEvent.onResults(parent);
+		}
+		else
+		{
+			// FireEvent.onNoResult(parent, true)
+		}
+
+		// TODO no need to call cursor.close() ?
 	}
 
 	/**
@@ -1357,44 +1490,56 @@ abstract public class BaseModule extends Module
 		final String sortOrder = null;
 
 		final SqlunetViewModel model = ViewModelProviders.of(this.fragment, new SqlunetViewModelFactory(this.fragment, uri, projection, selection, selectionArgs, sortOrder)).get(SqlunetViewModel.class);
-		model.loadData();model.getData().observe(this.fragment, cursor -> {
+		final String tag = "wn.vframesentences1";
+		model.loadData(tag);
+		model.getData().observe(this.fragment, entry -> {
 
-			// update UI
-			//noinspection StatementWithEmptyBody
-			if (cursor.moveToFirst())
+			final String key = entry.getKey();
+			if (!tag.equals(key))
 			{
-				final Context context = BaseModule.this.context;
-
-				final int vframeId = cursor.getColumnIndex(VerbFrameSentenceMaps_VerbFrameSentences.SENTENCE);
-
-				final SpannableStringBuilder sb = new SpannableStringBuilder();
-				do
-				{
-					final String vframesentence = cursor.getString(vframeId);
-					final String record = String.format(Locale.ENGLISH, vframesentence, "[-]");
-					if (sb.length() != 0)
-					{
-						sb.append('\n');
-					}
-					Spanner.appendImage(sb, BaseModule.this.verbframeDrawable);
-					sb.append(' ');
-					sb.append(record);
-				}
-				while (cursor.moveToNext());
-
-				// attach result
-				TreeFactory.addTextNode(parent, sb, context);
-
-				// fire event
-				FireEvent.onResults(parent);
+				return;
 			}
-			else
-			{
-				// FireEvent.onNoResult(parent, true)
-			}
-
-			// handled by LoaderManager, so no need to call cursor.close()
+			final Cursor cursor = entry.getValue();
+			vFrameSentencesToView1(cursor, parent);
 		});
+	}
+
+	private void vFrameSentencesToView1(@NonNull final Cursor cursor, @NonNull final TreeNode parent)
+	{
+		//noinspection StatementWithEmptyBody
+		if (cursor.moveToFirst())
+		{
+			final Context context = BaseModule.this.context;
+
+			final int vframeId = cursor.getColumnIndex(VerbFrameSentenceMaps_VerbFrameSentences.SENTENCE);
+
+			final SpannableStringBuilder sb = new SpannableStringBuilder();
+			do
+			{
+				final String vframesentence = cursor.getString(vframeId);
+				final String record = String.format(Locale.ENGLISH, vframesentence, "[-]");
+				if (sb.length() != 0)
+				{
+					sb.append('\n');
+				}
+				Spanner.appendImage(sb, BaseModule.this.verbframeDrawable);
+				sb.append(' ');
+				sb.append(record);
+			}
+			while (cursor.moveToNext());
+
+			// attach result
+			TreeFactory.addTextNode(parent, sb, context);
+
+			// fire event
+			FireEvent.onResults(parent);
+		}
+		else
+		{
+			// FireEvent.onNoResult(parent, true)
+		}
+
+		// TODO no need to call cursor.close() ?
 	}
 
 	/**
@@ -1406,7 +1551,6 @@ abstract public class BaseModule extends Module
 	 */
 	void vFrameSentences(final long synsetId, final long wordId, @NonNull final TreeNode parent)
 	{
-		final String lemma = "---";
 		final Uri uri = Uri.parse(WordNetProvider.makeUri(VerbFrameSentenceMaps_VerbFrameSentences.CONTENT_URI_TABLE));
 		final String[] projection = {VerbFrameSentenceMaps_VerbFrameSentences.SENTENCE};
 		final String selection = VerbFrameSentenceMaps_VerbFrameSentences.SYNSETID + " = ? AND " + VerbFrameSentenceMaps_VerbFrameSentences.WORDID + " = ?";
@@ -1414,44 +1558,57 @@ abstract public class BaseModule extends Module
 		final String sortOrder = null;
 
 		final SqlunetViewModel model = ViewModelProviders.of(this.fragment, new SqlunetViewModelFactory(this.fragment, uri, projection, selection, selectionArgs, sortOrder)).get(SqlunetViewModel.class);
-		model.loadData();model.getData().observe(this.fragment, cursor -> {
+		final String tag = "wn.vframesentences2";
+		model.loadData(tag);
+		model.getData().observe(this.fragment, entry -> {
 
-			// update UI
-			// noinspection StatementWithEmptyBody
-			if (cursor.moveToFirst())
+			final String key = entry.getKey();
+			if (!tag.equals(key))
 			{
-				final Context context = BaseModule.this.context;
-
-				final int vframeId = cursor.getColumnIndex(VerbFrameSentenceMaps_VerbFrameSentences.SENTENCE);
-
-				final SpannableStringBuilder sb = new SpannableStringBuilder();
-				do
-				{
-					final String vframesentence = cursor.getString(vframeId);
-					final String record = String.format(Locale.ENGLISH, vframesentence, '[' + lemma + ']');
-					if (sb.length() != 0)
-					{
-						sb.append('\n');
-					}
-					Spanner.appendImage(sb, BaseModule.this.verbframeDrawable);
-					sb.append(' ');
-					sb.append(record);
-				}
-				while (cursor.moveToNext());
-
-				// attach result
-				TreeFactory.addTextNode(parent, sb, context);
-
-				// fire event
-				FireEvent.onResults(parent);
+				return;
 			}
-			else
-			{
-				// FireEvent.onNoResult(parent, true)
-			}
-
-			// handled by LoaderManager, so no need to call cursor.close()
+			final Cursor cursor = entry.getValue();
+			vFrameSentencesToView2(cursor, parent);
 		});
+	}
+
+	private void vFrameSentencesToView2(@NonNull final Cursor cursor, @NonNull final TreeNode parent)
+	{
+		// noinspection StatementWithEmptyBody
+		if (cursor.moveToFirst())
+		{
+			final String lemma = "---";
+			final Context context = BaseModule.this.context;
+
+			final int vframeId = cursor.getColumnIndex(VerbFrameSentenceMaps_VerbFrameSentences.SENTENCE);
+
+			final SpannableStringBuilder sb = new SpannableStringBuilder();
+			do
+			{
+				final String vframesentence = cursor.getString(vframeId);
+				final String record = String.format(Locale.ENGLISH, vframesentence, '[' + lemma + ']');
+				if (sb.length() != 0)
+				{
+					sb.append('\n');
+				}
+				Spanner.appendImage(sb, BaseModule.this.verbframeDrawable);
+				sb.append(' ');
+				sb.append(record);
+			}
+			while (cursor.moveToNext());
+
+			// attach result
+			TreeFactory.addTextNode(parent, sb, context);
+
+			// fire event
+			FireEvent.onResults(parent);
+		}
+		else
+		{
+			// FireEvent.onNoResult(parent, true)
+		}
+
+		// TODO no need to call cursor.close() ?
 	}
 
 	/**
@@ -1469,43 +1626,17 @@ abstract public class BaseModule extends Module
 		final String sortOrder = null;
 
 		final SqlunetViewModel model = ViewModelProviders.of(this.fragment, new SqlunetViewModelFactory(this.fragment, uri, projection, selection, selectionArgs, sortOrder)).get(SqlunetViewModel.class);
-		model.loadData();model.getData().observe(this.fragment, cursor -> {
+		final String tag = "wn.adjposition1";
+		model.loadData(tag);
+		model.getData().observe(this.fragment, entry -> {
 
-			// update UI
-			//noinspection StatementWithEmptyBody
-			if (cursor.moveToFirst())
+			final String key = entry.getKey();
+			if (!tag.equals(key))
 			{
-				final Context context = BaseModule.this.context;
-
-				final int positionId = cursor.getColumnIndex(AdjPositions_AdjPositionTypes.POSITIONNAME);
-
-				final SpannableStringBuilder sb = new SpannableStringBuilder();
-				do
-				{
-					final String position = cursor.getString(positionId);
-					final String record = String.format(Locale.ENGLISH, "%s", position);
-					if (sb.length() != 0)
-					{
-						sb.append('\n');
-					}
-					Spanner.appendImage(sb, BaseModule.this.verbframeDrawable);
-					sb.append(' ');
-					sb.append(record);
-				}
-				while (cursor.moveToNext());
-
-				// attach result
-				TreeFactory.addTextNode(parent, sb, context);
-
-				// fire event
-				FireEvent.onResults(parent);
+				return;
 			}
-			else
-			{
-				// FireEvent.onNoResult(parent, true)
-			}
-
-			// handled by LoaderManager, so no need to call cursor.close()
+			final Cursor cursor = entry.getValue();
+			adjPositionToView(cursor, parent);
 		});
 	}
 
@@ -1525,44 +1656,56 @@ abstract public class BaseModule extends Module
 		final String sortOrder = null;
 
 		final SqlunetViewModel model = ViewModelProviders.of(this.fragment, new SqlunetViewModelFactory(this.fragment, uri, projection, selection, selectionArgs, sortOrder)).get(SqlunetViewModel.class);
-		model.loadData();model.getData().observe(this.fragment, cursor -> {
+		final String tag = "wn.adjposition2";
+		model.loadData(tag);
+		model.getData().observe(this.fragment, entry -> {
 
-			// update UI
-			//noinspection StatementWithEmptyBody
-			if (cursor.moveToFirst())
+			final String key = entry.getKey();
+			if (!tag.equals(key))
 			{
-				final Context context = BaseModule.this.context;
-
-				final int positionId = cursor.getColumnIndex(AdjPositions_AdjPositionTypes.POSITIONNAME);
-
-				final SpannableStringBuilder sb = new SpannableStringBuilder();
-				do
-				{
-					final String position = cursor.getString(positionId);
-					final String record = String.format(Locale.ENGLISH, "%s", position);
-					if (sb.length() != 0)
-					{
-						sb.append('\n');
-					}
-					Spanner.appendImage(sb, BaseModule.this.verbframeDrawable);
-					sb.append(' ');
-					sb.append(record);
-				}
-				while (cursor.moveToNext());
-
-				// attach result
-				TreeFactory.addTextNode(parent, sb, context);
-
-				// fire event
-				FireEvent.onResults(parent);
+				return;
 			}
-			else
-			{
-				// FireEvent.onNoResult(parent, true)
-			}
-
-			// handled by LoaderManager, so no need to call cursor.close()
+			final Cursor cursor = entry.getValue();
+			adjPositionToView(cursor, parent);
 		});
+	}
+
+	private void adjPositionToView(@NonNull final Cursor cursor, @NonNull final TreeNode parent)
+	{
+		//noinspection StatementWithEmptyBody
+		if (cursor.moveToFirst())
+		{
+			final Context context = BaseModule.this.context;
+
+			final int positionId = cursor.getColumnIndex(AdjPositions_AdjPositionTypes.POSITIONNAME);
+
+			final SpannableStringBuilder sb = new SpannableStringBuilder();
+			do
+			{
+				final String position = cursor.getString(positionId);
+				final String record = String.format(Locale.ENGLISH, "%s", position);
+				if (sb.length() != 0)
+				{
+					sb.append('\n');
+				}
+				Spanner.appendImage(sb, BaseModule.this.verbframeDrawable);
+				sb.append(' ');
+				sb.append(record);
+			}
+			while (cursor.moveToNext());
+
+			// attach result
+			TreeFactory.addTextNode(parent, sb, context);
+
+			// fire event
+			FireEvent.onResults(parent);
+		}
+		else
+		{
+			// FireEvent.onNoResult(parent, true)
+		}
+
+		// TODO no need to call cursor.close() ?
 	}
 
 	/**
@@ -1580,47 +1723,58 @@ abstract public class BaseModule extends Module
 		final String sortOrder = null;
 
 		final SqlunetViewModel model = ViewModelProviders.of(this.fragment, new SqlunetViewModelFactory(this.fragment, uri, projection, selection, selectionArgs, sortOrder)).get(SqlunetViewModel.class);
-		model.loadData();model.getData().observe(this.fragment, cursor -> {
+		final String tag = "wn.morphs";
+		model.loadData(tag);
+		model.getData().observe(this.fragment, entry -> {
 
-			// update UI
-			//noinspection StatementWithEmptyBody
-			if (cursor.moveToFirst())
+			final String key = entry.getKey();
+			if (!tag.equals(key))
 			{
-				final Context context = BaseModule.this.context;
-
-				final int morphId = cursor.getColumnIndex(MorphMaps_Morphs.MORPH);
-				final int posId = cursor.getColumnIndex(MorphMaps_Morphs.POS);
-
-				final SpannableStringBuilder sb = new SpannableStringBuilder();
-				do
-				{
-					final String morph1 = cursor.getString(morphId);
-					final String pos1 = cursor.getString(posId);
-					final String record = String.format(Locale.ENGLISH, "(%s) %s", pos1, morph1);
-					if (sb.length() != 0)
-					{
-						sb.append('\n');
-					}
-					Spanner.appendImage(sb, BaseModule.this.morphDrawable);
-					sb.append(' ');
-					sb.append(record);
-				}
-				while (cursor.moveToNext());
-
-				// attach result
-				TreeFactory.addTextNode(parent, sb, context);
-
-				// fire event
-				FireEvent.onResults(parent);
+				return;
 			}
-			else
-			{
-				// FireEvent.onNoResult(parent, true)
-			}
-
-			// handled by LoaderManager, so no need to call cursor.close()
-
+			final Cursor cursor = entry.getValue();
+			morphsToView(cursor, parent);
 		});
+	}
+
+	private void morphsToView(@NonNull final Cursor cursor, @NonNull final TreeNode parent)
+	{
+		//noinspection StatementWithEmptyBody
+		if (cursor.moveToFirst())
+		{
+			final Context context = BaseModule.this.context;
+
+			final int morphId = cursor.getColumnIndex(MorphMaps_Morphs.MORPH);
+			final int posId = cursor.getColumnIndex(MorphMaps_Morphs.POS);
+
+			final SpannableStringBuilder sb = new SpannableStringBuilder();
+			do
+			{
+				final String morph1 = cursor.getString(morphId);
+				final String pos1 = cursor.getString(posId);
+				final String record = String.format(Locale.ENGLISH, "(%s) %s", pos1, morph1);
+				if (sb.length() != 0)
+				{
+					sb.append('\n');
+				}
+				Spanner.appendImage(sb, BaseModule.this.morphDrawable);
+				sb.append(' ');
+				sb.append(record);
+			}
+			while (cursor.moveToNext());
+
+			// attach result
+			TreeFactory.addTextNode(parent, sb, context);
+
+			// fire event
+			FireEvent.onResults(parent);
+		}
+		else
+		{
+			// FireEvent.onNoResult(parent, true)
+		}
+
+		// TODO no need to call cursor.close() ?
 	}
 
 	// H E L P E R S
@@ -1816,7 +1970,6 @@ abstract public class BaseModule extends Module
 		@Override
 		public void process(@NonNull final TreeNode node)
 		{
-			// semLinks
 			semLinks(this.id, this.linkId, recurseLevel, node);
 		}
 	}
@@ -1839,7 +1992,6 @@ abstract public class BaseModule extends Module
 		@Override
 		public void process(@NonNull final TreeNode node)
 		{
-			// samples
 			samples(this.id, node, true);
 		}
 	}
@@ -1906,7 +2058,6 @@ abstract public class BaseModule extends Module
 			BaseModule.this.context.startActivity(intent);
 		}
 	}
-
 
 	/**
 	 * Sense link data

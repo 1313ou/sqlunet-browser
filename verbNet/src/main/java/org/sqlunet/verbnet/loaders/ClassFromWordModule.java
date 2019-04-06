@@ -1,5 +1,6 @@
 package org.sqlunet.verbnet.loaders;
 
+import android.database.Cursor;
 import android.net.Uri;
 import android.os.Parcelable;
 import android.text.SpannableStringBuilder;
@@ -119,59 +120,70 @@ public class ClassFromWordModule extends BaseModule
 		final String sortOrder = null;
 
 		final SqlunetViewModel model = ViewModelProviders.of(this.fragment, new SqlunetViewModelFactory(this.fragment, uri, projection, selection, selectionArgs, sortOrder)).get(SqlunetViewModel.class);
-		model.loadData();model.getData().observe(this.fragment, cursor -> {
+		final String tag = "vn.classes";
+		model.loadData(tag);
+		model.getData().observe(this.fragment, entry -> {
 
-			// update UI
-			if (cursor.moveToFirst())
+			final String key = entry.getKey();
+			if (!tag.equals(key))
 			{
-				// column indices
-				final int idClassId = cursor.getColumnIndex(Words_VnClasses.CLASSID);
-				final int idClass = cursor.getColumnIndex(Words_VnClasses.CLASS);
-				// final int idClassTag = cursor.getColumnIndex(Words_VnClasses.CLASSTAG);
-
-				// read cursor
-				do
-				{
-					final SpannableStringBuilder sb = new SpannableStringBuilder();
-
-					// data
-					final int classId = cursor.getInt(idClassId);
-					final String vnClass = cursor.getString(idClass);
-
-					// sb.append("[class]");
-					Spanner.appendImage(sb, ClassFromWordModule.this.drawableRoles);
-					sb.append(' ');
-					Spanner.append(sb, vnClass, 0, VerbNetFactories.classFactory);
-					// sb.append(" tag=");
-					// sb.append(cursor.getString(idClassTag));
-					sb.append(" id=");
-					sb.append(Integer.toString(classId));
-
-					// attach result
-					TreeFactory.addTextNode(parent, sb, ClassFromWordModule.this.context);
-
-					// sub nodes
-					final TreeNode membersNode = TreeFactory.newQueryNode("Members", R.drawable.members, new MembersQuery(classId), true, ClassFromWordModule.this.context).addTo(parent);
-					final TreeNode rolesNode = TreeFactory.newQueryNode("Roles", R.drawable.roles, new RolesQuery(classId), true, ClassFromWordModule.this.context).addTo(parent);
-					final TreeNode framesNode = TreeFactory.newQueryNode("Frames", R.drawable.vnframe, new FramesQuery(classId), false, ClassFromWordModule.this.context).addTo(parent);
-
-					// fire event
-					FireEvent.onQueryReady(membersNode);
-					FireEvent.onQueryReady(rolesNode);
-					FireEvent.onQueryReady(framesNode);
-				}
-				while (cursor.moveToNext());
-
-				// fire event
-				FireEvent.onResults(parent);
+				return;
 			}
-			else
-			{
-				FireEvent.onNoResult(parent, true);
-			}
-
-			// TODO no need to call cursor.close() ?
+			final Cursor cursor = entry.getValue();
+			vnClassesToView(cursor, parent);
 		});
 	}
 
+	private void vnClassesToView(@NonNull final Cursor cursor, @NonNull final TreeNode parent)
+	{
+		if (cursor.moveToFirst())
+		{
+			// column indices
+			final int idClassId = cursor.getColumnIndex(Words_VnClasses.CLASSID);
+			final int idClass = cursor.getColumnIndex(Words_VnClasses.CLASS);
+			// final int idClassTag = cursor.getColumnIndex(Words_VnClasses.CLASSTAG);
+
+			// read cursor
+			do
+			{
+				final SpannableStringBuilder sb = new SpannableStringBuilder();
+
+				// data
+				final int classId = cursor.getInt(idClassId);
+				final String vnClass = cursor.getString(idClass);
+
+				// sb.append("[class]");
+				Spanner.appendImage(sb, ClassFromWordModule.this.drawableRoles);
+				sb.append(' ');
+				Spanner.append(sb, vnClass, 0, VerbNetFactories.classFactory);
+				// sb.append(" tag=");
+				// sb.append(cursor.getString(idClassTag));
+				sb.append(" id=");
+				sb.append(Integer.toString(classId));
+
+				// attach result
+				TreeFactory.addTextNode(parent, sb, ClassFromWordModule.this.context);
+
+				// sub nodes
+				final TreeNode membersNode = TreeFactory.newQueryNode("Members", R.drawable.members, new MembersQuery(classId), true, ClassFromWordModule.this.context).addTo(parent);
+				final TreeNode rolesNode = TreeFactory.newQueryNode("Roles", R.drawable.roles, new RolesQuery(classId), true, ClassFromWordModule.this.context).addTo(parent);
+				final TreeNode framesNode = TreeFactory.newQueryNode("Frames", R.drawable.vnframe, new FramesQuery(classId), false, ClassFromWordModule.this.context).addTo(parent);
+
+				// fire event
+				FireEvent.onQueryReady(membersNode);
+				FireEvent.onQueryReady(rolesNode);
+				FireEvent.onQueryReady(framesNode);
+			}
+			while (cursor.moveToNext());
+
+			// fire event
+			FireEvent.onResults(parent);
+		}
+		else
+		{
+			FireEvent.onNoResult(parent, true);
+		}
+
+		// TODO no need to call cursor.close() ?
+	}
 }

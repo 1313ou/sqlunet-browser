@@ -272,29 +272,40 @@ public class SelectorsFragment extends ListFragment
 		final String sortOrder = XSqlUNetContract.SYNSET + '.' + Words_FnWords_PbWords_VnWords.POS + ',' + Words_FnWords_PbWords_VnWords.SENSENUM;
 
 		final SqlunetViewModel model = ViewModelProviders.of(this, new SqlunetViewModelFactory(this, uri, projection, selection, selectionArgs, sortOrder)).get(SqlunetViewModel.class);
-		model.loadData();model.getData().observe(this, cursor -> {
+		final String tag = "selectors";
+		model.loadData(tag);
+		model.getData().observe(this, entry -> {
 
-			// update UI
-
-			// store source progressMessage
-			if (cursor.moveToFirst())
+			final String key = entry.getKey();
+			if (!tag.equals(key))
 			{
-				final int idWordId = cursor.getColumnIndex(Words_FnWords_PbWords_VnWords.WORDID);
-				SelectorsFragment.this.wordId = cursor.getLong(idWordId);
+				return;
 			}
-
-			// pass on to list adapter
-			((CursorAdapter) getListAdapter()).swapCursor(cursor);
-
-			// check
-			/*
-			if (SelectorsFragment.this.activatedPosition != AdapterView.INVALID_POSITION)
-			{
-				final ListView listView = getListView();
-				listView.setItemChecked(SelectorsFragment.this.activatedPosition, true);
-			}
-			*/
+			final Cursor cursor = entry.getValue();
+			selectorsToView(cursor);
 		});
+	}
+
+	private void selectorsToView(@NonNull final Cursor cursor)
+	{
+		// store source progressMessage
+		if (cursor.moveToFirst())
+		{
+			final int idWordId = cursor.getColumnIndex(Words_FnWords_PbWords_VnWords.WORDID);
+			SelectorsFragment.this.wordId = cursor.getLong(idWordId);
+		}
+
+		// pass on to list adapter
+		((CursorAdapter) getListAdapter()).swapCursor(cursor);
+
+		// check
+		/*
+		if (SelectorsFragment.this.activatedPosition != AdapterView.INVALID_POSITION)
+		{
+			final ListView listView = getListView();
+			listView.setItemChecked(SelectorsFragment.this.activatedPosition, true);
+		}
+		*/
 	}
 
 	// C L I C K

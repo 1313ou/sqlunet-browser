@@ -1,5 +1,6 @@
 package org.sqlunet.browser;
 
+import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.widget.CursorAdapter;
@@ -10,6 +11,7 @@ import org.sqlunet.browser.common.R;
 import org.sqlunet.provider.XSqlUNetContract.Sources;
 import org.sqlunet.provider.XSqlUNetProvider;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.ListFragment;
 import androidx.lifecycle.ViewModelProviders;
 
@@ -42,10 +44,22 @@ public class SourceFragment extends ListFragment
 		final String sortOrder = Sources.ID;
 
 		final SqlunetViewModel model = ViewModelProviders.of(this, new SqlunetViewModelFactory(this, uri, projection, selection, selectionArgs, sortOrder)).get(SqlunetViewModel.class);
-		model.loadData();
-		model.getData().observe(this, cursor -> {
-			// update UI
-			((CursorAdapter) getListAdapter()).swapCursor(cursor);
+		final String tag = "sources";
+		model.loadData(tag);
+		model.getData().observe(this, entry -> {
+
+			final String key = entry.getKey();
+			if (!tag.equals(key))
+			{
+				return;
+			}
+			final Cursor cursor = entry.getValue();
+			sourcesToView(cursor);
 		});
+	}
+
+	private void sourcesToView(@NonNull final Cursor cursor)
+	{
+		((CursorAdapter) getListAdapter()).swapCursor(cursor);
 	}
 }

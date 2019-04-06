@@ -1,5 +1,6 @@
 package org.sqlunet.framenet.loaders;
 
+import android.database.Cursor;
 import android.net.Uri;
 import android.os.Parcelable;
 import android.text.SpannableStringBuilder;
@@ -89,40 +90,52 @@ public class SentenceModule extends BaseModule
 		final String sortOrder = null;
 
 		final SqlunetViewModel model = ViewModelProviders.of(this.fragment, new SqlunetViewModelFactory(this.fragment, uri, projection, selection, selectionArgs, sortOrder)).get(SqlunetViewModel.class);
-		model.loadData();model.getData().observe(this.fragment, cursor -> {
+		final String tag = "fn.sentence";
+		model.loadData(tag);
+		model.getData().observe(this.fragment, entry -> {
 
-			// update UI
-			if (cursor.getCount() > 1)
+			final String key = entry.getKey();
+			if (!tag.equals(key))
 			{
-				throw new RuntimeException("Unexpected number of rows");
+				return;
 			}
-			if (cursor.moveToFirst())
-			{
-				final SpannableStringBuilder sb = new SpannableStringBuilder();
-
-				final int idSentenceId = cursor.getColumnIndex(Sentences.SENTENCEID);
-				final int idText = cursor.getColumnIndex(Sentences.TEXT);
-
-				// data
-				SentenceModule.this.sentenceText = cursor.getString(idText);
-				final long id = cursor.getLong(idSentenceId);
-				Spanner.append(sb, SentenceModule.this.sentenceText, 0, FrameNetFactories.sentenceFactory);
-
-				// attach result
-				TreeFactory.addTextNode(parent, sb, SentenceModule.this.context);
-
-				// layers
-				layersForSentence(id, SentenceModule.this.sentenceText, parent);
-
-				// fire event
-				FireEvent.onResults(parent);
-			}
-			else
-			{
-				FireEvent.onNoResult(parent, true);
-			}
-
-			// TODO no need to call cursor.close() ?
+			final Cursor cursor = entry.getValue();
+			sentenceToView(cursor, parent);
 		});
+	}
+
+	private void sentenceToView(@NonNull final Cursor cursor, @NonNull final TreeNode parent)
+	{
+		if (cursor.getCount() > 1)
+		{
+			throw new RuntimeException("Unexpected number of rows");
+		}
+		if (cursor.moveToFirst())
+		{
+			final SpannableStringBuilder sb = new SpannableStringBuilder();
+
+			final int idSentenceId = cursor.getColumnIndex(Sentences.SENTENCEID);
+			final int idText = cursor.getColumnIndex(Sentences.TEXT);
+
+			// data
+			SentenceModule.this.sentenceText = cursor.getString(idText);
+			final long id = cursor.getLong(idSentenceId);
+			Spanner.append(sb, SentenceModule.this.sentenceText, 0, FrameNetFactories.sentenceFactory);
+
+			// attach result
+			TreeFactory.addTextNode(parent, sb, SentenceModule.this.context);
+
+			// layers
+			layersForSentence(id, SentenceModule.this.sentenceText, parent);
+
+			// fire event
+			FireEvent.onResults(parent);
+		}
+		else
+		{
+			FireEvent.onNoResult(parent, true);
+		}
+
+		// TODO no need to call cursor.close() ?
 	}
 }
