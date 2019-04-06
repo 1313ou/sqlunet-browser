@@ -119,8 +119,8 @@ public class ClassFromWordModule extends BaseModule
 		}
 		final String sortOrder = null;
 
-		final SqlunetViewModel model = ViewModelProviders.of(this.fragment, new SqlunetViewModelFactory(this.fragment, uri, projection, selection, selectionArgs, sortOrder)).get(SqlunetViewModel.class);
 		final String tag = "vn.classes";
+		final SqlunetViewModel model = ViewModelProviders.of(this.fragment, new SqlunetViewModelFactory(this.fragment, uri, projection, selection, selectionArgs, sortOrder)).get(tag, SqlunetViewModel.class);
 		model.loadData(tag);
 		model.getData().observe(this.fragment, entry -> {
 

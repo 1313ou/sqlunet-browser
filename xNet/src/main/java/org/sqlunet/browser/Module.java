@@ -1,13 +1,18 @@
 package org.sqlunet.browser;
 
 import android.content.Context;
+import android.database.Cursor;
 import android.os.Parcelable;
+import android.util.Log;
+
+import org.sqlunet.treeview.model.TreeNode;
+
+import java.util.AbstractMap;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.loader.app.LoaderManager;
-
-import org.sqlunet.treeview.model.TreeNode;
+import androidx.lifecycle.MediatorLiveData;
 
 /**
  * Abstract module to perform queries
@@ -16,6 +21,8 @@ import org.sqlunet.treeview.model.TreeNode;
  */
 public abstract class Module
 {
+	static private final String TAG = "Module";
+
 	/**
 	 * Loader id allocator
 	 */
@@ -34,6 +41,12 @@ public abstract class Module
 	protected final Context context;
 
 	/**
+	 * MediatorLiveData
+	 */
+	@NonNull
+	protected final MediatorLiveData<AbstractMap.SimpleEntry<String, Cursor>> mediatorLiveData;
+
+	/**
 	 * Type of query (expected result)
 	 */
 	@SuppressWarnings("unused")
@@ -48,6 +61,18 @@ public abstract class Module
 	{
 		this.fragment = fragment;
 		this.context = fragment.getContext();
+		this.mediatorLiveData = new MediatorLiveData();
+		this.mediatorLiveData.observe(this.fragment, entry -> {
+
+			final String key = entry.getKey();
+			Log.d(TAG, key);
+			if (key == null)
+			{
+				return;
+			}
+			final Cursor cursor = entry.getValue();
+			Log.d(TAG, cursor.toString());
+		});
 	}
 
 	/**

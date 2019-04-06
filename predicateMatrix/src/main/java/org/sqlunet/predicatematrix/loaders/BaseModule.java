@@ -767,8 +767,8 @@ abstract class BaseModule extends Module
 			final String[] selectionArgs = getSelectionArgs();
 			final String sortOrder = this.displayer.getRequiredOrder();
 
-			final SqlunetViewModel model = ViewModelProviders.of(fragment, new SqlunetViewModelFactory(fragment, uri, projection, selection, selectionArgs, sortOrder)).get(SqlunetViewModel.class);
 			final String tag = "pm.pm";
+			final SqlunetViewModel model = ViewModelProviders.of(fragment, new SqlunetViewModelFactory(fragment, uri, projection, selection, selectionArgs, sortOrder)).get(tag, SqlunetViewModel.class);
 			model.loadData(tag);
 			model.getData().observe(fragment, entry -> {
 

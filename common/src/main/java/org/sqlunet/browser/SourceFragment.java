@@ -43,8 +43,8 @@ public class SourceFragment extends ListFragment
 		final String selection = null;
 		final String sortOrder = Sources.ID;
 
-		final SqlunetViewModel model = ViewModelProviders.of(this, new SqlunetViewModelFactory(this, uri, projection, selection, selectionArgs, sortOrder)).get(SqlunetViewModel.class);
 		final String tag = "sources";
+		final SqlunetViewModel model = ViewModelProviders.of(this, new SqlunetViewModelFactory(this, uri, projection, selection, selectionArgs, sortOrder)).get(tag, SqlunetViewModel.class);
 		model.loadData(tag);
 		model.getData().observe(this, entry -> {
 

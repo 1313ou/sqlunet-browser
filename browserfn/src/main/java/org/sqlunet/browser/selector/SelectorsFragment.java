@@ -243,9 +243,8 @@ public class SelectorsFragment extends ListFragment
 		final String[] selectionArgs = {SelectorsFragment.this.word};
 		final String sortOrder = LexUnits_or_Frames.ISFRAME + ',' + LexUnits_or_Frames.WORD + ',' + LexUnits_or_Frames.ID;
 
-
-		final SqlunetViewModel model = ViewModelProviders.of(this, new SqlunetViewModelFactory(this, uri, projection, selection, selectionArgs, sortOrder)).get(SqlunetViewModel.class);
 		final String tag = "selectors";
+		final SqlunetViewModel model = ViewModelProviders.of(this, new SqlunetViewModelFactory(this, uri, projection, selection, selectionArgs, sortOrder)).get(tag, SqlunetViewModel.class);
 		model.loadData(tag);
 		model.getData().observe(this, entry -> {
 

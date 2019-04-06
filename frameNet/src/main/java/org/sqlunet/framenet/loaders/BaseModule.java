@@ -217,8 +217,9 @@ abstract public class BaseModule extends Module
 		final String selection = Frames_X.FRAMEID + " = ?";
 		final String[] selectionArgs = {Long.toString(frameId)};
 		final String sortOrder = Frames_X.FRAME;
-		final SqlunetViewModel model = ViewModelProviders.of(this.fragment, new SqlunetViewModelFactory(this.fragment, uri, projection, selection, selectionArgs, sortOrder)).get(SqlunetViewModel.class);
+
 		final String tag = "fn.frame";
+		final SqlunetViewModel model = ViewModelProviders.of(this.fragment, new SqlunetViewModelFactory(this.fragment, uri, projection, selection, selectionArgs, sortOrder)).get(tag, SqlunetViewModel.class);
 		model.loadData(tag);
 		model.getData().observe(this.fragment, entry -> {
 
@@ -321,8 +322,8 @@ abstract public class BaseModule extends Module
 		final String[] selectionArgs = {Long.toString(frameId), Long.toString(frameId)};
 		final String sortOrder = Frames_Related.RELATIONTYPE;
 
-		final SqlunetViewModel model = ViewModelProviders.of(this.fragment, new SqlunetViewModelFactory(this.fragment, uri, projection, selection, selectionArgs, sortOrder)).get(SqlunetViewModel.class);
 		final String tag = "fn.relatedframes";
+		final SqlunetViewModel model = ViewModelProviders.of(this.fragment, new SqlunetViewModelFactory(this.fragment, uri, projection, selection, selectionArgs, sortOrder)).get(tag, SqlunetViewModel.class);
 		model.loadData(tag);
 		model.getData().observe(this.fragment, entry -> {
 
@@ -460,8 +461,8 @@ abstract public class BaseModule extends Module
 		final String[] selectionArgs = {Integer.toString(frameId)};
 		final String sortOrder = Frames_FEs.CORETYPEID + ',' + Frames_FEs.FETYPE;
 
-		final SqlunetViewModel model = ViewModelProviders.of(this.fragment, new SqlunetViewModelFactory(this.fragment, uri, projection, selection, selectionArgs, sortOrder)).get(SqlunetViewModel.class);
 		final String tag = "fn.fes";
+		final SqlunetViewModel model = ViewModelProviders.of(this.fragment, new SqlunetViewModelFactory(this.fragment, uri, projection, selection, selectionArgs, sortOrder)).get(tag, SqlunetViewModel.class);
 		model.loadData(tag);
 		model.getData().observe(this.fragment, entry -> {
 
@@ -597,8 +598,8 @@ abstract public class BaseModule extends Module
 		final String[] selectionArgs = {Long.toString(luId)};
 		final String sortOrder = null;
 
-		final SqlunetViewModel model = ViewModelProviders.of(this.fragment, new SqlunetViewModelFactory(this.fragment, uri, projection, selection, selectionArgs, sortOrder)).get(SqlunetViewModel.class);
 		final String tag = "fn.lexunit";
+		final SqlunetViewModel model = ViewModelProviders.of(this.fragment, new SqlunetViewModelFactory(this.fragment, uri, projection, selection, selectionArgs, sortOrder)).get(tag, SqlunetViewModel.class);
 		model.loadData(tag);
 		model.getData().observe(this.fragment, entry -> {
 
@@ -758,8 +759,8 @@ abstract public class BaseModule extends Module
 		final String[] selectionArgs = {Long.toString(frameId)};
 		final String sortOrder = LexUnits_X.LEXUNIT;
 
-		final SqlunetViewModel model = ViewModelProviders.of(this.fragment, new SqlunetViewModelFactory(this.fragment, uri, projection, selection, selectionArgs, sortOrder)).get(SqlunetViewModel.class);
 		final String tag = "fn.lexunits1";
+		final SqlunetViewModel model = ViewModelProviders.of(this.fragment, new SqlunetViewModelFactory(this.fragment, uri, projection, selection, selectionArgs, sortOrder)).get(tag, SqlunetViewModel.class);
 		model.loadData(tag);
 		model.getData().observe(this.fragment, entry -> {
 
@@ -917,8 +918,8 @@ abstract public class BaseModule extends Module
 		final String[] selectionArgs = pos == null ? new String[]{Long.toString(wordId)} : new String[]{Long.toString(wordId), Integer.toString(Utils.posToPosId(pos))};
 		final String sortOrder = Words_LexUnits_Frames.FRAME + ',' + Words_LexUnits_Frames.LUID;
 
-		final SqlunetViewModel model = ViewModelProviders.of(this.fragment, new SqlunetViewModelFactory(this.fragment, uri, projection, selection, selectionArgs, sortOrder)).get(SqlunetViewModel.class);
 		final String tag = "fn.lexunits2";
+		final SqlunetViewModel model = ViewModelProviders.of(this.fragment, new SqlunetViewModelFactory(this.fragment, uri, projection, selection, selectionArgs, sortOrder)).get(tag, SqlunetViewModel.class);
 		model.loadData(tag);
 		model.getData().observe(this.fragment, entry -> {
 			final String key = entry.getKey();
@@ -1057,8 +1058,8 @@ abstract public class BaseModule extends Module
 		final String[] selectionArgs = {Long.toString(luId)};
 		final String sortOrder = LexUnits_Governors.GOVERNORID;
 
-		final SqlunetViewModel model = ViewModelProviders.of(this.fragment, new SqlunetViewModelFactory(this.fragment, uri, projection, selection, selectionArgs, sortOrder)).get(SqlunetViewModel.class);
 		final String tag = "fn.governors";
+		final SqlunetViewModel model = ViewModelProviders.of(this.fragment, new SqlunetViewModelFactory(this.fragment, uri, projection, selection, selectionArgs, sortOrder)).get(tag, SqlunetViewModel.class);
 		model.loadData(tag);
 		model.getData().observe(this.fragment, entry -> {
 
@@ -1150,8 +1151,8 @@ abstract public class BaseModule extends Module
 		final String[] selectionArgs = {Long.toString(luId)};
 		final String sortOrder = LexUnits_FERealizations_ValenceUnits.FERID;
 
-		final SqlunetViewModel model = ViewModelProviders.of(this.fragment, new SqlunetViewModelFactory(this.fragment, uri, projection, selection, selectionArgs, sortOrder)).get(SqlunetViewModel.class);
 		final String tag = "fn.realizations";
+		final SqlunetViewModel model = ViewModelProviders.of(this.fragment, new SqlunetViewModelFactory(this.fragment, uri, projection, selection, selectionArgs, sortOrder)).get(tag, SqlunetViewModel.class);
 		model.loadData(tag);
 		model.getData().observe(this.fragment, entry -> {
 
@@ -1271,8 +1272,8 @@ abstract public class BaseModule extends Module
 		final String[] selectionArgs = {Long.toString(luId)};
 		final String sortOrder = null; // LexUnits_FEGroupRealizations_Patterns_ValenceUnits.FEGRID;
 
-		final SqlunetViewModel model = ViewModelProviders.of(this.fragment, new SqlunetViewModelFactory(this.fragment, uri, projection, selection, selectionArgs, sortOrder)).get(SqlunetViewModel.class);
 		final String tag = "fn.grouprealizations";
+		final SqlunetViewModel model = ViewModelProviders.of(this.fragment, new SqlunetViewModelFactory(this.fragment, uri, projection, selection, selectionArgs, sortOrder)).get(tag, SqlunetViewModel.class);
 		model.loadData(tag);
 		model.getData().observe(this.fragment, entry -> {
 
@@ -1436,8 +1437,8 @@ abstract public class BaseModule extends Module
 				LexUnits_Sentences_AnnoSets_Layers_Labels.PARAGNO + ',' + //
 				LexUnits_Sentences_AnnoSets_Layers_Labels.SENTNO;
 
-		final SqlunetViewModel model = ViewModelProviders.of(this.fragment, new SqlunetViewModelFactory(this.fragment, uri, projection, selection, selectionArgs, sortOrder)).get(SqlunetViewModel.class);
 		final String tag = "fn.sentences1";
+		final SqlunetViewModel model = ViewModelProviders.of(this.fragment, new SqlunetViewModelFactory(this.fragment, uri, projection, selection, selectionArgs, sortOrder)).get(tag, SqlunetViewModel.class);
 		model.loadData(tag);
 		model.getData().observe(this.fragment, entry -> {
 
@@ -1566,8 +1567,8 @@ abstract public class BaseModule extends Module
 		final String[] selectionArgs = {Long.toString(patternId)};
 		final String sortOrder = Patterns_Sentences.SENTENCEID;
 
-		final SqlunetViewModel model = ViewModelProviders.of(this.fragment, new SqlunetViewModelFactory(this.fragment, uri, projection, selection, selectionArgs, sortOrder)).get(SqlunetViewModel.class);
 		final String tag = "fn.sentences2";
+		final SqlunetViewModel model = ViewModelProviders.of(this.fragment, new SqlunetViewModelFactory(this.fragment, uri, projection, selection, selectionArgs, sortOrder)).get(tag, SqlunetViewModel.class);
 		model.loadData(tag);
 		model.getData().observe(this.fragment, entry -> {
 
@@ -1645,8 +1646,9 @@ abstract public class BaseModule extends Module
 		final String selection = ValenceUnits_Sentences.VUID + " = ?";
 		final String[] selectionArgs = {Long.toString(vuId)};
 		final String sortOrder = ValenceUnits_Sentences.SENTENCEID;
-		final SqlunetViewModel model = ViewModelProviders.of(this.fragment, new SqlunetViewModelFactory(this.fragment, uri, projection, selection, selectionArgs, sortOrder)).get(SqlunetViewModel.class);
+
 		final String tag = "fn.sentences3";
+		final SqlunetViewModel model = ViewModelProviders.of(this.fragment, new SqlunetViewModelFactory(this.fragment, uri, projection, selection, selectionArgs, sortOrder)).get(tag, SqlunetViewModel.class);
 		model.loadData(tag);
 		model.getData().observe(this.fragment, entry -> {
 
@@ -1730,8 +1732,9 @@ abstract public class BaseModule extends Module
 		final String selection = null; // embedded selection
 		final String[] selectionArgs = {Long.toString(annoSetId)};
 		final String sortOrder = null;
-		final SqlunetViewModel model = ViewModelProviders.of(this.fragment, new SqlunetViewModelFactory(this.fragment, uri, projection, selection, selectionArgs, sortOrder)).get(SqlunetViewModel.class);
+
 		final String tag = "fn.annoset";
+		final SqlunetViewModel model = ViewModelProviders.of(this.fragment, new SqlunetViewModelFactory(this.fragment, uri, projection, selection, selectionArgs, sortOrder)).get(tag, SqlunetViewModel.class);
 		model.loadData(tag);
 		model.getData().observe(this.fragment, entry -> {
 
@@ -1883,8 +1886,8 @@ abstract public class BaseModule extends Module
 		final String[] selectionArgs = {Long.toString(governorId)};
 		final String sortOrder = null;
 
-		final SqlunetViewModel model = ViewModelProviders.of(this.fragment, new SqlunetViewModelFactory(this.fragment, uri, projection, selection, selectionArgs, sortOrder)).get(SqlunetViewModel.class);
 		final String tag = "fn.annosets1";
+		final SqlunetViewModel model = ViewModelProviders.of(this.fragment, new SqlunetViewModelFactory(this.fragment, uri, projection, selection, selectionArgs, sortOrder)).get(tag, SqlunetViewModel.class);
 		model.loadData(tag);
 		model.getData().observe(this.fragment, entry -> {
 
@@ -1969,8 +1972,9 @@ abstract public class BaseModule extends Module
 		final String selection = null; // embedded selection
 		final String[] selectionArgs = {Long.toString(patternId)};
 		final String sortOrder = null;
-		final SqlunetViewModel model = ViewModelProviders.of(this.fragment, new SqlunetViewModelFactory(this.fragment, uri, projection, selection, selectionArgs, sortOrder)).get(SqlunetViewModel.class);
+
 		final String tag = "fn.annosets2";
+		final SqlunetViewModel model = ViewModelProviders.of(this.fragment, new SqlunetViewModelFactory(this.fragment, uri, projection, selection, selectionArgs, sortOrder)).get(tag, SqlunetViewModel.class);
 		model.loadData(tag);
 		model.getData().observe(this.fragment, entry -> {
 
@@ -2019,8 +2023,9 @@ abstract public class BaseModule extends Module
 		final String selection = null; // embedded selection
 		final String[] selectionArgs = {Long.toString(vuId)};
 		final String sortOrder = null;
-		final SqlunetViewModel model = ViewModelProviders.of(this.fragment, new SqlunetViewModelFactory(this.fragment, uri, projection, selection, selectionArgs, sortOrder)).get(SqlunetViewModel.class);
+
 		final String tag = "fn.annosets3";
+		final SqlunetViewModel model = ViewModelProviders.of(this.fragment, new SqlunetViewModelFactory(this.fragment, uri, projection, selection, selectionArgs, sortOrder)).get(tag, SqlunetViewModel.class);
 		model.loadData(tag);
 		model.getData().observe(this.fragment, entry -> {
 
@@ -2215,8 +2220,9 @@ abstract public class BaseModule extends Module
 		final String selection = null; // embedded selection
 		final String[] selectionArgs = {Long.toString(sentenceId)};
 		final String sortOrder = null;
-		final SqlunetViewModel model = ViewModelProviders.of(this.fragment, new SqlunetViewModelFactory(this.fragment, uri, projection, selection, selectionArgs, sortOrder)).get(SqlunetViewModel.class);
+
 		final String tag = "fn.layers";
+		final SqlunetViewModel model = ViewModelProviders.of(this.fragment, new SqlunetViewModelFactory(this.fragment, uri, projection, selection, selectionArgs, sortOrder)).get(tag, SqlunetViewModel.class);
 		model.loadData(tag);
 		model.getData().observe(this.fragment, entry -> {
 

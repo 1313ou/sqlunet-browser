@@ -89,8 +89,8 @@ public class SentenceModule extends BaseModule
 		final String[] selectionArgs = {Long.toString(sentenceId)};
 		final String sortOrder = null;
 
-		final SqlunetViewModel model = ViewModelProviders.of(this.fragment, new SqlunetViewModelFactory(this.fragment, uri, projection, selection, selectionArgs, sortOrder)).get(SqlunetViewModel.class);
 		final String tag = "fn.sentence";
+		final SqlunetViewModel model = ViewModelProviders.of(this.fragment, new SqlunetViewModelFactory(this.fragment, uri, projection, selection, selectionArgs, sortOrder)).get(tag, SqlunetViewModel.class);
 		model.loadData(tag);
 		model.getData().observe(this.fragment, entry -> {
 

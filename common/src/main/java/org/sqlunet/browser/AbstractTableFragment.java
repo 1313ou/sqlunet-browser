@@ -139,8 +139,9 @@ public abstract class AbstractTableFragment extends ListFragment
 		//  Log.d(TAG, p);
 		// }
 		final String[] selectionArgs = queryArg == null ? null : new String[]{queryArg};
-		final SqlunetViewModel model = ViewModelProviders.of(this, new SqlunetViewModelFactory(this, uri, projection, selection, selectionArgs, sortOrder)).get(SqlunetViewModel.class);
+
 		final String tag = "elements";
+		final SqlunetViewModel model = ViewModelProviders.of(this, new SqlunetViewModelFactory(this, uri, projection, selection, selectionArgs, sortOrder)).get(tag, SqlunetViewModel.class);
 		model.loadData(tag);
 		model.getData().observe(this, entry -> {
 
