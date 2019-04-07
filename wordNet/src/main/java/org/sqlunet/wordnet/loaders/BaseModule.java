@@ -158,7 +158,7 @@ abstract public class BaseModule extends Module
 		final String tag = "wn.word";
 		final SqlunetViewModel model = ViewModelProviders.of(this.fragment, new SqlunetViewModelFactory(this.fragment, uri, projection, selection, selectionArgs, sortOrder)).get(tag, SqlunetViewModel.class);
 		model.loadData(tag);
-		this.mediatorLiveData.addSource(model.getData(), entry -> {
+		model.getData().observe(this.fragment, entry -> {
 
 			final String key = entry.getKey();
 			if (!tag.equals(key))
@@ -251,7 +251,7 @@ abstract public class BaseModule extends Module
 		final String tag = "wn.senses1";
 		final SqlunetViewModel model = ViewModelProviders.of(this.fragment, new SqlunetViewModelFactory(this.fragment, uri, projection, selection, selectionArgs, sortOrder)).get(tag, SqlunetViewModel.class);
 		model.loadData(tag);
-		this.mediatorLiveData.addSource(model.getData(), entry -> {
+		model.getData().observe(this.fragment, entry -> {
 
 			final String key = entry.getKey();
 			if (!tag.equals(key))
@@ -294,7 +294,7 @@ abstract public class BaseModule extends Module
 		final String tag = "wn.senses2";
 		final SqlunetViewModel model = ViewModelProviders.of(this.fragment, new SqlunetViewModelFactory(this.fragment, uri, projection, selection, selectionArgs, sortOrder)).get(tag, SqlunetViewModel.class);
 		model.loadData(tag);
-		this.mediatorLiveData.addSource(model.getData(), entry -> {
+		model.getData().observe(this.fragment, entry -> {
 
 			final String key = entry.getKey();
 			if (!tag.equals(key))
@@ -388,7 +388,7 @@ abstract public class BaseModule extends Module
 		final String tag = "wn.sense1";
 		final SqlunetViewModel model = ViewModelProviders.of(this.fragment, new SqlunetViewModelFactory(this.fragment, uri, projection, selection, selectionArgs, sortOrder)).get(tag, SqlunetViewModel.class);
 		model.loadData(tag);
-		this.mediatorLiveData.addSource(model.getData(), entry -> {
+		model.getData().observe(this.fragment, entry -> {
 
 			final String key = entry.getKey();
 			if (!tag.equals(key))
@@ -443,7 +443,7 @@ abstract public class BaseModule extends Module
 		final String tag = "wn.sense2";
 		final SqlunetViewModel model = ViewModelProviders.of(this.fragment, new SqlunetViewModelFactory(this.fragment, uri, projection, selection, selectionArgs, sortOrder)).get(tag, SqlunetViewModel.class);
 		model.loadData(tag);
-		this.mediatorLiveData.addSource(model.getData(), entry -> {
+		model.getData().observe(this.fragment, entry -> {
 
 			final String key = entry.getKey();
 			if (!tag.equals(key))
@@ -507,7 +507,7 @@ abstract public class BaseModule extends Module
 		final String tag = "wn.sense3";
 		final SqlunetViewModel model = ViewModelProviders.of(this.fragment, new SqlunetViewModelFactory(this.fragment, uri, projection, selection, selectionArgs, sortOrder)).get(tag, SqlunetViewModel.class);
 		model.loadData(tag);
-		this.mediatorLiveData.addSource(model.getData(), entry -> {
+		model.getData().observe(this.fragment, entry -> {
 
 			final String key = entry.getKey();
 			if (!tag.equals(key))
@@ -582,7 +582,7 @@ abstract public class BaseModule extends Module
 		final String tag = "wn.synset";
 		final SqlunetViewModel model = ViewModelProviders.of(this.fragment, new SqlunetViewModelFactory(this.fragment, uri, projection, selection, selectionArgs, sortOrder)).get(tag, SqlunetViewModel.class);
 		model.loadData(tag);
-		this.mediatorLiveData.addSource(model.getData(), entry -> {
+		model.getData().observe(this.fragment, entry -> {
 
 			final String key = entry.getKey();
 			if (!tag.equals(key))
@@ -753,7 +753,7 @@ abstract public class BaseModule extends Module
 		final String tag = "wn.members1";
 		final SqlunetViewModel model = ViewModelProviders.of(this.fragment, new SqlunetViewModelFactory(this.fragment, uri, projection, selection, selectionArgs, sortOrder)).get(tag, SqlunetViewModel.class);
 		model.loadData(tag);
-		this.mediatorLiveData.addSource(model.getData(), entry -> {
+		model.getData().observe(this.fragment, entry -> {
 
 			final String key = entry.getKey();
 			if (!tag.equals(key))
@@ -842,7 +842,7 @@ abstract public class BaseModule extends Module
 		final String tag = "wn.members2";
 		final SqlunetViewModel model = ViewModelProviders.of(this.fragment, new SqlunetViewModelFactory(this.fragment, uri, projection, selection, selectionArgs, sortOrder)).get(tag, SqlunetViewModel.class);
 		model.loadData(tag);
-		this.mediatorLiveData.addSource(model.getData(), entry -> {
+		model.getData().observe(this.fragment, entry -> {
 
 			final String key = entry.getKey();
 			if (!tag.equals(key))
@@ -920,7 +920,7 @@ abstract public class BaseModule extends Module
 		final String tag = "wn.samples";
 		final SqlunetViewModel model = ViewModelProviders.of(this.fragment, new SqlunetViewModelFactory(this.fragment, uri, projection, selection, selectionArgs, sortOrder)).get(tag, SqlunetViewModel.class);
 		model.loadData(tag);
-		this.mediatorLiveData.addSource(model.getData(), entry -> {
+		model.getData().observe(this.fragment, entry -> {
 
 			final String key = entry.getKey();
 			if (!tag.equals(key))
@@ -1006,7 +1006,7 @@ abstract public class BaseModule extends Module
 		final String tag = "wn.semlinks1";
 		final SqlunetViewModel model = ViewModelProviders.of(this.fragment, new SqlunetViewModelFactory(this.fragment, uri, projection, selection, selectionArgs, sortOrder)).get(tag, SqlunetViewModel.class);
 		model.loadData(tag);
-		this.mediatorLiveData.addSource(model.getData(), entry -> {
+		model.getData().observe(this.fragment, entry -> {
 
 			final String key = entry.getKey();
 			if (!tag.equals(key))
@@ -1099,7 +1099,7 @@ abstract public class BaseModule extends Module
 		final String tag = "wn.semlinks2";
 		final SqlunetViewModel model = ViewModelProviders.of(this.fragment, new SqlunetViewModelFactory(this.fragment, uri, projection, selection, selectionArgs, sortOrder)).get(tag, SqlunetViewModel.class);
 		model.loadData(tag);
-		this.mediatorLiveData.addSource(model.getData(), entry -> {
+		model.getData().observe(this.fragment, entry -> {
 
 			final String key = entry.getKey();
 			if (!tag.equals(key))
@@ -1198,7 +1198,7 @@ abstract public class BaseModule extends Module
 		final String tag = "wn.lexlinks1";
 		final SqlunetViewModel model = ViewModelProviders.of(this.fragment, new SqlunetViewModelFactory(this.fragment, uri, projection, selection, selectionArgs, sortOrder)).get(tag, SqlunetViewModel.class);
 		model.loadData(tag);
-		this.mediatorLiveData.addSource(model.getData(), entry -> {
+		model.getData().observe(this.fragment, entry -> {
 
 			final String key = entry.getKey();
 			if (!tag.equals(key))
@@ -1303,7 +1303,7 @@ abstract public class BaseModule extends Module
 		final String tag = "wn.lexlinks2";
 		final SqlunetViewModel model = ViewModelProviders.of(this.fragment, new SqlunetViewModelFactory(this.fragment, uri, projection, selection, selectionArgs, sortOrder)).get(tag, SqlunetViewModel.class);
 		model.loadData(tag);
-		this.mediatorLiveData.addSource(model.getData(), entry -> {
+		model.getData().observe(this.fragment, entry -> {
 
 			final String key = entry.getKey();
 			if (!tag.equals(key))
@@ -1397,7 +1397,7 @@ abstract public class BaseModule extends Module
 		final String tag = "wn.vframes1";
 		final SqlunetViewModel model = ViewModelProviders.of(this.fragment, new SqlunetViewModelFactory(this.fragment, uri, projection, selection, selectionArgs, sortOrder)).get(tag, SqlunetViewModel.class);
 		model.loadData(tag);
-		this.mediatorLiveData.addSource(model.getData(), entry -> {
+		model.getData().observe(this.fragment, entry -> {
 
 			final String key = entry.getKey();
 			if (!tag.equals(key))
@@ -1427,7 +1427,7 @@ abstract public class BaseModule extends Module
 		final String tag = "wn.vframes2";
 		final SqlunetViewModel model = ViewModelProviders.of(this.fragment, new SqlunetViewModelFactory(this.fragment, uri, projection, selection, selectionArgs, sortOrder)).get(tag, SqlunetViewModel.class);
 		model.loadData(tag);
-		this.mediatorLiveData.addSource(model.getData(), entry -> {
+		model.getData().observe(this.fragment, entry -> {
 
 			final String key = entry.getKey();
 			if (!tag.equals(key))
@@ -1494,7 +1494,7 @@ abstract public class BaseModule extends Module
 		final String tag = "wn.vframesentences1";
 		final SqlunetViewModel model = ViewModelProviders.of(this.fragment, new SqlunetViewModelFactory(this.fragment, uri, projection, selection, selectionArgs, sortOrder)).get(tag, SqlunetViewModel.class);
 		model.loadData(tag);
-		this.mediatorLiveData.addSource(model.getData(), entry -> {
+		model.getData().observe(this.fragment, entry -> {
 
 			final String key = entry.getKey();
 			if (!tag.equals(key))
@@ -1562,7 +1562,7 @@ abstract public class BaseModule extends Module
 		final String tag = "wn.vframesentences2";
 		final SqlunetViewModel model = ViewModelProviders.of(this.fragment, new SqlunetViewModelFactory(this.fragment, uri, projection, selection, selectionArgs, sortOrder)).get(tag, SqlunetViewModel.class);
 		model.loadData(tag);
-		this.mediatorLiveData.addSource(model.getData(), entry -> {
+		model.getData().observe(this.fragment, entry -> {
 
 			final String key = entry.getKey();
 			if (!tag.equals(key))
@@ -1630,7 +1630,7 @@ abstract public class BaseModule extends Module
 		final String tag = "wn.adjposition1";
 		final SqlunetViewModel model = ViewModelProviders.of(this.fragment, new SqlunetViewModelFactory(this.fragment, uri, projection, selection, selectionArgs, sortOrder)).get(tag, SqlunetViewModel.class);
 		model.loadData(tag);
-		this.mediatorLiveData.addSource(model.getData(), entry -> {
+		model.getData().observe(this.fragment, entry -> {
 
 			final String key = entry.getKey();
 			if (!tag.equals(key))
@@ -1660,7 +1660,7 @@ abstract public class BaseModule extends Module
 		final String tag = "wn.adjposition2";
 		final SqlunetViewModel model = ViewModelProviders.of(this.fragment, new SqlunetViewModelFactory(this.fragment, uri, projection, selection, selectionArgs, sortOrder)).get(tag, SqlunetViewModel.class);
 		model.loadData(tag);
-		this.mediatorLiveData.addSource(model.getData(), entry -> {
+		model.getData().observe(this.fragment, entry -> {
 
 			final String key = entry.getKey();
 			if (!tag.equals(key))
@@ -1727,7 +1727,7 @@ abstract public class BaseModule extends Module
 		final String tag = "wn.morphs";
 		final SqlunetViewModel model = ViewModelProviders.of(this.fragment, new SqlunetViewModelFactory(this.fragment, uri, projection, selection, selectionArgs, sortOrder)).get(tag, SqlunetViewModel.class);
 		model.loadData(tag);
-		this.mediatorLiveData.addSource(model.getData(), entry -> {
+		model.getData().observe(this.fragment, entry -> {
 
 			final String key = entry.getKey();
 			if (!tag.equals(key))
