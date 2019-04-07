@@ -25,6 +25,12 @@ abstract public class TreeFragment extends Fragment
 	static private final String TAG = "TreeF";
 
 	/**
+	 * Tree model root
+	 */
+	@Nullable
+	protected TreeNode treeRoot;
+
+	/**
 	 * Tree view
 	 */
 	@Nullable
@@ -48,6 +54,17 @@ abstract public class TreeFragment extends Fragment
 	}
 
 	@Override
+	public void onCreate(@Nullable final Bundle savedInstanceState)
+	{
+		super.onCreate(savedInstanceState);
+
+		this.treeRoot = TreeNode.makeRoot();
+
+		// root node
+		TreeFactory.addTreeNode(this.treeRoot, header, iconId, requireContext());
+	}
+
+	@Override
 	public View onCreateView(@NonNull final LayoutInflater inflater, final ViewGroup container, @Nullable final Bundle savedInstanceState)
 	{
 		Log.d(TAG, "ON CREATE (TREE) VIEW " + this);
@@ -61,12 +78,8 @@ abstract public class TreeFragment extends Fragment
 		// container
 		final ViewGroup treeContainer = view.findViewById(this.treeContainerId);
 
-		// root node
-		final TreeNode root = TreeNode.makeRoot();
-		TreeFactory.addTreeNode(root, header, iconId, requireContext());
-
 		// tree
-		this.treeView = new TreeView(requireContext(), root);
+		this.treeView = new TreeView(requireContext(), this.treeRoot);
 		this.treeView.setDefaultContainerStyle(R.style.TreeNodeStyleCustom); // R.style.TreeNodeStyleDivided
 		this.treeView.setDefaultController(TreeController.class);
 		treeContainer.addView(this.treeView.getView());

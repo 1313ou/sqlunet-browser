@@ -41,12 +41,6 @@ public abstract class Module
 	protected final Context context;
 
 	/**
-	 * MediatorLiveData
-	 */
-	@NonNull
-	protected final MediatorLiveData<AbstractMap.SimpleEntry<String, Cursor>> mediatorLiveData;
-
-	/**
 	 * Type of query (expected result)
 	 */
 	@SuppressWarnings("unused")
@@ -61,18 +55,6 @@ public abstract class Module
 	{
 		this.fragment = fragment;
 		this.context = fragment.getContext();
-		this.mediatorLiveData = new MediatorLiveData();
-		this.mediatorLiveData.observe(this.fragment, entry -> {
-
-			final String key = entry.getKey();
-			Log.d(TAG, key);
-			if (key == null)
-			{
-				return;
-			}
-			final Cursor cursor = entry.getValue();
-			Log.d(TAG, cursor.toString());
-		});
 	}
 
 	/**
