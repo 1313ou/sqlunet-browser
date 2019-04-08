@@ -19,7 +19,7 @@ public class SimpleController extends Controller<Object>
 	 *
 	 * @param context context
 	 */
-	public SimpleController(Context context)
+	public SimpleController(final Context context)
 	{
 		super(context);
 	}

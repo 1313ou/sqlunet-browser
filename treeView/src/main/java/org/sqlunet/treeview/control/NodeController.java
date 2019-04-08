@@ -19,14 +19,14 @@ public class NodeController extends Controller<Object>
 	 *
 	 * @param context context
 	 */
-	public NodeController(Context context)
+	public NodeController(final Context context)
 	{
 		super(context);
 	}
 
 	@NonNull
 	@Override
-	public View createNodeView(TreeNode node, Object value)
+	public View createNodeView(final TreeNode node, final Object value)
 	{
 		final Value data = (Value) value;
 		final TextView textView = new TextView(this.context);

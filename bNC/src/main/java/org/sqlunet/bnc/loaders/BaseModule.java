@@ -1,5 +1,6 @@
 package org.sqlunet.bnc.loaders;
 
+import android.content.Context;
 import android.database.Cursor;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
@@ -15,10 +16,10 @@ import org.sqlunet.bnc.style.BNCFactories;
 import org.sqlunet.browser.Module;
 import org.sqlunet.browser.SqlunetViewModel;
 import org.sqlunet.browser.SqlunetViewModelFactory;
+import org.sqlunet.model.TreeFactory;
 import org.sqlunet.style.Spanner;
 import org.sqlunet.treeview.model.TreeNode;
 import org.sqlunet.view.FireEvent;
-import org.sqlunet.view.TreeFactory;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -66,11 +67,11 @@ public class BaseModule extends Module
 		super(fragment);
 
 		// drawables
-		assert this.context != null;
-		this.convtaskDrawable = Spanner.getDrawable(this.context, R.drawable.convtask);
-		this.imaginfDrawable = Spanner.getDrawable(this.context, R.drawable.imaginf);
-		this.spwrDrawable = Spanner.getDrawable(this.context, R.drawable.spwr);
-		this.posDrawable = Spanner.getDrawable(this.context, R.drawable.pos);
+		final Context context = this.fragment.requireContext();
+		this.convtaskDrawable = Spanner.getDrawable(context, R.drawable.convtask);
+		this.imaginfDrawable = Spanner.getDrawable(context, R.drawable.imaginf);
+		this.spwrDrawable = Spanner.getDrawable(context, R.drawable.spwr);
+		this.posDrawable = Spanner.getDrawable(context, R.drawable.pos);
 	}
 
 	@Override
@@ -297,7 +298,7 @@ public class BaseModule extends Module
 			while (cursor.moveToNext());
 
 			// attach result
-			TreeFactory.addTextNode(parent, sb, BaseModule.this.context);
+			TreeFactory.addTextNode(parent, sb);
 
 			// fire event
 			FireEvent.onResults(parent);

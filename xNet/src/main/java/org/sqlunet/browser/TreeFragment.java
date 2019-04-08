@@ -11,8 +11,9 @@ import android.view.ViewGroup;
 
 import org.sqlunet.treeview.control.TreeController;
 import org.sqlunet.treeview.model.TreeNode;
+import org.sqlunet.treeview.view.ControllerFactory;
 import org.sqlunet.treeview.view.TreeView;
-import org.sqlunet.view.TreeFactory;
+import org.sqlunet.model.TreeFactory;
 import org.sqlunet.xnet.R;
 
 /**
@@ -61,7 +62,7 @@ abstract public class TreeFragment extends Fragment
 		this.treeRoot = TreeNode.makeRoot();
 
 		// root node
-		TreeFactory.addTreeNode(this.treeRoot, header, iconId, requireContext());
+		TreeFactory.addTreeNode(this.treeRoot, header, iconId);
 	}
 
 	@Override
@@ -83,6 +84,9 @@ abstract public class TreeFragment extends Fragment
 		this.treeView.setDefaultContainerStyle(R.style.TreeNodeStyleCustom); // R.style.TreeNodeStyleDivided
 		this.treeView.setDefaultController(TreeController.class);
 		treeContainer.addView(this.treeView.getView());
+
+		// controllers
+		ControllerFactory.addController(this.treeRoot, requireContext());
 
 		// saved state
 		if (savedInstanceState != null)

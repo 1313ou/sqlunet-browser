@@ -11,13 +11,13 @@ import android.text.SpannableStringBuilder;
 import org.sqlunet.browser.Module;
 import org.sqlunet.browser.SqlunetViewModel;
 import org.sqlunet.browser.SqlunetViewModelFactory;
+import org.sqlunet.model.TreeFactory;
 import org.sqlunet.provider.ProviderArgs;
 import org.sqlunet.style.Spanner;
 import org.sqlunet.treeview.control.Link;
 import org.sqlunet.treeview.control.Query;
 import org.sqlunet.treeview.model.TreeNode;
 import org.sqlunet.view.FireEvent;
-import org.sqlunet.view.TreeFactory;
 import org.sqlunet.wordnet.R;
 import org.sqlunet.wordnet.SensePointer;
 import org.sqlunet.wordnet.SynsetPointer;
@@ -97,14 +97,14 @@ abstract public class BaseModule extends Module
 		super(fragment);
 
 		// drawables
-		assert this.context != null;
-		this.synsetDrawable = Spanner.getDrawable(this.context, R.drawable.synset);
-		this.memberDrawable = Spanner.getDrawable(this.context, R.drawable.synsetmember);
-		this.definitionDrawable = Spanner.getDrawable(this.context, R.drawable.definition);
-		this.sampleDrawable = Spanner.getDrawable(this.context, R.drawable.sample);
-		this.posDrawable = Spanner.getDrawable(this.context, R.drawable.pos);
-		this.lexdomainDrawable = Spanner.getDrawable(this.context, R.drawable.domain);
-		this.verbframeDrawable = Spanner.getDrawable(this.context, R.drawable.verbframe);
+		final Context context = BaseModule.this.fragment.requireContext();
+		this.synsetDrawable = Spanner.getDrawable(context, R.drawable.synset);
+		this.memberDrawable = Spanner.getDrawable(context, R.drawable.synsetmember);
+		this.definitionDrawable = Spanner.getDrawable(context, R.drawable.definition);
+		this.sampleDrawable = Spanner.getDrawable(context, R.drawable.sample);
+		this.posDrawable = Spanner.getDrawable(context, R.drawable.pos);
+		this.lexdomainDrawable = Spanner.getDrawable(context, R.drawable.domain);
+		this.verbframeDrawable = Spanner.getDrawable(context, R.drawable.verbframe);
 		this.morphDrawable = this.verbframeDrawable;
 	}
 
@@ -153,7 +153,6 @@ abstract public class BaseModule extends Module
 		final String selection = Words.WORDID + " = ?";
 		final String[] selectionArgs = {Long.toString(wordId)};
 		final String sortOrder = null;
-		assert BaseModule.this.context != null;
 
 		final String tag = "wn.word";
 		final SqlunetViewModel model = ViewModelProviders.of(this.fragment, new SqlunetViewModelFactory(this.fragment, uri, projection, selection, selectionArgs, sortOrder)).get(tag, SqlunetViewModel.class);
@@ -202,7 +201,7 @@ abstract public class BaseModule extends Module
 			// result
 			if (addNewNode)
 			{
-				TreeFactory.addTextNode(parent, sb, BaseModule.this.context);
+				TreeFactory.addTextNode(parent, sb);
 				FireEvent.onResults(parent);
 			}
 			else
@@ -361,7 +360,7 @@ abstract public class BaseModule extends Module
 			sense(sb, synsetId, posName, lexDomain, definition, tagCount, cased);
 
 			// result
-			final TreeNode synsetNode = TreeFactory.newLinkNode(sb, R.drawable.synset, new SenseLink(synsetId, wordId, this.maxRecursion), BaseModule.this.context);
+			final TreeNode synsetNode = TreeFactory.newLinkNode(sb, R.drawable.synset, new SenseLink(synsetId, wordId, this.maxRecursion));
 			parent.addChild(synsetNode);
 		}
 		while (cursor.moveToNext());
@@ -469,7 +468,7 @@ abstract public class BaseModule extends Module
 			final long synsetId = cursor.getLong(idSynsetId);
 
 			// sub nodes
-			final TreeNode wordNode = TreeFactory.newTextNode("Word", BaseModule.this.context);
+			final TreeNode wordNode = TreeFactory.newTextNode("Word");
 			parent.addChild(wordNode);
 			FireEvent.onResults(parent);
 
@@ -540,11 +539,11 @@ abstract public class BaseModule extends Module
 			synset(sb, synsetId, posName, lexDomain, definition);
 
 			// attach result
-			TreeFactory.addTextNode(parent, sb, BaseModule.this.context);
+			TreeFactory.addTextNode(parent, sb);
 
 			// subnodes
-			final TreeNode linksNode = TreeFactory.newQueryNode("Links", R.drawable.ic_links, new LinksQuery(synsetId, wordId), true, BaseModule.this.context).addTo(parent);
-			final TreeNode samplesNode = TreeFactory.newQueryNode("Samples", R.drawable.sample, new SamplesQuery(synsetId), true, BaseModule.this.context).addTo(parent);
+			final TreeNode linksNode = TreeFactory.newHotQueryNode("Links", R.drawable.ic_links, new LinksQuery(synsetId, wordId)).addTo(parent);
+			final TreeNode samplesNode = TreeFactory.newHotQueryNode("Samples", R.drawable.sample, new SamplesQuery(synsetId)).addTo(parent);
 
 			// fire event
 			FireEvent.onQueryReady(linksNode);
@@ -618,7 +617,7 @@ abstract public class BaseModule extends Module
 			// result
 			if (addNewNode)
 			{
-				TreeFactory.addTextNode(parent, sb, BaseModule.this.context);
+				TreeFactory.addTextNode(parent, sb);
 				FireEvent.onResults(parent);
 			}
 			else
@@ -809,7 +808,7 @@ abstract public class BaseModule extends Module
 			// result
 			if (addNewNode)
 			{
-				TreeFactory.addTextNode(parent, sb, BaseModule.this.context);
+				TreeFactory.addTextNode(parent, sb);
 				FireEvent.onResults(parent);
 			}
 			else
@@ -883,7 +882,7 @@ abstract public class BaseModule extends Module
 				Spanner.append(sb, member, 0, WordNetFactories.membersFactory);
 
 				// result
-				final TreeNode memberNode = TreeFactory.newLinkNode(sb, R.drawable.member, new WordLink(wordId), BaseModule.this.context);
+				final TreeNode memberNode = TreeFactory.newLinkNode(sb, R.drawable.member, new WordLink(wordId));
 				parent.addChild(memberNode);
 			}
 			while (cursor.moveToNext());
@@ -936,8 +935,6 @@ abstract public class BaseModule extends Module
 	{
 		if (cursor.moveToFirst())
 		{
-			final Context context = BaseModule.this.context;
-
 			final int idSample = cursor.getColumnIndex(Samples.SAMPLE);
 
 			final SpannableStringBuilder sb = new SpannableStringBuilder();
@@ -962,7 +959,7 @@ abstract public class BaseModule extends Module
 			// result
 			if (addNewNode)
 			{
-				TreeFactory.addTextNode(parent, sb, context);
+				TreeFactory.addTextNode(parent, sb);
 				FireEvent.onResults(parent);
 			}
 			else
@@ -1023,8 +1020,6 @@ abstract public class BaseModule extends Module
 		// noinspection StatementWithEmptyBody
 		if (cursor.moveToFirst())
 		{
-			final Context context = BaseModule.this.context;
-
 			final int idLinkId = cursor.getColumnIndex(LinkTypes.LINKID);
 			// final int idLink = cursor.getColumnIndex(LinkTypes.LINK);
 			final int idTargetSynsetId = cursor.getColumnIndex(BaseModule.TARGET_SYNSETID);
@@ -1051,14 +1046,14 @@ abstract public class BaseModule extends Module
 				// recursion
 				if (linkCanRecurse)
 				{
-					final TreeNode linksNode = TreeFactory.newLinkQueryNode(sb, getLinkRes(linkId), new SubLinksQuery(targetSynsetId, linkId, BaseModule.this.maxRecursion), new SynsetLink(targetSynsetId, BaseModule.this.maxRecursion), false, context).prependTo(parent);
+					final TreeNode linksNode = TreeFactory.newLinkQueryNode(sb, getLinkRes(linkId), new SubLinksQuery(targetSynsetId, linkId, BaseModule.this.maxRecursion), new SynsetLink(targetSynsetId, BaseModule.this.maxRecursion)).prependTo(parent);
 
 					// fire event
 					FireEvent.onQueryReady(linksNode);
 				}
 				else
 				{
-					TreeFactory.newLeafNode(sb, getLinkRes(linkId), context).prependTo(parent);
+					TreeFactory.newLeafNode(sb, getLinkRes(linkId)).prependTo(parent);
 				}
 			}
 			while (cursor.moveToNext());
@@ -1094,7 +1089,6 @@ abstract public class BaseModule extends Module
 		final String selection = WordNetContract.LINK + '.' + SemLinks_Synsets_Words_X.SYNSET1ID + " = ? AND " + LinkTypes.LINKID + " = ?";
 		final String[] selectionArgs = {Long.toString(synsetId), Integer.toString(linkId)};
 		final String sortOrder = null;
-		assert BaseModule.this.context != null;
 
 		final String tag = "wn.semlinks2";
 		final SqlunetViewModel model = ViewModelProviders.of(this.fragment, new SqlunetViewModelFactory(this.fragment, uri, projection, selection, selectionArgs, sortOrder)).get(tag, SqlunetViewModel.class);
@@ -1115,8 +1109,6 @@ abstract public class BaseModule extends Module
 	{
 		if (cursor.moveToFirst())
 		{
-			final Context context = BaseModule.this.context;
-
 			// final int idLinkId = cursor.getColumnIndex(LinkTypes.LINKID);
 			// final int idLink = cursor.getColumnIndex(LinkTypes.LINK);
 			final int idTargetSynsetId = cursor.getColumnIndex(BaseModule.TARGET_SYNSETID);
@@ -1146,19 +1138,19 @@ abstract public class BaseModule extends Module
 					if (recurseLevel > 1)
 					{
 						final int newRecurseLevel = recurseLevel - 1;
-						final TreeNode linksNode = TreeFactory.newLinkQueryNode(sb, getLinkRes(linkId), new SubLinksQuery(targetSynsetId, linkId, newRecurseLevel), new SynsetLink(targetSynsetId, BaseModule.this.maxRecursion), false, context).addTo(parent);
+						final TreeNode linksNode = TreeFactory.newLinkQueryNode(sb, getLinkRes(linkId), new SubLinksQuery(targetSynsetId, linkId, newRecurseLevel), new SynsetLink(targetSynsetId, BaseModule.this.maxRecursion)).addTo(parent);
 
 						// fire event
 						FireEvent.onQueryReady(linksNode);
 					}
 					else
 					{
-						TreeFactory.newMoreNode(sb, getLinkRes(linkId), context).addTo(parent);
+						TreeFactory.newMoreNode(sb, getLinkRes(linkId)).addTo(parent);
 					}
 				}
 				else
 				{
-					TreeFactory.newLeafNode(sb, getLinkRes(linkId), context).addTo(parent);
+					TreeFactory.newLeafNode(sb, getLinkRes(linkId)).addTo(parent);
 				}
 			}
 			while (cursor.moveToNext());
@@ -1217,8 +1209,6 @@ abstract public class BaseModule extends Module
 			// noinspection StatementWithEmptyBody
 			if (cursor.moveToFirst())
 			{
-				final Context context = BaseModule.this.context;
-
 				final int idLinkId = cursor.getColumnIndex(LinkTypes.LINKID);
 				// final int idLink = cursor.getColumnIndex(LinkTypes.LINK);
 
@@ -1261,12 +1251,12 @@ abstract public class BaseModule extends Module
 					Spanner.append(sb, targetDefinition, 0, WordNetFactories.definitionFactory);
 
 					// attach result
-					TreeFactory.newLeafNode(sb, getLinkRes(linkId), context);
+					TreeFactory.newLeafNode(sb, getLinkRes(linkId));
 				}
 				while (cursor.moveToNext());
 
 				// attach result
-				TreeFactory.addTextNode(parent, sb, context);
+				TreeFactory.addTextNode(parent, sb);
 
 				// fire event
 				FireEvent.onResults(parent);
@@ -1363,7 +1353,7 @@ abstract public class BaseModule extends Module
 					Spanner.append(sb, targetDefinition, 0, WordNetFactories.definitionFactory);
 
 					// attach result
-					final TreeNode linkNode = TreeFactory.newLinkLeafNode(sb, getLinkRes(linkId), new SenseLink(targetSynsetId, idTargetWordId, BaseModule.this.maxRecursion), BaseModule.this.context);
+					final TreeNode linkNode = TreeFactory.newLinkLeafNode(sb, getLinkRes(linkId), new SenseLink(targetSynsetId, idTargetWordId, BaseModule.this.maxRecursion));
 					parent.addChild(linkNode);
 				}
 				while (cursor.moveToNext());
@@ -1444,8 +1434,6 @@ abstract public class BaseModule extends Module
 		//noinspection StatementWithEmptyBody
 		if (cursor.moveToFirst())
 		{
-			final Context context = BaseModule.this.context;
-
 			final int vframeId = cursor.getColumnIndex(VerbFrameMaps_VerbFrames.FRAME);
 
 			final SpannableStringBuilder sb = new SpannableStringBuilder();
@@ -1464,7 +1452,7 @@ abstract public class BaseModule extends Module
 			while (cursor.moveToNext());
 
 			// attach result
-			TreeFactory.addTextNode(parent, sb, context);
+			TreeFactory.addTextNode(parent, sb);
 
 			// fire event
 			FireEvent.onResults(parent);
@@ -1511,8 +1499,6 @@ abstract public class BaseModule extends Module
 		//noinspection StatementWithEmptyBody
 		if (cursor.moveToFirst())
 		{
-			final Context context = BaseModule.this.context;
-
 			final int vframeId = cursor.getColumnIndex(VerbFrameSentenceMaps_VerbFrameSentences.SENTENCE);
 
 			final SpannableStringBuilder sb = new SpannableStringBuilder();
@@ -1531,7 +1517,7 @@ abstract public class BaseModule extends Module
 			while (cursor.moveToNext());
 
 			// attach result
-			TreeFactory.addTextNode(parent, sb, context);
+			TreeFactory.addTextNode(parent, sb);
 
 			// fire event
 			FireEvent.onResults(parent);
@@ -1580,8 +1566,6 @@ abstract public class BaseModule extends Module
 		if (cursor.moveToFirst())
 		{
 			final String lemma = "---";
-			final Context context = BaseModule.this.context;
-
 			final int vframeId = cursor.getColumnIndex(VerbFrameSentenceMaps_VerbFrameSentences.SENTENCE);
 
 			final SpannableStringBuilder sb = new SpannableStringBuilder();
@@ -1600,7 +1584,7 @@ abstract public class BaseModule extends Module
 			while (cursor.moveToNext());
 
 			// attach result
-			TreeFactory.addTextNode(parent, sb, context);
+			TreeFactory.addTextNode(parent, sb);
 
 			// fire event
 			FireEvent.onResults(parent);
@@ -1677,8 +1661,6 @@ abstract public class BaseModule extends Module
 		//noinspection StatementWithEmptyBody
 		if (cursor.moveToFirst())
 		{
-			final Context context = BaseModule.this.context;
-
 			final int positionId = cursor.getColumnIndex(AdjPositions_AdjPositionTypes.POSITIONNAME);
 
 			final SpannableStringBuilder sb = new SpannableStringBuilder();
@@ -1697,7 +1679,7 @@ abstract public class BaseModule extends Module
 			while (cursor.moveToNext());
 
 			// attach result
-			TreeFactory.addTextNode(parent, sb, context);
+			TreeFactory.addTextNode(parent, sb);
 
 			// fire event
 			FireEvent.onResults(parent);
@@ -1744,8 +1726,6 @@ abstract public class BaseModule extends Module
 		//noinspection StatementWithEmptyBody
 		if (cursor.moveToFirst())
 		{
-			final Context context = BaseModule.this.context;
-
 			final int morphId = cursor.getColumnIndex(MorphMaps_Morphs.MORPH);
 			final int posId = cursor.getColumnIndex(MorphMaps_Morphs.POS);
 
@@ -1766,7 +1746,7 @@ abstract public class BaseModule extends Module
 			while (cursor.moveToNext());
 
 			// attach result
-			TreeFactory.addTextNode(parent, sb, context);
+			TreeFactory.addTextNode(parent, sb);
 
 			// fire event
 			FireEvent.onResults(parent);
@@ -2016,14 +1996,15 @@ abstract public class BaseModule extends Module
 		@Override
 		public void process()
 		{
+			final Context context = BaseModule.this.fragment.requireContext();
+
 			final Parcelable pointer = new WordPointer(this.id);
-			final Intent intent = new Intent(BaseModule.this.context, WordActivity.class);
+			final Intent intent = new Intent(context, WordActivity.class);
 			intent.putExtra(ProviderArgs.ARG_QUERYTYPE, ProviderArgs.ARG_QUERYTYPE_WORD);
 			intent.putExtra(ProviderArgs.ARG_QUERYPOINTER, pointer);
 			intent.setAction(ProviderArgs.ACTION_QUERY);
 
-			assert BaseModule.this.context != null;
-			BaseModule.this.context.startActivity(intent);
+			context.startActivity(intent);
 		}
 	}
 
@@ -2049,15 +2030,16 @@ abstract public class BaseModule extends Module
 		@Override
 		public void process()
 		{
+			final Context context = BaseModule.this.fragment.requireContext();
+
 			final Parcelable pointer = new SynsetPointer(this.id);
-			final Intent intent = new Intent(BaseModule.this.context, SynsetActivity.class);
+			final Intent intent = new Intent(context, SynsetActivity.class);
 			intent.putExtra(ProviderArgs.ARG_QUERYTYPE, ProviderArgs.ARG_QUERYTYPE_SYNSET);
 			intent.putExtra(ProviderArgs.ARG_QUERYPOINTER, pointer);
 			intent.putExtra(ProviderArgs.ARG_QUERYRECURSE, this.recurse);
 			intent.setAction(ProviderArgs.ACTION_QUERY);
 
-			assert BaseModule.this.context != null;
-			BaseModule.this.context.startActivity(intent);
+			context.startActivity(intent);
 		}
 	}
 
@@ -2084,15 +2066,16 @@ abstract public class BaseModule extends Module
 		@Override
 		public void process()
 		{
+			final Context context = BaseModule.this.fragment.requireContext();
+
 			final Parcelable pointer = new SensePointer(this.id, this.wordId);
-			final Intent intent = new Intent(BaseModule.this.context, SynsetActivity.class);
+			final Intent intent = new Intent(context, SynsetActivity.class);
 			intent.putExtra(ProviderArgs.ARG_QUERYTYPE, ProviderArgs.ARG_QUERYTYPE_SYNSET);
 			intent.putExtra(ProviderArgs.ARG_QUERYPOINTER, pointer);
 			intent.putExtra(ProviderArgs.ARG_QUERYRECURSE, this.recurse);
 			intent.setAction(ProviderArgs.ACTION_QUERY);
 
-			assert BaseModule.this.context != null;
-			BaseModule.this.context.startActivity(intent);
+			context.startActivity(intent);
 		}
 	}
 }

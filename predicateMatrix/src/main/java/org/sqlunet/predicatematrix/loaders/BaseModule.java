@@ -1,5 +1,6 @@
 package org.sqlunet.predicatematrix.loaders;
 
+import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.drawable.Drawable;
@@ -13,6 +14,7 @@ import org.sqlunet.browser.SqlunetViewModel;
 import org.sqlunet.browser.SqlunetViewModelFactory;
 import org.sqlunet.framenet.FnFramePointer;
 import org.sqlunet.framenet.browser.FnFrameActivity;
+import org.sqlunet.model.TreeFactory;
 import org.sqlunet.predicatematrix.R;
 import org.sqlunet.predicatematrix.provider.PredicateMatrixContract;
 import org.sqlunet.predicatematrix.provider.PredicateMatrixContract.Pm_X;
@@ -28,7 +30,6 @@ import org.sqlunet.treeview.model.TreeNode;
 import org.sqlunet.verbnet.VnClassPointer;
 import org.sqlunet.verbnet.browser.VnClassActivity;
 import org.sqlunet.view.FireEvent;
-import org.sqlunet.view.TreeFactory;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -72,9 +73,9 @@ abstract class BaseModule extends Module
 		super(fragment);
 
 		// spanner
-		assert this.context != null;
-		this.classDrawable = Spanner.getDrawable(this.context, R.drawable.roles);
-		this.roleDrawable = Spanner.getDrawable(this.context, R.drawable.role);
+		final Context context = BaseModule.this.fragment.requireContext();
+		this.classDrawable = Spanner.getDrawable(context, R.drawable.roles);
+		this.roleDrawable = Spanner.getDrawable(context, R.drawable.role);
 	}
 
 	// L O A D E R S
@@ -1221,7 +1222,7 @@ abstract class BaseModule extends Module
 				Spanner.append(pmsb, roleData, 0, PredicateMatrixFactories.dataFactory);
 			}
 
-			return TreeFactory.addTreeNode(parentNode, pmsb, R.drawable.role, BaseModule.this.context);
+			return TreeFactory.addTreeNode(parentNode, pmsb, R.drawable.role);
 		}
 
 		/**
@@ -1252,7 +1253,7 @@ abstract class BaseModule extends Module
 				Spanner.append(pmsb, wnData.definition, 0, PredicateMatrixFactories.definitionFactory);
 			}
 
-			return TreeFactory.addTreeNode(parentNode, pmsb, R.drawable.predicatematrix, BaseModule.this.context);
+			return TreeFactory.addTreeNode(parentNode, pmsb, R.drawable.predicatematrix);
 		}
 
 		/**
@@ -1304,7 +1305,7 @@ abstract class BaseModule extends Module
 				Spanner.append(vnsb, wnData.definition, 0, PredicateMatrixFactories.definitionFactory);
 			}
 
-			return vnData.vnClassId == 0L ? TreeFactory.newLeafNode(vnsb, R.drawable.verbnet, BaseModule.this.context) : TreeFactory.newLinkLeafNode(vnsb, R.drawable.verbnet, new VnClassLink(vnData.vnClassId), BaseModule.this.context);
+			return vnData.vnClassId == 0L ? TreeFactory.newLeafNode(vnsb, R.drawable.verbnet) : TreeFactory.newLinkLeafNode(vnsb, R.drawable.verbnet, new VnClassLink(vnData.vnClassId));
 		}
 
 		/**
@@ -1370,7 +1371,7 @@ abstract class BaseModule extends Module
 				Spanner.append(pbsb, wnData.definition, 0, PredicateMatrixFactories.definitionFactory);
 			}
 
-			return pbData.pbRoleSetId == 0L ? TreeFactory.newLeafNode(pbsb, R.drawable.propbank, BaseModule.this.context) : TreeFactory.newLinkLeafNode(pbsb, R.drawable.propbank, new PbRoleSetLink(pbData.pbRoleSetId), BaseModule.this.context);
+			return pbData.pbRoleSetId == 0L ? TreeFactory.newLeafNode(pbsb, R.drawable.propbank) : TreeFactory.newLinkLeafNode(pbsb, R.drawable.propbank, new PbRoleSetLink(pbData.pbRoleSetId));
 		}
 
 		/**
@@ -1423,7 +1424,7 @@ abstract class BaseModule extends Module
 				Spanner.append(fnsb, wnData.definition, 0, PredicateMatrixFactories.definitionFactory);
 			}
 
-			return fnData.fnFrameId == 0L ? TreeFactory.newLeafNode(fnsb, R.drawable.framenet, BaseModule.this.context) : TreeFactory.newLinkLeafNode(fnsb, R.drawable.framenet, new FnFrameLink(fnData.fnFrameId), BaseModule.this.context);
+			return fnData.fnFrameId == 0L ? TreeFactory.newLeafNode(fnsb, R.drawable.framenet) : TreeFactory.newLinkLeafNode(fnsb, R.drawable.framenet, new FnFrameLink(fnData.fnFrameId));
 		}
 	}
 
@@ -1516,7 +1517,7 @@ abstract class BaseModule extends Module
 				}
 
 				// attach synset
-				this.synsetNode = TreeFactory.addTreeNode(parentNode, synsetsb, R.drawable.synset, BaseModule.this.context);
+				this.synsetNode = TreeFactory.addTreeNode(parentNode, synsetsb, R.drawable.synset);
 			}
 			super.displayRow(this.synsetNode, wnData, pmRole, vnData, pbData, fnData, false, false);
 		}
@@ -1625,14 +1626,15 @@ abstract class BaseModule extends Module
 		@Override
 		public void process()
 		{
+			final Context context = BaseModule.this.fragment.requireContext();
+
 			final Parcelable pointer = new VnClassPointer(this.id);
-			final Intent intent = new Intent(BaseModule.this.context, VnClassActivity.class);
+			final Intent intent = new Intent(context, VnClassActivity.class);
 			intent.putExtra(ProviderArgs.ARG_QUERYTYPE, ProviderArgs.ARG_QUERYTYPE_VNCLASS);
 			intent.putExtra(ProviderArgs.ARG_QUERYPOINTER, pointer);
 			intent.setAction(ProviderArgs.ACTION_QUERY);
 
-			assert BaseModule.this.context != null;
-			BaseModule.this.context.startActivity(intent);
+			context.startActivity(intent);
 		}
 	}
 
@@ -1655,14 +1657,15 @@ abstract class BaseModule extends Module
 		@Override
 		public void process()
 		{
+			final Context context = BaseModule.this.fragment.requireContext();
+
 			final Parcelable pointer = new PbRoleSetPointer(this.id);
-			final Intent intent = new Intent(BaseModule.this.context, PbRoleSetActivity.class);
+			final Intent intent = new Intent(context, PbRoleSetActivity.class);
 			intent.putExtra(ProviderArgs.ARG_QUERYTYPE, ProviderArgs.ARG_QUERYTYPE_PBROLESET);
 			intent.putExtra(ProviderArgs.ARG_QUERYPOINTER, pointer);
 			intent.setAction(ProviderArgs.ACTION_QUERY);
 
-			assert BaseModule.this.context != null;
-			BaseModule.this.context.startActivity(intent);
+			context.startActivity(intent);
 		}
 	}
 
@@ -1685,14 +1688,15 @@ abstract class BaseModule extends Module
 		@Override
 		public void process()
 		{
+			final Context context = BaseModule.this.fragment.requireContext();
+
 			final Parcelable pointer = new FnFramePointer(this.id);
-			final Intent intent = new Intent(BaseModule.this.context, FnFrameActivity.class);
+			final Intent intent = new Intent(context, FnFrameActivity.class);
 			intent.putExtra(ProviderArgs.ARG_QUERYTYPE, ProviderArgs.ARG_QUERYTYPE_FNFRAME);
 			intent.putExtra(ProviderArgs.ARG_QUERYPOINTER, pointer);
 			intent.setAction(ProviderArgs.ACTION_QUERY);
 
-			assert BaseModule.this.context != null;
-			BaseModule.this.context.startActivity(intent);
+			context.startActivity(intent);
 		}
 	}
 

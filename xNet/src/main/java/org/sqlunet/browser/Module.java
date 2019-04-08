@@ -35,12 +35,6 @@ public abstract class Module
 	protected final Fragment fragment;
 
 	/**
-	 * Context
-	 */
-	@Nullable
-	protected final Context context;
-
-	/**
 	 * Type of query (expected result)
 	 */
 	@SuppressWarnings("unused")
@@ -54,7 +48,6 @@ public abstract class Module
 	protected Module(@NonNull final Fragment fragment)
 	{
 		this.fragment = fragment;
-		this.context = fragment.getContext();
 	}
 
 	/**

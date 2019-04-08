@@ -1,14 +1,15 @@
 package org.sqlunet.wordnet.loaders;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
 import android.os.Parcelable;
 
 import org.sqlunet.HasWordId;
+import org.sqlunet.model.TreeFactory;
 import org.sqlunet.treeview.model.TreeNode;
 import org.sqlunet.view.FireEvent;
-import org.sqlunet.view.TreeFactory;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
 
 /**
  * Module for WordNet word
@@ -51,7 +52,7 @@ public class WordModule extends BaseModule
 		if (this.wordId != null && this.wordId != 0)
 		{
 			// sub nodes
-			final TreeNode wordNode = TreeFactory.newTextNode("Word", this.context);
+			final TreeNode wordNode = TreeFactory.newTextNode("Word");
 			parent.addChild(wordNode);
 
 			// word

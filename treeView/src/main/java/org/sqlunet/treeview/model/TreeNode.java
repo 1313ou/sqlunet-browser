@@ -1,13 +1,13 @@
 package org.sqlunet.treeview.model;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-
 import org.sqlunet.treeview.control.Controller;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 /**
  * Tree node
@@ -38,6 +38,12 @@ public class TreeNode
 	 */
 	@NonNull
 	private final List<TreeNode> children;
+
+	/**
+	 * Controller class
+	 */
+	@Nullable
+	public Class<?> controllerClass;
 
 	/**
 	 * Controller
@@ -77,7 +83,7 @@ public class TreeNode
 
 	// C O N S T R U C T O R
 
-	public TreeNode(final Object value)
+	public TreeNode(final Object value, final Class<?> controllerClass)
 	{
 		this.children = new ArrayList<>();
 		this.value = value;
@@ -86,16 +92,12 @@ public class TreeNode
 		this.selectable = false;
 		this.expanded = false;
 		this.collapsible = true;
+		this.controllerClass = controllerClass;
 	}
 
-	public TreeNode(final Object value, @SuppressWarnings("SameParameterValue") final boolean collapsible)
+	public TreeNode(final Object value, final Class<?> controllerClass, @SuppressWarnings("SameParameterValue") final boolean collapsible)
 	{
-		this.children = new ArrayList<>();
-		this.value = value;
-		this.enabled = true;
-		this.selected = false;
-		this.selectable = false;
-		this.expanded = false;
+		this(value, controllerClass);
 		this.collapsible = collapsible;
 	}
 
@@ -107,7 +109,7 @@ public class TreeNode
 	@NonNull
 	static public TreeNode makeRoot()
 	{
-		final TreeNode root = new TreeNode(null);
+		final TreeNode root = new TreeNode(null, null);
 		root.setSelectable(false);
 		return root;
 	}
@@ -466,6 +468,7 @@ public class TreeNode
 		this.expanded = expanded;
 	}
 
+
 	/**
 	 * Get whether this node is selected
 	 *
@@ -485,6 +488,7 @@ public class TreeNode
 	{
 		this.selected = selected;
 	}
+
 
 	/**
 	 * Get whether this node is selectable
@@ -550,7 +554,7 @@ public class TreeNode
 		return this.enabled;
 	}
 
-	// R E N D E R E R
+	// C O N T R O L L E R
 
 	/**
 	 * Set controller
@@ -582,7 +586,7 @@ public class TreeNode
 		return this.controller;
 	}
 
-	// C L I C K L I S T E N E R
+	// C L I C K  L I S T E N E R
 
 	/**
 	 * Set click listener

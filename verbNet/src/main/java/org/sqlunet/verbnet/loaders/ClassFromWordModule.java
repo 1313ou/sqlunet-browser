@@ -9,6 +9,7 @@ import org.sqlunet.HasSynsetId;
 import org.sqlunet.HasWordId;
 import org.sqlunet.browser.SqlunetViewModel;
 import org.sqlunet.browser.SqlunetViewModelFactory;
+import org.sqlunet.model.TreeFactory;
 import org.sqlunet.style.Spanner;
 import org.sqlunet.treeview.model.TreeNode;
 import org.sqlunet.verbnet.R;
@@ -16,7 +17,6 @@ import org.sqlunet.verbnet.provider.VerbNetContract.Words_VnClasses;
 import org.sqlunet.verbnet.provider.VerbNetProvider;
 import org.sqlunet.verbnet.style.VerbNetFactories;
 import org.sqlunet.view.FireEvent;
-import org.sqlunet.view.TreeFactory;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -162,12 +162,12 @@ public class ClassFromWordModule extends BaseModule
 				sb.append(Integer.toString(classId));
 
 				// attach result
-				TreeFactory.addTextNode(parent, sb, ClassFromWordModule.this.context);
+				TreeFactory.addTextNode(parent, sb);
 
 				// sub nodes
-				final TreeNode membersNode = TreeFactory.newQueryNode("Members", R.drawable.members, new MembersQuery(classId), true, ClassFromWordModule.this.context).addTo(parent);
-				final TreeNode rolesNode = TreeFactory.newQueryNode("Roles", R.drawable.roles, new RolesQuery(classId), true, ClassFromWordModule.this.context).addTo(parent);
-				final TreeNode framesNode = TreeFactory.newQueryNode("Frames", R.drawable.vnframe, new FramesQuery(classId), false, ClassFromWordModule.this.context).addTo(parent);
+				final TreeNode membersNode = TreeFactory.newHotQueryNode("Members", R.drawable.members, new MembersQuery(classId)).addTo(parent);
+				final TreeNode rolesNode = TreeFactory.newHotQueryNode("Roles", R.drawable.roles, new RolesQuery(classId)).addTo(parent);
+				final TreeNode framesNode = TreeFactory.newQueryNode("Frames", R.drawable.vnframe, new FramesQuery(classId)).addTo(parent);
 
 				// fire event
 				FireEvent.onQueryReady(membersNode);

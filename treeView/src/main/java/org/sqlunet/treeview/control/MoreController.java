@@ -29,7 +29,7 @@ public class MoreController extends Controller<Value>
 	 *
 	 * @param context context
 	 */
-	public MoreController(Context context)
+	public MoreController(final Context context)
 	{
 		super(context);
 	}

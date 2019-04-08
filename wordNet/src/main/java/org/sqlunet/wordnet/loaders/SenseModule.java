@@ -1,15 +1,16 @@
 package org.sqlunet.wordnet.loaders;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
 import android.os.Parcelable;
 
 import org.sqlunet.HasWordId;
+import org.sqlunet.model.TreeFactory;
 import org.sqlunet.treeview.model.TreeNode;
 import org.sqlunet.view.FireEvent;
-import org.sqlunet.view.TreeFactory;
 import org.sqlunet.wordnet.R;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
 
 /**
  * Module for WordNet sense
@@ -57,8 +58,8 @@ public class SenseModule extends SynsetModule
 		}
 
 		// sub nodes
-		final TreeNode synsetNode = TreeFactory.newTextNode("Sense", this.context);
-		final TreeNode membersNode = TreeFactory.newNode("Members", R.drawable.members, this.context);
+		final TreeNode synsetNode = TreeFactory.newTextNode("Sense");
+		final TreeNode membersNode = TreeFactory.newNode("Members", R.drawable.members);
 
 		// attach result
 		parent.addChildren(synsetNode, membersNode);
@@ -95,8 +96,8 @@ public class SenseModule extends SynsetModule
 		}
 
 		// links and samples
-		final TreeNode linksNode = TreeFactory.newQueryNode("Links", R.drawable.ic_links, new LinksQuery(this.synsetId, this.wordId), this.expand, this.context).addTo(parent);
-		final TreeNode samplesNode = TreeFactory.newQueryNode("Samples", R.drawable.sample, new SamplesQuery(this.synsetId), this.expand, this.context).addTo(parent);
+		final TreeNode linksNode = this.expand ? TreeFactory.newHotQueryNode("Links", R.drawable.ic_links, new LinksQuery(this.synsetId, this.wordId)).addTo(parent): TreeFactory.newQueryNode("Links", R.drawable.ic_links, new LinksQuery(this.synsetId, this.wordId)).addTo(parent);
+		final TreeNode samplesNode = this.expand ? TreeFactory.newHotQueryNode("Samples", R.drawable.sample, new SamplesQuery(this.synsetId)).addTo(parent): TreeFactory.newQueryNode("Samples", R.drawable.sample, new SamplesQuery(this.synsetId)).addTo(parent);
 
 		// fire event
 		FireEvent.onQueryReady(linksNode);

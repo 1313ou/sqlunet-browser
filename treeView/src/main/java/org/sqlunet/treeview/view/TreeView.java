@@ -3,13 +3,12 @@ package org.sqlunet.treeview.view;
 import android.animation.Animator;
 import android.animation.ValueAnimator;
 import android.content.Context;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import android.text.TextUtils;
 import android.view.ContextThemeWrapper;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewGroup.LayoutParams;
+import android.view.ViewParent;
 import android.view.animation.LinearInterpolator;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
@@ -25,6 +24,9 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 /**
  * Tree view
@@ -207,10 +209,18 @@ public class TreeView
 	 * @param container container
 	 * @param node      node
 	 */
-	private void addNode(@NonNull final ViewGroup container, @NonNull final TreeNode node)
+	synchronized private void addNode(@NonNull final ViewGroup container, @NonNull final TreeNode node)
 	{
 		final Controller<?> controller = getNodeController(node);
 		final View nodeView = controller.getView();
+
+		// remove parent
+		ViewParent parent = nodeView.getParent();
+		if (parent != null)
+		{
+			final ViewGroup group = (ViewGroup) parent;
+			// TODO group.removeView(nodeView);
+		}
 
 		// add to container
 		container.addView(nodeView);
@@ -252,8 +262,10 @@ public class TreeView
 		final Controller<?> controller = node.getController();
 		assert controller != null;
 		final TreeView treeView = controller.getTreeView();
-		assert treeView != null;
-		treeView.removeNode(node);
+		if (treeView != null)
+		{
+			treeView.removeNode(node);
+		}
 	}
 
 	/**
@@ -348,8 +360,10 @@ public class TreeView
 		final Controller<?> controller = node.getController();
 		assert controller != null;
 		final TreeView treeView = controller.getTreeView();
-		assert treeView != null;
-		treeView.expandNode(node, includeSubnodes);
+		if (treeView != null)
+		{
+			treeView.expandNode(node, includeSubnodes);
+		}
 	}
 
 	/**
@@ -363,8 +377,10 @@ public class TreeView
 		final Controller<?> controller = node.getController();
 		assert controller != null;
 		final TreeView treeView = controller.getTreeView();
-		assert treeView != null;
-		treeView.expandRelativeLevel(node, levels);
+		if (treeView != null)
+		{
+			treeView.expandRelativeLevel(node, levels);
+		}
 	}
 
 	/**
@@ -379,8 +395,10 @@ public class TreeView
 		final Controller<?> controller = node.getController();
 		assert controller != null;
 		final TreeView treeView = controller.getTreeView();
-		assert treeView != null;
-		treeView.collapseNode(node, includeSubnodes);
+		if (treeView != null)
+		{
+			treeView.collapseNode(node, includeSubnodes);
+		}
 	}
 
 	/**
@@ -556,9 +574,6 @@ public class TreeView
 		// clear all views
 		viewGroup.removeAllViews();
 
-		// fire expand event
-		controller.onExpandEvent(true);
-
 		// children
 		for (final TreeNode child : node.getChildren())
 		{
@@ -571,6 +586,9 @@ public class TreeView
 				expandNode(child, includeSubnodes);
 			}
 		}
+
+		// fire expand event
+		controller.onExpandEvent(true);
 
 		// display
 		if (this.useAnimation)
@@ -1087,16 +1105,8 @@ public class TreeView
 		Controller<?> controller = node.getController();
 		if (controller == null)
 		{
-			try
-			{
-				final Object object = this.defaultControllerClass.getConstructor(Context.class).newInstance(this.context);
-				controller = (Controller<?>) object;
-				node.setController(controller);
-			}
-			catch (Exception e)
-			{
-				throw new RuntimeException("Could not instantiate class " + this.defaultControllerClass);
-			}
+			controller = ControllerFactory.makeController(node.controllerClass != null ? node.controllerClass : this.defaultControllerClass, this.context);
+			node.setController(controller);
 		}
 		if (controller.getContainerStyle() <= 0)
 		{

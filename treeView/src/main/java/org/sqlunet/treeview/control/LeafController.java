@@ -30,7 +30,7 @@ public class LeafController extends Controller<Value>
 	 *
 	 * @param context context
 	 */
-	public LeafController(Context context)
+	public LeafController(final Context context)
 	{
 		super(context);
 	}

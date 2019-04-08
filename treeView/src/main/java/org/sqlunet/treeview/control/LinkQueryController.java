@@ -21,9 +21,9 @@ public class LinkQueryController extends QueryController
 	 *
 	 * @param context context
 	 */
-	public LinkQueryController(final Context context, final boolean triggerNow)
+	public LinkQueryController(final Context context)
 	{
-		super(context, triggerNow);
+		super(context);
 		this.layoutRes = R.layout.layout_tree_link;
 	}
 

@@ -1,5 +1,6 @@
 package org.sqlunet.framenet.loaders;
 
+import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.drawable.Drawable;
@@ -47,13 +48,13 @@ import org.sqlunet.framenet.style.FrameNetFrameProcessor;
 import org.sqlunet.framenet.style.FrameNetMarkupFactory;
 import org.sqlunet.framenet.style.FrameNetProcessor;
 import org.sqlunet.framenet.style.FrameNetSpanner;
+import org.sqlunet.model.TreeFactory;
 import org.sqlunet.provider.ProviderArgs;
 import org.sqlunet.style.Spanner;
 import org.sqlunet.treeview.control.Link;
 import org.sqlunet.treeview.control.Query;
 import org.sqlunet.treeview.model.TreeNode;
 import org.sqlunet.view.FireEvent;
-import org.sqlunet.view.TreeFactory;
 
 import java.util.List;
 
@@ -162,22 +163,22 @@ abstract public class BaseModule extends Module
 		super(fragment);
 
 		// drawables
-		assert this.context != null;
-		this.frameDrawable = Spanner.getDrawable(this.context, R.drawable.roleclass);
-		this.feDrawable = Spanner.getDrawable(this.context, R.drawable.role);
-		this.lexunitDrawable = Spanner.getDrawable(this.context, R.drawable.member);
-		this.definitionDrawable = Spanner.getDrawable(this.context, R.drawable.definition);
-		this.metadefinitionDrawable = Spanner.getDrawable(this.context, R.drawable.metadefinition);
-		this.sentenceDrawable = Spanner.getDrawable(this.context, R.drawable.sentence);
-		this.realizationDrawable = Spanner.getDrawable(this.context, R.drawable.realization);
-		this.semtypeDrawable = Spanner.getDrawable(this.context, R.drawable.semtype);
-		this.coresetDrawable = Spanner.getDrawable(this.context, R.drawable.coreset);
-		this.layerDrawable = Spanner.getDrawable(this.context, R.drawable.layer);
+		final Context context = this.fragment.requireContext();
+		this.frameDrawable = Spanner.getDrawable(context, R.drawable.roleclass);
+		this.feDrawable = Spanner.getDrawable(context, R.drawable.role);
+		this.lexunitDrawable = Spanner.getDrawable(context, R.drawable.member);
+		this.definitionDrawable = Spanner.getDrawable(context, R.drawable.definition);
+		this.metadefinitionDrawable = Spanner.getDrawable(context, R.drawable.metadefinition);
+		this.sentenceDrawable = Spanner.getDrawable(context, R.drawable.sentence);
+		this.realizationDrawable = Spanner.getDrawable(context, R.drawable.realization);
+		this.semtypeDrawable = Spanner.getDrawable(context, R.drawable.semtype);
+		this.coresetDrawable = Spanner.getDrawable(context, R.drawable.coreset);
+		this.layerDrawable = Spanner.getDrawable(context, R.drawable.layer);
 
 		// agents
 		this.processor = new FrameNetProcessor();
 		this.frameProcessor = new FrameNetFrameProcessor();
-		this.spanner = new FrameNetSpanner(this.context);
+		this.spanner = new FrameNetSpanner(context);
 	}
 
 	// C R E A T I O N
@@ -279,12 +280,12 @@ abstract public class BaseModule extends Module
 			}
 
 			// attach result
-			TreeFactory.addTextNode(parent, sb, BaseModule.this.context);
+			TreeFactory.addTextNode(parent, sb);
 
 			// sub nodes
-			final TreeNode fesNode = TreeFactory.newQueryNode("Frame Elements", R.drawable.roles, new FEsQuery(frameId), true, BaseModule.this.context).addTo(parent);
-			final TreeNode lexUnitsNode = TreeFactory.newQueryNode("Lex Units", R.drawable.members, new LexUnitsQuery(frameId), true, BaseModule.this.context).addTo(parent);
-			final TreeNode relatedNode = TreeFactory.newQueryNode("Related", R.drawable.roleclass, new RelatedQuery(frameId), false, BaseModule.this.context).addTo(parent);
+			final TreeNode fesNode = TreeFactory.newHotQueryNode("Frame Elements", R.drawable.roles, new FEsQuery(frameId)).addTo(parent);
+			final TreeNode lexUnitsNode = TreeFactory.newHotQueryNode("Lex Units", R.drawable.members, new LexUnitsQuery(frameId)).addTo(parent);
+			final TreeNode relatedNode = TreeFactory.newQueryNode("Related", R.drawable.roleclass, new RelatedQuery(frameId)).addTo(parent);
 
 			// fire events
 			FireEvent.onQueryReady(fesNode);
@@ -420,7 +421,7 @@ abstract public class BaseModule extends Module
 
 				// result
 				long targetFrameId = slot1 ? frame2Id : frame1Id;
-				final TreeNode memberNode = TreeFactory.newLinkNode(sb, R.drawable.roleclass, new FnFrameLink(targetFrameId), BaseModule.this.context);
+				final TreeNode memberNode = TreeFactory.newLinkNode(sb, R.drawable.roleclass, new FnFrameLink(targetFrameId));
 				parent.addChild(memberNode);
 			}
 			while (cursor.moveToNext());
@@ -508,7 +509,7 @@ abstract public class BaseModule extends Module
 				Spanner.append(sb, feAbbrev, 0, FrameNetFactories.feAbbrevFactory);
 
 				// attach fe
-				final TreeNode feNode = TreeFactory.addTreeNode(parent, sb, coreTypeId == 1 ? R.drawable.rolex : R.drawable.role, BaseModule.this.context);
+				final TreeNode feNode = TreeFactory.addTreeNode(parent, sb, coreTypeId == 1 ? R.drawable.rolex : R.drawable.role);
 
 				// more info
 				final SpannableStringBuilder sb2 = new SpannableStringBuilder();
@@ -555,7 +556,7 @@ abstract public class BaseModule extends Module
 				}
 
 				// attach more info to fe node
-				TreeFactory.addTextNode(feNode, sb2, BaseModule.this.context);
+				TreeFactory.addTextNode(feNode, sb2);
 			}
 			while (cursor.moveToNext());
 
@@ -687,7 +688,7 @@ abstract public class BaseModule extends Module
 				}
 			}
 			// attach result
-			TreeFactory.addTextNode(parent, sb, BaseModule.this.context);
+			TreeFactory.addTextNode(parent, sb);
 
 			// with-frame option
 			if (withFrame)
@@ -696,14 +697,14 @@ abstract public class BaseModule extends Module
 				sb2.append("Frame");
 				sb2.append(' ');
 				Spanner.append(sb2, frame, 0, FrameNetFactories.boldFactory);
-				final TreeNode frameNode = TreeFactory.newQueryNode(sb2, R.drawable.roleclass, new FrameQuery(frameId), true, BaseModule.this.context).addTo(parent);
+				final TreeNode frameNode = TreeFactory.newHotQueryNode(sb2, R.drawable.roleclass, new FrameQuery(frameId)).addTo(parent);
 
 				// fire event
 				FireEvent.onQueryReady(frameNode);
 
 				if (withFes)
 				{
-					final TreeNode fesNode = TreeFactory.newQueryNode("Frame Elements", R.drawable.roles, new FEsQuery(frameId), false, BaseModule.this.context).addTo(parent);
+					final TreeNode fesNode = TreeFactory.newQueryNode("Frame Elements", R.drawable.roles, new FEsQuery(frameId)).addTo(parent);
 
 					// fire event
 					FireEvent.onQueryReady(fesNode);
@@ -711,14 +712,14 @@ abstract public class BaseModule extends Module
 			}
 			else
 			{
-				TreeFactory.addTextNode(parent, sb, BaseModule.this.context);
+				TreeFactory.addTextNode(parent, sb);
 			}
 
 			// sub nodes
-			final TreeNode realizationsNode = TreeFactory.newQueryNode("Realizations", R.drawable.realization, new RealizationsQuery(luId), false, BaseModule.this.context).addTo(parent);
-			final TreeNode groupRealizationsNode = TreeFactory.newQueryNode("Group realizations", R.drawable.grouprealization, new GroupRealizationsQuery(luId), false, BaseModule.this.context).addTo(parent);
-			final TreeNode governorsNode = TreeFactory.newQueryNode("Governors", R.drawable.governor, new GovernorsQuery(luId), false, BaseModule.this.context).addTo(parent);
-			final TreeNode sentencesNode = TreeFactory.newQueryNode("Sentences", R.drawable.sentence, new SentencesForLexUnitQuery(luId), false, BaseModule.this.context).addTo(parent);
+			final TreeNode realizationsNode = TreeFactory.newQueryNode("Realizations", R.drawable.realization, new RealizationsQuery(luId)).addTo(parent);
+			final TreeNode groupRealizationsNode = TreeFactory.newQueryNode("Group realizations", R.drawable.grouprealization, new GroupRealizationsQuery(luId)).addTo(parent);
+			final TreeNode governorsNode = TreeFactory.newQueryNode("Governors", R.drawable.governor, new GovernorsQuery(luId)).addTo(parent);
+			final TreeNode sentencesNode = TreeFactory.newQueryNode("Sentences", R.drawable.sentence, new SentencesForLexUnitQuery(luId)).addTo(parent);
 
 			// fire event
 			FireEvent.onQueryReady(realizationsNode);
@@ -809,7 +810,7 @@ abstract public class BaseModule extends Module
 				}
 
 				// attach lex unit
-				final TreeNode luNode = TreeFactory.newLinkTreeNode(sb, R.drawable.member, new FnLexUnitLink(luId), BaseModule.this.context);
+				final TreeNode luNode = TreeFactory.newLinkTreeNode(sb, R.drawable.member, new FnLexUnitLink(luId));
 				parent.addChild(luNode);
 
 				// more info
@@ -855,8 +856,8 @@ abstract public class BaseModule extends Module
 				// attach result
 				if (withFrame)
 				{
-					final TreeNode frameNode = TreeFactory.newQueryNode("Frame", R.drawable.roleclass, new FrameQuery(frameId), false, BaseModule.this.context).addTo(luNode);
-					final TreeNode fesNode = TreeFactory.newQueryNode("Frame Elements", R.drawable.roles, new FEsQuery(frameId), false, BaseModule.this.context).addTo(luNode);
+					final TreeNode frameNode = TreeFactory.newQueryNode("Frame", R.drawable.roleclass, new FrameQuery(frameId)).addTo(luNode);
+					final TreeNode fesNode = TreeFactory.newQueryNode("Frame Elements", R.drawable.roles, new FEsQuery(frameId)).addTo(luNode);
 
 					// fire event
 					FireEvent.onQueryReady(frameNode);
@@ -864,14 +865,14 @@ abstract public class BaseModule extends Module
 				}
 				else
 				{
-					TreeFactory.addTextNode(luNode, sb2, BaseModule.this.context);
+					TreeFactory.addTextNode(luNode, sb2);
 				}
 
 				// sub nodes
-				final TreeNode realizationsNode = TreeFactory.newQueryNode("Realizations", R.drawable.realization, new RealizationsQuery(luId), false, BaseModule.this.context).addTo(luNode);
-				final TreeNode groupRealizationsNode = TreeFactory.newQueryNode("Group realizations", R.drawable.grouprealization, new GroupRealizationsQuery(luId), false, BaseModule.this.context).addTo(luNode);
-				final TreeNode governorsNode = TreeFactory.newQueryNode("Governors", R.drawable.governor, new GovernorsQuery(luId), false, BaseModule.this.context).addTo(luNode);
-				final TreeNode sentencesNode = TreeFactory.newQueryNode("Sentences", R.drawable.sentence, new SentencesForLexUnitQuery(luId), false, BaseModule.this.context).addTo(luNode);
+				final TreeNode realizationsNode = TreeFactory.newQueryNode("Realizations", R.drawable.realization, new RealizationsQuery(luId)).addTo(luNode);
+				final TreeNode groupRealizationsNode = TreeFactory.newQueryNode("Group realizations", R.drawable.grouprealization, new GroupRealizationsQuery(luId)).addTo(luNode);
+				final TreeNode governorsNode = TreeFactory.newQueryNode("Governors", R.drawable.governor, new GovernorsQuery(luId)).addTo(luNode);
+				final TreeNode sentencesNode = TreeFactory.newQueryNode("Sentences", R.drawable.sentence, new SentencesForLexUnitQuery(luId)).addTo(luNode);
 
 				// fire events
 				FireEvent.onQueryReady(realizationsNode);
@@ -1005,15 +1006,15 @@ abstract public class BaseModule extends Module
 					}
 				}
 				// attach result
-				TreeFactory.addTextNode(parent, sb, BaseModule.this.context);
+				TreeFactory.addTextNode(parent, sb);
 
 				// sub nodes
-				final TreeNode frameNode = TreeFactory.newQueryNode("Frame", R.drawable.roleclass, new FrameQuery(frameId), true, BaseModule.this.context).addTo(parent);
-				final TreeNode fesNode = TreeFactory.newQueryNode("Frame Elements", R.drawable.roles, new FEsQuery(frameId), false, BaseModule.this.context).addTo(parent);
-				final TreeNode realizationsNode = TreeFactory.newQueryNode("Realizations", R.drawable.realization, new RealizationsQuery(luId), false, BaseModule.this.context).addTo(parent);
-				final TreeNode groupRealizationsNode = TreeFactory.newQueryNode("Group realizations", R.drawable.grouprealization, new GroupRealizationsQuery(luId), false, BaseModule.this.context).addTo(parent);
-				final TreeNode governorsNode = TreeFactory.newQueryNode("Governors", R.drawable.governor, new GovernorsQuery(luId), false, BaseModule.this.context).addTo(parent);
-				final TreeNode sentencesNode = TreeFactory.newQueryNode("Sentences", R.drawable.sentence, new SentencesForLexUnitQuery(luId), false, BaseModule.this.context).addTo(parent);
+				final TreeNode frameNode = TreeFactory.newHotQueryNode("Frame", R.drawable.roleclass, new FrameQuery(frameId)).addTo(parent);
+				final TreeNode fesNode = TreeFactory.newQueryNode("Frame Elements", R.drawable.roles, new FEsQuery(frameId)).addTo(parent);
+				final TreeNode realizationsNode = TreeFactory.newQueryNode("Realizations", R.drawable.realization, new RealizationsQuery(luId)).addTo(parent);
+				final TreeNode groupRealizationsNode = TreeFactory.newQueryNode("Group realizations", R.drawable.grouprealization, new GroupRealizationsQuery(luId)).addTo(parent);
+				final TreeNode governorsNode = TreeFactory.newQueryNode("Governors", R.drawable.governor, new GovernorsQuery(luId)).addTo(parent);
+				final TreeNode sentencesNode = TreeFactory.newQueryNode("Sentences", R.drawable.sentence, new SentencesForLexUnitQuery(luId)).addTo(parent);
 
 				// fire event
 				FireEvent.onQueryReady(frameNode);
@@ -1107,7 +1108,7 @@ abstract public class BaseModule extends Module
 				Spanner.append(sb, word, 0, FrameNetFactories.governorFactory);
 
 				// attach annoSets node
-				final TreeNode annoSetsNode = TreeFactory.newQueryNode(sb, R.drawable.governor, new AnnoSetsForGovernorQuery(governorId), false, BaseModule.this.context).addTo(parent);
+				final TreeNode annoSetsNode = TreeFactory.newQueryNode(sb, R.drawable.governor, new AnnoSetsForGovernorQuery(governorId)).addTo(parent);
 
 				// fire event
 				FireEvent.onQueryReady(annoSetsNode);
@@ -1193,7 +1194,7 @@ abstract public class BaseModule extends Module
 				}
 
 				// fe
-				final TreeNode feNode = TreeFactory.addTreeNode(parent, sb, R.drawable.role, BaseModule.this.context);
+				final TreeNode feNode = TreeFactory.addTreeNode(parent, sb, R.drawable.role);
 
 				// fe realizations
 				final String fers = cursor.getString(idFers);
@@ -1231,7 +1232,7 @@ abstract public class BaseModule extends Module
 					}
 
 					// attach fer node
-					final TreeNode ferNode = TreeFactory.newQueryNode(sb1, R.drawable.realization, new SentencesForValenceUnitQuery(vuId), false, BaseModule.this.context).addTo(feNode);
+					final TreeNode ferNode = TreeFactory.newQueryNode(sb1, R.drawable.realization, new SentencesForValenceUnitQuery(vuId)).addTo(feNode);
 
 					// fire event
 					FireEvent.onQueryReady(ferNode);
@@ -1329,7 +1330,7 @@ abstract public class BaseModule extends Module
 					}
 
 					groupId = feGroupId;
-					groupNode = TreeFactory.addTreeNode(parent, sb1, R.drawable.grouprealization, BaseModule.this.context);
+					groupNode = TreeFactory.addTreeNode(parent, sb1, R.drawable.grouprealization);
 				}
 				assert groupNode != null;
 
@@ -1337,7 +1338,7 @@ abstract public class BaseModule extends Module
 				parseGroupRealizations(groupRealizations, sb);
 
 				// attach sentences node
-				final TreeNode sentencesNode = TreeFactory.newQueryNode(sb, R.drawable.grouprealization, new SentencesForPatternQuery(patternId), false, BaseModule.this.context).addTo(groupNode);
+				final TreeNode sentencesNode = TreeFactory.newQueryNode(sb, R.drawable.grouprealization, new SentencesForPatternQuery(patternId)).addTo(groupNode);
 
 				// fire event
 				FireEvent.onQueryReady(sentencesNode);
@@ -1533,7 +1534,7 @@ abstract public class BaseModule extends Module
 				}
 
 				// attach result
-				final TreeNode sentenceNode = TreeFactory.newLinkNode(sb, R.drawable.sentence, new FnSentenceLink(sentenceId), BaseModule.this.context);
+				final TreeNode sentenceNode = TreeFactory.newLinkNode(sb, R.drawable.sentence, new FnSentenceLink(sentenceId));
 				parent.addChild(sentenceNode);
 			}
 			while (cursor.moveToNext());
@@ -1611,7 +1612,7 @@ abstract public class BaseModule extends Module
 				}
 
 				// attach annoSet node
-				final TreeNode annoSetNode = TreeFactory.newQueryNode(sb, R.drawable.sentence, new AnnoSetQuery(annotationId, false), false, BaseModule.this.context).addTo(parent);
+				final TreeNode annoSetNode = TreeFactory.newQueryNode(sb, R.drawable.sentence, new AnnoSetQuery(annotationId, false)).addTo(parent);
 
 				// fire event
 				FireEvent.onQueryReady(annoSetNode);
@@ -1691,7 +1692,7 @@ abstract public class BaseModule extends Module
 				}
 
 				// pattern
-				final TreeNode annoSetNode = TreeFactory.newQueryNode(sb, R.drawable.sentence, new AnnoSetQuery(annotationId, false), false, BaseModule.this.context).addTo(parent);
+				final TreeNode annoSetNode = TreeFactory.newQueryNode(sb, R.drawable.sentence, new AnnoSetQuery(annotationId, false)).addTo(parent);
 
 				// fire event
 				FireEvent.onQueryReady(annoSetNode);
@@ -1854,7 +1855,7 @@ abstract public class BaseModule extends Module
 			}
 
 			// attach result
-			TreeFactory.addTextNode(parent, sb, BaseModule.this.context);
+			TreeFactory.addTextNode(parent, sb);
 
 			// fire event
 			FireEvent.onResults(parent);
@@ -1933,7 +1934,7 @@ abstract public class BaseModule extends Module
 				}
 
 				// attach annoSet node
-				final TreeNode annoSetNode = TreeFactory.newQueryNode(sb, R.drawable.annoset, new AnnoSetQuery(annoSetId, false), false, BaseModule.this.context).addTo(parent);
+				final TreeNode annoSetNode = TreeFactory.newQueryNode(sb, R.drawable.annoset, new AnnoSetQuery(annoSetId, false)).addTo(parent);
 
 				// fire event
 				FireEvent.onQueryReady(annoSetNode);
@@ -2092,7 +2093,7 @@ abstract public class BaseModule extends Module
 					if (sb != null)
 					{
 						// attach result
-						TreeFactory.addTextNode(annoSetNode, sb, BaseModule.this.context);
+						TreeFactory.addTextNode(annoSetNode, sb);
 					}
 					sb = new SpannableStringBuilder();
 
@@ -2100,7 +2101,7 @@ abstract public class BaseModule extends Module
 					Spanner.append(sba, "AnnoSet", 0, FrameNetFactories.annoSetFactory);
 					sba.append(' ');
 					Spanner.append(sba, Long.toString(annoSetId), 0, FrameNetFactories.dataFactory);
-					annoSetNode = TreeFactory.addTreeNode(parent, sba, R.drawable.annoset, BaseModule.this.context);
+					annoSetNode = TreeFactory.addTreeNode(parent, sba, R.drawable.annoset);
 					currentAnnoSetId = annoSetId;
 				}
 
@@ -2184,7 +2185,7 @@ abstract public class BaseModule extends Module
 			if (sb.length() > 0)
 			{
 				// attach result
-				TreeFactory.addTextNode(annoSetNode, sb, BaseModule.this.context);
+				TreeFactory.addTextNode(annoSetNode, sb);
 			}
 
 			// fire event
@@ -2639,14 +2640,14 @@ abstract public class BaseModule extends Module
 		@Override
 		public void process()
 		{
+			final Context context = BaseModule.this.fragment.requireContext();
 			final Parcelable pointer = new FnFramePointer(this.id);
-			final Intent intent = new Intent(BaseModule.this.context, FnFrameActivity.class);
+			final Intent intent = new Intent(context, FnFrameActivity.class);
 			intent.putExtra(ProviderArgs.ARG_QUERYTYPE, ProviderArgs.ARG_QUERYTYPE_FNFRAME);
 			intent.putExtra(ProviderArgs.ARG_QUERYPOINTER, pointer);
 			intent.setAction(ProviderArgs.ACTION_QUERY);
 
-			assert BaseModule.this.context != null;
-			BaseModule.this.context.startActivity(intent);
+			context.startActivity(intent);
 		}
 	}
 
@@ -2669,13 +2670,12 @@ abstract public class BaseModule extends Module
 		public void process()
 		{
 			final Parcelable pointer = new FnLexUnitPointer(this.id);
-			final Intent intent = new Intent(BaseModule.this.context, FnLexUnitActivity.class);
+			final Intent intent = new Intent(BaseModule.this.fragment.requireContext(), FnLexUnitActivity.class);
 			intent.putExtra(ProviderArgs.ARG_QUERYTYPE, ProviderArgs.ARG_QUERYTYPE_FNLEXUNIT);
 			intent.putExtra(ProviderArgs.ARG_QUERYPOINTER, pointer);
 			intent.setAction(ProviderArgs.ACTION_QUERY);
 
-			assert BaseModule.this.context != null;
-			BaseModule.this.context.startActivity(intent);
+			BaseModule.this.fragment.requireContext().startActivity(intent);
 		}
 	}
 
@@ -2698,13 +2698,12 @@ abstract public class BaseModule extends Module
 		public void process()
 		{
 			final Parcelable pointer = new FnSentencePointer(this.id);
-			final Intent intent = new Intent(BaseModule.this.context, FnSentenceActivity.class);
+			final Intent intent = new Intent(BaseModule.this.fragment.requireContext(), FnSentenceActivity.class);
 			intent.putExtra(ProviderArgs.ARG_QUERYTYPE, ProviderArgs.ARG_QUERYTYPE_FNSENTENCE);
 			intent.putExtra(ProviderArgs.ARG_QUERYPOINTER, pointer);
 			intent.setAction(ProviderArgs.ACTION_QUERY);
 
-			assert BaseModule.this.context != null;
-			BaseModule.this.context.startActivity(intent);
+			BaseModule.this.fragment.requireContext().startActivity(intent);
 		}
 	}
 }

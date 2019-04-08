@@ -36,7 +36,7 @@ public class TreeController extends Controller<Value>
 	 *
 	 * @param context context
 	 */
-	public TreeController(Context context)
+	public TreeController(final Context context)
 	{
 		super(context);
 	}

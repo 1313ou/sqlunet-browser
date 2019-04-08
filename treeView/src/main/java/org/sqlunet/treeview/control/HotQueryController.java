@@ -7,7 +7,7 @@ import android.content.Context;
  *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
-public class QueryController extends TreeController
+public class HotQueryController extends TreeController
 {
 	// static private final String TAG = "QueryController";
 
@@ -18,7 +18,7 @@ public class QueryController extends TreeController
 	 *
 	 * @param context context
 	 */
-	public QueryController(final Context context)
+	public HotQueryController(final Context context)
 	{
 		super(context);
 	}
@@ -28,7 +28,7 @@ public class QueryController extends TreeController
 	{
 		super.onExpandEvent(expand);
 
-		if (expand && !false && this.node.isLeaf())
+		if (expand && !true && this.node.isLeaf())
 		{
 			processQuery();
 		}

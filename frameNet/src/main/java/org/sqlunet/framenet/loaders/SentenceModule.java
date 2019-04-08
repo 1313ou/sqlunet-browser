@@ -11,10 +11,10 @@ import org.sqlunet.framenet.FnSentencePointer;
 import org.sqlunet.framenet.provider.FrameNetContract.Sentences;
 import org.sqlunet.framenet.provider.FrameNetProvider;
 import org.sqlunet.framenet.style.FrameNetFactories;
+import org.sqlunet.model.TreeFactory;
 import org.sqlunet.style.Spanner;
 import org.sqlunet.treeview.model.TreeNode;
 import org.sqlunet.view.FireEvent;
-import org.sqlunet.view.TreeFactory;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -123,7 +123,7 @@ public class SentenceModule extends BaseModule
 			Spanner.append(sb, SentenceModule.this.sentenceText, 0, FrameNetFactories.sentenceFactory);
 
 			// attach result
-			TreeFactory.addTextNode(parent, sb, SentenceModule.this.context);
+			TreeFactory.addTextNode(parent, sb);
 
 			// layers
 			layersForSentence(id, SentenceModule.this.sentenceText, parent);

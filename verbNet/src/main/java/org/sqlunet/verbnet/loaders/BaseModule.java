@@ -9,6 +9,7 @@ import android.text.SpannableStringBuilder;
 import org.sqlunet.browser.Module;
 import org.sqlunet.browser.SqlunetViewModel;
 import org.sqlunet.browser.SqlunetViewModelFactory;
+import org.sqlunet.model.TreeFactory;
 import org.sqlunet.style.Spanner;
 import org.sqlunet.treeview.control.Query;
 import org.sqlunet.treeview.model.TreeNode;
@@ -23,7 +24,6 @@ import org.sqlunet.verbnet.style.VerbNetSemanticsProcessor;
 import org.sqlunet.verbnet.style.VerbNetSemanticsSpanner;
 import org.sqlunet.verbnet.style.VerbNetSyntaxSpanner;
 import org.sqlunet.view.FireEvent;
-import org.sqlunet.view.TreeFactory;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -120,17 +120,17 @@ abstract class BaseModule extends Module
 		super(fragment);
 
 		// drawable
-		assert this.context != null;
-		this.drawableClass = Spanner.getDrawable(this.context, R.drawable.roleclass);
-		this.drawableMember = Spanner.getDrawable(this.context, R.drawable.member);
-		this.drawableRoles = Spanner.getDrawable(this.context, R.drawable.roles);
-		this.drawableRole = Spanner.getDrawable(this.context, R.drawable.role);
-		this.drawableFrame = Spanner.getDrawable(this.context, R.drawable.vnframe);
-		this.drawableSyntax = Spanner.getDrawable(this.context, R.drawable.syntax);
-		this.drawableSemantics = Spanner.getDrawable(this.context, R.drawable.semantics);
-		this.drawableExample = Spanner.getDrawable(this.context, R.drawable.sample);
-		this.drawableDefinition = Spanner.getDrawable(this.context, R.drawable.definition);
-		this.drawableGrouping = Spanner.getDrawable(this.context, R.drawable.info);
+		final Context context = BaseModule.this.fragment.requireContext();
+		this.drawableClass = Spanner.getDrawable(context, R.drawable.roleclass);
+		this.drawableMember = Spanner.getDrawable(context, R.drawable.member);
+		this.drawableRoles = Spanner.getDrawable(context, R.drawable.roles);
+		this.drawableRole = Spanner.getDrawable(context, R.drawable.role);
+		this.drawableFrame = Spanner.getDrawable(context, R.drawable.vnframe);
+		this.drawableSyntax = Spanner.getDrawable(context, R.drawable.syntax);
+		this.drawableSemantics = Spanner.getDrawable(context, R.drawable.semantics);
+		this.drawableExample = Spanner.getDrawable(context, R.drawable.sample);
+		this.drawableDefinition = Spanner.getDrawable(context, R.drawable.definition);
+		this.drawableGrouping = Spanner.getDrawable(context, R.drawable.info);
 
 		// create processors and spanners
 		this.semanticsProcessor = new VerbNetSemanticsProcessor();
@@ -186,7 +186,6 @@ abstract class BaseModule extends Module
 		// read cursor
 		if (cursor.moveToFirst())
 		{
-			final Context context = BaseModule.this.context;
 			final SpannableStringBuilder sb = new SpannableStringBuilder();
 
 			// column indices
@@ -208,12 +207,12 @@ abstract class BaseModule extends Module
 			sb.append(Long.toString(classId));
 
 			// attach result
-			TreeFactory.addTextNode(parent, sb, BaseModule.this.context);
+			TreeFactory.addTextNode(parent, sb);
 
 			// sub nodes
-			final TreeNode membersNode = TreeFactory.newQueryNode("Members", R.drawable.members, new MembersQuery(classId), true, context).addTo(parent);
-			final TreeNode rolesNode = TreeFactory.newQueryNode("Roles", R.drawable.roles, new RolesQuery(classId), true, context).addTo(parent);
-			final TreeNode framesNode = TreeFactory.newQueryNode("Frames", R.drawable.vnframe, new FramesQuery(classId), false, context).addTo(parent);
+			final TreeNode membersNode = TreeFactory.newHotQueryNode("Members", R.drawable.members, new MembersQuery(classId)).addTo(parent);
+			final TreeNode rolesNode = TreeFactory.newHotQueryNode("Roles", R.drawable.roles, new RolesQuery(classId)).addTo(parent);
+			final TreeNode framesNode = TreeFactory.newQueryNode("Frames", R.drawable.vnframe, new FramesQuery(classId)).addTo(parent);
 
 			// fire event
 			FireEvent.onQueryReady(membersNode);
@@ -291,7 +290,7 @@ abstract class BaseModule extends Module
 				final String groupings = cursor.getString(idGroupings);
 				if (definitions != null || groupings != null)
 				{
-					final TreeNode memberNode = TreeFactory.addTreeNode(parent, sb, R.drawable.member, BaseModule.this.context);
+					final TreeNode memberNode = TreeFactory.addTreeNode(parent, sb, R.drawable.member);
 
 					final SpannableStringBuilder sb2 = new SpannableStringBuilder();
 
@@ -342,11 +341,11 @@ abstract class BaseModule extends Module
 					}
 
 					// attach definition and groupings result
-					TreeFactory.addTextNode(memberNode, sb2, BaseModule.this.context);
+					TreeFactory.addTextNode(memberNode, sb2);
 				}
 				else
 				{
-					TreeFactory.addLeafNode(parent, sb, R.drawable.member, BaseModule.this.context);
+					TreeFactory.addLeafNode(parent, sb, R.drawable.member);
 				}
 			}
 			while (cursor.moveToNext());
@@ -440,7 +439,7 @@ abstract class BaseModule extends Module
 			}
 
 			// attach result
-			TreeFactory.addTextNode(parent, sb, BaseModule.this.context);
+			TreeFactory.addTextNode(parent, sb);
 
 			// fire event
 			FireEvent.onResults(parent);
@@ -557,7 +556,7 @@ abstract class BaseModule extends Module
 			}
 
 			// attach result
-			TreeFactory.addTextNode(parent, sb, BaseModule.this.context);
+			TreeFactory.addTextNode(parent, sb);
 
 			// fire event
 			FireEvent.onResults(parent);
@@ -591,7 +590,7 @@ abstract class BaseModule extends Module
 			}
 			else if (items.length > 1)
 			{
-				final TreeNode groupingsNode = TreeFactory.newTreeNode("Group", R.drawable.member, this.context);
+				final TreeNode groupingsNode = TreeFactory.newTreeNode("Group", R.drawable.member);
 				boolean first = true;
 				for (final String item : items)
 				{
@@ -606,7 +605,7 @@ abstract class BaseModule extends Module
 					Spanner.appendImage(sb, BaseModule.this.drawableMember);
 					Spanner.append(sb, item, 0, VerbNetFactories.memberFactory);
 				}
-				groupingsNode.addChild(TreeFactory.newTextNode(sb, this.context));
+				groupingsNode.addChild(TreeFactory.newTextNode(sb));
 				return groupingsNode;
 			}
 		}

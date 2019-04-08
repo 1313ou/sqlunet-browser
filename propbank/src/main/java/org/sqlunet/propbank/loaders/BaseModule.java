@@ -1,5 +1,6 @@
 package org.sqlunet.propbank.loaders;
 
+import android.content.Context;
 import android.database.Cursor;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
@@ -8,6 +9,7 @@ import android.text.SpannableStringBuilder;
 import org.sqlunet.browser.Module;
 import org.sqlunet.browser.SqlunetViewModel;
 import org.sqlunet.browser.SqlunetViewModelFactory;
+import org.sqlunet.model.TreeFactory;
 import org.sqlunet.propbank.R;
 import org.sqlunet.propbank.provider.PropBankContract;
 import org.sqlunet.propbank.provider.PropBankContract.PbRoleSets_PbExamples;
@@ -21,7 +23,6 @@ import org.sqlunet.style.Spanner;
 import org.sqlunet.treeview.control.Query;
 import org.sqlunet.treeview.model.TreeNode;
 import org.sqlunet.view.FireEvent;
-import org.sqlunet.view.TreeFactory;
 
 import java.util.Arrays;
 import java.util.Locale;
@@ -97,18 +98,18 @@ abstract class BaseModule extends Module
 		super(fragment);
 
 		// drawables
-		assert this.context != null;
-		this.roleSetDrawable = Spanner.getDrawable(this.context, R.drawable.roleclass);
-		this.rolesDrawable = Spanner.getDrawable(this.context, R.drawable.roles);
-		this.relationDrawable = Spanner.getDrawable(this.context, R.drawable.relation);
-		this.roleDrawable = Spanner.getDrawable(this.context, R.drawable.role);
-		this.thetaDrawable = Spanner.getDrawable(this.context, R.drawable.theta);
-		this.aliasDrawable = Spanner.getDrawable(this.context, R.drawable.alias);
-		this.definitionDrawable = Spanner.getDrawable(this.context, R.drawable.definition);
-		this.sampleDrawable = Spanner.getDrawable(this.context, R.drawable.sample);
+		final Context context = BaseModule.this.fragment.requireContext();
+		this.roleSetDrawable = Spanner.getDrawable(context, R.drawable.roleclass);
+		this.rolesDrawable = Spanner.getDrawable(context, R.drawable.roles);
+		this.relationDrawable = Spanner.getDrawable(context, R.drawable.relation);
+		this.roleDrawable = Spanner.getDrawable(context, R.drawable.role);
+		this.thetaDrawable = Spanner.getDrawable(context, R.drawable.theta);
+		this.aliasDrawable = Spanner.getDrawable(context, R.drawable.alias);
+		this.definitionDrawable = Spanner.getDrawable(context, R.drawable.definition);
+		this.sampleDrawable = Spanner.getDrawable(context, R.drawable.sample);
 
 		// spanner
-		this.spanner = new PropBankSpanner(this.context);
+		this.spanner = new PropBankSpanner(context);
 	}
 
 	// L O A D E R S
@@ -187,11 +188,11 @@ abstract class BaseModule extends Module
 			Spanner.append(sb, cursor.getString(idRolesetDesc), 0, PropBankFactories.definitionFactory);
 
 			// attach result
-			TreeFactory.addTextNode(parent, sb, BaseModule.this.context);
+			TreeFactory.addTextNode(parent, sb);
 
 			// sub nodes
-			final TreeNode rolesNode = TreeFactory.newQueryNode("Roles", R.drawable.roles, new RolesQuery(roleSetId), true, BaseModule.this.context).addTo(parent);
-			final TreeNode examplesNode = TreeFactory.newQueryNode("Examples", R.drawable.sample, new ExamplesQuery(roleSetId), false, BaseModule.this.context).addTo(parent);
+			final TreeNode rolesNode = TreeFactory.newHotQueryNode("Roles", R.drawable.roles, new RolesQuery(roleSetId)).addTo(parent);
+			final TreeNode examplesNode = TreeFactory.newQueryNode("Examples", R.drawable.sample, new ExamplesQuery(roleSetId)).addTo(parent);
 
 			// fire event
 			FireEvent.onQueryReady(rolesNode);
@@ -272,11 +273,11 @@ abstract class BaseModule extends Module
 				Spanner.append(sb, cursor.getString(idRoleSetDesc), 0, PropBankFactories.definitionFactory);
 
 				// attach result
-				TreeFactory.addTextNode(parent, sb, BaseModule.this.context);
+				TreeFactory.addTextNode(parent, sb);
 
 				// sub nodes
-				final TreeNode rolesNode = TreeFactory.newQueryNode("Roles", R.drawable.roles, new RolesQuery(roleSetId), true, BaseModule.this.context).addTo(parent);
-				final TreeNode examplesNode = TreeFactory.newQueryNode("Examples", R.drawable.sample, new ExamplesQuery(roleSetId), false, BaseModule.this.context).addTo(parent);
+				final TreeNode rolesNode = TreeFactory.newHotQueryNode("Roles", R.drawable.roles, new RolesQuery(roleSetId)).addTo(parent);
+				final TreeNode examplesNode = TreeFactory.newQueryNode("Examples", R.drawable.sample, new ExamplesQuery(roleSetId)).addTo(parent);
 
 				// fire event
 				FireEvent.onQueryReady(rolesNode);
@@ -391,7 +392,7 @@ abstract class BaseModule extends Module
 			}
 
 			// attach result
-			TreeFactory.addTextNode(parent, sb, BaseModule.this.context);
+			TreeFactory.addTextNode(parent, sb);
 
 			// fire event
 			FireEvent.onResults(parent);
@@ -540,7 +541,7 @@ abstract class BaseModule extends Module
 			BaseModule.this.spanner.setSpan(sb, 0, 0);
 
 			// attach result
-			TreeFactory.addTextNode(parent, sb, BaseModule.this.context);
+			TreeFactory.addTextNode(parent, sb);
 
 			// fire event
 			FireEvent.onResults(parent);

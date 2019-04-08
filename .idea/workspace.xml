@@ -23,7 +23,6 @@
     </layouts>
   </component>
   <component name="AndroidLogFilters">
-    <option name="TOOL_WINDOW_CUSTOM_FILTER" value="sqlunet" />
     <option name="TOOL_WINDOW_LOG_LEVEL" value="verbose" />
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
     <option name="TOOL_WINDOW_REGEXP_FILTER" value="false" />
@@ -37,22 +36,17 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="dbe7534c-3086-4b17-848a-f5676a7f84bd" name="Default" comment="fixes">
+    <list default="true" id="dbe7534c-3086-4b17-848a-f5676a7f84bd" name="Default" comment="fixes get(tag, class)">
+      <change afterPath="$PROJECT_DIR$/treeView/src/main/java/org/sqlunet/treeview/control/HotQueryController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/treeView/src/main/java/org/sqlunet/treeview/view/ControllerFactory.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bNC/bNC.iml" beforeDir="false" afterPath="$PROJECT_DIR$/bNC/bNC.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bNC/src/main/java/org/sqlunet/bnc/loaders/BaseModule.java" beforeDir="false" afterPath="$PROJECT_DIR$/bNC/src/main/java/org/sqlunet/bnc/loaders/BaseModule.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/browser/browser.iml" beforeDir="false" afterPath="$PROJECT_DIR$/browser/browser.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/browser/src/main/java/org/sqlunet/browser/selector/SelectorsFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/browser/src/main/java/org/sqlunet/browser/selector/SelectorsFragment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/browser/src/main/java/org/sqlunet/browser/xselector/XSelectorsFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/browser/src/main/java/org/sqlunet/browser/xselector/XSelectorsFragment.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/browserfn/browserfn.iml" beforeDir="false" afterPath="$PROJECT_DIR$/browserfn/browserfn.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/browserfn/src/main/java/org/sqlunet/browser/selector/SelectorsFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/browserfn/src/main/java/org/sqlunet/browser/selector/SelectorsFragment.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/browservn/browservn.iml" beforeDir="false" afterPath="$PROJECT_DIR$/browservn/browservn.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/browservn/src/main/java/org/sqlunet/browser/xselector/XSelectorsFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/browservn/src/main/java/org/sqlunet/browser/xselector/XSelectorsFragment.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/browserwn/browserwn.iml" beforeDir="false" afterPath="$PROJECT_DIR$/browserwn/browserwn.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/browserwn/src/main/java/org/sqlunet/browser/selector/SelectorsFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/browserwn/src/main/java/org/sqlunet/browser/selector/SelectorsFragment.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/common/common.iml" beforeDir="false" afterPath="$PROJECT_DIR$/common/common.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/java/org/sqlunet/browser/AbstractTableFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/org/sqlunet/browser/AbstractTableFragment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/java/org/sqlunet/browser/SourceFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/org/sqlunet/browser/SourceFragment.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/download/download.iml" beforeDir="false" afterPath="$PROJECT_DIR$/download/download.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frameNet/frameNet.iml" beforeDir="false" afterPath="$PROJECT_DIR$/frameNet/frameNet.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frameNet/src/main/java/org/sqlunet/framenet/loaders/BaseModule.java" beforeDir="false" afterPath="$PROJECT_DIR$/frameNet/src/main/java/org/sqlunet/framenet/loaders/BaseModule.java" afterDir="false" />
@@ -61,13 +55,30 @@
       <change beforePath="$PROJECT_DIR$/predicateMatrix/src/main/java/org/sqlunet/predicatematrix/loaders/BaseModule.java" beforeDir="false" afterPath="$PROJECT_DIR$/predicateMatrix/src/main/java/org/sqlunet/predicatematrix/loaders/BaseModule.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/propbank/propbank.iml" beforeDir="false" afterPath="$PROJECT_DIR$/propbank/propbank.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/propbank/src/main/java/org/sqlunet/propbank/loaders/BaseModule.java" beforeDir="false" afterPath="$PROJECT_DIR$/propbank/src/main/java/org/sqlunet/propbank/loaders/BaseModule.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/treeView/src/main/java/org/sqlunet/treeview/control/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/treeView/src/main/java/org/sqlunet/treeview/control/Controller.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/treeView/src/main/java/org/sqlunet/treeview/control/LeafController.java" beforeDir="false" afterPath="$PROJECT_DIR$/treeView/src/main/java/org/sqlunet/treeview/control/LeafController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/treeView/src/main/java/org/sqlunet/treeview/control/LinkQueryController.java" beforeDir="false" afterPath="$PROJECT_DIR$/treeView/src/main/java/org/sqlunet/treeview/control/LinkQueryController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/treeView/src/main/java/org/sqlunet/treeview/control/MoreController.java" beforeDir="false" afterPath="$PROJECT_DIR$/treeView/src/main/java/org/sqlunet/treeview/control/MoreController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/treeView/src/main/java/org/sqlunet/treeview/control/NodeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/treeView/src/main/java/org/sqlunet/treeview/control/NodeController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/treeView/src/main/java/org/sqlunet/treeview/control/QueryController.java" beforeDir="false" afterPath="$PROJECT_DIR$/treeView/src/main/java/org/sqlunet/treeview/control/QueryController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/treeView/src/main/java/org/sqlunet/treeview/control/SimpleController.java" beforeDir="false" afterPath="$PROJECT_DIR$/treeView/src/main/java/org/sqlunet/treeview/control/SimpleController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/treeView/src/main/java/org/sqlunet/treeview/control/TextController.java" beforeDir="false" afterPath="$PROJECT_DIR$/treeView/src/main/java/org/sqlunet/treeview/control/TextController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/treeView/src/main/java/org/sqlunet/treeview/control/TreeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/treeView/src/main/java/org/sqlunet/treeview/control/TreeController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/treeView/src/main/java/org/sqlunet/treeview/model/TreeNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/treeView/src/main/java/org/sqlunet/treeview/model/TreeNode.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/treeView/src/main/java/org/sqlunet/treeview/view/TreeView.java" beforeDir="false" afterPath="$PROJECT_DIR$/treeView/src/main/java/org/sqlunet/treeview/view/TreeView.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/verbNet/src/main/java/org/sqlunet/verbnet/loaders/BaseModule.java" beforeDir="false" afterPath="$PROJECT_DIR$/verbNet/src/main/java/org/sqlunet/verbnet/loaders/BaseModule.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/verbNet/src/main/java/org/sqlunet/verbnet/loaders/ClassFromWordModule.java" beforeDir="false" afterPath="$PROJECT_DIR$/verbNet/src/main/java/org/sqlunet/verbnet/loaders/ClassFromWordModule.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/verbNet/verbNet.iml" beforeDir="false" afterPath="$PROJECT_DIR$/verbNet/verbNet.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/java/org/sqlunet/wordnet/browser/SensesFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/java/org/sqlunet/wordnet/browser/SensesFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wordNet/src/main/java/org/sqlunet/wordnet/browser/SynsetFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/java/org/sqlunet/wordnet/browser/SynsetFragment.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/wordNet/src/main/java/org/sqlunet/wordnet/loaders/BaseModule.java" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/java/org/sqlunet/wordnet/loaders/BaseModule.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wordNet/src/main/java/org/sqlunet/wordnet/loaders/SenseModule.java" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/java/org/sqlunet/wordnet/loaders/SenseModule.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wordNet/src/main/java/org/sqlunet/wordnet/loaders/SynsetModule.java" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/java/org/sqlunet/wordnet/loaders/SynsetModule.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wordNet/src/main/java/org/sqlunet/wordnet/loaders/WordModule.java" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/java/org/sqlunet/wordnet/loaders/WordModule.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/wordNet/wordNet.iml" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/wordNet.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/xNet/src/main/java/org/sqlunet/browser/Module.java" beforeDir="false" afterPath="$PROJECT_DIR$/xNet/src/main/java/org/sqlunet/browser/Module.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/xNet/src/main/java/org/sqlunet/browser/TreeFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/xNet/src/main/java/org/sqlunet/browser/TreeFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/xNet/src/main/java/org/sqlunet/view/FireEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/xNet/src/main/java/org/sqlunet/view/FireEvent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/xNet/src/main/java/org/sqlunet/view/TreeFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/xNet/src/main/java/org/sqlunet/model/TreeFactory.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/xNet/xNet.iml" beforeDir="false" afterPath="$PROJECT_DIR$/xNet/xNet.iml" afterDir="false" />
     </list>
     <list id="36f6b5c7-9521-46b4-bf4d-149db941bcca" name="NonPublic" comment="" />
@@ -1415,18 +1426,19 @@
     <session id="-2055943333">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="32" />
+          <entry key="project.closed" value="37" />
           <entry key="project.open.time.10" value="1" />
           <entry key="project.open.time.12" value="1" />
           <entry key="project.open.time.13" value="2" />
           <entry key="project.open.time.14" value="1" />
-          <entry key="project.open.time.15" value="2" />
+          <entry key="project.open.time.15" value="3" />
           <entry key="project.open.time.16" value="1" />
           <entry key="project.open.time.17" value="1" />
+          <entry key="project.open.time.19" value="1" />
           <entry key="project.open.time.36" value="2" />
           <entry key="project.open.time.37" value="1" />
           <entry key="project.open.time.39" value="1" />
-          <entry key="project.open.time.40" value="1" />
+          <entry key="project.open.time.40" value="2" />
           <entry key="project.open.time.43" value="1" />
           <entry key="project.open.time.44" value="1" />
           <entry key="project.open.time.46" value="1" />
@@ -1435,10 +1447,11 @@
           <entry key="project.open.time.5" value="1" />
           <entry key="project.open.time.50" value="1" />
           <entry key="project.open.time.51" value="1" />
-          <entry key="project.open.time.7" value="6" />
+          <entry key="project.open.time.7" value="7" />
           <entry key="project.open.time.8" value="4" />
+          <entry key="project.open.time.82" value="1" />
           <entry key="project.open.time.9" value="1" />
-          <entry key="project.opened" value="33" />
+          <entry key="project.opened" value="38" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -1446,7 +1459,7 @@
           <entry key="class" value="1" />
           <entry key="gradle" value="115" />
           <entry key="html" value="1" />
-          <entry key="java" value="905" />
+          <entry key="java" value="1037" />
           <entry key="png" value="5" />
           <entry key="pro" value="1" />
           <entry key="svg" value="15" />
@@ -1459,7 +1472,7 @@
           <entry key="Groovy" value="115" />
           <entry key="HTML" value="1" />
           <entry key="Image" value="5" />
-          <entry key="JAVA" value="905" />
+          <entry key="JAVA" value="1037" />
           <entry key="ProGuard File" value="1" />
           <entry key="SVG" value="15" />
           <entry key="XML" value="254" />
@@ -1467,18 +1480,19 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
+          <entry key="dummy" value="18" />
           <entry key="gradle" value="655" />
-          <entry key="java" value="10246" />
+          <entry key="java" value="12347" />
           <entry key="svg" value="1" />
-          <entry key="txt" value="69" />
+          <entry key="txt" value="131" />
           <entry key="xml" value="907" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="Groovy" value="655" />
-          <entry key="JAVA" value="10246" />
-          <entry key="PLAIN_TEXT" value="69" />
+          <entry key="JAVA" value="12347" />
+          <entry key="PLAIN_TEXT" value="149" />
           <entry key="SVG" value="1" />
           <entry key="XML" value="907" />
         </counts>
@@ -1494,28 +1508,274 @@
     <favorites_list name="SqlUNet" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/xNet/src/main/java/org/sqlunet/model/TreeFactory.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="298">
+              <caret line="37" column="27" selection-start-line="37" selection-start-column="19" selection-end-line="37" selection-end-column="27" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#1131#1132#0" expanded="true" />
+                <element signature="e#1185#1186#0" expanded="true" />
+                <element signature="e#1407#1408#0" expanded="true" />
+                <element signature="e#1485#1486#0" expanded="true" />
+                <element signature="e#1714#1715#0" expanded="true" />
+                <element signature="e#1802#1803#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/treeView/src/main/java/org/sqlunet/treeview/control/LinkNodeController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="117">
+              <caret line="18" column="13" selection-start-line="18" selection-start-column="13" selection-end-line="18" selection-end-column="13" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/treeView/src/main/java/org/sqlunet/treeview/control/Controller.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="13">
+              <caret line="57" column="23" selection-start-line="57" selection-start-column="23" selection-end-line="57" selection-end-column="23" />
+              <folding>
+                <element signature="docComment;class#Controller#0" />
+                <element signature="docComment;field#node#0;class#Controller#0" />
+                <element signature="docComment;field#treeView#0;class#Controller#0" />
+                <element signature="docComment;field#view#0;class#Controller#0" />
+                <element signature="docComment;field#nodeView#0;class#Controller#0" />
+                <element signature="docComment;field#containerStyle#0;class#Controller#0" />
+                <element signature="docComment;field#context#0;class#Controller#0" />
+                <element signature="docComment;method#Controller#0;class#Controller#0" />
+                <element signature="docComment;method#setTreeView#0;class#Controller#0" />
+                <element signature="docComment;method#getTreeView#0;class#Controller#0" />
+                <element signature="docComment;method#getView#0;class#Controller#0" />
+                <element signature="docComment;method#getChildrenContainerView#0;class#Controller#0" />
+                <element signature="docComment;method#isInitialized#0;class#Controller#0" />
+                <element signature="docComment;method#attachNode#0;class#Controller#0" />
+                <element signature="docComment;method#disable#0;class#Controller#0" />
+                <element signature="method#disable#0;class#Controller#0" />
+                <element signature="docComment;method#setContainerStyle#0;class#Controller#0" />
+                <element signature="docComment;method#getContainerStyle#0;class#Controller#0" />
+                <element signature="docComment;method#onExpandEvent#0;class#Controller#0" />
+                <element signature="docComment;method#onSelectedEvent#0;class#Controller#0" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/treeView/src/main/java/org/sqlunet/treeview/model/TreeNode.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="194">
+              <caret line="109" column="35" selection-start-line="109" selection-start-column="27" selection-end-line="109" selection-end-column="35" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="docComment;class#TreeNode#0" />
+                <element signature="e#387#402#0" />
+                <element signature="e#422#440#0" />
+                <element signature="e#466#490#0" />
+                <element signature="e#519#546#0" />
+                <element signature="e#8993#8994#0" expanded="true" />
+                <element signature="e#9022#9023#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/wordNet/src/main/java/org/sqlunet/wordnet/browser/SynsetFragment.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="286">
+              <caret line="72" selection-start-line="72" selection-end-line="72" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/wordNet/src/main/java/org/sqlunet/wordnet/loaders/SenseModule.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="538">
+              <caret line="102" column="30" selection-start-line="102" selection-start-column="18" selection-end-line="102" selection-end-column="30" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/treeView/src/main/java/org/sqlunet/treeview/view/TreeView.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="493">
+              <caret line="160" column="18" selection-start-line="160" selection-start-column="18" selection-end-line="160" selection-end-column="18" />
+              <folding>
+                <element signature="docComment;class#TreeView#0" />
+                <element signature="e#1081#1103#0" />
+                <element signature="e#1136#1156#0" />
+                <element signature="e#1191#1219#0" />
+                <element signature="e#1255#1286#0" />
+                <element signature="e#1378#1410#0" />
+                <element signature="e#1472#1499#0" />
+                <element signature="e#1533#1568#0" />
+                <element signature="e#1600#1634#0" />
+                <element signature="e#1675#1704#0" />
+                <element signature="e#1772#1851#0" />
+                <element signature="e#1772#1964#0" />
+                <element signature="e#1980#2022#0" />
+                <element signature="e#2091#2137#0" />
+                <element signature="e#2201#2270#0" />
+                <element signature="e#3225#3234#0" />
+                <element signature="e#3336#3344#0" />
+                <element signature="e#3523#3618#0" />
+                <element signature="e#3523#4008#0" />
+                <element signature="e#4011#4106#0" />
+                <element signature="e#4011#5088#0" />
+                <element signature="e#4664#5083#0" />
+                <element signature="e#5091#5135#0" />
+                <element signature="e#5091#5400#0" />
+                <element signature="e#5403#5462#0" />
+                <element signature="e#5403#5946#0" />
+                <element signature="e#5949#5994#0" />
+                <element signature="e#5949#6187#0" />
+                <element signature="e#6190#6278#0" />
+                <element signature="e#6190#7007#0" />
+                <element signature="e#7047#7157#0" />
+                <element signature="e#7507#7598#0" />
+                <element signature="e#7507#7892#0" />
+                <element signature="e#7895#8007#0" />
+                <element signature="e#7895#8347#0" />
+                <element signature="e#8350#8373#0" />
+                <element signature="e#8467#8492#0" />
+                <element signature="e#8467#8611#0" />
+                <element signature="e#8614#8686#0" />
+                <element signature="e#8614#8848#0" />
+                <element signature="e#8851#8935#0" />
+                <element signature="e#8851#9156#0" />
+                <element signature="e#9159#9255#0" />
+                <element signature="e#9159#9497#0" />
+                <element signature="e#9500#9549#0" />
+                <element signature="e#9640#9691#0" />
+                <element signature="e#9814#9863#0" />
+                <element signature="e#9814#10030#0" />
+                <element signature="e#10033#10150#0" />
+                <element signature="e#10033#10819#0" />
+                <element signature="e#10822#10937#0" />
+                <element signature="e#10822#11697#0" />
+                <element signature="e#11765#11832#0" />
+                <element signature="e#12016#12085#0" />
+                <element signature="e#12143#12144#0" expanded="true" />
+                <element signature="e#12179#12180#0" expanded="true" />
+                <element signature="e#12183#12268#0" />
+                <element signature="e#12183#13740#0" />
+                <element signature="e#12856#13068#0" />
+                <element signature="class#13098:13715" />
+                <element signature="method#onAnimationStart#0;class#13098:13715" />
+                <element signature="method#onAnimationEnd#0;class#13098:13715" />
+                <element signature="method#onAnimationCancel#0;class#13098:13715" />
+                <element signature="method#onAnimationRepeat#0;class#13098:13715" />
+                <element signature="e#13743#13821#0" />
+                <element signature="e#13743#15018#0" />
+                <element signature="e#14343#14531#0" />
+                <element signature="class#14561:14993" />
+                <element signature="method#onAnimationStart#0;class#14561:14993" />
+                <element signature="method#onAnimationRepeat#0;class#14561:14993" />
+                <element signature="e#15046#15138#0" />
+                <element signature="e#15266#15358#0" />
+                <element signature="e#15478#15609#0" />
+                <element signature="e#15478#15814#0" />
+                <element signature="e#15817#15889#0" />
+                <element signature="e#16016#16093#0" />
+                <element signature="e#16194#16290#0" />
+                <element signature="e#16436#16520#0" />
+                <element signature="e#16698#16752#0" />
+                <element signature="e#16754#16762#0" />
+                <element signature="e#16698#17025#0" />
+                <element signature="e#17028#17095#0" />
+                <element signature="e#17028#17470#0" />
+                <element signature="e#17473#17566#0" />
+                <element signature="e#17473#17840#0" />
+                <element signature="e#17843#17919#0" />
+                <element signature="e#17843#18198#0" />
+                <element signature="e#18201#18221#0" />
+                <element signature="e#18234#18334#0" />
+                <element signature="e#18429#18513#0" />
+                <element signature="e#18429#18797#0" />
+                <element signature="e#18800#18901#0" />
+                <element signature="e#18800#19171#0" />
+                <element signature="e#19194#19256#0" />
+                <element signature="e#19194#19425#0" />
+                <element signature="e#19428#19521#0" />
+                <element signature="e#19428#19821#0" />
+                <element signature="e#19824#19974#0" />
+                <element signature="e#19976#19984#0" />
+                <element signature="e#19824#20374#0" />
+                <element signature="e#20389#20471#0" />
+                <element signature="e#20595#20620#0" />
+                <element signature="e#20684#20815#0" />
+                <element signature="e#20684#21029#0" />
+                <element signature="e#21032#21119#0" />
+                <element signature="e#21032#21325#0" />
+                <element signature="e#21328#21428#0" />
+                <element signature="e#21328#21813#0" />
+                <element signature="e#21816#21928#0" />
+                <element signature="e#21816#22162#0" />
+                <element signature="e#22190#22274#0" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/xNet/src/main/java/org/sqlunet/browser/TreeFragment.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="362">
+              <caret line="87" column="22" selection-start-line="87" selection-start-column="22" selection-end-line="87" selection-end-column="22" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/xNet/src/main/java/org/sqlunet/view/FireEvent.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="6">
+              <caret line="33" column="19" selection-start-line="33" selection-start-column="19" selection-end-line="33" selection-end-column="19" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/treeView/src/main/java/org/sqlunet/treeview/view/ControllerFactory.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="442">
+              <caret line="34" selection-start-line="34" selection-end-line="34" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="valueResourceFile" />
         <option value="resourceFile" />
-        <option value="Class" />
         <option value="Interface" />
+        <option value="Class" />
       </list>
     </option>
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>getActivity()</find>
-      <find>STORAGE_DB_DIR</find>
-      <find>model</find>
-      <find>public void update()</find>
-      <find>Observer dies</find>
-      <find>mActions</find>
-      <find>recordData</find>
-      <find>recordDatabase</find>
       <find>unregisterData</find>
       <find>id.home</find>
       <find>sources</find>
@@ -1536,8 +1796,16 @@
       <find>getData</find>
       <find>model.getData().observe(this.fragment, entry -&gt; {</find>
       <find>model.getData().observe(this.fragment</find>
-      <find>observe</find>
       <find>.get(SqlunetViewModel.class)</find>
+      <find>initLoader</find>
+      <find>observe</find>
+      <find>model.getData().observe(this.fragment, entry</find>
+      <find>this.mediatorLiveData.addSource(model.getData(), entry</find>
+      <find>this.mediatorLiveData.addSource(model.getData()</find>
+      <find>getTreeView</find>
+      <find>E</find>
+      <find>, final Context context</find>
+      <find>, BaseModule.this.context</find>
     </findStrings>
     <replaceStrings>
       <replace>_BUFFER_IDX</replace>
@@ -1566,6 +1834,10 @@
       <replace>model.getData().observe(this.fragment, entry -&gt; {</replace>
       <replace>this.mediatorLiveData.addSource(model.getData(), entry -&gt; {</replace>
       <replace>this.mediatorLiveData.addSource(model.getData()</replace>
+      <replace>this.</replace>
+      <replace>model.getData().observe(this.fragment</replace>
+      <replace>.class</replace>
+      <replace>,</replace>
     </replaceStrings>
     <dirStrings>
       <dir>$PROJECT_DIR$/browservn/src/main/java</dir>
@@ -16936,29 +17208,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/browserwn/src/main/java/org/sqlunet/browser/wn/SetupStatusFragment.java" />
-        <option value="$PROJECT_DIR$/browser/src/main/java/org/sqlunet/browser/xn/SetupSqlFragment.java" />
-        <option value="$PROJECT_DIR$/browser/src/main/java/org/sqlunet/browser/xn/SetupStatusFragment.java" />
-        <option value="$PROJECT_DIR$/browserfn/src/main/java/org/sqlunet/browser/fn/SetupStatusFragment.java" />
-        <option value="$PROJECT_DIR$/browservn/src/main/java/org/sqlunet/browser/vn/SetupStatusFragment.java" />
-        <option value="$PROJECT_DIR$/common/src/main/java/org/sqlunet/browser/config/SetupStatusFragment.java" />
-        <option value="$PROJECT_DIR$/common/src/main/java/org/sqlunet/browser/config/SetupSqlFragment.java" />
-        <option value="$PROJECT_DIR$/download/src/main/java/org/sqlunet/download/SimpleDownloadServiceFragment.java" />
-        <option value="$PROJECT_DIR$/download/src/main/java/org/sqlunet/download/FileDataDownloader.java" />
-        <option value="$PROJECT_DIR$/download/src/main/java/org/sqlunet/download/Settings.java" />
-        <option value="$PROJECT_DIR$/download/src/main/java/org/sqlunet/download/FileData.java" />
-        <option value="$PROJECT_DIR$/common/src/main/java/org/sqlunet/browser/config/SetupFileFragment.java" />
-        <option value="$PROJECT_DIR$/common/src/main/java/org/sqlunet/browser/config/SetupDatabaseActivity.java" />
-        <option value="$PROJECT_DIR$/support/src/main/res/values/strings_other.xml" />
-        <option value="$PROJECT_DIR$/browserwn/build.gradle" />
-        <option value="$PROJECT_DIR$/browserwn/src/androidTest/java/org/sqlunet/browser/RunBrowseFlat.java" />
-        <option value="$PROJECT_DIR$/browserwn/src/androidTest/java/org/sqlunet/browser/RunBrowseTree.java" />
-        <option value="$PROJECT_DIR$/browserwn/src/androidTest/java/org/sqlunet/browser/RunMainFlat.java" />
-        <option value="$PROJECT_DIR$/browserwn/src/androidTest/java/org/sqlunet/browser/RunMainTree.java" />
-        <option value="$PROJECT_DIR$/browserwn/src/androidTest/java/org/sqlunet/browser/TestActions.java" />
-        <option value="$PROJECT_DIR$/browserwn/src/androidTest/java/org/sqlunet/browser/Tests.java" />
-        <option value="$PROJECT_DIR$/browserwn/src/androidTest/java/org/sqlunet/browser/TestUtils.java" />
-        <option value="$PROJECT_DIR$/browservn/build.gradle" />
         <option value="$PROJECT_DIR$/browserfn/build.gradle" />
         <option value="$PROJECT_DIR$/browser/build.gradle" />
         <option value="$PROJECT_DIR$/browser/src/androidTest/java/org/sqlunet/browser/RunBrowseFlat.java" />
@@ -16970,8 +17219,6 @@
         <option value="$PROJECT_DIR$/xNet/src/main/java/org/sqlunet/browser/SqlunetViewModel.java" />
         <option value="$PROJECT_DIR$/download/src/main/java/org/sqlunet/download/BaseDownloadFragment.java" />
         <option value="$PROJECT_DIR$/download0/src/main/java/org/sqlunet/download/BaseDownloadFragment.java" />
-        <option value="$PROJECT_DIR$/xNet/src/main/java/org/sqlunet/browser/Module.java" />
-        <option value="$PROJECT_DIR$/bNC/src/main/java/org/sqlunet/bnc/loaders/BaseModule.java" />
         <option value="$PROJECT_DIR$/browser/src/main/java/org/sqlunet/browser/selector/SelectorsFragment.java" />
         <option value="$PROJECT_DIR$/browser/src/main/java/org/sqlunet/browser/xselector/XSelectorsFragment.java" />
         <option value="$PROJECT_DIR$/browservn/src/main/java/org/sqlunet/browser/xselector/XSelectorsFragment.java" />
@@ -16979,14 +17226,39 @@
         <option value="$PROJECT_DIR$/common/src/main/java/org/sqlunet/browser/SourceFragment.java" />
         <option value="$PROJECT_DIR$/browserfn/src/main/java/org/sqlunet/browser/selector/SelectorsFragment.java" />
         <option value="$PROJECT_DIR$/common/src/main/java/org/sqlunet/browser/AbstractTableFragment.java" />
-        <option value="$PROJECT_DIR$/frameNet/src/main/java/org/sqlunet/framenet/loaders/BaseModule.java" />
+        <option value="$PROJECT_DIR$/wordNet/src/main/java/org/sqlunet/wordnet/browser/SensesFragment.java" />
+        <option value="$PROJECT_DIR$/treeView/src/main/java/org/sqlunet/treeview/control/HotQueryController.java" />
+        <option value="$PROJECT_DIR$/treeView/src/main/java/org/sqlunet/treeview/control/LinkQueryController.java" />
+        <option value="$PROJECT_DIR$/treeView/src/main/java/org/sqlunet/treeview/control/QueryController.java" />
+        <option value="$PROJECT_DIR$/xNet/src/main/java/org/sqlunet/view/TreeFactory.java" />
+        <option value="$PROJECT_DIR$/treeView/src/main/java/org/sqlunet/treeview/control/TreeController.java" />
+        <option value="$PROJECT_DIR$/treeView/src/main/java/org/sqlunet/treeview/control/TextController.java" />
+        <option value="$PROJECT_DIR$/treeView/src/main/java/org/sqlunet/treeview/control/SimpleController.java" />
+        <option value="$PROJECT_DIR$/treeView/src/main/java/org/sqlunet/treeview/control/NodeController.java" />
+        <option value="$PROJECT_DIR$/treeView/src/main/java/org/sqlunet/treeview/control/MoreController.java" />
+        <option value="$PROJECT_DIR$/treeView/src/main/java/org/sqlunet/treeview/control/LeafController.java" />
+        <option value="$PROJECT_DIR$/treeView/src/main/java/org/sqlunet/treeview/control/Controller.java" />
+        <option value="$PROJECT_DIR$/xNet/src/main/java/org/sqlunet/view/TreeViewFactory.java" />
+        <option value="$PROJECT_DIR$/treeView/src/main/java/org/sqlunet/treeview/view/TreeViewFactory.java" />
+        <option value="$PROJECT_DIR$/treeView/src/main/java/org/sqlunet/treeview/view/TreeView.java" />
+        <option value="$PROJECT_DIR$/treeView/src/main/java/org/sqlunet/treeview/model/TreeNode.java" />
         <option value="$PROJECT_DIR$/frameNet/src/main/java/org/sqlunet/framenet/loaders/SentenceModule.java" />
+        <option value="$PROJECT_DIR$/verbNet/src/main/java/org/sqlunet/verbnet/loaders/ClassFromWordModule.java" />
+        <option value="$PROJECT_DIR$/wordNet/src/main/java/org/sqlunet/wordnet/loaders/SynsetModule.java" />
+        <option value="$PROJECT_DIR$/wordNet/src/main/java/org/sqlunet/wordnet/loaders/WordModule.java" />
+        <option value="$PROJECT_DIR$/wordNet/src/main/java/org/sqlunet/wordnet/loaders/SenseModule.java" />
+        <option value="$PROJECT_DIR$/xNet/src/main/java/org/sqlunet/model/TreeFactory.java" />
+        <option value="$PROJECT_DIR$/bNC/src/main/java/org/sqlunet/bnc/loaders/BaseModule.java" />
+        <option value="$PROJECT_DIR$/frameNet/src/main/java/org/sqlunet/framenet/loaders/BaseModule.java" />
         <option value="$PROJECT_DIR$/predicateMatrix/src/main/java/org/sqlunet/predicatematrix/loaders/BaseModule.java" />
         <option value="$PROJECT_DIR$/propbank/src/main/java/org/sqlunet/propbank/loaders/BaseModule.java" />
         <option value="$PROJECT_DIR$/verbNet/src/main/java/org/sqlunet/verbnet/loaders/BaseModule.java" />
-        <option value="$PROJECT_DIR$/verbNet/src/main/java/org/sqlunet/verbnet/loaders/ClassFromWordModule.java" />
-        <option value="$PROJECT_DIR$/wordNet/src/main/java/org/sqlunet/wordnet/browser/SensesFragment.java" />
         <option value="$PROJECT_DIR$/wordNet/src/main/java/org/sqlunet/wordnet/loaders/BaseModule.java" />
+        <option value="$PROJECT_DIR$/xNet/src/main/java/org/sqlunet/browser/Module.java" />
+        <option value="$PROJECT_DIR$/wordNet/src/main/java/org/sqlunet/wordnet/browser/SynsetFragment.java" />
+        <option value="$PROJECT_DIR$/xNet/src/main/java/org/sqlunet/view/FireEvent.java" />
+        <option value="$PROJECT_DIR$/treeView/src/main/java/org/sqlunet/treeview/view/ControllerFactory.java" />
+        <option value="$PROJECT_DIR$/xNet/src/main/java/org/sqlunet/browser/TreeFragment.java" />
       </list>
     </option>
   </component>
@@ -17011,10 +17283,10 @@
     <scope name="Values" pattern="(file[bNC]:src/main/res//*||file[expandableListFragment]:src/main/res//*||file[frameNet]:src/main/res//*||file[predicateMatrix]:src/main/res//*||file[propbank]:src/main/res//*||file[support]:src/main/res//*||file[treeView]:src/main/res//*||file[verbNet]:src/main/res//*||file[wordNet]:src/main/res//*||file[xNet]:src/main/res//*)&amp;&amp;!file[expandableListFragment]:*/&amp;&amp;!file[xNet]:*/&amp;&amp;!file[wordNet]:*/&amp;&amp;!file[propbank]:*/&amp;&amp;!file[predicateMatrix]:*/&amp;&amp;!file[test]:*/&amp;&amp;!file[support]:*/&amp;&amp;!file[verbNet]:*/&amp;&amp;!file[frameNet]:*/&amp;&amp;!file[treeView]:*/&amp;&amp;!file[bNC]:*/||file[browser]:src/main/res/values//*||file[browser]:src/main/res/values-land//*||file[browser]:src/main/res/values-large//*||file[browserfn]:src/main/res/values//*||file[browserfn]:src/main/res/values-land//*||file[browserfn]:src/main/res/values-large//*||file[browserwn]:src/main/res/*||file[browserwn]:src/main/res/values//*||file[browserwn]:src/main/res/values-land//*||file[browserwn]:src/main/res/values-large//*||file[common]:src/main/res/values//*||file[common]:src/main/res/values-v21//*||file[common]:src/main/res/values-w600dp//*||file[common]:src/main/res/values-w720dp//*||file[common]:src/main/res/values-w820dp//*||file[browservn]:src/main/res/values//*||file[browservn]:src/main/res/values-land//*||file[browservn]:src/main/res/values-large//*" />
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="51" />
+    <option name="x" value="53" />
     <option name="y" value="27" />
-    <option name="width" value="1280" />
-    <option name="height" value="1165" />
+    <option name="width" value="1286" />
+    <option name="height" value="1172" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -17068,7 +17340,69 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="ProjectPane" />
+      <pane id="AndroidView">
+        <subPane>
+          <expand>
+            <path>
+              <item name="SqlUNet" type="1abcf292:AndroidViewProjectNode" />
+              <item name="download" type="feadf853:AndroidModuleNode" />
+            </path>
+            <path>
+              <item name="SqlUNet" type="1abcf292:AndroidViewProjectNode" />
+              <item name="treeView" type="feadf853:AndroidModuleNode" />
+            </path>
+            <path>
+              <item name="SqlUNet" type="1abcf292:AndroidViewProjectNode" />
+              <item name="treeView" type="feadf853:AndroidModuleNode" />
+              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
+            </path>
+            <path>
+              <item name="SqlUNet" type="1abcf292:AndroidViewProjectNode" />
+              <item name="treeView" type="feadf853:AndroidModuleNode" />
+              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
+              <item name="treeview" type="cbb59c9e:AndroidPsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="SqlUNet" type="1abcf292:AndroidViewProjectNode" />
+              <item name="treeView" type="feadf853:AndroidModuleNode" />
+              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
+              <item name="treeview" type="cbb59c9e:AndroidPsiDirectoryNode" />
+              <item name="control" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="SqlUNet" type="1abcf292:AndroidViewProjectNode" />
+              <item name="xNet" type="feadf853:AndroidModuleNode" />
+            </path>
+            <path>
+              <item name="SqlUNet" type="1abcf292:AndroidViewProjectNode" />
+              <item name="xNet" type="feadf853:AndroidModuleNode" />
+              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
+            </path>
+            <path>
+              <item name="SqlUNet" type="1abcf292:AndroidViewProjectNode" />
+              <item name="xNet" type="feadf853:AndroidModuleNode" />
+              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
+              <item name="sqlunet" type="cbb59c9e:AndroidPsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="SqlUNet" type="1abcf292:AndroidViewProjectNode" />
+              <item name="xNet" type="feadf853:AndroidModuleNode" />
+              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
+              <item name="sqlunet" type="cbb59c9e:AndroidPsiDirectoryNode" />
+              <item name="model" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="SqlUNet" type="1abcf292:AndroidViewProjectNode" />
+              <item name="xNet" type="feadf853:AndroidModuleNode" />
+              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
+              <item name="sqlunet" type="cbb59c9e:AndroidPsiDirectoryNode" />
+              <item name="view" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="PackagesPane" />
       <pane id="Scope">
         <subPane subId="Scope 'Project Files'; set:Project Files; class com.intellij.psi.search.scope.ProjectFilesScope">
           <expand>
@@ -17080,36 +17414,7 @@
           <select />
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
-      <pane id="AndroidView">
-        <subPane>
-          <expand>
-            <path>
-              <item name="SqlUNet" type="1abcf292:AndroidViewProjectNode" />
-              <item name="xNet" type="feadf853:AndroidModuleNode" />
-            </path>
-            <path>
-              <item name="SqlUNet" type="1abcf292:AndroidViewProjectNode" />
-              <item name="xNet" type="feadf853:AndroidModuleNode" />
-              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
-            </path>
-            <path>
-              <item name="SqlUNet" type="1abcf292:AndroidViewProjectNode" />
-              <item name="xNet" type="feadf853:AndroidModuleNode" />
-              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
-              <item name="sqlunet" type="cbb59c9e:AndroidPsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="SqlUNet" type="1abcf292:AndroidViewProjectNode" />
-              <item name="xNet" type="feadf853:AndroidModuleNode" />
-              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
-              <item name="sqlunet" type="cbb59c9e:AndroidPsiDirectoryNode" />
-              <item name="browser" type="462c0819:PsiDirectoryNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
+      <pane id="ProjectPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -17140,12 +17445,12 @@
     <property name="two.files.diff.last.used.file" value="$PROJECT_DIR$/../../android-treebolic-as/TreebolicSupportLibs/preferenceLib/src/main/java/android/support/v7/app/contrib/AppCompatPreferenceActivity.java" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/browser/src/main/res/values" />
-      <recent name="$PROJECT_DIR$/browserfn/src/main/res/values" />
-      <recent name="$PROJECT_DIR$/common/src/main/res/menu" />
-      <recent name="$PROJECT_DIR$/browserfn/src/main/res/layout" />
-      <recent name="$PROJECT_DIR$/common/src/main/res/values" />
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/support/src/main/res/values" />
+      <recent name="$PROJECT_DIR$/browserwn/src/main/res/values" />
+      <recent name="$PROJECT_DIR$/browservn/src/main/res/layout" />
+      <recent name="$PROJECT_DIR$/browservn/src/main/java/org/sqlunet/browser/selector" />
+      <recent name="$PROJECT_DIR$/browserwn/src/main/assets/help/license" />
     </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="org.sqlunet.browser" />
@@ -17157,18 +17462,18 @@
       <recent name="org.sqlunet.browser.config" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="org.sqlunet.treeview.control" />
+      <recent name="org.sqlunet.model" />
       <recent name="org.sqlunet.browser.selector" />
       <recent name="org.sqlunet.browser" />
-      <recent name="org.sqlunet.treeview.control" />
       <recent name="org.sqlunet.settings" />
-      <recent name="org.sqlunet.browser.web" />
     </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/support/src/main/res/values" />
-      <recent name="$PROJECT_DIR$/browserwn/src/main/res/values" />
-      <recent name="$PROJECT_DIR$/browservn/src/main/res/layout" />
-      <recent name="$PROJECT_DIR$/browservn/src/main/java/org/sqlunet/browser/selector" />
-      <recent name="$PROJECT_DIR$/browserwn/src/main/assets/help/license" />
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/browser/src/main/res/values" />
+      <recent name="$PROJECT_DIR$/browserfn/src/main/res/values" />
+      <recent name="$PROJECT_DIR$/common/src/main/res/menu" />
+      <recent name="$PROJECT_DIR$/browserfn/src/main/res/layout" />
+      <recent name="$PROJECT_DIR$/common/src/main/res/values" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -17872,27 +18177,6 @@
       <option name="presentableId" value="Default" />
       <updated>1487150992421</updated>
     </task>
-    <task id="LOCAL-00084" summary="1.13rc2">
-      <created>1503826901552</created>
-      <option name="number" value="00084" />
-      <option name="presentableId" value="LOCAL-00084" />
-      <option name="project" value="LOCAL" />
-      <updated>1503826901552</updated>
-    </task>
-    <task id="LOCAL-00085" summary="1.13rc3">
-      <created>1503842844905</created>
-      <option name="number" value="00085" />
-      <option name="presentableId" value="LOCAL-00085" />
-      <option name="project" value="LOCAL" />
-      <updated>1503842844906</updated>
-    </task>
-    <task id="LOCAL-00086" summary="lint&#10;1.13rc4">
-      <created>1503843572102</created>
-      <option name="number" value="00086" />
-      <option name="presentableId" value="LOCAL-00086" />
-      <option name="project" value="LOCAL" />
-      <updated>1503843572102</updated>
-    </task>
     <task id="LOCAL-00087" summary="licenses&#10;1.13rc5">
       <created>1503851937183</created>
       <option name="number" value="00087" />
@@ -18215,7 +18499,28 @@
       <option name="project" value="LOCAL" />
       <updated>1554544716963</updated>
     </task>
-    <option name="localTasksCounter" value="133" />
+    <task id="LOCAL-00133" summary="fixes get(tag, class)">
+      <created>1554569594790</created>
+      <option name="number" value="00133" />
+      <option name="presentableId" value="LOCAL-00133" />
+      <option name="project" value="LOCAL" />
+      <updated>1554569594791</updated>
+    </task>
+    <task id="LOCAL-00134" summary="detach root (model) node">
+      <created>1554621621471</created>
+      <option name="number" value="00134" />
+      <option name="presentableId" value="LOCAL-00134" />
+      <option name="project" value="LOCAL" />
+      <updated>1554621621471</updated>
+    </task>
+    <task id="LOCAL-00135" summary="fixes get(tag, class)">
+      <created>1554621671629</created>
+      <option name="number" value="00135" />
+      <option name="presentableId" value="LOCAL-00135" />
+      <option name="project" value="LOCAL" />
+      <updated>1554621671629</updated>
+    </task>
+    <option name="localTasksCounter" value="136" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -18254,9 +18559,10 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="51" y="27" width="1733" height="1165" extended-state="0" />
+    <frame x="53" y="27" width="1286" height="1172" extended-state="0" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.526475" visible="true" weight="0.17031342" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.526475" visible="true" weight="0.16961415" />
       <window_info id="Structure" order="1" sideWeight="0.47352496" side_tool="true" weight="0.27697262" />
       <window_info id="Captures" order="2" side_tool="true" weight="0.24973376" />
       <window_info id="Capture Tool" order="3" />
@@ -18266,25 +18572,25 @@
       <window_info id="Favorites" order="7" side_tool="true" />
       <window_info id="Build Variants" order="8" sideWeight="0.50392157" side_tool="true" weight="0.18117131" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info active="true" anchor="bottom" id="Find" order="1" sideWeight="0.536369" visible="true" weight="0.28430405" />
+      <window_info anchor="bottom" id="Find" order="1" sideWeight="0.4790997" visible="true" weight="0.30294117" />
       <window_info anchor="bottom" id="Run" order="2" sideWeight="0.45709702" weight="0.4852071" />
-      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.65937316" weight="0.3869694" />
+      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.40836012" weight="0.25784314" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" sideWeight="0.49808428" weight="0.32843137" />
       <window_info anchor="bottom" id="Android Profiler" order="7" />
-      <window_info anchor="bottom" id="Logcat" order="8" sideWeight="0.46363097" side_tool="true" visible="true" weight="0.28430405" />
+      <window_info active="true" anchor="bottom" id="Logcat" order="8" sideWeight="0.5209003" side_tool="true" visible="true" weight="0.30294117" />
       <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.6743295" side_tool="true" weight="0.4201763" />
-      <window_info anchor="bottom" id="Build" order="10" sideWeight="0.30838078" weight="0.24777888" />
+      <window_info anchor="bottom" id="Build" order="10" sideWeight="0.23101777" weight="0.2908913" />
       <window_info anchor="bottom" id="Android Monitor" order="11" sideWeight="0.82428116" weight="0.39513677" />
-      <window_info anchor="bottom" id="Version Control" order="12" sideWeight="0.59989053" weight="0.34769833" />
+      <window_info anchor="bottom" id="Version Control" order="12" sideWeight="0.31663975" weight="0.49259624" />
       <window_info anchor="bottom" id="Terminal" order="13" sideWeight="0.3136289" weight="0.32615083" />
       <window_info active="true" anchor="bottom" id="Gradle Console" order="14" sideWeight="0.4729064" side_tool="true" visible="true" weight="0.3107843" />
       <window_info anchor="bottom" id="Messages" order="15" sideWeight="0.5270936" weight="0.3107843" />
       <window_info anchor="bottom" id="Inspection Results" order="16" sideWeight="0.3256705" weight="0.48126233" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" sideWeight="0.49924356" visible="true" weight="0.11065907" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" sideWeight="0.49924356" visible="true" weight="0.18729903" />
       <window_info anchor="right" id="Assistant" order="3" weight="0.32950193" />
       <window_info anchor="right" id="Device File Explorer" order="4" sideWeight="0.50075644" side_tool="true" weight="0.16827697" />
       <window_info anchor="right" id="Module Dependencies" order="5" visible="true" weight="0.20197044" />
@@ -18351,8 +18657,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$" />
     </ignored-roots>
-    <MESSAGE value="1.13rc2" />
-    <MESSAGE value="1.13rc3" />
     <MESSAGE value="lint&#10;1.13rc4" />
     <MESSAGE value="licenses&#10;1.13rc5" />
     <MESSAGE value="new artwork build chain" />
@@ -18376,7 +18680,9 @@
     <MESSAGE value="migrate to appcompat" />
     <MESSAGE value="migrate to androidx" />
     <MESSAGE value="fixes" />
-    <option name="LAST_COMMIT_MESSAGE" value="fixes" />
+    <MESSAGE value="detach root (model) node" />
+    <MESSAGE value="fixes get(tag, class)" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixes get(tag, class)" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -18385,77 +18691,53 @@
           <properties class="java.lang.NullPointerException" package="java.lang" />
           <option name="timeStamp" value="33" />
         </breakpoint>
-        <line-breakpoint type="java-line">
-          <url>file://$PROJECT_DIR$/wordNet/src/main/java/org/sqlunet/wordnet/loaders/SenseModule.java</url>
-          <line>53</line>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/treeView/src/main/java/org/sqlunet/treeview/view/TreeView.java</url>
+          <line>220</line>
           <properties />
-          <option name="timeStamp" value="311" />
+          <option name="timeStamp" value="338" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/treeView/src/main/java/org/sqlunet/treeview/view/TreeView.java</url>
+          <line>567</line>
+          <properties />
+          <option name="timeStamp" value="339" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/wordNet/src/main/java/org/sqlunet/wordnet/loaders/BaseModule.java</url>
-          <line>599</line>
+          <line>1103</line>
           <properties />
-          <option name="timeStamp" value="312" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/wordNet/src/main/java/org/sqlunet/wordnet/loaders/BaseModule.java</url>
-          <line>769</line>
-          <properties />
-          <option name="timeStamp" value="313" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/wordNet/src/main/java/org/sqlunet/wordnet/loaders/BaseModule.java</url>
-          <line>825</line>
-          <properties />
-          <option name="timeStamp" value="323" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/wordNet/src/main/java/org/sqlunet/wordnet/loaders/BaseModule.java</url>
-          <line>1114</line>
-          <properties />
-          <option name="timeStamp" value="326" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/common/src/main/java/org/sqlunet/browser/SourceFragment.java</url>
-          <line>61</line>
-          <properties />
-          <option name="timeStamp" value="328" />
+          <option name="timeStamp" value="340" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/wordNet/src/main/java/org/sqlunet/wordnet/browser/SynsetFragment.java</url>
-          <line>85</line>
+          <line>72</line>
           <properties />
-          <option name="timeStamp" value="329" />
+          <option name="timeStamp" value="341" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/wordNet/src/main/java/org/sqlunet/wordnet/loaders/SenseModule.java</url>
-          <line>66</line>
+          <url>file://$PROJECT_DIR$/treeView/src/main/java/org/sqlunet/treeview/control/Controller.java</url>
+          <line>221</line>
           <properties />
-          <option name="timeStamp" value="330" />
+          <option name="timeStamp" value="342" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/androidx.lifecycle/lifecycle-livedata/2.0.0/740ce61935bd789380c01178bd8ce402402ebd2f/lifecycle-livedata-2.0.0-sources.jar!/androidx/lifecycle/MediatorLiveData.java</url>
-          <line>85</line>
+          <url>file://$PROJECT_DIR$/treeView/src/main/java/org/sqlunet/treeview/control/Controller.java</url>
+          <line>165</line>
           <properties />
-          <option name="timeStamp" value="332" />
+          <option name="timeStamp" value="344" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/wordNet/src/main/java/org/sqlunet/wordnet/loaders/SenseModule.java</url>
-          <line>69</line>
+          <url>file://$PROJECT_DIR$/treeView/src/main/java/org/sqlunet/treeview/control/Controller.java</url>
+          <line>99</line>
           <properties />
-          <option name="timeStamp" value="333" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/wordNet/src/main/java/org/sqlunet/wordnet/loaders/BaseModule.java</url>
-          <line>842</line>
-          <properties />
-          <option name="timeStamp" value="334" />
+          <option name="timeStamp" value="345" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/wordNet/src/main/java/org/sqlunet/wordnet/loaders/BaseModule.java</url>
-          <line>582</line>
+          <line>585</line>
           <properties />
-          <option name="timeStamp" value="335" />
+          <option name="timeStamp" value="347" />
         </line-breakpoint>
       </breakpoints>
       <breakpoints-dialog>
@@ -18464,291 +18746,10 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/browser/src/androidTest/AndroidManifest.xml">
-      <provider editor-type-id="android-manifest" />
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="104">
-          <caret line="8" column="11" selection-start-line="8" selection-start-column="11" selection-end-line="8" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/browserfn/src/androidTest/AndroidManifest.xml">
-      <provider editor-type-id="android-manifest" />
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="104">
-          <caret line="8" column="11" selection-start-line="8" selection-start-column="11" selection-end-line="8" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/browserwn/src/androidTest/java/org/sqlunet/browser/RunBrowseFlat.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="226">
-          <caret line="24" selection-start-line="24" selection-end-line="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/browserwn/src/androidTest/java/org/sqlunet/browser/TestActions.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="312">
-          <caret line="24" column="103" lean-forward="true" selection-start-line="24" selection-start-column="103" selection-end-line="24" selection-end-column="103" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/browser/src/main/res/xml/pref_headers.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="247">
-          <caret line="19" selection-start-line="19" selection-end-line="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/common/src/main/res/xml/pref_headers.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="247">
-          <caret line="19" selection-start-line="15" selection-end-line="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/browser/src/androidTest/java/org/sqlunet/browser/TestUtils.java" />
-    <entry file="file://$PROJECT_DIR$/browser/src/androidTest/java/org/sqlunet/browser/RunMainTree.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="78">
-          <caret line="15" column="13" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/browser/src/androidTest/java/org/sqlunet/browser/RunMainFlat.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="78">
-          <caret line="15" column="13" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/browser/src/androidTest/java/org/sqlunet/browser/RunBrowseFlat.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="15" column="13" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/browser/src/androidTest/java/org/sqlunet/browser/Tests.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="169">
-          <caret line="13" column="37" selection-start-line="13" selection-start-column="37" selection-end-line="13" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test/src/main/java/androidx/test/espresso/contrib/ExpandableListViewProtocol.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="143">
-          <caret line="44" column="13" selection-start-line="44" selection-start-column="13" selection-end-line="44" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/browser/src/androidTest/java/org/sqlunet/browser/TestActions.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="157">
-          <caret line="24" selection-start-line="24" selection-end-line="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/browser/src/androidTest/java/org/sqlunet/browser/RunBrowseTree.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="182">
-          <caret line="23" selection-start-line="23" selection-end-line="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/browser/src/main/java/org/sqlunet/browser/Browse2Fragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="845">
-          <caret line="81" column="73" selection-start-line="81" selection-start-column="60" selection-end-line="81" selection-end-column="73" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/androidx.lifecycle/lifecycle-livedata-core/2.0.0/c158207594782b42f3a2e08a5a029eb3319e4404/lifecycle-livedata-core-2.0.0-sources.jar!/androidx/lifecycle/MutableLiveData.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="208">
-          <caret line="32" selection-start-line="32" selection-end-line="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/xNet/src/main/java/org/sqlunet/view/FireEvent.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="428">
-          <caret line="66" selection-start-line="66" selection-end-line="66" />
-          <folding>
-            <element signature="e#1383#1384#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/androidx.lifecycle/lifecycle-livedata-core/2.0.0/c158207594782b42f3a2e08a5a029eb3319e4404/lifecycle-livedata-core-2.0.0-sources.jar!/androidx/lifecycle/LiveData.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="267">
-          <caret line="112" selection-start-line="112" selection-end-line="112" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///opt/androidsdk/sources/android-28/android/os/Looper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="197">
-          <caret line="195" selection-start-line="195" selection-end-line="195" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/download/src/main/java/org/sqlunet/download/BaseDownloadFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="227">
-          <caret line="618" column="34" selection-start-line="618" selection-start-column="34" selection-end-line="618" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/download0/src/main/java/org/sqlunet/download/BaseDownloadFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="318">
-          <caret line="492" column="17" lean-forward="true" selection-start-line="492" selection-start-column="17" selection-end-line="492" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/xNet/src/main/java/org/sqlunet/browser/Module.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="819">
-          <caret line="75" selection-start-line="75" selection-end-line="75" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/wordNet/src/main/java/org/sqlunet/wordnet/browser/SenseFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="312">
-          <caret line="30" selection-start-line="30" selection-end-line="30" />
-          <folding>
-            <element signature="e#426#427#0" expanded="true" />
-            <element signature="e#440#441#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/androidx.fragment/fragment/1.1.0-alpha05/b3cca7e889d3f81febae11c68fd5196afc30fd02/fragment-1.1.0-alpha05-sources.jar!/androidx/fragment/app/FragmentManagerImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="21008">
-          <caret line="1716" selection-start-line="1716" selection-end-line="1716" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/wordNet/src/main/java/org/sqlunet/wordnet/loaders/SynsetModule.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="494">
-          <caret line="48" selection-start-line="48" selection-end-line="48" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/xNet/src/main/java/org/sqlunet/browser/SqlunetViewModel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="219">
-          <caret line="31" selection-start-line="31" selection-end-line="31" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#752#753#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/androidx.arch.core/core-common/2.0.0/645b95386a07be66eef0bfe7007535e3f95ec642/core-common-2.0.0-sources.jar!/androidx/arch/core/internal/SafeIterableMap.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="281">
-          <caret line="52" selection-start-line="52" selection-end-line="52" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/androidx.lifecycle/lifecycle-livedata/2.0.0/740ce61935bd789380c01178bd8ce402402ebd2f/lifecycle-livedata-2.0.0-sources.jar!/androidx/lifecycle/MediatorLiveData.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="177">
-          <caret line="85" selection-start-line="85" selection-end-line="85" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/wordNet/src/main/java/org/sqlunet/wordnet/browser/SynsetFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="333">
-          <caret line="85" selection-start-line="85" selection-end-line="85" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/wordNet/src/main/java/org/sqlunet/wordnet/loaders/SenseModule.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="398">
-          <caret line="66" selection-start-line="66" selection-end-line="66" />
-          <folding>
-            <element signature="e#677#678#0" expanded="true" />
-            <element signature="e#699#700#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///opt/androidsdk/sources/android-28/android/app/Activity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="911" selection-start-line="911" selection-end-line="911" />
-          <folding>
-            <element signature="e#42918#42919#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/xNet/src/main/java/org/sqlunet/browser/SqlunetViewModelFactory.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="260">
-          <caret line="27" selection-start-line="27" selection-end-line="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/androidx.fragment/fragment/1.1.0-alpha05/b3cca7e889d3f81febae11c68fd5196afc30fd02/fragment-1.1.0-alpha05-sources.jar!/androidx/fragment/app/Fragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="190">
-          <caret line="342" selection-start-line="342" selection-end-line="342" />
-          <folding>
-            <element signature="e#28839#28840#0" expanded="true" />
-            <element signature="e#28923#28924#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/androidx.lifecycle/lifecycle-viewmodel/2.1.0-alpha03/469c357d2e1a04a52d0f811e0f77c2849f42a655/lifecycle-viewmodel-2.1.0-alpha03-sources.jar!/androidx/lifecycle/ViewModelProvider.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="190">
-          <caret line="125" selection-start-line="125" selection-end-line="125" />
-          <folding>
-            <element signature="e#8515#8516#0" expanded="true" />
-            <element signature="e#8565#8566#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/androidx.lifecycle/lifecycle-extensions/2.0.0/ec7ad4a5233eab676f8fad210d18eb343cde5974/lifecycle-extensions-2.0.0-sources.jar!/androidx/lifecycle/ViewModelProviders.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="342">
-          <caret line="104" selection-start-line="104" selection-end-line="104" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/bNC/src/main/java/org/sqlunet/bnc/loaders/BaseModule.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="143" column="173" selection-start-line="143" selection-start-column="173" selection-end-line="143" selection-end-column="173" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/browser/src/main/java/org/sqlunet/browser/selector/SelectorsFragment.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="225">
           <caret line="274" column="155" selection-start-line="274" selection-start-column="155" selection-end-line="274" selection-end-column="155" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/browser/src/main/java/org/sqlunet/browser/xselector/XSelectorsFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="351" column="155" selection-start-line="351" selection-start-column="155" selection-end-line="351" selection-end-column="155" />
         </state>
       </provider>
     </entry>
@@ -18787,71 +18788,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/frameNet/src/main/java/org/sqlunet/framenet/loaders/BaseModule.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="251">
-          <caret line="2224" column="183" selection-start-line="2224" selection-start-column="183" selection-end-line="2224" selection-end-column="183" />
-          <folding>
-            <element signature="docComment;class#BaseModule#0" />
-            <element signature="e#3247#3272#0" />
-            <element signature="e#3316#3347#0" />
-            <element signature="e#3422#3444#0" />
-            <element signature="e#3501#3529#0" />
-            <element signature="e#3596#3616#0" />
-            <element signature="e#3685#3716#0" />
-            <element signature="e#3758#3786#0" />
-            <element signature="e#3825#3858#0" />
-            <element signature="e#3902#3938#0" />
-            <element signature="e#3985#4026#0" />
-            <element signature="e#4077#4114#0" />
-            <element signature="e#4162#4196#0" />
-            <element signature="e#4241#4274#0" />
-            <element signature="e#4318#4351#0" />
-            <element signature="e#4395#4426#0" />
-            <element signature="e#4468#4536#0" />
-            <element signature="e#4468#5634#0" />
-            <element signature="e#5658#5733#0" />
-            <element signature="e#5840#5856#0" />
-            <element signature="e#5870#5960#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/frameNet/src/main/java/org/sqlunet/framenet/loaders/SentenceModule.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="515">
-          <caret line="92" column="183" selection-start-line="92" selection-start-column="183" selection-end-line="92" selection-end-column="183" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/predicateMatrix/src/main/java/org/sqlunet/predicatematrix/loaders/BaseModule.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="395">
-          <caret line="770" column="177" selection-start-line="770" selection-start-column="177" selection-end-line="770" selection-end-column="177" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/propbank/src/main/java/org/sqlunet/propbank/loaders/BaseModule.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="441" column="183" selection-start-line="441" selection-start-column="183" selection-end-line="441" selection-end-column="183" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/verbNet/src/main/java/org/sqlunet/verbnet/loaders/BaseModule.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="476" column="183" selection-start-line="476" selection-start-column="183" selection-end-line="476" selection-end-column="183" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/verbNet/src/main/java/org/sqlunet/verbnet/loaders/ClassFromWordModule.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="473">
-          <caret line="122" column="183" selection-start-line="122" selection-start-column="183" selection-end-line="122" selection-end-column="183" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/wordNet/src/main/java/org/sqlunet/wordnet/browser/SensesFragment.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="472">
@@ -18859,19 +18795,522 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/browser/src/main/java/org/sqlunet/browser/xselector/XSelectorsFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4017">
+          <caret line="353" column="24" selection-start-line="353" selection-start-column="24" selection-end-line="353" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/androidx.lifecycle/lifecycle-livedata/2.0.0/740ce61935bd789380c01178bd8ce402402ebd2f/lifecycle-livedata-2.0.0-sources.jar!/androidx/lifecycle/MediatorLiveData.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="177">
+          <caret line="85" selection-start-line="85" selection-end-line="85" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wordNet/src/main/java/org/sqlunet/wordnet/browser/SenseFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="312">
+          <caret line="30" selection-start-line="30" selection-end-line="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/treeView/src/main/java/org/sqlunet/treeview/view/ScrollView2D.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="182">
+          <caret line="33" column="13" selection-start-line="33" selection-start-column="13" selection-end-line="33" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///opt/androidsdk/sources/android-28/android/view/ViewParent.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="143">
+          <caret line="28" column="17" selection-start-line="28" selection-start-column="17" selection-end-line="28" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///opt/androidsdk/sources/android-28/android/view/View.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="83785">
+          <caret line="6596" selection-start-line="6596" selection-end-line="6596" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/treeView/src/main/java/org/sqlunet/treeview/view/SubtreeView.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1081">
+          <caret line="22" column="13" selection-start-line="22" selection-start-column="13" selection-end-line="22" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wordNet/src/main/java/org/sqlunet/wordnet/browser/SynsetActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="117">
+          <caret line="17" column="13" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/treeView/src/main/java/org/sqlunet/treeview/control/LinkLeafController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="117">
+          <caret line="14" column="13" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/treeView/src/main/java/org/sqlunet/treeview/control/LinkQueryController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="117">
+          <caret line="14" column="13" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/treeView/src/main/java/org/sqlunet/treeview/control/QueryController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="117">
+          <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/treeView/src/main/java/org/sqlunet/treeview/control/LinkTreeController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="117">
+          <caret line="14" column="13" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/treeView/src/main/java/org/sqlunet/treeview/control/HotQueryController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="98">
+          <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/treeView/src/main/java/org/sqlunet/treeview/control/TreeController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="364">
+          <caret line="38" column="32" selection-start-line="38" selection-start-column="32" selection-end-line="38" selection-end-column="32" />
+          <folding>
+            <element signature="e#1518#1519#0" expanded="true" />
+            <element signature="e#1665#1666#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/treeView/src/main/java/org/sqlunet/treeview/control/TextController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="208">
+          <caret line="21" column="32" selection-start-line="21" selection-start-column="32" selection-end-line="21" selection-end-column="32" />
+          <folding>
+            <element signature="e#436#437#0" expanded="true" />
+            <element signature="e#457#458#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/treeView/src/main/java/org/sqlunet/treeview/control/SimpleController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="208">
+          <caret line="21" column="34" selection-start-line="21" selection-start-column="34" selection-end-line="21" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/treeView/src/main/java/org/sqlunet/treeview/control/NodeController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="208">
+          <caret line="21" column="32" selection-start-line="21" selection-start-column="32" selection-end-line="21" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/treeView/src/main/java/org/sqlunet/treeview/control/MoreController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="299">
+          <caret line="31" column="32" selection-start-line="31" selection-start-column="32" selection-end-line="31" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/treeView/src/main/java/org/sqlunet/treeview/control/LeafController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="299">
+          <caret line="32" column="32" selection-start-line="32" selection-start-column="32" selection-end-line="32" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///opt/androidsdk/sources/android-28/java/lang/reflect/Constructor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="237">
+          <caret line="337" column="13" selection-start-line="337" selection-start-column="13" selection-end-line="337" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/xNet/src/main/java/org/sqlunet/view/TreeFactory.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="13">
+          <caret line="39" column="9" selection-start-line="39" selection-start-column="9" selection-end-line="39" selection-end-column="9" />
+          <folding>
+            <element signature="e#1215#1216#0" expanded="true" />
+            <element signature="e#1290#1291#0" expanded="true" />
+            <element signature="e#4219#4220#0" expanded="true" />
+            <element signature="e#4319#4320#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/frameNet/src/main/java/org/sqlunet/framenet/loaders/SentenceModule.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="125" column="46" selection-start-line="125" selection-start-column="46" selection-end-line="125" selection-end-column="46" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/verbNet/src/main/java/org/sqlunet/verbnet/loaders/ClassFromWordModule.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="129">
+          <caret line="164" column="50" selection-start-line="164" selection-start-column="50" selection-end-line="164" selection-end-column="50" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wordNet/src/main/java/org/sqlunet/wordnet/loaders/WordModule.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="168">
+          <caret line="54" column="68" selection-start-line="54" selection-start-column="68" selection-end-line="54" selection-end-column="68" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wordNet/src/main/java/org/sqlunet/wordnet/loaders/SynsetModule.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="253">
+          <caret line="113" column="164" selection-start-line="113" selection-start-column="164" selection-end-line="113" selection-end-column="164" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bNC/src/main/java/org/sqlunet/bnc/loaders/BaseModule.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="134">
+          <caret line="71" column="51" selection-start-line="71" selection-start-column="51" selection-end-line="71" selection-end-column="51" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/frameNet/src/main/java/org/sqlunet/framenet/loaders/BaseModule.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="212">
+          <caret line="2649" column="37" selection-start-line="2649" selection-start-column="37" selection-end-line="2649" selection-end-column="37" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/predicateMatrix/src/main/java/org/sqlunet/predicatematrix/loaders/BaseModule.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="212">
+          <caret line="1673" column="7" selection-start-line="1673" selection-start-column="7" selection-end-line="1673" selection-end-column="7" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/propbank/src/main/java/org/sqlunet/propbank/loaders/BaseModule.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="309">
+          <caret line="111" column="43" selection-start-line="111" selection-start-column="43" selection-end-line="111" selection-end-column="43" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/verbNet/src/main/java/org/sqlunet/verbnet/loaders/BaseModule.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="186">
+          <caret line="132" column="52" selection-start-line="132" selection-start-column="52" selection-end-line="132" selection-end-column="52" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/xNet/src/main/java/org/sqlunet/browser/Module.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="208">
+          <caret line="28" column="30" selection-start-line="28" selection-start-column="22" selection-end-line="28" selection-end-column="30" />
+          <folding>
+            <element signature="e#985#986#0" expanded="true" />
+            <element signature="e#1016#1017#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/browser/src/main/java/org/sqlunet/browser/web/WebFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="198">
+          <caret line="510" column="50" selection-start-line="510" selection-start-column="50" selection-end-line="510" selection-end-column="50" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/treeView/src/main/java/org/sqlunet/treeview/control/Value.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="639">
+          <caret line="52" selection-start-line="52" selection-end-line="52" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/wordNet/src/main/java/org/sqlunet/wordnet/loaders/BaseModule.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="1727" column="183" selection-start-line="1727" selection-start-column="183" selection-end-line="1727" selection-end-column="183" />
+        <state relative-caret-position="443">
+          <caret line="583" selection-start-line="583" selection-end-line="583" />
           <folding>
+            <element signature="imports" expanded="true" />
             <element signature="docComment;class#BaseModule#0" />
-            <element signature="e#3017#3057#0" />
-            <element signature="e#3101#3132#0" />
-            <element signature="e#3182#3239#0" />
-            <element signature="e#3970#4054#0" />
-            <element signature="e#4198#4281#0" />
-            <element signature="e#4420#4436#0" />
-            <element signature="e#4504#4652#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wordNet/src/main/java/org/sqlunet/wordnet/loaders/SenseModule.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="538">
+          <caret line="102" column="30" selection-start-line="102" selection-start-column="18" selection-end-line="102" selection-end-column="30" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/xNet/src/main/java/org/sqlunet/view/FireEvent.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="6">
+          <caret line="33" column="19" selection-start-line="33" selection-start-column="19" selection-end-line="33" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wordNet/src/main/java/org/sqlunet/wordnet/browser/SynsetFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="286">
+          <caret line="72" selection-start-line="72" selection-end-line="72" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/treeView/src/main/java/org/sqlunet/treeview/control/LinkNodeController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="117">
+          <caret line="18" column="13" selection-start-line="18" selection-start-column="13" selection-end-line="18" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/treeView/src/main/java/org/sqlunet/treeview/control/Controller.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="13">
+          <caret line="57" column="23" selection-start-line="57" selection-start-column="23" selection-end-line="57" selection-end-column="23" />
+          <folding>
+            <element signature="docComment;class#Controller#0" />
+            <element signature="docComment;field#node#0;class#Controller#0" />
+            <element signature="docComment;field#treeView#0;class#Controller#0" />
+            <element signature="docComment;field#view#0;class#Controller#0" />
+            <element signature="docComment;field#nodeView#0;class#Controller#0" />
+            <element signature="docComment;field#containerStyle#0;class#Controller#0" />
+            <element signature="docComment;field#context#0;class#Controller#0" />
+            <element signature="docComment;method#Controller#0;class#Controller#0" />
+            <element signature="docComment;method#setTreeView#0;class#Controller#0" />
+            <element signature="docComment;method#getTreeView#0;class#Controller#0" />
+            <element signature="docComment;method#getView#0;class#Controller#0" />
+            <element signature="docComment;method#getChildrenContainerView#0;class#Controller#0" />
+            <element signature="docComment;method#isInitialized#0;class#Controller#0" />
+            <element signature="docComment;method#attachNode#0;class#Controller#0" />
+            <element signature="docComment;method#disable#0;class#Controller#0" />
+            <element signature="method#disable#0;class#Controller#0" />
+            <element signature="docComment;method#setContainerStyle#0;class#Controller#0" />
+            <element signature="docComment;method#getContainerStyle#0;class#Controller#0" />
+            <element signature="docComment;method#onExpandEvent#0;class#Controller#0" />
+            <element signature="docComment;method#onSelectedEvent#0;class#Controller#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/treeView/src/main/java/org/sqlunet/treeview/view/ControllerFactory.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="442">
+          <caret line="34" selection-start-line="34" selection-end-line="34" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/xNet/src/main/java/org/sqlunet/model/TreeFactory.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="298">
+          <caret line="37" column="27" selection-start-line="37" selection-start-column="19" selection-end-line="37" selection-end-column="27" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1131#1132#0" expanded="true" />
+            <element signature="e#1185#1186#0" expanded="true" />
+            <element signature="e#1407#1408#0" expanded="true" />
+            <element signature="e#1485#1486#0" expanded="true" />
+            <element signature="e#1714#1715#0" expanded="true" />
+            <element signature="e#1802#1803#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/treeView/src/main/java/org/sqlunet/treeview/model/TreeNode.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="194">
+          <caret line="109" column="35" selection-start-line="109" selection-start-column="27" selection-end-line="109" selection-end-column="35" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="docComment;class#TreeNode#0" />
+            <element signature="e#387#402#0" />
+            <element signature="e#422#440#0" />
+            <element signature="e#466#490#0" />
+            <element signature="e#519#546#0" />
+            <element signature="e#8993#8994#0" expanded="true" />
+            <element signature="e#9022#9023#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/treeView/src/main/java/org/sqlunet/treeview/view/TreeView.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="493">
+          <caret line="160" column="18" selection-start-line="160" selection-start-column="18" selection-end-line="160" selection-end-column="18" />
+          <folding>
+            <element signature="docComment;class#TreeView#0" />
+            <element signature="e#1081#1103#0" />
+            <element signature="e#1136#1156#0" />
+            <element signature="e#1191#1219#0" />
+            <element signature="e#1255#1286#0" />
+            <element signature="e#1378#1410#0" />
+            <element signature="e#1472#1499#0" />
+            <element signature="e#1533#1568#0" />
+            <element signature="e#1600#1634#0" />
+            <element signature="e#1675#1704#0" />
+            <element signature="e#1772#1851#0" />
+            <element signature="e#1772#1964#0" />
+            <element signature="e#1980#2022#0" />
+            <element signature="e#2091#2137#0" />
+            <element signature="e#2201#2270#0" />
+            <element signature="e#3225#3234#0" />
+            <element signature="e#3336#3344#0" />
+            <element signature="e#3523#3618#0" />
+            <element signature="e#3523#4008#0" />
+            <element signature="e#4011#4106#0" />
+            <element signature="e#4011#5088#0" />
+            <element signature="e#4664#5083#0" />
+            <element signature="e#5091#5135#0" />
+            <element signature="e#5091#5400#0" />
+            <element signature="e#5403#5462#0" />
+            <element signature="e#5403#5946#0" />
+            <element signature="e#5949#5994#0" />
+            <element signature="e#5949#6187#0" />
+            <element signature="e#6190#6278#0" />
+            <element signature="e#6190#7007#0" />
+            <element signature="e#7047#7157#0" />
+            <element signature="e#7507#7598#0" />
+            <element signature="e#7507#7892#0" />
+            <element signature="e#7895#8007#0" />
+            <element signature="e#7895#8347#0" />
+            <element signature="e#8350#8373#0" />
+            <element signature="e#8467#8492#0" />
+            <element signature="e#8467#8611#0" />
+            <element signature="e#8614#8686#0" />
+            <element signature="e#8614#8848#0" />
+            <element signature="e#8851#8935#0" />
+            <element signature="e#8851#9156#0" />
+            <element signature="e#9159#9255#0" />
+            <element signature="e#9159#9497#0" />
+            <element signature="e#9500#9549#0" />
+            <element signature="e#9640#9691#0" />
+            <element signature="e#9814#9863#0" />
+            <element signature="e#9814#10030#0" />
+            <element signature="e#10033#10150#0" />
+            <element signature="e#10033#10819#0" />
+            <element signature="e#10822#10937#0" />
+            <element signature="e#10822#11697#0" />
+            <element signature="e#11765#11832#0" />
+            <element signature="e#12016#12085#0" />
+            <element signature="e#12143#12144#0" expanded="true" />
+            <element signature="e#12179#12180#0" expanded="true" />
+            <element signature="e#12183#12268#0" />
+            <element signature="e#12183#13740#0" />
+            <element signature="e#12856#13068#0" />
+            <element signature="class#13098:13715" />
+            <element signature="method#onAnimationStart#0;class#13098:13715" />
+            <element signature="method#onAnimationEnd#0;class#13098:13715" />
+            <element signature="method#onAnimationCancel#0;class#13098:13715" />
+            <element signature="method#onAnimationRepeat#0;class#13098:13715" />
+            <element signature="e#13743#13821#0" />
+            <element signature="e#13743#15018#0" />
+            <element signature="e#14343#14531#0" />
+            <element signature="class#14561:14993" />
+            <element signature="method#onAnimationStart#0;class#14561:14993" />
+            <element signature="method#onAnimationRepeat#0;class#14561:14993" />
+            <element signature="e#15046#15138#0" />
+            <element signature="e#15266#15358#0" />
+            <element signature="e#15478#15609#0" />
+            <element signature="e#15478#15814#0" />
+            <element signature="e#15817#15889#0" />
+            <element signature="e#16016#16093#0" />
+            <element signature="e#16194#16290#0" />
+            <element signature="e#16436#16520#0" />
+            <element signature="e#16698#16752#0" />
+            <element signature="e#16754#16762#0" />
+            <element signature="e#16698#17025#0" />
+            <element signature="e#17028#17095#0" />
+            <element signature="e#17028#17470#0" />
+            <element signature="e#17473#17566#0" />
+            <element signature="e#17473#17840#0" />
+            <element signature="e#17843#17919#0" />
+            <element signature="e#17843#18198#0" />
+            <element signature="e#18201#18221#0" />
+            <element signature="e#18234#18334#0" />
+            <element signature="e#18429#18513#0" />
+            <element signature="e#18429#18797#0" />
+            <element signature="e#18800#18901#0" />
+            <element signature="e#18800#19171#0" />
+            <element signature="e#19194#19256#0" />
+            <element signature="e#19194#19425#0" />
+            <element signature="e#19428#19521#0" />
+            <element signature="e#19428#19821#0" />
+            <element signature="e#19824#19974#0" />
+            <element signature="e#19976#19984#0" />
+            <element signature="e#19824#20374#0" />
+            <element signature="e#20389#20471#0" />
+            <element signature="e#20595#20620#0" />
+            <element signature="e#20684#20815#0" />
+            <element signature="e#20684#21029#0" />
+            <element signature="e#21032#21119#0" />
+            <element signature="e#21032#21325#0" />
+            <element signature="e#21328#21428#0" />
+            <element signature="e#21328#21813#0" />
+            <element signature="e#21816#21928#0" />
+            <element signature="e#21816#22162#0" />
+            <element signature="e#22190#22274#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/xNet/src/main/java/org/sqlunet/browser/TreeFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="362">
+          <caret line="87" column="22" selection-start-line="87" selection-start-column="22" selection-end-line="87" selection-end-column="22" />
+          <folding>
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>

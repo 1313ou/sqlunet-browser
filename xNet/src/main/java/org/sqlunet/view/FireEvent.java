@@ -3,6 +3,7 @@ package org.sqlunet.view;
 import androidx.annotation.NonNull;
 
 import org.sqlunet.treeview.control.Controller;
+import org.sqlunet.treeview.control.HotQueryController;
 import org.sqlunet.treeview.control.QueryController;
 import org.sqlunet.treeview.model.TreeNode;
 import org.sqlunet.treeview.view.TreeView;
@@ -26,11 +27,11 @@ public class FireEvent
 	{
 		if (addNewNode)
 		{
-			TreeView.disable(node);
+			//TODO TreeView.disable(node);
 		}
 		else
 		{
-			TreeView.remove(node);
+			//TODO TreeView.remove(node);
 		}
 	}
 
@@ -41,7 +42,7 @@ public class FireEvent
 	 */
 	static public void onResults(@NonNull final TreeNode node)
 	{
-		TreeView.expand(node, false);
+		// TODO TreeView.expand(node, false);
 	}
 
 	/**
@@ -52,7 +53,7 @@ public class FireEvent
 	 */
 	static public void onResults(@NonNull final TreeNode node, int levels)
 	{
-		TreeView.expand(node, levels);
+		// TODO TreeView.expand(node, levels);
 	}
 
 	/**
@@ -63,7 +64,7 @@ public class FireEvent
 	 */
 	static public void onResults(@NonNull final TreeNode node, final CharSequence value)
 	{
-		TreeView.setNodeValue(node, value);
+		// TODO TreeView.setNodeValue(node, value);
 	}
 
 	// Q U E R Y  R E A D Y
@@ -71,13 +72,10 @@ public class FireEvent
 	static public void onQueryReady(@NonNull final TreeNode node)
 	{
 		final Controller<?> controller = node.getController();
-		if (controller instanceof QueryController)
+		if (controller != null && controller instanceof HotQueryController)
 		{
 			final QueryController queryController = (QueryController) controller;
-			if (queryController.triggerNow)
-			{
-				queryController.processQuery();
-			}
+			// TODO queryController.processQuery();
 		}
 	}
 }

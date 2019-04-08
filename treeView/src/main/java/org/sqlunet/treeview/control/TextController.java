@@ -19,7 +19,7 @@ public class TextController extends Controller<Object>
 	 *
 	 * @param context context
 	 */
-	public TextController(Context context)
+	public TextController(final Context context)
 	{
 		super(context);
 	}
