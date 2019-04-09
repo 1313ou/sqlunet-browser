@@ -15,7 +15,6 @@ import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
 
 import org.sqlunet.browser.SqlunetViewModel;
-import org.sqlunet.browser.SqlunetViewModelFactory;
 import org.sqlunet.provider.ProviderArgs;
 import org.sqlunet.wordnet.R;
 import org.sqlunet.wordnet.SensePointer;
@@ -255,21 +254,16 @@ public class SensesFragment extends ListFragment
 		final String sortOrder = Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.POS + ',' + Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.SENSENUM;
 
 		final String tag = "wn.senses";
-		final SqlunetViewModel model = ViewModelProviders.of(this, new SqlunetViewModelFactory(this, uri, projection, selection, selectionArgs, sortOrder)).get(tag, SqlunetViewModel.class);
-		model.loadData(tag);
-		model.getData().observe(this, entry -> {
+		final SqlunetViewModel model = ViewModelProviders.of(this).get(tag, SqlunetViewModel.class);
+		model.loadData(uri, projection, selection, selectionArgs, sortOrder, cursor -> sensesPostProcess(cursor));
+		model.getData().observe(this, cursor -> {
 
-			final String key = entry.getKey();
-			if (!tag.equals(key))
-			{
-				return;
-			}
-			final Cursor cursor = entry.getValue();
-			sensesToView(cursor);
+			// pass on to list adapter
+			((CursorAdapter) getListAdapter()).swapCursor(cursor);
 		});
 	}
 
-	private void sensesToView(@NonNull final Cursor cursor)
+	private void sensesPostProcess(@NonNull final Cursor cursor)
 	{
 		// store source result
 		if (cursor.moveToFirst())
@@ -277,9 +271,6 @@ public class SensesFragment extends ListFragment
 			final int wordId = cursor.getColumnIndex(WordNetContract.Words.WORDID);
 			SensesFragment.this.wordId = cursor.getLong(wordId);
 		}
-
-		// pass on to list adapter
-		((CursorAdapter) getListAdapter()).swapCursor(cursor);
 	}
 
 	// C L I C K

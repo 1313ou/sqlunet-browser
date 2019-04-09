@@ -2,12 +2,9 @@ package org.sqlunet.browser;
 
 import android.annotation.SuppressLint;
 import android.app.Application;
-import android.content.Context;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.AsyncTask;
-
-import java.util.AbstractMap.SimpleEntry;
 
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
@@ -15,19 +12,14 @@ import androidx.lifecycle.MutableLiveData;
 
 public class SqlunetViewModel extends AndroidViewModel
 {
-	private Uri uri;
+	public interface PostProcessor
+	{
+		void postProcess(final Cursor cursor);
+	}
 
-	private String[] projection;
+	private final MutableLiveData<Cursor> data = new MutableLiveData<>();
 
-	private String selection;
-
-	private String[] selectionArgs;
-
-	private String sortOrder;
-
-	private final MutableLiveData<SimpleEntry<String, Cursor>> data = new MutableLiveData<>();
-
-	public LiveData<SimpleEntry<String, Cursor>> getData()
+	public LiveData<Cursor> getData()
 	{
 		return data;
 	}
@@ -37,33 +29,27 @@ public class SqlunetViewModel extends AndroidViewModel
 		super(application);
 	}
 
-	public void set(final Uri uri, final String[] projection, final String selection, final String[] selectionArgs, final String sortOrder)
-	{
-		this.uri = uri;
-		this.projection = projection;
-		this.selection = selection;
-		this.selectionArgs = selectionArgs;
-		this.sortOrder = sortOrder;
-	}
-
 	@SuppressLint("StaticFieldLeak")
-	public void loadData(final String tag)
+	public void loadData(final Uri uri, final String[] projection, final String selection, final String[] selectionArgs, final String sortOrder, final PostProcessor postProcessor)
 	{
-		new AsyncTask<Void, Void, SimpleEntry<String, Cursor>>()
+		new AsyncTask<Void, Void, Cursor>()
 		{
 			@Override
-			protected SimpleEntry<String, Cursor> doInBackground(Void... voids)
+			protected Cursor doInBackground(Void... voids)
 			{
 				final Cursor cursor = getApplication().getContentResolver().query(uri, projection, selection, selectionArgs, sortOrder);
-				return new SimpleEntry<>(tag, cursor);
+				if (postProcessor != null)
+				{
+					postProcessor.postProcess(cursor);
+				}
+				return cursor;
 			}
 
 			@Override
-			protected void onPostExecute(SimpleEntry<String, Cursor> entry)
+			protected void onPostExecute(Cursor cursor)
 			{
-				data.setValue(entry);
+				data.setValue(cursor);
 			}
-
 		}.execute();
 	}
 }

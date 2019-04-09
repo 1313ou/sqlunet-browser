@@ -17,7 +17,6 @@ import android.widget.TextView;
 
 import org.sqlunet.Pointer;
 import org.sqlunet.browser.SqlunetViewModel;
-import org.sqlunet.browser.SqlunetViewModelFactory;
 import org.sqlunet.browser.fn.R;
 import org.sqlunet.framenet.FnFramePointer;
 import org.sqlunet.framenet.FnLexUnitPointer;
@@ -244,24 +243,13 @@ public class SelectorsFragment extends ListFragment
 		final String sortOrder = LexUnits_or_Frames.ISFRAME + ',' + LexUnits_or_Frames.WORD + ',' + LexUnits_or_Frames.ID;
 
 		final String tag = "selectors";
-		final SqlunetViewModel model = ViewModelProviders.of(this, new SqlunetViewModelFactory(this, uri, projection, selection, selectionArgs, sortOrder)).get(tag, SqlunetViewModel.class);
-		model.loadData(tag);
-		model.getData().observe(this, entry -> {
+		final SqlunetViewModel model = ViewModelProviders.of(this).get(tag, SqlunetViewModel.class);
+		model.loadData(uri, projection, selection, selectionArgs, sortOrder, null);
+		model.getData().observe(this, cursor -> {
 
-			final String key = entry.getKey();
-			if (!tag.equals(key))
-			{
-				return;
-			}
-			final Cursor cursor = entry.getValue();
-			selectorsToView(cursor);
+			// pass on to list adapter
+			((CursorAdapter) getListAdapter()).swapCursor(cursor);
 		});
-	}
-
-	private void selectorsToView(@NonNull final Cursor cursor)
-	{
-		// pass on to list adapter
-		((CursorAdapter) getListAdapter()).swapCursor(cursor);
 	}
 
 	// C L I C K

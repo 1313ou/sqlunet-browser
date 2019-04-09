@@ -14,8 +14,7 @@ import org.sqlunet.bnc.provider.BNCContract.Words_BNCs;
 import org.sqlunet.bnc.provider.BNCProvider;
 import org.sqlunet.bnc.style.BNCFactories;
 import org.sqlunet.browser.Module;
-import org.sqlunet.browser.SqlunetViewModel;
-import org.sqlunet.browser.SqlunetViewModelFactory;
+import org.sqlunet.browser.SqlunetViewTreeModel;
 import org.sqlunet.model.TreeFactory;
 import org.sqlunet.style.Spanner;
 import org.sqlunet.treeview.model.TreeNode;
@@ -141,22 +140,13 @@ public class BaseModule extends Module
 		final String[] selectionArgs = pos == null ? new String[]{Long.toString(wordId)} : new String[]{Long.toString(wordId), Character.toString(pos),};
 		final String sortOrder = null;
 
-		final String tag = "bnc.bnc";
-		final SqlunetViewModel model = ViewModelProviders.of(this.fragment, new SqlunetViewModelFactory(this.fragment, uri, projection, selection, selectionArgs, sortOrder)).get(tag, SqlunetViewModel.class);
-		model.loadData(tag);
-		model.getData().observe(this.fragment, entry -> {
-
-			final String key = entry.getKey();
-			if (!tag.equals(key))
-			{
-				return;
-			}
-			final Cursor cursor = entry.getValue();
-			bncToView(cursor, parent);
-		});
+		final String tag = "bnc.bnc(wordid)";
+		final SqlunetViewTreeModel model = ViewModelProviders.of(this.fragment).get(tag, SqlunetViewTreeModel.class);
+		model.loadData(uri, projection, selection, selectionArgs, sortOrder, cursor -> bncCursorToTreeModel(cursor, parent));
+		model.getData().observe(this.fragment, FireEvent::live);
 	}
 
-	private void bncToView(@NonNull final Cursor cursor, @NonNull final TreeNode parent)
+	private TreeNode bncCursorToTreeModel(@NonNull final Cursor cursor, @NonNull final TreeNode parent)
 	{
 		final SpannableStringBuilder sb = new SpannableStringBuilder();
 		// if (cursor.getCount() > 1)
@@ -308,6 +298,7 @@ public class BaseModule extends Module
 			FireEvent.onNoResult(parent, true);
 		}
 
-		// TODO no need to call cursor.close() ?
+		cursor.close();
+		return parent;
 	}
 }

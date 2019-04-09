@@ -7,8 +7,7 @@ import android.text.SpannableStringBuilder;
 
 import org.sqlunet.HasSynsetId;
 import org.sqlunet.HasWordId;
-import org.sqlunet.browser.SqlunetViewModel;
-import org.sqlunet.browser.SqlunetViewModelFactory;
+import org.sqlunet.browser.SqlunetViewTreeModel;
 import org.sqlunet.model.TreeFactory;
 import org.sqlunet.style.Spanner;
 import org.sqlunet.treeview.model.TreeNode;
@@ -120,21 +119,12 @@ public class ClassFromWordModule extends BaseModule
 		final String sortOrder = null;
 
 		final String tag = "vn.classes";
-		final SqlunetViewModel model = ViewModelProviders.of(this.fragment, new SqlunetViewModelFactory(this.fragment, uri, projection, selection, selectionArgs, sortOrder)).get(tag, SqlunetViewModel.class);
-		model.loadData(tag);
-		model.getData().observe(this.fragment, entry -> {
-
-			final String key = entry.getKey();
-			if (!tag.equals(key))
-			{
-				return;
-			}
-			final Cursor cursor = entry.getValue();
-			vnClassesToView(cursor, parent);
-		});
+		final SqlunetViewTreeModel model = ViewModelProviders.of(this.fragment).get(tag, SqlunetViewTreeModel.class);
+		model.loadData(uri, projection, selection, selectionArgs, sortOrder, cursor -> vnClassesCursorToTreeModel(cursor, parent));
+		model.getData().observe(this.fragment, FireEvent::live);
 	}
 
-	private void vnClassesToView(@NonNull final Cursor cursor, @NonNull final TreeNode parent)
+	private TreeNode vnClassesCursorToTreeModel(@NonNull final Cursor cursor, @NonNull final TreeNode parent)
 	{
 		if (cursor.moveToFirst())
 		{
@@ -184,6 +174,7 @@ public class ClassFromWordModule extends BaseModule
 			FireEvent.onNoResult(parent, true);
 		}
 
-		// TODO no need to call cursor.close() ?
+		cursor.close();
+		return parent;
 	}
 }

@@ -14,8 +14,7 @@ import android.text.style.ForegroundColorSpan;
 import android.util.Log;
 
 import org.sqlunet.browser.Module;
-import org.sqlunet.browser.SqlunetViewModel;
-import org.sqlunet.browser.SqlunetViewModelFactory;
+import org.sqlunet.browser.SqlunetViewTreeModel;
 import org.sqlunet.framenet.FnFramePointer;
 import org.sqlunet.framenet.FnLexUnitPointer;
 import org.sqlunet.framenet.FnSentencePointer;
@@ -194,9 +193,7 @@ abstract public class BaseModule extends Module
 		VERBOSE = verbose;
 	}
 
-	// L O A D E R S
-
-	// frame
+	// F R A M E
 
 	/**
 	 * FrameNet frame
@@ -219,22 +216,14 @@ abstract public class BaseModule extends Module
 		final String[] selectionArgs = {Long.toString(frameId)};
 		final String sortOrder = Frames_X.FRAME;
 
-		final String tag = "fn.frame";
-		final SqlunetViewModel model = ViewModelProviders.of(this.fragment, new SqlunetViewModelFactory(this.fragment, uri, projection, selection, selectionArgs, sortOrder)).get(tag, SqlunetViewModel.class);
-		model.loadData(tag);
-		model.getData().observe(this.fragment, entry -> {
-
-			final String key = entry.getKey();
-			if (!tag.equals(key))
-			{
-				return;
-			}
-			final Cursor cursor = entry.getValue();
-			frameToView(cursor, frameId, parent);
+		final String tag = "fn.frame(frameid)";
+		final SqlunetViewTreeModel model = ViewModelProviders.of(this.fragment).get(tag, SqlunetViewTreeModel.class);
+		model.loadData(uri, projection, selection, selectionArgs, sortOrder, cursor -> frameCursorToTreeModel(cursor, frameId, parent));
+		model.getData().observe(this.fragment, FireEvent::live);
 		});
 	}
 
-	private void frameToView(@NonNull final Cursor cursor, final long frameId, @NonNull final TreeNode parent)
+	private TreeNode frameCursorToTreeModel(@NonNull final Cursor cursor, final long frameId, @NonNull final TreeNode parent)
 	{
 		if (cursor.getCount() > 1)
 		{
@@ -298,7 +287,8 @@ abstract public class BaseModule extends Module
 			FireEvent.onNoResult(parent, true);
 		}
 
-		// TODO no need to call cursor.close() ?
+		cursor.close();
+		return parent;
 	}
 
 	/**
@@ -323,22 +313,13 @@ abstract public class BaseModule extends Module
 		final String[] selectionArgs = {Long.toString(frameId), Long.toString(frameId)};
 		final String sortOrder = Frames_Related.RELATIONTYPE;
 
-		final String tag = "fn.relatedframes";
-		final SqlunetViewModel model = ViewModelProviders.of(this.fragment, new SqlunetViewModelFactory(this.fragment, uri, projection, selection, selectionArgs, sortOrder)).get(tag, SqlunetViewModel.class);
-		model.loadData(tag);
-		model.getData().observe(this.fragment, entry -> {
-
-			final String key = entry.getKey();
-			if (!tag.equals(key))
-			{
-				return;
-			}
-			final Cursor cursor = entry.getValue();
-			relatedFramesToView(cursor, frameId, parent);
-		});
+		final String tag = "fn.relatedframes(frameid)";
+		final SqlunetViewTreeModel model = ViewModelProviders.of(this.fragment).get(tag, SqlunetViewTreeModel.class);
+		model.loadData(uri, projection, selection, selectionArgs, sortOrder, cursor -> relatedFramesCursorToTreeModel(cursor, frameId, parent));
+		model.getData().observe(this.fragment, FireEvent::live);
 	}
 
-	private void relatedFramesToView(@NonNull final Cursor cursor, final long frameId, @NonNull final TreeNode parent)
+	private TreeNode relatedFramesCursorToTreeModel(@NonNull final Cursor cursor, final long frameId, @NonNull final TreeNode parent)
 	{
 		if (cursor.moveToFirst())
 		{
@@ -434,10 +415,11 @@ abstract public class BaseModule extends Module
 			FireEvent.onNoResult(parent, true);
 		}
 
-		// TODO no need to call cursor.close() ?
+		cursor.close();
+		return parent;
 	}
 
-	// fes
+	// F E S
 
 	/**
 	 * Frame elements for frame
@@ -462,22 +444,13 @@ abstract public class BaseModule extends Module
 		final String[] selectionArgs = {Integer.toString(frameId)};
 		final String sortOrder = Frames_FEs.CORETYPEID + ',' + Frames_FEs.FETYPE;
 
-		final String tag = "fn.fes";
-		final SqlunetViewModel model = ViewModelProviders.of(this.fragment, new SqlunetViewModelFactory(this.fragment, uri, projection, selection, selectionArgs, sortOrder)).get(tag, SqlunetViewModel.class);
-		model.loadData(tag);
-		model.getData().observe(this.fragment, entry -> {
-
-			final String key = entry.getKey();
-			if (!tag.equals(key))
-			{
-				return;
-			}
-			final Cursor cursor = entry.getValue();
-			fesToView(cursor, parent);
-		});
+		final String tag = "fn.fes(frameid)";
+		final SqlunetViewTreeModel model = ViewModelProviders.of(this.fragment).get(tag, SqlunetViewTreeModel.class);
+		model.loadData(uri, projection, selection, selectionArgs, sortOrder, cursor -> fesCursorToTreeModel(cursor, parent));
+		model.getData().observe(this.fragment, FireEvent::live);
 	}
 
-	private void fesToView(@NonNull final Cursor cursor, @NonNull final TreeNode parent)
+	private TreeNode fesCursorToTreeModel(@NonNull final Cursor cursor, @NonNull final TreeNode parent)
 	{
 		if (cursor.moveToFirst())
 		{
@@ -568,10 +541,11 @@ abstract public class BaseModule extends Module
 			FireEvent.onNoResult(parent, true);
 		}
 
-		// TODO no need to call cursor.close() ?
+		cursor.close();
+		return parent;
 	}
 
-	// lexunits
+	// L E X U N I T S
 
 	/**
 	 * Lex unit
@@ -599,22 +573,13 @@ abstract public class BaseModule extends Module
 		final String[] selectionArgs = {Long.toString(luId)};
 		final String sortOrder = null;
 
-		final String tag = "fn.lexunit";
-		final SqlunetViewModel model = ViewModelProviders.of(this.fragment, new SqlunetViewModelFactory(this.fragment, uri, projection, selection, selectionArgs, sortOrder)).get(tag, SqlunetViewModel.class);
-		model.loadData(tag);
-		model.getData().observe(this.fragment, entry -> {
-
-			final String key = entry.getKey();
-			if (!tag.equals(key))
-			{
-				return;
-			}
-			final Cursor cursor = entry.getValue();
-			lexUnitToView(cursor, luId, parent, withFrame, withFes);
-		});
+		final String tag = "fn.lexunit(luid)";
+		final SqlunetViewTreeModel model = ViewModelProviders.of(this.fragment).get(tag, SqlunetViewTreeModel.class);
+		model.loadData(uri, projection, selection, selectionArgs, sortOrder, cursor -> lexUnitCursorToTreeModel(cursor, luId, parent, withFrame, withFes));
+		model.getData().observe(this.fragment, FireEvent::live);
 	}
 
-	private void lexUnitToView(@NonNull final Cursor cursor, final long luId, @NonNull final TreeNode parent, @SuppressWarnings("SameParameterValue") final boolean withFrame, @SuppressWarnings("SameParameterValue") final boolean withFes)
+	private TreeNode lexUnitCursorToTreeModel(@NonNull final Cursor cursor, final long luId, @NonNull final TreeNode parent, @SuppressWarnings("SameParameterValue") final boolean withFrame, @SuppressWarnings("SameParameterValue") final boolean withFes)
 	{
 		if (cursor.getCount() > 1)
 		{
@@ -717,7 +682,7 @@ abstract public class BaseModule extends Module
 
 			// sub nodes
 			final TreeNode realizationsNode = TreeFactory.newQueryNode("Realizations", R.drawable.realization, new RealizationsQuery(luId)).addTo(parent);
-			final TreeNode groupRealizationsNode = TreeFactory.newQueryNode("Group realizations", R.drawable.grouprealization, new GroupRealizationsQuery(luId)).addTo(parent);
+			final TreeNode groupRealizationsNode = TreeFactory.newQueryNode("Group realizationsCursorToTreeModel", R.drawable.grouprealization, new GroupRealizationsQuery(luId)).addTo(parent);
 			final TreeNode governorsNode = TreeFactory.newQueryNode("Governors", R.drawable.governor, new GovernorsQuery(luId)).addTo(parent);
 			final TreeNode sentencesNode = TreeFactory.newQueryNode("Sentences", R.drawable.sentence, new SentencesForLexUnitQuery(luId)).addTo(parent);
 
@@ -733,7 +698,8 @@ abstract public class BaseModule extends Module
 			FireEvent.onNoResult(parent, true);
 		}
 
-		// TODO no need to call cursor.close() ?
+		cursor.close();
+		return parent;
 	}
 
 	/**
@@ -760,22 +726,13 @@ abstract public class BaseModule extends Module
 		final String[] selectionArgs = {Long.toString(frameId)};
 		final String sortOrder = LexUnits_X.LEXUNIT;
 
-		final String tag = "fn.lexunits1";
-		final SqlunetViewModel model = ViewModelProviders.of(this.fragment, new SqlunetViewModelFactory(this.fragment, uri, projection, selection, selectionArgs, sortOrder)).get(tag, SqlunetViewModel.class);
-		model.loadData(tag);
-		model.getData().observe(this.fragment, entry -> {
-
-			final String key = entry.getKey();
-			if (!tag.equals(key))
-			{
-				return;
-			}
-			final Cursor cursor = entry.getValue();
-			lexUnitsToView1(cursor, frameId, parent, withFrame);
-		});
+		final String tag = "fn.lexunits(frameid)";
+		final SqlunetViewTreeModel model = ViewModelProviders.of(this.fragment).get(tag, SqlunetViewTreeModel.class);
+		model.loadData(uri, projection, selection, selectionArgs, sortOrder, cursor -> lexUnitsCursor1ToTreeModel(cursor, frameId, parent, withFrame));
+		model.getData().observe(this.fragment, FireEvent::live);
 	}
 
-	private void lexUnitsToView1(@NonNull final Cursor cursor, final long frameId, @NonNull final TreeNode parent, @SuppressWarnings("SameParameterValue") final boolean withFrame)
+	private TreeNode lexUnitsCursor1ToTreeModel(@NonNull final Cursor cursor, final long frameId, @NonNull final TreeNode parent, @SuppressWarnings("SameParameterValue") final boolean withFrame)
 	{
 		if (cursor.moveToFirst())
 		{
@@ -870,7 +827,7 @@ abstract public class BaseModule extends Module
 
 				// sub nodes
 				final TreeNode realizationsNode = TreeFactory.newQueryNode("Realizations", R.drawable.realization, new RealizationsQuery(luId)).addTo(luNode);
-				final TreeNode groupRealizationsNode = TreeFactory.newQueryNode("Group realizations", R.drawable.grouprealization, new GroupRealizationsQuery(luId)).addTo(luNode);
+				final TreeNode groupRealizationsNode = TreeFactory.newQueryNode("Group realizationsCursorToTreeModel", R.drawable.grouprealization, new GroupRealizationsQuery(luId)).addTo(luNode);
 				final TreeNode governorsNode = TreeFactory.newQueryNode("Governors", R.drawable.governor, new GovernorsQuery(luId)).addTo(luNode);
 				final TreeNode sentencesNode = TreeFactory.newQueryNode("Sentences", R.drawable.sentence, new SentencesForLexUnitQuery(luId)).addTo(luNode);
 
@@ -890,7 +847,8 @@ abstract public class BaseModule extends Module
 			FireEvent.onNoResult(parent, true);
 		}
 
-		// TODO no need to call cursor.close() ?
+		cursor.close();
+		return parent;
 	}
 
 	/**
@@ -919,21 +877,13 @@ abstract public class BaseModule extends Module
 		final String[] selectionArgs = pos == null ? new String[]{Long.toString(wordId)} : new String[]{Long.toString(wordId), Integer.toString(Utils.posToPosId(pos))};
 		final String sortOrder = Words_LexUnits_Frames.FRAME + ',' + Words_LexUnits_Frames.LUID;
 
-		final String tag = "fn.lexunits2";
-		final SqlunetViewModel model = ViewModelProviders.of(this.fragment, new SqlunetViewModelFactory(this.fragment, uri, projection, selection, selectionArgs, sortOrder)).get(tag, SqlunetViewModel.class);
-		model.loadData(tag);
-		model.getData().observe(this.fragment, entry -> {
-			final String key = entry.getKey();
-			if (!tag.equals(key))
-			{
-				return;
-			}
-			final Cursor cursor = entry.getValue();
-			lexUnitsToView2(cursor, parent);
-		});
+		final String tag = "fn.lexunits(wordid,pos)";
+		final SqlunetViewTreeModel model = ViewModelProviders.of(this.fragment).get(tag, SqlunetViewTreeModel.class);
+		model.loadData(uri, projection, selection, selectionArgs, sortOrder, cursor -> lexUnitsCursor2ToTreeModel(cursor, parent));
+		model.getData().observe(this.fragment, FireEvent::live);
 	}
 
-	private void lexUnitsToView2(@NonNull final Cursor cursor, @NonNull final TreeNode parent)
+	private TreeNode lexUnitsCursor2ToTreeModel(@NonNull final Cursor cursor, @NonNull final TreeNode parent)
 	{
 		if (cursor.moveToFirst())
 		{
@@ -1012,7 +962,7 @@ abstract public class BaseModule extends Module
 				final TreeNode frameNode = TreeFactory.newHotQueryNode("Frame", R.drawable.roleclass, new FrameQuery(frameId)).addTo(parent);
 				final TreeNode fesNode = TreeFactory.newQueryNode("Frame Elements", R.drawable.roles, new FEsQuery(frameId)).addTo(parent);
 				final TreeNode realizationsNode = TreeFactory.newQueryNode("Realizations", R.drawable.realization, new RealizationsQuery(luId)).addTo(parent);
-				final TreeNode groupRealizationsNode = TreeFactory.newQueryNode("Group realizations", R.drawable.grouprealization, new GroupRealizationsQuery(luId)).addTo(parent);
+				final TreeNode groupRealizationsNode = TreeFactory.newQueryNode("Group realizationsCursorToTreeModel", R.drawable.grouprealization, new GroupRealizationsQuery(luId)).addTo(parent);
 				final TreeNode governorsNode = TreeFactory.newQueryNode("Governors", R.drawable.governor, new GovernorsQuery(luId)).addTo(parent);
 				final TreeNode sentencesNode = TreeFactory.newQueryNode("Sentences", R.drawable.sentence, new SentencesForLexUnitQuery(luId)).addTo(parent);
 
@@ -1034,10 +984,11 @@ abstract public class BaseModule extends Module
 			FireEvent.onNoResult(parent, true);
 		}
 
-		// TODO no need to call cursor.close() ?
+		cursor.close();
+		return parent;
 	}
 
-	// governors
+	// G O V E R N O R S
 
 	/**
 	 * Governors for lex unit
@@ -1059,22 +1010,13 @@ abstract public class BaseModule extends Module
 		final String[] selectionArgs = {Long.toString(luId)};
 		final String sortOrder = LexUnits_Governors.GOVERNORID;
 
-		final String tag = "fn.governors";
-		final SqlunetViewModel model = ViewModelProviders.of(this.fragment, new SqlunetViewModelFactory(this.fragment, uri, projection, selection, selectionArgs, sortOrder)).get(tag, SqlunetViewModel.class);
-		model.loadData(tag);
-		model.getData().observe(this.fragment, entry -> {
-
-			final String key = entry.getKey();
-			if (!tag.equals(key))
-			{
-				return;
-			}
-			final Cursor cursor = entry.getValue();
-			governorsToView(cursor, parent);
-		});
+		final String tag = "fn.governors(luid)";
+		final SqlunetViewTreeModel model = ViewModelProviders.of(this.fragment).get(tag, SqlunetViewTreeModel.class);
+		model.loadData(uri, projection, selection, selectionArgs, sortOrder, cursor -> governorsCursorToTreeModel(cursor, parent));
+		model.getData().observe(this.fragment, FireEvent::live);
 	}
 
-	private void governorsToView(@NonNull final Cursor cursor, @NonNull final TreeNode parent)
+	private TreeNode governorsCursorToTreeModel(@NonNull final Cursor cursor, @NonNull final TreeNode parent)
 	{
 		if (cursor.moveToFirst())
 		{
@@ -1123,10 +1065,11 @@ abstract public class BaseModule extends Module
 			FireEvent.onNoResult(parent, true);
 		}
 
-		// TODO no need to call cursor.close() ?
+		cursor.close();
+		return parent;
 	}
 
-	// realizations
+	// R E A L I Z A T I O N S
 
 	/**
 	 * Realizations for lex unit
@@ -1152,22 +1095,13 @@ abstract public class BaseModule extends Module
 		final String[] selectionArgs = {Long.toString(luId)};
 		final String sortOrder = LexUnits_FERealizations_ValenceUnits.FERID;
 
-		final String tag = "fn.realizations";
-		final SqlunetViewModel model = ViewModelProviders.of(this.fragment, new SqlunetViewModelFactory(this.fragment, uri, projection, selection, selectionArgs, sortOrder)).get(tag, SqlunetViewModel.class);
-		model.loadData(tag);
-		model.getData().observe(this.fragment, entry -> {
-
-			final String key = entry.getKey();
-			if (!tag.equals(key))
-			{
-				return;
-			}
-			final Cursor cursor = entry.getValue();
-			realizations(cursor, parent);
-		});
+		final String tag = "fn.realizations(luid)";
+		final SqlunetViewTreeModel model = ViewModelProviders.of(this.fragment).get(tag, SqlunetViewTreeModel.class);
+		model.loadData(uri, projection, selection, selectionArgs, sortOrder, cursor -> realizationsCursorToTreeModel(cursor, parent));
+		model.getData().observe(this.fragment, FireEvent::live);
 	}
 
-	private void realizations(@NonNull final Cursor cursor, @NonNull final TreeNode parent)
+	private TreeNode realizationsCursorToTreeModel(@NonNull final Cursor cursor, @NonNull final TreeNode parent)
 	{
 		if (cursor.moveToFirst())
 		{
@@ -1196,7 +1130,7 @@ abstract public class BaseModule extends Module
 				// fe
 				final TreeNode feNode = TreeFactory.addTreeNode(parent, sb, R.drawable.role);
 
-				// fe realizations
+				// fe realizationsCursorToTreeModel
 				final String fers = cursor.getString(idFers);
 				for (String fer : fers.split(",")) //
 				{
@@ -1248,11 +1182,12 @@ abstract public class BaseModule extends Module
 			FireEvent.onNoResult(parent, true);
 		}
 
-		// TODO no need to call cursor.close() ?
+		cursor.close();
+		return parent;
 	}
 
 	/**
-	 * Group realizations for lex unit
+	 * Group realizationsCursorToTreeModel for lex unit
 	 *
 	 * @param luId   lex unit id
 	 * @param parent parent node
@@ -1273,22 +1208,13 @@ abstract public class BaseModule extends Module
 		final String[] selectionArgs = {Long.toString(luId)};
 		final String sortOrder = null; // LexUnits_FEGroupRealizations_Patterns_ValenceUnits.FEGRID;
 
-		final String tag = "fn.grouprealizations";
-		final SqlunetViewModel model = ViewModelProviders.of(this.fragment, new SqlunetViewModelFactory(this.fragment, uri, projection, selection, selectionArgs, sortOrder)).get(tag, SqlunetViewModel.class);
-		model.loadData(tag);
-		model.getData().observe(this.fragment, entry -> {
-
-			final String key = entry.getKey();
-			if (!tag.equals(key))
-			{
-				return;
-			}
-			final Cursor cursor = entry.getValue();
-			groupRealizationsToView(cursor, parent);
-		});
+		final String tag = "fn.grouprealizations(luid)";
+		final SqlunetViewTreeModel model = ViewModelProviders.of(this.fragment).get(tag, SqlunetViewTreeModel.class);
+		model.loadData(uri, projection, selection, selectionArgs, sortOrder, cursor -> groupRealizationsCursorToTreeModel(cursor, parent));
+		model.getData().observe(this.fragment, FireEvent::live);
 	}
 
-	private void groupRealizationsToView(@NonNull final Cursor cursor, @NonNull final TreeNode parent)
+	private TreeNode groupRealizationsCursorToTreeModel(@NonNull final Cursor cursor, @NonNull final TreeNode parent)
 	{
 		if (cursor.moveToFirst())
 		{
@@ -1353,11 +1279,12 @@ abstract public class BaseModule extends Module
 			FireEvent.onNoResult(parent, true);
 		}
 
-		// TODO no need to call cursor.close() ?
+		cursor.close();
+		return parent;
 	}
 
 	/**
-	 * Parse group realizations
+	 * Parse group realizationsCursorToTreeModel
 	 *
 	 * @param aggregate aggregate to parse
 	 * @param sb        builder to host result
@@ -1405,7 +1332,7 @@ abstract public class BaseModule extends Module
 		return sb;
 	}
 
-	// sentences
+	// S E N T E N C E S
 
 	/**
 	 * Sentences for lex unit
@@ -1438,22 +1365,13 @@ abstract public class BaseModule extends Module
 				LexUnits_Sentences_AnnoSets_Layers_Labels.PARAGNO + ',' + //
 				LexUnits_Sentences_AnnoSets_Layers_Labels.SENTNO;
 
-		final String tag = "fn.sentences1";
-		final SqlunetViewModel model = ViewModelProviders.of(this.fragment, new SqlunetViewModelFactory(this.fragment, uri, projection, selection, selectionArgs, sortOrder)).get(tag, SqlunetViewModel.class);
-		model.loadData(tag);
-		model.getData().observe(this.fragment, entry -> {
-
-			final String key = entry.getKey();
-			if (!tag.equals(key))
-			{
-				return;
-			}
-			final Cursor cursor = entry.getValue();
-			sentencesToView1(cursor, parent);
-		});
+		final String tag = "fn.sentences(luid)";
+		final SqlunetViewTreeModel model = ViewModelProviders.of(this.fragment).get(tag, SqlunetViewTreeModel.class);
+		model.loadData(uri, projection, selection, selectionArgs, sortOrder, cursor -> sentencesCursor1ToTreeModel(cursor, parent));
+		model.getData().observe(this.fragment, FireEvent::live);
 	}
 
-	private void sentencesToView1(@NonNull final Cursor cursor, @NonNull final TreeNode parent)
+	private TreeNode sentencesCursor1ToTreeModel(@NonNull final Cursor cursor, @NonNull final TreeNode parent)
 	{
 		if (cursor.moveToFirst())
 		{
@@ -1547,7 +1465,8 @@ abstract public class BaseModule extends Module
 			FireEvent.onNoResult(parent, true);
 		}
 
-		// TODO no need to call cursor.close() ?
+		cursor.close();
+		return parent;
 	}
 
 	/**
@@ -1568,22 +1487,13 @@ abstract public class BaseModule extends Module
 		final String[] selectionArgs = {Long.toString(patternId)};
 		final String sortOrder = Patterns_Sentences.SENTENCEID;
 
-		final String tag = "fn.sentences2";
-		final SqlunetViewModel model = ViewModelProviders.of(this.fragment, new SqlunetViewModelFactory(this.fragment, uri, projection, selection, selectionArgs, sortOrder)).get(tag, SqlunetViewModel.class);
-		model.loadData(tag);
-		model.getData().observe(this.fragment, entry -> {
-
-			final String key = entry.getKey();
-			if (!tag.equals(key))
-			{
-				return;
-			}
-			final Cursor cursor = entry.getValue();
-			sentencesToView2(cursor, parent);
-		});
+		final String tag = "fn.sentences(patternid)";
+		final SqlunetViewTreeModel model = ViewModelProviders.of(this.fragment).get(tag, SqlunetViewTreeModel.class);
+		model.loadData(uri, projection, selection, selectionArgs, sortOrder, cursor -> sentencesCursor2ToTreeModel(cursor, parent));
+		model.getData().observe(this.fragment, FireEvent::live);
 	}
 
-	private void sentencesToView2(@NonNull final Cursor cursor, @NonNull final TreeNode parent)
+	private TreeNode sentencesCursor2ToTreeModel(@NonNull final Cursor cursor, @NonNull final TreeNode parent)
 	{
 		if (cursor.moveToFirst())
 		{
@@ -1627,7 +1537,8 @@ abstract public class BaseModule extends Module
 			FireEvent.onNoResult(parent, true);
 		}
 
-		// TODO no need to call cursor.close() ?
+		cursor.close();
+		return parent;
 	}
 
 	/**
@@ -1648,22 +1559,13 @@ abstract public class BaseModule extends Module
 		final String[] selectionArgs = {Long.toString(vuId)};
 		final String sortOrder = ValenceUnits_Sentences.SENTENCEID;
 
-		final String tag = "fn.sentences3";
-		final SqlunetViewModel model = ViewModelProviders.of(this.fragment, new SqlunetViewModelFactory(this.fragment, uri, projection, selection, selectionArgs, sortOrder)).get(tag, SqlunetViewModel.class);
-		model.loadData(tag);
-		model.getData().observe(this.fragment, entry -> {
-
-			final String key = entry.getKey();
-			if (!tag.equals(key))
-			{
-				return;
-			}
-			final Cursor cursor = entry.getValue();
-			sentencesToView3(cursor, parent);
-		});
+		final String tag = "fn.sentences(vuid)";
+		final SqlunetViewTreeModel model = ViewModelProviders.of(this.fragment).get(tag, SqlunetViewTreeModel.class);
+		model.loadData(uri, projection, selection, selectionArgs, sortOrder, cursor -> sentencesCursor3ToTreeModel(cursor, parent));
+		model.getData().observe(this.fragment, FireEvent::live);
 	}
 
-	private void sentencesToView3(@NonNull final Cursor cursor, @NonNull final TreeNode parent)
+	private TreeNode sentencesCursor3ToTreeModel(@NonNull final Cursor cursor, @NonNull final TreeNode parent)
 	{
 		if (cursor.moveToFirst())
 		{
@@ -1707,10 +1609,11 @@ abstract public class BaseModule extends Module
 			FireEvent.onNoResult(parent, true);
 		}
 
-		// TODO no need to call cursor.close() ?
+		cursor.close();
+		return parent;
 	}
 
-	// annoSets
+	// A N N O S E T S
 
 	/**
 	 * AnnoSet
@@ -1734,22 +1637,13 @@ abstract public class BaseModule extends Module
 		final String[] selectionArgs = {Long.toString(annoSetId)};
 		final String sortOrder = null;
 
-		final String tag = "fn.annoset";
-		final SqlunetViewModel model = ViewModelProviders.of(this.fragment, new SqlunetViewModelFactory(this.fragment, uri, projection, selection, selectionArgs, sortOrder)).get(tag, SqlunetViewModel.class);
-		model.loadData(tag);
-		model.getData().observe(this.fragment, entry -> {
-
-			final String key = entry.getKey();
-			if (!tag.equals(key))
-			{
-				return;
-			}
-			final Cursor cursor = entry.getValue();
-			annoSetToView(cursor, parent, withSentence);
-		});
+		final String tag = "fn.annoset(annosetid)";
+		final SqlunetViewTreeModel model = ViewModelProviders.of(this.fragment).get(tag, SqlunetViewTreeModel.class);
+		model.loadData(uri, projection, selection, selectionArgs, sortOrder, cursor -> annoSetCursorToTreeModel(cursor, parent, withSentence));
+		model.getData().observe(this.fragment, FireEvent::live);
 	}
 
-	private void annoSetToView(@NonNull final Cursor cursor, @NonNull final TreeNode parent, final boolean withSentence)
+	private TreeNode annoSetCursorToTreeModel(@NonNull final Cursor cursor, @NonNull final TreeNode parent, final boolean withSentence)
 	{
 		final SpannableStringBuilder sb = new SpannableStringBuilder();
 
@@ -1865,7 +1759,8 @@ abstract public class BaseModule extends Module
 			FireEvent.onNoResult(parent, true);
 		}
 
-		// TODO no need to call cursor.close() ?
+		cursor.close();
+		return parent;
 	}
 
 	/**
@@ -1887,22 +1782,13 @@ abstract public class BaseModule extends Module
 		final String[] selectionArgs = {Long.toString(governorId)};
 		final String sortOrder = null;
 
-		final String tag = "fn.annosets1";
-		final SqlunetViewModel model = ViewModelProviders.of(this.fragment, new SqlunetViewModelFactory(this.fragment, uri, projection, selection, selectionArgs, sortOrder)).get(tag, SqlunetViewModel.class);
-		model.loadData(tag);
-		model.getData().observe(this.fragment, entry -> {
-
-			final String key = entry.getKey();
-			if (!tag.equals(key))
-			{
-				return;
-			}
-			final Cursor cursor = entry.getValue();
-			annoSetsToView1(cursor, parent);
-		});
+		final String tag = "fn.annosets(governorid)";
+		final SqlunetViewTreeModel model = ViewModelProviders.of(this.fragment).get(tag, SqlunetViewTreeModel.class);
+		model.loadData(uri, projection, selection, selectionArgs, sortOrder, cursor -> annoSetsCursor1ToTreeModel(cursor, parent));
+		model.getData().observe(this.fragment, FireEvent::live);
 	}
 
-	private void annoSetsToView1(@NonNull final Cursor cursor, @NonNull final TreeNode parent)
+	private TreeNode annoSetsCursor1ToTreeModel(@NonNull final Cursor cursor, @NonNull final TreeNode parent)
 	{
 		if (cursor.moveToFirst())
 		{
@@ -1949,7 +1835,8 @@ abstract public class BaseModule extends Module
 			FireEvent.onNoResult(parent, true);
 		}
 
-		// TODO no need to call cursor.close() ?
+		cursor.close();
+		return parent;
 	}
 
 	/**
@@ -1974,22 +1861,13 @@ abstract public class BaseModule extends Module
 		final String[] selectionArgs = {Long.toString(patternId)};
 		final String sortOrder = null;
 
-		final String tag = "fn.annosets2";
-		final SqlunetViewModel model = ViewModelProviders.of(this.fragment, new SqlunetViewModelFactory(this.fragment, uri, projection, selection, selectionArgs, sortOrder)).get(tag, SqlunetViewModel.class);
-		model.loadData(tag);
-		model.getData().observe(this.fragment, entry -> {
-
-			final String key = entry.getKey();
-			if (!tag.equals(key))
-			{
-				return;
-			}
-			final Cursor cursor = entry.getValue();
-			annoSetsToView2(cursor, parent);
-		});
+		final String tag = "fn.annosets(patternid)";
+		final SqlunetViewTreeModel model = ViewModelProviders.of(this.fragment).get(tag, SqlunetViewTreeModel.class);
+		model.loadData(uri, projection, selection, selectionArgs, sortOrder, cursor -> annoSetsCursor2ToTreeModel(cursor, parent));
+		model.getData().observe(this.fragment, FireEvent::live);
 	}
 
-	private void annoSetsToView2(@NonNull final Cursor cursor, @NonNull final TreeNode parent)
+	private TreeNode annoSetsCursor2ToTreeModel(@NonNull final Cursor cursor, @NonNull final TreeNode parent)
 	{
 		// column indices
 		final int idLayerType = cursor.getColumnIndex(Patterns_Layers_X.LAYERTYPE);
@@ -2000,7 +1878,8 @@ abstract public class BaseModule extends Module
 
 		annoSets(parent, cursor, null, idSentenceText, idLayerType, idRank, idAnnotations, idAnnoSetId);
 
-		// TODO no need to call cursor.close() ?
+		cursor.close();
+		return parent;
 	}
 
 	/**
@@ -2025,22 +1904,13 @@ abstract public class BaseModule extends Module
 		final String[] selectionArgs = {Long.toString(vuId)};
 		final String sortOrder = null;
 
-		final String tag = "fn.annosets3";
-		final SqlunetViewModel model = ViewModelProviders.of(this.fragment, new SqlunetViewModelFactory(this.fragment, uri, projection, selection, selectionArgs, sortOrder)).get(tag, SqlunetViewModel.class);
-		model.loadData(tag);
-		model.getData().observe(this.fragment, entry -> {
-
-			final String key = entry.getKey();
-			if (!tag.equals(key))
-			{
-				return;
-			}
-			final Cursor cursor = entry.getValue();
-			annoSetsToView3(cursor, parent);
-		});
+		final String tag = "fn.annosets(vuid)";
+		final SqlunetViewTreeModel model = ViewModelProviders.of(this.fragment).get(tag, SqlunetViewTreeModel.class);
+		model.loadData(uri, projection, selection, selectionArgs, sortOrder, cursor -> annoSetsCursor3ToTreeModel(cursor, parent));
+		model.getData().observe(this.fragment, FireEvent::live);
 	}
 
-	private void annoSetsToView3(@NonNull final Cursor cursor, @NonNull final TreeNode parent)
+	private TreeNode annoSetsCursor3ToTreeModel(@NonNull final Cursor cursor, @NonNull final TreeNode parent)
 	{
 		// column indices
 		final int idLayerType = cursor.getColumnIndex(ValenceUnits_Layers_X.LAYERTYPE);
@@ -2051,7 +1921,8 @@ abstract public class BaseModule extends Module
 
 		annoSets(parent, cursor, null, idSentenceText, idLayerType, idRank, idAnnotations, idAnnoSetId);
 
-		// TODO no need to call cursor.close() ?
+		cursor.close();
+		return parent;
 	}
 
 	/**
@@ -2197,7 +2068,7 @@ abstract public class BaseModule extends Module
 		}
 	}
 
-	// layers
+	// L A Y E R S
 
 	/**
 	 * Layers for sentence
@@ -2222,22 +2093,13 @@ abstract public class BaseModule extends Module
 		final String[] selectionArgs = {Long.toString(sentenceId)};
 		final String sortOrder = null;
 
-		final String tag = "fn.layers";
-		final SqlunetViewModel model = ViewModelProviders.of(this.fragment, new SqlunetViewModelFactory(this.fragment, uri, projection, selection, selectionArgs, sortOrder)).get(tag, SqlunetViewModel.class);
-		model.loadData(tag);
-		model.getData().observe(this.fragment, entry -> {
-
-			final String key = entry.getKey();
-			if (!tag.equals(key))
-			{
-				return;
-			}
-			final Cursor cursor = entry.getValue();
-			layersToView(cursor, text, parent);
-		});
+		final String tag = "fn.layers(sentenceid)";
+		final SqlunetViewTreeModel model = ViewModelProviders.of(this.fragment).get(tag, SqlunetViewTreeModel.class);
+		model.loadData(uri, projection, selection, selectionArgs, sortOrder, cursor -> layersCursorToTreeModel(cursor, text, parent));
+		model.getData().observe(this.fragment, FireEvent::live);
 	}
 
-	private void layersToView(@NonNull final Cursor cursor, final String text, @NonNull final TreeNode parent)
+	private TreeNode layersCursorToTreeModel(@NonNull final Cursor cursor, final String text, @NonNull final TreeNode parent)
 	{
 		// column indices
 		final int idLayerType = cursor.getColumnIndex(Sentences_Layers_X.LAYERTYPE);
@@ -2247,10 +2109,11 @@ abstract public class BaseModule extends Module
 
 		annoSets(parent, cursor, text, -1, idLayerType, idRank, idAnnotations, idAnnoSetId);
 
-		// TODO no need to call cursor.close() ?
+		cursor.close();
+		return parent;
 	}
 
-	// agents
+	// A G E N T S
 
 	/**
 	 * Process definition
@@ -2466,7 +2329,7 @@ abstract public class BaseModule extends Module
 	}
 
 	/**
-	 * Group realizations query
+	 * Group realizationsCursorToTreeModel query
 	 */
 	class GroupRealizationsQuery extends Query
 	{

@@ -44,22 +44,16 @@ public class SourceFragment extends ListFragment
 		final String sortOrder = Sources.ID;
 
 		final String tag = "sources";
-		final SqlunetViewModel model = ViewModelProviders.of(this, new SqlunetViewModelFactory(this, uri, projection, selection, selectionArgs, sortOrder)).get(tag, SqlunetViewModel.class);
-		model.loadData(tag);
-		model.getData().observe(this, entry -> {
+		final SqlunetViewModel model = ViewModelProviders.of(this).get(tag, SqlunetViewModel.class);
+		model.loadData(uri, projection, selection, selectionArgs, sortOrder, null);
+		model.getData().observe(this, cursor -> {
 
-			final String key = entry.getKey();
-			if (!tag.equals(key))
-			{
-				return;
-			}
-			final Cursor cursor = entry.getValue();
-			sourcesToView(cursor);
+			((CursorAdapter) getListAdapter()).swapCursor(cursor);
 		});
 	}
 
 	private void sourcesToView(@NonNull final Cursor cursor)
 	{
-		((CursorAdapter) getListAdapter()).swapCursor(cursor);
+
 	}
 }

@@ -141,23 +141,12 @@ public abstract class AbstractTableFragment extends ListFragment
 		final String[] selectionArgs = queryArg == null ? null : new String[]{queryArg};
 
 		final String tag = "elements";
-		final SqlunetViewModel model = ViewModelProviders.of(this, new SqlunetViewModelFactory(this, uri, projection, selection, selectionArgs, sortOrder)).get(tag, SqlunetViewModel.class);
-		model.loadData(tag);
-		model.getData().observe(this, entry -> {
+		final SqlunetViewModel model = ViewModelProviders.of(this).get(tag, SqlunetViewModel.class);
+		model.loadData(uri, projection, selection, selectionArgs, sortOrder, null);
+		model.getData().observe(this, cursor -> {
 
-			final String key = entry.getKey();
-			if (!tag.equals(key))
-			{
-				return;
-			}
-			final Cursor cursor = entry.getValue();
-			elementsToView(cursor);
+			((CursorAdapter) getListAdapter()).swapCursor(cursor);
 		});
-	}
-
-	private void elementsToView(@NonNull final Cursor cursor)
-	{
-		((CursorAdapter) getListAdapter()).swapCursor(cursor);
 	}
 
 	// L A Y O U T

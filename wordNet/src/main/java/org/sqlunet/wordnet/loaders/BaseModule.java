@@ -9,8 +9,7 @@ import android.os.Parcelable;
 import android.text.SpannableStringBuilder;
 
 import org.sqlunet.browser.Module;
-import org.sqlunet.browser.SqlunetViewModel;
-import org.sqlunet.browser.SqlunetViewModelFactory;
+import org.sqlunet.browser.SqlunetViewTreeModel;
 import org.sqlunet.model.TreeFactory;
 import org.sqlunet.provider.ProviderArgs;
 import org.sqlunet.style.Spanner;
@@ -129,9 +128,7 @@ abstract public class BaseModule extends Module
 		this.membersGrouped = membersGrouped;
 	}
 
-	// L O A D E R S
-
-	// Word
+	// W O R D
 
 	static private final String ALLMORPHS = "allmorphs";
 
@@ -154,23 +151,13 @@ abstract public class BaseModule extends Module
 		final String[] selectionArgs = {Long.toString(wordId)};
 		final String sortOrder = null;
 
-		final String tag = "wn.word";
-		final SqlunetViewModel model = ViewModelProviders.of(this.fragment, new SqlunetViewModelFactory(this.fragment, uri, projection, selection, selectionArgs, sortOrder)).get(tag, SqlunetViewModel.class);
-		model.loadData(tag);
-		model.getData().observe(this.fragment, entry -> {
-
-			final String key = entry.getKey();
-			if (!tag.equals(key))
-			{
-				return;
-			}
-
-			final Cursor cursor = entry.getValue();
-			wordToView(cursor, parent, addNewNode);
-		});
+		final String tag = "wn.word(wordid)";
+		final SqlunetViewTreeModel model = ViewModelProviders.of(this.fragment).get(tag, SqlunetViewTreeModel.class);
+		model.loadData(uri, projection, selection, selectionArgs, sortOrder, cursor -> wordCursorToTreeModel(cursor, parent, addNewNode));
+		model.getData().observe(this.fragment, FireEvent::live);
 	}
 
-	private void wordToView(@NonNull final Cursor cursor, @NonNull final TreeNode parent, @SuppressWarnings("SameParameterValue") final boolean addNewNode)
+	private TreeNode wordCursorToTreeModel(@NonNull final Cursor cursor, @NonNull final TreeNode parent, @SuppressWarnings("SameParameterValue") final boolean addNewNode)
 	{
 		if (cursor.getCount() > 1)
 		{
@@ -202,22 +189,22 @@ abstract public class BaseModule extends Module
 			if (addNewNode)
 			{
 				TreeFactory.addTextNode(parent, sb);
-				FireEvent.onResults(parent);
 			}
 			else
 			{
-				FireEvent.onResults(parent, sb);
+				TreeFactory.setTextNode(parent, sb);
 			}
 		}
 		else
 		{
-			FireEvent.onNoResult(parent, true);
+			TreeFactory.setNoResult(parent, true);
 		}
 
-		// TODO no need to call cursor.close() ?() ?
+		cursor.close();
+		return parent;
 	}
 
-	// Sense
+	// S E N S E
 
 	/**
 	 * Senses from word
@@ -247,20 +234,10 @@ abstract public class BaseModule extends Module
 		final String[] selectionArgs = {word};
 		final String sortOrder = Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.POS + ',' + Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.SENSENUM;
 
-		final String tag = "wn.senses1";
-		final SqlunetViewModel model = ViewModelProviders.of(this.fragment, new SqlunetViewModelFactory(this.fragment, uri, projection, selection, selectionArgs, sortOrder)).get(tag, SqlunetViewModel.class);
-		model.loadData(tag);
-		model.getData().observe(this.fragment, entry -> {
-
-			final String key = entry.getKey();
-			if (!tag.equals(key))
-			{
-				return;
-			}
-
-			final Cursor cursor = entry.getValue();
-			sensesToView1(cursor, parent);
-		});
+		final String tag = "wn.senses(word)";
+		final SqlunetViewTreeModel model = ViewModelProviders.of(this.fragment).get(tag, SqlunetViewTreeModel.class);
+		model.loadData(uri, projection, selection, selectionArgs, sortOrder, cursor -> sensesCursorToTreeModel(cursor, parent));
+		model.getData().observe(this.fragment, FireEvent::live);
 	}
 
 	/**
@@ -290,23 +267,13 @@ abstract public class BaseModule extends Module
 		final String[] selectionArgs = {Long.toString(wordId)};
 		final String sortOrder = WordNetContract.POS + '.' + Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.POS + ',' + Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.SENSENUM;
 
-		final String tag = "wn.senses2";
-		final SqlunetViewModel model = ViewModelProviders.of(this.fragment, new SqlunetViewModelFactory(this.fragment, uri, projection, selection, selectionArgs, sortOrder)).get(tag, SqlunetViewModel.class);
-		model.loadData(tag);
-		model.getData().observe(this.fragment, entry -> {
-
-			final String key = entry.getKey();
-			if (!tag.equals(key))
-			{
-				return;
-			}
-
-			final Cursor cursor = entry.getValue();
-			sensesToView1(cursor, parent);
-		});
+		final String tag = "wn.senses(wordid)";
+		final SqlunetViewTreeModel model = ViewModelProviders.of(this.fragment).get(tag, SqlunetViewTreeModel.class);
+		model.loadData(uri, projection, selection, selectionArgs, sortOrder, cursor -> sensesCursorToTreeModel(cursor, parent));
+		model.getData().observe(this.fragment, FireEvent::live);
 	}
 
-	private void sensesToView1(@NonNull final Cursor cursor, @NonNull final TreeNode parent)
+	private TreeNode sensesCursorToTreeModel(@NonNull final Cursor cursor, @NonNull final TreeNode parent)
 	{
 		// store source result
 		if (cursor.moveToFirst())
@@ -319,51 +286,32 @@ abstract public class BaseModule extends Module
 			final int idTagCount = cursor.getColumnIndex(Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.TAGCOUNT);
 			final int idCased = cursor.getColumnIndex(Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.CASED);
 
-			sensesToView2(cursor, idWordId, idSynsetId, idPosName, idLexDomain, idDefinition, idTagCount, idCased, parent);
+			do
+			{
+				final long wordId = cursor.getLong(idWordId);
+				final long synsetId = cursor.getLong(idSynsetId);
+				final String posName = cursor.getString(idPosName);
+				final String lexDomain = cursor.getString(idLexDomain);
+				final String definition = cursor.getString(idDefinition);
+				final String cased = cursor.getString(idCased);
+				final int tagCount = cursor.getInt(idTagCount);
 
-			FireEvent.onResults(parent);
+				final SpannableStringBuilder sb = new SpannableStringBuilder();
+				sense(sb, synsetId, posName, lexDomain, definition, tagCount, cased);
+
+				// result
+				final TreeNode synsetNode = TreeFactory.newLinkNode(sb, R.drawable.synset, new SenseLink(synsetId, wordId, this.maxRecursion));
+				parent.addChild(synsetNode);
+			}
+			while (cursor.moveToNext());
 		}
 		else
 		{
-			FireEvent.onNoResult(parent, true);
+			TreeFactory.setNoResult(parent, true);
 		}
 
-		// TODO no need to call cursor.close() ?
-	}
-
-	/**
-	 * Senses
-	 *
-	 * @param cursor       cursor
-	 * @param idWordId     column id of wordid
-	 * @param idSynsetId   column id of synset id
-	 * @param idPosName    column id of  pos name
-	 * @param idLexDomain  column id of lex domain
-	 * @param idDefinition column id of  definition
-	 * @param idTagCount   column id of  tag count
-	 * @param idCased      column id of cased word
-	 * @param parent       tree parent node
-	 */
-	private void sensesToView2(@NonNull final Cursor cursor, final int idWordId, final int idSynsetId, final int idPosName, final int idLexDomain, final int idDefinition, final int idTagCount, final int idCased, @NonNull final TreeNode parent)
-	{
-		do
-		{
-			final long wordId = cursor.getLong(idWordId);
-			final long synsetId = cursor.getLong(idSynsetId);
-			final String posName = cursor.getString(idPosName);
-			final String lexDomain = cursor.getString(idLexDomain);
-			final String definition = cursor.getString(idDefinition);
-			final String cased = cursor.getString(idCased);
-			final int tagCount = cursor.getInt(idTagCount);
-
-			final SpannableStringBuilder sb = new SpannableStringBuilder();
-			sense(sb, synsetId, posName, lexDomain, definition, tagCount, cased);
-
-			// result
-			final TreeNode synsetNode = TreeFactory.newLinkNode(sb, R.drawable.synset, new SenseLink(synsetId, wordId, this.maxRecursion));
-			parent.addChild(synsetNode);
-		}
-		while (cursor.moveToNext());
+		cursor.close();
+		return parent;
 	}
 
 	/**
@@ -384,42 +332,10 @@ abstract public class BaseModule extends Module
 		final String[] selectionArgs = {Long.toString(senseId)};
 		final String sortOrder = null;
 
-		final String tag = "wn.sense1";
-		final SqlunetViewModel model = ViewModelProviders.of(this.fragment, new SqlunetViewModelFactory(this.fragment, uri, projection, selection, selectionArgs, sortOrder)).get(tag, SqlunetViewModel.class);
-		model.loadData(tag);
-		model.getData().observe(this.fragment, entry -> {
-
-			final String key = entry.getKey();
-			if (!tag.equals(key))
-			{
-				return;
-			}
-			final Cursor cursor = entry.getValue();
-			senseToView1(cursor, parent);
-		});
-	}
-
-	private void senseToView1(@NonNull final Cursor cursor, @NonNull final TreeNode parent)
-	{
-		if (cursor.getCount() > 1)
-		{
-			throw new RuntimeException("Unexpected number of rows");
-		}
-		if (cursor.moveToFirst())
-		{
-			final int idWordId = cursor.getColumnIndex(PosTypes.POSNAME);
-			final int idSynsetId = cursor.getColumnIndex(Synsets.DEFINITION);
-			final long wordId = cursor.getLong(idWordId);
-			final long synsetId = cursor.getLong(idSynsetId);
-
-			sense(synsetId, wordId, parent);
-		}
-		else
-		{
-			FireEvent.onNoResult(parent, true);
-		}
-
-		// TODO no need to call cursor.close() ?
+		final String tag = "wn.sense(senseid)";
+		final SqlunetViewTreeModel model = ViewModelProviders.of(this.fragment).get(tag, SqlunetViewTreeModel.class);
+		model.loadData(uri, projection, selection, selectionArgs, sortOrder, cursor -> senseCursor1ToTreeModel(cursor, parent));
+		model.getData().observe(this.fragment, FireEvent::live);
 	}
 
 	/**
@@ -439,55 +355,16 @@ abstract public class BaseModule extends Module
 		final String[] selectionArgs = {senseKey};
 		final String sortOrder = null;
 
-		final String tag = "wn.sense2";
-		final SqlunetViewModel model = ViewModelProviders.of(this.fragment, new SqlunetViewModelFactory(this.fragment, uri, projection, selection, selectionArgs, sortOrder)).get(tag, SqlunetViewModel.class);
-		model.loadData(tag);
-		model.getData().observe(this.fragment, entry -> {
-
-			final String key = entry.getKey();
-			if (!tag.equals(key))
-			{
-				return;
-			}
-			final Cursor cursor = entry.getValue();
-			senseToView2(cursor, parent);
-		});
-	}
-
-	private void senseToView2(@NonNull final Cursor cursor, @NonNull final TreeNode parent)
-	{
-		if (cursor.getCount() > 1)
-		{
-			throw new RuntimeException("Unexpected number of rows");
-		}
-		if (cursor.moveToFirst())
-		{
-			final int idWordId = cursor.getColumnIndex(Senses.WORDID);
-			final int idSynsetId = cursor.getColumnIndex(Senses.SYNSETID);
-			final long wordId = cursor.getLong(idWordId);
-			final long synsetId = cursor.getLong(idSynsetId);
-
-			// sub nodes
-			final TreeNode wordNode = TreeFactory.newTextNode("Word");
-			parent.addChild(wordNode);
-			FireEvent.onResults(parent);
-
-			// word
-			word(wordId, wordNode, false);
-			sense(synsetId, wordId, wordNode);
-		}
-		else
-		{
-			FireEvent.onNoResult(parent, true);
-		}
-
-		// TODO no need to call cursor.close() ?
+		final String tag = "wn.sense(sensekey)";
+		final SqlunetViewTreeModel model = ViewModelProviders.of(this.fragment).get(tag, SqlunetViewTreeModel.class);
+		model.loadData(uri, projection, selection, selectionArgs, sortOrder, cursor -> senseCursor2ToTreeModel(cursor, parent));
+		model.getData().observe(this.fragment, FireEvent::live);
 	}
 
 	/**
 	 * Sense
 	 *
-	 * @param synsetId synset id
+	 * @param synsetId synsetCursorToTreeModel id
 	 * @param wordId   word id
 	 * @param parent   parent node
 	 */
@@ -503,22 +380,67 @@ abstract public class BaseModule extends Module
 		final String[] selectionArgs = {Long.toString(synsetId)};
 		final String sortOrder = null;
 
-		final String tag = "wn.sense3";
-		final SqlunetViewModel model = ViewModelProviders.of(this.fragment, new SqlunetViewModelFactory(this.fragment, uri, projection, selection, selectionArgs, sortOrder)).get(tag, SqlunetViewModel.class);
-		model.loadData(tag);
-		model.getData().observe(this.fragment, entry -> {
-
-			final String key = entry.getKey();
-			if (!tag.equals(key))
-			{
-				return;
-			}
-			final Cursor cursor = entry.getValue();
-			senseToView3(cursor, synsetId, wordId, parent);
-		});
+		final String tag = "wn.sense(synsetid,wordid)";
+		final SqlunetViewTreeModel model = ViewModelProviders.of(this.fragment).get(tag, SqlunetViewTreeModel.class);
+		model.loadData(uri, projection, selection, selectionArgs, sortOrder, cursor -> senseCursor3ToTreeModel(cursor, synsetId, wordId, parent));
+		model.getData().observe(this.fragment, FireEvent::live);
 	}
 
-	private void senseToView3(@NonNull final Cursor cursor, final long synsetId, final long wordId, @NonNull final TreeNode parent)
+	private TreeNode senseCursor1ToTreeModel(@NonNull final Cursor cursor, @NonNull final TreeNode parent)
+	{
+		if (cursor.getCount() > 1)
+		{
+			throw new RuntimeException("Unexpected number of rows");
+		}
+		if (cursor.moveToFirst())
+		{
+			final int idWordId = cursor.getColumnIndex(PosTypes.POSNAME);
+			final int idSynsetId = cursor.getColumnIndex(Synsets.DEFINITION);
+			final long wordId = cursor.getLong(idWordId);
+			final long synsetId = cursor.getLong(idSynsetId);
+
+			sense(synsetId, wordId, parent);
+		}
+		else
+		{
+			TreeFactory.setNoResult(parent, true);
+		}
+
+		cursor.close();
+		return parent;
+	}
+
+	private TreeNode senseCursor2ToTreeModel(@NonNull final Cursor cursor, @NonNull final TreeNode parent)
+	{
+		if (cursor.getCount() > 1)
+		{
+			throw new RuntimeException("Unexpected number of rows");
+		}
+		if (cursor.moveToFirst())
+		{
+			final int idWordId = cursor.getColumnIndex(Senses.WORDID);
+			final int idSynsetId = cursor.getColumnIndex(Senses.SYNSETID);
+			final long wordId = cursor.getLong(idWordId);
+			final long synsetId = cursor.getLong(idSynsetId);
+
+			// sub nodes
+			final TreeNode wordNode = TreeFactory.newTextNode("Word");
+			parent.addChild(wordNode);
+
+			// word
+			word(wordId, wordNode, false);
+			sense(synsetId, wordId, wordNode);
+		}
+		else
+		{
+			TreeFactory.setNoResult(parent, true);
+		}
+
+		cursor.close();
+		return parent;
+	}
+
+	private TreeNode senseCursor3ToTreeModel(@NonNull final Cursor cursor, final long synsetId, final long wordId, @NonNull final TreeNode parent)
 	{
 		if (cursor.getCount() > 1)
 		{
@@ -552,18 +474,19 @@ abstract public class BaseModule extends Module
 		}
 		else
 		{
-			FireEvent.onNoResult(parent, true);
+			TreeFactory.setNoResult(parent, true);
 		}
 
-		// TODO no need to call cursor.close() ?
+		cursor.close();
+		return parent;
 	}
 
-	// Synset
+	// S Y N S E T
 
 	/**
 	 * Synset
 	 *
-	 * @param synsetId   synset id
+	 * @param synsetId   synsetCursorToTreeModel id
 	 * @param parent     parent node
 	 * @param addNewNode whether to addItem to (or set) node
 	 */
@@ -578,23 +501,13 @@ abstract public class BaseModule extends Module
 		final String selection = Synsets_PosTypes_LexDomains.SYNSETID + " = ?";
 		final String[] selectionArgs = {Long.toString(synsetId)};
 		final String sortOrder = null;
-		final String tag = "wn.synset";
-		final SqlunetViewModel model = ViewModelProviders.of(this.fragment, new SqlunetViewModelFactory(this.fragment, uri, projection, selection, selectionArgs, sortOrder)).get(tag, SqlunetViewModel.class);
-		model.loadData(tag);
-		model.getData().observe(this.fragment, entry -> {
-
-			final String key = entry.getKey();
-			if (!tag.equals(key))
-			{
-				return;
-			}
-
-			final Cursor cursor = entry.getValue();
-			synset(cursor, synsetId, parent, addNewNode);
-		});
+		final String tag = "wn.synset(synsetid)";
+		final SqlunetViewTreeModel model = ViewModelProviders.of(this.fragment).get(tag, SqlunetViewTreeModel.class);
+		model.loadData(uri, projection, selection, selectionArgs, sortOrder, cursor -> synsetCursorToTreeModel(cursor, synsetId, parent, addNewNode));
+		model.getData().observe(this.fragment, FireEvent::live);
 	}
 
-	private void synset(@NonNull final Cursor cursor, final long synsetId, @NonNull final TreeNode parent, @SuppressWarnings("SameParameterValue") final boolean addNewNode)
+	private TreeNode synsetCursorToTreeModel(@NonNull final Cursor cursor, final long synsetId, @NonNull final TreeNode parent, @SuppressWarnings("SameParameterValue") final boolean addNewNode)
 	{
 		if (cursor.getCount() > 1)
 		{
@@ -618,26 +531,26 @@ abstract public class BaseModule extends Module
 			if (addNewNode)
 			{
 				TreeFactory.addTextNode(parent, sb);
-				FireEvent.onResults(parent);
 			}
 			else
 			{
-				FireEvent.onResults(parent, sb);
+				TreeFactory.setTextNode(parent, sb);
 			}
 		}
 		else
 		{
-			FireEvent.onNoResult(parent, addNewNode);
+			TreeFactory.setNoResult(parent, addNewNode);
 		}
 
-		// TODO no need to call cursor.close() ?()
+		cursor.close();
+		return parent;
 	}
 
 	/**
 	 * Sense to string builder
 	 *
 	 * @param sb         string builder
-	 * @param synsetId   synset id
+	 * @param synsetId   synsetCursorToTreeModel id
 	 * @param posName    pos
 	 * @param lexDomain  lex domain
 	 * @param definition definition
@@ -674,7 +587,7 @@ abstract public class BaseModule extends Module
 	 * Synset to string builder
 	 *
 	 * @param sb         string builder
-	 * @param synsetId   synset id
+	 * @param synsetId   synsetCursorToTreeModel id
 	 * @param posName    pos
 	 * @param lexDomain  lex domain
 	 * @param definition definition
@@ -694,7 +607,7 @@ abstract public class BaseModule extends Module
 	 * Synset head to string builder
 	 *
 	 * @param sb        string builder
-	 * @param synsetId  synset id
+	 * @param synsetId  synsetCursorToTreeModel id
 	 * @param posName   pos
 	 * @param lexDomain lex domain
 	 * @return string builder
@@ -732,10 +645,12 @@ abstract public class BaseModule extends Module
 		return sb;
 	}
 
+	// M E M B E R S
+
 	/**
 	 * Members
 	 *
-	 * @param synsetId   synset
+	 * @param synsetId   synsetCursorToTreeModel
 	 * @param parent     parent node
 	 * @param addNewNode whether to addItem to (or set) node
 	 */
@@ -749,22 +664,33 @@ abstract public class BaseModule extends Module
 		final String[] selectionArgs = {Long.toString(synsetId)};
 		final String sortOrder = Words.LEMMA;
 
-		final String tag = "wn.members1";
-		final SqlunetViewModel model = ViewModelProviders.of(this.fragment, new SqlunetViewModelFactory(this.fragment, uri, projection, selection, selectionArgs, sortOrder)).get(tag, SqlunetViewModel.class);
-		model.loadData(tag);
-		model.getData().observe(this.fragment, entry -> {
-
-			final String key = entry.getKey();
-			if (!tag.equals(key))
-			{
-				return;
-			}
-			final Cursor cursor = entry.getValue();
-			membersToView1(cursor, parent, addNewNode);
-		});
+		final String tag = "wn.members(synsetid)";
+		final SqlunetViewTreeModel model = ViewModelProviders.of(this.fragment).get(tag, SqlunetViewTreeModel.class);
+		model.loadData(uri, projection, selection, selectionArgs, sortOrder, cursor -> membersCursor1ToTreeModel(cursor, parent, addNewNode));
+		model.getData().observe(this.fragment, FireEvent::live);
 	}
 
-	private void membersToView1(final Cursor cursor, @NonNull final TreeNode parent, final boolean addNewNode)
+	/**
+	 * Members
+	 *
+	 * @param synsetId synsetCursorToTreeModel
+	 * @param parent   parent node
+	 */
+	void members(final long synsetId, @NonNull final TreeNode parent)
+	{
+		final Uri uri = Uri.parse(WordNetProvider.makeUri(Senses_Words.CONTENT_URI_TABLE));
+		final String[] projection = {Senses_Words.WORDID, Senses_Words.MEMBER};
+		final String selection = Senses_Words.SYNSETID + " = ?";
+		final String[] selectionArgs = {Long.toString(synsetId)};
+		final String sortOrder = Senses_Words.MEMBER;
+
+		final String tag = "wn.members2(synsetid)";
+		final SqlunetViewTreeModel model = ViewModelProviders.of(this.fragment).get(tag, SqlunetViewTreeModel.class);
+		model.loadData(uri, projection, selection, selectionArgs, sortOrder, cursor -> membersCursorToTreeModel(cursor, parent));
+		model.getData().observe(this.fragment, FireEvent::live);
+	}
+
+	private TreeNode membersCursor1ToTreeModel(final Cursor cursor, @NonNull final TreeNode parent, final boolean addNewNode)
 	{
 		if (BaseModule.this.membersGrouped)
 		{
@@ -809,51 +735,22 @@ abstract public class BaseModule extends Module
 			if (addNewNode)
 			{
 				TreeFactory.addTextNode(parent, sb);
-				FireEvent.onResults(parent);
 			}
 			else
 			{
-				FireEvent.onResults(parent, sb);
+				TreeFactory.setTextNode(parent, sb);
 			}
 		}
 		else
 		{
-			FireEvent.onNoResult(parent, addNewNode);
+			TreeFactory.setNoResult(parent, addNewNode);
 		}
 
-		// TODO no need to call cursor.close() ?
+		cursor.close();
+		return parent;
 	}
 
-	/**
-	 * Members
-	 *
-	 * @param synsetId synset
-	 * @param parent   parent node
-	 */
-	void members(final long synsetId, @NonNull final TreeNode parent)
-	{
-		final Uri uri = Uri.parse(WordNetProvider.makeUri(Senses_Words.CONTENT_URI_TABLE));
-		final String[] projection = {Senses_Words.WORDID, Senses_Words.MEMBER};
-		final String selection = Senses_Words.SYNSETID + " = ?";
-		final String[] selectionArgs = {Long.toString(synsetId)};
-		final String sortOrder = Senses_Words.MEMBER;
-
-		final String tag = "wn.members2";
-		final SqlunetViewModel model = ViewModelProviders.of(this.fragment, new SqlunetViewModelFactory(this.fragment, uri, projection, selection, selectionArgs, sortOrder)).get(tag, SqlunetViewModel.class);
-		model.loadData(tag);
-		model.getData().observe(this.fragment, entry -> {
-
-			final String key = entry.getKey();
-			if (!tag.equals(key))
-			{
-				return;
-			}
-			final Cursor cursor = entry.getValue();
-			membersToView2(cursor, parent);
-		});
-	}
-
-	private void membersToView2(@NonNull final Cursor cursor, @NonNull final TreeNode parent)
+	private TreeNode membersCursorToTreeModel(@NonNull final Cursor cursor, @NonNull final TreeNode parent)
 	{
 		if (BaseModule.this.membersGrouped)
 		{
@@ -886,21 +783,22 @@ abstract public class BaseModule extends Module
 				parent.addChild(memberNode);
 			}
 			while (cursor.moveToNext());
-
-			FireEvent.onResults(parent);
 		}
 		else
 		{
-			FireEvent.onNoResult(parent, true);
+			TreeFactory.setNoResult(parent, true);
 		}
 
-		// TODO no need to call cursor.close() ?()?
+		cursor.close();
+		return parent;
 	}
+
+	// S A M P L E S
 
 	/**
 	 * Samples
 	 *
-	 * @param synsetId   synset id
+	 * @param synsetId   synsetCursorToTreeModel id
 	 * @param parent     parent node
 	 * @param addNewNode whether to addItem to (or set) node
 	 */
@@ -916,22 +814,13 @@ abstract public class BaseModule extends Module
 		final String[] selectionArgs = {Long.toString(synsetId)};
 		final String sortOrder = Samples.SAMPLEID;
 
-		final String tag = "wn.samples";
-		final SqlunetViewModel model = ViewModelProviders.of(this.fragment, new SqlunetViewModelFactory(this.fragment, uri, projection, selection, selectionArgs, sortOrder)).get(tag, SqlunetViewModel.class);
-		model.loadData(tag);
-		model.getData().observe(this.fragment, entry -> {
-
-			final String key = entry.getKey();
-			if (!tag.equals(key))
-			{
-				return;
-			}
-			final Cursor cursor = entry.getValue();
-			samplesToView(cursor, parent, addNewNode);
-		});
+		final String tag = "wn.samples(synsetid)";
+		final SqlunetViewTreeModel model = ViewModelProviders.of(this.fragment).get(tag, SqlunetViewTreeModel.class);
+		model.loadData(uri, projection, selection, selectionArgs, sortOrder, cursor -> samplesCursorToTreeModel(cursor, parent, addNewNode));
+		model.getData().observe(this.fragment, FireEvent::live);
 	}
 
-	private void samplesToView(@NonNull final Cursor cursor, @NonNull final TreeNode parent, @SuppressWarnings("SameParameterValue") final boolean addNewNode)
+	private TreeNode samplesCursorToTreeModel(@NonNull final Cursor cursor, @NonNull final TreeNode parent, @SuppressWarnings("SameParameterValue") final boolean addNewNode)
 	{
 		if (cursor.moveToFirst())
 		{
@@ -960,20 +849,22 @@ abstract public class BaseModule extends Module
 			if (addNewNode)
 			{
 				TreeFactory.addTextNode(parent, sb);
-				FireEvent.onResults(parent);
 			}
 			else
 			{
-				FireEvent.onResults(parent, sb);
+				TreeFactory.setTextNode(parent, sb);
 			}
 		}
 		else
 		{
-			FireEvent.onNoResult(parent, addNewNode);
+			TreeFactory.setNoResult(parent, addNewNode);
 		}
 
-		// TODO no need to call cursor.close() ?
+		cursor.close();
+		return parent;
 	}
+
+	// S E M L I N K S
 
 	static private final String TARGET_SYNSETID = "d_synsetid";
 	static private final String TARGET_DEFINITION = "d_definition";
@@ -983,7 +874,7 @@ abstract public class BaseModule extends Module
 	/**
 	 * Semantic links
 	 *
-	 * @param synsetId synset id
+	 * @param synsetId synsetCursorToTreeModel id
 	 * @param parent   parent node
 	 */
 	private void semLinks(final long synsetId, @NonNull final TreeNode parent)
@@ -1000,22 +891,40 @@ abstract public class BaseModule extends Module
 		final String[] selectionArgs = {Long.toString(synsetId)};
 		final String sortOrder = LinkTypes.LINKID;
 
-		final String tag = "wn.semlinks1";
-		final SqlunetViewModel model = ViewModelProviders.of(this.fragment, new SqlunetViewModelFactory(this.fragment, uri, projection, selection, selectionArgs, sortOrder)).get(tag, SqlunetViewModel.class);
-		model.loadData(tag);
-		model.getData().observe(this.fragment, entry -> {
-
-			final String key = entry.getKey();
-			if (!tag.equals(key))
-			{
-				return;
-			}
-			final Cursor cursor = entry.getValue();
-			semLinksToView1(cursor, parent);
-		});
+		final String tag = "wn.semlinks(synsetid)";
+		final SqlunetViewTreeModel model = ViewModelProviders.of(this.fragment).get(tag, SqlunetViewTreeModel.class);
+		model.loadData(uri, projection, selection, selectionArgs, sortOrder, cursor -> semLinksCursor1ToTreeModel(cursor, parent));
+		model.getData().observe(this.fragment, FireEvent::live);
 	}
 
-	private void semLinksToView1(@NonNull final Cursor cursor, @NonNull final TreeNode parent)
+	/**
+	 * Semantic links
+	 *
+	 * @param synsetId synsetCursorToTreeModel id
+	 * @param linkId   link id
+	 * @param parent   parent node
+	 */
+	private void semLinks(final long synsetId, final int linkId, final int recurseLevel, @NonNull final TreeNode parent)
+	{
+		final Uri uri = Uri.parse(WordNetProvider.makeUri(SemLinks_Synsets_Words_X.CONTENT_URI_TABLE));
+		final String[] projection = { //
+				WordNetContract.DEST + '.' + Synsets.SYNSETID + " AS " + BaseModule.TARGET_SYNSETID, //
+				WordNetContract.DEST + '.' + Synsets.DEFINITION + " AS " + BaseModule.TARGET_DEFINITION, //
+				LinkTypes.LINK, //
+				LinkTypes.LINKID, //
+				LinkTypes.RECURSES, //
+		};
+		final String selection = WordNetContract.LINK + '.' + SemLinks_Synsets_Words_X.SYNSET1ID + " = ? AND " + LinkTypes.LINKID + " = ?";
+		final String[] selectionArgs = {Long.toString(synsetId), Integer.toString(linkId)};
+		final String sortOrder = null;
+
+		final String tag = "wn.semlinks(synsetid,linkid)";
+		final SqlunetViewTreeModel model = ViewModelProviders.of(this.fragment).get(tag, SqlunetViewTreeModel.class);
+		model.loadData(uri, projection, selection, selectionArgs, sortOrder, cursor -> semLinksCursor2ToTreeModel(cursor, linkId, recurseLevel, parent));
+		model.getData().observe(this.fragment, FireEvent::live);
+	}
+
+	private TreeNode semLinksCursor1ToTreeModel(@NonNull final Cursor cursor, @NonNull final TreeNode parent)
 	{
 		// noinspection StatementWithEmptyBody
 		if (cursor.moveToFirst())
@@ -1057,55 +966,17 @@ abstract public class BaseModule extends Module
 				}
 			}
 			while (cursor.moveToNext());
-
-			// fire event
-			FireEvent.onResults(parent);
 		}
 		else
 		{
-			// FireEvent.onNoResult(parent, true)
+			TreeFactory.setNoResult(parent, true);
 		}
 
-		// TODO no need to call cursor.close() ?
+		cursor.close();
+		return parent;
 	}
 
-	/**
-	 * Semantic links
-	 *
-	 * @param synsetId synset id
-	 * @param linkId   link id
-	 * @param parent   parent node
-	 */
-	private void semLinks(final long synsetId, final int linkId, final int recurseLevel, @NonNull final TreeNode parent)
-	{
-		final Uri uri = Uri.parse(WordNetProvider.makeUri(SemLinks_Synsets_Words_X.CONTENT_URI_TABLE));
-		final String[] projection = { //
-				WordNetContract.DEST + '.' + Synsets.SYNSETID + " AS " + BaseModule.TARGET_SYNSETID, //
-				WordNetContract.DEST + '.' + Synsets.DEFINITION + " AS " + BaseModule.TARGET_DEFINITION, //
-				LinkTypes.LINK, //
-				LinkTypes.LINKID, //
-				LinkTypes.RECURSES, //
-		};
-		final String selection = WordNetContract.LINK + '.' + SemLinks_Synsets_Words_X.SYNSET1ID + " = ? AND " + LinkTypes.LINKID + " = ?";
-		final String[] selectionArgs = {Long.toString(synsetId), Integer.toString(linkId)};
-		final String sortOrder = null;
-
-		final String tag = "wn.semlinks2";
-		final SqlunetViewModel model = ViewModelProviders.of(this.fragment, new SqlunetViewModelFactory(this.fragment, uri, projection, selection, selectionArgs, sortOrder)).get(tag, SqlunetViewModel.class);
-		model.loadData(tag);
-		model.getData().observe(this.fragment, entry -> {
-
-			final String key = entry.getKey();
-			if (!tag.equals(key))
-			{
-				return;
-			}
-			final Cursor cursor = entry.getValue();
-			semLinksToView2(cursor, linkId, recurseLevel, parent);
-		});
-	}
-
-	private void semLinksToView2(@NonNull final Cursor cursor, final int linkId, final int recurseLevel, @NonNull final TreeNode parent)
+	private TreeNode semLinksCursor2ToTreeModel(@NonNull final Cursor cursor, final int linkId, final int recurseLevel, @NonNull final TreeNode parent)
 	{
 		if (cursor.moveToFirst())
 		{
@@ -1154,22 +1025,22 @@ abstract public class BaseModule extends Module
 				}
 			}
 			while (cursor.moveToNext());
-
-			// fire event
-			FireEvent.onResults(parent);
 		}
 		else
 		{
-			FireEvent.onNoResult(parent, true);
+			TreeFactory.setNoResult(parent, true);
 		}
 
-		// TODO no need to call cursor.close() ?
+		cursor.close();
+		return parent;
 	}
+
+	// L E X L I N K S
 
 	/**
 	 * Lexical links
 	 *
-	 * @param synsetId synset id
+	 * @param synsetId synsetCursorToTreeModel id
 	 * @param parent   parent
 	 */
 	@SuppressWarnings("unused")
@@ -1187,22 +1058,39 @@ abstract public class BaseModule extends Module
 		final String[] selectionArgs = {Long.toString(synsetId)};
 		final String sortOrder = null;
 
-		final String tag = "wn.lexlinks1";
-		final SqlunetViewModel model = ViewModelProviders.of(this.fragment, new SqlunetViewModelFactory(this.fragment, uri, projection, selection, selectionArgs, sortOrder)).get(tag, SqlunetViewModel.class);
-		model.loadData(tag);
-		model.getData().observe(this.fragment, entry -> {
-
-			final String key = entry.getKey();
-			if (!tag.equals(key))
-			{
-				return;
-			}
-			final Cursor cursor = entry.getValue();
-			lexLinksToView1(cursor, parent);
-		});
+		final String tag = "wn.lexlinks(synsetid)";
+		final SqlunetViewTreeModel model = ViewModelProviders.of(this.fragment).get(tag, SqlunetViewTreeModel.class);
+		model.loadData(uri, projection, selection, selectionArgs, sortOrder, cursor -> lexLinksCursor1ToTreeModel(cursor, parent));
+		model.getData().observe(this.fragment, FireEvent::live);
 	}
 
-	private void lexLinksToView1(@NonNull final Cursor cursor, @NonNull final TreeNode parent)
+	/**
+	 * Lexical links
+	 *
+	 * @param synsetId synsetCursorToTreeModel id
+	 * @param wordId   word id
+	 * @param parent   parent node
+	 */
+	private void lexLinks(final long synsetId, final long wordId, @NonNull final TreeNode parent)
+	{
+		final Uri uri = Uri.parse(WordNetProvider.makeUri(LexLinks_Senses_Words_X.CONTENT_URI_TABLE));
+		final String[] projection = { //
+				WordNetContract.DEST + '.' + Synsets.SYNSETID + " AS " + BaseModule.TARGET_SYNSETID, //
+				WordNetContract.DEST + '.' + Synsets.DEFINITION + " AS " + BaseModule.TARGET_DEFINITION, //
+				WordNetContract.WORD + '.' + Words.LEMMA + " AS " + BaseModule.TARGET_LEMMA, //
+				WordNetContract.WORD + '.' + Words.WORDID + " AS " + BaseModule.TARGET_WORDID, //
+				LinkTypes.LINK, LinkTypes.LINKID,};
+		final String selection = WordNetContract.LINK + ".synset1id = ? AND " + WordNetContract.LINK + ".word1id = ?";
+		final String[] selectionArgs = {Long.toString(synsetId), Long.toString(wordId)};
+		final String sortOrder = LinkTypes.LINKID;
+
+		final String tag = "wn.lexlinks(synsetid,wordid)";
+		final SqlunetViewTreeModel model = ViewModelProviders.of(this.fragment).get(tag, SqlunetViewTreeModel.class);
+		model.loadData(uri, projection, selection, selectionArgs, sortOrder, cursor -> lexLinksCursor2ToTreeModel(cursor, parent));
+		model.getData().observe(this.fragment, FireEvent::live);
+	}
+
+	private TreeNode lexLinksCursor1ToTreeModel(@NonNull final Cursor cursor, @NonNull final TreeNode parent)
 	{
 		if (cursor.moveToFirst())
 		{
@@ -1232,7 +1120,7 @@ abstract public class BaseModule extends Module
 					// final String targetWordId = cursor.getString(idTargetWordId);
 					final String targetLemma = cursor.getString(idTargetLemma);
 
-					// final String record = String.format(Locale.ENGLISH, "[%s] %s (%s)\n\t%s (synset %s) {%s}", link, targetLemma, targetWordId, targetDefinition, targetSynsetId, targetMembers);
+					// final String record = String.format(Locale.ENGLISH, "[%s] %s (%s)\n\t%s (synsetCursorToTreeModel %s) {%s}", link, targetLemma, targetWordId, targetDefinition, targetSynsetId, targetMembers);
 
 					if (sb.length() != 0)
 					{
@@ -1257,55 +1145,17 @@ abstract public class BaseModule extends Module
 
 				// attach result
 				TreeFactory.addTextNode(parent, sb);
-
-				// fire event
-				FireEvent.onResults(parent);
 			}
 			else
 			{
-				// FireEvent.onNoResult(parent, true)
+				TreeFactory.setNoResult(parent, true);
 			}
-
-			// TODO no need to call cursor.close() ?
 		}
+		cursor.close();
+		return parent;
 	}
 
-	/**
-	 * Lexical links
-	 *
-	 * @param synsetId synset id
-	 * @param wordId   word id
-	 * @param parent   parent node
-	 */
-	private void lexLinks(final long synsetId, final long wordId, @NonNull final TreeNode parent)
-	{
-		final Uri uri = Uri.parse(WordNetProvider.makeUri(LexLinks_Senses_Words_X.CONTENT_URI_TABLE));
-		final String[] projection = { //
-				WordNetContract.DEST + '.' + Synsets.SYNSETID + " AS " + BaseModule.TARGET_SYNSETID, //
-				WordNetContract.DEST + '.' + Synsets.DEFINITION + " AS " + BaseModule.TARGET_DEFINITION, //
-				WordNetContract.WORD + '.' + Words.LEMMA + " AS " + BaseModule.TARGET_LEMMA, //
-				WordNetContract.WORD + '.' + Words.WORDID + " AS " + BaseModule.TARGET_WORDID, //
-				LinkTypes.LINK, LinkTypes.LINKID,};
-		final String selection = WordNetContract.LINK + ".synset1id = ? AND " + WordNetContract.LINK + ".word1id = ?";
-		final String[] selectionArgs = {Long.toString(synsetId), Long.toString(wordId)};
-		final String sortOrder = LinkTypes.LINKID;
-
-		final String tag = "wn.lexlinks2";
-		final SqlunetViewModel model = ViewModelProviders.of(this.fragment, new SqlunetViewModelFactory(this.fragment, uri, projection, selection, selectionArgs, sortOrder)).get(tag, SqlunetViewModel.class);
-		model.loadData(tag);
-		model.getData().observe(this.fragment, entry -> {
-
-			final String key = entry.getKey();
-			if (!tag.equals(key))
-			{
-				return;
-			}
-			final Cursor cursor = entry.getValue();
-			lexLinksToView2(cursor, parent);
-		});
-	}
-
-	private void lexLinksToView2(@NonNull final Cursor cursor, @NonNull final TreeNode parent)
+	private TreeNode lexLinksCursor2ToTreeModel(@NonNull final Cursor cursor, @NonNull final TreeNode parent)
 	{
 		if (cursor.moveToFirst())
 		{
@@ -1334,7 +1184,7 @@ abstract public class BaseModule extends Module
 					final String targetLemma = cursor.getString(idTargetLemma);
 					// final String targetWordId = cursor.getString(idTargetWordId);
 
-					// final String record = String.format(Locale.ENGLISH, "[%s] %s (%s)\n\t%s (synset %s) {%s}", link, targetLemma, targetWordId,targetDefinition, targetSynsetId, targetMembers);
+					// final String record = String.format(Locale.ENGLISH, "[%s] %s (%s)\n\t%s (synsetCursorToTreeModel %s) {%s}", link, targetLemma, targetWordId,targetDefinition, targetSynsetId, targetMembers);
 
 					if (sb.length() != 0)
 					{
@@ -1347,7 +1197,7 @@ abstract public class BaseModule extends Module
 					// sb.append(" in ");
 					// sb.append(' ');
 					// sb.append('{');
-					// Spanner.append(sb, membersToView1, 0, WordNetFactories.membersFactory);
+					// Spanner.append(sb, membersCursor1ToTreeModel, 0, WordNetFactories.membersFactory);
 					// sb.append('}');
 					sb.append(' ');
 					Spanner.append(sb, targetDefinition, 0, WordNetFactories.definitionFactory);
@@ -1357,23 +1207,23 @@ abstract public class BaseModule extends Module
 					parent.addChild(linkNode);
 				}
 				while (cursor.moveToNext());
-
-				// fire event
-				FireEvent.onResults(parent);
 			}
 			else
 			{
-				// FireEvent.onNoResult(parent, true)
+				TreeFactory.setNoResult(parent, true);
 			}
 
-			// TODO no need to call cursor.close() ?
 		}
+		cursor.close();
+		return parent;
 	}
+
+	// V F R A M E S
 
 	/**
 	 * Verb frames
 	 *
-	 * @param synsetId synset id
+	 * @param synsetId synsetCursorToTreeModel id
 	 * @param parent   parent node
 	 */
 	void vFrames(final long synsetId, @NonNull final TreeNode parent)
@@ -1384,25 +1234,16 @@ abstract public class BaseModule extends Module
 		final String[] selectionArgs = {Long.toString(synsetId)};
 		final String sortOrder = null;
 
-		final String tag = "wn.vframes1";
-		final SqlunetViewModel model = ViewModelProviders.of(this.fragment, new SqlunetViewModelFactory(this.fragment, uri, projection, selection, selectionArgs, sortOrder)).get(tag, SqlunetViewModel.class);
-		model.loadData(tag);
-		model.getData().observe(this.fragment, entry -> {
-
-			final String key = entry.getKey();
-			if (!tag.equals(key))
-			{
-				return;
-			}
-			final Cursor cursor = entry.getValue();
-			vframesToView(cursor, parent);
-		});
+		final String tag = "wn.vframes(synsetid)";
+		final SqlunetViewTreeModel model = ViewModelProviders.of(this.fragment).get(tag, SqlunetViewTreeModel.class);
+		model.loadData(uri, projection, selection, selectionArgs, sortOrder, cursor -> vframesCursorToTreeModel(cursor, parent));
+		model.getData().observe(this.fragment, FireEvent::live);
 	}
 
 	/**
 	 * Verb frames
 	 *
-	 * @param synsetId synset id
+	 * @param synsetId synsetCursorToTreeModel id
 	 * @param wordId   word id
 	 * @param parent   parent node
 	 */
@@ -1414,22 +1255,13 @@ abstract public class BaseModule extends Module
 		final String[] selectionArgs = {Long.toString(synsetId), Long.toString(wordId)};
 		final String sortOrder = null;
 
-		final String tag = "wn.vframes2";
-		final SqlunetViewModel model = ViewModelProviders.of(this.fragment, new SqlunetViewModelFactory(this.fragment, uri, projection, selection, selectionArgs, sortOrder)).get(tag, SqlunetViewModel.class);
-		model.loadData(tag);
-		model.getData().observe(this.fragment, entry -> {
-
-			final String key = entry.getKey();
-			if (!tag.equals(key))
-			{
-				return;
-			}
-			final Cursor cursor = entry.getValue();
-			vframesToView(cursor, parent);
-		});
+		final String tag = "wn.vframes(synsetid,wordid)";
+		final SqlunetViewTreeModel model = ViewModelProviders.of(this.fragment).get(tag, SqlunetViewTreeModel.class);
+		model.loadData(uri, projection, selection, selectionArgs, sortOrder, cursor -> vframesCursorToTreeModel(cursor, parent));
+		model.getData().observe(this.fragment, FireEvent::live);
 	}
 
-	private void vframesToView(@NonNull final Cursor cursor, @NonNull final TreeNode parent)
+	private TreeNode vframesCursorToTreeModel(@NonNull final Cursor cursor, @NonNull final TreeNode parent)
 	{
 		//noinspection StatementWithEmptyBody
 		if (cursor.moveToFirst())
@@ -1453,22 +1285,22 @@ abstract public class BaseModule extends Module
 
 			// attach result
 			TreeFactory.addTextNode(parent, sb);
-
-			// fire event
-			FireEvent.onResults(parent);
 		}
 		else
 		{
-			// FireEvent.onNoResult(parent, true)
+			TreeFactory.setNoResult(parent, true);
 		}
 
-		// TODO no need to call cursor.close() ?
+		cursor.close();
+		return parent;
 	}
+
+	// V F R A M E S E N TE N C E S
 
 	/**
 	 * Verb frame sentences
 	 *
-	 * @param synsetId synset id
+	 * @param synsetId synsetCursorToTreeModel id
 	 * @param parent   parent node
 	 */
 	void vFrameSentences(final long synsetId, @NonNull final TreeNode parent)
@@ -1479,22 +1311,34 @@ abstract public class BaseModule extends Module
 		final String[] selectionArgs = {Long.toString(synsetId)};
 		final String sortOrder = null;
 
-		final String tag = "wn.vframesentences1";
-		final SqlunetViewModel model = ViewModelProviders.of(this.fragment, new SqlunetViewModelFactory(this.fragment, uri, projection, selection, selectionArgs, sortOrder)).get(tag, SqlunetViewModel.class);
-		model.loadData(tag);
-		model.getData().observe(this.fragment, entry -> {
-
-			final String key = entry.getKey();
-			if (!tag.equals(key))
-			{
-				return;
-			}
-			final Cursor cursor = entry.getValue();
-			vFrameSentencesToView1(cursor, parent);
-		});
+		final String tag = "wn.vframesentences(synsetid)";
+		final SqlunetViewTreeModel model = ViewModelProviders.of(this.fragment).get(tag, SqlunetViewTreeModel.class);
+		model.loadData(uri, projection, selection, selectionArgs, sortOrder, cursor -> vFrameSentencesCursor1ToTreeModel(cursor, parent));
+		model.getData().observe(this.fragment, FireEvent::live);
 	}
 
-	private void vFrameSentencesToView1(@NonNull final Cursor cursor, @NonNull final TreeNode parent)
+	/**
+	 * Verb frame sentences
+	 *
+	 * @param synsetId synsetCursorToTreeModel id
+	 * @param wordId   word id
+	 * @param parent   parent node
+	 */
+	void vFrameSentences(final long synsetId, final long wordId, @NonNull final TreeNode parent)
+	{
+		final Uri uri = Uri.parse(WordNetProvider.makeUri(VerbFrameSentenceMaps_VerbFrameSentences.CONTENT_URI_TABLE));
+		final String[] projection = {VerbFrameSentenceMaps_VerbFrameSentences.SENTENCE};
+		final String selection = VerbFrameSentenceMaps_VerbFrameSentences.SYNSETID + " = ? AND " + VerbFrameSentenceMaps_VerbFrameSentences.WORDID + " = ?";
+		final String[] selectionArgs = {Long.toString(synsetId), Long.toString(wordId)};
+		final String sortOrder = null;
+
+		final String tag = "wn.vframesentences(synsetid,wordid)";
+		final SqlunetViewTreeModel model = ViewModelProviders.of(this.fragment).get(tag, SqlunetViewTreeModel.class);
+		model.loadData(uri, projection, selection, selectionArgs, sortOrder, cursor -> vFrameSentencesCursor2ToTreeModel(cursor, parent));
+		model.getData().observe(this.fragment, FireEvent::live);
+	}
+
+	private TreeNode vFrameSentencesCursor1ToTreeModel(@NonNull final Cursor cursor, @NonNull final TreeNode parent)
 	{
 		//noinspection StatementWithEmptyBody
 		if (cursor.moveToFirst())
@@ -1518,49 +1362,17 @@ abstract public class BaseModule extends Module
 
 			// attach result
 			TreeFactory.addTextNode(parent, sb);
-
-			// fire event
-			FireEvent.onResults(parent);
 		}
 		else
 		{
-			// FireEvent.onNoResult(parent, true)
+			TreeFactory.setNoResult(parent, true);
 		}
 
-		// TODO no need to call cursor.close() ?
+		cursor.close();
+		return parent;
 	}
 
-	/**
-	 * Verb frame sentences
-	 *
-	 * @param synsetId synset id
-	 * @param wordId   word id
-	 * @param parent   parent node
-	 */
-	void vFrameSentences(final long synsetId, final long wordId, @NonNull final TreeNode parent)
-	{
-		final Uri uri = Uri.parse(WordNetProvider.makeUri(VerbFrameSentenceMaps_VerbFrameSentences.CONTENT_URI_TABLE));
-		final String[] projection = {VerbFrameSentenceMaps_VerbFrameSentences.SENTENCE};
-		final String selection = VerbFrameSentenceMaps_VerbFrameSentences.SYNSETID + " = ? AND " + VerbFrameSentenceMaps_VerbFrameSentences.WORDID + " = ?";
-		final String[] selectionArgs = {Long.toString(synsetId), Long.toString(wordId)};
-		final String sortOrder = null;
-
-		final String tag = "wn.vframesentences2";
-		final SqlunetViewModel model = ViewModelProviders.of(this.fragment, new SqlunetViewModelFactory(this.fragment, uri, projection, selection, selectionArgs, sortOrder)).get(tag, SqlunetViewModel.class);
-		model.loadData(tag);
-		model.getData().observe(this.fragment, entry -> {
-
-			final String key = entry.getKey();
-			if (!tag.equals(key))
-			{
-				return;
-			}
-			final Cursor cursor = entry.getValue();
-			vFrameSentencesToView2(cursor, parent);
-		});
-	}
-
-	private void vFrameSentencesToView2(@NonNull final Cursor cursor, @NonNull final TreeNode parent)
+	private TreeNode vFrameSentencesCursor2ToTreeModel(@NonNull final Cursor cursor, @NonNull final TreeNode parent)
 	{
 		// noinspection StatementWithEmptyBody
 		if (cursor.moveToFirst())
@@ -1585,22 +1397,22 @@ abstract public class BaseModule extends Module
 
 			// attach result
 			TreeFactory.addTextNode(parent, sb);
-
-			// fire event
-			FireEvent.onResults(parent);
 		}
 		else
 		{
-			// FireEvent.onNoResult(parent, true)
+			TreeFactory.setNoResult(parent, true);
 		}
 
-		// TODO no need to call cursor.close() ?
+		cursor.close();
+		return parent;
 	}
+
+	// A D J P O S I T I O N S
 
 	/**
 	 * Adjective positions
 	 *
-	 * @param synsetId synset id
+	 * @param synsetId synsetCursorToTreeModel id
 	 * @param parent   parent node
 	 */
 	void adjPosition(final long synsetId, @NonNull final TreeNode parent)
@@ -1611,25 +1423,16 @@ abstract public class BaseModule extends Module
 		final String[] selectionArgs = {Long.toString(synsetId)};
 		final String sortOrder = null;
 
-		final String tag = "wn.adjposition1";
-		final SqlunetViewModel model = ViewModelProviders.of(this.fragment, new SqlunetViewModelFactory(this.fragment, uri, projection, selection, selectionArgs, sortOrder)).get(tag, SqlunetViewModel.class);
-		model.loadData(tag);
-		model.getData().observe(this.fragment, entry -> {
-
-			final String key = entry.getKey();
-			if (!tag.equals(key))
-			{
-				return;
-			}
-			final Cursor cursor = entry.getValue();
-			adjPositionToView(cursor, parent);
-		});
+		final String tag = "wn.adjposition(synsetid)";
+		final SqlunetViewTreeModel model = ViewModelProviders.of(this.fragment).get(tag, SqlunetViewTreeModel.class);
+		model.loadData(uri, projection, selection, selectionArgs, sortOrder, cursor -> adjPositionCursorToTreeModel(cursor, parent));
+		model.getData().observe(this.fragment, FireEvent::live);
 	}
 
 	/**
 	 * Adjective positions
 	 *
-	 * @param synsetId synset id
+	 * @param synsetId synsetCursorToTreeModel id
 	 * @param wordId   word id
 	 * @param parent   parent node
 	 */
@@ -1641,22 +1444,13 @@ abstract public class BaseModule extends Module
 		final String[] selectionArgs = {Long.toString(synsetId), Long.toString(wordId)};
 		final String sortOrder = null;
 
-		final String tag = "wn.adjposition2";
-		final SqlunetViewModel model = ViewModelProviders.of(this.fragment, new SqlunetViewModelFactory(this.fragment, uri, projection, selection, selectionArgs, sortOrder)).get(tag, SqlunetViewModel.class);
-		model.loadData(tag);
-		model.getData().observe(this.fragment, entry -> {
-
-			final String key = entry.getKey();
-			if (!tag.equals(key))
-			{
-				return;
-			}
-			final Cursor cursor = entry.getValue();
-			adjPositionToView(cursor, parent);
-		});
+		final String tag = "wn.adjposition(synsetid,wordid)";
+		final SqlunetViewTreeModel model = ViewModelProviders.of(this.fragment).get(tag, SqlunetViewTreeModel.class);
+		model.loadData(uri, projection, selection, selectionArgs, sortOrder, cursor -> adjPositionCursorToTreeModel(cursor, parent));
+		model.getData().observe(this.fragment, FireEvent::live);
 	}
 
-	private void adjPositionToView(@NonNull final Cursor cursor, @NonNull final TreeNode parent)
+	private TreeNode adjPositionCursorToTreeModel(@NonNull final Cursor cursor, @NonNull final TreeNode parent)
 	{
 		//noinspection StatementWithEmptyBody
 		if (cursor.moveToFirst())
@@ -1680,17 +1474,17 @@ abstract public class BaseModule extends Module
 
 			// attach result
 			TreeFactory.addTextNode(parent, sb);
-
-			// fire event
-			FireEvent.onResults(parent);
 		}
 		else
 		{
-			// FireEvent.onNoResult(parent, true)
+			TreeFactory.setNoResult(parent, true);
 		}
 
-		// TODO no need to call cursor.close() ?
+		cursor.close();
+		return parent;
 	}
+
+	// M O R P H S
 
 	/**
 	 * Morphology
@@ -1706,22 +1500,13 @@ abstract public class BaseModule extends Module
 		final String[] selectionArgs = {Long.toString(wordId)};
 		final String sortOrder = null;
 
-		final String tag = "wn.morphs";
-		final SqlunetViewModel model = ViewModelProviders.of(this.fragment, new SqlunetViewModelFactory(this.fragment, uri, projection, selection, selectionArgs, sortOrder)).get(tag, SqlunetViewModel.class);
-		model.loadData(tag);
-		model.getData().observe(this.fragment, entry -> {
-
-			final String key = entry.getKey();
-			if (!tag.equals(key))
-			{
-				return;
-			}
-			final Cursor cursor = entry.getValue();
-			morphsToView(cursor, parent);
-		});
+		final String tag = "wn.morphs(wordid)";
+		final SqlunetViewTreeModel model = ViewModelProviders.of(this.fragment).get(tag, SqlunetViewTreeModel.class);
+		model.loadData(uri, projection, selection, selectionArgs, sortOrder, cursor -> morphsCursorToTreeModel(cursor, parent));
+		model.getData().observe(this.fragment, FireEvent::live);
 	}
 
-	private void morphsToView(@NonNull final Cursor cursor, @NonNull final TreeNode parent)
+	private TreeNode morphsCursorToTreeModel(@NonNull final Cursor cursor, @NonNull final TreeNode parent)
 	{
 		//noinspection StatementWithEmptyBody
 		if (cursor.moveToFirst())
@@ -1747,16 +1532,14 @@ abstract public class BaseModule extends Module
 
 			// attach result
 			TreeFactory.addTextNode(parent, sb);
-
-			// fire event
-			FireEvent.onResults(parent);
 		}
 		else
 		{
-			// FireEvent.onNoResult(parent, true)
+			TreeFactory.setNoResult(parent, true);
 		}
 
-		// TODO no need to call cursor.close() ?
+		cursor.close();
+		return parent;
 	}
 
 	// H E L P E R S
@@ -1847,7 +1630,7 @@ abstract public class BaseModule extends Module
 		/**
 		 * Constructor
 		 *
-		 * @param synsetId synset id
+		 * @param synsetId synsetCursorToTreeModel id
 		 * @param wordId   word id
 		 */
 		LinksQuery(final long synsetId, final long wordId)
@@ -1876,7 +1659,7 @@ abstract public class BaseModule extends Module
 		/**
 		 * Constructor
 		 *
-		 * @param synsetId synset id
+		 * @param synsetId synsetCursorToTreeModel id
 		 */
 		public SemLinksQuery(final long synsetId)
 		{
@@ -1904,7 +1687,7 @@ abstract public class BaseModule extends Module
 		/**
 		 * Constructor
 		 *
-		 * @param synsetId synset id
+		 * @param synsetId synsetCursorToTreeModel id
 		 * @param wordId   word id
 		 */
 		public LexLinksQuery(final long synsetId, final long wordId)
@@ -1938,7 +1721,7 @@ abstract public class BaseModule extends Module
 		/**
 		 * Constructor
 		 *
-		 * @param synsetId     synset id
+		 * @param synsetId     synsetCursorToTreeModel id
 		 * @param linkId       link id
 		 * @param recurseLevel recurse level
 		 */
@@ -1964,7 +1747,7 @@ abstract public class BaseModule extends Module
 		/**
 		 * Constructor
 		 *
-		 * @param synsetId synset id
+		 * @param synsetId synsetCursorToTreeModel id
 		 */
 		SamplesQuery(final long synsetId)
 		{
@@ -2018,7 +1801,7 @@ abstract public class BaseModule extends Module
 		/**
 		 * Constructor
 		 *
-		 * @param synsetId synset id
+		 * @param synsetId synsetCursorToTreeModel id
 		 * @param recurse  max recursion level
 		 */
 		SynsetLink(final long synsetId, final int recurse)
@@ -2053,7 +1836,7 @@ abstract public class BaseModule extends Module
 		/**
 		 * Constructor
 		 *
-		 * @param synsetId synset id
+		 * @param synsetId synsetCursorToTreeModel id
 		 * @param wordId   word id
 		 * @param recurse  max recursion level
 		 */

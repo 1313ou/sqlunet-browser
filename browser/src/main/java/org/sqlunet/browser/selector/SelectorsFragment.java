@@ -16,7 +16,6 @@ import android.widget.TextView;
 
 import org.sqlunet.browser.R;
 import org.sqlunet.browser.SqlunetViewModel;
-import org.sqlunet.browser.SqlunetViewModelFactory;
 import org.sqlunet.provider.ProviderArgs;
 import org.sqlunet.provider.XSqlUNetContract;
 import org.sqlunet.provider.XSqlUNetContract.Words_FnWords_PbWords_VnWords;
@@ -272,40 +271,31 @@ public class SelectorsFragment extends ListFragment
 		final String sortOrder = XSqlUNetContract.SYNSET + '.' + Words_FnWords_PbWords_VnWords.POS + ',' + Words_FnWords_PbWords_VnWords.SENSENUM;
 
 		final String tag = "selectors";
-		final SqlunetViewModel model = ViewModelProviders.of(this, new SqlunetViewModelFactory(this, uri, projection, selection, selectionArgs, sortOrder)).get(tag, SqlunetViewModel.class);
-		model.loadData(tag);
-		model.getData().observe(this, entry -> {
+		final SqlunetViewModel model = ViewModelProviders.of(this).get(tag, SqlunetViewModel.class); model.loadData(uri, projection, selection, selectionArgs, sortOrder, cursor -> selectorsPostprocess(cursor));
+		model.getData().observe(this, cursor -> {
 
-			final String key = entry.getKey();
-			if (!tag.equals(key))
+			// pass on to list adapter
+			((CursorAdapter) getListAdapter()).swapCursor(cursor);
+
+			// check
+			/*
+			if (SelectorsFragment.this.activatedPosition != AdapterView.INVALID_POSITION)
 			{
-				return;
+				final ListView listView = getListView();
+				listView.setItemChecked(SelectorsFragment.this.activatedPosition, true);
 			}
-			final Cursor cursor = entry.getValue();
-			selectorsToView(cursor);
+			*/
 		});
 	}
 
-	private void selectorsToView(@NonNull final Cursor cursor)
+	private void selectorsPostprocess(@NonNull final Cursor cursor)
 	{
-		// store source progressMessage
+		// store source
 		if (cursor.moveToFirst())
 		{
 			final int idWordId = cursor.getColumnIndex(Words_FnWords_PbWords_VnWords.WORDID);
 			SelectorsFragment.this.wordId = cursor.getLong(idWordId);
 		}
-
-		// pass on to list adapter
-		((CursorAdapter) getListAdapter()).swapCursor(cursor);
-
-		// check
-		/*
-		if (SelectorsFragment.this.activatedPosition != AdapterView.INVALID_POSITION)
-		{
-			final ListView listView = getListView();
-			listView.setItemChecked(SelectorsFragment.this.activatedPosition, true);
-		}
-		*/
 	}
 
 	// C L I C K

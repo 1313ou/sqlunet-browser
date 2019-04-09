@@ -17,7 +17,6 @@ import android.widget.SimpleCursorTreeAdapter;
 
 import org.sqlunet.browser.Module;
 import org.sqlunet.browser.SqlunetViewModel;
-import org.sqlunet.browser.SqlunetViewModelFactory;
 import org.sqlunet.browser.vn.R;
 import org.sqlunet.browser.vn.Settings;
 import org.sqlunet.browser.xselector.XLoader.PbLoaderCallbacks;
@@ -308,21 +307,15 @@ public class XSelectorsFragment extends ExpandableListFragment
 		final String sortOrder = XSqlUNetContract.POS + '.' + Words_PbWords_VnWords.POS + ',' + Words_PbWords_VnWords.SENSENUM;
 
 		final String tag = "xselectors";
-		final SqlunetViewModel model = ViewModelProviders.of(this, new SqlunetViewModelFactory(this, uri, projection, selection, selectionArgs, sortOrder)).get(tag, SqlunetViewModel.class);
-		model.loadData(tag);
-		model.getData().observe(this, entry -> {
+		final SqlunetViewModel model = ViewModelProviders.of(this).get(tag, SqlunetViewModel.class);
+		model.loadData(uri, projection, selection, selectionArgs, sortOrder, cursor -> xselectorsPostProcess(cursor));
+		model.getData().observe(this, cursor -> {
 
-			final String key = entry.getKey();
-			if (!tag.equals(key))
-			{
-				return;
-			}
-			final Cursor cursor = entry.getValue();
-			xselectorsToView(cursor);
+			initialize();
 		});
 	}
 
-	private void xselectorsToView(@NonNull final Cursor cursor)
+	private void xselectorsPostProcess(@NonNull final Cursor cursor)
 	{
 		// store source progressMessage
 		if (cursor.moveToFirst())
@@ -330,8 +323,6 @@ public class XSelectorsFragment extends ExpandableListFragment
 			final int idWordId = cursor.getColumnIndex(Words_PbWords_VnWords.WORDID);
 			XSelectorsFragment.this.wordId = cursor.getLong(idWordId);
 			// handled by LoaderManager, so no need to call cursor.close()
-
-			initialize();
 		}
 	}
 

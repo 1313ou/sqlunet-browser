@@ -17,6 +17,8 @@ public class FireEvent
 {
 	// R E S U L T S  A V A I L A B L E
 
+	static public void live(TreeNode node){}
+
 	/**
 	 * No results have been attached to this node
 	 *

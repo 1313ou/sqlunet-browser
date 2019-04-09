@@ -5,8 +5,7 @@ import android.net.Uri;
 import android.os.Parcelable;
 import android.text.SpannableStringBuilder;
 
-import org.sqlunet.browser.SqlunetViewModel;
-import org.sqlunet.browser.SqlunetViewModelFactory;
+import org.sqlunet.browser.SqlunetViewTreeModel;
 import org.sqlunet.framenet.FnSentencePointer;
 import org.sqlunet.framenet.provider.FrameNetContract.Sentences;
 import org.sqlunet.framenet.provider.FrameNetProvider;
@@ -89,22 +88,13 @@ public class SentenceModule extends BaseModule
 		final String[] selectionArgs = {Long.toString(sentenceId)};
 		final String sortOrder = null;
 
-		final String tag = "fn.sentence";
-		final SqlunetViewModel model = ViewModelProviders.of(this.fragment, new SqlunetViewModelFactory(this.fragment, uri, projection, selection, selectionArgs, sortOrder)).get(tag, SqlunetViewModel.class);
-		model.loadData(tag);
-		model.getData().observe(this.fragment, entry -> {
-
-			final String key = entry.getKey();
-			if (!tag.equals(key))
-			{
-				return;
-			}
-			final Cursor cursor = entry.getValue();
-			sentenceToView(cursor, parent);
-		});
+		final String tag = "fn.sentence(sentenceid)";
+		final SqlunetViewTreeModel model = ViewModelProviders.of(this.fragment).get(tag, SqlunetViewTreeModel.class);
+		model.loadData(uri, projection, selection, selectionArgs, sortOrder, cursor -> sentenceCursorToTreeModel(cursor, parent));
+		model.getData().observe(this.fragment, FireEvent::live);
 	}
 
-	private void sentenceToView(@NonNull final Cursor cursor, @NonNull final TreeNode parent)
+	private TreeNode sentenceCursorToTreeModel(@NonNull final Cursor cursor, @NonNull final TreeNode parent)
 	{
 		if (cursor.getCount() > 1)
 		{
@@ -136,6 +126,7 @@ public class SentenceModule extends BaseModule
 			FireEvent.onNoResult(parent, true);
 		}
 
-		// TODO no need to call cursor.close() ?
+		cursor.close();
+		return parent;
 	}
 }

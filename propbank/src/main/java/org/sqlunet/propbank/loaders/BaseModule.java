@@ -7,8 +7,7 @@ import android.net.Uri;
 import android.text.SpannableStringBuilder;
 
 import org.sqlunet.browser.Module;
-import org.sqlunet.browser.SqlunetViewModel;
-import org.sqlunet.browser.SqlunetViewModelFactory;
+import org.sqlunet.browser.SqlunetViewTreeModel;
 import org.sqlunet.model.TreeFactory;
 import org.sqlunet.propbank.R;
 import org.sqlunet.propbank.provider.PropBankContract;
@@ -112,9 +111,7 @@ abstract class BaseModule extends Module
 		this.spanner = new PropBankSpanner(context);
 	}
 
-	// L O A D E R S
-
-	// role sets
+	// R O L E   S E T S
 
 	/**
 	 * Role set from id
@@ -135,22 +132,13 @@ abstract class BaseModule extends Module
 		final String[] selectionArgs = {Long.toString(roleSetId)};
 		final String sortOrder = null;
 
-		final String tag = "pb.roleset";
-		final SqlunetViewModel model = ViewModelProviders.of(this.fragment, new SqlunetViewModelFactory(this.fragment, uri, projection, selection, selectionArgs, sortOrder)).get(tag, SqlunetViewModel.class);
-		model.loadData(tag);
-		model.getData().observe(this.fragment, entry -> {
-
-			final String key = entry.getKey();
-			if (!tag.equals(key))
-			{
-				return;
-			}
-			final Cursor cursor = entry.getValue();
-			roloSetToView(cursor, roleSetId, parent);
-		});
+		final String tag = "pb.roleset(rolesetid)";
+		final SqlunetViewTreeModel model = ViewModelProviders.of(this.fragment).get(tag, SqlunetViewTreeModel.class);
+		model.loadData(uri, projection, selection, selectionArgs, sortOrder, cursor -> roleSetCursorToTreeModel(cursor, roleSetId, parent));
+		model.getData().observe(this.fragment, FireEvent::live);
 	}
 
-	private void roloSetToView(@NonNull final Cursor cursor, final long roleSetId, @NonNull final TreeNode parent)
+	private TreeNode roleSetCursorToTreeModel(@NonNull final Cursor cursor, final long roleSetId, @NonNull final TreeNode parent)
 	{
 		if (cursor.getCount() > 1)
 		{
@@ -204,7 +192,8 @@ abstract class BaseModule extends Module
 			FireEvent.onNoResult(parent, true);
 		}
 
-		// handled by LoaderManager, so no need to call cursor.close()
+		cursor.close();
+		return parent;
 	}
 
 	/**
@@ -226,22 +215,13 @@ abstract class BaseModule extends Module
 		final String[] selectionArgs = {Long.toString(wordId)};
 		final String sortOrder = null;
 
-		final String tag = "pb.rolesets";
-		final SqlunetViewModel model = ViewModelProviders.of(this.fragment, new SqlunetViewModelFactory(this.fragment, uri, projection, selection, selectionArgs, sortOrder)).get(tag, SqlunetViewModel.class);
-		model.loadData(tag);
-		model.getData().observe(this.fragment, entry -> {
-
-			final String key = entry.getKey();
-			if (!tag.equals(key))
-			{
-				return;
-			}
-			final Cursor cursor = entry.getValue();
-			roleSetsToView(cursor, parent);
-		});
+		final String tag = "pb.rolesets(wordid)";
+		final SqlunetViewTreeModel model = ViewModelProviders.of(this.fragment).get(tag, SqlunetViewTreeModel.class);
+		model.loadData(uri, projection, selection, selectionArgs, sortOrder, cursor -> roleSetsCursorToTreeModel(cursor, parent));
+		model.getData().observe(this.fragment, FireEvent::live);
 	}
 
-	private void roleSetsToView(@NonNull final Cursor cursor, @NonNull final TreeNode parent)
+	private TreeNode roleSetsCursorToTreeModel(@NonNull final Cursor cursor, @NonNull final TreeNode parent)
 	{
 		if (cursor.moveToFirst())
 		{
@@ -293,10 +273,11 @@ abstract class BaseModule extends Module
 			FireEvent.onNoResult(parent, true);
 		}
 
-		// handled by LoaderManager, so no need to call cursor.close()
+		cursor.close();
+		return parent;
 	}
 
-	// roles
+	// R O L E S
 
 	/**
 	 * Roles in role set
@@ -318,22 +299,13 @@ abstract class BaseModule extends Module
 		final String[] selectionArgs = {Long.toString(roleSetId)};
 		final String sortOrder = null;
 
-		final String tag = "pb.roles";
-		final SqlunetViewModel model = ViewModelProviders.of(this.fragment, new SqlunetViewModelFactory(this.fragment, uri, projection, selection, selectionArgs, sortOrder)).get(tag, SqlunetViewModel.class);
-		model.loadData(tag);
-		model.getData().observe(this.fragment, entry -> {
-
-			final String key = entry.getKey();
-			if (!tag.equals(key))
-			{
-				return;
-			}
-			final Cursor cursor = entry.getValue();
-			rolesToView(cursor, parent);
-		});
+		final String tag = "pb.roles(rolesetid)";
+		final SqlunetViewTreeModel model = ViewModelProviders.of(this.fragment).get(tag, SqlunetViewTreeModel.class);
+		model.loadData(uri, projection, selection, selectionArgs, sortOrder, cursor -> rolesCursorToTreeModel(cursor, parent));
+		model.getData().observe(this.fragment, FireEvent::live);
 	}
 
-	private void rolesToView(@NonNull final Cursor cursor, @NonNull final TreeNode parent)
+	private TreeNode rolesCursorToTreeModel(@NonNull final Cursor cursor, @NonNull final TreeNode parent)
 	{
 		final SpannableStringBuilder sb = new SpannableStringBuilder();
 		if (cursor.moveToFirst())
@@ -402,10 +374,11 @@ abstract class BaseModule extends Module
 			FireEvent.onNoResult(parent, true);
 		}
 
-		// handled by LoaderManager, so no need to call cursor.close()
+		cursor.close();
+		return parent;
 	}
 
-	// examples
+	// E X A M P L E S
 
 	/**
 	 * Examples in role set
@@ -439,22 +412,13 @@ abstract class BaseModule extends Module
 		final String[] selectionArgs = {Long.toString(roleSetId)};
 		final String sortOrder = PbRoleSets_PbExamples.EXAMPLEID + ',' + PbRoleSets_PbExamples.NARG;
 
-		final String tag = "pb.examples";
-		final SqlunetViewModel model = ViewModelProviders.of(this.fragment, new SqlunetViewModelFactory(this.fragment, uri, projection, selection, selectionArgs, sortOrder)).get(tag, SqlunetViewModel.class);
-		model.loadData(tag);
-		model.getData().observe(this.fragment, entry -> {
-
-			final String key = entry.getKey();
-			if (!tag.equals(key))
-			{
-				return;
-			}
-			final Cursor cursor = entry.getValue();
-			examplesToView(cursor, parent);
-		});
+		final String tag = "pb.examples(rolesetid)";
+		final SqlunetViewTreeModel model = ViewModelProviders.of(this.fragment).get(tag, SqlunetViewTreeModel.class);
+		model.loadData(uri, projection, selection, selectionArgs, sortOrder, cursor -> examplesCursorToTreeModel(cursor, parent));
+		model.getData().observe(this.fragment, FireEvent::live);
 	}
 
-	private void examplesToView(@NonNull final Cursor cursor, @NonNull final TreeNode parent)
+	private TreeNode examplesCursorToTreeModel(@NonNull final Cursor cursor, @NonNull final TreeNode parent)
 	{
 		final SpannableStringBuilder sb = new SpannableStringBuilder();
 
@@ -551,8 +515,11 @@ abstract class BaseModule extends Module
 			FireEvent.onNoResult(parent, true);
 		}
 
-		// handled by LoaderManager, so no need to call cursor.close()
+		cursor.close();
+		return parent;
 	}
+
+	// Q U E R I E S
 
 	/**
 	 * Role query

@@ -10,8 +10,7 @@ import android.text.SpannableStringBuilder;
 import android.util.SparseArray;
 
 import org.sqlunet.browser.Module;
-import org.sqlunet.browser.SqlunetViewModel;
-import org.sqlunet.browser.SqlunetViewModelFactory;
+import org.sqlunet.browser.SqlunetViewTreeModel;
 import org.sqlunet.framenet.FnFramePointer;
 import org.sqlunet.framenet.browser.FnFrameActivity;
 import org.sqlunet.model.TreeFactory;
@@ -769,21 +768,12 @@ abstract class BaseModule extends Module
 			final String sortOrder = this.displayer.getRequiredOrder();
 
 			final String tag = "pm.pm";
-			final SqlunetViewModel model = ViewModelProviders.of(fragment, new SqlunetViewModelFactory(fragment, uri, projection, selection, selectionArgs, sortOrder)).get(tag, SqlunetViewModel.class);
-			model.loadData(tag);
-			model.getData().observe(fragment, entry -> {
-
-				final String key = entry.getKey();
-				if (!tag.equals(key))
-				{
-					return;
-				}
-				final Cursor cursor = entry.getValue();
-				pmToView(cursor, parent);
-			});
+			final SqlunetViewTreeModel model = ViewModelProviders.of(fragment).get(tag, SqlunetViewTreeModel.class);
+			model.loadData(uri, projection, selection, selectionArgs, sortOrder, cursor -> pmCursorToTreeModel(cursor, parent));
+			model.getData().observe(fragment, FireEvent::live);
 		}
 
-		private void pmToView(@NonNull final Cursor cursor, @NonNull final TreeNode parent)
+		private TreeNode pmCursorToTreeModel(@NonNull final Cursor cursor, @NonNull final TreeNode parent)
 		{
 			if (cursor.moveToFirst())
 			{
@@ -874,7 +864,8 @@ abstract class BaseModule extends Module
 				FireEvent.onResults(this.parent, this.displayer.getExpandLevels());
 			}
 
-			// TODO no need to call cursor.close() ?
+			cursor.close();
+			return parent;
 		}
 
 		/**

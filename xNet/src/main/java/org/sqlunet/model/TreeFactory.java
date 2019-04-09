@@ -1,5 +1,7 @@
 package org.sqlunet.model;
 
+import android.text.SpannableStringBuilder;
+
 import org.sqlunet.treeview.control.HotQueryController;
 import org.sqlunet.treeview.control.LeafController;
 import org.sqlunet.treeview.control.Link;
@@ -211,5 +213,29 @@ public class TreeFactory
 		final TreeNode result = TreeFactory.newTreeNode(value, icon);
 		parent.addChild(result);
 		return result;
+	}
+
+	/**
+	 * No results have been attached to this node
+	 *
+	 * @param node       node
+	 * @param addNewNode whether results were supposed to be new subnodes or replace query node
+	 */
+	static public void setNoResult(@NonNull final TreeNode node, boolean addNewNode)
+	{
+		if (addNewNode)
+		{
+			//TODO TreeView.disable(node);
+		}
+		else
+		{
+			final TreeNode parent = node.getParent();
+			parent.deleteChild(node);
+		}
+	}
+
+	public static void setTextNode(final TreeNode node, final SpannableStringBuilder sb)
+	{
+		node.setValue(sb);
 	}
 }

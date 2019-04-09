@@ -7,8 +7,7 @@ import android.net.Uri;
 import android.text.SpannableStringBuilder;
 
 import org.sqlunet.browser.Module;
-import org.sqlunet.browser.SqlunetViewModel;
-import org.sqlunet.browser.SqlunetViewModelFactory;
+import org.sqlunet.browser.SqlunetViewTreeModel;
 import org.sqlunet.model.TreeFactory;
 import org.sqlunet.style.Spanner;
 import org.sqlunet.treeview.control.Query;
@@ -161,22 +160,13 @@ abstract class BaseModule extends Module
 				Long.toString(classId)};
 		final String sortOrder = null;
 
-		final String tag = "vn.class";
-		final SqlunetViewModel model = ViewModelProviders.of(this.fragment, new SqlunetViewModelFactory(this.fragment, uri, projection, selection, selectionArgs, sortOrder)).get(tag, SqlunetViewModel.class);
-		model.loadData(tag);
-		model.getData().observe(this.fragment, entry -> {
-
-			final String key = entry.getKey();
-			if (!tag.equals(key))
-			{
-				return;
-			}
-			final Cursor cursor = entry.getValue();
-			vnClassToView(cursor, classId, parent);
-		});
+		final String tag = "vn.class(classid)";
+		final SqlunetViewTreeModel model = ViewModelProviders.of(this.fragment).get(tag, SqlunetViewTreeModel.class);
+		model.loadData(uri, projection, selection, selectionArgs, sortOrder, cursor -> vnClassCursorToTreeModel(cursor, classId, parent));
+		model.getData().observe(this.fragment, FireEvent::live);
 	}
 
-	private void vnClassToView(@NonNull final Cursor cursor, final long classId, @NonNull final TreeNode parent)
+	private TreeNode vnClassCursorToTreeModel(@NonNull final Cursor cursor, final long classId, @NonNull final TreeNode parent)
 	{
 		if (cursor.getCount() > 1)
 		{
@@ -225,7 +215,8 @@ abstract class BaseModule extends Module
 			FireEvent.onNoResult(parent, true);
 		}
 
-		// TODO no need to call cursor.close() ?
+		cursor.close();
+		return parent;
 	}
 
 	// vnMembers
@@ -251,22 +242,13 @@ abstract class BaseModule extends Module
 		final String[] selectionArgs = {Long.toString(classId)};
 		final String sortOrder = VnClasses_VnMembers_X.LEMMA;
 
-		final String tag = "vn.members";
-		final SqlunetViewModel model = ViewModelProviders.of(this.fragment, new SqlunetViewModelFactory(this.fragment, uri, projection, selection, selectionArgs, sortOrder)).get(tag, SqlunetViewModel.class);
-		model.loadData(tag);
-		model.getData().observe(this.fragment, entry -> {
-
-			final String key = entry.getKey();
-			if (!tag.equals(key))
-			{
-				return;
-			}
-			final Cursor cursor = entry.getValue();
-			vnMembersToView(cursor, parent);
-		});
+		final String tag = "vn.members(classid)";
+		final SqlunetViewTreeModel model = ViewModelProviders.of(this.fragment).get(tag, SqlunetViewTreeModel.class);
+		model.loadData(uri, projection, selection, selectionArgs, sortOrder, cursor -> vnMembersCursorToTreeModel(cursor, parent));
+		model.getData().observe(this.fragment, FireEvent::live);
 	}
 
-	private void vnMembersToView(@NonNull final Cursor cursor, @NonNull final TreeNode parent)
+	private TreeNode vnMembersCursorToTreeModel(@NonNull final Cursor cursor, @NonNull final TreeNode parent)
 	{
 		if (cursor.moveToFirst())
 		{
@@ -358,7 +340,8 @@ abstract class BaseModule extends Module
 			FireEvent.onNoResult(parent, true);
 		}
 
-		// TODO no need to call cursor.close() ?
+		cursor.close();
+		return parent;
 	}
 
 	// vnRoles
@@ -383,21 +366,12 @@ abstract class BaseModule extends Module
 		final String sortOrder = null;
 
 		final String tag = "vn.roles";
-		final SqlunetViewModel model = ViewModelProviders.of(this.fragment, new SqlunetViewModelFactory(this.fragment, uri, projection, selection, selectionArgs, sortOrder)).get(tag, SqlunetViewModel.class);
-		model.loadData(tag);
-		model.getData().observe(this.fragment, entry -> {
-
-			final String key = entry.getKey();
-			if (!tag.equals(key))
-			{
-				return;
-			}
-			final Cursor cursor = entry.getValue();
-			vnRolesToView(cursor, parent);
-		});
+		final SqlunetViewTreeModel model = ViewModelProviders.of(this.fragment).get(tag, SqlunetViewTreeModel.class);
+		model.loadData(uri, projection, selection, selectionArgs, sortOrder, cursor -> vnRolesCursorToTreeModel(cursor, parent));
+		model.getData().observe(this.fragment, FireEvent::live);
 	}
 
-	private void vnRolesToView(@NonNull final Cursor cursor, @NonNull final TreeNode parent)
+	private TreeNode vnRolesCursorToTreeModel(@NonNull final Cursor cursor, @NonNull final TreeNode parent)
 	{
 		if (cursor.moveToFirst())
 		{
@@ -449,7 +423,8 @@ abstract class BaseModule extends Module
 			FireEvent.onNoResult(parent, true);
 		}
 
-		// TODO no need to call cursor.close() ?
+		cursor.close();
+		return parent;
 	}
 
 	// vnFrames
@@ -473,21 +448,12 @@ abstract class BaseModule extends Module
 		final String sortOrder = null;
 
 		final String tag = "vn.frames";
-		final SqlunetViewModel model = ViewModelProviders.of(this.fragment, new SqlunetViewModelFactory(this.fragment, uri, projection, selection, selectionArgs, sortOrder)).get(tag, SqlunetViewModel.class);
-		model.loadData(tag);
-		model.getData().observe(this.fragment, entry -> {
-
-			final String key = entry.getKey();
-			if (!tag.equals(key))
-			{
-				return;
-			}
-			final Cursor cursor = entry.getValue();
-			vnFramesToView(cursor, parent);
-		});
+		final SqlunetViewTreeModel model = ViewModelProviders.of(this.fragment).get(tag, SqlunetViewTreeModel.class);
+		model.loadData(uri, projection, selection, selectionArgs, sortOrder, cursor -> vnFramesToView(cursor, parent));
+		model.getData().observe(this.fragment, FireEvent::live);
 	}
 
-	private void vnFramesToView(@NonNull final Cursor cursor, @NonNull final TreeNode parent)
+	private TreeNode vnFramesToView(@NonNull final Cursor cursor, @NonNull final TreeNode parent)
 	{
 		final SpannableStringBuilder sb = new SpannableStringBuilder();
 
@@ -566,7 +532,8 @@ abstract class BaseModule extends Module
 			FireEvent.onNoResult(parent, true);
 		}
 
-		// TODO no need to call cursor.close() ?
+		cursor.close();
+		return parent;
 	}
 
 	/**
