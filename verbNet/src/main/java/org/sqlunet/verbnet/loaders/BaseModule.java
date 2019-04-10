@@ -208,11 +208,10 @@ abstract class BaseModule extends Module
 			FireEvent.onQueryReady(membersNode);
 			FireEvent.onQueryReady(rolesNode);
 			FireEvent.onQueryReady(framesNode);
-			FireEvent.onResults(parent);
 		}
 		else
 		{
-			FireEvent.onNoResult(parent, true);
+			TreeFactory.setNoResult(parent, true);
 		}
 
 		cursor.close();
@@ -331,13 +330,10 @@ abstract class BaseModule extends Module
 				}
 			}
 			while (cursor.moveToNext());
-
-			// fire event
-			FireEvent.onResults(parent);
 		}
 		else
 		{
-			FireEvent.onNoResult(parent, true);
+			TreeFactory.setNoResult(parent, true);
 		}
 
 		cursor.close();
@@ -414,13 +410,10 @@ abstract class BaseModule extends Module
 
 			// attach result
 			TreeFactory.addTextNode(parent, sb);
-
-			// fire event
-			FireEvent.onResults(parent);
 		}
 		else
 		{
-			FireEvent.onNoResult(parent, true);
+			TreeFactory.setNoResult(parent, true);
 		}
 
 		cursor.close();
@@ -523,13 +516,10 @@ abstract class BaseModule extends Module
 
 			// attach result
 			TreeFactory.addTextNode(parent, sb);
-
-			// fire event
-			FireEvent.onResults(parent);
 		}
 		else
 		{
-			FireEvent.onNoResult(parent, true);
+			TreeFactory.setNoResult(parent, true);
 		}
 
 		cursor.close();

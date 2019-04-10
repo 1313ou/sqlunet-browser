@@ -102,7 +102,5 @@ public class SenseModule extends SynsetModule
 		// fire event
 		FireEvent.onQueryReady(linksNode);
 		FireEvent.onQueryReady(samplesNode);
-
-		FireEvent.onResults(parent);
 	}
 }

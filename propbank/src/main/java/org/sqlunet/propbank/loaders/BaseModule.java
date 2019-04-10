@@ -185,11 +185,10 @@ abstract class BaseModule extends Module
 			// fire event
 			FireEvent.onQueryReady(rolesNode);
 			FireEvent.onQueryReady(examplesNode);
-			FireEvent.onResults(parent);
 		}
 		else
 		{
-			FireEvent.onNoResult(parent, true);
+			TreeFactory.setNoResult(parent, true);
 		}
 
 		cursor.close();
@@ -264,13 +263,10 @@ abstract class BaseModule extends Module
 				FireEvent.onQueryReady(examplesNode);
 			}
 			while (cursor.moveToNext());
-
-			// fire event
-			FireEvent.onResults(parent);
 		}
 		else
 		{
-			FireEvent.onNoResult(parent, true);
+			TreeFactory.setNoResult(parent, true);
 		}
 
 		cursor.close();
@@ -365,13 +361,10 @@ abstract class BaseModule extends Module
 
 			// attach result
 			TreeFactory.addTextNode(parent, sb);
-
-			// fire event
-			FireEvent.onResults(parent);
 		}
 		else
 		{
-			FireEvent.onNoResult(parent, true);
+			TreeFactory.setNoResult(parent, true);
 		}
 
 		cursor.close();
@@ -506,13 +499,10 @@ abstract class BaseModule extends Module
 
 			// attach result
 			TreeFactory.addTextNode(parent, sb);
-
-			// fire event
-			FireEvent.onResults(parent);
 		}
 		else
 		{
-			FireEvent.onNoResult(parent, true);
+			TreeFactory.setNoResult(parent, true);
 		}
 
 		cursor.close();

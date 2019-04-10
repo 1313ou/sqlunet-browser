@@ -117,13 +117,10 @@ public class SentenceModule extends BaseModule
 
 			// layers
 			layersForSentence(id, SentenceModule.this.sentenceText, parent);
-
-			// fire event
-			FireEvent.onResults(parent);
 		}
 		else
 		{
-			FireEvent.onNoResult(parent, true);
+			TreeFactory.setNoResult(parent, true);
 		}
 
 		cursor.close();

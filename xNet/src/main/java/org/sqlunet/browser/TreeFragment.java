@@ -59,9 +59,10 @@ abstract public class TreeFragment extends Fragment
 	{
 		super.onCreate(savedInstanceState);
 
+		// root node
 		this.treeRoot = TreeNode.makeRoot();
 
-		// root node
+		// sub root node
 		TreeFactory.addTreeNode(this.treeRoot, header, iconId);
 	}
 

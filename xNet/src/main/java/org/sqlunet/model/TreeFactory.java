@@ -226,6 +226,8 @@ public class TreeFactory
 		if (addNewNode)
 		{
 			//TODO TreeView.disable(node);
+			node.disable();
+			node.setDeadend(true);
 		}
 		else
 		{
@@ -237,5 +239,10 @@ public class TreeFactory
 	public static void setTextNode(final TreeNode node, final SpannableStringBuilder sb)
 	{
 		node.setValue(sb);
+	}
+
+	public static void setLevels(final TreeNode node, final int levels)
+	{
+		// TODO
 	}
 }

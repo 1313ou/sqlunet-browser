@@ -81,6 +81,16 @@ public class TreeNode
 	 */
 	private boolean collapsible;
 
+	/**
+	 * Dead end
+	 */
+	private boolean deadend;
+
+	/**
+	 * Tag
+	 */
+	private String tag;
+
 	// C O N S T R U C T O R
 
 	public TreeNode(final Object value, final Class<?> controllerClass)
@@ -92,7 +102,9 @@ public class TreeNode
 		this.selectable = false;
 		this.expanded = false;
 		this.collapsible = true;
+		this.deadend = false;
 		this.controllerClass = controllerClass;
+		this.tag = null;
 	}
 
 	public TreeNode(final Object value, final Class<?> controllerClass, @SuppressWarnings("SameParameterValue") final boolean collapsible)
@@ -534,6 +546,29 @@ public class TreeNode
 		this.collapsible = collapsible;
 	}
 
+
+	/**
+	 * Get whether this node is deadend
+	 *
+	 * @return whether this node is deadend
+	 */
+	@SuppressWarnings("unused")
+	public boolean isDeadend()
+	{
+		return this.deadend;
+	}
+
+	/**
+	 * Set node deadend
+	 *
+	 * @param deadend flag
+	 */
+	@SuppressWarnings("unused")
+	public void setDeadend(boolean deadend)
+	{
+		this.deadend = deadend;
+	}
+
 	// E N A B L E / D I S A B L E
 
 	/**
@@ -542,6 +577,17 @@ public class TreeNode
 	public void disable()
 	{
 		this.enabled = false;
+	}
+
+	/**
+	 * Set node enabled
+	 *
+	 * @param enabled flag
+	 */
+	@SuppressWarnings("unused")
+	public void setEnabled(boolean enabled)
+	{
+		this.enabled = enabled;
 	}
 
 	/**
@@ -584,6 +630,63 @@ public class TreeNode
 	public Controller<?> getController()
 	{
 		return this.controller;
+	}
+
+	// S T R I N G I F Y
+
+	@NonNull
+	@Override
+	public String toString()
+	{
+		final StringBuilder sb = new StringBuilder();
+		sb.append("id=");
+		sb.append(id);
+		sb.append(' ');
+		sb.append("value=[");
+		sb.append(value.toString().replace('\n','┃'));
+		sb.append(']');
+		sb.append(' ');
+		sb.append("controller=");
+		sb.append(controller != null);
+		sb.append(' ');
+		sb.append("parent=");
+		sb.append(parent == null ? "none" : parent.id);
+		sb.append(' ');
+		sb.append("children=");
+		sb.append(children == null ? "none" : children.size());
+		return sb.toString();
+	}
+
+	@NonNull
+	public String toStringWithChildren()
+	{
+		final StringBuilder sb = new StringBuilder();
+		toStringWithChildren(sb, 0);
+		return sb.toString();
+	}
+
+	@NonNull
+	private void toStringWithChildren(final StringBuilder sb, final int level)
+	{
+		if (level > 0)
+		{
+			for (int i = 0; i < level - 1; i++)
+			{
+				sb.append("     ");
+			}
+			sb.append("└");
+			//sb.append("├");
+			sb.append("────");
+		}
+		sb.append(this);
+		if (getChildren() != null)
+		{
+			sb.append('\n');
+			for (TreeNode child : getChildren())
+			{
+				child.toStringWithChildren(sb, level + 1);
+			}
+		}
 	}
 
 	// C L I C K  L I S T E N E R

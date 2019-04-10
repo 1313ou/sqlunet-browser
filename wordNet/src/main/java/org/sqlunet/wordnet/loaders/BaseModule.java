@@ -470,7 +470,6 @@ abstract public class BaseModule extends Module
 			// fire event
 			FireEvent.onQueryReady(linksNode);
 			FireEvent.onQueryReady(samplesNode);
-			FireEvent.onResults(parent);
 		}
 		else
 		{

@@ -1,12 +1,13 @@
 package org.sqlunet.view;
 
-import androidx.annotation.NonNull;
+import android.util.Log;
 
 import org.sqlunet.treeview.control.Controller;
 import org.sqlunet.treeview.control.HotQueryController;
 import org.sqlunet.treeview.control.QueryController;
 import org.sqlunet.treeview.model.TreeNode;
-import org.sqlunet.treeview.view.TreeView;
+
+import androidx.annotation.NonNull;
 
 /**
  * Event firer
@@ -15,9 +16,14 @@ import org.sqlunet.treeview.view.TreeView;
  */
 public class FireEvent
 {
-	// R E S U L T S  A V A I L A B L E
+	private static final String TAG = "LIVE";
 
-	static public void live(TreeNode node){}
+	static public void live(TreeNode node)
+	{
+		Log.d(TAG, "Live " + "\n" + node.toStringWithChildren());
+	}
+
+	// R E S U L T S  A V A I L A B L E
 
 	/**
 	 * No results have been attached to this node
@@ -77,7 +83,7 @@ public class FireEvent
 		if (controller != null && controller instanceof HotQueryController)
 		{
 			final QueryController queryController = (QueryController) controller;
-			// TODO queryController.processQuery();
+			queryController.processQuery();
 		}
 	}
 }

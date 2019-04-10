@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment;
 import android.os.Parcelable;
 
 import org.sqlunet.HasXId;
+import org.sqlunet.model.TreeFactory;
 import org.sqlunet.treeview.model.TreeNode;
 import org.sqlunet.verbnet.VnClassPointer;
 import org.sqlunet.view.FireEvent;
@@ -64,7 +65,7 @@ public class ClassModule extends BaseModule
 		}
 		else
 		{
-			FireEvent.onNoResult(node, true);
+			TreeFactory.setNoResult(node, true);
 		}
 	}
 }

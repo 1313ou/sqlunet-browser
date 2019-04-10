@@ -77,7 +77,7 @@ public class ClassFromWordModule extends BaseModule
 		}
 		else
 		{
-			FireEvent.onNoResult(node, true);
+			TreeFactory.setNoResult(node, true);
 		}
 	}
 
@@ -165,13 +165,10 @@ public class ClassFromWordModule extends BaseModule
 				FireEvent.onQueryReady(framesNode);
 			}
 			while (cursor.moveToNext());
-
-			// fire event
-			FireEvent.onResults(parent);
 		}
 		else
 		{
-			FireEvent.onNoResult(parent, true);
+			TreeFactory.setNoResult(parent, true);
 		}
 
 		cursor.close();

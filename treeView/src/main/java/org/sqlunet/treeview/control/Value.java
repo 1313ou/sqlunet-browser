@@ -1,5 +1,6 @@
 package org.sqlunet.treeview.control;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 /**
@@ -50,5 +51,38 @@ public class Value
 		this.text = text;
 		this.icon = icon;
 		this.payload = null;
+	}
+
+	// S T R I N G I F Y
+
+	@NonNull
+	@Override
+	public String toString()
+	{
+		final StringBuilder sb = new StringBuilder();
+		sb.append("text=");
+		sb.append(text);
+		if (payload != null)
+		{
+			sb.append(' ');
+			sb.append("payload=");
+			boolean first = true;
+			sb.append('{');
+			for (Object obj : payload)
+			{
+				if (first)
+				{
+					first = false;
+				}
+				else
+				{
+					sb.append(',');
+				}
+
+				sb.append(obj);
+			}
+			sb.append('}');
+		}
+		return sb.toString();
 	}
 }

@@ -7,6 +7,7 @@ import android.os.Parcelable;
 
 import org.sqlunet.HasXId;
 import org.sqlunet.framenet.FnFramePointer;
+import org.sqlunet.model.TreeFactory;
 import org.sqlunet.treeview.model.TreeNode;
 import org.sqlunet.view.FireEvent;
 
@@ -73,7 +74,7 @@ public class FrameModule extends BaseModule
 		}
 		else
 		{
-			FireEvent.onNoResult(node, true);
+			TreeFactory.setNoResult(node, true);
 		}
 	}
 }

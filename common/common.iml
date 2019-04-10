@@ -258,5 +258,11 @@
     <orderEntry type="module" module-name="support" />
     <orderEntry type="module" module-name="download" />
     <orderEntry type="module" module-name="xNet" />
+    <orderEntry type="module" module-name="expandableListFragment" />
+    <orderEntry type="module" module-name="deploy" />
+    <orderEntry type="module" module-name="preference" />
+    <orderEntry type="module" module-name="support" />
+    <orderEntry type="module" module-name="download" />
+    <orderEntry type="module" module-name="xNet" />
   </component>
 </module>

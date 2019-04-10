@@ -6,6 +6,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import org.sqlunet.HasWordId;
+import org.sqlunet.model.TreeFactory;
 import org.sqlunet.treeview.model.TreeNode;
 import org.sqlunet.view.FireEvent;
 
@@ -53,7 +54,7 @@ public class RoleSetFromWordModule extends BaseModule
 		}
 		else
 		{
-			FireEvent.onNoResult(node, true);
+			TreeFactory.setNoResult(node, true);
 		}
 	}
 }

@@ -65,8 +65,6 @@ public class WordModule extends BaseModule
 			// senses
 			// senses(this.wordId, sensesNode);
 			senses(this.wordId, wordNode);
-
-			FireEvent.onResults(parent);
 		}
 	}
 }

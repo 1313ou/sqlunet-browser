@@ -860,8 +860,8 @@ abstract class BaseModule extends Module
 
 				endProcess();
 
-				// fire event
-				FireEvent.onResults(this.parent, this.displayer.getExpandLevels());
+				// levels
+				TreeFactory.setLevels(this.parent, this.displayer.getExpandLevels());
 			}
 
 			cursor.close();
