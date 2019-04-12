@@ -146,6 +146,8 @@ abstract class BaseModule extends Module
 		}
 		if (cursor.moveToFirst())
 		{
+			final Context context = this.fragment.requireContext();
+
 			// column indices
 			// final int idRolesetId = cursor.getColumnIndex(PbRoleSets_X.ROLESETID);
 			final int idRolesetName = cursor.getColumnIndex(PbRoleSets_X.ROLESETNAME);
@@ -176,11 +178,11 @@ abstract class BaseModule extends Module
 			Spanner.append(sb, cursor.getString(idRolesetDesc), 0, PropBankFactories.definitionFactory);
 
 			// attach result
-			TreeFactory.addTextNode(parent, sb);
+			TreeFactory.addTextNode(parent, sb, context);
 
 			// sub nodes
-			final TreeNode rolesNode = TreeFactory.newHotQueryNode("Roles", R.drawable.roles, new RolesQuery(roleSetId)).addTo(parent);
-			final TreeNode examplesNode = TreeFactory.newQueryNode("Examples", R.drawable.sample, new ExamplesQuery(roleSetId)).addTo(parent);
+			final TreeNode rolesNode = TreeFactory.newHotQueryNode("Roles", R.drawable.roles, new RolesQuery(roleSetId), context).addTo(parent);
+			final TreeNode examplesNode = TreeFactory.newQueryNode("Examples", R.drawable.sample, new ExamplesQuery(roleSetId), context).addTo(parent);
 
 			// fire event
 			FireEvent.onQueryReady(rolesNode);
@@ -224,6 +226,8 @@ abstract class BaseModule extends Module
 	{
 		if (cursor.moveToFirst())
 		{
+			final Context context = this.fragment.requireContext();
+
 			// column indices
 			final int idRoleSetId = cursor.getColumnIndex(Words_PbRoleSets.ROLESETID);
 			final int idRoleSetName = cursor.getColumnIndex(Words_PbRoleSets.ROLESETNAME);
@@ -252,11 +256,11 @@ abstract class BaseModule extends Module
 				Spanner.append(sb, cursor.getString(idRoleSetDesc), 0, PropBankFactories.definitionFactory);
 
 				// attach result
-				TreeFactory.addTextNode(parent, sb);
+				TreeFactory.addTextNode(parent, sb, context);
 
 				// sub nodes
-				final TreeNode rolesNode = TreeFactory.newHotQueryNode("Roles", R.drawable.roles, new RolesQuery(roleSetId)).addTo(parent);
-				final TreeNode examplesNode = TreeFactory.newQueryNode("Examples", R.drawable.sample, new ExamplesQuery(roleSetId)).addTo(parent);
+				final TreeNode rolesNode = TreeFactory.newHotQueryNode("Roles", R.drawable.roles, new RolesQuery(roleSetId), context).addTo(parent);
+				final TreeNode examplesNode = TreeFactory.newQueryNode("Examples", R.drawable.sample, new ExamplesQuery(roleSetId), context).addTo(parent);
 
 				// fire event
 				FireEvent.onQueryReady(rolesNode);
@@ -306,6 +310,8 @@ abstract class BaseModule extends Module
 		final SpannableStringBuilder sb = new SpannableStringBuilder();
 		if (cursor.moveToFirst())
 		{
+			final Context context = this.fragment.requireContext();
+
 			// column indices
 			// final int idRoleId = cursor.getColumnIndex(PbRoleSets_PbRoles.ROLEID);
 			final int idRoleDescr = cursor.getColumnIndex(PbRoleSets_PbRoles.ROLEDESCR);
@@ -360,7 +366,7 @@ abstract class BaseModule extends Module
 			}
 
 			// attach result
-			TreeFactory.addTextNode(parent, sb);
+			TreeFactory.addTextNode(parent, sb, context);
 		}
 		else
 		{
@@ -417,6 +423,8 @@ abstract class BaseModule extends Module
 
 		if (cursor.moveToFirst())
 		{
+			final Context context = this.fragment.requireContext();
+
 			// column indices
 			final int idText = cursor.getColumnIndex(PbRoleSets_PbExamples.TEXT);
 			final int idRel = cursor.getColumnIndex(PbRoleSets_PbExamples.REL);
@@ -498,7 +506,7 @@ abstract class BaseModule extends Module
 			BaseModule.this.spanner.setSpan(sb, 0, 0);
 
 			// attach result
-			TreeFactory.addTextNode(parent, sb);
+			TreeFactory.addTextNode(parent, sb, context);
 		}
 		else
 		{

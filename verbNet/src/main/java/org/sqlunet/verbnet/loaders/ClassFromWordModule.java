@@ -1,5 +1,6 @@
 package org.sqlunet.verbnet.loaders;
 
+import android.content.Context;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Parcelable;
@@ -128,6 +129,8 @@ public class ClassFromWordModule extends BaseModule
 	{
 		if (cursor.moveToFirst())
 		{
+			final Context context = this.fragment.requireContext();
+
 			// column indices
 			final int idClassId = cursor.getColumnIndex(Words_VnClasses.CLASSID);
 			final int idClass = cursor.getColumnIndex(Words_VnClasses.CLASS);
@@ -152,12 +155,12 @@ public class ClassFromWordModule extends BaseModule
 				sb.append(Integer.toString(classId));
 
 				// attach result
-				TreeFactory.addTextNode(parent, sb);
+				TreeFactory.addTextNode(parent, sb, context);
 
 				// sub nodes
-				final TreeNode membersNode = TreeFactory.newHotQueryNode("Members", R.drawable.members, new MembersQuery(classId)).addTo(parent);
-				final TreeNode rolesNode = TreeFactory.newHotQueryNode("Roles", R.drawable.roles, new RolesQuery(classId)).addTo(parent);
-				final TreeNode framesNode = TreeFactory.newQueryNode("Frames", R.drawable.vnframe, new FramesQuery(classId)).addTo(parent);
+				final TreeNode membersNode = TreeFactory.newHotQueryNode("Members", R.drawable.members, new MembersQuery(classId), context).addTo(parent);
+				final TreeNode rolesNode = TreeFactory.newHotQueryNode("Roles", R.drawable.roles, new RolesQuery(classId), context).addTo(parent);
+				final TreeNode framesNode = TreeFactory.newQueryNode("Frames", R.drawable.vnframe, new FramesQuery(classId), context).addTo(parent);
 
 				// fire event
 				FireEvent.onQueryReady(membersNode);

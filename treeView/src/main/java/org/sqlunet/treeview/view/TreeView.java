@@ -16,6 +16,7 @@ import android.widget.TextView;
 
 import org.sqlunet.treeview.R;
 import org.sqlunet.treeview.control.Controller;
+import org.sqlunet.treeview.control.RootController;
 import org.sqlunet.treeview.control.SimpleController;
 import org.sqlunet.treeview.model.TreeNode;
 
@@ -118,9 +119,9 @@ public class TreeView
 	 * @return view
 	 */
 	@NonNull
-	public View getView()
+	public View makeView()
 	{
-		return getView(-1);
+		return makeView(-1);
 	}
 
 	/**
@@ -130,7 +131,7 @@ public class TreeView
 	 * @return view
 	 */
 	@NonNull
-	private View getView(@SuppressWarnings("SameParameterValue") final int style)
+	private View makeView(@SuppressWarnings("SameParameterValue") final int style)
 	{
 		// top scrollview
 		final ViewGroup view;
@@ -158,24 +159,9 @@ public class TreeView
 		view.addView(contentView);
 
 		// root
-		this.root.setController(new Controller<Void>(this.context)
-		{
-			@Nullable
-			@Override
-			public View createNodeView(TreeNode node, Void value)
-			{
-				return null;
-			}
+		final RootController rootController = (RootController) this.root.getController();
+		rootController.setContentView(contentView);
 
-			@NonNull
-			@Override
-			public ViewGroup getChildrenContainerView()
-			{
-				return contentView;
-			}
-		});
-
-		expandNode(this.root, false);
 		return view;
 	}
 
@@ -219,7 +205,7 @@ public class TreeView
 		if (parent != null)
 		{
 			final ViewGroup group = (ViewGroup) parent;
-			// TODO group.removeView(nodeView);
+			group.removeView(nodeView);
 		}
 
 		// add to container
@@ -260,7 +246,6 @@ public class TreeView
 	static public void remove(@NonNull final TreeNode node)
 	{
 		final Controller<?> controller = node.getController();
-		assert controller != null;
 		final TreeView treeView = controller.getTreeView();
 		if (treeView != null)
 		{
@@ -355,10 +340,9 @@ public class TreeView
 	 * @param node            node
 	 * @param includeSubnodes whether to include subnodes
 	 */
-	static public void expand(@NonNull final TreeNode node, @SuppressWarnings("SameParameterValue") boolean includeSubnodes)
+	static synchronized public void expand(@NonNull final TreeNode node, @SuppressWarnings("SameParameterValue") boolean includeSubnodes)
 	{
 		final Controller<?> controller = node.getController();
-		assert controller != null;
 		final TreeView treeView = controller.getTreeView();
 		if (treeView != null)
 		{
@@ -372,10 +356,9 @@ public class TreeView
 	 * @param node   node
 	 * @param levels number of levels to expand
 	 */
-	static public void expand(@NonNull final TreeNode node, int levels)
+	static synchronized public void expand(@NonNull final TreeNode node, int levels)
 	{
 		final Controller<?> controller = node.getController();
-		assert controller != null;
 		final TreeView treeView = controller.getTreeView();
 		if (treeView != null)
 		{
@@ -390,10 +373,9 @@ public class TreeView
 	 * @param includeSubnodes whether to include subnodes
 	 */
 	@SuppressWarnings("unused")
-	static public void collapse(@NonNull final TreeNode node, boolean includeSubnodes)
+	static synchronized public void collapse(@NonNull final TreeNode node, boolean includeSubnodes)
 	{
 		final Controller<?> controller = node.getController();
-		assert controller != null;
 		final TreeView treeView = controller.getTreeView();
 		if (treeView != null)
 		{
@@ -1103,11 +1085,6 @@ public class TreeView
 	private Controller<?> getNodeController(@NonNull final TreeNode node)
 	{
 		Controller<?> controller = node.getController();
-		if (controller == null)
-		{
-			controller = ControllerFactory.makeController(node.controllerClass != null ? node.controllerClass : this.defaultControllerClass, this.context);
-			node.setController(controller);
-		}
 		if (controller.getContainerStyle() <= 0)
 		{
 			controller.setContainerStyle(this.containerStyle);

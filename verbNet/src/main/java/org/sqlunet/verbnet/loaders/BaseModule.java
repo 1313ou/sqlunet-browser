@@ -176,6 +176,8 @@ abstract class BaseModule extends Module
 		// read cursor
 		if (cursor.moveToFirst())
 		{
+			final Context context = fragment.requireContext();
+
 			final SpannableStringBuilder sb = new SpannableStringBuilder();
 
 			// column indices
@@ -197,12 +199,12 @@ abstract class BaseModule extends Module
 			sb.append(Long.toString(classId));
 
 			// attach result
-			TreeFactory.addTextNode(parent, sb);
+			TreeFactory.addTextNode(parent, sb, context);
 
 			// sub nodes
-			final TreeNode membersNode = TreeFactory.newHotQueryNode("Members", R.drawable.members, new MembersQuery(classId)).addTo(parent);
-			final TreeNode rolesNode = TreeFactory.newHotQueryNode("Roles", R.drawable.roles, new RolesQuery(classId)).addTo(parent);
-			final TreeNode framesNode = TreeFactory.newQueryNode("Frames", R.drawable.vnframe, new FramesQuery(classId)).addTo(parent);
+			final TreeNode membersNode = TreeFactory.newHotQueryNode("Members", R.drawable.members, new MembersQuery(classId), context).addTo(parent);
+			final TreeNode rolesNode = TreeFactory.newHotQueryNode("Roles", R.drawable.roles, new RolesQuery(classId), context).addTo(parent);
+			final TreeNode framesNode = TreeFactory.newQueryNode("Frames", R.drawable.vnframe, new FramesQuery(classId), context).addTo(parent);
 
 			// fire event
 			FireEvent.onQueryReady(membersNode);
@@ -251,6 +253,8 @@ abstract class BaseModule extends Module
 	{
 		if (cursor.moveToFirst())
 		{
+			final Context context = fragment.requireContext();
+
 			// column indices
 			// final int idWordId = cursor.getColumnIndex(VnClasses_VnMembers_X.WORDID);
 			// final int idVnWordId = cursor.getColumnIndex(VnClasses_VnMembers_X.VNWORDID);
@@ -271,7 +275,7 @@ abstract class BaseModule extends Module
 				final String groupings = cursor.getString(idGroupings);
 				if (definitions != null || groupings != null)
 				{
-					final TreeNode memberNode = TreeFactory.addTreeNode(parent, sb, R.drawable.member);
+					final TreeNode memberNode = TreeFactory.addTreeNode(parent, sb, R.drawable.member, context);
 
 					final SpannableStringBuilder sb2 = new SpannableStringBuilder();
 
@@ -322,11 +326,11 @@ abstract class BaseModule extends Module
 					}
 
 					// attach definition and groupings result
-					TreeFactory.addTextNode(memberNode, sb2);
+					TreeFactory.addTextNode(memberNode, sb2, context);
 				}
 				else
 				{
-					TreeFactory.addLeafNode(parent, sb, R.drawable.member);
+					TreeFactory.addLeafNode(parent, sb, R.drawable.member, context);
 				}
 			}
 			while (cursor.moveToNext());
@@ -409,7 +413,7 @@ abstract class BaseModule extends Module
 			}
 
 			// attach result
-			TreeFactory.addTextNode(parent, sb);
+			TreeFactory.addTextNode(parent, sb, fragment.requireContext());
 		}
 		else
 		{
@@ -515,7 +519,7 @@ abstract class BaseModule extends Module
 			}
 
 			// attach result
-			TreeFactory.addTextNode(parent, sb);
+			TreeFactory.addTextNode(parent, sb, fragment.requireContext());
 		}
 		else
 		{
@@ -547,7 +551,8 @@ abstract class BaseModule extends Module
 			}
 			else if (items.length > 1)
 			{
-				final TreeNode groupingsNode = TreeFactory.newTreeNode("Group", R.drawable.member);
+				final Context context = fragment.requireContext();
+				final TreeNode groupingsNode = TreeFactory.newTreeNode("Group", R.drawable.member, context);
 				boolean first = true;
 				for (final String item : items)
 				{
@@ -562,7 +567,7 @@ abstract class BaseModule extends Module
 					Spanner.appendImage(sb, BaseModule.this.drawableMember);
 					Spanner.append(sb, item, 0, VerbNetFactories.memberFactory);
 				}
-				groupingsNode.addChild(TreeFactory.newTextNode(sb));
+				groupingsNode.addChild(TreeFactory.newTextNode(sb, context));
 				return groupingsNode;
 			}
 		}

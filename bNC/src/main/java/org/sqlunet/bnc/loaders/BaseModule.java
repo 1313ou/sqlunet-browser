@@ -288,7 +288,7 @@ public class BaseModule extends Module
 			while (cursor.moveToNext());
 
 			// attach result
-			TreeFactory.addTextNode(parent, sb);
+			TreeFactory.addTextNode(parent, sb, this.fragment.requireContext());
 		}
 		else
 		{

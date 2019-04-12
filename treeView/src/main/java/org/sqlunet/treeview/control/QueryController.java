@@ -28,7 +28,7 @@ public class QueryController extends TreeController
 	{
 		super.onExpandEvent(expand);
 
-		if (expand && !false && this.node.isLeaf())
+		if (expand && this.node.isLeaf())
 		{
 			processQuery();
 		}

@@ -188,7 +188,7 @@ abstract public class BaseModule extends Module
 			// result
 			if (addNewNode)
 			{
-				TreeFactory.addTextNode(parent, sb);
+				TreeFactory.addTextNode(parent, sb, this.fragment.requireContext());
 			}
 			else
 			{
@@ -278,6 +278,8 @@ abstract public class BaseModule extends Module
 		// store source result
 		if (cursor.moveToFirst())
 		{
+			final Context context = this.fragment.requireContext();
+
 			final int idWordId = cursor.getColumnIndex(Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.WORDID);
 			final int idSynsetId = cursor.getColumnIndex(Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.SYNSETID);
 			final int idPosName = cursor.getColumnIndex(Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.POSNAME);
@@ -300,7 +302,7 @@ abstract public class BaseModule extends Module
 				sense(sb, synsetId, posName, lexDomain, definition, tagCount, cased);
 
 				// result
-				final TreeNode synsetNode = TreeFactory.newLinkNode(sb, R.drawable.synset, new SenseLink(synsetId, wordId, this.maxRecursion));
+				final TreeNode synsetNode = TreeFactory.newLinkNode(sb, R.drawable.synset, new SenseLink(synsetId, wordId, this.maxRecursion), context);
 				parent.addChild(synsetNode);
 			}
 			while (cursor.moveToNext());
@@ -424,7 +426,7 @@ abstract public class BaseModule extends Module
 			final long synsetId = cursor.getLong(idSynsetId);
 
 			// sub nodes
-			final TreeNode wordNode = TreeFactory.newTextNode("Word");
+			final TreeNode wordNode = TreeFactory.newTextNode("Word", this.fragment.requireContext());
 			parent.addChild(wordNode);
 
 			// word
@@ -448,6 +450,8 @@ abstract public class BaseModule extends Module
 		}
 		if (cursor.moveToFirst())
 		{
+			final Context context = this.fragment.requireContext();
+
 			final SpannableStringBuilder sb = new SpannableStringBuilder();
 			final int idPosName = cursor.getColumnIndex(PosTypes.POSNAME);
 			final int idLexDomain = cursor.getColumnIndex(LexDomains.LEXDOMAIN);
@@ -461,11 +465,11 @@ abstract public class BaseModule extends Module
 			synset(sb, synsetId, posName, lexDomain, definition);
 
 			// attach result
-			TreeFactory.addTextNode(parent, sb);
+			TreeFactory.addTextNode(parent, sb, context);
 
 			// subnodes
-			final TreeNode linksNode = TreeFactory.newHotQueryNode("Links", R.drawable.ic_links, new LinksQuery(synsetId, wordId)).addTo(parent);
-			final TreeNode samplesNode = TreeFactory.newHotQueryNode("Samples", R.drawable.sample, new SamplesQuery(synsetId)).addTo(parent);
+			final TreeNode linksNode = TreeFactory.newHotQueryNode("Links", R.drawable.ic_links, new LinksQuery(synsetId, wordId), context).addTo(parent);
+			final TreeNode samplesNode = TreeFactory.newHotQueryNode("Samples", R.drawable.sample, new SamplesQuery(synsetId), context).addTo(parent);
 
 			// fire event
 			FireEvent.onQueryReady(linksNode);
@@ -529,7 +533,7 @@ abstract public class BaseModule extends Module
 			// result
 			if (addNewNode)
 			{
-				TreeFactory.addTextNode(parent, sb);
+				TreeFactory.addTextNode(parent, sb, this.fragment.requireContext());
 			}
 			else
 			{
@@ -733,7 +737,7 @@ abstract public class BaseModule extends Module
 			// result
 			if (addNewNode)
 			{
-				TreeFactory.addTextNode(parent, sb);
+				TreeFactory.addTextNode(parent, sb, this.fragment.requireContext());
 			}
 			else
 			{
@@ -761,6 +765,8 @@ abstract public class BaseModule extends Module
 
 		if (cursor.moveToFirst())
 		{
+			final Context context = this.fragment.requireContext();
+
 			final int idWordId = cursor.getColumnIndex(Senses_Words.WORDID);
 			final int idMember = cursor.getColumnIndex(Senses_Words.MEMBER);
 			// int i = 1;
@@ -778,7 +784,7 @@ abstract public class BaseModule extends Module
 				Spanner.append(sb, member, 0, WordNetFactories.membersFactory);
 
 				// result
-				final TreeNode memberNode = TreeFactory.newLinkNode(sb, R.drawable.member, new WordLink(wordId));
+				final TreeNode memberNode = TreeFactory.newLinkNode(sb, R.drawable.member, new WordLink(wordId), context);
 				parent.addChild(memberNode);
 			}
 			while (cursor.moveToNext());
@@ -801,7 +807,7 @@ abstract public class BaseModule extends Module
 	 * @param parent     parent node
 	 * @param addNewNode whether to addItem to (or set) node
 	 */
-	private void samples(@NonNull final long synsetId, @NonNull final TreeNode parent, @SuppressWarnings("SameParameterValue") final boolean addNewNode)
+	private void samples(final long synsetId, @NonNull final TreeNode parent, @SuppressWarnings("SameParameterValue") final boolean addNewNode)
 	{
 
 		final Uri uri = Uri.parse(WordNetProvider.makeUri(Samples.CONTENT_URI_TABLE));
@@ -847,7 +853,7 @@ abstract public class BaseModule extends Module
 			// result
 			if (addNewNode)
 			{
-				TreeFactory.addTextNode(parent, sb);
+				TreeFactory.addTextNode(parent, sb, this.fragment.requireContext());
 			}
 			else
 			{
@@ -928,6 +934,8 @@ abstract public class BaseModule extends Module
 		// noinspection StatementWithEmptyBody
 		if (cursor.moveToFirst())
 		{
+			final Context context = this.fragment.requireContext();
+
 			final int idLinkId = cursor.getColumnIndex(LinkTypes.LINKID);
 			// final int idLink = cursor.getColumnIndex(LinkTypes.LINK);
 			final int idTargetSynsetId = cursor.getColumnIndex(BaseModule.TARGET_SYNSETID);
@@ -954,14 +962,14 @@ abstract public class BaseModule extends Module
 				// recursion
 				if (linkCanRecurse)
 				{
-					final TreeNode linksNode = TreeFactory.newLinkQueryNode(sb, getLinkRes(linkId), new SubLinksQuery(targetSynsetId, linkId, BaseModule.this.maxRecursion), new SynsetLink(targetSynsetId, BaseModule.this.maxRecursion)).prependTo(parent);
+					final TreeNode linksNode = TreeFactory.newLinkQueryNode(sb, getLinkRes(linkId), new SubLinksQuery(targetSynsetId, linkId, BaseModule.this.maxRecursion), new SynsetLink(targetSynsetId, BaseModule.this.maxRecursion), context).prependTo(parent);
 
 					// fire event
 					FireEvent.onQueryReady(linksNode);
 				}
 				else
 				{
-					TreeFactory.newLeafNode(sb, getLinkRes(linkId)).prependTo(parent);
+					TreeFactory.newLeafNode(sb, getLinkRes(linkId), context).prependTo(parent);
 				}
 			}
 			while (cursor.moveToNext());
@@ -988,6 +996,8 @@ abstract public class BaseModule extends Module
 
 			do
 			{
+				final Context context = this.fragment.requireContext();
+
 				final SpannableStringBuilder sb = new SpannableStringBuilder();
 
 				// final int linkId = cursor.getInt(idLinkId);
@@ -1008,19 +1018,19 @@ abstract public class BaseModule extends Module
 					if (recurseLevel > 1)
 					{
 						final int newRecurseLevel = recurseLevel - 1;
-						final TreeNode linksNode = TreeFactory.newLinkQueryNode(sb, getLinkRes(linkId), new SubLinksQuery(targetSynsetId, linkId, newRecurseLevel), new SynsetLink(targetSynsetId, BaseModule.this.maxRecursion)).addTo(parent);
+						final TreeNode linksNode = TreeFactory.newLinkQueryNode(sb, getLinkRes(linkId), new SubLinksQuery(targetSynsetId, linkId, newRecurseLevel), new SynsetLink(targetSynsetId, BaseModule.this.maxRecursion), context).addTo(parent);
 
 						// fire event
 						FireEvent.onQueryReady(linksNode);
 					}
 					else
 					{
-						TreeFactory.newMoreNode(sb, getLinkRes(linkId)).addTo(parent);
+						TreeFactory.newMoreNode(sb, getLinkRes(linkId), context).addTo(parent);
 					}
 				}
 				else
 				{
-					TreeFactory.newLeafNode(sb, getLinkRes(linkId)).addTo(parent);
+					TreeFactory.newLeafNode(sb, getLinkRes(linkId), context).addTo(parent);
 				}
 			}
 			while (cursor.moveToNext());
@@ -1096,6 +1106,8 @@ abstract public class BaseModule extends Module
 			// noinspection StatementWithEmptyBody
 			if (cursor.moveToFirst())
 			{
+				final Context context = this.fragment.requireContext();
+
 				final int idLinkId = cursor.getColumnIndex(LinkTypes.LINKID);
 				// final int idLink = cursor.getColumnIndex(LinkTypes.LINK);
 
@@ -1138,12 +1150,12 @@ abstract public class BaseModule extends Module
 					Spanner.append(sb, targetDefinition, 0, WordNetFactories.definitionFactory);
 
 					// attach result
-					TreeFactory.newLeafNode(sb, getLinkRes(linkId));
+					TreeFactory.newLeafNode(sb, getLinkRes(linkId), context);
 				}
 				while (cursor.moveToNext());
 
 				// attach result
-				TreeFactory.addTextNode(parent, sb);
+				TreeFactory.addTextNode(parent, sb, context);
 			}
 			else
 			{
@@ -1158,6 +1170,8 @@ abstract public class BaseModule extends Module
 	{
 		if (cursor.moveToFirst())
 		{
+			final Context context = this.fragment.requireContext();
+
 			//noinspection StatementWithEmptyBody
 			if (cursor.moveToFirst())
 			{
@@ -1202,7 +1216,7 @@ abstract public class BaseModule extends Module
 					Spanner.append(sb, targetDefinition, 0, WordNetFactories.definitionFactory);
 
 					// attach result
-					final TreeNode linkNode = TreeFactory.newLinkLeafNode(sb, getLinkRes(linkId), new SenseLink(targetSynsetId, idTargetWordId, BaseModule.this.maxRecursion));
+					final TreeNode linkNode = TreeFactory.newLinkLeafNode(sb, getLinkRes(linkId), new SenseLink(targetSynsetId, idTargetWordId, BaseModule.this.maxRecursion), context);
 					parent.addChild(linkNode);
 				}
 				while (cursor.moveToNext());
@@ -1265,6 +1279,8 @@ abstract public class BaseModule extends Module
 		//noinspection StatementWithEmptyBody
 		if (cursor.moveToFirst())
 		{
+			final Context context = this.fragment.requireContext();
+
 			final int vframeId = cursor.getColumnIndex(VerbFrameMaps_VerbFrames.FRAME);
 
 			final SpannableStringBuilder sb = new SpannableStringBuilder();
@@ -1283,7 +1299,7 @@ abstract public class BaseModule extends Module
 			while (cursor.moveToNext());
 
 			// attach result
-			TreeFactory.addTextNode(parent, sb);
+			TreeFactory.addTextNode(parent, sb, context);
 		}
 		else
 		{
@@ -1342,6 +1358,8 @@ abstract public class BaseModule extends Module
 		//noinspection StatementWithEmptyBody
 		if (cursor.moveToFirst())
 		{
+			final Context context = this.fragment.requireContext();
+
 			final int vframeId = cursor.getColumnIndex(VerbFrameSentenceMaps_VerbFrameSentences.SENTENCE);
 
 			final SpannableStringBuilder sb = new SpannableStringBuilder();
@@ -1360,7 +1378,7 @@ abstract public class BaseModule extends Module
 			while (cursor.moveToNext());
 
 			// attach result
-			TreeFactory.addTextNode(parent, sb);
+			TreeFactory.addTextNode(parent, sb, context);
 		}
 		else
 		{
@@ -1376,6 +1394,8 @@ abstract public class BaseModule extends Module
 		// noinspection StatementWithEmptyBody
 		if (cursor.moveToFirst())
 		{
+			final Context context = this.fragment.requireContext();
+
 			final String lemma = "---";
 			final int vframeId = cursor.getColumnIndex(VerbFrameSentenceMaps_VerbFrameSentences.SENTENCE);
 
@@ -1395,7 +1415,7 @@ abstract public class BaseModule extends Module
 			while (cursor.moveToNext());
 
 			// attach result
-			TreeFactory.addTextNode(parent, sb);
+			TreeFactory.addTextNode(parent, sb, context);
 		}
 		else
 		{
@@ -1454,6 +1474,8 @@ abstract public class BaseModule extends Module
 		//noinspection StatementWithEmptyBody
 		if (cursor.moveToFirst())
 		{
+			final Context context = this.fragment.requireContext();
+
 			final int positionId = cursor.getColumnIndex(AdjPositions_AdjPositionTypes.POSITIONNAME);
 
 			final SpannableStringBuilder sb = new SpannableStringBuilder();
@@ -1472,7 +1494,7 @@ abstract public class BaseModule extends Module
 			while (cursor.moveToNext());
 
 			// attach result
-			TreeFactory.addTextNode(parent, sb);
+			TreeFactory.addTextNode(parent, sb, context);
 		}
 		else
 		{
@@ -1510,6 +1532,8 @@ abstract public class BaseModule extends Module
 		//noinspection StatementWithEmptyBody
 		if (cursor.moveToFirst())
 		{
+			final Context context = this.fragment.requireContext();
+
 			final int morphId = cursor.getColumnIndex(MorphMaps_Morphs.MORPH);
 			final int posId = cursor.getColumnIndex(MorphMaps_Morphs.POS);
 
@@ -1530,7 +1554,7 @@ abstract public class BaseModule extends Module
 			while (cursor.moveToNext());
 
 			// attach result
-			TreeFactory.addTextNode(parent, sb);
+			TreeFactory.addTextNode(parent, sb, context);
 		}
 		else
 		{

@@ -68,6 +68,14 @@
       <sourceFolder url="file://$MODULE_DIR$/src/main/java" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/main/rs" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/main/shaders" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/androidTest/res" type="java-test-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/src/androidTest/resources" type="java-test-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/src/main/assets" type="java-test-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/src/debug/assets" type="java-test-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/src/androidTest/aidl" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/src/androidTest/java" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/src/androidTest/rs" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/src/androidTest/shaders" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/src/test/res" type="java-test-resource" />
       <sourceFolder url="file://$MODULE_DIR$/src/test/resources" type="java-test-resource" />
       <sourceFolder url="file://$MODULE_DIR$/src/test/assets" type="java-test-resource" />
@@ -75,13 +83,6 @@
       <sourceFolder url="file://$MODULE_DIR$/src/test/java" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/src/test/rs" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/src/test/shaders" isTestSource="true" />
-      <sourceFolder url="file://$MODULE_DIR$/src/androidTest/res" type="java-test-resource" />
-      <sourceFolder url="file://$MODULE_DIR$/src/androidTest/resources" type="java-test-resource" />
-      <sourceFolder url="file://$MODULE_DIR$/src/androidTest/assets" type="java-test-resource" />
-      <sourceFolder url="file://$MODULE_DIR$/src/androidTest/aidl" isTestSource="true" />
-      <sourceFolder url="file://$MODULE_DIR$/src/androidTest/java" isTestSource="true" />
-      <sourceFolder url="file://$MODULE_DIR$/src/androidTest/rs" isTestSource="true" />
-      <sourceFolder url="file://$MODULE_DIR$/src/androidTest/shaders" isTestSource="true" />
       <excludeFolder url="file://$MODULE_DIR$/build/generated/not_namespaced_r_class_sources" />
       <excludeFolder url="file://$MODULE_DIR$/build/generated/source/r" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/annotation_processor_list" />
@@ -182,156 +183,6 @@
     <orderEntry type="library" name="Gradle: androidx.activity:activity:1.0.0-alpha05@aar" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: androidx.multidex:multidex-instrumentation:2.0.0@aar" level="project" />
     <orderEntry type="library" name="Gradle: androidx.lifecycle:lifecycle-process:2.0.0@aar" level="project" />
-    <orderEntry type="module" module-name="propbank" />
-    <orderEntry type="module" module-name="test" scope="TEST" />
-    <orderEntry type="module" module-name="expandableListFragment" />
-    <orderEntry type="module" module-name="deploy" />
-    <orderEntry type="module" module-name="support" />
-    <orderEntry type="module" module-name="download" />
-    <orderEntry type="module" module-name="common" />
-    <orderEntry type="module" module-name="wordNet" />
-    <orderEntry type="module" module-name="xNet" />
-    <orderEntry type="module" module-name="verbNet" />
-    <orderEntry type="module" module-name="propbank" />
-    <orderEntry type="module" module-name="test" scope="TEST" />
-    <orderEntry type="module" module-name="expandableListFragment" />
-    <orderEntry type="module" module-name="deploy" />
-    <orderEntry type="module" module-name="support" />
-    <orderEntry type="module" module-name="download" />
-    <orderEntry type="module" module-name="common" />
-    <orderEntry type="module" module-name="wordNet" />
-    <orderEntry type="module" module-name="xNet" />
-    <orderEntry type="module" module-name="verbNet" />
-    <orderEntry type="module" module-name="propbank" />
-    <orderEntry type="module" module-name="test" scope="TEST" />
-    <orderEntry type="module" module-name="expandableListFragment" />
-    <orderEntry type="module" module-name="deploy" />
-    <orderEntry type="module" module-name="support" />
-    <orderEntry type="module" module-name="download" />
-    <orderEntry type="module" module-name="common" />
-    <orderEntry type="module" module-name="wordNet" />
-    <orderEntry type="module" module-name="xNet" />
-    <orderEntry type="module" module-name="verbNet" />
-    <orderEntry type="module" module-name="propbank" />
-    <orderEntry type="module" module-name="test" scope="TEST" />
-    <orderEntry type="module" module-name="expandableListFragment" />
-    <orderEntry type="module" module-name="deploy" />
-    <orderEntry type="module" module-name="support" />
-    <orderEntry type="module" module-name="download" />
-    <orderEntry type="module" module-name="common" />
-    <orderEntry type="module" module-name="wordNet" />
-    <orderEntry type="module" module-name="xNet" />
-    <orderEntry type="module" module-name="verbNet" />
-    <orderEntry type="module" module-name="propbank" />
-    <orderEntry type="module" module-name="test" scope="TEST" />
-    <orderEntry type="module" module-name="expandableListFragment" />
-    <orderEntry type="module" module-name="deploy" />
-    <orderEntry type="module" module-name="support" />
-    <orderEntry type="module" module-name="download" />
-    <orderEntry type="module" module-name="common" />
-    <orderEntry type="module" module-name="wordNet" />
-    <orderEntry type="module" module-name="xNet" />
-    <orderEntry type="module" module-name="verbNet" />
-    <orderEntry type="module" module-name="propbank" />
-    <orderEntry type="module" module-name="test" scope="TEST" />
-    <orderEntry type="module" module-name="expandableListFragment" />
-    <orderEntry type="module" module-name="deploy" />
-    <orderEntry type="module" module-name="support" />
-    <orderEntry type="module" module-name="download" />
-    <orderEntry type="module" module-name="common" />
-    <orderEntry type="module" module-name="wordNet" />
-    <orderEntry type="module" module-name="xNet" />
-    <orderEntry type="module" module-name="verbNet" />
-    <orderEntry type="module" module-name="propbank" />
-    <orderEntry type="module" module-name="test" scope="TEST" />
-    <orderEntry type="module" module-name="expandableListFragment" />
-    <orderEntry type="module" module-name="deploy" />
-    <orderEntry type="module" module-name="support" />
-    <orderEntry type="module" module-name="download" />
-    <orderEntry type="module" module-name="common" />
-    <orderEntry type="module" module-name="wordNet" />
-    <orderEntry type="module" module-name="xNet" />
-    <orderEntry type="module" module-name="verbNet" />
-    <orderEntry type="module" module-name="propbank" />
-    <orderEntry type="module" module-name="test" scope="TEST" />
-    <orderEntry type="module" module-name="expandableListFragment" />
-    <orderEntry type="module" module-name="deploy" />
-    <orderEntry type="module" module-name="support" />
-    <orderEntry type="module" module-name="download" />
-    <orderEntry type="module" module-name="common" />
-    <orderEntry type="module" module-name="wordNet" />
-    <orderEntry type="module" module-name="xNet" />
-    <orderEntry type="module" module-name="verbNet" />
-    <orderEntry type="module" module-name="propbank" />
-    <orderEntry type="module" module-name="test" scope="TEST" />
-    <orderEntry type="module" module-name="expandableListFragment" />
-    <orderEntry type="module" module-name="deploy" />
-    <orderEntry type="module" module-name="support" />
-    <orderEntry type="module" module-name="download" />
-    <orderEntry type="module" module-name="common" />
-    <orderEntry type="module" module-name="wordNet" />
-    <orderEntry type="module" module-name="xNet" />
-    <orderEntry type="module" module-name="verbNet" />
-    <orderEntry type="module" module-name="propbank" />
-    <orderEntry type="module" module-name="test" scope="TEST" />
-    <orderEntry type="module" module-name="expandableListFragment" />
-    <orderEntry type="module" module-name="deploy" />
-    <orderEntry type="module" module-name="support" />
-    <orderEntry type="module" module-name="download" />
-    <orderEntry type="module" module-name="common" />
-    <orderEntry type="module" module-name="wordNet" />
-    <orderEntry type="module" module-name="xNet" />
-    <orderEntry type="module" module-name="verbNet" />
-    <orderEntry type="module" module-name="propbank" />
-    <orderEntry type="module" module-name="test" scope="TEST" />
-    <orderEntry type="module" module-name="expandableListFragment" />
-    <orderEntry type="module" module-name="deploy" />
-    <orderEntry type="module" module-name="support" />
-    <orderEntry type="module" module-name="download" />
-    <orderEntry type="module" module-name="common" />
-    <orderEntry type="module" module-name="wordNet" />
-    <orderEntry type="module" module-name="xNet" />
-    <orderEntry type="module" module-name="verbNet" />
-    <orderEntry type="module" module-name="propbank" />
-    <orderEntry type="module" module-name="test" scope="TEST" />
-    <orderEntry type="module" module-name="expandableListFragment" />
-    <orderEntry type="module" module-name="deploy" />
-    <orderEntry type="module" module-name="support" />
-    <orderEntry type="module" module-name="download" />
-    <orderEntry type="module" module-name="common" />
-    <orderEntry type="module" module-name="wordNet" />
-    <orderEntry type="module" module-name="xNet" />
-    <orderEntry type="module" module-name="verbNet" />
-    <orderEntry type="module" module-name="propbank" />
-    <orderEntry type="module" module-name="test" scope="TEST" />
-    <orderEntry type="module" module-name="expandableListFragment" />
-    <orderEntry type="module" module-name="deploy" />
-    <orderEntry type="module" module-name="support" />
-    <orderEntry type="module" module-name="download" />
-    <orderEntry type="module" module-name="common" />
-    <orderEntry type="module" module-name="wordNet" />
-    <orderEntry type="module" module-name="xNet" />
-    <orderEntry type="module" module-name="verbNet" />
-    <orderEntry type="module" module-name="propbank" />
-    <orderEntry type="module" module-name="test" scope="TEST" />
-    <orderEntry type="module" module-name="expandableListFragment" />
-    <orderEntry type="module" module-name="deploy" />
-    <orderEntry type="module" module-name="support" />
-    <orderEntry type="module" module-name="download" />
-    <orderEntry type="module" module-name="common" />
-    <orderEntry type="module" module-name="wordNet" />
-    <orderEntry type="module" module-name="xNet" />
-    <orderEntry type="module" module-name="verbNet" />
-    <orderEntry type="module" module-name="propbank" />
-    <orderEntry type="module" module-name="test" scope="TEST" />
-    <orderEntry type="module" module-name="expandableListFragment" />
-    <orderEntry type="module" module-name="deploy" />
-    <orderEntry type="module" module-name="support" />
-    <orderEntry type="module" module-name="download" />
-    <orderEntry type="module" module-name="common" />
-    <orderEntry type="module" module-name="wordNet" />
-    <orderEntry type="module" module-name="xNet" />
-    <orderEntry type="module" module-name="verbNet" />
     <orderEntry type="module" module-name="propbank" />
     <orderEntry type="module" module-name="test" scope="TEST" />
     <orderEntry type="module" module-name="expandableListFragment" />

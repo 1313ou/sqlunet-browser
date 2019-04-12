@@ -1,11 +1,13 @@
 package org.sqlunet.view;
 
+import android.os.Handler;
+import android.os.Looper;
 import android.util.Log;
 
 import org.sqlunet.treeview.control.Controller;
 import org.sqlunet.treeview.control.HotQueryController;
-import org.sqlunet.treeview.control.QueryController;
 import org.sqlunet.treeview.model.TreeNode;
+import org.sqlunet.treeview.view.TreeView;
 
 import androidx.annotation.NonNull;
 
@@ -21,6 +23,7 @@ public class FireEvent
 	static public void live(TreeNode node)
 	{
 		Log.d(TAG, "Live " + "\n" + node.toStringWithChildren());
+		TreeView.expand(node, true);
 	}
 
 	// R E S U L T S  A V A I L A B L E
@@ -80,10 +83,11 @@ public class FireEvent
 	static public void onQueryReady(@NonNull final TreeNode node)
 	{
 		final Controller<?> controller = node.getController();
-		if (controller != null && controller instanceof HotQueryController)
+		if (controller instanceof HotQueryController)
 		{
-			final QueryController queryController = (QueryController) controller;
-			queryController.processQuery();
+			final HotQueryController queryController = (HotQueryController) controller;
+			final Handler handler = new Handler(Looper.getMainLooper());
+			handler.post(queryController::processQuery);
 		}
 	}
 }

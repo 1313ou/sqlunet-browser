@@ -25,16 +25,25 @@ public abstract class Controller<E>
 	 */
 	TreeNode node;
 
+	// C O N T E X T
+
+	/**
+	 * Context
+	 */
+	final Context context;
+
 	// V I E W
 
 	/**
 	 * Tree view (whole tree view it is part of)
 	 */
+	@Nullable
 	private TreeView treeView;
 
 	/**
 	 * View (wrapper view that includes label and subtree children)
 	 */
+	@Nullable
 	private View view;
 
 	/**
@@ -47,13 +56,6 @@ public abstract class Controller<E>
 	 * Container style
 	 */
 	private int containerStyle;
-
-	// C O N T E X T
-
-	/**
-	 * Context
-	 */
-	final Context context;
 
 	// C O N S T R U C T
 

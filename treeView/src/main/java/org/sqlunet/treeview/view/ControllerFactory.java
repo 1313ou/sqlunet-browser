@@ -9,19 +9,21 @@ import java.lang.reflect.Constructor;
 
 public class ControllerFactory
 {
-	static public void addController(final TreeNode node, final Context context)
+	/*
+	static public void addController(final TreeNode node, final Class<?> controllerClass, final Context context)
 	{
 		if (node.getController() == null)
 		{
-			final Controller controller = makeController(node.controllerClass, context);
+			final Controller controller = makeController(controllerClass, context);
 			node.setController(controller);
 		}
 
 		for (TreeNode child : node.getChildren())
 		{
-			addController(child, context);
+			addController(child, controllerClass, context);
 		}
 	}
+	*/
 
 	static public Controller makeController(final Class<?> controllerClass, final Context context)
 	{

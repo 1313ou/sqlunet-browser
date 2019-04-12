@@ -1,5 +1,6 @@
 package org.sqlunet.framenet.loaders;
 
+import android.content.Context;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Parcelable;
@@ -102,6 +103,8 @@ public class SentenceModule extends BaseModule
 		}
 		if (cursor.moveToFirst())
 		{
+			final Context context = this.fragment.requireContext();
+
 			final SpannableStringBuilder sb = new SpannableStringBuilder();
 
 			final int idSentenceId = cursor.getColumnIndex(Sentences.SENTENCEID);
@@ -113,7 +116,7 @@ public class SentenceModule extends BaseModule
 			Spanner.append(sb, SentenceModule.this.sentenceText, 0, FrameNetFactories.sentenceFactory);
 
 			// attach result
-			TreeFactory.addTextNode(parent, sb);
+			TreeFactory.addTextNode(parent, sb, context);
 
 			// layers
 			layersForSentence(id, SentenceModule.this.sentenceText, parent);

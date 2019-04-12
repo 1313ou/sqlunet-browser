@@ -230,6 +230,8 @@ abstract public class BaseModule extends Module
 		}
 		if (cursor.moveToFirst())
 		{
+			final Context context = this.fragment.requireContext();
+
 			final SpannableStringBuilder sb = new SpannableStringBuilder();
 
 			// column indices
@@ -268,12 +270,12 @@ abstract public class BaseModule extends Module
 			}
 
 			// attach result
-			TreeFactory.addTextNode(parent, sb);
+			TreeFactory.addTextNode(parent, sb, context);
 
 			// sub nodes
-			final TreeNode fesNode = TreeFactory.newHotQueryNode("Frame Elements", R.drawable.roles, new FEsQuery(frameId)).addTo(parent);
-			final TreeNode lexUnitsNode = TreeFactory.newHotQueryNode("Lex Units", R.drawable.members, new LexUnitsQuery(frameId)).addTo(parent);
-			final TreeNode relatedNode = TreeFactory.newQueryNode("Related", R.drawable.roleclass, new RelatedQuery(frameId)).addTo(parent);
+			final TreeNode fesNode = TreeFactory.newHotQueryNode("Frame Elements", R.drawable.roles, new FEsQuery(frameId), context).addTo(parent);
+			final TreeNode lexUnitsNode = TreeFactory.newHotQueryNode("Lex Units", R.drawable.members, new LexUnitsQuery(frameId), context).addTo(parent);
+			final TreeNode relatedNode = TreeFactory.newQueryNode("Related", R.drawable.roleclass, new RelatedQuery(frameId), context).addTo(parent);
 
 			// fire events
 			FireEvent.onQueryReady(fesNode);
@@ -321,6 +323,8 @@ abstract public class BaseModule extends Module
 	{
 		if (cursor.moveToFirst())
 		{
+			final Context context = this.fragment.requireContext();
+
 			// column indices
 			// final int idFrameId = cursor.getColumnIndex(Frames_Related.FRAMEID);
 			// final int idFrame = cursor.getColumnIndex(Frames_Related.FRAME);
@@ -400,7 +404,7 @@ abstract public class BaseModule extends Module
 
 				// result
 				long targetFrameId = slot1 ? frame2Id : frame1Id;
-				final TreeNode memberNode = TreeFactory.newLinkNode(sb, R.drawable.roleclass, new FnFrameLink(targetFrameId));
+				final TreeNode memberNode = TreeFactory.newLinkNode(sb, R.drawable.roleclass, new FnFrameLink(targetFrameId), context);
 				parent.addChild(memberNode);
 			}
 			while (cursor.moveToNext());
@@ -449,6 +453,8 @@ abstract public class BaseModule extends Module
 	{
 		if (cursor.moveToFirst())
 		{
+			final Context context = this.fragment.requireContext();
+
 			// column indices
 			final int idFeType = cursor.getColumnIndex(Frames_FEs.FETYPE);
 			final int idFeAbbrev = cursor.getColumnIndex(Frames_FEs.FEABBREV);
@@ -477,7 +483,7 @@ abstract public class BaseModule extends Module
 				Spanner.append(sb, feAbbrev, 0, FrameNetFactories.feAbbrevFactory);
 
 				// attach fe
-				final TreeNode feNode = TreeFactory.addTreeNode(parent, sb, coreTypeId == 1 ? R.drawable.rolex : R.drawable.role);
+				final TreeNode feNode = TreeFactory.addTreeNode(parent, sb, coreTypeId == 1 ? R.drawable.rolex : R.drawable.role, context);
 
 				// more info
 				final SpannableStringBuilder sb2 = new SpannableStringBuilder();
@@ -524,7 +530,7 @@ abstract public class BaseModule extends Module
 				}
 
 				// attach more info to fe node
-				TreeFactory.addTextNode(feNode, sb2);
+				TreeFactory.addTextNode(feNode, sb2, context);
 			}
 			while (cursor.moveToNext());
 		}
@@ -579,6 +585,8 @@ abstract public class BaseModule extends Module
 		}
 		if (cursor.moveToFirst())
 		{
+			final Context context = this.fragment.requireContext();
+
 			final SpannableStringBuilder sb = new SpannableStringBuilder();
 
 			// column indices
@@ -645,7 +653,7 @@ abstract public class BaseModule extends Module
 				}
 			}
 			// attach result
-			TreeFactory.addTextNode(parent, sb);
+			TreeFactory.addTextNode(parent, sb, context);
 
 			// with-frame option
 			if (withFrame)
@@ -654,14 +662,14 @@ abstract public class BaseModule extends Module
 				sb2.append("Frame");
 				sb2.append(' ');
 				Spanner.append(sb2, frame, 0, FrameNetFactories.boldFactory);
-				final TreeNode frameNode = TreeFactory.newHotQueryNode(sb2, R.drawable.roleclass, new FrameQuery(frameId)).addTo(parent);
+				final TreeNode frameNode = TreeFactory.newHotQueryNode(sb2, R.drawable.roleclass, new FrameQuery(frameId), context).addTo(parent);
 
 				// fire event
 				FireEvent.onQueryReady(frameNode);
 
 				if (withFes)
 				{
-					final TreeNode fesNode = TreeFactory.newQueryNode("Frame Elements", R.drawable.roles, new FEsQuery(frameId)).addTo(parent);
+					final TreeNode fesNode = TreeFactory.newQueryNode("Frame Elements", R.drawable.roles, new FEsQuery(frameId), context).addTo(parent);
 
 					// fire event
 					FireEvent.onQueryReady(fesNode);
@@ -669,14 +677,14 @@ abstract public class BaseModule extends Module
 			}
 			else
 			{
-				TreeFactory.addTextNode(parent, sb);
+				TreeFactory.addTextNode(parent, sb, context);
 			}
 
 			// sub nodes
-			final TreeNode realizationsNode = TreeFactory.newQueryNode("Realizations", R.drawable.realization, new RealizationsQuery(luId)).addTo(parent);
-			final TreeNode groupRealizationsNode = TreeFactory.newQueryNode("Group realizationsCursorToTreeModel", R.drawable.grouprealization, new GroupRealizationsQuery(luId)).addTo(parent);
-			final TreeNode governorsNode = TreeFactory.newQueryNode("Governors", R.drawable.governor, new GovernorsQuery(luId)).addTo(parent);
-			final TreeNode sentencesNode = TreeFactory.newQueryNode("Sentences", R.drawable.sentence, new SentencesForLexUnitQuery(luId)).addTo(parent);
+			final TreeNode realizationsNode = TreeFactory.newQueryNode("Realizations", R.drawable.realization, new RealizationsQuery(luId), context).addTo(parent);
+			final TreeNode groupRealizationsNode = TreeFactory.newQueryNode("Group realizationsCursorToTreeModel", R.drawable.grouprealization, new GroupRealizationsQuery(luId), context).addTo(parent);
+			final TreeNode governorsNode = TreeFactory.newQueryNode("Governors", R.drawable.governor, new GovernorsQuery(luId), context).addTo(parent);
+			final TreeNode sentencesNode = TreeFactory.newQueryNode("Sentences", R.drawable.sentence, new SentencesForLexUnitQuery(luId), context).addTo(parent);
 
 			// fire event
 			FireEvent.onQueryReady(realizationsNode);
@@ -727,6 +735,8 @@ abstract public class BaseModule extends Module
 	{
 		if (cursor.moveToFirst())
 		{
+			final Context context = this.fragment.requireContext();
+
 			// column indices
 			// final int idFrameId = cursor.getColumnIndex(LexUnits_X.FRAMEID);
 			final int idLuId = cursor.getColumnIndex(LexUnits_X.LUID);
@@ -758,7 +768,7 @@ abstract public class BaseModule extends Module
 				}
 
 				// attach lex unit
-				final TreeNode luNode = TreeFactory.newLinkTreeNode(sb, R.drawable.member, new FnLexUnitLink(luId));
+				final TreeNode luNode = TreeFactory.newLinkTreeNode(sb, R.drawable.member, new FnLexUnitLink(luId), context);
 				parent.addChild(luNode);
 
 				// more info
@@ -804,8 +814,8 @@ abstract public class BaseModule extends Module
 				// attach result
 				if (withFrame)
 				{
-					final TreeNode frameNode = TreeFactory.newQueryNode("Frame", R.drawable.roleclass, new FrameQuery(frameId)).addTo(luNode);
-					final TreeNode fesNode = TreeFactory.newQueryNode("Frame Elements", R.drawable.roles, new FEsQuery(frameId)).addTo(luNode);
+					final TreeNode frameNode = TreeFactory.newQueryNode("Frame", R.drawable.roleclass, new FrameQuery(frameId), context).addTo(luNode);
+					final TreeNode fesNode = TreeFactory.newQueryNode("Frame Elements", R.drawable.roles, new FEsQuery(frameId), context).addTo(luNode);
 
 					// fire event
 					FireEvent.onQueryReady(frameNode);
@@ -813,14 +823,14 @@ abstract public class BaseModule extends Module
 				}
 				else
 				{
-					TreeFactory.addTextNode(luNode, sb2);
+					TreeFactory.addTextNode(luNode, sb2, context);
 				}
 
 				// sub nodes
-				final TreeNode realizationsNode = TreeFactory.newQueryNode("Realizations", R.drawable.realization, new RealizationsQuery(luId)).addTo(luNode);
-				final TreeNode groupRealizationsNode = TreeFactory.newQueryNode("Group realizationsCursorToTreeModel", R.drawable.grouprealization, new GroupRealizationsQuery(luId)).addTo(luNode);
-				final TreeNode governorsNode = TreeFactory.newQueryNode("Governors", R.drawable.governor, new GovernorsQuery(luId)).addTo(luNode);
-				final TreeNode sentencesNode = TreeFactory.newQueryNode("Sentences", R.drawable.sentence, new SentencesForLexUnitQuery(luId)).addTo(luNode);
+				final TreeNode realizationsNode = TreeFactory.newQueryNode("Realizations", R.drawable.realization, new RealizationsQuery(luId), context).addTo(luNode);
+				final TreeNode groupRealizationsNode = TreeFactory.newQueryNode("Group realizationsCursorToTreeModel", R.drawable.grouprealization, new GroupRealizationsQuery(luId), context).addTo(luNode);
+				final TreeNode governorsNode = TreeFactory.newQueryNode("Governors", R.drawable.governor, new GovernorsQuery(luId), context).addTo(luNode);
+				final TreeNode sentencesNode = TreeFactory.newQueryNode("Sentences", R.drawable.sentence, new SentencesForLexUnitQuery(luId), context).addTo(luNode);
 
 				// fire events
 				FireEvent.onQueryReady(realizationsNode);
@@ -875,6 +885,8 @@ abstract public class BaseModule extends Module
 	{
 		if (cursor.moveToFirst())
 		{
+			final Context context = this.fragment.requireContext();
+
 			// column indices
 			final int idLuId = cursor.getColumnIndex(Words_LexUnits_Frames.LUID);
 			final int idLexUnit = cursor.getColumnIndex(Words_LexUnits_Frames.LEXUNIT);
@@ -944,15 +956,15 @@ abstract public class BaseModule extends Module
 					}
 				}
 				// attach result
-				TreeFactory.addTextNode(parent, sb);
+				TreeFactory.addTextNode(parent, sb, context);
 
 				// sub nodes
-				final TreeNode frameNode = TreeFactory.newHotQueryNode("Frame", R.drawable.roleclass, new FrameQuery(frameId)).addTo(parent);
-				final TreeNode fesNode = TreeFactory.newQueryNode("Frame Elements", R.drawable.roles, new FEsQuery(frameId)).addTo(parent);
-				final TreeNode realizationsNode = TreeFactory.newQueryNode("Realizations", R.drawable.realization, new RealizationsQuery(luId)).addTo(parent);
-				final TreeNode groupRealizationsNode = TreeFactory.newQueryNode("Group realizationsCursorToTreeModel", R.drawable.grouprealization, new GroupRealizationsQuery(luId)).addTo(parent);
-				final TreeNode governorsNode = TreeFactory.newQueryNode("Governors", R.drawable.governor, new GovernorsQuery(luId)).addTo(parent);
-				final TreeNode sentencesNode = TreeFactory.newQueryNode("Sentences", R.drawable.sentence, new SentencesForLexUnitQuery(luId)).addTo(parent);
+				final TreeNode frameNode = TreeFactory.newHotQueryNode("Frame", R.drawable.roleclass, new FrameQuery(frameId), context).addTo(parent);
+				final TreeNode fesNode = TreeFactory.newQueryNode("Frame Elements", R.drawable.roles, new FEsQuery(frameId), context).addTo(parent);
+				final TreeNode realizationsNode = TreeFactory.newQueryNode("Realizations", R.drawable.realization, new RealizationsQuery(luId), context).addTo(parent);
+				final TreeNode groupRealizationsNode = TreeFactory.newQueryNode("Group realizationsCursorToTreeModel", R.drawable.grouprealization, new GroupRealizationsQuery(luId), context).addTo(parent);
+				final TreeNode governorsNode = TreeFactory.newQueryNode("Governors", R.drawable.governor, new GovernorsQuery(luId), context).addTo(parent);
+				final TreeNode sentencesNode = TreeFactory.newQueryNode("Sentences", R.drawable.sentence, new SentencesForLexUnitQuery(luId), context).addTo(parent);
 
 				// fire event
 				FireEvent.onQueryReady(frameNode);
@@ -1005,6 +1017,8 @@ abstract public class BaseModule extends Module
 	{
 		if (cursor.moveToFirst())
 		{
+			final Context context = this.fragment.requireContext();
+
 			// column indices
 			final int idGovernorId = cursor.getColumnIndex(LexUnits_Governors.GOVERNORID);
 			final int idGovernorType = cursor.getColumnIndex(LexUnits_Governors.GOVERNORTYPE);
@@ -1035,7 +1049,7 @@ abstract public class BaseModule extends Module
 				Spanner.append(sb, word, 0, FrameNetFactories.governorFactory);
 
 				// attach annoSets node
-				final TreeNode annoSetsNode = TreeFactory.newQueryNode(sb, R.drawable.governor, new AnnoSetsForGovernorQuery(governorId)).addTo(parent);
+				final TreeNode annoSetsNode = TreeFactory.newQueryNode(sb, R.drawable.governor, new AnnoSetsForGovernorQuery(governorId), context).addTo(parent);
 
 				// fire event
 				FireEvent.onQueryReady(annoSetsNode);
@@ -1087,6 +1101,8 @@ abstract public class BaseModule extends Module
 	{
 		if (cursor.moveToFirst())
 		{
+			final Context context = this.fragment.requireContext();
+
 			// column indices
 			final int idFerId = cursor.getColumnIndex(LexUnits_FERealizations_ValenceUnits.FERID);
 			final int idFeType = cursor.getColumnIndex(LexUnits_FERealizations_ValenceUnits.FETYPE);
@@ -1110,7 +1126,7 @@ abstract public class BaseModule extends Module
 				}
 
 				// fe
-				final TreeNode feNode = TreeFactory.addTreeNode(parent, sb, R.drawable.role);
+				final TreeNode feNode = TreeFactory.addTreeNode(parent, sb, R.drawable.role, context);
 
 				// fe realizationsCursorToTreeModel
 				final String fers = cursor.getString(idFers);
@@ -1148,7 +1164,7 @@ abstract public class BaseModule extends Module
 					}
 
 					// attach fer node
-					final TreeNode ferNode = TreeFactory.newQueryNode(sb1, R.drawable.realization, new SentencesForValenceUnitQuery(vuId)).addTo(feNode);
+					final TreeNode ferNode = TreeFactory.newQueryNode(sb1, R.drawable.realization, new SentencesForValenceUnitQuery(vuId), context).addTo(feNode);
 
 					// fire event
 					FireEvent.onQueryReady(ferNode);
@@ -1197,6 +1213,8 @@ abstract public class BaseModule extends Module
 	{
 		if (cursor.moveToFirst())
 		{
+			final Context context = this.fragment.requireContext();
+
 			// column indices
 			final int idFEGRId = cursor.getColumnIndex(LexUnits_FEGroupRealizations_Patterns_ValenceUnits.FEGRID);
 			final int idGroupRealizations = cursor.getColumnIndex(LexUnits_FEGroupRealizations_Patterns_ValenceUnits.GROUPREALIZATIONS);
@@ -1235,7 +1253,7 @@ abstract public class BaseModule extends Module
 					}
 
 					groupId = feGroupId;
-					groupNode = TreeFactory.addTreeNode(parent, sb1, R.drawable.grouprealization);
+					groupNode = TreeFactory.addTreeNode(parent, sb1, R.drawable.grouprealization, context);
 				}
 				assert groupNode != null;
 
@@ -1243,7 +1261,7 @@ abstract public class BaseModule extends Module
 				parseGroupRealizations(groupRealizations, sb);
 
 				// attach sentences node
-				final TreeNode sentencesNode = TreeFactory.newQueryNode(sb, R.drawable.grouprealization, new SentencesForPatternQuery(patternId)).addTo(groupNode);
+				final TreeNode sentencesNode = TreeFactory.newQueryNode(sb, R.drawable.grouprealization, new SentencesForPatternQuery(patternId), context).addTo(groupNode);
 
 				// fire event
 				FireEvent.onQueryReady(sentencesNode);
@@ -1354,6 +1372,8 @@ abstract public class BaseModule extends Module
 	{
 		if (cursor.moveToFirst())
 		{
+			final Context context = this.fragment.requireContext();
+
 			// column indices
 			final int idText = cursor.getColumnIndex(LexUnits_Sentences_AnnoSets_Layers_Labels.TEXT);
 			final int idLayerType = cursor.getColumnIndex(LexUnits_Sentences_AnnoSets_Layers_Labels.LAYERTYPE);
@@ -1431,7 +1451,7 @@ abstract public class BaseModule extends Module
 				}
 
 				// attach result
-				final TreeNode sentenceNode = TreeFactory.newLinkNode(sb, R.drawable.sentence, new FnSentenceLink(sentenceId));
+				final TreeNode sentenceNode = TreeFactory.newLinkNode(sb, R.drawable.sentence, new FnSentenceLink(sentenceId), context);
 				parent.addChild(sentenceNode);
 			}
 			while (cursor.moveToNext());
@@ -1473,6 +1493,8 @@ abstract public class BaseModule extends Module
 	{
 		if (cursor.moveToFirst())
 		{
+			final Context context = this.fragment.requireContext();
+
 			// column indices
 			final int idAnnotationId = cursor.getColumnIndex(Patterns_Sentences.ANNOSETID);
 			final int idText = cursor.getColumnIndex(Patterns_Sentences.TEXT);
@@ -1498,7 +1520,7 @@ abstract public class BaseModule extends Module
 				}
 
 				// attach annoSet node
-				final TreeNode annoSetNode = TreeFactory.newQueryNode(sb, R.drawable.sentence, new AnnoSetQuery(annotationId, false)).addTo(parent);
+				final TreeNode annoSetNode = TreeFactory.newQueryNode(sb, R.drawable.sentence, new AnnoSetQuery(annotationId, false), context).addTo(parent);
 
 				// fire event
 				FireEvent.onQueryReady(annoSetNode);
@@ -1542,6 +1564,8 @@ abstract public class BaseModule extends Module
 	{
 		if (cursor.moveToFirst())
 		{
+			final Context context = this.fragment.requireContext();
+
 			// column indices
 			final int idAnnotationId = cursor.getColumnIndex(ValenceUnits_Sentences.ANNOSETID);
 			final int idText = cursor.getColumnIndex(ValenceUnits_Sentences.TEXT);
@@ -1567,7 +1591,7 @@ abstract public class BaseModule extends Module
 				}
 
 				// pattern
-				final TreeNode annoSetNode = TreeFactory.newQueryNode(sb, R.drawable.sentence, new AnnoSetQuery(annotationId, false)).addTo(parent);
+				final TreeNode annoSetNode = TreeFactory.newQueryNode(sb, R.drawable.sentence, new AnnoSetQuery(annotationId, false), context).addTo(parent);
 
 				// fire event
 				FireEvent.onQueryReady(annoSetNode);
@@ -1619,6 +1643,8 @@ abstract public class BaseModule extends Module
 
 		if (cursor.moveToFirst())
 		{
+			final Context context = this.fragment.requireContext();
+
 			// column indices
 			final int idLayerType = cursor.getColumnIndex(AnnoSets_Layers_X.LAYERTYPE);
 			final int idAnnotations = cursor.getColumnIndex(AnnoSets_Layers_X.LAYERANNOTATIONS);
@@ -1719,7 +1745,7 @@ abstract public class BaseModule extends Module
 			}
 
 			// attach result
-			TreeFactory.addTextNode(parent, sb);
+			TreeFactory.addTextNode(parent, sb, context);
 		}
 		else
 		{
@@ -1759,6 +1785,8 @@ abstract public class BaseModule extends Module
 	{
 		if (cursor.moveToFirst())
 		{
+			final Context context = this.fragment.requireContext();
+
 			// column indices
 			final int idSentenceId = cursor.getColumnIndex(Governors_AnnoSets_Sentences.SENTENCEID);
 			final int idText = cursor.getColumnIndex(Governors_AnnoSets_Sentences.TEXT);
@@ -1787,7 +1815,7 @@ abstract public class BaseModule extends Module
 				}
 
 				// attach annoSet node
-				final TreeNode annoSetNode = TreeFactory.newQueryNode(sb, R.drawable.annoset, new AnnoSetQuery(annoSetId, false)).addTo(parent);
+				final TreeNode annoSetNode = TreeFactory.newQueryNode(sb, R.drawable.annoset, new AnnoSetQuery(annoSetId, false), context).addTo(parent);
 
 				// fire event
 				FireEvent.onQueryReady(annoSetNode);
@@ -1906,6 +1934,8 @@ abstract public class BaseModule extends Module
 	{
 		if (cursor.moveToFirst())
 		{
+			final Context context = this.fragment.requireContext();
+
 			long currentAnnoSetId = -1;
 			TreeNode annoSetNode = null;
 			SpannableStringBuilder sb = null;
@@ -1928,7 +1958,7 @@ abstract public class BaseModule extends Module
 					if (sb != null)
 					{
 						// attach result
-						TreeFactory.addTextNode(annoSetNode, sb);
+						TreeFactory.addTextNode(annoSetNode, sb, context);
 					}
 					sb = new SpannableStringBuilder();
 
@@ -1936,7 +1966,7 @@ abstract public class BaseModule extends Module
 					Spanner.append(sba, "AnnoSet", 0, FrameNetFactories.annoSetFactory);
 					sba.append(' ');
 					Spanner.append(sba, Long.toString(annoSetId), 0, FrameNetFactories.dataFactory);
-					annoSetNode = TreeFactory.addTreeNode(parent, sba, R.drawable.annoset);
+					annoSetNode = TreeFactory.addTreeNode(parent, sba, R.drawable.annoset, context);
 					currentAnnoSetId = annoSetId;
 				}
 
@@ -2020,7 +2050,7 @@ abstract public class BaseModule extends Module
 			if (sb.length() > 0)
 			{
 				// attach result
-				TreeFactory.addTextNode(annoSetNode, sb);
+				TreeFactory.addTextNode(annoSetNode, sb, context);
 			}
 
 			// fire event
@@ -2427,9 +2457,10 @@ abstract public class BaseModule extends Module
 		}
 	}
 
-	/**
+	/*
 	 * Dummy query
 	 */
+	/*
 	class DummyQuery extends Query
 	{
 		static private final String TAG = "DummyQuery";
@@ -2446,6 +2477,7 @@ abstract public class BaseModule extends Module
 			Log.d(TAG, "QUERY " + this.id);
 		}
 	}
+	*/
 
 	// L I N K S
 

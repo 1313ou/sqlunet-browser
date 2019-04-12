@@ -5,7 +5,6 @@ import android.os.Parcelable;
 import org.sqlunet.HasWordId;
 import org.sqlunet.model.TreeFactory;
 import org.sqlunet.treeview.model.TreeNode;
-import org.sqlunet.view.FireEvent;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -52,7 +51,7 @@ public class WordModule extends BaseModule
 		if (this.wordId != null && this.wordId != 0)
 		{
 			// sub nodes
-			final TreeNode wordNode = TreeFactory.newTextNode("Word");
+			final TreeNode wordNode = TreeFactory.newTextNode("Word", this.fragment.requireContext());
 			parent.addChild(wordNode);
 
 			// word

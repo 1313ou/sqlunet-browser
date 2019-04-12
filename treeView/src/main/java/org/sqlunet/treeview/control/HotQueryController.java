@@ -23,17 +23,6 @@ public class HotQueryController extends TreeController
 		super(context);
 	}
 
-	@Override
-	public void onExpandEvent(boolean expand)
-	{
-		super.onExpandEvent(expand);
-
-		if (expand && !true && this.node.isLeaf())
-		{
-			processQuery();
-		}
-	}
-
 	/**
 	 * Add data to tree by launching the query
 	 */

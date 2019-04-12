@@ -1,6 +1,7 @@
 package org.sqlunet.treeview.model;
 
 import org.sqlunet.treeview.control.Controller;
+import org.sqlunet.treeview.control.RootController;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -40,15 +41,9 @@ public class TreeNode
 	private final List<TreeNode> children;
 
 	/**
-	 * Controller class
-	 */
-	@Nullable
-	public Class<?> controllerClass;
-
-	/**
 	 * Controller
 	 */
-	@Nullable
+	@NonNull
 	private Controller<?> controller;
 
 	/**
@@ -93,7 +88,7 @@ public class TreeNode
 
 	// C O N S T R U C T O R
 
-	public TreeNode(final Object value, final Class<?> controllerClass)
+	public TreeNode(final Object value, @NonNull final Controller<?> controller)
 	{
 		this.children = new ArrayList<>();
 		this.value = value;
@@ -103,27 +98,16 @@ public class TreeNode
 		this.expanded = false;
 		this.collapsible = true;
 		this.deadend = false;
-		this.controllerClass = controllerClass;
+		this.controller = controller;
 		this.tag = null;
+
+		this.controller.attachNode(this);
 	}
 
-	public TreeNode(final Object value, final Class<?> controllerClass, @SuppressWarnings("SameParameterValue") final boolean collapsible)
+	public TreeNode(final Object value, @NonNull final Controller<?> controller, @SuppressWarnings("SameParameterValue") final boolean collapsible)
 	{
-		this(value, controllerClass);
+		this(value, controller);
 		this.collapsible = collapsible;
-	}
-
-	/**
-	 * Factory
-	 *
-	 * @return node
-	 */
-	@NonNull
-	static public TreeNode makeRoot()
-	{
-		final TreeNode root = new TreeNode(null, null);
-		root.setSelectable(false);
-		return root;
 	}
 
 	// T R E E
@@ -626,7 +610,7 @@ public class TreeNode
 	 *
 	 * @return controller
 	 */
-	@Nullable
+	@NonNull
 	public Controller<?> getController()
 	{
 		return this.controller;

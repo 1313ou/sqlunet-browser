@@ -1,5 +1,6 @@
 package org.sqlunet.wordnet.loaders;
 
+import android.content.Context;
 import android.os.Parcelable;
 
 import org.sqlunet.HasPos;
@@ -81,9 +82,11 @@ public class SynsetModule extends BaseModule
 	{
 		if (this.synsetId != null && this.synsetId != 0)
 		{
+			final Context context = this.fragment.requireContext();
+
 			// sub nodes
-			final TreeNode synsetNode = TreeFactory.newTextNode("Synset");
-			final TreeNode membersNode = TreeFactory.newNode("Members", R.drawable.members);
+			final TreeNode synsetNode = TreeFactory.newTextNode("Synset", context);
+			final TreeNode membersNode = TreeFactory.newNode("Members", R.drawable.members, context);
 
 			// attach result
 			parent.addChildren(synsetNode, membersNode);
@@ -111,8 +114,12 @@ public class SynsetModule extends BaseModule
 			}
 
 			// links and samples
-			final TreeNode linksNode = this.expand ? TreeFactory.newQueryNode("Links", R.drawable.ic_links, new LinksQuery(this.synsetId, 0)).addTo(parent) : TreeFactory.newQueryNode("Links", R.drawable.ic_links, new LinksQuery(this.synsetId, 0)).addTo(parent);
-			final TreeNode samplesNode = this.expand ? TreeFactory.newQueryNode("Samples", R.drawable.sample, new SamplesQuery(this.synsetId)).addTo(parent) : TreeFactory.newQueryNode("Samples", R.drawable.sample, new SamplesQuery(this.synsetId)).addTo(parent);
+			final TreeNode linksNode = this.expand ?
+					TreeFactory.newQueryNode("Links", R.drawable.ic_links, new LinksQuery(this.synsetId, 0), context).addTo(parent) :
+					TreeFactory.newQueryNode("Links", R.drawable.ic_links, new LinksQuery(this.synsetId, 0), context).addTo(parent);
+			final TreeNode samplesNode = this.expand ?
+					TreeFactory.newQueryNode("Samples", R.drawable.sample, new SamplesQuery(this.synsetId), context).addTo(parent) :
+					TreeFactory.newQueryNode("Samples", R.drawable.sample, new SamplesQuery(this.synsetId), context).addTo(parent);
 
 			// fire event
 			FireEvent.onQueryReady(linksNode);
