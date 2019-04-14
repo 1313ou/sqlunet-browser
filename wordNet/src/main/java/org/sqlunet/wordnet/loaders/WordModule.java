@@ -51,8 +51,7 @@ public class WordModule extends BaseModule
 		if (this.wordId != null && this.wordId != 0)
 		{
 			// sub nodes
-			final TreeNode wordNode = TreeFactory.newTextNode("Word", this.fragment.requireContext());
-			parent.addChild(wordNode);
+			final TreeNode wordNode = TreeFactory.addTextNode(parent, "Word", this.fragment.requireContext());
 
 			// word
 			word(this.wordId, wordNode, false);

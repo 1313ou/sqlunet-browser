@@ -146,8 +146,9 @@ public class BaseModule extends Module
 		model.getData().observe(this.fragment, FireEvent::live);
 	}
 
-	private TreeNode bncCursorToTreeModel(@NonNull final Cursor cursor, @NonNull final TreeNode parent)
+	private TreeNode[] bncCursorToTreeModel(@NonNull final Cursor cursor, @NonNull final TreeNode parent)
 	{
+		TreeNode[] changed;
 		final SpannableStringBuilder sb = new SpannableStringBuilder();
 		// if (cursor.getCount() > 1)
 		// throw new RuntimeException("Unexpected number of rows");
@@ -282,20 +283,21 @@ public class BaseModule extends Module
 						sb.append("dispersion=").append(dvalue).append(" / ").append(dvalue2);
 					}
 					sb.append('\n');
-
 				}
 			}
 			while (cursor.moveToNext());
 
 			// attach result
-			TreeFactory.addTextNode(parent, sb, this.fragment.requireContext());
+			final TreeNode node = TreeFactory.addTextNode(parent, sb, this.fragment.requireContext());
+			changed = new TreeNode[]{parent, node};
 		}
 		else
 		{
 			TreeFactory.setNoResult(parent, true);
+			changed = new TreeNode[]{parent};
 		}
 
 		cursor.close();
-		return parent;
+		return changed;
 	}
 }

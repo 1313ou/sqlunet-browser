@@ -23,6 +23,7 @@ import org.sqlunet.treeview.model.TreeNode;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
@@ -54,11 +55,6 @@ public class TreeView
 	 * Container style
 	 */
 	private int containerStyle = 0;
-
-	/**
-	 * Default controller
-	 */
-	private Class<? extends Controller<?>> defaultControllerClass = SimpleController.class;
 
 	/**
 	 * Node click listener
@@ -288,7 +284,6 @@ public class TreeView
 		node.disable();
 
 		final Controller<?> controller = node.getController();
-		assert controller != null;
 		controller.disable();
 	}
 
@@ -312,7 +307,6 @@ public class TreeView
 
 		// update view
 		final Controller<?> controller = node.getController();
-		assert controller != null;
 		final View view = controller.getNodeView();
 		if (view != null)
 		{
@@ -340,7 +334,7 @@ public class TreeView
 	 * @param node            node
 	 * @param includeSubnodes whether to include subnodes
 	 */
-	static synchronized public void expand(@NonNull final TreeNode node, @SuppressWarnings("SameParameterValue") boolean includeSubnodes)
+	static public void expand(@NonNull final TreeNode node, @SuppressWarnings("SameParameterValue") boolean includeSubnodes)
 	{
 		final Controller<?> controller = node.getController();
 		final TreeView treeView = controller.getTreeView();
@@ -356,7 +350,7 @@ public class TreeView
 	 * @param node   node
 	 * @param levels number of levels to expand
 	 */
-	static synchronized public void expand(@NonNull final TreeNode node, int levels)
+	static public void expand(@NonNull final TreeNode node, int levels)
 	{
 		final Controller<?> controller = node.getController();
 		final TreeView treeView = controller.getTreeView();
@@ -373,7 +367,7 @@ public class TreeView
 	 * @param includeSubnodes whether to include subnodes
 	 */
 	@SuppressWarnings("unused")
-	static synchronized public void collapse(@NonNull final TreeNode node, boolean includeSubnodes)
+	static public void collapse(@NonNull final TreeNode node, boolean includeSubnodes)
 	{
 		final Controller<?> controller = node.getController();
 		final TreeView treeView = controller.getTreeView();
@@ -397,9 +391,9 @@ public class TreeView
 	 */
 	private void collapseAll()
 	{
-		for (TreeNode node : this.root.getChildren())
+		for (TreeNode child : this.root.getChildren())
 		{
-			collapseNode(node, true);
+			collapseNode(child, true);
 		}
 	}
 
@@ -411,9 +405,9 @@ public class TreeView
 	@SuppressWarnings("unused")
 	public void expandLevel(final int level)
 	{
-		for (TreeNode node : this.root.getChildren())
+		for (TreeNode child : this.root.getChildren())
 		{
-			expandLevel(node, level);
+			expandLevel(child, level);
 		}
 	}
 
@@ -429,9 +423,9 @@ public class TreeView
 		{
 			expandNode(node, false);
 		}
-		for (TreeNode n : node.getChildren())
+		for (TreeNode child : node.getChildren())
 		{
-			expandLevel(n, level);
+			expandLevel(child, level);
 		}
 	}
 
@@ -450,9 +444,9 @@ public class TreeView
 
 		expandNode(node, false);
 
-		for (TreeNode n : node.getChildren())
+		for (TreeNode child : node.getChildren())
 		{
-			expandRelativeLevel(n, levels - 1);
+			expandRelativeLevel(child, levels - 1);
 		}
 	}
 
@@ -557,8 +551,14 @@ public class TreeView
 		viewGroup.removeAllViews();
 
 		// children
-		for (final TreeNode child : node.getChildren())
+		//for (final TreeNode child : node.getChildren())
+		for (final TreeNode child : node.getChildrenList().toArray(new TreeNode[0]))
 		{
+		//Iterator<TreeNode> it = node.getChildrenList().listIterator();
+		//while (it.hasNext())
+		//{
+		//	TreeNode child = it.next();
+
 			// add children node to container view
 			addNode(viewGroup, child);
 
@@ -766,16 +766,6 @@ public class TreeView
 	}
 
 	/**
-	 * Set default controller class
-	 *
-	 * @param controllerClass default controllerClass
-	 */
-	public void setDefaultController(final Class<? extends Controller<?>> controllerClass)
-	{
-		this.defaultControllerClass = controllerClass;
-	}
-
-	/**
 	 * Set default on-click listener
 	 *
 	 * @param listener on-click listener
@@ -849,13 +839,13 @@ public class TreeView
 	 */
 	private void getSaveState(@NonNull final TreeNode root, @NonNull final StringBuilder sb)
 	{
-		for (TreeNode node : root.getChildren())
+		for (TreeNode child : root.getChildren())
 		{
-			if (node.isExpanded())
+			if (child.isExpanded())
 			{
-				sb.append(node.getPath());
+				sb.append(child.getPath());
 				sb.append(NODES_PATH_SEPARATOR);
-				getSaveState(node, sb);
+				getSaveState(child, sb);
 			}
 		}
 	}
@@ -891,9 +881,9 @@ public class TreeView
 		this.selectable = selectable;
 
 		// propagate from root
-		for (TreeNode node : this.root.getChildren())
+		for (TreeNode child : this.root.getChildren())
 		{
-			setSelectable(node, selectable);
+			setSelectable(child, selectable);
 		}
 	}
 
@@ -1013,9 +1003,9 @@ public class TreeView
 	{
 		if (this.selectable)
 		{
-			for (TreeNode node : this.root.getChildren())
+			for (TreeNode child : this.root.getChildren())
 			{
-				selectNode(node, selected, skipCollapsed);
+				selectNode(child, selected, skipCollapsed);
 			}
 		}
 	}

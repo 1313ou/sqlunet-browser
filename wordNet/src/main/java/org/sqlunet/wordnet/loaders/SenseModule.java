@@ -61,8 +61,8 @@ public class SenseModule extends SynsetModule
 		final Context context = this.fragment.requireContext();
 
 		// sub nodes
-		final TreeNode synsetNode = TreeFactory.newTextNode("Sense", context);
-		final TreeNode membersNode = TreeFactory.newNode("Members", R.drawable.members, context);
+		final TreeNode synsetNode = TreeFactory.addTextNode(parent,"Sense", context);
+		final TreeNode membersNode = TreeFactory.addIconTextNode(parent, "Members", R.drawable.members, context);
 
 		// attach result
 		parent.addChildren(synsetNode, membersNode);
@@ -100,14 +100,10 @@ public class SenseModule extends SynsetModule
 
 		// links and samples
 		final TreeNode linksNode = this.expand ?
-				TreeFactory.newHotQueryNode("Links", R.drawable.ic_links, new LinksQuery(this.synsetId, this.wordId), context).addTo(parent) :
-				TreeFactory.newQueryNode("Links", R.drawable.ic_links, new LinksQuery(this.synsetId, this.wordId), context).addTo(parent);
+				TreeFactory.addHotQueryNode(parent, "Links", R.drawable.ic_links, new LinksQuery(this.synsetId, this.wordId), context).addTo(parent) :
+				TreeFactory.addQueryNode(parent, "Links", R.drawable.ic_links, new LinksQuery(this.synsetId, this.wordId), context).addTo(parent);
 		final TreeNode samplesNode = this.expand ?
-				TreeFactory.newHotQueryNode("Samples", R.drawable.sample, new SamplesQuery(this.synsetId), context).addTo(parent) :
-				TreeFactory.newQueryNode("Samples", R.drawable.sample, new SamplesQuery(this.synsetId), context).addTo(parent);
-
-		// fire event
-		FireEvent.onQueryReady(linksNode);
-		FireEvent.onQueryReady(samplesNode);
+				TreeFactory.addHotQueryNode(parent, "Samples", R.drawable.sample, new SamplesQuery(this.synsetId), context).addTo(parent) :
+				TreeFactory.addQueryNode(parent, "Samples", R.drawable.sample, new SamplesQuery(this.synsetId), context).addTo(parent);
 	}
 }

@@ -23,7 +23,9 @@ import org.sqlunet.treeview.control.Query;
 import org.sqlunet.treeview.model.TreeNode;
 import org.sqlunet.view.FireEvent;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Locale;
 
 import androidx.annotation.NonNull;
@@ -138,12 +140,14 @@ abstract class BaseModule extends Module
 		model.getData().observe(this.fragment, FireEvent::live);
 	}
 
-	private TreeNode roleSetCursorToTreeModel(@NonNull final Cursor cursor, final long roleSetId, @NonNull final TreeNode parent)
+	private TreeNode[] roleSetCursorToTreeModel(@NonNull final Cursor cursor, final long roleSetId, @NonNull final TreeNode parent)
 	{
 		if (cursor.getCount() > 1)
 		{
 			throw new RuntimeException("Unexpected number of rows");
 		}
+
+		TreeNode[] changed;
 		if (cursor.moveToFirst())
 		{
 			final Context context = this.fragment.requireContext();
@@ -178,23 +182,22 @@ abstract class BaseModule extends Module
 			Spanner.append(sb, cursor.getString(idRolesetDesc), 0, PropBankFactories.definitionFactory);
 
 			// attach result
-			TreeFactory.addTextNode(parent, sb, context);
+			final TreeNode node = TreeFactory.addTextNode(parent, sb, context);
 
 			// sub nodes
-			final TreeNode rolesNode = TreeFactory.newHotQueryNode("Roles", R.drawable.roles, new RolesQuery(roleSetId), context).addTo(parent);
-			final TreeNode examplesNode = TreeFactory.newQueryNode("Examples", R.drawable.sample, new ExamplesQuery(roleSetId), context).addTo(parent);
+			final TreeNode rolesNode = TreeFactory.addHotQueryNode(parent, "Roles", R.drawable.roles, new RolesQuery(roleSetId), context).addTo(parent);
+			final TreeNode examplesNode = TreeFactory.addQueryNode(parent, "Examples", R.drawable.sample, new ExamplesQuery(roleSetId), context).addTo(parent);
 
-			// fire event
-			FireEvent.onQueryReady(rolesNode);
-			FireEvent.onQueryReady(examplesNode);
+			changed = new TreeNode[]{parent, node, rolesNode, examplesNode};
 		}
 		else
 		{
 			TreeFactory.setNoResult(parent, true);
+			changed = new TreeNode[]{parent};
 		}
 
 		cursor.close();
-		return parent;
+		return changed;
 	}
 
 	/**
@@ -222,10 +225,14 @@ abstract class BaseModule extends Module
 		model.getData().observe(this.fragment, FireEvent::live);
 	}
 
-	private TreeNode roleSetsCursorToTreeModel(@NonNull final Cursor cursor, @NonNull final TreeNode parent)
+	private TreeNode[] roleSetsCursorToTreeModel(@NonNull final Cursor cursor, @NonNull final TreeNode parent)
 	{
+		TreeNode[] changed;
 		if (cursor.moveToFirst())
 		{
+			final List<TreeNode> nodes = new ArrayList<>();
+			nodes.add(parent);
+
 			final Context context = this.fragment.requireContext();
 
 			// column indices
@@ -256,25 +263,26 @@ abstract class BaseModule extends Module
 				Spanner.append(sb, cursor.getString(idRoleSetDesc), 0, PropBankFactories.definitionFactory);
 
 				// attach result
-				TreeFactory.addTextNode(parent, sb, context);
+				final TreeNode node = TreeFactory.addTextNode(parent, sb, context);
+				nodes.add(node);
 
 				// sub nodes
-				final TreeNode rolesNode = TreeFactory.newHotQueryNode("Roles", R.drawable.roles, new RolesQuery(roleSetId), context).addTo(parent);
-				final TreeNode examplesNode = TreeFactory.newQueryNode("Examples", R.drawable.sample, new ExamplesQuery(roleSetId), context).addTo(parent);
-
-				// fire event
-				FireEvent.onQueryReady(rolesNode);
-				FireEvent.onQueryReady(examplesNode);
+				final TreeNode rolesNode = TreeFactory.addHotQueryNode(parent, "Roles", R.drawable.roles, new RolesQuery(roleSetId), context).addTo(parent);
+				nodes.add(rolesNode);
+				final TreeNode examplesNode = TreeFactory.addQueryNode(parent, "Examples", R.drawable.sample, new ExamplesQuery(roleSetId), context).addTo(parent);
+				nodes.add(examplesNode);
 			}
 			while (cursor.moveToNext());
+			changed = nodes.toArray(new TreeNode[0]);
 		}
 		else
 		{
 			TreeFactory.setNoResult(parent, true);
+			changed = new TreeNode[]{parent};
 		}
 
 		cursor.close();
-		return parent;
+		return changed;
 	}
 
 	// R O L E S
@@ -305,8 +313,9 @@ abstract class BaseModule extends Module
 		model.getData().observe(this.fragment, FireEvent::live);
 	}
 
-	private TreeNode rolesCursorToTreeModel(@NonNull final Cursor cursor, @NonNull final TreeNode parent)
+	private TreeNode[] rolesCursorToTreeModel(@NonNull final Cursor cursor, @NonNull final TreeNode parent)
 	{
+		TreeNode[] changed;
 		final SpannableStringBuilder sb = new SpannableStringBuilder();
 		if (cursor.moveToFirst())
 		{
@@ -366,15 +375,17 @@ abstract class BaseModule extends Module
 			}
 
 			// attach result
-			TreeFactory.addTextNode(parent, sb, context);
+			final TreeNode node = TreeFactory.addTextNode(parent, sb, context);
+			changed = new TreeNode[]{parent, node};
 		}
 		else
 		{
 			TreeFactory.setNoResult(parent, true);
+			changed = new TreeNode[]{parent};
 		}
 
 		cursor.close();
-		return parent;
+		return changed;
 	}
 
 	// E X A M P L E S
@@ -417,8 +428,9 @@ abstract class BaseModule extends Module
 		model.getData().observe(this.fragment, FireEvent::live);
 	}
 
-	private TreeNode examplesCursorToTreeModel(@NonNull final Cursor cursor, @NonNull final TreeNode parent)
+	private TreeNode[] examplesCursorToTreeModel(@NonNull final Cursor cursor, @NonNull final TreeNode parent)
 	{
+		TreeNode[] changed;
 		final SpannableStringBuilder sb = new SpannableStringBuilder();
 
 		if (cursor.moveToFirst())
@@ -506,15 +518,17 @@ abstract class BaseModule extends Module
 			BaseModule.this.spanner.setSpan(sb, 0, 0);
 
 			// attach result
-			TreeFactory.addTextNode(parent, sb, context);
+			final TreeNode node = TreeFactory.addTextNode(parent, sb, context);
+			changed = new TreeNode[]{parent, node};
 		}
 		else
 		{
 			TreeFactory.setNoResult(parent, true);
+			changed = new TreeNode[]{parent};
 		}
 
 		cursor.close();
-		return parent;
+		return changed;
 	}
 
 	// Q U E R I E S

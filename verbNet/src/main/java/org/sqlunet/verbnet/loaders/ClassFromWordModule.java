@@ -18,6 +18,9 @@ import org.sqlunet.verbnet.provider.VerbNetProvider;
 import org.sqlunet.verbnet.style.VerbNetFactories;
 import org.sqlunet.view.FireEvent;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -125,10 +128,14 @@ public class ClassFromWordModule extends BaseModule
 		model.getData().observe(this.fragment, FireEvent::live);
 	}
 
-	private TreeNode vnClassesCursorToTreeModel(@NonNull final Cursor cursor, @NonNull final TreeNode parent)
+	private TreeNode[] vnClassesCursorToTreeModel(@NonNull final Cursor cursor, @NonNull final TreeNode parent)
 	{
+		TreeNode[] changed;
 		if (cursor.moveToFirst())
 		{
+			final List<TreeNode> nodes = new ArrayList<>();
+			nodes.add(parent);
+
 			final Context context = this.fragment.requireContext();
 
 			// column indices
@@ -155,26 +162,27 @@ public class ClassFromWordModule extends BaseModule
 				sb.append(Integer.toString(classId));
 
 				// attach result
-				TreeFactory.addTextNode(parent, sb, context);
+				final TreeNode node = TreeFactory.addTextNode(parent, sb, context);
+				nodes.add(node);
 
 				// sub nodes
-				final TreeNode membersNode = TreeFactory.newHotQueryNode("Members", R.drawable.members, new MembersQuery(classId), context).addTo(parent);
-				final TreeNode rolesNode = TreeFactory.newHotQueryNode("Roles", R.drawable.roles, new RolesQuery(classId), context).addTo(parent);
-				final TreeNode framesNode = TreeFactory.newQueryNode("Frames", R.drawable.vnframe, new FramesQuery(classId), context).addTo(parent);
-
-				// fire event
-				FireEvent.onQueryReady(membersNode);
-				FireEvent.onQueryReady(rolesNode);
-				FireEvent.onQueryReady(framesNode);
+				final TreeNode membersNode = TreeFactory.addHotQueryNode(parent, "Members", R.drawable.members, new MembersQuery(classId), context).addTo(parent);
+				nodes.add(membersNode);
+				final TreeNode rolesNode = TreeFactory.addHotQueryNode(parent, "Roles", R.drawable.roles, new RolesQuery(classId), context).addTo(parent);
+				nodes.add(rolesNode);
+				final TreeNode framesNode = TreeFactory.addQueryNode(parent, "Frames", R.drawable.vnframe, new FramesQuery(classId), context).addTo(parent);
+				nodes.add(framesNode);
 			}
 			while (cursor.moveToNext());
+			changed = nodes.toArray(new TreeNode[0]);
 		}
 		else
 		{
 			TreeFactory.setNoResult(parent, true);
+			changed = new TreeNode[]{parent};
 		}
 
 		cursor.close();
-		return parent;
+		return changed;
 	}
 }

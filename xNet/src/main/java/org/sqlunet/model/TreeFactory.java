@@ -1,9 +1,12 @@
 package org.sqlunet.model;
 
 import android.content.Context;
+import android.os.Handler;
+import android.os.Looper;
 import android.text.SpannableStringBuilder;
 
 import org.sqlunet.treeview.control.HotQueryController;
+import org.sqlunet.treeview.control.IconTextController;
 import org.sqlunet.treeview.control.LeafController;
 import org.sqlunet.treeview.control.Link;
 import org.sqlunet.treeview.control.LinkLeafController;
@@ -11,7 +14,6 @@ import org.sqlunet.treeview.control.LinkNodeController;
 import org.sqlunet.treeview.control.LinkQueryController;
 import org.sqlunet.treeview.control.LinkTreeController;
 import org.sqlunet.treeview.control.MoreController;
-import org.sqlunet.treeview.control.NodeController;
 import org.sqlunet.treeview.control.Query;
 import org.sqlunet.treeview.control.QueryController;
 import org.sqlunet.treeview.control.TextController;
@@ -31,143 +33,136 @@ public class TreeFactory
 	// NON-TREE (without tree junction icon)
 
 	/**
-	 * Make text node
-	 *
-	 * @param text text
-	 * @return created node
-	 */
-	static public TreeNode newTextNode(final CharSequence text, final Context context)
-	{
-		return new TreeNode(text, new TextController(context));
-	}
-
-	/**
-	 * Make icon-text node
-	 *
-	 * @param text text
-	 * @param icon icon
-	 * @return created node
-	 */
-	static public TreeNode newNode(@SuppressWarnings("SameParameterValue") final CharSequence text, final int icon, final Context context)
-	{
-		return new TreeNode(new Value(text, icon), new NodeController(context), false);
-	}
-
-	/**
-	 * Make icon-text-link node
+	 * Add icon-text-link node
 	 *
 	 * @param text text
 	 * @param icon icon
 	 * @param link link
 	 * @return created node
 	 */
-	static public TreeNode newLinkNode(final CharSequence text, final int icon, final Link link, final Context context)
+	static public TreeNode addLinkNode(@NonNull final TreeNode parent, final CharSequence text, final int icon, final Link link, final Context context)
 	{
-		return new TreeNode(new Value(text, icon, link), new LinkNodeController(context), false);
+		final TreeNode result = new TreeNode(new Value(text, icon, link), new LinkNodeController(context), false);
+		parent.addChild(result);
+		return result;
 	}
 
 	// TREE
 
 	/**
-	 * Make leaf node
+	 * Add leaf node
 	 *
-	 * @param text text
-	 * @param icon icon (extra icon after tree icon)
+	 * @param parent parent node
+	 * @param text   text
+	 * @param icon   icon (extra icon after tree icon)
 	 * @return created node
 	 */
-	static public TreeNode newLeafNode(final CharSequence text, final int icon, final Context context)
+	static public TreeNode addLeafNode(@NonNull final TreeNode parent, final CharSequence text, final int icon, final Context context)
 	{
-		return new TreeNode(new Value(text, icon), new LeafController(context), false);
+		final TreeNode result = new TreeNode(new Value(text, icon), new LeafController(context), false);
+		parent.addChild(result);
+		return result;
 	}
 
 	/**
 	 * Make more (leaf) node
 	 *
-	 * @param text text
-	 * @param icon icon (extra icon after tree icon)
+	 * @param parent parent node
+	 * @param text   text
+	 * @param icon   icon (extra icon after tree icon)
 	 * @return created node
 	 */
-	static public TreeNode newMoreNode(final CharSequence text, final int icon, final Context context)
+	static public TreeNode addMoreNode(@NonNull final TreeNode parent, final CharSequence text, final int icon, final Context context)
 	{
-		return new TreeNode(new Value(text, icon), new MoreController(context), false);
+		final TreeNode result = new TreeNode(new Value(text, icon), new MoreController(context), false);
+		parent.addChild(result);
+		return result;
 	}
 
 	/**
 	 * Make link leaf node
 	 *
-	 * @param text text
-	 * @param icon icon
-	 * @param link link
+	 * @param parent parent node
+	 * @param text   text
+	 * @param icon   icon
+	 * @param link   link
 	 * @return created node
 	 */
-	static public TreeNode newLinkLeafNode(final CharSequence text, final int icon, final Link link, final Context context)
+	static public TreeNode addLinkLeafNode(@NonNull final TreeNode parent, final CharSequence text, final int icon, final Link link, final Context context)
 	{
-		return new TreeNode(new Value(text, icon, link), new LinkLeafController(context));
-	}
-
-	/**
-	 * Make tree node
-	 *
-	 * @param text text
-	 * @param icon icon
-	 * @return created node
-	 */
-	static public TreeNode newTreeNode(final CharSequence text, final int icon, final Context context)
-	{
-		return new TreeNode(new Value(text, icon), new TreeController(context));
+		final TreeNode result = new TreeNode(new Value(text, icon, link), new LinkLeafController(context));
+		parent.addChild(result);
+		return result;
 	}
 
 	/**
 	 * Make link tree node
 	 *
-	 * @param text text
-	 * @param icon icon
-	 * @param link link
+	 * @param parent parent node
+	 * @param text   text
+	 * @param icon   icon
+	 * @param link   link
 	 * @return created node
 	 */
-	static public TreeNode newLinkTreeNode(final CharSequence text, final int icon, final Link link, final Context context)
+	static public TreeNode addLinkTreeNode(@NonNull final TreeNode parent, final CharSequence text, final int icon, final Link link, final Context context)
 	{
-		return new TreeNode(new Value(text, icon, link), new LinkTreeController(context));
+		final TreeNode result = new TreeNode(new Value(text, icon, link), new LinkTreeController(context));
+		parent.addChild(result);
+		return result;
 	}
 
 	/**
 	 * Make query node
 	 *
-	 * @param text  label text
-	 * @param icon  icon
-	 * @param query query
+	 * @param parent parent node
+	 * @param text   label text
+	 * @param icon   icon
+	 * @param query  query
 	 * @return created node
 	 */
-	static public TreeNode newQueryNode(final CharSequence text, final int icon, final Query query, final Context context)
+	static public TreeNode addQueryNode(@NonNull final TreeNode parent, final CharSequence text, final int icon, final Query query, final Context context)
 	{
-		return new TreeNode(new Value(text, icon, query), new QueryController(context));
+		final TreeNode result = new TreeNode(new Value(text, icon, query), new QueryController(context));
+		parent.addChild(result);
+		return result;
 	}
 
 	/**
-	 * Make query node
+	 * Make hot (self-triggered) query node
 	 *
-	 * @param text  label text
-	 * @param icon  icon
-	 * @param query query
+	 * @param parent parent node
+	 * @param text   label text
+	 * @param icon   icon
+	 * @param query  query
 	 * @return created node
 	 */
-	static public TreeNode newHotQueryNode(final CharSequence text, final int icon, final Query query, final Context context)
+	static public TreeNode addHotQueryNode(@NonNull final TreeNode parent, final CharSequence text, final int icon, final Query query, final Context context)
 	{
-		return new TreeNode(new Value(text, icon, query), new HotQueryController(context));
+		final HotQueryController controller = new HotQueryController(context);
+		final TreeNode result = new TreeNode(new Value(text, icon, query), controller);
+		parent.addChild(result);
+
+		final Handler handler = new Handler(Looper.getMainLooper());
+		handler.post(controller::processQuery);
+
+		return result;
 	}
 
 	/**
-	 * Make query node
+	 * Make link query node
 	 *
-	 * @param text  label text
-	 * @param icon  icon
-	 * @param query query
-	 * @param link  link
+	 * @param parent parent node
+	 * @param text   label text
+	 * @param icon   icon
+	 * @param query  query
+	 * @param link   link
 	 * @return created node
 	 */
-	static public TreeNode newLinkQueryNode(final CharSequence text, final int icon, final Query query, final Link link, final Context context)
+	static public TreeNode addLinkQueryNode(@NonNull final TreeNode parent, final CharSequence text, final int icon, final Query query, final Link link, final Context context)
 	{
-		return new TreeNode(new Value(text, icon, query, link), new LinkQueryController(context));
+		final TreeNode result = new TreeNode(new Value(text, icon, query, link), new LinkQueryController(context));
+		parent.addChild(result);
+		return result;
 	}
 
 	/**
@@ -175,28 +170,28 @@ public class TreeFactory
 	 *
 	 * @param parent parent node
 	 * @param value  character sequence
+	 * @return created node
 	 */
 	@NonNull
 	@SuppressWarnings("UnusedReturnValue")
 	static public TreeNode addTextNode(@NonNull final TreeNode parent, final CharSequence value, final Context context)
 	{
-		final TreeNode result = TreeFactory.newTextNode(value, context);
+		final TreeNode result = new TreeNode(value, new TextController(context));
 		parent.addChild(result);
 		return result;
 	}
 
 	/**
-	 * Add leaf node(s)
+	 * Make icon-text node
 	 *
 	 * @param parent parent node
-	 * @param value  character sequence
-	 * @param icon   icon resource id
+	 * @param text   text
+	 * @param icon   icon
+	 * @return created node
 	 */
-	@NonNull
-	@SuppressWarnings({"unused", "UnusedReturnValue"})
-	static public TreeNode addLeafNode(@NonNull final TreeNode parent, final CharSequence value, final int icon, final Context context)
+	static public TreeNode addIconTextNode(@NonNull final TreeNode parent, @SuppressWarnings("SameParameterValue") final CharSequence text, final int icon, final Context context)
 	{
-		final TreeNode result = TreeFactory.newLeafNode(value, icon, context);
+		final TreeNode result = new TreeNode(new Value(text, icon), new IconTextController(context), false);
 		parent.addChild(result);
 		return result;
 	}
@@ -207,11 +202,12 @@ public class TreeFactory
 	 * @param parent parent node
 	 * @param value  character sequence
 	 * @param icon   icon resource id
+	 * @return created node
 	 */
 	@NonNull
 	static public TreeNode addTreeNode(@NonNull final TreeNode parent, final CharSequence value, final int icon, final Context context)
 	{
-		final TreeNode result = TreeFactory.newTreeNode(value, icon, context);
+		final TreeNode result = new TreeNode(new Value(value, icon), new TreeController(context));
 		parent.addChild(result);
 		return result;
 	}

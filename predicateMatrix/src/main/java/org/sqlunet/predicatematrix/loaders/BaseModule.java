@@ -34,6 +34,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
@@ -773,10 +774,13 @@ abstract class BaseModule extends Module
 			model.getData().observe(fragment, FireEvent::live);
 		}
 
-		private TreeNode pmCursorToTreeModel(@NonNull final Cursor cursor, @NonNull final TreeNode parent, final Context context)
+		private TreeNode[] pmCursorToTreeModel(@NonNull final Cursor cursor, @NonNull final TreeNode parent, final Context context)
 		{
 			if (cursor.moveToFirst())
 			{
+				final List<TreeNode> nodes = new ArrayList<>();
+				nodes.add(parent);
+
 				// column indices
 				final int idPmId = cursor.getColumnIndex(PredicateMatrix.PMID);
 				final int idPmRoleId = cursor.getColumnIndex(PredicateMatrix.PMROLEID);
@@ -865,7 +869,7 @@ abstract class BaseModule extends Module
 			}
 
 			cursor.close();
-			return parent;
+			return new TreeNode[]{parent};
 		}
 
 		/**
@@ -885,7 +889,6 @@ abstract class BaseModule extends Module
 		 */
 		void endProcess(final Context context)
 		{
-			//
 		}
 	}
 
@@ -1032,8 +1035,7 @@ abstract class BaseModule extends Module
 					{
 						final Set<WnData> wnData = this.wnMap.get(vnData);
 						assert wnData != null;
-						final TreeNode vnNode = this.displayer.makeVnNode(context, vnData, wnData.toArray(new WnData[0]));
-						pmroleNode.addChild(vnNode);
+						final TreeNode vnNode = this.displayer.makeVnNode(pmroleNode, context, vnData, wnData.toArray(new WnData[0]));
 
 						// contribute to header
 						if (vnData.vnRole != null && !vnData.vnRole.isEmpty())
@@ -1048,8 +1050,7 @@ abstract class BaseModule extends Module
 					{
 						final Set<WnData> wnData = this.wnMap.get(pbData);
 						assert wnData != null;
-						final TreeNode pbNode = this.displayer.makePbNode(context, pbData, wnData.toArray(new WnData[0]));
-						pmroleNode.addChild(pbNode);
+						final TreeNode pbNode = this.displayer.makePbNode(pmroleNode, context, pbData, wnData.toArray(new WnData[0]));
 
 						// contribute to header
 						if (pbData.pbRoleDescr != null && !pbData.pbRoleDescr.isEmpty())
@@ -1064,8 +1065,7 @@ abstract class BaseModule extends Module
 					{
 						final Set<WnData> wnData = this.wnMap.get(fnData);
 						assert wnData != null;
-						final TreeNode fnNode = this.displayer.makeFnNode(context, fnData, wnData.toArray(new WnData[0]));
-						pmroleNode.addChild(fnNode);
+						final TreeNode fnNode = this.displayer.makeFnNode(pmroleNode, context, fnData, wnData.toArray(new WnData[0]));
 
 						// contribute to header
 						if (fnData.fnFe != null && !fnData.fnFe.isEmpty())
@@ -1154,7 +1154,7 @@ abstract class BaseModule extends Module
 		/**
 		 * Display PredicateMatrix row
 		 *
-		 * @param parentNode    parent node
+		 * @param parent        parent node
 		 * @param wnData        WordNet data
 		 * @param pmRow         PredicateMatrix row
 		 * @param vnData        VerbNet data
@@ -1163,20 +1163,19 @@ abstract class BaseModule extends Module
 		 * @param wnDataOnRow   whether to display WordNet data on label
 		 * @param wnDataOnXData whether to display WordNet data on extended data
 		 */
-		void displayRow(@NonNull final TreeNode parentNode, final WnData wnData, @NonNull final PmRow pmRow, @NonNull final VnData vnData, @NonNull final PbData pbData, @NonNull final FnData fnData, final boolean wnDataOnRow, @SuppressWarnings("SameParameterValue") final boolean wnDataOnXData, final Context context)
+		void displayRow(@NonNull final TreeNode parent, final WnData wnData, @NonNull final PmRow pmRow, @NonNull final VnData vnData, @NonNull final PbData pbData, @NonNull final FnData fnData, final boolean wnDataOnRow, @SuppressWarnings("SameParameterValue") final boolean wnDataOnXData, final Context context)
 		{
+			// entry
+			final TreeNode roleNode = displayPmRow(parent, pmRow, wnDataOnRow ? wnData : null, context);
+
 			// vn
-			final TreeNode vnNode = wnDataOnXData ? makeVnNode(context, vnData, wnData) : makeVnNode(context, vnData);
+			final TreeNode vnNode = wnDataOnXData ? makeVnNode(roleNode, context, vnData, wnData) : makeVnNode(roleNode, context, vnData);
 
 			// pb
-			final TreeNode pbNode = wnDataOnXData ? makePbNode(context, pbData, wnData) : makePbNode(context, pbData);
+			final TreeNode pbNode = wnDataOnXData ? makePbNode(roleNode, context, pbData, wnData) : makePbNode(roleNode, context, pbData);
 
 			// fn
-			final TreeNode fnNode = wnDataOnXData ? makeFnNode(context, fnData, wnData) : makeFnNode(context, fnData);
-
-			// entry
-			final TreeNode roleNode = displayPmRow(parentNode, pmRow, wnDataOnRow ? wnData : null, context);
-			roleNode.addChildren(vnNode, pbNode, fnNode);
+			final TreeNode fnNode = wnDataOnXData ? makeFnNode(roleNode, context, fnData, wnData) : makeFnNode(roleNode, context, fnData);
 		}
 
 		/**
@@ -1250,12 +1249,13 @@ abstract class BaseModule extends Module
 		/**
 		 * Make VerbNet node
 		 *
+		 * @param parent  parent node
 		 * @param vnData  VerbNet data
 		 * @param wnDatas WordNet data
 		 * @return created node
 		 */
 		@NonNull
-		TreeNode makeVnNode(final Context context, @NonNull final VnData vnData, @NonNull final WnData... wnDatas)
+		TreeNode makeVnNode(@NonNull final TreeNode parent, final Context context, @NonNull final VnData vnData, @NonNull final WnData... wnDatas)
 		{
 			final SpannableStringBuilder vnsb = new SpannableStringBuilder();
 			if (vnData.vnClass != null && !vnData.vnClass.isEmpty())
@@ -1296,18 +1296,19 @@ abstract class BaseModule extends Module
 				Spanner.append(vnsb, wnData.definition, 0, PredicateMatrixFactories.definitionFactory);
 			}
 
-			return vnData.vnClassId == 0L ? TreeFactory.newLeafNode(vnsb, R.drawable.verbnet, context) : TreeFactory.newLinkLeafNode(vnsb, R.drawable.verbnet, new VnClassLink(vnData.vnClassId), context);
+			return vnData.vnClassId == 0L ? TreeFactory.addLeafNode(parent, vnsb, R.drawable.verbnet, context) : TreeFactory.addLinkLeafNode(parent, vnsb, R.drawable.verbnet, new VnClassLink(vnData.vnClassId), context);
 		}
 
 		/**
 		 * Make PropBank node
 		 *
+		 * @param parent  parent node
 		 * @param pbData  PropBank data
 		 * @param wnDatas WordNet data
 		 * @return created node
 		 */
 		@NonNull
-		TreeNode makePbNode(final Context context, @NonNull final PbData pbData, @NonNull final WnData... wnDatas)
+		TreeNode makePbNode(@NonNull final TreeNode parent, final Context context, @NonNull final PbData pbData, @NonNull final WnData... wnDatas)
 		{
 			// pb
 			final SpannableStringBuilder pbsb = new SpannableStringBuilder();
@@ -1362,18 +1363,19 @@ abstract class BaseModule extends Module
 				Spanner.append(pbsb, wnData.definition, 0, PredicateMatrixFactories.definitionFactory);
 			}
 
-			return pbData.pbRoleSetId == 0L ? TreeFactory.newLeafNode(pbsb, R.drawable.propbank, context) : TreeFactory.newLinkLeafNode(pbsb, R.drawable.propbank, new PbRoleSetLink(pbData.pbRoleSetId), context);
+			return pbData.pbRoleSetId == 0L ? TreeFactory.addLeafNode(parent, pbsb, R.drawable.propbank, context) : TreeFactory.addLinkLeafNode(parent, pbsb, R.drawable.propbank, new PbRoleSetLink(pbData.pbRoleSetId), context);
 		}
 
 		/**
 		 * Make FrameNet node
 		 *
+		 * @param parent  parent node
 		 * @param fnData  FrameNet data
 		 * @param wnDatas WordNet data
 		 * @return created node
 		 */
 		@NonNull
-		TreeNode makeFnNode(final Context context, @NonNull final FnData fnData, @NonNull final WnData... wnDatas)
+		TreeNode makeFnNode(@NonNull final TreeNode parent, final Context context, @NonNull final FnData fnData, @NonNull final WnData... wnDatas)
 		{
 			// fn
 			final SpannableStringBuilder fnsb = new SpannableStringBuilder();
@@ -1415,7 +1417,7 @@ abstract class BaseModule extends Module
 				Spanner.append(fnsb, wnData.definition, 0, PredicateMatrixFactories.definitionFactory);
 			}
 
-			return fnData.fnFrameId == 0L ? TreeFactory.newLeafNode(fnsb, R.drawable.framenet, context) : TreeFactory.newLinkLeafNode(fnsb, R.drawable.framenet, new FnFrameLink(fnData.fnFrameId), context);
+			return fnData.fnFrameId == 0L ? TreeFactory.addLeafNode(parent, fnsb, R.drawable.framenet, context) : TreeFactory.addLinkLeafNode(parent, fnsb, R.drawable.framenet, new FnFrameLink(fnData.fnFrameId), context);
 		}
 	}
 

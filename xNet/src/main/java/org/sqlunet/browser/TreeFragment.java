@@ -84,7 +84,6 @@ abstract public class TreeFragment extends Fragment
 		// tree
 		this.treeView = new TreeView(requireContext(), this.treeRoot);
 		this.treeView.setDefaultContainerStyle(R.style.TreeNodeStyleCustom); // R.style.TreeNodeStyleDivided
-		this.treeView.setDefaultController(TreeController.class);
 		treeContainer.addView(this.treeView.makeView());
 
 		// saved state

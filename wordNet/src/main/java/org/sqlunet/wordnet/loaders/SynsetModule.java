@@ -85,11 +85,8 @@ public class SynsetModule extends BaseModule
 			final Context context = this.fragment.requireContext();
 
 			// sub nodes
-			final TreeNode synsetNode = TreeFactory.newTextNode("Synset", context);
-			final TreeNode membersNode = TreeFactory.newNode("Members", R.drawable.members, context);
-
-			// attach result
-			parent.addChildren(synsetNode, membersNode);
+			final TreeNode synsetNode = TreeFactory.addTextNode(parent, "Synset", context);
+			final TreeNode membersNode = TreeFactory.addIconTextNode(parent, "Members", R.drawable.members, context);
 
 			// synset
 			synset(this.synsetId, synsetNode, false);
@@ -115,15 +112,11 @@ public class SynsetModule extends BaseModule
 
 			// links and samples
 			final TreeNode linksNode = this.expand ?
-					TreeFactory.newQueryNode("Links", R.drawable.ic_links, new LinksQuery(this.synsetId, 0), context).addTo(parent) :
-					TreeFactory.newQueryNode("Links", R.drawable.ic_links, new LinksQuery(this.synsetId, 0), context).addTo(parent);
+					TreeFactory.addQueryNode(parent, "Links", R.drawable.ic_links, new LinksQuery(this.synsetId, 0), context).addTo(parent) :
+					TreeFactory.addQueryNode(parent, "Links", R.drawable.ic_links, new LinksQuery(this.synsetId, 0), context).addTo(parent);
 			final TreeNode samplesNode = this.expand ?
-					TreeFactory.newQueryNode("Samples", R.drawable.sample, new SamplesQuery(this.synsetId), context).addTo(parent) :
-					TreeFactory.newQueryNode("Samples", R.drawable.sample, new SamplesQuery(this.synsetId), context).addTo(parent);
-
-			// fire event
-			FireEvent.onQueryReady(linksNode);
-			FireEvent.onQueryReady(samplesNode);
+					TreeFactory.addQueryNode(parent, "Samples", R.drawable.sample, new SamplesQuery(this.synsetId), context).addTo(parent) :
+					TreeFactory.addQueryNode(parent, "Samples", R.drawable.sample, new SamplesQuery(this.synsetId), context).addTo(parent);
 		}
 	}
 }

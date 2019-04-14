@@ -95,12 +95,13 @@ public class SentenceModule extends BaseModule
 		model.getData().observe(this.fragment, FireEvent::live);
 	}
 
-	private TreeNode sentenceCursorToTreeModel(@NonNull final Cursor cursor, @NonNull final TreeNode parent)
+	private TreeNode[] sentenceCursorToTreeModel(@NonNull final Cursor cursor, @NonNull final TreeNode parent)
 	{
 		if (cursor.getCount() > 1)
 		{
 			throw new RuntimeException("Unexpected number of rows");
 		}
+		TreeNode[] changed;
 		if (cursor.moveToFirst())
 		{
 			final Context context = this.fragment.requireContext();
@@ -116,17 +117,20 @@ public class SentenceModule extends BaseModule
 			Spanner.append(sb, SentenceModule.this.sentenceText, 0, FrameNetFactories.sentenceFactory);
 
 			// attach result
-			TreeFactory.addTextNode(parent, sb, context);
+			final TreeNode node = TreeFactory.addTextNode(parent, sb, context);
 
 			// layers
 			layersForSentence(id, SentenceModule.this.sentenceText, parent);
+
+			changed = new TreeNode[]{parent, node};
 		}
 		else
 		{
 			TreeFactory.setNoResult(parent, true);
+			changed = new TreeNode[]{parent};
 		}
 
 		cursor.close();
-		return parent;
+		return changed;
 	}
 }

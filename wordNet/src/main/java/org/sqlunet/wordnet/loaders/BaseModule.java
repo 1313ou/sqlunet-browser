@@ -44,6 +44,8 @@ import org.sqlunet.wordnet.provider.WordNetContract.Words_Senses_CasedWords_Syns
 import org.sqlunet.wordnet.provider.WordNetProvider;
 import org.sqlunet.wordnet.style.WordNetFactories;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
 
 import androidx.annotation.NonNull;
@@ -157,14 +159,14 @@ abstract public class BaseModule extends Module
 		model.getData().observe(this.fragment, FireEvent::live);
 	}
 
-	private TreeNode wordCursorToTreeModel(@NonNull final Cursor cursor, @NonNull final TreeNode parent, @SuppressWarnings("SameParameterValue") final boolean addNewNode)
+	private TreeNode[] wordCursorToTreeModel(@NonNull final Cursor cursor, @NonNull final TreeNode parent, @SuppressWarnings("SameParameterValue") final boolean addNewNode)
 	{
 		if (cursor.getCount() > 1)
 		{
 			throw new RuntimeException("Unexpected number of rows");
 		}
 
-		// store source result
+		TreeNode[] changed;
 		if (cursor.moveToFirst())
 		{
 			final SpannableStringBuilder sb = new SpannableStringBuilder();
@@ -188,20 +190,23 @@ abstract public class BaseModule extends Module
 			// result
 			if (addNewNode)
 			{
-				TreeFactory.addTextNode(parent, sb, this.fragment.requireContext());
+				final TreeNode node = TreeFactory.addTextNode(parent, sb, this.fragment.requireContext());
+				changed = new TreeNode[]{parent, node};
 			}
 			else
 			{
 				TreeFactory.setTextNode(parent, sb);
+				changed = new TreeNode[]{parent};
 			}
 		}
 		else
 		{
 			TreeFactory.setNoResult(parent, true);
+			changed = new TreeNode[]{parent};
 		}
 
 		cursor.close();
-		return parent;
+		return changed;
 	}
 
 	// S E N S E
@@ -273,11 +278,14 @@ abstract public class BaseModule extends Module
 		model.getData().observe(this.fragment, FireEvent::live);
 	}
 
-	private TreeNode sensesCursorToTreeModel(@NonNull final Cursor cursor, @NonNull final TreeNode parent)
+	private TreeNode[] sensesCursorToTreeModel(@NonNull final Cursor cursor, @NonNull final TreeNode parent)
 	{
-		// store source result
+		TreeNode[] changed;
 		if (cursor.moveToFirst())
 		{
+			final List<TreeNode> nodes = new ArrayList<>();
+			nodes.add(parent);
+
 			final Context context = this.fragment.requireContext();
 
 			final int idWordId = cursor.getColumnIndex(Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.WORDID);
@@ -302,18 +310,20 @@ abstract public class BaseModule extends Module
 				sense(sb, synsetId, posName, lexDomain, definition, tagCount, cased);
 
 				// result
-				final TreeNode synsetNode = TreeFactory.newLinkNode(sb, R.drawable.synset, new SenseLink(synsetId, wordId, this.maxRecursion), context);
-				parent.addChild(synsetNode);
+				final TreeNode synsetNode = TreeFactory.addLinkNode(parent, sb, R.drawable.synset, new SenseLink(synsetId, wordId, this.maxRecursion), context);
+				nodes.add(synsetNode);
 			}
 			while (cursor.moveToNext());
+			changed = nodes.toArray(new TreeNode[0]);
 		}
 		else
 		{
 			TreeFactory.setNoResult(parent, true);
+			changed = new TreeNode[]{parent};
 		}
 
 		cursor.close();
-		return parent;
+		return changed;
 	}
 
 	/**
@@ -388,7 +398,7 @@ abstract public class BaseModule extends Module
 		model.getData().observe(this.fragment, FireEvent::live);
 	}
 
-	private TreeNode senseCursor1ToTreeModel(@NonNull final Cursor cursor, @NonNull final TreeNode parent)
+	private TreeNode[] senseCursor1ToTreeModel(@NonNull final Cursor cursor, @NonNull final TreeNode parent)
 	{
 		if (cursor.getCount() > 1)
 		{
@@ -409,15 +419,16 @@ abstract public class BaseModule extends Module
 		}
 
 		cursor.close();
-		return parent;
+		return new TreeNode[]{parent};
 	}
 
-	private TreeNode senseCursor2ToTreeModel(@NonNull final Cursor cursor, @NonNull final TreeNode parent)
+	private TreeNode[] senseCursor2ToTreeModel(@NonNull final Cursor cursor, @NonNull final TreeNode parent)
 	{
 		if (cursor.getCount() > 1)
 		{
 			throw new RuntimeException("Unexpected number of rows");
 		}
+		TreeNode[] changed;
 		if (cursor.moveToFirst())
 		{
 			final int idWordId = cursor.getColumnIndex(Senses.WORDID);
@@ -426,28 +437,31 @@ abstract public class BaseModule extends Module
 			final long synsetId = cursor.getLong(idSynsetId);
 
 			// sub nodes
-			final TreeNode wordNode = TreeFactory.newTextNode("Word", this.fragment.requireContext());
-			parent.addChild(wordNode);
+			final TreeNode wordNode = TreeFactory.addTextNode(parent, "Word", this.fragment.requireContext());
 
 			// word
 			word(wordId, wordNode, false);
 			sense(synsetId, wordId, wordNode);
+
+			changed = new TreeNode[]{parent, wordNode};
 		}
 		else
 		{
 			TreeFactory.setNoResult(parent, true);
+			changed = new TreeNode[]{parent};
 		}
 
 		cursor.close();
-		return parent;
+		return changed;
 	}
 
-	private TreeNode senseCursor3ToTreeModel(@NonNull final Cursor cursor, final long synsetId, final long wordId, @NonNull final TreeNode parent)
+	private TreeNode[] senseCursor3ToTreeModel(@NonNull final Cursor cursor, final long synsetId, final long wordId, @NonNull final TreeNode parent)
 	{
 		if (cursor.getCount() > 1)
 		{
 			throw new RuntimeException("Unexpected number of rows");
 		}
+		TreeNode[] changed;
 		if (cursor.moveToFirst())
 		{
 			final Context context = this.fragment.requireContext();
@@ -465,23 +479,22 @@ abstract public class BaseModule extends Module
 			synset(sb, synsetId, posName, lexDomain, definition);
 
 			// attach result
-			TreeFactory.addTextNode(parent, sb, context);
+			final TreeNode node = TreeFactory.addTextNode(parent, sb, context);
 
 			// subnodes
-			final TreeNode linksNode = TreeFactory.newHotQueryNode("Links", R.drawable.ic_links, new LinksQuery(synsetId, wordId), context).addTo(parent);
-			final TreeNode samplesNode = TreeFactory.newHotQueryNode("Samples", R.drawable.sample, new SamplesQuery(synsetId), context).addTo(parent);
+			final TreeNode linksNode = TreeFactory.addHotQueryNode(parent, "Links", R.drawable.ic_links, new LinksQuery(synsetId, wordId), context).addTo(parent);
+			final TreeNode samplesNode = TreeFactory.addHotQueryNode(parent, "Samples", R.drawable.sample, new SamplesQuery(synsetId), context).addTo(parent);
 
-			// fire event
-			FireEvent.onQueryReady(linksNode);
-			FireEvent.onQueryReady(samplesNode);
+			changed = new TreeNode[]{parent, node, linksNode, samplesNode};
 		}
 		else
 		{
 			TreeFactory.setNoResult(parent, true);
+			changed = new TreeNode[]{parent};
 		}
 
 		cursor.close();
-		return parent;
+		return changed;
 	}
 
 	// S Y N S E T
@@ -510,12 +523,13 @@ abstract public class BaseModule extends Module
 		model.getData().observe(this.fragment, FireEvent::live);
 	}
 
-	private TreeNode synsetCursorToTreeModel(@NonNull final Cursor cursor, final long synsetId, @NonNull final TreeNode parent, @SuppressWarnings("SameParameterValue") final boolean addNewNode)
+	private TreeNode[] synsetCursorToTreeModel(@NonNull final Cursor cursor, final long synsetId, @NonNull final TreeNode parent, @SuppressWarnings("SameParameterValue") final boolean addNewNode)
 	{
 		if (cursor.getCount() > 1)
 		{
 			throw new RuntimeException("Unexpected number of rows");
 		}
+		TreeNode[] changed;
 		if (cursor.moveToFirst())
 		{
 			final SpannableStringBuilder sb = new SpannableStringBuilder();
@@ -533,20 +547,23 @@ abstract public class BaseModule extends Module
 			// result
 			if (addNewNode)
 			{
-				TreeFactory.addTextNode(parent, sb, this.fragment.requireContext());
+				final TreeNode node = TreeFactory.addTextNode(parent, sb, this.fragment.requireContext());
+				changed = new TreeNode[]{parent, node};
 			}
 			else
 			{
 				TreeFactory.setTextNode(parent, sb);
+				changed = new TreeNode[]{parent};
 			}
 		}
 		else
 		{
 			TreeFactory.setNoResult(parent, addNewNode);
+			changed = new TreeNode[]{parent};
 		}
 
 		cursor.close();
-		return parent;
+		return changed;
 	}
 
 	/**
@@ -689,11 +706,11 @@ abstract public class BaseModule extends Module
 
 		final String tag = "wn.members2(synsetid)";
 		final SqlunetViewTreeModel model = ViewModelProviders.of(this.fragment).get(tag, SqlunetViewTreeModel.class);
-		model.loadData(uri, projection, selection, selectionArgs, sortOrder, cursor -> membersCursorToTreeModel(cursor, parent));
+		model.loadData(uri, projection, selection, selectionArgs, sortOrder, cursor -> membersCursor2ToTreeModel(cursor, parent));
 		model.getData().observe(this.fragment, FireEvent::live);
 	}
 
-	private TreeNode membersCursor1ToTreeModel(final Cursor cursor, @NonNull final TreeNode parent, final boolean addNewNode)
+	private TreeNode[] membersCursor1ToTreeModel(final Cursor cursor, @NonNull final TreeNode parent, final boolean addNewNode)
 	{
 		if (BaseModule.this.membersGrouped)
 		{
@@ -703,6 +720,7 @@ abstract public class BaseModule extends Module
 			}
 		}
 
+		TreeNode[] changed;
 		if (cursor.moveToFirst())
 		{
 			final SpannableStringBuilder sb = new SpannableStringBuilder();
@@ -737,23 +755,26 @@ abstract public class BaseModule extends Module
 			// result
 			if (addNewNode)
 			{
-				TreeFactory.addTextNode(parent, sb, this.fragment.requireContext());
+				final TreeNode node = TreeFactory.addTextNode(parent, sb, this.fragment.requireContext());
+				changed = new TreeNode[]{parent, node};
 			}
 			else
 			{
 				TreeFactory.setTextNode(parent, sb);
+				changed = new TreeNode[]{parent};
 			}
 		}
 		else
 		{
 			TreeFactory.setNoResult(parent, addNewNode);
+			changed = new TreeNode[]{parent};
 		}
 
 		cursor.close();
-		return parent;
+		return changed;
 	}
 
-	private TreeNode membersCursorToTreeModel(@NonNull final Cursor cursor, @NonNull final TreeNode parent)
+	private TreeNode[] membersCursor2ToTreeModel(@NonNull final Cursor cursor, @NonNull final TreeNode parent)
 	{
 		if (BaseModule.this.membersGrouped)
 		{
@@ -763,8 +784,12 @@ abstract public class BaseModule extends Module
 			}
 		}
 
+		TreeNode[] changed;
 		if (cursor.moveToFirst())
 		{
+			final List<TreeNode> nodes = new ArrayList<>();
+			nodes.add(parent);
+
 			final Context context = this.fragment.requireContext();
 
 			final int idWordId = cursor.getColumnIndex(Senses_Words.WORDID);
@@ -784,18 +809,20 @@ abstract public class BaseModule extends Module
 				Spanner.append(sb, member, 0, WordNetFactories.membersFactory);
 
 				// result
-				final TreeNode memberNode = TreeFactory.newLinkNode(sb, R.drawable.member, new WordLink(wordId), context);
-				parent.addChild(memberNode);
+				final TreeNode memberNode = TreeFactory.addLinkNode(parent, sb, R.drawable.member, new WordLink(wordId), context);
+				nodes.add(memberNode);
 			}
 			while (cursor.moveToNext());
+			changed = nodes.toArray(new TreeNode[0]);
 		}
 		else
 		{
 			TreeFactory.setNoResult(parent, true);
+			changed = new TreeNode[]{parent};
 		}
 
 		cursor.close();
-		return parent;
+		return changed;
 	}
 
 	// S A M P L E S
@@ -825,8 +852,9 @@ abstract public class BaseModule extends Module
 		model.getData().observe(this.fragment, FireEvent::live);
 	}
 
-	private TreeNode samplesCursorToTreeModel(@NonNull final Cursor cursor, @NonNull final TreeNode parent, @SuppressWarnings("SameParameterValue") final boolean addNewNode)
+	private TreeNode[] samplesCursorToTreeModel(@NonNull final Cursor cursor, @NonNull final TreeNode parent, @SuppressWarnings("SameParameterValue") final boolean addNewNode)
 	{
+		TreeNode[] changed;
 		if (cursor.moveToFirst())
 		{
 			final int idSample = cursor.getColumnIndex(Samples.SAMPLE);
@@ -853,20 +881,23 @@ abstract public class BaseModule extends Module
 			// result
 			if (addNewNode)
 			{
-				TreeFactory.addTextNode(parent, sb, this.fragment.requireContext());
+				final TreeNode node = TreeFactory.addTextNode(parent, sb, this.fragment.requireContext());
+				changed = new TreeNode[]{parent, node};
 			}
 			else
 			{
 				TreeFactory.setTextNode(parent, sb);
+				changed = new TreeNode[]{parent};
 			}
 		}
 		else
 		{
 			TreeFactory.setNoResult(parent, addNewNode);
+			changed = new TreeNode[]{parent};
 		}
 
 		cursor.close();
-		return parent;
+		return changed;
 	}
 
 	// S E M L I N K S
@@ -929,11 +960,14 @@ abstract public class BaseModule extends Module
 		model.getData().observe(this.fragment, FireEvent::live);
 	}
 
-	private TreeNode semLinksCursor1ToTreeModel(@NonNull final Cursor cursor, @NonNull final TreeNode parent)
+	private TreeNode[] semLinksCursor1ToTreeModel(@NonNull final Cursor cursor, @NonNull final TreeNode parent)
 	{
-		// noinspection StatementWithEmptyBody
+		TreeNode[] changed;
 		if (cursor.moveToFirst())
 		{
+			final List<TreeNode> nodes = new ArrayList<>();
+			nodes.add(parent);
+
 			final Context context = this.fragment.requireContext();
 
 			final int idLinkId = cursor.getColumnIndex(LinkTypes.LINKID);
@@ -962,31 +996,36 @@ abstract public class BaseModule extends Module
 				// recursion
 				if (linkCanRecurse)
 				{
-					final TreeNode linksNode = TreeFactory.newLinkQueryNode(sb, getLinkRes(linkId), new SubLinksQuery(targetSynsetId, linkId, BaseModule.this.maxRecursion), new SynsetLink(targetSynsetId, BaseModule.this.maxRecursion), context).prependTo(parent);
-
-					// fire event
-					FireEvent.onQueryReady(linksNode);
+					final TreeNode linksNode = TreeFactory.addLinkQueryNode(parent, sb, getLinkRes(linkId), new SubLinksQuery(targetSynsetId, linkId, BaseModule.this.maxRecursion), new SynsetLink(targetSynsetId, BaseModule.this.maxRecursion), context).prependTo(parent);
+					nodes.add(linksNode);
 				}
 				else
 				{
-					TreeFactory.newLeafNode(sb, getLinkRes(linkId), context).prependTo(parent);
+					final TreeNode node = TreeFactory.addLeafNode(parent, sb, getLinkRes(linkId), context).prependTo(parent);
+					nodes.add(node);
 				}
 			}
 			while (cursor.moveToNext());
+			changed = nodes.toArray(new TreeNode[0]);
 		}
 		else
 		{
 			TreeFactory.setNoResult(parent, true);
+			changed = new TreeNode[]{parent};
 		}
 
 		cursor.close();
-		return parent;
+		return changed;
 	}
 
-	private TreeNode semLinksCursor2ToTreeModel(@NonNull final Cursor cursor, final int linkId, final int recurseLevel, @NonNull final TreeNode parent)
+	private TreeNode[] semLinksCursor2ToTreeModel(@NonNull final Cursor cursor, final int linkId, final int recurseLevel, @NonNull final TreeNode parent)
 	{
+		TreeNode[] changed;
 		if (cursor.moveToFirst())
 		{
+			final List<TreeNode> nodes = new ArrayList<>();
+			nodes.add(parent);
+
 			// final int idLinkId = cursor.getColumnIndex(LinkTypes.LINKID);
 			// final int idLink = cursor.getColumnIndex(LinkTypes.LINK);
 			final int idTargetSynsetId = cursor.getColumnIndex(BaseModule.TARGET_SYNSETID);
@@ -1018,30 +1057,32 @@ abstract public class BaseModule extends Module
 					if (recurseLevel > 1)
 					{
 						final int newRecurseLevel = recurseLevel - 1;
-						final TreeNode linksNode = TreeFactory.newLinkQueryNode(sb, getLinkRes(linkId), new SubLinksQuery(targetSynsetId, linkId, newRecurseLevel), new SynsetLink(targetSynsetId, BaseModule.this.maxRecursion), context).addTo(parent);
-
-						// fire event
-						FireEvent.onQueryReady(linksNode);
+						final TreeNode linksNode = TreeFactory.addLinkQueryNode(parent, sb, getLinkRes(linkId), new SubLinksQuery(targetSynsetId, linkId, newRecurseLevel), new SynsetLink(targetSynsetId, BaseModule.this.maxRecursion), context).addTo(parent);
+						nodes.add(linksNode);
 					}
 					else
 					{
-						TreeFactory.newMoreNode(sb, getLinkRes(linkId), context).addTo(parent);
+						final TreeNode moreNode = TreeFactory.addMoreNode(parent, sb, getLinkRes(linkId), context).addTo(parent);
+						nodes.add(moreNode);
 					}
 				}
 				else
 				{
-					TreeFactory.newLeafNode(sb, getLinkRes(linkId), context).addTo(parent);
+					final TreeNode node = TreeFactory.addLeafNode(parent, sb, getLinkRes(linkId), context).addTo(parent);
+					nodes.add(node);
 				}
 			}
 			while (cursor.moveToNext());
+			changed = nodes.toArray(new TreeNode[0]);
 		}
 		else
 		{
 			TreeFactory.setNoResult(parent, true);
+			changed = new TreeNode[]{parent};
 		}
 
 		cursor.close();
-		return parent;
+		return changed;
 	}
 
 	// L E X L I N K S
@@ -1099,136 +1140,141 @@ abstract public class BaseModule extends Module
 		model.getData().observe(this.fragment, FireEvent::live);
 	}
 
-	private TreeNode lexLinksCursor1ToTreeModel(@NonNull final Cursor cursor, @NonNull final TreeNode parent)
+	private TreeNode[] lexLinksCursor1ToTreeModel(@NonNull final Cursor cursor, @NonNull final TreeNode parent)
 	{
+		TreeNode[] changed;
 		if (cursor.moveToFirst())
 		{
-			// noinspection StatementWithEmptyBody
-			if (cursor.moveToFirst())
-			{
-				final Context context = this.fragment.requireContext();
+			final List<TreeNode> nodes = new ArrayList<>();
+			nodes.add(parent);
 
-				final int idLinkId = cursor.getColumnIndex(LinkTypes.LINKID);
-				// final int idLink = cursor.getColumnIndex(LinkTypes.LINK);
-
-				// final int idTargetSynsetId = cursor.getColumnIndex(BaseModule.TARGET_SYNSETID);
-				final int idTargetDefinition = cursor.getColumnIndex(BaseModule.TARGET_DEFINITION);
-				final int idTargetMembers = cursor.getColumnIndex(LexLinks_Senses_Words_X.MEMBERS2);
-
-				// final int idTargetWordId = cursor.getColumnIndex(BaseModule.TARGET_WORDID);
-				final int idTargetLemma = cursor.getColumnIndex(BaseModule.TARGET_LEMMA);
-
-				final SpannableStringBuilder sb = new SpannableStringBuilder();
-				do
-				{
-					final int linkId = cursor.getInt(idLinkId);
-					// final String link = cursor.getString(idLink);
-
-					// final String targetSynsetId = cursor.getString(idTargetSynsetId);
-					final String targetDefinition = cursor.getString(idTargetDefinition);
-					final String targetMembers = cursor.getString(idTargetMembers);
-
-					// final String targetWordId = cursor.getString(idTargetWordId);
-					final String targetLemma = cursor.getString(idTargetLemma);
-
-					// final String record = String.format(Locale.ENGLISH, "[%s] %s (%s)\n\t%s (synsetCursorToTreeModel %s) {%s}", link, targetLemma, targetWordId, targetDefinition, targetSynsetId, targetMembers);
-
-					if (sb.length() != 0)
-					{
-						sb.append('\n');
-					}
-					// Spanner.appendImage(sb, getLinkDrawable(linkId));
-					// sb.append(record);
-					// sb.append(' ');
-					Spanner.append(sb, targetLemma, 0, WordNetFactories.lemmaFactory);
-					sb.append(" in ");
-					sb.append(' ');
-					sb.append('{');
-					Spanner.append(sb, targetMembers, 0, WordNetFactories.membersFactory);
-					sb.append('}');
-					sb.append(' ');
-					Spanner.append(sb, targetDefinition, 0, WordNetFactories.definitionFactory);
-
-					// attach result
-					TreeFactory.newLeafNode(sb, getLinkRes(linkId), context);
-				}
-				while (cursor.moveToNext());
-
-				// attach result
-				TreeFactory.addTextNode(parent, sb, context);
-			}
-			else
-			{
-				TreeFactory.setNoResult(parent, true);
-			}
-		}
-		cursor.close();
-		return parent;
-	}
-
-	private TreeNode lexLinksCursor2ToTreeModel(@NonNull final Cursor cursor, @NonNull final TreeNode parent)
-	{
-		if (cursor.moveToFirst())
-		{
 			final Context context = this.fragment.requireContext();
 
-			//noinspection StatementWithEmptyBody
-			if (cursor.moveToFirst())
+			final int idLinkId = cursor.getColumnIndex(LinkTypes.LINKID);
+			// final int idLink = cursor.getColumnIndex(LinkTypes.LINK);
+
+			// final int idTargetSynsetId = cursor.getColumnIndex(BaseModule.TARGET_SYNSETID);
+			final int idTargetDefinition = cursor.getColumnIndex(BaseModule.TARGET_DEFINITION);
+			final int idTargetMembers = cursor.getColumnIndex(LexLinks_Senses_Words_X.MEMBERS2);
+
+			// final int idTargetWordId = cursor.getColumnIndex(BaseModule.TARGET_WORDID);
+			final int idTargetLemma = cursor.getColumnIndex(BaseModule.TARGET_LEMMA);
+
+			final SpannableStringBuilder sb = new SpannableStringBuilder();
+			do
 			{
-				final int idLinkId = cursor.getColumnIndex(LinkTypes.LINKID);
-				// final int idLink = cursor.getColumnIndex(LinkTypes.LINK);
+				final int linkId = cursor.getInt(idLinkId);
+				// final String link = cursor.getString(idLink);
 
-				final int idTargetSynsetId = cursor.getColumnIndex(BaseModule.TARGET_SYNSETID);
-				final int idTargetDefinition = cursor.getColumnIndex(BaseModule.TARGET_DEFINITION);
-				// final int idTargetMembers = cursor.getColumnIndex(LexLinks_Senses_Words_X.MEMBERS2);
+				// final String targetSynsetId = cursor.getString(idTargetSynsetId);
+				final String targetDefinition = cursor.getString(idTargetDefinition);
+				final String targetMembers = cursor.getString(idTargetMembers);
 
-				final int idTargetWordId = cursor.getColumnIndex(BaseModule.TARGET_WORDID);
-				final int idTargetLemma = cursor.getColumnIndex(BaseModule.TARGET_LEMMA);
+				// final String targetWordId = cursor.getString(idTargetWordId);
+				final String targetLemma = cursor.getString(idTargetLemma);
 
-				do
+				// final String record = String.format(Locale.ENGLISH, "[%s] %s (%s)\n\t%s (synsetCursorToTreeModel %s) {%s}", link, targetLemma, targetWordId, targetDefinition, targetSynsetId, targetMembers);
+
+				if (sb.length() != 0)
 				{
-					final SpannableStringBuilder sb = new SpannableStringBuilder();
-
-					final int linkId = cursor.getInt(idLinkId);
-					// final String link = cursor.getString(idLink);
-					final long targetSynsetId = cursor.getLong(idTargetSynsetId);
-					final String targetDefinition = cursor.getString(idTargetDefinition);
-					// final String targetMembers = cursor.getString(idTargetMembers);
-					final String targetLemma = cursor.getString(idTargetLemma);
-					// final String targetWordId = cursor.getString(idTargetWordId);
-
-					// final String record = String.format(Locale.ENGLISH, "[%s] %s (%s)\n\t%s (synsetCursorToTreeModel %s) {%s}", link, targetLemma, targetWordId,targetDefinition, targetSynsetId, targetMembers);
-
-					if (sb.length() != 0)
-					{
-						sb.append('\n');
-					}
-					// Spanner.appendImage(sb, getLinkDrawable(linkId));
-					// sb.append(record);
-					// sb.append(' ');
-					Spanner.append(sb, targetLemma, 0, WordNetFactories.lemmaFactory);
-					// sb.append(" in ");
-					// sb.append(' ');
-					// sb.append('{');
-					// Spanner.append(sb, membersCursor1ToTreeModel, 0, WordNetFactories.membersFactory);
-					// sb.append('}');
-					sb.append(' ');
-					Spanner.append(sb, targetDefinition, 0, WordNetFactories.definitionFactory);
-
-					// attach result
-					final TreeNode linkNode = TreeFactory.newLinkLeafNode(sb, getLinkRes(linkId), new SenseLink(targetSynsetId, idTargetWordId, BaseModule.this.maxRecursion), context);
-					parent.addChild(linkNode);
+					sb.append('\n');
 				}
-				while (cursor.moveToNext());
-			}
-			else
-			{
-				TreeFactory.setNoResult(parent, true);
-			}
+				// Spanner.appendImage(sb, getLinkDrawable(linkId));
+				// sb.append(record);
+				// sb.append(' ');
+				Spanner.append(sb, targetLemma, 0, WordNetFactories.lemmaFactory);
+				sb.append(" in ");
+				sb.append(' ');
+				sb.append('{');
+				Spanner.append(sb, targetMembers, 0, WordNetFactories.membersFactory);
+				sb.append('}');
+				sb.append(' ');
+				Spanner.append(sb, targetDefinition, 0, WordNetFactories.definitionFactory);
 
+				// attach result
+				final TreeNode linkNode = TreeFactory.addLeafNode(parent, sb, getLinkRes(linkId), context);
+				nodes.add(linkNode);
+			}
+			while (cursor.moveToNext());
+
+			// attach result
+			final TreeNode node = TreeFactory.addTextNode(parent, sb, context);
+			nodes.add(node);
+			changed = nodes.toArray(new TreeNode[0]);
+		}
+		else
+		{
+			TreeFactory.setNoResult(parent, true);
+			changed = new TreeNode[]{parent};
 		}
 		cursor.close();
-		return parent;
+		return changed;
+	}
+
+	private TreeNode[] lexLinksCursor2ToTreeModel(@NonNull final Cursor cursor, @NonNull final TreeNode parent)
+	{
+		TreeNode[] changed;
+		if (cursor.moveToFirst())
+		{
+			final List<TreeNode> nodes = new ArrayList<>();
+			nodes.add(parent);
+
+			final Context context = this.fragment.requireContext();
+
+			final int idLinkId = cursor.getColumnIndex(LinkTypes.LINKID);
+			// final int idLink = cursor.getColumnIndex(LinkTypes.LINK);
+
+			final int idTargetSynsetId = cursor.getColumnIndex(BaseModule.TARGET_SYNSETID);
+			final int idTargetDefinition = cursor.getColumnIndex(BaseModule.TARGET_DEFINITION);
+			// final int idTargetMembers = cursor.getColumnIndex(LexLinks_Senses_Words_X.MEMBERS2);
+
+			final int idTargetWordId = cursor.getColumnIndex(BaseModule.TARGET_WORDID);
+			final int idTargetLemma = cursor.getColumnIndex(BaseModule.TARGET_LEMMA);
+
+			do
+			{
+				final SpannableStringBuilder sb = new SpannableStringBuilder();
+
+				final int linkId = cursor.getInt(idLinkId);
+				// final String link = cursor.getString(idLink);
+				final long targetSynsetId = cursor.getLong(idTargetSynsetId);
+				final String targetDefinition = cursor.getString(idTargetDefinition);
+				// final String targetMembers = cursor.getString(idTargetMembers);
+				final String targetLemma = cursor.getString(idTargetLemma);
+				// final String targetWordId = cursor.getString(idTargetWordId);
+
+				// final String record = String.format(Locale.ENGLISH, "[%s] %s (%s)\n\t%s (synsetCursorToTreeModel %s) {%s}", link, targetLemma, targetWordId,targetDefinition, targetSynsetId, targetMembers);
+
+				if (sb.length() != 0)
+				{
+					sb.append('\n');
+				}
+				// Spanner.appendImage(sb, getLinkDrawable(linkId));
+				// sb.append(record);
+				// sb.append(' ');
+				Spanner.append(sb, targetLemma, 0, WordNetFactories.lemmaFactory);
+				// sb.append(" in ");
+				// sb.append(' ');
+				// sb.append('{');
+				// Spanner.append(sb, membersCursor1ToTreeModel, 0, WordNetFactories.membersFactory);
+				// sb.append('}');
+				sb.append(' ');
+				Spanner.append(sb, targetDefinition, 0, WordNetFactories.definitionFactory);
+
+				// attach result
+				final TreeNode linkNode = TreeFactory.addLinkLeafNode(parent, sb, getLinkRes(linkId), new SenseLink(targetSynsetId, idTargetWordId, BaseModule.this.maxRecursion), context);
+				nodes.add(linkNode);
+			}
+			while (cursor.moveToNext());
+			changed = nodes.toArray(new TreeNode[0]);
+		}
+		else
+		{
+			TreeFactory.setNoResult(parent, true);
+			changed = new TreeNode[]{parent};
+		}
+		cursor.close();
+		return changed;
 	}
 
 	// V F R A M E S
@@ -1274,9 +1320,9 @@ abstract public class BaseModule extends Module
 		model.getData().observe(this.fragment, FireEvent::live);
 	}
 
-	private TreeNode vframesCursorToTreeModel(@NonNull final Cursor cursor, @NonNull final TreeNode parent)
+	private TreeNode[] vframesCursorToTreeModel(@NonNull final Cursor cursor, @NonNull final TreeNode parent)
 	{
-		//noinspection StatementWithEmptyBody
+		TreeNode[] changed;
 		if (cursor.moveToFirst())
 		{
 			final Context context = this.fragment.requireContext();
@@ -1299,15 +1345,17 @@ abstract public class BaseModule extends Module
 			while (cursor.moveToNext());
 
 			// attach result
-			TreeFactory.addTextNode(parent, sb, context);
+			final TreeNode node = TreeFactory.addTextNode(parent, sb, context);
+			changed = new TreeNode[]{parent, node};
 		}
 		else
 		{
 			TreeFactory.setNoResult(parent, true);
+			changed = new TreeNode[]{parent};
 		}
 
 		cursor.close();
-		return parent;
+		return changed;
 	}
 
 	// V F R A M E S E N TE N C E S
@@ -1353,9 +1401,9 @@ abstract public class BaseModule extends Module
 		model.getData().observe(this.fragment, FireEvent::live);
 	}
 
-	private TreeNode vFrameSentencesCursor1ToTreeModel(@NonNull final Cursor cursor, @NonNull final TreeNode parent)
+	private TreeNode[] vFrameSentencesCursor1ToTreeModel(@NonNull final Cursor cursor, @NonNull final TreeNode parent)
 	{
-		//noinspection StatementWithEmptyBody
+		TreeNode[] changed;
 		if (cursor.moveToFirst())
 		{
 			final Context context = this.fragment.requireContext();
@@ -1378,20 +1426,22 @@ abstract public class BaseModule extends Module
 			while (cursor.moveToNext());
 
 			// attach result
-			TreeFactory.addTextNode(parent, sb, context);
+			final TreeNode node = TreeFactory.addTextNode(parent, sb, context);
+			changed = new TreeNode[]{parent, node};
 		}
 		else
 		{
 			TreeFactory.setNoResult(parent, true);
+			changed = new TreeNode[]{parent};
 		}
 
 		cursor.close();
-		return parent;
+		return changed;
 	}
 
-	private TreeNode vFrameSentencesCursor2ToTreeModel(@NonNull final Cursor cursor, @NonNull final TreeNode parent)
+	private TreeNode[] vFrameSentencesCursor2ToTreeModel(@NonNull final Cursor cursor, @NonNull final TreeNode parent)
 	{
-		// noinspection StatementWithEmptyBody
+		TreeNode[] changed;
 		if (cursor.moveToFirst())
 		{
 			final Context context = this.fragment.requireContext();
@@ -1415,15 +1465,17 @@ abstract public class BaseModule extends Module
 			while (cursor.moveToNext());
 
 			// attach result
-			TreeFactory.addTextNode(parent, sb, context);
+			final TreeNode node = TreeFactory.addTextNode(parent, sb, context);
+			changed = new TreeNode[]{parent, node};
 		}
 		else
 		{
 			TreeFactory.setNoResult(parent, true);
+			changed = new TreeNode[]{parent};
 		}
 
 		cursor.close();
-		return parent;
+		return changed;
 	}
 
 	// A D J P O S I T I O N S
@@ -1469,9 +1521,9 @@ abstract public class BaseModule extends Module
 		model.getData().observe(this.fragment, FireEvent::live);
 	}
 
-	private TreeNode adjPositionCursorToTreeModel(@NonNull final Cursor cursor, @NonNull final TreeNode parent)
+	private TreeNode[] adjPositionCursorToTreeModel(@NonNull final Cursor cursor, @NonNull final TreeNode parent)
 	{
-		//noinspection StatementWithEmptyBody
+		TreeNode[] changed;
 		if (cursor.moveToFirst())
 		{
 			final Context context = this.fragment.requireContext();
@@ -1494,15 +1546,17 @@ abstract public class BaseModule extends Module
 			while (cursor.moveToNext());
 
 			// attach result
-			TreeFactory.addTextNode(parent, sb, context);
+			final TreeNode node = TreeFactory.addTextNode(parent, sb, context);
+			changed = new TreeNode[]{parent, node};
 		}
 		else
 		{
 			TreeFactory.setNoResult(parent, true);
+			changed = new TreeNode[]{parent};
 		}
 
 		cursor.close();
-		return parent;
+		return changed;
 	}
 
 	// M O R P H S
@@ -1527,9 +1581,9 @@ abstract public class BaseModule extends Module
 		model.getData().observe(this.fragment, FireEvent::live);
 	}
 
-	private TreeNode morphsCursorToTreeModel(@NonNull final Cursor cursor, @NonNull final TreeNode parent)
+	private TreeNode[] morphsCursorToTreeModel(@NonNull final Cursor cursor, @NonNull final TreeNode parent)
 	{
-		//noinspection StatementWithEmptyBody
+		TreeNode[] changed;
 		if (cursor.moveToFirst())
 		{
 			final Context context = this.fragment.requireContext();
@@ -1554,15 +1608,17 @@ abstract public class BaseModule extends Module
 			while (cursor.moveToNext());
 
 			// attach result
-			TreeFactory.addTextNode(parent, sb, context);
+			final TreeNode node = TreeFactory.addTextNode(parent, sb, context);
+			changed = new TreeNode[]{parent, node};
 		}
 		else
 		{
 			TreeFactory.setNoResult(parent, true);
+			changed = new TreeNode[]{parent};
 		}
 
 		cursor.close();
-		return parent;
+		return changed;
 	}
 
 	// H E L P E R S

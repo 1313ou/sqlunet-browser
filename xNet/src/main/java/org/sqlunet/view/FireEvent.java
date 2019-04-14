@@ -20,10 +20,10 @@ public class FireEvent
 {
 	private static final String TAG = "LIVE";
 
-	static public void live(TreeNode node)
+	static public void live(final TreeNode[] nodes)
 	{
-		Log.d(TAG, "Live " + "\n" + node.toStringWithChildren());
-		TreeView.expand(node, true);
+		Log.d(TAG, "Live " + "\n" + nodes[0].toStringWithChildren());
+		TreeView.expand(nodes[0], true);
 	}
 
 	// R E S U L T S  A V A I L A B L E
@@ -76,18 +76,5 @@ public class FireEvent
 	static public void onResults(@NonNull final TreeNode node, final CharSequence value)
 	{
 		// TODO TreeView.setNodeValue(node, value);
-	}
-
-	// Q U E R Y  R E A D Y
-
-	static public void onQueryReady(@NonNull final TreeNode node)
-	{
-		final Controller<?> controller = node.getController();
-		if (controller instanceof HotQueryController)
-		{
-			final HotQueryController queryController = (HotQueryController) controller;
-			final Handler handler = new Handler(Looper.getMainLooper());
-			handler.post(queryController::processQuery);
-		}
 	}
 }

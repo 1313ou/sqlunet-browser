@@ -12,14 +12,14 @@ import org.sqlunet.treeview.model.TreeNode;
  *
  * @author Bogdan Melnychuk on 2/11/15.
  */
-public class NodeController extends Controller<Object>
+public class IconTextController extends Controller<Object>
 {
 	/**
 	 * Constructor
 	 *
 	 * @param context context
 	 */
-	public NodeController(final Context context)
+	public IconTextController(final Context context)
 	{
 		super(context);
 	}

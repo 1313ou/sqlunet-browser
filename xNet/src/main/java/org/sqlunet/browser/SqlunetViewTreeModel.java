@@ -18,12 +18,12 @@ public class SqlunetViewTreeModel extends AndroidViewModel
 {
 	public interface ToTreeNodes
 	{
-		TreeNode cursorToTreeNodes(final Cursor cursor);
+		TreeNode[] cursorToTreeNodes(final Cursor cursor);
 	}
 
-	private final MutableLiveData<TreeNode> data = new MutableLiveData<>();
+	private final MutableLiveData<TreeNode[]> data = new MutableLiveData<>();
 
-	public LiveData<TreeNode> getData()
+	public LiveData<TreeNode[]> getData()
 	{
 		return data;
 	}
@@ -36,17 +36,17 @@ public class SqlunetViewTreeModel extends AndroidViewModel
 	@SuppressLint("StaticFieldLeak")
 	public void loadData(final Uri uri, final String[] projection, final String selection, final String[] selectionArgs, final String sortOrder, final ToTreeNodes treeConverter)
 	{
-		new AsyncTask<Void, Void, TreeNode>()
+		new AsyncTask<Void, Void, TreeNode[]>()
 		{
 			@Override
-			protected TreeNode doInBackground(Void... voids)
+			protected TreeNode[] doInBackground(Void... voids)
 			{
 				final Cursor cursor = getApplication().getContentResolver().query(uri, projection, selection, selectionArgs, sortOrder);
 				return treeConverter.cursorToTreeNodes(cursor);
 			}
 
 			@Override
-			protected void onPostExecute(TreeNode treeNode)
+			protected void onPostExecute(TreeNode[] treeNode)
 			{
 				data.setValue(treeNode);
 			}

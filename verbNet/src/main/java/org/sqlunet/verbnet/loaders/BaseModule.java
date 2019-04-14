@@ -24,6 +24,9 @@ import org.sqlunet.verbnet.style.VerbNetSemanticsSpanner;
 import org.sqlunet.verbnet.style.VerbNetSyntaxSpanner;
 import org.sqlunet.view.FireEvent;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -166,14 +169,14 @@ abstract class BaseModule extends Module
 		model.getData().observe(this.fragment, FireEvent::live);
 	}
 
-	private TreeNode vnClassCursorToTreeModel(@NonNull final Cursor cursor, final long classId, @NonNull final TreeNode parent)
+	private TreeNode[] vnClassCursorToTreeModel(@NonNull final Cursor cursor, final long classId, @NonNull final TreeNode parent)
 	{
 		if (cursor.getCount() > 1)
 		{
 			throw new RuntimeException("Unexpected number of rows");
 		}
 
-		// read cursor
+		TreeNode[] changed;
 		if (cursor.moveToFirst())
 		{
 			final Context context = fragment.requireContext();
@@ -199,25 +202,24 @@ abstract class BaseModule extends Module
 			sb.append(Long.toString(classId));
 
 			// attach result
-			TreeFactory.addTextNode(parent, sb, context);
+			final TreeNode node = TreeFactory.addTextNode(parent, sb, context);
 
 			// sub nodes
-			final TreeNode membersNode = TreeFactory.newHotQueryNode("Members", R.drawable.members, new MembersQuery(classId), context).addTo(parent);
-			final TreeNode rolesNode = TreeFactory.newHotQueryNode("Roles", R.drawable.roles, new RolesQuery(classId), context).addTo(parent);
-			final TreeNode framesNode = TreeFactory.newQueryNode("Frames", R.drawable.vnframe, new FramesQuery(classId), context).addTo(parent);
+			final TreeNode membersNode = TreeFactory.addHotQueryNode(parent,"Members", R.drawable.members, new MembersQuery(classId), context).addTo(parent);
+			final TreeNode rolesNode = TreeFactory.addHotQueryNode(parent,"Roles", R.drawable.roles, new RolesQuery(classId), context).addTo(parent);
+			final TreeNode framesNode = TreeFactory.addQueryNode(parent,"Frames", R.drawable.vnframe, new FramesQuery(classId), context).addTo(parent);
 
-			// fire event
-			FireEvent.onQueryReady(membersNode);
-			FireEvent.onQueryReady(rolesNode);
-			FireEvent.onQueryReady(framesNode);
+			// changed
+			changed = new TreeNode[]{parent, node, membersNode, framesNode};
 		}
 		else
 		{
 			TreeFactory.setNoResult(parent, true);
+			changed = new TreeNode[]{parent};
 		}
 
 		cursor.close();
-		return parent;
+		return changed;
 	}
 
 	// vnMembers
@@ -249,10 +251,14 @@ abstract class BaseModule extends Module
 		model.getData().observe(this.fragment, FireEvent::live);
 	}
 
-	private TreeNode vnMembersCursorToTreeModel(@NonNull final Cursor cursor, @NonNull final TreeNode parent)
+	private TreeNode[] vnMembersCursorToTreeModel(@NonNull final Cursor cursor, @NonNull final TreeNode parent)
 	{
+		TreeNode[] changed;
 		if (cursor.moveToFirst())
 		{
+			final List<TreeNode> nodes = new ArrayList<>();
+			nodes.add(parent);
+
 			final Context context = fragment.requireContext();
 
 			// column indices
@@ -276,6 +282,7 @@ abstract class BaseModule extends Module
 				if (definitions != null || groupings != null)
 				{
 					final TreeNode memberNode = TreeFactory.addTreeNode(parent, sb, R.drawable.member, context);
+					nodes.add(memberNode);
 
 					final SpannableStringBuilder sb2 = new SpannableStringBuilder();
 
@@ -326,22 +333,26 @@ abstract class BaseModule extends Module
 					}
 
 					// attach definition and groupings result
-					TreeFactory.addTextNode(memberNode, sb2, context);
+					final TreeNode node = TreeFactory.addTextNode(memberNode, sb2, context);
+					nodes.add(node);
 				}
 				else
 				{
-					TreeFactory.addLeafNode(parent, sb, R.drawable.member, context);
+					final TreeNode node = TreeFactory.addLeafNode(parent, sb, R.drawable.member, context);
+					nodes.add(node);
 				}
 			}
 			while (cursor.moveToNext());
+			changed = nodes.toArray(new TreeNode[0]);
 		}
 		else
 		{
 			TreeFactory.setNoResult(parent, true);
+			changed = new TreeNode[]{parent};
 		}
 
 		cursor.close();
-		return parent;
+		return changed;
 	}
 
 	// vnRoles
@@ -371,8 +382,9 @@ abstract class BaseModule extends Module
 		model.getData().observe(this.fragment, FireEvent::live);
 	}
 
-	private TreeNode vnRolesCursorToTreeModel(@NonNull final Cursor cursor, @NonNull final TreeNode parent)
+	private TreeNode[] vnRolesCursorToTreeModel(@NonNull final Cursor cursor, @NonNull final TreeNode parent)
 	{
+		TreeNode[] changed;
 		if (cursor.moveToFirst())
 		{
 			final SpannableStringBuilder sb = new SpannableStringBuilder();
@@ -413,15 +425,17 @@ abstract class BaseModule extends Module
 			}
 
 			// attach result
-			TreeFactory.addTextNode(parent, sb, fragment.requireContext());
+			final TreeNode node = TreeFactory.addTextNode(parent, sb, fragment.requireContext());
+			changed = new TreeNode[]{parent, node};
 		}
 		else
 		{
 			TreeFactory.setNoResult(parent, true);
+			changed = new TreeNode[]{parent};
 		}
 
 		cursor.close();
-		return parent;
+		return changed;
 	}
 
 	// vnFrames
@@ -450,12 +464,13 @@ abstract class BaseModule extends Module
 		model.getData().observe(this.fragment, FireEvent::live);
 	}
 
-	private TreeNode vnFramesToView(@NonNull final Cursor cursor, @NonNull final TreeNode parent)
+	private TreeNode[] vnFramesToView(@NonNull final Cursor cursor, @NonNull final TreeNode parent)
 	{
-		final SpannableStringBuilder sb = new SpannableStringBuilder();
-
+		TreeNode[] changed;
 		if (cursor.moveToFirst())
 		{
+			final SpannableStringBuilder sb = new SpannableStringBuilder();
+
 			// column indices
 			// final int idFrameId = cursor.getColumnIndex(VnClasses_VnFrames.FRAMEID);
 			final int idFrameName = cursor.getColumnIndex(VnClasses_VnFrames_X.FRAMENAME);
@@ -519,15 +534,17 @@ abstract class BaseModule extends Module
 			}
 
 			// attach result
-			TreeFactory.addTextNode(parent, sb, fragment.requireContext());
+			final TreeNode node = TreeFactory.addTextNode(parent, sb, fragment.requireContext());
+			changed = new TreeNode[]{parent, node};
 		}
 		else
 		{
 			TreeFactory.setNoResult(parent, true);
+			changed = new TreeNode[]{parent};
 		}
 
 		cursor.close();
-		return parent;
+		return changed;
 	}
 
 	/**
@@ -538,21 +555,24 @@ abstract class BaseModule extends Module
 	 */
 	@Nullable
 	@SuppressWarnings("unused")
-	protected TreeNode items(@Nullable final String group)
+	protected TreeNode items(@NonNull final TreeNode parent, @Nullable final String group)
 	{
 		if (group != null)
 		{
+			final Context context = fragment.requireContext();
+
 			final SpannableStringBuilder sb = new SpannableStringBuilder();
 			final String[] items = group.split("\\|");
 			if (items.length == 1)
 			{
 				Spanner.appendImage(sb, BaseModule.this.drawableMember);
 				Spanner.append(sb, items[0], 0, VerbNetFactories.memberFactory);
+				final TreeNode groupingsNode = TreeFactory.addIconTextNode(parent, sb, R.drawable.member, context);
+				return groupingsNode;
 			}
 			else if (items.length > 1)
 			{
-				final Context context = fragment.requireContext();
-				final TreeNode groupingsNode = TreeFactory.newTreeNode("Group", R.drawable.member, context);
+				final TreeNode groupingsNode = TreeFactory.addIconTextNode(parent, "Group", R.drawable.member, context);
 				boolean first = true;
 				for (final String item : items)
 				{
@@ -567,7 +587,7 @@ abstract class BaseModule extends Module
 					Spanner.appendImage(sb, BaseModule.this.drawableMember);
 					Spanner.append(sb, item, 0, VerbNetFactories.memberFactory);
 				}
-				groupingsNode.addChild(TreeFactory.newTextNode(sb, context));
+				final TreeNode childNode = TreeFactory.addTextNode(groupingsNode, sb, context);
 				return groupingsNode;
 			}
 		}

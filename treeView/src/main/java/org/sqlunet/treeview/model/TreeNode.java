@@ -1,7 +1,6 @@
 package org.sqlunet.treeview.model;
 
 import org.sqlunet.treeview.control.Controller;
-import org.sqlunet.treeview.control.RootController;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -276,6 +275,12 @@ public class TreeNode
 	public Iterable<TreeNode> getChildren()
 	{
 		return Collections.unmodifiableList(this.children);
+	}
+
+	@NonNull
+	public List<TreeNode> getChildrenList()
+	{
+		return this.children;
 	}
 
 	/**
@@ -627,7 +632,7 @@ public class TreeNode
 		sb.append(id);
 		sb.append(' ');
 		sb.append("value=[");
-		sb.append(value.toString().replace('\n','┃'));
+		sb.append(value.toString().replace('\n', '┃'));
 		sb.append(']');
 		sb.append(' ');
 		sb.append("controller=");
@@ -663,14 +668,13 @@ public class TreeNode
 			sb.append("────");
 		}
 		sb.append(this);
-		if (getChildren() != null)
+
+		sb.append('\n');
+		for (TreeNode child : getChildren())
 		{
-			sb.append('\n');
-			for (TreeNode child : getChildren())
-			{
-				child.toStringWithChildren(sb, level + 1);
-			}
+			child.toStringWithChildren(sb, level + 1);
 		}
+
 	}
 
 	// C L I C K  L I S T E N E R
