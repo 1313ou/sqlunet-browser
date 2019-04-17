@@ -220,17 +220,17 @@ public class TreeFactory
 	 * @param node       node
 	 * @param deleteNode whether results were supposed to be new subnodes or replace query node
 	 */
-	static public void setNoResult(@NonNull final TreeNode node, boolean deleteNode)
+	static public void setNoResult(@NonNull final TreeNode node, boolean deleteNode, boolean makeDeadend)
 	{
 		if (deleteNode)
 		{
 			Log.d(TAG, "Zombie " + node);
 			node.setZombie(true);
 		}
-		else
+		else if(makeDeadend)
 		{
-			Log.d(TAG, "Disabled " + node);
-			//node.disable();
+			Log.d(TAG, "Deadend " + node);
+			node.disable();
 			node.setDeadend(true);
 		}
 	}

@@ -125,7 +125,7 @@ public class SentenceModule extends BaseModule
 		}
 		else
 		{
-			TreeFactory.setNoResult(parent, true);
+			TreeFactory.setNoResult(parent, true, false);
 			changed = new TreeNode[]{parent};
 		}
 

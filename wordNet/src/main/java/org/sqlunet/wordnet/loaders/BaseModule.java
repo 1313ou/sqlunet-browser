@@ -201,7 +201,7 @@ abstract public class BaseModule extends Module
 		}
 		else
 		{
-			TreeFactory.setNoResult(parent, true);
+			TreeFactory.setNoResult(parent, true, false);
 			changed = new TreeNode[]{parent};
 		}
 
@@ -316,7 +316,7 @@ abstract public class BaseModule extends Module
 		}
 		else
 		{
-			TreeFactory.setNoResult(parent, true);
+			TreeFactory.setNoResult(parent, true, false);
 			changed = new TreeNode[]{parent};
 		}
 
@@ -413,7 +413,7 @@ abstract public class BaseModule extends Module
 		}
 		else
 		{
-			TreeFactory.setNoResult(parent, true);
+			TreeFactory.setNoResult(parent, true, false);
 		}
 
 		cursor.close();
@@ -445,7 +445,7 @@ abstract public class BaseModule extends Module
 		}
 		else
 		{
-			TreeFactory.setNoResult(parent, true);
+			TreeFactory.setNoResult(parent, true, false);
 			changed = new TreeNode[]{parent};
 		}
 
@@ -485,7 +485,7 @@ abstract public class BaseModule extends Module
 		}
 		else
 		{
-			TreeFactory.setNoResult(parent, true);
+			TreeFactory.setNoResult(parent, true, false);
 			changed = new TreeNode[]{parent};
 		}
 
@@ -554,7 +554,7 @@ abstract public class BaseModule extends Module
 		}
 		else
 		{
-			TreeFactory.setNoResult(parent, addNewNode);
+			TreeFactory.setNoResult(parent, addNewNode, true);
 			changed = new TreeNode[]{parent};
 		}
 
@@ -762,7 +762,7 @@ abstract public class BaseModule extends Module
 		}
 		else
 		{
-			TreeFactory.setNoResult(parent, addNewNode);
+			TreeFactory.setNoResult(parent, addNewNode, true);
 			changed = new TreeNode[]{parent};
 		}
 
@@ -811,7 +811,7 @@ abstract public class BaseModule extends Module
 		}
 		else
 		{
-			TreeFactory.setNoResult(parent, true);
+			TreeFactory.setNoResult(parent, true, false);
 			changed = new TreeNode[]{parent};
 		}
 
@@ -886,7 +886,7 @@ abstract public class BaseModule extends Module
 		}
 		else
 		{
-			TreeFactory.setNoResult(parent, addNewNode);
+			TreeFactory.setNoResult(parent, addNewNode, true);
 			changed = new TreeNode[]{parent};
 		}
 
@@ -1002,7 +1002,7 @@ abstract public class BaseModule extends Module
 		}
 		else
 		{
-			TreeFactory.setNoResult(parent, false);
+			TreeFactory.setNoResult(parent, false, false);
 			changed = new TreeNode[]{parent};
 		}
 
@@ -1067,7 +1067,7 @@ abstract public class BaseModule extends Module
 		}
 		else
 		{
-			TreeFactory.setNoResult(parent, false);
+			TreeFactory.setNoResult(parent, false, true);
 			changed = new TreeNode[]{parent};
 		}
 
@@ -1076,6 +1076,32 @@ abstract public class BaseModule extends Module
 	}
 
 	// L E X L I N K S
+
+	/**
+	 * Lexical links
+	 *
+	 * @param synsetId synsetCursorToTreeModel id
+	 * @param wordId   word id
+	 * @param parent   parent node
+	 */
+	private void lexLinks(final long synsetId, final long wordId, @NonNull final TreeNode parent)
+	{
+		final Uri uri = Uri.parse(WordNetProvider.makeUri(LexLinks_Senses_Words_X.CONTENT_URI_TABLE));
+		final String[] projection = { //
+				WordNetContract.DEST + '.' + Synsets.SYNSETID + " AS " + BaseModule.TARGET_SYNSETID, //
+				WordNetContract.DEST + '.' + Synsets.DEFINITION + " AS " + BaseModule.TARGET_DEFINITION, //
+				WordNetContract.WORD + '.' + Words.LEMMA + " AS " + BaseModule.TARGET_LEMMA, //
+				WordNetContract.WORD + '.' + Words.WORDID + " AS " + BaseModule.TARGET_WORDID, //
+				LinkTypes.LINK, LinkTypes.LINKID,};
+		final String selection = WordNetContract.LINK + ".synset1id = ? AND " + WordNetContract.LINK + ".word1id = ?";
+		final String[] selectionArgs = {Long.toString(synsetId), Long.toString(wordId)};
+		final String sortOrder = LinkTypes.LINKID;
+
+		final String tag = "wn.lexlinks(synsetid,wordid)";
+		final SqlunetViewTreeModel model = ViewModelProviders.of(this.fragment).get(tag, SqlunetViewTreeModel.class);
+		model.loadData(uri, projection, selection, selectionArgs, sortOrder, cursor -> lexLinksCursor1ToTreeModel(cursor, parent));
+		model.getData().observe(this.fragment, data -> new FireEvent(this.fragment).live(data));
+	}
 
 	/**
 	 * Lexical links
@@ -1100,37 +1126,74 @@ abstract public class BaseModule extends Module
 
 		final String tag = "wn.lexlinks(synsetid)";
 		final SqlunetViewTreeModel model = ViewModelProviders.of(this.fragment).get(tag, SqlunetViewTreeModel.class);
-		model.loadData(uri, projection, selection, selectionArgs, sortOrder, cursor -> lexLinksCursor1ToTreeModel(cursor, parent));
-		model.getData().observe(this.fragment, data -> new FireEvent(this.fragment).live(data));
-	}
-
-	/**
-	 * Lexical links
-	 *
-	 * @param synsetId synsetCursorToTreeModel id
-	 * @param wordId   word id
-	 * @param parent   parent node
-	 */
-	private void lexLinks(final long synsetId, final long wordId, @NonNull final TreeNode parent)
-	{
-		final Uri uri = Uri.parse(WordNetProvider.makeUri(LexLinks_Senses_Words_X.CONTENT_URI_TABLE));
-		final String[] projection = { //
-				WordNetContract.DEST + '.' + Synsets.SYNSETID + " AS " + BaseModule.TARGET_SYNSETID, //
-				WordNetContract.DEST + '.' + Synsets.DEFINITION + " AS " + BaseModule.TARGET_DEFINITION, //
-				WordNetContract.WORD + '.' + Words.LEMMA + " AS " + BaseModule.TARGET_LEMMA, //
-				WordNetContract.WORD + '.' + Words.WORDID + " AS " + BaseModule.TARGET_WORDID, //
-				LinkTypes.LINK, LinkTypes.LINKID,};
-		final String selection = WordNetContract.LINK + ".synset1id = ? AND " + WordNetContract.LINK + ".word1id = ?";
-		final String[] selectionArgs = {Long.toString(synsetId), Long.toString(wordId)};
-		final String sortOrder = LinkTypes.LINKID;
-
-		final String tag = "wn.lexlinks(synsetid,wordid)";
-		final SqlunetViewTreeModel model = ViewModelProviders.of(this.fragment).get(tag, SqlunetViewTreeModel.class);
 		model.loadData(uri, projection, selection, selectionArgs, sortOrder, cursor -> lexLinksCursor2ToTreeModel(cursor, parent));
 		model.getData().observe(this.fragment, data -> new FireEvent(this.fragment).live(data));
 	}
 
 	private TreeNode[] lexLinksCursor1ToTreeModel(@NonNull final Cursor cursor, @NonNull final TreeNode parent)
+	{
+		TreeNode[] changed;
+		if (cursor.moveToFirst())
+		{
+			final List<TreeNode> nodes = new ArrayList<>();
+			nodes.add(parent);
+
+			final int idLinkId = cursor.getColumnIndex(LinkTypes.LINKID);
+			// final int idLink = cursor.getColumnIndex(LinkTypes.LINK);
+
+			final int idTargetSynsetId = cursor.getColumnIndex(BaseModule.TARGET_SYNSETID);
+			final int idTargetDefinition = cursor.getColumnIndex(BaseModule.TARGET_DEFINITION);
+			// final int idTargetMembers = cursor.getColumnIndex(LexLinks_Senses_Words_X.MEMBERS2);
+
+			final int idTargetWordId = cursor.getColumnIndex(BaseModule.TARGET_WORDID);
+			final int idTargetLemma = cursor.getColumnIndex(BaseModule.TARGET_LEMMA);
+
+			do
+			{
+				final SpannableStringBuilder sb = new SpannableStringBuilder();
+
+				final int linkId = cursor.getInt(idLinkId);
+				// final String link = cursor.getString(idLink);
+				final long targetSynsetId = cursor.getLong(idTargetSynsetId);
+				final String targetDefinition = cursor.getString(idTargetDefinition);
+				// final String targetMembers = cursor.getString(idTargetMembers);
+				final String targetLemma = cursor.getString(idTargetLemma);
+				// final String targetWordId = cursor.getString(idTargetWordId);
+
+				// final String record = String.format(Locale.ENGLISH, "[%s] %s (%s)\n\t%s (synsetCursorToTreeModel %s) {%s}", link, targetLemma, targetWordId,targetDefinition, targetSynsetId, targetMembers);
+
+				if (sb.length() != 0)
+				{
+					sb.append('\n');
+				}
+				// Spanner.appendImage(sb, getLinkDrawable(linkId));
+				// sb.append(record);
+				// sb.append(' ');
+				Spanner.append(sb, targetLemma, 0, WordNetFactories.lemmaFactory);
+				// sb.append(" in ");
+				// sb.append(' ');
+				// sb.append('{');
+				// Spanner.append(sb, membersCursor1ToTreeModel, 0, WordNetFactories.membersFactory);
+				// sb.append('}');
+				sb.append(' ');
+				Spanner.append(sb, targetDefinition, 0, WordNetFactories.definitionFactory);
+
+				// attach result
+				final TreeNode linkNode = TreeFactory.addLinkLeafNode(parent, sb, getLinkRes(linkId), new SenseLink(targetSynsetId, idTargetWordId, BaseModule.this.maxRecursion));
+				nodes.add(linkNode);
+			}
+			while (cursor.moveToNext());
+			changed = nodes.toArray(new TreeNode[0]);
+		}
+		else
+		{
+			TreeFactory.setNoResult(parent, false, false);
+			changed = new TreeNode[]{parent};
+		} cursor.close();
+		return changed;
+	}
+
+	private TreeNode[] lexLinksCursor2ToTreeModel(@NonNull final Cursor cursor, @NonNull final TreeNode parent)
 	{
 		TreeNode[] changed;
 		if (cursor.moveToFirst())
@@ -1192,73 +1255,10 @@ abstract public class BaseModule extends Module
 		}
 		else
 		{
-			TreeFactory.setNoResult(parent, false);
+			TreeFactory.setNoResult(parent, false, true);
 			changed = new TreeNode[]{parent};
 		}
 		cursor.close();
-		return changed;
-	}
-
-	private TreeNode[] lexLinksCursor2ToTreeModel(@NonNull final Cursor cursor, @NonNull final TreeNode parent)
-	{
-		TreeNode[] changed;
-		if (cursor.moveToFirst())
-		{
-			final List<TreeNode> nodes = new ArrayList<>();
-			nodes.add(parent);
-
-			final int idLinkId = cursor.getColumnIndex(LinkTypes.LINKID);
-			// final int idLink = cursor.getColumnIndex(LinkTypes.LINK);
-
-			final int idTargetSynsetId = cursor.getColumnIndex(BaseModule.TARGET_SYNSETID);
-			final int idTargetDefinition = cursor.getColumnIndex(BaseModule.TARGET_DEFINITION);
-			// final int idTargetMembers = cursor.getColumnIndex(LexLinks_Senses_Words_X.MEMBERS2);
-
-			final int idTargetWordId = cursor.getColumnIndex(BaseModule.TARGET_WORDID);
-			final int idTargetLemma = cursor.getColumnIndex(BaseModule.TARGET_LEMMA);
-
-			do
-			{
-				final SpannableStringBuilder sb = new SpannableStringBuilder();
-
-				final int linkId = cursor.getInt(idLinkId);
-				// final String link = cursor.getString(idLink);
-				final long targetSynsetId = cursor.getLong(idTargetSynsetId);
-				final String targetDefinition = cursor.getString(idTargetDefinition);
-				// final String targetMembers = cursor.getString(idTargetMembers);
-				final String targetLemma = cursor.getString(idTargetLemma);
-				// final String targetWordId = cursor.getString(idTargetWordId);
-
-				// final String record = String.format(Locale.ENGLISH, "[%s] %s (%s)\n\t%s (synsetCursorToTreeModel %s) {%s}", link, targetLemma, targetWordId,targetDefinition, targetSynsetId, targetMembers);
-
-				if (sb.length() != 0)
-				{
-					sb.append('\n');
-				}
-				// Spanner.appendImage(sb, getLinkDrawable(linkId));
-				// sb.append(record);
-				// sb.append(' ');
-				Spanner.append(sb, targetLemma, 0, WordNetFactories.lemmaFactory);
-				// sb.append(" in ");
-				// sb.append(' ');
-				// sb.append('{');
-				// Spanner.append(sb, membersCursor1ToTreeModel, 0, WordNetFactories.membersFactory);
-				// sb.append('}');
-				sb.append(' ');
-				Spanner.append(sb, targetDefinition, 0, WordNetFactories.definitionFactory);
-
-				// attach result
-				final TreeNode linkNode = TreeFactory.addLinkLeafNode(parent, sb, getLinkRes(linkId), new SenseLink(targetSynsetId, idTargetWordId, BaseModule.this.maxRecursion));
-				nodes.add(linkNode);
-			}
-			while (cursor.moveToNext());
-			changed = nodes.toArray(new TreeNode[0]);
-		}
-		else
-		{
-			TreeFactory.setNoResult(parent, false);
-			changed = new TreeNode[]{parent};
-		} cursor.close();
 		return changed;
 	}
 
@@ -1333,7 +1333,7 @@ abstract public class BaseModule extends Module
 		}
 		else
 		{
-			TreeFactory.setNoResult(parent, true);
+			TreeFactory.setNoResult(parent, true, false);
 			changed = new TreeNode[]{parent};
 		}
 
@@ -1412,7 +1412,7 @@ abstract public class BaseModule extends Module
 		}
 		else
 		{
-			TreeFactory.setNoResult(parent, true);
+			TreeFactory.setNoResult(parent, true, false);
 			changed = new TreeNode[]{parent};
 		}
 
@@ -1449,7 +1449,7 @@ abstract public class BaseModule extends Module
 		}
 		else
 		{
-			TreeFactory.setNoResult(parent, true);
+			TreeFactory.setNoResult(parent, true, false);
 			changed = new TreeNode[]{parent};
 		}
 
@@ -1528,7 +1528,7 @@ abstract public class BaseModule extends Module
 		}
 		else
 		{
-			TreeFactory.setNoResult(parent, true);
+			TreeFactory.setNoResult(parent, true, false);
 			changed = new TreeNode[]{parent};
 		}
 
@@ -1588,7 +1588,7 @@ abstract public class BaseModule extends Module
 		}
 		else
 		{
-			TreeFactory.setNoResult(parent, true);
+			TreeFactory.setNoResult(parent, true, false);
 			changed = new TreeNode[]{parent};
 		}
 

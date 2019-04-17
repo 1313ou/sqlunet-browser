@@ -70,7 +70,7 @@ public class LexUnitFromWordModule extends LexUnitModule
 		}
 		else
 		{
-			TreeFactory.setNoResult(node, true);
+			TreeFactory.setNoResult(node, true, false);
 		}
 	}
 }

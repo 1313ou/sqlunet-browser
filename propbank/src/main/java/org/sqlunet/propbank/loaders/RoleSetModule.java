@@ -64,7 +64,7 @@ public class RoleSetModule extends BaseModule
 		}
 		else
 		{
-			TreeFactory.setNoResult(node, true);
+			TreeFactory.setNoResult(node, true, false);
 		}
 	}
 }

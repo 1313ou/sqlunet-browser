@@ -58,7 +58,7 @@ public class FireEvent
 			}
 			else
 			{
-				treeView.expand(node, true);
+				treeView.expand(node, false);
 			}
 		}
 		else if (n > 1)

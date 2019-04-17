@@ -75,7 +75,7 @@ public class FrameModule extends BaseModule
 		}
 		else
 		{
-			TreeFactory.setNoResult(node, true);
+			TreeFactory.setNoResult(node, true, false);
 		}
 	}
 }
