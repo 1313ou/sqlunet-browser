@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment;
 import android.os.Parcelable;
 
 import org.sqlunet.HasSenseKey;
+import org.sqlunet.browser.TreeFragment;
 import org.sqlunet.treeview.model.TreeNode;
 
 /**
@@ -27,7 +28,7 @@ public class SenseKeyModule extends BaseModule
 	 *
 	 * @param fragment fragment
 	 */
-	public SenseKeyModule(@NonNull final Fragment fragment)
+	public SenseKeyModule(@NonNull final TreeFragment fragment)
 	{
 		super(fragment);
 	}

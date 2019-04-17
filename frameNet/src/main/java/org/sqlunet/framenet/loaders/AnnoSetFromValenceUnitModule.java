@@ -5,6 +5,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import android.os.Parcelable;
 
+import org.sqlunet.browser.TreeFragment;
 import org.sqlunet.framenet.FnValenceUnitPointer;
 import org.sqlunet.treeview.model.TreeNode;
 
@@ -26,7 +27,7 @@ public class AnnoSetFromValenceUnitModule extends BaseModule
 	 *
 	 * @param fragment  containing fragment
 	 */
-	public AnnoSetFromValenceUnitModule(@NonNull final Fragment fragment)
+	public AnnoSetFromValenceUnitModule(@NonNull final TreeFragment fragment)
 	{
 		super(fragment);
 	}

@@ -3,6 +3,7 @@ package org.sqlunet.wordnet.loaders;
 import android.os.Parcelable;
 
 import org.sqlunet.HasWordId;
+import org.sqlunet.browser.TreeFragment;
 import org.sqlunet.model.TreeFactory;
 import org.sqlunet.treeview.model.TreeNode;
 
@@ -29,7 +30,7 @@ public class WordModule extends BaseModule
 	 *
 	 * @param fragment fragment
 	 */
-	public WordModule(@NonNull final Fragment fragment)
+	public WordModule(@NonNull final TreeFragment fragment)
 	{
 		super(fragment);
 	}
@@ -51,7 +52,7 @@ public class WordModule extends BaseModule
 		if (this.wordId != null && this.wordId != 0)
 		{
 			// sub nodes
-			final TreeNode wordNode = TreeFactory.addTextNode(parent, "Word", this.fragment.requireContext());
+			final TreeNode wordNode = TreeFactory.addTextNode(parent, "Word");
 
 			// word
 			word(this.wordId, wordNode, false);

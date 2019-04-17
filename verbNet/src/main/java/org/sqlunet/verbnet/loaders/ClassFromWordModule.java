@@ -9,6 +9,7 @@ import android.text.SpannableStringBuilder;
 import org.sqlunet.HasSynsetId;
 import org.sqlunet.HasWordId;
 import org.sqlunet.browser.SqlunetViewTreeModel;
+import org.sqlunet.browser.TreeFragment;
 import org.sqlunet.model.TreeFactory;
 import org.sqlunet.style.Spanner;
 import org.sqlunet.treeview.model.TreeNode;
@@ -50,7 +51,7 @@ public class ClassFromWordModule extends BaseModule
 	 *
 	 * @param fragment fragment
 	 */
-	public ClassFromWordModule(@NonNull final Fragment fragment)
+	public ClassFromWordModule(@NonNull final TreeFragment fragment)
 	{
 		super(fragment);
 	}
@@ -125,7 +126,7 @@ public class ClassFromWordModule extends BaseModule
 		final String tag = "vn.classes";
 		final SqlunetViewTreeModel model = ViewModelProviders.of(this.fragment).get(tag, SqlunetViewTreeModel.class);
 		model.loadData(uri, projection, selection, selectionArgs, sortOrder, cursor -> vnClassesCursorToTreeModel(cursor, parent));
-		model.getData().observe(this.fragment, FireEvent::live);
+		model.getData().observe(this.fragment, data -> new FireEvent(this.fragment).live(data));
 	}
 
 	private TreeNode[] vnClassesCursorToTreeModel(@NonNull final Cursor cursor, @NonNull final TreeNode parent)
@@ -135,8 +136,6 @@ public class ClassFromWordModule extends BaseModule
 		{
 			final List<TreeNode> nodes = new ArrayList<>();
 			nodes.add(parent);
-
-			final Context context = this.fragment.requireContext();
 
 			// column indices
 			final int idClassId = cursor.getColumnIndex(Words_VnClasses.CLASSID);
@@ -162,15 +161,15 @@ public class ClassFromWordModule extends BaseModule
 				sb.append(Integer.toString(classId));
 
 				// attach result
-				final TreeNode node = TreeFactory.addTextNode(parent, sb, context);
+				final TreeNode node = TreeFactory.addTextNode(parent, sb);
 				nodes.add(node);
 
 				// sub nodes
-				final TreeNode membersNode = TreeFactory.addHotQueryNode(parent, "Members", R.drawable.members, new MembersQuery(classId), context).addTo(parent);
+				final TreeNode membersNode = TreeFactory.addHotQueryNode(parent, "Members", R.drawable.members, new MembersQuery(classId)).addTo(parent);
 				nodes.add(membersNode);
-				final TreeNode rolesNode = TreeFactory.addHotQueryNode(parent, "Roles", R.drawable.roles, new RolesQuery(classId), context).addTo(parent);
+				final TreeNode rolesNode = TreeFactory.addHotQueryNode(parent, "Roles", R.drawable.roles, new RolesQuery(classId)).addTo(parent);
 				nodes.add(rolesNode);
-				final TreeNode framesNode = TreeFactory.addQueryNode(parent, "Frames", R.drawable.vnframe, new FramesQuery(classId), context).addTo(parent);
+				final TreeNode framesNode = TreeFactory.addQueryNode(parent, "Frames", R.drawable.vnframe, new FramesQuery(classId)).addTo(parent);
 				nodes.add(framesNode);
 			}
 			while (cursor.moveToNext());

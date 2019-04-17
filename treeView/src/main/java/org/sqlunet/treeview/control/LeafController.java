@@ -27,19 +27,17 @@ public class LeafController extends Controller<Value>
 
 	/**
 	 * Constructor
-	 *
-	 * @param context context
 	 */
-	public LeafController(final Context context)
+	public LeafController()
 	{
-		super(context);
+		super();
 	}
 
 	@Nullable
 	@Override
-	protected View createNodeView(final TreeNode node, @NonNull final Value value)
+	protected View createNodeView(@NonNull final Context context, final TreeNode node, @NonNull final Value value)
 	{
-		final LayoutInflater inflater = LayoutInflater.from(this.context);
+		final LayoutInflater inflater = LayoutInflater.from(context);
 		final View view = inflater.inflate(this.layoutRes, null, false);
 
 		// junction

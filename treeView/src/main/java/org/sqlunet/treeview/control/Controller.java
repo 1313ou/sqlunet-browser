@@ -1,14 +1,15 @@
 package org.sqlunet.treeview.control;
 
 import android.content.Context;
-import androidx.annotation.Nullable;
 import android.view.View;
 import android.view.ViewGroup;
 
 import org.sqlunet.treeview.R;
 import org.sqlunet.treeview.model.TreeNode;
 import org.sqlunet.treeview.view.SubtreeView;
-import org.sqlunet.treeview.view.TreeView;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 /**
  * Base controller
@@ -23,25 +24,12 @@ public abstract class Controller<E>
 	/**
 	 * Node
 	 */
-	TreeNode node;
-
-	// C O N T E X T
-
-	/**
-	 * Context
-	 */
-	final Context context;
+	protected TreeNode node;
 
 	// V I E W
 
 	/**
-	 * Tree view (whole tree view it is part of)
-	 */
-	@Nullable
-	private TreeView treeView;
-
-	/**
-	 * View (wrapper view that includes label and subtree children)
+	 * View (wrapper view that includes label and children)
 	 */
 	@Nullable
 	private View view;
@@ -53,68 +41,48 @@ public abstract class Controller<E>
 	private View nodeView;
 
 	/**
-	 * Container style
+	 * Child nodes' container view
 	 */
-	private int containerStyle;
+	@Nullable
+	private ViewGroup childContainer;
+
 
 	// C O N S T R U C T
 
 	/**
 	 * Constructor
-	 *
-	 * @param context context
 	 */
-	protected Controller(final Context context)
+	protected Controller()
 	{
-		this.context = context;
-	}
-
-	// T R E E V I E W
-
-	/**
-	 * Set tree view
-	 *
-	 * @param treeView tree view
-	 */
-	public void setTreeView(final TreeView treeView)
-	{
-		this.treeView = treeView;
-	}
-
-	/**
-	 * Get tree view
-	 *
-	 * @return tree view
-	 */
-	public TreeView getTreeView()
-	{
-		return this.treeView;
 	}
 
 	// V I E W
+
+	public View createView(@NonNull final Context context, final int containerStyle)
+	{
+		// node view
+		this.nodeView = createNodeView(context, this.node, (E) this.node.getValue());
+
+		// wrapper
+		final SubtreeView subtreeView = new SubtreeView(context, containerStyle);
+		subtreeView.insertNodeView(this.nodeView);
+		this.view = subtreeView;
+
+		// children view
+		this.childContainer = this.view.findViewById(R.id.node_children);
+
+		return this.view;
+	}
+
 
 	/**
 	 * Get (wrapper) view
 	 *
 	 * @return view
 	 */
+	@Nullable
 	public View getView()
 	{
-		// return cached value
-		if (this.view != null)
-		{
-			return this.view;
-		}
-
-		// make view
-		final View nodeView = getNodeView();
-		assert nodeView != null;
-
-		// wrapper
-		final SubtreeView nodeWrapperView = new SubtreeView(nodeView.getContext(), getContainerStyle());
-		nodeWrapperView.insertNodeView(nodeView);
-		this.view = nodeWrapperView;
-
 		return this.view;
 	}
 
@@ -126,7 +94,7 @@ public abstract class Controller<E>
 	@Nullable
 	public ViewGroup getChildrenContainerView()
 	{
-		return (ViewGroup) getView().findViewById(R.id.node_children);
+		return this.childContainer;
 	}
 
 	// N O D E V I E W
@@ -134,12 +102,12 @@ public abstract class Controller<E>
 	/**
 	 * Create node view
 	 *
-	 * @param node      node
-	 * @param value     value
+	 * @param node  node
+	 * @param value value
 	 * @return node view
 	 */
 	@Nullable
-	protected abstract View createNodeView(@SuppressWarnings("UnusedParameters") final TreeNode node, final E value);
+	protected abstract View createNodeView(@NonNull final Context context, final TreeNode node, final E value);
 
 	/**
 	 * Get node view
@@ -150,10 +118,6 @@ public abstract class Controller<E>
 	@SuppressWarnings("unchecked")
 	public View getNodeView()
 	{
-		if (this.nodeView == null)
-		{
-			this.nodeView = createNodeView(this.node, (E) this.node.getValue());
-		}
 		return this.nodeView;
 	}
 
@@ -189,28 +153,6 @@ public abstract class Controller<E>
 	public void disable()
 	{
 		// empty
-	}
-
-	// S T Y L E
-
-	/**
-	 * Set container style
-	 *
-	 * @param style container style
-	 */
-	public void setContainerStyle(int style)
-	{
-		this.containerStyle = style;
-	}
-
-	/**
-	 * Get container style
-	 *
-	 * @return container style
-	 */
-	public int getContainerStyle()
-	{
-		return this.containerStyle;
 	}
 
 	// E V E N T   L I S T E N E R

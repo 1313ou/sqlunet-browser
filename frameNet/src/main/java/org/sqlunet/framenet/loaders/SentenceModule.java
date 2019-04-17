@@ -7,6 +7,7 @@ import android.os.Parcelable;
 import android.text.SpannableStringBuilder;
 
 import org.sqlunet.browser.SqlunetViewTreeModel;
+import org.sqlunet.browser.TreeFragment;
 import org.sqlunet.framenet.FnSentencePointer;
 import org.sqlunet.framenet.provider.FrameNetContract.Sentences;
 import org.sqlunet.framenet.provider.FrameNetProvider;
@@ -44,7 +45,7 @@ public class SentenceModule extends BaseModule
 	 *
 	 * @param fragment containing fragment
 	 */
-	public SentenceModule(@NonNull final Fragment fragment)
+	public SentenceModule(@NonNull final TreeFragment fragment)
 	{
 		super(fragment);
 	}
@@ -92,7 +93,7 @@ public class SentenceModule extends BaseModule
 		final String tag = "fn.sentence(sentenceid)";
 		final SqlunetViewTreeModel model = ViewModelProviders.of(this.fragment).get(tag, SqlunetViewTreeModel.class);
 		model.loadData(uri, projection, selection, selectionArgs, sortOrder, cursor -> sentenceCursorToTreeModel(cursor, parent));
-		model.getData().observe(this.fragment, FireEvent::live);
+		model.getData().observe(this.fragment, data -> new FireEvent(this.fragment).live(data));
 	}
 
 	private TreeNode[] sentenceCursorToTreeModel(@NonNull final Cursor cursor, @NonNull final TreeNode parent)
@@ -104,8 +105,6 @@ public class SentenceModule extends BaseModule
 		TreeNode[] changed;
 		if (cursor.moveToFirst())
 		{
-			final Context context = this.fragment.requireContext();
-
 			final SpannableStringBuilder sb = new SpannableStringBuilder();
 
 			final int idSentenceId = cursor.getColumnIndex(Sentences.SENTENCEID);
@@ -117,7 +116,7 @@ public class SentenceModule extends BaseModule
 			Spanner.append(sb, SentenceModule.this.sentenceText, 0, FrameNetFactories.sentenceFactory);
 
 			// attach result
-			final TreeNode node = TreeFactory.addTextNode(parent, sb, context);
+			final TreeNode node = TreeFactory.addTextNode(parent, sb);
 
 			// layers
 			layersForSentence(id, SentenceModule.this.sentenceText, parent);

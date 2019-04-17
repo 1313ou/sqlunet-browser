@@ -8,6 +8,7 @@ import android.text.SpannableStringBuilder;
 
 import org.sqlunet.browser.Module;
 import org.sqlunet.browser.SqlunetViewTreeModel;
+import org.sqlunet.browser.TreeFragment;
 import org.sqlunet.model.TreeFactory;
 import org.sqlunet.propbank.R;
 import org.sqlunet.propbank.provider.PropBankContract;
@@ -94,7 +95,7 @@ abstract class BaseModule extends Module
 	 *
 	 * @param fragment fragment
 	 */
-	BaseModule(@NonNull final Fragment fragment)
+	BaseModule(@NonNull final TreeFragment fragment)
 	{
 		super(fragment);
 
@@ -137,7 +138,7 @@ abstract class BaseModule extends Module
 		final String tag = "pb.roleset(rolesetid)";
 		final SqlunetViewTreeModel model = ViewModelProviders.of(this.fragment).get(tag, SqlunetViewTreeModel.class);
 		model.loadData(uri, projection, selection, selectionArgs, sortOrder, cursor -> roleSetCursorToTreeModel(cursor, roleSetId, parent));
-		model.getData().observe(this.fragment, FireEvent::live);
+		model.getData().observe(this.fragment, data -> new FireEvent(this.fragment).live(data));
 	}
 
 	private TreeNode[] roleSetCursorToTreeModel(@NonNull final Cursor cursor, final long roleSetId, @NonNull final TreeNode parent)
@@ -150,8 +151,6 @@ abstract class BaseModule extends Module
 		TreeNode[] changed;
 		if (cursor.moveToFirst())
 		{
-			final Context context = this.fragment.requireContext();
-
 			// column indices
 			// final int idRolesetId = cursor.getColumnIndex(PbRoleSets_X.ROLESETID);
 			final int idRolesetName = cursor.getColumnIndex(PbRoleSets_X.ROLESETNAME);
@@ -182,11 +181,11 @@ abstract class BaseModule extends Module
 			Spanner.append(sb, cursor.getString(idRolesetDesc), 0, PropBankFactories.definitionFactory);
 
 			// attach result
-			final TreeNode node = TreeFactory.addTextNode(parent, sb, context);
+			final TreeNode node = TreeFactory.addTextNode(parent, sb);
 
 			// sub nodes
-			final TreeNode rolesNode = TreeFactory.addHotQueryNode(parent, "Roles", R.drawable.roles, new RolesQuery(roleSetId), context).addTo(parent);
-			final TreeNode examplesNode = TreeFactory.addQueryNode(parent, "Examples", R.drawable.sample, new ExamplesQuery(roleSetId), context).addTo(parent);
+			final TreeNode rolesNode = TreeFactory.addHotQueryNode(parent, "Roles", R.drawable.roles, new RolesQuery(roleSetId)).addTo(parent);
+			final TreeNode examplesNode = TreeFactory.addQueryNode(parent, "Examples", R.drawable.sample, new ExamplesQuery(roleSetId)).addTo(parent);
 
 			changed = new TreeNode[]{parent, node, rolesNode, examplesNode};
 		}
@@ -222,7 +221,7 @@ abstract class BaseModule extends Module
 		final String tag = "pb.rolesets(wordid)";
 		final SqlunetViewTreeModel model = ViewModelProviders.of(this.fragment).get(tag, SqlunetViewTreeModel.class);
 		model.loadData(uri, projection, selection, selectionArgs, sortOrder, cursor -> roleSetsCursorToTreeModel(cursor, parent));
-		model.getData().observe(this.fragment, FireEvent::live);
+		model.getData().observe(this.fragment, data -> new FireEvent(this.fragment).live(data));
 	}
 
 	private TreeNode[] roleSetsCursorToTreeModel(@NonNull final Cursor cursor, @NonNull final TreeNode parent)
@@ -232,8 +231,6 @@ abstract class BaseModule extends Module
 		{
 			final List<TreeNode> nodes = new ArrayList<>();
 			nodes.add(parent);
-
-			final Context context = this.fragment.requireContext();
 
 			// column indices
 			final int idRoleSetId = cursor.getColumnIndex(Words_PbRoleSets.ROLESETID);
@@ -263,13 +260,13 @@ abstract class BaseModule extends Module
 				Spanner.append(sb, cursor.getString(idRoleSetDesc), 0, PropBankFactories.definitionFactory);
 
 				// attach result
-				final TreeNode node = TreeFactory.addTextNode(parent, sb, context);
+				final TreeNode node = TreeFactory.addTextNode(parent, sb);
 				nodes.add(node);
 
 				// sub nodes
-				final TreeNode rolesNode = TreeFactory.addHotQueryNode(parent, "Roles", R.drawable.roles, new RolesQuery(roleSetId), context).addTo(parent);
+				final TreeNode rolesNode = TreeFactory.addHotQueryNode(parent, "Roles", R.drawable.roles, new RolesQuery(roleSetId)).addTo(parent);
 				nodes.add(rolesNode);
-				final TreeNode examplesNode = TreeFactory.addQueryNode(parent, "Examples", R.drawable.sample, new ExamplesQuery(roleSetId), context).addTo(parent);
+				final TreeNode examplesNode = TreeFactory.addQueryNode(parent, "Examples", R.drawable.sample, new ExamplesQuery(roleSetId)).addTo(parent);
 				nodes.add(examplesNode);
 			}
 			while (cursor.moveToNext());
@@ -310,7 +307,7 @@ abstract class BaseModule extends Module
 		final String tag = "pb.roles(rolesetid)";
 		final SqlunetViewTreeModel model = ViewModelProviders.of(this.fragment).get(tag, SqlunetViewTreeModel.class);
 		model.loadData(uri, projection, selection, selectionArgs, sortOrder, cursor -> rolesCursorToTreeModel(cursor, parent));
-		model.getData().observe(this.fragment, FireEvent::live);
+		model.getData().observe(this.fragment, data -> new FireEvent(this.fragment).live(data));
 	}
 
 	private TreeNode[] rolesCursorToTreeModel(@NonNull final Cursor cursor, @NonNull final TreeNode parent)
@@ -319,8 +316,6 @@ abstract class BaseModule extends Module
 		final SpannableStringBuilder sb = new SpannableStringBuilder();
 		if (cursor.moveToFirst())
 		{
-			final Context context = this.fragment.requireContext();
-
 			// column indices
 			// final int idRoleId = cursor.getColumnIndex(PbRoleSets_PbRoles.ROLEID);
 			final int idRoleDescr = cursor.getColumnIndex(PbRoleSets_PbRoles.ROLEDESCR);
@@ -375,7 +370,7 @@ abstract class BaseModule extends Module
 			}
 
 			// attach result
-			final TreeNode node = TreeFactory.addTextNode(parent, sb, context);
+			final TreeNode node = TreeFactory.addTextNode(parent, sb);
 			changed = new TreeNode[]{parent, node};
 		}
 		else
@@ -425,7 +420,7 @@ abstract class BaseModule extends Module
 		final String tag = "pb.examples(rolesetid)";
 		final SqlunetViewTreeModel model = ViewModelProviders.of(this.fragment).get(tag, SqlunetViewTreeModel.class);
 		model.loadData(uri, projection, selection, selectionArgs, sortOrder, cursor -> examplesCursorToTreeModel(cursor, parent));
-		model.getData().observe(this.fragment, FireEvent::live);
+		model.getData().observe(this.fragment, data -> new FireEvent(this.fragment).live(data));
 	}
 
 	private TreeNode[] examplesCursorToTreeModel(@NonNull final Cursor cursor, @NonNull final TreeNode parent)
@@ -435,8 +430,6 @@ abstract class BaseModule extends Module
 
 		if (cursor.moveToFirst())
 		{
-			final Context context = this.fragment.requireContext();
-
 			// column indices
 			final int idText = cursor.getColumnIndex(PbRoleSets_PbExamples.TEXT);
 			final int idRel = cursor.getColumnIndex(PbRoleSets_PbExamples.REL);
@@ -518,7 +511,7 @@ abstract class BaseModule extends Module
 			BaseModule.this.spanner.setSpan(sb, 0, 0);
 
 			// attach result
-			final TreeNode node = TreeFactory.addTextNode(parent, sb, context);
+			final TreeNode node = TreeFactory.addTextNode(parent, sb);
 			changed = new TreeNode[]{parent, node};
 		}
 		else

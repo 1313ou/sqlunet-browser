@@ -81,6 +81,11 @@ public class TreeNode
 	private boolean deadend;
 
 	/**
+	 * Zombie
+	 */
+	private boolean zombie;
+
+	/**
 	 * Tag
 	 */
 	private String tag;
@@ -97,6 +102,7 @@ public class TreeNode
 		this.expanded = false;
 		this.collapsible = true;
 		this.deadend = false;
+		this.zombie = false;
 		this.controller = controller;
 		this.tag = null;
 
@@ -251,7 +257,7 @@ public class TreeNode
 	 * Delete child
 	 *
 	 * @param child child to delete
-	 * @return child index
+	 * @return child indexOf
 	 */
 	public int deleteChild(@NonNull final TreeNode child)
 	{
@@ -260,6 +266,7 @@ public class TreeNode
 			if (child.id == this.children.get(i).id)
 			{
 				this.children.remove(i);
+				child.parent = null;
 				return i;
 			}
 		}
@@ -291,6 +298,24 @@ public class TreeNode
 	private int size()
 	{
 		return this.children.size();
+	}
+
+	/**
+	 * Index of child
+	 *
+	 * @param child child
+	 * @return child indexOf
+	 */
+	public int indexOf(@NonNull final TreeNode child)
+	{
+		for (int i = 0; i < this.children.size(); i++)
+		{
+			if (child.id == this.children.get(i).id)
+			{
+				return i;
+			}
+		}
+		return -1;
 	}
 
 	/**
@@ -558,6 +583,29 @@ public class TreeNode
 		this.deadend = deadend;
 	}
 
+
+	/**
+	 * Get whether this node is zombie
+	 *
+	 * @return whether this node is zombie
+	 */
+	@SuppressWarnings("unused")
+	public boolean isZombie()
+	{
+		return this.zombie;
+	}
+
+	/**
+	 * Set node zombie
+	 *
+	 * @param zombie flag
+	 */
+	@SuppressWarnings("unused")
+	public void setZombie(boolean zombie)
+	{
+		this.zombie = zombie;
+	}
+
 	// E N A B L E / D I S A B L E
 
 	/**
@@ -592,25 +640,6 @@ public class TreeNode
 	// C O N T R O L L E R
 
 	/**
-	 * Set controller
-	 *
-	 * @param controller controller
-	 * @return this node
-	 */
-	@NonNull
-	public TreeNode setController(@Nullable final Controller<?> controller)
-	{
-		this.controller = controller;
-
-		// adjust attached node
-		if (controller != null)
-		{
-			controller.attachNode(this);
-		}
-		return this;
-	}
-
-	/**
 	 * Get controller
 	 *
 	 * @return controller
@@ -636,7 +665,7 @@ public class TreeNode
 		sb.append(']');
 		sb.append(' ');
 		sb.append("controller=");
-		sb.append(controller != null);
+		sb.append(controller.getClass().getSimpleName());
 		sb.append(' ');
 		sb.append("parent=");
 		sb.append(parent == null ? "none" : parent.id);

@@ -123,7 +123,7 @@ class VnNodeFactory extends NodeFactory
 	 * @param doc    is the DOM Document being built
 	 * @param parent is the parent node to attach this node to
 	 * @param role   is the role
-	 * @param i      is the index
+	 * @param i      is the indexOf
 	 * @return newly created node
 	 */
 	@SuppressWarnings("UnusedReturnValue")

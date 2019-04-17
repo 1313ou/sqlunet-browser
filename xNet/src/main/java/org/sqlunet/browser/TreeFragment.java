@@ -60,11 +60,11 @@ abstract public class TreeFragment extends Fragment
 		super.onCreate(savedInstanceState);
 
 		// root node
-		this.treeRoot = new TreeNode(null, new RootController(requireContext()));
+		this.treeRoot = new TreeNode(null, new RootController());
 		this.treeRoot.setSelectable(false);
 
 		// sub root node
-		TreeFactory.addTreeNode(this.treeRoot, header, iconId, requireContext());
+		TreeFactory.addTreeNode(this.treeRoot, header, iconId);
 	}
 
 	@Override
@@ -107,5 +107,11 @@ abstract public class TreeFragment extends Fragment
 	{
 		Log.d(TAG, "save instance state " + this);
 		super.onSaveInstanceState(outState);
+	}
+
+	@Nullable
+	public TreeView getTreeView()
+	{
+		return treeView;
 	}
 }

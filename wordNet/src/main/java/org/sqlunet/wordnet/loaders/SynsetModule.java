@@ -5,6 +5,7 @@ import android.os.Parcelable;
 
 import org.sqlunet.HasPos;
 import org.sqlunet.HasSynsetId;
+import org.sqlunet.browser.TreeFragment;
 import org.sqlunet.model.TreeFactory;
 import org.sqlunet.treeview.model.TreeNode;
 import org.sqlunet.view.FireEvent;
@@ -44,7 +45,7 @@ public class SynsetModule extends BaseModule
 	 *
 	 * @param fragment fragment
 	 */
-	public SynsetModule(@NonNull final Fragment fragment)
+	public SynsetModule(@NonNull final TreeFragment fragment)
 	{
 		super(fragment);
 		this.expand = true;
@@ -82,11 +83,9 @@ public class SynsetModule extends BaseModule
 	{
 		if (this.synsetId != null && this.synsetId != 0)
 		{
-			final Context context = this.fragment.requireContext();
-
 			// sub nodes
-			final TreeNode synsetNode = TreeFactory.addTextNode(parent, "Synset", context);
-			final TreeNode membersNode = TreeFactory.addIconTextNode(parent, "Members", R.drawable.members, context);
+			final TreeNode synsetNode = TreeFactory.addTextNode(parent, "Synset");
+			final TreeNode membersNode = TreeFactory.addIconTextNode(parent, "Members", R.drawable.members);
 
 			// synset
 			synset(this.synsetId, synsetNode, false);
@@ -112,11 +111,11 @@ public class SynsetModule extends BaseModule
 
 			// links and samples
 			final TreeNode linksNode = this.expand ?
-					TreeFactory.addQueryNode(parent, "Links", R.drawable.ic_links, new LinksQuery(this.synsetId, 0), context).addTo(parent) :
-					TreeFactory.addQueryNode(parent, "Links", R.drawable.ic_links, new LinksQuery(this.synsetId, 0), context).addTo(parent);
+					TreeFactory.addQueryNode(parent, "Links", R.drawable.ic_links, new LinksQuery(this.synsetId, 0)).addTo(parent) :
+					TreeFactory.addQueryNode(parent, "Links", R.drawable.ic_links, new LinksQuery(this.synsetId, 0)).addTo(parent);
 			final TreeNode samplesNode = this.expand ?
-					TreeFactory.addQueryNode(parent, "Samples", R.drawable.sample, new SamplesQuery(this.synsetId), context).addTo(parent) :
-					TreeFactory.addQueryNode(parent, "Samples", R.drawable.sample, new SamplesQuery(this.synsetId), context).addTo(parent);
+					TreeFactory.addQueryNode(parent, "Samples", R.drawable.sample, new SamplesQuery(this.synsetId)).addTo(parent) :
+					TreeFactory.addQueryNode(parent, "Samples", R.drawable.sample, new SamplesQuery(this.synsetId)).addTo(parent);
 		}
 	}
 }

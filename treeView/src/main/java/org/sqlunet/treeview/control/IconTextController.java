@@ -17,19 +17,18 @@ public class IconTextController extends Controller<Object>
 	/**
 	 * Constructor
 	 *
-	 * @param context context
 	 */
-	public IconTextController(final Context context)
+	public IconTextController()
 	{
-		super(context);
+		super();
 	}
 
 	@NonNull
 	@Override
-	public View createNodeView(final TreeNode node, final Object value)
+	public View createNodeView(@NonNull final Context context, final TreeNode node, final Object value)
 	{
 		final Value data = (Value) value;
-		final TextView textView = new TextView(this.context);
+		final TextView textView = new TextView(context);
 		textView.setText(data.text);
 		textView.setCompoundDrawablePadding(10);
 		textView.setCompoundDrawablesWithIntrinsicBounds(data.icon, 0, 0, 0);

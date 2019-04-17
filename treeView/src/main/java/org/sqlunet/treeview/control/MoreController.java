@@ -26,18 +26,16 @@ public class MoreController extends Controller<Value>
 
 	/**
 	 * Constructor
-	 *
-	 * @param context context
 	 */
-	public MoreController(final Context context)
+	public MoreController()
 	{
-		super(context);
+		super();
 	}
 
 	@Override
-	public View createNodeView(final TreeNode node, @NonNull final Value value)
+	public View createNodeView(@NonNull final Context context, final TreeNode node, @NonNull final Value value)
 	{
-		final LayoutInflater inflater = LayoutInflater.from(this.context);
+		final LayoutInflater inflater = LayoutInflater.from(context);
 		final View view = inflater.inflate(this.layoutRes, null, false);
 
 		// junction

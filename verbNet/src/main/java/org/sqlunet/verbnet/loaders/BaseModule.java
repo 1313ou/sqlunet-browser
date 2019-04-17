@@ -8,6 +8,7 @@ import android.text.SpannableStringBuilder;
 
 import org.sqlunet.browser.Module;
 import org.sqlunet.browser.SqlunetViewTreeModel;
+import org.sqlunet.browser.TreeFragment;
 import org.sqlunet.model.TreeFactory;
 import org.sqlunet.style.Spanner;
 import org.sqlunet.treeview.control.Query;
@@ -117,7 +118,7 @@ abstract class BaseModule extends Module
 	 *
 	 * @param fragment fragment
 	 */
-	BaseModule(@NonNull final Fragment fragment)
+	BaseModule(@NonNull final TreeFragment fragment)
 	{
 		super(fragment);
 
@@ -166,7 +167,7 @@ abstract class BaseModule extends Module
 		final String tag = "vn.class(classid)";
 		final SqlunetViewTreeModel model = ViewModelProviders.of(this.fragment).get(tag, SqlunetViewTreeModel.class);
 		model.loadData(uri, projection, selection, selectionArgs, sortOrder, cursor -> vnClassCursorToTreeModel(cursor, classId, parent));
-		model.getData().observe(this.fragment, FireEvent::live);
+		model.getData().observe(this.fragment, data -> new FireEvent(this.fragment).live(data));
 	}
 
 	private TreeNode[] vnClassCursorToTreeModel(@NonNull final Cursor cursor, final long classId, @NonNull final TreeNode parent)
@@ -179,8 +180,6 @@ abstract class BaseModule extends Module
 		TreeNode[] changed;
 		if (cursor.moveToFirst())
 		{
-			final Context context = fragment.requireContext();
-
 			final SpannableStringBuilder sb = new SpannableStringBuilder();
 
 			// column indices
@@ -202,12 +201,12 @@ abstract class BaseModule extends Module
 			sb.append(Long.toString(classId));
 
 			// attach result
-			final TreeNode node = TreeFactory.addTextNode(parent, sb, context);
+			final TreeNode node = TreeFactory.addTextNode(parent, sb);
 
 			// sub nodes
-			final TreeNode membersNode = TreeFactory.addHotQueryNode(parent,"Members", R.drawable.members, new MembersQuery(classId), context).addTo(parent);
-			final TreeNode rolesNode = TreeFactory.addHotQueryNode(parent,"Roles", R.drawable.roles, new RolesQuery(classId), context).addTo(parent);
-			final TreeNode framesNode = TreeFactory.addQueryNode(parent,"Frames", R.drawable.vnframe, new FramesQuery(classId), context).addTo(parent);
+			final TreeNode membersNode = TreeFactory.addHotQueryNode(parent,"Members", R.drawable.members, new MembersQuery(classId)).addTo(parent);
+			final TreeNode rolesNode = TreeFactory.addHotQueryNode(parent,"Roles", R.drawable.roles, new RolesQuery(classId)).addTo(parent);
+			final TreeNode framesNode = TreeFactory.addQueryNode(parent,"Frames", R.drawable.vnframe, new FramesQuery(classId)).addTo(parent);
 
 			// changed
 			changed = new TreeNode[]{parent, node, membersNode, framesNode};
@@ -248,7 +247,7 @@ abstract class BaseModule extends Module
 		final String tag = "vn.members(classid)";
 		final SqlunetViewTreeModel model = ViewModelProviders.of(this.fragment).get(tag, SqlunetViewTreeModel.class);
 		model.loadData(uri, projection, selection, selectionArgs, sortOrder, cursor -> vnMembersCursorToTreeModel(cursor, parent));
-		model.getData().observe(this.fragment, FireEvent::live);
+		model.getData().observe(this.fragment, data -> new FireEvent(this.fragment).live(data));
 	}
 
 	private TreeNode[] vnMembersCursorToTreeModel(@NonNull final Cursor cursor, @NonNull final TreeNode parent)
@@ -258,8 +257,6 @@ abstract class BaseModule extends Module
 		{
 			final List<TreeNode> nodes = new ArrayList<>();
 			nodes.add(parent);
-
-			final Context context = fragment.requireContext();
 
 			// column indices
 			// final int idWordId = cursor.getColumnIndex(VnClasses_VnMembers_X.WORDID);
@@ -281,7 +278,7 @@ abstract class BaseModule extends Module
 				final String groupings = cursor.getString(idGroupings);
 				if (definitions != null || groupings != null)
 				{
-					final TreeNode memberNode = TreeFactory.addTreeNode(parent, sb, R.drawable.member, context);
+					final TreeNode memberNode = TreeFactory.addTreeNode(parent, sb, R.drawable.member);
 					nodes.add(memberNode);
 
 					final SpannableStringBuilder sb2 = new SpannableStringBuilder();
@@ -333,12 +330,12 @@ abstract class BaseModule extends Module
 					}
 
 					// attach definition and groupings result
-					final TreeNode node = TreeFactory.addTextNode(memberNode, sb2, context);
+					final TreeNode node = TreeFactory.addTextNode(memberNode, sb2);
 					nodes.add(node);
 				}
 				else
 				{
-					final TreeNode node = TreeFactory.addLeafNode(parent, sb, R.drawable.member, context);
+					final TreeNode node = TreeFactory.addLeafNode(parent, sb, R.drawable.member);
 					nodes.add(node);
 				}
 			}
@@ -379,7 +376,7 @@ abstract class BaseModule extends Module
 		final String tag = "vn.roles";
 		final SqlunetViewTreeModel model = ViewModelProviders.of(this.fragment).get(tag, SqlunetViewTreeModel.class);
 		model.loadData(uri, projection, selection, selectionArgs, sortOrder, cursor -> vnRolesCursorToTreeModel(cursor, parent));
-		model.getData().observe(this.fragment, FireEvent::live);
+		model.getData().observe(this.fragment, data -> new FireEvent(this.fragment).live(data));
 	}
 
 	private TreeNode[] vnRolesCursorToTreeModel(@NonNull final Cursor cursor, @NonNull final TreeNode parent)
@@ -425,7 +422,7 @@ abstract class BaseModule extends Module
 			}
 
 			// attach result
-			final TreeNode node = TreeFactory.addTextNode(parent, sb, fragment.requireContext());
+			final TreeNode node = TreeFactory.addTextNode(parent, sb);
 			changed = new TreeNode[]{parent, node};
 		}
 		else
@@ -461,7 +458,7 @@ abstract class BaseModule extends Module
 		final String tag = "vn.frames";
 		final SqlunetViewTreeModel model = ViewModelProviders.of(this.fragment).get(tag, SqlunetViewTreeModel.class);
 		model.loadData(uri, projection, selection, selectionArgs, sortOrder, cursor -> vnFramesToView(cursor, parent));
-		model.getData().observe(this.fragment, FireEvent::live);
+		model.getData().observe(this.fragment, data -> new FireEvent(this.fragment).live(data));
 	}
 
 	private TreeNode[] vnFramesToView(@NonNull final Cursor cursor, @NonNull final TreeNode parent)
@@ -534,7 +531,7 @@ abstract class BaseModule extends Module
 			}
 
 			// attach result
-			final TreeNode node = TreeFactory.addTextNode(parent, sb, fragment.requireContext());
+			final TreeNode node = TreeFactory.addTextNode(parent, sb);
 			changed = new TreeNode[]{parent, node};
 		}
 		else
@@ -559,20 +556,18 @@ abstract class BaseModule extends Module
 	{
 		if (group != null)
 		{
-			final Context context = fragment.requireContext();
-
 			final SpannableStringBuilder sb = new SpannableStringBuilder();
 			final String[] items = group.split("\\|");
 			if (items.length == 1)
 			{
 				Spanner.appendImage(sb, BaseModule.this.drawableMember);
 				Spanner.append(sb, items[0], 0, VerbNetFactories.memberFactory);
-				final TreeNode groupingsNode = TreeFactory.addIconTextNode(parent, sb, R.drawable.member, context);
+				final TreeNode groupingsNode = TreeFactory.addIconTextNode(parent, sb, R.drawable.member);
 				return groupingsNode;
 			}
 			else if (items.length > 1)
 			{
-				final TreeNode groupingsNode = TreeFactory.addIconTextNode(parent, "Group", R.drawable.member, context);
+				final TreeNode groupingsNode = TreeFactory.addIconTextNode(parent, "Group", R.drawable.member);
 				boolean first = true;
 				for (final String item : items)
 				{
@@ -587,7 +582,7 @@ abstract class BaseModule extends Module
 					Spanner.appendImage(sb, BaseModule.this.drawableMember);
 					Spanner.append(sb, item, 0, VerbNetFactories.memberFactory);
 				}
-				final TreeNode childNode = TreeFactory.addTextNode(groupingsNode, sb, context);
+				final TreeNode childNode = TreeFactory.addTextNode(groupingsNode, sb);
 				return groupingsNode;
 			}
 		}

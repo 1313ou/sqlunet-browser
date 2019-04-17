@@ -15,12 +15,10 @@ public class HotQueryController extends TreeController
 
 	/**
 	 * Constructor
-	 *
-	 * @param context context
 	 */
-	public HotQueryController(final Context context)
+	public HotQueryController()
 	{
-		super(context);
+		super();
 	}
 
 	/**

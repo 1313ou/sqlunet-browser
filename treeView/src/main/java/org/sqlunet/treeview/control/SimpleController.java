@@ -16,19 +16,17 @@ public class SimpleController extends Controller<Object>
 {
 	/**
 	 * Constructor
-	 *
-	 * @param context context
 	 */
-	public SimpleController(final Context context)
+	public SimpleController()
 	{
-		super(context);
+		super();
 	}
 
 	@NonNull
 	@Override
-	public View createNodeView(TreeNode node, Object value)
+	public View createNodeView(@NonNull final Context context, final TreeNode node, final Object value)
 	{
-		final TextView textView = new TextView(this.context);
+		final TextView textView = new TextView(context);
 		textView.setText(String.valueOf(value));
 		return textView;
 	}

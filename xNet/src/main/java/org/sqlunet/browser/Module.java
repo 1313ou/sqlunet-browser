@@ -32,7 +32,7 @@ public abstract class Module
 	 * Fragment
 	 */
 	@NonNull
-	protected final Fragment fragment;
+	protected final TreeFragment fragment;
 
 	/**
 	 * Type of query (expected result)
@@ -45,7 +45,7 @@ public abstract class Module
 	 *
 	 * @param fragment fragment
 	 */
-	protected Module(@NonNull final Fragment fragment)
+	protected Module(@NonNull final TreeFragment fragment)
 	{
 		this.fragment = fragment;
 	}

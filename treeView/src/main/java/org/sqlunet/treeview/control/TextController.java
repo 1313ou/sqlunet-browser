@@ -16,19 +16,17 @@ public class TextController extends Controller<Object>
 {
 	/**
 	 * Constructor
-	 *
-	 * @param context context
 	 */
-	public TextController(final Context context)
+	public TextController()
 	{
-		super(context);
+		super();
 	}
 
 	@NonNull
 	@Override
-	public View createNodeView(final TreeNode node, final Object value)
+	public View createNodeView(@NonNull final Context context, final TreeNode node, final Object value)
 	{
-		final TextView textView = new TextView(this.context);
+		final TextView textView = new TextView(context);
 		textView.setText((CharSequence) value);
 		return textView;
 	}

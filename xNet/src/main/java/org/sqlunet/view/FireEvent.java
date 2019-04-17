@@ -1,11 +1,10 @@
 package org.sqlunet.view;
 
-import android.os.Handler;
-import android.os.Looper;
 import android.util.Log;
+import android.view.ViewGroup;
 
+import org.sqlunet.browser.TreeFragment;
 import org.sqlunet.treeview.control.Controller;
-import org.sqlunet.treeview.control.HotQueryController;
 import org.sqlunet.treeview.model.TreeNode;
 import org.sqlunet.treeview.view.TreeView;
 
@@ -20,11 +19,69 @@ public class FireEvent
 {
 	private static final String TAG = "LIVE";
 
-	static public void live(final TreeNode[] nodes)
+	private TreeFragment fragment;
+
+	public FireEvent(final TreeFragment fragment)
 	{
-		Log.d(TAG, "Live " + "\n" + nodes[0].toStringWithChildren());
-		TreeView.expand(nodes[0], true);
+		this.fragment = fragment;
 	}
+
+	public void live0(final TreeNode[] nodes)
+	{
+		//Log.d(TAG, "Live " + "\n" + nodes[0].toStringWithChildren());
+		Log.d(TAG, "Live " + "\n" + nodes[0].toString());
+		TreeView treeView = this.fragment.getTreeView();
+		if (nodes[0].isZombie())
+		{
+			treeView.remove(nodes[0]);
+		}
+		else
+		{
+			treeView.expand(nodes[0], true);
+		}
+	}
+
+	public void live(final TreeNode[] nodes)
+	{
+		//Log.d(TAG, "Live " + "\n" + nodes[0].toStringWithChildren());
+		Log.d(TAG, "Live " + "\n" + nodes[0].toString());
+		TreeView treeView = this.fragment.getTreeView();
+
+
+		int n = nodes.length;
+		if (n == 1)
+		{
+			final TreeNode node = nodes[0];
+			if (node.isZombie())
+			{
+				treeView.remove(node);
+			}
+			else
+			{
+				treeView.expand(node, true);
+			}
+		}
+		else if (n > 1)
+		{
+			for (int i = 1; i < n; i++)
+			{
+				final TreeNode node = nodes[i];
+				final TreeNode parent = node.getParent();
+				if (node.isZombie())
+				{
+					treeView.remove(node);
+				}
+				else
+				{
+					final Controller<?> controller = parent.getController();
+					final ViewGroup viewGroup = controller.getChildrenContainerView();
+					assert viewGroup != null;
+					treeView.addNodeView(viewGroup, node);
+				}
+			}
+		}
+	}
+
 
 	// R E S U L T S  A V A I L A B L E
 

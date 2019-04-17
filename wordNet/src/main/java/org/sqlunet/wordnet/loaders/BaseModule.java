@@ -10,6 +10,7 @@ import android.text.SpannableStringBuilder;
 
 import org.sqlunet.browser.Module;
 import org.sqlunet.browser.SqlunetViewTreeModel;
+import org.sqlunet.browser.TreeFragment;
 import org.sqlunet.model.TreeFactory;
 import org.sqlunet.provider.ProviderArgs;
 import org.sqlunet.style.Spanner;
@@ -50,7 +51,6 @@ import java.util.Locale;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 
 /**
@@ -93,7 +93,7 @@ abstract public class BaseModule extends Module
 	 *
 	 * @param fragment fragment
 	 */
-	BaseModule(@NonNull final Fragment fragment)
+	BaseModule(@NonNull final TreeFragment fragment)
 	{
 		super(fragment);
 
@@ -156,7 +156,7 @@ abstract public class BaseModule extends Module
 		final String tag = "wn.word(wordid)";
 		final SqlunetViewTreeModel model = ViewModelProviders.of(this.fragment).get(tag, SqlunetViewTreeModel.class);
 		model.loadData(uri, projection, selection, selectionArgs, sortOrder, cursor -> wordCursorToTreeModel(cursor, parent, addNewNode));
-		model.getData().observe(this.fragment, FireEvent::live);
+		model.getData().observe(this.fragment, data -> new FireEvent(this.fragment).live(data));
 	}
 
 	private TreeNode[] wordCursorToTreeModel(@NonNull final Cursor cursor, @NonNull final TreeNode parent, @SuppressWarnings("SameParameterValue") final boolean addNewNode)
@@ -190,7 +190,7 @@ abstract public class BaseModule extends Module
 			// result
 			if (addNewNode)
 			{
-				final TreeNode node = TreeFactory.addTextNode(parent, sb, this.fragment.requireContext());
+				final TreeNode node = TreeFactory.addTextNode(parent, sb);
 				changed = new TreeNode[]{parent, node};
 			}
 			else
@@ -242,7 +242,7 @@ abstract public class BaseModule extends Module
 		final String tag = "wn.senses(word)";
 		final SqlunetViewTreeModel model = ViewModelProviders.of(this.fragment).get(tag, SqlunetViewTreeModel.class);
 		model.loadData(uri, projection, selection, selectionArgs, sortOrder, cursor -> sensesCursorToTreeModel(cursor, parent));
-		model.getData().observe(this.fragment, FireEvent::live);
+		model.getData().observe(this.fragment, data -> new FireEvent(this.fragment).live(data));
 	}
 
 	/**
@@ -275,7 +275,7 @@ abstract public class BaseModule extends Module
 		final String tag = "wn.senses(wordid)";
 		final SqlunetViewTreeModel model = ViewModelProviders.of(this.fragment).get(tag, SqlunetViewTreeModel.class);
 		model.loadData(uri, projection, selection, selectionArgs, sortOrder, cursor -> sensesCursorToTreeModel(cursor, parent));
-		model.getData().observe(this.fragment, FireEvent::live);
+		model.getData().observe(this.fragment, data -> new FireEvent(this.fragment).live(data));
 	}
 
 	private TreeNode[] sensesCursorToTreeModel(@NonNull final Cursor cursor, @NonNull final TreeNode parent)
@@ -285,8 +285,6 @@ abstract public class BaseModule extends Module
 		{
 			final List<TreeNode> nodes = new ArrayList<>();
 			nodes.add(parent);
-
-			final Context context = this.fragment.requireContext();
 
 			final int idWordId = cursor.getColumnIndex(Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.WORDID);
 			final int idSynsetId = cursor.getColumnIndex(Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.SYNSETID);
@@ -310,7 +308,7 @@ abstract public class BaseModule extends Module
 				sense(sb, synsetId, posName, lexDomain, definition, tagCount, cased);
 
 				// result
-				final TreeNode synsetNode = TreeFactory.addLinkNode(parent, sb, R.drawable.synset, new SenseLink(synsetId, wordId, this.maxRecursion), context);
+				final TreeNode synsetNode = TreeFactory.addLinkNode(parent, sb, R.drawable.synset, new SenseLink(synsetId, wordId, this.maxRecursion));
 				nodes.add(synsetNode);
 			}
 			while (cursor.moveToNext());
@@ -347,7 +345,7 @@ abstract public class BaseModule extends Module
 		final String tag = "wn.sense(senseid)";
 		final SqlunetViewTreeModel model = ViewModelProviders.of(this.fragment).get(tag, SqlunetViewTreeModel.class);
 		model.loadData(uri, projection, selection, selectionArgs, sortOrder, cursor -> senseCursor1ToTreeModel(cursor, parent));
-		model.getData().observe(this.fragment, FireEvent::live);
+		model.getData().observe(this.fragment, data -> new FireEvent(this.fragment).live(data));
 	}
 
 	/**
@@ -370,7 +368,7 @@ abstract public class BaseModule extends Module
 		final String tag = "wn.sense(sensekey)";
 		final SqlunetViewTreeModel model = ViewModelProviders.of(this.fragment).get(tag, SqlunetViewTreeModel.class);
 		model.loadData(uri, projection, selection, selectionArgs, sortOrder, cursor -> senseCursor2ToTreeModel(cursor, parent));
-		model.getData().observe(this.fragment, FireEvent::live);
+		model.getData().observe(this.fragment, data -> new FireEvent(this.fragment).live(data));
 	}
 
 	/**
@@ -395,7 +393,7 @@ abstract public class BaseModule extends Module
 		final String tag = "wn.sense(synsetid,wordid)";
 		final SqlunetViewTreeModel model = ViewModelProviders.of(this.fragment).get(tag, SqlunetViewTreeModel.class);
 		model.loadData(uri, projection, selection, selectionArgs, sortOrder, cursor -> senseCursor3ToTreeModel(cursor, synsetId, wordId, parent));
-		model.getData().observe(this.fragment, FireEvent::live);
+		model.getData().observe(this.fragment, data -> new FireEvent(this.fragment).live(data));
 	}
 
 	private TreeNode[] senseCursor1ToTreeModel(@NonNull final Cursor cursor, @NonNull final TreeNode parent)
@@ -437,7 +435,7 @@ abstract public class BaseModule extends Module
 			final long synsetId = cursor.getLong(idSynsetId);
 
 			// sub nodes
-			final TreeNode wordNode = TreeFactory.addTextNode(parent, "Word", this.fragment.requireContext());
+			final TreeNode wordNode = TreeFactory.addTextNode(parent, "Word");
 
 			// word
 			word(wordId, wordNode, false);
@@ -464,8 +462,6 @@ abstract public class BaseModule extends Module
 		TreeNode[] changed;
 		if (cursor.moveToFirst())
 		{
-			final Context context = this.fragment.requireContext();
-
 			final SpannableStringBuilder sb = new SpannableStringBuilder();
 			final int idPosName = cursor.getColumnIndex(PosTypes.POSNAME);
 			final int idLexDomain = cursor.getColumnIndex(LexDomains.LEXDOMAIN);
@@ -479,11 +475,11 @@ abstract public class BaseModule extends Module
 			synset(sb, synsetId, posName, lexDomain, definition);
 
 			// attach result
-			final TreeNode node = TreeFactory.addTextNode(parent, sb, context);
+			final TreeNode node = TreeFactory.addTextNode(parent, sb);
 
 			// subnodes
-			final TreeNode linksNode = TreeFactory.addHotQueryNode(parent, "Links", R.drawable.ic_links, new LinksQuery(synsetId, wordId), context).addTo(parent);
-			final TreeNode samplesNode = TreeFactory.addHotQueryNode(parent, "Samples", R.drawable.sample, new SamplesQuery(synsetId), context).addTo(parent);
+			final TreeNode linksNode = TreeFactory.addHotQueryNode(parent, "Links", R.drawable.ic_links, new LinksQuery(synsetId, wordId)).addTo(parent);
+			final TreeNode samplesNode = TreeFactory.addHotQueryNode(parent, "Samples", R.drawable.sample, new SamplesQuery(synsetId)).addTo(parent);
 
 			changed = new TreeNode[]{parent, node, linksNode, samplesNode};
 		}
@@ -520,7 +516,7 @@ abstract public class BaseModule extends Module
 		final String tag = "wn.synset(synsetid)";
 		final SqlunetViewTreeModel model = ViewModelProviders.of(this.fragment).get(tag, SqlunetViewTreeModel.class);
 		model.loadData(uri, projection, selection, selectionArgs, sortOrder, cursor -> synsetCursorToTreeModel(cursor, synsetId, parent, addNewNode));
-		model.getData().observe(this.fragment, FireEvent::live);
+		model.getData().observe(this.fragment, data -> new FireEvent(this.fragment).live(data));
 	}
 
 	private TreeNode[] synsetCursorToTreeModel(@NonNull final Cursor cursor, final long synsetId, @NonNull final TreeNode parent, @SuppressWarnings("SameParameterValue") final boolean addNewNode)
@@ -547,7 +543,7 @@ abstract public class BaseModule extends Module
 			// result
 			if (addNewNode)
 			{
-				final TreeNode node = TreeFactory.addTextNode(parent, sb, this.fragment.requireContext());
+				final TreeNode node = TreeFactory.addTextNode(parent, sb);
 				changed = new TreeNode[]{parent, node};
 			}
 			else
@@ -687,7 +683,7 @@ abstract public class BaseModule extends Module
 		final String tag = "wn.members(synsetid)";
 		final SqlunetViewTreeModel model = ViewModelProviders.of(this.fragment).get(tag, SqlunetViewTreeModel.class);
 		model.loadData(uri, projection, selection, selectionArgs, sortOrder, cursor -> membersCursor1ToTreeModel(cursor, parent, addNewNode));
-		model.getData().observe(this.fragment, FireEvent::live);
+		model.getData().observe(this.fragment, data -> new FireEvent(this.fragment).live(data));
 	}
 
 	/**
@@ -707,7 +703,7 @@ abstract public class BaseModule extends Module
 		final String tag = "wn.members2(synsetid)";
 		final SqlunetViewTreeModel model = ViewModelProviders.of(this.fragment).get(tag, SqlunetViewTreeModel.class);
 		model.loadData(uri, projection, selection, selectionArgs, sortOrder, cursor -> membersCursor2ToTreeModel(cursor, parent));
-		model.getData().observe(this.fragment, FireEvent::live);
+		model.getData().observe(this.fragment, data -> new FireEvent(this.fragment).live(data));
 	}
 
 	private TreeNode[] membersCursor1ToTreeModel(final Cursor cursor, @NonNull final TreeNode parent, final boolean addNewNode)
@@ -755,7 +751,7 @@ abstract public class BaseModule extends Module
 			// result
 			if (addNewNode)
 			{
-				final TreeNode node = TreeFactory.addTextNode(parent, sb, this.fragment.requireContext());
+				final TreeNode node = TreeFactory.addTextNode(parent, sb);
 				changed = new TreeNode[]{parent, node};
 			}
 			else
@@ -790,8 +786,6 @@ abstract public class BaseModule extends Module
 			final List<TreeNode> nodes = new ArrayList<>();
 			nodes.add(parent);
 
-			final Context context = this.fragment.requireContext();
-
 			final int idWordId = cursor.getColumnIndex(Senses_Words.WORDID);
 			final int idMember = cursor.getColumnIndex(Senses_Words.MEMBER);
 			// int i = 1;
@@ -809,7 +803,7 @@ abstract public class BaseModule extends Module
 				Spanner.append(sb, member, 0, WordNetFactories.membersFactory);
 
 				// result
-				final TreeNode memberNode = TreeFactory.addLinkNode(parent, sb, R.drawable.member, new WordLink(wordId), context);
+				final TreeNode memberNode = TreeFactory.addLinkNode(parent, sb, R.drawable.member, new WordLink(wordId));
 				nodes.add(memberNode);
 			}
 			while (cursor.moveToNext());
@@ -849,7 +843,7 @@ abstract public class BaseModule extends Module
 		final String tag = "wn.samples(synsetid)";
 		final SqlunetViewTreeModel model = ViewModelProviders.of(this.fragment).get(tag, SqlunetViewTreeModel.class);
 		model.loadData(uri, projection, selection, selectionArgs, sortOrder, cursor -> samplesCursorToTreeModel(cursor, parent, addNewNode));
-		model.getData().observe(this.fragment, FireEvent::live);
+		model.getData().observe(this.fragment, data -> new FireEvent(this.fragment).live(data));
 	}
 
 	private TreeNode[] samplesCursorToTreeModel(@NonNull final Cursor cursor, @NonNull final TreeNode parent, @SuppressWarnings("SameParameterValue") final boolean addNewNode)
@@ -881,7 +875,7 @@ abstract public class BaseModule extends Module
 			// result
 			if (addNewNode)
 			{
-				final TreeNode node = TreeFactory.addTextNode(parent, sb, this.fragment.requireContext());
+				final TreeNode node = TreeFactory.addTextNode(parent, sb);
 				changed = new TreeNode[]{parent, node};
 			}
 			else
@@ -930,7 +924,7 @@ abstract public class BaseModule extends Module
 		final String tag = "wn.semlinks(synsetid)";
 		final SqlunetViewTreeModel model = ViewModelProviders.of(this.fragment).get(tag, SqlunetViewTreeModel.class);
 		model.loadData(uri, projection, selection, selectionArgs, sortOrder, cursor -> semLinksCursor1ToTreeModel(cursor, parent));
-		model.getData().observe(this.fragment, FireEvent::live);
+		model.getData().observe(this.fragment, data -> new FireEvent(this.fragment).live(data));
 	}
 
 	/**
@@ -957,7 +951,7 @@ abstract public class BaseModule extends Module
 		final String tag = "wn.semlinks(synsetid,linkid)";
 		final SqlunetViewTreeModel model = ViewModelProviders.of(this.fragment).get(tag, SqlunetViewTreeModel.class);
 		model.loadData(uri, projection, selection, selectionArgs, sortOrder, cursor -> semLinksCursor2ToTreeModel(cursor, linkId, recurseLevel, parent));
-		model.getData().observe(this.fragment, FireEvent::live);
+		model.getData().observe(this.fragment, data -> new FireEvent(this.fragment).live(data));
 	}
 
 	private TreeNode[] semLinksCursor1ToTreeModel(@NonNull final Cursor cursor, @NonNull final TreeNode parent)
@@ -967,8 +961,6 @@ abstract public class BaseModule extends Module
 		{
 			final List<TreeNode> nodes = new ArrayList<>();
 			nodes.add(parent);
-
-			final Context context = this.fragment.requireContext();
 
 			final int idLinkId = cursor.getColumnIndex(LinkTypes.LINKID);
 			// final int idLink = cursor.getColumnIndex(LinkTypes.LINK);
@@ -996,12 +988,12 @@ abstract public class BaseModule extends Module
 				// recursion
 				if (linkCanRecurse)
 				{
-					final TreeNode linksNode = TreeFactory.addLinkQueryNode(parent, sb, getLinkRes(linkId), new SubLinksQuery(targetSynsetId, linkId, BaseModule.this.maxRecursion), new SynsetLink(targetSynsetId, BaseModule.this.maxRecursion), context).prependTo(parent);
+					final TreeNode linksNode = TreeFactory.addLinkQueryNode(parent, sb, getLinkRes(linkId), new SubLinksQuery(targetSynsetId, linkId, BaseModule.this.maxRecursion), new SynsetLink(targetSynsetId, BaseModule.this.maxRecursion)).prependTo(parent);
 					nodes.add(linksNode);
 				}
 				else
 				{
-					final TreeNode node = TreeFactory.addLeafNode(parent, sb, getLinkRes(linkId), context).prependTo(parent);
+					final TreeNode node = TreeFactory.addLeafNode(parent, sb, getLinkRes(linkId)).prependTo(parent);
 					nodes.add(node);
 				}
 			}
@@ -1010,7 +1002,7 @@ abstract public class BaseModule extends Module
 		}
 		else
 		{
-			TreeFactory.setNoResult(parent, true);
+			TreeFactory.setNoResult(parent, false);
 			changed = new TreeNode[]{parent};
 		}
 
@@ -1035,8 +1027,6 @@ abstract public class BaseModule extends Module
 
 			do
 			{
-				final Context context = this.fragment.requireContext();
-
 				final SpannableStringBuilder sb = new SpannableStringBuilder();
 
 				// final int linkId = cursor.getInt(idLinkId);
@@ -1057,18 +1047,18 @@ abstract public class BaseModule extends Module
 					if (recurseLevel > 1)
 					{
 						final int newRecurseLevel = recurseLevel - 1;
-						final TreeNode linksNode = TreeFactory.addLinkQueryNode(parent, sb, getLinkRes(linkId), new SubLinksQuery(targetSynsetId, linkId, newRecurseLevel), new SynsetLink(targetSynsetId, BaseModule.this.maxRecursion), context).addTo(parent);
+						final TreeNode linksNode = TreeFactory.addLinkQueryNode(parent, sb, getLinkRes(linkId), new SubLinksQuery(targetSynsetId, linkId, newRecurseLevel), new SynsetLink(targetSynsetId, BaseModule.this.maxRecursion)).addTo(parent);
 						nodes.add(linksNode);
 					}
 					else
 					{
-						final TreeNode moreNode = TreeFactory.addMoreNode(parent, sb, getLinkRes(linkId), context).addTo(parent);
+						final TreeNode moreNode = TreeFactory.addMoreNode(parent, sb, getLinkRes(linkId)).addTo(parent);
 						nodes.add(moreNode);
 					}
 				}
 				else
 				{
-					final TreeNode node = TreeFactory.addLeafNode(parent, sb, getLinkRes(linkId), context).addTo(parent);
+					final TreeNode node = TreeFactory.addLeafNode(parent, sb, getLinkRes(linkId)).addTo(parent);
 					nodes.add(node);
 				}
 			}
@@ -1077,7 +1067,7 @@ abstract public class BaseModule extends Module
 		}
 		else
 		{
-			TreeFactory.setNoResult(parent, true);
+			TreeFactory.setNoResult(parent, false);
 			changed = new TreeNode[]{parent};
 		}
 
@@ -1111,7 +1101,7 @@ abstract public class BaseModule extends Module
 		final String tag = "wn.lexlinks(synsetid)";
 		final SqlunetViewTreeModel model = ViewModelProviders.of(this.fragment).get(tag, SqlunetViewTreeModel.class);
 		model.loadData(uri, projection, selection, selectionArgs, sortOrder, cursor -> lexLinksCursor1ToTreeModel(cursor, parent));
-		model.getData().observe(this.fragment, FireEvent::live);
+		model.getData().observe(this.fragment, data -> new FireEvent(this.fragment).live(data));
 	}
 
 	/**
@@ -1137,7 +1127,7 @@ abstract public class BaseModule extends Module
 		final String tag = "wn.lexlinks(synsetid,wordid)";
 		final SqlunetViewTreeModel model = ViewModelProviders.of(this.fragment).get(tag, SqlunetViewTreeModel.class);
 		model.loadData(uri, projection, selection, selectionArgs, sortOrder, cursor -> lexLinksCursor2ToTreeModel(cursor, parent));
-		model.getData().observe(this.fragment, FireEvent::live);
+		model.getData().observe(this.fragment, data -> new FireEvent(this.fragment).live(data));
 	}
 
 	private TreeNode[] lexLinksCursor1ToTreeModel(@NonNull final Cursor cursor, @NonNull final TreeNode parent)
@@ -1147,8 +1137,6 @@ abstract public class BaseModule extends Module
 		{
 			final List<TreeNode> nodes = new ArrayList<>();
 			nodes.add(parent);
-
-			final Context context = this.fragment.requireContext();
 
 			final int idLinkId = cursor.getColumnIndex(LinkTypes.LINKID);
 			// final int idLink = cursor.getColumnIndex(LinkTypes.LINK);
@@ -1192,19 +1180,19 @@ abstract public class BaseModule extends Module
 				Spanner.append(sb, targetDefinition, 0, WordNetFactories.definitionFactory);
 
 				// attach result
-				final TreeNode linkNode = TreeFactory.addLeafNode(parent, sb, getLinkRes(linkId), context);
+				final TreeNode linkNode = TreeFactory.addLeafNode(parent, sb, getLinkRes(linkId));
 				nodes.add(linkNode);
 			}
 			while (cursor.moveToNext());
 
 			// attach result
-			final TreeNode node = TreeFactory.addTextNode(parent, sb, context);
+			final TreeNode node = TreeFactory.addTextNode(parent, sb);
 			nodes.add(node);
 			changed = nodes.toArray(new TreeNode[0]);
 		}
 		else
 		{
-			TreeFactory.setNoResult(parent, true);
+			TreeFactory.setNoResult(parent, false);
 			changed = new TreeNode[]{parent};
 		}
 		cursor.close();
@@ -1218,8 +1206,6 @@ abstract public class BaseModule extends Module
 		{
 			final List<TreeNode> nodes = new ArrayList<>();
 			nodes.add(parent);
-
-			final Context context = this.fragment.requireContext();
 
 			final int idLinkId = cursor.getColumnIndex(LinkTypes.LINKID);
 			// final int idLink = cursor.getColumnIndex(LinkTypes.LINK);
@@ -1262,7 +1248,7 @@ abstract public class BaseModule extends Module
 				Spanner.append(sb, targetDefinition, 0, WordNetFactories.definitionFactory);
 
 				// attach result
-				final TreeNode linkNode = TreeFactory.addLinkLeafNode(parent, sb, getLinkRes(linkId), new SenseLink(targetSynsetId, idTargetWordId, BaseModule.this.maxRecursion), context);
+				final TreeNode linkNode = TreeFactory.addLinkLeafNode(parent, sb, getLinkRes(linkId), new SenseLink(targetSynsetId, idTargetWordId, BaseModule.this.maxRecursion));
 				nodes.add(linkNode);
 			}
 			while (cursor.moveToNext());
@@ -1270,10 +1256,9 @@ abstract public class BaseModule extends Module
 		}
 		else
 		{
-			TreeFactory.setNoResult(parent, true);
+			TreeFactory.setNoResult(parent, false);
 			changed = new TreeNode[]{parent};
-		}
-		cursor.close();
+		} cursor.close();
 		return changed;
 	}
 
@@ -1296,7 +1281,7 @@ abstract public class BaseModule extends Module
 		final String tag = "wn.vframes(synsetid)";
 		final SqlunetViewTreeModel model = ViewModelProviders.of(this.fragment).get(tag, SqlunetViewTreeModel.class);
 		model.loadData(uri, projection, selection, selectionArgs, sortOrder, cursor -> vframesCursorToTreeModel(cursor, parent));
-		model.getData().observe(this.fragment, FireEvent::live);
+		model.getData().observe(this.fragment, data -> new FireEvent(this.fragment).live(data));
 	}
 
 	/**
@@ -1317,7 +1302,7 @@ abstract public class BaseModule extends Module
 		final String tag = "wn.vframes(synsetid,wordid)";
 		final SqlunetViewTreeModel model = ViewModelProviders.of(this.fragment).get(tag, SqlunetViewTreeModel.class);
 		model.loadData(uri, projection, selection, selectionArgs, sortOrder, cursor -> vframesCursorToTreeModel(cursor, parent));
-		model.getData().observe(this.fragment, FireEvent::live);
+		model.getData().observe(this.fragment, data -> new FireEvent(this.fragment).live(data));
 	}
 
 	private TreeNode[] vframesCursorToTreeModel(@NonNull final Cursor cursor, @NonNull final TreeNode parent)
@@ -1325,8 +1310,6 @@ abstract public class BaseModule extends Module
 		TreeNode[] changed;
 		if (cursor.moveToFirst())
 		{
-			final Context context = this.fragment.requireContext();
-
 			final int vframeId = cursor.getColumnIndex(VerbFrameMaps_VerbFrames.FRAME);
 
 			final SpannableStringBuilder sb = new SpannableStringBuilder();
@@ -1345,7 +1328,7 @@ abstract public class BaseModule extends Module
 			while (cursor.moveToNext());
 
 			// attach result
-			final TreeNode node = TreeFactory.addTextNode(parent, sb, context);
+			final TreeNode node = TreeFactory.addTextNode(parent, sb);
 			changed = new TreeNode[]{parent, node};
 		}
 		else
@@ -1377,7 +1360,7 @@ abstract public class BaseModule extends Module
 		final String tag = "wn.vframesentences(synsetid)";
 		final SqlunetViewTreeModel model = ViewModelProviders.of(this.fragment).get(tag, SqlunetViewTreeModel.class);
 		model.loadData(uri, projection, selection, selectionArgs, sortOrder, cursor -> vFrameSentencesCursor1ToTreeModel(cursor, parent));
-		model.getData().observe(this.fragment, FireEvent::live);
+		model.getData().observe(this.fragment, data -> new FireEvent(this.fragment).live(data));
 	}
 
 	/**
@@ -1398,7 +1381,7 @@ abstract public class BaseModule extends Module
 		final String tag = "wn.vframesentences(synsetid,wordid)";
 		final SqlunetViewTreeModel model = ViewModelProviders.of(this.fragment).get(tag, SqlunetViewTreeModel.class);
 		model.loadData(uri, projection, selection, selectionArgs, sortOrder, cursor -> vFrameSentencesCursor2ToTreeModel(cursor, parent));
-		model.getData().observe(this.fragment, FireEvent::live);
+		model.getData().observe(this.fragment, data -> new FireEvent(this.fragment).live(data));
 	}
 
 	private TreeNode[] vFrameSentencesCursor1ToTreeModel(@NonNull final Cursor cursor, @NonNull final TreeNode parent)
@@ -1406,8 +1389,6 @@ abstract public class BaseModule extends Module
 		TreeNode[] changed;
 		if (cursor.moveToFirst())
 		{
-			final Context context = this.fragment.requireContext();
-
 			final int vframeId = cursor.getColumnIndex(VerbFrameSentenceMaps_VerbFrameSentences.SENTENCE);
 
 			final SpannableStringBuilder sb = new SpannableStringBuilder();
@@ -1426,7 +1407,7 @@ abstract public class BaseModule extends Module
 			while (cursor.moveToNext());
 
 			// attach result
-			final TreeNode node = TreeFactory.addTextNode(parent, sb, context);
+			final TreeNode node = TreeFactory.addTextNode(parent, sb);
 			changed = new TreeNode[]{parent, node};
 		}
 		else
@@ -1444,8 +1425,6 @@ abstract public class BaseModule extends Module
 		TreeNode[] changed;
 		if (cursor.moveToFirst())
 		{
-			final Context context = this.fragment.requireContext();
-
 			final String lemma = "---";
 			final int vframeId = cursor.getColumnIndex(VerbFrameSentenceMaps_VerbFrameSentences.SENTENCE);
 
@@ -1465,7 +1444,7 @@ abstract public class BaseModule extends Module
 			while (cursor.moveToNext());
 
 			// attach result
-			final TreeNode node = TreeFactory.addTextNode(parent, sb, context);
+			final TreeNode node = TreeFactory.addTextNode(parent, sb);
 			changed = new TreeNode[]{parent, node};
 		}
 		else
@@ -1497,7 +1476,7 @@ abstract public class BaseModule extends Module
 		final String tag = "wn.adjposition(synsetid)";
 		final SqlunetViewTreeModel model = ViewModelProviders.of(this.fragment).get(tag, SqlunetViewTreeModel.class);
 		model.loadData(uri, projection, selection, selectionArgs, sortOrder, cursor -> adjPositionCursorToTreeModel(cursor, parent));
-		model.getData().observe(this.fragment, FireEvent::live);
+		model.getData().observe(this.fragment, data -> new FireEvent(this.fragment).live(data));
 	}
 
 	/**
@@ -1518,7 +1497,7 @@ abstract public class BaseModule extends Module
 		final String tag = "wn.adjposition(synsetid,wordid)";
 		final SqlunetViewTreeModel model = ViewModelProviders.of(this.fragment).get(tag, SqlunetViewTreeModel.class);
 		model.loadData(uri, projection, selection, selectionArgs, sortOrder, cursor -> adjPositionCursorToTreeModel(cursor, parent));
-		model.getData().observe(this.fragment, FireEvent::live);
+		model.getData().observe(this.fragment, data -> new FireEvent(this.fragment).live(data));
 	}
 
 	private TreeNode[] adjPositionCursorToTreeModel(@NonNull final Cursor cursor, @NonNull final TreeNode parent)
@@ -1526,8 +1505,6 @@ abstract public class BaseModule extends Module
 		TreeNode[] changed;
 		if (cursor.moveToFirst())
 		{
-			final Context context = this.fragment.requireContext();
-
 			final int positionId = cursor.getColumnIndex(AdjPositions_AdjPositionTypes.POSITIONNAME);
 
 			final SpannableStringBuilder sb = new SpannableStringBuilder();
@@ -1546,7 +1523,7 @@ abstract public class BaseModule extends Module
 			while (cursor.moveToNext());
 
 			// attach result
-			final TreeNode node = TreeFactory.addTextNode(parent, sb, context);
+			final TreeNode node = TreeFactory.addTextNode(parent, sb);
 			changed = new TreeNode[]{parent, node};
 		}
 		else
@@ -1578,7 +1555,7 @@ abstract public class BaseModule extends Module
 		final String tag = "wn.morphs(wordid)";
 		final SqlunetViewTreeModel model = ViewModelProviders.of(this.fragment).get(tag, SqlunetViewTreeModel.class);
 		model.loadData(uri, projection, selection, selectionArgs, sortOrder, cursor -> morphsCursorToTreeModel(cursor, parent));
-		model.getData().observe(this.fragment, FireEvent::live);
+		model.getData().observe(this.fragment, data -> new FireEvent(this.fragment).live(data));
 	}
 
 	private TreeNode[] morphsCursorToTreeModel(@NonNull final Cursor cursor, @NonNull final TreeNode parent)
@@ -1586,8 +1563,6 @@ abstract public class BaseModule extends Module
 		TreeNode[] changed;
 		if (cursor.moveToFirst())
 		{
-			final Context context = this.fragment.requireContext();
-
 			final int morphId = cursor.getColumnIndex(MorphMaps_Morphs.MORPH);
 			final int posId = cursor.getColumnIndex(MorphMaps_Morphs.POS);
 
@@ -1608,7 +1583,7 @@ abstract public class BaseModule extends Module
 			while (cursor.moveToNext());
 
 			// attach result
-			final TreeNode node = TreeFactory.addTextNode(parent, sb, context);
+			final TreeNode node = TreeFactory.addTextNode(parent, sb);
 			changed = new TreeNode[]{parent, node};
 		}
 		else

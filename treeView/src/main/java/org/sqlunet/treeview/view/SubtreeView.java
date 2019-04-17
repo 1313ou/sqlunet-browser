@@ -65,7 +65,7 @@ public class SubtreeView extends LinearLayout
 		super(context);
 		this.containerStyle = containerStyle;
 		this.nodeContainer = nodeContainer;
-		init();
+		init(context);
 	}
 
 	/**
@@ -81,7 +81,7 @@ public class SubtreeView extends LinearLayout
 		super(context, attrs);
 		this.containerStyle = containerStyle;
 		this.nodeContainer = nodeContainer;
-		init();
+		init(context);
 	}
 
 	/**
@@ -98,7 +98,7 @@ public class SubtreeView extends LinearLayout
 		super(context, attrs, defStyleAttr);
 		this.containerStyle = containerStyle;
 		this.nodeContainer = nodeContainer;
-		init();
+		init(context);
 	}
 
 	/**
@@ -117,24 +117,24 @@ public class SubtreeView extends LinearLayout
 		super(context, attrs, defStyleAttr, defStyleRes);
 		this.containerStyle = containerStyle;
 		this.nodeContainer = nodeContainer;
-		init();
+		init(context);
 	}
 
 	/**
 	 * Init
 	 */
-	private void init()
+	private void init(final Context context)
 	{
 		setOrientation(LinearLayout.VERTICAL);
 
-		// node container for node label
-		this.nodeContainer = new RelativeLayout(getContext());
+		// node view
+		this.nodeContainer = new RelativeLayout(context);
 		this.nodeContainer.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
 		this.nodeContainer.setId(R.id.node_label);
 
 		// node container for children
-		ContextThemeWrapper newContext = new ContextThemeWrapper(getContext(), this.containerStyle);
-		LinearLayout nodeChildrenContainer = new LinearLayout(newContext, null, this.containerStyle);
+		ContextThemeWrapper containerContext = new ContextThemeWrapper(context, this.containerStyle);
+		LinearLayout nodeChildrenContainer = new LinearLayout(containerContext, null, this.containerStyle);
 		nodeChildrenContainer.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
 		nodeChildrenContainer.setId(R.id.node_children);
 		nodeChildrenContainer.setOrientation(LinearLayout.VERTICAL);

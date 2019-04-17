@@ -15,6 +15,7 @@ import org.sqlunet.bnc.provider.BNCProvider;
 import org.sqlunet.bnc.style.BNCFactories;
 import org.sqlunet.browser.Module;
 import org.sqlunet.browser.SqlunetViewTreeModel;
+import org.sqlunet.browser.TreeFragment;
 import org.sqlunet.model.TreeFactory;
 import org.sqlunet.style.Spanner;
 import org.sqlunet.treeview.model.TreeNode;
@@ -22,7 +23,6 @@ import org.sqlunet.view.FireEvent;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 
 public class BaseModule extends Module
@@ -61,7 +61,7 @@ public class BaseModule extends Module
 	/**
 	 * Constructor
 	 */
-	public BaseModule(@NonNull final Fragment fragment)
+	public BaseModule(@NonNull final TreeFragment fragment)
 	{
 		super(fragment);
 
@@ -143,7 +143,7 @@ public class BaseModule extends Module
 		final String tag = "bnc.bnc(wordid)";
 		final SqlunetViewTreeModel model = ViewModelProviders.of(this.fragment).get(tag, SqlunetViewTreeModel.class);
 		model.loadData(uri, projection, selection, selectionArgs, sortOrder, cursor -> bncCursorToTreeModel(cursor, parent));
-		model.getData().observe(this.fragment, FireEvent::live);
+		model.getData().observe(this.fragment, data -> new FireEvent(this.fragment).live(data));
 	}
 
 	private TreeNode[] bncCursorToTreeModel(@NonNull final Cursor cursor, @NonNull final TreeNode parent)
@@ -288,7 +288,7 @@ public class BaseModule extends Module
 			while (cursor.moveToNext());
 
 			// attach result
-			final TreeNode node = TreeFactory.addTextNode(parent, sb, this.fragment.requireContext());
+			final TreeNode node = TreeFactory.addTextNode(parent, sb);
 			changed = new TreeNode[]{parent, node};
 		}
 		else

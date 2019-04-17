@@ -2,8 +2,6 @@ package org.sqlunet.treeview.control;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
@@ -11,6 +9,9 @@ import android.widget.TextView;
 
 import org.sqlunet.treeview.R;
 import org.sqlunet.treeview.model.TreeNode;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 /**
  * Tree controller with icon
@@ -33,19 +34,17 @@ public class TreeController extends Controller<Value>
 
 	/**
 	 * Constructor
-	 *
-	 * @param context context
 	 */
-	public TreeController(final Context context)
+	public TreeController()
 	{
-		super(context);
+		super();
 	}
 
 	@Nullable
 	@Override
-	protected View createNodeView(final TreeNode node, @NonNull final Value value)
+	protected View createNodeView(@NonNull final Context context, final TreeNode node, @NonNull final Value value)
 	{
-		final LayoutInflater inflater = LayoutInflater.from(this.context);
+		final LayoutInflater inflater = LayoutInflater.from(context);
 		@SuppressLint("InflateParams") final View view = inflater.inflate(this.layoutRes, null, false);
 
 		// junction icon (arrow)

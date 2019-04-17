@@ -5,6 +5,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import android.os.Parcelable;
 
+import org.sqlunet.browser.TreeFragment;
 import org.sqlunet.predicatematrix.PmRolePointer;
 import org.sqlunet.predicatematrix.settings.Settings.PMMode;
 import org.sqlunet.treeview.model.TreeNode;
@@ -30,7 +31,7 @@ public class PredicateRoleModule extends BaseModule
 	/**
 	 * Constructor
 	 */
-	public PredicateRoleModule(@NonNull final Fragment fragment, final PMMode mode)
+	public PredicateRoleModule(@NonNull final TreeFragment fragment, final PMMode mode)
 	{
 		super(fragment);
 		this.mode = mode;

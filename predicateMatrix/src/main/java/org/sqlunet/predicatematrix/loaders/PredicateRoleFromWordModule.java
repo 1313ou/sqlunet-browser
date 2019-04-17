@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment;
 import android.os.Parcelable;
 
 import org.sqlunet.Word;
+import org.sqlunet.browser.TreeFragment;
 import org.sqlunet.predicatematrix.settings.Settings.PMMode;
 import org.sqlunet.treeview.model.TreeNode;
 
@@ -32,7 +33,7 @@ public class PredicateRoleFromWordModule extends BaseModule
 	 *
 	 * @param mode predicatematrix mode
 	 */
-	public PredicateRoleFromWordModule(@NonNull final Fragment fragment, final PMMode mode)
+	public PredicateRoleFromWordModule(@NonNull final TreeFragment fragment, final PMMode mode)
 	{
 		super(fragment);
 		this.mode = mode;

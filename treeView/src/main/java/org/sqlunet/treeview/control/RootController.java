@@ -15,17 +15,15 @@ public class RootController extends Controller<Void>
 
 	/**
 	 * Constructor
-	 *
-	 * @param context context
 	 */
-	public RootController(final Context context)
+	public RootController()
 	{
-		super(context);
+		super();
 	}
 
 	@Nullable
 	@Override
-	public View createNodeView(TreeNode node, Void value)
+	public View createNodeView(@NonNull final Context context, TreeNode node, Void value)
 	{
 		return null;
 	}

@@ -11,12 +11,12 @@ import androidx.annotation.Nullable;
 public class FnLabel
 {
 	/**
-	 * From-index
+	 * From-indexOf
 	 */
 	public final String from;
 
 	/**
-	 * To-index
+	 * To-indexOf
 	 */
 	public final String to;
 
@@ -45,8 +45,8 @@ public class FnLabel
 	/**
 	 * Constructor
 	 *
-	 * @param from    from-index
-	 * @param to      to-index
+	 * @param from    from-indexOf
+	 * @param to      to-indexOf
 	 * @param label   label
 	 * @param iType   i-type
 	 * @param bgColor background color

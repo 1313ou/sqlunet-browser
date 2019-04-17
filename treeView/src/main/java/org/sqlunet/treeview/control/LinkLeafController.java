@@ -18,19 +18,17 @@ public class LinkLeafController extends LeafController
 
 	/**
 	 * Constructor
-	 *
-	 * @param context context
 	 */
-	public LinkLeafController(final Context context)
+	public LinkLeafController()
 	{
-		super(context);
+		super();
 		this.layoutRes = R.layout.layout_leaf_link;
 	}
 
 	@Override
-	public View createNodeView(final TreeNode node, @NonNull final Value value)
+	public View createNodeView(@NonNull final Context context, final TreeNode node, @NonNull final Value value)
 	{
-		final View view = super.createNodeView(node, value);
+		final View view = super.createNodeView(context, node, value);
 		assert view != null;
 
 		// link listener

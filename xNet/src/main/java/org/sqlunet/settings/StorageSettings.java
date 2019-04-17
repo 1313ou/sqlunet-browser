@@ -278,10 +278,10 @@ public class StorageSettings
 	}
 
 	/**
-	 * Get index archive entry
+	 * Get indexOf archive entry
 	 *
 	 * @param context context
-	 * @return index archive entry
+	 * @return indexOf archive entry
 	 */
 	@NonNull
 	static public String getIndexEntry(@NonNull final Context context)

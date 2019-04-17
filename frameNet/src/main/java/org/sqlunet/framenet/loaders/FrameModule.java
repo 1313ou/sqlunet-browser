@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment;
 import android.os.Parcelable;
 
 import org.sqlunet.HasXId;
+import org.sqlunet.browser.TreeFragment;
 import org.sqlunet.framenet.FnFramePointer;
 import org.sqlunet.model.TreeFactory;
 import org.sqlunet.treeview.model.TreeNode;
@@ -35,7 +36,7 @@ public class FrameModule extends BaseModule
 	 *
 	 * @param fragment  containing fragment
 	 */
-	public FrameModule(@NonNull final Fragment fragment)
+	public FrameModule(@NonNull final TreeFragment fragment)
 	{
 		super(fragment);
 	}

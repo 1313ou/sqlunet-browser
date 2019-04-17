@@ -1,9 +1,9 @@
 package org.sqlunet.model;
 
-import android.content.Context;
 import android.os.Handler;
 import android.os.Looper;
 import android.text.SpannableStringBuilder;
+import android.util.Log;
 
 import org.sqlunet.treeview.control.HotQueryController;
 import org.sqlunet.treeview.control.IconTextController;
@@ -30,6 +30,8 @@ import androidx.annotation.NonNull;
  */
 public class TreeFactory
 {
+	private static final String TAG = "TreeFactory";
+
 	// NON-TREE (without tree junction icon)
 
 	/**
@@ -40,9 +42,9 @@ public class TreeFactory
 	 * @param link link
 	 * @return created node
 	 */
-	static public TreeNode addLinkNode(@NonNull final TreeNode parent, final CharSequence text, final int icon, final Link link, final Context context)
+	static public TreeNode addLinkNode(@NonNull final TreeNode parent, final CharSequence text, final int icon, final Link link)
 	{
-		final TreeNode result = new TreeNode(new Value(text, icon, link), new LinkNodeController(context), false);
+		final TreeNode result = new TreeNode(new Value(text, icon, link), new LinkNodeController(), false);
 		parent.addChild(result);
 		return result;
 	}
@@ -57,9 +59,9 @@ public class TreeFactory
 	 * @param icon   icon (extra icon after tree icon)
 	 * @return created node
 	 */
-	static public TreeNode addLeafNode(@NonNull final TreeNode parent, final CharSequence text, final int icon, final Context context)
+	static public TreeNode addLeafNode(@NonNull final TreeNode parent, final CharSequence text, final int icon)
 	{
-		final TreeNode result = new TreeNode(new Value(text, icon), new LeafController(context), false);
+		final TreeNode result = new TreeNode(new Value(text, icon), new LeafController(), false);
 		parent.addChild(result);
 		return result;
 	}
@@ -72,9 +74,9 @@ public class TreeFactory
 	 * @param icon   icon (extra icon after tree icon)
 	 * @return created node
 	 */
-	static public TreeNode addMoreNode(@NonNull final TreeNode parent, final CharSequence text, final int icon, final Context context)
+	static public TreeNode addMoreNode(@NonNull final TreeNode parent, final CharSequence text, final int icon)
 	{
-		final TreeNode result = new TreeNode(new Value(text, icon), new MoreController(context), false);
+		final TreeNode result = new TreeNode(new Value(text, icon), new MoreController(), false);
 		parent.addChild(result);
 		return result;
 	}
@@ -88,9 +90,9 @@ public class TreeFactory
 	 * @param link   link
 	 * @return created node
 	 */
-	static public TreeNode addLinkLeafNode(@NonNull final TreeNode parent, final CharSequence text, final int icon, final Link link, final Context context)
+	static public TreeNode addLinkLeafNode(@NonNull final TreeNode parent, final CharSequence text, final int icon, final Link link)
 	{
-		final TreeNode result = new TreeNode(new Value(text, icon, link), new LinkLeafController(context));
+		final TreeNode result = new TreeNode(new Value(text, icon, link), new LinkLeafController());
 		parent.addChild(result);
 		return result;
 	}
@@ -104,9 +106,9 @@ public class TreeFactory
 	 * @param link   link
 	 * @return created node
 	 */
-	static public TreeNode addLinkTreeNode(@NonNull final TreeNode parent, final CharSequence text, final int icon, final Link link, final Context context)
+	static public TreeNode addLinkTreeNode(@NonNull final TreeNode parent, final CharSequence text, final int icon, final Link link)
 	{
-		final TreeNode result = new TreeNode(new Value(text, icon, link), new LinkTreeController(context));
+		final TreeNode result = new TreeNode(new Value(text, icon, link), new LinkTreeController());
 		parent.addChild(result);
 		return result;
 	}
@@ -120,9 +122,9 @@ public class TreeFactory
 	 * @param query  query
 	 * @return created node
 	 */
-	static public TreeNode addQueryNode(@NonNull final TreeNode parent, final CharSequence text, final int icon, final Query query, final Context context)
+	static public TreeNode addQueryNode(@NonNull final TreeNode parent, final CharSequence text, final int icon, final Query query)
 	{
-		final TreeNode result = new TreeNode(new Value(text, icon, query), new QueryController(context));
+		final TreeNode result = new TreeNode(new Value(text, icon, query), new QueryController());
 		parent.addChild(result);
 		return result;
 	}
@@ -136,9 +138,9 @@ public class TreeFactory
 	 * @param query  query
 	 * @return created node
 	 */
-	static public TreeNode addHotQueryNode(@NonNull final TreeNode parent, final CharSequence text, final int icon, final Query query, final Context context)
+	static public TreeNode addHotQueryNode(@NonNull final TreeNode parent, final CharSequence text, final int icon, final Query query)
 	{
-		final HotQueryController controller = new HotQueryController(context);
+		final HotQueryController controller = new HotQueryController();
 		final TreeNode result = new TreeNode(new Value(text, icon, query), controller);
 		parent.addChild(result);
 
@@ -158,9 +160,9 @@ public class TreeFactory
 	 * @param link   link
 	 * @return created node
 	 */
-	static public TreeNode addLinkQueryNode(@NonNull final TreeNode parent, final CharSequence text, final int icon, final Query query, final Link link, final Context context)
+	static public TreeNode addLinkQueryNode(@NonNull final TreeNode parent, final CharSequence text, final int icon, final Query query, final Link link)
 	{
-		final TreeNode result = new TreeNode(new Value(text, icon, query, link), new LinkQueryController(context));
+		final TreeNode result = new TreeNode(new Value(text, icon, query, link), new LinkQueryController());
 		parent.addChild(result);
 		return result;
 	}
@@ -174,9 +176,9 @@ public class TreeFactory
 	 */
 	@NonNull
 	@SuppressWarnings("UnusedReturnValue")
-	static public TreeNode addTextNode(@NonNull final TreeNode parent, final CharSequence value, final Context context)
+	static public TreeNode addTextNode(@NonNull final TreeNode parent, final CharSequence value)
 	{
-		final TreeNode result = new TreeNode(value, new TextController(context));
+		final TreeNode result = new TreeNode(value, new TextController());
 		parent.addChild(result);
 		return result;
 	}
@@ -189,9 +191,9 @@ public class TreeFactory
 	 * @param icon   icon
 	 * @return created node
 	 */
-	static public TreeNode addIconTextNode(@NonNull final TreeNode parent, @SuppressWarnings("SameParameterValue") final CharSequence text, final int icon, final Context context)
+	static public TreeNode addIconTextNode(@NonNull final TreeNode parent, @SuppressWarnings("SameParameterValue") final CharSequence text, final int icon)
 	{
-		final TreeNode result = new TreeNode(new Value(text, icon), new IconTextController(context), false);
+		final TreeNode result = new TreeNode(new Value(text, icon), new IconTextController(), false);
 		parent.addChild(result);
 		return result;
 	}
@@ -205,9 +207,9 @@ public class TreeFactory
 	 * @return created node
 	 */
 	@NonNull
-	static public TreeNode addTreeNode(@NonNull final TreeNode parent, final CharSequence value, final int icon, final Context context)
+	static public TreeNode addTreeNode(@NonNull final TreeNode parent, final CharSequence value, final int icon)
 	{
-		final TreeNode result = new TreeNode(new Value(value, icon), new TreeController(context));
+		final TreeNode result = new TreeNode(new Value(value, icon), new TreeController());
 		parent.addChild(result);
 		return result;
 	}
@@ -216,20 +218,20 @@ public class TreeFactory
 	 * No results have been attached to this node
 	 *
 	 * @param node       node
-	 * @param addNewNode whether results were supposed to be new subnodes or replace query node
+	 * @param deleteNode whether results were supposed to be new subnodes or replace query node
 	 */
-	static public void setNoResult(@NonNull final TreeNode node, boolean addNewNode)
+	static public void setNoResult(@NonNull final TreeNode node, boolean deleteNode)
 	{
-		if (addNewNode)
+		if (deleteNode)
 		{
-			//TODO TreeView.disable(node);
-			node.disable();
-			node.setDeadend(true);
+			Log.d(TAG, "Zombie " + node);
+			node.setZombie(true);
 		}
 		else
 		{
-			final TreeNode parent = node.getParent();
-			parent.deleteChild(node);
+			Log.d(TAG, "Disabled " + node);
+			//node.disable();
+			node.setDeadend(true);
 		}
 	}
 

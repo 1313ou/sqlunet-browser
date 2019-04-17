@@ -15,12 +15,10 @@ public class QueryController extends TreeController
 
 	/**
 	 * Constructor
-	 *
-	 * @param context context
 	 */
-	public QueryController(final Context context)
+	public QueryController()
 	{
-		super(context);
+		super();
 	}
 
 	@Override
