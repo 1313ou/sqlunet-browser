@@ -184,8 +184,8 @@ abstract class BaseModule extends Module
 			final TreeNode node = TreeFactory.addTextNode(parent, sb);
 
 			// sub nodes
-			final TreeNode rolesNode = TreeFactory.addHotQueryNode(parent, "Roles", R.drawable.roles, new RolesQuery(roleSetId)).addTo(parent);
-			final TreeNode examplesNode = TreeFactory.addQueryNode(parent, "Examples", R.drawable.sample, new ExamplesQuery(roleSetId)).addTo(parent);
+			final TreeNode rolesNode = TreeFactory.addHotQueryNode(parent, "Roles", R.drawable.roles, new RolesQuery(roleSetId));
+			final TreeNode examplesNode = TreeFactory.addQueryNode(parent, "Examples", R.drawable.sample, new ExamplesQuery(roleSetId));
 
 			changed = new TreeNode[]{parent, node, rolesNode, examplesNode};
 		}
@@ -264,9 +264,9 @@ abstract class BaseModule extends Module
 				nodes.add(node);
 
 				// sub nodes
-				final TreeNode rolesNode = TreeFactory.addHotQueryNode(parent, "Roles", R.drawable.roles, new RolesQuery(roleSetId)).addTo(parent);
+				final TreeNode rolesNode = TreeFactory.addHotQueryNode(parent, "Roles", R.drawable.roles, new RolesQuery(roleSetId));
 				nodes.add(rolesNode);
-				final TreeNode examplesNode = TreeFactory.addQueryNode(parent, "Examples", R.drawable.sample, new ExamplesQuery(roleSetId)).addTo(parent);
+				final TreeNode examplesNode = TreeFactory.addQueryNode(parent, "Examples", R.drawable.sample, new ExamplesQuery(roleSetId));
 				nodes.add(examplesNode);
 			}
 			while (cursor.moveToNext());

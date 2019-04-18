@@ -478,8 +478,8 @@ abstract public class BaseModule extends Module
 			final TreeNode node = TreeFactory.addTextNode(parent, sb);
 
 			// subnodes
-			final TreeNode linksNode = TreeFactory.addHotQueryNode(parent, "Links", R.drawable.ic_links, new LinksQuery(synsetId, wordId)).addTo(parent);
-			final TreeNode samplesNode = TreeFactory.addHotQueryNode(parent, "Samples", R.drawable.sample, new SamplesQuery(synsetId)).addTo(parent);
+			final TreeNode linksNode = TreeFactory.addHotQueryNode(parent, "Links", R.drawable.ic_links, new LinksQuery(synsetId, wordId));
+			final TreeNode samplesNode = TreeFactory.addHotQueryNode(parent, "Samples", R.drawable.sample, new SamplesQuery(synsetId));
 
 			changed = new TreeNode[]{parent, node, linksNode, samplesNode};
 		}
@@ -1047,18 +1047,18 @@ abstract public class BaseModule extends Module
 					if (recurseLevel > 1)
 					{
 						final int newRecurseLevel = recurseLevel - 1;
-						final TreeNode linksNode = TreeFactory.addLinkQueryNode(parent, sb, getLinkRes(linkId), new SubLinksQuery(targetSynsetId, linkId, newRecurseLevel), new SynsetLink(targetSynsetId, BaseModule.this.maxRecursion)).addTo(parent);
+						final TreeNode linksNode = TreeFactory.addLinkQueryNode(parent, sb, getLinkRes(linkId), new SubLinksQuery(targetSynsetId, linkId, newRecurseLevel), new SynsetLink(targetSynsetId, BaseModule.this.maxRecursion));
 						nodes.add(linksNode);
 					}
 					else
 					{
-						final TreeNode moreNode = TreeFactory.addMoreNode(parent, sb, getLinkRes(linkId)).addTo(parent);
+						final TreeNode moreNode = TreeFactory.addMoreNode(parent, sb, getLinkRes(linkId));
 						nodes.add(moreNode);
 					}
 				}
 				else
 				{
-					final TreeNode node = TreeFactory.addLeafNode(parent, sb, getLinkRes(linkId)).addTo(parent);
+					final TreeNode node = TreeFactory.addLeafNode(parent, sb, getLinkRes(linkId));
 					nodes.add(node);
 				}
 			}

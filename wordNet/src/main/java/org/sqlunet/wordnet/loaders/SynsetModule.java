@@ -1,6 +1,5 @@
 package org.sqlunet.wordnet.loaders;
 
-import android.content.Context;
 import android.os.Parcelable;
 
 import org.sqlunet.HasPos;
@@ -8,12 +7,10 @@ import org.sqlunet.HasSynsetId;
 import org.sqlunet.browser.TreeFragment;
 import org.sqlunet.model.TreeFactory;
 import org.sqlunet.treeview.model.TreeNode;
-import org.sqlunet.view.FireEvent;
 import org.sqlunet.wordnet.R;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
 
 /**
  * Module for WordNet synset
@@ -110,12 +107,8 @@ public class SynsetModule extends BaseModule
 			}
 
 			// links and samples
-			final TreeNode linksNode = this.expand ?
-					TreeFactory.addHotQueryNode(parent, "Links", R.drawable.ic_links, new LinksQuery(this.synsetId, 0)).addTo(parent) :
-					TreeFactory.addQueryNode(parent, "Links", R.drawable.ic_links, new LinksQuery(this.synsetId, 0)).addTo(parent);
-			final TreeNode samplesNode = this.expand ?
-					TreeFactory.addQueryNode(parent, "Samples", R.drawable.sample, new SamplesQuery(this.synsetId)).addTo(parent) :
-					TreeFactory.addQueryNode(parent, "Samples", R.drawable.sample, new SamplesQuery(this.synsetId)).addTo(parent);
+			final TreeNode linksNode = this.expand ? TreeFactory.addHotQueryNode(parent, "Links", R.drawable.ic_links, new LinksQuery(this.synsetId, 0)) : TreeFactory.addQueryNode(parent, "Links", R.drawable.ic_links, new LinksQuery(this.synsetId, 0));
+			final TreeNode samplesNode = this.expand ? TreeFactory.addQueryNode(parent, "Samples", R.drawable.sample, new SamplesQuery(this.synsetId)) : TreeFactory.addQueryNode(parent, "Samples", R.drawable.sample, new SamplesQuery(this.synsetId));
 		}
 	}
 }

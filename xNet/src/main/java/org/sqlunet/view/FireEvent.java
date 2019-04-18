@@ -47,7 +47,6 @@ public class FireEvent
 		Log.d(TAG, "Live " + "\n" + nodes[0].toString());
 		TreeView treeView = this.fragment.getTreeView();
 
-
 		int n = nodes.length;
 		if (n == 1)
 		{
@@ -73,10 +72,19 @@ public class FireEvent
 				}
 				else
 				{
-					final Controller<?> controller = parent.getController();
-					final ViewGroup viewGroup = controller.getChildrenContainerView();
-					assert viewGroup != null;
-					treeView.addNodeView(viewGroup, node);
+					if (parent.isExpanded())
+					{
+						final Controller<?> controller = parent.getController();
+						final ViewGroup viewGroup = controller.getChildrenContainerView();
+						if (viewGroup != null)
+						{
+							treeView.addNodeView(viewGroup, node);
+						}
+					}
+					else
+					{
+						treeView.expand(parent, true);
+					}
 				}
 			}
 		}

@@ -165,11 +165,11 @@ public class ClassFromWordModule extends BaseModule
 				nodes.add(node);
 
 				// sub nodes
-				final TreeNode membersNode = TreeFactory.addHotQueryNode(parent, "Members", R.drawable.members, new MembersQuery(classId)).addTo(parent);
+				final TreeNode membersNode = TreeFactory.addHotQueryNode(parent, "Members", R.drawable.members, new MembersQuery(classId));
 				nodes.add(membersNode);
-				final TreeNode rolesNode = TreeFactory.addHotQueryNode(parent, "Roles", R.drawable.roles, new RolesQuery(classId)).addTo(parent);
+				final TreeNode rolesNode = TreeFactory.addHotQueryNode(parent, "Roles", R.drawable.roles, new RolesQuery(classId));
 				nodes.add(rolesNode);
-				final TreeNode framesNode = TreeFactory.addQueryNode(parent, "Frames", R.drawable.vnframe, new FramesQuery(classId)).addTo(parent);
+				final TreeNode framesNode = TreeFactory.addQueryNode(parent, "Frames", R.drawable.vnframe, new FramesQuery(classId));
 				nodes.add(framesNode);
 			}
 			while (cursor.moveToNext());

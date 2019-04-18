@@ -204,12 +204,12 @@ abstract class BaseModule extends Module
 			final TreeNode node = TreeFactory.addTextNode(parent, sb);
 
 			// sub nodes
-			final TreeNode membersNode = TreeFactory.addHotQueryNode(parent,"Members", R.drawable.members, new MembersQuery(classId)).addTo(parent);
-			final TreeNode rolesNode = TreeFactory.addHotQueryNode(parent,"Roles", R.drawable.roles, new RolesQuery(classId)).addTo(parent);
-			final TreeNode framesNode = TreeFactory.addQueryNode(parent,"Frames", R.drawable.vnframe, new FramesQuery(classId)).addTo(parent);
+			final TreeNode membersNode = TreeFactory.addHotQueryNode(parent,"Members", R.drawable.members, new MembersQuery(classId));
+			final TreeNode rolesNode = TreeFactory.addHotQueryNode(parent,"Roles", R.drawable.roles, new RolesQuery(classId));
+			final TreeNode framesNode = TreeFactory.addQueryNode(parent,"Frames", R.drawable.vnframe, new FramesQuery(classId));
 
 			// changed
-			changed = new TreeNode[]{parent, node, membersNode, framesNode};
+			changed = new TreeNode[]{parent, node, membersNode, rolesNode, framesNode};
 		}
 		else
 		{

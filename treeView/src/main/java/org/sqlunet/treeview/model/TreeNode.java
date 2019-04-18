@@ -85,11 +85,6 @@ public class TreeNode
 	 */
 	private boolean zombie;
 
-	/**
-	 * Tag
-	 */
-	private String tag;
-
 	// C O N S T R U C T O R
 
 	public TreeNode(final Object value, @NonNull final Controller<?> controller)
@@ -104,7 +99,6 @@ public class TreeNode
 		this.deadend = false;
 		this.zombie = false;
 		this.controller = controller;
-		this.tag = null;
 
 		this.controller.attachNode(this);
 	}
