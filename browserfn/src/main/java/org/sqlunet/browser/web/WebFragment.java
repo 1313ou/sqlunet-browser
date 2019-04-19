@@ -21,7 +21,6 @@ import android.webkit.WebViewClient;
 import android.widget.Toast;
 
 import org.sqlunet.Pointer;
-import org.sqlunet.browser.Module;
 import org.sqlunet.browser.fn.BuildConfig;
 import org.sqlunet.browser.fn.DocumentTransformer;
 import org.sqlunet.browser.fn.R;
@@ -46,8 +45,8 @@ import java.net.URLDecoder;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.loader.app.LoaderManager.LoaderCallbacks;
-import androidx.loader.content.Loader;
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.ViewModelProviders;
 
 /**
  * A fragment representing a SqlUNet web view.
@@ -357,30 +356,16 @@ public class WebFragment extends Fragment
 		Log.d(WebFragment.TAG, "ARG_POSITION data=" + data);
 
 		// load the contents
-		getLoaderManager().restartLoader(++Module.loaderId, null, new LoaderCallbacks<String>()
-		{
-			@NonNull
-			@Override
-			public Loader<String> onCreateLoader(final int loaderId, final Bundle loaderArgs)
-			{
-				return new WebDocumentStringLoader(requireContext(), pointer, type, data, sources, xml);
-			}
-
-			@Override
-			public void onLoadFinished(@NonNull final Loader<String> loader, final String doc)
-			{
-				Log.d(WebFragment.TAG, "onLoadFinished");
-				final String mimeType = xml ? "text/xml" : "text/html";
-				final String baseUrl = "file:///android_asset/";
-				final String historyUrl = null;
-				WebFragment.this.webview.loadDataWithBaseURL(baseUrl, doc, mimeType, "utf-8", historyUrl);
-			}
-
-			@Override
-			public void onLoaderReset(@NonNull final Loader<String> loader)
-			{
-				WebFragment.this.webview.loadUrl("_about:blank");
-			}
+		final String tag = "fn:web()";
+		final WebModel model = ViewModelProviders.of(this).get(tag, WebModel.class);
+		model.loadData(new WebDocumentStringLoader(requireContext(), pointer, type, data, sources, xml));
+		model.getData().observe(this, doc -> {
+			Log.d(WebFragment.TAG, "onLoadFinished");
+			final String mimeType = xml ? "text/xml" : "text/html";
+			final String baseUrl = "file:///android_asset/";
+			final String historyUrl = null;
+			WebFragment.this.webview.loadDataWithBaseURL(baseUrl, doc, mimeType, "utf-8", historyUrl);
+			//WebFragment.this.webview.loadUrl("_about:blank");
 		});
 	}
 

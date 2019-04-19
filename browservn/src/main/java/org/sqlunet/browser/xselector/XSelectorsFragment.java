@@ -46,6 +46,11 @@ public class XSelectorsFragment extends ExpandableListFragment
 	static private final String TAG = "XSelectorsFragment";
 
 	/**
+	 * Loader id allocator
+	 */
+	static public int loaderId = 0;
+
+	/**
 	 * A callback interface that all activities containing this fragment must implement. This mechanism allows activities to be notified of item selections.
 	 */
 	public interface Listener
@@ -208,7 +213,7 @@ public class XSelectorsFragment extends ExpandableListFragment
 		}
 		this.word = query;
 		this.wordId = 0;
-		this.wordIdLoaderId = ++Module.loaderId;
+		this.wordIdLoaderId = ++loaderId;
 
 		// fill groups
 		int position = 0;

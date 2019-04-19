@@ -24,11 +24,6 @@ public abstract class Module
 	static private final String TAG = "Module";
 
 	/**
-	 * Loader id allocator
-	 */
-	static public int loaderId = 0;
-
-	/**
 	 * Fragment
 	 */
 	@NonNull
