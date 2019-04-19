@@ -45,7 +45,6 @@ import java.net.URLDecoder;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModelProviders;
 
 /**
@@ -59,8 +58,9 @@ public class WebFragment extends Fragment
 
 	static private final String SQLUNET_NS = "http://org.sqlunet";
 
-	static class WebDocumentStringLoader extends DocumentStringLoader
+	static class WebDocumentStringLoader implements DocumentStringLoader
 	{
+		final Context context;
 		final private int type;
 		final private String data;
 		final private Parcelable pointer;
@@ -70,7 +70,8 @@ public class WebFragment extends Fragment
 
 		WebDocumentStringLoader(@NonNull final Context context, final int type, final String data, final Parcelable pointer, final Character pos, final int sources, final boolean xml)
 		{
-			super(context);
+			super();
+			this.context = context;
 			this.data = data;
 			this.type = type;
 			this.pointer = pointer;
@@ -82,13 +83,13 @@ public class WebFragment extends Fragment
 		@Nullable
 		@SuppressWarnings({"boxing"})
 		@Override
-		protected String getDoc()
+		public String getDoc()
 		{
 			DataSource dataSource = null;
 			try
 			{
 				// data source
-				dataSource = new DataSource(StorageSettings.getDatabasePath(getContext()));
+				dataSource = new DataSource(StorageSettings.getDatabasePath(this.context));
 				final SQLiteDatabase db = dataSource.getConnection();
 				WordNetImplementation.init(db);
 
@@ -230,7 +231,6 @@ public class WebFragment extends Fragment
 		// client
 		final WebViewClient webClient = new WebViewClient()
 		{
-			@SuppressWarnings("deprecation")
 			@Override
 			public boolean shouldOverrideUrlLoading(final WebView view, final String urlString)
 			{
@@ -353,8 +353,7 @@ public class WebFragment extends Fragment
 			Log.d(WebFragment.TAG, "onLoadFinished");
 			final String mimeType = xml ? "text/xml" : "text/html";
 			final String baseUrl = "file:///android_asset/";
-			final String historyUrl = null;
-			WebFragment.this.webview.loadDataWithBaseURL(baseUrl, doc, mimeType, "utf-8", historyUrl);
+			WebFragment.this.webview.loadDataWithBaseURL(baseUrl, doc, mimeType, "utf-8", null);
 			//WebFragment.this.webview.loadUrl("_about:blank");
 		});
 	}

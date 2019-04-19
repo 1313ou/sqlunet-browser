@@ -37,8 +37,7 @@ public class WebModel extends ViewModel
 			@Override
 			protected String doInBackground(Void... voids)
 			{
-				String doc = loader.loadInBackground();
-				return doc;
+				return loader.getDoc();
 			}
 
 			@Override
