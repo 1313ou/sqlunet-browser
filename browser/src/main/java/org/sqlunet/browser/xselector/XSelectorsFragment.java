@@ -1,10 +1,10 @@
 package org.sqlunet.browser.xselector;
 
-import android.support.local.app.ExpandableListFragment;
 import android.database.Cursor;
 import android.database.MatrixCursor;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.local.app.ExpandableListFragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -27,13 +27,10 @@ import org.sqlunet.provider.XSqlUNetProvider;
 import org.sqlunet.wordnet.provider.WordNetContract;
 import org.sqlunet.wordnet.provider.WordNetProvider;
 
-import java.util.HashMap;
 import java.util.Locale;
-import java.util.Map;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProviders;
 
 /**
@@ -333,10 +330,10 @@ public class XSelectorsFragment extends ExpandableListFragment
 		final String[] selectionArgs = {XSelectorsFragment.this.word};
 		final String sortOrder = XSqlUNetContract.POS + '.' + Words_FnWords_PbWords_VnWords.POS + ',' + Words_FnWords_PbWords_VnWords.SENSENUM;
 
-		final String tag = "xselectors";
+		final String tag = "xselectors.id";
 		final SqlunetViewModel model = ViewModelProviders.of(this).get(tag, SqlunetViewModel.class);
-		model.loadData(uri, projection, selection, selectionArgs, sortOrder, null);
-		model.getData().observe(this, cursor -> xselectorsPostProcess(cursor));
+		model.loadData(uri, projection, selection, selectionArgs, sortOrder, this::xselectorsPostProcess);
+		model.getData().observe(this, cursor -> initialize());
 	}
 
 	private void xselectorsPostProcess(@NonNull final Cursor cursor)
@@ -346,8 +343,6 @@ public class XSelectorsFragment extends ExpandableListFragment
 		{
 			final int idWordId = cursor.getColumnIndex(Words_FnWords_PbWords_VnWords.WORDID);
 			XSelectorsFragment.this.wordId = cursor.getLong(idWordId);
-
-			initialize();
 		}
 	}
 
@@ -366,16 +361,8 @@ public class XSelectorsFragment extends ExpandableListFragment
 				int groupPosition = groupCursor.getPosition();
 				int groupId = groupCursor.getInt(groupCursor.getColumnIndex(GROUPID_COLUMN));
 				// String groupName = groupCursor.getString(groupCursor.getColumnIndex(GROUPNAME_COLUMN));
-				// Log.d(XSelectorsFragment.TAG, "group " + groupPosition + ' ' + groupName + " loader=" + loaderId);
+				// Log.d(XSelectorsFragment.TAG, "group " + groupPosition + ' ' + groupName);
 
-				// cached
-				final Cursor cursor = XSelectorsFragment.this.cursors.get(groupId);
-				if (cursor != null)
-				{
-					//TODO return cursor;
-				}
-
-				// load
 				startChildLoader(groupPosition, groupId);
 				return null; // set later when loader completes
 			}
@@ -451,12 +438,6 @@ public class XSelectorsFragment extends ExpandableListFragment
 	 */
 	private void startChildLoader(int groupPosition, int groupId)
 	{
-		final AppCompatActivity activity = (AppCompatActivity) getActivity();
-		if (activity == null || isDetached() || activity.isFinishing() || activity.isDestroyed())
-		{
-			return;
-		}
-
 		Log.d(XSelectorsFragment.TAG, "Invoking startChildLoader() for  groupPosition=" + groupPosition + " groupId=" + groupId);
 		switch (groupId)
 		{
@@ -478,8 +459,6 @@ public class XSelectorsFragment extends ExpandableListFragment
 	}
 
 	// L O A D
-
-	private Map<Integer, Cursor> cursors = new HashMap<>();
 
 	/**
 	 * Load WordNet data
@@ -514,7 +493,6 @@ public class XSelectorsFragment extends ExpandableListFragment
 			if (cursor != null)
 			{
 				// dump(cursor);
-				this.cursors.put(GROUPID_WORDNET, cursor);
 
 				// pass on to list adapter
 				final CursorTreeAdapter adapter = (CursorTreeAdapter) getListAdapter();
@@ -560,7 +538,6 @@ public class XSelectorsFragment extends ExpandableListFragment
 			if (cursor != null)
 			{
 				// dump(cursor);
-				this.cursors.put(GROUPID_VERBNET, cursor);
 
 				// pass on to list adapter
 				final CursorTreeAdapter adapter = (CursorTreeAdapter) getListAdapter();
@@ -607,7 +584,6 @@ public class XSelectorsFragment extends ExpandableListFragment
 			if (cursor != null)
 			{
 				// dump(cursor);
-				this.cursors.put(GROUPID_PROPBANK, cursor);
 
 				// pass on to list adapter
 				final CursorTreeAdapter adapter = (CursorTreeAdapter) getListAdapter();
@@ -653,7 +629,6 @@ public class XSelectorsFragment extends ExpandableListFragment
 			if (cursor != null)
 			{
 				// dump(cursor);
-				this.cursors.put(GROUPID_FRAMENET, cursor);
 
 				// pass on to list adapter
 				final CursorTreeAdapter adapter = (CursorTreeAdapter) getListAdapter();
@@ -673,8 +648,21 @@ public class XSelectorsFragment extends ExpandableListFragment
 	public void onGroupExpand(int groupPosition)
 	{
 		super.onGroupExpand(groupPosition);
+
 		this.groupPosition = groupPosition;
 		Log.d(XSelectorsFragment.TAG, "select " + this.groupPosition);
+	}
+
+	@Override
+	public void onGroupCollapse(final int groupPosition)
+	{
+		super.onGroupCollapse(groupPosition);
+
+		final CursorTreeAdapter adapter = (CursorTreeAdapter) getListAdapter();
+		assert adapter != null;
+		adapter.setChildrenCursor(groupPosition, null);
+		Log.d(XSelectorsFragment.TAG, "collapse " + this.groupPosition);
+		this.groupPosition = -1;
 	}
 
 	// C L I C K

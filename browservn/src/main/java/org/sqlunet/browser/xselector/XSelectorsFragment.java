@@ -72,11 +72,6 @@ public class XSelectorsFragment extends ExpandableListFragment
 	static private final String GROUPNAME_COLUMN = "xn";
 
 	/**
-	 * Loader column
-	 */
-	static private final String GROUPLOADER_COLUMN = "xloader";
-
-	/**
 	 * Database column
 	 */
 	static private final String GROUPICON_COLUMN = "xicon";
@@ -173,7 +168,7 @@ public class XSelectorsFragment extends ExpandableListFragment
 	{
 		this.groupVerbNetPosition = -1;
 		this.groupPropBankPosition = -1;
-		this.xnCursor = new MatrixCursor(new String[]{GROUPID_COLUMN, GROUPNAME_COLUMN, GROUPLOADER_COLUMN, GROUPICON_COLUMN});
+		this.xnCursor = new MatrixCursor(new String[]{GROUPID_COLUMN, GROUPNAME_COLUMN, GROUPICON_COLUMN});
 	}
 
 	// C R E A T E
@@ -206,12 +201,12 @@ public class XSelectorsFragment extends ExpandableListFragment
 		if (Settings.Source.VERBNET.test(enable))
 		{
 			this.groupVerbNetPosition = position++;
-			this.xnCursor.addRow(new Object[]{GROUPID_VERBNET, "verbnet", 2222, Integer.toString(R.drawable.verbnet)});
+			this.xnCursor.addRow(new Object[]{GROUPID_VERBNET, "verbnet", Integer.toString(R.drawable.verbnet)});
 		}
 		if (Settings.Source.PROPBANK.test(enable))
 		{
 			this.groupPropBankPosition = position++;
-			this.xnCursor.addRow(new Object[]{GROUPID_PROPBANK, "propbank", 3333, Integer.toString(R.drawable.propbank)});
+			this.xnCursor.addRow(new Object[]{GROUPID_PROPBANK, "propbank", Integer.toString(R.drawable.propbank)});
 		}
 		this.groupPosition = position >= 0 ? 0 : -1;
 		Log.d(TAG, "init position " + this.groupPosition + " " + this);
@@ -326,12 +321,11 @@ public class XSelectorsFragment extends ExpandableListFragment
 			{
 				// given the group, return a cursor for all the children within that group
 				int groupPosition = groupCursor.getPosition();
-				int loaderId = groupCursor.getInt(groupCursor.getColumnIndex(GROUPLOADER_COLUMN));
 				int groupId = groupCursor.getInt(groupCursor.getColumnIndex(GROUPID_COLUMN));
 				// String groupName = groupCursor.getString(groupCursor.getColumnIndex(GROUPNAME_COLUMN));
 				// Log.d(TAG, "group " + groupPosition + ' ' + groupName + " loader=" + loaderId);
 
-				startChildLoader(groupPosition, groupId, loaderId);
+				startChildLoader(groupPosition, groupId);
 
 				return null; // set later when loader completes
 			}
@@ -365,9 +359,8 @@ public class XSelectorsFragment extends ExpandableListFragment
 	 *
 	 * @param groupPosition group position
 	 * @param groupId       group id
-	 * @param loaderId      loader id
 	 */
-	private void startChildLoader(int groupPosition, int groupId, int loaderId)
+	private void startChildLoader(int groupPosition, int groupId)
 	{
 		final FragmentActivity activity = getActivity();
 		if (activity == null || isDetached() || activity.isFinishing() || activity.isDestroyed())
@@ -375,7 +368,7 @@ public class XSelectorsFragment extends ExpandableListFragment
 			return;
 		}
 
-		Log.d(XSelectorsFragment.TAG, "Invoking startChildLoader() for  groupPosition=" + groupPosition + " groupId=" + groupId + " loaderId=" + loaderId);
+		Log.d(XSelectorsFragment.TAG, "Invoking startChildLoader() for  groupPosition=" + groupPosition + " groupId=" + groupId);
 		switch (groupId)
 		{
 			case GROUPID_VERBNET:
@@ -492,6 +485,18 @@ public class XSelectorsFragment extends ExpandableListFragment
 		super.onGroupExpand(groupPosition);
 		this.groupPosition = groupPosition;
 		Log.d(TAG, "select " + this.groupPosition);
+	}
+
+	@Override
+	public void onGroupCollapse(final int groupPosition)
+	{
+		super.onGroupCollapse(groupPosition);
+
+		final CursorTreeAdapter adapter = (CursorTreeAdapter) getListAdapter();
+		assert adapter != null;
+		adapter.setChildrenCursor(groupPosition, null);
+		Log.d(XSelectorsFragment.TAG, "collapse " + this.groupPosition);
+		this.groupPosition = -1;
 	}
 
 	// C L I C K
