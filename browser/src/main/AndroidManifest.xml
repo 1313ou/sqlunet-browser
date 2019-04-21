@@ -484,7 +484,7 @@
 		</provider>
 
 		<service
-			android:name="org.sqlunet.browser.org.sqlunet.download.SimpleDownloaderService"
+			android:name="org.sqlunet.download.SimpleDownloaderService"
 			android:description="@string/description_service_downloader"
 			android:enabled="true"
 			android:exported="false"

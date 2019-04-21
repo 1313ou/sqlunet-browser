@@ -271,7 +271,8 @@ public class SelectorsFragment extends ListFragment
 		final String sortOrder = XSqlUNetContract.SYNSET + '.' + Words_FnWords_PbWords_VnWords.POS + ',' + Words_FnWords_PbWords_VnWords.SENSENUM;
 
 		final String tag = "selectors";
-		final SqlunetViewModel model = ViewModelProviders.of(this).get(tag, SqlunetViewModel.class); model.loadData(uri, projection, selection, selectionArgs, sortOrder, cursor -> selectorsPostprocess(cursor));
+		final SqlunetViewModel model = ViewModelProviders.of(this).get(tag, SqlunetViewModel.class);
+		model.loadData(uri, projection, selection, selectionArgs, sortOrder, cursor -> selectorsPostprocess(cursor));
 		model.getData().observe(this, cursor -> {
 
 			// pass on to list adapter

@@ -309,7 +309,8 @@ public class SensesFragment extends ListFragment
 				this.listener.onItemSelected(sense, this.word, cased, pos);
 			}
 
-			// cursor is handled by LoaderManager (+ transferred ownership to adapter), so do not call cursor.close();
+			// cursor ownership is transferred  to adapter, so do not call
+			// cursor.close();
 		}
 	}
 }
