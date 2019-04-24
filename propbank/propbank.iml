@@ -95,7 +95,6 @@
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/javac" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/library_assets" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/library_java_res" />
-      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/library_manifest" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/lint_jar" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/merged_jni_libs" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/merged_manifests" />
@@ -157,6 +156,8 @@
     <orderEntry type="library" name="Gradle: androidx.collection:collection:1.1.0-beta01@jar" level="project" />
     <orderEntry type="library" name="Gradle: androidx.lifecycle:lifecycle-process:2.0.0@aar" level="project" />
     <orderEntry type="library" name="Gradle: androidx.appcompat:appcompat-resources:1.1.0-alpha04@aar" level="project" />
+    <orderEntry type="module" module-name="treeView" />
+    <orderEntry type="module" module-name="xNet" />
     <orderEntry type="module" module-name="treeView" />
     <orderEntry type="module" module-name="xNet" />
     <orderEntry type="module" module-name="treeView" />
