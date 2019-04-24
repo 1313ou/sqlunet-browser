@@ -36,46 +36,35 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="dbe7534c-3086-4b17-848a-f5676a7f84bd" name="Default" comment="wip xloaders">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_test_espresso_espresso_core_3_2_0_alpha04_aar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_test_espresso_espresso_idling_resource_3_2_0_alpha04_aar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_test_espresso_espresso_web_3_2_0_alpha04_aar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_test_monitor_1_2_0_alpha04_aar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_test_runner_1_2_0_alpha04_aar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/browser/src/androidTest/java/org/sqlunet/browser/RunXSelectorsTree.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/browser/src/main/java/org/sqlunet/browser/xselector/XLoader.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/browservn/src/main/java/org/sqlunet/browser/xselector/XLoader.java" afterDir="false" />
+    <list default="true" id="dbe7534c-3086-4b17-848a-f5676a7f84bd" name="Default" comment="wip forgotten pieces">
+      <change afterPath="$PROJECT_DIR$/bNC/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/browser/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/browserfn/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/browservn/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/browserwn/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frameNet/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/predicateMatrix/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/propbank/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/treeView/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/verbNet/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/wordNet/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/xNet/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bNC/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/bNC/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bNC/bNC.iml" beforeDir="false" afterPath="$PROJECT_DIR$/bNC/bNC.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/browser/browser.iml" beforeDir="false" afterPath="$PROJECT_DIR$/browser/browser.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/browser/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/browser/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/browser/src/androidTest/java/org/sqlunet/browser/Tests.java" beforeDir="false" afterPath="$PROJECT_DIR$/browser/src/androidTest/java/org/sqlunet/browser/Tests.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/browser/src/main/java/org/sqlunet/browser/xselector/XSelectorsFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/browser/src/main/java/org/sqlunet/browser/xselector/XSelectorsFragment.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/browserfn/browserfn.iml" beforeDir="false" afterPath="$PROJECT_DIR$/browserfn/browserfn.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/browserfn/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/browserfn/build.gradle" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/browservn/browservn.iml" beforeDir="false" afterPath="$PROJECT_DIR$/browservn/browservn.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/browservn/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/browservn/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/browservn/src/main/java/org/sqlunet/browser/xselector/XSelectorsFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/browservn/src/main/java/org/sqlunet/browser/xselector/XSelectorsFragment.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/browserwn/browserwn.iml" beforeDir="false" afterPath="$PROJECT_DIR$/browserwn/browserwn.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/browserwn/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/browserwn/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/common/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/deploy/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/deploy/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/deploy/deploy.iml" beforeDir="false" afterPath="$PROJECT_DIR$/deploy/deploy.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/download/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/download/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/common.iml" beforeDir="false" afterPath="$PROJECT_DIR$/common/common.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/download/download.iml" beforeDir="false" afterPath="$PROJECT_DIR$/download/download.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/expandableListFragment/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/expandableListFragment/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/expandableListFragment/expandableListFragment.iml" beforeDir="false" afterPath="$PROJECT_DIR$/expandableListFragment/expandableListFragment.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameNet/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/frameNet/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/predicateMatrix/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/predicateMatrix/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/preference/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/preference/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/preference/preference.iml" beforeDir="false" afterPath="$PROJECT_DIR$/preference/preference.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/propbank/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/propbank/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/support/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/support/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/support/support.iml" beforeDir="false" afterPath="$PROJECT_DIR$/support/support.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/test/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/test.iml" beforeDir="false" afterPath="$PROJECT_DIR$/test/test.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/verbNet/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/verbNet/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frameNet/frameNet.iml" beforeDir="false" afterPath="$PROJECT_DIR$/frameNet/frameNet.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/predicateMatrix/predicateMatrix.iml" beforeDir="false" afterPath="$PROJECT_DIR$/predicateMatrix/predicateMatrix.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/propbank/propbank.iml" beforeDir="false" afterPath="$PROJECT_DIR$/propbank/propbank.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/verbNet/verbNet.iml" beforeDir="false" afterPath="$PROJECT_DIR$/verbNet/verbNet.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wordNet/wordNet.iml" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/wordNet.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/xNet/xNet.iml" beforeDir="false" afterPath="$PROJECT_DIR$/xNet/xNet.iml" afterDir="false" />
     </list>
     <list id="36f6b5c7-9521-46b4-bf4d-149db941bcca" name="NonPublic" comment="" />
     <ignored path="SqlUNet.iws" />
@@ -1422,7 +1411,7 @@
     <favorites_list name="SqlUNet" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
+    <leaf />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -1676,69 +1665,9 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
+      <pane id="AndroidView" />
       <pane id="ProjectPane" />
-      <pane id="AndroidView">
-        <subPane>
-          <expand>
-            <path>
-              <item name="SqlUNet" type="1abcf292:AndroidViewProjectNode" />
-              <item name="browser" type="feadf853:AndroidModuleNode" />
-            </path>
-            <path>
-              <item name="SqlUNet" type="1abcf292:AndroidViewProjectNode" />
-              <item name="browser" type="feadf853:AndroidModuleNode" />
-              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
-            </path>
-            <path>
-              <item name="SqlUNet" type="1abcf292:AndroidViewProjectNode" />
-              <item name="browser" type="feadf853:AndroidModuleNode" />
-              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
-              <item name="browser" type="cbb59c9e:AndroidPsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="SqlUNet" type="1abcf292:AndroidViewProjectNode" />
-              <item name="browser" type="feadf853:AndroidModuleNode" />
-              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
-              <item name="browser" type="cbb59c9e:AndroidPsiDirectoryNode" />
-              <item name="xselector" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="SqlUNet" type="1abcf292:AndroidViewProjectNode" />
-              <item name="browser" type="feadf853:AndroidModuleNode" />
-              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
-              <item name="browser" type="cbb59c9e:AndroidPsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="SqlUNet" type="1abcf292:AndroidViewProjectNode" />
-              <item name="browservn" type="feadf853:AndroidModuleNode" />
-            </path>
-            <path>
-              <item name="SqlUNet" type="1abcf292:AndroidViewProjectNode" />
-              <item name="browservn" type="feadf853:AndroidModuleNode" />
-              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
-            </path>
-            <path>
-              <item name="SqlUNet" type="1abcf292:AndroidViewProjectNode" />
-              <item name="browservn" type="feadf853:AndroidModuleNode" />
-              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
-              <item name="browser" type="cbb59c9e:AndroidPsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="SqlUNet" type="1abcf292:AndroidViewProjectNode" />
-              <item name="browservn" type="feadf853:AndroidModuleNode" />
-              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
-              <item name="browser" type="cbb59c9e:AndroidPsiDirectoryNode" />
-              <item name="xselector" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="SqlUNet" type="1abcf292:AndroidViewProjectNode" />
-              <item name="Gradle Scripts" type="ae0cef3a:AndroidBuildScriptsGroupNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
+      <pane id="PackagesPane" />
       <pane id="Scope">
         <subPane subId="Scope 'Project Files'; set:Project Files; class com.intellij.psi.search.scope.ProjectFilesScope">
           <expand>
@@ -2515,20 +2444,6 @@
       <option name="presentableId" value="Default" />
       <updated>1487150992421</updated>
     </task>
-    <task id="LOCAL-00098" summary="vn">
-      <created>1513147067724</created>
-      <option name="number" value="00098" />
-      <option name="presentableId" value="LOCAL-00098" />
-      <option name="project" value="LOCAL" />
-      <updated>1513147067725</updated>
-    </task>
-    <task id="LOCAL-00099" summary="vn">
-      <created>1513148724307</created>
-      <option name="number" value="00099" />
-      <option name="presentableId" value="LOCAL-00099" />
-      <option name="project" value="LOCAL" />
-      <updated>1513148724307</updated>
-    </task>
     <task id="LOCAL-00100" summary="vn">
       <created>1513171343510</created>
       <option name="number" value="00100" />
@@ -2858,13 +2773,24 @@
       <option name="project" value="LOCAL" />
       <updated>1555830705780</updated>
     </task>
-    <option name="localTasksCounter" value="147" />
+    <task id="LOCAL-00147" summary="wip xloaders return to loadermanager">
+      <created>1556091445902</created>
+      <option name="number" value="00147" />
+      <option name="presentableId" value="LOCAL-00147" />
+      <option name="project" value="LOCAL" />
+      <updated>1556091445911</updated>
+    </task>
+    <task id="LOCAL-00148" summary="wip forgotten pieces">
+      <created>1556091550691</created>
+      <option name="number" value="00148" />
+      <option name="presentableId" value="LOCAL-00148" />
+      <option name="project" value="LOCAL" />
+      <updated>1556091550691</updated>
+    </task>
+    <option name="localTasksCounter" value="149" />
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="RunXSelectorsTree - 2019.04.23 at 08h 27m 29s.xml">
-      <configuration name="RunXSelectorsTree" configurationId="AndroidTestRunConfigurationType" />
-    </history-entry>
     <history-entry file="RunXSelectorsTree - 2019.04.23 at 08h 28m 00s.xml">
       <configuration name="RunXSelectorsTree" configurationId="AndroidTestRunConfigurationType" />
     </history-entry>
@@ -2892,6 +2818,9 @@
     <history-entry file="RunXSelectorsTree - 2019.04.24 at 09h 23m 25s.xml">
       <configuration name="RunXSelectorsTree" configurationId="AndroidTestRunConfigurationType" />
     </history-entry>
+    <history-entry file="RunXSelectorsTree - 2019.04.24 at 09h 35m 40s.xml">
+      <configuration name="RunXSelectorsTree" configurationId="AndroidTestRunConfigurationType" />
+    </history-entry>
   </component>
   <component name="TodoView" selected-index="3">
     <todo-panel id="selected-file">
@@ -2917,17 +2846,17 @@
       <window_info id="Resources Explorer" order="9" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" sideWeight="0.27367577" weight="0.3183154" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.23033708" weight="0.33986288" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.2295345" weight="0.33986288" />
       <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.30497593" weight="0.28991184" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" sideWeight="0.49808428" weight="0.32843137" />
-      <window_info anchor="bottom" id="Android Profiler" order="7" />
-      <window_info anchor="bottom" id="Logcat" order="8" sideWeight="0.74959874" side_tool="true" visible="true" weight="0.40744367" />
+      <window_info anchor="bottom" id="Android Profiler" order="7" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Logcat" order="8" sideWeight="0.52487963" side_tool="true" visible="true" weight="0.40940255" />
       <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.42502004" side_tool="true" weight="0.35847208" />
-      <window_info active="true" anchor="bottom" id="Build" order="10" sideWeight="0.2504013" visible="true" weight="0.40744367" />
+      <window_info anchor="bottom" id="Build" order="10" sideWeight="0.38202247" weight="0.40744367" />
       <window_info anchor="bottom" id="Android Monitor" order="11" sideWeight="0.82428116" weight="0.39513677" />
-      <window_info anchor="bottom" id="Version Control" order="12" sideWeight="0.39007092" weight="0.40940255" />
+      <window_info active="true" anchor="bottom" id="Version Control" order="12" sideWeight="0.4751204" visible="true" weight="0.40940255" />
       <window_info anchor="bottom" id="Terminal" order="13" sideWeight="0.3136289" weight="0.32615083" />
       <window_info active="true" anchor="bottom" id="Gradle Console" order="14" sideWeight="0.4729064" side_tool="true" visible="true" weight="0.3107843" />
       <window_info anchor="bottom" id="Messages" order="15" sideWeight="0.5270936" weight="0.3107843" />
@@ -3012,8 +2941,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$" />
     </ignored-roots>
-    <MESSAGE value="vn" />
-    <MESSAGE value="simple download notification" />
     <MESSAGE value="guard against unmounted external dirs" />
     <MESSAGE value="inferred null annotation" />
     <MESSAGE value="vn pre-release" />
@@ -3037,7 +2964,9 @@
     <MESSAGE value="wip treeview" />
     <MESSAGE value="wip web loader" />
     <MESSAGE value="wip xloaders" />
-    <option name="LAST_COMMIT_MESSAGE" value="wip xloaders" />
+    <MESSAGE value="wip xloaders return to loadermanager" />
+    <MESSAGE value="wip forgotten pieces" />
+    <option name="LAST_COMMIT_MESSAGE" value="wip forgotten pieces" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
