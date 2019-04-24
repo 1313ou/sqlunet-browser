@@ -103,4 +103,26 @@ class Tests
 			}
 		}
 	}
+
+	static public void xselectorsRunTree()
+	{
+		for (String word : DataUtils.getWordList())
+		{
+			Actions.do_typeSearch(R.id.search, word);
+
+			// progressMessage list
+			final Matcher<View> list = allOf(withId(android.R.id.list), instanceOf(ListView.class));
+			onView(list).check(matches(isDisplayed()));
+
+			//for (String section : new String[]{"wordnet", "verbnet", "propbank", "framenet"})
+			for (String section : new String[]{"wordnet"})
+			{
+				for (int i = 0; i < 50; i++)
+				{
+					onView(withChild(allOf(withId(R.id.xn), instanceOf(TextView.class), withText(section)))) //
+							.perform(click());
+				}
+			}
+		}
+	}
 }

@@ -25,12 +25,12 @@ android {
 
 dependencies {
     implementation 'junit:junit:4.12'
-    implementation 'androidx.appcompat:appcompat:1.1.0-alpha03'
-    implementation 'androidx.annotation:annotation:1.1.0-alpha02'
+    implementation 'androidx.appcompat:appcompat:1.1.0-alpha04'
+    implementation 'androidx.annotation:annotation:1.1.0-beta01'
     implementation 'androidx.legacy:legacy-support-v13:1.0.0'
-    implementation 'androidx.test:runner:1.1.2-alpha02'
-    implementation 'androidx.test.espresso:espresso-core:3.2.0-alpha02'
-    implementation 'androidx.test.espresso:espresso-web:3.2.0-alpha02'
+    implementation 'androidx.test:runner:1.2.0-alpha04'
+    implementation 'androidx.test.espresso:espresso-core:3.2.0-alpha04'
+    implementation 'androidx.test.espresso:espresso-web:3.2.0-alpha04'
     implementation 'androidx.test.uiautomator:uiautomator:2.2.0'
 
     // local unit tests (JUnit 4 framework)
