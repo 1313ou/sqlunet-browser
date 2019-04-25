@@ -300,12 +300,17 @@ public class XSelectorsFragment extends ExpandableListFragment
 		final String[] selectionArgs = {XSelectorsFragment.this.word};
 		final String sortOrder = XSqlUNetContract.POS + '.' + Words_PbWords_VnWords.POS + ',' + Words_PbWords_VnWords.SENSENUM;
 
-		final String tag = "xselectors.id";
+		final String tag = "xselectors.wordid";
 		final SqlunetViewModel model = ViewModelProviders.of(this).get(tag, SqlunetViewModel.class);
 		model.loadData(uri, projection, selection, selectionArgs, sortOrder, this::xselectorsPostProcess);
-		model.getData().observe(this, cursor -> initialize());
+		model.getData().observe(this, unusedCursor -> initialize());
 	}
 
+	/**
+	 * Read wordId from cursor
+	 *
+	 * @param cursor cursor
+	 */
 	private void xselectorsPostProcess(@NonNull final Cursor cursor)
 	{
 		// store source
@@ -317,7 +322,7 @@ public class XSelectorsFragment extends ExpandableListFragment
 	}
 
 	/**
-	 * Initialize
+	 * Initialize adapter
 	 */
 	private void initialize()
 	{
@@ -336,13 +341,15 @@ public class XSelectorsFragment extends ExpandableListFragment
 				// Log.d(XSelectorsFragment.TAG, "group " + groupPosition + ' ' + groupName);
 
 				// cached
-				if (XSelectorsFragment.this.cursorId == groupId && XSelectorsFragment.this.cursor != null)
+				if (XSelectorsFragment.this.cursorId == groupId &&
+						XSelectorsFragment.this.cursor != null &&
+						!XSelectorsFragment.this.cursor.isClosed())
 				{
 					return XSelectorsFragment.this.cursor;
 				}
 
 				// load
-				startChildLoader(groupPosition, groupId);
+				getActivity().runOnUiThread(() -> startChildLoader(groupPosition, groupId));
 				return null; // set later when loader completes
 			}
 

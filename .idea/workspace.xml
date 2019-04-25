@@ -36,12 +36,9 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="dbe7534c-3086-4b17-848a-f5676a7f84bd" name="Default" comment="wip forgotten pieces">
+    <list default="true" id="dbe7534c-3086-4b17-848a-f5676a7f84bd" name="Default" comment="wip xselectors with livedata">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/browser/browser.iml" beforeDir="false" afterPath="$PROJECT_DIR$/browser/browser.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/browser/src/main/java/org/sqlunet/browser/xselector/XLoader.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/browser/src/main/java/org/sqlunet/browser/xselector/XSelectorsFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/browser/src/main/java/org/sqlunet/browser/xselector/XSelectorsFragment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/browservn/src/main/java/org/sqlunet/browser/xselector/XLoader.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/browservn/src/main/java/org/sqlunet/browser/xselector/XSelectorsFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/browservn/src/main/java/org/sqlunet/browser/xselector/XSelectorsFragment.java" afterDir="false" />
     </list>
     <list id="36f6b5c7-9521-46b4-bf4d-149db941bcca" name="NonPublic" comment="" />
@@ -1390,11 +1387,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/browser/src/main/java/org/sqlunet/browser/xselector/XSelectorsFragment.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="423">
-              <caret line="403" lean-forward="true" selection-start-line="395" selection-end-line="403" />
+            <state relative-caret-position="-1731">
+              <caret line="389" lean-forward="true" selection-start-line="389" selection-end-line="389" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -1402,17 +1399,17 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/browservn/src/main/java/org/sqlunet/browser/xselector/XSelectorsFragment.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="176">
-              <caret line="355" lean-forward="true" selection-start-line="355" selection-end-line="355" />
+            <state relative-caret-position="232">
+              <caret line="346" selection-start-line="346" selection-end-line="346" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#6871#6904#0" expanded="true" />
                 <element signature="e#6956#6957#0" expanded="true" />
                 <element signature="e#6987#6988#0" expanded="true" />
-                <element signature="e#15808#15841#0" expanded="true" />
+                <element signature="e#15910#15943#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -1432,7 +1429,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>.addTo(parent)</find>
       <find>LoaderManager</find>
       <find>TreeNode[]</find>
       <find>loadermanager</find>
@@ -1462,6 +1458,7 @@
       <find>getFragment</find>
       <find>Support</find>
       <find>support</find>
+      <find>setChil</find>
     </findStrings>
     <replaceStrings>
       <replace>org.sqlunet.download</replace>
@@ -1614,10 +1611,10 @@
     <scope name="Resources" pattern="file[bNC]:src/main/res//*||file[browser]:src/main/res//*||file[browserfn]:src/main/res//*||file[browserwn]:src/main/res//*||file[common]:src/main/res//*||file[expandableListFragment]:src/main/res//*||file[frameNet]:src/main/res//*||file[predicateMatrix]:src/main/res//*||file[propbank]:src/main/res//*||file[support]:src/main/res//*||file[treeView]:src/main/res//*||file[verbNet]:src/main/res//*||file[wordNet]:src/main/res//*||file[xNet]:src/main/res//*||file[browservn]:src/main/res//*" />
     <scope name="Values" pattern="(file[bNC]:src/main/res//*||file[expandableListFragment]:src/main/res//*||file[frameNet]:src/main/res//*||file[predicateMatrix]:src/main/res//*||file[propbank]:src/main/res//*||file[support]:src/main/res//*||file[treeView]:src/main/res//*||file[verbNet]:src/main/res//*||file[wordNet]:src/main/res//*||file[xNet]:src/main/res//*)&amp;&amp;!file[expandableListFragment]:*/&amp;&amp;!file[xNet]:*/&amp;&amp;!file[wordNet]:*/&amp;&amp;!file[propbank]:*/&amp;&amp;!file[predicateMatrix]:*/&amp;&amp;!file[test]:*/&amp;&amp;!file[support]:*/&amp;&amp;!file[verbNet]:*/&amp;&amp;!file[frameNet]:*/&amp;&amp;!file[treeView]:*/&amp;&amp;!file[bNC]:*/||file[browser]:src/main/res/values//*||file[browser]:src/main/res/values-land//*||file[browser]:src/main/res/values-large//*||file[browserfn]:src/main/res/values//*||file[browserfn]:src/main/res/values-land//*||file[browserfn]:src/main/res/values-large//*||file[browserwn]:src/main/res/*||file[browserwn]:src/main/res/values//*||file[browserwn]:src/main/res/values-land//*||file[browserwn]:src/main/res/values-large//*||file[common]:src/main/res/values//*||file[common]:src/main/res/values-v21//*||file[common]:src/main/res/values-w600dp//*||file[common]:src/main/res/values-w720dp//*||file[common]:src/main/res/values-w820dp//*||file[browservn]:src/main/res/values//*||file[browservn]:src/main/res/values-land//*||file[browservn]:src/main/res/values-large//*" />
   </component>
-  <component name="ProjectFrameBounds">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="51" />
     <option name="y" value="28" />
-    <option name="width" value="1288" />
+    <option name="width" value="1287" />
     <option name="height" value="1172" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
@@ -2501,13 +2498,6 @@
       <option name="presentableId" value="Default" />
       <updated>1487150992421</updated>
     </task>
-    <task id="LOCAL-00102" summary="vn">
-      <created>1513233824658</created>
-      <option name="number" value="00102" />
-      <option name="presentableId" value="LOCAL-00102" />
-      <option name="project" value="LOCAL" />
-      <updated>1513233824658</updated>
-    </task>
     <task id="LOCAL-00103" summary="vn">
       <created>1513235307359</created>
       <option name="number" value="00103" />
@@ -2844,7 +2834,14 @@
       <option name="project" value="LOCAL" />
       <updated>1556170783778</updated>
     </task>
-    <option name="localTasksCounter" value="151" />
+    <task id="LOCAL-00151" summary="wip xselectors with livedata">
+      <created>1556174189658</created>
+      <option name="number" value="00151" />
+      <option name="presentableId" value="LOCAL-00151" />
+      <option name="project" value="LOCAL" />
+      <updated>1556174189658</updated>
+    </task>
+    <option name="localTasksCounter" value="152" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -2889,10 +2886,9 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="51" y="28" width="1288" height="1172" extended-state="0" />
-    <editor active="true" />
+    <frame x="51" y="28" width="1287" height="1172" extended-state="0" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.67601246" visible="true" weight="0.2857143" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.67601246" visible="true" weight="0.23212852" />
       <window_info id="Structure" order="1" sideWeight="0.47352496" side_tool="true" weight="0.27697262" />
       <window_info id="Captures" order="2" sideWeight="0.32398754" side_tool="true" weight="0.24619086" />
       <window_info id="Capture Tool" order="3" />
@@ -2903,18 +2899,18 @@
       <window_info id="Build Variants" order="8" sideWeight="0.50392157" side_tool="true" weight="0.18117131" />
       <window_info id="Resources Explorer" order="9" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" sideWeight="0.27367577" weight="0.31800392" />
+      <window_info anchor="bottom" id="Find" order="1" sideWeight="0.27331188" weight="0.31733593" />
       <window_info anchor="bottom" id="Run" order="2" sideWeight="0.2295345" weight="0.33986288" />
-      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.30497593" weight="0.28991184" />
+      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.30441767" weight="0.28991184" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" sideWeight="0.49808428" weight="0.32843137" />
       <window_info anchor="bottom" id="Android Profiler" order="7" />
-      <window_info active="true" anchor="bottom" id="Logcat" order="8" sideWeight="0.52487963" side_tool="true" visible="true" weight="0.40940255" />
+      <window_info anchor="bottom" id="Logcat" order="8" sideWeight="0.69638556" side_tool="true" visible="true" weight="0.22918707" />
       <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.42502004" side_tool="true" weight="0.35847208" />
       <window_info anchor="bottom" id="Build" order="10" sideWeight="0.38202247" weight="0.40744367" />
       <window_info anchor="bottom" id="Android Monitor" order="11" sideWeight="0.82428116" weight="0.39513677" />
-      <window_info anchor="bottom" id="Version Control" order="12" sideWeight="0.4751204" weight="0.22918707" />
+      <window_info active="true" anchor="bottom" id="Version Control" order="12" sideWeight="0.30361447" visible="true" weight="0.22918707" />
       <window_info anchor="bottom" id="Terminal" order="13" sideWeight="0.3136289" weight="0.32615083" />
       <window_info active="true" anchor="bottom" id="Gradle Console" order="14" sideWeight="0.4729064" side_tool="true" visible="true" weight="0.3107843" />
       <window_info anchor="bottom" id="Messages" order="15" sideWeight="0.5270936" weight="0.3107843" />
@@ -2999,7 +2995,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$" />
     </ignored-roots>
-    <MESSAGE value="guard against unmounted external dirs" />
     <MESSAGE value="inferred null annotation" />
     <MESSAGE value="vn pre-release" />
     <MESSAGE value="rc 22" />
@@ -3024,7 +3019,8 @@
     <MESSAGE value="wip xloaders" />
     <MESSAGE value="wip xloaders return to loadermanager" />
     <MESSAGE value="wip forgotten pieces" />
-    <option name="LAST_COMMIT_MESSAGE" value="wip forgotten pieces" />
+    <MESSAGE value="wip xselectors with livedata" />
+    <option name="LAST_COMMIT_MESSAGE" value="wip xselectors with livedata" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -3033,6 +3029,12 @@
           <properties class="java.lang.NullPointerException" package="java.lang" />
           <option name="timeStamp" value="33" />
         </breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/browser/src/main/java/org/sqlunet/browser/xselector/XSelectorsFragment.java</url>
+          <line>383</line>
+          <properties />
+          <option name="timeStamp" value="34" />
+        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>
@@ -3048,13 +3050,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="78">
           <caret line="15" column="13" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///opt/androidsdk/sources/android-28/android/widget/SimpleCursorTreeAdapter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2436">
-          <caret line="39" column="22" selection-start-line="39" selection-start-column="22" selection-end-line="39" selection-end-column="22" />
         </state>
       </provider>
     </entry>
@@ -3192,87 +3187,6 @@
             <element signature="method#onGroupExpand#0;class#ExpandableListFragment#0" />
             <element signature="docComment;method#onCreateContextMenu#0;class#ExpandableListFragment#0" />
             <element signature="method#onCreateContextMenu#0;class#ExpandableListFragment#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///opt/androidsdk/sources/android-28/android/widget/CursorTreeAdapter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="91">
-          <caret line="37" column="73" selection-start-line="37" selection-start-column="48" selection-end-line="37" selection-end-column="73" />
-          <folding>
-            <element signature="docComment;class#CursorTreeAdapter#0" />
-            <element signature="docComment;field#mGroupCursorHelper#0;class#CursorTreeAdapter#0" />
-            <element signature="docComment;field#mChildrenCursorHelpers#0;class#CursorTreeAdapter#0" />
-            <element signature="docComment;method#CursorTreeAdapter#0;class#CursorTreeAdapter#0" />
-            <element signature="docComment;method#CursorTreeAdapter#1;class#CursorTreeAdapter#0" />
-            <element signature="method#init#0;class#CursorTreeAdapter#0" />
-            <element signature="docComment;method#getChildrenCursorHelper#0;class#CursorTreeAdapter#0" />
-            <element signature="method#getChildrenCursorHelper#0;class#CursorTreeAdapter#0" />
-            <element signature="e#3903#4215#1" />
-            <element signature="docComment;method#getChildrenCursor#0;class#CursorTreeAdapter#0" />
-            <element signature="docComment;method#setGroupCursor#0;class#CursorTreeAdapter#0" />
-            <element signature="docComment;method#setChildrenCursor#0;class#CursorTreeAdapter#0" />
-            <element signature="method#setChildrenCursor#0;class#CursorTreeAdapter#0" />
-            <element signature="method#getChild#0;class#CursorTreeAdapter#0" />
-            <element signature="method#getChildrenCount#0;class#CursorTreeAdapter#0" />
-            <element signature="method#getGroup#0;class#CursorTreeAdapter#0" />
-            <element signature="method#getGroupView#0;class#CursorTreeAdapter#0" />
-            <element signature="e#7705#7816#1" />
-            <element signature="e#7875#7954#1" />
-            <element signature="e#7960#8000#1" />
-            <element signature="docComment;method#newGroupView#0;class#CursorTreeAdapter#0" />
-            <element signature="docComment;method#bindGroupView#0;class#CursorTreeAdapter#0" />
-            <element signature="method#getChildView#0;class#CursorTreeAdapter#0" />
-            <element signature="e#9529#9640#1" />
-            <element signature="e#9699#9779#1" />
-            <element signature="e#9785#9825#1" />
-            <element signature="docComment;method#newChildView#0;class#CursorTreeAdapter#0" />
-            <element signature="docComment;method#bindChildView#0;class#CursorTreeAdapter#0" />
-            <element signature="method#releaseCursorHelpers#0;class#CursorTreeAdapter#0" />
-            <element signature="e#11375#11448#1" />
-            <element signature="docComment;method#notifyDataSetChanged#1;class#CursorTreeAdapter#0" />
-            <element signature="method#notifyDataSetChanged#1;class#CursorTreeAdapter#0" />
-            <element signature="e#11931#11978#1" />
-            <element signature="method#notifyDataSetInvalidated#0;class#CursorTreeAdapter#0" />
-            <element signature="docComment;method#deactivateChildrenCursorHelper#0;class#CursorTreeAdapter#0" />
-            <element signature="method#deactivateChildrenCursorHelper#0;class#CursorTreeAdapter#0" />
-            <element signature="docComment;method#convertToString#0;class#CursorTreeAdapter#0" />
-            <element signature="docComment;method#runQueryOnBackgroundThread#0;class#CursorTreeAdapter#0" />
-            <element signature="method#runQueryOnBackgroundThread#0;class#CursorTreeAdapter#0" />
-            <element signature="e#13139#13212#1" />
-            <element signature="method#getFilter#0;class#CursorTreeAdapter#0" />
-            <element signature="e#13339#13402#1" />
-            <element signature="docComment;method#getFilterQueryProvider#0;class#CursorTreeAdapter#0" />
-            <element signature="docComment;method#setFilterQueryProvider#0;class#CursorTreeAdapter#0" />
-            <element signature="docComment;method#changeCursor#0;class#CursorTreeAdapter#0" />
-            <element signature="docComment;method#getCursor#0;class#CursorTreeAdapter#0" />
-            <element signature="docComment;class#MyCursorHelper#0;class#CursorTreeAdapter#0" />
-            <element signature="class#MyCursorHelper#0;class#CursorTreeAdapter#0" />
-            <element signature="method#MyCursorHelper#0;class#MyCursorHelper#0;class#CursorTreeAdapter#0" />
-            <element signature="e#15106#15253#1" />
-            <element signature="method#getCount#0;class#MyCursorHelper#0;class#CursorTreeAdapter#0" />
-            <element signature="e#15413#15471#1" />
-            <element signature="e#15477#15518#1" />
-            <element signature="method#getId#0;class#MyCursorHelper#0;class#CursorTreeAdapter#0" />
-            <element signature="e#15620#15822#1" />
-            <element signature="e#15676#15753#1" />
-            <element signature="e#15759#15808#1" />
-            <element signature="e#15828#15869#1" />
-            <element signature="method#moveTo#0;class#MyCursorHelper#0;class#CursorTreeAdapter#0" />
-            <element signature="e#16012#16059#1" />
-            <element signature="e#16065#16109#1" />
-            <element signature="method#changeCursor#0;class#MyCursorHelper#0;class#CursorTreeAdapter#0" />
-            <element signature="e#16328#16686#1" />
-            <element signature="e#16692#16891#1" />
-            <element signature="method#deactivate#0;class#MyCursorHelper#0;class#CursorTreeAdapter#0" />
-            <element signature="e#16964#17003#1" />
-            <element signature="class#MyContentObserver#0;class#MyCursorHelper#0;class#CursorTreeAdapter#0" />
-            <element signature="method#onChange#0;class#MyContentObserver#0;class#MyCursorHelper#0;class#CursorTreeAdapter#0" />
-            <element signature="e#17750#17946#1" />
-            <element signature="class#MyDataSetObserver#0;class#MyCursorHelper#0;class#CursorTreeAdapter#0" />
-            <element signature="method#onChanged#0;class#MyDataSetObserver#0;class#MyCursorHelper#0;class#CursorTreeAdapter#0" />
-            <element signature="method#onInvalidated#0;class#MyDataSetObserver#0;class#MyCursorHelper#0;class#CursorTreeAdapter#0" />
           </folding>
         </state>
       </provider>
@@ -3531,26 +3445,110 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/browser/src/main/java/org/sqlunet/browser/xselector/XSelectorsFragment.java">
+    <entry file="file:///opt/androidsdk/sources/android-28/android/widget/SimpleCursorTreeAdapter.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="423">
-          <caret line="403" lean-forward="true" selection-start-line="395" selection-end-line="403" />
+        <state relative-caret-position="1402">
+          <caret line="171" column="11" selection-start-line="171" selection-start-column="11" selection-end-line="171" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///opt/androidsdk/sources/android-28/android/widget/CursorTreeAdapter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="197" selection-start-line="197" selection-end-line="197" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="docComment;class#CursorTreeAdapter#0" />
+            <element signature="docComment;field#mGroupCursorHelper#0;class#CursorTreeAdapter#0" />
+            <element signature="docComment;field#mChildrenCursorHelpers#0;class#CursorTreeAdapter#0" />
+            <element signature="docComment;method#CursorTreeAdapter#0;class#CursorTreeAdapter#0" />
+            <element signature="docComment;method#CursorTreeAdapter#1;class#CursorTreeAdapter#0" />
+            <element signature="method#init#0;class#CursorTreeAdapter#0" />
+            <element signature="docComment;method#getChildrenCursorHelper#0;class#CursorTreeAdapter#0" />
+            <element signature="docComment;method#getChildrenCursor#0;class#CursorTreeAdapter#0" />
+            <element signature="docComment;method#setGroupCursor#0;class#CursorTreeAdapter#0" />
+            <element signature="docComment;method#setChildrenCursor#0;class#CursorTreeAdapter#0" />
+            <element signature="method#setChildrenCursor#0;class#CursorTreeAdapter#0" />
+            <element signature="method#getChild#0;class#CursorTreeAdapter#0" />
+            <element signature="method#getChildrenCount#0;class#CursorTreeAdapter#0" />
+            <element signature="method#getGroup#0;class#CursorTreeAdapter#0" />
+            <element signature="e#7875#7954#1" />
+            <element signature="e#7960#8000#1" />
+            <element signature="docComment;method#newGroupView#0;class#CursorTreeAdapter#0" />
+            <element signature="docComment;method#bindGroupView#0;class#CursorTreeAdapter#0" />
+            <element signature="method#getChildView#0;class#CursorTreeAdapter#0" />
+            <element signature="e#9529#9640#1" />
+            <element signature="e#9699#9779#1" />
+            <element signature="e#9785#9825#1" />
+            <element signature="docComment;method#newChildView#0;class#CursorTreeAdapter#0" />
+            <element signature="docComment;method#bindChildView#0;class#CursorTreeAdapter#0" />
+            <element signature="method#releaseCursorHelpers#0;class#CursorTreeAdapter#0" />
+            <element signature="e#11375#11448#1" />
+            <element signature="docComment;method#notifyDataSetChanged#1;class#CursorTreeAdapter#0" />
+            <element signature="method#notifyDataSetChanged#1;class#CursorTreeAdapter#0" />
+            <element signature="e#11931#11978#1" />
+            <element signature="method#notifyDataSetInvalidated#0;class#CursorTreeAdapter#0" />
+            <element signature="docComment;method#deactivateChildrenCursorHelper#0;class#CursorTreeAdapter#0" />
+            <element signature="method#deactivateChildrenCursorHelper#0;class#CursorTreeAdapter#0" />
+            <element signature="docComment;method#convertToString#0;class#CursorTreeAdapter#0" />
+            <element signature="docComment;method#runQueryOnBackgroundThread#0;class#CursorTreeAdapter#0" />
+            <element signature="method#runQueryOnBackgroundThread#0;class#CursorTreeAdapter#0" />
+            <element signature="e#13139#13212#1" />
+            <element signature="method#getFilter#0;class#CursorTreeAdapter#0" />
+            <element signature="e#13339#13402#1" />
+            <element signature="docComment;method#getFilterQueryProvider#0;class#CursorTreeAdapter#0" />
+            <element signature="docComment;method#setFilterQueryProvider#0;class#CursorTreeAdapter#0" />
+            <element signature="docComment;method#changeCursor#0;class#CursorTreeAdapter#0" />
+            <element signature="docComment;method#getCursor#0;class#CursorTreeAdapter#0" />
+            <element signature="docComment;class#MyCursorHelper#0;class#CursorTreeAdapter#0" />
+            <element signature="class#MyCursorHelper#0;class#CursorTreeAdapter#0" />
+            <element signature="method#MyCursorHelper#0;class#MyCursorHelper#0;class#CursorTreeAdapter#0" />
+            <element signature="e#15106#15253#1" />
+            <element signature="method#getCount#0;class#MyCursorHelper#0;class#CursorTreeAdapter#0" />
+            <element signature="e#15413#15471#1" />
+            <element signature="e#15477#15518#1" />
+            <element signature="method#getId#0;class#MyCursorHelper#0;class#CursorTreeAdapter#0" />
+            <element signature="e#15620#15822#1" />
+            <element signature="e#15676#15753#1" />
+            <element signature="e#15759#15808#1" />
+            <element signature="e#15828#15869#1" />
+            <element signature="method#moveTo#0;class#MyCursorHelper#0;class#CursorTreeAdapter#0" />
+            <element signature="e#16012#16059#1" />
+            <element signature="e#16065#16109#1" />
+            <element signature="method#changeCursor#0;class#MyCursorHelper#0;class#CursorTreeAdapter#0" />
+            <element signature="e#16328#16686#1" />
+            <element signature="e#16692#16891#1" />
+            <element signature="method#deactivate#0;class#MyCursorHelper#0;class#CursorTreeAdapter#0" />
+            <element signature="e#16964#17003#1" />
+            <element signature="class#MyContentObserver#0;class#MyCursorHelper#0;class#CursorTreeAdapter#0" />
+            <element signature="method#onChange#0;class#MyContentObserver#0;class#MyCursorHelper#0;class#CursorTreeAdapter#0" />
+            <element signature="e#17750#17946#1" />
+            <element signature="class#MyDataSetObserver#0;class#MyCursorHelper#0;class#CursorTreeAdapter#0" />
+            <element signature="method#onChanged#0;class#MyDataSetObserver#0;class#MyCursorHelper#0;class#CursorTreeAdapter#0" />
+            <element signature="method#onInvalidated#0;class#MyDataSetObserver#0;class#MyCursorHelper#0;class#CursorTreeAdapter#0" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/browservn/src/main/java/org/sqlunet/browser/xselector/XSelectorsFragment.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="176">
-          <caret line="355" lean-forward="true" selection-start-line="355" selection-end-line="355" />
+        <state relative-caret-position="232">
+          <caret line="346" selection-start-line="346" selection-end-line="346" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#6871#6904#0" expanded="true" />
             <element signature="e#6956#6957#0" expanded="true" />
             <element signature="e#6987#6988#0" expanded="true" />
-            <element signature="e#15808#15841#0" expanded="true" />
+            <element signature="e#15910#15943#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/browser/src/main/java/org/sqlunet/browser/xselector/XSelectorsFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1731">
+          <caret line="389" lean-forward="true" selection-start-line="389" selection-end-line="389" />
+          <folding>
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
