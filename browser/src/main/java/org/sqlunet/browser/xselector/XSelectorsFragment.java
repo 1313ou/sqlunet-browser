@@ -1,5 +1,6 @@
 package org.sqlunet.browser.xselector;
 
+import android.content.Context;
 import android.database.Cursor;
 import android.database.MatrixCursor;
 import android.net.Uri;
@@ -147,16 +148,6 @@ public class XSelectorsFragment extends ExpandableListFragment
 	private final MatrixCursor xnCursor;
 
 	/**
-	 * Cached cursor id
-	 */
-	private int cursorId;
-
-	/**
-	 * Cache
-	 */
-	private Cursor cursor;
-
-	/**
 	 * WordNet group position
 	 */
 	private int groupWordNetPosition;
@@ -196,6 +187,26 @@ public class XSelectorsFragment extends ExpandableListFragment
 	 * Word id
 	 */
 	private long wordId;
+
+	/**
+	 * WordNet model
+	 */
+	private SqlunetViewModel wnModel;
+
+	/**
+	 * VerbNet model
+	 */
+	private SqlunetViewModel vnModel;
+
+	/**
+	 * PropBank model
+	 */
+	private SqlunetViewModel pbModel;
+
+	/**
+	 * FrameNet model
+	 */
+	private SqlunetViewModel fnModel;
 
 	/**
 	 * Mandatory empty constructor for the fragment manager to instantiate the fragment (e.g. upon screen orientation changes).
@@ -259,6 +270,99 @@ public class XSelectorsFragment extends ExpandableListFragment
 		}
 		this.groupPosition = position >= 0 ? 0 : -1;
 		Log.d(XSelectorsFragment.TAG, "init position " + this.groupPosition + " " + this);
+	}
+
+	@Override
+	public void onAttach(@NonNull final Context context)
+	{
+		super.onAttach(context);
+		makeModels();
+	}
+
+	/**
+	 * Make view models
+	 */
+	private void makeModels()
+	{
+		this.wnModel = ViewModelProviders.of(this).get("xselectors.wn", SqlunetViewModel.class);
+		this.wnModel.getData().observe(this, cursor -> {
+
+			if (cursor != null)
+			{
+				// dump(cursor);
+
+				// pass on to list adapter
+				final CursorTreeAdapter adapter = (CursorTreeAdapter) getListAdapter();
+				if (adapter != null)
+				{
+					adapter.setChildrenCursor(groupPosition, cursor);
+				}
+			}
+			else
+			{
+				Log.i(XSelectorsFragment.TAG, "WN none");
+			}
+		});
+
+		this.vnModel = ViewModelProviders.of(this).get("xselectors.vn", SqlunetViewModel.class);
+		this.vnModel.getData().observe(this, cursor -> {
+
+			if (cursor != null)
+			{
+				// dump(cursor);
+
+				// pass on to list adapter
+				final CursorTreeAdapter adapter = (CursorTreeAdapter) getListAdapter();
+				if (adapter != null)
+				{
+					adapter.setChildrenCursor(groupPosition, cursor);
+				}
+			}
+			else
+			{
+				Log.i(XSelectorsFragment.TAG, "VN none");
+			}
+		});
+
+		this.pbModel = ViewModelProviders.of(this).get("xselectors.pb", SqlunetViewModel.class);
+		this.pbModel.getData().observe(this, cursor -> {
+
+			if (cursor != null)
+			{
+				// dump(cursor);
+
+				// pass on to list adapter
+				final CursorTreeAdapter adapter = (CursorTreeAdapter) getListAdapter();
+				if (adapter != null)
+				{
+					adapter.setChildrenCursor(groupPosition, cursor);
+				}
+			}
+			else
+			{
+				Log.i(XSelectorsFragment.TAG, "PB none");
+			}
+		});
+
+		this.fnModel = ViewModelProviders.of(this).get("xselectors.fn", SqlunetViewModel.class);
+		this.fnModel.getData().observe(this, cursor -> {
+
+			if (cursor != null)
+			{
+				// dump(cursor);
+
+				// pass on to list adapter
+				final CursorTreeAdapter adapter = (CursorTreeAdapter) getListAdapter();
+				if (adapter != null)
+				{
+					adapter.setChildrenCursor(groupPosition, cursor);
+				}
+			}
+			else
+			{
+				Log.i(XSelectorsFragment.TAG, "FN none");
+			}
+		});
 	}
 
 	// V I E W
@@ -340,8 +444,7 @@ public class XSelectorsFragment extends ExpandableListFragment
 		final String[] selectionArgs = {XSelectorsFragment.this.word};
 		final String sortOrder = XSqlUNetContract.POS + '.' + Words_FnWords_PbWords_VnWords.POS + ',' + Words_FnWords_PbWords_VnWords.SENSENUM;
 
-		final String tag = "xselectors.wordid";
-		final SqlunetViewModel model = ViewModelProviders.of(this).get(tag, SqlunetViewModel.class);
+		final SqlunetViewModel model = ViewModelProviders.of(this).get("xselectors.wordid", SqlunetViewModel.class);
 		model.loadData(uri, projection, selection, selectionArgs, sortOrder, this::xselectorsPostProcess);
 		model.getData().observe(this, unusedCursor -> initialize());
 	}
@@ -375,38 +478,14 @@ public class XSelectorsFragment extends ExpandableListFragment
 				Log.d(XSelectorsFragment.TAG, "getChildrenCursor(cursor)");
 
 				// given the group, return a cursor for all the children within that group
-				int groupPosition = groupCursor.getPosition();
+				// int groupPosition = groupCursor.getPosition();
 				int groupId = groupCursor.getInt(groupCursor.getColumnIndex(GROUPID_COLUMN));
 				// String groupName = groupCursor.getString(groupCursor.getColumnIndex(GROUPNAME_COLUMN));
 				// Log.d(XSelectorsFragment.TAG, "group " + groupPosition + ' ' + groupName);
 
-				// cached
-				if (XSelectorsFragment.this.cursorId == groupId &&
-						XSelectorsFragment.this.cursor != null &&
-						!XSelectorsFragment.this.cursor.isClosed())
-				{
-					return XSelectorsFragment.this.cursor;
-				}
-
 				// load
-				getActivity().runOnUiThread(() -> startChildLoader(groupPosition, groupId));
+				startChildLoader(groupId);
 				return null; // set later when loader completes
-			}
-
-			@Override
-			public void notifyDataSetInvalidated()
-			{
-				super.notifyDataSetInvalidated();
-				XSelectorsFragment.this.cursorId = -1;
-				XSelectorsFragment.this.cursor = null;
-			}
-
-			@Override
-			public void onGroupCollapsed(final int groupPosition)
-			{
-				super.onGroupCollapsed(groupPosition);
-				XSelectorsFragment.this.cursorId = -1;
-				XSelectorsFragment.this.cursor = null;
 			}
 
 			@Override
@@ -475,25 +554,24 @@ public class XSelectorsFragment extends ExpandableListFragment
 	/**
 	 * Start child loader for
 	 *
-	 * @param groupPosition group position
-	 * @param groupId       group id
+	 * @param groupId group id
 	 */
-	private void startChildLoader(int groupPosition, int groupId)
+	private void startChildLoader(int groupId)
 	{
-		Log.d(XSelectorsFragment.TAG, "Invoking startChildLoader() for  groupPosition=" + groupPosition + " groupId=" + groupId);
+		Log.d(XSelectorsFragment.TAG, "Invoking startChildLoader() for groupId=" + groupId);
 		switch (groupId)
 		{
 			case GROUPID_WORDNET:
-				loadWn(this.wordId, groupPosition);
+				loadWn(this.wordId);
 				break;
 			case GROUPID_VERBNET:
-				loadVn(this.wordId, groupPosition);
+				loadVn(this.wordId);
 				break;
 			case GROUPID_PROPBANK:
-				loadPb(this.wordId, groupPosition);
+				loadPb(this.wordId);
 				break;
 			case GROUPID_FRAMENET:
-				loadFn(this.wordId, groupPosition);
+				loadFn(this.wordId);
 				break;
 			default:
 				break;
@@ -505,10 +583,9 @@ public class XSelectorsFragment extends ExpandableListFragment
 	/**
 	 * Load WordNet data
 	 *
-	 * @param wordId        word id
-	 * @param groupPosition position in group
+	 * @param wordId word id
 	 */
-	private void loadWn(final long wordId, final int groupPosition)
+	private void loadWn(final long wordId)
 	{
 		final Uri uri = Uri.parse(WordNetProvider.makeUri(WordNetContract.Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.CONTENT_URI_TABLE));
 		final String[] projection = { //
@@ -525,38 +602,16 @@ public class XSelectorsFragment extends ExpandableListFragment
 				WordNetContract.Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.SYNSETID + " AS _id"};
 		final String selection = XSqlUNetContract.Words_VnWords_VnClasses_U.WORDID + " = ?";
 		final String[] selectionArgs = {Long.toString(wordId)};
-		final String sortOrder = null;
 
-		final String tag = "xselectors.wn";
-		final SqlunetViewModel model = ViewModelProviders.of(this).get(tag, SqlunetViewModel.class);
-		model.loadData(uri, projection, selection, selectionArgs, sortOrder, null);
-		model.getData().observe(this, cursor -> {
-
-			if (cursor != null)
-			{
-				// dump(cursor);
-				XSelectorsFragment.this.cursorId = GROUPID_WORDNET;
-				XSelectorsFragment.this.cursor = cursor;
-
-				// pass on to list adapter
-				final CursorTreeAdapter adapter = (CursorTreeAdapter) getListAdapter();
-				assert adapter != null;
-				adapter.setChildrenCursor(groupPosition, cursor);
-			}
-			else
-			{
-				Log.i(XSelectorsFragment.TAG, "WN none");
-			}
-		});
+		this.wnModel.loadData(uri, projection, selection, selectionArgs, null, null);
 	}
 
 	/**
 	 * Load VerbNet data
 	 *
-	 * @param wordId        word id
-	 * @param groupPosition position in group
+	 * @param wordId word id
 	 */
-	private void loadVn(final long wordId, final int groupPosition)
+	private void loadVn(final long wordId)
 	{
 		final Uri uri = Uri.parse(XSqlUNetProvider.makeUri(XSqlUNetContract.Words_VnWords_VnClasses_U.CONTENT_URI_TABLE));
 		final String[] projection = { //
@@ -574,36 +629,15 @@ public class XSelectorsFragment extends ExpandableListFragment
 		final String[] selectionArgs = {Long.toString(wordId)};
 		final String sortOrder = XSqlUNetContract.Words_VnWords_VnClasses_U.CLASSID;
 
-		final String tag = "xselectors.vn";
-		final SqlunetViewModel model = ViewModelProviders.of(this).get(tag, SqlunetViewModel.class);
-		model.loadData(uri, projection, selection, selectionArgs, sortOrder, null);
-		model.getData().observe(this, cursor -> {
-
-			if (cursor != null)
-			{
-				// dump(cursor);
-				XSelectorsFragment.this.cursorId = GROUPID_VERBNET;
-				XSelectorsFragment.this.cursor = cursor;
-
-				// pass on to list adapter
-				final CursorTreeAdapter adapter = (CursorTreeAdapter) getListAdapter();
-				assert adapter != null;
-				adapter.setChildrenCursor(groupPosition, cursor);
-			}
-			else
-			{
-				Log.i(XSelectorsFragment.TAG, "VN none");
-			}
-		});
+		this.vnModel.loadData(uri, projection, selection, selectionArgs, sortOrder, null);
 	}
 
 	/**
 	 * Load PropBank data
 	 *
-	 * @param wordId        word id
-	 * @param groupPosition position in group
+	 * @param wordId word id
 	 */
-	private void loadPb(final long wordId, final int groupPosition)
+	private void loadPb(final long wordId)
 	{
 		final Uri uri = Uri.parse(XSqlUNetProvider.makeUri(XSqlUNetContract.Words_PbWords_PbRolesets_U.CONTENT_URI_TABLE));
 		final String[] projection = { //
@@ -622,36 +656,15 @@ public class XSelectorsFragment extends ExpandableListFragment
 		final String[] selectionArgs = {Long.toString(wordId)};
 		final String sortOrder = XSqlUNetContract.Words_PbWords_PbRolesets_U.ROLESETID;
 
-		final String tag = "xselectors.pb";
-		final SqlunetViewModel model = ViewModelProviders.of(this).get(tag, SqlunetViewModel.class);
-		model.loadData(uri, projection, selection, selectionArgs, sortOrder, null);
-		model.getData().observe(this, cursor -> {
-
-			if (cursor != null)
-			{
-				// dump(cursor);
-				XSelectorsFragment.this.cursorId = GROUPID_PROPBANK;
-				XSelectorsFragment.this.cursor = cursor;
-
-				// pass on to list adapter
-				final CursorTreeAdapter adapter = (CursorTreeAdapter) getListAdapter();
-				assert adapter != null;
-				adapter.setChildrenCursor(groupPosition, cursor);
-			}
-			else
-			{
-				Log.i(XSelectorsFragment.TAG, "PB none");
-			}
-		});
+		this.pbModel.loadData(uri, projection, selection, selectionArgs, sortOrder, null);
 	}
 
 	/**
 	 * Load FrameNet data
 	 *
-	 * @param wordId        word id
-	 * @param groupPosition position in group
+	 * @param wordId word id
 	 */
-	private void loadFn(final long wordId, final int groupPosition)
+	private void loadFn(final long wordId)
 	{
 		final Uri uri = Uri.parse(XSqlUNetProvider.makeUri(XSqlUNetContract.Words_FnWords_FnFrames_U.CONTENT_URI_TABLE));
 		final String[] projection = { //
@@ -669,27 +682,7 @@ public class XSelectorsFragment extends ExpandableListFragment
 		final String[] selectionArgs = {Long.toString(wordId)};
 		final String sortOrder = XSqlUNetContract.Words_FnWords_FnFrames_U.LUID + ' ' + "IS NULL" + ',' + XSqlUNetContract.Words_FnWords_FnFrames_U.SOURCES + ',' + XSqlUNetContract.Words_FnWords_FnFrames_U.FRAMEID;
 
-		final String tag = "xselectors.fn";
-		final SqlunetViewModel model = ViewModelProviders.of(this).get(tag, SqlunetViewModel.class);
-		model.loadData(uri, projection, selection, selectionArgs, sortOrder, null);
-		model.getData().observe(this, cursor -> {
-
-			if (cursor != null)
-			{
-				// dump(cursor);
-				XSelectorsFragment.this.cursorId = GROUPID_FRAMENET;
-				XSelectorsFragment.this.cursor = cursor;
-
-				// pass on to list adapter
-				final CursorTreeAdapter adapter = (CursorTreeAdapter) getListAdapter();
-				assert adapter != null;
-				adapter.setChildrenCursor(groupPosition, cursor);
-			}
-			else
-			{
-				Log.i(XSelectorsFragment.TAG, "FN none");
-			}
-		});
+		this.fnModel.loadData(uri, projection, selection, selectionArgs, sortOrder, null);
 	}
 
 	// S E L E C T I O N   L I S T E N E R
@@ -722,6 +715,7 @@ public class XSelectorsFragment extends ExpandableListFragment
 	 *
 	 * @param activateOnItemClick true if activate
 	 */
+	@SuppressWarnings("WeakerAccess")
 	public void setActivateOnItemClick(@SuppressWarnings("SameParameterValue") final boolean activateOnItemClick)
 	{
 		this.activateOnItemClick = activateOnItemClick;
@@ -739,7 +733,7 @@ public class XSelectorsFragment extends ExpandableListFragment
 			int index = listView.getFlatListPosition(ExpandableListView.getPackedPositionForChild(groupPosition, childPosition));
 			listView.setItemChecked(index, true);
 
-			@SuppressWarnings("TypeMayBeWeakened") final SimpleCursorTreeAdapter adapter = (SimpleCursorTreeAdapter) getListAdapter();
+			final CursorTreeAdapter adapter = (SimpleCursorTreeAdapter) getListAdapter();
 			assert adapter != null;
 			final Cursor cursor = adapter.getChild(groupPosition, childPosition);
 			if (!cursor.isAfterLast())

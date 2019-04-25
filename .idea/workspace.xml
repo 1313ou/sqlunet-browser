@@ -36,7 +36,7 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="dbe7534c-3086-4b17-848a-f5676a7f84bd" name="Default" comment="wip xselectors with livedata">
+    <list default="true" id="dbe7534c-3086-4b17-848a-f5676a7f84bd" name="Default" comment="wip xselectors with livedata on ui thread">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/browser/src/main/java/org/sqlunet/browser/xselector/XSelectorsFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/browser/src/main/java/org/sqlunet/browser/xselector/XSelectorsFragment.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/browservn/src/main/java/org/sqlunet/browser/xselector/XSelectorsFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/browservn/src/main/java/org/sqlunet/browser/xselector/XSelectorsFragment.java" afterDir="false" />
@@ -1390,10 +1390,11 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/browser/src/main/java/org/sqlunet/browser/xselector/XSelectorsFragment.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1731">
-              <caret line="389" lean-forward="true" selection-start-line="389" selection-end-line="389" />
+            <state relative-caret-position="340">
+              <caret line="735" column="12" selection-start-line="735" selection-start-column="12" selection-end-line="735" selection-end-column="12" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="e#21848#21881#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -1402,8 +1403,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/browservn/src/main/java/org/sqlunet/browser/xselector/XSelectorsFragment.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="232">
-              <caret line="346" selection-start-line="346" selection-end-line="346" />
+            <state relative-caret-position="171">
+              <caret line="548" column="36" selection-start-line="548" selection-start-column="36" selection-end-line="548" selection-end-column="36" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#6871#6904#0" expanded="true" />
@@ -1429,9 +1430,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>LoaderManager</find>
-      <find>TreeNode[]</find>
-      <find>loadermanager</find>
       <find>loadData</find>
       <find>XLoader.</find>
       <find>close()</find>
@@ -1459,6 +1457,9 @@
       <find>Support</find>
       <find>support</find>
       <find>setChil</find>
+      <find>UIThrea</find>
+      <find>ExpandableListAdapter</find>
+      <find>CursorTreeAdapter</find>
     </findStrings>
     <replaceStrings>
       <replace>org.sqlunet.download</replace>
@@ -1586,8 +1587,8 @@
         <option value="$PROJECT_DIR$/verbNet/build.gradle" />
         <option value="$PROJECT_DIR$/wordNet/build.gradle" />
         <option value="$PROJECT_DIR$/xNet/build.gradle" />
-        <option value="$PROJECT_DIR$/browser/src/main/java/org/sqlunet/browser/xselector/XSelectorsFragment.java" />
         <option value="$PROJECT_DIR$/browservn/src/main/java/org/sqlunet/browser/xselector/XSelectorsFragment.java" />
+        <option value="$PROJECT_DIR$/browser/src/main/java/org/sqlunet/browser/xselector/XSelectorsFragment.java" />
       </list>
     </option>
   </component>
@@ -1611,10 +1612,10 @@
     <scope name="Resources" pattern="file[bNC]:src/main/res//*||file[browser]:src/main/res//*||file[browserfn]:src/main/res//*||file[browserwn]:src/main/res//*||file[common]:src/main/res//*||file[expandableListFragment]:src/main/res//*||file[frameNet]:src/main/res//*||file[predicateMatrix]:src/main/res//*||file[propbank]:src/main/res//*||file[support]:src/main/res//*||file[treeView]:src/main/res//*||file[verbNet]:src/main/res//*||file[wordNet]:src/main/res//*||file[xNet]:src/main/res//*||file[browservn]:src/main/res//*" />
     <scope name="Values" pattern="(file[bNC]:src/main/res//*||file[expandableListFragment]:src/main/res//*||file[frameNet]:src/main/res//*||file[predicateMatrix]:src/main/res//*||file[propbank]:src/main/res//*||file[support]:src/main/res//*||file[treeView]:src/main/res//*||file[verbNet]:src/main/res//*||file[wordNet]:src/main/res//*||file[xNet]:src/main/res//*)&amp;&amp;!file[expandableListFragment]:*/&amp;&amp;!file[xNet]:*/&amp;&amp;!file[wordNet]:*/&amp;&amp;!file[propbank]:*/&amp;&amp;!file[predicateMatrix]:*/&amp;&amp;!file[test]:*/&amp;&amp;!file[support]:*/&amp;&amp;!file[verbNet]:*/&amp;&amp;!file[frameNet]:*/&amp;&amp;!file[treeView]:*/&amp;&amp;!file[bNC]:*/||file[browser]:src/main/res/values//*||file[browser]:src/main/res/values-land//*||file[browser]:src/main/res/values-large//*||file[browserfn]:src/main/res/values//*||file[browserfn]:src/main/res/values-land//*||file[browserfn]:src/main/res/values-large//*||file[browserwn]:src/main/res/*||file[browserwn]:src/main/res/values//*||file[browserwn]:src/main/res/values-land//*||file[browserwn]:src/main/res/values-large//*||file[common]:src/main/res/values//*||file[common]:src/main/res/values-v21//*||file[common]:src/main/res/values-w600dp//*||file[common]:src/main/res/values-w720dp//*||file[common]:src/main/res/values-w820dp//*||file[browservn]:src/main/res/values//*||file[browservn]:src/main/res/values-land//*||file[browservn]:src/main/res/values-large//*" />
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds">
     <option name="x" value="51" />
     <option name="y" value="28" />
-    <option name="width" value="1287" />
+    <option name="width" value="1577" />
     <option name="height" value="1172" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
@@ -2498,13 +2499,6 @@
       <option name="presentableId" value="Default" />
       <updated>1487150992421</updated>
     </task>
-    <task id="LOCAL-00103" summary="vn">
-      <created>1513235307359</created>
-      <option name="number" value="00103" />
-      <option name="presentableId" value="LOCAL-00103" />
-      <option name="project" value="LOCAL" />
-      <updated>1513235307359</updated>
-    </task>
     <task id="LOCAL-00104" summary="vn">
       <created>1513322645263</created>
       <option name="number" value="00104" />
@@ -2841,7 +2835,14 @@
       <option name="project" value="LOCAL" />
       <updated>1556174189658</updated>
     </task>
-    <option name="localTasksCounter" value="152" />
+    <task id="LOCAL-00152" summary="wip xselectors with livedata on ui thread">
+      <created>1556178623523</created>
+      <option name="number" value="00152" />
+      <option name="presentableId" value="LOCAL-00152" />
+      <option name="project" value="LOCAL" />
+      <updated>1556178623523</updated>
+    </task>
+    <option name="localTasksCounter" value="153" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -2886,9 +2887,10 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="51" y="28" width="1287" height="1172" extended-state="0" />
+    <frame x="51" y="28" width="1577" height="1172" extended-state="0" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.67601246" visible="true" weight="0.23212852" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.67601246" visible="true" weight="0.18827361" />
       <window_info id="Structure" order="1" sideWeight="0.47352496" side_tool="true" weight="0.27697262" />
       <window_info id="Captures" order="2" sideWeight="0.32398754" side_tool="true" weight="0.24619086" />
       <window_info id="Capture Tool" order="3" />
@@ -2899,18 +2901,18 @@
       <window_info id="Build Variants" order="8" sideWeight="0.50392157" side_tool="true" weight="0.18117131" />
       <window_info id="Resources Explorer" order="9" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" sideWeight="0.27331188" weight="0.31733593" />
+      <window_info anchor="bottom" id="Find" order="1" sideWeight="0.4345277" visible="true" weight="0.31733593" />
       <window_info anchor="bottom" id="Run" order="2" sideWeight="0.2295345" weight="0.33986288" />
       <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.30441767" weight="0.28991184" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" sideWeight="0.49808428" weight="0.32843137" />
       <window_info anchor="bottom" id="Android Profiler" order="7" />
-      <window_info anchor="bottom" id="Logcat" order="8" sideWeight="0.69638556" side_tool="true" visible="true" weight="0.22918707" />
+      <window_info anchor="bottom" id="Logcat" order="8" sideWeight="0.5654723" side_tool="true" visible="true" weight="0.31733593" />
       <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.42502004" side_tool="true" weight="0.35847208" />
       <window_info anchor="bottom" id="Build" order="10" sideWeight="0.38202247" weight="0.40744367" />
       <window_info anchor="bottom" id="Android Monitor" order="11" sideWeight="0.82428116" weight="0.39513677" />
-      <window_info active="true" anchor="bottom" id="Version Control" order="12" sideWeight="0.30361447" visible="true" weight="0.22918707" />
+      <window_info anchor="bottom" id="Version Control" order="12" sideWeight="0.30361447" weight="0.22918707" />
       <window_info anchor="bottom" id="Terminal" order="13" sideWeight="0.3136289" weight="0.32615083" />
       <window_info active="true" anchor="bottom" id="Gradle Console" order="14" sideWeight="0.4729064" side_tool="true" visible="true" weight="0.3107843" />
       <window_info anchor="bottom" id="Messages" order="15" sideWeight="0.5270936" weight="0.3107843" />
@@ -2995,7 +2997,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$" />
     </ignored-roots>
-    <MESSAGE value="inferred null annotation" />
     <MESSAGE value="vn pre-release" />
     <MESSAGE value="rc 22" />
     <MESSAGE value="lint&#10;rc 23" />
@@ -3020,7 +3021,8 @@
     <MESSAGE value="wip xloaders return to loadermanager" />
     <MESSAGE value="wip forgotten pieces" />
     <MESSAGE value="wip xselectors with livedata" />
-    <option name="LAST_COMMIT_MESSAGE" value="wip xselectors with livedata" />
+    <MESSAGE value="wip xselectors with livedata on ui thread" />
+    <option name="LAST_COMMIT_MESSAGE" value="wip xselectors with livedata on ui thread" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -3029,12 +3031,6 @@
           <properties class="java.lang.NullPointerException" package="java.lang" />
           <option name="timeStamp" value="33" />
         </breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/browser/src/main/java/org/sqlunet/browser/xselector/XSelectorsFragment.java</url>
-          <line>383</line>
-          <properties />
-          <option name="timeStamp" value="34" />
-        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>
@@ -3188,13 +3184,6 @@
             <element signature="docComment;method#onCreateContextMenu#0;class#ExpandableListFragment#0" />
             <element signature="method#onCreateContextMenu#0;class#ExpandableListFragment#0" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/androidx.lifecycle/lifecycle-livedata-core/2.0.0/c158207594782b42f3a2e08a5a029eb3319e4404/lifecycle-livedata-core-2.0.0-sources.jar!/androidx/lifecycle/LiveData.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="156" column="36" lean-forward="true" selection-start-line="156" selection-start-column="36" selection-end-line="156" selection-end-column="36" />
         </state>
       </provider>
     </entry>
@@ -3454,8 +3443,8 @@
     </entry>
     <entry file="file:///opt/androidsdk/sources/android-28/android/widget/CursorTreeAdapter.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="197" selection-start-line="197" selection-end-line="197" />
+        <state relative-caret-position="223">
+          <caret line="163" selection-start-line="163" selection-end-line="163" />
           <folding>
             <element signature="docComment;class#CursorTreeAdapter#0" />
             <element signature="docComment;field#mGroupCursorHelper#0;class#CursorTreeAdapter#0" />
@@ -3467,7 +3456,6 @@
             <element signature="docComment;method#getChildrenCursor#0;class#CursorTreeAdapter#0" />
             <element signature="docComment;method#setGroupCursor#0;class#CursorTreeAdapter#0" />
             <element signature="docComment;method#setChildrenCursor#0;class#CursorTreeAdapter#0" />
-            <element signature="method#setChildrenCursor#0;class#CursorTreeAdapter#0" />
             <element signature="method#getChild#0;class#CursorTreeAdapter#0" />
             <element signature="method#getChildrenCount#0;class#CursorTreeAdapter#0" />
             <element signature="method#getGroup#0;class#CursorTreeAdapter#0" />
@@ -3529,10 +3517,17 @@
         </state>
       </provider>
     </entry>
+    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/androidx.lifecycle/lifecycle-livedata-core/2.0.0/c158207594782b42f3a2e08a5a029eb3319e4404/lifecycle-livedata-core-2.0.0-sources.jar!/androidx/lifecycle/LiveData.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="223">
+          <caret line="112" selection-start-line="112" selection-end-line="112" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/browservn/src/main/java/org/sqlunet/browser/xselector/XSelectorsFragment.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="232">
-          <caret line="346" selection-start-line="346" selection-end-line="346" />
+        <state relative-caret-position="171">
+          <caret line="548" column="36" selection-start-line="548" selection-start-column="36" selection-end-line="548" selection-end-column="36" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#6871#6904#0" expanded="true" />
@@ -3545,10 +3540,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/browser/src/main/java/org/sqlunet/browser/xselector/XSelectorsFragment.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1731">
-          <caret line="389" lean-forward="true" selection-start-line="389" selection-end-line="389" />
+        <state relative-caret-position="340">
+          <caret line="735" column="12" selection-start-line="735" selection-start-column="12" selection-end-line="735" selection-end-column="12" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#21848#21881#0" expanded="true" />
           </folding>
         </state>
       </provider>
