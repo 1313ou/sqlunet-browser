@@ -293,9 +293,9 @@ public class XSelectorsFragment extends ExpandableListFragment
 
 				// pass on to list adapter
 				final CursorTreeAdapter adapter = (CursorTreeAdapter) getListAdapter();
-				if (adapter != null)
+				if (adapter != null && this.groupPosition >= 0)
 				{
-					adapter.setChildrenCursor(groupPosition, cursor);
+					adapter.setChildrenCursor(this.groupPosition, cursor);
 				}
 			}
 			else
@@ -313,9 +313,9 @@ public class XSelectorsFragment extends ExpandableListFragment
 
 				// pass on to list adapter
 				final CursorTreeAdapter adapter = (CursorTreeAdapter) getListAdapter();
-				if (adapter != null)
+				if (adapter != null && this.groupPosition >= 0)
 				{
-					adapter.setChildrenCursor(groupPosition, cursor);
+					adapter.setChildrenCursor(this.groupPosition, cursor);
 				}
 			}
 			else
@@ -333,9 +333,9 @@ public class XSelectorsFragment extends ExpandableListFragment
 
 				// pass on to list adapter
 				final CursorTreeAdapter adapter = (CursorTreeAdapter) getListAdapter();
-				if (adapter != null)
+				if (adapter != null && this.groupPosition >= 0)
 				{
-					adapter.setChildrenCursor(groupPosition, cursor);
+					adapter.setChildrenCursor(this.groupPosition, cursor);
 				}
 			}
 			else
@@ -353,9 +353,9 @@ public class XSelectorsFragment extends ExpandableListFragment
 
 				// pass on to list adapter
 				final CursorTreeAdapter adapter = (CursorTreeAdapter) getListAdapter();
-				if (adapter != null)
+				if (adapter != null && this.groupPosition >= 0)
 				{
-					adapter.setChildrenCursor(groupPosition, cursor);
+					adapter.setChildrenCursor(this.groupPosition, cursor);
 				}
 			}
 			else
@@ -705,7 +705,7 @@ public class XSelectorsFragment extends ExpandableListFragment
 		//assert adapter != null;
 		//adapter.setChildrenCursor(groupPosition, null);
 		Log.d(XSelectorsFragment.TAG, "collapse " + this.groupPosition);
-		this.groupPosition = -1;
+		//this.groupPosition = -1;
 	}
 
 	// C L I C K

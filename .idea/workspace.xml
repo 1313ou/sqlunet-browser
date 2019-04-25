@@ -36,10 +36,23 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="dbe7534c-3086-4b17-848a-f5676a7f84bd" name="Default" comment="wip xselectors with livedata on ui thread">
+    <list default="true" id="dbe7534c-3086-4b17-848a-f5676a7f84bd" name="Default" comment="wip viewmodels as members">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bNC/bNC.iml" beforeDir="false" afterPath="$PROJECT_DIR$/bNC/bNC.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/browser/browser.iml" beforeDir="false" afterPath="$PROJECT_DIR$/browser/browser.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/browser/src/main/java/org/sqlunet/browser/xselector/XSelectorsFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/browser/src/main/java/org/sqlunet/browser/xselector/XSelectorsFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/browserfn/browserfn.iml" beforeDir="false" afterPath="$PROJECT_DIR$/browserfn/browserfn.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/browservn/browservn.iml" beforeDir="false" afterPath="$PROJECT_DIR$/browservn/browservn.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/browservn/src/main/java/org/sqlunet/browser/xselector/XSelectorsFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/browservn/src/main/java/org/sqlunet/browser/xselector/XSelectorsFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/browserwn/browserwn.iml" beforeDir="false" afterPath="$PROJECT_DIR$/browserwn/browserwn.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/common.iml" beforeDir="false" afterPath="$PROJECT_DIR$/common/common.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/download/download.iml" beforeDir="false" afterPath="$PROJECT_DIR$/download/download.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frameNet/frameNet.iml" beforeDir="false" afterPath="$PROJECT_DIR$/frameNet/frameNet.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/predicateMatrix/predicateMatrix.iml" beforeDir="false" afterPath="$PROJECT_DIR$/predicateMatrix/predicateMatrix.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/propbank/propbank.iml" beforeDir="false" afterPath="$PROJECT_DIR$/propbank/propbank.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/verbNet/verbNet.iml" beforeDir="false" afterPath="$PROJECT_DIR$/verbNet/verbNet.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wordNet/wordNet.iml" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/wordNet.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/xNet/xNet.iml" beforeDir="false" afterPath="$PROJECT_DIR$/xNet/xNet.iml" afterDir="false" />
     </list>
     <list id="36f6b5c7-9521-46b4-bf4d-149db941bcca" name="NonPublic" comment="" />
     <ignored path="SqlUNet.iws" />
@@ -1387,30 +1400,103 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/browser/src/main/java/org/sqlunet/browser/xselector/XSelectorsFragment.java">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file:///opt/androidsdk/sources/android-28/android/widget/CursorTreeAdapter.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="340">
-              <caret line="735" column="12" selection-start-line="735" selection-start-column="12" selection-end-line="735" selection-end-column="12" />
+            <state relative-caret-position="215">
+              <caret line="163" selection-start-line="163" selection-end-line="163" />
+              <folding>
+                <element signature="docComment;class#CursorTreeAdapter#0" />
+                <element signature="docComment;field#mGroupCursorHelper#0;class#CursorTreeAdapter#0" />
+                <element signature="docComment;field#mChildrenCursorHelpers#0;class#CursorTreeAdapter#0" />
+                <element signature="docComment;method#CursorTreeAdapter#0;class#CursorTreeAdapter#0" />
+                <element signature="docComment;method#CursorTreeAdapter#1;class#CursorTreeAdapter#0" />
+                <element signature="method#init#0;class#CursorTreeAdapter#0" />
+                <element signature="docComment;method#getChildrenCursorHelper#0;class#CursorTreeAdapter#0" />
+                <element signature="docComment;method#getChildrenCursor#0;class#CursorTreeAdapter#0" />
+                <element signature="docComment;method#setGroupCursor#0;class#CursorTreeAdapter#0" />
+                <element signature="docComment;method#setChildrenCursor#0;class#CursorTreeAdapter#0" />
+                <element signature="method#getChild#0;class#CursorTreeAdapter#0" />
+                <element signature="method#getChildrenCount#0;class#CursorTreeAdapter#0" />
+                <element signature="method#getGroup#0;class#CursorTreeAdapter#0" />
+                <element signature="e#7875#7954#1" />
+                <element signature="e#7960#8000#1" />
+                <element signature="docComment;method#newGroupView#0;class#CursorTreeAdapter#0" />
+                <element signature="docComment;method#bindGroupView#0;class#CursorTreeAdapter#0" />
+                <element signature="method#getChildView#0;class#CursorTreeAdapter#0" />
+                <element signature="e#9529#9640#1" />
+                <element signature="e#9699#9779#1" />
+                <element signature="e#9785#9825#1" />
+                <element signature="docComment;method#newChildView#0;class#CursorTreeAdapter#0" />
+                <element signature="docComment;method#bindChildView#0;class#CursorTreeAdapter#0" />
+                <element signature="method#releaseCursorHelpers#0;class#CursorTreeAdapter#0" />
+                <element signature="e#11375#11448#1" />
+                <element signature="docComment;method#notifyDataSetChanged#1;class#CursorTreeAdapter#0" />
+                <element signature="method#notifyDataSetChanged#1;class#CursorTreeAdapter#0" />
+                <element signature="e#11931#11978#1" />
+                <element signature="method#notifyDataSetInvalidated#0;class#CursorTreeAdapter#0" />
+                <element signature="docComment;method#deactivateChildrenCursorHelper#0;class#CursorTreeAdapter#0" />
+                <element signature="method#deactivateChildrenCursorHelper#0;class#CursorTreeAdapter#0" />
+                <element signature="docComment;method#convertToString#0;class#CursorTreeAdapter#0" />
+                <element signature="docComment;method#runQueryOnBackgroundThread#0;class#CursorTreeAdapter#0" />
+                <element signature="method#runQueryOnBackgroundThread#0;class#CursorTreeAdapter#0" />
+                <element signature="e#13139#13212#1" />
+                <element signature="method#getFilter#0;class#CursorTreeAdapter#0" />
+                <element signature="e#13339#13402#1" />
+                <element signature="docComment;method#getFilterQueryProvider#0;class#CursorTreeAdapter#0" />
+                <element signature="docComment;method#setFilterQueryProvider#0;class#CursorTreeAdapter#0" />
+                <element signature="docComment;method#changeCursor#0;class#CursorTreeAdapter#0" />
+                <element signature="docComment;method#getCursor#0;class#CursorTreeAdapter#0" />
+                <element signature="docComment;class#MyCursorHelper#0;class#CursorTreeAdapter#0" />
+                <element signature="class#MyCursorHelper#0;class#CursorTreeAdapter#0" />
+                <element signature="method#MyCursorHelper#0;class#MyCursorHelper#0;class#CursorTreeAdapter#0" />
+                <element signature="e#15106#15253#1" />
+                <element signature="method#getCount#0;class#MyCursorHelper#0;class#CursorTreeAdapter#0" />
+                <element signature="e#15413#15471#1" />
+                <element signature="e#15477#15518#1" />
+                <element signature="method#getId#0;class#MyCursorHelper#0;class#CursorTreeAdapter#0" />
+                <element signature="e#15620#15822#1" />
+                <element signature="e#15676#15753#1" />
+                <element signature="e#15759#15808#1" />
+                <element signature="e#15828#15869#1" />
+                <element signature="method#moveTo#0;class#MyCursorHelper#0;class#CursorTreeAdapter#0" />
+                <element signature="e#16012#16059#1" />
+                <element signature="e#16065#16109#1" />
+                <element signature="method#changeCursor#0;class#MyCursorHelper#0;class#CursorTreeAdapter#0" />
+                <element signature="e#16328#16686#1" />
+                <element signature="e#16692#16891#1" />
+                <element signature="method#deactivate#0;class#MyCursorHelper#0;class#CursorTreeAdapter#0" />
+                <element signature="e#16964#17003#1" />
+                <element signature="class#MyContentObserver#0;class#MyCursorHelper#0;class#CursorTreeAdapter#0" />
+                <element signature="method#onChange#0;class#MyContentObserver#0;class#MyCursorHelper#0;class#CursorTreeAdapter#0" />
+                <element signature="e#17750#17946#1" />
+                <element signature="class#MyDataSetObserver#0;class#MyCursorHelper#0;class#CursorTreeAdapter#0" />
+                <element signature="method#onChanged#0;class#MyDataSetObserver#0;class#MyCursorHelper#0;class#CursorTreeAdapter#0" />
+                <element signature="method#onInvalidated#0;class#MyDataSetObserver#0;class#MyCursorHelper#0;class#CursorTreeAdapter#0" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/browservn/src/main/java/org/sqlunet/browser/xselector/XSelectorsFragment.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="423">
+              <caret line="265" column="62" selection-start-line="265" selection-start-column="62" selection-end-line="265" selection-end-column="62" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#21848#21881#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/browservn/src/main/java/org/sqlunet/browser/xselector/XSelectorsFragment.java">
+        <entry file="file://$PROJECT_DIR$/browser/src/main/java/org/sqlunet/browser/xselector/XSelectorsFragment.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="171">
-              <caret line="548" column="36" selection-start-line="548" selection-start-column="36" selection-end-line="548" selection-end-column="36" />
+            <state relative-caret-position="189">
+              <caret line="295" column="62" selection-start-line="295" selection-start-column="35" selection-end-line="295" selection-end-column="62" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#6871#6904#0" expanded="true" />
-                <element signature="e#6956#6957#0" expanded="true" />
-                <element signature="e#6987#6988#0" expanded="true" />
-                <element signature="e#15910#15943#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -1587,8 +1673,8 @@
         <option value="$PROJECT_DIR$/verbNet/build.gradle" />
         <option value="$PROJECT_DIR$/wordNet/build.gradle" />
         <option value="$PROJECT_DIR$/xNet/build.gradle" />
-        <option value="$PROJECT_DIR$/browservn/src/main/java/org/sqlunet/browser/xselector/XSelectorsFragment.java" />
         <option value="$PROJECT_DIR$/browser/src/main/java/org/sqlunet/browser/xselector/XSelectorsFragment.java" />
+        <option value="$PROJECT_DIR$/browservn/src/main/java/org/sqlunet/browser/xselector/XSelectorsFragment.java" />
       </list>
     </option>
   </component>
@@ -1615,7 +1701,7 @@
   <component name="ProjectFrameBounds">
     <option name="x" value="51" />
     <option name="y" value="28" />
-    <option name="width" value="1577" />
+    <option name="width" value="1284" />
     <option name="height" value="1172" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
@@ -1670,59 +1756,9 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="ProjectPane" />
-      <pane id="AndroidView">
-        <subPane>
-          <expand>
-            <path>
-              <item name="SqlUNet" type="1abcf292:AndroidViewProjectNode" />
-              <item name="browser" type="feadf853:AndroidModuleNode" />
-            </path>
-            <path>
-              <item name="SqlUNet" type="1abcf292:AndroidViewProjectNode" />
-              <item name="browser" type="feadf853:AndroidModuleNode" />
-              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
-            </path>
-            <path>
-              <item name="SqlUNet" type="1abcf292:AndroidViewProjectNode" />
-              <item name="browser" type="feadf853:AndroidModuleNode" />
-              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
-              <item name="browser" type="cbb59c9e:AndroidPsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="SqlUNet" type="1abcf292:AndroidViewProjectNode" />
-              <item name="browser" type="feadf853:AndroidModuleNode" />
-              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
-              <item name="browser" type="cbb59c9e:AndroidPsiDirectoryNode" />
-              <item name="xselector" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="SqlUNet" type="1abcf292:AndroidViewProjectNode" />
-              <item name="browservn" type="feadf853:AndroidModuleNode" />
-            </path>
-            <path>
-              <item name="SqlUNet" type="1abcf292:AndroidViewProjectNode" />
-              <item name="browservn" type="feadf853:AndroidModuleNode" />
-              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
-            </path>
-            <path>
-              <item name="SqlUNet" type="1abcf292:AndroidViewProjectNode" />
-              <item name="browservn" type="feadf853:AndroidModuleNode" />
-              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
-              <item name="browser" type="cbb59c9e:AndroidPsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="SqlUNet" type="1abcf292:AndroidViewProjectNode" />
-              <item name="browservn" type="feadf853:AndroidModuleNode" />
-              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
-              <item name="browser" type="cbb59c9e:AndroidPsiDirectoryNode" />
-              <item name="xselector" type="462c0819:PsiDirectoryNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
       <pane id="PackagesPane" />
+      <pane id="ProjectPane" />
+      <pane id="AndroidView" />
       <pane id="Scope">
         <subPane subId="Scope 'Project Files'; set:Project Files; class com.intellij.psi.search.scope.ProjectFilesScope">
           <expand>
@@ -2499,13 +2535,6 @@
       <option name="presentableId" value="Default" />
       <updated>1487150992421</updated>
     </task>
-    <task id="LOCAL-00104" summary="vn">
-      <created>1513322645263</created>
-      <option name="number" value="00104" />
-      <option name="presentableId" value="LOCAL-00104" />
-      <option name="project" value="LOCAL" />
-      <updated>1513322645264</updated>
-    </task>
     <task id="LOCAL-00105" summary="simple download notification">
       <created>1513419441882</created>
       <option name="number" value="00105" />
@@ -2842,7 +2871,14 @@
       <option name="project" value="LOCAL" />
       <updated>1556178623523</updated>
     </task>
-    <option name="localTasksCounter" value="153" />
+    <task id="LOCAL-00153" summary="wip viewmodels as members">
+      <created>1556181594558</created>
+      <option name="number" value="00153" />
+      <option name="presentableId" value="LOCAL-00153" />
+      <option name="project" value="LOCAL" />
+      <updated>1556181594558</updated>
+    </task>
+    <option name="localTasksCounter" value="154" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -2887,10 +2923,10 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="51" y="28" width="1577" height="1172" extended-state="0" />
+    <frame x="51" y="28" width="1284" height="1172" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.67601246" visible="true" weight="0.18827361" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.67601246" visible="true" weight="0.15539452" />
       <window_info id="Structure" order="1" sideWeight="0.47352496" side_tool="true" weight="0.27697262" />
       <window_info id="Captures" order="2" sideWeight="0.32398754" side_tool="true" weight="0.24619086" />
       <window_info id="Capture Tool" order="3" />
@@ -2901,18 +2937,18 @@
       <window_info id="Build Variants" order="8" sideWeight="0.50392157" side_tool="true" weight="0.18117131" />
       <window_info id="Resources Explorer" order="9" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" sideWeight="0.4345277" visible="true" weight="0.31733593" />
+      <window_info anchor="bottom" id="Find" order="1" sideWeight="0.5426731" visible="true" weight="0.31733593" />
       <window_info anchor="bottom" id="Run" order="2" sideWeight="0.2295345" weight="0.33986288" />
       <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.30441767" weight="0.28991184" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" sideWeight="0.49808428" weight="0.32843137" />
       <window_info anchor="bottom" id="Android Profiler" order="7" />
-      <window_info anchor="bottom" id="Logcat" order="8" sideWeight="0.5654723" side_tool="true" visible="true" weight="0.31733593" />
+      <window_info active="true" anchor="bottom" id="Logcat" order="8" sideWeight="0.4573269" side_tool="true" visible="true" weight="0.31733593" />
       <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.42502004" side_tool="true" weight="0.35847208" />
-      <window_info anchor="bottom" id="Build" order="10" sideWeight="0.38202247" weight="0.40744367" />
+      <window_info anchor="bottom" id="Build" order="10" sideWeight="0.34138486" weight="0.40744367" />
       <window_info anchor="bottom" id="Android Monitor" order="11" sideWeight="0.82428116" weight="0.39513677" />
-      <window_info anchor="bottom" id="Version Control" order="12" sideWeight="0.30361447" weight="0.22918707" />
+      <window_info anchor="bottom" id="Version Control" order="12" sideWeight="0.30195785" weight="0.22918707" />
       <window_info anchor="bottom" id="Terminal" order="13" sideWeight="0.3136289" weight="0.32615083" />
       <window_info active="true" anchor="bottom" id="Gradle Console" order="14" sideWeight="0.4729064" side_tool="true" visible="true" weight="0.3107843" />
       <window_info anchor="bottom" id="Messages" order="15" sideWeight="0.5270936" weight="0.3107843" />
@@ -2997,7 +3033,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$" />
     </ignored-roots>
-    <MESSAGE value="vn pre-release" />
     <MESSAGE value="rc 22" />
     <MESSAGE value="lint&#10;rc 23" />
     <MESSAGE value="build" />
@@ -3022,7 +3057,8 @@
     <MESSAGE value="wip forgotten pieces" />
     <MESSAGE value="wip xselectors with livedata" />
     <MESSAGE value="wip xselectors with livedata on ui thread" />
-    <option name="LAST_COMMIT_MESSAGE" value="wip xselectors with livedata on ui thread" />
+    <MESSAGE value="wip viewmodels as members" />
+    <option name="LAST_COMMIT_MESSAGE" value="wip viewmodels as members" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -3244,31 +3280,8 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/browser/src/main/java/org/sqlunet/browser/xselector/XLoader.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="117">
-          <caret line="28" column="13" selection-start-line="28" selection-start-column="13" selection-end-line="28" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/browservn/src/main/java/org/sqlunet/browser/xselector/XLoader.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="338">
-          <caret line="27" column="7" selection-start-line="27" selection-start-column="7" selection-end-line="27" selection-end-column="7" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1279#1280#0" expanded="true" />
-            <element signature="e#1310#1311#0" expanded="true" />
-            <element signature="e#2702#2703#0" expanded="true" />
-            <element signature="e#2733#2734#0" expanded="true" />
-            <element signature="e#4054#4081#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/browser/src/main/java/org/sqlunet/browser/xselector/XLoader.java" />
+    <entry file="file://$PROJECT_DIR$/browservn/src/main/java/org/sqlunet/browser/xselector/XLoader.java" />
     <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/androidx.loader/loader/1.0.0/b9ef587f3e46c7fe5b00264989764e43ff45cada/loader-1.0.0-sources.jar!/androidx/loader/content/Loader.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="166">
@@ -3441,9 +3454,16 @@
         </state>
       </provider>
     </entry>
-    <entry file="file:///opt/androidsdk/sources/android-28/android/widget/CursorTreeAdapter.java">
+    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/androidx.lifecycle/lifecycle-livedata-core/2.0.0/c158207594782b42f3a2e08a5a029eb3319e4404/lifecycle-livedata-core-2.0.0-sources.jar!/androidx/lifecycle/LiveData.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="223">
+          <caret line="112" selection-start-line="112" selection-end-line="112" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///opt/androidsdk/sources/android-28/android/widget/CursorTreeAdapter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="215">
           <caret line="163" selection-start-line="163" selection-end-line="163" />
           <folding>
             <element signature="docComment;class#CursorTreeAdapter#0" />
@@ -3517,34 +3537,22 @@
         </state>
       </provider>
     </entry>
-    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/androidx.lifecycle/lifecycle-livedata-core/2.0.0/c158207594782b42f3a2e08a5a029eb3319e4404/lifecycle-livedata-core-2.0.0-sources.jar!/androidx/lifecycle/LiveData.java">
+    <entry file="file://$PROJECT_DIR$/browser/src/main/java/org/sqlunet/browser/xselector/XSelectorsFragment.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="223">
-          <caret line="112" selection-start-line="112" selection-end-line="112" />
+        <state relative-caret-position="189">
+          <caret line="295" column="62" selection-start-line="295" selection-start-column="35" selection-end-line="295" selection-end-column="62" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/browservn/src/main/java/org/sqlunet/browser/xselector/XSelectorsFragment.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="171">
-          <caret line="548" column="36" selection-start-line="548" selection-start-column="36" selection-end-line="548" selection-end-column="36" />
+        <state relative-caret-position="423">
+          <caret line="265" column="62" selection-start-line="265" selection-start-column="62" selection-end-line="265" selection-end-column="62" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#6871#6904#0" expanded="true" />
-            <element signature="e#6956#6957#0" expanded="true" />
-            <element signature="e#6987#6988#0" expanded="true" />
-            <element signature="e#15910#15943#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/browser/src/main/java/org/sqlunet/browser/xselector/XSelectorsFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="735" column="12" selection-start-line="735" selection-start-column="12" selection-end-line="735" selection-end-column="12" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#21848#21881#0" expanded="true" />
           </folding>
         </state>
       </provider>
