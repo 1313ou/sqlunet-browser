@@ -22,11 +22,11 @@ public class QueryController extends TreeController
 	}
 
 	@Override
-	public void onExpandEvent(boolean expand)
+	public void onExpandEvent(boolean triggerQueries)
 	{
-		super.onExpandEvent(expand);
+		super.onExpandEvent(triggerQueries);
 
-		if (expand && this.node.isLeaf())
+		if (triggerQueries && this.node.isLeaf())
 		{
 			processQuery();
 		}

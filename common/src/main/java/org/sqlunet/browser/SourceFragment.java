@@ -45,11 +45,11 @@ public class SourceFragment extends ListFragment
 
 		final String tag = "sources";
 		final SqlunetViewModel model = ViewModelProviders.of(this).get(tag, SqlunetViewModel.class);
-		model.loadData(uri, projection, selection, selectionArgs, sortOrder, null);
 		model.getData().observe(this, cursor -> {
 
 			((CursorAdapter) getListAdapter()).swapCursor(cursor);
 		});
+		model.loadData(uri, projection, selection, selectionArgs, sortOrder, null);
 	}
 
 	private void sourcesToView(@NonNull final Cursor cursor)

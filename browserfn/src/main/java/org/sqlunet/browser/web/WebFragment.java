@@ -358,7 +358,6 @@ public class WebFragment extends Fragment
 		// load the contents
 		final String tag = "fn:web()";
 		final WebModel model = ViewModelProviders.of(this).get(tag, WebModel.class);
-		model.loadData(new WebDocumentStringLoader(requireContext(), pointer, type, data, sources, xml));
 		model.getData().observe(this, doc -> {
 			Log.d(WebFragment.TAG, "onLoadFinished");
 			final String mimeType = xml ? "text/xml" : "text/html";
@@ -366,6 +365,7 @@ public class WebFragment extends Fragment
 			WebFragment.this.webview.loadDataWithBaseURL(baseUrl, doc, mimeType, "utf-8", null);
 			//WebFragment.this.webview.loadUrl("_about:blank");
 		});
+		model.loadData(new WebDocumentStringLoader(requireContext(), pointer, type, data, sources, xml));
 	}
 
 	/**

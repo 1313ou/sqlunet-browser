@@ -769,8 +769,8 @@ abstract class BaseModule extends Module
 
 			final String tag = "pm.pm";
 			final SqlunetViewTreeModel model = ViewModelProviders.of(fragment).get(tag, SqlunetViewTreeModel.class);
-			model.loadData(uri, projection, selection, selectionArgs, sortOrder, cursor -> pmCursorToTreeModel(cursor, parent));
 			model.getData().observe(fragment, data -> new FireEvent(fragment).live(data));
+			model.loadData(uri, projection, selection, selectionArgs, sortOrder, cursor -> pmCursorToTreeModel(cursor, parent));
 		}
 
 		private TreeNode[] pmCursorToTreeModel(@NonNull final Cursor cursor, @NonNull final TreeNode parent)

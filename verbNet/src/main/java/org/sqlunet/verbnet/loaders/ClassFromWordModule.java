@@ -1,6 +1,5 @@
 package org.sqlunet.verbnet.loaders;
 
-import android.content.Context;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Parcelable;
@@ -24,7 +23,6 @@ import java.util.List;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 
 /**
@@ -46,6 +44,10 @@ public class ClassFromWordModule extends BaseModule
 	@Nullable
 	private Long synsetId;
 
+	// V I E W   M O D E L S
+
+	private SqlunetViewTreeModel vnClassesFromWordIdSynsetIdModel;
+
 	/**
 	 * Constructor
 	 *
@@ -54,6 +56,18 @@ public class ClassFromWordModule extends BaseModule
 	public ClassFromWordModule(@NonNull final TreeFragment fragment)
 	{
 		super(fragment);
+
+		// models
+		makeModels();
+	}
+
+	/**
+	 * Make view models
+	 */
+	private void makeModels()
+	{
+		this.vnClassesFromWordIdSynsetIdModel = ViewModelProviders.of(this.fragment).get("vn.classes(wordid,synsetid)", SqlunetViewTreeModel.class);
+		this.vnClassesFromWordIdSynsetIdModel.getData().observe(this.fragment, data -> new FireEvent(this.fragment).live(data));
 	}
 
 	@Override
@@ -121,12 +135,7 @@ public class ClassFromWordModule extends BaseModule
 			selectionArgs = new String[]{ //
 					Long.toString(wordId)};
 		}
-		final String sortOrder = null;
-
-		final String tag = "vn.classes";
-		final SqlunetViewTreeModel model = ViewModelProviders.of(this.fragment).get(tag, SqlunetViewTreeModel.class);
-		model.loadData(uri, projection, selection, selectionArgs, sortOrder, cursor -> vnClassesCursorToTreeModel(cursor, parent));
-		model.getData().observe(this.fragment, data -> new FireEvent(this.fragment).live(data));
+		this.vnClassesFromWordIdSynsetIdModel.loadData(uri, projection, selection, selectionArgs, null, cursor -> vnClassesCursorToTreeModel(cursor, parent));
 	}
 
 	private TreeNode[] vnClassesCursorToTreeModel(@NonNull final Cursor cursor, @NonNull final TreeNode parent)

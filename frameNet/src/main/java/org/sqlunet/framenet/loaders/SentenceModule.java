@@ -1,6 +1,5 @@
 package org.sqlunet.framenet.loaders;
 
-import android.content.Context;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Parcelable;
@@ -19,7 +18,6 @@ import org.sqlunet.view.FireEvent;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 
 /**
@@ -40,6 +38,10 @@ public class SentenceModule extends BaseModule
 	 */
 	private String sentenceText;
 
+	// V I E W   M O D E L S
+
+	private SqlunetViewTreeModel sentenceFromSentenceIdModel;
+
 	/**
 	 * Constructor
 	 *
@@ -48,6 +50,18 @@ public class SentenceModule extends BaseModule
 	public SentenceModule(@NonNull final TreeFragment fragment)
 	{
 		super(fragment);
+
+		// models
+		makeModels();
+	}
+
+	/**
+	 * Make view models
+	 */
+	private void makeModels()
+	{
+		this.sentenceFromSentenceIdModel = ViewModelProviders.of(this.fragment).get("fn.sentence(sentenceid)", SqlunetViewTreeModel.class);
+		this.sentenceFromSentenceIdModel.getData().observe(this.fragment, data -> new FireEvent(this.fragment).live(data));
 	}
 
 	@Override
@@ -88,12 +102,7 @@ public class SentenceModule extends BaseModule
 		};
 		final String selection = Sentences.SENTENCEID + " = ?";
 		final String[] selectionArgs = {Long.toString(sentenceId)};
-		final String sortOrder = null;
-
-		final String tag = "fn.sentence(sentenceid)";
-		final SqlunetViewTreeModel model = ViewModelProviders.of(this.fragment).get(tag, SqlunetViewTreeModel.class);
-		model.loadData(uri, projection, selection, selectionArgs, sortOrder, cursor -> sentenceCursorToTreeModel(cursor, parent));
-		model.getData().observe(this.fragment, data -> new FireEvent(this.fragment).live(data));
+		this.sentenceFromSentenceIdModel.loadData(uri, projection, selection, selectionArgs, null, cursor -> sentenceCursorToTreeModel(cursor, parent));
 	}
 
 	private TreeNode[] sentenceCursorToTreeModel(@NonNull final Cursor cursor, @NonNull final TreeNode parent)

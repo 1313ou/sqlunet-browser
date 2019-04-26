@@ -26,21 +26,6 @@ public class FireEvent
 		this.fragment = fragment;
 	}
 
-	public void live0(final TreeNode[] nodes)
-	{
-		//Log.d(TAG, "Live " + "\n" + nodes[0].toStringWithChildren());
-		Log.d(TAG, "Live " + "\n" + nodes[0].toString());
-		TreeView treeView = this.fragment.getTreeView();
-		if (nodes[0].isZombie())
-		{
-			treeView.remove(nodes[0]);
-		}
-		else
-		{
-			treeView.expand(nodes[0], true);
-		}
-	}
-
 	public void live(final TreeNode[] nodes)
 	{
 		//Log.d(TAG, "Live " + "\n" + nodes[0].toStringWithChildren());

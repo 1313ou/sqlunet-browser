@@ -30,7 +30,6 @@ import java.util.List;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 
 /**
@@ -113,6 +112,16 @@ abstract class BaseModule extends Module
 	 */
 	private final Drawable drawableGrouping;
 
+	// V I E W   M O D E L S
+
+	private SqlunetViewTreeModel vnClassFromClassIdModel;
+
+	private SqlunetViewTreeModel vnMembersFromClassIdModel;
+
+	private SqlunetViewTreeModel vnRolesFromClassIdModel;
+
+	private SqlunetViewTreeModel vnFramesFromClassIdModel;
+
 	/**
 	 * Constructor
 	 *
@@ -122,7 +131,10 @@ abstract class BaseModule extends Module
 	{
 		super(fragment);
 
-		// drawable
+		// models
+		makeModels();
+
+		// drawables
 		final Context context = BaseModule.this.fragment.requireContext();
 		this.drawableClass = Spanner.getDrawable(context, R.drawable.roleclass);
 		this.drawableMember = Spanner.getDrawable(context, R.drawable.member);
@@ -139,6 +151,24 @@ abstract class BaseModule extends Module
 		this.semanticsProcessor = new VerbNetSemanticsProcessor();
 		this.syntaxSpanner = new VerbNetSyntaxSpanner();
 		this.semanticsSpanner = new VerbNetSemanticsSpanner();
+	}
+
+	/**
+	 * Make view models
+	 */
+	private void makeModels()
+	{
+		this.vnClassFromClassIdModel = ViewModelProviders.of(this.fragment).get("vn.class(classid)", SqlunetViewTreeModel.class);
+		this.vnClassFromClassIdModel.getData().observe(this.fragment, data -> new FireEvent(this.fragment).live(data));
+
+		this.vnMembersFromClassIdModel = ViewModelProviders.of(this.fragment).get("vn.members(classid)", SqlunetViewTreeModel.class);
+		this.vnMembersFromClassIdModel.getData().observe(this.fragment, data -> new FireEvent(this.fragment).live(data));
+
+		this.vnRolesFromClassIdModel = ViewModelProviders.of(this.fragment).get("vn.roles", SqlunetViewTreeModel.class);
+		this.vnRolesFromClassIdModel.getData().observe(this.fragment, data -> new FireEvent(this.fragment).live(data));
+
+		this.vnFramesFromClassIdModel = ViewModelProviders.of(this.fragment).get("vn.frames", SqlunetViewTreeModel.class);
+		this.vnFramesFromClassIdModel.getData().observe(this.fragment, data -> new FireEvent(this.fragment).live(data));
 	}
 
 	// L O A D E R S
@@ -162,12 +192,7 @@ abstract class BaseModule extends Module
 		final String selection = VnClasses.CLASSID + " = ?";
 		final String[] selectionArgs = { //
 				Long.toString(classId)};
-		final String sortOrder = null;
-
-		final String tag = "vn.class(classid)";
-		final SqlunetViewTreeModel model = ViewModelProviders.of(this.fragment).get(tag, SqlunetViewTreeModel.class);
-		model.loadData(uri, projection, selection, selectionArgs, sortOrder, cursor -> vnClassCursorToTreeModel(cursor, classId, parent));
-		model.getData().observe(this.fragment, data -> new FireEvent(this.fragment).live(data));
+		this.vnClassFromClassIdModel.loadData(uri, projection, selection, selectionArgs, null, cursor -> vnClassCursorToTreeModel(cursor, classId, parent));
 	}
 
 	private TreeNode[] vnClassCursorToTreeModel(@NonNull final Cursor cursor, final long classId, @NonNull final TreeNode parent)
@@ -243,11 +268,7 @@ abstract class BaseModule extends Module
 		final String selection = VnClasses_VnRoles_X.CLASSID + " = ?";
 		final String[] selectionArgs = {Long.toString(classId)};
 		final String sortOrder = VnClasses_VnMembers_X.LEMMA;
-
-		final String tag = "vn.members(classid)";
-		final SqlunetViewTreeModel model = ViewModelProviders.of(this.fragment).get(tag, SqlunetViewTreeModel.class);
-		model.loadData(uri, projection, selection, selectionArgs, sortOrder, cursor -> vnMembersCursorToTreeModel(cursor, parent));
-		model.getData().observe(this.fragment, data -> new FireEvent(this.fragment).live(data));
+		this.vnMembersFromClassIdModel.loadData(uri, projection, selection, selectionArgs, sortOrder, cursor -> vnMembersCursorToTreeModel(cursor, parent));
 	}
 
 	private TreeNode[] vnMembersCursorToTreeModel(@NonNull final Cursor cursor, @NonNull final TreeNode parent)
@@ -371,12 +392,7 @@ abstract class BaseModule extends Module
 		};
 		final String selection = VnClasses_VnRoles_X.CLASSID + " = ?";
 		final String[] selectionArgs = {Long.toString(classId)};
-		final String sortOrder = null;
-
-		final String tag = "vn.roles";
-		final SqlunetViewTreeModel model = ViewModelProviders.of(this.fragment).get(tag, SqlunetViewTreeModel.class);
-		model.loadData(uri, projection, selection, selectionArgs, sortOrder, cursor -> vnRolesCursorToTreeModel(cursor, parent));
-		model.getData().observe(this.fragment, data -> new FireEvent(this.fragment).live(data));
+		this.vnRolesFromClassIdModel.loadData(uri, projection, selection, selectionArgs, null, cursor -> vnRolesCursorToTreeModel(cursor, parent));
 	}
 
 	private TreeNode[] vnRolesCursorToTreeModel(@NonNull final Cursor cursor, @NonNull final TreeNode parent)
@@ -453,12 +469,7 @@ abstract class BaseModule extends Module
 		};
 		final String selection = VnClasses_VnFrames_X.CLASSID + " = ?";
 		final String[] selectionArgs = {Long.toString(classId)};
-		final String sortOrder = null;
-
-		final String tag = "vn.frames";
-		final SqlunetViewTreeModel model = ViewModelProviders.of(this.fragment).get(tag, SqlunetViewTreeModel.class);
-		model.loadData(uri, projection, selection, selectionArgs, sortOrder, cursor -> vnFramesToView(cursor, parent));
-		model.getData().observe(this.fragment, data -> new FireEvent(this.fragment).live(data));
+		this.vnFramesFromClassIdModel.loadData(uri, projection, selection, selectionArgs, null, cursor -> vnFramesToView(cursor, parent));
 	}
 
 	private TreeNode[] vnFramesToView(@NonNull final Cursor cursor, @NonNull final TreeNode parent)
@@ -562,8 +573,7 @@ abstract class BaseModule extends Module
 			{
 				Spanner.appendImage(sb, BaseModule.this.drawableMember);
 				Spanner.append(sb, items[0], 0, VerbNetFactories.memberFactory);
-				final TreeNode groupingsNode = TreeFactory.addIconTextNode(parent, sb, R.drawable.member);
-				return groupingsNode;
+				return TreeFactory.addIconTextNode(parent, sb, R.drawable.member);
 			}
 			else if (items.length > 1)
 			{

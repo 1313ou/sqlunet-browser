@@ -355,8 +355,8 @@ public class XSelectorsFragment extends ExpandableListFragment
 		final String sortOrder = XSqlUNetContract.POS + '.' + Words_PbWords_VnWords.POS + ',' + Words_PbWords_VnWords.SENSENUM;
 
 		final SqlunetViewModel model = ViewModelProviders.of(this).get("xselectors.wordid", SqlunetViewModel.class);
-		model.loadData(uri, projection, selection, selectionArgs, sortOrder, this::xselectorsPostProcess);
 		model.getData().observe(this, unusedCursor -> initialize());
+		model.loadData(uri, projection, selection, selectionArgs, sortOrder, this::xselectorsPostProcess);
 	}
 
 	/**

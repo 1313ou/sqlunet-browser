@@ -58,6 +58,10 @@ public class BaseModule extends Module
 	 */
 	private final Drawable posDrawable;
 
+	// V I E W   M O D E L S
+
+	private SqlunetViewTreeModel bncFromWordIdModel;
+
 	/**
 	 * Constructor
 	 */
@@ -65,12 +69,24 @@ public class BaseModule extends Module
 	{
 		super(fragment);
 
+		// models
+		makeModels();
+
 		// drawables
 		final Context context = this.fragment.requireContext();
 		this.convtaskDrawable = Spanner.getDrawable(context, R.drawable.convtask);
 		this.imaginfDrawable = Spanner.getDrawable(context, R.drawable.imaginf);
 		this.spwrDrawable = Spanner.getDrawable(context, R.drawable.spwr);
 		this.posDrawable = Spanner.getDrawable(context, R.drawable.pos);
+	}
+
+	/**
+	 * Make view models
+	 */
+	private void makeModels()
+	{
+		this.bncFromWordIdModel = ViewModelProviders.of(this.fragment).get("bnc.bnc(wordid)", SqlunetViewTreeModel.class);
+		this.bncFromWordIdModel.getData().observe(this.fragment, data -> new FireEvent(this.fragment).live(data));
 	}
 
 	@Override
@@ -138,12 +154,7 @@ public class BaseModule extends Module
 		};
 		final String selection = pos == null ? Words_BNCs.WORDID + " = ?" : Words_BNCs.WORDID + " = ? AND " + Words_BNCs.POS + "= ?";
 		final String[] selectionArgs = pos == null ? new String[]{Long.toString(wordId)} : new String[]{Long.toString(wordId), Character.toString(pos),};
-		final String sortOrder = null;
-
-		final String tag = "bnc.bnc(wordid)";
-		final SqlunetViewTreeModel model = ViewModelProviders.of(this.fragment).get(tag, SqlunetViewTreeModel.class);
-		model.loadData(uri, projection, selection, selectionArgs, sortOrder, cursor -> bncCursorToTreeModel(cursor, parent));
-		model.getData().observe(this.fragment, data -> new FireEvent(this.fragment).live(data));
+		this.bncFromWordIdModel.loadData(uri, projection, selection, selectionArgs, null, cursor -> bncCursorToTreeModel(cursor, parent));
 	}
 
 	private TreeNode[] bncCursorToTreeModel(@NonNull final Cursor cursor, @NonNull final TreeNode parent)
@@ -256,7 +267,6 @@ public class BaseModule extends Module
 						sb.append("dispersion=").append(dvalue).append(" / ").append(dvalue2);
 					}
 					sb.append('\n');
-
 				}
 
 				fvalue = cursor.getString(idSpFreq);

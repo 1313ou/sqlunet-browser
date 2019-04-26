@@ -30,7 +30,6 @@ import java.util.List;
 import java.util.Locale;
 
 import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 
 /**
@@ -90,6 +89,16 @@ abstract class BaseModule extends Module
 	@NonNull
 	private final PropBankSpanner spanner;
 
+	// V I E W   M O D E L S
+
+	private SqlunetViewTreeModel pbRoleSetFromRoleSetIdModel;
+
+	private SqlunetViewTreeModel roleSetsFromWordIdModel;
+
+	private SqlunetViewTreeModel rolesFromRoleSetIdModel;
+
+	private SqlunetViewTreeModel examplesFromRoleSetIdModel;
+
 	/**
 	 * Constructor
 	 *
@@ -98,6 +107,9 @@ abstract class BaseModule extends Module
 	BaseModule(@NonNull final TreeFragment fragment)
 	{
 		super(fragment);
+
+		// models
+		makeModels();
 
 		// drawables
 		final Context context = BaseModule.this.fragment.requireContext();
@@ -112,6 +124,24 @@ abstract class BaseModule extends Module
 
 		// spanner
 		this.spanner = new PropBankSpanner(context);
+	}
+
+	/**
+	 * Make view models
+	 */
+	private void makeModels()
+	{
+		this.pbRoleSetFromRoleSetIdModel = ViewModelProviders.of(this.fragment).get("pb.roleset(rolesetid)", SqlunetViewTreeModel.class);
+		this.pbRoleSetFromRoleSetIdModel.getData().observe(this.fragment, data -> new FireEvent(this.fragment).live(data));
+
+		this.roleSetsFromWordIdModel = ViewModelProviders.of(this.fragment).get("pb.rolesets(wordid)", SqlunetViewTreeModel.class);
+		this.roleSetsFromWordIdModel.getData().observe(this.fragment, data -> new FireEvent(this.fragment).live(data));
+
+		this.rolesFromRoleSetIdModel = ViewModelProviders.of(this.fragment).get("pb.roles(rolesetid)", SqlunetViewTreeModel.class);
+		this.rolesFromRoleSetIdModel.getData().observe(this.fragment, data -> new FireEvent(this.fragment).live(data));
+
+		this.examplesFromRoleSetIdModel = ViewModelProviders.of(this.fragment).get("pb.examples(rolesetid)", SqlunetViewTreeModel.class);
+		this.examplesFromRoleSetIdModel.getData().observe(this.fragment, data -> new FireEvent(this.fragment).live(data));
 	}
 
 	// R O L E   S E T S
@@ -133,12 +163,7 @@ abstract class BaseModule extends Module
 				"GROUP_CONCAT(" + PbRoleSets_X.LEMMA + ") AS " + PbRoleSets_X.ALIASES};
 		final String selection = PbRoleSets_X.ROLESETID + " = ?";
 		final String[] selectionArgs = {Long.toString(roleSetId)};
-		final String sortOrder = null;
-
-		final String tag = "pb.roleset(rolesetid)";
-		final SqlunetViewTreeModel model = ViewModelProviders.of(this.fragment).get(tag, SqlunetViewTreeModel.class);
-		model.loadData(uri, projection, selection, selectionArgs, sortOrder, cursor -> roleSetCursorToTreeModel(cursor, roleSetId, parent));
-		model.getData().observe(this.fragment, data -> new FireEvent(this.fragment).live(data));
+		this.pbRoleSetFromRoleSetIdModel.loadData(uri, projection, selection, selectionArgs, null, cursor -> roleSetCursorToTreeModel(cursor, roleSetId, parent));
 	}
 
 	private TreeNode[] roleSetCursorToTreeModel(@NonNull final Cursor cursor, final long roleSetId, @NonNull final TreeNode parent)
@@ -216,12 +241,7 @@ abstract class BaseModule extends Module
 		};
 		final String selection = Words_PbRoleSets.WORDID + " = ?";
 		final String[] selectionArgs = {Long.toString(wordId)};
-		final String sortOrder = null;
-
-		final String tag = "pb.rolesets(wordid)";
-		final SqlunetViewTreeModel model = ViewModelProviders.of(this.fragment).get(tag, SqlunetViewTreeModel.class);
-		model.loadData(uri, projection, selection, selectionArgs, sortOrder, cursor -> roleSetsCursorToTreeModel(cursor, parent));
-		model.getData().observe(this.fragment, data -> new FireEvent(this.fragment).live(data));
+		roleSetsFromWordIdModel.loadData(uri, projection, selection, selectionArgs, null, cursor -> roleSetsCursorToTreeModel(cursor, parent));
 	}
 
 	private TreeNode[] roleSetsCursorToTreeModel(@NonNull final Cursor cursor, @NonNull final TreeNode parent)
@@ -302,12 +322,7 @@ abstract class BaseModule extends Module
 		};
 		final String selection = PbRoleSets_PbRoles.ROLESETID + "= ?";
 		final String[] selectionArgs = {Long.toString(roleSetId)};
-		final String sortOrder = null;
-
-		final String tag = "pb.roles(rolesetid)";
-		final SqlunetViewTreeModel model = ViewModelProviders.of(this.fragment).get(tag, SqlunetViewTreeModel.class);
-		model.loadData(uri, projection, selection, selectionArgs, sortOrder, cursor -> rolesCursorToTreeModel(cursor, parent));
-		model.getData().observe(this.fragment, data -> new FireEvent(this.fragment).live(data));
+		this.rolesFromRoleSetIdModel.loadData(uri, projection, selection, selectionArgs, null, cursor -> rolesCursorToTreeModel(cursor, parent));
 	}
 
 	private TreeNode[] rolesCursorToTreeModel(@NonNull final Cursor cursor, @NonNull final TreeNode parent)
@@ -416,11 +431,7 @@ abstract class BaseModule extends Module
 		final String selection = PbRoleSets_PbExamples.ROLESETID + "= ?";
 		final String[] selectionArgs = {Long.toString(roleSetId)};
 		final String sortOrder = PbRoleSets_PbExamples.EXAMPLEID + ',' + PbRoleSets_PbExamples.NARG;
-
-		final String tag = "pb.examples(rolesetid)";
-		final SqlunetViewTreeModel model = ViewModelProviders.of(this.fragment).get(tag, SqlunetViewTreeModel.class);
-		model.loadData(uri, projection, selection, selectionArgs, sortOrder, cursor -> examplesCursorToTreeModel(cursor, parent));
-		model.getData().observe(this.fragment, data -> new FireEvent(this.fragment).live(data));
+		this.examplesFromRoleSetIdModel.loadData(uri, projection, selection, selectionArgs, sortOrder, cursor -> examplesCursorToTreeModel(cursor, parent));
 	}
 
 	private TreeNode[] examplesCursorToTreeModel(@NonNull final Cursor cursor, @NonNull final TreeNode parent)

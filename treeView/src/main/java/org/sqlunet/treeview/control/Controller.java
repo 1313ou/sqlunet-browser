@@ -158,11 +158,19 @@ public abstract class Controller<E>
 	// E V E N T   L I S T E N E R
 
 	/**
-	 * Expand/Collapse event notification
+	 * Expand event notification
 	 *
-	 * @param expand true if expand event, false if collapse event
+	 * @param triggerQueries whether to trigger queries
 	 */
-	public void onExpandEvent(boolean expand)
+	public void onExpandEvent(boolean triggerQueries)
+	{
+		// empty
+	}
+
+	/**
+	 * Collapse event notification
+	 */
+	public void onCollapseEvent()
 	{
 		// empty
 	}

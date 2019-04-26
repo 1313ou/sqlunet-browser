@@ -347,19 +347,21 @@ public class TreeView
 	 */
 	public void expand(@NonNull final TreeNode node, @SuppressWarnings("SameParameterValue") boolean includeSubnodes)
 	{
-		expandNode(node, includeSubnodes);
+		expandNode(node, includeSubnodes, false);
 	}
 
-	/**
+	/*
 	 * Expand
 	 *
 	 * @param node   node
 	 * @param levels number of levels to expand
 	 */
+	/*
 	public void expand(@NonNull final TreeNode node, int levels)
 	{
 		expandRelativeLevel(node, levels);
 	}
+	*/
 
 	/**
 	 * Collapse
@@ -379,7 +381,7 @@ public class TreeView
 	@SuppressWarnings("unused")
 	public void expandAll()
 	{
-		expandNode(this.root, true);
+		expandNode(this.root, true, false);
 	}
 
 	/**
@@ -393,12 +395,12 @@ public class TreeView
 		}
 	}
 
-	/**
+	/*
 	 * Expand from root to level
 	 *
 	 * @param level level number
 	 */
-	@SuppressWarnings("unused")
+	/*
 	public void expandLevel(final int level)
 	{
 		for (TreeNode child : this.root.getChildren())
@@ -406,31 +408,35 @@ public class TreeView
 			expandLevel(child, level);
 		}
 	}
+	*/
 
-	/**
+	/*
 	 * Expand to level
 	 *
 	 * @param node  node
 	 * @param level level number
 	 */
+	/*
 	private void expandLevel(@NonNull final TreeNode node, final int level)
 	{
 		if (node.getLevel() <= level)
 		{
-			expandNode(node, false);
+			expandNode(node, false, false);
 		}
 		for (TreeNode child : node.getChildren())
 		{
 			expandLevel(child, level);
 		}
 	}
+	*/
 
-	/**
+	/*
 	 * Expand relative level
 	 *
 	 * @param node   node
 	 * @param levels number of levels
 	 */
+	/*
 	private void expandRelativeLevel(@NonNull final TreeNode node, final int levels)
 	{
 		if (levels <= 0)
@@ -438,13 +444,14 @@ public class TreeView
 			return;
 		}
 
-		expandNode(node, false);
+		expandNode(node, false, false);
 
 		for (TreeNode child : node.getChildren())
 		{
 			expandRelativeLevel(child, levels - 1);
 		}
 	}
+	*/
 
 	/**
 	 * Expand node
@@ -453,7 +460,7 @@ public class TreeView
 	 */
 	private void expandNode(@NonNull final TreeNode node)
 	{
-		expandNode(node, false);
+		expandNode(node, false, false);
 	}
 
 	/**
@@ -480,7 +487,7 @@ public class TreeView
 		}
 		else
 		{
-			expandNode(node, false);
+			expandNode(node, false, true);
 		}
 	}
 
@@ -516,7 +523,7 @@ public class TreeView
 		}
 
 		// fire collapse event
-		controller.onExpandEvent(false);
+		controller.onCollapseEvent();
 
 		// subnodes
 		if (includeSubnodes)
@@ -533,8 +540,9 @@ public class TreeView
 	 *
 	 * @param node            node
 	 * @param includeSubnodes whether to include subnodes
+	 * @param triggerQueries  whether to trigger queries
 	 */
-	private void expandNode(@NonNull final TreeNode node, boolean includeSubnodes)
+	private void expandNode(@NonNull final TreeNode node, boolean includeSubnodes, boolean triggerQueries)
 	{
 		// flag
 		node.setExpanded(true);
@@ -562,12 +570,12 @@ public class TreeView
 			// recurse
 			if (child.isExpanded() || includeSubnodes)
 			{
-				expandNode(child, includeSubnodes);
+				expandNode(child, includeSubnodes, triggerQueries);
 			}
 		}
 
 		// fire expand event
-		controller.onExpandEvent(true);
+		controller.onExpandEvent(triggerQueries);
 
 		// display
 		if (this.useAnimation)

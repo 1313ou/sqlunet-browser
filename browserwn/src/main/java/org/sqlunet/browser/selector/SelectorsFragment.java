@@ -264,7 +264,6 @@ public class SelectorsFragment extends ListFragment
 
 		final String tag = "selectors";
 		final SqlunetViewModel model = ViewModelProviders.of(this).get(tag, SqlunetViewModel.class);
-		model.loadData(uri, projection, selection, selectionArgs, sortOrder, cursor -> selectorsPostProcess(cursor));
 		model.getData().observe(this, cursor -> {
 
 			// pass on to list adapter
@@ -279,6 +278,7 @@ public class SelectorsFragment extends ListFragment
 			}
 			*/
 		});
+		model.loadData(uri, projection, selection, selectionArgs, sortOrder, cursor -> selectorsPostProcess(cursor));
 	}
 
 	private void selectorsPostProcess(@NonNull final Cursor cursor)
