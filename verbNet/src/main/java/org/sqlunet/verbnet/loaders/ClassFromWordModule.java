@@ -44,7 +44,7 @@ public class ClassFromWordModule extends BaseModule
 	@Nullable
 	private Long synsetId;
 
-	// V I E W   M O D E L S
+	// View models
 
 	private SqlunetViewTreeModel vnClassesFromWordIdSynsetIdModel;
 

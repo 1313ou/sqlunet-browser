@@ -88,7 +88,7 @@ abstract public class BaseModule extends Module
 	 */
 	private int maxRecursion = Integer.MAX_VALUE;
 
-	// V I E W   M O D E L S
+	// View models
 
 	private SqlunetViewTreeModel wordModel;
 
@@ -102,7 +102,7 @@ abstract public class BaseModule extends Module
 
 	private SqlunetViewTreeModel senseFromSynsetIdWordIdModel;
 
-	private SqlunetViewTreeModel synsetModel;
+	private SqlunetViewTreeModel synsetFromSynsetIdModel;
 
 	private SqlunetViewTreeModel membersFromSynsetIdModel;
 
@@ -130,7 +130,7 @@ abstract public class BaseModule extends Module
 
 	private SqlunetViewTreeModel adjPositionFromSynsetIdWordIdModel;
 
-	private SqlunetViewTreeModel morphsModel;
+	private SqlunetViewTreeModel morphsFromWordIdModel;
 
 	/**
 	 * Constructor
@@ -179,8 +179,8 @@ abstract public class BaseModule extends Module
 		this.senseFromSynsetIdWordIdModel = ViewModelProviders.of(this.fragment).get("wn.sense(synsetid,wordid)", SqlunetViewTreeModel.class);
 		this.senseFromSynsetIdWordIdModel.getData().observe(this.fragment, data -> new FireEvent(this.fragment).live(data));
 
-		this.synsetModel = ViewModelProviders.of(this.fragment).get("wn.synset(synsetid)", SqlunetViewTreeModel.class);
-		this.synsetModel.getData().observe(this.fragment, data -> new FireEvent(this.fragment).live(data));
+		this.synsetFromSynsetIdModel = ViewModelProviders.of(this.fragment).get("wn.synset(synsetid)", SqlunetViewTreeModel.class);
+		this.synsetFromSynsetIdModel.getData().observe(this.fragment, data -> new FireEvent(this.fragment).live(data));
 
 		this.membersFromSynsetIdModel = ViewModelProviders.of(this.fragment).get("wn.members(synsetid)", SqlunetViewTreeModel.class);
 		this.membersFromSynsetIdModel.getData().observe(this.fragment, data -> new FireEvent(this.fragment).live(data));
@@ -221,8 +221,8 @@ abstract public class BaseModule extends Module
 		this.adjPositionFromSynsetIdWordIdModel = ViewModelProviders.of(this.fragment).get("wn.adjposition(synsetid,wordid)", SqlunetViewTreeModel.class);
 		this.adjPositionFromSynsetIdWordIdModel.getData().observe(this.fragment, data -> new FireEvent(this.fragment).live(data));
 
-		this.morphsModel = ViewModelProviders.of(this.fragment).get("wn.morphs(wordid)", SqlunetViewTreeModel.class);
-		this.morphsModel.getData().observe(this.fragment, data -> new FireEvent(this.fragment).live(data));
+		this.morphsFromWordIdModel = ViewModelProviders.of(this.fragment).get("wn.morphs(wordid)", SqlunetViewTreeModel.class);
+		this.morphsFromWordIdModel.getData().observe(this.fragment, data -> new FireEvent(this.fragment).live(data));
 	}
 
 	/**
@@ -600,7 +600,7 @@ abstract public class BaseModule extends Module
 		};
 		final String selection = Synsets_PosTypes_LexDomains.SYNSETID + " = ?";
 		final String[] selectionArgs = {Long.toString(synsetId)};
-		this.synsetModel.loadData(uri, projection, selection, selectionArgs, null, cursor -> synsetCursorToTreeModel(cursor, synsetId, parent, addNewNode));
+		this.synsetFromSynsetIdModel.loadData(uri, projection, selection, selectionArgs, null, cursor -> synsetCursorToTreeModel(cursor, synsetId, parent, addNewNode));
 	}
 
 	private TreeNode[] synsetCursorToTreeModel(@NonNull final Cursor cursor, final long synsetId, @NonNull final TreeNode parent, @SuppressWarnings("SameParameterValue") final boolean addNewNode)
@@ -1575,7 +1575,7 @@ abstract public class BaseModule extends Module
 		final String[] projection = {MorphMaps_Morphs.POS, MorphMaps_Morphs.MORPH};
 		final String selection = MorphMaps_Morphs.WORDID + " = ?";
 		final String[] selectionArgs = {Long.toString(wordId)};
-		this.morphsModel.loadData(uri, projection, selection, selectionArgs, null, cursor -> morphsCursorToTreeModel(cursor, parent));
+		this.morphsFromWordIdModel.loadData(uri, projection, selection, selectionArgs, null, cursor -> morphsCursorToTreeModel(cursor, parent));
 	}
 
 	private TreeNode[] morphsCursorToTreeModel(@NonNull final Cursor cursor, @NonNull final TreeNode parent)

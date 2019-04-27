@@ -89,11 +89,39 @@ public class WebFragment extends Fragment
 	 */
 	private WebView webview;
 
+	// View model
+
+	private WebModel model;
+
 	/**
 	 * Mandatory empty constructor for the fragment manager to instantiate the fragment (e.g. upon screen orientation changes).
 	 */
 	public WebFragment()
 	{
+	}
+
+	@Override
+	public void onAttach(@NonNull final Context context)
+	{
+		super.onAttach(context);
+		makeModels();
+	}
+
+	/**
+	 * Make view models
+	 */
+	private void makeModels()
+	{
+		final boolean xml = Settings.getXmlPref(requireContext());
+		this.model = ViewModelProviders.of(this).get("web(doc)", WebModel.class);
+		this.model.getData().observe(this, doc -> {
+
+			Log.d(WebFragment.TAG, "onLoadFinished");
+			final String mimeType = xml ? "text/xml" : "text/html";
+			final String baseUrl = "file:///android_asset/";
+			WebFragment.this.webview.loadDataWithBaseURL(baseUrl, doc, mimeType, "utf-8", null);
+			//WebFragment.this.webview.loadUrl("_about:blank");
+		});
 	}
 
 	@Override
@@ -507,16 +535,7 @@ public class WebFragment extends Fragment
 		Log.d(WebFragment.TAG, "ARG_POSITION data=" + data);
 
 		// load the contents
-		final String tag = "web()";
-		final WebModel model = ViewModelProviders.of(this).get(tag, WebModel.class);
-		model.getData().observe(this, doc -> {
-			Log.d(WebFragment.TAG, "onLoadFinished");
-			final String mimeType = xml ? "text/xml" : "text/html";
-			final String baseUrl = "file:///android_asset/";
-			WebFragment.this.webview.loadDataWithBaseURL(baseUrl, doc, mimeType, "utf-8", null);
-			//WebFragment.this.webview.loadUrl("_about:blank");
-		});
-		model.loadData(new WebDocumentStringLoader(requireContext(), pointer, pos, type, data, sources, xml));
+		this.model.loadData(new WebDocumentStringLoader(requireContext(), pointer, pos, type, data, sources, xml));
 	}
 
 	/**

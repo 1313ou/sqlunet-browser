@@ -189,24 +189,29 @@ public class XSelectorsFragment extends ExpandableListFragment
 	private long wordId;
 
 	/**
+	 * Model
+	 */
+	private SqlunetViewModel wordIdFromWordModel;
+
+	/**
 	 * WordNet model
 	 */
-	private SqlunetViewModel wnModel;
+	private SqlunetViewModel wnFromWordIdModel;
 
 	/**
 	 * VerbNet model
 	 */
-	private SqlunetViewModel vnModel;
+	private SqlunetViewModel vnFromWordIdModel;
 
 	/**
 	 * PropBank model
 	 */
-	private SqlunetViewModel pbModel;
+	private SqlunetViewModel pbFromWordIdModel;
 
 	/**
 	 * FrameNet model
 	 */
-	private SqlunetViewModel fnModel;
+	private SqlunetViewModel fnFromWordIdModel;
 
 	/**
 	 * Mandatory empty constructor for the fragment manager to instantiate the fragment (e.g. upon screen orientation changes).
@@ -284,8 +289,11 @@ public class XSelectorsFragment extends ExpandableListFragment
 	 */
 	private void makeModels()
 	{
-		this.wnModel = ViewModelProviders.of(this).get("xselectors.wn", SqlunetViewModel.class);
-		this.wnModel.getData().observe(this, cursor -> {
+		this.wordIdFromWordModel = ViewModelProviders.of(this).get("xselectors.wordid(word)", SqlunetViewModel.class);
+		this.wordIdFromWordModel.getData().observe(this, unusedCursor -> initialize());
+
+		this.wnFromWordIdModel = ViewModelProviders.of(this).get("xselectors.wn(wordid)", SqlunetViewModel.class);
+		this.wnFromWordIdModel.getData().observe(this, cursor -> {
 
 			if (cursor != null)
 			{
@@ -304,8 +312,8 @@ public class XSelectorsFragment extends ExpandableListFragment
 			}
 		});
 
-		this.vnModel = ViewModelProviders.of(this).get("xselectors.vn", SqlunetViewModel.class);
-		this.vnModel.getData().observe(this, cursor -> {
+		this.vnFromWordIdModel = ViewModelProviders.of(this).get("xselectors.vn(wordid)", SqlunetViewModel.class);
+		this.vnFromWordIdModel.getData().observe(this, cursor -> {
 
 			if (cursor != null)
 			{
@@ -324,8 +332,8 @@ public class XSelectorsFragment extends ExpandableListFragment
 			}
 		});
 
-		this.pbModel = ViewModelProviders.of(this).get("xselectors.pb", SqlunetViewModel.class);
-		this.pbModel.getData().observe(this, cursor -> {
+		this.pbFromWordIdModel = ViewModelProviders.of(this).get("xselectors.pb(wordid)", SqlunetViewModel.class);
+		this.pbFromWordIdModel.getData().observe(this, cursor -> {
 
 			if (cursor != null)
 			{
@@ -344,8 +352,8 @@ public class XSelectorsFragment extends ExpandableListFragment
 			}
 		});
 
-		this.fnModel = ViewModelProviders.of(this).get("xselectors.fn", SqlunetViewModel.class);
-		this.fnModel.getData().observe(this, cursor -> {
+		this.fnFromWordIdModel = ViewModelProviders.of(this).get("xselectors.fn(wordid)", SqlunetViewModel.class);
+		this.fnFromWordIdModel.getData().observe(this, cursor -> {
 
 			if (cursor != null)
 			{
@@ -443,10 +451,7 @@ public class XSelectorsFragment extends ExpandableListFragment
 		final String selection = XSqlUNetContract.WORD + '.' + Words_FnWords_PbWords_VnWords.LEMMA + " = ?";
 		final String[] selectionArgs = {XSelectorsFragment.this.word};
 		final String sortOrder = XSqlUNetContract.POS + '.' + Words_FnWords_PbWords_VnWords.POS + ',' + Words_FnWords_PbWords_VnWords.SENSENUM;
-
-		final SqlunetViewModel model = ViewModelProviders.of(this).get("xselectors.wordid", SqlunetViewModel.class);
-		model.getData().observe(this, unusedCursor -> initialize());
-		model.loadData(uri, projection, selection, selectionArgs, sortOrder, this::xselectorsPostProcess);
+		this.wordIdFromWordModel.loadData(uri, projection, selection, selectionArgs, sortOrder, this::xselectorsPostProcess);
 	}
 
 	/**
@@ -602,8 +607,7 @@ public class XSelectorsFragment extends ExpandableListFragment
 				WordNetContract.Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.SYNSETID + " AS _id"};
 		final String selection = XSqlUNetContract.Words_VnWords_VnClasses_U.WORDID + " = ?";
 		final String[] selectionArgs = {Long.toString(wordId)};
-
-		this.wnModel.loadData(uri, projection, selection, selectionArgs, null, null);
+		this.wnFromWordIdModel.loadData(uri, projection, selection, selectionArgs, null, null);
 	}
 
 	/**
@@ -628,8 +632,7 @@ public class XSelectorsFragment extends ExpandableListFragment
 		final String selection = XSqlUNetContract.Words_VnWords_VnClasses_U.WORDID + " = ?";
 		final String[] selectionArgs = {Long.toString(wordId)};
 		final String sortOrder = XSqlUNetContract.Words_VnWords_VnClasses_U.CLASSID;
-
-		this.vnModel.loadData(uri, projection, selection, selectionArgs, sortOrder, null);
+		this.vnFromWordIdModel.loadData(uri, projection, selection, selectionArgs, sortOrder, null);
 	}
 
 	/**
@@ -655,8 +658,7 @@ public class XSelectorsFragment extends ExpandableListFragment
 		final String selection = XSqlUNetContract.PredicateMatrix_PropBank.WORDID + " = ?";
 		final String[] selectionArgs = {Long.toString(wordId)};
 		final String sortOrder = XSqlUNetContract.Words_PbWords_PbRolesets_U.ROLESETID;
-
-		this.pbModel.loadData(uri, projection, selection, selectionArgs, sortOrder, null);
+		this.pbFromWordIdModel.loadData(uri, projection, selection, selectionArgs, sortOrder, null);
 	}
 
 	/**
@@ -681,8 +683,7 @@ public class XSelectorsFragment extends ExpandableListFragment
 		final String selection = XSqlUNetContract.Words_FnWords_FnFrames_U.WORDID + " = ?";
 		final String[] selectionArgs = {Long.toString(wordId)};
 		final String sortOrder = XSqlUNetContract.Words_FnWords_FnFrames_U.LUID + ' ' + "IS NULL" + ',' + XSqlUNetContract.Words_FnWords_FnFrames_U.SOURCES + ',' + XSqlUNetContract.Words_FnWords_FnFrames_U.FRAMEID;
-
-		this.fnModel.loadData(uri, projection, selection, selectionArgs, sortOrder, null);
+		this.fnFromWordIdModel.loadData(uri, projection, selection, selectionArgs, sortOrder, null);
 	}
 
 	// S E L E C T I O N   L I S T E N E R

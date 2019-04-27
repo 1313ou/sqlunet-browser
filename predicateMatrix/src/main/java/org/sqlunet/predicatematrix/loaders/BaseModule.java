@@ -65,6 +65,10 @@ abstract class BaseModule extends Module
 	 */
 	private final Drawable roleDrawable;
 
+	// View models
+
+	private SqlunetViewTreeModel model;
+
 	/**
 	 * Constructor
 	 */
@@ -72,10 +76,22 @@ abstract class BaseModule extends Module
 	{
 		super(fragment);
 
+		// models
+		makeModels();
+
 		// spanner
 		final Context context = BaseModule.this.fragment.requireContext();
 		this.classDrawable = Spanner.getDrawable(context, R.drawable.roles);
 		this.roleDrawable = Spanner.getDrawable(context, R.drawable.role);
+	}
+
+	/**
+	 * Make view models
+	 */
+	private void makeModels()
+	{
+		this.model = ViewModelProviders.of(fragment).get("pm.pm(?)", SqlunetViewTreeModel.class);
+		this.model.getData().observe(fragment, data -> new FireEvent(fragment).live(data));
 	}
 
 	// L O A D E R S
@@ -681,7 +697,7 @@ abstract class BaseModule extends Module
 	// D I S P L A Y E R S
 
 	/**
-	 * Abstract PredicateMatrix loader callbacks
+	 * Abstract PredicateMatrix callbacks
 	 */
 	abstract class PmCallbacks
 	{
@@ -766,11 +782,7 @@ abstract class BaseModule extends Module
 			final String selection = getSelection();
 			final String[] selectionArgs = getSelectionArgs();
 			final String sortOrder = this.displayer.getRequiredOrder();
-
-			final String tag = "pm.pm";
-			final SqlunetViewTreeModel model = ViewModelProviders.of(fragment).get(tag, SqlunetViewTreeModel.class);
-			model.getData().observe(fragment, data -> new FireEvent(fragment).live(data));
-			model.loadData(uri, projection, selection, selectionArgs, sortOrder, cursor -> pmCursorToTreeModel(cursor, parent));
+			BaseModule.this.model.loadData(uri, projection, selection, selectionArgs, sortOrder, cursor -> pmCursorToTreeModel(cursor, parent));
 		}
 
 		private TreeNode[] pmCursorToTreeModel(@NonNull final Cursor cursor, @NonNull final TreeNode parent)

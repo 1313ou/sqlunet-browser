@@ -1,5 +1,6 @@
 package org.sqlunet.browser.selector;
 
+import android.content.Context;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
@@ -78,6 +79,11 @@ public class SelectorsFragment extends ListFragment
 	 * Word id
 	 */
 	private long wordId;
+
+	/**
+	 * View model
+	 */
+	private SqlunetViewModel model;
 
 	/**
 	 * Mandatory empty constructor for the fragment manager to instantiate the fragment (e.g. upon screen orientation changes).
@@ -169,6 +175,37 @@ public class SelectorsFragment extends ListFragment
 		setListAdapter(adapter);
 	}
 
+	@Override
+	public void onAttach(@NonNull final Context context)
+	{
+		super.onAttach(context);
+		makeModels();
+	}
+
+	/**
+	 * Make view models
+	 */
+	private void makeModels()
+	{
+		this.model = ViewModelProviders.of(this).get("wn:selectors(word)", SqlunetViewModel.class);
+		this.model.getData().observe(this, cursor -> {
+
+			// pass on to list adapter
+			final CursorAdapter adapter = (CursorAdapter) getListAdapter();
+			assert adapter != null;
+			adapter.swapCursor(cursor);
+
+			// check
+			/*
+			if (SelectorsFragment.this.activatedPosition != AdapterView.INVALID_POSITION)
+			{
+				final ListView listView = getListView();
+				listView.setItemChecked(SelectorsFragment.this.activatedPosition, true);
+			}
+			*/
+		});
+	}
+
 	// V I E W
 
 	@Override
@@ -229,6 +266,7 @@ public class SelectorsFragment extends ListFragment
 	 *
 	 * @param listener listener
 	 */
+	@SuppressWarnings("WeakerAccess")
 	public void setListener(final Listener listener)
 	{
 		this.listener = listener;
@@ -261,24 +299,7 @@ public class SelectorsFragment extends ListFragment
 		final String selection = Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.LEMMA + " = ?"; ////
 		final String[] selectionArgs = {SelectorsFragment.this.word};
 		final String sortOrder = WordNetContract.SYNSET + '.' + Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.POS + ',' + Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.SENSENUM;
-
-		final String tag = "selectors";
-		final SqlunetViewModel model = ViewModelProviders.of(this).get(tag, SqlunetViewModel.class);
-		model.getData().observe(this, cursor -> {
-
-			// pass on to list adapter
-			((CursorAdapter) getListAdapter()).swapCursor(cursor);
-
-			// check
-			/*
-			if (SelectorsFragment.this.activatedPosition != AdapterView.INVALID_POSITION)
-			{
-				final ListView listView = getListView();
-				listView.setItemChecked(SelectorsFragment.this.activatedPosition, true);
-			}
-			*/
-		});
-		model.loadData(uri, projection, selection, selectionArgs, sortOrder, cursor -> selectorsPostProcess(cursor));
+		this.model.loadData(uri, projection, selection, selectionArgs, sortOrder, this::selectorsPostProcess);
 	}
 
 	private void selectorsPostProcess(@NonNull final Cursor cursor)
@@ -297,13 +318,14 @@ public class SelectorsFragment extends ListFragment
 	 *
 	 * @param activateOnItemClick true if activate
 	 */
+	@SuppressWarnings("WeakerAccess")
 	public void setActivateOnItemClick(@SuppressWarnings("SameParameterValue") final boolean activateOnItemClick)
 	{
 		this.activateOnItemClick = activateOnItemClick;
 	}
 
 	@Override
-	public void onListItemClick(final ListView listView, final View view, final int position, final long id)
+	public void onListItemClick(@NonNull final ListView listView, @NonNull final View view, final int position, final long id)
 	{
 		super.onListItemClick(listView, view, position, id);
 		activate(position);
@@ -318,7 +340,9 @@ public class SelectorsFragment extends ListFragment
 		if (this.listener != null)
 		{
 			final SimpleCursorAdapter adapter = (SimpleCursorAdapter) getListAdapter();
+			assert adapter != null;
 			final Cursor cursor = adapter.getCursor();
+			assert cursor != null;
 			if (cursor.moveToPosition(position))
 			{
 				// column indexes

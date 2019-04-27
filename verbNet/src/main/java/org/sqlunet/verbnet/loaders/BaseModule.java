@@ -112,7 +112,7 @@ abstract class BaseModule extends Module
 	 */
 	private final Drawable drawableGrouping;
 
-	// V I E W   M O D E L S
+	// View models
 
 	private SqlunetViewTreeModel vnClassFromClassIdModel;
 
@@ -164,10 +164,10 @@ abstract class BaseModule extends Module
 		this.vnMembersFromClassIdModel = ViewModelProviders.of(this.fragment).get("vn.members(classid)", SqlunetViewTreeModel.class);
 		this.vnMembersFromClassIdModel.getData().observe(this.fragment, data -> new FireEvent(this.fragment).live(data));
 
-		this.vnRolesFromClassIdModel = ViewModelProviders.of(this.fragment).get("vn.roles", SqlunetViewTreeModel.class);
+		this.vnRolesFromClassIdModel = ViewModelProviders.of(this.fragment).get("vn.roles(classid)", SqlunetViewTreeModel.class);
 		this.vnRolesFromClassIdModel.getData().observe(this.fragment, data -> new FireEvent(this.fragment).live(data));
 
-		this.vnFramesFromClassIdModel = ViewModelProviders.of(this.fragment).get("vn.frames", SqlunetViewTreeModel.class);
+		this.vnFramesFromClassIdModel = ViewModelProviders.of(this.fragment).get("vn.frames(classid)", SqlunetViewTreeModel.class);
 		this.vnFramesFromClassIdModel.getData().observe(this.fragment, data -> new FireEvent(this.fragment).live(data));
 	}
 
@@ -190,8 +190,7 @@ abstract class BaseModule extends Module
 				VnClasses.CLASSTAG, //
 		};
 		final String selection = VnClasses.CLASSID + " = ?";
-		final String[] selectionArgs = { //
-				Long.toString(classId)};
+		final String[] selectionArgs = {Long.toString(classId)};
 		this.vnClassFromClassIdModel.loadData(uri, projection, selection, selectionArgs, null, cursor -> vnClassCursorToTreeModel(cursor, classId, parent));
 	}
 
@@ -229,9 +228,9 @@ abstract class BaseModule extends Module
 			final TreeNode node = TreeFactory.addTextNode(parent, sb);
 
 			// sub nodes
-			final TreeNode membersNode = TreeFactory.addHotQueryNode(parent,"Members", R.drawable.members, new MembersQuery(classId));
-			final TreeNode rolesNode = TreeFactory.addHotQueryNode(parent,"Roles", R.drawable.roles, new RolesQuery(classId));
-			final TreeNode framesNode = TreeFactory.addQueryNode(parent,"Frames", R.drawable.vnframe, new FramesQuery(classId));
+			final TreeNode membersNode = TreeFactory.addHotQueryNode(parent, "Members", R.drawable.members, new MembersQuery(classId));
+			final TreeNode rolesNode = TreeFactory.addHotQueryNode(parent, "Roles", R.drawable.roles, new RolesQuery(classId));
+			final TreeNode framesNode = TreeFactory.addQueryNode(parent, "Frames", R.drawable.vnframe, new FramesQuery(classId));
 
 			// changed
 			changed = new TreeNode[]{parent, node, membersNode, rolesNode, framesNode};

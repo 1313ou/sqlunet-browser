@@ -58,7 +58,7 @@ public class BaseModule extends Module
 	 */
 	private final Drawable posDrawable;
 
-	// V I E W   M O D E L S
+	// View models
 
 	private SqlunetViewTreeModel bncFromWordIdModel;
 

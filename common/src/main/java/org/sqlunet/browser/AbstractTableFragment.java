@@ -1,5 +1,6 @@
 package org.sqlunet.browser;
 
+import android.content.Context;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
@@ -37,18 +38,44 @@ public abstract class AbstractTableFragment extends ListFragment
 	static private final boolean VERBOSE = true;
 
 	/**
+	 * View model
+	 */
+	private SqlunetViewModel model;
+
+	/**
 	 * View binder factory
 	 *
 	 * @return view binder
 	 */
 	@Nullable
 	abstract protected ViewBinder makeViewBinder();
-
-	@SuppressWarnings("boxing")
+	
 	@Override
-	public void onCreate(final Bundle savedInstanceState)
+	public void onAttach(@NonNull final Context context)
 	{
-		super.onCreate(savedInstanceState);
+		super.onAttach(context);
+		makeModels();
+	}
+
+	/**
+	 * Make view models
+	 */
+	private void makeModels()
+	{
+		this.model = ViewModelProviders.of(this).get("elements", SqlunetViewModel.class);
+		this.model.getData().observe(this, cursor -> {
+
+			final CursorAdapter adapter = (CursorAdapter) getListAdapter();
+			assert adapter != null;
+			adapter.swapCursor(cursor);
+			((CursorAdapter) getListAdapter()).swapCursor(cursor);
+		});
+	}
+
+	@Override
+	public void onStart()
+	{
+		super.onStart();
 
 		// args
 		final Bundle args = getArguments();
@@ -140,14 +167,9 @@ public abstract class AbstractTableFragment extends ListFragment
 		// }
 		final String[] selectionArgs = queryArg == null ? null : new String[]{queryArg};
 
-		final String tag = "elements";
-		final SqlunetViewModel model = ViewModelProviders.of(this).get(tag, SqlunetViewModel.class);
-		model.getData().observe(this, cursor -> {
-
-			((CursorAdapter) getListAdapter()).swapCursor(cursor);
-		});
-		model.loadData(uri, projection, selection, selectionArgs, sortOrder, null);
+		this.model.loadData(uri, projection, selection, selectionArgs, sortOrder, null);
 	}
+
 
 	// L A Y O U T
 

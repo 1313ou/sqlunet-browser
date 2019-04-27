@@ -1,6 +1,6 @@
 package org.sqlunet.browser;
 
-import android.database.Cursor;
+import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.widget.CursorAdapter;
@@ -22,6 +22,11 @@ import androidx.lifecycle.ViewModelProviders;
  */
 public class SourceFragment extends ListFragment
 {
+	/**
+	 * View model
+	 */
+	private SqlunetViewModel model;
+
 	@Override
 	public void onCreate(final Bundle savedInstanceState)
 	{
@@ -35,25 +40,38 @@ public class SourceFragment extends ListFragment
 				from, //
 				to, 0);
 		setListAdapter(adapter);
+	}
+
+	@Override
+	public void onAttach(@NonNull final Context context)
+	{
+		super.onAttach(context);
+		makeModels();
+	}
+
+	/**
+	 * Make view models
+	 */
+	private void makeModels()
+	{
+		this.model = ViewModelProviders.of(this).get("sources", SqlunetViewModel.class);
+		this.model.getData().observe(this, cursor -> {
+
+			final CursorAdapter adapter = (CursorAdapter) getListAdapter();
+			assert adapter != null;
+			adapter.swapCursor(cursor);
+		});
+	}
+
+	@Override
+	public void onStart()
+	{
+		super.onStart();
 
 		// load the contents
 		final Uri uri = Uri.parse(XSqlUNetProvider.makeUri(Sources.CONTENT_URI_TABLE));
 		final String[] projection = {Sources.ID + " AS _id", Sources.NAME, Sources.VERSION, Sources.URL, Sources.PROVIDER, Sources.REFERENCE};
-		final String[] selectionArgs = null;
-		final String selection = null;
 		final String sortOrder = Sources.ID;
-
-		final String tag = "sources";
-		final SqlunetViewModel model = ViewModelProviders.of(this).get(tag, SqlunetViewModel.class);
-		model.getData().observe(this, cursor -> {
-
-			((CursorAdapter) getListAdapter()).swapCursor(cursor);
-		});
-		model.loadData(uri, projection, selection, selectionArgs, sortOrder, null);
-	}
-
-	private void sourcesToView(@NonNull final Cursor cursor)
-	{
-
+		this.model.loadData(uri, projection, null, null, sortOrder, null);
 	}
 }

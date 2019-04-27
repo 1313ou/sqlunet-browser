@@ -80,9 +80,9 @@ public class SensesFragment extends ListFragment
 	 */
 	private long wordId;
 
-	// V I E W   M O D E L S
+	// View models
 
-	private SqlunetViewModel sensesModel;
+	private SqlunetViewModel sensesModelFromWord;
 
 	/**
 	 * Mandatory empty constructor for the fragment manager to instantiate the fragment (e.g. upon screen orientation changes).
@@ -176,8 +176,6 @@ public class SensesFragment extends ListFragment
 	public void onAttach(@NonNull final Context context)
 	{
 		super.onAttach(context);
-
-		// models
 		makeModels();
 	}
 
@@ -186,8 +184,8 @@ public class SensesFragment extends ListFragment
 	 */
 	private void makeModels()
 	{
-		this.sensesModel = ViewModelProviders.of(this).get("wn.senses", SqlunetViewModel.class);
-		this.sensesModel.getData().observe(this, cursor -> {
+		this.sensesModelFromWord = ViewModelProviders.of(this).get("wn.senses(word)", SqlunetViewModel.class);
+		this.sensesModelFromWord.getData().observe(this, cursor -> {
 
 			// pass on to list adapter
 			((CursorAdapter) getListAdapter()).swapCursor(cursor);
@@ -279,8 +277,7 @@ public class SensesFragment extends ListFragment
 		final String selection = Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.LEMMA + " = ?";
 		final String[] selectionArgs = {SensesFragment.this.word};
 		final String sortOrder = Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.POS + ',' + Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.SENSENUM;
-
-		this.sensesModel.loadData(uri, projection, selection, selectionArgs, sortOrder, cursor -> sensesPostProcess(cursor));
+		this.sensesModelFromWord.loadData(uri, projection, selection, selectionArgs, sortOrder, cursor -> sensesPostProcess(cursor));
 	}
 
 	private void sensesPostProcess(@NonNull final Cursor cursor)

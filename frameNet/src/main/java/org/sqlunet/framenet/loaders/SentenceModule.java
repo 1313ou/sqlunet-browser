@@ -38,7 +38,7 @@ public class SentenceModule extends BaseModule
 	 */
 	private String sentenceText;
 
-	// V I E W   M O D E L S
+	// View models
 
 	private SqlunetViewTreeModel sentenceFromSentenceIdModel;
 

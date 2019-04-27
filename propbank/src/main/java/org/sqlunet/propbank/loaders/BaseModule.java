@@ -89,7 +89,7 @@ abstract class BaseModule extends Module
 	@NonNull
 	private final PropBankSpanner spanner;
 
-	// V I E W   M O D E L S
+	// View models
 
 	private SqlunetViewTreeModel pbRoleSetFromRoleSetIdModel;
 
@@ -241,7 +241,7 @@ abstract class BaseModule extends Module
 		};
 		final String selection = Words_PbRoleSets.WORDID + " = ?";
 		final String[] selectionArgs = {Long.toString(wordId)};
-		roleSetsFromWordIdModel.loadData(uri, projection, selection, selectionArgs, null, cursor -> roleSetsCursorToTreeModel(cursor, parent));
+		this.roleSetsFromWordIdModel.loadData(uri, projection, selection, selectionArgs, null, cursor -> roleSetsCursorToTreeModel(cursor, parent));
 	}
 
 	private TreeNode[] roleSetsCursorToTreeModel(@NonNull final Cursor cursor, @NonNull final TreeNode parent)
