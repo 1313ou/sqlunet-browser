@@ -30,51 +30,45 @@ public class FireEvent
 	{
 		//Log.d(TAG, "Live " + "\n" + nodes[0].toStringWithChildren());
 		Log.d(TAG, "Live " + "\n" + nodes[0].toString());
-		TreeView treeView = this.fragment.getTreeView();
+		final TreeView treeView = this.fragment.getTreeView();
 
 		int n = nodes.length;
 		if (n == 1)
 		{
 			final TreeNode node = nodes[0];
-			if (node.isZombie())
-			{
-				treeView.remove(node);
-			}
-			else
-			{
-				treeView.expand(node, false);
-			}
+			handleNode(node, treeView, false);
 		}
 		else if (n > 1)
 		{
 			for (int i = 1; i < n; i++)
 			{
 				final TreeNode node = nodes[i];
-				final TreeNode parent = node.getParent();
-				if (node.isZombie())
-				{
-					treeView.remove(node);
-				}
-				else
-				{
-					if (parent.isExpanded())
-					{
-						final Controller<?> controller = parent.getController();
-						final ViewGroup viewGroup = controller.getChildrenContainerView();
-						if (viewGroup != null)
-						{
-							treeView.addNodeView(viewGroup, node);
-						}
-					}
-					else
-					{
-						treeView.expand(parent, true);
-					}
-				}
+				handleNode(node, treeView, true);
 			}
 		}
 	}
 
+	private void handleNode(final TreeNode node, final TreeView treeView, final boolean includeSubnodes)
+	{
+		if (node.isZombie())
+		{
+			treeView.remove(node);
+		}
+		else
+		{
+			final TreeNode parent = node.getParent();
+			final Controller<?> controller = parent.getController();
+			final ViewGroup viewGroup = controller.getChildrenContainerView();
+			if (viewGroup == null || !parent.isExpanded())
+			{
+				treeView.expand(parent, includeSubnodes);
+			}
+			else
+			{
+				treeView.addNodeView(viewGroup, node);
+			}
+		}
+	}
 
 	// R E S U L T S  A V A I L A B L E
 
