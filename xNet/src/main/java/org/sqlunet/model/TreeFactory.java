@@ -15,7 +15,7 @@ import org.sqlunet.treeview.control.LinkQueryController;
 import org.sqlunet.treeview.control.LinkTreeController;
 import org.sqlunet.treeview.control.MoreController;
 import org.sqlunet.treeview.control.Query;
-import org.sqlunet.treeview.control.QueryController;
+import org.sqlunet.treeview.control.ColdQueryController;
 import org.sqlunet.treeview.control.TextController;
 import org.sqlunet.treeview.control.TreeController;
 import org.sqlunet.treeview.control.Value;
@@ -124,7 +124,7 @@ public class TreeFactory
 	 */
 	static public TreeNode addQueryNode(@NonNull final TreeNode parent, final CharSequence text, final int icon, final Query query)
 	{
-		final TreeNode result = new TreeNode(new Value(text, icon, query), new QueryController());
+		final TreeNode result = new TreeNode(new Value(text, icon, query), new ColdQueryController());
 		parent.addChild(result);
 		return result;
 	}

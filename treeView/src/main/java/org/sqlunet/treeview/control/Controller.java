@@ -4,7 +4,6 @@ import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
 
-import org.sqlunet.treeview.R;
 import org.sqlunet.treeview.model.TreeNode;
 import org.sqlunet.treeview.view.SubtreeView;
 
@@ -44,7 +43,7 @@ public abstract class Controller<E>
 	 * Child nodes' container view
 	 */
 	@Nullable
-	private ViewGroup childContainer;
+	private ViewGroup childrenContainer;
 
 
 	// C O N S T R U C T
@@ -69,7 +68,7 @@ public abstract class Controller<E>
 		this.view = subtreeView;
 
 		// children view
-		this.childContainer = this.view.findViewById(R.id.node_children);
+		this.childrenContainer = subtreeView.childrenContainer;
 
 		return this.view;
 	}
@@ -94,7 +93,7 @@ public abstract class Controller<E>
 	@Nullable
 	public ViewGroup getChildrenContainerView()
 	{
-		return this.childContainer;
+		return this.childrenContainer;
 	}
 
 	// N O D E V I E W

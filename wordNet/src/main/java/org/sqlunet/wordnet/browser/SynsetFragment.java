@@ -28,7 +28,7 @@ public class SynsetFragment extends TreeFragment
 	static private final String STATE_EXPAND = "state_expand";
 
 	/**
-	 * Whether to expand
+	 * Whether to expandContainer
 	 */
 	private boolean expand;
 
@@ -110,7 +110,7 @@ public class SynsetFragment extends TreeFragment
 	}
 
 	/**
-	 * Set expand
+	 * Set expandContainer
 	 */
 	public void setExpand(final boolean expand)
 	{

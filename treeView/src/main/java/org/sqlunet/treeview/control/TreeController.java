@@ -25,7 +25,7 @@ public class TreeController extends Controller<Value>
 	/**
 	 * Junction view
 	 */
-	private ImageView junctionView;
+	protected ImageView junctionView;
 
 	/**
 	 * Resource used (changed by derived classes)
@@ -49,6 +49,18 @@ public class TreeController extends Controller<Value>
 
 		// junction icon (arrow)
 		this.junctionView = view.findViewById(R.id.junction_icon);
+		if (node.isZombie())
+		{
+			this.junctionView.setImageResource(R.drawable.ic_leaf_zombie);
+		}
+		else if (node.isDeadend())
+		{
+			this.junctionView.setImageResource(R.drawable.ic_leaf_deadend);
+		}
+		else
+		{
+			// this.junctionView.setImageResource(R.drawable.ic_collapsed);
+		}
 
 		// icon
 		final ImageView iconView = view.findViewById(R.id.node_icon);
@@ -62,9 +74,15 @@ public class TreeController extends Controller<Value>
 	}
 
 	@Override
-	public void onExpandEvent(boolean expand)
+	public void onExpandEvent(boolean unused)
 	{
-		this.junctionView.setImageResource(this.node.isEnabled() ? (expand ? R.drawable.ic_expanded : R.drawable.ic_collapsed) : R.drawable.ic_leaf);
+		this.junctionView.setImageResource(this.node.isEnabled() ? R.drawable.ic_expanded : R.drawable.ic_leaf);
+	}
+
+	@Override
+	public void onCollapseEvent()
+	{
+		this.junctionView.setImageResource(this.node.isEnabled() ? R.drawable.ic_collapsed : R.drawable.ic_leaf);
 	}
 
 	@Override

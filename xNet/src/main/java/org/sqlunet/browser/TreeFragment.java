@@ -112,6 +112,6 @@ abstract public class TreeFragment extends Fragment
 	@Nullable
 	public TreeView getTreeView()
 	{
-		return treeView;
+		return this.treeView;
 	}
 }

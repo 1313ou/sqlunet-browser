@@ -1,12 +1,7 @@
 package org.sqlunet.treeview.control;
 
-import android.content.Context;
+import org.sqlunet.treeview.R;
 
-/**
- * Query controller (expanding this controller will trigger query)
- *
- * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
- */
 public class QueryController extends TreeController
 {
 	// static private final String TAG = "QueryController";
@@ -19,17 +14,19 @@ public class QueryController extends TreeController
 	public QueryController()
 	{
 		super();
+		this.layoutRes = R.layout.layout_query;
 	}
 
 	@Override
-	public void onExpandEvent(boolean triggerQueries)
+	public void onExpandEvent(boolean unused)
 	{
-		super.onExpandEvent(triggerQueries);
+		this.junctionView.setImageResource(this.node.isEnabled() ? R.drawable.ic_query_expanded : R.drawable.ic_leaf);
+	}
 
-		if (triggerQueries && this.node.isLeaf())
-		{
-			processQuery();
-		}
+	@Override
+	public void onCollapseEvent()
+	{
+		this.junctionView.setImageResource(this.node.isEnabled() ? R.drawable.ic_query_collapsed : R.drawable.ic_leaf);
 	}
 
 	/**

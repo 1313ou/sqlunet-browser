@@ -49,9 +49,9 @@ public class SynsetModule extends BaseModule
 	}
 
 	/**
-	 * Set expand
+	 * Set expandContainer
 	 *
-	 * @param expand expand flag
+	 * @param expand expandContainer flag
 	 */
 	public void setExpand(final boolean expand)
 	{

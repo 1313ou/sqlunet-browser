@@ -198,7 +198,7 @@ class FileUtils
 		//noinspection ResultOfMethodCallIgnored
 		destDir.mkdir();
 
-		// read and expand entries
+		// read and expandContainer entries
 		final ZipInputStream zis = new ZipInputStream(in);
 
 		try

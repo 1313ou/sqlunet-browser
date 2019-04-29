@@ -4,6 +4,7 @@ import android.animation.Animator;
 import android.animation.ValueAnimator;
 import android.content.Context;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.ContextThemeWrapper;
 import android.view.View;
 import android.view.ViewGroup;
@@ -35,6 +36,8 @@ import androidx.annotation.Nullable;
  */
 public class TreeView
 {
+	private static final String TAG = "TreeView";
+
 	static private final String NODES_PATH_SEPARATOR = ";";
 
 	static private final float ANIMATION_DP_PER_MS = 3.f;
@@ -150,6 +153,7 @@ public class TreeView
 		final LinearLayout contentView = new LinearLayout(containerContext, null, this.containerStyle);
 		contentView.setId(R.id.tree_view);
 		contentView.setOrientation(LinearLayout.VERTICAL);
+		contentView.setVisibility(View.GONE);
 		view.addView(contentView);
 
 		// root
@@ -176,8 +180,8 @@ public class TreeView
 		// view
 		if (parent.isExpanded())
 		{
-			final Controller<?> controller = parent.getController();
-			final ViewGroup viewGroup = controller.getChildrenContainerView();
+			final Controller<?> parentController = parent.getController();
+			final ViewGroup viewGroup = parentController.getChildrenContainerView();
 			assert viewGroup != null;
 			addNodeView(viewGroup, node);
 		}
@@ -215,6 +219,8 @@ public class TreeView
 		{
 			view = controller.createView(this.context, this.containerStyle);
 		}
+		View childrenContainerView = controller.getChildrenContainerView();
+		Log.d(TAG, "Visibility=" + Integer.toHexString(childrenContainerView.getVisibility()));
 
 		// remove from parent
 		ViewParent parent = view.getParent();
@@ -232,8 +238,15 @@ public class TreeView
 
 		// listener
 		view.setOnClickListener(v -> {
+
 			// if disabled
 			if (!node.isEnabled())
+			{
+				return;
+			}
+
+			// if deadend
+			if (node.isDeadend())
 			{
 				return;
 			}
@@ -244,9 +257,9 @@ public class TreeView
 				node.getClickListener().onClick(node, node.getValue());
 			}
 			// else default
-			else if (TreeView.this.nodeClickListener != null)
+			else if (this.nodeClickListener != null)
 			{
-				TreeView.this.nodeClickListener.onClick(node, node.getValue());
+				this.nodeClickListener.onClick(node, node.getValue());
 			}
 
 			// toggle node
@@ -345,7 +358,7 @@ public class TreeView
 	 * @param node            node
 	 * @param includeSubnodes whether to include subnodes
 	 */
-	public void expand(@NonNull final TreeNode node, @SuppressWarnings("SameParameterValue") boolean includeSubnodes)
+	public void expandContainer(@NonNull final TreeNode node, @SuppressWarnings("SameParameterValue") boolean includeSubnodes)
 	{
 		expandNode(node, includeSubnodes, false);
 	}
@@ -354,10 +367,10 @@ public class TreeView
 	 * Expand
 	 *
 	 * @param node   node
-	 * @param levels number of levels to expand
+	 * @param levels number of levels to expandContainer
 	 */
 	/*
-	public void expand(@NonNull final TreeNode node, int levels)
+	public void expandContainer(@NonNull final TreeNode node, int levels)
 	{
 		expandRelativeLevel(node, levels);
 	}
@@ -515,14 +528,14 @@ public class TreeView
 		assert viewGroup != null;
 		if (this.useAnimation)
 		{
-			animatedCollapse(viewGroup);
+			animatedContainerCollapse(viewGroup);
 		}
 		else
 		{
-			collapse(viewGroup);
+			collapseContainer(viewGroup);
 		}
 
-		// fire collapse event
+		// fire collapseContainer event
 		controller.onCollapseEvent();
 
 		// subnodes
@@ -578,13 +591,16 @@ public class TreeView
 		controller.onExpandEvent(triggerQueries);
 
 		// display
-		if (this.useAnimation)
+		if(viewGroup.getChildCount() != 0)
 		{
-			animatedExpand(viewGroup);
-		}
-		else
-		{
-			expand(viewGroup);
+			if (this.useAnimation)
+			{
+				animatedContainerExpand(viewGroup);
+			}
+			else
+			{
+				expandContainer(viewGroup);
+			}
 		}
 	}
 
@@ -595,7 +611,7 @@ public class TreeView
 	 *
 	 * @param view view
 	 */
-	static private void expand(@NonNull final View view)
+	static private void expandContainer(@NonNull final View view)
 	{
 		view.getLayoutParams().height = LayoutParams.WRAP_CONTENT;
 		view.requestLayout();
@@ -607,17 +623,17 @@ public class TreeView
 	 *
 	 * @param view view
 	 */
-	static private void collapse(@NonNull final View view)
+	static private void collapseContainer(@NonNull final View view)
 	{
 		view.setVisibility(View.GONE);
 	}
 
 	/**
-	 * Animated expand view animated (child container)
+	 * Animated expandContainer view animated (child container)
 	 *
 	 * @param view view
 	 */
-	static private void animatedExpand(@NonNull final View view)
+	static private void animatedContainerExpand(@NonNull final View view)
 	{
 		view.measure(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
 		final int targetHeight = view.getMeasuredHeight();
@@ -666,11 +682,11 @@ public class TreeView
 	}
 
 	/**
-	 * Animated collapse view (child container)
+	 * Animated collapseContainer view (child container)
 	 *
 	 * @param view view
 	 */
-	static private void animatedCollapse(@NonNull final View view)
+	static private void animatedContainerCollapse(@NonNull final View view)
 	{
 		final int initialHeight = view.getMeasuredHeight();
 		int duration = (int) (ANIMATION_DP_PER_MS * initialHeight / view.getContext().getResources().getDisplayMetrics().density);
@@ -718,7 +734,7 @@ public class TreeView
 	/**
 	 * Set animation use
 	 *
-	 * @param useAnimation use animation for expand/collapse
+	 * @param useAnimation use animation for expandContainer/collapseContainer
 	 */
 	@SuppressWarnings("unused")
 	public void setAnimation(final boolean useAnimation)

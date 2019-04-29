@@ -218,7 +218,7 @@ public class Spanner
 	 *
 	 * @param sb                spannable string builder
 	 * @param collapsedDrawable collapse drawable
-	 * @param expandedDrawable  expand drawable
+	 * @param expandedDrawable  expandContainer drawable
 	 * @param caption           caption
 	 * @param listener          click listener
 	 */

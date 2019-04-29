@@ -40,17 +40,16 @@ public class LinkLeafController extends LeafController
 		return view;
 	}
 
-	/*
 	@Override
-	public void onExpandEvent(boolean expand)
+	public void onExpandEvent(boolean triggerQueries)
 	{
-		super.onExpandEvent(expand);
-		if (expand)
+		super.onExpandEvent(triggerQueries);
+
+		if (triggerQueries)
 		{
 			followLink();
 		}
 	}
-	*/
 
 	/**
 	 * Follow link

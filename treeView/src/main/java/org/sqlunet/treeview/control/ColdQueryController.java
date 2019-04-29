@@ -1,0 +1,34 @@
+package org.sqlunet.treeview.control;
+
+import android.content.Context;
+
+import org.sqlunet.treeview.R;
+
+/**
+ * Query controller (expanding this controller will trigger query)
+ *
+ * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
+ */
+public class ColdQueryController extends QueryController
+{
+	// static private final String TAG = "ColdQueryController";
+
+	/**
+	 * Constructor
+	 */
+	public ColdQueryController()
+	{
+		super();
+	}
+
+	@Override
+	public void onExpandEvent(boolean triggerQueries)
+	{
+		super.onExpandEvent(triggerQueries);
+
+		if (triggerQueries && this.node.isLeaf())
+		{
+			processQuery();
+		}
+	}
+}

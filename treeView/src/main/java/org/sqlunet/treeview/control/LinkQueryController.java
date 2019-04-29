@@ -12,7 +12,7 @@ import org.sqlunet.treeview.model.TreeNode;
  *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
-public class LinkQueryController extends QueryController
+public class LinkQueryController extends ColdQueryController
 {
 	// static private final String TAG = "LinkQueryController";
 

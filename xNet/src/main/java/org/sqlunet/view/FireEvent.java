@@ -26,10 +26,19 @@ public class FireEvent
 		this.fragment = fragment;
 	}
 
+	public void live0(final TreeNode[] nodes)
+	{
+	}
+
+	public void live1(final TreeNode[] nodes)
+	{
+		final TreeView treeView = this.fragment.getTreeView();
+		final TreeNode node = nodes[0];
+		treeView.expandContainer(node, true);
+	}
+
 	public void live(final TreeNode[] nodes)
 	{
-		//Log.d(TAG, "Live " + "\n" + nodes[0].toStringWithChildren());
-		Log.d(TAG, "Live " + "\n" + nodes[0].toString());
 		final TreeView treeView = this.fragment.getTreeView();
 
 		int n = nodes.length;
@@ -45,6 +54,7 @@ public class FireEvent
 				final TreeNode node = nodes[i];
 				handleNode(node, treeView, true);
 			}
+			handleNode(nodes[0], treeView, false);
 		}
 	}
 
@@ -52,20 +62,24 @@ public class FireEvent
 	{
 		if (node.isZombie())
 		{
+			Log.d(TAG, "--- " + node.toString());
 			treeView.remove(node);
 		}
 		else
 		{
 			final TreeNode parent = node.getParent();
-			final Controller<?> controller = parent.getController();
-			final ViewGroup viewGroup = controller.getChildrenContainerView();
+			final Controller<?> parentController = parent.getController();
+			final ViewGroup viewGroup = parentController.getChildrenContainerView();
 			if (viewGroup == null || !parent.isExpanded())
 			{
-				treeView.expand(parent, includeSubnodes);
+				Log.d(TAG, "### " + node.toString());
+				treeView.expandContainer(parent, includeSubnodes);
 			}
 			else
 			{
+				Log.d(TAG, "+++ " + node.toString());
 				treeView.addNodeView(viewGroup, node);
+				parentController.onExpandEvent(true);
 			}
 		}
 	}
@@ -97,7 +111,7 @@ public class FireEvent
 	 */
 	static public void onResults(@NonNull final TreeNode node)
 	{
-		// TODO TreeView.expand(node, false);
+		// TODO TreeView.expandContainer(node, false);
 	}
 
 	/**
@@ -108,7 +122,7 @@ public class FireEvent
 	 */
 	static public void onResults(@NonNull final TreeNode node, int levels)
 	{
-		// TODO TreeView.expand(node, levels);
+		// TODO TreeView.expandContainer(node, levels);
 	}
 
 	/**

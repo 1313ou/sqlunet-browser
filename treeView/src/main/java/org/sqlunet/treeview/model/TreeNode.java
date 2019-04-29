@@ -1,5 +1,8 @@
 package org.sqlunet.treeview.model;
 
+import android.view.View;
+import android.view.ViewGroup;
+
 import org.sqlunet.treeview.control.Controller;
 
 import java.util.ArrayList;
@@ -7,7 +10,6 @@ import java.util.Collections;
 import java.util.List;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 
 /**
  * Tree node
@@ -475,7 +477,15 @@ public class TreeNode
 	 */
 	public boolean isExpanded()
 	{
-		return this.expanded;
+		//return this.expanded;
+		final Controller controller = getController();
+		final ViewGroup container = controller.getChildrenContainerView();
+		if (container == null)
+		{
+			return false;
+		}
+		int vis = container.getVisibility();
+		return vis != View.GONE;
 	}
 
 	/**
@@ -485,7 +495,7 @@ public class TreeNode
 	 */
 	public void setExpanded(boolean expanded)
 	{
-		this.expanded = expanded;
+		//this.expanded = expanded;
 	}
 
 
@@ -654,9 +664,8 @@ public class TreeNode
 		sb.append("id=");
 		sb.append(id);
 		sb.append(' ');
-		sb.append("value=[");
-		sb.append(value.toString().replace('\n', '┃'));
-		sb.append(']');
+		sb.append("value=");
+		sb.append(value == null ? "null" : '[' + value.toString().replace('\n', '┃') + ']');
 		sb.append(' ');
 		sb.append("controller=");
 		sb.append(controller.getClass().getSimpleName());
