@@ -14,7 +14,7 @@
 		android:layout_gravity="top"
 		android:contentDescription="@string/hint_tree"
 		android:gravity="center_vertical"
-		android:src="@drawable/ic_collapsed"/>
+		android:src="@drawable/ic_query_collapsed"/>
 
 	<ImageView
 		android:id="@+id/node_icon"

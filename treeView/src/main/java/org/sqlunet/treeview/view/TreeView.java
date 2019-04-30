@@ -163,6 +163,26 @@ public class TreeView
 		return view;
 	}
 
+	// E X P A N D   S T A T U S
+
+	/**
+	 * Get whether node is expanded
+	 *
+	 * @return whether node is expanded
+	 */
+	static public boolean isExpanded(final TreeNode node)
+	{
+		//return this.expanded;
+		final Controller controller = node.getController();
+		final ViewGroup container = controller.getChildrenContainerView();
+		if (container == null)
+		{
+			return false;
+		}
+		int visibility = container.getVisibility();
+		return visibility != View.GONE;
+	}
+
 	// A D D / R E M O V E
 
 	/**
@@ -178,7 +198,7 @@ public class TreeView
 		parent.addChild(node);
 
 		// view
-		if (parent.isExpanded())
+		if (isExpanded(parent))
 		{
 			final Controller<?> parentController = parent.getController();
 			final ViewGroup viewGroup = parentController.getChildrenContainerView();
@@ -220,7 +240,7 @@ public class TreeView
 			view = controller.createView(this.context, this.containerStyle);
 		}
 		View childrenContainerView = controller.getChildrenContainerView();
-		Log.d(TAG, "Visibility=" + Integer.toHexString(childrenContainerView.getVisibility()));
+		//Log.d(TAG, "Visibility=" + Integer.toHexString(childrenContainerView.getVisibility()));
 
 		// remove from parent
 		ViewParent parent = view.getParent();
@@ -279,7 +299,7 @@ public class TreeView
 		if (parent != null)
 		{
 			// view
-			if (parent.isExpanded())
+			if (isExpanded(parent))
 			{
 				final Controller<?> parentController = parent.getController();
 				final ViewGroup viewGroup = parentController.getChildrenContainerView();
@@ -494,7 +514,7 @@ public class TreeView
 	 */
 	private void toggleNode(@NonNull final TreeNode node)
 	{
-		if (node.isExpanded())
+		if (isExpanded(node))
 		{
 			collapseNode(node, false);
 		}
@@ -517,9 +537,6 @@ public class TreeView
 		{
 			return;
 		}
-
-		// flag
-		node.setExpanded(false);
 
 		final Controller<?> controller = node.getController();
 
@@ -557,9 +574,6 @@ public class TreeView
 	 */
 	private void expandNode(@NonNull final TreeNode node, boolean includeSubnodes, boolean triggerQueries)
 	{
-		// flag
-		node.setExpanded(true);
-
 		// children view group
 		final Controller<?> controller = node.getController();
 		final ViewGroup viewGroup = controller.getChildrenContainerView();
@@ -581,14 +595,11 @@ public class TreeView
 			addNodeView(viewGroup, child);
 
 			// recurse
-			if (child.isExpanded() || includeSubnodes)
+			if (isExpanded(child) || includeSubnodes)
 			{
 				expandNode(child, includeSubnodes, triggerQueries);
 			}
 		}
-
-		// fire expand event
-		controller.onExpandEvent(triggerQueries);
 
 		// display
 		if(viewGroup.getChildCount() != 0)
@@ -601,7 +612,14 @@ public class TreeView
 			{
 				expandContainer(viewGroup);
 			}
+
+			// fire expand event
+			controller.onExpandEvent();
 		}
+
+		// fire
+		if(triggerQueries)
+			controller.fire();
 	}
 
 	// E X P A N D / C O L L A P S E   I M P L E M E N T A T I O N
@@ -862,7 +880,7 @@ public class TreeView
 	{
 		for (TreeNode child : root.getChildren())
 		{
-			if (child.isExpanded())
+			if (isExpanded(child))
 			{
 				sb.append(child.getPath());
 				sb.append(NODES_PATH_SEPARATOR);
@@ -919,7 +937,7 @@ public class TreeView
 		fireNodeSelected(node, selectable);
 
 		// propagate
-		if (node.isExpanded())
+		if (isExpanded(node))
 		{
 			for (TreeNode child : node.getChildren())
 			{
@@ -1059,7 +1077,7 @@ public class TreeView
 		fireNodeSelected(node, selected);
 
 		// propagation
-		boolean propagate = !skipCollapsed || node.isExpanded();
+		boolean propagate = !skipCollapsed || isExpanded(node);
 		if (propagate)
 		{
 			for (TreeNode child : node.getChildren())

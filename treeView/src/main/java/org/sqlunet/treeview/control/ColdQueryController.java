@@ -22,11 +22,9 @@ public class ColdQueryController extends QueryController
 	}
 
 	@Override
-	public void onExpandEvent(boolean triggerQueries)
+	public void fire()
 	{
-		super.onExpandEvent(triggerQueries);
-
-		if (triggerQueries && this.node.isLeaf())
+		if (this.node.isLeaf())
 		{
 			processQuery();
 		}

@@ -60,8 +60,9 @@ public class Value
 	public String toString()
 	{
 		final StringBuilder sb = new StringBuilder();
-		sb.append("text=");
+		sb.append('"');
 		sb.append(text);
+		sb.append('"');
 		if (payload != null)
 		{
 			sb.append(' ');
@@ -78,7 +79,6 @@ public class Value
 				{
 					sb.append(',');
 				}
-
 				sb.append(obj);
 			}
 			sb.append('}');

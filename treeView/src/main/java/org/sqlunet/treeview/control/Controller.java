@@ -154,14 +154,22 @@ public abstract class Controller<E>
 		// empty
 	}
 
+	// F I R E
+
+	/**
+	 * Fire
+	 */
+	public void fire()
+	{
+		// empty
+	}
+
 	// E V E N T   L I S T E N E R
 
 	/**
 	 * Expand event notification
-	 *
-	 * @param triggerQueries whether to trigger queries
 	 */
-	public void onExpandEvent(boolean triggerQueries)
+	public void onExpandEvent()
 	{
 		// empty
 	}

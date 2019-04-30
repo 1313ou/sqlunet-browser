@@ -1,11 +1,12 @@
 package org.sqlunet.treeview.control;
 
 import android.content.Context;
-import androidx.annotation.NonNull;
 import android.view.View;
 
 import org.sqlunet.treeview.R;
 import org.sqlunet.treeview.model.TreeNode;
+
+import androidx.annotation.NonNull;
 
 /**
  * Link leaf controller
@@ -41,14 +42,9 @@ public class LinkLeafController extends LeafController
 	}
 
 	@Override
-	public void onExpandEvent(boolean triggerQueries)
+	public void fire()
 	{
-		super.onExpandEvent(triggerQueries);
-
-		if (triggerQueries)
-		{
-			followLink();
-		}
+		followLink();
 	}
 
 	/**

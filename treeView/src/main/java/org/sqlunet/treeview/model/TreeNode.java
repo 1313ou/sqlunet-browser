@@ -68,11 +68,6 @@ public class TreeNode
 	private boolean enabled;
 
 	/**
-	 * Expanded
-	 */
-	private boolean expanded;
-
-	/**
 	 * Collapsible
 	 */
 	private boolean collapsible;
@@ -96,7 +91,6 @@ public class TreeNode
 		this.enabled = true;
 		this.selected = false;
 		this.selectable = false;
-		this.expanded = false;
 		this.collapsible = true;
 		this.deadend = false;
 		this.zombie = false;
@@ -471,35 +465,6 @@ public class TreeNode
 	// A T T R I B U T E S
 
 	/**
-	 * Get whether node is expanded
-	 *
-	 * @return whether node is expanded
-	 */
-	public boolean isExpanded()
-	{
-		//return this.expanded;
-		final Controller controller = getController();
-		final ViewGroup container = controller.getChildrenContainerView();
-		if (container == null)
-		{
-			return false;
-		}
-		int vis = container.getVisibility();
-		return vis != View.GONE;
-	}
-
-	/**
-	 * Set node expanded
-	 *
-	 * @param expanded expanded flag
-	 */
-	public void setExpanded(boolean expanded)
-	{
-		//this.expanded = expanded;
-	}
-
-
-	/**
 	 * Get whether this node is selected
 	 *
 	 * @return whether this node is selected
@@ -661,10 +626,11 @@ public class TreeNode
 	public String toString()
 	{
 		final StringBuilder sb = new StringBuilder();
-		sb.append("id=");
+		//sb.append("id=");
+		sb.append('#');
 		sb.append(id);
 		sb.append(' ');
-		sb.append("value=");
+		//sb.append("value=");
 		sb.append(value == null ? "null" : '[' + value.toString().replace('\n', '┃') + ']');
 		sb.append(' ');
 		sb.append("controller=");

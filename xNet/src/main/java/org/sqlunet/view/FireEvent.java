@@ -5,6 +5,7 @@ import android.view.ViewGroup;
 
 import org.sqlunet.browser.TreeFragment;
 import org.sqlunet.treeview.control.Controller;
+import org.sqlunet.treeview.control.TreeController;
 import org.sqlunet.treeview.model.TreeNode;
 import org.sqlunet.treeview.view.TreeView;
 
@@ -54,7 +55,18 @@ public class FireEvent
 				final TreeNode node = nodes[i];
 				handleNode(node, treeView, true);
 			}
-			handleNode(nodes[0], treeView, false);
+			handleJunction(nodes[0], treeView);
+		}
+	}
+
+	private void handleJunction(final TreeNode node, final TreeView treeView)
+	{
+		final Controller<?> controller = node.getController();
+		if (controller instanceof TreeController)
+		{
+			final TreeController treeController = (TreeController) controller;
+			// View v = treeController.getNodeView();
+			// treeController.onExpandEvent();
 		}
 	}
 
@@ -65,21 +77,26 @@ public class FireEvent
 			Log.d(TAG, "--- " + node.toString());
 			treeView.remove(node);
 		}
+		else if (node.isDeadend())
+		{
+			Log.d(TAG, "000 " + node.toString());
+			treeView.disable(node);
+		}
 		else
 		{
 			final TreeNode parent = node.getParent();
 			final Controller<?> parentController = parent.getController();
 			final ViewGroup viewGroup = parentController.getChildrenContainerView();
-			if (viewGroup == null || !parent.isExpanded())
+			if (viewGroup == null || !TreeView.isExpanded(parent))
 			{
-				Log.d(TAG, "### " + node.toString());
+				Log.d(TAG, "*** " + node.toString());
 				treeView.expandContainer(parent, includeSubnodes);
 			}
 			else
 			{
 				Log.d(TAG, "+++ " + node.toString());
 				treeView.addNodeView(viewGroup, node);
-				parentController.onExpandEvent(true);
+				// parentController.onExpandEvent();
 			}
 		}
 	}

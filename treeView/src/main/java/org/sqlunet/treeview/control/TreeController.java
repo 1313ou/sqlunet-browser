@@ -74,19 +74,34 @@ public class TreeController extends Controller<Value>
 	}
 
 	@Override
-	public void onExpandEvent(boolean unused)
+	public void onExpandEvent()
 	{
-		this.junctionView.setImageResource(this.node.isEnabled() ? R.drawable.ic_expanded : R.drawable.ic_leaf);
+		markExpanded();
 	}
 
 	@Override
 	public void onCollapseEvent()
 	{
-		this.junctionView.setImageResource(this.node.isEnabled() ? R.drawable.ic_collapsed : R.drawable.ic_leaf);
+		markCollapsed();
 	}
 
 	@Override
 	public void disable()
+	{
+		markDisabled();
+	}
+
+	protected void markExpanded()
+	{
+		this.junctionView.setImageResource(this.node.isEnabled() && !this.node.isDeadend() ? R.drawable.ic_expanded : R.drawable.ic_leaf);
+	}
+
+	protected void markCollapsed()
+	{
+		this.junctionView.setImageResource(this.node.isEnabled() && !this.node.isDeadend() ? R.drawable.ic_collapsed : R.drawable.ic_leaf);
+	}
+
+	protected void markDisabled()
 	{
 		this.junctionView.setImageResource(R.drawable.ic_leaf);
 	}

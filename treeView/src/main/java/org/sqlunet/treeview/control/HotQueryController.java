@@ -1,7 +1,5 @@
 package org.sqlunet.treeview.control;
 
-import android.content.Context;
-
 import org.sqlunet.treeview.R;
 
 /**
@@ -23,14 +21,14 @@ public class HotQueryController extends QueryController
 	}
 
 	@Override
-	public void onExpandEvent(boolean unused)
+	protected void markExpanded()
 	{
-		this.junctionView.setImageResource(this.node.isEnabled() ? R.drawable.ic_hotquery_expanded : R.drawable.ic_leaf);
+		this.junctionView.setImageResource(this.node.isEnabled() && !this.node.isDeadend() ? R.drawable.ic_hotquery_expanded : R.drawable.ic_leaf);
 	}
 
 	@Override
-	public void onCollapseEvent()
+	protected void markCollapsed()
 	{
-		this.junctionView.setImageResource(this.node.isEnabled() ? R.drawable.ic_hotquery_collapsed : R.drawable.ic_leaf);
+		this.junctionView.setImageResource(this.node.isEnabled() && !this.node.isDeadend() ? R.drawable.ic_hotquery_collapsed : R.drawable.ic_leaf);
 	}
 }
