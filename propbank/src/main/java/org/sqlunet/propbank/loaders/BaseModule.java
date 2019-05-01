@@ -23,14 +23,18 @@ import org.sqlunet.style.Spanner;
 import org.sqlunet.treeview.control.Query;
 import org.sqlunet.treeview.model.TreeNode;
 import org.sqlunet.view.FireEvent;
+import org.sqlunet.view.TreeOp;
+import org.sqlunet.view.TreeOp.TreeOps;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 import java.util.Locale;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.ViewModelProviders;
+
+import static org.sqlunet.view.TreeOp.TreeOpCode.NEW;
+import static org.sqlunet.view.TreeOp.TreeOpCode.ANCHOR;
+import static org.sqlunet.view.TreeOp.TreeOpCode.REMOVE;
 
 /**
  * Module for PropBank role sets
@@ -166,14 +170,14 @@ abstract class BaseModule extends Module
 		this.pbRoleSetFromRoleSetIdModel.loadData(uri, projection, selection, selectionArgs, null, cursor -> roleSetCursorToTreeModel(cursor, roleSetId, parent));
 	}
 
-	private TreeNode[] roleSetCursorToTreeModel(@NonNull final Cursor cursor, final long roleSetId, @NonNull final TreeNode parent)
+	private TreeOp[] roleSetCursorToTreeModel(@NonNull final Cursor cursor, final long roleSetId, @NonNull final TreeNode parent)
 	{
 		if (cursor.getCount() > 1)
 		{
 			throw new RuntimeException("Unexpected number of rows");
 		}
 
-		TreeNode[] changed;
+		TreeOp[] changed;
 		if (cursor.moveToFirst())
 		{
 			// column indices
@@ -212,12 +216,12 @@ abstract class BaseModule extends Module
 			final TreeNode rolesNode = TreeFactory.addHotQueryNode(parent, "Roles", R.drawable.roles, new RolesQuery(roleSetId));
 			final TreeNode examplesNode = TreeFactory.addQueryNode(parent, "Examples", R.drawable.sample, new ExamplesQuery(roleSetId));
 
-			changed = new TreeNode[]{parent, node, rolesNode, examplesNode};
+			changed = TreeOp.seq(ANCHOR, parent, NEW, node, NEW, rolesNode, NEW, examplesNode);
 		}
 		else
 		{
 			TreeFactory.setNoResult(parent, true, false);
-			changed = new TreeNode[]{parent};
+			changed = TreeOp.seq(REMOVE, parent);
 		}
 
 		cursor.close();
@@ -244,13 +248,12 @@ abstract class BaseModule extends Module
 		this.roleSetsFromWordIdModel.loadData(uri, projection, selection, selectionArgs, null, cursor -> roleSetsCursorToTreeModel(cursor, parent));
 	}
 
-	private TreeNode[] roleSetsCursorToTreeModel(@NonNull final Cursor cursor, @NonNull final TreeNode parent)
+	private TreeOp[] roleSetsCursorToTreeModel(@NonNull final Cursor cursor, @NonNull final TreeNode parent)
 	{
-		TreeNode[] changed;
+		TreeOp[] changed;
 		if (cursor.moveToFirst())
 		{
-			final List<TreeNode> nodes = new ArrayList<>();
-			nodes.add(parent);
+			final TreeOp.TreeOps changedList = new TreeOps(ANCHOR, parent);
 
 			// column indices
 			final int idRoleSetId = cursor.getColumnIndex(Words_PbRoleSets.ROLESETID);
@@ -281,21 +284,21 @@ abstract class BaseModule extends Module
 
 				// attach result
 				final TreeNode node = TreeFactory.addTextNode(parent, sb);
-				nodes.add(node);
+				changedList.add(NEW, node);
 
 				// sub nodes
 				final TreeNode rolesNode = TreeFactory.addHotQueryNode(parent, "Roles", R.drawable.roles, new RolesQuery(roleSetId));
-				nodes.add(rolesNode);
+				changedList.add(NEW, rolesNode);
 				final TreeNode examplesNode = TreeFactory.addQueryNode(parent, "Examples", R.drawable.sample, new ExamplesQuery(roleSetId));
-				nodes.add(examplesNode);
+				changedList.add(NEW, examplesNode);
 			}
 			while (cursor.moveToNext());
-			changed = nodes.toArray(new TreeNode[0]);
+			changed = changedList.toArray();
 		}
 		else
 		{
 			TreeFactory.setNoResult(parent, true, false);
-			changed = new TreeNode[]{parent};
+			changed = TreeOp.seq(REMOVE, parent);
 		}
 
 		cursor.close();
@@ -325,9 +328,9 @@ abstract class BaseModule extends Module
 		this.rolesFromRoleSetIdModel.loadData(uri, projection, selection, selectionArgs, null, cursor -> rolesCursorToTreeModel(cursor, parent));
 	}
 
-	private TreeNode[] rolesCursorToTreeModel(@NonNull final Cursor cursor, @NonNull final TreeNode parent)
+	private TreeOp[] rolesCursorToTreeModel(@NonNull final Cursor cursor, @NonNull final TreeNode parent)
 	{
-		TreeNode[] changed;
+		TreeOp[] changed;
 		final SpannableStringBuilder sb = new SpannableStringBuilder();
 		if (cursor.moveToFirst())
 		{
@@ -386,12 +389,12 @@ abstract class BaseModule extends Module
 
 			// attach result
 			final TreeNode node = TreeFactory.addTextNode(parent, sb);
-			changed = new TreeNode[]{parent, node};
+			changed = TreeOp.seq(ANCHOR, parent, NEW, node);
 		}
 		else
 		{
 			TreeFactory.setNoResult(parent, true, false);
-			changed = new TreeNode[]{parent};
+			changed = TreeOp.seq(REMOVE, parent);
 		}
 
 		cursor.close();
@@ -434,9 +437,9 @@ abstract class BaseModule extends Module
 		this.examplesFromRoleSetIdModel.loadData(uri, projection, selection, selectionArgs, sortOrder, cursor -> examplesCursorToTreeModel(cursor, parent));
 	}
 
-	private TreeNode[] examplesCursorToTreeModel(@NonNull final Cursor cursor, @NonNull final TreeNode parent)
+	private TreeOp[] examplesCursorToTreeModel(@NonNull final Cursor cursor, @NonNull final TreeNode parent)
 	{
-		TreeNode[] changed;
+		TreeOp[] changed;
 		final SpannableStringBuilder sb = new SpannableStringBuilder();
 
 		if (cursor.moveToFirst())
@@ -523,12 +526,12 @@ abstract class BaseModule extends Module
 
 			// attach result
 			final TreeNode node = TreeFactory.addTextNode(parent, sb);
-			changed = new TreeNode[]{parent, node};
+			changed = TreeOp.seq(ANCHOR, parent, NEW, node);
 		}
 		else
 		{
 			TreeFactory.setNoResult(parent, true, false);
-			changed = new TreeNode[]{parent};
+			changed = TreeOp.seq(REMOVE, parent);
 		}
 
 		cursor.close();

@@ -27,35 +27,35 @@ public class FireEvent
 		this.fragment = fragment;
 	}
 
-	public void live0(final TreeNode[] nodes)
+	public void live0(final TreeOp[] ops)
 	{
 	}
 
-	public void live1(final TreeNode[] nodes)
+	public void live1(final TreeOp[] ops)
 	{
 		final TreeView treeView = this.fragment.getTreeView();
-		final TreeNode node = nodes[0];
+		final TreeNode node = ops[0].getNode();
 		treeView.expandContainer(node, true);
 	}
 
-	public void live(final TreeNode[] nodes)
+	public void live(final TreeOp[] ops)
 	{
 		final TreeView treeView = this.fragment.getTreeView();
 
-		int n = nodes.length;
+		int n = ops.length;
 		if (n == 1)
 		{
-			final TreeNode node = nodes[0];
+			final TreeNode node = ops[0].getNode();
 			handleNode(node, treeView, false);
 		}
 		else if (n > 1)
 		{
 			for (int i = 1; i < n; i++)
 			{
-				final TreeNode node = nodes[i];
+				final TreeNode node = ops[i].getNode();
 				handleNode(node, treeView, true);
 			}
-			handleJunction(nodes[0], treeView);
+			handleJunction(ops[0].getNode(), treeView);
 		}
 	}
 
@@ -95,7 +95,8 @@ public class FireEvent
 			else
 			{
 				Log.d(TAG, "+++ " + node.toString());
-				treeView.addNodeView(viewGroup, node);
+				int index = parent.indexOf(node);
+				treeView.addNodeView(viewGroup, node, index);
 				// parentController.onExpandEvent();
 			}
 		}

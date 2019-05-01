@@ -20,10 +20,15 @@ import org.sqlunet.model.TreeFactory;
 import org.sqlunet.style.Spanner;
 import org.sqlunet.treeview.model.TreeNode;
 import org.sqlunet.view.FireEvent;
+import org.sqlunet.view.TreeOp;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.lifecycle.ViewModelProviders;
+
+import static org.sqlunet.view.TreeOp.TreeOpCode.NEW;
+import static org.sqlunet.view.TreeOp.TreeOpCode.ANCHOR;
+import static org.sqlunet.view.TreeOp.TreeOpCode.REMOVE;
 
 public class BaseModule extends Module
 {
@@ -157,9 +162,9 @@ public class BaseModule extends Module
 		this.bncFromWordIdModel.loadData(uri, projection, selection, selectionArgs, null, cursor -> bncCursorToTreeModel(cursor, parent));
 	}
 
-	private TreeNode[] bncCursorToTreeModel(@NonNull final Cursor cursor, @NonNull final TreeNode parent)
+	private TreeOp[] bncCursorToTreeModel(@NonNull final Cursor cursor, @NonNull final TreeNode parent)
 	{
-		TreeNode[] changed;
+		TreeOp[] changed;
 		final SpannableStringBuilder sb = new SpannableStringBuilder();
 		// if (cursor.getCount() > 1)
 		// throw new RuntimeException("Unexpected number of rows");
@@ -299,12 +304,12 @@ public class BaseModule extends Module
 
 			// attach result
 			final TreeNode node = TreeFactory.addTextNode(parent, sb);
-			changed = new TreeNode[]{parent, node};
+			changed = TreeOp.seq(ANCHOR, parent, NEW, node);
 		}
 		else
 		{
 			TreeFactory.setNoResult(parent, true, false);
-			changed = new TreeNode[]{parent};
+			changed = TreeOp.seq(REMOVE, parent);
 		}
 
 		cursor.close();

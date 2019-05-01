@@ -203,7 +203,8 @@ public class TreeView
 			final Controller<?> parentController = parent.getController();
 			final ViewGroup viewGroup = parentController.getChildrenContainerView();
 			assert viewGroup != null;
-			addNodeView(viewGroup, node);
+			int index = parent.indexOf(node);
+			addNodeView(viewGroup, node, index);
 		}
 	}
 
@@ -230,9 +231,11 @@ public class TreeView
 	 *
 	 * @param container container
 	 * @param node      node
+	 * @param atIndex   insert-at index
 	 */
-	synchronized public void addNodeView(@NonNull final ViewGroup container, @NonNull final TreeNode node)
+	synchronized public void addNodeView(@NonNull final ViewGroup container, @NonNull final TreeNode node, int atIndex)
 	{
+		Log.d(TAG, "Insert view at index " + atIndex + " count=" + container.getChildCount());
 		final Controller<?> controller = node.getController();
 		View view = controller.getView();
 		if (view == null)
@@ -251,7 +254,12 @@ public class TreeView
 		}
 
 		// add to container
-		container.addView(view);
+		//TODO
+		if (atIndex < container.getChildCount())
+		{
+			atIndex = -1;
+		}
+		container.addView(view, atIndex);
 
 		// inherit selection mode
 		node.setSelectable(this.selectable);
@@ -584,6 +592,7 @@ public class TreeView
 
 		// children
 		//for (final TreeNode child : node.getChildren())
+		int index = 0;
 		for (final TreeNode child : node.getChildrenList().toArray(new TreeNode[0]))
 		{
 			//Iterator<TreeNode> it = node.getChildrenList().listIterator();
@@ -592,7 +601,7 @@ public class TreeView
 			//	TreeNode child = it.next();
 
 			// add children node to container view
-			addNodeView(viewGroup, child);
+			addNodeView(viewGroup, child, index);
 
 			// recurse
 			if (isExpanded(child) || includeSubnodes)
@@ -602,7 +611,7 @@ public class TreeView
 		}
 
 		// display
-		if(viewGroup.getChildCount() != 0)
+		if (viewGroup.getChildCount() != 0)
 		{
 			if (this.useAnimation)
 			{
@@ -618,8 +627,10 @@ public class TreeView
 		}
 
 		// fire
-		if(triggerQueries)
+		if (triggerQueries)
+		{
 			controller.fire();
+		}
 	}
 
 	// E X P A N D / C O L L A P S E   I M P L E M E N T A T I O N

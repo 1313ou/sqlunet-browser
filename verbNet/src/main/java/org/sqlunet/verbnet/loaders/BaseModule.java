@@ -24,13 +24,16 @@ import org.sqlunet.verbnet.style.VerbNetSemanticsProcessor;
 import org.sqlunet.verbnet.style.VerbNetSemanticsSpanner;
 import org.sqlunet.verbnet.style.VerbNetSyntaxSpanner;
 import org.sqlunet.view.FireEvent;
-
-import java.util.ArrayList;
-import java.util.List;
+import org.sqlunet.view.TreeOp;
+import org.sqlunet.view.TreeOp.TreeOps;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.lifecycle.ViewModelProviders;
+
+import static org.sqlunet.view.TreeOp.TreeOpCode.NEW;
+import static org.sqlunet.view.TreeOp.TreeOpCode.ANCHOR;
+import static org.sqlunet.view.TreeOp.TreeOpCode.REMOVE;
 
 /**
  * VerbNet base module
@@ -194,14 +197,14 @@ abstract class BaseModule extends Module
 		this.vnClassFromClassIdModel.loadData(uri, projection, selection, selectionArgs, null, cursor -> vnClassCursorToTreeModel(cursor, classId, parent));
 	}
 
-	private TreeNode[] vnClassCursorToTreeModel(@NonNull final Cursor cursor, final long classId, @NonNull final TreeNode parent)
+	private TreeOp[] vnClassCursorToTreeModel(@NonNull final Cursor cursor, final long classId, @NonNull final TreeNode parent)
 	{
 		if (cursor.getCount() > 1)
 		{
 			throw new RuntimeException("Unexpected number of rows");
 		}
 
-		TreeNode[] changed;
+		TreeOp[] changed;
 		if (cursor.moveToFirst())
 		{
 			final SpannableStringBuilder sb = new SpannableStringBuilder();
@@ -233,12 +236,12 @@ abstract class BaseModule extends Module
 			final TreeNode framesNode = TreeFactory.addQueryNode(parent, "Frames", R.drawable.vnframe, new FramesQuery(classId));
 
 			// changed
-			changed = new TreeNode[]{parent, node, membersNode, rolesNode, framesNode};
+			changed = TreeOp.seq(ANCHOR, parent, NEW, node, NEW, membersNode, NEW, rolesNode, NEW, framesNode);
 		}
 		else
 		{
 			TreeFactory.setNoResult(parent, true, false);
-			changed = new TreeNode[]{parent};
+			changed = TreeOp.seq(REMOVE, parent);
 		}
 
 		cursor.close();
@@ -270,13 +273,12 @@ abstract class BaseModule extends Module
 		this.vnMembersFromClassIdModel.loadData(uri, projection, selection, selectionArgs, sortOrder, cursor -> vnMembersCursorToTreeModel(cursor, parent));
 	}
 
-	private TreeNode[] vnMembersCursorToTreeModel(@NonNull final Cursor cursor, @NonNull final TreeNode parent)
+	private TreeOp[] vnMembersCursorToTreeModel(@NonNull final Cursor cursor, @NonNull final TreeNode parent)
 	{
-		TreeNode[] changed;
+		TreeOp[] changed;
 		if (cursor.moveToFirst())
 		{
-			final List<TreeNode> nodes = new ArrayList<>();
-			nodes.add(parent);
+			final TreeOps changedList = new TreeOps(ANCHOR, parent);
 
 			// column indices
 			// final int idWordId = cursor.getColumnIndex(VnClasses_VnMembers_X.WORDID);
@@ -299,7 +301,7 @@ abstract class BaseModule extends Module
 				if (definitions != null || groupings != null)
 				{
 					final TreeNode memberNode = TreeFactory.addTreeNode(parent, sb, R.drawable.member);
-					nodes.add(memberNode);
+					changedList.add(NEW, memberNode);
 
 					final SpannableStringBuilder sb2 = new SpannableStringBuilder();
 
@@ -351,21 +353,21 @@ abstract class BaseModule extends Module
 
 					// attach definition and groupings result
 					final TreeNode node = TreeFactory.addTextNode(memberNode, sb2);
-					nodes.add(node);
+					changedList.add(NEW, node);
 				}
 				else
 				{
 					final TreeNode node = TreeFactory.addLeafNode(parent, sb, R.drawable.member);
-					nodes.add(node);
+					changedList.add(NEW, node);
 				}
 			}
 			while (cursor.moveToNext());
-			changed = nodes.toArray(new TreeNode[0]);
+			changed = changedList.toArray();
 		}
 		else
 		{
 			TreeFactory.setNoResult(parent, true, false);
-			changed = new TreeNode[]{parent};
+			changed = TreeOp.seq(REMOVE, parent);
 		}
 
 		cursor.close();
@@ -394,9 +396,9 @@ abstract class BaseModule extends Module
 		this.vnRolesFromClassIdModel.loadData(uri, projection, selection, selectionArgs, null, cursor -> vnRolesCursorToTreeModel(cursor, parent));
 	}
 
-	private TreeNode[] vnRolesCursorToTreeModel(@NonNull final Cursor cursor, @NonNull final TreeNode parent)
+	private TreeOp[] vnRolesCursorToTreeModel(@NonNull final Cursor cursor, @NonNull final TreeNode parent)
 	{
-		TreeNode[] changed;
+		TreeOp[] changed;
 		if (cursor.moveToFirst())
 		{
 			final SpannableStringBuilder sb = new SpannableStringBuilder();
@@ -438,12 +440,12 @@ abstract class BaseModule extends Module
 
 			// attach result
 			final TreeNode node = TreeFactory.addTextNode(parent, sb);
-			changed = new TreeNode[]{parent, node};
+			changed = TreeOp.seq(ANCHOR, parent, NEW, node);
 		}
 		else
 		{
 			TreeFactory.setNoResult(parent, true, false);
-			changed = new TreeNode[]{parent};
+			changed = TreeOp.seq(REMOVE, parent);
 		}
 
 		cursor.close();
@@ -471,9 +473,9 @@ abstract class BaseModule extends Module
 		this.vnFramesFromClassIdModel.loadData(uri, projection, selection, selectionArgs, null, cursor -> vnFramesToView(cursor, parent));
 	}
 
-	private TreeNode[] vnFramesToView(@NonNull final Cursor cursor, @NonNull final TreeNode parent)
+	private TreeOp[] vnFramesToView(@NonNull final Cursor cursor, @NonNull final TreeNode parent)
 	{
-		TreeNode[] changed;
+		TreeOp[] changed;
 		if (cursor.moveToFirst())
 		{
 			final SpannableStringBuilder sb = new SpannableStringBuilder();
@@ -542,12 +544,12 @@ abstract class BaseModule extends Module
 
 			// attach result
 			final TreeNode node = TreeFactory.addTextNode(parent, sb);
-			changed = new TreeNode[]{parent, node};
+			changed = TreeOp.seq(ANCHOR, parent, NEW, node);
 		}
 		else
 		{
 			TreeFactory.setNoResult(parent, true, false);
-			changed = new TreeNode[]{parent};
+			changed = TreeOp.seq(REMOVE, parent);
 		}
 
 		cursor.close();

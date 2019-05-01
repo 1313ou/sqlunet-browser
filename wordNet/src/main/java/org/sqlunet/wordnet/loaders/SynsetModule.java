@@ -80,7 +80,7 @@ public class SynsetModule extends BaseModule
 	{
 		if (this.synsetId != null && this.synsetId != 0)
 		{
-			// sub nodes
+			// anchor nodes
 			final TreeNode synsetNode = TreeFactory.addTextNode(parent, "Synset");
 			final TreeNode membersNode = TreeFactory.addIconTextNode(parent, "Members", R.drawable.members);
 

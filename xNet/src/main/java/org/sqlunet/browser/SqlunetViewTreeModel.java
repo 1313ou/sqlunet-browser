@@ -6,9 +6,7 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.os.AsyncTask;
 
-import org.sqlunet.treeview.model.TreeNode;
-
-import java.util.List;
+import org.sqlunet.view.TreeOp;
 
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
@@ -16,14 +14,14 @@ import androidx.lifecycle.MutableLiveData;
 
 public class SqlunetViewTreeModel extends AndroidViewModel
 {
-	public interface ToTreeNodes
+	public interface ToTreeOps
 	{
-		TreeNode[] cursorToTreeNodes(final Cursor cursor);
+		TreeOp[] cursorToTreeOps(final Cursor cursor);
 	}
 
-	private final MutableLiveData<TreeNode[]> data = new MutableLiveData<>();
+	private final MutableLiveData<TreeOp[]> data = new MutableLiveData<>();
 
-	public LiveData<TreeNode[]> getData()
+	public LiveData<TreeOp[]> getData()
 	{
 		return data;
 	}
@@ -34,21 +32,21 @@ public class SqlunetViewTreeModel extends AndroidViewModel
 	}
 
 	@SuppressLint("StaticFieldLeak")
-	public void loadData(final Uri uri, final String[] projection, final String selection, final String[] selectionArgs, final String sortOrder, final ToTreeNodes treeConverter)
+	public void loadData(final Uri uri, final String[] projection, final String selection, final String[] selectionArgs, final String sortOrder, final ToTreeOps treeConverter)
 	{
-		new AsyncTask<Void, Void, TreeNode[]>()
+		new AsyncTask<Void, Void, TreeOp[]>()
 		{
 			@Override
-			protected TreeNode[] doInBackground(Void... voids)
+			protected TreeOp[] doInBackground(Void... voids)
 			{
 				final Cursor cursor = getApplication().getContentResolver().query(uri, projection, selection, selectionArgs, sortOrder);
-				return treeConverter.cursorToTreeNodes(cursor);
+				return treeConverter.cursorToTreeOps(cursor);
 			}
 
 			@Override
-			protected void onPostExecute(TreeNode[] treeNode)
+			protected void onPostExecute(TreeOp[] treeOps)
 			{
-				data.setValue(treeNode);
+				data.setValue(treeOps);
 			}
 		}.execute();
 	}

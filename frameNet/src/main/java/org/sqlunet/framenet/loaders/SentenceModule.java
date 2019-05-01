@@ -15,10 +15,15 @@ import org.sqlunet.model.TreeFactory;
 import org.sqlunet.style.Spanner;
 import org.sqlunet.treeview.model.TreeNode;
 import org.sqlunet.view.FireEvent;
+import org.sqlunet.view.TreeOp;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.lifecycle.ViewModelProviders;
+
+import static org.sqlunet.view.TreeOp.TreeOpCode.NEW;
+import static org.sqlunet.view.TreeOp.TreeOpCode.ANCHOR;
+import static org.sqlunet.view.TreeOp.TreeOpCode.REMOVE;
 
 /**
  * Sentence module
@@ -105,13 +110,13 @@ public class SentenceModule extends BaseModule
 		this.sentenceFromSentenceIdModel.loadData(uri, projection, selection, selectionArgs, null, cursor -> sentenceCursorToTreeModel(cursor, parent));
 	}
 
-	private TreeNode[] sentenceCursorToTreeModel(@NonNull final Cursor cursor, @NonNull final TreeNode parent)
+	private TreeOp[] sentenceCursorToTreeModel(@NonNull final Cursor cursor, @NonNull final TreeNode parent)
 	{
 		if (cursor.getCount() > 1)
 		{
 			throw new RuntimeException("Unexpected number of rows");
 		}
-		TreeNode[] changed;
+		TreeOp[] changed;
 		if (cursor.moveToFirst())
 		{
 			final SpannableStringBuilder sb = new SpannableStringBuilder();
@@ -130,12 +135,12 @@ public class SentenceModule extends BaseModule
 			// layers
 			layersForSentence(id, SentenceModule.this.sentenceText, parent);
 
-			changed = new TreeNode[]{parent, node};
+			changed = TreeOp.seq(ANCHOR, parent, NEW, node);
 		}
 		else
 		{
 			TreeFactory.setNoResult(parent, true, false);
-			changed = new TreeNode[]{parent};
+			changed = TreeOp.seq(REMOVE, parent);
 		}
 
 		cursor.close();

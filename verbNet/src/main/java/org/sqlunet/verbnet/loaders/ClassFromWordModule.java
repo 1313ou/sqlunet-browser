@@ -17,13 +17,16 @@ import org.sqlunet.verbnet.provider.VerbNetContract.Words_VnClasses;
 import org.sqlunet.verbnet.provider.VerbNetProvider;
 import org.sqlunet.verbnet.style.VerbNetFactories;
 import org.sqlunet.view.FireEvent;
-
-import java.util.ArrayList;
-import java.util.List;
+import org.sqlunet.view.TreeOp;
+import org.sqlunet.view.TreeOp.TreeOps;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.lifecycle.ViewModelProviders;
+
+import static org.sqlunet.view.TreeOp.TreeOpCode.NEW;
+import static org.sqlunet.view.TreeOp.TreeOpCode.ANCHOR;
+import static org.sqlunet.view.TreeOp.TreeOpCode.REMOVE;
 
 /**
  * VerbNet class from word/sense module
@@ -138,13 +141,12 @@ public class ClassFromWordModule extends BaseModule
 		this.vnClassesFromWordIdSynsetIdModel.loadData(uri, projection, selection, selectionArgs, null, cursor -> vnClassesCursorToTreeModel(cursor, parent));
 	}
 
-	private TreeNode[] vnClassesCursorToTreeModel(@NonNull final Cursor cursor, @NonNull final TreeNode parent)
+	private TreeOp[] vnClassesCursorToTreeModel(@NonNull final Cursor cursor, @NonNull final TreeNode parent)
 	{
-		TreeNode[] changed;
+		TreeOp[] changed;
 		if (cursor.moveToFirst())
 		{
-			final List<TreeNode> nodes = new ArrayList<>();
-			nodes.add(parent);
+			final TreeOp.TreeOps changedList = new TreeOps(ANCHOR, parent);
 
 			// column indices
 			final int idClassId = cursor.getColumnIndex(Words_VnClasses.CLASSID);
@@ -171,23 +173,23 @@ public class ClassFromWordModule extends BaseModule
 
 				// attach result
 				final TreeNode node = TreeFactory.addTextNode(parent, sb);
-				nodes.add(node);
+				changedList.add(NEW, node);
 
 				// sub nodes
 				final TreeNode membersNode = TreeFactory.addHotQueryNode(parent, "Members", R.drawable.members, new MembersQuery(classId));
-				nodes.add(membersNode);
+				changedList.add(NEW, membersNode);
 				final TreeNode rolesNode = TreeFactory.addHotQueryNode(parent, "Roles", R.drawable.roles, new RolesQuery(classId));
-				nodes.add(rolesNode);
+				changedList.add(NEW, rolesNode);
 				final TreeNode framesNode = TreeFactory.addQueryNode(parent, "Frames", R.drawable.vnframe, new FramesQuery(classId));
-				nodes.add(framesNode);
+				changedList.add(NEW, framesNode);
 			}
 			while (cursor.moveToNext());
-			changed = nodes.toArray(new TreeNode[0]);
+			changed = changedList.toArray();
 		}
 		else
 		{
 			TreeFactory.setNoResult(parent, true, false);
-			changed = new TreeNode[]{parent};
+			changed = TreeOp.seq(REMOVE, parent);
 		}
 
 		cursor.close();

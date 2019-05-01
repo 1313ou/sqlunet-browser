@@ -58,12 +58,14 @@ public class SenseModule extends SynsetModule
 			return;
 		}
 
-		// synset
+		// anchor nodes
 		final TreeNode synsetNode = TreeFactory.addTextNode(parent, "Sense");
+		final TreeNode membersNode = TreeFactory.addIconTextNode(parent, "Members", R.drawable.members);
+
+		// synset
 		synset(this.synsetId, synsetNode, false);
 
 		// members
-		final TreeNode membersNode = TreeFactory.addIconTextNode(parent, "Members", R.drawable.members);
 		members(this.synsetId, membersNode);
 
 		// morph

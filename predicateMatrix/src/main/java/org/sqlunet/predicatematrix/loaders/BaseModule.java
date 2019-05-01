@@ -30,12 +30,13 @@ import org.sqlunet.treeview.model.TreeNode;
 import org.sqlunet.verbnet.VnClassPointer;
 import org.sqlunet.verbnet.browser.VnClassActivity;
 import org.sqlunet.view.FireEvent;
+import org.sqlunet.view.TreeOp;
+import org.sqlunet.view.TreeOp.TreeOps;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
@@ -44,6 +45,8 @@ import java.util.TreeSet;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.lifecycle.ViewModelProviders;
+
+import static org.sqlunet.view.TreeOp.TreeOpCode.ANCHOR;
 
 /**
  * Base module for PredicateMatrix
@@ -785,12 +788,11 @@ abstract class BaseModule extends Module
 			BaseModule.this.model.loadData(uri, projection, selection, selectionArgs, sortOrder, cursor -> pmCursorToTreeModel(cursor, parent));
 		}
 
-		private TreeNode[] pmCursorToTreeModel(@NonNull final Cursor cursor, @NonNull final TreeNode parent)
+		private TreeOp[] pmCursorToTreeModel(@NonNull final Cursor cursor, @NonNull final TreeNode parent)
 		{
 			if (cursor.moveToFirst())
 			{
-				final List<TreeNode> nodes = new ArrayList<>();
-				nodes.add(parent);
+				final TreeOps changedList = new TreeOps(ANCHOR, parent);
 
 				// column indices
 				final int idPmId = cursor.getColumnIndex(PredicateMatrix.PMID);
@@ -880,7 +882,7 @@ abstract class BaseModule extends Module
 			}
 
 			cursor.close();
-			return new TreeNode[]{parent};
+			return TreeOp.seq(ANCHOR, parent);
 		}
 
 		/**
