@@ -204,7 +204,7 @@ public class TreeView
 			final ViewGroup viewGroup = parentController.getChildrenContainerView();
 			assert viewGroup != null;
 			int index = parent.indexOf(node);
-			addNodeView(viewGroup, node, index);
+			addNodeView(viewGroup, node, -1);
 		}
 	}
 
@@ -242,7 +242,7 @@ public class TreeView
 		{
 			view = controller.createView(this.context, this.containerStyle);
 		}
-		View childrenContainerView = controller.getChildrenContainerView();
+		//View childrenContainerView = controller.getChildrenContainerView();
 		//Log.d(TAG, "Visibility=" + Integer.toHexString(childrenContainerView.getVisibility()));
 
 		// remove from parent
@@ -253,12 +253,29 @@ public class TreeView
 			group.removeView(view);
 		}
 
-		// add to container
-		//TODO
-		if (atIndex < container.getChildCount())
+		// index
+		if(atIndex != -1)
 		{
-			atIndex = -1;
+			int n = container.getChildCount();
+			int i = 0;
+			for (; i < n; i++)
+			{
+				View child = container.getChildAt(i);
+				Object tag = child.getTag();
+				TreeNode node2 = (TreeNode) tag;
+				TreeNode parent2 = node2.getParent();
+				int j = parent2.indexOf(node2);
+				if (j >= atIndex)
+					break;
+			}
+			atIndex = i;
+			if (atIndex >= n)
+			{
+				// atIndex = -1;
+			}
 		}
+
+		// add to container
 		container.addView(view, atIndex);
 
 		// inherit selection mode
@@ -327,13 +344,24 @@ public class TreeView
 	}
 
 	/**
+	 * Update
+	 *
+	 * @param node node
+	 */
+	public void update(@NonNull final TreeNode node)
+	{
+		final Controller<?> controller = node.getController();
+		controller.updateNodeView(this.context);
+	}
+
+	/**
 	 * Disable
 	 *
 	 * @param node node
 	 */
 	public void disable(@NonNull final TreeNode node)
 	{
-		node.disable();
+		//TODO node.disable();
 
 		final Controller<?> controller = node.getController();
 		controller.disable();
@@ -601,7 +629,7 @@ public class TreeView
 			//	TreeNode child = it.next();
 
 			// add children node to container view
-			addNodeView(viewGroup, child, index);
+			addNodeView(viewGroup, child, -1);
 
 			// recurse
 			if (isExpanded(child) || includeSubnodes)

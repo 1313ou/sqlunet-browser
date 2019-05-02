@@ -160,4 +160,35 @@ public class SubtreeView extends LinearLayout
 		this.nodeView.addView(nodeView, new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
 		// this.nodeView.addView(nodeView);
 	}
+
+	/**
+	 * Insert node view
+	 *
+	 * @param nodeView node view
+	 * @param index index
+	 */
+	public void insertNodeView(final View nodeView, int index)
+	{
+		this.nodeView.addView(nodeView, index, new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
+	}
+	/**
+	 * Insert node view
+	 *
+	 * @param nodeView node view
+	 * @return index
+	 */
+	public int indexOf(final View nodeView)
+	{
+		return this.nodeView.indexOfChild(nodeView);
+	}
+
+	/**
+	 * Remove node view
+	 *
+	 * @param nodeView node view
+	 */
+	public void removeNodeView(final View nodeView)
+	{
+		this.nodeView.removeView(nodeView);
+	}
 }

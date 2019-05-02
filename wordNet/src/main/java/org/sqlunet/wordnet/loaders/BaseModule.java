@@ -55,6 +55,7 @@ import androidx.lifecycle.ViewModelProviders;
 
 import static org.sqlunet.view.TreeOp.TreeOpCode.NEW;
 import static org.sqlunet.view.TreeOp.TreeOpCode.ANCHOR;
+import static org.sqlunet.view.TreeOp.TreeOpCode.NOOP;
 import static org.sqlunet.view.TreeOp.TreeOpCode.REMOVE;
 import static org.sqlunet.view.TreeOp.TreeOpCode.UPDATE;
 import static org.sqlunet.view.TreeOp.TreeOpCode.TERMINATE;
@@ -1072,7 +1073,7 @@ abstract public class BaseModule extends Module
 		else
 		{
 			TreeFactory.setNoResult(parent, false, false);
-			changed = TreeOp.seq(TERMINATE, parent);
+			changed = TreeOp.seq(UPDATE, parent);
 		}
 
 		cursor.close();
@@ -1136,7 +1137,7 @@ abstract public class BaseModule extends Module
 		else
 		{
 			TreeFactory.setNoResult(parent, false, true);
-			changed = TreeOp.seq(TERMINATE, parent);
+			changed = TreeOp.seq(UPDATE, parent);
 		}
 
 		cursor.close();
@@ -1246,7 +1247,7 @@ abstract public class BaseModule extends Module
 		else
 		{
 			TreeFactory.setNoResult(parent, false, false);
-			changed = TreeOp.seq(TERMINATE, parent);
+			changed = TreeOp.seq(UPDATE, parent);
 		}
 		cursor.close();
 		return changed;
@@ -1314,7 +1315,7 @@ abstract public class BaseModule extends Module
 		else
 		{
 			TreeFactory.setNoResult(parent, false, true);
-			changed = TreeOp.seq(TERMINATE, parent);
+			changed = TreeOp.seq(UPDATE, parent);
 		}
 		cursor.close();
 		return changed;

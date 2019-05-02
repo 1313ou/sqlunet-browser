@@ -8,6 +8,7 @@ import org.sqlunet.treeview.control.Controller;
 import org.sqlunet.treeview.control.TreeController;
 import org.sqlunet.treeview.model.TreeNode;
 import org.sqlunet.treeview.view.TreeView;
+import org.sqlunet.view.TreeOp.TreeOpCode;
 
 import androidx.annotation.NonNull;
 
@@ -27,6 +28,11 @@ public class FireEvent
 		this.fragment = fragment;
 	}
 
+	public void live(final TreeOp[] ops)
+	{
+		live3(ops);
+	}
+
 	public void live0(final TreeOp[] ops)
 	{
 	}
@@ -38,29 +44,30 @@ public class FireEvent
 		treeView.expandContainer(node, true);
 	}
 
-	public void live(final TreeOp[] ops)
+	public void live2(final TreeOp[] ops)
 	{
 		final TreeView treeView = this.fragment.getTreeView();
 
 		int n = ops.length;
 		if (n == 1)
 		{
-			final TreeNode node = ops[0].getNode();
-			handleNode(node, treeView, false);
+			final TreeOp op = ops[0];
+			handleNode2(op, treeView, false);
 		}
 		else if (n > 1)
 		{
 			for (int i = 1; i < n; i++)
 			{
-				final TreeNode node = ops[i].getNode();
-				handleNode(node, treeView, true);
+				final TreeOp op = ops[i];
+				handleNode2(op, treeView, true);
 			}
-			handleJunction(ops[0].getNode(), treeView);
+			handleJunction2(ops[0], treeView);
 		}
 	}
 
-	private void handleJunction(final TreeNode node, final TreeView treeView)
+	private void handleJunction2(final TreeOp op, final TreeView treeView)
 	{
+		final TreeNode node = op.getNode();
 		final Controller<?> controller = node.getController();
 		if (controller instanceof TreeController)
 		{
@@ -70,16 +77,17 @@ public class FireEvent
 		}
 	}
 
-	private void handleNode(final TreeNode node, final TreeView treeView, final boolean includeSubnodes)
+	private void handleNode2(final TreeOp op, final TreeView treeView, final boolean includeSubnodes)
 	{
+		final TreeNode node = op.getNode();
 		if (node.isZombie())
 		{
-			Log.d(TAG, "--- " + node.toString());
+			Log.d(TAG, "--- " + op.getCode() + " " + node.toString());
 			treeView.remove(node);
 		}
 		else if (node.isDeadend())
 		{
-			Log.d(TAG, "000 " + node.toString());
+			Log.d(TAG, "000 " + op.getCode() + " " + node.toString());
 			treeView.disable(node);
 		}
 		else
@@ -89,16 +97,92 @@ public class FireEvent
 			final ViewGroup viewGroup = parentController.getChildrenContainerView();
 			if (viewGroup == null || !TreeView.isExpanded(parent))
 			{
-				Log.d(TAG, "*** " + node.toString());
+				Log.d(TAG, "*** " + op.getCode() + " " + node.toString());
 				treeView.expandContainer(parent, includeSubnodes);
 			}
 			else
 			{
-				Log.d(TAG, "+++ " + node.toString());
+				Log.d(TAG, "+++ " + op.getCode() + " " + node.toString());
 				int index = parent.indexOf(node);
 				treeView.addNodeView(viewGroup, node, index);
 				// parentController.onExpandEvent();
 			}
+		}
+	}
+
+	public void live3(final TreeOp[] ops)
+	{
+		final TreeView treeView = this.fragment.getTreeView();
+
+		int n = ops.length;
+		if (n == 1)
+		{
+			final TreeOp op = ops[0];
+			handleOp3(op, treeView, false);
+		}
+		else if (n > 1)
+		{
+			for (int i = 1; i < n; i++)
+			{
+				final TreeOp op = ops[i];
+				handleOp3(op, treeView, true);
+			}
+			handleJunction3(ops[0], treeView);
+		}
+	}
+
+	private void handleJunction3(final TreeOp op, final TreeView treeView)
+	{
+		final TreeNode node = op.getNode();
+		final Controller<?> controller = node.getController();
+		if (controller instanceof TreeController)
+		{
+			final TreeController treeController = (TreeController) controller;
+			// View v = treeController.getNodeView();
+			// treeController.onExpandEvent();
+		}
+	}
+
+	private void handleOp3(final TreeOp op, final TreeView treeView, final boolean includeSubnodes)
+	{
+		final TreeOpCode code = op.getCode();
+		final TreeNode node = op.getNode();
+		switch (code)
+		{
+			case ANCHOR:
+				break;
+			case NEW:
+				final TreeNode parent = node.getParent();
+				final Controller<?> parentController = parent.getController();
+				final ViewGroup viewGroup = parentController.getChildrenContainerView();
+				if (viewGroup == null || !TreeView.isExpanded(parent))
+				{
+					Log.d(TAG, "*** " + op.getCode() + " " + node.toString());
+					treeView.expandContainer(parent, includeSubnodes);
+				}
+				else
+				{
+					Log.d(TAG, "+++ " + op.getCode() + " " + node.toString());
+					int index = parent.indexOf(node);
+					treeView.addNodeView(viewGroup, node, index);
+					// parentController.onExpandEvent();
+				}
+				break;
+			case UPDATE:
+				Log.d(TAG, "!!! " + op.getCode() + " " + node.toString());
+				treeView.update(node);
+				break;
+			case TERMINATE:
+				Log.d(TAG, "xxx " + op.getCode() + " " + node.toString());
+				treeView.disable(node);
+				break;
+			case REMOVE:
+				Log.d(TAG, "--- " + op.getCode() + " " + node.toString());
+				treeView.remove(node);
+				break;
+			default:
+			case NOOP:
+				break;
 		}
 	}
 

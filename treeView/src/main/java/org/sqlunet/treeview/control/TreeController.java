@@ -63,8 +63,11 @@ public class TreeController extends Controller<Value>
 		}
 
 		// icon
-		final ImageView iconView = view.findViewById(R.id.node_icon);
-		iconView.setImageResource(value.icon);
+		if(value.icon != 0)
+		{
+			final ImageView iconView = view.findViewById(R.id.node_icon);
+			iconView.setImageResource(value.icon);
+		}
 
 		// text
 		TextView valueView = view.findViewById(R.id.node_value);

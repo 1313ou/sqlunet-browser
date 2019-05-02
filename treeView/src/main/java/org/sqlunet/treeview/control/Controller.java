@@ -31,7 +31,7 @@ public abstract class Controller<E>
 	 * View (wrapper view that includes label and children)
 	 */
 	@Nullable
-	private View view;
+	private SubtreeView view;
 
 	/**
 	 * Node view (node label)
@@ -63,16 +63,48 @@ public abstract class Controller<E>
 		this.nodeView = createNodeView(context, this.node, (E) this.node.getValue());
 
 		// wrapper
-		final SubtreeView subtreeView = new SubtreeView(context, containerStyle);
-		subtreeView.insertNodeView(this.nodeView);
-		this.view = subtreeView;
+		this.view = new SubtreeView(context, containerStyle);
+		this.view.insertNodeView(this.nodeView);
+		this.view.setTag(this.node);
 
 		// children view
-		this.childrenContainer = subtreeView.childrenContainer;
+		this.childrenContainer = this.view.childrenContainer;
 
 		return this.view;
 	}
 
+	/**
+	 * Update node view leaving children unchanged
+	 *
+	 * @param context context
+	 */
+	public void updateNodeView(@NonNull final Context context)
+	{
+		/*
+		if (this.node.getValue() instanceof Value)
+		{
+			this.node.setValue(new Value("new", 0));
+		}
+		else
+		{
+			this.node.setValue("newstring");
+		}
+		*/
+
+		// update tag
+		this.view.setTag(this.node);
+
+		// remove current node view
+		int index = this.view.indexOf(this.nodeView);
+		this.view.removeNodeView(this.nodeView);
+
+		// new node view
+		this.nodeView = createNodeView(context, this.node, (E) this.node.getValue());
+
+		// insert new node view
+		//this.view.insertNodeView(this.nodeView);
+		this.view.insertNodeView(this.nodeView, index);
+	}
 
 	/**
 	 * Get (wrapper) view
@@ -80,7 +112,7 @@ public abstract class Controller<E>
 	 * @return view
 	 */
 	@Nullable
-	public View getView()
+	public SubtreeView getView()
 	{
 		return this.view;
 	}
