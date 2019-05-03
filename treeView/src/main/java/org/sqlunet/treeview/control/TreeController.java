@@ -59,7 +59,7 @@ public class TreeController extends Controller<Value>
 		}
 		else
 		{
-			// this.junctionView.setImageResource(R.drawable.ic_collapsed);
+			markCollapsed(); // this.junctionView.setImageResource(R.drawable.ic_collapsed);
 		}
 
 		// icon

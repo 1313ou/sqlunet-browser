@@ -47,6 +47,7 @@ import androidx.annotation.Nullable;
 import androidx.lifecycle.ViewModelProviders;
 
 import static org.sqlunet.view.TreeOp.TreeOpCode.ANCHOR;
+import static org.sqlunet.view.TreeOp.TreeOpCode.NEW;
 
 /**
  * Base module for PredicateMatrix
@@ -702,7 +703,7 @@ abstract class BaseModule extends Module
 	/**
 	 * Abstract PredicateMatrix callbacks
 	 */
-	abstract class PmCallbacks
+	abstract class PmProcess
 	{
 		/**
 		 * Displayer
@@ -715,15 +716,22 @@ abstract class BaseModule extends Module
 		final TreeNode parent;
 
 		/**
+		 * Changed list
+		 */
+		@NonNull
+		protected final TreeOps changedList;
+
+		/**
 		 * Constructor
 		 *
 		 * @param parent    parent node
 		 * @param displayer displayer
 		 */
-		PmCallbacks(final TreeNode parent, final Displayer displayer)
+		PmProcess(final TreeNode parent, final Displayer displayer)
 		{
 			this.parent = parent;
 			this.displayer = displayer;
+			this.changedList = new TreeOps(ANCHOR, parent);
 		}
 
 		/**
@@ -792,8 +800,6 @@ abstract class BaseModule extends Module
 		{
 			if (cursor.moveToFirst())
 			{
-				final TreeOps changedList = new TreeOps(ANCHOR, parent);
-
 				// column indices
 				final int idPmId = cursor.getColumnIndex(PredicateMatrix.PMID);
 				final int idPmRoleId = cursor.getColumnIndex(PredicateMatrix.PMROLEID);
@@ -882,7 +888,7 @@ abstract class BaseModule extends Module
 			}
 
 			cursor.close();
-			return TreeOp.seq(ANCHOR, parent);
+			return this.changedList.toArray();
 		}
 
 		/**
@@ -908,7 +914,7 @@ abstract class BaseModule extends Module
 	/**
 	 * Processor of data based on grouping rows
 	 */
-	abstract class PmProcessGrouped extends PmCallbacks
+	abstract class PmProcessGrouped extends PmProcess
 	{
 		/**
 		 * Role ids
@@ -1039,7 +1045,7 @@ abstract class BaseModule extends Module
 				final Set<FnData> fnDatas = this.fnMap.get(pmRoleId);
 
 				final SpannableStringBuilder pmsb = new SpannableStringBuilder();
-				final TreeNode pmroleNode = this.displayer.displayPmRole(this.parent, pmsb, pmRole);
+				final TreeNode pmroleNode = this.displayer.displayPmRole(this.parent, pmsb, pmRole, this.changedList);
 				final Collection<String> aliases = new TreeSet<>();
 
 				if (vnDatas != null)
@@ -1048,7 +1054,7 @@ abstract class BaseModule extends Module
 					{
 						final Set<WnData> wnData = this.wnMap.get(vnData);
 						assert wnData != null;
-						final TreeNode vnNode = this.displayer.makeVnNode(pmroleNode, vnData, wnData.toArray(new WnData[0]));
+						final TreeNode vnNode = this.displayer.makeVnNode(pmroleNode, this.changedList, vnData, wnData.toArray(new WnData[0]));
 
 						// contribute to header
 						if (vnData.vnRole != null && !vnData.vnRole.isEmpty())
@@ -1063,7 +1069,7 @@ abstract class BaseModule extends Module
 					{
 						final Set<WnData> wnData = this.wnMap.get(pbData);
 						assert wnData != null;
-						final TreeNode pbNode = this.displayer.makePbNode(pmroleNode, pbData, wnData.toArray(new WnData[0]));
+						final TreeNode pbNode = this.displayer.makePbNode(pmroleNode, this.changedList, pbData, wnData.toArray(new WnData[0]));
 
 						// contribute to header
 						if (pbData.pbRoleDescr != null && !pbData.pbRoleDescr.isEmpty())
@@ -1078,7 +1084,7 @@ abstract class BaseModule extends Module
 					{
 						final Set<WnData> wnData = this.wnMap.get(fnData);
 						assert wnData != null;
-						final TreeNode fnNode = this.displayer.makeFnNode(pmroleNode, fnData, wnData.toArray(new WnData[0]));
+						final TreeNode fnNode = this.displayer.makeFnNode(pmroleNode, this.changedList, fnData, wnData.toArray(new WnData[0]));
 
 						// contribute to header
 						if (fnData.fnFe != null && !fnData.fnFe.isEmpty())
@@ -1101,7 +1107,7 @@ abstract class BaseModule extends Module
 	/**
 	 * Processor of data based on row iteration
 	 */
-	abstract class PmProcessOnIteration extends PmCallbacks
+	abstract class PmProcessOnIteration extends PmProcess
 	{
 		/**
 		 * Constructor
@@ -1117,7 +1123,7 @@ abstract class BaseModule extends Module
 		@Override
 		protected void process(final TreeNode parent, final WnData wnData, final PmRow pmRow, final VnData vnData, final PbData pbData, final FnData fnData)
 		{
-			this.displayer.display(parent, wnData, pmRow, vnData, pbData, fnData);
+			this.displayer.display(parent, wnData, pmRow, vnData, pbData, fnData, this.changedList);
 		}
 	}
 
@@ -1129,14 +1135,15 @@ abstract class BaseModule extends Module
 		/**
 		 * Display
 		 *
-		 * @param parentNode parent node
-		 * @param wnData     WordNet data
-		 * @param pmRow      PredicateMatrix row
-		 * @param vnData     VerbNet data
-		 * @param pbData     PropBank data
-		 * @param fnData     FrameNet data
+		 * @param parentNode  parent node
+		 * @param wnData      WordNet data
+		 * @param pmRow       PredicateMatrix row
+		 * @param vnData      VerbNet data
+		 * @param pbData      PropBank data
+		 * @param fnData      FrameNet data
+		 * @param changedList tree ops
 		 */
-		abstract protected void display(final TreeNode parentNode, final WnData wnData, final PmRow pmRow, final VnData vnData, final PbData pbData, final FnData fnData);
+		abstract protected void display(final TreeNode parentNode, final WnData wnData, final PmRow pmRow, final VnData vnData, final PbData pbData, final FnData fnData, @NonNull final TreeOps changedList);
 
 		/**
 		 * Get required sort order
@@ -1176,19 +1183,19 @@ abstract class BaseModule extends Module
 		 * @param wnDataOnRow   whether to display WordNet data on label
 		 * @param wnDataOnXData whether to display WordNet data on extended data
 		 */
-		void displayRow(@NonNull final TreeNode parent, final WnData wnData, @NonNull final PmRow pmRow, @NonNull final VnData vnData, @NonNull final PbData pbData, @NonNull final FnData fnData, final boolean wnDataOnRow, @SuppressWarnings("SameParameterValue") final boolean wnDataOnXData)
+		void displayRow(@NonNull final TreeNode parent, final WnData wnData, @NonNull final PmRow pmRow, @NonNull final VnData vnData, @NonNull final PbData pbData, @NonNull final FnData fnData, final boolean wnDataOnRow, @SuppressWarnings("SameParameterValue") final boolean wnDataOnXData, @NonNull final TreeOps changedList)
 		{
 			// entry
-			final TreeNode roleNode = displayPmRow(parent, pmRow, wnDataOnRow ? wnData : null);
+			final TreeNode roleNode = displayPmRow(parent, pmRow, wnDataOnRow ? wnData : null, changedList);
 
 			// vn
-			final TreeNode vnNode = wnDataOnXData ? makeVnNode(roleNode, vnData, wnData) : makeVnNode(roleNode, vnData);
+			final TreeNode vnNode = wnDataOnXData ? makeVnNode(roleNode, changedList, vnData, wnData) : makeVnNode(roleNode, changedList, vnData);
 
 			// pb
-			final TreeNode pbNode = wnDataOnXData ? makePbNode(roleNode, pbData, wnData) : makePbNode(roleNode, pbData);
+			final TreeNode pbNode = wnDataOnXData ? makePbNode(roleNode, changedList, pbData, wnData) : makePbNode(roleNode, changedList, pbData);
 
 			// fn
-			final TreeNode fnNode = wnDataOnXData ? makeFnNode(roleNode, fnData, wnData) : makeFnNode(roleNode, fnData);
+			final TreeNode fnNode = wnDataOnXData ? makeFnNode(roleNode, changedList, fnData, wnData) : makeFnNode(roleNode, changedList, fnData);
 		}
 
 		/**
@@ -1199,10 +1206,10 @@ abstract class BaseModule extends Module
 		 * @return created node
 		 */
 		@NonNull
-		TreeNode displayPmRole(@NonNull final TreeNode parentNode, @NonNull final PmRole pmRole)
+		TreeNode displayPmRole(@NonNull final TreeNode parentNode, @NonNull final PmRole pmRole, @NonNull final TreeOps changedList)
 		{
 			final SpannableStringBuilder pmsb = new SpannableStringBuilder();
-			return displayPmRole(parentNode, pmsb, pmRole);
+			return displayPmRole(parentNode, pmsb, pmRole, changedList);
 		}
 
 		/**
@@ -1213,7 +1220,7 @@ abstract class BaseModule extends Module
 		 * @return created node
 		 */
 		@NonNull
-		TreeNode displayPmRole(@NonNull final TreeNode parentNode, @NonNull final SpannableStringBuilder pmsb, @NonNull final PmRole pmRole)
+		TreeNode displayPmRole(@NonNull final TreeNode parentNode, @NonNull final SpannableStringBuilder pmsb, @NonNull final PmRole pmRole, @NonNull final TreeOps changedList)
 		{
 			if (pmRole.pmRole != null)
 			{
@@ -1225,7 +1232,9 @@ abstract class BaseModule extends Module
 				Spanner.append(pmsb, roleData, 0, PredicateMatrixFactories.dataFactory);
 			}
 
-			return TreeFactory.addTreeNode(parentNode, pmsb, R.drawable.role);
+			final TreeNode result = TreeFactory.addTreeNode(parentNode, pmsb, R.drawable.role);
+			changedList.add(NEW, result);
+			return result;
 		}
 
 		/**
@@ -1237,7 +1246,7 @@ abstract class BaseModule extends Module
 		 * @return created node
 		 */
 		@NonNull
-		TreeNode displayPmRow(@NonNull final TreeNode parentNode, @NonNull final PmRow pmRow, @Nullable final WnData wnData)
+		TreeNode displayPmRow(@NonNull final TreeNode parentNode, @NonNull final PmRow pmRow, @Nullable final WnData wnData, @NonNull final TreeOps changedList)
 		{
 			final SpannableStringBuilder pmsb = new SpannableStringBuilder();
 			// rolesb.append("predicate role ");
@@ -1256,7 +1265,9 @@ abstract class BaseModule extends Module
 				Spanner.append(pmsb, wnData.definition, 0, PredicateMatrixFactories.definitionFactory);
 			}
 
-			return TreeFactory.addTreeNode(parentNode, pmsb, R.drawable.predicatematrix);
+			final TreeNode result = TreeFactory.addTreeNode(parentNode, pmsb, R.drawable.predicatematrix);
+			changedList.add(NEW, result);
+			return result;
 		}
 
 		/**
@@ -1268,7 +1279,7 @@ abstract class BaseModule extends Module
 		 * @return created node
 		 */
 		@NonNull
-		TreeNode makeVnNode(@NonNull final TreeNode parent, @NonNull final VnData vnData, @NonNull final WnData... wnDatas)
+		TreeNode makeVnNode(@NonNull final TreeNode parent, @NonNull final TreeOps changedList, @NonNull final VnData vnData, @NonNull final WnData... wnDatas)
 		{
 			final SpannableStringBuilder vnsb = new SpannableStringBuilder();
 			if (vnData.vnClass != null && !vnData.vnClass.isEmpty())
@@ -1309,7 +1320,9 @@ abstract class BaseModule extends Module
 				Spanner.append(vnsb, wnData.definition, 0, PredicateMatrixFactories.definitionFactory);
 			}
 
-			return vnData.vnClassId == 0L ? TreeFactory.addLeafNode(parent, vnsb, R.drawable.verbnet) : TreeFactory.addLinkLeafNode(parent, vnsb, R.drawable.verbnet, new VnClassLink(vnData.vnClassId));
+			final TreeNode result = vnData.vnClassId == 0L ? TreeFactory.addLeafNode(parent, vnsb, R.drawable.verbnet) : TreeFactory.addLinkLeafNode(parent, vnsb, R.drawable.verbnet, new VnClassLink(vnData.vnClassId));
+			changedList.add(NEW, result);
+			return result;
 		}
 
 		/**
@@ -1321,7 +1334,7 @@ abstract class BaseModule extends Module
 		 * @return created node
 		 */
 		@NonNull
-		TreeNode makePbNode(@NonNull final TreeNode parent, @NonNull final PbData pbData, @NonNull final WnData... wnDatas)
+		TreeNode makePbNode(@NonNull final TreeNode parent, @NonNull final TreeOps changedList, @NonNull final PbData pbData, @NonNull final WnData... wnDatas)
 		{
 			// pb
 			final SpannableStringBuilder pbsb = new SpannableStringBuilder();
@@ -1376,7 +1389,9 @@ abstract class BaseModule extends Module
 				Spanner.append(pbsb, wnData.definition, 0, PredicateMatrixFactories.definitionFactory);
 			}
 
-			return pbData.pbRoleSetId == 0L ? TreeFactory.addLeafNode(parent, pbsb, R.drawable.propbank) : TreeFactory.addLinkLeafNode(parent, pbsb, R.drawable.propbank, new PbRoleSetLink(pbData.pbRoleSetId));
+			final TreeNode result = pbData.pbRoleSetId == 0L ? TreeFactory.addLeafNode(parent, pbsb, R.drawable.propbank) : TreeFactory.addLinkLeafNode(parent, pbsb, R.drawable.propbank, new PbRoleSetLink(pbData.pbRoleSetId));
+			changedList.add(NEW, result);
+			return result;
 		}
 
 		/**
@@ -1388,7 +1403,7 @@ abstract class BaseModule extends Module
 		 * @return created node
 		 */
 		@NonNull
-		TreeNode makeFnNode(@NonNull final TreeNode parent, @NonNull final FnData fnData, @NonNull final WnData... wnDatas)
+		TreeNode makeFnNode(@NonNull final TreeNode parent, @NonNull final TreeOps changedList, @NonNull final FnData fnData, @NonNull final WnData... wnDatas)
 		{
 			// fn
 			final SpannableStringBuilder fnsb = new SpannableStringBuilder();
@@ -1430,7 +1445,9 @@ abstract class BaseModule extends Module
 				Spanner.append(fnsb, wnData.definition, 0, PredicateMatrixFactories.definitionFactory);
 			}
 
-			return fnData.fnFrameId == 0L ? TreeFactory.addLeafNode(parent, fnsb, R.drawable.framenet) : TreeFactory.addLinkLeafNode(parent, fnsb, R.drawable.framenet, new FnFrameLink(fnData.fnFrameId));
+			final TreeNode result = fnData.fnFrameId == 0L ? TreeFactory.addLeafNode(parent, fnsb, R.drawable.framenet) : TreeFactory.addLinkLeafNode(parent, fnsb, R.drawable.framenet, new FnFrameLink(fnData.fnFrameId));
+			changedList.add(NEW, result);
+			return result;
 		}
 	}
 
@@ -1503,7 +1520,7 @@ abstract class BaseModule extends Module
 		private TreeNode synsetNode;
 
 		@Override
-		public void display(@NonNull final TreeNode parentNode, @NonNull final WnData wnData, @NonNull final PmRow pmRole, @NonNull final VnData vnData, @NonNull final PbData pbData, @NonNull final FnData fnData)
+		public void display(@NonNull final TreeNode parentNode, @NonNull final WnData wnData, @NonNull final PmRow pmRole, @NonNull final VnData vnData, @NonNull final PbData pbData, @NonNull final FnData fnData, @NonNull final TreeOps changedList)
 		{
 			if (this.synsetId != wnData.synsetId)
 			{
@@ -1524,8 +1541,9 @@ abstract class BaseModule extends Module
 
 				// attach synset
 				this.synsetNode = TreeFactory.addTreeNode(parentNode, synsetsb, R.drawable.synset);
+				changedList.add(NEW, this.synsetNode);
 			}
-			super.displayRow(this.synsetNode, wnData, pmRole, vnData, pbData, fnData, false, false);
+			super.displayRow(this.synsetNode, wnData, pmRole, vnData, pbData, fnData, false, false, changedList);
 		}
 
 		@NonNull
@@ -1558,18 +1576,18 @@ abstract class BaseModule extends Module
 		private TreeNode pmRoleNode;
 
 		@Override
-		public void display(@NonNull final TreeNode parentNode, final WnData wnData, @NonNull final PmRow pmRole, @NonNull final VnData vnData, @NonNull final PbData pbData, @NonNull final FnData fnData)
+		public void display(@NonNull final TreeNode parentNode, final WnData wnData, @NonNull final PmRow pmRole, @NonNull final VnData vnData, @NonNull final PbData pbData, @NonNull final FnData fnData, @NonNull final TreeOps changedList)
 		{
 			if (this.pmRoleId != pmRole.pmRoleId)
 			{
 				// group
-				this.pmRoleNode = displayPmRole(parentNode, pmRole);
+				this.pmRoleNode = displayPmRole(parentNode, pmRole, changedList);
 
 				// record
 				this.pmRoleId = pmRole.pmRoleId;
 			}
 
-			super.displayRow(this.pmRoleNode, wnData, pmRole, vnData, pbData, fnData, true, false);
+			super.displayRow(this.pmRoleNode, wnData, pmRole, vnData, pbData, fnData, true, false, changedList);
 		}
 
 		@NonNull
@@ -1592,9 +1610,9 @@ abstract class BaseModule extends Module
 	class DisplayerUngrouped extends Displayer
 	{
 		@Override
-		public void display(@NonNull final TreeNode parentNode, final WnData wnData, @NonNull final PmRow pmRole, @NonNull final VnData vnData, @NonNull final PbData pbData, @NonNull final FnData fnData)
+		public void display(@NonNull final TreeNode parentNode, final WnData wnData, @NonNull final PmRow pmRole, @NonNull final VnData vnData, @NonNull final PbData pbData, @NonNull final FnData fnData, @NonNull final TreeOps changedList)
 		{
-			super.displayRow(parentNode, wnData, pmRole, vnData, pbData, fnData, true, false);
+			super.displayRow(parentNode, wnData, pmRole, vnData, pbData, fnData, true, false, changedList);
 		}
 
 		@NonNull
