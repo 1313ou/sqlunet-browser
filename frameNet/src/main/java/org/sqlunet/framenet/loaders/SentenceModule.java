@@ -14,7 +14,7 @@ import org.sqlunet.framenet.style.FrameNetFactories;
 import org.sqlunet.model.TreeFactory;
 import org.sqlunet.style.Spanner;
 import org.sqlunet.treeview.model.TreeNode;
-import org.sqlunet.view.FireEvent;
+import org.sqlunet.view.TreeOpExecute;
 import org.sqlunet.view.TreeOp;
 
 import androidx.annotation.NonNull;
@@ -66,7 +66,7 @@ public class SentenceModule extends BaseModule
 	private void makeModels()
 	{
 		this.sentenceFromSentenceIdModel = ViewModelProviders.of(this.fragment).get("fn.sentence(sentenceid)", SqlunetViewTreeModel.class);
-		this.sentenceFromSentenceIdModel.getData().observe(this.fragment, data -> new FireEvent(this.fragment).live(data));
+		this.sentenceFromSentenceIdModel.getData().observe(this.fragment, data -> new TreeOpExecute(this.fragment).exec(data));
 	}
 
 	@Override

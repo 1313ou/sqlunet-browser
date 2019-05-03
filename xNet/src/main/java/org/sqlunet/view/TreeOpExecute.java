@@ -1,0 +1,196 @@
+package org.sqlunet.view;
+
+import android.util.Log;
+import android.view.ViewGroup;
+
+import org.sqlunet.browser.TreeFragment;
+import org.sqlunet.treeview.control.Controller;
+import org.sqlunet.treeview.control.TreeController;
+import org.sqlunet.treeview.model.TreeNode;
+import org.sqlunet.treeview.view.TreeView;
+import org.sqlunet.view.TreeOp.TreeOpCode;
+
+/**
+ * TreeOp executor
+ *
+ * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
+ */
+public class TreeOpExecute
+{
+	private static final String TAG = "TREEOPEXEC";
+
+	private TreeFragment fragment;
+
+	public TreeOpExecute(final TreeFragment fragment)
+	{
+		this.fragment = fragment;
+	}
+
+	public void exec(final TreeOp[] ops)
+	{
+		execImpl(ops);
+	}
+
+	private void noopImpl(final TreeOp[] ops)
+	{
+	}
+
+	private void execImpl(final TreeOp[] ops)
+	{
+		final TreeView treeView = this.fragment.getTreeView();
+
+		int n = ops.length;
+		if (n == 1)
+		{
+			final TreeOp op = ops[0];
+			execOp(op, treeView, false);
+		}
+		else if (n > 1)
+		{
+			for (int i = 1; i < n; i++)
+			{
+				final TreeOp op = ops[i];
+				execOp(op, treeView, true);
+			}
+			execFirst(ops[0], treeView);
+		}
+	}
+
+	private void execFirst(final TreeOp op, final TreeView treeView)
+	{
+		final TreeNode node = op.getNode();
+		final Controller<?> controller = node.getController();
+		if (controller instanceof TreeController)
+		{
+			Log.d(TAG, "/// " + op.getCode() + " " + node.toString());
+			//final TreeController treeController = (TreeController) controller;
+			//View nodeView = treeController.getNodeView();
+			//treeController.onExpandEvent();
+		}
+	}
+
+	private void execOp(final TreeOp op, final TreeView treeView, final boolean includeSubnodes)
+	{
+		final TreeOpCode code = op.getCode();
+		final TreeNode node = op.getNode();
+		switch (code)
+		{
+			case ANCHOR:
+				Log.d(TAG, "/// " + op.getCode() + " " + node.toString());
+				break;
+			case NEW:
+				final TreeNode parent = node.getParent();
+				final Controller<?> parentController = parent.getController();
+				final ViewGroup viewGroup = parentController.getChildrenContainerView();
+				if (viewGroup == null || !TreeView.isExpanded(parent))
+				{
+					Log.d(TAG, "*** " + op.getCode() + " " + node.toString());
+					treeView.expandContainer(parent, includeSubnodes);
+				}
+				else
+				{
+					Log.d(TAG, "+++ " + op.getCode() + " " + node.toString());
+					int index = parent.indexOf(node);
+					treeView.addNodeView(viewGroup, node, index);
+					// parentController.onExpandEvent();
+				}
+				break;
+
+			case UPDATE:
+				Log.d(TAG, "!!! " + op.getCode() + " " + node.toString());
+				treeView.update(node);
+				break;
+
+			case TERMINATE:
+				Log.d(TAG, "xxx " + op.getCode() + " " + node.toString());
+				treeView.disable(node);
+				break;
+
+			case REMOVE:
+				Log.d(TAG, "--- " + op.getCode() + " " + node.toString());
+				treeView.remove(node);
+				break;
+
+			default:
+			case NOOP:
+				break;
+		}
+	}
+
+	// Simple expand children of first node
+
+	private void expandChildrenImpl(final TreeOp[] ops)
+	{
+		final TreeView treeView = this.fragment.getTreeView();
+		final TreeNode node = ops[0].getNode();
+		treeView.expandContainer(node, true);
+	}
+
+	// Expand using node semantics (tree flags)
+
+	private void expandFromTreeFlagsImpl(final TreeOp[] ops)
+	{
+		final TreeView treeView = this.fragment.getTreeView();
+
+		int n = ops.length;
+		if (n == 1)
+		{
+			final TreeOp op = ops[0];
+			execOp2(op, treeView, false);
+		}
+		else if (n > 1)
+		{
+			for (int i = 1; i < n; i++)
+			{
+				final TreeOp op = ops[i];
+				execOp2(op, treeView, true);
+			}
+			execJunction2(ops[0], treeView);
+		}
+	}
+
+	private void execJunction2(final TreeOp op, final TreeView treeView)
+	{
+		final TreeNode node = op.getNode();
+		final Controller<?> controller = node.getController();
+		if (controller instanceof TreeController)
+		{
+			final TreeController treeController = (TreeController) controller;
+			// View v = treeController.getNodeView();
+			// treeController.onExpandEvent();
+		}
+	}
+
+	private void execOp2(final TreeOp op, final TreeView treeView, final boolean includeSubnodes)
+	{
+		final TreeNode node = op.getNode();
+		if (node.isZombie())
+		{
+			Log.d(TAG, "--- " + op.getCode() + " " + node.toString());
+			treeView.remove(node);
+		}
+		else if (node.isDeadend())
+		{
+			Log.d(TAG, "000 " + op.getCode() + " " + node.toString());
+			treeView.disable(node);
+		}
+		else
+		{
+			final TreeNode parent = node.getParent();
+			final Controller<?> parentController = parent.getController();
+			final ViewGroup viewGroup = parentController.getChildrenContainerView();
+			if (viewGroup == null || !TreeView.isExpanded(parent))
+			{
+				Log.d(TAG, "*** " + op.getCode() + " " + node.toString());
+				treeView.expandContainer(parent, includeSubnodes);
+			}
+			else
+			{
+				Log.d(TAG, "+++ " + op.getCode() + " " + node.toString());
+				int index = parent.indexOf(node);
+				treeView.addNodeView(viewGroup, node, index);
+				// parentController.onExpandEvent();
+			}
+		}
+	}
+}

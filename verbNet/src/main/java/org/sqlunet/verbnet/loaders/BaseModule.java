@@ -23,7 +23,7 @@ import org.sqlunet.verbnet.style.VerbNetFactories;
 import org.sqlunet.verbnet.style.VerbNetSemanticsProcessor;
 import org.sqlunet.verbnet.style.VerbNetSemanticsSpanner;
 import org.sqlunet.verbnet.style.VerbNetSyntaxSpanner;
-import org.sqlunet.view.FireEvent;
+import org.sqlunet.view.TreeOpExecute;
 import org.sqlunet.view.TreeOp;
 import org.sqlunet.view.TreeOp.TreeOps;
 
@@ -162,16 +162,16 @@ abstract class BaseModule extends Module
 	private void makeModels()
 	{
 		this.vnClassFromClassIdModel = ViewModelProviders.of(this.fragment).get("vn.class(classid)", SqlunetViewTreeModel.class);
-		this.vnClassFromClassIdModel.getData().observe(this.fragment, data -> new FireEvent(this.fragment).live(data));
+		this.vnClassFromClassIdModel.getData().observe(this.fragment, data -> new TreeOpExecute(this.fragment).exec(data));
 
 		this.vnMembersFromClassIdModel = ViewModelProviders.of(this.fragment).get("vn.members(classid)", SqlunetViewTreeModel.class);
-		this.vnMembersFromClassIdModel.getData().observe(this.fragment, data -> new FireEvent(this.fragment).live(data));
+		this.vnMembersFromClassIdModel.getData().observe(this.fragment, data -> new TreeOpExecute(this.fragment).exec(data));
 
 		this.vnRolesFromClassIdModel = ViewModelProviders.of(this.fragment).get("vn.roles(classid)", SqlunetViewTreeModel.class);
-		this.vnRolesFromClassIdModel.getData().observe(this.fragment, data -> new FireEvent(this.fragment).live(data));
+		this.vnRolesFromClassIdModel.getData().observe(this.fragment, data -> new TreeOpExecute(this.fragment).exec(data));
 
 		this.vnFramesFromClassIdModel = ViewModelProviders.of(this.fragment).get("vn.frames(classid)", SqlunetViewTreeModel.class);
-		this.vnFramesFromClassIdModel.getData().observe(this.fragment, data -> new FireEvent(this.fragment).live(data));
+		this.vnFramesFromClassIdModel.getData().observe(this.fragment, data -> new TreeOpExecute(this.fragment).exec(data));
 	}
 
 	// L O A D E R S

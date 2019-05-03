@@ -17,7 +17,7 @@ import org.sqlunet.style.Spanner;
 import org.sqlunet.treeview.control.Link;
 import org.sqlunet.treeview.control.Query;
 import org.sqlunet.treeview.model.TreeNode;
-import org.sqlunet.view.FireEvent;
+import org.sqlunet.view.TreeOpExecute;
 import org.sqlunet.view.TreeOp;
 import org.sqlunet.view.TreeOp.TreeOps;
 import org.sqlunet.wordnet.R;
@@ -55,7 +55,6 @@ import androidx.lifecycle.ViewModelProviders;
 
 import static org.sqlunet.view.TreeOp.TreeOpCode.NEW;
 import static org.sqlunet.view.TreeOp.TreeOpCode.ANCHOR;
-import static org.sqlunet.view.TreeOp.TreeOpCode.NOOP;
 import static org.sqlunet.view.TreeOp.TreeOpCode.REMOVE;
 import static org.sqlunet.view.TreeOp.TreeOpCode.UPDATE;
 import static org.sqlunet.view.TreeOp.TreeOpCode.TERMINATE;
@@ -169,67 +168,67 @@ abstract public class BaseModule extends Module
 	private void makeModels()
 	{
 		this.wordModel = ViewModelProviders.of(this.fragment).get("wn.word(wordid)", SqlunetViewTreeModel.class);
-		this.wordModel.getData().observe(this.fragment, data -> new FireEvent(this.fragment).live(data));
+		this.wordModel.getData().observe(this.fragment, data -> new TreeOpExecute(this.fragment).exec(data));
 
 		this.sensesFromWordModel = ViewModelProviders.of(this.fragment).get("wn.senses(word)", SqlunetViewTreeModel.class);
-		this.sensesFromWordModel.getData().observe(this.fragment, data -> new FireEvent(this.fragment).live(data));
+		this.sensesFromWordModel.getData().observe(this.fragment, data -> new TreeOpExecute(this.fragment).exec(data));
 
 		this.sensesFromWordIdModel = ViewModelProviders.of(this.fragment).get("wn.senses(wordid)", SqlunetViewTreeModel.class);
-		this.sensesFromWordIdModel.getData().observe(this.fragment, data -> new FireEvent(this.fragment).live(data));
+		this.sensesFromWordIdModel.getData().observe(this.fragment, data -> new TreeOpExecute(this.fragment).exec(data));
 
 		this.senseFromSenseIdModel = ViewModelProviders.of(this.fragment).get("wn.sense(senseid)", SqlunetViewTreeModel.class);
-		this.senseFromSenseIdModel.getData().observe(this.fragment, data -> new FireEvent(this.fragment).live(data));
+		this.senseFromSenseIdModel.getData().observe(this.fragment, data -> new TreeOpExecute(this.fragment).exec(data));
 
 		this.sensefromSenseKeyModel = ViewModelProviders.of(this.fragment).get("wn.sense(sensekey)", SqlunetViewTreeModel.class);
-		this.sensefromSenseKeyModel.getData().observe(this.fragment, data -> new FireEvent(this.fragment).live(data));
+		this.sensefromSenseKeyModel.getData().observe(this.fragment, data -> new TreeOpExecute(this.fragment).exec(data));
 
 		this.senseFromSynsetIdWordIdModel = ViewModelProviders.of(this.fragment).get("wn.sense(synsetid,wordid)", SqlunetViewTreeModel.class);
-		this.senseFromSynsetIdWordIdModel.getData().observe(this.fragment, data -> new FireEvent(this.fragment).live(data));
+		this.senseFromSynsetIdWordIdModel.getData().observe(this.fragment, data -> new TreeOpExecute(this.fragment).exec(data));
 
 		this.synsetFromSynsetIdModel = ViewModelProviders.of(this.fragment).get("wn.synset(synsetid)", SqlunetViewTreeModel.class);
-		this.synsetFromSynsetIdModel.getData().observe(this.fragment, data -> new FireEvent(this.fragment).live(data));
+		this.synsetFromSynsetIdModel.getData().observe(this.fragment, data -> new TreeOpExecute(this.fragment).exec(data));
 
 		this.membersFromSynsetIdModel = ViewModelProviders.of(this.fragment).get("wn.members(synsetid)", SqlunetViewTreeModel.class);
-		this.membersFromSynsetIdModel.getData().observe(this.fragment, data -> new FireEvent(this.fragment).live(data));
+		this.membersFromSynsetIdModel.getData().observe(this.fragment, data -> new TreeOpExecute(this.fragment).exec(data));
 
 		this.membersFromSynsetIdModel2 = ViewModelProviders.of(this.fragment).get("wn.members2(synsetid)", SqlunetViewTreeModel.class);
-		this.membersFromSynsetIdModel2.getData().observe(this.fragment, data -> new FireEvent(this.fragment).live(data));
+		this.membersFromSynsetIdModel2.getData().observe(this.fragment, data -> new TreeOpExecute(this.fragment).exec(data));
 
 		this.samplesfromSynsetIdModel = ViewModelProviders.of(this.fragment).get("wn.samples(synsetid)", SqlunetViewTreeModel.class);
-		this.samplesfromSynsetIdModel.getData().observe(this.fragment, data -> new FireEvent(this.fragment).live(data));
+		this.samplesfromSynsetIdModel.getData().observe(this.fragment, data -> new TreeOpExecute(this.fragment).exec(data));
 
 		this.semLinksFromSynsetIdModel = ViewModelProviders.of(this.fragment).get("wn.semlinks(synsetid)", SqlunetViewTreeModel.class);
-		this.semLinksFromSynsetIdModel.getData().observe(this.fragment, data -> new FireEvent(this.fragment).live(data));
+		this.semLinksFromSynsetIdModel.getData().observe(this.fragment, data -> new TreeOpExecute(this.fragment).exec(data));
 
 		this.semLinksFromSynsetIdLinkIdModel = ViewModelProviders.of(this.fragment).get("wn.semlinks(synsetid,linkid)", SqlunetViewTreeModel.class);
-		this.semLinksFromSynsetIdLinkIdModel.getData().observe(this.fragment, data -> new FireEvent(this.fragment).live(data));
+		this.semLinksFromSynsetIdLinkIdModel.getData().observe(this.fragment, data -> new TreeOpExecute(this.fragment).exec(data));
 
 		this.lexLinksFromSynsetIdWordIdModel = ViewModelProviders.of(this.fragment).get("wn.lexlinks(synsetid,wordid)", SqlunetViewTreeModel.class);
-		this.lexLinksFromSynsetIdWordIdModel.getData().observe(this.fragment, data -> new FireEvent(this.fragment).live(data));
+		this.lexLinksFromSynsetIdWordIdModel.getData().observe(this.fragment, data -> new TreeOpExecute(this.fragment).exec(data));
 
 		this.lexLinksFromSynsetIdModel = ViewModelProviders.of(this.fragment).get("wn.lexlinks(synsetid)", SqlunetViewTreeModel.class);
-		this.lexLinksFromSynsetIdModel.getData().observe(this.fragment, data -> new FireEvent(this.fragment).live(data));
+		this.lexLinksFromSynsetIdModel.getData().observe(this.fragment, data -> new TreeOpExecute(this.fragment).exec(data));
 
 		this.vFramesFromSynsetIdModel = ViewModelProviders.of(this.fragment).get("wn.vframes(synsetid)", SqlunetViewTreeModel.class);
-		this.vFramesFromSynsetIdModel.getData().observe(this.fragment, data -> new FireEvent(this.fragment).live(data));
+		this.vFramesFromSynsetIdModel.getData().observe(this.fragment, data -> new TreeOpExecute(this.fragment).exec(data));
 
 		this.vFramesFromSynsetIdWordIdModel = ViewModelProviders.of(this.fragment).get("wn.vframes(synsetid,wordid)", SqlunetViewTreeModel.class);
-		this.vFramesFromSynsetIdWordIdModel.getData().observe(this.fragment, data -> new FireEvent(this.fragment).live(data));
+		this.vFramesFromSynsetIdWordIdModel.getData().observe(this.fragment, data -> new TreeOpExecute(this.fragment).exec(data));
 
 		this.vFrameSentencesFromSynsetIdModel = ViewModelProviders.of(this.fragment).get("wn.vframesentences(synsetid)", SqlunetViewTreeModel.class);
-		this.vFrameSentencesFromSynsetIdModel.getData().observe(this.fragment, data -> new FireEvent(this.fragment).live(data));
+		this.vFrameSentencesFromSynsetIdModel.getData().observe(this.fragment, data -> new TreeOpExecute(this.fragment).exec(data));
 
 		this.vFrameSentencesFromSynsetIdWordIdModel = ViewModelProviders.of(this.fragment).get("wn.vframesentences(synsetid,wordid)", SqlunetViewTreeModel.class);
-		this.vFrameSentencesFromSynsetIdWordIdModel.getData().observe(this.fragment, data -> new FireEvent(this.fragment).live(data));
+		this.vFrameSentencesFromSynsetIdWordIdModel.getData().observe(this.fragment, data -> new TreeOpExecute(this.fragment).exec(data));
 
 		this.adjPositionFromSynsetIdModel = ViewModelProviders.of(this.fragment).get("wn.adjposition(synsetid)", SqlunetViewTreeModel.class);
-		this.adjPositionFromSynsetIdModel.getData().observe(this.fragment, data -> new FireEvent(this.fragment).live(data));
+		this.adjPositionFromSynsetIdModel.getData().observe(this.fragment, data -> new TreeOpExecute(this.fragment).exec(data));
 
 		this.adjPositionFromSynsetIdWordIdModel = ViewModelProviders.of(this.fragment).get("wn.adjposition(synsetid,wordid)", SqlunetViewTreeModel.class);
-		this.adjPositionFromSynsetIdWordIdModel.getData().observe(this.fragment, data -> new FireEvent(this.fragment).live(data));
+		this.adjPositionFromSynsetIdWordIdModel.getData().observe(this.fragment, data -> new TreeOpExecute(this.fragment).exec(data));
 
 		this.morphsFromWordIdModel = ViewModelProviders.of(this.fragment).get("wn.morphs(wordid)", SqlunetViewTreeModel.class);
-		this.morphsFromWordIdModel.getData().observe(this.fragment, data -> new FireEvent(this.fragment).live(data));
+		this.morphsFromWordIdModel.getData().observe(this.fragment, data -> new TreeOpExecute(this.fragment).exec(data));
 	}
 
 	/**

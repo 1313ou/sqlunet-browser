@@ -29,7 +29,7 @@ import org.sqlunet.treeview.control.Link;
 import org.sqlunet.treeview.model.TreeNode;
 import org.sqlunet.verbnet.VnClassPointer;
 import org.sqlunet.verbnet.browser.VnClassActivity;
-import org.sqlunet.view.FireEvent;
+import org.sqlunet.view.TreeOpExecute;
 import org.sqlunet.view.TreeOp;
 import org.sqlunet.view.TreeOp.TreeOps;
 
@@ -95,7 +95,7 @@ abstract class BaseModule extends Module
 	private void makeModels()
 	{
 		this.model = ViewModelProviders.of(fragment).get("pm.pm(?)", SqlunetViewTreeModel.class);
-		this.model.getData().observe(fragment, data -> new FireEvent(fragment).live(data));
+		this.model.getData().observe(fragment, data -> new TreeOpExecute(fragment).exec(data));
 	}
 
 	// L O A D E R S

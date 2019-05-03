@@ -16,7 +16,7 @@ import org.sqlunet.verbnet.R;
 import org.sqlunet.verbnet.provider.VerbNetContract.Words_VnClasses;
 import org.sqlunet.verbnet.provider.VerbNetProvider;
 import org.sqlunet.verbnet.style.VerbNetFactories;
-import org.sqlunet.view.FireEvent;
+import org.sqlunet.view.TreeOpExecute;
 import org.sqlunet.view.TreeOp;
 import org.sqlunet.view.TreeOp.TreeOps;
 
@@ -70,7 +70,7 @@ public class ClassFromWordModule extends BaseModule
 	private void makeModels()
 	{
 		this.vnClassesFromWordIdSynsetIdModel = ViewModelProviders.of(this.fragment).get("vn.classes(wordid,synsetid)", SqlunetViewTreeModel.class);
-		this.vnClassesFromWordIdSynsetIdModel.getData().observe(this.fragment, data -> new FireEvent(this.fragment).live(data));
+		this.vnClassesFromWordIdSynsetIdModel.getData().observe(this.fragment, data -> new TreeOpExecute(this.fragment).exec(data));
 	}
 
 	@Override

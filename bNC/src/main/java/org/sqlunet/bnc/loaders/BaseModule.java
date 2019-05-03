@@ -19,7 +19,7 @@ import org.sqlunet.browser.TreeFragment;
 import org.sqlunet.model.TreeFactory;
 import org.sqlunet.style.Spanner;
 import org.sqlunet.treeview.model.TreeNode;
-import org.sqlunet.view.FireEvent;
+import org.sqlunet.view.TreeOpExecute;
 import org.sqlunet.view.TreeOp;
 
 import androidx.annotation.NonNull;
@@ -91,7 +91,7 @@ public class BaseModule extends Module
 	private void makeModels()
 	{
 		this.bncFromWordIdModel = ViewModelProviders.of(this.fragment).get("bnc.bnc(wordid)", SqlunetViewTreeModel.class);
-		this.bncFromWordIdModel.getData().observe(this.fragment, data -> new FireEvent(this.fragment).live(data));
+		this.bncFromWordIdModel.getData().observe(this.fragment, data -> new TreeOpExecute(this.fragment).exec(data));
 	}
 
 	@Override

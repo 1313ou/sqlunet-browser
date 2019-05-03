@@ -54,7 +54,7 @@ import org.sqlunet.style.Spanner;
 import org.sqlunet.treeview.control.Link;
 import org.sqlunet.treeview.control.Query;
 import org.sqlunet.treeview.model.TreeNode;
-import org.sqlunet.view.FireEvent;
+import org.sqlunet.view.TreeOpExecute;
 import org.sqlunet.view.TreeOp;
 import org.sqlunet.view.TreeOp.TreeOps;
 
@@ -231,55 +231,55 @@ abstract public class BaseModule extends Module
 	private void makeModels()
 	{
 		this.frameFromFrameIdModel = ViewModelProviders.of(this.fragment).get("fn.frame(frameid)", SqlunetViewTreeModel.class);
-		this.frameFromFrameIdModel.getData().observe(this.fragment, data -> new FireEvent(this.fragment).live(data));
+		this.frameFromFrameIdModel.getData().observe(this.fragment, data -> new TreeOpExecute(this.fragment).exec(data));
 
 		this.relatedFramesFromFrameIdModel = ViewModelProviders.of(this.fragment).get("fn.relatedframes(frameid)", SqlunetViewTreeModel.class);
-		this.relatedFramesFromFrameIdModel.getData().observe(this.fragment, data -> new FireEvent(this.fragment).live(data));
+		this.relatedFramesFromFrameIdModel.getData().observe(this.fragment, data -> new TreeOpExecute(this.fragment).exec(data));
 
 		this.fesFromFrameIdModel = ViewModelProviders.of(this.fragment).get("fn.fes(frameid)", SqlunetViewTreeModel.class);
-		this.fesFromFrameIdModel.getData().observe(this.fragment, data -> new FireEvent(this.fragment).live(data));
+		this.fesFromFrameIdModel.getData().observe(this.fragment, data -> new TreeOpExecute(this.fragment).exec(data));
 
 		this.lexUnitFromLuIdModel = ViewModelProviders.of(this.fragment).get("fn.lexunit(luid)", SqlunetViewTreeModel.class);
-		this.lexUnitFromLuIdModel.getData().observe(this.fragment, data -> new FireEvent(this.fragment).live(data));
+		this.lexUnitFromLuIdModel.getData().observe(this.fragment, data -> new TreeOpExecute(this.fragment).exec(data));
 
 		this.lexUnitsFromFrameIdModel = ViewModelProviders.of(this.fragment).get("fn.lexunits(frameid)", SqlunetViewTreeModel.class);
-		this.lexUnitsFromFrameIdModel.getData().observe(this.fragment, data -> new FireEvent(this.fragment).live(data));
+		this.lexUnitsFromFrameIdModel.getData().observe(this.fragment, data -> new TreeOpExecute(this.fragment).exec(data));
 
 		this.lexUnitsfromWordIdPosModel = ViewModelProviders.of(this.fragment).get("fn.lexunits(wordid,pos)", SqlunetViewTreeModel.class);
-		this.lexUnitsfromWordIdPosModel.getData().observe(this.fragment, data -> new FireEvent(this.fragment).live(data));
+		this.lexUnitsfromWordIdPosModel.getData().observe(this.fragment, data -> new TreeOpExecute(this.fragment).exec(data));
 
 		this.governorsFromLuIdModel = ViewModelProviders.of(this.fragment).get("fn.governors(luid)", SqlunetViewTreeModel.class);
-		this.governorsFromLuIdModel.getData().observe(this.fragment, data -> new FireEvent(this.fragment).live(data));
+		this.governorsFromLuIdModel.getData().observe(this.fragment, data -> new TreeOpExecute(this.fragment).exec(data));
 
 		this.realizationsFromLuIdModel = ViewModelProviders.of(this.fragment).get("fn.realizations(luid)", SqlunetViewTreeModel.class);
-		this.realizationsFromLuIdModel.getData().observe(this.fragment, data -> new FireEvent(this.fragment).live(data));
+		this.realizationsFromLuIdModel.getData().observe(this.fragment, data -> new TreeOpExecute(this.fragment).exec(data));
 
 		this.groupRealizationsFromLuIdModel = ViewModelProviders.of(this.fragment).get("fn.grouprealizations(luid)", SqlunetViewTreeModel.class);
-		this.groupRealizationsFromLuIdModel.getData().observe(this.fragment, data -> new FireEvent(this.fragment).live(data));
+		this.groupRealizationsFromLuIdModel.getData().observe(this.fragment, data -> new TreeOpExecute(this.fragment).exec(data));
 
 		this.sentencesFromLuIdModel = ViewModelProviders.of(this.fragment).get("fn.sentences(luid)", SqlunetViewTreeModel.class);
-		this.sentencesFromLuIdModel.getData().observe(this.fragment, data -> new FireEvent(this.fragment).live(data));
+		this.sentencesFromLuIdModel.getData().observe(this.fragment, data -> new TreeOpExecute(this.fragment).exec(data));
 
 		this.sentencesFromPatternIdModel = ViewModelProviders.of(this.fragment).get("fn.sentences(patternid)", SqlunetViewTreeModel.class);
-		this.sentencesFromPatternIdModel.getData().observe(this.fragment, data -> new FireEvent(this.fragment).live(data));
+		this.sentencesFromPatternIdModel.getData().observe(this.fragment, data -> new TreeOpExecute(this.fragment).exec(data));
 
 		this.sentencesFromVuIdModel = ViewModelProviders.of(this.fragment).get("fn.sentences(vuid)", SqlunetViewTreeModel.class);
-		this.sentencesFromVuIdModel.getData().observe(this.fragment, data -> new FireEvent(this.fragment).live(data));
+		this.sentencesFromVuIdModel.getData().observe(this.fragment, data -> new TreeOpExecute(this.fragment).exec(data));
 
 		this.annoSetFromAnnoSetIdModel = ViewModelProviders.of(this.fragment).get("fn.annoset(annosetid)", SqlunetViewTreeModel.class);
-		this.annoSetFromAnnoSetIdModel.getData().observe(this.fragment, data -> new FireEvent(this.fragment).live(data));
+		this.annoSetFromAnnoSetIdModel.getData().observe(this.fragment, data -> new TreeOpExecute(this.fragment).exec(data));
 
 		this.annoSetsFromGovernorIdModel = ViewModelProviders.of(this.fragment).get("fn.annosets(governorid)", SqlunetViewTreeModel.class);
-		this.annoSetsFromGovernorIdModel.getData().observe(this.fragment, data -> new FireEvent(this.fragment).live(data));
+		this.annoSetsFromGovernorIdModel.getData().observe(this.fragment, data -> new TreeOpExecute(this.fragment).exec(data));
 
 		this.annoSetsFromPatternIdModel = ViewModelProviders.of(this.fragment).get("fn.annosets(patternid)", SqlunetViewTreeModel.class);
-		this.annoSetsFromPatternIdModel.getData().observe(this.fragment, data -> new FireEvent(this.fragment).live(data));
+		this.annoSetsFromPatternIdModel.getData().observe(this.fragment, data -> new TreeOpExecute(this.fragment).exec(data));
 
 		this.annoSetsFromVuIdModel = ViewModelProviders.of(this.fragment).get("fn.annosets(vuid)", SqlunetViewTreeModel.class);
-		this.annoSetsFromVuIdModel.getData().observe(this.fragment, data -> new FireEvent(this.fragment).live(data));
+		this.annoSetsFromVuIdModel.getData().observe(this.fragment, data -> new TreeOpExecute(this.fragment).exec(data));
 
 		this.layersFromSentenceIdModel = ViewModelProviders.of(this.fragment).get("fn.layers(sentenceid)", SqlunetViewTreeModel.class);
-		this.layersFromSentenceIdModel.getData().observe(this.fragment, data -> new FireEvent(this.fragment).live(data));
+		this.layersFromSentenceIdModel.getData().observe(this.fragment, data -> new TreeOpExecute(this.fragment).exec(data));
 	}
 
 	// C R E A T I O N

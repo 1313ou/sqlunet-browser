@@ -2,7 +2,7 @@ package org.sqlunet.framenet.loaders;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
+
 import android.os.Parcelable;
 
 import org.sqlunet.HasPos;
@@ -10,7 +10,6 @@ import org.sqlunet.HasWordId;
 import org.sqlunet.browser.TreeFragment;
 import org.sqlunet.model.TreeFactory;
 import org.sqlunet.treeview.model.TreeNode;
-import org.sqlunet.view.FireEvent;
 
 /**
  * Lex unit from word module

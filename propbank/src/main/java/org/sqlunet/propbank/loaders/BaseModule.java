@@ -22,7 +22,7 @@ import org.sqlunet.propbank.style.PropBankSpanner;
 import org.sqlunet.style.Spanner;
 import org.sqlunet.treeview.control.Query;
 import org.sqlunet.treeview.model.TreeNode;
-import org.sqlunet.view.FireEvent;
+import org.sqlunet.view.TreeOpExecute;
 import org.sqlunet.view.TreeOp;
 import org.sqlunet.view.TreeOp.TreeOps;
 
@@ -136,16 +136,16 @@ abstract class BaseModule extends Module
 	private void makeModels()
 	{
 		this.pbRoleSetFromRoleSetIdModel = ViewModelProviders.of(this.fragment).get("pb.roleset(rolesetid)", SqlunetViewTreeModel.class);
-		this.pbRoleSetFromRoleSetIdModel.getData().observe(this.fragment, data -> new FireEvent(this.fragment).live(data));
+		this.pbRoleSetFromRoleSetIdModel.getData().observe(this.fragment, data -> new TreeOpExecute(this.fragment).exec(data));
 
 		this.roleSetsFromWordIdModel = ViewModelProviders.of(this.fragment).get("pb.rolesets(wordid)", SqlunetViewTreeModel.class);
-		this.roleSetsFromWordIdModel.getData().observe(this.fragment, data -> new FireEvent(this.fragment).live(data));
+		this.roleSetsFromWordIdModel.getData().observe(this.fragment, data -> new TreeOpExecute(this.fragment).exec(data));
 
 		this.rolesFromRoleSetIdModel = ViewModelProviders.of(this.fragment).get("pb.roles(rolesetid)", SqlunetViewTreeModel.class);
-		this.rolesFromRoleSetIdModel.getData().observe(this.fragment, data -> new FireEvent(this.fragment).live(data));
+		this.rolesFromRoleSetIdModel.getData().observe(this.fragment, data -> new TreeOpExecute(this.fragment).exec(data));
 
 		this.examplesFromRoleSetIdModel = ViewModelProviders.of(this.fragment).get("pb.examples(rolesetid)", SqlunetViewTreeModel.class);
-		this.examplesFromRoleSetIdModel.getData().observe(this.fragment, data -> new FireEvent(this.fragment).live(data));
+		this.examplesFromRoleSetIdModel.getData().observe(this.fragment, data -> new TreeOpExecute(this.fragment).exec(data));
 	}
 
 	// R O L E   S E T S
