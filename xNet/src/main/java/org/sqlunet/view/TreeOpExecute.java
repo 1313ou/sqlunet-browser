@@ -78,20 +78,21 @@ public class TreeOpExecute
 			case ANCHOR:
 				Log.d(TAG, "/// " + op.getCode() + " " + node.toString());
 				break;
+
 			case NEW:
 				final TreeNode parent = node.getParent();
 				final Controller<?> parentController = parent.getController();
-				final ViewGroup viewGroup = parentController.getChildrenContainerView();
-				if (viewGroup == null || !TreeView.isExpanded(parent))
+				final ViewGroup childrenView = parentController.getChildrenView();
+				if (childrenView == null || !TreeView.isExpanded(parent))
 				{
 					Log.d(TAG, "*** " + op.getCode() + " " + node.toString());
-					treeView.expand(parent, includeSubnodes);
+					treeView.expandNode(parent, includeSubnodes, false);
 				}
 				else
 				{
 					Log.d(TAG, "+++ " + op.getCode() + " " + node.toString());
 					int index = parent.indexOf(node);
-					treeView.addNodeView(viewGroup, node, index);
+					treeView.addSubtreeView(childrenView, node, index);
 					// parentController.onExpandEvent();
 				}
 				break;
@@ -123,6 +124,6 @@ public class TreeOpExecute
 	{
 		final TreeView treeView = this.fragment.getTreeView();
 		final TreeNode node = ops[0].getNode();
-		treeView.expand(node, true);
+		treeView.expandNode(node, true, false);
 	}
 }

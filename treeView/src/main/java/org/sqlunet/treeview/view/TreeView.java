@@ -199,56 +199,23 @@ public class TreeView
 		final Controller controller = node.getController();
 		final View nodeView = controller.getNodeView();
 		final SubtreeView subtreeView = controller.getSubtreeView();
-		if (subtreeView != null && nodeView != null )
+		if (subtreeView != null && nodeView != null)
 		{
 			// update node reference
 			controller.attachNode(node);
 			subtreeView.setTag(node);
 
 			// remove current node subtreeView
-			int index = subtreeView.indexOfChild(nodeView);
 			subtreeView.removeNodeView(nodeView);
 
 			// new node view
+			@SuppressWarnings("unchecked")
 			final View newNodeView = controller.createNodeView(this.context, node, node.getValue());
 			controller.setNodeView(newNodeView);
 
 			// insert new node subtreeView
-			subtreeView.insertNodeView(newNodeView, index);
+			subtreeView.insertNodeView(newNodeView);
 		}
-		else
-		{
-			/*
-			final TreeNode parent = node.getParent();
-			assert parent != null;
-			final Controller<?> parentController = parent.getController();
-			final ViewGroup viewGroup = parentController.getChildrenContainerView();
-			assert viewGroup != null;
-			int index = parent.indexOf(node);
-			addNodeView(viewGroup, node, index);
-			*/
-		}
-	}
-
-	/**
-	 *
-	 * @param context context
-	 */
-	public void updateNodeView(@NonNull final Context context)
-	{
-	}
-
-	/**
-	 * Deadend
-	 *
-	 * @param node node
-	 */
-	public void deadend(@NonNull final TreeNode node)
-	{
-		node.setEnabled(false);
-
-		final Controller<?> controller = node.getController();
-		controller.deadend();
 	}
 
 	/**
@@ -257,6 +224,7 @@ public class TreeView
 	 * @param node  node
 	 * @param value character sequence
 	 */
+	@SuppressWarnings("unused")
 	public void setNodeValue(@NonNull final TreeNode node, @Nullable final CharSequence value)
 	{
 		// delete node from parent if null value
@@ -290,6 +258,19 @@ public class TreeView
 		}
 	}
 
+	/**
+	 * Deadend
+	 *
+	 * @param node node
+	 */
+	public void deadend(@NonNull final TreeNode node)
+	{
+		node.setEnabled(false);
+
+		final Controller<?> controller = node.getController();
+		controller.deadend();
+	}
+
 	// E X P A N D   S T A T U S
 
 	/**
@@ -301,7 +282,7 @@ public class TreeView
 	{
 		//return this.expanded;
 		final Controller controller = node.getController();
-		final ViewGroup container = controller.getChildrenContainerView();
+		final ViewGroup container = controller.getChildrenView();
 		if (container == null)
 		{
 			return false;
@@ -313,7 +294,7 @@ public class TreeView
 	// A D D / R E M O V E
 
 	/**
-	 * Add node to parent (both tree and view)
+	 * Add node to parent (both tree model and view)
 	 *
 	 * @param parent parent node
 	 * @param node   node to add
@@ -328,15 +309,15 @@ public class TreeView
 		if (isExpanded(parent))
 		{
 			final Controller<?> parentController = parent.getController();
-			final ViewGroup viewGroup = parentController.getChildrenContainerView();
+			final ViewGroup viewGroup = parentController.getChildrenView();
 			assert viewGroup != null;
 			int index = parent.indexOf(node);
-			addNodeView(viewGroup, node, -1);
+			addSubtreeView(viewGroup, node, -1);
 		}
 	}
 
 	/**
-	 * Remove
+	 * Remove (both tree model and view)
 	 *
 	 * @param node node
 	 */
@@ -346,21 +327,23 @@ public class TreeView
 		if (parent != null)
 		{
 			// view
-			removeNodeView(node);
+			removeSubtreeView(node);
 
 			// tree
 			parent.deleteChild(node);
 		}
 	}
 
+	// A D D / R E M O V E  V I E W S
+
 	/**
-	 * Add node to container (view only)
+	 * Add node to container (view only, does not affect tree model)
 	 *
 	 * @param container container
 	 * @param node      node
 	 * @param atIndex   insert-at index
 	 */
-	synchronized public void addNodeView(@NonNull final ViewGroup container, @NonNull final TreeNode node, int atIndex)
+	synchronized public void addSubtreeView(@NonNull final ViewGroup container, @NonNull final TreeNode node, int atIndex)
 	{
 		Log.d(TAG, "Insert view at index " + atIndex + " count=" + container.getChildCount());
 		final Controller<?> controller = node.getController();
@@ -369,7 +352,7 @@ public class TreeView
 		{
 			view = controller.createView(this.context, this.containerStyle);
 		}
-		//View childrenContainerView = controller.getChildrenContainerView();
+		//View childrenContainerView = controller.getChildrenView();
 		//Log.d(TAG, "Visibility=" + Integer.toHexString(childrenContainerView.getVisibility()));
 
 		// remove from parent
@@ -400,7 +383,8 @@ public class TreeView
 			atIndex = i;
 			if (atIndex >= n)
 			{
-				// atIndex = -1;
+				// TODO
+				atIndex = -1;
 			}
 		}
 
@@ -442,12 +426,12 @@ public class TreeView
 	}
 
 	/**
-	 * Remove node
+	 * Remove node (view only, does not affect tree model)
 	 *
 	 * @param node node to remove
 	 */
 	@SuppressWarnings("unused")
-	synchronized private void removeNodeView(@NonNull final TreeNode node)
+	synchronized private void removeSubtreeView(@NonNull final TreeNode node)
 	{
 		TreeNode parent = node.getParent();
 		if (parent != null)
@@ -456,7 +440,7 @@ public class TreeView
 			if (isExpanded(parent))
 			{
 				final Controller<?> parentController = parent.getController();
-				final ViewGroup viewGroup = parentController.getChildrenContainerView();
+				final ViewGroup viewGroup = parentController.getChildrenView();
 				assert viewGroup != null;
 
 				final Controller<?> childController = node.getController();
@@ -475,39 +459,20 @@ public class TreeView
 	// E X P A N D  /  C O L L A P S E
 
 	/**
-	 * Expand
+	 * Toggle node
 	 *
-	 * @param node            node
-	 * @param includeSubnodes whether to include subnodes
+	 * @param node node
 	 */
-	public void expand(@NonNull final TreeNode node, @SuppressWarnings("SameParameterValue") boolean includeSubnodes)
+	private void toggleNode(@NonNull final TreeNode node)
 	{
-		expandNode(node, includeSubnodes, false);
-	}
-
-	/*
-	 * Expand
-	 *
-	 * @param node   node
-	 * @param levels number of levels to expand
-	 */
-	/*
-	public void expand(@NonNull final TreeNode node, int levels)
-	{
-		expandRelativeLevel(node, levels);
-	}
-	*/
-
-	/**
-	 * Collapse
-	 *
-	 * @param node            node
-	 * @param includeSubnodes whether to include subnodes
-	 */
-	@SuppressWarnings("unused")
-	public void collapse(@NonNull final TreeNode node, boolean includeSubnodes)
-	{
-		collapseNode(node, includeSubnodes);
+		if (isExpanded(node))
+		{
+			collapseNode(node, false);
+		}
+		else
+		{
+			expandNode(node, false, true);
+		}
 	}
 
 	/**
@@ -530,41 +495,69 @@ public class TreeView
 		}
 	}
 
+	// P R I M I T I V E S
+
 	/**
 	 * Expand node
 	 *
-	 * @param node node
+	 * @param node            node
+	 * @param includeSubnodes whether to include subnodes
+	 * @param fireHotNodes    whether to fire hot nodes
 	 */
-	private void expandNode(@NonNull final TreeNode node)
+	public void expandNode(@NonNull final TreeNode node, boolean includeSubnodes, boolean fireHotNodes)
 	{
-		expandNode(node, false, false);
-	}
-
-	/**
-	 * Collapse node
-	 *
-	 * @param node node
-	 */
-	@SuppressWarnings("unused")
-	public void collapseNode(@NonNull final TreeNode node)
-	{
-		collapseNode(node, false);
-	}
-
-	/**
-	 * Toggle node
-	 *
-	 * @param node node
-	 */
-	private void toggleNode(@NonNull final TreeNode node)
-	{
-		if (isExpanded(node))
+		// children view group
+		final Controller<?> controller = node.getController();
+		final ViewGroup childrenView = controller.getChildrenView();
+		if (childrenView == null)
 		{
-			collapseNode(node, false);
+			// TODO
+			return;
 		}
-		else
+
+		// clear all children views
+		childrenView.removeAllViews();
+
+		// children
+
+		// Iterator<TreeNode> it = node.getChildrenList().listIterator();
+		// while (it.hasNext())
+
+		// for (final TreeNode child : node.getChildren())
+		for (final TreeNode child : node.getChildrenList().toArray(new TreeNode[0]))
 		{
-			expandNode(node, false, true);
+			//	TreeNode child = it.next();
+
+			// add children node to container view
+			addSubtreeView(childrenView, child, -1);
+
+			// recurse
+			if (isExpanded(child) || includeSubnodes)
+			{
+				expandNode(child, includeSubnodes, fireHotNodes);
+			}
+		}
+
+		// display
+		if (childrenView.getChildCount() != 0)
+		{
+			if (this.useAnimation)
+			{
+				animatedContainerExpand(childrenView);
+			}
+			else
+			{
+				containerExpand(childrenView);
+			}
+
+			// fire expand event
+			controller.onExpandEvent();
+		}
+
+		// fire
+		if (fireHotNodes)
+		{
+			controller.fire();
 		}
 	}
 
@@ -574,7 +567,8 @@ public class TreeView
 	 * @param node            node
 	 * @param includeSubnodes whether to include subnodes
 	 */
-	private void collapseNode(@NonNull final TreeNode node, final boolean includeSubnodes)
+	@SuppressWarnings("WeakerAccess")
+	public void collapseNode(@NonNull final TreeNode node, final boolean includeSubnodes)
 	{
 		// collapsibility
 		if (!node.isCollapsible())
@@ -585,7 +579,7 @@ public class TreeView
 		final Controller<?> controller = node.getController();
 
 		// display
-		final ViewGroup viewGroup = controller.getChildrenContainerView();
+		final ViewGroup viewGroup = controller.getChildrenView();
 		assert viewGroup != null;
 		if (this.useAnimation)
 		{
@@ -593,10 +587,10 @@ public class TreeView
 		}
 		else
 		{
-			collapseContainer(viewGroup);
+			containerCollapse(viewGroup);
 		}
 
-		// fire collapseContainer event
+		// fire containerCollapse event
 		controller.onCollapseEvent();
 
 		// subnodes
@@ -609,77 +603,14 @@ public class TreeView
 		}
 	}
 
-	/**
-	 * Expand node
-	 *
-	 * @param node            node
-	 * @param includeSubnodes whether to include subnodes
-	 * @param triggerQueries  whether to trigger queries
-	 */
-	private void expandNode(@NonNull final TreeNode node, boolean includeSubnodes, boolean triggerQueries)
-	{
-		// children view group
-		final Controller<?> controller = node.getController();
-		final ViewGroup viewGroup = controller.getChildrenContainerView();
-		if (viewGroup == null)
-		{
-			//TODO return;
-		}
-
-		// clear all children views
-		viewGroup.removeAllViews();
-
-		// children
-		//for (final TreeNode child : node.getChildren())
-		int index = 0;
-		for (final TreeNode child : node.getChildrenList().toArray(new TreeNode[0]))
-		{
-			//Iterator<TreeNode> it = node.getChildrenList().listIterator();
-			//while (it.hasNext())
-			//{
-			//	TreeNode child = it.next();
-
-			// add children node to container view
-			addNodeView(viewGroup, child, -1);
-
-			// recurse
-			if (isExpanded(child) || includeSubnodes)
-			{
-				expandNode(child, includeSubnodes, triggerQueries);
-			}
-		}
-
-		// display
-		if (viewGroup.getChildCount() != 0)
-		{
-			if (this.useAnimation)
-			{
-				animatedContainerExpand(viewGroup);
-			}
-			else
-			{
-				expandContainer(viewGroup);
-			}
-
-			// fire expand event
-			controller.onExpandEvent();
-		}
-
-		// fire
-		if (triggerQueries)
-		{
-			controller.fire();
-		}
-	}
-
-	// E X P A N D / C O L L A P S E   I M P L E M E N T A T I O N
+	// E X P A N D / C O L L A P S E   T R I G G E R
 
 	/**
-	 * Expand view (child container)
+	 * Expand of view group (child container)
 	 *
 	 * @param view view
 	 */
-	static private void expandContainer(@NonNull final View view)
+	static private void containerExpand(@NonNull final ViewGroup view)
 	{
 		view.getLayoutParams().height = LayoutParams.WRAP_CONTENT;
 		view.requestLayout();
@@ -687,21 +618,21 @@ public class TreeView
 	}
 
 	/**
-	 * Collapse view (child container)
+	 * Collapse of view group (child container)
 	 *
 	 * @param view view
 	 */
-	static private void collapseContainer(@NonNull final View view)
+	static private void containerCollapse(@NonNull final ViewGroup view)
 	{
 		view.setVisibility(View.GONE);
 	}
 
 	/**
-	 * Animated expandContainer view animated (child container)
+	 * Animated collapse of view group (child container)
 	 *
 	 * @param view view
 	 */
-	static private void animatedContainerExpand(@NonNull final View view)
+	static private void animatedContainerExpand(@NonNull final ViewGroup view)
 	{
 		view.measure(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
 		final int targetHeight = view.getMeasuredHeight();
@@ -750,11 +681,11 @@ public class TreeView
 	}
 
 	/**
-	 * Animated collapseContainer view (child container)
+	 * Animated collapse of view group (child container)
 	 *
 	 * @param view view
 	 */
-	static private void animatedContainerCollapse(@NonNull final View view)
+	static private void animatedContainerCollapse(@NonNull final ViewGroup view)
 	{
 		final int initialHeight = view.getMeasuredHeight();
 		int duration = (int) (ANIMATION_DP_PER_MS * initialHeight / view.getContext().getResources().getDisplayMetrics().density);
@@ -802,7 +733,7 @@ public class TreeView
 	/**
 	 * Set animation use
 	 *
-	 * @param useAnimation use animation for expandContainer/collapseContainer
+	 * @param useAnimation use animation for containerExpand/containerCollapse
 	 */
 	@SuppressWarnings("unused")
 	public void setAnimation(final boolean useAnimation)
@@ -863,80 +794,6 @@ public class TreeView
 	public void setDefaultNodeClickListener(final TreeNode.TreeNodeClickListener listener)
 	{
 		this.nodeClickListener = listener;
-	}
-
-	// S T A T E
-
-	/**
-	 * Get save state
-	 *
-	 * @return save state
-	 */
-	@NonNull
-	@SuppressWarnings("unused")
-	public String getSaveState()
-	{
-		final StringBuilder builder = new StringBuilder();
-		getSaveState(this.root, builder);
-		if (builder.length() > 0)
-		{
-			builder.setLength(builder.length() - 1);
-		}
-		return builder.toString();
-	}
-
-	/**
-	 * Restore save state
-	 *
-	 * @param saveState save state
-	 */
-	@SuppressWarnings("unused")
-	public void restoreState(@Nullable final String saveState)
-	{
-		if (saveState != null && !TextUtils.isEmpty(saveState))
-		{
-			collapseAll();
-			final String[] openNodesArray = saveState.split(NODES_PATH_SEPARATOR);
-			final Set<String> openNodes = new HashSet<>(Arrays.asList(openNodesArray));
-			restoreNodeState(this.root, openNodes);
-		}
-	}
-
-	/**
-	 * Restore node state
-	 *
-	 * @param node      node
-	 * @param openNodes open nodes
-	 */
-	private void restoreNodeState(@NonNull final TreeNode node, @NonNull final Set<String> openNodes)
-	{
-		for (TreeNode child : node.getChildren())
-		{
-			if (openNodes.contains(child.getPath()))
-			{
-				expandNode(child);
-				restoreNodeState(child, openNodes);
-			}
-		}
-	}
-
-	/**
-	 * Get save state
-	 *
-	 * @param root root
-	 * @param sb   builder
-	 */
-	private void getSaveState(@NonNull final TreeNode root, @NonNull final StringBuilder sb)
-	{
-		for (TreeNode child : root.getChildren())
-		{
-			if (isExpanded(child))
-			{
-				sb.append(child.getPath());
-				sb.append(NODES_PATH_SEPARATOR);
-				getSaveState(child, sb);
-			}
-		}
 	}
 
 	// S E L E C T I O N
@@ -1149,6 +1006,80 @@ public class TreeView
 		if (controller.isInitialized())
 		{
 			controller.onSelectedEvent(selected);
+		}
+	}
+
+	// S T A T E
+
+	/**
+	 * Get save state
+	 *
+	 * @return save state
+	 */
+	@NonNull
+	@SuppressWarnings("unused")
+	public String getSaveState()
+	{
+		final StringBuilder builder = new StringBuilder();
+		getSaveState(this.root, builder);
+		if (builder.length() > 0)
+		{
+			builder.setLength(builder.length() - 1);
+		}
+		return builder.toString();
+	}
+
+	/**
+	 * Restore save state
+	 *
+	 * @param saveState save state
+	 */
+	@SuppressWarnings("unused")
+	public void restoreState(@Nullable final String saveState)
+	{
+		if (saveState != null && !TextUtils.isEmpty(saveState))
+		{
+			collapseAll();
+			final String[] openNodesArray = saveState.split(NODES_PATH_SEPARATOR);
+			final Set<String> openNodes = new HashSet<>(Arrays.asList(openNodesArray));
+			restoreNodeState(this.root, openNodes);
+		}
+	}
+
+	/**
+	 * Restore node state
+	 *
+	 * @param node      node
+	 * @param openNodes open nodes
+	 */
+	private void restoreNodeState(@NonNull final TreeNode node, @NonNull final Set<String> openNodes)
+	{
+		for (TreeNode child : node.getChildren())
+		{
+			if (openNodes.contains(child.getPath()))
+			{
+				expandNode(child, false, false);
+				restoreNodeState(child, openNodes);
+			}
+		}
+	}
+
+	/**
+	 * Get save state
+	 *
+	 * @param root root
+	 * @param sb   builder
+	 */
+	private void getSaveState(@NonNull final TreeNode root, @NonNull final StringBuilder sb)
+	{
+		for (TreeNode child : root.getChildren())
+		{
+			if (isExpanded(child))
+			{
+				sb.append(child.getPath());
+				sb.append(NODES_PATH_SEPARATOR);
+				getSaveState(child, sb);
+			}
 		}
 	}
 }

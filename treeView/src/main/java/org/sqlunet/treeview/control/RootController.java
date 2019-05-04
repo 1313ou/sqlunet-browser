@@ -30,7 +30,7 @@ public class RootController extends Controller<Void>
 
 	@NonNull
 	@Override
-	public ViewGroup getChildrenContainerView()
+	public ViewGroup getChildrenView()
 	{
 		return this.contentView;
 	}

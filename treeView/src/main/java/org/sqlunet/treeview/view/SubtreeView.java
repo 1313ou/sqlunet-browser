@@ -8,9 +8,11 @@ import android.view.ContextThemeWrapper;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 
 import org.sqlunet.treeview.R;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 /**
  * SubtreeView (Tree node wrapper view)
@@ -30,7 +32,8 @@ public class SubtreeView extends LinearLayout
 	/**
 	 * Node label view
 	 */
-	public ViewGroup nodeView;
+	@Nullable
+	public View nodeView;
 
 	/**
 	 * Node container
@@ -65,7 +68,7 @@ public class SubtreeView extends LinearLayout
 	 * @param containerStyle container style
 	 * @param nodeView       node view (group)
 	 */
-	public SubtreeView(final Context context, final int containerStyle, final ViewGroup nodeView)
+	public SubtreeView(final Context context, final int containerStyle, @NonNull final View nodeView)
 	{
 		super(context);
 		this.containerStyle = containerStyle;
@@ -81,7 +84,7 @@ public class SubtreeView extends LinearLayout
 	 * @param containerStyle container style
 	 * @param nodeView       node view (group)
 	 */
-	public SubtreeView(final Context context, final AttributeSet attrs, final int containerStyle, final ViewGroup nodeView)
+	public SubtreeView(final Context context, final AttributeSet attrs, final int containerStyle, @NonNull final View nodeView)
 	{
 		super(context, attrs);
 		this.containerStyle = containerStyle;
@@ -98,7 +101,7 @@ public class SubtreeView extends LinearLayout
 	 * @param containerStyle container style
 	 * @param nodeView       node view (group)
 	 */
-	public SubtreeView(final Context context, final AttributeSet attrs, final int defStyleAttr, final int containerStyle, final ViewGroup nodeView)
+	public SubtreeView(final Context context, final AttributeSet attrs, final int defStyleAttr, final int containerStyle, @NonNull final View nodeView)
 	{
 		super(context, attrs, defStyleAttr);
 		this.containerStyle = containerStyle;
@@ -117,7 +120,7 @@ public class SubtreeView extends LinearLayout
 	 * @param nodeView       node view (group)
 	 */
 	@TargetApi(Build.VERSION_CODES.LOLLIPOP)
-	public SubtreeView(final Context context, final AttributeSet attrs, final int defStyleAttr, final int defStyleRes, final int containerStyle, final ViewGroup nodeView)
+	public SubtreeView(final Context context, final AttributeSet attrs, final int defStyleAttr, final int defStyleRes, final int containerStyle, @NonNull final View nodeView)
 	{
 		super(context, attrs, defStyleAttr, defStyleRes);
 		this.containerStyle = containerStyle;
@@ -133,9 +136,10 @@ public class SubtreeView extends LinearLayout
 		setOrientation(LinearLayout.VERTICAL);
 
 		// node view
-		this.nodeView = new RelativeLayout(context);
-		this.nodeView.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
-		this.nodeView.setId(R.id.node_label);
+		if (this.nodeView != null)
+		{
+			insertNodeView(this.nodeView);
+		}
 
 		// node container for children
 		ContextThemeWrapper containerContext = new ContextThemeWrapper(context, this.containerStyle);
@@ -146,7 +150,6 @@ public class SubtreeView extends LinearLayout
 		nodeChildrenContainer.setVisibility(View.GONE);
 		this.childrenContainer = nodeChildrenContainer;
 
-		addView(this.nodeView);
 		addView(this.childrenContainer);
 	}
 
@@ -157,29 +160,8 @@ public class SubtreeView extends LinearLayout
 	 */
 	public void insertNodeView(final View nodeView)
 	{
-		this.nodeView.addView(nodeView, new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
-		// this.nodeView.addView(nodeView);
-	}
-
-	/**
-	 * Insert node view
-	 *
-	 * @param nodeView node view
-	 * @param index index
-	 */
-	public void insertNodeView(final View nodeView, int index)
-	{
-		this.nodeView.addView(nodeView, index, new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
-	}
-	/**
-	 * Insert node view
-	 *
-	 * @param nodeView node view
-	 * @return index
-	 */
-	public int indexOf(final View nodeView)
-	{
-		return this.nodeView.indexOfChild(nodeView);
+		this.nodeView.setId(R.id.node_label);
+		addView(nodeView, 0, new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
 	}
 
 	/**
@@ -189,6 +171,6 @@ public class SubtreeView extends LinearLayout
 	 */
 	public void removeNodeView(final View nodeView)
 	{
-		this.nodeView.removeView(nodeView);
+		removeView(nodeView);
 	}
 }

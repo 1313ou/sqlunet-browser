@@ -62,8 +62,7 @@ public abstract class Controller<E>
 		this.nodeView = createNodeView(context, this.node, (E) this.node.getValue());
 
 		// wrapper
-		this.subtreeView = new SubtreeView(context, containerStyle);
-		this.subtreeView.insertNodeView(this.nodeView);
+		this.subtreeView = new SubtreeView(context, containerStyle, this.nodeView);
 		this.subtreeView.setTag(this.node);
 
 		// children view
@@ -89,7 +88,7 @@ public abstract class Controller<E>
 	 * @return children nodes' container view
 	 */
 	@Nullable
-	public ViewGroup getChildrenContainerView()
+	public ViewGroup getChildrenView()
 	{
 		return this.childrenView;
 	}
