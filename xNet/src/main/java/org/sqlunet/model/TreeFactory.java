@@ -5,6 +5,7 @@ import android.os.Looper;
 import android.text.SpannableStringBuilder;
 import android.util.Log;
 
+import org.sqlunet.treeview.control.ColdQueryController;
 import org.sqlunet.treeview.control.HotQueryController;
 import org.sqlunet.treeview.control.IconTextController;
 import org.sqlunet.treeview.control.LeafController;
@@ -15,7 +16,6 @@ import org.sqlunet.treeview.control.LinkQueryController;
 import org.sqlunet.treeview.control.LinkTreeController;
 import org.sqlunet.treeview.control.MoreController;
 import org.sqlunet.treeview.control.Query;
-import org.sqlunet.treeview.control.ColdQueryController;
 import org.sqlunet.treeview.control.TextController;
 import org.sqlunet.treeview.control.TreeController;
 import org.sqlunet.treeview.control.Value;
@@ -217,22 +217,13 @@ public class TreeFactory
 	/**
 	 * No results have been attached to this node
 	 *
-	 * @param node       node
-	 * @param deleteNode whether results were supposed to be new subnodes or replace query node
+	 * @param node node
 	 */
-	static public void setNoResult(@NonNull final TreeNode node, boolean deleteNode, boolean makeDeadend)
+	static public void setNoResult(@NonNull final TreeNode node)
 	{
-		if (deleteNode)
-		{
-			Log.d(TAG, "Zombie " + node);
-			node.setZombie(true);
-		}
-		else if(makeDeadend)
-		{
-			Log.d(TAG, "Deadend " + node);
-			node.disable();
-			node.setDeadend(true);
-		}
+		Log.d(TAG, "Deadend " + node);
+		node.setDeadend(true);
+		node.setEnabled(false);
 	}
 
 	public static void setTextNode(final TreeNode node, final SpannableStringBuilder sb)

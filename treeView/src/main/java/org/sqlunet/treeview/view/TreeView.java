@@ -29,10 +29,33 @@ import java.util.Set;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+/* @formatter:off */
+/*
+ScrollView
+	LinearLayout id/treeview
+		SubtreeView
+			RelativeLayout id/node_label
+				LinearLayout
+					AppCompatImageView id/node_junction
+					AppCompatImageView id/node_icon
+					AppCompatTextView id/node_value
+			LinearLayout id/node_children
+				SubtreeView
+					RelativeLayout id/node_label
+						TextView
+					LinearLayout id/node_children
+				SubtreeView
+					RelativeLayout id/node_label
+						TextView
+					LinearLayout id/node_children
+ */
+/* @formatter:on */
+
 /**
  * Tree view
  *
  * @author Bogdan Melnychuk on 2/10/15.
+ * @author Bernard Bou
  */
 public class TreeView
 {
@@ -163,6 +186,110 @@ public class TreeView
 		return view;
 	}
 
+	// M O D I F Y
+
+	/**
+	 * Update
+	 * Update node view leaving children unchanged
+	 *
+	 * @param node node
+	 */
+	public void update(@NonNull final TreeNode node)
+	{
+		final Controller controller = node.getController();
+		final View nodeView = controller.getNodeView();
+		final SubtreeView subtreeView = controller.getSubtreeView();
+		if (subtreeView != null && nodeView != null )
+		{
+			// update node reference
+			controller.attachNode(node);
+			subtreeView.setTag(node);
+
+			// remove current node subtreeView
+			int index = subtreeView.indexOfChild(nodeView);
+			subtreeView.removeNodeView(nodeView);
+
+			// new node view
+			final View newNodeView = controller.createNodeView(this.context, node, node.getValue());
+			controller.setNodeView(newNodeView);
+
+			// insert new node subtreeView
+			subtreeView.insertNodeView(newNodeView, index);
+		}
+		else
+		{
+			/*
+			final TreeNode parent = node.getParent();
+			assert parent != null;
+			final Controller<?> parentController = parent.getController();
+			final ViewGroup viewGroup = parentController.getChildrenContainerView();
+			assert viewGroup != null;
+			int index = parent.indexOf(node);
+			addNodeView(viewGroup, node, index);
+			*/
+		}
+	}
+
+	/**
+	 *
+	 * @param context context
+	 */
+	public void updateNodeView(@NonNull final Context context)
+	{
+	}
+
+	/**
+	 * Deadend
+	 *
+	 * @param node node
+	 */
+	public void deadend(@NonNull final TreeNode node)
+	{
+		node.setEnabled(false);
+
+		final Controller<?> controller = node.getController();
+		controller.deadend();
+	}
+
+	/**
+	 * Set node text
+	 *
+	 * @param node  node
+	 * @param value character sequence
+	 */
+	public void setNodeValue(@NonNull final TreeNode node, @Nullable final CharSequence value)
+	{
+		// delete node from parent if null value
+		if (value == null || value.length() == 0)
+		{
+			remove(node);
+			return;
+		}
+
+		// update value
+		node.setValue(value);
+
+		// update view
+		final Controller<?> controller = node.getController();
+		final View view = controller.getNodeView();
+		if (view != null)
+		{
+			if (view instanceof TextView)
+			{
+				final TextView textView = (TextView) view;
+				textView.setText(value);
+			}
+			else
+			{
+				final TextView textView = view.findViewById(R.id.node_value);
+				if (textView != null)
+				{
+					textView.setText(value);
+				}
+			}
+		}
+	}
+
 	// E X P A N D   S T A T U S
 
 	/**
@@ -237,7 +364,7 @@ public class TreeView
 	{
 		Log.d(TAG, "Insert view at index " + atIndex + " count=" + container.getChildCount());
 		final Controller<?> controller = node.getController();
-		View view = controller.getView();
+		View view = controller.getSubtreeView();
 		if (view == null)
 		{
 			view = controller.createView(this.context, this.containerStyle);
@@ -254,7 +381,7 @@ public class TreeView
 		}
 
 		// index
-		if(atIndex != -1)
+		if (atIndex != -1)
 		{
 			int n = container.getChildCount();
 			int i = 0;
@@ -266,7 +393,9 @@ public class TreeView
 				TreeNode parent2 = node2.getParent();
 				int j = parent2.indexOf(node2);
 				if (j >= atIndex)
+				{
 					break;
+				}
 			}
 			atIndex = i;
 			if (atIndex >= n)
@@ -331,76 +460,13 @@ public class TreeView
 				assert viewGroup != null;
 
 				final Controller<?> childController = node.getController();
-				final View view = childController.getView();
+				final View view = childController.getSubtreeView();
 				assert view != null;
 
 				int index = viewGroup.indexOfChild(view);
 				if (index >= 0)
 				{
 					viewGroup.removeViewAt(index);
-				}
-			}
-		}
-	}
-
-	/**
-	 * Update
-	 *
-	 * @param node node
-	 */
-	public void update(@NonNull final TreeNode node)
-	{
-		final Controller<?> controller = node.getController();
-		controller.updateNodeView(this.context);
-	}
-
-	/**
-	 * Disable
-	 *
-	 * @param node node
-	 */
-	public void disable(@NonNull final TreeNode node)
-	{
-		//TODO node.disable();
-
-		final Controller<?> controller = node.getController();
-		controller.disable();
-	}
-
-	/**
-	 * Set node text
-	 *
-	 * @param node  node
-	 * @param value character sequence
-	 */
-	public void setNodeValue(@NonNull final TreeNode node, @Nullable final CharSequence value)
-	{
-		// delete node from parent if null value
-		if (value == null || value.length() == 0)
-		{
-			remove(node);
-			return;
-		}
-
-		// update value
-		node.setValue(value);
-
-		// update view
-		final Controller<?> controller = node.getController();
-		final View view = controller.getNodeView();
-		if (view != null)
-		{
-			if (view instanceof TextView)
-			{
-				final TextView textView = (TextView) view;
-				textView.setText(value);
-			}
-			else
-			{
-				final TextView textView = view.findViewById(R.id.node_value);
-				if (textView != null)
-				{
-					textView.setText(value);
 				}
 			}
 		}
@@ -414,7 +480,7 @@ public class TreeView
 	 * @param node            node
 	 * @param includeSubnodes whether to include subnodes
 	 */
-	public void expandContainer(@NonNull final TreeNode node, @SuppressWarnings("SameParameterValue") boolean includeSubnodes)
+	public void expand(@NonNull final TreeNode node, @SuppressWarnings("SameParameterValue") boolean includeSubnodes)
 	{
 		expandNode(node, includeSubnodes, false);
 	}
@@ -423,10 +489,10 @@ public class TreeView
 	 * Expand
 	 *
 	 * @param node   node
-	 * @param levels number of levels to expandContainer
+	 * @param levels number of levels to expand
 	 */
 	/*
-	public void expandContainer(@NonNull final TreeNode node, int levels)
+	public void expand(@NonNull final TreeNode node, int levels)
 	{
 		expandRelativeLevel(node, levels);
 	}
@@ -463,64 +529,6 @@ public class TreeView
 			collapseNode(child, true);
 		}
 	}
-
-	/*
-	 * Expand from root to level
-	 *
-	 * @param level level number
-	 */
-	/*
-	public void expandLevel(final int level)
-	{
-		for (TreeNode child : this.root.getChildren())
-		{
-			expandLevel(child, level);
-		}
-	}
-	*/
-
-	/*
-	 * Expand to level
-	 *
-	 * @param node  node
-	 * @param level level number
-	 */
-	/*
-	private void expandLevel(@NonNull final TreeNode node, final int level)
-	{
-		if (node.getLevel() <= level)
-		{
-			expandNode(node, false, false);
-		}
-		for (TreeNode child : node.getChildren())
-		{
-			expandLevel(child, level);
-		}
-	}
-	*/
-
-	/*
-	 * Expand relative level
-	 *
-	 * @param node   node
-	 * @param levels number of levels
-	 */
-	/*
-	private void expandRelativeLevel(@NonNull final TreeNode node, final int levels)
-	{
-		if (levels <= 0)
-		{
-			return;
-		}
-
-		expandNode(node, false, false);
-
-		for (TreeNode child : node.getChildren())
-		{
-			expandRelativeLevel(child, levels - 1);
-		}
-	}
-	*/
 
 	/**
 	 * Expand node
@@ -613,7 +621,10 @@ public class TreeView
 		// children view group
 		final Controller<?> controller = node.getController();
 		final ViewGroup viewGroup = controller.getChildrenContainerView();
-		assert viewGroup != null;
+		if (viewGroup == null)
+		{
+			//TODO return;
+		}
 
 		// clear all children views
 		viewGroup.removeAllViews();

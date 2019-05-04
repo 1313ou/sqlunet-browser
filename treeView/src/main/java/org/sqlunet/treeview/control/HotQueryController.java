@@ -23,12 +23,18 @@ public class HotQueryController extends QueryController
 	@Override
 	protected void markExpanded()
 	{
-		this.junctionView.setImageResource(this.node.isEnabled() && !this.node.isDeadend() ? R.drawable.ic_hotquery_expanded : R.drawable.ic_leaf);
+		this.junctionView.setImageResource(R.drawable.ic_hotquery_expanded);
 	}
 
 	@Override
 	protected void markCollapsed()
 	{
-		this.junctionView.setImageResource(this.node.isEnabled() && !this.node.isDeadend() ? R.drawable.ic_hotquery_collapsed : R.drawable.ic_leaf);
+		this.junctionView.setImageResource(R.drawable.ic_hotquery_collapsed);
+	}
+
+	@Override
+	protected void markDeadend()
+	{
+		this.junctionView.setImageResource(R.drawable.ic_hotquery_deadend);
 	}
 }

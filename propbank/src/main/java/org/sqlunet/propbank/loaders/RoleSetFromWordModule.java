@@ -44,16 +44,16 @@ public class RoleSetFromWordModule extends BaseModule
 	}
 
 	@Override
-	public void process(@NonNull final TreeNode node)
+	public void process(@NonNull final TreeNode parent)
 	{
 		if (this.wordId != null && this.wordId != 0)
 		{
 			// data
-			roleSets(this.wordId, node);
+			roleSets(this.wordId, parent);
 		}
 		else
 		{
-			TreeFactory.setNoResult(node, true, false);
+			TreeFactory.setNoResult(parent);
 		}
 	}
 }

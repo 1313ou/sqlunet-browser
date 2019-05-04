@@ -91,15 +91,15 @@ public class ClassFromWordModule extends BaseModule
 	}
 
 	@Override
-	public void process(@NonNull final TreeNode node)
+	public void process(@NonNull final TreeNode parent)
 	{
 		if (this.wordId != null)
 		{
-			vnClasses(this.wordId, this.synsetId, node);
+			vnClasses(this.wordId, this.synsetId, parent);
 		}
 		else
 		{
-			TreeFactory.setNoResult(node, true, false);
+			TreeFactory.setNoResult(parent);
 		}
 	}
 
@@ -188,7 +188,7 @@ public class ClassFromWordModule extends BaseModule
 		}
 		else
 		{
-			TreeFactory.setNoResult(parent, true, false);
+			TreeFactory.setNoResult(parent);
 			changed = TreeOp.seq(REMOVE, parent);
 		}
 

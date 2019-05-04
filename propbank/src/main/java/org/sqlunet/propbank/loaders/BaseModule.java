@@ -220,7 +220,7 @@ abstract class BaseModule extends Module
 		}
 		else
 		{
-			TreeFactory.setNoResult(parent, true, false);
+			TreeFactory.setNoResult(parent);
 			changed = TreeOp.seq(REMOVE, parent);
 		}
 
@@ -297,7 +297,7 @@ abstract class BaseModule extends Module
 		}
 		else
 		{
-			TreeFactory.setNoResult(parent, true, false);
+			TreeFactory.setNoResult(parent);
 			changed = TreeOp.seq(REMOVE, parent);
 		}
 
@@ -393,7 +393,7 @@ abstract class BaseModule extends Module
 		}
 		else
 		{
-			TreeFactory.setNoResult(parent, true, false);
+			TreeFactory.setNoResult(parent);
 			changed = TreeOp.seq(REMOVE, parent);
 		}
 
@@ -530,7 +530,7 @@ abstract class BaseModule extends Module
 		}
 		else
 		{
-			TreeFactory.setNoResult(parent, true, false);
+			TreeFactory.setNoResult(parent);
 			changed = TreeOp.seq(REMOVE, parent);
 		}
 

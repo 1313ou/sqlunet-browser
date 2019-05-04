@@ -42,20 +42,16 @@ public class TreeController extends Controller<Value>
 
 	@Nullable
 	@Override
-	protected View createNodeView(@NonNull final Context context, final TreeNode node, @NonNull final Value value)
+	public View createNodeView(@NonNull final Context context, final TreeNode node, @NonNull final Value value)
 	{
 		final LayoutInflater inflater = LayoutInflater.from(context);
 		@SuppressLint("InflateParams") final View view = inflater.inflate(this.layoutRes, null, false);
 
 		// junction icon (arrow)
 		this.junctionView = view.findViewById(R.id.junction_icon);
-		if (node.isZombie())
+		if (node.isDeadend())
 		{
-			this.junctionView.setImageResource(R.drawable.ic_leaf_zombie);
-		}
-		else if (node.isDeadend())
-		{
-			this.junctionView.setImageResource(R.drawable.ic_leaf_deadend);
+			markDeadend();
 		}
 		else
 		{
@@ -63,15 +59,16 @@ public class TreeController extends Controller<Value>
 		}
 
 		// icon
-		if(value.icon != 0)
+		final Value composite = (Value) value;
+		if (composite.icon != 0)
 		{
 			final ImageView iconView = view.findViewById(R.id.node_icon);
-			iconView.setImageResource(value.icon);
+			iconView.setImageResource(composite.icon);
 		}
 
 		// text
 		TextView valueView = view.findViewById(R.id.node_value);
-		valueView.setText(value.text);
+		valueView.setText(composite.text);
 
 		return view;
 	}
@@ -79,33 +76,47 @@ public class TreeController extends Controller<Value>
 	@Override
 	public void onExpandEvent()
 	{
-		markExpanded();
+		if (this.node.isDeadend())
+		{
+			markDeadend();
+		}
+		else
+		{
+			markExpanded();
+		}
 	}
 
 	@Override
 	public void onCollapseEvent()
 	{
-		markCollapsed();
+		if (this.node.isDeadend())
+		{
+			markDeadend();
+		}
+		else
+		{
+			markCollapsed();
+		}
 	}
 
 	@Override
-	public void disable()
+	public void deadend()
 	{
-		markDisabled();
+		markDeadend();
 	}
 
 	protected void markExpanded()
 	{
-		this.junctionView.setImageResource(this.node.isEnabled() && !this.node.isDeadend() ? R.drawable.ic_expanded : R.drawable.ic_leaf);
+		this.junctionView.setImageResource(R.drawable.ic_expanded);
 	}
 
 	protected void markCollapsed()
 	{
-		this.junctionView.setImageResource(this.node.isEnabled() && !this.node.isDeadend() ? R.drawable.ic_collapsed : R.drawable.ic_leaf);
+		this.junctionView.setImageResource(R.drawable.ic_collapsed);
 	}
 
-	protected void markDisabled()
+	protected void markDeadend()
 	{
-		this.junctionView.setImageResource(R.drawable.ic_leaf);
+		this.junctionView.setImageResource(R.drawable.ic_deadend);
 	}
 }

@@ -13,7 +13,6 @@ import androidx.annotation.Nullable;
 /**
  * Base controller
  *
- * @param <E> value type
  * @author Bogdan Melnychuk on 2/10/15.
  */
 public abstract class Controller<E>
@@ -28,10 +27,10 @@ public abstract class Controller<E>
 	// V I E W
 
 	/**
-	 * View (wrapper view that includes label and children)
+	 * View (wrapper subtreeView that includes label and children)
 	 */
 	@Nullable
-	private SubtreeView view;
+	private SubtreeView subtreeView;
 
 	/**
 	 * Node view (node label)
@@ -43,7 +42,7 @@ public abstract class Controller<E>
 	 * Child nodes' container view
 	 */
 	@Nullable
-	private ViewGroup childrenContainer;
+	private ViewGroup childrenView;
 
 
 	// C O N S T R U C T
@@ -63,58 +62,25 @@ public abstract class Controller<E>
 		this.nodeView = createNodeView(context, this.node, (E) this.node.getValue());
 
 		// wrapper
-		this.view = new SubtreeView(context, containerStyle);
-		this.view.insertNodeView(this.nodeView);
-		this.view.setTag(this.node);
+		this.subtreeView = new SubtreeView(context, containerStyle);
+		this.subtreeView.insertNodeView(this.nodeView);
+		this.subtreeView.setTag(this.node);
 
 		// children view
-		this.childrenContainer = this.view.childrenContainer;
+		this.childrenView = this.subtreeView.childrenContainer;
 
-		return this.view;
+		return this.subtreeView;
 	}
 
 	/**
-	 * Update node view leaving children unchanged
+	 * Get (wrapper) subtreeView
 	 *
-	 * @param context context
-	 */
-	public void updateNodeView(@NonNull final Context context)
-	{
-		/*
-		if (this.node.getValue() instanceof Value)
-		{
-			this.node.setValue(new Value("new", 0));
-		}
-		else
-		{
-			this.node.setValue("newstring");
-		}
-		*/
-
-		// update tag
-		this.view.setTag(this.node);
-
-		// remove current node view
-		int index = this.view.indexOf(this.nodeView);
-		this.view.removeNodeView(this.nodeView);
-
-		// new node view
-		this.nodeView = createNodeView(context, this.node, (E) this.node.getValue());
-
-		// insert new node view
-		//this.view.insertNodeView(this.nodeView);
-		this.view.insertNodeView(this.nodeView, index);
-	}
-
-	/**
-	 * Get (wrapper) view
-	 *
-	 * @return view
+	 * @return subtreeView
 	 */
 	@Nullable
-	public SubtreeView getView()
+	public SubtreeView getSubtreeView()
 	{
-		return this.view;
+		return this.subtreeView;
 	}
 
 	/**
@@ -125,7 +91,7 @@ public abstract class Controller<E>
 	@Nullable
 	public ViewGroup getChildrenContainerView()
 	{
-		return this.childrenContainer;
+		return this.childrenView;
 	}
 
 	// N O D E V I E W
@@ -138,7 +104,7 @@ public abstract class Controller<E>
 	 * @return node view
 	 */
 	@Nullable
-	protected abstract View createNodeView(@NonNull final Context context, final TreeNode node, final E value);
+	public abstract View createNodeView(@NonNull final Context context, final TreeNode node, final E value);
 
 	/**
 	 * Get node view
@@ -146,22 +112,31 @@ public abstract class Controller<E>
 	 * @return node view
 	 */
 	@Nullable
-	@SuppressWarnings("unchecked")
 	public View getNodeView()
 	{
 		return this.nodeView;
 	}
 
+	/**
+	 * Get node view
+	 *
+	 * @param nodeView node view
+	 */
+	public void setNodeView(@Nullable final View nodeView)
+	{
+		this.nodeView = nodeView;
+	}
+
 	// I N I T
 
 	/**
-	 * Get whether view is initialized
+	 * Get whether subtreeView is initialized
 	 *
-	 * @return whether view is initialized
+	 * @return whether subtreeView is initialized
 	 */
 	public boolean isInitialized()
 	{
-		return this.view != null;
+		return this.subtreeView != null;
 	}
 
 	// M O D E L
@@ -181,7 +156,7 @@ public abstract class Controller<E>
 	/**
 	 * Disable
 	 */
-	public void disable()
+	public void deadend()
 	{
 		// empty
 	}

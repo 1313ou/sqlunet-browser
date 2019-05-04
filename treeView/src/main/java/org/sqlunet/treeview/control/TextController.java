@@ -12,7 +12,7 @@ import org.sqlunet.treeview.model.TreeNode;
  *
  * @author Bogdan Melnychuk on 2/11/15.
  */
-public class TextController extends Controller<Object>
+public class TextController extends Controller<CharSequence>
 {
 	/**
 	 * Constructor
@@ -24,7 +24,7 @@ public class TextController extends Controller<Object>
 
 	@NonNull
 	@Override
-	public View createNodeView(@NonNull final Context context, final TreeNode node, final Object value)
+	public View createNodeView(@NonNull final Context context, final TreeNode node, final CharSequence value)
 	{
 		final TextView textView = new TextView(context);
 		textView.setText((CharSequence)value);

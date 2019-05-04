@@ -54,16 +54,16 @@ public class RoleSetModule extends BaseModule
 	}
 
 	@Override
-	public void process(@NonNull final TreeNode node)
+	public void process(@NonNull final TreeNode parent)
 	{
 		if (this.roleSetId != null)
 		{
 			// data
-			roleSet(RoleSetModule.this.roleSetId, node);
+			roleSet(RoleSetModule.this.roleSetId, parent);
 		}
 		else
 		{
-			TreeFactory.setNoResult(node, true, false);
+			TreeFactory.setNoResult(parent);
 		}
 	}
 }

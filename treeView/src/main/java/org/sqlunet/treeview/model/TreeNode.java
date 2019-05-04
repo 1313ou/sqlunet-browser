@@ -77,11 +77,6 @@ public class TreeNode
 	 */
 	private boolean deadend;
 
-	/**
-	 * Zombie
-	 */
-	private boolean zombie;
-
 	// C O N S T R U C T O R
 
 	public TreeNode(final Object value, @NonNull final Controller<?> controller)
@@ -93,7 +88,6 @@ public class TreeNode
 		this.selectable = false;
 		this.collapsible = true;
 		this.deadend = false;
-		this.zombie = false;
 		this.controller = controller;
 
 		this.controller.attachNode(this);
@@ -552,38 +546,7 @@ public class TreeNode
 		this.deadend = deadend;
 	}
 
-
-	/**
-	 * Get whether this node is zombie
-	 *
-	 * @return whether this node is zombie
-	 */
-	@SuppressWarnings("unused")
-	public boolean isZombie()
-	{
-		return this.zombie;
-	}
-
-	/**
-	 * Set node zombie
-	 *
-	 * @param zombie flag
-	 */
-	@SuppressWarnings("unused")
-	public void setZombie(boolean zombie)
-	{
-		this.zombie = zombie;
-	}
-
 	// E N A B L E / D I S A B L E
-
-	/**
-	 * Disable node
-	 */
-	public void disable()
-	{
-		this.enabled = false;
-	}
 
 	/**
 	 * Set node enabled

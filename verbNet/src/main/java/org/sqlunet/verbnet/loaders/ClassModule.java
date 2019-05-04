@@ -56,16 +56,16 @@ public class ClassModule extends BaseModule
 	}
 
 	@Override
-	public void process(@NonNull final TreeNode node)
+	public void process(@NonNull final TreeNode parent)
 	{
 		if (this.classId != null)
 		{
 			// data
-			vnClass(this.classId, node);
+			vnClass(this.classId, parent);
 		}
 		else
 		{
-			TreeFactory.setNoResult(node, true, false);
+			TreeFactory.setNoResult(parent);
 		}
 	}
 }

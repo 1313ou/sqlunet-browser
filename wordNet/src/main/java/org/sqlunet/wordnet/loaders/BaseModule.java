@@ -57,7 +57,7 @@ import static org.sqlunet.view.TreeOp.TreeOpCode.NEW;
 import static org.sqlunet.view.TreeOp.TreeOpCode.ANCHOR;
 import static org.sqlunet.view.TreeOp.TreeOpCode.REMOVE;
 import static org.sqlunet.view.TreeOp.TreeOpCode.UPDATE;
-import static org.sqlunet.view.TreeOp.TreeOpCode.TERMINATE;
+import static org.sqlunet.view.TreeOp.TreeOpCode.DEADEND;
 
 /**
  * Base module for WordNet
@@ -318,7 +318,7 @@ abstract public class BaseModule extends Module
 		}
 		else
 		{
-			TreeFactory.setNoResult(parent, true, false);
+			TreeFactory.setNoResult(parent);
 			changed = TreeOp.seq(REMOVE, parent);
 		}
 
@@ -424,7 +424,7 @@ abstract public class BaseModule extends Module
 		}
 		else
 		{
-			TreeFactory.setNoResult(parent, true, false);
+			TreeFactory.setNoResult(parent);
 			changed = TreeOp.seq(REMOVE, parent);
 		}
 
@@ -508,7 +508,7 @@ abstract public class BaseModule extends Module
 		}
 		else
 		{
-			TreeFactory.setNoResult(parent, true, false);
+			TreeFactory.setNoResult(parent);
 			changed = TreeOp.seq(REMOVE, parent);
 		}
 
@@ -541,7 +541,7 @@ abstract public class BaseModule extends Module
 		}
 		else
 		{
-			TreeFactory.setNoResult(parent, true, false);
+			TreeFactory.setNoResult(parent);
 			changed = TreeOp.seq(REMOVE, parent);
 		}
 
@@ -581,7 +581,7 @@ abstract public class BaseModule extends Module
 		}
 		else
 		{
-			TreeFactory.setNoResult(parent, true, false);
+			TreeFactory.setNoResult(parent);
 			changed = TreeOp.seq(REMOVE, parent);
 		}
 
@@ -646,8 +646,8 @@ abstract public class BaseModule extends Module
 		}
 		else
 		{
-			TreeFactory.setNoResult(parent, addNewNode, true);
-			changed = TreeOp.seq(addNewNode ? TERMINATE : REMOVE, parent);
+			TreeFactory.setNoResult(parent);
+			changed = TreeOp.seq(addNewNode ? DEADEND : REMOVE, parent);
 		}
 
 		cursor.close();
@@ -846,8 +846,8 @@ abstract public class BaseModule extends Module
 		}
 		else
 		{
-			TreeFactory.setNoResult(parent, addNewNode, true);
-			changed = TreeOp.seq(addNewNode ? TERMINATE : REMOVE, parent);
+			TreeFactory.setNoResult(parent);
+			changed = TreeOp.seq(addNewNode ? DEADEND : REMOVE, parent);
 		}
 
 		cursor.close();
@@ -894,7 +894,7 @@ abstract public class BaseModule extends Module
 		}
 		else
 		{
-			TreeFactory.setNoResult(parent, true, false);
+			TreeFactory.setNoResult(parent);
 			changed = TreeOp.seq(REMOVE, parent);
 		}
 
@@ -965,8 +965,8 @@ abstract public class BaseModule extends Module
 		}
 		else
 		{
-			TreeFactory.setNoResult(parent, addNewNode, true);
-			changed = TreeOp.seq(addNewNode ? TERMINATE : REMOVE, parent);
+			TreeFactory.setNoResult(parent);
+			changed = TreeOp.seq(addNewNode ? DEADEND : REMOVE, parent);
 		}
 
 		cursor.close();
@@ -1071,7 +1071,7 @@ abstract public class BaseModule extends Module
 		}
 		else
 		{
-			TreeFactory.setNoResult(parent, false, false);
+			TreeFactory.setNoResult(parent);
 			changed = TreeOp.seq(UPDATE, parent);
 		}
 
@@ -1135,7 +1135,7 @@ abstract public class BaseModule extends Module
 		}
 		else
 		{
-			TreeFactory.setNoResult(parent, false, true);
+			TreeFactory.setNoResult(parent);
 			changed = TreeOp.seq(UPDATE, parent);
 		}
 
@@ -1245,7 +1245,7 @@ abstract public class BaseModule extends Module
 		}
 		else
 		{
-			TreeFactory.setNoResult(parent, false, false);
+			TreeFactory.setNoResult(parent);
 			changed = TreeOp.seq(UPDATE, parent);
 		}
 		cursor.close();
@@ -1313,7 +1313,7 @@ abstract public class BaseModule extends Module
 		}
 		else
 		{
-			TreeFactory.setNoResult(parent, false, true);
+			TreeFactory.setNoResult(parent);
 			changed = TreeOp.seq(UPDATE, parent);
 		}
 		cursor.close();
@@ -1381,7 +1381,7 @@ abstract public class BaseModule extends Module
 		}
 		else
 		{
-			TreeFactory.setNoResult(parent, true, false);
+			TreeFactory.setNoResult(parent);
 			changed = TreeOp.seq(REMOVE, parent);
 		}
 
@@ -1450,7 +1450,7 @@ abstract public class BaseModule extends Module
 		}
 		else
 		{
-			TreeFactory.setNoResult(parent, true, false);
+			TreeFactory.setNoResult(parent);
 			changed = TreeOp.seq(REMOVE, parent);
 		}
 
@@ -1487,7 +1487,7 @@ abstract public class BaseModule extends Module
 		}
 		else
 		{
-			TreeFactory.setNoResult(parent, true, false);
+			TreeFactory.setNoResult(parent);
 			changed = TreeOp.seq(REMOVE, parent);
 		}
 
@@ -1556,7 +1556,7 @@ abstract public class BaseModule extends Module
 		}
 		else
 		{
-			TreeFactory.setNoResult(parent, true, false);
+			TreeFactory.setNoResult(parent);
 			changed = TreeOp.seq(REMOVE, parent);
 		}
 
@@ -1611,7 +1611,7 @@ abstract public class BaseModule extends Module
 		}
 		else
 		{
-			TreeFactory.setNoResult(parent, true, false);
+			TreeFactory.setNoResult(parent);
 			changed = TreeOp.seq(REMOVE, parent);
 		}
 

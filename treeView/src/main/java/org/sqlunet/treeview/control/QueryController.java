@@ -20,13 +20,19 @@ public class QueryController extends TreeController
 	@Override
 	protected void markExpanded()
 	{
-		this.junctionView.setImageResource(this.node.isEnabled() && !this.node.isDeadend() ? R.drawable.ic_query_expanded : R.drawable.ic_leaf);
+		this.junctionView.setImageResource(R.drawable.ic_query_expanded);
 	}
 
 	@Override
 	protected void markCollapsed()
 	{
-		this.junctionView.setImageResource(this.node.isEnabled() && !this.node.isDeadend() ? R.drawable.ic_query_collapsed : R.drawable.ic_leaf);
+		this.junctionView.setImageResource(R.drawable.ic_query_collapsed);
+	}
+
+	@Override
+	protected void markDeadend()
+	{
+		this.junctionView.setImageResource(R.drawable.ic_query_deadend);
 	}
 
 	/**

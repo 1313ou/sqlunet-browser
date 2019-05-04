@@ -139,7 +139,7 @@ public class SentenceModule extends BaseModule
 		}
 		else
 		{
-			TreeFactory.setNoResult(parent, true, false);
+			TreeFactory.setNoResult(parent);
 			changed = TreeOp.seq(REMOVE, parent);
 		}
 

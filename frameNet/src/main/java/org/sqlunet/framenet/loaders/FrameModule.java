@@ -62,19 +62,19 @@ public class FrameModule extends BaseModule
 	}
 
 	@Override
-	public void process(@NonNull final TreeNode node)
+	public void process(@NonNull final TreeNode parent)
 	{
 		if (this.luId != null)
 		{
-			lexUnit(this.luId, node, true, false);
+			lexUnit(this.luId, parent, true, false);
 		}
 		else if (this.frameId != null)
 		{
-			frame(this.frameId, node);
+			frame(this.frameId, parent);
 		}
 		else
 		{
-			TreeFactory.setNoResult(node, true, false);
+			TreeFactory.setNoResult(parent);
 		}
 	}
 }

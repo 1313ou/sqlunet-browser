@@ -85,7 +85,7 @@ public class TreeOpExecute
 				if (viewGroup == null || !TreeView.isExpanded(parent))
 				{
 					Log.d(TAG, "*** " + op.getCode() + " " + node.toString());
-					treeView.expandContainer(parent, includeSubnodes);
+					treeView.expand(parent, includeSubnodes);
 				}
 				else
 				{
@@ -96,19 +96,19 @@ public class TreeOpExecute
 				}
 				break;
 
+			case REMOVE:
+				Log.d(TAG, "--- " + op.getCode() + " " + node.toString());
+				treeView.remove(node);
+				break;
+
 			case UPDATE:
 				Log.d(TAG, "!!! " + op.getCode() + " " + node.toString());
 				treeView.update(node);
 				break;
 
-			case TERMINATE:
+			case DEADEND:
 				Log.d(TAG, "xxx " + op.getCode() + " " + node.toString());
-				treeView.disable(node);
-				break;
-
-			case REMOVE:
-				Log.d(TAG, "--- " + op.getCode() + " " + node.toString());
-				treeView.remove(node);
+				treeView.deadend(node);
 				break;
 
 			default:
@@ -123,74 +123,6 @@ public class TreeOpExecute
 	{
 		final TreeView treeView = this.fragment.getTreeView();
 		final TreeNode node = ops[0].getNode();
-		treeView.expandContainer(node, true);
-	}
-
-	// Expand using node semantics (tree flags)
-
-	private void expandFromTreeFlagsImpl(final TreeOp[] ops)
-	{
-		final TreeView treeView = this.fragment.getTreeView();
-
-		int n = ops.length;
-		if (n == 1)
-		{
-			final TreeOp op = ops[0];
-			execOp2(op, treeView, false);
-		}
-		else if (n > 1)
-		{
-			for (int i = 1; i < n; i++)
-			{
-				final TreeOp op = ops[i];
-				execOp2(op, treeView, true);
-			}
-			execJunction2(ops[0], treeView);
-		}
-	}
-
-	private void execJunction2(final TreeOp op, final TreeView treeView)
-	{
-		final TreeNode node = op.getNode();
-		final Controller<?> controller = node.getController();
-		if (controller instanceof TreeController)
-		{
-			final TreeController treeController = (TreeController) controller;
-			// View v = treeController.getNodeView();
-			// treeController.onExpandEvent();
-		}
-	}
-
-	private void execOp2(final TreeOp op, final TreeView treeView, final boolean includeSubnodes)
-	{
-		final TreeNode node = op.getNode();
-		if (node.isZombie())
-		{
-			Log.d(TAG, "--- " + op.getCode() + " " + node.toString());
-			treeView.remove(node);
-		}
-		else if (node.isDeadend())
-		{
-			Log.d(TAG, "000 " + op.getCode() + " " + node.toString());
-			treeView.disable(node);
-		}
-		else
-		{
-			final TreeNode parent = node.getParent();
-			final Controller<?> parentController = parent.getController();
-			final ViewGroup viewGroup = parentController.getChildrenContainerView();
-			if (viewGroup == null || !TreeView.isExpanded(parent))
-			{
-				Log.d(TAG, "*** " + op.getCode() + " " + node.toString());
-				treeView.expandContainer(parent, includeSubnodes);
-			}
-			else
-			{
-				Log.d(TAG, "+++ " + op.getCode() + " " + node.toString());
-				int index = parent.indexOf(node);
-				treeView.addNodeView(viewGroup, node, index);
-				// parentController.onExpandEvent();
-			}
-		}
+		treeView.expand(node, true);
 	}
 }
