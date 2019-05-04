@@ -12,6 +12,8 @@ import org.sqlunet.verbnet.R;
 import org.sqlunet.verbnet.loaders.ClassFromWordModule;
 import org.sqlunet.verbnet.loaders.ClassModule;
 
+import androidx.annotation.Nullable;
+
 /**
  * A fragment representing a VerbNet search
  *
@@ -33,9 +35,9 @@ public class VerbNetFragment extends TreeFragment
 	}
 
 	@Override
-	public void onStart()
+	public void onCreate(@Nullable final Bundle savedInstanceState)
 	{
-		super.onStart();
+		super.onCreate(savedInstanceState);
 
 		// query
 		final Bundle args = getArguments();
@@ -47,9 +49,7 @@ public class VerbNetFragment extends TreeFragment
 			final Parcelable pointer = args.getParcelable(ProviderArgs.ARG_QUERYPOINTER);
 
 			// root node
-			assert this.treeView != null;
-			final TreeNode root = this.treeView.getRoot();
-			final TreeNode queryNode = root.getChildren().iterator().next();
+			final TreeNode queryNode = this.treeRoot.getChildren().iterator().next();
 
 			// module
 			final Module module = pointer instanceof HasXId ? new ClassModule(this) : new ClassFromWordModule(this);

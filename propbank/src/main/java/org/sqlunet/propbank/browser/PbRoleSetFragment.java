@@ -10,6 +10,8 @@ import org.sqlunet.propbank.loaders.RoleSetModule;
 import org.sqlunet.provider.ProviderArgs;
 import org.sqlunet.treeview.model.TreeNode;
 
+import androidx.annotation.Nullable;
+
 /**
  * A fragment representing a PropBank role set
  *
@@ -17,7 +19,7 @@ import org.sqlunet.treeview.model.TreeNode;
  */
 public class PbRoleSetFragment extends TreeFragment
 {
-	// static private final String TAG = "PBRoleSetF";
+	// static private final String TAG = "PbRoleSetF";
 
 	/**
 	 * Constructor
@@ -31,9 +33,9 @@ public class PbRoleSetFragment extends TreeFragment
 	}
 
 	@Override
-	public void onStart()
+	public void onCreate(@Nullable final Bundle savedInstanceState)
 	{
-		super.onStart();
+		super.onCreate(savedInstanceState);
 
 		// query
 		final Bundle args = getArguments();
@@ -45,9 +47,7 @@ public class PbRoleSetFragment extends TreeFragment
 			final Parcelable pointer = args.getParcelable(ProviderArgs.ARG_QUERYPOINTER);
 
 			// root node
-			assert this.treeView != null;
-			final TreeNode root = this.treeView.getRoot();
-			final TreeNode queryNode = root.getChildren().iterator().next();
+			final TreeNode queryNode = this.treeRoot.getChildren().iterator().next();
 
 			// module
 			final Module module = new RoleSetModule(this);

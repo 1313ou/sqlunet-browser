@@ -12,6 +12,8 @@ import org.sqlunet.framenet.loaders.AnnoSetModule;
 import org.sqlunet.provider.ProviderArgs;
 import org.sqlunet.treeview.model.TreeNode;
 
+import androidx.annotation.Nullable;
+
 /**
  * A fragment representing an annoSet.
  *
@@ -51,9 +53,9 @@ public class FnAnnoSetFragment extends TreeFragment
 	}
 
 	@Override
-	public void onStart()
+	public void onCreate(@Nullable final Bundle savedInstanceState)
 	{
-		super.onStart();
+		super.onCreate(savedInstanceState);
 
 		// query
 		final Bundle args = getArguments();
@@ -65,9 +67,7 @@ public class FnAnnoSetFragment extends TreeFragment
 			final int type = args.getInt(ProviderArgs.ARG_QUERYTYPE);
 
 			// root node
-			assert this.treeView != null;
-			final TreeNode root = this.treeView.getRoot();
-			final TreeNode queryNode = root.getChildren().iterator().next();
+			final TreeNode queryNode = this.treeRoot.getChildren().iterator().next();
 
 			// module
 			Module module;

@@ -23,7 +23,7 @@ import org.sqlunet.xnet.R;
  */
 abstract public class TreeFragment extends Fragment
 {
-	static private final String TAG = "TreeF";
+	static private final String TAG = "TreeFragment";
 
 	/**
 	 * Tree model root
@@ -70,7 +70,7 @@ abstract public class TreeFragment extends Fragment
 	@Override
 	public View onCreateView(@NonNull final LayoutInflater inflater, final ViewGroup container, @Nullable final Bundle savedInstanceState)
 	{
-		Log.d(TAG, "ON CREATE (TREE) VIEW " + this);
+		Log.d(TAG, "onCreateView() " + this);
 
 		// retain instance
 		setRetainInstance(true);
@@ -82,6 +82,7 @@ abstract public class TreeFragment extends Fragment
 		final ViewGroup treeContainer = view.findViewById(this.treeContainerId);
 
 		// tree
+		Log.d(TAG, "Create treeview");
 		this.treeView = new TreeView(requireContext(), this.treeRoot);
 		this.treeView.setDefaultContainerStyle(R.style.TreeNodeStyleCustom); // R.style.TreeNodeStyleDivided
 		treeContainer.addView(this.treeView.makeView());
@@ -89,7 +90,7 @@ abstract public class TreeFragment extends Fragment
 		// saved state
 		if (savedInstanceState != null)
 		{
-			Log.d(TAG, "restore instance state " + this);
+			Log.d(TAG, "Restore instance state " + this);
 		}
 
 		return view;
@@ -99,13 +100,14 @@ abstract public class TreeFragment extends Fragment
 	public void onStart()
 	{
 		super.onStart();
+		Log.d(TAG, "Expand treeview");
 		this.treeView.expandAll();
 	}
 
 	@Override
 	public void onSaveInstanceState(@NonNull final Bundle outState)
 	{
-		Log.d(TAG, "save instance state " + this);
+		Log.d(TAG, "Save instance state " + this);
 		super.onSaveInstanceState(outState);
 	}
 

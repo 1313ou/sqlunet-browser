@@ -153,6 +153,8 @@ public class TreeView
 	@NonNull
 	private View makeView(@SuppressWarnings("SameParameterValue") final int style)
 	{
+		Log.d(TAG, "Make tree view");
+
 		// top scrollview
 		final ViewGroup view;
 		if (style > 0)
@@ -209,8 +211,7 @@ public class TreeView
 			subtreeView.removeNodeView(nodeView);
 
 			// new node view
-			@SuppressWarnings("unchecked")
-			final View newNodeView = controller.createNodeView(this.context, node, node.getValue());
+			@SuppressWarnings("unchecked") final View newNodeView = controller.createNodeView(this.context, node, node.getValue());
 			controller.setNodeView(newNodeView);
 
 			// insert new node subtreeView
@@ -345,15 +346,13 @@ public class TreeView
 	 */
 	synchronized public void addSubtreeView(@NonNull final ViewGroup container, @NonNull final TreeNode node, int atIndex)
 	{
-		Log.d(TAG, "Insert view at index " + atIndex + " count=" + container.getChildCount());
+		Log.d(TAG, "Insert subtree view at index " + atIndex + " for node " + node + " count=" + container.getChildCount());
 		final Controller<?> controller = node.getController();
 		View view = controller.getSubtreeView();
 		if (view == null)
 		{
 			view = controller.createView(this.context, this.containerStyle);
 		}
-		//View childrenContainerView = controller.getChildrenView();
-		//Log.d(TAG, "Visibility=" + Integer.toHexString(childrenContainerView.getVisibility()));
 
 		// remove from parent
 		ViewParent parent = view.getParent();
@@ -433,6 +432,7 @@ public class TreeView
 	@SuppressWarnings("unused")
 	synchronized private void removeSubtreeView(@NonNull final TreeNode node)
 	{
+		Log.d(TAG, "Remove subtree view for node " + node);
 		TreeNode parent = node.getParent();
 		if (parent != null)
 		{
@@ -512,7 +512,9 @@ public class TreeView
 		if (childrenView == null)
 		{
 			// TODO
-			return;
+			// Log.e(TAG, "Node to expand has no view " + node);
+			// return;
+			throw new RuntimeException("Node to expand has no view " + node);
 		}
 
 		// clear all children views

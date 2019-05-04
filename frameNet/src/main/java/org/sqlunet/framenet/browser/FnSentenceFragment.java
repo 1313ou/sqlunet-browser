@@ -10,6 +10,8 @@ import org.sqlunet.framenet.loaders.SentenceModule;
 import org.sqlunet.provider.ProviderArgs;
 import org.sqlunet.treeview.model.TreeNode;
 
+import androidx.annotation.Nullable;
+
 /**
  * A fragment representing a sentence
  *
@@ -17,7 +19,7 @@ import org.sqlunet.treeview.model.TreeNode;
  */
 public class FnSentenceFragment extends TreeFragment
 {
-	// static private final String TAG = "FNSentenceF";
+	// static private final String TAG = "FnSentenceF";
 
 	/**
 	 * Constructor
@@ -31,9 +33,9 @@ public class FnSentenceFragment extends TreeFragment
 	}
 
 	@Override
-	public void onStart()
+	public void onCreate(@Nullable final Bundle savedInstanceState)
 	{
-		super.onStart();
+		super.onCreate(savedInstanceState);
 
 		// query
 		final Bundle args = getArguments();
@@ -45,9 +47,7 @@ public class FnSentenceFragment extends TreeFragment
 			final Parcelable pointer = args.getParcelable(ProviderArgs.ARG_QUERYPOINTER);
 
 			// root node
-			assert this.treeView != null;
-			final TreeNode root = this.treeView.getRoot();
-			final TreeNode queryNode = root.getChildren().iterator().next();
+			final TreeNode queryNode = this.treeRoot.getChildren().iterator().next();
 
 			// module
 			final Module module = new SentenceModule(this);

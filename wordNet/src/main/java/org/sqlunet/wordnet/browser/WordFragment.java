@@ -3,6 +3,7 @@ package org.sqlunet.wordnet.browser;
 import android.os.Bundle;
 import android.os.Parcelable;
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import org.sqlunet.browser.TreeFragment;
 import org.sqlunet.provider.ProviderArgs;
@@ -31,9 +32,9 @@ public class WordFragment extends TreeFragment
 	}
 
 	@Override
-	public void onStart()
+	public void onCreate(@Nullable final Bundle savedInstanceState)
 	{
-		super.onStart();
+		super.onCreate(savedInstanceState);
 
 		// query
 		final Bundle args = getArguments();
@@ -45,9 +46,7 @@ public class WordFragment extends TreeFragment
 			final Parcelable pointer = args.getParcelable(ProviderArgs.ARG_QUERYPOINTER);
 
 			// root node
-			assert this.treeView != null;
-			final TreeNode root = this.treeView.getRoot();
-			final TreeNode queryNode = root.getChildren().iterator().next();
+			final TreeNode queryNode = this.treeRoot.getChildren().iterator().next();
 
 			// module
 			final WordModule module = makeModule();

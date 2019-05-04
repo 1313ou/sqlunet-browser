@@ -13,6 +13,8 @@ import org.sqlunet.predicatematrix.settings.Settings;
 import org.sqlunet.provider.ProviderArgs;
 import org.sqlunet.treeview.model.TreeNode;
 
+import androidx.annotation.Nullable;
+
 /**
  * PredicateMatrix progressMessage fragment
  *
@@ -20,7 +22,7 @@ import org.sqlunet.treeview.model.TreeNode;
  */
 public class PredicateMatrixFragment extends TreeFragment
 {
-	// static private final String TAG = "PmResultF";
+	// static private final String TAG = "PredicateMatrixF";
 
 	/**
 	 * Constructor
@@ -34,9 +36,9 @@ public class PredicateMatrixFragment extends TreeFragment
 	}
 
 	@Override
-	public void onStart()
+	public void onCreate(@Nullable final Bundle savedInstanceState)
 	{
-		super.onStart();
+		super.onCreate(savedInstanceState);
 
 		// query
 		final Bundle args = getArguments();
@@ -49,9 +51,7 @@ public class PredicateMatrixFragment extends TreeFragment
 		final Settings.PMMode mode = Settings.PMMode.getPref(requireContext());
 
 		// root node
-		assert this.treeView != null;
-		final TreeNode root = this.treeView.getRoot();
-		final TreeNode queryNode = root.getChildren().iterator().next();
+		final TreeNode queryNode = this.treeRoot.getChildren().iterator().next();
 
 		// module
 		Module module = (pointer instanceof PmRolePointer) ? new PredicateRoleModule(this, mode) : new PredicateRoleFromWordModule(this, mode);

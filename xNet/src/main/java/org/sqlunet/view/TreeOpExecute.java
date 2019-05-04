@@ -17,7 +17,7 @@ import org.sqlunet.view.TreeOp.TreeOpCode;
  */
 public class TreeOpExecute
 {
-	private static final String TAG = "TREEOPEXEC";
+	private static final String TAG = "TreeOpExecute";
 
 	private TreeFragment fragment;
 
