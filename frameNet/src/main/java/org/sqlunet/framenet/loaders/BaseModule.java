@@ -66,6 +66,7 @@ import androidx.lifecycle.ViewModelProviders;
 
 import static org.sqlunet.view.TreeOp.TreeOpCode.ANCHOR;
 import static org.sqlunet.view.TreeOp.TreeOpCode.NEW;
+import static org.sqlunet.view.TreeOp.TreeOpCode.COLLAPSE;
 import static org.sqlunet.view.TreeOp.TreeOpCode.REMOVE;
 
 /**
@@ -621,9 +622,9 @@ abstract public class BaseModule extends Module
 					sb2.append(feSemTypes);
 				}
 
-				// attach more info to fe node
-				final TreeNode node = TreeFactory.addTextNode(feNode, sb2);
-				changedList.add(NEW, node);
+				// attach extra node to fe node
+				final TreeNode extraNode = TreeFactory.addTextNode(feNode, sb2);
+				changedList.add(NEW, extraNode, COLLAPSE, feNode);
 			}
 			while (cursor.moveToNext());
 			changed = changedList.toArray();
@@ -857,6 +858,15 @@ abstract public class BaseModule extends Module
 				final TreeNode luNode = TreeFactory.addLinkTreeNode(parent, sb, R.drawable.member, new FnLexUnitLink(luId));
 				changedList.add(NEW, luNode);
 
+				// frame
+				if (withFrame)
+				{
+					final TreeNode frameNode = TreeFactory.addQueryNode(luNode, "Frame", R.drawable.roleclass, new FrameQuery(frameId));
+					changedList.add(NEW, frameNode);
+					final TreeNode fesNode = TreeFactory.addQueryNode(luNode, "Frame Elements", R.drawable.roles, new FEsQuery(frameId));
+					changedList.add(NEW, fesNode);
+				}
+
 				// more info
 				final SpannableStringBuilder sb2 = new SpannableStringBuilder();
 
@@ -897,19 +907,9 @@ abstract public class BaseModule extends Module
 					}
 				}
 
-				// attach result
-				if (withFrame)
-				{
-					final TreeNode frameNode = TreeFactory.addQueryNode(luNode, "Frame", R.drawable.roleclass, new FrameQuery(frameId));
-					changedList.add(NEW, frameNode);
-					final TreeNode fesNode = TreeFactory.addQueryNode(luNode, "Frame Elements", R.drawable.roles, new FEsQuery(frameId));
-					changedList.add(NEW, fesNode);
-				}
-				else
-				{
-					final TreeNode node = TreeFactory.addTextNode(luNode, sb2);
-					changedList.add(NEW, node);
-				}
+				// attach extra node to lex unit node
+				final TreeNode extraNode = TreeFactory.addTextNode(luNode, sb2);
+				changedList.add(NEW, extraNode);
 
 				// sub nodes
 				final TreeNode realizationsNode = TreeFactory.addQueryNode(luNode, "Realizations", R.drawable.realization, new RealizationsQuery(luId));
@@ -920,6 +920,8 @@ abstract public class BaseModule extends Module
 				changedList.add(NEW, governorsNode);
 				final TreeNode sentencesNode = TreeFactory.addQueryNode(luNode, "Sentences", R.drawable.sentence, new SentencesForLexUnitQuery(luId));
 				changedList.add(NEW, sentencesNode);
+
+				changedList.add(COLLAPSE, luNode);
 			}
 			while (cursor.moveToNext());
 			changed = changedList.toArray();

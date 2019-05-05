@@ -77,6 +77,7 @@ public class TreeOpExecute
 				break;
 
 			case NEW:
+			{
 				final TreeNode parent = node.getParent();
 				final Controller<?> parentController = parent.getController();
 				final ViewGroup childrenView = parentController.getChildrenView();
@@ -90,9 +91,21 @@ public class TreeOpExecute
 					Log.d(TAG, "+++ " + op.getCode() + " " + node.toString());
 					int index = parent.indexOf(node);
 					treeView.addSubtreeView(childrenView, node, index);
-					// parentController.onExpandEvent();
 				}
-				break;
+			}
+			break;
+
+			case COLLAPSE:
+			{
+				final Controller<?> controller = node.getController();
+				final ViewGroup childrenView = controller.getChildrenView();
+				if (childrenView != null && TreeView.isExpanded(node))
+				{
+					Log.d(TAG, "^^^ " + op.getCode() + " " + node.toString());
+					treeView.collapseNode(node, true);
+				}
+			}
+			break;
 
 			case REMOVE:
 				Log.d(TAG, "--- " + op.getCode() + " " + node.toString());

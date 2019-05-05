@@ -8,7 +8,7 @@ public class TreeOp
 {
 	public enum TreeOpCode
 	{
-		NOOP, ANCHOR, NEW, UPDATE, DEADEND, REMOVE
+		NOOP, ANCHOR, NEW, COLLAPSE, UPDATE, DEADEND, REMOVE
 	}
 
 	private final TreeOpCode code;
