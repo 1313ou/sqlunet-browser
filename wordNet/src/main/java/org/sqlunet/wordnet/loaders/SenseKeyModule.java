@@ -1,13 +1,14 @@
 package org.sqlunet.wordnet.loaders;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
 import android.os.Parcelable;
 
 import org.sqlunet.HasSenseKey;
 import org.sqlunet.browser.TreeFragment;
+import org.sqlunet.model.TreeFactory;
 import org.sqlunet.treeview.model.TreeNode;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 /**
  * Module for WordNet sense (from sensekey)
@@ -47,12 +48,14 @@ public class SenseKeyModule extends BaseModule
 	@Override
 	public void process(@NonNull final TreeNode parent)
 	{
-		if (this.senseKey == null || this.senseKey.isEmpty())
+		if (this.senseKey != null && !this.senseKey.isEmpty())
 		{
-			return;
+			// synset
+			sense(this.senseKey, parent);
 		}
-
-		// synset
-		sense(this.senseKey, parent);
+		else
+		{
+			TreeFactory.setNoResult(parent);
+		}
 	}
 }

@@ -54,7 +54,7 @@ public class QueryController extends TreeController
 	 */
 	private Query getQuery()
 	{
-		final Value value = (Value) this.node.getValue();
+		final CompositeValue value = (CompositeValue) this.node.getValue();
 		if (value != null)
 		{
 			assert value.payload != null;

@@ -9,7 +9,6 @@ import org.sqlunet.treeview.model.TreeNode;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
 
 /**
  * Module for WordNet word
@@ -64,6 +63,10 @@ public class WordModule extends BaseModule
 			// senses
 			// senses(this.wordId, sensesNode);
 			senses(this.wordId, wordNode);
+		}
+		else
+		{
+			TreeFactory.setNoResult(parent);
 		}
 	}
 }

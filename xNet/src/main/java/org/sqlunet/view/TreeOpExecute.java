@@ -43,14 +43,14 @@ public class TreeOpExecute
 		if (n == 1)
 		{
 			final TreeOp op = ops[0];
-			execOp(op, treeView, false);
+			execOp(op, treeView, 0);
 		}
 		else if (n > 1)
 		{
 			for (int i = 1; i < n; i++)
 			{
 				final TreeOp op = ops[i];
-				execOp(op, treeView, true);
+				execOp(op, treeView, -1);
 			}
 			execFirst(ops[0], treeView);
 		}
@@ -63,20 +63,17 @@ public class TreeOpExecute
 		if (controller instanceof TreeController)
 		{
 			Log.d(TAG, "/// " + op.getCode() + " " + node.toString());
-			//final TreeController treeController = (TreeController) controller;
-			//View nodeView = treeController.getNodeView();
-			//treeController.onExpandEvent();
 		}
 	}
 
-	private void execOp(final TreeOp op, final TreeView treeView, final boolean includeSubnodes)
+	private void execOp(final TreeOp op, final TreeView treeView, final int levels)
 	{
 		final TreeOpCode code = op.getCode();
 		final TreeNode node = op.getNode();
 		switch (code)
 		{
 			case ANCHOR:
-				Log.d(TAG, "/// " + op.getCode() + " " + node.toString());
+				Log.d(TAG, "@@@ " + op.getCode() + " " + node.toString());
 				break;
 
 			case NEW:
@@ -86,7 +83,7 @@ public class TreeOpExecute
 				if (childrenView == null || !TreeView.isExpanded(parent))
 				{
 					Log.d(TAG, "*** " + op.getCode() + " " + node.toString());
-					treeView.expandNode(parent, includeSubnodes, false);
+					treeView.expandNode(parent, levels, false);
 				}
 				else
 				{
@@ -124,6 +121,6 @@ public class TreeOpExecute
 	{
 		final TreeView treeView = this.fragment.getTreeView();
 		final TreeNode node = ops[0].getNode();
-		treeView.expandNode(node, true, false);
+		treeView.expandNode(node, -1, false);
 	}
 }

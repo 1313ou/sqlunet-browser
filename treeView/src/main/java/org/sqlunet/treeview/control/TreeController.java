@@ -18,7 +18,7 @@ import androidx.annotation.Nullable;
  *
  * @author Bogdan Melnychuk on 2/12/15.
  */
-public class TreeController extends Controller<Value>
+public class TreeController extends Controller<CompositeValue>
 {
 	/// static private final String TAG = "TreeController";
 
@@ -42,7 +42,7 @@ public class TreeController extends Controller<Value>
 
 	@Nullable
 	@Override
-	public View createNodeView(@NonNull final Context context, final TreeNode node, @NonNull final Value value)
+	public View createNodeView(@NonNull final Context context, final TreeNode node, @NonNull final CompositeValue value)
 	{
 		final LayoutInflater inflater = LayoutInflater.from(context);
 		@SuppressLint("InflateParams") final View view = inflater.inflate(this.layoutRes, null, false);
@@ -59,7 +59,7 @@ public class TreeController extends Controller<Value>
 		}
 
 		// icon
-		final Value composite = (Value) value;
+		final CompositeValue composite = (CompositeValue) value;
 		if (composite.icon != 0)
 		{
 			final ImageView iconView = view.findViewById(R.id.node_icon);

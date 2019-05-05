@@ -27,7 +27,7 @@ public class IconTextController extends Controller<Object>
 	@Override
 	public View createNodeView(@NonNull final Context context, final TreeNode node, final Object value)
 	{
-		final Value data = (Value) value;
+		final CompositeValue data = (CompositeValue) value;
 		final TextView textView = new TextView(context);
 		textView.setText(data.text);
 		textView.setCompoundDrawablePadding(10);

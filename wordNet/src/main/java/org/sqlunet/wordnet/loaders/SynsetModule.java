@@ -66,7 +66,11 @@ public class SynsetModule extends BaseModule
 		if (pointer instanceof HasSynsetId)
 		{
 			final HasSynsetId synsetPointer = (HasSynsetId) pointer;
-			this.synsetId = synsetPointer.getSynsetId();
+			long value = synsetPointer.getSynsetId();
+			if (value != 0)
+			{
+				this.synsetId = value;
+			}
 		}
 		if (pointer instanceof HasPos)
 		{
@@ -109,6 +113,10 @@ public class SynsetModule extends BaseModule
 			// links and samples
 			final TreeNode linksNode = this.expand ? TreeFactory.addHotQueryNode(parent, "Links", R.drawable.ic_links, new LinksQuery(this.synsetId, 0)) : TreeFactory.addQueryNode(parent, "Links", R.drawable.ic_links, new LinksQuery(this.synsetId, 0));
 			final TreeNode samplesNode = this.expand ? TreeFactory.addQueryNode(parent, "Samples", R.drawable.sample, new SamplesQuery(this.synsetId)) : TreeFactory.addQueryNode(parent, "Samples", R.drawable.sample, new SamplesQuery(this.synsetId));
+		}
+		else
+		{
+			TreeFactory.setNoResult(parent);
 		}
 	}
 }

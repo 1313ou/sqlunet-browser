@@ -8,7 +8,7 @@ import androidx.annotation.Nullable;
  *
  * @author Bogdan Melnychuk on 2/12/15.
  */
-public class Value
+public class CompositeValue
 {
 	/**
 	 * Label text
@@ -33,7 +33,7 @@ public class Value
 	 * @param icon    extra icon
 	 * @param payload payload
 	 */
-	public Value(final CharSequence text, final int icon, @Nullable final Object... payload)
+	public CompositeValue(final CharSequence text, final int icon, @Nullable final Object... payload)
 	{
 		this.text = text;
 		this.icon = icon;
@@ -46,7 +46,7 @@ public class Value
 	 * @param text label text
 	 * @param icon extra icon
 	 */
-	public Value(final CharSequence text, final int icon)
+	public CompositeValue(final CharSequence text, final int icon)
 	{
 		this.text = text;
 		this.icon = icon;

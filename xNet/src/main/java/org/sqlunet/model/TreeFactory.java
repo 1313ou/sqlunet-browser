@@ -18,7 +18,7 @@ import org.sqlunet.treeview.control.MoreController;
 import org.sqlunet.treeview.control.Query;
 import org.sqlunet.treeview.control.TextController;
 import org.sqlunet.treeview.control.TreeController;
-import org.sqlunet.treeview.control.Value;
+import org.sqlunet.treeview.control.CompositeValue;
 import org.sqlunet.treeview.model.TreeNode;
 
 import androidx.annotation.NonNull;
@@ -44,7 +44,7 @@ public class TreeFactory
 	 */
 	static public TreeNode addLinkNode(@NonNull final TreeNode parent, final CharSequence text, final int icon, final Link link)
 	{
-		final TreeNode result = new TreeNode(new Value(text, icon, link), new LinkNodeController(), false);
+		final TreeNode result = new TreeNode(new CompositeValue(text, icon, link), new LinkNodeController(), false);
 		parent.addChild(result);
 		return result;
 	}
@@ -61,7 +61,7 @@ public class TreeFactory
 	 */
 	static public TreeNode addLeafNode(@NonNull final TreeNode parent, final CharSequence text, final int icon)
 	{
-		final TreeNode result = new TreeNode(new Value(text, icon), new LeafController(), false);
+		final TreeNode result = new TreeNode(new CompositeValue(text, icon), new LeafController(), false);
 		parent.addChild(result);
 		return result;
 	}
@@ -76,7 +76,7 @@ public class TreeFactory
 	 */
 	static public TreeNode addMoreNode(@NonNull final TreeNode parent, final CharSequence text, final int icon)
 	{
-		final TreeNode result = new TreeNode(new Value(text, icon), new MoreController(), false);
+		final TreeNode result = new TreeNode(new CompositeValue(text, icon), new MoreController(), false);
 		parent.addChild(result);
 		return result;
 	}
@@ -92,7 +92,7 @@ public class TreeFactory
 	 */
 	static public TreeNode addLinkLeafNode(@NonNull final TreeNode parent, final CharSequence text, final int icon, final Link link)
 	{
-		final TreeNode result = new TreeNode(new Value(text, icon, link), new LinkLeafController());
+		final TreeNode result = new TreeNode(new CompositeValue(text, icon, link), new LinkLeafController());
 		parent.addChild(result);
 		return result;
 	}
@@ -108,7 +108,7 @@ public class TreeFactory
 	 */
 	static public TreeNode addLinkTreeNode(@NonNull final TreeNode parent, final CharSequence text, final int icon, final Link link)
 	{
-		final TreeNode result = new TreeNode(new Value(text, icon, link), new LinkTreeController());
+		final TreeNode result = new TreeNode(new CompositeValue(text, icon, link), new LinkTreeController());
 		parent.addChild(result);
 		return result;
 	}
@@ -124,7 +124,7 @@ public class TreeFactory
 	 */
 	static public TreeNode addQueryNode(@NonNull final TreeNode parent, final CharSequence text, final int icon, final Query query)
 	{
-		final TreeNode result = new TreeNode(new Value(text, icon, query), new ColdQueryController());
+		final TreeNode result = new TreeNode(new CompositeValue(text, icon, query), new ColdQueryController());
 		parent.addChild(result);
 		return result;
 	}
@@ -141,7 +141,7 @@ public class TreeFactory
 	static public TreeNode addHotQueryNode(@NonNull final TreeNode parent, final CharSequence text, final int icon, final Query query)
 	{
 		final HotQueryController controller = new HotQueryController();
-		final TreeNode result = new TreeNode(new Value(text, icon, query), controller);
+		final TreeNode result = new TreeNode(new CompositeValue(text, icon, query), controller);
 		parent.addChild(result);
 
 		final Handler handler = new Handler(Looper.getMainLooper());
@@ -162,7 +162,7 @@ public class TreeFactory
 	 */
 	static public TreeNode addLinkQueryNode(@NonNull final TreeNode parent, final CharSequence text, final int icon, final Query query, final Link link)
 	{
-		final TreeNode result = new TreeNode(new Value(text, icon, query, link), new LinkQueryController());
+		final TreeNode result = new TreeNode(new CompositeValue(text, icon, query, link), new LinkQueryController());
 		parent.addChild(result);
 		return result;
 	}
@@ -193,7 +193,7 @@ public class TreeFactory
 	 */
 	static public TreeNode addIconTextNode(@NonNull final TreeNode parent, @SuppressWarnings("SameParameterValue") final CharSequence text, final int icon)
 	{
-		final TreeNode result = new TreeNode(new Value(text, icon), new IconTextController(), false);
+		final TreeNode result = new TreeNode(new CompositeValue(text, icon), new IconTextController(), false);
 		parent.addChild(result);
 		return result;
 	}
@@ -209,7 +209,7 @@ public class TreeFactory
 	@NonNull
 	static public TreeNode addTreeNode(@NonNull final TreeNode parent, final CharSequence value, final int icon)
 	{
-		final TreeNode result = new TreeNode(new Value(value, icon), new TreeController());
+		final TreeNode result = new TreeNode(new CompositeValue(value, icon), new TreeController());
 		parent.addChild(result);
 		return result;
 	}

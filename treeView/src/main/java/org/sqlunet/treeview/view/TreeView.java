@@ -380,10 +380,13 @@ public class TreeView
 				}
 			}
 			atIndex = i;
-			if (atIndex >= n)
+			if (atIndex == n)
+				atIndex = -1;
+			else if (atIndex > n)
 			{
 				// TODO
-				atIndex = -1;
+				// Log.e(TAG, "Illegal index " + node + " " + atIndex + " on " + n);
+				throw new RuntimeException("Illegal index " + node + " " + atIndex + " on " + n);
 			}
 		}
 
@@ -471,7 +474,7 @@ public class TreeView
 		}
 		else
 		{
-			expandNode(node, false, true);
+			expandNode(node, 0, true);
 		}
 	}
 
@@ -481,7 +484,7 @@ public class TreeView
 	@SuppressWarnings("unused")
 	public void expandAll()
 	{
-		expandNode(this.root, true, false);
+		expandNode(this.root, -1, false);
 	}
 
 	/**
@@ -501,10 +504,10 @@ public class TreeView
 	 * Expand node
 	 *
 	 * @param node            node
-	 * @param includeSubnodes whether to include subnodes
+	 * @param levels            expanded subnodes level (-1 == unlimited)
 	 * @param fireHotNodes    whether to fire hot nodes
 	 */
-	public void expandNode(@NonNull final TreeNode node, boolean includeSubnodes, boolean fireHotNodes)
+	public void expandNode(@NonNull final TreeNode node, int levels, boolean fireHotNodes)
 	{
 		// children view group
 		final Controller<?> controller = node.getController();
@@ -534,9 +537,9 @@ public class TreeView
 			addSubtreeView(childrenView, child, -1);
 
 			// recurse
-			if (isExpanded(child) || includeSubnodes)
+			if (isExpanded(child) || levels < 0 || levels > 0)
 			{
-				expandNode(child, includeSubnodes, fireHotNodes);
+				expandNode(child, --levels, fireHotNodes);
 			}
 		}
 
@@ -1060,7 +1063,7 @@ public class TreeView
 		{
 			if (openNodes.contains(child.getPath()))
 			{
-				expandNode(child, false, false);
+				expandNode(child, 0, false);
 				restoreNodeState(child, openNodes);
 			}
 		}

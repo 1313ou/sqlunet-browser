@@ -16,7 +16,7 @@ import org.sqlunet.treeview.model.TreeNode;
  *
  * @author Bogdan Melnychuk on 2/12/15.
  */
-public class LeafController extends Controller<Value>
+public class LeafController extends Controller<CompositeValue>
 {
 	/// static private final String TAG = "LeafController";
 
@@ -35,7 +35,7 @@ public class LeafController extends Controller<Value>
 
 	@Nullable
 	@Override
-	public View createNodeView(@NonNull final Context context, final TreeNode node, @NonNull final Value value)
+	public View createNodeView(@NonNull final Context context, final TreeNode node, @NonNull final CompositeValue value)
 	{
 		final LayoutInflater inflater = LayoutInflater.from(context);
 		final View view = inflater.inflate(this.layoutRes, null, false);

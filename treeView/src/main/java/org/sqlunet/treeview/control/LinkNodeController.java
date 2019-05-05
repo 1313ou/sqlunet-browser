@@ -16,7 +16,7 @@ import org.sqlunet.treeview.model.TreeNode;
  *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
-public class LinkNodeController extends Controller<Value>
+public class LinkNodeController extends Controller<CompositeValue>
 {
 	// static private final String TAG = "LinkNodeController";
 
@@ -29,7 +29,7 @@ public class LinkNodeController extends Controller<Value>
 	}
 
 	@Override
-	public View createNodeView(@NonNull final Context context, final TreeNode node, @NonNull final Value value)
+	public View createNodeView(@NonNull final Context context, final TreeNode node, @NonNull final CompositeValue value)
 	{
 		final LayoutInflater inflater = LayoutInflater.from(context);
 		@SuppressLint("InflateParams") final View view = inflater.inflate(R.layout.layout_node_link, null, false);
@@ -57,7 +57,7 @@ public class LinkNodeController extends Controller<Value>
 	 */
 	private void followLink()
 	{
-		final Value value = (Value) this.node.getValue();
+		final CompositeValue value = (CompositeValue) this.node.getValue();
 		if (value != null)
 		{
 			assert value.payload != null;

@@ -17,9 +17,9 @@ import org.sqlunet.style.Spanner;
 import org.sqlunet.treeview.control.Link;
 import org.sqlunet.treeview.control.Query;
 import org.sqlunet.treeview.model.TreeNode;
-import org.sqlunet.view.TreeOpExecute;
 import org.sqlunet.view.TreeOp;
 import org.sqlunet.view.TreeOp.TreeOps;
+import org.sqlunet.view.TreeOpExecute;
 import org.sqlunet.wordnet.R;
 import org.sqlunet.wordnet.SensePointer;
 import org.sqlunet.wordnet.SynsetPointer;
@@ -53,11 +53,12 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.lifecycle.ViewModelProviders;
 
-import static org.sqlunet.view.TreeOp.TreeOpCode.NEW;
 import static org.sqlunet.view.TreeOp.TreeOpCode.ANCHOR;
+import static org.sqlunet.view.TreeOp.TreeOpCode.DEADEND;
+import static org.sqlunet.view.TreeOp.TreeOpCode.NEW;
+import static org.sqlunet.view.TreeOp.TreeOpCode.NOOP;
 import static org.sqlunet.view.TreeOp.TreeOpCode.REMOVE;
 import static org.sqlunet.view.TreeOp.TreeOpCode.UPDATE;
-import static org.sqlunet.view.TreeOp.TreeOpCode.DEADEND;
 
 /**
  * Base module for WordNet
@@ -913,7 +914,6 @@ abstract public class BaseModule extends Module
 	 */
 	private void samples(final long synsetId, @NonNull final TreeNode parent, @SuppressWarnings("SameParameterValue") final boolean addNewNode)
 	{
-
 		final Uri uri = Uri.parse(WordNetProvider.makeUri(Samples.CONTENT_URI_TABLE));
 		final String[] projection = { //
 				Samples.SAMPLEID, //
@@ -983,10 +983,11 @@ abstract public class BaseModule extends Module
 	/**
 	 * Semantic links
 	 *
-	 * @param synsetId synsetCursorToTreeModel id
-	 * @param parent   parent node
+	 * @param synsetId                synsetCursorToTreeModel id
+	 * @param parent                  parent node
+	 * @param deadendParentIfNoResult mark parent node as deadend if there is no result
 	 */
-	private void semLinks(final long synsetId, @NonNull final TreeNode parent)
+	private void semLinks(final long synsetId, @NonNull final TreeNode parent, final boolean deadendParentIfNoResult)
 	{
 		final Uri uri = Uri.parse(WordNetProvider.makeUri(SemLinks_Synsets_Words_X.CONTENT_URI_TABLE));
 		final String[] projection = { //
@@ -999,17 +1000,18 @@ abstract public class BaseModule extends Module
 		final String selection = WordNetContract.LINK + '.' + SemLinks_Synsets_Words_X.SYNSET1ID + " = ?";  ////
 		final String[] selectionArgs = {Long.toString(synsetId)};
 		final String sortOrder = LinkTypes.LINKID;
-		this.semLinksFromSynsetIdModel.loadData(uri, projection, selection, selectionArgs, sortOrder, cursor -> semLinksCursor1ToTreeModel(cursor, parent));
+		this.semLinksFromSynsetIdModel.loadData(uri, projection, selection, selectionArgs, sortOrder, cursor -> semLinksCursor1ToTreeModel(cursor, parent, deadendParentIfNoResult));
 	}
 
 	/**
 	 * Semantic links
 	 *
-	 * @param synsetId synsetCursorToTreeModel id
-	 * @param linkId   link id
-	 * @param parent   parent node
+	 * @param synsetId                synsetCursorToTreeModel id
+	 * @param linkId                  link id
+	 * @param parent                  parent node
+	 * @param deadendParentIfNoResult mark parent node as deadend if there is no result
 	 */
-	private void semLinks(final long synsetId, final int linkId, final int recurseLevel, @NonNull final TreeNode parent)
+	private void semLinks(final long synsetId, final int linkId, final int recurseLevel, @NonNull final TreeNode parent, final boolean deadendParentIfNoResult)
 	{
 		final Uri uri = Uri.parse(WordNetProvider.makeUri(SemLinks_Synsets_Words_X.CONTENT_URI_TABLE));
 		final String[] projection = { //
@@ -1021,10 +1023,10 @@ abstract public class BaseModule extends Module
 		};
 		final String selection = WordNetContract.LINK + '.' + SemLinks_Synsets_Words_X.SYNSET1ID + " = ? AND " + LinkTypes.LINKID + " = ?";
 		final String[] selectionArgs = {Long.toString(synsetId), Integer.toString(linkId)};
-		this.semLinksFromSynsetIdLinkIdModel.loadData(uri, projection, selection, selectionArgs, null, cursor -> semLinksCursor2ToTreeModel(cursor, linkId, recurseLevel, parent));
+		this.semLinksFromSynsetIdLinkIdModel.loadData(uri, projection, selection, selectionArgs, null, cursor -> semLinksCursor2ToTreeModel(cursor, linkId, recurseLevel, parent, deadendParentIfNoResult));
 	}
 
-	private TreeOp[] semLinksCursor1ToTreeModel(@NonNull final Cursor cursor, @NonNull final TreeNode parent)
+	private TreeOp[] semLinksCursor1ToTreeModel(@NonNull final Cursor cursor, @NonNull final TreeNode parent, final boolean deadendParentIfNoResult)
 	{
 		TreeOp[] changed;
 		if (cursor.moveToFirst())
@@ -1071,15 +1073,22 @@ abstract public class BaseModule extends Module
 		}
 		else
 		{
-			TreeFactory.setNoResult(parent);
-			changed = TreeOp.seq(UPDATE, parent);
+			if (deadendParentIfNoResult)
+			{
+				TreeFactory.setNoResult(parent);
+				changed = TreeOp.seq(DEADEND, parent);
+			}
+			else
+			{
+				changed = TreeOp.seq(NOOP, parent);
+			}
 		}
 
 		cursor.close();
 		return changed;
 	}
 
-	private TreeOp[] semLinksCursor2ToTreeModel(@NonNull final Cursor cursor, final int linkId, final int recurseLevel, @NonNull final TreeNode parent)
+	private TreeOp[] semLinksCursor2ToTreeModel(@NonNull final Cursor cursor, final int linkId, final int recurseLevel, @NonNull final TreeNode parent, final boolean deadendParentIfNoResult)
 	{
 		TreeOp[] changed;
 		if (cursor.moveToFirst())
@@ -1135,8 +1144,15 @@ abstract public class BaseModule extends Module
 		}
 		else
 		{
-			TreeFactory.setNoResult(parent);
-			changed = TreeOp.seq(UPDATE, parent);
+			if (deadendParentIfNoResult)
+			{
+				TreeFactory.setNoResult(parent);
+				changed = TreeOp.seq(DEADEND, parent);
+			}
+			else
+			{
+				changed = TreeOp.seq(NOOP, parent);
+			}
 		}
 
 		cursor.close();
@@ -1148,11 +1164,12 @@ abstract public class BaseModule extends Module
 	/**
 	 * Lexical links
 	 *
-	 * @param synsetId synsetCursorToTreeModel id
-	 * @param wordId   word id
-	 * @param parent   parent node
+	 * @param synsetId                synsetCursorToTreeModel id
+	 * @param wordId                  word id
+	 * @param parent                  parent node
+	 * @param deadendParentIfNoResult mark parent node as deadend if there is no result
 	 */
-	private void lexLinks(final long synsetId, final long wordId, @NonNull final TreeNode parent)
+	private void lexLinks(final long synsetId, final long wordId, @NonNull final TreeNode parent, final boolean deadendParentIfNoResult)
 	{
 		final Uri uri = Uri.parse(WordNetProvider.makeUri(LexLinks_Senses_Words_X.CONTENT_URI_TABLE));
 		final String[] projection = { //
@@ -1164,17 +1181,18 @@ abstract public class BaseModule extends Module
 		final String selection = WordNetContract.LINK + ".synset1id = ? AND " + WordNetContract.LINK + ".word1id = ?";
 		final String[] selectionArgs = {Long.toString(synsetId), Long.toString(wordId)};
 		final String sortOrder = LinkTypes.LINKID;
-		this.lexLinksFromSynsetIdWordIdModel.loadData(uri, projection, selection, selectionArgs, sortOrder, cursor -> lexLinksCursor1ToTreeModel(cursor, parent));
+		this.lexLinksFromSynsetIdWordIdModel.loadData(uri, projection, selection, selectionArgs, sortOrder, cursor -> lexLinksCursor1ToTreeModel(cursor, parent, deadendParentIfNoResult));
 	}
 
 	/**
 	 * Lexical links
 	 *
-	 * @param synsetId synsetCursorToTreeModel id
-	 * @param parent   parent
+	 * @param synsetId                synsetCursorToTreeModel id
+	 * @param parent                  parent
+	 * @param deadendParentIfNoResult mark parent node as deadend if there is no result
 	 */
 	@SuppressWarnings("unused")
-	void lexLinks(final long synsetId, @NonNull final TreeNode parent)
+	void lexLinks(final long synsetId, @NonNull final TreeNode parent, final boolean deadendParentIfNoResult)
 	{
 		final Uri uri = Uri.parse(WordNetProvider.makeUri(LexLinks_Senses_Words_X.CONTENT_URI_TABLE));
 		final String[] projection = { //
@@ -1186,10 +1204,10 @@ abstract public class BaseModule extends Module
 				LinkTypes.LINK};
 		final String selection = WordNetContract.LINK + '.' + LexLinks_Senses_Words_X.SYNSET1ID + " = ?";  ////
 		final String[] selectionArgs = {Long.toString(synsetId)};
-		this.lexLinksFromSynsetIdModel.loadData(uri, projection, selection, selectionArgs, null, cursor -> lexLinksCursor2ToTreeModel(cursor, parent));
+		this.lexLinksFromSynsetIdModel.loadData(uri, projection, selection, selectionArgs, null, cursor -> lexLinksCursor2ToTreeModel(cursor, parent, deadendParentIfNoResult));
 	}
 
-	private TreeOp[] lexLinksCursor1ToTreeModel(@NonNull final Cursor cursor, @NonNull final TreeNode parent)
+	private TreeOp[] lexLinksCursor1ToTreeModel(@NonNull final Cursor cursor, @NonNull final TreeNode parent, final boolean deadendParentIfNoResult)
 	{
 		TreeOp[] changed;
 		if (cursor.moveToFirst())
@@ -1245,14 +1263,21 @@ abstract public class BaseModule extends Module
 		}
 		else
 		{
-			TreeFactory.setNoResult(parent);
-			changed = TreeOp.seq(UPDATE, parent);
+			if (deadendParentIfNoResult)
+			{
+				TreeFactory.setNoResult(parent);
+				changed = TreeOp.seq(DEADEND, parent);
+			}
+			else
+			{
+				changed = TreeOp.seq(NOOP, parent);
+			}
 		}
 		cursor.close();
 		return changed;
 	}
 
-	private TreeOp[] lexLinksCursor2ToTreeModel(@NonNull final Cursor cursor, @NonNull final TreeNode parent)
+	private TreeOp[] lexLinksCursor2ToTreeModel(@NonNull final Cursor cursor, @NonNull final TreeNode parent, final boolean deadendParentIfNoResult)
 	{
 		TreeOp[] changed;
 		if (cursor.moveToFirst())
@@ -1313,8 +1338,15 @@ abstract public class BaseModule extends Module
 		}
 		else
 		{
-			TreeFactory.setNoResult(parent);
-			changed = TreeOp.seq(UPDATE, parent);
+			if (deadendParentIfNoResult)
+			{
+				TreeFactory.setNoResult(parent);
+				changed = TreeOp.seq(DEADEND, parent);
+			}
+			else
+			{
+				changed = TreeOp.seq(NOOP, parent);
+			}
 		}
 		cursor.close();
 		return changed;
@@ -1720,10 +1752,10 @@ abstract public class BaseModule extends Module
 		public void process(@NonNull final TreeNode node)
 		{
 			// sem links
-			semLinks(this.id, node);
+			semLinks(this.id, node, false);
 
 			// lex links
-			lexLinks(this.id, this.wordId, node);
+			lexLinks(this.id, this.wordId, node, false);
 		}
 	}
 
@@ -1746,7 +1778,7 @@ abstract public class BaseModule extends Module
 		@Override
 		public void process(@NonNull final TreeNode node)
 		{
-			semLinks(this.id, node);
+			semLinks(this.id, node, true);
 		}
 	}
 
@@ -1776,7 +1808,7 @@ abstract public class BaseModule extends Module
 		@Override
 		public void process(@NonNull final TreeNode node)
 		{
-			lexLinks(this.id, this.wordId, node);
+			lexLinks(this.id, this.wordId, node, true);
 		}
 	}
 
@@ -1812,7 +1844,7 @@ abstract public class BaseModule extends Module
 		@Override
 		public void process(@NonNull final TreeNode node)
 		{
-			semLinks(this.id, this.linkId, recurseLevel, node);
+			semLinks(this.id, this.linkId, recurseLevel, node, true);
 		}
 	}
 
