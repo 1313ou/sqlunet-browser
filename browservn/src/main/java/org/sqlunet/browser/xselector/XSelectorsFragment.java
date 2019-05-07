@@ -43,6 +43,7 @@ public class XSelectorsFragment extends ExpandableListFragment
 	/**
 	 * A callback interface that all activities containing this fragment must implement. This mechanism allows activities to be notified of item selections.
 	 */
+	@FunctionalInterface
 	public interface Listener
 	{
 		/**
@@ -178,7 +179,6 @@ public class XSelectorsFragment extends ExpandableListFragment
 	/**
 	 * Mandatory empty constructor for the fragment manager to instantiate the fragment (e.g. upon screen orientation changes).
 	 */
-	@SuppressWarnings("boxing")
 	public XSelectorsFragment()
 	{
 		this.groupVerbNetPosition = -1;

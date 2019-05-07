@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- ignore path
+		[2]
+        No glob.
+        string exactly matching project-relative path [platform dependent]
+        string prefix for project-relative path [platform dependent] (e.g. subfolder)
+        The following has to start with `res`:
+            string exactly matching res folder-relative path [platform independent]
+            string prefix for res folder-relative path [platform independent]
+
+		[2]
+        It is either absolute or relative. (Probably both? Have not tested though).
+		When it is relative, it is relative to the root of the module (where build.gradle is located).
+		You can always use **/ wild card like <ignore path="**/res/layout/activation.xml" /> to make it relative to any path.
+-->
+
+<!-- ignore regexp
+	regex matching the message (not whole),
+	or regex matching the project-relative path (not whole)
+	or regex matching the Unix-formatted project-relative path [on Windows] (not whole)
+-->
+
+<lint>
+	<issue id="all">
+		<ignore path="**/tools"/>
+	</issue>
+
+	<issue id="all">
+		<ignore path="tools"/>
+	</issue>
+
+	<issue id="all">
+		<ignore path="SqlUNet/tools"/>
+	</issue>
+
+	<issue id="all">
+		<ignore path="SqlUNet/tools/*.xml"/>
+	</issue>
+
+	<issue id="Spellchecker">
+		<ignore path="**/artwork/*.svg"/>
+	</issue>
+
+</lint>

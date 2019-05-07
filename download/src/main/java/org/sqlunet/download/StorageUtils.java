@@ -729,7 +729,6 @@ public class StorageUtils
 		boolean isDigit = false;
 		try
 		{
-			//noinspection ResultOfMethodCallIgnored
 			Integer.valueOf(lastFolder);
 			isDigit = true;
 		}
@@ -790,7 +789,6 @@ public class StorageUtils
 	 * @param path path
 	 * @return free storage in megabytes
 	 */
-	@SuppressWarnings("deprecation")
 	static private float storageFree(final String path)
 	{
 		try
@@ -834,7 +832,7 @@ public class StorageUtils
 	 * @param path path
 	 * @return storage capacity in megabytes
 	 */
-	@SuppressWarnings({"deprecation", "WeakerAccess"})
+	@SuppressWarnings({"WeakerAccess"})
 	static public float storageCapacity(final String path)
 	{
 		try

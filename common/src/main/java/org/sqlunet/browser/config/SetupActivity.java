@@ -101,12 +101,14 @@ public class SetupActivity extends AppCompatActivity implements TabLayout.OnTabS
 		}
 	}
 
+	@SuppressWarnings("EmptyMethod")
 	@Override
 	public void onTabUnselected(TabLayout.Tab tab)
 	{
 
 	}
 
+	@SuppressWarnings("EmptyMethod")
 	@Override
 	public void onTabReselected(TabLayout.Tab tab)
 	{
@@ -127,9 +129,9 @@ public class SetupActivity extends AppCompatActivity implements TabLayout.OnTabS
 			final List<Fragment> listOfFragments = new ArrayList<>();
 			final Resources res = context.getResources();
 			String[] fragmentClasses = res.getStringArray(R.array.fragment_class_setup_pages);
-			for (int i = 0; i < fragmentClasses.length; i++)
+			for (String fragmentClass : fragmentClasses)
 			{
-				listOfFragments.add(makeFragment(fragmentClasses[i]));
+				listOfFragments.add(makeFragment(fragmentClass));
 			}
 			this.fragments = listOfFragments.toArray(new Fragment[0]);
 		}
@@ -170,7 +172,7 @@ public class SetupActivity extends AppCompatActivity implements TabLayout.OnTabS
 			return null;
 		}
 
-		@SuppressWarnings("TryWithIdenticalCatches")
+		@SuppressWarnings({"TryWithIdenticalCatches", "WeakerAccess"})
 		@NonNull
 		@Override
 		public Fragment getItem(int position)
@@ -178,12 +180,14 @@ public class SetupActivity extends AppCompatActivity implements TabLayout.OnTabS
 			return this.fragments[position];
 		}
 
+		@SuppressWarnings("WeakerAccess")
 		@Override
 		public int getCount()
 		{
 			return this.fragments.length;
 		}
 
+		@SuppressWarnings("WeakerAccess")
 		@Override
 		public CharSequence getPageTitle(int position)
 		{
@@ -204,6 +208,7 @@ public class SetupActivity extends AppCompatActivity implements TabLayout.OnTabS
 
 	// M E N U
 
+	@SuppressWarnings("SameReturnValue")
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu)
 	{
@@ -220,7 +225,6 @@ public class SetupActivity extends AppCompatActivity implements TabLayout.OnTabS
 		// as you specify a parent activity in AndroidManifest.xml.
 		int id = item.getItemId();
 
-		//noinspection SimplifiableIfStatement
 		if (id == R.id.action_settings)
 		{
 			final Intent intent = new Intent(this, SettingsActivity.class);

@@ -3,7 +3,7 @@ package org.sqlunet.browser;
 import android.app.Activity;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
+
 import android.text.SpannableStringBuilder;
 import android.widget.TextView;
 

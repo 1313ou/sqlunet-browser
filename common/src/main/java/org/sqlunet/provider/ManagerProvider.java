@@ -64,13 +64,11 @@ public class ManagerProvider extends BaseProvider
 	@Override
 	public String getType(@NonNull final Uri uri)
 	{
-		switch (ManagerProvider.uriMatcher.match(uri))
+		if (ManagerProvider.uriMatcher.match(uri) == TABLES_AND_INDICES)
 		{
-			case TABLES_AND_INDICES:
-				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + TablesAndIndices.TABLE;
-			default:
-				throw new UnsupportedOperationException("Illegal MIME type");
+			return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + TablesAndIndices.TABLE;
 		}
+		throw new UnsupportedOperationException("Illegal MIME type");
 	}
 
 	// Q U E R Y
@@ -105,7 +103,6 @@ public class ManagerProvider extends BaseProvider
 				throw new RuntimeException("Malformed URI " + uri);
 		}
 
-		final String groupBy = null;
 		//if (BaseProvider.logSql)
 		//{
 			// final String sql = SQLiteQueryBuilder.buildQueryString(false, table, projection, selection, groupBy, null, sortOrder, null);
@@ -117,11 +114,11 @@ public class ManagerProvider extends BaseProvider
 		// do query
 		try
 		{
-			return this.db.query(table, projection, selection, selectionArgs, groupBy, null, sortOrder);
+			return this.db.query(table, projection, selection, selectionArgs, null, null, sortOrder);
 		}
 		catch (SQLiteException e)
 		{
-			final String sql = SQLiteQueryBuilder.buildQueryString(false, table, projection, selection, groupBy, null, sortOrder, null);
+			final String sql = SQLiteQueryBuilder.buildQueryString(false, table, projection, selection, null, null, sortOrder, null);
 			Log.d(ManagerProvider.TAG + "SQL", sql);
 			Log.e(TAG, "Manager provider query failed", e);
 			return null;
@@ -143,8 +140,7 @@ public class ManagerProvider extends BaseProvider
 		final String[] projection = {TablesAndIndices.TYPE, TablesAndIndices.NAME};
 		final String selection = TablesAndIndices.TYPE + " = 'table' AND name NOT IN ('sqlite_sequence', 'android_metadata' )";
 		final String[] selectionArgs = {};
-		final String sortOrder = null;
-		final Cursor cursor = context.getContentResolver().query(uri, projection, selection, selectionArgs, sortOrder);
+		final Cursor cursor = context.getContentResolver().query(uri, projection, selection, selectionArgs, null);
 		if (cursor != null)
 		{
 			if (cursor.moveToFirst())

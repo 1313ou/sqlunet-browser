@@ -2,6 +2,8 @@ package org.sqlunet.browser.fn;
 
 import java.io.InputStream;
 
+import androidx.annotation.Nullable;
+
 /**
  * XSL Transformer
  *
@@ -18,16 +20,15 @@ public class DocumentTransformer extends org.sqlunet.browser.web.DocumentTransfo
 	 * @param isSelector is selector source
 	 * @return XSL inputstream
 	 */
+	@Nullable
 	protected InputStream getXSLStream(final String source, final boolean isSelector)
 	{
-		String xsl = null;
 		Settings.Source from = Settings.Source.valueOf(source);
-		switch (from)
+		if (from == Settings.Source.FRAMENET)
 		{
-			case FRAMENET:
-				xsl = DocumentTransformer.XSL_DIR + (isSelector ? "framenet2html-select.xsl" : "framenet2html.xsl");
-				break;
+			final String xsl = DocumentTransformer.XSL_DIR + (isSelector ? "framenet2html-select.xsl" : "framenet2html.xsl");
+			return DocumentTransformer.class.getResourceAsStream(xsl);
 		}
-		return DocumentTransformer.class.getResourceAsStream(xsl);
+		return null;
 	}
 }

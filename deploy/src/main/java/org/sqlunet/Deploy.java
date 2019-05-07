@@ -32,10 +32,11 @@ public class Deploy
 {
 	static private final String TAG = "Deploy";
 
+	@FunctionalInterface
 	public interface InputStreamGetter
 	{
 		@NonNull
-		InputStream get(String path) throws IOException;
+		InputStream get(String path);
 	}
 
 	/**
@@ -142,7 +143,7 @@ public class Deploy
 	 * @param getter   input stream getter
 	 * @return uri of dest dir
 	 */
-	@SuppressWarnings({"resource", "UnusedReturnValue"})
+	@SuppressWarnings({"UnusedReturnValue"})
 	static private Uri expandZipFile(final String fromPath, @NonNull final File toDir, @SuppressWarnings("SameParameterValue") final boolean flatten, @NonNull final InputStreamGetter getter)
 	{
 		//noinspection ResultOfMethodCallIgnored
@@ -269,6 +270,7 @@ public class Deploy
 	 */
 	static private final int CHUNK_SIZE = 1024;
 
+	@FunctionalInterface
 	public interface Publisher
 	{
 		void publish(long current, long total);
@@ -365,7 +367,6 @@ public class Deploy
 				// Log.d(TAG, outFile + " exist=" + outFile.exists());
 
 				// create all non exists folders else you will hit FileNotFoundException for compressed folder
-				//noinspection ResultOfMethodCallIgnored
 				final File dir = new File(outFile.getParent());
 				boolean created = dir.mkdirs();
 				Log.d(TAG, dir + " created=" + created + " exists=" + dir.exists());
@@ -413,6 +414,7 @@ public class Deploy
 				{
 					Log.d(TAG, outFile + " exist=" + outFile.exists());
 					long stamp = zipEntry.getTime();
+					//noinspection ResultOfMethodCallIgnored
 					outFile.setLastModified(stamp);
 				}
 			}
@@ -507,6 +509,7 @@ public class Deploy
 			{
 				Log.d(TAG, outFile + " exist=" + outFile.exists());
 				long stamp = zipEntry.getTime();
+				//noinspection ResultOfMethodCallIgnored
 				outFile.setLastModified(stamp);
 				return true;
 			}
@@ -598,7 +601,6 @@ public class Deploy
 	 * @param getter   input stream getter
 	 * @return uri of copied file
 	 */
-	@SuppressWarnings("resource")
 	@Nullable
 	static synchronized public Uri copyFile(@NonNull final String fileName, @NonNull final File fromDir, @NonNull final File toDir, @NonNull final InputStreamGetter getter)
 	{
@@ -634,7 +636,6 @@ public class Deploy
 		}
 		try (InputStream in = getter.get(fromPath); OutputStream out = new FileOutputStream(toPath))
 		{
-			//noinspection ResultOfMethodCallIgnored
 			copyStreams(in, out);
 			return true;
 		}
@@ -664,7 +665,6 @@ public class Deploy
 		}
 		try (InputStream in = new FileInputStream(fromPath); OutputStream out = new FileOutputStream(toPath))
 		{
-			//noinspection ResultOfMethodCallIgnored
 			copyStreams(in, out);
 			return true;
 		}

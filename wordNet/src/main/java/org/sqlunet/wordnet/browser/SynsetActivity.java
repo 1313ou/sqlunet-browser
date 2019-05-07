@@ -53,6 +53,7 @@ public class SynsetActivity extends AppCompatActivity
 		}
 	}
 
+	@SuppressWarnings("WeakerAccess")
 	@Override
 	public void onStart()
 	{

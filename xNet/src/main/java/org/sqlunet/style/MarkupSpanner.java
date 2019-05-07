@@ -19,6 +19,7 @@ public class MarkupSpanner extends Spanner
 	 *
 	 * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
 	 */
+	@FunctionalInterface
 	public interface SpanFactory
 	{
 		@Nullable

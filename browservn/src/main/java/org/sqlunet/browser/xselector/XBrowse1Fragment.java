@@ -89,7 +89,7 @@ public class XBrowse1Fragment extends Fragment implements XSelectorsFragment.Lis
 	// I T E M S E L E C T I O N H A N D L I N G
 
 	/**
-	 * Callback method from {@link XSelectorsFragment.Listener} indicating that the item with the given ID was selected.
+	 * Callback method indicating that the item with the given ID was selected.
 	 */
 	@Override
 	public void onItemSelected(final XSelectorPointer pointer, final String word, final String cased, final String pos)

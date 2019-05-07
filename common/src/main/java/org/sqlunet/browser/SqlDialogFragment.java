@@ -1,6 +1,7 @@
 package org.sqlunet.browser;
 
 import android.annotation.SuppressLint;
+import android.app.Dialog;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -24,7 +25,9 @@ public class SqlDialogFragment extends DialogFragment
 	@Override
 	public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
 	{
-		getDialog().setTitle(R.string.title_dialog_sql);
+		final Dialog dialog = getDialog();
+		assert dialog != null;
+		dialog.setTitle(R.string.title_dialog_sql);
 
 		@SuppressLint("InflateParams") final View view = inflater.inflate(R.layout.fragment_sql, container);
 

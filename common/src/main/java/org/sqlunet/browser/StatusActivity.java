@@ -45,6 +45,7 @@ public class StatusActivity extends AppCompatActivity
 
 	// M E N U
 
+	@SuppressWarnings("SameReturnValue")
 	@Override
 	public boolean onCreateOptionsMenu(final Menu menu)
 	{
@@ -57,16 +58,14 @@ public class StatusActivity extends AppCompatActivity
 	public boolean onOptionsItemSelected(@NonNull final MenuItem item)
 	{
 		// handle item selection
-		switch (item.getItemId())
+		if (item.getItemId() == android.R.id.home)
 		{
-			case android.R.id.home:
-				final Intent intent = getIntent();
-				boolean cantRun = intent.getBooleanExtra(Status.CANTRUN, false);
-				if (!cantRun)
-				{
-					return super.onOptionsItemSelected(item);
-				}
-				break;
+			final Intent intent = getIntent();
+			boolean cantRun = intent.getBooleanExtra(Status.CANTRUN, false);
+			if (!cantRun)
+			{
+				return super.onOptionsItemSelected(item);
+			}
 		}
 
 		return MenuHandler.menuDispatch(this, item);

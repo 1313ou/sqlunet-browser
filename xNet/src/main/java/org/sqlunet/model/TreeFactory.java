@@ -230,9 +230,4 @@ public class TreeFactory
 	{
 		node.setValue(sb);
 	}
-
-	public static void setLevels(final TreeNode node, final int levels)
-	{
-		// TODO
-	}
 }

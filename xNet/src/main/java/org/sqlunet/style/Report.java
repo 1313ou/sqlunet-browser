@@ -54,7 +54,6 @@ public class Report
 	 * @return spannable string builder
 	 */
 	@NonNull
-	@SuppressWarnings("TypeMayBeWeakened")
 	static public SpannableStringBuilder appendHeader(@NonNull SpannableStringBuilder sb, CharSequence text)
 	{
 		return append(sb, text, new StyleSpan(Typeface.BOLD));
@@ -79,7 +78,6 @@ public class Report
 	 * @param resId   res id
 	 * @return image span
 	 */
-	@SuppressWarnings("deprecation")
 	static private Object makeImageSpan(@NonNull final Context context, final int resId)
 	{
 		final Resources res = context.getResources();

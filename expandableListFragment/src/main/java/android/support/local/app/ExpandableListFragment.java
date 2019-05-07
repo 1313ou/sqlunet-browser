@@ -465,6 +465,7 @@ public class ExpandableListFragment extends Fragment implements ExpandableListVi
 	 * <p>
 	 * {@inheritDoc}
 	 */
+	@SuppressWarnings("BooleanMethodIsAlwaysInverted")
 	@Override
 	public boolean onChildClick(ExpandableListView parent, View v, int groupPosition, int childPosition, long id)
 	{
@@ -496,8 +497,9 @@ public class ExpandableListFragment extends Fragment implements ExpandableListVi
 	 * <p>
 	 * {@inheritDoc}
 	 */
+	@SuppressWarnings("EmptyMethod")
 	@Override
-	public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo)
+	public void onCreateContextMenu(@NonNull ContextMenu menu, @NonNull View v, ContextMenu.ContextMenuInfo menuInfo)
 	{
 		//
 	}

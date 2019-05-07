@@ -19,7 +19,7 @@ public class TreeOpExecute
 {
 	private static final String TAG = "TreeOpExecute";
 
-	private TreeFragment fragment;
+	private final TreeFragment fragment;
 
 	public TreeOpExecute(final TreeFragment fragment)
 	{
@@ -31,7 +31,8 @@ public class TreeOpExecute
 		execImpl(ops);
 	}
 
-	private void noopImpl(final TreeOp[] ops)
+	@SuppressWarnings("EmptyMethod")
+	private void noopImpl(@SuppressWarnings("unused") final TreeOp[] ops)
 	{
 	}
 
@@ -133,6 +134,7 @@ public class TreeOpExecute
 	private void expandChildrenImpl(final TreeOp[] ops)
 	{
 		final TreeView treeView = this.fragment.getTreeView();
+		assert treeView != null;
 		final TreeNode node = ops[0].getNode();
 		treeView.expandNode(node, -1, false);
 	}

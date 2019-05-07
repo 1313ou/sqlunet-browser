@@ -1,14 +1,13 @@
 package org.sqlunet.browser;
 
 import android.annotation.TargetApi;
-import android.app.Activity;
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
+
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -64,7 +63,6 @@ public class HelpFragment extends NavigableFragment
 				Log.e(HelpFragment.TAG, error.toString());
 			}
 
-			@SuppressWarnings("deprecation")
 			@Override
 			public void onReceivedError(final WebView webView, final int errorCode, final String description, final String failingUrl)
 			{
@@ -89,7 +87,6 @@ public class HelpFragment extends NavigableFragment
 				return false;
 			}
 
-			@SuppressWarnings("deprecation")
 			@Override
 			public boolean shouldOverrideUrlLoading(@NonNull final WebView webView, @NonNull final String url)
 			{

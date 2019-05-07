@@ -138,7 +138,7 @@ public class SetupStatusFragment extends org.sqlunet.browser.config.SetupStatusF
 			if (existsDb)
 			{
 				final long size = new File(database).length();
-				final String hrSize = StorageUtils.countToStorageString(size) + " (" + Long.toString(size) + ')';
+				final String hrSize = StorageUtils.countToStorageString(size) + " (" + size + ')';
 				Info.info(activity, R.string.title_status, //
 						getString(R.string.title_database), database, //
 						getString(R.string.title_status), getString(R.string.status_database_exists), //

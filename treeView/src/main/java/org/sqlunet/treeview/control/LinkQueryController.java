@@ -1,11 +1,12 @@
 package org.sqlunet.treeview.control;
 
 import android.content.Context;
-import androidx.annotation.NonNull;
 import android.view.View;
 
 import org.sqlunet.treeview.R;
 import org.sqlunet.treeview.model.TreeNode;
+
+import androidx.annotation.NonNull;
 
 /**
  * Query controller (expanding this controller will trigger query)
@@ -25,11 +26,11 @@ public class LinkQueryController extends ColdQueryController
 		this.layoutRes = R.layout.layout_tree_link;
 	}
 
+	@NonNull
 	@Override
 	public View createNodeView(@NonNull final Context context, final TreeNode node, @NonNull final CompositeValue value)
 	{
 		final View view = super.createNodeView(context, node, value);
-		assert view != null;
 
 		// link listener
 		final View hotLink = view.findViewById(R.id.node_link);

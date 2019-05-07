@@ -24,6 +24,7 @@ import android.util.Log;
 import android.util.Pair;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter.ViewBinder;
 import android.widget.TextView;
@@ -34,11 +35,13 @@ import org.sqlunet.framenet.FnLexUnitPointer;
 import org.sqlunet.framenet.FnSentencePointer;
 import org.sqlunet.framenet.provider.FrameNetContract;
 import org.sqlunet.propbank.PbRoleSetPointer;
+import org.sqlunet.propbank.browser.PbRoleSetActivity;
 import org.sqlunet.propbank.provider.PropBankContract;
 import org.sqlunet.provider.ProviderArgs;
 import org.sqlunet.style.RegExprSpanner;
 import org.sqlunet.style.Spanner.SpanFactory;
 import org.sqlunet.verbnet.VnClassPointer;
+import org.sqlunet.verbnet.browser.VnClassActivity;
 import org.sqlunet.verbnet.provider.VerbNetContract;
 import org.sqlunet.wordnet.SynsetPointer;
 import org.sqlunet.wordnet.WordPointer;
@@ -146,14 +149,16 @@ public class TextFragment extends AbstractTableFragment
 	// C L I C K
 
 	@Override
-	public void onListItemClick(final ListView listView, final View view, final int position, final long id)
+	public void onListItemClick(@NonNull final ListView listView, @NonNull final View view, final int position, final long id)
 	{
 		super.onListItemClick(listView, view, position, id);
 
 		Log.d(TAG, "CLICK id=" + id + " pos=" + position);
 
 		// cursor
-		final Object item = getListAdapter().getItem(position);
+		final ListAdapter adapter = getListAdapter();
+		assert adapter != null;
+		final Object item = adapter.getItem(position);
 		final Cursor cursor = (Cursor) item;
 
 		// args
@@ -313,13 +318,11 @@ public class TextFragment extends AbstractTableFragment
 		Parcelable pointer = null;
 
 		// intent, type, pointer
-		switch (typedPointer.type)
+		if (typedPointer.type == 0)
 		{
-			case 0:
-				pointer = new VnClassPointer(targetId);
-				targetIntent = new Intent(requireContext(), org.sqlunet.verbnet.browser.VnClassActivity.class);
-				targetIntent.putExtra(ProviderArgs.ARG_QUERYTYPE, ProviderArgs.ARG_QUERYTYPE_VNCLASS);
-				break;
+			pointer = new VnClassPointer(targetId);
+			targetIntent = new Intent(requireContext(), VnClassActivity.class);
+			targetIntent.putExtra(ProviderArgs.ARG_QUERYTYPE, ProviderArgs.ARG_QUERYTYPE_VNCLASS);
 		}
 
 		// pass pointer
@@ -343,13 +346,11 @@ public class TextFragment extends AbstractTableFragment
 		Parcelable pointer = null;
 
 		// intent, type, pointer
-		switch (typedPointer.type)
+		if (typedPointer.type == 0)
 		{
-			case 0:
-				pointer = new PbRoleSetPointer(targetId);
-				targetIntent = new Intent(requireContext(), org.sqlunet.propbank.browser.PbRoleSetActivity.class);
-				targetIntent.putExtra(ProviderArgs.ARG_QUERYTYPE, ProviderArgs.ARG_QUERYTYPE_PBROLESET);
-				break;
+			pointer = new PbRoleSetPointer(targetId);
+			targetIntent = new Intent(requireContext(), PbRoleSetActivity.class);
+			targetIntent.putExtra(ProviderArgs.ARG_QUERYTYPE, ProviderArgs.ARG_QUERYTYPE_PBROLESET);
 		}
 
 		// pass pointer
@@ -541,7 +542,6 @@ public class TextFragment extends AbstractTableFragment
 	 * @param resId   res id
 	 * @return image span
 	 */
-	@SuppressWarnings("deprecation")
 	static private Object makeImageSpan(@NonNull final Context context, final int resId)
 	{
 		Drawable drawable;

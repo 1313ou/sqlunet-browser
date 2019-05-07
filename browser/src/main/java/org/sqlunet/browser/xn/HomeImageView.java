@@ -137,6 +137,7 @@ class HomeImageView extends AppCompatImageView
 		});
 	}
 
+	@SuppressWarnings("SameReturnValue")
 	@Override
 	public boolean performClick()
 	{

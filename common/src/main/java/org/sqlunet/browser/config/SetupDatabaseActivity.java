@@ -51,6 +51,7 @@ public class SetupDatabaseActivity extends AppCompatActivity
 
 	// M E N U
 
+	@SuppressWarnings("SameReturnValue")
 	@Override
 	public boolean onCreateOptionsMenu(final Menu menu)
 	{
@@ -62,16 +63,14 @@ public class SetupDatabaseActivity extends AppCompatActivity
 	@Override
 	public boolean onOptionsItemSelected(@NonNull final MenuItem item)
 	{
-		switch (item.getItemId())
+		if (item.getItemId() == android.R.id.home)
 		{
-			case android.R.id.home:
-				final Intent intent = getIntent();
-				boolean cantRun = intent.getBooleanExtra(Status.CANTRUN, false);
-				if (!cantRun)
-				{
-					return super.onOptionsItemSelected(item);
-				}
-				break;
+			final Intent intent = getIntent();
+			boolean cantRun = intent.getBooleanExtra(Status.CANTRUN, false);
+			if (!cantRun)
+			{
+				return super.onOptionsItemSelected(item);
+			}
 		}
 
 		return MenuHandler.menuDispatch(this, item);

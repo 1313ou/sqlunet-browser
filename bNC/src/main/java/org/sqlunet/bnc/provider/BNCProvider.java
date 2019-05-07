@@ -142,8 +142,7 @@ public class BNCProvider extends BaseProvider
 				throw new RuntimeException("Malformed URI " + uri);
 		}
 
-		final String groupBy = null;
-		final String sql = SQLiteQueryBuilder.buildQueryString(false, table, projection, actualSelection, groupBy, null, sortOrder, null);
+		final String sql = SQLiteQueryBuilder.buildQueryString(false, table, projection, actualSelection, null, null, sortOrder, null);
 		logSql(sql, selectionArgs);
 		if (BaseProvider.logSql)
 		{
@@ -154,7 +153,7 @@ public class BNCProvider extends BaseProvider
 		// do query
 		try
 		{
-			return this.db.query(table, projection, actualSelection, selectionArgs, groupBy, null, sortOrder);
+			return this.db.query(table, projection, actualSelection, selectionArgs, null, null, sortOrder);
 		}
 		catch (SQLiteException e)
 		{

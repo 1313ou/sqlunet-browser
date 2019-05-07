@@ -1,6 +1,5 @@
 package org.sqlunet.browser;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -314,10 +313,9 @@ public class BrowseFragment extends BaseSearchFragment
 		switch (selectorMode)
 		{
 			case VIEW:
-				switch (selectorType)
+				if (selectorType == org.sqlunet.settings.Settings.Selector.SELECTOR)
 				{
-					case SELECTOR:
-						return new Browse1Fragment();
+					return new Browse1Fragment();
 				}
 				break;
 
@@ -353,11 +351,9 @@ public class BrowseFragment extends BaseSearchFragment
 		{
 			case VIEW:
 				Class<?> intentClass = null;
-				switch (selectorType)
+				if (selectorType == org.sqlunet.settings.Settings.Selector.SELECTOR)
 				{
-					case SELECTOR:
-						intentClass = Browse1Activity.class;
-						break;
+					intentClass = Browse1Activity.class;
 				}
 				intent = new Intent(requireContext(), intentClass);
 				break;

@@ -7,6 +7,7 @@ import androidx.annotation.Nullable;
  *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
+@FunctionalInterface
 interface DocumentStringLoader
 {
 	/**

@@ -1,8 +1,5 @@
 package org.sqlunet.treeview.model;
 
-import android.view.View;
-import android.view.ViewGroup;
-
 import org.sqlunet.treeview.control.Controller;
 
 import java.util.ArrayList;
@@ -45,7 +42,7 @@ public class TreeNode
 	 * Controller
 	 */
 	@NonNull
-	private Controller<?> controller;
+	private final Controller<?> controller;
 
 	/**
 	 * Click listener
@@ -588,23 +585,11 @@ public class TreeNode
 	@Override
 	public String toString()
 	{
-		final StringBuilder sb = new StringBuilder();
-		//sb.append("id=");
-		sb.append('#');
-		sb.append(id);
-		sb.append(' ');
-		//sb.append("value=");
-		sb.append(value == null ? "null" : '[' + value.toString().replace('\n', '┃') + ']');
-		sb.append(' ');
-		sb.append("controller=");
-		sb.append(controller.getClass().getSimpleName());
-		sb.append(' ');
-		sb.append("parent=");
-		sb.append(parent == null ? "none" : parent.id);
-		sb.append(' ');
-		sb.append("children=");
-		sb.append(children == null ? "none" : children.size());
-		return sb.toString();
+		return "#" + id + ' ' + //
+				(value == null ? "null" : '[' + value.toString().replace('\n', '┃') + ']') + ' ' + //
+				"controller=" + controller.getClass().getSimpleName() + ' ' + //
+				"parent=" + (parent == null ? "none" : parent.id) + ' ' + //
+				"num children=" + children.size();
 	}
 
 	@NonNull
@@ -615,7 +600,6 @@ public class TreeNode
 		return sb.toString();
 	}
 
-	@NonNull
 	private void toStringWithChildren(final StringBuilder sb, final int level)
 	{
 		if (level > 0)
@@ -667,6 +651,7 @@ public class TreeNode
 	/**
 	 * Click listener interface
 	 */
+	@FunctionalInterface
 	@SuppressWarnings("unused")
 	public interface TreeNodeClickListener
 	{

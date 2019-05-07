@@ -19,7 +19,7 @@
 		android:id="@+id/container_synset"
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
-		app:layout_behavior="@string/appbar_scrolling_view_behavior"
+		app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
 		tools:context="org.sqlunet.wordnet.browser.SynsetFragment"
 		tools:ignore="MergeRootFrame"/>
 

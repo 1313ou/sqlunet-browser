@@ -197,7 +197,7 @@ class Mapping
 		}
 		catch (@NonNull final IndexOutOfBoundsException e)
 		{
-			return "lexdomainid." + Integer.toString(lexDomainId);
+			return "lexdomainid." + lexDomainId;
 		}
 	}
 
@@ -217,7 +217,7 @@ class Mapping
 		}
 		catch (@NonNull final IndexOutOfBoundsException e)
 		{
-			return "lexdomainid." + Integer.toString(lexDomainId);
+			return "lexdomainid." + lexDomainId;
 		}
 	}
 
@@ -293,7 +293,7 @@ class Mapping
 		}
 		catch (@NonNull final NullPointerException e)
 		{
-			return "linktype." + Integer.toString(linkType);
+			return "linktype." + linkType;
 		}
 	}
 

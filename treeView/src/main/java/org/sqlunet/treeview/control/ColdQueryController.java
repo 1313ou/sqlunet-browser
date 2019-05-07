@@ -1,9 +1,5 @@
 package org.sqlunet.treeview.control;
 
-import android.content.Context;
-
-import org.sqlunet.treeview.R;
-
 /**
  * Query controller (expanding this controller will trigger query)
  *

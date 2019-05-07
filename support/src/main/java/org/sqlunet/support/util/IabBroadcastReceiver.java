@@ -36,6 +36,7 @@ public class IabBroadcastReceiver extends BroadcastReceiver {
     /**
      * Listener interface for received broadcast messages.
      */
+    @FunctionalInterface
     public interface IabBroadcastListener {
         void receivedBroadcast();
     }

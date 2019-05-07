@@ -43,27 +43,6 @@ public class SubtreeView extends LinearLayout
 	/**
 	 * Constructor
 	 *
-	 * @param context context
-	 */
-	public SubtreeView(final Context context)
-	{
-		this(context, -1, null);
-	}
-
-	/**
-	 * Constructor
-	 *
-	 * @param context        context
-	 * @param containerStyle container style
-	 */
-	public SubtreeView(final Context context, final int containerStyle)
-	{
-		this(context, containerStyle, null);
-	}
-
-	/**
-	 * Constructor
-	 *
 	 * @param context        context
 	 * @param containerStyle container style
 	 * @param nodeView       node view (group)
@@ -158,9 +137,9 @@ public class SubtreeView extends LinearLayout
 	 *
 	 * @param nodeView node view
 	 */
-	public void insertNodeView(final View nodeView)
+	public void insertNodeView(@NonNull final View nodeView)
 	{
-		this.nodeView.setId(R.id.node_label);
+		nodeView.setId(R.id.node_label);
 		addView(nodeView, 0, new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
 	}
 

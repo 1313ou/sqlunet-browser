@@ -90,7 +90,9 @@ public class NavigationFragment extends NavigationDrawerFragment implements Navi
 	public Fragment getActiveFragment()
 	{
 		final String tag = this.fragmentTags[this.selectedPosition];
-		return tag == null ? null : getFragmentManager().findFragmentByTag(tag);
+		final FragmentManager manager = getFragmentManager();
+		assert manager != null;
+		return tag == null ? null : manager.findFragmentByTag(tag);
 	}
 
 	/**
@@ -185,7 +187,8 @@ public class NavigationFragment extends NavigationDrawerFragment implements Navi
 	{
 		Log.d(TAG, "Section fragments " + position);
 		final FragmentManager manager = getFragmentManager();
-		final FragmentTransaction transaction = getFragmentManager().beginTransaction();
+		assert manager != null;
+		final FragmentTransaction transaction = manager.beginTransaction();
 		transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
 
 		final String tag = this.fragmentTags[position];

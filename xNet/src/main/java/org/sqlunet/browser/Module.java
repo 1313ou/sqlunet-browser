@@ -1,18 +1,10 @@
 package org.sqlunet.browser;
 
-import android.content.Context;
-import android.database.Cursor;
 import android.os.Parcelable;
-import android.util.Log;
 
 import org.sqlunet.treeview.model.TreeNode;
 
-import java.util.AbstractMap;
-
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-import androidx.lifecycle.MediatorLiveData;
 
 /**
  * Abstract module to perform queries
@@ -21,7 +13,7 @@ import androidx.lifecycle.MediatorLiveData;
  */
 public abstract class Module
 {
-	static private final String TAG = "Module";
+	// static private final String TAG = "Module";
 
 	/**
 	 * Fragment

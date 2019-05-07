@@ -65,6 +65,7 @@ public class FrameNetImplementation implements FrameNetInterface
 	 * @param pos        the pos to build query from
 	 * @return FrameNet data as DOM document
 	 */
+	@SuppressWarnings("WeakerAccess")
 	@Override
 	public Document queryDoc(final SQLiteDatabase connection, final String word, final Character pos)
 	{

@@ -1,8 +1,6 @@
 package org.sqlunet.treeview.control;
 
 import android.content.Context;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
@@ -10,6 +8,8 @@ import android.widget.TextView;
 
 import org.sqlunet.treeview.R;
 import org.sqlunet.treeview.model.TreeNode;
+
+import androidx.annotation.NonNull;
 
 /**
  * Leaf controller with icon
@@ -33,7 +33,7 @@ public class LeafController extends Controller<CompositeValue>
 		super();
 	}
 
-	@Nullable
+	@NonNull
 	@Override
 	public View createNodeView(@NonNull final Context context, final TreeNode node, @NonNull final CompositeValue value)
 	{

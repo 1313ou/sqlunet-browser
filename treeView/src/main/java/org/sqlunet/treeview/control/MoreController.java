@@ -1,7 +1,6 @@
 package org.sqlunet.treeview.control;
 
 import android.content.Context;
-import androidx.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
@@ -9,6 +8,8 @@ import android.widget.TextView;
 
 import org.sqlunet.treeview.R;
 import org.sqlunet.treeview.model.TreeNode;
+
+import androidx.annotation.NonNull;
 
 /**
  * More controller with icon
@@ -32,11 +33,13 @@ public class MoreController extends Controller<CompositeValue>
 		super();
 	}
 
+	@NonNull
 	@Override
 	public View createNodeView(@NonNull final Context context, final TreeNode node, @NonNull final CompositeValue value)
 	{
 		final LayoutInflater inflater = LayoutInflater.from(context);
 		final View view = inflater.inflate(this.layoutRes, null, false);
+		assert view != null;
 
 		// junction
 		// final ImageView junctionView = (ImageView) view.findViewById(R.id.junction_icon);

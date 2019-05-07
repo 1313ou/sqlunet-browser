@@ -68,10 +68,10 @@ public class SenseModule extends SynsetModule
 			morphs(this.wordId, morphsNode);
 
 			// links and samples
-			final TreeNode linksNode = this.expand ?
+			@SuppressWarnings("unused") final TreeNode linksNode = this.expand ?
 					TreeFactory.addHotQueryNode(parent, "Links", R.drawable.ic_links, new LinksQuery(this.synsetId, this.wordId)) :
 					TreeFactory.addQueryNode(parent, "Links", R.drawable.ic_links, new LinksQuery(this.synsetId, this.wordId));
-			final TreeNode samplesNode = this.expand ? TreeFactory.addHotQueryNode(parent, "Samples", R.drawable.sample, new SamplesQuery(this.synsetId)) : TreeFactory.addQueryNode(parent, "Samples", R.drawable.sample, new SamplesQuery(this.synsetId));
+			@SuppressWarnings("unused") final TreeNode samplesNode = this.expand ? TreeFactory.addHotQueryNode(parent, "Samples", R.drawable.sample, new SamplesQuery(this.synsetId)) : TreeFactory.addQueryNode(parent, "Samples", R.drawable.sample, new SamplesQuery(this.synsetId));
 
 			// special
 			if (this.pos != null)

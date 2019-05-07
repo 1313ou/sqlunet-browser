@@ -58,6 +58,7 @@ public class SynsetModule extends BaseModule
 		this.expand = expand;
 	}
 
+	@SuppressWarnings("WeakerAccess")
 	@Override
 	protected void unmarshal(final Parcelable pointer)
 	{
@@ -111,8 +112,8 @@ public class SynsetModule extends BaseModule
 			}
 
 			// links and samples
-			final TreeNode linksNode = this.expand ? TreeFactory.addHotQueryNode(parent, "Links", R.drawable.ic_links, new LinksQuery(this.synsetId, 0)) : TreeFactory.addQueryNode(parent, "Links", R.drawable.ic_links, new LinksQuery(this.synsetId, 0));
-			final TreeNode samplesNode = this.expand ? TreeFactory.addQueryNode(parent, "Samples", R.drawable.sample, new SamplesQuery(this.synsetId)) : TreeFactory.addQueryNode(parent, "Samples", R.drawable.sample, new SamplesQuery(this.synsetId));
+			@SuppressWarnings("unused") final TreeNode linksNode = this.expand ? TreeFactory.addHotQueryNode(parent, "Links", R.drawable.ic_links, new LinksQuery(this.synsetId, 0)) : TreeFactory.addQueryNode(parent, "Links", R.drawable.ic_links, new LinksQuery(this.synsetId, 0));
+			@SuppressWarnings("unused") final TreeNode samplesNode = this.expand ? TreeFactory.addQueryNode(parent, "Samples", R.drawable.sample, new SamplesQuery(this.synsetId)) : TreeFactory.addQueryNode(parent, "Samples", R.drawable.sample, new SamplesQuery(this.synsetId));
 		}
 		else
 		{

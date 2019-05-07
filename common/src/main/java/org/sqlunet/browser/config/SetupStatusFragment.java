@@ -123,7 +123,7 @@ public class SetupStatusFragment extends Fragment implements Updatable
 			if (existsDb)
 			{
 				final long size = new File(database).length();
-				final String hrSize = StorageUtils.countToStorageString(size) + " (" + Long.toString(size) + ')';
+				final String hrSize = StorageUtils.countToStorageString(size) + " (" + size + ')';
 				Info.info(activity, R.string.title_status, //
 						getString(R.string.title_database), database, //
 						getString(R.string.title_status), getString(R.string.status_database_exists), //
@@ -227,30 +227,26 @@ public class SetupStatusFragment extends Fragment implements Updatable
 	public void onActivityResult(final int requestCode, final int resultCode, final Intent returnIntent)
 	{
 		// handle selection of input by other activity which returns selected input
-		switch (requestCode)
+		if (requestCode == REQUEST_DOWNLOAD_CODE)
 		{
-			case REQUEST_DOWNLOAD_CODE:
-				boolean success = resultCode == Activity.RESULT_OK;
-				Log.d(TAG, "Download " + (success ? "succeeded" : "failed")); ////
-				update();
-				if (success)
+			boolean success = resultCode == Activity.RESULT_OK;
+			Log.d(TAG, "Download " + (success ? "succeeded" : "failed")); ////
+			update();
+			if (success)
+			{
+				final Context context = requireContext();
+
+				Toast.makeText(context, R.string.title_download_complete, Toast.LENGTH_SHORT).show();
+
+				final Intent intent = new Intent(context, MainActivity.class);
+				intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+				startActivity(intent);
+				final Activity activity = getActivity();
+				if (activity != null)
 				{
-					final Context context = requireContext();
-
-					Toast.makeText(context, R.string.title_download_complete, Toast.LENGTH_SHORT).show();
-
-					final Intent intent = new Intent(context, MainActivity.class);
-					intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-					startActivity(intent);
-					final Activity activity = getActivity();
-					if (activity != null)
-					{
-						activity.finish();
-					}
+					activity.finish();
 				}
-				break;
-			default:
-				break;
+			}
 		}
 		super.onActivityResult(requestCode, resultCode, returnIntent);
 	}
@@ -258,7 +254,7 @@ public class SetupStatusFragment extends Fragment implements Updatable
 	// M E N U
 
 	@Override
-	public void onCreateOptionsMenu(final Menu menu, @NonNull final MenuInflater inflater)
+	public void onCreateOptionsMenu(@NonNull final Menu menu, @NonNull final MenuInflater inflater)
 	{
 		// inflate the menu; this adds items to the type bar if it is present.
 		inflater.inflate(R.menu.status, menu);

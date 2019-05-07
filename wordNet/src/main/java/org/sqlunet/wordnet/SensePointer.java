@@ -81,6 +81,6 @@ public class SensePointer extends SynsetPointer implements HasWordId
 	@Override
 	public String toString()
 	{
-		return super.toString() + ' ' + "wordid=" + Long.toString(this.wordId);
+		return super.toString() + ' ' + "wordid=" + this.wordId;
 	}
 }

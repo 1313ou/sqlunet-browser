@@ -67,11 +67,13 @@ public abstract class AbstractBrowseActivity<F extends BaseSearchFragment> exten
 	@Override
 	protected void onNewIntent(@NonNull final Intent intent)
 	{
+		super.onNewIntent(intent);
 		handleSearchIntent(intent);
 	}
 
 	// M E N U
 
+	@SuppressWarnings("SameReturnValue")
 	@Override
 	public boolean onCreateOptionsMenu(final Menu menu)
 	{

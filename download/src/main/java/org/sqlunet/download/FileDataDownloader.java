@@ -104,6 +104,7 @@ public class FileDataDownloader extends AsyncTask<String, Void, FileData>
 	/**
 	 * SizeDownloader listener
 	 */
+	@FunctionalInterface
 	interface Listener
 	{
 		/**
@@ -142,7 +143,6 @@ public class FileDataDownloader extends AsyncTask<String, Void, FileData>
 
 			// cache
 			String downloadFromArg = downloadSourceUrl + '/' + name;
-			String downloadToArg = downloadDest;
 
 			final Intent intent = new Intent(activity, UpdateActivity.class);
 			intent.putExtra(UpdateFragment.FROM_ARG, downloadSourceUrl + '/' + name);
@@ -154,7 +154,7 @@ public class FileDataDownloader extends AsyncTask<String, Void, FileData>
 			intent.putExtra(UpdateFragment.TO_SIZE_ARG, actualSize == null ? "n/a" : actualSize.toString() + " bytes");
 			intent.putExtra(UpdateFragment.NEWER_ARG, newer);
 			intent.putExtra(DOWNLOAD_FROM_ARG, downloadFromArg);
-			intent.putExtra(DOWNLOAD_TO_ARG, downloadToArg);
+			intent.putExtra(DOWNLOAD_TO_ARG, downloadDest);
 
 			activity.startActivity(intent);
 		});

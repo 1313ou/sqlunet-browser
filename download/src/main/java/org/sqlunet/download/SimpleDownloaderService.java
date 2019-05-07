@@ -268,7 +268,6 @@ public class SimpleDownloaderService extends IntentService
 
 				if (this.cancel)
 				{
-					//noinspection BreakStatement
 					throw new InterruptedException("cancelled");
 				}
 			}

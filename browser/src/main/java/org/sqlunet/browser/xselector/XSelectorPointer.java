@@ -80,7 +80,6 @@ public class XSelectorPointer extends SelectorPointer implements HasXId
 	/**
 	 * Constructor from parcel, reads back fields IN THE ORDER they were written
 	 */
-	@SuppressWarnings("boxing")
 	private XSelectorPointer(@NonNull final Parcel parcel)
 	{
 		super(parcel);
@@ -241,7 +240,7 @@ public class XSelectorPointer extends SelectorPointer implements HasXId
 				Long.toHexString(this.xMask) +
 				' ' +
 				"xgroup=" + //
-				Integer.toString(this.xGroup);
+				this.xGroup;
 	}
 
 	/**

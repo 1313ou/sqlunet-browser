@@ -11,7 +11,6 @@ import org.sqlunet.treeview.R;
 import org.sqlunet.treeview.model.TreeNode;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 
 /**
  * Tree controller with icon
@@ -25,6 +24,7 @@ public class TreeController extends Controller<CompositeValue>
 	/**
 	 * Junction view
 	 */
+	@SuppressWarnings("WeakerAccess")
 	protected ImageView junctionView;
 
 	/**
@@ -40,12 +40,14 @@ public class TreeController extends Controller<CompositeValue>
 		super();
 	}
 
-	@Nullable
+	@SuppressWarnings("WeakerAccess")
+	@NonNull
 	@Override
 	public View createNodeView(@NonNull final Context context, final TreeNode node, @NonNull final CompositeValue value)
 	{
 		final LayoutInflater inflater = LayoutInflater.from(context);
 		@SuppressLint("InflateParams") final View view = inflater.inflate(this.layoutRes, null, false);
+		assert view != null;
 
 		// junction icon (arrow)
 		this.junctionView = view.findViewById(R.id.junction_icon);
@@ -59,16 +61,15 @@ public class TreeController extends Controller<CompositeValue>
 		}
 
 		// icon
-		final CompositeValue composite = (CompositeValue) value;
-		if (composite.icon != 0)
+		if (value.icon != 0)
 		{
 			final ImageView iconView = view.findViewById(R.id.node_icon);
-			iconView.setImageResource(composite.icon);
+			iconView.setImageResource(value.icon);
 		}
 
 		// text
 		TextView valueView = view.findViewById(R.id.node_value);
-		valueView.setText(composite.text);
+		valueView.setText(value.text);
 
 		return view;
 	}
@@ -105,16 +106,19 @@ public class TreeController extends Controller<CompositeValue>
 		markDeadend();
 	}
 
+	@SuppressWarnings("WeakerAccess")
 	protected void markExpanded()
 	{
 		this.junctionView.setImageResource(R.drawable.ic_expanded);
 	}
 
+	@SuppressWarnings("WeakerAccess")
 	protected void markCollapsed()
 	{
 		this.junctionView.setImageResource(R.drawable.ic_collapsed);
 	}
 
+	@SuppressWarnings("WeakerAccess")
 	protected void markDeadend()
 	{
 		this.junctionView.setImageResource(R.drawable.ic_deadend);

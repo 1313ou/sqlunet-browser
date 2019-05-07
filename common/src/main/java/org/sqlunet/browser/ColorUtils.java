@@ -43,7 +43,7 @@ public class ColorUtils
 	@NonNull
 	static public int[] getColors(@NonNull final Context context, @NonNull int... colorRes)
 	{
-		int result[] = new int[colorRes.length];
+		int[] result = new int[colorRes.length];
 		for (int i = 0; i < colorRes.length; i++)
 		{
 			result[i] = getColor(context, colorRes[i]);

@@ -26,6 +26,7 @@ public class StatusFragment extends SetupStatusFragment implements ActionBarSett
 		this.titleId = org.sqlunet.browser.R.string.title_status_section;
 	}
 
+	@SuppressWarnings("SameReturnValue")
 	@Override
 	public boolean setActionBar(@NonNull final ActionBar actionBar, final Context context)
 	{

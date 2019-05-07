@@ -212,6 +212,7 @@ public class TreeView
 
 			// new node view
 			@SuppressWarnings("unchecked") final View newNodeView = controller.createNodeView(this.context, node, node.getValue());
+			assert newNodeView != null;
 			controller.setNodeView(newNodeView);
 
 			// insert new node subtreeView

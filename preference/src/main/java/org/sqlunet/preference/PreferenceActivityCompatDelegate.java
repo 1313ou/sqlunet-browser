@@ -288,7 +288,7 @@ public class PreferenceActivityCompatDelegate
 		// final Fragment fragment = Fragment.instantiate(getContext(), pref.getFragment(), pref.getExtras());
 		final FragmentManager fragmentManager = getFragmentManager();
 		FragmentFactory factory = fragmentManager.getFragmentFactory();
-		final Fragment fragment = factory.instantiate(getContext().getClassLoader(), pref.getFragment(), pref.getExtras());
+		final Fragment fragment = factory.instantiate(getContext().getClassLoader(), pref.getFragment());
 
 		getFragmentManager().beginTransaction().replace(R.id.prefs, fragment).setBreadCrumbTitle(pref.getTitle()).setTransition(FragmentTransaction.TRANSIT_NONE).addToBackStack(BACK_STACK_PREFS).commitAllowingStateLoss();
 	}
@@ -337,7 +337,6 @@ public class PreferenceActivityCompatDelegate
 	@NonNull
 	private <T extends View> T findViewById(@IdRes final int id)
 	{
-		//noinspection ConstantConditions
 		return this.activity.findViewById(id);
 	}
 
@@ -488,7 +487,7 @@ public class PreferenceActivityCompatDelegate
 		}
 		// fragment = Fragment.instantiate(getContext(), fragmentName, args);
 		FragmentFactory factory = fragmentManager.getFragmentFactory();
-		this.fragment = factory.instantiate(getContext().getClassLoader(), fragmentName, null);
+		this.fragment = factory.instantiate(getContext().getClassLoader(), fragmentName);
 		this.fragment.setArguments(args);
 
 

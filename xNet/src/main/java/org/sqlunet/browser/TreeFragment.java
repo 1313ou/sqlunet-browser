@@ -10,7 +10,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import org.sqlunet.treeview.control.RootController;
-import org.sqlunet.treeview.control.TreeController;
 import org.sqlunet.treeview.model.TreeNode;
 import org.sqlunet.treeview.view.TreeView;
 import org.sqlunet.model.TreeFactory;
@@ -28,14 +27,14 @@ abstract public class TreeFragment extends Fragment
 	/**
 	 * Tree model root
 	 */
-	@Nullable
-	protected TreeNode treeRoot;
+	@NonNull
+	protected final TreeNode treeRoot;
 
 	/**
 	 * Tree view
 	 */
 	@Nullable
-	protected TreeView treeView;
+	private TreeView treeView;
 
 	// Data
 
@@ -50,8 +49,10 @@ abstract public class TreeFragment extends Fragment
 	/**
 	 * Constructor
 	 */
-	public TreeFragment()
+	protected TreeFragment()
 	{
+		super();
+		this.treeRoot = new TreeNode(null, new RootController());
 	}
 
 	@Override
@@ -60,11 +61,10 @@ abstract public class TreeFragment extends Fragment
 		super.onCreate(savedInstanceState);
 
 		// root node
-		this.treeRoot = new TreeNode(null, new RootController());
 		this.treeRoot.setSelectable(false);
 
 		// sub root node
-		TreeFactory.addTreeNode(this.treeRoot, header, iconId);
+		TreeFactory.addTreeNode(this.treeRoot, this.header, this.iconId);
 	}
 
 	@Override
@@ -101,6 +101,7 @@ abstract public class TreeFragment extends Fragment
 	{
 		super.onStart();
 		Log.d(TAG, "Expand treeview");
+		assert this.treeView != null;
 		this.treeView.expandAll();
 	}
 

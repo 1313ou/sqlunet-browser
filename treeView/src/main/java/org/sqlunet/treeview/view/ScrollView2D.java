@@ -391,6 +391,7 @@ public class ScrollView2D extends FrameLayout
 		return this.mIsBeingDragged;
 	}
 
+	@SuppressWarnings({"UnusedReturnValue", "SameReturnValue", "WeakerAccess"})
 	@Override
 	public boolean performClick()
 	{
@@ -1233,6 +1234,7 @@ public class ScrollView2D extends FrameLayout
 	 * <p>
 	 * This version also clamps the scrolling to the bounds of our child.
 	 */
+	@SuppressWarnings("WeakerAccess")
 	@Override
 	public void scrollTo(int destX, int destY)
 	{

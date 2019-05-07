@@ -6,9 +6,10 @@ import android.preference.PreferenceManager;
 
 import androidx.annotation.Nullable;
 
+@SuppressWarnings("WeakerAccess")
 public class Settings
 {
-	static public final String PREF_DOWNLOADER = "pref_downloader";
+	private static final String PREF_DOWNLOADER = "pref_downloader";
 
 	static public final String PREF_DB_NAME = "pref_db_name";
 	static public final String PREF_DB_DATE = "pref_db_date";

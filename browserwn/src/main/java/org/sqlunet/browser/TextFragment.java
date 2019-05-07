@@ -13,6 +13,7 @@ import android.text.style.StyleSpan;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter.ViewBinder;
 import android.widget.TextView;
@@ -121,14 +122,16 @@ public class TextFragment extends AbstractTableFragment
 	// C L I C K
 
 	@Override
-	public void onListItemClick(final ListView listView, final View view, final int position, final long id)
+	public void onListItemClick(@NonNull final ListView listView, @NonNull final View view, final int position, final long id)
 	{
 		super.onListItemClick(listView, view, position, id);
 
 		Log.d(TAG, "CLICK id=" + id + " pos=" + position);
 
 		// cursor
-		final Object item = getListAdapter().getItem(position);
+		final ListAdapter adapter = getListAdapter();
+		assert adapter != null;
+		final Object item = adapter.getItem(position);
 		final Cursor cursor = (Cursor) item;
 
 		// args

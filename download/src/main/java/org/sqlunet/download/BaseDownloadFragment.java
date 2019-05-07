@@ -102,6 +102,7 @@ abstract public class BaseDownloadFragment extends Fragment implements View.OnCl
 	/**
 	 * Download listener (typically implemented by activity)
 	 */
+	@FunctionalInterface
 	interface DownloadListener
 	{
 		void onDone(boolean result);
@@ -174,12 +175,14 @@ abstract public class BaseDownloadFragment extends Fragment implements View.OnCl
 	/**
 	 * Download dir uri
 	 */
+	@SuppressWarnings("WeakerAccess")
 	@Nullable
 	protected String downloadUrl;
 
 	/**
 	 * Destination file
 	 */
+	@SuppressWarnings("WeakerAccess")
 	@Nullable
 	protected File downloadedFile;
 
@@ -355,7 +358,10 @@ abstract public class BaseDownloadFragment extends Fragment implements View.OnCl
 			this.statusView.setText(R.string.status_download_canceled);
 		});
 		this.deployButton = view.findViewById(R.id.deployButton);
-		this.deployButton.setOnClickListener(v -> deploy(this.unzipDir.getAbsolutePath(), this.renameFrom, this.renameTo));
+		this.deployButton.setOnClickListener(v -> {
+			assert this.unzipDir != null;
+			deploy(this.unzipDir.getAbsolutePath(), this.renameFrom, this.renameTo);
+		});
 		this.md5Button = view.findViewById(R.id.md5Button);
 		this.md5Button.setOnClickListener(v -> md5());
 
@@ -961,7 +967,6 @@ abstract public class BaseDownloadFragment extends Fragment implements View.OnCl
 						alert.setTitle(getString(R.string.action_md5_of) + ' ' + targetFile);
 						alert.setMessage(sb);
 						alert.show();
-						return;
 					}
 				});
 			}

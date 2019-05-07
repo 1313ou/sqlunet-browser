@@ -7,6 +7,7 @@ import androidx.annotation.NonNull;
  *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
+@FunctionalInterface
 public interface HasPos
 {
 	/**

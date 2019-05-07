@@ -69,12 +69,14 @@ public class TaskObserver
 			Log.d(TAG, "Task start");
 		}
 
+		@SuppressWarnings("WeakerAccess")
 		@Override
 		public void taskUpdate(int progress, int length)
 		{
 			Log.d(TAG, "Task " + progress + '/' + length);
 		}
 
+		@SuppressWarnings("WeakerAccess")
 		@Override
 		public void taskFinish(boolean result)
 		{
@@ -92,6 +94,7 @@ public class TaskObserver
 			super(context);
 		}
 
+		@SuppressWarnings("WeakerAccess")
 		@Override
 		public void taskStart(final AsyncTask<?, ?, ?> task)
 		{
@@ -99,6 +102,7 @@ public class TaskObserver
 			Toast.makeText(this.context, R.string.status_task_start_toast, Toast.LENGTH_SHORT).show();
 		}
 
+		@SuppressWarnings("WeakerAccess")
 		@Override
 		public void taskFinish(boolean result)
 		{

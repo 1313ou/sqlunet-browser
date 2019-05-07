@@ -1,6 +1,5 @@
 package org.sqlunet.browser;
 
-import android.app.Activity;
 import android.content.Context;
 import androidx.fragment.app.ListFragment;
 import android.widget.ArrayAdapter;

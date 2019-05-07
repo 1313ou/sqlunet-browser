@@ -265,6 +265,7 @@ abstract class BaseModule extends Module
 			return (int) (17 * (int) this.pmPos.charAt(0) + 19 * this.pmRoleId + 3 * this.pmPredId);
 		}
 
+		@SuppressWarnings("WeakerAccess")
 		@NonNull
 		@Override
 		public String toString()
@@ -306,7 +307,7 @@ abstract class BaseModule extends Module
 		@NonNull
 		String toRoleData()
 		{
-			return this.pmPos + '-' + Long.toString(this.pmRoleId) + '-' + Long.toString(this.pmPredId);
+			return this.pmPos + '-' + this.pmRoleId + '-' + this.pmPredId;
 		}
 	}
 
@@ -500,7 +501,7 @@ abstract class BaseModule extends Module
 		@NonNull
 		CharSequence toData()
 		{
-			return Long.toString(this.vnClassId) + '-' + Long.toString(this.vnRoleId);
+			return Long.toString(this.vnClassId) + '-' + this.vnRoleId;
 		}
 	}
 
@@ -603,7 +604,7 @@ abstract class BaseModule extends Module
 		@NonNull
 		CharSequence toData()
 		{
-			return Long.toString(this.pbRoleSetId) + '-' + Long.toString(this.pbRoleId);
+			return Long.toString(this.pbRoleSetId) + '-' + this.pbRoleId;
 		}
 	}
 
@@ -694,7 +695,7 @@ abstract class BaseModule extends Module
 		@NonNull
 		CharSequence toData()
 		{
-			return Long.toString(this.fnFrameId) + '-' + Long.toString(this.fnFeId);
+			return Long.toString(this.fnFrameId) + '-' + this.fnFeId;
 		}
 	}
 
@@ -718,6 +719,7 @@ abstract class BaseModule extends Module
 		/**
 		 * Changed list
 		 */
+		@SuppressWarnings("WeakerAccess")
 		@NonNull
 		protected final TreeOps changedList;
 
@@ -750,6 +752,7 @@ abstract class BaseModule extends Module
 		@NonNull
 		abstract protected String[] getSelectionArgs();
 
+		@SuppressWarnings("WeakerAccess")
 		public void run(final TreeFragment fragment)
 		{
 			final Uri uri = Uri.parse(PredicateMatrixProvider.makeUri(Pm_X.CONTENT_URI_TABLE));
@@ -882,9 +885,6 @@ abstract class BaseModule extends Module
 				while (cursor.moveToNext());
 
 				endProcess();
-
-				// levels
-				TreeFactory.setLevels(this.parent, this.displayer.getExpandLevels());
 			}
 
 			cursor.close();
@@ -906,6 +906,7 @@ abstract class BaseModule extends Module
 		/**
 		 * End of processing
 		 */
+		@SuppressWarnings("EmptyMethod")
 		void endProcess()
 		{
 		}
@@ -1054,7 +1055,7 @@ abstract class BaseModule extends Module
 					{
 						final Set<WnData> wnData = this.wnMap.get(vnData);
 						assert wnData != null;
-						final TreeNode vnNode = this.displayer.makeVnNode(pmroleNode, this.changedList, vnData, wnData.toArray(new WnData[0]));
+						@SuppressWarnings("unused") final TreeNode vnNode = this.displayer.makeVnNode(pmroleNode, this.changedList, vnData, wnData.toArray(new WnData[0]));
 
 						// contribute to header
 						if (vnData.vnRole != null && !vnData.vnRole.isEmpty())
@@ -1069,7 +1070,7 @@ abstract class BaseModule extends Module
 					{
 						final Set<WnData> wnData = this.wnMap.get(pbData);
 						assert wnData != null;
-						final TreeNode pbNode = this.displayer.makePbNode(pmroleNode, this.changedList, pbData, wnData.toArray(new WnData[0]));
+						@SuppressWarnings("unused") final TreeNode pbNode = this.displayer.makePbNode(pmroleNode, this.changedList, pbData, wnData.toArray(new WnData[0]));
 
 						// contribute to header
 						if (pbData.pbRoleDescr != null && !pbData.pbRoleDescr.isEmpty())
@@ -1084,7 +1085,7 @@ abstract class BaseModule extends Module
 					{
 						final Set<WnData> wnData = this.wnMap.get(fnData);
 						assert wnData != null;
-						final TreeNode fnNode = this.displayer.makeFnNode(pmroleNode, this.changedList, fnData, wnData.toArray(new WnData[0]));
+						@SuppressWarnings("unused") final TreeNode fnNode = this.displayer.makeFnNode(pmroleNode, this.changedList, fnData, wnData.toArray(new WnData[0]));
 
 						// contribute to header
 						if (fnData.fnFe != null && !fnData.fnFe.isEmpty())
@@ -1189,13 +1190,13 @@ abstract class BaseModule extends Module
 			final TreeNode roleNode = displayPmRow(parent, pmRow, wnDataOnRow ? wnData : null, changedList);
 
 			// vn
-			final TreeNode vnNode = wnDataOnXData ? makeVnNode(roleNode, changedList, vnData, wnData) : makeVnNode(roleNode, changedList, vnData);
+			@SuppressWarnings("unused") final TreeNode vnNode = wnDataOnXData ? makeVnNode(roleNode, changedList, vnData, wnData) : makeVnNode(roleNode, changedList, vnData);
 
 			// pb
-			final TreeNode pbNode = wnDataOnXData ? makePbNode(roleNode, changedList, pbData, wnData) : makePbNode(roleNode, changedList, pbData);
+			@SuppressWarnings("unused") final TreeNode pbNode = wnDataOnXData ? makePbNode(roleNode, changedList, pbData, wnData) : makePbNode(roleNode, changedList, pbData);
 
 			// fn
-			final TreeNode fnNode = wnDataOnXData ? makeFnNode(roleNode, changedList, fnData, wnData) : makeFnNode(roleNode, changedList, fnData);
+			@SuppressWarnings("unused") final TreeNode fnNode = wnDataOnXData ? makeFnNode(roleNode, changedList, fnData, wnData) : makeFnNode(roleNode, changedList, fnData);
 		}
 
 		/**
@@ -1546,6 +1547,7 @@ abstract class BaseModule extends Module
 			super.displayRow(this.synsetNode, wnData, pmRole, vnData, pbData, fnData, false, false, changedList);
 		}
 
+		@SuppressWarnings("SameReturnValue")
 		@NonNull
 		@Override
 		protected String getRequiredOrder()
@@ -1553,6 +1555,7 @@ abstract class BaseModule extends Module
 			return "synsetid";
 		}
 
+		@SuppressWarnings("SameReturnValue")
 		@Override
 		protected int getExpandLevels()
 		{
@@ -1590,6 +1593,7 @@ abstract class BaseModule extends Module
 			super.displayRow(this.pmRoleNode, wnData, pmRole, vnData, pbData, fnData, true, false, changedList);
 		}
 
+		@SuppressWarnings("SameReturnValue")
 		@NonNull
 		@Override
 		protected String getRequiredOrder()
@@ -1597,6 +1601,7 @@ abstract class BaseModule extends Module
 			return "pmroleid";
 		}
 
+		@SuppressWarnings("SameReturnValue")
 		@Override
 		protected int getExpandLevels()
 		{
@@ -1615,6 +1620,7 @@ abstract class BaseModule extends Module
 			super.displayRow(parentNode, wnData, pmRole, vnData, pbData, fnData, true, false, changedList);
 		}
 
+		@SuppressWarnings("SameReturnValue")
 		@NonNull
 		@Override
 		protected String getRequiredOrder()
@@ -1622,6 +1628,7 @@ abstract class BaseModule extends Module
 			return "pmid";
 		}
 
+		@SuppressWarnings("SameReturnValue")
 		@Override
 		protected int getExpandLevels()
 		{
@@ -1646,7 +1653,6 @@ abstract class BaseModule extends Module
 			super(classId);
 		}
 
-		@SuppressWarnings("boxing")
 		@Override
 		public void process()
 		{
@@ -1677,7 +1683,6 @@ abstract class BaseModule extends Module
 			super(roleSetId);
 		}
 
-		@SuppressWarnings("boxing")
 		@Override
 		public void process()
 		{
@@ -1708,7 +1713,6 @@ abstract class BaseModule extends Module
 			super(frameId);
 		}
 
-		@SuppressWarnings("boxing")
 		@Override
 		public void process()
 		{

@@ -12,6 +12,7 @@ import androidx.lifecycle.MutableLiveData;
 
 public class SqlunetViewModel extends AndroidViewModel
 {
+	@FunctionalInterface
 	public interface PostProcessor
 	{
 		void postProcess(final Cursor cursor);

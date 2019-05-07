@@ -14,6 +14,7 @@ import androidx.lifecycle.MutableLiveData;
 
 public class SqlunetViewTreeModel extends AndroidViewModel
 {
+	@FunctionalInterface
 	public interface ToTreeOps
 	{
 		TreeOp[] cursorToTreeOps(final Cursor cursor);

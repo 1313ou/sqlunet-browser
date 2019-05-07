@@ -46,7 +46,6 @@ public class SetupSqlFragment extends org.sqlunet.browser.config.SetupSqlFragmen
 		// Required empty public constructor
 	}
 
-	@SuppressWarnings("boxing")
 	@Override
 	public View onCreateView(@NonNull final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState)
 	{
@@ -106,6 +105,7 @@ public class SetupSqlFragment extends org.sqlunet.browser.config.SetupSqlFragmen
 	/**
 	 * Update status
 	 */
+	@SuppressWarnings("WeakerAccess")
 	@Override
 	public void update()
 	{

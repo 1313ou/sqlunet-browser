@@ -47,6 +47,7 @@ public class SetupFileActivity extends AppCompatActivity
 				.commit();
 	}
 
+	@SuppressWarnings("SameReturnValue")
 	@Override
 	public boolean onCreateOptionsMenu(final Menu menu)
 	{

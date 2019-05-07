@@ -90,7 +90,7 @@ public class Browse1Fragment extends Fragment implements SelectorsFragment.Liste
 	// I T E M S E L E C T I O N H A N D L I N G
 
 	/**
-	 * Callback method from {@link SelectorsFragment.Listener} indicating that the item with the given ID was selected.
+	 * Callback method indicating that the item with the given ID was selected.
 	 */
 	@Override
 	public void onItemSelected(final Pointer pointer, final String word, final long wordId)

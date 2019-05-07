@@ -273,7 +273,7 @@ public class SettingsActivity extends PreferenceActivityCompat
 	 * {@inheritDoc}
 	 */
 	@Override
-	public void onBuildHeaders(final List<Header> target)
+	public void onBuildHeaders(@NonNull final List<Header> target)
 	{
 		loadHeadersFromResource(R.xml.pref_headers, target);
 	}
@@ -359,12 +359,11 @@ public class SettingsActivity extends PreferenceActivityCompat
 	@Override
 	public boolean onOptionsItemSelected(@NonNull MenuItem item)
 	{
-		switch (item.getItemId())
+		// Respond to the action bar's Up/Home button
+		if (item.getItemId() == android.R.id.home)
 		{
-			// Respond to the action bar's Up/Home button
-			case android.R.id.home:
-				NavUtils.navigateUpFromSameTask(this);
-				return true;
+			NavUtils.navigateUpFromSameTask(this);
+			return true;
 		}
 		return super.onOptionsItemSelected(item);
 	}

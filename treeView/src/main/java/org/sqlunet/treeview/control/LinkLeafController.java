@@ -26,11 +26,11 @@ public class LinkLeafController extends LeafController
 		this.layoutRes = R.layout.layout_leaf_link;
 	}
 
+	@NonNull
 	@Override
 	public View createNodeView(@NonNull final Context context, final TreeNode node, @NonNull final CompositeValue value)
 	{
 		final View view = super.createNodeView(context, node, value);
-		assert view != null;
 
 		// link listener
 		final View hotLink = view.findViewById(R.id.node_link);

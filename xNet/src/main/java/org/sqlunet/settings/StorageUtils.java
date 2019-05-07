@@ -757,7 +757,6 @@ public class StorageUtils
 		boolean isDigit = false;
 		try
 		{
-			//noinspection ResultOfMethodCallIgnored
 			Integer.valueOf(lastFolder);
 			isDigit = true;
 		}
@@ -818,7 +817,6 @@ public class StorageUtils
 	 * @param path path
 	 * @return free storage in megabytes
 	 */
-	@SuppressWarnings("deprecation")
 	static private float storageFree(final String path)
 	{
 		try
@@ -831,7 +829,6 @@ public class StorageUtils
 			}
 			else
 			{
-				//noinspection deprecation
 				bytes = stat.getAvailableBlocks() * stat.getBlockSize();
 			}
 			return bytes / (1024.f * 1024.f);
@@ -870,7 +867,6 @@ public class StorageUtils
 	 * @param path path
 	 * @return storage capacity in megabytes
 	 */
-	@SuppressWarnings("deprecation")
 	static float storageCapacity(final String path)
 	{
 		try
@@ -883,7 +879,6 @@ public class StorageUtils
 			}
 			else
 			{
-				//noinspection deprecation
 				bytes = stat.getBlockCount() * stat.getBlockSize();
 			}
 			return bytes / (1024.f * 1024.f);

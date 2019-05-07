@@ -35,6 +35,7 @@ import androidx.lifecycle.ViewModelProviders;
  *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
+@SuppressWarnings("WeakerAccess")
 public class SelectorsFragment extends ListFragment
 {
 	// static protected final String TAG = "SelectorsFragment";
@@ -42,6 +43,7 @@ public class SelectorsFragment extends ListFragment
 	/**
 	 * A callback interface that all activities containing this fragment must implement. This mechanism allows activities to be notified of item selections.
 	 */
+	@FunctionalInterface
 	public interface Listener
 	{
 		/**

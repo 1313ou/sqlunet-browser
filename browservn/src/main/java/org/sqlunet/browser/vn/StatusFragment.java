@@ -25,6 +25,7 @@ public class StatusFragment extends SetupStatusFragment implements ActionBarSett
 		this.titleId = R.string.title_status_section;
 	}
 
+	@SuppressWarnings("SameReturnValue")
 	@Override
 	public boolean setActionBar(@NonNull final ActionBar actionBar, final Context context)
 	{

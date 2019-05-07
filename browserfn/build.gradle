@@ -61,7 +61,7 @@ dependencies {
     implementation 'androidx.legacy:legacy-support-v13:1.0.0'
     implementation 'androidx.preference:preference:1.0.0'
     implementation 'androidx.annotation:annotation:1.1.0-beta01'
-    implementation 'com.google.android.material:material:1.1.0-alpha05'
+    implementation 'com.google.android.material:material:1.1.0-alpha06'
 
     // local unit tests (JUnit 4 framework)
     testImplementation 'junit:junit:4.12'
@@ -72,8 +72,8 @@ dependencies {
     androidTestImplementation 'androidx.annotation:annotation:1.1.0-beta01'
     androidTestImplementation 'androidx.test.ext:junit:1.1.0'
     androidTestImplementation 'androidx.test:rules:1.1.1'
-    androidTestImplementation 'androidx.test:runner:1.2.0-alpha04'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0-alpha04'
-    androidTestImplementation 'androidx.test.espresso:espresso-web:3.2.0-alpha04'
+    androidTestImplementation 'androidx.test:runner:1.2.0-beta01'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0-beta01'
+    androidTestImplementation 'androidx.test.espresso:espresso-web:3.2.0-beta01'
     androidTestImplementation 'androidx.test.uiautomator:uiautomator:2.2.0'
 }

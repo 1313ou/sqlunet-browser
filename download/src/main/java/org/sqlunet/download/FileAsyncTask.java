@@ -30,6 +30,7 @@ public class FileAsyncTask
 	/**
 	 * MD5Downloader listener
 	 */
+	@FunctionalInterface
 	public interface ResultListener
 	{
 		/**
@@ -343,7 +344,6 @@ public class FileAsyncTask
 
 		@Nullable
 		@Override
-		@SuppressWarnings("boxing")
 		protected String doInBackground(final String... params)
 		{
 			String srcFileArg = params[0];

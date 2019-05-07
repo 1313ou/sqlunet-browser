@@ -46,6 +46,7 @@ public class XSelectorsFragment extends ExpandableListFragment
 	/**
 	 * A callback interface that all activities containing this fragment must implement. This mechanism allows activities to be notified of item selections.
 	 */
+	@FunctionalInterface
 	public interface Listener
 	{
 		/**
@@ -216,7 +217,6 @@ public class XSelectorsFragment extends ExpandableListFragment
 	/**
 	 * Mandatory empty constructor for the fragment manager to instantiate the fragment (e.g. upon screen orientation changes).
 	 */
-	@SuppressWarnings("boxing")
 	public XSelectorsFragment()
 	{
 		this.groupWordNetPosition = -1;
@@ -722,7 +722,7 @@ public class XSelectorsFragment extends ExpandableListFragment
 		this.activateOnItemClick = activateOnItemClick;
 	}
 
-	@SuppressWarnings("boxing")
+	@SuppressWarnings({"boxing", "SameReturnValue"})
 	@Override
 	public boolean onChildClick(@NonNull final ExpandableListView listView, final View view, final int groupPosition, final int childPosition, final long id)
 	{

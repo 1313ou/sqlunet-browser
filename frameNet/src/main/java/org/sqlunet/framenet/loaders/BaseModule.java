@@ -1344,9 +1344,6 @@ abstract public class BaseModule extends Module
 			}
 			while (cursor.moveToNext());
 			changed = changedList.toArray();
-
-			// levels
-			TreeFactory.setLevels(parent, 2);
 		}
 		else
 		{
@@ -1698,9 +1695,9 @@ abstract public class BaseModule extends Module
 				AnnoSets_Layers_X.RANK, //
 				AnnoSets_Layers_X.LAYERANNOTATIONS, //
 		};
-		final String selection = null; // embedded selection
+		// final String selection = null; // embedded selection
 		final String[] selectionArgs = {Long.toString(annoSetId)};
-		this.annoSetFromAnnoSetIdModel.loadData(uri, projection, selection, selectionArgs, null, cursor -> annoSetCursorToTreeModel(cursor, parent, withSentence));
+		this.annoSetFromAnnoSetIdModel.loadData(uri, projection, null, selectionArgs, null, cursor -> annoSetCursorToTreeModel(cursor, parent, withSentence));
 	}
 
 	private TreeOp[] annoSetCursorToTreeModel(@NonNull final Cursor cursor, @NonNull final TreeNode parent, final boolean withSentence)
@@ -1912,9 +1909,9 @@ abstract public class BaseModule extends Module
 				Patterns_Layers_X.RANK, //
 				Patterns_Layers_X.LAYERANNOTATIONS, //
 		};
-		final String selection = null; // embedded selection
+		// final String selection = null; // embedded selection
 		final String[] selectionArgs = {Long.toString(patternId)};
-		this.annoSetsFromPatternIdModel.loadData(uri, projection, selection, selectionArgs, null, cursor -> annoSetsCursor2ToTreeModel(cursor, parent));
+		this.annoSetsFromPatternIdModel.loadData(uri, projection, null, selectionArgs, null, cursor -> annoSetsCursor2ToTreeModel(cursor, parent));
 	}
 
 	private TreeOp[] annoSetsCursor2ToTreeModel(@NonNull final Cursor cursor, @NonNull final TreeNode parent)
@@ -1950,9 +1947,9 @@ abstract public class BaseModule extends Module
 				ValenceUnits_Layers_X.RANK, //
 				ValenceUnits_Layers_X.LAYERANNOTATIONS, //
 		};
-		final String selection = null; // embedded selection
+		// final String selection = null; // embedded selection
 		final String[] selectionArgs = {Long.toString(vuId)};
-		this.annoSetsFromVuIdModel.loadData(uri, projection, selection, selectionArgs, null, cursor -> annoSetsCursor3ToTreeModel(cursor, parent));
+		this.annoSetsFromVuIdModel.loadData(uri, projection, null, selectionArgs, null, cursor -> annoSetsCursor3ToTreeModel(cursor, parent));
 	}
 
 	private TreeOp[] annoSetsCursor3ToTreeModel(@NonNull final Cursor cursor, @NonNull final TreeNode parent)
@@ -2109,9 +2106,6 @@ abstract public class BaseModule extends Module
 				// attach result
 				final TreeNode node = TreeFactory.addTextNode(annoSetNode, sb);
 				changedList.add(NEW, node);
-
-				// levels
-				TreeFactory.setLevels(parent, 2);
 			}
 
 			changed = changedList.toArray();
@@ -2145,9 +2139,9 @@ abstract public class BaseModule extends Module
 				Sentences_Layers_X.RANK, //
 				Sentences_Layers_X.LAYERANNOTATIONS, //
 		};
-		final String selection = null; // embedded selection
+		// final String selection = null; // embedded selection
 		final String[] selectionArgs = {Long.toString(sentenceId)};
-		this.layersFromSentenceIdModel.loadData(uri, projection, selection, selectionArgs, null, cursor -> layersCursorToTreeModel(cursor, text, parent));
+		this.layersFromSentenceIdModel.loadData(uri, projection, null, selectionArgs, null, cursor -> layersCursorToTreeModel(cursor, text, parent));
 	}
 
 	private TreeOp[] layersCursorToTreeModel(@NonNull final Cursor cursor, final String text, @NonNull final TreeNode parent)

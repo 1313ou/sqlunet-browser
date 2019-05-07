@@ -22,6 +22,7 @@ public abstract class Controller<E>
 	/**
 	 * Node
 	 */
+	@SuppressWarnings("WeakerAccess")
 	protected TreeNode node;
 
 	// V I E W
@@ -50,6 +51,7 @@ public abstract class Controller<E>
 	/**
 	 * Constructor
 	 */
+	@SuppressWarnings("WeakerAccess")
 	protected Controller()
 	{
 	}
@@ -59,7 +61,9 @@ public abstract class Controller<E>
 	public View createView(@NonNull final Context context, final int containerStyle)
 	{
 		// node view
+		//noinspection unchecked
 		this.nodeView = createNodeView(context, this.node, (E) this.node.getValue());
+		assert this.nodeView != null;
 
 		// wrapper
 		this.subtreeView = new SubtreeView(context, containerStyle, this.nodeView);
@@ -155,6 +159,7 @@ public abstract class Controller<E>
 	/**
 	 * Disable
 	 */
+	@SuppressWarnings("EmptyMethod")
 	public void deadend()
 	{
 		// empty
@@ -175,6 +180,7 @@ public abstract class Controller<E>
 	/**
 	 * Expand event notification
 	 */
+	@SuppressWarnings("EmptyMethod")
 	public void onExpandEvent()
 	{
 		// empty
@@ -183,6 +189,7 @@ public abstract class Controller<E>
 	/**
 	 * Collapse event notification
 	 */
+	@SuppressWarnings("EmptyMethod")
 	public void onCollapseEvent()
 	{
 		// empty

@@ -207,6 +207,7 @@ public class IabHelper
 	 * Callback for setup process. This listener's {@link #onIabSetupFinished} method is called
 	 * when the setup process is complete.
 	 */
+	@FunctionalInterface
 	public interface OnIabSetupFinishedListener
 	{
 		/**
@@ -435,6 +436,7 @@ public class IabHelper
 	/**
 	 * Callback that notifies when a purchase is finished.
 	 */
+	@FunctionalInterface
 	public interface OnIabPurchaseFinishedListener
 	{
 		/**
@@ -480,8 +482,8 @@ public class IabHelper
 	 * Initiate the UI flow for an in-app purchase. Call this method to initiate an in-app purchase,
 	 * which will involve bringing up the Google Play screen. The calling activity will be paused
 	 * while the user interacts with Google Play, and the result will be delivered via the
-	 * activity's {@link AppCompatActivity#onActivityResult} method, at which point you must call
-	 * this object's {@link #handleActivityResult} method to continue the purchase flow. This method
+	 * activity's onActivityResult method, at which point you must call
+	 * this object's handleActivityResult method to continue the purchase flow. This method
 	 * MUST be called from the UI thread of the Activity.
 	 *
 	 * @param act         The calling activity.
@@ -706,7 +708,7 @@ public class IabHelper
 		}
 		else
 		{
-			logError("Purchase failed. Result code: " + Integer.toString(resultCode) + ". Response: " + getResponseDesc(responseCode));
+			logError("Purchase failed. Result code: " + resultCode + ". Response: " + getResponseDesc(responseCode));
 			result = new IabResult(IABHELPER_UNKNOWN_PURCHASE_RESPONSE, "Unknown purchase response.");
 			if (mPurchaseListener != null)
 			{
@@ -793,6 +795,7 @@ public class IabHelper
 	/**
 	 * Listener that notifies when an inventory query operation completes.
 	 */
+	@FunctionalInterface
 	public interface QueryInventoryFinishedListener
 	{
 		/**
@@ -902,6 +905,7 @@ public class IabHelper
 	/**
 	 * Callback that notifies when a consumption operation finishes.
 	 */
+	@FunctionalInterface
 	public interface OnConsumeFinishedListener
 	{
 		/**
@@ -916,6 +920,7 @@ public class IabHelper
 	/**
 	 * Callback that notifies when a multi-item consumption operation finishes.
 	 */
+	@FunctionalInterface
 	@SuppressWarnings("unused")
 	public interface OnConsumeMultiFinishedListener
 	{
@@ -981,12 +986,12 @@ public class IabHelper
 			}
 			else
 			{
-				return String.valueOf(code) + ":Unknown IAB Helper Error";
+				return code + ":Unknown IAB Helper Error";
 			}
 		}
 		else if (code < 0 || code >= iab_msgs.length)
 		{
-			return String.valueOf(code) + ":Unknown";
+			return code + ":Unknown";
 		}
 		else
 		{
@@ -1097,6 +1102,7 @@ public class IabHelper
 	 * Exception thrown when the requested operation cannot be started because an async operation
 	 * is still in progress.
 	 */
+	@SuppressWarnings("WeakerAccess")
 	public static class IabAsyncInProgressException extends Exception
 	{
 		IabAsyncInProgressException(String message)
@@ -1123,7 +1129,7 @@ public class IabHelper
 			Bundle ownedItems = mService.getPurchases(3, mContext.getPackageName(), itemType, continueToken);
 
 			int response = getResponseCodeFromBundle(ownedItems);
-			logDebug("Owned items response: " + String.valueOf(response));
+			logDebug("Owned items response: " + response);
 			if (response != BILLING_RESPONSE_RESULT_OK)
 			{
 				logDebug("getPurchases() failed: " + getResponseDesc(response));

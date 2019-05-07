@@ -86,6 +86,7 @@ public class DonateActivity extends AppCompatActivity implements IABAdapter.IABL
 
 	// L I S T E N E R
 
+	@SuppressWarnings("EmptyMethod")
 	@Override
 	public void onStart(final Op op)
 	{

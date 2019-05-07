@@ -96,7 +96,6 @@ class MD5Downloader extends AsyncTask<String, Void, String>
 
 				if (isCancelled())
 				{
-					//noinspection BreakStatement
 					throw new InterruptedException("cancelled");
 				}
 			}
@@ -173,6 +172,7 @@ class MD5Downloader extends AsyncTask<String, Void, String>
 	/**
 	 * MD5Downloader listener
 	 */
+	@FunctionalInterface
 	public interface Listener
 	{
 		/**

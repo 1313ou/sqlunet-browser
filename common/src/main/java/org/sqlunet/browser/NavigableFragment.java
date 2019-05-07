@@ -21,6 +21,7 @@ abstract public class NavigableFragment extends Fragment implements ActionBarSet
 
 	protected int titleId;
 
+	@SuppressWarnings("WeakerAccess")
 	@Override
 	public void onCreate(@Nullable Bundle savedInstanceState)
 	{
@@ -30,6 +31,7 @@ abstract public class NavigableFragment extends Fragment implements ActionBarSet
 		setRetainInstance(true);
 	}
 
+	@SuppressWarnings("SameReturnValue")
 	@Override
 	public boolean setActionBar(@NonNull final ActionBar actionBar, final Context context)
 	{

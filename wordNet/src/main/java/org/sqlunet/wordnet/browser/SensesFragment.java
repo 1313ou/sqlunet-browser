@@ -40,6 +40,7 @@ public class SensesFragment extends ListFragment
 	/**
 	 * A callback interface that all activities containing this fragment must implement. This mechanism allows activities to be notified of item selections.
 	 */
+	@FunctionalInterface
 	@SuppressWarnings("unused")
 	public interface Listener
 	{
@@ -188,7 +189,9 @@ public class SensesFragment extends ListFragment
 		this.sensesModelFromWord.getData().observe(this, cursor -> {
 
 			// pass on to list adapter
-			((CursorAdapter) getListAdapter()).swapCursor(cursor);
+			final CursorAdapter adapter = (CursorAdapter) getListAdapter();
+			assert adapter != null;
+			adapter.swapCursor(cursor);
 		});
 	}
 
@@ -277,7 +280,7 @@ public class SensesFragment extends ListFragment
 		final String selection = Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.LEMMA + " = ?";
 		final String[] selectionArgs = {SensesFragment.this.word};
 		final String sortOrder = Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.POS + ',' + Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.SENSENUM;
-		this.sensesModelFromWord.loadData(uri, projection, selection, selectionArgs, sortOrder, cursor -> sensesPostProcess(cursor));
+		this.sensesModelFromWord.loadData(uri, projection, selection, selectionArgs, sortOrder, this::sensesPostProcess);
 	}
 
 	private void sensesPostProcess(@NonNull final Cursor cursor)
@@ -302,7 +305,7 @@ public class SensesFragment extends ListFragment
 	}
 
 	@Override
-	public void onListItemClick(final ListView listView, final View view, final int position, final long id)
+	public void onListItemClick(@NonNull final ListView listView, @NonNull final View view, final int position, final long id)
 	{
 		super.onListItemClick(listView, view, position, id);
 
@@ -310,7 +313,9 @@ public class SensesFragment extends ListFragment
 		if (this.listener != null)
 		{
 			final SimpleCursorAdapter adapter = (SimpleCursorAdapter) getListAdapter();
+			assert adapter != null;
 			final Cursor cursor = adapter.getCursor();
+			assert cursor != null;
 			if (cursor.moveToPosition(position))
 			{
 				final int idSynsetId = cursor.getColumnIndex(WordNetContract.Synsets.SYNSETID);

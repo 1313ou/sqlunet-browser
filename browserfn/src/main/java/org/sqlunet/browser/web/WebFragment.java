@@ -149,7 +149,6 @@ public class WebFragment extends Fragment
 		}
 
 		@Nullable
-		@SuppressWarnings({"boxing"})
 		@Override
 		public String getDoc()
 		{

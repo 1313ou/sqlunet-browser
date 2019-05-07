@@ -13,9 +13,7 @@ import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.core.view.MenuItemCompat;
 import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -87,6 +85,7 @@ abstract public class BaseSearchFragment extends NavigableFragment implements Se
 		super.onCreate(savedInstanceState);
 	}
 
+	@SuppressWarnings("WeakerAccess")
 	@Nullable
 	@SuppressLint("InflateParams")
 	@Override
@@ -115,6 +114,7 @@ abstract public class BaseSearchFragment extends NavigableFragment implements Se
 
 	// S A V E
 
+	@SuppressWarnings("WeakerAccess")
 	@Override
 	public void onSaveInstanceState(@NonNull final Bundle outState)
 	{
@@ -148,6 +148,7 @@ abstract public class BaseSearchFragment extends NavigableFragment implements Se
 
 	// A C T I O N B A R
 
+	@SuppressWarnings({"SameReturnValue", "WeakerAccess"})
 	@SuppressLint("InflateParams")
 	@Override
 	public boolean setActionBar(@NonNull final ActionBar actionBar, @NonNull final Context context)
@@ -285,7 +286,7 @@ abstract public class BaseSearchFragment extends NavigableFragment implements Se
 		final SearchableInfo searchableInfo = searchManager.getSearchableInfo(componentName);
 
 		// search view
-		this.searchView = (SearchView) MenuItemCompat.getActionView(searchMenuItem);
+		this.searchView = (SearchView) searchMenuItem.getActionView();
 		this.searchView.setSearchableInfo(searchableInfo);
 		this.searchView.setIconifiedByDefault(true);
 		this.searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener()
@@ -297,7 +298,7 @@ abstract public class BaseSearchFragment extends NavigableFragment implements Se
 				BaseSearchFragment.this.searchView.setFocusable(false);
 				BaseSearchFragment.this.searchView.setQuery("", false);
 				closeKeyboard();
-				MenuItemCompat.collapseActionView(searchMenuItem);
+				searchMenuItem.collapseActionView();
 				return false;
 			}
 

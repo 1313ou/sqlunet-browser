@@ -15,7 +15,7 @@ public class TreeOp
 
 	private final TreeNode node;
 
-	public TreeOp(final TreeOpCode code, final TreeNode node)
+	private TreeOp(final TreeOpCode code, final TreeNode node)
 	{
 		this.code = code;
 		this.node = node;

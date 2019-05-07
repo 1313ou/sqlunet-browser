@@ -30,6 +30,7 @@ public class TaskObserver
 	/**
 	 * Manager listener
 	 */
+	@FunctionalInterface
 	public interface Listener
 	{
 		/**

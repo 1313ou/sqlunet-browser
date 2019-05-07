@@ -121,6 +121,7 @@ public class PreferenceActivityCompat extends AppCompatActivity implements Prefe
 		mDelegate.invalidateHeaders();
 	}
 
+	@SuppressWarnings("WeakerAccess")
 	public void loadHeadersFromResource(@XmlRes final int resId, @NonNull final List<Header> target)
 	{
 		mDelegate.loadHeadersFromResource(resId, target);

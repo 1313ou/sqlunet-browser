@@ -1,17 +1,13 @@
 package org.sqlunet.browser.web;
 
 import android.annotation.SuppressLint;
-import android.app.Application;
-import android.database.Cursor;
 import android.os.AsyncTask;
 
-import org.w3c.dom.Document;
-
-import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
+@SuppressWarnings("WeakerAccess")
 public class WebModel extends ViewModel
 {
 	/**

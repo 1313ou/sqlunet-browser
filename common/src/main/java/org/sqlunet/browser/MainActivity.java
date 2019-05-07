@@ -64,6 +64,7 @@ public class MainActivity extends AppCompatActivity // implements NavigationFrag
 	@Override
 	protected void onNewIntent(@NonNull final Intent intent)
 	{
+		super.onNewIntent(intent);
 		handleSearchIntent(intent);
 	}
 
@@ -95,6 +96,7 @@ public class MainActivity extends AppCompatActivity // implements NavigationFrag
 
 	// M E N U
 
+	@SuppressWarnings("SameReturnValue")
 	@Override
 	public boolean onCreateOptionsMenu(final Menu menu)
 	{

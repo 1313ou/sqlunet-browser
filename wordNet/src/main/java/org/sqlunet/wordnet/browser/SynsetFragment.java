@@ -100,6 +100,7 @@ public class SynsetFragment extends TreeFragment
 	 *
 	 * @return module
 	 */
+	@SuppressWarnings("WeakerAccess")
 	@NonNull
 	Module makeModule()
 	{

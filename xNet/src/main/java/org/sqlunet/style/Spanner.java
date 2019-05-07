@@ -53,6 +53,7 @@ public class Spanner
 	 *
 	 * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
 	 */
+	@FunctionalInterface
 	public interface SpanFactory
 	{
 		@Nullable
@@ -64,6 +65,7 @@ public class Spanner
 	 *
 	 * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
 	 */
+	@FunctionalInterface
 	@SuppressWarnings("unused")
 	public interface OnClickImage
 	{
@@ -366,7 +368,7 @@ public class Spanner
 	 */
 	static public Drawable getDrawable(@NonNull final Context context, final int resId)
 	{
-		@SuppressWarnings("deprecation") final Drawable drawable = context.getResources().getDrawable(resId);
+		final Drawable drawable = context.getResources().getDrawable(resId);
 		drawable.setBounds(0, 0, drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight());
 		return drawable;
 	}

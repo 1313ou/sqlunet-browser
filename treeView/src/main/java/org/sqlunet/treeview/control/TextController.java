@@ -27,7 +27,7 @@ public class TextController extends Controller<CharSequence>
 	public View createNodeView(@NonNull final Context context, final TreeNode node, final CharSequence value)
 	{
 		final TextView textView = new TextView(context);
-		textView.setText((CharSequence)value);
+		textView.setText(value);
 		return textView;
 	}
 }

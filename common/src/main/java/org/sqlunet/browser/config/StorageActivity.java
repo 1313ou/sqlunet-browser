@@ -38,6 +38,7 @@ public class StorageActivity extends AppCompatActivity
 
 	// M E N U
 
+	@SuppressWarnings("SameReturnValue")
 	@Override
 	public boolean onCreateOptionsMenu(final Menu menu)
 	{

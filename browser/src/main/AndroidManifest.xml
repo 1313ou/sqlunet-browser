@@ -21,7 +21,8 @@
 		android:supportsRtl="true"
 		android:theme="@style/CompatAppTheme"
 		android:usesCleartextTraffic="true"
-		tools:ignore="GoogleAppIndexingWarning">
+		tools:ignore="GoogleAppIndexingWarning"
+		tools:targetApi="m">
 
 		<meta-data
 			android:name="com.google.android.backup.api_key"

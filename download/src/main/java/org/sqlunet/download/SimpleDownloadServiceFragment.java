@@ -135,13 +135,11 @@ public class SimpleDownloadServiceFragment extends BaseDownloadFragment
 		@Override
 		public void onReceive(final Context context, @NonNull final Intent intent)
 		{
-			switch (intent.getStringExtra(SimpleDownloaderService.EVENT))
+			if (SimpleDownloaderService.EVENT_UPDATE.equals(intent.getStringExtra(SimpleDownloaderService.EVENT)))
 			{
-				case SimpleDownloaderService.EVENT_UPDATE:
-					progressDownloaded = intent.getIntExtra(SimpleDownloaderService.EVENT_UPDATE_DOWNLOADED, 0);
-					progressTotal = intent.getIntExtra(SimpleDownloaderService.EVENT_UPDATE_TOTAL, 0);
-					Log.d(TAG, "Update " + progressDownloaded + '/' + progressTotal);
-					break;
+				progressDownloaded = intent.getIntExtra(SimpleDownloaderService.EVENT_UPDATE_DOWNLOADED, 0);
+				progressTotal = intent.getIntExtra(SimpleDownloaderService.EVENT_UPDATE_TOTAL, 0);
+				Log.d(TAG, "Update " + progressDownloaded + '/' + progressTotal);
 			}
 		}
 	};

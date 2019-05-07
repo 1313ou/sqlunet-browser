@@ -21,6 +21,7 @@ import org.sqlunet.browser.common.R;
  *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
+@SuppressWarnings("WeakerAccess")
 abstract public class BaseTaskFragment extends Fragment
 {
 	// static private final String TAG = "TaskFragment";

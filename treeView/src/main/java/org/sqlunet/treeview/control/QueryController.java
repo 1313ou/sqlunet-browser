@@ -11,6 +11,7 @@ public class QueryController extends TreeController
 	/**
 	 * Constructor
 	 */
+	@SuppressWarnings("WeakerAccess")
 	public QueryController()
 	{
 		super();

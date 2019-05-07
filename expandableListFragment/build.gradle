@@ -30,5 +30,5 @@ dependencies {
     implementation 'androidx.annotation:annotation:1.1.0-beta01'
 
     // Required for instrumented tests
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0-alpha04'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0-beta01'
 }

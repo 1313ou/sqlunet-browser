@@ -87,7 +87,6 @@ public class SetupSqlFragment extends Fragment implements Updatable
 	}
 
 	@Nullable
-	@SuppressWarnings("boxing")
 	@Override
 	public View onCreateView(@NonNull final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState)
 	{
@@ -324,16 +323,12 @@ public class SetupSqlFragment extends Fragment implements Updatable
 	public void onActivityResult(final int requestCode, final int resultCode, final Intent returnIntent)
 	{
 		// handle selection of input by other activity which returns selected input
-		switch (requestCode)
+		if (requestCode == REQUEST_DOWNLOAD_CODE)
 		{
-			case REQUEST_DOWNLOAD_CODE:
-				boolean success = resultCode == Activity.RESULT_OK;
-				Log.d(TAG, "Download " + (success ? "succeeded" : "failed")); ////
-				Toast.makeText(requireContext(), success ? R.string.title_download_complete : R.string.title_download_failed, Toast.LENGTH_SHORT).show();
-				update();
-				break;
-			default:
-				break;
+			boolean success = resultCode == Activity.RESULT_OK;
+			Log.d(TAG, "Download " + (success ? "succeeded" : "failed")); ////
+			Toast.makeText(requireContext(), success ? R.string.title_download_complete : R.string.title_download_failed, Toast.LENGTH_SHORT).show();
+			update();
 		}
 		super.onActivityResult(requestCode, resultCode, returnIntent);
 	}
@@ -341,7 +336,7 @@ public class SetupSqlFragment extends Fragment implements Updatable
 	// M E N U
 
 	@Override
-	public void onCreateOptionsMenu(final Menu menu, @NonNull final MenuInflater inflater)
+	public void onCreateOptionsMenu(@NonNull final Menu menu, @NonNull final MenuInflater inflater)
 	{
 		// inflate the menu; this adds items to the type bar if it is present.
 		inflater.inflate(R.menu.setup_sql, menu);

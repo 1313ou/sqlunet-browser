@@ -43,6 +43,7 @@ public class NavigationDrawerFragment extends Fragment
 	/**
 	 * Listener interface that all activities using this fragment must implement
 	 */
+	@FunctionalInterface
 	@SuppressWarnings("WeakerAccess")
 	public interface Listener
 	{
@@ -235,7 +236,7 @@ public class NavigationDrawerFragment extends Fragment
 	}
 
 	@Override
-	public void onConfigurationChanged(final Configuration newConfig)
+	public void onConfigurationChanged(@NonNull final Configuration newConfig)
 	{
 		super.onConfigurationChanged(newConfig);
 
@@ -247,7 +248,7 @@ public class NavigationDrawerFragment extends Fragment
 	// M E N U
 
 	@Override
-	public void onCreateOptionsMenu(final Menu menu, @NonNull final MenuInflater inflater)
+	public void onCreateOptionsMenu(@NonNull final Menu menu, @NonNull final MenuInflater inflater)
 	{
 		// if the drawer is open, show the global app actions in the type bar. See also showGlobalContextActionBar, which controls the top-left area of the type bar.
 		if (this.drawerLayout != null && isDrawerOpen())
@@ -260,7 +261,7 @@ public class NavigationDrawerFragment extends Fragment
 
 	@SuppressWarnings("SameReturnValue")
 	@Override
-	public boolean onOptionsItemSelected(MenuItem item)
+	public boolean onOptionsItemSelected(@NonNull MenuItem item)
 	{
 		assert this.drawerToggle != null;
 		//noinspection SimplifiableIfStatement

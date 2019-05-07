@@ -37,6 +37,7 @@ public class ExecAsyncTask
 	 */
 	static final private boolean SKIP_TRANSACTION = false;
 
+	@FunctionalInterface
 	public interface DoneListener
 	{
 		void onDone();

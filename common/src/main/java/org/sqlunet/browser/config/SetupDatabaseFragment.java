@@ -1,7 +1,6 @@
 package org.sqlunet.browser.config;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
@@ -96,7 +95,7 @@ public class SetupDatabaseFragment extends BaseTaskFragment
 	}
 
 	@Override
-	public void onCreateOptionsMenu(final Menu menu, @NonNull final MenuInflater inflater)
+	public void onCreateOptionsMenu(@NonNull final Menu menu, @NonNull final MenuInflater inflater)
 	{
 		inflater.inflate(R.menu.setup_database, menu);
 		super.onCreateOptionsMenu(menu, inflater);
@@ -123,6 +122,7 @@ public class SetupDatabaseFragment extends BaseTaskFragment
 		return true;
 	}
 
+	@SuppressWarnings("EmptyMethod")
 	private void update()
 	{}
 }

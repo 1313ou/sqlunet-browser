@@ -2,7 +2,6 @@ package org.sqlunet.treeview.control;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import androidx.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
@@ -10,6 +9,8 @@ import android.widget.TextView;
 
 import org.sqlunet.treeview.R;
 import org.sqlunet.treeview.model.TreeNode;
+
+import androidx.annotation.NonNull;
 
 /**
  * Link leaf controller
@@ -28,11 +29,13 @@ public class LinkNodeController extends Controller<CompositeValue>
 		super();
 	}
 
+	@NonNull
 	@Override
 	public View createNodeView(@NonNull final Context context, final TreeNode node, @NonNull final CompositeValue value)
 	{
 		final LayoutInflater inflater = LayoutInflater.from(context);
 		@SuppressLint("InflateParams") final View view = inflater.inflate(R.layout.layout_node_link, null, false);
+		assert view != null;
 
 		// icon
 		final ImageView iconView = view.findViewById(R.id.node_icon);
