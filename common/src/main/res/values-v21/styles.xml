@@ -2,11 +2,11 @@
 <resources>
 
 	<!-- BASE application theme, dependent on API level. This theme is replaced by AppBaseTheme from res/values-vXX/styles-app.xml on newer devices. -->
-	<style name="CompatAppBaseTheme" parent="Theme.AppCompat.Light.NoActionBar">
+	<style name="MyAppBaseTheme" parent="Theme.AppCompat.Light.NoActionBar">
 	</style>
 
 	<!-- APP theme -->
-	<style name="CompatAppTheme" parent="CompatAppBaseTheme">
+	<style name="MyAppTheme" parent="MyAppBaseTheme">
 
 		<item name="colorPrimary">@color/primaryColor</item>
 		<item name="colorPrimaryDark">@color/primaryDarkColor</item>
@@ -18,12 +18,15 @@
 		-->
 
 		<!-- toolbar/action bar -->
-		<item name="toolbarStyle">@style/CompatAppTheme.Toolbar</item>
-		<item name="actionBarStyle">@style/CompatAppTheme.ActionBar</item>
+		<item name="toolbarStyle">@style/MyAppTheme.Toolbar</item>
+		<item name="actionBarStyle">@style/MyAppTheme.ActionBar</item>
 
 		<!-- dropdowns -->
-		<item name="android:dropDownItemStyle">@style/CompatAppTheme.DropDownItemStyle</item>
-		<item name="dropDownListViewStyle">@style/CompatAppTheme.DropDownListViewStyle</item>
+		<item name="android:dropDownItemStyle">@style/MyAppTheme.DropDownItemStyle</item>
+		<item name="dropDownListViewStyle">@style/MyAppTheme.DropDownListViewStyle</item>
+
+		<!-- autocomplete -->
+		<item name="autoCompleteTextViewStyle">@style/MyAppTheme.AutoCompleteTextViewStyle</item>
 
 		<!-- background of activated indicator -->
 		<item name="android:activatedBackgroundIndicator">@drawable/listitem_background</item>
@@ -34,7 +37,7 @@
 	</style>
 
 	<!-- Custom background theme -->
-	<style name="CustomBackgroundCompatAppTheme" parent="CompatAppBaseTheme">
+	<style name="MyCustomBackgroundAppTheme" parent="MyAppBaseTheme">
 
 		<item name="android:windowBackground">@null</item>
 		<item name="android:background">@color/home_color</item>

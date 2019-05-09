@@ -36,336 +36,104 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="dbe7534c-3086-4b17-848a-f5676a7f84bd" name="Default" comment="lint">
-      <change afterPath="$PROJECT_DIR$/browserewn/browserewn.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/browserewn/src/main/res/values/providers.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/browserwn/src/debug/assets/tests" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/browserwn/src/main/assets/css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/browserwn/src/main/assets/help" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/browserwn/src/main/assets/images" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/browserwn/src/main/assets/js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/libwn/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/libwn/artwork-assets/closed.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/libwn/artwork-assets/error.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/libwn/artwork-assets/logo.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/libwn/artwork-assets/make-artwork.sh" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/libwn/artwork-assets/open.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/libwn/artwork-assets/pointer.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/libwn/artwork/home.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/libwn/artwork/ic_launcher.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/libwn/artwork/ic_launcher_round.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/libwn/artwork/ic_logo.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/libwn/artwork/ic_search_wndefinition.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/libwn/artwork/ic_search_wnsample.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/libwn/artwork/ic_search_wnword.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/libwn/artwork/ic_splash.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/libwn/artwork/logo.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/libwn/artwork/make-artwork.sh" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/libwn/build.gradle" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/libwn/libwn.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/libwn/src/main/AndroidManifest.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/libwn/src/main/assets/css/bnc.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/libwn/src/main/assets/css/wordnet.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/libwn/src/main/assets/js/wordnet.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/libwn/src/main/java/org/sqlunet/browser/Browse2Activity.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/libwn/src/main/java/org/sqlunet/browser/Browse2Fragment.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/libwn/src/main/java/org/sqlunet/browser/BrowseActivity.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/libwn/src/main/java/org/sqlunet/browser/BrowseFragment.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/libwn/src/main/java/org/sqlunet/browser/SearchTextActivity.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/libwn/src/main/java/org/sqlunet/browser/SearchTextFragment.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/libwn/src/main/java/org/sqlunet/browser/TextFragment.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/libwn/src/main/java/org/sqlunet/browser/selector/Browse1Activity.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/libwn/src/main/java/org/sqlunet/browser/selector/Browse1Fragment.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/libwn/src/main/java/org/sqlunet/browser/selector/SelectorsFragment.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/libwn/src/main/java/org/sqlunet/browser/web/WebActivity.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/libwn/src/main/java/org/sqlunet/browser/web/WebFragment.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/libwn/src/main/java/org/sqlunet/browser/wn/DocumentTransformer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/libwn/src/main/java/org/sqlunet/browser/wn/Settings.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/libwn/src/main/java/org/sqlunet/browser/wn/SetupStatusFragment.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/libwn/src/main/java/org/sqlunet/browser/wn/Status.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/libwn/src/main/java/org/sqlunet/browser/wn/StatusFragment.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/libwn/src/main/res/drawable-hdpi/home.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/libwn/src/main/res/drawable-hdpi/ic_logo.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/libwn/src/main/res/drawable-hdpi/ic_search_wndefinition.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/libwn/src/main/res/drawable-hdpi/ic_search_wnsample.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/libwn/src/main/res/drawable-hdpi/ic_search_wnword.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/libwn/src/main/res/drawable-hdpi/ic_splash.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/libwn/src/main/res/drawable-mdpi/home.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/libwn/src/main/res/drawable-mdpi/ic_logo.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/libwn/src/main/res/drawable-mdpi/ic_search_wndefinition.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/libwn/src/main/res/drawable-mdpi/ic_search_wnsample.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/libwn/src/main/res/drawable-mdpi/ic_search_wnword.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/libwn/src/main/res/drawable-mdpi/ic_splash.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/libwn/src/main/res/drawable-xhdpi/home.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/libwn/src/main/res/drawable-xhdpi/ic_logo.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/libwn/src/main/res/drawable-xhdpi/ic_search_wndefinition.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/libwn/src/main/res/drawable-xhdpi/ic_search_wnsample.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/libwn/src/main/res/drawable-xhdpi/ic_search_wnword.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/libwn/src/main/res/drawable-xhdpi/ic_splash.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/libwn/src/main/res/drawable-xxhdpi/home.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/libwn/src/main/res/drawable-xxhdpi/ic_logo.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/libwn/src/main/res/drawable-xxhdpi/ic_search_wndefinition.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/libwn/src/main/res/drawable-xxhdpi/ic_search_wnsample.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/libwn/src/main/res/drawable-xxhdpi/ic_search_wnword.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/libwn/src/main/res/drawable-xxhdpi/ic_splash.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/libwn/src/main/res/drawable-xxxhdpi/home.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/libwn/src/main/res/drawable-xxxhdpi/ic_logo.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/libwn/src/main/res/drawable-xxxhdpi/ic_search_wndefinition.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/libwn/src/main/res/drawable-xxxhdpi/ic_search_wnsample.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/libwn/src/main/res/drawable-xxxhdpi/ic_search_wnword.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/libwn/src/main/res/drawable-xxxhdpi/ic_splash.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/libwn/src/main/res/layout/activity_browse.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/libwn/src/main/res/layout/activity_browse1.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/libwn/src/main/res/layout/activity_browse2.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/libwn/src/main/res/layout/activity_other.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/libwn/src/main/res/layout/activity_searchtext.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/libwn/src/main/res/layout/activity_status.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/libwn/src/main/res/layout/activity_web.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/libwn/src/main/res/layout/fragment_browse.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/libwn/src/main/res/layout/fragment_browse1.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/libwn/src/main/res/layout/fragment_browse1_browse2.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/libwn/src/main/res/layout/fragment_browse2.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/libwn/src/main/res/layout/fragment_browse2_multi.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/libwn/src/main/res/layout/fragment_home.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/libwn/src/main/res/layout/fragment_searchtext.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/libwn/src/main/res/layout/fragment_selectors.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/libwn/src/main/res/layout/fragment_status.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/libwn/src/main/res/layout/fragment_web.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/libwn/src/main/res/layout/item_searchtext.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/libwn/src/main/res/layout/item_selector.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/libwn/src/main/res/menu/browse.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/libwn/src/main/res/menu/setup.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/libwn/src/main/res/mipmap-hdpi/ic_launcher.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/libwn/src/main/res/mipmap-hdpi/ic_launcher_round.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/libwn/src/main/res/mipmap-mdpi/ic_launcher.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/libwn/src/main/res/mipmap-mdpi/ic_launcher_round.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/libwn/src/main/res/mipmap-xhdpi/ic_launcher.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/libwn/src/main/res/mipmap-xhdpi/ic_launcher_round.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/libwn/src/main/res/mipmap-xxhdpi/ic_launcher.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/libwn/src/main/res/mipmap-xxhdpi/ic_launcher_round.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/libwn/src/main/res/mipmap-xxxhdpi/ic_launcher.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/libwn/src/main/res/mipmap-xxxhdpi/ic_launcher_round.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/libwn/src/main/res/values-land/refs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/libwn/src/main/res/values-large/refs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/libwn/src/main/res/values/colors.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/libwn/src/main/res/values/integer_sizes.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/libwn/src/main/res/values/navigation.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/libwn/src/main/res/values/pages.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/libwn/src/main/res/values/providers.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/libwn/src/main/res/values/refs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/libwn/src/main/res/values/spinners.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/libwn/src/main/res/values/strings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/libwn/src/main/res/values/strings_download.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/libwn/src/main/res/values/strings_files.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/libwn/src/main/res/values/strings_settings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/libwn/src/main/res/values/strings_sql.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/libwn/src/main/res/values/strings_tables.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/libwn/src/main/res/values/styles-app.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/libwn/src/main/res/xml/pref_filter.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/libwn/src/main/res/xml/searchable.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_activity_activity_1_0_0_alpha05_aar.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_annotation_annotation_1_1_0_alpha02_jar.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_appcompat_appcompat_1_1_0_alpha03_aar.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_appcompat_appcompat_resources_1_1_0_alpha03_aar.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_arch_core_core_common_2_0_0_jar.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_collection_collection_1_1_0_alpha03_jar.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_fragment_fragment_1_1_0_alpha05_aar.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_common_2_1_0_alpha03_jar.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_runtime_2_1_0_alpha03_aar.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_viewmodel_2_1_0_alpha03_aar.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_recyclerview_recyclerview_1_1_0_alpha01_aar.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_test_espresso_espresso_core_3_2_0_alpha02_aar.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_test_espresso_espresso_core_3_2_0_alpha04_aar.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_test_espresso_espresso_idling_resource_3_2_0_alpha02_aar.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_test_espresso_espresso_idling_resource_3_2_0_alpha04_aar.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_test_espresso_espresso_web_3_2_0_alpha02_aar.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_test_espresso_espresso_web_3_2_0_alpha04_aar.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_test_monitor_1_1_2_alpha02_aar.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_test_monitor_1_2_0_alpha04_aar.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_test_runner_1_1_2_alpha02_aar.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_test_runner_1_2_0_alpha04_aar.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_vectordrawable_vectordrawable_1_0_1_aar.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_vectordrawable_vectordrawable_animated_1_0_0_aar.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_android_material_material_1_1_0_alpha04_aar.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_android_material_material_1_1_0_alpha05_aar.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+    <list default="true" id="dbe7534c-3086-4b17-848a-f5676a7f84bd" name="Default" comment="ewn">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bNC/bNC.iml" beforeDir="false" afterPath="$PROJECT_DIR$/bNC/bNC.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/browser/browser.iml" beforeDir="false" afterPath="$PROJECT_DIR$/browser/browser.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/browser/src/androidTest/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/browser/src/androidTest/AndroidManifest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/browser/src/main/java/org/sqlunet/browser/xn/SetupStatusFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/browser/src/main/java/org/sqlunet/browser/xn/SetupStatusFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/browser/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/browser/src/main/AndroidManifest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/browser/src/main/res/layout/activity_browse.xml" beforeDir="false" afterPath="$PROJECT_DIR$/browser/src/main/res/layout/activity_browse.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/browser/src/main/res/layout/activity_browse1.xml" beforeDir="false" afterPath="$PROJECT_DIR$/browser/src/main/res/layout/activity_browse1.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/browser/src/main/res/layout/activity_browse2.xml" beforeDir="false" afterPath="$PROJECT_DIR$/browser/src/main/res/layout/activity_browse2.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/browser/src/main/res/layout/activity_other.xml" beforeDir="false" afterPath="$PROJECT_DIR$/browser/src/main/res/layout/activity_other.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/browser/src/main/res/layout/activity_predicatematrix.xml" beforeDir="false" afterPath="$PROJECT_DIR$/browser/src/main/res/layout/activity_predicatematrix.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/browser/src/main/res/layout/activity_searchtext.xml" beforeDir="false" afterPath="$PROJECT_DIR$/browser/src/main/res/layout/activity_searchtext.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/browser/src/main/res/layout/activity_status.xml" beforeDir="false" afterPath="$PROJECT_DIR$/browser/src/main/res/layout/activity_status.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/browser/src/main/res/layout/activity_web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/browser/src/main/res/layout/activity_web.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/browser/src/main/res/layout/fragment_home.xml" beforeDir="false" afterPath="$PROJECT_DIR$/browser/src/main/res/layout/fragment_home.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/browserewn/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/browserewn/src/main/AndroidManifest.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/browserfn/browserfn.iml" beforeDir="false" afterPath="$PROJECT_DIR$/browserfn/browserfn.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/browserfn/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/browserfn/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/browserfn/src/androidTest/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/browserfn/src/androidTest/AndroidManifest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/browserfn/src/main/java/org/sqlunet/browser/fn/SetupStatusFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/browserfn/src/main/java/org/sqlunet/browser/fn/SetupStatusFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/browserfn/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/browserfn/src/main/AndroidManifest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/browserfn/src/main/res/layout/activity_browse.xml" beforeDir="false" afterPath="$PROJECT_DIR$/browserfn/src/main/res/layout/activity_browse.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/browserfn/src/main/res/layout/activity_browse1.xml" beforeDir="false" afterPath="$PROJECT_DIR$/browserfn/src/main/res/layout/activity_browse1.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/browserfn/src/main/res/layout/activity_browse2.xml" beforeDir="false" afterPath="$PROJECT_DIR$/browserfn/src/main/res/layout/activity_browse2.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/browserfn/src/main/res/layout/activity_other.xml" beforeDir="false" afterPath="$PROJECT_DIR$/browserfn/src/main/res/layout/activity_other.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/browserfn/src/main/res/layout/activity_searchtext.xml" beforeDir="false" afterPath="$PROJECT_DIR$/browserfn/src/main/res/layout/activity_searchtext.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/browserfn/src/main/res/layout/activity_status.xml" beforeDir="false" afterPath="$PROJECT_DIR$/browserfn/src/main/res/layout/activity_status.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/browserfn/src/main/res/layout/activity_web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/browserfn/src/main/res/layout/activity_web.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/browserfn/src/main/res/layout/fragment_home.xml" beforeDir="false" afterPath="$PROJECT_DIR$/browserfn/src/main/res/layout/fragment_home.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/browservn/browservn.iml" beforeDir="false" afterPath="$PROJECT_DIR$/browservn/browservn.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/browservn/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/browservn/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/browservn/src/androidTest/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/browservn/src/androidTest/AndroidManifest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/browservn/src/main/java/org/sqlunet/browser/vn/SetupStatusFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/browservn/src/main/java/org/sqlunet/browser/vn/SetupStatusFragment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/browserwn/artwork-assets/closed.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/browserwn/artwork-assets/error.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/browserwn/artwork-assets/logo.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/browserwn/artwork-assets/make-artwork.sh" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/browserwn/artwork-assets/open.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/browserwn/artwork-assets/pointer.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/browserwn/artwork/ic_search_wndefinition.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/browserwn/artwork/ic_search_wnsample.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/browserwn/artwork/ic_search_wnword.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/browserwn/artwork/make-artwork.sh" beforeDir="false" afterPath="$PROJECT_DIR$/browserwn/artwork/make-artwork.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/browservn/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/browservn/src/main/AndroidManifest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/browservn/src/main/res/layout/activity_browse.xml" beforeDir="false" afterPath="$PROJECT_DIR$/browservn/src/main/res/layout/activity_browse.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/browservn/src/main/res/layout/activity_browse1.xml" beforeDir="false" afterPath="$PROJECT_DIR$/browservn/src/main/res/layout/activity_browse1.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/browservn/src/main/res/layout/activity_browse2.xml" beforeDir="false" afterPath="$PROJECT_DIR$/browservn/src/main/res/layout/activity_browse2.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/browservn/src/main/res/layout/activity_other.xml" beforeDir="false" afterPath="$PROJECT_DIR$/browservn/src/main/res/layout/activity_other.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/browservn/src/main/res/layout/activity_searchtext.xml" beforeDir="false" afterPath="$PROJECT_DIR$/browservn/src/main/res/layout/activity_searchtext.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/browservn/src/main/res/layout/activity_status.xml" beforeDir="false" afterPath="$PROJECT_DIR$/browservn/src/main/res/layout/activity_status.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/browservn/src/main/res/layout/activity_web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/browservn/src/main/res/layout/activity_web.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/browservn/src/main/res/layout/fragment_home.xml" beforeDir="false" afterPath="$PROJECT_DIR$/browservn/src/main/res/layout/fragment_home.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/browserwn/browserwn.iml" beforeDir="false" afterPath="$PROJECT_DIR$/browserwn/browserwn.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/browserwn/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/browserwn/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/browserwn/src/androidTest/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/browserwn/src/androidTest/AndroidManifest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/browserwn/src/androidTest/java/org/sqlunet/browser/RunBrowseFlat.java" beforeDir="false" afterPath="$PROJECT_DIR$/libwn/src/androidTest/java/org/sqlunet/browser/RunBrowseFlat.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/browserwn/src/androidTest/java/org/sqlunet/browser/RunBrowseTree.java" beforeDir="false" afterPath="$PROJECT_DIR$/libwn/src/androidTest/java/org/sqlunet/browser/RunBrowseTree.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/browserwn/src/androidTest/java/org/sqlunet/browser/RunMainFlat.java" beforeDir="false" afterPath="$PROJECT_DIR$/libwn/src/androidTest/java/org/sqlunet/browser/RunMainFlat.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/browserwn/src/androidTest/java/org/sqlunet/browser/RunMainTree.java" beforeDir="false" afterPath="$PROJECT_DIR$/libwn/src/androidTest/java/org/sqlunet/browser/RunMainTree.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/browserwn/src/androidTest/java/org/sqlunet/browser/TestActions.java" beforeDir="false" afterPath="$PROJECT_DIR$/libwn/src/androidTest/java/org/sqlunet/browser/TestActions.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/browserwn/src/androidTest/java/org/sqlunet/browser/TestUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/libwn/src/androidTest/java/org/sqlunet/browser/TestUtils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/browserwn/src/androidTest/java/org/sqlunet/browser/Tests.java" beforeDir="false" afterPath="$PROJECT_DIR$/libwn/src/androidTest/java/org/sqlunet/browser/Tests.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/browserwn/src/debug/assets/tests/sqlunet.list" beforeDir="false" afterPath="$PROJECT_DIR$/libwn/src/debug/assets/tests/sqlunet.list" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/browserwn/src/main/assets/css/framenet.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/browserwn/src/main/assets/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/libwn/src/main/assets/css/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/browserwn/src/main/assets/css/tree.css" beforeDir="false" afterPath="$PROJECT_DIR$/libwn/src/main/assets/css/tree.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/browserwn/src/main/assets/help/domains.html" beforeDir="false" afterPath="$PROJECT_DIR$/libwn/src/main/assets/help/domains.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/browserwn/src/main/assets/help/entities.html" beforeDir="false" afterPath="$PROJECT_DIR$/libwn/src/main/assets/help/entities.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/browserwn/src/main/assets/help/images/bnc.png" beforeDir="false" afterPath="$PROJECT_DIR$/libwn/src/main/assets/help/images/bnc.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/browserwn/src/main/assets/help/images/framenet.png" beforeDir="false" afterPath="$PROJECT_DIR$/libwn/src/main/assets/help/images/framenet.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/browserwn/src/main/assets/help/images/logo.png" beforeDir="false" afterPath="$PROJECT_DIR$/libwn/src/main/assets/help/images/logo.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/browserwn/src/main/assets/help/images/predicatematrix.png" beforeDir="false" afterPath="$PROJECT_DIR$/libwn/src/main/assets/help/images/predicatematrix.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/browserwn/src/main/assets/help/images/propbank.png" beforeDir="false" afterPath="$PROJECT_DIR$/libwn/src/main/assets/help/images/propbank.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/browserwn/src/main/assets/help/images/selector-senses.png" beforeDir="false" afterPath="$PROJECT_DIR$/libwn/src/main/assets/help/images/selector-senses.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/browserwn/src/main/assets/help/images/sqlunet.png" beforeDir="false" afterPath="$PROJECT_DIR$/libwn/src/main/assets/help/images/sqlunet.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/browserwn/src/main/assets/help/images/verbnet.png" beforeDir="false" afterPath="$PROJECT_DIR$/libwn/src/main/assets/help/images/verbnet.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/browserwn/src/main/assets/help/images/wordnet.png" beforeDir="false" afterPath="$PROJECT_DIR$/libwn/src/main/assets/help/images/wordnet.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/browserwn/src/main/assets/help/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/libwn/src/main/assets/help/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/browserwn/src/main/assets/help/license/bnc.txt" beforeDir="false" afterPath="$PROJECT_DIR$/libwn/src/main/assets/help/license/bnc.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/browserwn/src/main/assets/help/license/gpl-3.0.html" beforeDir="false" afterPath="$PROJECT_DIR$/libwn/src/main/assets/help/license/gpl-3.0.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/browserwn/src/main/assets/help/license/wn.txt" beforeDir="false" afterPath="$PROJECT_DIR$/libwn/src/main/assets/help/license/wn.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/browserwn/src/main/assets/help/selectors.html" beforeDir="false" afterPath="$PROJECT_DIR$/libwn/src/main/assets/help/selectors.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/browserwn/src/main/assets/help/sqlunet-diagram.html" beforeDir="false" afterPath="$PROJECT_DIR$/libwn/src/main/assets/help/sqlunet-diagram.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/browserwn/src/main/assets/help/sqlunet.html" beforeDir="false" afterPath="$PROJECT_DIR$/libwn/src/main/assets/help/sqlunet.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/browserwn/src/main/assets/help/sqlunet.svg" beforeDir="false" afterPath="$PROJECT_DIR$/libwn/src/main/assets/help/sqlunet.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/browserwn/src/main/assets/help/sqlunetbrowser.html" beforeDir="false" afterPath="$PROJECT_DIR$/libwn/src/main/assets/help/sqlunetbrowser.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/browserwn/src/main/assets/help/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/libwn/src/main/assets/help/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/browserwn/src/main/assets/images/bnc/convtask.png" beforeDir="false" afterPath="$PROJECT_DIR$/libwn/src/main/assets/images/bnc/convtask.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/browserwn/src/main/assets/images/bnc/imaginf.png" beforeDir="false" afterPath="$PROJECT_DIR$/libwn/src/main/assets/images/bnc/imaginf.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/browserwn/src/main/assets/images/bnc/spwr.png" beforeDir="false" afterPath="$PROJECT_DIR$/libwn/src/main/assets/images/bnc/spwr.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/browserwn/src/main/assets/images/closed.png" beforeDir="false" afterPath="$PROJECT_DIR$/libwn/src/main/assets/images/closed.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/browserwn/src/main/assets/images/error.png" beforeDir="false" afterPath="$PROJECT_DIR$/libwn/src/main/assets/images/error.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/browserwn/src/main/assets/images/logo.png" beforeDir="false" afterPath="$PROJECT_DIR$/libwn/src/main/assets/images/logo.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/browserwn/src/main/assets/images/open.png" beforeDir="false" afterPath="$PROJECT_DIR$/libwn/src/main/assets/images/open.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/browserwn/src/main/assets/images/pointer.png" beforeDir="false" afterPath="$PROJECT_DIR$/libwn/src/main/assets/images/pointer.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/browserwn/src/main/assets/images/xnet/bnc.png" beforeDir="false" afterPath="$PROJECT_DIR$/libwn/src/main/assets/images/xnet/bnc.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/browserwn/src/main/assets/images/xnet/definition.png" beforeDir="false" afterPath="$PROJECT_DIR$/libwn/src/main/assets/images/xnet/definition.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/browserwn/src/main/assets/images/xnet/domain.png" beforeDir="false" afterPath="$PROJECT_DIR$/libwn/src/main/assets/images/xnet/domain.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/browserwn/src/main/assets/images/xnet/framenet.png" beforeDir="false" afterPath="$PROJECT_DIR$/libwn/src/main/assets/images/xnet/framenet.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/browserwn/src/main/assets/images/xnet/item.png" beforeDir="false" afterPath="$PROJECT_DIR$/libwn/src/main/assets/images/xnet/item.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/browserwn/src/main/assets/images/xnet/member.png" beforeDir="false" afterPath="$PROJECT_DIR$/libwn/src/main/assets/images/xnet/member.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/browserwn/src/main/assets/images/xnet/members.png" beforeDir="false" afterPath="$PROJECT_DIR$/libwn/src/main/assets/images/xnet/members.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/browserwn/src/main/assets/images/xnet/pos.png" beforeDir="false" afterPath="$PROJECT_DIR$/libwn/src/main/assets/images/xnet/pos.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/browserwn/src/main/assets/images/xnet/propbank.png" beforeDir="false" afterPath="$PROJECT_DIR$/libwn/src/main/assets/images/xnet/propbank.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/browserwn/src/main/assets/images/xnet/relation.png" beforeDir="false" afterPath="$PROJECT_DIR$/libwn/src/main/assets/images/xnet/relation.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/browserwn/src/main/assets/images/xnet/role.png" beforeDir="false" afterPath="$PROJECT_DIR$/libwn/src/main/assets/images/xnet/role.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/browserwn/src/main/assets/images/xnet/roleclass.png" beforeDir="false" afterPath="$PROJECT_DIR$/libwn/src/main/assets/images/xnet/roleclass.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/browserwn/src/main/assets/images/xnet/roles.png" beforeDir="false" afterPath="$PROJECT_DIR$/libwn/src/main/assets/images/xnet/roles.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/browserwn/src/main/assets/images/xnet/rolex.png" beforeDir="false" afterPath="$PROJECT_DIR$/libwn/src/main/assets/images/xnet/rolex.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/browserwn/src/main/assets/images/xnet/rolex2.png" beforeDir="false" afterPath="$PROJECT_DIR$/libwn/src/main/assets/images/xnet/rolex2.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/browserwn/src/main/assets/images/xnet/sample.png" beforeDir="false" afterPath="$PROJECT_DIR$/libwn/src/main/assets/images/xnet/sample.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/browserwn/src/main/assets/images/xnet/sentence.png" beforeDir="false" afterPath="$PROJECT_DIR$/libwn/src/main/assets/images/xnet/sentence.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/browserwn/src/main/assets/images/xnet/synset.png" beforeDir="false" afterPath="$PROJECT_DIR$/libwn/src/main/assets/images/xnet/synset.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/browserwn/src/main/assets/images/xnet/synsetmember.png" beforeDir="false" afterPath="$PROJECT_DIR$/libwn/src/main/assets/images/xnet/synsetmember.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/browserwn/src/main/assets/images/xnet/verbnet.png" beforeDir="false" afterPath="$PROJECT_DIR$/libwn/src/main/assets/images/xnet/verbnet.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/browserwn/src/main/assets/images/xnet/wordnet.png" beforeDir="false" afterPath="$PROJECT_DIR$/libwn/src/main/assets/images/xnet/wordnet.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/browserwn/src/main/assets/js/ajax.js" beforeDir="false" afterPath="$PROJECT_DIR$/libwn/src/main/assets/js/ajax.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/browserwn/src/main/assets/js/framenet.js" beforeDir="false" afterPath="$PROJECT_DIR$/libwn/src/main/assets/js/bnc.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/browserwn/src/main/assets/js/sarissa.js" beforeDir="false" afterPath="$PROJECT_DIR$/libwn/src/main/assets/js/sarissa.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/browserwn/src/main/assets/js/tree.js" beforeDir="false" afterPath="$PROJECT_DIR$/libwn/src/main/assets/js/tree.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/browserwn/src/main/java/org/sqlunet/browser/Browse2Activity.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/browserwn/src/main/java/org/sqlunet/browser/Browse2Fragment.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/browserwn/src/main/java/org/sqlunet/browser/BrowseActivity.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/browserwn/src/main/java/org/sqlunet/browser/BrowseFragment.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/browserwn/src/main/java/org/sqlunet/browser/SearchTextActivity.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/browserwn/src/main/java/org/sqlunet/browser/SearchTextFragment.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/browserwn/src/main/java/org/sqlunet/browser/TextFragment.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/browserwn/src/main/java/org/sqlunet/browser/selector/Browse1Activity.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/browserwn/src/main/java/org/sqlunet/browser/selector/Browse1Fragment.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/browserwn/src/main/java/org/sqlunet/browser/selector/SelectorsFragment.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/browserwn/src/main/java/org/sqlunet/browser/web/WebActivity.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/browserwn/src/main/java/org/sqlunet/browser/web/WebFragment.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/browserwn/src/main/java/org/sqlunet/browser/wn/DocumentTransformer.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/browserwn/src/main/java/org/sqlunet/browser/wn/Settings.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/browserwn/src/main/java/org/sqlunet/browser/wn/SetupStatusFragment.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/browserwn/src/main/java/org/sqlunet/browser/wn/Status.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/browserwn/src/main/java/org/sqlunet/browser/wn/StatusFragment.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/browserwn/src/main/res/drawable-hdpi/ic_search_wndefinition.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/browserwn/src/main/res/drawable-hdpi/ic_search_wnsample.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/browserwn/src/main/res/drawable-hdpi/ic_search_wnword.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/browserwn/src/main/res/drawable-mdpi/ic_search_wndefinition.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/browserwn/src/main/res/drawable-mdpi/ic_search_wnsample.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/browserwn/src/main/res/drawable-mdpi/ic_search_wnword.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/browserwn/src/main/res/drawable-xhdpi/ic_search_wndefinition.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/browserwn/src/main/res/drawable-xhdpi/ic_search_wnsample.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/browserwn/src/main/res/drawable-xhdpi/ic_search_wnword.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/browserwn/src/main/res/drawable-xxhdpi/ic_search_wndefinition.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/browserwn/src/main/res/drawable-xxhdpi/ic_search_wnsample.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/browserwn/src/main/res/drawable-xxhdpi/ic_search_wnword.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/browserwn/src/main/res/drawable-xxxhdpi/ic_search_wndefinition.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/browserwn/src/main/res/drawable-xxxhdpi/ic_search_wnsample.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/browserwn/src/main/res/drawable-xxxhdpi/ic_search_wnword.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/browserwn/src/main/res/layout/activity_browse.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/browserwn/src/main/res/layout/activity_browse1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/browserwn/src/main/res/layout/activity_browse2.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/browserwn/src/main/res/layout/activity_other.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/browserwn/src/main/res/layout/activity_searchtext.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/browserwn/src/main/res/layout/activity_status.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/browserwn/src/main/res/layout/activity_web.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/browserwn/src/main/res/layout/fragment_browse.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/browserwn/src/main/res/layout/fragment_browse1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/browserwn/src/main/res/layout/fragment_browse1_browse2.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/browserwn/src/main/res/layout/fragment_browse2.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/browserwn/src/main/res/layout/fragment_browse2_multi.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/browserwn/src/main/res/layout/fragment_home.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/browserwn/src/main/res/layout/fragment_searchtext.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/browserwn/src/main/res/layout/fragment_selectors.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/browserwn/src/main/res/layout/fragment_status.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/browserwn/src/main/res/layout/fragment_web.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/browserwn/src/main/res/layout/item_searchtext.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/browserwn/src/main/res/layout/item_selector.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/browserwn/src/main/res/menu/browse.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/browserwn/src/main/res/menu/setup.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/browserwn/src/main/res/values-land/refs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/browserwn/src/main/res/values-large/refs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/browserwn/src/main/res/values/colors.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/browserwn/src/main/res/values/integer_sizes.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/browserwn/src/main/res/values/navigation.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/browserwn/src/main/res/values/pages.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/browserwn/src/main/res/values/refs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/browserwn/src/main/res/values/spinners.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/browserwn/src/main/res/values/strings.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/browserwn/src/main/res/values/strings_settings.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/browserwn/src/main/res/values/strings_sql.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/browserwn/src/main/res/values/strings_tables.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/browserwn/src/main/res/values/styles-app.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/browserwn/src/main/res/xml/pref_filter.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/browserwn/src/main/res/xml/searchable.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/browserwn/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/browserwn/src/main/AndroidManifest.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/common/common.iml" beforeDir="false" afterPath="$PROJECT_DIR$/common/common.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/java/org/sqlunet/browser/config/SetupStatusFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/org/sqlunet/browser/config/SetupStatusFragment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/res/values/strings_about.xml" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/res/values/strings_about.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/AndroidManifest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/res/layout/activity_about.xml" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/res/layout/activity_about.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/res/layout/activity_browse.xml" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/res/layout/activity_browse.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/res/layout/activity_help.xml" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/res/layout/activity_help.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/res/layout/activity_main.xml" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/res/layout/activity_main.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/res/layout/activity_searchtext.xml" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/res/layout/activity_searchtext.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/res/layout/activity_setup.xml" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/res/layout/activity_setup.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/res/layout/activity_setup_database.xml" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/res/layout/activity_setup_database.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/res/layout/activity_setup_file.xml" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/res/layout/activity_setup_file.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/res/layout/activity_status.xml" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/res/layout/activity_status.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/res/layout/activity_storage.xml" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/res/layout/activity_storage.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/res/layout/activity_table.xml" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/res/layout/activity_table.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/res/layout/toolbar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/res/layout/toolbar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/res/values-v21/styles.xml" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/res/values-v21/styles.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/common/src/main/res/values/styles-toolbar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/res/values/styles-toolbar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/res/values/styles.xml" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/res/values/styles.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/deploy/deploy.iml" beforeDir="false" afterPath="$PROJECT_DIR$/deploy/deploy.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/download/download.iml" beforeDir="false" afterPath="$PROJECT_DIR$/download/download.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/expandableListFragment/expandableListFragment.iml" beforeDir="false" afterPath="$PROJECT_DIR$/expandableListFragment/expandableListFragment.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frameNet/frameNet.iml" beforeDir="false" afterPath="$PROJECT_DIR$/frameNet/frameNet.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lint.xml" beforeDir="false" afterPath="$PROJECT_DIR$/lint.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frameNet/src/main/res/layout/activity_fnannoset.xml" beforeDir="false" afterPath="$PROJECT_DIR$/frameNet/src/main/res/layout/activity_fnannoset.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frameNet/src/main/res/layout/activity_fnframe.xml" beforeDir="false" afterPath="$PROJECT_DIR$/frameNet/src/main/res/layout/activity_fnframe.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frameNet/src/main/res/layout/activity_fnlexunit.xml" beforeDir="false" afterPath="$PROJECT_DIR$/frameNet/src/main/res/layout/activity_fnlexunit.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frameNet/src/main/res/layout/activity_fnsentence.xml" beforeDir="false" afterPath="$PROJECT_DIR$/frameNet/src/main/res/layout/activity_fnsentence.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frameNet/src/main/res/layout/toolbar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/frameNet/src/main/res/layout/toolbar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frameNet/src/main/res/values/styles-toolbar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/frameNet/src/main/res/values/styles-toolbar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libwn/libwn.iml" beforeDir="false" afterPath="$PROJECT_DIR$/libwn/libwn.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libwn/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/libwn/src/main/AndroidManifest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libwn/src/main/res/layout/activity_browse.xml" beforeDir="false" afterPath="$PROJECT_DIR$/libwn/src/main/res/layout/activity_browse.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libwn/src/main/res/layout/activity_browse1.xml" beforeDir="false" afterPath="$PROJECT_DIR$/libwn/src/main/res/layout/activity_browse1.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libwn/src/main/res/layout/activity_browse2.xml" beforeDir="false" afterPath="$PROJECT_DIR$/libwn/src/main/res/layout/activity_browse2.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libwn/src/main/res/layout/activity_other.xml" beforeDir="false" afterPath="$PROJECT_DIR$/libwn/src/main/res/layout/activity_other.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libwn/src/main/res/layout/activity_searchtext.xml" beforeDir="false" afterPath="$PROJECT_DIR$/libwn/src/main/res/layout/activity_searchtext.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libwn/src/main/res/layout/activity_status.xml" beforeDir="false" afterPath="$PROJECT_DIR$/libwn/src/main/res/layout/activity_status.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libwn/src/main/res/layout/activity_web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/libwn/src/main/res/layout/activity_web.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libwn/src/main/res/layout/fragment_home.xml" beforeDir="false" afterPath="$PROJECT_DIR$/libwn/src/main/res/layout/fragment_home.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/predicateMatrix/predicateMatrix.iml" beforeDir="false" afterPath="$PROJECT_DIR$/predicateMatrix/predicateMatrix.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/preference/preference.iml" beforeDir="false" afterPath="$PROJECT_DIR$/preference/preference.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/propbank/propbank.iml" beforeDir="false" afterPath="$PROJECT_DIR$/propbank/propbank.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/settings.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/settings.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/propbank/src/main/res/layout/activity_pbroleset.xml" beforeDir="false" afterPath="$PROJECT_DIR$/propbank/src/main/res/layout/activity_pbroleset.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/propbank/src/main/res/layout/toolbar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/propbank/src/main/res/layout/toolbar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/propbank/src/main/res/values/styles-toolbar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/propbank/src/main/res/values/styles-toolbar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/support/src/main/res/layout/activity_buy.xml" beforeDir="false" afterPath="$PROJECT_DIR$/support/src/main/res/layout/activity_buy.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/support/src/main/res/layout/activity_other.xml" beforeDir="false" afterPath="$PROJECT_DIR$/support/src/main/res/layout/activity_other.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/support/src/main/res/layout/toolbar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/support/src/main/res/layout/toolbar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/support/src/main/res/values/styles_toolbar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/support/src/main/res/values/styles_toolbar.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/support/support.iml" beforeDir="false" afterPath="$PROJECT_DIR$/support/support.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/test/test.iml" beforeDir="false" afterPath="$PROJECT_DIR$/test/test.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/treeView/treeView.iml" beforeDir="false" afterPath="$PROJECT_DIR$/treeView/treeView.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/verbNet/src/main/res/layout/activity_vnclass.xml" beforeDir="false" afterPath="$PROJECT_DIR$/verbNet/src/main/res/layout/activity_vnclass.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/verbNet/src/main/res/layout/toolbar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/verbNet/src/main/res/layout/toolbar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/verbNet/src/main/res/values/styles-toolbar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/verbNet/src/main/res/values/styles-toolbar.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/verbNet/verbNet.iml" beforeDir="false" afterPath="$PROJECT_DIR$/verbNet/verbNet.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/layout/activity_synset.xml" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/layout/activity_synset.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/layout/activity_word.xml" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/layout/activity_word.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/layout/toolbar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/layout/toolbar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/values/styles-toolbar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/values/styles-toolbar.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/wordNet/wordNet.iml" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/wordNet.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/xNet/src/main/res/layout/toolbar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/xNet/src/main/res/layout/toolbar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/xNet/src/main/res/values/styles-toolbar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/xNet/src/main/res/values/styles-toolbar.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/xNet/xNet.iml" beforeDir="false" afterPath="$PROJECT_DIR$/xNet/xNet.iml" afterDir="false" />
     </list>
     <list id="36f6b5c7-9521-46b4-bf4d-149db941bcca" name="NonPublic" comment="" />
@@ -1716,33 +1484,7 @@
     <favorites_list name="SqlUNet" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/common/src/main/res/values/styles-toolbar.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="195">
-              <caret line="15" selection-start-line="15" selection-end-line="15" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/common/src/main/res/values/styles.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="195">
-              <caret line="18" column="28" selection-start-line="18" selection-start-column="28" selection-end-line="18" selection-end-column="28" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/common/src/main/res/values-v21/styles.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-39" />
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -1756,8 +1498,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>+++</find>
-      <find>Fail</find>
       <find>recurse</find>
       <find>&quot;Samples&quot;</find>
       <find>includeSubnodes</find>
@@ -1786,6 +1526,8 @@
       <find>dropdown_color</find>
       <find>AppBarOverlay</find>
       <find>name=&quot;CompatAppTheme.AppBarOverlay&quot;</find>
+      <find>CompatAppThe</find>
+      <find>CompatApp</find>
     </findStrings>
     <replaceStrings>
       <replace>SqlunetViewTreeModelFactory</replace>
@@ -1865,12 +1607,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/treeView/src/main/java/org/sqlunet/treeview/control/Controller.java" />
-        <option value="$PROJECT_DIR$/treeView/src/main/java/org/sqlunet/treeview/model/TreeNode.java" />
-        <option value="$PROJECT_DIR$/treeView/src/main/java/org/sqlunet/treeview/view/SubtreeView.java" />
-        <option value="$PROJECT_DIR$/xNet/src/main/java/org/sqlunet/browser/TreeFragment.java" />
-        <option value="$PROJECT_DIR$/browserfn/src/main/java/org/sqlunet/browser/fn/DocumentTransformer.java" />
-        <option value="$PROJECT_DIR$/treeView/src/main/java/org/sqlunet/treeview/control/LeafController.java" />
         <option value="$PROJECT_DIR$/treeView/src/main/java/org/sqlunet/treeview/control/TreeController.java" />
         <option value="$PROJECT_DIR$/treeView/src/main/java/org/sqlunet/treeview/view/TreeView.java" />
         <option value="$PROJECT_DIR$/lint.xml" />
@@ -1914,7 +1650,13 @@
         <option value="$PROJECT_DIR$/libwn/src/main/java/org/sqlunet/browser/web/WebFragment.java" />
         <option value="$PROJECT_DIR$/libwn/artwork/make-artwork.sh" />
         <option value="$PROJECT_DIR$/libwn/src/main/res/xml/searchable.xml" />
+        <option value="$PROJECT_DIR$/common/src/main/AndroidManifest.xml" />
+        <option value="$PROJECT_DIR$/frameNet/src/main/res/values/styles-toolbar.xml" />
+        <option value="$PROJECT_DIR$/propbank/src/main/res/values/styles-toolbar.xml" />
         <option value="$PROJECT_DIR$/verbNet/src/main/res/values/styles-toolbar.xml" />
+        <option value="$PROJECT_DIR$/wordNet/src/main/res/values/styles-toolbar.xml" />
+        <option value="$PROJECT_DIR$/common/src/main/res/values/styles.xml" />
+        <option value="$PROJECT_DIR$/common/src/main/res/values-v21/styles.xml" />
         <option value="$PROJECT_DIR$/common/src/main/res/values/styles-toolbar.xml" />
       </list>
     </option>
@@ -2869,20 +2611,6 @@
       <option name="presentableId" value="Default" />
       <updated>1487150992421</updated>
     </task>
-    <task id="LOCAL-00122" summary="fixes">
-      <created>1553066250168</created>
-      <option name="number" value="00122" />
-      <option name="presentableId" value="LOCAL-00122" />
-      <option name="project" value="LOCAL" />
-      <updated>1553066250169</updated>
-    </task>
-    <task id="LOCAL-00123" summary="fixes">
-      <created>1553071617830</created>
-      <option name="number" value="00123" />
-      <option name="presentableId" value="LOCAL-00123" />
-      <option name="project" value="LOCAL" />
-      <updated>1553071617831</updated>
-    </task>
     <task id="LOCAL-00124" summary="fixes">
       <created>1553326551549</created>
       <option name="number" value="00124" />
@@ -3212,7 +2940,21 @@
       <option name="project" value="LOCAL" />
       <updated>1557223266686</updated>
     </task>
-    <option name="localTasksCounter" value="171" />
+    <task id="LOCAL-00171" summary="lint">
+      <created>1557403777530</created>
+      <option name="number" value="00171" />
+      <option name="presentableId" value="LOCAL-00171" />
+      <option name="project" value="LOCAL" />
+      <updated>1557403777531</updated>
+    </task>
+    <task id="LOCAL-00172" summary="ewn">
+      <created>1557403817449</created>
+      <option name="number" value="00172" />
+      <option name="presentableId" value="LOCAL-00172" />
+      <option name="project" value="LOCAL" />
+      <updated>1557403817449</updated>
+    </task>
+    <option name="localTasksCounter" value="173" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -3259,7 +3001,7 @@
   <component name="ToolWindowManager">
     <frame x="51" y="124" width="1243" height="1055" extended-state="0" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.6680384" visible="true" weight="0.24146545" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.6680384" visible="true" weight="0.24146545" />
       <window_info id="Structure" order="1" sideWeight="0.47352496" side_tool="true" weight="0.27697262" />
       <window_info id="Captures" order="2" sideWeight="0.3319616" side_tool="true" weight="0.25447154" />
       <window_info id="Capture Tool" order="3" />
@@ -3270,7 +3012,7 @@
       <window_info id="Build Variants" order="8" sideWeight="0.50392157" side_tool="true" weight="0.18117131" />
       <window_info id="Resources Explorer" order="9" weight="0.32984716" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" sideWeight="0.31807032" visible="true" weight="0.4181416" />
+      <window_info anchor="bottom" id="Find" order="1" sideWeight="0.31807032" weight="0.4181416" />
       <window_info anchor="bottom" id="Run" order="2" sideWeight="0.22824302" weight="0.33953032" />
       <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.79327315" weight="0.28781927" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
@@ -3279,9 +3021,9 @@
       <window_info anchor="bottom" id="Android Profiler" order="7" />
       <window_info anchor="bottom" id="Logcat" order="8" sideWeight="0.55291224" side_tool="true" weight="0.3988212" />
       <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.7481542" side_tool="true" weight="0.4459725" />
-      <window_info anchor="bottom" id="Build" order="10" sideWeight="0.44790813" weight="0.39697802" />
+      <window_info anchor="bottom" id="Build" order="10" sideWeight="0.44790813" weight="0.2920354" />
       <window_info anchor="bottom" id="Android Monitor" order="11" sideWeight="0.82428116" weight="0.39513677" />
-      <window_info anchor="bottom" id="Version Control" order="12" sideWeight="0.25102544" weight="0.4459725" />
+      <window_info active="true" anchor="bottom" id="Version Control" order="12" sideWeight="0.25102544" visible="true" weight="0.44579646" />
       <window_info anchor="bottom" id="Terminal" order="13" sideWeight="0.3136289" weight="0.32554945" />
       <window_info active="true" anchor="bottom" id="Gradle Console" order="14" sideWeight="0.4729064" side_tool="true" visible="true" weight="0.3107843" />
       <window_info anchor="bottom" id="Messages" order="15" sideWeight="0.5270936" weight="0.3107843" />
@@ -3409,7 +3151,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$" />
     </ignored-roots>
-    <MESSAGE value="migrate to androidx" />
     <MESSAGE value="fixes" />
     <MESSAGE value="detach root (model) node" />
     <MESSAGE value="fixes get(tag, class)" />
@@ -3434,7 +3175,8 @@
     <MESSAGE value="wip&#10;expand levels&#10;deadend wordnet synset" />
     <MESSAGE value="wip&#10;collapse treeop" />
     <MESSAGE value="lint" />
-    <option name="LAST_COMMIT_MESSAGE" value="lint" />
+    <MESSAGE value="ewn" />
+    <option name="LAST_COMMIT_MESSAGE" value="ewn" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -3490,11 +3232,6 @@
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/libwn/src/main/res/values/strings_sql.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-253" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/libwn/src/main/res/values/strings_tables.xml">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -3593,14 +3330,6 @@
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/browser/src/main/AndroidManifest.xml">
-      <provider editor-type-id="android-manifest" />
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="196">
-          <caret line="49" column="42" selection-start-line="49" selection-start-column="42" selection-end-line="49" selection-end-column="42" />
         </state>
       </provider>
     </entry>
@@ -3772,35 +3501,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/frameNet/src/main/res/values/styles-toolbar.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="26">
-          <caret line="2" column="11" selection-start-line="2" selection-start-column="11" selection-end-line="2" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/propbank/src/main/res/values/styles-toolbar.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="26">
-          <caret line="2" column="11" selection-start-line="2" selection-start-column="11" selection-end-line="2" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/support/src/main/res/values/styles_toolbar.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="26">
-          <caret line="2" column="11" selection-start-line="2" selection-start-column="11" selection-end-line="2" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/verbNet/src/main/res/values/styles-toolbar.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="26">
-          <caret line="2" column="11" selection-start-line="2" selection-start-column="11" selection-end-line="2" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/wordNet/src/main/res/values/styles-toolbar.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="26">
           <caret line="2" column="11" selection-start-line="2" selection-start-column="11" selection-end-line="2" selection-end-column="11" />
@@ -3814,22 +3515,68 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/common/src/main/res/values-v21/styles.xml">
+    <entry file="file://$PROJECT_DIR$/frameNet/src/main/res/values/styles-toolbar.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-39" />
+        <state relative-caret-position="78">
+          <caret line="6" column="17" lean-forward="true" selection-start-line="6" selection-start-column="17" selection-end-line="6" selection-end-column="17" />
+        </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/common/src/main/res/values/styles.xml">
+    <entry file="file://$PROJECT_DIR$/common/src/main/AndroidManifest.xml">
+      <provider editor-type-id="android-manifest" />
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="18" column="28" selection-start-line="18" selection-start-column="28" selection-end-line="18" selection-end-column="28" />
+        <state relative-caret-position="157">
+          <caret line="21" column="32" selection-start-line="21" selection-start-column="32" selection-end-line="21" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/propbank/src/main/res/values/styles-toolbar.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="78">
+          <caret line="6" column="19" selection-start-line="6" selection-start-column="19" selection-end-line="6" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/verbNet/src/main/res/values/styles-toolbar.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="78">
+          <caret line="6" column="19" lean-forward="true" selection-start-line="6" selection-start-column="19" selection-end-line="6" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wordNet/src/main/res/values/styles-toolbar.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="78">
+          <caret line="6" column="19" lean-forward="true" selection-start-line="6" selection-start-column="19" selection-end-line="6" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/browser/src/main/AndroidManifest.xml">
+      <provider editor-type-id="android-manifest" />
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="196">
+          <caret line="49" column="42" selection-start-line="49" selection-start-column="42" selection-end-line="49" selection-end-column="42" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/common/src/main/res/values/styles-toolbar.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="15" selection-start-line="15" selection-end-line="15" />
+        <state relative-caret-position="260">
+          <caret line="20" selection-start-line="20" selection-end-line="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/common/src/main/res/values-v21/styles.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="286">
+          <caret line="28" column="55" selection-start-line="28" selection-start-column="55" selection-end-line="28" selection-end-column="55" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/common/src/main/res/values/styles.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="213">
+          <caret line="17" column="26" selection-start-line="17" selection-start-column="26" selection-end-line="17" selection-end-column="26" />
         </state>
       </provider>
     </entry>

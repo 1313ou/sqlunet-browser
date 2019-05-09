@@ -9,7 +9,7 @@
 	<com.google.android.material.appbar.AppBarLayout
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
-		android:theme="@style/CompatAppTheme.AppBarOverlay">
+		android:theme="@style/MyAppTheme.AppBarOverlay">
 
 		<!--suppress AndroidElementNotAllowed, AndroidElementNotAllowed, AndroidElementNotAllowed -->
 		<include layout="@layout/toolbar"/>

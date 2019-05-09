@@ -19,7 +19,7 @@
 		android:label="@string/app_name"
 		android:largeHeap="true"
 		android:supportsRtl="true"
-		android:theme="@style/CompatAppTheme"
+		android:theme="@style/MyAppTheme"
 		android:usesCleartextTraffic="true"
 		tools:ignore="GoogleAppIndexingWarning"
 		tools:targetApi="m">

@@ -5,11 +5,11 @@
                                    android:id="@+id/toolbar"
                                    android:layout_width="match_parent"
                                    android:layout_height="?attr/actionBarSize"
-                                   android:theme="@style/CompatAppTheme.AppBarOverlay"
+                                   android:theme="@style/MyAppTheme.AppBarOverlay"
                                    app:elevation="4dp"
                                    app:title="@string/app_name"
                                    app:subtitle="@string/app_subname"
-                                   app:popupTheme="@style/CompatAppTheme.PopupOverlay"
+                                   app:popupTheme="@style/MyAppTheme.PopupOverlay"
                                    app:subtitleTextColor="@color/primaryAltForeColor"
                                    app:titleTextColor="@color/primaryForeColor"
                                    tools:ignore="UnusedAttribute"/>
