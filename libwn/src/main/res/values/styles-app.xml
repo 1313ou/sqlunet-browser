@@ -23,6 +23,7 @@
 	<style name="Data.Cased">
 		<item name="android:textColor">@color/accentColor</item>
 		<item name="android:textSize">12sp</item>
+		<item name="android:textStyle">italic|bold</item>
 	</style>
 
 	<style name="Data.TagCount">
@@ -72,6 +73,7 @@
 	<style name="Data.AdjPosition"/>
 
 	<style name="Data.XIcon">
+		<item name="android:layout_gravity">center_vertical</item>
 	</style>
 
 	<style name="Data.XName">

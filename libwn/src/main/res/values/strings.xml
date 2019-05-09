@@ -1,10 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
 
-	<!-- app -->
-	<string name="app_name">Semantikos-WordNet</string>>
-	<string name="app_subname">WordNet</string>
-
 	<!-- actions -->
 	<string name="action_setup_searchtext_wn" tools:keep="@string/action_setup_searchtext_wn">Setup text search for WordNet</string>
 
@@ -27,7 +23,6 @@
 
 	<!-- databases -->
 	<string name="wordnet">WordNet</string>
-
 	<string name="wordnet_blurb">WordNet\nexplores senses and relations</string>
 
 </resources>

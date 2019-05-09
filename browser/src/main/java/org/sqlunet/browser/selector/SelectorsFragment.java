@@ -150,10 +150,16 @@ public class SelectorsFragment extends ListFragment
 				}, 0);
 
 		adapter.setViewBinder((view, cursor, columnIndex) -> {
+
 			String text = cursor.getString(columnIndex);
 			if (text == null)
 			{
-				text = "";
+				view.setVisibility(View.GONE);
+				return false;
+			}
+			else
+			{
+				view.setVisibility(View.VISIBLE);
 			}
 
 			if (view instanceof TextView)

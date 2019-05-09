@@ -124,6 +124,7 @@ public class SelectorsFragment extends ListFragment
 				}, 0);
 
 		adapter.setViewBinder((view, cursor, columnIndex) -> {
+
 			if (view instanceof TextView)
 			{
 				final int idIsLike = cursor.getColumnIndex(ISLIKE);
@@ -132,7 +133,12 @@ public class SelectorsFragment extends ListFragment
 				String text = cursor.getString(columnIndex);
 				if (text == null || "0".equals(text))
 				{
-					text = "";
+					view.setVisibility(View.GONE);
+					return false;
+				}
+				else
+				{
+					view.setVisibility(View.VISIBLE);
 				}
 				final TextView textView = (TextView) view;
 				textView.setText(text);

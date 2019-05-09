@@ -43,6 +43,13 @@
 	</LinearLayout>
 
 	<TextView
+		android:id="@+id/cased"
+		style="@style/Data.Cased"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:textIsSelectable="false"/>
+
+	<TextView
 		android:id="@+id/definition"
 		style="@style/Data.Definition"
 		android:layout_width="match_parent"
@@ -82,12 +89,6 @@
 			android:layout_height="wrap_content"
 			android:textIsSelectable="false"/>
 
-		<TextView
-			android:id="@+id/cased"
-			style="@style/Data.Cased"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:textIsSelectable="false"/>
 	</LinearLayout>
 
 	<LinearLayout
