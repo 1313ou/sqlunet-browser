@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+	<string name="manager_authority">org.sqlunet.manager.ewn.provider</string>
+	<string name="xsqlunet_authority">org.sqlunet.xsqlunet.ewn.provider</string>
+	<string name="wordnet_authority">org.sqlunet.wordnet.ewn.provider</string>
+	<string name="bnc_authority">org.sqlunet.bnc.ewn.provider</string>
+	<string-array name="provider_authorities" tools:ignore="InconsistentArrays">
+		<item>@string/manager_authority</item>
+		<item>@string/xsqlunet_authority</item>
+		<item>@string/wordnet_authority</item>
+		<item>@string/bnc_authority</item>
+	</string-array>
+
+</resources>

@@ -22,7 +22,7 @@
 
 <lint>
 	<issue id="all">
-		<ignore path="**/tools"/>
+		<ignore path=".*/tools"/>
 	</issue>
 
 	<issue id="all">
@@ -34,11 +34,15 @@
 	</issue>
 
 	<issue id="all">
-		<ignore path="SqlUNet/tools/*.xml"/>
+		<ignore path="SqlUNet/tools/.*\.xml"/>
 	</issue>
 
+	<issue2 id="all">
+		<ignore path="SqlUNet/tools/.*\.xml"/>
+	</issue2>
+
 	<issue id="Spellchecker">
-		<ignore path="**/artwork/*.svg"/>
+		<ignore path="**/artwork/.*\.svg"/>
 	</issue>
 
 </lint>

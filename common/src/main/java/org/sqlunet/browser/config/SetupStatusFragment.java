@@ -45,7 +45,7 @@ public class SetupStatusFragment extends Fragment implements Updatable
 
 	// codes
 
-	static private final int REQUEST_DOWNLOAD_CODE = 0xDDDD;
+	private static final int REQUEST_DOWNLOAD_CODE = 0xDDDD;
 
 	static protected final int REQUEST_MANAGE_CODE = 0xAAA0;
 
@@ -55,9 +55,9 @@ public class SetupStatusFragment extends Fragment implements Updatable
 
 	private ImageView imageIndexes;
 
-	private ImageButton buttonDb;
+	protected ImageButton buttonDb;
 
-	private ImageButton buttonIndexes;
+	protected ImageButton buttonIndexes;
 
 	protected ImageButton infoDatabaseButton;
 
@@ -91,62 +91,6 @@ public class SetupStatusFragment extends Fragment implements Updatable
 		this.buttonIndexes = view.findViewById(R.id.indexesButton);
 		this.infoDatabaseButton = view.findViewById(R.id.info_database);
 
-		// activity
-
-		// click listeners
-		this.buttonDb.setOnClickListener(v -> {
-
-			final Context context = requireContext();
-			final Intent intent = new Intent(context, DownloadActivity.class);
-			intent.putExtra(DOWNLOAD_FROM_ARG, StorageSettings.getDbDownloadSource(context));
-			intent.putExtra(DOWNLOAD_TO_ARG, StorageSettings.getDbDownloadTarget(context));
-			startActivityForResult(intent, SetupStatusFragment.REQUEST_DOWNLOAD_CODE);
-		});
-
-		this.buttonIndexes.setOnClickListener(v -> {
-
-			int index = getResources().getInteger(R.integer.sql_statement_do_indexes_position);
-			final Intent intent = new Intent(requireContext(), SetupDatabaseActivity.class);
-			intent.putExtra(SetupDatabaseFragment.ARG_POSITION, index);
-			startActivityForResult(intent, SetupStatusFragment.REQUEST_MANAGE_CODE + index);
-		});
-
-		this.infoDatabaseButton.setOnClickListener(v -> {
-
-			final Activity activity = requireActivity();
-			final String database = StorageSettings.getDatabasePath(activity);
-			final String free = StorageUtils.getFree(activity, database);
-			final String source = StorageSettings.getDbDownloadSource(activity);
-			final int status = Status.status(activity);
-			final boolean existsDb = (status & Status.EXISTS) != 0;
-			final boolean existsTables = (status & Status.EXISTS_TABLES) != 0;
-			if (existsDb)
-			{
-				final long size = new File(database).length();
-				final String hrSize = StorageUtils.countToStorageString(size) + " (" + size + ')';
-				Info.info(activity, R.string.title_status, //
-						getString(R.string.title_database), database, //
-						getString(R.string.title_status), getString(R.string.status_database_exists), //
-						getString(R.string.title_status), getString(existsTables ? R.string.status_data_exists : R.string.status_data_not_exists), //
-						getString(R.string.title_free), free, //
-						getString(R.string.size_expected), getString(R.string.hr_size_sqlunet_db), //
-						getString(R.string.size_expected) + ' ' + getString(R.string.text_search), getString(R.string.hr_size_searchtext), //
-						getString(R.string.size_expected) + ' ' + getString(R.string.total), getString(R.string.hr_size_db_working_total), //
-						getString(R.string.size_actual), hrSize);
-			}
-			else
-			{
-				Info.info(activity, R.string.title_download, //
-						getString(R.string.title_operation), getString(R.string.info_op_download_database), //
-						getString(R.string.title_from), source, //
-						getString(R.string.title_database), database, //
-						getString(R.string.title_free), free, //
-						getString(R.string.size_expected) + ' ' + getString(R.string.text_search), getString(R.string.hr_size_searchtext), //
-						getString(R.string.size_expected) + ' ' + getString(R.string.total), getString(R.string.hr_size_db_working_total), //
-						getString(R.string.title_status), getString(R.string.status_database_not_exists));
-			}
-		});
-
 		// swipe refresh layout
 		this.swipeRefreshLayout = view.findViewById(R.id.swipe_refresh);
 		this.swipeRefreshLayout.setColorSchemeResources(R.color.swipe_down_1_color, R.color.swipe_down_2_color);
@@ -176,6 +120,59 @@ public class SetupStatusFragment extends Fragment implements Updatable
 		if (!hidden)
 		{
 			update();
+		}
+	}
+
+	protected void download()
+	{
+		final Context context = requireContext();
+		final Intent intent = new Intent(context, DownloadActivity.class);
+		intent.putExtra(DOWNLOAD_FROM_ARG, StorageSettings.getDbDownloadSource(context));
+		intent.putExtra(DOWNLOAD_TO_ARG, StorageSettings.getDbDownloadTarget(context));
+		startActivityForResult(intent, SetupStatusFragment.REQUEST_DOWNLOAD_CODE);
+	}
+
+	protected void index()
+	{
+		int index = getResources().getInteger(R.integer.sql_statement_do_indexes_position);
+		final Intent intent = new Intent(requireContext(), SetupDatabaseActivity.class);
+		intent.putExtra(SetupDatabaseFragment.ARG_POSITION, index);
+		startActivityForResult(intent, SetupStatusFragment.REQUEST_MANAGE_CODE + index);
+	}
+
+	protected void info()
+	{
+		final Activity activity = requireActivity();
+		final String database = StorageSettings.getDatabasePath(activity);
+		final String free = StorageUtils.getFree(activity, database);
+		final String source = StorageSettings.getDbDownloadSource(activity);
+		final int status = Status.status(activity);
+		final boolean existsDb = (status & Status.EXISTS) != 0;
+		final boolean existsTables = (status & Status.EXISTS_TABLES) != 0;
+		if (existsDb)
+		{
+			final long size = new File(database).length();
+			final String hrSize = StorageUtils.countToStorageString(size) + " (" + size + ')';
+			Info.info(activity, R.string.title_status, //
+					getString(R.string.title_database), database, //
+					getString(R.string.title_status), getString(R.string.status_database_exists), //
+					getString(R.string.title_status), getString(existsTables ? R.string.status_data_exists : R.string.status_data_not_exists), //
+					getString(R.string.title_free), free, //
+					getString(R.string.size_expected), getString(R.string.hr_size_sqlunet_db), //
+					getString(R.string.size_expected) + ' ' + getString(R.string.text_search), getString(R.string.hr_size_searchtext), //
+					getString(R.string.size_expected) + ' ' + getString(R.string.total), getString(R.string.hr_size_db_working_total), //
+					getString(R.string.size_actual), hrSize);
+		}
+		else
+		{
+			Info.info(activity, R.string.title_download, //
+					getString(R.string.title_operation), getString(R.string.info_op_download_database), //
+					getString(R.string.title_from), source, //
+					getString(R.string.title_database), database, //
+					getString(R.string.title_free), free, //
+					getString(R.string.size_expected) + ' ' + getString(R.string.text_search), getString(R.string.hr_size_searchtext), //
+					getString(R.string.size_expected) + ' ' + getString(R.string.total), getString(R.string.hr_size_db_working_total), //
+					getString(R.string.title_status), getString(R.string.status_database_not_exists));
 		}
 	}
 

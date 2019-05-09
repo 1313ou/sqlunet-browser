@@ -5,6 +5,7 @@
       <module fileurl="file://$PROJECT_DIR$/SqlUNet.iml" filepath="$PROJECT_DIR$/SqlUNet.iml" />
       <module fileurl="file://$PROJECT_DIR$/bNC/bNC.iml" filepath="$PROJECT_DIR$/bNC/bNC.iml" />
       <module fileurl="file://$PROJECT_DIR$/browser/browser.iml" filepath="$PROJECT_DIR$/browser/browser.iml" />
+      <module fileurl="file://$PROJECT_DIR$/browserewn/browserewn.iml" filepath="$PROJECT_DIR$/browserewn/browserewn.iml" />
       <module fileurl="file://$PROJECT_DIR$/browserfn/browserfn.iml" filepath="$PROJECT_DIR$/browserfn/browserfn.iml" />
       <module fileurl="file://$PROJECT_DIR$/browservn/browservn.iml" filepath="$PROJECT_DIR$/browservn/browservn.iml" />
       <module fileurl="file://$PROJECT_DIR$/browserwn/browserwn.iml" filepath="$PROJECT_DIR$/browserwn/browserwn.iml" />
@@ -13,6 +14,7 @@
       <module fileurl="file://$PROJECT_DIR$/download/download.iml" filepath="$PROJECT_DIR$/download/download.iml" />
       <module fileurl="file://$PROJECT_DIR$/expandableListFragment/expandableListFragment.iml" filepath="$PROJECT_DIR$/expandableListFragment/expandableListFragment.iml" />
       <module fileurl="file://$PROJECT_DIR$/frameNet/frameNet.iml" filepath="$PROJECT_DIR$/frameNet/frameNet.iml" />
+      <module fileurl="file://$PROJECT_DIR$/libwn/libwn.iml" filepath="$PROJECT_DIR$/libwn/libwn.iml" />
       <module fileurl="file://$PROJECT_DIR$/predicateMatrix/predicateMatrix.iml" filepath="$PROJECT_DIR$/predicateMatrix/predicateMatrix.iml" />
       <module fileurl="file://$PROJECT_DIR$/preference/preference.iml" filepath="$PROJECT_DIR$/preference/preference.iml" />
       <module fileurl="file://$PROJECT_DIR$/propbank/propbank.iml" filepath="$PROJECT_DIR$/propbank/propbank.iml" />

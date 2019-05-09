@@ -65,6 +65,9 @@ public class SetupStatusFragment extends org.sqlunet.browser.config.SetupStatusF
 		this.buttonTextSearchPb = view.findViewById(R.id.searchtextPbButton);
 
 		// click listeners
+		this.buttonDb.setOnClickListener(v -> download());
+		this.buttonIndexes.setOnClickListener(v -> index());
+		this.infoDatabaseButton.setOnClickListener(v -> info());
 		this.buttonTextSearchVn.setOnClickListener(v -> {
 
 			int index = getResources().getInteger(R.integer.sql_statement_do_ts_vn_position);

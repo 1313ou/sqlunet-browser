@@ -59,6 +59,9 @@ public class SetupStatusFragment extends org.sqlunet.browser.config.SetupStatusF
 		this.buttonTextSearchFn = view.findViewById(R.id.searchtextFnButton);
 
 		// click listeners
+		this.buttonDb.setOnClickListener(v -> download());
+		this.buttonIndexes.setOnClickListener(v -> index());
+		this.infoDatabaseButton.setOnClickListener(v -> info());
 		this.buttonTextSearchFn.setOnClickListener(v -> {
 
 			int index = getResources().getInteger(R.integer.sql_statement_do_ts_fn_position);
@@ -66,7 +69,6 @@ public class SetupStatusFragment extends org.sqlunet.browser.config.SetupStatusF
 			intent.putExtra(SetupDatabaseFragment.ARG_POSITION, index);
 			startActivityForResult(intent, SetupStatusFragment.REQUEST_MANAGE_CODE + index);
 		});
-
 		this.infoDatabaseButton.setOnClickListener(v -> {
 
 			final Activity activity = requireActivity();

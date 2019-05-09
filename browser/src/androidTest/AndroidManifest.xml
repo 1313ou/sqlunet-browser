@@ -4,6 +4,6 @@
 	package="${applicationId}">
 
 	<uses-sdk
-		tools:overrideLibrary="android_libs.ub_uiautomator"/>
+		tools:overrideLibrary="android.support.test.uiautomator.v18"/>
 
 </manifest>

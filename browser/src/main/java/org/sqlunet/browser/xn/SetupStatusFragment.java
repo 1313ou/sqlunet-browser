@@ -86,6 +86,9 @@ public class SetupStatusFragment extends org.sqlunet.browser.config.SetupStatusF
 		final ImageButton infoDatabaseButton = view.findViewById(R.id.info_database);
 
 		// click listeners
+		this.buttonDb.setOnClickListener(v -> download());
+		this.buttonIndexes.setOnClickListener(v -> index());
+		this.infoDatabaseButton.setOnClickListener(v -> info());
 		this.buttonPm.setOnClickListener(v -> {
 
 			int index = getResources().getInteger(R.integer.sql_statement_do_predicatematrix_position);

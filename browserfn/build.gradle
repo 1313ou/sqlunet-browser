@@ -65,8 +65,8 @@ dependencies {
 
     // local unit tests (JUnit 4 framework)
     testImplementation 'junit:junit:4.12'
-    
-	// instrumented tests
+
+    // instrumented tests
     androidTestImplementation project(':test')
     androidTestImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.annotation:annotation:1.1.0-beta01'

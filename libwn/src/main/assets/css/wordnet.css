@@ -1,0 +1,51 @@
+@CHARSET "UTF-8";
+
+/* WordNet */
+
+.wnpos {
+	font-weight: bold;
+	background-color: blue;
+	color: white;
+	padding-left: 2px;
+	padding-right: 2px;
+}
+
+.wnlexdomain {
+	font-weight: bold;
+	background-color: darkmagenta;
+	color: white;
+	padding-left: 2px;
+	padding-right: 2px;
+}
+
+.wnsense {
+	background-color: yellow;
+	color: black;
+	text-decoration: none;
+	font-weight: normal;
+	padding-left: 2px;
+	padding-right: 2px;
+}
+
+.wndefinition {
+	color: #336699;
+	font-style: italic;
+}
+
+.wnword {
+	font-weight: bold;
+	background-color: lightyellow;
+	color: black;
+}
+
+.wnsample {
+	font-style: italic;
+	color: gray;
+}
+
+.wnlink {
+	background-color: orangered;
+	color: black;
+	padding-left: 2px;
+	padding-right: 2px;
+}
