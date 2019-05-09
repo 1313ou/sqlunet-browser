@@ -1,0 +1,81 @@
+apply plugin: 'com.android.application'
+
+def keystorePropertiesFile = rootProject.file("keystore.properties")
+def keystoreProperties = new Properties()
+keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
+
+android {
+
+    compileSdkVersion rootProject.ext.compileSdkVersion
+
+    defaultConfig {
+        applicationId "org.sqlunet.browser.ewn"
+        versionCode rootProject.ext.versionCode
+        versionName rootProject.ext.versionName
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
+        multiDexEnabled true
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    sourceSets {
+        androidTest {
+            assets.srcDirs = ['src/main/assets', 'src/debug/assets/']
+        }
+    }
+
+    signingConfigs {
+        sqlunet {
+            keyAlias keystoreProperties['keyAlias']
+            keyPassword keystoreProperties['keyPassword']
+            storeFile file(keystoreProperties['storeFile'])
+            storePassword keystoreProperties['storePassword']
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
+            signingConfig signingConfigs.sqlunet
+            versionNameSuffix 'signed'
+        }
+    }
+}
+
+dependencies {
+    implementation project(':common')
+    implementation project(':expandableListFragment')
+    implementation project(':download')
+    implementation project(':deploy')
+    implementation project(':support')
+    implementation project(':xNet')
+    implementation project(':wordNet')
+    implementation project(':bNC')
+    implementation project(':libwn')
+    implementation 'androidx.appcompat:appcompat:1.1.0-alpha04'
+    implementation "androidx.lifecycle:lifecycle-extensions:$lifecycleVersion"
+    implementation 'androidx.legacy:legacy-support-v13:1.0.0'
+    implementation 'androidx.preference:preference:1.0.0'
+    implementation 'androidx.annotation:annotation:1.1.0-beta01'
+    implementation 'com.google.android.material:material:1.1.0-alpha06'
+
+    // local unit tests (JUnit 4 framework)
+    testImplementation 'junit:junit:4.12'
+
+    // instrumented tests
+    androidTestImplementation project(':test')
+    androidTestImplementation 'junit:junit:4.12'
+    androidTestImplementation 'androidx.annotation:annotation:1.1.0-beta01'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.0'
+    androidTestImplementation 'androidx.test:rules:1.1.1'
+    androidTestImplementation 'androidx.test:runner:1.2.0-beta01'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0-beta01'
+    androidTestImplementation 'androidx.test.espresso:espresso-web:3.2.0-beta01'
+    androidTestImplementation 'androidx.test.uiautomator:uiautomator:2.2.0'
+}
