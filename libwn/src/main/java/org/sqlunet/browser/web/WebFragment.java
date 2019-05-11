@@ -188,10 +188,13 @@ public class WebFragment extends Fragment
 	/**
 	 * WebView
 	 */
+	@SuppressWarnings("unused")
 	private WebView webview;
 
-	// View model
-
+	/**
+	 * View model
+	 */
+	@SuppressWarnings("unused")
 	private WebModel model;
 
 	/**
@@ -273,6 +276,7 @@ public class WebFragment extends Fragment
 				return handleUrl(uri);
 			}
 
+			@SuppressWarnings("unused")
 			private boolean handleUrl(@NonNull final Uri uri)
 			{
 				Log.d(WebFragment.TAG, "Uri " + uri);

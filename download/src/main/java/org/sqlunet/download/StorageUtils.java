@@ -795,7 +795,14 @@ public class StorageUtils
 		{
 			final StatFs stat = new StatFs(path);
 			float bytes;
-			bytes = stat.getAvailableBlocksLong() * stat.getBlockSizeLong();
+			if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2)
+			{
+				bytes = stat.getAvailableBlocksLong() * stat.getBlockSizeLong();
+			}
+			else
+			{
+				bytes = stat.getAvailableBlocks() * stat.getBlockSize();
+			}
 			return bytes / (1024.f * 1024.f);
 		}
 		catch (Throwable e)
@@ -839,7 +846,14 @@ public class StorageUtils
 		{
 			final StatFs stat = new StatFs(path);
 			final float bytes;
-			bytes = stat.getBlockCountLong() * stat.getBlockSizeLong();
+			if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2)
+			{
+				bytes = stat.getBlockCountLong() * stat.getBlockSizeLong();
+			}
+			else
+			{
+				bytes = stat.getBlockCount() * stat.getBlockSize();
+			}
 			return bytes / (1024.f * 1024.f);
 		}
 		catch (Throwable e)

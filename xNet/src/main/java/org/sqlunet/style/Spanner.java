@@ -240,11 +240,11 @@ public class Spanner
 				final Object[] spans = sb1.getSpans(clickableStart, clickableEnd, ImageSpan.class);
 				for (final Object span3 : spans)
 				{
-					// get imagespan
+					// get image span
 					int from = sb1.getSpanStart(span3);
 					int to = sb1.getSpanEnd(span3);
 
-					// remove imagespan
+					// remove image span
 					sb1.removeSpan(span3);
 
 					// text
@@ -252,9 +252,9 @@ public class Spanner
 					final boolean collapsed = c == COLLAPSEDCHAR;
 					sb1.replace(from, to, collapsed ? EXPANDEDSTRING : COLLAPSEDSTRING);
 
-					// set new imagespan
-					final Object newimagespan = new ImageSpan(collapsed ? expandedDrawable : collapsedDrawable, DynamicDrawableSpan.ALIGN_BASELINE);
-					sb1.setSpan(newimagespan, from, to, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+					// set new image span
+					final Object newImageSpan = new ImageSpan(collapsed ? expandedDrawable : collapsedDrawable, DynamicDrawableSpan.ALIGN_BASELINE);
+					sb1.setSpan(newImageSpan, from, to, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
 
 					// fire click
 					Log.d(TAG, from + "->" + to);

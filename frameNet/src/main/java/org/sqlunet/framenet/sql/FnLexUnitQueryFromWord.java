@@ -99,7 +99,7 @@ class FnLexUnitQueryFromWord extends DBQuery
 	 *
 	 * @return the incorporated fe from the result set
 	 */
-	public String getIncoporatedFe()
+	public String getIncorporatedFe()
 	{
 		assert this.cursor != null;
 		return this.cursor.getString(6);

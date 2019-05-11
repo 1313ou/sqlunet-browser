@@ -146,7 +146,7 @@ public class FnLexUnit
 				final String pos = query.getPos();
 				final String definition = query.getLexUnitDefinition();
 				final String dictionary = query.getLexUnitDictionary();
-				final String incorporatedFe = query.getIncoporatedFe();
+				final String incorporatedFe = query.getIncorporatedFe();
 				final long frameId = query.getFrameId();
 				final String frame = query.getFrame();
 				final String frameDefinition = query.getFrameDefinition();

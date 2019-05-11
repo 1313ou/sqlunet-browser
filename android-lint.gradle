@@ -1,0 +1,10 @@
+// Globally set lint options
+// And then add this line below "apply plugin: 'com.android.library'" (or "com.android.application") to every module:
+// apply from: '../android-lint.gradle'
+
+android {
+
+    lintOptions {
+        lintConfig file('lint.xml')
+    }
+}

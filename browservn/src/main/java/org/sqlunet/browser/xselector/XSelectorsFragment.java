@@ -483,23 +483,23 @@ public class XSelectorsFragment extends ExpandableListFragment
 	 */
 	private void loadPb(final long wordId)
 	{
-		final Uri uri = Uri.parse(XSqlUNetProvider.makeUri(XSqlUNetContract.Words_PbWords_PbRolesets.CONTENT_URI_TABLE));
+		final Uri uri = Uri.parse(XSqlUNetProvider.makeUri(XSqlUNetContract.Words_PbWords_PbRoleSets.CONTENT_URI_TABLE));
 		final String[] projection = { //
-				XSqlUNetContract.Words_PbWords_PbRolesets.WORDID, //
-				"NULL AS " + XSqlUNetContract.Words_PbWords_PbRolesets.SYNSETID, //
-				XSqlUNetContract.Words_PbWords_PbRolesets.ROLESETID + " AS " + Words_XNet.XID, //
-				XSqlUNetContract.Words_PbWords_PbRolesets.ROLESETID + " AS " + Words_XNet.XCLASSID, //
+				XSqlUNetContract.Words_PbWords_PbRoleSets.WORDID, //
+				"NULL AS " + XSqlUNetContract.Words_PbWords_PbRoleSets.SYNSETID, //
+				XSqlUNetContract.Words_PbWords_PbRoleSets.ROLESETID + " AS " + Words_XNet.XID, //
+				XSqlUNetContract.Words_PbWords_PbRoleSets.ROLESETID + " AS " + Words_XNet.XCLASSID, //
 				"NULL AS " + Words_XNet.XMEMBERID, //
-				"TRIM(" + XSqlUNetContract.Words_PbWords_PbRolesets.ROLESETNAME + ",'.0123456789')" + " AS " + Words_XNet.XNAME, //
-				XSqlUNetContract.Words_PbWords_PbRolesets.ROLESETNAME + " AS " + Words_XNet.XHEADER, //
-				//Words_PbWords_PbRolesets.ROLESETHEAD + " AS " + Words_XNet.XHEADER, //
-				XSqlUNetContract.Words_PbWords_PbRolesets.ROLESETDESCR + " AS " + Words_XNet.XINFO, //
+				"TRIM(" + XSqlUNetContract.Words_PbWords_PbRoleSets.ROLESETNAME + ",'.0123456789')" + " AS " + Words_XNet.XNAME, //
+				XSqlUNetContract.Words_PbWords_PbRoleSets.ROLESETNAME + " AS " + Words_XNet.XHEADER, //
+				//Words_PbWords_PbRoleSets.ROLESETHEAD + " AS " + Words_XNet.XHEADER, //
+				XSqlUNetContract.Words_PbWords_PbRoleSets.ROLESETDESCR + " AS " + Words_XNet.XINFO, //
 				"NULL AS " + Words_XNet.XDEFINITION, //
 				"'pb' AS " + Words_XNet.SOURCES, //
 				XSqlUNetContract.CLASS + ".rowid AS _id",};
 		final String selection = XSqlUNetContract.PredicateMatrix_PropBank.WORDID + " = ?";
 		final String[] selectionArgs = {Long.toString(wordId)};
-		final String sortOrder = XSqlUNetContract.Words_PbWords_PbRolesets.ROLESETID;
+		final String sortOrder = XSqlUNetContract.Words_PbWords_PbRoleSets.ROLESETID;
 		this.pbFromWordIdModel.loadData(uri, projection, selection, selectionArgs, sortOrder, null);
 	}
 

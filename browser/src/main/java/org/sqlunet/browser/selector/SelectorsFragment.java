@@ -312,10 +312,10 @@ public class SelectorsFragment extends ListFragment
 		final String selection = XSqlUNetContract.WORD + '.' + Words_FnWords_PbWords_VnWords.LEMMA + " = ?"; ////
 		final String[] selectionArgs = {SelectorsFragment.this.word};
 		final String sortOrder = XSqlUNetContract.SYNSET + '.' + Words_FnWords_PbWords_VnWords.POS + ',' + Words_FnWords_PbWords_VnWords.SENSENUM;
-		this.model.loadData(uri, projection, selection, selectionArgs, sortOrder, this::selectorsPostprocess);
+		this.model.loadData(uri, projection, selection, selectionArgs, sortOrder, this::selectorsPostProcess);
 	}
 
-	private void selectorsPostprocess(@NonNull final Cursor cursor)
+	private void selectorsPostProcess(@NonNull final Cursor cursor)
 	{
 		// store source
 		if (cursor.moveToFirst())

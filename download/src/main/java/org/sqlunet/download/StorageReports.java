@@ -1,6 +1,7 @@
 package org.sqlunet.download;
 
 import android.content.Context;
+import android.os.Build;
 import android.os.Environment;
 import android.text.SpannableStringBuilder;
 import android.util.Pair;
@@ -41,18 +42,21 @@ class StorageReports
 		names.add(name);
 		values.add(value);
 
-		int i = 1;
-		for (File dir2 : context.getExternalCacheDirs())
+		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT)
 		{
-			if (dir2 == null)
+			int i = 1;
+			for (File dir2 : context.getExternalCacheDirs())
 			{
-				continue;
+				if (dir2 == null)
+				{
+					continue;
+				}
+				value = dir2.getAbsolutePath();
+				name = new SpannableStringBuilder();
+				Report.appendHeader(name, "External cache[" + i++ + "]").append(' ').append(StorageUtils.storageFreeAsString(value.toString())).append('\n').append(value);
+				names.add(name);
+				values.add(value);
 			}
-			value = dir2.getAbsolutePath();
-			name = new SpannableStringBuilder();
-			Report.appendHeader(name, "External cache[" + i++ + "]").append(' ').append(StorageUtils.storageFreeAsString(value.toString())).append('\n').append(value);
-			names.add(name);
-			values.add(value);
 		}
 
 		value = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).getAbsolutePath();

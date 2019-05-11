@@ -107,7 +107,6 @@
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/javac" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/legacy_multidex_aapt_derived_proguard_rules" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/legacy_multidex_main_dex_list" />
-      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/lint_jar" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/manifest-checker" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/merged_assets" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/merged_jni_libs" />
@@ -127,6 +126,7 @@
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/transforms" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/validate_signing_config" />
       <excludeFolder url="file://$MODULE_DIR$/build/outputs" />
+      <excludeFolder url="file://$MODULE_DIR$/build/reports" />
       <excludeFolder url="file://$MODULE_DIR$/build/tmp" />
     </content>
     <orderEntry type="jdk" jdkName="Android API 28 Platform" jdkType="Android SDK" />
@@ -198,16 +198,6 @@
     <orderEntry type="library" name="Gradle: androidx.collection:collection:1.1.0-beta01@jar" level="project" />
     <orderEntry type="library" name="Gradle: androidx.lifecycle:lifecycle-process:2.0.0@aar" level="project" />
     <orderEntry type="library" name="Gradle: androidx.appcompat:appcompat-resources:1.1.0-alpha04@aar" level="project" />
-    <orderEntry type="module" module-name="libwn" />
-    <orderEntry type="module" module-name="test" scope="TEST" />
-    <orderEntry type="module" module-name="expandableListFragment" />
-    <orderEntry type="module" module-name="deploy" />
-    <orderEntry type="module" module-name="bNC" />
-    <orderEntry type="module" module-name="support" />
-    <orderEntry type="module" module-name="download" />
-    <orderEntry type="module" module-name="common" />
-    <orderEntry type="module" module-name="wordNet" />
-    <orderEntry type="module" module-name="xNet" />
     <orderEntry type="module" module-name="libwn" />
     <orderEntry type="module" module-name="test" scope="TEST" />
     <orderEntry type="module" module-name="expandableListFragment" />

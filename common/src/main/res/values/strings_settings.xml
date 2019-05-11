@@ -79,7 +79,7 @@
 	<string name="pref_default_downloader">SIMPLE_SERVICE</string>
 	<string-array name="pref_downloader_values">
 		<item>@string/pref_default_downloader</item>
-		<item>DOWNLOADMANAGER</item>
+		<item>DOWNLOAD_MANAGER</item>
 	</string-array>
 	<string name="pref_description_downloader">Downloader</string>
 

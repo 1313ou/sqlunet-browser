@@ -181,25 +181,25 @@ abstract class BaseModule extends Module
 		if (cursor.moveToFirst())
 		{
 			// column indices
-			// final int idRolesetId = cursor.getColumnIndex(PbRoleSets_X.ROLESETID);
-			final int idRolesetName = cursor.getColumnIndex(PbRoleSets_X.ROLESETNAME);
-			final int idRolesetDesc = cursor.getColumnIndex(PbRoleSets_X.ROLESETDESC);
-			final int idRolesetHead = cursor.getColumnIndex(PbRoleSets_X.ROLESETHEAD);
+			// final int idRoleSetId = cursor.getColumnIndex(PbRoleSets_X.ROLESETID);
+			final int idRoleSetName = cursor.getColumnIndex(PbRoleSets_X.ROLESETNAME);
+			final int idRoleSetDesc = cursor.getColumnIndex(PbRoleSets_X.ROLESETDESC);
+			final int idRoleSetHead = cursor.getColumnIndex(PbRoleSets_X.ROLESETHEAD);
 			final int idAliases = cursor.getColumnIndex(PbRoleSets_X.ALIASES);
 
 			// read cursor
 			final SpannableStringBuilder sb = new SpannableStringBuilder();
 
 			// data
-			// final int roleSetId = cursor.getInt(idRolesetId);
+			// final int roleSetId = cursor.getInt(idRoleSetId);
 
 			// roleSet
 			Spanner.appendImage(sb, BaseModule.this.roleSetDrawable);
 			sb.append(' ');
-			Spanner.append(sb, cursor.getString(idRolesetName), 0, PropBankFactories.roleSetFactory);
+			Spanner.append(sb, cursor.getString(idRoleSetName), 0, PropBankFactories.roleSetFactory);
 			sb.append(' ');
 			sb.append("head=");
-			sb.append(cursor.getString(idRolesetHead));
+			sb.append(cursor.getString(idRoleSetHead));
 			sb.append('\n');
 			Spanner.appendImage(sb, BaseModule.this.aliasDrawable);
 			sb.append(cursor.getString(idAliases));
@@ -207,7 +207,7 @@ abstract class BaseModule extends Module
 
 			// description
 			Spanner.appendImage(sb, BaseModule.this.definitionDrawable);
-			Spanner.append(sb, cursor.getString(idRolesetDesc), 0, PropBankFactories.definitionFactory);
+			Spanner.append(sb, cursor.getString(idRoleSetDesc), 0, PropBankFactories.definitionFactory);
 
 			// attach result
 			final TreeNode node = TreeFactory.addTextNode(parent, sb);
@@ -465,10 +465,10 @@ abstract class BaseModule extends Module
 				Spanner.append(sb, cursor.getString(idRel), 0, PropBankFactories.relationFactory);
 
 				// args
-				final String argspack = cursor.getString(idArgs);
-				if (argspack != null)
+				final String argsPack = cursor.getString(idArgs);
+				if (argsPack != null)
 				{
-					final String[] args = argspack.split("\\|");
+					final String[] args = argsPack.split("\\|");
 					Arrays.sort(args);
 					for (final String arg : args)
 					{

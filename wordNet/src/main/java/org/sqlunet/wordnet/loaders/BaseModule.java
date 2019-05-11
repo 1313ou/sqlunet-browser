@@ -105,7 +105,7 @@ abstract public class BaseModule extends Module
 
 	private SqlunetViewTreeModel senseFromSenseIdModel;
 
-	private SqlunetViewTreeModel sensefromSenseKeyModel;
+	private SqlunetViewTreeModel senseFromSenseKeyModel;
 
 	private SqlunetViewTreeModel senseFromSynsetIdWordIdModel;
 
@@ -180,8 +180,8 @@ abstract public class BaseModule extends Module
 		this.senseFromSenseIdModel = ViewModelProviders.of(this.fragment).get("wn.sense(senseid)", SqlunetViewTreeModel.class);
 		this.senseFromSenseIdModel.getData().observe(this.fragment, data -> new TreeOpExecute(this.fragment).exec(data));
 
-		this.sensefromSenseKeyModel = ViewModelProviders.of(this.fragment).get("wn.sense(sensekey)", SqlunetViewTreeModel.class);
-		this.sensefromSenseKeyModel.getData().observe(this.fragment, data -> new TreeOpExecute(this.fragment).exec(data));
+		this.senseFromSenseKeyModel = ViewModelProviders.of(this.fragment).get("wn.sense(sensekey)", SqlunetViewTreeModel.class);
+		this.senseFromSenseKeyModel.getData().observe(this.fragment, data -> new TreeOpExecute(this.fragment).exec(data));
 
 		this.senseFromSynsetIdWordIdModel = ViewModelProviders.of(this.fragment).get("wn.sense(synsetid,wordid)", SqlunetViewTreeModel.class);
 		this.senseFromSynsetIdWordIdModel.getData().observe(this.fragment, data -> new TreeOpExecute(this.fragment).exec(data));
@@ -467,7 +467,7 @@ abstract public class BaseModule extends Module
 		};
 		final String selection = Senses.SENSEKEY + " = ?";
 		final String[] selectionArgs = {senseKey};
-		this.sensefromSenseKeyModel.loadData(uri, projection, selection, selectionArgs, null, cursor -> senseCursor2ToTreeModel(cursor, parent));
+		this.senseFromSenseKeyModel.loadData(uri, projection, selection, selectionArgs, null, cursor -> senseCursor2ToTreeModel(cursor, parent));
 	}
 
 	/**

@@ -80,10 +80,10 @@ public final class XSqlUNetContract
 	}
 
 	@SuppressWarnings("unused")
-	static public final class Words_PbWords_PbRolesets
+	static public final class Words_PbWords_PbRoleSets
 	{
 		static public final String TABLE = "words_pbwords_pbrolesets";
-		static public final String CONTENT_URI_TABLE = Words_PbWords_PbRolesets.TABLE;
+		static public final String CONTENT_URI_TABLE = Words_PbWords_PbRoleSets.TABLE;
 		static public final String WORDID = "wordid";
 		static public final String SYNSETID = "synsetid";
 		static public final String ROLESETID = "rolesetid";
@@ -212,10 +212,10 @@ public final class XSqlUNetContract
 	}
 
 	@SuppressWarnings("unused")
-	static public final class Words_PbWords_PbRolesets_U
+	static public final class Words_PbWords_PbRoleSets_U
 	{
 		static public final String TABLE = "U_words_pbwords_pbrolesets";
-		static public final String CONTENT_URI_TABLE = Words_PbWords_PbRolesets_U.TABLE;
+		static public final String CONTENT_URI_TABLE = Words_PbWords_PbRoleSets_U.TABLE;
 		static public final String WORDID = "wordid";
 		static public final String SYNSETID = "synsetid";
 		static public final String ROLESETID = "rolesetid";

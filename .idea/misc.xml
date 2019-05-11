@@ -794,6 +794,28 @@
       <entry_point TYPE="field" FQNAME="org.sqlunet.browser.selector.SelectorsFragment model" />
       <entry_point TYPE="method" FQNAME="org.sqlunet.browser.web.WebFragment$1 boolean shouldOverrideUrlLoading(android.webkit.WebView view, java.lang.String urlString)" />
       <entry_point TYPE="method" FQNAME="org.sqlunet.browser.web.WebFragment$1 boolean shouldOverrideUrlLoading(android.webkit.WebView view, android.webkit.WebResourceRequest request)" />
+      <entry_point TYPE="field" FQNAME="org.sqlunet.provider.XSqlUNetContract.Words_PbWords_PbRoleSets CONTENT_URI_TABLE" />
+      <entry_point TYPE="field" FQNAME="org.sqlunet.provider.XSqlUNetContract.Words_PbWords_PbRoleSets_U CONTENT_URI_TABLE" />
+      <entry_point TYPE="field" FQNAME="org.sqlunet.provider.XSqlUNetContract.Words_PbWords_PbRoleSets DEFINITION" />
+      <entry_point TYPE="field" FQNAME="org.sqlunet.provider.XSqlUNetContract.Words_PbWords_PbRoleSets_U DEFINITION" />
+      <entry_point TYPE="field" FQNAME="org.sqlunet.provider.XSqlUNetContract.Words_PbWords_PbRoleSets ROLESETDESCR" />
+      <entry_point TYPE="field" FQNAME="org.sqlunet.provider.XSqlUNetContract.Words_PbWords_PbRoleSets_U ROLESETDESCR" />
+      <entry_point TYPE="field" FQNAME="org.sqlunet.provider.XSqlUNetContract.Words_PbWords_PbRoleSets ROLESETHEAD" />
+      <entry_point TYPE="field" FQNAME="org.sqlunet.provider.XSqlUNetContract.Words_PbWords_PbRoleSets_U ROLESETHEAD" />
+      <entry_point TYPE="field" FQNAME="org.sqlunet.provider.XSqlUNetContract.Words_PbWords_PbRoleSets ROLESETID" />
+      <entry_point TYPE="field" FQNAME="org.sqlunet.provider.XSqlUNetContract.Words_PbWords_PbRoleSets_U ROLESETID" />
+      <entry_point TYPE="field" FQNAME="org.sqlunet.provider.XSqlUNetContract.Words_PbWords_PbRoleSets ROLESETNAME" />
+      <entry_point TYPE="field" FQNAME="org.sqlunet.provider.XSqlUNetContract.Words_PbWords_PbRoleSets_U ROLESETNAME" />
+      <entry_point TYPE="field" FQNAME="org.sqlunet.provider.XSqlUNetContract.Words_PbWords_PbRoleSets SOURCE" />
+      <entry_point TYPE="field" FQNAME="org.sqlunet.provider.XSqlUNetContract.Words_PbWords_PbRoleSets_U SOURCE" />
+      <entry_point TYPE="field" FQNAME="org.sqlunet.provider.XSqlUNetContract.Words_PbWords_PbRoleSets SOURCES" />
+      <entry_point TYPE="field" FQNAME="org.sqlunet.provider.XSqlUNetContract.Words_PbWords_PbRoleSets_U SOURCES" />
+      <entry_point TYPE="field" FQNAME="org.sqlunet.provider.XSqlUNetContract.Words_PbWords_PbRoleSets SYNSETID" />
+      <entry_point TYPE="field" FQNAME="org.sqlunet.provider.XSqlUNetContract.Words_PbWords_PbRoleSets_U SYNSETID" />
+      <entry_point TYPE="field" FQNAME="org.sqlunet.provider.XSqlUNetContract.Words_PbWords_PbRoleSets TABLE" />
+      <entry_point TYPE="field" FQNAME="org.sqlunet.provider.XSqlUNetContract.Words_PbWords_PbRoleSets_U TABLE" />
+      <entry_point TYPE="field" FQNAME="org.sqlunet.provider.XSqlUNetContract.Words_PbWords_PbRoleSets WORDID" />
+      <entry_point TYPE="field" FQNAME="org.sqlunet.provider.XSqlUNetContract.Words_PbWords_PbRoleSets_U WORDID" />
     </entry_points>
     <pattern value="org.sqlunet.browser.vn.Settings" method="getPropBankPref" />
     <pattern value="org.sqlunet.browser.vn.Settings" method="getWordNetPref" />
@@ -2203,6 +2225,13 @@
     <pattern value="org.sqlunet.browser.selector.SelectorsFragment.Listener" />
     <pattern value="org.sqlunet.browser.selector.SelectorsFragment.Listener" method="onItemSelected" />
     <pattern value="org.sqlunet.browser.selector.SelectorsFragment" method="selectorsPostProcess" />
+    <pattern value="org.sqlunet.treeview.control.CompositeValue" method="CompositeValue" />
+    <pattern value="org.sqlunet.provider.XSqlUNetContract.Words_PbWords_PbRoleSets" />
+    <pattern value="org.sqlunet.provider.XSqlUNetContract.Words_PbWords_PbRoleSets_U" />
+    <pattern value="org.sqlunet.browser.wn.Settings" />
+    <pattern value="org.sqlunet.browser.wn.Settings.Source" />
+    <pattern value="org.sqlunet.treeview.control.TreeController" method="TreeController" />
+    <pattern value="org.sqlunet.browser.wn.Settings.Source" method="Source" />
   </component>
   <component name="NullableNotNullManager">
     <option name="myDefaultNullable" value="android.support.annotation.Nullable" />

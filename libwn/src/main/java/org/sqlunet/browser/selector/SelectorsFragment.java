@@ -55,15 +55,18 @@ public class SelectorsFragment extends ListFragment
 	/**
 	 * The serialization (saved instance state) Bundle key representing the activated item position. Only used on tablets.
 	 */
+	@SuppressWarnings("unused")
 	static private final String STATE_ACTIVATED_SELECTOR = "activated_selector";
 
 	/**
 	 * Activate on click flag
 	 */
 	private boolean activateOnItemClick = false;
+
 	/**
 	 * The current activated item position. Only used on tablets.
 	 */
+	@SuppressWarnings("unused")
 	private int activatedPosition = AdapterView.INVALID_POSITION;
 
 	/**
@@ -75,16 +78,19 @@ public class SelectorsFragment extends ListFragment
 	 * Search query
 	 */
 	@Nullable
+	@SuppressWarnings("unused")
 	private String word;
 
 	/**
 	 * Word id
 	 */
+	@SuppressWarnings("unused")
 	private long wordId;
 
 	/**
 	 * View model
 	 */
+	@SuppressWarnings("unused")
 	private SqlunetViewModel model;
 
 	/**
@@ -233,7 +239,7 @@ public class SelectorsFragment extends ListFragment
 		// restore the previously serialized activated item position, if any
 		if (savedInstanceState != null)
 		{
-			final int position = savedInstanceState.getInt(SelectorsFragment.STATE_ACTIVATED_SELECTOR, AdapterView.INVALID_POSITION);
+			final int position = savedInstanceState.getInt(STATE_ACTIVATED_SELECTOR, AdapterView.INVALID_POSITION);
 			if (position == AdapterView.INVALID_POSITION)
 			{
 				getListView().setItemChecked(this.activatedPosition, false);
@@ -263,7 +269,7 @@ public class SelectorsFragment extends ListFragment
 		if (this.activatedPosition != AdapterView.INVALID_POSITION)
 		{
 			// serialize and persist the activated item position.
-			outState.putInt(SelectorsFragment.STATE_ACTIVATED_SELECTOR, this.activatedPosition);
+			outState.putInt(STATE_ACTIVATED_SELECTOR, this.activatedPosition);
 		}
 	}
 

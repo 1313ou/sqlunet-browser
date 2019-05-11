@@ -4,6 +4,6 @@
 	package="org.sqlunet.test">
 
 	<uses-sdk
-		tools:overrideLibrary="android.support.test.uiautomator.v18"/>
+		tools:overrideLibrary="android_libs.ub_uiautomator"/>
 
 </manifest>

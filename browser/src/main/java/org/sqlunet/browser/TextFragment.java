@@ -247,8 +247,8 @@ public class TextFragment extends AbstractTableFragment
 				case "pb":
 					//
 				{
-					final int idRolesets = cursor.getColumnIndex(PropBankContract.Lookup_PbExamples_X.ROLESETS);
-					final String roleSets = cursor.getString(idRolesets);
+					final int idRoleSets = cursor.getColumnIndex(PropBankContract.Lookup_PbExamples_X.ROLESETS);
+					final String roleSets = cursor.getString(idRoleSets);
 					Log.d(TAG, "CLICK pb rolesets=" + roleSets);
 
 					final Pair<TypedPointer[], CharSequence[]> result = makeData(roleSets);

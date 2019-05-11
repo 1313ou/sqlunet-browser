@@ -21,7 +21,7 @@ import androidx.annotation.Nullable;
  *
  * @author Bogdan Melnychuk on 2/10/15.
  */
-@SuppressWarnings("unused")
+//noinspection ViewConstructor
 public class SubtreeView extends LinearLayout
 {
 	/**
@@ -39,6 +39,27 @@ public class SubtreeView extends LinearLayout
 	 * Node container
 	 */
 	public ViewGroup childrenContainer;
+
+	/**
+	 * Constructor
+	 *
+	 * @param context context
+	 */
+	public SubtreeView(final Context context)
+	{
+		this(context, -1, new View(context));
+	}
+
+	/**
+	 * Constructor
+	 *
+	 * @param context        context
+	 * @param containerStyle container style
+	 */
+	public SubtreeView(final Context context, final int containerStyle)
+	{
+		this(context, containerStyle, new View(context));
+	}
 
 	/**
 	 * Constructor

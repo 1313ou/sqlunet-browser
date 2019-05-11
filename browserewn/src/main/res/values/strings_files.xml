@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-	<string name="sqlunet_db">dd9355c974d066dd8a58cacf88f3dc36</string> <!-- sqlunet-ewn.db -->
-	<string name="sqlunet_db_zip">2fffe7a8510f5d7b074c927c07bb3d3e</string> <!-- sqlunet-ewn.db.zip -->
-	<string name="sqlunet_sql_zip">c69d21123736ebc57cf75342b36bc491</string> <!-- sqlunet-ewn.sql.zip -->
+	<string name="sqlunet_db">faf1585a6684ba8c0489b854727372cb</string> <!-- sqlunet-ewn.db -->
+	<string name="sqlunet_db_zip">26a94dc5dd73fb60f550aca40990b827</string> <!-- sqlunet-ewn.db.zip -->
+	<string name="sqlunet_sql_zip">a6d32633d91fce7b90868589951da4de</string> <!-- sqlunet-ewn.sql.zip -->
 
 	<string name="hr_size_sqlunet_db">63 MB</string> <!-- sqlunet-ewn.db -->
 	<string name="hr_size_sqlunet_db_zip">27 MB</string> <!-- sqlunet-ewn.db.zip -->

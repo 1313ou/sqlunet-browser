@@ -18,8 +18,8 @@ import org.sqlunet.provider.XSqlUNetContract.PredicateMatrix_VerbNet;
 import org.sqlunet.provider.XSqlUNetContract.Sources;
 import org.sqlunet.provider.XSqlUNetContract.Words_FnWords_FnFrames_U;
 import org.sqlunet.provider.XSqlUNetContract.Words_FnWords_PbWords_VnWords;
-import org.sqlunet.provider.XSqlUNetContract.Words_PbWords_PbRolesets;
-import org.sqlunet.provider.XSqlUNetContract.Words_PbWords_PbRolesets_U;
+import org.sqlunet.provider.XSqlUNetContract.Words_PbWords_PbRoleSets;
+import org.sqlunet.provider.XSqlUNetContract.Words_PbWords_PbRoleSets_U;
 import org.sqlunet.provider.XSqlUNetContract.Words_PbWords_VnWords;
 import org.sqlunet.provider.XSqlUNetContract.Words_VnWords_VnClasses;
 import org.sqlunet.provider.XSqlUNetContract.Words_VnWords_VnClasses_U;
@@ -75,8 +75,8 @@ public class XSqlUNetProvider extends BaseProvider
 		XSqlUNetProvider.uriMatcher.addURI(AUTHORITY, PredicateMatrix_FrameNet.TABLE, XSqlUNetProvider.PREDICATEMATRIX_FRAMENET);
 		XSqlUNetProvider.uriMatcher.addURI(AUTHORITY, Words_VnWords_VnClasses.TABLE, XSqlUNetProvider.WORDS_VNWORDS_VNCLASSES);
 		XSqlUNetProvider.uriMatcher.addURI(AUTHORITY, Words_VnWords_VnClasses_U.TABLE, XSqlUNetProvider.WORDS_VNWORDS_VNCLASSES_U);
-		XSqlUNetProvider.uriMatcher.addURI(AUTHORITY, Words_PbWords_PbRolesets.TABLE, XSqlUNetProvider.WORDS_PBWORDS_PBROLESETS);
-		XSqlUNetProvider.uriMatcher.addURI(AUTHORITY, Words_PbWords_PbRolesets_U.TABLE, XSqlUNetProvider.WORDS_PBWORDS_PBROLESETS_U);
+		XSqlUNetProvider.uriMatcher.addURI(AUTHORITY, Words_PbWords_PbRoleSets.TABLE, XSqlUNetProvider.WORDS_PBWORDS_PBROLESETS);
+		XSqlUNetProvider.uriMatcher.addURI(AUTHORITY, Words_PbWords_PbRoleSets_U.TABLE, XSqlUNetProvider.WORDS_PBWORDS_PBROLESETS_U);
 		XSqlUNetProvider.uriMatcher.addURI(AUTHORITY, Words_FnWords_FnFrames_U.TABLE, XSqlUNetProvider.WORDS_FNWORDS_FNFRAMES_U);
 		XSqlUNetProvider.uriMatcher.addURI(AUTHORITY, XSqlUNetContract.Sources.TABLE, XSqlUNetProvider.SOURCES);
 	}
@@ -119,9 +119,9 @@ public class XSqlUNetProvider extends BaseProvider
 			case WORDS_VNWORDS_VNCLASSES_U:
 				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + Words_VnWords_VnClasses_U.TABLE;
 			case WORDS_PBWORDS_PBROLESETS:
-				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + Words_PbWords_PbRolesets.TABLE;
+				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + Words_PbWords_PbRoleSets.TABLE;
 			case WORDS_PBWORDS_PBROLESETS_U:
-				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + Words_PbWords_PbRolesets_U.TABLE;
+				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + Words_PbWords_PbRoleSets_U.TABLE;
 			case WORDS_FNWORDS_FNFRAMES_U:
 				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + Words_FnWords_FnFrames_U.TABLE;
 			case SOURCES:

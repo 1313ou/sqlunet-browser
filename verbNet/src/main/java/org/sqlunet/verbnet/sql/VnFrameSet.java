@@ -50,7 +50,7 @@ public class VnFrameSet
 
 			while (query.next())
 			{
-				// data from resultset
+				// data from result set
 				// final long frameId = query.getFrameId();
 				final String number = query.getNumber();
 				final String xTag = query.getXTag();
@@ -106,7 +106,7 @@ public class VnFrameSet
 
 			while (query.next())
 			{
-				// data from resultset
+				// data from result set
 				// final long frameId = query.getFrameId();
 				final String number = query.getNumber();
 				final String xTag = query.getXTag();

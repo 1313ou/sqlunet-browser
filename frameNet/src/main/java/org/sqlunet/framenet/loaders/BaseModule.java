@@ -171,7 +171,7 @@ abstract public class BaseModule extends Module
 
 	private SqlunetViewTreeModel lexUnitsFromFrameIdModel;
 
-	private SqlunetViewTreeModel lexUnitsfromWordIdPosModel;
+	private SqlunetViewTreeModel lexUnitsFromWordIdPosModel;
 
 	private SqlunetViewTreeModel governorsFromLuIdModel;
 
@@ -246,8 +246,8 @@ abstract public class BaseModule extends Module
 		this.lexUnitsFromFrameIdModel = ViewModelProviders.of(this.fragment).get("fn.lexunits(frameid)", SqlunetViewTreeModel.class);
 		this.lexUnitsFromFrameIdModel.getData().observe(this.fragment, data -> new TreeOpExecute(this.fragment).exec(data));
 
-		this.lexUnitsfromWordIdPosModel = ViewModelProviders.of(this.fragment).get("fn.lexunits(wordid,pos)", SqlunetViewTreeModel.class);
-		this.lexUnitsfromWordIdPosModel.getData().observe(this.fragment, data -> new TreeOpExecute(this.fragment).exec(data));
+		this.lexUnitsFromWordIdPosModel = ViewModelProviders.of(this.fragment).get("fn.lexunits(wordid,pos)", SqlunetViewTreeModel.class);
+		this.lexUnitsFromWordIdPosModel.getData().observe(this.fragment, data -> new TreeOpExecute(this.fragment).exec(data));
 
 		this.governorsFromLuIdModel = ViewModelProviders.of(this.fragment).get("fn.governors(luid)", SqlunetViewTreeModel.class);
 		this.governorsFromLuIdModel.getData().observe(this.fragment, data -> new TreeOpExecute(this.fragment).exec(data));
@@ -961,7 +961,7 @@ abstract public class BaseModule extends Module
 				Words_LexUnits_Frames.WORDID + " = ? AND " + FrameNetContract.LU + '.' + Words_LexUnits_Frames.POSID + " = ?";
 		final String[] selectionArgs = pos == null ? new String[]{Long.toString(wordId)} : new String[]{Long.toString(wordId), Integer.toString(Utils.posToPosId(pos))};
 		final String sortOrder = Words_LexUnits_Frames.FRAME + ',' + Words_LexUnits_Frames.LUID;
-		this.lexUnitsfromWordIdPosModel.loadData(uri, projection, selection, selectionArgs, sortOrder, cursor -> lexUnitsCursor2ToTreeModel(cursor, parent));
+		this.lexUnitsFromWordIdPosModel.loadData(uri, projection, selection, selectionArgs, sortOrder, cursor -> lexUnitsCursor2ToTreeModel(cursor, parent));
 	}
 
 	private TreeOp[] lexUnitsCursor2ToTreeModel(@NonNull final Cursor cursor, @NonNull final TreeNode parent)
@@ -1155,7 +1155,7 @@ abstract public class BaseModule extends Module
 	 * @param luId   lex unit id
 	 * @param parent parent node
 	 */
-	private void realizationsForLexicalunit(final long luId, @NonNull final TreeNode parent)
+	private void realizationsForLexicalUnit(final long luId, @NonNull final TreeNode parent)
 	{
 		final Uri uri = Uri.parse(FrameNetProvider.makeUri(LexUnits_FERealizations_ValenceUnits.CONTENT_URI_TABLE_BY_REALIZATION));
 		final String[] projection = { //
@@ -2369,7 +2369,7 @@ abstract public class BaseModule extends Module
 		@Override
 		public void process(@NonNull final TreeNode node)
 		{
-			realizationsForLexicalunit(this.id, node);
+			realizationsForLexicalUnit(this.id, node);
 		}
 	}
 

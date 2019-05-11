@@ -7,7 +7,9 @@ declare -A dirs
 dirs=( 
 [browser]="artwork artwork-assets" 
 [browserfn]="artwork artwork-assets" 
-[browserwn]="artwork artwork-assets" 
+[browserwn]="artwork" 
+[browserewn]="artwork" 
+[libwn]="artwork artwork-assets" 
 [browservn]="artwork artwork-assets" 
 [common]="artwork artwork-assets" 
 [xNet]="artwork" 
@@ -19,6 +21,7 @@ dirs=(
 [predicateMatrix]="artwork" 
 [treeView]="artwork" 
 [support]="artwork" 
+[download]="artwork" 
 )
 
 if [ "$1" != "-check" ]; then

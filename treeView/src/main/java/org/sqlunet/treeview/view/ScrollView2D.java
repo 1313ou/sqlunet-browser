@@ -1157,9 +1157,9 @@ public class ScrollView2D extends FrameLayout
 	}
 
 	@Override
-	protected void onSizeChanged(int w, int h, int oldw, int oldh)
+	protected void onSizeChanged(int w, int h, int oldW, int oldH)
 	{
-		super.onSizeChanged(w, h, oldw, oldh);
+		super.onSizeChanged(w, h, oldW, oldH);
 
 		View currentFocused = findFocus();
 		if (null == currentFocused || this == currentFocused)

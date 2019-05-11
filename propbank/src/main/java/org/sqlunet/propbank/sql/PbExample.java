@@ -98,7 +98,7 @@ class PbExample
 
 			while (query.next())
 			{
-				// data from resultset
+				// data from result set
 				final long exampleId = query.getExampleId();
 				final String text = query.getText();
 				final String rel = query.getRel();

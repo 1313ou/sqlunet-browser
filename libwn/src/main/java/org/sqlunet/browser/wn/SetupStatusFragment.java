@@ -17,16 +17,12 @@ import org.sqlunet.browser.Info;
 import org.sqlunet.browser.config.SetupDatabaseActivity;
 import org.sqlunet.browser.config.SetupDatabaseFragment;
 import org.sqlunet.browser.wn.lib.R;
-import org.sqlunet.download.DownloadActivity;
 import org.sqlunet.settings.StorageSettings;
 import org.sqlunet.settings.StorageUtils;
 
 import java.io.File;
 
 import androidx.annotation.NonNull;
-
-import static org.sqlunet.download.BaseDownloadFragment.DOWNLOAD_FROM_ARG;
-import static org.sqlunet.download.BaseDownloadFragment.DOWNLOAD_TO_ARG;
 
 /**
  * Setup Status fragment
