@@ -19,7 +19,7 @@ import org.sqlunet.browser.common.R;
  */
 public class SetupFileActivity extends AppCompatActivity
 {
-	// static private final String TAG = "SetupFileActivity";
+	// static private final String TAG = "SetupFileA";
 
 	@Override
 	protected void onCreate(final Bundle savedInstanceState)

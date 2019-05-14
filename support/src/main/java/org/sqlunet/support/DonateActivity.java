@@ -19,7 +19,7 @@ import org.sqlunet.support.util.IabHelper;
  */
 public class DonateActivity extends AppCompatActivity implements IABAdapter.IABListener
 {
-	static private final String TAG = "IAB MainActivity";
+	static private final String TAG = "DonateA";
 
 	/**
 	 * Adapter to in-app billing

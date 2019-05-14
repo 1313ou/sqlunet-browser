@@ -36,7 +36,7 @@ import org.sqlunet.browser.common.R;
  */
 abstract public class BaseSearchFragment extends NavigableFragment implements SearchListener
 {
-	static private final String TAG = "BaseSearchFragment";
+	static private final String TAG = "BaseSearchF";
 
 	/**
 	 * Saved state of spinner

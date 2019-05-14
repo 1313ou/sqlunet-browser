@@ -21,7 +21,7 @@ import androidx.fragment.app.Fragment;
  */
 public class SetupDatabaseActivity extends AppCompatActivity
 {
-	// static private final String TAG = "SetupFileActivity";
+	// static private final String TAG = "SetupFileA";
 
 	@Override
 	protected void onCreate(final Bundle savedInstanceState)

@@ -39,7 +39,7 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
  */
 public class SetupSqlFragment extends Fragment implements Updatable
 {
-	static private final String TAG = "SetupSqlFragment";
+	static private final String TAG = "SetupSqlF";
 
 	// codes
 

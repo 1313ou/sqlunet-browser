@@ -30,7 +30,7 @@ import androidx.annotation.NonNull;
  */
 public class SetupStatusFragment extends org.sqlunet.browser.config.SetupStatusFragment
 {
-	static private final String TAG = "SetupStatusFragment";
+	static private final String TAG = "SetupStatusF";
 
 	// components
 

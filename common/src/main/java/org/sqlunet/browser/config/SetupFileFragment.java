@@ -38,7 +38,7 @@ import static org.sqlunet.download.BaseDownloadFragment.UNZIP_TO_ARG;
  */
 public class SetupFileFragment extends BaseTaskFragment
 {
-	//static private final String TAG = "SetupFileFragment";
+	//static private final String TAG = "SetupFileF";
 
 	static private final String ARG = "operation";
 

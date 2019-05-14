@@ -19,7 +19,7 @@ import org.sqlunet.browser.common.R;
  */
 public class SetupSqlActivity extends AppCompatActivity
 {
-	// static private final String TAG = "SetupSqlActivity";
+	// static private final String TAG = "SetupSqlA";
 
 	@Override
 	protected void onCreate(final Bundle savedInstanceState)

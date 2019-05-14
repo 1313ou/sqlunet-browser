@@ -10,14 +10,14 @@
    xmlns:xlink="http://www.w3.org/1999/xlink"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   width="720"
-   height="720"
+   width="500"
+   height="500"
    viewBox="0 0 719.99999 719.99999"
    id="svg2"
    version="1.1"
    inkscape:version="0.91 r13725"
    sodipodi:docname="sqlunet.svg"
-   inkscape:export-filename="/opt/devel/android-sqlunet-as/SqlUNet/browser/src/main/assets/help/images/sqlunet.png"
+   inkscape:export-filename="sqlunet.png"
    inkscape:export-xdpi="100"
    inkscape:export-ydpi="100">
   <defs

@@ -25,7 +25,7 @@ import org.sqlunet.settings.StorageSettings;
  */
 public class SetupDatabaseFragment extends BaseTaskFragment
 {
-	// static private final String TAG = "SetupDatabaseFragment";
+	// static private final String TAG = "SetupDatabaseF";
 
 	/**
 	 * Initial spinner position

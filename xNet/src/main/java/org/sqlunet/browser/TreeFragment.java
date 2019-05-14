@@ -22,7 +22,7 @@ import org.sqlunet.xnet.R;
  */
 abstract public class TreeFragment extends Fragment
 {
-	static private final String TAG = "TreeFragment";
+	static private final String TAG = "TreeF";
 
 	/**
 	 * Tree model root

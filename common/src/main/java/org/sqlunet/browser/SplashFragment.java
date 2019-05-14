@@ -14,7 +14,7 @@ import android.view.ViewGroup;
  */
 abstract public class SplashFragment extends Fragment
 {
-	// static private final String TAG = "SplashFragment";
+	// static private final String TAG = "SplashF";
 
 	/**
 	 * Layout id set bu super class

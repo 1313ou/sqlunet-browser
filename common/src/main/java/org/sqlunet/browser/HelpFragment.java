@@ -30,7 +30,7 @@ public class HelpFragment extends NavigableFragment
 	/**
 	 * Log tag
 	 */
-	static private final String TAG = "HelpFragment";
+	static private final String TAG = "HelpF";
 
 	/**
 	 * Constructor

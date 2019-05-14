@@ -14,7 +14,7 @@ import org.sqlunet.browser.common.R;
  */
 public class SqlHistoryFragment extends SqlFragment implements ActionBarSetter
 {
-	static private final String TAG = "SqlHistoryFragment";
+	static private final String TAG = "SqlHistoryF";
 
 	@SuppressWarnings("SameReturnValue")
 	@Override

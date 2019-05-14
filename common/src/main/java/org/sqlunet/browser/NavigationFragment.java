@@ -36,7 +36,7 @@ import androidx.fragment.app.FragmentTransaction;
  */
 public class NavigationFragment extends NavigationDrawerFragment implements NavigationDrawerFragment.Listener
 {
-	static private final String TAG = "NavigationFragment";
+	static private final String TAG = "NavigationF";
 
 	/**
 	 * Handlers (private methods in this class

@@ -24,7 +24,7 @@ import org.sqlunet.browser.common.R;
 @SuppressWarnings("WeakerAccess")
 abstract public class BaseTaskFragment extends Fragment
 {
-	// static private final String TAG = "TaskFragment";
+	// static private final String TAG = "BaseTaskF";
 
 	/**
 	 * Action spinner

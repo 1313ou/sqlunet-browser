@@ -19,7 +19,7 @@ import androidx.appcompat.widget.Toolbar;
  */
 public class DownloadActivity extends AppCompatActivity implements DownloadFragment.DownloadListener
 {
-	// static private final String TAG = "DownloadActivity";
+	// static private final String TAG = "DownloadA";
 
 	/**
 	 * Result extra

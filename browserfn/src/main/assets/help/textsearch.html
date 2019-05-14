@@ -1,0 +1,104 @@
+<!--suppress CheckEmptyScriptTag -->
+<HTML>
+<HEAD>
+	<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<TITLE>Text search</TITLE>
+	<LINK rel="stylesheet" type="text/css" href="style.css">
+</HEAD>
+<BODY>
+
+<DIV class="header">
+	<IMG class='center title' src="./images/logo.png">
+</DIV>
+
+<DIV class='section'>
+<DIV>Semantikos brings Sqlite full-text search capabilities to SqlUNet. For further information, please refer to <a href="https://www.sqlite.org/fts3.html">Sqlite reference doc</a> and the MATCH syntax.</DIV>
+
+<DIV class='section'>
+	<DIV class='sectionhead'>Token Prefix</DIV>
+	<DIV> The query expression used to search for a term prefix is the prefix itself with a '*' character appended to it.
+		<TABLE class='center'>
+			<TR>
+				<TH class='from'>query</TH>
+				<TH class='to'>search</TH>
+			</TR>
+			<TR>
+				<TD class='from'>'<SPAN class='tstoken'>linux</SPAN>'</TD>
+				<TD class='to'>Query for all documents containing the term "linux"</TD>
+			</TR>
+			<TR>
+				<TD class='from'>'<SPAN class='tstoken'>lin</SPAN><SPAN class='tsop'>*</SPAN>'</TD>
+				<TD class='to'>Query for all documents containing a term with the prefix "lin". This will match all documents that contain "linux", but also those that contain terms "linear", "linker", "linguistic" and so on.</TD>
+			</TR>
+		</TABLE>
+	</DIV>
+</DIV>
+
+<DIV class='section'>
+	<DIV class='sectionhead'>Phrase queries</DIV>
+	<DIV> A phrase query is a query that retrieves all documents that contain a nominated set of terms or term prefixes in a specified order with no intervening tokens.
+		<TABLE class='center'>
+			<TR>
+				<TH class='from'>query</TH>
+				<TH class='to'>search</TH>
+			</TR>
+			<TR>
+				<TD class='from'>'<SPAN class='tstoken'>linux applications</SPAN>'</TD>
+				<TD class='to'>Query for all documents containing the phrase "linux applications"</TD>
+			</TR>
+			<TR>
+				<TD class='from'>'<SPAN class='tstoken'>lin</SPAN><SPAN class='tsop'>*</SPAN> <SPAN class='tstoken'>apps</SPAN><SPAN class='tsop'>*</SPAN>'</TD>
+				<TD class='to'>Query for all documents that contain a phrase that matches "lin* app*". As well as "linux applications", this will match common phrases such as "linoleum appliances" or "link apprentice".</TD>
+			</TR>
+		</TABLE>
+	</DIV>
+</DIV>
+
+<DIV class='section'>
+	<DIV class='sectionhead'>NEAR queries</DIV>
+	<DIV> A NEAR query is a query that returns documents that contain a two or more nominated terms or phrases within a specified proximity of each other (by default with 10 or less intervening terms). A NEAR query is specified by putting the keyword "NEAR" between two phrase, token or token prefix queries. To specify a proximity other than the default, an operator of the form "NEAR/<N>" may be used, where <N> is the maximum number of intervening terms allowed.
+		<TABLE class='center'>
+			<TR>
+				<TH class='from'>query</TH>
+				<TH class='to'>search</TH>
+			</TR>
+			<TR>
+				<TD class='from'>'<SPAN class='tstoken'>sqlite</SPAN> <SPAN class='tsop'>NEAR</SPAN> <SPAN class='tstoken'>database</SPAN>'</TD>
+				<TD class='to'>Search for a document that contains the terms "sqlite" and "database" with not more than 10 intervening terms.</TD>
+			</TR>
+			<TR>
+				<TD class='from'>'<SPAN class='tstoken'>sqlite</SPAN> <SPAN class='tsop'>NEAR/2</SPAN> <SPAN class='tstoken'>database</SPAN>'</TD>
+				<TD class='to'>Search for a document that contains the terms "sqlite" and "database" with not more than 2 intervening terms.</TD>
+			</TR>
+		</TABLE>
+	</DIV>
+</DIV>
+
+<DIV class='section'>
+	<DIV class='sectionhead'>Logical operators</DIV>
+	<DIV> The three basic query types described above may be used to query the full-text index for the set of documents that match the specified criteria. Using the FTS query expression language it is possible to perform various set operations on the results of basic queries. Operators must be entered using capital letters. Otherwise, they are interpreted as basic term queries instead of set operators.
+		<TABLE class='center'>
+			<TR>
+				<TH class='from'>op</TH>
+				<TH class='to'>search</TH>
+			</TR>
+			<TR>
+				<TD class='from'><SPAN class='tsop'>OR</SPAN></TD>
+				<TD class='to'>The OR operator calculates the union of two sets of documents.</TD>
+			</TR>
+			<TR>
+				<TD class='from'><SPAN class='tsop'>AND</SPAN></TD>
+				<TD class='to'>The AND operator determines the intersection of two sets of documents.</TD>
+			</TR>
+			<TR>
+				<TD class='from'><SPAN class='tsop'>NOT</SPAN></TD>
+				<TD class='to'>The NOT operator may be used to compute the relative complement of one set of documents with respect to another.</TD>
+			</TR>
+		</TABLE>
+	</DIV>
+</DIV>
+
+<BR/>
+
+</BODY>
+</HTML>

@@ -39,7 +39,7 @@ import androidx.lifecycle.ViewModelProviders;
  */
 public class SelectorsFragment extends ListFragment
 {
-	// static protected final String TAG = "SelectorsFragment";
+	// static protected final String TAG = "SelectorsF";
 
 	private static final String ISLIKE = "islike";
 

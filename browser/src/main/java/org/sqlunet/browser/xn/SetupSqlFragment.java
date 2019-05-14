@@ -30,7 +30,7 @@ import androidx.annotation.NonNull;
  */
 public class SetupSqlFragment extends org.sqlunet.browser.config.SetupSqlFragment
 {
-	static private final String TAG = "SetupSqlFragment";
+	static private final String TAG = "SetupSqlF";
 
 	// pm button
 	private ImageButton predicateMatrixButton;

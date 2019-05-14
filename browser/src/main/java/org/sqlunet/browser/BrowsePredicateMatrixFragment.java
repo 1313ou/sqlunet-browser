@@ -27,7 +27,7 @@ import org.sqlunet.provider.ProviderArgs;
  */
 public class BrowsePredicateMatrixFragment extends BaseSearchFragment
 {
-	static private final String TAG = "BrowsePmFragment";
+	static private final String TAG = "BrowsePmF";
 
 	/**
 	 * Saved query

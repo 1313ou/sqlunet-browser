@@ -18,7 +18,7 @@ import org.sqlunet.settings.StorageSettings;
 
 public class MainActivity extends AppCompatActivity // implements NavigationFragment.Listener
 {
-	static private final String TAG = "MainActivity";
+	static private final String TAG = "MainA";
 
 	@Nullable
 	private NavigationFragment navigationDrawerFragment;

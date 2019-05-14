@@ -41,7 +41,7 @@ import static org.sqlunet.download.BaseDownloadFragment.DOWNLOAD_TO_ARG;
  */
 public class SetupStatusFragment extends Fragment implements Updatable
 {
-	static private final String TAG = "SetupStatusFragment";
+	static private final String TAG = "SetupStatusF";
 
 	// codes
 

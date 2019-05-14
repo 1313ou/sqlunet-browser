@@ -17,7 +17,7 @@ import org.sqlunet.browser.common.R;
 
 abstract public class NavigableFragment extends Fragment implements ActionBarSetter
 {
-	// static private final String TAG = "NavigableFragment";
+	// static private final String TAG = "NavigableF";
 
 	protected int titleId;
 

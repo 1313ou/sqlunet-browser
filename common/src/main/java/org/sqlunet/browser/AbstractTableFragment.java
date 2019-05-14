@@ -33,7 +33,7 @@ import androidx.lifecycle.ViewModelProviders;
  */
 public abstract class AbstractTableFragment extends ListFragment
 {
-	static private final String TAG = "AbstractTableFrag";
+	static private final String TAG = "AbstractTableF";
 
 	static private final boolean VERBOSE = true;
 

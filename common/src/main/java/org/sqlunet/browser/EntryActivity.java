@@ -15,7 +15,7 @@ import org.sqlunet.settings.Settings;
  */
 public class EntryActivity extends AppCompatActivity
 {
-	// static private final String TAG = "EntryActivity";
+	// static private final String TAG = "EntryA";
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState)

@@ -13,7 +13,7 @@ import org.sqlunet.browser.ActionBarSetter;
  */
 public class StatusFragment extends SetupStatusFragment implements ActionBarSetter
 {
-	// static private final String TAG = "StatusFragment";
+	// static private final String TAG = "StatusF";
 
 	private final int titleId;
 

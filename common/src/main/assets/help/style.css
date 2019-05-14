@@ -123,6 +123,18 @@ img.center {
 	color: gray;
 }
 
+.tstoken {
+	font-weight: normal;
+	font-style: normal;
+	color: gray;
+}
+
+.tsop {
+	font-weight: ;
+	font-style: bold;
+	color: black;
+}
+
 .toc {
 	text-align: center;
 	font-weight: normal;

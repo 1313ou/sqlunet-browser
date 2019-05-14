@@ -54,7 +54,7 @@ import androidx.lifecycle.ViewModelProviders;
  */
 public class WebFragment extends Fragment
 {
-	static private final String TAG = "WebFragment";
+	static private final String TAG = "WebF";
 
 	static private final String SQLUNET_NS = "http://org.sqlunet";
 

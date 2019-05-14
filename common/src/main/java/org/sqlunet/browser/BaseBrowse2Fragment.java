@@ -20,7 +20,7 @@ import org.sqlunet.settings.Settings;
  */
 public abstract class BaseBrowse2Fragment extends Fragment
 {
-	static private final String TAG = "Browse2Fragment";
+	static private final String TAG = "Browse2F";
 
 	static private final String POINTER_STATE = "pointer";
 

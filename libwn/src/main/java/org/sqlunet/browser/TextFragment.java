@@ -6,8 +6,6 @@ import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Parcelable;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import android.text.SpannableStringBuilder;
 import android.text.style.StyleSpan;
 import android.util.Log;
@@ -25,6 +23,12 @@ import org.sqlunet.style.Spanner.SpanFactory;
 import org.sqlunet.wordnet.SynsetPointer;
 import org.sqlunet.wordnet.WordPointer;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
 /**
  * TextSearch progressMessage fragment
  *
@@ -32,7 +36,7 @@ import org.sqlunet.wordnet.WordPointer;
  */
 public class TextFragment extends AbstractTableFragment
 {
-	static private final String TAG = "TSResultFragment";
+	static private final String TAG = "TextF";
 
 	/**
 	 * Bold style factory
@@ -42,7 +46,7 @@ public class TextFragment extends AbstractTableFragment
 	/**
 	 * Factories
 	 */
-	static private final SpanFactory[][] factories = {new SpanFactory[]{boldFactory,}};
+	static private final SpanFactory[] factories = new SpanFactory[]{boldFactory,};
 
 	/**
 	 * Query argument
@@ -80,8 +84,8 @@ public class TextFragment extends AbstractTableFragment
 	@Override
 	protected ViewBinder makeViewBinder()
 	{
-		// pattern (case-insensitive)
-		final String[] patterns = {'(' + "(?i)" + this.query + ')',};
+		// patterns (case-insensitive)
+		final String[] patterns = toPatterns(this.query);
 
 		// spanner
 		final RegExprSpanner spanner = new RegExprSpanner(patterns, factories);
@@ -117,6 +121,25 @@ public class TextFragment extends AbstractTableFragment
 			}
 			return true;
 		};
+	}
+
+	static private String[] toPatterns(final String query)
+	{
+		String[] tokens = query.split("[\\s()]+");
+		List<String> patterns = new ArrayList<>();
+		for (String token : tokens)
+		{
+			token = token.trim();
+			token = token.replaceAll("\\*$", "");
+			if (token.isEmpty() || "AND".equals(token) || "OR".equals(token) || "NOT".equals(token) || token.startsWith("NEAR"))
+			{
+				continue;
+			}
+
+			// Log.d(TAG, '<' + token + '>');
+			patterns.add('(' + "(?i)" + token + ')');
+		}
+		return patterns.toArray(new String[0]);
 	}
 
 	// C L I C K

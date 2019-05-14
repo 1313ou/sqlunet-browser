@@ -40,7 +40,7 @@ import org.sqlunet.settings.Settings;
  */
 public class BrowseFragment extends BaseSearchFragment
 {
-	static private final String TAG = "BrowseFragment";
+	static private final String TAG = "BrowseF";
 
 	// C R E A T I O N
 
