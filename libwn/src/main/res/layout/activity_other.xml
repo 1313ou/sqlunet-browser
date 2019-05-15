@@ -203,6 +203,96 @@
 				android:src="@drawable/ic_googleplay"
 				android:visibility="visible"/>
 
+			<!-- semantikos wn -->
+
+			<ImageView
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_gravity="center"
+				android:layout_marginTop="25dp"
+				android:contentDescription="@string/description_logo_semantikos_wn"
+				android:gravity="center_horizontal"
+				android:padding="5dp"
+				android:src="@drawable/logo_semantikos_wn"
+				android:visibility="visible"/>
+
+			<TextView
+				style="@style/HeaderText"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_gravity="center"
+				android:gravity="center_horizontal"
+				android:padding="5dp"
+				android:text="@string/title_semantikos_wn"
+				android:textStyle="bold"
+				android:visibility="visible"/>
+
+			<TextView
+				style="@style/DescriptionText"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_gravity="center"
+				android:gravity="center_horizontal"
+				android:padding="5dp"
+				android:text="@string/text_semantikos_wn"
+				android:visibility="visible"/>
+
+			<ImageButton
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_gravity="center_horizontal"
+				android:layout_marginTop="20dp"
+				android:background="@null"
+				android:contentDescription="@string/description_googleplay_semantikos_wn"
+				android:onClick="onMarketSemantikosWn"
+				android:src="@drawable/ic_googleplay"
+				android:visibility="visible"/>
+
+			<!-- semantikos ewn -->
+
+			<ImageView
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_gravity="center"
+				android:layout_marginTop="25dp"
+				android:contentDescription="@string/description_logo_semantikos_ewn"
+				android:gravity="center_horizontal"
+				android:padding="5dp"
+				android:src="@drawable/logo_semantikos_ewn"
+				android:visibility="visible"/>
+
+			<TextView
+				style="@style/HeaderText"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_gravity="center"
+				android:gravity="center_horizontal"
+				android:padding="5dp"
+				android:text="@string/title_semantikos_ewn"
+				android:textStyle="bold"
+				android:visibility="visible"/>
+
+			<TextView
+				style="@style/DescriptionText"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_gravity="center"
+				android:gravity="center_horizontal"
+				android:padding="5dp"
+				android:text="@string/text_semantikos_ewn"
+				android:visibility="visible"/>
+
+			<ImageButton
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_gravity="center_horizontal"
+				android:layout_marginTop="20dp"
+				android:background="@null"
+				android:contentDescription="@string/description_googleplay_semantikos_ewn"
+				android:onClick="onMarketSemantikosEWn"
+				android:src="@drawable/ic_googleplay"
+				android:visibility="visible"/>
+
 			<!-- semantikos vn -->
 
 			<ImageView

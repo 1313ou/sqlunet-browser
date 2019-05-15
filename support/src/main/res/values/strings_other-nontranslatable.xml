@@ -6,6 +6,7 @@
 	<string name="treebolic_wordnet_uri" translatable="false">market://details?id=org.treebolic.wordnet.browser</string>
 	<string name="semantikos_uri" translatable="false">market://details?id=org.sqlunet.browser</string>
 	<string name="semantikos_wn_uri" translatable="false">market://details?id=org.sqlunet.browser.wn</string>
+	<string name="semantikos_ewn_uri" translatable="false">market://details?id=org.sqlunet.browser.ewn</string>
 	<string name="semantikos_vn_uri" translatable="false">market://details?id=org.sqlunet.browser.vn</string>
 	<string name="semantikos_fn_uri" translatable="false">market://details?id=org.sqlunet.browser.fn</string>
 

@@ -151,5 +151,10 @@
     <orderEntry type="module" module-name="frameNet" />
     <orderEntry type="module" module-name="verbNet" />
     <orderEntry type="module" module-name="xNet" />
+    <orderEntry type="module" module-name="propbank" />
+    <orderEntry type="module" module-name="treeView" />
+    <orderEntry type="module" module-name="frameNet" />
+    <orderEntry type="module" module-name="verbNet" />
+    <orderEntry type="module" module-name="xNet" />
   </component>
 </module>

@@ -64,6 +64,11 @@ public class OtherActivity extends AppCompatActivity
 		install(getString(R.string.semantikos_wn_uri));
 	}
 
+	public void onMarketSemantikosEWn(@SuppressWarnings("UnusedParameters") View view)
+	{
+		install(getString(R.string.semantikos_ewn_uri));
+	}
+
 	public void onMarketSemantikosVn(@SuppressWarnings("UnusedParameters") View view)
 	{
 		install(getString(R.string.semantikos_vn_uri));

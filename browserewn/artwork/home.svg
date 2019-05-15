@@ -21,18 +21,6 @@
      id="defs4">
     <linearGradient
        inkscape:collect="always"
-       id="greens-8">
-      <stop
-         style="stop-color:#78aca7;stop-opacity:0.99607843"
-         offset="0"
-         id="stop4553" />
-      <stop
-         style="stop-color:#4ca599;stop-opacity:0.99607843"
-         offset="1"
-         id="stop4555" />
-    </linearGradient>
-    <linearGradient
-       inkscape:collect="always"
        id="greys-7">
       <stop
          style="stop-color:#625c4e;stop-opacity:1;"
@@ -75,16 +63,6 @@
        y2="273.64447"
        gradientUnits="userSpaceOnUse"
        gradientTransform="matrix(2.7098975,0,0,4.0555557,279.21582,-349.55808)" />
-    <linearGradient
-       inkscape:collect="always"
-       xlink:href="#greens-8"
-       id="linearGradient4559"
-       x1="396.98996"
-       y1="380.99838"
-       x2="396.98996"
-       y2="462.82074"
-       gradientUnits="userSpaceOnUse"
-       gradientTransform="matrix(1,0,0,1.1686747,0,-62.179598)" />
     <clipPath
        clipPathUnits="userSpaceOnUse"
        id="clipPath8448">
@@ -104,9 +82,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.98994949"
-     inkscape:cx="379.63581"
-     inkscape:cy="423.43281"
+     inkscape:zoom="0.33392585"
+     inkscape:cx="-20.563508"
+     inkscape:cy="423.43283"
      inkscape:document-units="px"
      inkscape:current-layer="g8444"
      showgrid="false"
@@ -114,11 +92,11 @@
      fit-margin-left="5"
      fit-margin-right="5"
      fit-margin-bottom="5"
-     inkscape:window-width="1869"
-     inkscape:window-height="1136"
+     inkscape:window-width="1431"
+     inkscape:window-height="1004"
      inkscape:window-x="51"
      inkscape:window-y="27"
-     inkscape:window-maximized="1"
+     inkscape:window-maximized="0"
      units="px" />
   <metadata
      id="metadata7">
@@ -169,7 +147,7 @@
          height="97.984795"
          width="803.07129"
          id="rect4527"
-         style="display:inline;opacity:1;fill:url(#linearGradient4559);fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:18.3908577;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+         style="display:inline;opacity:1;fill:#8e9e76;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:18.3908577;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
          transform="translate(-6.2879466,8.931444)" />
       <text
          transform="matrix(0.67834239,-0.00187899,0,1.4741818,0,0)"
@@ -197,7 +175,7 @@
            style="stroke-width:19.61914062px">Net</tspan></text>
       <text
          xml:space="preserve"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:condensed;font-size:119.60908508px;line-height:100%;font-family:Impact;-inkscape-font-specification:'Impact, Condensed';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;opacity:0.98000004;fill:#f6f1ee;fill-opacity:0.99607843;stroke:none;stroke-width:7.97400284px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:0.99607843"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:condensed;font-size:119.60908508px;line-height:100%;font-family:Impact;-inkscape-font-specification:'Impact, Condensed';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;opacity:0.98000004;fill:#c5cfb9;fill-opacity:1;stroke:none;stroke-width:7.97400284px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:0.99607843;"
          x="241.48073"
          y="145.30202"
          id="text850"
@@ -206,7 +184,7 @@
            id="tspan852"
            x="241.48073"
            y="145.30202"
-           style="fill:#f6f1ee;fill-opacity:0.99607843;stroke-width:7.97400284px">English</tspan></text>
+           style="fill:#c5cfb9;fill-opacity:1;stroke-width:7.97400284px;">English</tspan></text>
     </g>
   </g>
 </svg>
