@@ -112,8 +112,7 @@ abstract public class BaseDownloadFragment extends Fragment implements View.OnCl
 	 * Status
 	 */
 	enum Status
-	{
-		STATUS_PENDING(0x01, R.string.status_download_pending), // 1
+	{STATUS_PENDING(0x01, R.string.status_download_pending), // 1
 		STATUS_RUNNING(0x02, R.string.status_download_running), // 2
 		STATUS_PAUSED(0x04, R.string.status_download_paused), // 4
 		STATUS_SUCCESSFUL(0x08, R.string.status_download_successful), // 8
@@ -163,8 +162,7 @@ abstract public class BaseDownloadFragment extends Fragment implements View.OnCl
 		static boolean isSuccess(long status)
 		{
 			return STATUS_SUCCESSFUL.test(status);
-		}
-	}
+		}}
 
 	class Progress
 	{
@@ -945,24 +943,24 @@ abstract public class BaseDownloadFragment extends Fragment implements View.OnCl
 
 				FileAsyncTask.md5(activity, localPath, result -> {
 
-					final String computedResult = (String) result;
-					boolean success = downloadedResult.equals(computedResult);
-					final SpannableStringBuilder sb = new SpannableStringBuilder();
-					Report.appendHeader(sb, getString(R.string.md5_downloaded));
-					sb.append('\n');
-					sb.append(downloadedResult);
-					sb.append('\n');
-					Report.appendHeader(sb, getString(R.string.md5_computed));
-					sb.append('\n');
-					sb.append(computedResult == null ? getString(R.string.status_task_failed) : computedResult);
-					sb.append('\n');
-					Report.appendHeader(sb, getString(R.string.md5_compared));
-					sb.append('\n');
-					sb.append(getString(success ? R.string.status_task_success : R.string.status_task_failed));
-
 					final Activity activity2 = getActivity();
 					if (activity2 != null && !isDetached() && !activity2.isFinishing() && !activity2.isDestroyed())
 					{
+						final String computedResult = (String) result;
+						boolean success = downloadedResult.equals(computedResult);
+						final SpannableStringBuilder sb = new SpannableStringBuilder();
+						Report.appendHeader(sb, getString(R.string.md5_downloaded));
+						sb.append('\n');
+						sb.append(downloadedResult);
+						sb.append('\n');
+						Report.appendHeader(sb, getString(R.string.md5_computed));
+						sb.append('\n');
+						sb.append(computedResult == null ? getString(R.string.status_task_failed) : computedResult);
+						sb.append('\n');
+						Report.appendHeader(sb, getString(R.string.md5_compared));
+						sb.append('\n');
+						sb.append(getString(success ? R.string.status_task_success : R.string.status_task_failed));
+
 						final AlertDialog.Builder alert = new AlertDialog.Builder(activity2); // guarded, level 3
 						alert.setTitle(getString(R.string.action_md5_of) + ' ' + targetFile);
 						alert.setMessage(sb);

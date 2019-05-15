@@ -37,75 +37,24 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="dbe7534c-3086-4b17-848a-f5676a7f84bd" name="Default" comment="extended text search&#10;hightlight result fixes">
-      <change afterPath="$PROJECT_DIR$/browserewn/src/main/res/layout/activity_other.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/browserwn/src/main/res/layout/activity_other.xml" afterDir="false" />
+    <list default="true" id="dbe7534c-3086-4b17-848a-f5676a7f84bd" name="Default" comment="ewn cosmetics">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bNC/bNC.iml" beforeDir="false" afterPath="$PROJECT_DIR$/bNC/bNC.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/browser/browser.iml" beforeDir="false" afterPath="$PROJECT_DIR$/browser/browser.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/browser/src/main/res/layout/activity_other.xml" beforeDir="false" afterPath="$PROJECT_DIR$/browser/src/main/res/layout/activity_other.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/browserewn/artwork/home.svg" beforeDir="false" afterPath="$PROJECT_DIR$/browserewn/artwork/home.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/browserewn/artwork/ic_launcher_round.svg" beforeDir="false" afterPath="$PROJECT_DIR$/browserewn/artwork/ic_launcher_round.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/browserewn/artwork/ic_splash.svg" beforeDir="false" afterPath="$PROJECT_DIR$/browserewn/artwork/ic_splash.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/browserewn/artwork/logo.svg" beforeDir="false" afterPath="$PROJECT_DIR$/browserewn/artwork/logo.svg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/browserewn/browserewn.iml" beforeDir="false" afterPath="$PROJECT_DIR$/browserewn/browserewn.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/browserewn/ic_launcher-app.png" beforeDir="false" afterPath="$PROJECT_DIR$/browserewn/ic_launcher-app.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/browserewn/src/main/res/drawable-hdpi/home.png" beforeDir="false" afterPath="$PROJECT_DIR$/browserewn/src/main/res/drawable-hdpi/home.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/browserewn/src/main/res/drawable-hdpi/ic_logo.png" beforeDir="false" afterPath="$PROJECT_DIR$/browserewn/src/main/res/drawable-hdpi/ic_logo.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/browserewn/src/main/res/drawable-hdpi/ic_splash.png" beforeDir="false" afterPath="$PROJECT_DIR$/browserewn/src/main/res/drawable-hdpi/ic_splash.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/browserewn/src/main/res/drawable-mdpi/home.png" beforeDir="false" afterPath="$PROJECT_DIR$/browserewn/src/main/res/drawable-mdpi/home.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/browserewn/src/main/res/drawable-mdpi/ic_logo.png" beforeDir="false" afterPath="$PROJECT_DIR$/browserewn/src/main/res/drawable-mdpi/ic_logo.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/browserewn/src/main/res/drawable-mdpi/ic_splash.png" beforeDir="false" afterPath="$PROJECT_DIR$/browserewn/src/main/res/drawable-mdpi/ic_splash.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/browserewn/src/main/res/drawable-xhdpi/home.png" beforeDir="false" afterPath="$PROJECT_DIR$/browserewn/src/main/res/drawable-xhdpi/home.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/browserewn/src/main/res/drawable-xhdpi/ic_logo.png" beforeDir="false" afterPath="$PROJECT_DIR$/browserewn/src/main/res/drawable-xhdpi/ic_logo.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/browserewn/src/main/res/drawable-xhdpi/ic_splash.png" beforeDir="false" afterPath="$PROJECT_DIR$/browserewn/src/main/res/drawable-xhdpi/ic_splash.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/browserewn/src/main/res/drawable-xxhdpi/home.png" beforeDir="false" afterPath="$PROJECT_DIR$/browserewn/src/main/res/drawable-xxhdpi/home.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/browserewn/src/main/res/drawable-xxhdpi/ic_logo.png" beforeDir="false" afterPath="$PROJECT_DIR$/browserewn/src/main/res/drawable-xxhdpi/ic_logo.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/browserewn/src/main/res/drawable-xxhdpi/ic_splash.png" beforeDir="false" afterPath="$PROJECT_DIR$/browserewn/src/main/res/drawable-xxhdpi/ic_splash.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/browserewn/src/main/res/drawable-xxxhdpi/home.png" beforeDir="false" afterPath="$PROJECT_DIR$/browserewn/src/main/res/drawable-xxxhdpi/home.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/browserewn/src/main/res/drawable-xxxhdpi/ic_logo.png" beforeDir="false" afterPath="$PROJECT_DIR$/browserewn/src/main/res/drawable-xxxhdpi/ic_logo.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/browserewn/src/main/res/drawable-xxxhdpi/ic_splash.png" beforeDir="false" afterPath="$PROJECT_DIR$/browserewn/src/main/res/drawable-xxxhdpi/ic_splash.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/browserewn/src/main/res/mipmap-hdpi/ic_launcher.png" beforeDir="false" afterPath="$PROJECT_DIR$/browserewn/src/main/res/mipmap-hdpi/ic_launcher.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/browserewn/src/main/res/mipmap-hdpi/ic_launcher_round.png" beforeDir="false" afterPath="$PROJECT_DIR$/browserewn/src/main/res/mipmap-hdpi/ic_launcher_round.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/browserewn/src/main/res/mipmap-mdpi/ic_launcher.png" beforeDir="false" afterPath="$PROJECT_DIR$/browserewn/src/main/res/mipmap-mdpi/ic_launcher.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/browserewn/src/main/res/mipmap-mdpi/ic_launcher_round.png" beforeDir="false" afterPath="$PROJECT_DIR$/browserewn/src/main/res/mipmap-mdpi/ic_launcher_round.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/browserewn/src/main/res/mipmap-xhdpi/ic_launcher.png" beforeDir="false" afterPath="$PROJECT_DIR$/browserewn/src/main/res/mipmap-xhdpi/ic_launcher.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/browserewn/src/main/res/mipmap-xhdpi/ic_launcher_round.png" beforeDir="false" afterPath="$PROJECT_DIR$/browserewn/src/main/res/mipmap-xhdpi/ic_launcher_round.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/browserewn/src/main/res/mipmap-xxhdpi/ic_launcher.png" beforeDir="false" afterPath="$PROJECT_DIR$/browserewn/src/main/res/mipmap-xxhdpi/ic_launcher.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/browserewn/src/main/res/mipmap-xxhdpi/ic_launcher_round.png" beforeDir="false" afterPath="$PROJECT_DIR$/browserewn/src/main/res/mipmap-xxhdpi/ic_launcher_round.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/browserewn/src/main/res/mipmap-xxxhdpi/ic_launcher.png" beforeDir="false" afterPath="$PROJECT_DIR$/browserewn/src/main/res/mipmap-xxxhdpi/ic_launcher.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/browserewn/src/main/res/mipmap-xxxhdpi/ic_launcher_round.png" beforeDir="false" afterPath="$PROJECT_DIR$/browserewn/src/main/res/mipmap-xxxhdpi/ic_launcher_round.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/browserfn/browserfn.iml" beforeDir="false" afterPath="$PROJECT_DIR$/browserfn/browserfn.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/browserfn/src/main/res/layout/activity_other.xml" beforeDir="false" afterPath="$PROJECT_DIR$/browserfn/src/main/res/layout/activity_other.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/browservn/artwork/ic_launcher.svg" beforeDir="false" afterPath="$PROJECT_DIR$/browservn/artwork/ic_launcher.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/browservn/artwork/ic_logo.svg" beforeDir="false" afterPath="$PROJECT_DIR$/browservn/artwork/ic_logo.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/browservn/artwork/icon.svg" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/browservn/browservn.iml" beforeDir="false" afterPath="$PROJECT_DIR$/browservn/browservn.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/browservn/src/main/res/layout/activity_other.xml" beforeDir="false" afterPath="$PROJECT_DIR$/browservn/src/main/res/layout/activity_other.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/browserwn/browserwn.iml" beforeDir="false" afterPath="$PROJECT_DIR$/browserwn/browserwn.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/common/common.iml" beforeDir="false" afterPath="$PROJECT_DIR$/common/common.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/release/install.sh" beforeDir="false" afterPath="$PROJECT_DIR$/dist/release/install.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/java/org/sqlunet/browser/AbstractBrowseActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/org/sqlunet/browser/AbstractBrowseActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/java/org/sqlunet/browser/config/TaskObserver.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/org/sqlunet/browser/config/TaskObserver.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/download/download.iml" beforeDir="false" afterPath="$PROJECT_DIR$/download/download.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/download/src/main/java/org/sqlunet/download/BaseDownloadFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/download/src/main/java/org/sqlunet/download/BaseDownloadFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/download/src/main/java/org/sqlunet/download/FileAsyncTask.java" beforeDir="false" afterPath="$PROJECT_DIR$/download/src/main/java/org/sqlunet/download/FileAsyncTask.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frameNet/frameNet.iml" beforeDir="false" afterPath="$PROJECT_DIR$/frameNet/frameNet.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/libwn/libwn.iml" beforeDir="false" afterPath="$PROJECT_DIR$/libwn/libwn.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/libwn/src/main/assets/help/images/logo.png" beforeDir="false" afterPath="$PROJECT_DIR$/libwn/src/main/assets/help/images/logo.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/libwn/src/main/res/layout/activity_other.xml" beforeDir="false" afterPath="$PROJECT_DIR$/libwn/src/main/res/layout/activity_other.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/predicateMatrix/predicateMatrix.iml" beforeDir="false" afterPath="$PROJECT_DIR$/predicateMatrix/predicateMatrix.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/propbank/propbank.iml" beforeDir="false" afterPath="$PROJECT_DIR$/propbank/propbank.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/support/artwork/logo_semantikos.svg" beforeDir="false" afterPath="$PROJECT_DIR$/support/artwork/logo_semantikos.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/support/artwork/logo_semantikos_fn.svg" beforeDir="false" afterPath="$PROJECT_DIR$/support/artwork/logo_semantikos_fn.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/support/artwork/logo_semantikos_vn.svg" beforeDir="false" afterPath="$PROJECT_DIR$/support/artwork/logo_semantikos_vn.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/support/artwork/logo_semantikos_wn.svg" beforeDir="false" afterPath="$PROJECT_DIR$/support/artwork/logo_semantikos_wn.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/support/artwork/make-artwork.sh" beforeDir="false" afterPath="$PROJECT_DIR$/support/artwork/make-artwork.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/support/src/main/java/org/sqlunet/support/OtherActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/support/src/main/java/org/sqlunet/support/OtherActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/support/src/main/res/drawable-hdpi/logo_semantikos_vn.png" beforeDir="false" afterPath="$PROJECT_DIR$/support/src/main/res/drawable-hdpi/logo_semantikos_vn.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/support/src/main/res/drawable-mdpi/logo_semantikos_vn.png" beforeDir="false" afterPath="$PROJECT_DIR$/support/src/main/res/drawable-mdpi/logo_semantikos_vn.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/support/src/main/res/drawable-xhdpi/logo_semantikos_vn.png" beforeDir="false" afterPath="$PROJECT_DIR$/support/src/main/res/drawable-xhdpi/logo_semantikos_vn.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/support/src/main/res/drawable-xxhdpi/logo_semantikos_vn.png" beforeDir="false" afterPath="$PROJECT_DIR$/support/src/main/res/drawable-xxhdpi/logo_semantikos_vn.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/support/src/main/res/drawable-xxxhdpi/logo_semantikos_vn.png" beforeDir="false" afterPath="$PROJECT_DIR$/support/src/main/res/drawable-xxxhdpi/logo_semantikos_vn.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/support/src/main/res/layout/activity_other.xml" beforeDir="false" afterPath="$PROJECT_DIR$/support/src/main/res/layout/activity_other.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/support/src/main/res/values/strings_other-nontranslatable.xml" beforeDir="false" afterPath="$PROJECT_DIR$/support/src/main/res/values/strings_other-nontranslatable.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/support/src/main/res/values/strings_other.xml" beforeDir="false" afterPath="$PROJECT_DIR$/support/src/main/res/values/strings_other.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/verbNet/verbNet.iml" beforeDir="false" afterPath="$PROJECT_DIR$/verbNet/verbNet.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/wordNet/wordNet.iml" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/wordNet.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/xNet/xNet.iml" beforeDir="false" afterPath="$PROJECT_DIR$/xNet/xNet.iml" afterDir="false" />
@@ -1458,7 +1407,86 @@
     <favorites_list name="SqlUNet" />
   </component>
   <component name="FileEditorManager">
-    <leaf />
+    <leaf>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/common/src/main/java/org/sqlunet/browser/config/TaskObserver.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="168">
+              <caret line="211" column="22" selection-start-line="211" selection-start-column="8" selection-end-line="211" selection-end-column="22" />
+              <folding>
+                <element signature="e#4381#4382#0" expanded="true" />
+                <element signature="e#4472#4473#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/browser/src/main/java/org/sqlunet/browser/xn/SetupSqlFragment.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="202">
+              <caret line="74" column="72" selection-start-line="74" selection-start-column="72" selection-end-line="74" selection-end-column="72" />
+              <folding>
+                <element signature="e#2110#2134#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/common/src/main/java/org/sqlunet/browser/config/SetupSqlFragment.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="194">
+              <caret line="223" column="72" selection-start-line="223" selection-start-column="72" selection-end-line="223" selection-end-column="72" />
+              <folding>
+                <element signature="e#6134#6158#0" expanded="true" />
+                <element signature="e#8144#8168#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/download/src/main/java/org/sqlunet/download/TaskObserver.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="155">
+              <caret line="238" column="22" lean-forward="true" selection-start-line="238" selection-start-column="22" selection-end-line="238" selection-end-column="22" />
+              <folding>
+                <element signature="e#4667#4668#0" expanded="true" />
+                <element signature="e#4758#4759#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/download/src/main/java/org/sqlunet/download/BaseDownloadFragment.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="233">
+              <caret line="943" column="30" selection-start-line="943" selection-start-column="30" selection-end-line="943" selection-end-column="30" />
+              <folding>
+                <element signature="e#20980#21014#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/download/src/main/java/org/sqlunet/download/FileAsyncTask.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="194">
+              <caret line="694" column="38" selection-start-line="694" selection-start-column="38" selection-end-line="694" selection-end-column="38" />
+              <folding>
+                <element signature="e#11162#11196#0" expanded="true" />
+                <element signature="e#12756#12790#0" expanded="true" />
+                <element signature="e#14302#14332#0" expanded="true" />
+                <element signature="e#15192#15211#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -1472,9 +1500,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>name=&quot;CompatAppTheme.AppBarOverlay&quot;</find>
-      <find>CompatAppThe</find>
-      <find>CompatApp</find>
       <find>id.cased</find>
       <find>setViewBinder</find>
       <find>cased</find>
@@ -1502,6 +1527,9 @@
       <find>onMarketSemantikos</find>
       <find>@drawable/logo_semantikos_wn</find>
       <find>@drawable/logo_semantikos_ewn</find>
+      <find>md5(</find>
+      <find>resolveDialogTheme</find>
+      <find>new ProgressDialog</find>
     </findStrings>
     <replaceStrings>
       <replace>model.getData().observe(this.fragment, node</replace>
@@ -1581,11 +1609,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/browser/src/main/java/org/sqlunet/browser/BrowseFragment.java" />
-        <option value="$PROJECT_DIR$/browser/src/main/java/org/sqlunet/browser/web/WebFragment.java" />
-        <option value="$PROJECT_DIR$/browser/src/main/java/org/sqlunet/browser/xn/SetupSqlFragment.java" />
-        <option value="$PROJECT_DIR$/browser/src/main/java/org/sqlunet/browser/xn/SetupStatusFragment.java" />
-        <option value="$PROJECT_DIR$/browserfn/src/main/java/org/sqlunet/browser/BrowseFragment.java" />
         <option value="$PROJECT_DIR$/browserfn/src/main/java/org/sqlunet/browser/fn/SetupStatusFragment.java" />
         <option value="$PROJECT_DIR$/browserfn/src/main/java/org/sqlunet/browser/web/WebFragment.java" />
         <option value="$PROJECT_DIR$/browservn/src/main/java/org/sqlunet/browser/BrowseFragment.java" />
@@ -1632,6 +1655,11 @@
         <option value="$PROJECT_DIR$/browservn/src/main/res/layout/activity_other.xml" />
         <option value="$PROJECT_DIR$/browserwn/src/main/res/layout/activity_other.xml" />
         <option value="$PROJECT_DIR$/libwn/src/main/res/layout/activity_other.xml" />
+        <option value="$PROJECT_DIR$/common/src/main/java/org/sqlunet/browser/AbstractBrowseActivity.java" />
+        <option value="$PROJECT_DIR$/download/src/main/java/org/sqlunet/download/BaseDownloadFragment.java" />
+        <option value="$PROJECT_DIR$/download/src/main/java/org/sqlunet/download/FileAsyncTask.java" />
+        <option value="$PROJECT_DIR$/common/src/main/java/org/sqlunet/browser/config/TaskObserver.java" />
+        <option value="$PROJECT_DIR$/download/src/main/java/org/sqlunet/download/TaskObserver.java" />
       </list>
     </option>
   </component>
@@ -1659,7 +1687,7 @@
     <option name="x" value="54" />
     <option name="y" value="27" />
     <option name="width" value="1257" />
-    <option name="height" value="1163" />
+    <option name="height" value="1121" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
@@ -1669,6 +1697,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="PackagesPane" />
       <pane id="Scope">
         <subPane subId="Scope 'Project Files'; set:Project Files; class com.intellij.psi.search.scope.ProjectFilesScope">
           <expand>
@@ -1680,9 +1709,63 @@
           <select />
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
       <pane id="ProjectPane" />
-      <pane id="AndroidView" />
+      <pane id="AndroidView">
+        <subPane>
+          <expand>
+            <path>
+              <item name="SqlUNet" type="1abcf292:AndroidViewProjectNode" />
+              <item name="browser" type="feadf853:AndroidModuleNode" />
+            </path>
+            <path>
+              <item name="SqlUNet" type="1abcf292:AndroidViewProjectNode" />
+              <item name="common" type="feadf853:AndroidModuleNode" />
+            </path>
+            <path>
+              <item name="SqlUNet" type="1abcf292:AndroidViewProjectNode" />
+              <item name="common" type="feadf853:AndroidModuleNode" />
+              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
+            </path>
+            <path>
+              <item name="SqlUNet" type="1abcf292:AndroidViewProjectNode" />
+              <item name="common" type="feadf853:AndroidModuleNode" />
+              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
+              <item name="sqlunet" type="cbb59c9e:AndroidPsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="SqlUNet" type="1abcf292:AndroidViewProjectNode" />
+              <item name="common" type="feadf853:AndroidModuleNode" />
+              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
+              <item name="sqlunet" type="cbb59c9e:AndroidPsiDirectoryNode" />
+              <item name="browser" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="SqlUNet" type="1abcf292:AndroidViewProjectNode" />
+              <item name="common" type="feadf853:AndroidModuleNode" />
+              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
+              <item name="sqlunet" type="cbb59c9e:AndroidPsiDirectoryNode" />
+              <item name="browser" type="462c0819:PsiDirectoryNode" />
+              <item name="config" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="SqlUNet" type="1abcf292:AndroidViewProjectNode" />
+              <item name="download" type="feadf853:AndroidModuleNode" />
+            </path>
+            <path>
+              <item name="SqlUNet" type="1abcf292:AndroidViewProjectNode" />
+              <item name="download" type="feadf853:AndroidModuleNode" />
+              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
+            </path>
+            <path>
+              <item name="SqlUNet" type="1abcf292:AndroidViewProjectNode" />
+              <item name="download" type="feadf853:AndroidModuleNode" />
+              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
+              <item name="download" type="cbb59c9e:AndroidPsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -2502,27 +2585,6 @@
       <option name="presentableId" value="Default" />
       <updated>1487150992421</updated>
     </task>
-    <task id="LOCAL-00128" summary="fixes">
-      <created>1553675940170</created>
-      <option name="number" value="00128" />
-      <option name="presentableId" value="LOCAL-00128" />
-      <option name="project" value="LOCAL" />
-      <updated>1553675940171</updated>
-    </task>
-    <task id="LOCAL-00129" summary="fixes">
-      <created>1553676028789</created>
-      <option name="number" value="00129" />
-      <option name="presentableId" value="LOCAL-00129" />
-      <option name="project" value="LOCAL" />
-      <updated>1553676028789</updated>
-    </task>
-    <task id="LOCAL-00130" summary="fixes">
-      <created>1553679271277</created>
-      <option name="number" value="00130" />
-      <option name="presentableId" value="LOCAL-00130" />
-      <option name="project" value="LOCAL" />
-      <updated>1553679271277</updated>
-    </task>
     <task id="LOCAL-00131" summary="fixes">
       <created>1553757234909</created>
       <option name="number" value="00131" />
@@ -2845,7 +2907,28 @@
       <option name="project" value="LOCAL" />
       <updated>1557825495093</updated>
     </task>
-    <option name="localTasksCounter" value="177" />
+    <task id="LOCAL-00177" summary="extended text search&#10;hightlight result fixes">
+      <created>1557902951218</created>
+      <option name="number" value="00177" />
+      <option name="presentableId" value="LOCAL-00177" />
+      <option name="project" value="LOCAL" />
+      <updated>1557902951219</updated>
+    </task>
+    <task id="LOCAL-00178" summary="ewn cosmetics">
+      <created>1557903045897</created>
+      <option name="number" value="00178" />
+      <option name="presentableId" value="LOCAL-00178" />
+      <option name="project" value="LOCAL" />
+      <updated>1557903045897</updated>
+    </task>
+    <task id="LOCAL-00179" summary="ewn cosmetics">
+      <created>1557903166851</created>
+      <option name="number" value="00179" />
+      <option name="presentableId" value="LOCAL-00179" />
+      <option name="project" value="LOCAL" />
+      <updated>1557903166851</updated>
+    </task>
+    <option name="localTasksCounter" value="180" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -2890,9 +2973,9 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="54" y="27" width="1257" height="1163" extended-state="0" />
+    <frame x="54" y="27" width="1257" height="1121" extended-state="0" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.6680384" visible="true" weight="0.2074074" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.6680384" visible="true" weight="0.20658436" />
       <window_info id="Structure" order="1" sideWeight="0.47352496" side_tool="true" weight="0.27697262" />
       <window_info id="Captures" order="2" sideWeight="0.3319616" side_tool="true" weight="0.25447154" />
       <window_info id="Capture Tool" order="3" />
@@ -2903,18 +2986,18 @@
       <window_info id="Build Variants" order="8" sideWeight="0.50392157" side_tool="true" weight="0.18117131" />
       <window_info id="Resources Explorer" order="9" weight="0.32984716" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" sideWeight="0.47931033" weight="0.37648222" />
+      <window_info active="true" anchor="bottom" id="Find" order="1" sideWeight="0.47931033" visible="true" weight="0.34639177" />
       <window_info anchor="bottom" id="Run" order="2" sideWeight="0.22824302" weight="0.33953032" />
       <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.41293103" weight="0.2875494" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" sideWeight="0.30907604" weight="0.32692307" />
-      <window_info anchor="bottom" id="Android Profiler" order="7" />
+      <window_info anchor="bottom" id="Android Profiler" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Logcat" order="8" sideWeight="0.5637931" side_tool="true" weight="0.40118578" />
       <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.7481542" side_tool="true" weight="0.4459725" />
-      <window_info anchor="bottom" id="Build" order="10" sideWeight="0.4474138" weight="0.24407114" />
+      <window_info anchor="bottom" id="Build" order="10" sideWeight="0.4474138" weight="0.24329896" />
       <window_info anchor="bottom" id="Android Monitor" order="11" sideWeight="0.82428116" weight="0.39513677" />
-      <window_info active="true" anchor="bottom" id="Version Control" order="12" sideWeight="0.4362069" visible="true" weight="0.40118578" />
+      <window_info anchor="bottom" id="Version Control" order="12" sideWeight="0.4362069" weight="0.26907218" />
       <window_info anchor="bottom" id="Terminal" order="13" sideWeight="0.3136289" weight="0.32554945" />
       <window_info active="true" anchor="bottom" id="Gradle Console" order="14" sideWeight="0.4729064" side_tool="true" visible="true" weight="0.3107843" />
       <window_info anchor="bottom" id="Messages" order="15" sideWeight="0.5270936" weight="0.3107843" />
@@ -3042,7 +3125,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$" />
     </ignored-roots>
-    <MESSAGE value="wip towards view-independent tree model" />
     <MESSAGE value="wip treefactory" />
     <MESSAGE value="wip treeview" />
     <MESSAGE value="wip web loader" />
@@ -3067,7 +3149,8 @@
     <MESSAGE value="cased&#10;app customiz." />
     <MESSAGE value="lint" />
     <MESSAGE value="extended text search&#10;hightlight result fixes" />
-    <option name="LAST_COMMIT_MESSAGE" value="extended text search&#10;hightlight result fixes" />
+    <MESSAGE value="ewn cosmetics" />
+    <option name="LAST_COMMIT_MESSAGE" value="ewn cosmetics" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -3147,69 +3230,6 @@
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/common/src/main/java/org/sqlunet/browser/HelpFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="182">
-          <caret line="32" column="44" selection-start-line="32" selection-start-column="44" selection-end-line="32" selection-end-column="44" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/common/src/main/java/org/sqlunet/browser/NavigationFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="143">
-          <caret line="38" column="50" selection-start-line="38" selection-start-column="50" selection-end-line="38" selection-end-column="50" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/common/src/main/java/org/sqlunet/browser/SqlHistoryFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="143">
-          <caret line="16" column="50" selection-start-line="16" selection-start-column="50" selection-end-line="16" selection-end-column="50" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/common/src/main/java/org/sqlunet/browser/config/SetupSqlFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="143">
-          <caret line="41" column="48" selection-start-line="41" selection-start-column="48" selection-end-line="41" selection-end-column="48" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/common/src/main/java/org/sqlunet/browser/config/SetupStatusFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="143">
-          <caret line="43" column="51" selection-start-line="43" selection-start-column="51" selection-end-line="43" selection-end-column="51" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/libwn/src/main/java/org/sqlunet/browser/BrowseFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="143">
-          <caret line="45" column="46" selection-start-line="45" selection-start-column="46" selection-end-line="45" selection-end-column="46" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/libwn/src/main/java/org/sqlunet/browser/web/WebFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="143">
-          <caret line="56" column="43" selection-start-line="56" selection-start-column="43" selection-end-line="56" selection-end-column="43" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/libwn/src/main/java/org/sqlunet/browser/wn/SetupStatusFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="143">
-          <caret line="33" column="51" selection-start-line="33" selection-start-column="51" selection-end-line="33" selection-end-column="51" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/xNet/src/main/java/org/sqlunet/browser/TreeFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="65">
-          <caret line="24" column="44" selection-start-line="24" selection-start-column="44" selection-end-line="24" selection-end-column="44" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/browser/src/main/java/org/sqlunet/browser/BrowsePredicateMatrixFragment.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="143">
@@ -3489,6 +3509,97 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="42">
           <caret line="204" lean-forward="true" selection-start-line="204" selection-end-line="204" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/common/src/main/java/org/sqlunet/browser/AbstractBrowseActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1300">
+          <caret line="117" column="25" selection-start-line="117" selection-start-column="25" selection-end-line="117" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///opt/androidsdk/sources/android-28/android/app/ProgressDialog.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="93" column="13" selection-start-line="93" selection-start-column="8" selection-end-line="93" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///opt/androidsdk/sources/android-28/android/app/AlertDialog.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="942">
+          <caret line="200" column="69" selection-start-line="200" selection-start-column="51" selection-end-line="200" selection-end-column="69" />
+          <folding>
+            <element signature="e#4956#4957#0" expanded="true" />
+            <element signature="e#4988#4989#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/browser/src/main/java/org/sqlunet/browser/xn/SetupSqlFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="202">
+          <caret line="74" column="72" selection-start-line="74" selection-start-column="72" selection-end-line="74" selection-end-column="72" />
+          <folding>
+            <element signature="e#2110#2134#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/common/src/main/java/org/sqlunet/browser/config/TaskObserver.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="168">
+          <caret line="211" column="22" selection-start-line="211" selection-start-column="8" selection-end-line="211" selection-end-column="22" />
+          <folding>
+            <element signature="e#4381#4382#0" expanded="true" />
+            <element signature="e#4472#4473#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/common/src/main/java/org/sqlunet/browser/config/SetupSqlFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="194">
+          <caret line="223" column="72" selection-start-line="223" selection-start-column="72" selection-end-line="223" selection-end-column="72" />
+          <folding>
+            <element signature="e#6134#6158#0" expanded="true" />
+            <element signature="e#8144#8168#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/download/src/main/java/org/sqlunet/download/TaskObserver.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="155">
+          <caret line="238" column="22" lean-forward="true" selection-start-line="238" selection-start-column="22" selection-end-line="238" selection-end-column="22" />
+          <folding>
+            <element signature="e#4667#4668#0" expanded="true" />
+            <element signature="e#4758#4759#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/download/src/main/java/org/sqlunet/download/BaseDownloadFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="233">
+          <caret line="943" column="30" selection-start-line="943" selection-start-column="30" selection-end-line="943" selection-end-column="30" />
+          <folding>
+            <element signature="e#20980#21014#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/download/src/main/java/org/sqlunet/download/FileAsyncTask.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="194">
+          <caret line="694" column="38" selection-start-line="694" selection-start-column="38" selection-end-line="694" selection-end-column="38" />
+          <folding>
+            <element signature="e#11162#11196#0" expanded="true" />
+            <element signature="e#12756#12790#0" expanded="true" />
+            <element signature="e#14302#14332#0" expanded="true" />
+            <element signature="e#15192#15211#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

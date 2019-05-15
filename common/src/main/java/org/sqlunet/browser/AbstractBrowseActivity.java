@@ -102,9 +102,8 @@ public abstract class AbstractBrowseActivity<F extends BaseSearchFragment> exten
 		{
 			// search query submit or suggestion selection (when a suggested item is selected)
 			final String query = intent.getStringExtra(SearchManager.QUERY);
-			if (query != null)
+			if (query != null && this.fragment != null)
 			{
-				assert this.fragment != null;
 				this.fragment.search(query);
 			}
 		}
@@ -114,9 +113,8 @@ public abstract class AbstractBrowseActivity<F extends BaseSearchFragment> exten
 			if ("text/plain".equals(type))
 			{
 				final String query = intent.getStringExtra(Intent.EXTRA_TEXT);
-				if (query != null)
+				if (query != null && this.fragment != null)
 				{
-					assert this.fragment != null;
 					this.fragment.search(query);
 				}
 			}

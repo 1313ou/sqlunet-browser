@@ -1,10 +1,10 @@
 package org.sqlunet.browser.config;
 
+import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.os.AsyncTask;
-import androidx.annotation.NonNull;
 import android.util.Log;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -15,6 +15,8 @@ import org.sqlunet.settings.StorageUtils;
 
 import java.text.NumberFormat;
 import java.util.Locale;
+
+import androidx.annotation.NonNull;
 
 /**
  * Task observer
@@ -201,29 +203,29 @@ public class TaskObserver
 		/**
 		 * Constructor
 		 *
-		 * @param context   context
+		 * @param activity  activity
 		 * @param titleId   titleId id
 		 * @param messageId message id
 		 * @param unitId    unit id
 		 */
 		@SuppressWarnings("unused")
-		DialogListener(@NonNull final Context context, final int titleId, final int messageId, final int unitId)
+		DialogListener(@NonNull final Activity activity, final int titleId, final int messageId, final int unitId)
 		{
-			this(context, titleId, context.getString(messageId), context.getString(unitId));
+			this(activity, titleId, activity.getString(messageId), activity.getString(unitId));
 		}
 
 		/**
 		 * Constructor
 		 *
-		 * @param context context
-		 * @param titleId titleId id
-		 * @param message message
-		 * @param unit    unit
+		 * @param activity activity
+		 * @param titleId  titleId id
+		 * @param message  message
+		 * @param unit     unit
 		 */
-		public DialogListener(@NonNull final Context context, final int titleId, final CharSequence message, final CharSequence unit)
+		public DialogListener(@NonNull final Activity activity, final int titleId, final CharSequence message, final CharSequence unit)
 		{
-			super(context);
-			this.progressDialog = makeDialog(context, titleId, message);
+			super(activity);
+			this.progressDialog = makeDialog(activity, titleId, message);
 			this.unit = unit;
 		}
 
@@ -273,23 +275,23 @@ public class TaskObserver
 		/**
 		 * Make dialog
 		 *
-		 * @param context context
-		 * @param titleId titleId id
-		 * @param message message
+		 * @param activity activity
+		 * @param titleId  titleId id
+		 * @param message  message
 		 * @return dialog
 		 */
 		@NonNull
-		static private ProgressDialog makeDialog(@NonNull final Context context, final int titleId, final CharSequence message)
+		static private ProgressDialog makeDialog(@NonNull final Activity activity, final int titleId, final CharSequence message)
 		{
-			final ProgressDialog progressDialog = new ProgressDialog(context);
+			final ProgressDialog progressDialog = new ProgressDialog(activity);
 			progressDialog.setTitle(titleId);
 			progressDialog.setMessage(message);
 			progressDialog.setIndeterminate(true);
 			progressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
 			progressDialog.setCancelable(true);
 			// until task is available
-			progressDialog.setButton(DialogInterface.BUTTON_NEGATIVE, context.getString(R.string.action_abort), (dialog, which) -> dialog.dismiss());
-			progressDialog.setButton(DialogInterface.BUTTON_POSITIVE, context.getString(R.string.action_dismiss), (dialog, which) -> dialog.dismiss());
+			progressDialog.setButton(DialogInterface.BUTTON_NEGATIVE, activity.getString(R.string.action_abort), (dialog, which) -> dialog.dismiss());
+			progressDialog.setButton(DialogInterface.BUTTON_POSITIVE, activity.getString(R.string.action_dismiss), (dialog, which) -> dialog.dismiss());
 			return progressDialog;
 		}
 	}

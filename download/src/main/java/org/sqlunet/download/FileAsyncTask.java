@@ -690,32 +690,31 @@ public class FileAsyncTask
 				if (radioButton.getId() == input.getCheckedRadioButtonId())
 				{
 					final String sourceFile = radioButton.getTag().toString();
-					// String md5;
 					if (new File(sourceFile).exists())
 					{
 						FileAsyncTask.md5(activity, sourceFile, result1 -> {
 
-							final String computedResult = (String) result1;
-							final SpannableStringBuilder sb = new SpannableStringBuilder();
-							Report.appendHeader(sb, activity.getString(R.string.md5_computed));
-							sb.append('\n');
-							sb.append(computedResult == null ? activity.getString(R.string.status_task_failed) : computedResult);
-
-							// selectable
-							final TextView resultView = new TextView(activity);
-							resultView.setText(sb);
-							resultView.setPadding(35, 20, 35, 20);
-							resultView.setTextIsSelectable(true);
-
-							if (activity.isFinishing() || activity.isDestroyed())
+							if (!activity.isFinishing() && !activity.isDestroyed())
 							{
-								return;
+
+								final String computedResult = (String) result1;
+								final SpannableStringBuilder sb = new SpannableStringBuilder();
+								Report.appendHeader(sb, activity.getString(R.string.md5_computed));
+								sb.append('\n');
+								sb.append(computedResult == null ? activity.getString(R.string.status_task_failed) : computedResult);
+
+								// selectable
+								final TextView resultView = new TextView(activity);
+								resultView.setText(sb);
+								resultView.setPadding(35, 20, 35, 20);
+								resultView.setTextIsSelectable(true);
+
+								final AlertDialog.Builder alert2 = new AlertDialog.Builder(activity); // guarded, level 2
+								alert2.setTitle(activity.getString(R.string.action_md5_of) + ' ' + sourceFile) //
+										.setView(resultView)
+										//.setMessage(sb)
+										.show();
 							}
-							final AlertDialog.Builder alert2 = new AlertDialog.Builder(activity); // guarded, level 2
-							alert2.setTitle(activity.getString(R.string.action_md5_of) + ' ' + sourceFile) //
-									.setView(resultView)
-									//.setMessage(sb)
-									.show();
 						});
 					}
 					else
