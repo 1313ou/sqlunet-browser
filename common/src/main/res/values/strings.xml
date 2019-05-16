@@ -40,6 +40,11 @@
 	<string name="action_about">About</string>
 	<string name="action_appsettings">Application</string>
 
+	<!-- menus -->
+	<string name="action_data">Data</string>
+	<string name="action_app">App</string>
+	<string name="action_credits">Credits</string>
+
 	<string name="action_run">Run</string>
 	<string name="action_main">Main</string>
 	<string name="action_quit">Quit</string>

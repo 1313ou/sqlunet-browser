@@ -9,25 +9,31 @@
 		app:showAsAction="never"
 		tools:ignore="AppCompatResource"/>
 	<item
-		android:id="@+id/action_status"
-		android:title="@string/action_status"
-		app:showAsAction="never"
-		tools:ignore="AppCompatResource"/>
-	<item
-		android:id="@+id/action_setup"
-		android:title="@string/action_setup"
-		app:showAsAction="never"
-		tools:ignore="AppCompatResource"/>
-	<item
-		android:id="@+id/action_update"
-		android:title="@string/action_update"
-		app:showAsAction="never"
-		tools:ignore="AppCompatResource"/>
-	<item
-		android:id="@+id/action_storage"
-		android:title="@string/action_storage"
-		app:showAsAction="never"
-		tools:ignore="AppCompatResource"/>
+		android:title="@string/action_data"
+		app:showAsAction="never">
+		<menu>
+			<item
+				android:id="@+id/action_status"
+				android:title="@string/action_status"
+				app:showAsAction="never"
+				tools:ignore="AppCompatResource"/>
+			<item
+				android:id="@+id/action_setup"
+				android:title="@string/action_setup"
+				app:showAsAction="never"
+				tools:ignore="AppCompatResource"/>
+			<item
+				android:id="@+id/action_update"
+				android:title="@string/action_update"
+				app:showAsAction="never"
+				tools:ignore="AppCompatResource"/>
+			<item
+				android:id="@+id/action_storage"
+				android:title="@string/action_storage"
+				app:showAsAction="never"
+				tools:ignore="AppCompatResource"/>
+		</menu>
+	</item>
 	<item
 		android:id="@+id/action_clear_sql"
 		android:title="@string/action_clear_sql"
@@ -38,29 +44,43 @@
 		android:title="@string/action_help"
 		app:showAsAction="never"
 		tools:ignore="AppCompatResource"/>
+
 	<item
-		android:id="@+id/action_about"
-		android:title="@string/action_about"
-		app:showAsAction="never"
-		tools:ignore="AppCompatResource"/>
+		android:title="@string/action_credits"
+		app:showAsAction="never">
+		<menu>
+			<item
+				android:id="@+id/action_about"
+				android:title="@string/action_about"
+				app:showAsAction="never"
+				tools:ignore="AppCompatResource"/>
+			<item
+				android:id="@+id/action_other"
+				android:title="@string/title_activity_other"
+				app:showAsAction="never"
+				tools:ignore="AppCompatResource"/>
+			<item
+				android:id="@+id/action_donate"
+				android:title="@string/title_activity_donate"
+				app:showAsAction="never"
+				tools:ignore="AppCompatResource"/>
+		</menu>
+	</item>
+
 	<item
-		android:id="@+id/action_donate"
-		android:title="@string/title_activity_donate"
-		app:showAsAction="never"
-		tools:ignore="AppCompatResource"/>
-	<item
-		android:id="@+id/action_other"
-		android:title="@string/title_activity_other"
-		app:showAsAction="never"
-		tools:ignore="AppCompatResource"/>
-	<item
-		android:id="@+id/action_appsettings"
-		android:title="@string/action_appsettings"
-		app:showAsAction="never"
-		tools:ignore="AppCompatResource"/>
-	<item
-		android:id="@+id/action_quit"
-		android:title="@string/action_quit"
-		app:showAsAction="never"
-		tools:ignore="AppCompatResource"/>
+		android:title="@string/action_app"
+		app:showAsAction="never">
+		<menu>
+			<item
+				android:id="@+id/action_appsettings"
+				android:title="@string/action_appsettings"
+				app:showAsAction="never"
+				tools:ignore="AppCompatResource"/>
+			<item
+				android:id="@+id/action_quit"
+				android:title="@string/action_quit"
+				app:showAsAction="never"
+				tools:ignore="AppCompatResource"/>
+		</menu>
+	</item>
 </menu>
