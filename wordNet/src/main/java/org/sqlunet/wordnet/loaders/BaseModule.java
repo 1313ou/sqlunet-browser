@@ -473,7 +473,7 @@ abstract public class BaseModule extends Module
 	/**
 	 * Sense
 	 *
-	 * @param synsetId synsetCursorToTreeModel id
+	 * @param synsetId synset id
 	 * @param wordId   word id
 	 * @param parent   parent node
 	 */
@@ -595,7 +595,7 @@ abstract public class BaseModule extends Module
 	/**
 	 * Synset
 	 *
-	 * @param synsetId   synsetCursorToTreeModel id
+	 * @param synsetId   synset id
 	 * @param parent     parent node
 	 * @param addNewNode whether to addItem to (or set) node
 	 */
@@ -659,7 +659,7 @@ abstract public class BaseModule extends Module
 	 * Sense to string builder
 	 *
 	 * @param sb         string builder
-	 * @param synsetId   synsetCursorToTreeModel id
+	 * @param synsetId   synset id
 	 * @param posName    pos
 	 * @param lexDomain  lex domain
 	 * @param definition definition
@@ -696,7 +696,7 @@ abstract public class BaseModule extends Module
 	 * Synset to string builder
 	 *
 	 * @param sb         string builder
-	 * @param synsetId   synsetCursorToTreeModel id
+	 * @param synsetId   synset id
 	 * @param posName    pos
 	 * @param lexDomain  lex domain
 	 * @param definition definition
@@ -716,7 +716,7 @@ abstract public class BaseModule extends Module
 	 * Synset head to string builder
 	 *
 	 * @param sb        string builder
-	 * @param synsetId  synsetCursorToTreeModel id
+	 * @param synsetId  synset id
 	 * @param posName   pos
 	 * @param lexDomain lex domain
 	 * @return string builder
@@ -759,7 +759,7 @@ abstract public class BaseModule extends Module
 	/**
 	 * Members
 	 *
-	 * @param synsetId   synsetCursorToTreeModel
+	 * @param synsetId   synset id
 	 * @param parent     parent node
 	 * @param addNewNode whether to addItem to (or set) node
 	 */
@@ -778,7 +778,7 @@ abstract public class BaseModule extends Module
 	/**
 	 * Members
 	 *
-	 * @param synsetId synsetCursorToTreeModel
+	 * @param synsetId synset id
 	 * @param parent   parent node
 	 */
 	void members(final long synsetId, @NonNull final TreeNode parent)
@@ -908,7 +908,7 @@ abstract public class BaseModule extends Module
 	/**
 	 * Samples
 	 *
-	 * @param synsetId   synsetCursorToTreeModel id
+	 * @param synsetId   synset id
 	 * @param parent     parent node
 	 * @param addNewNode whether to addItem to (or set) node
 	 */
@@ -983,7 +983,7 @@ abstract public class BaseModule extends Module
 	/**
 	 * Semantic links
 	 *
-	 * @param synsetId                synsetCursorToTreeModel id
+	 * @param synsetId                synset id
 	 * @param parent                  parent node
 	 * @param deadendParentIfNoResult mark parent node as deadend if there is no result
 	 */
@@ -1006,7 +1006,7 @@ abstract public class BaseModule extends Module
 	/**
 	 * Semantic links
 	 *
-	 * @param synsetId                synsetCursorToTreeModel id
+	 * @param synsetId                synset id
 	 * @param linkId                  link id
 	 * @param parent                  parent node
 	 * @param deadendParentIfNoResult mark parent node as deadend if there is no result
@@ -1164,7 +1164,7 @@ abstract public class BaseModule extends Module
 	/**
 	 * Lexical links
 	 *
-	 * @param synsetId                synsetCursorToTreeModel id
+	 * @param synsetId                synset id
 	 * @param wordId                  word id
 	 * @param parent                  parent node
 	 * @param deadendParentIfNoResult mark parent node as deadend if there is no result
@@ -1187,7 +1187,7 @@ abstract public class BaseModule extends Module
 	/**
 	 * Lexical links
 	 *
-	 * @param synsetId                synsetCursorToTreeModel id
+	 * @param synsetId                synset id
 	 * @param parent                  parent
 	 * @param deadendParentIfNoResult mark parent node as deadend if there is no result
 	 */
@@ -1236,7 +1236,7 @@ abstract public class BaseModule extends Module
 				final String targetLemma = cursor.getString(idTargetLemma);
 				// final String targetWordId = cursor.getString(idTargetWordId);
 
-				// final String record = String.format(Locale.ENGLISH, "[%s] %s (%s)\n\t%s (synsetCursorToTreeModel %s) {%s}", link, targetLemma, targetWordId,targetDefinition, targetSynsetId, targetMembers);
+				// final String record = String.format(Locale.ENGLISH, "[%s] %s (%s)\n\t%s (synset %s) {%s}", link, targetLemma, targetWordId,targetDefinition, targetSynsetId, targetMembers);
 
 				if (sb.length() != 0)
 				{
@@ -1307,7 +1307,7 @@ abstract public class BaseModule extends Module
 				// final String targetWordId = cursor.getString(idTargetWordId);
 				final String targetLemma = cursor.getString(idTargetLemma);
 
-				// final String record = String.format(Locale.ENGLISH, "[%s] %s (%s)\n\t%s (synsetCursorToTreeModel %s) {%s}", link, targetLemma, targetWordId, targetDefinition, targetSynsetId, targetMembers);
+				// final String record = String.format(Locale.ENGLISH, "[%s] %s (%s)\n\t%s (synset %s) {%s}", link, targetLemma, targetWordId, targetDefinition, targetSynsetId, targetMembers);
 
 				if (sb.length() != 0)
 				{
@@ -1357,7 +1357,7 @@ abstract public class BaseModule extends Module
 	/**
 	 * Verb frames
 	 *
-	 * @param synsetId synsetCursorToTreeModel id
+	 * @param synsetId synset id
 	 * @param parent   parent node
 	 */
 	void vFrames(final long synsetId, @NonNull final TreeNode parent)
@@ -1372,7 +1372,7 @@ abstract public class BaseModule extends Module
 	/**
 	 * Verb frames
 	 *
-	 * @param synsetId synsetCursorToTreeModel id
+	 * @param synsetId synset id
 	 * @param wordId   word id
 	 * @param parent   parent node
 	 */
@@ -1426,7 +1426,7 @@ abstract public class BaseModule extends Module
 	/**
 	 * Verb frame sentences
 	 *
-	 * @param synsetId synsetCursorToTreeModel id
+	 * @param synsetId synset id
 	 * @param parent   parent node
 	 */
 	void vFrameSentences(final long synsetId, @NonNull final TreeNode parent)
@@ -1441,7 +1441,7 @@ abstract public class BaseModule extends Module
 	/**
 	 * Verb frame sentences
 	 *
-	 * @param synsetId synsetCursorToTreeModel id
+	 * @param synsetId synset id
 	 * @param wordId   word id
 	 * @param parent   parent node
 	 */
@@ -1532,7 +1532,7 @@ abstract public class BaseModule extends Module
 	/**
 	 * Adjective positions
 	 *
-	 * @param synsetId synsetCursorToTreeModel id
+	 * @param synsetId synset id
 	 * @param parent   parent node
 	 */
 	void adjPosition(final long synsetId, @NonNull final TreeNode parent)
@@ -1547,7 +1547,7 @@ abstract public class BaseModule extends Module
 	/**
 	 * Adjective positions
 	 *
-	 * @param synsetId synsetCursorToTreeModel id
+	 * @param synsetId synset id
 	 * @param wordId   word id
 	 * @param parent   parent node
 	 */
@@ -1739,7 +1739,7 @@ abstract public class BaseModule extends Module
 		/**
 		 * Constructor
 		 *
-		 * @param synsetId synsetCursorToTreeModel id
+		 * @param synsetId synset id
 		 * @param wordId   word id
 		 */
 		LinksQuery(final long synsetId, final long wordId)
@@ -1768,7 +1768,7 @@ abstract public class BaseModule extends Module
 		/**
 		 * Constructor
 		 *
-		 * @param synsetId synsetCursorToTreeModel id
+		 * @param synsetId synset id
 		 */
 		public SemLinksQuery(final long synsetId)
 		{
@@ -1796,7 +1796,7 @@ abstract public class BaseModule extends Module
 		/**
 		 * Constructor
 		 *
-		 * @param synsetId synsetCursorToTreeModel id
+		 * @param synsetId synset id
 		 * @param wordId   word id
 		 */
 		public LexLinksQuery(final long synsetId, final long wordId)
@@ -1830,7 +1830,7 @@ abstract public class BaseModule extends Module
 		/**
 		 * Constructor
 		 *
-		 * @param synsetId     synsetCursorToTreeModel id
+		 * @param synsetId     synset id
 		 * @param linkId       link id
 		 * @param recurseLevel recurse level
 		 */
@@ -1856,7 +1856,7 @@ abstract public class BaseModule extends Module
 		/**
 		 * Constructor
 		 *
-		 * @param synsetId synsetCursorToTreeModel id
+		 * @param synsetId synset id
 		 */
 		SamplesQuery(final long synsetId)
 		{
@@ -1910,7 +1910,7 @@ abstract public class BaseModule extends Module
 		/**
 		 * Constructor
 		 *
-		 * @param synsetId synsetCursorToTreeModel id
+		 * @param synsetId synset id
 		 * @param recurse  max recursion level
 		 */
 		SynsetLink(final long synsetId, final int recurse)
@@ -1945,7 +1945,7 @@ abstract public class BaseModule extends Module
 		/**
 		 * Constructor
 		 *
-		 * @param synsetId synsetCursorToTreeModel id
+		 * @param synsetId synset id
 		 * @param wordId   word id
 		 * @param recurse  max recursion level
 		 */

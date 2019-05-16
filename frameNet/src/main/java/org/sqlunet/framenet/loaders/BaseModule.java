@@ -772,7 +772,7 @@ abstract public class BaseModule extends Module
 			// sub nodes
 			final TreeNode realizationsNode = TreeFactory.addQueryNode(parent, "Realizations", R.drawable.realization, new RealizationsQuery(luId));
 			changedList.add(NEW, realizationsNode);
-			final TreeNode groupRealizationsNode = TreeFactory.addQueryNode(parent, "Group realizationsCursorToTreeModel", R.drawable.grouprealization, new GroupRealizationsQuery(luId));
+			final TreeNode groupRealizationsNode = TreeFactory.addQueryNode(parent, "Group realizations", R.drawable.grouprealization, new GroupRealizationsQuery(luId));
 			changedList.add(NEW, groupRealizationsNode);
 			final TreeNode governorsNode = TreeFactory.addQueryNode(parent, "Governors", R.drawable.governor, new GovernorsQuery(luId));
 			changedList.add(NEW, governorsNode);
@@ -914,7 +914,7 @@ abstract public class BaseModule extends Module
 				// sub nodes
 				final TreeNode realizationsNode = TreeFactory.addQueryNode(luNode, "Realizations", R.drawable.realization, new RealizationsQuery(luId));
 				changedList.add(NEW, realizationsNode);
-				final TreeNode groupRealizationsNode = TreeFactory.addQueryNode(luNode, "Group realizationsCursorToTreeModel", R.drawable.grouprealization, new GroupRealizationsQuery(luId));
+				final TreeNode groupRealizationsNode = TreeFactory.addQueryNode(luNode, "Group realizations", R.drawable.grouprealization, new GroupRealizationsQuery(luId));
 				changedList.add(NEW, groupRealizationsNode);
 				final TreeNode governorsNode = TreeFactory.addQueryNode(luNode, "Governors", R.drawable.governor, new GovernorsQuery(luId));
 				changedList.add(NEW, governorsNode);
@@ -1050,7 +1050,7 @@ abstract public class BaseModule extends Module
 				changedList.add(NEW, fesNode);
 				final TreeNode realizationsNode = TreeFactory.addQueryNode(parent, "Realizations", R.drawable.realization, new RealizationsQuery(luId));
 				changedList.add(NEW, realizationsNode);
-				final TreeNode groupRealizationsNode = TreeFactory.addQueryNode(parent, "Group realizationsCursorToTreeModel", R.drawable.grouprealization, new GroupRealizationsQuery(luId));
+				final TreeNode groupRealizationsNode = TreeFactory.addQueryNode(parent, "Group realizations", R.drawable.grouprealization, new GroupRealizationsQuery(luId));
 				changedList.add(NEW, groupRealizationsNode);
 				final TreeNode governorsNode = TreeFactory.addQueryNode(parent, "Governors", R.drawable.governor, new GovernorsQuery(luId));
 				changedList.add(NEW, governorsNode);
@@ -1208,7 +1208,7 @@ abstract public class BaseModule extends Module
 				final TreeNode feNode = TreeFactory.addTreeNode(parent, sb, R.drawable.role);
 				changedList.add(NEW, feNode);
 
-				// fe realizationsCursorToTreeModel
+				// fe realizations
 				final String fers = cursor.getString(idFers);
 				for (String fer : fers.split(",")) //
 				{
@@ -1262,7 +1262,7 @@ abstract public class BaseModule extends Module
 	}
 
 	/**
-	 * Group realizationsCursorToTreeModel for lex unit
+	 * Group realizations for lex unit
 	 *
 	 * @param luId   lex unit id
 	 * @param parent parent node
@@ -1356,7 +1356,7 @@ abstract public class BaseModule extends Module
 	}
 
 	/**
-	 * Parse group realizationsCursorToTreeModel
+	 * Parse group realizations
 	 *
 	 * @param aggregate aggregate to parse
 	 * @param sb        builder to host result
@@ -2374,7 +2374,7 @@ abstract public class BaseModule extends Module
 	}
 
 	/**
-	 * Group realizationsCursorToTreeModel query
+	 * Group realizations query
 	 */
 	class GroupRealizationsQuery extends Query
 	{
