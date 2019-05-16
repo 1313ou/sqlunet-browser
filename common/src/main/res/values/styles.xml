@@ -20,7 +20,7 @@
 		<item name="dropDownListViewStyle">@style/MyAppTheme.DropDownListViewStyle</item>
 
 		<!-- autocomplete -->
-		<item name="autoCompleteTextViewStyle">@style/MyAppTheme.AutoCompleteTextViewStyle</item>
+		<item name="android:autoCompleteTextViewStyle">@style/MyAppTheme.AutoCompleteTextViewStyle</item>
 
 		<!-- background of activated indicator -->
 		<item name="android:activatedBackgroundIndicator">@drawable/listitem_background</item>

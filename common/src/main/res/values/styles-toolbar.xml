@@ -8,6 +8,7 @@
 	<style name="MyAppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Dark">
 		<item name="android:background">@color/actionbar_color</item>item>
 		<item name="android:textColorPrimary">@color/actionbar_fore_color</item>item>
+		<item name="android:textColorSecondary">@color/actionbar_secondary_fore_color</item>
 	</style>
 
 	<style name="MyAppTheme.Toolbar" parent="Widget.AppCompat.Toolbar">

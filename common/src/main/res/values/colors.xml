@@ -56,6 +56,7 @@
 	<!-- custom -->
 	<color name="actionbar_color">@color/primaryColor</color>
 	<color name="actionbar_fore_color">@color/primaryForeColor</color>
+	<color name="actionbar_secondary_fore_color">@color/primaryAltForeColor</color>
 	<color name="dropdown_color">@color/primaryColor</color>
 	<color name="dropdown_fore_color">@color/primaryForeColor</color>
 	<color name="drawer_color">@color/primaryColor</color>
