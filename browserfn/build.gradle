@@ -56,11 +56,11 @@ dependencies {
     implementation project(':support')
     implementation project(':xNet')
     implementation project(':frameNet')
-    implementation 'androidx.appcompat:appcompat:1.1.0-alpha04'
+    implementation 'androidx.appcompat:appcompat:1.1.0-alpha05'
     implementation "androidx.lifecycle:lifecycle-extensions:$lifecycleVersion"
     implementation 'androidx.legacy:legacy-support-v13:1.0.0'
     implementation 'androidx.preference:preference:1.0.0'
-    implementation 'androidx.annotation:annotation:1.1.0-beta01'
+    implementation 'androidx.annotation:annotation:1.1.0-rc01'
     implementation 'com.google.android.material:material:1.1.0-alpha06'
 
     // local unit tests (JUnit 4 framework)
@@ -69,7 +69,7 @@ dependencies {
     // instrumented tests
     androidTestImplementation project(':test')
     androidTestImplementation 'junit:junit:4.12'
-    androidTestImplementation 'androidx.annotation:annotation:1.1.0-beta01'
+    androidTestImplementation 'androidx.annotation:annotation:1.1.0-rc01'
     androidTestImplementation 'androidx.test.ext:junit:1.1.0'
     androidTestImplementation 'androidx.test:rules:1.1.1'
     androidTestImplementation 'androidx.test:runner:1.2.0-beta01'

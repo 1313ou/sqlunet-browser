@@ -1,5 +1,6 @@
 <androidx.preference.PreferenceScreen
-	xmlns:android="http://schemas.android.com/apk/res/android">
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto">
 
 	<ListPreference
 		android:defaultValue="@string/pref_default_launch"
@@ -31,16 +32,32 @@
 		android:summary="@string/pref_description_detail_mode"
 		android:title="@string/pref_title_detail_mode"/>
 
-	<CheckBoxPreference
+	<SwitchPreferenceCompat
+		android:defaultValue="false"
+		android:key="pref_scroll_2d"
+		android:summary="@string/pref_description_scroll_2d"
+		android:title="@string/pref_title_scroll_2d"
+		app:singleLineTitle="false"/>
+
+	<SwitchPreferenceCompat
+		android:defaultValue="true"
+		android:key="pref_use_animation"
+		android:summary="@string/pref_description_use_animation"
+		android:title="@string/pref_title_use_animation"
+		app:singleLineTitle="false"/>
+
+	<SwitchPreferenceCompat
 		android:defaultValue="false"
 		android:key="pref_xml"
 		android:summary="@string/pref_description_xml"
-		android:title="@string/pref_title_xml"/>
+		android:title="@string/pref_title_xml"
+		app:singleLineTitle="false"/>
 
-	<CheckBoxPreference
+	<SwitchPreferenceCompat
 		android:defaultValue="false"
 		android:key="pref_sql_log"
 		android:summary="@string/pref_description_sql_log"
-		android:title="@string/pref_title_sql_log"/>
+		android:title="@string/pref_title_sql_log"
+		app:singleLineTitle="false"/>
 
 </androidx.preference.PreferenceScreen>

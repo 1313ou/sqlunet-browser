@@ -3,6 +3,8 @@ package org.sqlunet.treeview.view;
 import android.animation.Animator;
 import android.animation.ValueAnimator;
 import android.content.Context;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.ContextThemeWrapper;
@@ -65,6 +67,10 @@ public class TreeView
 
 	static private final float ANIMATION_DP_PER_MS = 3.f;
 
+	static private final String PREF_SCROLL_2D = "pref_scroll_2d";
+
+	static private final String PREF_USE_ANIMATION = "pref_use_animation";
+
 	/**
 	 * Root node
 	 */
@@ -98,12 +104,12 @@ public class TreeView
 	/**
 	 * Use default animation
 	 */
-	private boolean useAnimation = true;
+	private final boolean useAnimation;
 
 	/**
 	 * Use 2D scrolling
 	 */
-	private boolean use2dScroll = false;
+	private final boolean use2dScroll;
 
 	// C O N S T R U C T O R
 
@@ -117,6 +123,9 @@ public class TreeView
 	{
 		this.root = root;
 		this.context = context;
+		final SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+		this.useAnimation = prefs.getBoolean(PREF_USE_ANIMATION, true);
+		this.use2dScroll = prefs.getBoolean(PREF_SCROLL_2D, false);
 	}
 
 	// R O O T
@@ -382,7 +391,9 @@ public class TreeView
 			}
 			atIndex = i;
 			if (atIndex == n)
+			{
 				atIndex = -1;
+			}
 			else if (atIndex > n)
 			{
 				// TODO
@@ -504,9 +515,9 @@ public class TreeView
 	/**
 	 * Expand node
 	 *
-	 * @param node            node
-	 * @param levels            expanded subnodes level (-1 == unlimited)
-	 * @param fireHotNodes    whether to fire hot nodes
+	 * @param node         node
+	 * @param levels       expanded subnodes level (-1 == unlimited)
+	 * @param fireHotNodes whether to fire hot nodes
 	 */
 	public void expandNode(@NonNull final TreeNode node, int levels, boolean fireHotNodes)
 	{
@@ -736,16 +747,18 @@ public class TreeView
 
 	// P R O P E R T I E S
 
-	/**
+	/*
 	 * Set animation use
 	 *
 	 * @param useAnimation use animation for containerExpand/containerCollapse
 	 */
+	/*
 	@SuppressWarnings("unused")
 	public void setAnimation(final boolean useAnimation)
 	{
 		this.useAnimation = useAnimation;
 	}
+	*/
 
 	/**
 	 * Set default container style
@@ -769,27 +782,31 @@ public class TreeView
 		this.applyForRoot = applyForRoot;
 	}
 
-	/**
+	/*
 	 * Use 2D scroll
 	 *
 	 * @param use2dScroll use 2D scroll flag
 	 */
+	/*
 	@SuppressWarnings("unused")
 	public void setUse2dScroll(final boolean use2dScroll)
 	{
 		this.use2dScroll = use2dScroll;
 	}
+	*/
 
-	/**
+	/*
 	 * Get use 2D scroll
 	 *
 	 * @return use2dScroll use 2D scroll flag
 	 */
+	/*
 	@SuppressWarnings("unused")
 	public boolean is2dScrollEnabled()
 	{
 		return this.use2dScroll;
 	}
+	*/
 
 	/**
 	 * Set default on-click listener

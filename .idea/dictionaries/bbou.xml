@@ -589,8 +589,10 @@
       <w>treeroot</w>
       <w>treeview</w>
       <w>tsfn</w>
+      <w>tsop</w>
       <w>tspan</w>
       <w>tspb</w>
+      <w>tstoken</w>
       <w>tsvn</w>
       <w>tswn</w>
       <w>udpipe</w>

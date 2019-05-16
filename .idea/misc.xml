@@ -816,6 +816,7 @@
       <entry_point TYPE="field" FQNAME="org.sqlunet.provider.XSqlUNetContract.Words_PbWords_PbRoleSets_U TABLE" />
       <entry_point TYPE="field" FQNAME="org.sqlunet.provider.XSqlUNetContract.Words_PbWords_PbRoleSets WORDID" />
       <entry_point TYPE="field" FQNAME="org.sqlunet.provider.XSqlUNetContract.Words_PbWords_PbRoleSets_U WORDID" />
+      <entry_point TYPE="field" FQNAME="org.sqlunet.settings.Settings PREF_SCROLL_2D" />
     </entry_points>
     <pattern value="org.sqlunet.browser.vn.Settings" method="getPropBankPref" />
     <pattern value="org.sqlunet.browser.vn.Settings" method="getWordNetPref" />

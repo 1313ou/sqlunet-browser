@@ -1,19 +1,19 @@
 <androidx.preference.PreferenceScreen
 	xmlns:android="http://schemas.android.com/apk/res/android">
 
-	<CheckBoxPreference
+	<SwitchPreferenceCompat
 		android:defaultValue="true"
 		android:key="pref_enable_verbnet"
 		android:summary="@string/pref_description_enable_verbnet"
 		android:title="@string/pref_title_enable_verbnet"/>
 
-	<CheckBoxPreference
+	<SwitchPreferenceCompat
 		android:defaultValue="true"
 		android:key="pref_enable_propbank"
 		android:summary="@string/pref_description_enable_propbank"
 		android:title="@string/pref_title_enable_propbank"/>
 
-	<CheckBoxPreference
+	<SwitchPreferenceCompat
 		android:defaultValue="true"
 		android:key="pref_enable_wordnet"
 		android:summary="@string/pref_description_enable_wordnet"
