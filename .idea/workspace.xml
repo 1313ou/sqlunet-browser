@@ -37,11 +37,8 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="dbe7534c-3086-4b17-848a-f5676a7f84bd" name="Default" comment="menus&#10;help svg">
+    <list default="true" id="dbe7534c-3086-4b17-848a-f5676a7f84bd" name="Default" comment="sub menus">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/res/values/colors.xml" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/res/values/colors.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/res/values/styles-toolbar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/res/values/styles-toolbar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/res/values/styles.xml" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/res/values/styles.xml" afterDir="false" />
     </list>
     <list id="36f6b5c7-9521-46b4-bf4d-149db941bcca" name="NonPublic" comment="" />
     <ignored path="SqlUNet.iws" />
@@ -1589,13 +1586,13 @@
     <scope name="Values" pattern="(file[bNC]:src/main/res//*||file[expandableListFragment]:src/main/res//*||file[frameNet]:src/main/res//*||file[predicateMatrix]:src/main/res//*||file[propbank]:src/main/res//*||file[support]:src/main/res//*||file[treeView]:src/main/res//*||file[verbNet]:src/main/res//*||file[wordNet]:src/main/res//*||file[xNet]:src/main/res//*)&amp;&amp;!file[expandableListFragment]:*/&amp;&amp;!file[xNet]:*/&amp;&amp;!file[wordNet]:*/&amp;&amp;!file[propbank]:*/&amp;&amp;!file[predicateMatrix]:*/&amp;&amp;!file[test]:*/&amp;&amp;!file[support]:*/&amp;&amp;!file[verbNet]:*/&amp;&amp;!file[frameNet]:*/&amp;&amp;!file[treeView]:*/&amp;&amp;!file[bNC]:*/||file[browser]:src/main/res/values//*||file[browser]:src/main/res/values-land//*||file[browser]:src/main/res/values-large//*||file[browserfn]:src/main/res/values//*||file[browserfn]:src/main/res/values-land//*||file[browserfn]:src/main/res/values-large//*||file[browserwn]:src/main/res/*||file[browserwn]:src/main/res/values//*||file[browserwn]:src/main/res/values-land//*||file[browserwn]:src/main/res/values-large//*||file[common]:src/main/res/values//*||file[common]:src/main/res/values-v21//*||file[common]:src/main/res/values-w600dp//*||file[common]:src/main/res/values-w720dp//*||file[common]:src/main/res/values-w820dp//*||file[browservn]:src/main/res/values//*||file[browservn]:src/main/res/values-land//*||file[browservn]:src/main/res/values-large//*" />
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="54" />
-    <option name="y" value="27" />
-    <option name="width" value="1258" />
-    <option name="height" value="1168" />
+    <option name="x" value="174" />
+    <option name="y" value="54" />
+    <option name="width" value="1426" />
+    <option name="height" value="1146" />
   </component>
   <component name="ProjectView">
-    <navigator currentView="ProjectPane" proportions="" version="1">
+    <navigator proportions="" version="1">
       <flattenPackages Scope="true" />
       <autoscrollToSource AndroidView="true" />
       <autoscrollFromSource AndroidView="true" Scope="true" />
@@ -1615,52 +1612,7 @@
       </pane>
       <pane id="AndroidView" />
       <pane id="PackagesPane" />
-      <pane id="ProjectPane">
-        <subPane>
-          <expand>
-            <path>
-              <item name="SqlUNet" type="b2602c69:ProjectViewProjectNode" />
-              <item name="SqlUNet" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-            </path>
-            <path>
-              <item name="SqlUNet" type="b2602c69:ProjectViewProjectNode" />
-              <item name="SqlUNet" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="common" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-            </path>
-            <path>
-              <item name="SqlUNet" type="b2602c69:ProjectViewProjectNode" />
-              <item name="SqlUNet" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="common" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="SqlUNet" type="b2602c69:ProjectViewProjectNode" />
-              <item name="SqlUNet" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="common" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="SqlUNet" type="b2602c69:ProjectViewProjectNode" />
-              <item name="SqlUNet" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="common" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="res" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="SqlUNet" type="b2602c69:ProjectViewProjectNode" />
-              <item name="SqlUNet" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="common" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="res" type="462c0819:PsiDirectoryNode" />
-              <item name="values" type="462c0819:PsiDirectoryNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
+      <pane id="ProjectPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -2481,13 +2433,6 @@
       <option name="presentableId" value="Default" />
       <updated>1487150992421</updated>
     </task>
-    <task id="LOCAL-00135" summary="fixes get(tag, class)">
-      <created>1554621671629</created>
-      <option name="number" value="00135" />
-      <option name="presentableId" value="LOCAL-00135" />
-      <option name="project" value="LOCAL" />
-      <updated>1554621671629</updated>
-    </task>
     <task id="LOCAL-00136" summary="wip towards view-independent tree model">
       <created>1554713719231</created>
       <option name="number" value="00136" />
@@ -2824,7 +2769,14 @@
       <option name="project" value="LOCAL" />
       <updated>1557995244828</updated>
     </task>
-    <option name="localTasksCounter" value="184" />
+    <task id="LOCAL-00184" summary="sub menus">
+      <created>1557997353722</created>
+      <option name="number" value="00184" />
+      <option name="presentableId" value="LOCAL-00184" />
+      <option name="project" value="LOCAL" />
+      <updated>1557997353722</updated>
+    </task>
+    <option name="localTasksCounter" value="185" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -2869,9 +2821,9 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="54" y="27" width="1258" height="1168" extended-state="0" />
+    <frame x="54" y="27" width="1230" height="1168" extended-state="0" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.6680384" visible="true" weight="0.2138158" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.6680384" visible="true" weight="0.21885522" />
       <window_info id="Structure" order="1" sideWeight="0.47352496" side_tool="true" weight="0.27697262" />
       <window_info id="Captures" order="2" sideWeight="0.3319616" side_tool="true" weight="0.25447154" />
       <window_info id="Capture Tool" order="3" />
@@ -2893,11 +2845,11 @@
       <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.7481542" side_tool="true" weight="0.4459725" />
       <window_info anchor="bottom" id="Build" order="10" sideWeight="0.4474138" weight="0.24188791" />
       <window_info anchor="bottom" id="Android Monitor" order="11" sideWeight="0.82428116" weight="0.39513677" />
-      <window_info active="true" anchor="bottom" id="Version Control" order="12" sideWeight="0.4362069" visible="true" weight="0.26941985" />
+      <window_info anchor="bottom" id="Version Control" order="12" sideWeight="0.4362069" weight="0.26941985" />
       <window_info anchor="bottom" id="Terminal" order="13" sideWeight="0.3136289" weight="0.32554945" />
       <window_info active="true" anchor="bottom" id="Gradle Console" order="14" sideWeight="0.4729064" side_tool="true" visible="true" weight="0.3107843" />
       <window_info anchor="bottom" id="Messages" order="15" sideWeight="0.5270936" weight="0.3107843" />
-      <window_info anchor="bottom" id="Inspection Results" order="16" sideWeight="0.354493" weight="0.36497065" />
+      <window_info anchor="bottom" id="Inspection Results" order="16" sideWeight="0.354493" weight="0.36479843" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" sideWeight="0.4966443" weight="0.24753289" />
@@ -2978,7 +2930,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$" />
     </ignored-roots>
-    <MESSAGE value="wip xloaders return to loadermanager" />
     <MESSAGE value="wip forgotten pieces" />
     <MESSAGE value="wip xselectors with livedata" />
     <MESSAGE value="wip xselectors with livedata on ui thread" />
@@ -3003,7 +2954,8 @@
     <MESSAGE value="fixes uncontrolled string replacement &quot;CursorToTreeModel&quot;" />
     <MESSAGE value="scroll2d and use animation settings" />
     <MESSAGE value="menus&#10;help svg" />
-    <option name="LAST_COMMIT_MESSAGE" value="menus&#10;help svg" />
+    <MESSAGE value="sub menus" />
+    <option name="LAST_COMMIT_MESSAGE" value="sub menus" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
