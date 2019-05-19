@@ -7,7 +7,6 @@ import android.database.sqlite.SQLiteCantOpenDatabaseException;
 import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteQueryBuilder;
 import android.net.Uri;
-import androidx.annotation.NonNull;
 import android.util.Log;
 
 import org.sqlunet.framenet.provider.FrameNetContract.AnnoSets;
@@ -41,6 +40,8 @@ import org.sqlunet.framenet.provider.FrameNetContract.Words_LexUnits_Frames;
 import org.sqlunet.provider.BaseProvider;
 import org.sqlunet.sql.SqlFormatter;
 
+import androidx.annotation.NonNull;
+
 /**
  * FrameNet provider
  *
@@ -48,7 +49,7 @@ import org.sqlunet.sql.SqlFormatter;
  */
 public class FrameNetProvider extends BaseProvider
 {
-	static private final String TAG = "AFrameNetProvider";
+	static private final String TAG = "FrameNetProvider";
 
 	// C O N T E N T   P R O V I D E R   A U T H O R I T Y
 
@@ -175,7 +176,6 @@ public class FrameNetProvider extends BaseProvider
 		switch (FrameNetProvider.uriMatcher.match(uri))
 		{
 			// TABLES
-
 			case LEXUNIT:
 				return BaseProvider.VENDOR + ".android.cursor.item/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + LexUnits.TABLE;
 			case LEXUNITS:
@@ -277,9 +277,7 @@ public class FrameNetProvider extends BaseProvider
 		String groupBy = null;
 		String table;
 		switch (code)
-
 		{
-
 			// T A B L E
 			// table uri : last element is table
 
@@ -636,13 +634,10 @@ public class FrameNetProvider extends BaseProvider
 
 		// do query
 		try
-
 		{
 			return this.db.query(table, projection, actualSelection, selectionArgs, groupBy, null, sortOrder);
 		}
-
 		catch (SQLiteException e)
-
 		{
 			Log.d(TAG + "SQL", sql);
 			Log.e(TAG, "FrameNet provider query failed", e);

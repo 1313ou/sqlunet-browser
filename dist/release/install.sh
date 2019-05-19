@@ -1,6 +1,6 @@
 #!/bin/bash
 
-for e in $*; do
+for e in "$*"; do
 	d=$e
 	if [ ! -z "$e" ]; then
 		d=".$e"

@@ -7,7 +7,6 @@ import android.database.sqlite.SQLiteCantOpenDatabaseException;
 import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteQueryBuilder;
 import android.net.Uri;
-import androidx.annotation.NonNull;
 import android.util.Log;
 
 import org.sqlunet.provider.BaseProvider;
@@ -27,9 +26,6 @@ import org.sqlunet.wordnet.provider.WordNetContract.Lookup_Words;
 import org.sqlunet.wordnet.provider.WordNetContract.MorphMaps_Morphs;
 import org.sqlunet.wordnet.provider.WordNetContract.PosTypes;
 import org.sqlunet.wordnet.provider.WordNetContract.Samples;
-import org.sqlunet.wordnet.provider.WordNetContract.Suggest_Definitions;
-import org.sqlunet.wordnet.provider.WordNetContract.Suggest_Samples;
-import org.sqlunet.wordnet.provider.WordNetContract.Suggest_Words;
 import org.sqlunet.wordnet.provider.WordNetContract.SemLinks;
 import org.sqlunet.wordnet.provider.WordNetContract.SemLinks_Synsets;
 import org.sqlunet.wordnet.provider.WordNetContract.SemLinks_Synsets_Words_X;
@@ -37,6 +33,9 @@ import org.sqlunet.wordnet.provider.WordNetContract.SemLinks_Synsets_X;
 import org.sqlunet.wordnet.provider.WordNetContract.Senses;
 import org.sqlunet.wordnet.provider.WordNetContract.Senses_Synsets_PosTypes_LexDomains;
 import org.sqlunet.wordnet.provider.WordNetContract.Senses_Words;
+import org.sqlunet.wordnet.provider.WordNetContract.Suggest_Definitions;
+import org.sqlunet.wordnet.provider.WordNetContract.Suggest_Samples;
+import org.sqlunet.wordnet.provider.WordNetContract.Suggest_Words;
 import org.sqlunet.wordnet.provider.WordNetContract.Synsets;
 import org.sqlunet.wordnet.provider.WordNetContract.Synsets_PosTypes_LexDomains;
 import org.sqlunet.wordnet.provider.WordNetContract.VerbFrameMaps_VerbFrames;
@@ -46,6 +45,8 @@ import org.sqlunet.wordnet.provider.WordNetContract.Words_MorphMaps_Morphs;
 import org.sqlunet.wordnet.provider.WordNetContract.Words_Senses_CasedWords_Synsets;
 import org.sqlunet.wordnet.provider.WordNetContract.Words_Senses_CasedWords_Synsets_PosTypes_LexDomains;
 import org.sqlunet.wordnet.provider.WordNetContract.Words_Senses_Synsets;
+
+import androidx.annotation.NonNull;
 
 /**
  * WordNet provider
@@ -231,6 +232,7 @@ public class WordNetProvider extends BaseProvider
 				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + LexDomains.TABLE;
 			case SAMPLES:
 				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + Samples.TABLE;
+
 			// V I E W S
 
 			case DICT:
@@ -241,6 +243,7 @@ public class WordNetProvider extends BaseProvider
 				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + Words_Senses_CasedWords_Synsets.TABLE;
 			case WORDS_SENSES_CASEDWORDS_SYNSETS_POSTYPES_LEXDOMAINS:
 				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.TABLE;
+
 			// J O I N S
 
 			case SENSES_WORDS:
@@ -276,7 +279,7 @@ public class WordNetProvider extends BaseProvider
 			case WORDS_MORPHMAPS_MORPHS_BY_WORD:
 				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + Words_MorphMaps_Morphs.TABLE_BY_WORD;
 
-			// TEXT LOOKUPS
+			// T E X T   L O O K U P S
 
 			case LOOKUP_FTS_WORDS:
 				return BaseProvider.VENDOR + ".android.cursor.item/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + Words.TABLE;
@@ -284,6 +287,7 @@ public class WordNetProvider extends BaseProvider
 				return BaseProvider.VENDOR + ".android.cursor.item/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + Synsets.TABLE;
 			case LOOKUP_FTS_SAMPLES:
 				return BaseProvider.VENDOR + ".android.cursor.item/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + Samples.TABLE;
+
 			// S E A R C H
 
 			case SUGGEST_WORDS:
@@ -333,7 +337,6 @@ public class WordNetProvider extends BaseProvider
 		String table;
 		switch (code)
 		{
-
 			// T A B L E
 			// table uri : last element is table
 
@@ -519,8 +522,7 @@ public class WordNetProvider extends BaseProvider
 				//noinspection fallthrough
 			case WORDS_MORPHMAPS_MORPHS:
 				table = "words " + //
-						"LEFT JOIN morphmaps USING (wordid) " +
-						"LEFT JOIN morphs USING (morphid)";
+						"LEFT JOIN morphmaps USING (wordid) " + "LEFT JOIN morphs USING (morphid)";
 				break;
 
 			// T E X T S E A R C H

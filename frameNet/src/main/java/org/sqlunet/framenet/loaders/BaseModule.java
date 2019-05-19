@@ -958,8 +958,8 @@ abstract public class BaseModule extends Module
 		};
 		final String selection = pos == null ?  //
 				Words_LexUnits_Frames.WORDID + " = ?" :  //
-				Words_LexUnits_Frames.WORDID + " = ? AND " + FrameNetContract.LU + '.' + Words_LexUnits_Frames.POSID + " = ?";
-		final String[] selectionArgs = pos == null ? new String[]{Long.toString(wordId)} : new String[]{Long.toString(wordId), Integer.toString(Utils.posToPosId(pos))};
+				Words_LexUnits_Frames.WORDID + " = ? AND " + FrameNetContract.POS + '.' + Words_LexUnits_Frames.POS + " = ?";
+		final String[] selectionArgs = pos == null ? new String[]{Long.toString(wordId)} : new String[]{Long.toString(wordId), pos.toString().toUpperCase()};
 		final String sortOrder = Words_LexUnits_Frames.FRAME + ',' + Words_LexUnits_Frames.LUID;
 		this.lexUnitsFromWordIdPosModel.loadData(uri, projection, selection, selectionArgs, sortOrder, cursor -> lexUnitsCursor2ToTreeModel(cursor, parent));
 	}

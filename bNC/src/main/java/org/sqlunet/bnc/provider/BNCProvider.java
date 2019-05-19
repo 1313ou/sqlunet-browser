@@ -6,11 +6,12 @@ import android.database.sqlite.SQLiteCantOpenDatabaseException;
 import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteQueryBuilder;
 import android.net.Uri;
-import androidx.annotation.NonNull;
 import android.util.Log;
 
 import org.sqlunet.provider.BaseProvider;
 import org.sqlunet.sql.SqlFormatter;
+
+import androidx.annotation.NonNull;
 
 /**
  * WordNet provider
@@ -67,14 +68,11 @@ public class BNCProvider extends BaseProvider
 	{
 		switch (BNCProvider.uriMatcher.match(uri))
 		{
-
 			// TABLES
-
 			case BNC:
 				return BaseProvider.VENDOR + ".android.cursor.item/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + BNCContract.BNCs.TABLE;
 
 			// JOINS
-
 			case WORDS_BNC:
 				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + BNCContract.Words_BNCs.TABLE;
 

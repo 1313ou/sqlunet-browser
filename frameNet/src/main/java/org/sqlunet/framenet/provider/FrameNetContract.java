@@ -221,6 +221,7 @@ public class FrameNetContract
 		static public final String LEXUNIT = "lexunit";
 		static public final String LUDEFINITION = "ludefinition";
 		static public final String LUDICT = "ludict";
+		static public final String POS = "pos";
 		static public final String POSID = "posid";
 		static public final String FRAMEID = "frameid";
 		static public final String FRAME = "frame";

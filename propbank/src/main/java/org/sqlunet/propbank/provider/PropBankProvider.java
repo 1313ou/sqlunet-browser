@@ -90,6 +90,7 @@ public class PropBankProvider extends BaseProvider
 	{
 		switch (PropBankProvider.uriMatcher.match(uri))
 		{
+			// T A B L E S
 			case PBROLESET:
 				return BaseProvider.VENDOR + ".android.cursor.item/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + PropBankContract.PbRoleSets.TABLE;
 			case PBROLESETS:
@@ -107,7 +108,7 @@ public class PropBankProvider extends BaseProvider
 			case PBROLESETS_PBEXAMPLES_BY_EXAMPLE:
 				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + PropBankContract.PbRoleSets_PbExamples.TABLE_BY_EXAMPLE;
 
-			// S E A R C H
+			// L O O K U P
 			case LOOKUP_FTS_EXAMPLES:
 				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + PropBankContract.Lookup_PbExamples.TABLE;
 			case LOOKUP_FTS_EXAMPLES_X:
@@ -146,7 +147,6 @@ public class PropBankProvider extends BaseProvider
 		String table;
 		switch (code)
 		{
-
 			// I T E M
 			// the incoming URI was for a single item because this URI was for a single row, the _ID value part is present.
 			// get the last path segment from the URI: this is the _ID value. then, append the value to the WHERE clause for the query

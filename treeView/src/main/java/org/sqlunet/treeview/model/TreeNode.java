@@ -50,6 +50,11 @@ public class TreeNode
 	private TreeNodeClickListener listener;
 
 	/**
+	 * Enabled
+	 */
+	private boolean enabled;
+
+	/**
 	 * Selected
 	 */
 	private boolean selected;
@@ -58,11 +63,6 @@ public class TreeNode
 	 * Selectable
 	 */
 	private boolean selectable;
-
-	/**
-	 * Enabled
-	 */
-	private boolean enabled;
 
 	/**
 	 * Collapsible
@@ -453,6 +453,29 @@ public class TreeNode
 		this.value = value;
 	}
 
+	// E N A B L E / D I S A B L E
+
+	/**
+	 * Set node enabled
+	 *
+	 * @param enabled flag
+	 */
+	@SuppressWarnings("unused")
+	public void setEnabled(boolean enabled)
+	{
+		this.enabled = enabled;
+	}
+
+	/**
+	 * Get whether this node is enabled
+	 *
+	 * @return whether this node is enabled
+	 */
+	public boolean isEnabled()
+	{
+		return this.enabled;
+	}
+
 	// A T T R I B U T E S
 
 	/**
@@ -503,7 +526,6 @@ public class TreeNode
 	 *
 	 * @return whether this node is collapsible
 	 */
-	@SuppressWarnings("unused")
 	public boolean isCollapsible()
 	{
 		return this.collapsible;
@@ -526,7 +548,6 @@ public class TreeNode
 	 *
 	 * @return whether this node is deadend
 	 */
-	@SuppressWarnings("unused")
 	public boolean isDeadend()
 	{
 		return this.deadend;
@@ -537,33 +558,9 @@ public class TreeNode
 	 *
 	 * @param deadend flag
 	 */
-	@SuppressWarnings("unused")
 	public void setDeadend(boolean deadend)
 	{
 		this.deadend = deadend;
-	}
-
-	// E N A B L E / D I S A B L E
-
-	/**
-	 * Set node enabled
-	 *
-	 * @param enabled flag
-	 */
-	@SuppressWarnings("unused")
-	public void setEnabled(boolean enabled)
-	{
-		this.enabled = enabled;
-	}
-
-	/**
-	 * Get whether this node is enabled
-	 *
-	 * @return whether this node is enabled
-	 */
-	public boolean isEnabled()
-	{
-		return this.enabled;
 	}
 
 	// C O N T R O L L E R

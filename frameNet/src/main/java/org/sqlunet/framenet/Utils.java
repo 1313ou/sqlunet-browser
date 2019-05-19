@@ -1,16 +1,16 @@
 package org.sqlunet.framenet;
 
-import androidx.annotation.Nullable;
-
 import org.sqlunet.framenet.sql.FnLabel;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import androidx.annotation.Nullable;
+
 public class Utils
 {
 	/**
-	 * Convert pos character to pos id
+	 * Convert WordNet pos character to pos id
 	 *
 	 * @param c pos character
 	 * @return pos id
@@ -21,28 +21,48 @@ public class Utils
 		{
 			return -1;
 		}
+		/*
+			# posid, pos
+			'1', 'A'
+			'2', 'ADV'
+			'3', 'ART'
+			'4', 'AVP'
+			'5', 'C'
+			'6', 'CCON'
+			'7', 'IDIO'
+			'8', 'INTJ'
+			'9', 'N'
+			'10', 'NUM'
+			'11', 'PREP'
+			'12', 'PRON'
+			'13', 'SCON'
+			'14', 'V'
+		*/
 		switch (c)
 		{
 			case 'n':
-				return 1;
+				return 9;
 			case 'v':
-				return 2;
+				return 14;
+			case 's':
 			case 'a':
-				return 3; // adj
+				return 1; // adj
 			case 'r':
-				return 4; // adv
+				return 2; // adv
+			/*
 			case 'p':
-				return 6; // prep
+				return 11; // prep
 			case '1':
-				return 7; // num
-			case 'c':
-				return 8; // coor
+				return 10; // num
 			case '!':
-				return 9; // intj
+				return 8; // intj
 			case '~':
-				return 10; // art
+				return 3; // art
+			case 's':
+				return 13; // scon subordinating conjunction
 			case '&':
-				return 9; // scon
+				return 8; // ccon conjunction
+			*/
 		}
 		return -1;
 	}

@@ -87,14 +87,14 @@ public class TreeView
 	private int containerStyle = 0;
 
 	/**
+	 * Container style applies to root
+	 */
+	private boolean containerStyleAppliesToRoot;
+
+	/**
 	 * Node click listener
 	 */
 	private TreeNode.TreeNodeClickListener nodeClickListener;
-
-	/**
-	 * Apply for root
-	 */
-	private boolean applyForRoot;
 
 	/**
 	 * Selection mode enabled
@@ -178,7 +178,7 @@ public class TreeView
 
 		// context
 		Context containerContext = this.context;
-		if (this.containerStyle != 0 && this.applyForRoot)
+		if (this.containerStyle != 0 && this.containerStyleAppliesToRoot)
 		{
 			containerContext = new ContextThemeWrapper(this.context, this.containerStyle);
 		}
@@ -291,14 +291,13 @@ public class TreeView
 	 */
 	static public boolean isExpanded(final TreeNode node)
 	{
-		//return this.expanded;
 		final Controller controller = node.getController();
-		final ViewGroup container = controller.getChildrenView();
-		if (container == null)
+		final ViewGroup childrenView = controller.getChildrenView();
+		if (childrenView == null)
 		{
 			return false;
 		}
-		int visibility = container.getVisibility();
+		int visibility = childrenView.getVisibility();
 		return visibility != View.GONE;
 	}
 
@@ -348,15 +347,15 @@ public class TreeView
 	// A D D / R E M O V E  V I E W S
 
 	/**
-	 * Add node to container (view only, does not affect tree model)
+	 * Add node to children view (view only, does not affect tree model)
 	 *
-	 * @param container container
+	 * @param childrenView children view
 	 * @param node      node
 	 * @param atIndex   insert-at index
 	 */
-	synchronized public void addSubtreeView(@NonNull final ViewGroup container, @NonNull final TreeNode node, int atIndex)
+	synchronized public void addSubtreeView(@NonNull final ViewGroup childrenView, @NonNull final TreeNode node, int atIndex)
 	{
-		Log.d(TAG, "Insert subtree view at index " + atIndex + " for node " + node + " count=" + container.getChildCount());
+		Log.d(TAG, "Insert subtree view at index " + atIndex + " for node " + node + " count=" + childrenView.getChildCount());
 		final Controller<?> controller = node.getController();
 		View view = controller.getSubtreeView();
 		if (view == null)
@@ -375,11 +374,11 @@ public class TreeView
 		// index
 		if (atIndex != -1)
 		{
-			int n = container.getChildCount();
+			int n = childrenView.getChildCount();
 			int i = 0;
 			for (; i < n; i++)
 			{
-				View child = container.getChildAt(i);
+				View child = childrenView.getChildAt(i);
 				Object tag = child.getTag();
 				TreeNode node2 = (TreeNode) tag;
 				TreeNode parent2 = node2.getParent();
@@ -402,8 +401,8 @@ public class TreeView
 			}
 		}
 
-		// add to container
-		container.addView(view, atIndex);
+		// add to children view
+		childrenView.addView(view, atIndex);
 
 		// inherit selection mode
 		node.setSelectable(this.selectable);
@@ -529,7 +528,7 @@ public class TreeView
 			// TODO
 			// Log.e(TAG, "Node to expand has no view " + node);
 			// return;
-			throw new RuntimeException("Node to expand has no view " + node);
+			throw new RuntimeException("Node to expand has no children view " + node);
 		}
 
 		// clear all children views
@@ -537,15 +536,21 @@ public class TreeView
 
 		// children
 
-		// Iterator<TreeNode> it = node.getChildrenList().listIterator();
-		// while (it.hasNext())
+		/* @formatter:off */
+		/*
+		These raise concurrent access exception:
+			Iterator<TreeNode> it = node.getChildrenList().listIterator();
+			while (it.hasNext())
+		or
+			for (final TreeNode child : node.getChildren())
+		*/
+		/* @formatter:on */
 
-		// for (final TreeNode child : node.getChildren())
 		for (final TreeNode child : node.getChildrenList().toArray(new TreeNode[0]))
 		{
 			//	TreeNode child = it.next();
 
-			// add children node to container view
+			// add child node to children view view
 			addSubtreeView(childrenView, child, -1);
 
 			// recurse
@@ -607,7 +612,7 @@ public class TreeView
 			containerCollapse(viewGroup);
 		}
 
-		// fire containerCollapse event
+		// fire collapse event
 		controller.onCollapseEvent();
 
 		// subnodes
@@ -747,19 +752,6 @@ public class TreeView
 
 	// P R O P E R T I E S
 
-	/*
-	 * Set animation use
-	 *
-	 * @param useAnimation use animation for containerExpand/containerCollapse
-	 */
-	/*
-	@SuppressWarnings("unused")
-	public void setAnimation(final boolean useAnimation)
-	{
-		this.useAnimation = useAnimation;
-	}
-	*/
-
 	/**
 	 * Set default container style
 	 *
@@ -773,40 +765,16 @@ public class TreeView
 	/**
 	 * Set default container style
 	 *
-	 * @param defaultStyle default container style
-	 * @param applyForRoot apply for root
+	 * @param defaultStyle  default container style
+	 * @param appliesToRoot apply for root
 	 */
-	private void setDefaultContainerStyle(final int defaultStyle, @SuppressWarnings("SameParameterValue") boolean applyForRoot)
+	private void setDefaultContainerStyle(final int defaultStyle, @SuppressWarnings("SameParameterValue") boolean appliesToRoot)
 	{
 		this.containerStyle = defaultStyle;
-		this.applyForRoot = applyForRoot;
+		this.containerStyleAppliesToRoot = appliesToRoot;
 	}
 
-	/*
-	 * Use 2D scroll
-	 *
-	 * @param use2dScroll use 2D scroll flag
-	 */
-	/*
-	@SuppressWarnings("unused")
-	public void setUse2dScroll(final boolean use2dScroll)
-	{
-		this.use2dScroll = use2dScroll;
-	}
-	*/
-
-	/*
-	 * Get use 2D scroll
-	 *
-	 * @return use2dScroll use 2D scroll flag
-	 */
-	/*
-	@SuppressWarnings("unused")
-	public boolean is2dScrollEnabled()
-	{
-		return this.use2dScroll;
-	}
-	*/
+	// C L I C K
 
 	/**
 	 * Set default on-click listener

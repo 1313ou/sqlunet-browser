@@ -128,14 +128,4 @@ public class TreeOpExecute
 				break;
 		}
 	}
-
-	// Simple expand children of first node
-
-	private void expandChildrenImpl(final TreeOp[] ops)
-	{
-		final TreeView treeView = this.fragment.getTreeView();
-		assert treeView != null;
-		final TreeNode node = ops[0].getNode();
-		treeView.expandNode(node, -1, false);
-	}
 }

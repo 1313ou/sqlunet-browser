@@ -369,7 +369,7 @@ public class SelectorsFragment extends ListFragment
 				final String cased = cursor.getString(idCased);
 
 				// pointer
-				final SelectorPointer pointer = new SelectorPointer(synsetId, this.wordId);
+				final SelectorPointer pointer = new PosSelectorPointer(synsetId, this.wordId, pos.charAt(0));
 
 				// notify the active listener (the activity, if the fragment is attached to one) that an item has been selected
 				this.listener.onItemSelected(pointer, this.word, cased, pos);
