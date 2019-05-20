@@ -22,9 +22,9 @@ import org.sqlunet.propbank.style.PropBankSpanner;
 import org.sqlunet.style.Spanner;
 import org.sqlunet.treeview.control.Query;
 import org.sqlunet.treeview.model.TreeNode;
-import org.sqlunet.view.TreeOpExecute;
 import org.sqlunet.view.TreeOp;
 import org.sqlunet.view.TreeOp.TreeOps;
+import org.sqlunet.view.TreeOpExecute;
 
 import java.util.Arrays;
 import java.util.Locale;
@@ -32,8 +32,8 @@ import java.util.Locale;
 import androidx.annotation.NonNull;
 import androidx.lifecycle.ViewModelProviders;
 
-import static org.sqlunet.view.TreeOp.TreeOpCode.NEW;
 import static org.sqlunet.view.TreeOp.TreeOpCode.ANCHOR;
+import static org.sqlunet.view.TreeOp.TreeOpCode.NEW;
 import static org.sqlunet.view.TreeOp.TreeOpCode.REMOVE;
 
 /**
@@ -210,11 +210,11 @@ abstract class BaseModule extends Module
 			Spanner.append(sb, cursor.getString(idRoleSetDesc), 0, PropBankFactories.definitionFactory);
 
 			// attach result
-			final TreeNode node = TreeFactory.addTextNode(parent, sb);
+			final TreeNode node = TreeFactory.makeTextNode(sb, false).addTo(parent);
 
 			// sub nodes
-			final TreeNode rolesNode = TreeFactory.addHotQueryNode(parent, "Roles", R.drawable.roles, new RolesQuery(roleSetId));
-			final TreeNode examplesNode = TreeFactory.addQueryNode(parent, "Examples", R.drawable.sample, new ExamplesQuery(roleSetId));
+			final TreeNode rolesNode = TreeFactory.makeHotQueryNode("Roles", R.drawable.roles, false, new RolesQuery(roleSetId)).addTo(parent);
+			final TreeNode examplesNode = TreeFactory.makeQueryNode("Examples", R.drawable.sample, false, new ExamplesQuery(roleSetId)).addTo(parent);
 
 			changed = TreeOp.seq(ANCHOR, parent, NEW, node, NEW, rolesNode, NEW, examplesNode);
 		}
@@ -283,13 +283,13 @@ abstract class BaseModule extends Module
 				Spanner.append(sb, cursor.getString(idRoleSetDesc), 0, PropBankFactories.definitionFactory);
 
 				// attach result
-				final TreeNode node = TreeFactory.addTextNode(parent, sb);
+				final TreeNode node = TreeFactory.makeTextNode(sb, false).addTo(parent);
 				changedList.add(NEW, node);
 
 				// sub nodes
-				final TreeNode rolesNode = TreeFactory.addHotQueryNode(parent, "Roles", R.drawable.roles, new RolesQuery(roleSetId));
+				final TreeNode rolesNode = TreeFactory.makeHotQueryNode("Roles", R.drawable.roles, false, new RolesQuery(roleSetId)).addTo(parent);
 				changedList.add(NEW, rolesNode);
-				final TreeNode examplesNode = TreeFactory.addQueryNode(parent, "Examples", R.drawable.sample, new ExamplesQuery(roleSetId));
+				final TreeNode examplesNode = TreeFactory.makeQueryNode("Examples", R.drawable.sample, false, new ExamplesQuery(roleSetId)).addTo(parent);
 				changedList.add(NEW, examplesNode);
 			}
 			while (cursor.moveToNext());
@@ -388,7 +388,7 @@ abstract class BaseModule extends Module
 			}
 
 			// attach result
-			final TreeNode node = TreeFactory.addTextNode(parent, sb);
+			final TreeNode node = TreeFactory.makeTextNode(sb, false).addTo(parent);
 			changed = TreeOp.seq(ANCHOR, parent, NEW, node);
 		}
 		else
@@ -525,7 +525,7 @@ abstract class BaseModule extends Module
 			BaseModule.this.spanner.setSpan(sb, 0, 0);
 
 			// attach result
-			final TreeNode node = TreeFactory.addTextNode(parent, sb);
+			final TreeNode node = TreeFactory.makeTextNode(sb, false).addTo(parent);
 			changed = TreeOp.seq(ANCHOR, parent, NEW, node);
 		}
 		else

@@ -16,16 +16,16 @@ import org.sqlunet.verbnet.R;
 import org.sqlunet.verbnet.provider.VerbNetContract.Words_VnClasses;
 import org.sqlunet.verbnet.provider.VerbNetProvider;
 import org.sqlunet.verbnet.style.VerbNetFactories;
-import org.sqlunet.view.TreeOpExecute;
 import org.sqlunet.view.TreeOp;
 import org.sqlunet.view.TreeOp.TreeOps;
+import org.sqlunet.view.TreeOpExecute;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.lifecycle.ViewModelProviders;
 
-import static org.sqlunet.view.TreeOp.TreeOpCode.NEW;
 import static org.sqlunet.view.TreeOp.TreeOpCode.ANCHOR;
+import static org.sqlunet.view.TreeOp.TreeOpCode.NEW;
 import static org.sqlunet.view.TreeOp.TreeOpCode.REMOVE;
 
 /**
@@ -172,15 +172,15 @@ public class ClassFromWordModule extends BaseModule
 				sb.append(Integer.toString(classId));
 
 				// attach result
-				final TreeNode node = TreeFactory.addTextNode(parent, sb);
+				final TreeNode node = TreeFactory.makeTextNode(sb, false).addTo(parent);
 				changedList.add(NEW, node);
 
 				// sub nodes
-				final TreeNode membersNode = TreeFactory.addHotQueryNode(parent, "Members", R.drawable.members, new MembersQuery(classId));
+				final TreeNode membersNode = TreeFactory.makeHotQueryNode( "Members", R.drawable.members, false, new MembersQuery(classId)).addTo(parent);
 				changedList.add(NEW, membersNode);
-				final TreeNode rolesNode = TreeFactory.addHotQueryNode(parent, "Roles", R.drawable.roles, new RolesQuery(classId));
+				final TreeNode rolesNode = TreeFactory.makeHotQueryNode( "Roles", R.drawable.roles, false, new RolesQuery(classId)).addTo(parent);
 				changedList.add(NEW, rolesNode);
-				final TreeNode framesNode = TreeFactory.addQueryNode(parent, "Frames", R.drawable.vnframe, new FramesQuery(classId));
+				final TreeNode framesNode = TreeFactory.makeQueryNode("Frames", R.drawable.vnframe, false, new FramesQuery(classId)).addTo(parent);
 				changedList.add(NEW, framesNode);
 			}
 			while (cursor.moveToNext());

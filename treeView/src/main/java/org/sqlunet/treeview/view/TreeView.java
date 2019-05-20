@@ -18,6 +18,7 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 
 import org.sqlunet.treeview.R;
+import org.sqlunet.treeview.control.CompositeValue;
 import org.sqlunet.treeview.control.Controller;
 import org.sqlunet.treeview.control.RootController;
 import org.sqlunet.treeview.model.TreeNode;
@@ -350,8 +351,8 @@ public class TreeView
 	 * Add node to children view (view only, does not affect tree model)
 	 *
 	 * @param childrenView children view
-	 * @param node      node
-	 * @param atIndex   insert-at index
+	 * @param node         node
+	 * @param atIndex      insert-at index
 	 */
 	synchronized public void addSubtreeView(@NonNull final ViewGroup childrenView, @NonNull final TreeNode node, int atIndex)
 	{
@@ -485,17 +486,16 @@ public class TreeView
 		}
 		else
 		{
-			expandNode(node, 0, true);
+			expandNode(node, 0, true, true);
 		}
 	}
 
 	/**
 	 * Expand all
 	 */
-	@SuppressWarnings("unused")
 	public void expandAll()
 	{
-		expandNode(this.root, -1, false);
+		expandNode(this.root, -1, false, false);
 	}
 
 	/**
@@ -511,15 +511,29 @@ public class TreeView
 
 	// P R I M I T I V E S
 
+
+	private boolean isNodeWithCompositeValueText(final TreeNode node, final String text)
+	{
+		final Object value = node.getValue();
+		return value != null && (value instanceof CompositeValue) && text.equals(((CompositeValue) value).text.toString());
+	}
+
 	/**
 	 * Expand node
 	 *
-	 * @param node         node
-	 * @param levels       expanded subnodes level (-1 == unlimited)
-	 * @param fireHotNodes whether to fire hot nodes
+	 * @param node                node
+	 * @param levels              expanded subnodes level (-1 == unlimited)
+	 * @param fireHotNodes        whether to fire hot nodes
+	 * @param overrideBreakExpand whether to override node break expand
 	 */
-	public void expandNode(@NonNull final TreeNode node, int levels, boolean fireHotNodes)
+	public void expandNode(@NonNull final TreeNode node, final int levels, final boolean fireHotNodes, final boolean overrideBreakExpand)
 	{
+		Log.d(TAG, "Expand node " + node);
+		//if (isNodeWithCompositeValueText(node, "Agent Agent"))
+		//{
+		//	Log.d(TAG, "XXX " + " " + node);
+		//}
+
 		// children view group
 		final Controller<?> controller = node.getController();
 		final ViewGroup childrenView = controller.getChildrenView();
@@ -534,46 +548,54 @@ public class TreeView
 		// clear all children views
 		childrenView.removeAllViews();
 
-		// children
-
-		/* @formatter:off */
-		/*
-		These raise concurrent access exception:
-			Iterator<TreeNode> it = node.getChildrenList().listIterator();
-			while (it.hasNext())
-		or
-			for (final TreeNode child : node.getChildren())
-		*/
-		/* @formatter:on */
-
-		for (final TreeNode child : node.getChildrenList().toArray(new TreeNode[0]))
+		// break expand
+		if (overrideBreakExpand || !controller.isBreakExpand())
 		{
-			//	TreeNode child = it.next();
+			// children
 
-			// add child node to children view view
-			addSubtreeView(childrenView, child, -1);
+			/* @formatter:off */
+			/*
+			These raise concurrent access exception:
+				Iterator<TreeNode> it = node.getChildrenList().listIterator();
+				while (it.hasNext())
+			or
+				for (final TreeNode child : node.getChildren())
+			*/
+			/* @formatter:on */
 
-			// recurse
-			if (isExpanded(child) || levels < 0 || levels > 0)
+			for (final TreeNode child : node.getChildrenList().toArray(new TreeNode[0]))
 			{
-				expandNode(child, --levels, fireHotNodes);
-			}
-		}
+				//	TreeNode child = it.next();
 
-		// display
-		if (childrenView.getChildCount() != 0)
-		{
-			if (this.useAnimation)
-			{
-				animatedContainerExpand(childrenView);
-			}
-			else
-			{
-				containerExpand(childrenView);
+				// add child node to children view view
+				addSubtreeView(childrenView, child, -1);
+
+				// recurse
+				if (child.getController().isBreakExpand())
+				{
+					continue;
+				}
+				if (isExpanded(child) || levels < 0 || levels > 0)
+				{
+					expandNode(child, levels - 1, fireHotNodes, overrideBreakExpand);
+				}
 			}
 
-			// fire expand event
-			controller.onExpandEvent();
+			// display
+			if (childrenView.getChildCount() != 0)
+			{
+				if (this.useAnimation)
+				{
+					animatedContainerExpand(childrenView);
+				}
+				else
+				{
+					containerExpand(childrenView);
+				}
+
+				// fire expand event
+				controller.onExpandEvent();
+			}
 		}
 
 		// fire
@@ -1049,7 +1071,7 @@ public class TreeView
 		{
 			if (openNodes.contains(child.getPath()))
 			{
-				expandNode(child, 0, false);
+				expandNode(child, 0, false, false);
 				restoreNodeState(child, openNodes);
 			}
 		}

@@ -19,10 +19,12 @@ public class LinkTreeController extends TreeController
 
 	/**
 	 * Constructor
+	 *
+	 * @param breakExpand whether this controller breaks expansion
 	 */
-	public LinkTreeController()
+	public LinkTreeController(final boolean breakExpand)
 	{
-		super();
+		super(breakExpand);
 		this.layoutRes = R.layout.layout_tree_link;
 	}
 

@@ -188,7 +188,7 @@ public class TreeNode
 	 */
 	@NonNull
 	@SuppressWarnings("UnusedReturnValue")
-	private TreeNode prependChild(@NonNull TreeNode childNode)
+	public TreeNode prependChild(@NonNull TreeNode childNode)
 	{
 		childNode.parent = this;
 		childNode.id = size();

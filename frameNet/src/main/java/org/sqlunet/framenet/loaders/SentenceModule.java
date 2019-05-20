@@ -130,7 +130,7 @@ public class SentenceModule extends BaseModule
 			Spanner.append(sb, SentenceModule.this.sentenceText, 0, FrameNetFactories.sentenceFactory);
 
 			// attach result
-			final TreeNode node = TreeFactory.addTextNode(parent, sb);
+			final TreeNode node = TreeFactory.makeTextNode(sb, false).addTo(parent);
 
 			// layers
 			layersForSentence(id, SentenceModule.this.sentenceText, parent);

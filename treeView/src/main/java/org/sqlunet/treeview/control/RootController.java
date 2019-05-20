@@ -18,7 +18,7 @@ public class RootController extends Controller<Void>
 	 */
 	public RootController()
 	{
-		super();
+		super(false);
 	}
 
 	@Nullable

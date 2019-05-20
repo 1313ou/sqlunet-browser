@@ -86,8 +86,8 @@ public class SynsetModule extends BaseModule
 		if (this.synsetId != null && this.synsetId != 0)
 		{
 			// anchor nodes
-			final TreeNode synsetNode = TreeFactory.addTextNode(parent, "Synset");
-			final TreeNode membersNode = TreeFactory.addIconTextNode(parent, "Members", R.drawable.members);
+			final TreeNode synsetNode = TreeFactory.makeTextNode("Synset", false).addTo(parent);
+			final TreeNode membersNode = TreeFactory.makeIconTextNode("Members", R.drawable.members, false).addTo(parent);
 
 			// synset
 			synset(this.synsetId, synsetNode, false);
@@ -112,8 +112,12 @@ public class SynsetModule extends BaseModule
 			}
 
 			// links and samples
-			@SuppressWarnings("unused") final TreeNode linksNode = this.expand ? TreeFactory.addHotQueryNode(parent, "Links", R.drawable.ic_links, new LinksQuery(this.synsetId, 0)) : TreeFactory.addQueryNode(parent, "Links", R.drawable.ic_links, new LinksQuery(this.synsetId, 0));
-			@SuppressWarnings("unused") final TreeNode samplesNode = this.expand ? TreeFactory.addQueryNode(parent, "Samples", R.drawable.sample, new SamplesQuery(this.synsetId)) : TreeFactory.addQueryNode(parent, "Samples", R.drawable.sample, new SamplesQuery(this.synsetId));
+			@SuppressWarnings("unused") final TreeNode linksNode = this.expand ?
+					TreeFactory.makeHotQueryNode("Links", R.drawable.ic_links, false, new LinksQuery(this.synsetId, 0)).addTo(parent) :
+					TreeFactory.makeQueryNode("Links", R.drawable.ic_links, false, new LinksQuery(this.synsetId, 0)).addTo(parent);
+			@SuppressWarnings("unused") final TreeNode samplesNode = this.expand ?
+					TreeFactory.makeQueryNode("Samples", R.drawable.sample, false, new SamplesQuery(this.synsetId)).addTo(parent) :
+					TreeFactory.makeQueryNode("Samples", R.drawable.sample, false, new SamplesQuery(this.synsetId)).addTo(parent);
 		}
 		else
 		{

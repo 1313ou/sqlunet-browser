@@ -4,6 +4,7 @@ import android.util.Log;
 import android.view.ViewGroup;
 
 import org.sqlunet.browser.TreeFragment;
+import org.sqlunet.treeview.control.CompositeValue;
 import org.sqlunet.treeview.control.Controller;
 import org.sqlunet.treeview.control.TreeController;
 import org.sqlunet.treeview.model.TreeNode;
@@ -71,6 +72,11 @@ public class TreeOpExecute
 	{
 		final TreeOpCode code = op.getCode();
 		final TreeNode node = op.getNode();
+		if (isNodeWithCompositeValueText(node, "Agent Agent"))
+		{
+			Log.d(TAG, "xxx " + op.getCode() + " " + node);
+		}
+
 		switch (code)
 		{
 			case ANCHOR:
@@ -85,7 +91,7 @@ public class TreeOpExecute
 				if (childrenView == null || !TreeView.isExpanded(parent))
 				{
 					Log.d(TAG, "*** " + op.getCode() + " " + node.toString());
-					treeView.expandNode(parent, levels, false);
+					treeView.expandNode(parent, levels, false, false);
 				}
 				else
 				{
@@ -123,9 +129,23 @@ public class TreeOpExecute
 				treeView.deadend(node);
 				break;
 
+			case BREAK_EXPAND_AT:
+			{
+				Log.d(TAG, "||| " + op.getCode() + " " + node.toString());
+				final Controller<?> controller = node.getController();
+				controller.setBreakExpand(true);
+			}
+			break;
+
 			default:
 			case NOOP:
 				break;
 		}
+	}
+
+	private boolean isNodeWithCompositeValueText(final TreeNode node, final String text)
+	{
+		final Object value = node.getValue();
+		return value != null && (value instanceof CompositeValue) && text.equals(((CompositeValue) value).text.toString());
 	}
 }

@@ -303,7 +303,7 @@ public class BaseModule extends Module
 			while (cursor.moveToNext());
 
 			// attach result
-			final TreeNode node = TreeFactory.addTextNode(parent, sb);
+			final TreeNode node = TreeFactory.makeTextNode(sb, false).addTo(parent);
 			changed = TreeOp.seq(ANCHOR, parent, NEW, node);
 		}
 		else

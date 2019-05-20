@@ -54,9 +54,9 @@ import org.sqlunet.style.Spanner;
 import org.sqlunet.treeview.control.Link;
 import org.sqlunet.treeview.control.Query;
 import org.sqlunet.treeview.model.TreeNode;
-import org.sqlunet.view.TreeOpExecute;
 import org.sqlunet.view.TreeOp;
 import org.sqlunet.view.TreeOp.TreeOps;
+import org.sqlunet.view.TreeOpExecute;
 
 import java.util.List;
 
@@ -66,7 +66,6 @@ import androidx.lifecycle.ViewModelProviders;
 
 import static org.sqlunet.view.TreeOp.TreeOpCode.ANCHOR;
 import static org.sqlunet.view.TreeOp.TreeOpCode.NEW;
-import static org.sqlunet.view.TreeOp.TreeOpCode.COLLAPSE;
 import static org.sqlunet.view.TreeOp.TreeOpCode.REMOVE;
 
 /**
@@ -368,12 +367,12 @@ abstract public class BaseModule extends Module
 			}
 
 			// attach result
-			final TreeNode node = TreeFactory.addTextNode(parent, sb);
+			final TreeNode node = TreeFactory.makeTextNode(sb, false).addTo(parent);
 
 			// sub nodes
-			final TreeNode fesNode = TreeFactory.addHotQueryNode(parent, "Frame Elements", R.drawable.roles, new FEsQuery(frameId));
-			final TreeNode lexUnitsNode = TreeFactory.addHotQueryNode(parent, "Lex Units", R.drawable.members, new LexUnitsQuery(frameId));
-			final TreeNode relatedNode = TreeFactory.addQueryNode(parent, "Related", R.drawable.roleclass, new RelatedQuery(frameId));
+			final TreeNode fesNode = TreeFactory.makeHotQueryNode("Frame Elements", R.drawable.roles, false, new FEsQuery(frameId)).addTo(parent);
+			final TreeNode lexUnitsNode = TreeFactory.makeHotQueryNode("Lex Units", R.drawable.members, false, new LexUnitsQuery(frameId)).addTo(parent);
+			final TreeNode relatedNode = TreeFactory.makeQueryNode("Related", R.drawable.roleclass, false, new RelatedQuery(frameId)).addTo(parent);
 
 			changed = TreeOp.seq(ANCHOR, parent, NEW, node, NEW, fesNode, NEW, lexUnitsNode, NEW, relatedNode);
 		}
@@ -497,7 +496,7 @@ abstract public class BaseModule extends Module
 
 				// result
 				long targetFrameId = slot1 ? frame2Id : frame1Id;
-				final TreeNode memberNode = TreeFactory.addLinkNode(parent, sb, R.drawable.roleclass, new FnFrameLink(targetFrameId));
+				final TreeNode memberNode = TreeFactory.makeLinkNode(sb, R.drawable.roleclass, false, new FnFrameLink(targetFrameId)).addTo(parent);
 				changedList.add(NEW, memberNode);
 			}
 			while (cursor.moveToNext());
@@ -575,7 +574,7 @@ abstract public class BaseModule extends Module
 				Spanner.append(sb, feAbbrev, 0, FrameNetFactories.feAbbrevFactory);
 
 				// attach fe
-				final TreeNode feNode = TreeFactory.addTreeNode(parent, sb, coreTypeId == 1 ? R.drawable.rolex : R.drawable.role);
+				final TreeNode feNode = TreeFactory.makeTreeNode(sb, coreTypeId == 1 ? R.drawable.rolex : R.drawable.role, true).addTo(parent);
 				changedList.add(NEW, feNode);
 
 				// more info
@@ -623,8 +622,8 @@ abstract public class BaseModule extends Module
 				}
 
 				// attach extra node to fe node
-				final TreeNode extraNode = TreeFactory.addTextNode(feNode, sb2);
-				changedList.add(NEW, extraNode, COLLAPSE, feNode);
+				final TreeNode extraNode = TreeFactory.makeTextNode(sb2, false).addTo(feNode);
+				changedList.add(NEW, extraNode);
 			}
 			while (cursor.moveToNext());
 			changed = changedList.toArray();
@@ -754,29 +753,29 @@ abstract public class BaseModule extends Module
 				sb2.append("Frame");
 				sb2.append(' ');
 				Spanner.append(sb2, frame, 0, FrameNetFactories.boldFactory);
-				final TreeNode frameNode = TreeFactory.addHotQueryNode(parent, sb2, R.drawable.roleclass, new FrameQuery(frameId));
+				final TreeNode frameNode = TreeFactory.makeHotQueryNode(sb2, R.drawable.roleclass, false, new FrameQuery(frameId)).addTo(parent);
 				changedList.add(NEW, frameNode);
 
 				if (withFes)
 				{
-					final TreeNode fesNode = TreeFactory.addQueryNode(parent, "Frame Elements", R.drawable.roles, new FEsQuery(frameId));
+					final TreeNode fesNode = TreeFactory.makeQueryNode("Frame Elements", R.drawable.roles, false, new FEsQuery(frameId)).addTo(parent);
 					changedList.add(NEW, fesNode);
 				}
 			}
 			else
 			{
-				final TreeNode node = TreeFactory.addTextNode(parent, sb);
+				final TreeNode node = TreeFactory.makeTextNode(sb, false).addTo(parent);
 				changedList.add(NEW, node);
 			}
 
 			// sub nodes
-			final TreeNode realizationsNode = TreeFactory.addQueryNode(parent, "Realizations", R.drawable.realization, new RealizationsQuery(luId));
+			final TreeNode realizationsNode = TreeFactory.makeQueryNode("Realizations", R.drawable.realization, false, new RealizationsQuery(luId)).addTo(parent);
 			changedList.add(NEW, realizationsNode);
-			final TreeNode groupRealizationsNode = TreeFactory.addQueryNode(parent, "Group realizations", R.drawable.grouprealization, new GroupRealizationsQuery(luId));
+			final TreeNode groupRealizationsNode = TreeFactory.makeQueryNode("Group realizations", R.drawable.grouprealization, false, new GroupRealizationsQuery(luId)).addTo(parent);
 			changedList.add(NEW, groupRealizationsNode);
-			final TreeNode governorsNode = TreeFactory.addQueryNode(parent, "Governors", R.drawable.governor, new GovernorsQuery(luId));
+			final TreeNode governorsNode = TreeFactory.makeQueryNode("Governors", R.drawable.governor, false, new GovernorsQuery(luId)).addTo(parent);
 			changedList.add(NEW, governorsNode);
-			final TreeNode sentencesNode = TreeFactory.addQueryNode(parent, "Sentences", R.drawable.sentence, new SentencesForLexUnitQuery(luId));
+			final TreeNode sentencesNode = TreeFactory.makeQueryNode("Sentences", R.drawable.sentence, false, new SentencesForLexUnitQuery(luId)).addTo(parent);
 			changedList.add(NEW, sentencesNode);
 
 			changed = changedList.toArray();
@@ -855,15 +854,15 @@ abstract public class BaseModule extends Module
 				}
 
 				// attach lex unit
-				final TreeNode luNode = TreeFactory.addLinkTreeNode(parent, sb, R.drawable.member, new FnLexUnitLink(luId));
+				final TreeNode luNode = TreeFactory.makeLinkTreeNode(sb, R.drawable.member, true, new FnLexUnitLink(luId)).addTo(parent);
 				changedList.add(NEW, luNode);
 
 				// frame
 				if (withFrame)
 				{
-					final TreeNode frameNode = TreeFactory.addQueryNode(luNode, "Frame", R.drawable.roleclass, new FrameQuery(frameId));
+					final TreeNode frameNode = TreeFactory.makeQueryNode("Frame", R.drawable.roleclass, false, new FrameQuery(frameId)).addTo(luNode);
 					changedList.add(NEW, frameNode);
-					final TreeNode fesNode = TreeFactory.addQueryNode(luNode, "Frame Elements", R.drawable.roles, new FEsQuery(frameId));
+					final TreeNode fesNode = TreeFactory.makeQueryNode("Frame Elements", R.drawable.roles, false, new FEsQuery(frameId)).addTo(luNode);
 					changedList.add(NEW, fesNode);
 				}
 
@@ -908,20 +907,18 @@ abstract public class BaseModule extends Module
 				}
 
 				// attach extra node to lex unit node
-				final TreeNode extraNode = TreeFactory.addTextNode(luNode, sb2);
+				final TreeNode extraNode = TreeFactory.makeTextNode(sb2, false).addTo(luNode);
 				changedList.add(NEW, extraNode);
 
 				// sub nodes
-				final TreeNode realizationsNode = TreeFactory.addQueryNode(luNode, "Realizations", R.drawable.realization, new RealizationsQuery(luId));
+				final TreeNode realizationsNode = TreeFactory.makeQueryNode("Realizations", R.drawable.realization, false, new RealizationsQuery(luId)).addTo(luNode);
 				changedList.add(NEW, realizationsNode);
-				final TreeNode groupRealizationsNode = TreeFactory.addQueryNode(luNode, "Group realizations", R.drawable.grouprealization, new GroupRealizationsQuery(luId));
+				final TreeNode groupRealizationsNode = TreeFactory.makeQueryNode("Group realizations", R.drawable.grouprealization, false, new GroupRealizationsQuery(luId)).addTo(luNode);
 				changedList.add(NEW, groupRealizationsNode);
-				final TreeNode governorsNode = TreeFactory.addQueryNode(luNode, "Governors", R.drawable.governor, new GovernorsQuery(luId));
+				final TreeNode governorsNode = TreeFactory.makeQueryNode("Governors", R.drawable.governor, false, new GovernorsQuery(luId)).addTo(luNode);
 				changedList.add(NEW, governorsNode);
-				final TreeNode sentencesNode = TreeFactory.addQueryNode(luNode, "Sentences", R.drawable.sentence, new SentencesForLexUnitQuery(luId));
+				final TreeNode sentencesNode = TreeFactory.makeQueryNode("Sentences", R.drawable.sentence, false, new SentencesForLexUnitQuery(luId)).addTo(luNode);
 				changedList.add(NEW, sentencesNode);
-
-				changedList.add(COLLAPSE, luNode);
 			}
 			while (cursor.moveToNext());
 			changed = changedList.toArray();
@@ -1040,21 +1037,21 @@ abstract public class BaseModule extends Module
 					}
 				}
 				// attach result
-				final TreeNode node = TreeFactory.addTextNode(parent, sb);
+				final TreeNode node = TreeFactory.makeTextNode(sb, false).addTo(parent);
 				changedList.add(NEW, node);
 
 				// sub nodes
-				final TreeNode frameNode = TreeFactory.addHotQueryNode(parent, "Frame", R.drawable.roleclass, new FrameQuery(frameId));
+				final TreeNode frameNode = TreeFactory.makeHotQueryNode("Frame", R.drawable.roleclass, false, new FrameQuery(frameId)).addTo(parent);
 				changedList.add(NEW, frameNode);
-				final TreeNode fesNode = TreeFactory.addQueryNode(parent, "Frame Elements", R.drawable.roles, new FEsQuery(frameId));
+				final TreeNode fesNode = TreeFactory.makeQueryNode("Frame Elements", R.drawable.roles, false, new FEsQuery(frameId)).addTo(parent);
 				changedList.add(NEW, fesNode);
-				final TreeNode realizationsNode = TreeFactory.addQueryNode(parent, "Realizations", R.drawable.realization, new RealizationsQuery(luId));
+				final TreeNode realizationsNode = TreeFactory.makeQueryNode("Realizations", R.drawable.realization, false, new RealizationsQuery(luId)).addTo(parent);
 				changedList.add(NEW, realizationsNode);
-				final TreeNode groupRealizationsNode = TreeFactory.addQueryNode(parent, "Group realizations", R.drawable.grouprealization, new GroupRealizationsQuery(luId));
+				final TreeNode groupRealizationsNode = TreeFactory.makeQueryNode("Group realizations", R.drawable.grouprealization, false, new GroupRealizationsQuery(luId)).addTo(parent);
 				changedList.add(NEW, groupRealizationsNode);
-				final TreeNode governorsNode = TreeFactory.addQueryNode(parent, "Governors", R.drawable.governor, new GovernorsQuery(luId));
+				final TreeNode governorsNode = TreeFactory.makeQueryNode("Governors", R.drawable.governor, false, new GovernorsQuery(luId)).addTo(parent);
 				changedList.add(NEW, governorsNode);
-				final TreeNode sentencesNode = TreeFactory.addQueryNode(parent, "Sentences", R.drawable.sentence, new SentencesForLexUnitQuery(luId));
+				final TreeNode sentencesNode = TreeFactory.makeQueryNode("Sentences", R.drawable.sentence, false, new SentencesForLexUnitQuery(luId)).addTo(parent);
 				changedList.add(NEW, sentencesNode);
 			}
 			while (cursor.moveToNext());
@@ -1131,7 +1128,7 @@ abstract public class BaseModule extends Module
 				Spanner.append(sb, word, 0, FrameNetFactories.governorFactory);
 
 				// attach annoSets node
-				final TreeNode annoSetsNode = TreeFactory.addQueryNode(parent, sb, R.drawable.governor, new AnnoSetsForGovernorQuery(governorId));
+				final TreeNode annoSetsNode = TreeFactory.makeQueryNode(sb, R.drawable.governor, false, new AnnoSetsForGovernorQuery(governorId)).addTo(parent);
 				changedList.add(NEW, annoSetsNode);
 			}
 			while (cursor.moveToNext());
@@ -1205,7 +1202,7 @@ abstract public class BaseModule extends Module
 				}
 
 				// fe
-				final TreeNode feNode = TreeFactory.addTreeNode(parent, sb, R.drawable.role);
+				final TreeNode feNode = TreeFactory.makeTreeNode(sb, R.drawable.role, false).addTo(parent);
 				changedList.add(NEW, feNode);
 
 				// fe realizations
@@ -1244,7 +1241,7 @@ abstract public class BaseModule extends Module
 					}
 
 					// attach fer node
-					final TreeNode ferNode = TreeFactory.addQueryNode(feNode, sb1, R.drawable.realization, new SentencesForValenceUnitQuery(vuId));
+					final TreeNode ferNode = TreeFactory.makeQueryNode(sb1, R.drawable.realization, false, new SentencesForValenceUnitQuery(vuId)).addTo(feNode);
 					changedList.add(NEW, ferNode);
 				}
 			}
@@ -1330,7 +1327,7 @@ abstract public class BaseModule extends Module
 					}
 
 					groupId = feGroupId;
-					groupNode = TreeFactory.addTreeNode(parent, sb1, R.drawable.grouprealization);
+					groupNode = TreeFactory.makeTreeNode(sb1, R.drawable.grouprealization, false).addTo(parent);
 					changedList.add(NEW, groupNode);
 				}
 				assert groupNode != null;
@@ -1339,7 +1336,7 @@ abstract public class BaseModule extends Module
 				parseGroupRealizations(groupRealizations, sb);
 
 				// attach sentences node
-				final TreeNode sentencesNode = TreeFactory.addQueryNode(groupNode, sb, R.drawable.grouprealization, new SentencesForPatternQuery(patternId));
+				final TreeNode sentencesNode = TreeFactory.makeQueryNode(sb, R.drawable.grouprealization, false, new SentencesForPatternQuery(patternId)).addTo(groupNode);
 				changedList.add(NEW, sentencesNode);
 			}
 			while (cursor.moveToNext());
@@ -1523,7 +1520,7 @@ abstract public class BaseModule extends Module
 				}
 
 				// attach result
-				final TreeNode sentenceNode = TreeFactory.addLinkNode(parent, sb, R.drawable.sentence, new FnSentenceLink(sentenceId));
+				final TreeNode sentenceNode = TreeFactory.makeLinkNode(sb, R.drawable.sentence, false, new FnSentenceLink(sentenceId)).addTo(parent);
 				changedList.add(NEW, sentenceNode);
 			}
 			while (cursor.moveToNext());
@@ -1591,7 +1588,7 @@ abstract public class BaseModule extends Module
 				}
 
 				// attach annoSet node
-				final TreeNode annoSetNode = TreeFactory.addQueryNode(parent, sb, R.drawable.sentence, new AnnoSetQuery(annotationId, false));
+				final TreeNode annoSetNode = TreeFactory.makeQueryNode(sb, R.drawable.sentence, false, new AnnoSetQuery(annotationId, false)).addTo(parent);
 				changedList.add(NEW, annoSetNode);
 			}
 			while (cursor.moveToNext());
@@ -1659,7 +1656,7 @@ abstract public class BaseModule extends Module
 				}
 
 				// pattern
-				final TreeNode annoSetNode = TreeFactory.addQueryNode(parent, sb, R.drawable.sentence, new AnnoSetQuery(annotationId, false));
+				final TreeNode annoSetNode = TreeFactory.makeQueryNode(sb, R.drawable.sentence, false, new AnnoSetQuery(annotationId, false)).addTo(parent);
 				changedList.add(NEW, annoSetNode);
 			}
 			while (cursor.moveToNext());
@@ -1807,7 +1804,7 @@ abstract public class BaseModule extends Module
 			}
 
 			// attach result
-			final TreeNode node = TreeFactory.addTextNode(parent, sb);
+			final TreeNode node = TreeFactory.makeTextNode(sb, false).addTo(parent);
 			changed = TreeOp.seq(ANCHOR, parent, NEW, node);
 		}
 		else
@@ -1875,7 +1872,7 @@ abstract public class BaseModule extends Module
 				}
 
 				// attach annoSet node
-				final TreeNode annoSetNode = TreeFactory.addQueryNode(parent, sb, R.drawable.annoset, new AnnoSetQuery(annoSetId, false));
+				final TreeNode annoSetNode = TreeFactory.makeQueryNode(sb, R.drawable.annoset, false, new AnnoSetQuery(annoSetId, false)).addTo(parent);
 				changedList.add(NEW, annoSetNode);
 			}
 			while (cursor.moveToNext());
@@ -2010,7 +2007,7 @@ abstract public class BaseModule extends Module
 					if (sb != null)
 					{
 						// attach result
-						final TreeNode node = TreeFactory.addTextNode(annoSetNode, sb);
+						final TreeNode node = TreeFactory.makeTextNode(sb, false).addTo(annoSetNode);
 						changedList.add(NEW, node);
 					}
 					sb = new SpannableStringBuilder();
@@ -2019,7 +2016,7 @@ abstract public class BaseModule extends Module
 					Spanner.append(sba, "AnnoSet", 0, FrameNetFactories.annoSetFactory);
 					sba.append(' ');
 					Spanner.append(sba, Long.toString(annoSetId), 0, FrameNetFactories.dataFactory);
-					annoSetNode = TreeFactory.addTreeNode(parent, sba, R.drawable.annoset);
+					annoSetNode = TreeFactory.makeTreeNode(sba, R.drawable.annoset, false).addTo(parent);
 					changedList.add(NEW, annoSetNode);
 					currentAnnoSetId = annoSetId;
 				}
@@ -2104,7 +2101,7 @@ abstract public class BaseModule extends Module
 			if (sb.length() > 0)
 			{
 				// attach result
-				final TreeNode node = TreeFactory.addTextNode(annoSetNode, sb);
+				final TreeNode node = TreeFactory.makeTextNode(sb, false).addTo(annoSetNode);
 				changedList.add(NEW, node);
 			}
 

@@ -27,10 +27,12 @@ public class LeafController extends Controller<CompositeValue>
 
 	/**
 	 * Constructor
+	 *
+	 * @param breakExpand whether this controller breaks expansion
 	 */
-	public LeafController()
+	public LeafController(final boolean breakExpand)
 	{
-		super();
+		super(breakExpand);
 	}
 
 	@NonNull

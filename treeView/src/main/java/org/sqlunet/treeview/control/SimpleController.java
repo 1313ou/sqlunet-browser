@@ -19,7 +19,7 @@ public class SimpleController extends Controller<Object>
 	 */
 	public SimpleController()
 	{
-		super();
+		super(false);
 	}
 
 	@NonNull

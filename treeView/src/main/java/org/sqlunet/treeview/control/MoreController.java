@@ -27,10 +27,12 @@ public class MoreController extends Controller<CompositeValue>
 
 	/**
 	 * Constructor
+	 *
+	 * @param breakExpand whether this controller breaks expansion
 	 */
-	public MoreController()
+	public MoreController(final boolean breakExpand)
 	{
-		super();
+		super(breakExpand);
 	}
 
 	@NonNull

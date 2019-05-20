@@ -34,10 +34,12 @@ public class TreeController extends Controller<CompositeValue>
 
 	/**
 	 * Constructor
+	 *
+	 * @param breakExpand whether this controller breaks expansion
 	 */
-	public TreeController()
+	public TreeController(final boolean breakExpand)
 	{
-		super();
+		super(breakExpand);
 	}
 
 	@SuppressWarnings("WeakerAccess")

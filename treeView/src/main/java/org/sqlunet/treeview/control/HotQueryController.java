@@ -13,10 +13,12 @@ public class HotQueryController extends QueryController
 
 	/**
 	 * Constructor
+	 *
+	 * @param breakExpand whether this controller breaks expansion
 	 */
-	public HotQueryController()
+	public HotQueryController(final boolean breakExpand)
 	{
-		super();
+		super(breakExpand);
 		this.layoutRes = R.layout.layout_query;
 	}
 

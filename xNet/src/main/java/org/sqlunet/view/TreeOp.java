@@ -8,7 +8,7 @@ public class TreeOp
 {
 	public enum TreeOpCode
 	{
-		NOOP, ANCHOR, NEW, COLLAPSE, UPDATE, DEADEND, REMOVE
+		NOOP, ANCHOR, NEW, UPDATE, DEADEND, REMOVE, COLLAPSE, BREAK_EXPAND_AT,
 	}
 
 	private final TreeOpCode code;
@@ -54,6 +54,14 @@ public class TreeOp
 			for (int i = 0; i < items.length - 1; i += 2)
 			{
 				add(new TreeOp((TreeOpCode) items[i], (TreeNode) items[i + 1]));
+			}
+		}
+
+		public void prepend(Object... items)
+		{
+			for (int i = 0; i < items.length - 1; i += 2)
+			{
+				add(0, new TreeOp((TreeOpCode) items[i], (TreeNode) items[i + 1]));
 			}
 		}
 

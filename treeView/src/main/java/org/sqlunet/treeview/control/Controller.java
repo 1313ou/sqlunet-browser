@@ -25,6 +25,14 @@ public abstract class Controller<E>
 	@SuppressWarnings("WeakerAccess")
 	protected TreeNode node;
 
+	// B E H A V I O U R
+
+	/**
+	 * BreakExpand flag
+	 */
+	@SuppressWarnings("WeakerAccess")
+	protected boolean breakExpand;
+
 	// V I E W
 
 	/**
@@ -50,10 +58,13 @@ public abstract class Controller<E>
 
 	/**
 	 * Constructor
+	 *
+	 * @param breakExpand whether this controller breaks expansion
 	 */
 	@SuppressWarnings("WeakerAccess")
-	protected Controller()
+	protected Controller(final boolean breakExpand)
 	{
+		this.breakExpand = breakExpand;
 	}
 
 	// V I E W
@@ -140,6 +151,18 @@ public abstract class Controller<E>
 	public boolean isInitialized()
 	{
 		return this.subtreeView != null;
+	}
+
+	// B E H A V I O U R
+
+	public boolean isBreakExpand()
+	{
+		return this.breakExpand;
+	}
+
+	public void setBreakExpand(final boolean breakExpand)
+	{
+		this.breakExpand = breakExpand;
 	}
 
 	// M O D E L

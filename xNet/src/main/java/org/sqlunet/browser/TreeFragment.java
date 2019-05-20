@@ -1,19 +1,20 @@
 package org.sqlunet.browser;
 
 import android.os.Bundle;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import org.sqlunet.model.TreeFactory;
 import org.sqlunet.treeview.control.RootController;
 import org.sqlunet.treeview.model.TreeNode;
 import org.sqlunet.treeview.view.TreeView;
-import org.sqlunet.model.TreeFactory;
 import org.sqlunet.xnet.R;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
 
 /**
  * A fragment representing a synset.
@@ -64,7 +65,7 @@ abstract public class TreeFragment extends Fragment
 		this.treeRoot.setSelectable(false);
 
 		// sub root node
-		TreeFactory.addTreeNode(this.treeRoot, this.header, this.iconId);
+		TreeFactory.makeTreeNode(this.header, this.iconId, false).addTo(this.treeRoot);
 	}
 
 	@Override

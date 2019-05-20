@@ -62,7 +62,7 @@ public class LexUnitFromWordModule extends LexUnitModule
 	@Override
 	public void process(@NonNull final TreeNode parent)
 	{
-		if (this.wordId != null && this.pos != null)
+		if (this.wordId != null /*&& this.pos != null*/)
 		{
 			// data
 			lexUnitsForWordAndPos(this.wordId, this.pos, parent);

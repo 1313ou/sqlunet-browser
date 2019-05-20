@@ -19,10 +19,12 @@ public class LinkQueryController extends ColdQueryController
 
 	/**
 	 * Constructor
+	 *
+	 * @param breakExpand whether this controller breaks expansion
 	 */
-	public LinkQueryController()
+	public LinkQueryController(final boolean breakExpand)
 	{
-		super();
+		super(breakExpand);
 		this.layoutRes = R.layout.layout_tree_link;
 	}
 

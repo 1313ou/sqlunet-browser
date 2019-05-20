@@ -19,10 +19,12 @@ public class LinkLeafController extends LeafController
 
 	/**
 	 * Constructor
+	 *
+	 * @param breakExpand whether this controller breaks expansion
 	 */
-	public LinkLeafController()
+	public LinkLeafController(final boolean breakExpand)
 	{
-		super();
+		super(breakExpand);
 		this.layoutRes = R.layout.layout_leaf_link;
 	}
 

@@ -308,7 +308,7 @@ abstract public class BaseModule extends Module
 			// result
 			if (addNewNode)
 			{
-				final TreeNode node = TreeFactory.addTextNode(parent, sb);
+				final TreeNode node = TreeFactory.makeTextNode(sb, false).addTo(parent);
 				changed = TreeOp.seq(ANCHOR, parent, NEW, node);
 			}
 			else
@@ -417,7 +417,7 @@ abstract public class BaseModule extends Module
 				sense(sb, synsetId, posName, lexDomain, definition, tagCount, cased);
 
 				// result
-				final TreeNode synsetNode = TreeFactory.addLinkNode(parent, sb, R.drawable.synset, new SenseLink(synsetId, wordId, this.maxRecursion));
+				final TreeNode synsetNode = TreeFactory.makeLinkNode(sb, R.drawable.synset, false, new SenseLink(synsetId, wordId, this.maxRecursion)).addTo(parent);
 				changedList.add(NEW, synsetNode);
 			}
 			while (cursor.moveToNext());
@@ -532,7 +532,7 @@ abstract public class BaseModule extends Module
 			final long synsetId = cursor.getLong(idSynsetId);
 
 			// sub nodes
-			final TreeNode wordNode = TreeFactory.addTextNode(parent, "Word");
+			final TreeNode wordNode = TreeFactory.makeTextNode("Word", false).addTo(parent);
 
 			// word
 			word(wordId, wordNode, false);
@@ -572,11 +572,11 @@ abstract public class BaseModule extends Module
 			synset(sb, synsetId, posName, lexDomain, definition);
 
 			// attach result
-			final TreeNode node = TreeFactory.addTextNode(parent, sb);
+			final TreeNode node = TreeFactory.makeTextNode(sb, false).addTo(parent);
 
 			// subnodes
-			final TreeNode linksNode = TreeFactory.addHotQueryNode(parent, "Links", R.drawable.ic_links, new LinksQuery(synsetId, wordId));
-			final TreeNode samplesNode = TreeFactory.addHotQueryNode(parent, "Samples", R.drawable.sample, new SamplesQuery(synsetId));
+			final TreeNode linksNode = TreeFactory.makeHotQueryNode("Links", R.drawable.ic_links, false, new LinksQuery(synsetId, wordId)).addTo(parent);
+			final TreeNode samplesNode = TreeFactory.makeHotQueryNode("Samples", R.drawable.sample, false, new SamplesQuery(synsetId)).addTo(parent);
 
 			changed = TreeOp.seq(ANCHOR, parent, NEW, node, NEW, linksNode, NEW, samplesNode);
 		}
@@ -636,7 +636,7 @@ abstract public class BaseModule extends Module
 			// result
 			if (addNewNode)
 			{
-				final TreeNode node = TreeFactory.addTextNode(parent, sb);
+				final TreeNode node = TreeFactory.makeTextNode(sb, false).addTo(parent);
 				changed = TreeOp.seq(ANCHOR, parent, NEW, node);
 			}
 			else
@@ -836,7 +836,7 @@ abstract public class BaseModule extends Module
 			// result
 			if (addNewNode)
 			{
-				final TreeNode node = TreeFactory.addTextNode(parent, sb);
+				final TreeNode node = TreeFactory.makeTextNode(sb, false).addTo(parent);
 				changed = TreeOp.seq(ANCHOR, parent, NEW, node);
 			}
 			else
@@ -887,7 +887,7 @@ abstract public class BaseModule extends Module
 				Spanner.append(sb, member, 0, WordNetFactories.membersFactory);
 
 				// result
-				final TreeNode memberNode = TreeFactory.addLinkNode(parent, sb, R.drawable.member, new WordLink(wordId));
+				final TreeNode memberNode = TreeFactory.makeLinkNode(sb, R.drawable.member, false, new WordLink(wordId)).addTo(parent);
 				changedList.add(NEW, memberNode);
 			}
 			while (cursor.moveToNext());
@@ -954,7 +954,7 @@ abstract public class BaseModule extends Module
 			// result
 			if (addNewNode)
 			{
-				final TreeNode node = TreeFactory.addTextNode(parent, sb);
+				final TreeNode node = TreeFactory.makeTextNode(sb, false).addTo(parent);
 				changed = TreeOp.seq(ANCHOR, parent, NEW, node);
 			}
 			else
@@ -1059,12 +1059,12 @@ abstract public class BaseModule extends Module
 				// recursion
 				if (linkCanRecurse)
 				{
-					final TreeNode linksNode = TreeFactory.addLinkQueryNode(parent, sb, getLinkRes(linkId), new SubLinksQuery(targetSynsetId, linkId, BaseModule.this.maxRecursion), new SynsetLink(targetSynsetId, BaseModule.this.maxRecursion)).prependTo(parent);
+					final TreeNode linksNode = TreeFactory.makeLinkQueryNode(sb, getLinkRes(linkId), false, new SubLinksQuery(targetSynsetId, linkId, BaseModule.this.maxRecursion), new SynsetLink(targetSynsetId, BaseModule.this.maxRecursion)).prependTo(parent);
 					changedList.add(NEW, linksNode);
 				}
 				else
 				{
-					final TreeNode node = TreeFactory.addLeafNode(parent, sb, getLinkRes(linkId)).prependTo(parent);
+					final TreeNode node = TreeFactory.makeLeafNode(sb, getLinkRes(linkId), false).prependTo(parent);
 					changedList.add(NEW, node);
 				}
 			}
@@ -1124,18 +1124,18 @@ abstract public class BaseModule extends Module
 					if (recurseLevel > 1)
 					{
 						final int newRecurseLevel = recurseLevel - 1;
-						final TreeNode linksNode = TreeFactory.addLinkQueryNode(parent, sb, getLinkRes(linkId), new SubLinksQuery(targetSynsetId, linkId, newRecurseLevel), new SynsetLink(targetSynsetId, BaseModule.this.maxRecursion));
+						final TreeNode linksNode = TreeFactory.makeLinkQueryNode(sb, getLinkRes(linkId), false, new SubLinksQuery(targetSynsetId, linkId, newRecurseLevel), new SynsetLink(targetSynsetId, BaseModule.this.maxRecursion)).addTo(parent);
 						changedList.add(NEW, linksNode);
 					}
 					else
 					{
-						final TreeNode moreNode = TreeFactory.addMoreNode(parent, sb, getLinkRes(linkId));
+						final TreeNode moreNode = TreeFactory.makeMoreNode(sb, getLinkRes(linkId), false).addTo(parent);
 						changedList.add(NEW, moreNode);
 					}
 				}
 				else
 				{
-					final TreeNode node = TreeFactory.addLeafNode(parent, sb, getLinkRes(linkId));
+					final TreeNode node = TreeFactory.makeLeafNode(sb, getLinkRes(linkId), false).addTo(parent);
 					changedList.add(NEW, node);
 				}
 			}
@@ -1255,7 +1255,7 @@ abstract public class BaseModule extends Module
 				Spanner.append(sb, targetDefinition, 0, WordNetFactories.definitionFactory);
 
 				// attach result
-				final TreeNode linkNode = TreeFactory.addLinkLeafNode(parent, sb, getLinkRes(linkId), new SenseLink(targetSynsetId, idTargetWordId, BaseModule.this.maxRecursion));
+				final TreeNode linkNode = TreeFactory.makeLinkLeafNode(sb, getLinkRes(linkId), false, new SenseLink(targetSynsetId, idTargetWordId, BaseModule.this.maxRecursion)).addTo(parent);
 				changedList.add(NEW, linkNode);
 			}
 			while (cursor.moveToNext());
@@ -1326,13 +1326,13 @@ abstract public class BaseModule extends Module
 				Spanner.append(sb, targetDefinition, 0, WordNetFactories.definitionFactory);
 
 				// attach result
-				final TreeNode linkNode = TreeFactory.addLeafNode(parent, sb, getLinkRes(linkId));
+				final TreeNode linkNode = TreeFactory.makeLeafNode(sb, getLinkRes(linkId), false).addTo(parent);
 				changedList.add(NEW, linkNode);
 			}
 			while (cursor.moveToNext());
 
 			// attach result
-			final TreeNode node = TreeFactory.addTextNode(parent, sb);
+			final TreeNode node = TreeFactory.makeTextNode(sb, false).addTo(parent);
 			changedList.add(NEW, node);
 			changed = changedList.toArray();
 		}
@@ -1408,7 +1408,7 @@ abstract public class BaseModule extends Module
 			while (cursor.moveToNext());
 
 			// attach result
-			final TreeNode node = TreeFactory.addTextNode(parent, sb);
+			final TreeNode node = TreeFactory.makeTextNode(sb, false).addTo(parent);
 			changed = TreeOp.seq(ANCHOR, parent, NEW, node);
 		}
 		else
@@ -1477,7 +1477,7 @@ abstract public class BaseModule extends Module
 			while (cursor.moveToNext());
 
 			// attach result
-			final TreeNode node = TreeFactory.addTextNode(parent, sb);
+			final TreeNode node = TreeFactory.makeTextNode(sb, false).addTo(parent);
 			changed = TreeOp.seq(ANCHOR, parent, NEW, node);
 		}
 		else
@@ -1514,7 +1514,7 @@ abstract public class BaseModule extends Module
 			while (cursor.moveToNext());
 
 			// attach result
-			final TreeNode node = TreeFactory.addTextNode(parent, sb);
+			final TreeNode node = TreeFactory.makeTextNode(sb, false).addTo(parent);
 			changed = TreeOp.seq(ANCHOR, parent, NEW, node);
 		}
 		else
@@ -1583,7 +1583,7 @@ abstract public class BaseModule extends Module
 			while (cursor.moveToNext());
 
 			// attach result
-			final TreeNode node = TreeFactory.addTextNode(parent, sb);
+			final TreeNode node = TreeFactory.makeTextNode(sb, false).addTo(parent);
 			changed = TreeOp.seq(ANCHOR, parent, NEW, node);
 		}
 		else
@@ -1638,7 +1638,7 @@ abstract public class BaseModule extends Module
 			while (cursor.moveToNext());
 
 			// attach result
-			final TreeNode node = TreeFactory.addTextNode(parent, sb);
+			final TreeNode node = TreeFactory.makeTextNode(sb, false).addTo(parent);
 			changed = TreeOp.seq(ANCHOR, parent, NEW, node);
 		}
 		else

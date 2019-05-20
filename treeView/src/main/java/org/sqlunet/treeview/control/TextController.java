@@ -1,11 +1,12 @@
 package org.sqlunet.treeview.control;
 
 import android.content.Context;
-import androidx.annotation.NonNull;
 import android.view.View;
 import android.widget.TextView;
 
 import org.sqlunet.treeview.model.TreeNode;
+
+import androidx.annotation.NonNull;
 
 /**
  * Text controller
@@ -16,10 +17,12 @@ public class TextController extends Controller<CharSequence>
 {
 	/**
 	 * Constructor
+	 *
+	 * @param breakExpand whether this controller breaks expansion
 	 */
-	public TextController()
+	public TextController(final boolean breakExpand)
 	{
-		super();
+		super(breakExpand);
 	}
 
 	@NonNull

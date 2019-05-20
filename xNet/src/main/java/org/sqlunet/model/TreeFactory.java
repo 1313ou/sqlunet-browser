@@ -6,6 +6,7 @@ import android.text.SpannableStringBuilder;
 import android.util.Log;
 
 import org.sqlunet.treeview.control.ColdQueryController;
+import org.sqlunet.treeview.control.CompositeValue;
 import org.sqlunet.treeview.control.HotQueryController;
 import org.sqlunet.treeview.control.IconTextController;
 import org.sqlunet.treeview.control.LeafController;
@@ -18,7 +19,6 @@ import org.sqlunet.treeview.control.MoreController;
 import org.sqlunet.treeview.control.Query;
 import org.sqlunet.treeview.control.TextController;
 import org.sqlunet.treeview.control.TreeController;
-import org.sqlunet.treeview.control.CompositeValue;
 import org.sqlunet.treeview.model.TreeNode;
 
 import androidx.annotation.NonNull;
@@ -35,114 +35,150 @@ public class TreeFactory
 	// NON-TREE (without tree junction icon)
 
 	/**
-	 * Add icon-text-link node
+	 * Make text node
 	 *
-	 * @param text text
-	 * @param icon icon
-	 * @param link link
+	 * @param value       character sequence
+	 * @param breakExpand break expand flag
 	 * @return created node
 	 */
-	static public TreeNode addLinkNode(@NonNull final TreeNode parent, final CharSequence text, final int icon, final Link link)
+	@NonNull
+	static public TreeNode makeTextNode(@NonNull final CharSequence value, final boolean breakExpand)
 	{
-		final TreeNode result = new TreeNode(new CompositeValue(text, icon, link), new LinkNodeController(), false);
-		parent.addChild(result);
-		return result;
+		return new TreeNode(value, new TextController(breakExpand));
 	}
 
-	// TREE
-
 	/**
-	 * Add leaf node
+	 * Make icon-text node
 	 *
-	 * @param parent parent node
-	 * @param text   text
-	 * @param icon   icon (extra icon after tree icon)
+	 * @param text        text
+	 * @param icon        icon
+	 * @param breakExpand break expand flag
 	 * @return created node
 	 */
-	static public TreeNode addLeafNode(@NonNull final TreeNode parent, final CharSequence text, final int icon)
+	@NonNull
+	static public TreeNode makeIconTextNode(@NonNull final CharSequence text, final int icon, final boolean breakExpand)
 	{
-		final TreeNode result = new TreeNode(new CompositeValue(text, icon), new LeafController(), false);
-		parent.addChild(result);
-		return result;
+		return new TreeNode(new CompositeValue(text, icon), new IconTextController(breakExpand), false);
+	}
+
+	/**
+	 * Make leaf node
+	 *
+	 * @param text        text
+	 * @param icon        icon (extra icon after tree icon)
+	 * @param breakExpand break expand flag
+	 * @return created node
+	 */
+	@NonNull
+	static public TreeNode makeLeafNode(@NonNull final CharSequence text, final int icon, final boolean breakExpand)
+	{
+		return new TreeNode(new CompositeValue(text, icon), new LeafController(breakExpand), false);
 	}
 
 	/**
 	 * Make more (leaf) node
 	 *
-	 * @param parent parent node
-	 * @param text   text
-	 * @param icon   icon (extra icon after tree icon)
+	 * @param text        text
+	 * @param icon        icon (extra icon after tree icon)
+	 * @param breakExpand break expand flag
 	 * @return created node
 	 */
-	static public TreeNode addMoreNode(@NonNull final TreeNode parent, final CharSequence text, final int icon)
+	@NonNull
+	static public TreeNode makeMoreNode(@NonNull final CharSequence text, final int icon, final boolean breakExpand)
 	{
-		final TreeNode result = new TreeNode(new CompositeValue(text, icon), new MoreController(), false);
-		parent.addChild(result);
-		return result;
+		return new TreeNode(new CompositeValue(text, icon), new MoreController(breakExpand), false);
+	}
+
+	/**
+	 * Make icon-text-link node
+	 *
+	 * @param text        text
+	 * @param icon        icon
+	 * @param link        link
+	 * @param breakExpand break expand flag
+	 * @return created node
+	 */
+	@NonNull
+	static public TreeNode makeLinkNode(@NonNull final CharSequence text, final int icon, final boolean breakExpand, final Link link)
+	{
+		return new TreeNode(new CompositeValue(text, icon, link), new LinkNodeController(breakExpand), false);
 	}
 
 	/**
 	 * Make link leaf node
 	 *
-	 * @param parent parent node
-	 * @param text   text
-	 * @param icon   icon
-	 * @param link   link
+	 * @param text        text
+	 * @param icon        icon
+	 * @param breakExpand break expand flag
+	 * @param link        link
 	 * @return created node
 	 */
-	static public TreeNode addLinkLeafNode(@NonNull final TreeNode parent, final CharSequence text, final int icon, final Link link)
+	@NonNull
+	static public TreeNode makeLinkLeafNode(@NonNull final CharSequence text, final int icon, final boolean breakExpand, final Link link)
 	{
-		final TreeNode result = new TreeNode(new CompositeValue(text, icon, link), new LinkLeafController());
-		parent.addChild(result);
-		return result;
+		return new TreeNode(new CompositeValue(text, icon, link), new LinkLeafController(breakExpand));
+	}
+
+	// TREE
+
+	/**
+	 * Add tree node
+	 *
+	 * @param value       character sequence
+	 * @param icon        icon resource id
+	 * @param breakExpand break expand flag
+	 * @return created node
+	 */
+	@NonNull
+	static public TreeNode makeTreeNode(@NonNull final CharSequence value, final int icon, final boolean breakExpand)
+	{
+		return new TreeNode(new CompositeValue(value, icon), new TreeController(breakExpand));
 	}
 
 	/**
 	 * Make link tree node
 	 *
-	 * @param parent parent node
-	 * @param text   text
-	 * @param icon   icon
-	 * @param link   link
+	 * @param text        text
+	 * @param icon        icon
+	 * @param breakExpand break expand flag
+	 * @param link        link
 	 * @return created node
 	 */
-	static public TreeNode addLinkTreeNode(@NonNull final TreeNode parent, final CharSequence text, final int icon, final Link link)
+	@NonNull
+	static public TreeNode makeLinkTreeNode(@NonNull final CharSequence text, final int icon, final boolean breakExpand, final Link link)
 	{
-		final TreeNode result = new TreeNode(new CompositeValue(text, icon, link), new LinkTreeController());
-		parent.addChild(result);
-		return result;
+		return new TreeNode(new CompositeValue(text, icon, link), new LinkTreeController(breakExpand));
 	}
 
 	/**
 	 * Make query node
 	 *
-	 * @param parent parent node
-	 * @param text   label text
-	 * @param icon   icon
-	 * @param query  query
+	 * @param text        label text
+	 * @param icon        icon
+	 * @param breakExpand break expand flag
+	 * @param query       query
 	 * @return created node
 	 */
-	static public TreeNode addQueryNode(@NonNull final TreeNode parent, final CharSequence text, final int icon, final Query query)
+	@NonNull
+	static public TreeNode makeQueryNode(@NonNull final CharSequence text, final int icon, final boolean breakExpand, final Query query)
 	{
-		final TreeNode result = new TreeNode(new CompositeValue(text, icon, query), new ColdQueryController());
-		parent.addChild(result);
-		return result;
+		return new TreeNode(new CompositeValue(text, icon, query), new ColdQueryController(breakExpand));
 	}
 
 	/**
 	 * Make hot (self-triggered) query node
 	 *
-	 * @param parent parent node
-	 * @param text   label text
-	 * @param icon   icon
-	 * @param query  query
+	 * @param text        label text
+	 * @param icon        icon
+	 * @param breakExpand break expand flag
+	 * @param query       query
 	 * @return created node
 	 */
-	static public TreeNode addHotQueryNode(@NonNull final TreeNode parent, final CharSequence text, final int icon, final Query query)
+	@NonNull
+	static public TreeNode makeHotQueryNode(@NonNull final CharSequence text, final int icon, final boolean breakExpand, final Query query)
 	{
-		final HotQueryController controller = new HotQueryController();
+		final HotQueryController controller = new HotQueryController(breakExpand);
 		final TreeNode result = new TreeNode(new CompositeValue(text, icon, query), controller);
-		parent.addChild(result);
 
 		final Handler handler = new Handler(Looper.getMainLooper());
 		handler.post(controller::processQuery);
@@ -153,66 +189,20 @@ public class TreeFactory
 	/**
 	 * Make link query node
 	 *
-	 * @param parent parent node
-	 * @param text   label text
-	 * @param icon   icon
-	 * @param query  query
-	 * @param link   link
-	 * @return created node
-	 */
-	static public TreeNode addLinkQueryNode(@NonNull final TreeNode parent, final CharSequence text, final int icon, final Query query, final Link link)
-	{
-		final TreeNode result = new TreeNode(new CompositeValue(text, icon, query, link), new LinkQueryController());
-		parent.addChild(result);
-		return result;
-	}
-
-	/**
-	 * Add text node(s)
-	 *
-	 * @param parent parent node
-	 * @param value  character sequence
+	 * @param text        label text
+	 * @param icon        icon
+	 * @param breakExpand break expand flag
+	 * @param query       query
+	 * @param link        link
 	 * @return created node
 	 */
 	@NonNull
-	@SuppressWarnings("UnusedReturnValue")
-	static public TreeNode addTextNode(@NonNull final TreeNode parent, final CharSequence value)
+	static public TreeNode makeLinkQueryNode(@NonNull final CharSequence text, final int icon, final boolean breakExpand, final Query query, final Link link)
 	{
-		final TreeNode result = new TreeNode(value, new TextController());
-		parent.addChild(result);
-		return result;
+		return new TreeNode(new CompositeValue(text, icon, query, link), new LinkQueryController(breakExpand));
 	}
 
-	/**
-	 * Make icon-text node
-	 *
-	 * @param parent parent node
-	 * @param text   text
-	 * @param icon   icon
-	 * @return created node
-	 */
-	static public TreeNode addIconTextNode(@NonNull final TreeNode parent, @SuppressWarnings("SameParameterValue") final CharSequence text, final int icon)
-	{
-		final TreeNode result = new TreeNode(new CompositeValue(text, icon), new IconTextController(), false);
-		parent.addChild(result);
-		return result;
-	}
-
-	/**
-	 * Add tree node(s)
-	 *
-	 * @param parent parent node
-	 * @param value  character sequence
-	 * @param icon   icon resource id
-	 * @return created node
-	 */
-	@NonNull
-	static public TreeNode addTreeNode(@NonNull final TreeNode parent, final CharSequence value, final int icon)
-	{
-		final TreeNode result = new TreeNode(new CompositeValue(value, icon), new TreeController());
-		parent.addChild(result);
-		return result;
-	}
+	// H E L P E R S
 
 	/**
 	 * No results have been attached to this node
@@ -226,7 +216,7 @@ public class TreeFactory
 		node.setEnabled(false);
 	}
 
-	public static void setTextNode(final TreeNode node, final SpannableStringBuilder sb)
+	public static void setTextNode(@NonNull final TreeNode node, final SpannableStringBuilder sb)
 	{
 		node.setValue(sb);
 	}

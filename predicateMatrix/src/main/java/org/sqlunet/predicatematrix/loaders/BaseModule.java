@@ -29,9 +29,9 @@ import org.sqlunet.treeview.control.Link;
 import org.sqlunet.treeview.model.TreeNode;
 import org.sqlunet.verbnet.VnClassPointer;
 import org.sqlunet.verbnet.browser.VnClassActivity;
-import org.sqlunet.view.TreeOpExecute;
 import org.sqlunet.view.TreeOp;
 import org.sqlunet.view.TreeOp.TreeOps;
+import org.sqlunet.view.TreeOpExecute;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -1216,12 +1216,12 @@ abstract class BaseModule extends Module
 		/**
 		 * Display PredicateMatrix role
 		 *
-		 * @param parentNode parent node
-		 * @param pmRole     PredicateMatrix role
+		 * @param parent parent node
+		 * @param pmRole PredicateMatrix role
 		 * @return created node
 		 */
 		@NonNull
-		TreeNode displayPmRole(@NonNull final TreeNode parentNode, @NonNull final SpannableStringBuilder pmsb, @NonNull final PmRole pmRole, @NonNull final TreeOps changedList)
+		TreeNode displayPmRole(@NonNull final TreeNode parent, @NonNull final SpannableStringBuilder pmsb, @NonNull final PmRole pmRole, @NonNull final TreeOps changedList)
 		{
 			if (pmRole.pmRole != null)
 			{
@@ -1233,7 +1233,7 @@ abstract class BaseModule extends Module
 				Spanner.append(pmsb, roleData, 0, PredicateMatrixFactories.dataFactory);
 			}
 
-			final TreeNode result = TreeFactory.addTreeNode(parentNode, pmsb, R.drawable.role);
+			final TreeNode result = TreeFactory.makeTreeNode(pmsb, R.drawable.role, false).addTo(parent);
 			changedList.add(NEW, result);
 			return result;
 		}
@@ -1241,13 +1241,13 @@ abstract class BaseModule extends Module
 		/**
 		 * Display PredicateMatrix row
 		 *
-		 * @param parentNode parent node
-		 * @param pmRow      PredicateMatrix row
-		 * @param wnData     WordNet data
+		 * @param parent parent node
+		 * @param pmRow  PredicateMatrix row
+		 * @param wnData WordNet data
 		 * @return created node
 		 */
 		@NonNull
-		TreeNode displayPmRow(@NonNull final TreeNode parentNode, @NonNull final PmRow pmRow, @Nullable final WnData wnData, @NonNull final TreeOps changedList)
+		TreeNode displayPmRow(@NonNull final TreeNode parent, @NonNull final PmRow pmRow, @Nullable final WnData wnData, @NonNull final TreeOps changedList)
 		{
 			final SpannableStringBuilder pmsb = new SpannableStringBuilder();
 			// rolesb.append("predicate role ");
@@ -1266,7 +1266,7 @@ abstract class BaseModule extends Module
 				Spanner.append(pmsb, wnData.definition, 0, PredicateMatrixFactories.definitionFactory);
 			}
 
-			final TreeNode result = TreeFactory.addTreeNode(parentNode, pmsb, R.drawable.predicatematrix);
+			final TreeNode result = TreeFactory.makeTreeNode(pmsb, R.drawable.predicatematrix, false).addTo(parent);
 			changedList.add(NEW, result);
 			return result;
 		}
@@ -1321,7 +1321,9 @@ abstract class BaseModule extends Module
 				Spanner.append(vnsb, wnData.definition, 0, PredicateMatrixFactories.definitionFactory);
 			}
 
-			final TreeNode result = vnData.vnClassId == 0L ? TreeFactory.addLeafNode(parent, vnsb, R.drawable.verbnet) : TreeFactory.addLinkLeafNode(parent, vnsb, R.drawable.verbnet, new VnClassLink(vnData.vnClassId));
+			final TreeNode result = vnData.vnClassId == 0L ? //
+					TreeFactory.makeLeafNode(vnsb, R.drawable.verbnet, false).addTo(parent) :  //
+					TreeFactory.makeLinkLeafNode(vnsb, R.drawable.verbnet, false, new VnClassLink(vnData.vnClassId)).addTo(parent);
 			changedList.add(NEW, result);
 			return result;
 		}
@@ -1390,7 +1392,9 @@ abstract class BaseModule extends Module
 				Spanner.append(pbsb, wnData.definition, 0, PredicateMatrixFactories.definitionFactory);
 			}
 
-			final TreeNode result = pbData.pbRoleSetId == 0L ? TreeFactory.addLeafNode(parent, pbsb, R.drawable.propbank) : TreeFactory.addLinkLeafNode(parent, pbsb, R.drawable.propbank, new PbRoleSetLink(pbData.pbRoleSetId));
+			final TreeNode result = pbData.pbRoleSetId == 0L ? //
+					TreeFactory.makeLeafNode(pbsb, R.drawable.propbank, false).addTo(parent) : //
+					TreeFactory.makeLinkLeafNode(pbsb, R.drawable.propbank, false, new PbRoleSetLink(pbData.pbRoleSetId)).addTo(parent);
 			changedList.add(NEW, result);
 			return result;
 		}
@@ -1446,7 +1450,9 @@ abstract class BaseModule extends Module
 				Spanner.append(fnsb, wnData.definition, 0, PredicateMatrixFactories.definitionFactory);
 			}
 
-			final TreeNode result = fnData.fnFrameId == 0L ? TreeFactory.addLeafNode(parent, fnsb, R.drawable.framenet) : TreeFactory.addLinkLeafNode(parent, fnsb, R.drawable.framenet, new FnFrameLink(fnData.fnFrameId));
+			final TreeNode result = fnData.fnFrameId == 0L ? //
+					TreeFactory.makeLeafNode(fnsb, R.drawable.framenet, false).addTo(parent) : //
+					TreeFactory.makeLinkLeafNode(fnsb, R.drawable.framenet, false, new FnFrameLink(fnData.fnFrameId)).addTo(parent);
 			changedList.add(NEW, result);
 			return result;
 		}
@@ -1521,7 +1527,7 @@ abstract class BaseModule extends Module
 		private TreeNode synsetNode;
 
 		@Override
-		public void display(@NonNull final TreeNode parentNode, @NonNull final WnData wnData, @NonNull final PmRow pmRole, @NonNull final VnData vnData, @NonNull final PbData pbData, @NonNull final FnData fnData, @NonNull final TreeOps changedList)
+		public void display(@NonNull final TreeNode parent, @NonNull final WnData wnData, @NonNull final PmRow pmRole, @NonNull final VnData vnData, @NonNull final PbData pbData, @NonNull final FnData fnData, @NonNull final TreeOps changedList)
 		{
 			if (this.synsetId != wnData.synsetId)
 			{
@@ -1541,7 +1547,7 @@ abstract class BaseModule extends Module
 				}
 
 				// attach synset
-				this.synsetNode = TreeFactory.addTreeNode(parentNode, synsetsb, R.drawable.synset);
+				this.synsetNode = TreeFactory.makeTreeNode(synsetsb, R.drawable.synset, false).addTo(parent);
 				changedList.add(NEW, this.synsetNode);
 			}
 			super.displayRow(this.synsetNode, wnData, pmRole, vnData, pbData, fnData, false, false, changedList);
