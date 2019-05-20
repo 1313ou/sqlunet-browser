@@ -37,38 +37,66 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="dbe7534c-3086-4b17-848a-f5676a7f84bd" name="Default" comment="tree node factory add split into make + addTo(parent)&#10;break expansion scheme" />
+    <list default="true" id="dbe7534c-3086-4b17-848a-f5676a7f84bd" name="Default" comment="workspace">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bNC/bNC.iml" beforeDir="false" afterPath="$PROJECT_DIR$/bNC/bNC.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/browser/browser.iml" beforeDir="false" afterPath="$PROJECT_DIR$/browser/browser.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/browserewn/browserewn.iml" beforeDir="false" afterPath="$PROJECT_DIR$/browserewn/browserewn.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/browserfn/browserfn.iml" beforeDir="false" afterPath="$PROJECT_DIR$/browserfn/browserfn.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/browservn/browservn.iml" beforeDir="false" afterPath="$PROJECT_DIR$/browservn/browservn.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/browserwn/browserwn.iml" beforeDir="false" afterPath="$PROJECT_DIR$/browserwn/browserwn.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/common.iml" beforeDir="false" afterPath="$PROJECT_DIR$/common/common.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/deploy/deploy.iml" beforeDir="false" afterPath="$PROJECT_DIR$/deploy/deploy.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/download/download.iml" beforeDir="false" afterPath="$PROJECT_DIR$/download/download.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/expandableListFragment/expandableListFragment.iml" beforeDir="false" afterPath="$PROJECT_DIR$/expandableListFragment/expandableListFragment.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frameNet/frameNet.iml" beforeDir="false" afterPath="$PROJECT_DIR$/frameNet/frameNet.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libwn/libwn.iml" beforeDir="false" afterPath="$PROJECT_DIR$/libwn/libwn.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/predicateMatrix/predicateMatrix.iml" beforeDir="false" afterPath="$PROJECT_DIR$/predicateMatrix/predicateMatrix.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/preference/preference.iml" beforeDir="false" afterPath="$PROJECT_DIR$/preference/preference.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/propbank/propbank.iml" beforeDir="false" afterPath="$PROJECT_DIR$/propbank/propbank.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/support/support.iml" beforeDir="false" afterPath="$PROJECT_DIR$/support/support.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/test.iml" beforeDir="false" afterPath="$PROJECT_DIR$/test/test.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/treeView/treeView.iml" beforeDir="false" afterPath="$PROJECT_DIR$/treeView/treeView.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/verbNet/verbNet.iml" beforeDir="false" afterPath="$PROJECT_DIR$/verbNet/verbNet.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wordNet/wordNet.iml" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/wordNet.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/xNet/xNet.iml" beforeDir="false" afterPath="$PROJECT_DIR$/xNet/xNet.iml" afterDir="false" />
+    </list>
     <list id="36f6b5c7-9521-46b4-bf4d-149db941bcca" name="NonPublic" comment="" />
     <ignored path="SqlUNet.iws" />
     <ignored path=".idea/workspace.xml" />
-    <ignored path="../../../../mnt/data2/devel/android-sqlunet-as/SqlUNet/data/" />
-    <ignored path="../../../../mnt/data2/devel/android-sqlunet-as/SqlUNet/bNC/build/" />
-    <ignored path="../../../../mnt/data2/devel/android-sqlunet-as/SqlUNet/build/" />
-    <ignored path="../../../../mnt/data2/devel/android-sqlunet-as/SqlUNet/xNet/build/" />
-    <ignored path="../../../../mnt/data2/devel/android-sqlunet-as/SqlUNet/wordNet/build/" />
-    <ignored path="../../../../mnt/data2/devel/android-sqlunet-as/SqlUNet/verbNet/build/" />
-    <ignored path="../../../../mnt/data2/devel/android-sqlunet-as/SqlUNet/treeView/build/" />
-    <ignored path="../../../../mnt/data2/devel/android-sqlunet-as/SqlUNet/test/build/" />
-    <ignored path="../../../../mnt/data2/devel/android-sqlunet-as/SqlUNet/propbank/build/" />
-    <ignored path="../../../../mnt/data2/devel/android-sqlunet-as/SqlUNet/predicateMatrix/build/" />
-    <ignored path="../../../../mnt/data2/devel/android-sqlunet-as/SqlUNet/frameNet/build/" />
-    <ignored path="../../../../mnt/data2/devel/android-sqlunet-as/SqlUNet/common/build/" />
-    <ignored path="../../../../mnt/data2/devel/android-sqlunet-as/SqlUNet/browserwn/build/" />
-    <ignored path="../../../../mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/build/" />
-    <ignored path="../../../../mnt/data2/devel/android-sqlunet-as/SqlUNet/browserfn/build/" />
-    <ignored path="../../../../mnt/data2/devel/android-sqlunet-as/SqlUNet/browservn/build/" />
+    <ignored path=".idea/workspace.xml.orig" />
+    <ignored path=".idea/caches/" />
     <ignored path="../../../../mnt/data2/devel/android-sqlunet-as/SqlUNet/.gradle/" />
     <ignored path="../../../../mnt/data2/devel/android-sqlunet-as/SqlUNet/gradle/wrapper/" />
+    <ignored path="../../../../mnt/data2/devel/android-sqlunet-as/SqlUNet/bNC/build/" />
+    <ignored path="../../../../mnt/data2/devel/android-sqlunet-as/SqlUNet/browser/build/" />
+    <ignored path="../../../../mnt/data2/devel/android-sqlunet-as/SqlUNet/browserewn/build/" />
+    <ignored path="../../../../mnt/data2/devel/android-sqlunet-as/SqlUNet/browserfn/build/" />
+    <ignored path="../../../../mnt/data2/devel/android-sqlunet-as/SqlUNet/browservn/build/" />
+    <ignored path="../../../../mnt/data2/devel/android-sqlunet-as/SqlUNet/browserwn/build/" />
+    <ignored path="../../../../mnt/data2/devel/android-sqlunet-as/SqlUNet/build/" />
+    <ignored path="../../../../mnt/data2/devel/android-sqlunet-as/SqlUNet/common/build/" />
+    <ignored path="../../../../mnt/data2/devel/android-sqlunet-as/SqlUNet/deploy/build/" />
+    <ignored path="../../../../mnt/data2/devel/android-sqlunet-as/SqlUNet/download/build/" />
+    <ignored path="../../../../mnt/data2/devel/android-sqlunet-as/SqlUNet/frameNet/build/" />
+    <ignored path="../../../../mnt/data2/devel/android-sqlunet-as/SqlUNet/libwn/build/" />
+    <ignored path="../../../../mnt/data2/devel/android-sqlunet-as/SqlUNet/predicateMatrix/build/" />
+    <ignored path="../../../../mnt/data2/devel/android-sqlunet-as/SqlUNet/preference/build/" />
+    <ignored path="../../../../mnt/data2/devel/android-sqlunet-as/SqlUNet/propbank/build/" />
+    <ignored path="../../../../mnt/data2/devel/android-sqlunet-as/SqlUNet/support/build/" />
+    <ignored path="../../../../mnt/data2/devel/android-sqlunet-as/SqlUNet/test/build/" />
+    <ignored path="../../../../mnt/data2/devel/android-sqlunet-as/SqlUNet/treeView/build/" />
+    <ignored path="../../../../mnt/data2/devel/android-sqlunet-as/SqlUNet/verbNet/build/" />
+    <ignored path="../../../../mnt/data2/devel/android-sqlunet-as/SqlUNet/wordNet/build/" />
+    <ignored path="../../../../mnt/data2/devel/android-sqlunet-as/SqlUNet/xNet/build/" />
+    <ignored path="../../../../mnt/data2/devel/android-sqlunet-as/SqlUNet/data/" />
     <ignored path="../../../../mnt/data2/devel/android-sqlunet-as/SqlUNet/dist/release/" />
     <ignored path="../../../../mnt/data2/devel/android-sqlunet-as/SqlUNet/dist/captures/temp/" />
-    <ignored path="captures/" />
     <ignored path="tools/data/css/" />
     <ignored path="tools/data/images/" />
     <ignored path="tools/data/js/" />
+    <ignored path="captures/" />
     <ignored path="SqlUNet.zip" />
-    <ignored path=".idea/caches/" />
-    <ignored path=".idea/workspace.xml.orig" />
-    <ignored path="../../../../mnt/data2/devel/android-sqlunet-as/SqlUNet/browserewn/build/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -116,7 +144,7 @@
     <favorites_list name="SqlUNet" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
+    <leaf />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -329,71 +357,14 @@
     </navigator>
     <panes>
       <pane id="PackagesPane" />
+      <pane id="ProjectPane" />
+      <pane id="AndroidView" />
       <pane id="Scope">
         <subPane subId="Scope 'Project Files'; set:Project Files; class com.intellij.psi.search.scope.ProjectFilesScope">
           <expand>
             <path>
               <item name="SqlUNet" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
               <item name="" type="442cc68d:ScopeViewTreeModel$RootNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
-      <pane id="ProjectPane" />
-      <pane id="AndroidView">
-        <subPane>
-          <expand>
-            <path>
-              <item name="SqlUNet" type="1abcf292:AndroidViewProjectNode" />
-              <item name="treeView" type="feadf853:AndroidModuleNode" />
-            </path>
-            <path>
-              <item name="SqlUNet" type="1abcf292:AndroidViewProjectNode" />
-              <item name="treeView" type="feadf853:AndroidModuleNode" />
-              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
-            </path>
-            <path>
-              <item name="SqlUNet" type="1abcf292:AndroidViewProjectNode" />
-              <item name="treeView" type="feadf853:AndroidModuleNode" />
-              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
-              <item name="treeview" type="cbb59c9e:AndroidPsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="SqlUNet" type="1abcf292:AndroidViewProjectNode" />
-              <item name="treeView" type="feadf853:AndroidModuleNode" />
-              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
-              <item name="treeview" type="cbb59c9e:AndroidPsiDirectoryNode" />
-              <item name="control" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="SqlUNet" type="1abcf292:AndroidViewProjectNode" />
-              <item name="treeView" type="feadf853:AndroidModuleNode" />
-              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
-              <item name="treeview" type="cbb59c9e:AndroidPsiDirectoryNode" />
-              <item name="view" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="SqlUNet" type="1abcf292:AndroidViewProjectNode" />
-              <item name="xNet" type="feadf853:AndroidModuleNode" />
-            </path>
-            <path>
-              <item name="SqlUNet" type="1abcf292:AndroidViewProjectNode" />
-              <item name="xNet" type="feadf853:AndroidModuleNode" />
-              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
-            </path>
-            <path>
-              <item name="SqlUNet" type="1abcf292:AndroidViewProjectNode" />
-              <item name="xNet" type="feadf853:AndroidModuleNode" />
-              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
-              <item name="sqlunet" type="cbb59c9e:AndroidPsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="SqlUNet" type="1abcf292:AndroidViewProjectNode" />
-              <item name="xNet" type="feadf853:AndroidModuleNode" />
-              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
-              <item name="sqlunet" type="cbb59c9e:AndroidPsiDirectoryNode" />
-              <item name="view" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -1219,13 +1190,6 @@
       <option name="presentableId" value="Default" />
       <updated>1487150992421</updated>
     </task>
-    <task id="LOCAL-00138" summary="wip towards view-independent tree model">
-      <created>1554883383481</created>
-      <option name="number" value="00138" />
-      <option name="presentableId" value="LOCAL-00138" />
-      <option name="project" value="LOCAL" />
-      <updated>1554883383482</updated>
-    </task>
     <task id="LOCAL-00139" summary="wip towards view-independent tree model">
       <created>1555049145454</created>
       <option name="number" value="00139" />
@@ -1562,7 +1526,14 @@
       <option name="project" value="LOCAL" />
       <updated>1558344846728</updated>
     </task>
-    <option name="localTasksCounter" value="187" />
+    <task id="LOCAL-00187" summary="workspace">
+      <created>1558345396958</created>
+      <option name="number" value="00187" />
+      <option name="presentableId" value="LOCAL-00187" />
+      <option name="project" value="LOCAL" />
+      <updated>1558345396958</updated>
+    </task>
+    <option name="localTasksCounter" value="188" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1609,7 +1580,7 @@
   <component name="ToolWindowManager">
     <frame x="53" y="27" width="1255" height="1173" extended-state="0" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.6680384" visible="true" weight="0.23330586" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.6680384" visible="true" weight="0.1772465" />
       <window_info id="Structure" order="1" sideWeight="0.47352496" side_tool="true" weight="0.27697262" />
       <window_info id="Captures" order="2" sideWeight="0.3319616" side_tool="true" weight="0.25447154" />
       <window_info id="Capture Tool" order="3" />
@@ -1626,7 +1597,7 @@
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" sideWeight="0.30907604" weight="0.32692307" />
-      <window_info anchor="bottom" id="Android Profiler" order="7" />
+      <window_info anchor="bottom" id="Android Profiler" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Logcat" order="8" sideWeight="0.5292663" side_tool="true" weight="0.30039138" />
       <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.7481542" side_tool="true" weight="0.4459725" />
       <window_info anchor="bottom" id="Build" order="10" sideWeight="0.29152822" weight="0.22015655" />
@@ -1757,7 +1728,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$" />
     </ignored-roots>
-    <MESSAGE value="wip xselectors with livedata on ui thread" />
     <MESSAGE value="wip viewmodels as members" />
     <MESSAGE value="wip fixes crash" />
     <MESSAGE value="wip models as members" />
@@ -1782,7 +1752,8 @@
     <MESSAGE value="sub menus" />
     <MESSAGE value="renames&#10;sensepointer with pos" />
     <MESSAGE value="tree node factory add split into make + addTo(parent)&#10;break expansion scheme" />
-    <option name="LAST_COMMIT_MESSAGE" value="tree node factory add split into make + addTo(parent)&#10;break expansion scheme" />
+    <MESSAGE value="workspace" />
+    <option name="LAST_COMMIT_MESSAGE" value="workspace" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -2172,26 +2143,26 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/browservn/src/main/res/layout/activity_browse2.xml">
-      <provider editor-type-id="android-designer2" />
       <provider selected="true" editor-type-id="text-editor" />
+      <provider editor-type-id="android-designer2" />
     </entry>
     <entry file="file://$PROJECT_DIR$/browservn/src/main/res/layout/fragment_browse2_multi.xml">
-      <provider editor-type-id="android-designer2" />
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-179" />
       </provider>
+      <provider editor-type-id="android-designer2" />
     </entry>
     <entry file="file://$PROJECT_DIR$/browservn/src/main/res/layout/fragment_browse2.xml">
-      <provider editor-type-id="android-designer2" />
       <provider selected="true" editor-type-id="text-editor" />
+      <provider editor-type-id="android-designer2" />
     </entry>
     <entry file="file://$PROJECT_DIR$/browserfn/src/main/res/layout/fragment_browse2_multi.xml">
-      <provider editor-type-id="android-designer2" />
       <provider selected="true" editor-type-id="text-editor" />
+      <provider editor-type-id="android-designer2" />
     </entry>
     <entry file="file://$PROJECT_DIR$/browserfn/src/main/res/layout/fragment_browse2.xml">
-      <provider editor-type-id="android-designer2" />
       <provider selected="true" editor-type-id="text-editor" />
+      <provider editor-type-id="android-designer2" />
     </entry>
     <entry file="file://$PROJECT_DIR$/treeView/src/main/java/org/sqlunet/treeview/control/Controller.java">
       <provider selected="true" editor-type-id="text-editor">
