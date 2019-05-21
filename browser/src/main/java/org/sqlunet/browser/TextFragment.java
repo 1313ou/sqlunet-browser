@@ -1,3 +1,7 @@
+/*
+ * Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>.
+ */
+
 package org.sqlunet.browser;
 
 import android.content.Context;
@@ -11,9 +15,6 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Parcelable;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AlertDialog;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
 import android.text.style.DynamicDrawableSpan;
@@ -51,6 +52,10 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.regex.Pattern;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 
 /**
  * TextSearch progressMessage fragment

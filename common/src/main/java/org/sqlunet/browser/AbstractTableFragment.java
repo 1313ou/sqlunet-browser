@@ -1,3 +1,7 @@
+/*
+ * Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>.
+ */
+
 package org.sqlunet.browser;
 
 import android.content.Context;
@@ -49,7 +53,7 @@ public abstract class AbstractTableFragment extends ListFragment
 	 */
 	@Nullable
 	abstract protected ViewBinder makeViewBinder();
-	
+
 	@Override
 	public void onAttach(@NonNull final Context context)
 	{

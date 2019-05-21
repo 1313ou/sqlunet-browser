@@ -1,13 +1,18 @@
+/*
+ * Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>.
+ */
+
 package org.sqlunet.propbank.loaders;
 
 import android.os.Parcelable;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 
 import org.sqlunet.HasWordId;
 import org.sqlunet.browser.TreeFragment;
 import org.sqlunet.model.TreeFactory;
 import org.sqlunet.treeview.model.TreeNode;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 /**
  * Module for PropBank role sets from word

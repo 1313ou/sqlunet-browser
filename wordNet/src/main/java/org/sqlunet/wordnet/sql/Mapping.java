@@ -1,10 +1,12 @@
+/*
+ * Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>.
+ */
+
 package org.sqlunet.wordnet.sql;
 
 import android.annotation.SuppressLint;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import android.util.Log;
 import android.util.SparseArray;
 
@@ -14,6 +16,9 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 /**
  * Id-name mappings

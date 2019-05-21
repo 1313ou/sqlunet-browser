@@ -1,12 +1,16 @@
-package org.sqlunet.dom;
+/*
+ * Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>.
+ */
 
-import androidx.annotation.NonNull;
+package org.sqlunet.dom;
 
 import org.w3c.dom.Document;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
+
+import androidx.annotation.NonNull;
 
 /**
  * Document factory

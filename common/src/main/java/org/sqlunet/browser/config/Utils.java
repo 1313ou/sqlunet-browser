@@ -1,10 +1,15 @@
+/*
+ * Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>.
+ */
+
 package org.sqlunet.browser.config;
 
 import android.content.Context;
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
 
 import org.sqlunet.browser.common.R;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 
 /**
  * Utils

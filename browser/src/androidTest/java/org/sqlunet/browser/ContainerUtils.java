@@ -1,7 +1,5 @@
 package org.sqlunet.browser;
 
-import android.os.Environment;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ExpandableListAdapter;
@@ -9,14 +7,6 @@ import android.widget.ExpandableListView;
 
 import org.hamcrest.Matcher;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-
-import androidx.test.espresso.Espresso;
 import androidx.test.espresso.UiController;
 import androidx.test.espresso.ViewAction;
 

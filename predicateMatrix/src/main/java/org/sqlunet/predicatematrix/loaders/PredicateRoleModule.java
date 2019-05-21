@@ -1,7 +1,8 @@
-package org.sqlunet.predicatematrix.loaders;
+/*
+ * Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>.
+ */
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
+package org.sqlunet.predicatematrix.loaders;
 
 import android.os.Parcelable;
 
@@ -9,6 +10,9 @@ import org.sqlunet.browser.TreeFragment;
 import org.sqlunet.predicatematrix.PmRolePointer;
 import org.sqlunet.predicatematrix.settings.Settings.PMMode;
 import org.sqlunet.treeview.model.TreeNode;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 /**
  * Module for predicate roles obtained from pm role id

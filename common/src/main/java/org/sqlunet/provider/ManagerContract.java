@@ -1,10 +1,15 @@
+/*
+ * Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>.
+ */
+
 package org.sqlunet.provider;
 
 import android.content.Context;
 import android.content.Intent;
-import androidx.annotation.NonNull;
 
 import org.sqlunet.browser.config.TableActivity;
+
+import androidx.annotation.NonNull;
 
 /**
  * Manager contract

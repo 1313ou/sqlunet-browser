@@ -1,20 +1,25 @@
+/*
+ * Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>.
+ */
+
 package org.sqlunet.browser;
 
 import android.content.Intent;
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 import android.view.MenuItem;
 
 import org.sqlunet.browser.common.R;
-import org.sqlunet.download.FileDataDownloader;
 import org.sqlunet.browser.config.SettingsActivity;
 import org.sqlunet.browser.config.SetupActivity;
 import org.sqlunet.browser.config.StorageActivity;
+import org.sqlunet.download.FileDataDownloader;
 import org.sqlunet.provider.BaseProvider;
 import org.sqlunet.settings.Settings;
 import org.sqlunet.settings.StorageSettings;
 import org.sqlunet.support.DonateActivity;
 import org.sqlunet.support.OtherActivity;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
 /**
  * Main activity stub
@@ -56,12 +61,7 @@ public class MenuHandler
 		}
 		else if (i == R.id.action_update)
 		{
-			FileDataDownloader.start(activity,
-					activity.getResources().getString(R.string.pref_default_download_dbfile),
-					StorageSettings.getDbDownloadSource(activity),
-					StorageSettings.getDatabasePath(activity),
-					StorageSettings.getCacheDir(activity)
-					);
+			FileDataDownloader.start(activity, activity.getResources().getString(R.string.pref_default_download_dbfile), StorageSettings.getDbDownloadSource(activity), StorageSettings.getDatabasePath(activity), StorageSettings.getCacheDir(activity));
 			return true;
 		}
 		else if (i == R.id.action_setup)

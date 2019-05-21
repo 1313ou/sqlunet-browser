@@ -1,10 +1,11 @@
+/*
+ * Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>.
+ */
+
 package org.sqlunet.browser;
 
 import android.content.Context;
 import android.os.Bundle;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 
 import org.sqlunet.browser.fn.R;
 import org.sqlunet.browser.fn.Settings;
@@ -13,6 +14,10 @@ import org.sqlunet.framenet.FnFramePointer;
 import org.sqlunet.framenet.browser.FnFrameFragment;
 import org.sqlunet.framenet.browser.FnLexUnitFragment;
 import org.sqlunet.provider.ProviderArgs;
+
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 /**
  * A fragment representing a detail

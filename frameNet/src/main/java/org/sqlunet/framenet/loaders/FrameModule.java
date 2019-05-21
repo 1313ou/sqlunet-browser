@@ -1,7 +1,8 @@
-package org.sqlunet.framenet.loaders;
+/*
+ * Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>.
+ */
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
+package org.sqlunet.framenet.loaders;
 
 import android.os.Parcelable;
 
@@ -10,6 +11,9 @@ import org.sqlunet.browser.TreeFragment;
 import org.sqlunet.framenet.FnFramePointer;
 import org.sqlunet.model.TreeFactory;
 import org.sqlunet.treeview.model.TreeNode;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 /**
  * Frame module
@@ -33,7 +37,7 @@ public class FrameModule extends BaseModule
 	/**
 	 * Constructor
 	 *
-	 * @param fragment  containing fragment
+	 * @param fragment containing fragment
 	 */
 	public FrameModule(@NonNull final TreeFragment fragment)
 	{

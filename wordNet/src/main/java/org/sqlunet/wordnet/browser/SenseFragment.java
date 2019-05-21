@@ -1,9 +1,13 @@
-package org.sqlunet.wordnet.browser;
+/*
+ * Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>.
+ */
 
-import androidx.annotation.NonNull;
+package org.sqlunet.wordnet.browser;
 
 import org.sqlunet.browser.Module;
 import org.sqlunet.wordnet.loaders.SenseModule;
+
+import androidx.annotation.NonNull;
 
 /**
  * A fragment representing a sense

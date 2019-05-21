@@ -1,8 +1,10 @@
+/*
+ * Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>.
+ */
+
 package org.sqlunet.settings;
 
 import android.os.Environment;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import android.util.Log;
 
 import org.sqlunet.dom.DomTransformer;
@@ -12,6 +14,9 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 /**
  * File utilities

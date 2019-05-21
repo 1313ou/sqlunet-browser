@@ -1,3 +1,7 @@
+/*
+ * Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>.
+ */
+
 package org.sqlunet.treeview.control;
 
 import org.sqlunet.treeview.model.TreeNode;
@@ -17,7 +21,7 @@ public abstract class Query
 	/**
 	 * Constructor
 	 *
-	 * @param id   id
+	 * @param id id
 	 */
 	protected Query(final long id)
 	{

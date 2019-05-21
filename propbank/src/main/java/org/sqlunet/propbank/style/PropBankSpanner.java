@@ -1,11 +1,16 @@
+/*
+ * Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>.
+ */
+
 package org.sqlunet.propbank.style;
 
 import android.content.Context;
-import androidx.annotation.NonNull;
 import android.text.style.ImageSpan;
 
 import org.sqlunet.propbank.R;
 import org.sqlunet.style.RegExprSpanner;
+
+import androidx.annotation.NonNull;
 
 /**
  * Spanner for PropBank

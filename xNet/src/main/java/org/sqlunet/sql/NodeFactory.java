@@ -1,11 +1,15 @@
-package org.sqlunet.sql;
+/*
+ * Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>.
+ */
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
+package org.sqlunet.sql;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 /**
  * DOM node factory

@@ -1,3 +1,7 @@
+/*
+ * Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>.
+ */
+
 package org.sqlunet.browser.config;
 
 import android.content.ContentProvider;
@@ -6,8 +10,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Build;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import android.util.Log;
 
 import org.sqlunet.browser.common.R;
@@ -15,6 +17,9 @@ import org.sqlunet.download.DownloadActivity;
 import org.sqlunet.settings.StorageSettings;
 
 import java.util.Collection;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import static org.sqlunet.download.BaseDownloadFragment.DOWNLOAD_FROM_ARG;
 import static org.sqlunet.download.BaseDownloadFragment.DOWNLOAD_TO_ARG;

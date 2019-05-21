@@ -1,6 +1,9 @@
+/*
+ * Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>.
+ */
+
 package org.sqlunet.dom;
 
-import androidx.annotation.NonNull;
 import android.util.Log;
 
 import org.xml.sax.SAXException;
@@ -10,6 +13,7 @@ import java.io.IOException;
 import java.io.StringReader;
 import java.net.URL;
 
+import androidx.annotation.NonNull;
 import mf.javax.xml.transform.Source;
 import mf.javax.xml.transform.stream.StreamSource;
 import mf.javax.xml.validation.Schema;
@@ -81,7 +85,7 @@ public class DomValidator
 			final Validator validator = DomValidator.makeValidator(xsdUrl);
 			for (final org.w3c.dom.Document document : documents)
 			{
-				if(document!=null)
+				if (document != null)
 				{
 					// cannot make org.w3c.dom.Document and mf.org.w3c.dom.Document compatible
 					// DomValidator.validate(validator, new DOMSource(document));

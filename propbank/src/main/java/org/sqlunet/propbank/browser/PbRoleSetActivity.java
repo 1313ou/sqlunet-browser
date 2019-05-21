@@ -1,10 +1,14 @@
-package org.sqlunet.propbank.browser;
+/*
+ * Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>.
+ */
 
-import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
+package org.sqlunet.propbank.browser;
 
 import org.sqlunet.browser.AbstractActivity;
 import org.sqlunet.propbank.R;
+
+import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
 
 /**
  * PropBank role set activity

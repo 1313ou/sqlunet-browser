@@ -1,4 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>.
+  -->
+
 <resources xmlns:tools="http://schemas.android.com/tools">
 
 	<!--S E L E C T O R S -->
@@ -56,7 +60,7 @@
 		<item name="android:textColor">@color/secondaryForeColor</item>
 	</style>
 
-<!-- S E A R C H -->
+	<!-- S E A R C H -->
 
 	<style name="SearchItem" tools:ignore="UnusedResources">
 		<item name="android:layout_width">match_parent</item>

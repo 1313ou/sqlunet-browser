@@ -1,3 +1,7 @@
+/*
+ * Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>.
+ */
+
 package org.sqlunet.treeview.view;
 
 import android.animation.Animator;
@@ -5,7 +9,6 @@ import android.animation.ValueAnimator;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
-import android.text.TextUtils;
 import android.util.Log;
 import android.view.ContextThemeWrapper;
 import android.view.View;
@@ -869,6 +872,30 @@ public class TreeView
 	// selected nodes
 
 	/**
+	 * Get selected values that are instances of class
+	 *
+	 * @param valueClass value class
+	 * @param <E>        value type
+	 * @return values
+	 */
+	@NonNull
+	@SuppressWarnings({"unchecked", "unused"})
+	public <E> List<E> getSelectedValues(final Class<E> valueClass)
+	{
+		List<E> result = new ArrayList<>();
+		List<TreeNode> selected = getAllSelected();
+		for (TreeNode node : selected)
+		{
+			Object value = node.getValue();
+			if (value != null && value.getClass().equals(valueClass))
+			{
+				result.add((E) value);
+			}
+		}
+		return result;
+	}
+
+	/**
 	 * Get selected nodes
 	 *
 	 * @return selected nodes
@@ -903,30 +930,6 @@ public class TreeView
 				result.add(child);
 			}
 			result.addAll(getAllSelected(child));
-		}
-		return result;
-	}
-
-	/**
-	 * Get selected values that are instances of class
-	 *
-	 * @param valueClass value class
-	 * @param <E>        value type
-	 * @return values
-	 */
-	@NonNull
-	@SuppressWarnings({"unchecked", "unused"})
-	public <E> List<E> getSelectedValues(final Class<E> valueClass)
-	{
-		List<E> result = new ArrayList<>();
-		List<TreeNode> selected = getAllSelected();
-		for (TreeNode node : selected)
-		{
-			Object value = node.getValue();
-			if (value != null && value.getClass().equals(valueClass))
-			{
-				result.add((E) value);
-			}
 		}
 		return result;
 	}
@@ -1033,13 +1036,34 @@ public class TreeView
 	@SuppressWarnings("unused")
 	public String getSaveState()
 	{
-		final StringBuilder builder = new StringBuilder();
-		getSaveState(this.root, builder);
-		if (builder.length() > 0)
+		final StringBuilder sb = new StringBuilder();
+		getSaveState(this.root, sb);
+		if (sb.length() > 0)
 		{
-			builder.setLength(builder.length() - 1);
+			sb.setLength(sb.length() - 1);
 		}
-		return builder.toString();
+		return sb.toString();
+	}
+
+	/**
+	 * Get save state
+	 *
+	 * @param node root
+	 * @param sb   builder
+	 */
+	private void getSaveState(@NonNull final TreeNode node, @NonNull final StringBuilder sb)
+	{
+		for (TreeNode child : node.getChildren())
+		{
+			if (isExpanded(child))
+			{
+				sb.append(child.getPath());
+				sb.append(NODES_PATH_SEPARATOR);
+
+				// recurse
+				getSaveState(child, sb);
+			}
+		}
 	}
 
 	/**
@@ -1050,48 +1074,32 @@ public class TreeView
 	@SuppressWarnings("unused")
 	public void restoreState(@Nullable final String saveState)
 	{
-		if (saveState != null && !TextUtils.isEmpty(saveState))
+		if (saveState != null && !saveState.isEmpty())
 		{
 			collapseAll();
-			final String[] openNodesArray = saveState.split(NODES_PATH_SEPARATOR);
-			final Set<String> openNodes = new HashSet<>(Arrays.asList(openNodesArray));
-			restoreNodeState(this.root, openNodes);
+
+			final String[] expandedNodes = saveState.split(NODES_PATH_SEPARATOR);
+			final Set<String> expandedNodeSet = new HashSet<>(Arrays.asList(expandedNodes));
+			restoreNodeState(this.root, expandedNodeSet);
 		}
 	}
 
 	/**
 	 * Restore node state
 	 *
-	 * @param node      node
-	 * @param openNodes open nodes
+	 * @param node            node
+	 * @param expandedNodeSet open nodes
 	 */
-	private void restoreNodeState(@NonNull final TreeNode node, @NonNull final Set<String> openNodes)
+	private void restoreNodeState(@NonNull final TreeNode node, @NonNull final Set<String> expandedNodeSet)
 	{
 		for (TreeNode child : node.getChildren())
 		{
-			if (openNodes.contains(child.getPath()))
+			if (expandedNodeSet.contains(child.getPath()))
 			{
 				expandNode(child, 0, false, false);
-				restoreNodeState(child, openNodes);
-			}
-		}
-	}
 
-	/**
-	 * Get save state
-	 *
-	 * @param root root
-	 * @param sb   builder
-	 */
-	private void getSaveState(@NonNull final TreeNode root, @NonNull final StringBuilder sb)
-	{
-		for (TreeNode child : root.getChildren())
-		{
-			if (isExpanded(child))
-			{
-				sb.append(child.getPath());
-				sb.append(NODES_PATH_SEPARATOR);
-				getSaveState(child, sb);
+				// recurse
+				restoreNodeState(child, expandedNodeSet);
 			}
 		}
 	}

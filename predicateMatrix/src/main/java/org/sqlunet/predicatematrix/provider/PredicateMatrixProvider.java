@@ -1,3 +1,7 @@
+/*
+ * Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>.
+ */
+
 package org.sqlunet.predicatematrix.provider;
 
 import android.content.UriMatcher;
@@ -6,12 +10,13 @@ import android.database.sqlite.SQLiteCantOpenDatabaseException;
 import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteQueryBuilder;
 import android.net.Uri;
-import androidx.annotation.NonNull;
 import android.util.Log;
 
 import org.sqlunet.predicatematrix.provider.PredicateMatrixContract.Pm;
 import org.sqlunet.provider.BaseProvider;
 import org.sqlunet.sql.SqlFormatter;
+
+import androidx.annotation.NonNull;
 
 /**
  * PredicateMatrix provider

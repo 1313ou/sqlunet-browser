@@ -1,13 +1,17 @@
-package org.sqlunet.framenet.loaders;
+/*
+ * Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>.
+ */
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
+package org.sqlunet.framenet.loaders;
 
 import android.os.Parcelable;
 
 import org.sqlunet.browser.TreeFragment;
 import org.sqlunet.framenet.FnPatternPointer;
 import org.sqlunet.treeview.model.TreeNode;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 /**
  * AnnoSet from pattern module
@@ -25,7 +29,7 @@ public class AnnoSetFromPatternModule extends BaseModule
 	/**
 	 * Constructor
 	 *
-	 * @param fragment  containing fragment
+	 * @param fragment containing fragment
 	 */
 	public AnnoSetFromPatternModule(@NonNull final TreeFragment fragment)
 	{

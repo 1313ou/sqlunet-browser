@@ -1,3 +1,7 @@
+/*
+ * Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>.
+ */
+
 package org.sqlunet.framenet.loaders;
 
 import android.database.Cursor;
@@ -14,15 +18,15 @@ import org.sqlunet.framenet.style.FrameNetFactories;
 import org.sqlunet.model.TreeFactory;
 import org.sqlunet.style.Spanner;
 import org.sqlunet.treeview.model.TreeNode;
-import org.sqlunet.view.TreeOpExecute;
 import org.sqlunet.view.TreeOp;
+import org.sqlunet.view.TreeOpExecute;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.lifecycle.ViewModelProviders;
 
-import static org.sqlunet.view.TreeOp.TreeOpCode.NEW;
 import static org.sqlunet.view.TreeOp.TreeOpCode.ANCHOR;
+import static org.sqlunet.view.TreeOp.TreeOpCode.NEW;
 import static org.sqlunet.view.TreeOp.TreeOpCode.REMOVE;
 
 /**

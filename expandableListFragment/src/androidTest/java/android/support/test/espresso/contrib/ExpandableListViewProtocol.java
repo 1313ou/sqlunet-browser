@@ -18,12 +18,6 @@ package androidx.test.espresso.contrib;
 
 import android.database.Cursor;
 import android.os.Build;
-import androidx.test.espresso.action.AdapterViewProtocol;
-import androidx.test.espresso.core.internal.deps.guava.base.Preconditions;
-import androidx.test.espresso.core.internal.deps.guava.collect.Lists;
-import androidx.test.espresso.core.internal.deps.guava.collect.Range;
-import androidx.test.espresso.matcher.ViewMatchers;
-import androidx.test.espresso.util.EspressoOptional;
 import android.util.Log;
 import android.util.Pair;
 import android.view.View;
@@ -34,6 +28,13 @@ import android.widget.ExpandableListAdapter;
 import android.widget.ExpandableListView;
 
 import java.util.List;
+
+import androidx.test.espresso.action.AdapterViewProtocol;
+import androidx.test.espresso.core.internal.deps.guava.base.Preconditions;
+import androidx.test.espresso.core.internal.deps.guava.collect.Lists;
+import androidx.test.espresso.core.internal.deps.guava.collect.Range;
+import androidx.test.espresso.matcher.ViewMatchers;
+import androidx.test.espresso.util.EspressoOptional;
 
 /**
  * Implementations of {@link AdapterViewProtocol} for ExpandableListView SDK Widgets.

@@ -1,7 +1,8 @@
-package org.sqlunet.verbnet.sql;
+/*
+ * Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>.
+ */
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
+package org.sqlunet.verbnet.sql;
 
 import org.sqlunet.wordnet.sql.NodeFactory;
 import org.w3c.dom.Document;
@@ -10,6 +11,9 @@ import org.w3c.dom.Node;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 /**
  * VerbNet DOM node factory

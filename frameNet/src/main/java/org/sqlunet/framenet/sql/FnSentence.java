@@ -1,11 +1,16 @@
+/*
+ * Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>.
+ */
+
 package org.sqlunet.framenet.sql;
 
 import android.database.sqlite.SQLiteDatabase;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 /**
  * Sentence
@@ -39,7 +44,7 @@ public class FnSentence
 	/**
 	 * Make sets of sentences from query built from frameId
 	 *
-	 * @param connection  connection
+	 * @param connection connection
 	 * @param sentenceId is the sentence id to build query from
 	 * @return sentence
 	 */

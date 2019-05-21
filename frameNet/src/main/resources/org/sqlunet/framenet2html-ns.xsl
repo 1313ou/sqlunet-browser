@@ -1,4 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ~ Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>.
+  -->
+
 <xsl:transform xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                version="1.0"
                xmlns:fn="http://org.sqlunet/fn">
@@ -290,7 +294,9 @@
 			<xsl:value-of select="../../text()"/>
 		</xsl:variable>
 		<LI class="treeitem treepanel fnlayer">
-			<SPAN class="fnlayertype"><xsl:value-of select="./@type"/></SPAN>
+			<SPAN class="fnlayertype">
+				<xsl:value-of select="./@type"/>
+			</SPAN>
 			<UL style="display: block;">
 				<xsl:apply-templates select=".//fn:label"/>
 			</UL>
@@ -308,9 +314,13 @@
 			<xsl:value-of select="./@to - ./@from + 1"/>
 		</xsl:variable>
 		<LI class="treeitem treepanel fnlabel">
-			<SPAN class="fnlabelname"><xsl:value-of select="./@label"/></SPAN>
+			<SPAN class="fnlabelname">
+				<xsl:value-of select="./@label"/>
+			</SPAN>
 			<![CDATA[ ]]>
-			<SPAN class="fnlabelvalue"><xsl:value-of select="substring($senttext, $start, $len)"/></SPAN>
+			<SPAN class="fnlabelvalue">
+				<xsl:value-of select="substring($senttext, $start, $len)"/>
+			</SPAN>
 		</LI>
 	</xsl:template>
 

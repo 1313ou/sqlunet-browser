@@ -1,16 +1,21 @@
+/*
+ * Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>.
+ */
+
 package org.sqlunet.browser;
 
 import android.os.Bundle;
 import android.os.Parcelable;
+import android.view.Menu;
+import android.view.MenuItem;
+
+import org.sqlunet.browser.fn.R;
+import org.sqlunet.provider.ProviderArgs;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import android.view.Menu;
-import android.view.MenuItem;
-
-import org.sqlunet.provider.ProviderArgs;
-import org.sqlunet.browser.fn.R;
 
 /**
  * Detail activity

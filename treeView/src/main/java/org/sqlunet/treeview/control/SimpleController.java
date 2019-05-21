@@ -1,11 +1,16 @@
+/*
+ * Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>.
+ */
+
 package org.sqlunet.treeview.control;
 
 import android.content.Context;
-import androidx.annotation.NonNull;
 import android.view.View;
 import android.widget.TextView;
 
 import org.sqlunet.treeview.model.TreeNode;
+
+import androidx.annotation.NonNull;
 
 /**
  * Simple controller

@@ -1,9 +1,11 @@
+/*
+ * Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>.
+ */
+
 package org.sqlunet.treeview.view;
 
 import android.content.Context;
 import android.graphics.Rect;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.FocusFinder;
 import android.view.KeyEvent;
@@ -20,6 +22,9 @@ import android.widget.Scroller;
 import android.widget.TextView;
 
 import java.util.List;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 /**
  * Layout container for a view hierarchy that can be scrolled by the user, allowing it to be larger than the physical display. A ScrollView2D is a

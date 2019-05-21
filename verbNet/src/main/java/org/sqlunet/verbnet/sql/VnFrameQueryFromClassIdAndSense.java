@@ -1,11 +1,16 @@
+/*
+ * Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>.
+ */
+
 package org.sqlunet.verbnet.sql;
 
 import android.database.sqlite.SQLiteDatabase;
-import androidx.annotation.Nullable;
 
 import org.sqlunet.sql.DBQuery;
 
 import java.sql.Types;
+
+import androidx.annotation.Nullable;
 
 /**
  * VerbNet frame query from sense

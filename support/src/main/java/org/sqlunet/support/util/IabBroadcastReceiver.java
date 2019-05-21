@@ -1,16 +1,5 @@
-/* Copyright (c) 2014 Google Inc.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+/*
+ * Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>.
  */
 
 package org.sqlunet.support.util;
@@ -32,30 +21,35 @@ import android.content.Intent;
  * a message to this BroadcastReceiver will indicate that the an item
  * has been acquired.</p>
  */
-public class IabBroadcastReceiver extends BroadcastReceiver {
-    /**
-     * Listener interface for received broadcast messages.
-     */
-    @FunctionalInterface
-    public interface IabBroadcastListener {
-        void receivedBroadcast();
-    }
+public class IabBroadcastReceiver extends BroadcastReceiver
+{
+	/**
+	 * Listener interface for received broadcast messages.
+	 */
+	@FunctionalInterface
+	public interface IabBroadcastListener
+	{
+		void receivedBroadcast();
+	}
 
-    /**
-     * The Intent action that this Receiver should filter for.
-     */
-    public static final String ACTION = "com.android.vending.billing.PURCHASES_UPDATED";
+	/**
+	 * The Intent action that this Receiver should filter for.
+	 */
+	public static final String ACTION = "com.android.vending.billing.PURCHASES_UPDATED";
 
-    private final IabBroadcastListener mListener;
+	private final IabBroadcastListener mListener;
 
-    public IabBroadcastReceiver(IabBroadcastListener listener) {
-        mListener = listener;
-    }
+	public IabBroadcastReceiver(IabBroadcastListener listener)
+	{
+		mListener = listener;
+	}
 
-    @Override
-    public void onReceive(Context context, Intent intent) {
-        if (mListener != null) {
-            mListener.receivedBroadcast();
-        }
-    }
+	@Override
+	public void onReceive(Context context, Intent intent)
+	{
+		if (mListener != null)
+		{
+			mListener.receivedBroadcast();
+		}
+	}
 }

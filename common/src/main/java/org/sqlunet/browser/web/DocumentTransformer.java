@@ -1,12 +1,17 @@
+/*
+ * Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>.
+ */
+
 package org.sqlunet.browser.web;
 
-import androidx.annotation.NonNull;
 import android.util.Log;
 
 import org.sqlunet.dom.DomTransformer;
 import org.w3c.dom.Document;
 
 import java.io.InputStream;
+
+import androidx.annotation.NonNull;
 
 /**
  * XSL Transformer

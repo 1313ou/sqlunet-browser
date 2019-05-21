@@ -1,3 +1,7 @@
+/*
+ * Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>.
+ */
+
 package androidx.appcompat.app.contrib;
 
 import android.app.Activity;
@@ -9,14 +13,6 @@ import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-import androidx.core.view.GravityCompat;
-import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.ActionBarDrawerToggle;
-import androidx.appcompat.app.AppCompatActivity;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -30,6 +26,15 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import org.sqlunet.browser.common.R;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.Fragment;
 
 /**
  * Fragment used for managing interactions for and presentation of a navigation drawer.
@@ -423,7 +428,7 @@ public class NavigationDrawerFragment extends Fragment
 	@Nullable
 	private ActionBar getSupportActionBar()
 	{
-		final AppCompatActivity activity = (AppCompatActivity)requireActivity();
+		final AppCompatActivity activity = (AppCompatActivity) requireActivity();
 		return activity.getSupportActionBar();
 	}
 }

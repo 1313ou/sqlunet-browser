@@ -1,10 +1,14 @@
-package org.sqlunet.framenet.browser;
+/*
+ * Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>.
+ */
 
-import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
+package org.sqlunet.framenet.browser;
 
 import org.sqlunet.browser.AbstractActivity;
 import org.sqlunet.framenet.R;
+
+import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
 
 /**
  * Frame activity
@@ -14,12 +18,21 @@ import org.sqlunet.framenet.R;
 public class FnFrameActivity extends AbstractActivity
 {
 	@Override
-	protected int getLayoutId(){return R.layout.activity_fnframe;}
+	protected int getLayoutId()
+	{
+		return R.layout.activity_fnframe;
+	}
 
 	@Override
-	protected int getContainerId(){return R.id.container_frame;}
+	protected int getContainerId()
+	{
+		return R.id.container_frame;
+	}
 
 	@NonNull
 	@Override
-	protected Fragment makeFragment(){ return new FnFrameFragment(); }
+	protected Fragment makeFragment()
+	{
+		return new FnFrameFragment();
+	}
 }

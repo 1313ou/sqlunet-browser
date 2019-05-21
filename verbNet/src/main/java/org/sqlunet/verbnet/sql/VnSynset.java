@@ -1,8 +1,12 @@
+/*
+ * Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>.
+ */
+
 package org.sqlunet.verbnet.sql;
 
-import androidx.annotation.NonNull;
-
 import org.sqlunet.wordnet.sql.BasicSynset;
+
+import androidx.annotation.NonNull;
 
 /**
  * Synset extended to hold VerbNet specific data

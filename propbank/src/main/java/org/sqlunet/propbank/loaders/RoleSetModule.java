@@ -1,7 +1,8 @@
-package org.sqlunet.propbank.loaders;
+/*
+ * Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>.
+ */
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
+package org.sqlunet.propbank.loaders;
 
 import android.os.Parcelable;
 
@@ -10,6 +11,9 @@ import org.sqlunet.browser.TreeFragment;
 import org.sqlunet.model.TreeFactory;
 import org.sqlunet.propbank.PbRoleSetPointer;
 import org.sqlunet.treeview.model.TreeNode;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 /**
  * Module for PropBank role sets from id

@@ -1,7 +1,10 @@
+/*
+ * Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>.
+ */
+
 package org.sqlunet.framenet.sql;
 
 import android.database.sqlite.SQLiteDatabase;
-import androidx.annotation.NonNull;
 import android.util.Pair;
 
 import org.sqlunet.dom.DomFactory;
@@ -11,6 +14,8 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 
 import java.util.List;
+
+import androidx.annotation.NonNull;
 
 /**
  * Encapsulates FrameNet query implementation

@@ -1,3 +1,7 @@
+/*
+ * Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>.
+ */
+
 package org.sqlunet.framenet.style;
 
 import org.sqlunet.style.Preprocessor;
@@ -14,8 +18,7 @@ public class FrameNetFrameProcessor extends Preprocessor
 	 * Replacers for preprocessor
 	 */
 	static private final String[] replacers = { //
-			"<fex name=[\"\']([^\"\']+)[\"\']>([^<]*)</fex>", "<fex>$2</fex> <xfen>[$1]</xfen>",
-	};
+			"<fex name=[\"\']([^\"\']+)[\"\']>([^<]*)</fex>", "<fex>$2</fex> <xfen>[$1]</xfen>",};
 
 	/**
 	 * Constructor

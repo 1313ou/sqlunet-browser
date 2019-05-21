@@ -1,9 +1,14 @@
+/*
+ * Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>.
+ */
+
 package org.sqlunet.framenet.sql;
 
 import android.database.sqlite.SQLiteDatabase;
-import androidx.annotation.Nullable;
 
 import org.sqlunet.sql.DBQuery;
+
+import androidx.annotation.Nullable;
 
 /**
  * FrameNet lex unit query

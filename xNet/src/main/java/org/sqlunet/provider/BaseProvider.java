@@ -1,3 +1,7 @@
+/*
+ * Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>.
+ */
+
 package org.sqlunet.provider;
 
 import android.content.ContentProvider;
@@ -6,8 +10,6 @@ import android.content.Context;
 import android.database.sqlite.SQLiteCantOpenDatabaseException;
 import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import android.util.Log;
 
 import org.sqlunet.settings.StorageSettings;
@@ -17,6 +19,9 @@ import java.io.InputStream;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.Properties;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 /**
  * SqlUNet provider

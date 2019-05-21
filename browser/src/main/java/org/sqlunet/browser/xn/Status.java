@@ -1,8 +1,11 @@
+/*
+ * Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>.
+ */
+
 package org.sqlunet.browser.xn;
 
 import android.content.Context;
 import android.content.res.Resources;
-import androidx.annotation.NonNull;
 import android.text.Editable;
 import android.text.SpannableStringBuilder;
 import android.util.Log;
@@ -10,6 +13,8 @@ import android.util.Log;
 import org.sqlunet.browser.R;
 
 import java.util.List;
+
+import androidx.annotation.NonNull;
 
 /**
  * Database _status

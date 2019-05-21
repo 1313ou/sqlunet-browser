@@ -5,7 +5,6 @@ import android.widget.CheckBox;
 
 import org.hamcrest.Matcher;
 
-import androidx.annotation.DrawableRes;
 import androidx.annotation.IdRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.StringRes;

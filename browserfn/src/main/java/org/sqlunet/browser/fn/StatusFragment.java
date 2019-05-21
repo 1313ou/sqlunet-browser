@@ -1,10 +1,15 @@
+/*
+ * Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>.
+ */
+
 package org.sqlunet.browser.fn;
 
 import android.content.Context;
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBar;
 
 import org.sqlunet.browser.ActionBarSetter;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 
 /**
  * Status fragment

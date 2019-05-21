@@ -1,3 +1,7 @@
+/*
+ * Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>.
+ */
+
 package org.sqlunet.framenet.style;
 
 import android.graphics.Color;
@@ -24,7 +28,7 @@ public class FrameNetFactories
 	// frame
 	static public final SpanFactory frameFactory = Factories.classFactory;
 
-	static public final SpanFactory metaFrameDefinitionFactory = flags -> new Object[]{ new ForegroundColorSpan(Colors.dk_red), new StyleSpan(Typeface.ITALIC)};
+	static public final SpanFactory metaFrameDefinitionFactory = flags -> new Object[]{new ForegroundColorSpan(Colors.dk_red), new StyleSpan(Typeface.ITALIC)};
 
 	// lex unit
 	static public final SpanFactory lexunitFactory = Factories.memberFactory;
@@ -38,7 +42,7 @@ public class FrameNetFactories
 
 	static public final SpanFactory feAbbrevFactory = flags -> new Object[]{new ForegroundColorSpan(Color.MAGENTA)};
 
-	static public final SpanFactory metaFeDefinitionFactory = flags -> new Object[]{ new ForegroundColorSpan(Colors.lt_blue), new StyleSpan(Typeface.ITALIC)};
+	static public final SpanFactory metaFeDefinitionFactory = flags -> new Object[]{new ForegroundColorSpan(Colors.lt_blue), new StyleSpan(Typeface.ITALIC)};
 
 	// sentence
 	static public final SpanFactory sentenceFactory = Factories.exampleFactory;

@@ -1,3 +1,7 @@
+/*
+ * Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>.
+ */
+
 package org.sqlunet.download;
 
 import android.app.Activity;
@@ -9,8 +13,6 @@ import android.util.Log;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import org.sqlunet.download.R;
 
 import java.text.NumberFormat;
 import java.util.Locale;

@@ -1,8 +1,11 @@
+/*
+ * Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>.
+ */
+
 package org.sqlunet.verbnet.style;
 
 import android.graphics.Color;
 import android.graphics.Typeface;
-import androidx.annotation.Nullable;
 import android.text.style.BackgroundColorSpan;
 import android.text.style.ForegroundColorSpan;
 import android.text.style.StyleSpan;
@@ -10,6 +13,8 @@ import android.text.style.StyleSpan;
 import org.sqlunet.style.Colors;
 import org.sqlunet.style.Factories;
 import org.sqlunet.style.Spanner.SpanFactory;
+
+import androidx.annotation.Nullable;
 
 /**
  * VerbNet span factories

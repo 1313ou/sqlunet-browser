@@ -1,10 +1,15 @@
+/*
+ * Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>.
+ */
+
 package org.sqlunet.predicatematrix;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-import androidx.annotation.NonNull;
 
 import org.sqlunet.Pointer;
+
+import androidx.annotation.NonNull;
 
 /**
  * Parcelable PredicateMatrix role

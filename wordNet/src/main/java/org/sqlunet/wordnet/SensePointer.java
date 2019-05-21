@@ -1,10 +1,15 @@
+/*
+ * Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>.
+ */
+
 package org.sqlunet.wordnet;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-import androidx.annotation.NonNull;
 
 import org.sqlunet.HasWordId;
+
+import androidx.annotation.NonNull;
 
 /**
  * Parcelable sense

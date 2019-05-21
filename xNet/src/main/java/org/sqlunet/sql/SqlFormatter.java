@@ -1,4 +1,8 @@
 /*
+ * Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>.
+ */
+
+/*
  * Hibernate, Relational Persistence for Idiomatic Java
  *
  * License: GNU Lesser General Public License (LGPL), version 2.1 or later.
@@ -8,8 +12,6 @@ package org.sqlunet.sql;
 
 import android.graphics.Color;
 import android.graphics.Typeface;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
 import android.text.style.ForegroundColorSpan;
@@ -20,6 +22,9 @@ import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.Locale;
 import java.util.StringTokenizer;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 /**
  * Performs formatting of basic SQL statements (DML + query).
@@ -452,12 +457,7 @@ public class SqlFormatter
 		{
 			final char begin = tok.charAt(0);
 			final boolean isIdentifier = Character.isJavaIdentifierStart(begin) || '"' == begin;
-			return isIdentifier &&
-					!LOGICAL.contains(tok) &&
-					!END_CLAUSES.contains(tok) &&
-					!QUANTIFIERS.contains(tok) &&
-					!DML.contains(tok) &&
-					!MISC.contains(tok);
+			return isIdentifier && !LOGICAL.contains(tok) && !END_CLAUSES.contains(tok) && !QUANTIFIERS.contains(tok) && !DML.contains(tok) && !MISC.contains(tok);
 		}
 
 		static private boolean isWhitespace(@NonNull CharSequence token)

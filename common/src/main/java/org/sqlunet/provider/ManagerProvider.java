@@ -1,3 +1,7 @@
+/*
+ * Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>.
+ */
+
 package org.sqlunet.provider;
 
 import android.content.Context;
@@ -7,13 +11,14 @@ import android.database.sqlite.SQLiteCantOpenDatabaseException;
 import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteQueryBuilder;
 import android.net.Uri;
-import androidx.annotation.NonNull;
 import android.util.Log;
 
 import org.sqlunet.provider.ManagerContract.TablesAndIndices;
 
 import java.util.ArrayList;
 import java.util.Collection;
+
+import androidx.annotation.NonNull;
 
 /**
  * 5House-keeping) Manager provider
@@ -105,10 +110,10 @@ public class ManagerProvider extends BaseProvider
 
 		//if (BaseProvider.logSql)
 		//{
-			// final String sql = SQLiteQueryBuilder.buildQueryString(false, table, projection, selection, groupBy, null, sortOrder, null);
-			// logSql(sql, selectionArgs);
-			// Log.d(ManagerProvider.TAG + "SQL", SqlFormatter.format(sql).toString());
-			// Log.d(ManagerProvider.TAG + "ARGS", BaseProvider.argsToString(selectionArgs));
+		// final String sql = SQLiteQueryBuilder.buildQueryString(false, table, projection, selection, groupBy, null, sortOrder, null);
+		// logSql(sql, selectionArgs);
+		// Log.d(ManagerProvider.TAG + "SQL", SqlFormatter.format(sql).toString());
+		// Log.d(ManagerProvider.TAG + "ARGS", BaseProvider.argsToString(selectionArgs));
 		//}
 
 		// do query

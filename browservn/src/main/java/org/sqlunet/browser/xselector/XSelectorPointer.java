@@ -1,12 +1,17 @@
+/*
+ * Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>.
+ */
+
 package org.sqlunet.browser.xselector;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 
 import org.sqlunet.HasXId;
 import org.sqlunet.browser.selector.SelectorPointer;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 /**
  * X pointer
@@ -215,24 +220,12 @@ public class XSelectorPointer extends SelectorPointer implements HasXId
 	@Override
 	public String toString()
 	{
-		return super.toString() +
-				' ' +
-				"xid=" + //
-				this.xId +
-				' ' +
-				"xclassid=" + //
-				this.xClassId +
-				' ' +
-				"xmemberid=" + //
-				this.xMemberId +
-				' ' +
-				"xsources=" + //
-				this.xSources +
-				' ' +
-				"xmask=" + //
-				Long.toHexString(this.xMask) +
-				' ' +
-				"xgroup=" + //
+		return super.toString() + ' ' + "xid=" + //
+				this.xId + ' ' + "xclassid=" + //
+				this.xClassId + ' ' + "xmemberid=" + //
+				this.xMemberId + ' ' + "xsources=" + //
+				this.xSources + ' ' + "xmask=" + //
+				Long.toHexString(this.xMask) + ' ' + "xgroup=" + //
 				this.xGroup;
 	}
 

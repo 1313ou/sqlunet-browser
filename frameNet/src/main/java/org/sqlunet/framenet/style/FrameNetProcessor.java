@@ -1,8 +1,12 @@
+/*
+ * Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>.
+ */
+
 package org.sqlunet.framenet.style;
 
-import androidx.annotation.NonNull;
-
 import org.sqlunet.style.Preprocessor;
+
+import androidx.annotation.NonNull;
 
 /**
  * FrameNet pre processor

@@ -1,11 +1,15 @@
-package org.sqlunet.propbank.sql;
+/*
+ * Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>.
+ */
 
-import androidx.annotation.NonNull;
+package org.sqlunet.propbank.sql;
 
 import org.sqlunet.sql.NodeFactory;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
+
+import androidx.annotation.NonNull;
 
 /**
  * DOM node factory

@@ -1,11 +1,16 @@
+/*
+ * Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>.
+ */
+
 package org.sqlunet.browser;
 
 import android.content.Context;
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBar;
 import android.util.Log;
 
 import org.sqlunet.browser.common.R;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 
 /**
  * Sql fragment

@@ -1,11 +1,16 @@
+/*
+ * Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>.
+ */
+
 package org.sqlunet.style;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import android.text.SpannableStringBuilder;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 /**
  * Spanner as per mark-up tags
@@ -32,8 +37,7 @@ public class MarkupSpanner extends Spanner
 	 * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
 	 */
 	public enum SpanPosition
-	{
-		TAG1, TEXT, TAG2;
+	{TAG1, TEXT, TAG2;
 
 		/**
 		 * Make flags
@@ -75,8 +79,7 @@ public class MarkupSpanner extends Spanner
 					break;
 			}
 			return null;
-		}
-	}
+		}}
 
 	/**
 	 * Apply spans

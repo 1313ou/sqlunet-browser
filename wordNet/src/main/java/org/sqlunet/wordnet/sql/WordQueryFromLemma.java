@@ -1,3 +1,7 @@
+/*
+ * Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>.
+ */
+
 package org.sqlunet.wordnet.sql;
 
 import android.database.sqlite.SQLiteDatabase;
@@ -20,7 +24,7 @@ class WordQueryFromLemma extends DBQuery
 	 * Constructor
 	 *
 	 * @param connection connection
-	 * @param word      is the word lemma
+	 * @param word       is the word lemma
 	 */
 	public WordQueryFromLemma(final SQLiteDatabase connection, final String word)
 	{

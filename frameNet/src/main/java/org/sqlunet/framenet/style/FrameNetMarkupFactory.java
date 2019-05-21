@@ -1,10 +1,12 @@
+/*
+ * Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>.
+ */
+
 package org.sqlunet.framenet.style;
 
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import android.text.style.BackgroundColorSpan;
 import android.text.style.DynamicDrawableSpan;
 import android.text.style.ForegroundColorSpan;
@@ -18,6 +20,9 @@ import org.sqlunet.style.MarkupSpanner;
 import org.sqlunet.style.MarkupSpanner.SpanPosition;
 import org.sqlunet.style.Spanner;
 import org.sqlunet.style.Spanner.HiddenSpan;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 /**
  * FrameNet markup factory

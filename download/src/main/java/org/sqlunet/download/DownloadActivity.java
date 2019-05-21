@@ -1,11 +1,13 @@
+/*
+ * Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>.
+ */
+
 package org.sqlunet.download;
 
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-
-import org.sqlunet.download.R;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
@@ -30,8 +32,7 @@ public class DownloadActivity extends AppCompatActivity implements DownloadFragm
 	 * Downloaders
 	 */
 	private enum Downloader
-	{
-		SIMPLE_SERVICE(R.layout.activity_download), //
+	{SIMPLE_SERVICE(R.layout.activity_download), //
 		DOWNLOAD_MANAGER(R.layout.activity_download);
 
 		final private int res;
@@ -49,8 +50,7 @@ public class DownloadActivity extends AppCompatActivity implements DownloadFragm
 				return SIMPLE_SERVICE;
 			}
 			return Downloader.valueOf(preferredDownloader);
-		}
-	}
+		}}
 
 	@Override
 	protected void onCreate(@Nullable final Bundle savedInstanceState)

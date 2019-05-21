@@ -1,10 +1,15 @@
+/*
+ * Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>.
+ */
+
 package org.sqlunet.style;
 
-import androidx.annotation.NonNull;
 import android.text.SpannableStringBuilder;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import androidx.annotation.NonNull;
 
 /**
  * Spanner as per regexpr
@@ -101,7 +106,7 @@ public class RegExprSpanner extends Spanner
 		/**
 		 * Constructor
 		 *
-		 * @param regexpr    regexpr
+		 * @param regexpr   regexpr
 		 * @param factories span factories
 		 */
 		SpanReplacer(@NonNull final String regexpr, final SpanFactory... factories)

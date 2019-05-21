@@ -1,9 +1,14 @@
+/*
+ * Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>.
+ */
+
 package org.sqlunet.browser.selector;
 
 import android.os.Parcel;
-import androidx.annotation.NonNull;
 
 import org.sqlunet.wordnet.SensePointer;
+
+import androidx.annotation.NonNull;
 
 /**
  * SelectorPointer

@@ -1,3 +1,7 @@
+/*
+ * Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>.
+ */
+
 package org.sqlunet.settings;
 
 import android.annotation.SuppressLint;
@@ -8,12 +12,13 @@ import android.content.SharedPreferences.Editor;
 import android.net.Uri;
 import android.os.Build;
 import android.preference.PreferenceManager;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 
 import org.sqlunet.browser.common.R;
 import org.sqlunet.provider.BaseProvider;
 import org.sqlunet.sql.PreparedStatement;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 /**
  * Settings
@@ -49,8 +54,7 @@ public class Settings
 	 * Selector view modes
 	 */
 	public enum SelectorViewMode
-	{
-		VIEW, WEB;
+	{VIEW, WEB;
 
 		/**
 		 * Get selector preferred view mode
@@ -73,15 +77,13 @@ public class Settings
 				sharedPref.edit().putString(Settings.PREF_SELECTOR_MODE, mode.name()).apply();
 			}
 			return mode;
-		}
-	}
+		}}
 
 	/**
 	 * Detail detail view modes
 	 */
 	public enum DetailViewMode
-	{
-		VIEW, WEB;
+	{VIEW, WEB;
 
 		/**
 		 * Get preferred view mode
@@ -104,8 +106,7 @@ public class Settings
 				sharedPref.edit().putString(Settings.PREF_DETAIL_MODE, mode.name()).apply();
 			}
 			return mode;
-		}
-	}
+		}}
 
 	// S E L E C T O R   T Y P E
 
@@ -113,8 +114,7 @@ public class Settings
 	 * Selectors
 	 */
 	public enum Selector
-	{
-		SELECTOR;
+	{SELECTOR;
 
 		/**
 		 * Set this selector as preferred selector
@@ -148,8 +148,7 @@ public class Settings
 				sharedPref.edit().putString(Settings.PREF_SELECTOR, mode.name()).apply();
 			}
 			return mode;
-		}
-	}
+		}}
 
 	// P R E F E R E N C E   S H O R T C U T S
 

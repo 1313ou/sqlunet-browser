@@ -1,8 +1,5 @@
 /*
- * Copyright (c) 2018 大前良介 (OHMAE Ryosuke)
- *
- * This software is released under the MIT License.
- * http://opensource.org/licenses/MIT
+ * Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>.
  */
 
 package org.sqlunet.preference;

@@ -1,14 +1,18 @@
+/*
+ * Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>.
+ */
+
 package org.sqlunet.browser;
 
 import android.app.Activity;
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
-
 import android.text.SpannableStringBuilder;
 import android.widget.TextView;
 
 import org.sqlunet.style.Report;
 import org.sqlunet.xnet.R;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 
 /**
  * Info helper

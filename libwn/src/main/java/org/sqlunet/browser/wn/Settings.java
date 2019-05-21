@@ -1,3 +1,7 @@
+/*
+ * Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>.
+ */
+
 package org.sqlunet.browser.wn;
 
 import android.content.Context;
@@ -26,8 +30,7 @@ public class Settings extends org.sqlunet.settings.Settings
 	 * Source
 	 */
 	public enum Source
-	{
-		WORDNET(0x1), BNC(0x2);
+	{WORDNET(0x1), BNC(0x2);
 
 		/**
 		 * Source mask
@@ -64,8 +67,7 @@ public class Settings extends org.sqlunet.settings.Settings
 		public boolean test(final int sources)
 		{
 			return (sources & this.mask) != 0;
-		}
-	}
+		}}
 
 	// P R E F E R E N C E S H O R T C U T S
 

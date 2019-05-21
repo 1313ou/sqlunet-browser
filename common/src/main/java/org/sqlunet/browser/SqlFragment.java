@@ -1,13 +1,18 @@
+/*
+ * Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>.
+ */
+
 package org.sqlunet.browser;
 
 import android.content.Context;
-import androidx.fragment.app.ListFragment;
 import android.widget.ArrayAdapter;
 import android.widget.ListAdapter;
 
 import org.sqlunet.browser.common.R;
 import org.sqlunet.provider.BaseProvider;
 import org.sqlunet.sql.SqlFormatter;
+
+import androidx.fragment.app.ListFragment;
 
 /**
  * Sql fragment

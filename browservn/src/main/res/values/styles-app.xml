@@ -1,4 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>.
+  -->
+
 <resources>
 
 	<!--S E L E C T O R S -->
@@ -54,6 +58,7 @@
 		<item name="android:textColor">#FFa0a0a0</item>
 		<item name="android:textSize">12sp</item>
 	</style>
+
 	<style name="Data.XSources">
 		<item name="android:textColor">#FF202020</item>
 		<item name="android:textSize">12sp</item>

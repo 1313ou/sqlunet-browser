@@ -1,6 +1,8 @@
-package org.sqlunet.sql;
+/*
+ * Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>.
+ */
 
-import androidx.annotation.NonNull;
+package org.sqlunet.sql;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.DocumentFragment;
@@ -17,6 +19,8 @@ import java.io.StringReader;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
+
+import androidx.annotation.NonNull;
 
 /**
  * <tt>DOMFragmentParser</tt> build a document fragment from an XML fragment source that has not necessary a unique root element, or that may have text content

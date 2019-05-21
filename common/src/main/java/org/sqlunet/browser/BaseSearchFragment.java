@@ -1,3 +1,7 @@
+/*
+ * Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>.
+ */
+
 package org.sqlunet.browser;
 
 import android.annotation.SuppressLint;
@@ -11,10 +15,6 @@ import android.content.res.TypedArray;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.widget.SearchView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -28,6 +28,11 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import org.sqlunet.browser.common.R;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.widget.SearchView;
 
 /**
  * Base search fragment
@@ -253,7 +258,7 @@ abstract public class BaseSearchFragment extends NavigableFragment implements Se
 				final Drawable drawable = ColorUtils.getDrawable(context, resId);
 				ColorUtils.tint(color, drawable);
 
-				textView.setCompoundDrawablesWithIntrinsicBounds(null, drawable, null,  null);
+				textView.setCompoundDrawablesWithIntrinsicBounds(null, drawable, null, null);
 
 				return view;
 			}

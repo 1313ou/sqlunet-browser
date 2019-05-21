@@ -1,3 +1,7 @@
+/*
+ * Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>.
+ */
+
 package org.sqlunet.verbnet.loaders;
 
 import android.database.Cursor;
@@ -176,9 +180,9 @@ public class ClassFromWordModule extends BaseModule
 				changedList.add(NEW, node);
 
 				// sub nodes
-				final TreeNode membersNode = TreeFactory.makeHotQueryNode( "Members", R.drawable.members, false, new MembersQuery(classId)).addTo(parent);
+				final TreeNode membersNode = TreeFactory.makeHotQueryNode("Members", R.drawable.members, false, new MembersQuery(classId)).addTo(parent);
 				changedList.add(NEW, membersNode);
-				final TreeNode rolesNode = TreeFactory.makeHotQueryNode( "Roles", R.drawable.roles, false, new RolesQuery(classId)).addTo(parent);
+				final TreeNode rolesNode = TreeFactory.makeHotQueryNode("Roles", R.drawable.roles, false, new RolesQuery(classId)).addTo(parent);
 				changedList.add(NEW, rolesNode);
 				final TreeNode framesNode = TreeFactory.makeQueryNode("Frames", R.drawable.vnframe, false, new FramesQuery(classId)).addTo(parent);
 				changedList.add(NEW, framesNode);

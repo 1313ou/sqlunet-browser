@@ -1,13 +1,18 @@
+/*
+ * Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>.
+ */
+
 package org.sqlunet.settings;
 
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
-import androidx.annotation.NonNull;
 
 import org.sqlunet.xnet.R;
 
 import java.io.File;
+
+import androidx.annotation.NonNull;
 
 /**
  * Storage settings
@@ -38,7 +43,7 @@ public class StorageSettings
 	 * @param context context
 	 * @return database directory
 	 */
-	 static public String getDataDir(@NonNull final Context context)
+	static public String getDataDir(@NonNull final Context context)
 	{
 		final File dir = Storage.getSqlUNetStorage(context);
 		if (!dir.exists())

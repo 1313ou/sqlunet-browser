@@ -1,3 +1,7 @@
+/*
+ * Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>.
+ */
+
 package org.sqlunet.provider;
 
 import android.content.UriMatcher;
@@ -6,8 +10,6 @@ import android.database.sqlite.SQLiteCantOpenDatabaseException;
 import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteQueryBuilder;
 import android.net.Uri;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import android.text.TextUtils;
 import android.util.Log;
 
@@ -28,6 +30,9 @@ import org.sqlunet.sql.SqlFormatter;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 /**
  * Extended cross WordNet-FrameNet-PropBank-VerbNet provider
@@ -221,9 +226,9 @@ public class XSqlUNetProvider extends BaseProvider
 			{
 				table = "vnwords INNER JOIN " + //
 						"vnclassmembersenses USING (vnwordid) " + //
-						"INNER JOIN vnclasses AS " +  XSqlUNetContract.CLASS + " USING (classid) " + //
+						"INNER JOIN vnclasses AS " + XSqlUNetContract.CLASS + " USING (classid) " + //
 						"LEFT JOIN synsets USING (synsetid)";
-					groupBy = "wordid,synsetid,classid";
+				groupBy = "wordid,synsetid,classid";
 				break;
 			}
 
@@ -247,7 +252,7 @@ public class XSqlUNetProvider extends BaseProvider
 			case WORDS_PBWORDS_PBROLESETS:
 			{
 				table = "pbwords " + //
-						"INNER JOIN pbrolesets AS " +  XSqlUNetContract.CLASS + " USING (pbwordid)";
+						"INNER JOIN pbrolesets AS " + XSqlUNetContract.CLASS + " USING (pbwordid)";
 				groupBy = "wordid,synsetid,rolesetid";
 				break;
 			}

@@ -1,3 +1,7 @@
+/*
+ * Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>.
+ */
+
 package org.sqlunet.browser.config;
 
 import android.app.Activity;
@@ -46,8 +50,7 @@ public class SetupFileFragment extends BaseTaskFragment
 	 * Operations
 	 */
 	private enum Operation
-	{
-		CREATE, DROP, COPY, UNZIP, MD5, DOWNLOAD, DOWNLOADZIPPED, UPDATE;
+	{CREATE, DROP, COPY, UNZIP, MD5, DOWNLOAD, DOWNLOADZIPPED, UPDATE;
 
 		/**
 		 * Spinner operations
@@ -62,8 +65,7 @@ public class SetupFileFragment extends BaseTaskFragment
 				return null;
 			}
 			return Operation.valueOf(operation.toString());
-		}
-	}
+		}}
 
 	/**
 	 * Constructor

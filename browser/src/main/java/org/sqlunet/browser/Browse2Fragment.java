@@ -1,11 +1,12 @@
+/*
+ * Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>.
+ */
+
 package org.sqlunet.browser;
 
 import android.content.Context;
 import android.os.Bundle;
 import android.os.Parcelable;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 
 import org.sqlunet.bnc.browser.BNCFragment;
 import org.sqlunet.browser.web.WebFragment;
@@ -17,6 +18,10 @@ import org.sqlunet.propbank.browser.PropBankFragment;
 import org.sqlunet.provider.ProviderArgs;
 import org.sqlunet.verbnet.browser.VerbNetFragment;
 import org.sqlunet.wordnet.browser.SenseFragment;
+
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 /**
  * A fragment representing a detail

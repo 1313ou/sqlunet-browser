@@ -1,13 +1,18 @@
+/*
+ * Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>.
+ */
+
 package org.sqlunet.browser.config;
 
 import android.net.Uri;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import android.widget.ImageView;
 import android.widget.SimpleCursorAdapter.ViewBinder;
 import android.widget.TextView;
 
 import org.sqlunet.browser.AbstractTableFragment;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 /**
  * A list fragment representing a table.
@@ -17,6 +22,7 @@ import org.sqlunet.browser.AbstractTableFragment;
 public class TableFragment extends AbstractTableFragment
 {
 	// static private final String TAG = "TableF";
+
 	/**
 	 * Mandatory empty constructor for the fragment manager to instantiate the fragment (e.g. upon screen orientation changes).
 	 */

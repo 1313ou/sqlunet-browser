@@ -1,9 +1,11 @@
+/*
+ * Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>.
+ */
+
 package org.sqlunet.wordnet.browser;
 
 import android.os.Bundle;
 import android.os.Parcelable;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import android.util.Log;
 
 import org.sqlunet.browser.Module;
@@ -12,6 +14,9 @@ import org.sqlunet.provider.ProviderArgs;
 import org.sqlunet.treeview.model.TreeNode;
 import org.sqlunet.wordnet.R;
 import org.sqlunet.wordnet.loaders.SynsetModule;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 /**
  * A fragment representing a synset.

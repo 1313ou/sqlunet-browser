@@ -1,8 +1,13 @@
+/*
+ * Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>.
+ */
+
 package org.sqlunet.browser.vn;
 
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
+
 import androidx.annotation.NonNull;
 
 /**
@@ -28,8 +33,7 @@ public class Settings extends org.sqlunet.settings.Settings
 	 * Source
 	 */
 	public enum Source
-	{
-		WORDNET(ENABLE_WORDNET), VERBNET(ENABLE_VERBNET), PROPBANK(ENABLE_PROPBANK);
+	{WORDNET(ENABLE_WORDNET), VERBNET(ENABLE_VERBNET), PROPBANK(ENABLE_PROPBANK);
 
 		/**
 		 * Source mask
@@ -66,8 +70,7 @@ public class Settings extends org.sqlunet.settings.Settings
 		public boolean test(final int sources)
 		{
 			return (sources & this.mask) != 0;
-		}
-	}
+		}}
 
 	// S E L E C T O R   T Y P E
 
@@ -75,8 +78,7 @@ public class Settings extends org.sqlunet.settings.Settings
 	 * Selectors
 	 */
 	public enum Selector
-	{
-		XSELECTOR;
+	{XSELECTOR;
 
 		/**
 		 * Set this selector as preferred selector
@@ -110,8 +112,7 @@ public class Settings extends org.sqlunet.settings.Settings
 				sharedPref.edit().putString(Settings.PREF_SELECTOR, mode.name()).apply();
 			}
 			return mode;
-		}
-	}
+		}}
 
 	/**
 	 * Get preferred selector type

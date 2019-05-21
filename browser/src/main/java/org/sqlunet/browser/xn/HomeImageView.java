@@ -1,10 +1,12 @@
+/*
+ * Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>.
+ */
+
 package org.sqlunet.browser.xn;
 
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.Rect;
-import androidx.annotation.NonNull;
-import androidx.appcompat.widget.AppCompatImageView;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.MotionEvent;
@@ -13,6 +15,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import org.sqlunet.browser.R;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.widget.AppCompatImageView;
 
 class HomeImageView extends AppCompatImageView
 {

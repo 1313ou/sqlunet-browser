@@ -1,3 +1,7 @@
+/*
+ * Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>.
+ */
+
 package org.sqlunet.style;
 
 import android.content.Context;
@@ -5,8 +9,6 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Paint.FontMetricsInt;
 import android.graphics.drawable.Drawable;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
 import android.text.style.ClickableSpan;
@@ -18,6 +20,9 @@ import android.view.View;
 import android.widget.TextView;
 
 import org.sqlunet.xnet.R;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 /**
  * Spanner
@@ -373,48 +378,48 @@ public class Spanner
 		return drawable;
 	}
 
-// --Commented out by Inspection START (8/20/17 10:09 AM):
-//	/**
-//	 * Dump spannable string builder
-//	 *
-//	 * @param sb spannable string builder
-//	 * @return string
-//	 */
-//	static public String dump(final SpannableStringBuilder sb)
-//	{
-//		final StringBuilder dump = new StringBuilder();
-//		for (Object span : sb.getSpans(0, sb.length(), Object.class))
-//		{
-//			final int from = sb.getSpanStart(span);
-//			final int to = sb.getSpanEnd(span);
-//			final CharSequence sub = sb.subSequence(from, to);
-//			final Class<?> clazz = span.getClass();
-//			dump.append(sub).append(' ').append('[').append(from).append(',').append(to).append(']').append(' ').append(clazz).append(' ');
-//			if (clazz.equals(BackgroundColorSpan.class))
-//			{
-//				final BackgroundColorSpan bSpan = (BackgroundColorSpan) span;
-//				int color = bSpan.getBackgroundColor();
-//				dump.append(Integer.toHexString(color));
-//			}
-//			else if (clazz.equals(ForegroundColorSpan.class))
-//			{
-//				final ForegroundColorSpan fSpan = (ForegroundColorSpan) span;
-//				int color = fSpan.getForegroundColor();
-//				dump.append(Integer.toHexString(color));
-//			}
-//			else if (clazz.equals(ImageSpan.class))
-//			{
-//				final ImageSpan iSpan = (ImageSpan) span;
-//				dump.append(iSpan.getDrawable()).append(' ').append(iSpan.getSource());
-//			}
-//			else if (clazz.equals(HiddenSpan.class))
-//			{
-//				final HiddenSpan hSpan = (HiddenSpan) span;
-//				dump.append(hSpan.toString());
-//			}
-//			dump.append('\n');
-//		}
-//		return dump.toString();
-//	}
-// --Commented out by Inspection STOP (8/20/17 10:09 AM)
+	// --Commented out by Inspection START (8/20/17 10:09 AM):
+	//	/**
+	//	 * Dump spannable string builder
+	//	 *
+	//	 * @param sb spannable string builder
+	//	 * @return string
+	//	 */
+	//	static public String dump(final SpannableStringBuilder sb)
+	//	{
+	//		final StringBuilder dump = new StringBuilder();
+	//		for (Object span : sb.getSpans(0, sb.length(), Object.class))
+	//		{
+	//			final int from = sb.getSpanStart(span);
+	//			final int to = sb.getSpanEnd(span);
+	//			final CharSequence sub = sb.subSequence(from, to);
+	//			final Class<?> clazz = span.getClass();
+	//			dump.append(sub).append(' ').append('[').append(from).append(',').append(to).append(']').append(' ').append(clazz).append(' ');
+	//			if (clazz.equals(BackgroundColorSpan.class))
+	//			{
+	//				final BackgroundColorSpan bSpan = (BackgroundColorSpan) span;
+	//				int color = bSpan.getBackgroundColor();
+	//				dump.append(Integer.toHexString(color));
+	//			}
+	//			else if (clazz.equals(ForegroundColorSpan.class))
+	//			{
+	//				final ForegroundColorSpan fSpan = (ForegroundColorSpan) span;
+	//				int color = fSpan.getForegroundColor();
+	//				dump.append(Integer.toHexString(color));
+	//			}
+	//			else if (clazz.equals(ImageSpan.class))
+	//			{
+	//				final ImageSpan iSpan = (ImageSpan) span;
+	//				dump.append(iSpan.getDrawable()).append(' ').append(iSpan.getSource());
+	//			}
+	//			else if (clazz.equals(HiddenSpan.class))
+	//			{
+	//				final HiddenSpan hSpan = (HiddenSpan) span;
+	//				dump.append(hSpan.toString());
+	//			}
+	//			dump.append('\n');
+	//		}
+	//		return dump.toString();
+	//	}
+	// --Commented out by Inspection STOP (8/20/17 10:09 AM)
 }

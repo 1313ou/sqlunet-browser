@@ -1,8 +1,13 @@
+/*
+ * Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>.
+ */
+
 package org.sqlunet.predicatematrix.settings;
 
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
+
 import androidx.annotation.NonNull;
 
 /**
@@ -18,8 +23,7 @@ public class Settings
 	 * Modes
 	 */
 	public enum PMMode
-	{
-		ROLES, ROWS_GROUPED_BY_ROLE, ROWS_GROUPED_BY_SYNSET, ROWS;
+	{ROLES, ROWS_GROUPED_BY_ROLE, ROWS_GROUPED_BY_SYNSET, ROWS;
 
 		/**
 		 * Get mode preference
@@ -60,6 +64,5 @@ public class Settings
 			}
 			sharedPref.edit().putString(Settings.PREF_PM_MODE, this.name()).apply();
 			return true;
-		}
-	}
+		}}
 }

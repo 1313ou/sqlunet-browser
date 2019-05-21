@@ -1,12 +1,12 @@
+/*
+ * Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>.
+ */
+
 package android.support.local.app;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.os.Handler;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import android.support.local.app.R;
-import androidx.fragment.app.Fragment;
 import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,6 +16,10 @@ import android.widget.AdapterView;
 import android.widget.ExpandableListAdapter;
 import android.widget.ExpandableListView;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
 
 @SuppressWarnings("unused")
 public class ExpandableListFragment extends Fragment implements ExpandableListView.OnChildClickListener, ExpandableListView.OnGroupCollapseListener, ExpandableListView.OnGroupExpandListener

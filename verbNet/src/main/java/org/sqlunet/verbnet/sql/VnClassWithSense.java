@@ -1,10 +1,15 @@
+/*
+ * Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>.
+ */
+
 package org.sqlunet.verbnet.sql;
 
 import android.database.sqlite.SQLiteDatabase;
-import androidx.annotation.NonNull;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import androidx.annotation.NonNull;
 
 /**
  * VerbNet class with sense
@@ -62,15 +67,15 @@ class VnClassWithSense
 	/**
 	 * Constructor
 	 *
-	 * @param className class name
-	 * @param classId   class id
-	 * @param wordId    word id
-	 * @param synsetId  synset id
-	 * @param definition  sense num
-	 * @param senseNum  sense num
-	 * @param senseKey  senseKey
-	 * @param quality   quality
-	 * @param groupings groupings
+	 * @param className  class name
+	 * @param classId    class id
+	 * @param wordId     word id
+	 * @param synsetId   synset id
+	 * @param definition sense num
+	 * @param senseNum   sense num
+	 * @param senseKey   senseKey
+	 * @param quality    quality
+	 * @param groupings  groupings
 	 */
 	private VnClassWithSense(final String className, final long classId, final Long wordId, final Long synsetId, final String definition, final Integer senseNum, final String senseKey, final float quality, final String groupings)
 	{

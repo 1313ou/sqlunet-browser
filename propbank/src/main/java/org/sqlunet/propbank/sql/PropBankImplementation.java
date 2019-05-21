@@ -1,7 +1,10 @@
+/*
+ * Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>.
+ */
+
 package org.sqlunet.propbank.sql;
 
 import android.database.sqlite.SQLiteDatabase;
-import androidx.annotation.NonNull;
 
 import org.sqlunet.dom.DomFactory;
 import org.sqlunet.dom.DomTransformer;
@@ -9,6 +12,8 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 
 import java.util.List;
+
+import androidx.annotation.NonNull;
 
 /**
  * Encapsulates PropBank query implementation

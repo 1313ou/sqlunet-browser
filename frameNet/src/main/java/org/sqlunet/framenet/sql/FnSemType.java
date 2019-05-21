@@ -1,9 +1,13 @@
-package org.sqlunet.framenet.sql;
+/*
+ * Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>.
+ */
 
-import androidx.annotation.Nullable;
+package org.sqlunet.framenet.sql;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import androidx.annotation.Nullable;
 
 /**
  * Semantic type

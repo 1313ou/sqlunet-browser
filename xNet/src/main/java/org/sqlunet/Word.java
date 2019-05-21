@@ -1,6 +1,11 @@
+/*
+ * Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>.
+ */
+
 package org.sqlunet;
 
 import android.os.Parcel;
+
 import androidx.annotation.NonNull;
 
 /**

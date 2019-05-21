@@ -1,8 +1,10 @@
+/*
+ * Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>.
+ */
+
 package org.sqlunet.framenet.style;
 
 import android.content.Context;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
 
@@ -10,6 +12,9 @@ import org.sqlunet.style.MarkupSpanner;
 import org.sqlunet.style.Spanner;
 
 import java.util.regex.Pattern;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 /**
  * FrameNet spanner
@@ -47,7 +52,7 @@ public class FrameNetSpanner
 	public CharSequence process(@NonNull final CharSequence text, final long flags, @Nullable final Spanner.SpanFactory factory)
 	{
 		final SpannableStringBuilder sb = new SpannableStringBuilder(text);
-		if(factory != null)
+		if (factory != null)
 		{
 			Spanner.setSpan(sb, 0, sb.length(), 0, factory);
 		}

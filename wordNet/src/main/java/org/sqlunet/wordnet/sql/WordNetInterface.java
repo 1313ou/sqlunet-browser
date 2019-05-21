@@ -1,9 +1,14 @@
+/*
+ * Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>.
+ */
+
 package org.sqlunet.wordnet.sql;
 
 import android.database.sqlite.SQLiteDatabase;
-import androidx.annotation.NonNull;
 
 import org.w3c.dom.Document;
+
+import androidx.annotation.NonNull;
 
 /**
  * Business methods for WordNet interface

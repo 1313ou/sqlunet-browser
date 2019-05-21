@@ -1,8 +1,12 @@
+/*
+ * Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>.
+ */
+
 package org.sqlunet.verbnet.style;
 
-import androidx.annotation.Nullable;
-
 import org.sqlunet.style.RegExprSpanner;
+
+import androidx.annotation.Nullable;
 
 /**
  * VerbNet semantics processor

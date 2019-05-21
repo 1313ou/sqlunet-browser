@@ -1,3 +1,7 @@
+/*
+ * Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>.
+ */
+
 package org.sqlunet.verbnet.provider;
 
 import android.content.UriMatcher;
@@ -6,11 +10,12 @@ import android.database.sqlite.SQLiteCantOpenDatabaseException;
 import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteQueryBuilder;
 import android.net.Uri;
-import androidx.annotation.NonNull;
 import android.util.Log;
 
 import org.sqlunet.provider.BaseProvider;
 import org.sqlunet.sql.SqlFormatter;
+
+import androidx.annotation.NonNull;
 
 /**
  * VerbNet provider
@@ -49,7 +54,7 @@ public class VerbNetProvider extends BaseProvider
 	static private final int LOOKUP_FTS_EXAMPLES = 501;
 	static private final int LOOKUP_FTS_EXAMPLES_X = 511;
 	static private final int LOOKUP_FTS_EXAMPLES_X_BY_EXAMPLE = 512;
-	
+
 	static private void matchURIs()
 	{
 		VerbNetProvider.uriMatcher.addURI(AUTHORITY, VerbNetContract.VnClasses.TABLE, VerbNetProvider.VNCLASS);
@@ -215,7 +220,7 @@ public class VerbNetProvider extends BaseProvider
 				table = "vnexamples_example_fts4";
 				break;
 			case LOOKUP_FTS_EXAMPLES_X_BY_EXAMPLE:
-				groupBy="exampleid";
+				groupBy = "exampleid";
 				//$FALL-THROUGH$
 				//noinspection fallthrough
 			case LOOKUP_FTS_EXAMPLES_X:

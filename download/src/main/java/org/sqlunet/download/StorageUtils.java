@@ -1,3 +1,7 @@
+/*
+ * Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>.
+ */
+
 package org.sqlunet.download;
 
 import android.annotation.TargetApi;
@@ -36,9 +40,7 @@ public class StorageUtils
 	 * Storage types
 	 */
 	enum StorageType
-	{
-		PRIMARY_EMULATED, PRIMARY_PHYSICAL, SECONDARY
-	}
+	{PRIMARY_EMULATED, PRIMARY_PHYSICAL, SECONDARY}
 
 	/**
 	 * Directory type
@@ -46,8 +48,7 @@ public class StorageUtils
 	 * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
 	 */
 	public enum DirType
-	{
-		AUTO, APP_EXTERNAL_SECONDARY, APP_EXTERNAL_PRIMARY, PUBLIC_EXTERNAL_SECONDARY, PUBLIC_EXTERNAL_PRIMARY, APP_INTERNAL;
+	{AUTO, APP_EXTERNAL_SECONDARY, APP_EXTERNAL_PRIMARY, PUBLIC_EXTERNAL_SECONDARY, PUBLIC_EXTERNAL_PRIMARY, APP_INTERNAL;
 
 		/**
 		 * Compare (sort by preference)
@@ -82,8 +83,7 @@ public class StorageUtils
 					return "internal";
 			}
 			return null;
-		}
-	}
+		}}
 
 	/**
 	 * Directory with type

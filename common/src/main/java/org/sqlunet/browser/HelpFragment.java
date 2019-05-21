@@ -1,3 +1,7 @@
+/*
+ * Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>.
+ */
+
 package org.sqlunet.browser;
 
 import android.annotation.TargetApi;
@@ -6,8 +10,6 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import androidx.annotation.NonNull;
-
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,6 +21,8 @@ import android.webkit.WebViewClient;
 import android.widget.Toast;
 
 import org.sqlunet.browser.common.R;
+
+import androidx.annotation.NonNull;
 
 /**
  * Help fragment

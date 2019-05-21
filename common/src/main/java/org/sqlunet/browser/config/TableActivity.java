@@ -1,12 +1,17 @@
+/*
+ * Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>.
+ */
+
 package org.sqlunet.browser.config;
 
 import android.os.Bundle;
-import androidx.fragment.app.Fragment;
+
+import org.sqlunet.browser.common.R;
+
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-
-import org.sqlunet.browser.common.R;
+import androidx.fragment.app.Fragment;
 
 /**
  * An activity representing table.
