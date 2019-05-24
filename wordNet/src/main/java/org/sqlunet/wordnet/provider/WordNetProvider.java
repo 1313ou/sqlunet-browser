@@ -9,8 +9,6 @@ import android.content.UriMatcher;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteCantOpenDatabaseException;
 import android.database.sqlite.SQLiteException;
-import android.database.sqlite.SQLiteProgram;
-import android.database.sqlite.SQLiteQuery;
 import android.database.sqlite.SQLiteQueryBuilder;
 import android.net.Uri;
 import android.os.Bundle;
@@ -634,7 +632,7 @@ public class WordNetProvider extends BaseProvider
 						Links.WORDID2, //
 						Links.SYNSETID2, //
 				};
-				groupBy = WordNetContract.DEST + ".synsetid, " + WordNetContract.TYPE + " , link, linkid, " + BaseModule.TARGET_WORDID + ',' + BaseModule.TARGET_LEMMA;
+				groupBy = BaseModule.TARGET_SYNSETID + " , " + WordNetContract.TYPE + " , link, linkid, " + BaseModule.TARGET_WORDID + ',' + BaseModule.TARGET_LEMMA;
 				table = "( " + makeQuery(table1, //
 						table2, //
 						projection1,  //
@@ -642,12 +640,7 @@ public class WordNetProvider extends BaseProvider
 						unionProjection, //
 						WordNetContract.TYPE, //
 						"sem", //
-						"lex",
-						selection,
-						selection,
-						selectionArgs,
-						selectionArgs
-						) + " ) AS " + WordNetContract.LINK + ' ' + //
+						"lex", selection, selection, selectionArgs, selectionArgs) + " ) AS " + WordNetContract.LINK + ' ' + //
 						"INNER JOIN linktypes USING (linkid) " + //
 						"INNER JOIN synsets AS " + WordNetContract.DEST + " ON " + WordNetContract.LINK + ".synset2id = " + WordNetContract.DEST + ".synsetid " + //
 						"LEFT JOIN senses ON " + WordNetContract.DEST + ".synsetid = senses.synsetid " + //
@@ -667,8 +660,8 @@ public class WordNetProvider extends BaseProvider
 				selection = "CASE l.x WHEN 'sem' THEN 1 ELSE l.word1id = ? END AND synset1id = ?";
 				selectionArgs = new String[]{"419", "202232813"};
 				*/
-				selection = null;
-				selectionArgs = null;
+				actualSelection = null;
+				//selectionArgs = null;
 				//selection = "synset1id = ?";
 				//selectionArgs = new String[]{"202232813"};
 				break;
@@ -678,16 +671,16 @@ public class WordNetProvider extends BaseProvider
 				throw new RuntimeException("Malformed URI " + uri);
 		}
 
-		final String sql0 = SQLiteQueryBuilder.buildQueryString(false, table, actualProjection, actualSelection, groupBy, null, sortOrder, null);
-		final SQLiteQueryBuilder queryBuilder = new SQLiteQueryBuilder();
-		queryBuilder.setDistinct(false);
-		queryBuilder.setStrict(false);
-		queryBuilder.setTables(table);
-		final String sql = queryBuilder.buildQuery(actualProjection, selection, groupBy, null, sortOrder, null);
-		if (!sql.equals(sql0))
-		{
+		final String sql = SQLiteQueryBuilder.buildQueryString(false, table, actualProjection, actualSelection, groupBy, null, sortOrder, null);
+		//final SQLiteQueryBuilder queryBuilder = new SQLiteQueryBuilder();
+		//queryBuilder.setDistinct(false);
+		//queryBuilder.setStrict(false);
+		//queryBuilder.setTables(table);
+		//final String sql = queryBuilder.buildQuery(actualProjection, selection, groupBy, null, sortOrder, null);
+		//if (!sql.equals(sql0))
+		//{
 			//Log.d(WordNetProvider.TAG + "SQL0", SqlFormatter.format(sql0).toString());
-		}
+		//}
 		logSql(sql, selectionArgs);
 		if (BaseProvider.logSql)
 		{
@@ -712,20 +705,22 @@ public class WordNetProvider extends BaseProvider
 	}
 
 	/**
-	 * Make union query
+	 * Make union query.
+	 * Requirements on selection : expr1 AND expr2
+	 * Requirements on selectionArgs : [0] value1, [1] value2
 	 *
-	 * @param table1           table1
-	 * @param table2           table2
-	 * @param projection1 table1 projection
-	 * @param projection2 table2 projection
-	 * @param unionProjection  union projection
-	 * @param discriminator    discriminator field
-	 * @param value1           value1 for discriminator
-	 * @param value2           value2 for discriminator
-	 * @param selection1       selection
-	 * @param selection1Args   selection arguments
-	 * @param selection2       selection
-	 * @param selection2Args   selection arguments
+	 * @param table1          table1
+	 * @param table2          table2
+	 * @param projection1     table1 projection
+	 * @param projection2     table2 projection
+	 * @param unionProjection union projection
+	 * @param discriminator   discriminator field
+	 * @param value1          value1 for discriminator
+	 * @param value2          value2 for discriminator
+	 * @param selection1      selection
+	 * @param selection1Args  selection arguments
+	 * @param selection2      selection
+	 * @param selection2Args  selection arguments
 	 * @return union sql
 	 */
 	private String makeQuery(//
@@ -747,7 +742,8 @@ public class WordNetProvider extends BaseProvider
 		final List<String> table2ProjectionList = Arrays.asList(projection2);
 
 		// query 1
-		final String instantiatedSelection1 = instantiateArgs(projection1, selection1, selection1Args);
+		//final String actualSelection1 = makeSelectionAndInstantiateArgs(projection1, selection1, selection1Args);
+		final String actualSelection1 = makeSelection(projection1, selection1);
 		final SQLiteQueryBuilder subQueryBuilder1 = new SQLiteQueryBuilder();
 		subQueryBuilder1.setTables(table1);
 		final String subQuery1 = subQueryBuilder1.buildUnionSubQuery(discriminator, //
@@ -755,12 +751,13 @@ public class WordNetProvider extends BaseProvider
 				new HashSet<>(table1ProjectionList), //
 				0, //
 				value1, //
-				instantiatedSelection1, //
+				actualSelection1, //
 				null, //
 				null);
 
 		// query 2
-		final String instantiatedSelection2 = instantiateArgs(projection2, selection2, selection2Args);
+		//final String actualSelection2 = makeSelectionAndInstantiateArgs(projection2, selection2, selection2Args);
+		final String actualSelection2 = makeSelection(projection2, selection2);
 		final SQLiteQueryBuilder subQueryBuilder2 = new SQLiteQueryBuilder();
 		subQueryBuilder2.setTables(table2);
 		final String subQuery2 = subQueryBuilder2.buildUnionSubQuery(WordNetContract.TYPE, //
@@ -768,7 +765,7 @@ public class WordNetProvider extends BaseProvider
 				new HashSet<>(table2ProjectionList), //
 				0, //
 				value2, //
-				instantiatedSelection2, //
+				actualSelection2, //
 				null, //
 				null);
 
@@ -780,15 +777,16 @@ public class WordNetProvider extends BaseProvider
 		//return embed(uQuery, projection, selection, groupBy, sortOrder);
 	}
 
-	private String instantiateArgs(final String[] projection, final String selection, final String[] selectionArgs)
+	private String makeSelectionAndInstantiateArgs(final String[] projection, final String selection, final String[] selectionArgs)
 	{
 		final String[] expr = selection.split("\\s+AND\\s+");
 		boolean found = false;
-		for(String col : projection)
+		for (String col : projection)
 		{
-			if(expr[1].contains(col))
+			if (expr[1].contains(col))
 			{
 				found = true;
+				break;
 			}
 		}
 		if (found)
@@ -796,6 +794,25 @@ public class WordNetProvider extends BaseProvider
 			return expr[0].replaceFirst("\\?", selectionArgs[0]) + " AND " + expr[1].replaceFirst("\\?", selectionArgs[1]);
 		}
 		return expr[0].replaceFirst("\\?", selectionArgs[0]);
+	}
+
+	private String makeSelection(final String[] projection, final String selection)
+	{
+		final String[] expr = selection.split("\\s+AND\\s+");
+		boolean found = false;
+		for (String col : projection)
+		{
+			if (expr[1].contains(col))
+			{
+				found = true;
+				break;
+			}
+		}
+		if (found)
+		{
+			return selection;
+		}
+		return expr[0];
 	}
 
 	private String embed(@NonNull final String sql, @NonNull final String[] projection, final String selection, final String groupBy, final String sortOrder)

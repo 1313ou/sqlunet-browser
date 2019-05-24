@@ -38,40 +38,10 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="dbe7534c-3086-4b17-848a-f5676a7f84bd" name="Default" comment="copyright">
+    <list default="true" id="dbe7534c-3086-4b17-848a-f5676a7f84bd" name="Default" comment="unified kinnk query">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bNC/bNC.iml" beforeDir="false" afterPath="$PROJECT_DIR$/bNC/bNC.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/browser/browser.iml" beforeDir="false" afterPath="$PROJECT_DIR$/browser/browser.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/browser/src/main/java/org/sqlunet/browser/xselector/XSelectorsFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/browser/src/main/java/org/sqlunet/browser/xselector/XSelectorsFragment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/browserewn/browserewn.iml" beforeDir="false" afterPath="$PROJECT_DIR$/browserewn/browserewn.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/browserfn/browserfn.iml" beforeDir="false" afterPath="$PROJECT_DIR$/browserfn/browserfn.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/browservn/browservn.iml" beforeDir="false" afterPath="$PROJECT_DIR$/browservn/browservn.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/browservn/src/main/java/org/sqlunet/browser/xselector/XSelectorsFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/browservn/src/main/java/org/sqlunet/browser/xselector/XSelectorsFragment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/browserwn/browserwn.iml" beforeDir="false" afterPath="$PROJECT_DIR$/browserwn/browserwn.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/common.iml" beforeDir="false" afterPath="$PROJECT_DIR$/common/common.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/java/org/sqlunet/browser/EntryActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/org/sqlunet/browser/EntryActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/java/org/sqlunet/browser/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/org/sqlunet/browser/MainActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/java/org/sqlunet/browser/config/SettingsActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/org/sqlunet/browser/config/SettingsActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/java/org/sqlunet/settings/Settings.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/org/sqlunet/settings/Settings.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/deploy/deploy.iml" beforeDir="false" afterPath="$PROJECT_DIR$/deploy/deploy.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/download/download.iml" beforeDir="false" afterPath="$PROJECT_DIR$/download/download.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/expandableListFragment/expandableListFragment.iml" beforeDir="false" afterPath="$PROJECT_DIR$/expandableListFragment/expandableListFragment.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameNet/frameNet.iml" beforeDir="false" afterPath="$PROJECT_DIR$/frameNet/frameNet.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/libwn/libwn.iml" beforeDir="false" afterPath="$PROJECT_DIR$/libwn/libwn.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/predicateMatrix/predicateMatrix.iml" beforeDir="false" afterPath="$PROJECT_DIR$/predicateMatrix/predicateMatrix.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/preference/preference.iml" beforeDir="false" afterPath="$PROJECT_DIR$/preference/preference.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/propbank/propbank.iml" beforeDir="false" afterPath="$PROJECT_DIR$/propbank/propbank.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/support/support.iml" beforeDir="false" afterPath="$PROJECT_DIR$/support/support.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/test.iml" beforeDir="false" afterPath="$PROJECT_DIR$/test/test.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/treeView/treeView.iml" beforeDir="false" afterPath="$PROJECT_DIR$/treeView/treeView.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/verbNet/verbNet.iml" beforeDir="false" afterPath="$PROJECT_DIR$/verbNet/verbNet.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/wordNet/src/main/java/org/sqlunet/wordnet/loaders/BaseModule.java" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/java/org/sqlunet/wordnet/loaders/BaseModule.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/java/org/sqlunet/wordnet/provider/WordNetContract.java" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/java/org/sqlunet/wordnet/provider/WordNetContract.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/wordNet/src/main/java/org/sqlunet/wordnet/provider/WordNetProvider.java" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/java/org/sqlunet/wordnet/provider/WordNetProvider.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/wordNet.iml" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/wordNet.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/xNet/src/main/java/org/sqlunet/browser/SqlunetViewTreeModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/xNet/src/main/java/org/sqlunet/browser/SqlunetViewTreeModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/xNet/src/main/java/org/sqlunet/provider/XSqlUNetProvider.java" beforeDir="false" afterPath="$PROJECT_DIR$/xNet/src/main/java/org/sqlunet/provider/XSqlUNetProvider.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/xNet/xNet.iml" beforeDir="false" afterPath="$PROJECT_DIR$/xNet/xNet.iml" afterDir="false" />
     </list>
     <list id="36f6b5c7-9521-46b4-bf4d-149db941bcca" name="NonPublic" comment="" />
     <ignored path="SqlUNet.iws" />
@@ -157,170 +127,13 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file:///opt/androidstudio/sdk/sources/android-28/android/database/sqlite/SQLiteQueryBuilder.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="585">
-              <caret line="559" column="34" selection-start-line="559" selection-start-column="21" selection-end-line="559" selection-end-column="34" />
-              <folding>
-                <element signature="docComment;class#SQLiteQueryBuilder#0" />
-                <element signature="method#SQLiteQueryBuilder#0;class#SQLiteQueryBuilder#0" />
-                <element signature="docComment;method#setDistinct#0;class#SQLiteQueryBuilder#0" />
-                <element signature="docComment;method#getTables#0;class#SQLiteQueryBuilder#0" />
-                <element signature="docComment;method#setTables#0;class#SQLiteQueryBuilder#0" />
-                <element signature="docComment;method#appendWhere#0;class#SQLiteQueryBuilder#0" />
-                <element signature="method#appendWhere#0;class#SQLiteQueryBuilder#0" />
-                <element signature="e#2976#3056#1" />
-                <element signature="e#3097#3146#1" />
-                <element signature="docComment;method#appendWhereEscapeString#0;class#SQLiteQueryBuilder#0" />
-                <element signature="method#appendWhereEscapeString#0;class#SQLiteQueryBuilder#0" />
-                <element signature="e#3744#3824#1" />
-                <element signature="e#3865#3914#1" />
-                <element signature="docComment;method#setProjectionMap#0;class#SQLiteQueryBuilder#0" />
-                <element signature="docComment;method#setCursorFactory#0;class#SQLiteQueryBuilder#0" />
-                <element signature="docComment;method#setStrict#0;class#SQLiteQueryBuilder#0" />
-                <element signature="docComment;method#buildQueryString#0;class#SQLiteQueryBuilder#0" />
-                <element signature="method#buildQueryString#0;class#SQLiteQueryBuilder#0" />
-                <element signature="e#8135#8280#1" />
-                <element signature="e#8363#8456#1" />
-                <element signature="e#8568#8618#1" />
-                <element signature="e#8671#8725#1" />
-                <element signature="e#8731#8774#1" />
-                <element signature="method#appendClause#0;class#SQLiteQueryBuilder#0" />
-                <element signature="e#9248#9317#1" />
-                <element signature="docComment;method#appendColumns#0;class#SQLiteQueryBuilder#0" />
-                <element signature="method#appendColumns#0;class#SQLiteQueryBuilder#0" />
-                <element signature="e#9576#9793#1" />
-                <element signature="e#9651#9783#1" />
-                <element signature="e#9680#9735#1" />
-                <element signature="docComment;method#query#0;class#SQLiteQueryBuilder#0" />
-                <element signature="method#query#0;class#SQLiteQueryBuilder#0" />
-                <element signature="docComment;method#query#1;class#SQLiteQueryBuilder#0" />
-                <element signature="method#query#1;class#SQLiteQueryBuilder#0" />
-                <element signature="docComment;method#query#2;class#SQLiteQueryBuilder#0" />
-                <element signature="method#query#2;class#SQLiteQueryBuilder#0" />
-                <element signature="e#16338#16374#1" />
-                <element signature="e#16444#17253#1" />
-                <element signature="e#16458#16527#0" />
-                <element signature="e#17426#17489#1" />
-                <element signature="docComment;method#buildQuery#0;class#SQLiteQueryBuilder#0" />
-                <element signature="method#buildQuery#0;class#SQLiteQueryBuilder#0" />
-                <element signature="e#19634#19727#1" />
-                <element signature="e#19839#20041#1" />
-                <element signature="e#19877#19931#1" />
-                <element signature="docComment;method#buildQuery#1;class#SQLiteQueryBuilder#0" />
-                <element signature="method#buildQuery#1;class#SQLiteQueryBuilder#0" />
-                <element signature="docComment;method#buildUnionSubQuery#0;class#SQLiteQueryBuilder#0" />
-                <element signature="method#buildUnionSubQuery#0;class#SQLiteQueryBuilder#0" />
-                <element signature="e#23509#24023#1" />
-                <element signature="e#23623#23762#1" />
-                <element signature="e#23870#23932#1" />
-                <element signature="e#23938#24013#1" />
-                <element signature="docComment;method#buildUnionQuery#0;class#SQLiteQueryBuilder#0" />
-                <element signature="method#buildUnionQuery#0;class#SQLiteQueryBuilder#0" />
-                <element signature="e#26064#26200#1" />
-                <element signature="e#26089#26149#1" />
-                <element signature="method#computeProjection#0;class#SQLiteQueryBuilder#0" />
-                <element signature="e#26467#27509#1" />
-                <element signature="e#26509#27441#1" />
-                <element signature="e#26682#27392#1" />
-                <element signature="e#26850#26955#1" />
-                <element signature="e#27084#27252#1" />
-                <element signature="e#27447#27499#1" />
-                <element signature="e#27543#28251#1" />
-                <element signature="e#27879#28210#1" />
-                <element signature="e#28095#28144#1" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file:///opt/androidstudio/sdk/sources/android-28/android/database/sqlite/SQLiteDatabase.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="240">
-              <caret line="1407" column="31" selection-start-line="1407" selection-start-column="26" selection-end-line="1407" selection-end-column="31" />
-              <folding>
-                <element signature="e#16473#16474#0" expanded="true" />
-                <element signature="e#16560#16561#0" expanded="true" />
-                <element signature="e#58734#58735#0" expanded="true" />
-                <element signature="e#58814#58815#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/wordNet/src/main/java/org/sqlunet/wordnet/provider/WordNetProvider.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="979">
-              <caret line="705" selection-start-line="705" selection-end-line="705" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#18129#18130#0" expanded="true" />
-                <element signature="e#18202#18203#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/wordNet/src/main/java/org/sqlunet/wordnet/loaders/BaseModule.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="219">
-              <caret line="1019" column="52" selection-start-line="1019" selection-start-column="52" selection-end-line="1019" selection-end-column="52" />
+            <state relative-caret-position="494">
+              <caret line="1070" column="57" selection-start-line="1070" selection-start-column="57" selection-end-line="1070" selection-end-column="57" />
               <folding>
                 <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file:///opt/androidstudio/sdk/sources/android-28/android/database/sqlite/SQLiteProgram.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="372">
-              <caret line="90" column="30" selection-start-line="90" selection-start-column="19" selection-end-line="90" selection-end-column="30" />
-              <folding>
-                <element signature="e#2996#2997#0" expanded="true" />
-                <element signature="e#3023#3024#0" expanded="true" />
-                <element signature="e#3059#3060#0" expanded="true" />
-                <element signature="e#3091#3092#0" expanded="true" />
-                <element signature="e#3232#3233#0" expanded="true" />
-                <element signature="e#3283#3284#0" expanded="true" />
-                <element signature="e#3348#3349#0" expanded="true" />
-                <element signature="e#3423#3424#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file:///opt/androidstudio/sdk/sources/android-28/android/database/sqlite/SQLiteQuery.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-65">
-              <caret line="30" column="19" selection-start-line="30" selection-start-column="19" selection-end-line="30" selection-end-column="19" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file:///opt/androidstudio/sdk/sources/android-28/android/database/sqlite/SQLiteCursorDriver.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="343">
-              <caret line="54" column="32" selection-start-line="54" selection-start-column="16" selection-end-line="54" selection-end-column="32" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file:///opt/androidstudio/sdk/sources/android-28/android/database/sqlite/SQLiteCursor.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="351">
-              <caret line="256" column="16" selection-start-line="256" selection-start-column="16" selection-end-line="256" selection-end-column="16" />
-              <folding>
-                <element signature="e#8711#8712#0" expanded="true" />
-                <element signature="e#8766#8767#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -340,8 +153,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>logSql</find>
-      <find>Wordnet</find>
       <find>--le</find>
       <find>recurse</find>
       <find>TreeFactory.add</find>
@@ -370,6 +181,8 @@
       <find>PREF_SQ</find>
       <find>raw</find>
       <find>Union</find>
+      <find>d_synsetid</find>
+      <find>d_definition</find>
     </findStrings>
     <replaceStrings>
       <replace>FireEvent::live</replace>
@@ -524,10 +337,10 @@
     <scope name="Resources" pattern="file[bNC]:src/main/res//*||file[browser]:src/main/res//*||file[browserfn]:src/main/res//*||file[browserwn]:src/main/res//*||file[common]:src/main/res//*||file[expandableListFragment]:src/main/res//*||file[frameNet]:src/main/res//*||file[predicateMatrix]:src/main/res//*||file[propbank]:src/main/res//*||file[support]:src/main/res//*||file[treeView]:src/main/res//*||file[verbNet]:src/main/res//*||file[wordNet]:src/main/res//*||file[xNet]:src/main/res//*||file[browservn]:src/main/res//*" />
     <scope name="Values" pattern="(file[bNC]:src/main/res//*||file[expandableListFragment]:src/main/res//*||file[frameNet]:src/main/res//*||file[predicateMatrix]:src/main/res//*||file[propbank]:src/main/res//*||file[support]:src/main/res//*||file[treeView]:src/main/res//*||file[verbNet]:src/main/res//*||file[wordNet]:src/main/res//*||file[xNet]:src/main/res//*)&amp;&amp;!file[expandableListFragment]:*/&amp;&amp;!file[xNet]:*/&amp;&amp;!file[wordNet]:*/&amp;&amp;!file[propbank]:*/&amp;&amp;!file[predicateMatrix]:*/&amp;&amp;!file[test]:*/&amp;&amp;!file[support]:*/&amp;&amp;!file[verbNet]:*/&amp;&amp;!file[frameNet]:*/&amp;&amp;!file[treeView]:*/&amp;&amp;!file[bNC]:*/||file[browser]:src/main/res/values//*||file[browser]:src/main/res/values-land//*||file[browser]:src/main/res/values-large//*||file[browserfn]:src/main/res/values//*||file[browserfn]:src/main/res/values-land//*||file[browserfn]:src/main/res/values-large//*||file[browserwn]:src/main/res/*||file[browserwn]:src/main/res/values//*||file[browserwn]:src/main/res/values-land//*||file[browserwn]:src/main/res/values-large//*||file[common]:src/main/res/values//*||file[common]:src/main/res/values-v21//*||file[common]:src/main/res/values-w600dp//*||file[common]:src/main/res/values-w720dp//*||file[common]:src/main/res/values-w820dp//*||file[browservn]:src/main/res/values//*||file[browservn]:src/main/res/values-land//*||file[browservn]:src/main/res/values-large//*" />
   </component>
-  <component name="ProjectFrameBounds">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="145" />
     <option name="y" value="27" />
-    <option name="width" value="1242" />
+    <option name="width" value="1138" />
     <option name="height" value="1168" />
   </component>
   <component name="ProjectView">
@@ -1398,13 +1211,6 @@
       <option name="presentableId" value="Default" />
       <updated>1487150992421</updated>
     </task>
-    <task id="LOCAL-00141" summary="wip treefactory">
-      <created>1555487155511</created>
-      <option name="number" value="00141" />
-      <option name="presentableId" value="LOCAL-00141" />
-      <option name="project" value="LOCAL" />
-      <updated>1555487155512</updated>
-    </task>
     <task id="LOCAL-00142" summary="wip treeview">
       <created>1555515883191</created>
       <option name="number" value="00142" />
@@ -1741,7 +1547,14 @@
       <option name="project" value="LOCAL" />
       <updated>1558418119522</updated>
     </task>
-    <option name="localTasksCounter" value="190" />
+    <task id="LOCAL-00190" summary="unified kinnk query">
+      <created>1558714130214</created>
+      <option name="number" value="00190" />
+      <option name="presentableId" value="LOCAL-00190" />
+      <option name="project" value="LOCAL" />
+      <updated>1558714130215</updated>
+    </task>
+    <option name="localTasksCounter" value="191" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1786,10 +1599,10 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="145" y="27" width="1242" height="1168" extended-state="0" />
+    <frame x="51" y="27" width="1869" height="1173" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.6680384" visible="true" weight="0.1775" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.6680384" visible="true" weight="0.11658456" />
       <window_info id="Structure" order="1" sideWeight="0.47352496" side_tool="true" weight="0.27697262" />
       <window_info id="Captures" order="2" sideWeight="0.3319616" side_tool="true" weight="0.25447154" />
       <window_info id="Capture Tool" order="3" />
@@ -1800,25 +1613,25 @@
       <window_info id="Build Variants" order="8" sideWeight="0.50392157" side_tool="true" weight="0.18117131" />
       <window_info id="Resources Explorer" order="9" weight="0.32984716" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" sideWeight="0.5267606" weight="0.273353" />
+      <window_info active="true" anchor="bottom" id="Find" order="1" sideWeight="0.52545154" visible="true" weight="0.27299413" />
       <window_info anchor="bottom" id="Run" order="2" sideWeight="0.22824302" weight="0.33953032" />
-      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.51916665" visible="true" weight="0.43854475" />
+      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.51833606" weight="0.43639922" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" sideWeight="0.30907604" weight="0.32692307" />
       <window_info anchor="bottom" id="Android Profiler" order="7" />
-      <window_info anchor="bottom" id="Logcat" order="8" sideWeight="0.48083332" side_tool="true" visible="true" weight="0.43854475" />
+      <window_info anchor="bottom" id="Logcat" order="8" sideWeight="0.47454843" side_tool="true" visible="true" weight="0.27299413" />
       <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.7481542" side_tool="true" weight="0.44520548" />
       <window_info anchor="bottom" id="Build" order="10" sideWeight="0.5591549" weight="0.15830874" />
       <window_info anchor="bottom" id="Android Monitor" order="11" sideWeight="0.82428116" weight="0.39513677" />
-      <window_info anchor="bottom" id="Version Control" order="12" sideWeight="0.43521595" weight="0.25342464" />
+      <window_info anchor="bottom" id="Version Control" order="12" sideWeight="0.3100471" weight="0.58603734" />
       <window_info anchor="bottom" id="Terminal" order="13" sideWeight="0.3136289" weight="0.32387474" />
       <window_info active="true" anchor="bottom" id="Gradle Console" order="14" sideWeight="0.4729064" side_tool="true" visible="true" weight="0.3107843" />
       <window_info anchor="bottom" id="Messages" order="15" sideWeight="0.5270936" weight="0.3107843" />
       <window_info anchor="bottom" id="Inspection Results" order="16" sideWeight="0.354493" weight="0.36479843" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" sideWeight="0.4966443" visible="true" weight="0.10166667" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" sideWeight="0.4966443" weight="0.09576138" />
       <window_info anchor="right" id="Assistant" order="3" weight="0.32921812" />
       <window_info anchor="right" id="Module Dependencies" order="4" visible="true" weight="0.20197044" />
       <window_info anchor="right" id="Android Model" order="5" side_tool="true" />
@@ -1939,7 +1752,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$" />
     </ignored-roots>
-    <MESSAGE value="wip fixes crash" />
     <MESSAGE value="wip models as members" />
     <MESSAGE value="wip fire node" />
     <MESSAGE value="wip returned treeops" />
@@ -1964,28 +1776,29 @@
     <MESSAGE value="tree node factory add split into make + addTo(parent)&#10;break expansion scheme" />
     <MESSAGE value="workspace" />
     <MESSAGE value="copyright" />
-    <option name="LAST_COMMIT_MESSAGE" value="copyright" />
+    <MESSAGE value="unified kinnk query" />
+    <option name="LAST_COMMIT_MESSAGE" value="unified kinnk query" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/wordNet/src/main/java/org/sqlunet/wordnet/loaders/BaseModule.java</url>
-          <line>1030</line>
+          <line>1028</line>
           <properties />
           <option name="timeStamp" value="179" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/wordNet/src/main/java/org/sqlunet/wordnet/provider/WordNetProvider.java</url>
-          <line>673</line>
-          <properties />
-          <option name="timeStamp" value="187" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/wordNet/src/main/java/org/sqlunet/wordnet/provider/WordNetProvider.java</url>
-          <line>784</line>
+          <line>781</line>
           <properties />
           <option name="timeStamp" value="189" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/wordNet/src/main/java/org/sqlunet/wordnet/loaders/BaseModule.java</url>
+          <line>1055</line>
+          <properties />
+          <option name="timeStamp" value="193" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
@@ -3267,8 +3080,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/wordNet/src/main/java/org/sqlunet/wordnet/provider/WordNetProvider.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="979">
-          <caret line="705" selection-start-line="705" selection-end-line="705" />
+        <state relative-caret-position="229">
+          <caret line="666" selection-start-line="666" selection-end-line="666" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#18129#18130#0" expanded="true" />
@@ -3279,8 +3092,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/wordNet/src/main/java/org/sqlunet/wordnet/loaders/BaseModule.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="219">
-          <caret line="1019" column="52" selection-start-line="1019" selection-start-column="52" selection-end-line="1019" selection-end-column="52" />
+        <state relative-caret-position="494">
+          <caret line="1070" column="57" selection-start-line="1070" selection-start-column="57" selection-end-line="1070" selection-end-column="57" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
