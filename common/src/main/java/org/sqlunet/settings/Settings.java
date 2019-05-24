@@ -35,8 +35,8 @@ public class Settings
 	static public final String PREF_SELECTOR_MODE = "pref_viewweb_mode";
 	static public final String PREF_DETAIL_MODE = "pref_detail_mode";
 	static private final String PREF_XML = "pref_xml";
-	static private final String PREF_SQL_LOG = "pref_sql_log";
 	static private final String PREF_TEXTSEARCH_MODE = "pref_searchtext_mode";
+	static public final String PREF_SQL_LOG = "pref_sql_log";
 	static public final String PREF_STORAGE = StorageSettings.PREF_STORAGE;
 	static public final String PREF_DOWNLOADER = StorageSettings.PREF_DOWNLOADER;
 	static public final String PREF_DOWNLOAD_SITE = StorageSettings.PREF_DOWNLOAD_SITE;
@@ -357,8 +357,12 @@ public class Settings
 		}
 
 		editor.commit();
+	}
 
+	static public void update(final Context context)
+	{
 		// globals
+		final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
 		final boolean logSql = sharedPref.getBoolean(Settings.PREF_SQL_LOG, false);
 		PreparedStatement.logSql = logSql;
 		BaseProvider.logSql = logSql;

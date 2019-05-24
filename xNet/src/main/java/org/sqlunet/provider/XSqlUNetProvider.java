@@ -241,10 +241,11 @@ public class XSqlUNetProvider extends BaseProvider
 						"vnclassmembersenses USING (vnwordid) " + //
 						"INNER JOIN vnclasses USING (classid)";
 				final String[] unionProjection = {"wordid", "synsetid", "classid", "class", "classtag", "definition"};
-				final String[] tableProjection = {"wordid", "synsetid", "classid", "class", "classtag"};
+				final String[] table1Projection = unionProjection;
+				final String[] table2Projection = {"wordid", "synsetid", "classid", "class", "classtag"};
 				final String[] groupByArray = {"wordid", "synsetid", "classid"};
 				assert projection != null;
-				final String query = makeQuery(table1, table2, tableProjection, unionProjection, projection, selection, groupByArray, sortOrder, "vn");
+				final String query = makeQuery(table1, table2, table1Projection, table2Projection, unionProjection, projection, selection, groupByArray, sortOrder, "vn");
 				Log.d(XSqlUNetProvider.TAG + "PM-VN", query);
 				return raw(query, selectionArgs);
 			}
@@ -265,10 +266,11 @@ public class XSqlUNetProvider extends BaseProvider
 				final String table2 = "pbwords " + //
 						"INNER JOIN pbrolesets USING (pbwordid)";
 				final String[] unionProjection = {"wordid", "synsetid", "rolesetid", "rolesetname", "rolesethead", "rolesetdescr", "definition"};
-				final String[] tableProjection = {"wordid", "rolesetid", "rolesetname", "rolesethead", "rolesetdescr"};
+				final String[] table1Projection = unionProjection;
+				final String[] table2Projection = {"wordid", "rolesetid", "rolesetname", "rolesethead", "rolesetdescr"};
 				final String[] groupByArray = {"wordid", "synsetid", "rolesetid"};
 				assert projection != null;
-				final String query = makeQuery(table1, table2, tableProjection, unionProjection, projection, selection, groupByArray, sortOrder, "pb");
+				final String query = makeQuery(table1, table2, table1Projection, table2Projection, unionProjection, projection, selection, groupByArray, sortOrder, "pb");
 				Log.d(XSqlUNetProvider.TAG + "PM-PB", query);
 				return raw(query, selectionArgs);
 			}
@@ -284,10 +286,11 @@ public class XSqlUNetProvider extends BaseProvider
 						"INNER JOIN fnlexunits USING (luid,posid) " + //
 						"INNER JOIN fnframes USING (frameid)";
 				final String[] unionProjection = {"wordid", "synsetid", "frameid", "frame", "framedefinition", "luid", "lexunit", "ludefinition", "definition"};
-				final String[] tableProjection = {"wordid", "frameid", "frame", "framedefinition", "luid", "lexunit", "ludefinition"};
+				final String[] table1Projection = unionProjection;
+				final String[] table2Projection = {"wordid", "frameid", "frame", "framedefinition", "luid", "lexunit", "ludefinition"};
 				final String[] groupByArray = {"wordid", "synsetid", "frameid"};
 				assert projection != null;
-				final String query = makeQuery(table1, table2, tableProjection, unionProjection, projection, selection, groupByArray, sortOrder, "fn");
+				final String query = makeQuery(table1, table2, table1Projection, table2Projection, unionProjection, projection, selection, groupByArray, sortOrder, "fn");
 				Log.d(XSqlUNetProvider.TAG + "PM-FN", query);
 				return raw(query, selectionArgs);
 			}
@@ -324,9 +327,10 @@ public class XSqlUNetProvider extends BaseProvider
 	 *
 	 * @param table1           table1
 	 * @param table2           table2
-	 * @param tableProjection  table projection
-	 * @param unionProjection0 union projection
-	 * @param projection       projection
+	 * @param table1Projection table1 projection
+	 * @param table2Projection table2 projection
+	 * @param unionProjection  union projection
+	 * @param projection       final projection
 	 * @param selection        selection
 	 * @param groupBys         group by
 	 * @param sortOrder        sort
@@ -334,13 +338,14 @@ public class XSqlUNetProvider extends BaseProvider
 	 * @return union sql
 	 */
 	private String makeQuery(final String table1, final String table2, //
-			final String[] tableProjection, final String[] unionProjection0, @NonNull final String[] projection, //
+			final String[] table1Projection, final String[] table2Projection, //
+			final String[] unionProjection, @NonNull final String[] projection, //
 			final String selection, //
 			final String[] groupBys, final String sortOrder, final String tag)
 	{
-		final String[] actualUnionProjection = BaseProvider.appendProjection(unionProjection0, "source");
-		final List<String> table1ProjectionList = Arrays.asList(unionProjection0);
-		final List<String> table2ProjectionList = Arrays.asList(tableProjection);
+		final String[] actualUnionProjection = BaseProvider.appendProjection(unionProjection, "source");
+		final List<String> table1ProjectionList = Arrays.asList(table1Projection);
+		final List<String> table2ProjectionList = Arrays.asList(table2Projection);
 
 		// predicate matrix
 		final SQLiteQueryBuilder pmSubQueryBuilder = new SQLiteQueryBuilder();

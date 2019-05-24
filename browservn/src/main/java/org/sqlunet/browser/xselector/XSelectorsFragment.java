@@ -501,7 +501,7 @@ public class XSelectorsFragment extends ExpandableListFragment
 				"NULL AS " + Words_XNet.XDEFINITION, //
 				"'pb' AS " + Words_XNet.SOURCES, //
 				XSqlUNetContract.CLASS + ".rowid AS _id",};
-		final String selection = XSqlUNetContract.PredicateMatrix_PropBank.WORDID + " = ?";
+		final String selection = XSqlUNetContract.Words_PbWords_PbRoleSets.WORDID + " = ?";
 		final String[] selectionArgs = {Long.toString(wordId)};
 		final String sortOrder = XSqlUNetContract.Words_PbWords_PbRoleSets.ROLESETID;
 		this.pbFromWordIdModel.loadData(uri, projection, selection, selectionArgs, sortOrder, null);

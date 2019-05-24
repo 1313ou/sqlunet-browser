@@ -9,12 +9,17 @@ import android.content.UriMatcher;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteCantOpenDatabaseException;
 import android.database.sqlite.SQLiteException;
+import android.database.sqlite.SQLiteProgram;
+import android.database.sqlite.SQLiteQuery;
 import android.database.sqlite.SQLiteQueryBuilder;
 import android.net.Uri;
+import android.os.Bundle;
+import android.os.CancellationSignal;
 import android.util.Log;
 
 import org.sqlunet.provider.BaseProvider;
 import org.sqlunet.sql.SqlFormatter;
+import org.sqlunet.wordnet.loaders.BaseModule;
 import org.sqlunet.wordnet.provider.WordNetContract.AdjPositionTypes;
 import org.sqlunet.wordnet.provider.WordNetContract.AdjPositions_AdjPositionTypes;
 import org.sqlunet.wordnet.provider.WordNetContract.Dict;
@@ -24,6 +29,8 @@ import org.sqlunet.wordnet.provider.WordNetContract.LexLinks_Senses;
 import org.sqlunet.wordnet.provider.WordNetContract.LexLinks_Senses_Words_X;
 import org.sqlunet.wordnet.provider.WordNetContract.LexLinks_Senses_X;
 import org.sqlunet.wordnet.provider.WordNetContract.LinkTypes;
+import org.sqlunet.wordnet.provider.WordNetContract.Links;
+import org.sqlunet.wordnet.provider.WordNetContract.Links_Senses_Words_X;
 import org.sqlunet.wordnet.provider.WordNetContract.Lookup_Definitions;
 import org.sqlunet.wordnet.provider.WordNetContract.Lookup_Samples;
 import org.sqlunet.wordnet.provider.WordNetContract.Lookup_Words;
@@ -50,7 +57,12 @@ import org.sqlunet.wordnet.provider.WordNetContract.Words_Senses_CasedWords_Syns
 import org.sqlunet.wordnet.provider.WordNetContract.Words_Senses_CasedWords_Synsets_PosTypes_LexDomains;
 import org.sqlunet.wordnet.provider.WordNetContract.Words_Senses_Synsets;
 
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.List;
+
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 /**
  * WordNet provider
@@ -91,7 +103,7 @@ public class WordNetProvider extends BaseProvider
 	static private final int SAMPLES = 100;
 
 	// view codes
-	static private final int DICT = 300;
+	static private final int DICT = 200;
 
 	// join codes
 	static private final int WORDS_SENSES_SYNSETS = 310;
@@ -101,28 +113,31 @@ public class WordNetProvider extends BaseProvider
 	static private final int SENSES_WORDS_BY_SYNSET = 321;
 	static private final int SENSES_SYNSETS_POSTYPES_LEXDOMAINS = 330;
 	static private final int SYNSETS_POSTYPES_LEXDOMAINS = 340;
-	static private final int SEMLINKS_SYNSETS = 350;
-	static private final int SEMLINKS_SYNSETS_X = 351;
-	static private final int SEMLINKS_SYNSETS_WORDS_X_BY_SYNSET = 352;
-	static private final int LEXLINKS_SENSES = 360;
-	static private final int LEXLINKS_SENSES_X = 361;
-	static private final int LEXLINKS_SENSES_WORDS_X_BY_SYNSET = 362;
-	static private final int VFRAMEMAPS_VFRAMES = 370;
-	static private final int VFRAMESENTENCEMAPS_VFRAMESENTENCES = 371;
-	static private final int ADJPOSITIONS_ADJPOSITIONTYPES = 380;
-	static private final int MORPHMAPS_MORPHS = 390;
-	static private final int WORDS_MORPHMAPS_MORPHS = 391;
-	static private final int WORDS_MORPHMAPS_MORPHS_BY_WORD = 392;
+
+	static private final int LINKS_SENSES_WORDS_X_BY_SYNSET = 400;
+	static private final int SEMLINKS_SYNSETS = 410;
+	static private final int SEMLINKS_SYNSETS_X = 411;
+	static private final int SEMLINKS_SYNSETS_WORDS_X_BY_SYNSET = 412;
+	static private final int LEXLINKS_SENSES = 420;
+	static private final int LEXLINKS_SENSES_X = 421;
+	static private final int LEXLINKS_SENSES_WORDS_X_BY_SYNSET = 422;
+
+	static private final int VFRAMEMAPS_VFRAMES = 510;
+	static private final int VFRAMESENTENCEMAPS_VFRAMESENTENCES = 515;
+	static private final int ADJPOSITIONS_ADJPOSITIONTYPES = 520;
+	static private final int MORPHMAPS_MORPHS = 530;
+	static private final int WORDS_MORPHMAPS_MORPHS = 541;
+	static private final int WORDS_MORPHMAPS_MORPHS_BY_WORD = 542;
 
 	// search text codes
-	static private final int LOOKUP_FTS_WORDS = 510;
-	static private final int LOOKUP_FTS_DEFINITIONS = 520;
-	static private final int LOOKUP_FTS_SAMPLES = 530;
+	static private final int LOOKUP_FTS_WORDS = 810;
+	static private final int LOOKUP_FTS_DEFINITIONS = 820;
+	static private final int LOOKUP_FTS_SAMPLES = 830;
 
 	// suggest codes
-	static private final int SUGGEST_WORDS = 610;
-	static private final int SUGGEST_DEFINITIONS = 620;
-	static private final int SUGGEST_SAMPLES = 630;
+	static private final int SUGGEST_WORDS = 910;
+	static private final int SUGGEST_DEFINITIONS = 920;
+	static private final int SUGGEST_SAMPLES = 930;
 
 	static private void matchURIs()
 	{
@@ -153,6 +168,8 @@ public class WordNetProvider extends BaseProvider
 		WordNetProvider.uriMatcher.addURI(AUTHORITY, Senses_Words.TABLE_BY_SYNSET, WordNetProvider.SENSES_WORDS_BY_SYNSET);
 		WordNetProvider.uriMatcher.addURI(AUTHORITY, Senses_Synsets_PosTypes_LexDomains.TABLE, WordNetProvider.SENSES_SYNSETS_POSTYPES_LEXDOMAINS);
 		WordNetProvider.uriMatcher.addURI(AUTHORITY, Synsets_PosTypes_LexDomains.TABLE, WordNetProvider.SYNSETS_POSTYPES_LEXDOMAINS);
+
+		WordNetProvider.uriMatcher.addURI(AUTHORITY, Links_Senses_Words_X.TABLE_BY_SYNSET, WordNetProvider.LINKS_SENSES_WORDS_X_BY_SYNSET);
 
 		WordNetProvider.uriMatcher.addURI(AUTHORITY, SemLinks_Synsets.TABLE, WordNetProvider.SEMLINKS_SYNSETS);
 		WordNetProvider.uriMatcher.addURI(AUTHORITY, SemLinks_Synsets_X.TABLE, WordNetProvider.SEMLINKS_SYNSETS_X);
@@ -258,6 +275,8 @@ public class WordNetProvider extends BaseProvider
 				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + Senses_Synsets_PosTypes_LexDomains.TABLE;
 			case SYNSETS_POSTYPES_LEXDOMAINS:
 				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + Synsets_PosTypes_LexDomains.TABLE;
+			case LINKS_SENSES_WORDS_X_BY_SYNSET:
+				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + Links_Senses_Words_X.TABLE_BY_SYNSET;
 			case SEMLINKS_SYNSETS:
 				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + SemLinks_Synsets.TABLE;
 			case SEMLINKS_SYNSETS_X:
@@ -307,6 +326,14 @@ public class WordNetProvider extends BaseProvider
 
 	// Q U E R Y
 
+
+	@Nullable
+	@Override
+	public Cursor query(@NonNull final Uri uri, @Nullable final String[] projection, @Nullable final Bundle queryArgs, @Nullable final CancellationSignal cancellationSignal)
+	{
+		return super.query(uri, projection, queryArgs, cancellationSignal);
+	}
+
 	/**
 	 * Query
 	 *
@@ -318,8 +345,9 @@ public class WordNetProvider extends BaseProvider
 	 * @return cursor
 	 */
 	@SuppressWarnings("boxing")
+	@Nullable
 	@Override
-	public Cursor query(@NonNull final Uri uri, final String[] projection, final String selection, final String[] selectionArgs, final String sortOrder)
+	public Cursor query(@NonNull final Uri uri, final String[] projection, /* TODO final*/ String selection, /* TODO final*/ String[] selectionArgs, final String sortOrder)
 	{
 		if (this.db == null)
 		{
@@ -462,15 +490,15 @@ public class WordNetProvider extends BaseProvider
 
 			case SEMLINKS_SYNSETS_X:
 				table = "semlinks AS " + WordNetContract.LINK + ' ' + //
-						"INNER JOIN synsets AS " + WordNetContract.DEST + " ON " + WordNetContract.LINK + ".synset2id = " + WordNetContract.DEST + ".synsetid " + //
-						"LEFT JOIN linktypes USING (linkid)";
+						"INNER JOIN linktypes USING (linkid)" + //
+						"INNER JOIN synsets AS " + WordNetContract.DEST + " ON " + WordNetContract.LINK + ".synset2id = " + WordNetContract.DEST + ".synsetid ";
 				break;
 
 			case SEMLINKS_SYNSETS_WORDS_X_BY_SYNSET:
 				groupBy = WordNetContract.DEST + ".synsetid";
 				table = "semlinks AS " + WordNetContract.LINK + ' ' + //
+						"INNER JOIN linktypes USING (linkid) " + //
 						"INNER JOIN synsets AS " + WordNetContract.DEST + " ON " + WordNetContract.LINK + ".synset2id = " + WordNetContract.DEST + ".synsetid " + //
-						"LEFT JOIN linktypes USING (linkid) " + //
 						"LEFT JOIN senses ON " + WordNetContract.DEST + ".synsetid = senses.synsetid " + //
 						"LEFT JOIN words USING (wordid)";
 				actualProjection = BaseProvider.appendProjection(actualProjection, "GROUP_CONCAT(words.lemma, ', ' ) AS " + SemLinks_Synsets_Words_X.MEMBERS2);
@@ -484,18 +512,18 @@ public class WordNetProvider extends BaseProvider
 
 			case LEXLINKS_SENSES_X:
 				table = "lexlinks AS " + WordNetContract.LINK + ' ' + //
+						"INNER JOIN linktypes USING (linkid)" + //
 						"INNER JOIN synsets AS " + WordNetContract.DEST + " ON " + WordNetContract.LINK + ".synset2id = " + WordNetContract.DEST + ".synsetid " + //
-						"INNER JOIN words AS " + WordNetContract.WORD + " ON " + WordNetContract.LINK + ".word2id = " + WordNetContract.WORD + ".wordid " + //
-						"LEFT JOIN linktypes USING (linkid)";
+						"INNER JOIN words AS " + WordNetContract.WORD + " ON " + WordNetContract.LINK + ".word2id = " + WordNetContract.WORD + ".wordid ";
 				break;
 
 			case LEXLINKS_SENSES_WORDS_X_BY_SYNSET:
 				groupBy = WordNetContract.DEST + ".synsetid";
 				actualProjection = BaseProvider.appendProjection(actualProjection, "GROUP_CONCAT(DISTINCT " + WordNetContract.WORD2 + ".lemma) AS " + LexLinks_Senses_Words_X.MEMBERS2);
 				table = "lexlinks AS " + WordNetContract.LINK + ' ' + //
+						"INNER JOIN linktypes USING (linkid) " + //
 						"INNER JOIN synsets AS " + WordNetContract.DEST + " ON " + WordNetContract.LINK + ".synset2id = " + WordNetContract.DEST + ".synsetid " + //
 						"INNER JOIN words AS " + WordNetContract.WORD + " ON " + WordNetContract.LINK + ".word2id = " + WordNetContract.WORD + ".wordid " + //
-						"LEFT JOIN linktypes USING (linkid) " + //
 						"LEFT JOIN senses AS " + WordNetContract.SENSE + " ON " + WordNetContract.DEST + ".synsetid = " + WordNetContract.SENSE + ".synsetid " + //
 						"LEFT JOIN words AS " + WordNetContract.WORD2 + " USING (wordid)";
 				break;
@@ -585,12 +613,81 @@ public class WordNetProvider extends BaseProvider
 						"sample MATCH ?", new String[]{last}, null, null, null);
 			}
 
+			case LINKS_SENSES_WORDS_X_BY_SYNSET:
+				final String table1 = "semlinks";
+				final String table2 = "lexlinks";
+				final String[] projection1 = { //
+						SemLinks.LINKID, //
+						SemLinks.SYNSETID1, //
+						SemLinks.SYNSETID2, //
+				};
+				final String[] projection2 = { //
+						LexLinks.LINKID, //
+						LexLinks.WORDID1, //
+						LexLinks.SYNSETID1, //
+						LexLinks.WORDID2, //
+						LexLinks.SYNSETID2,};
+				final String[] unionProjection = { //
+						Links.LINKID, //
+						Links.WORDID1, //
+						Links.SYNSETID1, //
+						Links.WORDID2, //
+						Links.SYNSETID2, //
+				};
+				groupBy = WordNetContract.DEST + ".synsetid, " + WordNetContract.TYPE + " , link, linkid, " + BaseModule.TARGET_WORDID + ',' + BaseModule.TARGET_LEMMA;
+				table = "( " + makeQuery(table1, //
+						table2, //
+						projection1,  //
+						projection2, //
+						unionProjection, //
+						WordNetContract.TYPE, //
+						"sem", //
+						"lex",
+						selection,
+						selection,
+						selectionArgs,
+						selectionArgs
+						) + " ) AS " + WordNetContract.LINK + ' ' + //
+						"INNER JOIN linktypes USING (linkid) " + //
+						"INNER JOIN synsets AS " + WordNetContract.DEST + " ON " + WordNetContract.LINK + ".synset2id = " + WordNetContract.DEST + ".synsetid " + //
+						"LEFT JOIN senses ON " + WordNetContract.DEST + ".synsetid = senses.synsetid " + //
+						"LEFT JOIN words AS " + WordNetContract.WORD + " USING (wordid) " + //
+						"LEFT JOIN words AS " + WordNetContract.WORD2 + " ON " + WordNetContract.LINK + ".word2id = " + WordNetContract.WORD2 + ".wordid";
+
+				/*
+				selection = "synset1id = ? AND ( word2id IS NULL OR word1id = ? )";
+				selection = WordNetContract.LINK + ".synset1id = ? AND (" + WordNetContract.LINK + ".word1id IS NULL OR " + WordNetContract.LINK + ".word1id = ?)";
+				selection = WordNetContract.LINK + ".synset1id = ? AND (" + WordNetContract.LINK + "." + WordNetContract.TYPE + " = " + "'sem'" + " OR " + WordNetContract.LINK + ".word1id = ?)";
+				selection = WordNetContract.LINK + ".synset1id = ? AND (" + WordNetContract.LINK + "." + WordNetContract.TYPE + " = " + "'lex'" + " AND " + WordNetContract.LINK + ".word1id = ?)";
+				selection = WordNetContract.LINK + ".synset1id = ? AND  word1id = ?";
+				selection = "synset1id = ? AND  (x='sem' OR word1id = ?)";
+				selection = "synset1id = ? AND  CASE x WHEN 'lex' THEN l.word1id = ? ELSE 1 END";
+				selection = "synset1id = ? AND  l.word1id = ?";
+				selection = "synset1id = ? AND CASE l.x WHEN 'sem' THEN 1 ELSE l.word1id = ? END";
+				selection = "CASE l.x WHEN 'sem' THEN 1 ELSE l.word1id = ? END AND synset1id = ?";
+				selectionArgs = new String[]{"419", "202232813"};
+				*/
+				selection = null;
+				selectionArgs = null;
+				//selection = "synset1id = ?";
+				//selectionArgs = new String[]{"202232813"};
+				break;
+
 			case UriMatcher.NO_MATCH:
 			default:
 				throw new RuntimeException("Malformed URI " + uri);
 		}
 
-		final String sql = SQLiteQueryBuilder.buildQueryString(false, table, actualProjection, actualSelection, groupBy, null, sortOrder, null);
+		final String sql0 = SQLiteQueryBuilder.buildQueryString(false, table, actualProjection, actualSelection, groupBy, null, sortOrder, null);
+		final SQLiteQueryBuilder queryBuilder = new SQLiteQueryBuilder();
+		queryBuilder.setDistinct(false);
+		queryBuilder.setStrict(false);
+		queryBuilder.setTables(table);
+		final String sql = queryBuilder.buildQuery(actualProjection, selection, groupBy, null, sortOrder, null);
+		if (!sql.equals(sql0))
+		{
+			//Log.d(WordNetProvider.TAG + "SQL0", SqlFormatter.format(sql0).toString());
+		}
 		logSql(sql, selectionArgs);
 		if (BaseProvider.logSql)
 		{
@@ -601,7 +698,10 @@ public class WordNetProvider extends BaseProvider
 		// do query
 		try
 		{
-			return this.db.query(table, actualProjection, actualSelection, selectionArgs, groupBy, null, sortOrder, null);
+			final Cursor cursor = this.db.rawQuery(sql, selectionArgs);
+			Log.d(TAG + "COUNT", cursor.getCount() + " items");
+			return cursor;
+			//return this.db.query(table, actualProjection, actualSelection, selectionArgs, groupBy, null, sortOrder, null);
 		}
 		catch (@NonNull final SQLiteException e)
 		{
@@ -609,5 +709,99 @@ public class WordNetProvider extends BaseProvider
 			Log.e(TAG, "WordNet provider query failed", e);
 			return null;
 		}
+	}
+
+	/**
+	 * Make union query
+	 *
+	 * @param table1           table1
+	 * @param table2           table2
+	 * @param projection1 table1 projection
+	 * @param projection2 table2 projection
+	 * @param unionProjection  union projection
+	 * @param discriminator    discriminator field
+	 * @param value1           value1 for discriminator
+	 * @param value2           value2 for discriminator
+	 * @param selection1       selection
+	 * @param selection1Args   selection arguments
+	 * @param selection2       selection
+	 * @param selection2Args   selection arguments
+	 * @return union sql
+	 */
+	private String makeQuery(//
+			@NonNull final String table1, //
+			@NonNull final String table2, //
+			@NonNull final String[] projection1, //
+			@NonNull final String[] projection2, //
+			@NonNull final String[] unionProjection, //
+			@NonNull final String discriminator, //
+			@NonNull final String value1, //
+			@NonNull final String value2, //
+			final String selection1, //
+			final String selection2, //
+			final String[] selection1Args, //
+			final String[] selection2Args)
+	{
+		final String[] actualUnionProjection = BaseProvider.appendProjection(unionProjection, WordNetContract.TYPE);
+		final List<String> table1ProjectionList = Arrays.asList(projection1);
+		final List<String> table2ProjectionList = Arrays.asList(projection2);
+
+		// query 1
+		final String instantiatedSelection1 = instantiateArgs(projection1, selection1, selection1Args);
+		final SQLiteQueryBuilder subQueryBuilder1 = new SQLiteQueryBuilder();
+		subQueryBuilder1.setTables(table1);
+		final String subQuery1 = subQueryBuilder1.buildUnionSubQuery(discriminator, //
+				actualUnionProjection, //
+				new HashSet<>(table1ProjectionList), //
+				0, //
+				value1, //
+				instantiatedSelection1, //
+				null, //
+				null);
+
+		// query 2
+		final String instantiatedSelection2 = instantiateArgs(projection2, selection2, selection2Args);
+		final SQLiteQueryBuilder subQueryBuilder2 = new SQLiteQueryBuilder();
+		subQueryBuilder2.setTables(table2);
+		final String subQuery2 = subQueryBuilder2.buildUnionSubQuery(WordNetContract.TYPE, //
+				actualUnionProjection, //
+				new HashSet<>(table2ProjectionList), //
+				0, //
+				value2, //
+				instantiatedSelection2, //
+				null, //
+				null);
+
+		// union (equiv to view)
+		final SQLiteQueryBuilder uQueryBuilder = new SQLiteQueryBuilder();
+		uQueryBuilder.setDistinct(true);
+		final String uQuery = uQueryBuilder.buildUnionQuery(new String[]{subQuery1, subQuery2}, null, null);
+		return uQuery;
+		//return embed(uQuery, projection, selection, groupBy, sortOrder);
+	}
+
+	private String instantiateArgs(final String[] projection, final String selection, final String[] selectionArgs)
+	{
+		final String[] expr = selection.split("\\s+AND\\s+");
+		boolean found = false;
+		for(String col : projection)
+		{
+			if(expr[1].contains(col))
+			{
+				found = true;
+			}
+		}
+		if (found)
+		{
+			return expr[0].replaceFirst("\\?", selectionArgs[0]) + " AND " + expr[1].replaceFirst("\\?", selectionArgs[1]);
+		}
+		return expr[0].replaceFirst("\\?", selectionArgs[0]);
+	}
+
+	private String embed(@NonNull final String sql, @NonNull final String[] projection, final String selection, final String groupBy, final String sortOrder)
+	{
+		final SQLiteQueryBuilder embeddingQueryBuilder = new SQLiteQueryBuilder();
+		embeddingQueryBuilder.setTables('(' + sql + ')');
+		return embeddingQueryBuilder.buildQuery(projection, selection, groupBy, null, sortOrder, null);
 	}
 }

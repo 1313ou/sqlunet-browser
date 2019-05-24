@@ -599,7 +599,7 @@ public class XSelectorsFragment extends ExpandableListFragment
 		final Uri uri = Uri.parse(WordNetProvider.makeUri(WordNetContract.Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.CONTENT_URI_TABLE));
 		final String[] projection = { //
 				"'wn' AS " + Words_XNet_U.SOURCES, //
-				XSqlUNetContract.Words_VnWords_VnClasses_U.WORDID, //
+				WordNetContract.Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.WORDID, //
 				WordNetContract.Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.SYNSETID, //
 				WordNetContract.Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.SYNSETID + " AS " + Words_XNet_U.XID, //
 				"NULL AS " + Words_XNet_U.XCLASSID, //
@@ -609,7 +609,7 @@ public class XSelectorsFragment extends ExpandableListFragment
 				WordNetContract.Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.SENSEKEY + " AS " + Words_XNet_U.XINFO, //
 				WordNetContract.Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.DEFINITION + " AS " + Words_XNet_U.XDEFINITION, //
 				WordNetContract.Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.SYNSETID + " AS _id"};
-		final String selection = XSqlUNetContract.Words_VnWords_VnClasses_U.WORDID + " = ?";
+		final String selection = WordNetContract.Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.WORDID + " = ?";
 		final String[] selectionArgs = {Long.toString(wordId)};
 		this.wnFromWordIdModel.loadData(uri, projection, selection, selectionArgs, null, null);
 	}
@@ -659,7 +659,7 @@ public class XSelectorsFragment extends ExpandableListFragment
 				XSqlUNetContract.Words_PbWords_PbRoleSets_U.ROLESETDESCR + " AS " + Words_XNet_U.XINFO, //
 				XSqlUNetContract.Words_PbWords_PbRoleSets_U.DEFINITION + " AS " + Words_XNet_U.XDEFINITION, //
 				"rowid AS _id",};
-		final String selection = XSqlUNetContract.PredicateMatrix_PropBank.WORDID + " = ?";
+		final String selection = XSqlUNetContract.Words_PbWords_PbRoleSets_U.WORDID + " = ?";
 		final String[] selectionArgs = {Long.toString(wordId)};
 		final String sortOrder = XSqlUNetContract.Words_PbWords_PbRoleSets_U.ROLESETID;
 		this.pbFromWordIdModel.loadData(uri, projection, selection, selectionArgs, sortOrder, null);

@@ -19,6 +19,7 @@ public class WordNetContract
 	static public final String WORD = "w";
 	static public final String WORD2 = "t";
 	static public final String LINK = "l";
+	static public final String TYPE = "x";
 	static public final String SENSE = "s";
 	static public final String SYNSET = "y";
 	static public final String POS = "p";
@@ -72,7 +73,17 @@ public class WordNetContract
 		static public final String DEFINITION = "definition";
 	}
 
-	@SuppressWarnings("unused")
+	static public final class Links
+	{
+		static public final String TABLE = "semlinks";
+		static public final String CONTENT_URI_TABLE = SemLinks.TABLE;
+		static public final String WORDID1 = "word1id";
+		static public final String SYNSETID1 = "synset1id";
+		static public final String WORDID2 = "word2id";
+		static public final String SYNSETID2 = "synset2id";
+		static public final String LINKID = "linkid";
+	}
+
 	static public final class SemLinks
 	{
 		static public final String TABLE = "semlinks";
@@ -82,7 +93,6 @@ public class WordNetContract
 		static public final String LINKID = "linkid";
 	}
 
-	@SuppressWarnings("unused")
 	static public final class LexLinks
 	{
 		static public final String TABLE = "lexlinks";
@@ -209,6 +219,20 @@ public class WordNetContract
 	}
 
 	@SuppressWarnings("unused")
+	static public final class Links_Senses_Words_X
+	{
+		static public final String TABLE_BY_SYNSET = "links_senses_linktypes_senses_words_by_synset";
+		static public final String CONTENT_URI_TABLE = Links_Senses_Words_X.TABLE_BY_SYNSET;
+		static public final String SYNSET1ID = "synset1id";
+		static public final String SYNSET2ID = "synset2id";
+		static public final String MEMBERS2 = "members";
+		static public final String RECURSES = "recurses";
+		// semlinks INNER JOIN synsets LEFT JOIN linktypes LEFT JOIN senses LEFT JOIN words
+		// union
+		// lexlinks INNER JOIN synsets INNER JOIN words LEFT JOIN linktypes LEFT JOIN senses LEFT JOIN words
+	}
+
+	@SuppressWarnings("unused")
 	static public final class SemLinks_Synsets
 	{
 		static public final String TABLE = "semlinks_synsets";
@@ -241,7 +265,7 @@ public class WordNetContract
 	{
 		static public final String TABLE = "lexlinks_synsets_words";
 		static public final String CONTENT_URI_TABLE = LexLinks_Senses.TABLE;
-		// lexlinks INNER JOIN synsets
+		// lexlinks INNER JOIN synsets INNER JOIN words
 	}
 
 	@SuppressWarnings("unused")
@@ -249,7 +273,7 @@ public class WordNetContract
 	{
 		static public final String TABLE = "lexlinks_synsets_words_linktypes";
 		static public final String CONTENT_URI_TABLE = LexLinks_Senses_X.TABLE;
-		// semlinks INNER JOIN synsets INNER JOIN words LEFT JOIN linktypes
+		// lexlinks INNER JOIN synsets INNER JOIN words LEFT JOIN linktypes
 	}
 
 	@SuppressWarnings("unused")
@@ -260,7 +284,7 @@ public class WordNetContract
 		static public final String SYNSET1ID = "synset1id";
 		static public final String SYNSET2ID = "synset2id";
 		static public final String MEMBERS2 = "members";
-		// semlinks INNER JOIN synsets INNER JOIN words LEFT JOIN linktypes LEFT JOIN senses LEFT JOIN words
+		// lexlinks INNER JOIN synsets INNER JOIN words LEFT JOIN linktypes LEFT JOIN senses LEFT JOIN words
 	}
 
 	static public final class VerbFrameMaps_VerbFrames

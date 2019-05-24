@@ -27,6 +27,10 @@ public class EntryActivity extends AppCompatActivity
 	{
 		super.onCreate(savedInstanceState);
 
+		// settings
+		Settings.initialize(this);
+		Settings.update(this);
+
 		// check hook
 		boolean canRun = Status.canRun(getBaseContext());
 		if (!canRun)

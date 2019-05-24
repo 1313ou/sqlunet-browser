@@ -19,9 +19,11 @@ import org.sqlunet.browser.ColorUtils;
 import org.sqlunet.browser.common.R;
 import org.sqlunet.preference.Header;
 import org.sqlunet.preference.PreferenceActivityCompat;
+import org.sqlunet.provider.BaseProvider;
 import org.sqlunet.settings.Settings;
 import org.sqlunet.settings.StorageReports;
 import org.sqlunet.settings.StorageUtils;
+import org.sqlunet.sql.PreparedStatement;
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
 
@@ -188,6 +190,12 @@ public class SettingsActivity extends PreferenceActivityCompat
 			final Object val = sharedPreferences.getAll().get(key);
 			assert listener != null;
 			listener.onPreferenceChange(preference, val);
+		}
+
+		// globals
+		if(Settings.PREF_SQL_LOG.equals(key))
+		{
+			Settings.update(preference.getContext());
 		}
 	}
 
