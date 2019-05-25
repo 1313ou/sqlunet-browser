@@ -183,7 +183,7 @@ public class WordNetProvider extends BaseProvider
 
 		WordNetProvider.uriMatcher.addURI(AUTHORITY, MorphMaps_Morphs.TABLE, WordNetProvider.MORPHMAPS_MORPHS);
 		WordNetProvider.uriMatcher.addURI(AUTHORITY, Words_MorphMaps_Morphs.TABLE, WordNetProvider.WORDS_MORPHMAPS_MORPHS);
-		WordNetProvider.uriMatcher.addURI(AUTHORITY, WordNetContract.Words_MorphMaps_Morphs.TABLE_BY_WORD, WordNetProvider.WORDS_MORPHMAPS_MORPHS_BY_WORD);
+		WordNetProvider.uriMatcher.addURI(AUTHORITY, Words_MorphMaps_Morphs.TABLE_BY_WORD, WordNetProvider.WORDS_MORPHMAPS_MORPHS_BY_WORD);
 
 		// search text
 		WordNetProvider.uriMatcher.addURI(AUTHORITY, Lookup_Words.TABLE, WordNetProvider.LOOKUP_FTS_WORDS);
@@ -345,7 +345,7 @@ public class WordNetProvider extends BaseProvider
 	@SuppressWarnings("boxing")
 	@Nullable
 	@Override
-	public Cursor query(@NonNull final Uri uri, final String[] projection, /* TODO final*/ String selection, /* TODO final*/ String[] selectionArgs, final String sortOrder)
+	public Cursor query(@NonNull final Uri uri, final String[] projection, final String selection, final String[] selectionArgs, final String sortOrder)
 	{
 		if (this.db == null)
 		{
@@ -612,6 +612,7 @@ public class WordNetProvider extends BaseProvider
 			}
 
 			case LINKS_SENSES_WORDS_X_BY_SYNSET:
+			{
 				final String table1 = "semlinks";
 				final String table2 = "lexlinks";
 				final String[] projection1 = { //
@@ -633,38 +634,25 @@ public class WordNetProvider extends BaseProvider
 						Links.SYNSETID2, //
 				};
 				groupBy = BaseModule.TARGET_SYNSETID + " , " + WordNetContract.TYPE + " , link, linkid, " + BaseModule.TARGET_WORDID + ',' + BaseModule.TARGET_LEMMA;
+				final String[] selections = selection.split("/\\*\\*/\\|/\\*\\*/");
 				table = "( " + makeQuery(table1, //
 						table2, //
-						projection1,  //
+						projection1, //
 						projection2, //
 						unionProjection, //
 						WordNetContract.TYPE, //
 						"sem", //
-						"lex", selection, selection, selectionArgs, selectionArgs) + " ) AS " + WordNetContract.LINK + ' ' + //
+						"lex", //
+						selections[0], //
+						selections[1]) + " ) AS " + WordNetContract.LINK + ' ' + //
 						"INNER JOIN linktypes USING (linkid) " + //
 						"INNER JOIN synsets AS " + WordNetContract.DEST + " ON " + WordNetContract.LINK + ".synset2id = " + WordNetContract.DEST + ".synsetid " + //
 						"LEFT JOIN senses ON " + WordNetContract.DEST + ".synsetid = senses.synsetid " + //
 						"LEFT JOIN words AS " + WordNetContract.WORD + " USING (wordid) " + //
 						"LEFT JOIN words AS " + WordNetContract.WORD2 + " ON " + WordNetContract.LINK + ".word2id = " + WordNetContract.WORD2 + ".wordid";
-
-				/*
-				selection = "synset1id = ? AND ( word2id IS NULL OR word1id = ? )";
-				selection = WordNetContract.LINK + ".synset1id = ? AND (" + WordNetContract.LINK + ".word1id IS NULL OR " + WordNetContract.LINK + ".word1id = ?)";
-				selection = WordNetContract.LINK + ".synset1id = ? AND (" + WordNetContract.LINK + "." + WordNetContract.TYPE + " = " + "'sem'" + " OR " + WordNetContract.LINK + ".word1id = ?)";
-				selection = WordNetContract.LINK + ".synset1id = ? AND (" + WordNetContract.LINK + "." + WordNetContract.TYPE + " = " + "'lex'" + " AND " + WordNetContract.LINK + ".word1id = ?)";
-				selection = WordNetContract.LINK + ".synset1id = ? AND  word1id = ?";
-				selection = "synset1id = ? AND  (x='sem' OR word1id = ?)";
-				selection = "synset1id = ? AND  CASE x WHEN 'lex' THEN l.word1id = ? ELSE 1 END";
-				selection = "synset1id = ? AND  l.word1id = ?";
-				selection = "synset1id = ? AND CASE l.x WHEN 'sem' THEN 1 ELSE l.word1id = ? END";
-				selection = "CASE l.x WHEN 'sem' THEN 1 ELSE l.word1id = ? END AND synset1id = ?";
-				selectionArgs = new String[]{"419", "202232813"};
-				*/
 				actualSelection = null;
-				//selectionArgs = null;
-				//selection = "synset1id = ?";
-				//selectionArgs = new String[]{"202232813"};
-				break;
+			}
+			break;
 
 			case UriMatcher.NO_MATCH:
 			default:
@@ -672,15 +660,6 @@ public class WordNetProvider extends BaseProvider
 		}
 
 		final String sql = SQLiteQueryBuilder.buildQueryString(false, table, actualProjection, actualSelection, groupBy, null, sortOrder, null);
-		//final SQLiteQueryBuilder queryBuilder = new SQLiteQueryBuilder();
-		//queryBuilder.setDistinct(false);
-		//queryBuilder.setStrict(false);
-		//queryBuilder.setTables(table);
-		//final String sql = queryBuilder.buildQuery(actualProjection, selection, groupBy, null, sortOrder, null);
-		//if (!sql.equals(sql0))
-		//{
-			//Log.d(WordNetProvider.TAG + "SQL0", SqlFormatter.format(sql0).toString());
-		//}
 		logSql(sql, selectionArgs);
 		if (BaseProvider.logSql)
 		{
@@ -718,9 +697,7 @@ public class WordNetProvider extends BaseProvider
 	 * @param value1          value1 for discriminator
 	 * @param value2          value2 for discriminator
 	 * @param selection1      selection
-	 * @param selection1Args  selection arguments
 	 * @param selection2      selection
-	 * @param selection2Args  selection arguments
 	 * @return union sql
 	 */
 	private String makeQuery(//
@@ -733,9 +710,7 @@ public class WordNetProvider extends BaseProvider
 			@NonNull final String value1, //
 			@NonNull final String value2, //
 			final String selection1, //
-			final String selection2, //
-			final String[] selection1Args, //
-			final String[] selection2Args)
+			final String selection2)
 	{
 		final String[] actualUnionProjection = BaseProvider.appendProjection(unionProjection, WordNetContract.TYPE);
 		final List<String> table1ProjectionList = Arrays.asList(projection1);
@@ -777,42 +752,9 @@ public class WordNetProvider extends BaseProvider
 		//return embed(uQuery, projection, selection, groupBy, sortOrder);
 	}
 
-	private String makeSelectionAndInstantiateArgs(final String[] projection, final String selection, final String[] selectionArgs)
-	{
-		final String[] expr = selection.split("\\s+AND\\s+");
-		boolean found = false;
-		for (String col : projection)
-		{
-			if (expr[1].contains(col))
-			{
-				found = true;
-				break;
-			}
-		}
-		if (found)
-		{
-			return expr[0].replaceFirst("\\?", selectionArgs[0]) + " AND " + expr[1].replaceFirst("\\?", selectionArgs[1]);
-		}
-		return expr[0].replaceFirst("\\?", selectionArgs[0]);
-	}
-
 	private String makeSelection(final String[] projection, final String selection)
 	{
-		final String[] expr = selection.split("\\s+AND\\s+");
-		boolean found = false;
-		for (String col : projection)
-		{
-			if (expr[1].contains(col))
-			{
-				found = true;
-				break;
-			}
-		}
-		if (found)
-		{
-			return selection;
-		}
-		return expr[0];
+		return selection;
 	}
 
 	private String embed(@NonNull final String sql, @NonNull final String[] projection, final String selection, final String groupBy, final String sortOrder)
