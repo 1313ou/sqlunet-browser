@@ -61,9 +61,9 @@ class Security
 	/**
 	 * Generates a PublicKey instance from a string containing the
 	 * Base64-encoded public key.
+	 * Throws IllegalArgumentException if encodedPublicKey is invalid
 	 *
 	 * @param encodedPublicKey Base64-encoded public key
-	 * @throws IllegalArgumentException if encodedPublicKey is invalid
 	 */
 	private static PublicKey generatePublicKey(String encodedPublicKey)
 	{

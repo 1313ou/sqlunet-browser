@@ -46,10 +46,12 @@ public class PosSelectorPointer extends SelectorPointer implements HasPos
 	 *
 	 * @param parcel parcel
 	 */
-	protected PosSelectorPointer(@NonNull Parcel parcel)
+	private PosSelectorPointer(@NonNull Parcel parcel)
 	{
 		super(parcel);
-		this.pos = parcel.readString().charAt(0);
+		String posStr = parcel.readString();
+		assert posStr != null;
+		this.pos = posStr.charAt(0);
 	}
 
 	/**

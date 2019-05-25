@@ -817,6 +817,8 @@
       <entry_point TYPE="field" FQNAME="org.sqlunet.provider.XSqlUNetContract.Words_PbWords_PbRoleSets WORDID" />
       <entry_point TYPE="field" FQNAME="org.sqlunet.provider.XSqlUNetContract.Words_PbWords_PbRoleSets_U WORDID" />
       <entry_point TYPE="field" FQNAME="org.sqlunet.settings.Settings PREF_SCROLL_2D" />
+      <entry_point TYPE="field" FQNAME="org.sqlunet.wordnet.provider.WordNetContract.Links CONTENT_URI_TABLE" />
+      <entry_point TYPE="field" FQNAME="org.sqlunet.wordnet.provider.WordNetContract.Links TABLE" />
     </entry_points>
     <pattern value="org.sqlunet.browser.vn.Settings" method="getPropBankPref" />
     <pattern value="org.sqlunet.browser.vn.Settings" method="getWordNetPref" />
@@ -2233,6 +2235,13 @@
     <pattern value="org.sqlunet.browser.wn.Settings.Source" />
     <pattern value="org.sqlunet.treeview.control.TreeController" method="TreeController" />
     <pattern value="org.sqlunet.browser.wn.Settings.Source" method="Source" />
+    <pattern value="org.sqlunet.treeview.view.TreeView" method="isNodeWithCompositeValueText" />
+    <pattern value="org.sqlunet.framenet.Utils" method="posToPosId" />
+    <pattern value="org.sqlunet.treeview.model.TreeNode" method="prependTo" />
+    <pattern value="org.sqlunet.view.TreeOpExecute" method="isNodeWithCompositeValueText" />
+    <pattern value="org.sqlunet.view.TreeOp.TreeOps" method="prepend" />
+    <pattern value="org.sqlunet.wordnet.provider.WordNetProvider" method="embed" />
+    <pattern value="org.sqlunet.wordnet.provider.WordNetProvider" method="makeSelection" />
   </component>
   <component name="NullableNotNullManager">
     <option name="myDefaultNullable" value="android.support.annotation.Nullable" />

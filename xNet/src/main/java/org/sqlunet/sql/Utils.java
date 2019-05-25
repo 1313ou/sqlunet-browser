@@ -159,7 +159,11 @@ public class Utils
 		final String[] result = new String[args.length];
 		for (int i = 0; i < args.length; i++)
 		{
-			if (args[i].matches("-?\\d+(\\.\\d+)?"))
+			/* if (args[i] == null)
+			{
+				result[i] = "NULL";
+			}
+			else */ if (args[i].matches("-?\\d+(\\.\\d+)?"))
 			{
 				result[i] = args[i];
 			}

@@ -701,14 +701,14 @@ public class WordNetProvider extends BaseProvider
 	 * @return union sql
 	 */
 	private String makeQuery(//
-			@NonNull final String table1, //
-			@NonNull final String table2, //
+			@SuppressWarnings("SameParameterValue") @NonNull final String table1, //
+			@SuppressWarnings("SameParameterValue") @NonNull final String table2, //
 			@NonNull final String[] projection1, //
 			@NonNull final String[] projection2, //
 			@NonNull final String[] unionProjection, //
-			@NonNull final String discriminator, //
-			@NonNull final String value1, //
-			@NonNull final String value2, //
+			@SuppressWarnings("SameParameterValue") @NonNull final String discriminator, //
+			@SuppressWarnings("SameParameterValue") @NonNull final String value1, //
+			@SuppressWarnings("SameParameterValue") @NonNull final String value2, //
 			final String selection1, //
 			final String selection2)
 	{
@@ -747,8 +747,7 @@ public class WordNetProvider extends BaseProvider
 		// union (equiv to view)
 		final SQLiteQueryBuilder uQueryBuilder = new SQLiteQueryBuilder();
 		uQueryBuilder.setDistinct(true);
-		final String uQuery = uQueryBuilder.buildUnionQuery(new String[]{subQuery1, subQuery2}, null, null);
-		return uQuery;
+		return uQueryBuilder.buildUnionQuery(new String[]{subQuery1, subQuery2}, null, null);
 		//return embed(uQuery, projection, selection, groupBy, sortOrder);
 	}
 

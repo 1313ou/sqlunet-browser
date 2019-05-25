@@ -16,7 +16,7 @@ public class ColdQueryController extends QueryController
 	/**
 	 * Constructor
 	 *
-	 * @param breakExpand whheter this controller breaks expansion
+	 * @param breakExpand whether this controller breaks expansion
 	 */
 	public ColdQueryController(final boolean breakExpand)
 	{

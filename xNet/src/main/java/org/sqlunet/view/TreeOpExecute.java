@@ -76,11 +76,13 @@ public class TreeOpExecute
 	{
 		final TreeOpCode code = op.getCode();
 		final TreeNode node = op.getNode();
+		/*
 		if (isNodeWithCompositeValueText(node, "Agent Agent"))
 		{
 			Log.d(TAG, "xxx " + op.getCode() + " " + node);
 		}
-
+		*/
+		
 		switch (code)
 		{
 			case ANCHOR:
@@ -150,6 +152,6 @@ public class TreeOpExecute
 	private boolean isNodeWithCompositeValueText(final TreeNode node, final String text)
 	{
 		final Object value = node.getValue();
-		return value != null && (value instanceof CompositeValue) && text.equals(((CompositeValue) value).text.toString());
+		return (value instanceof CompositeValue) && text.equals(((CompositeValue) value).text.toString());
 	}
 }

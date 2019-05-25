@@ -50,6 +50,7 @@
       <w>cantrun</w>
       <w>casedwordid</w>
       <w>casedwords</w>
+      <w>ccon</w>
       <w>classid</w>
       <w>classtag</w>
       <w>collapsedchar</w>
@@ -247,6 +248,7 @@
       <w>iabhelper</w>
       <w>iconcolumn</w>
       <w>icsi</w>
+      <w>idio</w>
       <w>idnum</w>
       <w>idsource</w>
       <w>idstr</w>

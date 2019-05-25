@@ -518,7 +518,7 @@ public class TreeView
 	private boolean isNodeWithCompositeValueText(final TreeNode node, final String text)
 	{
 		final Object value = node.getValue();
-		return value != null && (value instanceof CompositeValue) && text.equals(((CompositeValue) value).text.toString());
+		return (value instanceof CompositeValue) && text.equals(((CompositeValue) value).text.toString());
 	}
 
 	/**

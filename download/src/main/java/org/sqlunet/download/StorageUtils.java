@@ -235,8 +235,6 @@ public class StorageUtils
 
 		/**
 		 * Comparison (most suitable first)
-		 *
-		 * @see Comparable#compareTo(Object)
 		 */
 		@Override
 		public int compareTo(@NonNull StorageDirectory another)

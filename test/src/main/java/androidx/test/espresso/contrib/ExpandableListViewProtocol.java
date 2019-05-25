@@ -89,12 +89,11 @@ final public class ExpandableListViewProtocol implements AdapterViewProtocol
 	 * <p>
 	 * Any AdaptedData returned by this method can be passed to makeDataRenderedWithinView and the
 	 * implementation should make the AdapterView bring that data item onto the screen.
+	 * Throws IllegalArgumentException if the implementation doesn't know how to manipulate the given adapter view.
 	 *
 	 * @param adapterView the AdapterView we want to interrogate the contents of.
-	 * @return an {@link Iterable} of AdaptedDatas representing all data the implementation sees in
+	 * @return an Iterable of AdaptedDatas representing all data the implementation sees in
 	 * this view
-	 * @throws IllegalArgumentException if the implementation doesn't know how to manipulate the given
-	 *                                  adapter view.
 	 */
 	@NonNull
 	@Override
@@ -150,11 +149,11 @@ final public class ExpandableListViewProtocol implements AdapterViewProtocol
 	 * PersonObject. If it were called instead with the TextView or ImageView it would return
 	 * Object.absent().
 	 * </p>
+	 * Throws IllegalArgumentException if this protocol cannot interrogate this class of adapterView
 	 *
 	 * @param adapterView    the adapter view hosting the data.
 	 * @param descendantView a view which is a child, grand-child, or deeper descendant of adapterView
 	 * @return an optional data object the descendant view is rendering.
-	 * @throws IllegalArgumentException if this protocol cannot interrogate this class of adapterView
 	 */
 	@NonNull
 	@Override
@@ -193,11 +192,11 @@ final public class ExpandableListViewProtocol implements AdapterViewProtocol
 	 * the list to the given child. The animation may be in progress after this call returns. The
 	 * only guarantee is that eventually - with no further interaction necessary - this data item
 	 * will be rendered as a child or deeper descendant of this AdapterView.
+	 * Throws IllegalArgumentException if this protocol cannot manipulate adapterView or if data is
+	 * not owned by this AdapterViewProtocol.
 	 *
 	 * @param adapterView the adapterView hosting the data.
 	 * @param data        an AdaptedData instance retrieved by a prior call to getDataInAdapterView
-	 * @throws IllegalArgumentException if this protocol cannot manipulate adapterView or if data is
-	 *                                  not owned by this AdapterViewProtocol.
 	 */
 	@SuppressLint("ObsoleteSdkInt")
 	@Override

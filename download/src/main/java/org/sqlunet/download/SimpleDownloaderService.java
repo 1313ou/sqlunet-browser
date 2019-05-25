@@ -184,8 +184,6 @@ public class SimpleDownloaderService extends IntentService
 
 	/**
 	 * Download job
-	 *
-	 * @throws Exception exception
 	 */
 	@SuppressWarnings("boxing")
 	private void job() throws Exception

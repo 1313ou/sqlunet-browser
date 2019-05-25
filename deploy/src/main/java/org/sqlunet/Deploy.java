@@ -44,10 +44,9 @@ public class Deploy
 	}
 
 	/**
-	 * Fast check data storage
+	 * Fast check data storage (throws RuntimeException if operation cannot succeed)
 	 *
 	 * @param toDir dir
-	 * @throws RuntimeException if operation cannot succeed
 	 */
 	static public void fastCheck(@NonNull final File toDir)
 	{
@@ -66,10 +65,9 @@ public class Deploy
 	}
 
 	/**
-	 * Check data storage
+	 * Check data storage (throws RuntimeException if operation cannot succeed)
 	 *
 	 * @param toDir dir
-	 * @throws RuntimeException if operation cannot succeed
 	 */
 	static synchronized public void check(@NonNull final File toDir)
 	{
@@ -78,13 +76,12 @@ public class Deploy
 	}
 
 	/**
-	 * Deploy to data storage
+	 * Deploy to data storage (throws RuntimeException if operation cannot succeed)
 	 *
 	 * @param toDir  dir
 	 * @param lang   default language, used if asset has to be expanded
 	 * @param getter input stream getter, used if asset has to be expanded
 	 * @return dir
-	 * @throws RuntimeException if operation cannot succeed
 	 */
 	@NonNull
 	@SuppressWarnings("UnusedReturnValue")
@@ -763,10 +760,9 @@ public class Deploy
 	static private final Pattern md5LinePattern = Pattern.compile("([a-f0-9]+)\\s*(.*)");
 
 	/**
-	 * Scan directory recursively.
+	 * Scan directory recursively (throws RuntimeException if anything goes wrong)
 	 *
 	 * @param dir dir.
-	 * @throws RuntimeException if anything goes wrong
 	 */
 	static private void md5(@NonNull final File dir)
 	{
@@ -799,10 +795,9 @@ public class Deploy
 	}
 
 	/**
-	 * Empty directory recursively.
+	 * Empty directory recursively (throws RuntimeException if anything goes wrong)
 	 *
 	 * @param file file.
-	 * @throws RuntimeException if anything goes wrong
 	 */
 	static private void md5Scan(@NonNull final File file, @NonNull final Map<String, String> map)
 	{

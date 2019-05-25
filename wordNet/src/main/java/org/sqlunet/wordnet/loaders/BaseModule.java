@@ -831,8 +831,8 @@ abstract public class BaseModule extends Module
 					{
 						sb.append('\n');
 					}
-					// final String record = String.format(Locale.ENGLISH, "[%d] %s", i++, lemma);
-					// sb.append(record);
+					// final String formattedLemma = String.format(Locale.ENGLISH, "[%d] %s", i++, lemma);
+					// sb.append(formattedLemma);
 					Spanner.appendImage(sb, BaseModule.this.memberDrawable);
 					sb.append(' ');
 					// sb.append(Integer.toString(i++));
@@ -889,8 +889,8 @@ abstract public class BaseModule extends Module
 				final String member = cursor.getString(idMember);
 
 				final SpannableStringBuilder sb = new SpannableStringBuilder();
-				// final String record = String.format(Locale.ENGLISH, "[%d] %s", i++, lemma);
-				// sb.append(record);
+				// final String formattedLemma = String.format(Locale.ENGLISH, "[%d] %s", i++, lemma);
+				// sb.append(formattedLemma);
 				// sb.append(Integer.toString(i++));
 				// sb.append('-');
 				// sb.append(lemma);
@@ -956,8 +956,8 @@ abstract public class BaseModule extends Module
 				// sb.append(Integer.toString(sampleId));
 				// sb.append(' ');
 				Spanner.append(sb, sample, 0, WordNetFactories.sampleFactory);
-				// final String record = String.format(Locale.ENGLISH, "[%d] %s", sampleId, sample);
-				// sb.append(record);
+				// final String formattedSample = String.format(Locale.ENGLISH, "[%d] %s", sampleId, sample);
+				// sb.append(formattedSample);
 			}
 			while (cursor.moveToNext());
 
@@ -985,11 +985,12 @@ abstract public class BaseModule extends Module
 
 	// L I N K S
 
-	static private final String SOURCE_SYNSETID = "s_synsetid";
-	static private final String SOURCE_DEFINITION = "s_definition";
-	static public final String SOURCE_LEMMA = "s_lemma";
-	static public final String SOURCE_WORDID = "s_wordid";
+	//static private final String SOURCE_SYNSETID = "s_synsetid";
+	//static private final String SOURCE_DEFINITION = "s_definition";
+	//static private final String SOURCE_LEMMA = "s_lemma";
+	//static private final String SOURCE_WORDID = "s_wordid";
 	static public final String TARGET_SYNSETID = "d_synsetid";
+	@SuppressWarnings("WeakerAccess")
 	static public final String TARGET_DEFINITION = "d_definition";
 	static public final String TARGET_LEMMA = "d_lemma";
 	static public final String TARGET_WORDID = "d_wordid";
@@ -1002,7 +1003,7 @@ abstract public class BaseModule extends Module
 	 * @param parent                  parent node
 	 * @param deadendParentIfNoResult mark parent node as deadend if there is no result
 	 */
-	private void links(final long synsetId, final long wordId, @NonNull final TreeNode parent, final boolean deadendParentIfNoResult)
+	private void links(final long synsetId, final long wordId, @NonNull final TreeNode parent, @SuppressWarnings("SameParameterValue") final boolean deadendParentIfNoResult)
 	{
 		final Uri uri = Uri.parse(WordNetProvider.makeUri(Links_Senses_Words_X.CONTENT_URI_TABLE));
 		final String[] projection = { //
@@ -1015,7 +1016,7 @@ abstract public class BaseModule extends Module
 				WordNetContract.WORD2 + '.' + Words.WORDID + " AS " + BaseModule.TARGET_WORDID, //
 				WordNetContract.WORD2 + '.' + Words.LEMMA + " AS " + BaseModule.TARGET_LEMMA, //
 		};
-		final String selection = "synset1id = ? AND word1id = ?";
+		final String selection = "synset1id = ? /**/|/**/ synset1id = ? AND word1id = ?";
 		final String[] selectionArgs = {Long.toString(synsetId), Long.toString(synsetId), Long.toString(wordId)};
 		final String sortOrder = LinkTypes.LINKID;
 		this.linksFromSynsetIdWordIdModel.loadData(uri, projection, selection, selectionArgs, sortOrder, cursor -> linksCursorToTreeModel(cursor, parent, deadendParentIfNoResult));
@@ -1053,7 +1054,7 @@ abstract public class BaseModule extends Module
 
 				if (targetLemma != null)
 				{
-					targetMembers = targetMembers.replaceAll("\\b" + targetLemma + "\\b", targetLemma + "*");
+					targetMembers = targetMembers.replaceAll("\\b" + targetLemma + "\\b", targetLemma + '*');
 				}
 				Spanner.append(sb, targetMembers, 0, WordNetFactories.membersFactory);
 				sb.append(' ');
@@ -1102,7 +1103,7 @@ abstract public class BaseModule extends Module
 	 * @param parent                  parent node
 	 * @param deadendParentIfNoResult mark parent node as deadend if there is no result
 	 */
-	private void semLinks(final long synsetId, @NonNull final TreeNode parent, final boolean deadendParentIfNoResult)
+	private void semLinks(final long synsetId, @NonNull final TreeNode parent, @SuppressWarnings("SameParameterValue") final boolean deadendParentIfNoResult)
 	{
 		final Uri uri = Uri.parse(WordNetProvider.makeUri(SemLinks_Synsets_Words_X.CONTENT_URI_TABLE));
 		final String[] projection = { //
@@ -1148,8 +1149,8 @@ abstract public class BaseModule extends Module
 		{
 			final TreeOps changedList = new TreeOps(ANCHOR, parent);
 
-			final int idLinkId = cursor.getColumnIndex(LinkTypes.LINKID);
 			// final int idLink = cursor.getColumnIndex(LinkTypes.LINK);
+			final int idLinkId = cursor.getColumnIndex(LinkTypes.LINKID);
 			final int idTargetSynsetId = cursor.getColumnIndex(BaseModule.TARGET_SYNSETID);
 			final int idTargetDefinition = cursor.getColumnIndex(BaseModule.TARGET_DEFINITION);
 			final int idTargetMembers = cursor.getColumnIndex(SemLinks_Synsets_Words_X.MEMBERS2);
@@ -1159,9 +1160,8 @@ abstract public class BaseModule extends Module
 			{
 				final SpannableStringBuilder sb = new SpannableStringBuilder();
 
-				final int linkId = cursor.getInt(idLinkId);
 				// final String link = cursor.getString(idLink);
-
+				final int linkId = cursor.getInt(idLinkId);
 				final long targetSynsetId = cursor.getLong(idTargetSynsetId);
 				final String targetDefinition = cursor.getString(idTargetDefinition);
 				final String targetMembers = cursor.getString(idTargetMembers);
@@ -1223,7 +1223,6 @@ abstract public class BaseModule extends Module
 
 				// final int linkId = cursor.getInt(idLinkId);
 				// final String link = cursor.getString(idLink);
-
 				final long targetSynsetId = cursor.getLong(idTargetSynsetId);
 				final String targetDefinition = cursor.getString(idTargetDefinition);
 				final String targetMembers = cursor.getString(idTargetMembers);
@@ -1332,13 +1331,11 @@ abstract public class BaseModule extends Module
 		{
 			final TreeOps changedList = new TreeOps(ANCHOR, parent);
 
-			final int idLinkId = cursor.getColumnIndex(LinkTypes.LINKID);
 			// final int idLink = cursor.getColumnIndex(LinkTypes.LINK);
-
+			final int idLinkId = cursor.getColumnIndex(LinkTypes.LINKID);
 			final int idTargetSynsetId = cursor.getColumnIndex(BaseModule.TARGET_SYNSETID);
 			final int idTargetDefinition = cursor.getColumnIndex(BaseModule.TARGET_DEFINITION);
-			// final int idTargetMembers = cursor.getColumnIndex(LexLinks_Senses_Words_X.MEMBERS2);
-
+			final int idTargetMembers = cursor.getColumnIndex(LexLinks_Senses_Words_X.MEMBERS2);
 			final int idTargetWordId = cursor.getColumnIndex(BaseModule.TARGET_WORDID);
 			final int idTargetLemma = cursor.getColumnIndex(BaseModule.TARGET_LEMMA);
 
@@ -1346,24 +1343,28 @@ abstract public class BaseModule extends Module
 			{
 				final SpannableStringBuilder sb = new SpannableStringBuilder();
 
-				final int linkId = cursor.getInt(idLinkId);
 				// final String link = cursor.getString(idLink);
+				// final String targetWordId = cursor.getString(idTargetWordId);
+				final int linkId = cursor.getInt(idLinkId);
 				final long targetSynsetId = cursor.getLong(idTargetSynsetId);
 				final String targetDefinition = cursor.getString(idTargetDefinition);
-				// final String targetMembers = cursor.getString(idTargetMembers);
 				final String targetLemma = cursor.getString(idTargetLemma);
-				// final String targetWordId = cursor.getString(idTargetWordId);
-
-				// final String record = String.format(Locale.ENGLISH, "[%s] %s (%s)\n\t%s (synset %s) {%s}", link, targetLemma, targetWordId,targetDefinition, targetSynsetId, targetMembers);
+				String targetMembers = cursor.getString(idTargetMembers);
+				if (targetLemma != null)
+				{
+					targetMembers = targetMembers.replaceAll("\\b" + targetLemma + "\\b", targetLemma + '*');
+				}
+				// final String formattedTarget = String.format(Locale.ENGLISH, "[%s] %s (%s)\n\t%s (synset %s) {%s}", link, targetLemma, targetWordId,targetDefinition, targetSynsetId, targetMembers);
 
 				if (sb.length() != 0)
 				{
 					sb.append('\n');
 				}
 				// Spanner.appendImage(sb, getLinkDrawable(linkId));
-				// sb.append(record);
+				// sb.append(formattedTarget);
 				// sb.append(' ');
-				Spanner.append(sb, targetLemma, 0, WordNetFactories.lemmaFactory);
+				Spanner.append(sb, targetMembers, 0, WordNetFactories.membersFactory);
+				// Spanner.append(sb, targetLemma, 0, WordNetFactories.lemmaFactory);
 				// sb.append(" in ");
 				// sb.append(' ');
 				// sb.append('{');
@@ -1402,37 +1403,36 @@ abstract public class BaseModule extends Module
 		{
 			final TreeOps changedList = new TreeOps(ANCHOR, parent);
 
-			final int idLinkId = cursor.getColumnIndex(LinkTypes.LINKID);
 			// final int idLink = cursor.getColumnIndex(LinkTypes.LINK);
-
 			// final int idTargetSynsetId = cursor.getColumnIndex(BaseModule.TARGET_SYNSETID);
+			// final int idTargetWordId = cursor.getColumnIndex(BaseModule.TARGET_WORDID);
+			final int idLinkId = cursor.getColumnIndex(LinkTypes.LINKID);
 			final int idTargetDefinition = cursor.getColumnIndex(BaseModule.TARGET_DEFINITION);
 			final int idTargetMembers = cursor.getColumnIndex(LexLinks_Senses_Words_X.MEMBERS2);
-
-			// final int idTargetWordId = cursor.getColumnIndex(BaseModule.TARGET_WORDID);
 			final int idTargetLemma = cursor.getColumnIndex(BaseModule.TARGET_LEMMA);
 
 			final SpannableStringBuilder sb = new SpannableStringBuilder();
 			do
 			{
-				final int linkId = cursor.getInt(idLinkId);
 				// final String link = cursor.getString(idLink);
-
 				// final String targetSynsetId = cursor.getString(idTargetSynsetId);
-				final String targetDefinition = cursor.getString(idTargetDefinition);
-				final String targetMembers = cursor.getString(idTargetMembers);
-
 				// final String targetWordId = cursor.getString(idTargetWordId);
+				final int linkId = cursor.getInt(idLinkId);
+				final String targetDefinition = cursor.getString(idTargetDefinition);
 				final String targetLemma = cursor.getString(idTargetLemma);
-
-				// final String record = String.format(Locale.ENGLISH, "[%s] %s (%s)\n\t%s (synset %s) {%s}", link, targetLemma, targetWordId, targetDefinition, targetSynsetId, targetMembers);
+				String targetMembers = cursor.getString(idTargetMembers);
+				if (targetLemma != null)
+				{
+					targetMembers = targetMembers.replaceAll("\\b" + targetLemma + "\\b", targetLemma + '*');
+				}
+				// final String formattedTarget = String.format(Locale.ENGLISH, "[%s] %s (%s)\n\t%s (synset %s) {%s}", link, targetLemma, targetWordId, targetDefinition, targetSynsetId, targetMembers);
 
 				if (sb.length() != 0)
 				{
 					sb.append('\n');
 				}
 				// Spanner.appendImage(sb, getLinkDrawable(linkId));
-				// sb.append(record);
+				// sb.append(formattedTarget);
 				// sb.append(' ');
 				Spanner.append(sb, targetLemma, 0, WordNetFactories.lemmaFactory);
 				sb.append(" in ");
@@ -1514,14 +1514,14 @@ abstract public class BaseModule extends Module
 			do
 			{
 				final String vframe = cursor.getString(vframeId);
-				final String record = String.format(Locale.ENGLISH, "%s", vframe);
+				final String formattedVframe = String.format(Locale.ENGLISH, "%s", vframe);
 				if (sb.length() != 0)
 				{
 					sb.append('\n');
 				}
 				Spanner.appendImage(sb, BaseModule.this.verbframeDrawable);
 				sb.append(' ');
-				sb.append(record);
+				sb.append(formattedVframe);
 			}
 			while (cursor.moveToNext());
 
@@ -1583,14 +1583,14 @@ abstract public class BaseModule extends Module
 			do
 			{
 				final String vframesentence = cursor.getString(vframeId);
-				final String record = String.format(Locale.ENGLISH, vframesentence, "[-]");
+				final String formattedVframesentence = String.format(Locale.ENGLISH, vframesentence, "[-]");
 				if (sb.length() != 0)
 				{
 					sb.append('\n');
 				}
 				Spanner.appendImage(sb, BaseModule.this.verbframeDrawable);
 				sb.append(' ');
-				sb.append(record);
+				sb.append(formattedVframesentence);
 			}
 			while (cursor.moveToNext());
 
@@ -1620,14 +1620,14 @@ abstract public class BaseModule extends Module
 			do
 			{
 				final String vframesentence = cursor.getString(vframeId);
-				final String record = String.format(Locale.ENGLISH, vframesentence, '[' + lemma + ']');
+				final String formattedVframesentence = String.format(Locale.ENGLISH, vframesentence, '[' + lemma + ']');
 				if (sb.length() != 0)
 				{
 					sb.append('\n');
 				}
 				Spanner.appendImage(sb, BaseModule.this.verbframeDrawable);
 				sb.append(' ');
-				sb.append(record);
+				sb.append(formattedVframesentence);
 			}
 			while (cursor.moveToNext());
 
@@ -1689,14 +1689,14 @@ abstract public class BaseModule extends Module
 			do
 			{
 				final String position = cursor.getString(positionId);
-				final String record = String.format(Locale.ENGLISH, "%s", position);
+				final String formattedPosition = String.format(Locale.ENGLISH, "%s", position);
 				if (sb.length() != 0)
 				{
 					sb.append('\n');
 				}
 				Spanner.appendImage(sb, BaseModule.this.verbframeDrawable);
 				sb.append(' ');
-				sb.append(record);
+				sb.append(formattedPosition);
 			}
 			while (cursor.moveToNext());
 
@@ -1744,14 +1744,14 @@ abstract public class BaseModule extends Module
 			{
 				final String morph1 = cursor.getString(morphId);
 				final String pos1 = cursor.getString(posId);
-				final String record = String.format(Locale.ENGLISH, "(%s) %s", pos1, morph1);
+				final String formattedMorph = String.format(Locale.ENGLISH, "(%s) %s", pos1, morph1);
 				if (sb.length() != 0)
 				{
 					sb.append('\n');
 				}
 				Spanner.appendImage(sb, BaseModule.this.morphDrawable);
 				sb.append(' ');
-				sb.append(record);
+				sb.append(formattedMorph);
 			}
 			while (cursor.moveToNext());
 

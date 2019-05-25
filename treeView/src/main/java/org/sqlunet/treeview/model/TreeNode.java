@@ -191,7 +191,7 @@ public class TreeNode
 	 * @return this node
 	 */
 	@NonNull
-	@SuppressWarnings("UnusedReturnValue")
+	@SuppressWarnings({"UnusedReturnValue", "WeakerAccess"})
 	public TreeNode prependChild(@NonNull TreeNode childNode)
 	{
 		childNode.parent = this;
