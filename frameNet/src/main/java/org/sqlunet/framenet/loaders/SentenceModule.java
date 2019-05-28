@@ -25,8 +25,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.lifecycle.ViewModelProviders;
 
-import static org.sqlunet.view.TreeOp.TreeOpCode.ANCHOR;
-import static org.sqlunet.view.TreeOp.TreeOpCode.NEW;
+import static org.sqlunet.view.TreeOp.TreeOpCode.NEWUNIQUE;
 import static org.sqlunet.view.TreeOp.TreeOpCode.REMOVE;
 
 /**
@@ -139,7 +138,7 @@ public class SentenceModule extends BaseModule
 			// layers
 			layersForSentence(id, SentenceModule.this.sentenceText, parent);
 
-			changed = TreeOp.seq(ANCHOR, parent, NEW, node);
+			changed = TreeOp.seq(NEWUNIQUE, node);
 		}
 		else
 		{

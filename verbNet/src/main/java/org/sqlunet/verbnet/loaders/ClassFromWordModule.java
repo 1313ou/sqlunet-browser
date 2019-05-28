@@ -28,8 +28,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.lifecycle.ViewModelProviders;
 
-import static org.sqlunet.view.TreeOp.TreeOpCode.ANCHOR;
-import static org.sqlunet.view.TreeOp.TreeOpCode.NEW;
+import static org.sqlunet.view.TreeOp.TreeOpCode.NEWTREE;
+import static org.sqlunet.view.TreeOp.TreeOpCode.NEWCHILD;
 import static org.sqlunet.view.TreeOp.TreeOpCode.REMOVE;
 
 /**
@@ -150,7 +150,7 @@ public class ClassFromWordModule extends BaseModule
 		TreeOp[] changed;
 		if (cursor.moveToFirst())
 		{
-			final TreeOp.TreeOps changedList = new TreeOps(ANCHOR, parent);
+			final TreeOp.TreeOps changedList = new TreeOps(NEWTREE, parent);
 
 			// column indices
 			final int idClassId = cursor.getColumnIndex(Words_VnClasses.CLASSID);
@@ -177,15 +177,15 @@ public class ClassFromWordModule extends BaseModule
 
 				// attach result
 				final TreeNode node = TreeFactory.makeTextNode(sb, false).addTo(parent);
-				changedList.add(NEW, node);
+				changedList.add(NEWCHILD, node);
 
 				// sub nodes
 				final TreeNode membersNode = TreeFactory.makeHotQueryNode("Members", R.drawable.members, false, new MembersQuery(classId)).addTo(parent);
-				changedList.add(NEW, membersNode);
+				changedList.add(NEWCHILD, membersNode);
 				final TreeNode rolesNode = TreeFactory.makeHotQueryNode("Roles", R.drawable.roles, false, new RolesQuery(classId)).addTo(parent);
-				changedList.add(NEW, rolesNode);
+				changedList.add(NEWCHILD, rolesNode);
 				final TreeNode framesNode = TreeFactory.makeQueryNode("Frames", R.drawable.vnframe, false, new FramesQuery(classId)).addTo(parent);
-				changedList.add(NEW, framesNode);
+				changedList.add(NEWCHILD, framesNode);
 			}
 			while (cursor.moveToNext());
 			changed = changedList.toArray();

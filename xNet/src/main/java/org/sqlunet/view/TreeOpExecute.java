@@ -82,43 +82,25 @@ public class TreeOpExecute
 			Log.d(TAG, "xxx " + op.getCode() + " " + node);
 		}
 		*/
-		
+
 		switch (code)
 		{
-			case ANCHOR:
+			case NEWTREE:
 				Log.d(TAG, "@@@ " + op.getCode() + " " + node.toString());
+				treeView.expandNode(node, -1, false, false);
 				break;
 
-			case NEW:
-			{
-				final TreeNode parent = node.getParent();
-				final Controller<?> parentController = parent.getController();
-				final ViewGroup childrenView = parentController.getChildrenView();
-				if (childrenView == null || !TreeView.isExpanded(parent))
-				{
-					Log.d(TAG, "*** " + op.getCode() + " " + node.toString());
-					treeView.expandNode(parent, levels, false, false);
-				}
-				else
-				{
-					Log.d(TAG, "+++ " + op.getCode() + " " + node.toString());
-					int index = parent.indexOf(node);
-					treeView.addSubtreeView(childrenView, node, index);
-				}
-			}
-			break;
+			case NEWCHILD:
+				Log.d(TAG, "+++ " + op.getCode() + " " + node.toString());
+				//treeView.newNodeView(node, levels);
+				break;
 
-			case COLLAPSE:
-			{
-				final Controller<?> controller = node.getController();
-				final ViewGroup childrenView = controller.getChildrenView();
-				if (childrenView != null && TreeView.isExpanded(node))
-				{
-					Log.d(TAG, "^^^ " + op.getCode() + " " + node.toString());
-					treeView.collapseNode(node, true);
-				}
-			}
-			break;
+			case NEWMAIN:
+			case NEWEXTRA:
+			case NEWUNIQUE:
+				Log.d(TAG, "... " + op.getCode() + " " + node.toString());
+				treeView.newNodeView(node, levels);
+				break;
 
 			case REMOVE:
 				Log.d(TAG, "--- " + op.getCode() + " " + node.toString());
@@ -134,6 +116,18 @@ public class TreeOpExecute
 				Log.d(TAG, "xxx " + op.getCode() + " " + node.toString());
 				treeView.deadend(node);
 				break;
+
+			case COLLAPSE:
+			{
+				final Controller<?> controller = node.getController();
+				final ViewGroup childrenView = controller.getChildrenView();
+				if (childrenView != null && TreeView.isExpanded(node))
+				{
+					Log.d(TAG, "^^^ " + op.getCode() + " " + node.toString());
+					treeView.collapseNode(node, true);
+				}
+			}
+			break;
 
 			case BREAK_EXPAND_AT:
 			{

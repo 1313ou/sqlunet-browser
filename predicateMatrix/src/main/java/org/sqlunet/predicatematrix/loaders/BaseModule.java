@@ -50,8 +50,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.lifecycle.ViewModelProviders;
 
-import static org.sqlunet.view.TreeOp.TreeOpCode.ANCHOR;
-import static org.sqlunet.view.TreeOp.TreeOpCode.NEW;
+import static org.sqlunet.view.TreeOp.TreeOpCode.NEWTREE;
+import static org.sqlunet.view.TreeOp.TreeOpCode.NEWCHILD;
 
 /**
  * Base module for PredicateMatrix
@@ -737,7 +737,7 @@ abstract class BaseModule extends Module
 		{
 			this.parent = parent;
 			this.displayer = displayer;
-			this.changedList = new TreeOps(ANCHOR, parent);
+			this.changedList = new TreeOps(NEWTREE, parent);
 		}
 
 		/**
@@ -1238,7 +1238,7 @@ abstract class BaseModule extends Module
 			}
 
 			final TreeNode result = TreeFactory.makeTreeNode(pmsb, R.drawable.role, false).addTo(parent);
-			changedList.add(NEW, result);
+			changedList.add(NEWCHILD, result);
 			return result;
 		}
 
@@ -1271,7 +1271,7 @@ abstract class BaseModule extends Module
 			}
 
 			final TreeNode result = TreeFactory.makeTreeNode(pmsb, R.drawable.predicatematrix, false).addTo(parent);
-			changedList.add(NEW, result);
+			changedList.add(NEWCHILD, result);
 			return result;
 		}
 
@@ -1328,7 +1328,7 @@ abstract class BaseModule extends Module
 			final TreeNode result = vnData.vnClassId == 0L ? //
 					TreeFactory.makeLeafNode(vnsb, R.drawable.verbnet, false).addTo(parent) :  //
 					TreeFactory.makeLinkLeafNode(vnsb, R.drawable.verbnet, false, new VnClassLink(vnData.vnClassId)).addTo(parent);
-			changedList.add(NEW, result);
+			changedList.add(NEWCHILD, result);
 			return result;
 		}
 
@@ -1399,7 +1399,7 @@ abstract class BaseModule extends Module
 			final TreeNode result = pbData.pbRoleSetId == 0L ? //
 					TreeFactory.makeLeafNode(pbsb, R.drawable.propbank, false).addTo(parent) : //
 					TreeFactory.makeLinkLeafNode(pbsb, R.drawable.propbank, false, new PbRoleSetLink(pbData.pbRoleSetId)).addTo(parent);
-			changedList.add(NEW, result);
+			changedList.add(NEWCHILD, result);
 			return result;
 		}
 
@@ -1457,7 +1457,7 @@ abstract class BaseModule extends Module
 			final TreeNode result = fnData.fnFrameId == 0L ? //
 					TreeFactory.makeLeafNode(fnsb, R.drawable.framenet, false).addTo(parent) : //
 					TreeFactory.makeLinkLeafNode(fnsb, R.drawable.framenet, false, new FnFrameLink(fnData.fnFrameId)).addTo(parent);
-			changedList.add(NEW, result);
+			changedList.add(NEWCHILD, result);
 			return result;
 		}
 	}
@@ -1552,7 +1552,7 @@ abstract class BaseModule extends Module
 
 				// attach synset
 				this.synsetNode = TreeFactory.makeTreeNode(synsetsb, R.drawable.synset, false).addTo(parent);
-				changedList.add(NEW, this.synsetNode);
+				changedList.add(NEWCHILD, this.synsetNode);
 			}
 			super.displayRow(this.synsetNode, wnData, pmRole, vnData, pbData, fnData, false, false, changedList);
 		}

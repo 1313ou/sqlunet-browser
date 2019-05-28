@@ -30,8 +30,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.lifecycle.ViewModelProviders;
 
-import static org.sqlunet.view.TreeOp.TreeOpCode.ANCHOR;
-import static org.sqlunet.view.TreeOp.TreeOpCode.NEW;
+import static org.sqlunet.view.TreeOp.TreeOpCode.NEWUNIQUE;
 import static org.sqlunet.view.TreeOp.TreeOpCode.REMOVE;
 
 public class BaseModule extends Module
@@ -308,7 +307,7 @@ public class BaseModule extends Module
 
 			// attach result
 			final TreeNode node = TreeFactory.makeTextNode(sb, false).addTo(parent);
-			changed = TreeOp.seq(ANCHOR, parent, NEW, node);
+			changed = TreeOp.seq(NEWUNIQUE, node);
 		}
 		else
 		{

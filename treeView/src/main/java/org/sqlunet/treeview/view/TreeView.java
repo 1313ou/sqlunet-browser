@@ -15,9 +15,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewGroup.LayoutParams;
 import android.view.ViewParent;
+import android.view.ViewTreeObserver;
 import android.view.animation.LinearInterpolator;
 import android.widget.LinearLayout;
-import android.widget.ScrollView;
 import android.widget.TextView;
 
 import org.sqlunet.treeview.R;
@@ -34,10 +34,11 @@ import java.util.Set;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.widget.NestedScrollView;
 
 /* @formatter:off */
 /*
-ScrollView
+NestedScrollView/ScrollView2D
 	LinearLayout id/treeview
 		SubtreeView
 			RelativeLayout id/node_label
@@ -79,6 +80,11 @@ public class TreeView
 	 * Root node
 	 */
 	private final TreeNode root;
+
+	/**
+	 * (Top) scroll view
+	 */
+	private View view;
 
 	/**
 	 * Context
@@ -173,11 +179,11 @@ public class TreeView
 		if (style > 0)
 		{
 			final ContextThemeWrapper newContext = new ContextThemeWrapper(this.context, style);
-			view = this.use2dScroll ? new ScrollView2D(newContext) : new ScrollView(newContext);
+			view = this.use2dScroll ? new ScrollView2D(newContext) : new NestedScrollView(newContext);
 		}
 		else
 		{
-			view = this.use2dScroll ? new ScrollView2D(this.context) : new ScrollView(this.context);
+			view = this.use2dScroll ? new ScrollView2D(this.context) : new NestedScrollView(this.context);
 		}
 
 		// context
@@ -197,6 +203,10 @@ public class TreeView
 		// root
 		final RootController rootController = (RootController) this.root.getController();
 		rootController.setContentView(contentView);
+
+		// keep reference
+		// TODO
+		this.view = view;
 
 		return view;
 	}
@@ -361,11 +371,12 @@ public class TreeView
 	{
 		Log.d(TAG, "Insert subtree view at index " + atIndex + " for node " + node + " count=" + childrenView.getChildCount());
 		final Controller<?> controller = node.getController();
-		View view = controller.getSubtreeView();
-		if (view == null)
+		View subtreeView = controller.getSubtreeView();
+		if (subtreeView == null)
 		{
-			view = controller.createView(this.context, this.containerStyle);
+			subtreeView = controller.createView(this.context, this.containerStyle);
 		}
+		final View view = subtreeView;
 
 		// remove from parent
 		ViewParent parent = view.getParent();
@@ -399,11 +410,33 @@ public class TreeView
 			}
 			else if (atIndex > n)
 			{
-				// TODO
 				// Log.e(TAG, "Illegal index " + node + " " + atIndex + " on " + n);
 				throw new RuntimeException("Illegal index " + node + " " + atIndex + " on " + n);
 			}
 		}
+
+		//TODO scroll when dimensions are available
+		/*
+		final ViewTreeObserver viewTreeObserver = childrenView.getViewTreeObserver();
+		viewTreeObserver.addOnPreDrawListener(new ViewTreeObserver.OnPreDrawListener()
+		{
+			@Override
+			public boolean onPreDraw()
+			{
+				childrenView.getViewTreeObserver().removeOnPreDrawListener(this);
+
+				int h = view.getHeight();
+				if (h > 0)
+				{
+					Log.d(TAG, "Scroll by " + h);
+					TreeView.this.view.scrollBy(0, h);
+					//((NestedScrollView)TreeView.this.view).smoothScrollBy(0, h);
+					return false; // cancel the current drawing pass
+				}
+				return true; // proceed with the current drawing pass
+			}
+		});
+		*/
 
 		// add to children view
 		childrenView.addView(view, atIndex);
@@ -542,7 +575,6 @@ public class TreeView
 		final ViewGroup childrenView = controller.getChildrenView();
 		if (childrenView == null)
 		{
-			// TODO
 			// Log.e(TAG, "Node to expand has no view " + node);
 			// return;
 			throw new RuntimeException("Node to expand has no children view " + node);
@@ -578,7 +610,7 @@ public class TreeView
 				{
 					continue;
 				}
-				if (isExpanded(child) || levels < 0 || levels > 0)
+				if (/* TODO isExpanded(child) ||*/ levels < 0 || levels > 0)
 				{
 					expandNode(child, levels - 1, fireHotNodes, overrideBreakExpand);
 				}
@@ -1103,4 +1135,42 @@ public class TreeView
 			}
 		}
 	}
+
+	public void newNodeView(final TreeNode node, final int levels)
+	{
+		final TreeNode parent = node.getParent();
+		if (!TreeView.isExpanded(parent))
+		{
+			expandNode(parent, levels, false, false);
+		}
+		else
+		{
+			insertNodeView(parent, node);
+		}
+	}
+
+	private void insertNodeView(final TreeNode parent, final TreeNode node)
+	{
+		final Controller<?> parentController = parent.getController();
+		ViewGroup childrenView = parentController.getChildrenView();
+		int index = parent.indexOf(node);
+		addSubtreeView(childrenView, node, index);
+
+		// display
+		if (childrenView.getChildCount() != 0)
+		{
+			if (this.useAnimation)
+			{
+				animatedContainerExpand(childrenView);
+			}
+			else
+			{
+				containerExpand(childrenView);
+			}
+
+			// fire expand event
+			parentController.onExpandEvent();
+		}
+	}
 }
+

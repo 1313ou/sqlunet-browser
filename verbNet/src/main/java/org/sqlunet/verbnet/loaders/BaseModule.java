@@ -35,8 +35,11 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.lifecycle.ViewModelProviders;
 
-import static org.sqlunet.view.TreeOp.TreeOpCode.ANCHOR;
-import static org.sqlunet.view.TreeOp.TreeOpCode.NEW;
+import static org.sqlunet.view.TreeOp.TreeOpCode.NEWTREE;
+import static org.sqlunet.view.TreeOp.TreeOpCode.NEWCHILD;
+import static org.sqlunet.view.TreeOp.TreeOpCode.NEWUNIQUE;
+import static org.sqlunet.view.TreeOp.TreeOpCode.NEWMAIN;
+import static org.sqlunet.view.TreeOp.TreeOpCode.NEWEXTRA;
 import static org.sqlunet.view.TreeOp.TreeOpCode.REMOVE;
 
 /**
@@ -240,7 +243,7 @@ abstract class BaseModule extends Module
 			final TreeNode framesNode = TreeFactory.makeQueryNode("Frames", R.drawable.vnframe, false, new FramesQuery(classId)).addTo(parent);
 
 			// changed
-			changed = TreeOp.seq(ANCHOR, parent, NEW, node, NEW, membersNode, NEW, rolesNode, NEW, framesNode);
+			changed = TreeOp.seq(NEWMAIN, node, NEWEXTRA, membersNode, NEWEXTRA, rolesNode, NEWEXTRA, framesNode, NEWTREE, parent);
 		}
 		else
 		{
@@ -282,7 +285,7 @@ abstract class BaseModule extends Module
 		TreeOp[] changed;
 		if (cursor.moveToFirst())
 		{
-			final TreeOps changedList = new TreeOps(ANCHOR, parent);
+			final TreeOps changedList = new TreeOps(NEWTREE, parent);
 
 			// column indices
 			// final int idWordId = cursor.getColumnIndex(VnClasses_VnMembers_X.WORDID);
@@ -305,7 +308,7 @@ abstract class BaseModule extends Module
 				if (definitions != null || groupings != null)
 				{
 					final TreeNode memberNode = TreeFactory.makeTreeNode(sb, R.drawable.member, false).addTo(parent);
-					changedList.add(NEW, memberNode);
+					changedList.add(NEWCHILD, memberNode);
 
 					final SpannableStringBuilder sb2 = new SpannableStringBuilder();
 
@@ -357,12 +360,12 @@ abstract class BaseModule extends Module
 
 					// attach definition and groupings result
 					final TreeNode node = TreeFactory.makeTextNode(sb2, false).addTo(memberNode);
-					changedList.add(NEW, node);
+					changedList.add(NEWCHILD, node);
 				}
 				else
 				{
 					final TreeNode node = TreeFactory.makeLeafNode(sb, R.drawable.member, false).addTo(parent);
-					changedList.add(NEW, node);
+					changedList.add(NEWCHILD, node);
 				}
 			}
 			while (cursor.moveToNext());
@@ -444,7 +447,7 @@ abstract class BaseModule extends Module
 
 			// attach result
 			final TreeNode node = TreeFactory.makeTextNode(sb, false).addTo(parent);
-			changed = TreeOp.seq(ANCHOR, parent, NEW, node);
+			changed = TreeOp.seq(NEWUNIQUE, node);
 		}
 		else
 		{
@@ -548,7 +551,7 @@ abstract class BaseModule extends Module
 
 			// attach result
 			final TreeNode node = TreeFactory.makeTextNode(sb, false).addTo(parent);
-			changed = TreeOp.seq(ANCHOR, parent, NEW, node);
+			changed = TreeOp.seq(NEWUNIQUE, node);
 		}
 		else
 		{
@@ -624,6 +627,12 @@ abstract class BaseModule extends Module
 		{
 			vnMembers((int) this.id, node);
 		}
+
+		@Override
+		public String toString()
+		{
+			return "members for " + this.id;
+		}
 	}
 
 	/**
@@ -646,6 +655,12 @@ abstract class BaseModule extends Module
 		{
 			vnRoles((int) this.id, node);
 		}
+
+		@Override
+		public String toString()
+		{
+			return "roles for " + this.id;
+		}
 	}
 
 	/**
@@ -667,6 +682,12 @@ abstract class BaseModule extends Module
 		public void process(@NonNull final TreeNode node)
 		{
 			vnFrames((int) this.id, node);
+		}
+
+		@Override
+		public String toString()
+		{
+			return "vnframes for " + this.id;
 		}
 	}
 }

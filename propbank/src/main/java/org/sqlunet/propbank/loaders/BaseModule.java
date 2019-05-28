@@ -36,8 +36,11 @@ import java.util.Locale;
 import androidx.annotation.NonNull;
 import androidx.lifecycle.ViewModelProviders;
 
-import static org.sqlunet.view.TreeOp.TreeOpCode.ANCHOR;
-import static org.sqlunet.view.TreeOp.TreeOpCode.NEW;
+import static org.sqlunet.view.TreeOp.TreeOpCode.NEWTREE;
+import static org.sqlunet.view.TreeOp.TreeOpCode.NEWCHILD;
+import static org.sqlunet.view.TreeOp.TreeOpCode.NEWUNIQUE;
+import static org.sqlunet.view.TreeOp.TreeOpCode.NEWMAIN;
+import static org.sqlunet.view.TreeOp.TreeOpCode.NEWEXTRA;
 import static org.sqlunet.view.TreeOp.TreeOpCode.REMOVE;
 
 /**
@@ -220,7 +223,7 @@ abstract class BaseModule extends Module
 			final TreeNode rolesNode = TreeFactory.makeHotQueryNode("Roles", R.drawable.roles, false, new RolesQuery(roleSetId)).addTo(parent);
 			final TreeNode examplesNode = TreeFactory.makeQueryNode("Examples", R.drawable.sample, false, new ExamplesQuery(roleSetId)).addTo(parent);
 
-			changed = TreeOp.seq(ANCHOR, parent, NEW, node, NEW, rolesNode, NEW, examplesNode);
+			changed = TreeOp.seq(NEWMAIN, node, NEWEXTRA, rolesNode, NEWEXTRA, examplesNode, NEWTREE, parent);
 		}
 		else
 		{
@@ -257,7 +260,7 @@ abstract class BaseModule extends Module
 		TreeOp[] changed;
 		if (cursor.moveToFirst())
 		{
-			final TreeOp.TreeOps changedList = new TreeOps(ANCHOR, parent);
+			final TreeOp.TreeOps changedList = new TreeOps(NEWTREE, parent);
 
 			// column indices
 			final int idRoleSetId = cursor.getColumnIndex(Words_PbRoleSets.ROLESETID);
@@ -288,13 +291,13 @@ abstract class BaseModule extends Module
 
 				// attach result
 				final TreeNode node = TreeFactory.makeTextNode(sb, false).addTo(parent);
-				changedList.add(NEW, node);
+				changedList.add(NEWCHILD, node);
 
 				// sub nodes
 				final TreeNode rolesNode = TreeFactory.makeHotQueryNode("Roles", R.drawable.roles, false, new RolesQuery(roleSetId)).addTo(parent);
-				changedList.add(NEW, rolesNode);
+				changedList.add(NEWCHILD, rolesNode);
 				final TreeNode examplesNode = TreeFactory.makeQueryNode("Examples", R.drawable.sample, false, new ExamplesQuery(roleSetId)).addTo(parent);
-				changedList.add(NEW, examplesNode);
+				changedList.add(NEWCHILD, examplesNode);
 			}
 			while (cursor.moveToNext());
 			changed = changedList.toArray();
@@ -393,7 +396,7 @@ abstract class BaseModule extends Module
 
 			// attach result
 			final TreeNode node = TreeFactory.makeTextNode(sb, false).addTo(parent);
-			changed = TreeOp.seq(ANCHOR, parent, NEW, node);
+			changed = TreeOp.seq(NEWUNIQUE, node);
 		}
 		else
 		{
@@ -530,7 +533,7 @@ abstract class BaseModule extends Module
 
 			// attach result
 			final TreeNode node = TreeFactory.makeTextNode(sb, false).addTo(parent);
-			changed = TreeOp.seq(ANCHOR, parent, NEW, node);
+			changed = TreeOp.seq(NEWUNIQUE, node);
 		}
 		else
 		{
@@ -564,6 +567,12 @@ abstract class BaseModule extends Module
 		{
 			roles((int) this.id, node);
 		}
+
+		@Override
+		public String toString()
+		{
+			return "roles for roleset " + this.id;
+		}
 	}
 
 	/**
@@ -585,6 +594,12 @@ abstract class BaseModule extends Module
 		public void process(@NonNull final TreeNode node)
 		{
 			examples((int) this.id, node);
+		}
+
+		@Override
+		public String toString()
+		{
+			return "examples for roleset " + this.id;
 		}
 	}
 

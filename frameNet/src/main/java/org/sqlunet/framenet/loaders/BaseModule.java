@@ -68,8 +68,11 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.lifecycle.ViewModelProviders;
 
-import static org.sqlunet.view.TreeOp.TreeOpCode.ANCHOR;
-import static org.sqlunet.view.TreeOp.TreeOpCode.NEW;
+import static org.sqlunet.view.TreeOp.TreeOpCode.NEWTREE;
+import static org.sqlunet.view.TreeOp.TreeOpCode.NEWCHILD;
+import static org.sqlunet.view.TreeOp.TreeOpCode.NEWUNIQUE;
+import static org.sqlunet.view.TreeOp.TreeOpCode.NEWMAIN;
+import static org.sqlunet.view.TreeOp.TreeOpCode.NEWEXTRA;
 import static org.sqlunet.view.TreeOp.TreeOpCode.REMOVE;
 
 /**
@@ -378,7 +381,7 @@ abstract public class BaseModule extends Module
 			final TreeNode lexUnitsNode = TreeFactory.makeHotQueryNode("Lex Units", R.drawable.members, false, new LexUnitsQuery(frameId)).addTo(parent);
 			final TreeNode relatedNode = TreeFactory.makeQueryNode("Related", R.drawable.roleclass, false, new RelatedQuery(frameId)).addTo(parent);
 
-			changed = TreeOp.seq(ANCHOR, parent, NEW, node, NEW, fesNode, NEW, lexUnitsNode, NEW, relatedNode);
+			changed = TreeOp.seq(NEWMAIN, node, NEWEXTRA, fesNode, NEWEXTRA, lexUnitsNode, NEWEXTRA, relatedNode, NEWTREE, parent);
 		}
 		else
 		{
@@ -419,7 +422,7 @@ abstract public class BaseModule extends Module
 		TreeOp[] changed;
 		if (cursor.moveToFirst())
 		{
-			final TreeOps changedList = new TreeOps(ANCHOR, parent);
+			final TreeOps changedList = new TreeOps(NEWTREE, parent);
 
 			// column indices
 			// final int idFrameId = cursor.getColumnIndex(Frames_Related.FRAMEID);
@@ -501,7 +504,7 @@ abstract public class BaseModule extends Module
 				// result
 				long targetFrameId = slot1 ? frame2Id : frame1Id;
 				final TreeNode memberNode = TreeFactory.makeLinkNode(sb, R.drawable.roleclass, false, new FnFrameLink(targetFrameId)).addTo(parent);
-				changedList.add(NEW, memberNode);
+				changedList.add(NEWCHILD, memberNode);
 			}
 			while (cursor.moveToNext());
 			changed = changedList.toArray();
@@ -548,7 +551,7 @@ abstract public class BaseModule extends Module
 		TreeOp[] changed;
 		if (cursor.moveToFirst())
 		{
-			final TreeOps changedList = new TreeOps(ANCHOR, parent);
+			final TreeOps changedList = new TreeOps(NEWTREE, parent);
 
 			// column indices
 			final int idFeType = cursor.getColumnIndex(Frames_FEs.FETYPE);
@@ -579,7 +582,7 @@ abstract public class BaseModule extends Module
 
 				// attach fe
 				final TreeNode feNode = TreeFactory.makeTreeNode(sb, coreTypeId == 1 ? R.drawable.rolex : R.drawable.role, true).addTo(parent);
-				changedList.add(NEW, feNode);
+				changedList.add(NEWCHILD, feNode);
 
 				// more info
 				final SpannableStringBuilder sb2 = new SpannableStringBuilder();
@@ -627,7 +630,7 @@ abstract public class BaseModule extends Module
 
 				// attach extra node to fe node
 				final TreeNode extraNode = TreeFactory.makeTextNode(sb2, false).addTo(feNode);
-				changedList.add(NEW, extraNode);
+				changedList.add(NEWCHILD, extraNode);
 			}
 			while (cursor.moveToNext());
 			changed = changedList.toArray();
@@ -682,7 +685,7 @@ abstract public class BaseModule extends Module
 
 		if (cursor.moveToFirst())
 		{
-			final TreeOps changedList = new TreeOps(ANCHOR, parent);
+			final TreeOps changedList = new TreeOps(NEWTREE, parent);
 
 			final SpannableStringBuilder sb = new SpannableStringBuilder();
 
@@ -758,29 +761,29 @@ abstract public class BaseModule extends Module
 				sb2.append(' ');
 				Spanner.append(sb2, frame, 0, FrameNetFactories.boldFactory);
 				final TreeNode frameNode = TreeFactory.makeHotQueryNode(sb2, R.drawable.roleclass, false, new FrameQuery(frameId)).addTo(parent);
-				changedList.add(NEW, frameNode);
+				changedList.add(NEWCHILD, frameNode);
 
 				if (withFes)
 				{
 					final TreeNode fesNode = TreeFactory.makeQueryNode("Frame Elements", R.drawable.roles, false, new FEsQuery(frameId)).addTo(parent);
-					changedList.add(NEW, fesNode);
+					changedList.add(NEWCHILD, fesNode);
 				}
 			}
 			else
 			{
 				final TreeNode node = TreeFactory.makeTextNode(sb, false).addTo(parent);
-				changedList.add(NEW, node);
+				changedList.add(NEWCHILD, node);
 			}
 
 			// sub nodes
 			final TreeNode realizationsNode = TreeFactory.makeQueryNode("Realizations", R.drawable.realization, false, new RealizationsQuery(luId)).addTo(parent);
-			changedList.add(NEW, realizationsNode);
+			changedList.add(NEWCHILD, realizationsNode);
 			final TreeNode groupRealizationsNode = TreeFactory.makeQueryNode("Group realizations", R.drawable.grouprealization, false, new GroupRealizationsQuery(luId)).addTo(parent);
-			changedList.add(NEW, groupRealizationsNode);
+			changedList.add(NEWCHILD, groupRealizationsNode);
 			final TreeNode governorsNode = TreeFactory.makeQueryNode("Governors", R.drawable.governor, false, new GovernorsQuery(luId)).addTo(parent);
-			changedList.add(NEW, governorsNode);
+			changedList.add(NEWCHILD, governorsNode);
 			final TreeNode sentencesNode = TreeFactory.makeQueryNode("Sentences", R.drawable.sentence, false, new SentencesForLexUnitQuery(luId)).addTo(parent);
-			changedList.add(NEW, sentencesNode);
+			changedList.add(NEWCHILD, sentencesNode);
 
 			changed = changedList.toArray();
 		}
@@ -817,15 +820,15 @@ abstract public class BaseModule extends Module
 		final String selection = FrameNetContract.FRAME + '.' + LexUnits_X.FRAMEID + " = ?";
 		final String[] selectionArgs = {Long.toString(frameId)};
 		final String sortOrder = LexUnits_X.LEXUNIT;
-		this.lexUnitsFromFrameIdModel.loadData(uri, projection, selection, selectionArgs, sortOrder, cursor -> lexUnitsCursor1ToTreeModel(cursor, frameId, parent, withFrame));
+		this.lexUnitsFromFrameIdModel.loadData(uri, projection, selection, selectionArgs, sortOrder, cursor -> lexUnitsCursorToTreeModel(cursor, frameId, parent, withFrame));
 	}
 
-	private TreeOp[] lexUnitsCursor1ToTreeModel(@NonNull final Cursor cursor, final long frameId, @NonNull final TreeNode parent, @SuppressWarnings("SameParameterValue") final boolean withFrame)
+	private TreeOp[] lexUnitsCursorToTreeModel(@NonNull final Cursor cursor, final long frameId, @NonNull final TreeNode parent, @SuppressWarnings("SameParameterValue") final boolean withFrame)
 	{
 		TreeOp[] changed;
 		if (cursor.moveToFirst())
 		{
-			final TreeOps changedList = new TreeOps(ANCHOR, parent);
+			final TreeOps changedList = new TreeOps(NEWTREE, parent);
 
 			// column indices
 			// final int idFrameId = cursor.getColumnIndex(LexUnits_X.FRAMEID);
@@ -859,15 +862,15 @@ abstract public class BaseModule extends Module
 
 				// attach lex unit
 				final TreeNode luNode = TreeFactory.makeLinkTreeNode(sb, R.drawable.member, true, new FnLexUnitLink(luId)).addTo(parent);
-				changedList.add(NEW, luNode);
+				changedList.add(NEWCHILD, luNode);
 
 				// frame
 				if (withFrame)
 				{
 					final TreeNode frameNode = TreeFactory.makeQueryNode("Frame", R.drawable.roleclass, false, new FrameQuery(frameId)).addTo(luNode);
-					changedList.add(NEW, frameNode);
+					changedList.add(NEWCHILD, frameNode);
 					final TreeNode fesNode = TreeFactory.makeQueryNode("Frame Elements", R.drawable.roles, false, new FEsQuery(frameId)).addTo(luNode);
-					changedList.add(NEW, fesNode);
+					changedList.add(NEWCHILD, fesNode);
 				}
 
 				// more info
@@ -912,17 +915,17 @@ abstract public class BaseModule extends Module
 
 				// attach extra node to lex unit node
 				final TreeNode extraNode = TreeFactory.makeTextNode(sb2, false).addTo(luNode);
-				changedList.add(NEW, extraNode);
+				changedList.add(NEWCHILD, extraNode);
 
 				// sub nodes
 				final TreeNode realizationsNode = TreeFactory.makeQueryNode("Realizations", R.drawable.realization, false, new RealizationsQuery(luId)).addTo(luNode);
-				changedList.add(NEW, realizationsNode);
+				changedList.add(NEWCHILD, realizationsNode);
 				final TreeNode groupRealizationsNode = TreeFactory.makeQueryNode("Group realizations", R.drawable.grouprealization, false, new GroupRealizationsQuery(luId)).addTo(luNode);
-				changedList.add(NEW, groupRealizationsNode);
+				changedList.add(NEWCHILD, groupRealizationsNode);
 				final TreeNode governorsNode = TreeFactory.makeQueryNode("Governors", R.drawable.governor, false, new GovernorsQuery(luId)).addTo(luNode);
-				changedList.add(NEW, governorsNode);
+				changedList.add(NEWCHILD, governorsNode);
 				final TreeNode sentencesNode = TreeFactory.makeQueryNode("Sentences", R.drawable.sentence, false, new SentencesForLexUnitQuery(luId)).addTo(luNode);
-				changedList.add(NEW, sentencesNode);
+				changedList.add(NEWCHILD, sentencesNode);
 			}
 			while (cursor.moveToNext());
 			changed = changedList.toArray();
@@ -962,15 +965,15 @@ abstract public class BaseModule extends Module
 				Words_LexUnits_Frames.WORDID + " = ? AND " + FrameNetContract.POS + '.' + Words_LexUnits_Frames.POS + " = ?";
 		final String[] selectionArgs = pos == null ? new String[]{Long.toString(wordId)} : new String[]{Long.toString(wordId), pos.toString().toUpperCase()};
 		final String sortOrder = Words_LexUnits_Frames.FRAME + ',' + Words_LexUnits_Frames.LUID;
-		this.lexUnitsFromWordIdPosModel.loadData(uri, projection, selection, selectionArgs, sortOrder, cursor -> lexUnitsCursor2ToTreeModel(cursor, parent));
+		this.lexUnitsFromWordIdPosModel.loadData(uri, projection, selection, selectionArgs, sortOrder, cursor -> lexUnitsFromWordIdPosCursorToTreeModel(cursor, parent));
 	}
 
-	private TreeOp[] lexUnitsCursor2ToTreeModel(@NonNull final Cursor cursor, @NonNull final TreeNode parent)
+	private TreeOp[] lexUnitsFromWordIdPosCursorToTreeModel(@NonNull final Cursor cursor, @NonNull final TreeNode parent)
 	{
 		TreeOp[] changed;
 		if (cursor.moveToFirst())
 		{
-			final TreeOps changedList = new TreeOps(ANCHOR, parent);
+			final TreeOps changedList = new TreeOps(NEWTREE, parent);
 
 			// column indices
 			final int idLuId = cursor.getColumnIndex(Words_LexUnits_Frames.LUID);
@@ -1042,21 +1045,21 @@ abstract public class BaseModule extends Module
 				}
 				// attach result
 				final TreeNode node = TreeFactory.makeTextNode(sb, false).addTo(parent);
-				changedList.add(NEW, node);
+				changedList.add(NEWCHILD, node);
 
 				// sub nodes
 				final TreeNode frameNode = TreeFactory.makeHotQueryNode("Frame", R.drawable.roleclass, false, new FrameQuery(frameId)).addTo(parent);
-				changedList.add(NEW, frameNode);
+				changedList.add(NEWCHILD, frameNode);
 				final TreeNode fesNode = TreeFactory.makeQueryNode("Frame Elements", R.drawable.roles, false, new FEsQuery(frameId)).addTo(parent);
-				changedList.add(NEW, fesNode);
+				changedList.add(NEWCHILD, fesNode);
 				final TreeNode realizationsNode = TreeFactory.makeQueryNode("Realizations", R.drawable.realization, false, new RealizationsQuery(luId)).addTo(parent);
-				changedList.add(NEW, realizationsNode);
+				changedList.add(NEWCHILD, realizationsNode);
 				final TreeNode groupRealizationsNode = TreeFactory.makeQueryNode("Group realizations", R.drawable.grouprealization, false, new GroupRealizationsQuery(luId)).addTo(parent);
-				changedList.add(NEW, groupRealizationsNode);
+				changedList.add(NEWCHILD, groupRealizationsNode);
 				final TreeNode governorsNode = TreeFactory.makeQueryNode("Governors", R.drawable.governor, false, new GovernorsQuery(luId)).addTo(parent);
-				changedList.add(NEW, governorsNode);
+				changedList.add(NEWCHILD, governorsNode);
 				final TreeNode sentencesNode = TreeFactory.makeQueryNode("Sentences", R.drawable.sentence, false, new SentencesForLexUnitQuery(luId)).addTo(parent);
-				changedList.add(NEW, sentencesNode);
+				changedList.add(NEWCHILD, sentencesNode);
 			}
 			while (cursor.moveToNext());
 			changed = changedList.toArray();
@@ -1100,7 +1103,7 @@ abstract public class BaseModule extends Module
 		TreeOp[] changed;
 		if (cursor.moveToFirst())
 		{
-			final TreeOps changedList = new TreeOps(ANCHOR, parent);
+			final TreeOps changedList = new TreeOps(NEWTREE, parent);
 
 			// column indices
 			final int idGovernorId = cursor.getColumnIndex(LexUnits_Governors.GOVERNORID);
@@ -1133,7 +1136,7 @@ abstract public class BaseModule extends Module
 
 				// attach annoSets node
 				final TreeNode annoSetsNode = TreeFactory.makeQueryNode(sb, R.drawable.governor, false, new AnnoSetsForGovernorQuery(governorId)).addTo(parent);
-				changedList.add(NEW, annoSetsNode);
+				changedList.add(NEWCHILD, annoSetsNode);
 			}
 			while (cursor.moveToNext());
 			changed = changedList.toArray();
@@ -1181,7 +1184,7 @@ abstract public class BaseModule extends Module
 		TreeOp[] changed;
 		if (cursor.moveToFirst())
 		{
-			final TreeOps changedList = new TreeOps(ANCHOR, parent);
+			final TreeOps changedList = new TreeOps(NEWTREE, parent);
 
 			// column indices
 			final int idFerId = cursor.getColumnIndex(LexUnits_FERealizations_ValenceUnits.FERID);
@@ -1207,7 +1210,7 @@ abstract public class BaseModule extends Module
 
 				// fe
 				final TreeNode feNode = TreeFactory.makeTreeNode(sb, R.drawable.role, false).addTo(parent);
-				changedList.add(NEW, feNode);
+				changedList.add(NEWCHILD, feNode);
 
 				// fe realizations
 				final String fers = cursor.getString(idFers);
@@ -1246,7 +1249,7 @@ abstract public class BaseModule extends Module
 
 					// attach fer node
 					final TreeNode ferNode = TreeFactory.makeQueryNode(sb1, R.drawable.realization, false, new SentencesForValenceUnitQuery(vuId)).addTo(feNode);
-					changedList.add(NEW, ferNode);
+					changedList.add(NEWCHILD, ferNode);
 				}
 			}
 			while (cursor.moveToNext());
@@ -1291,7 +1294,7 @@ abstract public class BaseModule extends Module
 		TreeOp[] changed;
 		if (cursor.moveToFirst())
 		{
-			final TreeOps changedList = new TreeOps(ANCHOR, parent);
+			final TreeOps changedList = new TreeOps(NEWTREE, parent);
 
 			// column indices
 			final int idFEGRId = cursor.getColumnIndex(LexUnits_FEGroupRealizations_Patterns_ValenceUnits.FEGRID);
@@ -1332,7 +1335,7 @@ abstract public class BaseModule extends Module
 
 					groupId = feGroupId;
 					groupNode = TreeFactory.makeTreeNode(sb1, R.drawable.grouprealization, false).addTo(parent);
-					changedList.add(NEW, groupNode);
+					changedList.add(NEWCHILD, groupNode);
 				}
 				assert groupNode != null;
 
@@ -1341,7 +1344,7 @@ abstract public class BaseModule extends Module
 
 				// attach sentences node
 				final TreeNode sentencesNode = TreeFactory.makeQueryNode(sb, R.drawable.grouprealization, false, new SentencesForPatternQuery(patternId)).addTo(groupNode);
-				changedList.add(NEW, sentencesNode);
+				changedList.add(NEWCHILD, sentencesNode);
 			}
 			while (cursor.moveToNext());
 			changed = changedList.toArray();
@@ -1445,7 +1448,7 @@ abstract public class BaseModule extends Module
 		TreeOp[] changed;
 		if (cursor.moveToFirst())
 		{
-			final TreeOps changedList = new TreeOps(ANCHOR, parent);
+			final TreeOps changedList = new TreeOps(NEWTREE, parent);
 
 			// column indices
 			final int idText = cursor.getColumnIndex(LexUnits_Sentences_AnnoSets_Layers_Labels.TEXT);
@@ -1525,7 +1528,7 @@ abstract public class BaseModule extends Module
 
 				// attach result
 				final TreeNode sentenceNode = TreeFactory.makeLinkNode(sb, R.drawable.sentence, false, new FnSentenceLink(sentenceId)).addTo(parent);
-				changedList.add(NEW, sentenceNode);
+				changedList.add(NEWCHILD, sentenceNode);
 			}
 			while (cursor.moveToNext());
 			changed = changedList.toArray();
@@ -1565,7 +1568,7 @@ abstract public class BaseModule extends Module
 		TreeOp[] changed;
 		if (cursor.moveToFirst())
 		{
-			final TreeOps changedList = new TreeOps(ANCHOR, parent);
+			final TreeOps changedList = new TreeOps(NEWTREE, parent);
 
 			// column indices
 			final int idAnnotationId = cursor.getColumnIndex(Patterns_Sentences.ANNOSETID);
@@ -1593,7 +1596,7 @@ abstract public class BaseModule extends Module
 
 				// attach annoSet node
 				final TreeNode annoSetNode = TreeFactory.makeQueryNode(sb, R.drawable.sentence, false, new AnnoSetQuery(annotationId, false)).addTo(parent);
-				changedList.add(NEW, annoSetNode);
+				changedList.add(NEWCHILD, annoSetNode);
 			}
 			while (cursor.moveToNext());
 			changed = changedList.toArray();
@@ -1633,7 +1636,7 @@ abstract public class BaseModule extends Module
 		TreeOp[] changed;
 		if (cursor.moveToFirst())
 		{
-			final TreeOps changedList = new TreeOps(ANCHOR, parent);
+			final TreeOps changedList = new TreeOps(NEWTREE, parent);
 
 			// column indices
 			final int idAnnotationId = cursor.getColumnIndex(ValenceUnits_Sentences.ANNOSETID);
@@ -1661,7 +1664,7 @@ abstract public class BaseModule extends Module
 
 				// pattern
 				final TreeNode annoSetNode = TreeFactory.makeQueryNode(sb, R.drawable.sentence, false, new AnnoSetQuery(annotationId, false)).addTo(parent);
-				changedList.add(NEW, annoSetNode);
+				changedList.add(NEWCHILD, annoSetNode);
 			}
 			while (cursor.moveToNext());
 			changed = changedList.toArray();
@@ -1809,7 +1812,7 @@ abstract public class BaseModule extends Module
 
 			// attach result
 			final TreeNode node = TreeFactory.makeTextNode(sb, false).addTo(parent);
-			changed = TreeOp.seq(ANCHOR, parent, NEW, node);
+			changed = TreeOp.seq(NEWUNIQUE, node);
 		}
 		else
 		{
@@ -1846,7 +1849,7 @@ abstract public class BaseModule extends Module
 		TreeOp[] changed;
 		if (cursor.moveToFirst())
 		{
-			final TreeOps changedList = new TreeOps(ANCHOR, parent);
+			final TreeOps changedList = new TreeOps(NEWTREE, parent);
 
 			// column indices
 			final int idSentenceId = cursor.getColumnIndex(Governors_AnnoSets_Sentences.SENTENCEID);
@@ -1877,7 +1880,7 @@ abstract public class BaseModule extends Module
 
 				// attach annoSet node
 				final TreeNode annoSetNode = TreeFactory.makeQueryNode(sb, R.drawable.annoset, false, new AnnoSetQuery(annoSetId, false)).addTo(parent);
-				changedList.add(NEW, annoSetNode);
+				changedList.add(NEWCHILD, annoSetNode);
 			}
 			while (cursor.moveToNext());
 			changed = changedList.toArray();
@@ -1987,7 +1990,7 @@ abstract public class BaseModule extends Module
 		TreeOp[] changed;
 		if (cursor.moveToFirst())
 		{
-			final TreeOps changedList = new TreeOps(ANCHOR, parent);
+			final TreeOps changedList = new TreeOps(NEWTREE, parent);
 
 			long currentAnnoSetId = -1;
 			TreeNode annoSetNode = null;
@@ -2012,7 +2015,7 @@ abstract public class BaseModule extends Module
 					{
 						// attach result
 						final TreeNode node = TreeFactory.makeTextNode(sb, false).addTo(annoSetNode);
-						changedList.add(NEW, node);
+						changedList.add(NEWCHILD, node);
 					}
 					sb = new SpannableStringBuilder();
 
@@ -2021,7 +2024,7 @@ abstract public class BaseModule extends Module
 					sba.append(' ');
 					Spanner.append(sba, Long.toString(annoSetId), 0, FrameNetFactories.dataFactory);
 					annoSetNode = TreeFactory.makeTreeNode(sba, R.drawable.annoset, false).addTo(parent);
-					changedList.add(NEW, annoSetNode);
+					changedList.add(NEWCHILD, annoSetNode);
 					currentAnnoSetId = annoSetId;
 				}
 
@@ -2106,7 +2109,7 @@ abstract public class BaseModule extends Module
 			{
 				// attach result
 				final TreeNode node = TreeFactory.makeTextNode(sb, false).addTo(annoSetNode);
-				changedList.add(NEW, node);
+				changedList.add(NEWCHILD, node);
 			}
 
 			changed = changedList.toArray();
@@ -2262,6 +2265,12 @@ abstract public class BaseModule extends Module
 		{
 			frame((int) this.id, node);
 		}
+
+		@Override
+		public String toString()
+		{
+			return "frame for " + this.id;
+		}
 	}
 
 	/**
@@ -2283,6 +2292,12 @@ abstract public class BaseModule extends Module
 		public void process(@NonNull final TreeNode node)
 		{
 			relatedFrames((int) this.id, node);
+		}
+
+		@Override
+		public String toString()
+		{
+			return "related for " + this.id;
 		}
 	}
 
@@ -2306,6 +2321,12 @@ abstract public class BaseModule extends Module
 		{
 			lexUnitsForFrame((int) this.id, node, false);
 		}
+
+		@Override
+		public String toString()
+		{
+			return "lexunits for frame " + this.id;
+		}
 	}
 
 	/**
@@ -2327,6 +2348,12 @@ abstract public class BaseModule extends Module
 		public void process(@NonNull final TreeNode node)
 		{
 			fesForFrame((int) this.id, node);
+		}
+
+		@Override
+		public String toString()
+		{
+			return "fes for frame " + this.id;
 		}
 	}
 
@@ -2350,6 +2377,12 @@ abstract public class BaseModule extends Module
 		{
 			governorsForLexUnit(this.id, node);
 		}
+
+		@Override
+		public String toString()
+		{
+			return "govs for lu " + this.id;
+		}
 	}
 
 	/**
@@ -2371,6 +2404,12 @@ abstract public class BaseModule extends Module
 		public void process(@NonNull final TreeNode node)
 		{
 			realizationsForLexicalUnit(this.id, node);
+		}
+
+		@Override
+		public String toString()
+		{
+			return "realizations for lu " + this.id;
 		}
 	}
 
@@ -2394,6 +2433,12 @@ abstract public class BaseModule extends Module
 		{
 			groupRealizationsForLexUnit(this.id, node);
 		}
+
+		@Override
+		public String toString()
+		{
+			return "grouprealizations for lu " + this.id;
+		}
 	}
 
 	/**
@@ -2415,6 +2460,12 @@ abstract public class BaseModule extends Module
 		public void process(@NonNull final TreeNode node)
 		{
 			sentencesForPattern(this.id, node);
+		}
+
+		@Override
+		public String toString()
+		{
+			return "sentences for pattern " + this.id;
 		}
 	}
 
@@ -2438,6 +2489,12 @@ abstract public class BaseModule extends Module
 		{
 			sentencesForValenceUnit(this.id, node);
 		}
+
+		@Override
+		public String toString()
+		{
+			return "sentences for vu " + this.id;
+		}
 	}
 
 	/**
@@ -2459,6 +2516,12 @@ abstract public class BaseModule extends Module
 		public void process(@NonNull final TreeNode node)
 		{
 			sentencesForLexUnit(this.id, node);
+		}
+
+		@Override
+		public String toString()
+		{
+			return "sentences for lu " + this.id;
 		}
 	}
 
@@ -2485,6 +2548,12 @@ abstract public class BaseModule extends Module
 		{
 			annoSet(this.id, node, this.withSentence);
 		}
+
+		@Override
+		public String toString()
+		{
+			return "annoset for " + this.id;
+		}
 	}
 
 	/**
@@ -2507,29 +2576,13 @@ abstract public class BaseModule extends Module
 		{
 			annoSetsForGovernor(this.id, node);
 		}
-	}
-
-	/*
-	 * Dummy query
-	 */
-	/*
-	class DummyQuery extends Query
-	{
-		static private final String TAG = "DummyQuery";
-
-		@SuppressWarnings("unused")
-		public DummyQuery(final long annoSetId)
-		{
-			super(annoSetId);
-		}
 
 		@Override
-		public void process(final TreeNode node)
+		public String toString()
 		{
-			Log.d(TAG, "QUERY " + this.id);
+			return "annosets for gov " + this.id;
 		}
 	}
-	*/
 
 	// L I N K S
 
@@ -2560,6 +2613,12 @@ abstract public class BaseModule extends Module
 
 			context.startActivity(intent);
 		}
+
+		@Override
+		public String toString()
+		{
+			return "frame for " + this.id;
+		}
 	}
 
 	/**
@@ -2587,6 +2646,12 @@ abstract public class BaseModule extends Module
 			intent.setAction(ProviderArgs.ACTION_QUERY);
 
 			BaseModule.this.fragment.requireContext().startActivity(intent);
+		}
+
+		@Override
+		public String toString()
+		{
+			return "lexunit for " + this.id;
 		}
 	}
 
@@ -2616,5 +2681,33 @@ abstract public class BaseModule extends Module
 
 			BaseModule.this.fragment.requireContext().startActivity(intent);
 		}
+
+		@Override
+		public String toString()
+		{
+			return "sentence for " + this.id;
+		}
 	}
+
+	/*
+	 * Dummy query
+	 */
+	/*
+	class DummyQuery extends Query
+	{
+		static private final String TAG = "DummyQuery";
+
+		@SuppressWarnings("unused")
+		public DummyQuery(final long annoSetId)
+		{
+			super(annoSetId);
+		}
+
+		@Override
+		public void process(final TreeNode node)
+		{
+			Log.d(TAG, "QUERY " + this.id);
+		}
+	}
+	*/
 }

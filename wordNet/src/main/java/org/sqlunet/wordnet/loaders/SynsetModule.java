@@ -96,7 +96,7 @@ public class SynsetModule extends BaseModule
 			// synset
 			synset(this.synsetId, synsetNode, false);
 
-			// members
+			// members2
 			members(this.synsetId, membersNode);
 
 			// special
